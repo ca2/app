@@ -1,16 +1,13 @@
 #pragma once
 
 
+#ifndef WINDOWS
 
 
+#include "windows_defs.h"
 
 
-
-
-
-
-
-
+#endif
 
 
 //#if WINAPI_FAMILY_PARTITION(WINAPI_PARTITION_DESKTOP)
@@ -34,7 +31,7 @@ int_bool is_window(oswindow oswindow);
 int_bool IsChild(oswindow oswindowParent, oswindow oswindowcandidateChildOrDescendant);
 // oswindow GetParent(oswindow oswindow);
 // oswindow SetParent(oswindow oswindowChild, oswindow oswindowNewParent);
-int_bool show_window(oswindow oswindow, i32 iShow);
+//int_bool show_window(oswindow oswindow, const ::e_display & edisplay, const ::e_activation & eactivation = e_activation_default);
 //::i32 GetWindowLongA(oswindow oswindow, int nIndex);
 //::i32 SetWindowLongA(oswindow oswindow, int nIndex, ::i32 l);
 int_bool _001ClientToScreen(oswindow oswindow, POINT32 * lppoint);
@@ -61,20 +58,20 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow);
 
 
 
-typedef VOID(CALLBACK* TIMERPROC)(oswindow,::u32,uptr,::u32);
-typedef int_bool(CALLBACK* GRAYSTRINGPROC)(HDC,LPARAM,i32);
-typedef int_bool(CALLBACK* WNDENUMPROC)(oswindow,LPARAM);
-typedef LRESULT(CALLBACK* HOOKPROC)(i32 code,WPARAM wParam,LPARAM lParam);
-typedef VOID(CALLBACK* SENDASYNCPROC)(oswindow,::u32,ulong_ptr,LRESULT);
+typedef void(* TIMERPROC)(oswindow,::u32,uptr,::u32);
+typedef int_bool(* GRAYSTRINGPROC)(HDC,LPARAM,i32);
+typedef int_bool(* WNDENUMPROC)(oswindow,LPARAM);
+typedef LRESULT(* HOOKPROC)(i32 code,WPARAM wParam,LPARAM lParam);
+typedef void(* SENDASYNCPROC)(oswindow,::u32,ulong_ptr,LRESULT);
 
-typedef int_bool(CALLBACK* PROPENUMPROca)(oswindow,const char *,HANDLE);
-typedef int_bool(CALLBACK* PROPENUMPROCW)(oswindow,const widechar *,HANDLE);
+typedef int_bool(* PROPENUMPROca)(oswindow,const char *,HANDLE);
+typedef int_bool(* PROPENUMPROCW)(oswindow,const widechar *,HANDLE);
 
-typedef int_bool(CALLBACK* PROPENUMPROCEXA)(oswindow,char *,HANDLE,ulong_ptr);
-typedef int_bool(CALLBACK* PROPENUMPROCEXW)(oswindow,LPWSTR,HANDLE,ulong_ptr);
+typedef int_bool(* PROPENUMPROCEXA)(oswindow,char *,HANDLE,ulong_ptr);
+typedef int_bool(* PROPENUMPROCEXW)(oswindow,LPWSTR,HANDLE,ulong_ptr);
 
-typedef i32(CALLBACK* EDITWORDBREAKPROca)(char * lpch,i32 ichCurrent,i32 cch,i32 code);
-typedef i32(CALLBACK* EDITWORDBREAKPROCW)(LPWSTR lpch,i32 ichCurrent,i32 cch,i32 code);
+typedef i32(* EDITWORDBREAKPROca)(char * lpch,i32 ichCurrent,i32 cch,i32 code);
+typedef i32(* EDITWORDBREAKPROCW)(LPWSTR lpch,i32 ichCurrent,i32 cch,i32 code);
 
 
 #endif
@@ -642,7 +639,7 @@ typedef struct tagDRAWTEXTPARAMS
    i32     iLeftMargin;
    i32     iRightMargin;
    ::u32    uiLengthDrawn;
-} DRAWTEXTPARAMS,FAR *LPDRAWTEXTPARAMS;
+} DRAWTEXTPARAMS,*LPDRAWTEXTPARAMS;
 
 #endif
 
@@ -766,7 +763,7 @@ oswindow hWnd,
 /*
 * MessageBox() Flags
 */
-#define e_message_box_ok                       0x00000000L
+//#define e_message_box_ok                       0x00000000L
 #define MB_OKCANCEL                 0x00000001L
 #define MB_ABORTRETRYIGNORE         0x00000002L
 #define MB_YESNOCANCEL              0x00000003L
@@ -779,17 +776,17 @@ oswindow hWnd,
 
 #define MB_ICONHAND                 0x00000010L
 #define MB_ICONQUESTION             0x00000020L
-#define e_message_box_icon_exclamation          0x00000030L
+//#define e_message_box_icon_exclamation          0x00000030L
 #define MB_ICONASTERISK             0x00000040L
 
 //#if(WINVER >= 0x0400)
 #define MB_USERICON                 0x00000080L
-#define MB_ICONWARNING              e_message_box_icon_exclamation
+//#define e_message_box_icon_warning              e_message_box_icon_exclamation
 #define MB_ICONERROR                MB_ICONHAND
 //#endif /* WINVER >= 0x0400 */
 
-#define MB_ICONINFORMATION          MB_ICONASTERISK
-#define e_message_box_icon_stop                 MB_ICONHAND
+//#define e_message_box_icon_information          MB_ICONASTERISK
+//#define e_message_box_icon_stop                 MB_ICONHAND
 
 #define MB_DEFBUTTON1               0x00000000L
 #define MB_DEFBUTTON2               0x00000100L
@@ -799,7 +796,7 @@ oswindow hWnd,
 //#endif /* WINVER >= 0x0400 */
 
 #define MB_APPLMODAL                0x00000000L
-#define e_message_box_system_modal              0x00001000L
+//#define e_message_box_system_modal              0x00001000L
 #define MB_TASKMODAL                0x00002000L
 #if(WINVER >= 0x0400)
 #define MB_HELP                     0x00004000L // Help Button
@@ -949,7 +946,7 @@ typedef struct tagPAINTSTRUCT
 
 typedef struct tagCREATESTRUCTW
 {
-   LPVOID      lpCreateParams;
+   void *      lpCreateParams;
    HINSTANCE   hInstance;
    HMENU       hMenu;
    oswindow    hwndParent;
@@ -1036,7 +1033,7 @@ int_bool WINAPI IsIconic(oswindow hWnd);
 //
 //#endif
 
-//int_bool RedrawWindow(oswindow hWnd, CONST RECT32 *lprcUpdate, HRGN hrgnUpdate, ::u32 flags);
+//int_bool RedrawWindow(oswindow hWnd, const RECT32 *lprcUpdate, HRGN hrgnUpdate, ::u32 flags);
 
 
 /*
@@ -1157,7 +1154,7 @@ typedef struct tagNMHDR
 }   NMHDR;
 
 
-typedef NMHDR FAR * LPNMHDR;
+typedef NMHDR * LPNMHDR;
 
 
 typedef struct tagSTYLESTRUCT
@@ -1598,7 +1595,7 @@ typedef struct tagCOPYDATASTRUCT
 {
    uptr dwData;
    ::u32 cbData;
-   PVOID lpData;
+   void * lpData;
 } COPYDATASTRUCT, *PCOPYDATASTRUCT;
 
 #if(WINVER >= 0x0400)
@@ -1607,7 +1604,7 @@ typedef struct tagMDINEXTMENU
    HMENU   hmenuIn;
    HMENU   hmenuNext;
    oswindow    hwndNext;
-} MDINEXTMENU, * PMDINEXTMENU, FAR * LPMDINEXTMENU;
+} MDINEXTMENU, * PMDINEXTMENU, * LPMDINEXTMENU;
 #endif /* WINVER >= 0x0400 */
 
 
@@ -1625,7 +1622,7 @@ typedef struct tagMDINEXTMENU
 #define NF_QUERY                             3
 #define NF_REQUERY                           4
 
-#define WM_CONTEXTMENU                  0x007B
+#define e_message_context_menu                  0x007B
 #define WM_STYLECHANGING                0x007C
 #define WM_STYLECHANGED                 0x007D
 #define e_message_display_change                0x007E
@@ -2685,7 +2682,7 @@ CLASS_DECL_ACME int_bool SubtractRect(LPRECT32 prect, LPCRECT32 prect1, LPCRECT3
 //#ifdef _MAC
 //   ::u32       lPrivate;
 //#endif
-//} MESSAGE, *PMESSAGE, NEAR *NPMESSAGE, FAR *LPMESSAGE;
+//} MESSAGE, *PMESSAGE, *NPMESSAGE, *LPMESSAGE;
 
 CLASS_DECL_ACME int_bool TranslateMessage(const MESSAGE * pmsg);
 CLASS_DECL_ACME LRESULT DispatchMessage(const MESSAGE * pmsg);

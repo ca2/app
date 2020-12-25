@@ -54,7 +54,7 @@ namespace user
       //e_rect                            m_erectMargin;
       //e_rect                            m_erectBorder;
       //e_rect                            m_erectPadding;
-      e_align                              m_ealignText;
+      ealign                              m_ealignText;
       e_style                             m_estyle;
       //::enum_check                    m_echeck;
       ::rect                              m_rectText;
@@ -74,8 +74,8 @@ namespace user
       virtual bool create_control(class control_descriptor* pdescriptor) override;
 
 
-      virtual ::draw2d::font_pointer get_font(style* pstyle, e_element eelement = element_none, estate estate = e_state_none) const override;
-      virtual e_translucency get_translucency(style * pstyle) const override;
+      virtual ::draw2d::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
+      virtual enum_translucency get_translucency(style * pstyle) const override;
 
 
 

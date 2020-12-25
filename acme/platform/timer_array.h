@@ -23,10 +23,10 @@ namespace apex
 
 
 
-      virtual bool create_timer(uptr uEvent, ::u32 nEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
+      virtual bool create_timer(uptr uEvent, ::millis millisEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
       virtual bool delete_timer(uptr uEvent);
 
-      virtual bool set_timer(uptr uEvent, ::u32 nEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
+      virtual bool set_timer(uptr uEvent, ::millis millisEllapse, PFN_TIMER pfnTimer = nullptr, bool bPeriodic = true, void * pvoidData = nullptr);
 
       virtual bool remove_timer(::timer * ptimer) override;
 

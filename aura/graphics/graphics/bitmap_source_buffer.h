@@ -25,7 +25,7 @@ namespace graphics
 
       virtual bool ipc_copy(const pixmap * ppixmap);
 
-      virtual bool round_swap_key_buffers() override;
+      virtual bool buffer_lock_round_swap_key_buffers() override;
 
 
    };

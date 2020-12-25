@@ -160,9 +160,7 @@ namespace userex
 
       SCAST_PTR(::message::create, pcreate, pmessage);
 
-
-      m_pcreate = (::create *) pcreate->m_lpcreatestruct->CREATE_STRUCT_P_CREATE_PARAMS;
-
+      m_pcreate = (::create *) pcreate->get_create();
 
       //if (Application.m_pmainpane == nullptr)
       //{
@@ -438,7 +436,7 @@ namespace userex
       else if (is_font_sel(pimpactdata->m_id))
       {
 
-         pimpactdata->m_eflag.add(::user::flag_modifier_impact);
+         pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);
 
          auto puser = User;
 
@@ -469,7 +467,7 @@ namespace userex
       else if (is_color_sel(pimpactdata->m_id))
       {
 
-         pimpactdata->m_eflag.add(::user::flag_modifier_impact);
+         pimpactdata->m_eflag.add(::user::e_flag_modifier_impact);
 
          auto puser = User;
 
@@ -489,7 +487,7 @@ namespace userex
       else if(is_filemanager(pimpactdata->m_id))
       {
 
-         pimpactdata->m_eflag.add(::user::flag_tool_impact);
+         pimpactdata->m_eflag.add(::user::e_flag_tool_impact);
 
          auto pfilemanagerdata = cast < ::filemanager::data >("data." + pimpactdata->m_id.str());
 
@@ -756,7 +754,7 @@ namespace userex
    void pane_tab_view::on_control_event(::user::control_event * pevent)
    {
 
-      if (pevent->m_eevent == ::user::event_context_menu_close)
+      if (pevent->m_eevent == ::user::e_event_context_menu_close)
       {
 
          if (m_pimpactdataOld != nullptr)

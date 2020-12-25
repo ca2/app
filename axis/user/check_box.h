@@ -42,6 +42,9 @@ namespace user
       virtual ~check_box();
 
 
+      virtual enum_element get_default_element() const override;
+
+
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _001OnDrawNormal(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawRedGreenCircle(::draw2d::graphics_pointer & pgraphics);

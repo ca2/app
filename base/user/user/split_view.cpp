@@ -54,7 +54,7 @@ namespace user
 
       pcreate->previous();
 
-      if (!(m_ewindowflag & window_flag_window_created))
+      if (!(m_ewindowflag & e_window_flag_window_created))
       {
 
          create_split_impact();
@@ -127,16 +127,16 @@ namespace user
    }
 
 
-   bool split_view::pre_create_window(::user::create_struct& cs)
+   bool split_view::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
 #ifdef WINDOWS_DESKTOP
 
-      cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
+
 
 #endif
 
-      return impact::pre_create_window(cs);
+      return impact::pre_create_window(pcreatestruct);
 
    }
 

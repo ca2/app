@@ -273,7 +273,7 @@ namespace macos
    }
 
 
-   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, ::user::create_struct & cs, ::user::interaction *  puiParent, id id)
+   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::interaction *  puiParent, id id)
    {
 
       if (!native_create_window_ex(pinteraction, cs,
@@ -322,7 +322,7 @@ namespace macos
    }
 
 
-   bool interaction_impl::_native_create_window_ex(::user::create_struct & cs)
+   bool interaction_impl::_native_create_window_ex(__pointer(::user::create_struct) pcreatestruct)
    {
 
       //if (::is_window(get_handle()))
@@ -334,17 +334,17 @@ namespace macos
 
       //      ASSERT(lpszClassName == nullptr || __is_valid_string(lpszClassName) ||
       //       __is_valid_atom(lpszClassName));
-      ENSURE_ARG(cs.lpszName == nullptr || __is_valid_string(cs.lpszName));
+      ENSURE_ARG(pcreatestruct->m_createstruct.lpszName == nullptr || __is_valid_string(pcreatestruct->m_createstruct.lpszName));
 
       // allow modification of several common create parameters
       //::user::create_struct createstruct;
-      //      cs.hwndParent = hWndParent;
-      //   cs.hMenu = hWndParent == nullptr ? nullptr : nIDorHMenu;
-      cs.hMenu = nullptr;
-      //      cs.hInstance = System.m_hInstance;
-      //cs.lpCreateParams = lpParam;
+      //      pcreatestruct->m_createstruct.hwndParent = hWndParent;
+      //   pcreatestruct->m_createstruct.hMenu = hWndParent == nullptr ? nullptr : nIDorHMenu;
+      pcreatestruct->m_createstruct.hMenu = nullptr;
+      //      pcreatestruct->m_createstruct.hInstance = System.m_hInstance;
+      //pcreatestruct->m_createstruct.lpCreateParams = lpParam;
 
-      if (!m_puserinteraction->pre_create_window(cs))
+      if (!m_puserinteraction->pre_create_window(pcreatestruct))
       {
 
          return false;
@@ -359,14 +359,14 @@ namespace macos
 
       RECT32 rectParam;
 
-      rectParam.left = cs.x;
-      rectParam.top = cs.y;
-      rectParam.right = cs.x + cs.cx;
-      rectParam.bottom = cs.y + cs.cy;
+      rectParam.left = pcreatestruct->m_createstruct.x;
+      rectParam.top = pcreatestruct->m_createstruct.y;
+      rectParam.right = pcreatestruct->m_createstruct.x + pcreatestruct->m_createstruct.cx;
+      rectParam.bottom = pcreatestruct->m_createstruct.y + pcreatestruct->m_createstruct.cy;
 
       __copy(rect, rectParam);
 
-      if (cs.hwndParent == MESSAGE_WINDOW_PARENT)
+      if (pcreatestruct->m_createstruct.hwndParent == MESSAGE_WINDOW_PARENT)
       {
 
          return true;
@@ -425,7 +425,7 @@ namespace macos
 
       }
 
-      if(cs.style & WS_VISIBLE)
+      if(pcreatestruct->m_createstruct.style & WS_VISIBLE)
       {
 
          m_puserinteraction->display();
@@ -442,7 +442,7 @@ namespace macos
 
       m_puserinteraction->add_ref(OBJ_REF_DBG_P_NOTE(this, "native_create_window"));
 
-      m_puserinteraction->m_ewindowflag |= window_flag_window_created;
+      m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
       
       return bOk;
 
@@ -450,15 +450,15 @@ namespace macos
 
 
    // for child windows
-   bool interaction_impl::pre_create_window(::user::create_struct& cs)
+   bool interaction_impl::pre_create_window(::user::create_struct * pcreatestruct)
    {
-      /*      if (cs.lpszClass == nullptr)
+      /*      if (pcreatestruct->m_createstruct.lpszClass == nullptr)
        {
 /xcore/app/aura/node/macos/macos_interaction_impl.cpp:712:44: No member named 'get_window_rect' in 'user::interaction_impl'       // make sure the default user::interaction class is registered
-       VERIFY(__end_defer_register_class(__WND_REG, &cs.lpszClass));
+       VERIFY(__end_defer_register_class(__WND_REG, &pcreatestruct->m_createstruct.lpszClass));
 
        // no WNDCLASS provided - use child user::interaction default
-       ASSERT(cs.style & WS_CHILD);
+       ASSERT(pcreatestruct->m_createstruct.style & WS_CHILD);
        }*/
       return true;
    }
@@ -473,9 +473,9 @@ namespace macos
       
       ::user::create_struct createstruct(0, lpszClassName, lpszWindowName, uStyle, rect, pcreate);
 
-      createstruct.hwndParent = puiParent->get_safe_handle();
+      pcreatestruct->m_createstruct.hwndParent = puiParent->get_safe_handle();
 
-      ASSERT((createstruct.style & WS_POPUP) == 0);
+      ASSERT((pcreatestruct->m_createstruct.style & WS_POPUP) == 0);
 
       return create_window_ex(pinteraction, createstruct, puiParent, id);
 
@@ -611,7 +611,7 @@ namespace macos
 //
 //         m_puserinteraction->move_to(pmove->m_point);
 //
-//         if (m_puserinteraction->layout().design().display() != display_normal)
+//         if (m_puserinteraction->layout().design().display() != e_display_normal)
 //         {
 //
 //            m_puserinteraction->display();
@@ -653,7 +653,7 @@ namespace macos
 //
 //         m_puserinteraction->set_size(psize->m_size);
 //
-//         if (m_puserinteraction->layout().design().display() != display_normal)
+//         if (m_puserinteraction->layout().design().display() != e_display_normal)
 //         {
 //
 //            m_puserinteraction->display();
@@ -1943,7 +1943,7 @@ namespace macos
 //            if (dwSpan < 50)
 //            {
 //
-//               millis_sleep(50 - dwSpan);
+//               sleep(50 - dwSpan);
 //
 //            }
 //
@@ -2532,12 +2532,12 @@ namespace macos
 //   void interaction_impl::_001WindowRestore()
 //   {
 //
-//      m_puserinteraction->m_edisplay = user::display_normal;
+//      m_puserinteraction->m_edisplay = user::e_display_normal;
 //
 //      if (m_puserinteraction != nullptr)
 //      {
 //
-//         m_puserinteraction->m_edisplay = user::display_normal;
+//         m_puserinteraction->m_edisplay = user::e_display_normal;
 //
 //      }
 //
@@ -2774,7 +2774,7 @@ namespace macos
    }
 
 
-//   void interaction_impl::bring_to_top(::edisplay edisplay)
+//   void interaction_impl::bring_to_top(::e_display edisplay)
 //   {
 //
 //      ::user::interaction_impl::bring_to_top(edisplay);
@@ -3180,7 +3180,7 @@ namespace macos
    }
 
 
-//   bool interaction_impl::DrawAnimatedRects(i32 idAni, CONST RECT32 *lprcFrom, CONST RECT32 * lprcTo)
+//   bool interaction_impl::DrawAnimatedRects(i32 idAni, const RECT32 *lprcFrom, const RECT32 * lprcTo)
 //   {
 //
 //      __throw(not_implemented());
@@ -5010,7 +5010,7 @@ namespace macos
 //
 //         m_puserinteraction->place(rectSize);
 //
-//         if (m_puserinteraction->layout().design().display() != display_normal)
+//         if (m_puserinteraction->layout().design().display() != e_display_normal)
 //         {
 //
 //            m_puserinteraction->display();
@@ -5077,7 +5077,7 @@ namespace macos
 //
 //         m_puserinteraction->move_to(pointMove);
 //
-//         if (m_puserinteraction->layout().design().display() != display_normal)
+//         if (m_puserinteraction->layout().design().display() != e_display_normal)
 //         {
 //
 //            m_puserinteraction->display();
@@ -5194,7 +5194,7 @@ namespace macos
 
       m_puserinteraction->m_windowrect.m_edisplayPrevious = m_puserinteraction->m_windowrect.m_edisplay;
 
-      m_puserinteraction->window_state3().m_edisplay3 = ::display_iconic;
+      m_puserinteraction->window_state3().m_edisplay3 = ::e_display_iconic;
 
    }
 
@@ -5216,10 +5216,10 @@ namespace macos
 
       }
 
-      if(m_puserinteraction->m_windowrect.m_edisplayPrevious == ::display_iconic)
+      if(m_puserinteraction->m_windowrect.m_edisplayPrevious == ::e_display_iconic)
       {
 
-         m_puserinteraction->m_windowrect.m_edisplayPrevious = ::display_normal;
+         m_puserinteraction->m_windowrect.m_edisplayPrevious = ::e_display_normal;
 
       }
 
@@ -5254,7 +5254,7 @@ namespace macos
 //      if(!(m_puserinteraction->m_ewindowflag & window_flag_miniaturizable))
 //      {
 //
-//         if(m_puserinteraction->layout().sketch().display() == display_iconic)
+//         if(m_puserinteraction->layout().sketch().display() == e_display_iconic)
 //         {
 //
 //            m_puserinteraction->m_windowState3
@@ -5296,7 +5296,7 @@ namespace macos
       if(::is_screen_visible(m_puserinteraction->m_stateWindow3.m_edisplay3))
       {
 
-         m_puserinteraction->m_stateWindow3.m_edisplay3 = display_none;
+         m_puserinteraction->m_stateWindow3.m_edisplay3 = e_display_none;
 
       }
 
@@ -5580,13 +5580,13 @@ namespace macos
          round_window_hide();
 
       }
-      else if(edisplay == display_iconic)
+      else if(edisplay == e_display_iconic)
       {
 
          round_window_miniaturize();
 
       }
-      else if(m_puserinteraction->process_state().m_eactivation & activation_no_activate)
+      else if(m_puserinteraction->process_state().m_eactivation & e_activation_no_activate)
       {
 
          round_window_order_front();

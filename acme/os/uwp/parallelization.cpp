@@ -156,7 +156,7 @@ void _on_aura_thread_detach()
 
 #pragma warning (disable : 4273)
 
-CLASS_DECL_ACME ::u32 WINAPI MsgWaitForMultipleObjects(::u32 nCount, const HANDLE* pHandles, BOOL fWaitAll, ::u32 dwMilliseconds, ::u32 dwWakeMask)
+CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjects(DWORD nCount, const HANDLE* pHandles, BOOL fWaitAll, DWORD dwMilliseconds, DWORD dwWakeMask)
 {
 
    return MsgWaitForMultipleObjectsEx(nCount, pHandles, dwMilliseconds, dwWakeMask | (fWaitAll ? MWMO_WAITALL: 0), 0);
@@ -164,7 +164,7 @@ CLASS_DECL_ACME ::u32 WINAPI MsgWaitForMultipleObjects(::u32 nCount, const HANDL
 }
 
 
-CLASS_DECL_ACME ::u32 WINAPI MsgWaitForMultipleObjectsEx(::u32 nCount, const HANDLE* pHandles, ::u32 dwMilliseconds, ::u32 dwWakeMask, ::u32 dwFlags)
+CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HANDLE* pHandles, DWORD dwMilliseconds, DWORD dwWakeMask, DWORD dwFlags)
 {
 
    ::u32 dwResult = 0;
@@ -253,6 +253,7 @@ hthread_t get_main_hthread()
    return g_iMainThread;
 
 }
+
 
 
 

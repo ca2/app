@@ -86,7 +86,7 @@ namespace user
          if(m_pframe != nullptr && m_pframe->is_window_visible())
          {
 
-            m_pframe->display(display_none);
+            m_pframe->display(e_display_none);
 
          }
          else
@@ -191,7 +191,7 @@ namespace user
       if (!m_itemHover.is_set())
       {
 
-         m_itemHover = ::user::element_client;
+         m_itemHover = ::user::e_element_client;
 
          set_need_redraw();
 
@@ -209,7 +209,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      m_itemHover = ::user::element_none;
+      m_itemHover = ::user::e_element_none;
 
       set_need_redraw();
 
@@ -227,7 +227,7 @@ namespace user
          if(m_pframe && m_pframe->is_window_visible())
          {
 
-            m_pframe->display(display_none);
+            m_pframe->display(e_display_none);
 
          }
 
@@ -361,11 +361,11 @@ namespace user
 
          ::rect rEdit;
 
-         get_element_rect(rEdit, element_combo_edit);
+         get_element_rect(rEdit, e_element_combo_edit);
 
          {
 
-            auto colorBackground = get_color(pstyle, ::user::element_background, estate);
+            auto colorBackground = get_color(pstyle, ::user::e_element_background, estate);
 
             if (!colorBackground)
             {
@@ -408,7 +408,7 @@ namespace user
 
       ::rect rectDropDown;
 
-      get_element_rect(rectDropDown, element_drop_down);
+      get_element_rect(rectDropDown, e_element_drop_down);
 
       ::rect rectDropIn(rectDropDown);
 

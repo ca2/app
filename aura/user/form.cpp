@@ -22,6 +22,14 @@ namespace user
    }
 
 
+   //enum_control_type form::get_control_type() const
+   //{
+
+   //   return e_control_type_form;
+
+   //}
+
+
    bool form::create_control(class control_descriptor * pdescriptor, index iItem)
    {
 
@@ -54,6 +62,7 @@ namespace user
    }
 
 
+
    void form::soft_reload()
    {
 
@@ -73,6 +82,48 @@ namespace user
 //      return this;
 //
 //   }
+
+
+   ::estatus form::initialize(::layered * pobjectContext)
+   {
+
+      auto estatus = ::user::interaction::initialize(pobjectContext);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   void form::install_message_routing(::channel * pchannel)
+   {
+
+      ::user::interaction::install_message_routing(pchannel);
+
+      MESSAGE_LINK(e_message_create, pchannel, this, &form::_001OnCreate);
+
+   }
+
+   
+   void form::_001OnCreate(::message::message * pmessage)
+   {
+
+      SCAST_PTR(::message::create, pcreate, pmessage);
+
+      pcreate->previous();
+
+      m_pdescriptor->m_econtroltype = e_control_type_form;
+
+   }
+
+
+
    ::estatus form::set_form_callback(::user::form_callback* pcallback)
    {
 

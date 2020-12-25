@@ -41,7 +41,7 @@ namespace userstack
       MESSAGE_LINK(e_message_destroy, pchannel, this, &view::_001OnDestroy);
       MESSAGE_LINK(e_message_paint, pchannel, this, &view::_001OnPaint);
       MESSAGE_LINK(e_message_create, pchannel, this, &view::_001OnCreate);
-      MESSAGE_LINK(WM_CONTEXTMENU, pchannel, this, &view::_001OnContextMenu);
+      MESSAGE_LINK(e_message_context_menu, pchannel, this, &view::_001OnContextMenu);
       MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::_001OnSetCursor);
       MESSAGE_LINK(e_message_left_button_up, pchannel, this, &view::_001OnLButtonUp);
 
@@ -84,10 +84,10 @@ namespace userstack
    // ::view
 
 
-   bool view::pre_create_window(::user::create_struct& cs)
+   bool view::pre_create_window(::user::create_struct * pcreatestruct)
    {
-      cs.style &= ~WS_EX_CLIENTEDGE;
-      return ::user::impact::pre_create_window(cs);
+
+      return ::user::impact::pre_create_window(pcreatestruct);
    }
 
 
@@ -314,7 +314,7 @@ namespace userstack
       if(rectArea.contains(item.m_pointHitTest))
       {
       
-         item ={ ::user::element_area, m_iV };
+         item ={ ::user::e_element_area, m_iV };
 
          return;
          
@@ -325,7 +325,7 @@ namespace userstack
       if(rectArea.contains(item.m_pointHitTest))
       {
 
-         item = { ::user::element_area, m_i_veriwell };
+         item = { ::user::e_element_area, m_i_veriwell };
 
          return;
 
@@ -336,13 +336,13 @@ namespace userstack
       if(rectArea.contains(item.m_pointHitTest))
       {
          
-         item = { ::user::element_area, m_i_winactionarea };
+         item = { ::user::e_element_area, m_i_winactionarea };
 
          return;
 
       }
       
-      item = ::user::element_none;
+      item = ::user::e_element_none;
       
    }
 

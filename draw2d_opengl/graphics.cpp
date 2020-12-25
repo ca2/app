@@ -4459,7 +4459,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::draw_text(const string & str,const ::rect & rectParam, const ::e_align& ealign, const ::e_draw_text& edrawtext)
+   bool graphics::draw_text(const string & str,const ::rect & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       ::rectd rect;
@@ -4471,7 +4471,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::draw_text(const string & str, const ::rectd & rectParam, const ::e_align& ealign, const ::e_draw_text& edrawtext)
+   bool graphics::draw_text(const string & str, const ::rectd & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
    {
 
       //try
@@ -4590,7 +4590,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::draw_text_ex(const string & str, const ::rect & rectParam, const ::e_align& ealign, const ::e_draw_text& edrawtext, LPDRAWTEXTPARAMS lpDTParams)
+   bool graphics::draw_text_ex(const string & str, const ::rect & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPDRAWTEXTPARAMS lpDTParams)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -4608,7 +4608,7 @@ namespace draw2d_opengl
 
 
 
-   bool graphics::draw_text_ex(const string & str,const ::rectd & rectParam, const ::e_align& ealign, const ::e_draw_text& edrawtext,LPDRAWTEXTPARAMS lpDTParams)
+   bool graphics::draw_text_ex(const string & str,const ::rectd & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext,LPDRAWTEXTPARAMS lpDTParams)
    {
 
       return ::draw2d::graphics::draw_text_ex(str,rectParam,ealign, edrawtext,lpDTParams);

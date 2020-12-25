@@ -132,23 +132,23 @@ namespace linux
 //      // advanced creation (allows access to extended styles)
 //      virtual bool create_window_ex(
 //      ::user::interaction * pinteraction,
-//      ::user::create_struct & cs,
+//      __pointer(::user::create_struct) pcreatestruct,
 //      ::user::interaction * pParentWnd = nullptr,
 //      id id = ::id()) override;
 
-    virtual bool _native_create_window_ex(::user::create_struct & cs) override;
+    virtual bool _native_create_window_ex(__pointer(::user::create_struct) pcreatestruct) override;
 
 
 //      virtual bool native_create_window_ex(
 //      ::user::interaction * pinteraction,
-//      ::user::create_struct & cs,
+//      __pointer(::user::create_struct) pcreatestruct,
 //      ::user::interaction * pParentWnd = nullptr,
 //      id id = ::id());
 
       virtual bool DestroyWindow() override;
 
       // special pre-creation and ::user::interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(::user::create_struct & cs) override;
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
 
       // Advanced: virtual AdjustWindowRect
 //      enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
@@ -162,8 +162,8 @@ namespace linux
       void defer_delayed_placement();
 
 
-      virtual void on_start_layout_experience(e_layout_experience elayoutexperience) override;
-      virtual void on_end_layout_experience(e_layout_experience elayoutexperience) override;
+      virtual void on_start_layout_experience(enum_layout_experience elayoutexperience) override;
+      virtual void on_end_layout_experience(enum_layout_experience elayoutexperience) override;
 
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
@@ -285,7 +285,7 @@ namespace linux
 //      virtual void ValidateRect(const ::rect & rect);
 //
 //      virtual void ValidateRgn(::draw2d::region* pRgn);
-      //virtual bool display(::edisplay edisplay) override;
+      //virtual bool display(::e_display edisplay) override;
 
 //      virtual bool WfiOnStartDock();
 //      virtual void WfiOnDock(edisplay edisplay);
@@ -314,7 +314,7 @@ namespace linux
       virtual void set_viewport_org(::draw2d::graphics_pointer & pgraphics) override;
 
 //
-//      //virtual bool DrawAnimatedRects(i32 idAni, CONST LPRECTprcFrom, CONST LPRECTlprcTo);
+//      //virtual bool DrawAnimatedRects(i32 idAni, const LPRECTprcFrom, const LPRECTlprcTo);
 //
 //      virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const rect & prc, ::u32 uFlags);
 //

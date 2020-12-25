@@ -19,6 +19,7 @@ namespace user
       m_iTool = -1;
       m_iEventTool = -1;
       m_bTipEnable = true;
+      set_tool_window();
 
    }
 
@@ -134,10 +135,10 @@ namespace user
          ptool->BaseToolTipGetWnd()->_001ClientToScreen(rectToolScreen);
          CalcRect(pgraphics, rect, rectToolScreen, m_strTip);
 
-
+         ::rect rectScreen;
+         Session->get_main_monitor(rect);
          ::size sizeScreen;
-         sizeScreen.cx = ::GetSystemMetrics(SM_CXSCREEN);
-         sizeScreen.cy = ::GetSystemMetrics(SM_CYSCREEN);
+         sizeScreen = rectScreen.size();
 
          if(rect.right > sizeScreen.cx && !bHRetry)
          {
@@ -167,11 +168,11 @@ namespace user
       
       place(rect);
       
-      activation(activation_no_activate);
+      activation(e_activation_no_activate);
 
       update_drawing_objects();
 
-      display(SW_SHOWNOACTIVATE);
+      display(e_display_normal, e_activation_no_activate);
    }
 
    ///////////////////////////////////////////////////////////
@@ -314,7 +315,7 @@ namespace user
       {
       case e_timer_hide_window:
       {
-         display(display_none);
+         display(e_display_none);
          KillTimer(uEvent);
       }
       break;
@@ -338,10 +339,10 @@ namespace user
       m_puserinteraction = puserinteraction;
 
       m_font->create_point_font(FONT_SANS, 10.0);
-      
-      ::user::create_struct createstruct(WS_EX_TOOLWINDOW, nullptr, nullptr, WS_POPUP, nullptr);
-      
-      return create_window_ex(createstruct, nullptr, id) != 0;
+
+      auto pcreatestruct = __new(::user::create_struct);
+
+      return create_window_ex(pcreatestruct, nullptr, id) != 0;
 
    }
 
@@ -378,7 +379,7 @@ namespace user
    {
       if(is_window_visible())
       {
-         display(display_none);
+         display(e_display_none);
       }
       return true;
    }
@@ -595,7 +596,7 @@ namespace user
    }
 
 
-   void tool_tip_window::SetPositionHint(::user::interaction * puserinteraction, e_position eposition)
+   void tool_tip_window::SetPositionHint(::user::interaction * puserinteraction, enum_position eposition)
    {
 
       ::rect rect;

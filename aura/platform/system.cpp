@@ -9,7 +9,10 @@
 #include "acme/node/windows/registry.h"
 #include "apex/platform/history.h"
 #include "aura/gpu/gpu/_.h"
-
+#include "aura/const/idpool.h"
+#ifdef _UWP
+#include "aura/node/uwp/directx_application.h"
+#endif
 
 int GetMainScreenRect(LPRECT32 lprect);
 
@@ -112,6 +115,7 @@ namespace aura
 
       create_factory < ::aura::session, ::apex::session >();
       create_factory < ::aura::application, ::apex::application >();
+      create_factory < ::aura::idpool, ::apex::idpool >();
 
       m_bMessageThread = true;
 
@@ -2325,7 +2329,7 @@ namespace aura
 
 #if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(__APPLE__)
 
-            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().module()/strApp,strParameters,nullptr,display_normal);
+            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().module()/strApp,strParameters,nullptr,e_display_normal);
 
             launcher.execute();
 
@@ -2358,7 +2362,7 @@ namespace aura
 
 #else
 
-            ::apex::shell_launcher launcher(nullptr,nullptr,Context.dir().module()/strApp,nullptr,nullptr, display_normal);
+            ::apex::shell_launcher launcher(nullptr,nullptr,Context.dir().module()/strApp,nullptr,nullptr, e_display_normal);
 
             launcher.execute();
 
@@ -2396,7 +2400,7 @@ namespace aura
 
 #else
 
-            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, display_normal);
+            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
 
             launcher.execute();
 
@@ -2428,7 +2432,7 @@ namespace aura
 
 #else
 
-            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, display_normal);
+            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
 
             launcher.execute();
 
@@ -2670,7 +2674,7 @@ namespace aura
 //      if(has_property("install"))
 //         return true;
 //
-//      file_pointer pfile = Context.file().get_file(Context.dir().appdata() / "applibcache.bin",::file::type_binary | ::file::mode_read);
+//      file_pointer pfile = Context.file().get_file(Context.dir().appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
 //
 //      if(!pfile)
 //         return false;
@@ -2746,7 +2750,7 @@ namespace aura
 //      try
 //      {
 //
-//         file = psession->file().get_file(Context.dir().appdata() / "applibcache.bin",::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write);
+//         file = psession->file().get_file(Context.dir().appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
 //
 //      }
 //      catch(::exception::exception &)
@@ -2903,7 +2907,7 @@ namespace aura
    bool system::android_set_user_wallpaper(string strUrl)
    {
 
-      oslocal().m_strSetUserWallpaper = strUrl;
+      oslocal()->m_strSetUserWallpaper = strUrl;
 
       return true;
 
@@ -2912,22 +2916,22 @@ namespace aura
    bool system::android_get_user_wallpaper(string & strUrl)
    {
 
-      oslocal().m_bGetUserWallpaper = true;
+      ::oslocal()->m_bGetUserWallpaper = true;
 
       for(int i = 0; i < 10; i++)
       {
 
-         if (!oslocal().m_bGetUserWallpaper)
+         if (!::oslocal()->m_bGetUserWallpaper)
          {
 
 
          }
 
-         millis_sleep(50);
+         sleep(50_ms);
 
       }
 
-      strUrl = oslocal().m_strGetUserWallpaper;
+      strUrl = ::oslocal()->m_strGetUserWallpaper;
 
       return true;
 
@@ -3021,7 +3025,7 @@ namespace aura
 
          merge_accumulated_on_open_file(pcreate);
 
-         papp->post_object(e_message_system, system_message_create, pcreate);
+         papp->post_object(e_message_system, e_system_message_create, pcreate);
 
       }
 
@@ -3777,7 +3781,7 @@ namespace aura
          strParams.Format("\"openvsproject://%s\"", strProj);
 
 
-         //int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", display_none, 30, 1000, nullptr, 0);
+         //int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
 
       }
 #elif defined MACOS
@@ -3793,7 +3797,7 @@ namespace aura
          if(strBase == "scheme")
          {
 
-//         int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", display_none, 30, 1000, nullptr, 0);
+//         int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
 
             ::file::path pathScript = ::dir::tool() / "papaya/script/xcode_set_active_scheme.scpt";
 
@@ -3833,9 +3837,9 @@ namespace aura
          if (pimpl.is_set())
          {
 
-            auto pdirectxapplication = pimpl->m_frameworkview;
+            auto pframeworkview = pimpl->m_pframeworkview;
 
-            auto directx = pdirectxapplication->m_directx;
+            auto directx = pframeworkview->m_directx;
 
             directx->UpdateForWindowSizeChange();
 
@@ -4047,15 +4051,15 @@ namespace aura
 
          string strOpenUrl;
 
-         if (System.oslocal().m_pszOpenUrl != nullptr)
+         if (::oslocal()->m_pszOpenUrl != nullptr)
          {
 
-            strOpenUrl = System.oslocal().m_pszOpenUrl;
+            strOpenUrl = ::oslocal()->m_pszOpenUrl;
 
             try
             {
 
-               ::free((void *)System.oslocal().m_pszOpenUrl);
+               ::free((void *)::oslocal()->m_pszOpenUrl);
 
             }
             catch (...)
@@ -4064,7 +4068,7 @@ namespace aura
 
             }
 
-            System.oslocal().m_pszOpenUrl = nullptr;
+            ::oslocal()->m_pszOpenUrl = nullptr;
 
          }
 
@@ -4076,7 +4080,7 @@ namespace aura
 
             // System.m_pandroidinitdata->m_pszOpenUrl = strdup(strLink);
 
-            System.oslocal().m_pszOpenUrl = strdup(strUrl);
+            ::oslocal()->m_pszOpenUrl = strdup(strUrl);
 
          }
 
@@ -4132,7 +4136,7 @@ namespace aura
 
             pathProfile = pathHome / "ca2/Vivaldi/Profile" / strProfile;
 
-            call_async(shell, " -c \"" + path + " --user-data-dir=\\\"" + pathProfile + "\\\" " + strParam, pathHome, display_default, false);
+            call_async(shell, " -c \"" + path + " --user-data-dir=\\\"" + pathProfile + "\\\" " + strParam, pathHome, e_display_default, false);
 
          }
          else if (strBrowser == "chrome")
@@ -4152,7 +4156,7 @@ namespace aura
 
             //MessageBox(nullptr, strParam, path, e_message_box_ok);
 
-            call_async(shell, strParam, pathHome, display_default, false);
+            call_async(shell, strParam, pathHome, e_display_default, false);
 
          }
          else if (strBrowser == "firefox")
@@ -4164,7 +4168,7 @@ namespace aura
 
             pathProfile = pathHome / "ca2/Firefox/Profile" / strProfile;
 
-            call_async(shell, "-c \"" + path + " -profile=\\\"" + pathProfile + "\\\" " + strParam + "\"", pathHome, display_default, false);
+            call_async(shell, "-c \"" + path + " -profile=\\\"" + pathProfile + "\\\" " + strParam + "\"", pathHome, e_display_default, false);
 
          }
          else
@@ -4285,7 +4289,7 @@ namespace aura
 
             strParam += " " + file_as_string(dir::localconfig() / "app-core/commander/chrome.txt");
 
-            call_async(path, strParam, pathDir, display_default, false);
+            call_async(path, strParam, pathDir, e_display_default, false);
 
          }
 
@@ -4332,7 +4336,7 @@ namespace aura
 
          output_debug_string(strParam);
 
-         call_async(shell, strParam, pathDir, display_default, false);
+         call_async(shell, strParam, pathDir, e_display_default, false);
 
 #endif
 
@@ -4375,7 +4379,7 @@ namespace aura
 
       ::property_set set;
 
-      call_sync(pathFirefox, strParam, pathDir, display_default, 3_min, set);
+      call_sync(pathFirefox, strParam, pathDir, e_display_default, 3_min, set);
 
 #endif
 
@@ -4477,9 +4481,9 @@ namespace aura
       if (!bFound)
       {
 
-         call_async(strBrowserPath, strParam, strBrowserDir, display_normal, false);
+         call_async(strBrowserPath, strParam, strBrowserDir, e_display_normal, false);
 
-         call_async(strBrowserHelperPath, "/SetAsDefaultAppUser", strBrowserHelperDir, display_none, false);
+         call_async(strBrowserHelperPath, "/SetAsDefaultAppUser", strBrowserHelperDir, e_display_none, false);
 
       }
 
@@ -4745,6 +4749,34 @@ namespace aura
    }
 
 
+   void system::open_url(string strUrl, string strProfile, string strTarget)
+   {
+
+      fork([=]()
+         {
+
+            browser(strUrl, "", strProfile, strTarget);
+
+         });
+
+   }
+
+
+
+   void system::open_link(string strUrl, string strProfile, string strTarget)
+   {
+
+      fork([=]()
+         {
+
+            browser(strUrl, "", strProfile, strTarget);
+
+         });
+
+   }
+
+
+
    ::estatus system::verb() // ambigous inheritance from ::aura::system/::axis::application
    {
 
@@ -4860,6 +4892,8 @@ namespace aura
       return crypto().md5(str);
 
    }
+
+
 
 
    //__pointer(::aura::session) system::on_create_session()
@@ -6319,8 +6353,17 @@ namespace aura
          if (psubject->m_id == id_font_enumeration)
          {
 
-
             draw2d().fonts().defer_create_font_enumeration(psubject);
+
+         }
+         else if (psubject->m_id == id_os_dark_mode)
+         {
+
+#ifdef _UWP
+
+            ::user::os_set_dark_mode_colors();
+
+#endif
 
          }
 

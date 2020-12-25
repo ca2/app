@@ -597,7 +597,7 @@ namespace user
 
       }
 
-      if (pinteraction->m_ewindowflag & window_flag_window_created)
+      if (pinteraction->m_ewindowflag & e_window_flag_window_created)
       {
 
 
@@ -678,13 +678,13 @@ namespace user
                if(ppair->element2()->m_pplaceholder != nullptr)
                {
 
-                  ppair->element2()->m_pplaceholder->display(display_none);
+                  ppair->element2()->m_pplaceholder->display(e_display_none);
 
                }
                else if(ppair->element2()->m_puserinteraction != nullptr)
                {
 
-                  ppair->element2()->m_puserinteraction->display(display_none);
+                  ppair->element2()->m_puserinteraction->display(e_display_none);
 
                }
 

@@ -6,10 +6,10 @@ class CLASS_DECL_ACME message_box
 public:
 
 
-   __pointer(::layered)        m_puserprimitive;
+   __pointer(::layered)             m_puserprimitive;
    string                           m_strMessage;
    string                           m_strTitle;
-   ::emessagebox                    m_emessagebox;
+   ::e_message_box                  m_emessagebox;
    ::duration                       m_durationTimeout;
    ::promise::process               m_future;
 
@@ -63,7 +63,7 @@ inline payload operator + (const char* psz, const ::enum_message_box& emessagebo
 }
 
 
-CLASS_DECL_ACME ::estatus os_message_box(const char* pszText, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+CLASS_DECL_ACME ::estatus os_message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
 
 
 

@@ -27,10 +27,10 @@ namespace user
 #endif
       bool                                   m_bOwnItem;
       ::size                                 m_size;
-      i32                                    m_iCheckBoxSize;
+      double                                 m_dCheckBoxSize;
       bool                                   m_bAutoDelete;
-      i32                                    m_iHeaderHeight;
-      __pointer(::user::menu_item)     m_pitemClose;
+      double                                 m_dHeaderHeight;
+      __pointer(::user::menu_item)           m_pitemClose;
       id                                     m_idSubMenu;
       i32                                    m_iHoverSubMenu;
       u32                                    m_dwOut;
@@ -105,7 +105,7 @@ namespace user
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
-      bool pre_create_window(::user::create_struct& cs) override;
+      bool pre_create_window(::user::create_struct * pcreatestruct) override;
 
       virtual void install_message_routing(::channel * pchannel) override;
 

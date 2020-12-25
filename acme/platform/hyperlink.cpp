@@ -17,38 +17,9 @@ hyperlink::~hyperlink()
 bool hyperlink::open_link(string strLink, string strProfile, string strTarget)
 {
 
-   auto plink = __new(hyperlink);
+   System.open_profile_link(strLink, strProfile, strTarget);
 
-   plink->m_strLink = strLink;
-   plink->m_strProfile = strProfile;
-   plink->m_strTarget = strTarget;
-
-   System.process_subject(id_open_hyperlink, plink);
-
-
-   //if (is_system())
-   {
-
-      //if (strLink.begins_ci("mailto:"))
-      //{
-
-      //   return Context.os().file_open(strLink);
-
-      //}
-
-      //open_profile_link(strLink, strProfile, strTarget);
-
-      return true;
-
-   }
-   //else
-   //{
-
-   //   return psession->open_link(strLink, strProfile, strTarget);
-
-   //}
-
-   //return false;
+   return true;
 
 }
 
@@ -56,33 +27,9 @@ bool hyperlink::open_link(string strLink, string strProfile, string strTarget)
 void hyperlink::open_profile_link(string strUrl, string strProfile, string strTarget)
 {
 
-
-   auto plink = __new(hyperlink);
-
-   plink->m_strLink = strUrl;
-   plink->m_strProfile = strProfile;
-   plink->m_strTarget = strTarget;
-   plink->m_bProfile = true;
-
-   System.process_subject(id_open_hyperlink, plink);
-
-   //__throw(todo("hyperlink"));
-   //System.open_profile_link(strUrl, strProfile, strTarget);
-
-   //system
+   System.open_profile_link(strUrl, strProfile, strTarget);
 
 }
-
-
-
-
-//void hyperlink::sync_open_profile_link(string strUrl, string strProfile, string strTarget)
-//{
-//
-//   System.browser(strUrl, "", strProfile, strTarget);
-//
-//}
-
 
 
 

@@ -25,10 +25,10 @@ namespace android
    }
 
 
-   bool buffer::create_buffer(const ::size & size, int iStrideParam)
+   bool buffer::update_buffer(const ::size & size, int iStrideParam)
    {
 
-      destroy_buffer();
+      //destroy_buffer();
 
       sync_lock sl(mutex());
 

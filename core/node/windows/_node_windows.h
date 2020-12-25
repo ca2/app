@@ -166,7 +166,7 @@ CLASS_DECL_CORE HINSTANCE __find_string_resource_handle(::u32 nID);
 
 
 
-CLASS_DECL_CORE i32 app_main(::aura::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, char * pCmdLine, ::edisplay edisplay);
+CLASS_DECL_CORE i32 app_main(::aura::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, char * pCmdLine, ::e_display edisplay);
 
 
 

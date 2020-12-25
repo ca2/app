@@ -359,9 +359,9 @@ namespace uwp
             else
             {
 
-               pimage48->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
+               pimage48->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-               pimage48->get_graphics()->StretchBlt(0, 0, 48, 48, pimage16->get_graphics(), 0, 0, pimage16->width(), pimage16->height());
+               pimage48->get_graphics()->stretch(::size(48, 48), pimage16->get_graphics(), pimage16->rect());
 
                iImage = m_pil[16]->add_image(pimage16, 0, 0);
 

@@ -30,9 +30,9 @@ namespace user
 
       m_bPendingKillFocusHiding = false;
 
-      m_ewindowflag += window_flag_satellite_window;
+      m_ewindowflag += e_window_flag_satellite_window;
 
-      m_ewindowflag += window_flag_arbitrary_positioning;
+      m_ewindowflag += e_window_flag_arbitrary_positioning;
 
       m_bComboList = true;
 
@@ -107,7 +107,7 @@ namespace user
 
       ::rect rectClient;
 
-      layout().get_client_rect(rectClient, ::user::layout_design);
+      layout().get_client_rect(rectClient, ::user::e_layout_design);
 
       ::draw2d::brush_pointer brBk(e_create);
 
@@ -136,9 +136,9 @@ namespace user
 
       auto pointCursor = psession->get_cursor_pos();
 
-      _001ScreenToClient(&pointCursor, ::user::layout_design);
+      _001ScreenToClient(&pointCursor, ::user::e_layout_design);
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       auto itemHover = hover_item();
 
@@ -229,7 +229,7 @@ namespace user
 
 #endif
 
-         pgraphics->draw_text(strItem, rectText, 0);
+         pgraphics->draw_text(strItem, rectText);
 
       }
 
@@ -250,7 +250,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer combo_list::get_font(style *pstyle, e_element eelement, estate estate) const
+   ::draw2d::font_pointer combo_list::get_font(style *pstyle, enum_element eelement, estate estate) const
    {
 
       if (m_pcombo)
@@ -297,17 +297,17 @@ namespace user
 
       sync_lock sl(mutex());
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
 
       string strItem;
 
-      ::size size;
+      ::sized size;
 
       psize->cx = 0;
 
-      m_iItemHeight = 0;
+      m_dItemHeight = 0.;
 
       ::count cListCount = m_pcombo->_001GetListCount();
 
@@ -327,10 +327,10 @@ namespace user
 
          }
 
-         if (size.cy > m_iItemHeight)
+         if (size.cy > m_dItemHeight)
          {
 
-            m_iItemHeight = size.cy;
+            m_dItemHeight = size.cy;
 
             if (size.cy != 18)
             {
@@ -343,7 +343,7 @@ namespace user
 
       }
 
-      m_iItemHeight += 4;
+      m_dItemHeight += 4.0;
 
       int iAddUp = 0;
 
@@ -388,7 +388,7 @@ namespace user
    i32 combo_list::_001GetItemHeight() const
    {
 
-      return m_iItemHeight + m_iPadding * 2;
+      return m_dItemHeight + m_iPadding * 2;
 
    }
 
@@ -442,7 +442,8 @@ namespace user
    
    }
 
-   bool combo_list::keyboard_focus_is_focusable()
+
+   bool combo_list::keyboard_focus_is_focusable() const
    {
 
       return true;
@@ -453,16 +454,16 @@ namespace user
    bool combo_list::keyboard_focus_OnKillFocus(oswindow oswindowNew)
    {
 
-      if (is_window_visible(::user::layout_sketch))
+      if (is_window_visible(::user::e_layout_sketch))
       {
 
-         display(false);
+         display(e_display_hide);
 
          set_need_redraw();
 
          post_redraw();
 
-         if (m_pcombo != nullptr && m_pcombo->is_window_visible(::user::layout_sketch))
+         if (m_pcombo != nullptr && m_pcombo->is_window_visible(::user::e_layout_sketch))
          {
 
             m_pcombo->SetFocus();
@@ -476,25 +477,22 @@ namespace user
    }
 
 
-   bool combo_list::pre_create_window(::user::create_struct & cs)
+   bool combo_list::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
 #ifdef WINDOWS_DESKTOP
 
-      if (cs.style & WS_BORDER)
+      if (pcreatestruct->m_createstruct.style & WS_BORDER)
       {
-#ifdef WINDOWS_DESKTOP
-         cs.dwExStyle |= WS_EX_CLIENTEDGE;
-#endif
-         cs.style &= ~WS_BORDER;
+pcreatestruct->m_createstruct.style &= ~WS_BORDER;
       }
-      cs.dwExStyle |= WS_EX_TOOLWINDOW;
-      cs.dwExStyle |= WS_EX_TOPMOST;
+      pcreatestruct->m_createstruct.dwExStyle |= WS_EX_TOOLWINDOW;
+      pcreatestruct->m_createstruct.dwExStyle |= WS_EX_TOPMOST;
 
 #endif
 
-      cs.dwExStyle |= WS_EX_LAYERED;
-      //cs.dwExStyle |= WS_EX_NOACTIVATE;
+      pcreatestruct->m_createstruct.dwExStyle |= WS_EX_LAYERED;
+      //pcreatestruct->m_createstruct.dwExStyle |= WS_EX_NOACTIVATE;
 
       return TRUE;
    }
@@ -617,9 +615,9 @@ namespace user
 
          auto pointCursor = psession->get_cursor_pos();
 
-         m_pcombo->_001ScreenToClient(&pointCursor, ::user::layout_sketch);
+         m_pcombo->_001ScreenToClient(&pointCursor, ::user::e_layout_sketch);
 
-         //if(m_pcombo->hit_test(pointCursor) != element_drop_down)
+         //if(m_pcombo->hit_test(pointCursor) != e_element_drop_down)
          //{
 
          //   m_pcombo->_001ShowDropDown(false);
@@ -745,7 +743,7 @@ namespace user
 
       SCAST_PTR(::message::mouse, pmouse, pmessage);
 
-      auto point = screen_to_client(pmouse->m_point, layout_sketch);
+      auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
 
       auto rectClient = get_client_rect();
 
@@ -774,7 +772,7 @@ namespace user
 
       SCAST_PTR(::message::mouse, pmouse, pmessage);
 
-      auto point = screen_to_client(pmouse->m_point, layout_sketch);
+      auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
 
       auto rectClient = get_client_rect();
 
@@ -805,7 +803,7 @@ namespace user
 
             ev.m_id = m_id;
 
-            ev.m_eevent = ::user::event_after_change_cur_sel;
+            ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
             ev.m_actioncontext = ::source_user;
 
@@ -831,7 +829,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      _001ScreenToClient(point, layout_sketch);
+      _001ScreenToClient(point, e_layout_sketch);
 
       auto rectClient = get_client_rect();
 
@@ -858,7 +856,7 @@ namespace user
 
       auto point = pmouse->m_point;
 
-      _001ScreenToClient(point, layout_sketch);
+      _001ScreenToClient(point, e_layout_sketch);
 
       auto rectClient = get_client_rect();
 
@@ -907,7 +905,7 @@ namespace user
 
       pmessage->m_bRet = true;
 
-      display(display_none);
+      display(e_display_none);
 
       set_need_redraw();
 
@@ -936,7 +934,7 @@ namespace user
       if (m_pcombo == nullptr)
       {
 
-         item = ::user::element_none;
+         item = ::user::e_element_none;
 
          return;
 
@@ -967,7 +965,7 @@ namespace user
          if (rectItem.contains(item.m_pointHitTest))
          {
 
-            item  = {::user::element_item, iItem };
+            item  = {::user::e_element_item, iItem };
 
             return;
 
@@ -983,13 +981,13 @@ namespace user
       if (rectItem.contains(item.m_pointHitTest))
       {
 
-         item = element_search_edit;
+         item = e_element_search_edit;
 
          return;
 
       }
 
-      item = element_none;
+      item = e_element_none;
 
    }
 
@@ -1083,13 +1081,13 @@ namespace user
       if (!is_window())
       {
 
-         ::user::create_struct createstruct(0, nullptr, "combo_list", i >= 0 ? 0 : WS_CHILD);
+         auto pcreatestruct = __new(::user::create_struct(0, nullptr, "combo_list", i >= 0 ? 0 : WS_CHILD));
 
-         createstruct.m_puserinteractionOwner = m_pcombo;
+         pcreatestruct->m_puserinteractionOwner = m_pcombo;
 
-         createstruct.set_rect(::rect(rectList).inflate(m_iBorder));
+         pcreatestruct->set_rect(::rect(rectList).inflate(m_iBorder));
 
-         if (!create_window_ex(createstruct, i >= 0 ? nullptr : m_pcombo->GetParent()))
+         if (!create_window_ex(pcreatestruct, i >= 0 ? nullptr : m_pcombo->GetParent()))
          {
 
             m_pcombo->m_plist.release();
@@ -1110,7 +1108,7 @@ namespace user
 
       order_top_most();
 
-      display(display_normal);
+      display(e_display_normal);
 
       set_need_redraw();
 

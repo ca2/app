@@ -15,12 +15,12 @@ namespace user
    menu::menu()
    {
 
-      m_ewindowflag += window_flag_arbitrary_positioning;
+      m_ewindowflag += e_window_flag_arbitrary_positioning;
 
       m_bCloseButton = true;
-            m_ewindowflag += window_flag_arbitrary_positioning;
+            m_ewindowflag += e_window_flag_arbitrary_positioning;
 
-      //m_econtroltype = control_type_menu;
+      //m_econtroltype = e_control_type_menu;
       m_bCloseButton = true;
 
       m_iFlags = 0;
@@ -48,9 +48,9 @@ namespace user
 
       m_pmenuitem = pitem;
 
-      m_ewindowflag += window_flag_arbitrary_positioning;
+      m_ewindowflag += e_window_flag_arbitrary_positioning;
 
-      //m_econtroltype = control_type_menu;
+      //m_econtroltype = e_control_type_menu;
 
       m_iFlags = 0;
       m_bPositionHint = false;
@@ -388,7 +388,7 @@ namespace user
 
       }
 
-      void * pvoid = nullptr;
+      ::create * pcreate = nullptr;
 
       auto pgraphics = ::draw2d::create_memory_graphics();
 
@@ -454,9 +454,9 @@ namespace user
 
          }
 
-         ::user::create_struct createstruct(iStyleEx, nullptr, nullptr, 0, nullptr, pvoid);
+         auto pcreatestruct = __new(::user::create_struct (iStyleEx, nullptr, nullptr, 0, nullptr, pcreate));
 
-         if (!create_window_ex(createstruct, puiParent))
+         if (!create_window_ex(pcreatestruct, puiParent))
          {
 
             return false;
@@ -623,13 +623,13 @@ namespace user
 
       auto metrics = pgraphics->get_text_metrics();
 
-      i32 iMaxHeight = metrics.tmHeight;
+      auto dMaxHeight = metrics.get_line_spacing();
 
-      m_iItemHeight = iMaxHeight;
+      m_dItemHeight = dMaxHeight;
 
-      m_iCheckBoxSize = m_iItemHeight;
+      m_dCheckBoxSize = dMaxHeight;
 
-      m_iHeaderHeight = metrics.tmHeight;
+      m_dHeaderHeight = dMaxHeight;
 
       __pointer(::user::menu_item) pitem = get_menu_item();
 
@@ -814,7 +814,7 @@ namespace user
 
       place(rectWindow);
 
-      display(display_normal, activation_no_activate);
+      display(e_display_normal, e_activation_no_activate);
 
       set_need_redraw();
 
@@ -830,7 +830,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      color32_t crBackground = get_color(pstyle, element_background);
+      color32_t crBackground = get_color(pstyle, e_element_background);
 
       if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
       {
@@ -864,7 +864,7 @@ namespace user
 
       ::user::control_event ev;
 
-      ev.m_eevent = ::user::event_context_menu_close;
+      ev.m_eevent = ::user::e_event_context_menu_close;
 
       ::user::interaction * puiTarget = get_target_window();
 
@@ -888,7 +888,7 @@ namespace user
    void menu::on_control_event(::user::control_event * pevent)
    {
 
-      if (pevent->m_eevent == ::user::event_button_clicked)
+      if (pevent->m_eevent == ::user::e_event_button_clicked)
       {
 
          if (m_pitemClose.is_set()
@@ -952,7 +952,7 @@ namespace user
          }
 
       }
-      else if (pevent->m_eevent == ::user::event_mouse_enter)
+      else if (pevent->m_eevent == ::user::e_event_mouse_enter)
       {
 
          if (m_pitemClose.is_set()
@@ -1008,7 +1008,7 @@ namespace user
 
                            ::user::control_event ev;
 
-                           ev.m_eevent = ::user::event_menu_hover;
+                           ev.m_eevent = ::user::e_event_menu_hover;
 
                            ev.m_id = pitem->m_id;
 
@@ -1040,7 +1040,7 @@ namespace user
          return;
 
       }
-      else if (pevent->m_eevent == ::user::event_mouse_leave)
+      else if (pevent->m_eevent == ::user::e_event_mouse_leave)
       {
          if (pevent->m_puie->m_id == m_idTimerMenu)
          {
@@ -1152,14 +1152,14 @@ namespace user
    void menu::_001OnCreate(::message::message * pmessage)
    {
 
-      descriptor().set_control_type(control_type_menu);
+      descriptor().set_control_type(e_control_type_menu);
 
       pmessage->previous();
 
       UNREFERENCED_PARAMETER(pmessage);
 
       //create_color(color_background, ARGB(84 + 77, 185, 184, 177));
-      //create_translucency(::user::translucency_present;
+      //create_translucency(::user::e_translucency_present;
 
 
 
@@ -1350,14 +1350,14 @@ namespace user
    }
 
 
-   bool menu::pre_create_window(::user::create_struct& cs)
+   bool menu::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
 #ifdef WINDOWS_DESKTOP
 
-      cs.dwExStyle = WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW;
+      pcreatestruct->m_createstruct.dwExStyle = WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW;
 
-      cs.style &= ~WS_VISIBLE;
+      pcreatestruct->m_createstruct.style &= ~WS_VISIBLE;
 
 #endif
 

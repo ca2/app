@@ -281,9 +281,9 @@ namespace user
 
                auto pstyle = get_style(pgraphics);
 
-               auto colorDarkShadow = pstyle->get_color(this, ::user::element_dark_shadow);
+               auto colorDarkShadow = pstyle->get_color(this, ::user::e_element_dark_shadow);
 
-               auto colorHilite = pstyle->get_color(this, ::user::element_hilite);
+               auto colorHilite = pstyle->get_color(this, ::user::e_element_hilite);
 
                pgraphics->draw_3drect(rectImageBorder, colorDarkShadow, colorHilite);
 
@@ -302,7 +302,7 @@ namespace user
          if (pstyle)
          {
 
-            pstyle->draw_check(get_echeck(), m_rectCheckBox, pgraphics);
+            pstyle->draw_check(this, get_echeck(), m_rectCheckBox, pgraphics);
 
          }
 
@@ -314,7 +314,7 @@ namespace user
    void menu_button::_001OnCreate(::message::message * pmessage)
    {
 
-      descriptor().set_control_type(control_type_menu_button);
+      descriptor().set_control_type(e_control_type_menu_button);
 
       pmessage->previous();
 
@@ -386,7 +386,7 @@ namespace user
 
       size.cx += rectMargin.right;
 
-      size.cx += m_pmenuitem->m_pmenu->m_iCheckBoxSize;
+      size.cx += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 
       size.cx += rectPadding.left;
 
@@ -395,7 +395,7 @@ namespace user
 
          size.cx += rectPadding.left;
 
-         size.cx += m_pmenuitem->m_pmenu->m_iCheckBoxSize;
+         size.cx += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 
       }
 

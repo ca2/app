@@ -86,7 +86,7 @@ namespace user
       ::e_align span::get_align() const
       {
 
-         ::e_align e_align = e_align_none;
+         ::e_align ealign = e_align_none;
 
          index i = m_pdata->m_spana.find_first(this);
 
@@ -96,7 +96,7 @@ namespace user
             if (m_pdata->m_spana[i]->is_new_line())
             {
 
-               e_align = m_pdata->m_spana[i]->m_ealignNewLine;
+               ealign = m_pdata->m_spana[i]->m_ealignNewLine;
 
                break;
 
@@ -104,7 +104,7 @@ namespace user
 
          }
 
-         return e_align;
+         return ealign;
 
       }
 
@@ -171,7 +171,7 @@ namespace user
 
          stream >> set;
 
-         m_ealignNewLine = set["align"].e< ::e_align>();
+         m_ealignNewLine = set["align"].e< ::enum_align>();
          m_str = set["text"];
          ::index iFormatIndex = set["format_index"];
          if (iFormatIndex >= 0 && iFormatIndex < m_pdata->m_pformata->get_count())

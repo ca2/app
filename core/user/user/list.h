@@ -125,7 +125,7 @@ namespace user
       virtual void _001RemoveSelection() override;
       virtual bool _001OnRemoveItem(index iItem) override;
       virtual bool _001RemoveItem(index iItem, bool bRedraw = true) override;
-      virtual void _001EnsureVisible(index iItem, ::e_align e_align = e_align_vertical_center, bool bRedraw = true);
+      virtual void _001EnsureVisible(index iItem, ::e_align ealign = e_align_vertical_center, bool bRedraw = true);
       virtual void _001EnsureVisible(index iItem, range & rangeRedraw) override;
       virtual void _001ItemScroll(index iItem, bool bRedraw = true) override;
       virtual index config_id_index(const ::database::key & key);
@@ -215,7 +215,7 @@ namespace user
       virtual void _001GetGroupRect(draw_list_item * pitem);
       virtual void _001GetItemRect(draw_list_item * pitem);
       virtual void _001GetSubItemRect(draw_list_item * pitem);
-      virtual void _001GetElementRect(draw_list_item * pitem, ::user::mesh::e_element eelement);
+      virtual void _001GetElementRect(draw_list_item * pitem, ::user::mesh::enum_element eelement);
 
       virtual void _001OnColumnChange();
 
@@ -242,12 +242,12 @@ namespace user
       virtual ::count _001GetGroupCount() override;
 
 
-      virtual bool _001HitTest_(const ::point & point, index & iItem, index & iSubItem, index & iListItem, ::user::mesh::e_element & eelement) override;
+      virtual bool _001HitTest_(const ::point & point, index & iItem, index & iSubItem, index & iListItem, ::user::mesh::enum_element & eelement) override;
       virtual bool _001HitTest_(const ::point & point, index & iItem, index & iSubItem) override;
       virtual bool _001HitTest_(const ::point & point, index & iItemParam) override;
 
 
-      virtual bool _001DisplayHitTest(const ::point & point, index & iItem, index & iSubItem, index & iListItem, ::user::mesh::e_element & eelement) override;
+      virtual bool _001DisplayHitTest(const ::point & point, index & iItem, index & iSubItem, index & iListItem, ::user::mesh::enum_element & eelement) override;
       virtual bool _001DisplayHitTest(const ::point & point, index & iItem, index & iSubItem) override;
       virtual bool _001DisplayHitTest(const ::point & point, index & iItemParam) override;
 

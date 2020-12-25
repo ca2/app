@@ -90,7 +90,7 @@ void aura_main_data::system_construct(int argc, wchar_t** argv)
 }
 
 
-void aura_main_data::system_construct(const char* pszCommandLine, const ::edisplay& edisplay)
+void aura_main_data::system_construct(const char* pszCommandLine, const ::e_display& edisplay)
 {
 
    m_strCommandLine = pszCommandLine;
@@ -103,7 +103,7 @@ void aura_main_data::system_construct(const char* pszCommandLine, const ::edispl
 
 }
 
-void aura_main_data::system_construct(os_local* poslocal, const ::edisplay& edisplay)
+void aura_main_data::system_construct(os_local* poslocal, const ::e_display& edisplay)
 {
 
    m_strCommandLine = poslocal->m_strCommandLine;
@@ -170,7 +170,7 @@ void aura_main_data::system_construct(Array < String^ >^ refstra)
 
    m_poslocal = nullptr;
 
-   m_edisplay = display_default;
+   m_edisplay = e_display_default;
 
    xxf_zero(m_mainrunnera);
 

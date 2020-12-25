@@ -5758,14 +5758,14 @@ void payload::null()
       if (propset().is_true("required"))
       {
 
-         path |= ::file::flag_required;
+         path |= ::file::e_flag_required;
 
       }
 
       if (propset().is_true("nocache"))
       {
 
-         path |= ::file::flag_bypass_cache;
+         path |= ::file::e_flag_bypass_cache;
 
       }
 
@@ -5807,14 +5807,14 @@ payload & payload::operator |= (cflag < ::file::e_flag > eflag)
    if (m_etype == type_propset)
    {
 
-      if (eflag & ::file::flag_required)
+      if (eflag & ::file::e_flag_required)
       {
 
          propset()["required"] = true;
 
       }
 
-      if (eflag & ::file::flag_bypass_cache)
+      if (eflag & ::file::e_flag_bypass_cache)
       {
 
          propset()["nocache"] = true;
@@ -5965,6 +5965,22 @@ bool payload::is_false() const
    //   return !::is_ok(m_pimage);
 
    // enum
+   case type_secs:
+      return !m_secs.m_iSeconds;
+   case type_psecs:
+      return !m_psecs || !m_psecs->m_iSeconds;
+   case type_millis:
+      return !m_millis.m_iMilliseconds;
+   case type_pmillis:
+      return !m_pmillis || !m_pmillis->m_iMilliseconds;
+   case type_micros:
+      return !m_micros.m_iMicroseconds;
+   case type_pmicros:
+      return !m_pmicros || !m_pmicros->m_iMicroseconds;
+   case type_nanos:
+      return !m_nanos.m_iNanoseconds;
+   case type_pnanos:
+      return !m_pnanos || !m_pnanos->m_iNanoseconds;
    case type_enum_command:
    case type_enum_status:
    case type_enum_check:
@@ -6090,6 +6106,22 @@ bool payload::is_set_false() const
    //   return !::is_ok(m_pimage);
 
    // enum
+   case type_secs:
+      return !m_secs.m_iSeconds;
+   case type_psecs:
+      return !m_psecs || !m_psecs->m_iSeconds;
+   case type_millis:
+      return !m_millis.m_iMilliseconds;
+   case type_pmillis:
+      return !m_pmillis || !m_pmillis->m_iMilliseconds;
+   case type_micros:
+      return !m_micros.m_iMicroseconds;
+   case type_pmicros:
+      return !m_pmicros || !m_pmicros->m_iMicroseconds;
+   case type_nanos:
+      return !m_nanos.m_iNanoseconds;
+   case type_pnanos:
+      return !m_pnanos || !m_pnanos->m_iNanoseconds;
    case type_enum_command:
    case type_enum_status:
    case type_enum_check:
@@ -6193,8 +6225,8 @@ namespace user
       rect                       m_rectRestored = nullptr;
       rect                       m_rectWindow = nullptr;
       int                        m_iControlBoxRightToLeft = 0;
-      edisplay                   m_edisplay = display_default;
-      edisplay                   m_edisplayPrevious = display_none;
+      edisplay                   m_edisplay = e_display_default;
+      edisplay                   m_edisplayPrevious = e_display_none;
 
 
    };

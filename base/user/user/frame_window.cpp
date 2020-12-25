@@ -431,7 +431,7 @@ namespace user
    {
 
 
-      ASSERT(m_hAccelTable == nullptr);  // only do once
+      //ASSERT(m_hAccelTable == nullptr);  // only do once
       ASSERT(pszResourceName != nullptr);
 
       /*   HINSTANCE hInst = ::aura::FindResourceHandle(pszResourceName, RT_ACCELERATOR);
@@ -765,7 +765,7 @@ namespace user
       u32 uStyle = ::GetWindowLong(oswindow, GWL_STYLE);
       if (!bShow && (uStyle & (WS_VISIBLE|WS_DISABLED)) == WS_VISIBLE)
       {
-      ::display(oswindow, display_none);
+      ::display(oswindow, e_display_none);
       pwindow->m_nFlags |= WF_TEMPHIDE;
       }
       // don't show temporarily hidden windows if we're in print preview mode
@@ -829,28 +829,28 @@ namespace user
    }
 
 
-   bool frame_window::pre_create_window(::user::create_struct& cs)
+   bool frame_window::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
-      if (cs.style & FWS_ADDTOTITLE)
+      if (pcreatestruct->m_createstruct.style & FWS_ADDTOTITLE)
       {
 
-         cs.style |= FWS_PREFIXTITLE;
+         pcreatestruct->m_createstruct.style |= FWS_PREFIXTITLE;
 
       }
 
-      if(cs.hwndParent != nullptr)
+      if(pcreatestruct->m_createstruct.hwndParent != nullptr)
       {
 
-         cs.style |= WS_CHILD;
+         pcreatestruct->m_createstruct.style |= WS_CHILD;
 
       }
 
-      //cs.style &= ~WS_VISIBLE;
+      //pcreatestruct->m_createstruct.style &= ~WS_VISIBLE;
 
 #ifdef WINDOWS_DESKTOP
 
-      cs.style &= ~WS_CAPTION;
+      pcreatestruct->m_createstruct.style &= ~WS_CAPTION;
 
 #endif
 
@@ -866,9 +866,9 @@ namespace user
 
       m_strFrameTitle = pszWindowName;    // save title for later
 
-      ::user::create_struct createstruct(dwExStyle, pszClassName, pszWindowName, uStyle, rect, pcreate);
+      auto pcreatestruct = __new(::user::create_struct (dwExStyle, pszClassName, pszWindowName, uStyle, rect, pcreate));
 
-      if (!::user::interaction::create_window_ex(createstruct, puiParent, pcreate->m_id))
+      if (!::user::interaction::create_window_ex(pcreatestruct, puiParent, pcreate->m_id))
       {
 
          TRACE(trace_category_appmsg, trace_level_warning, "Warning: failed to create frame_window.\n");
@@ -945,14 +945,12 @@ namespace user
 
       SCAST_PTR(::message::create, pcreatemessage, pmessage);
 
-      if (!(m_ewindowflag & window_flag_window_created))
+      if (!(m_ewindowflag & e_window_flag_window_created))
       {
 
-         ENSURE_ARG(pcreatemessage->m_lpcreatestruct != nullptr);
+         __pointer(::create) pcreate((::create*) pcreatemessage->get_create());
 
-         __pointer(::create) pcreate((::create*) pcreatemessage->m_lpcreatestruct->CREATE_STRUCT_P_CREATE_PARAMS);
-
-         pcreatemessage->m_lresult = OnCreateHelper(pcreatemessage->m_lpcreatestruct, pcreate);
+         pcreatemessage->m_lresult = OnCreateHelper(pcreatemessage->get_create_struct(), pcreate);
 
          pcreatemessage->m_bRet = pcreatemessage->m_lresult == -1;
 
@@ -970,13 +968,10 @@ namespace user
    }
 
 
-   i32 frame_window::OnCreateHelper(::user::create_struct * pcs, ::create * pcreate)
-
+   i32 frame_window::OnCreateHelper(::user::create_struct * pcreatestruct, ::create * pcreate)
    {
 
-      // create special children first
-      if (!on_create_client(pcs, pcreate))
-
+      if (!on_create_client(pcreatestruct, pcreate))
       {
 
          TRACE(trace_category_appmsg, trace_level_error, "Failed to create client pane/::user::impact for frame.\n");
@@ -985,13 +980,7 @@ namespace user
 
       }
 
-      // post message for initial message string
-      // trans   PostMessage(WM_SETMESSAGESTRING, __IDS_IDLEMESSAGE);
-
-      // make sure the child windows have been properly sized
-      //   on_layout(::draw2d::graphics_pointer & pgraphics);
-
-      return 0;   // create ok
+      return 0;
 
    }
 
@@ -1057,9 +1046,9 @@ namespace user
 
       output_debug_string("\nm_bLayoutEnable FALSE");
 
-      ::user::create_struct createstruct(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectFrame, pcreate);
+      auto pcreatestruct = __new(::user::create_struct (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectFrame, pcreate));
 
-      if (!create_window_ex(createstruct, puiParent, pcreate->m_id))
+      if (!create_window_ex(pcreatestruct, puiParent, pcreate->m_id))
       {
 
          return false;   // will self destruct on failure normally
@@ -1187,7 +1176,7 @@ namespace user
 
          // finally, activate the frame
          // (send the default show command unless the main desktop interaction_impl)
-         ActivateFrame(display_default);
+         ActivateFrame(e_display_default);
 
          if (pview != nullptr)
          {
@@ -1224,7 +1213,7 @@ namespace user
       if (m_bFrameMoveEnable)
       {
 
-         display(display_restore);
+         display(e_display_restore);
 
       }
 
@@ -2356,7 +2345,7 @@ namespace user
 
          set_size(rect.size());
 
-         display(display_normal, activation_no_activate);
+         display(e_display_normal, e_activation_no_activate);
 
       }
       else
@@ -2496,19 +2485,19 @@ namespace user
    // nCmdShow is the normal show mode this frame should be in
    {
       // translate default nCmdShow (-1)
-      if (edisplay == display_default)
+      if (edisplay == e_display_default)
       {
 
          if (!::is_visible(layout().sketch().display()))
          {
 
-            edisplay = display_normal;
+            edisplay = e_display_normal;
 
          }
          else if (layout().is_iconic())
          {
 
-            edisplay = display_restore;
+            edisplay = e_display_restore;
 
          }
          else
@@ -2528,9 +2517,9 @@ namespace user
       }
 
       // =set_window_pos(TOP)
-      //BringToTop(display_normal);
+      //BringToTop(e_display_normal);
 
-      if (edisplay != display_default)
+      if (edisplay != e_display_default)
       {
          // show the interaction_impl as specified
          display(edisplay);
@@ -2615,7 +2604,7 @@ namespace user
          if (pbase->m_wparam == SC_RESTORE)
          {
 
-            display(display_restore);
+            display(e_display_restore);
 
             pbase->m_bRet = true;
 
@@ -2852,8 +2841,8 @@ namespace user
 
       }
 
-
    }
+
 
    void frame_window::_001OnSize(::message::message * pmessage)
    {
@@ -2966,7 +2955,7 @@ namespace user
 
       }
 
-      bool bBlurBackground = get_draw_flags(pstyle) & ::user::flag_blur_background;
+      bool bBlurBackground = get_draw_flags(pstyle) & ::user::e_flag_blur_background;
 
       auto psession = Session;
 

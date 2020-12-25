@@ -309,7 +309,7 @@ namespace aura
 
 
 
-#ifdef WINDOWS
+#ifdef WINDOWS_DESKTOP
       virtual void TermThread(HINSTANCE hInstTerm) override;
 #endif
 
@@ -450,16 +450,16 @@ namespace aura
       //// os_* functions generally
       //// reserves a lot of surprises from each
       //// operating system specific behavior
-      //virtual ::estatus os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::estatus os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
-      //virtual ::estatus ui_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual ::estatus ui_message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::estatus ui_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::estatus ui_message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       //using ::aura::context_thread::message_box;
-      //virtual ::estatus message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual ::estatus message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::estatus message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::estatus message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       //virtual void on_file_new() override;
@@ -784,7 +784,7 @@ namespace aura
 
 
 
-      virtual bool keyboard_focus_is_focusable(::user::primitive * pue) override;
+      virtual bool keyboard_focus_is_focusable(const ::user::primitive * pue) override;
       virtual bool keyboard_focus_OnSetFocus(::user::primitive * pue) override;
 
       virtual ::user::interaction * main_window();
@@ -831,8 +831,8 @@ namespace aura
 
       virtual void on_graphics_ready() override;
 
-      //virtual ::type user_default_controltype_to_typeinfo(::user::e_control_type econtroltype);
-      virtual ::type control_type_from_id(const ::id & id, ::user::e_control_type & econtroltype);
+      //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
+      virtual ::type control_type_from_id(const ::id & id, ::user::enum_control_type & econtroltype);
 
 
       virtual ::id translate_property_id(const ::id & id) override;
@@ -898,7 +898,7 @@ namespace aura
       //user virtual void on_create_split_view(::user::split_view* pview);
 
 
-      //virtual ::type control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype) override;
+      //virtual ::type control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype) override;
 
 
       virtual bool base_support() override;
@@ -1303,7 +1303,7 @@ namespace aura
 
       //virtual void on_create_keyboard() override;
 
-      //virtual ::type user_default_controltype_to_typeinfo(::user::e_control_type econtroltype) override;
+      //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 
       //virtual void set_form_impact_system(::user::impact_system * pdoctemplate,::user::impact_system * pdoctemplateChild,::user::impact_system * pdoctemplatePlaceHolder);
 
@@ -1357,8 +1357,8 @@ namespace aura
 
       virtual ::estatus     create_impact_system() override;
 
-      //virtual ::type user_default_controltype_to_typeinfo(::user::e_control_type econtroltype) override;
-      //virtual ::type control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype) override;
+      //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+      //virtual ::type control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype) override;
 
 
       //virtual void on_create_impact(::user::impact_data* pimpactdata) override;
@@ -1399,7 +1399,7 @@ namespace aura
 
       virtual ::user::interaction* create_menu_interaction();
 
-//      virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag = window_flag_none, const ::id& id = nullptr) override;
+//      virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::id& id = nullptr) override;
 
       // multimedia
 

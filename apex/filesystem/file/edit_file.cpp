@@ -720,6 +720,17 @@ namespace file
    }
 
 
+   void edit_file::append_insert_item_data(class insert_item * pinsertitem, string & str)
+   {
+
+      memsize iOldLen = pinsertitem->m_memstorage.get_size();
+
+      pinsertitem->m_memstorage.append(str);
+
+      m_size += (str.get_length());
+
+   }
+
    insert_item * edit_file::Insert(const void * pdata,memsize nCount)
    {
 
@@ -791,7 +802,7 @@ namespace file
 
       ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
 
-      ASSERT(::file::seek_begin == FILE_BEGIN && ::file::seek_end == FILE_END && ::file::seek_current == FILE_CURRENT);
+//      ASSERT(::file::seek_begin == FILE_BEGIN && ::file::seek_end == FILE_END && ::file::seek_current == FILE_CURRENT);
 
       filesize dwNew = (u32)-1;
 

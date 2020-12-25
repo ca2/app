@@ -138,9 +138,9 @@ struct CLASS_DECL_AURA oswindow_data
    long get_state();
    bool is_iconic();
    bool is_window_visible();
-   bool show_window(::edisplay edisplay);
-   LONG_PTR get_window_long_ptr(i32 nIndex);
-   LONG_PTR set_window_long_ptr(i32 nIndex, LONG_PTR l);
+   bool show_window(const ::e_display & edisplay, const ::e_activation & eactivation = e_activation_default);
+   iptr get_window_long_ptr(i32 nIndex);
+   iptr set_window_long_ptr(i32 nIndex, iptr l);
    bool _001ClientToScreen(POINT32 * lppoint);
    bool _001ScreenToClient(POINT32 * lppoint);
 
@@ -171,18 +171,18 @@ struct CLASS_DECL_AURA oswindow_data
 
 // define portable types for 32-bit / 64-bit OS
 //typedef i32 int_bool;
-typedef u8 byte;
+//typedef u8 byte;
 //typedef u16 ::u16;
-typedef u32 ::u32;
+//typedef u32 ::u32;
 //typedef i32 ::i32;
 
 
-#undef FAR
-#undef  NEAR
-#define FAR
-#define NEAR
-#ifndef CONST
-#define CONST               const
+//#undef
+//#undef
+
+
+#ifndef const
+#define const               const
 #endif
 
 

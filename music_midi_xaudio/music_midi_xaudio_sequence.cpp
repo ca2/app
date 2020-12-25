@@ -220,7 +220,7 @@ Seq_Open_File_Cleanup:
             try
             {
 
-               file = Context.file().get_file(lpFileName, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
+               file = Context.file().get_file(lpFileName, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
             }
             catch(...)
@@ -475,7 +475,7 @@ Seq_Open_File_Cleanup:
                SetState(::music::midi::sequence::state_reset);
                midiOutReset((HMIDIOUT) m_hstream);
                while (m_uBuffersInMMSYSTEM)
-                  millis_sleep(0);
+                  sleep(0_ms);
             }
             else
             {

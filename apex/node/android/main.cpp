@@ -9,7 +9,7 @@ void CLASS_DECL_APEX __cdecl _ca2_purecall()
 }
 
 
-void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
+//void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 
 
 
@@ -49,12 +49,12 @@ void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 //         pinitmaindata->m_strCommandLine     += "\"";
 //      }
 //   }
-//   pinitmaindata->m_nCmdShow              = display_normal;
+//   pinitmaindata->m_nCmdShow              = e_display_normal;
 //
 //
 //   psystem->init_main_data(pinitmaindata);
 //
-//   //message_box(nullptr, "box1", "box1", MB_ICONINFORMATION);
+//   //message_box(nullptr, "box1", "box1", e_message_box_icon_information);
 //
 //   nReturnCode = psystem->main();
 //
@@ -123,13 +123,13 @@ void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 //}
 
 
-void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
-{
-
-   UNREFERENCED_PARAMETER(uiCode);
-   UNREFERENCED_PARAMETER(ppointers);
-
-}
+//void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers)
+//{
+//
+//   UNREFERENCED_PARAMETER(uiCode);
+//   UNREFERENCED_PARAMETER(ppointers);
+//
+//}
 
 
 

@@ -10,8 +10,8 @@
 
 
 
-#define NEAR
-#define FAR
+
+
 
 /*typedef struct tag_WINDOW
 {
@@ -34,9 +34,9 @@ typedef struct tagRECT
    ::i32    top;
    ::i32    right;
    ::i32    bottom;
-} RECT32, *PRECT, NEAR *NPRECT, FAR *LPRECT32;
+} RECT32, *PRECT, *NPRECT, *LPRECT32;
 
-typedef const RECT32 FAR* LPCRECT32;
+typedef const RECT32 * LPCRECT32;
 
 
 

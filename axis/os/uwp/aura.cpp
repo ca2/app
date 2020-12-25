@@ -56,7 +56,7 @@ namespace audio
 
 
 
-VOID WINAPI millis_sleep(::u32 dwMilliseconds)
+VOID WINAPI sleep(::u32 dwMilliseconds)
 {
    static HANDLE singletonEvent = nullptr;
 
@@ -119,7 +119,7 @@ bool os_initialize()
 
    ::os_thread::s_pptra = new simple_array < os_thread * > ();
 
-   //millis_sleep(15 * 1000);
+   //sleep(15 * 1000);
 
    if(!initialize_primitive_trace())
       return FALSE;
@@ -198,7 +198,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 int_bool main_initialize()
 {
 
-   //millis_sleep(15 * 1000);
+   //sleep(15 * 1000);
 
    /*   g_pgdiplusStartupInput     = new Gdiplus::GdiplusStartupInput();
       g_pgdiplusStartupOutput    = new Gdiplus::GdiplusStartupOutput();

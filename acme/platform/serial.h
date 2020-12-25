@@ -120,30 +120,30 @@ namespace serial
       static Timeout simpleTimeout(u32 timeout);
 
       /*! Number of milliseconds between bytes received to timeout on. */
-      u32 inter_byte_timeout;
+      ::millis m_millisInterByteTimeout;
       /*! A constant number of milliseconds to wait after method read. */
-      u32 read_timeout_constant;
+      ::millis m_millisReadTimeoutConstant;
       /*! A multiplier against the number of requested bytes to wait after
        *  method read.
        */
-      u32 read_timeout_multiplier;
+      u32 m_uReadTimeoutMultiplier;
       /*! A constant number of milliseconds to wait after method write. */
-      u32 write_timeout_constant;
+      ::millis m_millisWriteTimeoutConstant;
       /*! A multiplier against the number of requested bytes to wait after
        *  method write.
        */
-      u32 write_timeout_multiplier;
+      u32 m_uWriteTimeoutMultiplier;
 
-      explicit Timeout (u32 inter_byte_timeout_=0,
-                        u32 read_timeout_constant_=0,
-                        u32 read_timeout_multiplier_=0,
-                        u32 write_timeout_constant_=0,
-                        u32 write_timeout_multiplier_=0)
-         : inter_byte_timeout(inter_byte_timeout_),
-           read_timeout_constant(read_timeout_constant_),
-           read_timeout_multiplier(read_timeout_multiplier_),
-           write_timeout_constant(write_timeout_constant_),
-           write_timeout_multiplier(write_timeout_multiplier_)
+      explicit Timeout (::millis millisInterByteTimeout=0,
+                        ::millis millisReadTimeoutConstant=0,
+                        u32 uReadTimeoutMultiplier=0,
+                        ::millis millisWriteTimeoutConstant=0,
+                        u32 uWriteTimeoutMultiplier=0)
+         : m_millisInterByteTimeout(millisInterByteTimeout),
+           m_millisReadTimeoutConstant(millisReadTimeoutConstant),
+           m_uReadTimeoutMultiplier(uReadTimeoutMultiplier),
+           m_millisWriteTimeoutConstant(millisWriteTimeoutConstant),
+           m_uWriteTimeoutMultiplier(uWriteTimeoutMultiplier)
       {}
    };
 

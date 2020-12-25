@@ -91,7 +91,7 @@ namespace plugin
 
       bool bNew = false;
 
-      //millis_sleep(15 * 1000);
+      //sleep(15 * 1000);
 
       sync_lock mlSystem(&m_phost->m_mutexSystem);
 
@@ -378,7 +378,7 @@ namespace plugin
 
       //::account::user * puser = nullptr;
 
-      //millis_sleep(15 * 1000);
+      //sleep(15 * 1000);
 
 
       throw todo();
@@ -531,7 +531,7 @@ namespace plugin
       try
       {
 
-         //millis_sleep(15 * 1000);
+         //sleep(15 * 1000);
 
          char * pszAlloc = (char *) (void *) psz;
 
@@ -556,7 +556,7 @@ namespace plugin
 
          }
 
-         //millis_sleep(15 * 1000);
+         //sleep(15 * 1000);
 
          string strPluginUrl;
 
@@ -669,7 +669,7 @@ namespace plugin
 
             }
 
-            //millis_sleep(15 * 1000);
+            //sleep(15 * 1000);
             if(str1 == "ca2login")
             {
                // graphical - 2 - user interface for login - account - through the plugin
@@ -933,24 +933,24 @@ namespace plugin
 
                         bool bTimedOut = false;
 
-                        auto exitstatus = System.process().synch(strPath,display_normal,seconds(8.41115770402),&bTimedOut);
+                        auto exitstatus = System.process().synch(strPath,e_display_normal,seconds(8.41115770402),&bTimedOut);
 
                         if(bTimedOut)
                         {
 
-                           ::message_box(nullptr, " - " + set["app"].get_string() + "\nhas timed out while trying to run.\n\nFor developers it is recommended to\nfix this installation timeout problem.\n\nYou may kill it manually :\n - \"" + strPath + "\"\nif it it does not come up.","Error Message",MB_ICONINFORMATION | e_message_box_ok);
+                           ::message_box(nullptr, " - " + set["app"].get_string() + "\nhas timed out while trying to run.\n\nFor developers it is recommended to\nfix this installation timeout problem.\n\nYou may kill it manually :\n - \"" + strPath + "\"\nif it it does not come up.","Error Message",e_message_box_icon_information | e_message_box_ok);
 
                         }
                         else if(exitstatus.m_iExitCode == 0)
                         {
 
-                           //  ::message_box(nullptr,"Successfully run : " + strPath,"Debug only message, please install.",MB_ICONINFORMATION | e_message_box_ok);
+                           //  ::message_box(nullptr,"Successfully run : " + strPath,"Debug only message, please install.",e_message_box_icon_information | e_message_box_ok);
 
                         }
                         else
                         {
 
-                           ::message_box(nullptr,strPath + "\n\nFailed return code : " + __str(exitstatus.m_iExitCode),"Error Message",MB_ICONINFORMATION | e_message_box_ok);
+                           ::message_box(nullptr,strPath + "\n\nFailed return code : " + __str(exitstatus.m_iExitCode),"Error Message",e_message_box_icon_information | e_message_box_ok);
 
                         }
 
@@ -959,7 +959,7 @@ namespace plugin
                      {
 
                         m_puiHost->KillTimer(19841115);
-                        //millis_sleep(15 * 1000);
+                        //sleep(15 * 1000);
                         //                     System.m_puiInitialPlaceHolderContainer = m_puiHost;
                         xxdebug_box("plugin", "open_ca2_string", 0);
                         auto pcreate = __new(::create);
@@ -1027,7 +1027,7 @@ namespace plugin
 
       }
 
-      millis_sleep(2000);
+      sleep(2000_ms);
 
       try
       {

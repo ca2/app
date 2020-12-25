@@ -76,21 +76,21 @@ namespace user
    //
    // ::user::impact second phase construction - bind to ::user::document
 
-   bool impact::pre_create_window(::user::create_struct & cs)
+   bool impact::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
-      ASSERT(cs.style & WS_CHILD);
+      ASSERT(pcreatestruct->m_createstruct.style & WS_CHILD);
 
 
 #ifdef WINDOWS_DESKTOP
 
 
-      if (cs.style & WS_BORDER)
+      if (pcreatestruct->m_createstruct.style & WS_BORDER)
       {
 
-         cs.dwExStyle |= WS_EX_CLIENTEDGE;
+         pcreatestruct->m_createstruct.dwExStyle |= WS_EX_CLIENTEDGE;
 
-         cs.style &= ~WS_BORDER;
+         pcreatestruct->m_createstruct.style &= ~WS_BORDER;
 
       }
 
@@ -108,19 +108,13 @@ namespace user
 
       SCAST_PTR(::message::create, pmessagecreate, pmessage);
 
-      if (!(m_ewindowflag & window_flag_window_created))
+      if (!(m_ewindowflag & e_window_flag_window_created))
       {
 
-         // if ok, wire in the current ::user::document
          ASSERT(::user::impact::get_document() == nullptr);
 
-#ifdef _UWP
-         __pointer(class ::create) pcreate((::create*) pmessagecreate->m_lpcreatestruct->pCreateParams);
-#else
-         __pointer(class ::create) pcreate((::create*) pmessagecreate->m_lpcreatestruct->lpCreateParams);
-#endif
+         __pointer(class ::create) pcreate(pmessagecreate->get_create());
 
-         // A ::user::impact should be created in a given context!
          if (pcreate != nullptr)
          {
 
@@ -164,7 +158,7 @@ namespace user
 
          ev.m_puie      = this;
 
-         ev.m_eevent    = ::user::event_on_create_impact;
+         ev.m_eevent    = ::user::e_event_on_create_impact;
 
          ev.m_pmessage  = pmessage;
 

@@ -36,7 +36,11 @@ typedef struct oswindow_data * oswindow;
 #undef inline
 #endif
 
+#ifndef _UWP
+
 #include "windows/windows_thread.h"
+
+#endif
 
 #endif
 

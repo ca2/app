@@ -156,8 +156,7 @@ namespace user
       virtual ::estatus update_graphics_resources();
 
 
-      virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
-      
+      virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal) override;
 
 
       virtual bool has_pending_focus();
@@ -256,12 +255,12 @@ namespace user
 
 
       // advanced creation (allows access to extended styles)
-      virtual bool create_window_ex(::user::interaction * pinteraction, ::user::create_struct & cs, ::user::interaction * puiParent, id id) override;
+      virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcs, ::user::interaction * puiParent, id id) override;
 
 
-      virtual bool native_create_window_ex(::user::interaction * pinteraction, ::user::create_struct & cs, oswindow oswindowParent = nullptr, id id = ::id());
+      virtual bool native_create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, oswindow oswindowParent = nullptr, id id = ::id());
 
-      virtual bool _native_create_window_ex(::user::create_struct & cs);
+      virtual bool _native_create_window_ex(__pointer(::user::create_struct) pcreatestruct);
 
 
       virtual bool destroy_impl_only() override;
@@ -269,7 +268,7 @@ namespace user
       virtual void destroy_window() override;
 
       // special pre-creation and interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(::user::create_struct& cs) override;
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
 
       // Advanced: virtual AdjustWindowRect
 //      enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
@@ -355,7 +354,7 @@ namespace user
       virtual void ValidateRect(const ::rect & rect) override;
 
       virtual void ValidateRgn(::draw2d::region* pRgn) override;
-      //virtual bool display(::edisplay edisplay) override;
+      //virtual bool display(::e_display edisplay) override;
       //virtual bool _is_window_visible() override;
       virtual void ShowOwnedPopups(bool bShow = TRUE) override;
 
@@ -389,7 +388,7 @@ namespace user
 #endif
 
 
-      //virtual bool DrawAnimatedRects(i32 idAni,CONST LPRECTprcFrom,CONST LPRECTlprcTo);
+      virtual ::point get_cursor_pos() const override;
 
 
       virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics,const rect & prc,::u32 uFlags);
@@ -644,6 +643,9 @@ namespace user
       virtual ::estatus set_finish(::context_object * pcontextobject) override;
 
 
+      virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
+
+
       virtual ::user::primitive * get_focus_primitive() override;
       virtual bool set_focus_primitive(::user::primitive * pprimitive) override;
       virtual bool impl_set_focus_primitive(::user::primitive * pprimitive, bool bNotify);
@@ -659,12 +661,12 @@ namespace user
 
       virtual void on_after_graphical_update() override;
 
-      virtual bool is_this_visible(e_layout elayout) override;
+      virtual bool is_this_visible(enum_layout elayout) override;
 
-      virtual void window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation) override;
+      virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
 
 
-      virtual bool ShowWindow(int iShow);
+      virtual bool ShowWindow(const ::e_display & edisplay);
 
       //virtual bool check_need_layout() override;
 //virtual void clear_need_layout() override;

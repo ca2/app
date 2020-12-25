@@ -912,6 +912,24 @@ CLASS_DECL_AURA void aura_ref();
 //#include "aura/graphics/draw2d/_const.h"
 
 
+class image;
+namespace draw2d { class icon; }
+//
+using image_pointer = __pointer(::image);
+using icon_pointer = __pointer(::draw2d::icon);
+//
+//
+using image_result = __result(::image);
+using icon_result = __result(::draw2d::icon);
+//
+//
+//class command_line;
+using image_pointer_array = __pointer_array(::image);
+
+
+#include "aura/graphics/draw2d/_.h"
+
+
 //
 //
 //
@@ -1255,18 +1273,6 @@ CLASS_DECL_AURA void aura_ref();
 //inline bool is_impact_subgroup(::u64 u, ::u64 uGroup) { return u >= uGroup && u < uGroup + 100; }
 //
 //
-class image;
-namespace draw2d{class icon;}
-//
-using image_pointer = __pointer(::image);
-using icon_pointer = __pointer(::draw2d::icon);
-//
-//
-using image_result = __result(::image);
-using icon_result=__result(::draw2d::icon);
-//
-//
-//class command_line;
 //
 //
 //using command_line_pointer = __pointer(command_line);
@@ -1368,8 +1374,8 @@ namespace draw2d
 ////   //using int_map = ::map < e_int, e_int, int, int >;
 ////   //using double_map = ::map < e_double, e_double, double, double >;
 ////   //using color_map = map < e_color, e_color, color32_t, color32_t >;
-////   //using eelement = base_enum < e_element >;
-////   //using translucency_map = ::map < e_element, e_element, e_translucency, e_translucency >;
+////   //using eelement = base_enum < enum_element >;
+////   //using translucency_map = ::map < enum_element, enum_element, enum_translucency, enum_translucency >;
 ////
 ////
 ////
@@ -2519,13 +2525,17 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 //#include "aura/primitive/primitive/cflag.h"
 
+
 namespace user
 {
 
-   using estate = cflag < enum_state >;
-   using eelement = cflag < e_element >;
+
+   DECLARE_C_FLAG(e_state, enum_state);
+   using eelement = cflag < enum_element >;
+
 
 } // namespace user
+
 
 
 //

@@ -11,12 +11,9 @@ namespace user
    public:
 
 
-      bool                                      m_bExclusiveMode;
-
       sync_array                                m_synca;
 
       manual_reset_event                        m_evUpdateScreen;
-
 
       __pointer(::user::interaction)            m_puserinteraction;
       __pointer(::user::interaction_impl)       m_pimpl;
@@ -36,7 +33,6 @@ namespace user
       i64                                       m_nanosNextScreenUpdate;
       ::count                                   m_cLost;
       u64_array                                 m_iaFrame;
-      bool                                      m_bVisualUpdated;
 
       millis                                    m_millisBeforeUpdateScreen;
       millis                                    m_millisAfterUpdateScreen;
@@ -49,10 +45,25 @@ namespace user
       millis                                    m_millisDuringDrawing;
       millis                                    m_millisOutOfDrawing;
 
-      bool                                      m_bUpdatingScreen;
       millis                                    m_millisLastScreenUpdate;
       ::promise::routine                        m_routineUpdateScreen;
       ::promise::routine                        m_routineWindowShow;
+      
+
+
+      bool                                      m_bRedraw;
+      bool                                      m_bUpdateBuffer;
+      bool                                      m_bUpdateWindow;
+
+
+      bool                                      m_bExclusiveMode;
+      bool                                      m_bVisualUpdated;
+
+      bool                                      m_bUpdatingScreen;
+
+
+      bool                                      m_bUpdateBufferUpdateWindowPending;
+
 
 
       prodevian();
@@ -60,9 +71,9 @@ namespace user
 
 
 #ifdef DEBUG
-      virtual i64 add_ref(OBJ_REF_DBG_PARAMS);
-      virtual i64 dec_ref(OBJ_REF_DBG_PARAMS);
-      virtual i64 release(OBJ_REF_DBG_PARAMS);
+      virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override;
+      virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
+      virtual i64 release(OBJ_REF_DBG_PARAMS) override;
 #endif
 
 
@@ -71,8 +82,12 @@ namespace user
 
       bool prodevian_reset(::user::interaction * pinteraction);
       bool prodevian_iteration();
+      bool prodevian_update_buffer(bool bRedraw);
+      bool prodevian_update_screen();
       void update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool bForce = false);
       bool update_screen();
+
+      
 
       void defer_prodevian_step();
 

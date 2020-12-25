@@ -1,15 +1,18 @@
 #pragma once
 
 
-
-//struct matter;
 class element_2d;
+
 
 namespace colorertake5
 {
+
+
    class base_editor;
    class text_lines;
    class file_type;
+
+
 } // namespace colorertake5
 
 
@@ -65,9 +68,8 @@ namespace user
          string                           m_strMessage;
       };
 
-      //::rect                              m_rectPadding;
       int                                 m_iDrawTextFlags;
-      millis                                m_millisLastDraw;
+      millis                              m_millisLastDraw;
       array < error >                     m_errora;
       __pointer(::message::key)           m_pmessagekeyLast;
 
@@ -81,8 +83,8 @@ namespace user
 
       int                                 m_iTabWidth;
       bool                                m_bColorerTake5;
-      index                               m_iLineStart;
-      index                               m_iLineEnd;
+      ::index                             m_iLineStart;
+      ::index                             m_iLineEnd;
       count                               m_iLineCount;
       bool                                m_bCustomFrameBefore;
       ::rect                              m_FullScreenWindowRect;
@@ -94,16 +96,16 @@ namespace user
       bool                                m_bLMouseDown;
       bool                                m_bRMouseDown;
       point                               m_pointSelStart;
-      millis                                m_millisCaretPeriod;
-      index                               m_iLineOffset;
-      string_array                             m_straLines;
-      i32                                 m_y;
+      millis                              m_millisCaretPeriod;
+      ::index                             m_iLineOffset;
+      string_array                        m_straLines;
+      double                              m_dy;
       bool                                m_bGetTextNeedUpdate;
       bool                                m_bNeedScrollUpdate;
       bool                                m_bTabInsertSpaces;
       strsize                             m_iViewOffset; // in bytes
       strsize                             m_iViewSize; // in bytes
-      i32                                 m_iLineHeight;
+      double                              m_dLineHeight;
       index                               m_iColumn;
       i32                                 m_iColumnX;
       bool                                m_bMultiLine;
@@ -150,6 +152,7 @@ namespace user
       virtual void edit_on_text(string str) override;
       virtual void edit_on_sel(strsize iSelBeg, strsize iSelEnd) override;
       virtual void on_text_composition(string str) override;
+      virtual void on_text_commit(string str) override;
       virtual void on_text_composition_done() override;
 
 
@@ -170,6 +173,9 @@ namespace user
 
       void _001OnTimer(::timer * ptimer) override;
 
+
+      virtual ::rectd get_margin(style * pstyle, enum_element eelement, estate estate) const override;
+  
 
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonUp);
@@ -206,7 +212,7 @@ namespace user
       DECL_GEN_SIGNAL(keyboard_focus_OnKeyUp) override;
       DECL_GEN_SIGNAL(keyboard_focus_OnChar) override;
 
-      virtual bool keyboard_focus_is_focusable() override;
+      virtual bool keyboard_focus_is_focusable() const override;
 
 
       virtual i32 get_wheel_scroll_delta() override;
@@ -338,7 +344,7 @@ namespace user
 
       virtual ::sized get_total_size() override;
 
-      virtual payload get_ex_value();
+      virtual payload get_payload();
 
 
       virtual void on_before_change_text();

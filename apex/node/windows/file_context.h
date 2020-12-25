@@ -51,7 +51,7 @@ namespace windows
 
       virtual ::estatus update_module_path() override;
 
-      virtual file_result get_file(const payload & varFile, const efileopen & nOpenFlags) override;
+      virtual file_result get_file(const payload & varFile, const ::file::e_open & nOpenFlags) override;
 
 
 

@@ -49,6 +49,12 @@ namespace user
    }
 
 
+   //::e_state still::get_user_state()
+   //{
+
+
+   //}
+
    void still::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -69,107 +75,47 @@ namespace user
 
          get_window_text(strText);
 
-         ::rect rectClient;
+         ::rectd rectClient;
 
-         get_client_rect(rectClient);
+         rectClient = get_client_rect();
 
-         //::rect rectMargin(2, 2,2, 2);
+         auto estate = get_user_state();
 
-//         ::rect rectBorder(2, 2,2, 2);
+         auto color = get_color(pstyle, ::user::e_element_text, estate);
 
-  //       rectClient.deflate(rectMargin);
+         pgraphics->set_text_color(color);
 
-    //     rectClient.deflate(rectBorder);
-
-         //if(pstyle == nullptr)
+         //if (!is_window_enabled())
          //{
 
-         //   if(m_iHover == 0 || psession->m_puiLastLButtonDown == this)
-         //   {
+         //   pgraphics->fill_rect(rectClient, ARGB(255, 192, 192, 192));
 
-         //      pgraphics->fill_rect(rectClient,ARGB(255,127,127,127));
+         //   pgraphics->set_text_color(ARGB(255, 160, 160, 160));
 
-         //      pgraphics->set_text_color(ARGB(255,0,100,255));
+         //}
+         //else if (should_hover() && (m_itemHover.is_set() || psession->m_puiLastLButtonDown == this))
+         //{
 
-         //   }
-         //   else
-         //   {
+         //   pgraphics->fill_rect(rectClient, ARGB(255, 200, 200, 230));
 
-         //      pgraphics->fill_rect(rectClient,ARGB(255,127,127,127));
-
-         //      pgraphics->set_text_color(ARGB(255,0,0,0));
-
-         //   }
+         //   pgraphics->set_text_color(ARGB(255, 80, 80, 180));
 
          //}
          //else
-         {
-            if (!is_window_enabled())
-            {
+         //{
 
-               pgraphics->fill_rect(rectClient, ARGB(255, 192, 192, 192));
+         //   pgraphics->fill_rect(rectClient, ARGB(255, 255, 255, 255));
 
-               pgraphics->set_text_color(ARGB(255, 160, 160, 160));
+         //   pgraphics->set_text_color(ARGB(255, 0, 0, 0));
 
-            }
-            else if (should_hover() && (m_itemHover.is_set() || psession->m_puiLastLButtonDown == this))
-            {
+         //}
 
-               pgraphics->fill_rect(rectClient, ARGB(255, 200, 200, 230));
-
-               pgraphics->set_text_color(ARGB(255, 80, 80, 180));
-
-            }
-            else
-            {
-
-               //pgraphics->draw3d_rect(rectClient,pstyle->_001GetColor(color_border),pstyle->_001GetColor(color_border));
-
-               //rectClient.deflate(1,1);
-
-               pgraphics->fill_rect(rectClient, ARGB(255, 255, 255, 255));
-
-               pgraphics->set_text_color(ARGB(255, 0, 0, 0));
-
-            }
-
-         }
-
-         ::rect rectPadding(0, 0, 0, 0);
+         auto rectPadding = get_padding(pstyle);
 
          rectClient.deflate(rectPadding);
 
-         if (m_estockicon == stock_icon_none)
+         if (m_estockicon != stock_icon_none)
          {
-
-            ::e_align ealign = get_int(pstyle, ::user::e_int_edit_text_align, ::e_align(e_align_left_center));
-            
-            ::e_draw_text edrawtext = get_int(pstyle, ::user::e_int_edit_draw_text_flags, e_draw_text_single_line);
-
-            if(m_pfont)
-            {
-
-               pgraphics->set(m_pfont);
-
-            }
-            else
-            {
-
-               pgraphics->set_font(this);
-
-            }
-
-            pgraphics->draw_text(strText, rectClient, ealign, edrawtext);
-
-         }
-         else
-         {
-
-            //::draw2d::brush_pointer brush(e_create);
-
-            //brush->create_solid(pgraphics->get_current_pen()->m_cr);
-
-            //pgraphics->set(brush);
 
             ::draw2d::pen_pointer pen(e_create);
 
@@ -184,6 +130,18 @@ namespace user
             rectIcon.deflate(rectIcon.width() / 4, rectIcon.height() / 4);
 
             pgraphics->draw_stock_icon(rectIcon, m_estockicon);
+
+         }
+         else
+         {
+
+            ::e_align ealign = (enum_align)get_int(pstyle, ::user::e_int_edit_text_align, ::e_align(e_align_left_center));
+
+            ::e_draw_text edrawtext = (enum_draw_text)get_int(pstyle, ::user::e_int_edit_draw_text_flags, e_draw_text_single_line);
+
+            pgraphics->set_font(this, ::user::e_element_none);
+
+            pgraphics->draw_text(strText, rectClient, ealign, edrawtext);
 
          }
 
@@ -204,7 +162,7 @@ namespace user
    //   if (hit_test(pmouse->)
    //   {
 
-   //      if (!simple_process_system_message(pmessage, ::user::event_button_down))
+   //      if (!simple_process_system_message(pmessage, ::user::e_event_button_down))
    //      {
 
    //         psession->m_puiLastLButtonDown = this;
@@ -225,7 +183,7 @@ namespace user
 
    //   pmessage->previous();
 
-   //   e_element eelement;
+   //   enum_element eelement;
 
    //   ::point point = pmouse->m_point;
 
@@ -234,7 +192,7 @@ namespace user
    //   if (hit_test(point, eelement) >= 0)
    //   {
 
-   //      if (!simple_process_system_message(pmessage, ::user::event_m_button_down))
+   //      if (!simple_process_system_message(pmessage, ::user::e_event_m_button_down))
    //      {
 
    //         //psession->m_puiLastLButtonDown = this;
@@ -255,7 +213,7 @@ namespace user
 
    //   pmessage->previous();
 
-   //   e_element eelement;
+   //   enum_element eelement;
 
    //   ::point point = pmouse->m_point;
 
@@ -264,7 +222,7 @@ namespace user
    //   if (hit_test(point, eelement) >= 0)
    //   {
 
-   //      if (!simple_process_system_message(pmessage, ::user::event_m_button_up))
+   //      if (!simple_process_system_message(pmessage, ::user::e_event_m_button_up))
    //      {
 
    //         //psession->m_puiLastLButtonDown = this;
@@ -289,7 +247,7 @@ namespace user
 
    //   //SCAST_PTR(::message::mouse, pmouse, pmessage);
 
-   //   //e_element eelement;
+   //   //enum_element eelement;
 
    //   //::point point = pmouse->m_point;
 
@@ -315,7 +273,7 @@ namespace user
 
    //   //      ev.m_puie = this;
 
-   //   //      ev.m_eevent = ::user::event_button_clicked;
+   //   //      ev.m_eevent = ::user::e_event_button_clicked;
 
    //   //      on_control_event(&ev);
 
@@ -355,7 +313,7 @@ namespace user
 
    //   //SCAST_PTR(::message::mouse, pmouse, pmessage);
 
-   //   //e_element eelement;
+   //   //enum_element eelement;
 
    //   //index iHover = hit_test(pmouse->m_point, eelement);
    //   //if (iHover != m_iHover)
@@ -376,7 +334,7 @@ namespace user
    //   //   {
    //   //      ::user::control_event ev;
    //   //      ev.m_puie = this;
-   //   //      ev.m_eevent = ::user::event_mouse_enter;
+   //   //      ev.m_eevent = ::user::e_event_mouse_enter;
    //   //      GetParent()->send_message(
    //   //      e_message_event, 0, (LPARAM)&ev);
    //   //      //               m_bActionHover = true;
@@ -385,7 +343,7 @@ namespace user
    //   //   {
    //   //      ::user::control_event ev;
    //   //      ev.m_puie = this;
-   //   //      ev.m_eevent = ::user::event_mouse_leave;
+   //   //      ev.m_eevent = ::user::e_event_mouse_leave;
    //   //      GetParent()->send_message(
    //   //      e_message_event, 0, (LPARAM)&ev);
    //   //      //             m_bActionHover = false;
@@ -407,7 +365,7 @@ namespace user
    //   //   set_need_redraw();
    //   //   ::user::control_event ev;
    //   //   ev.m_puie = this;
-   //   //   ev.m_eevent = ::user::event_mouse_leave;
+   //   //   ev.m_eevent = ::user::e_event_mouse_leave;
    //   //   if (GetParent() != nullptr)
    //   //   {
    //   //      GetParent()->send_message(e_message_event, 0, (LPARAM)&ev);
@@ -432,43 +390,43 @@ namespace user
    //   //}
    //   //else
    //   //{
-   //   //   eelement = element_none;
+   //   //   eelement = e_element_none;
    //   //   return -1;
    //   //}
    //}
 
 
-   ::size still::calc_text_size()
+   ::sized still::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
    {
-
-      auto pgraphics = ::draw2d::create_memory_graphics();
 
       if (pgraphics.is_null())
       {
 
-         return nullptr;
+         pgraphics = ::draw2d::create_memory_graphics();
 
       }
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       string strText(m_strWindowText);
 
-      const ::size & size = pgraphics->GetTextExtent(strText);
+      auto size = pgraphics->GetTextExtent(strText);
 
       ::draw2d::text_metric tm;
 
       pgraphics->get_text_metrics(&tm);
 
-      ::size sizeTotal;
+      ::sized sizeTotal;
 
       sizeTotal.cx = size.cx;
 
-      sizeTotal.cy = tm.tmHeight;
+      sizeTotal.cy = tm.get_line_spacing();
 
       return sizeTotal;
 
    }
+
+   
 
 
    void still::resize_to_fit(::draw2d::graphics_pointer& pgraphics)
@@ -477,7 +435,7 @@ namespace user
       if (m_estyle == style_text)
       {
 
-         pgraphics->set_font(this);
+         pgraphics->set_font(this, ::user::e_element_none);
 
          string str;
 
@@ -504,11 +462,7 @@ namespace user
       else
       {
 
-         auto sizeTotal = calc_text_size();
-
-         sizeTotal.cx = (::i32)(sizeTotal.cx * 1.6);
-
-         sizeTotal.cy = (::i32)(sizeTotal.cy * 1.4);
+         auto sizeTotal = _001CalculateAdjustedFittingSize(pgraphics);
 
          layout().sketch() = sizeTotal;
 
@@ -582,8 +536,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-
-      ::size sizeText = calc_text_size();
+      ::sized sizeText = _001CalculateFittingSize(pgraphics);
 
       ::rect rect;
 
@@ -608,7 +561,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer still::get_font(style * pstyle, e_element eelement, estate estate) const
+   ::draw2d::font_pointer still::get_font(style * pstyle, enum_element eelement, estate estate) const
    {
 
       //if (pstyle)
@@ -669,7 +622,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      if (get_translucency(pstyle) >= translucency_present)
+      if (get_translucency(pstyle) >= e_translucency_present)
       {
 
          class imaging & imaging = System.imaging();
@@ -741,37 +694,37 @@ namespace user
       {
 
          //         pgraphics->set_text_color(pstyle->m_crTextDisabled);
-         brushText->create_solid(get_color(pstyle, element_text, e_state_disabled));
+         brushText->create_solid(get_color(pstyle, e_element_text, e_state_disabled));
 
       }
       else if (is_left_button_pressed())
       {
          //         pgraphics->set_text_color(pstyle->m_crTextPress);
-         brushText->create_solid(get_color(pstyle, element_text, e_state_pressed));
+         brushText->create_solid(get_color(pstyle, e_element_text, e_state_pressed));
       }
       else if (m_itemHover.is_set())
       {
          //         pgraphics->set_text_color(pstyle->m_crTextHover);
-         brushText->create_solid(get_color(pstyle, element_text, e_state_hover));
+         brushText->create_solid(get_color(pstyle, e_element_text, e_state_hover));
       }
       else
       {
          //         pgraphics->set_text_color(pstyle->m_crTextNormal);
-         brushText->create_solid(get_color(pstyle, element_text));
+         brushText->create_solid(get_color(pstyle, e_element_text));
       }
 
       pgraphics->set(brushText);
 
       string strText(get_window_text());
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       pgraphics->draw_text(strText, rectText, e_align_top_left);
 
    }
 
 
-   bool still::keyboard_focus_is_focusable()
+   bool still::keyboard_focus_is_focusable() const
    {
 
       //return is_window_enabled() && is_window_visible();
@@ -792,7 +745,7 @@ namespace user
 
          ::user::control_event ev;
          ev.m_puie = this;
-         ev.m_eevent = ::user::event_button_clicked;
+         ev.m_eevent = ::user::e_event_button_clicked;
          ev.m_pmessage = pmessage;
          on_control_event(&ev);
          pmessage->m_bRet = ev.m_bRet;
@@ -844,7 +797,7 @@ namespace user
          if (!is_window_enabled())
          {
 
-            pgraphics->fill_rect(rectClient, get_color(pstyle, element_background, e_state_disabled));
+            pgraphics->fill_rect(rectClient, get_color(pstyle, e_element_background, e_state_disabled));
 
          }
          else if (m_itemHover.is_set() || is_left_button_pressed())
@@ -854,13 +807,13 @@ namespace user
 
             //rectClient.deflate(1,1);
 
-            pgraphics->fill_rect(rectClient, get_color(pstyle, element_background, e_state_pressed));
+            pgraphics->fill_rect(rectClient, get_color(pstyle, e_element_background, e_state_pressed));
 
          }
          else
          {
 
-            pgraphics->fill_rect(rectClient, get_color(pstyle, element_background));
+            pgraphics->fill_rect(rectClient, get_color(pstyle, e_element_background));
 
          }
 
@@ -1047,15 +1000,7 @@ namespace user
    }
 
 
-   bool still::should_hover()
-   {
-
-      return has_link();
-
-   }
-
-
-   bool still::has_link()
+   bool still::has_link() const
    {
 
       return m_strLink.has_char();

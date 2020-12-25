@@ -1,4 +1,6 @@
 ﻿#include "framework.h"
+#include "_windows.h"
+
 
 #ifndef _UWP
 

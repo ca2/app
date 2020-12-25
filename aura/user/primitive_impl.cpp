@@ -66,7 +66,7 @@ namespace user
    }
 
 
-   bool primitive_impl::create_window_ex(::user::interaction * pinteraction, ::user::create_struct & cs, ::user::interaction * puiParent, id id)
+   bool primitive_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcs, ::user::interaction * puiParent, id id)
    {
 
       ::exception::throw_interface_only();
@@ -297,28 +297,28 @@ namespace user
    }
 
 
-   ::estatus primitive_impl::main_async(const promise::routine & routine, e_priority epriority)
-   {
+   //::estatus primitive_impl::main_async(const promise::routine & routine, e_priority epriority)
+   //{
 
-      if (!m_puserinteraction)
-      {
+   //   if (!m_puserinteraction)
+   //   {
 
-         return ::error_failed;
+   //      return ::error_failed;
 
-      }
+   //   }
 
-      auto pwnd = m_puserinteraction->get_wnd();
+   //   auto pwnd = m_puserinteraction->get_wnd();
 
-      if (!pwnd)
-      {
+   //   if (!pwnd)
+   //   {
 
-          return ::error_failed;
+   //       return ::error_failed;
 
-      }
+   //   }
 
-      return pwnd->main_async(routine, epriority);
+   //   return pwnd->post_routine(routine, epriority);
 
-   }
+   //}
 
 
    void primitive_impl::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
@@ -1159,10 +1159,10 @@ namespace user
    }
 
 
-   bool primitive_impl::SetTimer(uptr uEvent, ::u32 nEllapse, PFN_TIMER pfnTimer)
+   bool primitive_impl::SetTimer(uptr uEvent, ::millis millisEllapse, PFN_TIMER pfnTimer)
    {
 
-      if (nEllapse < 500)
+      if (millisEllapse < 500_ms)
       {
 
          //         string str;
@@ -1184,7 +1184,7 @@ namespace user
 
       }
 
-      return m_ptimerarray->create_timer(uEvent, nEllapse, pfnTimer, true);
+      return m_ptimerarray->create_timer(uEvent, millisEllapse, pfnTimer, true);
 
    }
 
@@ -1421,6 +1421,13 @@ namespace user
 
    bool primitive_impl::post_message(const ::id & id, WPARAM wparam, lparam lparam)
    {
+
+      if (::is_null(m_puserinteraction))
+      {
+
+         return false;
+
+      }
 
       m_puserinteraction->post_routine(__routine(call_message_handler_task(m_puserinteraction, id, wparam, lparam)));
 
@@ -1704,7 +1711,7 @@ namespace user
 
       }
 
-      return m_puserinteraction->m_ewindowflag & window_flag_enable;
+      return m_puserinteraction->m_ewindowflag & e_window_flag_enable;
 
    }
 
@@ -1715,7 +1722,7 @@ namespace user
    // }
 
 
-   void primitive_impl::window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation)
+   void primitive_impl::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
    {
 
    }
@@ -1732,9 +1739,9 @@ namespace user
    bool primitive_impl::enable_window(bool bEnable)
    {
 
-      bool bWasDisabled = !(m_puserinteraction->m_ewindowflag & window_flag_enable);
+      bool bWasDisabled = !(m_puserinteraction->m_ewindowflag & e_window_flag_enable);
 
-      m_puserinteraction->m_ewindowflag.set(window_flag_enable, bEnable);
+      m_puserinteraction->m_ewindowflag.set(e_window_flag_enable, bEnable);
 
       return bWasDisabled;
 

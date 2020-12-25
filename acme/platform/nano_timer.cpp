@@ -25,7 +25,7 @@ void nano_timer::wait(u64 uWait)
       if (!SetWaitableTimer(m_hTimer, &li, 0, nullptr, nullptr, FALSE))
       {
 
-         millis_sleep(::u32(uWait / 1000000LL));
+         sleep(::millis(uWait / 1000000LL));
 
       }
       else

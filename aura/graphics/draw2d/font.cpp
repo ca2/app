@@ -918,7 +918,7 @@ void font::destroy()
          
       }
       
-      return tm.tmAscent;
+      return tm.m_dAscent;
       
    }
 
@@ -935,7 +935,7 @@ void font::destroy()
          
       }
       
-      return tm.tmHeight;
+      return tm.m_dHeight;
       
    }
    
@@ -952,7 +952,7 @@ void font::destroy()
          
       }
       
-      return tm.tmInternalLeading + tm.tmExternalLeading;
+      return tm.m_dInternalLeading + tm.m_dExternalLeading;
       
    }
    
@@ -969,7 +969,7 @@ void font::destroy()
          
       }
       
-      return tm.tmDescent;
+      return tm.m_dDescent;
          
    }
    

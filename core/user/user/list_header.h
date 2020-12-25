@@ -61,24 +61,24 @@ namespace user
       public:
 
 
-         ::u32    mask;
-         i32     cxy;
-         LPWSTR  pszText;
-         HBITMAP hbm;
-         i32     cchTextMax;
-         i32     fmt;
-         LPARAM  lParam;
-         i32     iImage;        // index of bitmap in ImageList
-         i32     iOrder;
-         ::u32    type;           // [in] filter type (defined what pvFilter is a pointer to)
-         void *  pvFilter;       // [in] fillter data see above
-         ::u32   state;
+         ::u32       mask;
+         i32         cxy;
+         string      m_strTextText;
+         ::image     m_image;
+         i32         cchTextMax;
+         i32         fmt;
+         LPARAM      lParam;
+         i32         iImage;        // index of bitmap in ImageList
+         i32         iOrder;
+         ::u32       type;           // [in] filter type (defined what pvFilter is a pointer to)
+         void *      pvFilter;       // [in] fillter data see above
+         ::u32       state;
       };
 
 
-      enum e_element
+      enum enum_element
       {
-         element_item,
+         e_element_item,
          element_item_Box,
          ElementDivider,
       };
@@ -90,10 +90,10 @@ namespace user
 
       bool                          m_bTrack;
       bool                          m_bHover;
-      e_element                      m_eelementHover;
+      enum_element                      m_eelementHover;
       index                         m_iItemHover;
       bool                          m_bLButtonDown;
-      e_element                      m_eelementLButtonDown;
+      enum_element                      m_eelementLButtonDown;
       index                         m_iItemLButtonDown;
 
       list *                        m_plistctrlinterface;
@@ -118,24 +118,24 @@ namespace user
       virtual i32 GetDividerWidth();
 
 
-      bool GetItemRect(RECT32 * prect, e_element eelement, index iItem);
+      bool GetItemRect(RECT32 * prect, enum_element eelement, index iItem);
 
 
-      bool GetItemRect(RECT32 * prect, e_element eelementLButtonDown, index iItemLButtonDown,
+      bool GetItemRect(RECT32 * prect, enum_element eelementLButtonDown, index iItemLButtonDown,
 
-                       e_element eelement,
+                       enum_element eelement,
                        index iItem);
 
       bool hit_test(
       const ::point & point,
-      e_element & eelement,
+      enum_element & eelement,
       index & iItem);
 
       bool hit_test(
       const ::point & point,
-      e_element eelementLButtonDown,
+      enum_element eelementLButtonDown,
       index iItemLButtonDown,
-      e_element & eelement,
+      enum_element & eelement,
       index & iItem);
 
 

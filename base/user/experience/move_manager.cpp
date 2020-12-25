@@ -17,7 +17,7 @@ namespace experience
          m_pframewindow = pframewindow;
          m_bMoving = false;
          SetSWPFlags(0);
-         m_eborderMask = border_all;
+         m_eborderMask = e_border_all;
       }
 
       move_manager::~move_manager()
@@ -44,7 +44,7 @@ namespace experience
 
          m_pframewindow->get_window_rect(rectWindow);
 
-         //if(m_pframewindow->layout().design().display() != ::display_normal && m_pframewindow->layout().design().display() != ::display_minimal)
+         //if(m_pframewindow->layout().design().display() != ::e_display_normal && m_pframewindow->layout().design().display() != ::e_display_minimal)
          //{
 
          //   auto pointRate = rectWindow.to_point_rate(pointCursor);
@@ -60,7 +60,7 @@ namespace experience
 
          //   m_pframewindow->set_size(m_pframewindow->m_windowrect.m_rectRestored.size());
 
-         //   m_pframewindow->display(::display_normal);
+         //   m_pframewindow->display(::e_display_normal);
 
          //}
 
@@ -76,7 +76,7 @@ namespace experience
 
          m_bMoving = true;
 
-         m_pframewindow->on_start_layout_experience(layout_experience_moving);
+         m_pframewindow->on_start_layout_experience(e_layout_experience_moving);
 
          pmouse->m_bRet = true;
 
@@ -212,7 +212,7 @@ namespace experience
 
             auto rectRequest = m_pframewindow->layout().sketch().screen_rect();
 
-            index iMatchingMonitor = m_pframewindow->good_move(rectRequest, nullptr, true);
+            index iMatchingMonitor = m_pframewindow->good_move(rectRequest, nullptr);
 
             if (iMatchingMonitor >= 0)
             {
@@ -230,7 +230,7 @@ namespace experience
 
          }
 
-         m_pframewindow->on_end_layout_experience(layout_experience_moving);
+         m_pframewindow->on_end_layout_experience(e_layout_experience_moving);
 
          return true;
 
@@ -361,7 +361,7 @@ namespace experience
       }
 
 
-      eborder move_manager::GetBorderMask()
+      e_border move_manager::GetBorderMask()
       {
 
          return m_eborderMask;
@@ -369,7 +369,7 @@ namespace experience
       }
 
 
-      void move_manager::SetBorderMask(const eborder & emask)
+      void move_manager::SetBorderMask(const e_border & emask)
       {
 
          m_eborderMask = emask;

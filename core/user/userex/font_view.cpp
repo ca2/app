@@ -212,7 +212,7 @@ namespace userex
       if (pevent->m_id == impact_font_sel)
       {
 
-         if (pevent->m_eevent == ::user::event_after_change_cur_sel)
+         if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
          {
 
             if (m_bSourceFontSel)

@@ -203,7 +203,7 @@ namespace user
       if (m_spregion.is_null())
       {
 
-         eelement = element_none;
+         eelement = e_element_none;
 
          return -1;
 
@@ -212,7 +212,7 @@ namespace user
       if (m_spregion->get_os_data() == nullptr)
       {
 
-         eelement = element_none;
+         eelement = e_element_none;
 
          return -1;
 
@@ -223,13 +223,13 @@ namespace user
       if (!m_spregion->contains(point))
       {
 
-         eelement = element_none;
+         eelement = e_element_none;
 
          return -1;
 
       }
 
-      eelement = element_client;
+      eelement = e_element_client;
 
       return 0;
 

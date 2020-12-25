@@ -95,8 +95,8 @@ namespace experience
 
       virtual void frame_experience_restore();
 
-      virtual void on_start_layout_experience(e_layout_experience elayoutexperience) override;
-      virtual void on_end_layout_experience(e_layout_experience elayoutexperience) override;
+      virtual void on_start_layout_experience(enum_layout_experience elayoutexperience) override;
+      virtual void on_end_layout_experience(enum_layout_experience elayoutexperience) override;
 
 
       virtual void _001OnExitFullScreen() override;
@@ -149,7 +149,7 @@ namespace experience
       DECL_GEN_SIGNAL(_001OnSysCommand);
       DECL_GEN_SIGNAL(_001OnSize);
 
-      virtual bool _001CanEnterScreenSaver();
+      virtual bool _001CanEnterScreenSaver() override;
 
       bool window_is_notify_icon_enabled() override;
 
@@ -160,7 +160,7 @@ namespace experience
 
       bool IsHoverModeOn();
       bool IsHoverActive();
-      void set_dock_mask(edock emask);
+      void set_dock_mask(e_dock emask);
 
       void on_layout(::draw2d::graphics_pointer & pgraphics) override;
       void on_reposition() override;

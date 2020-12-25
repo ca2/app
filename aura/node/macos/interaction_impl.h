@@ -126,16 +126,16 @@ namespace macos
       // advanced creation (allows access to extended styles)
       virtual bool create_window_ex(
       ::user::interaction * pinteraction,
-      ::user::create_struct & cs,
+      __pointer(::user::create_struct) pcreatestruct,
       ::user::interaction * puiParent,
       id id) override;
 
-      virtual bool _native_create_window_ex(::user::create_struct & cs) override;
+      virtual bool _native_create_window_ex(__pointer(::user::create_struct) pcreatestruct) override;
 
       virtual bool DestroyWindow() override;
 
       // special pre-creation and ::interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(::user::create_struct& cs) override;
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
@@ -182,7 +182,7 @@ namespace macos
 
       //virtual bool set_window_pos(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
       virtual ::u32 ArrangeIconicWindows() override;
-      //virtual void BringToTop(::edisplay edisplay) override;
+      //virtual void BringToTop(::e_display edisplay) override;
       //virtual bool BringWindowToTop() override;
 //      using ::user::interaction_impl::get_window_rect;
 //      virtual bool get_window_rect(RECT64 * lpRect) override;
@@ -220,7 +220,7 @@ namespace macos
       virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = TRUE) override;
       virtual void ValidateRect(const ::rect & rect) override;
       virtual void ValidateRgn(::draw2d::region* pRgn) override;
-      //virtual bool display(::edisplay edisplay) override;
+      //virtual bool display(::e_display edisplay) override;
 //      virtual void window_impl_maximize();
 //      virtual void window_impl_restore();
       //virtual bool window_impl_is_visible();
@@ -275,7 +275,7 @@ namespace macos
       //virtual votru8id _001UpdateWindow(bool bUpdateBuffer = false) override;
       // xxx      virtual bool EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
 
-      //virtual bool DrawAnimatedRects(i32 idAni, CONST RECT32 *lprcFrom, CONST RECT32 *lprcTo) override;
+      //virtual bool DrawAnimatedRects(i32 idAni, const RECT32 *lprcFrom, const RECT32 *lprcTo) override;
       virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::u32 uFlags) override;
 
 #if(WINVER >= 0x0500)

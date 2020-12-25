@@ -19,7 +19,7 @@ namespace console
       __pointer(image_list)          m_pimagelist;
       bool                    m_bTimerHide;
       bool                    m_bTimerOn;
-      e_position              m_eposition;
+      enum_position              m_eposition;
       bool                    m_bMoveDrag;
       bool                    m_bLControl;
 
@@ -49,7 +49,7 @@ namespace console
       virtual void on_command_probe(::user::command * pcommand) override;
 
 
-      virtual ::user::e_translucency get_translucency(::user::style * pstyle) const override;
+      virtual ::user::enum_translucency get_translucency(::user::style * pstyle) const override;
 
 
       DECL_GEN_SIGNAL(_001OnCreate);

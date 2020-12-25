@@ -61,24 +61,24 @@
 //   pimpl->m_oswindow->set_user_interaction_impl(pimpl);
 //
 //   ::user::create_struct createstruct;
-//   cs.dwExStyle = 0;
-//   cs.lpszClass = 0;
-//   cs.lpszName = nullptr;
-//   cs.style = 0;
-//   cs.x = 0;
-//   cs.y = 0;
-//   cs.cx = 0;
-//   cs.cy = 0;
-//   //      cs.hwndParent = hWndParent;
-//   //   cs.hMenu = hWndParent == nullptr ? nullptr : nIDorHMenu;
-//   cs.hMenu = nullptr;
-//   //      cs.hInstance = System.m_hInstance;
-//   cs.lpCreateParams = nullptr;
+//   pcreatestruct->m_createstruct.dwExStyle = 0;
+//   pcreatestruct->m_createstruct.lpszClass = 0;
+//   pcreatestruct->m_createstruct.lpszName = nullptr;
+//   pcreatestruct->m_createstruct.style = 0;
+//   pcreatestruct->m_createstruct.x = 0;
+//   pcreatestruct->m_createstruct.y = 0;
+//   pcreatestruct->m_createstruct.cx = 0;
+//   pcreatestruct->m_createstruct.cy = 0;
+//   //      pcreatestruct->m_createstruct.hwndParent = hWndParent;
+//   //   pcreatestruct->m_createstruct.hMenu = hWndParent == nullptr ? nullptr : nIDorHMenu;
+//   pcreatestruct->m_createstruct.hMenu = nullptr;
+//   //      pcreatestruct->m_createstruct.hInstance = System.m_hInstance;
+//   pcreatestruct->m_createstruct.lpCreateParams = nullptr;
 //
 //   if(pimpl->m_puserinteraction != nullptr)
 //   {
 //
-//      if(!pimpl->m_puserinteraction->pre_create_window(cs))
+//      if(!pimpl->m_puserinteraction->pre_create_window(pcreatestruct))
 //      {
 //
 //         pimpl->PostNcDestroy();
@@ -91,7 +91,7 @@
 //   else
 //   {
 //
-//      if (!pimpl->pre_create_window(cs))
+//      if (!pimpl->pre_create_window(pcreatestruct))
 //      {
 //
 //         pimpl->PostNcDestroy();
@@ -102,10 +102,10 @@
 //
 //   }
 //
-//   if(cs.hwndParent == nullptr)
+//   if(pcreatestruct->m_createstruct.hwndParent == nullptr)
 //   {
 //
-//      cs.style &= ~WS_CHILD;
+//      pcreatestruct->m_createstruct.style &= ~WS_CHILD;
 //
 //   }
 //

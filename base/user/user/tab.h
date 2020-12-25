@@ -107,15 +107,15 @@ namespace user
          ::size                           m_sizeSep;
          i32                              m_iHeightAddUp;
          ::draw2d::pen_pointer                 m_pen;
-         ::draw2d::brush_pointer               m_brushTextHover;
-         ::draw2d::brush_pointer               m_brushTextSel;
-         ::draw2d::brush_pointer               m_brushText;
+         //::draw2d::brush_pointer               m_brushTextHover;
+         //::draw2d::brush_pointer               m_brushTextSel;
+         //::draw2d::brush_pointer               m_brushText;
          ::draw2d::brush_pointer               m_brushCloseHover;
          ::draw2d::brush_pointer               m_brushCloseSel;
          ::draw2d::brush_pointer               m_brushClose;
-         ::draw2d::pen_pointer                 m_penBorder;
-         ::draw2d::pen_pointer                 m_penBorderSel;
-         ::draw2d::pen_pointer                 m_penBorderHover;
+         //::draw2d::pen_pointer                 m_penBorder;
+         //::draw2d::pen_pointer                 m_penBorderSel;
+         //::draw2d::pen_pointer                 m_penBorderHover;
          bool                             m_bCreated;
          i32                          m_iTabHeight;
          i32                          m_iTabWidth;
@@ -174,7 +174,7 @@ namespace user
       ::count                          m_iRestoredTabCount;
       bool                             m_bDrawTabAtBackground;
       ::logic::bit                     m_bitLastShowTabs;
-      e_display                        m_edisplayParentFrameAutoHide;
+      enum_display                        m_edisplayParentFrameAutoHide;
       int                              m_iTabScroll;
       int                              m_iTabScrollMax;
       int                              m_iTabSize;
@@ -188,7 +188,7 @@ namespace user
       virtual void install_message_routing(::channel * pchannel) override;
 
 
-      virtual e_element get_default_element() const override;
+      virtual enum_element get_default_element() const override;
 
       DECL_GEN_SIGNAL(_001OnLButtonDown);
       DECL_GEN_SIGNAL(_001OnLButtonUp);
@@ -227,7 +227,7 @@ namespace user
 
       virtual void _001SetTabCallback(tab_callback * pcallback);
       virtual bool _001IsAddTab(::index iTab);
-      virtual void _001OnDropTab(::index iTab, e_position eposition);
+      virtual void _001OnDropTab(::index iTab, enum_position eposition);
       virtual bool set_cur_tab_by_id(id id, ::create * pcreate = nullptr);
 
       virtual id get_cur_tab_id();
@@ -248,10 +248,10 @@ namespace user
       virtual void _001OnTabClose(::index iTab);
       virtual ::user::interaction * GetNotifyWnd();
       virtual void on_hit_test(::user::item & item) override;
-      virtual e_position DragHitTest(const ::point & point);
-      virtual void GetDragRect(RECT32 * prect, e_position eposition);
+      virtual enum_position DragHitTest(const ::point & point);
+      virtual void GetDragRect(RECT32 * prect, enum_position eposition);
 
-      virtual bool get_element_rect(::index iTab, RECT32 * prect, e_element eelement);
+      virtual bool get_element_rect(::index iTab, RECT32 * prect, enum_element eelement);
 
 
       virtual void get_title(int iPane,string_array & stra);

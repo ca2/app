@@ -39,7 +39,7 @@
    //      bool updown::wfi_is_up_down()
    //      {
 
-   //         return m_ewindowflag & window_flag_updown;
+   //         return m_ewindowflag & e_window_flag_updown;
 
    //      }
 

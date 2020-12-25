@@ -244,7 +244,7 @@ namespace simpledb
          outheader(__id(content_type)) = "application/x-jar";
       }
       file_pointer spfile(e_create);
-      if(spfile->open(lpcsz, ::file::type_binary | ::file::mode_read | ::file::share_deny_none).failed())
+      if(spfile->open(lpcsz, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none).failed())
       {
          return false;
       }

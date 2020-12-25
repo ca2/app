@@ -14,8 +14,8 @@ namespace experience
 
 
       ::experience::frame_window *     m_pframewindow;
-      eborder                          m_eborder;
-      edock                            m_edock;
+      e_border                         m_eborder;
+      e_dock                           m_edock;
       point                            m_pointCursorDockOrigin;
       point                            m_pointWindowOrigin;
       bool                             m_bDocking;
@@ -39,11 +39,11 @@ namespace experience
 
       bool dock_window(::message::mouse* pmouse);
 
-      void set_border_mask(eborder eborder);
-      eborder get_border_mask();
+      void set_border_mask(const ::e_border & eborder);
+      e_border get_border_mask();
 
-      void set_dock_mask(edock edock);
-      edock get_dock_mask();
+      void set_dock_mask(e_dock edock);
+      e_dock get_dock_mask();
 
       bool window_is_docking();
 

@@ -60,7 +60,7 @@ namespace user
 
          ev.m_id = m_id;
 
-         ev.m_eevent = ::user::event_set_check;
+         ev.m_eevent = ::user::e_event_set_check;
 
          ev.m_actioncontext = context;
 
@@ -203,7 +203,7 @@ namespace user
 
          int iDrawParams = e_align_left_center | DT_SINGLELINE;
 
-         pgraphics->set_font(this);
+         pgraphics->set_font(this, ::user::e_element_none);
 
          color32_t crText;
 

@@ -59,7 +59,7 @@ namespace axis
       virtual void install_message_routing(::channel* pchannel) override;
 
 
-      virtual bool InitializeLocalDataCentral();
+      virtual bool InitializeLocalDataCentral() override;
 
 
    };

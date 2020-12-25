@@ -23,24 +23,6 @@ namespace draw2d_direct2d
    }
 
 
-   //bool path::internal_begin_figure(bool bFill, ::draw2d::enum_fill_mode efillmode)
-   //{
-
-   //   if(m_psink != nullptr)
-   //   {
-
-   //      internal_end_figure(false);
-
-
-   //   }
-
-
-   //   return true;
-
-
-   //}
-
-
    bool path::internal_end_figure(bool bClose)
    {
 
@@ -188,7 +170,6 @@ namespace draw2d_direct2d
 
       textLayout->Draw(this, textRenderer.Get(), 0, 0);
 
-
       return true;
 
    }
@@ -211,33 +192,6 @@ namespace draw2d_direct2d
    }
 
 
-   //bool path::internal_add_line(int x, int y)
-   //{
-
-   //   D2D1_POINT_2F point;
-
-   //   point.x = (FLOAT) x;
-   //   point.y = (FLOAT) y;
-
-   //   return internal_prepare(point);
-   //}
-
-
-   //bool path::internal_add_move(int x, int y)
-   //{
-
-   //   internal_end_figure(false);
-
-   //   D2D1_POINT_2F point;
-
-   //   point.x = (FLOAT) x;
-   //   point.y = (FLOAT) y;
-
-   //   return internal_prepare(point);
-
-   //}
-
-
    bool path::internal_start_figure(::draw2d::graphics* pgraphics, double x, double y)
    {
 
@@ -255,9 +209,6 @@ namespace draw2d_direct2d
 
       }
 
-      //if (pgraphics)
-      //{
-
       m_psink->BeginFigure({(FLOAT) x, (FLOAT) y}, pgraphics->m_bOutline ? D2D1_FIGURE_BEGIN_HOLLOW : D2D1_FIGURE_BEGIN_FILLED);
 
       if (m_efillmode == ::draw2d::fill_mode_winding)
@@ -273,64 +224,12 @@ namespace draw2d_direct2d
 
       }
 
-         //m_bFigureEnded = false;
-
-      //}
-      //else
-      //{
-
-        // m_psink->AddLine(point);
-
-      //}
-
       m_bFigureOpened = true;
 
       return true;
 
    }
 
-
-   //bool path::internal_prepare(::draw2d::graphics * pgraphics, const ::pointd & point)
-   //{
-
-   //   if(m_psink == nullptr)
-   //   {
-
-   //      m_ppath->Open(&m_psink);
-
-   //   }
-
-   //   if(m_bFigureEnded)
-   //   {
-
-   //      m_psink->BeginFigure(point, pgraphics->m_bOutline ? D2D1_FIGURE_BEGIN_HOLLOW : D2D1_FIGURE_BEGIN_FILLED);
-
-   //      if(m_efillmode == ::draw2d::fill_mode_winding)
-   //      {
-
-   //         m_psink->SetFillMode(D2D1_FILL_MODE_WINDING);
-
-   //      }
-   //      else if(m_efillmode == ::draw2d::fill_mode_alternate)
-   //      {
-
-   //         m_psink->SetFillMode(D2D1_FILL_MODE_ALTERNATE);
-
-   //      }
-
-   //      m_bFigureEnded = false;
-
-   //   }
-   //   else
-   //   {
-
-   //      m_psink->AddLine(point);
-
-   //   }
-
-   //   return true;
-
-   //}
 
    bool path::internal_get_arc(::pointd & pointStart,D2D1_ARC_SEGMENT & arcseg, const ::arc & arc)
    {

@@ -25,7 +25,7 @@ namespace experience
 
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
-      virtual bool pre_create_window(::user::create_struct& cs);
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct);
 
       virtual void install_message_routing(::channel * pchannel);
       void UpdateWndRgn();

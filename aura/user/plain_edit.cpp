@@ -190,7 +190,7 @@ namespace user
 
       m_bTabInsertSpaces = false;
 
-      m_iLineHeight = 0;
+      m_dLineHeight = 0.;
 
       m_bPassword = false;
 
@@ -210,7 +210,7 @@ namespace user
 
       m_scrolldataVert.m_bScrollEnable = false;
 
-      m_y = -1;
+      m_dy = -1;
       m_iViewOffset = 0;
       m_iViewSize = 0;
       m_bLMouseDown = false;
@@ -352,7 +352,7 @@ namespace user
    void plain_edit::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      m_millisLastDraw= ::millis::now();
+      m_millisLastDraw = ::millis::now();
 
       millis t1 = millis::now();
 
@@ -365,67 +365,35 @@ namespace user
       color32_t crSel;
       color32_t cr;
 
-      auto rectClient = get_client_rect();
+      ::rectd rectClient = get_client_rect();
 
-      color32_t crEditBackground = get_color(pstyle, element_background);
+      color32_t crEditBackground = get_color(pstyle, e_element_background);
 
       pgraphics->fill_rect(rectClient, crEditBackground);
 
-      cr = get_color(pstyle, element_text);
-      crBk = get_color(pstyle, element_background);
-      crSel = get_color(pstyle, element_text, e_state_selected);
-      crBkSel = get_color(pstyle, element_background, e_state_selected);
+      cr = get_color(pstyle, e_element_text);
+      crBk = get_color(pstyle, e_element_background);
+      crSel = get_color(pstyle, e_element_text, e_state_selected);
+      crBkSel = get_color(pstyle, e_element_background, e_state_selected);
 
       m_pinternal->update(pgraphics, this);
-
-      //::machine * pchange = pgraphics->m_ptask;
-
-      //::user::print_task * pprinttask = nullptr;
-
-      //if (ptask != nullptr)
-      //   pprinttask = dynamic_cast <::user::print_task *> (ptask);
-      //else
-      //   pprinttask = nullptr;
-
-      ////::rect rectClient;
-
-      ////GetFocusRect(rectClient);
-
-      //if (pprinttask != nullptr)
-      //{
-
-      //   TRACE("Print Job Is Printing page %d", pprinttask->m_iPrintingPage);
-
-      //}
 
       bool bCaretOn = is_caret_on();
 
       bool bFocus = has_focus();
 
       if (m_ptree == nullptr)
+      {
+
          return;
 
-      ::draw2d::region_pointer rgn(e_create);
+      }
 
-      rectClient.deflate(0, 0, 0, 0);
+      auto rectPadding = get_padding(pstyle);
 
-      rgn->create_rect(rectClient);
+      rectClient.deflate(rectPadding);
 
       double left = rectClient.left;
-
-      //if(keyboard_focus_is_focusable() && has_focus())
-      //{
-
-      //   m_bFocus = true;
-
-      //}
-      //else
-      //{
-
-      //   m_bFocus = false;
-
-      //}
-
 
       strsize iSelBeg;
       strsize iSelEnd;
@@ -443,10 +411,10 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      if (m_iLineHeight > 0)
+      if (m_dLineHeight > 0.)
       {
 
-         int iVerticalOffsetModule = pointOffset.y % m_iLineHeight;
+         int iVerticalOffsetModule = fmod(pointOffset.y, m_dLineHeight);
 
          if (iVerticalOffsetModule > 0)
          {
@@ -471,25 +439,23 @@ namespace user
 
       __sort(iSelBeg, iSelEnd);
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
-      //size size3;
-      //size3 = pgraphics->GetTextExtent(unitext("gGYIﾍ"));
-      i32 iLineHeight = m_iLineHeight;
-//      string_array & straLines = m_plines->lines;
+
+      double dLineHeight = m_dLineHeight;
+
       string_array & straLines = m_straLines;
+
       string str1;
       string str2;
       string str3;
       string strExtent1;
       string strExtent2;
       string strExtent3;
-      //index iLineStart = should_load_full_file() ? m_iLineStart : 0;
-      //index iLineEnd = should_load_full_file() ?  iLineStart + m_iLineCount - 1 : straLines.get_size();
-      //iLineEnd = min(iLineEnd,straLines.get_upper_bound());
-      //index iLine = m_iLineStart;
+
       index i = 0;
+
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
@@ -509,8 +475,6 @@ namespace user
          }
 
       }
-
-      //::colorertake5::base_editor * pcolorer = colorertake5();
 
       for (index iLine = m_iLineStart; iLine < m_iLineEnd; i++, iLine++)
       {
@@ -532,59 +496,6 @@ namespace user
 
          strLineGraphics = strLine;
 
-         //colorertake5::LineRegion * pregion = nullptr;
-
-         //if (m_bColorerTake5)
-         //{
-
-         //   pregion = pcolorer->getLineRegions(i);
-
-         //}
-
-         //if (pregion != nullptr)
-         //{
-
-         //   for (; pregion != nullptr; pregion = pregion->next)
-         //   {
-         //      if (pregion->special || pregion->rdef == nullptr)
-         //         continue;
-         //      index end = pregion->end;
-         //      if (end == -1)
-         //         end = strLine.get_length();
-         //      strsize x = pregion->start;
-         //      strsize len = end - pregion->start;
-         //      if (x < 0)
-         //      {
-         //         len += x;
-         //         x = 0;
-         //      }
-         //      if (len < 0)
-         //         continue;
-         //      string strExtent1;
-         //      strExtent1 = strLine.Left(x);
-         //      string strExtent2;
-         //      strExtent2 = strLine.Mid(x, len);
-         //      int x1;
-         //      x1 = (int)(get_line_extent(iLine, x));
-         //      if (pregion->styled()->bback)
-         //      {
-         //         pgraphics->fill_rect((i32)(left + x1), (i32)y, x1, m_iLineHeight, pregion->styled()->back);
-         //      }
-         //      ::draw2d::brush_pointer brushText(e_create);
-         //      if (pregion->styled()->bfore)
-         //      {
-         //         brushText->create_solid(pregion->styled()->fore);
-         //         pgraphics->set(brushText);
-         //      }
-         //      else
-         //      {
-         //         pgraphics->set(brushTextCr);
-         //      }
-         //      pgraphics->text_out(left + x1, y, strExtent2);
-
-         //   }
-         //}
-         //else
          {
 
             color32_t crOverride = ARGB(255, 0, 0, 0);
@@ -699,7 +610,7 @@ namespace user
                (double)((double)left + x1),
                (double)y,
                (double)min(x2-x1, (double)rectClient.right - ((double)left + x1)),
-               (double)min((double)m_iLineHeight, (double)rectClient.bottom - y),
+               (double)min((double)m_dLineHeight, (double)rectClient.bottom - y),
                crBkSel);
 
                pgraphics->set(brushTextSel);
@@ -769,7 +680,7 @@ namespace user
 
                pgraphics->set(point);
 
-               pgraphics->draw_error_line((int)xA, m_iLineHeight, (int)xB, 1);
+               pgraphics->draw_error_line((double)xA, m_dLineHeight, (int)xB, 1);
 
             }
 
@@ -792,7 +703,7 @@ namespace user
 
                pgraphics->move_to(left + x1, y);
 
-               pgraphics->line_to(left + x1, y + iLineHeight);
+               pgraphics->line_to(left + x1, y + dLineHeight);
 
             }
             else if (iCurLineSelCur >= 0 && bFocus && bCaretOn && iCurLineSelCur == iCurLineSelEnd)
@@ -814,18 +725,17 @@ namespace user
 
                pgraphics->move_to(left + x2, y);
 
-               pgraphics->line_to(left + x2, y + iLineHeight);
+               pgraphics->line_to(left + x2, y + dLineHeight);
 
             }
 
          }
 
-         y += m_iLineHeight;
+         y += m_dLineHeight;
 
          lim += m_iaLineLen[iLine];
 
       }
-
 
       millis d1 = t1.elapsed();
 
@@ -848,6 +758,8 @@ namespace user
 
 
       pcreate->previous();
+
+      m_pdescriptor->m_econtroltype = e_control_type_edit;
 
 #if !defined(APPLE_IOS) && !defined(ANDROID)
 
@@ -1083,6 +995,14 @@ namespace user
    }
 
 
+   ::rectd plain_edit::get_margin(style * pstyle, enum_element eelement, estate estate) const
+   {
+
+
+
+   }
+
+
    void plain_edit::_001OnKeyDown(::message::message * pmessage)
    {
 
@@ -1098,7 +1018,7 @@ namespace user
 
          ev.m_puie = this;
 
-         ev.m_eevent = ::user::event_key_down;
+         ev.m_eevent = ::user::e_event_key_down;
 
          ev.m_pmessage = pmessage;
 
@@ -1140,7 +1060,7 @@ namespace user
 
             ev.m_puie = this;
 
-            ev.m_eevent = ::user::event_enter_key;
+            ev.m_eevent = ::user::e_event_enter_key;
 
             ev.m_actioncontext = ::source_user;
 
@@ -1183,7 +1103,7 @@ namespace user
 
             ev.m_puie = this;
 
-            ev.m_eevent = ::user::event_tab_key;
+            ev.m_eevent = ::user::e_event_tab_key;
 
             ev.m_actioncontext = ::source_user;
 
@@ -1218,7 +1138,7 @@ namespace user
 
          ev.m_puie = this;
 
-         ev.m_eevent = ::user::event_escape;
+         ev.m_eevent = ::user::e_event_escape;
 
          ev.m_actioncontext = ::source_user;
 
@@ -1728,7 +1648,7 @@ namespace user
 
          int iCurrentPageOffsetEnd = (int) (get_viewport_offset().y + rectClient.height());
 
-         index iCandidateCursorOffset = (::index) (min((double) max(0, iLine)* m_iLineHeight, m_sizeTotal.cy));
+         index iCandidateCursorOffset = (::index) (min((double) max(0, iLine)* m_dLineHeight, m_sizeTotal.cy));
 
          if (iCandidateCursorOffset < iCurrentPageOffsetStart)
          {
@@ -1823,7 +1743,7 @@ namespace user
 
             }
 
-            m_itemHover = element_client;
+            m_itemHover = e_element_client;
 
          }
 
@@ -1835,7 +1755,7 @@ namespace user
    void plain_edit::_001OnMouseLeave(::message::message * pmessage)
    {
 
-      m_itemHover = element_none;
+      m_itemHover = e_element_none;
 
       set_need_redraw();
 
@@ -1990,7 +1910,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       sized sizeUniText;
 
@@ -2000,20 +1920,20 @@ namespace user
 
       pgraphics->get_text_metrics(&metric);
 
-      m_iLineHeight = (int)metric.tmHeight;
+      m_dLineHeight = metric.get_line_spacing();
 
-      if (m_iLineHeight <= 0)
+      if (m_dLineHeight <= 0.0)
       {
 
-         m_iLineHeight = 18;
+         m_dLineHeight = 18.0;
 
       }
 
       auto pointOffset = get_viewport_offset();
 
-      m_iLineCount = ((rectClient.height() + m_iLineHeight - 1) / m_iLineHeight) + 2;
+      m_iLineCount = ceil((double)rectClient.height() / m_dLineHeight);
 
-      m_iLineOffset = min(max(0, pointOffset.y / m_iLineHeight), m_iaLineBeg.get_upper_bound());
+      m_iLineOffset = min(max(0, pointOffset.y / m_dLineHeight), m_iaLineBeg.get_upper_bound());
 
       bool bLoadFullFile = should_load_full_file();
 
@@ -2172,7 +2092,7 @@ namespace user
 
       }
 
-      m_y = pointOffset.y;
+      m_dy = pointOffset.y;
 
       //::colorertake5::base_editor * pcolorer = colorertake5();
 
@@ -2316,6 +2236,8 @@ namespace user
 
    }
 
+   
+
 
    void plain_edit::plain_edit_on_calc_layout(::draw2d::graphics_pointer& pgraphics, index iLineUpdate)
    {
@@ -2424,7 +2346,7 @@ namespace user
 
       ::index iLine;
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       sized sizeUniText;
 
@@ -2441,26 +2363,22 @@ namespace user
 
       pgraphics->get_text_metrics(&metric);
 
-      //int iChW = sizeUniText.cy / wstr.length();
+      m_dLineHeight = metric.get_line_spacing();
 
-      m_iLineHeight = (int)metric.tmHeight;
+      m_scrolldataVert.m_iLine = m_dLineHeight;
 
-      m_scrolldataVert.m_iLine = m_iLineHeight;
-
-      //m_scrolldataHorz.m_iLine = metric.tmAveCharWidth;
-
-      if (m_iLineHeight <= 0)
+      if (m_dLineHeight <= 0)
       {
 
-         m_iLineHeight = 18;
+         m_dLineHeight = 18;
 
       }
 
       auto pointOffset = get_viewport_offset();
 
-      m_iLineCount = ((rectClient.height() + m_iLineHeight - 1) / m_iLineHeight) + 2;
+      m_iLineCount = ceil((double) rectClient.height() / m_dLineHeight);
 
-      m_iLineOffset = min(max(0, pointOffset.y / m_iLineHeight), m_iaLineBeg.get_upper_bound());
+      m_iLineOffset = min(max(0, pointOffset.y / m_dLineHeight), m_iaLineBeg.get_upper_bound());
 
       bool bLoadFullFile = should_load_full_file();
 
@@ -2626,7 +2544,7 @@ namespace user
 
       }
 
-      m_y = pointOffset.y;
+      m_dy = pointOffset.y;
 
       //::colorertake5::base_editor * pcolorer = colorertake5();
 
@@ -2778,7 +2696,7 @@ namespace user
       if (iLineUpdate < 0)
       {
 
-         m_sizeTotal.cy = (::i32) ((((i32)m_iaLineLen.get_count() + (m_bMultiLine ? max(5, m_iLineCount) : 0)) * m_iLineHeight));
+         m_sizeTotal.cy = (::i32) ((((i32)m_iaLineLen.get_count() + (m_bMultiLine ? max(5, m_iLineCount) : 0)) * m_dLineHeight));
 
          ::sized sizePage;
 
@@ -2897,9 +2815,9 @@ namespace user
 
       }
 
-      lprect->top = (::i32) (iLine * m_iItemHeight);
+      lprect->top = (::i32) (iLine * m_dItemHeight);
 
-      lprect->bottom = (::i32) (lprect->top + m_iItemHeight);
+      lprect->bottom = (::i32) (lprect->top + m_dItemHeight);
 
       return true;
 
@@ -2950,7 +2868,7 @@ namespace user
 
       }
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
 
@@ -3093,7 +3011,7 @@ namespace user
 
       pgraphics.defer_create();
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       ::rect rectClient;
 
@@ -3195,10 +3113,10 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      if (m_iLineHeight > 0)
+      if (m_dLineHeight > 0)
       {
 
-         int iVerticalOffsetModule = pointOffset.y % m_iLineHeight;
+         int iVerticalOffsetModule = fmod(pointOffset.y, m_dLineHeight);
 
          if (iVerticalOffsetModule > 0)
          {
@@ -3209,13 +3127,13 @@ namespace user
 
       }
 
-      i32 iLineHeight;
+      double dLineHeight;
 
-      i32 y = 0;
+      double dy = 0;
 
       bool bFound = false;
 
-      iLineHeight = m_iLineHeight;
+      dLineHeight = m_dLineHeight;
 
       strsize iOffset = 0;
 
@@ -3226,7 +3144,7 @@ namespace user
       for (iLine = m_iLineStart; iLine < m_iLineEnd; iLine++)
       {
 
-         if (py < y + iLineHeight)
+         if (py < dy + dLineHeight)
          {
 
             bFound = true;
@@ -3235,7 +3153,7 @@ namespace user
 
          }
 
-         y += iLineHeight;
+         dy += dLineHeight;
 
          iOffset += m_iaLineLen[iLine];
 
@@ -3460,7 +3378,7 @@ end:
 
       plain_edit_create_line_index(pgraphics);
 
-      m_y = -1;
+      m_dy = -1;
 
    }
 
@@ -4309,7 +4227,7 @@ finished_update:
 
                GetFocusRect(rectClient);
 
-               iLine -= rectClient.height() / m_iLineHeight;
+               iLine -= rectClient.height() / m_dLineHeight;
 
                if (iLine < 0)
                {
@@ -4353,7 +4271,7 @@ finished_update:
 
                GetFocusRect(rectClient);
 
-               iLine += rectClient.height() / m_iLineHeight;
+               iLine += rectClient.height() / m_dLineHeight;
 
                if (iLine >= m_iaLineBeg.get_size())
                {
@@ -4910,8 +4828,10 @@ finished_update:
 
       auto iLine = plain_edit_sel_to_line_x(pgraphics, iEnd, x);
 
-      index y = (index) ((iLine)* m_iLineHeight - get_viewport_offset().y);
-      index y2 = y + m_iLineHeight;
+      double y = iLine * m_dLineHeight - get_viewport_offset().y;
+      
+      double y2 = y + m_dLineHeight;
+
       ::point point((::i32)x,(::i32) y);
       get_client_rect(rect);
       rect.left =(::i32) x;
@@ -4921,150 +4841,6 @@ finished_update:
       get_wnd()->_001ScreenToClient(rect);
 
    }
-
-
-   //int plain_edit::on_draft_message(int iMessage)
-   //{
-
-   //   if (iMessage == IME_MESSAGE_UPDATE_CARET)
-   //   {
-   //      /*
-   //               strsize iBeg;
-   //               strsize iEnd;
-
-   //               _001GetSel(iBeg, iEnd);
-
-   //               i32 x;
-   //               i32 iLine = plain_edit_sel_to_line_x(iEnd, x);
-
-
-
-
-   //               int y = (iLine)* m_iLineHeight - get_viewport_offset().y;
-   //               int y2 = y + m_iLineHeight;
-   //               const ::point & ::point(x, y);
-   //               ::rect r;
-   //               get_client_rect(rect);
-   //               rect.left = x;
-   //               rect.top = y;
-   //               rect.bottom = y2;
-   //               _001ClientToScreen(rect);
-   //               get_wnd()->_001ScreenToClient(rect);
-   //      */
-
-   //      //SetCaretPos(rect.left, rect.top);
-   //      //ShowCaret(get_handle());
-   //   }
-   //   else if (iMessage == IME_MESSAGE_UPDATE_CANDIDATE_WINDOW_POSITION)
-   //   {
-
-   //      //simple_imm imm(this);
-
-   //      //if (!imm)
-   //      //{
-
-   //      //   return 0;
-
-   //      //}
-
-
-   //      //if()
-
-
-   //      // HWND hwndIme = ImmGetDefaultIMEWnd(get_handle());
-
-   //      //strsize iBeg;
-   //      //strsize iEnd;
-
-   //      //_001GetSel(iBeg, iEnd);
-
-   //      //i32 x;
-   //      //i32 iLine = plain_edit_sel_to_line_x(iEnd, x);
-
-
-
-
-   //      //int y = (iLine)* m_iLineHeight - get_viewport_offset().y;
-   //      //int y2 = y + m_iLineHeight;
-   //      //const ::point & ::point(x, y);
-   //      //rect r;
-   //      //get_client_rect(rect);
-   //      //rect.left = x;
-   //      //rect.top = y;
-   //      //rect.bottom = y2;
-   //      //_001ClientToScreen(rect);
-   //      //get_wnd()->_001ScreenToClient(rect);
-
-   //      //POINTS point;
-
-   //      //point.x = point.x;
-   //      //point.y = point.y;
-
-   //      //::set_window_pos(hwndIme, HWND_TOP, point.x, point.y, 0, 0, SWP_NOSIZE);
-   //      //SendMessage(hwndIme, WM_IME_CONTROL, IMC_SETSTATUSWINDOWPOS,(LPARAM) &point);
-   //      //if (::ImmSetStatusWindowPos(imm, point))
-   //      //{
-   //      //   output_debug_string("set ime status window pos");
-   //      //}
-
-
-   //      //COMPOSITIONFORM com = {};
-
-   //      //com.uStyle = CFS_FORCE_POSITION;
-   //      //com.ptCurrentPos = rect.top_left();
-   //      //com.ptCurrentPos.y -= 100;
-   //      //::rect rect2(rect);
-   //      //rect2.offset_y(-100);
-   //      //com.uStyle = CFS_RECT;
-   //      //com.rcArea = rect2;
-
-   //      //ShowCaret(get_handle());
-
-   //      //::draw2d::font_pointer pfont = _001GetFont(::user::font_plain_edit);
-   //      //if (pfont.is_set())
-   //      //{
-
-   //      //   LOGFONTW lf = {};
-   //      //   if (pfont->GetLogFont(&lf))
-   //      //   {
-
-   //      //      if (ImmSetCompositionFontW(imm, &lf))
-   //      //      {
-
-   //      //         output_debug_string("set ime composition font (Unicode) pos");
-
-   //      //      }
-
-
-
-   //      //   }
-
-   //      //}
-
-   //      //if (::ImmSetCompositionWindow(imm, &com))
-   //      //{
-   //      //   output_debug_string("set ime composition window pos");
-   //      //}
-   //      //CANDIDATEFORM can = {};
-
-   //      //can.uStyle = CFS_CANDIDATEPOS;
-
-   //      //can.ptCurrentPos = rect.bottom_left();
-
-   //      //if (::ImmSetCandidateWindow(imm, &can))
-   //      //{
-
-   //      //   output_debug_string("set ime candidate window pos");
-
-   //      //}
-
-   //      //return 1;
-
-   //   }
-
-   //   return 0;
-
-   //}
 
 
    void plain_edit::edit_on_text(string str)
@@ -5147,6 +4923,62 @@ finished_update:
          __refer(m_pitemComposing, m_pinsert);
 
 #endif
+
+      }
+
+   }
+
+
+   void plain_edit::on_text_commit(string strText)
+   {
+
+      if (m_pitemComposing
+         && !strText.contains('\r')
+         && !strText.contains('\n'))
+      {
+
+         m_ptree->m_peditfile->append_insert_item_data(m_pitemComposing.get(), strText);
+
+         index i1 = (index)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
+
+         auto pgraphics = ::draw2d::create_memory_graphics();
+
+         int iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, i1);
+
+         m_ptree->m_iSelEnd = i1;
+         m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+         m_psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
+         m_psetsel->m_iSelBeg = m_ptree->m_iSelEnd;
+
+         bool bFullUpdate = false;
+
+         plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
+
+         if (iLineUpdate < 0)
+         {
+
+            iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
+
+         }
+
+         if (iLineUpdate >= 0)
+         {
+
+            _001EnsureVisibleLine(iLineUpdate + 1);
+
+         }
+
+         set_need_redraw();
+
+         post_redraw();
+
+         string strText;
+
+         _001GetText(strText);
+
+         ::output_debug_string("Current Text: " + strText + "\n");
+
+         __release(m_pitemComposing);
 
       }
 
@@ -5252,22 +5084,29 @@ finished_update:
 
       ::point pointOffset = get_viewport_offset();
 
-      set_viewport_offset_y(pointOffset.y - m_iLineHeight);
+      set_viewport_offset_y(pointOffset.y - m_dLineHeight);
 
-      //      if(m_scrolldata.m_pointScroll.y < 0)
-      //       m_scrolldata.m_pointScroll.y = 0;
-      i32 iHeight = 0;
-      //char flag;
+      double dHeight = 0.;
+
       m_iViewOffset = 0;
+
       ::count iLineSize;
+
       ::index i = 0;
+
       __copy(pointOffset, get_viewport_offset());
-      while (pointOffset.y > iHeight && i < m_iaLineLen.get_size())
+
+      while (pointOffset.y > dHeight && i < m_iaLineLen.get_size())
       {
+
          iLineSize = m_iaLineLen[i];
-         iHeight += m_iLineHeight;
+
+         dHeight += m_dLineHeight;
+
          m_iViewOffset += iLineSize;
+
          i++;
+
       }
 
    }
@@ -5376,7 +5215,7 @@ finished_update:
 
          plain_edit_create_line_index(pgraphics);
 
-         m_y = -1;
+         m_dy = -1;
 
          m_bCalcLayoutHintNoTextChange = false;
 
@@ -5447,7 +5286,7 @@ finished_update:
 
          m_bGetTextNeedUpdate = 1;
          plain_edit_update_line_index(pgraphics, iLine);
-         m_y = -1;
+         m_dy = -1;
 
          m_bCalcLayoutHintNoTextChange = false;
 
@@ -5759,7 +5598,7 @@ finished_update:
 
       ev.m_id = m_id;
 
-      ev.m_eevent = ::user::event_after_change_text;
+      ev.m_eevent = ::user::e_event_after_change_text;
 
       ev.m_actioncontext = context;
 
@@ -5822,7 +5661,7 @@ finished_update:
 
          ev.m_puie = this;
 
-         ev.m_eevent = ::user::event_enter_key;
+         ev.m_eevent = ::user::e_event_enter_key;
 
          ev.m_actioncontext = ::source_paste;
 
@@ -5850,7 +5689,7 @@ finished_update:
    i32 plain_edit::get_wheel_scroll_delta()
    {
 
-      return m_iLineHeight * 3;
+      return m_dLineHeight * 3.0;
 
    }
 
@@ -5878,80 +5717,20 @@ finished_update:
       return m_bColorerTake5;
    }
 
-   //colorertake5::file_type *plain_edit::colorer_select_type()
-   //{
-
-   //   if (!m_bColorerTake5)
-   //   {
-
-   //      return nullptr;
-
-   //   }
-
-   //   sync_lock sl(mutex());
-   //   colorertake5::file_type *type = nullptr;
-   //   /*if (typeDescription != nullptr){
-   //     type = hrcParser->getFileType(typeDescription);
-   //     if (type == nullptr){
-   //     for(i32 idx = 0;; idx++){
-   //     type = hrcParser->enumerateFileTypes(idx);
-   //     if (type == nullptr) break;
-   //     if (type->getDescription() != nullptr &&
-   //     type->getDescription()->length() >= typeDescription->length() &&
-   //     DString(type->getDescription(), 0, typeDescription->length()).equalsIgnoreCase(typeDescription))
-   //     break;
-   //     if (type->getName()->length() >= typeDescription->length() &&
-   //     DString(type->getName(), 0, typeDescription->length()).equalsIgnoreCase(typeDescription))
-   //     break;
-   //     type = nullptr;
-   //     }
-   //     }
-   //     }*/
-   //   //  if (typeDescription == nullptr || type == nullptr){
-   //   //__pointer(::user::impact) pview = (this);
-   //   //if (pview != nullptr)
-   //   //{
-   //   //   __pointer(::user::document) pdocument = pview->get_document();
-   //   //   if (type == nullptr)
-   //   //   {
-   //   //      //string textStart;
-   //   //      //strsize totalLength = 0;
-   //   //      //for (i32 i = 0; i < 4 && i < m_plines->getLineCount(); i++)
-   //   //      //{
-   //   //      //   string iLine = m_plines->getLine(i);
-   //   //      //   textStart += iLine;
-   //   //      //   textStart += "\n";
-   //   //      //   totalLength += iLine.get_length();
-   //   //      //   if (totalLength > 500) break;
-   //   //      //}
-   //   //      //type = System.parser_factory().getHRCParser()->chooseFileType(pdocument->get_file_path(), textStart, 0);
-   //   //   }
-   //   //}
-
-   //   //if (type != nullptr)
-   //   //{
-
-   //   //   type->getBaseScheme();
-
-   //   //   colorertake5()->setFileType(type);
-
-   //   //}
-
-   //   return ptype;
-
-   //}
 
 
    void plain_edit::_009OnChar(::message::message * pmessage)
    {
+      
       UNREFERENCED_PARAMETER(pmessage);
+
    }
 
 
    bool plain_edit::create_control(class control_descriptor * pdescriptor)
    {
 
-      ASSERT(pdescriptor->get_control_type() == control_type_edit_plain_text);
+      ASSERT(pdescriptor->get_control_type() == e_control_type_edit_plain_text);
 
       if (!::user::interaction::create_control(pdescriptor))
       {
@@ -5962,16 +5741,16 @@ finished_update:
 
       }
 
-      display(display_none);
+      display(e_display_none);
 
-      m_bMultiLine = pdescriptor->has_function(control_function_edit_multi_line);
+      m_bMultiLine = pdescriptor->has_function(e_control_function_edit_multi_line);
 
       return true;
 
    }
 
 
-   bool plain_edit::keyboard_focus_is_focusable()
+   bool plain_edit::keyboard_focus_is_focusable() const
    {
 
       return is_window_visible();
@@ -6000,19 +5779,7 @@ finished_update:
 
       }
 
-      //::image_pointer pimage;
-
       SetTimer(100, 50, nullptr);
-
-      //pimage = create_image({1,  24});
-
-      //::draw2d::brush_pointer br(e_create);
-
-      //br->create_solid(ARGB(255, 255, 0, 0));
-
-      //pimage->g()->set(br);
-
-      //pimage->g()->FillEllipse(pimage->rect());
 
       if (!m_bCaretVisible)
       {
@@ -6023,7 +5790,7 @@ finished_update:
 
          HWND hwnd = get_handle();
 
-         ::CreateCaret(hwnd, 0, 1, m_iLineHeight);
+         ::CreateCaret(hwnd, 0, 1, m_dLineHeight);
 
          ::point pointCaret = layout().design().origin();
 
@@ -6038,8 +5805,6 @@ finished_update:
 #endif
 
       }
-
-      //EnableIME();
 
 #ifdef WINDOWS_DESKTOP
 
@@ -6120,7 +5885,9 @@ finished_update:
 
    __pointer(::data::item) plain_edit::on_allocate_item()
    {
+      
       return __new(plain_text_command);
+
    }
 
 
@@ -6302,7 +6069,7 @@ finished_update:
    //bool plain_edit::display(edisplay edisplay)
    //{
 
-   //   if (nCmdShow != display_none)
+   //   if (nCmdShow != e_display_none)
    //   {
 
    //      TRACE("Going to Show plain_edit");
@@ -6338,7 +6105,7 @@ finished_update:
    }
 
 
-   payload plain_edit::get_ex_value()
+   payload plain_edit::get_payload()
    {
 
       string str;
@@ -6641,17 +6408,17 @@ finished_update:
 
       auto pstyle = pedit->get_style(pgraphics);
 
-      auto color = pedit->get_color(pstyle, element_text);
+      auto color = pedit->get_color(pstyle, e_element_text);
 
       m_penCaret->create_solid(1.0, color);
 
       m_brushTextCr->create_solid(color);
 
-      color = pedit->get_color(pstyle, element_text, e_state_selected);
+      color = pedit->get_color(pstyle, e_element_text, e_state_selected);
 
       m_brushTextSel->create_solid(color);
 
-      color = pedit->get_color(pstyle, element_text, e_state_new_input);
+      color = pedit->get_color(pstyle, e_element_text, e_state_new_input);
 
       m_brushTextEmpty->create_solid(color);
 

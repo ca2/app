@@ -1,12 +1,6 @@
 #include "framework.h"
 #include "apex/platform/static_setup.h"
-//#if !BROAD_PRECOMPILED_HEADER
-//#include "core/user/user/_user.h"
-//#endif
 #include "bred/const/idpool.h"
-
-
-//bool __rich_text_initialize();
 
 
 namespace bred
@@ -38,6 +32,7 @@ namespace bred
 
       create_factory < ::bred::application, ::apex::application >();
       create_factory < ::bred::session, ::apex::session >();
+      create_factory < ::bred::idpool, ::apex::idpool >();
       //create_factory < ::core::user, ::user::user >();
       create_factory < ::bred::idpool, ::apex::idpool >();
 

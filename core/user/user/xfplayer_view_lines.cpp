@@ -124,19 +124,19 @@ index xfplayer_view_linea::FindLine(xfplayer_view_line * pline)
    return -1;
 }
 
-::user::e_line_hit xfplayer_view_linea::hit_test(const point &pointCursor, index &iLine, strsize &iChar)
+::user::enum_line_hit xfplayer_view_linea::hit_test(const point &pointCursor, index &iLine, strsize &iChar)
 {
    sync_lock sl(mutex());
    for (index i = 0; i < this->line_count(); i++)
    {
-      ::user::e_line_hit etest = this->line_at(i)->hit_test(pointCursor, iChar);
-      if (etest != ::user::line_hit_none)
+      ::user::enum_line_hit etest = this->line_at(i)->hit_test(pointCursor, iChar);
+      if (etest != ::user::e_line_hit_none)
       {
          iLine = i;
          return  etest;
       }
    }
-   return ::user::line_hit_none;
+   return ::user::e_line_hit_none;
 
 }
 

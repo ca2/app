@@ -7,7 +7,7 @@ namespace user
 {
 
 
-   ::eappearance visual_state::appearance() const
+   ::e_appearance visual_state::appearance() const
    {
    
       return m_eappearance;
@@ -15,7 +15,7 @@ namespace user
    }
 
    
-   visual_state& visual_state::operator = (const e_appearance& eappearance)
+   visual_state& visual_state::operator = (const enum_appearance& eappearance)
    {
       
       m_eappearance = eappearance;
@@ -32,7 +32,7 @@ namespace user
    }
 
 
-   visual_state& visual_state::operator |= (const e_appearance& eappearance)
+   visual_state& visual_state::operator |= (const enum_appearance& eappearance)
    {
       
       m_eappearance |= eappearance;
@@ -49,7 +49,7 @@ namespace user
    }
 
 
-   visual_state& visual_state::operator -= (const e_appearance& eappearance)
+   visual_state& visual_state::operator -= (const enum_appearance& eappearance)
    {
       
       m_eappearance -= eappearance;
@@ -66,7 +66,7 @@ namespace user
    }
 
 
-   visual_state& visual_state::operator ^= (const e_appearance& eappearance)
+   visual_state& visual_state::operator ^= (const enum_appearance& eappearance)
    {
       
       m_eappearance ^= eappearance;

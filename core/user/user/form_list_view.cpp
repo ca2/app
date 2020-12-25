@@ -135,10 +135,10 @@ namespace user
    }
 
 
-   bool form_list_view::pre_create_window(::user::create_struct & createstruct)
+   bool form_list_view::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
-      if (!::user::list_view::pre_create_window(createstruct))
+      if (!::user::list_view::pre_create_window(pcreatestruct))
       {
 
          return false;

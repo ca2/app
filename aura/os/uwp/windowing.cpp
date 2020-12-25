@@ -161,7 +161,11 @@ bool oswindow_data::show_window(int nCmdShow)
 
    }
 
-   return m_pimpl->m_puserinteraction->display(nCmdShow);
+   enum_activation eactivation = e_activation_default;
+
+   auto edisplay = windows_show_window_to_edisplay(nCmdShow, eactivation);
+
+   return m_pimpl->m_puserinteraction->display(edisplay, eactivation);
 
 }
 

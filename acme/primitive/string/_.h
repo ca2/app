@@ -1,7 +1,7 @@
 #pragma once
 
 
-inline int trailingBytesForUTF8(ansichar ch);
+CLASS_DECL_ACME int trailingBytesForUTF8(ansichar ch);
 
 
 typedef i32 HRes;

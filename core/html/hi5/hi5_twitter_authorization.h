@@ -49,7 +49,7 @@ namespace hi5
 
          virtual void on_control_event(::user::control_event * pevent) override;
 
-         virtual bool style_translucency(::user::e_translucency & etranslucency, ::user::e_element);
+         virtual bool style_translucency(::user::enum_translucency & etranslucency, ::user::enum_element);
 
 
       };

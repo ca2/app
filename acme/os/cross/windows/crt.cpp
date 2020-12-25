@@ -1,5 +1,5 @@
 #include "framework.h"
-//#include <time.h>
+#include "_windows.h"
 
 
 #define EUNKNOWN        37               // Unknown error

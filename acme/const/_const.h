@@ -461,171 +461,175 @@ enum e_unit_size
 };
 
 
-enum e_display
+enum enum_display
 {
 
-   display_undefined = MINI32,
-   display_notify_icon,
-   display_default,
+   e_display_undefined = MINI32,
+   e_display_notify_icon,
+   e_display_default,
    //display_close,
-   display_hide,
+   e_display_hide,
 
-   display_none = 0,
-   display_current,
-   display_normal,
-   display_restore,
-   display_compact,
-   display_broad,
-   display_iconic,
-   display_zoomed,
-   display_full_screen,
-   display_up,
-   display_down,
-   display_minimal,
-   display_fixed_size,
-   display_center,
-
-
-   display_left = 0x1000,
-   display_top = 0x2000,
-   display_right = 0x4000,
-   display_bottom = 0x8000,
-   display_top_left = display_top | display_left,
-   display_top_right = display_top | display_right,
-   display_bottom_left = display_bottom | display_left,
-   display_bottom_right = display_bottom | display_right,
-   display_full_left = display_left | display_top | display_bottom,
-   display_full_top = display_top | display_left | display_right,
-   display_full_right = display_right | display_top | display_bottom,
-   display_full_bottom = display_bottom | display_left | display_right,
-
-   display_docking_mask = 0xff00,
-
-   display_command_mask = 0xffff,
-
-};
+   e_display_none = 0,
+   e_display_current,
+   e_display_normal,
+   e_display_restore,
+   e_display_compact,
+   e_display_broad,
+   e_display_iconic,
+   e_display_zoomed,
+   e_display_full_screen,
+   e_display_up,
+   e_display_down,
+   e_display_minimal,
+   e_display_fixed_size,
+   e_display_center,
 
 
-enum e_activation
-{
+   e_display_left = 0x1000,
+   e_display_top = 0x2000,
+   e_display_right = 0x4000,
+   e_display_bottom = 0x8000,
+   e_display_top_left = e_display_top | e_display_left,
+   e_display_top_right = e_display_top | e_display_right,
+   e_display_bottom_left = e_display_bottom | e_display_left,
+   e_display_bottom_right = e_display_bottom | e_display_right,
+   e_display_full_left = e_display_left | e_display_top | e_display_bottom,
+   e_display_full_top = e_display_top | e_display_left | e_display_right,
+   e_display_full_right = e_display_right | e_display_top | e_display_bottom,
+   e_display_full_bottom = e_display_bottom | e_display_left | e_display_right,
 
-   activation_none = 0,
-   activation_no_activate = 1 << 0,
-   activation_set_active = 1 << 1,
-   activation_set_foreground = 1 << 2,
-   activation_under_mouse_cursor = 1 << 3,
-   activation_on_center_of_screen = 1 << 4,
-   activation_display_change = 1 << 5,
+   e_display_docking_mask = 0xff00,
+
+   e_display_command_mask = 0xffff,
 
 };
 
 
-enum e_layout_experience
+enum enum_activation
 {
 
-   layout_experience_none,
-   layout_experience_moving,
-   layout_experience_sizing,
-   layout_experience_docking,
+   e_activation_default = 0,
+   e_activation_no_activate = 1 << 0,
+   e_activation_set_active = 1 << 1,
+   e_activation_set_foreground = 1 << 2,
+   e_activation_under_mouse_cursor = 1 << 3,
+   e_activation_on_center_of_screen = 1 << 4,
+   e_activation_display_change = 1 << 5,
 
 };
 
 
-enum e_appearance
+enum enum_layout_experience
 {
 
-   appearance_none = 0,
-   appearance_transparent_frame = 1 << 0,
+   e_layout_experience_none,
+   e_layout_experience_moving,
+   e_layout_experience_sizing,
+   e_layout_experience_docking,
 
 };
 
 
-
-
-enum e_dock
-{
-   dock_none = 0,
-   dock_left = 1,
-   dock_top = 2,
-   dock_right = 4,
-   dock_bottom = 8,
-   dock_top_left = dock_top | dock_left,
-   dock_top_right = dock_top | dock_right,
-   dock_bottom_left = dock_bottom | dock_left,
-   dock_bottom_right = dock_bottom | dock_right,
-   dock_all = dock_left | dock_top | dock_right | dock_bottom,
-};
-
-enum e_grip
-{
-   grip_none = 0,
-   grip_left = 1 << 0,
-   grip_top = 1 << 1,
-   grip_right = 1 << 2,
-   grip_bottom = 1 << 3,
-   grip_top_left = 1 << 4,
-   grip_top_right = 1 << 5,
-   grip_bottom_left = 1 << 6,
-   grip_bottom_right = 1 << 7,
-   grip_all = grip_left | grip_top | grip_right | grip_bottom |
-   grip_top_left | grip_top_right |
-   grip_bottom_left | grip_bottom_right,
-};
-
-
-enum e_border
+enum enum_appearance
 {
 
-   border_none = 0,
-   border_left = 1,
-   border_top = 2,
-   border_right = 4,
-   border_bottom = 8,
-   border_top_left = border_top | border_left,
-   border_top_right = border_top | border_right,
-   border_top_right_bottom = border_top | border_right | border_bottom,
-   border_bottom_left = border_bottom | border_left,
-   border_bottom_right = border_bottom | border_right,
-   border_bottom_left_top = border_bottom | border_left | border_top,
-   border_left_top_right = border_left | border_top | border_right,
-   border_right_bottom_left = border_right | border_bottom | border_left,
-   border_all = border_left | border_top | border_right | border_bottom,
+   e_appearance_none = 0,
+   e_appearance_transparent_frame = 1 << 0,
 
 };
 
 
 
-enum e_window_flag
+
+enum enum_dock
+{
+   
+   e_dock_none = 0,
+   e_dock_left = 1,
+   e_dock_top = 2,
+   e_dock_right = 4,
+   e_dock_bottom = 8,
+   e_dock_top_left = e_dock_top | e_dock_left,
+   e_dock_top_right = e_dock_top | e_dock_right,
+   e_dock_bottom_left = e_dock_bottom | e_dock_left,
+   e_dock_bottom_right = e_dock_bottom | e_dock_right,
+   e_dock_all = e_dock_left | e_dock_top | e_dock_right | e_dock_bottom,
+
+};
+
+
+enum enum_grip
 {
 
-   window_flag_none,
-   window_flag_is_window = 1 << 0,
-   window_flag_enable = 1 << 1,
-   window_flag_focus = 1 << 2,
-   window_flag_active = 1 << 3,
-   window_flag_redraw_in_queue = 1 << 4,
-   window_flag_visual_changed = 1 << 5,
-   window_flag_auto_prodevian_on_show = 1 << 6,
-   window_flag_on_show_window_visible = 1 << 7,
-   window_flag_on_show_window_screen_visible = 1 << 8,
-   window_flag_satellite_window = 1 << 9,
-   window_flag_graphical = 1 << 10,
-   window_flag_disable_window_placement_snapping = 1 << 11,
-   window_flag_embedded_prodevian = 1 << 12,
-   window_flag_arbitrary_positioning = 1 << 13,
-   window_flag_desktop_window = 1 << 14,
-   window_flag_dock_window = 1 << 15,
-   window_flag_load_window_rect_on_impl = 1 << 17,
-   window_flag_window_created = 1 << 18,
-   window_flag_updown = 1 << 19,
-   window_flag_postpone_visual_update = 1 << 20,
-   window_flag_miniaturizable = 1 << 21,
-   window_flag_auto_store_window_rect = 1 << 22,
-   window_flag_pending_save_window_rect = 1 << 23,
-   window_flag_loading_window_rect = 1 << 24,
-   window_flag_main_frame = 1 << 25,
-   window_flag_destroying = 1 << 26,
-   window_flag_not_visible = 1 << 27,
+   e_grip_none = 0,
+   e_grip_left = 1 << 0,
+   e_grip_top = 1 << 1,
+   e_grip_right = 1 << 2,
+   e_grip_bottom = 1 << 3,
+   e_grip_top_left = 1 << 4,
+   e_grip_top_right = 1 << 5,
+   e_grip_bottom_left = 1 << 6,
+   e_grip_bottom_right = 1 << 7,
+   e_grip_all = e_grip_left | e_grip_top | e_grip_right | e_grip_bottom |
+   e_grip_top_left | e_grip_top_right |
+   e_grip_bottom_left | e_grip_bottom_right,
+
+};
+
+
+enum enum_border
+{
+
+   e_border_none = 0,
+   e_border_left = 1,
+   e_border_top = 2,
+   e_border_right = 4,
+   e_border_bottom = 8,
+   e_border_top_left = e_border_top | e_border_left,
+   e_border_top_right = e_border_top | e_border_right,
+   e_border_top_right_bottom = e_border_top | e_border_right | e_border_bottom,
+   e_border_bottom_left = e_border_bottom | e_border_left,
+   e_border_bottom_right = e_border_bottom | e_border_right,
+   e_border_bottom_left_top = e_border_bottom | e_border_left | e_border_top,
+   e_border_left_top_right = e_border_left | e_border_top | e_border_right,
+   e_border_right_bottom_left = e_border_right | e_border_bottom | e_border_left,
+   e_border_all = e_border_left | e_border_top | e_border_right | e_border_bottom,
+
+};
+
+
+enum enum_window_flag
+{
+
+   e_window_flag_none,
+   e_window_flag_is_window = 1 << 0,
+   e_window_flag_enable = 1 << 1,
+   e_window_flag_focus = 1 << 2,
+   e_window_flag_active = 1 << 3,
+   e_window_flag_redraw_in_queue = 1 << 4,
+   e_window_flag_visual_changed = 1 << 5,
+   e_window_flag_auto_prodevian_on_show = 1 << 6,
+   e_window_flag_on_show_window_visible = 1 << 7,
+   e_window_flag_on_show_window_screen_visible = 1 << 8,
+   e_window_flag_satellite_window = 1 << 9,
+   e_window_flag_graphical = 1 << 10,
+   e_window_flag_disable_window_placement_snapping = 1 << 11,
+   e_window_flag_embedded_prodevian = 1 << 12,
+   e_window_flag_arbitrary_positioning = 1 << 13,
+   e_window_flag_desktop_window = 1 << 14,
+   e_window_flag_dock_window = 1 << 15,
+   e_window_flag_load_window_rect_on_impl = 1 << 17,
+   e_window_flag_window_created = 1 << 18,
+   e_window_flag_updown = 1 << 19,
+   e_window_flag_postpone_visual_update = 1 << 20,
+   e_window_flag_miniaturizable = 1 << 21,
+   e_window_flag_auto_store_window_rect = 1 << 22,
+   e_window_flag_pending_save_window_rect = 1 << 23,
+   e_window_flag_loading_window_rect = 1 << 24,
+   e_window_flag_main_frame = 1 << 25,
+   e_window_flag_destroying = 1 << 26,
+   e_window_flag_not_visible = 1 << 27,
 
 };
 
@@ -634,64 +638,38 @@ enum e_window_flag
 #define WM_USER 0x0400
 #endif // WM_USER
 
+
 #ifndef CLASS_DECL_ACME
 #define CLASS_DECL_ACME
 #endif // CLASS_DECL_ACME
+
+
 #ifndef WM_APP
 #define WM_APP 0x8000
 #endif
 
 
-
-
-enum e_system_message
+enum enum_system_message
 {
 
-   system_message_none,
-   system_message_create,
-   system_message_meta,
-   system_message_method,
-   //system_message_pred,
-   //system_message_runnable,
+   e_system_message_none,
+   e_system_message_create,
+   e_system_message_meta,
+   e_system_message_method,
 
 };
-
-
-/*
-
-
-enum enum_method
-{
-
-   e_method_create,
-   e_method_destroy,
-
-};
-
-
-enum enum_future
-{
-
-   e_process_finish,
-   e_process_dialog_result,
-   e_process_complete,
-
-};
-
-
-*/
-
-//#ifndef WINDOWS_DESKTOP
-//#include "acme/os/cross/windows/message_box.h"
-//#endif
 
 
 enum enum_message_box
 {
 
    e_message_box_ok = 0x00000000L,
-   e_message_box_yes_no = 0x00000003L,
+   e_message_box_ok_cancel = 0x00000001L,
+   e_message_box_abort_retry_ignore = 0x00000002L,
    e_message_box_yes_no_cancel = 0x00000003L,
+   e_message_box_yes_no = 0x00000004L,
+   e_message_box_retry_cancel = 0x00000005L,
+   e_message_box_cancel_try_continue  = 0x00000006L,
    e_message_box_icon_error = 0x00000010L,
    e_message_box_icon_exclamation = 0x00000030L,
    e_message_box_icon_question = 0x00000020L,
@@ -701,6 +679,12 @@ enum enum_message_box
    e_message_box_icon_information = e_message_box_icon_asterisk,
    e_message_box_icon_stop = e_message_box_icon_asterisk,
    e_message_box_system_modal = 0x00001000L,
+
+   e_message_box_type_mask            =        0x0000000FL,
+   e_message_box_icon_mask            =        0x000000F0L,
+   e_message_box_default_mask         =        0x00000F00L,
+   e_message_box_mode_mask            =        0x00003000L,
+   e_message_box_miscellaneous_mask   =        0x0000C000L,
 
 };
 
@@ -721,5 +705,6 @@ enum enum_relative
 
 
 #include "message.h"
+
 
 

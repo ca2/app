@@ -2,7 +2,8 @@
 
 
 class CLASS_DECL_BASE simple_main_frame :
-   virtual public simple_frame_window
+   virtual public simple_frame_window,
+   virtual public ::user::main_window
 {
 public:
 

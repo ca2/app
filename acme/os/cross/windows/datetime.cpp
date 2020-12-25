@@ -24,7 +24,8 @@
  */
 
 #include "framework.h"
-#include "os/cross/windows/_windows.h"
+#include "_windows.h"
+#include "windows_internals.h"
 
 
 #if !defined(WINDOWS)
@@ -55,6 +56,8 @@ extern "C" int settimeofday (const struct timeval *__tv, const struct timezone *
 #define  _CRT_SECURE_NO_WARNINGS
 #define __WINESRC__
 //#define __CA__DLL
+
+//#include <time.h>
 
 
 ::i32 TIME_GetBias(void);
@@ -1006,9 +1009,13 @@ int_bool WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
 
    if( !RtlTimeFieldsToTime(&tf, &t))
    {
-      set_last_status( ERROR_INVALID_PARAMETER);
+   
+      set_last_status(error_invalid_argument);
+
       return FALSE;
+
    }
+
    ft->dwLowDateTime = t.u.LowPart;
    ft->dwHighDateTime = t.u.HighPart;
    return TRUE;
@@ -1059,6 +1066,43 @@ CLASS_DECL_ACME void GetSystemTime(LPSYSTEMTIME systime)
 
 #endif // !defined(_UWP)
 
+
+::estatus mkgmtime_from_filetime(time_t & time, const ::filetime_t & filetime)
+{
+
+   SYSTEMTIME systemtime;
+
+   if (!FileTimeToSystemTime((FILETIME *) &filetime, &systemtime))
+   {
+
+      time = 0;
+
+      return ::error_failed;
+
+   }
+
+   struct tm tm = {};
+
+   tm.tm_hour = systemtime.wHour;
+   tm.tm_min = systemtime.wMinute;
+   tm.tm_sec = systemtime.wSecond;
+   tm.tm_mon = systemtime.wMonth;
+   tm.tm_mday = systemtime.wDay;
+   tm.tm_year = systemtime.wYear;
+
+#ifdef WINDOWS
+   
+   time = _mkgmtime64(&tm);
+
+#else
+
+   time = timegm(&tm);
+
+#endif
+
+   return ::success;
+
+}
 
 
 

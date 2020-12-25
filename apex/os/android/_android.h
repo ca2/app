@@ -6,7 +6,7 @@
 #include "graphics.h"
 
 
-#include "process.h"
+//#include "process.h"
 #include "cross_win_gdi.h"
 #include "cross_win_file.h"
 #include "file.h"
@@ -15,7 +15,7 @@
 
 #include "exception_engine.h"
 
-#include "windowing.h"
+//#include "windowing.h"
 
 #define ENABLE_BINRELOC
 //#include "c_os_binreloc.h"

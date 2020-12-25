@@ -148,7 +148,7 @@ namespace uwp
       virtual bool DestroyWindow();
 
       // special pre-creation and ::user::interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(::user::create_struct& cs);
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct);
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
@@ -249,7 +249,7 @@ namespace uwp
                                 ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
       //      virtual bool EnableScrollBar(int nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
 
-      virtual bool DrawAnimatedRects(int idAni, CONST RECT32 *lprcFrom, CONST RECT32 *lprcTo);
+      virtual bool DrawAnimatedRects(int idAni, const RECT32 *lprcFrom, const RECT32 *lprcTo);
       virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, LPCRECT32 lprc, ::u32 uFlags);
 
 #if(WINVER >= 0x0500)

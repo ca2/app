@@ -1,6 +1,8 @@
 #include "framework.h"
 #include "aura/os/android/windowing.h"
-#include "aura/platform/app_core.h"
+#include "apex/platform/app_core.h"
+#include "aura/user/interaction_thread.h"
+#include "aura/user/interaction_prodevian.h"
 
 
 void defer_term_ui()
@@ -526,7 +528,7 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
 }
 
 
-bool oswindow_data::show_window(::edisplay edisplay)
+bool oswindow_data::show_window(const ::e_display & edisplay, const ::e_activation & eactivation)
 {
 
    sync_lock sl(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
@@ -551,7 +553,7 @@ bool oswindow_data::show_window(::edisplay edisplay)
 }
 
 
-LONG_PTR oswindow_data::get_window_long_ptr(i32 nIndex)
+iptr oswindow_data::get_window_long_ptr(i32 nIndex)
 {
 
    return m_pimpl->get_window_long_ptr(nIndex);
@@ -559,7 +561,7 @@ LONG_PTR oswindow_data::get_window_long_ptr(i32 nIndex)
 }
 
 
-LONG_PTR oswindow_data::set_window_long_ptr(i32 nIndex, LONG_PTR l)
+iptr oswindow_data::set_window_long_ptr(i32 nIndex, iptr l)
 {
 
    return m_pimpl->set_window_long_ptr(nIndex, l);
@@ -745,18 +747,46 @@ int_bool get_window_rect(oswindow_data * pdata, RECT32 * prect)
 }
 
 
-int_bool show_window(oswindow_data * pdata, int nCmdShow)
+int_bool show_window(oswindow_data * pdata, const ::e_display & edisplay, const ::e_activation & eactivation)
 {
 
-   return pdata->show_window(nCmdShow);
+   return pdata->show_window(edisplay, eactivation);
 
 }
 
 
 int_bool SetWindowPos(oswindow_data * pdata, oswindow_data * pdataAfter, int x, int y, int cx, int cy, unsigned int uFlags)
 {
+   
+   pdata->m_pimpl->m_puserinteraction->order(pdata);
 
-   return pdata->m_pimpl->m_puserinteraction->set_window_pos((iptr)pdataAfter, x, y, cx, cy, uFlags);
+   pdata->m_pimpl->m_puserinteraction->set_dim(x, y, cx, cy);
+
+   if (uFlags & SWP_SHOWWINDOW)
+   {
+
+      auto eactivation = uFlags & SWP_NOACTIVATE ? e_activation_no_activate : e_activation_default;
+
+      pdata->m_pimpl->m_puserinteraction->display(e_display_normal, eactivation);
+
+   }
+   else if(uFlags & SWP_HIDEWINDOW)
+   {
+
+      pdata->m_pimpl->m_puserinteraction->display(e_display_hide);
+
+   }
+
+   if (!(uFlags & SWP_NOREDRAW))
+   {
+
+      pdata->m_pimpl->m_puserinteraction->set_need_redraw();
+
+      pdata->m_pimpl->m_puserinteraction->post_redraw();
+
+   }
+
+   return TRUE;
 
 }
 
@@ -828,7 +858,7 @@ oswindow set_active_window(oswindow oswindow)
 }
 
 
-oswindow get_window(oswindow windowParam, int iParentHood)
+oswindow get_window(oswindow windowParam, enum_relative erelative)
 {
 
    sync_lock sl(windowParam == nullptr ? nullptr : (windowParam->m_pimpl == nullptr || windowParam->m_pimpl->m_puserinteraction == nullptr ? nullptr : windowParam->m_pimpl->m_puserinteraction->mutex()));
@@ -1067,7 +1097,20 @@ void android_mouse(unsigned int message, float x, float y)
 
    MESSAGE msg;
 
-   msg.hwnd = System.get_context_session()->m_puiHost->get_handle();
+   auto puserinteraction = __user_interaction(System.get_context_session()->m_puiHost);
+
+   if (puserinteraction)
+   {
+
+      msg.hwnd = puserinteraction->get_handle();
+
+   }
+   else
+   {
+
+      msg.hwnd = nullptr;
+
+   }
 
    msg.message = message;
 
@@ -1079,8 +1122,14 @@ void android_mouse(unsigned int message, float x, float y)
 
    msg.pt.y = (long)y;
 
-   //System.get_context_session()->m_puiHost->message_handler(&msg);
-   System.get_context_session()->m_puiHost->post_message(msg.message, msg.wParam, msg.lParam);
+   //auto puserinteraction = __user_interaction(System.get_context_session()->m_puiHost);
+
+   if (puserinteraction)
+   {
+
+      puserinteraction->post_message(msg.message, msg.wParam, msg.lParam);
+
+   }
 
 }
 
@@ -1147,7 +1196,7 @@ void _android_key(unsigned int message, int keyCode, int iUni)
 
    __pointer(::message::key) pkey = __new(::message::key());
 
-   pkey->m_id = message;
+   pkey->m_id = (enum_message) message;
 
    if (!translate_android_key_message(pkey, keyCode, iUni))
    {
@@ -1156,8 +1205,16 @@ void _android_key(unsigned int message, int keyCode, int iUni)
 
    }
 
-   //System.get_context_session()->m_puiHost->message_handler(pkey);
-   System.get_context_session()->m_puiHost->post(pkey);
+   auto puserinteraction = __user_interaction(System.get_context_session()->m_puiHost);
+
+   if (!puserinteraction)
+   {
+
+      return;
+
+   }
+
+   puserinteraction->post(pkey);
 
 }
 
@@ -1178,8 +1235,26 @@ void _android_size(float xDummy, float yDummy, float cx, float cy)
    if (System.get_context_session()->m_puiHost == nullptr)
       return;
 
-   System.get_context_session()->m_puiHost->set_window_pos(zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
+   auto puserinteraction = __user_interaction(System.get_context_session()->m_puiHost);
 
+   if (!puserinteraction)
+   {
+
+      return;
+
+   }
+
+   puserinteraction->order_top();
+
+   puserinteraction->set_dim(0, 0, cx, cy);
+
+   puserinteraction->display(::e_display_normal);
+
+   puserinteraction->set_need_layout();
+
+   puserinteraction->post_redraw();
+
+   //System.get_context_session()->m_puiHost->set_window_pos(zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
 
 }
 
@@ -1231,12 +1306,19 @@ void android_on_size(float xScreen, float yScreen, float pikachu, float yBitmap)
    //::fork(::get_context_system(), [=]()
    //{
 
-   System.get_context_session()->m_puiHost->post_pred([=]()
-      {
+   auto puserinteraction = __user_interaction(System.get_context_session()->m_puiHost);
 
-         _android_size(xScreen, yScreen, pikachu, yBitmap);
+   if (puserinteraction)
+   {
 
-      });
+      puserinteraction->post_routine(__routine([=]()
+         {
+
+            _android_size(xScreen, yScreen, pikachu, yBitmap);
+
+         }));
+
+   }
 
    //});
 
@@ -1337,12 +1419,19 @@ void android_on_text(e_os_text etext, const wchar_t * pwch, size_t len)
    //System.fork([=]()
    //{
 
-   System.get_context_session()->m_puiHost->post_pred([=]()
-      {
+   auto puserinteraction = __user_interaction(System.get_context_session()->m_puiHost);
 
-         System.on_os_text(etext, strText);
+   if (puserinteraction)
+   {
 
-      });
+      puserinteraction->post_routine(__routine([=]()
+         {
+
+            System.on_os_text(etext, strText);
+
+         }));
+
+   }
 
    //});
 
@@ -1383,7 +1472,16 @@ namespace aura
 
       }
 
-      System.get_context_session()->m_puiHost->post(pkey);
+      auto puserinteraction = __user_interaction(System.get_context_session()->m_puiHost);
+
+      if (!puserinteraction)
+      {
+
+         return;
+
+      }
+
+      puserinteraction->post(pkey);
 
 
    }
@@ -1468,10 +1566,10 @@ i64 oswindow_id(oswindow w)
 }
 
 
-CLASS_DECL_AURA ::estatus os_message_box(oswindow oswindow, const char * pText, const char * lpCaption, ::emessagebox emessagebox, ::callback callback)
+CLASS_DECL_AURA::estatus _android_os_message_box(const char * pText, const char * lpCaption, const ::e_message_box & emessagebox)
 {
 
-   while (System.oslocal().m_iMessageBoxResult > 0)
+   while (::oslocal()->m_iMessageBoxResult > 0)
    {
 
       if (!task_sleep(100_ms))
@@ -1485,27 +1583,27 @@ CLASS_DECL_AURA ::estatus os_message_box(oswindow oswindow, const char * pText, 
 
    int iButton = 0;
 
-   switch(emessagebox & 7)
+   switch (emessagebox & 7)
    {
    case e_message_box_ok:
       iButton = 1;
       break;
-   case MB_OKCANCEL:
+   case e_message_box_ok_cancel:
       iButton = 1 | 2;
       break;
-   case MB_ABORTRETRYIGNORE:
+   case e_message_box_abort_retry_ignore:
       iButton = 2 | 4 | 8;
       break;
-   case MB_YESNOCANCEL:
+   case e_message_box_yes_no_cancel:
       iButton = 2 | 4 | 8;
       break;
-   case MB_YESNO:
+   case e_message_box_yes_no:
       iButton = 4 | 8;
       break;
-   case MB_RETRYCANCEL:
+   case e_message_box_retry_cancel:
       iButton = 2 | 4;
       break;
-   case MB_CANCELTRYCONTINUE:
+   case e_message_box_cancel_try_continue:
       iButton = 1 | 2 | 4;
       break;
 
@@ -1516,20 +1614,22 @@ CLASS_DECL_AURA ::estatus os_message_box(oswindow oswindow, const char * pText, 
    if (::is_set(pText))
    {
 
-      System.oslocal().m_strMessageBox = ansi_dup(pText);
+      ::oslocal()->m_strMessageBox = ansi_dup(pText);
 
    }
 
    if (::is_set(lpCaption))
    {
 
-      System.oslocal().m_strMessageBoxCaption = ansi_dup(lpCaption);
+      ::oslocal()->m_strMessageBoxCaption = ansi_dup(lpCaption);
 
    }
 
-   System.oslocal().m_iMessageBoxButton = iButton;
+   ::oslocal()->m_iMessageBoxButton = iButton;
 
-   while (System.oslocal().m_iMessageBoxResult <= 0)
+   ::oslocal()->m_bMessageBox = true;
+
+   while (::oslocal()->m_iMessageBoxResult <= 0)
    {
 
       if (!task_sleep(100_ms))
@@ -1541,36 +1641,61 @@ CLASS_DECL_AURA ::estatus os_message_box(oswindow oswindow, const char * pText, 
 
    }
 
-   int iResult = System.oslocal().m_iMessageBoxResult;
+   int iResult = ::oslocal()->m_iMessageBoxResult;
 
-   System.oslocal().m_iMessageBoxResult = 0;
+   ::oslocal()->m_iMessageBoxResult = 0;
 
    if (iResult == 1)
    {
 
-      return IDOK;
+      return e_dialog_result_ok;
 
    }
    else if (iResult == 2)
    {
 
-      return IDCANCEL;
+      return e_dialog_result_cancel;
 
    }
    else if (iResult == 4)
    {
 
-      return IDYES;
+      return e_dialog_result_yes;
 
    }
    else if (iResult == 8)
    {
 
-      return IDNO;
+      return e_dialog_result_no;
 
    }
 
-   return IDOK;
+   return e_dialog_result_ok;
+
+}
+
+
+CLASS_DECL_AURA ::estatus android_os_message_box(const char * pText, const char * lpCaption, const ::e_message_box & emessageboxParam, const ::promise::process & processParam)
+{
+
+   string strText(pText);
+
+   string strCaption(lpCaption);
+
+   e_message_box emessagebox(emessageboxParam);
+
+   ::promise::process process = processParam;
+
+   System.fork([=]()
+      {
+
+         auto result = _android_os_message_box(strText, strCaption, emessagebox);
+
+         process(result);
+
+      });
+
+   return ::success;
 
 }
 
@@ -1606,27 +1731,76 @@ double _001GetWindowTopLeftWeightedOccludedOpaqueRate(oswindow oswindow)
 int GetMainScreenRect(LPRECT32 lprect)
 {
 
-   *lprect = System.get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
+   auto puserinteraction = __user_interaction(System.get_context_session()->m_puiHost);
+
+   if (!puserinteraction)
+   {
+
+      return FALSE;
+
+   }
+
+   *lprect = puserinteraction->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
 
    return TRUE;
 
 }
-
-
-
-
 
 
 int SetMainScreenRect(LPCRECT32 lpcrect)
 {
 
-   System.get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen = *lpcrect;
+   auto psession = System.get_context_session();
+
+   if (!psession)
+   {
+
+      return FALSE;
+
+   }
+
+   auto puserinteraction = __user_interaction(psession->m_puiHost);
+
+   if (!puserinteraction)
+   {
+
+      return FALSE;
+
+   }
+
+   puserinteraction->place(lpcrect);
+
+   puserinteraction->display(e_display_normal);
+
+   puserinteraction->set_need_layout();
+
+   //if (bPostRedraw)
+   //{
+
+   //   puserinteraction->post_redraw();
+
+   //}
+
+   auto pimpl = puserinteraction->m_pimpl.cast < ::user::interaction_impl >();
+
+   if (pimpl)
+   {
+
+      pimpl->m_pprodevian->prodevian_update_buffer(true);
+
+   }
 
    return TRUE;
 
 }
 
 
+CLASS_DECL_AURA int32_t IsWindowVisible(oswindow window)
+{
+
+   return TRUE;
+
+}
 
 
 

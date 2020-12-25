@@ -111,7 +111,7 @@ namespace graphics
    ::image_pointer & double_buffer::get_buffer_image()
    {
 
-      return m_imageaBuffer[m_iCurrentBuffer];
+      return m_imageaBuffer[get_buffer_index()];
 
    }
 
@@ -119,7 +119,7 @@ namespace graphics
    sync * double_buffer::get_buffer_sync()
    {
 
-      return &m_mutexa[m_iCurrentBuffer];
+      return &m_mutexa[get_buffer_index()];
 
    }
 
@@ -127,7 +127,7 @@ namespace graphics
    ::image_pointer & double_buffer::get_screen_image()
    {
 
-      return m_imageaBuffer[!m_iCurrentBuffer];
+      return m_imageaBuffer[get_screen_index()];
 
    }
 
@@ -135,26 +135,97 @@ namespace graphics
    sync * double_buffer::get_screen_sync()
    {
 
-      return &m_mutexa[!m_iCurrentBuffer];
+      return &m_mutexa[get_screen_index()];
+
+   }
+
+   
+   ::index double_buffer::get_buffer_index() const
+   {
+
+      if (m_iCurrentBuffer == 0)
+      {
+
+         return 0;
+
+      }
+      else
+      {
+
+         return 1;
+
+      }
 
    }
 
 
-   bool double_buffer::round_swap_key_buffers()
+   ::index double_buffer::get_screen_index() const
    {
 
-      sync_lock slBuffer(get_buffer_sync());
+      if (m_iCurrentBuffer == 0)
+      {
+
+         return 1;
+
+      }
+      else
+      {
+
+         return 0;
+
+      }
+
+   }
+
+
+
+   bool double_buffer::buffer_lock_round_swap_key_buffers()
+   {
 
       sync_lock slScreen(get_screen_sync());
 
-      get_buffer_image()->map();
-
-      m_iCurrentBuffer = !m_iCurrentBuffer;
-
-      if (get_buffer_image()->is_ok())
+      if (m_iCurrentBuffer == 0)
       {
 
-         get_buffer_image()->fill(0);
+         m_iCurrentBuffer = 1;
+
+      }
+      else
+      {
+
+         m_iCurrentBuffer = 0;
+
+      }
+
+      //if (get_buffer_image()->is_ok())
+      //{
+
+      //   get_buffer_image()->fill(0);
+
+      //}
+
+      int debug = 1;
+
+      if (debug)
+      {
+
+         auto pimageScreen = get_screen_image();
+
+         pimageScreen->map();
+
+         auto pdata = pimageScreen->get_data();
+
+         byte * p = (byte *)pdata;
+
+         byte r = p[0];
+
+         byte g = p[1];
+
+         byte b = p[2];
+
+         byte a = p[3];
+
+         ::output_debug_string("argb " +__str(r) + "," + __str(g) + "," +__str(b) + "," + __str(a));
 
       }
 

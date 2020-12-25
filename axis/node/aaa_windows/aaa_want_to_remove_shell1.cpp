@@ -710,7 +710,7 @@ namespace windows
 
    //}
    //ATOM shell::_RegisterClass(
-   //   CONST WNDCLASSW *pwndclass)
+   //   const WNDCLASSW *pwndclass)
 
    //{
    //   WNDCLASS wndclass;

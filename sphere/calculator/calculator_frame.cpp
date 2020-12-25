@@ -40,13 +40,13 @@ namespace calculator
    }
 
 
-   bool frame::pre_create_window(::user::create_struct& cs)
+   bool frame::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
-      if( !simple_frame_window::pre_create_window(cs) )
+      if( !simple_frame_window::pre_create_window(pcreatestruct) )
          return FALSE;
 
-      cs.dwExStyle &= ~WS_EX_WINDOWEDGE;
+      pcreatestruct->m_createstruct.dwExStyle &= ~WS_EX_WINDOWEDGE;
 
       return TRUE;
    }
@@ -113,7 +113,7 @@ namespace calculator
       ::u32 nShow;
       if(bShow)
       {
-         nShow = display_normal;
+         nShow = e_display_normal;
       }
       else
       {

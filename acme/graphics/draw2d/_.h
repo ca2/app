@@ -20,6 +20,20 @@ inline byte clampAndConvert(double v)
 CLASS_DECL_ACME color32_t argb_swap_rb(color32_t cr);
 
 
+#ifndef WINDOWS
+
+
+typedef struct tagRGBQUAD {
+   byte    rgbBlue;
+   byte    rgbGreen;
+   byte    rgbRed;
+   byte    rgbReserved;
+} RGBQUAD, * LPRGBQUAD;
+
+
+#endif
+
+
 #include "_const.h"
 
 
@@ -27,3 +41,6 @@ CLASS_DECL_ACME color32_t argb_swap_rb(color32_t cr);
 
 
 #include "color.h"
+
+
+

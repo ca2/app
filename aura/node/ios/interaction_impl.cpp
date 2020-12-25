@@ -401,7 +401,7 @@ namespace ios
 
    bool interaction_impl::create_window_ex(
    ::user::interaction * pinteraction,
-   ::user::create_struct & cs,
+   __pointer(::user::create_struct) pcreatestruct,
    ::user::interaction * puiParent,
    id id)
    {
@@ -420,7 +420,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::_native_create_window_ex(::user::create_struct & cs)
+   bool interaction_impl::_native_create_window_ex(__pointer(::user::create_struct) pcreatestruct)
    {
 
       if(::is_window(get_handle()))
@@ -432,12 +432,12 @@ namespace ios
 
       //m_puserinteraction = pinteraction;
 
-      ENSURE_ARG(cs.lpszName == nullptr || __is_valid_string(cs.lpszName));
+      ENSURE_ARG(pcreatestruct->m_createstruct.lpszName == nullptr || __is_valid_string(pcreatestruct->m_createstruct.lpszName));
 
       if(m_puserinteraction != nullptr)
       {
 
-         if(!m_puserinteraction->pre_create_window(cs))
+         if(!m_puserinteraction->pre_create_window(pcreatestruct))
          {
 
             PostNcDestroy();
@@ -450,7 +450,7 @@ namespace ios
       else
       {
 
-         if (!pre_create_window(cs))
+         if (!pre_create_window(pcreatestruct))
          {
 
             PostNcDestroy();
@@ -461,16 +461,16 @@ namespace ios
 
       }
 
-      if(cs.hwndParent == nullptr)
+      if(pcreatestruct->m_createstruct.hwndParent == nullptr)
       {
 
-         cs.style &= ~WS_CHILD;
+         pcreatestruct->m_createstruct.style &= ~WS_CHILD;
 
       }
 
       ::rect rectCreate;
 
-      cs.get_rect(rectCreate);
+      pcreatestruct->m_createstruct.get_rect(rectCreate);
 
       CGRect rect;
 
@@ -478,7 +478,7 @@ namespace ios
       
       install_message_routing(m_puserinteraction);
 
-      if(cs.hwndParent != HWND_MESSAGE)
+      if(pcreatestruct->m_createstruct.hwndParent != HWND_MESSAGE)
       {
 
          m_oswindow = oswindow_get(new_aura_window(this, rect));
@@ -497,7 +497,7 @@ namespace ios
 
       m_puserinteraction->send_message(e_message_create, 0, (LPARAM) &cs);
 
-      m_puserinteraction->m_ewindowflag |= window_flag_window_created;
+      m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
       
       return true;
 
@@ -505,15 +505,15 @@ namespace ios
 
 
    // for child windows
-   bool interaction_impl::pre_create_window(::user::create_struct& cs)
+   bool interaction_impl::pre_create_window(::user::create_struct * pcreatestruct)
    {
-      /*      if (cs.lpszClass == nullptr)
+      /*      if (pcreatestruct->m_createstruct.lpszClass == nullptr)
        {
        // make sure the default user::interaction class is registered
-       VERIFY(__end_defer_register_class(__WND_REG, &cs.lpszClass));
+       VERIFY(__end_defer_register_class(__WND_REG, &pcreatestruct->m_createstruct.lpszClass));
 
        // no WNDCLASS provided - use child user::interaction default
-       ASSERT(cs.style & WS_CHILD);
+       ASSERT(pcreatestruct->m_createstruct.style & WS_CHILD);
        }*/
       return true;
    }
@@ -539,8 +539,8 @@ namespace ios
    bool interaction_impl::_is_window() const
    {
    
-      return m_oswindow && m_puserinteraction && m_puserinteraction->m_ewindowflag & window_flag_is_window
-      && m_puserinteraction->m_ewindowflag & window_flag_window_created;
+      return m_oswindow && m_puserinteraction && m_puserinteraction->m_ewindowflag & e_window_flag_is_window
+      && m_puserinteraction->m_ewindowflag & e_window_flag_window_created;
    
    }
 
@@ -2089,7 +2089,7 @@ namespace ios
 ////                                            if (dwSpan < 50)
 ////                                            {
 ////
-////                                               millis_sleep(50 - dwSpan);
+////                                               sleep(50 - dwSpan);
 ////
 ////                                            }
 ////
@@ -2179,7 +2179,7 @@ namespace ios
 ////                                                if (dwSpan < 20)
 ////                                                {
 ////
-////                                                   millis_sleep(20 - dwSpan);
+////                                                   sleep(20 - dwSpan);
 ////
 ////                                                }
 ////
@@ -2921,9 +2921,9 @@ namespace ios
 
 //   void interaction_impl::_001WindowRestore()
 //   {
-//      m_puserinteraction->m_edisplay = user::display_normal;
+//      m_puserinteraction->m_edisplay = user::e_display_normal;
 //      if(m_puserinteraction != nullptr)
-//         m_puserinteraction->m_edisplay = user::display_normal;
+//         m_puserinteraction->m_edisplay = user::e_display_normal;
 //      //      ::ShowWindow(get_handle(), SW_RESTORE);
 //   }
 
@@ -2950,7 +2950,7 @@ namespace ios
 //      ASSERT(::is_window(get_handle()));
 //      if(GetExStyle() & WS_EX_LAYERED)
 //      {
-//         return m_puserinteraction->m_edisplay == user::display_iconic;
+//         return m_puserinteraction->m_edisplay == user::e_display_iconic;
 //      }
 //      else
 //      {
@@ -3191,7 +3191,7 @@ namespace ios
    }
 
 //
-//   void interaction_impl::bring_to_top(::edisplay edisplay)
+//   void interaction_impl::bring_to_top(::e_display edisplay)
 //   {
 //
 //      if(nCmdShow > SW_HIDE && nCmdShow != SW_MINIMIZE)
@@ -3545,7 +3545,7 @@ namespace ios
     }
     */
 
-//   bool interaction_impl::DrawAnimatedRects(i32 idAni, CONST RECT32 *lprcFrom, CONST RECT32 *lprcTo)
+//   bool interaction_impl::DrawAnimatedRects(i32 idAni, const RECT32 *lprcFrom, const RECT32 *lprcTo)
 //   {
 //
 //      __throw(not_implemented());
@@ -5324,13 +5324,13 @@ namespace ios
 
             on_host_message_handler(spbase);
 
-            millis_sleep(100);
+            sleep(100_ms);
 
             pkey->m_ekey = (::user::e_key)(::user::key_a + strText[0] - 'A');
 
             on_host_message_handler(spbase);
 
-            millis_sleep(100);
+            sleep(100_ms);
 
             pkey->m_id = e_message_key_up;
 
@@ -5352,7 +5352,7 @@ namespace ios
 
          on_host_message_handler(spbase);
 
-         millis_sleep(100);
+         sleep(100_ms);
 
          pkey->m_id = e_message_key_up;
 

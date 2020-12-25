@@ -33,8 +33,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnShowWindow);
 
 
-      virtual::edisplay window_stored_display() const override;
-      virtual::edisplay window_previous_display() const override;
+      virtual::e_display window_stored_display() const override;
+      virtual::e_display window_previous_display() const override;
 
 
       virtual void on_visual_applied() override;

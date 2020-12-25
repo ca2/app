@@ -16,7 +16,6 @@ using dummy_pointer = void *;
 #define U32_LO_I16(u) ((::i16)((((::uptr)(u))) & 0xffff))
 #define U32_HI_I16(u) ((::i16)((((::uptr)(u)) >> 16) & 0xffff))
 
-
 #ifdef WINDOWS
 
 
@@ -41,15 +40,6 @@ using LPRECT32 = LPRECT;
 
 using LPCRECT32 = LPCRECT;
 
-using MESSAGE = MSG;
-
-using MESSAGE = MSG;
-
-using PMESSAGE = MESSAGE *;
-
-using LPMESSAGE = MESSAGE *;
-
-typedef const MESSAGE * LPCMESSAGE;
 
 
 #else
@@ -90,22 +80,7 @@ typedef struct _tagRECT32
 } RECT32, * PRECT32, * LPRECT32;
 
 
-typedef struct _tagMESSAGE
-{
-
-   oswindow        hwnd;
-   ::u32           message;
-   WPARAM          wParam;
-   LPARAM          lParam;
-   ::u32           time;
-   POINT32         pt;
-
-} MESSAGE, * PMESSAGE, * LPMESSAGE;
-
-typedef const MESSAGE * LPCMESSAGE;
-
 typedef const RECT32 * LPCRECT32;
-
 
 /*
 * set_window_pos Flags
@@ -147,9 +122,6 @@ typedef const RECT32 * LPCRECT32;
 #define MK_XBUTTON1         0x0020
 #define MK_XBUTTON2         0x0040
 //#endif /* _WIN32_WINNT >= 0x0500 */
-
-
-#define MESSAGE_WINDOW_PARENT (::oswindow((void *) (iptr) 1))
 
 
 #define GWL_STYLE           (-16)
@@ -233,7 +205,7 @@ typedef struct tagCREATESTRUCTA
    ::u32          dwExStyle;
 } CREATESTRUCTA,*LPCREATESTRUCTA;
 
-
+#define CREATESTRUCT CREATESTRUCTA
 
 #define WAIT_TIMEOUT                     258L    // dderror
 
@@ -280,6 +252,55 @@ using HSYNC = sync *;
 
 
 #endif // !defined(WINDOWS)
+
+
+#ifdef WINDOWS_DESTKOP
+
+using MESSAGE = MSG;
+
+using MESSAGE = MSG;
+
+using PMESSAGE = MESSAGE *;
+
+using LPMESSAGE = MESSAGE *;
+
+typedef const MESSAGE * LPCMESSAGE;
+
+
+#else
+
+
+#ifndef _UWP
+
+/* Types use for passing & returning polymorphic values */
+typedef uptr            WPARAM;
+typedef iptr            LPARAM;
+typedef iptr            LRESULT;
+
+#endif
+
+
+#define MESSAGE_WINDOW_PARENT (::oswindow((void *) (iptr) 1))
+
+
+typedef struct _tagMESSAGE
+{
+
+   oswindow        hwnd;
+   ::u32           message;
+   WPARAM          wParam;
+   LPARAM          lParam;
+   ::u32           time;
+   POINT32         pt;
+
+} MESSAGE, * PMESSAGE, * LPMESSAGE;
+
+typedef const MESSAGE * LPCMESSAGE;
+
+
+
+#endif // if !defined(WINDOWS_DESKTOP)
+
 
 
 #pragma pack(pop, cross_windows)

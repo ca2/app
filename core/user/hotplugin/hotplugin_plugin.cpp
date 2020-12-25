@@ -46,7 +46,7 @@ namespace hotplugin
       m_pointCursorPhase.x = 0;
       m_pointCursorPhase.y = 0;
 
-      m_etheme = ::user::theme_lite;
+      m_etheme = ::user::e_theme_lite;
 
       //get_context_application() = this;
       //get_context_application()->m_psession = this;

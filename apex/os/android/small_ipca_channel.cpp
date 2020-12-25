@@ -1,10 +1,10 @@
+#include "framework.h"
 
-
-namespace apex
-{
-
-
-   namespace ipc
+//namespace apex
+//{
+//
+//
+   namespace interprocess_communication
    {
 
 
@@ -71,7 +71,7 @@ namespace apex
       {
 
          data_struct data;
-         data.mtype        = 15111984;
+         data.mtype        = 20170101;
          data.request      = 0;
          data.size         = ansi_length(pszMessage);
          if(data.size > 512)
@@ -108,7 +108,7 @@ namespace apex
          ::count cSend;
 
          data_struct data;
-         data.mtype        = 15111984;
+         data.mtype        = 20170101;
          data.request      = 0x80000000;
          data.size         = (i32)ansi_length(pszMessage);
 
@@ -195,7 +195,7 @@ namespace apex
          while(m_bRunning && iRetry > 0)
          {
             m_bRun = false;
-            sleep(1);
+            sleep(1_ms);
             iRetry--;
          }
 
@@ -220,7 +220,7 @@ namespace apex
 
          m_bRun = true;
 
-         m_pthread = ::fork(get_context_application(), [&]()
+         m_pthread = get_context_application()->fork([&]()
          {
 
 
@@ -258,12 +258,12 @@ namespace apex
 
 
 
-      void * rx::on_ipc_receive(rx * prx,const char * pszMessage)
+      void * rx::on_interprocess_receive(rx * prx,const char * pszMessage)
       {
 
          if(m_preceiver != nullptr)
          {
-            m_preceiver->on_ipc_receive(prx,pszMessage);
+            m_preceiver->on_interprocess_receive(prx,pszMessage);
          }
 
          // ODOW - on date of writing : return ignored by this windows implementation
@@ -272,12 +272,12 @@ namespace apex
 
       }
 
-      void * rx::on_ipc_receive(rx * prx,i32 message,void * pdata,memsize len)
+      void * rx::on_interprocess_receive(rx * prx,i32 message,void * pdata,memsize len)
       {
 
          if(m_preceiver != nullptr)
          {
-            m_preceiver->on_ipc_receive(prx,message,pdata,len);
+            m_preceiver->on_interprocess_receive(prx,message,pdata,len);
          }
 
          // ODOW - on date of writing : return ignored by this windows implementation
@@ -289,12 +289,12 @@ namespace apex
 
 
 
-      void * rx::on_ipc_post(rx * prx,i64 a,i64 b)
+      void * rx::on_interprocess_post(rx * prx,i64 a,i64 b)
       {
 
          if(m_preceiver != nullptr)
          {
-            m_preceiver->on_ipc_post(prx,a,b);
+            m_preceiver->on_interprocess_post(prx,a,b);
          }
 
          // ODOW - on date of writing : return ignored by this windows implementation
@@ -346,14 +346,14 @@ namespace apex
             do
             {
                /*
-               if((result = msgrcv(m_iQueue, &data, length, 15111984, IPC_NOWAIT)) == -1)
+               if((result = msgrcv(m_iQueue, &data, length, 20170101, IPC_NOWAIT)) == -1)
                {
 
                if(errno == ENOMSG)
                {
                if(!on_idle())
                {
-               millis_sleep(100);
+               sleep(100_ms);
                }
                }
                else
@@ -383,13 +383,13 @@ namespace apex
 
                mem.to_string(str);
 
-               on_ipc_receive(this, str);
+               on_interprocess_receive(this, str);
 
             }
             else
             {
 
-               on_ipc_receive(this,data.request,mem.get_data(),mem.get_size());
+               on_interprocess_receive(this,data.request,mem.get_data(),mem.get_size());
 
             }
 
@@ -401,7 +401,7 @@ namespace apex
 
       }
 
-      ipc::ipc()
+      interprocess_communication::interprocess_communication()
       {
 
          m_millisTimeout = (5000) * 11;
@@ -409,14 +409,14 @@ namespace apex
       }
 
 
-      ipc::~ipc()
+      interprocess_communication::~interprocess_communication()
       {
 
 
       }
 
 
-      bool ipc::open_ab(const char * pszChannel,launcher * plauncher)
+      bool interprocess_communication::open_ab(const char * pszChannel,launcher * plauncher)
       {
 
          m_strChannel = pszChannel;
@@ -442,7 +442,7 @@ namespace apex
 
       }
 
-      bool ipc::open_ba(const char * pszChannel,launcher * plauncher)
+      bool interprocess_communication::open_ba(const char * pszChannel,launcher * plauncher)
       {
 
          m_strChannel = pszChannel;
@@ -469,7 +469,7 @@ namespace apex
 
 
 
-      bool ipc::is_rx_tx_ok()
+      bool interprocess_communication::is_rx_tx_ok()
       {
 
          return m_rx.is_rx_ok() && is_tx_ok();
@@ -477,10 +477,10 @@ namespace apex
       }
 
 
-   } // namespace ipc
+   } // namespace interprocess_communication
 
 
-} // namespace apex
+//} // namespace apex
 
 
 

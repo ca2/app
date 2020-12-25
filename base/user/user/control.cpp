@@ -4,7 +4,7 @@
 #endif
 
 
-//#include "control_ddx_dbflags.h"
+//#include "e_control_ddx_dbflags.h"
 
 //
 //namespace user
@@ -73,7 +73,7 @@
 //
 //      ev.m_puie = this;
 //
-//      ev.m_eevent = ::user::event_create;
+//      ev.m_eevent = ::user::e_event_create;
 //
 //      on_control_event(&ev);
 //
@@ -195,7 +195,7 @@
 //
 //      string str;
 //
-//      if (control_descriptor().get_control_type() == control_type_edit)
+//      if (control_descriptor().get_control_type() == e_control_type_edit)
 //      {
 //
 //         __pointer(::user::text) pedit = pwnd.m_p;
@@ -224,12 +224,12 @@
 //
 //      switch (control_descriptor().get_data_type())
 //      {
-//      case control_data_type_string:
+//      case e_control_data_type_string:
 //      {
 //         payload = str;
 //      }
 //      return true;
-//      case control_data_type_natural:
+//      case e_control_data_type_natural:
 //      {
 //         payload = atoi(str);
 //         return true;
@@ -248,9 +248,9 @@
 //
 //      switch (control_descriptor().get_data_type())
 //      {
-//      case control_data_type_string:
+//      case e_control_data_type_string:
 //         return true;
-//      case control_data_type_natural:
+//      case e_control_data_type_natural:
 //      {
 //         string str = strParam;
 //         str.trim_left();
@@ -287,7 +287,7 @@
 //
 //
 //
-//   bool control::has_function(e_control_function econtrolfunction) const
+//   bool control::has_function(enum_control_function econtrolfunction) const
 //   {
 //
 //      if (m_pdescriptor.is_null())
@@ -302,13 +302,13 @@
 //   }
 //
 //
-//   e_control_type control::get_control_type() const
+//   enum_control_type control::get_control_type() const
 //   {
 //
 //      if (m_pdescriptor.is_null())
 //      {
 //
-//         return control_type_none;
+//         return e_control_type_none;
 //
 //      }
 //
@@ -483,7 +483,7 @@
 //
 //      ev.m_puie = this;
 //
-//      ev.m_eevent = ::user::event_set_focus;
+//      ev.m_eevent = ::user::e_event_set_focus;
 //
 //      on_control_event(&ev);
 //
@@ -503,7 +503,7 @@
 //
 //      ev.m_id = m_id;
 //
-//      ev.m_eevent = ::user::event_kill_focus;
+//      ev.m_eevent = ::user::e_event_kill_focus;
 //
 //      on_control_event(&ev);
 //
@@ -604,7 +604,7 @@
 //          nNewStyle |= TBBS_CHECKED;
 //      else if (nCheck == 2)
 //          nNewStyle |= TBBS_INDETERMINATE;
-//      ASSERT(!(nNewStyle & TBBS_SEPARATOR));
+//      ASSERT(!(nNewStyle & e_toolbar_item_style_separator));
 //      pToolBar->SetButtonStyle(m_nIndex, nNewStyle | TBBS_CHECKBOX);*/
 //   }
 //
@@ -759,7 +759,7 @@
 //   //   ::point pointCursor;
 //   //   psession->get_cursor_pos(&pointCursor);
 //
-//   //   e_element eelement;
+//   //   enum_element eelement;
 //
 //   //   index iHover = hit_test(pointCursor, eelement);
 //
@@ -807,7 +807,7 @@
 //
 //   //      auto point = screen_to_client(pmouse->m_point);
 //
-//   //      ::user::e_element eelementHover = hit_test(pmouse);
+//   //      ::user::enum_element eelementHover = hit_test(pmouse);
 //
 //   //      if (m_eelementHover != eelementHover)
 //   //      {
@@ -836,7 +836,7 @@
 //   //   if (m_eelementHover)
 //   //   {
 //
-//   //      m_eelementHover = element_none;
+//   //      m_eelementHover = e_element_none;
 //
 //   //      set_need_redraw();
 //
@@ -848,7 +848,7 @@
 //
 //   //   ev.m_puie = this;
 //
-//   //   ev.m_eevent = event_mouse_leave;
+//   //   ev.m_eevent = e_event_mouse_leave;
 //
 //   //   ev.m_pmessage = pmessage;
 //
@@ -865,11 +865,11 @@
 //   //   if (!rectClient.contains(point))
 //   //   {
 //
-//   //      return element_none;
+//   //      return e_element_none;
 //
 //   //   }
 //
-//   //   return element_client;
+//   //   return e_element_client;
 //
 //   //}
 //
@@ -976,11 +976,11 @@
 //   }
 //
 //
-//   bool control::get_element_rect(RECT32 * prect, e_element eelement)
+//   bool control::get_element_rect(RECT32 * prect, enum_element eelement)
 //
 //   {
 //
-//      if (eelement == element_drop_down)
+//      if (eelement == e_element_drop_down)
 //      {
 //
 //         ::rect rectClient;
@@ -1007,7 +1007,7 @@
 //         return true;
 //
 //      }
-//      else if (eelement == element_combo_edit)
+//      else if (eelement == e_element_combo_edit)
 //      {
 //
 //         ::rect rectClient;
@@ -1016,7 +1016,7 @@
 //
 //         ::rect rectDropDown;
 //
-//         get_element_rect(rectDropDown, element_drop_down);
+//         get_element_rect(rectDropDown, e_element_drop_down);
 //
 //         ::rect rectEdit = rectClient;
 //
@@ -1043,7 +1043,7 @@
 //
 //      ::rect rectDropDown;
 //
-//      get_element_rect(rectDropDown, element_drop_down);
+//      get_element_rect(rectDropDown, e_element_drop_down);
 //
 //      i32 cx = rectDropDown.width() / 3;
 //

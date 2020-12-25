@@ -23,6 +23,8 @@ namespace draw2d
       __pointer(class ::draw2d::api)                            m_papi;
       __pointer(class font_department)                          m_pfontdepartment;
 
+      //__pointer(::mutex)                                        m_pmutexFont;
+
 
 
       draw2d();
@@ -64,7 +66,7 @@ namespace draw2d
       ::draw2d::fastblur & blur,
       ::image_pointer & imageBlur,
       ::draw2d::font * pfont,
-      const ::e_align & e_align,
+      const ::e_align & ealign,
       const ::e_draw_text & edrawtext,
       color32_t crText,
       color32_t crGlow,

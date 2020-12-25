@@ -108,7 +108,7 @@ namespace user
    }
 
 
-   inline bool interaction::is_this_visible(e_layout elayout) const
+   inline bool interaction::is_this_visible(enum_layout elayout) const
    {
 
       return layout().is_this_visible(elayout);
@@ -116,14 +116,14 @@ namespace user
    }
 
 
-   inline bool interaction::is_this_screen_visible(e_layout elayout) const
+   inline bool interaction::is_this_screen_visible(enum_layout elayout) const
    {
 
       return layout().is_this_screen_visible(elayout);
 
    }
 
-   inline bool interaction::is_window_visible(e_layout elayout) const
+   inline bool interaction::is_window_visible(enum_layout elayout) const
    {
 
       if (!m_pdescriptor)
@@ -138,7 +138,7 @@ namespace user
    }
 
 
-   inline bool interaction::is_window_screen_visible(e_layout elayout) const
+   inline bool interaction::is_window_screen_visible(enum_layout elayout) const
    {
 
       if (::is_null(m_pdescriptor))
@@ -272,7 +272,7 @@ inline prodevian::prodevian(::user::interaction* pinteraction) :
 //{
 //
 //
-//   inline bool graphics::set_font(::user::interaction* pinteraction, ::user::e_element eelement, ::user::estate estate)
+//   inline bool graphics::set_font(::user::interaction* pinteraction, ::user::enum_element eelement, ::user::estate estate)
 //   {
 //
 //      return set(pinteraction->get_font(pinteraction->get_style(m_puserstyle), eelement, estate));

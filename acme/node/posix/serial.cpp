@@ -4,6 +4,7 @@
  */
 
 #include "framework.h"
+#include "acme/os/posix/time.h"
 
  //#include <sstream>
 
@@ -52,64 +53,56 @@
 #include <IOKit/serial/ioss.h>
 #endif
 
-using serial::MillisecondTimer;
+//using serial::MillisecondTimer;
 using serial::Serial;
 using serial::SerialException;
 using serial::PortNotOpenedException;
 using serial::IOException;
 
 
-MillisecondTimer::MillisecondTimer(const u32 millis)
-   : expiry(timespec_now())
-{
-   i64 tv_nsec = expiry.tv_nsec + (millis * 1e6);
-   if (tv_nsec >= 1e9)
-   {
-      i64 sec_diff = tv_nsec / static_cast<int> (1e9);
-      expiry.tv_nsec = tv_nsec % static_cast<int>(1e9);
-      expiry.tv_sec += sec_diff;
-   }
-   else
-   {
-      expiry.tv_nsec = tv_nsec;
-   }
-}
-
-i64
-MillisecondTimer::remaining()
-{
-   timespec now(timespec_now());
-   i64 millis = (expiry.tv_sec - now.tv_sec) * 1e3;
-   millis += (expiry.tv_nsec - now.tv_nsec) / 1e6;
-   return millis;
-}
-
-timespec
-MillisecondTimer::timespec_now()
-{
-   timespec time;
-# ifdef __MACH__ // OS X does not have clock_gettime, use clock_get_time
-   clock_serv_t cclock;
-   mach_timespec_t mts;
-   host_get_clock_service(mach_host_self(), SYSTEM_CLOCK, &cclock);
-   clock_get_time(cclock, &mts);
-   mach_port_deallocate(mach_task_self(), cclock);
-   time.tv_sec = mts.tv_sec;
-   time.tv_nsec = mts.tv_nsec;
-# else
-   clock_gettime(CLOCK_MONOTONIC, &time);
-# endif
-   return time;
-}
-
-timespec
-timespec_from_ms(const u32 millis)
-{
-   timespec time;
-   time.tv_sec = millis / 1e3;
-   time.tv_nsec = (millis - (time.tv_sec * 1e3)) * 1e6;
-   return time;
-}
+//MillisecondTimer::MillisecondTimer(const u32 millis)
+//   : expiry(timespec_now())
+//{
+//   i64 tv_nsec = expiry.tv_nsec + (millis * 1e6);
+//   if (tv_nsec >= 1e9)
+//   {
+//      i64 sec_diff = tv_nsec / static_cast<int> (1e9);
+//      expiry.tv_nsec = tv_nsec % static_cast<int>(1e9);
+//      expiry.tv_sec += sec_diff;
+//   }
+//   else
+//   {
+//      expiry.tv_nsec = tv_nsec;
+//   }
+//}
+//
+//i64
+//MillisecondTimer::remaining()
+//{
+//   timespec now(timespec_now());
+//   i64 millis = (expiry.tv_sec - now.tv_sec) * 1e3;
+//   millis += (expiry.tv_nsec - now.tv_nsec) / 1e6;
+//   return millis;
+//}
+//
+//timespec
+//MillisecondTimer::timespec_now()
+//{
+//   timespec time;
+//# ifdef __MACH__ // OS X does not have clock_gettime, use clock_get_time
+//   clock_serv_t cclock;
+//   mach_timespec_t mts;
+//   host_get_clock_service(mach_host_self(), SYSTEM_CLOCK, &cclock);
+//   clock_get_time(cclock, &mts);
+//   mach_port_deallocate(mach_task_self(), cclock);
+//   time.tv_sec = mts.tv_sec;
+//   time.tv_nsec = mts.tv_nsec;
+//# else
+//   clock_gettime(CLOCK_MONOTONIC, &time);
+//# endif
+//   return time;
+//}
+//
 
 Serial::SerialImpl::SerialImpl(const string & port, unsigned long baudrate,
    bytesize_t bytesize,
@@ -528,13 +521,13 @@ Serial::SerialImpl::available()
 }
 
 bool
-Serial::SerialImpl::waitReadable(u32 timeout)
+Serial::SerialImpl::waitReadable(::millis timeout)
 {
    // Setup a select call to block for serial data or a timeout
    fd_set readfds;
    FD_ZERO(&readfds);
    FD_SET(m_iFd, &readfds);
-   timespec timeout_ts(timespec_from_ms(timeout));
+   auto timeout_ts = __timespec(timeout);
    int r = pselect(m_iFd + 1, &readfds, nullptr, nullptr, &timeout_ts, nullptr);
 
    if (r < 0)
@@ -580,9 +573,9 @@ Serial::SerialImpl::read(u8 * buf, size_t size)
    size_t bytes_read = 0;
 
    // Calculate total timeout in milliseconds t_c + (t_m * N)
-   long total_timeout_ms = m_timeout.read_timeout_constant;
-   total_timeout_ms += m_timeout.read_timeout_multiplier * static_cast<long> (size);
-   MillisecondTimer total_timeout((u32)total_timeout_ms);
+   auto total_timeout_ms = m_timeout.m_millisReadTimeoutConstant;
+   total_timeout_ms.m_iMilliseconds += m_timeout.m_uReadTimeoutMultiplier * static_cast<long> (size);
+   auto millisStart = ::millis::now();
 
    // Pre-fill buffer with available bytes
    {
@@ -595,23 +588,22 @@ Serial::SerialImpl::read(u8 * buf, size_t size)
 
    while (bytes_read < size)
    {
-      i64 timeout_remaining_ms = total_timeout.remaining();
-      if (timeout_remaining_ms <= 0)
+      auto millisRemaining = millisStart.remaining(total_timeout_ms);
+      if (millisRemaining <= 0)
       {
          // Timed out
          break;
       }
       // Timeout for the next select is whichever is less of the remaining
       // total read timeout and the inter-byte timeout.
-      u32 timeout = min(static_cast<u32> (timeout_remaining_ms),
-         m_timeout.inter_byte_timeout);
+      auto timeout = min(millisRemaining, m_timeout.m_millisInterByteTimeout);
       // Wait for the device to be readable, and then attempt to read.
       if (waitReadable(timeout))
       {
          // If it's a fixed-length multi-byte read, insert a wait here so that
          // we can attempt to grab the whole thing in a single IO call. Skip
          // this wait if a non-max inter_byte_timeout is specified.
-         if (size > 1 && m_timeout.inter_byte_timeout == Timeout::max())
+         if (size > 1 && m_timeout.m_millisInterByteTimeout == Timeout::max())
          {
             size_t bytes_available = available();
             if (bytes_available + bytes_read < size)
@@ -667,16 +659,19 @@ Serial::SerialImpl::write(const u8 * data, size_t length)
    size_t bytes_written = 0;
 
    // Calculate total timeout in milliseconds t_c + (t_m * N)
-   long total_timeout_ms = m_timeout.write_timeout_constant;
-   total_timeout_ms += m_timeout.write_timeout_multiplier * static_cast<long> (length);
-   MillisecondTimer total_timeout((u32)total_timeout_ms);
+   auto total_timeout_ms = m_timeout.m_millisWriteTimeoutConstant;
+   total_timeout_ms += m_timeout.m_uWriteTimeoutMultiplier * static_cast<long> (length);
+   auto millisStart = ::millis::now();
 
    bool first_iteration = true;
    while (bytes_written < length)
    {
-      i64 timeout_remaining_ms = total_timeout.remaining();
+
+      auto timeout_remaining_ms = millisStart.remaining(total_timeout_ms);
+
       // Only consider the timeout if it's not the first iteration of the loop
       // otherwise a timeout of 0 won't be allowed through
+
       if (!first_iteration && (timeout_remaining_ms <= 0))
       {
          // Timed out
@@ -684,7 +679,7 @@ Serial::SerialImpl::write(const u8 * data, size_t length)
       }
       first_iteration = false;
 
-      timespec timeout(timespec_from_ms((u32)timeout_remaining_ms));
+      auto timeout = __timespec(timeout_remaining_ms);
 
       FD_ZERO(&writefds);
       FD_SET(m_iFd, &writefds);
@@ -1005,7 +1000,7 @@ Serial::SerialImpl::waitForChange()
          }
       }
 
-      usleep(1000);
+      usleep(1000_ms);
    }
 
    return false;

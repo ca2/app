@@ -313,17 +313,17 @@ namespace draw2d_direct2d
 
       pimage2->fill(0, 0, 0, 0);
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
       pimage2->get_graphics()->draw(::size(cx, cy),picon);
-#else
-      pimage2->get_graphics()->DrawIcon(
-      0, 0,
-      picon,
-      cx, cy,
-      0,
-      nullptr,
-      0);
-#endif
+//#else
+//      pimage2->get_graphics()->DrawIcon(
+//      0, 0,
+//      picon,
+//      cx, cy,
+//      0,
+//      nullptr,
+//      0);
+//#endif
 
       // Mask image
       auto pimageM = create_image({cx,  cy});

@@ -145,19 +145,19 @@ int get_proc_cpuinfo_core_count()
 // }
 
 
-int os_get_system_update_poll_time(const ::id & id)
+::millis os_get_system_update_poll_time(const ::id & id)
 {
 
    if(id == id_os_dark_mode)
    {
 
-      return 300;
+      return 300_ms;
 
    }
    else if(id == id_os_user_theme)
    {
 
-      return 300;
+      return 300_ms;
 
    }
 

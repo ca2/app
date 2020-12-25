@@ -521,14 +521,14 @@ namespace experience
    i32 frame::calc_caption_height(edisplay edisplay)
    {
 
-      if (edisplay == display_full_screen)
+      if (edisplay == e_display_full_screen)
       {
 
          return 0;
 
       }
 
-      if (edisplay == display_minimal)
+      if (edisplay == e_display_minimal)
       {
 
          return 0;
@@ -1101,11 +1101,11 @@ namespace experience
          if(get_element_rect(rectIcon,ElementTopLeftIcon))
          {
 
-            iRightDeflate += calc_caption_height(::display_normal);
+            iRightDeflate += calc_caption_height(::e_display_normal);
 
          }
 
-         iRightDeflate += calc_caption_height(::display_normal); // for the ElementMoveGripMinimal
+         iRightDeflate += calc_caption_height(::e_display_normal); // for the ElementMoveGripMinimal
 
       }
       else
@@ -1184,13 +1184,13 @@ namespace experience
          if (m_pframewindow->GetParent() == nullptr)
          {
 
-            if (!(m_pframewindow->m_ewindowflag & window_flag_disable_window_placement_snapping)
+            if (!(m_pframewindow->m_ewindowflag & e_window_flag_disable_window_placement_snapping)
                //&& !m_pframewindow->layout().is_moving()
                //&& !m_pframewindow->layout().is_sizing()
                && !m_pframewindow->layout().is_docking()
                //&& !::is_docking_appearance(m_pframewindow->layout().sketch().display())
-               && m_pframewindow->layout().sketch().display() != display_zoomed
-               && m_pframewindow->layout().sketch().display() != display_full_screen)
+               && m_pframewindow->layout().sketch().display() != e_display_zoomed
+               && m_pframewindow->layout().sketch().display() != e_display_full_screen)
             {
 
                defer_frame_placement_snapping();
@@ -1298,7 +1298,7 @@ namespace experience
 
          }
 
-         if (edisplay == display_normal)
+         if (edisplay == e_display_normal)
          {
 
             if (m_pframewindow->move_manager()->window_is_moving())
@@ -1381,16 +1381,16 @@ namespace experience
 
       auto rectControlBoxMargin = m_rectControlBoxMarginNormal;
 
-      egrip egrip;
-      eborder eborder;
-      edock edock;
+      e_grip egrip;
+      e_border eborder;
+      e_dock edock;
 
       if (!m_pframewindow->is_this_screen_visible() || is_zoomed(edisplay) || is_full_screen(edisplay))
       {
 
-         egrip = grip_none;
-         eborder = border_none;
-         edock = dock_none;
+         egrip = e_grip_none;
+         eborder = e_border_none;
+         edock = e_dock_none;
 
          rectMargin.Null();
          rectControlBoxMargin.Null();
@@ -1399,71 +1399,71 @@ namespace experience
       else if (is_docking_appearance(edisplay))
       {
 
-         if (!(edisplay & display_bottom))
+         if (!(edisplay & e_display_bottom))
          {
 
-            egrip |= grip_bottom;
-            eborder |= border_bottom;
-            edock |= dock_bottom;
+            egrip |= e_grip_bottom;
+            eborder |= e_border_bottom;
+            edock |= e_dock_bottom;
 
-            if (!(edisplay & display_left))
+            if (!(edisplay & e_display_left))
             {
 
-               egrip |= grip_bottom_left;
+               egrip |= e_grip_bottom_left;
 
             }
 
          }
 
-         if (!(edisplay & display_top))
+         if (!(edisplay & e_display_top))
          {
 
-            egrip |= grip_top;
-            eborder |= border_top;
-            edock |= dock_top;
+            egrip |= e_grip_top;
+            eborder |= e_border_top;
+            edock |= e_dock_top;
 
-            if (!(edisplay & display_right))
+            if (!(edisplay & e_display_right))
             {
 
-               egrip |= grip_top_right;
+               egrip |= e_grip_top_right;
 
             }
 
          }
 
-         if (!(edisplay & display_left))
+         if (!(edisplay & e_display_left))
          {
 
-            egrip |= grip_left;
-            eborder |= border_left;
-            edock |= dock_left;
+            egrip |= e_grip_left;
+            eborder |= e_border_left;
+            edock |= e_dock_left;
 
-            if (!(edisplay & display_top))
+            if (!(edisplay & e_display_top))
             {
 
-               egrip |= grip_top_left;
+               egrip |= e_grip_top_left;
 
             }
 
          }
 
-         if (!(edisplay & display_right))
+         if (!(edisplay & e_display_right))
          {
 
-            egrip |= grip_right;
-            eborder |= border_right;
-            edock |= dock_right;
+            egrip |= e_grip_right;
+            eborder |= e_border_right;
+            edock |= e_dock_right;
 
-            if (!(edisplay & display_bottom))
+            if (!(edisplay & e_display_bottom))
             {
 
-               egrip |= grip_bottom_right;
+               egrip |= e_grip_bottom_right;
 
             }
 
          }
 
-         if (edisplay & display_top)
+         if (edisplay & e_display_top)
          {
 
             rectMargin.top = 0;
@@ -1471,14 +1471,14 @@ namespace experience
 
          }
 
-         if(edisplay & display_bottom)
+         if(edisplay & e_display_bottom)
          {
 
             rectMargin.bottom = 0;
 
          }
 
-         if (edisplay & display_right)
+         if (edisplay & e_display_right)
          {
 
             rectMargin.right = 0;
@@ -1486,7 +1486,7 @@ namespace experience
 
          }
 
-         if (edisplay & display_left)
+         if (edisplay & e_display_left)
          {
 
             rectMargin.left = 0;
@@ -1498,9 +1498,9 @@ namespace experience
       else
       {
 
-         egrip = grip_all;
-         eborder = border_all;
-         edock = dock_all;
+         egrip = e_grip_all;
+         eborder = e_border_all;
+         edock = e_dock_all;
 
       }
 
@@ -1516,8 +1516,8 @@ namespace experience
       if (m_pframewindow->m_eupdown == ::user::interaction::updown_down)
       {
 
-         egrip = grip_none;
-         edock = dock_none;
+         egrip = e_grip_none;
+         edock = e_dock_none;
 
       }
 
@@ -1539,7 +1539,7 @@ namespace experience
    }
 
 
-   bool frame::get_element_rect(RECT32 * prect,e_element eelement)
+   bool frame::get_element_rect(RECT32 * prect,enum_element eelement)
    {
 
       return false;

@@ -836,7 +836,7 @@ void oswindow_data::send_client_event(Atom atom, unsigned int numArgs, ...)
 }
 
 
-bool oswindow_data::show_window(::edisplay edisplay)
+bool oswindow_data::show_window(::e_display edisplay)
 {
 
    windowing_output_debug_string("\n::oswindow_data::show_window 1");
@@ -865,7 +865,7 @@ bool oswindow_data::show_window(::edisplay edisplay)
 
    }
 
-   if(edisplay == display_zoomed)
+   if(edisplay == e_display_zoomed)
    {
 
       if(attr.map_state == IsUnmapped)
@@ -880,7 +880,7 @@ bool oswindow_data::show_window(::edisplay edisplay)
                            intern_atom(net_wm_state_maximized_vert, false));
 
    }
-   else if(edisplay == display_iconic)
+   else if(edisplay == e_display_iconic)
    {
 
       wm_iconify_window(this);
@@ -1422,7 +1422,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
 //      if(attrs.override_redirect)
 //      {
 //
-//         if(!(m_pimpl->m_puserinteraction->m_ewindowflag & window_flag_arbitrary_positioning))
+//         if(!(m_pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_arbitrary_positioning))
 //         {
 //
 //            XSetWindowAttributes set;

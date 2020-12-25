@@ -26,9 +26,9 @@ namespace user
 
       switch (control_descriptor().get_data_type())
       {
-      case control_data_type_string:
+      case e_control_data_type_string:
          return true;
-      case control_data_type_natural:
+      case e_control_data_type_natural:
       {
          string str = strParam;
          str.trim_left();

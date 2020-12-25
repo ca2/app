@@ -107,7 +107,7 @@ namespace console
          }
          else
          {
-            i.GetTopLevel()->display(display_normal);
+            i.GetTopLevel()->display(e_display_normal);
 
          }
 

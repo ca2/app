@@ -22,6 +22,9 @@ public:
    nanos & operator = (const nanos & nanos) { m_iNanoseconds = nanos.m_iNanoseconds; return *this; }
 
 
+   void sleep() const;
+
+
 };
 
 

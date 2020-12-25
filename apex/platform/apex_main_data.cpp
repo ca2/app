@@ -103,7 +103,7 @@ void apex_main_data::system_construct(int argc, wchar_t** argv)
 }
 
 
-void apex_main_data::system_construct(const char* pszCommandLine, const ::edisplay& edisplay)
+void apex_main_data::system_construct(const char* pszCommandLine, const ::e_display& edisplay)
 {
 
    m_strCommandLine = pszCommandLine;
@@ -117,12 +117,12 @@ void apex_main_data::system_construct(const char* pszCommandLine, const ::edispl
 }
 
 
-void apex_main_data::system_construct(os_local* poslocal, const ::edisplay& edisplay)
+void apex_main_data::system_construct(os_local* poslocal, const ::e_display& edisplay)
 {
 
 #ifdef ANDROID
 
-   m_strCommandLine = g_poslocal->m_strCommandLine;
+   m_strCommandLine = "app.exe : app=" + poslocal->m_strApplicationIdentifier + " " + poslocal->m_strCommandLineParameters;
 
 #endif
 
@@ -186,7 +186,7 @@ void apex_main_data::system_construct(Array < String^ >^ refstra)
 
    //m_poslocal = nullptr;
 
-   m_edisplay = display_default;
+   m_edisplay = e_display_default;
 
    xxf_zero(m_mainrunnera);
 

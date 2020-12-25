@@ -36,4 +36,7 @@ int_bool destroy_window(oswindow window);
 oswindow get_desktop_window();
 
 
+int GetMainScreenRect(LPRECT32 lprect);
+
+
 

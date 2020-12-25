@@ -20,7 +20,7 @@ namespace user
       // and visibility/order problems.
 
 
-      enum e_layout
+      enum enum_layout
       {
 
          layout_creating = 1 << 0,
@@ -41,7 +41,7 @@ namespace user
       struct window_rect                        m_windowrect;
       struct window_rect                        m_windowrectStore;
 
-      cflag < e_layout >                        m_eflagLayouting;
+      cflag < enum_layout >                        m_eflagLayouting;
       bool                                      m_bUpdatingVisual;
       bool                                      m_bUpdateVisual;
       bool                                      m_bFillParent;
@@ -54,7 +54,7 @@ namespace user
       __pointer(control_descriptor)             m_pdescriptor;
 
       millis                                      m_millisLastDisplayChange;
-      e_layout_experience                       m_elayoutexperience;
+      enum_layout_experience                       m_elayoutexperience;
 
 
       //mutable size                            m_sizeClient;
@@ -151,13 +151,13 @@ namespace user
       inline bool window_is_minimal() { return ::window_is_minimal(display_state()); }
 
 
-      inline void auto_prodevian_on_show() { m_ewindowflag |= window_flag_auto_prodevian_on_show; }
-      inline void clear_auto_prodevian_on_show() { m_ewindowflag -= window_flag_auto_prodevian_on_show; }
-      inline bool is_auto_prodevian_on_show() { return m_ewindowflag & window_flag_auto_prodevian_on_show; }
+      inline void auto_prodevian_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }
+      inline void clear_auto_prodevian_on_show() { m_ewindowflag -= e_window_flag_auto_prodevian_on_show; }
+      inline bool is_auto_prodevian_on_show() { return m_ewindowflag & e_window_flag_auto_prodevian_on_show; }
 
-      inline void visual_changed() { m_ewindowflag |= window_flag_visual_changed; }
-      inline void clear_visual_changed() { m_ewindowflag -= window_flag_visual_changed; }
-      inline bool is_visual_changed()const { return m_ewindowflag& window_flag_visual_changed; }
+      inline void visual_changed() { m_ewindowflag |= e_window_flag_visual_changed; }
+      inline void clear_visual_changed() { m_ewindowflag -= e_window_flag_visual_changed; }
+      inline bool is_visual_changed()const { return m_ewindowflag& e_window_flag_visual_changed; }
 
       inline const struct window_state & ui_state() const { return m_state2; }
       inline struct window_state & ui_state() { return m_state2; }
@@ -175,25 +175,25 @@ namespace user
       inline struct window_state & window_state3() { return m_stateWindow3; }
       inline void set_window_state3(const struct window_state & state) { m_stateWindow3 = state; }
 
-      inline const ::edisplay & display_state() const noexcept { return ui_state().m_edisplay3; }
-      inline void set_display_state(const ::edisplay & edisplay) noexcept { ui_state().m_edisplay3 = edisplay; }
+      inline const ::e_display & display_state() const noexcept { return ui_state().m_edisplay3; }
+      inline void set_display_state(const ::e_display & edisplay) noexcept { ui_state().m_edisplay3 = edisplay; }
 
-      inline const ::edisplay & display_request() const noexcept { return request_state().m_edisplay3; }
-      inline void set_display_request(const ::edisplay & edisplay) noexcept { request_state().m_edisplay3 = edisplay; }
+      inline const ::e_display & display_request() const noexcept { return request_state().m_edisplay3; }
+      inline void set_display_request(const ::e_display & edisplay) noexcept { request_state().m_edisplay3 = edisplay; }
 
-      inline const ::edisplay & window_display() const noexcept { return window_state3().m_edisplay3; }
-      inline const ::edisplay & process_display() const noexcept { return process_state().m_edisplay3; }
-
-
-      inline e_layout_experience layout_experience() const { return m_elayoutexperience; }
+      inline const ::e_display & window_display() const noexcept { return window_state3().m_edisplay3; }
+      inline const ::e_display & process_display() const noexcept { return process_state().m_edisplay3; }
 
 
-      inline bool is_layout_experience_active() const { return m_elayoutexperience != layout_experience_none; }
+      inline enum_layout_experience layout_experience() const { return m_elayoutexperience; }
 
 
-      inline bool window_is_moving() const { return m_elayoutexperience == layout_experience_moving; }
-      inline bool window_is_sizing() const { return m_elayoutexperience == layout_experience_sizing; }
-      inline bool window_is_docking() const { return m_elayoutexperience == layout_experience_docking; }
+      inline bool is_layout_experience_active() const { return m_elayoutexperience != e_layout_experience_none; }
+
+
+      inline bool window_is_moving() const { return m_elayoutexperience == e_layout_experience_moving; }
+      inline bool window_is_sizing() const { return m_elayoutexperience == e_layout_experience_sizing; }
+      inline bool window_is_docking() const { return m_elayoutexperience == e_layout_experience_docking; }
 
 
       inline bool is_this_visible() const noexcept
@@ -249,9 +249,9 @@ namespace user
       inline eappearance appearance() const { return ui_state().m_eappearance; }
 
       virtual bool is_request_visible() const { return ::is_visible(display_request()); }
-      virtual bool display(::edisplay edisplay = display_default, ::eactivation eactivation = activation_none) override;
+      virtual bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default) override;
       virtual bool window_do_display();
-      inline bool hide() { return display(display_hide); }
+      inline bool hide() { return display(e_display_hide); }
 
 
       virtual bool is_this_visible() override;
@@ -262,24 +262,24 @@ namespace user
       virtual void set_reposition(bool bSetThis = true);
       virtual void _set_reposition(bool bSetThis = true);
 
-      inline bool set_window_pos(::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, edisplay edisplay = display_default, eactivation eactivation = activation_none)
+      inline bool set_window_pos(::zorder zorder, i32 x, i32 y, i32 cx, i32 cy, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
          order(zorder); set_dim(x, y, cx, cy); display(edisplay, eactivation); set_need_redraw(); return true;
       }
-      inline bool window_order(::zorder zorder, edisplay edisplay = display_default, eactivation eactivation = activation_none)
+      inline bool window_order(::zorder zorder, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
          order(zorder); display(edisplay, eactivation); set_need_redraw(); return true;
       }
       virtual bool window_move(i32 x, i32 y);
-      inline bool window_size(i32 cx, i32 cy, edisplay edisplay = display_default, eactivation eactivation = activation_none)
+      inline bool window_size(i32 cx, i32 cy, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
          set_size(cx, cy); display(edisplay, eactivation); set_need_redraw(); return true;
       }
-      inline bool window_place(i32 x, i32 y, i32 cx, i32 cy, edisplay edisplay = display_default, eactivation eactivation = activation_none)
+      inline bool window_place(i32 x, i32 y, i32 cx, i32 cy, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
          set_dim(x, y, cx, cy); display(edisplay, eactivation); set_need_redraw(); return true;
       }
-      inline bool set_window_pos(::zorder zorder, const ::point & point, const ::size & size, edisplay edisplay = display_default, eactivation eactivation = activation_none)
+      inline bool set_window_pos(::zorder zorder, const ::point & point, const ::size & size, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
          return set_window_pos(zorder, point.x, point.y, size.cx, size.cy, edisplay, eactivation);
       }
@@ -287,19 +287,19 @@ namespace user
       {
          return window_move(point.x, point.y);
       }
-      inline bool window_size(const ::size & size, edisplay edisplay = display_default, eactivation eactivation = activation_none)
+      inline bool window_size(const ::size & size, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
          return window_size(size.cx, size.cy, edisplay, eactivation);
       }
-      inline bool window_place(const ::point & point, const ::size & size, edisplay edisplay = display_default, eactivation eactivation = activation_none)
+      inline bool window_place(const ::point & point, const ::size & size, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
          return window_place(point.x, point.y, size.cx, size.cy, edisplay, eactivation);
       }
-      inline bool set_window_pos(::zorder zorder, const ::rect & rect, edisplay edisplay = display_default, eactivation eactivation = activation_none)
+      inline bool set_window_pos(::zorder zorder, const ::rect & rect, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
          return set_window_pos(zorder, rect.origin(), rect.size(), edisplay, eactivation);
       }
-      inline bool window_place(const ::rect & rect, edisplay edisplay = display_default, eactivation eactivation = activation_none)
+      inline bool window_place(const ::rect & rect, edisplay edisplay = e_display_default, eactivation eactivation = e_activation_default)
       {
          return window_place(rect.origin(), rect.size(), edisplay, eactivation);
       }

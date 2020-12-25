@@ -121,7 +121,7 @@ namespace html
 
             ev.m_puie = m_pcheckbox;
             ev.m_actioncontext = ::action_context(::source_data) +  ::source_load;
-            ev.m_eevent = ::user::event_initialize_control;
+            ev.m_eevent = ::user::e_event_initialize_control;
             ev.m_uiEvent = 0;
 
             pdata->m_pcoredata->m_pform->on_control_event(&ev);
@@ -148,7 +148,7 @@ namespace html
 
          m_pcheckbox->place(m_box);
 
-         m_pcheckbox->display(::display_normal);
+         m_pcheckbox->display(::e_display_normal);
 
       }
 

@@ -10,6 +10,43 @@ message_box::message_box()
 }
 
 
+message_box::message_box(const payload & payload)
+{
+
+   if (payload.get_type() == type_string)
+   {
+
+      m_strMessage = payload;
+
+   }
+   else if (payload.has_property("message") && payload["message"].has_char())
+   {
+
+      m_strMessage = payload["message"];
+
+   }
+   else if (payload.has_property("format") && payload["format"].has_char())
+   {
+
+      m_strMessage = payload.propset().format(payload["format"]);
+
+   }
+
+   m_puserprimitive = payload["parent"].cast < ::layered >();
+   m_strTitle = payload["title"];
+   m_emessagebox = (enum_message_box)payload["flags"].i64();
+
+   //if (m_puserprimitive)
+   //{
+
+   //   //m_oswindow = m_puserinteractionParent->get_safe_handle();
+
+   //}
+
+}
+
+
+
 message_box::~message_box()
 {
 
@@ -31,7 +68,7 @@ message_box::~message_box()
 //}
 
 
-CLASS_DECL_ACME ::estatus message_box(oswindow oswindow, const char* pszText, const char* pszTitle, ::emessagebox emessagebox, const ::promise::process & process)
+CLASS_DECL_ACME ::estatus message_box(oswindow oswindow, const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
    __throw(todo("message_box"));

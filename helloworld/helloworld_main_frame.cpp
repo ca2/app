@@ -23,7 +23,7 @@ namespace helloworld
 
          m_bExplicitTranslucency = true;
 
-         m_etranslucency = ::user::translucency_none;
+         m_etranslucency = ::user::e_translucency_none;
 
       }
       else
@@ -85,7 +85,7 @@ namespace helloworld
    }
 
 
-   bool main_frame::get_translucency(::user::e_translucency & etranslucency, ::user::e_element eelement, ::user::interaction * pinteraction)
+   bool main_frame::get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::interaction * pinteraction)
    {
 
       if (m_bExplicitTranslucency)
@@ -104,9 +104,9 @@ namespace helloworld
       //      return true;
 
       //}
-      //etranslucency = ::user::translucency_present;
+      //etranslucency = ::user::e_translucency_present;
 
-      ////      etranslucency = ::user::translucency_none;
+      ////      etranslucency = ::user::e_translucency_none;
 
       //return true;
 

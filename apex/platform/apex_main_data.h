@@ -17,10 +17,10 @@ public:
    string                           m_strCommandLine;
    string                           m_strStandalone;
    LPFN_MAIN_RUNNER                 m_mainrunnera[64];
-   ::edisplay                       m_edisplay;
-   ::eactivation                    m_eactivation;
+   ::e_display                      m_edisplay;
+   ::e_activation                   m_eactivation;
    string                           m_strAppId;
-   ::file::path                     m_pathCacheDir;
+   ::file::path                     m_pathCacheDirectory;
 
 #ifdef WINDOWS
 
@@ -40,8 +40,8 @@ public:
    void system_construct(int argc, char** argv);
    void system_construct(int argc, wchar_t** argv);
 
-   void system_construct(const char* pszCommandLine, const ::edisplay& edisplay = ::display_none);
-   void system_construct(os_local* poslocal, const ::edisplay& edisplay = ::display_none);
+   void system_construct(const char* pszCommandLine, const ::e_display& edisplay = ::e_display_none);
+   void system_construct(os_local* poslocal, const ::e_display& edisplay = ::e_display_none);
 
 #ifdef WINDOWS_DESKTOP
 

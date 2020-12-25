@@ -19,6 +19,8 @@ enum enum_message : ::i64
 
    e_message_mouse_activate = 0x0021,
 
+   e_message_context_menu = 0x007B,
+
    e_message_key_first = 256,
    e_message_key_down = 256,
    e_message_key_up = 257,

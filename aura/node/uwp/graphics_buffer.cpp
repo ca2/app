@@ -5,6 +5,7 @@
 #include "aura/user/_user.h"
 #include "buffer.h"
 #include <stdio.h>
+#include "aura/node/uwp/directx_application.h"
 
 
 #include "__debug_power.h"
@@ -50,7 +51,7 @@ namespace uwp
 
       auto puwpimpl = pimpl->cast < ::uwp::interaction_impl >();
 
-      m_frameworkview = puwpimpl->m_frameworkview;
+      m_pframeworkview = puwpimpl->m_pframeworkview;
 
       return estatus;
 
@@ -76,9 +77,9 @@ namespace uwp
    ::draw2d::graphics* buffer::on_begin_draw()
    {
 
-      auto directxapplication = m_frameworkview;
+      auto pframeworkview = m_pframeworkview;
 
-      if (!directxapplication)
+      if (!pframeworkview)
       {
 
          return nullptr;
@@ -86,7 +87,7 @@ namespace uwp
       }
 
 
-      auto directx = directxapplication->m_directx;
+      auto directx = pframeworkview->m_directx;
 
       auto pdevicecontext = directx->get_device_context();
 
@@ -103,7 +104,7 @@ namespace uwp
 
       pdevicecontext->BeginDraw();
 
-      auto colorBackground = m_frameworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
+      auto colorBackground = m_pframeworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
       D2D1_COLOR_F cr = {};
 
@@ -163,7 +164,7 @@ namespace uwp
       //if (m_bNewBuffer)
       //{
 
-         m_frameworkview->m_directx->Present();
+         m_pframeworkview->m_directx->Present();
 
          //m_bNewBuffer = false;
 
@@ -180,7 +181,7 @@ namespace uwp
       if (m_bNewBuffer)
       {
 
-         m_frameworkview->m_directx->Present();
+         m_pframeworkview->m_directx->Present();
 
       }
 

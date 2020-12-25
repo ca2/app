@@ -185,9 +185,9 @@ namespace windows
 
 
       // advanced creation (allows access to extended styles)
-      //virtual bool create_window_ex(::user::interaction * pinteraction, ::user::create_struct & cs, ::user::interaction * puiParent, id id) override;
+      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::interaction * puiParent, id id) override;
 
-      virtual bool _native_create_window_ex(::user::create_struct & cs);
+      virtual bool _native_create_window_ex(__pointer(::user::create_struct) pcreatestruct);
 
       virtual bool destroy_impl_only() override;
       virtual bool DestroyWindow() override;
@@ -195,7 +195,7 @@ namespace windows
       virtual void destroy_window() override;
 
       // special pre-creation and interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(::user::create_struct& cs);
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct);
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
@@ -257,7 +257,7 @@ namespace windows
       //i32 GetWindowRgn(HRGN hRgn);
 
       virtual ::u32 ArrangeIconicWindows();
-      //virtual void BringToTop(::edisplay edisplay);
+      //virtual void BringToTop(::e_display edisplay);
       //virtual bool BringWindowToTop();
       //using ::user::interaction_impl::get_window_rect;
       //virtual bool get_window_rect(RECT64 * prect);
@@ -300,10 +300,10 @@ namespace windows
       virtual void ValidateRect(LPCRECT32 rect);
 
       virtual void ValidateRgn(::draw2d::region* pRgn);
-      virtual bool display(::edisplay edisplay);
+      virtual bool display(::e_display edisplay);
 
 
-      virtual void sketch_prepare_window_minimize(::eactivation eactivation) override;
+      virtual void sketch_prepare_window_minimize(::e_activation eactivation) override;
       virtual void sketch_prepare_window_maximize() override;
       virtual void sketch_prepare_window_full_screen(const ::rect & rectHint = nullptr) override;
       virtual void sketch_prepare_window_restore(edisplay edisplay) override;
@@ -322,7 +322,7 @@ namespace windows
 
       virtual bool EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
 
-      //virtual bool DrawAnimatedRects(i32 idAni, CONST LPRECTprcFrom, CONST LPRECTlprcTo);
+      //virtual bool DrawAnimatedRects(i32 idAni, const LPRECTprcFrom, const LPRECTlprcTo);
 
       virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const rect & prc, ::u32 uFlags);
 
@@ -774,7 +774,7 @@ namespace windows
       virtual bool get_rect_normal(RECT32 * prect);
       virtual void register_drop_target();
       virtual void show_task(bool bShow);
-      virtual void window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation) override;
+      virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
 
 
       virtual void non_top_most_upper_window_rects(::rect_array& recta) override;

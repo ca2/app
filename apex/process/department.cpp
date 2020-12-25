@@ -26,7 +26,7 @@ namespace process
    }
 
 
-   payload department::get_output(const char * pszCmdLine,const ::duration & dur,::edisplay edisplay, bool * pbPotentialTimeout)
+   payload department::get_output(const char * pszCmdLine,const ::duration & dur,::e_display edisplay, bool * pbPotentialTimeout)
    {
 
       string strRead;
@@ -39,7 +39,7 @@ namespace process
 
 
 
-   exit_status department::retry(const char * pszCmdLine,const ::duration & dur,::edisplay edisplay, bool * pbPotentialTimeout)
+   exit_status department::retry(const char * pszCmdLine,const ::duration & dur,::e_display edisplay, bool * pbPotentialTimeout)
    {
 
       process_processor proc(get_context_application(), pszCmdLine, dur, pbPotentialTimeout);
@@ -49,7 +49,7 @@ namespace process
    }
 
 
-   exit_status department::synch(const char * pszCmdLine, ::edisplay edisplay, const ::duration & dur, bool * pbPotentialTimeout)
+   exit_status department::synch(const char * pszCmdLine, ::e_display edisplay, const ::duration & dur, bool * pbPotentialTimeout)
    {
 
       process_processor proc(get_context_application(), pszCmdLine, dur, pbPotentialTimeout);
@@ -59,7 +59,7 @@ namespace process
    }
 
 
-   bool department::launch(const char * pszCmdLine,::edisplay edisplay, const char * pszDir)
+   bool department::launch(const char * pszCmdLine,::e_display edisplay, const char * pszDir)
    {
 
       const char * pszEnd = nullptr;
@@ -81,7 +81,7 @@ namespace process
    }
 
 
-   exit_status department::elevated_synch(const char * pszCmdLine,::edisplay edisplay,const ::duration & dur,bool * pbPotentialTimeout)
+   exit_status department::elevated_synch(const char * pszCmdLine,::e_display edisplay,const ::duration & dur,bool * pbPotentialTimeout)
    {
 
       process_processor proc(get_context_application(),pszCmdLine,dur,pbPotentialTimeout, nullptr, true);
@@ -199,7 +199,7 @@ namespace process
 
          }
 
-         millis_sleep(100);
+         sleep(100_ms);
 
       }
 
@@ -248,7 +248,7 @@ namespace process
    void department::process_thread::run_elevated()
    {
 
-      m_pprocess->synch_elevated(m_strCmdLine,display_none,m_millisTimeout,m_pbPotentialTimeout);
+      m_pprocess->synch_elevated(m_strCmdLine,e_display_none,m_millisTimeout,m_pbPotentialTimeout);
 
       m_result.add((::estatus    ) m_pprocess->m_exitstatus.m_iExitCode);
 

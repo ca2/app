@@ -40,7 +40,7 @@ bool oswindow_data::iconify()
 }
 
 
-bool is_visible(e_display);
+bool is_visible(enum_display);
 
 bool oswindow_data::show_window(int iShow)
 {

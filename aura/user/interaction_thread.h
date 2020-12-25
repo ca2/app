@@ -42,7 +42,7 @@ namespace user
 #endif
 
       __pointer(interaction_impl)            m_pimpl;
-      ::user::create_struct *                m_pcreatestruct;
+      __pointer(::user::create_struct)       m_pcreatestruct;
       __reference(prodevian)                 m_pprodevian;
       oswindow                               m_oswindow;
 
@@ -57,13 +57,13 @@ namespace user
 
 
 #ifdef DEBUG
-      virtual i64 add_ref(OBJ_REF_DBG_PARAMS);
-      virtual i64 dec_ref(OBJ_REF_DBG_PARAMS);
-      virtual i64 release(OBJ_REF_DBG_PARAMS);
+      virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override;
+      virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
+      virtual i64 release(OBJ_REF_DBG_PARAMS) override;
 #endif
 
 
-      virtual ::estatus     initialize_user_thread(interaction_impl * pimpl, ::user::create_struct & cs);
+      virtual ::estatus     initialize_user_thread(interaction_impl * pimpl, __pointer(::user::create_struct) pcreatestruct);
 
 
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK

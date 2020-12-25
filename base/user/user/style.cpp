@@ -114,7 +114,7 @@ namespace base
 //
 //
 //
-//      theme_current_control(control_type_button);
+//      theme_current_control(e_control_type_button);
 //
 //      create_point_font(font_default, FONT_SANS, 11.0);
 //
@@ -127,7 +127,7 @@ namespace base
 //      create_session_default_opaque_color(color_background_disabled, COLOR_3DFACE);
 //      create_session_default_opaque_color(color_background_hover, COLOR_3DFACE);
 //      create_flag(flag_border);
-//      create_translucency(element_none, ::user::translucency_none);
+//      create_translucency(e_element_none, ::user::e_translucency_none);
 //
 //
 //
@@ -144,7 +144,7 @@ namespace base
 //      create_color(color_background_disabled, ARGB(100, 180, 192, 255));
 //      create_color(color_background_hover, ARGB(125, 180, 192, 255));
 //      create_flag(flag_border);
-//      create_translucency(element_none, ::user::translucency_present);
+//      create_translucency(e_element_none, ::user::e_translucency_present);
 //
 //
 //
@@ -160,7 +160,7 @@ namespace base
 //      create_session_default_color(color_background_disabled, 200, COLOR_3DHIGHLIGHT);
 //      create_session_default_color(color_background_hover, 200, COLOR_3DHIGHLIGHT);
 //      create_flag(flag_border, false);
-//      create_translucency(element_none, ::user::translucency_present);
+//      create_translucency(e_element_none, ::user::e_translucency_present);
 //
 //
 //
@@ -177,7 +177,7 @@ namespace base
 //      create_session_default_color(color_background_disabled, 200, COLOR_3DFACE);
 //      create_session_default_color(color_background_hover, 200, COLOR_3DFACE);
 //      create_flag(flag_border, false);
-//      create_translucency(element_none, ::user::translucency_present);
+//      create_translucency(e_element_none, ::user::e_translucency_present);
 //
 //
 //      theme_current_control(control_system_menu_close);
@@ -192,7 +192,7 @@ namespace base
 //      create_color(color_background_disabled, ARGB(200, 192, 192, 192));
 //      create_color(color_background_hover, ARGB(200, 223, 192, 192));
 //      create_flag(flag_border, false);
-//      create_translucency(element_none, ::user::translucency_present);
+//      create_translucency(e_element_none, ::user::e_translucency_present);
 //
 //
 //      theme_current_control(control_system_menu_popup);
@@ -208,7 +208,7 @@ namespace base
 //      create_session_default_color(color_background_disabled, 200, COLOR_3DFACE);
 //      create_session_default_color(color_background_hover, 200, COLOR_3DFACE);
 //      create_flag(flag_border, false);
-//      create_translucency(element_none, ::user::translucency_present);
+//      create_translucency(e_element_none, ::user::e_translucency_present);
 //
 //
 //   }
@@ -260,16 +260,16 @@ namespace base
 //
 //   //virtual color32_t           _001GetColor(::user::interaction * pinteraction, e_color ecolor, color32_t crDefault = 0);
 //   //virtual ::draw2d::font_pointer  _001GetFont(::user::interaction * pinteraction, e_font efont, ::draw2d::font * pfont = nullptr);
-//   //virtual e_translucency     _001GetTranslucency(::user::interaction * pinteraction, e_element eelement = element_none, e_translucency etranslucencyDefault = translucency_undefined);
+//   //virtual enum_translucency     _001GetTranslucency(::user::interaction * pinteraction, enum_element eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
 //   //virtual bool               _001GetFlag(::user::interaction * pinteraction, ::user::e_flag eflag, bool bDefault = false);
 //   //virtual const rect &               _001GetRect(::user::interaction * pinteraction, ::user::e_rect erect, ::rect rectDefault = nullptr);
 //   //virtual int                _001GetInt(::user::interaction * pinteraction, ::user::e_int eint, int iDefault = 0);
 //   //virtual double             _001GetDouble(::user::interaction * pinteraction, ::user::e_double edouble, double dDefault = 0.0);
 //
-//   //virtual bool _001IsBackgroundBypass(::user::interaction * pinteraction, e_element eelement = element_none);
-//   //virtual bool _001IsTransparent(::user::interaction * pinteraction, e_element eelement = element_none);
-//   //virtual bool _001IsTranslucent(::user::interaction * pinteraction, e_element eelement = element_none);
-//   //virtual bool _001HasTranslucency(::user::interaction * pinteraction, e_element eelement = element_none);
+//   //virtual bool _001IsBackgroundBypass(::user::interaction * pinteraction, enum_element eelement = e_element_none);
+//   //virtual bool _001IsTransparent(::user::interaction * pinteraction, enum_element eelement = e_element_none);
+//   //virtual bool _001IsTranslucent(::user::interaction * pinteraction, enum_element eelement = e_element_none);
+//   //virtual bool _001HasTranslucency(::user::interaction * pinteraction, enum_element eelement = e_element_none);
 //
 //
 //
@@ -290,7 +290,7 @@ namespace base
 //
 //   //virtual bool userstyle_color(color32_t & cr, e_color ecolor, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_font(::draw2d::font_pointer & sp, e_font efont, ::user::interaction * pinteraction);
-//   //virtual bool userstyle_translucency(e_translucency & etranslucency, e_element eelement, ::user::interaction * pinteraction);
+//   //virtual bool userstyle_translucency(enum_translucency & etranslucency, enum_element eelement, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_flag(bool & bSet, ::user::e_flag eflag, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_rect(const rect & & rect, ::user::e_rect erect, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_int(int & i, ::user::e_int eint, ::user::interaction * pinteraction);
@@ -299,7 +299,7 @@ namespace base
 //
 //   //virtual bool style_color(color32_t & cr, e_color ecolor, ::user::interaction * pinteraction);
 //   //virtual bool style_font(::draw2d::font_pointer & sp, e_font efont, ::user::interaction * pinteraction);
-//   //virtual bool style_translucency(e_translucency & etranslucency, e_element eelement, ::user::interaction * pinteraction);
+//   //virtual bool style_translucency(enum_translucency & etranslucency, enum_element eelement, ::user::interaction * pinteraction);
 //   //virtual bool style_flag(bool & bSet, ::user::e_flag eflag, ::user::interaction * pinteraction);
 //   //virtual bool style_rect(const rect & & rect, ::user::e_rect erect, ::user::interaction * pinteraction);
 //   //virtual bool style_int(int & i, ::user::e_int eint, ::user::interaction * pinteraction);

@@ -225,7 +225,7 @@ namespace zip
          if (::is_set(petype))
          {
 
-            *petype = ::file::type_file;
+            *petype = ::file::e_type_file;
 
          }
 
@@ -238,7 +238,7 @@ namespace zip
          if (::is_set(petype))
          {
 
-            *petype = ::file::type_folder;
+            *petype = ::file::e_type_folder;
 
          }
 

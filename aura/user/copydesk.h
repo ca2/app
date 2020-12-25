@@ -23,7 +23,7 @@ namespace user
       enum e_flag
       {
 
-         flag_none = 0,
+         e_flag_none = 0,
          flag_prevent_data_blob = 1,
 
       };
@@ -50,7 +50,7 @@ namespace user
       virtual bool has_filea();
 
       virtual bool set_plain_text(const string & str, bool bForceSetIfEmpty = false);
-      virtual bool get_plain_text(string & str, e_flag eflag = flag_none);
+      virtual bool get_plain_text(string & str, e_flag eflag = e_flag_none);
       virtual bool has_plain_text();
 
       virtual bool desk_to_image(::image_pointer & pimage);

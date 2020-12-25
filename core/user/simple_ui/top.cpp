@@ -34,7 +34,12 @@ namespace simple_ui
 
       MESSAGE_LINK(e_message_activate, pchannel, this, &top::_001OnActivate);
       MESSAGE_LINK(e_message_ncactivate, pchannel, this, &top::_001OnNcActivate);
+
+#ifdef WINDOWS_DESKTOP
+
       MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &top::_001OnSysCommand);
+
+#endif
 
 
    }

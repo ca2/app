@@ -11,7 +11,7 @@ namespace browser
       simple_main_frame(pobject)
    {
 
-      //m_ewindowflag += window_flag_disable_window_placement_snapping;
+      //m_ewindowflag += e_window_flag_disable_window_placement_snapping;
 
       m_bDefaultCreateToolbar = false;
 
@@ -26,7 +26,7 @@ namespace browser
 
          m_bExplicitTranslucency = true;
 
-         m_etranslucency = ::user::translucency_none;
+         m_etranslucency = ::user::e_translucency_none;
 
       }
       else
@@ -83,7 +83,7 @@ namespace browser
    }
 
 
-   bool main_frame::get_translucency(::user::e_translucency & etranslucency, ::user::e_element eelement, ::user::style_context * pcontext)
+   bool main_frame::get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::style_context * pcontext)
    {
 
       if (m_bExplicitTranslucency)

@@ -273,7 +273,7 @@ namespace userex
             INFO("");
             INFO("");
 
-            if (pframewindow->m_ewindowflag & window_flag_window_created)
+            if (pframewindow->m_ewindowflag & e_window_flag_window_created)
             {
 
 
@@ -304,7 +304,7 @@ namespace userex
          INFO("");
 
 
-         if (pframewindow->m_ewindowflag & window_flag_window_created)
+         if (pframewindow->m_ewindowflag & e_window_flag_window_created)
          {
 
 
@@ -347,7 +347,7 @@ namespace userex
       if (pframewindow.is_set())
       {
 
-         if (!(pframewindow->m_ewindowflag & window_flag_window_created))
+         if (!(pframewindow->m_ewindowflag & e_window_flag_window_created))
          {
 
             pframewindow->m_pdescriptor->m_puserinteractionParent = nullptr;
@@ -577,7 +577,7 @@ namespace userex
 
       m_mapframe[idView] = dynamic_cast < simple_frame_window * > (pview->GetParentFrame());
 
-      m_mapframe[idView]->display(display_none);
+      m_mapframe[idView]->display(e_display_none);
 
       _001DefaultLayoutView(idView);
 
@@ -641,7 +641,7 @@ namespace userex
          else
          {
 
-            pdocument = pimpactsystem->open_document_file(get_context_application(), type_empty, __visible(true), this, m_bWfiUpDownTarget ? window_flag_updown : window_flag_none, id);
+            pdocument = pimpactsystem->open_document_file(get_context_application(), type_empty, __visible(true), this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, id);
 
          }
 
@@ -656,7 +656,7 @@ namespace userex
       else
       {
 
-         pdocument = Application.defer_create_view(idView, this, m_bWfiUpDownTarget ? window_flag_updown : window_flag_none, id);
+         pdocument = Application.defer_create_view(idView, this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, id);
 
       }
 

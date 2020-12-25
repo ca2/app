@@ -43,14 +43,14 @@
 			containerPortal = 9A204A8C2433CA6700D45614 /* coreimage_imaging.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 9A574B9816AAB906000CC4EF;
-			remoteInfo = freeimage_imaging;
+			remoteInfo = imaging_freeimage;
 		};
 		9A204A952433CA6800D45614 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 9A204A8C2433CA6700D45614 /* coreimage_imaging.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = 07B65764190F3CA2002DAADE;
-			remoteInfo = ios_freeimage_imaging;
+			remoteInfo = ios_imaging_freeimage;
 		};
 		9A204A972433CA6800D45614 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;

@@ -32,7 +32,7 @@ public:
    virtual void finalize() override;
 
 
-   const char* debug_note() const;
+   const char* debug_note() const override;
 
 
 };

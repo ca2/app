@@ -32,6 +32,10 @@ namespace user
 
       };
 
+
+      int                                       m_bitExtendOnParent : 1;
+      int                                       m_bitExtendOnParentIfClientOnly : 1;
+
       int                                       m_bitToolWindow:1;
 
       ewindowflag                               m_ewindowflag;
@@ -131,17 +135,17 @@ namespace user
       //bool                                    m_bFreeHandMouseMove; this is the default
       // if high frequency mouse move notification is required
       // create a fast path/low latency callback system
-      ::millis                                    m_millisMouseMove;
-      ::millis                                    m_millisMouseMoveIgnore;
-      __pointer(alpha_source)                   m_palphasource;
-      i32                                       m_iItemHeight;
-      point                                     m_pointMoveCursor;
-      bool                                      m_bDefaultWalkPreTranslateParentTree;
-      __pointer(::aura::drawable)               m_pdrawableBackground;
-      bool                                      m_bBackgroundBypass;
-      millis                                      m_millisLastFullUpdate;
-      bool                                      m_bSizeMove;
-      millis                                      m_millisLastVisualChange;
+      ::millis                                     m_millisMouseMove;
+      ::millis                                     m_millisMouseMoveIgnore;
+      __pointer(alpha_source)                      m_palphasource;
+      double                                       m_dItemHeight;
+      point                                        m_pointMoveCursor;
+      bool                                         m_bDefaultWalkPreTranslateParentTree;
+      __pointer(::aura::drawable)                  m_pdrawableBackground;
+      bool                                         m_bBackgroundBypass;
+      millis                                       m_millisLastFullUpdate;
+      bool                                         m_bSizeMove;
+      millis                                       m_millisLastVisualChange;
       __reference(::file::insert_item)          m_pitemComposing;
       __pointer(primitive_impl)                 m_pimpl;
       __pointer(interaction_impl)               m_pimpl2;
@@ -201,9 +205,16 @@ namespace user
       class control_descriptor& descriptor();
       const class control_descriptor& descriptor() const;
 
-      ::user::interaction* get_host_wnd() override;
+      ::user::interaction* get_host_wnd() const override;
 
       ::user::item* get_user_item(const ::user::item& item);
+
+      virtual ::user::e_state get_user_state() const;
+
+      virtual bool has_hover() const;
+
+      virtual bool has_link() const;
+
 
       const class ::user::interaction_layout& layout() const { return m_layout; }
       class ::user::interaction_layout& layout() { return m_layout; }
@@ -212,19 +223,21 @@ namespace user
       //virtual void task_on_term(::task* pthread) override;
 
 
-      virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
+      //virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
 
 
       virtual ::estatus main_sync(const ::promise::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
 
+      virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal) override;
 
-      inline void auto_prodevian_on_show() { m_ewindowflag |= window_flag_auto_prodevian_on_show; }
-      inline void clear_auto_prodevian_on_show() { m_ewindowflag -= window_flag_auto_prodevian_on_show; }
-      inline bool is_auto_prodevian_on_show() { return m_ewindowflag & window_flag_auto_prodevian_on_show; }
 
-      inline void visual_changed() { m_ewindowflag |= window_flag_visual_changed; }
-      inline void clear_visual_changed() { m_ewindowflag -= window_flag_visual_changed; }
-      inline bool is_visual_changed()const { return m_ewindowflag & window_flag_visual_changed; }
+      inline void auto_prodevian_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }
+      inline void clear_auto_prodevian_on_show() { m_ewindowflag -= e_window_flag_auto_prodevian_on_show; }
+      inline bool is_auto_prodevian_on_show() { return m_ewindowflag & e_window_flag_auto_prodevian_on_show; }
+
+      inline void visual_changed() { m_ewindowflag |= e_window_flag_visual_changed; }
+      inline void clear_visual_changed() { m_ewindowflag -= e_window_flag_visual_changed; }
+      inline bool is_visual_changed()const { return m_ewindowflag & e_window_flag_visual_changed; }
 
 
       bool is_ok()
@@ -232,7 +245,7 @@ namespace user
 
          return ::is_set(this)
             && m_pimpl.is_set()
-            && (m_ewindowflag & window_flag_is_window)
+            && (m_ewindowflag & e_window_flag_is_window)
             && !m_pimpl->m_bDestroying;
 
       }
@@ -244,8 +257,8 @@ namespace user
       virtual void load_style(string strStyle);
 
 
-      virtual::edisplay window_stored_display() const;
-      virtual::edisplay window_previous_display() const;
+      virtual::e_display window_stored_display() const;
+      virtual::e_display window_previous_display() const;
 
 
       virtual int get_derived_height(int iWidth);
@@ -254,21 +267,21 @@ namespace user
 
       virtual bool is_full_screen_enabled() const;
 
-      virtual bool get_element_rect(RECT32* prect, e_element eelement);
+      virtual bool get_element_rect(RECT32* prect, enum_element eelement);
 
-      virtual e_element get_default_element() const;
-      virtual ::draw2d::font_pointer get_font(style * pstyle, e_element eelement, estate estate = e_state_none) const;
+      virtual enum_element get_default_element() const;
+      virtual ::draw2d::font_pointer get_font(style * pstyle, enum_element eelement, estate estate = e_state_none) const;
       inline ::draw2d::font_pointer get_font(style* pstyle, estate estate = e_state_none) const { return get_font(pstyle, get_default_element(), estate); }
-      virtual e_translucency get_translucency(style* pstyle) const;
+      virtual enum_translucency get_translucency(style* pstyle) const;
       virtual int get_int(style* pstyle, enum_int eint, int iDefault = 0) const;
       virtual double get_double(style* pstyle, enum_double edouble, double dDefault = 0.) const;
-      virtual ::rect get_border(style* pstyle, e_element eelement, estate estate = e_state_none) const;
-      inline ::rect get_border(style* pstyle, estate estate = e_state_none) const { return get_border(pstyle, get_default_element(), estate); }
-      virtual ::rect get_padding(style* pstyle, e_element eelement, estate elayout = e_state_none) const;
-      inline ::rect get_padding(style* pstyle, estate estate = e_state_none) const { return get_padding(pstyle, get_default_element(), estate); }
-      virtual ::rect get_margin(style* pstyle, e_element eelement, estate elayout = e_state_none) const;
-      inline ::rect get_margin(style* pstyle, estate estate = e_state_none) const { return get_margin(pstyle, get_default_element(), estate); }
-      virtual ::color get_color(style* pstyle, e_element eelement, estate elayout = e_state_none) const;
+      virtual ::rectd get_border(style* pstyle, enum_element eelement, estate estate = e_state_none) const;
+      inline ::rectd get_border(style* pstyle, estate estate = e_state_none) const { return get_border(pstyle, get_default_element(), estate); }
+      virtual ::rectd get_padding(style* pstyle, enum_element eelement, estate elayout = e_state_none) const;
+      inline ::rectd get_padding(style* pstyle, estate estate = e_state_none) const { return get_padding(pstyle, get_default_element(), estate); }
+      virtual ::rectd get_margin(style* pstyle, enum_element eelement, estate elayout = e_state_none) const;
+      inline ::rectd get_margin(style* pstyle, estate estate = e_state_none) const { return get_margin(pstyle, get_default_element(), estate); }
+      virtual ::color get_color(style* pstyle, enum_element eelement, estate elayout = e_state_none) const;
       inline ::color get_color(style* pstyle, estate estate = e_state_none) const { return get_color(pstyle, get_default_element(), estate); }
 
       virtual eflag get_draw_flags(style* pstyle) const;
@@ -303,7 +316,7 @@ namespace user
       virtual bool add_control(arguments arguments);
 
 
-      inline bool is_graphical() const { return !m_bMessageWindow && m_ewindowflag & window_flag_graphical; }
+      inline bool is_graphical() const { return !m_bMessageWindow && m_ewindowflag & e_window_flag_graphical; }
 
 
       virtual ::sync * mutex_draw();
@@ -325,7 +338,7 @@ namespace user
 
       interaction * get_tooltip();
 
-      virtual ::estatus set_tool_window(bool bSet = true);
+      virtual ::estatus set_tool_window(bool bSet = true) override;
 
       virtual double get_rotate();
       virtual ::user::form * get_form();
@@ -401,9 +414,9 @@ namespace user
       virtual bool is_layout_ready() const;
 
 
-      virtual bool display(::edisplay edisplay = display_default, ::eactivation eactivation = ::activation_none) override;
+      virtual bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = ::e_activation_default) override;
 
-      virtual ::zorder zorder(e_layout elayout = layout_design) const;
+      virtual ::zorder zorder(enum_layout elayout = e_layout_design) const;
       virtual void order(::zorder zorder);
 
       inline void order_top() { order(zorder_top); }
@@ -417,19 +430,19 @@ namespace user
       //virtual void window_apply_visual(const class window_state& windowstate) override;
 
 
-      virtual void sketch_prepare_window_minimize(::eactivation eactivation) override;
+      virtual void sketch_prepare_window_minimize(::e_activation eactivation) override;
       virtual void sketch_prepare_window_maximize() override;
       virtual void sketch_prepare_window_full_screen(const ::rect& rectHint = nullptr) override;
       virtual void sketch_prepare_window_restore(edisplay edisplay) override;
       virtual void sketch_prepare_window_dock(edisplay edisplay) override;
 
 
-      inline void get_client_rect(LPRECT32 lprect, e_layout elayout = layout_design) const { layout().state(elayout).client_rect(lprect); }
-      inline ::rect get_client_rect(e_layout elayout = layout_design) const { return layout().state(elayout).client_rect(); }
+      inline void get_client_rect(LPRECT32 lprect, enum_layout elayout = e_layout_design) const { layout().state(elayout).client_rect(lprect); }
+      inline ::rect get_client_rect(enum_layout elayout = e_layout_design) const { return layout().state(elayout).client_rect(); }
 
 
-      virtual void get_window_rect(LPRECT32 lprect, e_layout elayout = layout_design) const { *lprect = get_window_rect(elayout); }
-      virtual ::rect get_window_rect(e_layout elayout = layout_design) const;
+      virtual void get_window_rect(LPRECT32 lprect, enum_layout elayout = e_layout_design) const { *lprect = get_window_rect(elayout); }
+      virtual ::rect get_window_rect(enum_layout elayout = e_layout_design) const;
 
 
       inline bool set_prodevian() { return add_prodevian(this); }
@@ -441,16 +454,16 @@ namespace user
 
 
       virtual bool is_frame_window();
-      virtual bool is_this_visible(e_layout elayout = layout_design) override;
+      virtual bool is_this_visible(enum_layout elayout = e_layout_design) override;
 
       virtual bool sketch_on_display();
 
 
-      inline bool is_this_visible(e_layout elayout = layout_design) const;
-      inline bool is_this_screen_visible(e_layout elayout = layout_design) const;
+      inline bool is_this_visible(enum_layout elayout = e_layout_design) const;
+      inline bool is_this_screen_visible(enum_layout elayout = e_layout_design) const;
 
-      inline bool is_window_visible(e_layout elayout = layout_design) const;
-      inline bool is_window_screen_visible(e_layout elayout = layout_design) const;
+      inline bool is_window_visible(enum_layout elayout = e_layout_design) const;
+      inline bool is_window_screen_visible(enum_layout elayout = e_layout_design) const;
 
 
       virtual bool create_message_queue(const char* lpszName) override;
@@ -472,8 +485,14 @@ namespace user
 
       virtual bool is_place_holder() override;
 
-      virtual e_cursor get_cursor();
-      virtual bool set_cursor(e_cursor ecursor);
+      
+      virtual e_cursor get_cursor() override;
+
+
+      virtual bool set_cursor(e_cursor ecursor) override;
+
+
+      virtual ::point get_cursor_pos() const override;
 
 
       virtual bool is_left_button_pressed() const;
@@ -487,7 +506,7 @@ namespace user
 
 
       virtual bool _is_window() const override;
-      inline bool is_window() const { return m_ewindowflag & window_flag_is_window; }
+      inline bool is_window() const { return m_ewindowflag & e_window_flag_is_window; }
 
       virtual void ExitHelpMode();
 
@@ -682,6 +701,9 @@ namespace user
 
       virtual void on_visual_applied();
 
+      virtual ::sized _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics) override;
+      virtual ::sized _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics) override;
+
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
       virtual void on_reposition() override;
       virtual void on_show_window() override;
@@ -700,7 +722,7 @@ namespace user
 #endif
 
 
-      virtual bool pre_create_window(::user::create_struct& cs) override;
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
 
 
       virtual bool subclass_window(oswindow posdata) override;
@@ -716,7 +738,7 @@ namespace user
       virtual bool create_window(::user::interaction* pparent, const ::id& id) override;
       virtual bool create_window(const char* pszClassName, const char* pszWindowName, u32 uStyle, ::user::interaction* puiParent, const ::id& id, ::create* pcreate = nullptr) override;
 
-      virtual bool create_window_ex(::user::create_struct& cs, ::user::interaction* puiParent = nullptr, const ::id& id = ::id()) override;
+      virtual bool create_window_ex(__pointer(::user::create_struct) pcs, ::user::interaction* puiParent = nullptr, const ::id& id = ::id()) override;
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
       virtual void CalcWindowRect(RECT32* pClientRect, ::u32 nAdjustType = adjustBorder) override;
 
@@ -804,9 +826,9 @@ namespace user
       //virtual void SetWindowDisplayChanged() override;
 
 
-      virtual bool call_and_set_timer(uptr uEvent, ::duration durationElapse, PFN_TIMER pfnTimer = nullptr);
-      virtual bool set_timer(uptr uEvent, ::duration durationElapse, PFN_TIMER pfnTimer = nullptr);
-      virtual bool SetTimer(uptr uEvent, ::u32 nElapse, PFN_TIMER pfnTimer = nullptr) override;
+      virtual bool call_and_set_timer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr);
+      virtual bool set_timer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr);
+      virtual bool SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr) override;
       virtual bool KillTimer(uptr uEvent) override;
 
       virtual bool is_this_enabled() const override;
@@ -1109,8 +1131,8 @@ namespace user
       virtual bool _001OnExitAppearance();
 
 
-      virtual void on_start_layout_experience(e_layout_experience elayoutexperience) override;
-      virtual void on_end_layout_experience(e_layout_experience elayoutexperience) override;
+      virtual void on_start_layout_experience(enum_layout_experience elayoutexperience) override;
+      virtual void on_end_layout_experience(enum_layout_experience elayoutexperience) override;
 
 
       virtual void show_keyboard(bool bShow = true) override;
@@ -1128,7 +1150,7 @@ namespace user
       virtual interaction& operator =(const ::rect& rect);
 
 
-      virtual void activation(::eactivation eactivation);
+      virtual void activation(::e_activation eactivation);
 
 
       virtual void display_child(const ::rect & rect);
@@ -1150,16 +1172,16 @@ namespace user
 
        //virtual void reset_window_state();
 
-      virtual index make_zoneing(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::edisplay* pedisplay = nullptr, ::eactivation eactivation = activation_none, ::zorder zorder = zorder_top);
-      virtual index best_zoneing(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::edisplay* pedisplay = nullptr, ::eactivation eactivation = activation_none, ::zorder zorder = zorder_top);
-      virtual index best_monitor(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top);
-      virtual index best_wkspace(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top);
-      virtual index good_restore(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top, edisplay edisplay = display_restore);
-      virtual index good_iconify(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top);
+      virtual index make_zoneing(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index best_zoneing(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index best_monitor(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index best_wkspace(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index good_restore(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top, edisplay edisplay = e_display_restore);
+      virtual index good_iconify(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
 
-      virtual index good_move(RECT32* prect, const ::rect& rect = nullptr, ::eactivation eeactivation = activation_none, ::zorder zorder = zorder_top);
+      virtual index good_move(RECT32* prect, const ::rect& rect = nullptr, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
       virtual index get_best_zoneing(edisplay& edisplay, ::rect* prect, const ::rect& rectRequest = ::rect(), bool bPreserveSize = false);
-      virtual index get_best_wkspace(::rect* prect, const ::rect& rect, ::eactivation eactivation = activation_none);
+      virtual index get_best_wkspace(::rect* prect, const ::rect& rect, ::e_activation eactivation = e_activation_default);
 
       virtual bool get_rect_normal(RECT32* prect);
 
@@ -1186,7 +1208,7 @@ namespace user
       virtual ::sized get_page_size();
       virtual ::estatus set_total_size(const ::sized& size);
       virtual ::estatus set_page_size(const ::sized& size);
-      virtual ::point get_parent_accumulated_scroll(e_layout elayout = layout_design) const;
+      virtual ::point get_parent_accumulated_scroll(enum_layout elayout = e_layout_design) const;
       virtual ::point get_parent_viewport_offset() const;
       virtual ::point get_ascendant_viewport_offset() const;
       virtual void get_margin_rect(RECT32* prectMargin);
@@ -1353,10 +1375,9 @@ namespace user
       virtual void simple_ui_draw_focus_rect(::draw2d::graphics_pointer & pgraphics);
 
 
-
       virtual bool on_action(const char* pszId);
 
-      virtual bool keyboard_focus_is_focusable() override;
+      virtual bool keyboard_focus_is_focusable() const override;
 
       virtual bool simple_on_control_event(::message::message* pmessage, ::user::enum_event eevent);
 
@@ -1395,8 +1416,8 @@ namespace user
       //::user::primitive* _003GetCustomMessageWnd();
       //virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics) override;
       virtual void route_command_message(::user::command* pcommand) override;
-      virtual bool has_function(e_control_function econtrolfunction) const;
-      virtual e_control_type get_control_type() const;
+      virtual bool has_function(enum_control_function econtrolfunction) const;
+      virtual enum_control_type get_control_type() const;
       //virtual void _003CallCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
       //virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) pwnd, const ::id & id, WPARAM wparam, LPARAM lparam, LRESULT& lresult);
       //virtual void _003OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
@@ -1433,7 +1454,7 @@ namespace user
       //virtual void on_control_event(::user::control_event* pevent) override;
       //virtual bool simple_on_control_event(::message::message * pmessage, ::user::enum_event eevent) override;
       //virtual void walk_pre_translate_tree(::message::message * pmessage,__pointer(::user::interaction) puiStop);
-      //virtual bool get_element_rect(RECT32* prect, e_element eelement);
+      //virtual bool get_element_rect(RECT32* prect, enum_element eelement);
       virtual void get_simple_drop_down_open_arrow_polygon(point_array& pointa);
       // control member functions END
 
@@ -1446,7 +1467,7 @@ namespace user
       // will affect the return of the utility function.
       // so, it should be very avoided using the m_pstylebase compositor
       // to implement the utility functions
-      // virtual bool _001GetMainFrameTranslucency(::user::e_translucency & etranslucency);
+      // virtual bool _001GetMainFrameTranslucency(::user::enum_translucency & etranslucency);
 
 
       //using style::select_text_color;
@@ -1520,58 +1541,58 @@ namespace user
 
 
       template < typename SIZE_SHIFTABLE >
-      inline auto screen_to_client(const SIZE_SHIFTABLE& o, e_layout elayout = layout_design) { return o - ::size(layout().screen_origin(elayout)) + ::size(get_parent_accumulated_scroll(elayout)); }
+      inline auto screen_to_client(const SIZE_SHIFTABLE& o, enum_layout elayout = e_layout_design) { return o - ::size(layout().screen_origin(elayout)) + ::size(get_parent_accumulated_scroll(elayout)); }
 
 
       template < typename POINT_SHIFTABLE >
-      inline auto client_to_screen(const POINT_SHIFTABLE& o, e_layout elayout = layout_design) { return o + layout().screen_origin(elayout) - ::size(get_parent_accumulated_scroll(elayout)); }
+      inline auto client_to_screen(const POINT_SHIFTABLE& o, enum_layout elayout = e_layout_design) { return o + layout().screen_origin(elayout) - ::size(get_parent_accumulated_scroll(elayout)); }
 
 
       template < typename SIZE_SHIFTABLE >
-      inline auto parent_to_client(const SIZE_SHIFTABLE& o, e_layout elayout = layout_design) { return o - ::size(layout().origin(elayout)); }
+      inline auto parent_to_client(const SIZE_SHIFTABLE& o, enum_layout elayout = e_layout_design) { return o - ::size(layout().origin(elayout)); }
 
 
       template < typename POINT_SHIFTABLE >
-      inline auto client_to_parent(const POINT_SHIFTABLE& o, e_layout elayout = layout_design) { return o + layout().origin(elayout); }
+      inline auto client_to_parent(const POINT_SHIFTABLE& o, enum_layout elayout = e_layout_design) { return o + layout().origin(elayout); }
 
 
       template < typename POINT_OFFSETABLE >
-      inline void _001ScreenToClient(POINT_OFFSETABLE& o, e_layout elayout = layout_design) { o -= layout().screen_origin(elayout); o += get_parent_accumulated_scroll(elayout); }
+      inline void _001ScreenToClient(POINT_OFFSETABLE& o, enum_layout elayout = e_layout_design) { o -= layout().screen_origin(elayout); o += get_parent_accumulated_scroll(elayout); }
       template < typename POINT_OFFSETABLE >
-      inline void _001ScreenToClient(POINT_OFFSETABLE* po, e_layout elayout = layout_design) { _001ScreenToClient(*po, elayout); }
-
-
-      template < typename POINT_OFFSETABLE >
-      inline void _001ClientToScreen(POINT_OFFSETABLE& o, e_layout elayout = layout_design) { o += layout().screen_origin(elayout); o -= get_parent_accumulated_scroll(elayout); }
-      template < typename POINT_OFFSETABLE >
-      inline void _001ClientToScreen(POINT_OFFSETABLE* po, e_layout elayout = layout_design) { _001ClientToScreen(*po, elayout); }
+      inline void _001ScreenToClient(POINT_OFFSETABLE* po, enum_layout elayout = e_layout_design) { _001ScreenToClient(*po, elayout); }
 
 
       template < typename POINT_OFFSETABLE >
-      inline void _001ParentToClient(POINT_OFFSETABLE& o, e_layout elayout = layout_design) { o -= layout().origin(elayout); }
+      inline void _001ClientToScreen(POINT_OFFSETABLE& o, enum_layout elayout = e_layout_design) { o += layout().screen_origin(elayout); o -= get_parent_accumulated_scroll(elayout); }
       template < typename POINT_OFFSETABLE >
-      inline void _001ParentToClient(POINT_OFFSETABLE* po, e_layout elayout = layout_design) { _001ParentToClient(*po, elayout); }
+      inline void _001ClientToScreen(POINT_OFFSETABLE* po, enum_layout elayout = e_layout_design) { _001ClientToScreen(*po, elayout); }
 
 
       template < typename POINT_OFFSETABLE >
-      inline void _001ClientToParent(POINT_OFFSETABLE& o, e_layout elayout = layout_design) { o += layout().origin(elayout); }
+      inline void _001ParentToClient(POINT_OFFSETABLE& o, enum_layout elayout = e_layout_design) { o -= layout().origin(elayout); }
       template < typename POINT_OFFSETABLE >
-      inline void _001ClientToParent(POINT_OFFSETABLE* po, e_layout elayout = layout_design) { _001ClientToParent(*po, elayout); }
-
-      inline void ScreenToClient(RECT32* prect, e_layout elayout = layout_design) { ::rect_sub(prect, layout().screen_origin(elayout)); }
-      inline void ScreenToClient(POINT32* ppoint, e_layout elayout = layout_design) { ::point_sub(ppoint, layout().screen_origin(elayout)); }
+      inline void _001ParentToClient(POINT_OFFSETABLE* po, enum_layout elayout = e_layout_design) { _001ParentToClient(*po, elayout); }
 
 
-      inline void ClientToScreen(RECT32* prect, e_layout elayout = layout_design) { ::rect_add(prect, layout().screen_origin(elayout)); }
-      inline void ClientToScreen(POINT32* ppoint, e_layout elayout = layout_design) { ::point_add(ppoint, layout().screen_origin(elayout)); }
+      template < typename POINT_OFFSETABLE >
+      inline void _001ClientToParent(POINT_OFFSETABLE& o, enum_layout elayout = e_layout_design) { o += layout().origin(elayout); }
+      template < typename POINT_OFFSETABLE >
+      inline void _001ClientToParent(POINT_OFFSETABLE* po, enum_layout elayout = e_layout_design) { _001ClientToParent(*po, elayout); }
+
+      inline void ScreenToClient(RECT32* prect, enum_layout elayout = e_layout_design) { ::rect_sub(prect, layout().screen_origin(elayout)); }
+      inline void ScreenToClient(POINT32* ppoint, enum_layout elayout = e_layout_design) { ::point_sub(ppoint, layout().screen_origin(elayout)); }
 
 
-      inline void ParentToClient(RECT32* prect, e_layout elayout = layout_design) { ::rect_sub(prect, layout().origin(elayout)); }
-      inline void ParentToClient(POINT32* ppoint, e_layout elayout = layout_design) { ::point_sub(ppoint, layout().origin(elayout)); }
+      inline void ClientToScreen(RECT32* prect, enum_layout elayout = e_layout_design) { ::rect_add(prect, layout().screen_origin(elayout)); }
+      inline void ClientToScreen(POINT32* ppoint, enum_layout elayout = e_layout_design) { ::point_add(ppoint, layout().screen_origin(elayout)); }
 
 
-      inline void ClientToParent(RECT32* prect, e_layout elayout = layout_design) { ::rect_add(prect, layout().origin(elayout)); }
-      inline void ClientToParent(POINT32* ppoint, e_layout elayout = layout_design) { ::point_add(ppoint, layout().origin(elayout)); }
+      inline void ParentToClient(RECT32* prect, enum_layout elayout = e_layout_design) { ::rect_sub(prect, layout().origin(elayout)); }
+      inline void ParentToClient(POINT32* ppoint, enum_layout elayout = e_layout_design) { ::point_sub(ppoint, layout().origin(elayout)); }
+
+
+      inline void ClientToParent(RECT32* prect, enum_layout elayout = e_layout_design) { ::rect_add(prect, layout().origin(elayout)); }
+      inline void ClientToParent(POINT32* ppoint, enum_layout elayout = e_layout_design) { ::point_add(ppoint, layout().origin(elayout)); }
 
 
    };

@@ -562,7 +562,7 @@ bool XfplayerViewLineSelection::OnMouseMove(xfplayer_view_line & viewline, ::u32
                && m_iCharEndSource == m_item.GetCharEnd())
          {
             string str;
-            if(viewline.get_link(str, point) == ::user::line_hit_link)
+            if(viewline.get_link(str, point) == ::user::e_line_hit_link)
             {
                //                   usersp(::user::impact) pview = viewline.get_interaction();
                //                 pview->on_link_click(str);
@@ -643,7 +643,7 @@ bool XfplayerViewLineSelection::OnLButtonUp(xfplayer_view_line & viewline, ::u32
                && m_iCharEndSource == m_item.GetCharEnd())
          {
             string str;
-            if(viewline.get_link(str, point) == ::user::line_hit_link)
+            if(viewline.get_link(str, point) == ::user::e_line_hit_link)
             {
                //                   usersp(::user::impact) pview = viewline.get_interaction();
                //                 pview->on_link_click(str);

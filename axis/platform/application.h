@@ -154,7 +154,7 @@ namespace axis
       virtual ::account::user * noninteractive_get_user(::file::path pathUrl = nullptr);
 
      
-      virtual ::type control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype) override;
+      virtual ::type control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype) override;
       ::user::interaction* create_menu_interaction() override;
 
 

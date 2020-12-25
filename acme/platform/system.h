@@ -43,8 +43,16 @@ namespace acme
       //virtual void defer_calc_os_user_theme();
 
 
+      virtual ::estatus os_application_system_run();
+
+
       using ::promise::handler::on_subject;
       virtual void on_subject(::promise::subject * psubject) override;
+
+
+      virtual void open_profile_link(string strUrl, string strProfile, string strTarget);
+      virtual void open_link(string strUrl, string strProfile, string strTarget);
+      virtual void open_url(string strUrl, string strProfile, string strTarget);
 
 
       virtual ::estatus main_user_async(const ::promise::routine & routine, ::e_priority epriority = priority_normal);
@@ -56,6 +64,9 @@ namespace acme
       ithread_t get_task_id(::task * ptask);
       void set_task(ithread_t ithread, ::task * ptask);
       void unset_task(ithread_t ithread, ::task * ptask);
+
+
+      virtual string __get_text(const string & str);
 
 
    };

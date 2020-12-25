@@ -62,7 +62,7 @@ RetryBuildNumber:
    if (strBuild.length() != 19)
    {
 
-      millis_sleep(100 * iRetry);
+      sleep(100 * iRetry);
 
       goto RetryBuildNumber;
 
@@ -313,7 +313,7 @@ string context::defer_get_file_title(string strParam)
 
    path = _defer_process_path(path);
 
-   if (path & ::file::flag_resolve_alias)
+   if (path & ::file::e_flag_resolve_alias)
    {
 
       while (true)
@@ -353,12 +353,12 @@ string context::defer_get_file_title(string strParam)
 
    ::file::path pathProcess = __defer_process_path(path);
 
-   if ((path & ::file::flag_required)
+   if ((path & ::file::e_flag_required)
       && pathProcess.is_empty()
-      && !(path & ::file::flag_bypass_cache))
+      && !(path & ::file::e_flag_bypass_cache))
    {
 
-      path |= ::file::flag_bypass_cache;
+      path |= ::file::e_flag_bypass_cache;
 
       pathProcess = __defer_process_path(path);
 
@@ -449,10 +449,10 @@ string context::defer_get_file_title(string strParam)
 ::file::path context::full_process_path(::file::path path)
 {
 
-   if (!(path & ::file::flag_dont_resolve_alias))
+   if (!(path & ::file::e_flag_dont_resolve_alias))
    {
 
-      path |= ::file::flag_resolve_alias;
+      path |= ::file::e_flag_resolve_alias;
 
    }
 
@@ -523,8 +523,8 @@ string context::defer_get_file_title(string strParam)
 
       ::file::path pathCache = System.m_pdirsystem->m_pathLocalAppMatterFolder / path;
 
-      if ((path & ::file::flag_get_local_path)
-         || (!(path & ::file::flag_bypass_cache) && is_file_or_dir_dup(pathCache, nullptr)))
+      if ((path & ::file::e_flag_get_local_path)
+         || (!(path & ::file::e_flag_bypass_cache) && is_file_or_dir_dup(pathCache, nullptr)))
       {
 
          return pathCache;
@@ -535,12 +535,12 @@ string context::defer_get_file_title(string strParam)
 
       retry retry(millis(500), one_minute());
 
-      if (!(path & ::file::flag_bypass_cache))
+      if (!(path & ::file::e_flag_bypass_cache))
       {
 
          string strFirstLine = file_line_dup(pathMeta, 0);
 
-         if (strFirstLine == "itdoesntexist" && !(path & ::file::flag_required))
+         if (strFirstLine == "itdoesntexist" && !(path & ::file::e_flag_required))
          {
 
             return "";
@@ -567,18 +567,18 @@ string context::defer_get_file_title(string strParam)
 
       ::file::path pathSide = side_get_matter_path(path);
 
-      ::file::enum_type etype = ::file::type_none;
+      ::file::enum_type etype = ::file::e_type_none;
 
       if (is_file_or_dir_dup(pathSide, &etype))
       {
 
-         if (etype == ::file::type_file)
+         if (etype == ::file::e_type_file)
          {
 
             file().copy(pathCache, pathSide, true);
 
          }
-         else if (etype == ::file::type_folder)
+         else if (etype == ::file::e_type_folder)
          {
 
             dir().mk(pathCache);

@@ -1,5 +1,5 @@
 #include "framework.h" 
-#include "apex/net/sockets/_.h"
+#include "apex/net/sockets/_sockets.h"
 
 
 namespace sockets
@@ -22,7 +22,7 @@ namespace sockets
 
       m_nOpenFlags = nOpenFlags;
 
-      if(m_nOpenFlags & ::file::mode_read)
+      if(m_nOpenFlags & ::file::e_open_read)
       {
 
          get_file_data();
@@ -35,7 +35,7 @@ namespace sockets
 
    void http_batch_buffer::close()
    {
-      if(m_nOpenFlags & ::file::mode_write)
+      if(m_nOpenFlags & ::file::e_open_write)
       {
          set_file_data();
       }
@@ -43,7 +43,7 @@ namespace sockets
 
    void http_batch_buffer::flush()
    {
-      if(m_nOpenFlags & ::file::mode_write)
+      if(m_nOpenFlags & ::file::e_open_write)
       {
          set_file_data();
       }

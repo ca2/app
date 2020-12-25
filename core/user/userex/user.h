@@ -156,8 +156,8 @@ namespace core
       virtual ::estatus dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset, const ::promise::process & process = ::promise::process());
 
 
-      virtual ::estatus ui_message_box(::layered * pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
-      virtual ::estatus ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+      virtual ::estatus ui_message_box(::layered * pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+      virtual ::estatus ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
       //virtual ::estatus ui_message_box_timeout(::object* pobjectContext, ::user::primitive* puiOwner, payload payload, ::duration durationTimeout, ::u32 fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
 
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
@@ -492,9 +492,9 @@ namespace core
 
       //virtual index _get_best_zoneing(edisplay * pedisplay, ::rect * prect, const ::rect & rect, bool bPreserveSize = false);
 
-      //virtual index get_best_monitor(RECT32 * prect, const ::rect & rect, ::eactivation eactivation = activation_none);
+      //virtual index get_best_monitor(RECT32 * prect, const ::rect & rect, ::e_activation eactivation = e_activation_default);
 
-      //virtual index get_best_wkspace(::rect * prect, const ::rect& rect, ::eactivation eactivation = activation_none);
+      //virtual index get_best_wkspace(::rect * prect, const ::rect& rect, ::e_activation eactivation = e_activation_default);
 
       //virtual index get_good_iconify(RECT32 * prect, const ::rect & rect);
 
@@ -641,7 +641,7 @@ namespace core
 
       ////virtual bool is_session() const override;
 
-      //virtual bool is_mouse_button_pressed(::user::e_mouse emouse);
+      //virtual bool is_mouse_button_pressed(::user::enum_mouse emouse);
 
       //virtual bool is_remote_session();
 
@@ -732,7 +732,7 @@ namespace core
 
       virtual void term() override;
 
-      virtual ::type controltype_to_typeinfo(::user::e_control_type econtroltype) override;
+      virtual ::type controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 
 
 

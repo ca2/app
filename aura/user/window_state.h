@@ -68,8 +68,8 @@ namespace user
       ::point                                m_pointScreen;
       ::point                                m_point;
       ::size                                 m_size;
-      ::edisplay                             m_edisplay3;
-      ::eappearance                          m_eappearance;
+      ::e_display                             m_edisplay3;
+      ::e_appearance                          m_eappearance;
       bool                                   m_bReady;
       bool                                   m_bModified;
       //::user::interaction_layout *           m_playout; // had mutex dependency, not anymore for now so commented out
@@ -91,18 +91,18 @@ namespace user
 
       inline void set_modified(bool bSet = true) { m_bModified = bSet; }
 
-      ::edisplay display() const { return m_edisplay3; }
-      visual_state& operator = (const e_display& edisplay) { set_modified(); m_edisplay3 = edisplay; return *this; }
+      ::e_display display() const { return m_edisplay3; }
+      visual_state& operator = (const enum_display& edisplay) { set_modified(); m_edisplay3 = edisplay; return *this; }
 
       bool is_visible() const { return ::is_visible(display()); }
       bool is_screen_visible() const { return ::is_screen_visible(display()); }
 
 
-      ::eappearance appearance() const;
-      visual_state& operator = (const e_appearance& eappearance);
-      visual_state& operator |= (const e_appearance& eappearance);
-      visual_state& operator -= (const e_appearance& eappearance);
-      visual_state& operator ^= (const e_appearance& eappearance);
+      ::e_appearance appearance() const;
+      visual_state& operator = (const enum_appearance& eappearance);
+      visual_state& operator |= (const enum_appearance& eappearance);
+      visual_state& operator -= (const enum_appearance& eappearance);
+      visual_state& operator ^= (const enum_appearance& eappearance);
 
 
       ::point origin() const { return m_point; }
@@ -155,7 +155,7 @@ namespace user
    protected:
 
       ::zorder                               m_zorder;
-      ::eactivation                          m_eactivation; // "one-shot"
+      ::e_activation                          m_eactivation; // "one-shot"
 
       //friend class interaction;
       //friend class interaction_layout;
@@ -167,7 +167,7 @@ namespace user
       {
 
          m_zorder.clear_request();
-         m_eactivation = activation_none;
+         m_eactivation = e_activation_default;
 
       }
 
@@ -185,35 +185,53 @@ namespace user
       void _patch_order(int iOrder) { m_zorder.m_iZOrder = iOrder; }
 
 
-      ::eactivation activation() const { return m_eactivation; }
-      window_state& operator = (const e_activation& eactivation) { m_eactivation = eactivation; if(m_eactivation) set_modified(); return *this; }
-      window_state& operator += (const e_activation& eactivation) { m_eactivation |= eactivation; if (m_eactivation) set_modified(); return *this; }
+      ::e_activation activation() const { return m_eactivation; }
+      window_state& operator = (const enum_activation& eactivation) { m_eactivation = eactivation; if(m_eactivation) set_modified(); return *this; }
+      window_state& operator += (const enum_activation& eactivation) { m_eactivation |= eactivation; if (m_eactivation) set_modified(); return *this; }
 
 
       bool operator == (const window_state & windowstate) const { return !memcmp(this, &windowstate, sizeof(window_state)); }
       bool operator != (const window_state & windowstate) const { return !operator == (windowstate); }
 
 
-      window_state & operator = (window_state & windowstate)
+      window_state & copy_layout(window_state & windowstate)
       {
 
-         if (this != &windowstate)
-         {
-
-            m_pointScreen  = windowstate.m_pointScreen;
-            m_point = windowstate.m_point;
-            m_size = windowstate.m_size;
-            m_edisplay3 = windowstate.m_edisplay3;
-            m_eappearance = windowstate.m_eappearance;
-            m_zorder = windowstate.m_zorder;
-            m_eactivation = windowstate.m_eactivation;
-
-         }
+         m_size = windowstate.m_size;
 
          return *this;
 
       }
 
+      window_state & copy_position(window_state & windowstate)
+      {
+
+         m_pointScreen = windowstate.m_pointScreen;
+         m_point = windowstate.m_point;
+
+         return *this;
+
+      }
+
+      window_state & copy_zorder(window_state & windowstate)
+      {
+
+         m_zorder = windowstate.m_zorder;
+
+         return *this;
+
+      }
+
+      window_state & copy_display(window_state & windowstate)
+      {
+
+         m_edisplay3 = windowstate.m_edisplay3;
+         m_eappearance = windowstate.m_eappearance;
+         m_eactivation = windowstate.m_eactivation;
+
+         return *this;
+
+      }
 
    };
 
@@ -221,9 +239,9 @@ namespace user
    __memory(window_rect)
    {
 
-      edisplay                   m_edisplayPrevious = display_none;
-      edisplay                   m_edisplay = display_none;
-      eappearance                m_eappearance = appearance_none;
+      edisplay                   m_edisplayPrevious = e_display_none;
+      edisplay                   m_edisplay = e_display_none;
+      eappearance                m_eappearance = e_appearance_none;
       rect                       m_rectSnapped = nullptr;
       rect                       m_rectRestored = nullptr;
       rect                       m_rectWindow = nullptr;

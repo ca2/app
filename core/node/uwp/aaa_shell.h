@@ -74,7 +74,7 @@ namespace uwp
       const unichar * lpClassName,
       LPWNDCLASSW lpWndClass);
       static ATOM WINAPI _RegisterClass(
-      CONST WNDCLASSW *lpWndClass);
+      const WNDCLASSW *lpWndClass);
 
       static oswindow WINAPI _CreateWindowEx(
       ::u32 dwExStyle,
@@ -152,7 +152,7 @@ namespace uwp
       LPWNDCLASSW lpWndClass);
 
       ATOM (WINAPI * m_pfnRegisterClass)(
-      CONST WNDCLASSW *lpWndClass);*/
+      const WNDCLASSW *lpWndClass);*/
 
       oswindow (WINAPI * m_pfnCreateWindowEx)(
          ::u32 dwExStyle,
@@ -240,7 +240,7 @@ namespace uwp
 
 
       /*   static ATOM WINAPI RegisterClass(
-      CONST WNDCLASSW *lpWndClass);
+      const WNDCLASSW *lpWndClass);
       */
 
       static oswindow WINAPI CreateWindowEx(
@@ -428,7 +428,7 @@ namespace uwp
    }
 
    inline ATOM shell::RegisterClass(
-   CONST WNDCLASSW *lpWndClass)
+   const WNDCLASSW *lpWndClass)
    {
    return (*theWindowsShell.m_pfnRegisterClass)(
    lpWndClass);

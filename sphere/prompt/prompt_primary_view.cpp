@@ -37,7 +37,7 @@ namespace prompt
    {
 
       BASE::install_message_routing(pchannel);
-      MESSAGE_LINK(WM_CONTEXTMENU, pchannel, this, &primary_view::_001OnContextMenu);
+      MESSAGE_LINK(e_message_context_menu, pchannel, this, &primary_view::_001OnContextMenu);
 
    }
 
@@ -199,7 +199,7 @@ namespace prompt
                         ::str::international::utf8_to_unicode(strLine),
                         nullptr,
                         nullptr,
-                        display_normal))
+                        e_display_normal))
                   {
                      string strNewText = str + "executing " + strLine  + "...";
                      strNewText.replace("\r\n", "\n");

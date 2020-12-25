@@ -141,7 +141,7 @@ CLASS_DECL_ACME int call_async(
 const char * pszPath,
 const char * pszParam,
 const char * pszDir,
-::edisplay edisplay,
+::e_display edisplay,
 bool bPrivileged,
 unsigned int * puiPid)
 {
@@ -182,7 +182,7 @@ unsigned int * puiPid)
 }
 
 
-CLASS_DECL_ACME u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_ACME u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    string strCmdLine;
@@ -215,7 +215,7 @@ CLASS_DECL_ACME u32 call_sync(const char * pszPath, const char * pszParam, const
       if(kill(processId, 0) == -1 && errno == ESRCH) // No process can be found corresponding to processId
          break;
 
-      sleep(1);
+      sleep(1_ms);
 
    }
 
@@ -239,7 +239,7 @@ bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration
    
    property_set set;
 
-   return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), display_none, durationTimeout, set);
+   return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), e_display_none, durationTimeout, set);
 
 }
 
@@ -342,7 +342,7 @@ bool launch_command(const char * const pszCommand)
    
    strParams.Format("-c \"screen -d -m %s\"", strCommand.c_str());
    
-   if (call_async("/bin/bash", strParams, ::dir::home(), display_none, false) != 0)
+   if (call_async("/bin/bash", strParams, ::dir::home(), e_display_none, false) != 0)
    {
       
       return false;

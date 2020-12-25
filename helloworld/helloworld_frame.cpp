@@ -37,10 +37,10 @@ namespace helloworld
    }
 
 
-   bool frame::get_translucency(::user::e_translucency & etranslucency, ::user::e_element eelement, ::user::style_context * pinteraction)
+   bool frame::get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::style_context * pinteraction)
    {
 
-      etranslucency = ::user::translucency_present;
+      etranslucency = ::user::e_translucency_present;
 
       return true;
 

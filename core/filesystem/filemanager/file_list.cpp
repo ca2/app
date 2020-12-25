@@ -181,12 +181,16 @@ namespace filemanager
    }
 
 
-   bool file_list::pre_create_window(::user::create_struct& cs)
+   bool file_list::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
-      cs.style |= WS_CLIPCHILDREN;
+#ifdef WINDOWS_DESKTOP
 
-      return ::user::impact::pre_create_window(cs);
+
+
+#endif
+
+      return ::user::impact::pre_create_window(pcreatestruct);
 
    }
 
@@ -261,11 +265,11 @@ namespace filemanager
 
    //         i++;
 
-   //         millis_sleep(23);
+   //         sleep(23_ms);
 
    //      }
 
-   //      millis_sleep(100);
+   //      sleep(100_ms);
 
    //   }
 
@@ -979,7 +983,7 @@ namespace filemanager
             if (Context.dir().is(pathItem))
             {
 
-               item.m_flags.add(::file::FlagFolder);
+               item.m_flags.add(::file::e_flag_folder);
 
             }
 
@@ -1085,7 +1089,7 @@ namespace filemanager
             if (pathFinal.m_iDir == 1)
             {
 
-               spitem->m_flags.add(::file::FlagFolder);
+               spitem->m_flags.add(::file::e_flag_folder);
 
             }
 
@@ -1225,10 +1229,10 @@ namespace filemanager
 
             auto pinteraction = __new( user::control_descriptor);
             pinteraction->m_bTransparent = true;
-            pinteraction->set_control_type(user::control_type_button);
+            pinteraction->set_control_type(user::e_control_type_button);
             pinteraction->m_type = __type(::user::button);
             pinteraction->m_id = 1000 + i;
-            pinteraction->add_function(user::control_function_action);
+            pinteraction->add_function(user::e_control_function_action);
             iControl = _001AddControl(pinteraction);
 
          }
@@ -1286,11 +1290,11 @@ namespace filemanager
          {
 
             auto pinteraction = __new( user::control_descriptor);
-            pinteraction->set_control_type(user::control_type_edit_plain_text);
+            pinteraction->set_control_type(user::e_control_type_edit_plain_text);
             pinteraction->m_datakey = "FILE_MANAGER_ID_FILE_NAME";
             //pinteraction->descriptor().m_id = _vms::FILE_MANAGER_ID_FILE_NAME;
-            pinteraction->set_data_type(user::control_data_type_string);
-            pinteraction->add_function(user::control_function_vms_data_edit);
+            pinteraction->set_data_type(user::e_control_data_type_string);
+            pinteraction->add_function(user::e_control_function_vms_data_edit);
             pinteraction->m_type = __type(::user::plain_edit);
             pinteraction->m_iSubItem = i;
             pinteraction->m_id = 1000 + i;
@@ -1711,7 +1715,7 @@ namespace filemanager
       if (Context.dir().is(pathFinal))
       {
 
-         item.m_flags.add(::file::FlagFolder);
+         item.m_flags.add(::file::e_flag_folder);
 
       }
 
@@ -2004,7 +2008,7 @@ namespace filemanager
                if (filemanager_data()->m_pholderFileList->m_puiptraChild->has_interaction())
                {
 
-                  filemanager_data()->m_pholderFileList->m_puiptraChild->interaction_at(0)->display(display_none);
+                  filemanager_data()->m_pholderFileList->m_puiptraChild->interaction_at(0)->display(e_display_none);
 
                }
 

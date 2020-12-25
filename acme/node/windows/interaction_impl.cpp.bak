@@ -3398,7 +3398,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::display(::edisplay edisplay)
+   bool interaction_impl::display(::e_display edisplay)
    {
 
       if (!::is_window(get_handle()))
@@ -3716,7 +3716,7 @@ namespace windows
 //}
 
 
-   //void interaction_impl::bring_to_top(::edisplay edisplay)
+   //void interaction_impl::bring_to_top(::e_display edisplay)
    //{
 
    //   if (GetParent() == nullptr)

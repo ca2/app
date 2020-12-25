@@ -442,8 +442,8 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //					// client area when ScrollWindowEx is called; however, it is 
 //					// necessary to call UpdateWindow in order to repaint the 
 //					// rectangle of pixels that were invalidated.) 
-//					ScrollWindowEx(wfc->hwnd, -xDelta, -yDelta, (CONST RECT32 *) nullptr,
-//						(CONST RECT32 *) nullptr, (HRGN) nullptr, (PRECT) nullptr,
+//					ScrollWindowEx(wfc->hwnd, -xDelta, -yDelta, (const RECT32 *) nullptr,
+//						(const RECT32 *) nullptr, (HRGN) nullptr, (PRECT) nullptr,
 //						SW_INVALIDATE); 
 //					UpdateWindow(wfc->hwnd);
 // 
@@ -515,8 +515,8 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //					// client area when ScrollWindowEx is called; however, it is 
 //					// necessary to call UpdateWindow in order to repaint the 
 //					// rectangle of pixels that were invalidated.) 
-//					ScrollWindowEx(wfc->hwnd, -xDelta, -yDelta, (CONST RECT32 *) nullptr,
-//						(CONST RECT32 *) nullptr, (HRGN) nullptr, (PRECT) nullptr,
+//					ScrollWindowEx(wfc->hwnd, -xDelta, -yDelta, (const RECT32 *) nullptr,
+//						(const RECT32 *) nullptr, (HRGN) nullptr, (PRECT) nullptr,
 //						SW_INVALIDATE); 
 //					UpdateWindow(wfc->hwnd);
 // 

@@ -23,7 +23,7 @@
 #define ABS64(num) (num >=0 ? num : -num)
 
 
-// http://www.cs.uaf.edu/~cs301/notes/Chapter5/node5.html
+// http://www.pcreatestruct->m_createstruct.uaf.edu/~cs301/notes/Chapter5/node5.html
 /*
  Multiply two 32-bit numbers, V1 and V2, to produce
  a 64 bit result in the HI/LO registers.

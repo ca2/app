@@ -9,13 +9,6 @@ typedef unsigned int u32;
 //typedef i32 ::i32;
 
 
-#undef FAR
-#undef  NEAR
-#define FAR
-#define NEAR
-#ifndef CONST
-#define CONST               const
-#endif
 
 
 struct hthread;
@@ -249,7 +242,7 @@ public:
    long get_state();
    bool is_iconic();
    bool is_window_visible();
-   bool show_window(::edisplay edisplay);
+   bool show_window(::e_display edisplay);
    iptr get_window_long_ptr(i32 nIndex);
    iptr set_window_long_ptr(i32 nIndex, iptr l);
    bool _001ClientToScreen(POINT32 * ppoint);

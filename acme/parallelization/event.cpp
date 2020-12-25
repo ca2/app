@@ -550,8 +550,8 @@ sync_result event::wait (const duration & durationTimeout)
 
    ((duration & ) durationTimeout).normalize();
 
-   end.tv_sec +=durationTimeout.m_iSeconds;
-   end.tv_nsec +=durationTimeout.m_iNanoseconds;
+   end.tv_sec +=durationTimeout.m_secs.m_iSeconds;
+   end.tv_nsec +=durationTimeout.m_nanos.m_iNanoseconds;
 
    end.tv_sec += end.tv_nsec / (1000 * 1000 * 1000);
    end.tv_nsec %= 1000 * 1000 * 1000;
@@ -574,8 +574,8 @@ sync_result event::wait (const duration & durationTimeout)
    {
 
       timespec delay;
-      delay.tv_sec = durationTimeout.m_iSeconds;
-      delay.tv_nsec = durationTimeout.m_iNanoseconds;
+      delay.tv_sec = durationTimeout.m_secs.m_iSeconds;
+      delay.tv_nsec = durationTimeout.m_nanos.m_iNanoseconds;
       pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &delay);
 
    }
@@ -635,9 +635,9 @@ sync_result event::wait (const duration & durationTimeout)
 
          clock_getrealtime(&abstime);
 
-         abstime.tv_sec += durationTimeout.m_iSeconds;
+         abstime.tv_sec += durationTimeout.m_secs.m_iSeconds;
 
-         abstime.tv_nsec += durationTimeout.m_iNanoseconds;
+         abstime.tv_nsec += durationTimeout.m_nanos.m_iNanoseconds;
 
          while(abstime.tv_nsec > 1000 * 1000 * 1000)
          {

@@ -7,8 +7,8 @@
 simple_child_frame::simple_child_frame()
 {
    
-   m_ewindowflag += window_flag_satellite_window;
-   m_ewindowflag += window_flag_embedded_prodevian;
+   m_ewindowflag += e_window_flag_satellite_window;
+   m_ewindowflag += e_window_flag_embedded_prodevian;
 
    m_bWindowFrame       = false;
    m_bAutoWindowFrame = false;
@@ -21,15 +21,20 @@ simple_child_frame::~simple_child_frame()
 }
 
 
-bool simple_child_frame::pre_create_window(::user::create_struct& cs)
+bool simple_child_frame::pre_create_window(::user::create_struct * pcreatestruct)
 {
 
-   cs.style |= WS_CHILD;
-   cs.style |= WS_CLIPCHILDREN;
-   cs.style &= ~WS_BORDER;
-   cs.style &= ~WS_THICKFRAME;
+   pcreatestruct->m_createstruct.style |= WS_CHILD;
 
-   if (!simple_frame_window::pre_create_window(cs))
+#ifdef WINDOWS_DESKTOP
+
+
+   pcreatestruct->m_createstruct.style &= ~WS_BORDER;
+   pcreatestruct->m_createstruct.style &= ~WS_THICKFRAME;
+
+#endif
+
+   if (!simple_frame_window::pre_create_window(pcreatestruct))
    {
 
       return FALSE;
@@ -38,7 +43,7 @@ bool simple_child_frame::pre_create_window(::user::create_struct& cs)
 
 #ifdef WINDOWS_DESKTOP
 
-   if(cs.hwndParent == nullptr)
+   if(pcreatestruct->m_createstruct.hwndParent == nullptr)
    {
 
       auto puiMain1 = Application.m_puiMain1;
@@ -48,7 +53,7 @@ bool simple_child_frame::pre_create_window(::user::create_struct& cs)
 
          auto pui = __user_interaction(Application.m_puiMain1);
 
-         cs.hwndParent = pui->get_handle();
+         pcreatestruct->m_createstruct.hwndParent = pui->get_handle();
 
       }
 
@@ -56,7 +61,7 @@ bool simple_child_frame::pre_create_window(::user::create_struct& cs)
 
 #endif
 
-   cs.style &= ~WS_OVERLAPPEDWINDOW;
+   pcreatestruct->m_createstruct.style &= ~WS_OVERLAPPEDWINDOW;
 
    return TRUE;
 
@@ -80,13 +85,13 @@ void simple_child_frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-//bool simple_child_frame::get_translucency(::user::e_translucency & etranslucency, ::user::e_element eelement, ::user::style_context * pinteraction)
+//bool simple_child_frame::get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::style_context * pinteraction)
 //{
 //
-//   // etranslucency = ::user::translucency_present for children that may ask the translucency guideline for this as parent,
+//   // etranslucency = ::user::e_translucency_present for children that may ask the translucency guideline for this as parent,
 //   // but simple_child_frame, at the moment of this remark writing, itself draw transparently.
 //
-//   etranslucency = ::user::translucency_present;
+//   etranslucency = ::user::e_translucency_present;
 //
 //   return true;
 //

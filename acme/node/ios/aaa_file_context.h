@@ -24,7 +24,7 @@ namespace ios
 
       virtual payload length(const ::file::path & path, payload * pvarQuery) override;
       
-      virtual ::file_result get_file(const payload & varFile, const efileopen & eopen) override;
+      virtual ::file_result get_file(const payload & varFile, const ::file::e_open & eopen) override;
 
 
    };

@@ -2,6 +2,7 @@
 #include "_.h"
 #include "_uwp.h"
 #include "aura/platform/mq.h"
+#include "directx_application.h"
 
 
 CLASS_DECL_ACME void set_core_window_once_visible();
@@ -25,6 +26,8 @@ namespace uwp
    interaction_impl::interaction_impl()
    {
 
+      set_layer(LAYERED_OS_USER_INTERACTION_IMPL, this);
+      m_bNotifyLayoutCompletedPending        = false;
       m_bScreenRelativeMouseMessagePosition  = false;
       m_plistener                            = nullptr;
       m_nModalResult                         = 0;
@@ -81,31 +84,25 @@ namespace uwp
    }
 
 
-   bool interaction_impl::_native_create_window_ex(::user::create_struct& cs)
+   bool interaction_impl::_native_create_window_ex(__pointer(::user::create_struct) pcreatestruct)
    {
 
       if (!m_window.Get())
       {
 
-         ::wait(Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
-            ref new Windows::UI::Core::DispatchedHandler([this, cs]()
+         manual_reset_event ev;
+
+         Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
+            ref new Windows::UI::Core::DispatchedHandler([this, pcreatestruct, &ev]()
                {
 
-                  System.m_applicationsource->m_pimplHook = this;
+                  //get_context_system()->m_paurasystem->m_applicationsource->m_pimplHook = this;
 
                   m_view = Windows::ApplicationModel::Core::CoreApplication::CreateNewView();
-
-               })));
-
-         ::wait(m_view->Dispatcher->RunAsync(
-            ::Windows::UI::Core::CoreDispatcherPriority::Normal,
-            ref new Windows::UI::Core::DispatchedHandler([this, cs]()
-               {
-
-                  if (cs.cx > 0 && cs.cy > 0)
+                  if (pcreatestruct->m_createstruct.cx > 0 && pcreatestruct->m_createstruct.cy > 0)
                   {
 
-                     m_applicationview->SetPreferredMinSize({ (float)cs.cx, (float)cs.cy });
+                     m_applicationview->SetPreferredMinSize({ (float)pcreatestruct->m_createstruct.cx, (float)pcreatestruct->m_createstruct.cy });
 
                   }
 
@@ -123,18 +120,18 @@ namespace uwp
 
                   ::Windows::UI::ViewManagement::ApplicationViewSwitcher::TryShowAsStandaloneAsync(
                      Id1,
-                    Windows::UI::ViewManagement::ViewSizePreference::UseMore);
+                     Windows::UI::ViewManagement::ViewSizePreference::UseMore);
 
-                  if (cs.cx > 0 && cs.cy > 0)
+                  if (pcreatestruct->m_createstruct.cx > 0 && pcreatestruct->m_createstruct.cy > 0)
                   {
 
-                     m_rect.left = cs.x;
-                     m_rect.top = cs.y;
-                     m_rect.right = cs.cx;
-                     m_rect.bottom = cs.cy;
+                     m_rect.left = pcreatestruct->m_createstruct.x;
+                     m_rect.top = pcreatestruct->m_createstruct.y;
+                     m_rect.right = pcreatestruct->m_createstruct.cx;
+                     m_rect.bottom = pcreatestruct->m_createstruct.cy;
 
                   }
-                  else 
+                  else
                   {
 
                      m_rect.left = m_window->Bounds.X;
@@ -143,7 +140,7 @@ namespace uwp
                      m_rect.bottom = m_rect.top + m_window->Bounds.Height;
 
                   }
-                  
+
 
 
                   //::wait(::Windows::UI::ViewManagement::ApplicationViewSwitcher::TryShowAsStandaloneAsync(
@@ -152,32 +149,42 @@ namespace uwp
                   //   Id2,
                   //   Windows::UI::ViewManagement::ViewSizePreference::Default));
 
-                  if (cs.cx > 0 && cs.cy > 0)
+                  if (pcreatestruct->m_createstruct.cx > 0 && pcreatestruct->m_createstruct.cy > 0)
                   {
 
-                     m_applicationview->TryResizeView(::Windows::Foundation::Size({ (float)cs.cx,(float)cs.cy }));
+                     m_applicationview->TryResizeView(::Windows::Foundation::Size({ (float)pcreatestruct->m_createstruct.cx,(float)pcreatestruct->m_createstruct.cy }));
 
                   }
 
-               })));
+                  ev.set_event();
+
+               }));
+
+         //::wait(m_view->Dispatcher->RunAsync(
+         //   ::Windows::UI::Core::CoreDispatcherPriority::Normal,
+         //   ref new Windows::UI::Core::DispatchedHandler([this, cs]()
+         //      {
+
+         //      })));
+         ev.wait(15_s);
 
       }
       else
       {
 
-         if (cs.cx > 0 && cs.cy > 0 && m_rect.is_empty())
+         if (pcreatestruct->m_createstruct.cx > 0 && pcreatestruct->m_createstruct.cy > 0 && m_rect.is_empty())
          {
 
-            m_rect.left = cs.x;
-            m_rect.top = cs.y;
-            m_rect.right = cs.cx;
-            m_rect.bottom = cs.cy;
+            m_rect.left = pcreatestruct->m_createstruct.x;
+            m_rect.top = pcreatestruct->m_createstruct.y;
+            m_rect.right = pcreatestruct->m_createstruct.cx;
+            m_rect.bottom = pcreatestruct->m_createstruct.cy;
 
          }
 
       }
 
-      if(!m_puserinteraction->pre_create_window(cs))
+      if(!m_puserinteraction->pre_create_window(pcreatestruct))
       {
       
          return false;
@@ -186,17 +193,17 @@ namespace uwp
 
       m_oswindow = oswindow_get(this);
 
-      set_window_long(GWL_STYLE, cs.style);
+      set_window_long(GWL_STYLE, pcreatestruct->m_createstruct.style);
 
-      set_window_long(GWL_EXSTYLE, cs.dwExStyle);
+      set_window_long(GWL_EXSTYLE, pcreatestruct->m_createstruct.dwExStyle);
 
       install_message_routing(m_puserinteraction);
 
       m_rectWindowScreen =  m_rect;
 
-      send_message(e_message_create, 0, (LPARAM)&cs);
+      send_message(e_message_create, 0, (LPARAM)&pcreatestruct->m_createstruct);
 
-      //send_message(e_message_size, 0, MAKELPARAM(cs.cx, cs.cy));
+      //send_message(e_message_size, 0, MAKELPARAM(pcreatestruct->m_createstruct.cx, pcreatestruct->m_createstruct.cy));
 
       //::size sizeDrawn;
 
@@ -216,9 +223,9 @@ namespace uwp
 
       m_puserinteraction->add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
 
-      m_puserinteraction->m_ewindowflag |= ::window_flag_is_window;
+      m_puserinteraction->m_ewindowflag |= ::e_window_flag_is_window;
 
-      m_puserinteraction->m_ewindowflag |= ::window_flag_window_created;
+      m_puserinteraction->m_ewindowflag |= ::e_window_flag_window_created;
 
       m_puserinteraction->m_layout.sketch().set_modified();
 
@@ -227,18 +234,26 @@ namespace uwp
    }
 
 
+   ::point interaction_impl::get_cursor_pos() const
+   {
+
+      return m_pointCursor;
+
+   }
+
+
    // for child windows
-   bool interaction_impl::pre_create_window(::user::create_struct& cs)
+   bool interaction_impl::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
 #ifdef WINDOWS_DESKTOP
-      if (cs.lpszClass == nullptr)
+      if (pcreatestruct->m_createstruct.lpszClass == nullptr)
       {
          // make sure the default interaction_impl class is registered
-         VERIFY(__end_defer_register_class(__WND_REG, &cs.lpszClass));
+         VERIFY(__end_defer_register_class(__WND_REG, &pcreatestruct->m_createstruct.lpszClass));
 
          // no WNDCLASS provided - use child interaction_impl default
-         ASSERT(cs.style & WS_CHILD);
+         ASSERT(pcreatestruct->m_createstruct.style & WS_CHILD);
       }
 #else
       __throw(todo());
@@ -356,7 +371,7 @@ namespace uwp
       }
       MESSAGE_LINK(e_message_create, pchannel, this,&interaction_impl::_001OnCreate);
       MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::_001OnSetCursor);
-      MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
+      //MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
       MESSAGE_LINK(e_message_move, pchannel, this,&interaction_impl::_001OnMove);
       MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::_001OnSize);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &interaction_impl::_001OnSetFocus);
@@ -385,7 +400,7 @@ namespace uwp
       //if (psession->get_focus_ui())
       //{
 
-         m_frameworkview->SetInternalFocus();
+         m_pframeworkview->SetInternalFocus();
 
       //}
 
@@ -397,7 +412,7 @@ namespace uwp
 
       SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
 
-      m_frameworkview->RemoveInternalFocus();
+      m_pframeworkview->RemoveInternalFocus();
 
    }
 
@@ -888,15 +903,30 @@ namespace uwp
    }
 
 
-   ::estatus interaction_impl::main_async(const method & method, e_priority epriority)
+   ::estatus interaction_impl::main_async(const ::promise::routine & routine, e_priority epriority)
    {
 
-      m_view->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([method]()
+      Windows::UI::Core::CoreDispatcher ^ pdispatcher;
+
+      if (m_view.Get())
       {
 
-         method();
+         pdispatcher = m_view->Dispatcher;
 
-      }));
+      }
+      else
+      {
+
+         pdispatcher = m_window->Dispatcher;
+
+      }
+
+      pdispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([routine]()
+         {
+
+            routine();
+
+         }));
 
       return ::success;
 
@@ -2269,7 +2299,7 @@ return TRUE;
       //auto puiHost = __user_interaction(phost);
 
 
-      m_frameworkview->m_puserinteraction = m_puserinteraction;
+      m_pframeworkview->m_puserinteraction = m_puserinteraction;
 
 
       //m_rectWindowScreen.left = 0;
@@ -2277,13 +2307,15 @@ return TRUE;
       //m_rectWindowScreen.right = (::i32)m_window->Bounds.Width;
       //m_rectWindowScreen.bottom = (::i32)m_window->Bounds.Height;
 
-      m_frameworkview->m_directx->m_bCreated = true;
+      m_pframeworkview->m_directx->m_bCreated = true;
 
       ::set_core_window_once_visible();
 
-      m_frameworkview->m_directx->m_pimpl = this;
+      m_pframeworkview->m_directx->m_pimpl = this;
 
-      m_frameworkview->on_size(m_rect.size());
+      //xxx directx
+      //m_pframeworkview->on_size(m_rect.size());
+
 
       UNREFERENCED_PARAMETER(pmessage);
 
@@ -3359,9 +3391,9 @@ return TRUE;
 
       __throw(todo());
 
-      /*      m_edisplay = display_normal;
+      /*      m_edisplay = e_display_normal;
             if(m_puserinteraction != nullptr)
-            m_puserinteraction->m_edisplay = display_normal;
+            m_puserinteraction->m_edisplay = e_display_normal;
             ::ShowWindow(get_handle(), SW_RESTORE);*/
    }
 
@@ -3427,7 +3459,7 @@ return TRUE;
    }
 
 
-   LONG_PTR interaction_impl::get_window_long_ptr(i32 nIndex) const
+   iptr interaction_impl::get_window_long_ptr(i32 nIndex) const
    {
 
       return m_mapLong[nIndex];
@@ -3435,7 +3467,7 @@ return TRUE;
    }
 
 
-   LONG_PTR interaction_impl::set_window_long_ptr(i32 nIndex, LONG_PTR lValue)
+   iptr interaction_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
    {
 
       return m_mapLong[nIndex] = lValue;
@@ -3499,7 +3531,7 @@ return TRUE;
 
       ___pointer < ::message::base > spbase;
 
-      spbase = m_puserinteraction->get_message_base(id,wparam,lparam);
+      spbase = m_puserinteraction->get_message_base(m_oswindow, id,wparam,lparam);
 
       /*      try
             {
@@ -3980,7 +4012,7 @@ return TRUE;
 
 #endif
 
-   bool interaction_impl::DrawAnimatedRects(int idAni,CONST RECT32 *lprcFrom,CONST RECT32 *lprcTo)
+   bool interaction_impl::DrawAnimatedRects(int idAni,const RECT32 *lprcFrom,const RECT32 *lprcTo)
    {
 
       __throw(todo());
@@ -5404,12 +5436,12 @@ lCallNextHook:
 #endif
 
 
-   void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
-   {
-      SCAST_PTR(::message::erase_bkgnd,perasebkgnd,pmessage);
-      perasebkgnd->m_bRet = true;
-      perasebkgnd->set_result(TRUE);
-   }
+   //void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
+   //{
+   //   SCAST_PTR(::message::erase_bkgnd,perasebkgnd,pmessage);
+   //   perasebkgnd->m_bRet = true;
+   //   perasebkgnd->set_result(TRUE);
+   //}
 
 
    void interaction_impl::_001BaseWndInterfaceMap()
@@ -6034,36 +6066,36 @@ namespace uwp
 
       }
 
-      if (m_frameworkview->m_bNotifyLayoutCompletedPending)
+      if (m_bNotifyLayoutCompletedPending)
       {
 
-         m_frameworkview->m_bNotifyLayoutCompletedPending = false;
-            
-         main_async(__routine([this]()
-               {
+         m_bNotifyLayoutCompletedPending = false;
 
-                  int x = m_window->Bounds.X;
+         //main_async(__routine([this]()
+               //{
 
-                  int y = m_window->Bounds.Y;
+                  //int x = m_window->Bounds.X;
 
-                  int cx = m_window->Bounds.Width;
+                  //int y = m_window->Bounds.Y;
 
-                  int cy = m_window->Bounds.Height;
+                  //int cx = m_window->Bounds.Width;
 
-                  m_frameworkview->m_resizemanager->NotifyLayoutCompleted();
+                  //int cy = m_window->Bounds.Height;
 
-                  ::output_debug_string("interaction_impl::on_after_graphical_update NotifyLayoutCompleted\n");
+         m_pframeworkview->m_resizemanager->NotifyLayoutCompleted();
 
-                  //if (m_bPendingActivation)
-                  //{
+         ::output_debug_string("interaction_impl::on_after_graphical_update NotifyLayoutCompleted\n");
 
-                  //   m_bPendingActivation = false;
+         //if (m_bPendingActivation)
+         //{
 
-                  //   m_window->Activate();
+         //   m_bPendingActivation = false;
 
-                  //}
+         //   m_window->Activate();
 
-               }));
+         //}
+      //}
+               //}));
 
       }
 
@@ -6203,7 +6235,7 @@ namespace uwp
    bool interaction_impl::_is_window() const
    {
 
-      return m_frameworkview != nullptr && m_frameworkview->m_window != nullptr;
+      return m_pframeworkview != nullptr && m_pframeworkview->m_window != nullptr;
 
    }
 
@@ -6211,7 +6243,7 @@ namespace uwp
    void interaction_impl::show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd)
    {
 
-      m_frameworkview->SetText(str, iBeg, iEnd);
+      m_pframeworkview->SetText(str, iBeg, iEnd);
 
    }
 
@@ -6225,7 +6257,7 @@ namespace uwp
 
       strsize sizeLen = strText.get_length();
 
-      m_frameworkview->SetText(strText, 0, sizeLen);
+      m_pframeworkview->SetText(strText, 0, sizeLen);
 
    }
 
@@ -6233,8 +6265,7 @@ namespace uwp
    bool interaction_impl::is_text_composition_active()
    {
 
-      return m_frameworkview->m_bTextCompositionActive;
-
+      return m_pframeworkview->m_bTextCompositionActive;
 
    }
 
@@ -6242,7 +6273,7 @@ namespace uwp
    void interaction_impl::set_input_content_rect(const rect& rect)
    {
 
-      __copy(m_frameworkview->m_rectInputContentRect, rect);
+      __copy(m_pframeworkview->m_rectInputContentRect, rect);
 
    }
 
@@ -6250,7 +6281,7 @@ namespace uwp
    void interaction_impl::set_input_selection_rect(const rect& rect)
    {
 
-      __copy(m_frameworkview->m_rectInputSelectionRect, rect);
+      __copy(m_pframeworkview->m_rectInputSelectionRect, rect);
 
    }
 
@@ -6260,7 +6291,7 @@ namespace uwp
 
       ::rect rect;
 
-      __copy(rect, m_frameworkview->m_rectInputContentRect);
+      __copy(rect, m_pframeworkview->m_rectInputContentRect);
 
       return rect;
 
@@ -6272,13 +6303,33 @@ namespace uwp
 
       ::rect rect;
 
-      __copy(rect, m_frameworkview->m_rectInputSelectionRect);
+      __copy(rect, m_pframeworkview->m_rectInputSelectionRect);
 
       return rect;
 
 
    }
 
+
+   void interaction_impl::on_layout(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      ::user::interaction_impl::on_layout(pgraphics);
+
+      rect rectClient;
+
+      m_puserinteraction->get_client_rect(rectClient);
+
+      if (rectClient.is_empty())
+      {
+
+         return;
+
+      }
+
+      m_bNotifyLayoutCompletedPending = true;
+
+   }
 
 
 } // namespace uwp

@@ -48,11 +48,11 @@ namespace gen
 
       if(hres != nullptr)
        {
-         ::u32 FAR* lpnRes = (::u32 FAR*)::LockResource(hres);
+         ::u32 * lpnRes = (::u32 *)::LockResource(hres);
            try
            {
               // create the .mdb file
-   //           ::ca2::filesp f(lpcszFilePath, ::file::mode_create | ::file::mode_write );
+   //           ::ca2::filesp f(lpcszFilePath, ::file::e_open_create | ::file::e_open_write );
 
               // write the ::account::user-defined resource to the .mdb file
               storage.set_data(lpnRes, dwResSize);

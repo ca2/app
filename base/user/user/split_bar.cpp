@@ -73,16 +73,16 @@ namespace user
    }
 
 
-   bool split_bar::pre_create_window(::user::create_struct& cs)
+   bool split_bar::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
 #ifdef WINDOWS_DESKTOP
 
-      cs.style &= ~WS_BORDER;
+      pcreatestruct->m_createstruct.style &= ~WS_BORDER;
 
 #endif
 
-      return ::user::interaction::pre_create_window(cs);
+      return ::user::interaction::pre_create_window(pcreatestruct);
 
    }
 

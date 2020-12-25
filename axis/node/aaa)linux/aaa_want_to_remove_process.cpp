@@ -381,7 +381,7 @@ namespace ansios
 
          m_exitstatus.m_iExitCode = -1;
 
-         ::message_box(nullptr,"gksu is not installed, please install gksu.","Please, install gksu.",MB_ICONINFORMATION);
+         ::message_box(nullptr,"gksu is not installed, please install gksu.","Please, install gksu.",e_message_box_icon_information);
 
          return false;
 
@@ -419,7 +419,7 @@ auto tickStart = ::millis::now();
       while(!has_exited() && tickStart.elapsed() < durationTimeOut.get_total_milliseconds())
       {
 
-         millis_sleep(100);
+         sleep(100_ms);
 
       }
 

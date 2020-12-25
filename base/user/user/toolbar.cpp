@@ -4,6 +4,9 @@
 #endif
 #include "aqua/xml.h"
 #include "acme/os/_os.h"
+#include "acme/os/cross.h"
+#include "toolbar.h"
+
 #define CLR_TO_RGBQUAD(clr)     (RGB(::blue(clr), ::green(clr), ::red(clr)))
 
 struct __COLORMAP
@@ -338,7 +341,7 @@ namespace user
 //
 //      //VERIFY(pBar->default_window_procedure(TB_GETBUTTON, (WPARAM) nIndex, (LPARAM)pButton));
 //
-//      //// TBSTATE_ENABLED == TBBS_DISABLED so invert it
+//      //// TBSTATE_ENABLED == e_toolbar_item_style_disabled so invert it
 //
 //      //pButton->fsState ^= TBSTATE_ENABLED;
 //
@@ -357,7 +360,7 @@ namespace user
 ////      // prepare for old/new button comparsion
 ////      button.bReserved[0] = 0;
 ////      button.bReserved[1] = 0;
-////      // TBSTATE_ENABLED == TBBS_DISABLED so invert it
+////      // TBSTATE_ENABLED == e_toolbar_item_style_disabled so invert it
 ////      pButton->fsState ^= TBSTATE_ENABLED;
 ////      pButton->bReserved[0] = 0;
 ////      pButton->bReserved[1] = 0;
@@ -468,72 +471,46 @@ namespace user
       //   ((toolbar*)this)->CalcDynamicLayout(0, LM_VERTDOCK | LM_COMMIT);
    }
 
-   ::u32 toolbar::GetButtonStyle(index nIndex)
+
+   e_toolbar_item_style toolbar::get_item_style(index iIndex)
    {
 
-//      ::u32 nStyle = 0;
-//
-//      __pointer(::user::interaction) pwnd = GetOwner();
-//
-//      ::user::command command(m_itema[nIndex]->m_id);
-//
-//      pwnd->_001SendCommandProbe(&command);
-//
-//      if (!command.m_bEnable && command.m_bEnableChanged)
-//      {
-//
-//         nStyle |= TBBS_DISABLED;
-//
-//      }
-//
-      //return nStyle;
-      return 0;
-//
+      return m_itema[iIndex]->m_estyle;
+
    }
-//
 
 
-
-   void toolbar::SetButtonStyle(index nIndex, ::u32 nStyle)
+   void toolbar::set_item_style(index iIndex, const e_toolbar_item_style &estyle)
    {
-//      ASSERT_VALID(this);
-//      ASSERT(is_window());
-//
-//#ifdef WINDOWS_DESKTOP
-//      TBBUTTON button;
-//      _GetButton(nIndex, &button);
-//      if (button.fsStyle != (byte)LOWORD(nStyle) || button.fsState != (byte)HIWORD(nStyle))
-//      {
-//         button.fsStyle = (byte)LOWORD(nStyle);
-//         button.fsState = (byte)HIWORD(nStyle);
-//         _SetButton(nIndex, &button);
-//         m_bDelayedButtonLayout = TRUE;
-//      }
-//#else
-//      __throw(todo());
-//#endif
-      //return 0;
+
+      m_itema[iIndex]->m_estyle = estyle;
+
    }
+
 
 #define CX_OVERLAP  0
 
 
-   ::user::estate toolbar::get_button_state(int iItem)
+   ::e_toolbar_item_state toolbar::get_item_state(::index iItem)
    {
 
-      ::user::estate estate = e_state_none;
+      auto estate = m_itema[iItem]->m_estate;
 
-      int nStyle = GetButtonStyle(iItem);
+      auto estyle = m_itema[iItem]->m_estyle;
 
-      bool bHover = m_itemHover == (::index) iItem;
-
-      if ((nStyle & TBBS_SEPARATOR) == 0)
+      if (!(estyle & e_toolbar_item_style_separator))
       {
 
-         if ((nStyle & TBBS_DISABLED) == 0)
+         if (estyle & e_toolbar_item_style_disabled)
          {
 
-            estate |= e_state_disabled;
+            estate -= e_toolbar_item_state_enabled;
+
+         }
+         else
+         {
+
+            estate |= e_toolbar_item_state_enabled;
 
          }
 
@@ -544,18 +521,56 @@ namespace user
             if (iItem == m_iButtonPressItem)
             {
 
-               estate |= e_state_pressed;
+               estate |= e_toolbar_item_state_pressed;
 
             }
 
          }
 
-         if (bHover)
+         if (m_itemHover)
          {
 
-            estate |= e_state_hover;
+            if (m_itemHover == iItem)
+            {
+
+               estate |= e_toolbar_item_state_hover;
+
+            }
 
          }
+
+      }
+
+      return estate;
+
+   }
+
+
+   ::user::enum_state toolbar::get_item_user_state(index iIndex)
+   {
+
+      auto eitemstate = get_item_state(iIndex);
+
+      ::user::estate estate = e_state_none;
+
+      if(eitemstate & e_toolbar_item_state_checked)
+      {
+
+         estate += ::user::e_state_checked;
+
+      }
+
+      if(eitemstate & e_toolbar_item_state_pressed)
+      {
+
+         estate += ::user::e_state_pressed;
+
+      }
+
+      if(!(eitemstate & e_toolbar_item_state_enabled))
+      {
+
+         estate += ::user::e_state_disabled;
 
       }
 
@@ -589,7 +604,7 @@ namespace user
 //      //   if (!(GetStyle() & TBSTYLE_FLAT))
 //      //      cySep = cySep * 2 / 3;
 //
-//      //   if (pData[i].fsState & TBSTATE_HIDDEN)
+//      //   if (pData[i].fsState & e_toolbar_button_hidden)
 //      //      continue;
 //
 //      //   index cx = m_sizeButton.cx;
@@ -645,7 +660,7 @@ namespace user
 //   //   {
 //   //      pData[i].fsState &= ~TBSTATE_WRAP;
 //
-//   //      if (pData[i].fsState & TBSTATE_HIDDEN)
+//   //      if (pData[i].fsState & e_toolbar_button_hidden)
 //   //         continue;
 //   //      GetButtonText(i, str);
 //   //      index dx, dxNext;
@@ -685,7 +700,7 @@ namespace user
 //   //            // a separator, but a custom control.
 //   //            if ((pData[j].fsStyle & TBSTYLE_SEP) &&
 //   //                  (pData[j].idCommand == 0) &&
-//   //                  !(pData[j].fsState & TBSTATE_HIDDEN))
+//   //                  !(pData[j].fsState & e_toolbar_button_hidden))
 //   //            {
 //   //               bFound = TRUE; i = j; x = 0;
 //   //               pData[j].fsState |= TBSTATE_WRAP;
@@ -699,7 +714,7 @@ namespace user
 //   //            {
 //   //               // Never wrap anything that is hidden,
 //   //               // or any custom controls
-//   //               if ((pData[j].fsState & TBSTATE_HIDDEN) ||
+//   //               if ((pData[j].fsState & e_toolbar_button_hidden) ||
 //   //                     ((pData[j].fsStyle & TBSTYLE_SEP) &&
 //   //                      (pData[j].idCommand != 0)))
 //   //                  continue;
@@ -1668,7 +1683,7 @@ return { 0,0 };
    }
 
 
-   bool toolbar::_001GetElementRect(index iItem,RECT32 * prect,e_element eelement, estate estate)
+   bool toolbar::_001GetElementRect(index iItem,RECT32 * prect,enum_element eelement, estate estate)
    {
 
       return false;
@@ -1762,7 +1777,7 @@ return { 0,0 };
 
             }
 
-            item->m_fsStyle &= ~TBBS_SEPARATOR;
+            item->m_estyle -= e_toolbar_item_style_separator;
 
             m_itema.add(item);
 
@@ -1776,7 +1791,7 @@ return { 0,0 };
 
             item->m_str = "";
 
-            item->m_fsStyle |= TBBS_SEPARATOR;
+            item->m_estyle |= e_toolbar_item_style_separator;
 
             m_itema.add(item);
 
@@ -1789,14 +1804,22 @@ return { 0,0 };
    }
 
 
+   void toolbar::set_item_state(index iIndex, const e_toolbar_item_state &estate)
+   {
+
+      m_itema[iIndex]->m_estate = estate;
+
+   }
+
+
    toolbar_item::toolbar_item()
    {
 
 
       m_iIndex                      = -1;
       m_iImage                      = -1;
-      m_fsState                     = 0;
-      m_fsStyle                     = 0;
+      m_estate                      = e_toolbar_item_state_none;
+      m_estyle                      = e_toolbar_item_style_none;
       m_bEnableIfHasCommandHandler  = true;
 
 

@@ -332,7 +332,7 @@ namespace helloworld
                }
                else
                {
-                  millis_sleep(1000);
+                  sleep(1_s);
                }
 
                if(m_strImage != strImage)

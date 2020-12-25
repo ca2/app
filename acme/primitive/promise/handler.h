@@ -27,9 +27,9 @@ namespace promise
 #ifdef DEBUG
 
 
-      i64 add_ref(OBJ_REF_DBG_PARAMS);
-      i64 dec_ref(OBJ_REF_DBG_PARAMS);
-      i64 release(OBJ_REF_DBG_PARAMS);
+      i64 add_ref(OBJ_REF_DBG_PARAMS) override;
+      i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
+      i64 release(OBJ_REF_DBG_PARAMS) override;
 
 #endif
 

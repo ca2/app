@@ -488,7 +488,7 @@ namespace dynamic_source
          if (iRetry > 0)
          {
 
-            millis_sleep((::u32)__random(2000, 4000));
+            sleep((::u32)__random(2000, 4000));
 
          }
 

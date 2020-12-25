@@ -301,7 +301,7 @@ i32 create_process4(const char * pszCommandLine, i32 * pprocessId)
 }
 
 
-CLASS_DECL_CORE i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, bool bPrivileged, unsigned int * puiPid)
+CLASS_DECL_CORE i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
 {
 
    string strCmdLine;
@@ -345,7 +345,7 @@ CLASS_DECL_CORE i32 call_async(const char * pszPath, const char * pszParam, cons
 }
 
 
-CLASS_DECL_CORE u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_CORE u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    string strCmdLine;
@@ -383,7 +383,7 @@ CLASS_DECL_CORE u32 call_sync(const char * pszPath, const char * pszParam, const
 
       }
 
-      sleep(1);
+      sleep(1_ms);
 
    }
 
@@ -645,7 +645,7 @@ bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration
 
    property_set set;
 
-   return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), display_none, durationTimeout, set);
+   return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), e_display_none, durationTimeout, set);
 
 }
 

@@ -89,7 +89,7 @@ else __msg_entry(WM_HELP)//    0x0053
 else __msg_entry(WM_USERCHANGED)//    0x0054
 else __msg_entry(WM_NOTIFYFORMAT)//    0x0055
 
-else __msg_entry(WM_CONTEXTMENU)
+else __msg_entry(e_message_context_menu)
 else __msg_entry(WM_STYLECHANGING)
 else __msg_entry(WM_STYLECHANGED)
 else __msg_entry(e_message_display_change)

@@ -192,7 +192,7 @@ namespace acme
          while(m_bRunning && iRetry > 0)
          {
             m_bRun = false;
-            sleep(1);
+            sleep(1_ms);
             iRetry--;
          }
 
@@ -353,7 +353,7 @@ namespace acme
                   {
                      if(!on_idle())
                      {
-                        millis_sleep(100);
+                        sleep(100_ms);
                      }
                   }
                   else

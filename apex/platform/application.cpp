@@ -830,7 +830,7 @@ namespace apex
    }
 
 
-   //::estatus application::os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
+   //::estatus application::os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   return ::os_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
@@ -838,7 +838,7 @@ namespace apex
    //}
 
 
-   //::estatus application::ui_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
+   //::estatus application::ui_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -853,7 +853,7 @@ namespace apex
    //}
 
 
-   //::estatus application::ui_message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, ::emessagebox emessagebox, ::callback callback)
+   //::estatus application::ui_message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -868,7 +868,7 @@ namespace apex
    //}
 
 
-   //::estatus application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
+   //::estatus application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -885,7 +885,7 @@ namespace apex
    //}
 
 
-   //::estatus application::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, ::emessagebox emessagebox, ::callback callback)
+   //::estatus application::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
@@ -1309,10 +1309,10 @@ namespace apex
    //::file::path application::full_process_path(::file::path path)
    //{
 
-   //   if (!(path & ::file::flag_dont_resolve_alias))
+   //   if (!(path & ::file::e_flag_dont_resolve_alias))
    //   {
 
-   //      path |= ::file::flag_resolve_alias;
+   //      path |= ::file::e_flag_resolve_alias;
 
    //   }
 
@@ -1663,7 +1663,7 @@ namespace apex
 //
 //         }
 
-         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", MB_ICONINFORMATION);
+         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
 
          auto estatus = on_before_launching();
 
@@ -1912,7 +1912,7 @@ namespace apex
 
          application_pos_run();
 
-         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", MB_ICONINFORMATION);
+         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
 
       }
       catch (...)
@@ -1928,7 +1928,7 @@ namespace apex
    ::estatus application::init_instance()
    {
 
-      //xxdebug_box("check_exclusive", "check_exclusive", MB_ICONINFORMATION);
+      //xxdebug_box("check_exclusive", "check_exclusive", e_message_box_icon_information);
 
       if (m_bInterprocessIntercommunication)
       {
@@ -1986,13 +1986,13 @@ namespace apex
 
 //#endif //!__DEBUG
 
-            payload payload;
+            string strMessage;
 
-            payload["message"] = "Another instance of \"" + m_strAppName + "\" is already running (and some exclusivity policy is active).";
+            strMessage = "Another instance of \"" + m_strAppName + "\" is already running (and some exclusivity policy is active).";
 
 //          payload["prefix_html"] = "<img src=\"matter://system/exclusive.png\" width=80 height=80 style=\"display:block;\"><br/><br/>";
 
-            message_box_timeout(payload, m_strAppName, durationTimeout, e_message_box_icon_asterisk);
+            message_box_timeout(strMessage, m_strAppName, durationTimeout, e_message_box_icon_asterisk);
 
             INFO("apex::application::init_application exit");
 
@@ -2011,7 +2011,7 @@ namespace apex
 
       }
 
-      //xxdebug_box("check_exclusive ok", "check_exclusive ok", MB_ICONINFORMATION);
+      //xxdebug_box("check_exclusive ok", "check_exclusive ok", e_message_box_icon_information);
 
       //if (m_bInitializeDataCentral)
       //{
@@ -3356,7 +3356,7 @@ retry_license:
 
       System.install_progress_add_up(); // 2
 
-      //xxdebug_box("init1 ok", "init1 ok", MB_ICONINFORMATION);
+      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 
       m_millisHeartBeat.Now();
 
@@ -3371,7 +3371,7 @@ retry_license:
 
       System.install_progress_add_up(); // 3
 
-      //xxdebug_box("init2 ok", "init2 ok", MB_ICONINFORMATION);
+      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 
       m_millisHeartBeat.Now();
 
@@ -3386,7 +3386,7 @@ retry_license:
 
       System.install_progress_add_up(); // 4
 
-      //xxdebug_box("init3 ok", "init3 ok", MB_ICONINFORMATION);
+      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 
       m_millisHeartBeat.Now();
 
@@ -4966,11 +4966,11 @@ retry_license:
 //
 //#elif defined(WINDOWS)
 //
-//      call_async("C:\\Program Files (x86)\\Notepad++\\Notepad++.exe", "\"" + strFile + "\"", "", display_normal, false);
+//      call_async("C:\\Program Files (x86)\\Notepad++\\Notepad++.exe", "\"" + strFile + "\"", "", e_display_normal, false);
 //
 //#elif defined(LINUX)
 //
-//      call_async("gedit", "\"" + strFile + "\"", "", display_normal, false);
+//      call_async("gedit", "\"" + strFile + "\"", "", e_display_normal, false);
 //
 //#else
 //
@@ -5180,7 +5180,7 @@ retry_license:
 
          iRetry--;
 
-         millis_sleep(100);
+         sleep(100_ms);
 
       }
 
@@ -5324,7 +5324,7 @@ retry_license:
    }
 
 
-   bool application::keyboard_focus_is_focusable(::user::primitive * pue)
+   bool application::keyboard_focus_is_focusable(const ::user::primitive * pue)
    {
 
       return false;
@@ -5731,7 +5731,7 @@ retry_license:
 //   }
 
 
-   //::type application::user_default_controltype_to_typeinfo(::user::e_control_type econtroltype)
+   //::type application::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    //{
 
    //   return __type(::user::interaction);
@@ -5739,10 +5739,10 @@ retry_license:
    //}
 
 
-   //::type application::control_type_from_id(const ::id & id, ::user::e_control_type & econtroltype)
+   //::type application::control_type_from_id(const ::id & id, ::user::enum_control_type & econtroltype)
    //{
 
-   //   econtroltype = ::user::control_type_none;
+   //   econtroltype = ::user::e_control_type_none;
 
    //   return __type(::user::interaction);
 
@@ -5888,7 +5888,7 @@ retry_license:
       //   if (m_puiMain1)
       //   {
 
-      //      m_puiMain1->display(::display_hide);
+      //      m_puiMain1->display(::e_display_hide);
 
       //      m_puiMain1->set_need_redraw();
 
@@ -6805,7 +6805,7 @@ retry_license:
 
             }
 
-            millis_sleep(200);
+            sleep(200_ms);
 
          }
 
@@ -7209,7 +7209,7 @@ retry_license:
 
          ::property_set set;
 
-         return ::call_sync(::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, ::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), display_normal, 2_min, set);
+         return ::call_sync(::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, ::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_min, set);
 
 #endif
 
@@ -8642,7 +8642,7 @@ namespace apex
    //      }
 
    //      // hide the application's windows before closing all the documents
-   //      m_puiMain1->m_puiThis->display(display_none);
+   //      m_puiMain1->m_puiThis->display(e_display_none);
    //      // trans    m_puiMain->ShowOwnedPopups(FALSE);
 
 
@@ -8653,7 +8653,7 @@ namespace apex
 
    //      //m_puiMain->m_puiThis->wait_redraw();
 
-   //      m_puiMain1->m_puiThis->display(display_none);
+   //      m_puiMain1->m_puiThis->display(e_display_none);
 
 
    //   }
@@ -9216,7 +9216,7 @@ namespace apex
    //      }
 
    //      // hide the application's windows before closing all the documents
-   //      m_puiMain1->m_puiThis->display(display_none);
+   //      m_puiMain1->m_puiThis->display(e_display_none);
    //      // trans    m_puiMain->ShowOwnedPopups(FALSE);
 
 
@@ -9227,7 +9227,7 @@ namespace apex
 
    //      //m_puiMain->m_puiThis->wait_redraw();
 
-   //      m_puiMain1->m_puiThis->display(display_none);
+   //      m_puiMain1->m_puiThis->display(e_display_none);
 
 
    //   }
@@ -10172,7 +10172,7 @@ namespace apex
    }
 
 
-   //::type application::control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype)
+   //::type application::control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype)
    //{
 
    //   string str(id);
@@ -10180,7 +10180,7 @@ namespace apex
    //   if (str.begins_ci("combo_"))
    //   {
 
-   //      econtroltype = ::user::control_type_combo_box;
+   //      econtroltype = ::user::e_control_type_combo_box;
 
    //      return __type(::user::combo_box);
 
@@ -10188,7 +10188,7 @@ namespace apex
    //   else if (str.begins_ci("check_") || str.begins_ci("checkbox_"))
    //   {
 
-   //      econtroltype = ::user::control_type_check_box;
+   //      econtroltype = ::user::e_control_type_check_box;
 
    //      return __type(::user::check_box);
 
@@ -10196,7 +10196,7 @@ namespace apex
    //   else if (str.begins_ci("still_"))
    //   {
 
-   //      econtroltype = ::user::control_type_static;
+   //      econtroltype = ::user::e_control_type_static;
 
    //      return __type(::user::still);
 
@@ -10204,7 +10204,7 @@ namespace apex
    //   else if (str.begins_ci("label_"))
    //   {
 
-   //      econtroltype = ::user::control_type_static;
+   //      econtroltype = ::user::e_control_type_static;
 
    //      return __type(::user::still);
 
@@ -10212,7 +10212,7 @@ namespace apex
    //   else if (str.begins_ci("edit_"))
    //   {
 
-   //      econtroltype = ::user::control_type_edit_plain_text;
+   //      econtroltype = ::user::e_control_type_edit_plain_text;
 
    //      return __type(::user::plain_edit);
 
@@ -10220,7 +10220,7 @@ namespace apex
    //   else if (str.begins_ci("button_"))
    //   {
 
-   //      econtroltype = ::user::control_type_button;
+   //      econtroltype = ::user::e_control_type_button;
 
    //      return __type(::user::button);
 
@@ -10698,7 +10698,7 @@ namespace apex
    //void application::on_control_event(::user::control_event* pevent)
    //{
 
-   //   if (pevent->m_eevent == ::user::event_initialize_control)
+   //   if (pevent->m_eevent == ::user::e_event_initialize_control)
    //   {
 
    //      if (pevent->m_puie->m_id == __id(system_startup_checkbox))
@@ -10725,7 +10725,7 @@ namespace apex
    //      }
 
    //   }
-   //   else if (pevent->m_eevent == ::user::event_set_check)
+   //   else if (pevent->m_eevent == ::user::e_event_set_check)
    //   {
 
    //      if (pevent->m_puie->m_id == __id(system_startup_checkbox)
@@ -10795,7 +10795,7 @@ namespace apex
    }
 
 
-   //::type application::control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype)
+   //::type application::control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype)
    //{
 
    //
@@ -10965,6 +10965,28 @@ namespace apex
       }
 
    }
+
+
+   ::estatus application::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+   {
+
+      auto estatus = System.message_box(pszMessage, pszTitle, emessagebox, process);
+
+      return estatus;
+
+   }
+
+
+   ::estatus application::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::promise::process & process)
+   {
+
+      auto estatus = System.message_box_timeout(pszMessage, pszTitle, durationTimeout, emessagebox, process);
+
+      return estatus;
+
+   }
+
+
 
 
 } // namespace apex

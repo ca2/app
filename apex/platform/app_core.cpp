@@ -224,14 +224,14 @@ bool app_core::on_result(const ::estatus & estatus)
    if (file_exists(::file::path(APP_CORE_BASE_DIR) / "wait_on_beg.txt"))
    {
 
-      millis_sleep(10000);
+      sleep(10_s);
 
    }
 
    if (file_exists(::file::path(APP_CORE_BASE_DIR) / "beg_debug_box.txt"))
    {
 
-      //debug_box("zzzAPPzzz app", "zzzAPPzzz app", MB_ICONINFORMATION);
+      //debug_box("zzzAPPzzz app", "zzzAPPzzz app", e_message_box_icon_information);
 
    }
 
@@ -430,7 +430,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
       strPrgName.replace("_", "-");
 
-      m_strProgName = "cc.ca2." + strPrgName;
+      m_strProgName = "com." + strPrgName;
 
    }
 
@@ -545,7 +545,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
    // cold start (never previously called program and its Dlls...)?
    System.m_millisMainStart = m_millisStart;
 
-   //xxdebug_box("box1", "box1", MB_ICONINFORMATION);
+   //xxdebug_box("box1", "box1", e_message_box_icon_information);
 
    ::file::path pathOutputDebugString = ::dir::system() / strAppId / "output_debug_string.txt" ;
 

@@ -75,7 +75,7 @@ namespace ios
    }
 
 
-   ::file_result file_context::get_file(const ::payload & varFile, const ::efileopen & eopen)
+   ::file_result file_context::get_file(const ::payload & varFile, const ::file::e_open & eopen)
    {
 
       ::file_result pfileresult;

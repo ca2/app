@@ -73,13 +73,13 @@ namespace user
       //   if (!bIsWindowVisible)
       //   {
 
-      //      pwnd->display(display_none);
+      //      pwnd->display(e_display_none);
 
       //   }
       //   else
       //   {
 
-      //      pwnd->display(display_normal);
+      //      pwnd->display(e_display_normal);
 
       //   }
 
@@ -117,13 +117,13 @@ namespace user
       //   if (rectPane.area() <= 0 || !bIsWindowVisible)
       //   {
 
-      //      pwnd->display(display_none);
+      //      pwnd->display(e_display_none);
 
       //   }
       //   else
       //   {
 
-      //      pwnd->display(display_normal);
+      //      pwnd->display(e_display_normal);
 
       //   }
 
@@ -247,7 +247,7 @@ namespace user
 
 //         i32   fwKeys = (i32) pMsg->wParam;        // key flags
 
-         if(psession->is_mouse_button_pressed(::user::mouse_left_button))
+         if(psession->is_mouse_button_pressed(::user::e_mouse_left_button))
          {
             ::user::split_bar & splitbar = *m_splitbara.element_at(iIndex);
             splitbar.SetCapture();
@@ -1353,7 +1353,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      auto colorBackground = get_color(pstyle, element_background);
+      auto colorBackground = get_color(pstyle, e_element_background);
 
       if (colorBackground.m_iA > 0)
       {

@@ -49,7 +49,7 @@ namespace userfs
 
    bool item::is_folder() const
    {
-      return m_flags.has(::file::FlagFolder);
+      return m_flags.has(::file::e_flag_folder);
    }
 
 
@@ -90,7 +90,7 @@ namespace userfs
 
       ::user::shell::e_file_attribute efileattribute;
 
-      if (m_flags & ::file::FlagFolder)
+      if (m_flags & ::file::e_flag_folder)
       {
 
          efileattribute = ::user::shell::file_attribute_directory;

@@ -42,7 +42,13 @@ void simple_menu_bar::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_create, pchannel, this, &simple_menu_bar::_001OnCreate);
    MESSAGE_LINK(e_message_key_down, pchannel, this, &simple_menu_bar::_001OnKeyDown);
    MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_menu_bar::_001OnDestroy);
+
+#ifdef WINDOWS_DESKTOP
+
    MESSAGE_LINK(WM_MENUCHAR, pchannel, this, &simple_menu_bar::_001OnMenuChar);
+
+#endif
+
    //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &simple_menu_bar::_001OnLButtonDown);
    //MESSAGE_LINK(e_message_language, pchannel, this, &simple_menu_bar::_001OnAppLanguage);
 
@@ -106,9 +112,9 @@ void simple_menu_bar::SetMenuID(::u32 uResourceId)
    m_uResourceId = uResourceId;
 }
 
-bool simple_menu_bar::pre_create_window(::user::create_struct& cs)
+bool simple_menu_bar::pre_create_window(::user::create_struct * pcreatestruct)
 {
-   return simple_toolbar::pre_create_window(cs);
+   return simple_toolbar::pre_create_window(pcreatestruct);
 }
 
 
@@ -161,7 +167,7 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
    m_iButtonPressItem = iItem;
    set_need_redraw();
    ::rect rect;
-   _001GetElementRect(iItem, rect, ::user::element_item, ::user::e_state_none);
+   _001GetElementRect(iItem, rect, ::user::e_element_item, ::user::e_state_none);
    _001ClientToScreen(rect);
 
    /*#ifdef WINDOWS_DESKTOP
@@ -250,6 +256,9 @@ void simple_menu_bar::_001OnCreate(::message::message * pmessage)
 }
 
 
+#ifdef WINDOWS_DESKTOP
+
+
 LRESULT CALLBACK simple_menu_bar::MessageProc(index code, WPARAM wParam, LPARAM lParam)
 {
 
@@ -283,6 +292,9 @@ LRESULT CALLBACK simple_menu_bar::MessageProc(index code, WPARAM wParam, LPARAM 
    return 0;
 
 }
+
+
+#endif
 
 
 bool simple_menu_bar::_track_popup_menu(const ::point & point)
@@ -461,7 +473,11 @@ void simple_menu_bar::OnUpdateCmdUI(__pointer(::user::frame_window)pTarget, bool
 bool simple_menu_bar::ReloadMenuBar()
 {
 
+#ifdef WINDOWS_DESKTOP
+
    send_message(WM_CANCELMODE);
+
+#endif
 
    if (!LoadMenuBar(m_uResourceId))
       return false;
@@ -510,7 +526,7 @@ bool simple_menu_bar::ReloadMenuBar()
 
 }
 */
-/*bool simple_menu_bar::_001GetItemRect(index iItem, RECT32 * prect, e_element eelement)
+/*bool simple_menu_bar::_001GetItemRect(index iItem, RECT32 * prect, enum_element eelement)
 
 {
    if(iItem < 0 ||
@@ -519,7 +535,7 @@ bool simple_menu_bar::ReloadMenuBar()
 
    switch(eelement)
    {
-   case element_item:
+   case e_element_item:
       prect->left   = m_buttona[iItem].m_rect.left + ITEMCHECKEDCX;
 
       prect->right  = m_buttona[iItem].m_rect.right + ITEMCHECKEDPADRIGHT;
@@ -539,7 +555,7 @@ bool simple_menu_bar::ReloadMenuBar()
       prect->bottom = m_buttona[iItem].m_rect.bottom - ITEMCHECKEDCY;
 
       break;
-   case element_text:
+   case e_element_text:
       prect->left   = m_buttona[iItem].m_rect.left + ITEMCHECKEDCX;
 
       prect->right  = m_buttona[iItem].m_rect.right;
@@ -732,8 +748,8 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
    SimpleMenuBarButton & button = m_buttona[iItem];
 
 
-   e_element eelement = element_item;
-   e_element eelementText = element_text;
+   enum_element eelement = e_element_item;
+   enum_element eelementText = e_element_text;
    if(m_iTracking >= 0)
    {
       if(iItem == m_iTracking)
@@ -757,7 +773,7 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
    if(eelement == element_item_hover)
    {
       ::rect rectShadow;
-      _001GetItemRect(iItem, rectShadow, element_item);
+      _001GetItemRect(iItem, rectShadow, e_element_item);
 
       ::draw2d::pen_pointer penShadow(get_context_application(), PS_SOLID, 1, RGB(127, 127, 127));
       ::draw2d::brush_pointer brushShadow(get_context_application(), RGB(127, 127, 127));
@@ -774,7 +790,7 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
       pgraphics->set(pbrushOld);
 
       ::rect rect;
-      _001GetItemRect(iItem, rect, element_text);
+      _001GetItemRect(iItem, rect, e_element_text);
       pgraphics->set_text_color(RGB(192, 192, 192));
       draw2d::graphics_extension::_DrawText(pgraphics,
          button.m_wstr,

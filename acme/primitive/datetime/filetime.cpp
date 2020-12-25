@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "os/cross/windows/_windows.h"
+#include "filetime.h"
+
 
 //namespace datetime
 //{
@@ -120,37 +122,37 @@
    }
 
 
-#ifdef WINDOWS
-
-
-   filetime filetime::UTCToLocal() const noexcept
-   {
-
-      FILETIME filetimeLocal;
-
-      auto filetimeThis = get_FILETIME();
-
-      ::FileTimeToLocalFileTime(&filetimeThis, &filetimeLocal);
-
-      return filetimeLocal;
-
-   }
-
-
-   filetime filetime::LocalToUTC() const noexcept
-   {
-
-      FILETIME filetimeUTC;
-
-      auto filetimeThis = get_FILETIME();
-
-      ::LocalFileTimeToFileTime(&filetimeThis, &filetimeUTC);
-
-      return filetimeUTC;
-
-   }
-
-#endif
+//#ifdef WINDOWS
+//
+//
+//   filetime filetime::UTCToLocal() const noexcept
+//   {
+//
+//      FILETIME filetimeLocal;
+//
+//      auto filetimeThis = get_FILETIME();
+//
+//      ::FileTimeToLocalFileTime(&filetimeThis, &filetimeLocal);
+//
+//      return filetimeLocal;
+//
+//   }
+//
+//
+//   filetime filetime::LocalToUTC() const noexcept
+//   {
+//
+//      FILETIME filetimeUTC;
+//
+//      auto filetimeThis = get_FILETIME();
+//
+//      ::LocalFileTimeToFileTime(&filetimeThis, &filetimeUTC);
+//
+//      return filetimeUTC;
+//
+//   }
+//
+//#endif
 
 
    const filetime_t filetime::Millisecond = 10000;
@@ -159,11 +161,6 @@
    const filetime_t filetime::Hour = Minute * static_cast<filetime_t>(60);
    const filetime_t filetime::Day = Hour * static_cast<filetime_t>(24);
    const filetime_t filetime::Week = Day * static_cast<filetime_t>(7);
-
-//
-//}
-//
-//
 
 
 CLASS_DECL_ACME bool file_modified_timeout(const char * path, int iSeconds)
@@ -268,7 +265,7 @@ CLASS_DECL_ACME bool set_modified_filetime(const char* psz, const filetime & fil
 #elif defined(_UWP)
 
 
-bool get_filetime_set(const char * psz,FILETIME & creation,FILETIME & modified)
+bool get_filetime_set(const char * psz,filetime & creation,filetime & modified)
 {
 
    hfile hfile = hfile_create(psz, GENERIC_READ, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE, nullptr, OPEN_EXISTING, FILE_ATTRIBUTE_NORMAL, nullptr);
@@ -281,7 +278,7 @@ bool get_filetime_set(const char * psz,FILETIME & creation,FILETIME & modified)
       xxf_zero(creation);
       xxf_zero(modified);
 
-      if (::GetFileTime(hfile, &creation, nullptr, &modified))
+      if (::GetFileTime(hfile, (FILETIME *) &creation, nullptr, (FILETIME *)&modified))
       {
 
          bOk = true;

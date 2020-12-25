@@ -46,7 +46,7 @@ namespace user
    }
 
 
-   bool interaction_child::create_window_ex(::user::interaction * pinteraction, ::user::create_struct & createstruct, ::user::interaction * puiParent, id id)
+   bool interaction_child::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::interaction * puiParent, id id)
    {
 
       if (_is_window())
@@ -78,7 +78,7 @@ namespace user
 
          m_puserinteraction->m_id = id;
 
-         if (!m_puserinteraction->pre_create_window(createstruct))
+         if (!m_puserinteraction->pre_create_window(pcreatestruct))
          {
             INFO("-------------------------------------------------------------------");
             INFO("");
@@ -86,7 +86,6 @@ namespace user
             INFO("interaction_child::create_window_ex (2)");
             INFO("");
             INFO("");
-
 
             return false;
 
@@ -96,9 +95,8 @@ namespace user
 
          install_message_routing(m_puserinteraction);
 
-         if (m_puserinteraction->m_ewindowflag & window_flag_load_window_rect_on_impl)
+         if (m_puserinteraction->m_ewindowflag & e_window_flag_load_window_rect_on_impl)
          {
-
 
             INFO("-------------------------------------------------------------------");
             INFO("");
@@ -106,24 +104,27 @@ namespace user
             INFO("interaction_child::create_window_ex (rect)");
             INFO("");
             INFO("");
+
             m_puserinteraction->WindowDataLoadWindowRect();
 
          }
 
-         m_puserinteraction->m_ewindowflag |= window_flag_is_window;
+         m_puserinteraction->m_ewindowflag |= e_window_flag_is_window;
 
-         m_puserinteraction->set_window_long_ptr(GWL_STYLE, createstruct.style);
+         m_puserinteraction->set_window_long_ptr(GWL_STYLE, pcreatestruct->m_createstruct.style);
 
-         auto rectChild = createstruct.get_rect();
+         auto rectChild = pcreatestruct->get_rect();
 
          if (rectChild.is_set())
          {
+
             INFO("-------------------------------------------------------------------");
             INFO("");
             INFO("");
             INFO("interaction_child::create_window_ex (rectChild %d, %d, (%d, %d))", rectChild.origin().x, rectChild.origin().y, rectChild.width(), rectChild.height());
             INFO("");
             INFO("");
+
             m_puserinteraction->layout().sketch() = rectChild;
 
          }
@@ -133,44 +134,48 @@ namespace user
          if(m_puserinteraction->is_host_top_level())
          {
 
-         INFO("host_top_level");
+            INFO("host_top_level");
 
          }
          else
          {
 
+            if (pcreatestruct->m_createstruct.style & WS_VISIBLE)
+            {
 
-         if (createstruct.style & WS_VISIBLE)
-         {
-            INFO("-------------------------------------------------------------------");
-            INFO("");
-            INFO("");
-            INFO("interaction_child::create_window_ex VISIBLE");
-            INFO("");
-            INFO("");
-            m_puserinteraction->display();
+               INFO("-------------------------------------------------------------------");
+               INFO("");
+               INFO("");
+               INFO("interaction_child::create_window_ex VISIBLE");
+               INFO("");
+               INFO("");
+
+               m_puserinteraction->display();
+
+            }
+            else
+            {
+
+               INFO("-------------------------------------------------------------------");
+               INFO("");
+               INFO("");
+               INFO("interaction_child::create_window_ex NOT VISIBLE");
+               INFO("");
+               INFO("");
+
+               m_puserinteraction->hide();
+
+            }
+
          }
-         else
-         {
-            INFO("-------------------------------------------------------------------");
-            INFO("");
-            INFO("");
-            INFO("interaction_child::create_window_ex NOT VISIBLE");
-            INFO("");
-            INFO("");
 
-            m_puserinteraction->hide();
-         }
-
-         }
-
-         m_puserinteraction->send_message(e_message_create, 0, (lparam)(LPARAM)& createstruct);
+         m_puserinteraction->send_message(e_message_create, 0, (lparam)(LPARAM)& pcreatestruct->m_createstruct);
 
       }
       catch (...)
       {
 
-         m_puserinteraction->m_ewindowflag -= window_flag_is_window;
+         m_puserinteraction->m_ewindowflag -= e_window_flag_is_window;
 
          m_bCreate = false;
 
@@ -178,7 +183,7 @@ namespace user
 
       }
 
-      m_puserinteraction->m_ewindowflag |= window_flag_window_created;
+      m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
       return true;
 
@@ -188,39 +193,35 @@ namespace user
    bool interaction_child::create_window(::user::interaction * pinteraction, const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, id id, ::create * pcreate)
    {
 
-      ::user::create_struct createstruct;
+      auto pcreatestruct = __new(::user::create_struct);
 
-      createstruct.set_rect(&rect);
+      pcreatestruct->set_rect(&rect);
 
-      createstruct.dwExStyle = 0;
-      createstruct.style = uStyle;
+      pcreatestruct->m_createstruct.dwExStyle = 0;
+      pcreatestruct->m_createstruct.style = uStyle;
 
 #ifdef WINDOWS
 
       wstring wstrClassName(pszClassName);
-      createstruct.lpszClass = wstrClassName;
+      pcreatestruct->m_createstruct.lpszClass = wstrClassName;
       wstring wstrWindowName(pszWindowName);
-      createstruct.lpszName = wstrWindowName;
+      pcreatestruct->m_createstruct.lpszName = wstrWindowName;
 #ifndef _UWP
-      createstruct.hInstance = System.m_hinstance;
+      pcreatestruct->m_createstruct.hInstance = System.m_hinstance;
 #endif
 
 #else
 
-      createstruct.lpszClass = pszClassName;
-      createstruct.lpszName = pszWindowName;
+      pcreatestruct->m_createstruct.lpszClass = pszClassName;
+      pcreatestruct->m_createstruct.lpszName = pszWindowName;
 
 #endif
 
-      createstruct.hwndParent = puiParent->get_handle();
-      createstruct.hMenu = nullptr;
-#ifdef _UWP
-      createstruct.pCreateParams = (LPVOID)pcreate;
-#else
-      createstruct.lpCreateParams = (void *) pcreate;
-#endif
+      pcreatestruct->m_createstruct.hwndParent = puiParent->get_handle();
+      pcreatestruct->m_createstruct.hMenu = nullptr;
+      pcreatestruct->m_pcreate = pcreate;
 
-      return create_window_ex(pinteraction, createstruct, puiParent, id);
+      return create_window_ex(pinteraction, pcreatestruct, puiParent, id);
 
    }
 
@@ -429,7 +430,7 @@ namespace user
    }
 
 
-   bool interaction_child::is_this_visible(e_layout elayout)
+   bool interaction_child::is_this_visible(enum_layout elayout)
    {
 
       if (!m_puserinteraction)
@@ -439,7 +440,7 @@ namespace user
 
       }
 
-      if (!(m_puserinteraction->m_ewindowflag & window_flag_is_window))
+      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_is_window))
       {
 
          return false;
@@ -465,7 +466,7 @@ namespace user
    }
 
 
-   void interaction_child::window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation)
+   void interaction_child::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
    {
 
       try
@@ -614,7 +615,7 @@ namespace user
 
          ::rect rectWindow;
 
-         m_puserinteraction->get_window_rect(rectWindow, ::user::layout_design);
+         m_puserinteraction->get_window_rect(rectWindow, ::user::e_layout_design);
 
          auto pwnd = get_wnd();
 

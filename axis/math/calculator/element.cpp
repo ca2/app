@@ -20,39 +20,39 @@ namespace calculator
 
     double pi();
 
-   value element::get_value()
+   payload element::get_payload()
    {
       if(m_ptoken->m_etype == token::type_identifier)
       {
-         class value val;
+         class payload payload;
          if(m_ptoken->m_str.compare_ci("pi") == 0)
          {
-            val.m_dR = pi();
+            payload.m_dR = pi();
          }
          else
          {
             __throw(::exception::exception("unknown identifier"));
          }
-         return val;
+         return payload;
       }
       else if(m_ptoken->m_etype == token::type_number)
       {
-         class value val;
-         val.m_dR = atof(m_ptoken->m_str);
-         return val;
+         class payload payload;
+         payload.m_dR = atof(m_ptoken->m_str);
+         return payload;
       }
       else if(m_ptoken->m_etype == token::type_imaginary)
       {
-         class value val;
-         val.m_dI = atof(m_ptoken->m_str);
-         return val;
+         class payload payload;
+         payload.m_dI = atof(m_ptoken->m_str);
+         return payload;
       }
       else if(m_ptoken->m_etype == token::type_addition)
       {
          if(m_pelement2 == nullptr)
-            return m_pelement1->get_value();
+            return m_pelement1->get_payload();
          else
-            return m_pelement1->get_value() + m_pelement2->get_value();
+            return m_pelement1->get_payload() + m_pelement2->get_payload();
       }
       else if(m_ptoken->m_etype == token::type_subtraction)
       {
@@ -60,78 +60,78 @@ namespace calculator
          if(m_pelement2 == nullptr)
          {
 
-            class value valueZero;
+            class payload valueZero;
 
-            return valueZero - m_pelement1->get_value();
+            return valueZero - m_pelement1->get_payload();
 
          }
          else
          {
 
-            return m_pelement1->get_value() - m_pelement2->get_value();
+            return m_pelement1->get_payload() - m_pelement2->get_payload();
 
          }
 
       }
       else if(m_ptoken->m_etype == token::type_multiplication)
       {
-         return m_pelement1->get_value() * m_pelement2->get_value();
+         return m_pelement1->get_payload() * m_pelement2->get_payload();
       }
       else if(m_ptoken->m_etype == token::type_division)
       {
-         return m_pelement1->get_value() / m_pelement2->get_value();
+         return m_pelement1->get_payload() / m_pelement2->get_payload();
       }
       else if(m_ptoken->m_etype == token::type_function)
       {
          if(m_ptoken->m_str == "sqr")
          {
-            return m_pelement1->get_value() * m_pelement1->get_value();
+            return m_pelement1->get_payload() * m_pelement1->get_payload();
          }
          else if(m_ptoken->m_str == "sqrt")
          {
-            return sqrt(m_pelement1->get_value());
+            return sqrt(m_pelement1->get_payload());
          }
          else if(m_ptoken->m_str == "exp")
          {
-            return exp(m_pelement1->get_value());
+            return exp(m_pelement1->get_payload());
          }
          else if(m_ptoken->m_str == "ln")
          {
-            return log(m_pelement1->get_value());
+            return log(m_pelement1->get_payload());
          }
          else if(m_ptoken->m_str == "log")
          {
-            class value val;
-            val.m_dR = 10.0;
-            return log(m_pelement1->get_value()) / log(val);
+            class payload payload;
+            payload.m_dR = 10.0;
+            return log(m_pelement1->get_payload()) / log(payload);
          }
          else if(m_ptoken->m_str == "pow")
          {
-            return pow(m_pelement1->get_value(), m_pelement2->get_value());
+            return pow(m_pelement1->get_payload(), m_pelement2->get_payload());
          }
          else if(m_ptoken->m_str == "atan")
          {
-            return atan(m_pelement1->get_value());
+            return atan(m_pelement1->get_payload());
          }
          else if(m_ptoken->m_str == "asin")
          {
-            return asin(m_pelement1->get_value());
+            return asin(m_pelement1->get_payload());
          }
          else if(m_ptoken->m_str == "acos")
          {
-            return acos(m_pelement1->get_value());
+            return acos(m_pelement1->get_payload());
          }
          else if(m_ptoken->m_str == "tan")
          {
-            return tan(m_pelement1->get_value());
+            return tan(m_pelement1->get_payload());
          }
          else if(m_ptoken->m_str == "sin")
          {
-            return sin(m_pelement1->get_value());
+            return sin(m_pelement1->get_payload());
          }
          else if(m_ptoken->m_str == "cos")
          {
-            return cos(m_pelement1->get_value());
+            return cos(m_pelement1->get_payload());
          }
          else
          {
@@ -139,7 +139,7 @@ namespace calculator
          }
       }
 
-      class value valueZero;
+      class payload valueZero;
 
       return valueZero;
 

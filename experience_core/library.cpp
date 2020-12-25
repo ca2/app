@@ -5,8 +5,10 @@
 namespace experience
 {
 
-   namespace aura
+
+   namespace core
    {
+
 
       library::library()
       {
@@ -61,7 +63,7 @@ namespace experience
       __namespace_library_factory("experience_core");
    
 
-   } // namespace aura
+   } // namespace core
 
 
 } // namespace experience

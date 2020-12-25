@@ -37,9 +37,9 @@ namespace user
       m_flagNonClient += ::user::interaction::non_client_hover_rect;
 
       m_pitemFirstVisible        = nullptr;
-      m_itemHover               = nullptr;
+      m_itemHover                = nullptr;
       m_iItemCount               = 0;
-      m_iItemHeight              = 18;
+      m_dItemHeight              = 18.0;
       m_iImageExpand             = -1;
       m_iImageCollapse           = -1;
       m_pimagelist               = nullptr;
@@ -57,7 +57,7 @@ namespace user
 
       SCAST_PTR(::message::create, pcreate, pmessage);
 
-      descriptor().set_control_type(::user::control_type_tree);
+      descriptor().set_control_type(::user::e_control_type_tree);
 
       if (pmessage->previous())
       {
@@ -279,9 +279,9 @@ namespace user
 
          drawitemdata.m_iIndentation = _001GetIndentation();
 
-         drawitemdata.m_iItemHeight = _001GetItemHeight();
+         drawitemdata.m_dItemHeight = _001GetItemHeight();
 
-         get_client_rect(drawitemdata.m_rectClient);
+         drawitemdata.m_rectClient = get_client_rect();
 
          auto pitem = m_pitemFirstVisible;
 
@@ -304,9 +304,9 @@ namespace user
 
             drawitemdata.m_rect.left = (::i32) (drawitemdata.m_iIndentation * pitem->m_iLevel);
 
-            drawitemdata.m_rect.top = (::i32) (iItem * drawitemdata.m_iItemHeight);
+            drawitemdata.m_rect.top = (::i32) (iItem * drawitemdata.m_dItemHeight);
 
-            drawitemdata.m_rect.bottom = (::i32) (drawitemdata.m_rect.top + drawitemdata.m_iItemHeight);
+            drawitemdata.m_rect.bottom = (::i32) (drawitemdata.m_rect.top + drawitemdata.m_dItemHeight);
 
             drawitemdata.m_rect.right = m_iCurrentViewWidth;
 
@@ -386,7 +386,7 @@ namespace user
          if(ptree != nullptr && pimagelistTree.is_set() && data.m_pitem->m_dwState & ::data::tree_item_state_expandable)
          {
 
-            _001GetItemElementRect(rect, data, tree_element_expand_box);
+            _001GetItemElementRect(rect, data, e_tree_element_expand_box);
 
             i32 iImage;
 
@@ -444,14 +444,14 @@ namespace user
 
          //   ::rect rectUnion;
 
-         //   if (_001GetItemElementRect(rect, data, tree_element_image))
+         //   if (_001GetItemElementRect(rect, data, e_tree_element_image))
          //   {
 
          //      rectUnion = rect;
 
          //   }
 
-         //   if (_001GetItemElementRect(rect, data, tree_element_text))
+         //   if (_001GetItemElementRect(rect, data, e_tree_element_text))
          //   {
 
          //      rectUnion.unite(rect, rectUnion);
@@ -478,7 +478,7 @@ namespace user
          if(iImage >= 0)
          {
 
-            if (_001GetItemElementRect(rect, data, tree_element_image))
+            if (_001GetItemElementRect(rect, data, e_tree_element_image))
             {
 
                pimagelistItem->draw(data.m_pdc, iImage, rect.top_left(), 0);
@@ -493,7 +493,7 @@ namespace user
 
       string strItem = pitemData->get_text();
 
-      if(strItem.has_char() && _001GetItemElementRect(rect, data, tree_element_text))
+      if(strItem.has_char() && _001GetItemElementRect(rect, data, e_tree_element_text))
       {
 
          ::draw2d::brush_pointer brushText;
@@ -587,14 +587,14 @@ namespace user
 
       __pointer(::data::tree_item) pitem;
 
-      ::user::e_tree_element eelement;
+      ::user::enum_tree_element eelement;
 
       pitem = _001HitTest(pmouse->m_point, eelement);
 
       if(pitem != nullptr)
       {
 
-         if(eelement == tree_element_expand_box || eelement == tree_element_image || eelement == tree_element_text)
+         if(eelement == e_tree_element_expand_box || eelement == e_tree_element_image || eelement == e_tree_element_text)
          {
 
             _001ExpandItem(pitem, ::source_user, !(pitem->m_dwState & ::data::tree_item_state_expanded));
@@ -617,7 +617,7 @@ namespace user
 
       __pointer(::data::tree_item) pitem;
 
-      ::user::e_tree_element eelement;
+      ::user::enum_tree_element eelement;
 
       _001ScreenToClient(point);
 
@@ -656,7 +656,7 @@ namespace user
 
       __pointer(::data::tree_item) pitem;
 
-      ::user::e_tree_element eelement;
+      ::user::enum_tree_element eelement;
 
       _001ScreenToClient(point);
 
@@ -665,7 +665,7 @@ namespace user
       if(pitem != nullptr)
       {
 
-         if (eelement == tree_element_expand_box)
+         if (eelement == e_tree_element_expand_box)
          {
 
             sync_lock sl(mutex());
@@ -675,7 +675,7 @@ namespace user
             m_evExpand.set_event();
 
          }
-         else if (eelement == tree_element_image || eelement == tree_element_text)
+         else if (eelement == e_tree_element_image || eelement == e_tree_element_text)
          {
 
             sync_lock sl(mutex());
@@ -701,7 +701,7 @@ namespace user
 
       __pointer(::data::tree_item) pitem;
 
-      ::user::e_tree_element eelement;
+      ::user::enum_tree_element eelement;
 
       _001ScreenToClient(point);
 
@@ -710,7 +710,7 @@ namespace user
       if (pitem != nullptr)
       {
 
-         if (eelement == tree_element_image || eelement == tree_element_text)
+         if (eelement == e_tree_element_image || eelement == e_tree_element_text)
          {
 
             _001OnItemContextMenu(pitem, ::source_user, this, pointCursor);
@@ -774,7 +774,7 @@ namespace user
    }
 
 
-   __pointer(::data::tree_item) tree::_001HitTest(const ::point & point, ::user::e_tree_element & eelement)
+   __pointer(::data::tree_item) tree::_001HitTest(const ::point & point, ::user::enum_tree_element & eelement)
    {
 
       index iy = point.y;
@@ -814,21 +814,25 @@ namespace user
 
       index x = (i32) (point. x - _001GetIndentation() * (iLevel) + pointOffset.x);
       if(x >= 0 && x < 16)
-         eelement = tree_element_expand_box;
+         eelement = e_tree_element_expand_box;
       if(x >= 18 && x < 34)
-         eelement = tree_element_image;
+         eelement = e_tree_element_image;
       if(x >= 36)
-         eelement = tree_element_text;
+         eelement = e_tree_element_text;
 
       return pitem;
 
 
    }
 
-   i32 tree::_001GetItemHeight()
+
+   double tree::_001GetItemHeight()
    {
-      return m_iItemHeight;
+
+      return m_dItemHeight;
+
    }
+
 
    void tree::install_message_routing(::channel * pchannel)
    {
@@ -871,11 +875,11 @@ namespace user
    RECT32 * prect,
 
    ::user::tree_draw_item &drawitem,
-   ::user::e_tree_element eelement)
+   ::user::enum_tree_element eelement)
    {
       switch(eelement)
       {
-      case tree_element_expand_box:
+      case e_tree_element_expand_box:
       {
          prect->left   = drawitem.m_rect.left;
 
@@ -887,7 +891,7 @@ namespace user
 
       }
       break;
-      case tree_element_image:
+      case e_tree_element_image:
       {
          prect->left   = drawitem.m_rect.left + 18;
 
@@ -908,7 +912,7 @@ namespace user
 
       }
       break;
-      case tree_element_text:
+      case e_tree_element_text:
       {
          prect->left   = drawitem.m_rect.left + 38;
 
@@ -1124,7 +1128,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      m_colorTreeBackground = get_color(pstyle, ::user::element_background);
+      m_colorTreeBackground = get_color(pstyle, ::user::e_element_background);
 
       __defer_construct(m_brushTextSelectedHighlight);
       __defer_construct(m_brushTextSelected);
@@ -1133,10 +1137,10 @@ namespace user
 
       __defer_construct(m_fontTreeItem);
 
-      m_brushTextSelectedHighlight->create_solid(get_color(pstyle, ::user::element_hilite_text, ::user::e_state_selected));
-      m_brushTextSelected->create_solid(get_color(pstyle, ::user::element_text, ::user::e_state_selected));
-      m_brushTextHighlight->create_solid(get_color(pstyle, ::user::element_text, ::user::e_state_selected));
-      m_brushText->create_solid(get_color(pstyle, ::user::element_text));
+      m_brushTextSelectedHighlight->create_solid(get_color(pstyle, ::user::e_element_hilite_text, ::user::e_state_selected));
+      m_brushTextSelected->create_solid(get_color(pstyle, ::user::e_element_text, ::user::e_state_selected));
+      m_brushTextHighlight->create_solid(get_color(pstyle, ::user::e_element_text, ::user::e_state_selected));
+      m_brushText->create_solid(get_color(pstyle, ::user::e_element_text));
 
       m_fontTreeItem = get_font(pstyle);
 
@@ -1261,11 +1265,11 @@ namespace user
 
       _001ScreenToClient(point);
 
-      ::user::e_tree_element eelement;
+      ::user::enum_tree_element eelement;
 
       __pointer(::data::tree_item) pitem = _001HitTest(point, eelement);
 
-      //if(eelement != tree_element_image && eelement != tree_element_text)
+      //if(eelement != e_tree_element_image && eelement != e_tree_element_text)
       //{
 
       //   pitem = nullptr;
@@ -1480,7 +1484,7 @@ namespace user
       //font->set_bold();
       //g->set_font(font);
 
-      g->set_font(this);
+      g->set_font(this, ::user::e_element_none);
 
 
       ::size size;
@@ -1495,7 +1499,7 @@ namespace user
 
       auto pstyle = get_style(g);
 
-      m_iItemHeight = (i32) (iItemHeight * get_double(pstyle, ::user::e_double_tree_item_height_rate, 1.0));
+      m_dItemHeight = (i32) (iItemHeight * get_double(pstyle, ::user::e_double_tree_item_height_rate, 1.0));
 
       //on_ui_event(event_calc_item_height, object_tree, this);
 
@@ -1624,7 +1628,7 @@ namespace user
    i32 tree::get_wheel_scroll_delta()
    {
 
-      return 3 * m_iItemHeight;
+      return 3.0 * m_dItemHeight;
 
    }
 
@@ -2119,14 +2123,14 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      if (m_iItemHeight <= 0)
+      if (m_dItemHeight <= 0.)
       {
 
-         m_iItemHeight = 18;
+         m_dItemHeight = 18.0;
 
       }
 
-      index iMinVisibleIndex = (index)(pointOffset.y / m_iItemHeight);
+      index iMinVisibleIndex = (index)(pointOffset.y / m_dItemHeight);
 
       index iMaxVisibleIndex = (index)(iMinVisibleIndex + _001GetVisibleItemCount());
 
@@ -2135,7 +2139,7 @@ namespace user
 
          index iNewScrollIndex = iIndex;
 
-         set_viewport_offset_y((int) max(iNewScrollIndex,0) * m_iItemHeight);
+         set_viewport_offset_y((int) max(iNewScrollIndex,0) * m_dItemHeight);
 
          set_need_layout();
 

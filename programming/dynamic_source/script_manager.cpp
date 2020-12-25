@@ -1225,7 +1225,7 @@ namespace dynamic_source
          if(has_link_out_link(pszServer, pinsocket, nullptr))
             break;
 
-         millis_sleep(100);
+         sleep(100_ms);
 
       }
 
@@ -1407,7 +1407,7 @@ namespace dynamic_source
       try
       {
 
-         f = Context.file().get_file(strFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_write);
+         f = Context.file().get_file(strFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_write);
 
       }
       catch(...)

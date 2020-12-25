@@ -78,7 +78,7 @@ public:
    virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
    virtual void on_hit_test(::user::item & item) override;
-   //virtual ::user::e_element _001HitTest(const ::point & point, index & iItem, index & iSubItem, index & iListItem) override;
+   //virtual ::user::enum_element _001HitTest(const ::point & point, index & iItem, index & iSubItem, index & iListItem) override;
 
    virtual bool scrollbar_action(const ::user::item & item, ::draw2d::graphics_pointer & pgraphics);
 
@@ -87,11 +87,11 @@ public:
    virtual bool scrollbar_pageB(const ::point & point, ::draw2d::graphics_pointer & pgraphics);
    virtual bool scrollbar_pageA(const ::point & point, ::draw2d::graphics_pointer & pgraphics);
 
-   virtual ::color scrollbar_color_strong(::user::style * pstyle, ::user::e_element eelement) override;
-   virtual ::color scrollbar_color(::user::style* pstyle, ::user::e_element eelement)override;
-   virtual ::color scrollbar_border_color(::user::style* pstyle, ::user::e_element eelement)override;
-   virtual ::color scrollbar_lite_border_color(::user::style* pstyle, ::user::e_element eelement)override;
-   virtual ::color scrollbar_draw_color(::user::style* pstyle, ::user::e_element eelement)override;
+   virtual ::color scrollbar_color_strong(::user::style * pstyle, ::user::enum_element eelement) override;
+   virtual ::color scrollbar_color(::user::style* pstyle, ::user::enum_element eelement)override;
+   virtual ::color scrollbar_border_color(::user::style* pstyle, ::user::enum_element eelement)override;
+   virtual ::color scrollbar_lite_border_color(::user::style* pstyle, ::user::enum_element eelement)override;
+   virtual ::color scrollbar_draw_color(::user::style* pstyle, ::user::enum_element eelement)override;
 
 
 };

@@ -23,8 +23,8 @@ namespace apex
       string            m_strFile;
       string            m_strParameters;
       string            m_strDirectory;
-      ::edisplay        m_edisplay;
-      ::eactivation     m_eactivation;
+      ::e_display        m_edisplay;
+      ::e_activation     m_eactivation;
       duration          m_durationTimeout;
 
 #ifdef WINDOWS
@@ -61,7 +61,7 @@ namespace apex
 
 
       shell_launcher(duration durationTimeout = ::one_minute());
-      shell_launcher(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::edisplay edisplay, duration durationTimeout = ::one_minute());
+      shell_launcher(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout = ::one_minute());
 
 
       void execute();

@@ -2,16 +2,16 @@
 
 
 template <  typename ELEMENT >
-class set_element_item :
-   public ELEMENT
+class set_element_item
 {
 public:
 
 
-   set_element_item *                   m_pprev;
-   set_element_item *                   m_pnext;
-   set_element_item *                   m_pnextHash;
-   set_element_item **                  m_ppprevHash;
+   ELEMENT                                m_element;
+   set_element_item *                     m_pprev;
+   set_element_item *                     m_pnext;
+   set_element_item *                     m_pnextHash;
+   set_element_item **                    m_ppprevHash;
 
 
    set_element_item()
@@ -21,10 +21,14 @@ public:
 
 
    set_element_item(const ELEMENT & element) :
-      ELEMENT(element)
+      m_element(element)
    {
 
    }
+
+
+   ELEMENT & element() { return m_element; }
+   const ELEMENT & element() const { return m_element; }
 
 
 #ifdef CPP17

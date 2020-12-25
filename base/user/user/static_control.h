@@ -44,7 +44,7 @@ namespace user
       virtual bool create_window(::user::interaction * puiParent,id id);
 
 
-      virtual ::draw2d::font_pointer get_font(style* pstyle, e_element eelement = element_none, estate estate = e_state_none) const override;
+      virtual ::draw2d::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
 
 #ifdef WINDOWS_DESKTOP
       HENHMETAFILE SetEnhMetaFile(HENHMETAFILE hMetaFile);

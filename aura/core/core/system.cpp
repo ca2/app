@@ -1379,7 +1379,7 @@ namespace aura
 
       bSuccess = GetPhysicalMonitorsFromHMONITOR(m_hmonitora[iMonitor], 1, &monitor);
 
-      millis_sleep(500);
+      sleep(500_ms);
 
       //MC_COLOR_TEMPERATURE e = kelvin_mc_color(dwTemperature);
 
@@ -1511,9 +1511,9 @@ namespace aura
 
          if (dwCurDriveR != dwMaxDriveR)
          {
-            millis_sleep(500);
+            sleep(500_ms);
             SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, dwMaxDriveR);
-            millis_sleep(500);
+            sleep(500_ms);
             bDifferent = true;
          }
 
@@ -1524,9 +1524,9 @@ namespace aura
 
          if (dwCurDriveG != dwMaxDriveG)
          {
-            millis_sleep(500);
+            sleep(500_ms);
             SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, dwMaxDriveG);
-            millis_sleep(500);
+            sleep(500_ms);
             bDifferent = true;
          }
 
@@ -1537,9 +1537,9 @@ namespace aura
 
          if (dwCurDriveB != dwMaxDriveB)
          {
-            millis_sleep(500);
+            sleep(500_ms);
             SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, dwMaxDriveB);
-            millis_sleep(500);
+            sleep(500_ms);
             bDifferent = true;
          }
 
@@ -1550,9 +1550,9 @@ namespace aura
 
          if (dwCurGainR != dwR)
          {
-            millis_sleep(500);
+            sleep(500_ms);
             SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwR);
-            millis_sleep(500);
+            sleep(500_ms);
             bDifferent = true;
          }
 
@@ -1564,9 +1564,9 @@ namespace aura
 
          if (dwCurGainG != dwG)
          {
-            millis_sleep(500);
+            sleep(500_ms);
             SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwG);
-            millis_sleep(500);
+            sleep(500_ms);
             bDifferent = true;
          }
 
@@ -1577,9 +1577,9 @@ namespace aura
 
          if (dwCurGainB != dwB)
          {
-            millis_sleep(500);
+            sleep(500_ms);
             SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwB);
-            millis_sleep(500);
+            sleep(500_ms);
             bDifferent = true;
          }
 
@@ -1598,14 +1598,14 @@ namespace aura
          }
 
       }
-      millis_sleep(500);
+      sleep(500_ms);
    finalize:
       ;
       DestroyPhysicalMonitors(1, &monitor);
       return true;
    error:
       ;
-      millis_sleep(500);
+      sleep(500_ms);
       // Close the monitor handles.
       DestroyPhysicalMonitors(1, &monitor);
       return false;

@@ -34,7 +34,7 @@ int_bool is_window(oswindow oswindow);
 int_bool IsChild(oswindow oswindowParent, oswindow oswindowcandidateChildOrDescendant);
 // oswindow GetParent(oswindow oswindow);
 // oswindow SetParent(oswindow oswindowChild, oswindow oswindowNewParent);
-int_bool show_window(oswindow oswindow, i32 iShow);
+int_bool show_window(oswindow oswindow, const ::e_display & edisplay);
 ::i32 GetWindowLongA(oswindow oswindow, int nIndex);
 ::i32 SetWindowLongA(oswindow oswindow, int nIndex, ::i32 l);
 int_bool _001ClientToScreen(oswindow oswindow, POINT32 * lppoint);
@@ -644,7 +644,7 @@ oswindow hWnd);
 //   i32     iLeftMargin;
 //   i32     iRightMargin;
 //   ::u32    uiLengthDrawn;
-//} DRAWTEXTPARAMS,FAR *LPDRAWTEXTPARAMS;
+//} DRAWTEXTPARAMS,*LPDRAWTEXTPARAMS;
 //
 //#endif
 //
@@ -833,11 +833,11 @@ oswindow hWnd);
 //
 ////#if(WINVER >= 0x0400)
 //#define MB_USERICON                 0x00000080L
-//#define MB_ICONWARNING              e_message_box_icon_exclamation
+//#define e_message_box_icon_warning              e_message_box_icon_exclamation
 //#define MB_ICONERROR                MB_ICONHAND
 ////#endif /* WINVER >= 0x0400 */
 //
-//#define MB_ICONINFORMATION          MB_ICONASTERISK
+//#define e_message_box_icon_information          MB_ICONASTERISK
 //#define e_message_box_icon_stop                 MB_ICONHAND
 //
 //#define MB_DEFBUTTON1               0x00000000L
@@ -952,13 +952,13 @@ oswindow hWnd);
 ///*
 //* Dialog Box Command IDs
 //*/
-//#define IDOK                1
-//#define IDCANCEL            2
+//#define e_dialog_result_ok                1
+//#define e_dialog_result_cancel            2
 //#define IDABORT             3
 //#define IDRETRY             4
 //#define IDIGNORE            5
-//#define IDYES               6
-//#define IDNO                7
+//#define e_dialog_result_yes               6
+//#define e_dialog_result_no                7
 ////#if(WINVER >= 0x0400)
 //#define IDCLOSE         8
 //#define IDHELP          9
@@ -1131,7 +1131,7 @@ oswindow hWnd);
 ////
 ////#endif
 //
-////int_bool RedrawWindow(oswindow hWnd, CONST RECT32 *lprcUpdate, HRGN hrgnUpdate, ::u32 flags);
+////int_bool RedrawWindow(oswindow hWnd, const RECT32 *lprcUpdate, HRGN hrgnUpdate, ::u32 flags);
 //
 //
 ///*
@@ -1252,7 +1252,7 @@ oswindow hWnd);
 //}   NMHDR;
 //
 //
-//typedef NMHDR FAR * LPNMHDR;
+//typedef NMHDR * LPNMHDR;
 //
 //
 //typedef struct tagSTYLESTRUCT
@@ -1702,7 +1702,7 @@ oswindow hWnd);
 //   HMENU   hmenuIn;
 //   HMENU   hmenuNext;
 //   oswindow    hwndNext;
-//} MDINEXTMENU, * PMDINEXTMENU, FAR * LPMDINEXTMENU;
+//} MDINEXTMENU, * PMDINEXTMENU, * LPMDINEXTMENU;
 //#endif /* WINVER >= 0x0400 */
 //
 //
@@ -1720,7 +1720,7 @@ oswindow hWnd);
 //#define NF_QUERY                             3
 //#define NF_REQUERY                           4
 //
-//#define WM_CONTEXTMENU                  0x007B
+//#define e_message_context_menu                  0x007B
 //#define WM_STYLECHANGING                0x007C
 //#define WM_STYLECHANGED                 0x007D
 //#define e_message_display_change                0x007E
@@ -2777,7 +2777,7 @@ oswindow hWnd);
 //#ifdef _MAC
 //   ::u32       lPrivate;
 //#endif
-//} MESSAGE, *PMESSAGE, NEAR *NPMESSAGE, FAR *LPMESSAGE;
+//} MESSAGE, *PMESSAGE, *NPMESSAGE, *LPMESSAGE;
 //
 //CLASS_DECL_APEX int_bool TranslateMessage(const MESSAGE * pmsg);
 //CLASS_DECL_APEX LRESULT DispatchMessage(const MESSAGE * pmsg);

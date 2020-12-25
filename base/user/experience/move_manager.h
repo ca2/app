@@ -12,7 +12,7 @@ namespace experience
 
 
       ::experience::frame_window *     m_pframewindow;
-      eborder                          m_eborderMask;
+      e_border                         m_eborderMask;
       point                            m_pointCursorOrigin;
       point                            m_pointWindowOrigin;
       point                            m_pointMove;
@@ -32,8 +32,8 @@ namespace experience
       bool _001OnTimer(::u32 uEvent);
 
 
-      void SetBorderMask(const eborder & emask);
-      eborder GetBorderMask();
+      void SetBorderMask(const e_border & emask);
+      e_border GetBorderMask();
 
       bool window_is_moving();
       void MoveWindow(void * oswindow, const ::point & point);

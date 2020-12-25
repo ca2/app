@@ -114,8 +114,7 @@ namespace user
    }
 
 
-   bool style::draw_check(::enum_check echeck, const ::rect & rect, ::draw2d::graphics_pointer & pgraphics)
-
+   bool style::draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::rect & rect, ::draw2d::graphics_pointer & pgraphics)
    {
 
       if (echeck == ::check_tristate || echeck == ::check_checked)
@@ -171,7 +170,7 @@ namespace user
    bool style::simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics)
    {
 
-      bool bError = pinteraction->m_ptooltip.is_set() && pinteraction->m_ptooltip->is_window_visible(layout_sketch);
+      bool bError = pinteraction->m_ptooltip.is_set() && pinteraction->m_ptooltip->is_window_visible(e_layout_sketch);
 
       ::draw2d::savedc savedc(pgraphics);
 
@@ -208,7 +207,7 @@ namespace user
 
       rectClient.top--;
 
-      if (get_context_application() != nullptr && pinteraction->hover_item().is_set() || pinteraction->has_focus())
+      if (get_context_application() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_focus()))
       {
 
          ::draw2d::brush_pointer brush(e_create);
@@ -216,7 +215,7 @@ namespace user
          if (pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
          {
 
-            brush->create_solid(pinteraction->get_color(this, element_background, e_state_hover));
+            brush->create_solid(pinteraction->get_color(this, e_element_background, e_state_hover));
 
             pgraphics->set(brush);
 
@@ -239,7 +238,7 @@ namespace user
 
                   pen.create();
 
-                  pen->create_solid(1.0, pinteraction->get_color(this, element_border, e_state_hover));
+                  pen->create_solid(1.0, pinteraction->get_color(this, e_element_border, e_state_hover));
 
                }
 
@@ -464,7 +463,7 @@ namespace user
 
          ::draw2d::pen_pointer pen(e_create);
 
-         pen->create_solid(1.0, pinteraction->get_color(this, element_border));
+         pen->create_solid(1.0, pinteraction->get_color(this, e_element_border));
 
          pgraphics->draw_rect(rectClient, pen);
 
@@ -507,7 +506,7 @@ namespace user
    //}
 
 
-   //   bool style::_001GetMainFrameTranslucency(::user::e_translucency & etranslucency)
+   //   bool style::_001GetMainFrameTranslucency(::user::enum_translucency & etranslucency)
    //   {
    //
    //      return false;
@@ -693,7 +692,7 @@ namespace user
    //}
 
 
-   //bool style::create_translucency(e_element eelement, e_translucency etranslucency)
+   //bool style::create_translucency(enum_element eelement, enum_translucency etranslucency)
    //{
 
    //   if (userstyle()->m_mapTranslucency.is_null())
@@ -841,26 +840,35 @@ namespace user
 
    //}
 
-   e_control_type style::get_control_type() const
+   enum_control_type style::get_control_type() const
    {
 
-      return control_type_none;
+      return e_control_type_none;
 
    }
 
 
-   ::color style::get_color(const ::user::interaction* pinteraction, ::user::e_element eelement, ::user::estate estate) const
+   ::color style::get_color(const ::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate) const
    {
 
       if (::is_set(pinteraction))
       {
+         
+         string strType = pinteraction->type_c_str();
+
+         if (strType.contains("form"))
+         {
+
+            output_debug_string("form");
+
+         }
 
          auto econtroltype = pinteraction->get_control_type();
 
-         if (econtroltype == ::user::control_type_list)
+         if (econtroltype == ::user::e_control_type_list)
          {
 
-            if (eelement == ::user::element_background)
+            if (eelement == ::user::e_element_background)
             {
 
                return ::color(0, 0, 0, 0);

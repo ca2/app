@@ -17,7 +17,7 @@ namespace user
 
 
       virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame * pframe) = 0;
-      virtual bool draw_check(::enum_check echeck, const ::rect & rect, ::draw2d::graphics_pointer & pgraphics) = 0;
+      virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::rect & rect, ::draw2d::graphics_pointer & pgraphics) = 0;
 
       virtual bool simple_ui_draw_focus_rect(::user::interaction * pinteraction,::draw2d::graphics_pointer & pgraphics) = 0;
       //virtual bool on_ui_event(enum_event eevent, e_object eobject, ::user::interaction * pinteraction) = 0;
@@ -34,10 +34,10 @@ namespace user
 
 
 
-      virtual e_control_type get_control_type() const;
+      virtual enum_control_type get_control_type() const;
 
 
-      virtual ::color get_color(const ::user::interaction* pinteraction, ::user::e_element eelement, ::user::estate estate = ::user::e_state_none) const;
+      virtual ::color get_color(const ::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate = ::user::e_state_none) const;
 
    };
 

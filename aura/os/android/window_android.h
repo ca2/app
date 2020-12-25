@@ -17,7 +17,7 @@ public:
    virtual ~window_android();
 
 
-   virtual bool create_buffer(const ::size & size, int iStride = -1) override;
+   virtual bool update_buffer(const ::size & size, int iStride = -1) override;
    virtual void destroy_buffer() override;
 
    virtual bool update_window(::image * pimage) override;

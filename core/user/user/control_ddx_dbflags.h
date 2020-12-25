@@ -5,12 +5,12 @@ namespace user
 {
 
 
-   class CLASS_DECL_CORE control_ddx_dbflags
+   class CLASS_DECL_CORE e_control_ddx_dbflags
    {
    public:
 
 
-      control_ddx_dbflags(::database::key key, iptr value);
+      e_control_ddx_dbflags(::database::key key, iptr value);
 
 
       ::database::key                  m_key;

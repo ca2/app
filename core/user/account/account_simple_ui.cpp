@@ -199,7 +199,7 @@ namespace account
          puiParent->get_window_rect(rectDesktop);
 
       }
-      else if (IsRectEmpty(&rectParam))
+      else if (is_empty(&rectParam))
       {
 
          psession->get_main_monitor(rectDesktop);
@@ -257,10 +257,14 @@ namespace account
 
       }
 
-      ::user::create_struct createstruct(0, nullptr, nullptr, 0, rectFontopus);
+      auto pcreatestruct = __new(::user::create_struct (0, nullptr, nullptr, 0, rectFontopus));
 
-      if(!create_window_ex(createstruct, puiParent))
+      if (!create_window_ex(pcreatestruct, puiParent))
+      {
+
          return "";
+
+      }
 
       set_window_text( "account Auth Windows");
 
@@ -278,7 +282,7 @@ namespace account
 
       //BringWindowToTop();
 
-      display(display_normal);
+      display(e_display_normal);
 
       SetTimer(2000, 300,nullptr);
 

@@ -14,7 +14,7 @@ public:
    virtual ~simple_form_list_view();
 
 
-   virtual bool pre_create_window(::user::create_struct& cs) override;
+   virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
 
 
    virtual void install_message_routing(::channel * pchannel) override;

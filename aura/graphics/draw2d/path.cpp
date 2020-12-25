@@ -1004,17 +1004,17 @@ namespace draw2d
    //
    // Returns:     None
    //
-   bool path::do_round_rect_corner(const ::rect& rectCorner, const ::rect& rectRect, i32 iDiameter, eborder eborder, int iCorner, bool& bOn)
+   bool path::do_round_rect_corner(const ::rect& rectCorner, const ::rect& rectRect, i32 iDiameter, const ::e_border & eborder, int iCorner, bool& bOn)
    {
 
       switch (iCorner % 4)
       {
       case 0:
       {
-         if ((eborder & border_top_left))
+         if ((eborder & e_border_top_left))
          {
 
-            if ((eborder & border_top_left) == border_top_left)
+            if ((eborder & e_border_top_left) == e_border_top_left)
             {
 
                add_arc(::rect(rectCorner.top_left(), ::size(iDiameter, iDiameter)), 180_degrees, 90_degrees);
@@ -1051,10 +1051,10 @@ namespace draw2d
       break;
       case 1:
       {
-         if ((eborder & border_top_right))
+         if ((eborder & e_border_top_right))
          {
 
-            if ((eborder & border_top_right) == border_top_right)
+            if ((eborder & e_border_top_right) == e_border_top_right)
             {
 
                add_arc(::rect(rectCorner.top_right(), ::size(iDiameter, iDiameter)), 270_degrees, 90_degrees);
@@ -1092,10 +1092,10 @@ namespace draw2d
       case 2:
       {
 
-         if ((eborder & border_bottom_right))
+         if ((eborder & e_border_bottom_right))
          {
 
-            if ((eborder & border_bottom_right) == border_bottom_right)
+            if ((eborder & e_border_bottom_right) == e_border_bottom_right)
             {
 
                add_arc(::rect(rectCorner.bottom_right(), ::size(iDiameter, iDiameter)), 0_degrees, 90_degrees);
@@ -1131,10 +1131,10 @@ namespace draw2d
       break;
       case 3:
       {
-         if ((eborder & border_bottom_left))
+         if ((eborder & e_border_bottom_left))
          {
 
-            if ((eborder & border_bottom_left) == border_bottom_left)
+            if ((eborder & e_border_bottom_left) == e_border_bottom_left)
             {
 
                add_arc(::rect(rectCorner.bottom_left(), ::size(iDiameter, iDiameter)), 90_degrees, 90_degrees);
@@ -1183,17 +1183,17 @@ namespace draw2d
    }
 
 
-   bool path::do_round_rect_corner(const ::rectd& rectCorner, const ::rectd& rectRect, double dDiameter, eborder eborder, int iCorner, bool& bOn)
+   bool path::do_round_rect_corner(const ::rectd& rectCorner, const ::rectd& rectRect, double dDiameter, const ::e_border & eborder, int iCorner, bool& bOn)
    {
 
       switch (iCorner % 4)
       {
       case 0:
       {
-         if ((eborder & border_top_left))
+         if ((eborder & e_border_top_left))
          {
 
-            if ((eborder & border_top_left) == border_top_left)
+            if ((eborder & e_border_top_left) == e_border_top_left)
             {
 
                add_arc(::rectd(rectCorner.top_left(), ::sized(dDiameter, dDiameter)), 180_degrees, 90_degrees);
@@ -1230,10 +1230,10 @@ namespace draw2d
       break;
       case 1:
       {
-         if ((eborder & border_top_right))
+         if ((eborder & e_border_top_right))
          {
 
-            if ((eborder & border_top_right) == border_top_right)
+            if ((eborder & e_border_top_right) == e_border_top_right)
             {
 
                add_arc(::rectd(rectCorner.top_right(), ::sized(dDiameter, dDiameter)), 270_degrees, 90_degrees);
@@ -1271,10 +1271,10 @@ namespace draw2d
       case 2:
       {
 
-         if ((eborder & border_bottom_right))
+         if ((eborder & e_border_bottom_right))
          {
 
-            if ((eborder & border_bottom_right) == border_bottom_right)
+            if ((eborder & e_border_bottom_right) == e_border_bottom_right)
             {
 
                add_arc(::rectd(rectCorner.bottom_right(), ::sized(dDiameter, dDiameter)), 0_degree, 90_degree);
@@ -1310,10 +1310,10 @@ namespace draw2d
       break;
       case 3:
       {
-         if ((eborder & border_bottom_left))
+         if ((eborder & e_border_bottom_left))
          {
 
-            if ((eborder & border_bottom_left) == border_bottom_left)
+            if ((eborder & e_border_bottom_left) == e_border_bottom_left)
             {
 
                add_arc(::rectd(rectCorner.bottom_left(), ::sized(dDiameter, dDiameter)), 90_degrees, 90_degrees);
@@ -1362,7 +1362,7 @@ namespace draw2d
    }
 
 
-   bool path::clock_corner(const ::rect& rectCorner, i32 iRadius, eborder eborder)
+   bool path::clock_corner(const ::rect& rectCorner, i32 iRadius, const ::e_border & eborder)
    {
 
       int iDiameter = iRadius * 2;
@@ -1376,16 +1376,16 @@ namespace draw2d
 
       switch (eborder)
       {
-      case border_top_left:
+      case e_border_top_left:
          add_arc(::rect(rectCorner.top_left(), ::size(iDiameter, iDiameter)), 180_degree, 90_degree);
          return true;
-      case border_top_right:
+      case e_border_top_right:
          add_arc(::rect(rectCorner.top_right() - ::size(iDiameter, 0), ::size(iDiameter, iDiameter)), 270_degree, 90_degree);
          return true;
-      case border_bottom_right:
+      case e_border_bottom_right:
          add_arc(::rect(rectCorner.bottom_right() - ::size(iDiameter, iDiameter), ::size(iDiameter, iDiameter)), 0_degree, 90_degree);
          return true;
-      case border_bottom_left:
+      case e_border_bottom_left:
          add_arc(::rect(rectCorner.bottom_left() - ::size(0, iDiameter), ::size(iDiameter, iDiameter)), 90_degree, 90_degree);
          return true;
       default:
@@ -1395,7 +1395,7 @@ namespace draw2d
    }
 
 
-   bool path::counter_corner(const ::rect& rectCorner, i32 iRadius, eborder eborder)
+   bool path::counter_corner(const ::rect& rectCorner, i32 iRadius, const ::e_border & eborder)
    {
 
       int iDiameter = iRadius * 2;
@@ -1409,16 +1409,16 @@ namespace draw2d
 
       switch (eborder)
       {
-      case border_top_left:
+      case e_border_top_left:
          add_arc(::rect(rectCorner.top_left(), ::size(iDiameter, iDiameter)), 270_degree, -90_degree);
          return true;
-      case border_top_right:
+      case e_border_top_right:
          add_arc(::rect(rectCorner.top_right() - ::size(iDiameter, 0), ::size(iDiameter, iDiameter)), 0_degree, -90_degree);
          return true;
-      case border_bottom_right:
+      case e_border_bottom_right:
          add_arc(::rect(rectCorner.bottom_right() - ::size(iDiameter, iDiameter), ::size(iDiameter, iDiameter)), 90_degree, -90_degree);
          return true;
-      case border_bottom_left:
+      case e_border_bottom_left:
          add_arc(::rect(rectCorner.bottom_left() - ::size(0, iDiameter), ::size(iDiameter, iDiameter)), 180_degree, -90_degree);
          return true;
       default:
@@ -1610,23 +1610,23 @@ namespace draw2d
    }
 
 
-   bool path::clock_corner(const ::rectd& rectCorner, double dRadius, eborder eborder)
+   bool path::clock_corner(const ::rectd& rectCorner, double dRadius, const ::e_border & eborder)
    {
 
       double dDiameter = dRadius * 2.0;
 
       switch (eborder)
       {
-      case border_top_left:
+      case e_border_top_left:
          add_arc(::rectd(rectCorner.top_left(), ::sized(dDiameter, dDiameter)), 180_degree, 90_degree);
          return true;
-      case border_top_right:
+      case e_border_top_right:
          add_arc(::rectd(rectCorner.top_right() - ::sized(dDiameter, 0), ::sized(dDiameter, dDiameter)), 270_degree, 90_degree);
          return true;
-      case border_bottom_right:
+      case e_border_bottom_right:
          add_arc(::rectd(rectCorner.bottom_right() - ::sized(dDiameter, dDiameter), ::sized(dDiameter, dDiameter)), 0_degree, 90_degree);
          return true;
-      case border_bottom_left:
+      case e_border_bottom_left:
          add_arc(::rectd(rectCorner.bottom_left() - ::sized(0, dDiameter), ::sized(dDiameter, dDiameter)), 90_degree, 90_degree);
          return true;
       default:
@@ -1636,23 +1636,23 @@ namespace draw2d
    }
 
 
-   bool path::counter_corner(const ::rectd& rectCorner, double dRadius, eborder eborder)
+   bool path::counter_corner(const ::rectd& rectCorner, double dRadius, const ::e_border & eborder)
    {
 
       double dDiameter = dRadius * 2.0;
 
       switch (eborder)
       {
-      case border_top_left:
+      case e_border_top_left:
          add_arc(::rectd(rectCorner.top_left(), ::sized(dDiameter, dDiameter)), 270_degree, -90_degree);
          return true;
-      case border_top_right:
+      case e_border_top_right:
          add_arc(::rectd(rectCorner.top_right() - ::sized(dDiameter, 0), ::sized(dDiameter, dDiameter)), 0_degree, -90_degree);
          return true;
-      case border_bottom_right:
+      case e_border_bottom_right:
          add_arc(::rectd(rectCorner.bottom_right() - ::sized(dDiameter, dDiameter), ::sized(dDiameter, dDiameter)), 90_degree, -90_degree);
          return true;
-      case border_bottom_left:
+      case e_border_bottom_left:
          add_arc(::rectd(rectCorner.bottom_left() - ::sized(0, dDiameter), ::sized(dDiameter, dDiameter)), 180_degree, -90_degree);
          return true;
       default:
@@ -1662,7 +1662,7 @@ namespace draw2d
    }
 
 
-   bool path::add_round_rect(const ::rect & rect, i32 iRadius, eborder eborder)
+   bool path::add_round_rect(const ::rect & rect, i32 iRadius, const ::e_border & eborder)
    {
 
       int iDiameter = iRadius * 2;
@@ -1685,7 +1685,7 @@ namespace draw2d
 
       int iCount = 0;
 
-      if (eborder & border_all)
+      if (eborder & e_border_all)
       {
 
          //begin_figure(true, ::draw2d::fill_mode_winding);
@@ -1694,19 +1694,19 @@ namespace draw2d
 
          int iEmptyBorder;
 
-         if (!(eborder & border_right))
+         if (!(eborder & e_border_right))
          {
 
             iEmptyBorder = 1;
 
          }
-         else if(!(eborder & border_bottom))
+         else if(!(eborder & e_border_bottom))
          {
 
             iEmptyBorder = 2;
 
          }
-         else if(!(eborder & border_left))
+         else if(!(eborder & e_border_left))
          {
 
             iEmptyBorder = 3;
@@ -1741,7 +1741,7 @@ namespace draw2d
 
    }
 
-   bool path::add_round_rect(const ::rectd& rect, double dRadius, eborder eborder)
+   bool path::add_round_rect(const ::rectd& rect, double dRadius, const ::e_border & eborder)
    {
 
       double dDiameter = dRadius * 2.0;
@@ -1764,7 +1764,7 @@ namespace draw2d
 
       int iCount = 0;
 
-      if (eborder & border_all)
+      if (eborder & e_border_all)
       {
 
          //begin_figure(true, ::draw2d::fill_mode_winding);
@@ -1773,19 +1773,19 @@ namespace draw2d
 
          int iEmptyBorder;
 
-         if (!(eborder & border_right))
+         if (!(eborder & e_border_right))
          {
 
             iEmptyBorder = 1;
 
          }
-         else if (!(eborder & border_bottom))
+         else if (!(eborder & e_border_bottom))
          {
 
             iEmptyBorder = 2;
 
          }
-         else if (!(eborder & border_left))
+         else if (!(eborder & e_border_left))
          {
 
             iEmptyBorder = 3;
@@ -1819,7 +1819,7 @@ namespace draw2d
    }
 
 
-   bool path::add_round_top_left(const ::rect & rectParam, i32 iDiameter, eborder eborder)
+   bool path::add_round_top_left(const ::rect & rectParam, i32 iDiameter, const ::e_border & eborder)
    {
 
       ::rect rect(rectParam);
@@ -1883,7 +1883,7 @@ namespace draw2d
 
 
 
-   bool path::add_round_bottom_right(const ::rect & rect, i32 iDiameter, eborder eborder)
+   bool path::add_round_bottom_right(const ::rect & rect, i32 iDiameter, const ::e_border & eborder)
    {
       // diameter can't exceed width or height
       if (iDiameter > rect.width())	iDiameter = rect.width();
@@ -1995,8 +1995,7 @@ namespace draw2d
 
          rect.bottom = rectParam.bottom;
 
-
-         add_arc(rect,90,180);
+         add_arc(rect,90_degree,180_degree);
 
       }
 
@@ -2009,7 +2008,6 @@ namespace draw2d
          r2.right = rect.right - rect.height() / 2.0;
 
          r2.bottom = rect.bottom;
-
 
          add_line(r2.right, r2.top);
 
@@ -2025,8 +2023,7 @@ namespace draw2d
 
          rect.bottom = rectParam.bottom;
 
-
-         add_arc(rect,-90,180);
+         add_arc(rect,-90_degree,180_degree);
 
       }
 

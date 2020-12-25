@@ -25,7 +25,7 @@ void html_view::install_message_routing(::channel * pchannel)
 
    MESSAGE_LINK(e_message_destroy, pchannel, this, &html_view::_001OnDestroy);
    MESSAGE_LINK(e_message_create, pchannel, this, &html_view::_001OnCreate);
-   MESSAGE_LINK(WM_CONTEXTMENU, pchannel, this, &html_view::_001OnContextMenu);
+   MESSAGE_LINK(e_message_context_menu, pchannel, this, &html_view::_001OnContextMenu);
    MESSAGE_LINK(e_message_set_cursor, pchannel, this, &html_view::_001OnSetCursor);
 
 }
@@ -47,12 +47,16 @@ void html_view::dump(dump_context & dumpcontext) const
 }
 
 
-bool html_view::pre_create_window(::user::create_struct& cs)
+bool html_view::pre_create_window(::user::create_struct * pcreatestruct)
 {
 
-   cs.style &= ~WS_EX_CLIENTEDGE;
+#ifdef WINDOWS_DESKTOP
 
-   return ::user::impact::pre_create_window(cs);
+
+
+#endif
+
+   return ::user::impact::pre_create_window(pcreatestruct);
 
 }
 

@@ -165,21 +165,21 @@ public:
    //virtual void notify_on_finish(::context_object * pcontextobject) override;
    
 
-   template < typename THREAD >
-   inline __pointer(THREAD) start(
-      ::matter* pmatter,
-      ::e_priority epriority = priority_normal,
-      u32 nStackSize = 0,
-      u32 dwCreateFlags = 0)
-   {
+   //template < typename THREAD >
+   //inline __pointer(THREAD) start(
+   //   ::matter* pmatter,
+   //   ::e_priority epriority = priority_normal,
+   //   u32 nStackSize = 0,
+   //   u32 dwCreateFlags = 0)
+   //{
 
-      auto pthread = __create_new < THREAD >();
+   //   auto pthread = __create_new < THREAD >();
 
-      ::task::start(pthread);
+   //   ::task::start(pthread);
 
-      return pthread;
+   //   return pthread;
 
-   }
+   //}
 
 
    template < typename BASE_TYPE >
@@ -252,6 +252,7 @@ public:
 
 
    virtual ::user::primitive* get_user_interaction_host();
+   virtual ::user::interaction * get_host_wnd();
    
 
    virtual void dev_log(string str) const;
@@ -404,7 +405,7 @@ public:
 
 
    virtual string get_tag() const;
-   virtual bool is_thread() const;
+   virtual bool is_thread() const override;
    virtual bool thread_get_run() const;
    virtual bool is_running() const;
    virtual void child_post_quit(const char * pszTag);
@@ -433,23 +434,23 @@ public:
 
    virtual ::estatus do_request(::create * pcreate);
 
-   inline ::estatus message_box(const char* pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process())
-   {
-   
-      return message_box(nullptr, pszMessage, pszTitle, emessagebox, process);
+   virtual ::estatus message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+   //{
+   //
+   //   return message_box(nullptr, pszMessage, pszTitle, emessagebox, process);
 
-   }
+   //}
 
 
-   inline ::estatus message_box_timeout(const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process())
-   {
+   virtual ::estatus message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+   //{
 
-      return message_box_timeout(nullptr, pszMessage, pszTitle, durationTimeout, emessagebox, process);
+   //   return message_box_timeout(nullptr, pszMessage, pszTitle, durationTimeout, emessagebox, process);
 
-   }
+   //}
 
-   virtual ::estatus message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
-   virtual ::estatus message_box_timeout(::user::primitive* pwndOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), ::emessagebox emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+   //virtual ::estatus message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+   //virtual ::estatus message_box_timeout(::user::primitive* pwndOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
 
    virtual void release_references();
 
@@ -469,7 +470,7 @@ public:
    //virtual ::user::document* open_new_document(::apex::application* pappOnBehalfOf);
    virtual void on_request(::create* pcreate);
    //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf);
-   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const payload& varFile, const payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = window_flag_none, ::id id = ::id());
+   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const payload& varFile, const payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
    //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const payload& varFile);
    //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
@@ -618,16 +619,16 @@ public:
 //   virtual void ns_main_async(dispatch_block_t block);
 //#endif
 
-   //inline ::file_result get_reader(const ::payload& varFile, const ::efileopen& efileopen = ::efileopen());
-   //inline ::file_result get_writer(const ::payload& varFile, const ::efileopen& efileopen = ::efileopen());
+   //inline ::file_result get_reader(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
+   //inline ::file_result get_writer(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open());
 
 
    //virtual void to_string(string & str) const override;
 
 
-   virtual ::file_result get_file(const payload& varFile, efileopen eopen);
-   inline ::file_result get_reader(const payload& varFile, efileopen eopen = ::file::type_binary);
-   inline ::file_result get_writer(const payload& varFile, efileopen eopen = ::file::type_binary | ::file::defer_create_directory | ::file::mode_create);
+   virtual ::file_result get_file(const payload& varFile, const ::file::e_open & eopen);
+   inline ::file_result get_reader(const payload& varFile, const ::file::e_open & eopen = ::file::e_open_binary);
+   inline ::file_result get_writer(const payload& varFile, const ::file::e_open & eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
 
 
 

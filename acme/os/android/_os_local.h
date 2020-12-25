@@ -7,7 +7,9 @@ class os_local :
 public:
 
 
-   string         m_strCommandLine;
+   string         m_strApplicationIdentifier;
+   string         m_strCommandLineParameters;
+   ::file::path   m_pathCacheDirectory;
    int            m_iWidth;
    int            m_iHeight;
    float          m_fDpiX;
@@ -36,6 +38,8 @@ public:
    int            m_iEditFocusSelBeg;
    int            m_iEditFocusSelEnd;
    bool           m_bEditFocusKill;
+   
+   bool           m_bRedraw;
 
 
 };

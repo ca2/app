@@ -49,7 +49,7 @@ namespace user
 
          virtual bool get_item_rect(RECT32 * prect, index i) override;
 
-         virtual bool get_element_rect(RECT32 * prect, index i, e_element eelement) override;
+         virtual bool get_element_rect(RECT32 * prect, index i, enum_element eelement) override;
 
          virtual ::sized get_size() override;
 

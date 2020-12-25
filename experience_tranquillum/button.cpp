@@ -118,7 +118,7 @@ namespace tranquillum
 
          get_window_text(str);
 
-         pgraphics->set_font(this);
+         pgraphics->set_font(this, ::user::e_element_none);
 
          pgraphics->set_text_color(crText);
 
@@ -203,7 +203,7 @@ namespace tranquillum
       if (m_spregion.is_null())
       {
 
-         item = ::user::element_none;
+         item = ::user::e_element_none;
 
          return;
 
@@ -212,13 +212,13 @@ namespace tranquillum
       if (!m_spregion->contains(item.m_pointHitTest))
       {
 
-         item = ::user::element_none;
+         item = ::user::e_element_none;
 
          return;
 
       }
 
-      item = ::user::element_client;
+      item = ::user::e_element_client;
 
    }
 

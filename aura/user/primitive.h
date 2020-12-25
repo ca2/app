@@ -98,7 +98,7 @@ namespace user
       __pointer(::message::base) get_message_base(oswindow oswindow, const ::id & id, WPARAM wparam, lparam lparam) override;
 
 
-      virtual ::user::interaction* get_host_wnd();
+      virtual ::user::interaction* get_host_wnd() const;
 
 
       virtual bool enable_window(bool bEnable = true);
@@ -134,7 +134,7 @@ namespace user
       virtual bool add_prodevian(::context_object * pobject);
       virtual bool remove_prodevian(::context_object * pobject);
 
-      virtual bool display(::edisplay edisplay = display_default, ::eactivation eactivation = activation_none);
+      virtual bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
 
 
       //virtual bool defer_set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags); // only set_windows_pos if GetParent()->_001ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(RECT32 * prect);
@@ -185,9 +185,11 @@ namespace user
 
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate();
 
-      e_cursor get_cursor();
+      virtual e_cursor get_cursor();
 
-      void set_cursor(e_cursor ecursor);
+      virtual bool set_cursor(e_cursor ecursor);
+
+      virtual ::point get_cursor_pos() const;
 
       virtual bool _is_window() const;
 
@@ -263,7 +265,7 @@ namespace user
 
       virtual void prodevian_stop();
 
-      virtual void sketch_prepare_window_minimize(::eactivation eactivation);
+      virtual void sketch_prepare_window_minimize(::e_activation eactivation);
       virtual void sketch_prepare_window_maximize();
       virtual void sketch_prepare_window_full_screen(const ::rect & rectHint = nullptr);
       virtual void sketch_prepare_window_restore(edisplay edisplay);
@@ -272,8 +274,8 @@ namespace user
 
       virtual void prodevian_redraw(bool bUpdateBuffer);
 
-      virtual void on_start_layout_experience(e_layout_experience elayoutexperience);
-      virtual void on_end_layout_experience(e_layout_experience elayoutexperience);
+      virtual void on_start_layout_experience(enum_layout_experience elayoutexperience);
+      virtual void on_end_layout_experience(enum_layout_experience elayoutexperience);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
       virtual void on_reposition();
@@ -292,7 +294,7 @@ namespace user
       //virtual bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 
 
-      virtual bool pre_create_window(::user::create_struct& cs);
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct);
 
 
       virtual bool subclass_window(oswindow posdata);
@@ -302,7 +304,7 @@ namespace user
       virtual bool create_window(::user::interaction * pparent, const ::id & id);
       virtual bool create_window(const char * pszClassName, const char * pszWindowName,u32 uStyle, ::user::interaction * puiParent, const ::id & id, ::create * pcreate = nullptr);
 
-      virtual bool create_window_ex(::user::create_struct & cs, ::user::interaction * puiParent, const ::id & id);
+      virtual bool create_window_ex(__pointer(::user::create_struct) pcs, ::user::interaction * puiParent, const ::id & id);
       virtual void CalcWindowRect(RECT32 * pClientRect,::u32 nAdjustType = adjustBorder);
 
 
@@ -343,6 +345,10 @@ namespace user
       virtual u32 GetStyle() const;
       virtual u32 GetExStyle() const;
 
+
+      virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
+
+
       //using ::channel::send;
       virtual LRESULT send(::message::base * pbase);
       virtual bool post(::message::base * pbase);
@@ -370,7 +376,7 @@ namespace user
       //virtual void SetWindowDisplayChanged();
 
       // timer Functions
-      virtual bool SetTimer(uptr uEvent,::u32 nElapse,PFN_TIMER pfnTimer);
+      virtual bool SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer);
       virtual bool KillTimer(uptr uEvent);
 
       virtual void _001PrintBuffer(::draw2d::graphics_pointer & pgraphics);
@@ -425,7 +431,7 @@ namespace user
 
 
       //virtual bool _is_window_visible();
-      virtual bool is_this_visible(e_layout elayout);
+      virtual bool is_this_visible(enum_layout elayout);
       virtual bool is_window_enabled() const;
       virtual bool is_this_enabled() const;
 
@@ -525,6 +531,10 @@ namespace user
       virtual oswindow get_handle() const override;
       virtual bool attach(oswindow oswindow_New);
       virtual oswindow detach();
+
+      
+      virtual ::sized _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
+      virtual ::sized _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual bool can_merge(::user::interaction * pinteraction);
@@ -693,7 +703,7 @@ namespace user
       virtual ::user::interaction * get_first_child_window() const;
 
 
-      virtual bool keyboard_focus_is_focusable();
+      virtual bool keyboard_focus_is_focusable() const;
       virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew);
       virtual bool keyboard_focus_OnChildKillFocus();
       virtual primitive * keyboard_get_next_focusable(primitive * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false);
@@ -746,6 +756,7 @@ namespace user
       virtual void edit_on_sel(strsize iBeg, strsize iEnd);
 
       virtual void on_text_composition(string str);
+      virtual void on_text_commit(string str);
       virtual void on_text_composition_done();
       virtual bool is_text_composition_active();
 

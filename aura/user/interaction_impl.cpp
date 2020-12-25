@@ -2,6 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
 #endif
+#include "acme/os/cross.h"
 #include "aura/message.h"
 #include "interaction_thread.h"
 #include "interaction_prodevian.h"
@@ -336,11 +337,11 @@ namespace user
       else
       {
 
-         ::user::create_struct createstruct(0, nullptr, lpszName, WS_CHILD, nullptr);
+         auto pcreatestruct=__new(::user::create_struct(0, nullptr, lpszName, WS_CHILD, nullptr));
 
-         createstruct.hwndParent = MESSAGE_WINDOW_PARENT;
+         pcreatestruct->m_createstruct.hwndParent = MESSAGE_WINDOW_PARENT;
 
-         if(!native_create_window_ex(pinteraction, createstruct))
+         if(!native_create_window_ex(pinteraction, pcreatestruct))
          {
 
             return false;
@@ -507,13 +508,13 @@ namespace user
    }
 
 
-   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, ::user::create_struct & createstruct, ::user::interaction * puiParent, id id)
+   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::interaction * puiParent, id id)
    {
 
       if (puiParent == nullptr)
       {
 
-         if (!native_create_window_ex(pinteraction, createstruct, nullptr, id))
+         if (!native_create_window_ex(pinteraction, pcreatestruct, nullptr, id))
          {
 
             return false;
@@ -524,7 +525,7 @@ namespace user
       else
       {
 
-         if (!native_create_window_ex(pinteraction, createstruct, puiParent->get_safe_handle(), id))
+         if (!native_create_window_ex(pinteraction, pcreatestruct, puiParent->get_safe_handle(), id))
          {
 
             return false;
@@ -539,17 +540,17 @@ namespace user
 
 
    // for child windows
-   bool interaction_impl::pre_create_window(::user::create_struct & createstruct)
+   bool interaction_impl::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
-      UNREFERENCED_PARAMETER(createstruct);
+      UNREFERENCED_PARAMETER(pcreatestruct);
 
       return true;
 
    }
 
 
-   bool interaction_impl::native_create_window_ex(::user::interaction * pinteraction, ::user::create_struct & createstruct, oswindow oswindowParent, id id)
+   bool interaction_impl::native_create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, oswindow oswindowParent, id id)
    {
 
       m_puserinteraction = pinteraction;
@@ -560,7 +561,7 @@ namespace user
 
       #if !defined(_UWP)
 
-            m_puserinteraction->m_ewindowflag |= window_flag_postpone_visual_update;
+            m_puserinteraction->m_ewindowflag |= e_window_flag_postpone_visual_update;
 
       #endif
 
@@ -568,7 +569,7 @@ namespace user
 
       bool bProdevianThread = true;
 
-      if (createstruct.style & WS_CHILD)
+      if (pcreatestruct->m_createstruct.style & WS_CHILD)
       {
 
          // if child, uses parent window thread,
@@ -579,7 +580,7 @@ namespace user
 
       }
 
-      if (createstruct.hwndParent == (oswindow) HWND_MESSAGE)
+      if (pcreatestruct->m_createstruct.hwndParent == (oswindow) HWND_MESSAGE)
       {
 
          // except if "message"-only-window, in which casen it will have own thread
@@ -590,13 +591,13 @@ namespace user
 
       }
 
-      if (m_puserinteraction->m_ewindowflag & window_flag_satellite_window)
+      if (m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window)
       {
 
-         if (createstruct.m_puserinteractionOwner)
+         if (pcreatestruct->m_puserinteractionOwner)
          {
 
-            auto pthread = createstruct.m_puserinteractionOwner->m_pthreadUserInteraction;
+            auto pthread = pcreatestruct->m_puserinteractionOwner->m_pthreadUserInteraction;
 
             m_puserinteraction->m_pthreadUserInteraction = pthread;
 
@@ -618,12 +619,12 @@ namespace user
       //m_puserinteraction->create_layout(true);
 
       m_puserinteraction->place(rect_dim(
-                            createstruct.x,
-                            createstruct.y,
-                            createstruct.cx,
-                            createstruct.cy));
+                            pcreatestruct->m_createstruct.x,
+                            pcreatestruct->m_createstruct.y,
+                            pcreatestruct->m_createstruct.cx,
+                            pcreatestruct->m_createstruct.cy));
 
-      sync_array synca;
+      auto psynca = __new(sync_array);
 
       __pointer(manual_reset_event) peventStartedUser;
 
@@ -634,7 +635,7 @@ namespace user
 
          __raw_compose_new(m_puserthread);
 
-         m_puserthread->initialize_user_thread(this, createstruct);
+         m_puserthread->initialize_user_thread(this, pcreatestruct);
 
          __bind(m_puserinteraction, m_pthreadUserInteraction, m_puserthread OBJ_REF_DBG_COMMA_THIS_NOTE(__FUNCTION__));
 
@@ -658,7 +659,7 @@ namespace user
 
          }
 
-         if (!(m_puserinteraction->m_ewindowflag & window_flag_embedded_prodevian))
+         if (!(m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian))
          {
 
             peventStartedProdevian = __new(manual_reset_event());
@@ -678,7 +679,7 @@ namespace user
 
             }
 
-            synca.add(peventStartedProdevian);
+            psynca->add(peventStartedProdevian);
 
          }
          else
@@ -706,63 +707,90 @@ namespace user
 
          }
 
-         synca.add(peventStartedUser);
+         psynca->add(peventStartedUser);
 
-         synca.wait();
-
-         if (!m_puserinteraction || 
-            //(m_puserthread->m_bCreateNativeWindowOnInteractionThread
-               //&&
-            !m_puserinteraction->is_window())
-            //)
-         {
-
-            return false;
-
-         }
-
-         if(m_puserthread->m_result.failed())
-         {
-
-            if(m_puserinteraction)
+         auto proutine = __routine([this, psynca]()
             {
 
-               m_puserinteraction->__release(m_puserinteraction->m_pthreadUserInteraction);
-
-            }
-
-            __release(m_pprodevian);
-
-            __release(m_puserthread);
-
-            return false;
-
-         }
-
-         peventStartedUser.release();
-
-         if (::is_set(m_pprodevian))
-         {
-
-            if(m_pprodevian->m_result.failed())
-            {
-
-               if(m_puserinteraction)
+               if (!m_puserinteraction ||
+                  //(m_puserthread->m_bCreateNativeWindowOnInteractionThread
+                     //&&
+                  !m_puserinteraction->is_window())
+                  //)
                {
 
-                  m_puserinteraction->__release(m_puserinteraction->m_pthreadUserInteraction);
+                  return;
 
                }
 
-               __release(m_pprodevian);
+               if (m_puserthread->m_result.failed())
+               {
 
-               __release(m_puserthread);
+                  if (m_puserinteraction)
+                  {
 
-               return false;
+                     m_puserinteraction->__release(m_puserinteraction->m_pthreadUserInteraction);
 
-            }
+                  }
 
-            peventStartedProdevian.release();
+                  __release(m_pprodevian);
+
+                  __release(m_puserthread);
+
+                  return;
+
+               }
+
+               //peventStartedUser.release();
+
+               if (::is_set(m_pprodevian))
+               {
+
+                  if (m_pprodevian->m_result.failed())
+                  {
+
+                     if (m_puserinteraction)
+                     {
+
+                        m_puserinteraction->__release(m_puserinteraction->m_pthreadUserInteraction);
+
+                     }
+
+                     __release(m_pprodevian);
+
+                     __release(m_puserthread);
+
+                     return;
+
+                  }
+
+                 // peventStartedProdevian.release();
+
+               }
+
+            });
+
+         if (pcreatestruct->m_routineSuccess)
+         {
+
+            fork([psynca, proutine, pcreatestruct]()
+            {
+
+               psynca->wait();
+
+               (*proutine)();
+
+               pcreatestruct->m_routineSuccess();
+
+            });
+
+         }
+         else
+         {
+
+            psynca->wait();
+
+            (*proutine)();
 
          }
 
@@ -770,7 +798,7 @@ namespace user
       else
       {
 
-         synca.wait(true, one_minute());
+         psynca->wait(true, one_minute());
 
          if (::is_set(m_pprodevian))
          {
@@ -779,7 +807,7 @@ namespace user
 
          }
 
-         if (!_native_create_window_ex(createstruct))
+         if (!_native_create_window_ex(pcreatestruct))
          {
 
             return false;
@@ -791,17 +819,17 @@ namespace user
       //if (m_puserthread && !m_puserthread->m_bCreateNativeWindowOnInteractionThread)
       //{
 
-      //   send_message(e_message_create, 0, (LPARAM)&createstruct);
+      //   send_message(e_message_create, 0, (LPARAM)&pcreatestruct);
 
-      //   //m_puserinteraction->set_dim(createstruct.x, createstruct.cy, createstruct.cx, createstruct.cy);
+      //   //m_puserinteraction->set_dim(pcreatestruct->m_createstruct.x, pcreatestruct->m_createstruct.cy, pcreatestruct->m_createstruct.cx, pcreatestruct->m_createstruct.cy);
 
-      //   send_message(e_message_size, 0, MAKELPARAM(createstruct.cx, createstruct.cy));
+      //   send_message(e_message_size, 0, MAKELPARAM(pcreatestruct->m_createstruct.cx, pcreatestruct->m_createstruct.cy));
 
       //   m_puserinteraction->add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
 
-      //   m_puserinteraction->m_ewindowflag |= ::window_flag_is_window;
+      //   m_puserinteraction->m_ewindowflag |= ::e_window_flag_is_window;
 
-      //   m_puserinteraction->m_ewindowflag |= ::window_flag_window_created;
+      //   m_puserinteraction->m_ewindowflag |= ::e_window_flag_window_created;
 
       //}
 
@@ -810,7 +838,7 @@ namespace user
    }
 
 
-   bool interaction_impl::_native_create_window_ex(::user::create_struct & createstruct)
+   bool interaction_impl::_native_create_window_ex(__pointer(::user::create_struct) pcreatestruct)
    {
 
       return false;
@@ -828,38 +856,34 @@ namespace user
       ASSERT(puiParent != nullptr);
       ASSERT((uStyle & WS_POPUP) == 0);
 
-      ::user::create_struct createstruct;
+      auto pcreatestruct = __new(::user::create_struct);
 
-      createstruct.dwExStyle = 0;
+      pcreatestruct->m_createstruct.dwExStyle = 0;
 
 #ifdef WINDOWS
 
       wstring wstrClassName(pszClassName);
-      createstruct.lpszClass = wstrClassName;
+      pcreatestruct->m_createstruct.lpszClass = wstrClassName;
       wstring wstrWindowName(pszWindowName);
-      createstruct.lpszName = wstrWindowName;
+      pcreatestruct->m_createstruct.lpszName = wstrWindowName;
 
 #else
 
-      createstruct.lpszClass = pszClassName;
-      createstruct.lpszName = pszWindowName;
+      pcreatestruct->m_createstruct.lpszClass = pszClassName;
+      pcreatestruct->m_createstruct.lpszName = pszWindowName;
 
 #endif
 
-      createstruct.style = uStyle | WS_CHILD;
-      createstruct.x = rect.left;
-      createstruct.y = rect.top;
-      createstruct.cx = rect.width();
-      createstruct.cy = rect.height();
-      createstruct.hwndParent = puiParent->get_safe_handle();
-#ifdef _UWP
-      createstruct.pCreateParams = (LPVOID)pcreate;
-#else
-      createstruct.lpCreateParams = (LPVOID)pcreate;
-#endif
+      pcreatestruct->m_createstruct.style = uStyle | WS_CHILD;
+      pcreatestruct->m_createstruct.x = rect.left;
+      pcreatestruct->m_createstruct.y = rect.top;
+      pcreatestruct->m_createstruct.cx = rect.width();
+      pcreatestruct->m_createstruct.cy = rect.height();
+      pcreatestruct->m_createstruct.hwndParent = puiParent->get_safe_handle();
+      pcreatestruct->m_createstruct.CREATE_STRUCT_P_CREATE_PARAMS = (LPVOID)pcreate;
 
 
-      return create_window_ex(pinteraction, createstruct, puiParent, id);
+      return create_window_ex(pinteraction, pcreatestruct, puiParent, id);
 
    }
 
@@ -1252,7 +1276,7 @@ namespace user
 //
 //            m_puserinteraction->defer_notify_mouse_move();
 //
-//            millis_sleep(100);
+//            sleep(100_ms);
 //
 //         }
 //
@@ -2080,7 +2104,7 @@ namespace user
    // void interaction_impl::SetWindowDisplayChanged()
    // {
 
-   //    if (m_puserinteraction->is_this_visible() && m_puserinteraction->window_state3().m_edisplay3 != ::display_iconic)
+   //    if (m_puserinteraction->is_this_visible() && m_puserinteraction->window_state3().m_edisplay3 != ::e_display_iconic)
    //    {
 
    //       if (m_puserinteraction->GetParent() == nullptr)
@@ -2133,7 +2157,15 @@ namespace user
    ::i32 interaction_impl::get_window_long(i32 nIndex) const
    {
 
-      return (::i32) ::get_window_long_ptr(m_oswindow, nIndex);
+#ifdef WINDOWS_DESKTOP
+
+      return (::i32) ::GetWindowLongPtr(m_oswindow, nIndex);
+
+#else
+
+      return (::i32) ::user::primitive_impl::get_window_long(nIndex);
+
+#endif
 
    }
 
@@ -2141,7 +2173,15 @@ namespace user
    ::i32 interaction_impl::set_window_long(i32 nIndex,::i32 lValue)
    {
 
-      return  (::i32) ::set_window_long_ptr(m_oswindow, nIndex, lValue);
+#ifdef WINDOWS_DESKTOP
+
+      return (::i32) ::SetWindowLongPtr(m_oswindow, nIndex, lValue);
+
+#else
+
+      return (::i32) ::user::primitive_impl::set_window_long(nIndex, lValue);
+
+#endif
 
    }
 
@@ -2149,15 +2189,30 @@ namespace user
    iptr interaction_impl::get_window_long_ptr(i32 nIndex) const
    {
 
-      return ::get_window_long_ptr(m_oswindow, nIndex);
+#ifdef WINDOWS_DESKTOP
 
+      return ::GetWindowLongPtr(m_oswindow, nIndex);
+
+#else
+
+      return ::user::primitive_impl::get_window_long_ptr(nIndex);
+
+#endif
    }
 
 
    iptr interaction_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
    {
 
-      return ::set_window_long_ptr(m_oswindow, nIndex, lValue);
+#ifdef WINDOWS_DESKTOP
+
+      return ::SetWindowLongPtr(m_oswindow, nIndex, lValue);
+
+#else
+
+      return ::user::primitive_impl::set_window_long_ptr(nIndex, lValue);
+
+#endif
 
    }
 
@@ -2467,7 +2522,7 @@ namespace user
 
       }
 
-      return m_puserinteraction->layout().sketch().display() == ::display_iconic;
+      return m_puserinteraction->layout().sketch().display() == ::e_display_iconic;
 
    }
 
@@ -2482,7 +2537,7 @@ namespace user
 
       }
 
-      return m_puserinteraction->layout().sketch().display() == ::display_zoomed;
+      return m_puserinteraction->layout().sketch().display() == ::e_display_zoomed;
 
    }
 
@@ -2688,18 +2743,21 @@ namespace user
    }
 
 
-   //bool interaction_impl::DrawAnimatedRects(i32 idAni, const LPRECT32 prcFrom, const ::rect & prcTo)
-   //{
+   ::point interaction_impl::get_cursor_pos() const
+   {
 
-   //   UNREFERENCED_PARAMETER(idAni);
-   //   UNREFERENCED_PARAMETER(prcFrom);
-   //   UNREFERENCED_PARAMETER(prcTo);
+      auto psession = Session;
 
-   //   ::exception::throw_interface_only();
+      if (!psession)
+      {
 
-   //   return false;
+         return ::point();
 
-   //}
+      }
+
+      return psession->get_cursor_pos();
+
+   }
 
 
    bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics,const rect & prc,::u32 uFlags)
@@ -2719,7 +2777,7 @@ namespace user
    bool interaction_impl::is_window_enabled() const
    {
 
-      return m_puserinteraction->m_ewindowflag & window_flag_enable;
+      return m_puserinteraction->m_ewindowflag & e_window_flag_enable;
 
    }
 
@@ -2727,7 +2785,7 @@ namespace user
    bool interaction_impl::enable_window(bool bEnable)
    {
 
-      m_puserinteraction->m_ewindowflag.set(window_flag_enable, bEnable);
+      m_puserinteraction->m_ewindowflag.set(e_window_flag_enable, bEnable);
 
       return true;
 
@@ -3066,7 +3124,7 @@ namespace user
       for(auto & pinteraction : uiptra)
       {
 
-         pinteraction->send_message(e_message_mouse_leave);
+         pinteraction->post_message(e_message_mouse_leave);
 
       }
 
@@ -3219,7 +3277,7 @@ namespace user
 
          INFO("user::interaction_impl::_001OnShowWindow bShow = true");
 
-         if (m_puserinteraction->layout().design().display() != ::display_iconic)
+         if (m_puserinteraction->layout().design().display() != ::e_display_iconic)
          {
 
             if (m_puserinteraction->GetParent() == nullptr)
@@ -3459,7 +3517,7 @@ namespace user
 
          sync_lock slGraphics(m_pgraphics->mutex());
 
-         ::sync * psync = m_pgraphics->get_draw_lock();
+         ::sync * psync = m_pgraphics->get_buffer_sync();
 
          sync_lock sl(psync);
 
@@ -3540,12 +3598,12 @@ namespace user
 
          }
 
-      }
+         if (m_pgraphics)
+         {
 
-      if(m_pgraphics && m_pprodevian)
-      {
+            m_pgraphics->on_end_draw();
 
-         m_pgraphics->on_end_draw();
+         }
 
       }
 
@@ -3735,7 +3793,7 @@ namespace user
 
       pinteraction->place(rect);
 
-      pinteraction->display(display_normal, activation_no_activate);
+      pinteraction->display(e_display_normal, e_activation_no_activate);
 
    }
 
@@ -3750,7 +3808,7 @@ namespace user
 
       }
 
-      if (m_puserinteraction->m_ewindowflag & window_flag_embedded_prodevian)
+      if (m_puserinteraction->m_ewindowflag & e_window_flag_embedded_prodevian)
       {
 
          m_pprodevian->m_message.wParam |= 1;
@@ -4303,16 +4361,13 @@ namespace user
    void interaction_impl::on_after_graphical_update()
    {
 
-//      windowing_output_debug_string("\non_after_graphical_update before psession->get_cursor_pos");
 
-      // if(is_set(m_puserinteraction))
-      // {
+#ifdef ANDROID
 
-      //    update_session_cursor(this);
+      oslocal()->m_bRedraw = true;
 
-      // }
+#endif
 
-//      windowing_output_debug_string("\non_after_graphical_update after psession->get_cursor_pos");
 
    }
 
@@ -4394,7 +4449,7 @@ namespace user
 
       //}
 
-      if (eactivationOutput & activation_no_activate)
+      if (eactivationOutput & e_activation_no_activate)
       {
 
          uFlags |= SWP_NOACTIVATE;
@@ -4493,10 +4548,10 @@ namespace user
 
       oswindow oswindowInsertAfter = (bZ ? zOutput.get_os_data() : 0);
 
-      if (edisplayWindow == display_zoomed)
+      if (edisplayWindow == e_display_zoomed)
       {
 
-         if (edisplayOutput != display_zoomed)
+         if (edisplayOutput != e_display_zoomed)
          {
 
             _001OnExitZoomed();
@@ -4539,7 +4594,7 @@ namespace user
          }
 
          // Commented on Windows
-         //if(m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update)
+         //if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
          //{
 
          //   m_bEatMoveEvent = !(uFlags & SWP_NOMOVE) || !(uFlags & SWP_NOSIZE);
@@ -4548,7 +4603,7 @@ namespace user
 
          //}
 
-         //if(m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update)
+         //if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
          //{
 
          //   m_bPendingRedraw = true;
@@ -4560,10 +4615,14 @@ namespace user
 
          output_debug_string("SetWindowPos bottom_right " + __str(pointBottomRight.x) + ", " + __str(pointBottomRight.y) + "\n");
 
+#if !defined(_UWP) && !defined(ANDROID)
+
          ::SetWindowPos(m_oswindow, oswindowInsertAfter,
             pointOutput.x, pointOutput.y,
             sizeOutput.cx, sizeOutput.cy,
             uFlags);
+
+#endif
 
          if (g_pointLastBottomRight != pointBottomRight)
          {
@@ -4599,14 +4658,14 @@ namespace user
 
       }
 
-      if (eactivationOutput & activation_set_foreground)
+      if (eactivationOutput & e_activation_set_foreground)
       {
 
          m_puserinteraction->SetForegroundWindow();
 
       }
 
-      if (eactivationOutput & activation_set_active)
+      if (eactivationOutput & e_activation_set_active)
       {
 
          m_puserinteraction->SetActiveWindow();
@@ -4675,7 +4734,7 @@ namespace user
    }
 
 
-   bool interaction_impl::ShowWindow(int iShow)
+   bool interaction_impl::ShowWindow(const ::e_display & edisplay)
    {
 
       return false;
@@ -4683,8 +4742,13 @@ namespace user
 
    }
 
+   void interaction_impl::on_layout(::draw2d::graphics_pointer & pgraphics)
+   {
 
-   void interaction_impl::window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation)
+
+   }
+
+   void interaction_impl::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
    {
 
       m_puserinteraction->m_pthreadUserInteraction->post_pred([this, edisplay, eactivation]()
@@ -4699,19 +4763,19 @@ namespace user
 
             __keep_flag_on(m_puserinteraction->layout().m_eflag, ::user::interaction_layout::flag_show_window);
 
-            if (edisplay == display_iconic)
+            if (edisplay == e_display_iconic)
             {
 
-               if (eactivation == activation_no_activate)
+               if (eactivation == e_activation_no_activate)
                {
 
-                  ::show_window(m_oswindow, SW_SHOWMINNOACTIVE);
+                  ::show_window(m_oswindow, edisplay, eactivation);
 
                }
                else
                {
 
-                  ::show_window(m_oswindow, SW_MINIMIZE);
+                  ::show_window(m_oswindow, edisplay);
 
                }
 
@@ -4733,20 +4797,20 @@ namespace user
 
                }
 
-               ::show_window(m_oswindow, iShow);
+               ::show_window(m_oswindow, edisplay);
 
             }
             else
             {
 
-               ::show_window(m_oswindow, SW_HIDE);
+               ::show_window(m_oswindow, edisplay);
 
             }
 
             if (m_puserinteraction)
             {
 
-               m_puserinteraction->layout().design() = activation_none;
+               m_puserinteraction->layout().design() = e_activation_default;
 
             }
 
@@ -4835,7 +4899,7 @@ namespace user
 
       SCAST_PTR(::message::move, pmove, pmessage);
 
-      if(m_puserinteraction->m_ewindowflag & window_flag_postpone_visual_update)
+      if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
       {
 
          return;
@@ -4871,10 +4935,10 @@ namespace user
 
          m_puserinteraction->layout().sketch().origin() = pmove->m_point;
 
-         if (m_puserinteraction->layout().sketch().display() != display_normal)
+         if (m_puserinteraction->layout().sketch().display() != e_display_normal)
          {
 
-            m_puserinteraction->display(display_normal);
+            m_puserinteraction->display(e_display_normal);
 
          }
 
@@ -4937,10 +5001,10 @@ namespace user
 
          m_puserinteraction->layout().sketch() = psize->m_size;
 
-         if (m_puserinteraction->layout().sketch().display() != display_normal)
+         if (m_puserinteraction->layout().sketch().display() != e_display_normal)
          {
 
-            m_puserinteraction->display(display_normal);
+            m_puserinteraction->display(e_display_normal);
 
          }
 
@@ -5298,7 +5362,7 @@ namespace user
    }
 
 
-   bool interaction_impl::is_this_visible(e_layout elayout)
+   bool interaction_impl::is_this_visible(enum_layout elayout)
    {
 
       if (!m_puserinteraction)
@@ -5308,14 +5372,14 @@ namespace user
 
       }
 
-      if (!(m_puserinteraction->m_ewindowflag & window_flag_is_window))
+      if (!(m_puserinteraction->m_ewindowflag & e_window_flag_is_window))
       {
 
          return false;
 
       }
 
-      if (m_puserinteraction->m_ewindowflag & window_flag_not_visible)
+      if (m_puserinteraction->m_ewindowflag & e_window_flag_not_visible)
       {
 
          return false;

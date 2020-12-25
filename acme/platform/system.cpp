@@ -2,6 +2,8 @@
 #include "acme/id.h"
 
 
+
+
 ::acme::system * g_psystem = nullptr;
 
 namespace acme
@@ -119,6 +121,29 @@ namespace acme
    }
 
 
+   void system::open_profile_link(string strUrl, string strProfile, string strTarget)
+   {
+
+
+   }
+
+
+   void system::open_link(string strUrl, string strProfile, string strTarget)
+   {
+
+
+
+   }
+
+
+   void system::open_url(string strUrl, string strProfile, string strTarget)
+   {
+
+
+   }
+
+
+
    ::estatus system::main_user_async(const ::promise::routine & routine, ::e_priority epriority)
    {
 
@@ -207,10 +232,23 @@ namespace acme
    }
 
 
+   string system::__get_text(const string & str)
+   {
+
+      return str;
+
+   }
+
+
 } // namespace acme
 
 
+   string __get_text(const string & str)
+   {
 
+      return ::g_psystem->__get_text(str);
+
+   }
 
 
 CLASS_DECL_ACME ::acme::system * get_context_system()

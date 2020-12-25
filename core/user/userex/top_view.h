@@ -25,7 +25,7 @@ namespace userex
 
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
-      virtual bool is_this_visible(::user::e_layout elayout = ::user::layout_design) override;
+      virtual bool is_this_visible(::user::enum_layout elayout = ::user::e_layout_design) override;
 
 
       virtual void _001OnNcDraw(::draw2d::graphics_pointer & pgraphics) override;

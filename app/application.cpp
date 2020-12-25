@@ -54,6 +54,8 @@ namespace app_app
    void application::on_request(::create * pcreate)
    {
 
+      //sleep(0.5_s);
+
       __compose_new(m_pwindow);
 
       //::rect rectWindow;
@@ -68,7 +70,7 @@ namespace app_app
 
          m_pwindow->start_layout();
 
-         m_pwindow->display(display_normal);
+         m_pwindow->display(e_display_normal);
 
     //     m_pwindow->place(rectWindow);
 

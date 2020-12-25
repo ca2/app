@@ -12,14 +12,16 @@ class cflag :
 {
 public:
 
+   using ENUM_TYPE = ENUM;
 
    ENUM  m_eenum;
 
 
    cflag() { m_eenum = (ENUM) 0; }
+   cflag(enum_null) { m_eenum = (ENUM)0; }
    cflag(const std::initializer_list < ENUM > & list ) { m_eenum = (ENUM) 0; for (auto & e : list) add(e); }
    cflag(ENUM e) { m_eenum = e; }
-   cflag(::i64 i) { m_eenum = (ENUM) i; }
+   //cflag(::i64 i) { m_eenum = (ENUM) i; }
    cflag(const cflag & e) { m_eenum = e.m_eenum; }
 
    inline void add(ENUM e) { m_eenum = (ENUM)(e | m_eenum); }
@@ -130,7 +132,9 @@ public:
 };
 
 
-
+#define DECLARE_C_FLAG(CFLAG, ENUM) \
+inline ENUM operator | (ENUM e1, ENUM e2) { return (ENUM) ((::u64)e1 | (::u64)e2); } \
+using CFLAG = cflag < ENUM >;
 
 
 

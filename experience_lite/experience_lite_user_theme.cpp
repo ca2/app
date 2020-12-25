@@ -21,7 +21,7 @@ namespace lite
       ::user::theme(pobject)
    {
 
-      create_translucency(::user::element_none, ::user::translucency_present);
+      create_translucency(::user::e_element_none, ::user::e_translucency_present);
 
       create_point_font(::user::font_default,"Segoe UI", 12.0);
 
@@ -139,19 +139,19 @@ namespace lite
 
          iTab++;
 
-         if(!ptab->get_element_rect(iTab,rect,::user::element_tab))
+         if(!ptab->get_element_rect(iTab,rect,::user::e_element_tab))
             continue;
 
-         if(!ptab->get_element_rect(iTab,rectBorder, ::user::element_border))
+         if(!ptab->get_element_rect(iTab,rectBorder, ::user::e_element_border))
             continue;
 
-         if(!ptab->get_element_rect(iTab,rectClient, ::user::element_client))
+         if(!ptab->get_element_rect(iTab,rectClient, ::user::e_element_client))
             continue;
 
          if(ptab->get_data()->m_bVertical)
          {
 
-            if(ptab->get_element_rect(iTab,rectIcon, ::user::element_icon))
+            if(ptab->get_element_rect(iTab,rectIcon, ::user::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -187,7 +187,7 @@ namespace lite
 
                   pgraphics->draw_path(path);
 
-                  if (iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::element_close_tab_button && (ptab->m_eelementHover < ::user::element_split || ptab->m_eelementHover >(::user::element_split + 100)))
+                  if (iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::e_element_close_tab_button && (ptab->m_eelementHover < ::user::e_element_split || ptab->m_eelementHover >(::user::e_element_split + 100)))
                   {
 
                      pgraphics->set_font(ptab->_001GetFont(::user::font_tab_sel_hover));
@@ -216,7 +216,7 @@ namespace lite
 
                   path->end_figure(true);
 
-                  if(iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::element_close_tab_button && (ptab->m_eelementHover < ::user::element_split || ptab->m_eelementHover >(::user::element_split + 100)))
+                  if(iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::e_element_close_tab_button && (ptab->m_eelementHover < ::user::e_element_split || ptab->m_eelementHover >(::user::e_element_split + 100)))
                   {
 
                      pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,215,215,210),ARGB(250,235,235,230));
@@ -261,7 +261,7 @@ namespace lite
          else
          {
 
-            if(ptab->get_element_rect(iTab,rectIcon, ::user::element_icon))
+            if(ptab->get_element_rect(iTab,rectIcon, ::user::e_element_icon))
             {
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -322,7 +322,7 @@ namespace lite
 
                   pgraphics->draw_path(path);
 
-                  if (iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::element_close_tab_button &&( ptab->m_eelementHover < ::user::element_split || ptab->m_eelementHover >(::user::element_split + 100)))
+                  if (iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::e_element_close_tab_button &&( ptab->m_eelementHover < ::user::e_element_split || ptab->m_eelementHover >(::user::e_element_split + 100)))
                   {
 
                      pgraphics->set_font(ptab->_001GetFont(::user::font_tab_sel_hover));
@@ -360,7 +360,7 @@ namespace lite
 
                   path->end_figure(true);
 
-                  if(iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::element_close_tab_button && (ptab->m_eelementHover < ::user::element_split || ptab->m_eelementHover >(::user::element_split + 100)))
+                  if(iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::e_element_close_tab_button && (ptab->m_eelementHover < ::user::e_element_split || ptab->m_eelementHover >(::user::e_element_split + 100)))
                   {
 
                      pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,215,215,210),ARGB(250,235,235,230));
@@ -421,7 +421,7 @@ namespace lite
          if(true)
          {
 
-            if(ptab->get_element_rect(iTab,rectText, ::user::element_text))
+            if(ptab->get_element_rect(iTab,rectText, ::user::e_element_text))
             {
 
                _001OnTabPaneDrawTitle(pane,ptab,pgraphics,rectText,brushText);
@@ -433,12 +433,12 @@ namespace lite
          if(true)
          {
 
-            if(ptab->get_element_rect(iTab,rectClose, ::user::element_close_tab_button))
+            if(ptab->get_element_rect(iTab,rectClose, ::user::e_element_close_tab_button))
             {
 
                pgraphics->set_font(ptab->_001GetFont(::user::font_tab_big_bold));
 
-               if(iTab == ptab->m_iHover && ptab->m_eelementHover == ::user::element_close_tab_button)
+               if(iTab == ptab->m_iHover && ptab->m_eelementHover == ::user::e_element_close_tab_button)
                {
 
                   brushText = ptab->get_data()->m_brushCloseHover;
@@ -502,7 +502,7 @@ namespace lite
                rectEmp.deflate(1,1);
                ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-               if(ptab->m_eelementHover == (int)::user::element_split + i)
+               if(ptab->m_eelementHover == (int)::user::e_element_split + i)
                {
                   pgraphics->fill_rect(rectEmp,ARGB(128,149,184,255));
                   pgraphics->SelectObject(ptab->get_data()->m_brushTextHover);
@@ -820,7 +820,7 @@ namespace lite
    bool theme::on_ui_event(::user::e_event eevent, ::user::e_object eobject, ::user::interaction * pframewindow)
    {
 
-      if (eevent == ::user::event_calc_item_height)
+      if (eevent == ::user::e_event_calc_item_height)
       {
 
          pframewindow->m_iItemHeight += 8;
@@ -865,12 +865,12 @@ namespace lite
 
 /*      ::u32 uImage = pmenucentral->command_image(item.m_id);
 
-      ::user::toolbar::e_element eelement = ::user::toolbar::element_item;
-/*      ::user::toolbar::e_element eelementImage = ::user::toolbar::element_image;
-      ::user::toolbar::e_element eelementText = ::user::toolbar::element_text;
-      if ((nStyle & TBBS_SEPARATOR) == 0)
+      ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
+/*      ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
+      ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
+      if ((nStyle & e_toolbar_item_style_separator) == 0)
       {
-         if ((nStyle & TBBS_DISABLED) == 0)
+         if ((nStyle & e_toolbar_item_style_disabled) == 0)
          {
             // item is enabled
             if (ptoolbar->m_iButtonPressItem >= 0)
@@ -901,16 +901,16 @@ namespace lite
          else
          {
             // item is disabled
-            eelement = ::user::toolbar::element_item;
+            eelement = ::user::toolbar::e_element_item;
 /*            eelementImage = ::user::toolbar::element_image;
-            eelementText = ::user::toolbar::element_text;
+            eelementText = ::user::toolbar::e_element_text;
          }
       }
       else
       {
-         eelement = ::user::toolbar::element_item;
+         eelement = ::user::toolbar::e_element_item;
 /*         eelementImage = ::user::toolbar::element_image;
-         eelementText = ::user::toolbar::element_text;
+         eelementText = ::user::toolbar::e_element_text;
       }
 
 
@@ -921,7 +921,7 @@ namespace lite
 
       ptoolbar->_001GetElementRect(iItem, rectImage, eelementImage);
 
-      if ((nStyle & TBBS_SEPARATOR) != 0)
+      if ((nStyle & e_toolbar_item_style_separator) != 0)
       {
          ::rect rectSeparator;
          rectSeparator.left = (rectImage.left + rectImage.right) / 2 - 1;
@@ -937,7 +937,7 @@ namespace lite
             if ((nStyle & TBBS_CHECKED) != 0)
             {
 
-               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::element_item);
+               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
 /*               ptoolbar->_001GetElementRect(iItem, rectImage, ::user::toolbar::element_image);
 
@@ -957,7 +957,7 @@ namespace lite
                if (uImage != 0xffffffffu)
                {
 
-                  if ((nStyle & TBBS_DISABLED) == 0)
+                  if ((nStyle & e_toolbar_item_style_disabled) == 0)
                   {
 
                      // button is enabled
@@ -1065,10 +1065,10 @@ namespace lite
          else
          {
 
-            if ((nStyle & TBBS_DISABLED) == 0)
+            if ((nStyle & e_toolbar_item_style_disabled) == 0)
             {
 
-               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::element_item);
+               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
                pgraphics->fill_rect(rectItem, ARGB(184, 255, 255, 255));
 
@@ -1094,7 +1094,7 @@ namespace lite
             else if (uImage != 0xffffffff)
             {
 
-               if ((nStyle & TBBS_DISABLED) == 0)
+               if ((nStyle & e_toolbar_item_style_disabled) == 0)
                {
 
                   pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectImage.top_left(), 0);
@@ -1122,7 +1122,7 @@ namespace lite
 
          ::draw2d::brush_pointer brushText(e_create);
 
-         if ((nStyle & TBBS_DISABLED) == 0)
+         if ((nStyle & e_toolbar_item_style_disabled) == 0)
          {
 
             brushText->create_solid(ARGB(255, 0, 0, 0));
@@ -1169,14 +1169,14 @@ namespace lite
 
 /*      ::u32 uImage = pmenucentral->command_image(item.m_id);
 
-      ::user::toolbar::e_element eelement = ::user::toolbar::element_item;
-/*      ::user::toolbar::e_element eelementImage = ::user::toolbar::element_image;
-      ::user::toolbar::e_element eelementText = ::user::toolbar::element_text;
+      ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
+/*      ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
+      ::user::toolbar::enum_element eelementText = ::user::toolbar::e_element_text;
 
-      if ((nStyle & TBBS_SEPARATOR) == 0)
+      if ((nStyle & e_toolbar_item_style_separator) == 0)
       {
 
-         if ((nStyle & TBBS_DISABLED) == 0)
+         if ((nStyle & e_toolbar_item_style_disabled) == 0)
          {
 
             // item is enabled
@@ -1208,16 +1208,16 @@ namespace lite
          else
          {
             // item is disabled
-            eelement = ::user::toolbar::element_item;
+            eelement = ::user::toolbar::e_element_item;
 /*            eelementImage = ::user::toolbar::element_image;
-            eelementText = ::user::toolbar::element_text;
+            eelementText = ::user::toolbar::e_element_text;
          }
       }
       else
       {
-         eelement = ::user::toolbar::element_item;
+         eelement = ::user::toolbar::e_element_item;
 /*         eelementImage = ::user::toolbar::element_image;
-         eelementText = ::user::toolbar::element_text;
+         eelementText = ::user::toolbar::e_element_text;
       }
 
 
@@ -1244,7 +1244,7 @@ namespace lite
             if ((nStyle & TBBS_CHECKED) != 0)
             {
 
-               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::element_item);
+               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
 /*               ptoolbar->_001GetElementRect(iItem, rectImage, ::user::toolbar::element_image);
 
@@ -1264,7 +1264,7 @@ namespace lite
                if (uImage != 0xffffffffu)
                {
 
-                  if ((nStyle & TBBS_DISABLED) == 0)
+                  if ((nStyle & e_toolbar_item_style_disabled) == 0)
                   {
 
                      // button is enabled
@@ -1372,10 +1372,10 @@ namespace lite
          else
          {
 
-            if ((nStyle & TBBS_DISABLED) == 0)
+            if ((nStyle & e_toolbar_item_style_disabled) == 0)
             {
 
-               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::element_item);
+               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
                pgraphics->fill_rect(rectItem, _001GetColor(::user::color_button_background));
 
@@ -1394,13 +1394,13 @@ namespace lite
                ::draw2d::pen_pointer pen(e_create);
 
                pen->create_solid(1, ptoolbar->_001GetColor(
-                                 (nStyle & TBBS_DISABLED) == 0 ?
+                                 (nStyle & e_toolbar_item_style_disabled) == 0 ?
                                  ::user::color_button_background :
                                  ::user::color_button_background_disabled));
                ::draw2d::brush_pointer brush(e_create);
 
                brush->create_solid(ptoolbar->_001GetColor(
-                                   (nStyle & TBBS_DISABLED) == 0 ?
+                                   (nStyle & e_toolbar_item_style_disabled) == 0 ?
                                    ::user::color_button_background :
                                    ::user::color_button_background_disabled));
                ::draw2d::pen * ppenOld = pgraphics->SelectObject(pen);
@@ -1424,7 +1424,7 @@ namespace lite
             else if (uImage != 0xffffffff)
             {
 
-               if ((nStyle & TBBS_DISABLED) == 0)
+               if ((nStyle & e_toolbar_item_style_disabled) == 0)
                {
 
                   pmenucentral->MenuV033GetImageListBlend()->draw(pgraphics, uImage, rectImage.top_left(), 0);
@@ -1452,7 +1452,7 @@ namespace lite
 
          ::draw2d::brush_pointer brushText(e_create);
 
-         if ((nStyle & TBBS_DISABLED) == 0)
+         if ((nStyle & e_toolbar_item_style_disabled) == 0)
          {
 
             brushText->create_solid(ARGB(255, 255, 255, 255));

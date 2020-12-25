@@ -76,14 +76,14 @@ namespace user
       virtual bool create_window(::user::interaction * pinteraction, const ::rect & rect, ::user::interaction * pparent, id id) override;
       virtual bool create_window(::user::interaction * pinteraction, const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, id id, ::create * pContext = nullptr) override;
 
-      virtual bool create_window_ex(::user::interaction * pinteraction, ::user::create_struct & cs, ::user::interaction * puiParent, id id) override;
+      virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcs, ::user::interaction * puiParent, id id) override;
 
       virtual iptr get_window_long_ptr(i32 nIndex) const override;
       virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
-      virtual bool is_this_visible(e_layout elayout) override;
+      virtual bool is_this_visible(enum_layout elayout) override;
 
-      virtual void window_show_change_visibility(::edisplay edisplay, ::eactivation eactivation) override;
+      virtual void window_show_change_visibility(::e_display edisplay, ::e_activation eactivation) override;
 
       virtual bool _is_window() const override;
 

@@ -22,7 +22,7 @@ public:
    ::rect                                          m_FullScreenWindowRect;
    draw2d::fastblur                                m_blur;
    ::image_pointer                                 m_pimageBlur;
-   ::user::e_translucency                          m_etranslucencyFrame;
+   ::user::enum_translucency                          m_etranslucencyFrame;
    map < ::id, const ::id &, __composite(::user::toolbar) >
                                                    m_toolbarmap;
    ::image_pointer                                 m_pimageAlpha;
@@ -43,7 +43,7 @@ public:
    virtual ::estatus initialize(::layered * pobjectContext) override;
 
 
-   virtual ::user::e_translucency get_translucency(::user::style* pstyle) const override;
+   virtual ::user::enum_translucency get_translucency(::user::style* pstyle) const override;
 
 
    virtual void _task_save_window_rect();
@@ -61,7 +61,7 @@ public:
    virtual bool create_window(const char * pszClassName, const char * pszWindowName, u32 uStyle = WS_OVERLAPPEDWINDOW,const ::rect & rect = nullptr, ::user::interaction * puiParent = nullptr, const char * pszMenuName = nullptr, u32 dwExStyle = 0, ::create * pcreate = nullptr) override;
 
 
-   virtual bool keyboard_focus_is_focusable() override;
+   virtual bool keyboard_focus_is_focusable() const override;
 
    virtual bool create_bars();
    virtual bool on_create_bars() override;
@@ -131,10 +131,10 @@ public:
    __pointer(::user::interaction) WindowDataGetWnd();
    virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
    virtual void on_reposition() override;
-   virtual void ActivateFrame(::edisplay edisplay = display_undefined) override;
+   virtual void ActivateFrame(::e_display edisplay = e_display_undefined) override;
    virtual bool on_create_client(::user::create_struct * pcs, ::create * pcreate) override;
 
-   virtual bool pre_create_window(::user::create_struct& cs) override;
+   virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
    virtual void pre_translate_message(::message::message * pmessage) override;
 
    virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;

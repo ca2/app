@@ -158,7 +158,7 @@ CLASS_DECL_CORE bool __node_core_pos_term();
 
 #ifdef ANDROID
 
-#include "core/os/android/_os_local.h"
+//#include "core/os/android/_os_local.h"
 
 #endif
 
@@ -168,7 +168,7 @@ CLASS_DECL_CORE bool __node_core_pos_term();
 
 //#include "core/multimedia/_.h"
 
-#include "core/os/process.h"
+//#include "core/os/process.h"
 
 //#include "core/geoip/geoip.h"
 

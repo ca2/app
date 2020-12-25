@@ -253,21 +253,21 @@ namespace uwp
    }
 
 
-   ::status::result native_buffer::open(const ::file::path & path, const::efileopen & efileopenParam)
+   ::status::result native_buffer::open(const ::file::path & path, const ::file::e_open & eopenParam)
    {
 
-      ::efileopen efileopen(efileopenParam);
+      ::file::e_open eopen(eopenParam);
 
-      m_efileopen = efileopen;
+      m_eopen = eopen;
       m_file = nullptr;
       m_folder = nullptr;
 
       ASSERT_VALID(this);
       ASSERT(__is_valid_string(path));
-      ASSERT(!(efileopen & ::file::type_text));   // text mode not supported
+      ASSERT(!(eopen & ::file::e_open_text));   // text mode not supported
 
       // native_buffer objects are always binary and Createnative_buffer does not need flag
-      efileopen -= ::file::type_binary;
+      eopen -= ::file::e_open_binary;
 
 
       string strPath = path;
@@ -283,15 +283,15 @@ namespace uwp
 
       }
 
-      return open(folder, strPath, efileopen);
+      return open(folder, strPath, eopen);
 
    }
 
 
-   ::status::result native_buffer::open(::Windows::Storage::StorageFolder ^ folder, const ::file::path & pathFileArgument, const ::efileopen & efileopenParam)
+   ::status::result native_buffer::open(::Windows::Storage::StorageFolder ^ folder, const ::file::path & pathFileArgument, const ::file::e_open & efileopenParam)
    {
 
-      ::efileopen efileopen(efileopenParam);
+      ::file::e_open eopen(efileopenParam);
 
       ::file::path pathFile(pathFileArgument);
 
@@ -303,7 +303,7 @@ namespace uwp
 
       path /= pathFile;
 
-      if ((efileopen & ::file::defer_create_directory) && (efileopen & ::file::mode_write))
+      if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
          ::dir::mk(path.folder());
@@ -348,20 +348,20 @@ namespace uwp
       //      m_wstrnative_bufferName    = ::str::international::utf8_to_unicode(m_strFileName);
 
       ASSERT(sizeof(HANDLE) == sizeof(uptr));
-      ASSERT(::file::share_compat == 0);
+      ASSERT(::file::e_open_share_compat == 0);
 
       // ::map read/write mode
-      ASSERT((::file::mode_read | ::file::mode_write | ::file::mode_read_write) == 3);
+      ASSERT((::file::e_open_read | ::file::e_open_write | ::file::e_open_read_write) == 3);
       ::u32 dwAccess = 0;
-      switch(efileopen & 3)
+      switch(eopen & 3)
       {
-      case ::file::mode_read:
+      case ::file::e_open_read:
          dwAccess = GENERIC_READ;
          break;
-      case ::file::mode_write:
+      case ::file::e_open_write:
          dwAccess = GENERIC_WRITE;
          break;
-      case ::file::mode_read_write:
+      case ::file::e_open_read_write:
          dwAccess = GENERIC_READ | GENERIC_WRITE;
          break;
       default:
@@ -375,17 +375,17 @@ namespace uwp
       //{
       //default:
       //   ASSERT(FALSE);  // invalid share mode?
-      //case ::file::share_compat:
-      //case ::file::share_exclusive:
+      //case ::file::e_open_share_compat:
+      //case ::file::e_open_share_exclusive:
       //   dwShareMode = 0;
       //   break;
-      //case ::file::share_deny_write:
+      //case ::file::e_open_share_deny_write:
       //   dwShareMode = FILEative_buffer_SHARE_READ;
       //   break;
-      //case ::file::share_deny_read:
+      //case ::file::e_open_share_deny_read:
       //   dwShareMode = native_buffer_SHARE_WRITE;
       //   break;
-      //case ::file::share_deny_none:
+      //case ::file::e_open_share_deny_none:
       //   dwShareMode = native_buffer_SHARE_WRITE | native_buffer_SHARE_READ;
       //   break;
       //}
@@ -397,14 +397,14 @@ namespace uwp
       sa.nLength = sizeof(sa);
       sa.lpSecurityDescriptor = nullptr;
 
-      sa.bInheritHandle = !(efileopen & ::file::mode_no_inherit);
+      sa.bInheritHandle = !(eopen & ::file::e_open_no_inherit);
 
       folder = m_folder;
 
-      if(efileopen & ::file::mode_create)
+      if(eopen & ::file::e_open_create)
       {
 
-         if (efileopen & ::file::mode_no_truncate)
+         if (eopen & ::file::e_open_no_truncate)
          {
 
             m_file = ::wait(folder->CreateFileAsync(strName, Windows::Storage::CreationCollisionOption::OpenIfExists));
@@ -445,17 +445,17 @@ namespace uwp
 
       }
 
-      ASSERT((::file::mode_read | ::file::mode_write | ::file::mode_read_write) == 3);
+      ASSERT((::file::e_open_read | ::file::e_open_write | ::file::e_open_read_write) == 3);
 
-      switch (efileopen & 3)
+      switch (eopen & 3)
       {
-      case ::file::mode_read:
+      case ::file::e_open_read:
          m_stream = ::wait(m_file->OpenAsync(::Windows::Storage::FileAccessMode::Read));
          break;
-      case ::file::mode_write:
+      case ::file::e_open_write:
          m_stream = ::wait(m_file->OpenAsync(::Windows::Storage::FileAccessMode::ReadWrite));
          break;
-      case ::file::mode_read_write:
+      case ::file::e_open_read_write:
          m_stream = ::wait(m_file->OpenAsync(::Windows::Storage::FileAccessMode::ReadWrite));
          break;
       default:
@@ -476,7 +476,7 @@ namespace uwp
 
       m_bCloseOnDelete = TRUE;
 
-      m_efileopen = efileopen;
+      m_eopen = eopen;
 
       return ::success;
 
@@ -553,7 +553,7 @@ namespace uwp
    void native_buffer::close()
    {
 
-      if (m_efileopen & ::file::mode_write)
+      if (m_eopen & ::file::e_open_write)
       {
 
          flush();
@@ -565,8 +565,6 @@ namespace uwp
       m_file         = nullptr;
 
       m_folder       = nullptr;
-
-      m_efileopen    = 0;
 
    }
 

@@ -1179,6 +1179,8 @@ namespace apex
 
       set_main_struct(*m_papplicationStartup);
 
+      m_strAppId = m_papplicationStartup->m_strAppId;
+
       estatus = system_init();
 
       if (!estatus)
@@ -2607,7 +2609,7 @@ namespace apex
 
 #if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(__APPLE__)
 
-            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().module()/strApp,strParameters,nullptr,display_normal);
+            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().module()/strApp,strParameters,nullptr,e_display_normal);
 
             launcher.execute();
 
@@ -2640,7 +2642,7 @@ namespace apex
 
 #else
 
-            ::apex::shell_launcher launcher(nullptr,nullptr,Context.dir().module()/strApp,nullptr,nullptr, display_normal);
+            ::apex::shell_launcher launcher(nullptr,nullptr,Context.dir().module()/strApp,nullptr,nullptr, e_display_normal);
 
             launcher.execute();
 
@@ -2678,7 +2680,7 @@ namespace apex
 
 #else
 
-            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, display_normal);
+            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
 
             launcher.execute();
 
@@ -2710,7 +2712,7 @@ namespace apex
 
 #else
 
-            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, display_normal);
+            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
 
             launcher.execute();
 
@@ -2969,7 +2971,7 @@ namespace apex
 //      if(has_property("install"))
 //         return true;
 //
-//      file_pointer pfile = Context.file().get_file(Context.dir().appdata() / "applibcache.bin",::file::type_binary | ::file::mode_read);
+//      file_pointer pfile = Context.file().get_file(Context.dir().appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
 //
 //      if(!pfile)
 //         return false;
@@ -3045,7 +3047,7 @@ namespace apex
 //      try
 //      {
 //
-//         file = psession->file().get_file(Context.dir().appdata() / "applibcache.bin",::file::defer_create_directory | ::file::type_binary | ::file::mode_create | ::file::mode_write);
+//         file = psession->file().get_file(Context.dir().appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
 //
 //      }
 //      catch(::exception::exception &)
@@ -3202,7 +3204,7 @@ namespace apex
    bool system::android_set_user_wallpaper(string strUrl)
    {
 
-      oslocal().m_strSetUserWallpaper = strUrl;
+      //oslocal().m_strSetUserWallpaper = strUrl;
 
       return true;
 
@@ -3211,22 +3213,22 @@ namespace apex
    bool system::android_get_user_wallpaper(string & strUrl)
    {
 
-      oslocal().m_bGetUserWallpaper = true;
+      //oslocal().m_bGetUserWallpaper = true;
 
-      for(int i = 0; i < 10; i++)
-      {
+      //for(int i = 0; i < 10; i++)
+      //{
 
-         if (!oslocal().m_bGetUserWallpaper)
-         {
+      //   if (!oslocal().m_bGetUserWallpaper)
+      //   {
 
 
-         }
+      //   }
 
-         millis_sleep(50);
+      //   sleep(50_ms);
 
-      }
+      //}
 
-      strUrl = oslocal().m_strGetUserWallpaper;
+      //strUrl = oslocal().m_strGetUserWallpaper;
 
       return true;
 
@@ -3320,7 +3322,7 @@ namespace apex
 
          merge_accumulated_on_open_file(pcreate);
 
-         papp->post_object(e_message_system, system_message_create, pcreate);
+         papp->post_object(e_message_system, e_system_message_create, pcreate);
 
       }
 
@@ -3510,7 +3512,7 @@ namespace apex
 //    }
 // #endif
 
-#ifndef ANDROID
+//#ifndef ANDROID
 
    void system::on_os_text(e_os_text etext, string strText)
    {
@@ -3518,7 +3520,7 @@ namespace apex
 
    }
 
-#endif
+//#endif
 
 //#ifdef _UWP
 //
@@ -3645,7 +3647,7 @@ namespace apex
          strParams.Format("\"openvsproject://%s\"", strProj);
 
 
-         //int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", display_none, 30, 1000, nullptr, 0);
+         //int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
 
       }
 #elif defined MACOS
@@ -3661,7 +3663,7 @@ namespace apex
          if(strBase == "scheme")
          {
 
-//         int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", display_none, 30, 1000, nullptr, 0);
+//         int iRet = call_sync("C:\\bergedge\\time\\stage\\visual_studio_automation_2017.exe",strParams, "C:\\bergedge\\time\\stage\\", e_display_none, 30, 1000, nullptr, 0);
 
             ::file::path pathScript = ::dir::tool() / "papaya/script/xcode_set_active_scheme.scpt";
 
@@ -3946,15 +3948,15 @@ namespace apex
 
          string strOpenUrl;
 
-         if (System.oslocal().m_pszOpenUrl != nullptr)
+         if (::oslocal()->m_pszOpenUrl != nullptr)
          {
 
-            strOpenUrl = System.oslocal().m_pszOpenUrl;
+            strOpenUrl = ::oslocal()->m_pszOpenUrl;
 
             try
             {
 
-               ::free((void *)System.oslocal().m_pszOpenUrl);
+               ::free((void *)::oslocal()->m_pszOpenUrl);
 
             }
             catch (...)
@@ -3963,7 +3965,7 @@ namespace apex
 
             }
 
-            System.oslocal().m_pszOpenUrl = nullptr;
+            ::oslocal()->m_pszOpenUrl = nullptr;
 
          }
 
@@ -3975,7 +3977,7 @@ namespace apex
 
             // System.m_pandroidinitdata->m_pszOpenUrl = strdup(strLink);
 
-            System.oslocal().m_pszOpenUrl = strdup(strUrl);
+            ::oslocal()->m_pszOpenUrl = strdup(strUrl);
 
          }
 
@@ -4031,7 +4033,7 @@ namespace apex
 
             pathProfile = pathHome / "ca2/Vivaldi/Profile" / strProfile;
 
-            call_async(shell, " -c \"" + path + " --user-data-dir=\\\"" + pathProfile + "\\\" " + strParam, pathHome, display_default, false);
+            call_async(shell, " -c \"" + path + " --user-data-dir=\\\"" + pathProfile + "\\\" " + strParam, pathHome, e_display_default, false);
 
          }
          else if (strBrowser == "chrome")
@@ -4051,7 +4053,7 @@ namespace apex
 
             //MessageBox(nullptr, strParam, path, e_message_box_ok);
 
-            call_async(shell, strParam, pathHome, display_default, false);
+            call_async(shell, strParam, pathHome, e_display_default, false);
 
          }
          else if (strBrowser == "firefox")
@@ -4063,7 +4065,7 @@ namespace apex
 
             pathProfile = pathHome / "ca2/Firefox/Profile" / strProfile;
 
-            call_async(shell, "-c \"" + path + " -profile=\\\"" + pathProfile + "\\\" " + strParam + "\"", pathHome, display_default, false);
+            call_async(shell, "-c \"" + path + " -profile=\\\"" + pathProfile + "\\\" " + strParam + "\"", pathHome, e_display_default, false);
 
          }
          else
@@ -4184,7 +4186,7 @@ namespace apex
 
             strParam += " " + file_as_string(dir::localconfig() / "app-core/commander/chrome.txt");
 
-            call_async(path, strParam, pathDir, display_default, false);
+            call_async(path, strParam, pathDir, e_display_default, false);
 
          }
 
@@ -4231,7 +4233,7 @@ namespace apex
 
          output_debug_string(strParam);
 
-         call_async(shell, strParam, pathDir, display_default, false);
+         call_async(shell, strParam, pathDir, e_display_default, false);
 
 #endif
 
@@ -4274,7 +4276,7 @@ namespace apex
 
       ::property_set set;
 
-      call_sync(pathFirefox, strParam, pathDir, display_default, 3_min, set);
+      call_sync(pathFirefox, strParam, pathDir, e_display_default, 3_min, set);
 
 #endif
 
@@ -4376,9 +4378,9 @@ namespace apex
       if (!bFound)
       {
 
-         call_async(strBrowserPath, strParam, strBrowserDir, display_normal, false);
+         call_async(strBrowserPath, strParam, strBrowserDir, e_display_normal, false);
 
-         call_async(strBrowserHelperPath, "/SetAsDefaultAppUser", strBrowserHelperDir, display_none, false);
+         call_async(strBrowserHelperPath, "/SetAsDefaultAppUser", strBrowserHelperDir, e_display_none, false);
 
       }
 
@@ -5599,7 +5601,7 @@ string get_bundle_app_library_name();
 
             auto pfuture = __sync_future();
 
-            os_message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | MB_YESNOCANCEL, pfuture);
+            os_message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | e_message_box_yes_no_cancel, pfuture);
 
             pfuture->wait(10_s);
 

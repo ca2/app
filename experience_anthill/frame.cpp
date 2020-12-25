@@ -201,13 +201,13 @@ namespace experience
             }
 
 
-            frame::e_element operator++(frame::e_element & eelement, i32 i)
+            frame::enum_element operator++(frame::enum_element & eelement, i32 i)
             {
                UNREFERENCED_PARAMETER(i);
-               return (frame::e_element) (*((i32*)&eelement))++;
+               return (frame::enum_element) (*((i32*)&eelement))++;
             }
 
-            bool frame::get_element_rect(LPRECT32 lprect, e_element eelement)
+            bool frame::get_element_rect(LPRECT32 lprect, enum_element eelement)
             {
                switch (eelement)
                {
@@ -227,7 +227,7 @@ namespace experience
 
                case ElementMoveGripMinimal:
 
-                  if (m_pframewindow == nullptr || m_pframewindow->layout().design().display() != ::display_minimal)
+                  if (m_pframewindow == nullptr || m_pframewindow->layout().design().display() != ::e_display_minimal)
                      return false;
 
                   lprect->left = m_pointMoveGripMinimal.x + 2;
@@ -244,10 +244,10 @@ namespace experience
 
             }
 
-            bool frame::hit_test(const POINT32 &point, e_element &eelementParam)
+            bool frame::hit_test(const POINT32 &point, enum_element &eelementParam)
             {
                ::rect rect;
-               for (e_element eelement = (e_element)(ElementNone + 1);
+               for (enum_element eelement = (enum_element)(ElementNone + 1);
                      eelement < ElementEnd;
                      eelement++)
                {
@@ -337,13 +337,13 @@ namespace experience
 
                auto pstyle = pframewindow->get_style(pgraphics);
 
-               auto crButtonHilite = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+               auto crButtonHilite = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
 
-               auto crButtonDarkShadow = pframewindow->get_color(pstyle, ::user::element_button_dark_shadow);
+               auto crButtonDarkShadow = pframewindow->get_color(pstyle, ::user::e_element_button_dark_shadow);
 
-               auto crButtonFace = pframewindow->get_color(pstyle, ::user::element_button_background);
+               auto crButtonFace = pframewindow->get_color(pstyle, ::user::e_element_button_background);
 
-               auto crButtonShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
+               auto crButtonShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
 
                m_penText1->create_solid(1, ARGB(255, 255, 255, 255));
                m_penFace1->create_solid(1, crButtonFace | 0xff000000);
@@ -431,7 +431,7 @@ namespace experience
             }
 
 
-            void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rect & rectParam, e_border eborder, color32_t crTopLeft, color32_t crBottomRight)
+            void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rect & rectParam, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight)
             {
 
                ::rect rect(rectParam);
@@ -446,7 +446,7 @@ namespace experience
 
                ::draw2d::pen_pointer pen;
 
-               if (eborder & border_top || eborder & border_left)
+               if (eborder & e_border_top || eborder & e_border_left)
                {
 
                   pen.create(this);
@@ -457,7 +457,7 @@ namespace experience
 
                }
 
-               if (eborder & border_top)
+               if (eborder & e_border_top)
                {
 
                   pgraphics->move_to(x, y);
@@ -466,7 +466,7 @@ namespace experience
 
                }
 
-               if (eborder & border_left)
+               if (eborder & e_border_left)
                {
 
                   pgraphics->move_to(x, y);
@@ -475,7 +475,7 @@ namespace experience
 
                }
 
-               if ((eborder & border_right || eborder & border_bottom) && (pen.is_null() || pen->m_color != crBottomRight))
+               if ((eborder & e_border_right || eborder & e_border_bottom) && (pen.is_null() || pen->m_color != crBottomRight))
                {
 
                   pen.create(this);
@@ -486,7 +486,7 @@ namespace experience
 
                }
 
-               if (eborder & border_right)
+               if (eborder & e_border_right)
                {
 
                   pgraphics->move_to(x + cx, y);
@@ -495,7 +495,7 @@ namespace experience
 
                }
 
-               if (eborder & border_bottom)
+               if (eborder & e_border_bottom)
                {
 
                   pgraphics->move_to(x, y + cy);
@@ -626,11 +626,11 @@ namespace experience
 
                   auto pstyle = pframewindow->get_style(pgraphics);
 
-                  crMoveableBorder = pframewindow->get_color(pstyle, ::user::element_button_background);
+                  crMoveableBorder = pframewindow->get_color(pstyle, ::user::e_element_button_background);
 
-                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
 
-                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
+                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
 
 }
 

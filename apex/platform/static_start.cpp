@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "static_start.h"
-#include "apex/net/sockets/_.h"
+#include "apex/net/sockets/_sockets.h"
 #include "apex/platform/app_core.h"
 #include "apex/astr.h"
 #include "apex/os/_os.h"
@@ -75,10 +75,10 @@ namespace apex
    bool g_bApex;
 
 
-   CLASS_DECL_APEX critical_section* g_pcsFont = nullptr;
+   //CLASS_DECL_APEX critical_section* g_pcsFont = nullptr;
 
 
-   CLASS_DECL_APEX string_to_string * g_pmapFontFaceName = nullptr;
+   //CLASS_DECL_APEX string_to_string * g_pmapFontFaceName = nullptr;
 
 
    ::mutex* g_pmutexChildren;
@@ -390,9 +390,9 @@ namespace apex
 
 #endif
 
-      g_pcsFont = nullptr;
+      //g_pcsFont = nullptr;
 
-      g_pmapFontFaceName = nullptr;
+      //g_pmapFontFaceName = nullptr;
 
       create_factory < ::apex::idpool >();
 
@@ -408,7 +408,7 @@ namespace apex
 
       construct();
 
-      __set_get_text(&__apex_get_text);
+      //__set_get_text(&__apex_get_text);
 
       //g_pcsRefDbg = nullptr;
 
@@ -606,9 +606,9 @@ namespace apex
       g_iObjTypCtrInit = 1;
 #endif
 
-      g_pcsFont = new critical_section();
+      //g_pcsFont = new critical_section();
 
-      g_pmapFontFaceName = new string_to_string();
+      //g_pmapFontFaceName = new string_to_string();
 
       g_pmutexThreadDeferredCreation = new mutex;
 
@@ -628,9 +628,9 @@ namespace apex
 
       ::acme::del(g_pmutexThreadDeferredCreation);
 
-      ::acme::del(g_pmapFontFaceName);
+      //::acme::del(g_pmapFontFaceName);
 
-      ::acme::del(g_pcsFont);
+      //::acme::del(g_pcsFont);
 
 #if OBJ_TYP_CTR
       g_iObjTypCtrInit = 0;
@@ -812,11 +812,11 @@ namespace apex
 
       ::acme::del(g_pcsTrace);
 
-#ifdef ANDROID
-
-      del(g_pmutexOutputDebugStringA);
-
-#endif
+//#ifdef ANDROID
+//
+//      del(g_pmutexOutputDebugStringA);
+//
+//#endif
 
 //      ::acme::del(::id_space::s_pidspace);
 //

@@ -24,7 +24,7 @@ CLASS_DECL_AURA int_bool release_capture();
 CLASS_DECL_AURA int_bool destroy_window(oswindow oswindow);
 CLASS_DECL_AURA oswindow get_window(oswindow oswindow, enum_relative erelative);
 CLASS_DECL_AURA oswindow get_desktop_window();
-CLASS_DECL_AURA int_bool show_window(oswindow oswindow, int iShow);
+CLASS_DECL_AURA int_bool show_window(oswindow oswindow, const ::e_display & edisplay, const ::e_activation & eactivation = e_activation_default);
 CLASS_DECL_AURA int_bool set_foreground_window(oswindow oswindow);
 
 

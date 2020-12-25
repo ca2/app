@@ -12,7 +12,7 @@ namespace simple_ui
 
 
 
-      ::user::e_theme               m_etheme;
+      ::user::enum_theme            m_etheme;
       string                        m_strLocale;
       string                        m_strSchema;
       string                        m_strRuri;

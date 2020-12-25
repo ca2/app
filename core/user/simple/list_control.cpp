@@ -24,12 +24,17 @@ __pointer(::user::interaction) simple_list_control::OnDrawInterfaceGetWnd()
 }
 
 
-bool simple_list_control::pre_create_window(::user::create_struct& cs)
+bool simple_list_control::pre_create_window(::user::create_struct * pcreatestruct)
 {
 
-   cs.style |= WS_CLIPCHILDREN;
+#ifdef WINDOWS_DESKTOP
 
-   return ::user::interaction::pre_create_window(cs);
+
+
+#endif
+
+   return ::user::interaction::pre_create_window(pcreatestruct);
+
 }
 
 

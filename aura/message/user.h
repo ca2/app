@@ -48,7 +48,7 @@ namespace message
    public:
 
 
-      ::user::create_struct * m_lpcreatestruct;
+      __pointer(::user::create_struct)       m_pcreatestruct;
 
 
       create() { }
@@ -60,9 +60,13 @@ namespace message
 
       virtual void failed(const char * pcszErrorMessage);
 
-      ::matter * get_impact_data();
+      ::user::create_struct * get_create_struct();
 
-      ::create* get_create();
+      ::create * get_create();
+
+      ::user::create * get_user_create();
+
+      ::matter * get_impact_data();
 
 
    };

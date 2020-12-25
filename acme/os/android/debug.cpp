@@ -6,7 +6,7 @@
 //static string * m_pstrOutputDebugStringA = nullptr;
 ::mutex * g_pmutexOutputDebugStringA = nullptr;
 
-VOID WINAPI output_debug_string(const char * lpOutputString)
+void output_debug_string(const char * lpOutputString)
 {
 
    sync_lock sl(g_pmutexOutputDebugStringA);
@@ -59,8 +59,7 @@ CLASS_DECL_ACME void simple_debug_print(const char * psz)
 }
 
 
-
-VOID WINAPI output_debug_string(const widechar * lpOutputString)
+void output_debug_string(const widechar * lpOutputString)
 {
 
 

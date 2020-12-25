@@ -65,7 +65,7 @@ ttf_util::~ttf_util()
 string ttf_util::GetFontNameFromFile(::file::path lpszFilePath)
 {
 
-   file_pointer f = Context.file().get_file(lpszFilePath, ::file::mode_read | ::file::share_deny_write);
+   file_pointer f = Context.file().get_file(lpszFilePath, ::file::e_open_read | ::file::e_open_share_deny_write);
 
    string csRetVal;
 

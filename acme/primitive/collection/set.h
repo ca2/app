@@ -378,7 +378,7 @@ public:
    bool remove(SET_ELEMENT_ITEM * pelement);
 
    //removing existing (key, ?) SET_ELEMENT_ITEM
-   inline bool remove(ARG_ELEMENT key) { auto pitem = find_item(key);  return ::is_set(pitem) ? remove_item(pitem) : false; }
+   inline bool remove(ARG_ELEMENT key) { auto pitem = find_item(key);  return ::is_set(pitem) ? remove(pitem) : false; }
 
    template < typename ITERATOR >
    inline ITERATOR erase(ITERATOR it) { return ::papaya::iterator::erase(*this, it); }
@@ -458,7 +458,7 @@ public:
       }
    }
 
-   inline SET_ELEMENT_ITEM * find_item(ARG_ELEMENT key) const { return find_assoc(key); }
+   inline SET_ELEMENT_ITEM * find_item(ARG_ELEMENT key) const { return find_element(key); }
 
    inline iterator find(ARG_ELEMENT key) { return { find_item(key), this }; }
    const_iterator find(ARG_ELEMENT key) const { return { find_item(key), this }; }
@@ -670,7 +670,7 @@ template < class ELEMENT, class ARG_ELEMENT >
 const typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM * set < ELEMENT, ARG_ELEMENT >::get_start() const
 {
 
-   return this->m_passocHead;
+   return this->m_pelementHead;
 
 }
 
@@ -844,18 +844,18 @@ set < ELEMENT, ARG_ELEMENT >::new_element(ARG_ELEMENT key)
 
    //�zero_pointer(pelement);
 
-   if (this->m_passocHead != nullptr)
+   if (this->m_pelementHead != nullptr)
    {
 
-      this->m_passocHead->m_pprev = pelement;
+      this->m_pelementHead->m_pprev = pelement;
 
    }
 
-   pelement->m_pnext = this->m_passocHead;
+   pelement->m_pnext = this->m_pelementHead;
 
-   this->m_passocHead = pelement;
+   this->m_pelementHead = pelement;
 
-   this->m_passocHead->m_pprev = nullptr;
+   this->m_pelementHead->m_pprev = nullptr;
 
    m_nCount++;
 
@@ -885,15 +885,15 @@ void set < ELEMENT, ARG_ELEMENT >::free_element(SET_ELEMENT_ITEM * pelement)
 
    }
 
-   if (this->m_passocHead == pelement)
+   if (this->m_pelementHead == pelement)
    {
 
-      this->m_passocHead = pnext;
+      this->m_pelementHead = pnext;
 
-      if (this->m_passocHead != nullptr)
+      if (this->m_pelementHead != nullptr)
       {
 
-         this->m_passocHead->m_pprev = nullptr;
+         this->m_pelementHead->m_pprev = nullptr;
 
       }
 
@@ -926,7 +926,11 @@ set < ELEMENT, ARG_ELEMENT >::get_element_at(ARG_ELEMENT key, ::u32 & nHashBucke
    nHashBucket = nHashValue % m_hashtable.GetHashTableSize();
 
    if (get_count() <= 0)
+   {
+
       return nullptr;
+
+   }
 
    // see if it exists
    SET_ELEMENT_ITEM * pelement;
@@ -934,8 +938,12 @@ set < ELEMENT, ARG_ELEMENT >::get_element_at(ARG_ELEMENT key, ::u32 & nHashBucke
    for (pelement = m_hashtable.m_ppassocHash[nHashBucket]; pelement != nullptr; pelement = pelement->m_pnextHash)
    {
 
-      if (EqualElements<ARG_ELEMENT>(pelement->element1(), key))
+      if (EqualElements<ARG_ELEMENT>(pelement->element(), key))
+      {
+
          return pelement;
+
+      }
 
    }
 
@@ -950,7 +958,7 @@ bool set < ELEMENT, ARG_ELEMENT >::contains(ARG_ELEMENT element) const
 
    ::u32 nHashBucket, nHashValue;
 
-   SET_ELEMENT_ITEM * pelement = get_assoc_at(element, nHashBucket, nHashValue);
+   SET_ELEMENT_ITEM * pelement = get_element_at(element, nHashBucket, nHashValue);
 
    if (!pelement)
    {
@@ -982,7 +990,7 @@ const typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM * set < ELEMENT, A
    //ASSERT_VALID(this);
 
    ::u32 nHashBucket, nHashValue;
-   SET_ELEMENT_ITEM * pelement = get_assoc_at(key, nHashBucket, nHashValue);
+   SET_ELEMENT_ITEM * pelement = get_element_at(key, nHashBucket, nHashValue);
    return pelement;
 }
 
@@ -992,7 +1000,7 @@ typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM * set < ELEMENT, ARG_ELE
    //ASSERT_VALID(this);
 
    ::u32 nHashBucket, nHashValue;
-   SET_ELEMENT_ITEM * pelement = get_assoc_at(key, nHashBucket, nHashValue);
+   SET_ELEMENT_ITEM * pelement = get_element_at(key, nHashBucket, nHashValue);
    return pelement;
 }
 
@@ -1015,7 +1023,7 @@ inline typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM * set < ELEMENT, 
 
    ::u32 nHashBucket, nHashValue;
 
-   return get_assoc_at(key, nHashBucket, nHashValue);
+   return get_element_at(key, nHashBucket, nHashValue);
 
 }
 
@@ -1030,7 +1038,7 @@ typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM * set < ELEMENT, ARG_ELE
 
    SET_ELEMENT_ITEM * pelement;
 
-   if ((pelement = get_assoc_at(key, nHashBucket, nHashValue)) == nullptr)
+   if ((pelement = get_element_at(key, nHashBucket, nHashValue)) == nullptr)
    {
 
       // not precise (memleak? a watch dog can restart from the last check point... continuable tasks need...) but self-healing(self-recoverable/not-fatal)...
@@ -1039,7 +1047,7 @@ typename set < ELEMENT, ARG_ELEMENT >::SET_ELEMENT_ITEM * set < ELEMENT, ARG_ELE
 
       ENSURE(m_hashtable.m_ppassocHash);
 
-      pelement = new_assoc(key);
+      pelement = new_element(key);
 
       if (m_hashtable.m_ppassocHash[nHashBucket] != nullptr)
       {
@@ -1090,7 +1098,7 @@ inline bool set < ELEMENT, ARG_ELEMENT >::remove(SET_ELEMENT_ITEM * pelement)
 
    *pelement->m_ppprevHash = pelement->m_pnextHash;
 
-   free_assoc(pelement);
+   free_element(pelement);
 
    return true;
 
@@ -1201,6 +1209,20 @@ void set < ELEMENT, ARG_ELEMENT >::dump(dump_context & dumpcontext) const
 }
 
 
+
+template <class ELEMENT, class ARG_ELEMENT >
+void set < ELEMENT, ARG_ELEMENT >::InitHashTable(
+   ::u32 nHashSize, bool bAllocNow)
+{
+
+   ASSERT_VALID(this);
+   ASSERT(m_nCount == 0);
+   ASSERT(nHashSize > 0);
+
+   m_hashtable.InitHashTable(nHashSize, bAllocNow);
+
+}
+
 //#define ptrptr(T1, T2) set < T1 *, T1 *, T2 *, T2 * >
 
 
@@ -1243,6 +1265,8 @@ using iptr_set = set < iptr >;
 using string_set = set < string >;
 
 using index_set = set < index >;
+
+
 
 
 

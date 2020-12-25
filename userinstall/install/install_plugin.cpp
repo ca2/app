@@ -395,7 +395,7 @@ namespace install
 
          m_pplugin->thread_start_ca2_on_idle();
 
-         millis_sleep(500);
+         sleep(500_ms);
 
       }
 
@@ -453,12 +453,12 @@ namespace install
 
       bool bTimedOut = false;
 
-      u32 dwExitCode = System.process().synch(strPath,display_normal,2_s),&bTimedOut);
+      u32 dwExitCode = System.process().synch(strPath,e_display_normal,2_s),&bTimedOut);
 
       if(bTimedOut)
       {
 
-         //::message_box(nullptr," - " + set["app"].get_string() + "\nhas timed out while trying to run.\n\nFor developers it is recommended to\nfix this timeout problem.\n\nYou may kill it manually :\n - \"" + strPath + "\"\nif it it does not come up.","Error Message",MB_ICONINFORMATION | e_message_box_ok);
+         //::message_box(nullptr," - " + set["app"].get_string() + "\nhas timed out while trying to run.\n\nFor developers it is recommended to\nfix this timeout problem.\n\nYou may kill it manually :\n - \"" + strPath + "\"\nif it it does not come up.","Error Message",e_message_box_icon_information | e_message_box_ok);
 
          //m_phost->m_pbasecomposer->m_strEntryHallText = "Starting Application...";
 
@@ -472,7 +472,7 @@ namespace install
       else if((int) dwExitCode >= 0)
       {
 
-         //  ::message_box(nullptr,"Successfully run : " + strPath,"Debug only message, please install.",MB_ICONINFORMATION | e_message_box_ok);
+         //  ::message_box(nullptr,"Successfully run : " + strPath,"Debug only message, please install.",e_message_box_icon_information | e_message_box_ok);
 
          m_phost->m_pbasecomposer->m_strEntryHallText = "***Application started.";
 
@@ -482,7 +482,7 @@ namespace install
       else
       {
 
-         //::message_box(nullptr,strPath + "\n\nFailed return code : " + __str(dwExitCode),"Error Message",MB_ICONINFORMATION | e_message_box_ok);
+         //::message_box(nullptr,strPath + "\n\nFailed return code : " + __str(dwExitCode),"Error Message",e_message_box_icon_information | e_message_box_ok);
 
          //m_phost->m_pbasecomposer->m_strEntryHallText = "***Failed to start application.";
 
@@ -1414,7 +1414,7 @@ retry_get_prompt:
                if (iTry < 9)
                {
 
-                  millis_sleep(iTry * 84);
+                  sleep(iTry * 84);
 
                   iTry++;
 
@@ -1532,7 +1532,7 @@ restart:
          iAttemptStream++;
          if(iAttemptStream > 49)
             return "";
-         millis_sleep(iAttemptStream * 84);
+         sleep(iAttemptStream * 84);
       }
 
       while(m_phost->m_pbasecomposer->m_strPluginUrl.is_empty())
@@ -1545,7 +1545,7 @@ restart:
          iAttemptUrl++;
          if(iAttemptUrl > 49)
             return "";
-         millis_sleep(iAttemptUrl * 84);
+         sleep(iAttemptUrl * 84);
       }
 
       property_set set;
@@ -1560,7 +1560,7 @@ restart:
          iAttempt++;
          if(iAttempt > 7)
             return "";
-         millis_sleep(iAttempt * 840);
+         sleep(iAttempt * 840);
       }
 
       return str;

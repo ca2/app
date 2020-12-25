@@ -472,16 +472,16 @@ namespace apex
       //// os_* functions generally
       //// reserves a lot of surprises from each
       //// operating system specific behavior
-      //virtual ::estatus os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::estatus os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
-      //virtual ::estatus ui_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual ::estatus ui_message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::estatus ui_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::estatus ui_message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       //using ::apex::context_thread::message_box;
-      //virtual ::estatus message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual ::estatus message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), ::emessagebox emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::estatus message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::estatus message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       virtual void on_file_new();
@@ -802,7 +802,7 @@ namespace apex
 
 
 
-      virtual bool keyboard_focus_is_focusable(::user::primitive * pue);
+      virtual bool keyboard_focus_is_focusable(const ::user::primitive * pue);
       virtual bool keyboard_focus_OnSetFocus(::user::primitive * pue);
 
       //virtual ::user::interaction * main_window();
@@ -853,9 +853,9 @@ namespace apex
 
       virtual void on_graphics_ready();
 
-      //virtual ::type user_default_controltype_to_typeinfo(::user::e_control_type econtroltype);
+      //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype);
       // apex commented
-      //virtual ::type control_type_from_id(const ::id & id, ::user::e_control_type & econtroltype);
+      //virtual ::type control_type_from_id(const ::id & id, ::user::enum_control_type & econtroltype);
 
 
       virtual ::id translate_property_id(const ::id & id) override;
@@ -918,7 +918,7 @@ namespace apex
       //user virtual void on_create_split_view(::user::split_view* pview);
 
 
-      //virtual ::type control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype) override;
+      //virtual ::type control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype) override;
 
 
       virtual bool base_support();
@@ -971,6 +971,8 @@ namespace apex
       virtual void route_command_message(::user::command* pcommand) override;
 
 
+      virtual ::estatus message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process()) override;
+      virtual ::estatus message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process()) override;
 
 
       void EnableHtmlHelp();
@@ -1320,7 +1322,7 @@ namespace apex
 
       //virtual void on_create_keyboard() override;
 
-      //virtual ::type user_default_controltype_to_typeinfo(::user::e_control_type econtroltype) override;
+      //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
 
       //virtual void set_form_impact_system(::user::impact_system * pdoctemplate,::user::impact_system * pdoctemplateChild,::user::impact_system * pdoctemplatePlaceHolder);
 
@@ -1373,8 +1375,8 @@ namespace apex
 
       virtual ::estatus     create_impact_system();
 
-      //virtual ::type user_default_controltype_to_typeinfo(::user::e_control_type econtroltype) override;
-      //virtual ::type control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype) override;
+      //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
+      //virtual ::type control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype) override;
 
 
       //virtual void on_create_impact(::user::impact_data* pimpactdata) override;
@@ -1415,7 +1417,7 @@ namespace apex
 
       //virtual ::user::interaction* create_menu_interaction();
 
-//      virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag = window_flag_none, const ::id& id = nullptr) override;
+//      virtual __pointer(::user::document) defer_create_view(string strView, ::user::interaction* puiParent, ewindowflag ewindowflag = e_window_flag_none, const ::id& id = nullptr) override;
 
       // multimedia
 

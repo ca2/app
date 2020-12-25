@@ -45,14 +45,19 @@ i32 create_process(const char * pszCommandLine, i32 * pprocessId)
 
    pid_t pid = 0;
 
+   string strExe = argv[0];
+
    int status = posix_spawn(&pid, argv[0], nullptr, nullptr, argv.get_data(), environ);
-
-   int iError = errno;
-
-   char * pszError = strerror(iError);
 
    if (status == 0)
    {
+
+      if(strExe.ends_ci("_app_core_clockverse"))
+      {
+
+         ::output_debug_string("app-core/clockverse");
+
+      }
 
       if(pprocessId != nullptr)
       {
@@ -66,6 +71,13 @@ i32 create_process(const char * pszCommandLine, i32 * pprocessId)
    }
    else
    {
+
+      if(strExe.ends_ci("_app_core_clockverse"))
+      {
+
+         ::output_debug_string("app-core/clockverse");
+
+      }
 
       return 0;
 
@@ -302,7 +314,7 @@ i32 create_process4(const char * pszCommandLine, i32 * pprocessId)
 }
 
 
-CLASS_DECL_ACME i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, bool bPrivileged, unsigned int * puiPid)
+CLASS_DECL_ACME i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int * puiPid)
 {
 
    string strCmdLine;
@@ -346,7 +358,7 @@ CLASS_DECL_ACME i32 call_async(const char * pszPath, const char * pszParam, cons
 }
 
 
-CLASS_DECL_ACME u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_ACME u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    string strCmdLine;
@@ -384,7 +396,7 @@ CLASS_DECL_ACME u32 call_sync(const char * pszPath, const char * pszParam, const
 
       }
 
-      sleep(1);
+      sleep(1_ms);
 
    }
 
@@ -521,6 +533,10 @@ id_array app_get_pid(const char * psz)
 
    strApp.replace("/", "_");
 
+   string strApp2;
+
+   strApp2 = "_" + strApp;
+
    for(auto & strPid : stra)
    {
 
@@ -546,7 +562,8 @@ id_array app_get_pid(const char * psz)
 
          ::str::ends_eat_ci(strTitle, " (deleted)");
 
-         if(strTitle == strApp)
+         if(strTitle == strApp ||
+            strTitle == strApp2)
          {
 
             ia.add(iPid);
@@ -646,7 +663,7 @@ bool shell_execute_sync(const char * pszFile, const char * pszParams, ::duration
 
    property_set set;
 
-   return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), display_none, durationTimeout, set);
+   return call_sync(pszFile, pszParams, ::file::path(pszFile).folder(), e_display_none, durationTimeout, set);
 
 }
 

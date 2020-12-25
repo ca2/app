@@ -37,42 +37,30 @@
 
 
 #include "windows_time.h"
-
 #include "windows_common_controls.h"
-
-
 #include "windows_wincon.h"
 
 
 #ifndef _UWP
+
 #include "windows_base_tsd.h"
-#endif
-
-
-
 #include "windows_internals.h"
-
-
-#ifndef _UWP
 #include "windows_file.h"
 #include "windows_ntstatus.h"
 #include "windows_mmeapi.h"
 #include "windows_mmsystem.h"
 
-
-
-
 #define _swab swab
-
 
 ::u32 get_current_process_id(void);
 
-
-
 #endif
 
 
 #endif
 
+
+CLASS_DECL_ACME int windows_error_to_errno(int iWindowsError);
+CLASS_DECL_ACME int errno_to_windows_error(int iErrorNumber);
 
 

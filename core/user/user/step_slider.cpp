@@ -216,7 +216,7 @@ namespace user
       if (rectClient.width() == 0)
       {
 
-         item = ::user::element_none;
+         item = ::user::e_element_none;
 
          return;
 

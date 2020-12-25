@@ -390,7 +390,7 @@ file_result ftpfs::get_file(const ::file::path & path, ::u32 nOpenFlags)
 
    }
 
-   if (nOpenFlags & ::file::mode_read && !(nOpenFlags & ::file::mode_write))
+   if (nOpenFlags & ::file::e_open_read && !(nOpenFlags & ::file::e_open_write))
    {
 
       ::ftp::client_socket * pclient = nullptr;

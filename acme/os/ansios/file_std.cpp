@@ -138,6 +138,8 @@ filesize FILE_get_size(FILE * fp)
 
 #ifdef WINDOWS
    auto pos = _ftelli64(fp);
+#elif defined(ANDROID) && __ANDROID_API__ < 24 
+   auto pos = ftello(fp);
 #else
    auto pos = ftello64(fp);
 #endif
@@ -146,12 +148,16 @@ filesize FILE_get_size(FILE * fp)
 
 #ifdef WINDOWS
    auto len = _ftelli64(fp);
+#elif defined(ANDROID) && __ANDROID_API__ < 24 
+   auto len = ftello(fp);
 #else
    auto len = ftello64(fp);
 #endif
 
 #ifdef WINDOWS
    _fseeki64(fp, (long) (pos), SEEK_SET);
+#elif defined(ANDROID) && __ANDROID_API__ < 24 
+   fseeko(fp, (long)(pos), SEEK_SET);
 #else
    fseeko64(fp, (long) (pos), SEEK_SET);
 #endif

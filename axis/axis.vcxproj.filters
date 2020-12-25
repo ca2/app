@@ -588,6 +588,9 @@
     <ClInclude Include="math\calculator\element.h">
       <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
+    <ClInclude Include="net\netserver\_netserver.h">
+      <Filter>Header Files\net\netserver</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="platform\application.cpp">

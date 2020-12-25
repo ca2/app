@@ -53,7 +53,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer button::get_font(style * pstyle, e_element eelement, estate estate) const
+   ::draw2d::font_pointer button::get_font(style * pstyle, enum_element eelement, estate estate) const
    {
 
       if (pstyle)
@@ -80,13 +80,13 @@ namespace user
    }
 
 
-   e_translucency button::get_translucency(style * pstyle) const
+   enum_translucency button::get_translucency(style * pstyle) const
    {
 
       if (pstyle)
       {
 
-         if (pstyle->m_etranslucencyButton != translucency_undefined)
+         if (pstyle->m_etranslucencyButton != e_translucency_undefined)
          {
 
             return pstyle->m_etranslucencyButton;
@@ -95,7 +95,7 @@ namespace user
 
       }
 
-      return translucency_undefined;
+      return e_translucency_undefined;
 
    }
 
@@ -151,19 +151,17 @@ namespace user
    }
 
 
-   ::size button::calc_text_size()
+   ::sized button::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
    {
-
-      auto pgraphics = ::draw2d::create_memory_graphics();
 
       if (pgraphics.is_null())
       {
 
-         return nullptr;
+         pgraphics = ::draw2d::create_memory_graphics();
 
       }
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       string strText(m_strWindowText);
 
@@ -177,7 +175,7 @@ namespace user
 
       sizeTotal.cx = size.cx;
 
-      sizeTotal.cy = tm.tmHeight;
+      sizeTotal.cy = tm.get_line_spacing();
 
       return sizeTotal;
 
@@ -190,7 +188,7 @@ namespace user
       if (m_estyle == style_simple)
       {
 
-         pgraphics->set_font(this);
+         pgraphics->set_font(this, ::user::e_element_none);
 
          string str;
          get_window_text(str);
@@ -214,11 +212,7 @@ namespace user
       else
       {
 
-         ::size sizeTotal = calc_text_size();
-
-         sizeTotal.cx = (::i32)(sizeTotal.cx * 1.6);
-
-         sizeTotal.cy = (::i32)(sizeTotal.cy * 1.4);
+         auto sizeTotal = _001CalculateAdjustedFittingSize(pgraphics);
 
          set_size(sizeTotal);
 
@@ -273,9 +267,9 @@ namespace user
 
       ::rect rectClient;
 
-      get_client_rect(rectClient, ::user::layout_design);
+      get_client_rect(rectClient, ::user::e_layout_design);
 
-      ::size sizeText = calc_text_size();
+      auto sizeText = _001CalculateAdjustedFittingSize(pgraphics);
 
       ::rect rect;
 
@@ -339,7 +333,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      if (get_translucency(pstyle) >= translucency_present)
+      if (get_translucency(pstyle) >= e_translucency_present)
       {
 
          class imaging & imaging = System.imaging();
@@ -419,17 +413,17 @@ namespace user
 
       string strText(get_window_text());
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       pgraphics->draw_text(strText, rectText, e_align_top_left);
 
    }
 
 
-   bool button::keyboard_focus_is_focusable()
+   bool button::keyboard_focus_is_focusable() const
    {
 
-      return is_window_enabled() && is_window_visible(::user::layout_sketch);
+      return is_window_enabled() && is_window_visible(::user::e_layout_sketch);
 
    }
 
@@ -446,7 +440,7 @@ namespace user
 
          ::user::control_event ev;
          ev.m_puie = this;
-         ev.m_eevent = ::user::event_button_clicked;
+         ev.m_eevent = ::user::e_event_button_clicked;
          ev.m_pmessage = pmessage;
          on_control_event(&ev);
          pmessage->m_bRet = ev.m_bRet;
@@ -693,7 +687,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       ::rect rectMargin(2, 2,2, 2);
 
@@ -874,7 +868,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-      auto color = get_color(pstyle, element_background);
+      auto color = get_color(pstyle, e_element_background);
 
       color32_t cr;
 

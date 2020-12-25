@@ -33,24 +33,32 @@ namespace draw2d
    public:
 
 
-      ::i32          tmHeight;
-      ::i32          tmAscent;
-      ::i32          tmDescent;
-      ::i32          tmInternalLeading;
-      ::i32          tmExternalLeading;
-      ::i32          tmWeight;
-      ::i32          tmOverhang;
-      ::i32          tmDigitizedAspectX;
-      ::i32          tmDigitizedAspectY;
-      widechar       tmFirstChar;
-      widechar       tmLastChar;
-      widechar       tmDefaultChar;
-      widechar       tmBreakChar;
-      byte           tmItalic;
-      byte           tmUnderlined;
-      byte           tmStruckOut;
-      byte           tmPitchAndFamily;
-      byte           tmCharSet;
+      double         m_dHeight;
+      double         m_dAscent;
+      double         m_dDescent;
+      double         m_dInternalLeading;
+      double         m_dExternalLeading;
+      double         m_dWeight;
+      double         m_dOverhang;
+      double         m_dDigitizedAspectX;
+      double         m_dDigitizedAspectY;
+      widechar       m_wchFirstChar;
+      widechar       m_wchLastChar;
+      widechar       m_wchDefaultChar;
+      widechar       m_wchBreakChar;
+      bool           m_bItalic;
+      bool           m_bUnderlined;
+      bool           m_bStruckOut;
+      byte           m_uchPitchAndFamily;
+      byte           m_uchCharSet;
+
+
+      double get_line_spacing() const
+      {
+
+         return m_dInternalLeading + m_dAscent + m_dDescent + m_dExternalLeading;
+
+      }
 
    };
 

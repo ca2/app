@@ -77,12 +77,12 @@ int message_box_a::do_modal(String ^ text,String ^ caption,unsigned int uFlags)
    // Show the message dialog 
    IUICommand ^ cmd = ::wait(msg->ShowAsync());
 
-   int iResult = IDCANCEL;
+   int iResult = e_dialog_result_cancel;
 
    if(cmd->Id == "ok")
    {
 
-      iResult =  IDOK;
+      iResult =  e_dialog_result_ok;
 
 
 
@@ -92,7 +92,7 @@ int message_box_a::do_modal(String ^ text,String ^ caption,unsigned int uFlags)
    else if(cmd->Id == "yes")
    {
 
-      iResult =  IDYES;
+      iResult =  e_dialog_result_yes;
 
 
 
@@ -102,7 +102,7 @@ int message_box_a::do_modal(String ^ text,String ^ caption,unsigned int uFlags)
    else if(cmd->Id == "no")
    {
 
-      iResult =  IDNO;
+      iResult =  e_dialog_result_no;
 
 
 
@@ -112,7 +112,7 @@ int message_box_a::do_modal(String ^ text,String ^ caption,unsigned int uFlags)
    else if(cmd->Id == "cancel")
    {
 
-      iResult =  IDCANCEL;
+      iResult =  e_dialog_result_cancel;
 
 
 

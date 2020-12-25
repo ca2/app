@@ -24,7 +24,7 @@ namespace uwp
 
       virtual payload length(const ::file::path & path) override;
 
-      virtual file_result get_file(const payload & varFile, const ::efileopen & efileopen) override;
+      virtual file_result get_file(const payload & varFile, const ::file::e_open & eopen) override;
 
 
 

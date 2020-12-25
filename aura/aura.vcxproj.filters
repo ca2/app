@@ -1175,6 +1175,9 @@
     <ClInclude Include="graphics\draw2d\_const.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
+    <ClInclude Include="os\windows\imm_client.h">
+      <Filter>Header Files\os\windows</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -1647,6 +1650,9 @@
     </ClCompile>
     <ClCompile Include="node\windows\user_frame.cpp">
       <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\application_system_run.cpp">
+      <Filter>Source Files\os\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

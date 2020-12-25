@@ -517,7 +517,7 @@ void set_global_application(::apex::application* papp)
    if (pthread == nullptr)
    {
 
-      return nullptr;
+      return System.get_context_session();
 
    }
 
@@ -749,7 +749,7 @@ void thread_ptra::wait(const duration & duration, sync_lock & sl)
 
          cCount = get_count_except_current_thread();
 
-         millis_sleep(500);
+         sleep(500_ms);
 
          sl.lock();
 

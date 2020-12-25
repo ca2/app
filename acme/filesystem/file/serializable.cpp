@@ -62,7 +62,7 @@ namespace file
 
 //       }
 
-//       file_pointer pfile = App(papp).file().get_file(path, ::file::mode_create | ::file::mode_write | ::file::type_binary | ::file::defer_create_directory | ::file::share_exclusive);
+//       file_pointer pfile = App(papp).file().get_file(path, ::file::e_open_create | ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_share_exclusive);
 
 //       if (pfile.is_null())
 //       {
@@ -109,7 +109,7 @@ namespace file
 
 //       }
 
-//       file_pointer pfileInput = App(papp).file().get_reader(path, ::file::share_deny_write);
+//       file_pointer pfileInput = App(papp).file().get_reader(path, ::file::e_open_share_deny_write);
 
 //       if (pfileInput.is_null())
 //       {

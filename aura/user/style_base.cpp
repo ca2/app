@@ -8,8 +8,6 @@ namespace user
 {
 
 
-
-
    bool style_base::_001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout)
    {
 
@@ -18,15 +16,15 @@ namespace user
    }
 
 
-   e_control_type style_base::get_control_type() const
+   enum_control_type style_base::get_control_type() const
    {
 
-      return control_type_none;
+      return e_control_type_none;
 
    }
 
 
-   ::color style_base::get_color(const ::user::interaction* pinteraction, ::user::e_element eelement, ::user::estate estate) const
+   ::color style_base::get_color(const ::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate) const
    {
 
       if (::is_set(pinteraction))
@@ -34,10 +32,10 @@ namespace user
 
          auto econtroltype = pinteraction->get_control_type();
 
-         if (econtroltype == ::user::control_type_list)
+         if (econtroltype == ::user::e_control_type_list)
          {
 
-            if (eelement == ::user::element_background)
+            if (eelement == ::user::e_element_background)
             {
 
                return ::color(0, 0, 0, 0);

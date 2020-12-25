@@ -45,7 +45,7 @@ namespace file
       strsize                    m_iRelative; // if negative, not set/calculated/retrieved where relative starts - this information is very, very relative :-) much more than all own other ::file::path cached information (relative to which folders... not stored this information...)
 
 
-      path_meta(e_path epath = path_none, i64 iSize = -1, i32 iDir = -1, i64 iName = -1, strsize iRelative = -1, cflag < ::file::e_flag > eflag = ::file::flag_none)
+      path_meta(e_path epath = path_none, i64 iSize = -1, i32 iDir = -1, i64 iName = -1, strsize iRelative = -1, cflag < ::file::e_flag > eflag = ::file::e_flag_none)
       {
 
          m_epath                             = epath;

@@ -1,4 +1,3 @@
-
 //
 // 
 //   
@@ -13,31 +12,31 @@
 //
 //
 //
-//        ------------------------------------------------------------------------
-//        |                                                                      |
-//        |                                                                      |
-//        |                                                                      |
-//        |                                                                      |
-//        |                                                                      |
-//        |                                                                      |
-//        |                                                                      |
-//        |                                                                      |
-//        |                                                                      |
-//        |                                                                      |
-//        |                                                                      |
-//        |                                                                      |
-//        |                                                                      |
-//        |                                                                      |
-//        |    |---------------|    |---------------| |    |---------------|     |
-//        |    | |-------------|    |---------------| |    |-------------| |     |
-//        |    | |                                  | |                  | |     |
-//        |    | |                  |-----| |-| |---| |    |-------------| |     |
-//        |    | |                  | |---| |-| |---| |    | |-------------|     |
-//        |    | |                  | |             | |    | |                   |
-//        |    | |-------------|    | |-------------| |    | |-------------|     |
-//        |    |---------------|    |---------------| |    |---------------|     |
-//        |                                                                      |
-//        ------------------------------------------------------------------------
+//        ------------------------------------------------------------------------------
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |    |-----------------|    |-----------------| |    |-----------------|     |
+//        |    | |---------------|    |-----------------| |    |---------------| |     |
+//        |    | |                                      | |                    | |     |
+//        |    | |                    |------| |-| |----| |    |---------------| |     |
+//        |    | |                    | |----| |-| |----| |    | |---------------|     |
+//        |    | |                    | |               | |    | |                     |
+//        |    | |---------------|    | |---------------| |    | |---------------|     |
+//        |    |-----------------|    |-----------------| |    |-----------------|     |
+//        |                                                                            |
+//        ------------------------------------------------------------------------------
 //
 //
 //
@@ -54,7 +53,7 @@
 //
 //        c(s)t(s)<tb(s)!!
 //
-//
+//01234567-∞8888∞+∞ ∞∞∞ ∞∞∞ ∞∞∞∞∞ ∞∞∞∞∞∞∞∞∞∞∞ ∞∞∞∞∞ ∞∞∞∞∞∞∞∞∞∞ ∞∞∞∞∞∞∞ ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞
 //
 //
 //
@@ -139,6 +138,7 @@ CLASS_DECL_ACME ::acme::system *get_context_system();
 
 
 
+
 //#include "acme/platform/cpu_architecture.h"
 
 
@@ -161,6 +161,9 @@ inline TYPE & xxf_zero(TYPE & t);
 #endif
 
 #include "acme/exception/_c.h"
+
+
+#include "acme/const/_.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -223,6 +226,11 @@ namespace opengl
 enum enum_normalize
 {
    e_normalize
+};
+
+enum enum_null
+{
+   e_null
 };
 
 
@@ -1007,6 +1015,7 @@ class machine_event_central;
 template<typename ARG_KEY>
 inline uptr uptr_hash(ARG_KEY key) { return (uptr) ((uptr) key); }
 
+
 //#if OSBIT == 64
 
 template<typename ARG_KEY>
@@ -1024,15 +1033,15 @@ inline u32 u32_hash(ARG_KEY key) { return (u32) (uptr_hash<ARG_KEY>(key)); }
 
 #define _(str) (__get_text(str))
 
-typedef string __GET_TEXT(string str);
+//typedef string __GET_TEXT(string str);
 
-using __PFN_GET_TEXT = __GET_TEXT *;
+//using __PFN_GET_TEXT = __GET_TEXT *;
 
 
 
-CLASS_DECL_ACME void __set_get_text(__PFN_GET_TEXT pgettext);
+//CLASS_DECL_ACME void __set_get_text(__PFN_GET_TEXT pgettext);
 
-CLASS_DECL_ACME string __get_text(string str);
+CLASS_DECL_ACME string __get_text(const string & str);
 
 
 
@@ -1848,10 +1857,10 @@ namespace file
    enum enum_type
    {
 
-      type_none,
-      type_folder,
-      type_file,
-      type_element,
+      e_type_none,
+      e_type_folder,
+      e_type_file,
+      e_type_element,
 
    };
 
@@ -2719,13 +2728,15 @@ using size = size_type<SIZE32, POINT32, RECT32>;
 #include "acme/primitive/primitive/cflag.h"
 
 
+
+
 class thread;
 
 namespace user
 {
 //
 //   using estate = cflag < enum_state >;
-//   using eelement = cflag < e_element >;
+//   using eelement = cflag < enum_element >;
 //
 
    class primitive;
@@ -2748,9 +2759,7 @@ class action_context;
 #include "acme/primitive/primitive/eobject.h"
 
 
-using emessagebox = cflag<enum_message_box>;
-
-
+DECLARE_C_FLAG(e_message_box, enum_message_box);
 
 
 namespace user
@@ -2800,7 +2809,18 @@ class manual_reset_event;
 #include "acme/primitive/primitive/enumeration.h"
 
 
-using efileopen = cflag<::file::e_open>;
+
+
+namespace file
+{
+
+
+   DECLARE_C_FLAG(e_open, enum_open);
+   DECLARE_C_FLAG(e_state, enum_state);
+
+
+} // namespace file
+
 
 using eiostate = ::cflag<::file::e_iostate>;
 
@@ -3557,11 +3577,22 @@ namespace zip
 
 #include "acme/os/android/_os_local.h"
 
+class os_local;
+class os_remote;
+
+os_local * oslocal();
+os_remote * osremote();
+
+void set_oslocal(os_local * poslocal);
+void set_osremote(os_remote * posremote);
+
 #endif
 
 #include "acme/platform/regex.h"
 
 #include "acme/process/_.h"
+
+#include "acme/os/process.h"
 
 //#include "acme/filesystem/filesystem/file_watcher.h"
 
@@ -4195,6 +4226,7 @@ namespace draw2d
 #include "acme/primitive/primitive/_defer.h"
 
 
+
 #include "acme/parallelization/_impl.h"
 
 
@@ -4256,7 +4288,6 @@ namespace draw2d
 
 #include "acme/primitive/primitive/_impl.h"
 
-
 #include "acme/primitive/primitive/_papaya_impl.h"
 
 
@@ -4276,6 +4307,8 @@ namespace draw2d
 
 
 #include "acme/filesystem/file/_text_stream_impl.h"
+
+
 
 
 //#include "acme/net/_impl.h"
@@ -4315,6 +4348,7 @@ namespace draw2d
 
 
 #include "acme/filesystem/filesystem/_impl.h"
+
 
 
 //#include "acme/database/_impl.h"

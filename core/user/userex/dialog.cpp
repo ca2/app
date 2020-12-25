@@ -46,7 +46,7 @@ void dialog::on_control_event(::user::control_event * pevent)
    if(::is_set(pevent->m_puie) && m_pform == nullptr)
    {
 
-      if(pevent->m_eevent == ::user::event_create)
+      if(pevent->m_eevent == ::user::e_event_create)
       {
 
          m_pform = pevent->m_puie;
@@ -152,7 +152,7 @@ void dialog::EndModalLoop(id idResult)
 
    }
 
-   m_pframe->display(display_none);
+   m_pframe->display(e_display_none);
 
    m_pframe->set_need_redraw();
 

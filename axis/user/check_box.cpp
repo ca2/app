@@ -60,7 +60,7 @@ namespace user
 
          ev.m_id = m_id;
 
-         ev.m_eevent = ::user::event_set_check;
+         ev.m_eevent = ::user::e_event_set_check;
 
          ev.m_actioncontext = context;
 
@@ -96,6 +96,14 @@ namespace user
          _001OnDrawNormal(pgraphics);
 
       }
+
+   }
+
+
+   enum_element check_box::get_default_element() const
+   {
+
+      return e_element_check;
 
    }
 
@@ -187,7 +195,7 @@ namespace user
             if (pstyle)
             {
 
-               pstyle->draw_check(echeck, rectCheckBox, pgraphics);
+               pstyle->draw_check(this, echeck, rectCheckBox, pgraphics);
 
             }
 
@@ -205,7 +213,7 @@ namespace user
          
          ::e_draw_text edrawtext = e_draw_text_single_line;
 
-         pgraphics->set_font(this);
+         pgraphics->set_font(this, ::user::e_element_none);
 
          color32_t crText;
 
@@ -661,6 +669,8 @@ namespace user
       m_ppropertyCheck = fetch_property(m_id, true);
 
       bind_update(m_ppropertyCheck);
+
+      m_pdescriptor->m_econtroltype = e_control_type_edit;
 
    }
 

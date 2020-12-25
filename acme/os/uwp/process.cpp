@@ -31,7 +31,7 @@ int iShow)
 #endif
 
 #ifdef WINDOWS_DESKTOP
-CLASS_DECL_BOOT u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, const ::duration & durationTimeout, ::property_set & set)
+CLASS_DECL_BOOT u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    SHELLEXECUTEINFOA infoa;
@@ -59,7 +59,7 @@ CLASS_DECL_BOOT u32 call_sync(const char * pszPath, const char * pszParam, const
          break;
       if(dwExitCode != STILL_ACTIVE)
          break;
-      millis_sleep(100);
+      sleep(100_ms);
       if(pfnOnRetry != nullptr)
       {
          if(!pfnOnRetry(iTry, dwParam))

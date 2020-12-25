@@ -58,7 +58,7 @@
 //      bool tx::open(const char * pszKey,launcher * plauncher)
 //      {
 //
-//         m_strBaseChannel = "apex\\appdata\\ipi\\" + string(pszKey);
+//         m_strBaseChannel = "apex\\appdata\\interprocess_communication\\" + string(pszKey);
 //
 //         if(m_strBaseChannel.is_empty())
 //         {
@@ -171,7 +171,7 @@
 //            g_pfnChangeWindowMessageFilter(WM_COPYDATA,MSGFLT_ADD);
 //         }
 //
-//         m_strBaseChannel = "apex\\appdata\\ipi\\" + string(pszKey);
+//         m_strBaseChannel = "apex\\appdata\\interprocess_communication\\" + string(pszKey);
 //
 //         if(m_strBaseChannel.is_empty())
 //         {

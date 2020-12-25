@@ -240,12 +240,12 @@ namespace fs
    }
 
 
-   file_result native::get_file(const ::file::path & path,::u32 nOpenFlags)
+   file_result native::get_file(const ::file::path & path, const ::file::e_open & eopen)
    {
 
       file_pointer pfile;
 
-      if (nOpenFlags & ::file::type_text)
+      if (eopen & ::file::e_open_text)
       {
 
          pfile = __create_new<::stdio_file>();
@@ -258,7 +258,7 @@ namespace fs
 
       }
 
-      auto result = pfile->open(path,nOpenFlags);
+      auto result = pfile->open(path, eopen);
 
       if(!result)
       {

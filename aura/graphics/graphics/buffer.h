@@ -25,11 +25,11 @@ namespace graphics
       virtual sync * get_draw_lock() override;
       ::draw2d::graphics * on_begin_draw() override;
       virtual bool update_window() override;
-      virtual bool round_swap_key_buffers() override;
+      virtual bool buffer_lock_round_swap_key_buffers() override;
 
 
       virtual bool update_buffer(const ::size & size, int iStride = -1) override;
-      virtual void destroy_buffer();
+      virtual void destroy_buffer() override;
       inline ::size buffer_size() { return m_pimageBuffer->size(); }
 
 

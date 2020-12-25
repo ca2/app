@@ -426,7 +426,7 @@ namespace user
       }
 
 
-      bool box_align(__pointer_array(span) & spana, index iBox, ::e_align e_align)
+      bool box_align(__pointer_array(span) & spana, index iBox, ::e_align ealign)
       {
 
          if (iBox > spana.get_count())
@@ -449,7 +449,7 @@ namespace user
             if (spana[iBox]->m_ealignNewLine != e_align_none)
             {
 
-               spana[iBox]->m_ealignNewLine = e_align;
+               spana[iBox]->m_ealignNewLine = ealign;
 
                return true;
 
@@ -527,11 +527,11 @@ namespace user
 
          }
 
-         auto e_align = pline->first_ptr()->m_pspan->m_ealignNewLine;
+         auto ealign = pline->first_ptr()->m_pspan->m_ealignNewLine;
 
          // pline->last().m_str += "\n";
 
-         if (e_align == e_align_left)
+         if (ealign == e_align_left)
          {
 
             // Nothing to do:
@@ -547,7 +547,7 @@ namespace user
 
             int iOffset = (::i32)(rect.right - iWidth);
 
-            if (e_align == e_align_center)
+            if (ealign == e_align_center)
             {
 
                iOffset /= 2;

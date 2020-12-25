@@ -318,9 +318,9 @@ namespace filemanager
 
                pframe->InitialUpdateFrame(nullptr, TRUE);
 
-               pframe->display(display_normal);
+               pframe->display(e_display_normal);
 
-               pframe->ActivateFrame(display_normal);
+               pframe->ActivateFrame(e_display_normal);
 
             }
 

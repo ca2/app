@@ -30,7 +30,7 @@ namespace simple_ui
 {
 
 
-   message_box::message_box(::object * pobject,const char * pszMessage,const char * pszTitle, ::emessagebox emessagebox, ::duration durationTimeout):
+   message_box::message_box(::object * pobject,const char * pszMessage,const char * pszTitle, const ::e_message_box & emessagebox, ::duration durationTimeout):
       ::object(pobject)
    {
 
@@ -43,7 +43,7 @@ namespace simple_ui
 
       }
 
-      layout().sketch() = activation_on_center_of_screen;
+      layout().sketch() = e_activation_on_center_of_screen;
 
       m_evReady.ResetEvent();
 
@@ -162,9 +162,9 @@ namespace simple_ui
 
       rectFontopus.bottom = rectFontopus.top + h;
 
-      ::user::create_struct createstruct(WS_EX_LAYERED, nullptr, nullptr, 0, rectFontopus);
+      auto pcreatestruct = __new(::user::create_struct (WS_EX_LAYERED, nullptr, nullptr, 0, rectFontopus));
 
-      if(!create_window_ex(createstruct, puiParent))
+      if(!create_window_ex(pcreatestruct, puiParent))
       {
 
          __throw(::exception::exception("not excepted! Failing Message box!!"));
@@ -175,33 +175,33 @@ namespace simple_ui
 
       TRACE("(2) Just after create_window_ex for message_box (m_pimpl->m_puserinteraction) : %" PRIxPTR, m_pimpl->m_puserinteraction.m_p);
 
-      u32 uiType = m_emessagebox & MB_TYPEMASK;
+      auto emessagebox = m_emessagebox & e_message_box_type_mask;
 
-      switch(uiType)
+      switch(emessagebox)
       {
-      case MB_OKCANCEL:
+      case e_message_box_ok_cancel:
          create_a_button("ok","OK");
          create_a_button("cancel","Cancel");
          break;
-      case MB_ABORTRETRYIGNORE:
+      case e_message_box_abort_retry_ignore:
          create_a_button("abort","Abort");
          create_a_button("retry","Retry");
          create_a_button("ignore","Ignore");
          break;
-      case MB_YESNOCANCEL:
+      case e_message_box_yes_no_cancel:
          create_a_button("yes","Yes");
          create_a_button("no","No");
          create_a_button("cancel","Cancel");
          break;
-      case MB_YESNO:
+      case e_message_box_yes_no:
          create_a_button("yes","Yes");
          create_a_button("no","No");
          break;
-      case MB_RETRYCANCEL:
+      case e_message_box_retry_cancel:
          create_a_button("retry","Retry");
          create_a_button("cancel","Cancel");
          break;
-      case MB_CANCELTRYCONTINUE:
+      case e_message_box_cancel_try_continue:
          create_a_button("cancel","Cancel");
          create_a_button("try","Try");
          create_a_button("continue","Continue");
@@ -219,7 +219,7 @@ namespace simple_ui
 
       place(rectFontopus);
 
-      display(display_normal, activation_set_foreground);
+      display(e_display_normal, e_activation_set_foreground);
 
       RunModalLoop();
 
@@ -235,7 +235,7 @@ namespace simple_ui
 
       get_client_rect(rectClient);
 
-      color32_t crBk = get_simple_ui_color(::user::element_background);
+      color32_t crBk = get_simple_ui_color(::user::e_element_background);
 
       pgraphics->fill_rect(rectClient,crBk);
 
@@ -249,7 +249,7 @@ namespace simple_ui
 
       pgraphics->get_text_metrics(&tm);
 
-      color32_t crText = get_simple_ui_color(::user::element_text);
+      color32_t crText = get_simple_ui_color(::user::e_element_text);
 
       pgraphics->set_text_color(crText);
 
@@ -331,9 +331,9 @@ namespace simple_ui
       if(ansi_compare_ci(pszId,"ok") == 0)
       {
 
-         m_iResult = IDOK;
+         m_iResult = e_dialog_result_ok;
 
-         EndModalLoop(IDOK);
+         EndModalLoop(e_dialog_result_ok);
 
          return true;
 
@@ -341,9 +341,9 @@ namespace simple_ui
       else if(ansi_compare_ci(pszId,"yes") == 0)
       {
 
-         m_iResult = IDYES;
+         m_iResult = e_dialog_result_yes;
 
-         EndModalLoop(IDOK);
+         EndModalLoop(e_dialog_result_ok);
 
          return true;
 
@@ -351,9 +351,9 @@ namespace simple_ui
       else if(ansi_compare_ci(pszId,"no") == 0)
       {
 
-         m_iResult = IDNO;
+         m_iResult = e_dialog_result_no;
 
-         EndModalLoop(IDOK);
+         EndModalLoop(e_dialog_result_ok);
 
          return true;
 
@@ -361,9 +361,9 @@ namespace simple_ui
       else if(ansi_compare_ci(pszId,"cancel") == 0)
       {
 
-         m_iResult = IDCANCEL;
+         m_iResult = e_dialog_result_cancel;
 
-         EndModalLoop(IDOK);
+         EndModalLoop(e_dialog_result_ok);
 
          return true;
 
@@ -371,9 +371,9 @@ namespace simple_ui
       else if(ansi_compare_ci(pszId,"abort") == 0)
       {
 
-         m_iResult = IDABORT;
+         m_iResult = e_dialog_result_abort;
 
-         EndModalLoop(IDOK);
+         EndModalLoop(e_dialog_result_ok);
 
          return true;
 
@@ -381,9 +381,9 @@ namespace simple_ui
       else if(ansi_compare_ci(pszId,"retry") == 0)
       {
 
-         m_iResult = IDRETRY;
+         m_iResult = e_dialog_result_retry;
 
-         EndModalLoop(IDOK);
+         EndModalLoop(e_dialog_result_ok);
 
          return true;
 
@@ -391,9 +391,9 @@ namespace simple_ui
       else if(ansi_compare_ci(pszId,"ignore") == 0)
       {
 
-         m_iResult = IDIGNORE;
+         m_iResult = e_dialog_result_ignore;
 
-         EndModalLoop(IDOK);
+         EndModalLoop(e_dialog_result_ok);
 
          return true;
 
@@ -401,9 +401,9 @@ namespace simple_ui
       else if(ansi_compare_ci(pszId,"try") == 0)
       {
 
-         m_iResult = IDTRYAGAIN;
+         m_iResult = e_dialog_result_try_again;
 
-         EndModalLoop(IDOK);
+         EndModalLoop(e_dialog_result_ok);
 
          return true;
 
@@ -411,9 +411,9 @@ namespace simple_ui
       else if(ansi_compare_ci(pszId,"continue") == 0)
       {
 
-         m_iResult = IDCONTINUE;
+         m_iResult = e_dialog_result_continue;
 
-         EndModalLoop(IDOK);
+         EndModalLoop(e_dialog_result_ok);
 
          return true;
 

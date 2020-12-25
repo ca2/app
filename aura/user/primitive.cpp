@@ -233,7 +233,7 @@ namespace user
    }
 
 
-   ::user::interaction* primitive::get_host_wnd()
+   ::user::interaction* primitive::get_host_wnd() const
    {
 
       if (get_context_session() == nullptr
@@ -975,6 +975,17 @@ namespace user
    }
 
 
+
+   ::estatus primitive::main_async(const ::promise::routine & routine, e_priority epriority)
+   {
+
+      __throw(interface_only_exception());
+
+      return error_interface_only;
+
+   }
+
+
    LRESULT primitive::send(::message::base * pbase)
    {
 
@@ -1081,7 +1092,7 @@ namespace user
    }
 
 
-   //bool primitive::display(::edisplay edisplay)
+   //bool primitive::display(::e_display edisplay)
    //{
 
    //   ::exception::throw_interface_only();
@@ -1191,7 +1202,7 @@ namespace user
    }
 
 
-   bool primitive::create_window_ex(::user::create_struct & cs, ::user::interaction * puiParent, const ::id & id)
+   bool primitive::create_window_ex(__pointer(::user::create_struct) pcs, ::user::interaction * puiParent, const ::id & id)
    {
 
       ::exception::throw_interface_only();
@@ -1201,7 +1212,7 @@ namespace user
    }
 
 
-   //void primitive::BringToTop(::edisplay edisplay)
+   //void primitive::BringToTop(::e_display edisplay)
    //{
 
    //}
@@ -1910,7 +1921,7 @@ namespace user
 #endif
 
 
-   bool primitive::pre_create_window(::user::create_struct& cs)
+   bool primitive::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
       ::exception::throw_interface_only();
@@ -2018,13 +2029,13 @@ namespace user
    }
 
 
-   void primitive::on_start_layout_experience(e_layout_experience elayoutexperience)
+   void primitive::on_start_layout_experience(enum_layout_experience elayoutexperience)
    {
 
    }
 
 
-   void primitive::on_end_layout_experience(e_layout_experience elayoutexperience)
+   void primitive::on_end_layout_experience(enum_layout_experience elayoutexperience)
    {
 
    }
@@ -2046,7 +2057,7 @@ namespace user
    }
 
 
-   bool primitive::is_this_visible(e_layout elayout)
+   bool primitive::is_this_visible(enum_layout elayout)
    {
 
       return true;
@@ -2161,7 +2172,7 @@ namespace user
    }
 
 
-   bool primitive::SetTimer(uptr uEvent,::u32 nElapse, PFN_TIMER pfnTimer)
+   bool primitive::SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer)
    {
 
       ::exception::throw_interface_only();
@@ -2255,7 +2266,7 @@ namespace user
    // }
 
 
-   void primitive::sketch_prepare_window_minimize(::eactivation eactivation)
+   void primitive::sketch_prepare_window_minimize(::e_activation eactivation)
    {
 
       ::exception::throw_interface_only();
@@ -2287,7 +2298,7 @@ namespace user
    }
 
 
-   void primitive::sketch_prepare_window_dock(::edisplay edisplayDock)
+   void primitive::sketch_prepare_window_dock(::e_display edisplayDock)
    {
 
       ::exception::throw_interface_only();
@@ -2415,10 +2426,46 @@ namespace user
    }
 
 
-   void primitive::set_cursor(e_cursor ecursor)
+   bool primitive::set_cursor(e_cursor ecursor)
    {
 
       ::exception::throw_interface_only();
+
+      return false;
+
+   }
+
+
+   ::point primitive::get_cursor_pos() const
+   {
+
+      return ::point();
+
+   }
+
+   
+   ::sized primitive::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      return { 0.0, 0.0 };
+
+   }
+
+
+   ::sized primitive::_001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      ::rectd rectPadding(2.0, 2.0, 2.0, 2.0);
+
+      auto sizeFitting = _001CalculateFittingSize(pgraphics);
+
+      ::sized sizePaddedFitting;
+
+      sizePaddedFitting.cx = rectPadding.left + sizeFitting.cx + rectPadding.right;
+
+      sizePaddedFitting.cy = rectPadding.top + sizeFitting.cy + rectPadding.bottom;
+
+      return sizePaddedFitting;
 
    }
 
@@ -2959,7 +3006,7 @@ namespace user
    //edisplay primitive::get_display()
    //{
 
-   //   return display_none;
+   //   return e_display_none;
 
    //}
 
@@ -2967,7 +3014,7 @@ namespace user
    //edisplay primitive::get_previous_display()
    //{
 
-   //   return display_none;
+   //   return e_display_none;
 
    //}
 
@@ -3234,7 +3281,7 @@ namespace user
       if (psimplecommand->m_esimplecommand == simple_command_full_screen)
       {
 
-         get_wnd()->display(display_full_screen);
+         get_wnd()->display(e_display_full_screen);
 
          psimplecommand->m_bRet = true;
 
@@ -3672,12 +3719,12 @@ namespace user
    }
 
 
-   bool primitive::keyboard_focus_is_focusable()
+   bool primitive::keyboard_focus_is_focusable() const
    {
 
       return Application.keyboard_focus_is_focusable(this);
-   }
 
+   }
 
 
    bool primitive::keyboard_focus_OnKillFocus(oswindow oswindowNew)
@@ -4004,6 +4051,12 @@ namespace user
    }
 
 
+   void primitive::on_text_commit(string str)
+   {
+
+   }
+
+
    void primitive::on_text_composition_done()
    {
 
@@ -4053,7 +4106,7 @@ namespace user
    }
 
 
-   bool primitive::display(::edisplay edisplay, ::eactivation eactivation)
+   bool primitive::display(::e_display edisplay, ::e_activation eactivation)
    {
 
       return true;

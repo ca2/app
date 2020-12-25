@@ -10,7 +10,7 @@ memory_file::memory_file() :
 }
 
 
-memory_file::memory_file(efileopen eopen) :
+memory_file::memory_file(const ::file::e_open & eopen) :
    memory_container(__new(class memory()))
 {
 
@@ -63,27 +63,17 @@ memory_file::memory_file(void * pMemory, memsize dwSize) :
 }
 
 
-//memory_file::memory_file(const memory_file & memoryfile) :
-//   memory_container(((memory_file &)memoryfile).get_memory())
-//{
-//
-//   m_position = 0;
-//
-//}
-
-memory_file::memory_file(payload & payload, ::u32 nFlags) :
+memory_file::memory_file(payload & payload, const ::file::e_open & eopen) :
    memory_container(payload)
 {
 
-   m_eopen = nFlags;
+   m_eopen = eopen;
    m_position = 0;
 
 }
 
 
-
-
-memory_file::memory_file(memory_base & memory, efileopen eopen) :
+memory_file::memory_file(memory_base & memory, const ::file::e_open & eopen) :
    memory_container(memory)
 {
 
@@ -93,7 +83,7 @@ memory_file::memory_file(memory_base & memory, efileopen eopen) :
 }
 
 
-memory_file::memory_file(memory_base* pmemory, efileopen eopen) :
+memory_file::memory_file(memory_base* pmemory, const ::file::e_open & eopen) :
    memory_container(pmemory)
 {
 
@@ -104,7 +94,7 @@ memory_file::memory_file(memory_base* pmemory, efileopen eopen) :
 
 
 
-//memory_file::memory_file(memory_base * pmemory, efileopen eopen) :
+//memory_file::memory_file(memory_base * pmemory, const ::file::e_open & eopen) :
 //   memory_container(pmemory)
 //{
 //
@@ -472,7 +462,7 @@ void memory_file::dump(dump_context & dumpcontext) const
 //
 //   ASSERT(is_valid());
 //
-//   auto pfile = Context.file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none);
+//   auto pfile = Context.file().get_file(varFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
 //
 //   if (!pfile)
 //   {

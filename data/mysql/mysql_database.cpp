@@ -225,7 +225,7 @@ namespace mysql
       if (m_pmysql == nullptr)
       {
 
-         millis_sleep(2000);
+         sleep(2000_ms);
 
          if (!initialize() || m_pmysql == nullptr)
          {
@@ -247,7 +247,7 @@ namespace mysql
             if (m_pmysql == nullptr || mysql_errno(m_pmysql) == 2006) // MySQL server has gone away
             {
 
-               millis_sleep(2000);
+               sleep(2000_ms);
 
                if (!initialize() || m_pmysql == nullptr)
                {

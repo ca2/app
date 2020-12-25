@@ -623,7 +623,7 @@ namespace uwp
                {
                   string strCommand(str2);
                   strCommand.replace("%1", pcsz);
-                  WinExec(strCommand,display_normal);
+                  WinExec(strCommand,e_display_normal);
                }
             }
             else
@@ -637,7 +637,7 @@ namespace uwp
                      {
                         string strCommand(str2);
                         strCommand.replace("%1", pcsz);
-                        WinExec(strCommand,display_normal);
+                        WinExec(strCommand,e_display_normal);
                      }
                   }
                }
@@ -676,7 +676,7 @@ namespace uwp
                {
                   string strCommand(str2);
                   strCommand.replace("%1", pcsz);
-                  WinExec(strCommand, display_normal);
+                  WinExec(strCommand, e_display_normal);
                }
             }
             else
@@ -690,7 +690,7 @@ namespace uwp
                      {
                         string strCommand(str2);
                         strCommand.replace("%1", pcsz);
-                        WinExec(strCommand, display_normal);
+                        WinExec(strCommand, e_display_normal);
                      }
                   }
                }

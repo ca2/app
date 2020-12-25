@@ -29,6 +29,9 @@ namespace win
 }
 
 
+CLASS_DECL_ACME::estatus errno_to_status(i32 nErrno);
+
+
 #ifdef WINDOWS
 
 

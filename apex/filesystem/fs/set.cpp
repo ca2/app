@@ -356,7 +356,7 @@ namespace fs
    }
 
 
-   file_result set::get_file(const ::file::path & path, ::u32 nOpenFlags)
+   file_result set::get_file(const ::file::path & path, const ::file::e_open & eopen)
    {
 
       ::fs::data * pdata = path_data(path);
@@ -368,7 +368,7 @@ namespace fs
 
       }
 
-      return pdata->get_file(path, nOpenFlags);
+      return pdata->get_file(path, eopen);
 
    }
 

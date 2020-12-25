@@ -30725,7 +30725,7 @@ copy protection errors.
 //
 // OSS ASN.1 Error: Signed integer is encoded as a unsigned integer.
 //
-#define OSS_NEGATIVE_::u32EGER            _HRESULT_TYPEDEF_(0x80093002L)
+#define OSS_NEGATIVE_UINTEGER            _HRESULT_TYPEDEF_(0x80093002L)
 
 //
 // MessageId: OSS_PDU_RANGE
@@ -41151,12 +41151,15 @@ copy protection errors.
 // NDIS error codes (ndis.sys)
 //
 
+#ifndef _UWP
 
 #ifdef RC_INVOKED
 #define _NDIS_ERROR_TYPEDEF_(_sc)  _sc
 #else // RC_INVOKED
 #define _NDIS_ERROR_TYPEDEF_(_sc)  (::u32)(_sc)
 #endif // RC_INVOKED
+
+#endif
 
 //
 // MessageId: ERROR_NDIS_INTERFACE_CLOSING

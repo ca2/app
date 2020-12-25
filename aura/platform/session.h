@@ -321,9 +321,9 @@ namespace aura
 
       virtual index _get_best_zoneing(edisplay * pedisplay, ::rect * prect, const ::rect & rect, bool bPreserveSize = false) override;
 
-      virtual index get_best_monitor(RECT32 * prect, const ::rect & rect, ::eactivation eactivation = activation_none) override;
+      virtual index get_best_monitor(RECT32 * prect, const ::rect & rect, ::e_activation eactivation = e_activation_default) override;
 
-      virtual index get_best_wkspace(::rect * prect, const ::rect& rect, ::eactivation eactivation = activation_none) override;
+      virtual index get_best_wkspace(::rect * prect, const ::rect& rect, ::e_activation eactivation = e_activation_default) override;
 
       virtual index get_good_iconify(RECT32 * prect, const ::rect & rect) override;
 
@@ -382,13 +382,9 @@ namespace aura
       //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::type_empty_argument));
       //__pointer(::user::document)   create_child_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::type_empty_argument));
 
-
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle,::user::menu_item* pitem) override;
 
-
-
-
-      bool InitializeLocalDataCentral();
+      virtual bool InitializeLocalDataCentral() override;
 
       //virtual ::estatus bergedge_start() override;
 
@@ -475,7 +471,7 @@ namespace aura
 
       //virtual bool is_session() const override;
 
-      virtual bool is_mouse_button_pressed(::user::e_mouse emouse);
+      virtual bool is_mouse_button_pressed(::user::enum_mouse emouse);
 
       virtual bool is_remote_session() override;
 
@@ -485,7 +481,7 @@ namespace aura
       inline ::user::user* user() { return m_puser; }
 
 
-      virtual ::color get_color(::user::e_element eelement, ::user::estate estate);
+      virtual ::color get_color(::user::enum_element eelement, ::user::estate estate);
 
 
    };

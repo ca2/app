@@ -59,7 +59,7 @@ namespace user
       virtual void install_message_routing(::channel * pchannel) override;
 
 
-      virtual ::draw2d::font_pointer get_font(style* pstyle, e_element eelement = element_none, estate estate = e_state_none) const override;
+      virtual ::draw2d::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
 
 
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -92,7 +92,7 @@ namespace user
 
       virtual bool create_control(class control_descriptor * pdescriptor) override;
 
-      virtual bool get_element_rect(RECT32 * prect, e_element eelement) override;
+      virtual bool get_element_rect(RECT32 * prect, enum_element eelement) override;
 
       virtual void on_hit_test(::user::item & item) override;
 

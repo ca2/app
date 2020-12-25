@@ -300,9 +300,6 @@
     <ClInclude Include="math\calculator\token.h">
       <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="math\calculator\value.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
     <ClInclude Include="math\calculator\_.h">
       <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
@@ -585,6 +582,9 @@
     <ClInclude Include="math\calculator\element.h">
       <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
+    <ClInclude Include="math\calculator\payload.h">
+      <Filter>Header Files\math\calculator</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="database\database\database.cpp">
@@ -731,9 +731,6 @@
     <ClCompile Include="math\calculator\scanner.cpp">
       <Filter>Source Files\math\calculator</Filter>
     </ClCompile>
-    <ClCompile Include="math\calculator\value.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
     <ClCompile Include="html\html_lite\attributes.cpp">
       <Filter>Source Files\html\html_lite</Filter>
     </ClCompile>
@@ -828,6 +825,9 @@
       <Filter>Source Files\const</Filter>
     </ClCompile>
     <ClCompile Include="math\calculator\element.cpp">
+      <Filter>Source Files\math\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="math\calculator\payload.cpp">
       <Filter>Source Files\math\calculator</Filter>
     </ClCompile>
   </ItemGroup>

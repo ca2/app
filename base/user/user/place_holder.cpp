@@ -207,9 +207,21 @@ namespace user
 
       auto puiChild = puiptraChild->first_interaction();
 
+      puiChild->start_layout();
+
       puiChild->place(rectClient);
 
+      puiChild->layout().sketch().set_modified();
+
       puiChild->display();
+
+      puiChild->set_reposition();
+
+      puiChild->set_need_layout();
+
+      puiChild->set_need_redraw();
+
+      puiChild->set_layout_ready();
 
    }
 

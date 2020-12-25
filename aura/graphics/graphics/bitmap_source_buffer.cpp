@@ -120,7 +120,7 @@ namespace graphics
    }
 
 
-   bool bitmap_source_buffer::round_swap_key_buffers()
+   bool bitmap_source_buffer::buffer_lock_round_swap_key_buffers()
    {
 
       if (!m_pimpl)

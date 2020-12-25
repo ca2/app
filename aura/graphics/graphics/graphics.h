@@ -25,7 +25,7 @@ namespace graphics
 
       virtual void destroy_buffer();
 
-      virtual bool round_swap_key_buffers();
+      virtual bool buffer_lock_round_swap_key_buffers();
 
       virtual bool update_window();
 

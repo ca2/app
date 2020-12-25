@@ -133,7 +133,7 @@ namespace user
    void menu_interaction::_001OnCreate(::message::message * pmessage)
    {
 
-      descriptor().set_control_type(control_type_menu_button);
+      descriptor().set_control_type(e_control_type_menu_button);
 
       pmessage->previous();
 
@@ -157,7 +157,7 @@ namespace user
 
       get_window_text(strText);
 
-      pcalcsize->m_pgraphics->set_font(this);
+      pcalcsize->m_pgraphics->set_font(this, ::user::e_element_none);
 
       auto size = pcalcsize->m_pgraphics->GetTextExtent(strText);
 
@@ -171,7 +171,7 @@ namespace user
 
       size.cx += rectMargin.left + rectBorder.left + rectPadding.left;
 
-      size.cx += m_pmenuitem->m_pmenu->m_iCheckBoxSize;
+      size.cx += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 
       size.cx += rectPadding.left;
 
@@ -180,7 +180,7 @@ namespace user
 
          size.cx += rectPadding.left;
 
-         size.cx += m_pmenuitem->m_pmenu->m_iCheckBoxSize;
+         size.cx += m_pmenuitem->m_pmenu->m_dCheckBoxSize;
 
       }
 

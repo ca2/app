@@ -1058,7 +1058,7 @@ namespace axis
 //
 //      System.install_progress_add_up(); // 2
 //
-//      //xxdebug_box("init1 ok", "init1 ok", MB_ICONINFORMATION);
+//      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 //
 //      m_millisHeartBeat.Now();
 //
@@ -1073,7 +1073,7 @@ namespace axis
 //
 //      System.install_progress_add_up(); // 3
 //
-//      //xxdebug_box("init2 ok", "init2 ok", MB_ICONINFORMATION);
+//      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 //
 //      m_millisHeartBeat.Now();
 //
@@ -1088,7 +1088,7 @@ namespace axis
 //
 //      System.install_progress_add_up(); // 4
 //
-//      //xxdebug_box("init3 ok", "init3 ok", MB_ICONINFORMATION);
+//      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 //
 //      m_millisHeartBeat.Now();
 //
@@ -2190,7 +2190,7 @@ namespace axis
    }
 
 
-   ::type application::control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype)
+   ::type application::control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype)
    {
 
       string str(id);
@@ -2198,7 +2198,7 @@ namespace axis
       if (str.begins_ci("still_"))
       {
 
-         econtroltype = ::user::control_type_static;
+         econtroltype = ::user::e_control_type_static;
 
          return __type(::user::still);
 
@@ -2206,7 +2206,7 @@ namespace axis
       else if (str.begins_ci("label_"))
       {
 
-         econtroltype = ::user::control_type_static;
+         econtroltype = ::user::e_control_type_static;
 
          return __type(::user::still);
 
@@ -2214,7 +2214,7 @@ namespace axis
       else if (str.begins_ci("combo_"))
       {
 
-         econtroltype = ::user::control_type_combo_box;
+         econtroltype = ::user::e_control_type_combo_box;
 
          return __type(::user::combo_box);
 
@@ -2222,7 +2222,7 @@ namespace axis
       else if (str.begins_ci("check_") || str.begins_ci("checkbox_"))
       {
 
-         econtroltype = ::user::control_type_check_box;
+         econtroltype = ::user::e_control_type_check_box;
 
          return __type(::user::check_box);
 
@@ -2230,7 +2230,7 @@ namespace axis
       if (str.begins_ci("button_"))
       {
 
-         econtroltype = ::user::control_type_button;
+         econtroltype = ::user::e_control_type_button;
 
          return __type(::user::button);
 

@@ -133,7 +133,7 @@ namespace filemanager
 
       }
 
-      m_fileSrc = Context.file().get_file(pszSrc,::file::mode_read | ::file::type_binary | ::file::share_deny_write);
+      m_fileSrc = Context.file().get_file(pszSrc,::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_write);
 
       if(m_fileSrc.is_null())
       {
@@ -178,10 +178,10 @@ namespace filemanager
 
             //Application.sync_message_box("Do you want to overwrite?\n\nThere is already a existing file with the same name: " + strDst.name() + e_message_box_icon_question + e_message_box_yes_no_cancel + parent(m_oswindowCallback));
 
-            //if(iResult == IDYES)
+            //if(iResult == e_dialog_result_yes)
             //{
             //}
-            //else if(iResult == IDNO)
+            //else if(iResult == e_dialog_result_no)
             //{
 
 
@@ -203,7 +203,7 @@ namespace filemanager
 
       Context.dir().mk(strDst.folder());
 
-      m_fileDst = Context.file().get_file(strDst,::file::mode_write | ::file::type_binary | ::file::mode_create);
+      m_fileDst = Context.file().get_file(strDst,::file::e_open_write | ::file::e_open_binary | ::file::e_open_create);
 
       if(m_fileDst.is_null())
       {

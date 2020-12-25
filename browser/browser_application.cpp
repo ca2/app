@@ -203,7 +203,7 @@ namespace browser
    string application::preferred_experience()
    {
 
-      return "aura";
+      return "core";
 
    }
 

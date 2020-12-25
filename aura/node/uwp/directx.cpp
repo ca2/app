@@ -314,6 +314,10 @@ namespace uwp
 
          ::draw2d::lock lock;
 
+         auto psubject = m_psystem->subject(id_os_dark_mode);
+
+         m_psystem->process(psubject);
+
          CreateWindowSizeDependentResources();
 
          if (m_size.area() > 0)
@@ -335,11 +339,13 @@ namespace uwp
 
          m_pimpl->m_puserinteraction->start_layout();
 
-         m_pimpl->m_puserinteraction->display(display_normal);
-
          m_pimpl->m_puserinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
 
-         defer_resize_top_level_windows();
+         m_pimpl->m_puserinteraction->order_top();
+
+         m_pimpl->m_puserinteraction->display(e_display_normal);
+
+         //defer_resize_top_level_windows();
 
          m_pimpl->m_puserinteraction->set_reposition();
 
@@ -363,50 +369,44 @@ namespace uwp
    }
 
 
-   void directx_base::defer_resize_top_level_windows()
-   {
+   //void directx_base::defer_resize_top_level_windows()
+   //{
 
-      m_pimpl->m_puserinteraction->order_top();
-      
-      m_pimpl->m_puserinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
-      
-      m_pimpl->m_puserinteraction->display();
+   //   if (System.has_property("client_only"))
+   //   {
 
-      if (System.has_property("client_only"))
-      {
+   //      auto puiptraChild = m_pimpl->m_puserinteraction->m_puiptraChild;
 
-         auto puiptraChild = m_pimpl->m_puserinteraction->m_puiptraChild;
+   //      if (puiptraChild)
+   //      {
 
-         if (puiptraChild)
-         {
+   //         auto children = puiptraChild->m_interactiona;
 
-            auto children = puiptraChild->m_interactiona;
+   //         for (auto & pinteraction : children)
+   //         {
 
-            for (auto & pinteraction : children)
-            {
+   //            //if (pinteraction->is_window_visible())
+   //            {
 
-               if (pinteraction->is_window_visible())
-               {
+   //               pinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
 
-                  pinteraction->order_top();
+   //               pinteraction->order_top();
 
-                  pinteraction->set_dim(0, 0, m_size.cx, m_size.cy);
+   //               pinteraction->display();
 
-                  pinteraction->display();
+   //               pinteraction->set_need_layout();
 
-                  pinteraction->set_need_layout();
+   //               pinteraction->set_need_redraw();
 
-                  pinteraction->set_need_redraw();
+   //            }
 
-               }
+   //         }
 
-            }
+   //      }
 
-         }
+   //   }
 
-      }
-
-   }
+   //}
 
 
    // Allocate all memory resources that change on a window SizeChanged event.
@@ -554,7 +554,7 @@ namespace uwp
 
          // Create a depth stencil view for use with 3D rendering if needed.
          CD3D11_TEXTURE2D_DESC depthStencilDesc(
-         DXGI_FORMAT_D24_UNORM_S8_::u32,
+         DXGI_FORMAT_D24_UNORM_S8_UINT,
          backBufferDesc.Width,
          backBufferDesc.Height,
          1,

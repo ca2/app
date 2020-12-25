@@ -37,7 +37,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer static_control::get_font(style * pstyle, e_element eelement, estate estate) const
+   ::draw2d::font_pointer static_control::get_font(style * pstyle, enum_element eelement, estate estate) const
    {
 
       if (pstyle)
@@ -80,7 +80,7 @@ namespace user
    void static_control::_001OnCreate(::message::message * pmessage)
    {
 
-      descriptor().set_control_type(control_type_static);
+      descriptor().set_control_type(e_control_type_static);
 
       pmessage->previous();
 
@@ -113,7 +113,7 @@ namespace user
 
          ::user::control_event ev;
          ev.m_puie = this;
-         ev.m_eevent = ::user::event_button_clicked;
+         ev.m_eevent = ::user::e_event_button_clicked;
          ev.m_actioncontext = ::source_user;
 
          on_control_event(&ev);
@@ -182,7 +182,7 @@ namespace user
 
       pgraphics->set_text_color(crText);
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       pgraphics->text_out(0, 0, get_window_text());
 

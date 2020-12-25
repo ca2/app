@@ -260,7 +260,7 @@ namespace console
 
    void prompt_impact::simple_ui_draw_focus_rect(::draw2d::graphics_pointer & pgraphics)
    {
-      //if(GetTypedParent <prompt_frame>()->get_display() != ::display_minimal)
+      //if(GetTypedParent <prompt_frame>()->get_display() != ::e_display_minimal)
       {
          ::user::impact::simple_ui_draw_focus_rect(pgraphics);
       }

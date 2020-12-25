@@ -96,11 +96,11 @@ namespace filehandler
 
 
 
-   bool pane_view::pre_create_window(::user::create_struct& cs)
+   bool pane_view::pre_create_window(::user::create_struct * pcreatestruct)
    {
-      cs.dwExStyle &= ~WS_EX_CLIENTEDGE;
 
-      return ::user::impact::pre_create_window(cs);
+
+      return ::user::impact::pre_create_window(pcreatestruct);
    }
 
    void pane_view::on_create_impact(::user::impact_data * pimpactdata)

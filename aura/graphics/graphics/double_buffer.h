@@ -29,7 +29,7 @@ namespace graphics
       virtual ::estatus initialize_graphics_graphics(::user::interaction_impl * pimpl) override;
 
 
-      virtual bool round_swap_key_buffers() override;
+      virtual bool buffer_lock_round_swap_key_buffers() override;
 
       // sync_lock buffer sync first...
       virtual sync * get_buffer_sync() override;
@@ -39,6 +39,8 @@ namespace graphics
       virtual sync * get_screen_sync() override;
       virtual ::image_pointer & get_screen_image() override;
 
+      virtual ::index get_buffer_index() const;
+      virtual ::index get_screen_index() const;
 
       using graphics::update_window;
       virtual bool update_window() override;
@@ -47,7 +49,7 @@ namespace graphics
       virtual ::draw2d::graphics * on_begin_draw() override;
 
 
-      virtual void destroy_buffer();
+      virtual void destroy_buffer() override;
 
 
    };

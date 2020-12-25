@@ -9,20 +9,20 @@
 void duration::normalize()
 {
 
-   m_iSeconds += m_iNanoseconds / SECOND_NANOS;
+   m_secs.m_iSeconds += m_nanos.m_iNanoseconds / SECOND_NANOS;
 
-   m_iNanoseconds %= SECOND_NANOS;
+   m_nanos.m_iNanoseconds %= SECOND_NANOS;
 
-   int iSecondSign = ::papaya::sgn(m_iSeconds);
+   int iSecondSign = ::papaya::sgn(m_secs.m_iSeconds);
 
-   int iNanosecondsSign = ::papaya::sgn(m_iNanoseconds);
+   int iNanosecondsSign = ::papaya::sgn(m_nanos.m_iNanoseconds);
 
    if (iSecondSign == -iNanosecondsSign && iSecondSign != 0)
    {
 
-      m_iSeconds -= iSecondSign;
+      m_secs.m_iSeconds -= iSecondSign;
 
-      m_iNanoseconds += iSecondSign * SECOND_NANOS;
+      m_nanos.m_iNanoseconds += iSecondSign * SECOND_NANOS;
 
    }
 
@@ -160,12 +160,12 @@ void duration::fset(long double d)
 }
 
 
-//CLASS_DECL_ACME void millis_sleep(const duration & duration)
+//CLASS_DECL_ACME void sleep(const duration & duration)
 //{
 //
 //   auto tickDuration = duration.u32_millis();
 //
-//   ::millis_sleep((::u32)tickDuration);
+//   ::sleep((::u32)tickDuration);
 //
 
 //}
@@ -177,28 +177,28 @@ void duration::fset(long double d)
 void duration::sleep() const
 {
 
-   if (m_iSeconds >= 20)
+   if (m_secs.m_iSeconds >= 20)
    {
 
-      secs_sleep(m_iSeconds);
+      ::sleep(m_secs);
 
    }
-   else if (m_iSeconds > 0 || m_iNanoseconds > 20'000'000)
+   else if (m_secs.m_iSeconds > 0 || m_nanos.m_iNanoseconds > 20'000'000)
    {
 
-      millis_sleep(millis());
+      ::sleep(millis());
 
    }
-   else if (m_iNanoseconds > 20'000)
+   else if (m_nanos.m_iNanoseconds > 20'000)
    {
 
-      micros_sleep(micros());
+      ::sleep(micros());
 
    }
    else
    {
 
-      nanos_sleep(nanos());
+      ::sleep(nanos());
 
    }
 

@@ -26,7 +26,7 @@ namespace user
       m_bFirstShown = false;
       m_idView = FONTSEL_IMPACT;
       //m_puserstyle = this;
-      //m_econtroltype = control_type_list;
+      //m_econtroltype = e_control_type_list;
       m_scrolldataVert.m_bScrollEnable = true;
       m_bEnsureVisible = false;
 
@@ -60,7 +60,7 @@ namespace user
 
       SCAST_PTR(::message::create, pcreate, pmessage);
 
-      descriptor().set_control_type(::user::control_type_list);
+      descriptor().set_control_type(::user::e_control_type_list);
 
       pcreate->previous();
 
@@ -196,7 +196,7 @@ namespace user
 
          ev.m_puie = this;
 
-         ev.m_eevent = ::user::event_after_change_cur_sel;
+         ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
          ev.m_actioncontext = ::source_user;
 
@@ -240,7 +240,7 @@ namespace user
 
          ev.m_puie = this;
 
-         ev.m_eevent = ::user::event_after_change_cur_hover;
+         ev.m_eevent = ::user::e_event_after_change_cur_hover;
 
          ev.m_actioncontext = ::source_user;
 
@@ -332,7 +332,7 @@ namespace user
 
          auto pstyle = get_style(pgraphics);
 
-         color colorBackground = get_color(pstyle, ::user::element_background);
+         color colorBackground = get_color(pstyle, ::user::e_element_background);
 
          auto rectBackground(rectClient);
 
@@ -420,14 +420,18 @@ namespace user
 
       sync_lock sl(m_pfontlist->mutex());
 
+      auto pstyle = get_style(pgraphics);
+
+      int iScrollBarWidth = get_int(pstyle, e_int_scroll_bar_width);
+
       if (m_pfontlist->get_font_list_type() != ::draw2d::font_list::type_wide)
       {
 
-         rectFontList.right -= GetSystemMetrics(SM_CXVSCROLL);
+         rectFontList.right -= iScrollBarWidth;
 
       }
 
-      rectFontList.bottom -= GetSystemMetrics(SM_CYHSCROLL);
+      rectFontList.bottom -= iScrollBarWidth;
 
       m_pfontlist->set_client_rect(rectFontList);
 
@@ -572,7 +576,7 @@ namespace user
 
       pmessage->m_bRet = true;
 
-      display(display_none);
+      display(e_display_none);
 
    }
 

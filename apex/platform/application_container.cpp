@@ -131,7 +131,7 @@ void application_container::request_exit()
 
             }
 
-            task_sleep(500);
+            task_sleep(500_ms);
 
             i--;
 

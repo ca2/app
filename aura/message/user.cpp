@@ -25,12 +25,14 @@ namespace message
 {
 
 
-   void create::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void create::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
    {
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
 
-      m_lpcreatestruct = reinterpret_cast<::user::create_struct *>(lparam.m_lparam);
+      CREATESTRUCT * pcreatestruct = (CREATESTRUCT *)lparam.m_lparam;
+
+      m_pcreatestruct = (::user::create_struct *) pcreatestruct->CREATE_STRUCT_P_CREATE_PARAMS;
 
    }
 
@@ -61,23 +63,29 @@ namespace message
    }
 
 
+   ::user::create_struct * create::get_create_struct()
+   {
+
+      return m_pcreatestruct;
+
+   }
+
+
    ::create * create::get_create()
    {
 
-      if (::is_null(m_lpcreatestruct))
+      auto pusercreatestruct = get_create_struct();
+
+      if (::is_null(pusercreatestruct))
       {
 
          return nullptr;
 
       }
 
-#ifdef _UWP
-      ::create* pcreate = (::create*) m_lpcreatestruct->pCreateParams;
-#else
-      ::create* pcreate = (::create*) m_lpcreatestruct->lpCreateParams;
-#endif
+      auto pcreate = pusercreatestruct->m_pcreate;
 
-      if (::is_null(pcreate))
+      if (::is_null(pusercreatestruct))
       {
 
          return nullptr;
@@ -89,8 +97,7 @@ namespace message
    }
 
 
-   //::user::impact_data * create::get_impact_data()
-   ::matter * create::get_impact_data()
+   ::user::create * create::get_user_create()
    {
 
       auto pcreate = get_create();
@@ -102,14 +109,33 @@ namespace message
 
       }
 
-      if (!pcreate->m_pusercreate)
+      auto pusercreate = __user_create(pcreate->m_pusercreate);
+
+      if (!pusercreate)
       {
 
          return nullptr;
 
       }
 
-      return __user_create(pcreate->m_pusercreate)->m_pimpactdata;
+      return pusercreate;
+
+   }
+
+
+   ::matter * create::get_impact_data()
+   {
+
+      auto pusercreate = get_user_create();
+
+      if (!pusercreate)
+      {
+
+         return nullptr;
+
+      }
+
+      return pusercreate->m_pimpactdata;
 
    }
 
@@ -346,7 +372,7 @@ namespace message
 
       m_bTranslated = true;  // in root coordinates
 
-#elif defined(WINDOWS)
+#elif defined(WINDOWS_DESKTOP)
 
       m_bTranslated = true; // not in root coordinates
 

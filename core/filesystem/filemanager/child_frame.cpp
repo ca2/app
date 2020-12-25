@@ -78,7 +78,12 @@ namespace filemanager
 
       }
 
+#ifdef WINDOWS_DESKTOP
+
       m_hMenuDefault = nullptr;
+
+#endif
+
 
    }
 

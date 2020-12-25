@@ -114,7 +114,7 @@ namespace tc4
       set["abc"] = 0;
       set["ebc"] = 0;
 
-      ::MessageBox(NULL,"stop oh yes!!","stop oh yes!!",MB_ICONINFORMATION);
+      ::MessageBox(NULL,"stop oh yes!!","stop oh yes!!",e_message_box_icon_information);
 
       */
 
@@ -134,7 +134,7 @@ namespace tc4
 
       }
 
-      //pcreate->m_pcommandline->m_varQuery["document"].cast < document >()->get_typed_view < pane_view >()->GetParentFrame()->display(display_restore);
+      //pcreate->m_pcommandline->m_varQuery["document"].cast < document >()->get_typed_view < pane_view >()->GetParentFrame()->display(e_display_restore);
 
    }
 

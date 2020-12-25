@@ -1,6 +1,11 @@
 #pragma once
 
 
+#ifndef WINDOWS_DESKTOP
+#error "This file is designed to be used only as Windows Desktop Source"
+#endif
+
+
 class FileException;
 struct FileStatus;
 
@@ -48,7 +53,7 @@ namespace windows
 
       file();
       file(HANDLE hFile);
-      file(const char * pszFileName, efileopen eopen);
+      file(const char * pszFileName, const ::file::e_open & eopen);
 
       virtual ~file();
 
@@ -66,7 +71,7 @@ namespace windows
       virtual void set_file_path(const ::file::path & path) override;
 
 
-      virtual ::status::result open(const ::file::path & pszFileName, const efileopen & eopen) override;
+      virtual ::status::result open(const ::file::path & pszFileName, const ::file::e_open & eopen) override;
 
 
       virtual filesize seek(filesize lOff, ::file::e_seek nFrom) override;

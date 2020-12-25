@@ -141,7 +141,7 @@ namespace filemanager
       }
       if(pimpactdata->m_puserinteraction != nullptr)
       {
-         pimpactdata->m_eflag.add(::user::flag_hide_all_others_on_show);
+         pimpactdata->m_eflag.add(::user::e_flag_hide_all_others_on_show);
       }
 
    }
@@ -166,7 +166,7 @@ namespace filemanager
    void file_properties_form::on_control_event(::user::control_event * pevent)
    {
 
-      if(pevent->m_eevent == ::user::event_button_clicked)
+      if(pevent->m_eevent == ::user::e_event_button_clicked)
       {
 
          if(pevent->m_puie->m_id == "submit")

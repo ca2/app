@@ -526,7 +526,7 @@ oswindow oswindow_data::set_parent(oswindow oswindow)
 }
 
 
-bool oswindow_data::show_window(::edisplay edisplay)
+bool oswindow_data::show_window(::e_display edisplay)
 {
 
    sync_lock sl(m_pimpl == nullptr || m_pimpl->m_puserinteraction ? nullptr : m_pimpl->m_puserinteraction->mutex());
@@ -1468,7 +1468,7 @@ i64 oswindow_id(oswindow w)
 }
 
 
-CLASS_DECL_ACME ::estatus os_message_box(oswindow oswindow, const char * pText, const char * lpCaption, ::emessagebox emessagebox, ::callback callback)
+CLASS_DECL_ACME ::estatus os_message_box(oswindow oswindow, const char * pText, const char * lpCaption, const ::e_message_box & emessagebox, ::callback callback)
 {
 
    while (System.oslocal().m_iMessageBoxResult > 0)
@@ -1548,29 +1548,29 @@ CLASS_DECL_ACME ::estatus os_message_box(oswindow oswindow, const char * pText, 
    if (iResult == 1)
    {
 
-      return IDOK;
+      return e_dialog_result_ok;
 
    }
    else if (iResult == 2)
    {
 
-      return IDCANCEL;
+      return e_dialog_result_cancel;
 
    }
    else if (iResult == 4)
    {
 
-      return IDYES;
+      return e_dialog_result_yes;
 
    }
    else if (iResult == 8)
    {
 
-      return IDNO;
+      return e_dialog_result_no;
 
    }
 
-   return IDOK;
+   return e_dialog_result_ok;
 
 }
 

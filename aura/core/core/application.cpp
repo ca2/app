@@ -1865,7 +1865,7 @@ namespace aura
          }
 
          // hide the application's windows before closing all the documents
-         m_puiMain1->m_puiThis->display(display_none);
+         m_puiMain1->m_puiThis->display(e_display_none);
          // trans    m_puiMain->ShowOwnedPopups(FALSE);
 
 
@@ -1876,7 +1876,7 @@ namespace aura
 
          //m_puiMain->m_puiThis->wait_redraw();
 
-         m_puiMain1->m_puiThis->display(display_none);
+         m_puiMain1->m_puiThis->display(e_display_none);
 
 
       }
@@ -2765,11 +2765,11 @@ namespace aura
 
       }
 
-      xxdebug_box("::aura::application::initialize ok", "::aura::application::initialize ok", MB_ICONINFORMATION);
+      xxdebug_box("::aura::application::initialize ok", "::aura::application::initialize ok", e_message_box_icon_information);
 
-      xxdebug_box("m_pcalculator::initialize ok", "m_pcalculator::initialize ok", MB_ICONINFORMATION);
+      xxdebug_box("m_pcalculator::initialize ok", "m_pcalculator::initialize ok", e_message_box_icon_information);
 
-      xxdebug_box("m_pcolorertake5::initialize ok", "m_pcolorertake5::initialize ok", MB_ICONINFORMATION);
+      xxdebug_box("m_pcolorertake5::initialize ok", "m_pcolorertake5::initialize ok", e_message_box_icon_information);
 m_millisHeartBeat.Now();
 
       if (!initialize_userex())
@@ -2779,17 +2779,17 @@ m_millisHeartBeat.Now();
 
       }
 
-      xxdebug_box("m_pfilemanager::initialize ok", "m_pfilemanager::initialize ok", MB_ICONINFORMATION);
+      xxdebug_box("m_pfilemanager::initialize ok", "m_pfilemanager::initialize ok", e_message_box_icon_information);
 
-      xxdebug_box("m_pusermail::initialize ok", "m_pusermail::initialize ok", MB_ICONINFORMATION);
+      xxdebug_box("m_pusermail::initialize ok", "m_pusermail::initialize ok", e_message_box_icon_information);
 m_millisHeartBeat.Now();
 
-      xxdebug_box("register_bergedge_application ok", "register_bergedge_application ok", MB_ICONINFORMATION);
+      xxdebug_box("register_bergedge_application ok", "register_bergedge_application ok", e_message_box_icon_information);
 m_millisHeartBeat.Now();
 
       ensure_app_interest();
 
-      xxdebug_box("ensure_app_interest ok", "ensure_app_interest ok", MB_ICONINFORMATION);
+      xxdebug_box("ensure_app_interest ok", "ensure_app_interest ok", e_message_box_icon_information);
 
       return true;
 
@@ -3499,7 +3499,7 @@ m_millisHeartBeat.Now();
    }
 
 
-   //::type application::user_default_controltype_to_typeinfo(enum user::e_control_type econtroltype)
+   //::type application::user_default_controltype_to_typeinfo(enum user::enum_control_type econtroltype)
    //{
 
    //   return Sess(this).userex()->controltype_to_typeinfo(econtroltype);
@@ -3604,7 +3604,7 @@ m_millisHeartBeat.Now();
    }
 
 
-   ::type application::control_type_from_id(const ::id & id, ::user::e_control_type & econtroltype)
+   ::type application::control_type_from_id(const ::id & id, ::user::enum_control_type & econtroltype)
    {
 
       string str(id);
@@ -3612,7 +3612,7 @@ m_millisHeartBeat.Now();
       if (str.begins_ci("combo_"))
       {
 
-         econtroltype = ::user::control_type_combo_box;
+         econtroltype = ::user::e_control_type_combo_box;
 
          return __type(::user::combo_box);
 
@@ -3620,7 +3620,7 @@ m_millisHeartBeat.Now();
       else if (str.begins_ci("check_") || str.begins_ci("checkbox_"))
       {
 
-         econtroltype = ::user::control_type_check_box;
+         econtroltype = ::user::e_control_type_check_box;
 
          return __type(::user::check_box);
 
@@ -3628,7 +3628,7 @@ m_millisHeartBeat.Now();
       else if (str.begins_ci("still_"))
       {
 
-         econtroltype = ::user::control_type_static;
+         econtroltype = ::user::e_control_type_static;
 
          return __type(::user::still);
 
@@ -3636,7 +3636,7 @@ m_millisHeartBeat.Now();
       else if (str.begins_ci("label_"))
       {
 
-         econtroltype = ::user::control_type_static;
+         econtroltype = ::user::e_control_type_static;
 
          return __type(::user::still);
 
@@ -3644,7 +3644,7 @@ m_millisHeartBeat.Now();
       else if (str.begins_ci("edit_"))
       {
 
-         econtroltype = ::user::control_type_edit_plain_text;
+         econtroltype = ::user::e_control_type_edit_plain_text;
 
          return __type(::user::plain_edit);
 
@@ -3652,7 +3652,7 @@ m_millisHeartBeat.Now();
       else if (str.begins_ci("button_"))
       {
 
-         econtroltype = ::user::control_type_button;
+         econtroltype = ::user::e_control_type_button;
 
          return __type(::user::button);
 
@@ -4158,7 +4158,7 @@ m_millisHeartBeat.Now();
    void application::on_control_event(::user::control_event* pevent)
    {
 
-      if (pevent->m_eevent == ::user::event_initialize_control)
+      if (pevent->m_eevent == ::user::e_event_initialize_control)
       {
 
          if (pevent->m_puie->m_id == __id(system_startup_checkbox))
@@ -4185,7 +4185,7 @@ m_millisHeartBeat.Now();
          }
 
       }
-      else if (pevent->m_eevent == ::user::event_set_check)
+      else if (pevent->m_eevent == ::user::e_event_set_check)
       {
 
          if (pevent->m_puie->m_id == __id(system_startup_checkbox)
@@ -4255,7 +4255,7 @@ m_millisHeartBeat.Now();
    }
 
 
-   //::type application::control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype)
+   //::type application::control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype)
    //{
 
    //

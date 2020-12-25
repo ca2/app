@@ -17,8 +17,8 @@ namespace calculator
 
       m_pcallback = nullptr;
 
-      m_val.m_dR = 0.0;
-      m_val.m_dI = 0.0;
+      m_payload.m_dR = 0.0;
+      m_payload.m_dI = 0.0;
 
    }
 
@@ -39,16 +39,37 @@ namespace calculator
    }
 
 
-   payload plain_edit_view::get_ex_value()
+   ::payload plain_edit_view::get_payload()
    {
 
-      payload v;
+      ::payload payload;
 
-      v["real"] = m_val.m_dR;
-      v["imaginary"] = m_val.m_dI;
-      v["text"] = ::user::plain_edit::get_ex_value();
+      payload["real"] = m_payload.m_dR;
+      payload["imaginary"] = m_payload.m_dI;
+      payload["text"] = ::user::plain_edit::get_payload();
 
-      return v;
+      return payload;
+
+   }
+
+   void plain_edit_view::install_message_routing(::channel * pchannel)
+   {
+    
+      ::user::show < ::user::plain_edit >::install_message_routing(pchannel);
+
+      MESSAGE_LINK(e_message_create, pchannel, this, &plain_edit_view::_001OnCreate);
+      
+   }
+
+
+   void plain_edit_view::_001OnCreate(::message::message * pmessage)
+   {
+
+      pmessage->previous();
+
+      auto psubject = subject(id_after_change_text);
+
+      psubject->add(this);
 
    }
 
@@ -116,6 +137,18 @@ namespace calculator
                strSource = "Hz";
             }
             else if (str::ends_eat_ci(strExp, "minute"))
+            {
+               strSource = "min";
+            }
+            else if (str::ends_eat_ci(strExp, "minutes"))
+            {
+               strSource = "min";
+            }
+            else if (str::ends_eat_ci(strExp, "min"))
+            {
+               strSource = "min";
+            }
+            else if (str::ends_eat_ci(strExp, "mins"))
             {
                strSource = "min";
             }
@@ -189,12 +222,14 @@ namespace calculator
                //__throw(::exception::exception("now a simple exception here"));
 
             }
-            catch (const numeric_parser_exception& exp)
+            catch (numeric_parser_exception *p)
             {
 
-               e.m_strMessage = exp.get_message();
+               e.m_strMessage = p->get_message();
                e.m_iStart = 0;
                e.m_iEnd = strExp.length();
+
+               ::release(p);
 
             }
 
@@ -203,7 +238,7 @@ namespace calculator
             if (pelement != nullptr)
             {
 
-               m_val = pelement->get_value();
+               m_payload = pelement->get_payload();
 
                str = strExp;
 
@@ -224,56 +259,56 @@ namespace calculator
                      {
                         if (strSource == "Hz")
                         {
-                           if (m_val.mod() == 0.0)
+                           if (m_payload.mod() == 0.0)
                            {
                               strVal = "(infinite)";
                            }
                            else
                            {
-                              strVal = __str(1.0 / m_val.mod());
+                              strVal = __str(1.0 / m_payload.mod());
                            }
                         }
                      }
                      else if (strFormat == "Hz")
                      {
-                        if (m_val.mod() == 0.0)
+                        if (m_payload.mod() == 0.0)
                         {
                            strVal = "(infinite)";
                         }
                         else if (strSource == "ms")
                         {
-                           m_val.m_dR = 1000.0 / m_val.m_dR;
-                           m_val.m_dI = 0.0;
-                           strVal = m_val.to_string();
+                           m_payload.m_dR = 1000.0 / m_payload.m_dR;
+                           m_payload.m_dI = 0.0;
+                           strVal = m_payload.to_string();
                         }
                         else if (strSource == "s")
                         {
-                           m_val.m_dR = 1.0 / m_val.m_dR;
-                           m_val.m_dI = 0.0;
-                           strVal = m_val.to_string();
+                           m_payload.m_dR = 1.0 / m_payload.m_dR;
+                           m_payload.m_dI = 0.0;
+                           strVal = m_payload.to_string();
                         }
                         else if (strSource == "min")
                         {
-                           m_val.m_dR = 1.0 / (60.0 * m_val.m_dR);
-                           m_val.m_dI = 0.0;
-                           strVal = m_val.to_string();
+                           m_payload.m_dR = 1.0 / (60.0 * m_payload.m_dR);
+                           m_payload.m_dI = 0.0;
+                           strVal = m_payload.to_string();
 
                         }
                         else if (strSource == "hour")
                         {
-                           m_val.m_dR = 1.0 / (60.0 * 60.0 * m_val.m_dR);
-                           m_val.m_dI = 0.0;
-                           strVal = m_val.to_string();
+                           m_payload.m_dR = 1.0 / (60.0 * 60.0 * m_payload.m_dR);
+                           m_payload.m_dI = 0.0;
+                           strVal = m_payload.to_string();
                         }
                         else if (strSource == "day")
                         {
-                           m_val.m_dR = 1.0 / (24.0 * 60.0 * 60.0 * m_val.m_dR);
-                           m_val.m_dI = 0.0;
-                           strVal = m_val.to_string();
+                           m_payload.m_dR = 1.0 / (24.0 * 60.0 * 60.0 * m_payload.m_dR);
+                           m_payload.m_dI = 0.0;
+                           strVal = m_payload.to_string();
                         }
                         else
                         {
-                           strVal = m_val.to_string();
+                           strVal = m_payload.to_string();
                         }
                      }
 
@@ -283,12 +318,12 @@ namespace calculator
                {
                   e.m_strMessage = "(unknown conversion)";
                   bConv = false;
-                  strVal = m_val.to_string();
+                  strVal = m_payload.to_string();
                }
             }
             else
             {
-               strVal = m_val.to_string();
+               strVal = m_payload.to_string();
             }
 
             if (!bConv)
@@ -344,12 +379,9 @@ namespace calculator
    void plain_edit_view::plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context& context)
    {
 
-      if (context.is_user_source())
-      {
+      auto psubject = subject(id_after_change_text);
 
-         process_subject(id_after_change_text);
-
-      }
+      psubject->deliver(context);
 
       plain_edit::plain_edit_on_after_change_text(pgraphics, context);
 

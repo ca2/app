@@ -7,7 +7,7 @@
 void acme_defer_os_init_windowing();
 
 
-simple_ui_display::simple_ui_display(const string & strMessageParam, const string & strTitle, ::emessagebox emessagebox):
+simple_ui_display::simple_ui_display(const string & strMessageParam, const string & strTitle, const ::e_message_box & emessagebox):
    m_strTitle(strTitle),
    m_strFontName("serif"),
    m_size(100, 40),
@@ -316,7 +316,7 @@ void simple_ui_display::on_expose(Display * pdisplay)
 
       {
 
-         color32_t crBk = get_simple_ui_color(::user::element_background);
+         color32_t crBk = get_simple_ui_color(::user::e_element_background);
 
          int iY = m_iMarginTop;
 

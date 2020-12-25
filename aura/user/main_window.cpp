@@ -11,6 +11,8 @@ namespace user
    main_window::main_window()
    {
 
+      m_bitExtendOnParentIfClientOnly = true;
+
    }
 
 
@@ -35,7 +37,7 @@ namespace user
 
       set_prodevian();
 
-      add_user_item({ ::user::element_close_button, ::user::event_close_app });
+      add_user_item({ ::user::e_element_close_button, ::user::e_event_close_app });
 
    }
 
@@ -47,9 +49,9 @@ namespace user
 
       bool bInitialFramePosition = _001InitialFramePosition(rectWindow, m_rectInitialRateOrSize);
 
-      ::user::create_struct cs(0, nullptr, Application.m_strAppId, WS_VISIBLE, rectWindow);
+      auto pcs = __new(::user::create_struct(0, nullptr, Application.m_strAppId, WS_VISIBLE, rectWindow));
 
-      bool bOk = create_window_ex(cs);
+      bool bOk = create_window_ex(pcs);
 
       if (!bOk)
       {

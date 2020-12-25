@@ -351,7 +351,7 @@ namespace draw2d_cairo
       virtual bool internal_draw_text_pango(const block & block, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_PANGO_TEXT pfnText = nullptr);
       virtual bool internal_draw_text(const block & block, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none);
 #else
-      virtual bool internal_draw_text(const char * lpszString, strsize nCount, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT ftext);
+      virtual bool internal_draw_text(const block & block, const ::rectd & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT pfnTtext = nullptr);
 #endif
       //virtual bool draw_text(const char * lpszString, strsize nCount, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
       virtual bool draw_text(const string & str, const ::rect & rect, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
@@ -480,7 +480,7 @@ namespace draw2d_cairo
       void fill_rect(const ::rect & rect, const ::color & color) override;
       void fill_rect(const ::rectd & rect, const ::color & color) override;
       //void fill_rect(i32 x, i32 y, i32 cx, i32 cy, color32_t clr) override;
-      void draw_3drect(const ::rect & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder = border_all) override;
+      void draw_3drect(const ::rect & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
       //void draw3d_rect(i32 x, i32 y, i32 cx, i32 cy,
       //              color32_t clrTopLeft, color32_t clrBottomRight) override;
 

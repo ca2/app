@@ -840,6 +840,8 @@ namespace dir
          if (!file_delete(path))
          {
 
+            set_last_status(error_already_exists);
+
             return false;
 
          }
@@ -880,6 +882,8 @@ namespace dir
          return false;
 
       }
+
+      set_last_status(success);
 
    #endif
 
@@ -961,9 +965,7 @@ namespace dir
       else
       {
 
-
-
-         ::u32 dwLastError = ::get_last_error();
+         ::u32 dwLastError = ::GetLastError();
 
          string strPrefix;
 

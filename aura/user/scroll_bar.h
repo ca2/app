@@ -39,11 +39,11 @@ namespace user
       virtual bool GetTrackRect(RECT32* prect, ::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual ::color scrollbar_color_strong(::user::style* pstyle, ::user::e_element eelement);
-      virtual ::color scrollbar_color(::user::style* pstyle, ::user::e_element eelement);
-      virtual ::color scrollbar_border_color(::user::style* pstyle, ::user::e_element eelement);
-      virtual ::color scrollbar_lite_border_color(::user::style* pstyle, ::user::e_element eelement);
-      virtual ::color scrollbar_draw_color(::user::style* pstyle, ::user::e_element eelement);
+      virtual ::color scrollbar_color_strong(::user::style* pstyle, ::user::enum_element eelement);
+      virtual ::color scrollbar_color(::user::style* pstyle, ::user::enum_element eelement);
+      virtual ::color scrollbar_border_color(::user::style* pstyle, ::user::enum_element eelement);
+      virtual ::color scrollbar_lite_border_color(::user::style* pstyle, ::user::enum_element eelement);
+      virtual ::color scrollbar_draw_color(::user::style* pstyle, ::user::enum_element eelement);
 
    };
 

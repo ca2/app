@@ -275,7 +275,7 @@ namespace filehandler
       if (m_plist.is_null())
       {
 
-         item = ::user::element_none;
+         item = ::user::e_element_none;
 
          return;
 
@@ -287,7 +287,7 @@ namespace filehandler
          if(m_plist->element_at(i)->m_rectName.contains(item.m_pointHitTest))
          {
             
-            item = { ::user::element_text, i };
+            item = { ::user::e_element_text, i };
 
             return;
 
@@ -296,7 +296,7 @@ namespace filehandler
          if (m_plist->element_at(i)->m_rectStatusImage.contains(item.m_pointHitTest))
          {
             
-/*            item = { ::user::element_status_image, i };
+/*            item = { ::user::e_element_status_image, i };
 
             return;
 
@@ -305,7 +305,7 @@ namespace filehandler
          if (m_plist->element_at(i)->m_rectItem.contains(item.m_pointHitTest))
          {
             
-            item = { ::user::element_area, i };
+            item = { ::user::e_element_area, i };
 
             return;
             
@@ -313,7 +313,7 @@ namespace filehandler
 
       }
 
-      item = ::user::element_none;
+      item = ::user::e_element_none;
 
    }
 

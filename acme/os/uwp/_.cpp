@@ -149,13 +149,13 @@ bool __node_acme_pos_term()
 
 
 
-int os_get_system_update_poll_time(const ::id & id)
+::millis os_get_system_update_poll_time(const ::id & id)
 {
 
-   if (id == id_dark_mode)
+   if (id == id_os_dark_mode)
    {
 
-      return 0;
+      return 500;
 
    }
    else if (id == id_os_font_change)

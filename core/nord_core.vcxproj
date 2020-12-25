@@ -1,12 +1,12 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup Label="ProjectConfigurations">
-    <ProjectConfiguration Include="basis|ARM">
-      <Configuration>basis</Configuration>
+    <ProjectConfiguration Include="Debug|ARM">
+      <Configuration>Debug</Configuration>
       <Platform>ARM</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="basis|x86">
-      <Configuration>basis</Configuration>
+    <ProjectConfiguration Include="Debug|x86">
+      <Configuration>Debug</Configuration>
       <Platform>x86</Platform>
     </ProjectConfiguration>
     <ProjectConfiguration Include="stage|ARM">
@@ -23,19 +23,19 @@
     <Keyword>Android</Keyword>
     <ApplicationType>Android</ApplicationType>
     <ApplicationTypeRevision>3.0</ApplicationTypeRevision>
-    <ProjectName>aura</ProjectName>
+    <ProjectName>core</ProjectName>
     <RootNamespace>aura</RootNamespace>
     <MinimumVisualStudioVersion>15.0</MinimumVisualStudioVersion>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
     <AndroidAPILevel>android-19</AndroidAPILevel>
     <UseOfStl>c++_shared</UseOfStl>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>true</UseDebugLibraries>
     <PlatformToolset>Gcc_4_9</PlatformToolset>
@@ -59,49 +59,49 @@
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
   <ImportGroup Label="ExtensionSettings" />
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
-    <Import Project="..\..\platform-android\Common.props" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <Import Project="..\..\..\archive\platform-android\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
-    <Import Project="..\..\platform-android\Common.props" />
+    <Import Project="..\..\..\archive\platform-android\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
-    <Import Project="..\..\platform-android\Common.props" />
+    <Import Project="..\..\..\archive\platform-android\Common.props" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
-    <Import Project="..\..\platform-android\Common.props" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <Import Project="..\..\..\archive\platform-android\Common.props" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
-    <OutDir>$(SolutionDir)..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
+    <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
-    <OutDir>$(SolutionDir)..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
+    <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
     <LibraryPath>
     </LibraryPath>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
-    <OutDir>$(SolutionDir)..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
     <LibraryPath>$(VS_NdkRoot)\platforms\$(AndroidAPILevel)\arch-arm\usr\lib;$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\armv7-a;$(StlLibraryPath);</LibraryPath>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
-    <OutDir>$(SolutionDir)..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
-    <IntDir>$(SolutionDir)..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
+    <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|x86'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(__archive)\platform-android\include;$(__archive)\platform-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)/local/include;$(SolutionDir)../../platform-android/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-android/$(PlatformName)/$(Configuration)/include;$(__archive)third-android/include;$(__archive)third-android/third/include;$(__archive)third-android/third/include/include;$(SolutionDir)../../platform-android/_include;$(SolutionDir)../../platform-android;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <CppLanguageStandard>gnu++1z</CppLanguageStandard>
       <ExceptionHandling>Enabled</ExceptionHandling>
@@ -115,13 +115,13 @@
     </ClCompile>
     <Link />
     <Link>
-      <LibraryDependencies>aura;$(StlLibraryName);m</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <LibraryDependencies>$(StlLibraryName);m</LibraryDependencies>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(OutDir);$(__archive)storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='basis|ARM'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(__archive)\platform-android\include;$(__archive)\platform-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)/local/include;$(SolutionDir)../../platform-android/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(__archive)third-android\include;$(__archive)third-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(SolutionDir)../../platform-android/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <AdditionalOptions>-Wno-attributes -Wno-sign-compare -Wno-comment -Wno-strict-overflow -Wno-unused-local-typedefs -Wno-unknown-pragmas -Wno-unused-function -Wno-unused-variable -Wno-unused-value -Wno-reorder -Wno-overloaded-virtual -Wno-char-subscripts</AdditionalOptions>
       <ExceptionHandling>Enabled</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
@@ -132,12 +132,12 @@
     </ClCompile>
     <Link>
       <LibraryDependencies>aura;$(StlLibraryName);m</LibraryDependencies>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(OutDir);$(__archive)storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(__archive)\platform-android\include;$(__archive)\platform-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)/local/include;$(SolutionDir)../../platform-android/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(__archive)third-android\include;$(__archive)third-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(SolutionDir)../../platform-android/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
@@ -155,13 +155,13 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(OutDir);$(__archive)storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
       <LibraryDependencies>aura;$(StlLibraryName);m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
     <ClCompile>
-      <AdditionalIncludeDirectories>$(__archive)\platform-android\include;$(__archive)\platform-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)/local/include;$(SolutionDir)../../platform-android/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(__archive)third-android\include;$(__archive)third-android\third\include;$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(SolutionDir)../../platform-android/;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(SolutionDir)../../../source/app;$(SolutionDir)../../../;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
   </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
@@ -178,34 +178,17 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)%(filename).o</ObjectFileName>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(OutDir);$(__archive)\storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)\storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
+      <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(OutDir);$(__archive)storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\i686-linux-android\$(ToolchainVersion);$(StlLibraryPath)</AdditionalLibraryDirectories>
       <LibraryDependencies>aura;$(StlLibraryName);m</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="aura\aura\application.cpp" />
-    <ClCompile Include="aura\aura\constraint.cpp" />
-    <ClCompile Include="aura\aura\_core.cpp" />
-    <ClCompile Include="aura\aura\Debug.cpp" />
-    <ClCompile Include="aura\aura\document_manager_container.cpp" />
-    <ClCompile Include="aura\aura\history.cpp" />
-    <ClCompile Include="aura\aura\library.cpp" />
-    <ClCompile Include="aura\aura\logic.cpp" />
-    <ClCompile Include="aura\aura\match.cpp" />
-    <ClCompile Include="aura\aura\os_history.cpp" />
-    <ClCompile Include="aura\aura\patch.cpp" />
-    <ClCompile Include="aura\aura\session.cpp" />
-    <ClCompile Include="aura\aura\static_start.cpp" />
-    <ClCompile Include="aura\aura\strn.cpp" />
-    <ClCompile Include="aura\aura\str_format.cpp" />
-    <ClCompile Include="aura\aura\system.cpp" />
-    <ClCompile Include="aura\aura\theme.cpp" />
-    <ClCompile Include="filesystem\filehandler\filehandler_handler.cpp" />
-    <ClCompile Include="filesystem\filehandler\filehandler_item.cpp" />
-    <ClCompile Include="filesystem\filehandler\filehandler_library.cpp" />
-    <ClCompile Include="filesystem\filehandler\filehandler_menu_library.cpp" />
-    <ClCompile Include="filesystem\filehandler\filehandler_tree_interface.cpp" />
-    <ClCompile Include="filesystem\filemanager\callback.cpp" />
+    <ClCompile Include="const\idpool.cpp" />
+    <ClCompile Include="filesystem\filehandler\handler.cpp" />
+    <ClCompile Include="filesystem\filehandler\item.cpp" />
+    <ClCompile Include="filesystem\filehandler\library.cpp" />
+    <ClCompile Include="filesystem\filehandler\menu_library.cpp" />
+    <ClCompile Include="filesystem\filehandler\tree_interface.cpp" />
     <ClCompile Include="filesystem\filemanager\child_frame.cpp" />
     <ClCompile Include="filesystem\filemanager\component.cpp" />
     <ClCompile Include="filesystem\filemanager\context_menu.cpp" />
@@ -228,7 +211,6 @@
     <ClCompile Include="filesystem\filemanager\icon.cpp" />
     <ClCompile Include="filesystem\filemanager\iconoverlayer.cpp" />
     <ClCompile Include="filesystem\filemanager\impact.cpp" />
-    <ClCompile Include="filesystem\filemanager\item_action.cpp" />
     <ClCompile Include="filesystem\filemanager\left_view.cpp" />
     <ClCompile Include="filesystem\filemanager\main_frame.cpp" />
     <ClCompile Include="filesystem\filemanager\main_view.cpp" />
@@ -257,7 +239,7 @@
     <ClCompile Include="filesystem\userfs\tree.cpp" />
     <ClCompile Include="filesystem\userfs\userfs.cpp" />
     <ClCompile Include="framework.cpp" />
-    <ClCompile Include="html\elemental\elemental.cpp" />
+    <ClCompile Include="html\element\element.cpp" />
     <ClCompile Include="html\graphics\attribute.cpp" />
     <ClCompile Include="html\graphics\base.cpp" />
     <ClCompile Include="html\graphics\font.cpp" />
@@ -273,10 +255,9 @@
     <ClCompile Include="html\html\core_data.cpp" />
     <ClCompile Include="html\html\data.cpp" />
     <ClCompile Include="html\impl\cell.cpp" />
-    <ClCompile Include="html\impl\elemental.cpp" />
+    <ClCompile Include="html\impl\element.cpp" />
     <ClCompile Include="html\impl\form.cpp" />
     <ClCompile Include="html\impl\image.cpp" />
-    <ClCompile Include="html\impl\impl.cpp" />
     <ClCompile Include="html\impl\input_button.cpp" />
     <ClCompile Include="html\impl\input_checkbox.cpp" />
     <ClCompile Include="html\impl\input_text.cpp" />
@@ -285,6 +266,7 @@
     <ClCompile Include="html\impl\table_elemental.cpp" />
     <ClCompile Include="html\impl\table_row.cpp" />
     <ClCompile Include="html\impl\text.cpp" />
+    <ClCompile Include="html\impl\_.cpp" />
     <ClCompile Include="html\user\child_frame.cpp" />
     <ClCompile Include="html\user\document.cpp" />
     <ClCompile Include="html\user\form.cpp" />
@@ -292,14 +274,13 @@
     <ClCompile Include="html\user\frame.cpp" />
     <ClCompile Include="html\user\user.cpp" />
     <ClCompile Include="html\user\view.cpp" />
-    <ClCompile Include="math\calculator\calculator_calculator.cpp" />
-    <ClCompile Include="math\calculator\calculator_element.cpp" />
-    <ClCompile Include="math\calculator\calculator_parser.cpp" />
-    <ClCompile Include="math\calculator\calculator_parser_exception.cpp" />
-    <ClCompile Include="math\calculator\calculator_plain_edit_view.cpp" />
-    <ClCompile Include="math\calculator\calculator_scanner.cpp" />
-    <ClCompile Include="math\calculator\calculator_value.cpp" />
-    <ClCompile Include="math\calculator\_calculator_update.cpp" />
+    <ClCompile Include="node\android\shell.cpp" />
+    <ClCompile Include="node\windows\shell.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">true</ExcludedFromBuild>
+    </ClCompile>
+    <ClCompile Include="platform\application.cpp" />
+    <ClCompile Include="platform\session.cpp" />
+    <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="user\account\account.cpp" />
     <ClCompile Include="user\account\account_dialog.cpp" />
     <ClCompile Include="user\account\account_login.cpp" />
@@ -307,46 +288,29 @@
     <ClCompile Include="user\account\view.cpp" />
     <ClCompile Include="user\databaseuser\key_mesh_data.cpp" />
     <ClCompile Include="user\databaseuser\mesh_data.cpp" />
-    <ClCompile Include="user\experience\button.cpp" />
-    <ClCompile Include="user\experience\control_box.cpp" />
-    <ClCompile Include="user\experience\department.cpp" />
-    <ClCompile Include="user\experience\dock_manager.cpp" />
-    <ClCompile Include="user\experience\experience.cpp" />
-    <ClCompile Include="user\experience\frame.cpp" />
-    <ClCompile Include="user\experience\frame_window.cpp" />
-    <ClCompile Include="user\experience\menu_manager.cpp" />
-    <ClCompile Include="user\experience\move_manager.cpp" />
-    <ClCompile Include="user\experience\size_manager.cpp" />
-    <ClCompile Include="user\menu\button.cpp" />
-    <ClCompile Include="user\menu\central.cpp" />
-    <ClCompile Include="user\menu\list_view.cpp" />
-    <ClCompile Include="user\menu\list_window.cpp" />
     <ClCompile Include="user\rich_text\box.cpp" />
     <ClCompile Include="user\rich_text\data.cpp" />
     <ClCompile Include="user\rich_text\document.cpp" />
     <ClCompile Include="user\rich_text\edit.cpp" />
     <ClCompile Include="user\rich_text\edit_impl.cpp" />
     <ClCompile Include="user\rich_text\format.cpp" />
+    <ClCompile Include="user\rich_text\format_tool.cpp" />
     <ClCompile Include="user\rich_text\global.cpp" />
     <ClCompile Include="user\rich_text\line.cpp" />
     <ClCompile Include="user\rich_text\span.cpp" />
     <ClCompile Include="user\rich_text\text_format.cpp" />
     <ClCompile Include="user\rich_text\text_format_object.cpp" />
     <ClCompile Include="user\simple\child_frame.cpp" />
-    <ClCompile Include="user\simple\fake\frame_window.cpp" />
     <ClCompile Include="user\simple\form_list_view.cpp" />
     <ClCompile Include="user\simple\form_view.cpp" />
-    <ClCompile Include="user\simple\frame_window.cpp" />
     <ClCompile Include="user\simple\list_control.cpp" />
     <ClCompile Include="user\simple\list_data.cpp" />
     <ClCompile Include="user\simple\list_header_control.cpp" />
     <ClCompile Include="user\simple\list_view.cpp" />
-    <ClCompile Include="user\simple\main_frame.cpp" />
     <ClCompile Include="user\simple\menu_bar.cpp" />
     <ClCompile Include="user\simple\mesh_data.cpp" />
     <ClCompile Include="user\simple\pane_document.cpp" />
     <ClCompile Include="user\simple\printer_list_view.cpp" />
-    <ClCompile Include="user\simple\scroll_bar.cpp" />
     <ClCompile Include="user\simple\static.cpp" />
     <ClCompile Include="user\simple\status_bar.cpp" />
     <ClCompile Include="user\simple\tab_control.cpp" />
@@ -363,15 +327,16 @@
     <ClCompile Include="user\simple_ui\tap.cpp" />
     <ClCompile Include="user\simple_ui\top.cpp" />
     <ClCompile Include="user\userex\-ehrror_dialog.cpp" />
+    <ClCompile Include="user\userex\calculator_edit_view.cpp" />
     <ClCompile Include="user\userex\color_view.cpp" />
     <ClCompile Include="user\userex\dialog.cpp" />
-    <ClCompile Include="user\userex\font_format_tool.cpp" />
     <ClCompile Include="user\userex\font_view.cpp" />
     <ClCompile Include="user\userex\form_child_frame.cpp" />
     <ClCompile Include="user\userex\form_frame.cpp" />
+    <ClCompile Include="user\userex\group_image_list.cpp" />
     <ClCompile Include="user\userex\home_view.cpp" />
+    <ClCompile Include="user\userex\image_list.cpp" />
     <ClCompile Include="user\userex\impact_host.cpp" />
-    <ClCompile Include="user\userex\keyboard_layout.cpp" />
     <ClCompile Include="user\userex\menu_document.cpp" />
     <ClCompile Include="user\userex\menu_frame.cpp" />
     <ClCompile Include="user\userex\menu_view.cpp" />
@@ -379,96 +344,50 @@
     <ClCompile Include="user\userex\pane_split_view.cpp" />
     <ClCompile Include="user\userex\pane_tab_view.cpp" />
     <ClCompile Include="user\userex\pane_view.cpp" />
+    <ClCompile Include="user\userex\progress.cpp" />
     <ClCompile Include="user\userex\property_page.cpp" />
     <ClCompile Include="user\userex\property_sheet.cpp" />
     <ClCompile Include="user\userex\split_view.cpp" />
     <ClCompile Include="user\userex\top_edit_view.cpp" />
     <ClCompile Include="user\userex\top_toggle_view.cpp" />
     <ClCompile Include="user\userex\top_view.cpp" />
-    <ClCompile Include="user\userex\userex.cpp" />
+    <ClCompile Include="user\userex\user.cpp" />
     <ClCompile Include="user\userex\wait_message_dialog.cpp" />
-    <ClCompile Include="user\user\button.cpp" />
-    <ClCompile Include="user\user\check_box.cpp" />
+    <ClCompile Include="user\userpresence\department.cpp" />
+    <ClCompile Include="user\userpresence\presence.cpp" />
     <ClCompile Include="user\user\color_combo_box.cpp" />
-    <ClCompile Include="user\user\combo_box.cpp" />
-    <ClCompile Include="user\user\combo_list.cpp" />
-    <ClCompile Include="user\user\composition_imm_client.cpp" />
-    <ClCompile Include="user\user\control_bar.cpp" />
-    <ClCompile Include="user\user\control_property.cpp" />
-    <ClCompile Include="user\user\data_exchange.cpp" />
-    <ClCompile Include="user\user\document.cpp" />
-    <ClCompile Include="user\user\document_manager.cpp" />
-    <ClCompile Include="user\user\edit_plain_text_view.cpp" />
     <ClCompile Include="user\user\elastic_slider.cpp" />
     <ClCompile Include="user\user\font_combo_box.cpp" />
     <ClCompile Include="user\user\font_list.cpp" />
-    <ClCompile Include="user\user\form_control.cpp" />
-    <ClCompile Include="user\user\form_document.cpp" />
     <ClCompile Include="user\user\form_list.cpp" />
     <ClCompile Include="user\user\form_list_view.cpp" />
     <ClCompile Include="user\user\form_mesh.cpp" />
-    <ClCompile Include="user\user\form_view.cpp" />
-    <ClCompile Include="user\user\form_window.cpp" />
-    <ClCompile Include="user\user\frame_window.cpp" />
     <ClCompile Include="user\user\image_manager.cpp" />
-    <ClCompile Include="user\user\imm_client.cpp" />
-    <ClCompile Include="user\user\impact.cpp" />
-    <ClCompile Include="user\user\impact_creator.cpp" />
-    <ClCompile Include="user\user\impact_host.cpp" />
-    <ClCompile Include="user\user\impact_system.cpp" />
-    <ClCompile Include="user\user\keyboard_layout_cfg.cpp" />
     <ClCompile Include="user\user\list.cpp" />
     <ClCompile Include="user\user\list_cache.cpp" />
     <ClCompile Include="user\user\list_data.cpp" />
     <ClCompile Include="user\user\list_header.cpp" />
     <ClCompile Include="user\user\list_view.cpp" />
-    <ClCompile Include="user\user\margin.cpp" />
     <ClCompile Include="user\user\mesh.cpp" />
     <ClCompile Include="user\user\mesh_cache.cpp" />
     <ClCompile Include="user\user\mesh_cache_interface.cpp" />
     <ClCompile Include="user\user\mesh_data.cpp" />
-    <ClCompile Include="user\user\multiple_document_template.cpp" />
-    <ClCompile Include="user\user\network_configuration.cpp" />
-    <ClCompile Include="user\user\notification_area.cpp" />
-    <ClCompile Include="user\user\notify_icon.cpp" />
-    <ClCompile Include="user\user\notify_icon_listener.cpp" />
-    <ClCompile Include="user\user\orto_button.cpp" />
-    <ClCompile Include="user\user\picture.cpp" />
-    <ClCompile Include="user\user\picture_interaction.cpp" />
-    <ClCompile Include="user\user\plain_edit.cpp" />
-    <ClCompile Include="user\user\plain_text_data.cpp" />
-    <ClCompile Include="user\user\progress.cpp" />
-    <ClCompile Include="user\user\server.cpp" />
     <ClCompile Include="user\user\shell.cpp" />
-    <ClCompile Include="user\user\shell_android.cpp" />
-    <ClCompile Include="user\user\simple_view.cpp" />
-    <ClCompile Include="user\user\single_document_template.cpp" />
-    <ClCompile Include="user\user\slider.cpp" />
-    <ClCompile Include="user\user\split_bar.cpp" />
-    <ClCompile Include="user\user\split_layout.cpp" />
-    <ClCompile Include="user\user\split_view.cpp" />
-    <ClCompile Include="user\user\static_control.cpp" />
     <ClCompile Include="user\user\statusbar.cpp" />
     <ClCompile Include="user\user\step_slider.cpp" />
-    <ClCompile Include="user\user\still.cpp" />
-    <ClCompile Include="user\user\tab.cpp" />
-    <ClCompile Include="user\user\tab_callback.cpp" />
-    <ClCompile Include="user\user\tab_view.cpp" />
     <ClCompile Include="user\user\toggle_switch.cpp" />
-    <ClCompile Include="user\user\toolbar.cpp" />
     <ClCompile Include="user\user\toolbar_ctrl.cpp" />
+    <ClCompile Include="user\user\tooltip.cpp" />
     <ClCompile Include="user\user\tool_command.cpp" />
     <ClCompile Include="user\user\tool_tip_tool.cpp" />
     <ClCompile Include="user\user\tool_tip_window.cpp" />
-    <ClCompile Include="user\user\tool_window.cpp" />
     <ClCompile Include="user\user\tree.cpp" />
     <ClCompile Include="user\user\tree_data.cpp" />
     <ClCompile Include="user\user\tree_window.cpp" />
-    <ClCompile Include="user\user\user.cpp" />
-    <ClCompile Include="user\user\wait_cursor.cpp" />
     <ClCompile Include="user\user\xfplayer_view_line.cpp" />
     <ClCompile Include="user\user\xfplayer_view_lines.cpp" />
     <ClCompile Include="user\user\xfplayer_view_line_selection.cpp" />
+    <ClCompile Include="user\user\_.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="aura\aura\application.h" />
@@ -519,49 +438,53 @@
     <ClInclude Include="filesystem\filehandler\filehandler_library.h" />
     <ClInclude Include="filesystem\filehandler\filehandler_menu_library.h" />
     <ClInclude Include="filesystem\filehandler\filehandler_tree_interface.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_callback.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_child_frame.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_const.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_context_menu.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_data.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_filemanager.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_file_list.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_file_list_callback.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_file_properties_form.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_folder_list.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_folder_list_data.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_folder_list_view.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_folder_selection_list_view.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_form_child_frame.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_form_document.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_form_view.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_frame.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_list_view.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_tree.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_fs_simple_view.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_icon.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_iconoverlayer.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_impact.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_item_action.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_left_view.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_main_frame.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_main_view.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_manager.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_manager_template.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_operation.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_operation_child_frame.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_operation_document.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_operation_info_view.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_operation_list_view.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_operation_thread.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_operation_view.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_path_view.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_preview.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_save_as_name_view.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_tab_view.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_tree.h" />
-    <ClInclude Include="filesystem\filemanager\filemanager_view.h" />
+    <ClInclude Include="filesystem\filemanager\aaa_want_to_remove_callback.h" />
+    <ClInclude Include="filesystem\filemanager\aaa_want_to_remove_form_view.h" />
+    <ClInclude Include="filesystem\filemanager\aaa_want_to_remove_item_action.h" />
+    <ClInclude Include="filesystem\filemanager\child_frame.h" />
+    <ClInclude Include="filesystem\filemanager\component.h" />
+    <ClInclude Include="filesystem\filemanager\const.h" />
+    <ClInclude Include="filesystem\filemanager\context_menu.h" />
+    <ClInclude Include="filesystem\filemanager\data.h" />
+    <ClInclude Include="filesystem\filemanager\document.h" />
+    <ClInclude Include="filesystem\filemanager\file_list.h" />
+    <ClInclude Include="filesystem\filemanager\file_list_callback.h" />
+    <ClInclude Include="filesystem\filemanager\file_properties_form.h" />
+    <ClInclude Include="filesystem\filemanager\folder_list.h" />
+    <ClInclude Include="filesystem\filemanager\folder_list_data.h" />
+    <ClInclude Include="filesystem\filemanager\folder_list_view.h" />
+    <ClInclude Include="filesystem\filemanager\folder_selection_list_view.h" />
+    <ClInclude Include="filesystem\filemanager\form.h" />
+    <ClInclude Include="filesystem\filemanager\form_child_frame.h" />
+    <ClInclude Include="filesystem\filemanager\form_document.h" />
+    <ClInclude Include="filesystem\filemanager\frame.h" />
+    <ClInclude Include="filesystem\filemanager\fs_simple_list_view.h" />
+    <ClInclude Include="filesystem\filemanager\fs_simple_tree.h" />
+    <ClInclude Include="filesystem\filemanager\fs_simple_view.h" />
+    <ClInclude Include="filesystem\filemanager\icon.h" />
+    <ClInclude Include="filesystem\filemanager\iconoverlayer.h" />
+    <ClInclude Include="filesystem\filemanager\impact.h" />
+    <ClInclude Include="filesystem\filemanager\left_view.h" />
+    <ClInclude Include="filesystem\filemanager\main_frame.h" />
+    <ClInclude Include="filesystem\filemanager\main_view.h" />
+    <ClInclude Include="filesystem\filemanager\operation.h" />
+    <ClInclude Include="filesystem\filemanager\operation_child_frame.h" />
+    <ClInclude Include="filesystem\filemanager\operation_document.h" />
+    <ClInclude Include="filesystem\filemanager\operation_info_view.h" />
+    <ClInclude Include="filesystem\filemanager\operation_list_view.h" />
+    <ClInclude Include="filesystem\filemanager\operation_thread.h" />
+    <ClInclude Include="filesystem\filemanager\operation_view.h" />
+    <ClInclude Include="filesystem\filemanager\path_view.h" />
+    <ClInclude Include="filesystem\filemanager\preview.h" />
+    <ClInclude Include="filesystem\filemanager\save_as_name_view.h" />
+    <ClInclude Include="filesystem\filemanager\tab_view.h" />
+    <ClInclude Include="filesystem\filemanager\tree.h" />
+    <ClInclude Include="filesystem\filemanager\update_hint.h" />
+    <ClInclude Include="filesystem\filemanager\view.h" />
+    <ClInclude Include="filesystem\filemanager\_.h" />
+    <ClInclude Include="filesystem\filemanager\_data.h" />
+    <ClInclude Include="filesystem\filemanager\_filemanager.h" />
+    <ClInclude Include="filesystem\filemanager\_tree.h" />
     <ClInclude Include="filesystem\userfs\userfs.h" />
     <ClInclude Include="filesystem\userfs\userfs_document.h" />
     <ClInclude Include="filesystem\userfs\userfs_item.h" />
@@ -573,6 +496,59 @@
     <ClInclude Include="filesystem\userfs\userfs_tree.h" />
     <ClInclude Include="filesystem\userfs\userfs_userfs.h" />
     <ClInclude Include="framework.h" />
+    <ClInclude Include="html\element\element.h" />
+    <ClInclude Include="html\element\_.h" />
+    <ClInclude Include="html\element\_element.h" />
+    <ClInclude Include="html\graphics\attribute.h" />
+    <ClInclude Include="html\graphics\base.h" />
+    <ClInclude Include="html\graphics\border.h" />
+    <ClInclude Include="html\graphics\box.h" />
+    <ClInclude Include="html\graphics\font.h" />
+    <ClInclude Include="html\graphics\form.h" />
+    <ClInclude Include="html\graphics\message.h" />
+    <ClInclude Include="html\graphics\point.h" />
+    <ClInclude Include="html\graphics\reader.h" />
+    <ClInclude Include="html\graphics\size.h" />
+    <ClInclude Include="html\graphics\style.h" />
+    <ClInclude Include="html\graphics\style_sheet.h" />
+    <ClInclude Include="html\graphics\style_sheet_array.h" />
+    <ClInclude Include="html\graphics\tag.h" />
+    <ClInclude Include="html\graphics\value.h" />
+    <ClInclude Include="html\graphics\_.h" />
+    <ClInclude Include="html\graphics\_graphics.h" />
+    <ClInclude Include="html\hi5\hi5_twitter_authorization.h" />
+    <ClInclude Include="html\html\core_data.h" />
+    <ClInclude Include="html\html\data.h" />
+    <ClInclude Include="html\html\_.h" />
+    <ClInclude Include="html\html\_html.h" />
+    <ClInclude Include="html\impl\cell.h" />
+    <ClInclude Include="html\impl\element.h" />
+    <ClInclude Include="html\impl\form.h" />
+    <ClInclude Include="html\impl\image.h" />
+    <ClInclude Include="html\impl\input_button.h" />
+    <ClInclude Include="html\impl\input_checkbox.h" />
+    <ClInclude Include="html\impl\input_text.h" />
+    <ClInclude Include="html\impl\select.h" />
+    <ClInclude Include="html\impl\table.h" />
+    <ClInclude Include="html\impl\table_elemental.h" />
+    <ClInclude Include="html\impl\table_row.h" />
+    <ClInclude Include="html\impl\text.h" />
+    <ClInclude Include="html\impl\_.h" />
+    <ClInclude Include="html\impl\_impl.h" />
+    <ClInclude Include="html\user\child_frame.h" />
+    <ClInclude Include="html\user\document.h" />
+    <ClInclude Include="html\user\form.h" />
+    <ClInclude Include="html\user\form_view.h" />
+    <ClInclude Include="html\user\frame.h" />
+    <ClInclude Include="html\user\view.h" />
+    <ClInclude Include="html\user\_.h" />
+    <ClInclude Include="html\user\_user.h" />
+    <ClInclude Include="node\android\shell.h" />
+    <ClInclude Include="node\android\_android.h" />
+    <ClInclude Include="platform\application.h" />
+    <ClInclude Include="platform\session.h" />
+    <ClInclude Include="platform\system.h" />
+    <ClInclude Include="platform\user.h" />
     <ClInclude Include="user\account\account.h" />
     <ClInclude Include="user\account\account_dialog.h" />
     <ClInclude Include="user\account\account_login.h" />
@@ -771,6 +747,29 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="aura.def" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\acme\nord_acme.vcxproj">
+      <Project>{ecb0620d-bfa8-4f9b-b2ad-9d9c20a44fe9}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\apex\nord_apex.vcxproj">
+      <Project>{9d102bb4-2054-4d90-a3e7-dd63bdf83982}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\aqua\nord_aqua.vcxproj">
+      <Project>{576b7916-147f-49f2-84b8-360d703894b5}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\aura\nord_aura.vcxproj">
+      <Project>{02207bc4-c08b-4a2d-b754-f3bd46ad3098}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\axis\nord_axis.vcxproj">
+      <Project>{6f5c86b4-07bb-45a5-9fb9-b7921bcbbf36}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\base\nord_base.vcxproj">
+      <Project>{15ccba90-45f6-46fa-a1fd-af4c40595697}</Project>
+    </ProjectReference>
+    <ProjectReference Include="..\bred\nord_bred.vcxproj">
+      <Project>{404ae736-b4d1-492b-a3c8-aba442415c68}</Project>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets" />

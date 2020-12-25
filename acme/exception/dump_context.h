@@ -18,7 +18,7 @@ public:
    void SetDepth(i32 nNewDepth);
 
 
-   void write(const char * psz);
+   void write(const char * psz) override;
 
 
 #ifdef WINDOWS
@@ -27,19 +27,19 @@ public:
 
 #endif
 
-   void write(const string & str) ;
+   void write(const string & str) override ;
    void write(const void * p);
           
-   void write(const ::matter * pobject) ;
-   void write(const ::matter & matter) ;
-   void write(char i) ;
-   void write(uchar u) ;
-   void write(i16 i) ;
-   void write(u16 u) ;
-   void write(i32 i) ;
-   void write(u32 u) ;
-   void write(i64 i) ;
-   void write(u64 u) ;
+   void write(const ::matter * pobject) override;
+   void write(const ::matter & matter) override;
+   void write(char i) override;
+   void write(uchar u)  override;
+   void write(i16 i) override;
+   void write(u16 u) override;
+   void write(i32 i) override;
+   void write(u32 u)  override;
+   void write(i64 i)  override;
+   void write(u64 u)  override;
    void hex_dump(i8 i);
    void hex_dump(u8 i);
    void hex_dump(i16 i);
@@ -48,8 +48,8 @@ public:
    void hex_dump(u32 i);
    void hex_dump(i64 i);
    void hex_dump(u64 i);
-   void write(float f);
-   void write(double d);
+   void write(float f) override;
+   void write(double d) override;
    void write(oswindow h);
    void write(HDC h);
 
@@ -62,7 +62,7 @@ public:
 
    void hex_dump(const char * pszLine, byte* pby, i32 nBytes, i32 nWidth);
 
-   void flush();
+   void flush() override;
 
    void output_string(const char * psz);
 

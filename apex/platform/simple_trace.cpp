@@ -13,7 +13,7 @@ CLASS_DECL_APEX void __simple_tracea(::matter * pobjectContext, e_trace_level el
 CLASS_DECL_APEX void __simple_tracev(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
 
 
-//CLASS_DECL_APEX void FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
+//CLASS_DECL_APEX void FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 //{
 //
 //   ::os_message_box(nullptr, pszMessage, pszTitle, iFlags, function);

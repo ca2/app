@@ -200,9 +200,9 @@ namespace user
 
             *pformat = *pspanBeg->m_pformat;
 
-            ::e_align e_align = pspanBeg->get_align();
+            ::e_align ealign = pspanBeg->get_align();
 
-            pformat->m_ealign = e_align;
+            pformat->m_ealign = ealign;
 
             while (true)
             {
@@ -219,7 +219,7 @@ namespace user
                if (m_spana[iSpanBeg]->m_ealignNewLine != e_align_none)
                {
 
-                  e_align = e_align_none;
+                  ealign = e_align_none;
 
                }
 
@@ -787,7 +787,7 @@ namespace user
 
          update_span_cache(m_spana);
 
-         m_pedit->on_after_change(::user::event_after_change_text);
+         m_pedit->on_after_change(::user::e_event_after_change_text);
 
       }
 
@@ -929,7 +929,7 @@ namespace user
 
          }
 
-         m_pedit->on_after_change(::user::event_after_change_text_format);
+         m_pedit->on_after_change(::user::e_event_after_change_text_format);
 
       }
 
@@ -1165,7 +1165,7 @@ namespace user
 
          // horizontal span
 
-         ::e_align e_align = e_align_center;
+         ::e_align ealign = e_align_center;
 
          __pointer_array(span) spana;
 
@@ -1251,7 +1251,7 @@ namespace user
 
                bLineWrap = false;
 
-               e_align = pspan->m_ealignNewLine;
+               ealign = pspan->m_ealignNewLine;
 
                x = (int) rect.left;
 

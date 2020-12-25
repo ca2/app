@@ -32,8 +32,8 @@ string get_error_message(::u32 dwError);
 #define IOS_THREAD(pthread) (dynamic_cast < ::ios::thread * > (dynamic_cast < ::thread * >(pthread)))
 
 
-CLASS_DECL_ACME void __trace_message(const char * lpszPrefix, ::message::message * pmessage);
-CLASS_DECL_ACME void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
+//CLASS_DECL_ACME void __trace_message(const char * lpszPrefix, ::message::message * pmessage);
+//CLASS_DECL_ACME void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 
 #include "implementation.h"
 #include "dir_system.h"

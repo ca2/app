@@ -55,16 +55,26 @@ void simple_list_view::dump(dump_context & dumpcontext) const
 }
 
 
-bool simple_list_view::pre_create_window(::user::create_struct& cs)
+bool simple_list_view::pre_create_window(::user::create_struct * pcreatestruct)
 {
-   cs.style |= WS_CLIPCHILDREN;
 
-   return ::user::impact::pre_create_window(cs);
+#ifdef WINDOWS_DESKTOP
+
+
+
+#endif
+
+   return ::user::impact::pre_create_window(pcreatestruct);
+
 }
 
 
 __pointer(::user::interaction) simple_list_view::OnDrawInterfaceGetWnd()
 {
+
    return this;
+
 }
+
+
 

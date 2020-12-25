@@ -723,7 +723,7 @@ namespace apex
             //   __pointer(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame());
             //   if(pframe != nullptr)
             //   {
-            //      pframe->display(display_normal);
+            //      pframe->display(e_display_normal);
             //      pframe->InitialFramePosition();
             //   }
             //}
@@ -1366,14 +1366,14 @@ namespace apex
 
       edisplay edisplay;
 
-      ::edisplay edisplayPrevious = *pedisplay;
+      ::e_display edisplayPrevious = *pedisplay;
 
       double dMargin = System.m_dpi;
 
-      if (ZONEING_COMPARE::is_equal(rect.top, rectWkspace.top, dMargin, !(edisplayPrevious & display_top)))
+      if (ZONEING_COMPARE::is_equal(rect.top, rectWkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
       {
 
-         edisplay |= display_top;
+         edisplay |= e_display_top;
 
          if (bPreserveSize)
          {
@@ -1389,10 +1389,10 @@ namespace apex
          }
 
       }
-      else if (ZONEING_COMPARE::is_equal(rect.bottom, rectWkspace.bottom, dMargin, !(edisplayPrevious & display_bottom)))
+      else if (ZONEING_COMPARE::is_equal(rect.bottom, rectWkspace.bottom, dMargin, !(edisplayPrevious & e_display_bottom)))
       {
 
-         edisplay |= display_bottom;
+         edisplay |= e_display_bottom;
 
          if (bPreserveSize)
          {
@@ -1409,10 +1409,10 @@ namespace apex
 
       }
 
-      if (ZONEING_COMPARE::is_equal(rectRequest.left, rectWkspace.left, dMargin, !(edisplayPrevious & display_left)))
+      if (ZONEING_COMPARE::is_equal(rectRequest.left, rectWkspace.left, dMargin, !(edisplayPrevious & e_display_left)))
       {
 
-         edisplay |= display_left;
+         edisplay |= e_display_left;
 
          if (bPreserveSize)
          {
@@ -1428,10 +1428,10 @@ namespace apex
          }
 
       }
-      else if (ZONEING_COMPARE::is_equal(rectRequest.right, rectWkspace.right, dMargin, !(edisplayPrevious & display_right)))
+      else if (ZONEING_COMPARE::is_equal(rectRequest.right, rectWkspace.right, dMargin, !(edisplayPrevious & e_display_right)))
       {
 
-         edisplay |= display_right;
+         edisplay |= e_display_right;
 
          if (bPreserveSize)
          {
@@ -1448,16 +1448,16 @@ namespace apex
 
       }
 
-      if (!(edisplay & display_top || edisplay & display_bottom)
-         && is_different(edisplay & display_left, edisplay & display_right))
+      if (!(edisplay & e_display_top || edisplay & e_display_bottom)
+         && is_different(edisplay & e_display_left, edisplay & e_display_right))
       {
 
          if (ZONEING_COMPARE::is_centered(rectWkspace.top, rect.top, rect.bottom, rectWkspace.bottom))
          {
 
-            edisplay |= display_bottom;
+            edisplay |= e_display_bottom;
 
-            edisplay |= display_top;
+            edisplay |= e_display_top;
 
             rect.bottom = rectWkspace.bottom;
 
@@ -1467,16 +1467,16 @@ namespace apex
 
       }
 
-      if (!(edisplay & display_left || edisplay & display_right)
-         && is_different(edisplay & display_top, edisplay & display_bottom))
+      if (!(edisplay & e_display_left || edisplay & e_display_right)
+         && is_different(edisplay & e_display_top, edisplay & e_display_bottom))
       {
 
          if (ZONEING_COMPARE::is_centered(rectWkspace.left, rect.left, rect.right, rectWkspace.right))
          {
 
-            edisplay |= display_left;
+            edisplay |= e_display_left;
 
-            edisplay |= display_right;
+            edisplay |= e_display_right;
 
             rect.left = rectWkspace.left;
 
@@ -1486,13 +1486,13 @@ namespace apex
 
       }
 
-      bool bLeftXorRight = is_different(edisplay & display_left, edisplay & display_right);
+      bool bLeftXorRight = is_different(edisplay & e_display_left, edisplay & e_display_right);
 
-      bool bTopXorBottom = is_different(edisplay & display_top, edisplay & display_bottom);
+      bool bTopXorBottom = is_different(edisplay & e_display_top, edisplay & e_display_bottom);
 
-      bool bTopAndBottom = edisplay & display_top && edisplay & display_bottom;
+      bool bTopAndBottom = edisplay & e_display_top && edisplay & e_display_bottom;
 
-      bool bLeftAndRight = edisplay & display_left && edisplay & display_right;
+      bool bLeftAndRight = edisplay & e_display_left && edisplay & e_display_right;
 
       if (bLeftXorRight && bTopXorBottom)
       {
@@ -1501,7 +1501,7 @@ namespace apex
       else if (bTopAndBottom && bLeftAndRight)
       {
 
-         edisplay = display_zoomed;
+         edisplay = e_display_zoomed;
 
       }
       else
@@ -1510,41 +1510,41 @@ namespace apex
          if (bLeftXorRight && !bTopAndBottom)
          {
 
-            edisplay = display_none;
+            edisplay = e_display_none;
 
          }
 
          if (bTopXorBottom && !bLeftAndRight)
          {
 
-            edisplay = display_none;
+            edisplay = e_display_none;
 
          }
 
          if (bTopAndBottom)
          {
 
-            edisplay -= display_top;
+            edisplay -= e_display_top;
 
-            edisplay -= display_bottom;
+            edisplay -= e_display_bottom;
 
          }
 
          if (bLeftAndRight)
          {
 
-            edisplay -= display_left;
+            edisplay -= e_display_left;
 
-            edisplay -= display_right;
+            edisplay -= e_display_right;
 
          }
 
       }
 
-      if (edisplay == display_none)
+      if (edisplay == e_display_none)
       {
 
-         edisplay = display_normal;
+         edisplay = e_display_normal;
 
       }
 
@@ -1554,7 +1554,7 @@ namespace apex
          *prect = rect;
 
       }
-      else if (edisplay == display_zoomed)
+      else if (edisplay == e_display_zoomed)
       {
 
          *prect = rectWkspace;
@@ -1578,23 +1578,23 @@ namespace apex
       //{
 
       //   string strE("e");
-      //   if (edisplay & display_left)
+      //   if (edisplay & e_display_left)
       //      strE += "L";
-      //   if (edisplay & display_top)
+      //   if (edisplay & e_display_top)
       //      strE += "T";
-      //   if (edisplay & display_right)
+      //   if (edisplay & e_display_right)
       //      strE += "R";
-      //   if (edisplay & display_bottom)
+      //   if (edisplay & e_display_bottom)
       //      strE += "B";
 
       //   string strP("p");
-      //   if (edisplayPrevious & display_left)
+      //   if (edisplayPrevious & e_display_left)
       //      strP += "L";
-      //   if (edisplayPrevious & display_top)
+      //   if (edisplayPrevious & e_display_top)
       //      strP += "T";
-      //   if (edisplayPrevious & display_right)
+      //   if (edisplayPrevious & e_display_right)
       //      strP += "R";
-      //   if (edisplayPrevious & display_bottom)
+      //   if (edisplayPrevious & e_display_bottom)
       //      strP += "B";
 
       //   ::output_debug_string(
@@ -1617,21 +1617,21 @@ namespace apex
       //   rectWkspace.top,
       //   rectWkspace.right,
       //   rectWkspace.bottom,
-      //   (edisplay & display_left)?'L':' ',
-      //   (edisplay & display_top) ? 'T':' ',
-      //   (edisplay & display_right) ? 'R':' ',
-      //   (edisplay & display_bottom) ? 'B':' ',
-      //   (edisplayPrevious & display_left) ? 'L':' ',
-      //   (edisplayPrevious & display_top) ? 'T':' ',
-      //   (edisplayPrevious & display_right) ? 'R':' ',
-      //   (edisplayPrevious & display_bottom) ? 'B':' ');
+      //   (edisplay & e_display_left)?'L':' ',
+      //   (edisplay & e_display_top) ? 'T':' ',
+      //   (edisplay & e_display_right) ? 'R':' ',
+      //   (edisplay & e_display_bottom) ? 'B':' ',
+      //   (edisplayPrevious & e_display_left) ? 'L':' ',
+      //   (edisplayPrevious & e_display_top) ? 'T':' ',
+      //   (edisplayPrevious & e_display_right) ? 'R':' ',
+      //   (edisplayPrevious & e_display_bottom) ? 'B':' ');
 
       return iBestWkspace;
 
    }
 
 
-   index session::get_best_monitor(RECT32 * prect, const rect & rectParam, ::eactivation eactivation)
+   index session::get_best_monitor(RECT32 * prect, const rect & rectParam, ::e_activation eactivation)
    {
 
       index iMatchingMonitor = -1;
@@ -1642,7 +1642,7 @@ namespace apex
 
       ::rect rect(rectParam);
 
-      if (eactivation & activation_under_mouse_cursor || rect.is_null())
+      if (eactivation & e_activation_under_mouse_cursor || rect.is_null())
       {
 
          ::point pointCursor = get_cursor_pos();
@@ -1710,7 +1710,7 @@ namespace apex
    }
 
 
-   index session::get_best_wkspace(::rect * prect, const rect & rectParam, ::eactivation eactivation)
+   index session::get_best_wkspace(::rect * prect, const rect & rectParam, ::e_activation eactivation)
    {
 
       index iMatchingWkspace = -1;
@@ -1721,7 +1721,7 @@ namespace apex
 
       ::rect rect(rectParam);
 
-      if (eactivation & activation_under_mouse_cursor || rect.is_null())
+      if (eactivation & e_activation_under_mouse_cursor || rect.is_null())
       {
 
          ::point pointCursor = get_cursor_pos();
@@ -1965,17 +1965,17 @@ namespace apex
    //   bool b1 = !rectTolerance.contains(rectRestore);
    //   bool b2 = rectIntersect.width() < sizeMin.cx || rectIntersect.height() < sizeMin.cy;
    //   bool b3 = rectIntersect.width() > sizeMax.cx || rectIntersect.height() > sizeMax.cy;
-   //   bool b4 = (edisplayRestore == display_compact && rectRestore.size() != sizeCompact);
-   //   bool b5 = (edisplayRestore == display_broad && rectRestore.size() != sizeBroad);
+   //   bool b4 = (edisplayRestore == e_display_compact && rectRestore.size() != sizeCompact);
+   //   bool b5 = (edisplayRestore == e_display_broad && rectRestore.size() != sizeBroad);
    //   bool b6 = (rectRestore.size() == sizeCompact || rectRestore.size() == sizeBroad);
-   //   bool b66 = !(edisplayRestore == display_compact || edisplayRestore == display_broad);
+   //   bool b66 = !(edisplayRestore == e_display_compact || edisplayRestore == e_display_broad);
 
    //   bool bNotHappyWithTheSizeAndOrPosition = b1 || b2 || b3 || b4 || b5 || (b6 && b66);
 
    //   if (bNotHappyWithTheSizeAndOrPosition)
    //   {
 
-   //      if (edisplayRestore == display_broad || sizeCompact == rectRestore.size())
+   //      if (edisplayRestore == e_display_broad || sizeCompact == rectRestore.size())
    //      {
 
    //         rectRestore.set_size(sizeBroad);
@@ -2779,24 +2779,24 @@ namespace apex
    }
 
 
-   //bool session::is_mouse_button_pressed(::user::e_mouse emouse)
+   //bool session::is_mouse_button_pressed(::user::enum_mouse emouse)
    //{
 
-   //   if (emouse == ::user::mouse_left_button)
+   //   if (emouse == ::user::e_mouse_left_button)
    //   {
    //      return psession->is_key_pressed(::user::key_lbutton);
    //   }
-   //   else if (emouse == ::user::mouse_right_button)
+   //   else if (emouse == ::user::e_mouse_right_button)
    //   {
    //      return psession->is_key_pressed(::user::key_rbutton);
    //   }
-   //   else if (emouse == ::user::mouse_middle_button)
+   //   else if (emouse == ::user::e_mouse_middle_button)
    //   {
    //      return psession->is_key_pressed(::user::key_mbutton);
    //   }
    //   else
    //   {
-   //      __throw(::exception::exception("not expected e_mouse value"));
+   //      __throw(::exception::exception("not expected enum_mouse value"));
    //   }
 
 
@@ -3187,7 +3187,7 @@ namespace apex
    //            rectEmp.deflate(1, 1);
    //            ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
    //            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-   //            if (ptab->m_itemHover == (::user::e_element)(::user::element_split + i))
+   //            if (ptab->m_itemHover == (::user::enum_element)(::user::e_element_split + i))
    //            {
    //               pgraphics->fill_rect(rectEmp, ARGB(128, 150, 184, 255));
    //               pgraphics->set(ptab->get_data()->m_brushTextHover);

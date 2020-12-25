@@ -1,17 +1,17 @@
 #pragma once
 //
 //
-//enum e_position
+//enum enum_position
 //{
-//   position_none = 0,
-//   position_top = 1,
-//   position_left = 2,
+//   e_position_none = 0,
+//   e_position_top = 1,
+//   e_position_left = 2,
 //   position_top_left = 3,
-//   position_right = 4,
+//   e_position_right = 4,
 //   position_top_right = 5,
 //   position_hcenter = 6,
 //   position_top_center = 7,
-//   position_bottom = 8,
+//   e_position_bottom = 8,
 //   position_vcenter = 9,
 //   position_bottom_left = 10,
 //   position_left_center = 11,
@@ -29,17 +29,17 @@
 //{
 //
 //
-//   enum e_layout
+//   enum enum_layout
 //   {
 //
-//      layout_sketch, // layouting request ("staging area")
-//      layout_design, // ready to process
+//      e_layout_sketch, // layouting request ("staging area")
+//      e_layout_design, // ready to process
 ////      layout_bitmap, // drawn/ready sketch
-//      layout_output, // screen output 
-//      layout_window, // event window
+//      e_layout_output, // screen output 
+//      e_layout_window, // event window
 //
-//      layout_count_child = layout_design + 1,
-//      layout_count_owner = layout_window + 1,
+//      e_layout_count_child = e_layout_design + 1,
+//      e_layout_count_owner = e_layout_window + 1,
 //
 //   };
 //
@@ -174,44 +174,44 @@
 //   enum e_theme
 //   {
 //
-//      theme_lite,
+//      e_theme_lite,
 //      theme_blue,
-//      theme_dark
+//      e_theme_dark
 //
 //   };
 //
 //
-//   enum e_translucency
+//   enum enum_translucency
 //   {
 //
-//      translucency_undefined,
+//      e_translucency_undefined,
 //      translucency_none,
-//      translucency_present,
-//      translucency_total
+//      e_translucency_present,
+//      e_translucency_total
 //
 //   };
 //   
 //
-//   enum e_control_type
+//   enum enum_control_type
 //   {
-//      control_type_none,
-//      control_type_static,
-//      control_type_check_box,
-//      control_type_edit,
-//      control_type_simple_list,
-//      control_type_button,
-//      control_type_combo_box,
-//      control_type_edit_plain_text,
-//      control_type_list,
+//      e_control_type_none,
+//      e_control_type_static,
+//      e_control_type_check_box,
+//      e_control_type_edit,
+//      e_control_type_simple_list,
+//      e_control_type_button,
+//      e_control_type_combo_box,
+//      e_control_type_edit_plain_text,
+//      e_control_type_list,
 //      control_type_mesh,
 //      control_type_tree,
 //      control_type_split,
 //      control_type_tab,
 //      control_type_toolbar,
 //      control_type_statusbar,
-//      control_type_menu,
+//      e_control_type_menu,
 //      control_type_menu_popup,
-//      control_type_menu_button,
+//      e_control_type_menu_button,
 //      control_type_menu_button_close,
 //      control_type_system_menu,
 //      control_type_system_menu_popup,
@@ -221,34 +221,34 @@
 //   };
 //
 //
-//   enum e_element : ::i64
+//   enum enum_element : ::i64
 //   {
 //
-//      element_none,
+//      e_element_none,
 //      element_frame_window,
-//      element_tab,
+//      e_element_tab,
 //      element_tab_layout_background,
 //      element_tab_client_background,
-//      element_tab_near_scroll,
-//      element_tab_far_scroll,
-//      element_close_tab_button,
+//      e_element_tab_near_scroll,
+//      e_element_tab_far_scroll,
+//      e_element_close_tab_button,
 //      element_status_image,
-//      element_text,
+//      e_element_text,
 //      element_list,
 //      element_item_text,
 //      element_item_background,
 //      element_hilite_text,
-//      element_icon,
-//      element_background,
+//      e_element_icon,
+//      e_element_background,
 //      element_separator,
 //      element_face,
-//      element_border,
+//      e_element_border,
 //      element_lite_border,
-//      element_client,
+//      e_element_client,
 //      element_area,
-//      element_drop_down,
-//      element_combo_edit,
-//      element_item,
+//      e_element_drop_down,
+//      e_element_combo_edit,
+//      e_element_item,
 //      element_search_edit,
 //      element_search_ok,
 //      element_scrollbar,
@@ -269,7 +269,7 @@
 //      element_close_icon,
 //
 //
-//      element_split = 10'000,
+//      e_element_split = 10'000,
 //
 //      element_desk_launcher_1,
 //      element_desk_launcher_2,
@@ -295,7 +295,7 @@
 //   enum enum_event
 //   {
 //
-//      event_none,
+//      e_event_none,
 //      event_initialize_control,
 //      event_action,
 //      event_button_down,
@@ -303,8 +303,8 @@
 //      event_m_button_down,
 //      event_m_button_up,
 //      event_list_clicked,
-//      event_mouse_enter,
-//      event_mouse_leave,
+//      e_event_mouse_enter,
+//      e_event_mouse_leave,
 //      event_set_check,
 //      e_event_timer,
 //      event_enter_key,
@@ -364,12 +364,12 @@
 //   enum enum_flag
 //   {
 //
-//      flag_none,
+//      e_flag_none,
 //      flag_border = 1<<0,
 //      flag_modifier_impact = 1 << 1,
 //      flag_tool_impact = 1 << 2,
 //      flag_blur_background = 1 << 3,
-//      flag_hide_all_others_on_show = 1 << 4,
+//      e_flag_hide_all_others_on_show = 1 << 4,
 //      flag_hide_topic_on_show = 1 << 5,
 //      flag_strict_update = 1 << 6,
 //      flag_hide_on_kill_focus = 1 << 7,
@@ -419,41 +419,41 @@
 //   };
 //
 //
-//   enum e_control_function
+//   enum enum_control_function
 //   {
 //      // Text got from control m_uiId member
-//      control_function_static,
+//      e_control_function_static,
 //      // Text got from control m_uiText member
-//      control_function_static2,
-//      control_function_data_selection,
-//      control_function_check_box,
-//      control_function_duplicate_on_check_box,
-//      control_function_disable_on_check_box,
-//      control_function_save_on_change,
-//      control_function_vms_data_edit,
-//      control_function_action,
-//      control_function_edit_multi_line,
+//      e_control_function_static2,
+//      e_control_function_data_selection,
+//      e_control_function_check_box,
+//      e_control_function_duplicate_on_check_box,
+//      e_control_function_disable_on_check_box,
+//      e_control_function_save_on_change,
+//      e_control_function_vms_data_edit,
+//      e_control_function_action,
+//      e_control_function_edit_multi_line,
 //   };
 //
 //
-//   enum e_control_data_type
+//   enum enum_control_data_type
 //   {
-//      control_data_type_string,
-//      control_data_type_natural,
+//      e_control_data_type_string,
+//      e_control_data_type_natural,
 //   };
 //
 //
-//   enum e_control_ddx
+//   enum enum_control_ddx
 //   {
 //
 //      control_ddx_none,
 //      control_ddx_flags,
-//      control_ddx_dbflags,
+//      e_control_ddx_dbflags,
 //
 //   };
 //
 //
-//   enum e_mouse
+//   enum enum_mouse
 //   {
 //
 //      mouse_left_button,
@@ -462,18 +462,18 @@
 //
 //   };
 //
-//   enum e_line_hit
+//   enum enum_line_hit
 //   {
-//      line_hit_none,
-//      line_hit_normal,
-//      line_hit_link,
+//      e_line_hit_none,
+//      e_line_hit_normal,
+//      e_line_hit_link,
 //   };
 //
-//   enum e_tree_element
+//   enum enum_tree_element
 //   {
-//      tree_element_expand_box,
-//      tree_element_image,
-//      tree_element_text,
+//      e_tree_element_expand_box,
+//      e_tree_element_image,
+//      e_tree_element_text,
 //   };
 //
 //

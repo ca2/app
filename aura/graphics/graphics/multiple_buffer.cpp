@@ -302,7 +302,7 @@ namespace graphics
    }
 
 
-   bool multiple_buffer::round_swap_key_buffers()
+   bool multiple_buffer::buffer_lock_round_swap_key_buffers()
    {
 
       sync_lock sl(mutex());

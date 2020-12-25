@@ -34,10 +34,10 @@ namespace simple_ui
 
       auto pstyle = get_style(pgraphics);
 
-      cr          = get_color(pstyle, ::user::element_text);
-      crBk        = get_color(pstyle, ::user::element_background);
-      crSel       = get_color(pstyle, ::user::element_text, ::user::e_state_selected);
-      crBkSel     = get_color(pstyle, ::user::element_background, ::user::e_state_selected);
+      cr          = get_color(pstyle, ::user::e_element_text);
+      crBk        = get_color(pstyle, ::user::e_element_background);
+      crSel       = get_color(pstyle, ::user::e_element_text, ::user::e_state_selected);
+      crBkSel     = get_color(pstyle, ::user::e_element_background, ::user::e_state_selected);
 
 
       //::job * pjob = pgraphics->m_pjob;
@@ -185,7 +185,7 @@ namespace simple_ui
       //size size3;
       ::draw2d::text_metric metric;
        pgraphics->get_text_metrics(&metric);
-      i32 iLineHeight = metric.tmHeight;
+      i32 iLineHeight = metric.get_line_spacing();
 //      string_array & straLines = m_plines->lines;
       string_array & straLines = m_straLines;
       string_array straLineFeed;

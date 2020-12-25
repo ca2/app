@@ -3,6 +3,7 @@
 #include "base/user/simple/_simple.h"
 #endif
 #include "acme/os/_os.h"
+#include "acme/os/cross.h"
 
 
 simple_scroll_bar::simple_scroll_bar() :
@@ -131,13 +132,13 @@ bool simple_scroll_bar::scrollbar_action(const ::user::item & item, ::draw2d::gr
 
    switch(item.m_eelement)
    {
-   case ::user::element_scrollbar_rectA:
+   case ::user::e_element_scrollbar_rectA:
       return scrollbar_lineA(pgraphics);
-   case ::user::element_scrollbar_rectB:
+   case ::user::e_element_scrollbar_rectB:
       return scrollbar_lineB(pgraphics);
-   case ::user::element_scrollbar_pageA:
+   case ::user::e_element_scrollbar_pageA:
       return scrollbar_pageA(item.m_pointClient, pgraphics);
-   case ::user::element_scrollbar_pageB:
+   case ::user::e_element_scrollbar_pageB:
       return scrollbar_pageB(item.m_pointClient, pgraphics);
    default:
       return false;
@@ -169,7 +170,7 @@ void simple_scroll_bar::_001OnLButtonDown(::message::message * pmessage)
 
    auto pgraphics = create_memory_graphics();
 
-   if(m_itemCurrent == ::user::element_scrollbar_rect)
+   if(m_itemCurrent == ::user::e_element_scrollbar_rect)
    {
 
       m_bTracking = true;
@@ -202,7 +203,7 @@ void simple_scroll_bar::_001OnLButtonUp(::message::message * pmessage)
 
    SCAST_PTR(::message::mouse, pmouse, pmessage);
 
-   m_itemCurrent = ::user::element_none;
+   m_itemCurrent = ::user::e_element_none;
 
    KillTimer(((uptr)this));
 
@@ -1158,9 +1159,9 @@ public:
    trw()
    {
 
-      ::user::create_struct createstruct(WS_EX_LAYERED, nullptr, "", WS_VISIBLE);
+      auto pcreatestruct = __new(::user::create_struct (WS_EX_LAYERED, nullptr, "", WS_VISIBLE));
 
-      if(create_window_ex(createstruct))
+      if(create_window_ex(pcreatestruct))
       {
 
          TRACE("created trw");
@@ -1329,7 +1330,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    auto pstyle = get_style(pgraphics);
 
-   color32_t crBackground = get_color(pstyle, ::user::element_background);
+   color32_t crBackground = get_color(pstyle, ::user::e_element_background);
 
    ::rect rectClient;
 
@@ -1365,7 +1366,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    get_window_rect(rectWindow);
 
-   m_brushDraw->create_solid(scrollbar_color_strong(pstyle, ::user::element_scrollbar_rect));
+   m_brushDraw->create_solid(scrollbar_color_strong(pstyle, ::user::e_element_scrollbar_rect));
 
    pgraphics->set(m_brushDraw);
 
@@ -1534,7 +1535,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //}
 
-   color32_t cr = scrollbar_color(pstyle, ::user::element_scrollbar_rectA);
+   color32_t cr = scrollbar_color(pstyle, ::user::e_element_scrollbar_rectA);
 
    m_brushDraw->create_solid(cr);
 
@@ -1542,7 +1543,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    pgraphics->fill_rect(m_rectA);
 
-   cr = scrollbar_color(pstyle, ::user::element_scrollbar_rectB);
+   cr = scrollbar_color(pstyle, ::user::e_element_scrollbar_rectB);
 
    m_brushDraw->create_solid(cr);
 
@@ -1552,12 +1553,12 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    ::rect rect;
 
-   if (m_itemCurrent == ::user::element_scrollbar_pageA || m_itemHover== ::user::element_scrollbar_pageA)
+   if (m_itemCurrent == ::user::e_element_scrollbar_pageA || m_itemHover== ::user::e_element_scrollbar_pageA)
    {
 
       GetPageARect(rectClient, rectTrack, rect, pgraphics);
 
-      cr = scrollbar_color(pstyle, ::user::element_scrollbar_pageA);
+      cr = scrollbar_color(pstyle, ::user::e_element_scrollbar_pageA);
 
       m_brushDraw->create_solid(cr);
 
@@ -1566,12 +1567,12 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
       pgraphics->fill_rect(rect);
 
    }
-   else if (m_itemCurrent == ::user::element_scrollbar_pageB || m_itemHover== ::user::element_scrollbar_pageB)
+   else if (m_itemCurrent == ::user::e_element_scrollbar_pageB || m_itemHover== ::user::e_element_scrollbar_pageB)
    {
 
       GetPageBRect(rectClient, rectTrack, rect, pgraphics);
 
-      cr = scrollbar_color(pstyle, ::user::element_scrollbar_pageB);
+      cr = scrollbar_color(pstyle, ::user::e_element_scrollbar_pageB);
 
       m_brushDraw->create_solid(cr);
 
@@ -1589,7 +1590,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    penArrow->m_elinejoin = ::draw2d::e_line_join_round;
 
-   cr = scrollbar_draw_color(pstyle, ::user::element_scrollbar_rectA);
+   cr = scrollbar_draw_color(pstyle, ::user::e_element_scrollbar_rectA);
 
    penArrow->create_solid(1.0, cr);
 
@@ -1597,7 +1598,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    pgraphics->Polyline(m_ptaA, 3);
 
-   cr = scrollbar_draw_color(pstyle, ::user::element_scrollbar_rectB);
+   cr = scrollbar_draw_color(pstyle, ::user::e_element_scrollbar_rectB);
 
    penArrow->create_solid(1.0, cr);
 
@@ -1757,7 +1758,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
    if(rectTrack.contains(item.m_pointClient))
    {
 
-      item = ::user::element_scrollbar_rect;
+      item = ::user::e_element_scrollbar_rect;
 
    }
    else
@@ -1774,7 +1775,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
       if (rect.contains(item.m_pointClient))
       {
 
-         item = ::user::element_scrollbar_pageA;
+         item = ::user::e_element_scrollbar_pageA;
 
          return;
 
@@ -1785,7 +1786,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
       if (rect.contains(item.m_pointClient))
       {
 
-         item = ::user::element_scrollbar_pageB;
+         item = ::user::e_element_scrollbar_pageB;
 
          return;
 
@@ -1794,7 +1795,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
       if (m_rectA.contains(item.m_pointClient))
       {
 
-         item = ::user::element_scrollbar_rectA;
+         item = ::user::e_element_scrollbar_rectA;
 
          return;
 
@@ -1803,26 +1804,26 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
       if (m_rectB.contains(item.m_pointClient))
       {
 
-         item = ::user::element_scrollbar_rectB;
+         item = ::user::e_element_scrollbar_rectB;
 
          return;
 
       }
 
-      item = ::user::element_none;
+      item = ::user::e_element_none;
 
    }
 
 }
 
 
-::color simple_scroll_bar::scrollbar_color_strong(::user::style * pstyle, ::user::e_element eelement)
+::color simple_scroll_bar::scrollbar_color_strong(::user::style * pstyle, ::user::enum_element eelement)
 {
 
    if (m_itemCurrent == eelement || m_itemHover== eelement)
    {
 
-      auto color = get_color(pstyle, ::user::element_scrollbar_strong, ::user::e_state_hover);
+      auto color = get_color(pstyle, ::user::e_element_scrollbar_strong, ::user::e_state_hover);
 
       return color ? color : __acolor(130, 190, 180, 250);
 
@@ -1830,7 +1831,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
    else
    {
 
-      auto color = get_color(pstyle, ::user::element_scrollbar_strong);
+      auto color = get_color(pstyle, ::user::e_element_scrollbar_strong);
 
       return color ? color : __acolor(150, 150, 150, 150);
 
@@ -1839,7 +1840,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 }
 
 
-::color simple_scroll_bar::scrollbar_color(::user::style* pstyle, ::user::e_element eelement)
+::color simple_scroll_bar::scrollbar_color(::user::style* pstyle, ::user::enum_element eelement)
 {
 
    if(m_itemCurrent == eelement || m_itemHover== eelement)
@@ -1862,13 +1863,13 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 }
 
 
-::color simple_scroll_bar::scrollbar_border_color(::user::style* pstyle, ::user::e_element eelement)
+::color simple_scroll_bar::scrollbar_border_color(::user::style* pstyle, ::user::enum_element eelement)
 {
 
    if(m_itemCurrent == eelement || m_itemHover== eelement)
    {
 
-      auto color = get_color(pstyle, ::user::element_border, ::user::e_state_hover);
+      auto color = get_color(pstyle, ::user::e_element_border, ::user::e_state_hover);
 
       return color ? color : __acolor(190, 180, 180, 180);
 
@@ -1876,7 +1877,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
    else
    {
 
-      auto color = get_color(pstyle, ::user::element_border);
+      auto color = get_color(pstyle, ::user::e_element_border);
 
       return color ? color : __acolor(190, 160, 160, 160);
 
@@ -1885,13 +1886,13 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 }
 
 
-::color simple_scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::user::e_element eelement)
+::color simple_scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::user::enum_element eelement)
 {
 
    if(m_itemCurrent == eelement || m_itemHover== eelement)
    {
 
-      auto color = get_color(pstyle, ::user::element_lite_border, ::user::e_state_hover);
+      auto color = get_color(pstyle, ::user::e_element_lite_border, ::user::e_state_hover);
 
       return color ? color : __acolor(190, 90, 110, 180);
 
@@ -1899,7 +1900,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
    else
    {
 
-      auto color = get_color(pstyle, ::user::element_lite_border);
+      auto color = get_color(pstyle, ::user::e_element_lite_border);
 
       return color ? color : __acolor(190, 110, 110, 100);
 
@@ -1908,13 +1909,13 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 }
 
 
-::color simple_scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::user::e_element eelement)
+::color simple_scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::user::enum_element eelement)
 {
 
    if (m_itemCurrent == eelement || m_itemHover == eelement)
    {
 
-      auto color = get_color(pstyle, ::user::element_scrollbar_draw, ::user::e_state_hover);
+      auto color = get_color(pstyle, ::user::e_element_scrollbar_draw, ::user::e_state_hover);
 
       return color ? color : __acolor(127, 90, 90, 90);
 
@@ -1922,7 +1923,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
    else
    {
 
-      auto color = get_color(pstyle, ::user::element_scrollbar_draw);
+      auto color = get_color(pstyle, ::user::e_element_scrollbar_draw);
 
       return color ? color : __acolor(127, 65, 65, 65);
 

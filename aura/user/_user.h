@@ -295,6 +295,9 @@ namespace user
 #endif
 
 
+#include "aura/os/_user.h"
+
+
 //#include "keyboard_layout.h"
 #include "keyboard.h"
 
@@ -518,17 +521,17 @@ namespace user
 //class simple_mesh_data;
 
 //
-//enum e_position
+//enum enum_position
 //{
-//   position_none = 0,
-//   position_top = 1,
-//   position_left = 2,
+//   e_position_none = 0,
+//   e_position_top = 1,
+//   e_position_left = 2,
 //   position_top_left = 3,
-//   position_right = 4,
+//   e_position_right = 4,
 //   position_top_right = 5,
 //   position_hcenter = 6,
 //   position_top_center = 7,
-//   position_bottom = 8,
+//   e_position_bottom = 8,
 //   position_vcenter = 9,
 //   position_bottom_left = 10,
 //   position_left_center = 11,
@@ -541,11 +544,11 @@ namespace user
 //
 //namespace user
 //{
-//   enum e_line_hit
+//   enum enum_line_hit
 //   {
-//      line_hit_none,
-//      line_hit_normal,
-//      line_hit_link,
+//      e_line_hit_none,
+//      e_line_hit_normal,
+//      e_line_hit_link,
 //   };
 //}
 //
@@ -570,7 +573,7 @@ namespace user
 
 } // namespace user
 
-#include "aura/os/_user.h"
+///#include "aura/os/_user.h"
 
 
 
@@ -664,7 +667,7 @@ public:
 
 
 protected:
-   virtual bool pre_create_window(::user::create_struct& cs);
+   virtual bool pre_create_window(::user::create_struct * pcreatestruct);
 
 protected:
    bool m_bSysTracking;

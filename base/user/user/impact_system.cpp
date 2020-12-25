@@ -171,10 +171,6 @@ namespace user
 
       ASSERT(m_strMatter.has_char());
 
-      //::user::create usercreate;
-
-      //__set_restore(pcreate->m_pusercreate, &usercreate);
-
       if (pcreate->m_pusercreate.is_null())
       {
 
@@ -246,10 +242,10 @@ namespace user
 
       }
 
-      if (pcreate->m_ewindowflag & window_flag_updown)
+      if (pcreate->m_ewindowflag & e_window_flag_updown)
       {
 
-         pframe->m_ewindowflag += window_flag_updown;
+         pframe->m_ewindowflag += e_window_flag_updown;
 
       }
 

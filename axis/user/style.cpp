@@ -98,8 +98,7 @@ namespace axis
    }
 
 
-   bool style::draw_check(::enum_check echeck, const ::rect & rect, ::draw2d::graphics_pointer & pgraphics)
-
+   bool style::draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::rect & rect, ::draw2d::graphics_pointer & pgraphics)
    {
 
       if (echeck == ::check_tristate || echeck == ::check_checked)
@@ -125,6 +124,39 @@ namespace axis
             pen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? ARGB(255, 0, 0, 0) : ARGB(255, 96, 96, 96));
 
          }
+
+         ::user::estate estate;
+
+         if (bHover)
+         {
+
+            estate |= ::user::e_state_hover;
+
+         }
+
+         if (echeck == ::check_checked)
+         {
+
+            estate |= ::user::e_state_checked;
+
+         }
+
+         //if (bHover)
+         //{
+         //   echeck == ::check_checked
+
+
+         //}
+         //else
+         //{
+
+         //   pen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? ARGB(255, 0, 0, 0) : ARGB(255, 96, 96, 96));
+
+         //}pinteraction->get ? ARGB(255, 50, 80, 160) : ARGB(255, 80, 120, 200)
+
+         auto colorCheck = pinteraction->get_color(this, estate);
+
+         pen->create_solid(1 * (w + h) / 30, colorCheck);
 
          pgraphics->set(pen);
 
@@ -155,7 +187,7 @@ namespace axis
    bool style::simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics)
    {
 
-      bool bError = pinteraction->m_ptooltip.is_set() && pinteraction->m_ptooltip->is_window_visible(::user::layout_sketch);
+      bool bError = pinteraction->m_ptooltip.is_set() && pinteraction->m_ptooltip->is_window_visible(::user::e_layout_sketch);
 
       ::draw2d::savedc savedc(pgraphics);
 
@@ -200,7 +232,7 @@ namespace axis
          if (!pinteraction->m_flagNonClient.has(::user::interaction::non_client_hover_rect) && pinteraction->hover_item().is_set() && !pinteraction->has_text_input())
          {
 
-            brush->create_solid(pinteraction->get_color(this, ::user::element_background, ::user::e_state_hover));
+            brush->create_solid(pinteraction->get_color(this, ::user::e_element_background, ::user::e_state_hover));
 
             pgraphics->set(brush);
 
@@ -223,7 +255,7 @@ namespace axis
 
                   pen.create();
 
-                  pen->create_solid(1.0, pinteraction->get_color(this, ::user::element_border, ::user::e_state_hover));
+                  pen->create_solid(1.0, pinteraction->get_color(this, ::user::e_element_border, ::user::e_state_hover));
 
                }
 
@@ -448,7 +480,7 @@ namespace axis
 
          ::draw2d::pen_pointer pen(e_create);
 
-         pen->create_solid(1.0, pinteraction->get_color(this, ::user::element_border));
+         pen->create_solid(1.0, pinteraction->get_color(this, ::user::e_element_border));
 
          pgraphics->draw_rect(rectClient, pen);
 
@@ -491,7 +523,7 @@ namespace axis
    //}
 
 
-   //   bool style::_001GetMainFrameTranslucency(::user::e_translucency & etranslucency)
+   //   bool style::_001GetMainFrameTranslucency(::user::enum_translucency & etranslucency)
    //   {
    //
    //      return false;
@@ -677,7 +709,7 @@ namespace axis
    //}
 
 
-   //bool style::create_translucency(e_element eelement, e_translucency etranslucency)
+   //bool style::create_translucency(enum_element eelement, enum_translucency etranslucency)
    //{
 
    //   if (userstyle()->m_mapTranslucency.is_null())
@@ -826,15 +858,15 @@ namespace axis
    //}
 
 
-   ::user::e_control_type style::get_control_type() const
+   ::user::enum_control_type style::get_control_type() const
    {
 
-      return ::user::control_type_none;
+      return ::user::e_control_type_none;
 
    }
 
 
-   ::color style::get_color(const ::user::interaction* pinteraction, ::user::e_element eelement, ::user::estate estate) const
+   ::color style::get_color(const ::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate) const
    {
 
       if (::is_set(pinteraction))
@@ -842,10 +874,10 @@ namespace axis
 
          auto econtroltype = pinteraction->get_control_type();
 
-         if (econtroltype == ::user::control_type_list)
+         if (econtroltype == ::user::e_control_type_list)
          {
 
-            if (eelement == ::user::element_background)
+            if (eelement == ::user::e_element_background)
             {
 
                return ::color(0, 0, 0, 0);
@@ -1116,7 +1148,7 @@ namespace axis
       //}
 
 
-      //   bool style::_001GetMainFrameTranslucency(::user::e_translucency & etranslucency)
+      //   bool style::_001GetMainFrameTranslucency(::user::enum_translucency & etranslucency)
       //   {
       //
       //      return false;
@@ -1278,7 +1310,7 @@ namespace axis
       //}
 
 
-      //bool style::create_translucency(e_element eelement, e_translucency etranslucency)
+      //bool style::create_translucency(enum_element eelement, enum_translucency etranslucency)
       //{
 
       //   if (userstyle()->m_mapTranslucency.is_null())

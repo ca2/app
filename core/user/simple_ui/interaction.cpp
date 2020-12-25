@@ -23,7 +23,7 @@ namespace simple_ui
 //   {
 //
 //      m_iIndex = -1;
-//      //m_eelementHover = ::user::element_none;
+//      //m_eelementHover = ::user::e_element_none;
 //
 //   }
 //
@@ -72,7 +72,7 @@ namespace simple_ui
 //
 //      SCAST_PTR(::message::base, pbase, pmessage);
 //
-//      if (eevent == ::user::event_button_down)
+//      if (eevent == ::user::e_event_button_down)
 //      {
 //
 //         psession->m_puiLastLButtonDown = this;
@@ -142,7 +142,7 @@ namespace simple_ui
 //
 //         }
 //
-//         if (!simple_process_system_message(pmessage, ::user::event_button_down))
+//         if (!simple_process_system_message(pmessage, ::user::e_event_button_down))
 //         {
 //
 //            pmouse->m_bRet = true;
@@ -166,7 +166,7 @@ namespace simple_ui
 //      if (hit_test(pmouse->)
 //      {
 //
-//         if (!simple_process_system_message(pmessage, ::user::event_m_button_down))
+//         if (!simple_process_system_message(pmessage, ::user::e_event_m_button_down))
 //         {
 //
 //            pmouse->m_bRet = true;
@@ -190,7 +190,7 @@ namespace simple_ui
 //      if (hit_test(pmouse->)
 //      {
 //
-//         if (!simple_process_system_message(pmessage, ::user::event_m_button_up))
+//         if (!simple_process_system_message(pmessage, ::user::e_event_m_button_up))
 //         {
 //
 //            pmouse->m_bRet = true;
@@ -244,7 +244,7 @@ namespace simple_ui
 //
 //            ev.m_id = m_id;
 //
-//            ev.m_eevent = ::user::event_button_clicked;
+//            ev.m_eevent = ::user::e_event_button_clicked;
 //
 //            ev.m_pmessage = pmouse->
 //
@@ -324,7 +324,7 @@ namespace simple_ui
 //
 //            ev.m_puie = this;
 //
-//            ev.m_eevent = ::user::event_mouse_enter;
+//            ev.m_eevent = ::user::e_event_mouse_enter;
 //
 //            on_control_event(&ev);
 //
@@ -336,7 +336,7 @@ namespace simple_ui
 //
 //            ev.m_puie = this;
 //
-//            ev.m_eevent = ::user::event_mouse_leave;
+//            ev.m_eevent = ::user::e_event_mouse_leave;
 //
 //            on_control_event(&ev);
 //
@@ -356,7 +356,7 @@ namespace simple_ui
 //
 //      auto itemOldHover = m_itemHover;
 //
-//      m_itemHover = ::user::element_none;
+//      m_itemHover = ::user::e_element_none;
 //
 //      if (itemOldHover)
 //      {
@@ -367,7 +367,7 @@ namespace simple_ui
 //
 //         ev.m_puie = this;
 //
-//         ev.m_eevent = ::user::event_mouse_leave;
+//         ev.m_eevent = ::user::e_event_mouse_leave;
 //
 //         on_control_event(&ev);
 //
@@ -393,16 +393,16 @@ namespace simple_ui
 //   void interaction::on_hit_test(::user::item & item)
 //   {
 //
-//      auto rect = this->rect(::user::element_client);
+//      auto rect = this->rect(::user::e_element_client);
 //
 //      if (!rect.contains(point))
 //      {
 //
-//         return ::user::element_none;
+//         return ::user::e_element_none;
 //
 //      }
 //
-//      return ::user::element_client;
+//      return ::user::e_element_client;
 //
 //   }
 //
@@ -941,11 +941,11 @@ namespace simple_ui
 //   //   if (!rectClient.contains(point))
 //   //   {
 //
-//   //      return ::user::element_none;
+//   //      return ::user::e_element_none;
 //
 //   //   }
 //
-//   //   return ::user::element_client;
+//   //   return ::user::e_element_client;
 //
 //   //}
 //

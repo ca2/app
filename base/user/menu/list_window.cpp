@@ -57,7 +57,7 @@ namespace user
    void menu_list_window::_001OnCreate(::message::message * pmessage)
    {
 
-      descriptor().set_control_type(control_type_menu);
+      descriptor().set_control_type(e_control_type_menu);
 
       UNREFERENCED_PARAMETER(pmessage);
 
@@ -174,7 +174,7 @@ namespace user
 
       GetParent()->get_client_rect(rectClient);
 
-      pgraphics->set_font(this);
+      pgraphics->set_font(this, ::user::e_element_none);
 
       const ::size & size = pgraphics->GetTextExtent("XXXMMM");
 
@@ -182,17 +182,17 @@ namespace user
 
       i32 iMaxWidth = size.cx;
 
-      m_iHeaderHeight = size.cy;
+      m_dHeaderHeight = size.cy;
 
       calc_size(m_pmenuitem, pgraphics, iMaxWidth, iMaxHeight);
 
-      m_iItemHeight = iMaxHeight + 6 + 2;
+      m_dItemHeight = iMaxHeight + 6 + 2;
 
       m_size.cx = iMaxWidth + 4;
 
-      m_size.cy = m_iHeaderHeight + pitem->m_iSeparatorCount * 3 + pitem->m_iFullHeightItemCount * m_iItemHeight + 4;
+      m_size.cy = m_dHeaderHeight + pitem->m_iSeparatorCount * 3 + pitem->m_iFullHeightItemCount * m_dItemHeight + 4;
 
-      ::rect rect(4, m_iHeaderHeight + 4, m_size.cx - 8, 4);
+      ::rect rect(4, m_dHeaderHeight + 4, m_size.cx - 8, 4);
 
       string str;
 
@@ -234,7 +234,7 @@ namespace user
 
          menu_item * pitem = pitemParent->m_pmenuitema->element_at(i);
 
-         prect->bottom = prect->top + m_iItemHeight - 2;
+         prect->bottom = prect->top + m_dItemHeight - 2;
 
          if(prect->bottom > rectBound.bottom)
          {
@@ -243,7 +243,7 @@ namespace user
 
             prect->top = rectBound.top;
 
-            prect->bottom = prect->top + m_iItemHeight - 2;
+            prect->bottom = prect->top + m_dItemHeight - 2;
 
          }
 

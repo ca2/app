@@ -27,7 +27,7 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
 #include "apex/id.h"
-#include "apex/net/sockets/_.h"
+#include "apex/net/sockets/_sockets.h"
 #include "apex/platform/static_start.h"
 #include <openssl/ssl.h>
 

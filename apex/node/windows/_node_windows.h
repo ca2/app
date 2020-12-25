@@ -154,7 +154,7 @@ i32 CLASS_DECL_APEX __windows_main(::apex::system * psystem, ::create * pmainini
 
 CLASS_DECL_APEX __pointer(::apex::application) __get_app();
 
-CLASS_DECL_APEX i32 app_main(::apex::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, char * pCmdLine, ::edisplay edisplay);
+CLASS_DECL_APEX i32 app_main(::apex::system * psystem, HINSTANCE hInstance, HINSTANCE hPrevInstance, char * pCmdLine, ::e_display edisplay);
 
 
 

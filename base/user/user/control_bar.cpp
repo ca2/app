@@ -73,10 +73,11 @@ namespace user
       m_rectBorder.bottom = cyBottom;
    }
 
-   bool control_bar::pre_create_window(::user::create_struct& cs)
+
+   bool control_bar::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
-      if (!::user::interaction::pre_create_window(cs))
+      if (!::user::interaction::pre_create_window(pcreatestruct))
       {
 
          return FALSE;
@@ -87,7 +88,7 @@ namespace user
 #ifdef WINDOWS_DESKTOP
 
       // force clipsliblings (otherwise will cause repaint problems)
-      cs.style |= WS_CLIPSIBLINGS;
+      pcreatestruct->m_createstruct.style |= WS_CLIPSIBLINGS;
 
 #endif
 
@@ -747,7 +748,7 @@ namespace user
 //            else if (swpFlags & SWP_SHOWWINDOW)
 //            {
 //
-//               display(display_normal, activation_no_activate);
+//               display(e_display_normal, e_activation_no_activate);
 //
 //            }
 //

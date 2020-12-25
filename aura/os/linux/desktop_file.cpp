@@ -168,7 +168,7 @@ namespace linux
 
       strPrgName.replace("_", "-");
 
-      path /= ("cc.ca2." + strPrgName + ".desktop");
+      path /= ("com." + strPrgName + ".desktop");
 
       return path;
 
@@ -190,7 +190,7 @@ namespace linux
 
       strPrgName.replace("_", "-");
 
-      path /= ("cc.ca2." + strPrgName + ".desktop");
+      path /= ("com." + strPrgName + ".desktop");
 
       return path;
 
@@ -271,7 +271,7 @@ namespace linux
 
       {
 
-         Context.file().get_file(pathIcon, ::file::mode_read);
+         Context.file().get_file(pathIcon, ::file::e_open_read);
 
       }
 
@@ -361,7 +361,7 @@ namespace linux
       }
 
 
-      straLine._007SetLine("[Desktop Entry]", "StartupWMClass", "cc.ca2." + strPrgName);
+      straLine._007SetLine("[Desktop Entry]", "StartupWMClass", "com." + strPrgName);
 
       // straLine._007SetLine("[Desktop Entry]", "Actions", "transparent-frame;");
 
@@ -376,7 +376,7 @@ namespace linux
       // }
 
       // straLine._007SetLine("[Desktop Action transparent-frame]", "Name", "Transparent Frame");
-      // //straLine._007SetLine("[Desktop Action transparent-frame]", "StartupWMClass", "cc.ca2." + strPrgName);
+      // //straLine._007SetLine("[Desktop Action transparent-frame]", "StartupWMClass", "com." + strPrgName);
       // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", pathLaunch + " : post transparent_frame");
       // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", strName + " : post transparent_frame");
       // //straLine._007SetLine("[Desktop Action transparent-frame]", "Exec", string(Context.file().module()) + " : post transparent_frame");

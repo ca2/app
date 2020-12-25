@@ -28,10 +28,10 @@ bool oswindow_data::is_iconic()
 }
 
 
-bool oswindow_data::show_window(int iShow)
+bool oswindow_data::show_window(enum_display edisplay)
 {
    
-   return uiwindow_show_window(window(), iShow);
+   return uiwindow_show_window(window(), edisplay);
    
 }
 

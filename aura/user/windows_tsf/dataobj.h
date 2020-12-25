@@ -38,7 +38,7 @@ public:
     ~CTSFDataObject();
 
     //IUnknown methods
-    STDMETHODIMP QueryInterface(REFIID, LPVOID FAR *);
+    STDMETHODIMP QueryInterface(REFIID, LPVOID *);
     STDMETHODIMP_(::u32) AddRef();
     STDMETHODIMP_(::u32) Release();
 

@@ -268,16 +268,61 @@ void thread::term_thread()
    switch (m_idContextReference)
    {
    case id_application:
-      get_context_application()->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_context_application()));
+   {
+
+      auto papplication = get_context_application();
+
+      if (papplication)
+      {
+
+         papplication->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(papplication));
+
+      }
+
+   }
       break;
+
    case id_session:
-      get_context_session()->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_context_session()));
-      break;
+   {
+
+      auto pcontextsession = get_context_session();
+
+      if (pcontextsession)
+      {
+
+         pcontextsession->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pcontextsession));
+
+      }
+
+   }
+   break;
    case id_system:
-      get_context_system()->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_context_system()));
-      break;
+   {
+
+      auto pcontextsystem = get_context_system();
+
+      if (pcontextsystem)
+      {
+
+         pcontextsystem->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pcontextsystem));
+
+      }
+
+   }
+   break;
    case id_thread:
-      get_context_thread()->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(get_context_thread()));
+   {
+
+      auto pcontextthread = get_context_thread();
+      
+      if (pcontextthread)
+      {
+
+         pcontextthread->release_reference(this OBJ_REF_DBG_COMMA_P_FUNCTION_LINE(pcontextthread));
+
+      }
+
+   }
       break;
    default:
       break;
@@ -1960,7 +2005,7 @@ sync_result thread::wait(const duration & duration)
          while(is_thread_on(ithread))
          {
 
-            millis_sleep(100);
+            sleep(100_ms);
 
          }
 
@@ -1975,7 +2020,7 @@ sync_result thread::wait(const duration & duration)
          while(is_thread_on(ithread))
          {
 
-            millis_sleep(dwStep);
+            sleep(dwStep);
 
          }
 
@@ -2853,7 +2898,7 @@ bool thread::post_task(const ::promise::routine & routine)
 bool thread::send_task(const ::promise::routine & routine, ::duration durationTimeout)
 {
 
-   return send_object(e_message_system, system_message_method, routine, durationTimeout);
+   return send_object(e_message_system, e_system_message_method, routine, durationTimeout);
 
 }
 
@@ -3023,7 +3068,7 @@ bool thread::send_message(const ::id & id, WPARAM wParam, lparam lParam, ::durat
    pmessage->m_message.wParam = wParam;
    pmessage->m_message.lParam = lParam;
 
-   post_message(e_message_system, system_message_meta, pmessage);
+   post_message(e_message_system, e_system_message_meta, pmessage);
 
    pmessage->m_ev.wait(durWaitStep);
 
@@ -3975,7 +4020,7 @@ void thread::message_handler(::message::base * pbase)
       else if (msg.message == e_message_system)
       {
 
-         if (msg.wParam == system_message_create)
+         if (msg.wParam == e_system_message_create)
          {
 
             __pointer(::create) pcreate((lparam)msg.lParam);
@@ -3988,7 +4033,7 @@ void thread::message_handler(::message::base * pbase)
             }
 
          }
-         else if (msg.wParam == system_message_method)
+         else if (msg.wParam == e_system_message_method)
          {
 
             ::promise::routine routine(msg.lParam);
@@ -4004,7 +4049,7 @@ void thread::message_handler(::message::base * pbase)
          //   pobjectTask->call();
 
          //}
-         else if (msg.wParam == system_message_meta)
+         else if (msg.wParam == e_system_message_meta)
          {
 
             __pointer(::send_thread_message) pmessage(msg.lParam);
@@ -4334,7 +4379,7 @@ bool thread::kick_thread()
 ::estatus thread::do_request(::create * pcreate)
 {
 
-   post_object(e_message_system, system_message_create, pcreate);
+   post_object(e_message_system, e_system_message_create, pcreate);
 
    return ::success;
 
@@ -4460,12 +4505,12 @@ thread_ptra::~thread_ptra()
 
 }
 
-CLASS_DECL_APEX bool thread_pump_sleep(::u32 dwMillis, sync * psync)
+CLASS_DECL_APEX bool thread_pump_sleep(millis millis, sync * psync)
 {
 
-   int iTenths = dwMillis / 100;
+   auto iTenths = millis / 100_ms;
 
-   int iMillis = dwMillis % 100;
+   auto millisRemaining = millis % 100_ms;
 
    while (true)
    {
@@ -4500,7 +4545,7 @@ CLASS_DECL_APEX bool thread_pump_sleep(::u32 dwMillis, sync * psync)
       if (cMessage <= 0)
       {
 
-         millis_sleep(100);
+         sleep(100_ms);
 
       }
 
@@ -4509,7 +4554,7 @@ CLASS_DECL_APEX bool thread_pump_sleep(::u32 dwMillis, sync * psync)
 
          sync_lock sl(psync);
 
-         if (sl.wait(millis(0)).succeeded())
+         if (sl.wait(::millis()).succeeded())
          {
 
             break;
@@ -4522,7 +4567,7 @@ CLASS_DECL_APEX bool thread_pump_sleep(::u32 dwMillis, sync * psync)
 
    }
 
-   millis_sleep(iMillis);
+   sleep(millisRemaining);
 
    return ::thread_get_run();
 
@@ -4584,9 +4629,9 @@ CLASS_DECL_APEX bool app_sleep(millis millis)
 
    }
 
-   auto iTenths = __i64(millis) / 100;
+   auto iTenths = millis / 100_ms;
 
-   auto iMillis = __i64(millis) % 100;
+   auto millisRemaining = millis % 100_ms;
 
    while(iTenths > 0)
    {
@@ -4600,11 +4645,11 @@ CLASS_DECL_APEX bool app_sleep(millis millis)
 
       iTenths--;
 
-      millis_sleep(100);
+      sleep(100_ms);
 
    }
 
-   millis_sleep((u32) iMillis);
+   sleep(millisRemaining);
 
    return !get_context_application() || !get_context_application()->finish_bit();
 

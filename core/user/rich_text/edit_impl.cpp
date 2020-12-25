@@ -520,11 +520,11 @@ namespace user
       }
 
 
-      bool edit_impl::get_element_rect(RECT32 * prect, index i, e_element eelement)
+      bool edit_impl::get_element_rect(RECT32 * prect, index i, enum_element eelement)
 
       {
 
-         if (eelement == ::user::element_icon)
+         if (eelement == ::user::e_element_icon)
          {
 
             if (!get_item_rect(prect, i))
@@ -538,7 +538,7 @@ namespace user
             return true;
 
          }
-         else if (eelement == ::user::element_text)
+         else if (eelement == ::user::e_element_text)
          {
 
             if (!get_item_rect(prect, i))
@@ -883,7 +883,7 @@ namespace user
       void edit_impl::on_control_event(::user::control_event * pevent)
       {
 
-         if (pevent->m_eevent == ::user::event_after_change_cur_sel)
+         if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
          {
 
             auto pformattool = get_format_tool(false);
@@ -976,7 +976,7 @@ namespace user
 
             ev.m_puie = this;
 
-            ev.m_eevent = ::user::event_key_down;
+            ev.m_eevent = ::user::e_event_key_down;
 
             ev.m_pmessage = pmessage;
 
@@ -1038,7 +1038,7 @@ namespace user
 
             ev.m_puie = this;
 
-            ev.m_eevent = ::user::event_escape;
+            ev.m_eevent = ::user::e_event_escape;
 
             ev.m_actioncontext = ::source_user;
 
@@ -1284,7 +1284,7 @@ namespace user
 
                //index i = find_span(m_pdata->m_spana, i1);
 
-               on_after_change(::user::event_after_change_text);
+               on_after_change(::user::e_event_after_change_text);
 
                set_need_redraw();
 
@@ -1304,7 +1304,7 @@ namespace user
 
                //index i = find_span(m_pdata->m_spana, i1);
 
-               on_after_change(::user::event_after_change_text);
+               on_after_change(::user::e_event_after_change_text);
 
                set_need_redraw();
 
@@ -1504,7 +1504,7 @@ namespace user
 
                               m_pdata->m_iSelBeg = m_pdata->m_iSelEnd = i1;
 
-                              on_after_change(::user::event_after_change_text);
+                              on_after_change(::user::e_event_after_change_text);
 
                               set_need_redraw();
 
@@ -1522,7 +1522,7 @@ namespace user
 
                               m_pdata->m_iSelBeg = m_pdata->m_iSelEnd = i1 - iDecLen;
 
-                              on_after_change(::user::event_after_change_text);
+                              on_after_change(::user::e_event_after_change_text);
 
                               set_need_redraw();
 
@@ -2020,7 +2020,7 @@ namespace user
 
          place(rectWindow);
 
-         display(display_normal);
+         display(e_display_normal);
 
          set_need_layout();
 

@@ -135,7 +135,7 @@ bool condition::pulse()
 
       while (m_iHold > 0)
       {
-         millis_sleep(1);
+         sleep(1_ms);
       }
 
       m_bSignaled = false;

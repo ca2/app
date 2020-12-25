@@ -104,7 +104,7 @@ void menu_view::_001OnTimer(::timer * ptimer)
 
       KillTimer(24);
 
-      GetTopLevelFrame()->EndModalLoop(IDOK);
+      GetTopLevelFrame()->EndModalLoop(e_dialog_result_ok);
 
    }
 
@@ -116,7 +116,7 @@ void menu_view::_001OnTimer(::timer * ptimer)
 //   SCAST_PTR(::message::base, pbase, pmessage);
 //   if(pbase->m_wparam == 0x80000001)
 //   {
-//      GetTopLevel()->EndModalLoop(IDOK);
+//      GetTopLevel()->EndModalLoop(e_dialog_result_ok);
 //      return;
 //   }
 //   if(m_pcallback != nullptr)

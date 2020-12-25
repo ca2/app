@@ -13,7 +13,7 @@
 //    - CreateThread (returns a standard Win32 handle which can be waited on, then closed)
 //    - CREATE_SUSPENDED and ResumeThread
 //    - Partial support for SetThreadPriority (see below)
-//    - millis_sleep
+//    - sleep
 //    - Thread local storage (TlsAlloc, TlsFree, thread_get_data, thread_set_data)
 //
 // Differences from Win32:
@@ -46,7 +46,7 @@ CLASS_DECL_APEX ::u32 WINAPI ResumeThread(hthread_t hthread);
 CLASS_DECL_APEX int_bool WINAPI SetThreadPriority(hthread_t hthread, i32 nPriority);
 CLASS_DECL_APEX i32 WINAPI GetThreadPriority(hthread_t hthread);
 
-//CLASS_DECL_APEX VOID WINAPI millis_sleep(::u32 dwMilliseconds);
+//CLASS_DECL_APEX VOID WINAPI sleep(::u32 dwMilliseconds);
 
 
 #endif

@@ -149,7 +149,7 @@ namespace console
       ::u32 nShow;
       if(bShow)
       {
-         nShow = display_normal;
+         nShow = e_display_normal;
       }
       else
       {
@@ -230,7 +230,7 @@ namespace console
       if(!data_get("&data_source=local&DockPosition", (i32 &) m_eposition))
       {
 
-         m_eposition = position_left;
+         m_eposition = e_position_left;
 
       }
 
@@ -283,17 +283,17 @@ namespace console
             if(rectWindow.top < rectWindow.left * a)
             {
                // top
-               m_eposition = position_top;
+               m_eposition = e_position_top;
             }
             else if(rectWindow.top > (rectDesktop.height() - rectWindow.left * a))
             {
                // bottom
-               m_eposition = position_bottom;
+               m_eposition = e_position_bottom;
             }
             else
             {
                // left
-               m_eposition = position_left;
+               m_eposition = e_position_left;
             }
          }
          else
@@ -303,17 +303,17 @@ namespace console
             if(rectWindow.top > rectWindow.left * a)
             {
                // bottom
-               m_eposition = position_bottom;
+               m_eposition = e_position_bottom;
             }
             else if(rectWindow.top < (rectDesktop.height() - rectWindow.left * a))
             {
                // top
-               m_eposition = position_top;
+               m_eposition = e_position_top;
             }
             else
             {
                // right
-               m_eposition = position_right;
+               m_eposition = e_position_right;
             }
          }
          data_set("DockPosition", (i32) m_eposition);
@@ -500,7 +500,7 @@ namespace console
 
       System.get_monitor_rect(0,rect);
 
-      int iHeight = m_pframe->calc_caption_height(::display_normal) + m_pframe->m_rectMarginNormal.top;
+      int iHeight = m_pframe->calc_caption_height(::e_display_normal) + m_pframe->m_rectMarginNormal.top;
 
       rect.left += 100;
 
@@ -510,11 +510,11 @@ namespace console
 
       rect.right -= 400;
 
-      set_appearance(::display_minimal);
+      set_appearance(::e_display_minimal);
 
       set_window_pos(zorder_top,rect,SWP_SHOWWINDOW);
 
-      display(display_normal);
+      display(e_display_normal);
 
       SetActiveWindow();
 
@@ -524,10 +524,10 @@ namespace console
 
    }
 
-   bool prompt_frame::get_translucency(::user::e_translucency & etranslucency, ::user::e_element eelement, ::user::style_context * pinteraction)
+   bool prompt_frame::get_translucency(::user::enum_translucency & etranslucency, ::user::enum_element eelement, ::user::style_context * pinteraction)
    {
 
-      etranslucency = ::user::translucency_present;
+      etranslucency = ::user::e_translucency_present;
 
       return true;
 

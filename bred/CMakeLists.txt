@@ -4,9 +4,9 @@ project(bred CXX)
 
 set(CMAKE_CXX_STANDARD 14)
 set(CMAKE_CXX_EXTENSIONS OFF)
-
-
+add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
+
 
 
 if(${CMAKE_SYSTEM_NAME} STREQUAL "Linux")

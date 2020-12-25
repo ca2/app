@@ -12,7 +12,7 @@ namespace userex
    top_edit_view::top_edit_view()
    {
 
-      m_dwDelayedAfterChange = 1000;
+      m_millisDelayedAfterChange = 1000;
 
       m_ptopview = nullptr;
 
@@ -38,7 +38,7 @@ namespace userex
    }
 
 
-   ::draw2d::font_pointer top_edit_view::get_font(::user::style* pstyle, ::user::e_element eelement, ::user::estate estate) const
+   ::draw2d::font_pointer top_edit_view::get_font(::user::style* pstyle, ::user::enum_element eelement, ::user::estate estate) const
    {
 
       if (m_pfont)
@@ -90,7 +90,7 @@ namespace userex
 
          m_bEnterKeyPressed = true;
 
-         SetTimer(5544, m_dwDelayedAfterChange, nullptr);
+         SetTimer(5544, m_millisDelayedAfterChange, nullptr);
 
       }
       else
@@ -111,29 +111,33 @@ namespace userex
       if (ptimer->m_etimer == 5544)
       {
 
-         KillTimer(ptimer->m_uEvent);
-
-         bool bEnterKeyPressed = m_bEnterKeyPressed;
-
-         m_bEnterKeyPressed = false;
-
-         auto pdocument = get_document();
-
-         if (::is_set(pdocument))
+         if (m_millisLastChange.elapsed() > m_millisDelayedAfterChange)
          {
 
-            auto psubject = subject(id_after_change_text_delayed);
+            KillTimer(ptimer->m_uEvent);
 
-            psubject->m_puserinteraction = this;
+            bool bEnterKeyPressed = m_bEnterKeyPressed;
 
-            psubject->value(id_enter_key_pressed) = bEnterKeyPressed;
+            m_bEnterKeyPressed = false;
 
-            pdocument->update_all_views(psubject);
+            auto pdocument = get_document();
+
+            if (::is_set(pdocument))
+            {
+
+               auto psubject = subject(id_after_change_text_delayed);
+
+               psubject->m_puserinteraction = this;
+
+               psubject->value(id_enter_key_pressed) = bEnterKeyPressed;
+
+               pdocument->update_all_views(psubject);
+
+            }
 
          }
 
       }
-
 
    }
 
@@ -147,7 +151,6 @@ namespace userex
    void top_edit_view::plain_edit_on_after_change_text(::draw2d::graphics_pointer & pgraphics, const ::action_context & context)
    {
 
-
       if (context.is_user_source())
       {
 
@@ -159,7 +162,14 @@ namespace userex
 
          get_document()->update_all_views(psubject);
 
-         SetTimer(5544, m_dwDelayedAfterChange, nullptr);
+         if (m_millisDelayedAfterChange > 0)
+         {
+
+            m_millisLastChange.Now();
+
+            SetTimer(5544, m_millisDelayedAfterChange / 5, nullptr);
+
+         }
 
       }
 
@@ -174,28 +184,7 @@ namespace userex
    }
 
 
-   //bool top_edit_view::_is_window_visible()
-   //{
-
-   //   return ::user::show < ::user::plain_edit >::_is_window_visible() && !GetTopLevel()->frame_is_transparent();
-
-   //}
-
-
-   /*
-   i64 top_edit_view::add_ref()
-   {
-   return ::object::add_ref(OBJ_REF_DBG_ARGS);
-   }
-   i64 top_edit_view::dec_ref()
-   {
-   return ::object::dec_ref(OBJ_REF_DBG_ARGS);
-   }
-
-
-   */
 } // namespace userex
-
 
 
 

@@ -253,15 +253,15 @@ i32 image_list::add(::draw2d::icon * picon, int iItem)
 
    m_pimage->g()->fill_solid_rect_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy, 0);
 
-#ifdef _UWP
-
-   m_pimage->get_graphics()->DrawIcon(iItem * m_size.cx, 0, picon, m_size.cx, m_size.cy, 0, nullptr, 0);
-
-#else
+//#ifdef _UWP
+//
+//   m_pimage->get_graphics()->draw(iItem * m_size.cx, 0, picon, m_size.cx, m_size.cy, 0, nullptr, 0);
+//
+//#else
 
    m_pimage->get_graphics()->draw({ { iItem * m_size.cx , 0 }, m_size }, picon);
 
-#endif
+//#endif
 
    return iItem;
 

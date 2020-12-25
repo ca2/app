@@ -74,7 +74,7 @@ update::~update()
 
       }
 
-      ::millis_sleep(iPollMillis);
+      ::sleep(iPollMillis);
 
    }
 

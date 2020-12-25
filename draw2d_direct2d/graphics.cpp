@@ -1364,62 +1364,137 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::polygon(const POINTD * lppoints, count nCount)
+   bool graphics::polygon(const POINTD * ppoints, count count)
    {
 
-      ::draw2d::path_pointer path(e_create);
+      if (count < 3)
+      {
 
-      //path->begin_figure(true, ::draw2d::fill_mode_winding);
+         return false;
 
-      path->begin_figure();
+      }
 
-      path->add_lines(lppoints, nCount);
+      Microsoft::WRL::ComPtr<ID2D1PathGeometry> pgeometry;
 
-      //path->end_figure(true);
+      HRESULT hr = ::get_d2d1_factory1()->CreatePathGeometry(&pgeometry);
 
-      path->close_figure();
+      {
 
-      return this->path(path);
+         Microsoft::WRL::ComPtr<ID2D1GeometrySink> psink;
+
+         pgeometry->Open(&psink);
+
+         psink->SetFillMode(D2D1_FILL_MODE_WINDING);
+
+         psink->BeginFigure(D2D1::Point2F(ppoints->x, ppoints->y), D2D1_FIGURE_BEGIN_FILLED);
+
+         for (index i = 1; i < count; i++)
+         {
+
+            psink->AddLine({ (FLOAT)ppoints[i].x, (FLOAT)ppoints[i].y });
+
+         }
+
+         psink->EndFigure(D2D1_FIGURE_END_CLOSED);
+
+         psink->Close();
+
+      }
+
+      bool bOk = fill_path(pgeometry.Get(), m_pbrush);
+
+      bOk = bOk && draw_path(pgeometry.Get(), m_ppen);
+
+      return bOk;
 
    }
 
 
-   bool graphics::draw_polygon(const POINTD * lppoints, count nCount)
+   bool graphics::draw_polygon(const POINTD * ppoints, count count)
    {
 
-      ::draw2d::path_pointer path(e_create);
+      if (count < 3)
+      {
 
-      //path->begin_figure(true, ::draw2d::fill_mode_winding);
+         return false;
 
-      path->begin_figure();
+      }
 
-      path->add_lines(lppoints, nCount);
+      Microsoft::WRL::ComPtr<ID2D1PathGeometry> pgeometry;
 
-      //path->end_figure(true);
+      HRESULT hr = ::get_d2d1_factory1()->CreatePathGeometry(&pgeometry);
 
-      path->close_figure();
+      {
 
-      return this->draw_path(path);
+         Microsoft::WRL::ComPtr<ID2D1GeometrySink> psink;
+
+         pgeometry->Open(&psink);
+
+         psink->SetFillMode(D2D1_FILL_MODE_WINDING);
+
+         psink->BeginFigure(D2D1::Point2F(ppoints->x, ppoints->y), D2D1_FIGURE_BEGIN_FILLED);
+
+         for (index i = 1; i < count; i++)
+         {
+
+            psink->AddLine({ (FLOAT)ppoints[i].x, (FLOAT)ppoints[i].y });
+
+         }
+
+         psink->EndFigure(D2D1_FIGURE_END_CLOSED);
+
+         psink->Close();
+
+      }
+
+      bool bOk = draw_path(pgeometry.Get(), m_ppen);
+
+      return bOk;
+
 
    }
 
 
-   bool graphics::fill_polygon(const POINTD * lppoints,count nCount)
+   bool graphics::fill_polygon(const POINTD * ppoints, count count)
    {
 
-      ::draw2d::path_pointer path(e_create);
+      if (count < 3)
+      {
 
-      //path->begin_figure(true,::draw2d::fill_mode_winding);
+         return false;
 
-      path->begin_figure();
+      }
 
-      path->add_lines(lppoints,nCount);
+      Microsoft::WRL::ComPtr<ID2D1PathGeometry> pgeometry;
 
-      //path->end_figure(true);
+      HRESULT hr = ::get_d2d1_factory1()->CreatePathGeometry(&pgeometry);
 
-      path->close_figure();
+      {
 
-      return this->fill_path(path);
+         Microsoft::WRL::ComPtr<ID2D1GeometrySink> psink;
+
+         pgeometry->Open(&psink);
+
+         psink->SetFillMode(D2D1_FILL_MODE_WINDING);
+
+         psink->BeginFigure(D2D1::Point2F(ppoints->x, ppoints->y), D2D1_FIGURE_BEGIN_FILLED);
+
+         for (index i = 1; i < count; i++)
+         {
+
+            psink->AddLine({ (FLOAT)ppoints[i].x, (FLOAT)ppoints[i].y });
+
+         }
+
+         psink->EndFigure(D2D1_FIGURE_END_CLOSED);
+
+         psink->Close();
+
+      }
+
+      bool bOk = fill_path(pgeometry.Get(), m_pbrush);
+
+      return bOk;
 
    }
 
@@ -3252,7 +3327,7 @@ namespace draw2d_direct2d
    }
 
 
-   void graphics::draw_3drect(const ::rect & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder)
+   void graphics::draw_3drect(const ::rect & rect, const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder)
    {
 
       draw_3drect(rectd(rect), colorTopLeft, colorBottomRight, eborder);
@@ -3260,7 +3335,7 @@ namespace draw2d_direct2d
    }
 
 
-   void graphics::draw_3drect(const ::rectd & rect,  const ::color & colorTopLeft, const ::color & colorBottomRight, eborder eborder)
+   void graphics::draw_3drect(const ::rectd & rect,  const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder)
    {
 
       double x = rect.left;
@@ -3268,28 +3343,28 @@ namespace draw2d_direct2d
       double cx = ::width(rect);
       double cy = ::height(rect);
 
-      if (eborder & border_top)
+      if (eborder & e_border_top)
       {
 
          fill_solid_rect_dim(x, y, cx - 1.0, 1.0, colorTopLeft);
 
       }
 
-      if (eborder & border_left)
+      if (eborder & e_border_left)
       {
 
          fill_solid_rect_dim(x, y, 1.0, cy - 1.0, colorTopLeft);
 
       }
 
-      if (eborder & border_right)
+      if (eborder & e_border_right)
       {
 
          fill_solid_rect_dim(x + cx, y, -1.0, cy, colorBottomRight);
 
       }
 
-      if (eborder & border_bottom)
+      if (eborder & e_border_bottom)
       {
 
          fill_solid_rect_dim(x, y + cy, cx, -1.0, colorBottomRight);
@@ -4616,7 +4691,6 @@ namespace draw2d_direct2d
 
       }
 
-
       if (text.m_wstr.is_empty())
       {
 
@@ -4656,7 +4730,7 @@ namespace draw2d_direct2d
 
       playout->GetMetrics(&m);
 
-      size.cx = (::i32) (m.width  * m_pfont->m_dFontWidth);
+      size.cx = (::i32) (m.widthIncludingTrailingWhitespace  * m_pfont->m_dFontWidth);
 
       size.cy = (::i32) m.height;
 
@@ -5194,11 +5268,10 @@ namespace draw2d_direct2d
    }
 
 
-
-   bool graphics::draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen)
+   bool graphics::draw_path(ID2D1PathGeometry * pgeometry, ::draw2d::pen * ppen)
    {
 
-      ::ID2D1Brush * pbrush = ppen->get_os_data < ID2D1Brush * > (this);
+      ::ID2D1Brush * pbrush = ppen->get_os_data < ID2D1Brush * >(this);
 
       if (pbrush == nullptr)
       {
@@ -5207,6 +5280,35 @@ namespace draw2d_direct2d
 
       }
 
+      m_prendertarget->DrawGeometry(pgeometry, pbrush, (FLOAT)ppen->m_dWidth);
+
+      return true;
+
+   }
+
+
+   bool graphics::fill_path(ID2D1PathGeometry * pgeometry, ::draw2d::brush * pbrushParam)
+   {
+
+      ::ID2D1Brush * pbrush = pbrushParam->get_os_data < ID2D1Brush * >(this);
+
+      if (pbrush == nullptr)
+      {
+
+         return false;
+
+      }
+
+      m_prendertarget->FillGeometry(pgeometry, pbrush);
+
+      return true;
+
+   }
+
+
+   bool graphics::draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen)
+   {
+
       ID2D1PathGeometry * pgeometry = ppath->get_os_data < ID2D1PathGeometry * >(this);
 
       defer_primitive_blend();
@@ -5214,7 +5316,7 @@ namespace draw2d_direct2d
       if(pgeometry != nullptr)
       {
 
-         m_prendertarget->DrawGeometry(pgeometry,pbrush,(FLOAT)ppen->m_dWidth);
+         draw_path(pgeometry, ppen);
 
       }
 
@@ -5251,15 +5353,6 @@ namespace draw2d_direct2d
 
       }
 
-      ID2D1Brush * pbrush = m_pbrush->get_os_data < ID2D1Brush * >(this);
-
-      if (pbrush == nullptr)
-      {
-
-         return false;
-
-      }
-
       __stack(m_bOutline, false);
 
       ppath->set_modified();
@@ -5271,7 +5364,7 @@ namespace draw2d_direct2d
       if (pgeometry != nullptr)
       {
 
-         m_prendertarget->FillGeometry(pgeometry, pbrush);
+         fill_path(pgeometry, m_pbrush);
 
       }
 

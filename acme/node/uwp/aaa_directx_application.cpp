@@ -132,7 +132,7 @@ namespace uwp
 
 
 
-      puserinteraction->display(display_normal);
+      puserinteraction->display(e_display_normal);
 
       puserinteraction->set_need_layout();
 
@@ -309,7 +309,7 @@ namespace uwp
 
             //}
 
-            m_psystem->post_object(e_message_system, system_message_create, pcreate);
+            m_psystem->post_object(e_message_system, e_system_message_create, pcreate);
 
          }
 

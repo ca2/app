@@ -15,8 +15,8 @@ CLASS_DECL_ACME ::file::exception * get_FileException(::layered * pobjectContext
 #define MAC_THREAD(pthread) (dynamic_cast < ::mac::thread * > (dynamic_cast < ::thread * >(pthread)))
 
 
-CLASS_DECL_ACME void __trace_message(const char * lpszPrefix, ::message::message * pmessage);
-CLASS_DECL_ACME void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
+//CLASS_DECL_ACME void __trace_message(const char * lpszPrefix, ::message::message * pmessage);
+//CLASS_DECL_ACME void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
 int_bool mq_peek_message(LPMESSAGE lpMsg,oswindow hWnd,::u32 wMsgFilterMin,::u32 wMsgFilterMax,::u32 wRemoveMsg);
 int_bool mq_get_message(LPMESSAGE lpMsg,oswindow hWnd,::u32 wMsgFilterMin,::u32 wMsgFilterMax);
 i32 CLASS_DECL_ACME __mac_main(i32 argc, char * argv[]);

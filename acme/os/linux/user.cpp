@@ -20,7 +20,7 @@ namespace user
 #include "acme/os/x11/_x11.h"
 
 
-int _os_message_box(const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox)
+int _os_message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox)
 {
 
    return x11_message_box(pszMessage, pszTitle, emessagebox);

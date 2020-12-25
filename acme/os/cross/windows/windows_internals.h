@@ -33,12 +33,24 @@ extern "C" {
  * Fundamental types and data structures
  */
 
+#ifndef _UWP
+
 #ifndef WINE_NTSTATUS_DECLARED
 #define WINE_NTSTATUS_DECLARED
 typedef ::i32 NTSTATUS;
 #endif
 
-typedef const char *PCSZ;
+#endif
+
+typedef char CHAR;
+
+//typedef wchar_t WCHAR;
+
+typedef const CHAR * PCSZ;
+
+typedef CHAR * PCHAR;
+
+typedef WCHAR * PWSTR;
 
 typedef short CSHORT;
 typedef CSHORT *PCSHORT;

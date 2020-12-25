@@ -23,7 +23,7 @@ namespace promise
       virtual ::estatus start_task();
 
 
-      inline bool is_up_to_date(const ::promise::subject * phandler) const;
+      virtual bool is_up_to_date(const ::promise::subject * phandler) const;
 
       virtual void set_up_to_date(const ::promise::subject * phandler);
 

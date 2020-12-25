@@ -70,10 +70,10 @@ namespace user
       if (pinteraction)
       {
 
-         if (pinteraction->descriptor().has_function(::user::control_function_action))
+         if (pinteraction->descriptor().has_function(::user::e_control_function_action))
          {
 
-            if (pinteraction->descriptor().get_control_type() == ::user::control_type_button)
+            if (pinteraction->descriptor().get_control_type() == ::user::e_control_type_button)
             {
 
 
@@ -81,7 +81,7 @@ namespace user
 
                ev.m_puie = pinteraction;
 
-               ev.m_eevent = ::user::event_button_clicked;
+               ev.m_eevent = ::user::e_event_button_clicked;
 
                m_itemControl = item;
 
@@ -160,17 +160,17 @@ namespace user
       if (pinteraction)
       {
 
-         if (pinteraction->has_function(::user::control_function_action))
+         if (pinteraction->has_function(::user::e_control_function_action))
          {
 
-            if (pinteraction->descriptor().get_control_type() == ::user::control_type_button)
+            if (pinteraction->descriptor().get_control_type() == ::user::e_control_type_button)
             {
 
                ::user::control_event ev;
 
                ev.m_puie = pinteraction;
 
-               ev.m_eevent = ::user::event_button_clicked;
+               ev.m_eevent = ::user::e_event_button_clicked;
 
                m_itemControl = item;
 
@@ -232,7 +232,7 @@ namespace user
             if (pdescriptor.is_set())
             {
 
-               if (pdescriptor->has_function(::user::control_function_check_box))
+               if (pdescriptor->has_function(::user::e_control_function_check_box))
                {
 
                   ::enum_check echeck = _001GetSubItemCheck(item.item_index(), item.subitem_index());
@@ -258,7 +258,7 @@ namespace user
                      for (auto& pitem : m_controldescriptorset.ptra())
                      {
 
-                        if (pitem->has_function(::user::control_function_duplicate_on_check_box))
+                        if (pitem->has_function(::user::e_control_function_duplicate_on_check_box))
                         {
 
                            if (pitem->m_iSubItemDuplicateCheckBox == item.subitem_index())
@@ -392,7 +392,7 @@ namespace user
 
       //   switch (pdescriptor->m_econtroltype)
       //   {
-      //   case control_type_static:
+      //   case e_control_type_static:
       //   {
       //      /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) window::FromHandlePermanent(pform->get_child_by_id(pinteraction->m_id)->GetSafeoswindow_());
       //      if(pstatic == nullptr || !base_class < CTransparentStatic >::bases(pstatic))
@@ -518,7 +518,7 @@ namespace user
 
       item.m_iOrder = _001MapSubItemToOrder(item.subitem_index());
 
-      _001GetElementRect(&item,::user::mesh::element_text);
+      _001GetElementRect(&item,::user::mesh::e_element_text);
 
       if(item.m_bOk)
       {
@@ -636,7 +636,7 @@ break_click:;
       for (auto & pitem : m_controldescriptorset.ptra())
       {
 
-         if (pitem->has_function(::user::control_function_duplicate_on_check_box))
+         if (pitem->has_function(::user::e_control_function_duplicate_on_check_box))
          {
 
             ::count iItemCount = _001GetItemCount();
@@ -693,8 +693,8 @@ break_click:;
 
       __task_guard(m_bOnEditUpdate);
 
-      ASSERT(pinteraction->descriptor().get_control_type() == control_type_edit
-             || pinteraction->descriptor().get_control_type() == control_type_edit_plain_text);
+      ASSERT(pinteraction->descriptor().get_control_type() == e_control_type_edit
+             || pinteraction->descriptor().get_control_type() == e_control_type_edit_plain_text);
 
       __pointer(::user::plain_edit) pedit = pinteraction;
 
@@ -705,7 +705,7 @@ break_click:;
 
       //}
 
-      if (pinteraction->descriptor().has_function(control_function_vms_data_edit))
+      if (pinteraction->descriptor().has_function(e_control_function_vms_data_edit))
       {
 
 
@@ -779,11 +779,11 @@ break_click:;
 
       __task_guard(m_bOnEditUpdate);
 
-      ASSERT(pinteraction->descriptor().get_control_type() == control_type_combo_box);
+      ASSERT(pinteraction->descriptor().get_control_type() == e_control_type_combo_box);
 
       __pointer(::user::combo_box) pcombo = pinteraction;
 
-      if (pinteraction->descriptor().has_function(control_function_data_selection))
+      if (pinteraction->descriptor().has_function(e_control_function_data_selection))
       {
 
          draw_list_item item(this);
@@ -814,7 +814,7 @@ break_click:;
       if (pinteraction == nullptr)
          return false;
 
-      if (pinteraction->descriptor().get_control_type() == control_type_check_box)
+      if (pinteraction->descriptor().get_control_type() == e_control_type_check_box)
       {
 
          __pointer(::user::check) pcheckbox = pinteraction;
@@ -895,8 +895,8 @@ break_click:;
 
       }
 
-      ASSERT(pinteraction->descriptor().get_control_type() == control_type_edit || pinteraction->descriptor().get_control_type() == control_type_edit_plain_text
-             || pinteraction->descriptor().get_control_type() == control_type_combo_box);
+      ASSERT(pinteraction->descriptor().get_control_type() == e_control_type_edit || pinteraction->descriptor().get_control_type() == e_control_type_edit_plain_text
+             || pinteraction->descriptor().get_control_type() == e_control_type_combo_box);
 
       //auto pinteraction = get_child_by_id(pinteraction->m_id);
 
@@ -945,8 +945,8 @@ break_click:;
 
       }
 
-      if (pinteraction->descriptor().has_function(control_function_vms_data_edit)
-            || pinteraction->descriptor().has_function(control_function_data_selection))
+      if (pinteraction->descriptor().has_function(e_control_function_vms_data_edit)
+            || pinteraction->descriptor().has_function(e_control_function_data_selection))
       {
 
          draw_list_item item(this);
@@ -963,7 +963,7 @@ break_click:;
 
          process(psubject);
 
-         if (pinteraction->descriptor().has_function(::user::control_function_duplicate_on_check_box))
+         if (pinteraction->descriptor().has_function(::user::e_control_function_duplicate_on_check_box))
          {
 
             if (_001GetSubItemCheck(item.item_index(), pinteraction->descriptor().m_iSubItemDuplicateCheckBox) == ::check_checked)
@@ -1120,7 +1120,7 @@ break_click:;
 
       switch(pinteraction->descriptor().get_control_type())
       {
-      case control_type_edit:
+      case e_control_type_edit:
       switch(pnotify->m_uiCode)
       {
       case user::NotifyKeyDown:
@@ -1130,7 +1130,7 @@ break_click:;
       {
       //             //  case VK_RETURN:
       _001SaveEdit(pinteraction);
-      pinteraction->display(display_none);
+      pinteraction->display(e_display_none);
       lresult &= ~user::NotifyRetContinue;
       return true;
       }
@@ -1199,12 +1199,12 @@ break_click:;
       //for(i32 i = 0; i < m_controldescriptorset.get_count(); i++)
       //{
       //   class ::user::control_descriptor & descriptor = m_controldescriptorset(i);
-      //   if(control.m_etype == control_type_edit
-      //      || control.m_etype == control_type_edit_plain_text)
+      //   if(control.m_etype == e_control_type_edit
+      //      || control.m_etype == e_control_type_edit_plain_text)
       //   {
       //      if(control.m_pcontrol != nullptr)
       //      {
-      //         control.m_pcontrol->display(display_none);
+      //         control.m_pcontrol->display(e_display_none);
       //      }
       //   }
       //}
@@ -1214,7 +1214,7 @@ break_click:;
    void form_list::_001HideControl(::user::interaction * pinteraction)
    {
 
-      pinteraction->display(display_none);
+      pinteraction->display(e_display_none);
 
    }
 
@@ -1260,8 +1260,8 @@ break_click:;
       if(pinteraction->m_pdescriptor != nullptr)
       {
 
-         if(pinteraction->m_pdescriptor->m_econtroltype == control_type_edit
-               || pinteraction->m_pdescriptor->m_econtroltype == control_type_edit_plain_text)
+         if(pinteraction->m_pdescriptor->m_econtroltype == e_control_type_edit
+               || pinteraction->m_pdescriptor->m_econtroltype == e_control_type_edit_plain_text)
          {
 
             if(pinteraction == _001GetEditControl())
@@ -1387,7 +1387,7 @@ break_click:;
 
             if (pdescriptor
                   && pdescriptor->m_pinteraction
-                  && (pdescriptor->m_econtroltype == control_type_combo_box))
+                  && (pdescriptor->m_econtroltype == e_control_type_combo_box))
             {
 
                _001PlaceControl(pdescriptor->m_pinteraction, (::index) iItem, true);
@@ -1584,8 +1584,7 @@ break_click:;
       if(pinteraction == nullptr)
       {
 
-         SetRectEmpty(prect);
-
+         ::null(prect);
 
          return;
 
@@ -1916,13 +1915,13 @@ break_click:;
    void form_list::on_control_event(::user::control_event * pevent)
    {
 
-      if (pevent->m_eevent == ::user::event_after_change_cur_sel)
+      if (pevent->m_eevent == ::user::e_event_after_change_cur_sel)
       {
 
          if (m_pcontrolEdit == pevent->m_puie)
          {
 
-            if (m_pcontrolEdit->descriptor().has_function(::user::control_function_data_selection))
+            if (m_pcontrolEdit->descriptor().has_function(::user::e_control_function_data_selection))
             {
 
                _001SaveEdit(m_pcontrolEdit);
@@ -1934,7 +1933,7 @@ break_click:;
          }
 
       }
-      else if (pevent->m_eevent == ::user::event_enter_key)
+      else if (pevent->m_eevent == ::user::e_event_enter_key)
       {
 
          if(m_pcontrolEdit != nullptr)
@@ -1949,7 +1948,7 @@ break_click:;
          }
 
       }
-      else if (pevent->m_eevent == ::user::event_tab_key)
+      else if (pevent->m_eevent == ::user::e_event_tab_key)
       {
 
          index iItem = 0;
@@ -2000,7 +1999,7 @@ break_click:;
          }
 
       }
-      else if (pevent->m_eevent == ::user::event_key_down)
+      else if (pevent->m_eevent == ::user::e_event_key_down)
       {
 
          SCAST_PTR(::message::key, pkey, pevent->m_pmessage);
@@ -2169,7 +2168,7 @@ break_click:;
 
             auto pstyle = get_style(pdrawitem->m_pgraphics);
 
-            auto crBackHover = get_color(pstyle, ::user::element_background, ::user::e_state_hover);
+            auto crBackHover = get_color(pstyle, ::user::e_element_background, ::user::e_state_hover);
 
             if (!crBackHover)
             {
@@ -2190,10 +2189,10 @@ break_click:;
          //   if (pdescriptor.is_set())
          //   {
 
-         //      if (pdescriptor->has_function(::user::control_function_check_box))
+         //      if (pdescriptor->has_function(::user::e_control_function_check_box))
          //      {
 
-         //         _001GetElementRect(pdrawitem, ::user::mesh::element_text);
+         //         _001GetElementRect(pdrawitem, ::user::mesh::e_element_text);
 
          //         if (pdrawitem->m_bOk)
          //         {
@@ -2368,7 +2367,7 @@ ok_control:;
          if (pdescriptor.is_set())
          {
 
-            if (pdescriptor->has_function(::user::control_function_check_box))
+            if (pdescriptor->has_function(::user::e_control_function_check_box))
             {
 
                ::user::mesh_item item(this);
@@ -2426,7 +2425,7 @@ ok_control:;
          if (pdescriptor.is_set())
          {
 
-            if (pdescriptor->has_function(::user::control_function_check_box))
+            if (pdescriptor->has_function(::user::e_control_function_check_box))
             {
 
                ::user::mesh_item item(this);
@@ -2470,7 +2469,7 @@ ok_control:;
          if (pdescriptor.is_set())
          {
 
-            if (pdescriptor->has_function(::user::control_function_disable_on_check_box))
+            if (pdescriptor->has_function(::user::e_control_function_disable_on_check_box))
             {
 
                if(_001GetSubItemCheck(iItem, pdescriptor->m_iSubItemDisableCheckBox) == ::check_checked)

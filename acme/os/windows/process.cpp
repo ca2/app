@@ -187,7 +187,7 @@ struct shell_execute :
 
          }
 
-         millis_sleep(1000);
+         sleep(1000_ms);
 
       }
 
@@ -252,7 +252,7 @@ bool root_execute_sync(const char * pszFile, const char * pszParams, ::duration 
 #include "framework.h"
 
 
-i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, bool bPrivileged, unsigned int *puiPid)
+i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, bool bPrivileged, unsigned int *puiPid)
 {
 
    SHELLEXECUTEINFOW info = {};
@@ -263,7 +263,7 @@ i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir,
 
    info.cbSize = sizeof(SHELLEXECUTEINFOW);
 
-   if (edisplay == display_default)
+   if (edisplay == e_display_default)
    {
       info.nShow = SW_SHOWDEFAULT;
    }
@@ -311,7 +311,7 @@ i32 call_async(const char * pszPath, const char * pszParam, const char * pszDir,
 }
 
 
-u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::edisplay edisplay, const ::duration & durationTimeout, ::property_set & set)
+u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, ::e_display edisplay, const ::duration & durationTimeout, ::property_set & set)
 {
 
    SHELLEXECUTEINFOW infoa;
@@ -329,7 +329,7 @@ u32 call_sync(const char * pszPath, const char * pszParam, const char * pszDir, 
 
    infoa.lpDirectory = wstrDir;
 
-   infoa.nShow = is_visible(edisplay) ? display_normal : SW_HIDE;
+   infoa.nShow = is_visible(edisplay) ? e_display_normal : SW_HIDE;
 
    infoa.fMask |= SEE_MASK_NOCLOSEPROCESS | SEE_MASK_NOASYNC | SEE_MASK_FLAG_NO_UI;
 
@@ -878,7 +878,7 @@ CLASS_DECL_ACME bool is_shared_library_busy(const string_array & stra)
 //
 //      unsigned int uiPid;
 //
-//      ::call_async(path, ": app=" + strApp + strExtra, path.folder(), display_normal, false, &uiPid);
+//      ::call_async(path, ": app=" + strApp + strExtra, path.folder(), e_display_normal, false, &uiPid);
 //
 //   });
 //

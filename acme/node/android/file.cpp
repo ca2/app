@@ -11,13 +11,11 @@
 #include <sys/stat.h>
 
 
+void set_last_errno_status();
+
+
 bool CLASS_DECL_ACME vfxFullPath(wstring& wstrFullPath, const wstring& wstrPath);
 
-struct errentry
-{
-   unsigned long oscode;   /* OS return value */
-   int sysv_errno;  /* System V error code */
-};
 //#elif defined(MACOS)
 ////#include <dlfcn.h>
 //#endif
@@ -149,49 +147,53 @@ namespace android
    //   return pFile;
    //}
 
-   ::status::result file::open(const ::file::path & lpszFileName, const ::efileopen & efileopenParam)
+
+   ::status::result file::open(const ::file::path & path, const ::file::e_open & eopenParam)
    {
 
-      ::efileopen efileopen(efileopenParam);
+      ::file::e_open eopen(eopenParam);
 
       if (m_iFile != hFileNull)
-         close();
-
-      ASSERT_VALID(this);
-      ASSERT(__is_valid_string(lpszFileName));
-      ASSERT(!(efileopen & ::file::type_text));   // text mode not supported
-
-      // file objects are always binary and CreateFile does not need flag
-      efileopen -= ::file::type_binary;
-
-
-      if((efileopen & ::file::defer_create_directory) && (efileopen & ::file::mode_write))
       {
 
-         Context.dir().mk(lpszFileName.folder());
+         close();
+
+      }
+
+      ASSERT_VALID(this);
+      ASSERT(__is_valid_string(path));
+      ASSERT(!(eopen & ::file::e_open_text));   // text mode not supported
+
+      // file objects are always binary and CreateFile does not need flag
+      eopen -= ::file::e_open_binary;
+
+      if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
+      {
+
+         ::dir::mk(path.folder());
 
       }
 
       m_iFile = (::u32)hFileNull;
+
       m_strFileName.Empty();
 
-      m_strFileName     = lpszFileName;
+      m_strFileName = path;
 
-      ASSERT(sizeof(HANDLE) == sizeof(uptr));
-      ASSERT(::file::share_compat == 0);
+      ASSERT(::file::e_open_share_compat == 0);
 
       // ::collection::map read/write mode
-      ASSERT((::file::mode_read | ::file::mode_write | ::file::mode_read_write) == 3);
+      ASSERT((::file::e_open_read | ::file::e_open_write | ::file::e_open_read_write) == 3);
       ::u32 dwFlags =  0;
-      switch (efileopen & 3)
+      switch (eopen & 3)
       {
-      case ::file::mode_read:
+      case ::file::e_open_read:
          dwFlags |=  O_RDONLY;
          break;
-      case ::file::mode_write:
+      case ::file::e_open_write:
          dwFlags |=  O_WRONLY ;
          break;
-      case ::file::mode_read_write:
+      case ::file::e_open_read_write:
          dwFlags |=  O_RDWR;
          break;
       default:
@@ -201,29 +203,29 @@ namespace android
 
       // ::collection::map share mode
       //::u32 dwShareMode = 0;
-      switch (efileopen & 0x70)    // ::collection::map compatibility mode to exclusive
+      switch (eopen & 0x70)    // ::collection::map compatibility mode to exclusive
       {
       default:
          ASSERT(FALSE);  // invalid share mode?
-      case ::file::share_compat:
-      case ::file::share_exclusive:
+      case ::file::e_open_share_compat:
+      case ::file::e_open_share_exclusive:
          //dwShareMode = 0;
          break;
-      case ::file::share_deny_write:
+      case ::file::e_open_share_deny_write:
          //dwFlags |= O_SHLOCK;
          break;
-      case ::file::share_deny_read:
+      case ::file::e_open_share_deny_read:
 //         dwFlags |= O_EXLOCK;
          break;
-      case ::file::share_deny_none:
+      case ::file::e_open_share_deny_none:
          //dwFlags = FILE_SHARE_WRITE|FILE_SHARE_READ;
          break;
       }
 
-      if(efileopen & ::file::mode_create)
+      if(eopen & ::file::e_open_create)
       {
          dwFlags |= O_CREAT;
-         if(!(efileopen & ::file::mode_no_truncate))
+         if(!(eopen & ::file::e_open_no_truncate))
             dwFlags |= O_TRUNC;
       }
 
@@ -238,72 +240,13 @@ namespace android
       if(hFile == -1)
       {
 
-         static struct errentry errtable[] =
-         {
-            { ERROR_INVALID_FUNCTION,       EINVAL },  /* 1 */
-            { ERROR_FILE_NOT_FOUND,         ENOENT },  /* 2 */
-            { ERROR_PATH_NOT_FOUND,         ENOENT },  /* 3 */
-            { ERROR_TOO_MANY_OPEN_FILES,    EMFILE },  /* 4 */
-            { ERROR_ACCESS_DENIED,          EACCES },  /* 5 */
-            { ERROR_INVALID_HANDLE,         EBADF },  /* 6 */
-            { ERROR_ARENA_TRASHED,          ENOMEM },  /* 7 */
-            { ERROR_NOT_ENOUGH_MEMORY,      ENOMEM },  /* 8 */
-            { ERROR_INVALID_BLOCK,          ENOMEM },  /* 9 */
-            { ERROR_BAD_ENVIRONMENT,        E2BIG },  /* 10 */
-            { ERROR_BAD_FORMAT,             ENOEXEC },  /* 11 */
-            { ERROR_INVALID_ACCESS,         EINVAL },  /* 12 */
-            { ERROR_INVALID_DATA,           EINVAL },  /* 13 */
-            { ERROR_INVALID_DRIVE,          ENOENT },  /* 15 */
-            { ERROR_CURRENT_DIRECTORY,      EACCES },  /* 16 */
-            { ERROR_NOT_SAME_DEVICE,        EXDEV },  /* 17 */
-            { ERROR_NO_MORE_FILES,          ENOENT },  /* 18 */
-            { ERROR_LOCK_VIOLATION,         EACCES },  /* 33 */
-            { ERROR_BAD_NETPATH,            ENOENT },  /* 53 */
-            { ERROR_NETWORK_ACCESS_DENIED,  EACCES },  /* 65 */
-            { ERROR_BAD_NET_NAME,           ENOENT },  /* 67 */
-            { ERROR_FILE_EXISTS,            EEXIST },  /* 80 */
-            { ERROR_CANNOT_MAKE,            EACCES },  /* 82 */
-            { ERROR_FAIL_I24,               EACCES },  /* 83 */
-            { ERROR_INVALID_PARAMETER,      EINVAL },  /* 87 */
-            { ERROR_NO_PROC_SLOTS,          EAGAIN },  /* 89 */
-            { ERROR_DRIVE_LOCKED,           EACCES },  /* 108 */
-            { ERROR_BROKEN_PIPE,            EPIPE },  /* 109 */
-            { ERROR_DISK_FULL,              ENOSPC },  /* 112 */
-            { ERROR_INVALID_TARGET_HANDLE,  EBADF },  /* 114 */
-            { ERROR_INVALID_NAME,           ENOENT },  /* 123 */
-            { ERROR_INVALID_HANDLE,         EINVAL },  /* 124 */
-            { ERROR_WAIT_NO_CHILDREN,       ECHILD },  /* 128 */
-            { ERROR_CHILD_NOT_COMPLETE,     ECHILD },  /* 129 */
-            { ERROR_DIRECT_ACCESS_HANDLE,   EBADF },  /* 130 */
-            { ERROR_NEGATIVE_SEEK,          EINVAL },  /* 131 */
-            { ERROR_SEEK_ON_DEVICE,         EACCES },  /* 132 */
-            { ERROR_DIR_NOT_EMPTY,          ENOTEMPTY },  /* 145 */
-            { ERROR_NOT_LOCKED,             EACCES },  /* 158 */
-            { ERROR_BAD_PATHNAME,           ENOENT },  /* 161 */
-            { ERROR_MAX_THRDS_REACHED,      EAGAIN },  /* 164 */
-            { ERROR_LOCK_FAILED,            EACCES },  /* 167 */
-            { ERROR_ALREADY_EXISTS,         EEXIST },  /* 183 */
-            { ERROR_FILENAME_EXCED_RANGE,   ENOENT },  /* 206 */
-            { ERROR_NESTING_NOT_ALLOWED,    EAGAIN },  /* 215 */
-            { ERROR_NOT_ENOUGH_QUOTA,       ENOMEM }    /* 1816 */
-         };
+         set_last_errno_status();
 
-         /* size of the table */
-#define ERRTABLESIZE (sizeof(errtable)/sizeof(errtable[0]))
-         set_last_error(-1);
-         for (size_t u = 0; u < ERRTABLESIZE; u++)
-         {
-            if (errno == errtable[u].sysv_errno)
-            {
-               set_last_error(errtable[u].oscode);
-               break;
-            }
-         }
+         auto estatusLast = ::get_last_status();
 
-         ::u32 dwLastError = ::get_last_error();
-
-         if(dwLastError != ERROR_FILE_NOT_FOUND && dwLastError != ERROR_PATH_NOT_FOUND)
+         if(estatusLast != error_not_found && estatusLast != error_path_not_found)
          {
+
             /*         if (pException != nullptr)
             {
             pException->create(get_object());
@@ -321,7 +264,7 @@ namespace android
 
 
             //return __new(::file::exception(::error_os_error_to_exception(dwLastError), dwLastError, m_strFileName, nOpenFlags));
-            return ::file::os_error_to_status(dwLastError);
+            return estatusLast;
 
             //}
 
@@ -358,9 +301,7 @@ namespace android
             {*/
 
 
-            ::u32 dwLastError = ::get_last_error();
-            //return __new(::file::exception(::file::os_error_to_status(dwLastError), dwLastError, m_strFileName, nOpenFlags));
-            return ::file::os_error_to_status(dwLastError);
+            return estatusLast;
 
             //}
 
@@ -415,23 +356,41 @@ namespace android
       return sizeRead;
    }
 
+   
    void file::write(const void * lpBuf, memsize nCount)
    {
+
       ASSERT_VALID(this);
+
       ASSERT(m_iFile != hFileNull);
 
       if (nCount == 0)
+      {
+
          return;     // avoid Win32 "null-write" option
 
+      }
+
       ASSERT(lpBuf != nullptr);
+
       ASSERT(__is_valid_address(lpBuf, nCount, FALSE));
 
       memsize pos = 0;
+
       while(nCount > 0)
       {
+         
          i32 iWrite = ::write(m_iFile, &((const byte *)lpBuf)[pos], (size_t) min(0x7fffffff, nCount));
-         if(iWrite < 0)
-            ::file::throw_os_error( (::i32)::get_last_error(), m_strFileName);
+         
+         if (iWrite < 0)
+         {
+
+            set_last_errno_status();
+
+            __throw(::file::exception(::get_last_status(),-1, -1, m_strFileName));
+
+         }
+
          nCount -= iWrite;
          pos += iWrite;
       }
@@ -457,15 +416,20 @@ namespace android
       ASSERT(::file::seek_begin == SEEK_SET && ::file::seek_end == SEEK_END && ::file::seek_current == SEEK_CUR);
 
       ::i32 lLoOffset = lOff & 0xffffffff;
-      //::i32 lHiOffset = (lOff >> 32) & 0xffffffff;
 
       filesize posNew = ::lseek64(m_iFile, lLoOffset, (::u32)nFrom);
-//      posNew |= ((filesize) lHiOffset) << 32;
-      if(posNew  == (filesize)-1)
-         ::file::throw_os_error(::file::os_error_to_status((::i32)::get_last_error()));
+
+      if (posNew == (filesize)-1)
+      {
+
+         __throw(::file::exception(errno_to_status(errno)));
+
+      }
 
       return posNew;
+
    }
+
 
    filesize file::get_position() const
    {
@@ -477,8 +441,12 @@ namespace android
 
       filesize pos = ::lseek64(m_iFile, lLoOffset, SEEK_CUR);
       //    pos |= ((filesize)lHiOffset) << 32;
-      if(pos  == (filesize)-1)
-         ::file::throw_os_error( (::i32)::get_last_error());
+      if (pos == (filesize)-1)
+      {
+       
+         __throw(::file::exception(errno_to_status(errno)));
+
+      }
 
       return pos;
    }
@@ -516,7 +484,12 @@ namespace android
       m_strFileName.Empty();
 
       if (bError)
-         ::file::throw_os_error( (::i32)::get_last_error());
+      {
+
+         __throw(::file::exception(errno_to_status(errno)));
+
+      }
+
    }
 
 
@@ -564,7 +537,13 @@ namespace android
 #else
       int iError = ::ftruncate(m_iFile, dwNewLen);
       if (iError == -1)
-         ::file::throw_os_error( (::i32)::get_last_error());
+      {
+
+         int iErrorNumber = errno;
+       
+         __throw(::file::exception(errno_to_status(iErrorNumber)));
+
+      }
 #endif
    }
 
@@ -800,38 +779,38 @@ bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
 //}
 
 
-namespace android
-{
-
-   ::estatus PASCAL file_errno_to_exception(i32 nErrno)
-   {
-      switch(nErrno)
-      {
-      case EPERM:
-      case EACCES:
-         return ::error_file_access_denied;
-      case EBADF:
-         return ::error_invalid_file;
-      case EDEADLOCK:
-         return ::error_file_sharing_violation;
-      case EMFILE:
-         return ::error_too_many_open_files;
-      case ENOENT:
-      case ENFILE:
-         return ::error_file_not_found;
-      case ENOSPC:
-         return ::error_disk_full;
-      case EINVAL:
-      case EIO:
-         return ::error_hard_io;
-      default:
-         return ::error_file;
-      }
-
-   }
-
-
-} // namespace android
+//namespace android
+//{
+//
+//   ::estatus PASCAL file_errno_to_exception(i32 nErrno)
+//   {
+//      switch(nErrno)
+//      {
+//      case EPERM:
+//      case EACCES:
+//         return ::error_file_access_denied;
+//      case EBADF:
+//         return ::error_invalid_file;
+//      case EDEADLOCK:
+//         return ::error_file_sharing_violation;
+//      case EMFILE:
+//         return ::error_too_many_open_files;
+//      case ENOENT:
+//      case ENFILE:
+//         return ::error_file_not_found;
+//      case ENOSPC:
+//         return ::error_disk_full;
+//      case EINVAL:
+//      case EIO:
+//         return ::error_hard_io;
+//      default:
+//         return ::error_file;
+//      }
+//
+//   }
+//
+//
+//} // namespace android
 
 
 

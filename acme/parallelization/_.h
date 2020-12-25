@@ -328,7 +328,7 @@ CLASS_DECL_ACME bool task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::sync * p
 
 #ifdef _UWP
 
-#include "acme/os/uwp/multithreading_winrt.h"
+#include "acme/os/uwp/parallelization_winrt.h"
 
 #endif
 

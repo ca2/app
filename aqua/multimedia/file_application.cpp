@@ -17,7 +17,7 @@ namespace multimedia
    }
 
 
-   file_pointer file_application::get_file(payload varFile, u32 nOpenFlags)
+   file_pointer file_application::get_file(payload varFile, const ::file::e_open & eopen)
    {
 
       file_pointer spfile;
@@ -26,8 +26,11 @@ namespace multimedia
 
       if (varFile.get_type() == ::type_string)
       {
+         
          strPath = varFile;
+
          strPath.trim("\"'");
+
       }
 
 
@@ -42,9 +45,10 @@ namespace multimedia
 
 #endif
 
-      return Context.file().get_file(varFile, nOpenFlags);
+      return Context.file().get_file(varFile, eopen);
 
    }
+
 
 } // namespace multimedia
 

@@ -674,7 +674,7 @@ oswindow WINAPI SetParent(::oswindow oswindow, ::oswindow oswindowNewParent)
 #ifndef _UWP
 
 
-int_bool show_window(::oswindow oswindow, ::edisplay edisplay)
+int_bool show_window(::oswindow oswindow, const ::e_display & edisplay)
 {
 
    if(::is_null(oswindow))

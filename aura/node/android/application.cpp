@@ -5,18 +5,18 @@ namespace aura
 {
 
 
-   void application::_001EnableShellOpen()
-   {
+   //void application::_001EnableShellOpen()
+   //{
 
-   }
+   //}
 
 
-   string application::get_version()
-   {
+   //string application::get_version()
+   //{
 
-      return "1.0.0";
+   //   return "1.0.0";
 
-   }
+   //}
 
 
    //bool application::impl_process_init()
@@ -107,11 +107,11 @@ namespace aura
    //}
 
 
-   bool application::os_on_start_application()
-   {
-      return true;
+   //bool application::os_on_start_application()
+   //{
+   //   return true;
 
-   }
+   //}
 
 
    //bool application::request(::create * pdata)
@@ -138,32 +138,47 @@ namespace aura
    // }
 
 
-   string application::multimedia_audio_get_default_library_name()
+   //string application::multimedia_audio_get_default_library_name()
+   //{
+
+   //   return "audio_opensles";
+
+   //}
+
+
+   //string application::multimedia_audio_mixer_get_default_library_name()
+   //{
+
+   //   return "audio_mixer_opensles";
+
+   //}
+
+
+   //string application::veriwell_multimedia_music_midi_get_default_library_name()
+   //{
+
+   //   return "";
+
+   //}
+
+
+   HCURSOR application::load_default_cursor(e_cursor ecursor)
    {
 
-      return "audio_opensles";
+      return nullptr;
 
    }
 
 
-   string application::multimedia_audio_mixer_get_default_library_name()
+   int_bool application::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
    {
 
-      return "audio_mixer_opensles";
-
-   }
-
-
-   string application::veriwell_multimedia_music_midi_get_default_library_name()
-   {
-
-      return "";
+      return FALSE;
 
    }
 
 
 } // namespace android
-
 
 
 

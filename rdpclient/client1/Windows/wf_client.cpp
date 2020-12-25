@@ -648,7 +648,7 @@ CLASS_DECL_EXPORT BOOL wf_pre_connect(freerdp* instance)
 //			return TRUE;
 //		}
 //
-//		millis_sleep(5000);
+//		sleep(5000_ms);
 //	}
 //
 //	WLog_ERR(TAG, "Maximum reconnect retries exceeded");

@@ -1,10 +1,7 @@
 #pragma once
 
 
-
 #ifndef _UWP
-
-
 
 
 #include "windows_guid_def.h"
@@ -19,6 +16,8 @@
 #include "windows_crt.h"
 #include "windows_types.h"
 #include "windows_gdi.h"
+
+
 #endif
 
 

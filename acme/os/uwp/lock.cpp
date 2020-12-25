@@ -24,7 +24,7 @@ int _c_lock(const char * pszName, void ** pdata)
 #else
    HANDLE hmutex = ::CreateMutex(nullptr, FALSE, pszName);
 #endif
-   if(::get_last_error() == ERROR_ALREADY_EXISTS)
+   if(::GetLastError() == ERROR_ALREADY_EXISTS)
    {
       ::CloseHandle(hmutex);
       return 0;

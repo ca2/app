@@ -1,6 +1,5 @@
 #include "framework.h"
-//#include "apex/xml/_.h"
-#include "apex/net/sockets/_.h"
+#include "apex/net/sockets/_sockets.h"
 #include "apex/filesystem/fs/_fs.h"
 #include "ifs_file.h"
 
@@ -336,12 +335,12 @@ bool ifs::file_move(const ::file::path & pszDst,const ::file::path & pszSrc)
 }
 
 
-file_result ifs::get_file(const ::file::path & path, ::u32 nOpenFlags)
+file_result ifs::get_file(const ::file::path & path, const ::file::e_open & eopen)
 {
 
    auto pfile = __new(ifs_file( path));
 
-   auto result = pfile->open(path,nOpenFlags);
+   auto result = pfile->open(path, eopen);
 
    if(!result)
    {

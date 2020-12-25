@@ -60,7 +60,7 @@ namespace app_net
 
       m_pwindow->start_layout();
 
-      m_pwindow->display(display_normal);
+      m_pwindow->display(e_display_normal);
 
       m_pwindow->set_need_layout();
 

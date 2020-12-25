@@ -59,7 +59,7 @@ const char* br_init_get_symbol();
 #endif
 
 
-CLASS_DECL_AURA ::estatus os_application_system_run(::apex::system* psystem);
+//fCLASS_DECL_AURA ::estatus os_application_system_run(::apex::system* psystem);
 
 CLASS_DECL_APEX ::estatus set_main_app_id(const char * pszAppId);
 
@@ -213,13 +213,13 @@ public:
 
 
 
-#ifdef MAINAPPID
+#ifdef _APP_ID
 
 
 inline string executable_get_app_id()
 {
 
-   return MAINAPPID;
+   return _APP_ID;
 
 }
 

@@ -61,7 +61,7 @@ namespace user
 
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void _001OnDropTab(index iPane, e_position eposition) override;
+      virtual void _001OnDropTab(index iPane, enum_position eposition) override;
 
       virtual ::user::interaction * _001GetTabWnd(::index iTab) override;
 
@@ -89,7 +89,7 @@ namespace user
 
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
-      virtual bool pre_create_window(::user::create_struct& cs) override;
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
 
       virtual void OnActivateView(bool bActivate, __pointer(impact) pActivateView, __pointer(impact) pDeactiveView) override;
 

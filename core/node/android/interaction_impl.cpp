@@ -217,7 +217,7 @@ namespace android
    }
 
 
-   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, ::user::create_struct & cs, ::user::interaction * puiParent, id id)
+   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::interaction * puiParent, id id)
    {
 
       auto oswindow = puiParent ? puiParent->get_safe_handle() : nullptr;
@@ -257,9 +257,9 @@ namespace android
 
 //      return false;
 
-      ENSURE_ARG(cs.lpszClass == nullptr || __is_valid_string(cs.lpszClass));
+      ENSURE_ARG(pcreatestruct->m_createstruct.lpszClass == nullptr || __is_valid_string(pcreatestruct->m_createstruct.lpszClass));
 
-      if (cs.hwndParent == HWND_MESSAGE)
+      if (pcreatestruct->m_createstruct.hwndParent == HWND_MESSAGE)
       {
 
          m_puserinteraction->m_bMessageWindow = true;
@@ -281,11 +281,11 @@ namespace android
 
          ::rect rectCreate;
 
-         cs.get_rect(rectCreate);
+         pcreatestruct->m_createstruct.get_rect(rectCreate);
 
          m_puserinteraction->place(rectCreate);
 
-         m_puserinteraction->display(display_full_screen);
+         m_puserinteraction->display(e_display_full_screen);
 
          //::estatus estatus = __compose(m_pgraphics);
 
@@ -398,7 +398,7 @@ namespace android
 
       m_puserinteraction->m_pimpl = this;
 
-      m_puserinteraction->m_ewindowflag |= window_flag_window_created;
+      m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
       return true;
 
@@ -444,7 +444,7 @@ namespace android
 
 
    // for child android
-   bool interaction_impl::pre_create_window(::user::create_struct& cs)
+   bool interaction_impl::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
       return true;
@@ -462,16 +462,16 @@ namespace android
 
       ::user::create_struct createstruct;
 
-      createstruct.dwExStyle = 0;
-      createstruct.lpszClass = lpszClassName;
-      createstruct.lpszName = lpszWindowName;
-      createstruct.style = dwStyle | WS_CHILD;
-      createstruct.x = rect.left;
-      createstruct.y = rect.top;
-      createstruct.cx = width(rect);
-      createstruct.cy = height(rect);
-      createstruct.hwndParent = pParentWnd->get_safe_handle();
-      createstruct.lpCreateParams = (LPVOID)pcreate;
+      pcreatestruct->m_createstruct.dwExStyle = 0;
+      pcreatestruct->m_createstruct.lpszClass = lpszClassName;
+      pcreatestruct->m_createstruct.lpszName = lpszWindowName;
+      pcreatestruct->m_createstruct.style = dwStyle | WS_CHILD;
+      pcreatestruct->m_createstruct.x = rect.left;
+      pcreatestruct->m_createstruct.y = rect.top;
+      pcreatestruct->m_createstruct.cx = width(rect);
+      pcreatestruct->m_createstruct.cy = height(rect);
+      pcreatestruct->m_createstruct.hwndParent = pParentWnd->get_safe_handle();
+      pcreatestruct->m_createstruct.lpCreateParams = (LPVOID)pcreate;
 
       return create_window_ex(pinteraction, createstruct, pParentWnd, id);
    }
@@ -489,7 +489,7 @@ namespace android
 
    //    ::user::create_struct createstruct(0, nullptr, pszName, WS_CHILD, ::rect());
 
-   //    createstruct.hwndParent = HWND_MESSAGE;
+   //    pcreatestruct->m_createstruct.hwndParent = HWND_MESSAGE;
 
    //    if(!native_create_window_ex(pinteraction, createstruct))
    //    {
@@ -1859,7 +1859,7 @@ namespace android
          //      if (tickStart.elapsed() < 5)
          //      {
 
-         //         millis_sleep(5);
+         //         sleep(5_ms);
 
          //      }
 
@@ -2454,7 +2454,7 @@ namespace android
 //
 //            /*XMapWindow(m_oswindow->display(), m_oswindow->window());*/
 //
-//            ::show_window(get_handle(), display_normal);
+//            ::show_window(get_handle(), e_display_normal);
 //
 //         }
 //
@@ -2731,7 +2731,7 @@ namespace android
    //   if (m_puserinteraction != nullptr)
    //   {
 
-   //      m_puserinteraction->m_edisplay = ::display_normal;
+   //      m_puserinteraction->m_edisplay = ::e_display_normal;
 
    //   }
 
@@ -2763,7 +2763,7 @@ namespace android
    //   if (GetExStyle() & WS_EX_LAYERED)
    //   {
 
-   //      return m_puserinteraction->m_edisplay == ::display_iconic;
+   //      return m_puserinteraction->m_edisplay == ::e_display_iconic;
 
    //   }
    //   else
@@ -3353,7 +3353,7 @@ namespace android
    }
    */
 
-   //bool interaction_impl::DrawAnimatedRects(i32 idAni, CONST RECT32 *lprcFrom, CONST RECT32 *lprcTo)
+   //bool interaction_impl::DrawAnimatedRects(i32 idAni, const RECT32 *lprcFrom, const RECT32 *lprcTo)
    //{
 
    //   __throw(not_implemented());

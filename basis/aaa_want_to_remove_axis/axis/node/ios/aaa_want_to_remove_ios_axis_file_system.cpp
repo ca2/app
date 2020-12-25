@@ -315,7 +315,7 @@ namespace ios
 //            return false;
 //         try
 //         {
-//            if(spfile->open(lpcszCandidate, ::file::mode_create | ::file::type_binary).failed())
+//            if(spfile->open(lpcszCandidate, ::file::e_open_create | ::file::e_open_binary).failed())
 //               return false;
 //         }
 //         catch(...)
@@ -377,7 +377,7 @@ namespace ios
 //                  try
 //                  {
 //
-//                     storage.transfer_from(*App(papp).file().get_file(strFilePath, ::file::type_binary | ::file::mode_read));
+//                     storage.transfer_from(*App(papp).file().get_file(strFilePath, ::file::e_open_binary | ::file::e_open_read));
 //
 //                  }
 //                  catch(...)
@@ -467,7 +467,7 @@ namespace ios
 //         try
 //         {
 //
-//            spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_read | ::file::share_deny_none);
+//            spfile = App(papp).file().get_file(varFile, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
 //
 //            mem.transfer_from(*spfile);
 //
@@ -489,7 +489,7 @@ namespace ios
 //
 //         try
 //         {
-//            if(spfile->open(varFile, ::file::type_text | ::file::mode_read).failed())
+//            if(spfile->open(varFile, ::file::e_open_text | ::file::e_open_read).failed())
 //            {
 //               return;
 //            }
@@ -511,7 +511,7 @@ namespace ios
 //
 //         file_pointer spfile;
 //
-//         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
+//         spfile = App(papp).file().get_file(varFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_none | ::file::e_open_defer_create_directory);
 //
 //         if(spfile.is_null())
 //            return false;
@@ -537,7 +537,7 @@ namespace ios
 //      bool file_system::put_contents(payload varFile, ::file::reader & reader, ::aura::application *  papp)
 //      {
 //         file_pointer spfile;
-//         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
+//         spfile = App(papp).file().get_file(varFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_none | ::file::e_open_defer_create_directory);
 //         if(spfile.is_null())
 //            return false;
 //         memory mem;
@@ -558,7 +558,7 @@ namespace ios
 //      bool file_system::put_contents_utf8(payload varFile, const char * lpcszContents, ::aura::application *  papp)
 //      {
 //         file_pointer spfile;
-//         spfile = App(papp).file().get_file(varFile, ::file::type_binary | ::file::mode_write | ::file::mode_create | ::file::share_deny_none | ::file::defer_create_directory);
+//         spfile = App(papp).file().get_file(varFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_none | ::file::e_open_defer_create_directory);
 //         if(spfile.is_null())
 //            return false;
 //
@@ -739,7 +739,7 @@ namespace ios
 //            }
 //
 //            file_pointer ofile;
-//            ofile = App(papp).file().get_file(strNew, ::file::mode_write | ::file::type_binary | ::file::mode_create | ::file::defer_create_directory | ::file::share_deny_write);
+//            ofile = App(papp).file().get_file(strNew, ::file::e_open_write | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_defer_create_directory | ::file::e_open_share_deny_write);
 //            if(ofile.is_null())
 //            {
 //               string strError;
@@ -748,7 +748,7 @@ namespace ios
 //            }
 //
 //            file_pointer ifile;
-//            ifile = App(papp).file().get_file(psz, ::file::mode_read | ::file::type_binary | ::file::share_deny_none);
+//            ifile = App(papp).file().get_file(psz, ::file::e_open_read | ::file::e_open_binary | ::file::e_open_share_deny_none);
 //            if(ifile.is_null())
 //            {
 //               string strError;
@@ -1220,7 +1220,7 @@ namespace ios
 //
 //         Context.dir().mk(Context.dir().name(name), papp);
 //
-//         file_pointer fileOut = App(papp).file().get_file(name, ::file::mode_create | ::file::type_binary | ::file::mode_write);
+//         file_pointer fileOut = App(papp).file().get_file(name, ::file::e_open_create | ::file::e_open_binary | ::file::e_open_write);
 //
 //         if(fileOut.is_null())
 //            __throw(::file::exception(-1, ::file::exception::none, name));

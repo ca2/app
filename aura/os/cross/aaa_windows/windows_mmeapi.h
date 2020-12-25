@@ -18,7 +18,7 @@ typedef struct tWAVEFORMATEX
     ::u16        wBitsPerSample;     /* number of bits per sample of mono data */
     ::u16        cbSize;             /* the count in bytes of the size of */
                                     /* extra information (after cbSize) */
-} WAVEFORMATEX, *PWAVEFORMATEX, NEAR *NPWAVEFORMATEX, FAR *LPWAVEFORMATEX;
+} WAVEFORMATEX, *PWAVEFORMATEX, *NPWAVEFORMATEX, *LPWAVEFORMATEX;
 
 #endif /* _WAVEFORMATEX_ */
 

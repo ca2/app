@@ -697,7 +697,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECT32 * prect)
 //#ifndef _UWP
 //
 //
-//int_bool show_window(::oswindow oswindow, ::edisplay edisplay)
+//int_bool show_window(::oswindow oswindow, ::e_display edisplay)
 //{
 //
 //   if(::is_null(oswindow))

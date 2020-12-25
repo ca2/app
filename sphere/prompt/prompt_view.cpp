@@ -30,7 +30,7 @@ namespace prompt
       MESSAGE_LINK(e_message_size, pchannel, this, &view::_001OnSize);
       MESSAGE_LINK(e_message_paint, pchannel, this, &view::_001OnPaint);
       MESSAGE_LINK(e_message_create, pchannel, this, &view::_001OnCreate);
-      MESSAGE_LINK(WM_CONTEXTMENU, pchannel, this, &view::_001OnContextMenu);
+      MESSAGE_LINK(e_message_context_menu, pchannel, this, &view::_001OnContextMenu);
       MESSAGE_LINK(e_message_set_cursor, pchannel, this, &view::_001OnSetCursor);
 
       //   MESSAGE_LINK(e_message_left_button_down, pchannel, this, &::user::interaction::_001OnLButtonDown);
@@ -84,12 +84,12 @@ namespace prompt
    // view
 
 
-   bool view::pre_create_window(::user::create_struct& cs)
+   bool view::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
-      cs.style &= ~WS_EX_CLIENTEDGE;
 
-      return ::user::impact::pre_create_window(cs);
+
+      return ::user::impact::pre_create_window(pcreatestruct);
 
    }
 

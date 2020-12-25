@@ -53,7 +53,7 @@ namespace user
       UNREFERENCED_PARAMETER(ptab);
    }
 
-   void tab_callback::_001OnDropTab(::index iTab, e_position eposition)
+   void tab_callback::_001OnDropTab(::index iTab, enum_position eposition)
    {
       UNREFERENCED_PARAMETER(iTab);
       UNREFERENCED_PARAMETER(eposition);

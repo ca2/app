@@ -185,7 +185,7 @@ namespace userfs
 
          }
 
-         ::file::path pathFinal  = Context.defer_process_path(pathSemiFinal | ::file::flag_resolve_alias);
+         ::file::path pathFinal  = Context.defer_process_path(pathSemiFinal | ::file::e_flag_resolve_alias);
 
          pathFinal.m_iDir = pathItem.m_iDir;
 
@@ -218,7 +218,7 @@ namespace userfs
          if (pathFinal.m_iDir < 0)
          {
 
-            pathFinal.m_iDir = Context.dir().is(pathFinal | ::file::flag_resolve_alias) ? 1 : 0;
+            pathFinal.m_iDir = Context.dir().is(pathFinal | ::file::e_flag_resolve_alias) ? 1 : 0;
 
          }
 

@@ -109,7 +109,7 @@ namespace aura
 //      __composite(::process::department)                 m_pprocess;
 //
 //      __composite(::parallelization::threading)           m_pthreading;
-//      ::edisplay                                         m_edisplay;
+//      ::e_display                                         m_edisplay;
 //      size_t                                             m_nSafetyPoolSize; // ideal size
 //
 //      bool                                               m_bFinalizeIfNoSessionSetting;
@@ -342,6 +342,10 @@ namespace aura
       virtual string crypto_md5_text(const string & str) override;
 
 
+      virtual ::estatus message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process()) override;
+      virtual ::estatus message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process()) override;
+
+
       //virtual ::estatus create_html();
 
       //virtual __pointer(::aura::session) on_create_session() override;
@@ -506,6 +510,8 @@ namespace aura
 
       virtual void browser(string strUrl, string strBrowser, string strProfile, string strTarget) override;
       virtual void open_profile_link(string strUrl, string strProfile, string strTarget) override;
+      virtual void open_link(string strUrl, string strProfile, string strTarget) override;
+      virtual void open_url(string strUrl, string strProfile, string strTarget) override;
 
 
       virtual void __set_thread_on() override;
@@ -717,8 +723,8 @@ namespace aura
 
 #ifdef ANDROID
 //#pragma message("at macos??")
-      virtual bool android_set_user_wallpaper(string strUrl);
-      virtual bool android_get_user_wallpaper(string & strUrl);
+      virtual bool android_set_user_wallpaper(string strUrl) override;
+      virtual bool android_get_user_wallpaper(string & strUrl) override;
 
 #endif
 
@@ -975,6 +981,7 @@ namespace aura
 
       virtual ::estatus initialize_estamira();
 
+      virtual ::estatus os_application_system_run() override;
 
    };
 

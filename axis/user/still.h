@@ -21,7 +21,7 @@ namespace user
       //::rect                              m_rectMargin;
       //::rect                              m_rectBorder;
       //::rect                              m_rectPadding;
-      ::e_align                             m_ealignText;
+      ::e_align                           m_ealignText;
       e_style                             m_estyle;
       ::rect                              m_rectText;
       index                               m_iClick;
@@ -29,20 +29,20 @@ namespace user
 
       ::rect                              m_rectCheckBox;
       string                              m_strLink;
-      ::draw2d::font_pointer              m_pfont;
+      //::draw2d::font_pointer              m_pfont;
       
 
       still();
       virtual ~still();
 
 
-      virtual bool should_hover();
+      //virtual bool should_hover();
 
-      virtual bool has_link();
+      virtual bool has_link() const override;
 
       virtual bool create_control(class control_descriptor * pdescriptor) override;
 
-      virtual ::draw2d::font_pointer get_font(style * pstyle, e_element eelement = element_none, estate estate = e_state_none) const override;
+      virtual ::draw2d::font_pointer get_font(style * pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
 
       virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics) override;
 
@@ -71,9 +71,9 @@ namespace user
       DECL_GEN_SIGNAL(_001OnCreate);
 
 
-      ::size calc_text_size();
+      virtual ::sized _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool keyboard_focus_is_focusable() override;
+      virtual bool keyboard_focus_is_focusable() const override;
 
       // virtual bool has_action_hover() override;
 
@@ -97,6 +97,9 @@ namespace user
 
       virtual void set_stock_icon(e_stock_icon eicon) override;
       virtual e_stock_icon get_stock_icon() override;
+
+
+      
 
    };
 

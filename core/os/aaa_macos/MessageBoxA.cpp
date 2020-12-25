@@ -9,7 +9,7 @@
 #include "framework.h"
 
 
-int _os_message_box(oswindow window, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox)
+int _os_message_box(oswindow window, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox)
 {
 
    //convert the strings from char* to CFStringRef
@@ -112,9 +112,9 @@ int _os_message_box(oswindow window, const char * pszMessage, const char * pszTi
    {
    case MB_OKCANCEL:
       if( result == kCFUserNotificationDefaultResponse)
-         return IDOK;
+         return e_dialog_result_ok;
       else if( result == kCFUserNotificationAlternateResponse)
-         return IDCANCEL;
+         return e_dialog_result_cancel;
       break;
    case MB_ABORTRETRYIGNORE:
       if( result == kCFUserNotificationDefaultResponse)
@@ -126,27 +126,27 @@ int _os_message_box(oswindow window, const char * pszMessage, const char * pszTi
       break;
    case MB_YESNOCANCEL:
       if( result == kCFUserNotificationDefaultResponse)
-         return IDYES;
+         return e_dialog_result_yes;
       else if(result == kCFUserNotificationAlternateResponse)
-         return IDNO;
+         return e_dialog_result_no;
       else if(result == kCFUserNotificationOtherResponse)
-         return IDCANCEL;
+         return e_dialog_result_cancel;
       break;
    case MB_YESNO:
       if( result == kCFUserNotificationDefaultResponse)
-         return IDYES;
+         return e_dialog_result_yes;
       else if(result == kCFUserNotificationAlternateResponse)
-         return IDNO;
+         return e_dialog_result_no;
       break;
    case MB_RETRYCANCEL:
       if( result == kCFUserNotificationDefaultResponse)
          return IDRETRY;
       else if(result == kCFUserNotificationAlternateResponse)
-         return IDCANCEL;
+         return e_dialog_result_cancel;
       break;
    case MB_CANCELTRYCONTINUE:
       if( result == kCFUserNotificationDefaultResponse)
-         return IDCANCEL;
+         return e_dialog_result_cancel;
       else if(result == kCFUserNotificationAlternateResponse)
          return IDTRYAGAIN;
       else if(result == kCFUserNotificationOtherResponse)
@@ -154,12 +154,12 @@ int _os_message_box(oswindow window, const char * pszMessage, const char * pszTi
       break;
    default:
       if( result == kCFUserNotificationDefaultResponse)
-         return IDOK;
+         return e_dialog_result_ok;
       break;
    }
 
 
-   return IDCANCEL;
+   return e_dialog_result_cancel;
 
 
 }
@@ -168,7 +168,7 @@ int _os_message_box(oswindow window, const char * pszMessage, const char * pszTi
 CLASS_DECL_CORE string message_box_result_to_string(int iResult);
 
 
-::estatus os_message_box(oswindow window, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
+::estatus os_message_box(oswindow window, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 {
    
    

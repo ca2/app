@@ -67,13 +67,13 @@ namespace userstack
    }
 
 
-   bool frame::pre_create_window(::user::create_struct& cs)
+   bool frame::pre_create_window(::user::create_struct * pcreatestruct)
    {
 
-      if( !simple_frame_window::pre_create_window(cs) )
+      if( !simple_frame_window::pre_create_window(pcreatestruct) )
          return FALSE;
 
-      cs.dwExStyle &= ~WS_EX_WINDOWEDGE;
+      pcreatestruct->m_createstruct.dwExStyle &= ~WS_EX_WINDOWEDGE;
 
       return TRUE;
 
@@ -148,7 +148,7 @@ namespace userstack
       ::u32 nShow;
       if(bShow)
       {
-         nShow = display_normal;
+         nShow = e_display_normal;
       }
       else
       {
@@ -216,7 +216,7 @@ namespace userstack
       }
       else
       {
-         display(display_full_screen);
+         display(e_display_full_screen);
       }
    }
 
@@ -267,12 +267,12 @@ namespace userstack
          if(pbase->m_lparam == 2)
          {
             //OnHoverAction(true);
-            //display(display_normal);
+            //display(e_display_normal);
             
             display();
             
             set_window_pos(zorder_top, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
-            display(display_full_screen);
+            display(e_display_full_screen);
          }
          else if(pbase->m_lparam == 5)
          {
@@ -283,7 +283,7 @@ namespace userstack
             if(!is_window_visible()
                   || ::WindowFromPoint(point) != get_safe_handle())
             {
-               display(display_full_screen);
+               display(e_display_full_screen);
             }
             else
             {

@@ -4,18 +4,14 @@
 #include "aura/user/interaction_prodevian.h"
 
 
-int SetMainScreenRect(LPCRECT32 lpcrect);
-
 extern "C"
 JNIEXPORT void JNICALL Java_com_android_1app_impact_render_1impact(JNIEnv * env, jobject  obj, jobject bitmap, jlong  time_ms, jobject result)
 {
 
    set_context(env);
 
-   AndroidBitmapInfo    info;
-   void* pixels;
+   AndroidBitmapInfo    info = {};
    int                  ret;
-   static int           init;
 
    if ((ret = AndroidBitmap_getInfo(env, bitmap, &info)) < 0)
    {
@@ -35,7 +31,9 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_render_1impact(JNIEnv * env,
 
    }
 
-   if ((ret = AndroidBitmap_lockPixels(env, bitmap, &pixels)) < 0)
+   color32_t * pixels = nullptr;
+
+   if ((ret = AndroidBitmap_lockPixels(env, bitmap, (void * *) &pixels)) < 0)
    {
 
       LOGE("AndroidBitmap_lockPixels() failed ! error=%d", ret);
@@ -169,12 +167,14 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_aura_1on_1text_1composit
 
    size_t length = (size_t)env->GetStringLength(str);
 
-   if (System.get_context_session()->get_focus_ui())
+   auto psession = Session;
+
+   if (psession->get_focus_ui())
    {
 
       wd16string wstr(utf16, length);
 
-      System.get_context_session()->get_focus_ui()->on_text_composition(wstr);
+      psession->get_focus_ui()->on_text_composition(wstr);
 
    }
    else
@@ -189,6 +189,48 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_aura_1on_1text_1composit
    return TRUE;
 
 }
+
+
+extern "C"
+JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_aura_1on_1text_1commit(JNIEnv * env, jobject  obj, jstring str, jint i)
+{
+
+   set_context(env);
+
+   const wd16char * utf16 = (wd16char *)env->GetStringChars(str, NULL);
+
+   if (utf16 == NULL)
+   {
+
+      return false;
+
+   }
+
+   size_t length = (size_t)env->GetStringLength(str);
+
+   auto psession = Session;
+
+   if (psession->get_focus_ui())
+   {
+
+      wd16string wstr(utf16, length);
+
+      psession->get_focus_ui()->on_text_commit(wstr);
+
+   }
+   else
+   {
+
+      //android_on_text(os_text_keyboard, utf16, length);
+
+   }
+
+   env->ReleaseStringChars(str, (jchar *)utf16);
+
+   return TRUE;
+
+}
+
 
 extern "C"
 JNIEXPORT void JNICALL Java_com_android_1app_impact_mouseMove(JNIEnv * env, jobject  obj, jfloat x, jfloat y)
@@ -258,58 +300,58 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_aura_1size_1changed(JNIEnv *
 
    SetMainScreenRect(rect);
 
-   ::point p;
+   //auto pimpl = puserinteraction->m_pimpl.cast < ::user::interaction_impl >();
 
-   ::size s(g_posremote->getWidth(), g_posremote->getHeight());
+   //if (pimpl)
+   //{
 
-   ::user::interaction* puiHost = System.get_context_session()->m_puiHost;
+   //   pimpl->m_pprodevian->prodevian_update_buffer(true);
 
-   puiHost->m_statePrevious2.m_point = p;
-   puiHost->m_stateRequest2.m_point = p;
-   puiHost->m_stateProcess2.m_point = p;
-   puiHost->m_state2.m_point = p;
-   puiHost->m_stateWindow3.m_point = p;
+   //   //oslocal()->m_bRedraw = true;
 
-   puiHost->m_statePrevious2.m_size = s;
-   puiHost->m_stateRequest2.m_size = s;
-   puiHost->m_stateProcess2.m_size = s;
-   puiHost->m_state2.m_size = s;
-   puiHost->m_stateWindow3.m_size = s;
+   //}
 
-   for (auto& puserinteraction : puiHost->m_uiptraChild)
-   {
+   //auto puiptraChild = puserinteraction->m_puiptraChild;
 
-      try
-      {
+   //if (puiptraChild)
+   //{
 
-         puserinteraction->send_message(e_message_display_change);
+   //   for (auto & puserinteractionChild : puiptraChild->interactiona())
+   //   {
 
-         //__pointer(::user::interaction_impl) pimpl = puserinteraction->m_pimpl;
+   //      try
+   //      {
 
-         //if (pimpl)
-         //{
+   //         puserinteractionChild->send_message(e_message_display_change);
 
-         //   pimpl->m_puserthread->do_events();
+   //         //__pointer(::user::interaction_impl) pimpl = puserinteraction->m_pimpl;
 
-         //   pimpl->m_pprodevian->do_events();
+   //         //if (pimpl)
+   //         //{
 
-         //   pimpl->m_puserthread->do_events();
+   //         //   pimpl->m_puserthread->do_events();
 
-         //   pimpl->m_pprodevian->do_events();
+   //         //   pimpl->m_pprodevian->do_events();
 
-         //   pimpl->m_puserthread->do_events();
+   //         //   pimpl->m_puserthread->do_events();
 
-         //   pimpl->m_pprodevian->do_events();
+   //         //   pimpl->m_pprodevian->do_events();
 
-         //}
+   //         //   pimpl->m_puserthread->do_events();
 
-      }
-      catch (...)
-      {
+   //         //   pimpl->m_pprodevian->do_events();
 
-      }
+   //         //}
 
-   }
+   //      }
+   //      catch (...)
+   //      {
+
+   //      }
+
+   //   }
+
+   //}
 
 }
 

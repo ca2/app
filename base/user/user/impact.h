@@ -100,7 +100,7 @@ namespace user
 
       virtual void route_command_message(::user::command * pcommand) override;
 
-      virtual bool pre_create_window(::user::create_struct& cs) override;
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
       virtual void PostNcDestroy() override;
 
 
@@ -183,7 +183,7 @@ namespace user
 
       //      virtual void route_command_message(::user::command * pcommand);
 
-      //      virtual bool pre_create_window(::user::create_struct& cs);
+      //      virtual bool pre_create_window(::user::create_struct * pcreatestruct);
 
 
       //         virtual void install_message_routing(::channel * pchannel);
@@ -311,17 +311,17 @@ namespace user
       }
 
 
-      virtual bool pre_create_window(::user::create_struct& cs) override
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override
       {
 
-         if (!::user::impact::pre_create_window(cs))
+         if (!::user::impact::pre_create_window(pcreatestruct))
          {
 
             return false;
 
          }
 
-         if (!VIEW::pre_create_window(cs))
+         if (!VIEW::pre_create_window(pcreatestruct))
          {
 
             return false;

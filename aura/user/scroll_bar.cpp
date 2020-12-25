@@ -108,7 +108,7 @@ namespace user
    }
 
 
-   ::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, ::user::e_element eelement)
+   ::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, ::user::enum_element eelement)
    {
 
       if (m_itemCurrent == eelement || m_itemHover== eelement)
@@ -127,7 +127,7 @@ namespace user
    }
 
 
-   ::color scroll_bar::scrollbar_color(::user::style * pstyle, ::user::e_element eelement)
+   ::color scroll_bar::scrollbar_color(::user::style * pstyle, ::user::enum_element eelement)
    {
 
       if(m_itemCurrent == eelement || m_itemHover== eelement)
@@ -146,7 +146,7 @@ namespace user
    }
 
 
-   ::color scroll_bar::scrollbar_border_color(::user::style* pstyle, ::user::e_element eelement)
+   ::color scroll_bar::scrollbar_border_color(::user::style* pstyle, ::user::enum_element eelement)
    {
 
       if(m_itemCurrent == eelement || m_itemHover== eelement)
@@ -165,7 +165,7 @@ namespace user
    }
 
 
-   ::color scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::user::e_element eelement)
+   ::color scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::user::enum_element eelement)
    {
 
       if(m_itemCurrent == eelement || m_itemHover== eelement)
@@ -184,7 +184,7 @@ namespace user
    }
 
 
-   ::color scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::user::e_element eelement)
+   ::color scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::user::enum_element eelement)
    {
 
       if (m_itemCurrent == eelement || m_itemHover == eelement)
@@ -222,7 +222,7 @@ namespace user
 
             rectClient = pdrawcontext->m_rectWindow;
 
-            _001ScreenToClient(rectClient, layout_design);
+            _001ScreenToClient(rectClient, e_layout_design);
 
             rectClient.bottom++;
             rectClient.right++;
@@ -245,13 +245,13 @@ namespace user
             if (i != 1)
             {
 
-               pinteraction->get_window_rect(rectClient, layout_design);
+               pinteraction->get_window_rect(rectClient, e_layout_design);
 
                pinteraction->get_client_rect(rectFocus);
 
                rectFocus.offset(rectClient.top_left());
 
-               _001ScreenToClient(rectFocus, layout_design);
+               _001ScreenToClient(rectFocus, e_layout_design);
 
                rectFocus.bottom++;
                rectFocus.right++;

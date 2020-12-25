@@ -49,8 +49,7 @@ namespace file
    file::file()
    {
 
-      m_dwErrorBlockTimeout = 0;
-      m_eopen = 0;
+      m_millisErrorBlockTimeout = 0;
 
    }
 
@@ -65,8 +64,7 @@ namespace file
       m_path(path)
    {
 
-      m_dwErrorBlockTimeout = 0;
-      m_eopen = 0;
+      m_millisErrorBlockTimeout = 0;
 
    }
 
@@ -81,9 +79,9 @@ namespace file
    void file::set_storing()
    {
 
-      m_eopen -= ::file::mode_read;
+      m_eopen -= ::file::e_open_read;
 
-      m_eopen |= ::file::mode_write;
+      m_eopen |= ::file::e_open_write;
 
    }
 
@@ -91,9 +89,9 @@ namespace file
    void file::set_loading()
    {
 
-      m_eopen -= ::file::mode_write;
+      m_eopen -= ::file::e_open_write;
 
-      m_eopen |= ::file::mode_read;
+      m_eopen |= ::file::e_open_read;
 
    }
 
@@ -106,7 +104,7 @@ namespace file
    //}
 
 
-   ::status::result file::open(const ::file::path & path, const efileopen & eopen)
+   ::status::result file::open(const ::file::path & path, const ::file::e_open & eopen)
    {
 
       UNREFERENCED_PARAMETER(path);
@@ -160,7 +158,7 @@ namespace file
    bool file::has_write_mode()
    {
 
-      return m_eopen & ::file::mode_write;
+      return m_eopen & ::file::e_open_write;
 
    }
 
@@ -551,7 +549,7 @@ namespace file
    bool file::read_string(memory_base & mem)
    {
 
-      m_efilestate -= filestate_read_line_truncated;
+      m_estate -= ::file::e_state_read_line_truncated;
 
       int i = sbumpc();
 
@@ -1275,7 +1273,7 @@ namespace file
       else
       {
 
-         payload.operator path &() |= ::file::flag_bypass_cache;
+         payload.operator path &() |= ::file::e_flag_bypass_cache;
 
       }
 

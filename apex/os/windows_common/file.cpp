@@ -243,7 +243,7 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder^ winrt_folder(string& strPath,
 //                  if (is_set(petype))
 //                  {
 //
-//                     *petype = ::file::type_folder;
+//                     *petype = ::file::e_type_folder;
 //
 //                  }
 //
@@ -256,7 +256,7 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder^ winrt_folder(string& strPath,
 //                  if (is_set(petype))
 //                  {
 //
-//                     *petype = ::file::type_file;
+//                     *petype = ::file::e_type_file;
 //
 //                  }
 //
@@ -281,7 +281,7 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder^ winrt_folder(string& strPath,
 //      if (is_set(petype))
 //      {
 //
-//         *petype = ::file::type_none;
+//         *petype = ::file::e_type_none;
 //
 //      }
 //
@@ -295,13 +295,13 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder^ winrt_folder(string& strPath,
 //      if (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY)
 //      {
 //
-//         *petype = ::file::type_folder;
+//         *petype = ::file::e_type_folder;
 //
 //      }
 //      else
 //      {
 //
-//         *petype = ::file::type_file;
+//         *petype = ::file::e_type_file;
 //
 //      }
 //

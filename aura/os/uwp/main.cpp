@@ -55,7 +55,7 @@
 ////
 ////   psystem->startup_command(pcommand);
 ////
-////   //MessageBox(nullptr, "box1", "box1", MB_ICONINFORMATION);
+////   //MessageBox(nullptr, "box1", "box1", e_message_box_icon_information);
 ////
 ////   psystem->main();
 ////
@@ -144,7 +144,7 @@
 ////      ::aura::system * psystem = new ::aura::system();
 ////
 ////
-////      //millis_sleep(30 * 1000);
+////      //sleep(30 * 1000);
 ////
 ////
 ////      ASSERT(hPrevInstance == nullptr);
@@ -254,10 +254,10 @@
 //
 //   }
 //
-//   if (!::str::begins_eat_ci(strAppId, "cc.ca2."))
+//   if (!::str::begins_eat_ci(strAppId, "com."))
 //   {
 //
-//      ::str::begins_eat_ci(strAppId, "com.ca2.");
+//      ::str::begins_eat_ci(strAppId, "com.");
 //
 //   }
 //

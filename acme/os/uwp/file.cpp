@@ -48,7 +48,7 @@ int_bool file_put_contents(const char* path, const char* contents, memsize len)
 
    }
 
-   ::u32 dwWritten = 0;
+   DWORD dwWritten = 0;
 
    int_bool bOk = WriteFile(hfile, contents, (u32)dwWrite, &dwWritten, nullptr) != FALSE;
 
@@ -1017,14 +1017,14 @@ int_bool FILE_set_size(FILE* file, size_t iSize)
 int_bool ensure_file_size_handle(HANDLE h, u64 iSize)
 {
 
-   ::u32 dwHi;
+   DWORD dwHi;
 
-   ::u32 dwLo = GetFileSize(h, &dwHi);
+   DWORD dwLo = GetFileSize(h, &dwHi);
 
    if (((u64)dwLo | ((u64)dwHi << 32)) != iSize)
    {
 
-      ::i32 l = (iSize >> 32) & 0xffffffff;
+      LONG l = (iSize >> 32) & 0xffffffff;
 
       if (SetFilePointer(h, iSize & 0xffffffff, &l, SEEK_SET) != (::u32)(iSize & 0xffffffff))
          return false;
@@ -1111,9 +1111,14 @@ int_bool ensure_file_size_handle(HANDLE h, u64 iSize)
 int_bool file_delete(const char* lpszFileName)
 {
 
+   wstring wstr(lpszFileName);
 
-   if (!::DeleteFile((char *)lpszFileName))
+   if (!::DeleteFile(wstr))
+   {
+
       return FALSE;
+
+   }
 
    return TRUE;
 
@@ -1607,13 +1612,15 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 void hfile_set_size(HANDLE h, i64 iSize)
 {
 
-   ::u32 dwHi;
+   DWORD dwHi;
 
-   ::u32 dwLo = ::GetFileSize(h, &dwHi);
+   DWORD dwLo = ::GetFileSize(h, &dwHi);
 
    if (((u64)dwLo | ((i64)dwHi << 32)) != iSize)
    {
-      ::i32 l = (iSize >> 32) & 0xffffffff;
+
+      LONG l = (iSize >> 32) & 0xffffffff;
+
       ::SetFilePointer(h, iSize & 0xffffffff, &l, SEEK_SET);
       SetEndOfFile(h);
    }
@@ -1689,8 +1696,11 @@ void hfile_set_size(HANDLE h, i64 iSize)
 
    if (!::GetFileAttributesExW(psz, GetFileExInfoStandard, &data))
    {
-      ::u32 dwLastError = ::get_last_error();
+      
+      DWORD dwLastError = ::GetLastError();
+
       return INVALID_FILE_ATTRIBUTES;
+
    }
 
    return data.dwFileAttributes;
@@ -1880,7 +1890,7 @@ hfile hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShar
 }
 
 
-bool get_filetime(::Windows::Storage::StorageFile^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime)
+bool get_filetime_set(::Windows::Storage::StorageFile^ file, LPFILETIME lpCreationTime, LPFILETIME lpItemTime, LPFILETIME lpLastWriteTime)
 {
 
    if (lpCreationTime != nullptr)
@@ -1981,7 +1991,7 @@ string file_as_string(const char* path, strsize iReadAtMostByteCount)
 
    }
 
-   ::u32 dwSizeHigh;
+   DWORD dwSizeHigh;
 
    u32 dwSize = ::GetFileSize(hfile, &dwSizeHigh);
 
@@ -2000,7 +2010,7 @@ string file_as_string(const char* path, strsize iReadAtMostByteCount)
 
    char* psz = str.get_string_buffer(dwSize);
 
-   ::u32 dwRead;
+   DWORD dwRead;
 
    ::ReadFile(hfile, psz, dwSize, &dwRead, nullptr);
 
@@ -2150,9 +2160,9 @@ bool file_copy_dup(const char* pszNew, const char* pszSrc, bool bOverwrite)
 filesize hfile_get_size(HANDLE h)
 {
 
-   ::u32 dwHi;
+   DWORD dwHi;
 
-   ::u32 dwLo = ::GetFileSize(h, &dwHi);
+   DWORD dwLo = ::GetFileSize(h, &dwHi);
 
    return dwLo | (((DWORD64)dwHi) << 32);
 

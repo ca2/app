@@ -593,8 +593,15 @@ namespace user
       ::count count = get_view_count();
       for (index index = 0; index < count; index++)
       {
+
          __pointer(::user::impact) pview = get_view(index);
-         pview->GetParentFrame()->display(nCmdShow);
+
+         enum_activation eactivation = e_activation_default;
+
+         auto edisplay = windows_show_window_to_edisplay(nCmdShow, eactivation);
+
+         pview->GetParentFrame()->display(edisplay, eactivation);
+
       }
    }
 
@@ -911,7 +918,7 @@ namespace user
    bool document::on_open_document(const payload & varFile)
    {
 
-      auto preader = Context.file().get_reader(varFile, ::file::mode_read | ::file::share_deny_write | ::file::type_binary);
+      auto preader = Context.file().get_reader(varFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
 
       if (!preader)
       {
@@ -962,7 +969,7 @@ namespace user
    bool document::on_save_document(const payload & varFile)
    {
 
-      auto pwriter = Context.file().get_writer(varFile, ::file::defer_create_directory | ::file::mode_create | ::file::mode_read | ::file::mode_write | ::file::share_exclusive);
+      auto pwriter = Context.file().get_writer(varFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive);
 
       if(!pwriter)
       {
@@ -1086,7 +1093,7 @@ namespace user
          if (pframe.is_set())
          {
 
-            pframe->display(display_none);
+            pframe->display(e_display_none);
 
             pframe->child_post_quit("prodevian");
 
@@ -1102,7 +1109,7 @@ namespace user
          if (pframe.is_set())
          {
 
-            pframe->display(display_none);
+            pframe->display(e_display_none);
 
             pframe->child_post_quit_and_wait("prodevian", seconds(5));
 
@@ -1357,14 +1364,14 @@ namespace user
 
       //switch (Application.message_box(nullptr, prompt, MB_YESNOCANCEL))
       //{
-      //case IDCANCEL:
+      //case e_dialog_result_cancel:
       //{
 
       //   return false;       // don't continue
 
       //}
 
-      //case IDYES:
+      //case e_dialog_result_yes:
       //{
 
 
@@ -1373,7 +1380,7 @@ namespace user
 
       //}
 
-      //case IDNO:
+      //case e_dialog_result_no:
       //{
 
       //   // If not saving changes, revert the document_interface

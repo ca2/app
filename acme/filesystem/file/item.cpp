@@ -80,27 +80,27 @@ namespace file
    bool item::IsFolder() const
    {
 
-      if (m_flags & ::file::FlagFolderEx001Calc)
+      if (m_flags & ::file::e_flag_folder_ex001_calc)
       {
 
-         return m_flags & ::file::FlagFolderEx001;
+         return m_flags & ::file::e_flag_folder_ex001;
 
       }
       else
       {
 
-         bool bFolderEx001 = (m_flags & ::file::FlagFolder) || (m_flags & ::file::FlagInZip);
+         bool bFolderEx001 = (m_flags & ::file::e_flag_folder) || (m_flags & ::file::e_flag_in_zip);
 
-         const_cast <item *> (this)->m_flags |= ::file::FlagFolderEx001Calc;
+         const_cast <item *> (this)->m_flags |= ::file::e_flag_folder_ex001_calc;
 
          if (bFolderEx001)
          {
 
-            const_cast <item *> (this)->m_flags |= ::file::FlagFolderEx001;
+            const_cast <item *> (this)->m_flags |= ::file::e_flag_folder_ex001;
 
          }
 
-         return m_flags & ::file::FlagFolderEx001;
+         return m_flags & ::file::e_flag_folder_ex001;
 
       }
 

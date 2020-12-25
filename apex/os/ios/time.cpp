@@ -58,7 +58,7 @@ inline ::u32 GetTickCount()
 //}
 
 
-CLASS_DECL_APEX void millis_sleep(unsigned int dwMillis)
+CLASS_DECL_APEX void sleep(unsigned int dwMillis)
 {
    
    usleep(dwMillis * 1000);

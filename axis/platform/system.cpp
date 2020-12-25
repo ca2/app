@@ -2,10 +2,10 @@
 #include "aqua/xml.h"
 #include "apex/platform/app_core.h"
 #include "acme/const/id.h"
-//#include "axis/node/_node.h"
-//#include "core/net/ftp/_.h"
 #include "acme/platform/profiler.h"
 #include "apex/platform/static_setup.h"
+#include "axis/const/idpool.h"
+
 
 void __node_axis_factory_exchange();
 
@@ -112,6 +112,7 @@ namespace axis
 
       create_factory < ::axis::application, ::apex::application >();
       create_factory < ::axis::session, ::apex::session >();
+      create_factory < ::axis::idpool, ::apex::idpool >();
       create_factory < ::geo::department >();
 
    }
@@ -401,44 +402,44 @@ namespace axis
 
 
 
-#ifdef ANDROID
-
-   bool system::android_set_user_wallpaper(string strUrl)
-   {
-
-      oslocal().m_strSetUserWallpaper = strUrl;
-
-      return true;
-
-   }
-
-   bool system::android_get_user_wallpaper(string & strUrl)
-   {
-
-      oslocal().m_bGetUserWallpaper = true;
-
-      for(int i = 0; i < 10; i++)
-      {
-
-         if (!oslocal().m_bGetUserWallpaper)
-         {
-
-
-         }
-
-         millis_sleep(50);
-
-      }
-
-      strUrl = oslocal().m_strGetUserWallpaper;
-
-      return true;
-
-   }
-
-
-#endif
-
+//#ifdef ANDROID
+//
+//   bool system::android_set_user_wallpaper(string strUrl)
+//   {
+//
+//      oslocal().m_strSetUserWallpaper = strUrl;
+//
+//      return true;
+//
+//   }
+//
+//   bool system::android_get_user_wallpaper(string & strUrl)
+//   {
+//
+//      oslocal()->m_bGetUserWallpaper = true;
+//
+//      for(int i = 0; i < 10; i++)
+//      {
+//
+//         if (!oslocal()->m_bGetUserWallpaper)
+//         {
+//
+//
+//         }
+//
+//         sleep(50_ms);
+//
+//      }
+//
+//      strUrl = oslocal()->m_strGetUserWallpaper;
+//
+//      return true;
+//
+//   }
+//
+//
+//#endif
+//
 
    __pointer(::account::user_set) system::userset()
    {

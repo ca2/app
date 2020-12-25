@@ -46,7 +46,7 @@ namespace uwp
    //                          ::GetCurrentProcess(), &hFile, 0, FALSE, DUPLICATE_SAME_ACCESS))
    //   {
    //      delete pFile;
-   //      //xxx      Ex1::file::throw_os_error((::i32)::get_last_error(), m_path);
+   //      //xxx      Ex1::file::throw_os_error((::i32)::GetLastError(), m_path);
    //      __throw(::exception::exception("integer_exception 1"));
    //   }
    //   pFile->m_hfile = (::u32)hFile;
@@ -56,20 +56,20 @@ namespace uwp
    //}
 
 
-   ::status::result file::open(const ::file::path & path, const ::efileopen & efileopenParam)
+   ::status::result file::open(const ::file::path & path, const ::file::e_open & efileopenParam)
    {
 
-      ::efileopen efileopen(efileopenParam);
+      ::file::e_open eopen(efileopenParam);
 
       if (m_hfile != hfile_null)
          close();
 
       ASSERT_VALID(this);
       ASSERT(__is_valid_string(path));
-      ASSERT(!(efileopen & ::file::type_text));   // text mode not supported
+      ASSERT(!(eopen & ::file::e_open_text));   // text mode not supported
 
       // file objects are always binary and CreateFile does not need flag
-      efileopen -= ::file::type_binary;
+      eopen -= ::file::e_open_binary;
 
 
       string strPath = path;
@@ -89,7 +89,7 @@ namespace uwp
 
 
       ::file::path lpszFileName(strPath);
-      if ((efileopen & ::file::defer_create_directory) && (efileopen & ::file::mode_write))
+      if ((eopen & ::file::e_open_defer_create_directory) && (eopen & ::file::e_open_write))
       {
 
          ::dir::mk(lpszFileName.folder());
@@ -104,20 +104,20 @@ namespace uwp
 //      m_wstrFileName    = ::str::international::utf8_to_unicode(m_path);
 
       ASSERT(sizeof(HANDLE) == sizeof(uptr));
-      ASSERT(::file::share_compat == 0);
+      ASSERT(::file::e_open_share_compat == 0);
 
       // ::map read/write mode
-      ASSERT((::file::mode_read|::file::mode_write|::file::mode_read_write) == 3);
+      ASSERT((::file::e_open_read|::file::e_open_write|::file::e_open_read_write) == 3);
       ::u32 dwAccess = 0;
-      switch (efileopen & 3)
+      switch (eopen & 3)
       {
-      case ::file::mode_read:
+      case ::file::e_open_read:
          dwAccess = GENERIC_READ;
          break;
-      case ::file::mode_write:
+      case ::file::e_open_write:
          dwAccess = GENERIC_WRITE;
          break;
-      case ::file::mode_read_write:
+      case ::file::e_open_read_write:
          dwAccess = GENERIC_READ|GENERIC_WRITE;
          break;
       default:
@@ -127,21 +127,21 @@ namespace uwp
 
       // ::map share mode
       ::u32 dwShareMode = 0;
-      switch (efileopen & 0x70)    // ::map compatibility mode to exclusive
+      switch (eopen & 0x70)    // ::map compatibility mode to exclusive
       {
       default:
          ASSERT(FALSE);  // invalid share mode?
-      case ::file::share_compat:
-      case ::file::share_exclusive:
+      case ::file::e_open_share_compat:
+      case ::file::e_open_share_exclusive:
          dwShareMode = 0;
          break;
-      case ::file::share_deny_write:
+      case ::file::e_open_share_deny_write:
          dwShareMode = FILE_SHARE_READ;
          break;
-      case ::file::share_deny_read:
+      case ::file::e_open_share_deny_read:
          dwShareMode = FILE_SHARE_WRITE;
          break;
-      case ::file::share_deny_none:
+      case ::file::e_open_share_deny_none:
          dwShareMode = FILE_SHARE_WRITE|FILE_SHARE_READ;
          break;
       }
@@ -152,13 +152,13 @@ namespace uwp
       SECURITY_ATTRIBUTES sa;
       sa.nLength = sizeof(sa);
       sa.lpSecurityDescriptor = nullptr;
-      sa.bInheritHandle = !(efileopen & ::file::mode_no_inherit);
+      sa.bInheritHandle = !(eopen & ::file::e_open_no_inherit);
 
       // ::map creation flags
       ::u32 dwCreateFlag;
-      if (efileopen & ::file::mode_create)
+      if (eopen & ::file::e_open_create)
       {
-         if (efileopen & ::file::mode_no_truncate)
+         if (eopen & ::file::e_open_no_truncate)
             dwCreateFlag = OPEN_ALWAYS;
          else
             dwCreateFlag = CREATE_ALWAYS;
@@ -171,7 +171,7 @@ namespace uwp
       hfile hfile = ::hfile_create(m_path, dwAccess, dwShareMode, &sa, dwCreateFlag, FILE_ATTRIBUTE_NORMAL, nullptr);
       if (::is_nok(hfile))
       {
-         ::u32 dwLastError = ::get_last_error();
+         ::u32 dwLastError = ::GetLastError();
 
          if(dwLastError != ERROR_FILE_NOT_FOUND && dwLastError != ERROR_PATH_NOT_FOUND)
          {
@@ -191,7 +191,7 @@ namespace uwp
             {*/
 
 
-            return ::file::os_error_to_status(dwLastError);
+            return ::os_error_to_status(dwLastError);
 
             //}
 
@@ -218,7 +218,7 @@ namespace uwp
             ::file::exception * pfe = dynamic_cast < ::file::exception * > (pException->m_p);
             if(pfe != nullptr)
             {
-            pfe->m_lOsError = ::get_last_error();
+            pfe->m_lOsError = ::GetLastError();
             pfe->m_cause = WinFileException::OsErrorToException(pfe->m_lOsError);
             pfe->m_path = lpszFileName;
             }
@@ -228,8 +228,8 @@ namespace uwp
             {*/
 
 
-            ::u32 dwLastError = ::get_last_error();
-            return ::file::os_error_to_status(dwLastError);
+            ::u32 dwLastError = ::GetLastError();
+            return ::os_error_to_status(dwLastError);
 
 
             //}
@@ -258,9 +258,14 @@ namespace uwp
       ASSERT(lpBuf != nullptr);
       ASSERT(__is_valid_address(lpBuf, nCount));
 
-      ::u32 dwRead;
-      if (!::ReadFile((HANDLE)m_hfile, lpBuf, (::u32) nCount, &dwRead, nullptr))
-         ::file::throw_os_error((::i32)::get_last_error(), m_path);
+      DWORD dwRead;
+
+      if (!::ReadFile((HANDLE)m_hfile, lpBuf, (::u32)nCount, &dwRead, nullptr))
+      {
+       
+         ::file::throw_os_error((::i32)::GetLastError(), m_path);
+
+      }
 
       return (::u32)dwRead;
    }
@@ -276,9 +281,14 @@ namespace uwp
       ASSERT(lpBuf != nullptr);
       ASSERT(__is_valid_address(lpBuf, nCount, FALSE));
 
-      ::u32 nWritten;
-      if (!::WriteFile((HANDLE)m_hfile, lpBuf, (::u32) nCount, &nWritten, nullptr))
-         ::file::throw_os_error((::i32)::get_last_error(), m_path);
+      DWORD nWritten;
+
+      if (!::WriteFile((HANDLE)m_hfile, lpBuf, (::u32)nCount, &nWritten, nullptr))
+      {
+
+         ::file::throw_os_error((::i32)::GetLastError(), m_path);
+
+      }
 
       // Win32s will not return an error all the time (usually DISK_FULL)
       if (nWritten < (::u32) nCount)
@@ -301,13 +311,13 @@ namespace uwp
       ASSERT(nFrom == ::file::seek_begin || nFrom == ::file::seek_end || nFrom == ::file::seek_current);
       ASSERT(::file::seek_begin == FILE_BEGIN && ::file::seek_end == FILE_END && ::file::seek_current == FILE_CURRENT);
 
-      ::i32 lLoOffset = lOff & 0xffffffff;
-      ::i32 lHiOffset = (lOff >> 32) & 0xffffffff;
+      LONG lLoOffset = lOff & 0xffffffff;
+      LONG lHiOffset = (lOff >> 32) & 0xffffffff;
 
       filesize posNew = ::SetFilePointer((HANDLE)m_hfile, lLoOffset, &lHiOffset, (::u32)nFrom);
       posNew |= ((filesize) lHiOffset) << 32;
       if(posNew  == (filesize)-1)
-         ::file::throw_os_error((::i32)::get_last_error(), m_path);
+         ::file::throw_os_error((::i32)::GetLastError(), m_path);
 
       return posNew;
    }
@@ -317,13 +327,13 @@ namespace uwp
       ASSERT_VALID(this);
       ASSERT(m_hfile != hfile_null);
 
-      ::i32 lLoOffset = 0;
-      ::i32 lHiOffset = 0;
+      LONG lLoOffset = 0;
+      LONG lHiOffset = 0;
 
       filesize pos = ::SetFilePointer((HANDLE)m_hfile, lLoOffset, &lHiOffset, FILE_CURRENT);
       pos |= ((filesize)lHiOffset) << 32;
       if(pos  == (filesize)-1)
-         ::file::throw_os_error((::i32)::get_last_error(), m_path);
+         ::file::throw_os_error((::i32)::GetLastError(), m_path);
 
       return pos;
    }
@@ -338,7 +348,7 @@ namespace uwp
          return;
 
       if (!::FlushFileBuffers((HANDLE)m_hfile))
-         ::file::throw_os_error((::i32)::get_last_error(), m_path);
+         ::file::throw_os_error((::i32)::GetLastError(), m_path);
    }
 
 
@@ -356,7 +366,7 @@ namespace uwp
       m_path.Empty();
 
       if (bError)
-         ::file::throw_os_error((::i32)::get_last_error(), m_path);
+         ::file::throw_os_error((::i32)::GetLastError(), m_path);
    }
 
    //void file::Abort()
@@ -405,7 +415,7 @@ namespace uwp
       if (!::SetEndOfFile((HANDLE)m_hfile))
       {
 
-         ::file::throw_os_error((::i32)::get_last_error(), m_path);
+         ::file::throw_os_error((::i32)::GetLastError(), m_path);
 
       }
 

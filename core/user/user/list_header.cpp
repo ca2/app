@@ -77,7 +77,7 @@ namespace user
          pdrawitem->m_pgraphics->set(get_font(pstyle));
          //      pgraphics->SetBkMode(TRANSPARENT);
 
-         pgraphics->set_text_color(get_color(pstyle, ::user::element_text));
+         pgraphics->set_text_color(get_color(pstyle, ::user::e_element_text));
          
          ::e_align ealign = plist->get_draw_text_align(plist->m_eview);
          
@@ -120,7 +120,7 @@ namespace user
    }
 
 
-   bool list_header::GetItemRect(RECT32 * prect, e_element eelement, index iItem)
+   bool list_header::GetItemRect(RECT32 * prect, enum_element eelement, index iItem)
 
    {
 
@@ -159,7 +159,7 @@ namespace user
       rect.left = xLast;
       rect.right = x;
 
-      if(eelement == element_item)
+      if(eelement == e_element_item)
       {
          *prect = rect;
 
@@ -187,9 +187,9 @@ namespace user
    bool list_header::GetItemRect(
    RECT32 * prect,
 
-   e_element eelementLButtonDown,
+   enum_element eelementLButtonDown,
    index iItemLButtonDown,
-   e_element eelement,
+   enum_element eelement,
    index iItem)
    {
       if(iItem < 0)
@@ -269,7 +269,7 @@ namespace user
 
    }
 
-   bool list_header::hit_test(const ::point & point, e_element & eelement, index & iItemParam)
+   bool list_header::hit_test(const ::point & point, enum_element & eelement, index & iItemParam)
    {
       list * plist = m_plistctrlinterface;
       ::rect rect;
@@ -297,7 +297,7 @@ namespace user
       return false;
    }
 
-   bool list_header::hit_test(const ::point & point, e_element eelementLButtonDown, index iItemLButtonDown, e_element & eelement, index & iItemParam)
+   bool list_header::hit_test(const ::point & point, enum_element eelementLButtonDown, index iItemLButtonDown, enum_element & eelement, index & iItemParam)
    {
       list * plist = m_plistctrlinterface;
       ::rect rect;
@@ -446,7 +446,7 @@ namespace user
       if(m_bLButtonDown)
       {
          m_bLButtonDown = false;
-         e_element eelement;
+         enum_element eelement;
          index iItem;
          if(hit_test(pointCursor, eelement, iItem))
          {
@@ -477,7 +477,7 @@ namespace user
             else if(m_eelementLButtonDown == ElementDivider)
             {
                ::rect rect;
-               GetItemRect(rect, element_item, m_iItemLButtonDown);
+               GetItemRect(rect, e_element_item, m_iItemLButtonDown);
                rect.right = pointCursor.x;
                i32 iNewWidth = rect.width();
                plist->_001SetColumnWidth(m_iItemLButtonDown, max(0, iNewWidth));
@@ -499,7 +499,7 @@ namespace user
       auto pointCursor = pmouse->m_point;
       _001ScreenToClient(&pointCursor);
       list * plist = m_plistctrlinterface;
-      e_element eelement;
+      enum_element eelement;
       index iItem;
 
       auto psession = Session;
@@ -533,7 +533,7 @@ namespace user
          if(m_eelementLButtonDown == ElementDivider)
          {
             ::rect rect;
-            GetItemRect(rect, element_item, m_iItemLButtonDown);
+            GetItemRect(rect, e_element_item, m_iItemLButtonDown);
             rect.right = pointCursor.x;
             i32 iNewWidth = rect.width();
             plist->_001SetColumnWidth(m_iItemLButtonDown, max(0, iNewWidth));
@@ -562,7 +562,7 @@ namespace user
       auto pointCursor = pmouse->m_point;
       _001ScreenToClient(&pointCursor);
       list * plist = m_plistctrlinterface;
-      e_element eelement;
+      enum_element eelement;
       index iItem;
       if(hit_test(
             pointCursor,
@@ -702,7 +702,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      pgraphics->fill_rect(rectUpdate, get_color(pstyle, ::user::element_background));
+      pgraphics->fill_rect(rectUpdate, get_color(pstyle, ::user::e_element_background));
 
       ::draw2d::item drawitem;
       drawitem.m_pgraphics = pgraphics;
@@ -710,7 +710,7 @@ namespace user
       ::rect rectDivider;
       ::draw2d::pen_pointer point(e_create);
 
-      auto color = get_color(pstyle, ::user::element_separator);
+      auto color = get_color(pstyle, ::user::e_element_separator);
 
       point->create_solid(1.0, color);
 

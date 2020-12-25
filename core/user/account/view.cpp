@@ -71,7 +71,7 @@ namespace account
 
       }
 
-      millis_sleep(49);*/
+      sleep(49_ms);*/
 
       ::acme::del(m_plabelUser);
       ::acme::del(m_peditUser);
@@ -375,7 +375,7 @@ namespace account
       else if (!strcmp(pszId, "escape"))
       {
 
-         GetParent()->display(display_none);
+         GetParent()->display(e_display_none);
          m_ppassword->_001SetText("", ::source_database);
          GetParent()->EndModalLoop("cancel");
 

@@ -20,7 +20,7 @@ namespace calculator
       frame(::layered * pobjectContext);
       virtual ~frame();
 
-      virtual bool pre_create_window(::user::create_struct& cs);
+      virtual bool pre_create_window(::user::create_struct * pcreatestruct);
 
       void ShowControlBars(bool bShow);
       

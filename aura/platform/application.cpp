@@ -526,7 +526,7 @@ namespace aura
    }
 
 
-   //::estatus application::os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, ::emessagebox emessagebox, ::callback callback)
+   //::estatus application::os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   return ::os_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
@@ -534,7 +534,7 @@ namespace aura
    //}
 
 
-   //::estatus application::ui_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
+   //::estatus application::ui_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -549,7 +549,7 @@ namespace aura
    //}
 
 
-   //::estatus application::ui_message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, ::emessagebox emessagebox, ::callback callback)
+   //::estatus application::ui_message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -564,7 +564,7 @@ namespace aura
    //}
 
 
-   //::estatus application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::emessagebox emessagebox, ::callback callback)
+   //::estatus application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -581,7 +581,7 @@ namespace aura
    //}
 
 
-   //::estatus application::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, ::emessagebox emessagebox, ::callback callback)
+   //::estatus application::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
@@ -1005,10 +1005,10 @@ namespace aura
    //::file::path application::full_process_path(::file::path path)
    //{
 
-   //   if (!(path & ::file::flag_dont_resolve_alias))
+   //   if (!(path & ::file::e_flag_dont_resolve_alias))
    //   {
 
-   //      path |= ::file::flag_resolve_alias;
+   //      path |= ::file::e_flag_resolve_alias;
 
    //   }
 
@@ -1304,7 +1304,7 @@ namespace aura
 ////
 ////         }
 //
-//         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", MB_ICONINFORMATION);
+//         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
 //
 //         if (!initial_check_directrix())
 //         {
@@ -1492,7 +1492,7 @@ namespace aura
 
          application_pos_run();
 
-         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", MB_ICONINFORMATION);
+         //xxdebug_box("pre_run 1 ok", "pre_run 1 ok", e_message_box_icon_information);
 
       }
       catch (...)
@@ -2205,7 +2205,7 @@ retry_license:
 //
 //      System.install_progress_add_up(); // 2
 //
-//      //xxdebug_box("init1 ok", "init1 ok", MB_ICONINFORMATION);
+//      //xxdebug_box("init1 ok", "init1 ok", e_message_box_icon_information);
 //
 //      m_millisHeartBeat.Now();
 //
@@ -2220,7 +2220,7 @@ retry_license:
 //
 //      System.install_progress_add_up(); // 3
 //
-//      //xxdebug_box("init2 ok", "init2 ok", MB_ICONINFORMATION);
+//      //xxdebug_box("init2 ok", "init2 ok", e_message_box_icon_information);
 //
 //      m_millisHeartBeat.Now();
 //
@@ -2235,7 +2235,7 @@ retry_license:
 //
 //      System.install_progress_add_up(); // 4
 //
-//      //xxdebug_box("init3 ok", "init3 ok", MB_ICONINFORMATION);
+//      //xxdebug_box("init3 ok", "init3 ok", e_message_box_icon_information);
 //
 //      m_millisHeartBeat.Now();
 //
@@ -3607,11 +3607,11 @@ retry_license:
 ////
 ////#elif defined(WINDOWS)
 ////
-////      call_async("C:\\Program Files (x86)\\Notepad++\\Notepad++.exe", "\"" + strFile + "\"", "", display_normal, false);
+////      call_async("C:\\Program Files (x86)\\Notepad++\\Notepad++.exe", "\"" + strFile + "\"", "", e_display_normal, false);
 ////
 ////#elif defined(LINUX)
 ////
-////      call_async("gedit", "\"" + strFile + "\"", "", display_normal, false);
+////      call_async("gedit", "\"" + strFile + "\"", "", e_display_normal, false);
 ////
 ////#else
 ////
@@ -3825,7 +3825,7 @@ retry_license:
 //
 //         iRetry--;
 //
-//         millis_sleep(100);
+//         sleep(100_ms);
 //
 //      }
 //
@@ -3959,7 +3959,7 @@ retry_license:
    }
 
 
-   bool application::keyboard_focus_is_focusable(::user::primitive * pue)
+   bool application::keyboard_focus_is_focusable(const ::user::primitive * pue)
    {
 
       return false;
@@ -3980,15 +3980,29 @@ retry_license:
 
 #ifdef ANDROID
 
+      auto psession = Session;
+
       if (psession->m_puiHost != nullptr)
       {
 
          if (psession->m_puiHost != nullptr)
          {
 
-            sync_lock sl(::user::mutex_children());
+            auto puserinteraction = __user_interaction(psession->m_puiHost);
 
-            return psession->m_puiHost->m_uiptraChild.get_child(pinteraction);
+            if (puserinteraction)
+            {
+
+               auto puiptraChild = puserinteraction->m_puiptraChild;
+
+               if (puiptraChild)
+               {
+
+                  return puiptraChild->get_child(pinteraction);
+
+               }
+
+            }
 
          }
 
@@ -4044,7 +4058,7 @@ retry_license:
 
          TRACE("::base::application::add_frame ::user::interaction = 0x%" PRIxPTR " (%s) app=%s", pwnd, typeid(*pwnd).name(), typeid(*this).name());
 
-         if (!(pwnd->m_ewindowflag & window_flag_satellite_window))
+         if (!(pwnd->m_ewindowflag & e_window_flag_satellite_window))
          {
 
             psession->on_create_frame_window();
@@ -4071,9 +4085,11 @@ retry_license:
 
             puiHost->m_puiptraChild = puiptraChild;
 
-            //pwnd->set_need_redraw();
+            puiHost->set_need_layout();
 
-            //pwnd->post_redraw();
+            pwnd->set_need_redraw();
+
+            pwnd->post_redraw();
 
          }
 
@@ -4576,7 +4592,7 @@ retry_license:
 //   }
 
 
-   //::type application::user_default_controltype_to_typeinfo(::user::e_control_type econtroltype)
+   //::type application::user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype)
    //{
 
    //   return __type(::user::interaction);
@@ -4728,7 +4744,7 @@ retry_license:
             if (::is_null(puiMain1))
             {
 
-               puiMain1->display(::display_hide);
+               puiMain1->display(::e_display_hide);
 
                puiMain1->set_need_redraw();
 
@@ -5355,7 +5371,7 @@ retry_license:
 
             }
 
-            millis_sleep(200);
+            sleep(200_ms);
 
          }
 
@@ -5759,7 +5775,7 @@ retry_license:
 //
 //         ::property_set set;
 //
-//         return ::call_sync(::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, ::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), display_normal, 2_min, set);
+//         return ::call_sync(::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), pszCommandLine, ::path::app_app(process_platform_dir_name2(), process_configuration_dir_name()), e_display_normal, 2_min, set);
 //
 //#endif
 //
@@ -7226,7 +7242,7 @@ namespace aura
    //      }
 
    //      // hide the application's windows before closing all the documents
-   //      m_puiMain1->m_puiThis->display(display_none);
+   //      m_puiMain1->m_puiThis->display(e_display_none);
    //      // trans    m_puiMain->ShowOwnedPopups(FALSE);
 
 
@@ -7237,7 +7253,7 @@ namespace aura
 
    //      //m_puiMain->m_puiThis->wait_redraw();
 
-   //      m_puiMain1->m_puiThis->display(display_none);
+   //      m_puiMain1->m_puiThis->display(e_display_none);
 
 
    //   }
@@ -7779,7 +7795,7 @@ namespace aura
 
          auto puiMain1 = __user_interaction(m_puiMain1);
 
-         puiMain1->m_puiThis->display(display_normal);
+         puiMain1->m_puiThis->display(e_display_normal);
 
       }
 
@@ -7803,7 +7819,7 @@ namespace aura
    //      }
 
    //      // hide the application's windows before closing all the documents
-   //      m_puiMain1->m_puiThis->display(display_none);
+   //      m_puiMain1->m_puiThis->display(e_display_none);
    //      // trans    m_puiMain->ShowOwnedPopups(FALSE);
 
 
@@ -7814,7 +7830,7 @@ namespace aura
 
    //      //m_puiMain->m_puiThis->wait_redraw();
 
-   //      m_puiMain1->m_puiThis->display(display_none);
+   //      m_puiMain1->m_puiThis->display(e_display_none);
 
 
    //   }
@@ -8549,7 +8565,7 @@ namespace aura
 
          if (pwnd != nullptr
             && pwnd->is_window()
-            && pwnd->is_window_visible(::user::layout_sketch))
+            && pwnd->is_window_visible(::user::e_layout_sketch))
          {
             iCount++;
          }
@@ -8576,7 +8592,7 @@ namespace aura
    //}
 
 
-   //::type application::user_default_controltype_to_typeinfo(enum user::e_control_type econtroltype)
+   //::type application::user_default_controltype_to_typeinfo(enum user::enum_control_type econtroltype)
    //{
 
    //   return Sess(this).userex()->controltype_to_typeinfo(econtroltype);
@@ -8702,7 +8718,7 @@ namespace aura
    }
 
 
-   ::type application::control_type_from_id(const ::id& id, ::user::e_control_type& econtroltype)
+   ::type application::control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype)
    {
 
       string str(id);
@@ -8710,7 +8726,7 @@ namespace aura
       if (str.begins_ci("edit_"))
       {
 
-         econtroltype = ::user::control_type_edit_plain_text;
+         econtroltype = ::user::e_control_type_edit_plain_text;
 
          return __type(::user::plain_edit);
 
@@ -9074,7 +9090,7 @@ namespace aura
            try
            {
 
-              bOk = pinteraction != nullptr && pinteraction->is_window_visible(::user::layout_sketch);
+              bOk = pinteraction != nullptr && pinteraction->is_window_visible(::user::e_layout_sketch);
            }
            catch (...)
            {
@@ -9217,7 +9233,7 @@ namespace aura
    void application::on_control_event(::user::control_event* pevent)
    {
 
-      if (pevent->m_eevent == ::user::event_initialize_control)
+      if (pevent->m_eevent == ::user::e_event_initialize_control)
       {
 
          if (pevent->m_puie->m_id == __id(system_startup_checkbox))
@@ -9244,7 +9260,7 @@ namespace aura
          }
 
       }
-      else if (pevent->m_eevent == ::user::event_set_check)
+      else if (pevent->m_eevent == ::user::e_event_set_check)
       {
 
          if (pevent->m_puie->m_id == __id(system_startup_checkbox)

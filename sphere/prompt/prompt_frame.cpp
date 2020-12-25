@@ -157,7 +157,7 @@ namespace prompt
       ::u32 nShow;
       if(bShow)
       {
-         nShow = display_normal;
+         nShow = e_display_normal;
       }
       else
       {
@@ -230,7 +230,7 @@ namespace prompt
       if(!data_get("DockPosition", (i32 &) m_eposition))
       {
 
-         m_eposition = position_left;
+         m_eposition = e_position_left;
 
       }
 
@@ -283,17 +283,17 @@ namespace prompt
             if(rectWindow.top < rectWindow.left * a)
             {
                // top
-               m_eposition = position_top;
+               m_eposition = e_position_top;
             }
             else if(rectWindow.top > (rectDesktop.height() - rectWindow.left * a))
             {
                // bottom
-               m_eposition = position_bottom;
+               m_eposition = e_position_bottom;
             }
             else
             {
                // left
-               m_eposition = position_left;
+               m_eposition = e_position_left;
             }
          }
          else
@@ -303,17 +303,17 @@ namespace prompt
             if(rectWindow.top > rectWindow.left * a)
             {
                // bottom
-               m_eposition = position_bottom;
+               m_eposition = e_position_bottom;
             }
             else if(rectWindow.top < (rectDesktop.height() - rectWindow.left * a))
             {
                // top
-               m_eposition = position_top;
+               m_eposition = e_position_top;
             }
             else
             {
                // right
-               m_eposition = position_right;
+               m_eposition = e_position_right;
             }
          }
          data_set("DockPosition", (i32) m_eposition);
@@ -339,7 +339,7 @@ namespace prompt
 
       get_window_rect(rectWindow);
       
-      display(display_restore);
+      display(e_display_restore);
       
       bool bChanged = false;
       if(rectWindow.width() < 400)

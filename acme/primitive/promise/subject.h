@@ -17,18 +17,18 @@ namespace promise
       ::payload                           m_payload;
       ::i64                               m_iUpdateSerial;
       bool                                m_bModified;
-      int                                 m_iMillisSleep;
+      ::millis                            m_millisSleep;
 
 
 
       enum_subject                        m_esubject;
-      __pointer(::matter)                 m_pmatter;
-      __pointer(::layered)                m_pobjectTopic;
+      __pointer(::matter)            m_pmatter;
+      __pointer(::layered)           m_pobjectTopic;
       ::action_context                    m_actioncontext;
-      __pointer(::layered)                m_psender;
-      __pointer(::layered)                m_puserinteraction; // user::interaction
-      __pointer(::layered)                m_pcontrolevent; // user::control_event
-      __pointer(::file::item)             m_pfileitem;
+      __pointer(::layered)           m_psender;
+      __pointer(::layered)           m_puserinteraction; // user::interaction
+      __pointer(::layered)           m_pcontrolevent; // user::control_event
+      __pointer(::file::item)        m_pfileitem;
       bool                                m_bRet;
 
 
@@ -42,9 +42,9 @@ namespace promise
 
 
 #ifdef DEBUG
-      virtual i64 add_ref(OBJ_REF_DBG_PARAMS);
-      virtual i64 dec_ref(OBJ_REF_DBG_PARAMS);
-      virtual i64 release(OBJ_REF_DBG_PARAMS);
+      virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override;
+      virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
+      virtual i64 release(OBJ_REF_DBG_PARAMS) override;
 #endif
 
       virtual ::estatus run() override;
@@ -82,12 +82,12 @@ namespace promise
 
       }
 
-      inline int poll_millis() { return os_get_system_update_poll_time(m_id); };
+      inline ::millis poll_time() { return os_get_system_update_poll_time(m_id); };
 
-      static inline bool should_poll(int iMillis)
+      static inline bool should_poll(::millis millis)
       {
 
-         return iMillis >= 100;
+         return millis >= 100_ms;
 
       }
 

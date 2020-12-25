@@ -18,7 +18,7 @@ namespace experience
       ::rect                        m_rectWindowOrigin;
       size                          m_sizeMinimumBorder;
       ::u32                          m_uiSWPFlags;
-      e_grip                        m_egripMask;
+      enum_grip                        m_egripMask;
       i32                           m_iPaintCount;
 
 
@@ -35,9 +35,9 @@ namespace experience
 
 
       void NotifyFramework(e_hittest emode);
-      e_grip hittest_mode_grip(e_hittest emode);
-      e_grip GetGripMask();
-      void SetGripMask(e_grip egrip);
+      enum_grip hittest_mode_grip(e_hittest emode);
+      enum_grip GetGripMask();
+      void SetGripMask(enum_grip egrip);
       bool window_is_sizing();
       void SetSWPFlags(::u32 uFlags);
       virtual ::size GetMinSize();

@@ -22,7 +22,7 @@ namespace simpledb
 
       try
       {
-         if(!m_spfileMeta->open(strMetaPath, ::file::type_binary | ::file::mode_read_write | ::file::share_exclusive))
+         if(!m_spfileMeta->open(strMetaPath, ::file::e_open_binary | ::file::e_open_read_write | ::file::e_open_share_exclusive))
             return DB_ERROR;
       }
       catch(...)
@@ -30,7 +30,7 @@ namespace simpledb
          strMetaPath = Context.dir().appdata() / "database" / db / "meta.xml";
          try
          {
-            if(!m_spfileMeta->open(strMetaPath, ::file::type_binary | ::file::mode_read_write | ::file::share_exclusive))
+            if(!m_spfileMeta->open(strMetaPath, ::file::e_open_binary | ::file::e_open_read_write | ::file::e_open_share_exclusive))
                return DB_ERROR;
          }
          catch(...)

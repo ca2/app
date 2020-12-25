@@ -573,7 +573,7 @@ namespace ios
        {
        string strCommand(str2);
        strCommand.replace("%1", pcsz);
-       WinExec(strCommand,display_normal);
+       WinExec(strCommand,e_display_normal);
        }
        }
        else
@@ -587,7 +587,7 @@ namespace ios
        {
        string strCommand(str2);
        strCommand.replace("%1", pcsz);
-       WinExec(strCommand,display_normal);
+       WinExec(strCommand,e_display_normal);
        }
        }
        }

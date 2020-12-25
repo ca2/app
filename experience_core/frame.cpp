@@ -5,7 +5,7 @@ namespace experience
 {
 
 
-   namespace aura
+   namespace core
    {
 
 
@@ -44,23 +44,6 @@ namespace experience
             }
 
 
-
-//            void frame::_001OnBeforeMove(const ::rect & rect)
-//            {
-//
-//               update_window_region(rect);
-//
-//            }
-
-
-            //void frame::_001OnBeforeSize(const ::rect & rect)
-            //{
-
-            //   UNREFERENCED_PARAMETER(rect);
-
-            //}
-
-
             void frame::OnMove(__pointer(::user::interaction) pframewindow)
             {
 
@@ -88,13 +71,11 @@ namespace experience
                }
 
 
-
                i32 iInflate = 5; // raio 2 pixels + centro 1 pixel
 
                rectInflate = rectClient;
-               rectInflate.inflate(iInflate, iInflate);
 
-               //__pointer(::user::interaction) pwndDesktop = System.get_desktop_window();
+               rectInflate.inflate(iInflate, iInflate);
 
                ::rect rectScreen;
 
@@ -122,29 +103,6 @@ namespace experience
 
                b = imaging.blur(pimage2, 2);
 
-               //spgraphics->draw3d_rect(rectClient, 127 << 24, 127 << 24);
-               //rectClient.deflate(1, 1);
-               //spgraphics->draw3d_rect(rectClient, 64 << 24, 64 << 24);
-               /*b = imaging.bitmap_blend(pgraphics, lprect->left, lprect->top,
-               rectWindow.width(),
-               rectWindow.height(),
-               &spgraphics,
-               iInflate, iInflate, 128);*/
-               /*BLENDFUNCTION bf;
-               bf.AlphaFormat = AC_SRC_ALPHA;
-               bf.BlendOp     = AC_SRC_OVER;
-               bf.BlendFlags = 0;
-               bf.SourceConstantAlpha = 255;
-               ::alpha_blend(pgraphics->get_handle1(),
-               lprect->left, lprect->top,
-               rectWindow.width(),
-               rectWindow.height(),
-               spgraphics->get_handle1(),
-               0, 0,
-               rectWindow.width(),
-               rectWindow.height(),
-               bf);*/
-
                pgraphics->stretch(rectClient, pimage2->g(), ::rect(pointInflate, rectClient.size()));
 
             }
@@ -161,16 +119,9 @@ namespace experience
             void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, color32_t cr, byte bAlpha)
             {
 
-               /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
-               g.SetCompositingMode(Gdiplus::CompositingModeSourceOver);
-               Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr)));
-               g.fill_rect(&solidBrush, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top);*/
-
                System.imaging().color_blend(pgraphics, rect, cr, bAlpha);
 
             }
-
-
 
 
             void frame::set_style(e_style estyle)
@@ -178,8 +129,12 @@ namespace experience
 
                m_estyle = estyle;
 
-               if(get_control_box().is_null())
+               if (get_control_box().is_null())
+               {
+
                   return;
+
+               }
 
                on_style_change();
 
@@ -193,71 +148,99 @@ namespace experience
 
                if(strStyle == "TranslucidLightBlue")
                {
+
                   return StyleTranslucidLightBlue;
+
                }
                else if (strStyle == "TranslucidLightGreen")
                {
+
                   return StyleTranslucidLightGreen;
+
                }
                else if (strStyle == "TranslucidWarmGray")
                {
+
                   return StyleTranslucidWarmGray;
+
                }
                else if (strStyle == "TranslucidWarmLiteGray")
                {
+
                   return StyleTranslucidWarmLiteGray;
+
                }
                else if(strStyle == "DarkWarmBlue")
                {
+
                   return StyleDarkWarmBlue;
+
                }
                else if(strStyle == "WarmGray")
                {
+
                   return StyleTranslucidWarmGray;
+
                }
                else if(strStyle == "BlueRedPurple")
                {
+
                   return StyleBlueRedPurple;
+
                }
                else if(strStyle == "RedOrange")
                {
+
                   return StyleRedOrange;
+
                }
                else if(strStyle == "LightBlue")
                {
+
                   return StyleLightBlue;
+
                }
                else if (strStyle == "BlackBorder")
                {
+
                   return StyleBlackBorder;
+
                }
                else if (strStyle == "LightGreen")
                {
+
                   return StyleLightGreen;
+
                }
                else if (strStyle == "EveningSun")
                {
+
                   return StyleEveningSun;
+
                }
                else if (strStyle == "BlackPiano")
                {
+
                   return StyleBlackPiano;
+
                }
                else
                {
+
                   return StyleLightBlue;
+
                }
 
             }
 
 
-            frame::e_element operator++(frame::e_element & eelement, i32 i)
+            frame::enum_element operator++(frame::enum_element & eelement, i32 i)
             {
                UNREFERENCED_PARAMETER(i);
-               return (frame::e_element) (*((i32*)&eelement))++;
+               return (frame::enum_element) (*((i32*)&eelement))++;
             }
 
-            bool frame::get_element_rect(LPRECT32 lprect, e_element eelement)
+            bool frame::get_element_rect(LPRECT32 lprect, enum_element eelement)
             {
                switch(eelement)
                {
@@ -275,7 +258,7 @@ namespace experience
 
                case ElementMoveGripMinimal:
 
-                  if (m_pframewindow == nullptr || m_pframewindow->layout().design().display() != ::display_minimal)
+                  if (m_pframewindow == nullptr || m_pframewindow->layout().design().display() != ::e_display_minimal)
                   {
                    
                      return false;
@@ -296,10 +279,10 @@ namespace experience
 
             }
 
-            bool frame::_001HitTest(const POINT32 &point, e_element &eelementParam)
+            bool frame::_001HitTest(const POINT32 &point, enum_element &eelementParam)
             {
                ::rect rect;
-               for(e_element eelement = (e_element)(ElementNone + 1);
+               for(enum_element eelement = (enum_element)(ElementNone + 1);
                      eelement < ElementEnd;
                      eelement++)
                {
@@ -389,12 +372,12 @@ namespace experience
 
                auto pstyle = pframewindow->get_style(pgraphics);
 
-               m_penText1->create_solid(1, pframewindow->get_color(pstyle, ::user::element_button_text));
-               m_penFace1->create_solid(1, pframewindow->get_color(pstyle, ::user::element_button_background));
-               m_penHilight1->create_solid(1, pframewindow->get_color(pstyle, ::user::element_button_hilite));
-               m_penShadow1->create_solid(1, pframewindow->get_color(pstyle, ::user::element_button_shadow));
-               m_penDkShadow1->create_solid(1, pframewindow->get_color(pstyle, ::user::element_button_dark_shadow));
-               m_crDkShadow = pframewindow->get_color(pstyle, ::user::element_button_dark_shadow);
+               m_penText1->create_solid(1, pframewindow->get_color(pstyle, ::user::e_element_button_text));
+               m_penFace1->create_solid(1, pframewindow->get_color(pstyle, ::user::e_element_button_background));
+               m_penHilight1->create_solid(1, pframewindow->get_color(pstyle, ::user::e_element_button_hilite));
+               m_penShadow1->create_solid(1, pframewindow->get_color(pstyle, ::user::e_element_button_shadow));
+               m_penDkShadow1->create_solid(1, pframewindow->get_color(pstyle, ::user::e_element_button_dark_shadow));
+               m_crDkShadow = pframewindow->get_color(pstyle, ::user::e_element_button_dark_shadow);
                m_crFrameBorder = RGB(0, 0, 0) | 0xff000000;
 
 
@@ -483,7 +466,7 @@ namespace experience
             }
 
 
-            void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics,const ::rect & rectParam,e_border eborder,color32_t crTopLeft,color32_t crBottomRight)
+            void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics,const ::rect & rectParam,enum_border eborder,color32_t crTopLeft,color32_t crBottomRight)
             {
 
                ::rect rect(rectParam);
@@ -498,7 +481,7 @@ namespace experience
 
                ::draw2d::pen_pointer pen;
 
-               if(eborder & border_top || eborder & border_left)
+               if(eborder & e_border_top || eborder & e_border_left)
                {
 
                   pen.create(this);
@@ -509,7 +492,7 @@ namespace experience
 
                }
 
-               if(eborder & border_top)
+               if(eborder & e_border_top)
                {
 
                   pgraphics->move_to(x,y);
@@ -518,7 +501,7 @@ namespace experience
 
                }
 
-               if(eborder & border_left)
+               if(eborder & e_border_left)
                {
 
                   pgraphics->move_to(x,y);
@@ -527,7 +510,7 @@ namespace experience
 
                }
 
-               if((eborder & border_right || eborder & border_bottom) && (pen.is_null() || pen->m_color != crBottomRight))
+               if((eborder & e_border_right || eborder & e_border_bottom) && (pen.is_null() || pen->m_color != crBottomRight))
                {
 
                   pen.create(this);
@@ -538,7 +521,7 @@ namespace experience
 
                }
 
-               if(eborder & border_right)
+               if(eborder & e_border_right)
                {
 
                   pgraphics->move_to(x + cx,y);
@@ -547,7 +530,7 @@ namespace experience
 
                }
 
-               if(eborder & border_bottom)
+               if(eborder & e_border_bottom)
                {
 
                   pgraphics->move_to(x,y + cy);
@@ -662,11 +645,11 @@ namespace experience
 
                      auto pstyle = pframewindow->get_style(pgraphics);
 
-                     crMoveableBorder = pframewindow->get_color(pstyle, ::user::element_button_background);
+                     crMoveableBorder = pframewindow->get_color(pstyle, ::user::e_element_button_background);
 
-                     crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::element_button_hilite);
+                     crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
 
-                     crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::element_button_shadow);
+                     crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
 
                   }
 
@@ -698,7 +681,7 @@ namespace experience
 
                   pgraphics->set_text_color(m_crCaptionText);
 
-                  pgraphics->set_font(pframewindow, ::user::element_window_title);
+                  pgraphics->set_font(pframewindow, ::user::e_element_window_title);
 
                   pgraphics->_DrawText(wstrWindowText, m_rectWindowText, { e_align_left, e_align_vertical_center}, e_draw_text_no_prefix);
 
@@ -716,7 +699,7 @@ namespace experience
             }
 
 
-   } // namespace aura
+   } // namespace core
 
 
 } // namespace experience

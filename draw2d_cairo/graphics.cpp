@@ -984,132 +984,132 @@ void graphics::invert_rect(const ::rect & rect)
 //}
 
 
-#ifdef WINDOWS_DESKTOP
-
-bool graphics::DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags)
-{
-
-
-    try
-    {
-
-        if (picon == nullptr)
-        {
-
-            return false;
-
-        }
-
-        if (m_pdc == nullptr)
-        {
-
-            return false;
-
-        }
-
-        if (cx <= 0 || cx <= 0)
-        {
-
-            return false;
-
-        }
-
-        bool bOk = FALSE;
-
-        BITMAPINFO info;
-
-        color32_t * pcolorref;
-
-        ZeroMemory(&info, sizeof(BITMAPINFO));
-
-        info.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
-        info.bmiHeader.biWidth = cx;
-        info.bmiHeader.biHeight = -cy;
-        info.bmiHeader.biPlanes = 1;
-        info.bmiHeader.biBitCount = 32;
-        info.bmiHeader.biCompression = BI_RGB;
-        info.bmiHeader.biSizeImage = cx * cy * 4;
-
-        HBITMAP hbitmap = ::CreateDIBSection(nullptr, &info, DIB_RGB_COLORS, (void **)&pcolorref, nullptr, 0);
-
-        HDC hdc = ::CreateCompatibleDC(nullptr);
-
-        HBITMAP hbitmapOld = (HBITMAP) ::SelectObject(hdc, hbitmap);
-
-        if (::DrawIconEx(hdc, 0, 0, (HICON)picon->m_picon, cx, cy, istepIfAniCur, nullptr, DI_IMAGE | DI_MASK))
-        {
-
-            ::SelectObject(hdc, hbitmapOld);
-
-            try
-            {
-
-                //Gdiplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (byte *) pcolorref);
-
-                ::draw2d::bitmap_pointer b(e_create);
-
-                b->CreateBitmap(this, ::size(cx, cy), 1, 32, pcolorref, cx * sizeof(color32_t));
-
-                cairo_surface_t * psurface = (cairo_surface_t *)b->get_os_data();
-
-                if (psurface == nullptr)
-                    return false;
-
-                cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
-
-                if (ppattern == nullptr)
-                    return false;
-
-                cairo_matrix_t matrix;
-
-                cairo_matrix_t matrixOld;
-
-                cairo_keep keep(m_pdc);
-
-                cairo_translate(m_pdc, x, y);
-
-                cairo_pattern_get_matrix(ppattern, &matrixOld);
-
-                cairo_matrix_init_translate(&matrix, 0, 0);
-
-                cairo_pattern_set_matrix(ppattern, &matrix);
-
-                cairo_rectangle(m_pdc, 0, 0, cx, cy);
-
-                cairo_clip(m_pdc);
-
-                cairo_set_source(m_pdc, ppattern);
-
-                cairo_paint(m_pdc);
-
-                cairo_pattern_set_matrix(ppattern, &matrixOld);
-
-                cairo_pattern_destroy(ppattern);
-
-            }
-            catch (...)
-            {
-            }
-
-        }
-
-        ::DeleteDC(hdc);
-
-        ::DeleteObject(hbitmap);
-
-        return bOk;
-
-    }
-    catch (...)
-    {
-    }
-
-    return false;
-
-}
-
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//bool graphics::draw(::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags)
+//{
+//
+//
+//    try
+//    {
+//
+//        if (picon == nullptr)
+//        {
+//
+//            return false;
+//
+//        }
+//
+//        if (m_pdc == nullptr)
+//        {
+//
+//            return false;
+//
+//        }
+//
+//        if (cx <= 0 || cx <= 0)
+//        {
+//
+//            return false;
+//
+//        }
+//
+//        bool bOk = FALSE;
+//
+//        BITMAPINFO info;
+//
+//        color32_t * pcolorref;
+//
+//        ZeroMemory(&info, sizeof(BITMAPINFO));
+//
+//        info.bmiHeader.biSize = sizeof(BITMAPINFOHEADER);
+//        info.bmiHeader.biWidth = cx;
+//        info.bmiHeader.biHeight = -cy;
+//        info.bmiHeader.biPlanes = 1;
+//        info.bmiHeader.biBitCount = 32;
+//        info.bmiHeader.biCompression = BI_RGB;
+//        info.bmiHeader.biSizeImage = cx * cy * 4;
+//
+//        HBITMAP hbitmap = ::CreateDIBSection(nullptr, &info, DIB_RGB_COLORS, (void **)&pcolorref, nullptr, 0);
+//
+//        HDC hdc = ::CreateCompatibleDC(nullptr);
+//
+//        HBITMAP hbitmapOld = (HBITMAP) ::SelectObject(hdc, hbitmap);
+//
+//        if (::DrawIconEx(hdc, 0, 0, (HICON)picon->m_picon, cx, cy, istepIfAniCur, nullptr, DI_IMAGE | DI_MASK))
+//        {
+//
+//            ::SelectObject(hdc, hbitmapOld);
+//
+//            try
+//            {
+//
+//                //Gdiplus::Bitmap b(cx, cy, cx * 4 , PixelFormat32bppARGB, (byte *) pcolorref);
+//
+//                ::draw2d::bitmap_pointer b(e_create);
+//
+//                b->CreateBitmap(this, ::size(cx, cy), 1, 32, pcolorref, cx * sizeof(color32_t));
+//
+//                cairo_surface_t * psurface = (cairo_surface_t *)b->get_os_data();
+//
+//                if (psurface == nullptr)
+//                    return false;
+//
+//                cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
+//
+//                if (ppattern == nullptr)
+//                    return false;
+//
+//                cairo_matrix_t matrix;
+//
+//                cairo_matrix_t matrixOld;
+//
+//                cairo_keep keep(m_pdc);
+//
+//                cairo_translate(m_pdc, x, y);
+//
+//                cairo_pattern_get_matrix(ppattern, &matrixOld);
+//
+//                cairo_matrix_init_translate(&matrix, 0, 0);
+//
+//                cairo_pattern_set_matrix(ppattern, &matrix);
+//
+//                cairo_rectangle(m_pdc, 0, 0, cx, cy);
+//
+//                cairo_clip(m_pdc);
+//
+//                cairo_set_source(m_pdc, ppattern);
+//
+//                cairo_paint(m_pdc);
+//
+//                cairo_pattern_set_matrix(ppattern, &matrixOld);
+//
+//                cairo_pattern_destroy(ppattern);
+//
+//            }
+//            catch (...)
+//            {
+//            }
+//
+//        }
+//
+//        ::DeleteDC(hdc);
+//
+//        ::DeleteObject(hbitmap);
+//
+//        return bOk;
+//
+//    }
+//    catch (...)
+//    {
+//    }
+//
+//    return false;
+//
+//}
+//
+//
+//#endif
 
 
 //bool graphics::DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
@@ -2061,12 +2061,7 @@ bool graphics::get_text_metrics(::draw2d::text_metric * lpMetrics)
 
 #else
 
-    if (m_pfontDevice != m_pfont)
-    {
-
-       _set(m_pfont);
-
-    }
+   _set(m_pfont);
 
    cairo_font_extents_t fontextents;
 
@@ -2082,6 +2077,9 @@ bool graphics::get_text_metrics(::draw2d::text_metric * lpMetrics)
 
    lpMetrics->m_dExternalLeading = 0.;
 
+   //lpMetrics->m_dInternalLeading = lpMetrics->m_dAscent * 0.2;
+
+   //lpMetrics->m_dExternalLeading = lpMetrics->m_dAscent * 0.2;
 
 #endif
 
@@ -2988,104 +2986,104 @@ bool graphics::alpha_blendRaw(i32 xDst, i32 yDst, i32 nDstWidth, i32 nDstHeight,
 //}
 
 
-#if (_WIN32_WINNT >= 0x0500)
-
-// Always Inline. Functions only in Win98/Win2K or later
-
-color32_t graphics::GetDCBrushColor()
-{
-
-    ::exception::throw_not_implemented();
-
-    return 0;
-
-}
-
-
-color32_t graphics::SetDCBrushColor(color32_t crColor)
-{
-
-    ::exception::throw_not_implemented();
-
-    return 0;
-
-}
-
-
-color32_t graphics::GetDCPenColor()
-{
-
-    ::exception::throw_not_implemented();
-
-    return 0;
-
-}
-
-
-color32_t graphics::SetDCPenColor(color32_t crColor)
-{
-
-    ::exception::throw_not_implemented();
-
-    return 0;
-
-}
-
-
-#endif
-
-
-#if (_WIN32_WINNT >= 0x0500)
-
-
-bool graphics::GetCharABCWidthsI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPABC lpabc)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
-
-
-bool graphics::GetCharWidthI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPINT lpBuffer)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
-
-
-#endif
-
-
-#if (_WIN32_WINNT >= 0x0500)
-
-
-bool graphics::GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE32 LPSIZE32)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
-
-
-bool graphics::GetTextExtentPointI(LPWORD pgiIn, i32 cgi, LPSIZE32 LPSIZE32)
-{
-
-    ::exception::throw_not_implemented();
-
-    return false;
-
-}
-
-
-#endif
-
+//#if (_WIN32_WINNT >= 0x0500)
+//
+//// Always Inline. Functions only in Win98/Win2K or later
+//
+//color32_t graphics::GetDCBrushColor()
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
+//
+//
+//color32_t graphics::SetDCBrushColor(color32_t crColor)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
+//
+//
+//color32_t graphics::GetDCPenColor()
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
+//
+//
+//color32_t graphics::SetDCPenColor(color32_t crColor)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return 0;
+//
+//}
+//
+//
+//#endif
+//
+//
+//#if (_WIN32_WINNT >= 0x0500)
+//
+//
+//bool graphics::GetCharABCWidthsI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPABC lpabc)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
+//
+//
+//bool graphics::GetCharWidthI(::u32 giFirst, ::u32 cgi, LPWORD pgi, LPINT lpBuffer)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
+//
+//
+//#endif
+//
+//
+//#if (_WIN32_WINNT >= 0x0500)
+//
+//
+//bool graphics::GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, LPSIZE32 LPSIZE32)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
+//
+//
+//bool graphics::GetTextExtentPointI(LPWORD pgiIn, i32 cgi, LPSIZE32 LPSIZE32)
+//{
+//
+//    ::exception::throw_not_implemented();
+//
+//    return false;
+//
+//}
+//
+//
+//#endif
+//
 
 /////////////////////////////////////////////////////////////////////////////
 // More coordinate transforms (in separate file to avoid transitive refs)
@@ -4253,7 +4251,7 @@ bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCou
 
       size.cx = textextents.x_advance;
 
-      size.cy = textextents.height - fontextents.descent;
+      size.cy = textextents.height;
 
 #endif
 

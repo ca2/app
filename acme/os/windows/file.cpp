@@ -293,6 +293,8 @@ string file_as_string(const char * path, strsize iReadAtMostByteCount)
 
       DWORD dwLastError = ::GetLastError();
 
+      TRACELASTERROR();
+
       return "";
 
    }

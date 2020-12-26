@@ -115,7 +115,22 @@ namespace tranquillum
 
          auto econtroltype = pinteraction->get_control_type();
 
-         if (econtroltype == ::user::e_control_type_list)
+         if (econtroltype == ::user::e_control_type_tab)
+         {
+
+         }
+         else if (econtroltype == ::user::e_control_type_button)
+         {
+
+            if (eelement == ::user::e_element_background)
+            {
+
+               return ARGB(255, 116, 160, 220);
+
+            }
+
+         }
+         else if (econtroltype == ::user::e_control_type_list)
          {
 
             if (eelement == ::user::e_element_background)
@@ -147,13 +162,31 @@ namespace tranquillum
          else
          {
 
-            return __acolor(255, 0, 0, 0);
+            return __acolor(255, 80, 80, 80);
+
+         }
+
+      }
+      else if (eelement == ::user::e_element_item_text)
+      {
+
+         if (estate & ::user::e_state_new_input)
+         {
+
+            return __acolor(255, 192, 192, 192);
+
+         }
+         else
+         {
+
+            return __acolor(255, 80, 80, 80);
 
          }
 
       }
 
-      return ::color();
+
+      return ::base::style::get_color(pinteraction, eelement, estate);
 
    }
 
@@ -317,10 +350,14 @@ namespace tranquillum
 
             ptab->m_dcextension.GetTextExtent(pgraphics, str, size);
 
+            ::draw2d::text_metric metric;
+
+            pgraphics->get_text_metrics(&metric);
+
             if (tab_pane.m_pimage->is_set())
             {
 
-               size.cy = max(size.cy, tab_pane.m_pimage->size().cy);
+               size.cy = max(max(size.cy, tab_pane.m_pimage->size().cy), metric.get_line_spacing());
 
             }
 
@@ -695,7 +732,7 @@ namespace tranquillum
 
                   pgraphics->fill_path(path);
 
-                  penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_selected));
+                  penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
 
                   pgraphics->set(penBorder);
 
@@ -717,7 +754,7 @@ namespace tranquillum
 
                   }
 
-                  brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_selected));
+                  brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
 
                }
                else
@@ -740,7 +777,7 @@ namespace tranquillum
 
                      pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_hover);
 
-                     brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_selected));
+                     brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
 
                   }
                   else

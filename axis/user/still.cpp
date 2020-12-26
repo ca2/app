@@ -15,6 +15,9 @@ namespace user
       m_estyle = style_none;
       m_iClick = 0;
 
+      m_flagNonClient -= non_client_background;
+      m_flagNonClient -= non_client_focus_rect;
+
    }
 
 
@@ -140,6 +143,8 @@ namespace user
             ::e_draw_text edrawtext = (enum_draw_text)get_int(pstyle, ::user::e_int_edit_draw_text_flags, e_draw_text_single_line);
 
             pgraphics->set_font(this, ::user::e_element_none);
+
+            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
             pgraphics->draw_text(strText, rectClient, ealign, edrawtext);
 
@@ -564,26 +569,7 @@ namespace user
    ::draw2d::font_pointer still::get_font(style * pstyle, enum_element eelement, estate estate) const
    {
 
-      //if (pstyle)
-      //{
-
-      //   if (pstyle->m_pfontStill)
-      //   {
-
-      //      return pstyle->m_pfontStill;
-
-      //   }
-
-      //   if (pstyle->m_pfont)
-      //   {
-
-      //      return pstyle->m_pfont;
-
-      //   }
-
-      //}
-
-      return nullptr;
+      return ::user::interaction::get_font(pstyle, eelement, estate);
 
    }
 

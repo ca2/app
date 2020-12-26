@@ -2467,227 +2467,64 @@ namespace draw2d
 
 
    bool graphics::get_text_metrics(text_metric * pMetrics)
-
    {
+
       UNREFERENCED_PARAMETER(pMetrics);
 
-
       return false;
+
    }
+
 
    bool graphics::get_output_text_metrics(text_metric * pMetrics)
-
    {
+
       UNREFERENCED_PARAMETER(pMetrics);
 
-
       return false;
+
    }
 
-//   i32 graphics::GetTextCharacterExtra()
-//   {
-//
-//      return -1;
-//   }
-//
-//   bool graphics::GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, i32 * pBuffer)
-//
-//   {
-//      UNREFERENCED_PARAMETER(nFirstChar);
-//      UNREFERENCED_PARAMETER(nLastChar);
-//      UNREFERENCED_PARAMETER(pBuffer);
-//
-//
-//      return false;
-//   }
-//
-//   bool graphics::GetOutputCharWidth(::u32 nFirstChar, ::u32 nLastChar, i32 * pBuffer)
-//
-//   {
-//      UNREFERENCED_PARAMETER(nFirstChar);
-//      UNREFERENCED_PARAMETER(nLastChar);
-//      UNREFERENCED_PARAMETER(pBuffer);
-//
-//
-//      return false;
-//   }
-//
-//   u32 graphics::GetFontLanguageInfo()
-//   {
-//
-//      return -1;
-//   }
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//   u32 graphics::GetCharacterPlacement(const char * pString, strsize nCount, strsize nMaxExtent, LPGCP_RESULTS pResults, u32 dwFlags)
-//
-//   {
-//      UNREFERENCED_PARAMETER(pString);
-//
-//      UNREFERENCED_PARAMETER(nCount);
-//      UNREFERENCED_PARAMETER(nMaxExtent);
-//      UNREFERENCED_PARAMETER(pResults);
-//
-//      UNREFERENCED_PARAMETER(dwFlags);
-//
-//      return -1;
-//   }
-//
-//   u32 graphics::GetCharacterPlacement(string & str, strsize nMaxExtent, LPGCP_RESULTS pResults, u32 dwFlags)
-//
-//   {
-//      UNREFERENCED_PARAMETER(str);
-//      UNREFERENCED_PARAMETER(nMaxExtent);
-//      UNREFERENCED_PARAMETER(pResults);
-//
-//      UNREFERENCED_PARAMETER(dwFlags);
-//
-//      return -1;
-//   }
-//
-//#endif
-//
-//   size graphics::GetAspectRatioFilter()
-//   {
-//
-//      return size(0, 0);
-//   }
-
-   //bool graphics::ScrollDC(i32 dx, i32 dy, const rect &  pRectScroll, const rect &  pRectClip, ::draw2d::region * pRgnUpdate, RECT32 * pRectUpdate)
-
-   //{
-   //   UNREFERENCED_PARAMETER(dx);
-   //   UNREFERENCED_PARAMETER(dy);
-   //   UNREFERENCED_PARAMETER(pRectScroll);
-
-   //   UNREFERENCED_PARAMETER(pRectClip);
-
-   //   UNREFERENCED_PARAMETER(pRgnUpdate);
-   //   UNREFERENCED_PARAMETER(pRectUpdate);
-
-
-   //   return false;
-   //}
-
-   //// Printer Escape Functions
-   //i32 graphics::Escape(i32 nEscape, i32 nCount, const char * pszInData, LPVOID pOutData)
-
-
-   //{
-   //   UNREFERENCED_PARAMETER(nEscape);
-   //   UNREFERENCED_PARAMETER(nCount);
-   //   UNREFERENCED_PARAMETER(pszInData);
-
-   //   UNREFERENCED_PARAMETER(pOutData);
-
-
-   //   return -1;
-   //}
 
    // ::draw2d::graphics_pointer 3.1 Specific functions
    ::u32 graphics::SetBoundsRect(const rect &  pRectBounds, ::u32 flags)
-
    {
+
       UNREFERENCED_PARAMETER(pRectBounds);
 
       UNREFERENCED_PARAMETER(flags);
 
       return -1;
+
    }
+
 
    ::u32 graphics::GetBoundsRect(RECT32 * pRectBounds, ::u32 flags)
-
    {
+
       UNREFERENCED_PARAMETER(pRectBounds);
 
       UNREFERENCED_PARAMETER(flags);
 
       return -1;
+
    }
+
 
 #if !defined(LINUX) && !defined(__APPLE__) && !defined(ANDROID) && !defined(SOLARIS)
 
-   bool graphics::ResetDC(const DEVMODE* pDevMode)
 
+   bool graphics::ResetDC(const DEVMODE* pDevMode)
    {
+
       UNREFERENCED_PARAMETER(pDevMode);
 
-
       return false;
+
    }
 
+
 #endif
-
-
-//#ifdef WINDOWS_DESKTOP
-//
-//   ::u32 graphics::GetOutlineTextMetrics(::u32 cbData, LPOUTLINETEXTMETRICW potm)
-//
-//   {
-//      UNREFERENCED_PARAMETER(cbData);
-//      UNREFERENCED_PARAMETER(potm);
-//
-//
-//      return -1;
-//   }
-//
-//   bool graphics::GetCharABCWidths(::u32 nFirstChar, ::u32 nLastChar, LPABC pabc)
-//
-//   {
-//      UNREFERENCED_PARAMETER(nFirstChar);
-//      UNREFERENCED_PARAMETER(nLastChar);
-//      UNREFERENCED_PARAMETER(pabc);
-//
-//
-//      return false;
-//   }
-//
-//#endif
-//
-//   u32 graphics::GetFontData(u32 dwTable, u32 dwOffset, LPVOID pData,  u32 cbData)
-//
-//   {
-//      UNREFERENCED_PARAMETER(dwTable);
-//      UNREFERENCED_PARAMETER(dwOffset);
-//      UNREFERENCED_PARAMETER(pData);
-//
-//      UNREFERENCED_PARAMETER(cbData);
-//
-//      return -1;
-//   }
-//
-//#ifdef WINDOWS_DESKTOP
-//
-//   i32 graphics::GetKerningPairs(i32 nPairs, LPKERNINGPAIR pkrnpair)
-//
-//   {
-//      UNREFERENCED_PARAMETER(nPairs);
-//      UNREFERENCED_PARAMETER(pkrnpair);
-//
-//
-//      return -1;
-//   }
-//
-//   u32 graphics::GetGlyphOutline(::u32 nChar, const ::e_align & ealign, const ::e_draw_text & edrawtext, LPGLYPHMETRICS pgm,  u32 cbBuffer, LPVOID pBuffer, const MAT2* pmat2)
-//
-//
-//
-//   {
-//      UNREFERENCED_PARAMETER(nChar);
-//      UNREFERENCED_PARAMETER(nFormat);
-//      UNREFERENCED_PARAMETER(pgm);
-//
-//      UNREFERENCED_PARAMETER(cbBuffer);
-//      UNREFERENCED_PARAMETER(pBuffer);
-//
-//      UNREFERENCED_PARAMETER(pmat2);
-//
-//
-//      return -1;
-//   }
-//
-//#endif
 
 
 #ifdef WINDOWS_DESKTOP
@@ -5387,7 +5224,7 @@ namespace draw2d
 
       get_text_metrics(&tm2);
 
-      int iLineSpacing = tm2.get_line_spacing();
+      double dLineSpacing = tm2.get_line_spacing();
 
       ::draw2d::graphics * pgraphics = this;
 
@@ -5559,7 +5396,7 @@ namespace draw2d
       rect.left = 0;
       rect.top = 0;
       rect.right = (::i32) sz.cx;
-      rect.bottom = iLineSpacing;
+      rect.bottom = dLineSpacing;
 
       //::e_align ealign;
 
@@ -5661,7 +5498,7 @@ namespace draw2d
       if (!bLastLine && str2.get_length() > 0)
       {
 
-         rectClip.top += iLineSpacing;
+         rectClip.top += dLineSpacing;
 
          _DrawText(str2, rectClip, ealign, edrawtext);
 

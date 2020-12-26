@@ -247,13 +247,13 @@ namespace draw2d_cairo
       if (m_iFontWeight >= 700)
       {
 
-         return CAIRO_FONT_WEIGHT_NORMAL;
+         return CAIRO_FONT_WEIGHT_BOLD;
 
       }
       else
       {
 
-         return CAIRO_FONT_WEIGHT_BOLD;
+         return CAIRO_FONT_WEIGHT_NORMAL;
 
       }
 

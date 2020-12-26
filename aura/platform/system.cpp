@@ -1103,35 +1103,46 @@ namespace aura
 
       string str;
 
-      if (file_exists(::dir::system() / "config\\system\\draw2d.txt"))
+      ::file::path path = ::dir::config() / "system/draw2d.txt";
+
+      str = file_as_string(path);
+
+      if(str.has_char())
       {
 
-         str = file_as_string(::dir::system() / "config\\system\\draw2d.txt");
-
-   }
-      else
-      {
-
-         ::file::path strPath;
-
-         strPath = ::dir::appdata() / "draw2d.txt";
-
-         str = file_as_string(strPath);
+         return "draw2d_" + str;
 
       }
 
-      if (str.has_char())
+      path = ::dir::appdata() / "draw2d.txt";
+
+      str = file_as_string(path);
+
+      if(str.has_char())
+      {
+
          return "draw2d_" + str;
-      else
-      #ifdef WINDOWS_DESKTOP
-         return "draw2d_gdiplus";
+
+      }
+
+#ifdef WINDOWS_DESKTOP
+      
+      return "draw2d_gdiplus";
+
 #elif __APPLE__
+      
       return "draw2d_quartz2d";
+
 #elif defined(_UWP)
-         return "draw2d_direct2d";
+      
+      return "draw2d_direct2d";
+
 #else
-         return "draw2d_cairo";
-      #endif
+      
+      return "draw2d_cairo";
+
+#endif
+
    }
 
 

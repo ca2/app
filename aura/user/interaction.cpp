@@ -296,7 +296,7 @@ namespace user
       if (edouble == ::user::e_double_focus_height_width)
       {
 
-         if (m_flagNonClient.has(non_client_focus_rect) && keyboard_focus_is_focusable())
+         if (m_flagNonClient.has(non_client_focus_rect))
          {
 
             return 8.0;
@@ -345,7 +345,7 @@ namespace user
    ::rectd interaction::get_margin(style * pstyle, enum_element eelement, estate estate) const
    {
 
-      if (m_flagNonClient.has(non_client_focus_rect) && keyboard_focus_is_focusable())
+      if (m_flagNonClient.has(non_client_focus_rect))
       {
 
          double dFocusHeightWidth = get_double(pstyle, ::user::e_double_focus_height_width, 2.0);
@@ -11470,7 +11470,6 @@ restart:
 
 
    void interaction::get_margin_rect(RECT32 * prectMargin)
-
    {
 
       prectMargin->left = 0;

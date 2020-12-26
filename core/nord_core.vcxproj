@@ -607,6 +607,7 @@
     <ClInclude Include="user\simple_ui\tap.h" />
     <ClInclude Include="user\simple_ui\top.h" />
     <ClInclude Include="user\simple_ui\_.h" />
+    <ClInclude Include="user\userex\calculator_edit_view.h" />
     <ClInclude Include="user\userex\color_view.h" />
     <ClInclude Include="user\userex\const.h" />
     <ClInclude Include="user\userex\dialog.h" />

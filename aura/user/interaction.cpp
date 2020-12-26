@@ -15,11 +15,10 @@
 
 #ifdef WINDOWS_DESKTOP
 #include "aura/os/windows/windowing.h"
-#define MESSAGE_WINDOW_PARENT HWND_MESSAGE
 #include "aura/node/windows/system_interaction_impl.h"
 
 #elif defined(_UWP)
-//#define MESSAGE_WINDOW_PARENT HWND_MESSAGE
+#define MESSAGE_WINDOW_PARENT HWND_MESSAGE
 #include "aura/os/uwp/_uwp.h"
 
 #endif // _UWP
@@ -322,9 +321,23 @@ namespace user
    ::rectd interaction::get_padding(style * pstyle, enum_element eelement, estate estate) const
    {
 
-      ::rectd rectDefaultPadding(2.0, 2.0, 2.0, 2.0);
 
-      return rectDefaultPadding;
+      if (get_control_type() == ::user::e_control_type_button)
+      {
+
+         ::rectd rectDefaultPadding(16.0, 8.0, 16.0, 8.0);
+
+         return rectDefaultPadding;
+
+      }
+      else
+      {
+
+         ::rectd rectDefaultPadding(2.0, 2.0, 2.0, 2.0);
+
+         return rectDefaultPadding;
+
+      }
 
    }
 
@@ -7312,7 +7325,13 @@ namespace user
 
       ::sized setFittingFontHeight;
 
-      setFittingFontHeight.cx = 1.0; // symbolic, just not empty
+      string str;
+
+      get_window_text(str);
+
+      ::sized size = pgraphics->GetTextExtent(str);
+
+      setFittingFontHeight.cx = size.cx;
 
       setFittingFontHeight.cy = metric.get_line_spacing();
 

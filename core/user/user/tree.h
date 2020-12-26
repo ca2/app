@@ -173,7 +173,7 @@ namespace user
 
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
-      virtual bool keyboard_focus_is_focusable() override;
+      virtual bool keyboard_focus_is_focusable() const override;
 
       //virtual ::sized get_total_size() override;
 

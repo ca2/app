@@ -741,7 +741,7 @@ namespace user
    }
 
 
-   bool picture::is_text_editable()
+   bool picture::is_text_editable() const
    {
 
       return false;
@@ -749,7 +749,7 @@ namespace user
    }
 
 
-   bool picture::is_text_editor()
+   bool picture::is_text_editor() const
    {
 
       return false;

@@ -263,6 +263,7 @@
     <ClCompile Include="node\android\system.cpp" />
     <ClCompile Include="node\android\util.cpp" />
     <ClCompile Include="node\posix\application.cpp" />
+    <ClCompile Include="os\android\graphics.cpp" />
     <ClCompile Include="os\android\monitor.cpp" />
     <ClCompile Include="os\android\windowing.cpp" />
     <ClCompile Include="os\android\_.cpp" />

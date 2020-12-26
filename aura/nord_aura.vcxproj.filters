@@ -412,6 +412,9 @@
     <ClCompile Include="node\android\system.cpp">
       <Filter>Source Files\node\android</Filter>
     </ClCompile>
+    <ClCompile Include="os\android\graphics.cpp">
+      <Filter>Source Files\os\android</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="framework.h">

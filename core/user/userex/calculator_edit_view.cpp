@@ -29,9 +29,7 @@ namespace calculator
    }
 
 
-
-
-   bool plain_edit_view::keyboard_focus_is_focusable()
+   bool plain_edit_view::keyboard_focus_is_focusable() const
    {
 
       return is_window_enabled() && is_window_visible();

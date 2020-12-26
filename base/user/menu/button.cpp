@@ -332,11 +332,10 @@ namespace user
    }
 
 
-   bool menu_button::keyboard_focus_is_focusable()
+   bool menu_button::keyboard_focus_is_focusable() const
    {
 
       return false;
-
 
    }
 

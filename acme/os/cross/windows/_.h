@@ -270,7 +270,7 @@ typedef const MESSAGE * LPCMESSAGE;
 #else
 
 
-#ifndef _UWP
+#ifndef WINDOWS
 
 /* Types use for passing & returning polymorphic values */
 typedef uptr            WPARAM;

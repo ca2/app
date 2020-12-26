@@ -73,9 +73,9 @@ namespace user
 
          virtual bool set_text_editable(bool bEditable = true) override;
 
-         virtual bool is_text_editable() override;
+         virtual bool is_text_editable() const override;
 
-         virtual bool is_text_editor() override;
+         virtual bool is_text_editor() const override;
 
          virtual void _001OnDeleteText() override;
 
@@ -120,7 +120,7 @@ namespace user
          virtual void key_to_char(::message::key * pkey) override;
 
 
-         virtual bool keyboard_focus_is_focusable() override;
+         virtual bool keyboard_focus_is_focusable() const override;
 
 
          virtual void keyboard_focus_OnChar(::message::message * pmessage) override;

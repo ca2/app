@@ -428,46 +428,84 @@ namespace sockets
 
    bool tcp_socket::open(const string &host,port_t port)
    {
+
       SetCloseAndDelete(false);
+
       if(IsIpv6())
       {
+
          if(!Handler().ResolverEnabled() || System.sockets().net().isipv6(host))
          {
+
             in6_addr a;
+
             if(!System.sockets().net().convert(a,host))
             {
+
                SetCloseAndDelete();
+
                return false;
+
             }
+
             ::net::address ad(a,port);
+
             ::net::address addrLocal;
-            if(!open(ad,addrLocal))
+
+            if (!open(ad, addrLocal))
+            {
+
                return false;
+
+            }
+
             return true;
+
          }
+
          m_resolver_id = Resolve6(host,port);
+
          return true;
+
       }
+
       if(!Handler().ResolverEnabled() || System.sockets().net().isipv4(host))
       {
+
+         in_addr l;
+
+         if (!System.sockets().net().convert(l, host))
          {
-            in_addr l;
-            if (!System.sockets().net().convert(l, host))
-            {
-               WARN("System.sockets().net().convert failed");
-               SetCloseAndDelete();
-               return false;
-            }
-            ::net::address ad(l, port);
-            ::net::address addrLocal;
-            if (!open(ad, addrLocal))
-               return false;
-            return true;
+            
+            WARN("System.sockets().net().convert failed");
+            
+            SetCloseAndDelete();
+            
+            return false;
+
          }
+         
+         ::net::address ad(l, port);
+         
+         ::net::address addrLocal;
+
+         if (!open(ad, addrLocal))
+         {
+
+            return false;
+
+         }
+
+         return true;
+
       }
+
       // resolve using async resolver thread
+
       m_resolver_id = Resolve(host,port);
+
       return true;
+
    }
 
 

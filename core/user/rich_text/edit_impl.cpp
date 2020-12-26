@@ -805,7 +805,7 @@ namespace user
       }
 
 
-      bool edit_impl::is_text_editable()
+      bool edit_impl::is_text_editable() const
       {
 
          return is_window_enabled() && m_bEditable2;
@@ -813,7 +813,7 @@ namespace user
       }
 
 
-      bool edit_impl::is_text_editor()
+      bool edit_impl::is_text_editor() const
       {
 
          return true;
@@ -942,7 +942,7 @@ namespace user
       }
 
 
-      bool edit_impl::keyboard_focus_is_focusable()
+      bool edit_impl::keyboard_focus_is_focusable() const
       {
 
          return is_window_visible() && is_text_editable();

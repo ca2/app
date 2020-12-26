@@ -43,7 +43,7 @@ namespace imaging_freeimage
 
       pimage->map();
 
-#if defined(ANDROID)
+#if defined(ANDROID) && defined(ARM)
 
       for (index y = 0; y < pimage->height(); y++)
       {

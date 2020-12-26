@@ -1,6 +1,4 @@
 #include "framework.h"
-#include "aqua/xml.h"
-#include "aura/graphics/draw2d/ttf_util.h"
 
 
 namespace aura

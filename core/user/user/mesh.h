@@ -522,7 +522,7 @@ namespace user
 
       virtual void on_change_viewport_offset() override;
 
-      virtual bool keyboard_focus_is_focusable() override;
+      virtual bool keyboard_focus_is_focusable() const override;
 
 
       virtual void _thread_data_update_visible_subitem();

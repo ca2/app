@@ -253,7 +253,7 @@
     <ClCompile Include="net\sockets\base\base_socket.cpp" />
     <ClCompile Include="net\sockets\base\base_socket_handler.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\listen_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\net.cpp" />
+    <ClCompile Include="net\sockets\bsd\basic\basic_net.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sctp_socket.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\socket.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\socket_handler.cpp" />

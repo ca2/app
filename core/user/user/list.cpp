@@ -7125,7 +7125,7 @@ namespace user
    }
 
 
-   bool list::keyboard_focus_is_focusable()
+   bool list::keyboard_focus_is_focusable() const
    {
 
       return true;

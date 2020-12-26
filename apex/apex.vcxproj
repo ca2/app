@@ -1148,6 +1148,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="message\sender.cpp" />
     <ClCompile Include="message\simple_command.cpp" />
     <ClCompile Include="message\_.cpp" />
+    <ClCompile Include="net\sockets\bsd\basic\basic_net.cpp" />
     <ClCompile Include="net\sockets\http\http_base_socket.cpp" />
     <ClCompile Include="net\sockets\_system_sockets.cpp" />
     <ClCompile Include="node\windows\dir_system.cpp" />
@@ -1569,7 +1570,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="net\sockets\base\base_socket.cpp" />
     <ClCompile Include="net\sockets\base\base_socket_handler.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\listen_socket.cpp" />
-    <ClCompile Include="net\sockets\bsd\basic\net.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\sctp_socket.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\socket.cpp" />
     <ClCompile Include="net\sockets\bsd\basic\socket_handler.cpp" />

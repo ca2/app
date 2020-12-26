@@ -40,7 +40,7 @@ namespace userex
    }
 
 
-   bool top_toggle_view::keyboard_focus_is_focusable()
+   bool top_toggle_view::keyboard_focus_is_focusable() const
    {
 
       return ::user::button::keyboard_focus_is_focusable();

@@ -38,7 +38,7 @@ namespace experience
 
 
 
-      virtual bool keyboard_focus_is_focusable() override;
+      virtual bool keyboard_focus_is_focusable() const override;
 
    };
 

@@ -998,7 +998,7 @@ namespace user
    ::rectd plain_edit::get_margin(style * pstyle, enum_element eelement, estate estate) const
    {
 
-
+       return ::user::interaction::get_margin(pstyle, eelement, estate);
 
    }
 

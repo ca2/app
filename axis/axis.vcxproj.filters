@@ -719,9 +719,6 @@
     <ClCompile Include="math\calculator\scanner.cpp">
       <Filter>Source Files\math\calculator</Filter>
     </ClCompile>
-    <ClCompile Include="math\calculator\value.cpp">
-      <Filter>Source Files\math\calculator</Filter>
-    </ClCompile>
     <ClCompile Include="math\kissfft\fft.cpp">
       <Filter>Source Files\math\kissfft</Filter>
     </ClCompile>
@@ -834,6 +831,9 @@
       <Filter>Source Files\const</Filter>
     </ClCompile>
     <ClCompile Include="math\calculator\element.cpp">
+      <Filter>Source Files\math\calculator</Filter>
+    </ClCompile>
+    <ClCompile Include="math\calculator\payload.cpp">
       <Filter>Source Files\math\calculator</Filter>
     </ClCompile>
   </ItemGroup>

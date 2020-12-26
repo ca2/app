@@ -1112,6 +1112,7 @@
     <ClCompile Include="message\timer.cpp" />
     <ClCompile Include="message\user.cpp" />
     <ClCompile Include="node\windows\shell_open.cpp" />
+    <ClCompile Include="node\windows\system.cpp" />
     <ClCompile Include="node\windows\user_frame.cpp" />
     <ClCompile Include="node\windows\windows_desktop.cpp" />
     <ClCompile Include="node\windows\application.cpp" />

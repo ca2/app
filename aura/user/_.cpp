@@ -14,7 +14,7 @@ CLASS_DECL_AURA::estatus message_box(::user::primitive* puiOwner, const char* ps
    if(psystem)
    {
 
-      psystem->message_box(puiOwner, pszMessage, pszTitle, emessagebox, process);
+      psystem->message_box(pszMessage, pszTitle, emessagebox, process);
 
    }
 

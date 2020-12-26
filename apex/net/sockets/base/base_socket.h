@@ -221,7 +221,7 @@ namespace sockets
       * needs to be used for the base_socket class. Note: the base_socket class still needs
       * the "default" constructor with one base_socket_handler& as input parameter.
       */
-      virtual base_socket *create() { return nullptr; }
+      virtual base_socket *new_listen_socket() { return nullptr; }
 
       /** Returns context_object to sockethandler that owns the base_socket.
       If the base_socket is detached, this is a context_object to the slave sockethandler.

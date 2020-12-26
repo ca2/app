@@ -257,6 +257,16 @@ namespace draw2d
    };
 
 
+
+   void draw2d::enum_draw2d_fonts(::draw2d::font_enum_item_array& itema)
+   {
+
+
+       wingdi_font_enum fontenum(itema, true, true, true);
+
+
+   }
+
    BOOL CALLBACK wingdi_font_enum::callback(LPLOGFONTW plf, LPNEWTEXTMETRICW lpntm, ::u32 dwFontType, LPVOID p)
    {
 

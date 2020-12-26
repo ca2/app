@@ -26,7 +26,7 @@ CLASS_DECL_ACME::estatus init_gdi_plus()
    if (statusStartup != Gdiplus::Ok)
    {
 
-      os_message_box("Gdiplus Failed to Startup. ca cannot continue.", "Gdiplus Failure", MB_ICONERROR);
+      os_message_box("Gdiplus Failed to Startup. ca cannot continue.", "Gdiplus Failure", e_message_box_icon_error);
 
       return ::error_failed;
 
@@ -37,7 +37,7 @@ CLASS_DECL_ACME::estatus init_gdi_plus()
    if (statusStartup != Gdiplus::Ok)
    {
 
-      os_message_box("Gdiplus Failed to Hook. ca cannot continue.", "Gdiplus Failure", MB_ICONERROR);
+      os_message_box("Gdiplus Failed to Hook. ca cannot continue.", "Gdiplus Failure", e_message_box_icon_error);
 
       return ::error_failed;
 

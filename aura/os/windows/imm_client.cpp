@@ -492,6 +492,13 @@ void imm_client::_001OnKeyDown(::message::message * pmessage)
 }
 
 
+void imm_client::on_text_composition(string str)
+{
+
+}
+
+
+
 void imm_client::on_text_composition_done()
 {
 

@@ -1660,6 +1660,9 @@
     <ClCompile Include="node\windows\system.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
+    <ClCompile Include="node\windows\system.cpp">
+      <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\_impl.h">

@@ -156,7 +156,7 @@ namespace sockets
 
             m_creator = new LISTENER(h);
 
-            base_socket * plistener = m_creator->create();
+            base_socket * plistener = m_creator->new_listen_socket();
 
             if(plistener != nullptr)
             {
@@ -191,7 +191,7 @@ namespace sockets
          if (HasCreator())
          {
 
-            pbasesocket = m_creator->create();
+            pbasesocket = m_creator->new_listen_socket();
 
             m_psocket = pbasesocket.cast < LISTENER > ();
 

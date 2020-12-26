@@ -189,10 +189,10 @@ CLASS_DECL_APEX oswindow get_desktop_window()
 
 // }
 
-CLASS_DECL_APEX int_bool show_window(oswindow oswindow, const ::edisplay & edisplay, const ::eactivation & eactivate)
+CLASS_DECL_APEX int_bool show_window(oswindow oswindow, const ::e_display & edisplay, const ::e_activation & eactivation)
 {
 
-   int nCmdShow = windows_show_window(edisplay, eactivate);
+   int nCmdShow = windows_show_window(edisplay, eactivation);
 
    return ::ShowWindow(oswindow, nCmdShow);
 

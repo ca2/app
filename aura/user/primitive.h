@@ -766,6 +766,10 @@ namespace user
       virtual rect get_input_content_rect();
       virtual rect get_input_selection_rect();
 
+      virtual void InputConnectionSetComposingText(const string & str, strsize iNewCursorPosition);
+      virtual void InputConnectionSetComposingRegion(strsize iStart, strsize iEnd);
+      virtual void InputConnectionFinishComposingText();
+
       //virtual void _001OnTimer(::timer * ptimer);
 
       //virtual bool enable_window(bool bEnable );

@@ -4071,9 +4071,6 @@
     <ClInclude Include="_defer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="os\android\_os_local.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
     <ClInclude Include="os\android\_os_remote.h">
       <Filter>Header Files\os\android</Filter>
     </ClInclude>

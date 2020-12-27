@@ -4999,6 +4999,110 @@ finished_update:
    }
 
 
+   void plain_edit::InputConnectionSetComposingText(const string & strText, strsize iNewCursorPosition)
+   {
+
+      if (m_pitemComposing
+         && !strText.contains('\r')
+         && !strText.contains('\n'))
+      {
+
+         m_ptree->m_peditfile->change_insert_item_data(m_pitemComposing.get(), strText);
+
+         //index i1 = (index)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
+
+         strsize i1 = iNewCursorPosition;
+
+         auto pgraphics = ::draw2d::create_memory_graphics();
+
+         int iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, i1);
+
+         m_ptree->m_iSelEnd = i1;
+         m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+         m_psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
+         m_psetsel->m_iSelBeg = m_ptree->m_iSelEnd;
+
+         bool bFullUpdate = false;
+
+         plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
+
+         if (iLineUpdate < 0)
+         {
+
+            iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
+
+         }
+
+         if (iLineUpdate >= 0)
+         {
+
+            _001EnsureVisibleLine(iLineUpdate + 1);
+
+         }
+
+         set_need_redraw();
+
+         post_redraw();
+
+         string strText;
+
+         _001GetText(strText);
+
+         ::output_debug_string("Current Text: " + strText + "\n");
+
+      }
+
+   }
+
+   
+   void plain_edit::InputConnectionSetComposingRegion(strsize iStart, strsize iEnd)
+   {
+
+      MacroBegin();
+
+      strsize iSelBeg = 0;
+
+      strsize iSelEnd = 0;
+
+      _001GetSel(iSelBeg, iSelEnd);
+
+      __release(m_pitemComposing);
+
+      string strText;
+
+      _001GetText(strText);
+
+      __sort(iStart, iEnd);
+
+      wd16string wstrText(strText);
+
+      strsize iComposingBeg = wd16_to_ansi_len(wstrText, iStart);
+
+      strsize iComposingEnd = wd16_to_ansi_len(wstrText, iEnd);
+
+      string strComposition(strText.Mid(iComposingBeg, iComposingEnd - iComposingBeg));
+
+      _001SetSel(iComposingBeg, iComposingEnd);
+
+      insert_text(strComposition, true);
+
+      __refer(m_pitemComposing, m_pinsert);
+
+      _001SetSel(iSelBeg, iSelEnd);
+
+      MacroEnd();
+
+   }
+
+
+   void plain_edit::InputConnectionFinishComposingText()
+   {
+
+      __release(m_pitemComposing);
+
+   }
+
+
    void plain_edit::_001OnSysChar(::message::message * pmessage)
    {
 

@@ -151,12 +151,12 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_lButtonDown(JNIEnv * env, jo
 }
 
 extern "C"
-JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_aura_1on_1text_1composition(JNIEnv * env, jobject  obj, jstring str, jint i)
+JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionSetComposingText(JNIEnv * env, jobject  obj, jstring text, jint newCursorPosition)
 {
 
    set_context(env);
 
-   const wd16char* utf16 = (wd16char*)env->GetStringChars(str, NULL);
+   const wd16char* utf16 = (wd16char*)env->GetStringChars(text, NULL);
 
    if (utf16 == NULL)
    {
@@ -165,7 +165,7 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_aura_1on_1text_1composit
 
    }
 
-   size_t length = (size_t)env->GetStringLength(str);
+   size_t length = (size_t)env->GetStringLength(text);
 
    auto psession = Session;
 
@@ -174,7 +174,11 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_aura_1on_1text_1composit
 
       wd16string wstr(utf16, length);
 
-      psession->get_focus_ui()->on_text_composition(wstr);
+      string str(wstr);
+
+      const char * pszComposingText = str;
+
+      psession->get_focus_ui()->InputConnectionSetComposingText(str, newCursorPosition);
 
    }
    else
@@ -184,7 +188,7 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_aura_1on_1text_1composit
 
    }
 
-   env->ReleaseStringChars(str, (jchar*)utf16);
+   env->ReleaseStringChars(text, (jchar*)utf16);
 
    return TRUE;
 
@@ -192,30 +196,17 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_aura_1on_1text_1composit
 
 
 extern "C"
-JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_aura_1on_1text_1commit(JNIEnv * env, jobject  obj, jstring str, jint i)
+JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionSetComposingRegion(JNIEnv * env, jobject obj, jint start, jint end)
 {
 
    set_context(env);
-
-   const wd16char * utf16 = (wd16char *)env->GetStringChars(str, NULL);
-
-   if (utf16 == NULL)
-   {
-
-      return false;
-
-   }
-
-   size_t length = (size_t)env->GetStringLength(str);
 
    auto psession = Session;
 
    if (psession->get_focus_ui())
    {
 
-      wd16string wstr(utf16, length);
-
-      psession->get_focus_ui()->on_text_commit(wstr);
+      psession->get_focus_ui()->InputConnectionSetComposingRegion(start, end);
 
    }
    else
@@ -225,7 +216,31 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_aura_1on_1text_1commit(J
 
    }
 
-   env->ReleaseStringChars(str, (jchar *)utf16);
+   return TRUE;
+
+}
+
+
+extern "C"
+JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionFinishComposingText(JNIEnv * env, jobject  obj)
+{
+
+   set_context(env);
+
+   auto psession = Session;
+
+   if (psession->get_focus_ui())
+   {
+
+      psession->get_focus_ui()->InputConnectionFinishComposingText();
+
+   }
+   else
+   {
+
+      //android_on_text(os_text_keyboard, utf16, length);
+
+   }
 
    return TRUE;
 

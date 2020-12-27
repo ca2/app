@@ -4082,6 +4082,7 @@ namespace user
 
    }
 
+
    rect primitive::get_input_content_rect()
    {
 
@@ -4094,6 +4095,26 @@ namespace user
    {
 
       return rect();
+
+   }
+
+
+   void primitive::InputConnectionSetComposingText(const string & str, strsize iNewCursorPosition)
+   {
+
+
+   }
+
+
+   void primitive::InputConnectionSetComposingRegion(strsize iStart, strsize iEnd)
+   {
+
+   }
+
+
+   void primitive::InputConnectionFinishComposingText()
+   {
+
 
    }
 

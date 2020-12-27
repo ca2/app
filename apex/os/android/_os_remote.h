@@ -64,6 +64,14 @@ public:
    JX(i, EditFocusSelEnd);
    //boolean m_bEditFocusKill;
    JX(b, EditFocusKill);
+   //boolean m_bRedraw;
+   JX(b, Redraw);
+   //int m_iEditorSelectionStart;
+   JX(i, EditorSelectionStart);
+   //int m_iEditorSelectionEnd;
+   JX(i, EditorSelectionEnd);
+   //String m_strEditorText;
+   JX(str, EditorText);
 
 
 };

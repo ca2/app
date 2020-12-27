@@ -41,6 +41,13 @@ public:
    
    bool           m_bRedraw;
 
+   bool           m_bEditorSelection;
+   int            m_iEditorSelectionStart;
+   int            m_iEditorSelectionEnd;
+
+   bool           m_bEditorText;
+   string         m_strEditorText;
+
 
 };
 

@@ -4,6 +4,9 @@
 #include "aura/os/android/windowing.h"
 
 
+CLASS_DECL_AURA mutex * osmutex();
+
+
 extern __pointer(os_local) g_poslocal;
 
 
@@ -4595,7 +4598,27 @@ namespace android
    bool interaction_impl::on_keyboard_focus(::user::primitive * pfocus)
    {
 
-      UNREFERENCED_PARAMETER(pfocus);
+      strsize iBeg = 0;
+
+      strsize iEnd = 0;
+
+      pfocus->_001GetSel(iBeg, iEnd);
+
+      string strText;
+
+      pfocus->_001GetText(strText);
+
+      sync_lock sl(osmutex());
+
+      ::oslocal()->m_iEditorSelectionStart = iBeg;
+
+      ::oslocal()->m_iEditorSelectionEnd = iEnd;
+
+      ::oslocal()->m_strEditorText = strText;
+
+      ::oslocal()->m_bEditorSelection = true;
+
+      ::oslocal()->m_bEditorText = true;
 
       ::oslocal()->m_bShowKeyboard = true;
 

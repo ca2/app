@@ -281,15 +281,6 @@ void android_exchange()
 
    auto premote = g_posremote;
 
-   if (plocal->m_bShowKeyboard)
-   {
-
-      premote->setShowKeyboard(true);
-
-      plocal->m_bShowKeyboard = false;
-
-   }
-
    if (plocal->m_bHideKeyboard)
    {
 
@@ -415,6 +406,35 @@ void android_exchange()
       plocal->m_bRedraw = false;
 
       premote->setRedraw(true);
+
+   }
+
+   if (plocal->m_bEditorSelection)
+   {
+
+      plocal->m_bEditorSelection = false;
+
+      premote->setEditorSelectionStart(plocal->m_iEditorSelectionStart);
+
+      premote->setEditorSelectionEnd(plocal->m_iEditorSelectionEnd);
+
+   }
+
+   if (plocal->m_bEditorText)
+   {
+
+      plocal->m_bEditorText = false;
+
+      premote->setEditorText(plocal->m_strEditorText);
+
+   }
+
+   if (plocal->m_bShowKeyboard)
+   {
+
+      premote->setShowKeyboard(true);
+
+      plocal->m_bShowKeyboard = false;
 
    }
 

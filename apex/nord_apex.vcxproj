@@ -1198,7 +1198,6 @@
     <ClInclude Include="os\android\_android.h" />
     <ClInclude Include="os\android\_c.h" />
     <ClInclude Include="os\android\_os_object.h" />
-    <ClInclude Include="os\android\_os_local.h" />
     <ClInclude Include="os\android\_os_remote.h" />
     <ClInclude Include="os\apex.h" />
     <ClInclude Include="os\binreloc.h" />

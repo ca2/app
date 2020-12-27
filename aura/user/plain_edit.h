@@ -134,6 +134,7 @@ namespace user
       bool                                m_bLastCaret;
 
 
+
       plain_edit();
       virtual ~plain_edit();
 
@@ -154,6 +155,11 @@ namespace user
       virtual void on_text_composition(string str) override;
       virtual void on_text_commit(string str) override;
       virtual void on_text_composition_done() override;
+
+
+      virtual void InputConnectionSetComposingText(const string & str, strsize iNewCursorPosition);
+      virtual void InputConnectionSetComposingRegion(strsize iStart, strsize iEnd);
+      virtual void InputConnectionFinishComposingText();
 
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;

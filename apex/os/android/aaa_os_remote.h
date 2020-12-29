@@ -72,6 +72,16 @@ public:
    JX(i, EditorSelectionEnd);
    //String m_strEditorText;
    JX(str, EditorText);
+   //boolean m_bInputMethodManagerUpdateSelection;
+   JX(b, InputMethodManagerUpdateSelection);
+   //int m_iInputMethodManagerSelectionStart;
+   JX(i, InputMethodManagerSelectionStart);
+   //int m_iInputMethodManagerSelectionEnd;
+   JX(i, InputMethodManagerSelectionEnd);
+   //int m_iInputMethodManagerCandidateStart;
+   JX(i, InputMethodManagerCandidateStart);
+   //int m_iInputMethodManagerCandidateEnd;
+   JX(i, InputMethodManagerCandidateEnd);
 
 
 };

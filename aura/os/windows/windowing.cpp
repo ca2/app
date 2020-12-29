@@ -358,7 +358,7 @@ void window_create_gray_caret(oswindow oswindow, i32 nWidth, i32 nHeight)
 CLASS_DECL_AURA string message_box_result_to_string(int iResult);
 
 
-// CLASS_DECL_AURA ::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+// CLASS_DECL_AURA ::e_status _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 // {
 
 //    string strMessage(pszMessage);
@@ -380,7 +380,7 @@ CLASS_DECL_AURA string message_box_result_to_string(int iResult);
 // }
 
 
-// CLASS_DECL_AURA ::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+// CLASS_DECL_AURA ::e_status os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 // {
 
 //    if (System.is_dedicated_thread())

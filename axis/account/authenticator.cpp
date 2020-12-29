@@ -24,7 +24,7 @@ namespace account
    }
 
 
-   ::estatus     authenticator::pre_authenticate(credentials * pcredentials)
+   ::e_status     authenticator::pre_authenticate(credentials * pcredentials)
    {
 
       return error_pre_authentication;
@@ -32,7 +32,7 @@ namespace account
    }
 
 
-   ::estatus  authenticator::authenticate(credentials * pcredentials)
+   ::e_status  authenticator::authenticate(credentials * pcredentials)
    {
 
       return error_authentication_none;

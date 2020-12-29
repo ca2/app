@@ -46,11 +46,11 @@ namespace android
       virtual bool native_full_web_browser(const char * pcsz) override;
       virtual bool native_modern_web_browser(const char * pcsz) override;
 
-      virtual ::estatus create_service() override;
-      virtual ::estatus remove_service() override;
+      virtual ::e_status create_service() override;
+      virtual ::e_status remove_service() override;
 
-      virtual ::estatus start_service() override;
-      virtual ::estatus stop_service() override;
+      virtual ::e_status start_service() override;
+      virtual ::e_status stop_service() override;
 
 
       virtual bool is_remote_session() override;

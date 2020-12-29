@@ -27,14 +27,14 @@ namespace user
       virtual ~form();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
       virtual void install_message_routing(::channel * pchannel) override;
 
       DECL_GEN_SIGNAL(_001OnCreate);
 
-      ::estatus set_form_callback(::user::form_callback* pcallback);
-      ::estatus set_parent_form(::user::form* pform);
+      ::e_status set_form_callback(::user::form_callback* pcallback);
+      ::e_status set_parent_form(::user::form* pform);
 
 
       virtual ::user::form_callback* get_form_callback();
@@ -51,9 +51,9 @@ namespace user
       virtual __pointer(control_descriptor) new_form_control();
 
 
-      virtual ::estatus open_html(const ::string& str);
+      virtual ::e_status open_html(const ::string& str);
 
-      virtual ::estatus open_document(const payload& varFile);
+      virtual ::e_status open_document(const payload& varFile);
 
       virtual void soft_reload();
 

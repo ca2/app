@@ -24,7 +24,7 @@ exit_exception::~exit_exception()
 }
 
 
-::estatus exit_exception::finish(::context_object * pcontextobjectFinish)
+::e_status exit_exception::finish(::context_object * pcontextobjectFinish)
 {
 
    try

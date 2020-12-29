@@ -5,7 +5,7 @@ namespace aura
 {
 
 
-   extern CLASS_DECL_AURA string_to_string * g_pmapFontFaceName;
+   extern CLASS_DECL_AURA string_map < int_to_string > * g_pmapFontFaceName;
 
 
    extern CLASS_DECL_AURA critical_section * g_pcsFont;
@@ -42,7 +42,7 @@ namespace draw2d
    }
 
 
-   ::estatus draw2d::initialize(::layered * pobjectContext)
+   ::e_status draw2d::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::apex::department::initialize(pobjectContext);
@@ -76,7 +76,7 @@ namespace draw2d
    }
 
 
-   ::estatus draw2d::init1()
+   ::e_status draw2d::init1()
    {
 
       if (!::apex::department::init1())
@@ -91,7 +91,7 @@ namespace draw2d
    }
 
 
-   ::estatus draw2d::process_init()
+   ::e_status draw2d::process_init()
    {
 
       if (!::apex::department::process_init())
@@ -115,7 +115,7 @@ namespace draw2d
    }
 
 
-   ::estatus draw2d::init()
+   ::e_status draw2d::init()
    {
 
       if (!::apex::department::init())
@@ -1048,7 +1048,7 @@ breakFilter2:
 //
 //      __pointer(ttf_util) putil;
 //
-//      ::estatus estatus = __construct_new(putil);
+//      ::e_status estatus = __construct_new(putil);
 //
 //      if (pdoc->load(strSystemFonts))
 //      {

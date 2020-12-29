@@ -19,7 +19,7 @@ namespace graphics
       virtual ~bitmap_source_buffer();
 
 
-      virtual ::estatus initialize_graphics_graphics(::user::interaction_impl* pimpl) override;
+      virtual ::e_status initialize_graphics_graphics(::user::interaction_impl* pimpl) override;
 
       virtual void defer_initialize_bitmap_source_buffer();
 

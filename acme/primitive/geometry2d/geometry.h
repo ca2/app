@@ -27,7 +27,7 @@ namespace geometry
       virtual ~geometry();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
       virtual void finalize() override;
 
 

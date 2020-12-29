@@ -30,7 +30,7 @@ namespace opengl
 
 
 
-   ::estatus context_win32::_create_offscreen_buffer(const ::size& size)
+   ::e_status context_win32::_create_offscreen_buffer(const ::size& size)
    {
 
       auto pgpu = System.get_gpu();
@@ -174,7 +174,7 @@ namespace opengl
 
       }
 
-      ::estatus estatus = popengl->defer_init_glew();
+      ::e_status estatus = popengl->defer_init_glew();
 
       if (!estatus)
       {
@@ -195,7 +195,7 @@ namespace opengl
    }
 
 
-   ::estatus context_win32::resize_offscreen_buffer(const ::size& size)
+   ::e_status context_win32::resize_offscreen_buffer(const ::size& size)
    {
 
       if (!m_pbuffer)
@@ -238,10 +238,10 @@ namespace opengl
    }
 
 
-   ::estatus context_win32::make_current()
+   ::e_status context_win32::make_current()
    {
 
-      ::estatus estatus = ::success;
+      ::e_status estatus = ::success;
 
       bool bMakeCurrentOk = wglMakeCurrent(m_hdc, m_hrc);
 
@@ -261,10 +261,10 @@ namespace opengl
    }
 
 
-   ::estatus context_win32::destroy_offscreen_buffer()
+   ::e_status context_win32::destroy_offscreen_buffer()
    {
 
-      ::estatus estatus = ::success;
+      ::e_status estatus = ::success;
 
       if (m_hrc == NULL && m_hdc == NULL && m_hwnd == NULL)
       {

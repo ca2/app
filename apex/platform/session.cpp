@@ -98,7 +98,7 @@ namespace apex
    }
 
 
-   ::estatus session::initialize(::layered * pobjectContext)
+   ::e_status session::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::thread::initialize(pobjectContext);
@@ -359,7 +359,7 @@ namespace apex
    }
 
 
-   ::estatus session::init_thread()
+   ::e_status session::init_thread()
    {
 
       auto estatus = process_init();
@@ -430,7 +430,7 @@ namespace apex
    }
 
 
-   ::estatus session::process_init()
+   ::e_status session::process_init()
    {
 
       INFO("apex::session::process_init");
@@ -464,7 +464,7 @@ namespace apex
    }
 
 
-   ::estatus session::init_session()
+   ::e_status session::init_session()
    {
 
       auto estatus = init1();
@@ -541,7 +541,7 @@ namespace apex
 
    }
 
-   //::estatus session::init()
+   //::e_status session::init()
    //{
 
 
@@ -603,7 +603,7 @@ namespace apex
 //
 //      }
 //
-//      ::estatus estatus = __compose(m_puiSession, ::move(create_system_message_window(this)));
+//      ::e_status estatus = __compose(m_puiSession, ::move(create_system_message_window(this)));
 //
 //      if (!estatus)
 //      {
@@ -2348,7 +2348,7 @@ ret:
    }
 
 
-   ::estatus session::init1()
+   ::e_status session::init1()
    {
 
       auto estatus = __compose_new(m_pfs);
@@ -2477,7 +2477,7 @@ ret:
    }
 
 
-   ::estatus session::defer_initialize_host_window(LPCRECT32 lpcrect)
+   ::e_status session::defer_initialize_host_window(LPCRECT32 lpcrect)
    {
 
       return ::success;
@@ -2485,10 +2485,10 @@ ret:
    }
 
 
-   ::estatus session::init2()
+   ::e_status session::init2()
    {
 
-      ::estatus estatus;
+      ::e_status estatus;
 
       INFO("apex::session::init2 .1");
 
@@ -2545,10 +2545,10 @@ ret:
    }
 
 
-   ::estatus session::init()
+   ::e_status session::init()
    {
 
-      ::estatus estatus = ::success;
+      ::e_status estatus = ::success;
 
       __pointer(::fs::set) pfsset = m_pfsdata;
 
@@ -2679,7 +2679,7 @@ namespace apex
 
 
 
-   //::estatus session::initialize(::layered * pobjectContext)
+   //::e_status session::initialize(::layered * pobjectContext)
    //{
 
    //   auto estatus = ::apex::session::initialize(pobjectContext);
@@ -2730,7 +2730,7 @@ namespace apex
    }
 
 
-   ::estatus     session::do_request(::create* pcreate)
+   ::e_status     session::do_request(::create* pcreate)
    {
 
       return ::thread::do_request(pcreate);
@@ -2994,7 +2994,7 @@ namespace apex
       //}
 
 
-      //::estatus session::os_native_bergedge_start()
+      //::e_status session::os_native_bergedge_start()
       //{
 
       //   if (!::apex::application::os_native_bergedge_start())
@@ -3030,7 +3030,7 @@ namespace apex
    //}
 
 
-   ::estatus     session::main()
+   ::e_status     session::main()
    {
 
       //return ::apex::session::main();
@@ -3236,6 +3236,13 @@ namespace apex
 
    }
 
+
+   ::user::interaction * session::get_host_window()
+   {
+      
+      return __user_interaction(m_puiHost); 
+   
+   }
 
 
    void session::frame_pre_translate_message(::message::message* pmessage)

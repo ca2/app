@@ -160,7 +160,7 @@ namespace multimedia
 
       }
 
-      ::estatus     out::out_open(thread * pthreadCallback, i32 iBufferCount, i32 iBufferSampleCount)
+      ::e_status     out::out_open(thread * pthreadCallback, i32 iBufferCount, i32 iBufferSampleCount)
       {
 
          single_lock sLock(mutex(), TRUE);
@@ -299,7 +299,7 @@ Opened:
          return m_estatusWave;
       }
 
-      ::estatus     out::out_open_ex(thread * pthreadCallback, i32 iBufferCount, i32 iBufferSampleCount, u32 uiSamplesPerSec, u32 uiChannelCount, u32 uiBitsPerSample, ::audio::e_purpose epurpose)
+      ::e_status     out::out_open_ex(thread * pthreadCallback, i32 iBufferCount, i32 iBufferSampleCount, u32 uiSamplesPerSec, u32 uiChannelCount, u32 uiBitsPerSample, ::audio::e_purpose epurpose)
       {
 
          single_lock sLock(mutex(), TRUE);
@@ -421,7 +421,7 @@ Opened:
 
 
 
-      ::estatus     out::out_close()
+      ::e_status     out::out_close()
       {
 
          single_lock sLock(mutex(), TRUE);
@@ -438,7 +438,7 @@ Opened:
 
          free_buffers();
 
-         /*         ::estatus     mmr;
+         /*         ::e_status     mmr;
 
           i32 i, iSize;
 
@@ -536,7 +536,7 @@ Opened:
       }
 
 
-      ::estatus     out::out_stop()
+      ::e_status     out::out_stop()
       {
 
          single_lock sLock(mutex(), TRUE);
@@ -567,7 +567,7 @@ Opened:
       }
 
 
-      ::estatus     out::out_pause()
+      ::e_status     out::out_pause()
       {
 
          single_lock sLock(mutex(), TRUE);
@@ -596,7 +596,7 @@ Opened:
       }
 
 
-      ::estatus     out::out_restart()
+      ::e_status     out::out_restart()
       {
 
          single_lock sLock(mutex(), TRUE);
@@ -820,10 +820,10 @@ Opened:
 
       }
 
-      ::estatus     out::out_start(const imedia_time & position)
+      ::e_status     out::out_start(const imedia_time & position)
       {
 
-         ::estatus     mmr = ::wave::out::out_start(position);
+         ::e_status     mmr = ::wave::out::out_start(position);
 
          if(mmr != 0)
             return mmr;

@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME const char * status_message(const ::estatus & estatus);
+CLASS_DECL_ACME const char * status_message(const ::e_status & estatus);
 
 
 namespace status
@@ -30,14 +30,14 @@ namespace status
       ///   to fill and spend resources creating exception data that would be
       ///   rarely queried.
 
-      ::estatus                                m_estatus;
+      ::e_status                                m_estatus;
       __pointer(__pointer_array(::exception::exception))     m_pexceptionptra;
 
 
       result():m_estatus(undefined) { }
       result(::enum_status estatus) : m_estatus(estatus) { }
-      result(const ::estatus & estatus) : m_estatus(estatus) { }
-      result(const std::initializer_list < ::estatus > & list) :
+      result(const ::e_status & estatus) : m_estatus(estatus) { }
+      result(const std::initializer_list < ::e_status > & list) :
       m_estatus(undefined)
       {
          add(list);
@@ -61,7 +61,7 @@ namespace status
       static void set_skip_callstack(i32 iStack);
       static i32 get_skip_callstack();
 
-      void set(const ::estatus & estatus) { set(estatus.m_estatus);}
+      void set(const ::e_status & estatus) { set(estatus.m_estatus);}
 
       void set(::enum_status estatus)
       {
@@ -72,7 +72,7 @@ namespace status
 
       }
 
-      void add(const ::estatus & estatus) { add(estatus.m_estatus);}
+      void add(const ::e_status & estatus) { add(estatus.m_estatus);}
 
       void add(::enum_status estatus);
 
@@ -135,7 +135,7 @@ namespace status
       }
 
 
-      void add(const std::initializer_list < ::estatus     > & list)
+      void add(const std::initializer_list < ::e_status     > & list)
       {
 
          for (auto & e : list)
@@ -203,12 +203,12 @@ namespace status
 
       }
 
-      static string get_error_text(const ::estatus & estatus);
+      static string get_error_text(const ::e_status & estatus);
 
-      ::estatus     status() const
+      ::e_status     status() const
       {
 
-         return m_estatus == undefined ? ::estatus(::success) : m_estatus;
+         return m_estatus == undefined ? ::e_status(::success) : m_estatus;
       }
 
       bool succeeded() const { return ::succeeded(status()); }
@@ -219,7 +219,7 @@ namespace status
 
       bool operator !() const { return failed(); }
 
-      result & operator =(const ::estatus & estatus)
+      result & operator =(const ::e_status & estatus)
       {
 
          set(estatus);
@@ -228,7 +228,7 @@ namespace status
 
       }
 
-      result & operator =(::enum_status estatus){return operator =((const ::estatus &) estatus);}
+      result & operator =(::enum_status estatus){return operator =((const ::e_status &) estatus);}
 
       result & operator =(const result & result)
       {
@@ -283,7 +283,7 @@ namespace status
 
       }
 
-      void set_error(const ::estatus & estatus)
+      void set_error(const ::e_status & estatus)
       {
 
          set(estatus);
@@ -383,7 +383,7 @@ public:
    }
 
 
-   result_pointer(const ::estatus & estatus) :
+   result_pointer(const ::e_status & estatus) :
       result(estatus)
    {
 
@@ -467,7 +467,7 @@ public:
    }
 
 
-   result_pointer & operator =(const ::estatus & estatus)
+   result_pointer & operator =(const ::e_status & estatus)
    {
 
       this->release();
@@ -615,7 +615,7 @@ public:
    }
 
 
-   ::estatus status() const
+   ::e_status status() const
    {
 
       if (m_pexceptionptra.is_null() || m_pexceptionptra->is_empty())

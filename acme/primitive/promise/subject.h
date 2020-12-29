@@ -47,7 +47,7 @@ namespace promise
       virtual i64 release(OBJ_REF_DBG_PARAMS) override;
 #endif
 
-      virtual ::estatus run() override;
+      virtual ::e_status run() override;
 
       //virtual void process(const ::payload & payload);
 
@@ -67,7 +67,7 @@ namespace promise
 
       virtual ::promise::context * context(::matter * pmatter);
 
-      //virtual ::estatus run() override;
+      //virtual ::e_status run() override;
 
       void post_destroy_all();
 
@@ -110,13 +110,13 @@ namespace promise
       void subject_common_construct();
 
 
-      virtual ::estatus start_task();
+      virtual ::e_status start_task();
 
 
       void reset_update(const ::id &id);
 
 
-      virtual ::estatus on_task() override;
+      virtual ::e_status on_task() override;
 
 
       operator subject *() { return this; }

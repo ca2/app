@@ -32,7 +32,7 @@ namespace message
       index                      m_iParam;
       bool                       m_bRet;
       unsigned int               m_uiMessageFlags;
-      ::estatus                  m_estatus;
+      ::e_status                  m_estatus;
       ::action_context           m_actioncontext;
 
 

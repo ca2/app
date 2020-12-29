@@ -266,7 +266,7 @@ i32 __cdecl _validdrive (
 //
 //
 //
-//CLASS_DECL_CORE ::estatus os_shell_initialize()
+//CLASS_DECL_CORE ::e_status os_shell_initialize()
 //{
 //
 //   return ::linux::shell::theLinuxShell.Initialize();

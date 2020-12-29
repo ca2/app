@@ -46,7 +46,7 @@ namespace sockets
       ~resolv_server();
 
 
-      virtual ::estatus     initialize_resolv_server(::object * pobjectParent, port_t);
+      virtual ::e_status     initialize_resolv_server(::object * pobjectParent, port_t);
 
       virtual void go();
       void Quit();

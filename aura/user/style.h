@@ -61,7 +61,7 @@ namespace user
       //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) override;
 
 
-      virtual ::estatus initialize_style();
+      virtual ::e_status initialize_style();
 
 
       virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame * pframe) override;

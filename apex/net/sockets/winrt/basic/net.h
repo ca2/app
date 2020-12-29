@@ -122,7 +122,7 @@ namespace sockets
       virtual ~net();
 
 
-      virtual ::estatus initialize(::layered* pobjectContext) override;
+      virtual ::e_status initialize(::layered* pobjectContext) override;
 
       virtual bool gudo_set();
 

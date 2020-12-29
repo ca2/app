@@ -25,7 +25,7 @@ namespace multimedia
       }
 
 
-      ::estatus in::init_thread()
+      ::e_status in::init_thread()
       {
 
          TRACE("in::init_instance %X\n", get_ithread());
@@ -72,7 +72,7 @@ namespace multimedia
          return thread::pre_translate_message(pbase);
       }
 
-      ::estatus     in::in_open(i32 iBufferCount, i32 iBufferSampleCount)
+      ::e_status     in::in_open(i32 iBufferCount, i32 iBufferSampleCount)
       {
 
          if(m_Queue != nullptr && m_estate != state_initial)
@@ -209,7 +209,7 @@ namespace multimedia
 //
 //            in_close();
 //
-//            return (::estatus    ) -1;
+//            return (::e_status    ) -1;
 //
 //         }
 //
@@ -220,12 +220,12 @@ namespace multimedia
       }
 
 
-      ::estatus     in::in_close()
+      ::e_status     in::in_close()
       {
 
          single_lock sLock(mutex(), TRUE);
 
-         ::estatus     mmr;
+         ::e_status     mmr;
 
          if(m_estate != state_opened && m_estate != state_stopped)
             return ::success;
@@ -263,7 +263,7 @@ namespace multimedia
       }
 
 
-      ::estatus     in::in_start()
+      ::e_status     in::in_start()
       {
 
          single_lock sLock(mutex(), TRUE);
@@ -290,7 +290,7 @@ namespace multimedia
       }
 
 
-      ::estatus     in::in_stop()
+      ::e_status     in::in_stop()
       {
 
          single_lock sLock(mutex(), TRUE);
@@ -351,7 +351,7 @@ namespace multimedia
       //         }
         //    }*/
 
-      ::estatus     in::in_reset()
+      ::e_status     in::in_reset()
       {
          single_lock sLock(mutex(), TRUE);
          m_bResetting = true;
@@ -360,7 +360,7 @@ namespace multimedia
             return error_failed;
          }
 
-         ::estatus     mmr;
+         ::e_status     mmr;
 //         OSStatus status;
          if(m_estate == state_recording)
          {
@@ -393,7 +393,7 @@ namespace multimedia
 
 
 
-      ::estatus     in::in_add_buffer(i32 iBuffer)
+      ::e_status     in::in_add_buffer(i32 iBuffer)
       {
 
          AudioQueueBufferRef buf = audio_buffer(iBuffer);

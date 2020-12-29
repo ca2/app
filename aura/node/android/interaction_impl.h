@@ -80,10 +80,10 @@ namespace android
       //bool ExecuteDlgInit(LPVOID lpResource);
 
       // for child windows, views, panes etc
-      virtual bool create_window(::user::interaction * pinteraction, const char * lpszClassName, const char * lpszWindowName, u32 dwStyle, const ::rect & rect, ::user::interaction * pParentWnd, id id, ::create * pcreate = nullptr) override;
+      virtual bool create_window(::user::interaction * pinteraction, const char * lpszClassName, const char * lpszWindowName, u32 dwStyle, const ::rect & rect, ::user::primitive * pParentWnd, id id, ::create * pcreate = nullptr) override;
 
       // for top level windows and/or special features
-      virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::interaction * puiParent = nullptr, ::id id = ::id()) override;
+      virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::primitive * puiParent = nullptr, ::id id = ::id()) override;
 
       // for top level windows and/or special features
       virtual bool _native_create_window_ex(__pointer(::user::create_struct) pcreatestruct) override;
@@ -101,7 +101,8 @@ namespace android
 
       virtual void edit_on_kill_focus(::user::interaction* pinteraction) override;
 
-      virtual void show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd) override;
+      virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
+      virtual ::e_status hide_software_keyboard(::user::primitive * pprimitive) override;
 
       using ::user::interaction_impl::get_child_by_id;
       void get_child_by_id(id id,oswindow* poswindow_) const;

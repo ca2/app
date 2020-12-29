@@ -94,11 +94,11 @@ namespace user
          thread(shell * pshell);
          virtual ~thread();
 
-         virtual ::estatus init_thread() override;
+         virtual ::e_status init_thread() override;
 
-         virtual ::estatus run() override;
+         virtual ::e_status run() override;
 
-         virtual ::estatus finish(::context_object * pcontextobject) override;
+         virtual ::e_status finish(::context_object * pcontextobject) override;
 
 
       };
@@ -140,7 +140,7 @@ namespace user
 
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
       virtual void do_initialize();
 
 
@@ -190,7 +190,7 @@ namespace user
       virtual i32 add_icon_path(::file::path path, color32_t crBk, int iImage);
 
 
-      virtual ::estatus finish(::context_object * pcontextobject) override;
+      virtual ::e_status finish(::context_object * pcontextobject) override;
 
 
    };

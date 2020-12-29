@@ -79,7 +79,7 @@ namespace user
       int                                 m_iLangId;
       bool                                m_bEatSizeEvent;
       bool                                m_bEatMoveEvent;
-      millis                                m_millisLastExposureAddUp;
+      millis                              m_millisLastExposureAddUp;
       __composite(prodevian)              m_pprodevian;
       __composite(::user::thread)         m_puserthread;
       simple_object_ptra                  m_ptraProdevian;
@@ -100,6 +100,7 @@ namespace user
       bool                                m_bPointInside;
       ::point                             m_pointInside;
       ::user::primitive *                 m_pprimitiveFocus;
+      ::user::primitive *                 m_pprimitiveSoftwareKeyboard;
 
       oswindow                            m_oswindow;
       bool                                m_bScreenRelativeMouseMessagePosition;
@@ -153,10 +154,10 @@ namespace user
 
       virtual bool post(::message::base* pbase) override;
 
-      virtual ::estatus update_graphics_resources();
+      virtual ::e_status update_graphics_resources();
 
 
-      virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal) override;
+      virtual ::e_status main_async(const ::promise::routine & routine, e_priority epriority = priority_normal) override;
 
 
       virtual bool has_pending_focus();
@@ -251,11 +252,11 @@ namespace user
       using ::user::primitive::create_window_ex;
 
       // for child windows, views, panes etc
-      virtual bool create_window(::user::interaction * pinteraction, const char * pszClassName,const char * pszWindowName,u32 uStyle,const ::rect & rect,::user::interaction * puiParent,id id, ::create * pcreate = nullptr) override;
+      virtual bool create_window(::user::interaction * pinteraction, const char * pszClassName,const char * pszWindowName,u32 uStyle,const ::rect & rect,::user::primitive * puiParent,id id, ::create * pcreate = nullptr) override;
 
 
       // advanced creation (allows access to extended styles)
-      virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcs, ::user::interaction * puiParent, id id) override;
+      virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcs, ::user::primitive * puiParent, id id) override;
 
 
       virtual bool native_create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, oswindow oswindowParent = nullptr, id id = ::id());
@@ -640,15 +641,19 @@ namespace user
       virtual bool is_composite() override;
 
 
-      virtual ::estatus set_finish(::context_object * pcontextobject) override;
+      virtual ::e_status set_finish(::context_object * pcontextobject) override;
 
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual ::user::primitive * get_focus_primitive() override;
-      virtual bool set_focus_primitive(::user::primitive * pprimitive) override;
-      virtual bool impl_set_focus_primitive(::user::primitive * pprimitive, bool bNotify);
+      virtual ::user::primitive * get_keyboard_focus() override;
+      virtual ::e_status set_keyboard_focus(::user::primitive * pprimitive) override;
+      virtual ::e_status remove_keyboard_focus(::user::primitive * pprimitive) override;
+      virtual ::e_status clear_keyboard_focus() override;
+      virtual ::e_status impl_set_keyboard_focus(::user::primitive * pprimitive) override;
+      virtual ::e_status impl_remove_keyboard_focus(::user::primitive * pprimitive) override;
+      virtual ::e_status impl_clear_keyboard_focus() override;
 
       virtual void redraw_add(::context_object * point) override;
       virtual void redraw_remove(::context_object * point) override;
@@ -684,7 +689,9 @@ namespace user
 
       virtual void user_interaction_on_hide() override;
 
-      virtual void show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd) override;
+      virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
+
+      virtual ::e_status hide_software_keyboard(::user::primitive * pprimitive) override;
 
 
       // Occlusion and Translucency

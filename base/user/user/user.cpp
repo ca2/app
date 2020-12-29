@@ -30,7 +30,7 @@ namespace base
    }
 
 
-   ::estatus user::initialize(::layered * pobjectContext)
+   ::e_status user::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::axis::user::initialize(pobjectContext);
@@ -56,7 +56,7 @@ namespace base
    }
 
 
-   ::estatus user::init1()
+   ::e_status user::init1()
    {
 
 
@@ -94,7 +94,7 @@ namespace base
    }
 
 
-   ::estatus user::init()
+   ::e_status user::init()
    {
 
       if (!::axis::user::init())
@@ -172,10 +172,10 @@ namespace base
       //}
 
       //if(strLangUser.has_char())
-      //   psession->set_locale(strLangUser,::source_database);
+      //   psession->set_locale(strLangUser,::e_source_database);
 
       //if(strStyleUser.has_char())
-      //   psession->set_schema(strStyleUser,::source_database);
+      //   psession->set_schema(strStyleUser,::e_source_database);
 
       //string strLicense = Application.get_license_id();
 
@@ -195,7 +195,7 @@ namespace base
    }
 
 
-   ::estatus user::init2()
+   ::e_status user::init2()
    {
 
       if (!::apex::department::init2())

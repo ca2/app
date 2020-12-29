@@ -31,7 +31,7 @@ x11_hook::x11_hook()
 __pointer_array(x11_hook) g_x11hooka;
 
 
-::estatus x11_hook::hook()
+::e_status x11_hook::hook()
 {
 
    sync_lock sl(x11_mutex());
@@ -43,7 +43,7 @@ __pointer_array(x11_hook) g_x11hooka;
 }
 
 
-::estatus x11_hook::unhook()
+::e_status x11_hook::unhook()
 {
 
    sync_lock sl(x11_mutex());

@@ -16,7 +16,7 @@ namespace music
       {
 
 
-         CLASS_DECL_MUSIC_MIDI_MMSYSTEM ::estatus     MMRESULT mmr;
+         CLASS_DECL_MUSIC_MIDI_MMSYSTEM ::e_status     MMRESULT mmr;
 
 
       } // namespace mmsystem

@@ -245,7 +245,7 @@ tool_thread::tool_thread()
 }
 
 
-::estatus tool_thread::initialize_tool_thread(::thread_group* pgroup)
+::e_status tool_thread::initialize_tool_thread(::thread_group* pgroup)
 {
 
    auto estatus = initialize(pgroup);
@@ -291,7 +291,7 @@ bool tool_thread::set_pred(::pred_holder_base * ppred)
 }
 
 
-::estatus tool_thread::run()
+::e_status tool_thread::run()
 {
 
    try
@@ -385,7 +385,7 @@ thread_tool_item::~thread_tool_item()
 }
 
 
-::estatus thread_tool_item::run()
+::e_status thread_tool_item::run()
 {
 
    return ::success;

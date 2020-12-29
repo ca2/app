@@ -534,7 +534,7 @@ namespace ios
 //   }
 
 
-   ::estatus dir_context::initialize(::layered * pobjectContext)
+   ::e_status dir_context::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::dir_context::initialize(pobjectContext);
@@ -615,7 +615,7 @@ namespace ios
 
    }
 
-   ::estatus dir_context::init_context()
+   ::e_status dir_context::init_context()
    {
 
       xml::document doc;

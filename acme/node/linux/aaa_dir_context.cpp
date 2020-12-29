@@ -80,7 +80,7 @@ namespace linux
    }
 
 
-   ::estatus dir_context::initialize(::matter * pobjectContext)
+   ::e_status dir_context::initialize(::matter * pobjectContext)
    {
 
       auto estatus = ::matter::initialize(pobjectContext);
@@ -101,7 +101,7 @@ namespace linux
    }
 
 
-   ::estatus dir_context::init_system()
+   ::e_status dir_context::init_system()
    {
 
       if(!::dir_context::init_system())
@@ -189,7 +189,7 @@ namespace linux
    }
 
 
-   ::estatus dir_context::init_context()
+   ::e_status dir_context::init_context()
    {
 
       auto estatus = ::dir_context::init_context();

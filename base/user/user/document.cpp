@@ -115,7 +115,7 @@ namespace user
    }
 
    
-   ::estatus document::set_finish_composites(::context_object * pcontextobjectFinish)
+   ::e_status document::set_finish_composites(::context_object * pcontextobjectFinish)
    {
 
       bool bStillFinishing = false;
@@ -1680,7 +1680,7 @@ namespace user
    // ::user::impact operations
 
 
-   ::estatus document::add_view(::user::impact * pview)
+   ::e_status document::add_view(::user::impact * pview)
    {
 
       single_lock sl(mutex(), true);
@@ -1710,7 +1710,7 @@ namespace user
    }
 
 
-   ::estatus document::remove_view(::user::impact * pview)
+   ::e_status document::remove_view(::user::impact * pview)
    {
 
       sync_lock sl(mutex());

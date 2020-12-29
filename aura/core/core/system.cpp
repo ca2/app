@@ -140,7 +140,7 @@ namespace aura
    }
 
 
-   ::estatus system::initialize_system(::object * pobject, app_core * pappcore)
+   ::e_status system::initialize_system(::object * pobject, app_core * pappcore)
    {
 
       auto estatus = ::aura::system::initialize_system(pobject, pappcore);
@@ -293,7 +293,7 @@ namespace aura
    }
 
 
-   ::estatus system::init2()
+   ::e_status system::init2()
    {
 
       //if(!::aura::application::init2())
@@ -332,7 +332,7 @@ namespace aura
    //}
 
 
-   ::estatus system::process_init()
+   ::e_status system::process_init()
    {
 
       //if (m_bProcessInitialize)
@@ -405,7 +405,7 @@ namespace aura
    }
 
 
-   ::estatus system::init()
+   ::e_status system::init()
    {
 //
 //#ifndef APPLEOS
@@ -429,7 +429,7 @@ namespace aura
    }
 
 
-   ::estatus system::init1()
+   ::e_status system::init1()
    {
 
       m_pfilehandler = __new(::filehandler::handler(this));
@@ -526,7 +526,7 @@ namespace aura
    }
 
 
-   //::estatus system::init3()
+   //::e_status system::init3()
    //{
 
    //   //if(!::aura::application::init3())
@@ -546,7 +546,7 @@ namespace aura
    //}
 
 
-   ::estatus system::init_system()
+   ::e_status system::init_system()
    {
 
       if(!::aura::system::init_system())
@@ -580,7 +580,7 @@ namespace aura
    }
 
 
-   //::estatus system::bergedge_start()
+   //::e_status system::bergedge_start()
    //{
 
    //   return true;
@@ -588,7 +588,7 @@ namespace aura
    //}
 
 
-   ::estatus system::initialize_rich_text()
+   ::e_status system::initialize_rich_text()
    {
 
       if (!__rich_text_initialize(this))
@@ -949,7 +949,7 @@ namespace aura
    }
 
 
-   ::estatus system::add_view_library(::apex::library * plibrary)
+   ::e_status system::add_view_library(::apex::library * plibrary)
    {
 
       m_libraryspa.add(plibrary);
@@ -985,14 +985,14 @@ namespace aura
 //      if(m_varTopicQuery["locale"].array_get_count() > 0)
 //      {
 //
-//         psession->set_locale(m_varTopicQuery["locale"].stra()[0],::source_user);
+//         psession->set_locale(m_varTopicQuery["locale"].stra()[0],::e_source_user);
 //
 //      }
 //
 //      if(m_varTopicQuery["schema"].array_get_count() > 0)
 //      {
 //
-//         psession->set_schema(m_varTopicQuery["schema"].stra()[0],::source_user);
+//         psession->set_schema(m_varTopicQuery["schema"].stra()[0],::e_source_user);
 //
 //      }
 //
@@ -1040,7 +1040,7 @@ namespace aura
 #endif
 
 
-   ::estatus     system::do_request(::create * pcreate)
+   ::e_status     system::do_request(::create * pcreate)
    {
 
       return aura::system::do_request(pcreate);
@@ -1064,7 +1064,7 @@ namespace aura
    }
 
 
-   ::estatus     system::main()
+   ::e_status     system::main()
    {
 
       return ::aura::system::main();
@@ -1099,7 +1099,7 @@ namespace aura
 
 
 //
-//   ::estatus system::initialize_system(::object* pobjectContext, ::app_core* pappcore)
+//   ::e_status system::initialize_system(::object* pobjectContext, ::app_core* pappcore)
 //   {
 //
 //      auto estatus = ::aura::system::initialize_system(pobjectContext, pappcore);
@@ -1675,7 +1675,7 @@ namespace aura
    }
 
 //
-//   ::estatus system::process_init()
+//   ::e_status system::process_init()
 //   {
 //
 //

@@ -50,7 +50,7 @@ namespace filemanager
 
             auto pinteraction = get_child_by_name("lfs");
 
-            pinteraction->_001SetText(filemanager_item()->m_filepathUser,::source_user);
+            pinteraction->_001SetText(filemanager_item()->m_filepathUser,::e_source_user);
 
          }
          else if(pevent->m_puie->m_id == "ftp")

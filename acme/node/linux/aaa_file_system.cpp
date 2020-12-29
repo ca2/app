@@ -18,7 +18,7 @@ namespace linux
    }
 
 
-   ::estatus file_system::initialize(::matter * pobjectContext)
+   ::e_status file_system::initialize(::matter * pobjectContext)
    {
 
       auto estatus = ::file_system::initialize(pobjectContext);
@@ -35,7 +35,7 @@ namespace linux
    }
 
 
-   ::estatus file_system::init_system()
+   ::e_status file_system::init_system()
    {
 
       if(!update_module_path())
@@ -50,7 +50,7 @@ namespace linux
    }
 
 
-   ::estatus file_system::update_module_path()
+   ::e_status file_system::update_module_path()
    {
 
       auto estatus = ::file_system::update_module_path();

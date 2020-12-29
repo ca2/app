@@ -290,8 +290,7 @@ namespace user
    }
 
 
-
-   bool frame_window::on_set_parent(::user::interaction * puiParent)
+   bool frame_window::on_set_parent(::user::primitive * puiParent)
    {
 
       if (!::user::interaction::on_set_parent(puiParent))
@@ -308,26 +307,24 @@ namespace user
 
    void frame_window::assert_valid() const
    {
+
       try
       {
+
          ::user::interaction::assert_valid();
+
       }
       catch (...)
       {
+
       }
-      //try
-      //{
-      //   if (m_pviewActive != nullptr)
-      //      ASSERT_VALID(m_pviewActive);
-      //}
-      //catch (...)
-      //{
-      //}
 
    }
 
+
    void frame_window::dump(dump_context & dumpcontext) const
    {
+
       ::user::interaction::dump(dumpcontext);
 
 #ifdef WINDOWS_DESKTOP
@@ -1437,9 +1434,7 @@ namespace user
 
       }
 
-      auto psession = Session;
-
-      __pointer(channel) ptarget = psession->get_keyboard_focus();
+      __pointer(channel) ptarget = get_keyboard_focus();
 
       if (ptarget != nullptr && ptarget != this && ptarget != GetActiveView())
       {

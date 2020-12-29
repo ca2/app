@@ -38,7 +38,7 @@ namespace multimedia
       }
 
 
-      ::estatus out::init_thread()
+      ::e_status out::init_thread()
       {
 
          if(!::wave::out::init_thread())
@@ -72,7 +72,7 @@ namespace multimedia
       }
 
 
-      ::estatus out::out_open_ex(thread * pthreadCallback, u32 uiSamplesPerSec, u32 uiChannelCount, u32 uiBitsPerSample, ::wave::e_purpose epurpose)
+      ::e_status out::out_open_ex(thread * pthreadCallback, u32 uiSamplesPerSec, u32 uiChannelCount, u32 uiBitsPerSample, ::wave::e_purpose epurpose)
       {
 
          sync_lock sl(mutex());
@@ -169,7 +169,7 @@ namespace multimedia
       }
 
 
-      ::estatus out::out_close()
+      ::e_status out::out_close()
       {
 
          if(m_estate == state_playing)
@@ -282,7 +282,7 @@ namespace multimedia
       }
 
    
-      ::estatus out::out_stop()
+      ::e_status out::out_stop()
       {
 
          sync_lock sl(mutex());
@@ -312,7 +312,7 @@ namespace multimedia
       }
 
 
-      ::estatus out::out_pause()
+      ::e_status out::out_pause()
       {
 
          sync_lock sl(mutex());
@@ -349,7 +349,7 @@ namespace multimedia
       }
 
 
-      ::estatus out::out_restart()
+      ::e_status out::out_restart()
       {
 
          sync_lock sl(mutex());
@@ -372,7 +372,7 @@ namespace multimedia
       }
 
 
-      ::estatus out::_out_start()
+      ::e_status out::_out_start()
       {
 
          sync_lock sl(mutex());
@@ -547,10 +547,10 @@ namespace multimedia
       }
 
 
-      ::estatus     out::out_start(const imedia_time & position)
+      ::e_status     out::out_start(const imedia_time & position)
       {
 
-         ::estatus     estatus = ::wave::out::out_start(position);
+         ::e_status     estatus = ::wave::out::out_start(position);
 
          if(failed(estatus))
          {

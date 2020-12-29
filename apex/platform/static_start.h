@@ -80,8 +80,8 @@ namespace apex
       void construct();
 
 
-      ::estatus init();
-      ::estatus term();
+      ::e_status init();
+      ::e_status term();
 
 
       void init_windowing();

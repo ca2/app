@@ -11,7 +11,7 @@ namespace plugin
    }
 
 
-   ::estatus system::os_native_bergedge_start()
+   ::e_status system::os_native_bergedge_start()
    {
 
       //return m_pplugin->os_native_bergedge_start();
@@ -33,7 +33,7 @@ namespace plugin
    }
 
 
-   ::estatus system::verb()
+   ::e_status system::verb()
    {
 
       return ::aura::system::verb();

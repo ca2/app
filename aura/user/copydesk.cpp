@@ -21,7 +21,7 @@ namespace user
    }
 
 
-   ::estatus copydesk::initialize(::layered * pobjectContext)
+   ::e_status copydesk::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

@@ -20,7 +20,7 @@ namespace promise
       virtual ~context();
 
 
-      virtual ::estatus start_task();
+      virtual ::e_status start_task();
 
 
       virtual bool is_up_to_date(const ::promise::subject * phandler) const;

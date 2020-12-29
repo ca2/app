@@ -126,7 +126,7 @@ namespace uwp
       bool ExecuteDlgInit(LPVOID lpResource);
 
 
-      virtual ::estatus update_graphics_resources() override;
+      virtual ::e_status update_graphics_resources() override;
 
       // for child windows, views, panes etc
       //virtual bool create_window(::user::interaction * pinteraction, const char * lpszClassName,const char * lpszWindowName,u32 dwStyle,const RECT32 & rect,::user::interaction * pParentWnd,id id, ::create * pcreate = nullptr) override;

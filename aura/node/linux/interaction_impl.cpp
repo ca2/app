@@ -442,7 +442,7 @@ namespace linux
             if (window == 0)
             {
 
-               ::estatus estatus = get_last_status();
+               ::e_status estatus = get_last_status();
 
                string strLastError = FormatMessageFromSystem(estatus);
 
@@ -1614,7 +1614,7 @@ namespace linux
 
          ::message::key * pkey = (::message::key *) pbase;
 
-         __pointer(::user::interaction) puiFocus =  get_focus_primitive();
+         __pointer(::user::interaction) puiFocus =  get_keyboard_focus();
 
          if(puiFocus != nullptr
                && puiFocus->is_window()
@@ -2470,7 +2470,7 @@ namespace linux
 //      }
 //
 //
-//      virtual ::estatus     run() override
+//      virtual ::e_status     run() override
 //      {
 //
 //         try
@@ -4944,7 +4944,7 @@ namespace linux
 
    }
 
-   ::estatus interaction_impl::set_tool_window(bool bSet)
+   ::e_status interaction_impl::set_tool_window(bool bSet)
    {
 
       wm_toolwindow(m_oswindow, bSet);

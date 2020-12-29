@@ -24,12 +24,12 @@ namespace aqua
       void common_construct();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
-      //virtual ::estatus initialize_rich_text();
+      //virtual ::e_status initialize_rich_text();
 
-      virtual ::estatus defer_xml();
+      virtual ::e_status defer_xml();
 
 
 

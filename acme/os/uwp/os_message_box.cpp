@@ -169,7 +169,7 @@ internal:
    message_box_w();
 
 
-   ::estatus show(String ^ text, String ^ caption, const ::e_message_box & emessagebox, const ::promise::process & process);
+   ::e_status show(String ^ text, String ^ caption, const ::e_message_box & emessagebox, const ::promise::process & process);
 
 
    void CommandInvokedHandler(IUICommand^ cmd);
@@ -190,7 +190,7 @@ message_box_w::message_box_w()
    msg->Commands->Append(ref new UICommand(text,ref new UICommandInvokedHandler(this, &::message_box_w::CommandInvokedHandler),id));
 
 
-::estatus message_box_w::show(String ^ text,String ^ caption, const ::e_message_box & emessagebox, const ::promise::process & process)
+::e_status message_box_w::show(String ^ text,String ^ caption, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
    if (!is_core_window_once_visible())
@@ -269,7 +269,7 @@ message_box_w::message_box_w()
 }
 
 
-::estatus _os_message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+::e_status _os_message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
    wstring wstrMessage(pszMessage);

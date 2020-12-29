@@ -23,10 +23,10 @@ public:
 
 #endif
 
-   //virtual ::estatus __thread_procedure() override;
+   //virtual ::e_status __thread_procedure() override;
 
 
-   ::estatus fork(
+   ::e_status fork(
       ::e_priority epriority = priority_normal,
       u32 nStackSize = 0,
       u32 dwCreateFlags = 0,

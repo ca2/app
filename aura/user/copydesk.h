@@ -36,7 +36,7 @@ namespace user
       virtual ~copydesk();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
       virtual void finalize() override;
 
       /// pass nullptr to ppatha to probe if there is at least one existing

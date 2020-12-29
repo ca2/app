@@ -48,7 +48,7 @@ namespace file
 
       virtual bool step() override;
 
-      //virtual ::estatus     run() override;
+      //virtual ::e_status     run() override;
 
 
    };

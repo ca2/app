@@ -117,7 +117,7 @@ public:
 //
 //   virtual bool process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie) override;
 //
-//   ::estatus show();
+//   ::e_status show();
 //
 //   void on_show();
 //
@@ -471,7 +471,7 @@ public:
 //}
 //
 //
-//::estatus simple_ui_display::show()
+//::e_status simple_ui_display::show()
 //{
 //
 //   sync_lock sl(x11_mutex());
@@ -731,7 +731,7 @@ public:
 //
 //CLASS_DECL_AURA void x11_message_box(const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox, ::callback callback);
 //
-//::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+//::e_status os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
 //{
 //
 //   x11_message_box(pszMessage, pszTitle, emessagebox, callback);

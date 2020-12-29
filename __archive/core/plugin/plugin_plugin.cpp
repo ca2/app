@@ -337,14 +337,14 @@ namespace plugin
    }
 
 
-   //::estatus     plugin::thread_proc_ca2_login(thread_parameter parameter)
+   //::e_status     plugin::thread_proc_ca2_login(thread_parameter parameter)
    //{
    //   auto pplugin = parameter.cast < plugin > ();
    //   pplugin->ca2_login();
    //   return ::success;
    //}
 
-   //::estatus     plugin::thread_proc_ca2_logout(thread_parameter parameter)
+   //::e_status     plugin::thread_proc_ca2_logout(thread_parameter parameter)
    //{
    //   auto pplugin = parameter.cast < plugin >();
    //   pplugin->ca2_logout();
@@ -481,7 +481,7 @@ namespace plugin
             // in acme library normally System or Context.http() is used
             string strPluginData;
 
-//            ::estatus     estatus = ::http::status_fail;
+//            ::e_status     estatus = ::http::status_fail;
 
             string strUrl = strPluginUrl;
 
@@ -1092,7 +1092,7 @@ namespace plugin
    }
 
 
-   ::estatus plugin::os_native_bergedge_start()
+   ::e_status plugin::os_native_bergedge_start()
    {
 
       m_bApp = true;

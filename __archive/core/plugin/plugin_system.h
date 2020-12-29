@@ -22,9 +22,9 @@ namespace plugin
 
       virtual bool open_link(const string & pszLink, const string & pszTarget);
 
-      virtual ::estatus os_native_bergedge_start();
+      virtual ::e_status os_native_bergedge_start();
 
-      virtual ::estatus verb();
+      virtual ::e_status verb();
 
       virtual string get_host_location_url();
 

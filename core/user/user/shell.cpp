@@ -153,7 +153,7 @@ namespace user
       }
 
 
-      ::estatus shell::initialize(::layered * pobjectContext)
+      ::e_status shell::initialize(::layered * pobjectContext)
       {
 
          if (m_bInitialized)
@@ -218,7 +218,7 @@ namespace user
       }
 
 
-      ::estatus shell::thread::init_thread()
+      ::e_status shell::thread::init_thread()
       {
 
          m_bSimpleMessageLoop = false;
@@ -700,7 +700,7 @@ namespace user
       }
 
 
-      ::estatus shell::thread::run()
+      ::e_status shell::thread::run()
       {
 
          while(thread_get_run())
@@ -899,7 +899,7 @@ namespace user
    }
 
 
-   ::estatus shell::thread::finish(::context_object * pcontextobject)
+   ::e_status shell::thread::finish(::context_object * pcontextobject)
    {
 
       return ::thread::finish(pcontextobject);
@@ -907,7 +907,7 @@ namespace user
    }
 
 
-   ::estatus shell::finish(::context_object * pcontextobject)
+   ::e_status shell::finish(::context_object * pcontextobject)
    {
 
       ::object::finish(pcontextobject);

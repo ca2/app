@@ -520,7 +520,7 @@ namespace linux
 
 
 
-//   ::estatus PASCAL file_exception::os_error_to_exception(::i32 lOsErr)
+//   ::e_status PASCAL file_exception::os_error_to_exception(::i32 lOsErr)
 //   {
 //      // NT Error codes
 //      switch ((::u32)lOsErr)

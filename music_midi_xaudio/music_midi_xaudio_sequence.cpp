@@ -60,7 +60,7 @@ namespace music
          * before the SEQUENCE structure is discarded.
          *
          ***************************************************************************/
-         ::estatus     sequence::AllocBuffers()
+         ::e_status     sequence::AllocBuffers()
          {
             ASSERT(FALSE);
             /*
@@ -161,12 +161,12 @@ namespace music
          *
          ***************************************************************************/
 
-         ::estatus     sequence::OpenFile(::music::midi::sequence & sequence, i32 openMode)
+         ::e_status     sequence::OpenFile(::music::midi::sequence & sequence, i32 openMode)
          {
 
-            ::estatus                    rc = ::success;
+            ::e_status                    rc = ::success;
             SMFFILEINFO             sfi;
-            ::estatus                    smfrc;
+            ::e_status                    smfrc;
             u32                cbBuffer;
 
             if (GetState() != state_no_file)
@@ -212,7 +212,7 @@ Seq_Open_File_Cleanup:
          }
 
 
-         ::estatus     sequence::OpenFile(const char * lpFileName, i32 openMode)
+         ::e_status     sequence::OpenFile(const char * lpFileName, i32 openMode)
          {
 
             file_pointer file;
@@ -233,11 +233,11 @@ Seq_Open_File_Cleanup:
          }
 
 
-         ::estatus     sequence::OpenFile(memory * pmemorystorage, i32 openMode, e_storage estorage)
+         ::e_status     sequence::OpenFile(memory * pmemorystorage, i32 openMode, e_storage estorage)
          {
 
             SMFFILEINFO                sfi;
-            ::estatus                       smfrc;
+            ::e_status                       smfrc;
             u32                   cbBuffer;
 
             if (GetState() != state_no_file)
@@ -280,11 +280,11 @@ Seq_Open_File_Cleanup:
 
          }
 
-         ::estatus     sequence::OpenFile(::file::file & ar, i32 openMode)
+         ::e_status     sequence::OpenFile(::file::file & ar, i32 openMode)
          {
 
             SMFFILEINFO                sfi;
-            ::estatus                       smfrc = ::success;
+            ::e_status                       smfrc = ::success;
             u32                   cbBuffer;
 
             if (GetState() != state_no_file)
@@ -362,7 +362,7 @@ Seq_Open_File_Cleanup:
          * stopped before this call will be accepted.
          *
          ***************************************************************************/
-         ::estatus     sequence::CloseFile()
+         ::e_status     sequence::CloseFile()
          {
 
             single_lock sl(&m_mutex, true);
@@ -440,7 +440,7 @@ Seq_Open_File_Cleanup:
          *
          *
          ****************************************************************************/
-         ::estatus     sequence::Preroll(::thread * pthread, ::music::midi::LPPREROLL lpPreroll, bool bThrow)
+         ::e_status     sequence::Preroll(::thread * pthread, ::music::midi::LPPREROLL lpPreroll, bool bThrow)
          {
 
             UNREFERENCED_PARAMETER(pthread);
@@ -448,8 +448,8 @@ Seq_Open_File_Cleanup:
             single_lock sl(&m_mutex, TRUE);
 
             i32                 i;
-            ::estatus                    smfrc;
-            ::estatus      estatus = ::success;
+            ::e_status                    smfrc;
+            ::e_status      estatus = ::success;
             MIDIPROPTIMEDIV         mptd;
             LPMIDIHDR               lpmh = nullptr;
             u32                uDeviceID;
@@ -692,7 +692,7 @@ seq_Preroll_Cleanup:
          * Just feed everything in the ready queue to the device.
          *
          ***************************************************************************/
-         ::estatus     sequence::Start()
+         ::e_status     sequence::Start()
          {
 
             single_lock sl(&m_mutex, TRUE);
@@ -710,7 +710,7 @@ seq_Preroll_Cleanup:
 
             m_evMmsgDone.ResetEvent();
 
-            ::estatus     estatus = ::success;
+            ::e_status     estatus = ::success;
             if(m_hstream != nullptr)
             {
                estatus = midiStreamRestart(m_hstream);
@@ -744,7 +744,7 @@ seq_Preroll_Cleanup:
          * due to missing notes.
          *
          ***************************************************************************/
-         ::estatus     sequence::Pause()
+         ::e_status     sequence::Pause()
 
          {
             single_lock sl(&m_mutex, TRUE);
@@ -756,7 +756,7 @@ seq_Preroll_Cleanup:
 
             SetState(state_paused);
 
-            ::estatus     estatus = ::success;
+            ::e_status     estatus = ::success;
             //    single_lock slStream(&m_csStream, false);
             //  slStream.lock();
             if(m_hstream != nullptr)
@@ -787,7 +787,7 @@ seq_Preroll_Cleanup:
          * The sequencer must be paused before seqRestart may be called.
          *
          ***************************************************************************/
-         ::estatus     sequence::Restart()
+         ::e_status     sequence::Restart()
          {
             //    assert(nullptr != pSeq);
 
@@ -799,7 +799,7 @@ seq_Preroll_Cleanup:
             SetState(state_playing);
             m_evMmsgDone.ResetEvent();
 
-            //    ::estatus     estatus = 0;
+            //    ::e_status     estatus = 0;
             //    single_lock slStream(&m_csStream, false);
             //  slStream.lock();
             if(m_hstream != nullptr)
@@ -827,7 +827,7 @@ seq_Preroll_Cleanup:
          * The sequencer must be paused or playing before seqStop may be called.
          *
          ***************************************************************************/
-         ::estatus     sequence::Stop()
+         ::e_status     sequence::Stop()
          {
 
             single_lock sl(&m_mutex, TRUE);
@@ -899,13 +899,13 @@ seq_Preroll_Cleanup:
          * may be called.
          *
          ***************************************************************************/
-         ::estatus     sequence::get_ticks(imedia_time &  pTicks)
+         ::e_status     sequence::get_ticks(imedia_time &  pTicks)
          {
             single_lock sl(&m_mutex);
             if(!sl.lock(millis(184)))
                return ::multimedia::result_internal;
 
-            ::estatus                    mmr;
+            ::e_status                    mmr;
             MMTIME                  mmt;
 
             if (::music::midi::sequence::state_playing != GetState() &&
@@ -976,13 +976,13 @@ seq_Preroll_Cleanup:
             get_millis(time);
          }
 
-         ::estatus     sequence::get_millis(imedia_time & time)
+         ::e_status     sequence::get_millis(imedia_time & time)
          {
             single_lock sl(&m_mutex);
             if(!sl.lock(millis(184)))
                return ::multimedia::result_internal;
 
-            ::estatus                    mmr;
+            ::e_status                    mmr;
             MMTIME                  mmt;
 
             if (state_playing != GetState() &&
@@ -1076,7 +1076,7 @@ seq_Preroll_Cleanup:
          void sequence::OnDone(HMIDISTRM hmidistream, LPMIDIHDR lpmidihdr)
          {
             UNREFERENCED_PARAMETER(hmidistream);
-            ::estatus                   smfrc;
+            ::e_status                   smfrc;
             midi_callback_data *      lpData;
             ASSERT(lpmidihdr != nullptr);
             lpData = (midi_callback_data *) lpmidihdr->dwUser;
@@ -1303,7 +1303,7 @@ seq_Preroll_Cleanup:
 
 
 
-         ::estatus     sequence::SaveFile()
+         ::e_status     sequence::SaveFile()
          {
 
             return SaveFile(file()->m_strName);
@@ -1311,7 +1311,7 @@ seq_Preroll_Cleanup:
          }
 
 
-         ::estatus     sequence::SaveFile(const char * lpFileName)
+         ::e_status     sequence::SaveFile(const char * lpFileName)
          {
 
             return file()->SaveFile(lpFileName);
@@ -1319,7 +1319,7 @@ seq_Preroll_Cleanup:
          }
 
 
-         ::estatus     sequence::SaveFile(file_pointer &ar)
+         ::e_status     sequence::SaveFile(file_pointer &ar)
          {
 
             return file()->SaveFile(*ar);
@@ -1497,7 +1497,7 @@ seq_Preroll_Cleanup:
             return true;
          }
 
-         ::estatus     sequence::CloseStream()
+         ::e_status     sequence::CloseStream()
          {
             single_lock sl(&m_mutex, TRUE);
             if(IsPlaying())
@@ -1536,7 +1536,7 @@ seq_Preroll_Cleanup:
             single_lock sl(&m_mutex, TRUE);
             //   LPMIDIHDR lpmh = pevent->m_lpmh;
             //   midi_callback_data * lpData = &m_midicallbackdata;
-            ::estatus     estatus;
+            ::e_status     estatus;
 
 
             if(0 == m_uBuffersInMMSYSTEM)
@@ -1604,7 +1604,7 @@ seq_Preroll_Cleanup:
 
                LPMIDIHDR lpmh = pev->m_lpmh;
 
-               ::estatus     smfrc;
+               ::e_status     smfrc;
 
                if(IsInSpecialModeV001())
                {
@@ -1649,7 +1649,7 @@ seq_Preroll_Cleanup:
 
                }
 
-               ::estatus     estatus;
+               ::e_status     estatus;
 
                if(m_hstream != nullptr)
                {
@@ -2346,10 +2346,10 @@ seq_Preroll_Cleanup:
          }
 
 
-         ::estatus     sequence::buffer::midiOutPrepareHeader(HMIDIOUT hmidiout)
+         ::e_status     sequence::buffer::midiOutPrepareHeader(HMIDIOUT hmidiout)
          {
 
-            ::estatus     mmr = ::success;
+            ::e_status     mmr = ::success;
 
             if(hmidiout == nullptr)
                return mmr;
@@ -2371,10 +2371,10 @@ seq_Preroll_Cleanup:
          }
 
 
-         ::estatus     sequence::buffer::midiOutUnprepareHeader(HMIDIOUT hmidiout)
+         ::e_status     sequence::buffer::midiOutUnprepareHeader(HMIDIOUT hmidiout)
          {
 
-            ::estatus     mmr = ::success;
+            ::e_status     mmr = ::success;
 
             if(hmidiout == nullptr)
                return mmr;
@@ -2395,13 +2395,13 @@ seq_Preroll_Cleanup:
 
          }
 
-         ::estatus     sequence::buffer_array::midiOutUnprepareHeader(HMIDIOUT hmidiout)
+         ::e_status     sequence::buffer_array::midiOutUnprepareHeader(HMIDIOUT hmidiout)
          {
-            ::estatus     mmr = ::success;
+            ::e_status     mmr = ::success;
 
             for (i32 i = 0; i < this->get_size(); i++)
             {
-               ::estatus     mmrBuffer = this->element_at(i).midiOutUnprepareHeader(hmidiout);
+               ::e_status     mmrBuffer = this->element_at(i).midiOutUnprepareHeader(hmidiout);
                if(mmrBuffer != ::success)
                {
                   mmr = mmrBuffer;
@@ -2410,9 +2410,9 @@ seq_Preroll_Cleanup:
             return mmr;
          }
 
-         ::estatus     sequence::buffer_array::midiOutPrepareHeader(HMIDIOUT hmidiout)
+         ::e_status     sequence::buffer_array::midiOutPrepareHeader(HMIDIOUT hmidiout)
          {
-            ::estatus     estatus = ::success;
+            ::e_status     estatus = ::success;
             for(i32 i = 0; i < this->get_size(); i++)
             {
                estatus = this->element_at(i).midiOutPrepareHeader(
@@ -2435,15 +2435,15 @@ seq_Preroll_Cleanup:
          }
 
 
-         ::estatus     sequence::buffer::midiStreamOut(HMIDISTRM hmidiout)
+         ::e_status     sequence::buffer::midiStreamOut(HMIDISTRM hmidiout)
          {
             ASSERT(hmidiout != nullptr);
             return ::midiStreamOut(hmidiout, &m_midihdr, sizeof(m_midihdr));
          }
 
-         ::estatus     sequence::buffer_array::midiStreamOut(HMIDISTRM hmidiout)
+         ::e_status     sequence::buffer_array::midiStreamOut(HMIDISTRM hmidiout)
          {
-            ::estatus     estatus = ::success;
+            ::e_status     estatus = ::success;
             for(i32 i = 0; i < this->get_size(); i++)
             {
                estatus = this->element_at(i).midiStreamOut(

@@ -66,7 +66,7 @@ namespace user
    }
 
 
-   ::estatus thread::initialize_user_thread(interaction_impl * pimpl, __pointer(::user::create_struct) pcreatestruct)
+   ::e_status thread::initialize_user_thread(interaction_impl * pimpl, __pointer(::user::create_struct) pcreatestruct)
    {
 
       auto estatus = initialize(pimpl);
@@ -176,7 +176,7 @@ namespace user
 
 #endif
 
-   ::estatus thread::task_caller_on_init()
+   ::e_status thread::task_caller_on_init()
    {
 
       //if (!m_bCreateNativeWindowOnInteractionThread)
@@ -205,7 +205,7 @@ namespace user
    }
 
 
-   ::estatus thread::init_thread()
+   ::e_status thread::init_thread()
    {
 
       auto estatus = ::thread::init_thread();
@@ -465,7 +465,7 @@ namespace user
    }
 
 
-   ::estatus thread::process_message()
+   ::e_status thread::process_message()
    {
 
    try
@@ -543,7 +543,7 @@ catch(...)
    }
 
 
-   ::estatus thread::process_base_message(::message::base * pbase)
+   ::e_status thread::process_base_message(::message::base * pbase)
    {
 
       if(::is_set(pbase->userinteraction()))
@@ -621,7 +621,7 @@ catch(...)
    }
 
 
-   ::estatus thread::set_finish_composites(::context_object * pcontextobjectFinish)
+   ::e_status thread::set_finish_composites(::context_object * pcontextobjectFinish)
    {
 
       auto estatus = channel::set_finish_composites(pcontextobjectFinish);
@@ -670,7 +670,7 @@ catch(...)
    }
 
 
-   ::estatus thread::run()
+   ::e_status thread::run()
    {
 
       ASSERT_VALID(this);
@@ -892,7 +892,7 @@ catch(...)
    }
 
 
-   ::estatus thread::finish(::context_object * pcontextobjectFinish)
+   ::e_status thread::finish(::context_object * pcontextobjectFinish)
    {
 
       return ::thread::finish(pcontextobjectFinish);

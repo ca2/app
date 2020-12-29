@@ -3649,7 +3649,7 @@ namespace user
 
       }
 
-      psession->set_keyboard_focus(this);
+      set_keyboard_focus();
 
       psession->user()->set_mouse_focus_LButtonDown(this);
 

@@ -53,14 +53,14 @@ int GetWkspaceCount();
 int_bool destroy_window(oswindow w);
 
 
-oswindow get_capture();
-oswindow set_capture(oswindow window);
-int_bool release_capture();
-oswindow set_focus(oswindow window);
-oswindow get_focus();
-oswindow get_active_window();
-oswindow set_active_window(oswindow window);
-int_bool enable_window(oswindow hwnd, int_bool bEnable);
+//oswindow get_capture();
+//oswindow set_capture(oswindow window);
+//int_bool release_capture();
+//oswindow set_focus(oswindow window);
+//oswindow get_focus();
+//oswindow get_active_window();
+//oswindow set_active_window(oswindow window);
+//int_bool enable_window(oswindow hwnd, int_bool bEnable);
 
 //void GetMainScreenRect(RECT32 * prect);
 

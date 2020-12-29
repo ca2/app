@@ -4071,13 +4071,7 @@
     <ClInclude Include="_defer.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="os\android\_os_remote.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
     <ClInclude Include="os\android\_os_impl.h">
-      <Filter>Header Files\os\android</Filter>
-    </ClInclude>
-    <ClInclude Include="os\android\_os_object.h">
       <Filter>Header Files\os\android</Filter>
     </ClInclude>
     <ClInclude Include="primitive\primitive\_.h">
@@ -4931,6 +4925,12 @@
     </ClInclude>
     <ClInclude Include="crypto\openssl\_openssl.h">
       <Filter>Header Files\crypto\openssl</Filter>
+    </ClInclude>
+    <ClInclude Include="os\android\aaa_os_remote.h">
+      <Filter>Header Files\os\android</Filter>
+    </ClInclude>
+    <ClInclude Include="os\android\aaa_os_object.h">
+      <Filter>Header Files\os\android</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

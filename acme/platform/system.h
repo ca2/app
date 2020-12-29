@@ -43,7 +43,7 @@ namespace acme
       //virtual void defer_calc_os_user_theme();
 
 
-      virtual ::estatus os_application_system_run();
+      virtual ::e_status os_application_system_run();
 
 
       using ::promise::handler::on_subject;
@@ -55,9 +55,9 @@ namespace acme
       virtual void open_url(string strUrl, string strProfile, string strTarget);
 
 
-      virtual ::estatus main_user_async(const ::promise::routine & routine, ::e_priority epriority = priority_normal);
+      virtual ::e_status main_user_async(const ::promise::routine & routine, ::e_priority epriority = priority_normal);
 
-      virtual ::estatus main_user_sync(const ::promise::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
+      virtual ::e_status main_user_sync(const ::promise::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
 
 
       ::task * get_task(ithread_t ithread);

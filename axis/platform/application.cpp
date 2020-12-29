@@ -29,7 +29,7 @@ namespace axis
 
 
 
-   ::estatus     application::initialize(::layered * pobjectContext)
+   ::e_status     application::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::aura::application::initialize(pobjectContext);
@@ -308,7 +308,7 @@ namespace axis
 
 
 
-   ::estatus     application::main()
+   ::e_status     application::main()
    {
 
       INFO("aura::application::main");
@@ -352,7 +352,7 @@ namespace axis
    }
 
 
-   ::estatus application::init_instance()
+   ::e_status application::init_instance()
    {
 
       auto estatus = ::aura::application::init_instance();
@@ -412,7 +412,7 @@ namespace axis
 
             data_set({ "locale", true }, str);
 
-            set_locale(str, ::source_database);
+            set_locale(str, ::e_source_database);
 
          }
          else if (value("lang").get_count() > 0)
@@ -424,7 +424,7 @@ namespace axis
 
             data_set({ "locale", true }, str);
 
-            set_locale(str, ::source_database);
+            set_locale(str, ::e_source_database);
 
          }
          else if (data_get({ "locale", true }, str))
@@ -433,7 +433,7 @@ namespace axis
             if (str.has_char())
             {
 
-               set_locale(str, ::source_database);
+               set_locale(str, ::e_source_database);
 
             }
 
@@ -483,7 +483,7 @@ namespace axis
 
             data_set({ "schema", true }, str);
 
-            set_schema(str, ::source_database);
+            set_schema(str, ::e_source_database);
 
          }
          else if (data_get({ "schema", true }, str))
@@ -492,7 +492,7 @@ namespace axis
             if (str.has_char())
             {
 
-               set_schema(str, ::source_database);
+               set_schema(str, ::e_source_database);
 
             }
 
@@ -548,7 +548,7 @@ namespace axis
 
             data_set({ "locale", true }, str);
 
-            set_locale(str, ::source_database);
+            set_locale(str, ::e_source_database);
 
          }
          else if (value("lang").get_count() > 0)
@@ -560,7 +560,7 @@ namespace axis
 
             data_set({ "locale", true }, str);
 
-            set_locale(str, ::source_database);
+            set_locale(str, ::e_source_database);
 
          }
          else if (data_get({ "locale", true }, str))
@@ -569,7 +569,7 @@ namespace axis
             if (str.has_char())
             {
 
-               set_locale(str, ::source_database);
+               set_locale(str, ::e_source_database);
 
             }
 
@@ -619,7 +619,7 @@ namespace axis
 
             data_set({ "schema", true }, str);
 
-            set_schema(str, ::source_database);
+            set_schema(str, ::e_source_database);
 
          }
          else if (data_get({ "schema", true }, str))
@@ -628,7 +628,7 @@ namespace axis
             if (str.has_char())
             {
 
-               set_schema(str, ::source_database);
+               set_schema(str, ::e_source_database);
 
             }
 
@@ -643,7 +643,7 @@ namespace axis
    }
 
 
-   ::estatus application::application_pre_run()
+   ::e_status application::application_pre_run()
    {
 
       auto estatus = ::aura::application::application_pre_run();
@@ -678,7 +678,7 @@ namespace axis
 
 
 
-   ::estatus application::os_native_bergedge_start()
+   ::e_status application::os_native_bergedge_start()
    {
 
       return ::aura::application::os_native_bergedge_start();
@@ -686,7 +686,7 @@ namespace axis
    }
 
 
-   ::estatus     application::run()
+   ::e_status     application::run()
    {
 
       return ::aura::application::run();
@@ -706,7 +706,7 @@ namespace axis
 
 
 
-   ::estatus application::process_init()
+   ::e_status application::process_init()
    {
 
       auto estatus = ::aura::application::process_init();
@@ -1029,7 +1029,7 @@ namespace axis
    }
 
 
-//   ::estatus application::init_application()
+//   ::e_status application::init_application()
 //   {
 //
 //      //if (m_bAuraInitializeInstance)
@@ -1131,10 +1131,10 @@ namespace axis
 
 
 
-   ::estatus application::init1()
+   ::e_status application::init1()
    {
 
-      ::estatus estatus = ::aura::application::init1();
+      ::e_status estatus = ::aura::application::init1();
 
       if (!estatus)
       {
@@ -1173,9 +1173,9 @@ namespace axis
 
       //}
 
-      //set_locale(strLocale, ::source_database);
+      //set_locale(strLocale, ::e_source_database);
 
-      //set_schema(strSchema, ::source_database);
+      //set_schema(strSchema, ::e_source_database);
 
       //if (!initialize_contextualized_theme())
       //{
@@ -1311,7 +1311,7 @@ namespace axis
 
    }
 
-   ::estatus application::init2()
+   ::e_status application::init2()
    {
 
       //if (!impl_init2())
@@ -1362,7 +1362,7 @@ namespace axis
 
    }
 
-   ::estatus application::init3()
+   ::e_status application::init3()
    {
 
       string strFolder = m_strAppName;
@@ -1728,7 +1728,7 @@ namespace axis
    }
 
 
-   ::estatus application::verb()
+   ::e_status application::verb()
    {
 
       return true;
@@ -1736,7 +1736,7 @@ namespace axis
    }
 
 
-   ::estatus application::on_run()
+   ::e_status application::on_run()
    {
 
       //try
@@ -1841,7 +1841,7 @@ namespace axis
 
 
 
-   //::estatus application::application_pre_run()
+   //::e_status application::application_pre_run()
    //{
 
    //   return ::aura::application::application_pre_run();
@@ -1914,7 +1914,7 @@ namespace axis
    //}
 
 
-   //::estatus application::os_native_bergedge_start()
+   //::e_status application::os_native_bergedge_start()
    //{
 
    //   if (!::aura::application::os_native_bergedge_start())
@@ -1937,7 +1937,7 @@ namespace axis
    //}
 
 
-   //::estatus     application::run()
+   //::e_status     application::run()
    //{
 
    //   return ::aura::application::run();
@@ -1976,7 +1976,7 @@ namespace axis
 
 
 
-   //::estatus application::init1()
+   //::e_status application::init1()
    //{
 
    //   //if (m_bAxisInitialize1)
@@ -2015,7 +2015,7 @@ namespace axis
    //}
 
 
-   //::estatus application::init2()
+   //::e_status application::init2()
    //{
 
    //   if (!::aura::application::init2())
@@ -2026,7 +2026,7 @@ namespace axis
    //}
 
 
-   //::estatus application::init3()
+   //::e_status application::init3()
    //{
 
    //   if (!::aura::application::init3())
@@ -2043,7 +2043,7 @@ namespace axis
 //
 
 
-   ::estatus application::init()
+   ::e_status application::init()
    {
 
       auto estatus = ::aura::application::init();

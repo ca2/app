@@ -165,7 +165,7 @@ app_core::~app_core()
 }
 
 
-bool app_core::on_result(const ::estatus & estatus)
+bool app_core::on_result(const ::e_status & estatus)
 {
 
    if (estatus == ::success)
@@ -195,7 +195,7 @@ bool app_core::on_result(const ::estatus & estatus)
 }
 
 
-::estatus app_core::system_prep()
+::e_status app_core::system_prep()
 {
 
 // prelude::defer_call_construct(this);
@@ -255,7 +255,7 @@ CLASS_DECL_ACME void set_path_install_folder(const char * pszPath);
 CLASS_DECL_APEX void set_debug_pointer(void * p);
 
 
-::estatus app_core::system_init()
+::e_status app_core::system_init()
 {
 
    /// string test (NEW STRING 2019-11-26)
@@ -1638,12 +1638,12 @@ string apple_get_bundle_identifier()
 #elif !defined(ANDROID)
 
 
-::estatus app_core::system_proc()
+::e_status app_core::system_proc()
 {
 
    return ::error_failed;
 
-   //::estatus estatus = system_proc();
+   //::e_status estatus = system_proc();
 
    //if(estatus)
    //{
@@ -1660,10 +1660,10 @@ string apple_get_bundle_identifier()
 #endif
 
 
-//::estatus app_core::system_call()
+//::e_status app_core::system_call()
 //{
 //
-//   ::estatus estatus = error_failed;
+//   ::e_status estatus = error_failed;
 //
 //   try
 //   {
@@ -1739,7 +1739,7 @@ bool app_core::has_apex_application_factory() const
 //::u32 app_core::system_main()
 //{
 //
-//   ::estatus estatus = System.__thread_procedure();
+//   ::e_status estatus = System.__thread_procedure();
 //
 //   return estatus;
 //

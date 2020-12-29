@@ -505,7 +505,7 @@ extern "C"
 
 
 
-CLASS_DECL_AURA ::estatus load_factory_library(string strLibrary)
+CLASS_DECL_AURA ::e_status load_factory_library(string strLibrary)
 {
 
 

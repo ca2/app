@@ -31,29 +31,29 @@ namespace axis
 
       void common_construct();
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
-      virtual ::estatus init() override;
-      virtual ::estatus inline_init() override;
-      virtual ::estatus inline_term() override;
+      virtual ::e_status init() override;
+      virtual ::e_status inline_init() override;
+      virtual ::e_status inline_term() override;
 
-      virtual ::estatus init_system() override;
+      virtual ::e_status init_system() override;
       virtual void term_system() override;
 
       virtual void term() override;
 
 
 
-      virtual ::estatus process_init() override;
+      virtual ::e_status process_init() override;
 
-      virtual ::estatus init1() override;
+      virtual ::e_status init1() override;
 
-      virtual ::estatus init2() override;
+      virtual ::e_status init2() override;
 
-      // virtual ::estatus defer_xml();
+      // virtual ::e_status defer_xml();
 
 
-      virtual ::estatus verb() override; // ambigous inheritance from ::aura::system/::axis::application
+      virtual ::e_status verb() override; // ambigous inheritance from ::aura::system/::axis::application
 
 
 
@@ -80,15 +80,15 @@ namespace axis
 
 
 
-      //virtual ::estatus thread_loop() override;
+      //virtual ::e_status thread_loop() override;
 
-      //virtual ::estatus init();
+      //virtual ::e_status init();
 
-      //virtual ::estatus init1();
+      //virtual ::e_status init1();
 
-      //virtual ::estatus init2();
+      //virtual ::e_status init2();
 
-      virtual ::estatus post_create_requests() override;
+      virtual ::e_status post_create_requests() override;
 
       //virtual void term_system();
 
@@ -103,9 +103,9 @@ namespace axis
 
       virtual void process_term() override;
 
-      virtual ::estatus create_html();
+      virtual ::e_status create_html();
 
-      virtual ::estatus defer_create_html();
+      virtual ::e_status defer_create_html();
 
 
       void assert_valid() const override;

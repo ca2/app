@@ -103,7 +103,7 @@ namespace dynamic_source
    }
 
 
-   ::estatus script_manager::initialize(::layered * pobjectContext)
+   ::e_status script_manager::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::user::message_queue_listener::initialize(pobjectContext);
@@ -138,7 +138,7 @@ namespace dynamic_source
    }
 
 
-   ::estatus script_manager::init1()
+   ::e_status script_manager::init1()
    {
 
       if(m_bCompiler)

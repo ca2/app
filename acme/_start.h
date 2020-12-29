@@ -45,16 +45,16 @@
 
 #define CA2_ACME
 
-#define __class(EXPORT, DERIVED, ...) \
-   using DERIVED##_t =  __VA_ARGS__; \
-   class EXPORT DERIVED : \
-      virtual public DERIVED##_t \
-   { \
-   public: using DERIVED##_t::DERIVED##_t; \
-   }
-
-
-#define __discrete_cflag(EXPORT, CLASS, ENUM) __class(EXPORT, CLASS, cflag < ENUM >)
+//#define __class(EXPORT, DERIVED, ...) \
+//   using DERIVED##_t =  __VA_ARGS__; \
+//   class EXPORT DERIVED : \
+//      virtual public DERIVED##_t \
+//   { \
+//   public: using DERIVED##_t::DERIVED##_t; \
+//   }
+//
+//
+//#define __discrete_cflag(EXPORT, CLASS, ENUM) __class(EXPORT, CLASS, cflag < ENUM >)
 
 
 #define TOKENPASTE(x, y) x ## y

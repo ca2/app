@@ -219,7 +219,7 @@ namespace browser
          if (m_prollfps != nullptr)
          {
 
-            m_prollfps->_001SetText(str, ::source_database);
+            m_prollfps->_001SetText(str, ::e_source_database);
 
          }
 
@@ -235,7 +235,7 @@ namespace browser
 
                m_checkptraBilbo.add(pcheck);
 
-               m_checkptraBilbo.last()->_001SetCheck(pslide->m_bDatabase ? ::check_checked : ::check_unchecked, ::source_sync);
+               m_checkptraBilbo.last()->_001SetCheck(pslide->m_bDatabase ? ::check_checked : ::check_unchecked, ::e_source_sync);
 
                i++;
 
@@ -344,8 +344,8 @@ namespace browser
          if(pevent->m_eevent == ::user::e_event_after_change_text)
          {
 
-            if(m_prollfps != nullptr && pevent->m_puie->m_id == "roll_fps" && !pevent->m_context.is(::source_initialize)
-                  && !pevent->m_context.is(::source_database))
+            if(m_prollfps != nullptr && pevent->m_puie->m_id == "roll_fps" && !pevent->m_context.is(::e_source_initialize)
+                  && !pevent->m_context.is(::e_source_database))
             {
 
                try
@@ -380,11 +380,11 @@ namespace browser
                   }
                   //if(fabs(d) < 0.0000000001)
                   //{
-                  //   m_prollspf->_001SetText("",::source_initialize);
+                  //   m_prollspf->_001SetText("",::e_source_initialize);
                   //}
                   //else
                   //{
-                  //   m_prollspf->_001SetText(__str(1.0/d),::source_initialize);
+                  //   m_prollspf->_001SetText(__str(1.0/d),::e_source_initialize);
                   //}
                }
                catch(...)
@@ -396,7 +396,7 @@ namespace browser
 
 
             }
-            //else if(pevent->m_puie->m_id == "roll_spf" && !pevent->m_context.is_source(::source_initialize))
+            //else if(pevent->m_puie->m_id == "roll_spf" && !pevent->m_context.is_source(::e_source_initialize))
             //{
 
             //   try
@@ -406,13 +406,13 @@ namespace browser
             //      double d = atof(str);
             //      if(fabs(d) < 0.0000000001)
             //      {
-            //         m_prollfps->_001SetText("",::source_initialize);
+            //         m_prollfps->_001SetText("",::e_source_initialize);
             //      }
             //      else
             //      {
             //         m_pflagview->m_dFps = 1.0/ d;
             //         m_pflagview->m_dwRoll= ::millis::now();
-            //         m_prollfps->_001SetText(__str(1.0 / d),::source_initialize);
+            //         m_prollfps->_001SetText(__str(1.0 / d),::e_source_initialize);
             //      }
             //   }
             //   catch(...)
@@ -432,8 +432,8 @@ namespace browser
             if (::str::begins_eat_ci(strCheck, "slide"))
             {
 
-               if (pevent->m_puie != nullptr && !pevent->m_context.is(::source_initialize)
-                     && !pevent->m_context.is(::source_sync))
+               if (pevent->m_puie != nullptr && !pevent->m_context.is(::e_source_initialize)
+                     && !pevent->m_context.is(::e_source_sync))
                {
 
                   int iCheck = atoi(strCheck);

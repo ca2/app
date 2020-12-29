@@ -147,18 +147,18 @@ namespace core
       // ::user::shell* shell();
       
       
-      virtual ::estatus init1() override;
-      virtual ::estatus init2() override;
-      virtual ::estatus init() override;
+      virtual ::e_status init1() override;
+      virtual ::e_status init2() override;
+      virtual ::e_status init() override;
 
       virtual ::user::shell* shell();
 
-      virtual ::estatus dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset, const ::promise::process & process = ::promise::process());
+      virtual ::e_status dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset, const ::promise::process & process = ::promise::process());
 
 
-      virtual ::estatus ui_message_box(::layered * pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
-      virtual ::estatus ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
-      //virtual ::estatus ui_message_box_timeout(::object* pobjectContext, ::user::primitive* puiOwner, payload payload, ::duration durationTimeout, ::u32 fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
+      virtual ::e_status ui_message_box(::layered * pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+      virtual ::e_status ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+      //virtual ::e_status ui_message_box_timeout(::object* pobjectContext, ::user::primitive* puiOwner, payload payload, ::duration durationTimeout, ::u32 fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
 
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 
@@ -176,7 +176,7 @@ namespace core
 
       virtual void AddToRecentFileList(const char * pszPathName);
 
-      virtual ::estatus initialize_html();
+      virtual ::e_status initialize_html();
 
 
       virtual void route_command_message(::user::command * pcommand);
@@ -224,7 +224,7 @@ namespace core
       ::user::document * hold(__pointer(::user::interaction) pinteraction);
 
 
-      virtual ::estatus create_user_shell();
+      virtual ::e_status create_user_shell();
 
 
       virtual string get_wallpaper(index iScreen);
@@ -253,19 +253,19 @@ namespace core
 
 
 
-      virtual ::estatus     initialize(::layered * pobjectContext) override;
+      virtual ::e_status     initialize(::layered * pobjectContext) override;
 
 
       virtual bool do_prompt_file_name(payload& varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
 
 
-      virtual ::estatus initialize_userex();
+      virtual ::e_status initialize_userex();
 
-      virtual ::estatus userfs_init1();
-      virtual ::estatus userfs_process_init();
+      virtual ::e_status userfs_init1();
+      virtual ::e_status userfs_process_init();
 
 
-      //virtual ::estatus create_html();
+      //virtual ::e_status create_html();
 
       //virtual __pointer(::userex::userex) create_userex();
       //virtual __pointer(::userfs::userfs) create_userfs();
@@ -287,15 +287,15 @@ namespace core
 
       ////void construct(::object * pobject, int iPhase) override;
 
-      //virtual ::estatus process_init();
+      //virtual ::e_status process_init();
 
-      //virtual ::estatus init1();
+      //virtual ::e_status init1();
 
-      //virtual ::estatus init2();
+      //virtual ::e_status init2();
 
-      //virtual ::estatus init_session();
+      //virtual ::e_status init_session();
 
-      //virtual ::estatus init();
+      //virtual ::e_status init();
 
       //virtual void term();
 
@@ -331,7 +331,7 @@ namespace core
 
       //virtual void defer_initialize_user_presence();
 
-      ////virtual ::estatus     interactive_credentials(::account::credentials * pcredentials) override;
+      ////virtual ::e_status     interactive_credentials(::account::credentials * pcredentials) override;
 
       //virtual bool on_create_frame_window();
 
@@ -351,7 +351,7 @@ namespace core
       //virtual string get_locale_schema_dir() override;
 
 
-      ////virtual ::estatus     initialize(::layered * pobjectContext) override;
+      ////virtual ::e_status     initialize(::layered * pobjectContext) override;
 
 
       //virtual ::user::interaction * get_session_window();
@@ -361,17 +361,17 @@ namespace core
 
       ////virtual bool is_session() const override;
 
-      //virtual ::estatus init_thread() override;
+      //virtual ::e_status init_thread() override;
 
-      ////virtual ::estatus process_init();
+      ////virtual ::e_status process_init();
 
-      ////virtual ::estatus init1();
+      ////virtual ::e_status init1();
 
-      ////virtual ::estatus init2();
+      ////virtual ::e_status init2();
 
-      ////virtual ::estatus init_session();
+      ////virtual ::e_status init_session();
 
-      ////virtual ::estatus init();
+      ////virtual ::e_status init();
 
       ////virtual void term();
       //virtual void term2();
@@ -521,16 +521,16 @@ namespace core
 
 
 
-      ////virtual ::estatus initialize(::layered * pobjectContext) override;
+      ////virtual ::e_status initialize(::layered * pobjectContext) override;
 
       //virtual void install_message_routing(::channel* pchannel) override;
 
-      ////virtual ::estatus userex_process_init();
-      ////virtual ::estatus userex_init1();
-      ////virtual ::estatus init2() override;
+      ////virtual ::e_status userex_process_init();
+      ////virtual ::e_status userex_init1();
+      ////virtual ::e_status init2() override;
       ////virtual bool init3() override;
       ////virtual bool initialize_filemanager();
-      /////virtual ::estatus init_session() override;
+      /////virtual ::e_status init_session() override;
       ////virtual void add_document_template(::user::impact_system * ptemplate);
 
       ////virtual void term_session() override;
@@ -556,7 +556,7 @@ namespace core
 
       //bool InitializeLocalDataCentral();
 
-      ////virtual ::estatus bergedge_start() override;
+      ////virtual ::e_status bergedge_start() override;
 
       //void _001OnFileNew();
 
@@ -583,7 +583,7 @@ namespace core
       //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::patha& patha);
 
 
-      //virtual ::estatus do_request(::create* pcreate) override;
+      //virtual ::e_status do_request(::create* pcreate) override;
 
       //virtual ::user::interaction* get_request_parent_ui(::user::interaction* pinteraction, ::create* pcreate);
 
@@ -610,17 +610,17 @@ namespace core
       //inline ::userex::userex* userex() { return m_puserex; }
 
 
-      ////virtual ::estatus process_init() override;
+      ////virtual ::e_status process_init() override;
 
-      ////virtual ::estatus init1() override;
+      ////virtual ::e_status init1() override;
 
-      ////virtual ::estatus init() override;
+      ////virtual ::e_status init() override;
 
-      ////virtual ::estatus os_native_bergedge_start() override;
+      ////virtual ::e_status os_native_bergedge_start() override;
 
-      //virtual ::estatus     main() override;
+      //virtual ::e_status     main() override;
 
-      //virtual ::estatus defer_initialize_host_window(LPCRECT32 lprect = nullptr);
+      //virtual ::e_status defer_initialize_host_window(LPCRECT32 lprect = nullptr);
 
       ////virtual service_base * allocate_new_service() override;
 
@@ -674,16 +674,16 @@ namespace core
       ////virtual __pointer(::user::impact)                      get_view();
 
 
-      ////virtual ::estatus     initialize(::layered * pobjectContext) override;
+      ////virtual ::e_status     initialize(::layered * pobjectContext) override;
 
 
       ////virtual void frame_pre_translate_message(::message::message* pmessage) override;
 
-      ////virtual ::estatus process_init() override;
+      ////virtual ::e_status process_init() override;
 
-      ////virtual ::estatus init1() override;
+      ////virtual ::e_status init1() override;
 
-      ////virtual ::estatus init() override;
+      ////virtual ::e_status init() override;
 
       ////virtual void term_session() override;
 
@@ -714,9 +714,9 @@ namespace core
       //::user::style * get_user_style();
 
 
-      //virtual ::estatus init1() override;
-      //virtual ::estatus init2() override;
-      //virtual ::estatus init() override;
+      //virtual ::e_status init1() override;
+      //virtual ::e_status init2() override;
+      //virtual ::e_status init() override;
 
 
 

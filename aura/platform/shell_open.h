@@ -10,10 +10,10 @@ public:
    shell_open();
    virtual ~shell_open();
 
-   virtual ::estatus initialize(::layered * pobjectContext) override;
+   virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
-   virtual ::estatus initialize_shell_open();
+   virtual ::e_status initialize_shell_open();
 
 
 };

@@ -760,7 +760,7 @@ namespace android
 
 
 
-// CLASS_DECL_APEX ::estatus os_shell_initialize()
+// CLASS_DECL_APEX ::e_status os_shell_initialize()
 // {
 
 //    return ::android::shell::theLinuxShell.Initialize();

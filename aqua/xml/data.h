@@ -20,7 +20,7 @@ namespace xml
       virtual void edit(edit * pedit);
 
 
-      virtual ::estatus validate_edit(::xml::edit* pedit);
+      virtual ::e_status validate_edit(::xml::edit* pedit);
 
       virtual ::stream & write(::stream & stream) const override;
       virtual ::stream & read(::stream & stream) override;

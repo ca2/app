@@ -2,7 +2,7 @@
 #include <time.h>
 
 
-::estatus mkgmtime_from_filetime(time_t & time, const ::filetime_t & filetime);
+::e_status mkgmtime_from_filetime(time_t & time, const ::filetime_t & filetime);
 
 
 namespace datetime

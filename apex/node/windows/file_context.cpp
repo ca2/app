@@ -21,7 +21,7 @@ namespace windows
    }
 
 
-   ::estatus file_context::initialize(::layered * pobjectContext)
+   ::e_status file_context::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -42,7 +42,7 @@ namespace windows
    }
 
 
-   ::estatus file_context::init_system()
+   ::e_status file_context::init_system()
    {
 
       auto estatus = m_pfilesystem->update_module_path();
@@ -515,7 +515,7 @@ namespace windows
    }
 
 
-   ::estatus file_context::update_module_path()
+   ::e_status file_context::update_module_path()
    {
 
       auto estatus = ::file_context::update_module_path();

@@ -6,7 +6,7 @@ CLASS_DECL_ACME void main_sync_runnable(::matter * pobjectTask, ::duration durat
 CLASS_DECL_ACME void main_branch(::matter* pobjectTask, e_priority epriority);
 
 
-::estatus run_task(::matter * pobjectTask);
+::e_status run_task(::matter * pobjectTask);
 
 
 

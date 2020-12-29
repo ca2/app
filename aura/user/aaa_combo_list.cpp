@@ -696,7 +696,7 @@ namespace user
       else if (pkey->m_ekey == ::user::key_return)
       {
 
-         m_pcombo->set_current_item(m_pcombo->m_itemHover, ::source_user);
+         m_pcombo->set_current_item(m_pcombo->m_itemHover, ::e_source_user);
 
          m_pcombo->ShowDropDown(false);
 
@@ -785,7 +785,7 @@ namespace user
 
             ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
-            ev.m_actioncontext = ::source_user;
+            ev.m_actioncontext = ::e_source_user;
 
             ev.m_item = itemHit;
 

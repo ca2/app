@@ -169,7 +169,7 @@ public:
    virtual bool opacity(double dRate);
 
 
-   virtual ::estatus SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy);
+   virtual ::e_status SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy);
    virtual bool RadialFill(byte a, byte rect, byte g, byte b, i32 x, i32 y, i32 iRadius);
    virtual bool RadialFill(
    byte a1, byte r1, byte g1, byte b1, // center colors
@@ -193,15 +193,15 @@ public:
    virtual bool create_thumbnail(const char * pszPath);
 
 
-   virtual ::estatus create(::draw2d::graphics* pgraphics);
-   virtual ::estatus create(const ::size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false);
-   inline ::estatus preserve(const ::size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1)
+   virtual ::e_status create(::draw2d::graphics* pgraphics);
+   virtual ::e_status create(const ::size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false);
+   inline ::e_status preserve(const ::size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1)
    {
 
       return create(size, eobjectCreate, iGoodStride, true);
 
    }
-   //virtual ::estatus     create(i32 iWidth, i32 iHeight, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false);
+   //virtual ::e_status     create(i32 iWidth, i32 iHeight, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false);
 
 
    virtual bool host(const ::pixmap * ppixmap);
@@ -336,12 +336,12 @@ public:
    virtual bool invert_rgb();
 
 
-   //virtual ::estatus     create_image(int cx, int cy, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
-   //virtual ::estatus     create_image(const ::size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
+   //virtual ::e_status     create_image(int cx, int cy, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
+   //virtual ::e_status     create_image(const ::size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1);
 
 
 
-   virtual ::estatus transform(enum_image eimage);
+   virtual ::e_status transform(enum_image eimage);
 
 
    double pi() const;
@@ -453,29 +453,29 @@ public:
 //}
 //
 //// template < typename COMPOSER >
-//// ::estatus __compose(COMPOSER && pcomposer, __ & pimage);
+//// ::e_status __compose(COMPOSER && pcomposer, __ & pimage);
 // //
 // template < typename COMPOSER >
-// inline ::estatus __compose(COMPOSER && pcomposer, __composite(::image) & pimage, ::image * pimageSource);
-// //
-// //
-// template < typename COMPOSER >
-// inline ::estatus __compose(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+// inline ::e_status __compose(COMPOSER && pcomposer, __composite(::image) & pimage, ::image * pimageSource);
 // //
 // //
 // template < typename COMPOSER >
-// inline ::estatus __preserve(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1);
+// inline ::e_status __compose(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+// //
+// //
+// template < typename COMPOSER >
+// inline ::e_status __preserve(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1);
 // //
 //
-//::estatus __construct(::image_pointer & pimage);
+//::e_status __construct(::image_pointer & pimage);
 
-inline ::estatus __construct(::image_pointer & pimage, ::image * pimageSource);
+inline ::e_status __construct(::image_pointer & pimage, ::image * pimageSource);
 //
 //
-inline ::estatus __construct(::image_pointer & pimage, const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+inline ::e_status __construct(::image_pointer & pimage, const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 //
 //
-inline ::estatus __preserve(::image_pointer & pimage, const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1);
+inline ::e_status __preserve(::image_pointer & pimage, const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1);
 //
 //
 //

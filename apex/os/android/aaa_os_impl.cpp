@@ -167,7 +167,7 @@ void* load_lib(const char* l)
 }
 
 
-//::estatus os_application_system_run(::apex::system* psystem);
+//::e_status os_application_system_run(::apex::system* psystem);
 
 
 int SetMainScreenRect(LPCRECT32 lpcrect);
@@ -185,7 +185,7 @@ void android_apex_main()
 
    psystem->system_construct(plocal, e_display_default);
 
-   ::estatus estatus = os_application_system_run(psystem);
+   ::e_status estatus = os_application_system_run(psystem);
    
    if (!estatus)
    {

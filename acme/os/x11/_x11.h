@@ -44,5 +44,5 @@ int x11_message_box(const string & str, const string & strTitle, const ::e_messa
 bool __x11_hook_process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie);
 
 
-//::estatus __x11_hook(x11_hook * phook);
-//::estatus __x11_unhook(x11_hook * phook);
+//::e_status __x11_hook(x11_hook * phook);
+//::e_status __x11_unhook(x11_hook * phook);

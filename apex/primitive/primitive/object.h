@@ -185,7 +185,7 @@ public:
    template < typename BASE_TYPE >
    void save_to(const payload & varFile, BASE_TYPE * pobject);
 
-   virtual ::estatus initialize(::layered * pobjectContext) override;
+   virtual ::e_status initialize(::layered * pobjectContext) override;
    virtual void finalize() override;
 
    inline const char * topic_text();
@@ -240,7 +240,7 @@ public:
 
    inline void defer_set_context_object(::layered * pobjectContext);
 
-   virtual ::estatus operator()() override;
+   virtual ::e_status operator()() override;
 
 
    inline i64 get_ref_count()
@@ -252,7 +252,7 @@ public:
 
 
    virtual ::user::primitive* get_user_interaction_host();
-   virtual ::user::interaction * get_host_wnd();
+   virtual ::user::interaction * get_host_window();
    
 
    virtual void dev_log(string str) const;
@@ -282,107 +282,107 @@ public:
    template < typename TYPE >
    inline __result(TYPE) __create_new();
 
-   //inline ::estatus __compose(__composite(::image) & pimage);
+   //inline ::e_status __compose(__composite(::image) & pimage);
 
-   //inline ::estatus __compose(__composite(::image) & pimage, ::image * pimageSource);
+   //inline ::e_status __compose(__composite(::image) & pimage, ::image * pimageSource);
 
-   //inline ::estatus __defer_compose(__composite(::image) & pimage) { return !pimage ? __compose(pimage) : ::estatus(::success); }
+   //inline ::e_status __defer_compose(__composite(::image) & pimage) { return !pimage ? __compose(pimage) : ::e_status(::success); }
 
    // for composition (ownership)
 
    template < typename BASE_TYPE >
-   inline ::estatus __compose(__composite(BASE_TYPE) & pbase);
+   inline ::e_status __compose(__composite(BASE_TYPE) & pbase);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::estatus __compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status __compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::estatus __compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status __compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE >
-   inline ::estatus __id_compose(__composite(BASE_TYPE) & pbase, const ::id & id);
+   inline ::e_status __id_compose(__composite(BASE_TYPE) & pbase, const ::id & id);
 
    template < typename BASE_TYPE >
-   inline ::estatus __raw_compose(__composite(BASE_TYPE) & pbase);
+   inline ::e_status __raw_compose(__composite(BASE_TYPE) & pbase);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::estatus __raw_compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource);
+   inline ::e_status __raw_compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::estatus __raw_compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource);
+   inline ::e_status __raw_compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource);
 
    template < typename TYPE >
-   inline ::estatus __raw_compose_new(__composite(TYPE) & ptype);
+   inline ::e_status __raw_compose_new(__composite(TYPE) & ptype);
 
    template < typename TYPE >
-   inline ::estatus __compose_new(__composite(TYPE) & ptype);
+   inline ::e_status __compose_new(__composite(TYPE) & ptype);
 
 
 
 
    template < typename BASE_TYPE >
-   inline ::estatus __defer_compose(__composite(BASE_TYPE) & pbase) { return !pbase ? __compose(pbase) : ::estatus(::success); }
+   inline ::e_status __defer_compose(__composite(BASE_TYPE) & pbase) { return !pbase ? __compose(pbase) : ::e_status(::success); }
 
    template < typename BASE_TYPE >
-   inline ::estatus __defer_id_compose(__composite(BASE_TYPE) & pbase, const ::id & id) { return !pbase ? __id_compose(pbase) : ::estatus(::success); }
+   inline ::e_status __defer_id_compose(__composite(BASE_TYPE) & pbase, const ::id & id) { return !pbase ? __id_compose(pbase) : ::e_status(::success); }
 
    template < typename TYPE >
-   inline ::estatus __defer_raw_compose_new(__composite(TYPE) & ptype) { return !ptype ? __raw_compose_new(ptype) : ::estatus(::success); }
+   inline ::e_status __defer_raw_compose_new(__composite(TYPE) & ptype) { return !ptype ? __raw_compose_new(ptype) : ::e_status(::success); }
 
    template < typename TYPE >
-   inline ::estatus __defer_compose_new(__composite(TYPE) & ptype) { return !ptype ? __compose_new(ptype) : ::estatus(::success); }
+   inline ::e_status __defer_compose_new(__composite(TYPE) & ptype) { return !ptype ? __compose_new(ptype) : ::e_status(::success); }
 
 
 
 
    template < typename BASE_TYPE >
-   inline ::estatus __construct(__pointer(BASE_TYPE) & pbase);
+   inline ::e_status __construct(__pointer(BASE_TYPE) & pbase);
 
    template < typename BASE_TYPE >
-   inline ::estatus __id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id);
+   inline ::e_status __id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id);
 
    template < typename TYPE >
-   inline ::estatus __construct_new(__pointer(TYPE) & pbase);
+   inline ::e_status __construct_new(__pointer(TYPE) & pbase);
 
    template < typename BASE_TYPE >
-   inline ::estatus __release(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status __release(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE >
-   inline ::estatus __release(__reference(BASE_TYPE) & preference OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status __release(__reference(BASE_TYPE) & preference OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename SOURCE >
-   inline ::estatus release_reference(__pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status release_reference(__pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS);
 
 
-   virtual ::estatus add_composite(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
-   virtual ::estatus add_reference(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
+   virtual ::e_status add_composite(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
+   virtual ::e_status add_reference(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
 
 
-   virtual ::estatus release_composite2(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
-   virtual ::estatus finalize_composite(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
-   virtual ::estatus release_reference(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
+   virtual ::e_status release_composite2(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
+   virtual ::e_status finalize_composite(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
+   virtual ::e_status release_reference(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS) override;
 
 
    template < typename BASE_TYPE >
-   inline ::estatus add_composite(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status add_composite(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::estatus __refer(__reference(BASE_TYPE) & preference, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status __refer(__reference(BASE_TYPE) & preference, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::estatus __refer(__reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status __refer(__reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename BASE_TYPE, typename SOURCE >
-   inline ::estatus __refer(__reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status __refer(__reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename SOURCE >
-   inline ::estatus add_reference(SOURCE* psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status add_reference(SOURCE* psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename SOURCE >
-   inline ::estatus add_reference(__pointer(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status add_reference(__pointer(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
 
    template < typename SOURCE >
-   inline ::estatus add_reference(__reference(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
+   inline ::e_status add_reference(__reference(SOURCE)& psource OBJ_REF_DBG_COMMA_PARAMS);
 
    virtual void delete_this() override;
 
@@ -390,13 +390,13 @@ public:
 
    static void system(const char * pszProjectName);
 
-   virtual ::estatus enable_application_events(bool bEnable = true);
+   virtual ::e_status enable_application_events(bool bEnable = true);
 
-   virtual ::estatus handle_exception(::exception_pointer pe);
+   virtual ::e_status handle_exception(::exception_pointer pe);
 
-   virtual ::estatus top_handle_exception(::exception_pointer pe);
+   virtual ::e_status top_handle_exception(::exception_pointer pe);
 
-   virtual ::estatus process_exception(::exception_pointer pe);
+   virtual ::e_status process_exception(::exception_pointer pe);
 
 
    ::object * parent_property_set_holder() const override;
@@ -410,9 +410,9 @@ public:
    virtual bool is_running() const;
    virtual void child_post_quit(const char * pszTag);
    virtual void child_post_quit_and_wait(const char * pszTag, const duration & duration);
-   virtual ::estatus finish(::context_object * pcontextobjectFinish = nullptr) override;
-   virtual ::estatus set_finish(::context_object * pcontextobjectFinish) override;
-   virtual ::estatus set_finish_composites(::context_object * pcontextobjectFinish) override;
+   virtual ::e_status finish(::context_object * pcontextobjectFinish = nullptr) override;
+   virtual ::e_status set_finish(::context_object * pcontextobjectFinish) override;
+   virtual ::e_status set_finish_composites(::context_object * pcontextobjectFinish) override;
    virtual void on_finish() override;
 
 
@@ -426,15 +426,15 @@ public:
 
    void _001OnUpdate(::message::message * pmessage);
 
-   virtual ::estatus request_file(const payload& varFile);
+   virtual ::e_status request_file(const payload& varFile);
 
-   virtual ::estatus request_file(const payload& varFile, payload varQuery);
+   virtual ::e_status request_file(const payload& varFile, payload varQuery);
 
-   virtual ::estatus request(arguments arguments);
+   virtual ::e_status request(arguments arguments);
 
-   virtual ::estatus do_request(::create * pcreate);
+   virtual ::e_status do_request(::create * pcreate);
 
-   virtual ::estatus message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+   virtual ::e_status message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
    //{
    //
    //   return message_box(nullptr, pszMessage, pszTitle, emessagebox, process);
@@ -442,15 +442,15 @@ public:
    //}
 
 
-   virtual ::estatus message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+   virtual ::e_status message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
    //{
 
    //   return message_box_timeout(nullptr, pszMessage, pszTitle, durationTimeout, emessagebox, process);
 
    //}
 
-   //virtual ::estatus message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
-   //virtual ::estatus message_box_timeout(::user::primitive* pwndOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+   //virtual ::e_status message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+   //virtual ::e_status message_box_timeout(::user::primitive* pwndOwner, const char* pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
 
    virtual void release_references();
 
@@ -464,7 +464,7 @@ public:
 
    virtual void on_finalize();
 
-   virtual ::estatus call_request(::create * pcreate);
+   virtual ::e_status call_request(::create * pcreate);
 
    //// former user::server
    //virtual ::user::document* open_new_document(::apex::application* pappOnBehalfOf);
@@ -475,7 +475,7 @@ public:
    //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 
-   virtual ::estatus run() override;
+   virtual ::e_status run() override;
 
    virtual string lstr(const ::id & id, string strDefault = "");
 
@@ -539,7 +539,7 @@ public:
    }
 
 
-   inline ::estatus defer_start(::thread_pointer& pthread, const ::promise::routine & routine);
+   inline ::e_status defer_start(::thread_pointer& pthread, const ::promise::routine & routine);
 
 
    //template < typename THREAD >
@@ -632,9 +632,9 @@ public:
 
 
 
-   ::estatus bind_update(property * pproperty);
-   ::estatus bind_update(const ::id & id, bool bCreate = true);
-   ::estatus bind_update(const ::id & id, ::object * pobject);
+   ::e_status bind_update(property * pproperty);
+   ::e_status bind_update(const ::id & id, bool bCreate = true);
+   ::e_status bind_update(const ::id & id, ::object * pobject);
 
 
    inline void format_topic_text(const char * psz, ...)
@@ -659,7 +659,7 @@ public:
 
 
    //template < typename TYPE >
-   //auto member_fork(::estatus (TYPE:: * pfn)(), ::e_priority epriority = ::priority_normal)
+   //auto member_fork(::e_status (TYPE:: * pfn)(), ::e_priority epriority = ::priority_normal)
    //{
 
    //   TYPE * ptype = dynamic_cast <TYPE *>(this);
@@ -684,10 +684,10 @@ public:
 
 
    template < typename TYPE >
-   ::estatus __construct(::thread_pointer & p, void (TYPE:: * pfn)(), e_priority epriority);
+   ::e_status __construct(::thread_pointer & p, void (TYPE:: * pfn)(), e_priority epriority);
 
    template < typename TYPE >
-   ::estatus __construct_below_normal(::thread_pointer & p, void (TYPE:: * pfn)());
+   ::e_status __construct_below_normal(::thread_pointer & p, void (TYPE:: * pfn)());
 
 
    template < typename TYPE >
@@ -704,7 +704,7 @@ public:
 
 
 
-CLASS_DECL_APEX ::estatus call_sync(const ::promise::routine_array & routinea);
+CLASS_DECL_APEX ::e_status call_sync(const ::promise::routine_array & routinea);
 
 
 

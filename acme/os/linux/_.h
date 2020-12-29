@@ -36,7 +36,7 @@ off_t tell64(int fd);
 
 //int_bool gdk_launch_uri(const char * pszUri, char * pszError = NULL, int iBufferSize = 0);
 
-::estatus os_defer_init_gtk();
+::e_status os_defer_init_gtk();
 
 #include "gdk.h"
 

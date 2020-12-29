@@ -16,7 +16,7 @@ namespace aura
    }
 
 
-   ::estatus savings::initialize(::layered * pobjectContext)
+   ::e_status savings::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

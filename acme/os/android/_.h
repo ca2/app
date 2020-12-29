@@ -23,17 +23,17 @@ END_EXTERN_C
 
 
 
-
-oswindow get_capture();
-oswindow set_capture(oswindow window);
-int_bool release_capture();
-oswindow set_focus(oswindow window);
-oswindow get_focus();
-//oswindow get_window(oswindow window, enum_relative erelative);
-oswindow get_active_window();
-oswindow set_active_window(oswindow window);
-int_bool destroy_window(oswindow window);
-oswindow get_desktop_window();
-
-
-
+//
+//oswindow get_capture();
+//oswindow set_capture(oswindow window);
+//int_bool release_capture();
+//oswindow set_focus(oswindow window);
+//oswindow get_focus();
+////oswindow get_window(oswindow window, enum_relative erelative);
+//oswindow get_active_window();
+//oswindow set_active_window(oswindow window);
+//int_bool destroy_window(oswindow window);
+//oswindow get_desktop_window();
+//
+//
+//

@@ -36,7 +36,7 @@ namespace account
       virtual ~department();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
       class __pointer(class authenticator) authenticator();

@@ -42,7 +42,7 @@ namespace user
    }
 
 
-   ::estatus main_window::create_main_window()
+   ::e_status main_window::create_main_window()
    {
 
       ::rect rectWindow;

@@ -1593,7 +1593,7 @@ namespace linux
 
          ::message::key * pkey = (::message::key *) pbase;
 
-         __pointer(::user::interaction) puiFocus =  get_focus_primitive();
+         __pointer(::user::interaction) puiFocus =  get_keyboard_focus();
 
          if(puiFocus != nullptr
                && puiFocus->is_window()
@@ -2449,7 +2449,7 @@ namespace linux
 //      }
 //
 //
-//      virtual ::estatus     run() override
+//      virtual ::e_status     run() override
 //      {
 //
 //         try

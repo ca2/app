@@ -34,9 +34,9 @@
 
 #define INT_SUCCESS_STATUS(iStatusRange) ((int)(iStatusRange))
 
-#define FAILURE_STATUS(iStatusRange) ((::estatus    )INT_FAILURE_STATUS(iStatusRange))
+#define FAILURE_STATUS(iStatusRange) ((::e_status    )INT_FAILURE_STATUS(iStatusRange))
 
-#define SUCCESS_STATUS(iStatusRange) ((::estatus    )INT_SUCCESS_STATUS(iStatusRange))
+#define SUCCESS_STATUS(iStatusRange) ((::e_status    )INT_SUCCESS_STATUS(iStatusRange))
 
 
 enum enum_status

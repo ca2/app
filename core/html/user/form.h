@@ -19,7 +19,7 @@ public:
    virtual ~html_form();
 
    
-   virtual ::estatus initialize(::layered * pobjectContext) override;
+   virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
    virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -34,8 +34,8 @@ public:
 
    virtual string get_path() override;
 
-   virtual ::estatus open_document(const payload & varFile) override;
-   virtual ::estatus open_html(const string & str) override;
+   virtual ::e_status open_document(const payload & varFile) override;
+   virtual ::e_status open_html(const string & str) override;
 
 
    ::html_data * get_html_data();

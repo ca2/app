@@ -247,7 +247,7 @@ struct INT_STRING
 CLASS_DECL_ACME void throw_todo(void);
 
 
-CLASS_DECL_ACME void set_last_status(const ::estatus &estatus);
+CLASS_DECL_ACME void set_last_status(const ::e_status &estatus);
 
 CLASS_DECL_ACME void windowing_output_debug_string(const char *pszDebugString);
 
@@ -551,8 +551,8 @@ CLASS_DECL_ACME void ansi_get_errno(i32 *perrno);
 CLASS_DECL_ACME void ansi_unlink(const char *psz);
 
 
-CLASS_DECL_ACME ::estatus get_last_status();
-//CLASS_DECL_ACME void set_last_status(::estatus estatus);
+CLASS_DECL_ACME ::e_status get_last_status();
+//CLASS_DECL_ACME void set_last_status(::e_status estatus);
 
 typedef char ansichar;
 
@@ -1069,9 +1069,9 @@ class sync;
 //CLASS_DECL_ACME i32 acme_run_system(::acme::system* psystem);
 
 
-//CLASS_DECL_ACME ::estatus acme_run_system_init(::acme::system * psystem);
-//CLASS_DECL_ACME ::estatus acme_run_system_proc(::acme::system * psystem);
-//CLASS_DECL_ACME ::estatus acme_run_system_term(::acme::system * psystem);
+//CLASS_DECL_ACME ::e_status acme_run_system_init(::acme::system * psystem);
+//CLASS_DECL_ACME ::e_status acme_run_system_proc(::acme::system * psystem);
+//CLASS_DECL_ACME ::e_status acme_run_system_term(::acme::system * psystem);
 
 
 template<typename VAR>
@@ -2454,7 +2454,7 @@ class type;
 #define __unbind(holder, ...) (holder)->__release((holder)-> __VA_ARGS__ )
 
 
-CLASS_DECL_ACME ::estatus __realize(::matter * pmatter, const ::promise::process & process);
+CLASS_DECL_ACME ::e_status __realize(::matter * pmatter, const ::promise::process & process);
 
 // C-includes
 //#include "acme/os/os.h"
@@ -2829,7 +2829,7 @@ using ecommand = ::enumeration<enum_command>;
 using echeck = ::enumeration<enum_check>;
 
 
-typedef ::estatus THREAD_ROUTINE(thread_parameter parameter);
+typedef ::e_status THREAD_ROUTINE(thread_parameter parameter);
 
 
 inline bool succeeded(const ::payload &payload);
@@ -3688,7 +3688,7 @@ class ifs;
 //CLASS_DECL_ACME::file::path get_last_run_application_path(string strAppId);
 //CLASS_DECL_ACME bool set_last_run_application_path(string strAppId);
 
-//CLASS_DECL_ACME ::estatus load_factory_library(string strLibrary);
+//CLASS_DECL_ACME ::e_status load_factory_library(string strLibrary);
 
 
 class node_data_exchange;

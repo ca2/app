@@ -132,7 +132,7 @@ namespace browser
 
             auto pinteraction = GetTypedParent<::user::split_view>()->get_child_by_id("top_edit_view");
 
-            pinteraction->_001SetText(m_strNewHelloBrowser,::source_initialize);
+            pinteraction->_001SetText(m_strNewHelloBrowser,::e_source_initialize);
 
          }
 

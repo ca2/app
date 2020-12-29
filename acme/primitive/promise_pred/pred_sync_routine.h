@@ -20,7 +20,7 @@ namespace promise
       virtual ~pred_sync_routine() {}
 
 
-      virtual ::estatus run() override
+      virtual ::e_status run() override
       {
 
          m_pred();

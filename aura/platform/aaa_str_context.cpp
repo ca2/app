@@ -188,7 +188,7 @@
 //   }
 //
 //
-//   ::estatus str::initialize(::layered * pobjectContext)
+//   ::e_status str::initialize(::layered * pobjectContext)
 //   {
 //
 //      auto estatus = ::object::initialize(pobjectContext);

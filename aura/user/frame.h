@@ -134,7 +134,7 @@ namespace user
 
       virtual ::color get_border_main_body_color();
 
-      ::estatus add_menu_item(const string & strPath, const string & strText, const string & strId);
+      ::e_status add_menu_item(const string & strPath, const string & strText, const string & strId);
 
 
       //virtual ::task_pool* taskpool() override;

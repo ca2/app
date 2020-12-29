@@ -48,7 +48,7 @@ namespace app_net
 
       __construct(m_pfont);
 
-      m_pfont->create_point_font("Segoe UI", 21.0);
+      m_pfont->create_point_font(FONT_SANS_UI, 21.0);
 
    }
 

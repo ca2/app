@@ -8,7 +8,7 @@ namespace acme
 {
 
 
-   ::estatus system::os_application_system_run()
+   ::e_status system::os_application_system_run()
    {
 
       //auto estatus = psystem->begin_synch();

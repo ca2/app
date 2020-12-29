@@ -410,13 +410,13 @@ namespace userfs
       if (itema.get_count() == 1)
       {
 
-         _017OpenItem(itema.first_pointer(), bOpenFile, context + ::source_selection);
+         _017OpenItem(itema.first_pointer(), bOpenFile, context + ::e_source_selection);
 
       }
       else if (bOpenFile)
       {
 
-         _017OpenFile(itema, context + ::source_selection);
+         _017OpenFile(itema, context + ::e_source_selection);
 
       }
 

@@ -54,9 +54,9 @@ public:
    void impl_term();
 
 
-   virtual ::estatus initialize_timer(::apex::timer_array* ptimera, uptr uiTimer = 0, PFN_TIMER pfnTimer = nullptr, void* pvoidData = nullptr, class sync* pmutex = nullptr);
+   virtual ::e_status initialize_timer(::apex::timer_array* ptimera, uptr uiTimer = 0, PFN_TIMER pfnTimer = nullptr, void* pvoidData = nullptr, class sync* pmutex = nullptr);
 
-   virtual ::estatus on_task() override;
+   virtual ::e_status on_task() override;
 
 
    bool start(const ::duration& duration, bool bPeriodic);

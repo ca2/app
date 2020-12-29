@@ -17,7 +17,7 @@ namespace axis
       virtual ~user();
 
 
-      virtual ::estatus init() override;
+      virtual ::e_status init() override;
       virtual void term() override;
 
 

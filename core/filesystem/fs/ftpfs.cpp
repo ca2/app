@@ -12,7 +12,7 @@ ftpfs::ftpfs()
 }
 
 
-::estatus ftpfs::initialize_ftpfs(::layered * pobjectContext, const char * pszRoot)
+::e_status ftpfs::initialize_ftpfs(::layered * pobjectContext, const char * pszRoot)
 {
 
    auto estatus = ::fs::data::initialize(pobjectContext);
@@ -42,7 +42,7 @@ ftpfs::~ftpfs()
 }
 
 //
-//::estatus ftpfs::initialize(::layered * pobjectContext)
+//::e_status ftpfs::initialize(::layered * pobjectContext)
 //{
 //
 //   auto estatus = __compose_new(this, m_pftpnet);

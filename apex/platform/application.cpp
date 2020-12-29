@@ -229,7 +229,7 @@ namespace apex
    }
 
 
-   ::estatus application::initialize(::layered * pobjectContext)
+   ::e_status application::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::thread::initialize(pobjectContext);
@@ -644,7 +644,7 @@ namespace apex
    }
 
 
-   ::estatus     application::do_request(::create * pcreate)
+   ::e_status     application::do_request(::create * pcreate)
    {
 
       return ::thread::do_request(pcreate);
@@ -652,7 +652,7 @@ namespace apex
    }
 
 
-   ::estatus application::call_request(::create * pcreate)
+   ::e_status application::call_request(::create * pcreate)
    {
 
       if (pcreate->m_ecommand == ::command_protocol)
@@ -830,7 +830,7 @@ namespace apex
    }
 
 
-   //::estatus application::os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //::e_status application::os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   return ::os_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
@@ -838,7 +838,7 @@ namespace apex
    //}
 
 
-   //::estatus application::ui_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //::e_status application::ui_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -853,7 +853,7 @@ namespace apex
    //}
 
 
-   //::estatus application::ui_message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //::e_status application::ui_message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -868,7 +868,7 @@ namespace apex
    //}
 
 
-   //::estatus application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //::e_status application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -885,7 +885,7 @@ namespace apex
    //}
 
 
-   //::estatus application::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //::e_status application::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
@@ -902,7 +902,7 @@ namespace apex
    //}
 
 
-   //::estatus application::message_box(const payload & payload)
+   //::e_status application::message_box(const payload & payload)
    //{
 
    //   __pointer(::user::primitive) puiOwner;
@@ -1476,7 +1476,7 @@ namespace apex
 
 
 
-   ::estatus application::get_temp_file_name_template(string & strRet, const char * lpszName, const char * pszExtension, const char * pszTemplate)
+   ::e_status application::get_temp_file_name_template(string & strRet, const char * lpszName, const char * pszExtension, const char * pszTemplate)
    {
 
       __throw(not_implemented());
@@ -1486,7 +1486,7 @@ namespace apex
    }
 
 
-   ::estatus application::get_temp_file_name(string & strRet, const char * lpszName, const char * pszExtension)
+   ::e_status application::get_temp_file_name(string & strRet, const char * lpszName, const char * pszExtension)
    {
 
       return get_temp_file_name_template(strRet, lpszName, pszExtension, nullptr);
@@ -1494,7 +1494,7 @@ namespace apex
    }
 
 
-   ::estatus application::process_exception(::exception_pointer pe)
+   ::e_status application::process_exception(::exception_pointer pe)
    {
 
       return ::thread::process_exception(pe);
@@ -1523,7 +1523,7 @@ namespace apex
    //}
 
 
-   ::estatus     application::main()
+   ::e_status     application::main()
    {
 
       INFO("apex::application::main");
@@ -1567,7 +1567,7 @@ namespace apex
    }
 
 
-   ::estatus application::init_thread()
+   ::e_status application::init_thread()
    {
 
       try
@@ -1624,7 +1624,7 @@ namespace apex
    }
 
 
-   ::estatus application::pre_run()
+   ::e_status application::pre_run()
    {
 
       INFO("apex::application::pre_run");
@@ -1710,10 +1710,10 @@ namespace apex
    }
 
 
-//   ::estatus application::on_run()
+//   ::e_status application::on_run()
 //   {
 //
-//      ::estatus     estatus = ::success;
+//      ::e_status     estatus = ::success;
 //
 //      try
 //      {
@@ -1925,7 +1925,7 @@ namespace apex
    }
 
 
-   ::estatus application::init_instance()
+   ::e_status application::init_instance()
    {
 
       //xxdebug_box("check_exclusive", "check_exclusive", e_message_box_icon_information);
@@ -2120,7 +2120,7 @@ namespace apex
 
             data_set({ "locale", true }, str);
 
-            set_locale(str, ::source_database);
+            set_locale(str, ::e_source_database);
 
          }
          else if (value("lang").get_count() > 0)
@@ -2132,7 +2132,7 @@ namespace apex
 
             data_set({ "locale", true }, str);
 
-            set_locale(str, ::source_database);
+            set_locale(str, ::e_source_database);
 
          }
          else if (data_get({ "locale", true }, str))
@@ -2141,7 +2141,7 @@ namespace apex
             if (str.has_char())
             {
 
-               set_locale(str, ::source_database);
+               set_locale(str, ::e_source_database);
 
             }
 
@@ -2191,7 +2191,7 @@ namespace apex
 
             data_set({ "schema", true }, str);
 
-            set_schema(str, ::source_database);
+            set_schema(str, ::e_source_database);
 
          }
          else if (data_get({ "schema", true }, str))
@@ -2200,7 +2200,7 @@ namespace apex
             if (str.has_char())
             {
 
-               set_schema(str, ::source_database);
+               set_schema(str, ::e_source_database);
 
             }
 
@@ -2260,7 +2260,7 @@ namespace apex
 
             data_set({ "locale", true }, str);
 
-            set_locale(str, ::source_database);
+            set_locale(str, ::e_source_database);
 
          }
          else if (value("lang").get_count() > 0)
@@ -2272,7 +2272,7 @@ namespace apex
 
             data_set({ "locale", true }, str);
 
-            set_locale(str, ::source_database);
+            set_locale(str, ::e_source_database);
 
          }
          else if (data_get({ "locale", true }, str))
@@ -2281,7 +2281,7 @@ namespace apex
             if (str.has_char())
             {
 
-               set_locale(str, ::source_database);
+               set_locale(str, ::e_source_database);
 
             }
 
@@ -2331,7 +2331,7 @@ namespace apex
 
             data_set({ "schema", true }, str);
 
-            set_schema(str, ::source_database);
+            set_schema(str, ::e_source_database);
 
          }
          else if (data_get({ "schema", true }, str))
@@ -2340,7 +2340,7 @@ namespace apex
             if (str.has_char())
             {
 
-               set_schema(str, ::source_database);
+               set_schema(str, ::e_source_database);
 
             }
 
@@ -2370,7 +2370,7 @@ namespace apex
    }
 
 
-   ::estatus application::application_pre_run()
+   ::e_status application::application_pre_run()
    {
 
       INFO("apex::application::application_pre_run");
@@ -2653,7 +2653,7 @@ namespace apex
    }
 
 
-   ::estatus application::on_before_launching()
+   ::e_status application::on_before_launching()
    {
 
       string strLicense = get_license_id();
@@ -2885,7 +2885,7 @@ retry_license:
    }
 
 
-   ::estatus application::os_native_bergedge_start()
+   ::e_status application::os_native_bergedge_start()
    {
 
       return true;
@@ -2893,7 +2893,7 @@ retry_license:
    }
 
 
-   ::estatus     application::run()
+   ::e_status     application::run()
    {
 
       //if (is_system())
@@ -2953,7 +2953,7 @@ retry_license:
    }
 
 
-   ::estatus application::init_service()
+   ::e_status application::init_service()
    {
 
       if (!is_serviceable())
@@ -2994,7 +2994,7 @@ retry_license:
 
    }
 
-   ::estatus application::os_create_service()
+   ::e_status application::os_create_service()
    {
 
       return Context.os().create_service();
@@ -3002,7 +3002,7 @@ retry_license:
    }
 
 
-   ::estatus application::os_remove_service()
+   ::e_status application::os_remove_service()
    {
 
       return Context.os().remove_service();
@@ -3010,7 +3010,7 @@ retry_license:
    }
 
 
-   ::estatus application::os_start_service()
+   ::e_status application::os_start_service()
    {
 
       return Context.os().start_service();
@@ -3018,7 +3018,7 @@ retry_license:
    }
 
 
-   ::estatus application::os_stop_service()
+   ::e_status application::os_stop_service()
    {
 
       return Context.os().stop_service();
@@ -3087,7 +3087,7 @@ retry_license:
 
    //}
 
-   ::estatus application::process_init()
+   ::e_status application::process_init()
    {
 
 
@@ -3338,7 +3338,7 @@ retry_license:
    }
 
 
-   ::estatus application::init_application()
+   ::e_status application::init_application()
    {
 
       INFO("apex::application::init_application");
@@ -3447,10 +3447,10 @@ retry_license:
    }
 
 
-   ::estatus application::init1()
+   ::e_status application::init1()
    {
 
-      ::estatus estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJ_REF_DBG_COMMA_THIS_NOTE("::apex::application::init1") );
+      ::e_status estatus = __own(this, m_puserlanguagemap, __new(::user::language_map) OBJ_REF_DBG_COMMA_THIS_NOTE("::apex::application::init1") );
 
       if (!estatus)
       {
@@ -3587,9 +3587,9 @@ retry_license:
 
          }
 
-         set_locale(strLocale, ::source_database);
+         set_locale(strLocale, ::e_source_database);
 
-         set_schema(strSchema, ::source_database);
+         set_schema(strSchema, ::e_source_database);
 
       }
 
@@ -3638,7 +3638,7 @@ retry_license:
 
    }
 
-   ::estatus application::init2()
+   ::e_status application::init2()
    {
 
       //if (!impl_init2())
@@ -3688,7 +3688,7 @@ retry_license:
 
    }
 
-   ::estatus application::init3()
+   ::e_status application::init3()
    {
 
       string strFolder = m_strAppName;
@@ -4081,7 +4081,7 @@ retry_license:
    }
 
 
-   ::estatus application::notify_process_init()
+   ::e_status application::notify_process_init()
    {
 
       ::message::application message(::message::application_process_init);
@@ -4093,7 +4093,7 @@ retry_license:
    }
 
 
-   ::estatus application::notify_init1()
+   ::e_status application::notify_init1()
    {
 
       ::message::application message(::message::application_init1);
@@ -4105,7 +4105,7 @@ retry_license:
    }
 
 
-   ::estatus application::notify_init2()
+   ::e_status application::notify_init2()
    {
 
       ::message::application message(::message::application_init2);
@@ -4115,7 +4115,7 @@ retry_license:
       return message.m_bOk;
 
    }
-   ::estatus application::notify_init3()
+   ::e_status application::notify_init3()
    {
 
       ::message::application message(::message::application_init3);
@@ -4219,7 +4219,7 @@ retry_license:
 
 
 
-   ::estatus application::on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId)
+   ::e_status application::on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId)
    {
 
       if (eexclusive == ExclusiveInstanceLocal)
@@ -4240,7 +4240,7 @@ retry_license:
    }
 
 
-   ::estatus application::on_exclusive_instance_local_conflict(bool & bHandled)
+   ::e_status application::on_exclusive_instance_local_conflict(bool & bHandled)
    {
 
       bool bContinue = false;
@@ -4301,7 +4301,7 @@ retry_license:
    }
 
 
-   ::estatus application::on_exclusive_instance_local_conflict_id(bool & bHandled, string strId)
+   ::e_status application::on_exclusive_instance_local_conflict_id(bool & bHandled, string strId)
    {
 
       bool bContinue = false;
@@ -4354,7 +4354,7 @@ retry_license:
    }
 
 
-   ::estatus application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
+   ::e_status application::on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine)
    {
 
       auto pcommandline = __create_new < command_line >();
@@ -5062,7 +5062,7 @@ retry_license:
    }
 
 
-   ::estatus application::app_set(string strPath, string strValue)
+   ::e_status application::app_set(string strPath, string strValue)
    {
 
       return Context.sys_set(::file::path(m_strAppName) / strPath, strValue);
@@ -5319,7 +5319,7 @@ retry_license:
    void application::defer_create_keyboard()
    {
 
-      //set_keyboard_layout(nullptr,::source_database);
+      //set_keyboard_layout(nullptr,::e_source_database);
 
    }
 
@@ -6115,7 +6115,7 @@ retry_license:
    }
 
 
-   ::estatus application::verb()
+   ::e_status application::verb()
    {
 
       return true;
@@ -6172,7 +6172,7 @@ retry_license:
    //}
 
 
-   //::estatus     application::main()
+   //::e_status     application::main()
    //{
 
    //   return ::apex::application::main();
@@ -6180,7 +6180,7 @@ retry_license:
    //}
 
 
-   ::estatus application::on_run()
+   ::e_status application::on_run()
    {
 
       //try
@@ -6282,7 +6282,7 @@ retry_license:
    }
 
 
-   //::estatus application::init_application()
+   //::e_status application::init_application()
    //{
 
    //   return ::apex::application::init_application();
@@ -6290,7 +6290,7 @@ retry_license:
    //}
 
 
-   //::estatus application::application_pre_run()
+   //::e_status application::application_pre_run()
    //{
 
    //   return ::apex::application::application_pre_run();
@@ -6363,7 +6363,7 @@ retry_license:
    //}
 
 
-   //::estatus application::os_native_bergedge_start()
+   //::e_status application::os_native_bergedge_start()
    //{
 
    //   if (!::apex::application::os_native_bergedge_start())
@@ -6386,7 +6386,7 @@ retry_license:
    //}
 
 
-   //::estatus     application::run()
+   //::e_status     application::run()
    //{
 
    //   return ::apex::application::run();
@@ -6415,7 +6415,7 @@ retry_license:
    //}
 
 
-   //::estatus application::process_init()
+   //::e_status application::process_init()
    //{
 
    //   create_factory < ::database::field_array >();
@@ -6461,7 +6461,7 @@ retry_license:
    //}
 
 
-   //::estatus application::init_instance()
+   //::e_status application::init_instance()
    //{
 
    //   //if (m_bAxisInitializeInstance)
@@ -6548,7 +6548,7 @@ retry_license:
 
 
 
-   //::estatus application::init1()
+   //::e_status application::init1()
    //{
 
    //   //if (m_bAxisInitialize1)
@@ -6587,7 +6587,7 @@ retry_license:
    //}
 
 
-   //::estatus application::init2()
+   //::e_status application::init2()
    //{
 
    //   if (!::apex::application::init2())
@@ -6598,7 +6598,7 @@ retry_license:
    //}
 
 
-   //::estatus application::init3()
+   //::e_status application::init3()
    //{
 
    //   if (!::apex::application::init3())
@@ -6615,7 +6615,7 @@ retry_license:
 //
 
 
-   ::estatus application::init()
+   ::e_status application::init()
    {
 
       m_millisHeartBeat.Now();
@@ -7055,14 +7055,14 @@ retry_license:
    //}
 
 
-   estatus application::userfs_init1()
+   ::e_status application::userfs_init1()
    {
 
       return error_not_implemented;
 
    }
 
-   estatus application::userfs_process_init()
+   ::e_status application::userfs_process_init()
    {
 
       return error_not_implemented;
@@ -7302,7 +7302,7 @@ retry_license:
 
 
 
-   //   ::estatus     application::interactive_credentials(::account::credentials * pcredentials)
+   //   ::e_status     application::interactive_credentials(::account::credentials * pcredentials)
    //   {
    //
    //      return ::apex::applciation::interactive_credentials(pcredentials);
@@ -7480,7 +7480,7 @@ namespace apex
    //}
 
 
-   //::estatus application::initialize(::layered * pobjectContext)
+   //::e_status application::initialize(::layered * pobjectContext)
    //{
 
    //   auto estatus = ::apex::application::initialize(pobjectContext);
@@ -7668,7 +7668,7 @@ namespace apex
 
 
 
-  /* ::estatus     application::run()
+  /* ::e_status     application::run()
    {
 
       return ::apex::application::run();
@@ -9453,7 +9453,7 @@ namespace apex
    //}
 
 
-   //::estatus application::bergedge_start()
+   //::e_status application::bergedge_start()
    //{
 
    //   string strId = m_strId;
@@ -10239,7 +10239,7 @@ namespace apex
    }
 
 
-   estatus application::initialize_contextualized_theme()
+   ::e_status application::initialize_contextualized_theme()
    {
 
       return ::success;
@@ -10309,7 +10309,7 @@ namespace apex
    //}
 
 
-   //::estatus application::initialize(::layered * pobjectContext)
+   //::e_status application::initialize(::layered * pobjectContext)
    //{
 
    //   auto estatus = ::apex::application::initialize(pobjectContext);
@@ -10357,7 +10357,7 @@ namespace apex
       //}
 
 
-   //::estatus application::process_init()
+   //::e_status application::process_init()
    //{
 
    //   if (::apex::application::process_init())
@@ -10372,7 +10372,7 @@ namespace apex
    //}
 
 
-   //::estatus application::init_instance()
+   //::e_status application::init_instance()
    //{
 
    //   if (!::apex::application::init_instance())
@@ -10396,7 +10396,7 @@ namespace apex
    //}
 
 
-   ::estatus     application::create_impact_system()
+   ::e_status     application::create_impact_system()
    {
 
       return ::success;
@@ -10539,7 +10539,7 @@ namespace apex
    //}
 
 
-   ::estatus application::on_thread_on_idle(::thread* pthread, ::i32 lCount)
+   ::e_status application::on_thread_on_idle(::thread* pthread, ::i32 lCount)
    {
 
       __throw(todo("interaction"));
@@ -10620,7 +10620,7 @@ namespace apex
    //}
 
 
-   ::estatus application::process_message()
+   ::e_status application::process_message()
    {
 
       return ::thread::process_message();
@@ -10713,7 +10713,7 @@ namespace apex
 
    //               pcheck->_001SetCheck(
    //                  Context.os().is_user_auto_start(get_executable_appid()),
-   //                  ::source_initialize);
+   //                  ::e_source_initialize);
 
    //            }
    //         }
@@ -10967,7 +10967,7 @@ namespace apex
    }
 
 
-   ::estatus application::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+   ::e_status application::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
    {
 
       auto estatus = System.message_box(pszMessage, pszTitle, emessagebox, process);
@@ -10977,7 +10977,7 @@ namespace apex
    }
 
 
-   ::estatus application::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::promise::process & process)
+   ::e_status application::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::promise::process & process)
    {
 
       auto estatus = System.message_box_timeout(pszMessage, pszTitle, durationTimeout, emessagebox, process);

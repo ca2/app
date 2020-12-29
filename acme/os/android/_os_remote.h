@@ -1,8 +1,6 @@
 #pragma once
 
 
-
-
 class os_remote :
    public os_object
 {
@@ -12,9 +10,11 @@ public:
    using os_object::os_object;
 
 
-   //String m_strAppId;
+   //String m_strApplicationName;
+   JX(str, ApplicationName);
+   //String m_strApplicationIdentifier;
    JX(str, ApplicationIdentifier);
-   //String m_strParameters;
+   //String m_strCommandLineParameters;
    JX(str, CommandLineParameters);
    //String m_strCacheDir;
    JX(str, CacheDirectory);
@@ -58,18 +58,33 @@ public:
    JX(i, EditFocusRight);
    //int m_iEditFocusBottom;
    JX(i, EditFocusBottom);
-   //String m_strEditFocusText;
-   JX(str, EditFocusText);
-   //int m_iEditFocusSelBeg;
-   JX(i, EditFocusSelBeg);
-   //int m_iEditFocusSelEnd;
-   JX(i, EditFocusSelEnd);
    //boolean m_bEditFocusKill;
    JX(b, EditFocusKill);
    //boolean m_bRedraw;
    JX(b, Redraw);
+   //boolean m_bEditorSelectionUpdated;
+   JX(b, EditorSelectionUpdated);
+   //int m_iEditorSelectionStart;
+   JX(i, EditorSelectionStart);
+   //int m_iEditorSelectionEnd;
+   JX(i, EditorSelectionEnd);
+   //boolean m_bEditorTextUpdated;
+   JX(b, EditorTextUpdated);
+   //int m_strEditorText;
+   JX(str, EditorText);
+   //boolean m_bInputMethodManagerUpdateSelection;
+   JX(b, InputMethodManagerUpdateSelection);
+   //int m_iInputMethodManagerSelectionStart;
+   JX(i, InputMethodManagerSelectionStart);
+   //int m_iInputMethodManagerSelectionEnd;
+   JX(i, InputMethodManagerSelectionEnd);
+   //int m_iInputMethodManagerCandidateStart;
+   JX(i, InputMethodManagerCandidateStart);
+   //int m_iInputMethodManagerCandidateEnd;
+   JX(i, InputMethodManagerCandidateEnd);
 
 
 };
+
 
 

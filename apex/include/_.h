@@ -134,7 +134,7 @@ namespace opengl
 //CLASS_DECL_APEX void throw_todo(void);
 
 
-//CLASS_DECL_APEX void set_last_status(const ::estatus & estatus)
+//CLASS_DECL_APEX void set_last_status(const ::e_status & estatus)
 //CLASS_DECL_APEX void windowing_output_debug_string(const char * pszDebugString);
 //CLASS_DECL_APEX void c_function_call(void * p);
 extern CLASS_DECL_APEX int g_bApex;
@@ -747,9 +747,9 @@ class machine_event_central;
 //CLASS_DECL_APEX i32 apex_run_system(::apex::system* psystem);
 
 
-//CLASS_DECL_APEX ::estatus apex_run_system_init(::apex::system * psystem);
-//CLASS_DECL_APEX ::estatus apex_run_system_proc(::apex::system * psystem);
-//CLASS_DECL_APEX ::estatus apex_run_system_term(::apex::system * psystem);
+//CLASS_DECL_APEX ::e_status apex_run_system_init(::apex::system * psystem);
+//CLASS_DECL_APEX ::e_status apex_run_system_proc(::apex::system * psystem);
+//CLASS_DECL_APEX ::e_status apex_run_system_term(::apex::system * psystem);
 
 
 //template < typename VAR >
@@ -2453,7 +2453,7 @@ namespace primitive
 //using echeck = ::enumeration < enum_check >;
 //
 
-typedef ::estatus THREAD_ROUTINE(thread_parameter parameter);
+typedef ::e_status THREAD_ROUTINE(thread_parameter parameter);
 
 
 //inline bool succeeded(const ::payload & payload);
@@ -3295,7 +3295,7 @@ CLASS_DECL_APEX::file::path get_last_run_application_path_file(string strAppId);
 CLASS_DECL_APEX::file::path get_last_run_application_path(string strAppId);
 CLASS_DECL_APEX bool set_last_run_application_path(string strAppId);
 
-CLASS_DECL_APEX ::estatus load_factory_library(string strLibrary);
+CLASS_DECL_APEX ::e_status load_factory_library(string strLibrary);
 
 
 class node_data_exchange;

@@ -19,7 +19,7 @@ namespace database
    }
 
 
-   ::estatus     database::connect(const char * name, const char * host, const char * port,const char * user, const char * pass, const char * sckt, u64 uConnectionFlags)
+   ::e_status     database::connect(const char * name, const char * host, const char * port,const char * user, const char * pass, const char * sckt, u64 uConnectionFlags)
    {
 
       m_strHost = host;
@@ -81,7 +81,7 @@ namespace database
    }
 
 
-   ::estatus     database::init()
+   ::e_status     database::init()
    {
 
       return ::success;
@@ -89,7 +89,7 @@ namespace database
    }
 
 
-   ::estatus     database::set_error_code(int iErrorCode)
+   ::e_status     database::set_error_code(int iErrorCode)
    {
 
       m_iLastError = iErrorCode;

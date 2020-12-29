@@ -1710,10 +1710,10 @@ namespace core
 {
 
 
-   ::estatus user::create_user_shell()
+   ::e_status user::create_user_shell()
    {
 
-      ::estatus estatus = ::success;
+      ::e_status estatus = ::success;
 
       if (!m_pshell)
       {

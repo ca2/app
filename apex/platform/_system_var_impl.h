@@ -20,7 +20,7 @@
 //}
 //
 //
-////inline payload::payload(const ::estatus & estatus)
+////inline payload::payload(const ::e_status & estatus)
 ////{
 ////
 ////   set_type(type_enum_status);

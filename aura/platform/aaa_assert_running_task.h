@@ -22,7 +22,7 @@ namespace aura
       virtual ~assert_running_task();
 
 
-      virtual ::estatus     run() override;
+      virtual ::e_status     run() override;
 
 
    };

@@ -5,7 +5,7 @@ namespace status
 {
 
 
-   string result::get_error_text(const ::estatus & estatus)
+   string result::get_error_text(const ::e_status & estatus)
    {
 
       string strError;

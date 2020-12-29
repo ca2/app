@@ -166,7 +166,7 @@ CLASS_DECL_AURA void aura_ref();
 //CLASS_DECL_AURA void throw_todo(void);
 //
 //
-////CLASS_DECL_AURA void set_last_status(const ::estatus & estatus);
+////CLASS_DECL_AURA void set_last_status(const ::e_status & estatus);
 ////CLASS_DECL_AURA void windowing_output_debug_string(const char * pszDebugString);
 ////CLASS_DECL_AURA void c_function_call(void * p);
 ////extern CLASS_DECL_AURA int g_bAura;
@@ -824,9 +824,9 @@ CLASS_DECL_AURA void aura_ref();
 ////CLASS_DECL_AURA i32 aura_run_system(::aura::system* psystem);
 //
 //
-////CLASS_DECL_AURA ::estatus aura_run_system_init(::aura::system * psystem);
-////CLASS_DECL_AURA ::estatus aura_run_system_proc(::aura::system * psystem);
-////CLASS_DECL_AURA ::estatus aura_run_system_term(::aura::system * psystem);
+////CLASS_DECL_AURA ::e_status aura_run_system_init(::aura::system * psystem);
+////CLASS_DECL_AURA ::e_status aura_run_system_proc(::aura::system * psystem);
+////CLASS_DECL_AURA ::e_status aura_run_system_term(::aura::system * psystem);
 //
 //
 //template < typename VAR >
@@ -2573,7 +2573,7 @@ namespace user
 //using echeck = ::enumeration < enum_check >;
 //
 //
-//typedef ::estatus THREAD_PROCEDURE(thread_parameter parameter);
+//typedef ::e_status THREAD_PROCEDURE(thread_parameter parameter);
 //
 //
 //inline bool succeeded(const ::payload & payload);
@@ -3170,7 +3170,7 @@ namespace draw2d
 //CLASS_DECL_AURA::file::path get_last_run_application_path(string strAppId);
 //CLASS_DECL_AURA bool set_last_run_application_path(string strAppId);
 //
-//CLASS_DECL_AURA ::estatus load_factory_library(string strLibrary);
+//CLASS_DECL_AURA ::e_status load_factory_library(string strLibrary);
 //
 //
 //class node_data_exchange;

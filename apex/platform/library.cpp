@@ -12,7 +12,7 @@ namespace apex
    const char * psz_empty_app_id = "";
 
 
-   ::estatus     library::initialize(::layered * pobjectContext)
+   ::e_status     library::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -26,7 +26,7 @@ namespace apex
    }
 
 
-   ::estatus library::initialize_apex_library(::layered * pobjectContext,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
+   ::e_status library::initialize_apex_library(::layered * pobjectContext,int iDesambig,const char * pszRoot, const char * pszName, const char * pszFolder)
    {
 
       auto estatus = initialize(pobjectContext);

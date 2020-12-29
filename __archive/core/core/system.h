@@ -65,17 +65,17 @@ namespace acme
       system();
       virtual ~system();
 
-      virtual ::estatus  initialize_system(::matter * pobjectContext, app_core * pappcore) override;
+      virtual ::e_status  initialize_system(::matter * pobjectContext, app_core * pappcore) override;
 
       virtual void discard_to_factory(__pointer(matter) pca);
 
       virtual bool is_system() const override;
 
-      virtual ::estatus process_init() override;
+      virtual ::e_status process_init() override;
 
-      virtual ::estatus init2() override;
+      virtual ::e_status init2() override;
 
-      virtual ::estatus init_system() override;
+      virtual ::e_status init_system() override;
 
       virtual void term() override;
 
@@ -83,16 +83,16 @@ namespace acme
 
 
       //virtual i32 main();
-      ///virtual ::estatus InitApplication() override;
+      ///virtual ::e_status InitApplication() override;
 
-      virtual ::estatus init() override;
-      virtual ::estatus init1() override;
-      //virtual ::estatus init3() override;
+      virtual ::e_status init() override;
+      virtual ::e_status init1() override;
+      //virtual ::e_status init3() override;
 
-      //virtual ::estatus bergedge_start() override;
+      //virtual ::e_status bergedge_start() override;
 
 
-      virtual ::estatus initialize_rich_text();
+      virtual ::e_status initialize_rich_text();
 
 
       //virtual index get_new_bergedge(application_bias * pbiasCreation = nullptr);
@@ -177,20 +177,20 @@ namespace acme
 
       virtual string get_host_location_url();
 
-      virtual ::estatus add_view_library(::acme::library * plibrary);
+      virtual ::e_status add_view_library(::acme::library * plibrary);
 
       //virtual void get_cursor_pos(POINT32 * ppoint);
 
 
 
-      virtual ::estatus do_request(::create * pcommand) override;
+      virtual ::e_status do_request(::create * pcommand) override;
 
 
       void assert_valid() const override;
       void dump(dump_context & action_context) const override;
 
 
-      virtual ::estatus     main() override;
+      virtual ::e_status     main() override;
       virtual void hist_hist(const char * psz) override;
 
 
@@ -213,10 +213,10 @@ namespace acme
       //virtual ~system();
 
 
-      ///virtual ::estatus initialize_system(::matter* pobjectContext, app_core* pappcore) override;
+      ///virtual ::e_status initialize_system(::matter* pobjectContext, app_core* pappcore) override;
 
 
-      //virtual ::estatus process_init() override;
+      //virtual ::e_status process_init() override;
       //virtual void term_system() override;
 
       //virtual __pointer(::acme::session) on_create_session() override;

@@ -31,7 +31,7 @@ namespace aura
       savings();
       virtual ~savings();
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
       virtual void save(e_resource eresource);
       virtual void try_to_save(e_resource eresource);

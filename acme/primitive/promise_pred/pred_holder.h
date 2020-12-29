@@ -18,7 +18,7 @@ public:
    }
 
    
-   virtual ::estatus run() { return ::success; }
+   virtual ::e_status run() { return ::success; }
 
 
 };
@@ -41,7 +41,7 @@ public:
    }
 
    
-   virtual ::estatus run() override
+   virtual ::e_status run() override
    {
 
       m_pred();

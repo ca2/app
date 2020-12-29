@@ -110,8 +110,8 @@ public:
 
    virtual void kick_idle();
 
-   //::estatus add_update(const ::id & id);
-   //::estatus remove_update(const ::id& id);
+   //::e_status add_update(const ::id & id);
+   //::e_status remove_update(const ::id& id);
    void remove_from_any_source();
 
    inline bool is_shared() const { return m_countReference > 1; }
@@ -134,31 +134,31 @@ public:
    inline i64 release(OBJ_REF_DBG_PARAMS);
 #endif
 
-   virtual ::estatus initialize(::layered* pobjectContext);
+   virtual ::e_status initialize(::layered* pobjectContext);
    virtual void finalize();
 
 
-   virtual ::estatus do_task();
-   virtual ::estatus on_task();
+   virtual ::e_status do_task();
+   virtual ::e_status on_task();
 
 
-   virtual ::estatus osthread_init();
-   virtual ::estatus __thread_init();
-   virtual ::estatus __thread_main();
-   virtual ::estatus __thread_term();
-   virtual ::estatus osthread_term();
+   virtual ::e_status osthread_init();
+   virtual ::e_status __thread_init();
+   virtual ::e_status __thread_main();
+   virtual ::e_status __thread_term();
+   virtual ::e_status osthread_term();
 
 
-   virtual ::estatus add_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
-   virtual ::estatus add_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
+   virtual ::e_status add_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
+   virtual ::e_status add_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
 
 
-   virtual ::estatus release_composite2(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS);
-   virtual ::estatus finalize_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
-   virtual ::estatus release_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
+   virtual ::e_status release_composite2(::matter * pobject OBJ_REF_DBG_COMMA_PARAMS);
+   virtual ::e_status finalize_composite(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
+   virtual ::e_status release_reference(::matter* pobject OBJ_REF_DBG_COMMA_PARAMS);
 
 
-   virtual ::estatus set_generic_object_name(const char* pszName);
+   virtual ::e_status set_generic_object_name(const char* pszName);
 
 
    virtual ::matter * get_taskpool_container();
@@ -192,13 +192,13 @@ public:
 
 
    virtual void on_finish();
-   virtual ::estatus set_finish(::context_object * pcontextobjectFinish);
-   virtual ::estatus set_finish_composites(::context_object * pcontextobjectFinish);
+   virtual ::e_status set_finish(::context_object * pcontextobjectFinish);
+   virtual ::e_status set_finish_composites(::context_object * pcontextobjectFinish);
 
 
    // returns success when object is ready to have finalize called
    // returns error_pending if any child or ascendant is still active
-   virtual ::estatus finish(::context_object * pcontextobjectFinish = nullptr);
+   virtual ::e_status finish(::context_object * pcontextobjectFinish = nullptr);
 
 
    virtual void post_quit();
@@ -253,9 +253,9 @@ public:
    virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext);
 
 
-   virtual ::estatus operator()();
+   virtual ::e_status operator()();
    virtual void operator()(const ::payload & payload);
-   virtual ::estatus run();
+   virtual ::e_status run();
    virtual ::payload realize();
    virtual void on_future(const ::payload& payload);
 

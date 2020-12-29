@@ -440,7 +440,7 @@ namespace uwp
    }
 
 
-   ::estatus     os_context::link_open(string strUrl)
+   ::e_status     os_context::link_open(string strUrl)
    {
 
       try
@@ -709,7 +709,7 @@ namespace uwp
    }
 
 
-   ::estatus os_context::create_service()
+   ::e_status os_context::create_service()
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -765,7 +765,7 @@ namespace uwp
    }
 
 
-   ::estatus os_context::remove_service()
+   ::e_status os_context::remove_service()
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -812,7 +812,7 @@ namespace uwp
    }
 
 
-   ::estatus os_context::start_service()
+   ::e_status os_context::start_service()
    {
 
       bool bOk = false;
@@ -860,7 +860,7 @@ namespace uwp
    }
 
 
-   ::estatus os_context::stop_service()
+   ::e_status os_context::stop_service()
    {
 
       bool bOk = false;

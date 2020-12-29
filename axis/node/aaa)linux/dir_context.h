@@ -19,10 +19,10 @@ namespace linux
       virtual ~dir_context();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
-      virtual ::estatus init_system() override;
-      virtual ::estatus init_context() override;
+      virtual ::e_status init_system() override;
+      virtual ::e_status init_context() override;
 
 
       virtual ::file::listing & ls(::file::listing & ls) override;

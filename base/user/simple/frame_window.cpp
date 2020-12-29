@@ -94,7 +94,7 @@ simple_frame_window::~simple_frame_window()
 }
 
 
-::estatus simple_frame_window::initialize(::layered * pobjectContext)
+::e_status simple_frame_window::initialize(::layered * pobjectContext)
 {
 
    auto estatus = ::experience::frame_window::initialize(pobjectContext);
@@ -1130,7 +1130,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
    if (Application.is_true("client_only") && GetParent() == nullptr)
    {
 
-      auto rect = Session->get_host_wnd()->get_client_rect();
+      auto rect = Session->get_host_window()->get_client_rect();
 
       set_dim(rect.left, rect.top, rect.width(), rect.height());
 
@@ -2614,7 +2614,7 @@ bool simple_frame_window::on_before_set_parent(__pointer(::user::interaction) pi
 }
 
 
-bool simple_frame_window::on_set_parent(::user::interaction * puiParent)
+bool simple_frame_window::on_set_parent(::user::primitive * puiParent)
 {
 
    if (!::user::frame_window::on_set_parent(puiParent))

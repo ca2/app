@@ -165,7 +165,7 @@ namespace filemanager
    }
 
 
-   ::estatus component::initialize_filemanager_component(::layered * pobjectContext)
+   ::e_status component::initialize_filemanager_component(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -881,7 +881,7 @@ namespace filemanager
 
 //               document * pdocument = pframe->GetActiveDocument();
 
-//               pdocument->FileManagerBrowse(pathFolder, action::source_user);
+//               pdocument->FileManagerBrowse(pathFolder, action::e_source_user);
 
 //            }
 
@@ -994,7 +994,7 @@ namespace filemanager
 //      if (pathFolder.m_iDir == 1)
 //      {
 
-//         pdocument->FileManagerBrowse(pathFolder, ::source_user);
+//         pdocument->FileManagerBrowse(pathFolder, ::e_source_user);
 
 //      }
 

@@ -91,7 +91,7 @@ namespace uwp
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
-      virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
+      virtual ::e_status main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
 
       void _002OnDraw(::image * pimage);
 
@@ -139,7 +139,7 @@ namespace uwp
       virtual bool is_composite() override;
 
 
-      virtual ::estatus update_graphics_resources() override;
+      virtual ::e_status update_graphics_resources() override;
 
       // for child windows, views, panes etc
       //virtual bool create_window(::user::interaction * pinteraction, const char * lpszClassName,const char * lpszWindowName,u32 dwStyle,const RECT32 & rect,::user::interaction * pParentWnd,id id, ::create * pcreate = nullptr) override;

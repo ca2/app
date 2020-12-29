@@ -63,7 +63,7 @@ namespace music
          //
          //
          ////////////////////////////////////////////////////////////////////////////
-         ::estatus     sequence::Start()
+         ::e_status     sequence::Start()
          {
 
             single_lock sl(mutex(), TRUE);
@@ -79,7 +79,7 @@ namespace music
 
             m_evMmsgDone.ResetEvent();
 
-            ::estatus     estatus = ::success;
+            ::e_status     estatus = ::success;
 
             sl.unlock();
 
@@ -319,7 +319,7 @@ namespace music
           * due to missing notes.
           *
           ***************************************************************************/
-   //      ::estatus     sequence::Pause()
+   //      ::e_status     sequence::Pause()
    //      {
    //         single_lock sl(mutex(), TRUE);
    //
@@ -330,7 +330,7 @@ namespace music
    //
    //         set_status(state_paused);
    //
-   //         //::estatus     estatus = ::success;
+   //         //::e_status     estatus = ::success;
    //         //    single_lock slStream(&m_csStream, false);
    //         //  slStream.lock();
    ////         if(m_pseq != nullptr)
@@ -361,7 +361,7 @@ namespace music
           * The sequencer must be paused before seqRestart may be called.
           *
           ***************************************************************************/
-   //      ::estatus     sequence::Restart()
+   //      ::e_status     sequence::Restart()
    //      {
    //         //    assert(nullptr != pSeq);
    //
@@ -373,7 +373,7 @@ namespace music
    //         set_status(state_playing);
    //         m_evMmsgDone.ResetEvent();
    //
-   //         //    ::estatus     estatus = 0;
+   //         //    ::e_status     estatus = 0;
    //         //    single_lock slStream(&m_csStream, false);
    //         //  slStream.lock();
    ////         if(m_pseq != nullptr)
@@ -401,7 +401,7 @@ namespace music
           * The sequencer must be paused or playing before seqStop may be called.
           *
           ***************************************************************************/
-         ::estatus     sequence::Stop()
+         ::e_status     sequence::Stop()
          {
 
             single_lock sl(mutex(), TRUE);
@@ -466,12 +466,12 @@ namespace music
           * may be called.
           *
           ***************************************************************************/
-         ::estatus     sequence::get_ticks(imedia_time &  pTicks)
+         ::e_status     sequence::get_ticks(imedia_time &  pTicks)
          {
 
             sync_lock sl(mutex());
 
-            //::estatus                    mmr;
+            //::e_status                    mmr;
 
             if (sequence::state_playing != get_state() &&
                   sequence::state_paused != get_state() &&
@@ -513,7 +513,7 @@ namespace music
          }
 
 
-         ::estatus     sequence::get_millis(imedia_time & time)
+         ::e_status     sequence::get_millis(imedia_time & time)
          {
 
             single_lock sl(mutex());
@@ -878,7 +878,7 @@ namespace music
    //         return true;
    //      }
 
-   //      ::estatus     sequence::CloseStream()
+   //      ::e_status     sequence::CloseStream()
    //      {
    //         single_lock sl(mutex(), TRUE);
    //         if(IsPlaying())
@@ -917,7 +917,7 @@ namespace music
             single_lock sl(mutex(), TRUE);
             //   LPMIDIHDR lpmh = pevent->m_lpmh;
             //   midi_callback_data * lpData = &m_midicallbackdata;
-            //::estatus     estatus;
+            //::e_status     estatus;
 
 
             //         if(0 == m_uBuffersInMMSYSTEM)
@@ -1090,9 +1090,9 @@ namespace music
          }
 
 
-         /*      ::estatus     sequence::buffer::midiOutPrepareHeader(HMIDIOUT hmidiout)
+         /*      ::e_status     sequence::buffer::midiOutPrepareHeader(HMIDIOUT hmidiout)
           {
-          ::estatus     mmr = 0;
+          ::e_status     mmr = 0;
           if(hmidiout == nullptr)
           return mmr;
           if(m_bPrepared)
@@ -1105,9 +1105,9 @@ namespace music
           return mmr;
           }
 
-          ::estatus     sequence::buffer::midiOutUnprepareHeader(HMIDIOUT hmidiout)
+          ::e_status     sequence::buffer::midiOutUnprepareHeader(HMIDIOUT hmidiout)
           {
-          ::estatus     mmr = 0;
+          ::e_status     mmr = 0;
           if(hmidiout == nullptr)
           return mmr;
           if(!m_bPrepared)
@@ -1120,13 +1120,13 @@ namespace music
           return mmr;
           }
 
-          ::estatus     sequence::buffer_array::midiOutUnprepareHeader(HMIDIOUT hmidiout)
+          ::e_status     sequence::buffer_array::midiOutUnprepareHeader(HMIDIOUT hmidiout)
           {
-          ::estatus     mmr = ::success;
+          ::e_status     mmr = ::success;
 
           for (i32 i = 0; i < this->get_size(); i++)
           {
-          ::estatus     mmrBuffer = this->element_at(i).midiOutUnprepareHeader(hmidiout);
+          ::e_status     mmrBuffer = this->element_at(i).midiOutUnprepareHeader(hmidiout);
           if(mmrBuffer != ::success)
           {
           mmr = mmrBuffer;
@@ -1135,9 +1135,9 @@ namespace music
           return mmr;
           }
 
-          ::estatus     sequence::buffer_array::midiOutPrepareHeader(HMIDIOUT hmidiout)
+          ::e_status     sequence::buffer_array::midiOutPrepareHeader(HMIDIOUT hmidiout)
           {
-          ::estatus     estatus = ::success;
+          ::e_status     estatus = ::success;
           for(i32 i = 0; i < this->get_size(); i++)
           {
           estatus = this->element_at(i).midiOutPrepareHeader(
@@ -1160,17 +1160,17 @@ namespace music
          }
 
 
-   //      ::estatus     sequence::buffer::midiStreamOut(seq_context_t * hmidiout)
+   //      ::e_status     sequence::buffer::midiStreamOut(seq_context_t * hmidiout)
          //    {
          /*         ASSERT(hmidiout != nullptr);
           return ::midiStreamOut(hmidiout, &m_midihdr, sizeof(m_midihdr));*/
          //     return ::success;
          //}
 
-         //    ::estatus     sequence::buffer_array::midiStreamOut(seq_context_t * hmidiout)
+         //    ::e_status     sequence::buffer_array::midiStreamOut(seq_context_t * hmidiout)
          //  {
          /*
-          ::estatus     estatus = ::success;
+          ::e_status     estatus = ::success;
           for(i32 i = 0; i < this->get_size(); i++)
           {
           estatus = this->element_at(i).midiStreamOut(

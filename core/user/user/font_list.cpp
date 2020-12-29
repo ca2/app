@@ -198,7 +198,7 @@ namespace user
 
          ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
-         ev.m_actioncontext = ::source_user;
+         ev.m_actioncontext = ::e_source_user;
 
          ev.m_item = item;
 
@@ -242,7 +242,7 @@ namespace user
 
          ev.m_eevent = ::user::e_event_after_change_cur_hover;
 
-         ev.m_actioncontext = ::source_user;
+         ev.m_actioncontext = ::e_source_user;
 
          ev.m_id = m_idView;
 

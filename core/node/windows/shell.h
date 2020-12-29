@@ -34,7 +34,7 @@ namespace windows
       virtual ~shell();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
       virtual i32 impl_get_file_image(const image_key & key) override;
@@ -71,7 +71,7 @@ namespace windows
       virtual void set_image_ico(string strIconLocation, i32 & iImage, color32_t crBk);
       virtual void set_image_resource(string strIconLocation, i32 & iImage, const image_key & imagekey, color32_t crBk);
 
-      virtual ::estatus finish(::context_object * pcontextobject) override;
+      virtual ::e_status finish(::context_object * pcontextobject) override;
 
       //int shell::add_hover_image(int iSize, int iImage, color32_t crBk)
 

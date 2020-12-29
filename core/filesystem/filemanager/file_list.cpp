@@ -82,14 +82,14 @@ namespace filemanager
          && item.m_iSubItem < 0))
       {
 
-         if (!_017OpenSelected(true, ::source_user))
+         if (!_017OpenSelected(true, ::e_source_user))
          {
 
             index iStrict = item.item_index();
 
             auto pitem = fs_list_item(iStrict);
 
-            _017OpenItem(pitem, true, ::source_user);
+            _017OpenItem(pitem, true, ::e_source_user);
 
          }
 
@@ -106,13 +106,13 @@ namespace filemanager
       if(item.is_set())
       {
 
-         _017OpenContextMenuSelected(::source_user);
+         _017OpenContextMenuSelected(::e_source_user);
 
       }
       else
       {
 
-         _017OpenContextMenu(::source_user);
+         _017OpenContextMenu(::e_source_user);
 
       }
 
@@ -156,7 +156,7 @@ namespace filemanager
          if (fs_list_item((::index) iItem)->IsFolder())
          {
 
-            _017OpenContextMenuFolder(fs_list_item((::index) iItem), ::source_user);
+            _017OpenContextMenuFolder(fs_list_item((::index) iItem), ::e_source_user);
 
          }
          else
@@ -692,7 +692,7 @@ namespace filemanager
       if (pcommand->m_id == "1000")
       {
 
-         //      _017OpenSelected(true, ::source_user);
+         //      _017OpenSelected(true, ::e_source_user);
 
          pcommand->m_bRet = true;
 
@@ -1487,7 +1487,7 @@ namespace filemanager
    //         if (pitem->IsFolder())
    //         {
 
-   //            _017OpenFolder(pitem, context) + ::source_selection;
+   //            _017OpenFolder(pitem, context) + ::e_source_selection;
 
    //            break;
 
@@ -1506,7 +1506,7 @@ namespace filemanager
    //   if (bOpenFile && itema.get_size() > 0)
    //   {
 
-   //      _017OpenFile(itema, context) + ::source_selection;
+   //      _017OpenFile(itema, context) + ::e_source_selection;
 
    //   }
 

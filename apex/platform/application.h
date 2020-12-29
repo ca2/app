@@ -170,7 +170,7 @@ namespace apex
       virtual ~application();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
       virtual void assert_valid() const override;
@@ -186,7 +186,7 @@ namespace apex
       //virtual bool app_data_set(const ::id & id, object & obj) override;
       //virtual bool app_data_get(const ::id & id, object & obj) override;
 
-//      virtual ::estatus     interactive_credentials(::account::credentials * pcredentials) override;
+//      virtual ::e_status     interactive_credentials(::account::credentials * pcredentials) override;
 
       //virtual ::database::key calc_data_key() override;
 
@@ -213,32 +213,32 @@ namespace apex
       virtual ::database::server * dataserver();
 
 
-      virtual ::estatus verb() override;
+      virtual ::e_status verb() override;
 
 
       virtual bool Ex2OnAppInstall();
       virtual bool Ex2OnAppUninstall();
 
-      virtual ::estatus init_application();
+      virtual ::e_status init_application();
 
-      virtual ::estatus init1();
-      virtual ::estatus init2();
-      virtual ::estatus init3();
-
-
-      virtual ::estatus init();
+      virtual ::e_status init1();
+      virtual ::e_status init2();
+      virtual ::e_status init3();
 
 
-      virtual ::estatus init_instance();
+      virtual ::e_status init();
 
 
-      virtual ::estatus     run() override;
-      virtual ::estatus     main() override;
-      virtual ::estatus     on_run();
+      virtual ::e_status init_instance();
 
-      virtual ::estatus application_pre_run();
+
+      virtual ::e_status     run() override;
+      virtual ::e_status     main() override;
+      virtual ::e_status     on_run();
+
+      virtual ::e_status application_pre_run();
       //virtual bool initial_check_directrix() override;
-      virtual ::estatus os_native_bergedge_start();
+      virtual ::e_status os_native_bergedge_start();
 
 
 
@@ -273,7 +273,7 @@ namespace apex
       //virtual void SetCurrentHandles() override;
 
 
-      virtual ::estatus process_exception(::exception_pointer pe) override;
+      virtual ::e_status process_exception(::exception_pointer pe) override;
 
 
       //virtual __pointer(::apex::application) assert_running(const char * pszAppId) override;
@@ -324,7 +324,7 @@ namespace apex
 
 
 
-      virtual ::estatus process_init();
+      virtual ::e_status process_init();
 
 
 
@@ -393,7 +393,7 @@ namespace apex
       //virtual string get_locale_schema_dir();
 
 
-      //virtual ::estatus initialize(::layered * pobjectContext) override;
+      //virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
       application_menu & applicationmenu();
@@ -472,16 +472,16 @@ namespace apex
       //// os_* functions generally
       //// reserves a lot of surprises from each
       //// operating system specific behavior
-      //virtual ::estatus os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
-      //virtual ::estatus ui_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual ::estatus ui_message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status ui_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status ui_message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       //using ::apex::context_thread::message_box;
-      //virtual ::estatus message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual ::estatus message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       virtual void on_file_new();
@@ -517,10 +517,10 @@ namespace apex
 
       //virtual void process_message_filter(i32 code,::message::message * pmessage) override;
 
-      virtual ::estatus on_thread_on_idle(::thread * pthread,::i32 lCount) override;
+      virtual ::e_status on_thread_on_idle(::thread * pthread,::i32 lCount) override;
 
 
-      virtual ::estatus app_set(string strPath, string strValue);
+      virtual ::e_status app_set(string strPath, string strValue);
       virtual string app_get(string strPath, string strDefault = "");
 
 
@@ -536,42 +536,42 @@ namespace apex
 
       virtual __pointer(::interprocess_intercommunication) create_interprocess_intercommunication();
 
-      //virtual ::estatus process_init();
+      //virtual ::e_status process_init();
       virtual void process_term();
 
-      //virtual ::estatus impl_process_init();
-      //virtual ::estatus impl_init1();
-      //virtual ::estatus impl_init2();
-      //virtual ::estatus impl_init3();
+      //virtual ::e_status impl_process_init();
+      //virtual ::e_status impl_init1();
+      //virtual ::e_status impl_init2();
+      //virtual ::e_status impl_init3();
 
       //virtual void impl_process_term();
       //virtual void impl_term1();
       //virtual void impl_term2();
       //virtual void impl_term3();
 
-      //virtual ::estatus init1();
-      //virtual ::estatus init2();
-      //virtual ::estatus init3();
+      //virtual ::e_status init1();
+      //virtual ::e_status init2();
+      //virtual ::e_status init3();
 
       virtual void term1();
       virtual void term2();
       virtual void term3();
 
-      virtual ::estatus init_thread() override;
-      //virtual ::estatus init_application();
+      virtual ::e_status init_thread() override;
+      //virtual ::e_status init_application();
       //virtual void term_application();
       virtual void term_thread() override;
 
-      //virtual ::estatus init_instance() override;
+      //virtual ::e_status init_instance() override;
       virtual void term_instance();
 
-      //virtual ::estatus init();
+      //virtual ::e_status init();
       //virtual void term();
 
-      virtual ::estatus notify_process_init();
-      virtual ::estatus notify_init1();
-      virtual ::estatus notify_init2();
-      virtual ::estatus notify_init3();
+      virtual ::e_status notify_process_init();
+      virtual ::e_status notify_init1();
+      virtual ::e_status notify_init2();
+      virtual ::e_status notify_init3();
 
       virtual void notify_term3();
       virtual void notify_term2();
@@ -582,15 +582,15 @@ namespace apex
       // virtual bool is_unstalling();
 
       //virtual string get_version();
-      //virtual ::estatus     run() override;
-      //virtual ::estatus     main() override;
-      //virtual ::estatus     on_run();
+      //virtual ::e_status     run() override;
+      //virtual ::e_status     main() override;
+      //virtual ::e_status     on_run();
 
-      virtual ::estatus on_before_launching();
-      //virtual ::estatus os_native_bergedge_start();
+      virtual ::e_status on_before_launching();
+      //virtual ::e_status os_native_bergedge_start();
 
-      virtual ::estatus pre_run();
-      //virtual ::estatus application_pre_run();
+      virtual ::e_status pre_run();
+      //virtual ::e_status application_pre_run();
 
       virtual void on_pos_run_thread() override;
       virtual void pos_run();
@@ -614,7 +614,7 @@ namespace apex
 
       virtual bool _001OnDDECommand(const char * pcsz);
 
-      virtual ::estatus _001InitializeShellOpen();
+      virtual ::e_status _001InitializeShellOpen();
       virtual void _001OnFileNew(::message::message * pmessage);
 
 
@@ -622,19 +622,19 @@ namespace apex
       virtual string multimedia_audio_mixer_get_default_library_name();
       virtual string veriwell_multimedia_music_midi_get_default_library_name();
 
-      virtual ::estatus get_temp_file_name_template(string & str,const char * lpszName,const char * pszExtension,const char * pszTemplate);
+      virtual ::e_status get_temp_file_name_template(string & str,const char * lpszName,const char * pszExtension,const char * pszTemplate);
 
-      virtual ::estatus get_temp_file_name(string & str,const char * lpszName,const char * pszExtension);
+      virtual ::e_status get_temp_file_name(string & str,const char * lpszName,const char * pszExtension);
 
       service_base * get_service();
       virtual service_base * allocate_new_service();
-      virtual ::estatus init_service();
+      virtual ::e_status init_service();
 
-      virtual ::estatus os_create_service();
-      virtual ::estatus os_remove_service();
+      virtual ::e_status os_create_service();
+      virtual ::e_status os_remove_service();
 
-      virtual ::estatus os_start_service();
-      virtual ::estatus os_stop_service();
+      virtual ::e_status os_start_service();
+      virtual ::e_status os_stop_service();
 
       //virtual void on_service_request(::create * pcreate);
 
@@ -644,19 +644,19 @@ namespace apex
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this new additional instance creation
-      virtual ::estatus on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId);
+      virtual ::e_status on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId);
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this new additional instance creation
-      virtual ::estatus on_exclusive_instance_local_conflict(bool & bHandled);
+      virtual ::e_status on_exclusive_instance_local_conflict(bool & bHandled);
 
             /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this new additional instance creation
-      virtual ::estatus on_exclusive_instance_local_conflict_id(bool & bHandled, string strId);
+      virtual ::e_status on_exclusive_instance_local_conflict_id(bool & bHandled, string strId);
 
       /// return true if the external additional instance might continue execution
       /// bHandled true if some action was done in response to the external new additional instance creation
-      virtual ::estatus on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine);
+      virtual ::e_status on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine);
 
       virtual void on_new_instance(string strModule, const ::id & idPid);
 
@@ -697,8 +697,8 @@ namespace apex
 
       //virtual bool assert_user_logged_in();
 
-      virtual ::estatus     do_request(::create * pcreate) override;
-      virtual ::estatus     call_request(::create * pcreate) override;
+      virtual ::e_status     do_request(::create * pcreate) override;
+      virtual ::e_status     call_request(::create * pcreate) override;
 
 
       virtual void process_message(::message::base * base) override;
@@ -873,24 +873,24 @@ namespace apex
       virtual void HideApplication();
 
 
-      //virtual ::estatus initialize(::layered * pobjectContext) override;
+      //virtual ::e_status initialize(::layered * pobjectContext) override;
 
-      //virtual ::estatus process_init() override;
+      //virtual ::e_status process_init() override;
 
-      //virtual ::estatus init1() override; // first initialization
-      //virtual ::estatus init2() override; // second initialization
-      //virtual ::estatus init3() override; // third initialization and so on...
+      //virtual ::e_status init1() override; // first initialization
+      //virtual ::e_status init2() override; // second initialization
+      //virtual ::e_status init3() override; // third initialization and so on...
 
-      //virtual ::estatus init() override; // last initialization
+      //virtual ::e_status init() override; // last initialization
 
-      //virtual ::estatus bergedge_start();
-      //virtual ::estatus os_native_bergedge_start() override;
+      //virtual ::e_status bergedge_start();
+      //virtual ::e_status os_native_bergedge_start() override;
 
       //virtual void term_application() override;
 
       //virtual void term() override;
 
-      //virtual ::estatus     main() override;
+      //virtual ::e_status     main() override;
 
       //virtual ::apex::application * get_context_application() const override;
 
@@ -971,8 +971,8 @@ namespace apex
       virtual void route_command_message(::user::command* pcommand) override;
 
 
-      virtual ::estatus message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process()) override;
-      virtual ::estatus message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process()) override;
+      virtual ::e_status message_box(const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process()) override;
+      virtual ::e_status message_box_timeout(const char * pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process()) override;
 
 
       void EnableHtmlHelp();
@@ -1131,9 +1131,9 @@ namespace apex
 
 
 
-      //virtual ::estatus init_application() override;
+      //virtual ::e_status init_application() override;
 
-      //virtual ::estatus init_instance() override;
+      //virtual ::e_status init_instance() override;
 
 
 //      virtual bool process_exception(::exception_pointer pe) override;
@@ -1160,7 +1160,7 @@ namespace apex
 
       //virtual ::user::interaction * get_desktop_window();
 
-      //virtual ::estatus     run() override;
+      //virtual ::e_status     run() override;
 
       //::apex::application * get_context_system();
 
@@ -1177,7 +1177,7 @@ namespace apex
       //virtual string get_theme() override;
 
 
-      virtual ::estatus initialize_contextualized_theme();
+      virtual ::e_status initialize_contextualized_theme();
 
 
 
@@ -1258,12 +1258,12 @@ namespace apex
       //       virtual __pointer(::bergedge::document) get_document();
 
 
-      //virtual ::estatus add_library(::apex::library * plibrary);
+      //virtual ::e_status add_library(::apex::library * plibrary);
 
-      //virtual ::estatus initialize_userex();
-      virtual ::estatus userfs_init1();
-      //virtual ::estatus initialize1_experience();
-      virtual ::estatus userfs_process_init();
+      //virtual ::e_status initialize_userex();
+      virtual ::e_status userfs_init1();
+      //virtual ::e_status initialize1_experience();
+      virtual ::e_status userfs_process_init();
 
       //virtual __pointer(::userex::userex) create_userex();
       //virtual __pointer(::userfs::userfs) create_userfs();
@@ -1362,18 +1362,18 @@ namespace apex
       //virtual ~application();
 
 
-      //virtual ::estatus     initialize(::layered * pobjectContext) override;
+      //virtual ::e_status     initialize(::layered * pobjectContext) override;
 
 
       //virtual void install_message_routing(::channel * pchannel) override;
 
       //virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
-      //virtual ::estatus process_init() override;
+      //virtual ::e_status process_init() override;
 
-      //virtual ::estatus init_instance() override;
+      //virtual ::e_status init_instance() override;
 
-      virtual ::estatus     create_impact_system();
+      virtual ::e_status     create_impact_system();
 
       //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
       //virtual ::type control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype) override;
@@ -1390,7 +1390,7 @@ namespace apex
 
 
 
-      virtual ::estatus process_message() override;
+      virtual ::e_status process_message() override;
 
       //i32 hotplugin_host_host_starter_start_sync(const char* pszCommandLine, ::apex::application* papp, ::hotplugin::host* phost, ::hotplugin::plugin* pplugin) override;
 

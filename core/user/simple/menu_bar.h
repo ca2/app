@@ -89,8 +89,8 @@ protected:
    //size CalcFixedLayout(bool bStretch, bool bHorz);
 
    //size CalcDynamicLayout(index nLength, u32 dwMode);
-   //static ::estatus  CalcSize(::user::toolbar_control & tbc, size & size);
-   //static ::estatus  CalcSize(CToolBarCtrl & tbc, size & size);
+   //static ::e_status  CalcSize(::user::toolbar_control & tbc, size & size);
+   //static ::e_status  CalcSize(CToolBarCtrl & tbc, size & size);
    bool _track_popup_menu(const ::point & point);
    bool _track_popup_menu(index iItem);
    bool LoadMenuBar(::u32 nIDResource);

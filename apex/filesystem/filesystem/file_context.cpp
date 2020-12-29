@@ -46,7 +46,7 @@ file_context::~file_context()
 }
 
 
-::estatus file_context::initialize(::layered *pobjectContext)
+::e_status file_context::initialize(::layered *pobjectContext)
 {
 
    auto estatus = ::object::initialize(pobjectContext);
@@ -2102,7 +2102,7 @@ bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strF
 }
 
 
-::estatus file_context::init_system()
+::e_status file_context::init_system()
 {
 
    auto estatus = System.m_pfilesystem->update_module_path();
@@ -2119,7 +2119,7 @@ bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strF
 }
 
 
-::estatus file_context::init_context()
+::e_status file_context::init_context()
 {
 
    return ::success;
@@ -3448,7 +3448,7 @@ bool file_context::touch(const ::file::path &path)
 
 
 
-::estatus file_context::update_module_path()
+::e_status file_context::update_module_path()
 {
 
 

@@ -95,7 +95,7 @@
 //      }
 //
 //
-//      virtual ::estatus initialize(::layered * pobjectContext) override;
+//      virtual ::e_status initialize(::layered * pobjectContext) override;
 //
 //
 //      inline auto& operator[](const ::id& id) { return m_map[id]; }

@@ -364,7 +364,7 @@ namespace draw2d
    */
 
 
-   ::estatus graphics::set(::draw2d::bitmap* pbitmap)
+   ::e_status graphics::set(::draw2d::bitmap* pbitmap)
    {
 
       if (::is_null(pbitmap))
@@ -381,7 +381,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::set(::draw2d::font * pfont)
+   ::e_status graphics::set(::draw2d::font * pfont)
    {
 
       if (::is_null(pfont))
@@ -402,7 +402,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::set(::draw2d::pen * ppen)
+   ::e_status graphics::set(::draw2d::pen * ppen)
    {
 
       if (::is_null(ppen))
@@ -419,7 +419,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::set(::draw2d::brush* pbrush)
+   ::e_status graphics::set(::draw2d::brush* pbrush)
    {
 
       if (::is_null(pbrush))
@@ -436,7 +436,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::set(::draw2d::region* pregion)
+   ::e_status graphics::set(::draw2d::region* pregion)
    {
 
       if (::is_null(pregion))
@@ -3799,7 +3799,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::reset_clip()
+   ::e_status graphics::reset_clip()
    {
    
       return ::success;
@@ -3807,7 +3807,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::add_shapes(const shape_array & shapea)
+   ::e_status graphics::add_shapes(const shape_array & shapea)
    {
       
       for(auto & pshape : shapea)
@@ -3822,7 +3822,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::_add_shape(___shape * pshape)
+   ::e_status graphics::_add_shape(___shape * pshape)
    {
    
       switch(pshape->eshape())
@@ -3853,7 +3853,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::_intersect_clip()
+   ::e_status graphics::_intersect_clip()
    {
 
       __throw(interface_only_exception);
@@ -3863,7 +3863,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::_add_shape(const ::rect & rect)
+   ::e_status graphics::_add_shape(const ::rect & rect)
    {
    
       __throw(interface_only_exception);
@@ -3873,7 +3873,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::_add_shape(const ::rectd & rect)
+   ::e_status graphics::_add_shape(const ::rectd & rect)
    {
    
       __throw(interface_only_exception);
@@ -3883,7 +3883,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::_add_shape(const ::oval & oval)
+   ::e_status graphics::_add_shape(const ::oval & oval)
    {
    
       __throw(interface_only_exception);
@@ -3893,7 +3893,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::_add_shape(const ::ovald & oval)
+   ::e_status graphics::_add_shape(const ::ovald & oval)
    {
    
       __throw(interface_only_exception);
@@ -3903,7 +3903,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::_add_shape(const ::polygon & polygon)
+   ::e_status graphics::_add_shape(const ::polygon & polygon)
    {
    
       __throw(interface_only_exception);
@@ -3913,7 +3913,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::_add_shape(const ::polygond & polygon)
+   ::e_status graphics::_add_shape(const ::polygond & polygon)
    {
 
       __throw(interface_only_exception);
@@ -3923,7 +3923,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::intersect_clip(const ::rect & rect)
+   ::e_status graphics::intersect_clip(const ::rect & rect)
    {
    
       auto estatus = _add_shape(rect);
@@ -3949,7 +3949,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::intersect_clip(const ::rectd & rect)
+   ::e_status graphics::intersect_clip(const ::rectd & rect)
    {
    
       auto estatus = _add_shape(rect);
@@ -3975,7 +3975,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::intersect_clip(const ::oval & oval)
+   ::e_status graphics::intersect_clip(const ::oval & oval)
    {
    
       auto estatus = _add_shape(oval);
@@ -4001,7 +4001,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::intersect_clip(const ::ovald & oval)
+   ::e_status graphics::intersect_clip(const ::ovald & oval)
    {
    
       auto estatus = _add_shape(oval);
@@ -4027,7 +4027,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::intersect_clip(const ::polygon & polygon)
+   ::e_status graphics::intersect_clip(const ::polygon & polygon)
    {
    
       auto estatus = _add_shape(polygon);
@@ -4053,7 +4053,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::intersect_clip(const ::polygond & polygon)
+   ::e_status graphics::intersect_clip(const ::polygond & polygon)
    {
 
       auto estatus = _add_shape(polygon);
@@ -6104,12 +6104,16 @@ namespace draw2d
    }
 
 
-   ::file::path graphics::get_font_path(const string& strName)
+   ::file::path graphics::get_font_path(const string & strName, int iWeight, bool bItalic)
    {
 
       cslock sl(::aura::g_pcsFont);
 
-      string strPath = ::aura::g_pmapFontFaceName->operator[](strName);
+      string strFontName(strName);
+
+      strFontName.make_lower();
+
+      string strPath = (*::aura::g_pmapFontFaceName)[strFontName][iWeight * 10 + (bItalic ? 1 : 0)];
 
       return strPath;
 
@@ -6810,7 +6814,7 @@ namespace draw2d
    }
 
 
-   ::estatus graphics::clear_current_point()
+   ::e_status graphics::clear_current_point()
    {
 
       __throw(todo);

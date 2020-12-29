@@ -19,7 +19,7 @@ namespace uwp
    }
 
 
-   ::estatus dir_context::initialize(::layered * pobjectContext)
+   ::e_status dir_context::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::dir_context::initialize(pobjectContext);
@@ -40,7 +40,7 @@ namespace uwp
    }
 
 
-   ::estatus dir_context::init_system()
+   ::e_status dir_context::init_system()
    {
 
       auto estatus = ::dir_context::init_system();

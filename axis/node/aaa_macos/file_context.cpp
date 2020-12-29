@@ -59,7 +59,7 @@ namespace macos
    }
 
 
-   ::estatus file_context::initialize(::layered * pobjectContext)
+   ::e_status file_context::initialize(::layered * pobjectContext)
    {
       
       auto estatus = ::file_context::initialize(pobjectContext);
@@ -118,7 +118,7 @@ namespace macos
 
 
 
-   ::estatus file_context::update_module_path()
+   ::e_status file_context::update_module_path()
    {
 
 

@@ -70,7 +70,7 @@ class single_lock;
 class multi_lock;
 
 
-//CLASS_DECL_APEX ::estatus __call(::matter * pobject);
+//CLASS_DECL_APEX ::e_status __call(::matter * pobject);
 
 
 
@@ -129,7 +129,7 @@ namespace parallelization
 // Use instead of PostQuitMessage in OLE server applications
 //CLASS_DECL_APEX void __post_quit_message(i32 nExitCode);
 
-typedef ::estatus     (*__THREADPROC)(void *);
+typedef ::e_status     (*__THREADPROC)(void *);
 
 
 //CLASS_DECL_APEX bool do_events();
@@ -200,7 +200,7 @@ public:
    virtual ~thread_ptra();
 
    virtual ::count get_count_except_current_thread();
-   virtual ::estatus finish(::context_object * pcontextobjectFinish = nullptr) override;
+   virtual ::e_status finish(::context_object * pcontextobjectFinish = nullptr) override;
    virtual void wait(const duration & duration, ::sync_lock & sl);
 
    thread_ptra & operator = (const thread_ptra & ptra) { __pointer_array(thread)::operator =(ptra); return *this; }

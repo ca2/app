@@ -15,11 +15,11 @@ namespace android
       virtual ~file_system();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
 
-      virtual ::estatus update_module_path() override;
+      virtual ::e_status update_module_path() override;
 
 
    };

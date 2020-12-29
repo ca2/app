@@ -99,7 +99,7 @@ namespace browser
               && (str = Context.file().as_string(varFile)).has_char())
       {
 
-         get_typed_view < ::user::plain_edit_view >()->_001SetText(str.Left(84),::source_user);
+         get_typed_view < ::user::plain_edit_view >()->_001SetText(str.Left(84),::e_source_user);
 
       }
       else if(get_typed_view < ::userex::pane_tab_view >() != nullptr)

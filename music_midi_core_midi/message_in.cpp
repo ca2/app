@@ -144,7 +144,7 @@ namespace music
          }
       
       
-         ::estatus message_in::open(int iPort)
+         ::e_status message_in::open(int iPort)
          {
          
             m_packetlist = nullptr;
@@ -201,7 +201,7 @@ namespace music
          }
          
          
-         ::estatus message_in::start()
+         ::e_status message_in::start()
          {
             
             OSStatus result = MIDIPortConnectSource(m_port, m_endpoint, this);
@@ -222,7 +222,7 @@ namespace music
          }
 
       
-         ::estatus message_in::stop()
+         ::e_status message_in::stop()
          {
             
             OSStatus result = MIDIPortDisconnectSource(m_port, m_endpoint);
@@ -242,7 +242,7 @@ namespace music
             
          }
 
-         ::estatus message_in::close()
+         ::e_status message_in::close()
          {
             
             OSStatus result = MIDIPortDispose(m_port);
@@ -291,7 +291,7 @@ namespace music
          }
 
 
-         ::estatus message_in::note_off(int channel, unsigned char note, unsigned char velocity)
+         ::e_status message_in::note_off(int channel, unsigned char note, unsigned char velocity)
          {
             
             return ::music::midi::message_in::note_off(channel, note, velocity);
@@ -299,7 +299,7 @@ namespace music
          }
          
          
-         ::estatus message_in::note_on(int channel, unsigned char note, unsigned char volume)
+         ::e_status message_in::note_on(int channel, unsigned char note, unsigned char volume)
          {
 
             return ::music::midi::message_in::note_on(channel, note, volume);
@@ -323,7 +323,7 @@ namespace music
          }
          
          
-         ::estatus message_in::program_change(int channel, unsigned char instrument)
+         ::e_status message_in::program_change(int channel, unsigned char instrument)
          {
             
             Byte message[2];

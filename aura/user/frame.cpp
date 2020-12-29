@@ -106,7 +106,7 @@ namespace user
    }
 
 
-   ::estatus frame::add_menu_item(const string & strPath, const string & strText, const string & strId)
+   ::e_status frame::add_menu_item(const string & strPath, const string & strText, const string & strId)
    {
 
       m_straMenuParent.add(strPath);

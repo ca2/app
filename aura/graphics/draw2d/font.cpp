@@ -7,14 +7,14 @@ namespace draw2d
 
    font_enum_item::font_enum_item()
    {
-
    }
 
 
    font_enum_item::font_enum_item(string strName) :
-      m_strFile(strName),
       m_strName(strName)
    {
+
+      m_mapFileName[0] = strName;
 
 #ifdef WINDOWS
 
@@ -30,7 +30,7 @@ namespace draw2d
       m_wstrName(pwideszName)
    {
 
-      m_strFile = m_wstrName;
+      m_mapFileName[0] = m_wstrName;
       m_strName = m_strFile;
 
    }
@@ -38,9 +38,10 @@ namespace draw2d
 #endif
 
    font_enum_item::font_enum_item(string strFile, string strName) :
-      m_strFile(strFile),
       m_strName(strName)
    {
+
+      m_mapFileName[0] = strFile;
 
 #ifdef WINDOWS
 

@@ -249,7 +249,7 @@ namespace aura
    }
 
 
-   ::estatus interprocess_communication::initialize(::layered * pobjectContext)
+   ::e_status interprocess_communication::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

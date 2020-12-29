@@ -220,7 +220,7 @@ namespace html
       virtual ~core_data();
 
 
-      virtual ::estatus initialize_html_data(html_data * pdata) override;
+      virtual ::e_status initialize_html_data(html_data * pdata) override;
 
 
       virtual string process_url(const char * pszUrl);
@@ -231,7 +231,7 @@ namespace html
       virtual bool open_document(const payload & varFile) override;
 
 
-      virtual ::estatus     open_html(const ::string & str) override;
+      virtual ::e_status     open_html(const ::string & str) override;
 
 
       virtual bool open_link(const char* pszPath) override;

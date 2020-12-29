@@ -1058,7 +1058,7 @@ namespace windows
    //}
 
 
-   ::estatus shell::initialize(::layered * pobjectContext)
+   ::e_status shell::initialize(::layered * pobjectContext)
    {
 
       if (m_bInitialized)
@@ -1353,7 +1353,7 @@ namespace windows
    }
 
 
-   ::estatus shell::finish(::context_object * pcontextobject)
+   ::e_status shell::finish(::context_object * pcontextobject)
    {
 
       return ::user::shell::finish(pcontextobject);
@@ -1368,10 +1368,10 @@ namespace core
 {
 
 
-   ::estatus user::create_user_shell()
+   ::e_status user::create_user_shell()
    {
 
-      ::estatus estatus = ::success;
+      ::e_status estatus = ::success;
 
       if (!m_pshell)
       {

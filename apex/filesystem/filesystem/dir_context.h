@@ -15,11 +15,11 @@
       virtual ~dir_context();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
-      virtual ::estatus init_system();
-      virtual ::estatus init_context();
+      virtual ::e_status init_system();
+      virtual ::e_status init_context();
 
 
 
@@ -124,7 +124,7 @@
 
       virtual ::file::path pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode);
 
-      //virtual ::estatus initialize(::layered * pobjectContext) override;
+      //virtual ::e_status initialize(::layered * pobjectContext) override;
 
       //virtual ::file::path get_api_cc();
 

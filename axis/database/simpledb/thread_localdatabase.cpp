@@ -21,7 +21,7 @@ namespace simpledb
    }
 
 
-   ::estatus thread_localdatabase::run()
+   ::e_status thread_localdatabase::run()
    {
 
       single_lock sl(mutex());

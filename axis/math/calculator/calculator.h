@@ -18,7 +18,7 @@ namespace calculator
       virtual ~calculator();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) ;
+      virtual ::e_status initialize(::layered * pobjectContext) ;
 
 
    };

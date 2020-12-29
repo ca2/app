@@ -126,7 +126,7 @@ namespace promise
 #endif
 
 
-   ::estatus subject::run()
+   ::e_status subject::run()
    {
 
       auto ptask = ::get_task();
@@ -302,7 +302,7 @@ namespace promise
    }
 
 
-   ::estatus subject::start_task()
+   ::e_status subject::start_task()
    {
 
       return ::success_none;
@@ -318,7 +318,7 @@ namespace promise
    }
 
 
-   ::estatus subject::on_task()
+   ::e_status subject::on_task()
    {
 
       return run();

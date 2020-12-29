@@ -170,7 +170,7 @@ namespace userex
       if (m_bSourceFontSel)
       {
 
-         m_ptopview->m_peditview->_001SetText(str, source_sync);
+         m_ptopview->m_peditview->_001SetText(str, ::e_source_sync);
 
          m_ptopview->m_peditview->m_pfont.defer_create();
 
@@ -222,7 +222,7 @@ namespace userex
 
                strText = m_pview->m_pfontlist->m_strFontFamily;
 
-               m_ptopview->m_peditview->_001SetText(strText, source_sync);
+               m_ptopview->m_peditview->_001SetText(strText, ::e_source_sync);
 
                m_ptopview->m_peditview->m_pfont.defer_create();
 

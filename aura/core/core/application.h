@@ -67,24 +67,24 @@ namespace aura
       application();
       virtual ~application();
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
-      virtual ::estatus process_init() override;
+      virtual ::e_status process_init() override;
 
-      virtual ::estatus init1() override; // first initialization
-      virtual ::estatus init2() override; // second initialization
-      virtual ::estatus init3() override; // third initialization and so on...
+      virtual ::e_status init1() override; // first initialization
+      virtual ::e_status init2() override; // second initialization
+      virtual ::e_status init3() override; // third initialization and so on...
 
-      virtual ::estatus init() override; // last initialization
+      virtual ::e_status init() override; // last initialization
 
-      virtual ::estatus bergedge_start();
-      virtual ::estatus os_native_bergedge_start() override;
+      virtual ::e_status bergedge_start();
+      virtual ::e_status os_native_bergedge_start() override;
 
       virtual void term_application() override;
 
       virtual void term() override;
 
-      virtual ::estatus     main() override;
+      virtual ::e_status     main() override;
 
       //virtual ::aura::application * get_context_application() const override;
 
@@ -328,9 +328,9 @@ namespace aura
 
 
 
-      virtual ::estatus init_application() override;
+      virtual ::e_status init_application() override;
 
-      //virtual ::estatus init_instance() override;
+      //virtual ::e_status init_instance() override;
 
 
 //      virtual bool process_exception(::exception_pointer e) override;
@@ -357,7 +357,7 @@ namespace aura
 
       virtual ::user::interaction_impl * get_desktop_window();
 
-      virtual ::estatus     run() override;
+      virtual ::e_status     run() override;
 
       //::aura::application * get_context_system();
 
@@ -374,7 +374,7 @@ namespace aura
       virtual string get_theme() override;
       
       
-      virtual ::estatus initialize_contextualized_theme();
+      virtual ::e_status initialize_contextualized_theme();
 
 
 
@@ -455,12 +455,12 @@ namespace aura
       //       virtual __pointer(::bergedge::document) get_document();
 
 
-      //virtual ::estatus add_library(::apex::library * plibrary);
+      //virtual ::e_status add_library(::apex::library * plibrary);
 
-      virtual ::estatus initialize_userex();
-      virtual ::estatus userfs_init1();
-      virtual ::estatus initialize1_experience();
-      virtual ::estatus userfs_process_init();
+      virtual ::e_status initialize_userex();
+      virtual ::e_status userfs_init1();
+      virtual ::e_status initialize1_experience();
+      virtual ::e_status userfs_process_init();
 
       //virtual __pointer(::userex::userex) create_userex();
       //virtual __pointer(::userfs::userfs) create_userfs();
@@ -560,18 +560,18 @@ namespace aura
       //virtual ~application();
 
 
-      //virtual ::estatus     initialize(::layered * pobjectContext) override;
+      //virtual ::e_status     initialize(::layered * pobjectContext) override;
 
 
       //virtual void install_message_routing(::channel * pchannel) override;
 
       //virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
-      //virtual ::estatus process_init() override;
+      //virtual ::e_status process_init() override;
 
-      virtual ::estatus init_instance() override;
+      virtual ::e_status init_instance() override;
 
-      virtual ::estatus     create_impact_system();
+      virtual ::e_status     create_impact_system();
 
       //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
       //virtual ::type control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype) override;

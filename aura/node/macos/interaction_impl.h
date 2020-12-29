@@ -47,7 +47,7 @@ namespace macos
 
       virtual void release_graphics_resources();
       
-      virtual ::estatus update_graphics_resources() override;
+      virtual ::e_status update_graphics_resources() override;
 
 
       //virtual bool create_message_queue(::user::interaction * pinteraction, const char * pszName) override;

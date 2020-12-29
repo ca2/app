@@ -61,11 +61,11 @@ namespace windows
       virtual bool browse_folder(property_set & set) override;
       virtual bool browse_file_or_folder(property_set & set) override;
 
-      virtual ::estatus create_service() override;
-      virtual ::estatus remove_service() override;
+      virtual ::e_status create_service() override;
+      virtual ::e_status remove_service() override;
 
-      virtual ::estatus start_service() override;
-      virtual ::estatus stop_service() override;
+      virtual ::e_status start_service() override;
+      virtual ::e_status stop_service() override;
 
       virtual bool create_service(const string & strServiceName, const string & strDisplayName, const string & strCommand, const string & strUser = "", const string & strPass = "") override;
       virtual bool remove_service(const string & strServiceName) override;

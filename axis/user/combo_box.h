@@ -66,6 +66,8 @@ namespace user
       virtual void _001OnDrawCombo(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawStaticText(::draw2d::graphics_pointer & pgraphics);
 
+      virtual enum_input_type preferred_input_type() const override;
+
       virtual void get_simple_drop_down_open_arrow_polygon(point_array& pointa) override;
 
       virtual void set_current_item(const ::user::item & item, const ::action_context & action_context) override;

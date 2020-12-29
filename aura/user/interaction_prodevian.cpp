@@ -75,7 +75,7 @@ namespace user
 #endif
 
 
-   ::estatus prodevian::initialize_prodevian(interaction_impl * pimpl)
+   ::e_status prodevian::initialize_prodevian(interaction_impl * pimpl)
    {
 
       auto estatus = initialize(pimpl);
@@ -137,7 +137,7 @@ namespace user
 
 
 
-   ::estatus prodevian::run()
+   ::e_status prodevian::run()
    {
 
       //m_pimpl->m_puserinteraction->task_add(this);

@@ -20,7 +20,7 @@ namespace aqua
    }
 
    
-   ::estatus multimedia::initialize_multimedia(::object* pobjectContext)
+   ::e_status multimedia::initialize_multimedia(::object* pobjectContext)
    {
 
       auto estatus = initialize(pobjectContext);
@@ -91,7 +91,7 @@ namespace aqua
    }
 
    
-   ::estatus multimedia::get_file_information(::file::file* pfile, ::multimedia::information& information)
+   ::e_status multimedia::get_file_information(::file::file* pfile, ::multimedia::information& information)
    {
 
       /*

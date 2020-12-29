@@ -81,7 +81,7 @@ namespace simple_ui
       if(keyboard_focus_is_focusable())
       {
 
-         keyboard_set_focus();
+         set_keyboard_focus();
 
       }
       else

@@ -52,7 +52,7 @@ namespace aura
    }
 
 
-   ::estatus application::initialize(::layered * pobjectContext)
+   ::e_status application::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::aura::application::initialize(pobjectContext);
@@ -156,7 +156,7 @@ namespace aura
    }
 
 
-   ::estatus     application::main()
+   ::e_status     application::main()
    {
 
       return ::aura::application::main();
@@ -164,7 +164,7 @@ namespace aura
    }
 
 
-   ::estatus application::os_native_bergedge_start()
+   ::e_status application::os_native_bergedge_start()
    {
 
       if (!::aura::application::os_native_bergedge_start())
@@ -179,7 +179,7 @@ namespace aura
    }
 
 
-   ::estatus application::process_init()
+   ::e_status application::process_init()
    {
 
       INFO("start");
@@ -210,7 +210,7 @@ namespace aura
    }
 
 
-   ::estatus application::init1()
+   ::e_status application::init1()
    {
 
       if (!initialize_contextualized_theme())
@@ -276,7 +276,7 @@ namespace aura
    }
 
 
-   ::estatus application::init2()
+   ::e_status application::init2()
    {
 
       if (!::aura::application::init2())
@@ -287,7 +287,7 @@ namespace aura
    }
 
 
-   ::estatus application::init3()
+   ::e_status application::init3()
    {
 
       if (!::aura::application::init3())
@@ -330,7 +330,7 @@ namespace aura
    }
    */
 
-   ::estatus application::init_instance()
+   ::e_status application::init_instance()
    {
 
 
@@ -402,7 +402,7 @@ namespace aura
 
          data_set({ "locale", true }, str);
 
-         set_locale(str, ::source_database);
+         set_locale(str, ::e_source_database);
 
       }
       else if (command_value("lang").get_count() > 0)
@@ -414,7 +414,7 @@ namespace aura
 
          data_set({ "locale", true }, str);
 
-         set_locale(str, ::source_database);
+         set_locale(str, ::e_source_database);
 
       }
       else if (data_get({ "locale", true }, str))
@@ -423,7 +423,7 @@ namespace aura
          if (str.has_char())
          {
 
-            set_locale(str, ::source_database);
+            set_locale(str, ::e_source_database);
 
          }
 
@@ -473,7 +473,7 @@ namespace aura
 
          data_set({ "schema", true }, str);
 
-         set_schema(str, ::source_database);
+         set_schema(str, ::e_source_database);
 
       }
       else if (data_get({ "schema", true }, str))
@@ -482,7 +482,7 @@ namespace aura
          if (str.has_char())
          {
 
-            set_schema(str, ::source_database);
+            set_schema(str, ::e_source_database);
 
          }
 
@@ -542,7 +542,7 @@ namespace aura
 
          data_set({ "locale", true }, str);
 
-         set_locale(str, ::source_database);
+         set_locale(str, ::e_source_database);
 
       }
       else if (command_value("lang").get_count() > 0)
@@ -554,7 +554,7 @@ namespace aura
 
          data_set({ "locale", true }, str);
 
-         set_locale(str, ::source_database);
+         set_locale(str, ::e_source_database);
 
       }
       else if (data_get({ "locale", true }, str))
@@ -563,7 +563,7 @@ namespace aura
          if (str.has_char())
          {
 
-            set_locale(str, ::source_database);
+            set_locale(str, ::e_source_database);
 
          }
 
@@ -613,7 +613,7 @@ namespace aura
 
          data_set({ "schema", true }, str);
 
-         set_schema(str, ::source_database);
+         set_schema(str, ::e_source_database);
 
       }
       else if (data_get({ "schema", true }, str))
@@ -622,7 +622,7 @@ namespace aura
          if (str.has_char())
          {
 
-            set_schema(str, ::source_database);
+            set_schema(str, ::e_source_database);
 
          }
 
@@ -638,7 +638,7 @@ namespace aura
 
 }
 
-   ::estatus application::init_application()
+   ::e_status application::init_application()
    {
 
 //#ifdef _DEBUG
@@ -887,7 +887,7 @@ namespace aura
 
 
 
-   ::estatus     application::run()
+   ::e_status     application::run()
    {
 
       return ::aura::application::run();
@@ -2698,7 +2698,7 @@ namespace aura
    //}
 
 
-//   ::estatus application::bergedge_start()
+//   ::e_status application::bergedge_start()
 //   {
 //
 //      string strId = m_strId;
@@ -2755,7 +2755,7 @@ namespace aura
 #endif
 
 
-   ::estatus application::init()
+   ::e_status application::init()
    {
 
       if (!::aura::application::init())
@@ -3409,7 +3409,7 @@ m_millisHeartBeat.Now();
 
 
 
-   //::estatus application::add_library(::apex::library * plibrary)
+   //::e_status application::add_library(::apex::library * plibrary)
    //{
 
    //   plibrary->set_context_object(this);
@@ -3489,11 +3489,11 @@ m_millisHeartBeat.Now();
       // keyboard on_layout
       //if(data_get("keyboard_layout",str) && str.has_char())
       {
-         // psession->set_keyboard_layout(str,::source_database);
+         // psession->set_keyboard_layout(str,::e_source_database);
       }
       //else
       {
-         set_keyboard_layout(nullptr, ::source_database);
+         set_keyboard_layout(nullptr, ::e_source_database);
       }
 
    }
@@ -3678,7 +3678,7 @@ m_millisHeartBeat.Now();
    }
 
 
-   estatus application::initialize_contextualized_theme()
+   ::e_status application::initialize_contextualized_theme()
    {
 
       auto estatus = __compose_new(m_ptheme);
@@ -3771,7 +3771,7 @@ m_millisHeartBeat.Now();
    //}
 
 
-   //::estatus application::initialize(::layered * pobjectContext)
+   //::e_status application::initialize(::layered * pobjectContext)
    //{
 
    //   auto estatus = ::aura::application::initialize(pobjectContext);
@@ -3819,7 +3819,7 @@ m_millisHeartBeat.Now();
       //}
 
 
-   //::estatus application::process_init()
+   //::e_status application::process_init()
    //{
 
    //   if (::aura::application::process_init())
@@ -3834,7 +3834,7 @@ m_millisHeartBeat.Now();
    //}
 
 
-   //::estatus application::init_instance()
+   //::e_status application::init_instance()
    //{
 
    //   if (!::aura::application::init_instance())
@@ -3858,7 +3858,7 @@ m_millisHeartBeat.Now();
    //}
 
 
-   ::estatus     application::create_impact_system()
+   ::e_status     application::create_impact_system()
    {
 
       return ::success;
@@ -4173,7 +4173,7 @@ m_millisHeartBeat.Now();
 
                   pcheck->_001SetCheck(
                      Context.os().is_user_auto_start(get_executable_appid()),
-                     ::source_initialize);
+                     ::e_source_initialize);
 
                }
             }

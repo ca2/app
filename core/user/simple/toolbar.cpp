@@ -11,11 +11,11 @@ class simple_tool_command : public ::user::command        // class private to th
 public: // re-implementations only
 
    simple_tool_command(::layered * pobjectContext);
-   virtual void enable(bool bOn = TRUE, const ::action_context & context = ::source_system);
-   //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::source_system);   // 0, 1 or 2 (indeterminate)
-   virtual void _001SetCheck(enum_check echeck, const ::action_context & context = ::source_system);   // 0, 1 or 2 (indeterminate)
-//   virtual void SetRadio(bool bOn = TRUE, const ::action_context & context = ::source_system);
-   virtual void SetText(const char * pszText, const ::action_context & context = ::source_system);
+   virtual void enable(bool bOn = TRUE, const ::action_context & context = ::e_source_system);
+   //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
+   virtual void _001SetCheck(enum_check echeck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
+//   virtual void SetRadio(bool bOn = TRUE, const ::action_context & context = ::e_source_system);
+   virtual void SetText(const char * pszText, const ::action_context & context = ::e_source_system);
 
 };
 

@@ -495,6 +495,18 @@ namespace user
    };
 
 
+   enum enum_input_type
+   {
+
+      e_input_type_none,
+      e_input_type_action,
+      e_input_type_toggle,
+      e_input_type_list,
+      e_input_type_text,
+
+   };
+
+
 } // namespace user
 
 

@@ -63,7 +63,7 @@ namespace linux
       bool ModifyStyle(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags = 0) override;
       bool ModifyStyleEx(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags = 0) override;
 
-      virtual ::estatus set_tool_window(bool bSet = true) override;
+      virtual ::e_status set_tool_window(bool bSet = true) override;
 
       //virtual ::user::interaction * GetOwner();
       virtual void set_owner(::user::interaction * pOwnerWnd) override;

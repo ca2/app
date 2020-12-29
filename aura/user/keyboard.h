@@ -26,7 +26,7 @@ namespace user
 
       //virtual class keyboard_layout & on_layout();
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
       //bool load_layout(const char * pszPath, const ::action_context & action_context);
 
@@ -48,7 +48,9 @@ namespace user
 
       virtual bool load_os_layout(const ::file::path & pszPath);
 
-      virtual void defer_show_software_keyboard(::user::primitive* pprimitive, bool bShow, string str, strsize iBeg, strsize iEnd);
+      virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd);
+
+      virtual ::e_status hide_software_keyboard(::user::primitive * pprimitive);
 
 
    };

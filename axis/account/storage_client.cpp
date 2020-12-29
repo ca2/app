@@ -23,7 +23,7 @@ namespace account
    }
    
    
-   ::estatus storage_client::initialize_account_storage_client(storage * pstorage)
+   ::e_status storage_client::initialize_account_storage_client(storage * pstorage)
    {
 
       auto estatus = ::object::initialize(pstorage);
@@ -42,7 +42,7 @@ namespace account
    }
 
 
-   ::estatus     storage_client::get(string strKey, string & strValue)
+   ::e_status     storage_client::get(string strKey, string & strValue)
    {
       
       if(m_strToken.is_empty())

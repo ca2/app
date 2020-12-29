@@ -528,7 +528,7 @@ namespace userex
 
          ev.m_puie = this;
 
-         ev.m_actioncontext = ::source_user;
+         ev.m_actioncontext = ::e_source_user;
 
          route_control_event(&ev);
 
@@ -554,7 +554,7 @@ namespace userex
 
          ev.m_puie = this;
 
-         ev.m_actioncontext = ::source_user;
+         ev.m_actioncontext = ::e_source_user;
 
          route_control_event(&ev);
 
@@ -808,7 +808,7 @@ namespace userex
 
       ev.m_puie = this;
 
-      ev.m_actioncontext = ::source_user;
+      ev.m_actioncontext = ::e_source_user;
 
       route_control_event(&ev);
 

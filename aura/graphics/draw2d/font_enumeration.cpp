@@ -23,7 +23,7 @@ namespace draw2d
    }
 
 
-   ::estatus font_enumeration::initialize(::layered* pobjectContext)
+   ::e_status font_enumeration::initialize(::layered* pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

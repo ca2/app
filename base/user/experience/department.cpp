@@ -344,7 +344,7 @@ namespace base
 {
 
 
-   ::estatus user::initialize1_experience()
+   ::e_status user::initialize1_experience()
    {
 
       INFO("start");

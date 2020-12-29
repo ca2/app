@@ -250,7 +250,7 @@ namespace simple_ui
 //
 //            ev.m_item = item;
 //
-//            ev.m_context.add(::source_user);
+//            ev.m_context.add(::e_source_user);
 //
 //            on_control_event(&ev);
 //

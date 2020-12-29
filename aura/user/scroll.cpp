@@ -1092,7 +1092,7 @@ namespace user
    }
 
 
-   ::estatus scroll_base::set_total_size(const ::sized& size)
+   ::e_status scroll_base::set_total_size(const ::sized& size)
    {
 
       m_sizeTotal.cx = size.cx;
@@ -1104,7 +1104,7 @@ namespace user
    }
 
 
-   ::estatus scroll_base::set_page_size(const ::sized& size)
+   ::e_status scroll_base::set_page_size(const ::sized& size)
    {
 
       return ::error_interface_only;

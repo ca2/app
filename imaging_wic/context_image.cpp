@@ -21,7 +21,7 @@ namespace imaging_wic
    }
 
 
-   ::estatus context_image::initialize(::layered * pobjectContext)
+   ::e_status context_image::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::context_image::initialize(pobjectContext);

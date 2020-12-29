@@ -27,7 +27,7 @@ namespace datetime
          virtual ~calendar();
 
 
-         virtual ::estatus initialize(::layered * pobjectContext) override;
+         virtual ::e_status initialize(::layered * pobjectContext) override;
 
          virtual void GetRectDay(::datetime::time& time, LPRECT32 lprect);
          virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, LPRECT32 lprect);

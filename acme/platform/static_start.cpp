@@ -106,9 +106,9 @@ namespace acme
 
 #endif
 
-   CLASS_DECL_ACME critical_section* g_pcsFont = nullptr;
+   //CLASS_DECL_ACME critical_section* g_pcsFont = nullptr;
 
-   CLASS_DECL_ACME string_to_string * g_pmapFontFaceName = nullptr;
+   //CLASS_DECL_ACME string_map < int_to_string > * g_pmapFontFaceName = nullptr;
 
    ::mutex* g_pmutexChildren;
    ::mutex* g_pmutexThreadWaitClose;
@@ -434,9 +434,9 @@ namespace acme
 
 #endif
 
-      g_pcsFont = nullptr;
+      //g_pcsFont = nullptr;
 
-      g_pmapFontFaceName = nullptr;
+      //g_pmapFontFaceName = nullptr;
 
 
 
@@ -665,9 +665,9 @@ namespace acme
       g_iObjTypCtrInit = 1;
 #endif
 
-      g_pcsFont = new critical_section();
+      //g_pcsFont = new critical_section();
 
-      g_pmapFontFaceName = new string_to_string();
+      //g_pmapFontFaceName = new string_to_string();
 
       init();
 
@@ -696,9 +696,9 @@ namespace acme
 
       term();
 
-      ::acme::del(g_pmapFontFaceName);
+      //::acme::del(g_pmapFontFaceName);
 
-      ::acme::del(g_pcsFont);
+      //::acme::del(g_pcsFont);
 
 #if OBJ_TYP_CTR
       g_iObjTypCtrInit = 0;
@@ -996,7 +996,7 @@ namespace acme
 
 
 
-   ::estatus acme::init()
+   ::e_status acme::init()
    {
 
       //::acme::static_start::init();
@@ -1037,7 +1037,7 @@ namespace acme
    }
 
 
-   ::estatus acme::term()
+   ::e_status acme::term()
    {
 
       //::parallelization::wait_threads(1_min);
@@ -1138,10 +1138,10 @@ CLASS_DECL_ACME color32_t dk_red() // <3 tbs
 }
 
 
-thread_local  ::estatus t_estatus;
+thread_local  ::e_status t_estatus;
 
 
-CLASS_DECL_ACME void set_last_status(const ::estatus & estatus)
+CLASS_DECL_ACME void set_last_status(const ::e_status & estatus)
 {
 
    t_estatus = estatus;
@@ -1149,7 +1149,7 @@ CLASS_DECL_ACME void set_last_status(const ::estatus & estatus)
 }
 
 
-CLASS_DECL_ACME ::estatus get_last_status()
+CLASS_DECL_ACME ::e_status get_last_status()
 {
 
    return t_estatus;

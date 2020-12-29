@@ -97,7 +97,7 @@ namespace windows
 
       //virtual const MSG* GetCurrentMessage();
 
-      //virtual ::estatus update_graphics_resources();
+      //virtual ::e_status update_graphics_resources();
 
 
       virtual bool __windows_message_bypass(HWND oswindow, ::u32 message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
@@ -163,7 +163,7 @@ namespace windows
       virtual void * get_os_data() const;
 
 
-      virtual ::estatus finish(::context_object * pcontextobjectFinish) override;
+      virtual ::e_status finish(::context_object * pcontextobjectFinish) override;
 
 
       //      virtual ::user::interaction * from_handle(oswindow oswindow);
@@ -734,7 +734,7 @@ namespace windows
       //void PrepareForHelp();
 
 
-      virtual ::estatus set_tool_window(bool bSet);
+      virtual ::e_status set_tool_window(bool bSet);
 
 
       friend class frame_window;

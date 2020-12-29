@@ -364,7 +364,7 @@ namespace account
             string strText;
             m_ppassword->_001GetText(strText);
             strText = System.crypto().nessie(strText);
-            m_ppassword->_001SetText(strText, ::source_database);
+            m_ppassword->_001SetText(strText, ::e_source_database);
          }
 
          m_strResponse = "ok";
@@ -376,7 +376,7 @@ namespace account
       {
 
          GetParent()->display(e_display_none);
-         m_ppassword->_001SetText("", ::source_database);
+         m_ppassword->_001SetText("", ::e_source_database);
          GetParent()->EndModalLoop("cancel");
 
          return true;
@@ -426,8 +426,7 @@ namespace account
 
       set_dim(0, 0, 800, 450);
 
-      m_peditUser->keyboard_set_focus();
-
+      m_peditUser->set_keyboard_focus();
 
       //m_pploginDeferTranslate = new view *;
 
@@ -531,9 +530,9 @@ namespace account
 
       m_strRequestUrl = pcredentials->m_puser->m_pathUrl;
 
-      m_peditUser->_001SetText(pcredentials->m_puser->m_strLogin, ::source_initialize);
+      m_peditUser->_001SetText(pcredentials->m_puser->m_strLogin, ::e_source_initialize);
 
-      m_ppassword->_001SetText(pcredentials->m_strPassword, ::source_initialize);
+      m_ppassword->_001SetText(pcredentials->m_strPassword, ::e_source_initialize);
 
       m_strResponse.Empty();
 

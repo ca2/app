@@ -20,7 +20,7 @@ namespace draw2d
       virtual ~font_enumeration();
 
 
-      virtual ::estatus initialize(::layered* pobjectContext) override;
+      virtual ::e_status initialize(::layered* pobjectContext) override;
 
 
       virtual void on_subject(::promise::subject * psubject) override;

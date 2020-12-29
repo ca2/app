@@ -14,7 +14,7 @@ namespace promise
       using ::function_pointer::function_pointer;
 
 
-      inline ::estatus operator()() const;
+      inline ::e_status operator()() const;
 
       inline bool should_run_async() const;
 

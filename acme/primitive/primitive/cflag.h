@@ -4,7 +4,7 @@
 template < typename ENUM >
 inline bool __enum_is_failed(const ENUM & e) { return !(::i64)e; }
 
-inline bool __enum_is_failed(const ::estatus & e);
+inline bool __enum_is_failed(const ::e_status & e);
 
 template < typename ENUM >
 class cflag :

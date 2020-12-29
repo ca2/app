@@ -192,7 +192,7 @@ namespace linux
 
          int iError = errno;
 
-         ::estatus estatus = ::get_last_status();
+         ::e_status estatus = ::get_last_status();
 
          //return //::fesp(get_context_application(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
 
@@ -519,7 +519,7 @@ namespace linux
 
 
 
-//   ::estatus PASCAL file_exception::os_error_to_exception(::i32 lOsErr)
+//   ::e_status PASCAL file_exception::os_error_to_exception(::i32 lOsErr)
 //   {
 //      // NT Error codes
 //      switch ((::u32)lOsErr)

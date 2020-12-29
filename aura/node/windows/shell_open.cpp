@@ -21,7 +21,7 @@ namespace windows
 
 
 
-   ::estatus shell_open::initialize(::layered * pobjectContext)
+   ::e_status shell_open::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::shell_open::initialize(pobjectContext);
@@ -118,7 +118,7 @@ namespace windows
       }
    }
 
-   ::estatus shell_open::initialize_shell_open()
+   ::e_status shell_open::initialize_shell_open()
    {
 
 

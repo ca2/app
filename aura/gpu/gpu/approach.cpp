@@ -18,10 +18,10 @@ namespace gpu
    }
 
 
-   ::estatus approach::initialize(::layered * pobjectContext)
+   ::e_status approach::initialize(::layered * pobjectContext)
    {
 
-      ::estatus estatus = ::object::initialize(pobjectContext);
+      ::e_status estatus = ::object::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -43,7 +43,7 @@ namespace gpu
    }
 
 
-   ::estatus approach::defer_init_glew()
+   ::e_status approach::defer_init_glew()
    {
 
       return ::success;

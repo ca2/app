@@ -114,7 +114,7 @@ namespace user
          ::user::control_event ev;
          ev.m_puie = this;
          ev.m_eevent = ::user::e_event_button_clicked;
-         ev.m_actioncontext = ::source_user;
+         ev.m_actioncontext = ::e_source_user;
 
          on_control_event(&ev);
 

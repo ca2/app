@@ -122,6 +122,7 @@ namespace xml
       node *                  GetChildByAnyAttr(const char * lpszName, string_array & straName, string_array & straAttrValue);
       node *                  GetChildByAllAttr(const char * lpszName, string_array & straName, string_array & straAttrValue);
 
+      node * get_child_at( index iIndex);
       node *                  get_child_at(const char * lpszName, index iIndex, index iDepth = 0);
       ::count get_child_attr_value(string_array & stra, const char * lpszName, const char * pszAttrName, index iDepth = 1);
       ::count remove_child_with_attr(const char * lpszName, const char * pszAttrName, index iIndex, ::count iCount = 1, index iDepth = 1);

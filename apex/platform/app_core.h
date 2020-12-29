@@ -56,7 +56,7 @@ public:
    //::apex::system *                    m_psystem;
    //__pointer(apex_main_data)        m_pmaindata;
    __pointer(::apex::library)       m_plibrary;
-   ::estatus                        m_estatusa[APP_CORE_MAXIMUM_STATUS_COUNT];
+   ::e_status                        m_estatusa[APP_CORE_MAXIMUM_STATUS_COUNT];
    int                              m_iStatusCount;
    int                              m_iTotalStatusCount;
 
@@ -65,7 +65,7 @@ public:
    app_core();
    ~app_core();
 
-   bool on_result(const ::estatus & estatus);
+   bool on_result(const ::e_status & estatus);
 
    static ::u32 WINAPI MAIN(void * pvoid);
 
@@ -73,17 +73,17 @@ public:
 
    //bool system_init();
 
-   ::estatus system_proc();
+   ::e_status system_proc();
 
    bool has_apex_application_factory() const;
 
-   virtual ::estatus system_init();
+   virtual ::e_status system_init();
 
-   virtual ::estatus system_prep();
+   virtual ::e_status system_prep();
 
-   //virtual ::estatus system_main();
+   //virtual ::e_status system_main();
 
-   //virtual ::estatus system_call();
+   //virtual ::e_status system_call();
 
    void set_command_line(const char * psz);
 

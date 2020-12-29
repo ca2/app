@@ -4,7 +4,7 @@
 #include "framework.h"
 
 
-CLASS_DECL_ACME string __str(const ::estatus & estatus)
+CLASS_DECL_ACME string __str(const ::e_status & estatus)
 {
 
     return __str((::i64) estatus.m_estatus);

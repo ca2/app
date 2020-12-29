@@ -40,7 +40,7 @@ public:
 
 
 
-   virtual ::estatus initialize(::layered * pobjectContext) override;
+   virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
    virtual ::user::enum_translucency get_translucency(::user::style* pstyle) const override;
@@ -71,7 +71,7 @@ public:
    virtual void install_message_routing(::channel * pchannel) override;
 
    virtual bool on_before_set_parent(__pointer(::user::interaction) pframewindow);
-   virtual bool on_set_parent(::user::interaction * puiParent) override;
+   virtual bool on_set_parent(::user::primitive * puiParent) override;
    virtual void on_after_set_parent() override;
 
    virtual bool get_client_rect(RECT32 * prect);

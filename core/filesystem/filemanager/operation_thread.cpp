@@ -156,7 +156,7 @@ namespace filemanager
    }
 
 
-   ::estatus     operation_thread::run()
+   ::e_status     operation_thread::run()
    {
 
       i32 iStepSetCount = 100;

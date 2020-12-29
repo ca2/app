@@ -111,7 +111,7 @@ string_to_string * g_pmapFontPath;
 
 #endif
 
-string_map < FT_Face > * g_pmapFontFace = nullptr;
+string_map < int_map < FT_Face > > * g_pmapFontFace = nullptr;
 
 string_map < cairo_font_face_t * > * g_pmapCairoFontFace = nullptr;
 
@@ -293,7 +293,7 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
 }
 
 
-::estatus graphics::reset_clip()
+::e_status graphics::reset_clip()
 {
 
    cairo_reset_clip(m_pdc);
@@ -303,7 +303,7 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
 }
 
 
-::estatus graphics::_intersect_clip()
+::e_status graphics::_intersect_clip()
 {
 
    cairo_clip(m_pdc);
@@ -313,7 +313,7 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
 }
 
 
-::estatus graphics::_add_shape(const ::rect & rect)
+::e_status graphics::_add_shape(const ::rect & rect)
 {
 
    cairo_rectangle(m_pdc, rect.left + m_pointAddShapeTranslate.x, rect.top + m_pointAddShapeTranslate.y, rect.width(), rect.height());
@@ -323,7 +323,7 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
 }
 
 
-::estatus graphics::_add_shape(const ::rectd & rect)
+::e_status graphics::_add_shape(const ::rectd & rect)
 {
 
    cairo_rectangle(m_pdc, rect.left + m_pointAddShapeTranslate.x, rect.top + m_pointAddShapeTranslate.y, rect.width(), rect.height());
@@ -333,7 +333,7 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
 }
 
 
-::estatus graphics::_add_shape(const ::oval & oval)
+::e_status graphics::_add_shape(const ::oval & oval)
 {
 
    cairo_keep keep(m_pdc);
@@ -351,7 +351,7 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
 }
 
 
-::estatus graphics::_add_shape(const ::ovald & oval)
+::e_status graphics::_add_shape(const ::ovald & oval)
 {
 
    cairo_keep keep(m_pdc);
@@ -369,7 +369,7 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
 }
 
 
-::estatus graphics::_add_shape(const ::polygon & polygon)
+::e_status graphics::_add_shape(const ::polygon & polygon)
 {
 
     if (polygon.is_empty())
@@ -397,7 +397,7 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
 }
 
 
-::estatus graphics::_add_shape(const ::polygond & polygon)
+::e_status graphics::_add_shape(const ::polygond & polygon)
 {
 
     if (polygon.is_empty())
@@ -485,7 +485,7 @@ point graphics::SetBrushOrg(const ::point & point)
 //}
 
 
-::estatus graphics::set(::draw2d::bitmap* pbitmap)
+::e_status graphics::set(::draw2d::bitmap* pbitmap)
 {
 
     sync_lock ml(cairo_mutex());
@@ -3281,7 +3281,7 @@ bool graphics::RestoreDC(i32 nSavedDC)
 }
 
 
-//::estatus graphics::set(::draw2d::pen* ppen)
+//::e_status graphics::set(::draw2d::pen* ppen)
 //{
 //
 //   m_ppen = ppen;
@@ -3291,7 +3291,7 @@ bool graphics::RestoreDC(i32 nSavedDC)
 //}
 
 
-//::estatus graphics::set(::draw2d::brush* pbrush)
+//::e_status graphics::set(::draw2d::brush* pbrush)
 //{
 //
 //    m_pbrush = pbrush;
@@ -3301,7 +3301,7 @@ bool graphics::RestoreDC(i32 nSavedDC)
 //}
 
 
-//::estatus graphics::set(::draw2d::font* pfont)
+//::e_status graphics::set(::draw2d::font* pfont)
 //{
 //
 //    if (!::draw2d::graphics::set(pfont))
@@ -3316,7 +3316,7 @@ bool graphics::RestoreDC(i32 nSavedDC)
 //}
 
 
-::estatus graphics::set(::draw2d::region* pregion)
+::e_status graphics::set(::draw2d::region* pregion)
 {
 
     ::exception::throw_not_implemented();
@@ -4619,7 +4619,7 @@ bool graphics::set_text_rendering_hint(::draw2d::e_text_rendering_hint etextrend
 }
 
 
-::estatus graphics::clear_current_point()
+::e_status graphics::clear_current_point()
 {
 
    cairo_new_sub_path(m_pdc);
@@ -6002,7 +6002,7 @@ void graphics::enum_fonts(::draw2d::font_enum_item_array & itema)
 
    __pointer(ttf_util) putil;
 
-   ::estatus estatus = __construct_new(putil);
+   ::e_status estatus = __construct_new(putil);
 
    for (auto& path : listing)
    {
@@ -6151,7 +6151,7 @@ void graphics::enum_fonts(::draw2d::font_enum_item_array & itema)
 #endif
 
 
-string graphics::get_font_path(string str)
+::file::path graphics::get_font_path(const string & str, int iWeight, bool bItalic)
 {
 
 #ifdef LINUX
@@ -6255,7 +6255,7 @@ string graphics::get_font_path(string str)
 
 #else
 
-   return ::draw2d::graphics::get_font_path(str);
+   return ::draw2d::graphics::get_font_path(str, iWeight, bItalic);
 
 #endif
 
@@ -6301,29 +6301,58 @@ bool graphics::_set(const ::draw2d::matrix & matrix)
 }
 
 
-FT_Face graphics::ftface(const char* pszFontName)
+FT_Face graphics::ftface(const char* pszFontName, int iWeight, bool bItalic)
 {
 
    sync_lock sl(cairo_mutex());
 
-   FT_Face ftface = nullptr;
+   FT_Face ftface = (*g_pmapFontFace)[pszFontName][iWeight *10 + (bItalic ? 1 : 0)];
 
-   if(g_pmapFontFace->lookup(pszFontName, ftface))
+   if(ftface)
    {
 
       return ftface;
 
    }
 
-   ::file::path path = get_font_path(pszFontName);
+   ::file::path path = get_font_path(pszFontName, iWeight, bItalic);
 
    if (path.is_empty())
    {
 
-      ftface = nullptr;
+      path = get_font_path(pszFontName, 400, bItalic);
+
+      if (path.is_empty())
+      {
+
+         path = get_font_path(pszFontName, 0, bItalic);
+
+         if (path.is_empty() && bItalic)
+         {
+
+            path = get_font_path(pszFontName, iWeight, false);
+
+            if (path.is_empty())
+            {
+
+               path = get_font_path(pszFontName, 400, false);
+
+               if (path.is_empty())
+               {
+
+                  path = get_font_path(pszFontName, 0, false);
+
+               }
+
+            }
+
+         }
+
+      }
 
    }
-   else
+
+   if(path.has_char())
    {
 
       auto ftlibrary = __ftlibrary();
@@ -6359,7 +6388,7 @@ FT_Face graphics::ftface(const char* pszFontName)
 
    }
 
-   g_pmapFontFace->set_at(pszFontName, ftface);
+   (*g_pmapFontFace)[pszFontName][iWeight * 10 + (bItalic ? 1 : 0)] = ftface;
 
    return ftface;
 

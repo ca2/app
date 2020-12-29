@@ -38,7 +38,7 @@ namespace multimedia
       }
 
 
-      ::estatus     translate(OSStatus status)
+      ::e_status     translate(OSStatus status)
       {
 
          switch(status)

@@ -25,7 +25,7 @@ namespace user
       }
 
 
-      ::estatus edit_impl::initialize(::layered * pobjectContext)
+      ::e_status edit_impl::initialize(::layered * pobjectContext)
       {
 
          auto estatus = ::user::rich_text::edit::initialize(pobjectContext);
@@ -345,7 +345,7 @@ namespace user
 
             SetCapture();
 
-            psession->set_keyboard_focus(this);
+            set_keyboard_focus();
 
             psession->user()->set_mouse_focus_LButtonDown(this);
 
@@ -980,7 +980,7 @@ namespace user
 
             ev.m_pmessage = pmessage;
 
-            ev.m_actioncontext = ::source_user;
+            ev.m_actioncontext = ::e_source_user;
 
             on_control_event(&ev);
 
@@ -1040,7 +1040,7 @@ namespace user
 
             ev.m_eevent = ::user::e_event_escape;
 
-            ev.m_actioncontext = ::source_user;
+            ev.m_actioncontext = ::e_source_user;
 
             on_control_event(&ev);
 

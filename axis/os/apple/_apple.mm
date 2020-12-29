@@ -147,7 +147,7 @@ void ns_main_sync(dispatch_block_t block, unsigned int)
 
 class object;
 
-CLASS_DECL_AXIS ::estatus __call(::generic * prunnable);
+CLASS_DECL_AXIS ::e_status __call(::generic * prunnable);
 
 void main_async_runnable(::generic * prunnable)
 {

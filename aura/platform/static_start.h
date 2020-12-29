@@ -24,9 +24,11 @@ namespace aura
 
    //extern CLASS_DECL_AURA critical_section* g_pcsGlobal;
 
-   extern CLASS_DECL_AURA string_to_string* g_pmapFontFaceName;
+   extern CLASS_DECL_AURA string_map < int_to_string > * g_pmapFontFaceName;
 
    extern CLASS_DECL_AURA critical_section* g_pcsFont;
+
+   extern CLASS_DECL_AURA mutex * g_pmutexWindowing;
 
    //extern critical_section* g_pcsRefDbg;
 
@@ -209,8 +211,8 @@ namespace aura
       void construct();
 
 
-      ::estatus init();
-      ::estatus term();
+      ::e_status init();
+      ::e_status term();
 
 
       //void init_windowing();

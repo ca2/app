@@ -20,10 +20,10 @@ namespace gpu
    }
 
 
-   ::estatus context::initialize(::layered * pobjectContext)
+   ::e_status context::initialize(::layered * pobjectContext)
    {
 
-      ::estatus estatus = ::object::initialize(pobjectContext);
+      ::e_status estatus = ::object::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -37,7 +37,7 @@ namespace gpu
    }
 
 
-   ::estatus context::draw()
+   ::e_status context::draw()
    {
 
       if (m_VAO != 0)
@@ -83,7 +83,7 @@ namespace gpu
    }
 
 
-   ::estatus context::prepare_for_gpu_read()
+   ::e_status context::prepare_for_gpu_read()
    {
 
       return ::success;
@@ -91,7 +91,7 @@ namespace gpu
    }
 
 
-   ::estatus context::start()
+   ::e_status context::start()
    {
 
       //glClearColor(0.2f, 0.3f, 0.3f, 0.5f);
@@ -120,7 +120,7 @@ namespace gpu
    }
 
 
-   ::estatus context::render()
+   ::e_status context::render()
    {
 
       //glBindVertexArray(m_VAO);
@@ -132,7 +132,7 @@ namespace gpu
    }
 
 
-   ::estatus context::create_offscreen_buffer(const ::size& size)
+   ::e_status context::create_offscreen_buffer(const ::size& size)
    {
 
       auto pgpu = System.get_gpu();
@@ -144,7 +144,7 @@ namespace gpu
 
       }
 
-      ::estatus estatus = __construct(m_pbuffer);
+      ::e_status estatus = __construct(m_pbuffer);
 
       if (!estatus)
       {
@@ -176,7 +176,7 @@ namespace gpu
    }
 
 
-   ::estatus context::_create_offscreen_buffer(const ::size& size)
+   ::e_status context::_create_offscreen_buffer(const ::size& size)
    {
 
       return ::success_none;
@@ -184,7 +184,7 @@ namespace gpu
    }
 
 
-   ::estatus context::resize_offscreen_buffer(const ::size& size)
+   ::e_status context::resize_offscreen_buffer(const ::size& size)
    {
 
       if(!m_pbuffer)
@@ -201,7 +201,7 @@ namespace gpu
    }
 
 
-   ::estatus context::lock_context()
+   ::e_status context::lock_context()
    {
 
       return ::success;
@@ -209,7 +209,7 @@ namespace gpu
    }
 
 
-   ::estatus context::unlock_context()
+   ::e_status context::unlock_context()
    {
 
       return ::success;
@@ -217,7 +217,7 @@ namespace gpu
    }
 
 
-   ::estatus context::make_current()
+   ::e_status context::make_current()
    {
 
       return ::success_none;
@@ -225,7 +225,7 @@ namespace gpu
    }
 
 
-   ::estatus context::destroy_offscreen_buffer()
+   ::e_status context::destroy_offscreen_buffer()
    {
 
       return ::success_none;

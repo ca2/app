@@ -35,7 +35,7 @@ namespace aqua
       virtual ~multimedia();
 
 
-      virtual ::estatus initialize_multimedia(::object* pobjectContext);
+      virtual ::e_status initialize_multimedia(::object* pobjectContext);
 
       virtual void on_song_added(const string& strId);
 
@@ -52,7 +52,7 @@ namespace aqua
       string_array detect_language(const string& str);
 
 
-      virtual ::estatus get_file_information(::file::file* pfile, ::multimedia::information& information);
+      virtual ::e_status get_file_information(::file::file* pfile, ::multimedia::information& information);
 
 
    };

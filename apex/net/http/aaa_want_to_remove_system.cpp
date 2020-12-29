@@ -1068,7 +1068,7 @@ retry:
 
          }
 
-         ::estatus     estatus;
+         ::e_status     estatus;
 
          if(::failed(psession->m_estatus))
          {
@@ -1732,7 +1732,7 @@ retry_session:
 
       set[__id(cookie)] = strCookie;
 
-      ::estatus     estatus = error_failed;
+      ::e_status     estatus = error_failed;
 
       i32 iStatusCode = psocket->outattr("http_status_code");
 
@@ -1979,7 +1979,7 @@ retry_session:
       if(!http_get(handler, psocket, pmessage->m_strUrl, set))
       {
 
-         pmessage->m_estatusRet = (::estatus    ) set["get_status"].i64();
+         pmessage->m_estatusRet = (::e_status    ) set["get_status"].i64();
 
          pmessage->m_bRet = false;
 
@@ -1987,7 +1987,7 @@ retry_session:
 
       }
 
-      pmessage->m_estatusRet = (::estatus    ) set["get_status"].i64();
+      pmessage->m_estatusRet = (::e_status    ) set["get_status"].i64();
 
 
       if(psocket->GetDataPtr() != nullptr && psocket->GetContentLength() > 0)

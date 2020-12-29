@@ -49,11 +49,11 @@ namespace ios
 
       virtual bool open_in_ie(const char * pcsz);
 
-      virtual ::estatus create_service() override;
-      virtual ::estatus remove_service() override;
+      virtual ::e_status create_service() override;
+      virtual ::e_status remove_service() override;
 
-      virtual ::estatus start_service() override;
-      virtual ::estatus stop_service() override;
+      virtual ::e_status start_service() override;
+      virtual ::e_status stop_service() override;
 
       void raise_exception( ::u32 dwExceptionCode, ::u32 dwExceptionFlags);
 

@@ -357,7 +357,7 @@ namespace music
             case ::music::midi::player::command_stop:
             {
                m_eventStop.ResetEvent();
-               ::estatus                estatus;
+               ::e_status                estatus;
                ::music::midi::sequence::PlayerLink & link = get_sequence()->GetPlayerLink();
                link.SetCommand(spcommand);
                link.ModifyFlag(::music::midi::sequence::FlagStop, ::music::midi::sequence::FlagNull);
@@ -369,7 +369,7 @@ namespace music
             break;
             case ::music::midi::player::command_stop_and_restart:
             {
-               ::estatus                estatus;
+               ::e_status                estatus;
                ::music::midi::sequence::PlayerLink & link = get_sequence()->GetPlayerLink();
                link.SetCommand(spcommand);
                link.ModifyFlag(

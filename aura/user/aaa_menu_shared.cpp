@@ -169,7 +169,7 @@ public: // re-implementations only
    m_pestatus(pestatus)
    {
    }
-   virtual void Enable(bool bOn = TRUE, const ::action_context & context = ::source_system)
+   virtual void Enable(bool bOn = TRUE, const ::action_context & context = ::e_source_system)
    {
          if(bOn)
          {
@@ -185,8 +185,8 @@ public: // re-implementations only
          }
 
    }
-   //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::source_system);   // 0, 1 or 2 (indeterminate)
-   virtual void _001SetCheck(enum_check echeck, const ::action_context & context = ::source_system)   // 0, 1 or 2 (indeterminate)
+   //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
+   virtual void _001SetCheck(enum_check echeck, const ::action_context & context = ::e_source_system)   // 0, 1 or 2 (indeterminate)
    {
 
       if(echeck == check_checked)
@@ -202,8 +202,8 @@ public: // re-implementations only
 
       }
    }
-//   virtual void SetRadio(bool bOn = TRUE, const ::action_context & context = ::source_system);
-   //virtual void SetText(const char * pszText, const ::action_context & context = ::source_system);
+//   virtual void SetRadio(bool bOn = TRUE, const ::action_context & context = ::e_source_system);
+   //virtual void SetText(const char * pszText, const ::action_context & context = ::e_source_system);
 
 };
 

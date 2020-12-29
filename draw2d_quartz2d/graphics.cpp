@@ -261,7 +261,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::estatus graphics::set(::draw2d::bitmap * pbitmap)
+   ::e_status graphics::set(::draw2d::bitmap * pbitmap)
    {
 
 
@@ -3633,7 +3633,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::estatus graphics::clear_current_point()
+   ::e_status graphics::clear_current_point()
    {
    
       return ::success;
@@ -4195,7 +4195,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::estatus graphics::reset_clip()
+   ::e_status graphics::reset_clip()
    {
    
       CGContextResetClip(m_pdc);
@@ -4205,7 +4205,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::estatus graphics::_intersect_clip()
+   ::e_status graphics::_intersect_clip()
    {
       
       CGContextClip(m_pdc);
@@ -4215,7 +4215,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::estatus graphics::_add_shape(const ::rect & rect)
+   ::e_status graphics::_add_shape(const ::rect & rect)
    {
    
       CGRect r;
@@ -4229,7 +4229,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::estatus graphics::_add_shape(const ::rectd & rect)
+   ::e_status graphics::_add_shape(const ::rectd & rect)
    {
    
       CGRect r;
@@ -4243,7 +4243,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::estatus graphics::_add_shape(const ::oval & oval)
+   ::e_status graphics::_add_shape(const ::oval & oval)
    {
    
       CGRect r;
@@ -4257,7 +4257,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::estatus graphics::_add_shape(const ::ovald & oval)
+   ::e_status graphics::_add_shape(const ::ovald & oval)
    {
    
       CGRect r;
@@ -4271,7 +4271,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::estatus graphics::_add_shape(const ::polygon & polygon)
+   ::e_status graphics::_add_shape(const ::polygon & polygon)
    {
    
       CGContextBeginPath(m_pdc);
@@ -4285,7 +4285,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::estatus graphics::_add_shape(const ::polygond & polygon)
+   ::e_status graphics::_add_shape(const ::polygond & polygon)
    {
 
       CGContextBeginPath(m_pdc);

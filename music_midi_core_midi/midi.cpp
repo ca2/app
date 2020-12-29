@@ -172,7 +172,7 @@ namespace music
          }
 
 
-         ::estatus     midi::enumerate_midi_devices()
+         ::e_status     midi::enumerate_midi_devices()
          {
 
             return ::success;
@@ -180,10 +180,10 @@ namespace music
          }
 
 
-         ::estatus     midi::translate_os_result(string & strMessage, string & strOsMessage, ::music::midi::object * pobject, i64 iOsResult, const string & strContext, const string & strText)
+         ::e_status     midi::translate_os_result(string & strMessage, string & strOsMessage, ::music::midi::object * pobject, i64 iOsResult, const string & strContext, const string & strText)
          {
 
-            ::estatus     estatus = iOsResult == 0 ? ::success : error_failed;
+            ::e_status     estatus = iOsResult == 0 ? ::success : error_failed;
 
             if (estatus == ::success)
             {
@@ -238,7 +238,7 @@ namespace music
          }
          
          
-         virtual ::estatus open(int iPort) override
+         virtual ::e_status open(int iPort) override
          {
             
             OSStatus result = noErr;
@@ -357,7 +357,7 @@ namespace music
             return ::success;
          }
          
-                     virtual ::estatus note_on(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override
+                     virtual ::e_status note_on(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override
          {
             
             int noteOnCommand = ::u32(0x90 | iChannel);
@@ -371,7 +371,7 @@ namespace music
                   }
             return ::success;
          }
-         virtual ::estatus note_off(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override
+         virtual ::e_status note_off(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override
          {
             int noteOnCommand = ::u32(0x80 | iChannel);
                 OSStatus result=    MusicDeviceMIDIEvent (m_unitSynth, noteOnCommand, uchNote, uchVelocity, 0);
@@ -384,7 +384,7 @@ namespace music
                           }
                     return ::success;
          }
-         virtual ::estatus program_change(int iChannel, unsigned char uchProgram) override
+         virtual ::e_status program_change(int iChannel, unsigned char uchProgram) override
          {
             
             

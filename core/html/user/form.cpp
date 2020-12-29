@@ -26,7 +26,7 @@ html_form::~html_form()
 }
 
 
-::estatus html_form::initialize(::layered * pobjectContext)
+::e_status html_form::initialize(::layered * pobjectContext)
 {
 
    auto estatus = ::user::form_view::initialize(pobjectContext);
@@ -267,9 +267,7 @@ void html_form::_001OnLButtonDown(::message::message * pmessage)
    else
    {
 
-      auto psession = Session;
-
-      psession->clear_focus();
+      clear_focus();
 
    }
 
@@ -480,7 +478,7 @@ void html_form::set_need_load_form_data()
 }
 
 
-::estatus html_form::open_document(const payload & varFile)
+::e_status html_form::open_document(const payload & varFile)
 {
 
    auto path = varFile.get_file_path();
@@ -525,7 +523,7 @@ void html_form::set_need_load_form_data()
 }
 
 
-::estatus html_form::open_html(const ::string & str)
+::e_status html_form::open_html(const ::string & str)
 {
 
    auto phtmldata = get_html_data();
@@ -557,7 +555,9 @@ void html_form::_001SetText(const string & str, const ::action_context & context
 
    auto psession = Session;
 
-   bool bFocus = has_focus() || is_descendant(dynamic_cast < ::user::interaction * > (psession->get_keyboard_focus()));
+   auto puserinteraction = get_keyboard_focus()->cast < ::user::interaction >();
+
+   bool bFocus = has_focus() || is_descendant(puserinteraction, true);
 
    __pointer(::html_data) sphtmldata;
 
@@ -573,15 +573,22 @@ void html_form::_001SetText(const string & str, const ::action_context & context
 
    if(bFocus)
    {
+      
       __pointer(::user::primitive) pfocus = get_focusable_descendant();
+
       if(pfocus != nullptr)
       {
+
          auto psession = Session;
 
-         psession->set_keyboard_focus(pfocus);
+         pfocus->set_keyboard_focus();
+
       }
+
    }
+
    _001OnInitializeForm();
+
 }
 
 

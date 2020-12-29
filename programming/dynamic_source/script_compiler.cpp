@@ -40,7 +40,7 @@ namespace dynamic_source
    }
 
    
-   ::estatus script_compiler::initialize(::layered * pobjectContext)
+   ::e_status script_compiler::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -132,7 +132,7 @@ namespace dynamic_source
    }
 
 
-   estatus script_compiler::init1()
+   ::e_status script_compiler::init1()
    {
 
       prepare_compile_and_link_environment();
@@ -209,7 +209,7 @@ namespace dynamic_source
          }
 
       }
-      catch (const ::estatus & estatus)
+      catch (const ::e_status & estatus)
       {
 
          output_debug_string("failed to setup visual studio environment " + __str((::i64)estatus.m_estatus));
@@ -1225,7 +1225,7 @@ namespace dynamic_source
       //strDest += "   " + m_pmanager->m_strNamespace + "_dynamic_source_script(dynamic_source::script * pscript) : ::object(pscript->get_context_application()), dynamic_source::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_instance(pscript), ::" + m_pmanager->m_strNamespace + "::script_impl(pscript) {};  \r\n";
       strDest += "   " + m_pmanager->m_strNamespace + "_dynamic_source_script() {};\r\n";
       strDest += "   virtual ~" + m_pmanager->m_strNamespace + "_dynamic_source_script() {};\r\n";
-      strDest += "   virtual ::estatus     run() {script_run(); return ::success; };\r\n";
+      strDest += "   virtual ::e_status     run() {script_run(); return ::success; };\r\n";
       strDest += "   virtual void script_run();\r\n";
       strDest += "   \r\n\r\n";
       strDest += strDs;

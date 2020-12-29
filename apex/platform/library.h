@@ -27,8 +27,8 @@ namespace apex
       library() {}
       virtual ~library();
 
-      virtual ::estatus     initialize(::layered * pobjectContext);
-      virtual ::estatus     initialize_apex_library(::layered * pobjectContext, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
+      virtual ::e_status     initialize(::layered * pobjectContext);
+      virtual ::e_status     initialize_apex_library(::layered * pobjectContext, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
 
       virtual bool open(const char * pszPath,bool bAutoClose = true,bool bCa2Path = false);
 

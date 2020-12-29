@@ -31,10 +31,10 @@ namespace user
 
 
       virtual string get_path();
-      virtual ::estatus open_document(const payload & varFile) override;
+      virtual ::e_status open_document(const payload & varFile) override;
       //::type controltype_to_typeinfo(::user::enum_control_type econtroltype);
 
-      virtual ::estatus open_html(const ::string & str) override;
+      virtual ::e_status open_html(const ::string & str) override;
 
 
       //using ::user::interaction::_001IsPointInside;

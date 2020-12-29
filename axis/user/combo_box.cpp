@@ -162,6 +162,25 @@ namespace user
    }
 
 
+   enum_input_type combo_box::preferred_input_type() const
+   {
+
+      if (m_bEdit)
+      {
+
+         return e_input_type_text;
+
+      }
+      else
+      {
+
+         return e_input_type_list;
+
+      }
+
+   }
+
+
    void combo_box::get_simple_drop_down_open_arrow_polygon(point_array& pointa)
    {
 
@@ -263,7 +282,9 @@ namespace user
 
          auto psession = Session;
 
-         if (psession->get_focus_ui() == this)
+         auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
+
+         if(pprimitiveFocus == this)
          {
 
             if (m_itemHover.is_set())
@@ -780,7 +801,7 @@ namespace user
 
          }
 
-         keyboard_set_focus();
+         set_keyboard_focus();
 
          get_wnd()->SetActiveWindow();
 
@@ -865,7 +886,7 @@ namespace user
       else
       {
 
-         _001SetText(strItem, ::source_sync);
+         _001SetText(strItem, ::e_source_sync);
 
       }
 
@@ -1692,7 +1713,7 @@ namespace user
             if (pevent->m_item == e_element_item)
             {
 
-               set_current_item((::index) pevent->m_item.m_iItem, ::source_user);
+               set_current_item((::index) pevent->m_item.m_iItem, ::e_source_user);
 
             }
 

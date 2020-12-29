@@ -26,7 +26,7 @@ namespace multimedia
          virtual bool in_initialize_encoder() override;
 
 
-         virtual ::estatus     in_add_buffer(i32 iBuffer) override;
+         virtual ::e_status     in_add_buffer(i32 iBuffer) override;
 
 
          virtual void * get_os_data();
@@ -35,11 +35,11 @@ namespace multimedia
          AudioQueueRef in_get_safe_AudioQueueRef();
 
 
-         ::estatus     in_open(i32 iBufferCount, i32 iBufferSampleCount) override;
-         ::estatus     in_close() override;
-         ::estatus     in_stop() override;
-         ::estatus     in_start() override;
-         ::estatus     in_reset() override;
+         ::e_status     in_open(i32 iBufferCount, i32 iBufferSampleCount) override;
+         ::e_status     in_close() override;
+         ::e_status     in_stop() override;
+         ::e_status     in_start() override;
+         ::e_status     in_reset() override;
 
 
          virtual bool initialize_thread() override;

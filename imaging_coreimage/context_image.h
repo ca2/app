@@ -14,16 +14,16 @@ namespace coreimage_imaging
       context_image();
       virtual ~context_image();
 
-      virtual ::estatus _load_image(::image * pimageParam, const payload & varFile, bool bSync, bool bCreateHelperMaps) override;
+      virtual ::e_status _load_image(::image * pimageParam, const payload & varFile, bool bSync, bool bCreateHelperMaps) override;
 
-      virtual ::estatus _load_image(::image * pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory) override;
-      virtual ::estatus save_image(memory & memory, const ::image * pimage, const ::save_image * psaveimage = nullptr) override;
+      virtual ::e_status _load_image(::image * pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory) override;
+      virtual ::e_status save_image(memory & memory, const ::image * pimage, const ::save_image * psaveimage = nullptr) override;
 
       virtual HCURSOR CreateAlphaCursor(oswindow oswindow, const image * pimage, int xHotSpot, int yHotSpot) override;
       //virtual HCURSOR load_default_cursor(e_cursor ecursor) override;
       virtual void set_cursor_image(const image * pimage, int xHotSpot, int yHotSpot) override;
 
-      //virtual ::estatus _load_image(::object * pobject, image_frame_array * pimageframea, const ::memory & memory);
+      //virtual ::e_status _load_image(::object * pobject, image_frame_array * pimageframea, const ::memory & memory);
       //virtual int_bool window_set_mouse_cursor(oswindow window, HCURSOR hcursor) override;
 
    };

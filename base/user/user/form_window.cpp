@@ -553,14 +553,14 @@ namespace user
             //   {
             //      string str;
             //      str = payload.m_str;
-            //      pinteraction->_001SetText(str, ::source_database);
+            //      pinteraction->_001SetText(str, ::e_source_database);
             //   }
             //   break;
             //   case ::type_i32:
             //   {
             //      string str;
             //      str.Format("%d", payload.i32());
-            //      pinteraction->_001SetText(str, ::source_database);
+            //      pinteraction->_001SetText(str, ::e_source_database);
             //   }
             //   break;
             //   default:
@@ -870,7 +870,7 @@ namespace user
       ::user::control_event ev;
 
       ev.m_puie         = pinteraction;
-      ev.m_actioncontext = ::source_database;
+      ev.m_actioncontext = ::e_source_database;
       ev.m_eevent       = ::user::e_event_initialize_control;
       ev.m_uiEvent      = 0;
 
@@ -1077,7 +1077,7 @@ namespace user
    }
 
 
-   ::estatus form_window::open_document(const payload & varFile)
+   ::e_status form_window::open_document(const payload & varFile)
    {
 
       auto estatus = ::user::form_control::open_document(varFile);
@@ -1120,9 +1120,7 @@ namespace user
          if(pfocus != nullptr)
          {
 
-            auto psession = Session;
-
-            psession->set_keyboard_focus(pfocus);
+            pfocus->set_keyboard_focus();
 
          }
 

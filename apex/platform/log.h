@@ -50,7 +50,7 @@ namespace apex
       virtual void print(const char * psz, ...);
 
 
-      virtual ::estatus initialize_apex_log(e_trace_level etracelevelMin, const ::id & id);
+      virtual ::e_status initialize_apex_log(e_trace_level etracelevelMin, const ::id & id);
       //virtual bool initialize(id id);
       virtual void finalize() override;
 

@@ -543,11 +543,11 @@ namespace draw2d_opengl
 
       virtual bool prefer_mapped_image_on_mix();
 
-      virtual ::estatus set(::draw2d::region* pregion) override;
-      virtual ::estatus set(::draw2d::pen* ppen) override;
-      virtual ::estatus set(::draw2d::font* pfont) override;
-      virtual ::estatus set(::draw2d::brush* pbrush) override;
-      virtual ::estatus set(::draw2d::bitmap* pbitmap) override;
+      virtual ::e_status set(::draw2d::region* pregion) override;
+      virtual ::e_status set(::draw2d::pen* ppen) override;
+      virtual ::e_status set(::draw2d::font* pfont) override;
+      virtual ::e_status set(::draw2d::brush* pbrush) override;
+      virtual ::e_status set(::draw2d::bitmap* pbitmap) override;
       virtual ::draw2d::object* set_stock_object(i32 nIndex) override;
 
       virtual bool CreateWindowDC(oswindow wnd) override;

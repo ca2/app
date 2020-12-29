@@ -61,7 +61,7 @@ namespace turboc
 
          str = str.Left(84);
 
-         get_typed_view < edit_view >()->_001SetText(str,::source_user);
+         get_typed_view < edit_view >()->_001SetText(str,::e_source_user);
 
       }
       else if(get_typed_view < pane_view >() != NULL)

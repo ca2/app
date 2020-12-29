@@ -39,7 +39,7 @@ i64 timer_task::release(OBJ_REF_DBG_PARAMS_DEF)
 }
 
 
-::estatus timer_task::initialize_timer(::apex::timer_array* ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void* pvoidData, class sync* pmutex)
+::e_status timer_task::initialize_timer(::apex::timer_array* ptimera, uptr uiTimer, PFN_TIMER pfnTimer, void* pvoidData, class sync* pmutex)
 {
 
    auto estatus = initialize(ptimera);
@@ -209,7 +209,7 @@ bool timer_task::task_active() const
 }
 
 
-::estatus timer_task::on_task()
+::e_status timer_task::on_task()
 {
 
    ::i64 iSleepMs = m_duration.u32_millis();

@@ -144,7 +144,7 @@ namespace acme
 
 
 
-   ::estatus system::main_user_async(const ::promise::routine & routine, ::e_priority epriority)
+   ::e_status system::main_user_async(const ::promise::routine & routine, ::e_priority epriority)
    {
 
       return ::error_interface_only;
@@ -152,7 +152,7 @@ namespace acme
    }
 
 
-   ::estatus system::main_user_sync(const ::promise::routine & routine, const ::duration & duration, e_priority epriority)
+   ::e_status system::main_user_sync(const ::promise::routine & routine, const ::duration & duration, e_priority epriority)
    {
 
       auto proutine = ___sync_routine(routine);

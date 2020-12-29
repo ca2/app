@@ -17,7 +17,7 @@ namespace aura
    }
 
 
-   ::estatus sound_track_player::defer_start(::wave::e_purpose epurpose)
+   ::e_status sound_track_player::defer_start(::wave::e_purpose epurpose)
    {
 
 

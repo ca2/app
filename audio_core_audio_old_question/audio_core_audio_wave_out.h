@@ -33,16 +33,16 @@ namespace multimedia
          imedia_time out_get_time() override;
          virtual void out_buffer_ready(int iBuffer);
 
-         virtual ::estatus     out_open(::thread * pthreadCallback, i32 iBufferCount, i32 iBufferSampleCount);
-         virtual ::estatus     out_open_ex(::thread * pthreadCallback, i32 iBufferCount, i32 iBufferSampleCount, u32 uiSamplesPerSec, u32 uiChannelCount, u32 uiBitsPerSample, ::audio::e_purpose epurpose);
-         virtual ::estatus     out_stop() override;
-         virtual ::estatus     out_close() override;
-         virtual ::estatus     out_pause() override;
-         virtual ::estatus     out_restart() override;
+         virtual ::e_status     out_open(::thread * pthreadCallback, i32 iBufferCount, i32 iBufferSampleCount);
+         virtual ::e_status     out_open_ex(::thread * pthreadCallback, i32 iBufferCount, i32 iBufferSampleCount, u32 uiSamplesPerSec, u32 uiChannelCount, u32 uiBitsPerSample, ::audio::e_purpose epurpose);
+         virtual ::e_status     out_stop() override;
+         virtual ::e_status     out_close() override;
+         virtual ::e_status     out_pause() override;
+         virtual ::e_status     out_restart() override;
          virtual void * get_os_data();
          AudioQueueRef out_get_safe_AudioQueueRef();
 
-         ::estatus     out_start(const imedia_time & position) override;
+         ::e_status     out_start(const imedia_time & position) override;
 
 
          virtual void out_on_playback_end() override;

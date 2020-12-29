@@ -36,23 +36,23 @@ namespace opengl
       virtual ~opengl();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
       virtual ::gpu::context* create_context() override;
 
 
-      virtual ::estatus defer_init_glew() override;
+      virtual ::e_status defer_init_glew() override;
 
-      //virtual ::estatus draw();
-      //virtual ::estatus start();
-      //virtual ::estatus render();
+      //virtual ::e_status draw();
+      //virtual ::e_status start();
+      //virtual ::e_status render();
 
       //virtual bool create_offscreen_buffer(const ::size& size);
       //virtual bool destroy_offscreen_buffer();
 
 
-      //virtual ::estatus make_current();
+      //virtual ::e_status make_current();
 
 
    };

@@ -27,26 +27,26 @@ namespace opengl
       context_fbo();
       virtual ~context_fbo();
       
-      virtual ::estatus lock_context() override;
-      virtual ::estatus unlock_context() override;
+      virtual ::e_status lock_context() override;
+      virtual ::e_status unlock_context() override;
 
-      virtual ::estatus _create_offscreen_buffer(const ::size& size) override;
-      //virtual ::estatus resize_offscreen_buffer(const ::size& size) override;
-      virtual ::estatus destroy_offscreen_buffer() override;
+      virtual ::e_status _create_offscreen_buffer(const ::size& size) override;
+      //virtual ::e_status resize_offscreen_buffer(const ::size& size) override;
+      virtual ::e_status destroy_offscreen_buffer() override;
 
-      virtual ::estatus make_current() override;
+      virtual ::e_status make_current() override;
 
       virtual string get_shader_version_text() override;
 
       virtual void _translate_shader(string_array& stra) override;
 
-      virtual ::estatus render() override;
+      virtual ::e_status render() override;
       
-      virtual ::estatus start() override;
+      virtual ::e_status start() override;
       
-      virtual ::estatus prepare_for_gpu_read() override;
+      virtual ::e_status prepare_for_gpu_read() override;
       
-      virtual ::estatus resize_offscreen_buffer(const ::size& size) override;
+      virtual ::e_status resize_offscreen_buffer(const ::size& size) override;
       
 
    };

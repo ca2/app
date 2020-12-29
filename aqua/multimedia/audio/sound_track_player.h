@@ -15,7 +15,7 @@ namespace aura
       virtual ~sound_track_player();
 
 
-      virtual ::estatus defer_start(::wave::e_purpose epurpose);
+      virtual ::e_status defer_start(::wave::e_purpose epurpose);
 
       virtual __pointer(::object) sound_plugin(const char*, bool bForceCreate = false);
 

@@ -48,7 +48,7 @@ namespace acme
    }
 
 
-   ::estatus session::initialize(::matter * pobjectContext)
+   ::e_status session::initialize(::matter * pobjectContext)
    {
 
       auto estatus = ::acme::session::initialize(pobjectContext);
@@ -94,7 +94,7 @@ namespace acme
    }
 
 
-   ::estatus session::process_init()
+   ::e_status session::process_init()
    {
 
       /*if(!::acme::application::process_init())
@@ -128,7 +128,7 @@ namespace acme
    }
 
 
-   ::estatus session::init1()
+   ::e_status session::init1()
    {
 
       //if (!::acme::application::init1())
@@ -204,7 +204,7 @@ namespace acme
    }
 
 
-   ::estatus session::init()
+   ::e_status session::init()
    {
 
       //if (!::acme::application::init())
@@ -228,7 +228,7 @@ namespace acme
    }
 
 
-   ::estatus session::init2()
+   ::e_status session::init2()
    {
 
       //if (!::acme::application::init2())
@@ -251,7 +251,7 @@ namespace acme
 
 
 
-   ::estatus session::init_session()
+   ::e_status session::init_session()
    {
 
       //if (!::acme::application::init_application())
@@ -391,7 +391,7 @@ namespace acme
    }
 
 
-   //::estatus session::bergedge_start()
+   //::e_status session::bergedge_start()
    //{
 
    //   return true;
@@ -447,7 +447,7 @@ namespace acme
 
    }
 
-   ::estatus     session::do_request(::create * pcreate)
+   ::e_status     session::do_request(::create * pcreate)
    {
 
       return ::acme::session::do_request(pcreate);
@@ -987,7 +987,7 @@ namespace acme
    //}
 
 
-   //::estatus session::os_native_bergedge_start()
+   //::e_status session::os_native_bergedge_start()
    //{
 
    //   if (!::acme::application::os_native_bergedge_start())
@@ -1023,7 +1023,7 @@ namespace acme
    }
 
 
-   ::estatus     session::main()
+   ::e_status     session::main()
    {
 
       return ::acme::session::main();
@@ -1317,7 +1317,7 @@ namespace acme
     //}
 
 
-    //::estatus session::initialize(::matter* pobjectContext)
+    //::e_status session::initialize(::matter* pobjectContext)
     //{
 
     //   auto estatus = ::acme::session::initialize(pobjectContext);
@@ -1356,7 +1356,7 @@ namespace acme
     //}
 
 
-    //::estatus session::process_init()
+    //::e_status session::process_init()
     //{
 
     //   //m_himc = ImmCreateContext();
@@ -1412,7 +1412,7 @@ namespace acme
     //}
 
 
-    //::estatus session::init1()
+    //::e_status session::init1()
     //{
 
 
@@ -1441,7 +1441,7 @@ namespace acme
     //}
 
 
-    //::estatus session::init()
+    //::e_status session::init()
     //{
 
     //   if (!::acme::session::init())

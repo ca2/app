@@ -23,7 +23,7 @@ inline bool failed(::i64 i)
 }
 
 
-class estatus
+class e_status
 {
 public:
    
@@ -31,11 +31,11 @@ public:
    ::enum_status        m_estatus;
    
    
-   estatus() { m_estatus = ::undefined; }
-   estatus(::enum_status estatus): m_estatus(estatus){}
-   estatus(bool b) : m_estatus(b ? success : error_failed){}
-   estatus(i32 i) : m_estatus((::enum_status) i) {}
-   estatus(i64 i) : m_estatus((::enum_status) i) {}
+   e_status() { m_estatus = ::undefined; }
+   e_status(::enum_status estatus): m_estatus(estatus){}
+   e_status(bool b) : m_estatus(b ? success : error_failed){}
+   e_status(i32 i) : m_estatus((::enum_status) i) {}
+   e_status(i64 i) : m_estatus((::enum_status) i) {}
    
    operator ::enum_status & () { return m_estatus; }
    operator ::enum_status () const { return m_estatus; }
@@ -50,9 +50,9 @@ public:
 
    int error_status() const { return succeeded() ? 0 : (int)m_estatus; }
 
-   estatus & operator =(enum_status estatus) { m_estatus = estatus; return *this; }
-   estatus & operator =(const estatus & estatus) { m_estatus = estatus; return *this; }
-   estatus & operator =(bool b) { m_estatus = b ? success : error_failed; return *this; }
+   e_status & operator =(enum_status estatus) { m_estatus = estatus; return *this; }
+   e_status & operator =(const e_status & estatus) { m_estatus = estatus; return *this; }
+   e_status & operator =(bool b) { m_estatus = b ? success : error_failed; return *this; }
 
 
 
@@ -61,7 +61,7 @@ public:
 
 
 
-inline bool succeeded(const ::estatus & estatus)
+inline bool succeeded(const ::e_status & estatus)
 {
 
    return succeeded((::i64)estatus.m_estatus);
@@ -69,14 +69,14 @@ inline bool succeeded(const ::estatus & estatus)
 }
 
 
-inline bool failed(const ::estatus & estatus)
+inline bool failed(const ::e_status & estatus)
 {
 
    return !succeeded(estatus);
 
 }
 
-inline bool succeeded(const ::estatus & estatus, int iRange)
+inline bool succeeded(const ::e_status & estatus, int iRange)
 {
 
    return (::i64)estatus.m_estatus >= (::i64)SUCCESS_STATUS(iRange).m_estatus
@@ -85,7 +85,7 @@ inline bool succeeded(const ::estatus & estatus, int iRange)
 }
 
 
-inline bool failed(const ::estatus & estatus, int iRange)
+inline bool failed(const ::e_status & estatus, int iRange)
 {
 
    return (::i64)estatus.m_estatus >= (::i64)FAILURE_STATUS(iRange).m_estatus
@@ -94,7 +94,7 @@ inline bool failed(const ::estatus & estatus, int iRange)
 }
 
 
-inline void defer_failed(::estatus & estatus, int iRange)
+inline void defer_failed(::e_status & estatus, int iRange)
 {
 
    if (!::failed(estatus))
@@ -107,7 +107,7 @@ inline void defer_failed(::estatus & estatus, int iRange)
 }
 
 
-inline void defer_failed(::estatus & estatus, ::estatus     estatusDeferred)
+inline void defer_failed(::e_status & estatus, ::e_status     estatusDeferred)
 {
 
    if (!::failed(estatus))
@@ -120,10 +120,10 @@ inline void defer_failed(::estatus & estatus, ::estatus     estatusDeferred)
 }
 
 
-inline bool status_io_succeeded(const ::estatus & estatus) { return ::succeeded(estatus, STATUS_RANGE_IO); }
+inline bool status_io_succeeded(const ::e_status & estatus) { return ::succeeded(estatus, STATUS_RANGE_IO); }
 
-inline bool status_io_failed(const ::estatus & estatus) { return ::failed(estatus, STATUS_RANGE_IO); }
+inline bool status_io_failed(const ::e_status & estatus) { return ::failed(estatus, STATUS_RANGE_IO); }
 
 
-inline void defer_authentication_failure(::estatus & estatus) { ::defer_failed(estatus, STATUS_RANGE_AUTHENTICATION); }
+inline void defer_authentication_failure(::e_status & estatus) { ::defer_failed(estatus, STATUS_RANGE_AUTHENTICATION); }
 

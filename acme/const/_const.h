@@ -359,9 +359,9 @@ enum e_priority
 
 };
 
-//bool CLASS_DECL_ACME succeeded(const ::estatus & estatus);
+//bool CLASS_DECL_ACME succeeded(const ::e_status & estatus);
 //bool CLASS_DECL_ACME status_succeeded(i64 i);
-//bool CLASS_DECL_ACME failed(const ::estatus & estatus);
+//bool CLASS_DECL_ACME failed(const ::e_status & estatus);
 //bool CLASS_DECL_ACME status_failed(i64 i);
 
 enum e_thread

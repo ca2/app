@@ -29,13 +29,13 @@ namespace win
 }
 
 
-CLASS_DECL_ACME::estatus errno_to_status(i32 nErrno);
+CLASS_DECL_ACME::e_status errno_to_status(i32 nErrno);
 
 
 #ifdef WINDOWS
 
 
-CLASS_DECL_ACME ::estatus os_error_to_status(DWORD dwError);
+CLASS_DECL_ACME ::e_status os_error_to_status(DWORD dwError);
 
 
 #endif

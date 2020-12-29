@@ -52,7 +52,7 @@ namespace plugin
 
       virtual void finalize();
 
-      virtual ::estatus os_native_bergedge_start();
+      virtual ::e_status os_native_bergedge_start();
 
       virtual void on_paint(::draw2d::graphics_pointer & pgraphics,const ::rect & rect);
 
@@ -72,8 +72,8 @@ namespace plugin
       void start_ca2_logout();
       void ca2_login();
       void ca2_logout();
-      //static ::estatus     thread_proc_ca2_login(thread_parameter parameter);
-      //static ::estatus     thread_proc_ca2_logout(thread_parameter parameter);
+      //static ::e_status     thread_proc_ca2_login(thread_parameter parameter);
+      //static ::e_status     thread_proc_ca2_logout(thread_parameter parameter);
 
 
       virtual bool plugin_initialize();

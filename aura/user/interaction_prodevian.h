@@ -77,7 +77,7 @@ namespace user
 #endif
 
 
-      virtual ::estatus initialize_prodevian(interaction_impl * pimpl);
+      virtual ::e_status initialize_prodevian(interaction_impl * pimpl);
 
 
       bool prodevian_reset(::user::interaction * pinteraction);
@@ -99,7 +99,7 @@ namespace user
 
       virtual void finalize() override;
 
-      virtual ::estatus     run() override;
+      virtual ::e_status     run() override;
 
 
 

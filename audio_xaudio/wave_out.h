@@ -57,7 +57,7 @@ namespace multimedia
          virtual ~out();
 
 
-         ::estatus     out_start(const imedia_time & position);
+         ::e_status     out_start(const imedia_time & position);
          //virtual bool  on_run_step();
          void install_message_routing(::channel * pchannel);
 
@@ -65,12 +65,12 @@ namespace multimedia
          virtual void out_filled(index iBuffer) override;
          //virtual void out_buffer_ready(LPWAVEHDR lpwavehdr);
 
-//         virtual ::estatus     out_open(::thread * pthreadCallback, ::count iBufferCount, ::count iBufferSampleCount) override;
-         virtual ::estatus     out_open_ex(::thread * pthreadCallback, u32 uiSamplesPerSec, u32 uiChannelCount, u32 uiBitsPerSample,::wave::e_purpose epurpose) override;
-         virtual ::estatus     out_stop() override;
-         virtual ::estatus     out_close() override;
-         virtual ::estatus     out_pause() override;
-         virtual ::estatus     out_restart() override;
+//         virtual ::e_status     out_open(::thread * pthreadCallback, ::count iBufferCount, ::count iBufferSampleCount) override;
+         virtual ::e_status     out_open_ex(::thread * pthreadCallback, u32 uiSamplesPerSec, u32 uiChannelCount, u32 uiBitsPerSample,::wave::e_purpose epurpose) override;
+         virtual ::e_status     out_stop() override;
+         virtual ::e_status     out_close() override;
+         virtual ::e_status     out_pause() override;
+         virtual ::e_status     out_restart() override;
          virtual void * get_os_data();
          //HWAVEOUT out_get_safe_HWAVEOUT();
 
@@ -78,7 +78,7 @@ namespace multimedia
          virtual void out_free(index iBuffer) override;
          //virtual void out_free(LPWAVEHDR lpwavehdr);
 
-         virtual ::estatus init_thread() override;
+         virtual ::e_status init_thread() override;
          //virtual i32 exit_instance();
 
          ::count out_get_buffered_buffer_count() override;

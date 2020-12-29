@@ -320,9 +320,9 @@
 //
 //};
 //
-////bool CLASS_DECL_AURA succeeded(const ::estatus & estatus);
+////bool CLASS_DECL_AURA succeeded(const ::e_status & estatus);
 ////bool CLASS_DECL_AURA status_succeeded(i64 i);
-////bool CLASS_DECL_AURA failed(const ::estatus & estatus);
+////bool CLASS_DECL_AURA failed(const ::e_status & estatus);
 ////bool CLASS_DECL_AURA status_failed(i64 i);
 //
 //enum e_thread

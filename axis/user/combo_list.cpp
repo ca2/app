@@ -647,9 +647,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
       else
       {
 
-         auto psession = Session;
-
-         psession->set_keyboard_focus(this);
+         set_keyboard_focus(this);
 
 
       }
@@ -691,7 +689,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
          if (pelemental.is_set())
          {
 
-            pelemental->keyboard_set_focus();
+            pelemental->set_keyboard_focus();
 
          }
 
@@ -712,7 +710,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
       else if (pkey->m_ekey == ::user::key_return)
       {
 
-         m_pcombo->set_current_item(m_pcombo->m_itemHover, ::source_user);
+         m_pcombo->set_current_item(m_pcombo->m_itemHover, ::e_source_user);
 
          m_pcombo->ShowDropDown(false);
 
@@ -721,7 +719,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
          if (pelemental.is_set())
          {
 
-            pelemental->keyboard_set_focus();
+            pelemental->set_keyboard_focus();
 
          }
 
@@ -805,7 +803,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
 
             ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
-            ev.m_actioncontext = ::source_user;
+            ev.m_actioncontext = ::e_source_user;
 
             ev.m_item = itemHit;
 
@@ -1141,7 +1139,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
 
          }
 
-         keyboard_set_focus();
+         set_keyboard_focus();
 
       }
       else

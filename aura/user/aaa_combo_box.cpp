@@ -849,7 +849,7 @@ namespace user
       else
       {
 
-         _001SetText(strItem, ::source_sync);
+         _001SetText(strItem, ::e_source_sync);
 
       }
 
@@ -1680,7 +1680,7 @@ namespace user
             if (pevent->m_item == e_element_item)
             {
 
-               set_current_item((::index) pevent->m_item.m_iItem, ::source_user);
+               set_current_item((::index) pevent->m_item.m_iItem, ::e_source_user);
 
             }
 

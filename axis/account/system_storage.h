@@ -27,7 +27,7 @@ namespace account
       virtual ::file::path path_prefix(string strToken);
       
       
-      virtual ::estatus     get(string strKey, string strToken, string & strValue) override;
+      virtual ::e_status     get(string strKey, string strToken, string & strValue) override;
       virtual bool set(string strKey, string strToken, string strValue) override;
       
       

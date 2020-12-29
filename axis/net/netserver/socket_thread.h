@@ -28,7 +28,7 @@ namespace netserver
       virtual ~socket_thread_base();
 
 
-      virtual ::estatus     run() override;
+      virtual ::e_status     run() override;
 
       virtual ::netserver::socket_handler * new_socket_handler();
       virtual ::sockets::listen_socket_base * new_listen_socket();

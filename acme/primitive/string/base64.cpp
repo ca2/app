@@ -325,7 +325,7 @@ namespace str
    }
 
 
-   ::estatus base64::initialize(::layered * pobjectContext)
+   ::e_status base64::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::matter::initialize(pobjectContext);

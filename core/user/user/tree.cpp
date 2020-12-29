@@ -84,7 +84,7 @@ namespace user
 
                   auto pitem = m_treeitemaExpand.pop();
 
-                  _001ExpandItem(pitem, ::source_user, !(pitem->m_dwState & ::data::tree_item_state_expanded));
+                  _001ExpandItem(pitem, ::e_source_user, !(pitem->m_dwState & ::data::tree_item_state_expanded));
 
                   m_treeitemaExpand.remove_all();
 
@@ -113,7 +113,7 @@ namespace user
 
                   auto pitem = m_treeitemaOpen.pop();
 
-                  _001OnOpenItem(pitem, ::source_user);
+                  _001OnOpenItem(pitem, ::e_source_user);
 
                }
                else
@@ -597,7 +597,7 @@ namespace user
          if(eelement == e_tree_element_expand_box || eelement == e_tree_element_image || eelement == e_tree_element_text)
          {
 
-            _001ExpandItem(pitem, ::source_user, !(pitem->m_dwState & ::data::tree_item_state_expanded));
+            _001ExpandItem(pitem, ::e_source_user, !(pitem->m_dwState & ::data::tree_item_state_expanded));
 
          }
 
@@ -713,7 +713,7 @@ namespace user
          if (eelement == e_tree_element_image || eelement == e_tree_element_text)
          {
 
-            _001OnItemContextMenu(pitem, ::source_user, this, pointCursor);
+            _001OnItemContextMenu(pitem, ::e_source_user, this, pointCursor);
 
          }
 

@@ -4,7 +4,7 @@
 
 static ::mutex * s_pmutex = nullptr;
 
-extern string_map < FT_Face > * g_pmapFontFace ;
+extern string_map < int_map < FT_Face > > * g_pmapFontFace ;
 
 extern string_to_int * g_pmapFontError ;
 
@@ -50,7 +50,7 @@ void init_cairo_mutex()
 
 #endif
 
-   g_pmapFontFace = new string_map < FT_Face > ();
+   g_pmapFontFace = new string_map < int_map < FT_Face> > ();
 
    ::acme::g_paAura->add(g_pmapFontFace);
 

@@ -607,7 +607,7 @@ namespace user
       if(pkey->m_ekey == ::user::key_space)
       {
 
-         _001ToggleCheck(::source_user);
+         _001ToggleCheck(::e_source_user);
 
       }
 
@@ -623,7 +623,7 @@ namespace user
 
       SetTimer(e_timer_check_toggle_animation, 12);
 
-      _001ToggleCheck(::source_user);
+      _001ToggleCheck(::e_source_user);
 
       return true;
 

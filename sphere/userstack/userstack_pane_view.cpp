@@ -116,7 +116,7 @@ namespace userstack
       //   {
       //      /*bergedge::menu_view * pview = dynamic_cast < bergedge::menu_view *  > (get_view());
       //      __pointer(::filemanager::document) pdocument = (pview->get_document());
-      //      pdocument->FileManagerBrowse(Context.dir().appdata() / "bergedge\\menu"), ::source_system);*/
+      //      pdocument->FileManagerBrowse(Context.dir().appdata() / "bergedge\\menu"), ::e_source_system);*/
       //   }
       //   else if(get_view_id() ==CONFIGURATION_IMPACT)
       //   {
@@ -141,7 +141,7 @@ namespace userstack
       //         check_desktop_dir(strDir);
       //      }
       //      __pointer(::filemanager::document) pdocument =  (m_pimpactdata->m_pdocument);
-      //      pdocument->FileManagerBrowse(strDir, ::source_system);
+      //      pdocument->FileManagerBrowse(strDir, ::e_source_system);
       //   }
       else
       {

@@ -50,7 +50,7 @@ void ___release(TYPE *& p OBJ_REF_DBG_COMMA_PARAMS);
 //#include "acme/platform/update.h"
 
 
-//CLASS_DECL_ACME ::estatus __fork(
+//CLASS_DECL_ACME ::e_status __fork(
 //   matter* pmatter,
 //   ::e_priority epriority = priority_normal,
 //   u32 nStackSize = 0,
@@ -136,4 +136,4 @@ inline stream & operator << (stream & s, const memory_base & mem);
 inline stream & operator >> (stream & s, memory_base & mem);
 
 
-CLASS_DECL_ACME string __str(const ::estatus & estatus);
+CLASS_DECL_ACME string __str(const ::e_status & estatus);

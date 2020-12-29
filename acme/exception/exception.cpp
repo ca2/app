@@ -68,7 +68,7 @@ namespace exception
 {
 
 
-   exception::exception(const char * pszMessage, const ::estatus & estatus, i32 iSkip, void * caller_address)
+   exception::exception(const char * pszMessage, const ::e_status & estatus, i32 iSkip, void * caller_address)
    {
 
 #if !defined(__SANITIZE_ADDRESS__)
@@ -499,7 +499,7 @@ namespace exception
 
 
 
-const char* status_message(const ::estatus& estatus)
+const char* status_message(const ::e_status& estatus)
 {
 
    auto psz = ::file::status_message(estatus);

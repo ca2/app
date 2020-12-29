@@ -19,7 +19,7 @@ void context_object::dump(dump_context& context) const
 }
 
 
-::estatus     context_object::initialize(::layered * pobjectContext)
+::e_status     context_object::initialize(::layered * pobjectContext)
 {
 
    set_context_object(pobjectContext);
@@ -72,7 +72,7 @@ void context_object::set_context_object(::layered * pobjectContext  OBJ_REF_DBG_
 }
 
 
-::estatus context_object::finish(::context_object * pcontextobjectFinish)
+::e_status context_object::finish(::context_object * pcontextobjectFinish)
 {
 
    return ::matter::finish(pcontextobjectFinish);
@@ -136,7 +136,7 @@ void context_object::on_finish()
 }
 
 
-::estatus context_object::run()
+::e_status context_object::run()
 {
 
    return ::success;
@@ -295,10 +295,10 @@ bool context_object::is_alive()
 }
 
 
-::estatus context_object::operator()()
+::e_status context_object::operator()()
 {
 
-   ::estatus estatus;
+   ::e_status estatus;
 
    try
    {
@@ -318,7 +318,7 @@ bool context_object::is_alive()
 }
 
 
-//::estatus context_object::call(::trait & trait)
+//::e_status context_object::call(::trait & trait)
 //{
 //
 //   //auto estatus = ::context_object::call(trait);

@@ -24,7 +24,7 @@ namespace axis
    void style::default_style_construct()
    {
 
-      m_pfont = ::draw2d::point_font("Segoe UI", 14.0);
+      m_pfont = ::draw2d::point_font(FONT_SANS_UI, 14.0);
       //m_pfontMenu;
       //m_pfontButton;
       //m_pfontList;
@@ -36,7 +36,7 @@ namespace axis
    }
 
 
-   ::estatus style::initialize_style()
+   ::e_status style::initialize_style()
    {
 
       return ::success;

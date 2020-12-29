@@ -15,11 +15,11 @@ public:
    virtual ~file_system();
 
 
-   virtual ::estatus initialize(::layered * pobjectContext) override;
+   virtual ::e_status initialize(::layered * pobjectContext) override;
 
-   virtual ::estatus init_system();
+   virtual ::e_status init_system();
 
-   virtual ::estatus update_module_path();
+   virtual ::e_status update_module_path();
 
 
 

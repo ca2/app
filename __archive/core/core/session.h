@@ -49,16 +49,16 @@ namespace acme
       virtual ~session();
 
 
-      virtual ::estatus initialize(::matter * pobjectContext) override;
+      virtual ::e_status initialize(::matter * pobjectContext) override;
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-      //virtual ::estatus userex_process_init();
-      //virtual ::estatus userex_init1();
-      virtual ::estatus init2() override;
+      //virtual ::e_status userex_process_init();
+      //virtual ::e_status userex_init1();
+      virtual ::e_status init2() override;
       //virtual bool init3() override;
       //virtual bool initialize_filemanager();
-      virtual ::estatus init_session() override;
+      virtual ::e_status init_session() override;
       //virtual void add_document_template(::user::impact_system * ptemplate);
 
       virtual void term_session() override;
@@ -84,7 +84,7 @@ namespace acme
 
       bool InitializeLocalDataCentral();
 
-      //virtual ::estatus bergedge_start() override;
+      //virtual ::e_status bergedge_start() override;
 
       void _001OnFileNew();
 
@@ -111,7 +111,7 @@ namespace acme
       virtual void on_frame_window_drop_files(::user::interaction * pinteraction, ::file::patha & patha);
 
 
-      virtual ::estatus do_request(::create * pcreate) override;
+      virtual ::e_status do_request(::create * pcreate) override;
 
       virtual ::user::interaction * get_request_parent_ui(::user::interaction * pinteraction, ::create * pcreate);
 
@@ -138,15 +138,15 @@ namespace acme
       inline ::userex::userex *              userex() { return m_puserex;  }
 
 
-      virtual ::estatus process_init() override;
+      virtual ::e_status process_init() override;
 
-      virtual ::estatus init1() override;
+      virtual ::e_status init1() override;
 
-      virtual ::estatus init() override;
+      virtual ::e_status init() override;
 
-      //virtual ::estatus os_native_bergedge_start() override;
+      //virtual ::e_status os_native_bergedge_start() override;
 
-      virtual ::estatus     main() override;
+      virtual ::e_status     main() override;
 
  
 
@@ -202,16 +202,16 @@ namespace acme
       //virtual __pointer(::user::impact)                      get_view();
 
 
-      //virtual ::estatus     initialize(::matter* pobjectContext) override;
+      //virtual ::e_status     initialize(::matter* pobjectContext) override;
 
 
       virtual void frame_pre_translate_message(::message::message* pmessage) override;
 
-      //virtual ::estatus process_init() override;
+      //virtual ::e_status process_init() override;
 
-      //virtual ::estatus init1() override;
+      //virtual ::e_status init1() override;
 
-      //virtual ::estatus init() override;
+      //virtual ::e_status init() override;
 
       //virtual void term_session() override;
 

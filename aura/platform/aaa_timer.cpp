@@ -560,7 +560,7 @@ bool timer::impl_restart()
 
 }
 
-::estatus timer::run()
+::e_status timer::run()
 {
 
    while (task_sleep(::millis((::i64) m_dwMillis)))

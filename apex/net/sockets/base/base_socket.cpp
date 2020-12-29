@@ -971,7 +971,7 @@ namespace sockets
    }
 
 
-   ::estatus base_socket::socket_thread::initialize_socket_thread(base_socket * psocket)
+   ::e_status base_socket::socket_thread::initialize_socket_thread(base_socket * psocket)
    {
 
       auto estatus = initialize(psocket->get_context_object());
@@ -1006,7 +1006,7 @@ namespace sockets
    }
 
 
-   ::estatus base_socket::socket_thread::init_thread()
+   ::e_status base_socket::socket_thread::init_thread()
    {
 
       if (!::thread::init_thread())
@@ -1061,7 +1061,7 @@ namespace sockets
 #endif
 
 
-   ::estatus base_socket::socket_thread::run()
+   ::e_status base_socket::socket_thread::run()
    {
 
       socket_handler& h = *m_phandler;
@@ -2664,7 +2664,7 @@ namespace sockets
    }
 
 
-   ::estatus     base_socket::run()
+   ::e_status     base_socket::run()
    {
 
       return ::success;

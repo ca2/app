@@ -94,13 +94,13 @@ namespace html
             if(bCheck)
             {
 
-               m_pcheckbox->_001SetCheck(check_checked, ::action_context(::source_data) +  ::source_load);
+               m_pcheckbox->_001SetCheck(check_checked, ::action_context(::e_source_data) +  ::e_source_load);
 
             }
             else if(m_pcheckbox->echeck() == ::check_undefined)
             {
 
-               m_pcheckbox->_001SetCheck(check_unchecked, ::action_context(::source_data) +  ::source_load);
+               m_pcheckbox->_001SetCheck(check_unchecked, ::action_context(::e_source_data) +  ::e_source_load);
 
             }
 
@@ -120,7 +120,7 @@ namespace html
             ::user::control_event ev;
 
             ev.m_puie = m_pcheckbox;
-            ev.m_actioncontext = ::action_context(::source_data) +  ::source_load;
+            ev.m_actioncontext = ::action_context(::e_source_data) +  ::e_source_load;
             ev.m_eevent = ::user::e_event_initialize_control;
             ev.m_uiEvent = 0;
 

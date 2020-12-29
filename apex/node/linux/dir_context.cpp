@@ -80,7 +80,7 @@ namespace linux
    }
 
 
-   ::estatus dir_context::initialize(::layered * pobjectContext)
+   ::e_status dir_context::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -101,7 +101,7 @@ namespace linux
    }
 
 
-   ::estatus dir_context::init_system()
+   ::e_status dir_context::init_system()
    {
 
       if(!::dir_context::init_system())
@@ -189,7 +189,7 @@ namespace linux
    }
 
 
-   ::estatus dir_context::init_context()
+   ::e_status dir_context::init_context()
    {
 
       auto estatus = ::dir_context::init_context();
@@ -526,7 +526,7 @@ namespace linux
          if(!::dir::mkdir(stra[i]))
          {
 
-            ::estatus estatus = ::get_last_status();
+            ::e_status estatus = ::get_last_status();
 
             if(estatus == ::error_already_exists)
             {

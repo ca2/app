@@ -169,7 +169,7 @@ public:
    void impl_term();
 
    //#ifdef LINUX
-   virtual ::estatus run() override;
+   virtual ::e_status run() override;
 
    //#endif
 

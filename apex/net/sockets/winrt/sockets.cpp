@@ -21,7 +21,7 @@ namespace sockets
    }
 
 
-   ::estatus sockets::initialize(::layered* pobjectContext)
+   ::e_status sockets::initialize(::layered* pobjectContext)
    {
 
       auto estatus = ::apex::department::initialize(pobjectContext);

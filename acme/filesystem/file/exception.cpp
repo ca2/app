@@ -34,7 +34,7 @@ namespace file
 
 
 
-   const char* status_message(const ::estatus& estatus)
+   const char* status_message(const ::e_status& estatus)
    {
 
       if (estatus < error_file ||
@@ -53,7 +53,7 @@ namespace file
    static const char szUnknown[] = "unknown";
 
 
-      CLASS_DECL_ACME bool should_ignore_file_exception_callstack(const ::estatus& estatus)
+      CLASS_DECL_ACME bool should_ignore_file_exception_callstack(const ::e_status& estatus)
       {
 
          if (estatus == error_file_not_found)
@@ -84,7 +84,7 @@ namespace file
 
       }
 
-      exception::exception(const ::estatus& estatus, ::i32 lOsError, int iErrNo, const ::file::path & path, const ::file::e_open & eopen) :
+      exception::exception(const ::e_status& estatus, ::i32 lOsError, int iErrNo, const ::file::path & path, const ::file::e_open & eopen) :
          ::io_exception(::error_io, nullptr, should_ignore_file_exception_callstack(estatus) ? SKIP_callstack : callstack_DEFAULT_SKIP)
       {
 
@@ -132,7 +132,7 @@ namespace file
       }
 
 
-      ::estatus exception::get_status()
+      ::e_status exception::get_status()
       {
 
          return m_estatus;
@@ -409,7 +409,7 @@ namespace file
 #define EDEADLOCK       EDEADLK
 #endif
 
-      void throw_exception(const ::estatus& estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, const ::file::e_open & eopen)
+      void throw_exception(const ::e_status& estatus, ::i32 lOsError, int iErrNo, const ::file::path& path, const ::file::e_open & eopen)
       {
 
          __throw(exception(estatus, lOsError, iErrNo, path, eopen));
@@ -417,7 +417,7 @@ namespace file
       }
 
 
-      void throw_status(const ::estatus& estatus, ::i32 lOsError, const ::file::path& path)
+      void throw_status(const ::e_status& estatus, ::i32 lOsError, const ::file::path& path)
       {
 
          throw_exception(estatus, lOsError, -1, path, e_null);
@@ -425,7 +425,7 @@ namespace file
       }
 
 
-      void throw_stdio_exception(const ::estatus& estatus, ::i32 lDOSError, const ::file::path& path)
+      void throw_stdio_exception(const ::e_status& estatus, ::i32 lDOSError, const ::file::path& path)
       {
 
          throw_status(estatus, ::file::dos_to_os_error(lDOSError), path);
@@ -467,14 +467,14 @@ namespace file
       }
 
 
-   //void throw_exception(::estatus estatus, ::i32 lOsError, int iErrNo, const ::file::path & path, const ::file::e_open & eopen)
+   //void throw_exception(::e_status estatus, ::i32 lOsError, int iErrNo, const ::file::path & path, const ::file::e_open & eopen)
    //{
 
    //   __throw(::file::exception(estatus, lOsError, iErrNo, path, eopen));
 
    //}
 
-//   void throw_status(const ::estatus& estatus, ::i32 lOsError, const ::file::path& path)
+//   void throw_status(const ::e_status& estatus, ::i32 lOsError, const ::file::path& path)
 //   {
 //
 //#ifdef __DEBUG
@@ -522,7 +522,7 @@ namespace file
 } // namespace file
 
 
-::estatus errno_to_status(int iErrorNumber)
+::e_status errno_to_status(int iErrorNumber)
 {
 
    switch (iErrorNumber)

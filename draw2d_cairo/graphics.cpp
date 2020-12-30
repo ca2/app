@@ -152,7 +152,7 @@ graphics::graphics()
    m_etextrenderinghint = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
 
    m_pfont.create();
-   m_pfont->m_strFontFamilyName = FONT_SANS;
+   m_pfont->m_strFontFamilyName = os_font_name(e_font_sans);
    m_pfont->m_dFontSize = 12.0;
    m_iSaveDCPositiveClip = -1;
 
@@ -2051,7 +2051,7 @@ bool graphics::get_text_metrics(::draw2d::text_metric * lpMetrics)
 
     lpMetrics->m_dHeight = (::i32) iHeight;
 
-    lpMetrics->m_dExternalLeading = (lpMetrics->tmHeight - (lpMetrics->tmAscent + lpMetrics->tmDescent));
+    lpMetrics->m_dExternalLeading = (lpMetrics->m_dHeight - (lpMetrics->m_dAscent + lpMetrics->m_dDescent));
 
     lpMetrics->m_dInternalLeading = (::i32)0;
 
@@ -4487,7 +4487,7 @@ bool graphics::TextOutRaw(double x, double y, const string & str)
 
     auto rect = ::rectd(pointd(x, y), sized(65535.0, 65535.0));
 
-    internal_draw_text(str, rect, 0);
+    internal_draw_text(str, rect, e_align_none);
 
 #else
 
@@ -5972,9 +5972,11 @@ void graphics::enum_fonts(::draw2d::font_enum_item_array & itema)
 
         PangoFontFamily * pfamily = families[i];
 
-        item->m_strFile = pango_font_family_get_name(pfamily);
+        string strFileName = pango_font_family_get_name(pfamily);
 
-        item->m_strName = item->m_strFile;
+        item->m_mapFileName[0] = strFileName;
+
+        item->m_strName = strFileName;
 
         itema.add(item);
 

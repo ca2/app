@@ -528,7 +528,7 @@ typedef struct tagBITMAPINFOHEADER{
 
 typedef struct tagBITMAPINFO {
    BITMAPINFOHEADER bmiHeader;
-   RGBQUAD          bmiColors[1];
+   WINRGBQUAD       bmiColors[1];
 } BITMAPINFO,*PBITMAPINFO;
 
 

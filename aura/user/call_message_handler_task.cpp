@@ -1,6 +1,9 @@
 // Created By Camilo 2020-12-27 21:59 BRT <3ThomasBS, Mummi and bilbo!!
 // twitch streams... twitch chatting...
 #include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
 #include "call_message_handler_task.h"
 
 
@@ -22,7 +25,7 @@ namespace user
 
    }
 
-   
+
    ::e_status call_message_handler_task::run()
    {
 

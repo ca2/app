@@ -534,24 +534,26 @@ namespace user
    iptr primitive_impl::get_window_long_ptr(i32 nIndex) const
    {
 
-      return 0;
+//      return 0;
+////
+////      if (nIndex == GWL_STYLE)
+////      {
+////
+////         return  m_uStyle;
+////
+////      }
+////      else if (nIndex == GWL_EXSTYLE)
+////      {
+////
+////         return  m_uExStyle;
+////
+////      }
+////
+////      sync_lock sl(&((primitive_impl *)this)->m_mutexLongPtr);
+////
+////      return (LONG_PTR)m_longptr[nIndex];
 //
-//      if (nIndex == GWL_STYLE)
-//      {
-//
-//         return  m_uStyle;
-//
-//      }
-//      else if (nIndex == GWL_EXSTYLE)
-//      {
-//
-//         return  m_uExStyle;
-//
-//      }
-//
-//      sync_lock sl(&((primitive_impl *)this)->m_mutexLongPtr);
-//
-//      return (LONG_PTR)m_longptr[nIndex];
+      return m_iptrmap[nIndex];
 
    }
 
@@ -580,7 +582,7 @@ namespace user
 
       //return lValue;
 
-      return 0;
+      return m_iptrmap[nIndex] = lValue;
 
    }
 
@@ -766,7 +768,7 @@ namespace user
    {
 
       const ::user::primitive * puiProbe;
-      
+
       if (bIncludeSelf)
       {
 
@@ -1493,7 +1495,7 @@ namespace user
       //{
 
       //   auto pthread = m_puserinteraction->m_pthreadUserInteraction.cast < thread >();
-      //   
+      //
       //   if (pthread)
       //   {
 
@@ -1575,7 +1577,7 @@ namespace user
 
    void primitive_impl::_001OnNcDestroy(::message::message * pmessage)
    {
-      
+
       if (m_puserinteraction && ::str::demangle(m_puserinteraction->type_name()).contains("notify_icon"))
       {
 

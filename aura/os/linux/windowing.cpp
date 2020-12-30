@@ -736,7 +736,7 @@ void oswindow_set_active_window(oswindow oswindow)
             if(g_oswindowActive->m_pimpl->m_puserinteraction)
             {
 
-               g_oswindowActive->m_pimpl->m_puserinteraction->m_ewindowflag -= ::window_flag_active;
+               g_oswindowActive->m_pimpl->m_puserinteraction->m_ewindowflag -= ::e_window_flag_active;
 
                g_oswindowActive->m_pimpl->m_puserinteraction->post_message(e_message_activate, 0);
 
@@ -766,7 +766,7 @@ void oswindow_set_active_window(oswindow oswindow)
             if(g_oswindowActive->m_pimpl->m_puserinteraction)
             {
 
-               g_oswindowActive->m_pimpl->m_puserinteraction->m_ewindowflag += ::window_flag_active;
+               g_oswindowActive->m_pimpl->m_puserinteraction->m_ewindowflag += ::e_window_flag_active;
 
                g_oswindowActive->m_pimpl->m_puserinteraction->post_message(e_message_activate, 1);
 
@@ -3888,7 +3888,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
       if(msg.hwnd->m_pimpl != nullptr && msg.hwnd->m_pimpl->m_puserinteraction != nullptr)
       {
 
-         msg.hwnd->m_pimpl->m_puserinteraction->m_ewindowflag |= ::window_flag_focus;
+         msg.hwnd->m_pimpl->m_puserinteraction->m_ewindowflag |= ::e_window_flag_focus;
 
       //msg.wParam = (WPARAM) oswindow_get(display(), e.xfocus.window);
 
@@ -3977,7 +3977,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
                msg.message       = e_message_kill_focus;
 
-               pinteraction->m_ewindowflag -= window_flag_focus;
+               pinteraction->m_ewindowflag -= ::e_window_flag_focus;
 
                Window wFocus = 0;
 

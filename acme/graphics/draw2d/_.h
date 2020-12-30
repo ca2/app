@@ -20,15 +20,22 @@ inline byte clampAndConvert(double v)
 CLASS_DECL_ACME color32_t argb_swap_rb(color32_t cr);
 
 
-#ifndef WINDOWS
+#ifdef WINDOWS
 
 
-typedef struct tagRGBQUAD {
+typedef WINRGBQUAD RGBQUAD;
+typedef LPWINRGBQUAD LPRGBQUAD;
+
+
+#else
+
+
+typedef struct tagWINRGBQUAD {
    byte    rgbBlue;
    byte    rgbGreen;
    byte    rgbRed;
    byte    rgbReserved;
-} RGBQUAD, * LPRGBQUAD;
+} WINRGBQUAD, * LPWINRGBQUAD;
 
 
 #endif
@@ -44,3 +51,7 @@ typedef struct tagRGBQUAD {
 
 
 
+
+CLASS_DECL_ACME string os_font_name(enum_font efont);
+CLASS_DECL_ACME string os_font_name(enum_operating_system eoperatingsystem, enum_font efont);
+CLASS_DECL_ACME string linux_font_name(enum_linux_distribution elinuxdistribution, enum_font efont);

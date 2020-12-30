@@ -172,7 +172,7 @@ CLASS_DECL_ACME int_bool is_windows_nt_lesser_than_2000()
 }
 
 
-#if !defined(_UWP)
+#if !defined(_UWP) && !defined(LINUX)
 ::u32 get_current_process_id()
 {
 

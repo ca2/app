@@ -1,6 +1,26 @@
 #pragma once
 
 
+enum enum_font
+{
+
+   e_font_default,
+
+   e_font_sans,
+   e_font_sans_ui,
+   e_font_sans_ex,
+   e_font_sans_fx,
+
+   e_font_serif,
+   e_font_serif_ui,
+   e_font_serif_ex,
+   e_font_serif_fx,
+
+   e_font_monospace,
+
+};
+
+
 enum enum_image
 {
 

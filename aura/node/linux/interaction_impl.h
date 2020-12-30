@@ -58,8 +58,8 @@ namespace linux
       bool operator==(const ::user::interaction_impl& wnd) const;
       bool operator!=(const ::user::interaction_impl& wnd) const;
 
-      ::u32 GetStyle() const override;
-      ::u32 GetExStyle() const override;
+//      ::u32 GetStyle() const override;
+      //::u32 GetExStyle() const override;
       bool ModifyStyle(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags = 0) override;
       bool ModifyStyleEx(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags = 0) override;
 
@@ -468,8 +468,8 @@ namespace linux
 
       //static void get_app_wnda(user::oswindow_array & wnda);
 
-      virtual iptr get_window_long_ptr(i32 nIndex) const override;
-      virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
+      //virtual iptr get_window_long_ptr(i32 nIndex) const override;
+      //virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
       //void _001OnTriggerMouseInside();
 

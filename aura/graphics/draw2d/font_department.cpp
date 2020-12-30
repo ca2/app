@@ -1,9 +1,9 @@
 #include "framework.h"
 
 
-#define FONTFACENAME_MENU FONT_SANS
+#define FONTFACENAME_MENU os_font_name(e_font_sans)
 
-#define FONTFACENAME_LUCIDA FONT_SANS
+#define FONTFACENAME_LUCIDA os_font_name(e_font_sans)
 
 
 font_department::font_department()

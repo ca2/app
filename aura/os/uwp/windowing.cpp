@@ -63,7 +63,7 @@ index oswindow_find(::user::interaction_impl * pimpl)
 
 oswindow_data::oswindow_data(::user::interaction_impl * pimpl)
 {
-   m_plongptrmap = new int_ptr_to_int_ptr();
+   m_plongptrmap = new iptr_to_iptr();
    m_pimpl = pimpl;
 
 }

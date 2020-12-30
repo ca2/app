@@ -7,12 +7,12 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="basis">
-				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/$(PROJECT_NAME)" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/$(PROJECT_NAME)" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="0" />
 				<Option compiler="gcc" />
-				<Option host_application="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option host_application="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option run_host_application_in_terminal="0" />
 				<Compiler>
 					<Add option="-std=c++17" />
@@ -28,13 +28,13 @@
 				</Linker>
 			</Target>
 			<Target title="install">
-				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/basis/libsimple_drawing_simple_drawing.so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/basis/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/app/simple_drawing_simple_drawing" />
+				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/basis/libsimple_drawing_simple_drawing.so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/basis/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/app/simple_drawing_simple_drawing" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option parameters=": install" />
-				<Option host_application="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/basis/simple_drawing_simple_drawing" />
+				<Option host_application="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/basis/simple_drawing_simple_drawing" />
 				<Option run_host_application_in_terminal="0" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
@@ -44,12 +44,12 @@
 				</Compiler>
 			</Target>
 			<Target title="stage">
-				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" imp_lib="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).a" def_file="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).def" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" imp_lib="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).a" def_file="$(TARGET_OUTPUT_DIR)$(TARGET_OUTPUT_BASENAME).def" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
-				<Option host_application="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option host_application="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option run_host_application_in_terminal="0" />
 				<Option createDefFile="1" />
 				<Option createStaticLib="1" />
@@ -102,7 +102,7 @@
 			<Add option="-laqua" />
 			<Add option="-laura" />
 			<Add option="-Wl,-z,defs" />
-			<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+			<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 		</Linker>
 		<Unit filename="_.h" />
 		<Unit filename="application.cpp" />

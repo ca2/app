@@ -115,7 +115,7 @@ namespace app_shader
    }
 
 
-   bool window::keyboard_focus_is_focusable()
+   bool window::keyboard_focus_is_focusable() const
    {
 
       return true;

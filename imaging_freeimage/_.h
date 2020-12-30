@@ -3,15 +3,6 @@
 
 #include "aura/_.h"
 
-#ifdef LINUX
-
-#include <FreeImage.h>
-
-#else
-
-#include "FreeImage/FreeImage.h"
-
-#endif
 
 
 
@@ -24,17 +15,6 @@
 #endif
 
 
-namespace imaging_freeimage
-{
-
-
-   CLASS_DECL_IMAGING_FREEIMAGE FIBITMAP * freeimage_from_image(const ::image * pimage);
-   CLASS_DECL_IMAGING_FREEIMAGE bool image_from_freeimage(::image * pimage, FIBITMAP * pfibitmap);
-
-
-} // namespace imaging_freeimage
-
-#include "fimemory.h"
 
 //
 //inline auto gdiplus_color(const ::color& color)

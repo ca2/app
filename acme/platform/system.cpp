@@ -12,6 +12,14 @@ namespace acme
    system::system()
    {
 
+#ifdef LINUX
+
+      m_elinuxdistribution = e_linux_distribution_unknown;
+
+#endif
+
+      os_construct();
+
 
       if (g_psystem == nullptr)
       {

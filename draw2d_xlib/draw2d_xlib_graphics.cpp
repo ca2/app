@@ -28,7 +28,7 @@ namespace draw2d_xlib
       m_etextrenderinghint  = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
 
       m_pfont.create(this);
-      m_pfont->m_strFontFamilyName = FONT_SANS;
+      m_pfont->m_strFontFamilyName = os_font_name(e_font_sans);
       m_pfont->m_dFontSize = 12.0;
 
 
@@ -5403,7 +5403,7 @@ namespace draw2d_xlib
       char * szmf;
 
       pfont->m_pft = XftFontOpen (m_pdc->m_pdisplay, m_pdc->m_iScreen,
-                                  XFT_FAMILY, XftTypeString, FONT_SANS,
+                                  XFT_FAMILY, XftTypeString, os_font_name(e_font_sans),
                                   pfont->m_eunitFontSize == ::draw2d::unit_point ? XFT_SIZE : XFT_PIXEL_SIZE, XftTypeDouble, pfont->m_dFontSize,
                                   nullptr);
 

@@ -176,7 +176,7 @@ list(APPEND axis_source
         inline/console_common.h
         inline/library.h
         math/calculator/_.h
-        math/calculator/_update.cpp
+        #math/calculator/_update.cpp
         math/calculator/calculator.cpp
         math/calculator/calculator.h
         math/calculator/element.cpp
@@ -185,11 +185,11 @@ list(APPEND axis_source
         math/calculator/parser.h
         math/calculator/parser_exception.cpp
         math/calculator/parser_exception.h
+        math/calculator/payload.cpp
+        math/calculator/payload.h
         math/calculator/scanner.cpp
         math/calculator/scanner.h
         math/calculator/token.h
-        math/calculator/value.cpp
-        math/calculator/value.h
         math/kissfft/_.h
         math/kissfft/fft.cpp
         math/kissfft/fft.h
@@ -242,17 +242,17 @@ list(APPEND axis_source
         node/_node.h
         #node/node_serial.cpp
         node/serial.h
-        os/ansios/_.h
-        os/ansios/_ansios.h
-        os/ansios/_c.h
-        os/ansios/ansios_file.h
-        os/ansios/callstack.h
-        os/ansios/datetime_c.h
-        os/ansios/exception_engine.h
-        os/ansios/file.h
-        os/ansios/file_c.h
-        os/ansios/file_raw.h
-        os/ansios/multithreading.h
+        #os/ansios/_.h
+        #os/ansios/_ansios.h
+        #os/ansios/_c.h
+        #os/ansios/ansios_file.h
+        #os/ansios/callstack.h
+        #os/ansios/datetime_c.h
+        #os/ansios/exception_engine.h
+        #os/ansios/file.h
+        #os/ansios/file_c.h
+        #os/ansios/file_raw.h
+        #os/ansios/multithreading.h
         os/cairo/_.h
         os/cairo/_impl.h
         os/_.h

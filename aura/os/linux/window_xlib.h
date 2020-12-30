@@ -41,7 +41,7 @@ namespace xlib
       virtual bool update_window(::image * pimage) override;
 
 
-      virtual bool round_swap_key_buffers() override;
+      virtual bool buffer_lock_round_swap_key_buffers() override;
 
       //void update_window();
 

@@ -44,7 +44,7 @@ namespace user
 #ifdef WINDOWS_DESKTOP
 
       LOGFONTW lf = {0};
-      wcscpy(lf.lfFaceName, wstring(FONT_SANS));
+      wcscpy(lf.lfFaceName, wstring(os_font_name(e_font_sans)));
 
       lf.lfHeight = 16;
       m_hfontRegular = CreateFontIndirectW(&lf);

@@ -89,7 +89,7 @@ namespace linux
 //   }
 //
 
-   ::status::result file::open(const ::file::path & pszFileName, const cflag < ::file::e_open > & openParam)
+   ::status::result file::open(const ::file::path & pszFileName, const ::file::e_open & openParam)
    {
 
       if (m_iFile != INVALID_FILE)
@@ -196,7 +196,7 @@ namespace linux
 
          //return //::fesp(get_context_application(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
 
-         return ::file::errno_to_status(estatus);
+         return estatus;
 
       }
 

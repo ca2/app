@@ -30,7 +30,7 @@ namespace uwp
       ::user::primitive* m_pbasewnd;
       ::user::interaction* m_pguieCapture;
 
-      int_ptr_to_int_ptr                        m_mapLong;
+      iptr_to_iptr                        m_mapLong;
       ::mutex                                     m_mutexQueue;
       manual_reset_event                        m_evQueue;
       __pointer_array(::message::base)                      m_messageaQueue;

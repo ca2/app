@@ -33,7 +33,7 @@ namespace user
 
       }
 
-      m_pfont = ::draw2d::point_font(FONT_SANS, 14.0);
+      m_pfont = ::draw2d::point_font(os_font_name(e_font_sans), 14.0);
 
       return true;
 

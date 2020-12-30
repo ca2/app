@@ -14,6 +14,9 @@ namespace user
       ::user::interaction_impl *                m_pinteractionimpl;
       ::user::interaction_child *               m_pinteractionchild;
 
+
+      iptr_to_iptr                              m_iptrmap;
+
       bool                                      m_bDrawFlagsReady;
       bool                                      m_bDestroyImplOnly;
       bool                                      m_bDestroying;

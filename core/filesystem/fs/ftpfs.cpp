@@ -380,7 +380,7 @@ bool ftpfs::file_move(const ::file::path & pszDst, const ::file::path & pszSrc)
 }
 
 
-file_result ftpfs::get_file(const ::file::path & path, ::u32 nOpenFlags)
+file_result ftpfs::get_file(const ::file::path & path, const ::file::e_open & eopen)
 {
 
    if (is_dir(path))
@@ -390,7 +390,7 @@ file_result ftpfs::get_file(const ::file::path & path, ::u32 nOpenFlags)
 
    }
 
-   if (nOpenFlags & ::file::e_open_read && !(nOpenFlags & ::file::e_open_write))
+   if (eopen & ::file::e_open_read && !(eopen & ::file::e_open_write))
    {
 
       ::ftp::client_socket * pclient = nullptr;
@@ -439,7 +439,7 @@ retry:
 
       }
 
-      return Context.file().get_file(pathTemp, nOpenFlags);
+      return Context.file().get_file(pathTemp, eopen);
 
    }
    else
@@ -453,7 +453,7 @@ retry:
 
       spfile = __new(ftpfs_file(this, pclient));
 
-      auto result = spfile->open(path, nOpenFlags);
+      auto result = spfile->open(path, eopen);
 
       if (!result)
       {

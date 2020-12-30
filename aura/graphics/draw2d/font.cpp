@@ -61,7 +61,7 @@ namespace draw2d
    font::font()
    {
 
-      m_strFontFamilyName     = FONT_SERIF;
+      m_strFontFamilyName     = os_font_name(e_font_serif);
       m_dFontSize             = 17.0;
       m_dFontWidth            = 1.0;
       m_eunitFontSize         = ::draw2d::unit_point;
@@ -104,11 +104,11 @@ namespace draw2d
 
 #ifdef WINDOWS
 
-      if(ansi_compare_ci(pszFacename, FONT_SANS) == 0)
+      if(ansi_compare_ci(pszFacename, os_font_name(e_font_sans)) == 0)
 
       {
 
-         m_strFontFamilyName = FONT_SANS;
+         m_strFontFamilyName = os_font_name(e_font_sans);
 
       }
       else

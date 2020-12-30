@@ -111,7 +111,7 @@ public:
 
    HCURSOR                                m_hcursorLast;
 
-   int_ptr_to_int_ptr *                   m_plongmap;
+   //iptr_to_iptr *                   m_plongmap;
    int                                    m_iXic;
    XIC                                    m_xic;
    osdisplay                              m_osdisplay;
@@ -242,7 +242,7 @@ public:
    long get_state();
    bool is_iconic();
    bool is_window_visible();
-   bool show_window(::e_display edisplay);
+   bool show_window(const ::e_display & edisplay, const ::e_activation & eactivation);
    iptr get_window_long_ptr(i32 nIndex);
    iptr set_window_long_ptr(i32 nIndex, iptr l);
    bool _001ClientToScreen(POINT32 * ppoint);

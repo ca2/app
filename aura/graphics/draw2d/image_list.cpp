@@ -1,8 +1,6 @@
 ﻿#include "framework.h"
 
-#ifndef _UWP
-//#include "freeimage/Source/FreeImage.h"
-#endif
+
 
 
 image_list::image_list()

@@ -267,7 +267,7 @@ void html_form::_001OnLButtonDown(::message::message * pmessage)
    else
    {
 
-      clear_focus();
+      clear_keyboard_focus();
 
    }
 
@@ -573,7 +573,7 @@ void html_form::_001SetText(const string & str, const ::action_context & context
 
    if(bFocus)
    {
-      
+
       __pointer(::user::primitive) pfocus = get_focusable_descendant();
 
       if(pfocus != nullptr)

@@ -110,13 +110,13 @@ namespace user
       m_pbuttonUnderline->m_flagNonClient.remove(::user::interaction::non_client_background);
 
       m_pcomboFamily->create_window(this, "combo_family");
-      //auto pfont = m_pcomboFamily->create_point_font(::user::font_plain_edit, FONT_SANS_UI, 9.0);
+      //auto pfont = m_pcomboFamily->create_point_font(::user::font_plain_edit, os_font_name(e_font_sans_ui), 9.0);
       //pfont->m_etextrenderinghint = ::draw2d::text_rendering_hint_clear_type_grid_fit;
       //m_pcomboFamily->create_color(::user::color_text, ARGB(255, 80, 80, 80));
       //m_pcomboFamily->create_color(::user::color_background, ARGB(255, 255, 255, 255));
 
       m_pcomboSize->create_window(this, "combo_size");
-      //pfont = m_pcomboSize->create_point_font(::user::font_plain_edit, FONT_SANS_UI, 9.0);
+      //pfont = m_pcomboSize->create_point_font(::user::font_plain_edit, os_font_name(e_font_sans_ui), 9.0);
       //pfont->m_etextrenderinghint = ::draw2d::text_rendering_hint_clear_type_grid_fit;
       //m_pcomboSize->create_color(::user::color_text, ARGB(255, 80, 80, 80));
       //m_pcomboSize->create_color(::user::color_background, ARGB(255, 255, 255, 255));

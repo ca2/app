@@ -85,7 +85,7 @@ namespace html
       }
       else
       {
-         strName = FONT_SANS;
+         strName = os_font_name(e_font_sans);
       }
 
 

@@ -4,6 +4,8 @@
 #include "GLOBAL_ID.h"
 
 
+
+
 enum enum_property : ::i64
 {
 
@@ -708,3 +710,29 @@ enum enum_relative
 
 
 
+enum enum_operating_system
+{
+
+   e_operating_system_unknown = -1,
+   e_operating_system_none = 0,
+   e_operating_system_current,
+   e_operating_system_windows,
+   e_operating_system_macos,
+   e_operating_system_ios,
+   e_operating_system_linux,
+   e_operating_system_android,
+   e_operating_system_unix,
+
+};
+
+enum enum_linux_distribution
+{
+
+   e_linux_distribution_unknown = -1,
+   e_linux_distribution_default = 0,
+   e_linux_distribution_ubuntu,
+   e_linux_distribution_manjaro,
+   e_linux_distribution_fedora,
+   e_linux_distribution_centos,
+
+};

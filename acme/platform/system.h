@@ -12,6 +12,10 @@ namespace acme
    public:
 
 
+#ifdef LINUX
+      enum_linux_distribution                            m_elinuxdistribution;
+#endif
+
       ::mutex                                            m_mutexTask;
       task_map                                           m_taskmap;
       task_id_map                                        m_taskidmap;
@@ -33,6 +37,8 @@ namespace acme
       virtual ~system();
 
 
+      void os_construct();
+
 
       virtual string os_get_user_theme();
 
@@ -45,6 +51,13 @@ namespace acme
 
       virtual ::e_status os_application_system_run();
 
+      enum_operating_system get_operating_system() const;
+
+#ifdef LINUX
+
+      inline enum_linux_distribution get_linux_distribution() const {return m_elinuxdistribution;}
+
+#endif
 
       using ::promise::handler::on_subject;
       virtual void on_subject(::promise::subject * psubject) override;

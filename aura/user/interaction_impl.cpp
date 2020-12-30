@@ -2160,7 +2160,7 @@ namespace user
 
 #else
 
-      return (::i32) ::user::primitive_impl::get_window_long(nIndex);
+      return (::i32) get_window_long_ptr(nIndex);
 
 #endif
 
@@ -2176,7 +2176,7 @@ namespace user
 
 #else
 
-      return (::i32) ::user::primitive_impl::set_window_long(nIndex, lValue);
+      return (::i32) set_window_long_ptr(nIndex, lValue);
 
 #endif
 
@@ -3334,7 +3334,8 @@ namespace user
 
             auto puiptraChild = m_puserinteraction->m_puiptraChild;
 
-
+            if(puiptraChild)
+            {
 
             //{
 
@@ -3351,17 +3352,19 @@ namespace user
 
             //}
 
-            for (auto & pinteraction : puiptraChild->interactiona())
-            {
-
-               try
+               for (auto & pinteraction : puiptraChild->interactiona())
                {
 
-                  pinteraction->send_message(e_message_show_window, 0, SW_PARENTCLOSING);
+                  try
+                  {
 
-               }
-               catch (...)
-               {
+                     pinteraction->send_message(e_message_show_window, 0, SW_PARENTCLOSING);
+
+                  }
+                  catch (...)
+                  {
+
+                  }
 
                }
 
@@ -3740,7 +3743,7 @@ namespace user
 
    }
 
-   
+
    ::e_status interaction_impl::main_async(const ::promise::routine & routine, e_priority epriority)
    {
 

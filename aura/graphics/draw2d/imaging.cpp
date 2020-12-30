@@ -1,6 +1,6 @@
 #include "framework.h"
-//#include "freeimage/Source/FreeImage.h"
-//#include "visual_FreeImageFileProc.h"
+
+
 #ifdef WINDOWS_DESKTOP
 
 //void fastblur(::image * ppimg, i32 radius);

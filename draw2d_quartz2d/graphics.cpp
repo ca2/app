@@ -4539,7 +4539,7 @@ namespace draw2d_quartz2d
 
             m_pfont.create();
 
-            m_pfont->create_pixel_font(FONT_SANS, 16.0);
+            m_pfont->create_pixel_font(os_font_name(e_font_sans), 16.0);
 
          }
          

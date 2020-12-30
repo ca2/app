@@ -21,7 +21,7 @@ namespace user
          m_bBold = false;
          m_bItalic = false;
          m_bUnderline = false;
-         m_strFontFamily = FONT_SANS;
+         m_strFontFamily = os_font_name(e_font_sans);
          m_dFontSize = 12.0;
          m_crForeground = ARGB(255, 0, 0, 0);
          m_crBackground = 0;

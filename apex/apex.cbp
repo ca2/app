@@ -8,9 +8,9 @@
 		<Option check_files="0" />
 		<Build>
 			<Target title="basis">
-				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -39,14 +39,14 @@
 					<Add option="`pkg-config --libs glib-2.0 gtk+-3.0 gdk-3.0 appindicator3-0.1`" />
 					<Add option="-lacme" />
 					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 					<Add directory="$(#archive)/storage-linux/third/library/x64/" />
 				</Linker>
 			</Target>
 			<Target title="stage">
-				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -89,13 +89,13 @@
 					<Add option="-lace" />
 					<Add option="-lapex" />
 					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 			</Target>
 			<Target title="memdleak">
-				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -107,13 +107,13 @@
 					<Add directory="$(WORKSPACE_DIR)/../../../archive/platform-linux" />
 				</Compiler>
 				<Linker>
-					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 			</Target>
 			<Target title="arm64_basis">
-				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -150,13 +150,13 @@
 					<Add option="`pkg-config --libs gtk+-3.0 gdk-3.0 gthread-2.0`" />
 					<Add option="-lacme" />
 					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 			</Target>
 			<Target title="sanitizers">
-				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/basis/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/basis/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/basis/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/basis/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/basis/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/basis/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -199,7 +199,7 @@
 					<Add option="-lace" />
 					<Add option="-lapex" />
 					<Add option="-Wl,-z,defs" />
-					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 			</Target>
 		</Build>
@@ -235,7 +235,7 @@
 			<Add directory="$(#archive)/third-linux/third/include" />
 		</Compiler>
 		<Linker>
-			<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+			<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 		</Linker>
 		<Unit filename="_.cpp" />
 		<Unit filename="_.h" />
@@ -651,38 +651,6 @@
 		<Unit filename="message/sender.cpp" />
 		<Unit filename="message/simple_command.cpp" />
 		<Unit filename="message/simple_command.h" />
-		<Unit filename="multithreading/_.cpp" />
-		<Unit filename="multithreading/_.h" />
-		<Unit filename="multithreading/_impl.h" />
-		<Unit filename="multithreading/common.h" />
-		<Unit filename="multithreading/create_thread.h" />
-		<Unit filename="multithreading/data.h" />
-		<Unit filename="multithreading/delay_thread.h" />
-		<Unit filename="multithreading/fork.h" />
-		<Unit filename="multithreading/handler.cpp" />
-		<Unit filename="multithreading/handler.h" />
-		<Unit filename="multithreading/retry.h" />
-		<Unit filename="multithreading/retry_multi_lock.cpp" />
-		<Unit filename="multithreading/retry_multi_lock.h" />
-		<Unit filename="multithreading/retry_single_lock.cpp" />
-		<Unit filename="multithreading/retry_single_lock.h" />
-		<Unit filename="multithreading/service/plain_service.cpp" />
-		<Unit filename="multithreading/service/plain_service.h" />
-		<Unit filename="multithreading/service/thread_pool.h" />
-		<Unit filename="multithreading/service_base.cpp" />
-		<Unit filename="multithreading/service_base.h" />
-		<Unit filename="multithreading/service_status.h" />
-		<Unit filename="multithreading/socket_event.h" />
-		<Unit filename="multithreading/thread.cpp" />
-		<Unit filename="multithreading/thread.h" />
-		<Unit filename="multithreading/thread_impl.h" />
-		<Unit filename="multithreading/thread_os.cpp" />
-		<Unit filename="multithreading/thread_os.h" />
-		<Unit filename="multithreading/thread_parameter.h" />
-		<Unit filename="multithreading/threading.cpp" />
-		<Unit filename="multithreading/threading.h" />
-		<Unit filename="multithreading/tools.cpp" />
-		<Unit filename="multithreading/tools.h" />
 		<Unit filename="net/_.cpp" />
 		<Unit filename="net/_.h" />
 		<Unit filename="net/_impl.h" />
@@ -736,9 +704,9 @@
 		<Unit filename="net/sockets/bsd/_strconv.h" />
 		<Unit filename="net/sockets/bsd/aaa_want_to_remove_sockets_sockets.h" />
 		<Unit filename="net/sockets/bsd/basic/_.h" />
+		<Unit filename="net/sockets/bsd/basic/basic_net.cpp" />
 		<Unit filename="net/sockets/bsd/basic/listen_socket.cpp" />
 		<Unit filename="net/sockets/bsd/basic/listen_socket.h" />
-		<Unit filename="net/sockets/bsd/basic/net.cpp" />
 		<Unit filename="net/sockets/bsd/basic/net.h" />
 		<Unit filename="net/sockets/bsd/basic/sctp_socket.cpp" />
 		<Unit filename="net/sockets/bsd/basic/sctp_socket.h" />
@@ -972,7 +940,6 @@
 		<Unit filename="os/ansios/file_raw.h" />
 		<Unit filename="os/ansios/language.cpp" />
 		<Unit filename="os/ansios/multithreading.h" />
-		<Unit filename="os/ansios/process.cpp" />
 		<Unit filename="os/ansios/win.cpp" />
 		<Unit filename="os/apex.h" />
 		<Unit filename="os/argcargv.cpp" />
@@ -1000,9 +967,7 @@
 		<Unit filename="os/linux/_linux.h" />
 		<Unit filename="os/linux/_user.h" />
 		<Unit filename="os/linux/apex.cpp" />
-		<Unit filename="os/linux/appindicator.h" />
 		<Unit filename="os/linux/application_system_run.cpp" />
-		<Unit filename="os/linux/bloat_pad.h" />
 		<Unit filename="os/linux/cross_win_file.cpp" />
 		<Unit filename="os/linux/cross_win_file.h" />
 		<Unit filename="os/linux/cross_win_gdi.cpp" />
@@ -1034,11 +999,9 @@
 		<Unit filename="os/linux/lock.cpp" />
 		<Unit filename="os/linux/menu.cpp" />
 		<Unit filename="os/linux/message_loop.cpp" />
-		<Unit filename="os/linux/multithreading.cpp" />
 		<Unit filename="os/linux/os.cpp" />
-		<Unit filename="os/linux/process.cpp" />
+		<Unit filename="os/linux/parallelization.cpp" />
 		<Unit filename="os/linux/process.h" />
-		<Unit filename="os/linux/process_pid.cpp" />
 		<Unit filename="os/linux/simple_app.cpp" />
 		<Unit filename="os/linux/simple_shell_launcher.cpp" />
 		<Unit filename="os/linux/time.cpp" />
@@ -1049,7 +1012,6 @@
 		<Unit filename="os/openssl_crypt.cpp" />
 		<Unit filename="os/os_os.cpp" />
 		<Unit filename="os/os_windowing2.h" />
-		<Unit filename="os/posix/base_file.cpp" />
 		<Unit filename="os/posix/pthread.cpp" />
 		<Unit filename="os/posix/thread.cpp" />
 		<Unit filename="os/posix/time.cpp" />
@@ -1064,6 +1026,38 @@
 		<Unit filename="os/winpr_keycode.cpp" />
 		<Unit filename="os/winpr_scancode.cpp" />
 		<Unit filename="papaya/papaya_zoneing.h" />
+		<Unit filename="parallelization/_.cpp" />
+		<Unit filename="parallelization/_.h" />
+		<Unit filename="parallelization/_impl.h" />
+		<Unit filename="parallelization/aaa_pred_procedure.h" />
+		<Unit filename="parallelization/common.h" />
+		<Unit filename="parallelization/create_thread.h" />
+		<Unit filename="parallelization/data.h" />
+		<Unit filename="parallelization/delay_thread.h" />
+		<Unit filename="parallelization/fork.h" />
+		<Unit filename="parallelization/handler.cpp" />
+		<Unit filename="parallelization/handler.h" />
+		<Unit filename="parallelization/retry.h" />
+		<Unit filename="parallelization/retry_multi_lock.cpp" />
+		<Unit filename="parallelization/retry_multi_lock.h" />
+		<Unit filename="parallelization/retry_single_lock.cpp" />
+		<Unit filename="parallelization/retry_single_lock.h" />
+		<Unit filename="parallelization/service/plain_service.cpp" />
+		<Unit filename="parallelization/service/plain_service.h" />
+		<Unit filename="parallelization/service/pool.h" />
+		<Unit filename="parallelization/service_base.cpp" />
+		<Unit filename="parallelization/service_base.h" />
+		<Unit filename="parallelization/service_status.h" />
+		<Unit filename="parallelization/thread.cpp" />
+		<Unit filename="parallelization/thread.h" />
+		<Unit filename="parallelization/thread_impl.h" />
+		<Unit filename="parallelization/thread_os.cpp" />
+		<Unit filename="parallelization/thread_os.h" />
+		<Unit filename="parallelization/thread_pool.cpp" />
+		<Unit filename="parallelization/threading.cpp" />
+		<Unit filename="parallelization/threading.h" />
+		<Unit filename="parallelization/tools.cpp" />
+		<Unit filename="parallelization/tools.h" />
 		<Unit filename="platform/_.cpp" />
 		<Unit filename="platform/_impl.h" />
 		<Unit filename="platform/_platform.h" />

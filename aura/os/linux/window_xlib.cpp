@@ -224,12 +224,12 @@ namespace xlib
 //   }
 //
 
-   bool buffer::round_swap_key_buffers()
+   bool buffer::buffer_lock_round_swap_key_buffers()
    {
 
-      bool bOk1 = double_buffer::round_swap_key_buffers();
+      bool bOk1 = double_buffer::buffer_lock_round_swap_key_buffers();
 
-      bool bOk2 = bitmap_source_buffer::round_swap_key_buffers();
+      bool bOk2 = bitmap_source_buffer::buffer_lock_round_swap_key_buffers();
 
       return bOk1 && bOk2;
 

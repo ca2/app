@@ -20,7 +20,7 @@ namespace experience
 
    //      create_translucency(::user::e_element_none, ::user::e_translucency_present);
    //
-   //      create_point_font(::user::font_default,FONT_SANS_UI, 12.0);
+   //      create_point_font(::user::font_default,os_font_name(e_font_sans_ui), 12.0);
    //
    //      userstyle()->m_mapFont->operator[](::user::font_default)->m_etextrenderinghint = ::draw2d::text_rendering_hint_clear_type_grid_fit;
    //

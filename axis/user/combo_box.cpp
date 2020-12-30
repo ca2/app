@@ -280,9 +280,7 @@ namespace user
       //else
       {
 
-         auto psession = Session;
-
-         auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
+         auto pprimitiveFocus = get_keyboard_focus();
 
          if(pprimitiveFocus == this)
          {

@@ -269,12 +269,12 @@ namespace linux
    }
 
 
-   bool interaction_impl::_native_create_window_ex(__pointer(::user::create_struct) pcreatestruct)
+   bool interaction_impl::_native_create_window_ex(__pointer(::user::create_struct) pusercreatestruct)
    {
 
-      ENSURE_ARG(pcreatestruct->m_createstruct.lpszName == nullptr || __is_valid_string(pcreatestruct->m_createstruct.lpszName));
+      ENSURE_ARG(pusercreatestruct->m_createstruct.lpszName == nullptr || __is_valid_string(pusercreatestruct->m_createstruct.lpszName));
 
-      if (!m_puserinteraction->pre_create_window(pcreatestruct))
+      if (!m_puserinteraction->pre_create_window(pusercreatestruct))
       {
 
          return false;
@@ -289,7 +289,7 @@ namespace linux
 
       bool bOk = true;
 
-      if(pcreatestruct->m_createstruct.hwndParent == (oswindow) MESSAGE_WINDOW_PARENT)
+      if(pusercreatestruct->m_createstruct.hwndParent == (oswindow) MESSAGE_WINDOW_PARENT)
       {
 
          m_oswindow = oswindow_get_message_only_window(this);
@@ -322,17 +322,17 @@ namespace linux
 
             xdisplay d(display);
 
-            if(pcreatestruct->m_createstruct.cx <= 0)
+            if(pusercreatestruct->m_createstruct.cx <= 0)
             {
 
-               pcreatestruct->m_createstruct.cx = 1;
+               pusercreatestruct->m_createstruct.cx = 1;
 
             }
 
-            if(pcreatestruct->m_createstruct.cy <= 0)
+            if(pusercreatestruct->m_createstruct.cy <= 0)
             {
 
-               pcreatestruct->m_createstruct.cy = 1;
+               pusercreatestruct->m_createstruct.cy = 1;
 
             }
 
@@ -388,9 +388,9 @@ namespace linux
 
             //attr.override_redirect = True;
 
-            INFO("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pcreatestruct->m_createstruct.x, pcreatestruct->m_createstruct.y, pcreatestruct->m_createstruct.cx, pcreatestruct->m_createstruct.cy);
+            INFO("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusercreatestruct->m_createstruct.x, pusercreatestruct->m_createstruct.y, pusercreatestruct->m_createstruct.cx, pusercreatestruct->m_createstruct.cy);
 
-            Window window = XCreateWindow(display, DefaultRootWindow(display), pcreatestruct->m_createstruct.x, pcreatestruct->m_createstruct.y, pcreatestruct->m_createstruct.cx, pcreatestruct->m_createstruct.cy,
+            Window window = XCreateWindow(display, DefaultRootWindow(display), pusercreatestruct->m_createstruct.x, pusercreatestruct->m_createstruct.y, pusercreatestruct->m_createstruct.cx, pusercreatestruct->m_createstruct.cy,
             0,
             m_iDepth,
             InputOutput,
@@ -409,9 +409,9 @@ namespace linux
    //
    //            auto & uistate = m_puserinteraction->ui_state();
    //
-   //            uistate.m_point.set(pcreatestruct->m_createstruct.x, pcreatestruct->m_createstruct.y);
+   //            uistate.m_point.set(pusercreatestruct->m_createstruct.x, pusercreatestruct->m_createstruct.y);
    //
-   //            uistate.m_size.set(pcreatestruct->m_createstruct.cx, pcreatestruct->m_createstruct.cy);
+   //            uistate.m_size.set(pusercreatestruct->m_createstruct.cx, pusercreatestruct->m_createstruct.cy);
    //
    //            uistate.m_pointScreen = uistate.m_point;
    //
@@ -419,11 +419,11 @@ namespace linux
    //
             {
 
-               m_puserinteraction->layout().sketch() = ::point(pcreatestruct->m_createstruct.x, pcreatestruct->m_createstruct.y);
+               m_puserinteraction->layout().sketch() = ::point(pusercreatestruct->m_createstruct.x, pusercreatestruct->m_createstruct.y);
 
-               m_puserinteraction->layout().sketch() = ::size(pcreatestruct->m_createstruct.cx, pcreatestruct->m_createstruct.cy);
+               m_puserinteraction->layout().sketch() = ::size(pusercreatestruct->m_createstruct.cx, pusercreatestruct->m_createstruct.cy);
 
-               m_puserinteraction->layout().sketch().screen_origin() = ::point(pcreatestruct->m_createstruct.x, pcreatestruct->m_createstruct.y);
+               m_puserinteraction->layout().sketch().screen_origin() = ::point(pusercreatestruct->m_createstruct.x, pusercreatestruct->m_createstruct.y);
 
             }
 
@@ -528,13 +528,13 @@ namespace linux
 
    #endif
 
-            if(m_puserinteraction->m_ewindowflag & window_flag_dock_window)
+            if(m_puserinteraction->m_ewindowflag & e_window_flag_dock_window)
             {
 
                wm_dockwindow(m_oswindow, true);
 
             }
-            else if(m_puserinteraction->m_ewindowflag & window_flag_desktop_window)
+            else if(m_puserinteraction->m_ewindowflag & e_window_flag_desktop_window)
             {
 
                wm_desktopwindow(m_oswindow, true);
@@ -587,15 +587,15 @@ namespace linux
 
             m_bComposite = XGetSelectionOwner(m_oswindow->display(), XInternAtom(m_oswindow->display(), "_NET_WM_CM_S0", True));
 
-            if(pcreatestruct->m_createstruct.lpszName != nullptr && strlen(pcreatestruct->m_createstruct.lpszName) > 0)
+            if(pusercreatestruct->m_createstruct.lpszName != nullptr && strlen(pusercreatestruct->m_createstruct.lpszName) > 0)
             {
 
-               XStoreName(m_oswindow->display(), m_oswindow->window(), pcreatestruct->m_createstruct.lpszName);
+               XStoreName(m_oswindow->display(), m_oswindow->window(), pusercreatestruct->m_createstruct.lpszName);
 
             }
 
 
-//            if(pcreatestruct->m_createstruct.dwExStyle & WS_EX_TOOLWINDOW)
+//            if(pusercreatestruct->m_createstruct.dwExStyle & WS_EX_TOOLWINDOW)
 //            {
 //
 //               m_oswindow->set_window_long_ptr(GWL_EXSTYLE, m_oswindow->get_window_long_ptr(GWL_EXSTYLE) |  WS_EX_TOOLWINDOW);
@@ -604,7 +604,7 @@ namespace linux
 
             _wm_nodecorations(m_oswindow, 0);
 
-            if(pcreatestruct->m_createstruct.style & WS_VISIBLE)
+            if(pusercreatestruct->m_createstruct.style & WS_VISIBLE)
             {
 
                m_oswindow->map_window();
@@ -631,8 +631,8 @@ namespace linux
                      // initial (XCreateWindow) size and position maybe not be honored.
                      // so requesting the same machine again in a effort to set the "docked/snapped" size and position.
 
-                     //m_oswindow->set_window_pos(zorder_top, pcreatestruct->m_createstruct.x, pcreatestruct->m_createstruct.y, pcreatestruct->m_createstruct.cx, pcreatestruct->m_createstruct.cy, SWP_SHOWWINDOW);
-                     m_oswindow->set_window_pos(zorder_top, pcreatestruct->m_createstruct.x, pcreatestruct->m_createstruct.y, pcreatestruct->m_createstruct.cx, pcreatestruct->m_createstruct.cy, 0);
+                     //m_oswindow->set_window_pos(zorder_top, pusercreatestruct->m_createstruct.x, pusercreatestruct->m_createstruct.y, pusercreatestruct->m_createstruct.cx, pusercreatestruct->m_createstruct.cy, SWP_SHOWWINDOW);
+                     m_oswindow->set_window_pos(zorder_top, pusercreatestruct->m_createstruct.x, pusercreatestruct->m_createstruct.y, pusercreatestruct->m_createstruct.cx, pusercreatestruct->m_createstruct.cy, 0);
 
                   }
 
@@ -681,7 +681,7 @@ namespace linux
       if(bOk)
       {
 
-         m_puserinteraction->send_message(e_message_create, 0, (LPARAM) &cs);
+         m_puserinteraction->send_message(e_message_create, 0, (LPARAM) &pusercreatestruct->m_createstruct);
 
          m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
@@ -692,7 +692,7 @@ namespace linux
    }
 
 
-   bool interaction_impl::pre_create_window(::user::create_struct * pcreatestruct)
+   bool interaction_impl::pre_create_window(::user::create_struct * pusercreatestruct)
    {
 
       return true;
@@ -3103,22 +3103,22 @@ namespace linux
 
    }
 
-
-   iptr interaction_impl::get_window_long_ptr(i32 nIndex) const
-   {
-
-      return get_window_long(nIndex);
-
-   }
-
-
-   iptr interaction_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
-   {
-
-      return set_window_long(nIndex, lValue);
-
-   }
-
+//
+//   iptr interaction_impl::get_window_long_ptr(i32 nIndex) const
+//   {
+//
+//      return get_window_long(nIndex);
+//
+//   }
+//
+//
+//   iptr interaction_impl::set_window_long_ptr(i32 nIndex, iptr lValue)
+//   {
+//
+//      return set_window_long(nIndex, lValue);
+//
+//   }
+//
 
 
 
@@ -3137,20 +3137,20 @@ namespace linux
    }
 
 
-   ::u32 interaction_impl::GetStyle() const
-   {
-
-      return (::u32)get_window_long(GWL_STYLE);
-
-   }
-
-
-   ::u32 interaction_impl::GetExStyle() const
-   {
-
-      return (::u32)get_window_long(GWL_EXSTYLE);
-
-   }
+//   ::u32 interaction_impl::GetStyle() const
+//   {
+//
+//      return (::u32)get_window_long(GWL_STYLE);
+//
+//   }
+//
+//
+//   ::u32 interaction_impl::GetExStyle() const
+//   {
+//
+//      return (::u32)get_window_long(GWL_EXSTYLE);
+//
+//   }
 
 
    bool interaction_impl::ModifyStyle(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags)
@@ -4875,7 +4875,7 @@ namespace linux
 
       }
 
-      return m_puserinteraction->m_ewindowflag & ::window_flag_focus;
+      return m_puserinteraction->m_ewindowflag & ::e_window_flag_focus;
 
    }
 
@@ -4897,7 +4897,7 @@ namespace linux
 //
 //      });
 //
-      return m_puserinteraction->m_ewindowflag & ::window_flag_active;
+      return m_puserinteraction->m_ewindowflag & ::e_window_flag_active;
 
    }
 

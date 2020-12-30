@@ -299,7 +299,7 @@ namespace interprocess_communication
 //      }
 
 
-      void * rx::on_ipc_receive(rx * prx,const char * pszMessage)
+      void * rx::on_interprocess_receive(rx * prx,const char * pszMessage)
       {
 
          if(m_preceiver != nullptr)
@@ -316,7 +316,7 @@ namespace interprocess_communication
       }
 
 
-      void * rx::on_ipc_receive(rx * prx,i32 message,void * pdata,memsize len)
+      void * rx::on_interprocess_receive(rx * prx,i32 message,void * pdata,memsize len)
       {
 
          if(m_preceiver != nullptr)
@@ -335,7 +335,7 @@ namespace interprocess_communication
 
 
 
-      void * rx::on_ipc_post(rx * prx, i64 a, i64 b)
+      void * rx::on_interprocess_post(rx * prx, i64 a, i64 b)
       {
 
          if(m_preceiver != nullptr)
@@ -423,13 +423,13 @@ namespace interprocess_communication
                if(lRequest == 1024)
                {
 
-                  on_ipc_receive(this, __str(m2));
+                  on_interprocess_receive(this, __str(m2));
 
                }
                else
                {
 
-                  on_ipc_receive(this, lRequest, m2.get_data(), m2.get_size());
+                  on_interprocess_receive(this, lRequest, m2.get_data(), m2.get_size());
 
                }
 

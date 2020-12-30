@@ -16,6 +16,13 @@ namespace acme
    }
 
 
+   void system::os_construct()
+   {
+
+
+   }
+
+
 } // namespace acme
 
 

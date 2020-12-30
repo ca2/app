@@ -1343,7 +1343,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="os\windows\ansi_file.cpp" />
     <ClCompile Include="os\windows\api.cpp" />
     <ClCompile Include="os\windows\application.cpp" />
-    <ClCompile Include="os\windows\application_system_run.cpp" />
     <ClCompile Include="os\windows\callstack.cpp" />
     <ClCompile Include="os\windows\debug.cpp" />
     <ClCompile Include="os\windows\dir.cpp" />

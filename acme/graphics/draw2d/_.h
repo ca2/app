@@ -23,8 +23,8 @@ CLASS_DECL_ACME color32_t argb_swap_rb(color32_t cr);
 #ifdef WINDOWS
 
 
-typedef WINRGBQUAD RGBQUAD;
-typedef LPWINRGBQUAD LPRGBQUAD;
+typedef RGBQUAD WINRGBQUAD;
+typedef LPRGBQUAD LPWINRGBQUAD;
 
 
 #else

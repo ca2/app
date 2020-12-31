@@ -1,6 +1,6 @@
 /* this is parsing.c file.
  * this is part of the libspopc library sources
- * copyright � 2002 Benoit Rouits <brouits@free.fr>
+ * copyright  2002 Benoit Rouits <brouits@free.fr>
  * released under the terms of GNU LGPL
  * (GNU Lesser General Public Licence).
  * libspopc offers simple API for a pop3 client (MTA).

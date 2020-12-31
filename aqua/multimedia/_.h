@@ -1,6 +1,16 @@
 #pragma once
 
 
+#ifdef WINDOWS
+namespace windows
+{
+
+   class media_foundation;
+
+}
+#endif
+
+
 #include "audio/_.h"
 
 

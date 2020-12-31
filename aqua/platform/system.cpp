@@ -42,6 +42,7 @@ namespace aqua
       create_factory < ::aqua::application, ::apex::application >();
       create_factory < ::aqua::session, ::apex::session >();
       create_factory < ::aqua::idpool, ::apex::idpool >();
+      create_factory < ::aqua::multimedia >();
 
    }
 
@@ -201,6 +202,12 @@ namespace aqua
          __compose(m_pmultimedia, ::move_transfer(pgetnewmultimedia()));
 
          m_pmultimedia->initialize_multimedia(this);
+
+      }
+      else
+      {
+
+         __compose(m_pmultimedia);
 
       }
 

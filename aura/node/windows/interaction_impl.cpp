@@ -5978,7 +5978,7 @@ namespace windows
          if (psession)
          {
 
-            puiFocus = psession->get_keyboard_focus();
+            puiFocus = m_puserinteraction->get_keyboard_focus();
 
          }
 

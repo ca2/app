@@ -3502,6 +3502,9 @@
     <ClCompile Include="node\windows\system.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
+    <ClCompile Include="graphics\draw2d\os_font_name.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="primitive\primitive\papaya.inl">

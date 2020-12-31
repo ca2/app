@@ -18,8 +18,14 @@ namespace aqua
       __composite(::aqua::estamira)                      m_pestamira;
 
 
+
+
       system();
       virtual ~system();
+
+
+      void aqua_construct();
+
 
       void common_construct();
 
@@ -41,7 +47,7 @@ namespace aqua
 
       virtual ::aqua::multimedia* defer_get_multimedia();
 
-      
+
 
    };
 

@@ -53,5 +53,5 @@ typedef struct tagWINRGBQUAD {
 
 
 CLASS_DECL_ACME string os_font_name(enum_font efont);
-CLASS_DECL_ACME string os_font_name(enum_operating_system eoperatingsystem, enum_font efont);
+CLASS_DECL_ACME string os_font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont);
 CLASS_DECL_ACME string linux_font_name(enum_linux_distribution elinuxdistribution, enum_font efont);

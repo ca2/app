@@ -266,7 +266,7 @@ return str;
 ::u32 g_puiaMessageInputLanguageChange[] =
 {
    // IME, Input Method Editor Client : ca2 Framework
-   // Mummi no �nibus... already missing!!
+   // Mummi no nibus... already missing!!
    // Twitch Streamers Vibe : Denzel@RB.TV, jitspoe, FearItSelf, WildN00b, AndyMilonakis
    // 2019-06-27-23-19
    // 2019-06-38-00-06 Talk2meGooseman

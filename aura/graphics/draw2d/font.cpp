@@ -30,8 +30,10 @@ namespace draw2d
       m_wstrName(pwideszName)
    {
 
-      m_mapFileName[0] = m_wstrName;
-      m_strName = m_strFile;
+      string strName = m_wstrName;
+
+      m_mapFileName[0] = strName;
+      m_strName = strName;
 
    }
 

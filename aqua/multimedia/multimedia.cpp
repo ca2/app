@@ -1,5 +1,7 @@
 #include "framework.h"
-
+#ifdef WINDOWS
+#include "aqua/node/windows/_windows.h"
+#endif
 
 
 namespace aqua
@@ -8,6 +10,9 @@ namespace aqua
 
    multimedia::multimedia()
    {
+
+
+
 
 
    }
@@ -31,7 +36,16 @@ namespace aqua
          return estatus;
 
       }
+
+      estatus = __compose(m_pmediafoundation);
       
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
       return estatus;
 
    }
@@ -109,6 +123,31 @@ namespace aqua
       return ::error_failed;
 
    }
+
+
+
+   ::windows::media_foundation * multimedia::mediafoundation()
+   {
+
+      if (!m_pmediafoundation)
+      {
+
+         auto estatus = __compose(m_pmediafoundation);
+
+         if (!estatus)
+         {
+
+            return nullptr;
+
+         }
+
+      }
+
+      return m_pmediafoundation;
+
+   }
+
+
 
 
 } // namespace aqua

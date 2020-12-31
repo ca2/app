@@ -954,7 +954,7 @@ smf_Open_File_Cleanup:
             else // Meta
             {
                // se o meta event possuir tkDelta > 0,
-               // insere o evento no stream para que n�o haja perda de sincronismo
+               // insere o evento no stream para que no haja perda de sincronismo
                if(tkDelta > 0)
                {
                   InsertPadEvent(tkDelta, lpmh);

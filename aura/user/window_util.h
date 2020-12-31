@@ -88,7 +88,7 @@ namespace user
    public:
 
 
-      DEFAULT_ARRAY_OF(interaction_array, interaction, ::user::interaction);
+      DECLARE_ARRAY_OF(interaction_array, interaction, ::user::interaction);
 
 
       interaction_array();

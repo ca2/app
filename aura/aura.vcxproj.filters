@@ -1663,6 +1663,9 @@
     <ClCompile Include="node\windows\system.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
+    <ClCompile Include="user\call_message_handler_task.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\_impl.h">

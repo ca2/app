@@ -508,7 +508,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
 
 #ifdef WINDOWS
 
-         keyboard_set_focus();
+         set_keyboard_focus();
 
 #endif
 

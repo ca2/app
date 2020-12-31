@@ -109,7 +109,7 @@ string os_font_name(enum_font efont)
 }
 
 
-string os_font_name(enum_operating_system eoperatingsystem, enum_font efont)
+string os_font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont)
 {
 
    switch (eoperatingsystem)
@@ -123,7 +123,7 @@ string os_font_name(enum_operating_system eoperatingsystem, enum_font efont)
       case e_operating_system_linux:
       {
 
-         auto elinuxdistribution = System.get_linux_distribution();
+         auto elinuxdistribution = (::enum_linux_distribution) iVariant;
 
          return linux_font_name(elinuxdistribution, efont);
 

@@ -107,6 +107,7 @@ e_message_enable       =                0x000A,
    e_message_auratype_key_down,
    e_message_auratype_key_up,
    e_message_auraclick_mouse,
+   e_message_update_device_list,
 
 
 

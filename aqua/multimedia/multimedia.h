@@ -30,6 +30,11 @@ namespace aqua
    {
    public:
 
+
+#ifdef WINDOWS
+      __composite(::windows::media_foundation)           m_pmediafoundation;
+#endif
+
       
       multimedia();
       virtual ~multimedia();
@@ -53,6 +58,10 @@ namespace aqua
 
 
       virtual ::e_status get_file_information(::file::file* pfile, ::multimedia::information& information);
+
+#ifdef WINDOWS
+    ::windows::media_foundation * mediafoundation();
+#endif
 
 
    };

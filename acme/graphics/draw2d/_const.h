@@ -82,7 +82,7 @@ enum enum_color
    e_color_cyan,       // 5
    e_color_magenta,    // 6
    e_color_black,      // 7
-   e_color_white,      // 8 - <3tbs ∞
+   e_color_white,      // 8
    e_color_gray,       // 9
 
 };

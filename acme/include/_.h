@@ -3,7 +3,7 @@
 //   
 //    
 //        ------------------ - --/ ------------------------ - ----/ -------------------------------------- - --
-//        DOMAS_16-09-0.1989 > ThomasBS_ / ------ - ---/ aura.dll Release(Win32) / aura.lib Static Release(Win32)   ø      helloaura.exe     Static     Release(Win32)   ----   -    -- <3Thomas Boregaard SørensenCamilo SasukeThomas Boregaard Sørensen!!
+//        DOMAS_16-09-0.1989 > ThomasBS_ / ------ - ---/ aura.dll Release(Win32) / aura.lib Static Release(Win32)   oe      helloaura.exe     Static     Release(Win32)   ----   -    -- <3Thomas Boregaard SoerensenCamilo SasukeThomas Boregaard Soerensen!!
 //        2020 - 08 - 18 01:38 / 17, 180kb---- - ---/ 189, 893kb-------- - ---/ 12, 187kb------------------ - --
 //        2020 - 08 - 20 07:41 / 13, 915kb / 137, 668kb / 9, 715kb------------------ - --
 //        rebuild mark / ---------------- - ------------------------- - -------------------------------- - --
@@ -53,7 +53,7 @@
 //
 //        c(s)t(s)<tb(s)!!
 //
-//01234567-∞8888∞+∞ ∞∞∞ ∞∞∞ ∞∞∞∞∞ ∞∞∞∞∞∞∞∞∞∞∞ ∞∞∞∞∞ ∞∞∞∞∞∞∞∞∞∞ ∞∞∞∞∞∞∞ ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞
+//01234567-?8888?+? ??? ??? ????? ??????????? ????? ?????????? ??????? ???????????????????????
 //
 //
 //
@@ -1963,7 +1963,7 @@ namespace acme
 
       //Thank you Fiora a Eterna!!
 
-      //Fiora Aeterna☄ ‏@FioraAeterna 20m20 minutes ago
+      //Fiora Aeterna? ?@FioraAeterna 20m20 minutes ago
 
       //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
       //   Details
@@ -2006,7 +2006,7 @@ namespace acme
 
       //Thank you Fiora a Eterna!!
 
-      //Fiora Aeterna☄ ‏@FioraAeterna 20m20 minutes ago
+      //Fiora Aeterna? ?@FioraAeterna 20m20 minutes ago
 
       //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
       //   Details
@@ -2045,7 +2045,7 @@ namespace acme
 
       //Thank you Fiora a Eterna!!
 
-      //Fiora Aeterna☄ ‏@FioraAeterna some minutes ago
+      //Fiora Aeterna? ?@FioraAeterna some minutes ago
 
       //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
       //   Details
@@ -2086,7 +2086,7 @@ namespace acme
 
       //Thank you Fiora a Eterna!!
 
-      //Fiora Aeterna☄ ‏@FioraAeterna some minutes ago
+      //Fiora Aeterna? ?@FioraAeterna some minutes ago
 
       //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
       //   Details
@@ -2796,7 +2796,7 @@ namespace factory
 class manual_reset_event;
 
 
-//#include "acme/primitive/promiseλ/pred_pointer.h"
+//#include "acme/primitive/promise?/pred_pointer.h"
 
 
 #include "acme/primitive/primitive/work.h"

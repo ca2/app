@@ -1890,7 +1890,7 @@ namespace draw2d_opengl
 
       //::plusplus::Font font2(pfamilyMono, pfamilyMono->GetEmHeight(((graphics * )this)->gl2d_font()->GetStyle()));
 
-      //wstring wstr(L"123AWZwmc123AWZwmcpQ�g");
+      //wstring wstr(L"123AWZwmc123AWZwmcpQg");
       //plusplus::RectF rect(0.f, 0.f, 1024.f * 1024.f, 1024.f * 1024.f);
       //plusplus::RectF rect2;
       //plusplus::PointF origin(0, 0);

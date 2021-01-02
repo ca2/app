@@ -2958,7 +2958,7 @@ namespace user
       else if (strType.contains_ci("combo_box"))
       {
 
-         output_debug_string("combo_box");
+         //output_debug_string("combo_box");
 
       }
 
@@ -6109,6 +6109,8 @@ namespace user
 
       }
 
+      on_set_owner(m_puiOwner);
+
       return puiRet;
 
    }
@@ -7315,6 +7317,19 @@ namespace user
       }
 
       m_pimpl->on_end_layout_experience(elayoutexperience);
+
+   }
+
+
+   void interaction::on_configuration_change(::user::primitive * pprimitiveSource)
+   {
+
+      if(m_pimpl)
+      {
+
+         m_pimpl->on_configuration_change(pprimitiveSource);
+
+      }
 
    }
 
@@ -8895,6 +8910,14 @@ namespace user
    void interaction::on_after_set_parent()
    {
 
+
+   }
+
+
+   bool interaction::on_set_owner(::user::primitive * pprimitive)
+   {
+
+      return true;
 
    }
 

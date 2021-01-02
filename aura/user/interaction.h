@@ -521,6 +521,13 @@ namespace user
       virtual bool on_set_parent(::user::primitive * pinterface);
       virtual void on_after_set_parent();
 
+
+      virtual bool on_set_owner(::user::primitive * pinterface);
+
+
+
+
+
       virtual ::user::primitive * first_child_user_primitive() override;
       virtual ::user::primitive * top_user_primitive() override;
       virtual ::user::primitive * under_user_primitive() override;
@@ -1136,6 +1143,9 @@ namespace user
 
       virtual void on_start_layout_experience(enum_layout_experience elayoutexperience) override;
       virtual void on_end_layout_experience(enum_layout_experience elayoutexperience) override;
+
+
+      virtual void on_configuration_change(::user::primitive * pprimitiveSource) override;
 
 
       virtual void show_keyboard(bool bShow = true) override;

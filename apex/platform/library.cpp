@@ -559,7 +559,7 @@ namespace apex
    }
 
 
-   __result(::apex::application) library::get_new_application(::layered * pobject, const char * pszAppId)
+   __result(::apex::application) library::new_application(const char * pszAppId)
    {
 
       sync_lock sl(&System.m_mutexLibrary);
@@ -574,21 +574,21 @@ namespace apex
 
             auto papp = psetup->create_new_application();
 
-            if (papp)
-            {
-
-               auto estatus = papp->initialize(pobject);
-
-               if (!estatus)
-               {
-
-                  return estatus;
-
-               }
-
-               return papp;
-
-            }
+//            if (papp)
+//            {
+//
+//               auto estatus = papp->initialize(pobject);
+//
+//               if (!estatus)
+//               {
+//
+//                  return estatus;
+//
+//               }
+//
+//               return papp;
+//
+//            }
 
          }
 
@@ -611,7 +611,7 @@ namespace apex
 
             }
 
-            auto papp = get_ca2_library()->get_new_application(pobject, strAppName);
+            auto papp = get_ca2_library()->new_application(strAppName);
 
             if (!papp)
             {
@@ -635,17 +635,14 @@ namespace apex
 
                auto papp = (*p)();
 
-               if (papp)
-               {
-
-                  papp->initialize(pobject);
-
-               }
+//               if (papp)
+//               {
+//
+//                  papp->initialize(pobject);
+//
+//               }
 
                return papp;
-
-
-
 
             }
 

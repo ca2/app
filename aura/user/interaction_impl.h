@@ -118,15 +118,16 @@ namespace user
       __pointer(::mutex)                  m_pmutexDraw;
       __pointer(::mutex)                  m_pmutexRedraw;
 
-      ::user::interaction_ptra            m_guieptraMouseHover;
+      ::user::interaction_ptra                  m_guieptraMouseHover;
 
-      ::u32                                m_uiMessage;
-      wparam                              m_wparam;
-      lparam                              m_lparam;
-      lparam                              m_lparamLastMouseMove;
+      ::u32                                     m_uiMessage;
+      wparam                                    m_wparam;
+      lparam                                    m_lparam;
+      lparam                                    m_lparamLastMouseMove;
 
-      bool                                m_bPendingRedraw;
-      millis                                m_millisLastRedraw;
+      bool                                      m_bPendingRedraw;
+      millis                                    m_millisLastRedraw;
+      ::user::interaction_array                 m_userinteractionaHideOnConfigurationChange;
 
 
       interaction_impl();
@@ -646,6 +647,9 @@ namespace user
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
+      virtual void on_start_layout_experience(enum_layout_experience elayoutexperience) override;
+
+      virtual void on_configuration_change(::user::primitive * pprimitiveSource) override;
 
       virtual ::user::primitive * get_keyboard_focus() override;
       virtual ::e_status set_keyboard_focus(::user::primitive * pprimitive) override;

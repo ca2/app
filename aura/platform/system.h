@@ -856,7 +856,7 @@ namespace aura
 
 #ifdef LINUX
 
-      virtual bool init_x11() override;
+      virtual ::e_status defer_initialize_x11() override;
       virtual bool sn_start_context();
 
 

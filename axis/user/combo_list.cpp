@@ -58,6 +58,8 @@ namespace user
 
       install_simple_ui_default_mouse_handling(pchannel);
 
+      MESSAGE_LINK(e_message_create, pchannel, this, &combo_list::_001OnCreate);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &combo_list::_001OnDestroy);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &combo_list::_001OnSetFocus);
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &combo_list::_001OnKillFocus);
       MESSAGE_LINK(e_message_close, pchannel, this, &combo_list::_001OnClose);
@@ -71,6 +73,78 @@ namespace user
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &combo_list::_001OnRButtonDown);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_list::_001OnMouseMove);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &combo_list::_001OnShowWindow);
+
+   }
+
+
+   void combo_list::_001OnCreate(::message::message * pmessage)
+   {
+
+      pmessage->previous();
+
+   }
+
+
+   bool combo_list::on_set_owner(::user::primitive * pprimitive)
+   {
+
+      auto puserinteractionOwner = pprimitive->GetOwner();
+
+      if(puserinteractionOwner)
+      {
+
+         auto puserinteractionHost = puserinteractionOwner->get_host_window();
+
+         if (puserinteractionHost)
+         {
+
+            auto pimpl = puserinteractionHost->m_pimpl.cast<::user::interaction_impl>();
+
+            if (pimpl)
+            {
+
+               sync_lock sl(pimpl->mutex());
+
+               pimpl->m_userinteractionaHideOnConfigurationChange.add_unique_interaction(this);
+
+            }
+
+         }
+
+      }
+
+   }
+
+
+   void combo_list::_001OnDestroy(::message::message * pmessage)
+   {
+
+      auto puserinteractionOwner = GetOwner();
+
+      if(puserinteractionOwner)
+      {
+
+         auto puserinteractionHost = puserinteractionOwner->get_host_window();
+
+         if(puserinteractionHost)
+         {
+
+            auto pimpl = puserinteractionHost->m_pimpl.cast<::user::interaction_impl>();
+
+            if (pimpl)
+            {
+
+               sync_lock sl(pimpl->mutex());
+
+               pimpl->m_userinteractionaHideOnConfigurationChange.remove_interaction(this);
+
+            }
+
+         }
+
+      }
+
+      pmessage->previous();
 
    }
 
@@ -119,8 +193,6 @@ namespace user
 
       ::rect rectItem;
 
-      //point p = pgraphics->GetViewportOrg();
-
       rectItem = rectClient;
 
       rectItem.bottom = rectClient.top;
@@ -166,10 +238,6 @@ namespace user
 
             if (iItem == iCurSel)
             {
-
-               //crBk = _001GetColor(::user::color_list_item_background_selected_hover);
-
-               //cr = _001GetColor(::user::color_list_item_text_selected_hover);
 
                crBk = ARGB(255, 120, 190, 220);
 
@@ -233,8 +301,6 @@ namespace user
 
       }
 
-      //color32_t crBorder = _001GetColor(::user::color_border);
-
       color32_t crBorder = ARGB(255, 0, 0, 0);
 
       ::draw2d::pen_pointer pen(e_create);
@@ -266,26 +332,6 @@ namespace user
          }
 
       }
-
-      //if (pstyle)
-      //{
-
-      //   if (pstyle->m_pfontCombo)
-      //   {
-
-      //      return pstyle->m_pfontCombo;
-
-      //   }
-      //   else if (pstyle->m_pfont)
-      //   {
-
-      //      return pstyle->m_pfont;
-
-      //   }
-
-      //}
-
-      //return nullptr;
 
       return ::user::interaction::get_font(pstyle, eelement, estate);
 

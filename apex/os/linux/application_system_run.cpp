@@ -172,10 +172,19 @@ namespace apex
 
 #endif
 
+      ::e_status estatus = ::success;
+
       if (m_bUser)
       {
 
-         init_x11();
+         estatus = defer_initialize_x11();
+
+         if(!estatus)
+         {
+
+            return estatus;
+
+         }
 
       }
 

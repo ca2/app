@@ -2086,6 +2086,13 @@ namespace user
    }
 
 
+   void primitive::on_configuration_change(::user::primitive * pprimitiveSource)
+   {
+
+
+   }
+
+
    void primitive::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 

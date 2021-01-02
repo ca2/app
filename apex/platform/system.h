@@ -853,7 +853,7 @@ namespace apex
 
 #ifdef LINUX
 
-      virtual bool init_x11();
+      virtual ::e_status defer_initialize_x11();
       virtual bool sn_start_context();
 
 #endif

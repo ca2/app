@@ -1658,8 +1658,7 @@ namespace user
          }
 
       }
-      else if(m_itemClick.m_eelement == e_element_tab_far_scroll
-         )
+      else if(m_itemClick.m_eelement == e_element_tab_far_scroll)
       {
 
          if(m_iTabScroll < m_iTabScrollMax)
@@ -1756,18 +1755,23 @@ namespace user
       if(item.m_iItem >= 0 && iClickTab == item.m_iItem && m_itemClick == item)
       {
 
-         if (item == e_element_close_tab_button)
+         fork([this, item]()
          {
 
-            _001OnTabClose(item.m_iItem);
+            if (item == e_element_close_tab_button)
+            {
 
-         }
-         else
-         {
+               _001OnTabClose(item.m_iItem);
 
-            _001OnTabClick(item.m_iItem);
+            }
+            else
+            {
 
-         }
+               _001OnTabClick(item.m_iItem);
+
+            }
+
+         });
 
          set_need_redraw();
 

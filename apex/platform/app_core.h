@@ -91,8 +91,14 @@ public:
 
    void system_end();
 
-   __result(::apex::application) get_new_application(::object* pobjectContext);
-   __result(::apex::application) get_new_application(::object* pobjectContext, const char* pszAppId);
+   __result(::apex::application) new_application();
+   __result(::apex::application) new_application(const char* pszAppId);
+
+
+//   __result(::apex::application) get_new_application(::object* pobjectContext);
+//   __result(::apex::application) get_new_application(::object* pobjectContext, const char* pszAppId);
+
+   virtual ::e_status initialize_application(::apex::application * papplication, ::object* pobjectContext);
 
 };
 

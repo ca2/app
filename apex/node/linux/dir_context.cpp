@@ -323,10 +323,10 @@ namespace linux
 
             }
 
-            if(!bIsDir && !matches_wildcard_criteria(listing.m_straPattern, strPath.name()))
+            if((bIsDir && !listing.m_bDir) || (!bIsDir && !listing.m_bFile))
                continue;
 
-            if((bIsDir && !listing.m_bDir) || (!bIsDir && !listing.m_bFile))
+            if(!bIsDir && !matches_wildcard_criteria(listing.m_straPattern, strPath.name()))
                continue;
 
             ::file::path & path = listing.add_get(strPath);

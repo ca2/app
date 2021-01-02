@@ -1164,14 +1164,21 @@ namespace apex
 
       }
 
-      auto papplicationNew = get_new_application(get_context_session(), m_strAppId);
-
-      __bind(this, m_papplicationStartup, papplicationNew OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
-
       if (!m_papplicationStartup)
       {
 
-         message_box("Failed to allocate Application!!");
+         message_box("Startup application is not allocated!!");
+
+         return false;
+
+      }
+
+      estatus = m_papplicationStartup->initialize(get_context_session());
+
+      if(!estatus)
+      {
+
+         message_box("Failed to initialize Application object!!");
 
          return false;
 
@@ -5055,14 +5062,13 @@ namespace apex
    }
 
 
-
-
 #ifdef LINUX
 
-   bool system::init_x11()
+
+   ::e_status system::defer_initialize_x11()
    {
 
-      return false;
+      return ::acme::system::defer_initialize_x11();
 
    }
 
@@ -5074,7 +5080,9 @@ namespace apex
 
    }
 
+
 #endif
+
 
    ::apex::history& system::hist()
    {

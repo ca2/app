@@ -579,6 +579,7 @@ inline bool myspace(char ch)
 
 }
 
+
 ::file::listing& dir_context::rls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
 {
 
@@ -587,6 +588,24 @@ inline bool myspace(char ch)
    listing.m_bRecursive = true;
 
    listing.m_bDir = true;
+
+   listing.m_bFile = true;
+
+   listing.m_straPattern = straPattern;
+
+   return ls(listing);
+
+}
+
+
+::file::listing& dir_context::rls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
+{
+
+   listing.m_pathUser = path;
+
+   listing.m_bRecursive = true;
+
+   listing.m_bDir = false;
 
    listing.m_bFile = true;
 
@@ -606,7 +625,7 @@ inline bool myspace(char ch)
 
    listing.m_bFile = true;
 
-   listing.m_straPattern.remove_all();
+   //listing.m_straPattern.remove_all();
 
    return ls(listing);
 

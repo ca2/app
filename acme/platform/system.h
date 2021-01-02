@@ -86,6 +86,13 @@ namespace acme
 
       virtual string __get_text(const string & str);
 
+#ifdef LINUX
+
+      virtual ::e_status defer_initialize_x11();
+
+#endif
+
+
 
    };
 

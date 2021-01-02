@@ -148,13 +148,6 @@ namespace apex
 
 
 
-      if(::get_global_application() == nullptr)
-      {
-
-         set_global_application(this);
-
-      }
-
       m_strLocale = "_std";
       m_strSchema = "_std";
 
@@ -3090,6 +3083,12 @@ retry_license:
    ::e_status application::process_init()
    {
 
+      if(::get_global_application() == nullptr)
+      {
+
+         set_global_application(this);
+
+      }
 
       string_array stra;
 

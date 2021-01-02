@@ -24,7 +24,7 @@ namespace aqua
 
    }
 
-   
+
    ::e_status multimedia::initialize_multimedia(::object* pobjectContext)
    {
 
@@ -37,14 +37,18 @@ namespace aqua
 
       }
 
+#ifdef WINDOWS
+
       estatus = __compose(m_pmediafoundation);
-      
+
       if (!estatus)
       {
 
          return estatus;
 
       }
+
+#endif
 
       return estatus;
 
@@ -64,7 +68,7 @@ namespace aqua
 
    }
 
-   
+
    void multimedia::on_decoder_fill_title_info(::multimedia::decoder * pdecoder, string_array & straTitle, string2a & str2aTitle)
    {
 
@@ -104,7 +108,7 @@ namespace aqua
 
    }
 
-   
+
    ::e_status multimedia::get_file_information(::file::file* pfile, ::multimedia::information& information)
    {
 
@@ -124,6 +128,8 @@ namespace aqua
 
    }
 
+
+#ifdef WINDOWS
 
 
    ::windows::media_foundation * multimedia::mediafoundation()
@@ -148,6 +154,7 @@ namespace aqua
    }
 
 
+#endif
 
 
 } // namespace aqua

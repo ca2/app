@@ -4,6 +4,7 @@
 // Created by Camilo 2020-12-29 16:25 BRT <3TBS, Mummi and bilbo!!
 // (as acme/node/linux/system.cpp)
 #include "framework.h"
+#include "acme/os/x11/_x11.h"
 
 
 namespace acme
@@ -46,8 +47,6 @@ namespace acme
 
       }
 
-
-
    }
 
 
@@ -55,6 +54,16 @@ namespace acme
    {
 
        return e_operating_system_linux;
+
+   }
+
+
+   ::e_status system::defer_initialize_x11()
+   {
+
+      auto estatus = ::defer_initialize_x11();
+
+      return estatus;
 
    }
 

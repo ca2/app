@@ -39,6 +39,8 @@
 //        ------------------------------------------------------------------------------
 //
 //
+//        <3 ThomasBS - 400th follower
+//
 //
 //        ca2 is an all-purpose multi-platform framework
 //        and set of libraries written in C++ language with

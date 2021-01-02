@@ -18,7 +18,9 @@ namespace experience
          m_bMoving = false;
          SetSWPFlags(0);
          m_eborderMask = e_border_all;
+
       }
+
 
       move_manager::~move_manager()
       {

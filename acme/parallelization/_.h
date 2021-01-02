@@ -164,6 +164,8 @@ namespace parallelization
 
    //}
 
+   CLASS_DECL_ACME string thread_get_name();
+
 
 } // namespace parallelization
 

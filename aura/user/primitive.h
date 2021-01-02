@@ -279,6 +279,10 @@ namespace user
       virtual void on_start_layout_experience(enum_layout_experience elayoutexperience);
       virtual void on_end_layout_experience(enum_layout_experience elayoutexperience);
 
+
+      virtual void on_configuration_change(::user::primitive * pprimitiveSource);
+
+
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
       virtual void on_reposition();
       virtual void on_show_window();

@@ -4486,7 +4486,7 @@ namespace macos
 
          auto lparam = (LPARAM) (iptr) (string *) (pstringText);
 
-         printf("x11_process_message e_message_text_composition\n");
+         printf("round_window_key_down e_message_text_composition\n");
 
          m_puserinteraction->post_message(e_message_text_composition, 0, lparam);
          

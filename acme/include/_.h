@@ -66,23 +66,11 @@
 #define __spin_namespace acme // back bone / four-letter "spin*" namespace name
 
 
-//
-
-
 #pragma once
 
 
 #undef Sys
-//#undef Sess
-//#undef App
 
-
-//#define Sys(psystem) (*psystem)
-//#define Sess(pcontextsession) (pcontextsession)
-//#define App(playered) (*::get_context_application(playered))
-
-//#define Sess(pobject) (*pobject->get_context_session())
-//#define App(pobject) (*pobject->get_app())
 
 #define System (*::get_context_system())
 
@@ -114,6 +102,7 @@ typedef __MAIN_DEFERRED_RUN *__LPFN_MAIN_DEFERRED_RUN;
 extern CLASS_DECL_ACME __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
 
 
+
 #ifdef __DEBUG
 
 #define INLINE
@@ -124,6 +113,7 @@ extern CLASS_DECL_ACME __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
 
 #endif
 
+
 namespace acme
 {
 
@@ -131,20 +121,11 @@ namespace acme
 
 } // namespace acme
 
+
 class layered;
 
 
 CLASS_DECL_ACME ::acme::system *get_context_system();
-//CLASS_DECL_ACME ::acme::system * get_context_system(::layered * pobjectContext);
-//CLASS_DECL_ACME inline ::acme::system * get_context_system(::acme::system * psystem);
-
-
-
-
-//#include "acme/platform/cpu_architecture.h"
-
-
-//#include "acme/message/global.h"
 
 
 template<typename TYPE>
@@ -218,7 +199,6 @@ inline TYPE & xxf_zero(TYPE & t);
 namespace opengl
 {
 
-
    class opengl;
 
 
@@ -227,12 +207,17 @@ namespace opengl
 
 enum enum_normalize
 {
+
    e_normalize
+
 };
+
 
 enum enum_null
 {
+
    e_null
+
 };
 
 
@@ -245,11 +230,11 @@ struct INT_STRING
 };
 
 
-
 CLASS_DECL_ACME void throw_todo(void);
 
 
 CLASS_DECL_ACME void set_last_status(const ::e_status &estatus);
+
 
 CLASS_DECL_ACME void windowing_output_debug_string(const char *pszDebugString);
 
@@ -257,17 +242,21 @@ CLASS_DECL_ACME void windowing_output_debug_string(const char *pszDebugString);
 namespace acme
 {
 
+
    class acme;
 
 
    extern CLASS_DECL_ACME bool g_bAcme;
+
 
 } // namespace acme
 
 
 CLASS_DECL_ACME int __assert_failed_line(const char *pszFileName, int iLineNumber);
 
+
 CLASS_DECL_ACME int is_debugger_attached(void);
+
 
 CLASS_DECL_ACME void debug_print(const char *psz, ...);
 
@@ -3043,21 +3032,11 @@ CLASS_DECL_ACME void add_release_on_end(::matter * pmatter);
 
 class message_box;
 
-//#include "acme/primitive/primitive/matter.h"
-
-//#include "acme/primitive/primitive/object_meta.h"
-
-//#include "acme/platform/trace.h"
-
-//#include "acme/platform/pred_method.h"
-
 #include "acme/platform/debug.h"
 
 #include "acme/platform/class.h"
 
 #include "acme/primitive/comparison/md5.h"
-
-//#include "acme/platform/conv.h"
 
 #include "acme/primitive/primitive/request_interface.h"
 
@@ -3596,29 +3575,9 @@ void set_osremote(os_remote * posremote);
 
 #include "acme/os/process.h"
 
-//#include "acme/filesystem/filesystem/file_watcher.h"
-
-//#include "acme/platform/os_context.h"
-
-//#include "acme/crypto/crypto.h"
-
-//#include "acme/database/_.h"
-
-//#include "acme/database/simpledb/_.h"
-
-//#include "acme/user/_.h"
 
 
 
-
-//#include "acme/multimedia/_.h"
-
-
-
-
-//#include "acme/user/style_coord.h"
-//#include "acme/user/style_rect.h"
-//#include "acme/user/item.h"
 
 
 #include "acme/platform/exclusive.h"
@@ -3648,59 +3607,7 @@ namespace fs
 
 class ifs;
 
-//#include "axis/programming/javascript/javascript.h"
-
-//#include "acme/filesystem/fs/_fs.h"
-
-//#include "acme/user/userpresence/_.h"
-
-//#include "acme/html/html_lite/_.h"
-
-//#include "core/user/experience/_.h"
-
-//#include "acme/filesystem/userfs/_.h"
-
-//#include "acme/filesystem/filehandler/_.h"
-
-//#include "acme/game/_.h"
-
 #include "acme/_.h"
-
-//#include "acme/message/_.h"
-
-//#include "acme/platform/context_thread.h"
-
-//#include "acme/filesystem/filemanager/future.h"
-
-//#include "acme/platform/application.h"
-
-//#include "acme/platform/app.h"
-
-//#include "acme/platform/application_message.h"
-
-//#include "acme/account/_account.h"
-
-//#include "acme/filesystem/filemanager/item_action.h"
-
-//#include "acme/filesystem/filemanager/component.h"
-
-//#include "core/user/userex/userex.h"
-
-//#include "acme/platform/session.h"
-
-//#include "acme/parallelization/retry.h"
-
-
-//CLASS_DECL_ACME::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
-//CLASS_DECL_ACME bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
-//CLASS_DECL_ACME bool set_application_installed(const ::file::path & pathExe, string strAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
-//CLASS_DECL_ACME::file::path get_application_path(string strAppId, const char * pszPlatform, const char * pszConfiguration);
-//CLASS_DECL_ACME::file::path get_last_run_application_path_file(string strAppId);
-//CLASS_DECL_ACME::file::path get_last_run_application_path(string strAppId);
-//CLASS_DECL_ACME bool set_last_run_application_path(string strAppId);
-
-//CLASS_DECL_ACME ::e_status load_factory_library(string strLibrary);
-
 
 class node_data_exchange;
 
@@ -3714,144 +3621,13 @@ namespace xml
 } // namespace xml
 
 
-//#include "acme/multimedia/audio/speaker.h"
-
-
-//#include "acme/multimedia/audio.h"
-
-//#include "acme/multimedia/multimedia.h"
-
-//#include "acme/platform/app_core.h"
-
-//#include "acme/primitive/collection/map.h"
-
-//#include "acme/primitive/collection/strid_map.h"
-
-//#include "acme/platform/system.h"
-
-//#include "acme/platform/system_str.h"
-
-
-
-
 #define new ACME_NEW
-
-
-
-
-/*namespace numeric_info
-{
-
-
-template < typename T >
-inline T get_maximum_value()
-{
-__throw(not_implemented(get_object()));
-}
-
-template < typename T >
-inline T get_minimum_value()
-{
-__throw(not_implemented(get_object()));
-}
-template < typename T >
-inline T get_null_value()
-{
-return 0;
-}
-template < typename T >
-inline T get_unitary_value()
-{
-return 1;
-}
-
-template < typename T >
-inline T get_allset_value()
-{
-T t;
-__memset(&t,0xff,sizeof(T));
-return t;
-}
-
-template < typename T >
-inline bool is_signed()
-{
-return ((T)-1) < 0;
-}
-
-template < typename T >
-inline bool is_integer()
-{
-// guess, as float and double is implemented
-return true;
-}
-
-
-template < typename T >
-inline string json(const T & value)
-{
-return __str(value);
-}
-
-} // namespace numeric_info
-
-*/
-
-
-//#ifdef VARIADIC_TEMPLATE_FORMAT2
-//
-//template<typename T,typename... Args>
-//inline void string_format::format(const char * & s,const T & value,Args... args)
-//{
-//
-//   while(*s)
-//   {
-//
-//      if(*s == '%' && *(++s) != '%')
-//      {
-//
-//         defer_get_additional_argument(s,value,args...);
-//
-//         return;
-//
-//      }
-//
-//      append(*s++);
-//
-//   }
-//
-//   __throw(::exception::exception("extra arguments provided to format"));
-//
-//
-//}
-//
-//
-//
-//
-//#endif
-
-
-
-//#include "acme/core_os.h"
 
 
 #include "acme/os/chronometer.h"
 
 
-//#include "acme/platform/assert_running_task.h"
-
-
 #include "acme/platform/number.h"
-
-
-#include "acme/platform/debug.h"
-
-
-//#include "acme/platform/printf.h"
-//#include "acme/platform/sprintf.h"
-
-
-//#include "acme/math/_math.h"
 
 
 // C++ Includes

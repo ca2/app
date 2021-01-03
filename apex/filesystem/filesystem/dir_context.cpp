@@ -1911,7 +1911,7 @@ ret:
 
       System.file().del(pathMeta);
 
-      ((cflag < ::file::e_flag >&)path) = patha[0];
+      ((cflag < ::file::enum_flag >&)path) = patha[0];
 
    }
 

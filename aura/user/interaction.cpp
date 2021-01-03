@@ -247,7 +247,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer interaction::get_font(style * pstyle, enum_element eelement, estate estate) const
+   ::draw2d::font_pointer interaction::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (pstyle)
@@ -282,26 +282,60 @@ namespace user
    }
 
 
-   int interaction::get_int(style * pstyle, enum_int eint, int iDefault) const
+   int interaction::get_int(style * pstyle, enum_int eint, ::user::enum_state estate, int iDefault) const
    {
+
+      int i;
+
+      if (::is_set(pstyle))
+      {
+
+         if(pstyle->get_int(this, i, eint, estate))
+         {
+
+            return i;
+
+         }
+
+      }
+
+      auto psession = Session;
+
+      if(psession->get_int(this, i, eint, estate))
+      {
+
+         return i;
+
+      }
 
       return iDefault;
 
    }
 
 
-   double interaction::get_double(style * pstyle, enum_double edouble, double dDefault) const
+   double interaction::get_double(style * pstyle, enum_double edouble, ::user::enum_state estate, double dDefault) const
    {
 
-      if (edouble == ::user::e_double_focus_height_width)
+      double d;
+
+      if (::is_set(pstyle))
       {
 
-         if (m_flagNonClient.has(non_client_focus_rect))
+         if(pstyle->get_double(this, d, edouble, estate))
          {
 
-            return 8.0;
+            return d;
 
          }
+
+      }
+
+      auto psession = Session;
+
+      if(psession->get_double(this, d, edouble, estate))
+      {
+
+         return d;
 
       }
 
@@ -310,7 +344,7 @@ namespace user
    }
 
 
-   ::rectd interaction::get_border(style * pstyle, enum_element eelement, estate estate) const
+   ::rectd interaction::get_border(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       return nullptr;
@@ -318,7 +352,7 @@ namespace user
    }
 
    
-   ::rectd interaction::get_padding(style * pstyle, enum_element eelement, estate estate) const
+   ::rectd interaction::get_padding(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
 
@@ -342,13 +376,13 @@ namespace user
    }
 
 
-   ::rectd interaction::get_margin(style * pstyle, enum_element eelement, estate estate) const
+   ::rectd interaction::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (m_flagNonClient.has(non_client_focus_rect))
       {
 
-         double dFocusHeightWidth = get_double(pstyle, ::user::e_double_focus_height_width, 2.0);
+         double dFocusHeightWidth = get_double(pstyle, ::user::e_double_focus_height_width, estate, 2.0);
 
          ::rectd rectDefaultMargin(dFocusHeightWidth, dFocusHeightWidth, dFocusHeightWidth, dFocusHeightWidth);
 
@@ -363,7 +397,7 @@ namespace user
    }
 
 
-   ::color interaction::get_color(style * pstyle, enum_element eelement, estate estate) const
+   ::color interaction::get_color(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       //if (pstyle)
@@ -402,7 +436,7 @@ namespace user
 
       auto psession = Session;
 
-      return psession->get_color(eelement, estate);
+      return psession->get_color(this, eelement, estate);
 
    }
 
@@ -7380,7 +7414,7 @@ namespace user
    }
 
 
-   ::user::e_state interaction::get_user_state() const
+   ::user::enum_state interaction::get_user_state() const
    {
 
       if (!is_window_enabled())
@@ -14313,7 +14347,7 @@ restart:
    }
 
 
-   estate interaction::get_state() const
+   ::user::enum_state interaction::get_state() const
    {
 
       auto psession = Session;
@@ -14321,7 +14355,7 @@ restart:
       if (m_pdrawcontext != nullptr)
       {
 
-         estate estate = e_state_none;
+         ::user::enum_state estate = e_state_none;
 
          if (!is_window_enabled())
          {
@@ -14362,7 +14396,7 @@ restart:
       else
       {
 
-         estate estate = ::user::e_state_none;
+         ::user::enum_state estate = ::user::e_state_none;
 
          if (!is_window_enabled())
          {

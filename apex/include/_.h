@@ -1275,7 +1275,7 @@ class form_property_set;
 //   //using color_map = map < e_color, e_color, color32_t, color32_t >;
 //   //using font_map = map < e_font, e_font, ::draw2d::font_pointer >;
 //   using eflag = flags < enum_flag >;
-//   //using flag_map = map < e_flag, e_flag, bool, bool >;
+//   //using flag_map = map < enum_flag, enum_flag, bool, bool >;
 //   //using rect_map = ::map < e_rect, e_rect, style_rect >;
 //   //using int_map = ::map < e_int, e_int, int, int >;
 //   //using double_map = ::map < e_double, e_double, double, double >;

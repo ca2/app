@@ -5615,8 +5615,7 @@ add_executable(app
         aura/user/windows_tsf/winres.h
         aura/user/_.cpp
         aura/user/_.h
-        aura/user/_const-.h
-        aura/user/_const.h
+   aura/user/_const.h
         aura/user/_data.h
         aura/user/_experience_const.h
         aura/user/_impl.h

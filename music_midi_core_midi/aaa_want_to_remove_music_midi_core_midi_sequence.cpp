@@ -68,7 +68,7 @@ namespace music
 
             single_lock sl(mutex(), TRUE);
 
-            if (sequence::state_pre_rolled != get_state())
+            if (sequence::e_state_pre_rolled != get_state())
             {
 
                TRACE( "seqStart(): State is wrong! [%u]", get_state());
@@ -86,7 +86,7 @@ namespace music
             if(estatus == ::success)
             {
 
-               thread()->PostMidiSequenceEvent(this, sequence::EventMidiPlaybackStart);
+               thread()->PostMidiSequenceEvent(this, sequence::e_event_midi_playback_start);
 
             }
 
@@ -160,7 +160,7 @@ namespace music
 
    //         single_lock sl(mutex(), TRUE);
    //
-   //         if(get_state() != state_pre_rolled)
+   //         if(get_state() != e_state_pre_rolled)
    //            return error_unsupported_function;
    //
    //         m_posPlay = 0;
@@ -290,7 +290,7 @@ namespace music
    ////
    ////         }
    ////
-   ////         set_status(state_playing);
+   ////         set_status(e_state_playing);
    ////
    ////
    ////         m_uiStart= ::millis::now();
@@ -325,10 +325,10 @@ namespace music
    //
    //         //    assert(nullptr != pSeq);
    //
-   //         if (state_playing != get_state())
+   //         if (e_state_playing != get_state())
    //            return error_unsupported_function;
    //
-   //         set_status(state_paused);
+   //         set_status(e_state_paused);
    //
    //         //::e_status     estatus = ::success;
    //         //    single_lock slStream(&m_csStream, false);
@@ -367,10 +367,10 @@ namespace music
    //
    //         single_lock sl(mutex(), TRUE);
    //
-   //         if (state_paused != get_state())
+   //         if (e_state_paused != get_state())
    //            return error_unsupported_function;
    //
-   //         set_status(state_playing);
+   //         set_status(e_state_playing);
    //         m_evMmsgDone.ResetEvent();
    //
    //         //    ::e_status     estatus = 0;
@@ -406,20 +406,20 @@ namespace music
 
             single_lock sl(mutex(), TRUE);
 
-            if(get_state() == state_stopping)
+            if(get_state() == e_state_stopping)
                return ::success;
 
             // Automatic success if we're already stopped
-            if (get_state() != state_playing
-                  && get_state() != state_paused)
+            if (get_state() != e_state_playing
+                  && get_state() != e_state_paused)
             {
-               m_flags.remove(sequence::FlagWaiting);
+               m_flags.remove(sequence::e_flag_waiting);
                GetPlayerLink().OnFinishCommand(command_stop);
                return ::success;
             }
 
-            set_state(state_stopping);
-            m_flags.add(sequence::FlagWaiting);
+            set_state(e_state_stopping);
+            m_flags.add(sequence::e_flag_waiting);
 
             m_eventMidiPlaybackEnd.ResetEvent();
 
@@ -430,7 +430,7 @@ namespace music
             //      if(::success != m_estatusLastError)
             //    {
             //     TRACE( "sequence::Stop() -> midiOutStop() returned %lu in seqStop()!\n", (u32)m_estatusLastError);
-            //   m_flags.remove(FlagWaiting);
+            //   m_flags.remove(e_flag_waiting);
             // return error_not_ready;
             //}
             // }
@@ -473,12 +473,12 @@ namespace music
 
             //::e_status                    mmr;
 
-            if (sequence::state_playing != get_state() &&
-                  sequence::state_paused != get_state() &&
-                  sequence::state_pre_rolling != get_state() &&
-                  sequence::state_pre_rolled != get_state() &&
-                  sequence::state_opened != get_state() &&
-                  sequence::state_stopping != get_state())
+            if (sequence::e_state_playing != get_state() &&
+                  sequence::e_state_paused != get_state() &&
+                  sequence::e_state_pre_rolling != get_state() &&
+                  sequence::e_state_pre_rolled != get_state() &&
+                  sequence::e_state_opened != get_state() &&
+                  sequence::e_state_stopping != get_state())
             {
 
                TRACE( "seqTime(): State wrong! [is %u]", get_state());
@@ -501,7 +501,7 @@ namespace music
 
             pTicks = 0;
 
-            if (state_opened != get_state())
+            if (e_state_opened != get_state())
             {
 
                pTicks = m_tkBase;
@@ -518,12 +518,12 @@ namespace music
 
             single_lock sl(mutex());
 
-            if (state_playing != get_state() &&
-                  state_paused != get_state() &&
-                  state_pre_rolling != get_state() &&
-                  state_pre_rolled != get_state() &&
-                  state_opened != get_state() &&
-                  state_stopping != get_state())
+            if (e_state_playing != get_state() &&
+                  e_state_paused != get_state() &&
+                  e_state_pre_rolling != get_state() &&
+                  e_state_pre_rolled != get_state() &&
+                  e_state_opened != get_state() &&
+                  e_state_stopping != get_state())
             {
 
                TRACE( "seqTime(): State wrong! [is %u]", get_state());
@@ -593,12 +593,12 @@ namespace music
 
             time = 0;
 
-            if (state_opened != get_state())
+            if (e_state_opened != get_state())
             {
 
                time = (iptr) TicksToMillisecs(m_tkBase);
 
-               if (state_pre_rolled != get_state())
+               if (e_state_pre_rolled != get_state())
                {
 
                }
@@ -740,8 +740,8 @@ namespace music
 
          bool sequence::IsPlaying()
          {
-            return get_state() == state_playing ||
-                   get_state() == state_stopping;
+            return get_state() == e_state_playing ||
+                   get_state() == e_state_stopping;
          }
 
 
@@ -758,15 +758,15 @@ namespace music
    //
    //      void sequence::SetSpecialModeV001Flag(bool bSet)
    //      {
-   //         if(m_flags.has(flag_operation))
-   //            m_flags.add(flag_was_operation);
+   //         if(m_flags.has(e_flag_operation))
+   //            m_flags.add(e_flag_was_operation);
    //         else
-   //            m_flags.remove(flag_was_operation);
+   //            m_flags.remove(e_flag_was_operation);
    //
    //         if(bSet)
-   //            m_flags.add(flag_operation);
+   //            m_flags.add(e_flag_operation);
    //         else
-   //            m_flags.remove(flag_operation);
+   //            m_flags.remove(e_flag_operation);
    //      }
 
    //      void sequence::set_operation(e_operation eoperation)
@@ -778,12 +778,12 @@ namespace music
 
    //      bool sequence::IsInSpecialModeV001()
    //      {
-   //         return m_flags.has(flag_operation);
+   //         return m_flags.has(e_flag_operation);
    //      }
    //
    //      bool sequence::WasInSpecialModeV001()
    //      {
-   //         return m_flags.has(flag_was_operation);
+   //         return m_flags.has(e_flag_was_operation);
    //      }
 
 
@@ -898,7 +898,7 @@ namespace music
    //         //      m_pseq = nullptr;
    //         // }
    //
-   //         set_status(state_opened);
+   //         set_status(e_state_opened);
    //
    //         return ::success;
    //      }
@@ -938,7 +938,7 @@ namespace music
                }
 
                m_estatusLastError = ::success;
-               m_flags.remove(FlagWaiting);
+               m_flags.remove(e_flag_waiting);
 
                m_evMmsgDone.SetEvent();
             }
@@ -953,13 +953,13 @@ namespace music
    ////            case EventStopped:
    ////            {
    ////               OnMidiPlaybackEnd(pevent);
-   ////               set_status(state_opened);
+   ////               set_status(e_state_opened);
    ////            }
    ////               break;
-   //         case EventMidiPlaybackEnd:
+   //         case e_event_midi_playback_end:
    //         {
    //            OnMidiPlaybackEnd(pevent);
-   //            set_status(state_opened);
+   //            set_status(e_state_opened);
    //         }
    //         break;
    //         default:
@@ -987,14 +987,14 @@ namespace music
 
          bool sequence::IsChangingTempo()
          {
-            return m_flags.has(sequence::FlagTempoChange);
+            return m_flags.has(sequence::e_flag_tempo_change);
          }
          void sequence::SetTempoChangeFlag(bool bSet)
          {
             if(bSet)
-               m_flags.add(sequence::FlagTempoChange);
+               m_flags.add(sequence::e_flag_tempo_change);
             else
-               m_flags.remove(sequence::FlagTempoChange);
+               m_flags.remove(sequence::e_flag_tempo_change);
          }
 
 
@@ -1027,7 +1027,7 @@ namespace music
          bool sequence::IsOpened()
          {
 
-            return get_state() != state_no_file;
+            return get_state() != e_state_no_file;
 
          }
 
@@ -1263,16 +1263,16 @@ namespace music
 
          bool sequence::IsSettingPosition()
          {
-            return m_flags.has(sequence::FlagSettingPos);
+            return m_flags.has(sequence::e_flag_setting_position);
          }
 
 
          void sequence::SetSettingPositionFlag(bool bSet)
          {
             if(bSet)
-               m_flags.add(sequence::FlagSettingPos);
+               m_flags.add(sequence::e_flag_setting_position);
             else
-               m_flags.remove(sequence::FlagSettingPos);
+               m_flags.remove(sequence::e_flag_setting_position);
          }
 
 

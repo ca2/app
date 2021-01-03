@@ -7,7 +7,8 @@ namespace aura
 
    class CLASS_DECL_AURA session :
       virtual public ::aqua::session,
-      virtual public ::filemanager::item_action
+      virtual public ::filemanager::item_action,
+      virtual public ::user::style_base
    {
    public:
 
@@ -177,7 +178,7 @@ namespace aura
       virtual ::user::style* get_user_style();
 
 
-      virtual void simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer& pgraphics);
+      virtual bool simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer& pgraphics);
 
 
       virtual void locale_schema_matter(string_array & stra, const string_array & straMatterLocator, const string & strLocale, const string & strSchema) override;
@@ -474,7 +475,9 @@ namespace aura
       inline ::user::user* user() { return m_puser; }
 
 
-      virtual ::color get_color(::user::enum_element eelement, ::user::estate estate);
+      virtual ::color get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override;
+      virtual bool get_int(const ::user::interaction* pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate = ::user::e_state_none) const override;
+      virtual bool get_double(const ::user::interaction* pinteraction, double & i, ::user::enum_double eint, ::user::enum_state estate = ::user::e_state_none) const override;
 
 
    };

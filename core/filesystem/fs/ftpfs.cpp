@@ -244,7 +244,7 @@ retry:
 
       }
 
-      pclient->m_estate = ::ftp::client_socket::state_initial;
+      pclient->m_estate = ::ftp::client_socket::e_state_initial;
 
       iTry++;
 
@@ -431,7 +431,7 @@ retry:
 
          }
 
-         pclient->m_estate = ::ftp::client_socket::state_initial;
+         pclient->m_estate = ::ftp::client_socket::e_state_initial;
 
          iTry++;
 
@@ -516,7 +516,7 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
    *ppclient = pclient.m_p;
 
-   if (pclient->m_estate == ::ftp::client_socket::state_initial || !pclient->IsConnected())
+   if (pclient->m_estate == ::ftp::client_socket::e_state_initial || !pclient->IsConnected())
    {
 
 retry:
@@ -540,7 +540,7 @@ retry_login:
          if (iTry > 3)
          {
 
-            pclient->m_estate = ::ftp::client_socket::state_initial;
+            pclient->m_estate = ::ftp::client_socket::e_state_initial;
 
             return;
 

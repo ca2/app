@@ -10,7 +10,7 @@ namespace hotplugin
    public:
 
 
-      enum e_state    
+      enum enum_state    
       {
 
          state_start_axis_system,
@@ -30,7 +30,7 @@ namespace hotplugin
       bool                          m_bRectSent;
 
 
-      e_state                                m_estate;
+      enum_state                                m_estate;
       bool                                   m_bBaseSystemOk;
       bool                                   m_bComposerSystemOk;
       bool                                   m_bInit;

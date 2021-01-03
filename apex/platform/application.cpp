@@ -9519,8 +9519,8 @@ namespace apex
 
          /*
 
-         OnMachineEvent((flags < machine_event::e_flag> *) pmsg->lParam);
-         delete (flags < machine_event::e_flag> *) pmsg->lParam;
+         OnMachineEvent((flags < machine_event::enum_flag> *) pmsg->lParam);
+         delete (flags < machine_event::enum_flag> *) pmsg->lParam;
 
          */
 

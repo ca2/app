@@ -24,7 +24,7 @@ namespace multimedia
          ::wave::out(pobject)
       {
 
-         m_estate             = state_initial;
+         m_estate             = e_state_initial;
          m_pthreadCallback    = nullptr;
          m_estatusWave                = ::success;
          m_peffect            = nullptr;
@@ -129,7 +129,7 @@ namespace multimedia
 
          m_pprebuffer->SetMinL1BufferCount(out_get_buffer()->GetBufferCount() + 4);
 
-         m_estate = state_opened;
+         m_estate = e_state_opened;
 
          m_estatusWave = ::success;
 
@@ -166,13 +166,13 @@ namespace multimedia
          single_lock sLock(mutex(), TRUE);
 
          if(m_Queue != nullptr &&
-               m_estate != state_initial)
+               m_estate != e_state_initial)
             return ::success;
 
          m_pthreadCallback = pthreadCallback;
 
          ASSERT(m_Queue == nullptr);
-         ASSERT(m_estate == state_initial);
+         ASSERT(m_estate == e_state_initial);
 
          m_pwaveformat->wFormatTag = 0;
          m_pwaveformat->nChannels = 2;
@@ -295,7 +295,7 @@ Opened:
           m_Buffers.add(buf);
 
           }*/
-         m_estate = state_opened;
+         m_estate = e_state_opened;
          return m_estatusWave;
       }
 
@@ -304,14 +304,14 @@ Opened:
 
          single_lock sLock(mutex(), TRUE);
 
-         if(m_Queue != nullptr && m_estate != state_initial)
+         if(m_Queue != nullptr && m_estate != e_state_initial)
             return ::success;
 
          m_pthreadCallback = pthreadCallback;
 
          ASSERT(m_Queue == nullptr);
 
-         ASSERT(m_estate == state_initial);
+         ASSERT(m_estate == e_state_initial);
 
          m_pwaveformat->wFormatTag        = 0;
          m_pwaveformat->nChannels         = (::u16) uiChannelCount;
@@ -413,7 +413,7 @@ Opened:
           }*/
 
 
-         m_estate = state_opened;
+         m_estate = e_state_opened;
 
          return m_estatusWave;
 
@@ -426,12 +426,12 @@ Opened:
 
          single_lock sLock(mutex(), TRUE);
 
-         if(m_estate == state_playing)
+         if(m_estate == e_state_playing)
          {
             out_stop();
          }
 
-         if(m_estate != state_opened)
+         if(m_estate != e_state_opened)
             return ::success;
 
          OSStatus status;
@@ -462,7 +462,7 @@ Opened:
 
          m_pprebuffer->Reset();
 
-         m_estate = state_initial;
+         m_estate = e_state_initial;
 
          return ::success;
 
@@ -501,9 +501,9 @@ Opened:
       void out::out_buffer_ready(int iBuffer)
       {
 
-         if(out_get_state() != state_playing)
+         if(out_get_state() != e_state_playing)
          {
-            TRACE("ERROR out::BufferReady while out_get_state() != state_playing");
+            TRACE("ERROR out::BufferReady while out_get_state() != e_state_playing");
             return;
          }
 
@@ -541,14 +541,14 @@ Opened:
 
          single_lock sLock(mutex(), TRUE);
 
-         if(m_estate != state_playing && m_estate != state_paused)
+         if(m_estate != e_state_playing && m_estate != e_state_paused)
             return error_failed;
 
          m_eventStopped.ResetEvent();
 
          m_pprebuffer->Stop();
 
-         m_estate = state_stopping;
+         m_estate = e_state_stopping;
 
          // waveOutReset
          // The waveOutReset function stops playback on the given
@@ -559,7 +559,7 @@ Opened:
 
          if(m_estatusWave == ::success)
          {
-            m_estate = state_opened;
+            m_estate = e_state_opened;
          }
 
          return m_estatusWave;
@@ -572,9 +572,9 @@ Opened:
 
          single_lock sLock(mutex(), TRUE);
 
-         ASSERT(m_estate == state_playing);
+         ASSERT(m_estate == e_state_playing);
 
-         if(m_estate != state_playing)
+         if(m_estate != e_state_playing)
             return error_failed;
 
          // waveOutReset
@@ -588,7 +588,7 @@ Opened:
 
          if(m_estatusWave == ::success)
          {
-            m_estate = state_paused;
+            m_estate = e_state_paused;
          }
 
          return m_estatusWave;
@@ -601,9 +601,9 @@ Opened:
 
          single_lock sLock(mutex(), TRUE);
 
-         ASSERT(m_estate == state_paused);
+         ASSERT(m_estate == e_state_paused);
 
-         if(m_estate != state_paused)
+         if(m_estate != e_state_paused)
          {
 
             m_estatusWave = error_failed;
@@ -626,7 +626,7 @@ Opened:
          if(m_estatusWave == ::success)
          {
 
-            m_estate = state_playing;
+            m_estate = e_state_playing;
 
          }
 
@@ -789,7 +789,7 @@ Opened:
        }
 
 
-       if(m_estate == state_playing)
+       if(m_estate == e_state_playing)
        {
        CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.25, false);
        }
@@ -809,7 +809,7 @@ Opened:
 
 //         ::thread::on_run_step();
 
-         if(m_estate == state_playing)
+         if(m_estate == e_state_playing)
          {
 
             CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.25, false);
@@ -828,7 +828,7 @@ Opened:
          if(mmr != 0)
             return mmr;
 
-         m_estate = state_paused;
+         m_estate = e_state_paused;
 
          m_estatusWave = out_restart();
 

@@ -4,7 +4,7 @@
 namespace filemanager
 {
 
-   enum e_flag
+   enum enum_flag
    {
 
       flag_zip_compressed,
@@ -45,7 +45,7 @@ namespace filemanager
 
    enum enum_state
    {
-      state_initial,
+      e_state_initial,
       state_start,
       state_step,
       state_finish,

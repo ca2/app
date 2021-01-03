@@ -92,7 +92,7 @@ namespace user
 
       // pIDArray can be nullptr to allocate is_empty buttons
 
-      //virtual ::user::estate get_button_state(int iItem);
+      //virtual ::user::enum_state get_button_state(int iItem);
 
       // standard control bar things
       index CommandToIndex(::u32 nIDFind);
@@ -140,7 +140,7 @@ namespace user
 
       virtual bool _001GetItemRect(index iItem,RECT32 * prect);
 
-      virtual bool _001GetElementRect(index iItem,RECT32 * prect,enum_element eelement, estate estate);
+      virtual bool _001GetElementRect(index iItem,RECT32 * prect,enum_element eelement, ::user::enum_state estate);
 
       virtual bool _001SetItem(index iItem, toolbar_item * pitem);
       virtual toolbar_item * _001GetItem(index iItem);

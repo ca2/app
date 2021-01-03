@@ -48,7 +48,7 @@ class CLASS_DECL_CORE XfplayerViewLineSelection :
 public:
    enum enum_state
    {
-      state_initial = 1,
+      e_state_initial = 1,
       StateTracking = 2
    };
       

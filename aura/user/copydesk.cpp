@@ -172,7 +172,7 @@ namespace user
    }
 
 
-   bool copydesk::get_plain_text(string & str, e_flag eflag)
+   bool copydesk::get_plain_text(string & str, enum_flag eflag)
    {
 
       if (!(eflag & flag_prevent_data_blob) && _has_image())

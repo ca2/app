@@ -117,7 +117,7 @@ namespace user
       //virtual color32_t           _001GetColor(e_color ecolor, color32_t crDefault = 0);
       //virtual ::draw2d::font_pointer  _001GetFont(e_font efont, ::draw2d::font * pfont = nullptr);
       //virtual enum_translucency     _001GetTranslucency(enum_element eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
-      //virtual bool               _001GetFlag(::user::e_flag eflag, bool bDefault = false);
+      //virtual bool               _001GetFlag(::user::enum_flag eflag, bool bDefault = false);
       //virtual ::rect             _001GetRect(::user::e_rect erect, ::rect rectDefault = nullptr);
       //virtual int                _001GetInt(::user::e_int eint, int iDefault = 0);
       //virtual double             _001GetDouble(::user::e_double edouble, double dDefault = 0.0);
@@ -129,10 +129,12 @@ namespace user
       //virtual bool _001HasTranslucency(enum_element eelement = e_element_none);
 
 
-      virtual ::color get_color(const ::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate = ::user::e_state_none) const override;
+      virtual ::color get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override;
+      virtual bool get_int(const ::user::interaction* pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate = ::user::e_state_none) const override;
+      virtual bool get_double(const ::user::interaction* pinteraction, double & d, ::user::enum_double eint, ::user::enum_state estate = ::user::e_state_none) const override;
       //virtual bool get_font(::draw2d::font_pointer & sp, e_font efont, style_context * pcontext) override;
       //virtual bool get_translucency(enum_translucency & etranslucency, enum_element matter, style_context * pcontext) override;
-      //virtual bool get_flag(bool & bSet, e_flag eflag, style_context * pcontext) override;
+      //virtual bool get_flag(bool & bSet, enum_flag eflag, style_context * pcontext) override;
       //virtual bool get_rect(style_rect & rect, e_rect erect, style_context * pcontext) override;
       //virtual bool get_int(int & i, e_int eint, style_context * pcontext) override;
       //virtual bool get_double(double & d, e_double edouble, style_context * pcontext) override;

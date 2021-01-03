@@ -38,7 +38,7 @@ namespace userex
    }
 
 
-   ::draw2d::font_pointer top_edit_view::get_font(::user::style* pstyle, ::user::enum_element eelement, ::user::estate estate) const
+   ::draw2d::font_pointer top_edit_view::get_font(::user::style* pstyle, ::user::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (m_pfont)

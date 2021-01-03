@@ -950,7 +950,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 }
 
 
-bool simple_toolbar::_001GetElementRect(index iItem, RECT32 * prect, ::user::enum_element eelement, ::user::estate estate)
+bool simple_toolbar::_001GetElementRect(index iItem, RECT32 * prect, ::user::enum_element eelement, ::user::enum_state estate)
 {
 
    if (iItem < 0 || iItem >= m_itema.get_size())
@@ -1149,9 +1149,9 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    auto pstyle = get_style(pgraphics);
 
-   m_sizePress.cx = get_int(pstyle, ::user::e_int_button_press_shift_cx, 2);
+   m_sizePress.cx = get_int(pstyle, ::user::e_int_button_press_shift_cx, ::user::e_state_none, 2);
 
-   m_sizePress.cy = get_int(pstyle, ::user::e_int_button_press_shift_cy, 2);
+   m_sizePress.cy = get_int(pstyle, ::user::e_int_button_press_shift_cy, ::user::e_state_none, 2);
 
    //m_bDelayedButtonLayout = false;
 

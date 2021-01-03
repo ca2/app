@@ -79,7 +79,7 @@ namespace user
       enum enum_state
       {
 
-         state_initial,
+         e_state_initial,
          state_close_button_down,
          state_other_tab_button_down,
          state_drag_commanded,

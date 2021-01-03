@@ -5,7 +5,7 @@ namespace message
 {
 
 
-   enum e_flag
+   enum enum_flag
    {
 
       e_flag_none,
@@ -26,7 +26,7 @@ namespace message
       wparam                     m_wparam;
       lparam                     m_lparam;
       LRESULT                    m_lresult;
-      cflag < e_flag >           m_eflagMessage;
+      cflag < enum_flag >           m_eflagMessage;
 
       index                      m_iRouteIndex;
       index                      m_iParam;

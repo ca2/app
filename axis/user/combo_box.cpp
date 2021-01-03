@@ -344,7 +344,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer combo_box::get_font(style * pstyle, enum_element eelement, estate estate) const
+   ::draw2d::font_pointer combo_box::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       //if (pstyle)

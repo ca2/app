@@ -234,7 +234,7 @@ namespace experience
    }
 
 
-   bool button::keyboard_focus_is_focusable()
+   bool button::keyboard_focus_is_focusable() const
    {
 
       //return false && ::user::button::keyboard_focus_is_focusable();

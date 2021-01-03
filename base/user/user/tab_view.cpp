@@ -332,7 +332,7 @@ namespace user
 
       get_data()->m_bDrag = false;
 
-      m_estate = state_initial;
+      m_estate = e_state_initial;
 
    }
 

@@ -492,7 +492,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
       return operator =(eflag.m_eenum);
    }
 
-   payload & operator |= (cflag < ::file::e_flag > eflag);
+   payload & operator |= (cflag < ::file::enum_flag > eflag);
 
    payload& operator = (const ::e_status & estatus)
    {

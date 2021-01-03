@@ -58,7 +58,7 @@ namespace filemanager
          // m_iOperation++;
       }
       break;
-      case ::filemanager::state_initial:
+      case ::filemanager::e_state_initial:
       {
          return;
       }
@@ -174,7 +174,7 @@ namespace filemanager
             if (m_iOperation >= m_fileoperationa.get_size())
             {
 
-               m_estate = ::filemanager::state_initial;
+               m_estate = ::filemanager::e_state_initial;
 
                break;
 

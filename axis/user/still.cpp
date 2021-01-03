@@ -52,7 +52,7 @@ namespace user
    }
 
 
-   //::e_state still::get_user_state()
+   //::enum_state still::get_user_state()
    //{
 
 
@@ -138,9 +138,9 @@ namespace user
          else
          {
 
-            ::e_align ealign = (enum_align)get_int(pstyle, ::user::e_int_edit_text_align, ::e_align(e_align_left_center));
+            ::e_align ealign = (enum_align)get_int(pstyle, ::user::e_int_edit_text_align, ::user::e_state_none, e_align_left_center);
 
-            ::e_draw_text edrawtext = (enum_draw_text)get_int(pstyle, ::user::e_int_edit_draw_text_flags, e_draw_text_single_line);
+            ::e_draw_text edrawtext = (enum_draw_text)get_int(pstyle, ::user::e_int_edit_draw_text_flags, ::user::e_state_none, e_draw_text_single_line);
 
             pgraphics->set_font(this, ::user::e_element_none);
 
@@ -566,8 +566,15 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer still::get_font(style * pstyle, enum_element eelement, estate estate) const
+   ::draw2d::font_pointer still::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
+
+      if(m_pfont)
+      {
+
+         return m_pfont;
+
+      }
 
       return ::user::interaction::get_font(pstyle, eelement, estate);
 

@@ -500,6 +500,22 @@ namespace user
 //   }
 
 
+   ::draw2d::font_pointer still::get_font(style * pstyle, enum_element eelement, estate estate)
+   {
+
+      if (m_pfont)
+      {
+
+         return m_pfont;
+
+      }
+
+
+      return ::user::interaction::get_font(pstyle, eelement, estate);
+
+   }
+
+
    void still::_001OnCreate(::message::message * pmessage)
    {
 

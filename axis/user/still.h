@@ -17,6 +17,7 @@ namespace user
          style_image
       };
 
+
       ::draw2d::font_pointer              m_pfont;
       ::image_pointer                     m_pimage;          // not pressed default bitmap
       //::rect                              m_rectMargin;
@@ -58,6 +59,9 @@ namespace user
       //virtual ::enum_check _001GetCheck() override;
 
       //virtual bool is_pressed();
+
+      //virtual ::draw2d::font_pointer get_font(style * pstyle, enum_element eelement, estate estate = e_state_none) const;
+
 
 
       //virtual void on_hit_test(::user::item & item) override;

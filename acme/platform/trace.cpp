@@ -32,7 +32,7 @@ namespace apex
       CLASS_DECL_APEX PFN_trace_v trace_v = &raw_trace_v;
 
 
-      void trace::TraceV(const char *pszFileName, i32 nLine, e_trace_category ecategory, e_trace_level elevel, const char * pszFormat, va_list args) const
+      void trace::TraceV(const char *pszFileName, i32 nLine, e_trace_category ecategory, enum_trace_level elevel, const char * pszFormat, va_list args) const
       {
          UNREFERENCED_PARAMETER(pszFileName);
          UNREFERENCED_PARAMETER(nLine);
@@ -96,7 +96,7 @@ namespace apex
       category::category()
       {
 
-         m_elevelMin    = trace_level_information;
+         m_elevelMin    = e_trace_level_information;
          m_ecategory    = trace_category_general;
          m_bEnabled     = true;
 
@@ -360,19 +360,19 @@ CLASS_DECL_APEX const char *  get_windows_message_name(::u32 nMsg)
 }
 
 
-CLASS_DECL_ACME const char* trace_level_name(e_trace_level elevel);
+CLASS_DECL_ACME const char* e_trace_level_name(enum_trace_level elevel);
 
 #undef DEFINE_MESSAGE
 
 #define SIMPLE_TRACE_FUNCTION_NAME 0
 #define SIMPLE_TRACE_FILE_NAME 0
 
-CLASS_DECL_APEX void __simple_tracea(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz)
+CLASS_DECL_APEX void __simple_tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz)
 {
 
 #ifndef DEBUG
 
-   if (elevel < trace_level_error)
+   if (elevel < e_trace_level_error)
    {
 
       return;
@@ -394,13 +394,13 @@ CLASS_DECL_APEX void __simple_tracea(::matter * pobjectContext, e_trace_level el
 
       ::str::begins_eat_ci(strTopic, "struct ");
 
-      strMessage.Format("%c:%s> %s", trace_level_char(elevel), strTopic.c_str(), psz);
+      strMessage.Format("%c:%s> %s", e_trace_level_char(elevel), strTopic.c_str(), psz);
 
    }
    else
    {
 
-      strMessage.Format("%c> %s", trace_level_char(elevel), psz);
+      strMessage.Format("%c> %s", e_trace_level_char(elevel), psz);
 
    }
 
@@ -444,7 +444,7 @@ CLASS_DECL_APEX void __simple_tracea(::matter * pobjectContext, e_trace_level el
 }
 
 
-CLASS_DECL_APEX void __simple_tracev(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * pszFormat, va_list args)
+CLASS_DECL_APEX void __simple_tracev(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * pszFormat, va_list args)
 {
 
    //if (s_pstringmanager == nullptr)

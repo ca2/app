@@ -1,9 +1,13 @@
 #pragma once
 
 
+
+
+#include "apex/net/sockets/trace_interface.h"
 //#include "acme/net/sockets/trace_interface.h"
 
 
+CLASS_DECL_APEX void trace(e_trace_level elevel, const char * pszTag, const char * psz, const char * pszFile = nullptr, int iLine = -1);
 #define _DEBUG_WIDE_(s) L ## s
 #define _DEBUG_WIDE(s) _DEBUG_WIDE_(s)
 
@@ -356,6 +360,7 @@ namespace papaya
 //extern const char * g_pszTraceLevelName[];
 //
 //
+inline e_trace_level trace_level_constraint(e_trace_level elevel)
 CLASS_DECL_ACME const char * trace_level_name(e_trace_level elevel);
 // {
 

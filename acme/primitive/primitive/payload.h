@@ -149,34 +149,34 @@ public:
 
    payload(const block & block)
    {
-      m_etype = type_new;
+      m_etype = e_type_new;
       operator = (block);
    }
 
    template < class T >
    payload(const __pointer(T) & sp)
    {
-      m_etype = type_new;
+      m_etype = e_type_new;
       operator = (sp.m_p);
    }
 
    template < typename BLOCK_TYPE >
    payload(const memory_template < BLOCK_TYPE > & memorytemplate)
    {
-      m_etype = type_new;
+      m_etype = e_type_new;
       operator = (memorytemplate.block());
    }
 
    template < typename ENUM >
    payload(const cflag < ENUM > & eflag)
    {
-      m_etype = type_new;
+      m_etype = e_type_new;
       operator = (eflag);
    }
 
    payload(const ::e_status & estatus)
    {
-      m_etype = type_new;
+      m_etype = e_type_new;
       operator = (estatus.m_estatus);
    }
 
@@ -1285,7 +1285,7 @@ public:
 
 inline payload __visible(payload varOptions, bool bVisible = true);
 
-inline payload __visible(bool bVisible = true) { return __visible(::type_new, bVisible); }
+inline payload __visible(bool bVisible = true) { return __visible(::e_type_new, bVisible); }
 
 
 

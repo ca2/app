@@ -43,7 +43,7 @@ property_set::property_set(::std::initializer_list < payload > list)
    if (i % 2 == 1)
    {
 
-      operator[](id) = ::type_empty;
+      operator[](id) = ::e_type_empty;
 
    }
 
@@ -978,7 +978,7 @@ void property_set::parse_http_headers(const char * pszHeaders)
 
          strName = stra[i].make_lower();
 
-         set_at(strName, ::type_empty);
+         set_at(strName, ::e_type_empty);
 
       }
       else
@@ -1663,7 +1663,7 @@ string & property_set::get_http_post(string & strPost) const
 //      if (iFind < 0)
 //      {
 //
-//         return set_at(id, ::type_new);
+//         return set_at(id, ::e_type_new);
 //
 //      }
 //

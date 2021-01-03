@@ -5716,7 +5716,7 @@ namespace aura
    //   }
 
    //   /*set_enum_name(::e_type_null      , "null");
-   //   set_enum_name(::type_empty     , "is_empty");
+   //   set_enum_name(::e_type_empty     , "is_empty");
    //   set_enum_name(::type_string    , "string");
    //   set_enum_name(::type_int32   , "integer");
    //   set_enum_name(::type_::u32     , "ulong");

@@ -37,7 +37,7 @@ namespace file
       if (this->get_count() <= 0)
       {
 
-         return ::payload(::type_empty);
+         return ::payload(::e_type_empty);
 
       }
       else if (this->get_count() == 1)
@@ -93,7 +93,7 @@ namespace file
       if (this->get_count() <= 0)
       {
 
-         return ::payload(::type_empty);
+         return ::payload(::e_type_empty);
 
       }
       else if (this->get_count() == 1)
@@ -149,7 +149,7 @@ namespace file
       if (this->get_count() <= 0)
       {
 
-         return ::payload(::type_empty);
+         return ::payload(::e_type_empty);
 
       }
       else if (this->get_count() == 1)

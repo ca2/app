@@ -366,7 +366,7 @@ namespace http
 
                auto & cookie = this->cookie(pszParam);
 
-               cookie.m_varValue.set_type(::type_empty);
+               cookie.m_varValue.set_type(::e_type_empty);
 
             }
             else
@@ -389,7 +389,7 @@ namespace http
 
                auto& cookie = this->cookie(string(pszParam, pszParamEnd - pszParam));
 
-               cookie.m_varValue.set_type(::type_empty);
+               cookie.m_varValue.set_type(::e_type_empty);
 
             }
             else

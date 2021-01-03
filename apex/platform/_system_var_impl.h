@@ -5,7 +5,7 @@
 //inline payload::payload()
 //{
 //
-//   m_etype = type_new;
+//   m_etype = e_type_new;
 //   clear_data();
 //
 //}
@@ -72,10 +72,10 @@
 //      return ::is_null(m_pvara) ? 0 : m_pvara->get_count();
 //   case type_propset:
 //      return ::is_null(m_pset) ? 0 : m_pset->get_count();
-//   case type_empty:
+//   case e_type_empty:
 //   case e_type_null:
-//   case type_new:
-//   case type_empty_argument:
+//   case e_type_new:
+//   case e_type_empty_argument:
 //      return 0;
 //   default:
 //      return 1;
@@ -85,10 +85,10 @@
 //
 //inline ::count payload::array_get_count() const
 //{
-//   if(m_etype == type_new
+//   if(m_etype == e_type_new
 //         || m_etype == e_type_null
-//         || m_etype == type_empty
-//         || m_etype == type_empty_argument)
+//         || m_etype == e_type_empty
+//         || m_etype == e_type_empty_argument)
 //   {
 //      return -1; // indicates that this payload is not an array
 //   }
@@ -102,10 +102,10 @@
 //
 //inline index payload::array_get_upper_bound() const
 //{
-//   if(m_etype == type_new
+//   if(m_etype == e_type_new
 //         || m_etype == e_type_null
-//         || m_etype == type_empty
-//         || m_etype == type_empty_argument)
+//         || m_etype == e_type_empty
+//         || m_etype == e_type_empty_argument)
 //   {
 //      return -1; // indicates that this payload is not an array
 //   }

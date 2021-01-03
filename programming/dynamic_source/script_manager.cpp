@@ -496,7 +496,7 @@ namespace dynamic_source
 
          }
 
-         return type_empty;
+         return e_type_empty;
 
       }
 

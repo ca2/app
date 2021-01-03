@@ -144,8 +144,7 @@ enum enum_message : ::i64
    e_message_change_experience,
 
    e_message_open_response,
-   e_message_event,
-   
+
 
 };
 

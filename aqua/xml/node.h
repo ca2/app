@@ -160,7 +160,7 @@ namespace xml
       ::property              attribute(const ::id & id) { return m_set[id]; }
       ::property *            attribute_at(index i) { return m_set.element_at(i); }
       ::property *            set_attribute(const property & property) { return set_attribute(property.m_id, property); }
-      ::property *            set_attribute(const ::id & id, const payload & payload = ::type_new);
+      ::property *            set_attribute(const ::id & id, const payload & payload = ::e_type_new);
       bool                    remove_attribute(::property * pproperty) { return remove_attribute(pproperty->m_id); }
       bool                    remove_attribute(const ::id & id) { return m_set.remove_by_name(id) > 0; }
 

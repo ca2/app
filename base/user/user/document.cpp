@@ -1518,7 +1518,7 @@ namespace user
 
          // we do not have read-write access or the file does not (now) exist
 
-         if (!do_save(payload(::type_empty)))
+         if (!do_save(payload(::e_type_empty)))
          {
 
             TRACE(trace_category_appmsg, trace_level_warning, "Warning: File save with new name failed.\n");

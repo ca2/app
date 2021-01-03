@@ -730,7 +730,7 @@ void object::defer_update_object_id()
 ::e_status     object::request_file(const ::payload & varFile)
 {
 
-   return request_file(varFile, type_new);
+   return request_file(varFile, e_type_new);
 
 }
 
@@ -846,7 +846,7 @@ void object::on_request(::create* pcreateParam)
 
       }
 
-      estatus = pcreate->initialize_create(Application.m_strAppId, ::type_empty, true);
+      estatus = pcreate->initialize_create(Application.m_strAppId, ::e_type_empty, true);
 
       if (!estatus)
       {

@@ -89,7 +89,7 @@ namespace user
    id impact_host::get_view_id()
    {
 
-      return id(::type_empty);
+      return id(::e_type_empty);
 
    }
 

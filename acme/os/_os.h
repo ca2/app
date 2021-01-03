@@ -57,4 +57,7 @@
 #endif
 
 
+CLASS_DECL_ACME int __node_is_debugger_attached();
+
+
 

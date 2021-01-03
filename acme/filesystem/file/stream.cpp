@@ -404,11 +404,11 @@ void stream::write(const payload & payload)
    switch (etype)
    {
    case type_parareturn:
-   case type_new:
+   case e_type_new:
    case e_type_null:
    case type_key_exists:
-   case type_empty:
-   case type_empty_argument:
+   case e_type_empty:
+   case e_type_empty_argument:
    case type_not_found:
       break;
    case type_string:

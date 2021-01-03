@@ -259,7 +259,7 @@ namespace multimedia
       else
       {
 
-         payload = ::type_empty;
+         payload = ::e_type_empty;
 
       }
 

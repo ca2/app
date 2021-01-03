@@ -399,7 +399,7 @@ inline bool property_set::has_property(id idName) const
 
    const property * pproperty = find(idName);
 
-   return pproperty != nullptr && pproperty->m_etype != ::type_new;
+   return pproperty != nullptr && pproperty->m_etype != ::e_type_new;
 
 }
 
@@ -1619,7 +1619,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //   else
 //   {
 //
-//      return _load_from_file(pobject, varFile, type_empty_argument);
+//      return _load_from_file(pobject, varFile, e_type_empty_argument);
 //
 //   }
 //
@@ -1629,7 +1629,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //inline ::e_status context::load_from_file(::matter* pobject, const ::payload& varFile)
 //{
 //
-//   return _load_from_file(pobject, varFile, type_empty_argument);
+//   return _load_from_file(pobject, varFile, e_type_empty_argument);
 //
 //}
 //
@@ -1646,7 +1646,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //   else
 //   {
 //
-//      return _save_to_file(varFile, type_empty_argument, pobject);
+//      return _save_to_file(varFile, e_type_empty_argument, pobject);
 //
 //   }
 //
@@ -1656,7 +1656,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //inline ::e_status context::save_to_file(const ::payload& varFile, const ::matter* pobject)
 //{
 //
-//   return _save_to_file(varFile, type_empty_argument, pobject);
+//   return _save_to_file(varFile, e_type_empty_argument, pobject);
 //
 //}
 //

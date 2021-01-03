@@ -1529,7 +1529,6 @@ class property_set;
 class matter;
 
 
-//class base_edit;
 class var_array;
 
 
@@ -1538,13 +1537,6 @@ class property;
 
 class timer_future;
 
-
-//namespace handle
-//{
-//
-//   class ini;
-//
-//} // namespace handle
 
 namespace acme
 {
@@ -1592,9 +1584,6 @@ namespace message
 
 } // namespace message
 
-
-//#include "acme/user/_const.h"
-//#include "acme/user/_const_key.h"
 
 namespace draw2d
 {
@@ -1645,47 +1634,6 @@ class base_enum;
 
 class form_property_set;
 
-
-//namespace user
-//{
-//
-//
-//   class create;
-//   class control_event;
-//   class item;
-//   class check;
-//   class create_struct;
-//   class command;
-//   class interaction_impl;
-//   class primitive;
-//   class frame;
-//   class printer;
-//   class primitive;
-//   class interaction;
-//   class interaction_layout;
-//   class form;
-//   class form_future;
-//   class menu_interaction;
-//   class toolbar;
-//   class split_layout;
-//   class style_rect;
-//   class scroll_bar;
-//   class scroll_data;
-//   class style;
-//
-//   using style_pointer = __pointer(style);
-//
-//   using eflag = flags < enum_flag >;
-//
-//#if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
-//
-//   class native_window_initialize;
-//
-//#endif
-//
-//
-//} // namespace user
-//
 
 namespace acme
 {
@@ -1752,6 +1700,7 @@ namespace url
 
 class compress_department; // only usable from axis.dll and dependants
 
+
 class channel;
 
 
@@ -1776,7 +1725,6 @@ class critical_section;
 class var_array;
 
 
-//class thread;
 class channel;
 
 
@@ -1820,7 +1768,6 @@ namespace datetime
 
 
 } // namespace datetime
-
 
 
 template<typename Type, typename RawType = Type>
@@ -2143,26 +2090,6 @@ namespace acme
 {
 
 
-//#if defined _UWP && defined(__cplusplus_winrt)
-//
-//   interface class system_window
-//   {
-//
-//      virtual Windows::Foundation::Rect get_window_rect() = 0;
-//      virtual Windows::Foundation::Point get_cursor_pos() = 0;
-//
-//
-//
-//   };
-//
-//   CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow,RECTD * prect);
-
-//   CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow,RECT32 * prect);
-
-//
-//#endif
-
-
    class file;
 
 
@@ -2177,25 +2104,12 @@ namespace acme
 
 } // namespace acme
 
-//CLASS_DECL_ACME bool enable_trace_category(e_trace_category ecategory, bool bEnable = true);
-
-//// only usable from axis and axis dependants
-//namespace acme
-//{
-//
-//   class application;
-//   class session;
-//   class system;
-//
-//}
-
 
 // only usable from base and base dependants
 namespace base
 {
 
    class application;
-
 
    class session;
 
@@ -2204,29 +2118,8 @@ namespace base
 
 }
 
-//// only usable from acme and acme dependants
-//namespace acme
-//{
-//
-//   //class application;
-//   //class session;
-//   //class system;
-//
-//}
-
 
 class app_core;
-
-
-//extern "C"
-//typedef ::acme::system *  CREATE_SYSTEM(app_core * pappcore);
-//typedef ::acme::system * CREATE_SYSTEM();
-
-//typedef CREATE_SYSTEM * LPFN_CREATE_SYSTEM;
-
-//CLASS_DECL_ACME extern LPFN_CREATE_SYSTEM g_pfn_create_system;
-//CLASS_DECL_ACME extern const char * g_pszCooperativeLevel;
-//CLASS_DECL_ACME extern int g_iDerivedApplication; // one-based-index of derived application, zero if Main application
 
 
 namespace data
@@ -2250,10 +2143,6 @@ namespace xml
 
 
 } // namespace xml
-
-
-
-
 
 
 enum e_extract
@@ -2283,26 +2172,7 @@ namespace str
 } // namespace str
 
 
-
 class event;
-
-
-//class thread;
-
-
-
-
-//class thread;
-
-
-//typedef pointer < thread > thread_pointer;
-//typedef pointer_array < thread > thread_spa;
-
-
-//class thread_impl;
-
-
-//typedef pointer < thread_impl > thread_impl_pointer;
 
 
 namespace html
@@ -2366,13 +2236,6 @@ class var_array;
 
 using arguments = var_array;
 
-//class context;
-
-
-
-
-//CLASS_DECL_ACME bool acme_init();
-//CLASS_DECL_ACME bool acme_term();
 
 CLASS_DECL_ACME bool __node_acme_pre_init();
 
@@ -2451,8 +2314,6 @@ CLASS_DECL_ACME ::e_status __realize(::matter * pmatter, const ::promise::proces
 //#include "acme/os/os.h"
 
 class thread_parameter;
-
-//#include "acme/primitive/primitive/enum.h"
 
 
 #include "acme/primitive/primitive/interlocked_long.h"
@@ -2552,7 +2413,9 @@ inline bool is_null_ref(const TYPE &t)
 template<typename TYPE>
 inline bool is_set_ref(const TYPE &t)
 {
+
    return !is_null_ref(t);
+
 }
 
 
@@ -2572,10 +2435,6 @@ using matter_pointer = __pointer(::matter);
 #include "acme/primitive/promise/process.h"
 
 
-
-
-//#include "acme/platform/_.h"
-
 template<class POINTER_TYPE>
 inline auto &__typed(__pointer(POINTER_TYPE) &p) { return *p; }
 
@@ -2588,7 +2447,6 @@ inline auto &__typed(__pointer(POINTER_TYPE) &p) { return *p; }
 using file_pointer = __pointer(::file::file);
 
 using file_result = __result(::file::file);
-
 
 class stream;
 
@@ -2603,7 +2461,9 @@ inline stream &__save_object(stream &stream, BASE_TYPE *p);
 template<typename BASE_TYPE>
 inline stream &__save_object(stream &stream, const __pointer(BASE_TYPE) &p)
 {
+
    return __save_object(stream, (BASE_TYPE *) p.m_p);
+
 }
 
 
@@ -2640,9 +2500,8 @@ using wparam = c_number<WPARAM>;
 #include "acme/platform/common.h"
 
 
-//#include "acme/primitive/string/_.h"
-
 class filetime;
+
 
 #include "acme/primitive/datetime/date_span.h"
 #include "acme/primitive/datetime/time_span.h"
@@ -2659,8 +2518,10 @@ namespace status
 
 } // namespace status
 
+
 namespace message
 {
+
    class message;
 
 } // namespace status
@@ -2719,31 +2580,20 @@ using size = size_type<SIZE32, POINT32, RECT32>;
 #include "acme/primitive/primitive/cflag.h"
 
 
-
-
 class thread;
+
 
 namespace user
 {
-//
-//   using estate = cflag < enum_state >;
-//   using eelement = cflag < enum_element >;
-//
 
    class primitive;
 
-
    class create;
+
 
 } // namespace user
 
 
-
-
-
-
-
-//using eobject = cflag < ::enum_object >;
 class action_context;
 
 
@@ -2767,8 +2617,6 @@ namespace user
 class function;
 
 
-
-
 namespace factory
 {
 
@@ -2779,15 +2627,11 @@ namespace factory
 } // namespace factory
 
 
-
 #include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/primitive/layered.h"
 
 
 class manual_reset_event;
-
-
-//#include "acme/primitive/promise?/pred_pointer.h"
 
 
 #include "acme/primitive/primitive/work.h"
@@ -2800,14 +2644,12 @@ class manual_reset_event;
 #include "acme/primitive/primitive/enumeration.h"
 
 
-
-
 namespace file
 {
 
 
    DECLARE_C_FLAG(e_open, enum_open);
-   DECLARE_C_FLAG(enum_state, enum_state);
+   DECLARE_C_FLAG(e_state, enum_state);
 
 
 } // namespace file
@@ -3693,7 +3535,7 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 
 
 //CLASS_DECL_ACME void set_system_update(PFN_CALL_UPDATE pfnCallUpdate);
-//CLASS_DECL_ACME void system_update(const ::id & id, const payload & payload = ::type_new);
+//CLASS_DECL_ACME void system_update(const ::id & id, const payload & payload = ::e_type_new);
 
 
 

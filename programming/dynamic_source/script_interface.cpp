@@ -187,7 +187,7 @@ namespace dynamic_source
    payload script_interface::get_session_value(id)
    {
 
-      return payload(::type_new);
+      return payload(::e_type_new);
 
    }
 
@@ -262,7 +262,7 @@ namespace dynamic_source
       if (!bOk)
       {
 
-         return type_empty;
+         return e_type_empty;
 
       }
 

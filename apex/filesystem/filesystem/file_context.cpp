@@ -560,7 +560,7 @@ payload file_context::as_json(const payload &varFile)
    if (str.is_empty())
    {
 
-      return ::type_new;
+      return ::e_type_new;
 
    }
 
@@ -581,7 +581,7 @@ payload file_context::as_json(const payload &varFile)
 
       TRACE(esp->get_message());
 
-      v = ::type_new;
+      v = ::e_type_new;
 
    }
    catch (...)
@@ -589,7 +589,7 @@ payload file_context::as_json(const payload &varFile)
 
       TRACE("GENERAL Exception parsing json file_context::as_json : \"" + str + "\"");
 
-      v = ::type_new;
+      v = ::e_type_new;
 
    }
 

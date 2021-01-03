@@ -727,7 +727,7 @@ inline ::e_status context::load_from_file(::matter* pobject, const ::payload& va
   else
   {
 
-     return _load_from_file(pobject, varFile, type_empty_argument);
+     return _load_from_file(pobject, varFile, e_type_empty_argument);
 
   }
 
@@ -737,7 +737,7 @@ inline ::e_status context::load_from_file(::matter* pobject, const ::payload& va
 inline ::e_status context::load_from_file(::matter* pobject, const ::payload& varFile)
 {
 
-  return _load_from_file(pobject, varFile, type_empty_argument);
+  return _load_from_file(pobject, varFile, e_type_empty_argument);
 
 }
 
@@ -754,7 +754,7 @@ inline ::e_status context::save_to_file(const ::payload& varFile, const payload*
   else
   {
 
-     return _save_to_file(varFile, type_empty_argument, pobject);
+     return _save_to_file(varFile, e_type_empty_argument, pobject);
 
   }
 
@@ -764,7 +764,7 @@ inline ::e_status context::save_to_file(const ::payload& varFile, const payload*
 inline ::e_status context::save_to_file(const ::payload& varFile, const ::matter* pobject)
 {
 
-  return _save_to_file(varFile, type_empty_argument, pobject);
+  return _save_to_file(varFile, e_type_empty_argument, pobject);
 
 }
 

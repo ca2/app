@@ -14,7 +14,7 @@ create::create()
 ::e_status create::initialize_create(arguments arguments) 
 {
 
-   create_common_construct(::type_empty_argument, nullptr);
+   create_common_construct(::e_type_empty_argument, nullptr);
 
    for(auto & arg : arguments)
    {

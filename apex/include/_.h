@@ -180,17 +180,17 @@ CLASS_DECL_APEX int_bool c_enable_trace_category(e_trace_category ecategory, int
 inline ::matter * context_trace_object() { return general_trace_object(); }
 
 
-CLASS_DECL_APEX void __tracea(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-CLASS_DECL_APEX void __tracef(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
-CLASS_DECL_APEX void __tracev(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
+CLASS_DECL_APEX void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+CLASS_DECL_APEX void __tracef(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
+CLASS_DECL_APEX void __tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
 
 
 #define __alog(...) __tracef(__VA_ARGS__)
 
-#define INFO(...) __alog(trace_object(ALOG_CONTEXT), trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-#define WARN(...) __alog(trace_object(ALOG_CONTEXT), trace_level_warning, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-#define ERR(...) __alog(trace_object(ALOG_CONTEXT), trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-#define FATAL(...) __alog(trace_object(ALOG_CONTEXT), trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+#define INFO(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+#define WARN(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_warning, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+#define ERR(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+#define FATAL(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 
 #define TRACE(...) INFO(__VA_ARGS__)
 
@@ -325,10 +325,7 @@ CLASS_DECL_APEX void register_get_new_apex_library(const char* psz, PFN_NEW_APEX
 
 
 #define DECLARE_NEW_APEX_LIBRARY(X) extern "C" \
-
-
 ::apex::library * X##_new_apex_library()
-
 
 #define REGISTER_GET_NEW_APEX_LIBRARY(X) register_get_new_apex_library(#X, &X##_get_new_library)
 
@@ -480,19 +477,20 @@ namespace datetime
 } // namespace datetime
 
 
+namespace trace
+{
+
+   class trace;
+
+}
+
+
 namespace apex
 {
 
 
    class file;
 
-
-   namespace trace
-   {
-
-      class trace;
-
-   }
 
    class session;
 
@@ -817,7 +815,7 @@ namespace core
 
 #include "apex/primitive/primitive/object_meta.h"
 
-#include "apex/platform/trace.h"
+#include "app/acme/platform/trace.h"
 
 #include "apex/platform/display.h"
 
@@ -1129,7 +1127,7 @@ namespace xml
 #include "apex/platform/assert_running_task.h"
 
 
-#include "apex/platform/debug.h"
+//#include "apex/platform/debug.h"
 
 
 // C++ Includes

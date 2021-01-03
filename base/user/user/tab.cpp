@@ -4007,10 +4007,10 @@ namespace user
 
          // ODOW : TODO : should create bergedgewrapper to open bergedge inside a window.
 
-         if(vara[i].get_type() == ::type_string && vara[i].get_string() == "app:bergedge")
+         if(vara[i].get_type() == ::e_type_string && vara[i].get_string() == "app:bergedge")
             continue;
 
-         if(vara[i].get_type() == ::type_string && vara[i].get_string() == "app:")
+         if(vara[i].get_type() == ::e_type_string && vara[i].get_string() == "app:")
             continue;
 
          //if(stra.add_unique(vara[i]) >= 0)

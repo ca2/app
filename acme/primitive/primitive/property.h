@@ -247,7 +247,7 @@ public:
 ////
 ////   inline payload operator()(::index iIndex) const { return find_property(::id(iIndex)); }
 ////
-////   inline bool has_property(const ::id & id) const { return m_etype == type_propset ? has_property(id) : false; }
+////   inline bool has_property(const ::id & id) const { return m_etype == e_type_propset ? has_property(id) : false; }
 ////
 ////   inline property & operator[](const id & id) { return get_property(id); }
 ////   inline payload operator[](const id & id) const { return find_property(id); }

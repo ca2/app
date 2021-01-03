@@ -50,15 +50,15 @@ namespace aura
       virtual void print(const char * psz, ...);
 
 
-      virtual ::e_status initialize_aura_log(e_trace_level etracelevelMin, const ::id & id);
+      virtual ::e_status initialize_aura_log(enum_trace_level etracelevelMin, const ::id & id);
       //virtual bool initialize(id id);
       virtual void finalize() override;
 
       virtual bool process_init();
 
-      virtual void __tracea(::matter * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const char * psz) override;
+      virtual void __tracea(::matter * pcontextobject, enum_trace_level elevel, const char * pszFunction, const char * pszFileName, i32 iLine, const char * psz) override;
 
-      void set_trace_category(e_trace_category ecategory, e_trace_level elevelMin);
+      void set_trace_category(e_trace_category ecategory, enum_trace_level elevelMin);
 
       virtual void success(const char * psz);
 

@@ -48,7 +48,7 @@ namespace account
       if(m_strToken.is_empty())
       {
          
-         TRACE(trace_category_general, trace_level_error, "::account::storage_client::get Token is Empty!");
+         TRACE(trace_category_general, e_trace_level_error, "::account::storage_client::get Token is Empty!");
          
          ASSERT(FALSE);
          
@@ -68,7 +68,7 @@ namespace account
       {
          
          
-         TRACE(trace_category_general, trace_level_error, "::account::storage_client::set Token is Empty!");
+         TRACE(trace_category_general, e_trace_level_error, "::account::storage_client::set Token is Empty!");
          
          //ASSERT(FALSE);
          

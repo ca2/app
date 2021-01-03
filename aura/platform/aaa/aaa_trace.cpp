@@ -29,7 +29,7 @@ namespace aura
       CLASS_DECL_AURA PFN_trace_v trace_v = &raw_trace_v;
 
 
-      void trace::TraceV(const char *pszFileName, i32 nLine, e_trace_category ecategory, e_trace_level elevel, const char * pszFormat, va_list args) const
+      void trace::TraceV(const char *pszFileName, i32 nLine, e_trace_category ecategory, enum_trace_level elevel, const char * pszFormat, va_list args) const
       {
          UNREFERENCED_PARAMETER(pszFileName);
          UNREFERENCED_PARAMETER(nLine);
@@ -93,7 +93,7 @@ namespace aura
       category::category()
       {
 
-         m_elevelMin    = trace_level_information;
+         m_elevelMin    = e_trace_level_information;
          m_ecategory    = trace_category_general;
          m_bEnabled     = true;
 
@@ -300,7 +300,7 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
    DEFINE_MESSAGE(e_message_window_position_changed),
    DEFINE_MESSAGE(e_message_window_position_changing),
    // ca2 API specific messages
-   DEFINE_MESSAGE(WM_SIZEPARENT),
+   DEFINE_MESSAGE(e_message_size_parent),
    DEFINE_MESSAGE(WM_SETMESSAGESTRING),
    DEFINE_MESSAGE(WM_IDLEUPDATECMDUI),
    DEFINE_MESSAGE(WM_COMMANDHELP),
@@ -363,9 +363,9 @@ CLASS_DECL_AURA const char *  get_windows_message_name(::u32 nMsg)
 #define SIMPLE_TRACE_FILE_NAME 0
 
 
-e_trace_level g_etracelevel = trace_level_error;
+enum_trace_level g_etracelevel = e_trace_level_error;
 
-e_trace_level get_global_trace_level()
+enum_trace_level get_global_trace_level()
 {
 
    return g_etracelevel;
@@ -373,7 +373,7 @@ e_trace_level get_global_trace_level()
 }
 
 
-void set_global_trace_level(e_trace_level etracelevel)
+void set_global_trace_level(enum_trace_level etracelevel)
 {
 
    g_etracelevel = etracelevel;
@@ -381,7 +381,7 @@ void set_global_trace_level(e_trace_level etracelevel)
 }
 
 
-CLASS_DECL_AURA void __simple_tracea(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz)
+CLASS_DECL_AURA void __simple_tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz)
 {
 
    if (elevel < get_global_trace_level())
@@ -404,13 +404,13 @@ CLASS_DECL_AURA void __simple_tracea(::matter * pobjectContext, e_trace_level el
 
       ::str::begins_eat_ci(strTopic, "struct ");
 
-      strMessage.Format("%c:%s> %s", trace_level_char(elevel), strTopic.c_str(), psz);
+      strMessage.Format("%c:%s> %s", e_trace_level_char(elevel), strTopic.c_str(), psz);
 
    }
    else
    {
 
-      strMessage.Format("%c> %s", trace_level_char(elevel), psz);
+      strMessage.Format("%c> %s", e_trace_level_char(elevel), psz);
 
    }
 
@@ -454,7 +454,7 @@ CLASS_DECL_AURA void __simple_tracea(::matter * pobjectContext, e_trace_level el
 }
 
 
-CLASS_DECL_AURA void __simple_tracev(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * pszFormat, va_list args)
+CLASS_DECL_AURA void __simple_tracev(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * pszFormat, va_list args)
 {
 
    //if (s_pstringmanager == nullptr)

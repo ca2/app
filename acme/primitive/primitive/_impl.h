@@ -275,7 +275,7 @@ inline payload & property_set::set(const ::id & id)
 //inline property * payload::find_property(const ::id & id) const
 //{
 //
-//   if (!casts_to(type_propset))
+//   if (!casts_to(e_type_propset))
 //   {
 //
 //      return nullptr;
@@ -565,7 +565,7 @@ inline ::property * payload::find_property(const ::id & id) const
       return m_pprop->find_property(id);
 
    }
-   else if (m_etype == type_propset)
+   else if (m_etype == e_type_propset)
    {
 
       return m_pset->find_property(id);
@@ -592,7 +592,7 @@ inline ::index payload::property_index(const ::id & id) const
       return m_pprop->property_index(id);
 
    }
-   else if (m_etype == type_propset)
+   else if (m_etype == e_type_propset)
    {
 
       return m_pset->find_index(id);
@@ -619,7 +619,7 @@ inline property & payload::get_property(const ::id & id)
       return m_pprop->get_property(id);
 
    }
-   else if (m_etype == type_propset)
+   else if (m_etype == e_type_propset)
    {
 
       return m_pset->get(id);
@@ -720,13 +720,13 @@ template < typename VAR >
 inline ___pointer < T >  & ___pointer < T >::operator = (const payload_type < VAR > & payload)
 {
 
-   if (payload.this_var()->m_etype == type_element)
+   if (payload.this_var()->m_etype == e_type_element)
    {
 
       return operator = (payload.this_var()->m_p);
 
    }
-   else if (payload.this_var()->m_etype == type_memory)
+   else if (payload.this_var()->m_etype == e_type_memory)
    {
 
       auto pfile = create_memory_file();
@@ -1755,18 +1755,18 @@ inline payload::operator string & ()
       return m_pprop->operator string & ();
 
    }
-   else if (m_etype == ::type_pstring)
+   else if (m_etype == ::e_type_pstring)
    {
 
       return *m_pstr;
 
    }
-   else if (m_etype != ::type_string)
+   else if (m_etype != ::e_type_string)
    {
 
       m_str = get_string();
 
-      set_type(type_string, false);
+      set_type(e_type_string, false);
 
    }
 
@@ -1798,13 +1798,13 @@ inline payload::operator string & ()
          return m_pprop->operator TYPE &();   \
                                              \
       }                                      \
-      else if(m_etype == ::type_p ## ENUM)        \
+      else if(m_etype == ::e_type_p ## ENUM)        \
       {                                      \
                                              \
          return *m_p ## VAR;                 \
                                              \
       }                                      \
-      else if(m_etype == ::type_ ## ENUM)    \
+      else if(m_etype == ::e_type_ ## ENUM)    \
       {                                      \
                                              \
          return m_ ## VAR;                   \
@@ -1813,7 +1813,7 @@ inline payload::operator string & ()
       else                                   \
       {                                      \
                                              \
-         set_type(::type_ ## ENUM, true);   \
+         set_type(::e_type_ ## ENUM, true);   \
                                              \
          return m_ ## VAR;                   \
                                              \
@@ -2087,7 +2087,7 @@ inline string_base < TYPE_CHAR >::string_base(const id& id) :
 
       }
 
-      if (m_etype != type_element)
+      if (m_etype != e_type_element)
       {
 
          return defer_create_type < T >(pDefault);
@@ -2120,14 +2120,14 @@ inline string_base < TYPE_CHAR >::string_base(const id& id) :
 
 #define CAST_ELEMENT(P, ENUM_TYPE) \
 if(m_etype == ENUM_TYPE) { return dynamic_cast < T * >(P); }
-      CAST_ELEMENT(m_p, type_element);
-      CAST_ELEMENT(m_pstra, type_stra);
-      CAST_ELEMENT(m_pia, type_inta);
+      CAST_ELEMENT(m_p, e_type_element);
+      CAST_ELEMENT(m_pstra, e_type_stra);
+      CAST_ELEMENT(m_pia, e_type_inta);
       CAST_ELEMENT(m_pvara, type_vara);
-      CAST_ELEMENT(m_pset, type_propset);
-      CAST_ELEMENT(m_pi64a, type_i64a);
-      CAST_ELEMENT(m_pmemory, type_memory);
-      CAST_ELEMENT(m_ppath, type_path);
+      CAST_ELEMENT(m_pset, e_type_propset);
+      CAST_ELEMENT(m_pi64a, e_type_i64a);
+      CAST_ELEMENT(m_pmemory, e_type_memory);
+      CAST_ELEMENT(m_ppath, e_type_path);
       //CAST_ELEMENT(m_pimage, type_image);
       return nullptr;
 #undef CAST_ELEMENT
@@ -2326,7 +2326,7 @@ inline bool property_set::get_string(string& strResult, const id& idKey) const
 inline ::payload operator + (::payload payload, const ::promise::routine & routine)
 {
 
-   if (payload.get_type() != type_propset)
+   if (payload.get_type() != e_type_propset)
    {
 
       payload["message"] = payload.get_string();
@@ -2344,7 +2344,7 @@ inline ::payload operator + (::payload payload, const ::promise::routine & routi
 inline payload operator + (payload payload, const ::promise::process & process)
 {
 
-   if (payload.get_type() != type_propset)
+   if (payload.get_type() != e_type_propset)
    {
 
       payload["message"] = payload.get_string();

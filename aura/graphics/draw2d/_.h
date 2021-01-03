@@ -247,7 +247,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::bitmap >()
    {
 
-      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_bitmap);
+      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_bitmap);
 
    }
 
@@ -256,7 +256,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::brush >()
    {
 
-      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_brush);
+      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_brush);
 
    }
 
@@ -265,7 +265,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::font >()
    {
 
-      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_font);
+      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_font);
 
    }
 
@@ -274,7 +274,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::graphics >()
    {
 
-      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_graphics);
+      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_graphics);
 
    }
 
@@ -283,7 +283,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::image >()
    {
 
-      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_image);
+      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_image);
 
    }
 
@@ -292,7 +292,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::path >()
    {
 
-      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_path);
+      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_path);
 
    }
 
@@ -301,7 +301,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::pen >()
    {
 
-      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_pen);
+      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_pen);
 
    }
 
@@ -310,7 +310,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::region >()
    {
 
-      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_region);
+      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_region);
 
    }
 

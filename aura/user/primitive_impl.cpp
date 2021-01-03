@@ -220,7 +220,7 @@ namespace user
          else
          {
 
-            pinteraction->send_message((enum_message) WM_SIZEPARENT, 0, (LPARAM)& sizeparentparams);
+            pinteraction->send_message((enum_message) e_message_size_parent, 0, (LPARAM)& sizeparentparams);
 
          }
 

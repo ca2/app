@@ -1011,7 +1011,7 @@ namespace core
 
       }
 
-      if (payload.get_type() == ::type_propset && payload.has_property("hold") && !(bool)payload["hold"])
+      if (payload.get_type() == ::e_type_propset && payload.has_property("hold") && !(bool)payload["hold"])
       {
 
          pcreate->m_bHold = false;
@@ -1095,7 +1095,7 @@ namespace core
 
       }
 
-      if (payload.get_type() == ::type_propset && payload.has_property("hold") && !(bool)payload["hold"])
+      if (payload.get_type() == ::e_type_propset && payload.has_property("hold") && !(bool)payload["hold"])
       {
 
          pcreate->m_bHold = false;
@@ -1184,7 +1184,7 @@ namespace core
 
       }
 
-      if (payload.get_type() == ::type_propset && payload.has_property("hold") && !(bool)payload["hold"])
+      if (payload.get_type() == ::e_type_propset && payload.has_property("hold") && !(bool)payload["hold"])
       {
 
          pcreate->m_bHold = false;

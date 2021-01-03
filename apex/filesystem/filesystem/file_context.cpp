@@ -2527,7 +2527,7 @@ file_result file_context::http_get_file(const payload &varFile, const ::file::e_
 
    ::file_result preader;
 
-   if (varFile.m_etype == ::type_element)
+   if (varFile.m_etype == ::e_type_element)
    {
 
       preader = varFile.cast<::file::file>();
@@ -2551,7 +2551,7 @@ file_result file_context::http_get_file(const payload &varFile, const ::file::e_
 
    ::file_result pwriter;
 
-   if (varFile.m_etype == ::type_element)
+   if (varFile.m_etype == ::e_type_element)
    {
 
       pwriter = varFile.cast<::file::file>();
@@ -2578,7 +2578,7 @@ file_result file_context::get_file(const payload &varFile, const ::file::e_open 
 
       ::file_pointer pfile;
 
-      if (varFile.get_type() == ::type_element)
+      if (varFile.get_type() == ::e_type_element)
       {
 
          pfile = varFile.cast<::file::file>();
@@ -2591,7 +2591,7 @@ file_result file_context::get_file(const payload &varFile, const ::file::e_open 
          }
 
       }
-      else if (varFile.get_type() == ::type_propset)
+      else if (varFile.get_type() == ::e_type_propset)
       {
 
          if (varFile.has_property("file"))

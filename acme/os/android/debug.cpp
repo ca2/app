@@ -69,16 +69,16 @@ void output_debug_string(const widechar * lpOutputString)
 }
 
 
-CLASS_DECL_ACME int os_trace_level(e_trace_level elevel)
+CLASS_DECL_ACME int os_trace_level(enum_trace_level elevel)
 {
 
    switch(elevel)
    {
-   case trace_level_error:
+   case e_trace_level_error:
       return ANDROID_LOG_ERROR;
-   case trace_level_warning:
+   case e_trace_level_warning:
       return ANDROID_LOG_WARN;
-   case trace_level_information:
+   case e_trace_level_information:
       return ANDROID_LOG_INFO;
    default:
       return ANDROID_LOG_DEBUG;
@@ -87,7 +87,7 @@ CLASS_DECL_ACME int os_trace_level(e_trace_level elevel)
 }
 
 
-CLASS_DECL_ACME void os_trace(e_trace_level elevel, const char * pszTag, const char * pszMessage)
+CLASS_DECL_ACME void os_trace(enum_trace_level elevel, const char * pszTag, const char * pszMessage)
 {
 
    int iLevel = os_trace_level(elevel);

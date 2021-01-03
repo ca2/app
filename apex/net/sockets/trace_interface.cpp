@@ -6,10 +6,10 @@ namespace sockets
 {
 
 
-   //void trace_logger::sockets_log(base_socket_handler * phandler, base_socket * sock, const string & strUser, i32 iError, const string & strSystem, e_trace_level elevel)
+   //void trace_logger::sockets_log(base_socket_handler * phandler, base_socket * sock, const string & strUser, i32 iError, const string & strSystem, enum_trace_level elevel)
    //{
 
-   //   string strLevel = trace_level_name(elevel);
+   //   string strLevel = e_trace_level_name(elevel);
 
    //   if (sock)
    //   {

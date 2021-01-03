@@ -5,7 +5,7 @@
 //public:
 //
 //
-//   virtual void __tracea(::object * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) = 0;
+//   virtual void __tracea(::object * pcontextobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) = 0;
 //
 //
 //};
@@ -22,7 +22,7 @@ public:
    virtual ~simple_trace();
 
 
-   virtual void __tracea(::matter * pcontextobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) override;
+   virtual void __tracea(::matter * pcontextobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) override;
 
 
 };
@@ -58,7 +58,7 @@ public:
    }
 
 
-   inline void __cdecl operator()(e_trace_category ecategory, e_trace_level elevel, const char * pszFormat, ...) const
+   inline void __cdecl operator()(e_trace_category ecategory, enum_trace_level elevel, const char * pszFormat, ...) const
    {
 
       va_list ptr;
@@ -75,7 +75,7 @@ public:
    inline void __cdecl operator()(T & t) const
    {
 
-      ::__tracea(m_pobject, trace_level_information, m_pszFunction, m_pszFile, m_iLine, (const char *) t);
+      ::__tracea(m_pobject, e_trace_level_information, m_pszFunction, m_pszFile, m_iLine, (const char *) t);
 
    }
 
@@ -87,7 +87,7 @@ public:
 
       va_start(valist, pszFormat);
 
-      ::__tracev(m_pobject, trace_level_none, m_pszFunction, m_pszFile, m_iLine, pszFormat, valist);
+      ::__tracev(m_pobject, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, pszFormat, valist);
 
       va_end(valist);
 
@@ -97,7 +97,7 @@ public:
    inline void __cdecl operator()(e_log elog, const string & strContext, i32 iError, const string & strMessage) const
    {
 
-      ::__tracef(m_pobject, trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
+      ::__tracef(m_pobject, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
 
    }
 
@@ -105,7 +105,7 @@ public:
    inline void __cdecl operator()(::object * pcontextobject, const string & strContext, i32 iError, const string & strMessage) const
    {
 
-      ::__tracef(pcontextobject, trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
+      ::__tracef(pcontextobject, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
 
    }
 
@@ -119,10 +119,10 @@ class CLASS_DECL_AURA trace_logger_level :
 public:
 
 
-   e_trace_level           m_elevel;
+   enum_trace_level           m_elevel;
 
 
-   trace_logger_level(const char * pszFunction, const char * pszFile, i32 iLine, ::matter * pcontextobject, e_trace_level elevel) :
+   trace_logger_level(const char * pszFunction, const char * pszFile, i32 iLine, ::matter * pcontextobject, enum_trace_level elevel) :
       trace_logger(pszFunction, pszFile, iLine, pcontextobject),
       m_elevel(elevel)
    {
@@ -228,22 +228,22 @@ public:
 #define __trace_logger_level(trace_context, trace_level) trace_logger_level(__FUNCTION__, __FILE__, __LINE__, trace_object(trace_context), trace_level)
 
 
-#define CWARN(category_radix) __trace_logger_level(::trace_object(trace_category_ ## category_radix), trace_level_warning)
-#define CINFO(category_radix) __trace_logger_level(::trace_object(trace_category_ ## category_radix), trace_level_information)
-#define CERR(category_radix) __trace_logger_level(::trace_object(trace_category_ ## category_radix), trace_level_error)
-#define CFATAL(category_radix) __trace_logger_level(::trace_object(trace_category_ ## category_radix), trace_level_fatal)
+#define CWARN(category_radix) __trace_logger_level(::trace_object(trace_category_ ## category_radix), e_trace_level_warning)
+#define CINFO(category_radix) __trace_logger_level(::trace_object(trace_category_ ## category_radix), e_trace_level_information)
+#define CERR(category_radix) __trace_logger_level(::trace_object(trace_category_ ## category_radix), e_trace_level_error)
+#define CFATAL(category_radix) __trace_logger_level(::trace_object(trace_category_ ## category_radix), e_trace_level_fatal)
 
 
-#define WARN __trace_logger_level(ALOG_CONTEXT, trace_level_warning)
-#define INFO __trace_logger_level(ALOG_CONTEXT, trace_level_information)
-#define ERR __trace_logger_level(ALOG_CONTEXT, trace_level_error)
-#define FATAL __trace_logger_level(ALOG_CONTEXT, trace_level_fatal)
+#define WARN __trace_logger_level(ALOG_CONTEXT, e_trace_level_warning)
+#define INFO __trace_logger_level(ALOG_CONTEXT, e_trace_level_information)
+#define ERR __trace_logger_level(ALOG_CONTEXT, e_trace_level_error)
+#define FATAL __trace_logger_level(ALOG_CONTEXT, e_trace_level_fatal)
 
 
-#define _S_WARN __trace_logger_level(_S_ALOG_CONTEXT, trace_level_warning)
-#define _S_INFO __trace_logger_level(_S_ALOG_CONTEXT, trace_level_information)
-#define _S_ERR __trace_logger_level(_S_ALOG_CONTEXT, trace_level_error)
-#define _S_FATAL __trace_logger_level(_S_ALOG_CONTEXT, trace_level_fatal)
+#define _S_WARN __trace_logger_level(_S_ALOG_CONTEXT, e_trace_level_warning)
+#define _S_INFO __trace_logger_level(_S_ALOG_CONTEXT, e_trace_level_information)
+#define _S_ERR __trace_logger_level(_S_ALOG_CONTEXT, e_trace_level_error)
+#define _S_FATAL __trace_logger_level(_S_ALOG_CONTEXT, e_trace_level_fatal)
 
 
 namespace aura
@@ -270,7 +270,7 @@ namespace aura
          
          e_trace_category           m_ecategory;
          const char *               m_pszName;
-         e_trace_level              m_elevelMin;
+         enum_trace_level              m_elevelMin;
          bool                       m_bEnabled;
 
 
@@ -278,8 +278,8 @@ namespace aura
          ~category();
 
 
-         e_trace_level get_level() const { return m_elevelMin; }
-         void set_level(e_trace_level elevel) { m_elevelMin = elevel;  }
+         enum_trace_level get_level() const { return m_elevelMin; }
+         void set_level(enum_trace_level elevel) { m_elevelMin = elevel;  }
          bool is_enabled() const { return m_bEnabled; }
          void enable(bool bEnable = true) { m_bEnabled = bEnable; }
 
@@ -312,7 +312,7 @@ namespace aura
          }
 
          
-         category * enabled_get(e_trace_category ecategory, e_trace_level elevel)
+         category * enabled_get(e_trace_category ecategory, enum_trace_level elevel)
          {
 
             auto pcategory = operator[](ecategory);
@@ -327,7 +327,7 @@ namespace aura
 
          }
 
-         void TraceV(const char *pszFileName,i32 nLine,e_trace_category ecategory, e_trace_level elevel,const char * pszFmt,va_list args) const;
+         void TraceV(const char *pszFileName,i32 nLine,e_trace_category ecategory, enum_trace_level elevel,const char * pszFmt,va_list args) const;
 
 
          /*bool LoadSettings(const char * pszFileName = nullptr) const

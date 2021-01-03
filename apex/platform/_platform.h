@@ -344,7 +344,7 @@ namespace apex
 
 #include "progress_interface.h"
 
-#include "debug.h"
+//#include "debug.h"
 
 //#include "apex/primitive/collection/std_iterator.h"
 //#include "apex/primitive/collection/insert_iterator.h"
@@ -365,7 +365,7 @@ namespace apex
 
 //#include "app/apex/user/_.h"
 
-#include "debug.h"
+//#include "debug.h"
 
 //#include "apex/filesystem/filehandler/filehandler.h"
 

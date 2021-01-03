@@ -258,7 +258,7 @@ namespace draw2d_quartz2d
 //         case ::draw2d::path::matter::type_line:
 //            set(e.u.m_line);
 //            break;
-//         case ::draw2d::path::matter::type_string:
+//         case ::draw2d::path::matter::e_type_string:
 ////            set(e.m_stringpath);
 //            break;
 //         case ::draw2d::path::matter::type_end:

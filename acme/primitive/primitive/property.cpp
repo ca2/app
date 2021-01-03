@@ -351,13 +351,13 @@ string & property::get_http_post(string & str) const
 //{
 //   switch(m_etype)
 //   {
-//   case ::type_stra:
+//   case ::e_type_stra:
 //      return const_cast<property *>(this)->stra().operator [](iIndex);
-//   case ::type_inta:
+//   case ::e_type_inta:
 //      return const_cast<property *>(this)->inta().operator [](iIndex);
 //   case ::type_vara:
 //      return const_cast<property *>(this)->vara().operator [](iIndex);
-//   case ::type_propset:
+//   case ::e_type_propset:
 //      return const_cast<property *>(this)->propset().at(iIndex);
 //   default:
 //      if(const_cast<property *>(this)->get_count() == 1)

@@ -478,14 +478,14 @@ void matter::delete_this()
 }
 
 
-void matter::__tracea(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
+void matter::__tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
 {
 
 
 }
 
 
-void matter::__tracef(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
+void matter::__tracef(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
 {
 
    va_list valist;
@@ -499,7 +499,7 @@ void matter::__tracef(::matter * pobject, e_trace_level elevel, const char * psz
 }
 
 
-void matter::__tracev(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list valist)
+void matter::__tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list valist)
 {
 
    string str;

@@ -79,7 +79,7 @@ namespace sockets
    }
 
    
-   //void base_socket_handler::__tracef(e_trace_category ecategory, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, base_socket * psocket, const string & strContext, i32 iError, const string & strMessage)
+   //void base_socket_handler::__tracef(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, base_socket * psocket, const string & strContext, i32 iError, const string & strMessage)
    //{
 
    //   psocket->__tracef(ecategory, elevel, pszFunction, pszFile, iLine, log_this, strContext, iError, strMessage);

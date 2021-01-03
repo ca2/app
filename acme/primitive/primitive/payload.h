@@ -225,7 +225,7 @@ public:
 
    ::enum_type set_element(::matter * pobject);
 
-   bool is_element() const { return m_etype >= type_element && m_etype < __type_last_element; }
+   bool is_element() const { return m_etype >= e_type_element && m_etype < __type_last_element; }
 
    bool is_element_set() const { return is_element() && ::is_set(m_p); }
 
@@ -467,7 +467,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    inline payload & operator = (::memory * pmemory)
    {
 
-      set_type(type_memory, false);
+      set_type(e_type_memory, false);
 
       m_pmemory = pmemory;
 
@@ -481,7 +481,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    inline payload & operator = (const ::file::path & path)
    {
-      set_type(type_path, false);
+      set_type(e_type_path, false);
       m_ppath = new ::file::path_object(path);
       return *this;
    }
@@ -629,7 +629,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    ::matter * matter()
    {
-      if (m_etype == type_element) { return m_p; }
+      if (m_etype == e_type_element) { return m_p; }
       return cast < ::matter >();
    }
 
@@ -1167,7 +1167,7 @@ inline class payload & payload::operator = (string && str)
 
 inline void payload::set_string(const char * psz)
 {
-   if(get_type() == type_pstring)
+   if(get_type() == e_type_pstring)
    {
       *m_pstr = psz;
    }
@@ -1181,7 +1181,7 @@ inline void payload::set_string(const char * psz)
    }
    else
    {
-      set_type(type_string,false);
+      set_type(e_type_string,false);
       m_str = psz;
    }
 }
@@ -1190,7 +1190,7 @@ inline void payload::set_string(const char * psz)
 inline void payload::set_string(const string & str)
 {
 
-   if(get_type() == type_pstring)
+   if(get_type() == e_type_pstring)
    {
       *m_pstr = str;
    }
@@ -1204,14 +1204,14 @@ inline void payload::set_string(const string & str)
    }
    else
    {
-      set_type(type_string,false);
+      set_type(e_type_string,false);
       m_str = str;
    }
 }
 
 inline void payload::set_string(string && str)
 {
-   if(get_type() == type_pstring)
+   if(get_type() == e_type_pstring)
    {
       *m_pstr = ::move(str);
    }
@@ -1225,7 +1225,7 @@ inline void payload::set_string(string && str)
    }
    else
    {
-      set_type(type_string,false);
+      set_type(e_type_string,false);
       m_str = ::move(str);
    }
 }
@@ -1257,7 +1257,7 @@ public:
 //
 //         auto & str = ::payload::operator string & ();
 //
-//         set_type(type_string, false);
+//         set_type(e_type_string, false);
 //
 //         return str;
 //

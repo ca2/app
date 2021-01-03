@@ -428,7 +428,7 @@ namespace draw2d_direct2d
    //   case ::draw2d::path::matter::type_rect:
    //      set(e.u.m_rect);
    //      break;
-   //   case ::draw2d::path::matter::type_string:
+   //   case ::draw2d::path::matter::e_type_string:
    //      set(pgraphics,e.m_stringpath);
    //      break;
    //   case ::draw2d::path::matter::type_end:

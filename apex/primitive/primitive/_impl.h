@@ -820,18 +820,18 @@ inline void context_object::get(const ::id & id, TYPE & t)
 //     return m_pprop->operator string & ();
 //
 //  }
-//  else if (m_etype == ::type_pstring)
+//  else if (m_etype == ::e_type_pstring)
 //  {
 //
 //     return *m_pstr;
 //
 //  }
-//  else if (m_etype != ::type_string)
+//  else if (m_etype != ::e_type_string)
 //  {
 //
 //     m_str = get_string();
 //
-//     set_type(type_string, false);
+//     set_type(e_type_string, false);
 //
 //  }
 //
@@ -1164,7 +1164,7 @@ inline void add_process(::promise::process_array & futurevara, PRED pred)
 //
 //     }
 //
-//     if (m_etype != type_element)
+//     if (m_etype != e_type_element)
 //     {
 //
 //        return defer_create_type < T >(pDefault);
@@ -1197,14 +1197,14 @@ inline void add_process(::promise::process_array & futurevara, PRED pred)
 //
 //#define CAST_ELEMENT(P, ENUM_TYPE) \
 //if(m_etype == ENUM_TYPE) { return dynamic_cast < T * >(P); }
-//     CAST_ELEMENT(m_p, type_element);
-//     CAST_ELEMENT(m_pstra, type_stra);
-//     CAST_ELEMENT(m_pia, type_inta);
+//     CAST_ELEMENT(m_p, e_type_element);
+//     CAST_ELEMENT(m_pstra, e_type_stra);
+//     CAST_ELEMENT(m_pia, e_type_inta);
 //     CAST_ELEMENT(m_pvara, type_vara);
-//     CAST_ELEMENT(m_pset, type_propset);
-//     CAST_ELEMENT(m_pi64a, type_i64a);
-//     CAST_ELEMENT(m_pmemory, type_memory);
-//     CAST_ELEMENT(m_ppath, type_path);
+//     CAST_ELEMENT(m_pset, e_type_propset);
+//     CAST_ELEMENT(m_pi64a, e_type_i64a);
+//     CAST_ELEMENT(m_pmemory, e_type_memory);
+//     CAST_ELEMENT(m_ppath, e_type_path);
 //     CAST_ELEMENT(m_pimage, type_image);
 //     return nullptr;
 //#undef CAST_ELEMENT
@@ -1400,7 +1400,7 @@ inline ::e_status context_object::__construct_new(__pointer(TYPE)& pbase)
 //  inline message_box::message_box(const payload& payload)
 //  {
 //
-//     if (payload.get_type() == type_string)
+//     if (payload.get_type() == e_type_string)
 //     {
 //
 //        m_strMessage = payload;

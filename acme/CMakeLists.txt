@@ -211,6 +211,7 @@ list(APPEND acme_source
    platform/timer_event.cpp
    platform/timer_item.cpp
    platform/timer_task.cpp
+   platform/trace.cpp
    platform/trace_category.cpp
    #platform/update.cpp
    platform/version.cpp
@@ -405,7 +406,7 @@ list(APPEND acme_source
    exception/callstack.h
    exception/call_stack.h
    exception/cancel.h
-   exception/debug.h
+   #exception/debug.h
    exception/debug_stream.h
    exception/dump_context.h
    exception/engine.h

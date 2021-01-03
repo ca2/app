@@ -744,7 +744,7 @@ break_click:;
          //   {
          //      switch (payload.get_type())
          //      {
-         //      case ::type_string:
+         //      case ::e_type_string:
          //      {
          //         string str;
          //         str = payload.m_str;

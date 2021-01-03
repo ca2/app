@@ -157,36 +157,36 @@ enum enum_type
 
    // integral
    //type_block = 1000,
-   type_bool,
-   type_pbool,
+   e_type_bool,
+   e_type_pbool,
    type_char,
-   type_i8 = type_char,
-   type_pi8,
+   e_type_i8 = type_char,
+   e_type_pi8,
    type_byte,
-   type_u8 = type_byte,
-   type_pu8,
-   type_i16,
-   type_pi16,
-   type_u16,
-   type_pu16,
-   type_i32,
-   type_pi32,
-   type_u32,
-   type_pu32,
-   type_i64,
-   type_pi64,
-   type_u64,
-   type_pu64,
+   e_type_u8 = type_byte,
+   e_type_pu8,
+   e_type_i16,
+   e_type_pi16,
+   e_type_u16,
+   e_type_pu16,
+   e_type_i32,
+   e_type_pi32,
+   e_type_u32,
+   e_type_pu32,
+   e_type_i64,
+   e_type_pi64,
+   e_type_u64,
+   e_type_pu64,
 
    // floating point
-   type_float = 2000,
-   type_pfloat,
-   type_double,
-   type_pdouble,
+   e_type_float = 2000,
+   e_type_pfloat,
+   e_type_double,
+   e_type_pdouble,
 
    // simple classes
-   type_string = 4000,
-   type_pstring,
+   e_type_string = 4000,
+   e_type_pstring,
    type_type,
    type_secs,
    type_psecs,
@@ -198,7 +198,7 @@ enum enum_type
    type_pnanos,
    type_duration,
    type_pduration,
-   type_id,
+   e_type_id,
    type_pid,
    type_time,
    type_filetime,
@@ -208,14 +208,14 @@ enum enum_type
    type_process,
 
    // matter classes
-   type_element = 8000,
-   type_stra,
-   type_inta,
+   e_type_element = 8000,
+   e_type_stra,
+   e_type_inta,
    type_vara,
-   type_propset,
-   type_i64a,
-   type_memory,
-   type_path,
+   e_type_propset,
+   e_type_i64a,
+   e_type_memory,
+   e_type_path,
    //type_image,
    __type_last_element,
 
@@ -272,15 +272,15 @@ enum e_trace_category
 
 };
 
-enum e_trace_level
+enum enum_trace_level
 {
 
-   trace_level_none,
-   trace_level_information, // info
-   trace_level_warning,     // warn
-   trace_level_error,       // error
-   trace_level_fatal,       // fatal
-   trace_level_count
+   e_trace_level_none,
+   e_trace_level_information, // info
+   e_trace_level_warning,     // warn
+   e_trace_level_error,       // error
+   e_trace_level_fatal,       // fatal
+   e_trace_level_count
 
 };
 

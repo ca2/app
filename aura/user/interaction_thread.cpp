@@ -370,7 +370,7 @@ namespace user
 
             }
 
-            TRACE(trace_category_appmsg, trace_level_information, string(type_name()) + " thread::pump_message - Received e_message_quit.\n");
+            TRACE(trace_category_appmsg, e_trace_level_information, string(type_name()) + " thread::pump_message - Received e_message_quit.\n");
 
             ::output_debug_string(string(type_name()) + " thread::pump_message - Received e_message_quit.\n");
 

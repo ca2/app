@@ -523,7 +523,7 @@ namespace user
             //{
             //   switch(payload.get_type())
             //   {
-            //   case ::type_string:
+            //   case ::e_type_string:
             //   {
 
             //      string str;
@@ -534,7 +534,7 @@ namespace user
 
             //   }
             //   break;
-            //   case ::type_i32:
+            //   case ::e_type_i32:
             //   {
 
             //      string str;
@@ -955,7 +955,7 @@ namespace user
       pinteraction->GetComboBox()->m_wstra.remove_all();
       pinteraction->GetComboBox()->m_dwaData.remove_all();
       payload payload;
-      payload.m_etype = ::type_element;
+      payload.m_etype = ::e_type_element;
       payload.m_pca2 = pinteraction->GetComboBox();
       VmsDataGet(
       pinteraction->GetComboBox()->m_datakeyFill,

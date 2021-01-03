@@ -243,7 +243,7 @@ namespace account
       if(!is_authenticated())
       {
 
-         TRACE(trace_category_general, trace_level_error, "User not logged in!");
+         TRACE(trace_category_general, e_trace_level_error, "User not logged in!");
 
          return;
 

@@ -125,7 +125,7 @@ namespace sockets
 
          string body;
 
-         if (m_fields.has_property("json") && m_fields["json"].get_type() == ::type_propset)
+         if (m_fields.has_property("json") && m_fields["json"].get_type() == ::e_type_propset)
          {
             m_fields["json"].propset().get_json(body);
             TRACE("JSON BODY:\n%s\n\n", body.c_str());
@@ -134,7 +134,7 @@ namespace sockets
                inheader(__id(content_type)) = "application/json" + ::str::has_char(inheader(__id(content_type)).get_string(), "; ");
             }
          }
-         else if (m_fields.has_property("xml") && m_fields["xml"].get_type() == ::type_element)
+         else if (m_fields.has_property("xml") && m_fields["xml"].get_type() == ::e_type_element)
          {
             __throw(todo("xml"));
 

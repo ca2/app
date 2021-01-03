@@ -1,18 +1,12 @@
 #pragma once
 
-//class CLASS_DECL_APEX trace_interface
-//{
-//public:
-//
-//
-//   virtual void __tracea(::object * pcontextobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) = 0;
-//
-//
-//};
+
+CLASS_DECL_ACME void __tracef(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...);
+CLASS_DECL_ACME void __tracea(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_ACME void __tracev(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
 
 
-
-class CLASS_DECL_APEX simple_trace :
+class CLASS_DECL_ACME simple_trace :
    virtual public ::matter
 {
 public:
@@ -22,7 +16,7 @@ public:
    virtual ~simple_trace();
 
 
-   virtual void __tracea(::matter * pcontextobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) override;
+   virtual void __tracea(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) override;
 
 
 };
@@ -40,19 +34,19 @@ enum e_log
 };
 
 
-class CLASS_DECL_APEX trace_logger
+class CLASS_DECL_ACME trace_logger
 {
 public:
 
 
-   ::matter *            m_pobject;
-   const char * const         m_pszFunction;
-   const char * const         m_pszFile;
-   const i32                  m_iLine;
+   ::matter *            m_pmatter;
+   const char * const    m_pszFunction;
+   const char * const    m_pszFile;
+   const i32             m_iLine;
 
 
-   trace_logger(const char * pszFunction, const char * pszFile, i32 iLine, ::matter * pcontextobject) :
-      m_pszFunction(pszFunction), m_pszFile(pszFile), m_iLine(iLine), m_pobject(pcontextobject)
+   trace_logger(const char * pszFunction, const char * pszFile, i32 iLine, ::matter * pmatter) :
+      m_pszFunction(pszFunction), m_pszFile(pszFile), m_iLine(iLine), m_pmatter(pmatter)
    {
 
    }
@@ -65,7 +59,7 @@ public:
 
       va_start(ptr, pszFormat);
 
-      ::__tracev(m_pobject, elevel, m_pszFunction, m_pszFile, m_iLine, pszFormat, ptr);
+      ::__tracev(m_pmatter, elevel, m_pszFunction, m_pszFile, m_iLine, pszFormat, ptr);
 
       va_end(ptr);
 
@@ -75,7 +69,7 @@ public:
    inline void __cdecl operator()(T & t) const
    {
 
-      ::__tracea(m_pobject, e_trace_level_information, m_pszFunction, m_pszFile, m_iLine, (const char *) t);
+      ::__tracea(m_pmatter, e_trace_level_information, m_pszFunction, m_pszFile, m_iLine, (const char *) t);
 
    }
 
@@ -87,7 +81,7 @@ public:
 
       va_start(valist, pszFormat);
 
-      ::__tracev(m_pobject, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, pszFormat, valist);
+      ::__tracev(m_pmatter, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, pszFormat, valist);
 
       va_end(valist);
 
@@ -97,15 +91,15 @@ public:
    inline void __cdecl operator()(e_log elog, const string & strContext, i32 iError, const string & strMessage) const
    {
 
-      ::__tracef(m_pobject, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
+      ::__tracef(m_pmatter, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
 
    }
 
 
-   inline void __cdecl operator()(::object * pcontextobject, const string & strContext, i32 iError, const string & strMessage) const
+   inline void __cdecl operator()(::matter * pmatter, const string & strContext, i32 iError, const string & strMessage) const
    {
 
-      ::__tracef(pcontextobject, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
+      ::__tracef(pmatter, e_trace_level_none, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
 
    }
 
@@ -113,7 +107,7 @@ public:
 };
 
 
-class CLASS_DECL_APEX trace_logger_level :
+class CLASS_DECL_ACME trace_logger_level :
    public trace_logger
 {
 public:
@@ -122,8 +116,8 @@ public:
    enum_trace_level           m_elevel;
 
 
-   trace_logger_level(const char * pszFunction, const char * pszFile, i32 iLine, ::matter * pcontextobject, enum_trace_level elevel) :
-      trace_logger(pszFunction, pszFile, iLine, pcontextobject),
+   trace_logger_level(const char * pszFunction, const char * pszFile, i32 iLine, ::matter * pmatter, enum_trace_level elevel) :
+      trace_logger(pszFunction, pszFile, iLine, pmatter),
       m_elevel(elevel)
    {
 
@@ -137,7 +131,7 @@ public:
 
       va_start(ptr, pszFormat);
 
-      ::__tracev(m_pobject, m_elevel, m_pszFunction, m_pszFile, m_iLine, pszFormat, ptr);
+      ::__tracev(m_pmatter, m_elevel, m_pszFunction, m_pszFile, m_iLine, pszFormat, ptr);
 
       va_end(ptr);
 
@@ -147,14 +141,14 @@ public:
    inline void operator()(T & t) const
    {
 
-      ::__tracea(m_pobject, m_elevel, m_pszFunction, m_pszFile, m_iLine, (const char *) t);
+      ::__tracea(m_pmatter, m_elevel, m_pszFunction, m_pszFile, m_iLine, (const char *) t);
 
    }
 
    inline void operator()(const char * pszFormat, ...) const
    {
 
-      if(m_pobject->has(e_object_log_disable))
+      if(m_pmatter->has(e_object_log_disable))
       {
 
          return;
@@ -165,7 +159,7 @@ public:
 
       va_start(ptr, pszFormat);
 
-      ::__tracev(m_pobject, m_elevel, m_pszFunction, m_pszFile, m_iLine, pszFormat, ptr);
+      ::__tracev(m_pmatter, m_elevel, m_pszFunction, m_pszFile, m_iLine, pszFormat, ptr);
 
       va_end(ptr);
 
@@ -178,23 +172,23 @@ public:
       if (iError == 0)
       {
 
-         ::__tracef(m_pobject, m_elevel, m_pszFunction, m_pszFile, m_iLine, "%s %s", strContext.c_str(), strMessage.c_str());
+         ::__tracef(m_pmatter, m_elevel, m_pszFunction, m_pszFile, m_iLine, "%s %s", strContext.c_str(), strMessage.c_str());
 
       }
       else
       {
 
-         ::__tracef(m_pobject, m_elevel, m_pszFunction, m_pszFile, m_iLine, "%s %s (%d)", strContext.c_str(), strMessage.c_str(), iError);
+         ::__tracef(m_pmatter, m_elevel, m_pszFunction, m_pszFile, m_iLine, "%s %s (%d)", strContext.c_str(), strMessage.c_str(), iError);
 
       }
 
    }
 
 
-   inline void operator()(::object * pcontextobject, const string & strContext, i32 iError, const string & strMessage) const
+   inline void operator()(matter * pmatter, const string & strContext, i32 iError, const string & strMessage) const
    {
 
-      ::__tracef(pcontextobject, m_elevel, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
+      ::__tracef(pmatter, m_elevel, m_pszFunction, m_pszFile, m_iLine, "%d %d %s", strContext.c_str(), iError, strMessage.c_str());
 
    }
 
@@ -246,124 +240,104 @@ public:
 #define _S_FATAL __trace_logger_level(_S_ALOG_CONTEXT, e_trace_level_fatal)
 
 
-namespace apex
+CLASS_DECL_ACME void raw_trace_v(const char *pszFileName,i32 nLine,u32 dwCategory,u32 nLevel,const char * pszFmt,va_list args);
+
+
+namespace trace
 {
 
 
-   CLASS_DECL_APEX void raw_trace_v(const char *pszFileName,i32 nLine,u32 dwCategory,u32 nLevel,const char * pszFmt,va_list args);
+   class trace;
 
 
-   namespace trace
+   // Declare a global instance of this class to automatically register a custom trace category at startup
+   class CLASS_DECL_ACME category
    {
+   public:
 
 
+      e_trace_category           m_ecategory;
+      const char *               m_pszName;
+      enum_trace_level              m_elevelMin;
+      bool                       m_bEnabled;
 
 
-      class trace;
+      category();
+      ~category();
 
 
-      // Declare a global instance of this class to automatically register a custom trace category at startup
-      class CLASS_DECL_APEX category
+      enum_trace_level get_level() const { return m_elevelMin; }
+      void set_level(enum_trace_level elevel) { m_elevelMin = elevel;  }
+      bool is_enabled() const { return m_bEnabled; }
+      void enable(bool bEnable = true) { m_bEnabled = bEnable; }
+
+      operator e_trace_category () const { return m_ecategory; }
+
+
+   };
+
+
+   class CLASS_DECL_ACME trace :
+      virtual public ::matter
+   {
+   public:
+
+
+      category       m_categorya[trace_category_count];
+
+
+      trace();
+      virtual ~trace();
+
+
+      category * operator[](e_trace_category ecategory)
       {
-      public:
 
-         
-         e_trace_category           m_ecategory;
-         const char *               m_pszName;
-         enum_trace_level              m_elevelMin;
-         bool                       m_bEnabled;
-
-
-         category();
-         ~category();
-
-
-         enum_trace_level get_level() const { return m_elevelMin; }
-         void set_level(enum_trace_level elevel) { m_elevelMin = elevel;  }
-         bool is_enabled() const { return m_bEnabled; }
-         void enable(bool bEnable = true) { m_bEnabled = bEnable; }
-
-         operator e_trace_category () const { return m_ecategory; }
-
-
-
-      };
-
-
-      class CLASS_DECL_APEX trace :
-         virtual public ::object
-      {
-      public:
-
-
-         category       m_categorya[trace_category_count];
-
-         
-         trace();
-         virtual ~trace();
-
-         //virtual ::e_status initialize(::object* pcontextobject) override;
-
-         category * operator[](e_trace_category ecategory)
-         {
-            if (ecategory < trace_category_general || ecategory >= trace_category_count)
-               return nullptr;
-            return &m_categorya[ecategory];
-         }
-
-         
-         category * enabled_get(e_trace_category ecategory, enum_trace_level elevel)
+         if (ecategory < trace_category_general || ecategory >= trace_category_count)
          {
 
-            auto pcategory = operator[](ecategory);
-            
-            if (pcategory == nullptr)
-               return nullptr;
-            
-            if (!pcategory->is_enabled() || elevel < pcategory->m_elevelMin)
-               return nullptr;
-
-            return pcategory;
+            return nullptr;
 
          }
 
-         void TraceV(const char *pszFileName,i32 nLine,e_trace_category ecategory, enum_trace_level elevel,const char * pszFmt,va_list args) const;
+         return &m_categorya[ecategory];
+
+      }
 
 
-         /*bool LoadSettings(const char * pszFileName = nullptr) const
-         { return 0 != gen_TraceLoadSettings(pszFileName);}
-         void SaveSettings(const char * pszFileName = nullptr) const
-         { gen_TraceSaveSettings(pszFileName);}*/
+      category * enabled_get(e_trace_category ecategory, enum_trace_level elevel)
+      {
 
-         //map < uptr,uptr,category,category > m_map;
+         auto pcategory = operator[](ecategory);
+
+         if (pcategory == nullptr)
+         {
+
+            return nullptr;
+
+         }
+
+         if (!pcategory->is_enabled() || elevel < pcategory->m_elevelMin)
+         {
+
+            return nullptr;
+
+         }
+
+         return pcategory;
+
+      }
+
+      void TraceV(const char *pszFileName,i32 nLine,e_trace_category ecategory, enum_trace_level elevel,const char * pszFmt,va_list args) const;
 
 
-      };
+   };
 
 
-
-      //CLASS_DECL_APEX void __cdecl TRACE(const char * pszFormat,...);
-      //CLASS_DECL_APEX void __cdecl TRACE(const unichar * pszFormat,...);
-      //CLASS_DECL_APEX void __cdecl TRACE(uptr dwCategory,::u32 nLevel,const char * pszFormat,...);
-      //CLASS_DECL_APEX void __cdecl TRACE(uptr dwCategory,::u32 nLevel,const unichar * pszFormat,...);
-
-   } // namespace trace
+} // namespace trace
 
 
-};  // namespace apex
+CLASS_DECL_ACME const char * get_windows_message_name(::u32 nMsg);
 
-
-CLASS_DECL_APEX const char * get_windows_message_name(::u32 nMsg);
-
-
-
-//struct CLASS_DECL_APEX log_context :
-//   virtual public ::object
-//{
-//
-//   e_trace_category     m_ecategory;
-//   string               m_strContext;
-//
-//};
 
 

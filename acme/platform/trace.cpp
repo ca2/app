@@ -3,136 +3,131 @@
 #ifndef WINDOWS
 #include "acme/os/cross/windows/_windows.h"
 #endif
+#include "trace.h"
 
 
-namespace apex
+namespace trace
 {
 
 
-   namespace trace
+   trace::trace()
    {
 
+      //m_pobject = pobject;
 
-      trace::trace()
+   }
+
+
+   trace::~trace()
+   {
+
+   }
+
+
+   typedef void ( * PFN_trace_v)(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args);
+   CLASS_DECL_ACME void raw_trace_v(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args);
+   CLASS_DECL_ACME PFN_trace_v trace_v = &raw_trace_v;
+
+
+   void trace::TraceV(const char *pszFileName, i32 nLine, e_trace_category ecategory, enum_trace_level elevel, const char * pszFormat, va_list args) const
+   {
+      UNREFERENCED_PARAMETER(pszFileName);
+      UNREFERENCED_PARAMETER(nLine);
+      /*      const category *pCategory;
+      trace_module * pmodule = nullptr;
+      static const i32 nCount = 1024;
+      char szBuf[nCount] = {'\0'};
+      i32 nLen = 0;*/
+
+      auto pcategory = ((trace *) this)->enabled_get(ecategory, elevel);
+
+      /*
+      if (nLen >= 0 && nLen < nCount)
       {
-
-         //m_pobject = pobject;
-
+      if(g_Allocator.GetProcess()->m_bFileNameAndLineNo)
+      {
+      i32 nTemp;
+      C_RUNTIME_ERRORCHECK_SPRINTF(nTemp = _snprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, "%s(%d) : ", pszFileName, nLine));
+      if( nTemp < 0 )
+      nLen = nCount;
+      else
+      nLen += nTemp;
       }
-
-
-      trace::~trace()
-      {
-
       }
-
-
-      typedef void ( * PFN_trace_v)(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args);
-      CLASS_DECL_APEX void raw_trace_v(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args);
-      CLASS_DECL_APEX PFN_trace_v trace_v = &raw_trace_v;
-
-
-      void trace::TraceV(const char *pszFileName, i32 nLine, e_trace_category ecategory, enum_trace_level elevel, const char * pszFormat, va_list args) const
+      if (nLen >= 0 && nLen < nCount)
       {
-         UNREFERENCED_PARAMETER(pszFileName);
-         UNREFERENCED_PARAMETER(nLine);
-         /*      const category *pCategory;
-         trace_module * pmodule = nullptr;
-         static const i32 nCount = 1024;
-         char szBuf[nCount] = {'\0'};
-         i32 nLen = 0;*/
-
-         auto pcategory = ((trace *) this)->enabled_get(ecategory, elevel);
-
-         /*
-         if (nLen >= 0 && nLen < nCount)
-         {
-         if(g_Allocator.GetProcess()->m_bFileNameAndLineNo)
-         {
-         i32 nTemp;
-         C_RUNTIME_ERRORCHECK_SPRINTF(nTemp = _snprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, "%s(%d) : ", pszFileName, nLine));
-         if( nTemp < 0 )
-         nLen = nCount;
-         else
-         nLen += nTemp;
-         }
-         }
-         if (nLen >= 0 && nLen < nCount)
-         {
-         if(pCategory && g_Allocator.GetProcess()->m_bFuncAndCategoryNames)
-         {
-         i32 nTemp;
-         C_RUNTIME_ERRORCHECK_SPRINTF(nTemp = _snprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, "%S: ", pCategory->Name()));
-         if( nTemp < 0 )
-         nLen = nCount;
-         else
-         nLen += nTemp;
-         }
-         }
-         */
-         /*
-         if (nLen >= 0 && nLen < nCount)
-         {
-         C_RUNTIME_ERRORCHECK_SPRINTF(_vsnprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, pszFormat, ptr));
-         }
-         */
-
-         string str;
-
-         str.Format(pszFormat, args);
-
-         ::output_debug_string(str);
-
-         /*
-         if(pmodule != nullptr)
-         pmodule->DebugReport(_CRT_WARN, nullptr, 0, nullptr, pszFormat, ptr);
-         else
-         output_debug_string(szBuf);
-         */
-
+      if(pCategory && g_Allocator.GetProcess()->m_bFuncAndCategoryNames)
+      {
+      i32 nTemp;
+      C_RUNTIME_ERRORCHECK_SPRINTF(nTemp = _snprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, "%S: ", pCategory->Name()));
+      if( nTemp < 0 )
+      nLen = nCount;
+      else
+      nLen += nTemp;
       }
-
-
-      category::category()
-      {
-
-         m_elevelMin    = e_trace_level_information;
-         m_ecategory    = trace_category_general;
-         m_bEnabled     = true;
-
       }
-
-      category::~category()
+      */
+      /*
+      if (nLen >= 0 && nLen < nCount)
       {
-
+      C_RUNTIME_ERRORCHECK_SPRINTF(_vsnprintf_s(szBuf + nLen, nCount - nLen, nCount - nLen - 1, pszFormat, ptr));
       }
+      */
+
+      string str;
+
+      str.Format(pszFormat, args);
+
+      ::output_debug_string(str);
+
+      /*
+      if(pmodule != nullptr)
+      pmodule->DebugReport(_CRT_WARN, nullptr, 0, nullptr, pszFormat, ptr);
+      else
+      output_debug_string(szBuf);
+      */
+
+   }
 
 
-      CLASS_DECL_APEX void raw_trace_v(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args)
-      {
+   category::category()
+   {
 
-         UNREFERENCED_PARAMETER(pszFileName);
-         UNREFERENCED_PARAMETER(nLine);
-         UNREFERENCED_PARAMETER(dwCategory);
-         UNREFERENCED_PARAMETER(nLevel);
+      m_elevelMin    = e_trace_level_information;
+      m_ecategory    = trace_category_general;
+      m_bEnabled     = true;
 
-         string str;
+   }
 
-         str.Format(pszFmt, args);
+   category::~category()
+   {
 
-         ::output_debug_string(str);
-
-      }
-
-      /*CLASS_DECL_APEX void system_log_trace_v(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args)
-      {
-      System.log().trace_v(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
-      }*/
+   }
 
 
-   } // namespace trace
+   CLASS_DECL_ACME void raw_trace_v(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args)
+   {
 
-}  // namespace apex
+      UNREFERENCED_PARAMETER(pszFileName);
+      UNREFERENCED_PARAMETER(nLine);
+      UNREFERENCED_PARAMETER(dwCategory);
+      UNREFERENCED_PARAMETER(nLevel);
+
+      string str;
+
+      str.Format(pszFmt, args);
+
+      ::output_debug_string(str);
+
+   }
+
+   /*CLASS_DECL_ACME void system_log_trace_v(const char *pszFileName, i32 nLine, u32 dwCategory, u32 nLevel, const char * pszFmt, va_list args)
+   {
+   System.log().trace_v(pszFileName, nLine, dwCategory, nLevel, pszFmt, args);
+   }*/
+
+
+} // namespace trace
 
 
 
@@ -303,12 +298,12 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
    DEFINE_MESSAGE(e_message_window_position_changed),
    DEFINE_MESSAGE(e_message_window_position_changing),
    // ca2 API specific messages
-   DEFINE_MESSAGE(WM_SIZEPARENT),
-   DEFINE_MESSAGE(WM_SETMESSAGESTRING),
-   DEFINE_MESSAGE(WM_IDLEUPDATECMDUI),
-   DEFINE_MESSAGE(WM_COMMANDHELP),
-   DEFINE_MESSAGE(WM_HELPHITTEST),
-   DEFINE_MESSAGE(WM_EXITHELPMODE),
+   DEFINE_MESSAGE(e_message_size_parent),
+   DEFINE_MESSAGE(e_message_set_message_string),
+   DEFINE_MESSAGE(e_message_idle_update_command_user_interface),
+   DEFINE_MESSAGE(e_message_command_help),
+   DEFINE_MESSAGE(e_message_help_hit_test),
+   DEFINE_MESSAGE(e_message_exit_help_mode),
    DEFINE_MESSAGE(WM_HELP),
    DEFINE_MESSAGE(WM_NOTIFY),
    DEFINE_MESSAGE(e_message_context_menu),
@@ -339,7 +334,7 @@ static const MAP_WM_MESSAGE allMessagesArray[] =
 };
 
 
-CLASS_DECL_APEX const char *  get_windows_message_name(::u32 nMsg)
+CLASS_DECL_ACME const char *  get_windows_message_name(::u32 nMsg)
 {
 
    MAP_WM_MESSAGE * pmessage = (MAP_WM_MESSAGE *) allMessagesArray;
@@ -367,7 +362,7 @@ CLASS_DECL_ACME const char* e_trace_level_name(enum_trace_level elevel);
 #define SIMPLE_TRACE_FUNCTION_NAME 0
 #define SIMPLE_TRACE_FILE_NAME 0
 
-CLASS_DECL_APEX void __simple_tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz)
+CLASS_DECL_ACME void __simple_tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz)
 {
 
 #ifndef DEBUG
@@ -444,7 +439,7 @@ CLASS_DECL_APEX void __simple_tracea(::matter * pobjectContext, enum_trace_level
 }
 
 
-CLASS_DECL_APEX void __simple_tracev(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * pszFormat, va_list args)
+CLASS_DECL_ACME void __simple_tracev(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * pszFormat, va_list args)
 {
 
    //if (s_pstringmanager == nullptr)

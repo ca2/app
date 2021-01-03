@@ -373,7 +373,7 @@ namespace sockets
 #ifdef HAVE_OPENSSL
          EnableSSL();
 #else
-         log("url_this", -1, "SSL not available", trace_level_warning);
+         log("url_this", -1, "SSL not available", e_trace_level_warning);
 #endif
          port = 443;
       }

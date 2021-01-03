@@ -62,15 +62,15 @@ inline ::count payload::get_count() const
 {
    switch(m_etype)
    {
-   case type_bool:
+   case e_type_bool:
       return 1;
-   case type_inta:
+   case e_type_inta:
       return ::is_null(m_pia) ? 0 : m_pia->get_count();
-   case type_stra:
+   case e_type_stra:
       return ::is_null(m_pstra) ? 0 : m_pstra->get_count();
    case type_vara:
       return ::is_null(m_pvara) ? 0 : m_pvara->get_count();
-   case type_propset:
+   case e_type_propset:
       return ::is_null(m_pset) ? 0 : m_pset->get_count();
    case e_type_empty:
    case e_type_null:
@@ -119,10 +119,10 @@ inline index payload::array_get_upper_bound() const
 inline bool payload::is_array() const
 {
 
-   if(m_etype == type_stra
-         || m_etype == type_inta
+   if(m_etype == e_type_stra
+         || m_etype == e_type_inta
          || m_etype == type_vara
-         || m_etype == type_propset)
+         || m_etype == e_type_propset)
    {
       return true;
    }
@@ -130,7 +130,7 @@ inline bool payload::is_array() const
    {
       return prop().is_array();
    }
-   else if(m_etype == type_element)
+   else if(m_etype == e_type_element)
    {
       return false;
    }

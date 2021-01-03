@@ -86,7 +86,7 @@ namespace sockets
       virtual void set_logger(::apex::log * plog);
 
       /** Log error to log class for print out / storage. */
-      //virtual void log(base_socket *point,const string & user_text,int err,const string & sys_err, e_trace_level elevel = trace_level_warning);
+      //virtual void log(base_socket *point,const string & user_text,int err,const string & sys_err, enum_trace_level elevel = e_trace_level_warning);
 
       // -------------------------------------------------------------------------
       // socket stuff
@@ -203,7 +203,7 @@ namespace sockets
       /** Indicates that the handler runs under socket_thread. */
       virtual bool IsSlave() = 0;
 
-      //virtual void __tracef(e_trace_category ecategory, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, base_socket * psocket, const string & strContext, i32 err, const string & strMessage);
+      //virtual void __tracef(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, base_socket * psocket, const string & strContext, i32 err, const string & strMessage);
 
 
    };

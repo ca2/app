@@ -8680,8 +8680,8 @@ save_image::save_image(const ::payload & varFile, const ::payload & varOptions)
 
    }
 
-   if (varOptions["quality"].get_type() == type_double
-      || varOptions["quality"].get_type() == type_float)
+   if (varOptions["quality"].get_type() == e_type_double
+      || varOptions["quality"].get_type() == e_type_float)
    {
 
       m_iQuality = (int) (varOptions["quality"].get_double() * 100.0);

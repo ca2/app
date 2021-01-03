@@ -551,7 +551,7 @@ namespace user
 
       auto eitemstate = get_item_state(iIndex);
 
-      ::user::enum_state estate = e_state_none;
+      ::user::e_state estate = e_state_none;
 
       if(eitemstate & e_toolbar_item_state_checked)
       {

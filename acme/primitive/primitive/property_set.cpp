@@ -526,7 +526,7 @@ void property_set::_008Add(const char * pszKey, const char * pszValue)
    if (::is_null(pszValue))
    {
 
-      pset->operator[](straKey[i]).set_type(::type_key_exists, false);
+      pset->operator[](straKey[i]).set_type(::e_type_key_exists, false);
 
    }
    else if(pset->has_property(straKey[i]) && pset->operator[](straKey[i]) != pszValue)
@@ -1184,7 +1184,7 @@ payload property_set::at(index iIndex) const
 property_set& property_set::operator = (const payload& payload)
 {
 
-   if (payload.m_etype == type_propset)
+   if (payload.m_etype == e_type_propset)
    {
 
       ::papaya::array::copy((property_ptra&)*this, (const property_ptra&)payload.propset());
@@ -1264,16 +1264,16 @@ property_set & property_set::merge(const property_set & set)
             if(ppropertyThis != nullptr)
             {
 
-               if(ppropertyThis->get_type() == ::type_element || pproperty->get_type() == ::type_element)
+               if(ppropertyThis->get_type() == ::e_type_element || pproperty->get_type() == ::e_type_element)
                {
 
                   operator[](pproperty->name()) = *pproperty;
 
                }
-               else if(ppropertyThis->get_type() == ::type_propset)
+               else if(ppropertyThis->get_type() == ::e_type_propset)
                {
 
-                  if(pproperty->get_type() == ::type_propset)
+                  if(pproperty->get_type() == ::e_type_propset)
                   {
 
                      ppropertyThis->propset().merge(pproperty->propset());

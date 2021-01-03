@@ -15,7 +15,7 @@ public:
 inline payload operator + (payload payload, const ::title& title)
 {
 
-   if (payload.get_type() != type_propset)
+   if (payload.get_type() != e_type_propset)
    {
 
       payload["message"] = payload.get_string();

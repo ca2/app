@@ -163,7 +163,7 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(e_message_window_position_changed),
    DEFINE_MESSAGE(e_message_window_position_changing),
    // ca2 API specific messages
-   DEFINE_MESSAGE(WM_SIZEPARENT),
+   DEFINE_MESSAGE(e_message_size_parent),
    DEFINE_MESSAGE(WM_SETMESSAGESTRING),
    DEFINE_MESSAGE(WM_IDLEUPDATECMDUI),
    DEFINE_MESSAGE(WM_INITIALUPDATE),

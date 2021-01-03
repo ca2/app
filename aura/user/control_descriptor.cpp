@@ -36,7 +36,7 @@ namespace user
             break;
 
          }
-         case type_string:
+         case e_type_string:
          {
 
             string str = argument.get_string();
@@ -62,9 +62,9 @@ namespace user
 
             break;
          };
-         case type_id:
-         case type_i64:
-         case type_i32:
+         case e_type_id:
+         case e_type_i64:
+         case e_type_i32:
          {
 
             m_id = argument.get_id();
@@ -72,7 +72,7 @@ namespace user
             break;
 
          }
-         case type_element:
+         case e_type_element:
          {
 
             //auto pinteraction = argument.cast < interaction >();

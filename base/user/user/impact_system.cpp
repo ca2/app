@@ -130,7 +130,7 @@ namespace user
       if (!m_typeDocument)
       {
 
-         TRACE(trace_category_appmsg, trace_level_error, "Error: you must override impact_system::create_new_document.\n");
+         TRACE(trace_category_appmsg, e_trace_level_error, "Error: you must override impact_system::create_new_document.\n");
 
          ASSERT(FALSE);
 
@@ -147,7 +147,7 @@ namespace user
       if (!estatus || !pdocument)
       {
 
-         TRACE(trace_category_appmsg, trace_level_warning, "Warning: Dynamic create of ::user::document type %hs failed.\n", m_typeDocument.name().c_str());
+         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: Dynamic create of ::user::document type %hs failed.\n", m_typeDocument.name().c_str());
 
          return nullptr;
 
@@ -202,7 +202,7 @@ namespace user
       if (!m_typeFrame)
       {
 
-         TRACE(trace_category_appmsg, trace_level_error, "Error: you must override impact_system::create_new_frame.\n");
+         TRACE(trace_category_appmsg, e_trace_level_error, "Error: you must override impact_system::create_new_frame.\n");
 
          ASSERT(FALSE);
 
@@ -219,7 +219,7 @@ namespace user
       if (!estatus || !pframe)
       {
 
-         TRACE(trace_category_appmsg, trace_level_warning, "Warning: Dynamic create of frame %hs failed.\n", m_typeFrame.name().c_str());
+         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: Dynamic create of frame %hs failed.\n", m_typeFrame.name().c_str());
 
          string strMessage;
 
@@ -238,7 +238,7 @@ namespace user
       if (!usercreate.m_typeNewView)
       {
 
-         TRACE(trace_category_appmsg, trace_level_warning, "Warning: creating frame with no default ::user::impact.\n");
+         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: creating frame with no default ::user::impact.\n");
 
       }
 
@@ -263,7 +263,7 @@ namespace user
                              dynamic_cast < ::user::interaction * > (pcreate->m_puserinteractionParent), pcreate))
       {
 
-         TRACE(trace_category_appmsg, trace_level_warning, "Warning: impact_system couldn't create a frame.\n");
+         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: impact_system couldn't create a frame.\n");
 
          // frame will be deleted in PostNcDestroy cleanup
 

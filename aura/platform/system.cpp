@@ -50,7 +50,7 @@ CLASS_DECL_AURA ::user::interaction * create_system_message_window(::layered * p
 extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
 
 
-CLASS_DECL_AURA void __simple_tracea(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_AURA void __simple_tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
 
 
 #ifdef WINDOWS
@@ -2261,7 +2261,7 @@ namespace aura
 
       m_ptrace->set_extended_log();
 
-      estatus = m_ptrace->initialize_apex_log(trace_level_warning, pszId);
+      estatus = m_ptrace->initialize_apex_log(e_trace_level_warning, pszId);
 
       if(!estatus)
       {
@@ -3869,7 +3869,7 @@ namespace aura
    //}
 
 
-   void system::__tracea(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   void system::__tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
    {
 
       if (m_ptrace.is_null())
@@ -5717,12 +5717,12 @@ namespace aura
 
    //   /*set_enum_name(::e_type_null      , "null");
    //   set_enum_name(::e_type_empty     , "is_empty");
-   //   set_enum_name(::type_string    , "string");
+   //   set_enum_name(::e_type_string    , "string");
    //   set_enum_name(::type_int32   , "integer");
    //   set_enum_name(::type_::u32     , "ulong");
-   //   set_enum_name(::type_element       , "ca2");
-   //   set_enum_name(::type_bool      , "bool");
-   //   set_enum_name(::type_double    , "double");*/
+   //   set_enum_name(::e_type_element       , "ca2");
+   //   set_enum_name(::e_type_bool      , "bool");
+   //   set_enum_name(::e_type_double    , "double");*/
 
    //   //if (!::aura::application::init_application())
    //   //{

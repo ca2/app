@@ -1860,7 +1860,7 @@ namespace sockets
             //if (!(SSL_CTX_use_RSAPrivateKey(m_psslcontext->m_pclientcontext->m_psslcontext, key)))
             //{
 
-            //   ERR("tcp_socket InitializeContext,0,Couldn't read private key file %s trace_level_fatal", keyfile.c_str());
+            //   ERR("tcp_socket InitializeContext,0,Couldn't read private key file %s e_trace_level_fatal", keyfile.c_str());
 
             //}
 
@@ -1920,7 +1920,7 @@ namespace sockets
                if (!SSL_CTX_use_cert_and_key(m_psslcontext->m_pclientcontext->m_psslcontext, certificate, key, pchain, 1))
                {
 
-                  ERR("tcp_socket InitializeContext,-1,Couldn't read certificate string %s trace_level_fatal", keyfile.c_str());
+                  ERR("tcp_socket InitializeContext,-1,Couldn't read certificate string %s e_trace_level_fatal", keyfile.c_str());
 
                }
 
@@ -1929,14 +1929,14 @@ namespace sockets
                if (!SSL_CTX_use_certificate(m_psslcontext->m_pclientcontext->m_psslcontext, certificate))
                {
 
-                  ERR("tcp_socket InitializeContext,-1,Couldn't read certificate string %s trace_level_fatal", keyfile.c_str());
+                  ERR("tcp_socket InitializeContext,-1,Couldn't read certificate string %s e_trace_level_fatal", keyfile.c_str());
 
                }
 
                if (!SSL_CTX_use_PrivateKey(m_psslcontext->m_pclientcontext->m_psslcontext, key))
                {
 
-                  ERR("tcp_socket InitializeContext,-1,Couldn't read certificate string %s trace_level_fatal", keyfile.c_str());
+                  ERR("tcp_socket InitializeContext,-1,Couldn't read certificate string %s e_trace_level_fatal", keyfile.c_str());
 
                }
 
@@ -1946,7 +1946,7 @@ namespace sockets
                   if (!SSL_CTX_add_extra_chain_cert(m_psslcontext->m_pclientcontext->m_psslcontext, x))
                   {
 
-                     ERR("tcp_socket InitializeContext,-1,Couldn't read certificate string %s trace_level_fatal", keyfile.c_str());
+                     ERR("tcp_socket InitializeContext,-1,Couldn't read certificate string %s e_trace_level_fatal", keyfile.c_str());
 
                   }
 
@@ -1980,7 +1980,7 @@ namespace sockets
             /* Load our keys and certificates*/
             if (!(SSL_CTX_use_certificate_file(m_psslcontext->m_pclientcontext->m_psslcontext, keyfile, SSL_FILETYPE_PEM)))
             {
-               ERR("tcp_socket InitializeContext,0,Couldn't read certificate file %s trace_level_fatal", keyfile.c_str());
+               ERR("tcp_socket InitializeContext,0,Couldn't read certificate file %s e_trace_level_fatal", keyfile.c_str());
             }
          }
          m_password = password;
@@ -1989,7 +1989,7 @@ namespace sockets
 
          if (!(SSL_CTX_use_PrivateKey_file(m_psslcontext->m_pclientcontext->m_psslcontext, keyfile, SSL_FILETYPE_PEM)))
          {
-            ERR("tcp_socket InitializeContext,0,Couldn't read private key file %s trace_level_fatal", keyfile.c_str());
+            ERR("tcp_socket InitializeContext,0,Couldn't read private key file %s e_trace_level_fatal", keyfile.c_str());
          }
       }
 
@@ -2040,7 +2040,7 @@ namespace sockets
       if (!(SSL_CTX_use_PrivateKey_file(m_psslcontext->m_pclientcontext->m_psslcontext, keyfile, SSL_FILETYPE_PEM)))
       {
          FATAL(log_this, "InitializeContext", 0, "Couldn't read private key file " + keyfile);
-         //TRACE(string("tcp_socket InitializeContext(2),0,Couldn't read private key file ") + keyfile + string("trace_level_fatal"));
+         //TRACE(string("tcp_socket InitializeContext(2),0,Couldn't read private key file ") + keyfile + string("e_trace_level_fatal"));
       }
 
    }

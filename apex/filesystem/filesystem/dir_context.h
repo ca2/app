@@ -35,6 +35,7 @@
       virtual ::file::listing& ls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern);
       virtual ::file::listing& ls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern);
       virtual ::file::listing& rls_pattern(::file::listing& listing, const ::file::path& path, const string_array & straPattern);
+      virtual ::file::listing& rls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array & straPattern);
 
       virtual ::file::listing& ls_file(::file::listing& listing);
       virtual ::file::listing& ls_dir(::file::listing& listing);

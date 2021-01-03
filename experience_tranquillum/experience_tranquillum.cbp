@@ -89,6 +89,9 @@
 		</Compiler>
 		<Linker>
 			<Add option="-Wl,-rpath=\\$$$ORIGIN" />
+			<Add option="-lacme" />
+			<Add option="-lapex" />
+			<Add option="-laqua" />
 			<Add option="-laura" />
 			<Add option="-laxis" />
 			<Add option="-lbase" />
@@ -139,7 +142,7 @@
 		</Unit>
 		<Unit filename="library.cpp" />
 		<Unit filename="library.h" />
-		<Unit filename="theme.cpp" />
+		<Unit filename="style.cpp" />
 		<Unit filename="theme.h" />
 		<Extensions />
 	</Project>

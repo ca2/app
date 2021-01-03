@@ -1071,6 +1071,15 @@ bool prodevian::prodevian_iteration()
       try
       {
 
+         string strType = m_puserinteraction->type_c_str();
+
+         if(strType.contains_ci("combo_list"))
+         {
+
+            output_debug_string("We're on the combo_list update_screen");
+
+         }
+
          m_millisBeforeUpdateScreen.Now();
 
          m_millisOufOfUpdateScreen = m_millisBeforeUpdateScreen - m_millisAfterUpdateScreen;

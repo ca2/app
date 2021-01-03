@@ -115,13 +115,6 @@ namespace aura
 
 
 
-      if(::get_global_application() == nullptr)
-      {
-
-         set_global_application(this);
-
-      }
-
       m_strLocale = "_std";
       m_strSchema = "_std";
 

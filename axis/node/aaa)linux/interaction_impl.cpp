@@ -972,6 +972,13 @@ namespace linux
    }
 
 
+   void interaction_impl::on_configuration_change(::user::primitive * pprimitiveSource)
+   {
+
+
+   }
+
+
    void interaction_impl::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 

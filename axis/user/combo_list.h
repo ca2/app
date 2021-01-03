@@ -37,17 +37,11 @@ namespace user
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual void _001OnDrawVerisimple(::draw2d::graphics_pointer & pgraphics);
-      //virtual void _001OnDrawSimply(::draw2d::graphics_pointer & pgraphics);
-
-      //virtual void _002OnDrawVerisimple(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawComboList(::draw2d::graphics_pointer & pgraphics);
 
       virtual void query_full_size(::draw2d::graphics_pointer& pgraphics, LPSIZE32 psize);
 
-
       virtual ::draw2d::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
-
 
       virtual i32 _001GetItemHeight() const;
 
@@ -57,10 +51,10 @@ namespace user
 
       virtual void _001EnsureVisible(index iItem);
 
-      //virtual void nextstyle(style_context* pcontext) override;
-
       virtual void _001OnTimer(::timer* ptimer) override;
 
+      DECL_GEN_SIGNAL(_001OnCreate);
+      DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnSetFocus);
       DECL_GEN_SIGNAL(_001OnKillFocus);
@@ -87,17 +81,17 @@ namespace user
       virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;
 
 
-      //virtual bool display(int nCmdShow) override;
-
       virtual bool has_pending_graphical_update() override;
 
 
       void on_drop_down(const ::rect & rectWindow, const ::size & sizeFull);
 
 
-      //virtual bool get_font(::draw2d::font_pointer & spfont, e_font efont, ::user::interaction * pinteraction) override;
-
       virtual void _on_show_window() override;
+
+
+      virtual bool on_set_owner(::user::primitive * pprimitive) override;
+
 
    };
 

@@ -54,36 +54,12 @@ namespace user
    }
 
 
-//   ::user::style* interaction_impl::get_style() const
-//   {
-//
-//      if (m_puserstyle)
-//      {
-//
-//         return m_puserstyle;
-//
-//      }
-//
-//      auto& app = Application;
-//
-//      return app.get_user_style();
-//
-//   }
-
-
    void interaction_impl::user_common_construct()
    {
-
 
       m_pinteractionimpl = this;
 
       m_iState1 = 0;
-
-//#if defined(WINDOWS_DESKTOP) && !defined(ENABLE_TEXT_SERVICES_FRAMEWORK)
-//
-//      m_himc = nullptr;
-//
-//#endif
 
       m_uCodePage = 0;
 
@@ -1025,6 +1001,13 @@ namespace user
       {
 
          ::output_debug_string("lbutton_up");
+
+      }
+
+      if(pmouse->m_id == ::e_message_left_button_down)
+      {
+
+         on_configuration_change(m_puserinteraction);
 
       }
 
@@ -3699,6 +3682,19 @@ namespace user
 
       }
 
+      string strType = m_puserinteraction->type_c_str();
+
+      if(strType.contains_ci("combo_list"))
+      {
+
+         auto edisplay = m_puserinteraction->layout().state(e_layout_design).display();
+
+         bool bGraphicsSet = m_pgraphics.is_set();
+
+         output_debug_string("_001UpdateScreen combo_list");
+
+      }
+
       if (m_pgraphics.is_set() && m_puserinteraction->layout().is_this_screen_visible())
       {
 
@@ -4893,11 +4889,45 @@ namespace user
 
    }
 
+
    void interaction_impl::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
 
    }
+
+
+   void interaction_impl::on_start_layout_experience(enum_layout_experience elayoutexperience)
+   {
+
+      on_configuration_change(m_puserinteraction);
+
+   }
+
+
+   void interaction_impl::on_configuration_change(::user::primitive * pprimitiveSource)
+   {
+
+      sync_lock sl(mutex());
+
+      for(auto & puserinteraction : m_userinteractionaHideOnConfigurationChange.m_interactiona)
+      {
+
+         if(puserinteraction->is_window_screen_visible())
+         {
+
+            puserinteraction->hide();
+
+            puserinteraction->set_need_redraw();
+
+            puserinteraction->post_redraw();
+
+         }
+
+      }
+
+   }
+
 
    void interaction_impl::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
    {

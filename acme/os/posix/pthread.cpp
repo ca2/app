@@ -619,25 +619,34 @@ void thread_get_os_priority(i32 * piPolicy, sched_param * pparam, ::e_priority e
 
 #if !defined(__APPLE__) && !defined(ANDROID)
 
-string thread_get_name()
+
+namespace parallelization
 {
 
-   char szThreadName[32];
 
-   auto pthread = pthread_self();
-
-   int error = pthread_getname_np(pthread, szThreadName, sizeof(szThreadName));
-
-   if(error)
+   string thread_get_name()
    {
 
-      return "";
+      char szThreadName[32];
+
+      auto pthread = pthread_self();
+
+      int error = pthread_getname_np(pthread, szThreadName, sizeof(szThreadName));
+
+      if (error)
+      {
+
+         return "";
+
+      }
+
+      return szThreadName;
 
    }
 
-   return szThreadName;
 
-}
+} // namespace parallelization
+
 
 #elif defined(ANDROID)
 

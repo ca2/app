@@ -11,7 +11,7 @@
 extern ::app_core * g_pappcore;
 
 void os_post_quit();
-Display * x11_get_display();
+//Display * x11_get_display();
 
 CLASS_DECL_AURA i32 ca2_main();
 
@@ -349,13 +349,10 @@ void init_x11();
 namespace aura
 {
 
-   bool system::init_x11()
+   ::e_status system::defer_initialize_x11()
    {
 
-      ::init_x11();
-
-
-      return true;
+      return ::apex::system::defer_initialize_x11();
 
    }
 

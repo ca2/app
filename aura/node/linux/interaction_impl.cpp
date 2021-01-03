@@ -40,9 +40,13 @@ Display * x11_get_display();
 
 void wm_state_above_raw(oswindow w, bool bSet);
 
+void wm_arbitrarypositionwindow(oswindow w, bool bSet);
+
 void wm_toolwindow(oswindow w, bool bSet);
 
 void wm_centerwindow(oswindow w, bool bSet);
+
+void wm_splashwindow(oswindow w, bool bSet);
 
 void wm_desktopwindow(oswindow w, bool bSet);
 
@@ -386,6 +390,8 @@ namespace linux
 
             attr.override_redirect = m_puserinteraction->m_ewindowflag & e_window_flag_arbitrary_positioning ? True : False;
 
+            //attr.override_redirect = False;
+
             //attr.override_redirect = True;
 
             INFO("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusercreatestruct->m_createstruct.x, pusercreatestruct->m_createstruct.y, pusercreatestruct->m_createstruct.cx, pusercreatestruct->m_createstruct.cy);
@@ -528,6 +534,13 @@ namespace linux
 
    #endif
 
+//            if(m_puserinteraction->m_ewindowflag & e_window_flag_arbitrary_positioning)
+//            {
+//
+//               wm_arbitrarypositionwindow(m_oswindow, true);
+//
+//            }
+//            else
             if(m_puserinteraction->m_ewindowflag & e_window_flag_dock_window)
             {
 
@@ -970,6 +983,8 @@ namespace linux
    {
 
       child_post_quit("delayed_placement");
+
+      ::user::interaction_impl::on_start_layout_experience(elayout);
 
    }
 
@@ -4921,14 +4936,14 @@ namespace linux
       else
       {
 
-         //x11_sync([&]()
+         //x11_async_runnable(__routine([&]()
          //{
 
-         sync_lock sl(x11_mutex());
+            sync_lock sl(x11_mutex());
 
             _001UpdateScreen();
 
-         //});
+         //}));
 
       }
 

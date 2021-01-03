@@ -1717,7 +1717,7 @@ else ()
 endif ()
 
 
-add_library(acme SHARED ${acme_source} const/code_page.h const/_.h os/posix/time.h graphics/draw2d/os_font_name.cpp)
+add_library(acme SHARED ${acme_source} const/code_page.h const/_.h os/posix/time.h graphics/draw2d/os_font_name.cpp os/x11/_.h)
 
 target_precompile_headers(acme PRIVATE framework.h)
 

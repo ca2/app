@@ -2,9 +2,8 @@
 #include "acme/id.h"
 
 
-
-
 ::acme::system * g_psystem = nullptr;
+
 
 namespace acme
 {

@@ -1749,7 +1749,7 @@ bool app_core::has_apex_application_factory() const
 #endif
 
 
-__result(::apex::application) app_core::get_new_application(::object* pobjectContext)
+__result(::apex::application) app_core::new_application()
 {
 
    if (!m_pfnNewAuraApplication)
@@ -1770,21 +1770,12 @@ __result(::apex::application) app_core::get_new_application(::object* pobjectCon
 
    }
 
-   auto estatus = papp->initialize(pobjectContext);
-
-   if (!estatus)
-   {
-
-      return estatus;
-
-   }
-
    return papp;
 
 }
 
 
-__result(::apex::application) app_core::get_new_application(::object* pobjectContext, const char* pszAppId)
+__result(::apex::application) app_core::new_application(const char* pszAppId)
 {
 
    __pointer(::apex::application) papp;
@@ -1800,8 +1791,6 @@ __result(::apex::application) app_core::get_new_application(::object* pobjectCon
 
       if (papp)
       {
-
-         papp->initialize(pobjectContext);
 
          strAppId = papp->m_strAppId;
 
@@ -1876,7 +1865,16 @@ __result(::apex::application) app_core::get_new_application(::object* pobjectCon
 
          }
 
-         papp = plibrary->get_new_application(pobjectContext, strAppId);
+         papp = plibrary->new_application(strAppId);
+
+         ::e_status estatus;
+
+//         if(papp)
+//         {
+//
+//            estatus = papp->initialize(pobjectContext);
+//
+//         }
 
          ::output_debug_string("\n\n\n|(4)----");
          ::output_debug_string("| app : " + strAppId + "(papp=0x" + ::hex::upper_from((uptr)papp.m_p) + ")\n");
@@ -1958,6 +1956,21 @@ __result(::apex::application) app_core::get_new_application(::object* pobjectCon
 
 }
 
+::e_status app_core::initialize_application(::apex::application *papplication, ::object *pobjectContext)
+{
+
+   auto estatus = papplication->initialize(pobjectContext);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   return ::success;
+
+}
 
 static apex_level * s_plevel = NULL;
 

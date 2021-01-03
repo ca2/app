@@ -1268,7 +1268,13 @@ namespace user
             if (is_window_enabled())
             {
 
-               clipboard_paste();
+               fork([this]()
+                    {
+
+                       clipboard_paste();
+
+                    });
+
 
             }
 

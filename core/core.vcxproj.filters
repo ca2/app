@@ -177,9 +177,6 @@
     <Filter Include="Source Files\node\windows_common">
       <UniqueIdentifier>{effb1ba7-4829-40c5-8b89-1530557ff297}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\os\ansios">
-      <UniqueIdentifier>{3e3eb7e6-b2d0-4ef9-8057-41cbc4350638}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\user\rich_text">
       <UniqueIdentifier>{1f8857d1-9865-4be5-9c1d-5011d1678273}</UniqueIdentifier>
     </Filter>
@@ -2029,24 +2026,6 @@
     <ClCompile Include="node\windows_common\application.cpp">
       <Filter>Source Files\node\windows_common</Filter>
     </ClCompile>
-    <ClCompile Include="os\ansios\base.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\file.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\file_std.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\language.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\user.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\win.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
     <ClCompile Include="framework.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -2058,18 +2037,6 @@
     </ClCompile>
     <ClCompile Include="user\userex\image_list.cpp">
       <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\datetime.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\exception_engine.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\file_raw.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\memory.cpp">
-      <Filter>Source Files\os\ansios</Filter>
     </ClCompile>
     <ClCompile Include="_.cpp">
       <Filter>Source Files</Filter>

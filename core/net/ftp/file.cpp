@@ -15,12 +15,12 @@ namespace ftp
       close();
    }
 
-   bool file::Open(const string& strFileName, ::u32 uMode)
+   bool file::Open(const string& strFileName, const ::file::e_open & eopen)
    {
 
       m_strFileName = strFileName;
 
-      m_file = Context.file().get_file(strFileName, uMode);
+      m_file = Context.file().get_file(strFileName, eopen);
 
       return m_file.is_set();
 

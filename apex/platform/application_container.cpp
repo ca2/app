@@ -2,6 +2,8 @@
 #include "apex/platform/app_core.h"
 
 
+extern ::app_core * g_pappcore;
+
 application_container::application_container()
 {
    
@@ -205,6 +207,8 @@ __pointer(::apex::application) application_container::instantiate_application(co
 
    INFO("apex::application::instantiate_application");
 
+   ::e_status estatus = ::success;
+
    __pointer(::apex::application) papp;
 
    string strAppId(pszAppId);
@@ -247,7 +251,9 @@ __pointer(::apex::application) application_container::instantiate_application(co
       else
       {
 
-         papp = System.get_new_application(this, strAppId);
+         papp = System.new_application(strAppId);
+
+         estatus = ::g_pappcore->initialize_application(papp, this);
 
       }
 

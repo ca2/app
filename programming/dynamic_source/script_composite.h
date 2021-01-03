@@ -21,7 +21,7 @@ namespace dynamic_source
       virtual ~script_composite();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
       virtual void finalize() override;
 

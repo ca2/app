@@ -18,7 +18,7 @@ namespace filehandler
    }
 
 
-   ::estatus handler::initialize(::layered * pobjectContext)
+   ::e_status handler::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

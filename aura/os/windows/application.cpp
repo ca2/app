@@ -692,7 +692,7 @@ int SendCtrlShiftQToChrome(oswindow w, ::millis millisSleep, ::aura::application
 //      send_input_digit('5', 1, iSleep);
 //
 //   }
-//   else if (i == '�')
+//   else if (i == '')
 //   {
 //
 //      send_input_digit('6', 1, iSleep);

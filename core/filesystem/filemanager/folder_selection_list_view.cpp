@@ -167,7 +167,7 @@ namespace filemanager
 
       auto psubject = fork_subject(id_synchronize_folder_selection);
 
-      psubject->m_actioncontext = context + ::source_selection;
+      psubject->m_actioncontext = context + ::e_source_selection;
 
       get_document()->update_all_views(psubject);
 

@@ -11,14 +11,14 @@ public:
    virtual ~file_context();
 
    
-   virtual ::estatus initialize(::layered * pobjectContext) override;
+   virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
-   virtual ::estatus init_system();
-   virtual ::estatus init_context();
+   virtual ::e_status init_system();
+   virtual ::e_status init_context();
 
    
-   virtual ::estatus update_module_path();
+   virtual ::e_status update_module_path();
 
 
    virtual ::status::result copy(payload varTarget, payload varSource, bool bFailIfExists = false, e_extract eextract = extract_first);
@@ -88,7 +88,7 @@ public:
 
 
    template < typename TYPE >
-   inline ::estatus binary_get(const ::payload & varFile, TYPE & t)
+   inline ::e_status binary_get(const ::payload & varFile, TYPE & t)
    {
 
       auto preader = get_reader(varFile);
@@ -112,7 +112,7 @@ public:
 
 
    template < typename TYPE >
-   inline ::estatus binary_set(const ::payload & varFile, const TYPE & t)
+   inline ::e_status binary_set(const ::payload & varFile, const TYPE & t)
    {
 
       auto pwriter = get_writer(varFile);
@@ -262,7 +262,7 @@ public:
 
 
    template < class OBJECT >
-   ::estatus put(const payload & varFile, OBJECT & a)
+   ::e_status put(const payload & varFile, OBJECT & a)
    {
 
       auto writer = get_writer(varFile);
@@ -275,7 +275,7 @@ public:
 
 
    template < class OBJECT >
-   ::estatus as(OBJECT & a, const payload & varFile)
+   ::e_status as(OBJECT & a, const payload & varFile)
    {
 
       auto reader = get_reader(varFile);

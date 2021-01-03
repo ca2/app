@@ -1776,7 +1776,7 @@ hfile hfile_create(const char* lpcszFileName, ::u32 dwDesiredAcces, ::u32 dwShar
 }
 
 
-::estatus hfile_close(hfile hfile)
+::e_status hfile_close(hfile hfile)
 {
 
    return ::CloseHandle(hfile) != FALSE;

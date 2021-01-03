@@ -4,6 +4,7 @@
 #endif
 #include "aura/id.h"
 #include "interaction_thread.h"
+#include "call_message_handler_task.h"
 
 
 namespace user
@@ -45,7 +46,7 @@ namespace user
    }
 
 
-   bool primitive_impl::create_window(::user::interaction * pinteraction, const ::rect & rect, ::user::interaction * pparent, id id)
+   bool primitive_impl::create_window(::user::interaction * pinteraction, const ::rect & rect, ::user::primitive * pparent, id id)
    {
 
       ::exception::throw_interface_only();
@@ -55,7 +56,7 @@ namespace user
    }
 
 
-   bool primitive_impl::create_window(::user::interaction * pinteraction, const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, id id, ::create * pcreate)
+   bool primitive_impl::create_window(::user::interaction * pinteraction, const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::primitive * puiParent, id id, ::create * pcreate)
 
    {
 
@@ -66,7 +67,7 @@ namespace user
    }
 
 
-   bool primitive_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcs, ::user::interaction * puiParent, id id)
+   bool primitive_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcs, ::user::primitive * puiParent, id id)
    {
 
       ::exception::throw_interface_only();
@@ -297,7 +298,7 @@ namespace user
    }
 
 
-   //::estatus primitive_impl::main_async(const promise::routine & routine, e_priority epriority)
+   //::e_status primitive_impl::main_async(const promise::routine & routine, e_priority epriority)
    //{
 
    //   if (!m_puserinteraction)
@@ -533,24 +534,26 @@ namespace user
    iptr primitive_impl::get_window_long_ptr(i32 nIndex) const
    {
 
-      return 0;
+//      return 0;
+////
+////      if (nIndex == GWL_STYLE)
+////      {
+////
+////         return  m_uStyle;
+////
+////      }
+////      else if (nIndex == GWL_EXSTYLE)
+////      {
+////
+////         return  m_uExStyle;
+////
+////      }
+////
+////      sync_lock sl(&((primitive_impl *)this)->m_mutexLongPtr);
+////
+////      return (LONG_PTR)m_longptr[nIndex];
 //
-//      if (nIndex == GWL_STYLE)
-//      {
-//
-//         return  m_uStyle;
-//
-//      }
-//      else if (nIndex == GWL_EXSTYLE)
-//      {
-//
-//         return  m_uExStyle;
-//
-//      }
-//
-//      sync_lock sl(&((primitive_impl *)this)->m_mutexLongPtr);
-//
-//      return (LONG_PTR)m_longptr[nIndex];
+      return m_iptrmap[nIndex];
 
    }
 
@@ -579,7 +582,7 @@ namespace user
 
       //return lValue;
 
-      return 0;
+      return m_iptrmap[nIndex] = lValue;
 
    }
 
@@ -714,17 +717,17 @@ namespace user
    }
 
 
-   bool primitive_impl::is_ascendant(const ::user::primitive * puiIsAscendant) const
+   bool primitive_impl::is_ascendant(const ::user::primitive * puiIsAscendant, bool bIncludeSelf) const
    {
 
-      if (puiIsAscendant == nullptr)
+      if (::is_null(puiIsAscendant))
       {
 
          return false;
 
       }
 
-      return puiIsAscendant->is_descendant(m_puserinteraction);
+      return puiIsAscendant->is_descendant(m_puserinteraction, bIncludeSelf);
 
    }
 
@@ -761,12 +764,25 @@ namespace user
    }
 
 
-   bool primitive_impl::is_descendant(const ::user::primitive * puiIsDescendant) const
+   bool primitive_impl::is_descendant(const ::user::primitive * puiIsDescendant, bool bIncludeSelf) const
    {
 
-      ::user::interaction * puiProbe = puiIsDescendant->GetParent();
+      const ::user::primitive * puiProbe;
 
-      if (puiProbe == nullptr)
+      if (bIncludeSelf)
+      {
+
+         puiProbe = puiIsDescendant;
+
+      }
+      else
+      {
+
+         puiProbe = puiIsDescendant->GetParent();
+
+      }
+
+      if (::is_null(puiProbe))
       {
 
          return false;
@@ -1111,7 +1127,7 @@ namespace user
    bool primitive_impl::SetCapture(::user::interaction * pinteraction)
    {
 
-      return get_host_wnd()->SetCapture(pinteraction);
+      return get_host_window()->SetCapture(pinteraction);
 
    }
 
@@ -1136,7 +1152,7 @@ namespace user
    bool primitive_impl::ReleaseCapture()
    {
 
-      return get_host_wnd()->ReleaseCapture();
+      return get_host_window()->ReleaseCapture();
 
    }
 
@@ -1330,7 +1346,7 @@ namespace user
    void primitive_impl::mouse_hover_add(::user::interaction * pinterface)
    {
 
-      ::user::interaction * pinteraction = get_host_wnd();
+      ::user::interaction * pinteraction = get_host_window();
 
       if (pinteraction != nullptr)
       {
@@ -1344,7 +1360,7 @@ namespace user
    bool primitive_impl::mouse_hover_remove(::user::interaction * pinterface)
    {
 
-      ::user::interaction * pinteraction = get_host_wnd();
+      ::user::interaction * pinteraction = get_host_window();
 
       if (pinteraction != nullptr)
       {
@@ -1363,7 +1379,7 @@ namespace user
    }
 
 
-   ::user::primitive * primitive_impl::get_focus_primitive()
+   ::user::primitive * primitive_impl::get_keyboard_focus()
    {
 
       return nullptr;
@@ -1371,52 +1387,56 @@ namespace user
    }
 
 
-   bool primitive_impl::set_focus_primitive(::user::primitive * pprimitive)
+   ::e_status primitive_impl::set_keyboard_focus(::user::primitive * pprimitive)
    {
 
       UNREFERENCED_PARAMETER(pprimitive);
 
-      return false;
+      return ::error_failed;
 
    }
 
 
-   class call_message_handler_task :
-      virtual public matter
+   ::e_status primitive_impl::remove_keyboard_focus(::user::primitive * pprimitive)
    {
-   public:
+
+      UNREFERENCED_PARAMETER(pprimitive);
+
+      return ::error_failed;
+
+   }
 
 
-      __pointer(interaction)        m_pinteraction;
-      ::id                          m_id;
-      WPARAM                        m_wparam;
-      LPARAM                        m_lparam;
+   ::e_status primitive_impl::clear_keyboard_focus()
+   {
+
+      return ::error_failed;
+
+   }
 
 
-      call_message_handler_task(interaction * pinteraction, const ::id & id, WPARAM wparam, LPARAM lparam):
-         m_id(id),
-         m_pinteraction(pinteraction),
-         m_wparam(wparam),
-         m_lparam(lparam)
-      {
+   ::e_status primitive_impl::impl_set_keyboard_focus(::user::primitive * pprimitive)
+   {
 
-      }
+      return ::error_failed;
 
-      virtual ~call_message_handler_task()
-      {
+   }
 
-      }
 
-      virtual ::estatus run()
-      {
+   ::e_status primitive_impl::impl_remove_keyboard_focus(::user::primitive * pprimitive)
+   {
 
-         m_pinteraction->call_message_handler(m_id, m_wparam, m_lparam);
+      return ::error_failed;
 
-         return ::success;
+   }
 
-      }
 
-   };
+   ::e_status primitive_impl::impl_clear_keyboard_focus()
+   {
+
+      return ::error_failed;
+
+   }
 
 
    bool primitive_impl::post_message(const ::id & id, WPARAM wparam, lparam lparam)
@@ -1475,7 +1495,7 @@ namespace user
       //{
 
       //   auto pthread = m_puserinteraction->m_pthreadUserInteraction.cast < thread >();
-      //   
+      //
       //   if (pthread)
       //   {
 
@@ -1500,6 +1520,7 @@ namespace user
       }
 
    }
+
 
 
    void primitive_impl::_001OnShowWindow(::message::message * pmessage)
@@ -1556,7 +1577,7 @@ namespace user
 
    void primitive_impl::_001OnNcDestroy(::message::message * pmessage)
    {
-      
+
       if (m_puserinteraction && ::str::demangle(m_puserinteraction->type_name()).contains("notify_icon"))
       {
 
@@ -1648,11 +1669,10 @@ namespace user
 
       }
 
-      __pointer(::user::interaction) pinteraction = m_puserinteraction->get_host_wnd();
+      __pointer(::user::interaction) pinteraction = m_puserinteraction->get_host_window();
 
       if (pinteraction.is_null())
       {
-
 
          return false;
 
@@ -1748,8 +1768,18 @@ namespace user
    }
 
 
-   void primitive_impl::show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd)
+   ::e_status primitive_impl::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
    {
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status primitive_impl::hide_software_keyboard(::user::primitive * pprimitive)
+   {
+
+      return error_interface_only;
 
    }
 

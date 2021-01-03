@@ -23,7 +23,7 @@ internal:
    message_box_w();
 
 
-   ::estatus show(String ^ text, String ^ caption, const ::e_message_box & emessagebox, ::callback callback);
+   ::e_status show(String ^ text, String ^ caption, const ::e_message_box & emessagebox, ::callback callback);
 
 
    void CommandInvokedHandler(IUICommand^ cmd)
@@ -66,7 +66,7 @@ message_box_w::message_box_w()
    msg->Commands->Append(ref new UICommand(text,ref new UICommandInvokedHandler(this, &::message_box_w::CommandInvokedHandler),id));
 
 
-::estatus message_box_w::show(String ^ text,String ^ caption, const ::e_message_box & emessagebox, ::callback callback)
+::e_status message_box_w::show(String ^ text,String ^ caption, const ::e_message_box & emessagebox, ::callback callback)
 {
 
    if (!g_bCoreWindowOnceVisible)
@@ -138,7 +138,7 @@ message_box_w::message_box_w()
 }
 
 
-::estatus os_message_box(oswindow oswindow, const char * pszText, const char * pszCaption, emessagebox emessagebox, ::callback callback)
+::e_status os_message_box(oswindow oswindow, const char * pszText, const char * pszCaption, emessagebox emessagebox, ::callback callback)
 {
 
    UNREFERENCED_PARAMETER(oswindow);

@@ -79,7 +79,7 @@ namespace user
       m_iTabScrollMax = 0;
       m_iTabSize = 0;
       m_edisplayParentFrameAutoHide = ::e_display_none;
-      m_estate = state_initial;
+      m_estate = e_state_initial;
 
       m_iRestoredTabCount = 0;
 
@@ -1658,8 +1658,7 @@ namespace user
          }
 
       }
-      else if(m_itemClick.m_eelement == e_element_tab_far_scroll
-         )
+      else if(m_itemClick.m_eelement == e_element_tab_far_scroll)
       {
 
          if(m_iTabScroll < m_iTabScrollMax)
@@ -1756,18 +1755,23 @@ namespace user
       if(item.m_iItem >= 0 && iClickTab == item.m_iItem && m_itemClick == item)
       {
 
-         if (item == e_element_close_tab_button)
+         fork([this, item]()
          {
 
-            _001OnTabClose(item.m_iItem);
+            if (item == e_element_close_tab_button)
+            {
 
-         }
-         else
-         {
+               _001OnTabClose(item.m_iItem);
 
-            _001OnTabClick(item.m_iItem);
+            }
+            else
+            {
 
-         }
+               _001OnTabClick(item.m_iItem);
+
+            }
+
+         });
 
          set_need_redraw();
 
@@ -3552,7 +3556,7 @@ namespace user
          else
          {
 
-            m_estate = state_initial;
+            m_estate = e_state_initial;
 
          }
 
@@ -3575,7 +3579,7 @@ namespace user
       if (m_estate == state_drag_commanded)
       {
 
-         m_estate = state_initial;
+         m_estate = e_state_initial;
 
       }
 

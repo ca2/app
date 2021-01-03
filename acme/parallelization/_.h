@@ -69,7 +69,7 @@ class single_lock;
 class multi_lock;
 
 
-CLASS_DECL_ACME ::estatus __call(const ::promise::routine & routine);
+CLASS_DECL_ACME ::e_status __call(const ::promise::routine & routine);
 
 
 //namespace parallelization
@@ -125,7 +125,7 @@ CLASS_DECL_ACME bool set_thread_name(const char * psz);
 CLASS_DECL_ACME bool set_thread_name(hthread_t hthread, const char* pszName);
 
 
-typedef ::estatus     (*__THREADPROC)(void *);
+typedef ::e_status     (*__THREADPROC)(void *);
 
 
 
@@ -163,6 +163,8 @@ namespace parallelization
    //   return priority_normal;
 
    //}
+
+   CLASS_DECL_ACME string thread_get_name();
 
 
 } // namespace parallelization

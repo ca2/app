@@ -17,7 +17,7 @@ public:
    virtual ~html_data();
 
 
-   virtual ::estatus initialize_html_data(::html_data * phtmldata);
+   virtual ::e_status initialize_html_data(::html_data * phtmldata);
 
 
    virtual i64 add_ref(OBJ_REF_DBG_PARAMS);
@@ -25,7 +25,7 @@ public:
 
 
    virtual bool open_document(const payload & varFile);
-   virtual ::estatus     open_html(const ::string & str);
+   virtual ::e_status     open_html(const ::string & str);
 
 
    virtual bool open_link(const char * pszPath);

@@ -128,13 +128,13 @@ namespace music
             virtual double GetTempoShift() override;
 
 
-            virtual ::estatus     Start();
+            virtual ::e_status     Start();
 
-            virtual ::estatus     Stop();
+            virtual ::e_status     Stop();
 
 
-            ::estatus     get_ticks(imedia_time & time) override;
-            ::estatus     get_millis(imedia_time & time) override;
+            ::e_status     get_ticks(imedia_time & time) override;
+            ::e_status     get_millis(imedia_time & time) override;
 
 
             imedia_time MillisecsToTicks(imedia_time msOffset) override;

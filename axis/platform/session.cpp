@@ -83,7 +83,7 @@ namespace axis
    }
 
 
-   ::estatus session::initialize(::layered * pobjectContext)
+   ::e_status session::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::thread::initialize(pobjectContext);
@@ -169,7 +169,7 @@ namespace axis
    }
 
 
-   ::estatus session::process_init()
+   ::e_status session::process_init()
    {
 
       INFO("axis::session::process_init");
@@ -675,7 +675,7 @@ namespace axis
 
 
 
-   ::estatus session::init1()
+   ::e_status session::init1()
    {
 
       auto estatus = ::aura::session::init1();
@@ -695,10 +695,10 @@ namespace axis
 
 
 
-   ::estatus session::init2()
+   ::e_status session::init2()
    {
 
-      ::estatus estatus = ::aura::session::init2();
+      ::e_status estatus = ::aura::session::init2();
 
       if(!estatus)
       {
@@ -721,10 +721,10 @@ namespace axis
    }
 
 
-   ::estatus session::init()
+   ::e_status session::init()
    {
 
-      ::estatus estatus = ::aura::session::init();
+      ::e_status estatus = ::aura::session::init();
 
       if (!estatus)
       {
@@ -786,7 +786,7 @@ namespace axis
 
 
 
-   //::estatus session::initialize(::layered * pobjectContext)
+   //::e_status session::initialize(::layered * pobjectContext)
    //{
 
    //   auto estatus = ::aura::session::initialize(pobjectContext);
@@ -815,7 +815,7 @@ namespace axis
    }
 
 
-   //::estatus session::process_init()
+   //::e_status session::process_init()
    //{
 
    //   /*if(!::aura::application::process_init())
@@ -849,7 +849,7 @@ namespace axis
    //}
 
 
-   //::estatus session::init1()
+   //::e_status session::init1()
    //{
 
    //   //if (!::aura::application::init1())
@@ -925,7 +925,7 @@ namespace axis
    //}
 
 
-   //::estatus session::init()
+   //::e_status session::init()
    //{
 
    //   //if (!::aura::application::init())
@@ -949,7 +949,7 @@ namespace axis
    //}
 
 
-   //::estatus session::init2()
+   //::e_status session::init2()
    //{
 
    //   //if (!::aura::application::init2())
@@ -972,7 +972,7 @@ namespace axis
 
 
 
-   //::estatus session::init_session()
+   //::e_status session::init_session()
    //{
 
    //   //if (!::aura::application::init_application())
@@ -1112,7 +1112,7 @@ namespace axis
    //}
 
 
-   //::estatus session::bergedge_start()
+   //::e_status session::bergedge_start()
    //{
 
    //   return true;

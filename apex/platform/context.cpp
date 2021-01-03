@@ -101,7 +101,7 @@ bool context::is_local_data() const
 }
 
 
-::estatus context::initialize_context()
+::e_status context::initialize_context()
 {
 
    auto estatus = __compose(m_phttp);
@@ -1076,7 +1076,7 @@ void context::add_matter_locator(::apex::application * papp)
 
 
 
-::estatus context::_load_from_file(::matter* pobject, const ::payload& varFile, const payload& varOptions)
+::e_status context::_load_from_file(::matter* pobject, const ::payload& varFile, const payload& varOptions)
 {
 
    binary_stream reader(Context.file().get_reader(varFile));
@@ -1088,7 +1088,7 @@ void context::add_matter_locator(::apex::application * papp)
 }
 
 
-::estatus context::_save_to_file(const ::payload& varFile, const payload& varOptions, const ::matter * pobject)
+::e_status context::_save_to_file(const ::payload& varFile, const payload& varOptions, const ::matter * pobject)
 {
 
    binary_stream writer(Context.file().get_writer(varFile));

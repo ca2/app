@@ -13,19 +13,21 @@ namespace user
 
       ::user::interaction_impl *                m_pinteractionimpl;
       ::user::interaction_child *               m_pinteractionchild;
-      //__reference(::thread)                   m_pthreadUserImpl;
+
+
+      iptr_to_iptr                              m_iptrmap;
 
       bool                                      m_bDrawFlagsReady;
       bool                                      m_bDestroyImplOnly;
       bool                                      m_bDestroying;
       int                                       m_iPendingRectMatch;
-      __pointer(::user::interaction)      m_puserinteraction;
-      __pointer(::user::box)              m_puserbox;
+      __pointer(::user::interaction)            m_puserinteraction;
+      __pointer(::user::box)                    m_puserbox;
       bool                                      m_bIgnoreSizeEvent;
       bool                                      m_bIgnoreMoveEvent;
       ap(critical_section)                      m_pcsDisplay;
 
-      __composite(::apex::timer_array)    m_ptimerarray;
+      __composite(::apex::timer_array)          m_ptimerarray;
 
       const char *                              m_pszInteractionImplBaseDebug;
 
@@ -94,10 +96,10 @@ virtual bool setWMClass(const char * psz);
 
 
       virtual bool create_message_queue(::user::interaction * pinteraction, const char * lpszName);
-      virtual bool create_window(::user::interaction * pinteraction, const ::rect & rect, ::user::interaction *pparent, id id);
-      virtual bool create_window(::user::interaction * pinteraction, const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, id id, ::create * pcreate = nullptr);
+      virtual bool create_window(::user::interaction * pinteraction, const ::rect & rect, ::user::primitive * pparent, id id);
+      virtual bool create_window(::user::interaction * pinteraction, const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::primitive * puiParent, id id, ::create * pcreate = nullptr);
 
-      virtual bool create_window_ex(::user::interaction * pinteraction,__pointer(::user::create_struct) pcs, ::user::interaction * puiParent = nullptr, id id = ::id());
+      virtual bool create_window_ex(::user::interaction * pinteraction,__pointer(::user::create_struct) pcs, ::user::primitive * puiParent = nullptr, id id = ::id());
 
 
 
@@ -155,7 +157,7 @@ virtual bool setWMClass(const char * psz);
       //virtual i32 SetWindowRgn(HRGN hRgn,bool bRedraw);
       //virtual i32 GetWindowRgn(HRGN hRgn);
 
-      //virtual ::estatus post_routine(const ::promise::routine & routine);
+      //virtual ::e_status post_routine(const ::promise::routine & routine);
 
 
 #ifdef WINDOWS
@@ -217,10 +219,10 @@ virtual bool setWMClass(const char * psz);
       //virtual bool BringWindowToTop() override;
 
 
-      virtual bool is_ascendant(const ::user::primitive * puiIsAscendant) const override;
+      virtual bool is_ascendant(const ::user::primitive * puiIsAscendant, bool bIncludeSelf) const override;
       virtual bool is_parent(const ::user::primitive * puiIsParent) const override;
       virtual bool is_child(const ::user::primitive * puiIsChild) const override;
-      virtual bool is_descendant(const ::user::primitive * puiIsDescendant) const override;
+      virtual bool is_descendant(const ::user::primitive * puiIsDescendant, bool bIncludeSelf) const override;
 
 
 //      virtual ::user::interaction * get_wnd() const;
@@ -287,8 +289,14 @@ virtual bool setWMClass(const char * psz);
       virtual void register_drop_target();
 
 
-      virtual ::user::primitive * get_focus_primitive();
-      virtual bool set_focus_primitive(::user::primitive * pprimitive);
+      virtual ::user::primitive * get_keyboard_focus();
+      virtual ::e_status set_keyboard_focus(::user::primitive * pprimitive);
+      virtual ::e_status remove_keyboard_focus(::user::primitive * pprimitive);
+      virtual ::e_status clear_keyboard_focus() override;
+      virtual ::e_status impl_set_keyboard_focus(::user::primitive * pprimitive);
+      virtual ::e_status impl_remove_keyboard_focus(::user::primitive * pprimitive);
+      virtual ::e_status impl_clear_keyboard_focus();
+
 
       virtual bool post_message(const ::id & id, WPARAM wparam = 0, lparam lparam = 0) override;
 
@@ -307,7 +315,8 @@ virtual bool setWMClass(const char * psz);
       virtual void redraw_remove(::context_object * point);
       virtual bool has_redraw();
 
-      virtual void show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd) override;
+      virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
+      virtual ::e_status hide_software_keyboard(::user::primitive * pprimitive) override;
 
       virtual void user_interaction_on_hide();
 

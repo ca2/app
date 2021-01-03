@@ -85,23 +85,23 @@ namespace music
             case ::music::midi::sequence::EventStopped:
             {
                ::music::midi::sequence::PlayerLink & link = get_sequence()->GetPlayerLink();
-               if(link.TestFlag(::music::midi::sequence::FlagStop))
+               if(link.TestFlag(::music::midi::sequence::e_flag_stop))
                {
-                  link.ModifyFlag(::music::midi::sequence::FlagNull, ::music::midi::sequence::FlagStop);
+                  link.ModifyFlag(::music::midi::sequence::e_flag_null, ::music::midi::sequence::e_flag_stop);
                   link.OnFinishCommand(::music::midi::player::command_stop);
                   PostNotifyEvent(::music::midi::player::notify_event_playback_stop);
 
                }
-               else if(link.TestFlag(::music::midi::sequence::FlagTempoChange))
+               else if(link.TestFlag(::music::midi::sequence::e_flag_tempo_change))
                {
                   PrerollAndWait(link.m_tkRestart);
                   get_sequence()->SetTempoChangeFlag(false);
                   get_sequence()->Start();
-                  link.ModifyFlag(::music::midi::sequence::FlagNull, ::music::midi::sequence::FlagTempoChange);
+                  link.ModifyFlag(::music::midi::sequence::e_flag_null, ::music::midi::sequence::e_flag_tempo_change);
                }
-               else if(link.TestFlag(::music::midi::sequence::FlagSettingPos))
+               else if(link.TestFlag(::music::midi::sequence::e_flag_setting_position))
                {
-                  link.ModifyFlag(::music::midi::sequence::FlagNull, ::music::midi::sequence::FlagSettingPos);
+                  link.ModifyFlag(::music::midi::sequence::e_flag_null, ::music::midi::sequence::e_flag_setting_position);
                   try
                   {
                      PrerollAndWait(link.m_tkRestart);
@@ -114,9 +114,9 @@ namespace music
                   PostNotifyEvent(::music::midi::player::notify_event_position_set);
                }
                else if(link.TestFlag(
-                       ::music::midi::sequence::FlagMidiOutDeviceChange))
+                       ::music::midi::sequence::e_flag_midi_out_device_change))
                {
-                  link.ModifyFlag(::music::midi::sequence::FlagNull, ::music::midi::sequence::FlagMidiOutDeviceChange);
+                  link.ModifyFlag(::music::midi::sequence::e_flag_null, ::music::midi::sequence::e_flag_midi_out_device_change);
                   try
                   {
                      PrerollAndWait(link.m_tkRestart);
@@ -136,9 +136,9 @@ namespace music
                   0);      */
 
                }
-               else if(link.TestFlag(::music::midi::sequence::FlagStopAndRestart))
+               else if(link.TestFlag(::music::midi::sequence::e_flag_midi_out_and_restart))
                {
-                  link.ModifyFlag(::music::midi::sequence::FlagNull, ::music::midi::sequence::FlagStopAndRestart);
+                  link.ModifyFlag(::music::midi::sequence::e_flag_null, ::music::midi::sequence::e_flag_midi_out_and_restart);
                   try
                   {
                      PrerollAndWait(link.m_tkRestart);
@@ -158,17 +158,17 @@ namespace music
                PostNotifyEvent(::music::midi::player::notify_event_generic_mmsg_done);
             }
             break;
-            case ::music::midi::sequence::EventMidiPlaybackStart:
+            case ::music::midi::sequence::e_event_midi_playback_start:
             {
                PostNotifyEvent(::music::midi::player::notify_event_playback_start);
             }
             break;
-            case ::music::midi::sequence::EventMidiStreamOut:
+            case ::music::midi::sequence::e_event_midi_playback_out:
             {
                PostNotifyEvent(::music::midi::player::notify_event_midi_stream_out);
             }
             break;
-            case ::music::midi::sequence::EventMidiPlaybackEnd:
+            case ::music::midi::sequence::e_event_midi_playback_end:
             {
                PostNotifyEvent(::music::midi::player::notify_event_playback_end);
             }
@@ -194,7 +194,7 @@ namespace music
          void sequence_thread::Play(imedia_time tkStart)
          {
             ASSERT(get_sequence() != nullptr);
-            ASSERT(get_sequence()->GetState() == ::music::midi::sequence::state_opened);
+            ASSERT(get_sequence()->GetState() == ::music::midi::sequence::e_state_opened);
 
             PrerollAndWait(tkStart);
             get_sequence()->Start();
@@ -203,7 +203,7 @@ namespace music
          void sequence_thread::Play(double dRate)
          {
             ASSERT(get_sequence() != nullptr);
-            ASSERT(get_sequence()->GetState() == ::music::midi::sequence::state_opened);
+            ASSERT(get_sequence()->GetState() == ::music::midi::sequence::e_state_opened);
 
             PrerollAndWait(dRate);
             get_sequence()->Start();
@@ -357,10 +357,10 @@ namespace music
             case ::music::midi::player::command_stop:
             {
                m_eventStop.ResetEvent();
-               ::estatus                estatus;
+               ::e_status                estatus;
                ::music::midi::sequence::PlayerLink & link = get_sequence()->GetPlayerLink();
                link.SetCommand(spcommand);
-               link.ModifyFlag(::music::midi::sequence::FlagStop, ::music::midi::sequence::FlagNull);
+               link.ModifyFlag(::music::midi::sequence::e_flag_stop, ::music::midi::sequence::e_flag_null);
                if(MMSYSERR_NOERROR != (estatus = get_sequence()->Stop()))
                {
                   __throw(multimedia::exception(multimedia::exception_midi, EMidiPlayerStop));
@@ -369,12 +369,12 @@ namespace music
             break;
             case ::music::midi::player::command_stop_and_restart:
             {
-               ::estatus                estatus;
+               ::e_status                estatus;
                ::music::midi::sequence::PlayerLink & link = get_sequence()->GetPlayerLink();
                link.SetCommand(spcommand);
                link.ModifyFlag(
-               ::music::midi::sequence::FlagStopAndRestart,
-               ::music::midi::sequence::FlagNull);
+               ::music::midi::sequence::e_flag_midi_out_and_restart,
+               ::music::midi::sequence::e_flag_null);
                link.m_tkRestart = get_sequence()->GetPositionTicks();
                if(::success != (estatus = get_sequence()->Stop()))
                {

@@ -37,10 +37,10 @@ namespace uwp
    }
 
 
-   ::estatus buffer::initialize_graphics_graphics(::user::interaction_impl* pimpl)
+   ::e_status buffer::initialize_graphics_graphics(::user::interaction_impl* pimpl)
    {
 
-      ::estatus estatus = ::graphics::bitmap_source_buffer::initialize_graphics_graphics(pimpl);
+      ::e_status estatus = ::graphics::bitmap_source_buffer::initialize_graphics_graphics(pimpl);
 
       if (!estatus)
       {

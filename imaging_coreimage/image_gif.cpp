@@ -22,7 +22,7 @@ namespace coreimage_imaging
 {
 
 
-   ::estatus context_image::_load_image(::image * pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
+   ::e_status context_image::_load_image(::image * pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
    {
 
       if(!pmemory || pmemory->is_empty())

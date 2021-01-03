@@ -38,9 +38,9 @@ namespace music
          //   virtual void pitch_bend(const int value, const int channel) = 0;
             
             
-            virtual ::estatus note_on(int iChannel, unsigned char uchNote, unsigned char uchVelocity) = 0;
-            virtual ::estatus note_off(int iChannel, unsigned char uchNote, unsigned char uchVelocity) = 0;
-            virtual ::estatus program_change(int iChannel, unsigned char uchProgram) = 0;
+            virtual ::e_status note_on(int iChannel, unsigned char uchNote, unsigned char uchVelocity) = 0;
+            virtual ::e_status note_off(int iChannel, unsigned char uchNote, unsigned char uchVelocity) = 0;
+            virtual ::e_status program_change(int iChannel, unsigned char uchProgram) = 0;
             virtual void control_change(int iChannel, unsigned char uchController, unsigned char uchValue) = 0;
             virtual void pitch_bend(int iChannel, unsigned short ushBend) = 0;
             

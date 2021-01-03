@@ -23,7 +23,7 @@
 //   }
 //   
 //   
-//   virtual ::estatus     run(::trait & trait) override
+//   virtual ::e_status     run(::trait & trait) override
 //   {
 //      
 //      return m_pred(trait);

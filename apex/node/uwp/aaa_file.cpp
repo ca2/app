@@ -780,7 +780,7 @@ namespace uwp
    //}
 
 
-   //::estatus WinFileException::ErrnoToException(int nErrno)
+   //::e_status WinFileException::ErrnoToException(int nErrno)
    //{
    //   switch(nErrno)
    //   {
@@ -806,7 +806,7 @@ namespace uwp
    //   }
    //}
 
-   //::estatus WinFileException::OsErrorToException(::i32 lOsErr)
+   //::e_status WinFileException::OsErrorToException(::i32 lOsErr)
    //{
    //   // NT Error codes
    //   switch ((::u32)lOsErr)

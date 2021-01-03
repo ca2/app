@@ -22,28 +22,28 @@ namespace tranquillum
 
 //      m_fontEdit->create_point_font("MS Sans Serif", 9.0);
 
-      //    m_fontList->create_point_font("Segoe UI", 10, e_font_weight_bold);
+      //    m_fontList->create_point_font(os_font_name(e_font_sans_ui), 10, e_font_weight_bold);
 
       //theme_current_control(::user::control_none);
 
       //create_translucency(::user::e_element_none, ::user::e_translucency_none);
 
-      //create_point_font(::user::font_default,"Segoe UI", 12.0);
-      //create_point_font(::user::font_button, "Segoe UI", 12.0, 800);
-      //create_point_font(::user::font_plain_edit, "Segoe UI", 12.0, 800);
-      //create_point_font(::user::font_list_header, "Segoe UI", 12.0, 800);
+      //create_point_font(::user::font_default,os_font_name(e_font_sans_ui), 12.0);
+      //create_point_font(::user::font_button, os_font_name(e_font_sans_ui), 12.0, 800);
+      //create_point_font(::user::font_plain_edit, os_font_name(e_font_sans_ui), 12.0, 800);
+      //create_point_font(::user::font_list_header, os_font_name(e_font_sans_ui), 12.0, 800);
 
-      //create_point_font(::user::font_tab, "Segoe UI", 13.0, 400);
+      //create_point_font(::user::font_tab, os_font_name(e_font_sans_ui), 13.0, 400);
       //{
-      //   auto font = create_point_font(::user::font_tab_hover, "Segoe UI", 13.0, 400);
+      //   auto font = create_point_font(::user::font_tab_hover, os_font_name(e_font_sans_ui), 13.0, 400);
       //   font->m_bUnderline = true;
       //}
-      //create_point_font(::user::font_tab_sel, "Segoe UI", 13.0, 800);
+      //create_point_font(::user::font_tab_sel, os_font_name(e_font_sans_ui), 13.0, 800);
       //{
-      //   auto font = create_point_font(::user::font_tab_sel_hover, "Segoe UI", 13.0, 800);
+      //   auto font = create_point_font(::user::font_tab_sel_hover, os_font_name(e_font_sans_ui), 13.0, 800);
       //   font->m_bUnderline = true;
       //}
-      //create_point_font(::user::font_tab_big_bold, "Segoe UI", 13.0, 800);
+      //create_point_font(::user::font_tab_big_bold, os_font_name(e_font_sans_ui), 13.0, 800);
 
       //create_rect_coord(::user::rect_edit_padding, 0.2, 0.2, 0.2, 0.2);
 
@@ -107,7 +107,7 @@ namespace tranquillum
    }
 
 
-   ::color style::get_color(const ::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate) const
+   ::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (::is_set(pinteraction))

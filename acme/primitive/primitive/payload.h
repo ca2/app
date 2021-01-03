@@ -75,7 +75,7 @@ public:
       class nanos *              m_pnanos;
       class duration             m_duration;
       class duration *           m_pduration;
-      ::estatus                  m_estatus;
+      ::e_status                  m_estatus;
       ::enum_command             m_ecommand;
       ::enum_check               m_echeck;
 
@@ -149,34 +149,34 @@ public:
 
    payload(const block & block)
    {
-      m_etype = type_new;
+      m_etype = e_type_new;
       operator = (block);
    }
 
    template < class T >
    payload(const __pointer(T) & sp)
    {
-      m_etype = type_new;
+      m_etype = e_type_new;
       operator = (sp.m_p);
    }
 
    template < typename BLOCK_TYPE >
    payload(const memory_template < BLOCK_TYPE > & memorytemplate)
    {
-      m_etype = type_new;
+      m_etype = e_type_new;
       operator = (memorytemplate.block());
    }
 
    template < typename ENUM >
    payload(const cflag < ENUM > & eflag)
    {
-      m_etype = type_new;
+      m_etype = e_type_new;
       operator = (eflag);
    }
 
-   payload(const ::estatus & estatus)
+   payload(const ::e_status & estatus)
    {
-      m_etype = type_new;
+      m_etype = e_type_new;
       operator = (estatus.m_estatus);
    }
 
@@ -396,7 +396,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    operator ::u64() const;
    operator float() const;
    operator double() const;
-   operator ::estatus() const;
+   operator ::e_status() const;
    operator class secs() const;
    operator class millis() const;
    operator class micros() const;
@@ -433,7 +433,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    inline operator float & ();
    inline operator double & ();
 
-   inline operator ::estatus & ();
+   inline operator ::e_status & ();
 
    void get_string(char * psz) const;
 
@@ -492,9 +492,9 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
       return operator =(eflag.m_eenum);
    }
 
-   payload & operator |= (cflag < ::file::e_flag > eflag);
+   payload & operator |= (cflag < ::file::enum_flag > eflag);
 
-   payload& operator = (const ::estatus & estatus)
+   payload& operator = (const ::e_status & estatus)
    {
       return operator =(estatus.m_estatus);
    }
@@ -1003,7 +1003,7 @@ inline payload::operator double() const
 
 
 // returns 0.0 for unknown conversions?
-inline payload::operator ::estatus() const
+inline payload::operator ::e_status() const
 {
 
    return estatus();
@@ -1285,7 +1285,7 @@ public:
 
 inline payload __visible(payload varOptions, bool bVisible = true);
 
-inline payload __visible(bool bVisible = true) { return __visible(::type_new, bVisible); }
+inline payload __visible(bool bVisible = true) { return __visible(::e_type_new, bVisible); }
 
 
 

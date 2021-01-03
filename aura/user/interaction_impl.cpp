@@ -54,36 +54,12 @@ namespace user
    }
 
 
-//   ::user::style* interaction_impl::get_style() const
-//   {
-//
-//      if (m_puserstyle)
-//      {
-//
-//         return m_puserstyle;
-//
-//      }
-//
-//      auto& app = Application;
-//
-//      return app.get_user_style();
-//
-//   }
-
-
    void interaction_impl::user_common_construct()
    {
-
 
       m_pinteractionimpl = this;
 
       m_iState1 = 0;
-
-//#if defined(WINDOWS_DESKTOP) && !defined(ENABLE_TEXT_SERVICES_FRAMEWORK)
-//
-//      m_himc = nullptr;
-//
-//#endif
 
       m_uCodePage = 0;
 
@@ -146,7 +122,7 @@ namespace user
 
          ////      }
 
-         ////      m_puserthread->m_peditwnd->on_edit_set_focus(dynamic_cast <::user::interaction * > (get_focus_primitive()));
+         ////      m_puserthread->m_peditwnd->on_edit_set_focus(dynamic_cast <::user::interaction * > (get_keyboard_focus()));
 
          //   });
 
@@ -508,7 +484,7 @@ namespace user
    }
 
 
-   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::interaction * puiParent, id id)
+   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::primitive * puiParent, id id)
    {
 
       if (puiParent == nullptr)
@@ -846,10 +822,7 @@ namespace user
    }
 
 
-
-
-   bool interaction_impl::create_window(::user::interaction * pinteraction, const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, id id, ::create * pcreate)
-
+   bool interaction_impl::create_window(::user::interaction * pinteraction, const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::primitive * puiParent, id id, ::create * pcreate)
    {
 
       // can't use for desktop or pop-up windows (use create_window_ex instead)
@@ -1028,6 +1001,13 @@ namespace user
       {
 
          ::output_debug_string("lbutton_up");
+
+      }
+
+      if(pmouse->m_id == ::e_message_left_button_down)
+      {
+
+         on_configuration_change(m_puserinteraction);
 
       }
 
@@ -2163,7 +2143,7 @@ namespace user
 
 #else
 
-      return (::i32) ::user::primitive_impl::get_window_long(nIndex);
+      return (::i32) get_window_long_ptr(nIndex);
 
 #endif
 
@@ -2179,7 +2159,7 @@ namespace user
 
 #else
 
-      return (::i32) ::user::primitive_impl::set_window_long(nIndex, lValue);
+      return (::i32) set_window_long_ptr(nIndex, lValue);
 
 #endif
 
@@ -3337,7 +3317,8 @@ namespace user
 
             auto puiptraChild = m_puserinteraction->m_puiptraChild;
 
-
+            if(puiptraChild)
+            {
 
             //{
 
@@ -3354,17 +3335,19 @@ namespace user
 
             //}
 
-            for (auto & pinteraction : puiptraChild->interactiona())
-            {
-
-               try
+               for (auto & pinteraction : puiptraChild->interactiona())
                {
 
-                  pinteraction->send_message(e_message_show_window, 0, SW_PARENTCLOSING);
+                  try
+                  {
 
-               }
-               catch (...)
-               {
+                     pinteraction->send_message(e_message_show_window, 0, SW_PARENTCLOSING);
+
+                  }
+                  catch (...)
+                  {
+
+                  }
 
                }
 
@@ -3699,6 +3682,19 @@ namespace user
 
       }
 
+      string strType = m_puserinteraction->type_c_str();
+
+      if(strType.contains_ci("combo_list"))
+      {
+
+         auto edisplay = m_puserinteraction->layout().state(e_layout_design).display();
+
+         bool bGraphicsSet = m_pgraphics.is_set();
+
+         output_debug_string("_001UpdateScreen combo_list");
+
+      }
+
       if (m_pgraphics.is_set() && m_puserinteraction->layout().is_this_screen_visible())
       {
 
@@ -3713,7 +3709,7 @@ namespace user
    }
 
 
-   ::estatus interaction_impl::update_graphics_resources()
+   ::e_status interaction_impl::update_graphics_resources()
    {
 
       single_lock sl(mutex());
@@ -3743,8 +3739,8 @@ namespace user
 
    }
 
-   
-   ::estatus interaction_impl::main_async(const ::promise::routine & routine, e_priority epriority)
+
+   ::e_status interaction_impl::main_async(const ::promise::routine & routine, e_priority epriority)
    {
 
       return ::error_interface_only;
@@ -3826,7 +3822,7 @@ namespace user
    }
 
 
-   ::estatus interaction_impl::set_finish(::context_object * pcontextobjectFinish)
+   ::e_status interaction_impl::set_finish(::context_object * pcontextobjectFinish)
    {
 
       if(!m_bitFinishing)
@@ -4008,7 +4004,7 @@ namespace user
    }
 
 
-   ::user::primitive * interaction_impl::get_focus_primitive()
+   ::user::primitive * interaction_impl::get_keyboard_focus()
    {
 
       return m_pprimitiveFocus;
@@ -4140,65 +4136,72 @@ namespace user
    }
 
 
-   bool interaction_impl::impl_set_focus_primitive(::user::primitive * pprimitiveFocusNew, bool bNotify)
+   ::e_status interaction_impl::impl_set_keyboard_focus(::user::primitive * pprimitiveFocusNew)
    {
 
       ::user::primitive * pprimitiveFocusOld = m_pprimitiveFocus;
 
-      if(pprimitiveFocusOld == pprimitiveFocusNew
-         && (pprimitiveFocusNew == nullptr
-            || pprimitiveFocusNew->m_bFocus))
+      if(pprimitiveFocusOld == pprimitiveFocusNew)
       {
 
          return true;
 
       }
 
-      m_pprimitiveFocus = pprimitiveFocusNew;
+      auto oswindow = m_oswindow;
 
-      if (bNotify)
+      if (!::set_focus(oswindow))
       {
 
-         try
+         return false;
+
+      }
+
+      m_pprimitiveFocus = pprimitiveFocusNew;
+
+      try
+      {
+
+         if (::is_set(pprimitiveFocusOld))
          {
 
-            if (::is_set(pprimitiveFocusOld))
+            if(pprimitiveFocusOld->m_bFocus)
             {
 
-               if(pprimitiveFocusOld->m_bFocus)
-               {
-
-                  pprimitiveFocusOld->send_message(e_message_kill_focus);
-
-               }
-
-               pprimitiveFocusOld->set_need_redraw();
+               pprimitiveFocusOld->send_message(e_message_kill_focus);
 
             }
 
-         }
-         catch (...)
-         {
+            pprimitiveFocusOld->set_need_redraw();
 
          }
 
-         try
+      }
+      catch (...)
+      {
+
+      }
+
+      try
+      {
+
+         if (::is_set(pprimitiveFocusNew))
          {
 
-            if (::is_set(pprimitiveFocusNew))
+            if (!pprimitiveFocusNew->m_bFocus)
             {
 
                pprimitiveFocusNew->send_message(e_message_set_focus);
 
-               pprimitiveFocusNew->set_need_redraw();
-
             }
 
-         }
-         catch (...)
-         {
+            pprimitiveFocusNew->set_need_redraw();
 
          }
+
+      }
+      catch (...)
+      {
 
       }
 
@@ -4207,56 +4210,200 @@ namespace user
    }
 
 
-   bool interaction_impl::set_focus_primitive(::user::primitive * pprimitive)
+   ::e_status interaction_impl::impl_remove_keyboard_focus(::user::primitive * pprimitiveFocusRemove)
    {
 
-      if(pprimitive == nullptr)
+      if (::is_null(pprimitiveFocusRemove))
       {
-
-         bool bXXXNotify = has_focus();
-
-         impl_set_focus_primitive(pprimitive, bXXXNotify);
-
-         return true;
-
-      }
-
-      if(pprimitive == m_puserinteraction || pprimitive == this)
-      {
-
-         bool bXXXNotify = has_focus();
-
-         impl_set_focus_primitive(pprimitive, bXXXNotify);
-
-         return true;
-
-      }
-
-      ::user::interaction * pinteraction = pprimitive->get_host_wnd();
-
-      if (pinteraction == nullptr)
-      {
-
-         ASSERT(FALSE);
 
          return false;
 
       }
 
-      if(m_puserinteraction->is_ascendant_of(pinteraction, true))
+      ::user::primitive * pprimitiveFocusKillFocus = m_pprimitiveFocus;
+
+      if (pprimitiveFocusKillFocus != pprimitiveFocusRemove)
       {
 
-         bool bXXXNotify = has_focus();
+         return false;
 
-         impl_set_focus_primitive(pprimitive, bXXXNotify);
+      }
+
+      m_pprimitiveFocus = nullptr;
+
+      try
+      {
+
+         if (::is_set(pprimitiveFocusKillFocus))
+         {
+
+            if (pprimitiveFocusKillFocus->m_bFocus)
+            {
+
+               pprimitiveFocusKillFocus->send_message(e_message_kill_focus);
+
+            }
+
+            pprimitiveFocusKillFocus->set_need_redraw();
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      return true;
+
+   }
+
+
+   ::e_status interaction_impl::impl_clear_keyboard_focus()
+   {
+
+      ::user::primitive * pprimitiveFocusKillFocus = m_pprimitiveFocus;
+
+      m_pprimitiveFocus = nullptr;
+
+      try
+      {
+
+         if (::is_set(pprimitiveFocusKillFocus))
+         {
+
+            if (pprimitiveFocusKillFocus->m_bFocus)
+            {
+
+               pprimitiveFocusKillFocus->send_message(e_message_kill_focus);
+
+            }
+
+            pprimitiveFocusKillFocus->set_need_redraw();
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
+
+      return true;
+
+   }
+
+
+   ::e_status interaction_impl::set_keyboard_focus(::user::primitive * pprimitive)
+   {
+
+      if(::is_null(pprimitive))
+      {
+
+         impl_clear_keyboard_focus();
 
          return true;
 
       }
 
-      //__throw(invalid_argument_exception("Focus of a window implementation should be set nullptr, to itself or to a descendant window"));
+      auto pinteraction = m_puserinteraction;
 
-      ASSERT(FALSE);
+      if (::is_null(pinteraction))
+      {
+
+         return false;
+
+      }
+
+      if (!pinteraction->is_ascendant_of(pprimitive, true))
+      {
+
+         return false;
+
+      }
+
+      impl_set_keyboard_focus(pprimitive);
+
+      return true;
+
+   }
+
+
+   ::e_status interaction_impl::remove_keyboard_focus(::user::primitive * pprimitive)
+   {
+
+      if (pprimitive == nullptr)
+      {
+
+         impl_remove_keyboard_focus(pprimitive);
+
+         return true;
+
+      }
+
+      if (pprimitive == m_puserinteraction || pprimitive == this)
+      {
+
+         impl_remove_keyboard_focus(pprimitive);
+
+         return true;
+
+      }
+
+      ::user::interaction * pinteraction = pprimitive->get_host_window();
+
+      if (pinteraction == nullptr)
+      {
+
+         return false;
+
+      }
+
+      if (!m_puserinteraction->is_ascendant_of(pinteraction, true))
+      {
+
+         return false;
+
+      }
+
+      impl_remove_keyboard_focus(pprimitive);
+
+      return true;
+
+   }
+
+
+   ::e_status interaction_impl::clear_keyboard_focus()
+   {
+
+      auto puserinteraction = m_puserinteraction;
+
+      if (::is_null(puserinteraction))
+      {
+
+         return false;
+
+      }
+
+      ::user::interaction * pinteractionHost = puserinteraction->get_host_window();
+
+      if (::is_null(pinteractionHost))
+      {
+
+         return false;
+
+      }
+
+      auto pimplHost = pinteractionHost->m_pimpl;
+
+      if (::is_null(pimplHost))
+      {
+
+         return false;
+
+      }
+
+      pimplHost->impl_clear_keyboard_focus();
 
       return false;
 
@@ -4742,11 +4889,45 @@ namespace user
 
    }
 
+
    void interaction_impl::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
 
    }
+
+
+   void interaction_impl::on_start_layout_experience(enum_layout_experience elayoutexperience)
+   {
+
+      on_configuration_change(m_puserinteraction);
+
+   }
+
+
+   void interaction_impl::on_configuration_change(::user::primitive * pprimitiveSource)
+   {
+
+      sync_lock sl(mutex());
+
+      for(auto & puserinteraction : m_userinteractionaHideOnConfigurationChange.m_interactiona)
+      {
+
+         if(puserinteraction->is_window_screen_visible())
+         {
+
+            puserinteraction->hide();
+
+            puserinteraction->set_need_redraw();
+
+            puserinteraction->post_redraw();
+
+         }
+
+      }
+
+   }
+
 
    void interaction_impl::window_show_change_visibility(::e_display edisplay, ::e_activation eactivation)
    {
@@ -5054,8 +5235,18 @@ namespace user
    }
 
 
-   void interaction_impl::show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd)
+   ::e_status interaction_impl::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
    {
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status interaction_impl::hide_software_keyboard(::user::primitive * pprimitive)
+   {
+
+      return error_interface_only;
 
    }
 

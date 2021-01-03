@@ -57,7 +57,7 @@ namespace ftp
    }
 
    
-   ::estatus file_status::initialize(::layered * pobjectContext)
+   ::e_status file_status::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

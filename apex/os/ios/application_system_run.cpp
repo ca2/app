@@ -18,10 +18,10 @@
 
 
 
-//::estatus os_application_system_run(::apex::system * psystem)
+//::e_status os_application_system_run(::apex::system * psystem)
 //{
 //
-//   ::estatus estatus = psystem->begin_synch();
+//   ::e_status estatus = psystem->begin_synch();
 //
 //   if(!estatus)
 //   {

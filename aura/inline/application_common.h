@@ -59,9 +59,9 @@ const char* br_init_get_symbol();
 #endif
 
 
-//fCLASS_DECL_AURA ::estatus os_application_system_run(::apex::system* psystem);
+//fCLASS_DECL_AURA ::e_status os_application_system_run(::apex::system* psystem);
 
-CLASS_DECL_APEX ::estatus set_main_app_id(const char * pszAppId);
+CLASS_DECL_APEX ::e_status set_main_app_id(const char * pszAppId);
 
 
 void application_common(::apex::system * psystem)

@@ -21,9 +21,9 @@ namespace datetime
       value();
       ~value();
 
-      // ano gregoriano m�dio de 365,2425 dias solares
+      // ano gregoriano mdio de 365,2425 dias solares
       double get_years() const;
-      // baseado no ano gregoriano m�dio de 365,2425 dias solares * 12.0
+      // baseado no ano gregoriano mdio de 365,2425 dias solares * 12.0
       double get_months() const;
       double get_days() const;
       double get_hours() const;

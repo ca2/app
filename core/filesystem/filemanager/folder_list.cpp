@@ -64,7 +64,7 @@ namespace filemanager
 
          filemanager_document()->on_file_manager_open_folder(__new(::file::item(
                Context.defer_process_path(m_foldera.GetFolder((::index)iItem).m_strFolderPath),
-               m_foldera.GetFolder((::index) iItem).m_strFolderPath)), ::source_user);
+               m_foldera.GetFolder((::index) iItem).m_strFolderPath)), ::e_source_user);
 
       }
 

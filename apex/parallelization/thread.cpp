@@ -388,7 +388,7 @@ void thread::term_thread()
 }
 
 
-::estatus thread::osthread_term()
+::e_status thread::osthread_term()
 {
 
    ::task::osthread_term();
@@ -431,7 +431,7 @@ void thread::term_thread()
 
    ::__term_thread();
 
-   ::estatus estatus = m_result.m_estatus;
+   ::e_status estatus = m_result.m_estatus;
 
    return estatus;
 
@@ -545,7 +545,7 @@ bool thread::thread_step()
 }
 
 
-::estatus thread::thread_loop()
+::e_status thread::thread_loop()
 {
 
    while (true)
@@ -653,7 +653,7 @@ bool thread::thread_step()
 }
 
 
-::estatus thread::run()
+::e_status thread::run()
 {
 
    ASSERT_VALID(this);
@@ -1242,7 +1242,7 @@ bool thread::defer_pump_message()
 }
 
 
-::estatus thread::on_thread_on_idle(thread *pimpl, ::i32 lCount)
+::e_status thread::on_thread_on_idle(thread *pimpl, ::i32 lCount)
 {
 
    return ::success;
@@ -1754,7 +1754,7 @@ bool thread::is_system() const
 u32 __thread_entry(void * p);
 
 
-::estatus thread::initialize(::layered * pobjectContext)
+::e_status thread::initialize(::layered * pobjectContext)
 {
 
    auto estatus = ::channel::initialize(pobjectContext);
@@ -1787,16 +1787,16 @@ u32 __thread_entry(void * p);
 }
 
 
-::estatus thread::do_task()
+::e_status thread::do_task()
 {
 
    ::u32 u = -1;
 
-   ::estatus estatus = error_failed;
+   ::e_status estatus = error_failed;
 
-   ::estatus estatusOs = error_failed;
+   ::e_status estatusOs = error_failed;
 
-   ::estatus estatusStart = error_failed;
+   ::e_status estatusStart = error_failed;
 
    {
 
@@ -1870,7 +1870,7 @@ u32 __thread_entry(void * p);
 
 
 
-::estatus thread::init_thread()
+::e_status thread::init_thread()
 {
 
    if (get_context_application() && get_context_application() != this)
@@ -1950,7 +1950,7 @@ u32 __thread_entry(void * p);
 }
 
 
-::estatus thread::on_pre_run_thread()
+::e_status thread::on_pre_run_thread()
 {
 
    return true;
@@ -2353,7 +2353,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, ::u
 
       m_pevent->wait();
 
-      ::estatus estatus = get_result_status();
+      ::e_status estatus = get_result_status();
 
       if (failed(estatus))
       {
@@ -2409,12 +2409,12 @@ bool thread::begin_synch(::e_priority epriority, ::u32 nStackSize, u32 uiCreateF
 }
 
 
-::estatus thread::inline_init()
+::e_status thread::inline_init()
 {
 
    set_current_handles();
 
-   ::estatus estatus = __thread_init();
+   ::e_status estatus = __thread_init();
 
    if (!estatus)
    {
@@ -2428,10 +2428,10 @@ bool thread::begin_synch(::e_priority epriority, ::u32 nStackSize, u32 uiCreateF
 }
 
 
-::estatus thread::inline_term()
+::e_status thread::inline_term()
 {
 
-   ::estatus estatus = ::error_none;
+   ::e_status estatus = ::error_none;
 
    try
    {
@@ -2594,7 +2594,7 @@ void thread::__os_finalize()
 //}
 
 
-::estatus thread::osthread_init()
+::e_status thread::osthread_init()
 {
 
    set_current_handles();
@@ -2783,7 +2783,7 @@ void thread::__set_thread_off()
 }
 
 
-::estatus thread::__thread_main()
+::e_status thread::__thread_main()
 {
 
    if (m_pevStarted.is_set())
@@ -3139,7 +3139,7 @@ bool thread::send_message(const ::id & id, WPARAM wParam, lparam lParam, ::durat
 //}
 
 
-::estatus thread::__thread_init()
+::e_status thread::__thread_init()
 {
 
    m_result = on_thread_init();
@@ -3156,7 +3156,7 @@ bool thread::send_message(const ::id & id, WPARAM wParam, lparam lParam, ::durat
 }
 
 
-::estatus thread::on_thread_init()
+::e_status thread::on_thread_init()
 {
 
    init_task();
@@ -3238,7 +3238,7 @@ error:;
 }
 
 
-::estatus thread::main()
+::e_status thread::main()
 {
 
    string strType = type_name();
@@ -3263,7 +3263,7 @@ error:;
    }
 
    // first -- check for simple worker thread
-   ::estatus estatus = ::success;
+   ::e_status estatus = ::success;
 
    // else check for thread with message loop
    ASSERT_VALID(this);
@@ -3409,7 +3409,7 @@ int_bool thread::peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilte
 }
 
 
-::estatus thread::set_finish(::context_object * pcontextobjectFinish)
+::e_status thread::set_finish(::context_object * pcontextobjectFinish)
 {
 
    auto estatus = channel::set_finish(pcontextobjectFinish);
@@ -3620,7 +3620,7 @@ int_bool thread::peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilte
 }
 
 
-::estatus thread::set_finish_composites(::context_object * pcontextobjectFinish)
+::e_status thread::set_finish_composites(::context_object * pcontextobjectFinish)
 {
 
    auto estatus = channel::set_finish_composites(pcontextobjectFinish);
@@ -3829,7 +3829,7 @@ void thread::dump(dump_context & dumpcontext) const
 }
 
 
-::estatus thread::__thread_term()
+::e_status thread::__thread_term()
 {
 
    return on_thread_term();
@@ -3837,7 +3837,7 @@ void thread::dump(dump_context & dumpcontext) const
 }
 
 
-::estatus thread::on_thread_term()
+::e_status thread::on_thread_term()
 {
 
    {
@@ -3975,7 +3975,7 @@ void thread::message_handler(::message::base * pbase)
 }
 
 
-::estatus thread::process_message()
+::e_status thread::process_message()
 {
 
    try
@@ -4130,7 +4130,7 @@ void thread::message_handler(::message::base * pbase)
 }
 
 
-::estatus thread::process_base_message(::message::base * pbase)
+::e_status thread::process_base_message(::message::base * pbase)
 {
 
    message_handler(pbase);
@@ -4140,7 +4140,7 @@ void thread::message_handler(::message::base * pbase)
 }
 
 
-::estatus thread::raw_process_message()
+::e_status thread::raw_process_message()
 {
 
    try
@@ -4192,7 +4192,7 @@ bool thread::set_thread_priority(::e_priority epriority)
    if (!bOk)
    {
 
-      estatus estatus = ::get_last_status();
+      ::e_status estatus = ::get_last_status();
 
       output_debug_string("thread::SetThreadPriority LastError = " + __str(estatus));
 
@@ -4368,7 +4368,7 @@ bool thread::kick_thread()
 //}
 
 
-::estatus thread::verb()
+::e_status thread::verb()
 {
 
    return success;
@@ -4376,7 +4376,7 @@ bool thread::kick_thread()
 }
 
 
-::estatus thread::do_request(::create * pcreate)
+::e_status thread::do_request(::create * pcreate)
 {
 
    post_object(e_message_system, e_system_message_create, pcreate);
@@ -4656,7 +4656,7 @@ CLASS_DECL_APEX bool app_sleep(millis millis)
 }
 
 
-::estatus     thread::get_result_status()
+::e_status     thread::get_result_status()
 {
 
    return m_result.status();
@@ -4755,7 +4755,7 @@ bool thread::is_running() const
 }
 
 
-::estatus thread::start(
+::e_status thread::start(
    ::matter * pmatter,
    ::e_priority epriority,
    u32 nStackSize,

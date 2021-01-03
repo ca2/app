@@ -134,6 +134,7 @@ CLASS_DECL_ACME string file_get_mozilla_firefox_plugin_container_path();
 CLASS_DECL_ACME memory file_as_memory(const char * path, strsize iReadAtMostByteCount = -1);
 CLASS_DECL_ACME memsize file_as_memory(const char * path, void * p, memsize s);
 CLASS_DECL_ACME string file_as_string(const char * path, strsize iReadAtMostByteCount = -1);
+CLASS_DECL_ACME string_array file_as_lines(const char * path, strsize iReadAtMostByteCount = -1);
 CLASS_DECL_ACME string file_line_dup(const char * path, index iLine);
 CLASS_DECL_ACME bool file_set_line_dup(const char * path, index iLine, const char * pszLine);
 CLASS_DECL_ACME string file_extension_dup(const char * path);

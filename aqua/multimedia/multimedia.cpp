@@ -1,5 +1,7 @@
 #include "framework.h"
-
+#ifdef WINDOWS
+#include "aqua/node/windows/_windows.h"
+#endif
 
 
 namespace aqua
@@ -8,6 +10,9 @@ namespace aqua
 
    multimedia::multimedia()
    {
+
+
+
 
 
    }
@@ -19,8 +24,8 @@ namespace aqua
 
    }
 
-   
-   ::estatus multimedia::initialize_multimedia(::object* pobjectContext)
+
+   ::e_status multimedia::initialize_multimedia(::object* pobjectContext)
    {
 
       auto estatus = initialize(pobjectContext);
@@ -31,7 +36,20 @@ namespace aqua
          return estatus;
 
       }
-      
+
+#ifdef WINDOWS
+
+      estatus = __compose(m_pmediafoundation);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+#endif
+
       return estatus;
 
    }
@@ -50,7 +68,7 @@ namespace aqua
 
    }
 
-   
+
    void multimedia::on_decoder_fill_title_info(::multimedia::decoder * pdecoder, string_array & straTitle, string2a & str2aTitle)
    {
 
@@ -90,8 +108,8 @@ namespace aqua
 
    }
 
-   
-   ::estatus multimedia::get_file_information(::file::file* pfile, ::multimedia::information& information)
+
+   ::e_status multimedia::get_file_information(::file::file* pfile, ::multimedia::information& information)
    {
 
       /*
@@ -109,6 +127,34 @@ namespace aqua
       return ::error_failed;
 
    }
+
+
+#ifdef WINDOWS
+
+
+   ::windows::media_foundation * multimedia::mediafoundation()
+   {
+
+      if (!m_pmediafoundation)
+      {
+
+         auto estatus = __compose(m_pmediafoundation);
+
+         if (!estatus)
+         {
+
+            return nullptr;
+
+         }
+
+      }
+
+      return m_pmediafoundation;
+
+   }
+
+
+#endif
 
 
 } // namespace aqua

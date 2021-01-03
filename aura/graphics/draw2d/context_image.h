@@ -14,10 +14,10 @@ public:
    virtual ~context_image();
 
 
-   virtual ::estatus initialize(::layered * pobjectContext) override;
+   virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
-   virtual ::estatus set_finish_composites(::context_object * pcontextobjectFinish) override;
+   virtual ::e_status set_finish_composites(::context_object * pcontextobjectFinish) override;
 
 
    virtual ::image_result get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
@@ -32,21 +32,21 @@ public:
    //virtual ::icon_result load_icon(const ::payload & varFile);
 
 
-   virtual ::estatus _get_image(image * pimage, const ::payload & varFile, bool bSync = true);
-   virtual ::estatus _matter_image(image * pimage, const string & strMatter, bool bSync = true);
+   virtual ::e_status _get_image(image * pimage, const ::payload & varFile, bool bSync = true);
+   virtual ::e_status _matter_image(image * pimage, const string & strMatter, bool bSync = true);
 
 
-   virtual ::estatus _load_image(image * pimage, const ::payload & varFile, bool bSync = true, bool bCreateHelperMaps = false);
-   virtual ::estatus _load_matter_image(image * pimage, const string & pszMatter, bool bSync = true, bool bCreateHelperMaps = false);
-   virtual ::estatus _load_matter_icon(image * pimage, string_array & straMatter, string strIcon);
-   virtual ::estatus _load_thumbnail(image * pimage, const ::payload & varFile, int w, int h);
-   virtual ::estatus _load_thumbnail(image * pimage, const ::payload & varFile);
-   virtual ::estatus _load_dib(image * pimage, const ::file::path & pathDib);
+   virtual ::e_status _load_image(image * pimage, const ::payload & varFile, bool bSync = true, bool bCreateHelperMaps = false);
+   virtual ::e_status _load_matter_image(image * pimage, const string & pszMatter, bool bSync = true, bool bCreateHelperMaps = false);
+   virtual ::e_status _load_matter_icon(image * pimage, string_array & straMatter, string strIcon);
+   virtual ::e_status _load_thumbnail(image * pimage, const ::payload & varFile, int w, int h);
+   virtual ::e_status _load_thumbnail(image * pimage, const ::payload & varFile);
+   virtual ::e_status _load_dib(image * pimage, const ::file::path & pathDib);
 
 
-   virtual ::estatus save_image(const ::payload & varFile, const image * pimage, const ::save_image * psaveimage = nullptr);
-   virtual ::estatus save_image(memory & memory, const image * pimage, const ::save_image * psaveimage = nullptr);
-   virtual ::estatus save_dib(const ::file::path & path, const image * pimage);
+   virtual ::e_status save_image(const ::payload & varFile, const image * pimage, const ::save_image * psaveimage = nullptr);
+   virtual ::e_status save_image(memory & memory, const image * pimage, const ::save_image * psaveimage = nullptr);
+   virtual ::e_status save_dib(const ::file::path & path, const image * pimage);
 
    
    virtual HCURSOR CreateAlphaCursor(oswindow oswindow, const image * pimage, int xHotSpot, int yHotSpot);
@@ -54,15 +54,15 @@ public:
 
 
    virtual ::image_result _load_image_from_file(const ::payload & varFile, const payload & varOptions);
-   virtual ::estatus _save_to_file(const ::payload & varFile, const image * pimage, const payload & varOptions);
+   virtual ::e_status _save_to_file(const ::payload & varFile, const image * pimage, const payload & varOptions);
    
-   virtual ::estatus _load_image(::image* pimage, __pointer(image_frame_array)& pframea, ::memory_pointer pmemory);
+   virtual ::e_status _load_image(::image* pimage, __pointer(image_frame_array)& pframea, ::memory_pointer pmemory);
    
-   virtual ::estatus load_cursor(::draw2d::cursor* pcursor, ::file::path path, bool bSync, bool bCache = true);
+   virtual ::e_status load_cursor(::draw2d::cursor* pcursor, ::file::path path, bool bSync, bool bCache = true);
 
    virtual bool _load_multi_frame_image(::image* pimage, memory_pointer pmemory);
 
-   virtual ::estatus load_svg(::image* pimage, ::memory_pointer pmemory);
+   virtual ::e_status load_svg(::image* pimage, ::memory_pointer pmemory);
 
 #ifdef _UWP
    virtual bool _desk_to_image(::image* pimage);

@@ -183,13 +183,17 @@ namespace draw2d
    {
    public:
 
-
-      string                  m_strFile;
+      // 100 Ultra Light
+      // 101 Ultra Light Italic
+      // 200 Light
+      // 201 Light Italic
+      int_to_string           m_mapFileName;
       string                  m_strName;
 #ifdef WINDOWS
       wstring                 m_wstrName;
 #endif
       char_set_array          m_echarseta;
+      
 
 
       font_enum_item();
@@ -219,15 +223,17 @@ namespace draw2d
          //if (iCompare > 0)
          // return false;
 
-         return m_strFile.compare(item.m_strFile);
+         //return m_strFile.compare(item.m_strFile);
+         return false;
 
       }
 
       bool operator == (const font_enum_item& item) const
       {
 
-         return m_strFile == item.m_strFile
-            && m_strName == item.m_strName;
+         return //m_strFile == item.m_strFile
+             m_strName == item.m_strName;
+//            && m_strName == item.m_strName;
          //                   && m_echarset == item.m_echarset;
 
       }

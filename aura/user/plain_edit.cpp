@@ -168,6 +168,8 @@ namespace user
 
       m_bCaretVisible = false;
 
+      m_iInputConnectionBatch = 0;
+
       //is_text_composition_active() = false;
 
       //m_bImeCancelling = false;
@@ -299,7 +301,7 @@ namespace user
 
          ::draw2d::graphics_pointer pgraphics = ::draw2d::create_memory_graphics();
 
-         plain_edit_on_update(pgraphics, ::source_sync);
+         plain_edit_on_update(pgraphics, ::e_source_sync);
 
          m_bCalcLayoutHintNoTextChange = false;
 
@@ -326,7 +328,7 @@ namespace user
    void plain_edit::VirtualOnSize(::draw2d::graphics_pointer& pgraphics)
    {
 
-      plain_edit_on_update(pgraphics, ::source_system);
+      plain_edit_on_update(pgraphics, ::e_source_system);
 
       m_bCalcLayoutHintNoTextChange = true;
 
@@ -371,10 +373,31 @@ namespace user
 
       pgraphics->fill_rect(rectClient, crEditBackground);
 
+      bool bComposing = ::is_set(m_pitemComposing);
+
+      strsize iComposeBeg = -1;
+
+      strsize iComposeEnd = -1;
+
+      if (bComposing)
+      {
+
+         iComposeBeg = m_pitemComposing->m_position;
+
+         iComposeEnd = m_pitemComposing->m_position + m_pitemComposing->get_extent();
+
+      }
+
       cr = get_color(pstyle, e_element_text);
       crBk = get_color(pstyle, e_element_background);
       crSel = get_color(pstyle, e_element_text, e_state_selected);
       crBkSel = get_color(pstyle, e_element_background, e_state_selected);
+
+      color colorComposeBk;
+
+      colorComposeBk = crBk;
+      colorComposeBk.blend(crBkSel, 0.5);
+      colorComposeBk.m_iA = 127;
 
       m_pinternal->update(pgraphics, this);
 
@@ -551,6 +574,10 @@ namespace user
 
             string_array stra;
 
+            strsize iCurLineComposeBeg = iComposeBeg - lim;
+
+            strsize iCurLineComposeEnd = iComposeEnd - lim;
+
             strsize iCurLineSelBeg = iSelBeg - lim;
 
             strsize iCurLineSelEnd = iSelEnd - lim;
@@ -570,6 +597,19 @@ namespace user
 
             }
 
+            if (iCurLineComposeBeg < 0)
+            {
+
+               iCurLineComposeBeg = 0;
+
+            }
+            else if (iCurLineComposeBeg >= strLineGraphics.length())
+            {
+
+               iCurLineComposeBeg = strLineGraphics.length();
+
+            }
+
             if (iCurLineSelEnd < 0)
             {
 
@@ -580,6 +620,19 @@ namespace user
             {
 
                iCurLineSelEnd = strLineGraphics.length();
+
+            }
+
+            if (iCurLineComposeEnd < 0)
+            {
+
+               iCurLineComposeEnd = 0;
+
+            }
+            else if (iCurLineComposeEnd >= strLineGraphics.length())
+            {
+
+               iCurLineComposeEnd = strLineGraphics.length();
 
             }
 
@@ -595,6 +648,19 @@ namespace user
             double x1 = plain_edit_get_line_extent(pgraphics, iLine, iCurLineSelBeg);
 
             double x2 = plain_edit_get_line_extent(pgraphics, iLine, iCurLineSelEnd);
+
+            double compose1 = 0.0;
+
+            double compose2 = 0.0;
+
+            if (bComposing)
+            {
+
+               compose1 = plain_edit_get_line_extent(pgraphics, iLine, iCurLineComposeBeg);
+
+               compose2 = plain_edit_get_line_extent(pgraphics, iLine, iCurLineComposeEnd);
+
+            }
 
             if (m_bPassword)
             {
@@ -616,6 +682,21 @@ namespace user
                pgraphics->set(brushTextSel);
 
             }
+
+            if (bComposing && iCurLineComposeEnd > iCurLineComposeBeg)
+            {
+
+               pgraphics->fill_solid_rect_dim(
+                  (double)((double)left + compose1),
+                  (double)y,
+                  (double)min(compose2 - compose1, (double)rectClient.right - ((double)left + compose1)),
+                  (double)min((double)m_dLineHeight, (double)rectClient.bottom - y),
+                  colorComposeBk);
+
+               pgraphics->set(brushTextSel);
+
+            }
+
 
             if(bOverride)
             {
@@ -785,9 +866,9 @@ namespace user
 
          auto pgraphics = ::draw2d::create_memory_graphics();
 
-         plain_edit_on_set_text(pgraphics, ::source_system);
+         plain_edit_on_set_text(pgraphics, ::e_source_system);
 
-         plain_edit_on_update(pgraphics, ::source_system);
+         plain_edit_on_update(pgraphics, ::e_source_system);
 
       }
 
@@ -798,7 +879,7 @@ namespace user
       if(m_ppropertyText && !m_ppropertyText->is_empty())
       {
 
-         _001SetText(m_ppropertyText->get_string(), ::source_initialize);
+         _001SetText(m_ppropertyText->get_string(), ::e_source_initialize);
 
       }
 
@@ -843,9 +924,9 @@ namespace user
 
       set_need_redraw();
 
-      auto psession = Session;
+      set_keyboard_focus();
 
-      psession->set_keyboard_focus(this);
+      auto psession = Session;
 
       psession->user()->set_mouse_focus_RButtonDown(this);
 
@@ -898,14 +979,11 @@ namespace user
    }
 
 
-
-
-
    void plain_edit::_001OnSetCursor(::message::message * pmessage)
    {
-      //pmouse->m_ecursor = cursor_arrow;
 
       pmessage->previous();
+
    }
 
 
@@ -995,7 +1073,7 @@ namespace user
    }
 
 
-   ::rectd plain_edit::get_margin(style * pstyle, enum_element eelement, estate estate) const
+   ::rectd plain_edit::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
        return ::user::interaction::get_margin(pstyle, eelement, estate);
@@ -1022,7 +1100,7 @@ namespace user
 
          ev.m_pmessage = pmessage;
 
-         ev.m_actioncontext = ::source_user;
+         ev.m_actioncontext = ::e_source_user;
 
          on_control_event(&ev);
 
@@ -1062,7 +1140,7 @@ namespace user
 
             ev.m_eevent = ::user::e_event_enter_key;
 
-            ev.m_actioncontext = ::source_user;
+            ev.m_actioncontext = ::e_source_user;
 
             on_control_event(&ev);
 
@@ -1105,7 +1183,7 @@ namespace user
 
             ev.m_eevent = ::user::e_event_tab_key;
 
-            ev.m_actioncontext = ::source_user;
+            ev.m_actioncontext = ::e_source_user;
 
             on_control_event(&ev);
 
@@ -1140,7 +1218,7 @@ namespace user
 
          ev.m_eevent = ::user::e_event_escape;
 
-         ev.m_actioncontext = ::source_user;
+         ev.m_actioncontext = ::e_source_user;
 
          on_control_event(&ev);
 
@@ -1190,7 +1268,13 @@ namespace user
             if (is_window_enabled())
             {
 
-               clipboard_paste();
+               fork([this]()
+                    {
+
+                       clipboard_paste();
+
+                    });
+
 
             }
 
@@ -1586,7 +1670,7 @@ namespace user
    }
 
 
-   void plain_edit::_001SetSel(strsize iBeg, strsize iEnd)
+   void plain_edit::_001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context)
    {
 
       sync_lock sl(mutex());
@@ -1596,6 +1680,42 @@ namespace user
       m_ptree->m_iSelEnd = iEnd;
 
       m_bNewSel = true;
+
+#ifdef ANDROID
+
+      if (action_context.is_user_source())
+      {
+
+         string strText;
+
+         _001GetText(strText);
+
+         oslocal()->m_iInputMethodManagerSelectionStart = ansi_to_wd16_len(strText, iBeg);
+
+         oslocal()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, iEnd);
+
+         if (m_pitemComposing)
+         {
+
+            oslocal()->m_iInputMethodManagerCandidateStart = ansi_to_wd16_len(strText, m_pitemComposing->m_position);
+
+            oslocal()->m_iInputMethodManagerSelectionEnd = ansi_to_wd16_len(strText, m_pitemComposing->m_position + m_pitemComposing->get_extent());
+
+         }
+         else
+         {
+
+            oslocal()->m_iInputMethodManagerCandidateStart = oslocal()->m_iInputMethodManagerSelectionEnd;
+
+            oslocal()->m_iInputMethodManagerCandidateEnd = oslocal()->m_iInputMethodManagerSelectionEnd;
+
+         }
+
+         oslocal()->m_bInputMethodManagerUpdateSelection = true;
+
+      }
+
+#endif
 
    }
 
@@ -1788,7 +1908,7 @@ namespace user
 
             auto iSelBeg = plain_edit_char_hit_test(pgraphics, point.x, point.y);
 
-            auto iSelEnd = m_ptree->m_iSelBeg;
+            auto iSelEnd = iSelBeg;
 
             _001SetSel(iSelBeg, iSelEnd);
 
@@ -1805,12 +1925,6 @@ namespace user
          pmouse->previous();
 
          set_need_redraw();
-
-         auto psession = Session;
-
-         psession->set_keyboard_focus(this);
-
-         psession->user()->set_mouse_focus_LButtonDown(this);
 
          pmouse->m_bRet = true;
 
@@ -4998,29 +5112,120 @@ finished_update:
 
    }
 
+   
+   void plain_edit::InputConnectionBeginBatchEdit()
+   {
+
+      sync_lock sl(mutex());
+
+      MacroBegin();
+
+      m_iInputConnectionBatch++;
+
+   }
+
+
+   void plain_edit::InputConnectionEndBatchEdit()
+   {
+
+      sync_lock sl(mutex());
+
+      MacroEnd();
+
+      m_iInputConnectionBatch--;
+
+   }
+
+
+
+   void plain_edit::InputConnectionCommitText(const string & strText, strsize iNewCursorPosition)
+   {
+
+      InputConnectionSetComposingText(strText, iNewCursorPosition);
+
+      InputConnectionFinishComposingText();
+
+   }
+
 
    void plain_edit::InputConnectionSetComposingText(const string & strText, strsize iNewCursorPosition)
    {
 
-      if (m_pitemComposing
+      bool bAlreadyComposing = m_pitemComposing
          && !strText.contains('\r')
-         && !strText.contains('\n'))
+         && !strText.contains('\n');
+
+      if (bAlreadyComposing)
       {
 
          m_ptree->m_peditfile->change_insert_item_data(m_pitemComposing.get(), strText);
 
-         //index i1 = (index)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
+      }
+      else
+      {
+
+         insert_text(strText, true);
+
+         __refer(m_pitemComposing, m_pinsert);
+
+      }
+
+      string strFull;
+
+      _001GetText(strFull);
+
+      ::index iAfterComposingCursorPosition;
+
+      int iOffset = 0;
+
+      if (iNewCursorPosition > 0)
+      {
+
+         iAfterComposingCursorPosition = (index)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
+
+         if (iNewCursorPosition > 1)
+         {
+
+            wd16string wstrFull(strFull.Mid(iAfterComposingCursorPosition));
+
+            iOffset = wd16_to_ansi_len(wstrFull, iNewCursorPosition - 1);
+
+         }
+       
+         iAfterComposingCursorPosition += iOffset;
+
+      }
+      else
+      {
+
+         iAfterComposingCursorPosition = (index)(m_pitemComposing->m_position);
+
+         if (iNewCursorPosition < 0)
+         {
+
+            wd16string wstrFull(strFull.Left(iAfterComposingCursorPosition));
+
+            iOffset = wd16_to_ansi_len(wstrFull, wstrFull.get_length() + iNewCursorPosition);
+
+         }
+
+         iAfterComposingCursorPosition -= iOffset;
+
+      }
+
+      //m_ptree->m_iSelEnd = iAfterComposingPosition;
+      //m_ptree->m_iSelBeg = iAfterComposingPosition;
+      //m_psetsel->m_iSelEnd = iAfterComposingPosition;
+      //m_psetsel->m_iSelBeg = iAfterComposingPosition;
+
+      if (bAlreadyComposing)
+      {
 
          strsize i1 = iNewCursorPosition;
 
          auto pgraphics = ::draw2d::create_memory_graphics();
 
          int iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, i1);
-
-         m_ptree->m_iSelEnd = i1;
-         m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
-         m_psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
-         m_psetsel->m_iSelBeg = m_ptree->m_iSelEnd;
 
          bool bFullUpdate = false;
 
@@ -5044,13 +5249,11 @@ finished_update:
 
          post_redraw();
 
-         string strText;
-
-         _001GetText(strText);
-
-         ::output_debug_string("Current Text: " + strText + "\n");
-
       }
+
+      ::output_debug_string("Current Text: " + strText + "\n");
+
+      _001SetSel(iAfterComposingCursorPosition, iAfterComposingCursorPosition, ::e_source_sync);
 
    }
 
@@ -5058,13 +5261,7 @@ finished_update:
    void plain_edit::InputConnectionSetComposingRegion(strsize iStart, strsize iEnd)
    {
 
-      MacroBegin();
-
-      strsize iSelBeg = 0;
-
-      strsize iSelEnd = 0;
-
-      _001GetSel(iSelBeg, iSelEnd);
+      m_ptree->m_peditfile->MacroBegin();
 
       __release(m_pitemComposing);
 
@@ -5082,14 +5279,62 @@ finished_update:
 
       string strComposition(strText.Mid(iComposingBeg, iComposingEnd - iComposingBeg));
 
-      _001SetSel(iComposingBeg, iComposingEnd);
+      m_ptree->m_peditfile->seek(iComposingBeg, ::file::seek_begin);
 
-      insert_text(strComposition, true);
+      m_ptree->m_peditfile->Delete((memsize)(iComposingEnd - iComposingBeg));
+
+      IndexRegisterDelete(iComposingBeg, iComposingEnd - iComposingBeg);
+
+      m_ptree->m_peditfile->seek(iComposingBeg, ::file::seek_begin);
+
+      auto iLength = strComposition.get_length();
+
+      m_pinsert = m_ptree->m_peditfile->Insert(strComposition, iLength);
+
+      IndexRegisterInsert(iComposingBeg, strComposition);
 
       __refer(m_pitemComposing, m_pinsert);
 
-      _001SetSel(iSelBeg, iSelEnd);
+      m_ptree->m_peditfile->MacroEnd();
 
+      MacroBegin();
+      MacroRecord(__new(plain_text_file_command()));
+      MacroEnd();
+
+   }
+
+
+   void plain_edit::InputConnectionSetSelection(strsize iStart, strsize iEnd)
+   {
+
+      string strText;
+
+      _001GetText(strText);
+
+      wd16string wstrText(strText);
+
+      strsize iAnsiBeg = wd16_to_ansi_len(wstrText, iStart);
+
+      strsize iAnsiEnd = wd16_to_ansi_len(wstrText, iEnd);
+
+      auto psetsel = __new(plain_text_set_sel_command);
+
+      psetsel->m_iPreviousSelBeg = m_ptree->m_iSelBeg;
+
+      psetsel->m_iPreviousSelEnd = m_ptree->m_iSelEnd;
+
+      m_ptree->m_iSelBeg = iAnsiBeg;
+      
+      m_ptree->m_iSelEnd = iAnsiEnd;
+
+      psetsel->m_iSelBeg = m_ptree->m_iSelBeg;
+
+      psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
+
+      m_psetsel = psetsel;
+
+      MacroBegin();
+      MacroRecord(psetsel);
       MacroEnd();
 
    }
@@ -5503,9 +5748,9 @@ finished_update:
 
       m_bGetTextNeedUpdate = true;
 
-      plain_edit_on_update(pgraphics, ::source_user);
+      plain_edit_on_update(pgraphics, ::e_source_user);
 
-      //plain_edit_on_after_change_text(pgraphics, ::source_user);
+      //plain_edit_on_after_change_text(pgraphics, ::e_source_user);
 
       return true;
 
@@ -5568,8 +5813,8 @@ finished_update:
 
       m_bGetTextNeedUpdate = true;
 
-      plain_edit_on_update(pgraphics, ::source_user);
-      //plain_edit_on_after_change_text(pgraphics, ::source_user);
+      plain_edit_on_update(pgraphics, ::e_source_user);
+      //plain_edit_on_after_change_text(pgraphics, ::e_source_user);
 
       return true;
    }
@@ -5696,6 +5941,18 @@ finished_update:
 
       }
 
+#ifdef ANDROID
+
+      string strText;
+
+      plain_edit_get_text(strText);
+
+      oslocal()->m_strEditorText = strText;
+
+      oslocal()->m_bEditorTextUpdated = true;
+
+#endif
+
       ::user::control_event ev;
 
       ev.m_puie = this;
@@ -5767,7 +6024,7 @@ finished_update:
 
          ev.m_eevent = ::user::e_event_enter_key;
 
-         ev.m_actioncontext = ::source_paste;
+         ev.m_actioncontext = ::e_source_paste;
 
          on_control_event(&ev);
 
@@ -5854,6 +6111,14 @@ finished_update:
    }
 
 
+   enum_input_type plain_edit::preferred_input_type() const
+   {
+
+      return e_input_type_text;
+
+   }
+
+
    bool plain_edit::keyboard_focus_is_focusable() const
    {
 
@@ -5866,22 +6131,6 @@ finished_update:
    {
 
       m_bFocus = true;
-
-      auto psession = Session;
-
-      if (psession->m_puiHost)
-      {
-
-         auto puiHost = __user_interaction(psession->m_puiHost);
-
-         if (puiHost)
-         {
-
-            puiHost->edit_on_set_focus(this);
-
-         }
-
-      }
 
       SetTimer(100, 50, nullptr);
 
@@ -5916,18 +6165,6 @@ finished_update:
 
 #endif
 
-      string strText;
-
-      _001GetText(strText);
-
-      strsize iBeg;
-
-      strsize iEnd;
-
-      _001GetSel(iBeg, iEnd);
-
-      psession->keyboard().defer_show_software_keyboard(this, true, strText, iBeg, iEnd);
-
    }
 
 
@@ -5960,25 +6197,6 @@ finished_update:
 
       }
 
-
-      string strText;
-
-      _001GetText(strText);
-
-      strsize iBeg;
-
-      strsize iEnd;
-
-      _001GetSel(iBeg, iEnd);
-
-      auto pinteraction = get_wnd();
-
-      if (::is_set(pinteraction))
-      {
-
-         psession->keyboard().defer_show_software_keyboard(this, false, strText, iBeg, iEnd);
-
-      }
 
       //DestroyImeWindow();
 
@@ -6452,7 +6670,7 @@ finished_update:
          if (bFullUpdate || iLineUpdate >= 0)
          {
 
-            plain_edit_on_update(pgraphics, ::source_user);
+            plain_edit_on_update(pgraphics, ::e_source_user);
 
          }
 
@@ -6460,13 +6678,13 @@ finished_update:
       else if (bFullUpdate)
       {
 
-         plain_edit_on_update(pgraphics, ::source_user);
+         plain_edit_on_update(pgraphics, ::e_source_user);
 
       }
       else if (iLineUpdate >= 0)
       {
 
-         plain_edit_on_line_update(pgraphics, iLineUpdate, ::source_user);
+         plain_edit_on_line_update(pgraphics, iLineUpdate, ::e_source_user);
 
       }
 

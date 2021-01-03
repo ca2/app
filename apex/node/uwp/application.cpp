@@ -39,7 +39,7 @@ namespace apex
    //   return m_pimpl->_001OpenDocumentFile(varFile);
    //}
 
-   ::estatus application::_001InitializeShellOpen()
+   ::e_status application::_001InitializeShellOpen()
    {
       //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
       /*

@@ -24,7 +24,7 @@ namespace userfs
       virtual ~document();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
       ::user::document * get_document();

@@ -19,11 +19,11 @@ namespace linux
       virtual ~file_context();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
-      virtual ::estatus init_system() override;
-      virtual ::estatus init_context() override;
+      virtual ::e_status init_system() override;
+      virtual ::e_status init_context() override;
 
 
       virtual ::file_result get_file(const payload & varFile, const ::file::e_open & eopen) override;

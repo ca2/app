@@ -143,7 +143,7 @@ namespace apex
    }
 
 
-   ::estatus system::initialize(::layered * pobjectContext)
+   ::e_status system::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::apex::context_thread::initialize(pobjectContext);
@@ -524,7 +524,7 @@ namespace apex
    //}
 
 
-   ::estatus system::do_factory_exchange(const char* pszComponent, const char* pszImplementation)
+   ::e_status system::do_factory_exchange(const char* pszComponent, const char* pszImplementation)
    {
 
       string strComponent(pszComponent);
@@ -678,7 +678,7 @@ namespace apex
 
    }
 
-   ::estatus system::set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange)
+   ::e_status system::set_factory_exchange(const char* pszComponent, const char * pszImplementation, PFN_factory_exchange pfnFactoryExchange)
    {
 
       m_mapFactoryExchange[pszComponent][pszImplementation] = pfnFactoryExchange;
@@ -1139,7 +1139,7 @@ namespace apex
 
 
 
-   ::estatus system::process_init()
+   ::e_status system::process_init()
    {
 
 //      set_system_update(&apex_system_update);
@@ -1164,14 +1164,21 @@ namespace apex
 
       }
 
-      auto papplicationNew = get_new_application(get_context_session(), m_strAppId);
-
-      __bind(this, m_papplicationStartup, papplicationNew OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
-
       if (!m_papplicationStartup)
       {
 
-         message_box("Failed to allocate Application!!");
+         message_box("Startup application is not allocated!!");
+
+         return false;
+
+      }
+
+      estatus = m_papplicationStartup->initialize(get_context_session());
+
+      if(!estatus)
+      {
+
+         message_box("Failed to initialize Application object!!");
 
          return false;
 
@@ -1701,7 +1708,7 @@ namespace apex
    }
 
 
-   ::estatus system::init_thread()
+   ::e_status system::init_thread()
    {
 
       if (m_psystemParent)
@@ -1743,7 +1750,7 @@ namespace apex
    }
 
 
-   ::estatus system::init()
+   ::e_status system::init()
    {
 
 
@@ -1752,7 +1759,7 @@ namespace apex
    }
 
 
-   ::estatus system::init1()
+   ::e_status system::init1()
    {
 
 //#ifdef DEBUG
@@ -1826,7 +1833,7 @@ namespace apex
    }
 
 
-   ::estatus system::post_create_requests()
+   ::e_status system::post_create_requests()
    {
 
       //while(auto pcreate = get_command()->get_create())
@@ -1842,10 +1849,10 @@ namespace apex
    }
 
 
-   ::estatus system::inline_init()
+   ::e_status system::inline_init()
    {
 
-      ::estatus estatus = ::apex::context_thread::inline_init();
+      ::e_status estatus = ::apex::context_thread::inline_init();
 
       if (!estatus)
       {
@@ -1867,10 +1874,10 @@ namespace apex
    }
 
 
-   ::estatus system::inline_term()
+   ::e_status system::inline_term()
    {
 
-      ::estatus estatus = ::apex::context_thread::inline_term();
+      ::e_status estatus = ::apex::context_thread::inline_term();
 
       if (!estatus)
       {
@@ -1907,7 +1914,7 @@ namespace apex
    }
 
 
-   ::estatus system::init_system()
+   ::e_status system::init_system()
    {
 
       if (m_bConsole)
@@ -2065,7 +2072,7 @@ namespace apex
    }
 
 
-   ::estatus system::thread_loop()
+   ::e_status system::thread_loop()
    {
 
 //#ifdef LINUX
@@ -2509,7 +2516,7 @@ namespace apex
    }
 
 
-   ::estatus system::initialize_log(const char * pszId)
+   ::e_status system::initialize_log(const char * pszId)
    {
 
       if (m_ptrace)
@@ -2791,7 +2798,7 @@ namespace apex
    }
 
 
-   ::estatus system::create_session(index iEdge)
+   ::e_status system::create_session(index iEdge)
    {
 
       if (session(iEdge))
@@ -3173,7 +3180,7 @@ namespace apex
    }
 
 
-   ::estatus system::do_request(::create * pcreate)
+   ::e_status system::do_request(::create * pcreate)
    {
 
       if (pcreate->m_ecommand == ::command_check_exit)
@@ -4283,7 +4290,7 @@ namespace apex
    }
 
 
-   ::estatus system::get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory)
+   ::e_status system::get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -4304,7 +4311,7 @@ namespace apex
          key.get("Install Directory", strInstallDirectory);
 
       }
-      catch (const ::estatus & estatus)
+      catch (const ::e_status & estatus)
       {
 
          return estatus;
@@ -4322,7 +4329,7 @@ namespace apex
    }
 
 
-   ::estatus system::firefox(string strUrl, string strBrowser, string strProfile, string strParam)
+   ::e_status system::firefox(string strUrl, string strBrowser, string strProfile, string strParam)
    {
 
 #ifdef _UWP
@@ -4567,7 +4574,7 @@ namespace apex
    }
 
 
-   ::estatus system::verb() // ambigous inheritance from ::apex::system/::axis::application
+   ::e_status system::verb() // ambigous inheritance from ::apex::system/::axis::application
    {
 
       return ::thread::verb();
@@ -4755,7 +4762,7 @@ namespace apex
      //}
 
 
-  //   ::estatus system::initialize_system(::object* pobject, app_core* pappcore)
+  //   ::e_status system::initialize_system(::object* pobject, app_core* pappcore)
   //   {
   //
   //      auto estatus = ::apex::system::initialize_system(pobject, pappcore);
@@ -4908,7 +4915,7 @@ namespace apex
    //}
 
 
-   //::estatus system::defer_xml()
+   //::e_status system::defer_xml()
    //{
 
    //   if (m_pxml)
@@ -4951,7 +4958,7 @@ namespace apex
 
 
 
-   ::estatus system::init2()
+   ::e_status system::init2()
    {
 
       //if(!::apex::application::init2())
@@ -5055,14 +5062,13 @@ namespace apex
    }
 
 
-
-
 #ifdef LINUX
 
-   bool system::init_x11()
+
+   ::e_status system::defer_initialize_x11()
    {
 
-      return false;
+      return ::acme::system::defer_initialize_x11();
 
    }
 
@@ -5074,7 +5080,9 @@ namespace apex
 
    }
 
+
 #endif
+
 
    ::apex::history& system::hist()
    {
@@ -5084,7 +5092,7 @@ namespace apex
    }
 
 
-   estatus system::set_history(::apex::history* phistory)
+   ::e_status system::set_history(::apex::history* phistory)
    {
 
       auto estatus = __compose(m_phistory, phistory);
@@ -5344,7 +5352,7 @@ namespace apex
    }
 
 
-   //::estatus system::add_view_library(::apex::library* plibrary)
+   //::e_status system::add_view_library(::apex::library* plibrary)
    //{
 
    //   m_libraryspa.add(plibrary);
@@ -5380,14 +5388,14 @@ namespace apex
    //      if(m_varTopicQuery["locale"].array_get_count() > 0)
    //      {
    //
-   //         psession->set_locale(m_varTopicQuery["locale"].stra()[0],::source_user);
+   //         psession->set_locale(m_varTopicQuery["locale"].stra()[0],::e_source_user);
    //
    //      }
    //
    //      if(m_varTopicQuery["schema"].array_get_count() > 0)
    //      {
    //
-   //         psession->set_schema(m_varTopicQuery["schema"].stra()[0],::source_user);
+   //         psession->set_schema(m_varTopicQuery["schema"].stra()[0],::e_source_user);
    //
    //      }
    //
@@ -5431,7 +5439,7 @@ namespace apex
    }
 
 
-   ::estatus     system::main()
+   ::e_status     system::main()
    {
 
       return ::thread::main();

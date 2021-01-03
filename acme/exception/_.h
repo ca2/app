@@ -29,13 +29,13 @@ namespace win
 }
 
 
-CLASS_DECL_ACME::estatus errno_to_status(i32 nErrno);
+CLASS_DECL_ACME::e_status errno_to_status(i32 nErrno);
 
 
 #ifdef WINDOWS
 
 
-CLASS_DECL_ACME ::estatus os_error_to_status(DWORD dwError);
+CLASS_DECL_ACME ::e_status os_error_to_status(DWORD dwError);
 
 
 #endif
@@ -199,11 +199,6 @@ void ::acme::DoForAllClasses(void (c_cdecl *pfn)(::type pClass,
 
 CLASS_DECL_ACME string __get_thread_note();
 CLASS_DECL_ACME void __set_thread_note(const char * pszNote);
-
-
-
-#include "debug.h"
-
 
 
 // Debug ASSERTs then throws. Retail throws if condition not met

@@ -66,11 +66,11 @@ int_bool mq_get_message(LPMESSAGE pMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u3
 
 i32 CLASS_DECL_APEX __linux_main(i32 argc, char * argv[]);
 
-CLASS_DECL_APEX void vfxThrowFileException(::object * pobject, const ::estatus & estatus, ::i32 lOsError, const char * pszFileName = nullptr);
+CLASS_DECL_APEX void vfxThrowFileException(::object * pobject, const ::e_status & estatus, ::i32 lOsError, const char * pszFileName = nullptr);
 
 #include "internal.h"
 
-CLASS_DECL_APEX ::estatus os_shell_initialize();
+CLASS_DECL_APEX ::e_status os_shell_initialize();
 
 CLASS_DECL_APEX MESSAGE * __get_current_message();
 

@@ -57,7 +57,7 @@ namespace user
       virtual void install_message_routing(::channel * pchannel) override;
 
 
-      virtual ::draw2d::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
+      virtual ::draw2d::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) const override;
 
 
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -65,6 +65,8 @@ namespace user
       //virtual void _001OnDrawVerisimple(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawCombo(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnDrawStaticText(::draw2d::graphics_pointer & pgraphics);
+
+      virtual enum_input_type preferred_input_type() const override;
 
       virtual void get_simple_drop_down_open_arrow_polygon(point_array& pointa) override;
 

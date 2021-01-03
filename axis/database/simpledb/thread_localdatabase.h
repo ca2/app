@@ -20,7 +20,7 @@ namespace simpledb
       virtual ~thread_localdatabase();
 
 
-      virtual ::estatus     run() override;
+      virtual ::e_status     run() override;
 
       void queue(const char * pszKey, block block);
 

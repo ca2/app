@@ -36,7 +36,7 @@ namespace user
    }
 
 
-   ::estatus user::init1()
+   ::e_status user::init1()
    {
 
 
@@ -65,7 +65,7 @@ namespace user
    }
 
 
-   ::estatus user::init()
+   ::e_status user::init()
    {
 
       if (!::apex::department::init())
@@ -120,10 +120,10 @@ namespace user
       //}
 
       //if(strLangUser.has_char())
-      //   psession->set_locale(strLangUser,::source_database);
+      //   psession->set_locale(strLangUser,::e_source_database);
 
       //if(strStyleUser.has_char())
-      //   psession->set_schema(strStyleUser,::source_database);
+      //   psession->set_schema(strStyleUser,::e_source_database);
 
       //string strLicense = Application.get_license_id();
 
@@ -143,7 +143,7 @@ namespace user
    }
 
 
-   ::estatus user::init2()
+   ::e_status user::init2()
    {
 
       if (!::apex::department::init2())
@@ -193,7 +193,24 @@ namespace user
    void user::set_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
    {
 
+      sync_lock sl(mutex());
+
       m_pmousefocusLButtonDown = pmousefocus;
+
+   }
+
+
+   void user::defer_remove_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
+   {
+
+      sync_lock sl(mutex());
+
+      if (m_pmousefocusLButtonDown == pmousefocus)
+      {
+
+         m_pmousefocusLButtonDown = nullptr;
+
+      }
 
    }
 
@@ -306,7 +323,7 @@ namespace user
    }
 
 
-   //::estatus user::close_all_documents(bool bEndSession)
+   //::e_status user::close_all_documents(bool bEndSession)
    //{
 
    //   return ::error_interface_only;

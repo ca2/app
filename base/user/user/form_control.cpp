@@ -530,7 +530,7 @@ namespace user
 
             //      str = payload.m_str;
 
-            //      pinteraction->_001SetText(str,::source_database);
+            //      pinteraction->_001SetText(str,::e_source_database);
 
             //   }
             //   break;
@@ -541,7 +541,7 @@ namespace user
 
             //      str.Format("%d",payload.i32());
 
-            //      pinteraction->_001SetText(str,::source_database);
+            //      pinteraction->_001SetText(str,::e_source_database);
 
             //   }
             //   break;
@@ -887,7 +887,7 @@ namespace user
       ::user::control_event ev;
 
       ev.m_puie         = pinteraction;
-      ev.m_actioncontext        = ::source_database;
+      ev.m_actioncontext        = ::e_source_database;
       ev.m_eevent       = ::user::e_event_initialize_control;
       ev.m_uiEvent      = 0;
 
@@ -1098,7 +1098,7 @@ namespace user
    }
 
 
-   ::estatus form_control::open_document(const payload & varFile)
+   ::e_status form_control::open_document(const payload & varFile)
    {
 
       return true;
@@ -1106,7 +1106,7 @@ namespace user
    }
 
 
-   ::estatus     form_control::open_html(const ::string & str)
+   ::e_status     form_control::open_html(const ::string & str)
    {
 
       return error_not_implemented;
@@ -1185,9 +1185,7 @@ namespace user
          if(pfocus != nullptr)
          {
 
-            auto psession = Session;
-
-            psession->set_keyboard_focus(pfocus);
+            pfocus->set_keyboard_focus();
 
          }
 

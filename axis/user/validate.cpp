@@ -21,7 +21,7 @@ namespace user
    }
 
 
-   ::estatus validate::Validate(string& strParam, ::user::control_descriptor* pdescriptor)
+   ::e_status validate::Validate(string& strParam, ::user::control_descriptor* pdescriptor)
    {
 
       switch (control_descriptor().get_data_type())

@@ -7,14 +7,14 @@ namespace draw2d
 
    font_enum_item::font_enum_item()
    {
-
    }
 
 
    font_enum_item::font_enum_item(string strName) :
-      m_strFile(strName),
       m_strName(strName)
    {
+
+      m_mapFileName[0] = strName;
 
 #ifdef WINDOWS
 
@@ -30,17 +30,20 @@ namespace draw2d
       m_wstrName(pwideszName)
    {
 
-      m_strFile = m_wstrName;
-      m_strName = m_strFile;
+      string strName = m_wstrName;
+
+      m_mapFileName[0] = strName;
+      m_strName = strName;
 
    }
 
 #endif
 
    font_enum_item::font_enum_item(string strFile, string strName) :
-      m_strFile(strFile),
       m_strName(strName)
    {
+
+      m_mapFileName[0] = strFile;
 
 #ifdef WINDOWS
 
@@ -60,7 +63,7 @@ namespace draw2d
    font::font()
    {
 
-      m_strFontFamilyName     = FONT_SERIF;
+      m_strFontFamilyName     = os_font_name(e_font_serif);
       m_dFontSize             = 17.0;
       m_dFontWidth            = 1.0;
       m_eunitFontSize         = ::draw2d::unit_point;
@@ -103,11 +106,11 @@ namespace draw2d
 
 #ifdef WINDOWS
 
-      if(ansi_compare_ci(pszFacename, FONT_SANS) == 0)
+      if(ansi_compare_ci(pszFacename, os_font_name(e_font_sans)) == 0)
 
       {
 
-         m_strFontFamilyName = FONT_SANS;
+         m_strFontFamilyName = os_font_name(e_font_sans);
 
       }
       else

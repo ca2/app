@@ -5,7 +5,7 @@ namespace http
 {
 
 
-//   bool succeeded(const ::estatus & estatus)
+//   bool succeeded(const ::e_status & estatus)
 //   {
 //
 //      switch (estatus)
@@ -25,12 +25,12 @@ namespace http
 //   bool status_succeeded(i64 i)
 //   {
 //
-//      return succeeded((::estatus    ) i);
+//      return succeeded((::e_status    ) i);
 //
 //   }
 //
 
-//   bool failed(const ::estatus & estatus)
+//   bool failed(const ::e_status & estatus)
 //   {
 //
 //      return !succeeded(estatus);
@@ -48,7 +48,7 @@ namespace http
    CLASS_DECL_APEX string conn_status(property_set & set)
    {
 
-      ::estatus     estatus = (::estatus    )set["get_status"].i32();
+      ::e_status     estatus = (::e_status    )set["get_status"].i32();
 
       string str;
 

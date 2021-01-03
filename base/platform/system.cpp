@@ -108,7 +108,7 @@ namespace base
    }
 
 
-   ::estatus system::initialize(::layered * pobjectContext)
+   ::e_status system::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::axis::system::initialize(pobjectContext);

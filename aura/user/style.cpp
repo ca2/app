@@ -40,7 +40,7 @@ namespace user
    void style::default_style_construct()
    {
 
-      m_pfont = ::draw2d::point_font("Segoe UI", 14.0);
+      m_pfont = ::draw2d::point_font(os_font_name(e_font_sans), 14.0);
       //m_pfontMenu;
       //m_pfontButton;
       //m_pfontList;
@@ -52,7 +52,7 @@ namespace user
    }
 
 
-   ::estatus style::initialize_style()
+   ::e_status style::initialize_style()
    {
 
       return ::success;
@@ -709,7 +709,7 @@ namespace user
    //}
 
 
-   //bool style::create_flag(e_flag eflag, bool bFlag)
+   //bool style::create_flag(enum_flag eflag, bool bFlag)
    //{
 
    //   if (userstyle()->m_mapFlag.is_null())
@@ -848,7 +848,7 @@ namespace user
    }
 
 
-   ::color style::get_color(const ::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate) const
+   ::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (::is_set(pinteraction))
@@ -883,6 +883,30 @@ namespace user
 
    }
 
+
+   bool style::get_int(const ::user::interaction * pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate) const
+   {
+
+      if(eint == e_int_scroll_bar_width)
+      {
+
+         i = 16;
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   bool style::get_double(const ::user::interaction* pinteraction, double & d, ::user::enum_double edouble, ::user::enum_state estate) const
+   {
+
+      return false;
+
+   }
 
    //void style::nextstyle(style_context * pcontext)
    //{

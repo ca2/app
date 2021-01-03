@@ -166,7 +166,7 @@ namespace user
 
       on_control_event(&event);
 
-      _001SetSelection(iaSel, ::source_user);
+      _001SetSelection(iaSel, ::e_source_user);
 
       m_itemCurrent     = item;
 

@@ -718,6 +718,8 @@ strsize ansi_to_wd16_len(const char* psz, strsize srclen)
 
       psz += len;
 
+      srclen -= len;
+
    }
 
    return utf16len;

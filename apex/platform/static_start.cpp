@@ -895,7 +895,7 @@ namespace apex
 
 
 
-   ::estatus apex::init()
+   ::e_status apex::init()
    {
 
       //::apex::static_start::init();
@@ -931,7 +931,7 @@ namespace apex
    }
 
 
-   ::estatus apex::term()
+   ::e_status apex::term()
    {
 
       //::parallelization::wait_threads(1_min);
@@ -1028,10 +1028,10 @@ namespace apex
 //}
 
 
-//thread_int_ptr < ::estatus    > t_estatus;
+//thread_int_ptr < ::e_status    > t_estatus;
 
 
-//CLASS_DECL_APEX void set_last_status(const ::estatus & estatus)
+//CLASS_DECL_APEX void set_last_status(const ::e_status & estatus)
 //{
 //
 //   ::get_task()->m_estatus = estatus;
@@ -1039,7 +1039,7 @@ namespace apex
 //}
 
 
-//CLASS_DECL_APEX ::estatus  get_last_status()
+//CLASS_DECL_APEX ::e_status  get_last_status()
 //{
 //
 //   return ::get_task()->m_estatus;

@@ -21,7 +21,7 @@ namespace user
    }
 
 
-   ::estatus copydesk::initialize(::layered * pobjectContext)
+   ::e_status copydesk::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -33,7 +33,7 @@ namespace user
 
       }
 
-      m_pfont = ::draw2d::point_font(FONT_SANS, 14.0);
+      m_pfont = ::draw2d::point_font(os_font_name(e_font_sans), 14.0);
 
       return true;
 
@@ -172,7 +172,7 @@ namespace user
    }
 
 
-   bool copydesk::get_plain_text(string & str, e_flag eflag)
+   bool copydesk::get_plain_text(string & str, enum_flag eflag)
    {
 
       if (!(eflag & flag_prevent_data_blob) && _has_image())

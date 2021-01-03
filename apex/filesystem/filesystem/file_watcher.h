@@ -194,7 +194,7 @@ namespace file
 
       virtual void remove_watch(watch_id watch_id);
 
-      virtual ::estatus     run() override;
+      virtual ::e_status     run() override;
 
       virtual bool step();
 

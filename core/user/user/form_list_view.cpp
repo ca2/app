@@ -80,7 +80,7 @@ namespace user
    }
 
 
-   ::estatus form_list_view::initialize(::layered * pobjectContext)
+   ::e_status form_list_view::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::user::form_list::initialize(pobjectContext);

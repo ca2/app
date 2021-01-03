@@ -21,7 +21,7 @@ namespace ios
    }
 
 
-   ::estatus file_context::initialize(::matter * pobjectContext)
+   ::e_status file_context::initialize(::matter * pobjectContext)
    {
       
       auto estatus = ::file_context::initialize(pobjectContext);
@@ -63,7 +63,7 @@ namespace ios
    }
 
 
-   ::estatus file_context::update_module_path()
+   ::e_status file_context::update_module_path()
    {
 
       m_pfilesystem->m_pathModule = apple_app_module_path();

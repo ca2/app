@@ -24,7 +24,7 @@ namespace linux
          virtual ~shell();
 
 
-         virtual ::estatus initialize(::layered * pobjectContext) override;
+         virtual ::e_status initialize(::layered * pobjectContext) override;
          //virtual void initialize() override;
 
          //virtual void defer_start();

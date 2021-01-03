@@ -4,12 +4,14 @@
 #include "GLOBAL_ID.h"
 
 
+
+
 enum enum_property : ::i64
 {
 
-   property_default = 0,
-   property_id,
-   property_count,
+   e_property_default = 0,
+   e_property_id,
+   e_property_count,
 
 };
 
@@ -17,15 +19,15 @@ enum enum_property : ::i64
 enum enum_factory : ::i64
 {
 
-   factory_draw2d_bitmap,
-   factory_draw2d_brush,
-   factory_draw2d_font,
-   factory_draw2d_graphics,
-   factory_draw2d_image,
-   factory_draw2d_path,
-   factory_draw2d_pen,
-   factory_draw2d_region,
-   factory_count,
+   e_factory_draw2d_bitmap,
+   e_factory_draw2d_brush,
+   e_factory_draw2d_font,
+   e_factory_draw2d_graphics,
+   e_factory_draw2d_image,
+   e_factory_draw2d_path,
+   e_factory_draw2d_pen,
+   e_factory_draw2d_region,
+   e_factory_count,
 
 };
 
@@ -88,25 +90,25 @@ enum enum_factory : ::i64
 
 
 
-enum e_lib_main
+enum enum_library_main
 {
 
-   lib_main_none = 0,
-   lib_main_any = 1 << 0,
-   lib_main_process_attach = 1 << 1,
-   lib_main_process_detach = 1 << 2,
-   lib_main_thread_attach = 1 << 3,
-   lib_main_thread_detach = 1 << 4,
+   e_library_main_none = 0,
+   e_library_main_any = 1 << 0,
+   e_library_main_process_attach = 1 << 1,
+   e_library_main_process_detach = 1 << 2,
+   e_library_main_thread_attach = 1 << 3,
+   e_library_main_thread_detach = 1 << 4,
 
 };
 
 
 
 
-enum e_default_init
+enum enum_default_initialization
 {
 
-   default_init
+   e_default_initialization
 
 };
 
@@ -145,13 +147,13 @@ enum enum_dialog_result
 enum enum_type
 {
    /// special meaning
-   type_parareturn = 0,
-   type_new,
+   e_type_parareturn = 0,
+   e_type_new,
    e_type_null,
-   type_key_exists,
-   type_empty,
-   type_empty_argument,
-   type_not_found,
+   e_type_key_exists,
+   e_type_empty,
+   e_type_empty_argument,
+   e_type_not_found,
 
    // integral
    //type_block = 1000,
@@ -359,9 +361,9 @@ enum e_priority
 
 };
 
-//bool CLASS_DECL_ACME succeeded(const ::estatus & estatus);
+//bool CLASS_DECL_ACME succeeded(const ::e_status & estatus);
 //bool CLASS_DECL_ACME status_succeeded(i64 i);
-//bool CLASS_DECL_ACME failed(const ::estatus & estatus);
+//bool CLASS_DECL_ACME failed(const ::e_status & estatus);
 //bool CLASS_DECL_ACME status_failed(i64 i);
 
 enum e_thread
@@ -708,3 +710,29 @@ enum enum_relative
 
 
 
+enum enum_operating_system
+{
+
+   e_operating_system_unknown = -1,
+   e_operating_system_none = 0,
+   e_operating_system_current,
+   e_operating_system_windows,
+   e_operating_system_macos,
+   e_operating_system_ios,
+   e_operating_system_linux,
+   e_operating_system_android,
+   e_operating_system_unix,
+
+};
+
+enum enum_linux_distribution
+{
+
+   e_linux_distribution_unknown = -1,
+   e_linux_distribution_default = 0,
+   e_linux_distribution_ubuntu,
+   e_linux_distribution_manjaro,
+   e_linux_distribution_fedora,
+   e_linux_distribution_centos,
+
+};

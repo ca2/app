@@ -19,7 +19,7 @@ color32_t windows_image_metadata_get_background_color(IWICMetadataQueryReader * 
 comptr < IWICImagingFactory > wic_get_imaging_factory();
 
 
-::estatus imaging::_load_image(::image * pimageCompose, __pointer(image_frame_array) & pframea, memory_pointer pmemory)
+::e_status imaging::_load_image(::image * pimageCompose, __pointer(image_frame_array) & pframea, memory_pointer pmemory)
 {
 
    HRESULT hr = E_FAIL;

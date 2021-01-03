@@ -18,18 +18,24 @@ namespace aqua
       __composite(::aqua::estamira)                      m_pestamira;
 
 
+
+
       system();
       virtual ~system();
+
+
+      void aqua_construct();
+
 
       void common_construct();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
-      //virtual ::estatus initialize_rich_text();
+      //virtual ::e_status initialize_rich_text();
 
-      virtual ::estatus defer_xml();
+      virtual ::e_status defer_xml();
 
 
 
@@ -41,7 +47,7 @@ namespace aqua
 
       virtual ::aqua::multimedia* defer_get_multimedia();
 
-      
+
 
    };
 

@@ -46,7 +46,7 @@ file_context::~file_context()
 }
 
 
-::estatus file_context::initialize(::layered *pobjectContext)
+::e_status file_context::initialize(::layered *pobjectContext)
 {
 
    auto estatus = ::object::initialize(pobjectContext);
@@ -560,7 +560,7 @@ payload file_context::as_json(const payload &varFile)
    if (str.is_empty())
    {
 
-      return ::type_new;
+      return ::e_type_new;
 
    }
 
@@ -581,7 +581,7 @@ payload file_context::as_json(const payload &varFile)
 
       TRACE(esp->get_message());
 
-      v = ::type_new;
+      v = ::e_type_new;
 
    }
    catch (...)
@@ -589,7 +589,7 @@ payload file_context::as_json(const payload &varFile)
 
       TRACE("GENERAL Exception parsing json file_context::as_json : \"" + str + "\"");
 
-      v = ::type_new;
+      v = ::e_type_new;
 
    }
 
@@ -2102,7 +2102,7 @@ bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strF
 }
 
 
-::estatus file_context::init_system()
+::e_status file_context::init_system()
 {
 
    auto estatus = System.m_pfilesystem->update_module_path();
@@ -2119,7 +2119,7 @@ bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strF
 }
 
 
-::estatus file_context::init_context()
+::e_status file_context::init_context()
 {
 
    return ::success;
@@ -3448,7 +3448,7 @@ bool file_context::touch(const ::file::path &path)
 
 
 
-::estatus file_context::update_module_path()
+::e_status file_context::update_module_path()
 {
 
 

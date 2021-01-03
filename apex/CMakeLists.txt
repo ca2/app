@@ -256,10 +256,11 @@ list(APPEND apex_source
    net/sockets/base/base_socket_handler.cpp
    net/sockets/base/base_socket_handler.h
    net/sockets/bsd/basic/_.h
+   net/sockets/bsd/basic/basic_net.cpp
    net/sockets/bsd/basic/listen_socket.cpp
    net/sockets/bsd/basic/listen_socket.h
-   net/sockets/bsd/basic/net.cpp
-   net/sockets/bsd/basic/net.h
+   #net/sockets/bsd/basic/net.cpp
+   #net/sockets/bsd/basic/net.h
    net/sockets/bsd/basic/sctp_socket.cpp
    net/sockets/bsd/basic/sctp_socket.h
    net/sockets/bsd/basic/socket.cpp
@@ -1365,7 +1366,7 @@ elseif (LINUX)
    #target_compile_options(apex PRIVATE -std=c++14)
    #target_link_options(apex PRIVATE ${GTK_LDFLAGS})
    target_link_options(apex PRIVATE -Wl,-rpath=\$ORIGIN)
-   target_link_libraries(apex PRIVATE dl pthread idn z)
+   target_link_libraries(apex PRIVATE dl pthread idn z X11)
    target_link_libraries(apex PRIVATE ${PKGCONFIG_LIBRARIES})
    target_link_libraries(apex PRIVATE acme)
    target_link_options(apex PRIVATE -Wl,-z,defs)

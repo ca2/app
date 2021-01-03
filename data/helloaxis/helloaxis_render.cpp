@@ -1151,7 +1151,7 @@ auto m_tick23 = ::millis::now();
 
                ::draw2d::font_pointer font(e_create);
 
-               font->create_pixel_font(FONT_SANS, fHeight, e_font_weight_bold);
+               font->create_pixel_font(os_font_name(e_font_sans), fHeight, e_font_weight_bold);
 
                pgraphics->set_font(font);
 
@@ -1161,7 +1161,7 @@ auto m_tick23 = ::millis::now();
 
                double ratey = fHeight * 0.84 / size.cy;
 
-               font->create_pixel_font(FONT_SANS, min(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
+               font->create_pixel_font(os_font_name(e_font_sans), min(m_cy * ratey, m_cx * size.cy * ratey / size.cx), e_font_weight_bold);
 
                m_font = font;
 

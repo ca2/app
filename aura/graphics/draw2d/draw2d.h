@@ -31,12 +31,12 @@ namespace draw2d
       virtual ~draw2d();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
-      virtual ::estatus process_init() override;
+      virtual ::e_status process_init() override;
 
-      virtual ::estatus init() override;
-      virtual ::estatus init1() override;
+      virtual ::e_status init() override;
+      virtual ::e_status init1() override;
 
       virtual void term() override;
 

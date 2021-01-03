@@ -21,9 +21,9 @@ namespace xml
       department();
       virtual ~department();
 
-      virtual ::estatus init1();
+      virtual ::e_status init1();
 
-      virtual ::estatus init();
+      virtual ::e_status init();
 
 
 

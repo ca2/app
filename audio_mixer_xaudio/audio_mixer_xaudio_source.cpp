@@ -30,9 +30,9 @@ namespace multimedia
 
       }
 
-      ::estatus     source::GetLineControls()
+      ::e_status     source::GetLineControls()
       {
-         ::estatus     mmrc;
+         ::e_status     mmrc;
          m_bHasV001Controls = false;
          i32 iControlCount = m_mixerline.cControls;
          if (0 == iControlCount)
@@ -145,7 +145,7 @@ namespace multimedia
 
       }
 
-      /*::estatus     source::GetControl(u32 dwControlType, u32 dwControlFlags,  ::multimedia::audio_mixer::control ** ppControl)
+      /*::e_status     source::GetControl(u32 dwControlType, u32 dwControlFlags,  ::multimedia::audio_mixer::control ** ppControl)
       {
       ::multimedia::audio_mixer::control_array & controla = m_mixercontrola;
       if(controla.get_size() <= 0)
@@ -218,7 +218,7 @@ namespace multimedia
       }
 
 
-      ::estatus     source::mixerGetLineInfo(u32 dwSource, u32 dwDestination, u32 fdwInfo)
+      ::e_status     source::mixerGetLineInfo(u32 dwSource, u32 dwDestination, u32 fdwInfo)
       {
 
          m_mixerline.cbStruct       = sizeof(MIXERLINE);
@@ -228,7 +228,7 @@ namespace multimedia
 
          __pointer(::multimedia::audio_mixer_mmsystem::device) device = get_device();
 
-         ::estatus     mmrc = mmsystem::translate(::mixerGetLineInfo((HMIXEROBJ)device->m_hMixer, &m_mixerline, fdwInfo));
+         ::e_status     mmrc = mmsystem::translate(::mixerGetLineInfo((HMIXEROBJ)device->m_hMixer, &m_mixerline, fdwInfo));
 
          if (::success != mmrc)
          {
@@ -242,12 +242,12 @@ namespace multimedia
 
       }
 
-      ::estatus     source::mixerGetLineInfo(u32 dwSource, ::multimedia::audio_mixer::destination * pdestination)
+      ::e_status     source::mixerGetLineInfo(u32 dwSource, ::multimedia::audio_mixer::destination * pdestination)
       {
 
          __pointer(::multimedia::audio_mixer_mmsystem::destination) destination = pdestination;
 
-         ::estatus     mmrc = mixerGetLineInfo(dwSource, destination->m_mixerline.dwDestination, MIXER_GETLINEINFOF_SOURCE);
+         ::e_status     mmrc = mixerGetLineInfo(dwSource, destination->m_mixerline.dwDestination, MIXER_GETLINEINFOF_SOURCE);
          SetDestination(pdestination);
          return mmrc;
 

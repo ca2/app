@@ -55,9 +55,9 @@ namespace music
 
             //bool SetMidiOutDevice(u32 uiDevice) override;
 
-            //virtual ::estatus     set_client(::music::midi::player_client * pclient) override;
+            //virtual ::e_status     set_client(::music::midi::player_client * pclient) override;
 
-            ::estatus     Initialize(::thread * pthread);
+            ::e_status     Initialize(::thread * pthread);
 
             bool IsPlaying() override;
 

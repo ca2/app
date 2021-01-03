@@ -952,7 +952,7 @@ void edit_window::_ClearText(void)
     BOOL    fOldNotify = m_fNotify;
     m_fNotify = FALSE;
     //SetWindowTextW(m_hwndEdit, NULL);
-    m_puserinteraction->_001SetText("", ::source_user);
+    m_puserinteraction->_001SetText("", ::e_source_user);
     m_fNotify = fOldNotify;
 
     //update current selection

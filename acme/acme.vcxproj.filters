@@ -3496,11 +3496,14 @@
     <ClCompile Include="primitive\datetime\secs.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\application_system_run.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="memory\plex_heap.cpp">
       <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\system.cpp">
+      <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\os_font_name.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

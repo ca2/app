@@ -5,6 +5,7 @@ namespace user
 {
 
 
+
    class CLASS_DECL_AURA interaction :
       virtual public ::user::primitive,
       virtual public ::timer_callback
@@ -33,22 +34,22 @@ namespace user
       };
 
 
-      int                                       m_bitExtendOnParent : 1;
-      int                                       m_bitExtendOnParentIfClientOnly : 1;
+      int                                          m_bitExtendOnParent : 1;
+      int                                          m_bitExtendOnParentIfClientOnly : 1;
 
-      int                                       m_bitToolWindow:1;
+      int                                          m_bitToolWindow:1;
 
-      ewindowflag                               m_ewindowflag;
-      bool                                      m_bDerivedHeight;
+      ewindowflag                                  m_ewindowflag;
+      bool                                         m_bDerivedHeight;
 
       // updown
-      __pointer(::user::interaction)            m_pupdowntarget;
-      ::user::interaction::e_updown             m_eupdown;
+      __pointer(::user::interaction)               m_pupdowntarget;
+      ::user::interaction::e_updown                m_eupdown;
       //end updown
-      __pointer(control_descriptor)             m_pdescriptor;
-      __pointer(shape_array)                    m_pshapeaClip;
+      __pointer(control_descriptor)                m_pdescriptor;
+      __pointer(shape_array)                       m_pshapeaClip;
 
-      ::user::interaction_layout                m_layout;
+      ::user::interaction_layout                   m_layout;
 
       //bool                                    m_bOnSetFinish;
 
@@ -77,62 +78,62 @@ namespace user
 
       //};
 
-      bool                                      m_bLayoutModified;
+      bool                                         m_bLayoutModified;
 
       // control member variables BEGIN
-      __pointer(::aura::draw_context)           m_pdrawcontext;
-      __pointer(::user::interaction)            m_pwndCustomWindowProc;
-      bool                                      m_bCustomWindowProc;
-      index                                     m_iEditItem;
-      bool                                      m_bControlExCommandEnabled;
-      __pointer(::user::interaction)            m_puiLabel;
-      bool                                      m_bIdBound;
+      __pointer(::aura::draw_context)              m_pdrawcontext;
+      __pointer(::user::interaction)               m_pwndCustomWindowProc;
+      bool                                         m_bCustomWindowProc;
+      index                                        m_iEditItem;
+      bool                                         m_bControlExCommandEnabled;
+      __pointer(::user::interaction)               m_puiLabel;
+      bool                                         m_bIdBound;
       // control member variables END
 
-      string                                    m_strInteractionTag;
+      string                                       m_strInteractionTag;
 
-      __pointer_array(::user::item)             m_itema;
-      bool                                      m_bOverdraw;
-      __pointer(::user::frame)                  m_pframe;
-      ::index                                   m_iIndex;
-      ::user::item                              m_itemLButtonDown;
-      ::user::item                              m_itemCurrent;
-      ::user::item                              m_itemHover;
-      ::user::item                              m_itemHoverMouse;
-      ::size                                    m_sizeRestoreBroad;
-      ::size                                    m_sizeRestoreCompact;
-      cflag < e_non_client >                    m_flagNonClient;
-      bool                                      m_bTrackMouseLeave;
-      bool                                      m_bMouseHover;
-      bool                                      m_bSimpleUIDefaultMouseHandling;
-      int                                       m_iMouseMoveSkipCount;
-      int                                       m_iMouseMoveSkipSquareDistance;
-      ::millis                                    m_millisMouseMoveSkip;
-      ::point                                   m_pointMouseMoveSkip;
-      ::millis                                    m_millisMouseMovePeriod;
-      bool                                      m_bMouseMovePending;
-      ::point                                   m_pointMouseMove;
-      bool                                      m_bNeedLoadFormData;
-      bool                                      m_bNeedSaveFormData;
-      millis                                      m_millisLastRedraw;
-      ::id                                      m_idView;
-      __pointer(::user::form)                   m_pform;
-      ::color                                   m_colorBackground;
-      bool                                      m_bWorkspaceFullScreen;
-      point                                     m_pointScroll;
-      bool                                      m_bHideOnTransparentFrame;
-      bool                                      m_bOffScreenRender;
-      bool                                      m_bMoveWindow;
-      bool                                      m_bVoidPaint;
-      bool                                      m_bRedrawing;
-      bool                                      m_bLockWindowUpdate;
-      bool                                      m_bLayoutEnable;
-      bool                                      m_bRedrawOnVisible;
-      bool                                      m_bSaveWindowRect;
-      bool                                      m_bEnableSaveWindowRect2;
-      bool                                      m_bShowSoftwareKeyboard;
-      bool                                      m_bUserInteractionSetFinish;
-      //bool                                    m_bFreeHandMouseMove; this is the default
+      __pointer_array(::user::item)                m_itema;
+      bool                                         m_bOverdraw;
+      __pointer(::user::frame)                     m_pframe;
+      ::index                                      m_iIndex;
+      ::user::item                                 m_itemLButtonDown;
+      ::user::item                                 m_itemCurrent;
+      ::user::item                                 m_itemHover;
+      ::user::item                                 m_itemHoverMouse;
+      ::size                                       m_sizeRestoreBroad;
+      ::size                                       m_sizeRestoreCompact;
+      cflag < e_non_client >                       m_flagNonClient;
+      bool                                         m_bTrackMouseLeave;
+      bool                                         m_bMouseHover;
+      bool                                         m_bSimpleUIDefaultMouseHandling;
+      int                                          m_iMouseMoveSkipCount;
+      int                                          m_iMouseMoveSkipSquareDistance;
+      ::millis                                     m_millisMouseMoveSkip;
+      ::point                                      m_pointMouseMoveSkip;
+      ::millis                                     m_millisMouseMovePeriod;
+      bool                                         m_bMouseMovePending;
+      ::point                                      m_pointMouseMove;
+      bool                                         m_bNeedLoadFormData;
+      bool                                         m_bNeedSaveFormData;
+      millis                                         m_millisLastRedraw;
+      ::id                                         m_idView;
+      __pointer(::user::form)                      m_pform;
+      ::color                                      m_colorBackground;
+      bool                                         m_bWorkspaceFullScreen;
+      point                                        m_pointScroll;
+      bool                                         m_bHideOnTransparentFrame;
+      bool                                         m_bOffScreenRender;
+      bool                                         m_bMoveWindow;
+      bool                                         m_bVoidPaint;
+      bool                                         m_bRedrawing;
+      bool                                         m_bLockWindowUpdate;
+      bool                                         m_bLayoutEnable;
+      bool                                         m_bRedrawOnVisible;
+      bool                                         m_bSaveWindowRect;
+      bool                                         m_bEnableSaveWindowRect2;
+      bool                                         m_bShowSoftwareKeyboard;
+      bool                                         m_bUserInteractionSetFinish;
+      //bool                                       m_bFreeHandMouseMove; this is the default
       // if high frequency mouse move notification is required
       // create a fast path/low latency callback system
       ::millis                                     m_millisMouseMove;
@@ -146,49 +147,49 @@ namespace user
       millis                                       m_millisLastFullUpdate;
       bool                                         m_bSizeMove;
       millis                                       m_millisLastVisualChange;
-      __reference(::file::insert_item)          m_pitemComposing;
-      __pointer(primitive_impl)                 m_pimpl;
-      __pointer(interaction_impl)               m_pimpl2;
-      __pointer(interaction)                    m_puserinteraction;
-      interaction_ptra                          m_uiptraOwned;
-      __pointer(interaction_array)              m_puiptraChild;
-      string                                    m_strName;
-      __pointer(interaction)                    m_puiOwner;
-      u64                                       m_uiUserInteractionFlags;
-      bool                                      m_bCursorInside;
-      e_cursor                                  m_ecursor;
-      bool                                      m_bRectOk;
-      bool                                      m_bParentScroll;
-      bool                                      m_bMessageWindow;
-      string                                    m_strWindowText;
-      bool                                      m_bModal;
-      __pointer(::thread)                       m_pthreadModal;
-      __reference(::thread)                     m_pthreadUserInteraction;
-      id                                        m_idModalResult; // for return values from interaction_impl::RunModalLoop
-      i32                                       m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
-      __pointer(interaction)                    m_ptooltip;
+      __reference(::file::insert_item)             m_pitemComposing;
+      __pointer(primitive_impl)                    m_pimpl;
+      __pointer(interaction_impl)                  m_pimpl2;
+      __pointer(interaction)                       m_puserinteraction;
+      primitive_ptra                               m_uiptraOwned;
+      __pointer(interaction_array)                 m_puiptraChild;
+      string                                       m_strName;
+      __pointer(interaction)                       m_puiOwner;
+      u64                                          m_uiUserInteractionFlags;
+      bool                                         m_bCursorInside;
+      e_cursor                                     m_ecursor;
+      bool                                         m_bRectOk;
+      bool                                         m_bParentScroll;
+      bool                                         m_bMessageWindow;
+      string                                       m_strWindowText;
+      bool                                         m_bModal;
+      __pointer(::thread)                          m_pthreadModal;
+      __reference(::thread)                        m_pthreadUserInteraction;
+      id                                           m_idModalResult; // for return values from interaction_impl::RunModalLoop
+      i32                                          m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
+      __pointer(interaction)                       m_ptooltip;
 
-      bool                                      m_bNeedRedraw;
-      bool                                      m_bNeedLayout;
-      bool                                      m_bReposition;
-      bool                                      m_bUpdatingVisual;
-      bool                                      m_bUpdateVisual;
+      bool                                         m_bNeedRedraw;
+      bool                                         m_bNeedLayout;
+      bool                                         m_bReposition;
+      bool                                         m_bUpdatingVisual;
+      bool                                         m_bUpdateVisual;
 
 
 
-      ::draw2d::path_pointer                    m_pathFocusRect1;
-      ::draw2d::path_pointer                    m_pathFocusRect2;
-      ::draw2d::path_pointer                    m_pathFocusRect3;
-      ::draw2d::path_pointer                    m_pathFocusRect4;
+      ::draw2d::path_pointer                       m_pathFocusRect1;
+      ::draw2d::path_pointer                       m_pathFocusRect2;
+      ::draw2d::path_pointer                       m_pathFocusRect3;
+      ::draw2d::path_pointer                       m_pathFocusRect4;
 
 
       /// The menu_item this user_interaction (window)
       /// represents (this window is a button [a menu button],
       /// this window is a checkbox [a menu checkbox],
       /// this window is a player/view [a menu picture/video/chat?!])
-      __pointer(object)                         m_pmenuitem;
-      __pointer_array(interaction)              m_menua;
-      bool                                      m_bWfiUpDownTarget;
+      __pointer(object)                            m_pmenuitem;
+      __pointer_array(interaction)                 m_menua;
+      bool                                         m_bWfiUpDownTarget;
 
 
 
@@ -205,11 +206,11 @@ namespace user
       class control_descriptor& descriptor();
       const class control_descriptor& descriptor() const;
 
-      ::user::interaction* get_host_wnd() const override;
+      ::user::interaction* get_host_window() const override;
 
       ::user::item* get_user_item(const ::user::item& item);
 
-      virtual ::user::e_state get_user_state() const;
+      virtual ::user::enum_state get_user_state() const;
 
       virtual bool has_hover() const;
 
@@ -223,12 +224,12 @@ namespace user
       //virtual void task_on_term(::task* pthread) override;
 
 
-      //virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
+      //virtual ::e_status main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
 
 
-      virtual ::estatus main_sync(const ::promise::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
+      virtual ::e_status main_sync(const ::promise::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
 
-      virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal) override;
+      virtual ::e_status main_async(const ::promise::routine & routine, e_priority epriority = priority_normal) override;
 
 
       inline void auto_prodevian_on_show() { m_ewindowflag |= e_window_flag_auto_prodevian_on_show; }
@@ -270,23 +271,23 @@ namespace user
       virtual bool get_element_rect(RECT32* prect, enum_element eelement);
 
       virtual enum_element get_default_element() const;
-      virtual ::draw2d::font_pointer get_font(style * pstyle, enum_element eelement, estate estate = e_state_none) const;
-      inline ::draw2d::font_pointer get_font(style* pstyle, estate estate = e_state_none) const { return get_font(pstyle, get_default_element(), estate); }
+      virtual ::draw2d::font_pointer get_font(style * pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
+      inline ::draw2d::font_pointer get_font(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_font(pstyle, get_default_element(), estate); }
       virtual enum_translucency get_translucency(style* pstyle) const;
-      virtual int get_int(style* pstyle, enum_int eint, int iDefault = 0) const;
-      virtual double get_double(style* pstyle, enum_double edouble, double dDefault = 0.) const;
-      virtual ::rectd get_border(style* pstyle, enum_element eelement, estate estate = e_state_none) const;
-      inline ::rectd get_border(style* pstyle, estate estate = e_state_none) const { return get_border(pstyle, get_default_element(), estate); }
-      virtual ::rectd get_padding(style* pstyle, enum_element eelement, estate elayout = e_state_none) const;
-      inline ::rectd get_padding(style* pstyle, estate estate = e_state_none) const { return get_padding(pstyle, get_default_element(), estate); }
-      virtual ::rectd get_margin(style* pstyle, enum_element eelement, estate elayout = e_state_none) const;
-      inline ::rectd get_margin(style* pstyle, estate estate = e_state_none) const { return get_margin(pstyle, get_default_element(), estate); }
-      virtual ::color get_color(style* pstyle, enum_element eelement, estate elayout = e_state_none) const;
-      inline ::color get_color(style* pstyle, estate estate = e_state_none) const { return get_color(pstyle, get_default_element(), estate); }
+      virtual int get_int(style* pstyle, enum_int eint, ::user::enum_state estate = e_state_none, int iDefault = 0) const;
+      virtual double get_double(style* pstyle, enum_double edouble, ::user::enum_state estate = e_state_none, double dDefault = 0.) const;
+      virtual ::rectd get_border(style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
+      inline ::rectd get_border(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_border(pstyle, get_default_element(), estate); }
+      virtual ::rectd get_padding(style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none) const;
+      inline ::rectd get_padding(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_padding(pstyle, get_default_element(), estate); }
+      virtual ::rectd get_margin(style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
+      inline ::rectd get_margin(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_margin(pstyle, get_default_element(), estate); }
+      virtual ::color get_color(style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none) const;
+      inline ::color get_color(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_color(pstyle, get_default_element(), estate); }
 
       virtual eflag get_draw_flags(style* pstyle) const;
 
-      virtual estate get_state() const;
+      virtual ::user::enum_state get_state() const;
 
       virtual ::user::style* _get_style() const;
 
@@ -338,7 +339,7 @@ namespace user
 
       interaction * get_tooltip();
 
-      virtual ::estatus set_tool_window(bool bSet = true) override;
+      virtual ::e_status set_tool_window(bool bSet = true) override;
 
       virtual double get_rotate();
       virtual ::user::form * get_form();
@@ -516,9 +517,16 @@ namespace user
       virtual iptr get_window_long_ptr(i32 nIndex) const override;
       virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
-      virtual bool on_before_set_parent(::user::interaction* pinterface);
-      virtual bool on_set_parent(::user::interaction* pinterface);
+      virtual bool on_before_set_parent(::user::primitive * pinterface);
+      virtual bool on_set_parent(::user::primitive * pinterface);
       virtual void on_after_set_parent();
+
+
+      virtual bool on_set_owner(::user::primitive * pinterface);
+
+
+
+
 
       virtual ::user::primitive * first_child_user_primitive() override;
       virtual ::user::primitive * top_user_primitive() override;
@@ -754,9 +762,9 @@ namespace user
 
       virtual void on_finish() override;
 
-      virtual ::estatus set_finish_composites(::context_object * pcontextobjectFinish) override;
+      virtual ::e_status set_finish_composites(::context_object * pcontextobjectFinish) override;
 
-      virtual ::estatus finish(::context_object * pcontextobjectFinish = nullptr) override;
+      virtual ::e_status finish(::context_object * pcontextobjectFinish = nullptr) override;
 
       virtual void notify_on_finish(::context_object * pcontextobjectFinish) override;
 
@@ -969,21 +977,23 @@ namespace user
       ::user::interaction* get_child_by_id(id id, i32 iLevel = -1);
 
 
-      virtual bool is_ascendant(const primitive * puiIsAscendant) const override;
+      virtual bool is_ascendant(const primitive * puiIsAscendant, bool bIncludeSelf) const override;
       virtual bool is_parent(const primitive * puiIsParent) const override;
       virtual bool is_child(const primitive * puiIsChild) const override;
-      virtual bool is_descendant(const primitive * puiIsDescendant) const override;
+      virtual bool is_descendant(const primitive * puiIsDescendant, bool bIncludeSelf) const override;
 
-      virtual bool is_ascendant(const ::user::controller * pcontroller) const;
+      virtual bool is_ascendant(const ::user::controller * pcontroller, bool bIncludeSelf) const;
       virtual bool contains(const primitive* puiIsChild) const;
 
-      virtual bool r_contains(const primitive* puiIsChild) const;
+      virtual bool recursively_contains(const primitive* puiIsChild, bool bIncludeSelf) const;
 
       virtual ::user::interaction* get_wnd() const override;
       virtual ::user::interaction* get_wnd(::u32 nCmd) const override;
 
-      virtual ::user::interaction * SetParent(::user::interaction* pinteraction) override;
-      virtual ::user::interaction * SetOwner(::user::interaction* pinteraction) override;
+      virtual ::user::primitive * SetParent(::user::primitive * pinteraction) override;
+      virtual ::user::primitive * SetOwner(::user::primitive * pinteraction) override;
+
+      virtual void on_add_owned(::user::primitive * pprimitive) override;
 
       virtual ::user::interaction * get_parent_window() const override;
 
@@ -1013,14 +1023,14 @@ namespace user
       virtual void route_message_to_descendants(::message::message* pmessage) override;
 
 
-      virtual i32 get_descendant_level(::user::interaction* pinteraction) override;
+      virtual i32 get_descendant_level(const ::user::primitive * pinteraction) const override;
 
 
-      virtual bool is_descendant(::user::interaction* pinteraction, bool bIncludeSelf = false) override;
+      //virtual bool is_descendant(const ::user::primitive * pinteraction, bool bIncludeSelf = false) const override;
 
       virtual oswindow GetParentHandle() const;
 
-      virtual ::user::interaction* get_focusable_descendant() override;
+      virtual ::user::interaction* get_focusable_descendant() const override;
 
       virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag = reposDefault, RECT32* prectParam = nullptr, const ::rect& rectClient = nullptr, bool bStretch = true) override;
 
@@ -1029,7 +1039,7 @@ namespace user
 
       virtual ::user::interaction* get_next_sibling_window() override;
 
-      virtual ::user::interaction* get_next_window(bool bIgnoreChildren = false, ::user::interaction * puiInteractionStop = nullptr) override;
+      virtual ::user::interaction* get_next_window(bool bIgnoreChildren = false, const ::user::interaction * puiInteractionStop = nullptr) const override;
 
       virtual ::user::interaction* GetTopWindow();
 
@@ -1135,6 +1145,9 @@ namespace user
       virtual void on_end_layout_experience(enum_layout_experience elayoutexperience) override;
 
 
+      virtual void on_configuration_change(::user::primitive * pprimitiveSource) override;
+
+
       virtual void show_keyboard(bool bShow = true) override;
 
 
@@ -1206,8 +1219,8 @@ namespace user
       virtual ::sized get_total_size();
       virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics);
       virtual ::sized get_page_size();
-      virtual ::estatus set_total_size(const ::sized& size);
-      virtual ::estatus set_page_size(const ::sized& size);
+      virtual ::e_status set_total_size(const ::sized& size);
+      virtual ::e_status set_page_size(const ::sized& size);
       virtual ::point get_parent_accumulated_scroll(enum_layout elayout = e_layout_design) const;
       virtual ::point get_parent_viewport_offset() const;
       virtual ::point get_ascendant_viewport_offset() const;
@@ -1279,16 +1292,22 @@ namespace user
       template < typename CHILD >
       inline __pointer(CHILD) get_typed_child();
 
+      virtual enum_input_type preferred_input_type() const;
 
-      virtual ::user::primitive* get_focus_primitive();
-      virtual bool set_focus_primitive(::user::primitive* pprimitive);
+      virtual ::user::primitive * get_keyboard_focus();
+      virtual ::e_status set_keyboard_focus(::user::primitive* pprimitive);
+      virtual ::e_status remove_keyboard_focus(::user::primitive * pprimitive);
+
+      virtual ::e_status set_keyboard_focus() override;
+      virtual ::e_status remove_keyboard_focus() override;
+      virtual ::e_status clear_keyboard_focus() override;
 
 
-      virtual bool is_descendant_of(::user::interaction* puiAscendantCandidate, bool bIncludeSelf);
-      virtual bool is_ascendant_of(::user::interaction* puiDescendantCandidate, bool bIncludeSelf);
+      virtual bool is_descendant_of(const ::user::primitive * puiAscendantCandidate, bool bIncludeSelf) const override;
+      virtual bool is_ascendant_of(const ::user::primitive * puiDescendantCandidate, bool bIncludeSelf) const override;
 
-      virtual bool is_descendant_of_or_owned_by(::user::interaction* puiAscendantCandidate, bool bIncludeSelf);
-      virtual bool is_ascendant_or_owner_of(::user::interaction* puiDescendantCandidate, bool bIncludeSelf);
+      virtual bool is_descendant_of_or_owned_by(const ::user::primitive * puiAscendantCandidate, bool bIncludeSelf) const override;
+      virtual bool is_ascendant_or_owner_of(const ::user::primitive * puiDescendantCandidate, bool bIncludeSelf) const override;
 
       virtual bool show_tooltip(const string& str, bool bError);
 
@@ -1483,7 +1502,8 @@ namespace user
       //virtual bool set(e_font efont = font_default);
 
 
-      virtual void show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd) override;
+      virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
+      virtual ::e_status hide_software_keyboard(::user::primitive * pprimitive) override;
 
 
       virtual void set_stock_icon(e_stock_icon eicon);

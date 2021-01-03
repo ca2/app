@@ -215,7 +215,7 @@ int get_best_ordered_monitor(::user::interaction * pinteraction, RECT32 * prectR
 
    auto rectaOrdered = get_ordered_monitor_recta(pinteraction->get_context_application());
 
-   index iJustForComparison = pinteraction->best_monitor(prectRet, nullptr, FALSE, 0, zorder_none);
+   index iJustForComparison = pinteraction->best_monitor(prectRet, nullptr, e_display_none, e_activation_default, zorder_none);
 
    index iOrdered = rectaOrdered.pred_find_first([&](auto & rectMonitorSorted) { return rectMonitorSorted == *prectRet; });
 
@@ -242,7 +242,7 @@ int best_xinerama_monitor(::user::interaction * pinteraction, const ::rect & rec
 
    }
 
-   index iOrdered = pinteraction->best_monitor(prectRet, rect, false, 0, zorder_none);
+   index iOrdered = pinteraction->best_monitor(prectRet, rect, false, e_activation_default, zorder_none);
 
    ::count cMonitor = xinerama_get_monitor_count();
 
@@ -293,7 +293,7 @@ int get_best_monitor(::user::interaction * pinteraction, const ::rect & rectPara
 
    }
 
-   index i = pinteraction->best_monitor(prectRet, rect, FALSE, 0, zorder_none);
+   index i = pinteraction->best_monitor(prectRet, rect, false, e_activation_default, zorder_none);
 
    return i;
 

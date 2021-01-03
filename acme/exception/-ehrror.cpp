@@ -5,7 +5,7 @@ namespace exception
 {
 
 
-   error::error(const char * pszMessage, const ::estatus & estatus):
+   error::error(const char * pszMessage, const ::e_status & estatus):
       ::exception::exception(pszMessage, estatus)
    {
 

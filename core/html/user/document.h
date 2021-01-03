@@ -18,7 +18,7 @@ public:
    virtual void dump(dump_context & dumpcontext) const override;
 
 
-   virtual ::estatus create_html_data();
+   virtual ::e_status create_html_data();
 
 
    virtual ::html_data * get_html_data();

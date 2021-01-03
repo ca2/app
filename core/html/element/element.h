@@ -51,7 +51,7 @@ namespace html
       virtual ~element();
 
 
-      virtual ::estatus initialize_html_elemental(html_data * pdata, element * pparent = nullptr);
+      virtual ::e_status initialize_html_elemental(html_data * pdata, element * pparent = nullptr);
 
 
       virtual void _001SetText(const string & str, const ::action_context & action_context) override;

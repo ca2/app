@@ -32,7 +32,7 @@ namespace datetime
 
 
 
-   ::estatus visual::initialize(::layered * pobjectContext)
+   ::e_status visual::initialize(::layered * pobjectContext)
    {
 
       return ::success;

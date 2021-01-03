@@ -17,7 +17,7 @@ namespace console
       department(::layered * pobjectContext);
       virtual ~department();
 
-      virtual ::estatus init_instance() override;
+      virtual ::e_status init_instance() override;
 
 
       inline prompt & console_prompt() { return *m_spprompt; }

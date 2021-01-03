@@ -5,7 +5,7 @@ namespace apex
 {
 
 
-   ::estatus system::os_application_system_run()
+   ::e_status system::os_application_system_run()
    {
 
       //auto source = ::uwp::new_directx_application_source(this, m_strCommandLine);

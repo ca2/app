@@ -44,7 +44,7 @@ namespace opengl
    }
 
 
-   ::estatus context_fbo::_create_offscreen_buffer(const ::size & size)
+   ::e_status context_fbo::_create_offscreen_buffer(const ::size & size)
    {
 
       auto pgpu = System.get_gpu();
@@ -161,7 +161,7 @@ namespace opengl
          
       }
       
-      ::estatus estatus = make_current();
+      ::e_status estatus = make_current();
 
       if(!estatus)
       {
@@ -200,7 +200,7 @@ namespace opengl
    }
 
 
-   ::estatus context_fbo::lock_context()
+   ::e_status context_fbo::lock_context()
    {
       
       if(!m_context)
@@ -224,7 +224,7 @@ namespace opengl
    }
 
 
-   ::estatus context_fbo::unlock_context()
+   ::e_status context_fbo::unlock_context()
    {
       
       if(!m_context)
@@ -248,7 +248,7 @@ namespace opengl
    }
 
 
-   ::estatus context_fbo::make_current()
+   ::e_status context_fbo::make_current()
    {
 
       CGLError error = CGLSetCurrentContext(m_context);
@@ -269,7 +269,7 @@ namespace opengl
    }
 
 
-   ::estatus context_fbo::destroy_offscreen_buffer()
+   ::e_status context_fbo::destroy_offscreen_buffer()
    {
 
       make_current();
@@ -331,10 +331,10 @@ namespace opengl
    }
 
 
-   ::estatus context_fbo::render()
+   ::e_status context_fbo::render()
    {
       
-      ::estatus estatus = context::render();
+      ::e_status estatus = context::render();
       
       if(!estatus)
       {
@@ -348,17 +348,17 @@ namespace opengl
    }
 
 
-   ::estatus context_fbo::start()
+   ::e_status context_fbo::start()
    {
       
-      ::estatus estatus = context::start();
+      ::e_status estatus = context::start();
       
       return estatus;
    
    }
 
 
-   ::estatus context_fbo::resize_offscreen_buffer(const ::size& size)
+   ::e_status context_fbo::resize_offscreen_buffer(const ::size& size)
    {
       
       auto estatus = context::resize_offscreen_buffer(size);
@@ -379,7 +379,7 @@ namespace opengl
    }
 
 
-   ::estatus context_fbo::prepare_for_gpu_read()
+   ::e_status context_fbo::prepare_for_gpu_read()
    {
    
       return ::success;

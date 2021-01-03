@@ -28,12 +28,12 @@ namespace account
    }
 
 
-   ::estatus     network_authenticator::pre_authenticate(credentials * pcredentials)
+   ::e_status     network_authenticator::pre_authenticate(credentials * pcredentials)
    {
 
       pcredentials->m_puser->m_strAccountServer.Empty();
 
-      ::estatus     estatus = get_account_server(pcredentials);
+      ::e_status     estatus = get_account_server(pcredentials);
 
       if(::failed(estatus))
       {
@@ -61,10 +61,10 @@ namespace account
    }
 
 
-   ::estatus  network_authenticator::authenticate(credentials * pcredentials)
+   ::e_status  network_authenticator::authenticate(credentials * pcredentials)
    {
 
-      ::estatus     estatus = network_authentication(pcredentials);
+      ::e_status     estatus = network_authentication(pcredentials);
 
       if(estatus != ::success)
       {
@@ -168,7 +168,7 @@ namespace account
    }
 
 
-   ::estatus     network_authenticator::network_authentication(credentials * pcredentials)
+   ::e_status     network_authenticator::network_authentication(credentials * pcredentials)
    {
 
       auto puser = pcredentials->m_puser;
@@ -269,7 +269,7 @@ namespace account
 
       pcredentials->m_strResponse = strResponse;
 
-      pcredentials->m_estatusHttp = (::estatus    ) set["get_status"].i64();
+      pcredentials->m_estatusHttp = (::e_status    ) set["get_status"].i64();
 
       TRACE("login_task::NetLogin Total time Context.http().get(\"%s\") : " __prtick, strAuthUrl.c_str(), __pr(tickTimeProfile1.elapsed()));
 
@@ -280,10 +280,10 @@ namespace account
    }
 
 
-   ::estatus     network_authenticator::get_account_server(credentials * pcredentials)
+   ::e_status     network_authenticator::get_account_server(credentials * pcredentials)
    {
 
-      ::estatus     estatus = error_failed;
+      ::e_status     estatus = error_failed;
 
       for(index iTry = 0; iTry < 2; iTry++)
       {
@@ -304,7 +304,7 @@ namespace account
    }
 
 
-   ::estatus     network_authenticator::_get_account_server(credentials * pcredentials)
+   ::e_status     network_authenticator::_get_account_server(credentials * pcredentials)
    {
 
       auto puser = pcredentials->m_puser;

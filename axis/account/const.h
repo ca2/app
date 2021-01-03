@@ -10,7 +10,7 @@
 //{
 //
 //   
-//   enum ::estatus    
+//   enum ::e_status    
 //   {
 //      
 //   

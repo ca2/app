@@ -73,9 +73,9 @@ namespace music
 
                bool SetMidiOutDevice(u32 uiDevice);
 
-               ::estatus     SetInterface(player_interface * pinterface);
+               ::e_status     SetInterface(player_interface * pinterface);
 
-               ::estatus     Initialize(::thread * pthread);
+               ::e_status     Initialize(::thread * pthread);
 
                bool IsPlaying();
 

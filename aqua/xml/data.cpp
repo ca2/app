@@ -103,7 +103,7 @@ namespace xml
    }
 
    
-   ::estatus data::validate_edit(::xml::edit* pedit)
+   ::e_status data::validate_edit(::xml::edit* pedit)
    {
 
       return ::success;

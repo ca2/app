@@ -65,24 +65,24 @@ public:
    virtual void remove_notify(::matter* pmatter);
 
 
-   virtual ::estatus task_caller_on_init();
+   virtual ::e_status task_caller_on_init();
 
    virtual bool on_get_thread_name(string & strThreadName);
 
 
    virtual void init_task();
    virtual void term_task();
-   virtual ::estatus do_task() override;
-   virtual ::estatus on_task() override;
+   virtual ::e_status do_task() override;
+   virtual ::e_status on_task() override;
 
 
-   virtual ::estatus begin_task(
+   virtual ::e_status begin_task(
       ::e_priority epriority = priority_normal,
       u32 nStackSize = 0,
       u32 dwCreateFlags = 0);
 
 
-   virtual ::estatus start(
+   virtual ::e_status start(
       ::matter* pmatter,
       ::e_priority epriority = priority_normal,
       u32 nStackSize = 0,

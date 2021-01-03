@@ -67,7 +67,7 @@ namespace file
 
       //watch_id os_watcher::add_watch(const ::file::path& pathFolderParam, listener* plistenerParam, bool bRecursive)
 
-      //virtual ::estatus     run() override;
+      //virtual ::e_status     run() override;
 
       //virtual bool step();
 

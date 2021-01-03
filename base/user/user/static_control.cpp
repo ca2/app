@@ -37,7 +37,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer static_control::get_font(style * pstyle, enum_element eelement, estate estate) const
+   ::draw2d::font_pointer static_control::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (pstyle)
@@ -114,7 +114,7 @@ namespace user
          ::user::control_event ev;
          ev.m_puie = this;
          ev.m_eevent = ::user::e_event_button_clicked;
-         ev.m_actioncontext = ::source_user;
+         ev.m_actioncontext = ::e_source_user;
 
          on_control_event(&ev);
 

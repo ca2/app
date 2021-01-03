@@ -483,7 +483,7 @@ extern "C"
 
 
 
-CLASS_DECL_APEX ::estatus load_factory_library(string strLibrary)
+CLASS_DECL_APEX ::e_status load_factory_library(string strLibrary)
 {
 
 

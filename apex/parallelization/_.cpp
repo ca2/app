@@ -653,7 +653,7 @@ bool do_events()
 
 
 
-::estatus thread_ptra::finish(::context_object * pcontextobjectFinish)
+::e_status thread_ptra::finish(::context_object * pcontextobjectFinish)
 {
 
    try
@@ -764,10 +764,10 @@ void thread_ptra::wait(const duration & duration, sync_lock & sl)
 }
 
 
-//CLASS_DECL_APEX ::estatus call(const ::method & method)
+//CLASS_DECL_APEX ::e_status call(const ::method & method)
 //{
 //
-//   ::estatus estatus;
+//   ::e_status estatus;
 //
 //   try
 //   {
@@ -1013,10 +1013,10 @@ void thread_ptra::wait(const duration & duration, sync_lock & sl)
 
 //
 //
-//::estatus     run_runnable(::matter* pobjectTask)
+//::e_status     run_runnable(::matter* pobjectTask)
 //{
 //
-//   ::estatus     estatus = error_exception;
+//   ::e_status     estatus = error_exception;
 //
 //   try
 //   {

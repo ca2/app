@@ -26,7 +26,7 @@ namespace mail
 
 
 
-   ::estatus     pop3::run()
+   ::e_status     pop3::run()
    {
 
       m_psocket = __new(pop3_socket(*m_phandler));

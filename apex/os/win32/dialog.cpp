@@ -35,7 +35,7 @@ namespace win32
 
    }
 
-   ::estatus dialog::initialize_dialog(::layered * pobjectContext, const widechar * pszResource)
+   ::e_status dialog::initialize_dialog(::layered * pobjectContext, const widechar * pszResource)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

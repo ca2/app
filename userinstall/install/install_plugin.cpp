@@ -1493,7 +1493,7 @@ retry_get_prompt:
    }
 
 
-   void plugin::on_login_result(const ::estatus & estatus, const char * pszResponse)
+   void plugin::on_login_result(const ::e_status & estatus, const char * pszResponse)
    {
 
       if(eresult == ::account::result_auth)

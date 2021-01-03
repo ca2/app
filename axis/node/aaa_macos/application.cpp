@@ -253,7 +253,7 @@ namespace axis
 //
 //
 ////
-////   ::estatus     application::do_request(::create * pcreate)
+////   ::e_status     application::do_request(::create * pcreate)
 ////   {
 ////
 ////      //m_pcommand = pcommand;

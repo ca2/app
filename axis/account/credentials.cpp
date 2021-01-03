@@ -17,7 +17,7 @@ namespace account
    }
 
 
-   ::estatus credentials::initialize_account_credentials(const credentials & credentials)
+   ::e_status credentials::initialize_account_credentials(const credentials & credentials)
    {
 
       auto estatus = initialize_account_storage_client(credentials.m_pstorage);
@@ -68,7 +68,7 @@ namespace account
    }
 
 
-   ::estatus credentials::initialize_account_credentials(user * puser, storage * pstorage) 
+   ::e_status credentials::initialize_account_credentials(user * puser, storage * pstorage) 
    {
 
       auto estatus = initialize_account_storage_client(pstorage);
@@ -116,12 +116,12 @@ namespace account
    }
 
 
-   ::estatus     credentials::get_credentials()
+   ::e_status     credentials::get_credentials()
    {
 
       m_estatus = error_none;
 
-      ::estatus     estatus = load_from_storage();
+      ::e_status     estatus = load_from_storage();
 
       if(estatus == ::success_credentials || estatus == ::success_authenticated)
       {
@@ -144,7 +144,7 @@ namespace account
    /// output
    /// m_strUsername
    /// m_strPassword
-   ::estatus  CLASS_DECL_AXIS credentials::interactive_credentials()
+   ::e_status  CLASS_DECL_AXIS credentials::interactive_credentials()
    {
 
       m_estatus = error_none;
@@ -182,7 +182,7 @@ namespace account
    /// output
    /// m_strUsername
    /// m_strPassword
-   ::estatus  credentials::load_from_storage(::count cTry)
+   ::e_status  credentials::load_from_storage(::count cTry)
    {
 
       if (cTry <= 0)
@@ -272,7 +272,7 @@ namespace account
          if (bOk)
          {
 
-            auto estatus = (::estatus) ::ansi_to_i64(strOpen);
+            auto estatus = (::e_status) ::ansi_to_i64(strOpen);
 
             if (estatus == ::success_credentials || estatus == ::success_authenticated)
             {
@@ -318,7 +318,7 @@ namespace account
    }
 
 
-   void credentials::save_status_to_storage(const ::estatus & estatus)
+   void credentials::save_status_to_storage(const ::e_status & estatus)
    {
 
       string strStatus = __str((i64)estatus.m_estatus);
@@ -356,7 +356,7 @@ namespace account
    }
 
 
-   ::estatus credentials::save_to_storage()
+   ::e_status credentials::save_to_storage()
    {
 
       if(m_puser->m_strLogin.is_empty()

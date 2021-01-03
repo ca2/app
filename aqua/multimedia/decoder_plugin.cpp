@@ -70,7 +70,7 @@ namespace multimedia
       if (m_plibrary.is_null())
       {
 
-         ::estatus estatus = get_last_status();
+         ::e_status estatus = get_last_status();
 
          TRACE("LoadLibrary failed to open library %s %d %s", pszTitle, estatus, __str(estatus).c_str());
 

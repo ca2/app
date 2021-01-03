@@ -74,7 +74,7 @@ namespace linux
       }
 
 
-      ::estatus shell::initialize(::layered * pobjectContext)
+      ::e_status shell::initialize(::layered * pobjectContext)
       {
 
          auto estatus = ::user::shell::initialize(pobjectContext);
@@ -1135,10 +1135,10 @@ namespace core
 {
 
 
-   ::estatus user::create_user_shell()
+   ::e_status user::create_user_shell()
    {
 
-      ::estatus estatus = ::success;
+      ::e_status estatus = ::success;
 
       if (!m_pshell)
       {

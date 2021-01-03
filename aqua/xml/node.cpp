@@ -2146,6 +2146,17 @@ namespace xml
       _CopyBranch( branch );
    }
 
+   node * node::get_child_at( index iIndex)
+   {
+
+      if (iIndex < 0)
+         return nullptr;
+      if (iIndex >= m_nodea.get_size())
+         return nullptr;
+      return m_nodea[iIndex]->get_xml_node();
+
+   }
+
 
    node *                  node::get_child_at(const char * lpszName, index iIndex, index iDepth)
    {

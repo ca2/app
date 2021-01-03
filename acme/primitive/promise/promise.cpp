@@ -24,7 +24,7 @@ namespace promise
    }
 
 
-   ::estatus promise::on_task()
+   ::e_status promise::on_task()
    {
 
       m_process(m_pmatter->realize());

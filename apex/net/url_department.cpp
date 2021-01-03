@@ -583,7 +583,7 @@ namespace url
       strsize iPos = strUrl.find('?');
 
       if(iPos < 0)
-         return payload(::type_empty);
+         return payload(::e_type_empty);
       else
          return query_get_var(strUrl.Mid(iPos + 1), pszKey);
 
@@ -597,7 +597,7 @@ namespace url
       strsize iPos = strUrl.find('?');
 
       if(iPos < 0)
-         return payload(::type_empty);
+         return payload(::e_type_empty);
       else
          return url_decode(query_get_param(strUrl.Mid(iPos + 1), pszKey));
 

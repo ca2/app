@@ -147,7 +147,7 @@ void ns_main_sync(dispatch_block_t block, unsigned int)
 
 class object;
 
-CLASS_DECL_AURA ::estatus __call(::elemental * prunnable);
+CLASS_DECL_AURA ::e_status __call(::elemental * prunnable);
 
 void main_async_runnable(::elemental * prunnable)
 {

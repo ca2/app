@@ -277,7 +277,7 @@ namespace file
 
 
 
-   ::estatus     watcher::run()
+   ::e_status     watcher::run()
    {
       
       m_pthread = ::get_task();

@@ -15,6 +15,7 @@ namespace ftp
       close();
    }
 
+
    bool file::Open(const string& strFileName, const ::file::e_open & eopen)
    {
 
@@ -25,6 +26,7 @@ namespace ftp
       return m_file.is_set();
 
    }
+
 
    bool file::close()
    {

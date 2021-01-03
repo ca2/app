@@ -31,7 +31,7 @@ namespace axis
       virtual ~session();
 
 
-      virtual ::estatus     initialize(::layered * pobjectContext) override;
+      virtual ::e_status     initialize(::layered * pobjectContext) override;
 
       inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 
@@ -39,15 +39,15 @@ namespace axis
 
       //void construct(::object * pobject, int iPhase) override;
 
-      virtual ::estatus process_init() override;
+      virtual ::e_status process_init() override;
 
-      virtual ::estatus init1() override;
+      virtual ::e_status init1() override;
 
-      virtual ::estatus init2() override;
+      virtual ::e_status init2() override;
 
-      virtual ::estatus init_session() override;
+      virtual ::e_status init_session() override;
 
-      virtual ::estatus init() override;
+      virtual ::e_status init() override;
 
       virtual void term() override;
 
@@ -82,7 +82,7 @@ namespace axis
 
       virtual void defer_initialize_user_presence() override;
 
-      //virtual ::estatus     interactive_credentials(::account::credentials * pcredentials) override;
+      //virtual ::e_status     interactive_credentials(::account::credentials * pcredentials) override;
 
       virtual bool on_create_frame_window() override;
 

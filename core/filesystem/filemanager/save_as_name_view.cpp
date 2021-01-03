@@ -63,7 +63,7 @@ namespace filemanager
       if (Context.dir().is(str))
       {
 
-         filemanager_document()->browse(str, context + ::source_sync);
+         filemanager_document()->browse(str, context + ::e_source_sync);
 
       }
       else if (str.find("/") >= 0 || str.find("\\") >= 0)
@@ -82,7 +82,7 @@ namespace filemanager
                if (filemanager_item()->m_filepathUser != strName)
                {
 
-                  filemanager_document()->browse(strName, context + ::source_sync);
+                  filemanager_document()->browse(strName, context + ::e_source_sync);
 
                }
 

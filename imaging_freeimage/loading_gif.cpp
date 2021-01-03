@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "_imaging_freeimage.h"
 #include <math.h>
 
 
@@ -12,8 +13,8 @@ namespace imaging_freeimage
 
    bool freeimage_load_imagea_frame(::image * pimageCompose, image_frame_array * pimagea, index iFrame, FIBITMAP * pfi);
 
-   
-   ::estatus context_image::_load_image(::image * pimageCompose, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
+
+   ::e_status context_image::_load_image(::image * pimageCompose, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
    {
 
       fimemory mem(*pmemory);
@@ -97,7 +98,7 @@ namespace imaging_freeimage
                            if (FreeImage_GetTagType(ptag) == FIDT_PALETTE)
                            {
 
-                              cra_from_quada(pframea->m_colorrefa, (RGBQUAD *)FreeImage_GetTagValue(ptag), FreeImage_GetTagCount(ptag));
+                              cra_from_quada(pframea->m_colorrefa, (WINRGBQUAD *)FreeImage_GetTagValue(ptag), FreeImage_GetTagCount(ptag));
 
                            }
 

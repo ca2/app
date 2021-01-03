@@ -12,7 +12,7 @@ ftpfs::ftpfs()
 }
 
 
-::estatus ftpfs::initialize_ftpfs(::layered * pobjectContext, const char * pszRoot)
+::e_status ftpfs::initialize_ftpfs(::layered * pobjectContext, const char * pszRoot)
 {
 
    auto estatus = ::fs::data::initialize(pobjectContext);
@@ -42,7 +42,7 @@ ftpfs::~ftpfs()
 }
 
 //
-//::estatus ftpfs::initialize(::layered * pobjectContext)
+//::e_status ftpfs::initialize(::layered * pobjectContext)
 //{
 //
 //   auto estatus = __compose_new(this, m_pftpnet);
@@ -244,7 +244,7 @@ retry:
 
       }
 
-      pclient->m_estate = ::ftp::client_socket::state_initial;
+      pclient->m_estate = ::ftp::client_socket::e_state_initial;
 
       iTry++;
 
@@ -431,7 +431,7 @@ retry:
 
          }
 
-         pclient->m_estate = ::ftp::client_socket::state_initial;
+         pclient->m_estate = ::ftp::client_socket::e_state_initial;
 
          iTry++;
 
@@ -516,7 +516,7 @@ void ftpfs::defer_initialize(::ftp::client_socket ** ppclient, string strPath)
 
    *ppclient = pclient.m_p;
 
-   if (pclient->m_estate == ::ftp::client_socket::state_initial || !pclient->IsConnected())
+   if (pclient->m_estate == ::ftp::client_socket::e_state_initial || !pclient->IsConnected())
    {
 
 retry:
@@ -540,7 +540,7 @@ retry_login:
          if (iTry > 3)
          {
 
-            pclient->m_estate = ::ftp::client_socket::state_initial;
+            pclient->m_estate = ::ftp::client_socket::e_state_initial;
 
             return;
 

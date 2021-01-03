@@ -81,7 +81,7 @@ namespace prompt
       else if(get_view_id() == CONTEXT_MENU_IMPACT)
       {
          __pointer(::filemanager::document) pdocument =  (get_view_uie());
-         pdocument->browse(Context.dir().appdata()/ "command/menu", ::source_system);
+         pdocument->browse(Context.dir().appdata()/ "command/menu", ::e_source_system);
       }
       else
       {
@@ -123,7 +123,7 @@ namespace prompt
          pdata->m_pcallback = this;
          pdata->m_strXmlPopup = "matter://filemanager\\file_popup.xml";
 
-         bool bOk = pdata->open(get_context_application(), Context.dir().appdata() / "command/menu", ::source_system);
+         bool bOk = pdata->open(get_context_application(), Context.dir().appdata() / "command/menu", ::e_source_system);
 
          if(bOk && ::is_set(pdata->m_pdocument))
          {
@@ -204,7 +204,7 @@ namespace prompt
          //pdata->m_strFilePopup = "filemanager\\file_popup.xml";
 
          //auto pdocument = pdata->browse(Context.dir().appdata() / "co
-         pdata->open(get_context_application(), Context.dir().appdata() / "command\\3-action-launch", ::source_system);
+         pdata->open(get_context_application(), Context.dir().appdata() / "command\\3-action-launch", ::e_source_system);
 
          if(::is_set(pdata->m_pdocument))
          {
@@ -246,7 +246,7 @@ namespace prompt
          ::user::impact_data * pimpactdata = new ::user::impact_data;
          __pointer(::user::impact) pview = pdocument->get_typed_view < ::user::impact > ();
          auto pupdate = new_update();
-         pupdate->m_actioncontext = ::source_system;
+         pupdate->m_actioncontext = ::e_source_system;
          psubject->id() = id_browse;
          psubject->value(id_form) = "filemanager\\replace_name_in_file_system.xhtml";
          pdocument->update_all_views(pupdate);

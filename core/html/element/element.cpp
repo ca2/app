@@ -1357,7 +1357,7 @@ namespace html
    }
 
 
-   ::estatus element::initialize_html_elemental(html_data * pdata, element * pparent)
+   ::e_status element::initialize_html_elemental(html_data * pdata, element * pparent)
    {
 
       auto estatus = ::user::primitive::initialize(pdata);

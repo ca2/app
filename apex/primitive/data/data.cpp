@@ -50,7 +50,7 @@ namespace data
    }
 
 
-   ::estatus data::initialize_data(::data::data_container_base * pdatacontainerbase)
+   ::e_status data::initialize_data(::data::data_container_base * pdatacontainerbase)
    {
 
       auto estatus = ::object::initialize(pdatacontainerbase);

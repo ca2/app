@@ -98,7 +98,7 @@ namespace user
       __pointer(::message::base) get_message_base(oswindow oswindow, const ::id & id, WPARAM wparam, lparam lparam) override;
 
 
-      virtual ::user::interaction* get_host_wnd() const;
+      virtual ::user::interaction* get_host_window() const;
 
 
       virtual bool enable_window(bool bEnable = true);
@@ -159,11 +159,13 @@ namespace user
 
       //}
 
-      //virtual ::estatus message_box(const payload & payload) override;
+      //virtual ::e_status message_box(const payload & payload) override;
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-      virtual void show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd);
+      virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd);
+
+      virtual ::e_status hide_software_keyboard(::user::primitive * pprimitive);
 
       virtual void UpdateWindow();
       
@@ -277,6 +279,10 @@ namespace user
       virtual void on_start_layout_experience(enum_layout_experience elayoutexperience);
       virtual void on_end_layout_experience(enum_layout_experience elayoutexperience);
 
+
+      virtual void on_configuration_change(::user::primitive * pprimitiveSource);
+
+
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
       virtual void on_reposition();
       virtual void on_show_window();
@@ -346,7 +352,7 @@ namespace user
       virtual u32 GetExStyle() const;
 
 
-      virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
+      virtual ::e_status main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
 
 
       //using ::channel::send;
@@ -388,15 +394,18 @@ namespace user
       virtual void draw_control_background(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual bool is_ascendant(const primitive * puiIsAscendant) const;
+      virtual bool is_ascendant(const primitive * puiIsAscendant, bool bIncludeSelf) const;
       virtual bool is_parent(const primitive * puiIsParent) const;
       virtual bool is_child(const primitive * puiIsChild) const;
-      virtual bool is_descendant(const primitive * puiIsDescendant) const;
+      virtual bool is_descendant(const primitive * puiIsDescendant, bool bIncludeSelf) const;
 
-      inline bool is_ascendant_of(const primitive * puiIsDescendant) const { return ::is_set(puiIsDescendant) && puiIsDescendant->is_ascendant(this); }
-      inline bool is_parent_of(const primitive * puiIsChild) const { return ::is_set(puiIsChild) && puiIsChild->is_parent(this); }
-      inline bool is_child_of(const primitive * puiIsParent) const { return ::is_set(puiIsParent) && puiIsParent->is_child(this); }
-      inline bool is_descendant_of(const primitive * puiIsAscendant) const { return ::is_set(puiIsAscendant) && puiIsAscendant->is_descendant(this); }
+      virtual bool is_descendant_of_or_owned_by(const ::user::primitive * puiAscendantCandidate, bool bIncludeSelf) const;
+      virtual bool is_ascendant_or_owner_of(const ::user::primitive * puiDescendantCandidate, bool bIncludeSelf) const;
+
+      virtual bool is_ascendant_of(const primitive * puiIsDescendant, bool bIncludeSelf) const;
+      virtual bool is_parent_of(const primitive * puiIsChild) const; 
+      virtual bool is_child_of(const primitive * puiIsParent) const; 
+      virtual bool is_descendant_of(const primitive * puiIsAscendant, bool bIncludeSelf) const; 
 
       virtual id GetDlgCtrlId() const;
       virtual id SetDlgCtrlId(::id id);
@@ -452,8 +461,8 @@ namespace user
       virtual ::user::interaction_impl * get_impl() const;
       virtual ::thread * get_task() const;
 
-      virtual ::user::interaction * SetParent(::user::interaction * pinteraction);
-      virtual ::user::interaction * SetOwner(::user::interaction * pinteraction);
+      virtual ::user::primitive * SetParent(::user::primitive * pinteraction);
+      virtual ::user::primitive * SetOwner(::user::primitive * pinteraction);
 
 
       virtual ::user::interaction * GetTopWindow() const;
@@ -481,9 +490,9 @@ namespace user
       virtual void pre_translate_message(::message::message * pmessage);
 
 
-      virtual i32 get_descendant_level(::user::interaction * pinteraction);
-      virtual bool is_descendant(::user::interaction * pinteraction,bool bIncludeSelf = false);
-      virtual ::user::interaction * get_focusable_descendant();
+      virtual i32 get_descendant_level(const ::user::primitive * pinteraction) const;
+      //virtual bool is_descendant(const ::user::primitive * pinteraction,bool bIncludeSelf = false) const;
+      virtual ::user::interaction * get_focusable_descendant() const;
 
       virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag = reposDefault, RECT32 * prectParam = nullptr, const ::rect & rectClient = nullptr, bool bStretch = true);
 
@@ -500,9 +509,9 @@ namespace user
 
 //#endif
 
-      virtual ::estatus set_tool_window(bool bSet = true);
+      virtual ::e_status set_tool_window(bool bSet = true);
 
-      virtual ::user::interaction * get_next_window(bool bIgnoreChildren = false, ::user::interaction * puiInteractionStop = nullptr);
+      virtual ::user::interaction * get_next_window(bool bIgnoreChildren = false, const ::user::interaction * puiInteractionStop = nullptr) const;
 
       virtual ::user::interaction * GetLastActivePopup();
 
@@ -664,7 +673,7 @@ namespace user
 
 
 
-
+      virtual void on_add_owned(::user::primitive * pprimitive);
 
 
 
@@ -707,7 +716,10 @@ namespace user
       virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew);
       virtual bool keyboard_focus_OnChildKillFocus();
       virtual primitive * keyboard_get_next_focusable(primitive * pfocus = nullptr, bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false);
-      virtual bool keyboard_set_focus();
+      virtual primitive * get_keyboard_focus() const;
+      virtual ::e_status set_keyboard_focus();
+      virtual ::e_status remove_keyboard_focus();
+      virtual ::e_status clear_keyboard_focus();
       virtual primitive * keyboard_set_focus_next(bool bSkipChild = false, bool bSkipSiblings = false, bool bSkipParent = false);
       //virtual bool has_focus();
 
@@ -766,8 +778,12 @@ namespace user
       virtual rect get_input_content_rect();
       virtual rect get_input_selection_rect();
 
+      virtual void InputConnectionBeginBatchEdit();
+      virtual void InputConnectionEndBatchEdit();
+      virtual void InputConnectionCommitText(const string & str, strsize iNewCursorPosition);
       virtual void InputConnectionSetComposingText(const string & str, strsize iNewCursorPosition);
       virtual void InputConnectionSetComposingRegion(strsize iStart, strsize iEnd);
+      virtual void InputConnectionSetSelection(strsize iStart, strsize iEnd);
       virtual void InputConnectionFinishComposingText();
 
       //virtual void _001OnTimer(::timer * ptimer);

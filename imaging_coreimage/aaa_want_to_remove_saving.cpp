@@ -184,7 +184,7 @@ namespace coreimage_imaging
    }
 
 
-   ::estatus imaging::save_image(memory & memory, const ::image * pimage, ::save_image * psaveimage)
+   ::e_status imaging::save_image(memory & memory, const ::image * pimage, ::save_image * psaveimage)
    {
 
       if (::is_null(pimage))

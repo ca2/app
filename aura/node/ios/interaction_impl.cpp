@@ -5261,7 +5261,7 @@ namespace ios
 //
 //         strText.release_string_buffer(iSize);
 //
-//         ptext->_001SetText(strText, ::source_user);
+//         ptext->_001SetText(strText, ::e_source_user);
 //
 //         long iSelBeg = -1;
 //

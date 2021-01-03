@@ -14,7 +14,7 @@ public:
    byte                 m_byteaSyncIndex[MAXIMUM_WAIT_OBJECTS];
 
 
-   DEFAULT_ARRAY_OF(sync_array, sync, sync);
+   DECLARE_ARRAY_OF(sync_array, sync, sync);
 
 
    sync_array();

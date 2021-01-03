@@ -16,7 +16,7 @@
 #include "framework.h"
 
 
-::estatus os_application_system_run(::apex::system * psystem)
+::e_status os_application_system_run(::apex::system * psystem)
 {
 
    psystem->application_main(psystem->m_argc, psystem->m_argv, psystem->m_strCommandLine);

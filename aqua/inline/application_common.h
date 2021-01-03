@@ -14,9 +14,9 @@ const char* br_init_get_symbol();
 #endif
 
 
-//CLASS_DECL_AQUA ::estatus os_application_system_run(::apex::system* psystem);
+//CLASS_DECL_AQUA ::e_status os_application_system_run(::apex::system* psystem);
 
-//CLASS_DECL_APEX ::estatus set_main_app_id(const char * pszAppId);
+//CLASS_DECL_APEX ::e_status set_main_app_id(const char * pszAppId);
 
 
 void application_common(::apex::system * psystem)

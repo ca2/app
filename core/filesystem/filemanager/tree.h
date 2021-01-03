@@ -50,7 +50,7 @@ namespace filemanager
       virtual ~tree();
 
 
-      virtual ::estatus initialize_filemanager_tree(document * pdocument);
+      virtual ::e_status initialize_filemanager_tree(document * pdocument);
 
 
       virtual void assert_valid() const override;

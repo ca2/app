@@ -30,12 +30,17 @@ namespace aqua
    {
    public:
 
+
+#ifdef WINDOWS
+      __composite(::windows::media_foundation)           m_pmediafoundation;
+#endif
+
       
       multimedia();
       virtual ~multimedia();
 
 
-      virtual ::estatus initialize_multimedia(::object* pobjectContext);
+      virtual ::e_status initialize_multimedia(::object* pobjectContext);
 
       virtual void on_song_added(const string& strId);
 
@@ -52,7 +57,11 @@ namespace aqua
       string_array detect_language(const string& str);
 
 
-      virtual ::estatus get_file_information(::file::file* pfile, ::multimedia::information& information);
+      virtual ::e_status get_file_information(::file::file* pfile, ::multimedia::information& information);
+
+#ifdef WINDOWS
+    ::windows::media_foundation * mediafoundation();
+#endif
 
 
    };

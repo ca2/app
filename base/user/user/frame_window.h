@@ -126,7 +126,7 @@ namespace user
 
 
 
-      virtual bool on_set_parent(::user::interaction * puiParent) override;
+      virtual bool on_set_parent(::user::primitive * puiParent) override;
 
       virtual void defer_synch_layered();
       virtual bool calc_layered();

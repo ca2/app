@@ -64,7 +64,7 @@ public:
 
 
 
-   virtual ::estatus run() override;
+   virtual ::e_status run() override;
 
    static void post_destroy_all();
 

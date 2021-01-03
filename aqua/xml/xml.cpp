@@ -34,7 +34,7 @@ namespace xml
    }
 
 
-   ::estatus department::init1()
+   ::e_status department::init1()
    {
 
       //if(Application.is_system())
@@ -75,7 +75,7 @@ namespace xml
    }
 
 
-   ::estatus department::init()
+   ::e_status department::init()
    {
 
       if(!::apex::department::init())

@@ -923,7 +923,7 @@ namespace crypto
    }
 
 
-   ::estatus     crypto::file_get(payload varFile, string& str, const char* pszSalt, ::apex::application* papp)
+   ::e_status     crypto::file_get(payload varFile, string& str, const char* pszSalt, ::apex::application* papp)
    {
 
       memory memoryEncrypt;

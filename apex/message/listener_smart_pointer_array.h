@@ -11,7 +11,7 @@ namespace message
    {
    public:
 
-      DEFAULT_ARRAY_ACCESSOR_OF(listener, m_listenera, RECEIVER);
+      DECLARE_ARRAY_ACCESSOR_OF(listener, m_listenera, RECEIVER);
 
       inline void add(RECEIVER * preceiver)
       {

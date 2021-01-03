@@ -11,7 +11,7 @@ namespace userstack
       m_font(e_create)
    {
 
-      m_font->create_point_font(FONT_SANS_EX, 8.4);
+      m_font->create_point_font(os_font_name(e_font_sans_ex), 8.4);
       m_bDestroy = false;
       m_iV = 123;
       m_iVH = 49;

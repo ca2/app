@@ -24,7 +24,7 @@ namespace sockets
 
       enum enum_state
       {
-         state_initial,
+         e_state_initial,
          state_hello,
          state_auth,
          state_auth_login,

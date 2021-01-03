@@ -11,7 +11,7 @@ namespace exception
    public:
 
 
-      error(const char * pszMessage = nullptr, const ::estatus & estatus = error_exception);
+      error(const char * pszMessage = nullptr, const ::e_status & estatus = error_exception);
       virtual ~error();
 
 

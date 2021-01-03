@@ -26,7 +26,7 @@ namespace user
       virtual void on_create_user_interaction() override;
 
 
-      virtual ::estatus create_main_window();
+      virtual ::e_status create_main_window();
 
    };
 

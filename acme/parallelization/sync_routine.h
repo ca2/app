@@ -34,13 +34,13 @@ namespace promise
       routine                          m_routine;
       __pointer(manual_reset_event)    m_peventCompletion;
       ::duration                       m_duration;
-      ::estatus                        m_estatus;
+      ::e_status                        m_estatus;
 
 
       virtual ~sync_routine() {}
 
 
-      inline virtual ::estatus operator()() override
+      inline virtual ::e_status operator()() override
       {
 
          m_estatus = m_routine();

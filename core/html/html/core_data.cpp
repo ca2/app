@@ -53,7 +53,7 @@ namespace html
 
    }
 
-   ::estatus core_data::initialize_html_data(html_data * pdata)
+   ::e_status core_data::initialize_html_data(html_data * pdata)
    {
 
       auto estatus = ::html_data::initialize_html_data(pdata);
@@ -299,9 +299,7 @@ namespace html
       if (pkey->m_ekey == ::user::key_tab)
       {
 
-         auto psession = Session;
-
-         ::user::primitive * pfocus = psession->get_keyboard_focus();
+         auto pfocus = get_form()->get_keyboard_focus();
 
          if (pfocus != nullptr)
          {
@@ -313,7 +311,7 @@ namespace html
          if (pfocus != nullptr)
          {
 
-            psession->set_keyboard_focus(pfocus);
+            pfocus->set_keyboard_focus();
 
          }
 
@@ -769,7 +767,7 @@ namespace html
    }
    
    
-   ::estatus     core_data::open_html(const ::string & strParam)
+   ::e_status     core_data::open_html(const ::string & strParam)
    {
       
       string str(strParam);

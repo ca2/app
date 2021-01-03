@@ -13,7 +13,7 @@ namespace coreimage_imaging
 
    bool coreimage_load_imagea_frame(::image * pimageCompose, image_frame_array * pimagea, index iFrame, FIBITMAP * pfi);
 
-   ::estatus imaging::_load_image(::image * pimageCompose, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
+   ::e_status imaging::_load_image(::image * pimageCompose, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
    {
 
       fimemory mem(*pmemory);

@@ -49,7 +49,7 @@ namespace draw2d_opengl
 
 
 
-   ::estatus image::create(const ::size& size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+   ::e_status image::create(const ::size& size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
    {
 
       if(m_pbitmap.is_set()
@@ -145,7 +145,7 @@ namespace draw2d_opengl
    }
 
 
-   ::estatus image::create(::draw2d::graphics * pgraphics)
+   ::e_status image::create(::draw2d::graphics * pgraphics)
    {
 
       ::draw2d::bitmap * pbitmap = (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_current_bitmap();
@@ -1332,7 +1332,7 @@ namespace draw2d_opengl
 
    // too slow for animation on AMD XP gen_hon.
    // TOP SUGGESTION:
-   // The gradient can�t have more then 256 levels of the most bright color
+   // The gradient cant have more then 256 levels of the most bright color
    // (white). So creating a radial fill of radius 256 and then using fasting
    // stretching algorithms is much faster than calculating radial fill.
 //   void image::RadialFill(byte alpha, byte red, byte green, byte blue, i32 xCenter, i32 yCenter, i32 iRadius)

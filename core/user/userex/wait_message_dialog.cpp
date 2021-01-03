@@ -155,7 +155,7 @@ namespace userex
 
          str.Format("%d", iSecond);
 
-         pinteraction->_001SetText(str, ::source_sync);
+         pinteraction->_001SetText(str, ::e_source_sync);
 
       }
 

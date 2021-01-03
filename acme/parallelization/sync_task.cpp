@@ -16,10 +16,10 @@
 //}
 //
 //
-//::estatus sync_task::call()
+//::e_status sync_task::call()
 //{
 //
-//   ::estatus estatus;
+//   ::e_status estatus;
 //
 //   try
 //   {

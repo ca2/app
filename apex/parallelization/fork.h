@@ -43,7 +43,7 @@ public:
    }
 
 
-   ::estatus run() override
+   ::e_status run() override
    {
 
       m_pred();
@@ -429,7 +429,7 @@ public:
 
    }
 
-   virtual ::estatus     run() override
+   virtual ::e_status     run() override
    {
 
       for (m_index.m_i = m_index.m_iIndex; m_index.m_i < m_index.m_cCount; m_index.m_i += m_index.m_iScan)
@@ -506,7 +506,7 @@ public:
 
    }
 
-   virtual ::estatus     run() override
+   virtual ::e_status     run() override
    {
 
       try
@@ -656,7 +656,7 @@ public:
 
    }
 
-   ::estatus     run()
+   ::e_status     run()
    {
 
       for (; m_iIndex < m_iCount; m_iIndex += m_iScan)

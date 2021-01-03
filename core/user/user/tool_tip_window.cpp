@@ -338,7 +338,7 @@ namespace user
       
       m_puserinteraction = puserinteraction;
 
-      m_font->create_point_font(FONT_SANS, 10.0);
+      m_font->create_point_font(os_font_name(e_font_sans), 10.0);
 
       auto pcreatestruct = __new(::user::create_struct);
 

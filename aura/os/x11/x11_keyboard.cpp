@@ -14,8 +14,6 @@
 #include <X11/XKBlib.h>
 #include <X11/keysym.h>
 
-// <3 ThomasBS - 400th follower
-
 // XKeyboard -----------------------------------------------------------
 
 XKeyboard::XKeyboard()

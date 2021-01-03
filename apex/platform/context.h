@@ -30,7 +30,7 @@ public:
    virtual ~context(){}
 
 
-   virtual ::estatus initialize_context();
+   virtual ::e_status initialize_context();
 
 
    void clear_cache();
@@ -118,24 +118,24 @@ public:
    //virtual ::icon_result load_icon(const ::payload & varFile);
 
 
-   //virtual ::estatus _get_image(image * pimage, const ::payload & varFile, bool bSync = true);
-   //virtual ::estatus _matter_image(image * pimage, const string & strMatter, bool bSync = true);
+   //virtual ::e_status _get_image(image * pimage, const ::payload & varFile, bool bSync = true);
+   //virtual ::e_status _matter_image(image * pimage, const string & strMatter, bool bSync = true);
 
 
-   //virtual ::estatus _load_image(image * pimage, const ::payload & varFile, bool bSync = true, bool bCreateHelperMaps = false);
-   //virtual ::estatus _load_matter_image(image * pimage, const string & pszMatter, bool bSync = true, bool bCreateHelperMaps = false);
-   //virtual ::estatus _load_matter_icon(image * pimage, string_array & straMatter, string strIcon);
-   //virtual ::estatus _load_thumbnail(image * pimage, const ::payload & varFile, int w, int h);
-   //virtual ::estatus _load_thumbnail(image * pimage, const ::payload & varFile);
-   //virtual ::estatus _load_dib(image * pimage, const ::file::path & pathDib);
+   //virtual ::e_status _load_image(image * pimage, const ::payload & varFile, bool bSync = true, bool bCreateHelperMaps = false);
+   //virtual ::e_status _load_matter_image(image * pimage, const string & pszMatter, bool bSync = true, bool bCreateHelperMaps = false);
+   //virtual ::e_status _load_matter_icon(image * pimage, string_array & straMatter, string strIcon);
+   //virtual ::e_status _load_thumbnail(image * pimage, const ::payload & varFile, int w, int h);
+   //virtual ::e_status _load_thumbnail(image * pimage, const ::payload & varFile);
+   //virtual ::e_status _load_dib(image * pimage, const ::file::path & pathDib);
 
 
-   //virtual ::estatus save_image(const ::payload & varFile, const image * pimage, ::save_image * psaveimage = nullptr);
-   //virtual ::estatus save_dib(const ::file::path & path, const image * pimage);
+   //virtual ::e_status save_image(const ::payload & varFile, const image * pimage, ::save_image * psaveimage = nullptr);
+   //virtual ::e_status save_dib(const ::file::path & path, const image * pimage);
 
 
    //virtual ::image_result _load_image_from_file(const ::payload & varFile, const payload & varOptions);
-   //virtual ::estatus _save_to_file(const ::payload & varFile, const image * pimage, const payload & varOptions);
+   //virtual ::e_status _save_to_file(const ::payload & varFile, const image * pimage, const payload & varOptions);
 
 
    virtual string matter_locator(string strApp);
@@ -147,14 +147,14 @@ public:
    virtual void add_matter_locator(::apex::application * papp);
 
 
-   virtual ::estatus _load_from_file(::matter * pobject, const ::payload& varFile, const payload& varOptions);
-   virtual ::estatus _save_to_file(const ::payload& varFile, const payload& varOptions, const ::matter* pobject);
+   virtual ::e_status _load_from_file(::matter * pobject, const ::payload& varFile, const payload& varOptions);
+   virtual ::e_status _save_to_file(const ::payload& varFile, const payload& varOptions, const ::matter* pobject);
 
 
-   inline ::estatus load_from_file(::matter* pobject, const ::payload& varFile, const payload* pvarOptions);
-   inline ::estatus load_from_file(::matter* pobject, const ::payload& varFile);
-   inline ::estatus save_to_file(const ::payload& varFile, const payload* pvarOptions, const ::matter* pobject);
-   inline ::estatus save_to_file(const ::payload& varFile, const ::matter* pobject);
+   inline ::e_status load_from_file(::matter* pobject, const ::payload& varFile, const payload* pvarOptions);
+   inline ::e_status load_from_file(::matter* pobject, const ::payload& varFile);
+   inline ::e_status save_to_file(const ::payload& varFile, const payload* pvarOptions, const ::matter* pobject);
+   inline ::e_status save_to_file(const ::payload& varFile, const ::matter* pobject);
 
 
    virtual void finalize() override;

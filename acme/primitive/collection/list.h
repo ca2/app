@@ -1733,44 +1733,6 @@ inline typename list < TYPE, ARG_TYPE >::iterator list < TYPE, ARG_TYPE >::rever
 
 }
 
-/*
-
-template<class TYPE, class ARG_TYPE>
-void list<TYPE, ARG_TYPE>::Serialize(CArchive& ar)
-{
-   ASSERT_VALID(this);
-
-   matter::Serialize(ar);
-
-   if (ar.IsStoring())
-   {
-      ar.WriteCount(this->m_count);
-      for (node* pnode = this->m_phead; pnode != nullptr; pnode = pnode->m_pnext)
-      {
-         ASSERT(__is_valid_address(pnode, sizeof(node)));
-         TYPE* pData;
-         //
-         // in some cases the & operator might be overloaded, and we cannot use it to obtain
-         //the address of a given matter.  We then use the following trick to get the address
-         //
-         pData = reinterpret_cast< TYPE* >( &reinterpret_cast< i32& >( static_cast< TYPE& >( pnode->m_value ) ) );
-         SerializeElements<TYPE>(ar, pData, 1);
-      }
-   }
-   else
-   {
-      uptr nNewCount = ar.ReadCount();
-      while (nNewCount--)
-      {
-         TYPE newData[1];
-         SerializeElements<TYPE>(ar, newData, 1);
-         add_tail(newData[0]);
-      }
-   }
-}*/
-
-
-
 
 template<class TYPE, class ARG_TYPE>
 void list<TYPE, ARG_TYPE>::assert_valid() const
@@ -1780,16 +1742,22 @@ void list<TYPE, ARG_TYPE>::assert_valid() const
 
    if (this->m_count == 0)
    {
+
       // is_empty list
+
       ASSERT(this->m_phead == nullptr);
       ASSERT(this->m_ptail == nullptr);
+
    }
    else
    {
+
       // non-is_empty list
       ASSERT(__is_valid_address(this->m_phead, sizeof(node)));
       ASSERT(__is_valid_address(this->m_ptail, sizeof(node)));
+
    }
+
 }
 
 

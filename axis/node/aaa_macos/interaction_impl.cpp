@@ -289,7 +289,7 @@ namespace macos
    }
 
 
-   ::estatus interaction_impl::update_graphics_resources()
+   ::e_status interaction_impl::update_graphics_resources()
    {
       
       if(m_pgraphics.is_null())

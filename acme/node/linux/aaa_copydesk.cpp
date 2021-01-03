@@ -470,7 +470,7 @@ namespace linux
    }
 
 
-   ::estatus copydesk::initialize(::matter * pobjectContext)
+   ::e_status copydesk::initialize(::matter * pobjectContext)
    {
 
       auto estatus = ::user::copydesk::initialize(pobjectContext);

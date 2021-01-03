@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "_imaging_freeimage.h"
 
 
 namespace imaging_freeimage
@@ -184,7 +185,7 @@ namespace imaging_freeimage
    }
 
 
-   ::estatus context_image::save_image(memory & memory, const ::image * pimage, const ::save_image * psaveimage)
+   ::e_status context_image::save_image(memory & memory, const ::image * pimage, const ::save_image * psaveimage)
    {
 
       if (::is_null(pimage))

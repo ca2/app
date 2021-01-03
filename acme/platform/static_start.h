@@ -29,9 +29,9 @@ namespace acme
 
    extern CLASS_DECL_ACME critical_section * g_pcsGlobal;
 
-   extern CLASS_DECL_ACME string_to_string* g_pmapFontFaceName;
+   //extern CLASS_DECL_ACME string_map < int_to_string > * g_pmapFontFaceName;
 
-   extern CLASS_DECL_ACME critical_section* g_pcsFont;
+   //extern CLASS_DECL_ACME critical_section* g_pcsFont;
 
    //extern critical_section* g_pcsRefDbg;
 
@@ -225,8 +225,8 @@ namespace acme
       void construct();
 
 
-      ::estatus init();
-      ::estatus term();
+      ::e_status init();
+      ::e_status term();
 
 
       //void init_windowing();

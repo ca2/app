@@ -24,7 +24,7 @@ namespace filemanager
    }
 
 
-   ::estatus tree::initialize_filemanager_tree(document * pdocument)
+   ::e_status tree::initialize_filemanager_tree(document * pdocument)
    {
 
       auto estatus = initialize_view(pdocument);
@@ -378,7 +378,7 @@ namespace filemanager
 
          //::file::listing & listingFinal = ::userfs::tree::get_document()->m_listingFolderFinal2;
 
-         if (!context.is(::source_system))
+         if (!context.is(::e_source_system))
          {
 
             //filemanager_tree_insert(filepath, listingUser, listingFinal, context, true);

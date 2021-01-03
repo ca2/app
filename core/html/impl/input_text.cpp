@@ -91,7 +91,7 @@ namespace html
             if(bValue)
             {
 
-               m_pedit->_001SetText(pelemental->m_pbase->get_tag()->get_attr_value("value"), {::source_data, ::source_load});
+               m_pedit->_001SetText(pelemental->m_pbase->get_tag()->get_attr_value("value"), ::e_source_data | ::e_source_load);
 
             }
 

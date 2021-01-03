@@ -142,7 +142,7 @@ namespace coreimage_imaging
    }
 
 
-   ::estatus context_image::save_image(memory & memory, const ::image * pimage, const ::save_image * psaveimage)
+   ::e_status context_image::save_image(memory & memory, const ::image * pimage, const ::save_image * psaveimage)
    {
 
       if(pimage->is_empty())
@@ -186,7 +186,7 @@ namespace coreimage_imaging
 
 
 
-   ::estatus context_image::_load_image( ::image * pimage, const payload & varFile, bool bSync, bool bCreateHelperMaps)
+   ::e_status context_image::_load_image( ::image * pimage, const payload & varFile, bool bSync, bool bCreateHelperMaps)
    {
       
       if(::is_null(pimage))

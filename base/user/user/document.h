@@ -46,7 +46,7 @@ namespace user
 
       ::user::interaction_array get_top_level_windows();
 
-      virtual ::estatus set_finish_composites(::context_object * pcontextobjectFinish) override;
+      virtual ::e_status set_finish_composites(::context_object * pcontextobjectFinish) override;
 
       virtual bool contains(::user::interaction* pinteraction) const;
 
@@ -80,8 +80,8 @@ namespace user
       virtual bool is_new_document();
 
       // Operations
-      ::estatus add_view(::user::impact * pview);
-      ::estatus remove_view(::user::impact * pview);
+      ::e_status add_view(::user::impact * pview);
+      ::e_status remove_view(::user::impact * pview);
       virtual ::count get_view_count() const;
       virtual __pointer(::user::impact) get_view(index index = 0) const;
 

@@ -47,7 +47,7 @@ namespace account
    }
    
    
-   ::estatus     system_storage::get(string strKey, string strToken, string & strValue)
+   ::e_status     system_storage::get(string strKey, string strToken, string & strValue)
    {
       
       ::file::path path;

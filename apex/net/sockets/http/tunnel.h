@@ -13,9 +13,9 @@ namespace sockets
    public:
 
 
-      enum estate
+      enum enum_state
       {
-         state_initial,
+         e_state_initial,
          state_connect_sent,
          state_proxy_ok,
          state_init_ssl
@@ -29,7 +29,7 @@ namespace sockets
       string m_host; ///< Hostname from url_in
       port_t m_port; ///< Port from url_in
       string_array   m_straProxy;
-      estate      m_estate;
+      enum_state      m_estate;
       string      m_strRequest;
       //memory      m_memoryBody;
       //memory      m_memoryBuf;

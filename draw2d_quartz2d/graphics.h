@@ -90,7 +90,7 @@ namespace draw2d_quartz2d
 //      ::draw2d::pen* SelectObject(::draw2d::pen* pPen) override;
 //      ::draw2d::brush* SelectObject(::draw2d::brush* pBrush) override;
 //      virtual ::draw2d::font* SelectObject(::draw2d::font* pFont) override;
-      virtual ::estatus set(::draw2d::bitmap* pBitmap) override;
+      virtual ::e_status set(::draw2d::bitmap* pBitmap) override;
 //      i32 SelectObject(::draw2d::region* pRgn) override;       // special return for regions
 //      ::draw2d::object* SelectObject(::draw2d::object* pObject);
 
@@ -204,14 +204,14 @@ namespace draw2d_quartz2d
       //virtual i32 SelectClipRgn(::draw2d::region* pRgn, i32 nMode) override;
       
       
-      virtual ::estatus reset_clip() override;
-      virtual ::estatus _intersect_clip() override;
-      virtual ::estatus _add_shape(const ::rect & rect) override;
-      virtual ::estatus _add_shape(const ::rectd & rect) override;
-      virtual ::estatus _add_shape(const ::oval & oval) override;
-      virtual ::estatus _add_shape(const ::ovald & oval) override;
-      virtual ::estatus _add_shape(const ::polygon & polygon) override;
-      virtual ::estatus _add_shape(const ::polygond & polygon) override;
+      virtual ::e_status reset_clip() override;
+      virtual ::e_status _intersect_clip() override;
+      virtual ::e_status _add_shape(const ::rect & rect) override;
+      virtual ::e_status _add_shape(const ::rectd & rect) override;
+      virtual ::e_status _add_shape(const ::oval & oval) override;
+      virtual ::e_status _add_shape(const ::ovald & oval) override;
+      virtual ::e_status _add_shape(const ::polygon & polygon) override;
+      virtual ::e_status _add_shape(const ::polygond & polygon) override;
 
       
       //virtual void on_apply_clip_region() override;
@@ -556,7 +556,7 @@ namespace draw2d_quartz2d
       virtual void enum_fonts(::draw2d::font_enum_item_array & itema) override;
       
       
-      virtual ::estatus clear_current_point() override;
+      virtual ::e_status clear_current_point() override;
       
 
    };

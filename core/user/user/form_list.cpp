@@ -719,7 +719,7 @@ break_click:;
          if (item.m_bOk)
          {
 
-            pedit->_001SetText(item.m_strText, ::source_initialize);
+            pedit->_001SetText(item.m_strText, ::e_source_initialize);
 
          }
 
@@ -748,14 +748,14 @@ break_click:;
          //      {
          //         string str;
          //         str = payload.m_str;
-         //         ptext->_001SetText(str, ::source_database);
+         //         ptext->_001SetText(str, ::e_source_database);
          //      }
          //      break;
          //      case ::type_int32:
          //      {
          //         string str;
          //         str.Format("%d", payload.i32());
-         //         ptext->_001SetText(str, ::source_database);
+         //         ptext->_001SetText(str, ::e_source_database);
          //      }
          //      break;
          //      default:
@@ -799,7 +799,7 @@ break_click:;
 
             index iFind = pcombo->_001FindListText(item.m_strText);
 
-            pcombo->set_current_item(iFind, ::source_sync);
+            pcombo->set_current_item(iFind, ::e_source_sync);
 
          }
 
@@ -2293,7 +2293,7 @@ break_click:;
                      if (pcombobox->get_current_item_string_value() != pdrawitem->m_strText)
                      {
 
-                        pcombobox->set_current_item_by_string_value(pdrawitem->m_strText, ::source_sync);
+                        pcombobox->set_current_item_by_string_value(pdrawitem->m_strText, ::e_source_sync);
 
                      }
 
@@ -2322,7 +2322,7 @@ break_click:;
                      if (strText != pdrawitem->m_strText)
                      {
 
-                        pedit->_001SetText(pdrawitem->m_strText, ::source_sync);
+                        pedit->_001SetText(pdrawitem->m_strText, ::e_source_sync);
 
                      }
 

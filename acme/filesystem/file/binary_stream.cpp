@@ -172,11 +172,11 @@ void binary_stream::write(const payload & payload)
    switch (etype)
    {
    case type_parareturn:
-   case type_new:
+   case e_type_new:
    case e_type_null:
    case type_key_exists:
-   case type_empty:
-   case type_empty_argument:
+   case e_type_empty:
+   case e_type_empty_argument:
    case type_not_found:
       break;
    case type_string:
@@ -788,7 +788,7 @@ void binary_stream::read(id & id)
 void binary_stream::read(payload & payload)
 {
 
-   enum_type etype = type_new;
+   enum_type etype = e_type_new;
 
    read_var_type(etype);
    
@@ -833,11 +833,11 @@ void binary_stream::read_var_body(payload & payload, enum_type etype)
    switch (etype)
    {
    case type_parareturn:
-   case type_new:
+   case e_type_new:
    case e_type_null:
    case type_key_exists:
-   case type_empty:
-   case type_empty_argument:
+   case e_type_empty:
+   case e_type_empty_argument:
    case type_not_found:
    {
 

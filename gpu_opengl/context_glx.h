@@ -24,11 +24,11 @@ namespace opengl
       virtual ~context_glx();
 
 
-      virtual ::estatus _create_offscreen_buffer(const ::size& size) override;
-      virtual ::estatus resize_offscreen_buffer(const ::size& size) override;
-      virtual ::estatus destroy_offscreen_buffer() override;
+      virtual ::e_status _create_offscreen_buffer(const ::size& size) override;
+      virtual ::e_status resize_offscreen_buffer(const ::size& size) override;
+      virtual ::e_status destroy_offscreen_buffer() override;
 
-      virtual ::estatus make_current() override;
+      virtual ::e_status make_current() override;
 
       virtual string get_shader_version_text() override;
 

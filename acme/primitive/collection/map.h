@@ -846,7 +846,7 @@ map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::new_assoc(ARG_KEY key)
 
    //this->m_passocFree  = this->m_passocFree->m_pnext;
 
-   //�zero_pointer(passoc);
+   //zero_pointer(passoc);
 
    if(this->m_passocHead != nullptr)
    {

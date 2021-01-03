@@ -7,13 +7,35 @@ int main(int argc, char * argv[])
 
    auto psystem = platform_create_system(strAppId);
 
+   auto papplicationStartup = psystem->new_application(strAppId);
+
+   __bind(psystem, m_papplicationStartup, papplicationStartup);
+
+   psystem->set_main_struct(*psystem->m_papplicationStartup);
+
+   ::e_status estatus = ::success;
+
+   if(psystem->m_bUser)
+   {
+
+      estatus = psystem->defer_initialize_x11();
+
+      if(!estatus)
+      {
+
+         return -1;
+
+      }
+
+   }
+
    psystem->m_bConsole = false;
 
    application_common(psystem);
 
    psystem->system_construct(argc, argv);
 
-   ::estatus estatus = psystem->os_application_system_run();
+   estatus = psystem->os_application_system_run();
 
    ::i32 iErrorStatus = estatus.error_status();
 

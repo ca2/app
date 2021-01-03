@@ -29,7 +29,7 @@ namespace aqua
    }
 
 
-   ::estatus application::initialize(::layered * pobjectContext)
+   ::e_status application::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::apex::application::initialize(pobjectContext);

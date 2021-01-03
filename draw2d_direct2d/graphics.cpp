@@ -583,7 +583,7 @@ namespace draw2d_direct2d
    }
 
 
-   ::estatus graphics::set(::draw2d::bitmap* pbitmap)
+   ::e_status graphics::set(::draw2d::bitmap* pbitmap)
    {
 
       if (::is_null(pbitmap))
@@ -3662,7 +3662,7 @@ namespace draw2d_direct2d
    }
 
    
-   ::estatus graphics::reset_clip()
+   ::e_status graphics::reset_clip()
    {
 
       ::draw2d::lock draw2dlock;
@@ -3703,7 +3703,7 @@ namespace draw2d_direct2d
    }
 
 
-   ::estatus graphics::add_shapes(const shape_array& shapea)
+   ::e_status graphics::add_shapes(const shape_array& shapea)
    {
 
       for (int i = 0; i < shapea.get_count(); i++)
@@ -3751,7 +3751,7 @@ namespace draw2d_direct2d
    }
 
 
-   ::estatus graphics::intersect_clip(const ::rect& rect)
+   ::e_status graphics::intersect_clip(const ::rect& rect)
    {
 
       ::draw2d::lock draw2dlock;
@@ -3781,7 +3781,7 @@ namespace draw2d_direct2d
    }
 
 
-   ::estatus graphics::intersect_clip(const ::rectd& rect)
+   ::e_status graphics::intersect_clip(const ::rectd& rect)
    {
 
       ::draw2d::lock draw2dlock;
@@ -3814,7 +3814,7 @@ namespace draw2d_direct2d
 
 
 
-   ::estatus graphics::intersect_clip(const ::oval& oval)
+   ::e_status graphics::intersect_clip(const ::oval& oval)
    {
 
       ::draw2d::lock draw2dlock;
@@ -3845,7 +3845,7 @@ namespace draw2d_direct2d
    }
 
 
-   ::estatus graphics::intersect_clip(const ::ovald& oval)
+   ::e_status graphics::intersect_clip(const ::ovald& oval)
    {
 
       ::draw2d::lock draw2dlock;
@@ -3876,7 +3876,7 @@ namespace draw2d_direct2d
    }
 
 
-   ::estatus graphics::intersect_clip(const ::polygon& polygon)
+   ::e_status graphics::intersect_clip(const ::polygon& polygon)
    {
 
       ::draw2d::lock draw2dlock;
@@ -3907,7 +3907,7 @@ namespace draw2d_direct2d
    }
 
 
-   ::estatus graphics::intersect_clip(const ::polygond& polygon)
+   ::e_status graphics::intersect_clip(const ::polygond& polygon)
    {
 
       ::draw2d::lock draw2dlock;
@@ -5252,7 +5252,7 @@ namespace draw2d_direct2d
    }
 
 
-   ::estatus graphics::clear_current_point()
+   ::e_status graphics::clear_current_point()
    {
 
       return ::success;

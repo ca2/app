@@ -212,7 +212,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_host_wnd() const
+   ::user::interaction * interaction::get_host_window() const
    {
 
       if (get_context_session() == nullptr
@@ -247,7 +247,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer interaction::get_font(style * pstyle, enum_element eelement, estate estate) const
+   ::draw2d::font_pointer interaction::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (pstyle)
@@ -282,26 +282,60 @@ namespace user
    }
 
 
-   int interaction::get_int(style * pstyle, enum_int eint, int iDefault) const
+   int interaction::get_int(style * pstyle, enum_int eint, ::user::enum_state estate, int iDefault) const
    {
+
+      int i;
+
+      if (::is_set(pstyle))
+      {
+
+         if(pstyle->get_int(this, i, eint, estate))
+         {
+
+            return i;
+
+         }
+
+      }
+
+      auto psession = Session;
+
+      if(psession->get_int(this, i, eint, estate))
+      {
+
+         return i;
+
+      }
 
       return iDefault;
 
    }
 
 
-   double interaction::get_double(style * pstyle, enum_double edouble, double dDefault) const
+   double interaction::get_double(style * pstyle, enum_double edouble, ::user::enum_state estate, double dDefault) const
    {
 
-      if (edouble == ::user::e_double_focus_height_width)
+      double d;
+
+      if (::is_set(pstyle))
       {
 
-         if (m_flagNonClient.has(non_client_focus_rect))
+         if(pstyle->get_double(this, d, edouble, estate))
          {
 
-            return 8.0;
+            return d;
 
          }
+
+      }
+
+      auto psession = Session;
+
+      if(psession->get_double(this, d, edouble, estate))
+      {
+
+         return d;
 
       }
 
@@ -310,7 +344,7 @@ namespace user
    }
 
 
-   ::rectd interaction::get_border(style * pstyle, enum_element eelement, estate estate) const
+   ::rectd interaction::get_border(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       return nullptr;
@@ -318,7 +352,7 @@ namespace user
    }
 
    
-   ::rectd interaction::get_padding(style * pstyle, enum_element eelement, estate estate) const
+   ::rectd interaction::get_padding(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
 
@@ -342,13 +376,13 @@ namespace user
    }
 
 
-   ::rectd interaction::get_margin(style * pstyle, enum_element eelement, estate estate) const
+   ::rectd interaction::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (m_flagNonClient.has(non_client_focus_rect))
       {
 
-         double dFocusHeightWidth = get_double(pstyle, ::user::e_double_focus_height_width, 2.0);
+         double dFocusHeightWidth = get_double(pstyle, ::user::e_double_focus_height_width, estate, 2.0);
 
          ::rectd rectDefaultMargin(dFocusHeightWidth, dFocusHeightWidth, dFocusHeightWidth, dFocusHeightWidth);
 
@@ -363,7 +397,7 @@ namespace user
    }
 
 
-   ::color interaction::get_color(style * pstyle, enum_element eelement, estate estate) const
+   ::color interaction::get_color(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       //if (pstyle)
@@ -402,7 +436,7 @@ namespace user
 
       auto psession = Session;
 
-      return psession->get_color(eelement, estate);
+      return psession->get_color(this, eelement, estate);
 
    }
 
@@ -577,7 +611,7 @@ namespace user
    }
 
 
-   ::estatus interaction::set_tool_window(bool bSet)
+   ::e_status interaction::set_tool_window(bool bSet)
    {
 
       if(is_null(m_pimpl))
@@ -714,7 +748,7 @@ namespace user
 
       }
 
-      auto* pinteraction = get_host_wnd();
+      auto* pinteraction = get_host_window();
 
       if (::is_null(pinteraction))
       {
@@ -942,7 +976,7 @@ namespace user
    }
 
 
-   bool interaction::on_before_set_parent(::user::interaction * puiParent)
+   bool interaction::on_before_set_parent(::user::primitive * puiParent)
    {
 
       return true;
@@ -950,7 +984,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::SetParent(::user::interaction * puiParent)
+   ::user::primitive * interaction::SetParent(::user::primitive * puiParent)
    {
 
       if (puiParent == nullptr && GetParent() == nullptr)
@@ -960,7 +994,7 @@ namespace user
 
       }
 
-      if (puiParent != nullptr && (puiParent == this || puiParent == GetParent() || is_descendant(puiParent)))
+      if (puiParent != nullptr && is_descendant(puiParent, true))
       {
 
          return GetParent();
@@ -1068,7 +1102,14 @@ namespace user
 
          ::rect rectWindow;
 
-         puiParent->get_child_rect(rectWindow);
+         auto puserinteractionParent = puiParent->cast < ::user::interaction >();
+
+         if (puserinteractionParent)
+         {
+
+            puserinteractionParent->get_child_rect(rectWindow);
+
+         }
 
          if (pimplOld.is_set())
          {
@@ -1365,7 +1406,7 @@ namespace user
    }
 
 
-   ::estatus interaction::finish(::context_object * pcontextobjectFinish)
+   ::e_status interaction::finish(::context_object * pcontextobjectFinish)
    {
 
       //if (!m_bUserInteractionSetFinish)
@@ -1455,10 +1496,10 @@ namespace user
 
       ::user::interaction * pinteraction = get_wnd();
 
-      if(::is_set(pinteraction) && pinteraction != this && pinteraction->get_focus_primitive()== this)
+      if(::is_set(pinteraction) && pinteraction != this && pinteraction->get_keyboard_focus()== this)
       {
 
-         pinteraction->set_focus_primitive(nullptr);
+         pinteraction->set_keyboard_focus(nullptr);
 
       }
 
@@ -1597,15 +1638,7 @@ namespace user
                   if (get_context_application() != nullptr && get_context_application()->get_context_session() != nullptr && has_focus())
                   {
 
-                     if (GetParent() == nullptr || !is_window_visible(e_layout_sketch))
-                     {
-
-                        auto psession = Session;
-
-                        psession->set_keyboard_focus(nullptr);
-
-                     }
-                     else
+                     if (GetParent() != nullptr && is_window_visible(e_layout_sketch))
                      {
 
                         keyboard_set_focus_next();
@@ -2959,7 +2992,7 @@ namespace user
       else if (strType.contains_ci("combo_box"))
       {
 
-         output_debug_string("combo_box");
+         //output_debug_string("combo_box");
 
       }
 
@@ -3278,14 +3311,14 @@ namespace user
    bool interaction::add_prodevian(::context_object * pobject)
    {
 
-      if (get_host_wnd() == nullptr)
+      if (get_host_window() == nullptr)
       {
 
          return false;
 
       }
 
-      return get_host_wnd()->m_pimpl->add_prodevian(pobject);
+      return get_host_window()->m_pimpl->add_prodevian(pobject);
 
    }
 
@@ -3352,9 +3385,7 @@ namespace user
       if(bOk)
       {
 
-         auto psession = Session;
-
-         auto pprimitive = psession->get_keyboard_focus();
+         auto pprimitive = get_keyboard_focus();
 
          if(pprimitive)
          {
@@ -3410,10 +3441,10 @@ namespace user
    }
 
    
-   ::estatus interaction::main_async(const ::promise::routine & routine, e_priority epriority)
+   ::e_status interaction::main_async(const ::promise::routine & routine, e_priority epriority)
    {
 
-      auto pwndHost = get_host_wnd();
+      auto pwndHost = get_host_window();
 
       if (!pwndHost || pwndHost == this)
       {
@@ -3427,7 +3458,7 @@ namespace user
    }
 
 
-   ::estatus interaction::main_sync(const ::promise::routine & routine, const ::duration & duration, e_priority epriority)
+   ::e_status interaction::main_sync(const ::promise::routine & routine, const ::duration & duration, e_priority epriority)
    {
 
       auto proutine = ___sync_routine(routine);
@@ -3719,9 +3750,9 @@ namespace user
 
          auto psession = Session;
 
-         bThisCapture = psession->m_puiCapture == this;
+         bThisCapture = is_descendant(psession->m_puiCapture, true);
 
-         if (!bThisCapture && !is_descendant(psession->m_puiCapture) && !_001IsPointInside(pmouse->m_point))
+         if (!bThisCapture && !_001IsPointInside(pmouse->m_point))
          {
 
             return;
@@ -4493,7 +4524,7 @@ namespace user
 
    //   //      ev.m_eevent       = ::user::e_event_tab_key;
 
-   //   //      ev.m_context        = ::source_user;
+   //   //      ev.m_context        = ::e_source_user;
 
    //   //      if(!on_control_event(&ev))
    //   //      {
@@ -5285,7 +5316,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::get_next_window(bool bIgnoreChildren, ::user::interaction * puiInteractionStop)
+   ::user::interaction * interaction::get_next_window(bool bIgnoreChildren, const ::user::interaction * puiInteractionStop) const
    {
 
       if(!bIgnoreChildren)
@@ -5848,7 +5879,7 @@ namespace user
    }
 
 
-   ::estatus interaction::set_finish_composites(::context_object * pcontextobjectFinish)
+   ::e_status interaction::set_finish_composites(::context_object * pcontextobjectFinish)
    {
 
       bool bStillFinishing = false;
@@ -6073,7 +6104,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::SetOwner(::user::interaction * pinteraction)
+   ::user::primitive * interaction::SetOwner(::user::primitive * pprimitive)
    {
 
       if (m_pimpl == nullptr)
@@ -6099,11 +6130,11 @@ namespace user
 
       }
 
-      m_puiOwner = pinteraction;
+      m_puiOwner = pprimitive;
 
-      pinteraction->m_uiptraOwned.add(this);
+      m_puiOwner->on_add_owned(this);
 
-      ::user::interaction * puiRet = m_pimpl->SetOwner(pinteraction);
+      ::user::primitive * puiRet = m_pimpl->SetOwner(pprimitive);
 
       if (m_ewindowflag & e_window_flag_satellite_window)
       {
@@ -6112,7 +6143,17 @@ namespace user
 
       }
 
+      on_set_owner(m_puiOwner);
+
       return puiRet;
+
+   }
+
+
+   void interaction::on_add_owned(::user::primitive * pprimitive)
+   {
+
+      m_uiptraOwned.add(pprimitive);
 
    }
 
@@ -7314,6 +7355,19 @@ namespace user
    }
 
 
+   void interaction::on_configuration_change(::user::primitive * pprimitiveSource)
+   {
+
+      if(m_pimpl)
+      {
+
+         m_pimpl->on_configuration_change(pprimitiveSource);
+
+      }
+
+   }
+
+
    ::sized interaction::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -7360,7 +7414,7 @@ namespace user
    }
 
 
-   ::user::e_state interaction::get_user_state() const
+   ::user::enum_state interaction::get_user_state() const
    {
 
       if (!is_window_enabled())
@@ -8741,8 +8795,10 @@ namespace user
    }
 
 
-   bool interaction::on_set_parent(::user::interaction * puiParent)
+   bool interaction::on_set_parent(::user::primitive * puiParent)
    {
+
+      auto puserinteractionParent = puiParent->cast < ::user::interaction >();
 
       if (m_pdescriptor->m_puserinteractionParent == puiParent)
       {
@@ -8817,13 +8873,21 @@ namespace user
 
             __pointer(::user::interaction_array) puiptraChildNew;
 
-            if (puiParent->m_puiptraChild)
+            if (puserinteractionParent)
             {
-               puiptraChildNew = __new(::user::interaction_array(*puiParent->m_puiptraChild));
-            }
-            else
-            {
-               puiptraChildNew.create_new();
+
+               if (puserinteractionParent->m_puiptraChild)
+               {
+
+                  puiptraChildNew = __new(::user::interaction_array(*puserinteractionParent->m_puiptraChild));
+
+               }
+               else
+               {
+
+                  puiptraChildNew.create_new();
+
+               }
 
             }
 
@@ -8850,7 +8914,12 @@ namespace user
 
             puiptraChildNew->add_unique_interaction(this);
 
-            puiParent->m_puiptraChild = puiptraChildNew;
+            if (puserinteractionParent)
+            {
+
+               puserinteractionParent->m_puiptraChild = puiptraChildNew;
+
+            }
 
          }
 
@@ -8875,6 +8944,14 @@ namespace user
    void interaction::on_after_set_parent()
    {
 
+
+   }
+
+
+   bool interaction::on_set_owner(::user::primitive * pprimitive)
+   {
+
+      return true;
 
    }
 
@@ -9078,7 +9155,7 @@ namespace user
    ::point interaction::get_cursor_pos() const
    {
 
-      auto pwnd = get_host_wnd();
+      auto pwnd = get_host_window();
 
       if (pwnd == this)
       {
@@ -9504,10 +9581,10 @@ restart:
    }
 
 
-   bool interaction::is_ascendant(const primitive * puiIsAscendant) const
+   bool interaction::is_ascendant(const primitive * puiIsAscendant, bool bIncludeSelf) const
    {
 
-      return m_pimpl->is_ascendant(puiIsAscendant);
+      return m_pimpl->is_ascendant(puiIsAscendant, bIncludeSelf);
 
    }
 
@@ -9528,15 +9605,15 @@ restart:
    }
 
 
-   bool interaction::is_descendant(const primitive * puiIsDescendant) const
-   {
+   //bool interaction::is_descendant(const primitive * puiIsDescendant, bool bIncludeSelf) const
+   //{
 
-      return m_pimpl->is_descendant(puiIsDescendant);
+   //   return m_pimpl->is_descendant(puiIsDescendant, bIncludeSelf);
 
-   }
+   //}
 
 
-   bool interaction::is_ascendant(const ::user::controller* pcontroller) const
+   bool interaction::is_ascendant(const ::user::controller* pcontroller, bool bIncludeSelf) const
    {
 
       if (::is_null(pcontroller))
@@ -9554,7 +9631,7 @@ restart:
          if (::is_set(pimpact))
          {
 
-            if (is_ascendant(pimpact))
+            if (is_ascendant(pimpact, bIncludeSelf))
             {
 
                return true;
@@ -9578,10 +9655,10 @@ restart:
    }
 
 
-   bool interaction::r_contains(const primitive* puiIsChild) const
+   bool interaction::recursively_contains(const primitive* puiIsChild, bool bIncludeSelf) const
    {
 
-      return is_descendant(puiIsChild);
+      return is_descendant(puiIsChild, bIncludeSelf);
 
    }
 
@@ -9617,15 +9694,25 @@ restart:
 
 
 // returns -1 if not descendant
-   i32 interaction::get_descendant_level(::user::interaction * pinteraction)
+   i32 interaction::get_descendant_level(const ::user::primitive * pinteraction) const
    {
+
       i32 iLevel = 0;
+
       while (pinteraction != nullptr)
       {
+
          if (pinteraction == this)
+         {
+
             return iLevel;
+
+         }
+         
          pinteraction = pinteraction->GetParent();
+
          iLevel++;
+
       }
 
       return -1;
@@ -9633,20 +9720,26 @@ restart:
    }
 
 
-   bool interaction::is_descendant(::user::interaction * pinteraction, bool bIncludeSelf)
+   bool interaction::is_descendant(const ::user::primitive * pinteraction, bool bIncludeSelf) const
    {
+
       if (bIncludeSelf)
       {
+
          return get_descendant_level(pinteraction) >= 0;
+
       }
       else
       {
+
          return get_descendant_level(pinteraction) > 0;
+
       }
+
    }
 
 
-   ::user::interaction * interaction::get_focusable_descendant()
+   ::user::interaction * interaction::get_focusable_descendant() const
    {
 
       auto pinteraction = this;
@@ -9665,7 +9758,7 @@ restart:
          else if(pinteraction->keyboard_focus_is_focusable())
          {
 
-            return pinteraction;
+            return (::user::interaction *) pinteraction;
 
          }
 
@@ -11414,7 +11507,7 @@ restart:
 
    }
 
-   ::estatus interaction::set_total_size(const ::sized& size)
+   ::e_status interaction::set_total_size(const ::sized& size)
    {
 
       return ::error_interface_only;
@@ -11422,7 +11515,7 @@ restart:
    }
 
 
-   ::estatus interaction::set_page_size(const ::sized& size)
+   ::e_status interaction::set_page_size(const ::sized& size)
    {
 
       return ::error_interface_only;
@@ -11634,28 +11727,6 @@ restart:
    }
 
 
-   void interaction::_001OnKillFocus(::message::message* pmessage)
-   {
-
-      SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
-
-      //_OnKillFocus();
-
-      ::user::control_event ev;
-
-      ev.m_puie = this;
-
-      ev.m_id = m_id;
-
-      ev.m_eevent = ::user::e_event_kill_focus;
-
-      on_control_event(&ev);
-
-      pkillfocus->m_bRet = ev.m_bRet;
-
-   }
-
-
    void interaction::_001OnSetFocus(::message::message * pmessage)
    {
 
@@ -11677,7 +11748,38 @@ restart:
       // return true to set focus to this control
       Application.keyboard_focus_OnSetFocus(this);
 
-      //_OnSetFocus();
+      auto einputtypePreferred = preferred_input_type();
+
+      if (keyboard_focus_is_focusable() && einputtypePreferred == e_input_type_text)
+      {
+
+         if (psession->m_puiHost)
+         {
+
+            auto puiHost = __user_interaction(psession->m_puiHost);
+
+            if (puiHost)
+            {
+
+               puiHost->edit_on_set_focus(this);
+
+            }
+
+         }
+
+         string strText;
+
+         _001GetText(strText);
+
+         strsize iBeg;
+
+         strsize iEnd;
+
+         _001GetSel(iBeg, iEnd);
+
+         show_software_keyboard(this, strText, iBeg, iEnd);
+
+      }
 
       ::user::control_event ev;
 
@@ -11692,11 +11794,60 @@ restart:
    }
 
 
+   void interaction::_001OnKillFocus(::message::message * pmessage)
+   {
+
+      SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
+
+      auto einputtypePreferred = preferred_input_type();
+
+      if (einputtypePreferred == e_input_type_text)
+      {
+
+         auto psession = Session;
+
+         if (psession->m_puiHost)
+         {
+
+            auto puiHost = __user_interaction(psession->m_puiHost);
+
+            if (puiHost)
+            {
+
+               puiHost->edit_on_kill_focus(this);
+
+            }
+
+         }
+
+         hide_software_keyboard(this);
+
+      }
+
+      ::user::control_event ev;
+
+      ev.m_puie = this;
+
+      ev.m_id = m_id;
+
+      ev.m_eevent = ::user::e_event_kill_focus;
+
+      on_control_event(&ev);
+
+      pkillfocus->m_bRet = ev.m_bRet;
+
+   }
+
+
    ::graphics::graphics * interaction::get_window_graphics()
    {
 
       if (m_pimpl == nullptr)
+      {
+
          return ::user::primitive::get_window_graphics();
+
+      }
 
       return m_pimpl->get_window_graphics();
 
@@ -11823,7 +11974,7 @@ restart:
 
          ev.m_puie = dynamic_cast <::user::interaction *> (this);
          ev.m_eevent = ::user::e_event_tab_key;
-         ev.m_actioncontext = ::source_user;
+         ev.m_actioncontext = ::e_source_user;
 
          route_control_event(&ev);
 
@@ -11869,7 +12020,15 @@ restart:
    }
 
 
-   ::user::primitive * interaction::get_focus_primitive()
+   enum_input_type interaction::preferred_input_type() const
+   {
+
+      return e_input_type_none;
+
+   }
+
+
+   ::user::primitive * interaction::get_keyboard_focus()
    {
 
       if (m_pimpl == nullptr)
@@ -11879,30 +12038,93 @@ restart:
 
       }
 
-      return m_pimpl->get_focus_primitive();
+      return m_pimpl->get_keyboard_focus();
 
    }
 
 
-   bool interaction::set_focus_primitive(::user::primitive * pprimitive)
+   ::e_status interaction::set_keyboard_focus(::user::primitive * pprimitive)
    {
 
-      if (m_pimpl == nullptr)
+      auto puserinteractionHost = get_host_window();
+
+      if (this == puserinteractionHost)
       {
 
-         return false;
+         return m_pimpl->set_keyboard_focus(pprimitive);
+
+      }
+      else
+      {
+
+         return puserinteractionHost->set_keyboard_focus(pprimitive);
 
       }
 
-      return m_pimpl->set_focus_primitive(pprimitive);
+   }
+
+
+   ::e_status interaction::remove_keyboard_focus(::user::primitive * pprimitive)
+   {
+
+      auto puserinteractionHost = get_host_window();
+
+      if (this == puserinteractionHost)
+      {
+
+         return m_pimpl->remove_keyboard_focus(pprimitive);
+
+      }
+      else
+      {
+
+         return puserinteractionHost->remove_keyboard_focus(pprimitive);
+
+      }
 
    }
 
 
-   bool interaction::is_ascendant_of(::user::interaction * puiDescendantCandidate, bool bIncludeSelf)
+   ::e_status interaction::set_keyboard_focus()
    {
 
-      if (puiDescendantCandidate == nullptr)
+      return set_keyboard_focus(this);
+
+   }
+
+
+   ::e_status interaction::remove_keyboard_focus()
+   {
+
+      return remove_keyboard_focus(this);
+
+   }
+
+
+   ::e_status interaction::clear_keyboard_focus()
+   {
+
+      auto puserinteractionHost = get_host_window();
+
+      if (this == puserinteractionHost)
+      {
+
+         return m_pimpl->clear_keyboard_focus();
+
+      }
+      else
+      {
+
+         return puserinteractionHost->clear_keyboard_focus();
+
+      }
+
+   }
+
+   bool interaction::is_ascendant_of(const ::user::primitive * puiDescendantCandidate, bool bIncludeSelf) const
+   {
+
+      if (::is_null(puiDescendantCandidate))
       {
 
          return false;
@@ -11914,10 +12136,10 @@ restart:
    }
 
 
-   bool interaction::is_descendant_of(::user::interaction * puiAscendantCandidate, bool bIncludeSelf)
+   bool interaction::is_descendant_of(const ::user::primitive * puiAscendantCandidate, bool bIncludeSelf) const
    {
 
-      ::user::interaction * pinteraction = bIncludeSelf ? this : GetParent();
+      const ::user::interaction * pinteraction = bIncludeSelf ? this : GetParent();
 
       while (pinteraction != nullptr)
       {
@@ -11929,7 +12151,14 @@ restart:
 
          }
 
-         pinteraction = pinteraction->GetParent();
+         if(::is_null(pinteraction->m_pdescriptor))
+         {
+
+            return false;
+
+         }
+
+         pinteraction = pinteraction->m_pdescriptor->m_puserinteractionParent;
 
       }
 
@@ -11938,7 +12167,7 @@ restart:
    }
 
 
-   bool interaction::is_ascendant_or_owner_of(::user::interaction * puiDescendantCandidate, bool bIncludeSelf)
+   bool interaction::is_ascendant_or_owner_of(const ::user::primitive * puiDescendantCandidate, bool bIncludeSelf) const
    {
 
       if (puiDescendantCandidate == nullptr)
@@ -11953,16 +12182,20 @@ restart:
    }
 
 
-   bool interaction::is_descendant_of_or_owned_by(::user::interaction * puiAscendantCandidate, bool bIncludeSelf)
+   bool interaction::is_descendant_of_or_owned_by(const ::user::primitive * puiAscendantCandidate, bool bIncludeSelf) const
    {
 
-      ::user::interaction * pinteraction = bIncludeSelf ? this : GetParentOrOwner();
+      const ::user::interaction * pinteraction = bIncludeSelf ? this : GetParentOrOwner();
 
       while (pinteraction != nullptr)
       {
 
          if (pinteraction == puiAscendantCandidate)
+         {
+
             return true;
+
+         }
 
          pinteraction = pinteraction->GetParentOrOwner();
 
@@ -12768,33 +13001,70 @@ restart:
    }
 
 
-   void interaction::show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd)
+   ::e_status interaction::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
    {
 
-      if (get_wnd() == this)
+      if (get_host_window() == this)
       {
 
          if (m_pimpl.is_null())
          {
 
-            return;
+            return error_failed;
 
          }
 
-         m_pimpl->show_software_keyboard(bShow, str, iBeg, iEnd);
+         return m_pimpl->show_software_keyboard(pprimitive, str, iBeg, iEnd);
 
       }
       else
       {
 
-         auto pwindow = get_host_wnd();
+         auto pwindow = get_host_window();
 
-         if (pwindow)
+         if (::is_null(pwindow))
          {
 
-            pwindow->show_software_keyboard(bShow, str, iBeg, iEnd);
+            return error_failed;
 
          }
+
+         return pwindow->show_software_keyboard(pprimitive, str, iBeg, iEnd);
+
+      }
+
+   }
+
+
+   ::e_status interaction::hide_software_keyboard(::user::primitive * pprimitive)
+   {
+
+      if (get_host_window() == this)
+      {
+
+         if (m_pimpl.is_null())
+         {
+
+            return error_failed;
+
+         }
+
+         return m_pimpl->hide_software_keyboard(pprimitive);
+
+      }
+      else
+      {
+
+         auto pwindow = get_host_window();
+
+         if (::is_null(pwindow))
+         {
+
+            return error_failed;
+
+         }
+            
+         return pwindow->hide_software_keyboard(pprimitive);
 
       }
 
@@ -13065,14 +13335,21 @@ restart:
          if (keyboard_focus_is_focusable())
          {
 
-            psession->set_keyboard_focus(this);
+            psession->user()->set_mouse_focus_LButtonDown(this);
+
+            if (set_keyboard_focus())
+            {
+
+               psession->user()->set_mouse_focus_LButtonDown(nullptr);
+
+            }
 
          }
          else
          {
 
-            psession->clear_focus();
-
+            clear_keyboard_focus();
+            
          }
 
       }
@@ -13172,7 +13449,7 @@ restart:
 
                ev.m_item = item;
 
-               ev.m_actioncontext.add(::source_user);
+               ev.m_actioncontext.add(::e_source_user);
 
                route_control_event(&ev);
 
@@ -13684,7 +13961,7 @@ restart:
    void interaction::edit_on_text(string str)
    {
 
-      _001SetText(str, source_user);
+      _001SetText(str, ::e_source_user);
 
    }
 
@@ -14070,7 +14347,7 @@ restart:
    }
 
 
-   estate interaction::get_state() const
+   ::user::enum_state interaction::get_state() const
    {
 
       auto psession = Session;
@@ -14078,7 +14355,7 @@ restart:
       if (m_pdrawcontext != nullptr)
       {
 
-         estate estate = e_state_none;
+         ::user::enum_state estate = e_state_none;
 
          if (!is_window_enabled())
          {
@@ -14087,7 +14364,10 @@ restart:
 
          }
 
-         if (psession->get_focus_ui() == this)
+
+         auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
+
+         if (pprimitiveFocus == this)
          {
 
             estate |= e_state_focused;
@@ -14116,7 +14396,7 @@ restart:
       else
       {
 
-         estate estate = ::user::e_state_none;
+         ::user::enum_state estate = ::user::e_state_none;
 
          if (!is_window_enabled())
          {
@@ -14132,7 +14412,10 @@ restart:
 
          }
 
-         if (psession->get_focus_ui() == this)
+
+         auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
+
+         if (pprimitiveFocus == this)
          {
 
             estate |= e_state_focused;

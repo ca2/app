@@ -9,7 +9,7 @@
 //
 //   property_default = 0,
 //   property_id,
-//   property_count,
+//   e_property_count,
 //
 //};
 //
@@ -118,11 +118,11 @@
 //{
 //   /// special meaning
 //   type_parareturn = 0,
-//   type_new,
+//   e_type_new,
 //   e_type_null,
 //   type_key_exists,
-//   type_empty,
-//   type_empty_argument,
+//   e_type_empty,
+//   e_type_empty_argument,
 //   type_not_found,
 //
 //   // integral
@@ -320,9 +320,9 @@
 //
 //};
 //
-////bool CLASS_DECL_AURA succeeded(const ::estatus & estatus);
+////bool CLASS_DECL_AURA succeeded(const ::e_status & estatus);
 ////bool CLASS_DECL_AURA status_succeeded(i64 i);
-////bool CLASS_DECL_AURA failed(const ::estatus & estatus);
+////bool CLASS_DECL_AURA failed(const ::e_status & estatus);
 ////bool CLASS_DECL_AURA status_failed(i64 i);
 //
 //enum e_thread

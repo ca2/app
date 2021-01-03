@@ -46,13 +46,13 @@ enum enum_message : ::i64
    e_message_measure_item     =             0x002C,
    e_message_window_position_changing    =        0x0046,
    e_message_window_position_changed   =          0x0047,
-e_message_set_cursor       =             0x0020,
-e_message_erase_background  =                 0x0014,
-e_message_show_window     =              0x0018,
+   e_message_set_cursor       =             0x0020,
+   e_message_erase_background  =                 0x0014,
+   e_message_show_window     =              0x0018,
 
-e_message_non_client_mouse_move           =    0x00A0,
-e_message_non_client_left_button_down     =        0x00A1,
-e_message_non_client_left_button_up       =        0x00A2,
+   e_message_non_client_mouse_move           =    0x00A0,
+   e_message_non_client_left_button_down     =        0x00A1,
+   e_message_non_client_left_button_up       =        0x00A2,
 
 
    e_message_mouse_first = 512,
@@ -67,14 +67,14 @@ e_message_non_client_left_button_up       =        0x00A2,
    e_message_middle_button_up = 520,
    e_message_middle_button_double_click = 521,
    e_message_mouse_wheel = 522,
- e_message_timer      =                  0x0113,
+   e_message_timer      =                  0x0113,
 
 
-e_message_mouse_leave    =               0x02A3,
+   e_message_mouse_leave    =               0x02A3,
 
-e_message_command  =                    0x0111,
-e_message_enable       =                0x000A,
- e_message_initialize_menu_popup       =         0x0117,
+   e_message_command  =                    0x0111,
+   e_message_enable       =                0x000A,
+   e_message_initialize_menu_popup       =         0x0117,
    e_message_system = WM_APP + 1024,
    e_message_system_command,
    e_message_system_command_probe,
@@ -107,6 +107,7 @@ e_message_enable       =                0x000A,
    e_message_auratype_key_down,
    e_message_auratype_key_up,
    e_message_auraclick_mouse,
+   e_message_update_device_list,
 
 
 
@@ -141,6 +142,9 @@ e_message_enable       =                0x000A,
    e_message_text_composition,
 
    e_message_change_experience,
+
+   e_message_open_response,
+
 
 };
 

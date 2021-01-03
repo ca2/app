@@ -11,7 +11,7 @@ namespace filehandler
       m_pfont(e_create)
    {
       m_pxmldoc = new xml::document(this);
-      m_pfont->create_point_font(FONT_SANS_EX,14.0);
+      m_pfont->create_point_font(os_font_name(e_font_sans_ex),14.0);
 
    }
 

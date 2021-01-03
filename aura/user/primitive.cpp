@@ -39,8 +39,18 @@ namespace user
    }
 
 
-   void primitive::show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd)
+   ::e_status primitive::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
    {
+
+      return error_interface_only;
+
+   }
+
+
+   ::e_status primitive::hide_software_keyboard(::user::primitive * pprimitive)
+   {
+
+      return error_interface_only;
 
 
    }
@@ -233,7 +243,7 @@ namespace user
    }
 
 
-   ::user::interaction* primitive::get_host_wnd() const
+   ::user::interaction* primitive::get_host_window() const
    {
 
       if (get_context_session() == nullptr
@@ -586,7 +596,7 @@ namespace user
 
 
 
-   bool primitive::is_ascendant(const primitive * puiIsAscendant) const
+   bool primitive::is_ascendant(const primitive * puiIsAscendant, bool bIncludeSelf) const
    {
 
       ::exception::throw_interface_only();
@@ -616,7 +626,7 @@ namespace user
    }
 
 
-   bool primitive::is_descendant(const primitive * puiIsDescendant) const
+   bool primitive::is_descendant(const primitive * puiIsDescendant, bool bIncludeSelf) const
    {
 
       ::exception::throw_interface_only();
@@ -626,22 +636,56 @@ namespace user
    }
 
 
-   //__pointer(place_holder) primitive::place_hold(::user::interaction * pinteraction)
-   //{
+   bool primitive::is_descendant_of_or_owned_by(const ::user::primitive * puiAscendantCandidate, bool bIncludeSelf) const
+   {
 
-   //   ::exception::throw_interface_only();
+      ::exception::throw_interface_only();
 
-   //   return nullptr;
+      return false;
 
-   //}
+   }
 
 
-   //void primitive::set_timer(pointer_array < ::aura::timer_item > timera)
-   //{
+   bool primitive::is_ascendant_or_owner_of(const ::user::primitive * puiDescendantCandidate, bool bIncludeSelf) const
+   {
 
-   //   ::exception::throw_interface_only();
+      ::exception::throw_interface_only();
 
-   //}
+      return false;
+
+   }
+
+
+   bool primitive::is_ascendant_of(const primitive * puiIsDescendant, bool bIncludeSelf) const
+   {
+      
+      return ::is_set(puiIsDescendant) && puiIsDescendant->is_ascendant(this, bIncludeSelf); 
+   
+   }
+
+
+   bool primitive::is_parent_of(const primitive * puiIsChild) const
+   {
+      
+      return ::is_set(puiIsChild) && puiIsChild->is_parent(this); 
+   
+   }
+
+
+   bool primitive::is_child_of(const primitive * puiIsParent) const
+   {
+      
+      return ::is_set(puiIsParent) && puiIsParent->is_child(this); 
+   
+   }
+
+   
+   bool primitive::is_descendant_of(const primitive * puiIsAscendant, bool bIncludeSelf) const
+   { 
+      
+      return ::is_set(puiIsAscendant) && puiIsAscendant->is_descendant(this, bIncludeSelf); 
+   
+   }
 
 
    void primitive::_008GetWindowText(::message::message * pmessage)
@@ -666,6 +710,7 @@ namespace user
       return -1;
 
    }
+
 
    strsize primitive::_009GetWindowTextLength()
    {
@@ -736,7 +781,7 @@ namespace user
    //}
 
 
-   //::estatus primitive::message_box(const ::payload& varParam)
+   //::e_status primitive::message_box(const ::payload& varParam)
    //{
 
    //   payload payload;
@@ -976,7 +1021,7 @@ namespace user
 
 
 
-   ::estatus primitive::main_async(const ::promise::routine & routine, e_priority epriority)
+   ::e_status primitive::main_async(const ::promise::routine & routine, e_priority epriority)
    {
 
       __throw(interface_only_exception());
@@ -1306,7 +1351,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_next_window(bool bIgnoreChildren, ::user::interaction * puiInteractionStop)
+   ::user::interaction * primitive::get_next_window(bool bIgnoreChildren, const  ::user::interaction * puiInteractionStop) const
    {
 
       return nullptr;
@@ -1641,7 +1686,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::SetOwner(::user::interaction * pinteraction)
+   ::user::primitive * primitive::SetOwner(::user::primitive * pinteraction)
    {
 
       //::exception::throw_interface_only();
@@ -1651,7 +1696,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::SetParent(::user::interaction * pinteraction)
+   ::user::primitive * primitive::SetParent(::user::primitive * pinteraction)
    {
 
       ::exception::throw_interface_only();
@@ -2041,6 +2086,13 @@ namespace user
    }
 
 
+   void primitive::on_configuration_change(::user::primitive * pprimitiveSource)
+   {
+
+
+   }
+
+
    void primitive::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -2341,7 +2393,7 @@ namespace user
    void primitive::set_config_fps(double dConfigFps)
    {
 
-      get_host_wnd()->m_pimpl->set_config_fps(dConfigFps);
+      get_host_window()->m_pimpl->set_config_fps(dConfigFps);
 
    }
 
@@ -2349,7 +2401,7 @@ namespace user
    double primitive::get_config_fps()
    {
 
-      return get_host_wnd()->m_pimpl->get_config_fps();
+      return get_host_window()->m_pimpl->get_config_fps();
 
    }
 
@@ -2357,7 +2409,7 @@ namespace user
    double primitive::get_output_fps()
    {
 
-      auto pinteraction = get_host_wnd();
+      auto pinteraction = get_host_window();
 
       if (pinteraction == nullptr)
       {
@@ -2672,9 +2724,16 @@ namespace user
    ::user::interaction * primitive::GetFocus()
    {
 
-      auto psession = Session;
+      auto puserinteractionHost = get_host_window();
 
-      ::user::primitive * pprimitive = psession->get_keyboard_focus();
+      if (::is_null(puserinteractionHost))
+      {
+
+         return nullptr;
+
+      }
+
+      ::user::primitive * pprimitive = puserinteractionHost->get_keyboard_focus();
 
       if(pprimitive == nullptr)
       {
@@ -2688,7 +2747,7 @@ namespace user
    }
 
 
-   i32 primitive::get_descendant_level(::user::interaction * pinteraction)
+   i32 primitive::get_descendant_level(const ::user::primitive * pinteraction) const
    {
 
       ::exception::throw_interface_only();
@@ -2698,17 +2757,17 @@ namespace user
    }
 
 
-   bool primitive::is_descendant(::user::interaction * pinteraction,bool bIncludeSelf)
-   {
+   //bool primitive::is_descendant(const ::user::primitive * pinteraction,bool bIncludeSelf) const
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   ::estatus primitive::set_tool_window(bool bSet)
+   ::e_status primitive::set_tool_window(bool bSet)
    {
 
       UNREFERENCED_PARAMETER(bSet);
@@ -2736,7 +2795,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::get_focusable_descendant()
+   ::user::interaction * primitive::get_focusable_descendant() const
    {
 
       ::exception::throw_interface_only();
@@ -2981,6 +3040,13 @@ namespace user
 
    void primitive::_001OnExitZoomed()
    {
+
+   }
+
+
+   void primitive::on_add_owned(::user::primitive * pprimitive)
+   {
+
 
    }
 
@@ -3753,19 +3819,20 @@ namespace user
       if (pprimitive == nullptr || pprimitive == this)
       {
 
-         psession->set_keyboard_focus(nullptr);
+         clear_keyboard_focus();
 
       }
       else
       {
 
-         pprimitive->keyboard_set_focus();
+         pprimitive->set_keyboard_focus();
 
       }
 
-      return psession->get_keyboard_focus();
+      return get_keyboard_focus();
 
    }
+
 
    primitive * primitive::keyboard_get_next_focusable(primitive * pfocus, bool bSkipChild, bool bSkipSiblings, bool bSkipParent)
    {
@@ -3879,14 +3946,34 @@ namespace user
    }
 
 
-   bool primitive::keyboard_set_focus()
+   primitive * primitive::get_keyboard_focus() const
    {
 
-      auto psession = Session;
+      return nullptr;
 
-      psession->set_keyboard_focus(this);
+   }
 
-      return true;
+
+   ::e_status primitive::set_keyboard_focus()
+   {
+
+      return ::error_interface_only;
+
+   }
+
+
+   ::e_status primitive::remove_keyboard_focus()
+   {
+
+      return ::error_interface_only;
+
+   }
+
+
+   ::e_status primitive::clear_keyboard_focus()
+   {
+
+      return ::error_interface_only;
 
    }
 
@@ -4099,6 +4186,27 @@ namespace user
    }
 
 
+   void primitive::InputConnectionBeginBatchEdit()
+   {
+
+
+   }
+
+
+   void primitive::InputConnectionEndBatchEdit()
+   {
+
+
+   }
+
+
+   void primitive::InputConnectionCommitText(const string & str, strsize iNewCursorPosition)
+   {
+
+
+   }
+
+
    void primitive::InputConnectionSetComposingText(const string & str, strsize iNewCursorPosition)
    {
 
@@ -4107,6 +4215,12 @@ namespace user
 
 
    void primitive::InputConnectionSetComposingRegion(strsize iStart, strsize iEnd)
+   {
+
+   }
+
+
+   void primitive::InputConnectionSetSelection(strsize iStart, strsize iEnd)
    {
 
    }

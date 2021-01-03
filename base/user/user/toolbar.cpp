@@ -551,7 +551,7 @@ namespace user
 
       auto eitemstate = get_item_state(iIndex);
 
-      ::user::estate estate = e_state_none;
+      ::user::enum_state estate = e_state_none;
 
       if(eitemstate & e_toolbar_item_state_checked)
       {
@@ -1683,7 +1683,7 @@ return { 0,0 };
    }
 
 
-   bool toolbar::_001GetElementRect(index iItem,RECT32 * prect,enum_element eelement, estate estate)
+   bool toolbar::_001GetElementRect(index iItem,RECT32 * prect,enum_element eelement, ::user::enum_state estate)
    {
 
       return false;

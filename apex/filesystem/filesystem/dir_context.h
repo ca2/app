@@ -15,11 +15,11 @@
       virtual ~dir_context();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
-      virtual ::estatus init_system();
-      virtual ::estatus init_context();
+      virtual ::e_status init_system();
+      virtual ::e_status init_context();
 
 
 
@@ -35,6 +35,7 @@
       virtual ::file::listing& ls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern);
       virtual ::file::listing& ls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern);
       virtual ::file::listing& rls_pattern(::file::listing& listing, const ::file::path& path, const string_array & straPattern);
+      virtual ::file::listing& rls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array & straPattern);
 
       virtual ::file::listing& ls_file(::file::listing& listing);
       virtual ::file::listing& ls_dir(::file::listing& listing);
@@ -124,7 +125,7 @@
 
       virtual ::file::path pathfind(const string & pszEnv, const string & pszTopic, const string & pszMode);
 
-      //virtual ::estatus initialize(::layered * pobjectContext) override;
+      //virtual ::e_status initialize(::layered * pobjectContext) override;
 
       //virtual ::file::path get_api_cc();
 

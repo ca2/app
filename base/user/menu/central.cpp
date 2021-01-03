@@ -150,7 +150,7 @@ namespace user
       m_pilBlend = __new(image_list);
       m_pilHueLight = __new(image_list);
 
-      VERIFY(m_fontMenu->create_point_font(FONT_SANS, 11));
+      VERIFY(m_fontMenu->create_point_font(os_font_name(e_font_sans), 11));
 
 #ifdef WINDOWS_DESKTOP
       if (!MenuV033GetImageList()->create(16, 16, ILC_COLOR24 | ILC_MASK, 0, 10))

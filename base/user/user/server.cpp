@@ -45,7 +45,7 @@ namespace user
 
          }
 
-         pcreate->initialize_create(Application.m_strAppId, ::type_empty, true);
+         pcreate->initialize_create(Application.m_strAppId, ::e_type_empty, true);
 
          if (!estatus)
          {

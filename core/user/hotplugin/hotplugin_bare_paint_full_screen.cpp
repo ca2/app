@@ -62,7 +62,7 @@ namespace hotplugin
 
       ::draw2d::font_pointer f(e_create);
 
-      f->create_pixel_font(FONT_SANS_FX, 50);
+      f->create_pixel_font(os_font_name(e_font_sans_fx), 50);
 
       pgraphics->SelectObject(f);
 
@@ -75,14 +75,14 @@ namespace hotplugin
       pgraphics->text_out(rectParam.left + 80, rectParam.top + 80, strStatus);
 
 
-      f->create_pixel_font(FONT_SANS_FX, 80, true);
+      f->create_pixel_font(os_font_name(e_font_sans_fx), 80, true);
 
       pgraphics->SelectObject(f);
 
       pgraphics->text_out(rectParam.left + 80, (i32)(rectParam.top + 120 + 50 * 0.2), strProgress);
 
 
-      f->create_pixel_font(FONT_SANS_FX, 30);
+      f->create_pixel_font(os_font_name(e_font_sans_fx), 30);
 
       pgraphics->SelectObject(f);
 

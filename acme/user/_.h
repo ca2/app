@@ -15,11 +15,7 @@ namespace user
 {
 
 
-   using estate = cflag < enum_state >;
-
-   using eelement = cflag < enum_element >;
-
-
+   DECLARE_C_FLAG(e_state, enum_state);
    CLASS_DECL_ACME string get_wallpaper(::index iIndex);
 
 

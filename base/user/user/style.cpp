@@ -116,7 +116,7 @@ namespace base
 //
 //      theme_current_control(e_control_type_button);
 //
-//      create_point_font(font_default, FONT_SANS, 11.0);
+//      create_point_font(font_default, os_font_name(e_font_sans), 11.0);
 //
 //      create_opaque_color(color_text_normal, ::color_black);
 //      create_session_default_opaque_color(color_text_press, COLOR_HIGHLIGHT);
@@ -133,7 +133,7 @@ namespace base
 //
 //      theme_current_control(control_menu_button);
 //
-//      create_point_font(font_default, FONT_SANS, 12.0);
+//      create_point_font(font_default, os_font_name(e_font_sans), 12.0);
 //
 //      create_color(color_text_normal, alpha_color(200, ::color_black));
 //      create_session_default_color(color_text_press, 200, COLOR_HIGHLIGHT);
@@ -150,7 +150,7 @@ namespace base
 //
 //      theme_current_control(control_menu_popup);
 //
-//      create_point_font(font_default, FONT_SANS, 9.0, e_font_weight_bold);
+//      create_point_font(font_default, os_font_name(e_font_sans), 9.0, e_font_weight_bold);
 //      create_color(color_text_normal, alpha_color(200, ::color_black));
 //      create_session_default_color(color_text_press, 200, COLOR_HIGHLIGHT);
 //      create_color(color_text_disabled, alpha_color(200, ::color_gray));
@@ -261,7 +261,7 @@ namespace base
 //   //virtual color32_t           _001GetColor(::user::interaction * pinteraction, e_color ecolor, color32_t crDefault = 0);
 //   //virtual ::draw2d::font_pointer  _001GetFont(::user::interaction * pinteraction, e_font efont, ::draw2d::font * pfont = nullptr);
 //   //virtual enum_translucency     _001GetTranslucency(::user::interaction * pinteraction, enum_element eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
-//   //virtual bool               _001GetFlag(::user::interaction * pinteraction, ::user::e_flag eflag, bool bDefault = false);
+//   //virtual bool               _001GetFlag(::user::interaction * pinteraction, ::user::enum_flag eflag, bool bDefault = false);
 //   //virtual const rect &               _001GetRect(::user::interaction * pinteraction, ::user::e_rect erect, ::rect rectDefault = nullptr);
 //   //virtual int                _001GetInt(::user::interaction * pinteraction, ::user::e_int eint, int iDefault = 0);
 //   //virtual double             _001GetDouble(::user::interaction * pinteraction, ::user::e_double edouble, double dDefault = 0.0);
@@ -291,7 +291,7 @@ namespace base
 //   //virtual bool userstyle_color(color32_t & cr, e_color ecolor, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_font(::draw2d::font_pointer & sp, e_font efont, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_translucency(enum_translucency & etranslucency, enum_element eelement, ::user::interaction * pinteraction);
-//   //virtual bool userstyle_flag(bool & bSet, ::user::e_flag eflag, ::user::interaction * pinteraction);
+//   //virtual bool userstyle_flag(bool & bSet, ::user::enum_flag eflag, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_rect(const rect & & rect, ::user::e_rect erect, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_int(int & i, ::user::e_int eint, ::user::interaction * pinteraction);
 //   //virtual bool userstyle_double(double & d, ::user::e_double edouble, ::user::interaction * pinteraction);
@@ -300,7 +300,7 @@ namespace base
 //   //virtual bool style_color(color32_t & cr, e_color ecolor, ::user::interaction * pinteraction);
 //   //virtual bool style_font(::draw2d::font_pointer & sp, e_font efont, ::user::interaction * pinteraction);
 //   //virtual bool style_translucency(enum_translucency & etranslucency, enum_element eelement, ::user::interaction * pinteraction);
-//   //virtual bool style_flag(bool & bSet, ::user::e_flag eflag, ::user::interaction * pinteraction);
+//   //virtual bool style_flag(bool & bSet, ::user::enum_flag eflag, ::user::interaction * pinteraction);
 //   //virtual bool style_rect(const rect & & rect, ::user::e_rect erect, ::user::interaction * pinteraction);
 //   //virtual bool style_int(int & i, ::user::e_int eint, ::user::interaction * pinteraction);
 //   //virtual bool style_double(double & d, ::user::e_double edouble, ::user::interaction * pinteraction);

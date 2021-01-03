@@ -49,12 +49,12 @@ namespace user
 
       //::user::style * get_user_style();
 
-      //virtual ::estatus create_user_shell();
+      //virtual ::e_status create_user_shell();
 
 
-      virtual ::estatus init1() override;
-      virtual ::estatus init2() override;
-      virtual ::estatus init() override;
+      virtual ::e_status init1() override;
+      virtual ::e_status init2() override;
+      virtual ::e_status init() override;
 
 
 
@@ -67,6 +67,7 @@ namespace user
 
       virtual ::user::primitive * get_mouse_focus_LButtonDown();
       virtual void set_mouse_focus_LButtonDown(::user::primitive * pmousefocus);
+      virtual void defer_remove_mouse_focus_LButtonDown(::user::primitive * pmousefocus);
       virtual ::user::primitive * get_mouse_focus_RButtonDown();
       virtual void set_mouse_focus_RButtonDown(::user::primitive * pmousefocus);
 

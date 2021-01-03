@@ -318,7 +318,7 @@ namespace multimedia
       {
          if(this->get_size() <= 0)
             return;
-         ::estatus                            mmrc;
+         ::e_status                            mmrc;
          //    oswindow                            htxt;
          //    PMACONTROLINSTANCE_FADER        pmaci_fader;
          //    LPMACONTROLINSTANCE             pmaci;
@@ -563,7 +563,7 @@ namespace multimedia
       nRightValue ,
       m_mixercontrol.Bounds.dwMaximum - m_mixercontrol.Bounds.dwMinimum,
       nRange) +  m_mixercontrol.Bounds.dwMinimum;
-      ::estatus     mmrc = mixerSetControlDetails(
+      ::e_status     mmrc = mixerSetControlDetails(
       (HMIXEROBJ)m_pmixersource->get_device()->m_hMixer,
       &m_mixercontroldetails,
       MIXER_GETCONTROLDETAILSF_VALUE);
@@ -587,7 +587,7 @@ namespace multimedia
       i32 nValue = nRange - pslVolume->GetPos();
       PMIXERCONTROLDETAILS_UNSIGNED pmxcd_u = (PMIXERCONTROLDETAILS_UNSIGNED) m_mixercontroldetails.paDetails;
       pmxcd_u[0].dwValue = (i32)MulDivRN(nValue, m_mixercontrol.Bounds.dwMaximum - m_mixercontrol.Bounds.dwMinimum, nRange) + m_mixercontrol.Bounds.dwMinimum;
-      ::estatus     mmrc = mixerSetControlDetails(
+      ::e_status     mmrc = mixerSetControlDetails(
       (HMIXEROBJ)m_pmixersource->get_device()->m_hMixer,
       &m_mixercontroldetails,
       MIXER_GETCONTROLDETAILSF_VALUE);
@@ -743,7 +743,7 @@ namespace multimedia
                                                 m_mixercontrol.Bounds.dwMaximum - m_mixercontrol.Bounds.dwMinimum,
                                                 nRange) +  m_mixercontrol.Bounds.dwMinimum;
 
-                           ::estatus     mmrc = mmsystem::translate(mixerSetControlDetails((HMIXEROBJ) device->m_hMixer, &m_mixercontroldetails, MIXER_GETCONTROLDETAILSF_VALUE));
+                           ::e_status     mmrc = mmsystem::translate(mixerSetControlDetails((HMIXEROBJ) device->m_hMixer, &m_mixercontroldetails, MIXER_GETCONTROLDETAILSF_VALUE));
 
                            if (::success == mmrc)
                            {
@@ -768,7 +768,7 @@ namespace multimedia
                            PMIXERCONTROLDETAILS_UNSIGNED pmxcd_u = (PMIXERCONTROLDETAILS_UNSIGNED) m_mixercontroldetails.paDetails;
                            pmxcd_u[0].dwValue = (i32)MulDivRN(nValue, m_mixercontrol.Bounds.dwMaximum - m_mixercontrol.Bounds.dwMinimum, nRange) + m_mixercontrol.Bounds.dwMinimum;
 
-                           ::estatus     mmrc = mmsystem::translate(mixerSetControlDetails((HMIXEROBJ) device->m_hMixer, &m_mixercontroldetails, MIXER_GETCONTROLDETAILSF_VALUE));
+                           ::e_status     mmrc = mmsystem::translate(mixerSetControlDetails((HMIXEROBJ) device->m_hMixer, &m_mixercontroldetails, MIXER_GETCONTROLDETAILSF_VALUE));
 
                            if(::success == mmrc)
                            {
@@ -833,7 +833,7 @@ namespace multimedia
                         pmxcd_f[cMultipleItems - i - 1].fValue = fValue;
                      }
 
-                     ::estatus     mmrc = mmsystem::translate(mixerSetControlDetails((HMIXEROBJ) device->m_hMixer, &m_mixercontroldetails, MIXER_GETCONTROLDETAILSF_VALUE));
+                     ::e_status     mmrc = mmsystem::translate(mixerSetControlDetails((HMIXEROBJ) device->m_hMixer, &m_mixercontroldetails, MIXER_GETCONTROLDETAILSF_VALUE));
 
                      if(::success == mmrc)
                      {

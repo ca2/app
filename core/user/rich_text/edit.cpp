@@ -511,7 +511,7 @@ namespace user
 
             ev.m_pmessage = pmessage;
 
-            ev.m_actioncontext = ::source_user;
+            ev.m_actioncontext = ::e_source_user;
 
             on_control_event(&ev);
 
@@ -571,7 +571,7 @@ namespace user
 
             ev.m_eevent = ::user::e_event_escape;
 
-            ev.m_actioncontext = ::source_user;
+            ev.m_actioncontext = ::e_source_user;
 
             on_control_event(&ev);
 

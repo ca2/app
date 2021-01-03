@@ -26,8 +26,8 @@ struct CLASS_DECL_ACME matter :
    virtual ~matter() { }
 
 
-   virtual ::estatus     initialize(::matter * pobjectContext) override;
-   virtual ::estatus     finalize() override;
+   virtual ::e_status     initialize(::matter * pobjectContext) override;
+   virtual ::e_status     finalize() override;
 
 
    virtual void defer_create_mutex();
@@ -67,9 +67,9 @@ struct CLASS_DECL_ACME matter :
 
 
 
-   virtual ::estatus     call() override;
+   virtual ::e_status     call() override;
 
-   virtual ::estatus     call(::trait & trait) override;
+   virtual ::e_status     call(::trait & trait) override;
 
 
    inline bool is_storing() const { return m_eobject & object_storing; }
@@ -219,76 +219,76 @@ struct CLASS_DECL_ACME matter :
    inline ::image_pointer matter_image(const string & strMatter, bool bCache = true, bool bSync = false);
 
 
-   ::estatus     create(::image_pointer & pimage);
-   ::estatus     compose(__composite(::image) & pimage);
+   ::e_status     create(::image_pointer & pimage);
+   ::e_status     compose(__composite(::image) & pimage);
 
-   ::estatus     create(::image_pointer & pimage, const ::size & size, ::u64 u64Create = OK, int iGoodStride = -1, bool bPreserve = false);
-   ::estatus     compose(__composite(::image) & pimage, const ::size & size, ::u64 u64Create = OK, int iGoodStride = -1, bool bPreserve = false);
+   ::e_status     create(::image_pointer & pimage, const ::size & size, ::u64 u64Create = OK, int iGoodStride = -1, bool bPreserve = false);
+   ::e_status     compose(__composite(::image) & pimage, const ::size & size, ::u64 u64Create = OK, int iGoodStride = -1, bool bPreserve = false);
 
 
    template < typename TYPE, typename PRED >
-   inline ::estatus     pred_create(__pointer(TYPE) & p, PRED predNew);
+   inline ::e_status     pred_create(__pointer(TYPE) & p, PRED predNew);
 
-   inline ::estatus     preserve_resize(::image_pointer & pimage, const ::size & size, ::u64 u64Create = OK, int iGoodStride = -1)
+   inline ::e_status     preserve_resize(::image_pointer & pimage, const ::size & size, ::u64 u64Create = OK, int iGoodStride = -1)
    {
       return create(pimage, size, uidCreate, iGoodStride, true);
    }
 
 
-   inline ::estatus     preserve_compose(__composite(::image) & pimage, const ::size & size, ::u64 u64Create = OK, int iGoodStride = -1)
+   inline ::e_status     preserve_compose(__composite(::image) & pimage, const ::size & size, ::u64 u64Create = OK, int iGoodStride = -1)
    {
       return compose(pimage, size, uidCreate, iGoodStride, true);
    }
 
    template < typename TYPE, typename PRED >
-   inline ::estatus     pred_compose(__composite(TYPE) & p, PRED predNew);
+   inline ::e_status     pred_compose(__composite(TYPE) & p, PRED predNew);
 
    template < typename TYPE >
-   inline ::estatus     compose(__composite(TYPE) & p);
+   inline ::e_status     compose(__composite(TYPE) & p);
 
    template < typename TYPE >
-   inline ::estatus     compose(__composite(TYPE) & p, const ::id & id);
+   inline ::e_status     compose(__composite(TYPE) & p, const ::id & id);
 
    template < typename TYPE >
-   inline ::estatus     compose_new(__composite(TYPE) & p);
+   inline ::e_status     compose_new(__composite(TYPE) & p);
 
 
    //template < typename TYPE, typename PRED >
-   //inline ::estatus     pred_create(__pointer(TYPE) & p, PRED predNew);
+   //inline ::e_status     pred_create(__pointer(TYPE) & p, PRED predNew);
 
    template < typename TYPE >
-   inline ::estatus     create(__pointer(TYPE) & p);
+   inline ::e_status     create(__pointer(TYPE) & p);
 
    template < typename TYPE >
-   inline ::estatus     create(__pointer(TYPE) & p, const ::id & id);
+   inline ::e_status     create(__pointer(TYPE) & p, const ::id & id);
 
    //template < typename TYPE >
-   //inline ::estatus     create_new(__pointer(TYPE) & p);
+   //inline ::e_status     create_new(__pointer(TYPE) & p);
 
    //template < typename TYPE, typename PRED >
-   //inline ::estatus     pred_create(TYPE *& p, PRED predNew);
+   //inline ::e_status     pred_create(TYPE *& p, PRED predNew);
 
    //template < typename TYPE >
-   //inline ::estatus     realize(TYPE *& p);
+   //inline ::e_status     realize(TYPE *& p);
 
    //template < typename TYPE >
-   //inline ::estatus     realize(TYPE *& p, const ::id & id);
+   //inline ::e_status     realize(TYPE *& p, const ::id & id);
 
    //template < typename TYPE >
-   //inline ::estatus     compose(TYPE *& p);
+   //inline ::e_status     compose(TYPE *& p);
 
    template < typename TYPE >
-   inline ::estatus     _compose(__composite(TYPE) & p);
+   inline ::e_status     _compose(__composite(TYPE) & p);
 
    //template < typename TYPE >
-   //inline ::estatus     destroy(TYPE * & p);
+   //inline ::e_status     destroy(TYPE * & p);
 
    using matter::release;
 
    template < typename TYPE >
-   inline ::estatus     release(__composite(TYPE) & p);
+   inline ::e_status     release(__composite(TYPE) & p);
 
    template < typename TYPE >
-   inline ::estatus     release(__pointer(TYPE) & p);
+   inline ::e_status     release(__pointer(TYPE) & p);
 
 };

@@ -22,7 +22,7 @@ namespace html
       virtual ~html();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
       string special_chars(const char * psz);

@@ -80,6 +80,7 @@ namespace user
       plain_edit_internal *               m_pinternal;
       bool                                m_bNeedCalcLayout;
       bool                                m_bCalcLayoutHintNoTextChange;
+      int                                 m_iInputConnectionBatch;
 
       int                                 m_iTabWidth;
       bool                                m_bColorerTake5;
@@ -157,9 +158,13 @@ namespace user
       virtual void on_text_composition_done() override;
 
 
-      virtual void InputConnectionSetComposingText(const string & str, strsize iNewCursorPosition);
-      virtual void InputConnectionSetComposingRegion(strsize iStart, strsize iEnd);
-      virtual void InputConnectionFinishComposingText();
+      virtual void InputConnectionBeginBatchEdit() override;
+      virtual void InputConnectionEndBatchEdit() override;
+      virtual void InputConnectionCommitText(const string & str, strsize iNewCursorPosition) override;
+      virtual void InputConnectionSetComposingText(const string & str, strsize iNewCursorPosition) override;
+      virtual void InputConnectionSetComposingRegion(strsize iStart, strsize iEnd) override;
+      virtual void InputConnectionSetSelection(strsize iStart, strsize iEnd) override;
+      virtual void InputConnectionFinishComposingText() override;
 
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -180,7 +185,7 @@ namespace user
       void _001OnTimer(::timer * ptimer) override;
 
 
-      virtual ::rectd get_margin(style * pstyle, enum_element eelement = ::user::e_element_none, estate estate = ::user::e_state_none) const override;
+      virtual ::rectd get_margin(style * pstyle, enum_element eelement = ::user::e_element_none, ::user::enum_state estate = ::user::e_state_none) const override;
   
 
       DECL_GEN_SIGNAL(_001OnLButtonDown);
@@ -217,6 +222,10 @@ namespace user
       DECL_GEN_SIGNAL(keyboard_focus_OnKeyDown) override;
       DECL_GEN_SIGNAL(keyboard_focus_OnKeyUp) override;
       DECL_GEN_SIGNAL(keyboard_focus_OnChar) override;
+
+
+      virtual enum_input_type preferred_input_type() const override;
+
 
       virtual bool keyboard_focus_is_focusable() const override;
 
@@ -277,7 +286,7 @@ namespace user
       void _001SetSelText(const char * psz, const ::action_context & action_context) override;
       void _001SetSelEnd(strsize iSelEnd) override;
       void _set_sel_end(::draw2d::graphics_pointer& pgraphics, strsize iSelEnd);
-      void _001SetSel(strsize iSelStart, strsize iSelEnd) override;
+      void _001SetSel(strsize iSelStart, strsize iSelEnd, const ::action_context & action_context = ::e_source_user) override;
       void _001GetSel(strsize & iSelStart, strsize & iSelEnd) const override;
 
       void _001EnsureVisibleChar(strsize iChar);

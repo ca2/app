@@ -53,7 +53,7 @@ namespace simpledb
    }
 
 
-   ::estatus storage::initialize_simpledb_storage(server * pserver)
+   ::e_status storage::initialize_simpledb_storage(server * pserver)
    {
 
       auto estatus = ::object::initialize(pserver);

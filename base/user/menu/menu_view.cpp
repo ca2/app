@@ -180,11 +180,11 @@ namespace user
 
       m_fontTitle.create(this);
 
-      m_fontTitle->create_point_font("Segoe UI", 14, 800);
+      m_fontTitle->create_point_font(os_font_name(e_font_sans_ui), 14, 800);
 
       m_font.create(this);
 
-      m_font->create_point_font("Segoe UI", 14, 400);
+      m_font->create_point_font(os_font_name(e_font_sans_ui), 14, 400);
 
       if (GetTypedParent<::user::split_view>() != nullptr)
       {
@@ -194,7 +194,7 @@ namespace user
 
             auto pinteraction = GetTypedParent<::user::split_view>()->get_child_by_id("top_edit_view");
 
-            pinteraction->_001SetText(strText, ::source_initialize);
+            pinteraction->_001SetText(strText, ::e_source_initialize);
 
          }
 

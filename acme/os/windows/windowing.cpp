@@ -360,7 +360,7 @@ CLASS_DECL_ACME string message_box_result_to_string(enum_dialog_result edialogre
 //
 
 
-CLASS_DECL_ACME ::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+CLASS_DECL_ACME ::e_status _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
    string strMessage(pszMessage);
@@ -384,7 +384,7 @@ CLASS_DECL_ACME ::estatus _os_message_box(oswindow oswindow, const char* pszMess
 }
 //
 //
-CLASS_DECL_ACME ::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+CLASS_DECL_ACME ::e_status os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
    //if (System.is_dedicated_thread())

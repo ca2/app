@@ -225,6 +225,18 @@ string file_as_string(const char * path, strsize iReadAtMostByteCount)
 
 }
 
+string_array file_as_lines(const char * path, strsize iReadAtMostByteCount)
+{
+
+   string str = file_as_string(path, iReadAtMostByteCount);
+
+   string_array stra;
+
+   stra.add_lines(str);
+
+   return stra;
+
+}
 
 memory file_as_memory(const char * path, strsize iReadAtMostByteCount)
 {

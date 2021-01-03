@@ -23,7 +23,7 @@ namespace promise
       virtual ~promise();
 
 
-      virtual ::estatus on_task() override;
+      virtual ::e_status on_task() override;
 
 
    };

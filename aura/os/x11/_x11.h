@@ -22,13 +22,13 @@
 //
 //   virtual bool process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie);
 //
-//   ::estatus hook();
-//   ::estatus unhook();
+//   ::e_status hook();
+//   ::e_status unhook();
 //
 //
 //};
 //
 //
 //
-////::estatus __x11_hook(x11_hook * phook);
-////::estatus __x11_unhook(x11_hook * phook);
+////::e_status __x11_hook(x11_hook * phook);
+////::e_status __x11_unhook(x11_hook * phook);

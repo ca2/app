@@ -28,11 +28,11 @@ namespace mysql
       virtual ~database();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
       virtual void finalize() override;
 
 
-      virtual ::estatus _connect() override;
+      virtual ::e_status _connect() override;
 
 
       bool close_mysql_database();

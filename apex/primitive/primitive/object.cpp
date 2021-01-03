@@ -116,7 +116,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::add_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::e_status object::add_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    sync_lock sl(mutex());
@@ -139,7 +139,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::add_reference(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::e_status object::add_reference(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    sync_lock sl(mutex());
@@ -165,7 +165,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::release_composite2(::matter * pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::e_status object::release_composite2(::matter * pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    if (::is_null(pmatter))
@@ -194,7 +194,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::finalize_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::e_status object::finalize_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    if (::is_null(pmatter))
@@ -236,7 +236,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::estatus object::release_reference(::matter* pmatter  OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::e_status object::release_reference(::matter* pmatter  OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    if (::is_null(pmatter))
@@ -280,7 +280,7 @@ void object::to_string(const class string_exchange & str) const
 }
 
 
-::user::interaction * object::get_host_wnd()
+::user::interaction * object::get_host_window()
 {
 
    if (m_psessionContext.is_null())
@@ -492,7 +492,7 @@ void object::set_topic_text(const ::string & strTopicText)
 }
 
 
-::estatus object::initialize(::layered * pobjectContext)
+::e_status object::initialize(::layered * pobjectContext)
 {
 
    auto estatus = ::success;
@@ -705,7 +705,7 @@ void object::defer_update_object_id()
 
 
 
-::estatus object::enable_application_events(bool bEnable)
+::e_status object::enable_application_events(bool bEnable)
 {
 
    if(::is_null(get_context_application()))
@@ -727,15 +727,15 @@ void object::defer_update_object_id()
 }
 
 
-::estatus     object::request_file(const ::payload & varFile)
+::e_status     object::request_file(const ::payload & varFile)
 {
 
-   return request_file(varFile, type_new);
+   return request_file(varFile, e_type_new);
 
 }
 
 
-::estatus     object::request_file(const ::payload& varFile,payload varQuery)
+::e_status     object::request_file(const ::payload& varFile,payload varQuery)
 {
 
    auto pcommandline = __create_new< command_line >();
@@ -749,7 +749,7 @@ void object::defer_update_object_id()
 }
 
 
-::estatus     object::request(arguments arguments)
+::e_status     object::request(arguments arguments)
 {
 
    __pointer(::create) pcreate;
@@ -777,7 +777,7 @@ void object::defer_update_object_id()
 }
 
 
-::estatus     object::do_request(::create * pcreate)
+::e_status     object::do_request(::create * pcreate)
 {
 
    on_request(pcreate);
@@ -787,7 +787,7 @@ void object::defer_update_object_id()
 }
 
 
-//::estatus object::message_box(const ::payload& payload)
+//::e_status object::message_box(const ::payload& payload)
 //{
 //
 //   __pointer(::user::primitive) pinteraction = get_context_object();
@@ -811,7 +811,7 @@ void object::defer_update_object_id()
 //}
 
 
-::estatus     object::call_request(::create * pcreate)
+::e_status     object::call_request(::create * pcreate)
 {
 
    on_request(pcreate);
@@ -846,7 +846,7 @@ void object::on_request(::create* pcreateParam)
 
       }
 
-      estatus = pcreate->initialize_create(Application.m_strAppId, ::type_empty, true);
+      estatus = pcreate->initialize_create(Application.m_strAppId, ::e_type_empty, true);
 
       if (!estatus)
       {
@@ -878,7 +878,7 @@ void object::system(const char * pszProjectName)
 }
 
 
-::estatus     object::run()
+::e_status     object::run()
 {
 
    return ::success;
@@ -886,7 +886,7 @@ void object::system(const char * pszProjectName)
 }
 
 
-::estatus object::operator()()
+::e_status object::operator()()
 {
 
    return ::context_object::operator()();
@@ -1046,10 +1046,10 @@ void object::copy_from(const object & o)
 }
 
 
-::estatus object::set_finish_composites(::context_object * pcontextobjectFinish)
+::e_status object::set_finish_composites(::context_object * pcontextobjectFinish)
 {
 
-   ::estatus estatus = ::success;
+   ::e_status estatus = ::success;
 
    sync_lock sl(mutex());
 
@@ -1163,7 +1163,7 @@ void object::copy_from(const object & o)
 }
 
 
-::estatus object::set_finish(::context_object * pcontextobjectFinish)
+::e_status object::set_finish(::context_object * pcontextobjectFinish)
 {
 
    __pointer(::object) pobjectHold = this;
@@ -1524,7 +1524,7 @@ bool object::__is_child_task(::task * ptask) const
 // So a flag/timer/message that indicates that things should be destroyed/closed/finalized
 // should be enough (which triggers the full finalization that would end up calling
 // the "final" finalize).
-::estatus object::finish(::context_object * pcontextobjectFinish)
+::e_status object::finish(::context_object * pcontextobjectFinish)
 {
 
    if (!pcontextobjectFinish)
@@ -1651,7 +1651,7 @@ void object::multiple_fork(const ::promise::routine_array & procedurea)
 }
 
 
-::estatus object::handle_exception(::exception_pointer pe)
+::e_status object::handle_exception(::exception_pointer pe)
 {
 
    if(pe.is < exit_exception > ())
@@ -1666,7 +1666,7 @@ void object::multiple_fork(const ::promise::routine_array & procedurea)
 }
 
 
-::estatus object::top_handle_exception(::exception_pointer pe)
+::e_status object::top_handle_exception(::exception_pointer pe)
 {
 
    __pointer(exit_exception) pexitexception = pe;
@@ -1685,7 +1685,7 @@ void object::multiple_fork(const ::promise::routine_array & procedurea)
 }
 
 
-::estatus object::process_exception(::exception_pointer pe)
+::e_status object::process_exception(::exception_pointer pe)
 {
 
    if (pe->m_bHandled)
@@ -1963,7 +1963,7 @@ __pointer(::matter) object::running(const char * pszTag) const
 
 
 
-::estatus object::bind_update(const ::id & id, bool bCreate)
+::e_status object::bind_update(const ::id & id, bool bCreate)
 {
 
    auto pproperty = fetch_property(id, bCreate);
@@ -1980,7 +1980,7 @@ __pointer(::matter) object::running(const char * pszTag) const
 }
 
 
-::estatus object::bind_update(const ::id & id, ::object * pobject)
+::e_status object::bind_update(const ::id & id, ::object * pobject)
 {
 
    if (::is_null(pobject))
@@ -2011,7 +2011,7 @@ __pointer(::matter) object::running(const char * pszTag) const
 }
 
 
-::estatus object::bind_update(property * pproperty)
+::e_status object::bind_update(property * pproperty)
 {
 
    ASSERT(::is_set(pproperty));
@@ -2123,7 +2123,7 @@ CLASS_DECL_APEX void object_on_add_composite(const matter * pbase)
 }
 
 
-bool __no_continue(::estatus estatus)
+bool __no_continue(::e_status estatus)
 {
 
    return false;
@@ -2131,7 +2131,7 @@ bool __no_continue(::estatus estatus)
 }
 
 
-::estatus call_sync(const ::promise::routine_array & methoda)
+::e_status call_sync(const ::promise::routine_array & methoda)
 {
 
    try
@@ -2222,10 +2222,10 @@ string object::get_text(const payload& payload, const ::id& id)
 }
 
 
-::estatus object::message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+::e_status object::message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
-   ::estatus estatus = Application.message_box(pszMessage, pszTitle, emessagebox, process);
+   ::e_status estatus = Application.message_box(pszMessage, pszTitle, emessagebox, process);
 
    //auto psession = get_context_session();
 
@@ -2275,10 +2275,10 @@ string object::get_text(const payload& payload, const ::id& id)
 }
 
 
-::estatus object::message_box_timeout(const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::promise::process & process)
+::e_status object::message_box_timeout(const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
-   ::estatus estatus = error_failed;
+   ::e_status estatus = error_failed;
 
    //if (::is_null(get_context_session()) || ::is_null(get_context_session()->userex()))
    //{

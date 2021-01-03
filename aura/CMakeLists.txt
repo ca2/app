@@ -313,6 +313,8 @@ list(APPEND aura_source
    user/_user.h
    user/box.cpp
    user/box.h
+   user/call_message_handler_task.cpp
+   user/call_message_handler_task.h
    user/callback.cpp
    user/callback.h
    user/control_descriptor.cpp
@@ -625,6 +627,7 @@ if (LINUX)
       node/linux/factory_exchange.h
       node/linux/interaction_impl.cpp
       node/linux/interaction_impl.h
+      node/linux/system.cpp
       os/gdk/aura_gdk.cpp
       os/gdk/aura_gdk.h
       os/linux/_.h
@@ -1085,7 +1088,7 @@ else ()
 endif ()
 
 
-add_library(aura SHARED ${aura_source})
+add_library(aura SHARED ${aura_source} node/linux/system.cpp)
 
 
 target_precompile_headers(aura PRIVATE framework.h)

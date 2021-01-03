@@ -45,7 +45,7 @@ namespace draw2d_direct2d
 
       //bool _create(::size size);
       using ::image::create;
-      virtual ::estatus create(const ::size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iStride = -1, bool bPreserver = false) override;
+      virtual ::e_status create(const ::size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iStride = -1, bool bPreserver = false) override;
       bool _create(::draw2d::graphics * pgraphics);
       bool destroy();
 
@@ -57,7 +57,7 @@ namespace draw2d_direct2d
       //using ::image::to;
       //bool to(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc) override;
 
-      virtual ::estatus SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy) override;
+      virtual ::e_status SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy) override;
 
 
       virtual bool defer_realize(::draw2d::graphics * pgraphics) const;

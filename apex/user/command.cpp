@@ -198,7 +198,7 @@ namespace user
          if(pcheck)
          {
 
-            pcheck->_001SetCheck(echeck, context + source_sync);
+            pcheck->_001SetCheck(echeck, context + ::e_source_sync);
 
          }
 
@@ -229,7 +229,7 @@ namespace user
       if (m_puiOther != nullptr)
       {
 
-         m_puiOther->_001SetText(pszText, ::source_sync);
+         m_puiOther->_001SetText(pszText, ::e_source_sync);
 
       }
 

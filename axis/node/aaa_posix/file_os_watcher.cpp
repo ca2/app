@@ -162,7 +162,7 @@ namespace file
    }
 
 
-   //::estatus     os_watcher::run()
+   //::e_status     os_watcher::run()
    //{
 
    //   while (::thread_get_run())

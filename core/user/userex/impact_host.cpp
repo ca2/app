@@ -641,7 +641,7 @@ namespace userex
          else
          {
 
-            pdocument = pimpactsystem->open_document_file(get_context_application(), type_empty, __visible(true), this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, id);
+            pdocument = pimpactsystem->open_document_file(get_context_application(), e_type_empty, __visible(true), this, m_bWfiUpDownTarget ? e_window_flag_updown : e_window_flag_none, id);
 
          }
 

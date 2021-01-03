@@ -15,7 +15,7 @@
 payload::payload(const char * psz)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
 
    set_string(psz);
 
@@ -25,7 +25,7 @@ payload::payload(const char * psz)
 payload::payload(::matter * pmatter)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
 
    operator = (pmatter);
 
@@ -35,7 +35,7 @@ payload::payload(::matter * pmatter)
 payload::payload(const ::matter & matter)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
 
    operator = (matter);
 
@@ -45,7 +45,7 @@ payload::payload(const ::matter & matter)
 payload::payload(const string & str)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
 
    set_string(str);
 
@@ -55,7 +55,7 @@ payload::payload(const string & str)
 payload::payload(const type & type)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
 
    set_type(type);
 
@@ -65,7 +65,7 @@ payload::payload(const type & type)
 payload::payload(string * pstr)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
 
    operator = (pstr);
 
@@ -75,7 +75,7 @@ payload::payload(string * pstr)
 payload::payload(bool b)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
 
    operator = (b);
 
@@ -85,7 +85,7 @@ payload::payload(bool b)
 payload::payload(bool * pb)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
 
    operator = (pb);
 
@@ -95,7 +95,7 @@ payload::payload(bool * pb)
 payload::payload(::i32 i)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
 
    operator = (i);
 
@@ -115,7 +115,7 @@ payload::payload(::u32 u )
 payload::payload(::i64 i)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
 
    operator = (i);
 
@@ -150,7 +150,7 @@ payload::payload(long l)
 payload::payload(::i32 * pi)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
    operator = (pi);
 
 }
@@ -159,7 +159,7 @@ payload::payload(::i32 * pi)
 payload::payload(::u32 * pinteraction)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
    operator = (pinteraction);
 
 }
@@ -168,7 +168,7 @@ payload::payload(::u32 * pinteraction)
 payload::payload(::i64 * pi)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
    operator = (pi);
 
 }
@@ -177,7 +177,7 @@ payload::payload(::i64 * pi)
 payload::payload(::u64 * pinteraction)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
    operator = (pinteraction);
 
 }
@@ -186,7 +186,7 @@ payload::payload(::u64 * pinteraction)
 payload::payload(float f)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
    operator = (f);
 
 }
@@ -195,7 +195,7 @@ payload::payload(float f)
 payload::payload(double d)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
    operator = (d);
 
 }
@@ -204,7 +204,7 @@ payload::payload(double d)
 payload::payload(const ::file::path & path)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
    operator = (path);
 
 }
@@ -213,7 +213,7 @@ payload::payload(const ::file::path & path)
 payload::payload(const string_array & payload)
 {
 
-   m_etype  = type_new;
+   m_etype  = e_type_new;
    operator = (payload);
 
 }
@@ -222,7 +222,7 @@ payload::payload(const string_array & payload)
 payload::payload(const int_array & ia)
 {
 
-   m_etype  = type_new;
+   m_etype  = e_type_new;
    operator = (ia);
 
 }
@@ -231,7 +231,7 @@ payload::payload(const int_array & ia)
 payload::payload(const var_array & payload)
 {
 
-   m_etype  = type_new;
+   m_etype  = e_type_new;
    operator = (payload);
 
 }
@@ -240,7 +240,7 @@ payload::payload(const var_array & payload)
 payload::payload(const property_set & set)
 {
 
-   m_etype  = type_new;
+   m_etype  = e_type_new;
    operator = (set);
 
 }
@@ -250,7 +250,7 @@ payload::payload(const class payload & payload)
 {
 
    m_i64 = 0;
-   m_etype = type_new;
+   m_etype = e_type_new;
    operator = (payload);
 
 }
@@ -259,7 +259,7 @@ payload::payload(const class payload & payload)
 payload::payload(class payload * pvar)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
    operator = (pvar);
 
 }
@@ -286,7 +286,7 @@ pack::pack(const ::std::initializer_list < pack >& list)
 payload::payload(const class payload * pvar)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
    operator = ( pvar);
 
 }
@@ -295,7 +295,7 @@ payload::payload(const class payload * pvar)
 payload::payload(const property & prop)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
    xxf_zero(m_all);
    operator = (prop);
 
@@ -305,7 +305,7 @@ payload::payload(const property & prop)
 payload::payload(const ::promise::routine & routine)
 {
 
-    m_etype = type_new;
+    m_etype = e_type_new;
     xxf_zero(m_all);
     set_type(type_routine);
     m_routine = routine;
@@ -316,7 +316,7 @@ payload::payload(const ::promise::routine & routine)
 payload::payload(const ::promise::process & process)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
    xxf_zero(m_all);
    set_type(type_process);
    m_process = process;
@@ -327,7 +327,7 @@ payload::payload(const ::promise::process & process)
 payload::payload(property * pproperty)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
 
    if (::is_set(pproperty))
    {
@@ -348,7 +348,7 @@ payload::payload(property * pproperty)
 payload::payload(const property * pproperty)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
 
    if (::is_set(pproperty))
    {
@@ -369,7 +369,7 @@ payload::payload(const property * pproperty)
 payload::payload(const id & id)
 {
 
-   m_etype = type_new;
+   m_etype = e_type_new;
    operator = (id);
 
 }
@@ -498,11 +498,11 @@ class payload & payload::operator ++(::i32)
 
    switch(get_type())
    {
-   case type_new:
+   case e_type_new:
    case e_type_null:
    case type_stra:
    case type_inta:
-   case type_empty:
+   case e_type_empty:
    case type_element:
    case type_path:
       set_type(type_i32);
@@ -593,7 +593,7 @@ void payload::set_type(enum_type etype, bool bConvert)
 
       release();
 
-      if (bConvert && m_etype != type_new)
+      if (bConvert && m_etype != e_type_new)
       {
 
          switch (etype)
@@ -636,7 +636,7 @@ void payload::set_type(enum_type etype, bool bConvert)
 
 void payload::unset()
 {
-   set_type(type_new, false);
+   set_type(e_type_new, false);
 }
 
 
@@ -1437,7 +1437,7 @@ bool payload::is_true(const ::payload & payload, bool bDefault) const
          {
          case e_type_null:
             return bDefault;
-         case type_empty:
+         case e_type_empty:
             return bDefault;
          case type_key_exists:
             return true;
@@ -1498,11 +1498,11 @@ bool payload::is_empty() const
    {
    case e_type_null:
       return true;
-   case type_empty:
+   case e_type_empty:
       return true;
-   case type_empty_argument:
+   case e_type_empty_argument:
       return true;
-   case type_new:
+   case e_type_new:
       return true;
    case type_string:
       return m_str.is_empty();
@@ -1563,7 +1563,7 @@ bool payload::has_char() const
 bool payload::is_set() const
 {
 
-   if (get_type() != type_new)
+   if (get_type() != e_type_new)
    {
 
       return true;
@@ -1581,7 +1581,7 @@ bool payload::is_set() const
 
 bool payload::is_new() const
 {
-   if(m_etype == type_new)
+   if(m_etype == e_type_new)
       return true;
    else
       return false;
@@ -2315,7 +2315,7 @@ id & payload::get_ref_id(const char * pszOnNull)
    {
    case e_type_null:
       return iDefault;
-   case type_empty:
+   case e_type_empty:
       return iDefault;
    case type_string:
       return atoi(m_str);
@@ -2385,7 +2385,7 @@ id & payload::get_ref_id(const char * pszOnNull)
    {
    case e_type_null:
       return uiDefault;
-   case type_empty:
+   case e_type_empty:
       return uiDefault;
    case type_string:
       return atoi(m_str);
@@ -2419,7 +2419,7 @@ id & payload::get_ref_id(const char * pszOnNull)
       {
       case e_type_null:
          return iDefault;
-      case type_empty:
+      case e_type_empty:
          return iDefault;
       case type_string:
          return ansi_to_i64(m_str);
@@ -2491,7 +2491,7 @@ id & payload::get_ref_id(const char * pszOnNull)
    {
    case e_type_null:
       return uiDefault;
-   case type_empty:
+   case e_type_empty:
       return uiDefault;
    case type_string:
       return atol(m_str);
@@ -2557,7 +2557,7 @@ float payload::get_float(float fDefault) const
    {
    case e_type_null:
       return fDefault;
-   case type_empty:
+   case e_type_empty:
       return fDefault;
    case type_i32:
       return (float) m_i32;
@@ -2610,7 +2610,7 @@ double payload::get_double(double dDefault) const
    {
       return dDefault;
    }
-   else if(m_etype == type_empty)
+   else if(m_etype == e_type_empty)
    {
       return dDefault;
    }
@@ -3616,7 +3616,7 @@ payload payload::operator / (::u64 ul) const
    {
    case ::e_type_null:
       return payload(e_type_null);
-   case ::type_empty:
+   case ::e_type_empty:
       return 0.0 / ul; // throws division by zero exception if ul stream zero
    case ::type_i32:
       return m_i32 / (::index) ul;
@@ -3673,7 +3673,7 @@ payload operator / (::u64 ul, const class payload & payload)
    {
    case ::e_type_null:
       __throw(::exception::exception("division by zero"));
-   case ::type_empty:
+   case ::e_type_empty:
       __throw(::exception::exception("division by zero"));
    case ::type_i32:
       return (iptr) ul / payload.m_i32;
@@ -3792,7 +3792,7 @@ payload payload::operator * (::u64 ul) const
    {
    case ::e_type_null:
       return payload(e_type_null);
-   case ::type_empty:
+   case ::e_type_empty:
       return 0.0;
    case ::type_i32:
       return m_i32 * (::index) ul;
@@ -3850,7 +3850,7 @@ payload operator * (::u64 ul, const class payload & payload)
    {
    case ::e_type_null:
       return ::payload(::e_type_null);
-   case ::type_empty:
+   case ::e_type_empty:
       return 0;
    case ::type_i32:
       return (iptr) ul * payload.m_i32;
@@ -4206,9 +4206,9 @@ class payload & payload::operator *= (const class payload & payload)
 
 bool payload::is_scalar() const
 {
-   if(m_etype == type_new
+   if(m_etype == e_type_new
          || m_etype == e_type_null
-         || m_etype == type_empty)
+         || m_etype == e_type_empty)
    {
       return false;
    }
@@ -4592,10 +4592,10 @@ payload::operator bool() const
       return ::succeeded(m_estatus);
 
    }
-   else if (m_etype == type_new
+   else if (m_etype == e_type_new
          || m_etype == e_type_null
-         || m_etype == type_empty
-         || m_etype == type_empty_argument
+         || m_etype == e_type_empty
+         || m_etype == e_type_empty_argument
          || m_etype == type_not_found)
    {
 
@@ -4850,7 +4850,7 @@ payload payload::get_topic(const ::id & id) const
 //   if(::is_null(pproperty))
 //   {
 //
-//      return type_new;
+//      return e_type_new;
 //
 //   }
 //
@@ -5314,7 +5314,7 @@ void payload::parse_json(const char *& pszJson, const char * pszEnd)
       if (*pszJson == '\0')
       {
 
-         return ::type_new;
+         return ::e_type_new;
 
       }
 
@@ -5327,7 +5327,7 @@ void payload::parse_json(const char *& pszJson, const char * pszEnd)
 
          pszJson++;
 
-         return ::type_new;
+         return ::e_type_new;
 
       }
 
@@ -5361,7 +5361,7 @@ void payload::parse_json(const char *& pszJson, const char * pszEnd)
          else if (*pszJson == '}')
          {
             pszJson++;
-            return ::type_new;
+            return ::e_type_new;
          }
          else
          {
@@ -5386,7 +5386,7 @@ void payload::parse_json(const char *& pszJson, const char * pszEnd)
       }
       else
       {
-         return ::type_new;
+         return ::e_type_new;
       }
    }
    else if (ansi_char_is_digit(*pszJson) || *pszJson == '-' || *pszJson == '.')
@@ -5398,7 +5398,7 @@ void payload::parse_json(const char *& pszJson, const char * pszEnd)
       }
       else
       {
-         return ::type_new;
+         return ::e_type_new;
       }
    }
    else if (*pszJson == '[')
@@ -5406,10 +5406,10 @@ void payload::parse_json(const char *& pszJson, const char * pszEnd)
       ::str::consume_spaces(pszJson, 0, pszEnd);
       ::str::consume(pszJson, "[", 1, pszEnd);
       ::enum_type etype = find_json_id(pszJson, pszEnd, varChild);
-      if (etype == ::type_new)
+      if (etype == ::e_type_new)
       {
 
-         return ::type_new;
+         return ::e_type_new;
 
       }
 
@@ -5423,18 +5423,18 @@ void payload::parse_json(const char *& pszJson, const char * pszEnd)
 
       }
 
-      return ::type_new;
+      return ::e_type_new;
 
    }
    else if (*pszJson == ']')
    {
       ::output_debug_string("");
-      return ::type_new;
+      return ::e_type_new;
    }
    else if (*pszJson == '\0')
    {
       ::output_debug_string("");
-      return ::type_new;
+      return ::e_type_new;
    }
    else
    {
@@ -5445,7 +5445,7 @@ void payload::parse_json(const char *& pszJson, const char * pszEnd)
       }
       else
       {
-         return ::type_new;
+         return ::e_type_new;
       }
    }
 
@@ -5460,7 +5460,7 @@ void payload::parse_json(const char *& pszJson, const char * pszEnd)
    if (*pszJson == '{')
    {
 
-      return ::type_new;
+      return ::e_type_new;
 
 
    }
@@ -5473,7 +5473,7 @@ void payload::parse_json(const char *& pszJson, const char * pszEnd)
       }
       else
       {
-         return ::type_new;
+         return ::e_type_new;
       }
    }
    else if (ansi_char_is_digit(*pszJson) || *pszJson == '-' || *pszJson == '.')
@@ -5485,22 +5485,22 @@ void payload::parse_json(const char *& pszJson, const char * pszEnd)
       }
       else
       {
-         return ::type_new;
+         return ::e_type_new;
       }
    }
    else if (*pszJson == '[')
    {
 
-      return ::type_new;
+      return ::e_type_new;
 
    }
    else if (*pszJson == ']')
    {
-      return ::type_new;
+      return ::e_type_new;
    }
    else if (*pszJson == '\0')
    {
-      return ::type_new;
+      return ::e_type_new;
    }
    else
    {
@@ -5511,7 +5511,7 @@ void payload::parse_json(const char *& pszJson, const char * pszEnd)
       }
       else
       {
-         return ::type_new;
+         return ::e_type_new;
       }
    }
 }
@@ -5523,10 +5523,10 @@ bool payload::is_numeric() const
    switch(get_type())
    {
    case type_parareturn:
-   case type_new:
+   case e_type_new:
    case e_type_null:
-   case type_empty:
-   case type_empty_argument:
+   case e_type_empty:
+   case e_type_empty_argument:
       return false;
 
    case type_string: // may be improved MBI
@@ -5791,7 +5791,7 @@ void payload::null()
 }
 
 
-payload & payload::operator |= (cflag < ::file::e_flag > eflag)
+payload & payload::operator |= (cflag < ::file::enum_flag > eflag)
 {
 
    auto pfile = cast < ::file::file > ();
@@ -5859,10 +5859,10 @@ bool payload::is_false() const
 
    /// special meaning
    case type_parareturn:
-   case type_new:
+   case e_type_new:
    case e_type_null:
-   case type_empty:
-   case type_empty_argument:
+   case e_type_empty:
+   case e_type_empty_argument:
    case type_not_found:
       return false;
 
@@ -6002,10 +6002,10 @@ bool payload::is_set_false() const
    {
    /// special meaning
    case type_parareturn:
-   case type_new:
+   case e_type_new:
    case e_type_null:
-   case type_empty:
-   case type_empty_argument:
+   case e_type_empty:
+   case e_type_empty_argument:
    case type_not_found:
       return false;
 

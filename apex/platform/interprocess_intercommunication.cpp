@@ -32,7 +32,7 @@ interprocess_intercommunication::~interprocess_intercommunication()
 }
 
 
-::estatus interprocess_intercommunication::initialize(::layered * pobjectContext)
+::e_status interprocess_intercommunication::initialize(::layered * pobjectContext)
 {
 
    auto estatus = ::object::initialize(pobjectContext);

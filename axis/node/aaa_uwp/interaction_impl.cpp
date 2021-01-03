@@ -2270,7 +2270,7 @@ return TRUE;
    //   }
 
 
-   //    ::estatus     c_cdecl print_window(LPVOID pvoid)
+   //    ::e_status     c_cdecl print_window(LPVOID pvoid)
    //   {
    //      __throw(todo(::get_context_application()));
 
@@ -5939,7 +5939,7 @@ namespace uwp
    }
 
 
-   ::estatus interaction_impl::update_graphics_resources()
+   ::e_status interaction_impl::update_graphics_resources()
    {
 
       return ::user::interaction_impl::update_graphics_resources();

@@ -47,15 +47,15 @@ namespace sockets
          virtual ~socket_thread();
 
 
-         virtual ::estatus     initialize_socket_thread(base_socket * psocket);
+         virtual ::e_status     initialize_socket_thread(base_socket * psocket);
 
-         virtual ::estatus init_thread() override;
+         virtual ::e_status init_thread() override;
 
          virtual void term_thread() override;
 
          base_socket * get_socket() const { return m_psocket; }
 
-         virtual ::estatus     run() override;
+         virtual ::e_status     run() override;
 
 #ifdef DEBUG
 
@@ -156,7 +156,7 @@ namespace sockets
       char                    m_c; ///< First char in CRLF or LFCR sequence
       string                  m_line; ///< Current line in line protocol mode
 
-      ::estatus                    m_estatus;
+      ::e_status                    m_estatus;
       millis m_millisStart;
 
 #if !defined(BSD_STYLE_SOCKETS)
@@ -757,7 +757,7 @@ namespace sockets
       //@}
 
 
-      virtual ::estatus     run() override;
+      virtual ::e_status     run() override;
       virtual void step();
 
       //virtual void __tracef(context_object * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * pszFormat, ...);

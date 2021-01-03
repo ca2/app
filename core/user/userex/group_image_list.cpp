@@ -398,13 +398,13 @@ namespace userex
          if (itemCurrent == i)
          {
 
-            pbutton->_001SetCheck(::check_checked, ::source_sync);
+            pbutton->_001SetCheck(::check_checked, ::e_source_sync);
 
          }
          else
          {
 
-            pbutton->_001SetCheck(::check_unchecked, ::source_sync);
+            pbutton->_001SetCheck(::check_unchecked, ::e_source_sync);
 
          }
 

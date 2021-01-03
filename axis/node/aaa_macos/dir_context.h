@@ -16,9 +16,9 @@ namespace macos
       dir_context();
       virtual ~dir_context();
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
-      virtual ::estatus init_system() override;
+      virtual ::e_status init_system() override;
 
       // rls fetchs should set a meaningful m_iRelative value at each returned path
       virtual ::file::listing & ls(::file::listing & path) override;

@@ -4,7 +4,7 @@
 #include "application_common.h"
 
 
-int console_end(::estatus estatus)
+int console_end(::e_status estatus)
 {
 
    int iStatus = (int)estatus;

@@ -62,7 +62,7 @@ namespace netserver
    }
 
 
-   ::estatus socket_thread_base::run()
+   ::e_status socket_thread_base::run()
    {
 
       if (m_strIp.is_empty() || m_iPort <= 0)

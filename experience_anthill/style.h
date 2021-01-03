@@ -35,7 +35,7 @@ namespace experience
 
       }
 
-      virtual ::color get_color(const ::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate) const override;
+      virtual ::color get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const override;
 
 //      virtual bool get_color(color32_t & cr, ::user::e_color ecolor, ::user::interaction * pframewindow) override;
       //    virtual bool get_font(::draw2d::font_pointer & font, ::user::e_font efont, ::user::interaction * pframewindow) override;

@@ -187,7 +187,7 @@ namespace user
    }
 
 
-   ::estatus keyboard::initialize(::layered * pobjectContext)
+   ::e_status keyboard::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -730,7 +730,7 @@ namespace user
 //   }
 
 
-   void keyboard::defer_show_software_keyboard(::user::primitive* pprimitive, bool bShow, string str, strsize iBeg, strsize iEnd)
+   ::e_status keyboard::show_software_keyboard(::user::primitive* pprimitive, string str, strsize iBeg, strsize iEnd)
    {
 
       sync_lock sl(mutex());
@@ -755,13 +755,58 @@ namespace user
 
                sl.unlock();
 
-               m_pprimitiveSoftwareKeyboard->show_software_keyboard(bShow, str, iBeg, iEnd);
+               m_pprimitiveSoftwareKeyboard->show_software_keyboard(pprimitive, str, iBeg, iEnd);
 
             }
 
          });
 
+      return ::success;
+
    }
+
+
+   ::e_status keyboard::hide_software_keyboard(::user::primitive * pprimitive)
+   {
+
+      if (!::is_null(pprimitive) && pprimitive != m_pprimitiveSoftwareKeyboard)
+      {
+
+         return error_invalid_argument;
+
+      }
+
+      sync_lock sl(mutex());
+
+      m_iSoftwareKeyboardEventId++;
+
+      index iEventId = m_iSoftwareKeyboardEventId;
+
+      m_pprimitiveSoftwareKeyboard = nullptr;
+
+      fork([=]
+         {
+
+            sleep(400_ms);
+
+            sync_lock sl(mutex());
+
+            if (iEventId == m_iSoftwareKeyboardEventId)
+            {
+
+               sl.unlock();
+
+               m_pprimitiveSoftwareKeyboard->hide_software_keyboard(pprimitive);
+
+            }
+
+         });
+
+      return ::success;
+
+   }
+
+
 
 
    void keyboard::translate_os_key_message(key * pkey)

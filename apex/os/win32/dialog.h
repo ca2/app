@@ -20,7 +20,7 @@ namespace win32
       virtual ~dialog();
 
 
-      virtual ::estatus initialize_dialog(::layered * pobjectContext, const widechar * pszResource);
+      virtual ::e_status initialize_dialog(::layered * pobjectContext, const widechar * pszResource);
 
       bool create_dialog(window * pwindow = nullptr);
 

@@ -34,8 +34,8 @@ namespace draw2d_cairo
 
       bool dc_select(bool bSelect = true) override;
 
-      virtual ::estatus create(const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false) override;
-      virtual ::estatus create(::draw2d::graphics * pgraphics) override;
+      virtual ::e_status create(const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false) override;
+      virtual ::e_status create(::draw2d::graphics * pgraphics) override;
       virtual bool destroy() override;
 
 
@@ -44,7 +44,7 @@ namespace draw2d_cairo
       virtual bool draw(const ::rect & rect, ::image * pimage, const ::point & point = ::point()) override;
 
       //bool to(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc) override;
-      virtual ::estatus SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy) override;
+      virtual ::e_status SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy) override;
 
 
       virtual ::stream & write(::stream & stream) const override;

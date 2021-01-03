@@ -358,7 +358,7 @@ namespace windows
    }
 
 
-   //::estatus interaction_impl::finish(::context_object * pcontextobjectFinish)
+   //::e_status interaction_impl::finish(::context_object * pcontextobjectFinish)
    //{
 
    //   auto estatus = ::user::interaction_impl::finish(pcontextobjectFinish);
@@ -2027,7 +2027,7 @@ namespace windows
       }
 
 
-      virtual ::estatus     run() override
+      virtual ::e_status     run() override
       {
 
          try
@@ -5978,7 +5978,7 @@ namespace windows
          if (psession)
          {
 
-            puiFocus = psession->get_keyboard_focus();
+            puiFocus = m_puserinteraction->get_keyboard_focus();
 
          }
 
@@ -6125,7 +6125,7 @@ namespace windows
    }
 
 
-   ::estatus interaction_impl::finish(::context_object * pcontextobjectFinish)
+   ::e_status interaction_impl::finish(::context_object * pcontextobjectFinish)
    {
 
       auto estatus = set_finish(pcontextobjectFinish);
@@ -6144,7 +6144,7 @@ namespace windows
 
 
 
-   ::estatus interaction_impl::set_tool_window(bool bSet)
+   ::e_status interaction_impl::set_tool_window(bool bSet)
    {
 
       if(bSet)

@@ -23,7 +23,7 @@ namespace draw2d
       virtual ~icon();
 
 
-      virtual ::estatus     initialize(::layered * pobjectContext) override;
+      virtual ::e_status     initialize(::layered * pobjectContext) override;
 
 
       operator void *();
@@ -35,11 +35,11 @@ namespace draw2d
 #endif
 
 
-      virtual ::estatus     attach_os_data(void * picon, bool bTakeOwnership = true);
+      virtual ::e_status     attach_os_data(void * picon, bool bTakeOwnership = true);
 
 #ifdef WINDOWS
 
-      virtual ::estatus     attach_os_data(HICON hicon, bool bTakeOwnership = true);
+      virtual ::e_status     attach_os_data(HICON hicon, bool bTakeOwnership = true);
 
 #endif
 

@@ -104,7 +104,7 @@ namespace ftp
 
       defer_create_mutex();
 
-      m_estate = state_initial;
+      m_estate = e_state_initial;
 
       m_vBuffer.set_size(uiBufferSize);
 

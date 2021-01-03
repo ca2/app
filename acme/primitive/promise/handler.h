@@ -33,7 +33,7 @@ namespace promise
 
 #endif
 
-      //virtual ::estatus run() override;
+      //virtual ::e_status run() override;
 
 
       ::promise::subject_pointer fork_subject(const ::id &id);

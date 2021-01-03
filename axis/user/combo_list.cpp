@@ -58,6 +58,8 @@ namespace user
 
       install_simple_ui_default_mouse_handling(pchannel);
 
+      MESSAGE_LINK(e_message_create, pchannel, this, &combo_list::_001OnCreate);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &combo_list::_001OnDestroy);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &combo_list::_001OnSetFocus);
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &combo_list::_001OnKillFocus);
       MESSAGE_LINK(e_message_close, pchannel, this, &combo_list::_001OnClose);
@@ -71,6 +73,78 @@ namespace user
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &combo_list::_001OnRButtonDown);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_list::_001OnMouseMove);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &combo_list::_001OnShowWindow);
+
+   }
+
+
+   void combo_list::_001OnCreate(::message::message * pmessage)
+   {
+
+      pmessage->previous();
+
+   }
+
+
+   bool combo_list::on_set_owner(::user::primitive * pprimitive)
+   {
+
+      auto puserinteractionOwner = pprimitive->GetOwner();
+
+      if(puserinteractionOwner)
+      {
+
+         auto puserinteractionHost = puserinteractionOwner->get_host_window();
+
+         if (puserinteractionHost)
+         {
+
+            auto pimpl = puserinteractionHost->m_pimpl.cast<::user::interaction_impl>();
+
+            if (pimpl)
+            {
+
+               sync_lock sl(pimpl->mutex());
+
+               pimpl->m_userinteractionaHideOnConfigurationChange.add_unique_interaction(this);
+
+            }
+
+         }
+
+      }
+
+   }
+
+
+   void combo_list::_001OnDestroy(::message::message * pmessage)
+   {
+
+      auto puserinteractionOwner = GetOwner();
+
+      if(puserinteractionOwner)
+      {
+
+         auto puserinteractionHost = puserinteractionOwner->get_host_window();
+
+         if(puserinteractionHost)
+         {
+
+            auto pimpl = puserinteractionHost->m_pimpl.cast<::user::interaction_impl>();
+
+            if (pimpl)
+            {
+
+               sync_lock sl(pimpl->mutex());
+
+               pimpl->m_userinteractionaHideOnConfigurationChange.remove_interaction(this);
+
+            }
+
+         }
+
+      }
+
+      pmessage->previous();
 
    }
 
@@ -119,8 +193,6 @@ namespace user
 
       ::rect rectItem;
 
-      //point p = pgraphics->GetViewportOrg();
-
       rectItem = rectClient;
 
       rectItem.bottom = rectClient.top;
@@ -166,10 +238,6 @@ namespace user
 
             if (iItem == iCurSel)
             {
-
-               //crBk = _001GetColor(::user::color_list_item_background_selected_hover);
-
-               //cr = _001GetColor(::user::color_list_item_text_selected_hover);
 
                crBk = ARGB(255, 120, 190, 220);
 
@@ -233,8 +301,6 @@ namespace user
 
       }
 
-      //color32_t crBorder = _001GetColor(::user::color_border);
-
       color32_t crBorder = ARGB(255, 0, 0, 0);
 
       ::draw2d::pen_pointer pen(e_create);
@@ -250,7 +316,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer combo_list::get_font(style *pstyle, enum_element eelement, estate estate) const
+   ::draw2d::font_pointer combo_list::get_font(style *pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (m_pcombo)
@@ -266,26 +332,6 @@ namespace user
          }
 
       }
-
-      //if (pstyle)
-      //{
-
-      //   if (pstyle->m_pfontCombo)
-      //   {
-
-      //      return pstyle->m_pfontCombo;
-
-      //   }
-      //   else if (pstyle->m_pfont)
-      //   {
-
-      //      return pstyle->m_pfont;
-
-      //   }
-
-      //}
-
-      //return nullptr;
 
       return ::user::interaction::get_font(pstyle, eelement, estate);
 
@@ -508,7 +554,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
 
 #ifdef WINDOWS
 
-         keyboard_set_focus();
+         set_keyboard_focus();
 
 #endif
 
@@ -647,9 +693,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
       else
       {
 
-         auto psession = Session;
-
-         psession->set_keyboard_focus(this);
+         set_keyboard_focus(this);
 
 
       }
@@ -691,7 +735,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
          if (pelemental.is_set())
          {
 
-            pelemental->keyboard_set_focus();
+            pelemental->set_keyboard_focus();
 
          }
 
@@ -712,7 +756,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
       else if (pkey->m_ekey == ::user::key_return)
       {
 
-         m_pcombo->set_current_item(m_pcombo->m_itemHover, ::source_user);
+         m_pcombo->set_current_item(m_pcombo->m_itemHover, ::e_source_user);
 
          m_pcombo->ShowDropDown(false);
 
@@ -721,7 +765,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
          if (pelemental.is_set())
          {
 
-            pelemental->keyboard_set_focus();
+            pelemental->set_keyboard_focus();
 
          }
 
@@ -805,7 +849,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
 
             ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
-            ev.m_actioncontext = ::source_user;
+            ev.m_actioncontext = ::e_source_user;
 
             ev.m_item = itemHit;
 
@@ -1141,7 +1185,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
 
          }
 
-         keyboard_set_focus();
+         set_keyboard_focus();
 
       }
       else

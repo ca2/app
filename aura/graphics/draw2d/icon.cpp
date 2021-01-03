@@ -30,7 +30,7 @@ namespace draw2d
    }
 
 
-   ::estatus     icon::attach_os_data(void * picon, bool bTakeOwnership)
+   ::e_status     icon::attach_os_data(void * picon, bool bTakeOwnership)
    {
 
       m_picon = picon;
@@ -46,7 +46,7 @@ namespace draw2d
 
 #ifdef WINDOWS
 
-   ::estatus     icon::attach_os_data(HICON hicon, bool bTakeOwnership)
+   ::e_status     icon::attach_os_data(HICON hicon, bool bTakeOwnership)
    {
 
       m_picon = hicon;
@@ -95,7 +95,7 @@ namespace draw2d
    }
 
 
-   ::estatus     icon::initialize(::layered * pobjectContext)
+   ::e_status     icon::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

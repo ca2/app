@@ -223,7 +223,7 @@ namespace filemanager
 
                pdocument->filemanager_initialize(true, false);
 
-               pdocument->browse(pathFolder, ::source_initialize);
+               pdocument->browse(pathFolder, ::e_source_initialize);
 
             }
             else

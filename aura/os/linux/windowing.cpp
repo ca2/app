@@ -736,7 +736,7 @@ void oswindow_set_active_window(oswindow oswindow)
             if(g_oswindowActive->m_pimpl->m_puserinteraction)
             {
 
-               g_oswindowActive->m_pimpl->m_puserinteraction->m_ewindowflag -= ::window_flag_active;
+               g_oswindowActive->m_pimpl->m_puserinteraction->m_ewindowflag -= ::e_window_flag_active;
 
                g_oswindowActive->m_pimpl->m_puserinteraction->post_message(e_message_activate, 0);
 
@@ -766,7 +766,7 @@ void oswindow_set_active_window(oswindow oswindow)
             if(g_oswindowActive->m_pimpl->m_puserinteraction)
             {
 
-               g_oswindowActive->m_pimpl->m_puserinteraction->m_ewindowflag += ::window_flag_active;
+               g_oswindowActive->m_pimpl->m_puserinteraction->m_ewindowflag += ::e_window_flag_active;
 
                g_oswindowActive->m_pimpl->m_puserinteraction->post_message(e_message_activate, 1);
 
@@ -2058,6 +2058,69 @@ void wm_hidden_state(oswindow w, bool bHidden)
 }
 
 
+//void wm_arbitrarypositionwindow(oswindow w, bool bArbitraryPositionWindow)
+//{
+//
+//   x11_fork([=]()
+//            {
+//
+//               windowing_output_debug_string("\n::wm_arbitrarypositionwindow 1");
+//
+//               sync_lock sl(x11_mutex());
+//
+//               xdisplay d(w->display());
+//
+//               if(d.is_null())
+//               {
+//
+//                  windowing_output_debug_string("\n::wm_arbitrarypositionwindow 1.1");
+//
+//                  fflush(stdout);
+//
+//                  return;
+//
+//               }
+//
+//               Window window = w->window();
+//
+//               Window windowRoot = d.default_root_window();
+//
+//               Atom atomWindowType = d.intern_atom("_NET_WM_WINDOW_TYPE", False);
+//
+//               if(atomWindowType != None)
+//               {
+//
+//                  Atom atomWindowTypeValue;
+//
+//                  if(bArbitraryPositionWindow)
+//                  {
+//
+//                     atomWindowTypeValue = d.intern_atom("_NET_WM_WINDOW_TYPE_UTILITY", False);
+//
+//                  }
+//                  else
+//                  {
+//
+//                     atomWindowTypeValue = d.intern_atom("_NET_WM_WINDOW_TYPE_NORMAL", False);
+//
+//                  }
+//
+//                  if(atomWindowType != None)
+//                  {
+//
+//                     XChangeProperty(d, window, atomWindowType, XA_ATOM, 32, PropModeReplace, (unsigned char *) &atomWindowTypeValue, 1);
+//
+//                  }
+//
+//               }
+//
+//               windowing_output_debug_string("\n::wm_arbitrarypositionwindow 2");
+//
+//            });
+//
+//}
+
+
 void wm_desktopwindow(oswindow w, bool bDesktopWindow)
 {
 
@@ -2180,6 +2243,69 @@ void wm_centerwindow(oswindow w, bool bCenterWindow)
       windowing_output_debug_string("\n::wm_centerwindow 2");
 
    });
+
+}
+
+
+void wm_splashwindow(oswindow w, bool bCenterWindow)
+{
+
+   x11_fork([=]()
+            {
+
+               windowing_output_debug_string("\n::wm_centerwindow 1");
+
+               sync_lock sl(x11_mutex());
+
+               xdisplay d(w->display());
+
+               if(d.is_null())
+               {
+
+                  windowing_output_debug_string("\n::wm_centerwindow 1.1");
+
+                  fflush(stdout);
+
+                  return;
+
+               }
+
+               Window window = w->window();
+
+               Window windowRoot = d.default_root_window();
+
+               Atom atomWindowType = d.intern_atom("_NET_WM_WINDOW_TYPE", False);
+
+               if(atomWindowType != None)
+               {
+
+                  Atom atomWindowTypeValue;
+
+                  if(bCenterWindow)
+                  {
+
+                     atomWindowTypeValue = d.intern_atom("_NET_WM_WINDOW_TYPE_SPLASH", False);
+
+                  }
+                  else
+                  {
+
+                     atomWindowTypeValue = d.intern_atom("_NET_WM_WINDOW_TYPE_NORMAL", False);
+
+                  }
+
+                  if(atomWindowType != None)
+                  {
+
+                     XChangeProperty(d, window, atomWindowType, XA_ATOM, 32, PropModeReplace, (unsigned char *) &atomWindowTypeValue, 1);
+
+                  }
+
+               }
+
+               windowing_output_debug_string("\n::wm_centerwindow 2");
+
+            });
 
 }
 
@@ -2646,7 +2772,7 @@ bool wm_add_remove_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
 
 
 //
-//::estatus x11_hook::hook()
+//::e_status x11_hook::hook()
 //{
 //
 //   sync_lock sl(x11_mutex());
@@ -2657,7 +2783,7 @@ bool wm_add_remove_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
 //
 //}
 //
-//::estatus x11_hook::unhook()
+//::e_status x11_hook::unhook()
 //{
 //
 //   sync_lock sl(x11_mutex());
@@ -2761,29 +2887,95 @@ bool post_ui_message(const MESSAGE & message);
 
 
 
-
+gboolean x11_source_func(gpointer ppointer);
 
 
 Atom g_atomKickIdle = 0;
 
 
-void x11_thread(osdisplay_data * pdisplaydata)
+bool g_bFinishX11SourceFunc = false;
+
+
+//void start_x11_thread(osdisplay_data * pdisplaydata)
+//{
+//
+//   Display *pdisplay = pdisplaydata->display();
+//
+//   if (pdisplay == nullptr)
+//   {
+//
+//      return;
+//
+//   }
+//
+//   ::set_thread_name("x11_thread");
+//
+////   g_pdisplayX11 = pdisplay;
+//
+//   {
+//
+//      sync_lock sl(x11_mutex());
+//
+//      xdisplay d(pdisplay);
+//
+//      g_atomKickIdle = XInternAtom(pdisplay, "__WM_KICKIDLE", False);
+//
+//      g_windowX11Client = XCreateSimpleWindow(pdisplay, DefaultRootWindow(pdisplay), 10, 10, 10, 10, 0, 0, 0);
+//
+//      XSelectInput(pdisplay, g_windowX11Client, StructureNotifyMask);
+//
+//      g_oswindowDesktop = oswindow_get(pdisplay, DefaultRootWindow(pdisplay));
+//
+//      g_oswindowDesktop->m_pimpl = nullptr;
+//
+//      XSelectInput(pdisplay, g_oswindowDesktop->window(), StructureNotifyMask | PropertyChangeMask);
+//
+//   }
+//
+//   g_idle_add(x11_source_func, pdisplaydata);
+//
+//}
+
+
+bool g_bInitX11SourceFunc = false;
+
+
+void finish_x11_thread()
 {
+
+   g_bFinishX11SourceFunc = true;
+
+   g_bInitX11SourceFunc = false;
+
+}
+
+
+osdisplay_data * x11_main_display();
+
+
+gboolean x11_source_func(gpointer ppointer)
+{
+
+   osdisplay_data * pdisplaydata = (osdisplay_data *) x11_main_display();
 
    Display * pdisplay = pdisplaydata->display();
 
    if(pdisplay == nullptr)
    {
 
-      return;
+      return false;
 
    }
 
-   ::set_thread_name("x11_thread");
+   //::set_thread_name("x11_thread");
 
+   if(!g_bInitX11SourceFunc)
+   {
+
+      g_bInitX11SourceFunc = true;
 //   g_pdisplayX11 = pdisplay;
 
-   {
+//   {
 
       sync_lock sl(x11_mutex());
 
@@ -2811,82 +3003,55 @@ void x11_thread(osdisplay_data * pdisplaydata)
 
 #endif
 
-   while(::get_context_system() != nullptr && ::thread_get_run())
+   //while(::get_context_system() != nullptr && ::thread_get_run())
+//   {
+
+   try
    {
 
-      try
-      {
+      x11_wait_timer_or_event(pdisplay);
 
-         x11_wait_timer_or_event(pdisplay);
+      sync_lock sl(x11_mutex());
 
-         sync_lock sl(x11_mutex());
+      xdisplay d(pdisplay);
 
-         xdisplay d(pdisplay);
-
-         while(XPending(pdisplay) && ::thread_get_run())
-         {
-
-            try
-            {
-
-#if !defined(RASPBIAN)
-
-               if(g_pobjectaExtendedEventListener)
-               {
-
-                  cookie = &e.xcookie;
-
-               }
-               else
-               {
-
-                  cookie = nullptr;
-
-               }
-
-#endif
-
-               XNextEvent(pdisplay, &e);
-
-               if(!__x11_hook_process_event(pdisplaydata->display(), e, cookie))
-               {
-
-#if !defined(RASPBIAN)
-
-                  x11_process_event(pdisplaydata, e, cookie);
-
-#else
-
-                  x11_process_event(pdisplaydata, e);
-
-#endif
-
-               }
-
-            }
-            catch(...)
-            {
-
-            }
-
-         }
-
-      }
-      catch(...)
-      {
-
-      }
-
-      while(::thread_get_run())
+      while(XPending(pdisplay) && ::thread_get_run())
       {
 
          try
          {
 
-            if(!x11_step())
+#if !defined(RASPBIAN)
+
+            if(g_pobjectaExtendedEventListener)
             {
 
-               break;
+               cookie = &e.xcookie;
+
+            }
+            else
+            {
+
+               cookie = nullptr;
+
+            }
+
+#endif
+
+            XNextEvent(pdisplay, &e);
+
+            if(!__x11_hook_process_event(pdisplaydata->display(), e, cookie))
+            {
+
+#if !defined(RASPBIAN)
+
+               x11_process_event(pdisplaydata, e, cookie);
+
+#else
+
+               x11_process_event(pdisplaydata, e);
+
+#endif
 
             }
 
@@ -2894,22 +3059,57 @@ void x11_thread(osdisplay_data * pdisplaydata)
          catch(...)
          {
 
+         }
+
+      }
+
+   }
+   catch(...)
+   {
+
+   }
+
+   while(::thread_get_run())
+   {
+
+      try
+      {
+
+         if(!x11_step())
+         {
+
             break;
 
          }
 
       }
+      catch(...)
+      {
 
+         break;
+
+      }
 
    }
 
+//   }
+
+   if(g_bFinishX11SourceFunc)
+   {
+
 #if !defined(RASPBIAN)
 
-   g_pobjectaExtendedEventListener.release();
+      g_pobjectaExtendedEventListener.release();
 
 #endif
 
-   output_debug_string("x11_thread end thread");
+      output_debug_string("x11_thread end thread");
+
+      return false;
+
+   }
+
+   return true;
 
 }
 
@@ -3215,11 +3415,30 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
       if(e.xexpose.count == 0)
       {
 
-         msg.message       = e_message_paint;
-         msg.lParam        = 0;
-         msg.wParam        = 0;
+         if(msg.hwnd->m_pimpl->m_puserinteraction->m_ewindowflag & ::e_window_flag_arbitrary_positioning)
+         {
 
-         post_ui_message(msg);
+            msg.hwnd->m_pimpl->_001UpdateScreen();
+
+         }
+         else
+         {
+
+            msg.message = e_message_paint;
+            msg.lParam = 0;
+            msg.wParam = 0;
+
+            post_ui_message(msg);
+
+         }
+
+         //msg.hwnd->m_pimpl->_001UpdateScreen();
+
+            //__pointer(::user::interaction) pinteraction = msg.hwnd->m_pimpl->m_puserinteraction;
+
+            //pinteraction->set_need_redraw();
+
+            //pinteraction->post_redraw();
 
       }
 
@@ -3637,7 +3856,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
          Window window = msg.hwnd->m_window;
 
-         auto & setThread = ::get_task()->get_property_set();
+         auto & setThread = msg.hwnd->m_pimpl->get_property_set();
 
          XIC xic = msg.hwnd->m_xic;
 
@@ -3676,7 +3895,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                if(xim)
                {
 
-                  ::get_task()->value("xim") = (iptr) xim;
+                  msg.hwnd->m_pimpl->value("xim") = (iptr) xim;
 
                   XIMStyles * pximstyles = nullptr;
 
@@ -3712,7 +3931,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                      if(best_style != 0)
                      {
 
-                        ::get_task()->set("xim_flag", ::get_task()->value("xim_flag").i32() | 2);
+                        msg.hwnd->m_pimpl->set("xim_flag", msg.hwnd->m_pimpl->value("xim_flag").i32() | 2);
 
                      }
 
@@ -3888,7 +4107,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
       if(msg.hwnd->m_pimpl != nullptr && msg.hwnd->m_pimpl->m_puserinteraction != nullptr)
       {
 
-         msg.hwnd->m_pimpl->m_puserinteraction->m_ewindowflag |= ::window_flag_focus;
+         msg.hwnd->m_pimpl->m_puserinteraction->m_ewindowflag |= ::e_window_flag_focus;
 
       //msg.wParam = (WPARAM) oswindow_get(display(), e.xfocus.window);
 
@@ -3977,7 +4196,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
                msg.message       = e_message_kill_focus;
 
-               pinteraction->m_ewindowflag -= window_flag_focus;
+               pinteraction->m_ewindowflag -= ::e_window_flag_focus;
 
                Window wFocus = 0;
 
@@ -4697,7 +4916,7 @@ void x11_term();
 
 void x11_start();
 
-void x11_stop();
+//void x11_stop();
 
 void defer_init_ui()
 {
@@ -4711,8 +4930,7 @@ void defer_init_ui()
 
    g_iX11Ref = 1;
 
-   x11_start();
-
+   g_idle_add(x11_source_func, nullptr);
 
 }
 
@@ -4730,7 +4948,7 @@ void defer_term_ui()
    if(g_iX11Ref <= 0)
    {
 
-      x11_stop();
+      finish_x11_thread();
 
       ui_post_quit();
 
@@ -4774,34 +4992,34 @@ ithread_t g_ithreadXlib;
 osdisplay_data * x11_main_display();
 
 
-void x11_start()
-{
+//void x11_start()
+//{
+//
+//   auto psystem = ::get_context_system();
+//
+//   auto psession = System.get_context_session();
+//
+//   //g_pthreadXlib = psession->fork([]()
+//   //{
+//
+//      g_ithreadXlib = ::get_current_ithread();
+//
+//      auto posdisplay = x11_main_display();
+//
+//      g_idle_add(x11_source_proc, posdisplay);
+//
+//   //});
+//
+//
+//}
 
-   auto psystem = ::get_context_system();
 
-   auto psession = System.get_context_session();
-
-   g_pthreadXlib = psession->fork([]()
-   {
-
-      g_ithreadXlib = ::get_current_ithread();
-
-      auto posdisplay = x11_main_display();
-
-      x11_thread(posdisplay);
-
-   });
-
-
-}
-
-
-void x11_stop()
-{
-
-   g_pthreadXlib.release();
-
-}
+//void x11_stop()
+//{
+//
+//   g_pthreadXlib.release();
+//
+//}
 
 
 void ui_post_quit()
@@ -5018,7 +5236,6 @@ void x11_store_name(oswindow oswindow, const char * pszName)
 //}
 
 
-
 void os_menu_item_enable(void * pitem, bool bEnable)
 {
 
@@ -5029,9 +5246,6 @@ void os_menu_item_check(void * pitem, bool bCheck)
 {
 
 }
-
-
-
 
 
 oswindow GetParent(oswindow oswindow)

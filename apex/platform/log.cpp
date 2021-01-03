@@ -78,7 +78,7 @@ namespace apex
    }
 
 
-   ::estatus log::initialize_apex_log(e_trace_level etracelevelMin, const ::id & id)
+   ::e_status log::initialize_apex_log(e_trace_level etracelevelMin, const ::id & id)
    {
 
       auto estatus = __compose_new(m_ptrace);
@@ -635,7 +635,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
    }
 
 
-   //::estatus log::initialize_apex_log(e_trace_level etracelevelMin, const char * pszId)
+   //::e_status log::initialize_apex_log(e_trace_level etracelevelMin, const char * pszId)
    //{
 
    //   //if (!initialize(id(pszId)))
@@ -704,7 +704,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
    }
 
 
-   //::estatus log::initialize(e_traceid id)
+   //::e_status log::initialize(e_traceid id)
    //{
 
 

@@ -18,7 +18,7 @@ namespace app_shader
       virtual ~application();
 
  
-      virtual ::estatus init_instance() override;
+      virtual ::e_status init_instance() override;
       virtual void term_application() override;
 
 

@@ -11,11 +11,11 @@ class simple_tool_command : public ::user::command        // class private to th
 public: // re-implementations only
 
    simple_tool_command(::layered * pobjectContext);
-   virtual void enable(bool bOn = TRUE, const ::action_context & context = ::source_system);
-   //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::source_system);   // 0, 1 or 2 (indeterminate)
-   virtual void _001SetCheck(enum_check echeck, const ::action_context & context = ::source_system);   // 0, 1 or 2 (indeterminate)
-//   virtual void SetRadio(bool bOn = TRUE, const ::action_context & context = ::source_system);
-   virtual void SetText(const char * pszText, const ::action_context & context = ::source_system);
+   virtual void enable(bool bOn = TRUE, const ::action_context & context = ::e_source_system);
+   //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
+   virtual void _001SetCheck(enum_check echeck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
+//   virtual void SetRadio(bool bOn = TRUE, const ::action_context & context = ::e_source_system);
+   virtual void SetText(const char * pszText, const ::action_context & context = ::e_source_system);
 
 };
 
@@ -950,7 +950,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 }
 
 
-bool simple_toolbar::_001GetElementRect(index iItem, RECT32 * prect, ::user::enum_element eelement, ::user::estate estate)
+bool simple_toolbar::_001GetElementRect(index iItem, RECT32 * prect, ::user::enum_element eelement, ::user::enum_state estate)
 {
 
    if (iItem < 0 || iItem >= m_itema.get_size())
@@ -1149,9 +1149,9 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    auto pstyle = get_style(pgraphics);
 
-   m_sizePress.cx = get_int(pstyle, ::user::e_int_button_press_shift_cx, 2);
+   m_sizePress.cx = get_int(pstyle, ::user::e_int_button_press_shift_cx, ::user::e_state_none, 2);
 
-   m_sizePress.cy = get_int(pstyle, ::user::e_int_button_press_shift_cy, 2);
+   m_sizePress.cy = get_int(pstyle, ::user::e_int_button_press_shift_cy, ::user::e_state_none, 2);
 
    //m_bDelayedButtonLayout = false;
 

@@ -16,7 +16,7 @@ namespace opengl
       virtual ~program();
 
 
-      virtual ::estatus create_program(const string& strVertex, const string& strFragment, const string& strGeometry = "") override;
+      virtual ::e_status create_program(const string& strVertex, const string& strFragment, const string& strGeometry = "") override;
 
 
    };

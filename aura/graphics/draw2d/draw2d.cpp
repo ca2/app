@@ -5,7 +5,7 @@ namespace aura
 {
 
 
-   extern CLASS_DECL_AURA string_to_string * g_pmapFontFaceName;
+   extern CLASS_DECL_AURA string_map < int_to_string > * g_pmapFontFaceName;
 
 
    extern CLASS_DECL_AURA critical_section * g_pcsFont;
@@ -42,7 +42,7 @@ namespace draw2d
    }
 
 
-   ::estatus draw2d::initialize(::layered * pobjectContext)
+   ::e_status draw2d::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::apex::department::initialize(pobjectContext);
@@ -76,7 +76,7 @@ namespace draw2d
    }
 
 
-   ::estatus draw2d::init1()
+   ::e_status draw2d::init1()
    {
 
       if (!::apex::department::init1())
@@ -91,7 +91,7 @@ namespace draw2d
    }
 
 
-   ::estatus draw2d::process_init()
+   ::e_status draw2d::process_init()
    {
 
       if (!::apex::department::process_init())
@@ -115,7 +115,7 @@ namespace draw2d
    }
 
 
-   ::estatus draw2d::init()
+   ::e_status draw2d::init()
    {
 
       if (!::apex::department::init())
@@ -1048,7 +1048,7 @@ breakFilter2:
 //
 //      __pointer(ttf_util) putil;
 //
-//      ::estatus estatus = __construct_new(putil);
+//      ::e_status estatus = __construct_new(putil);
 //
 //      if (pdoc->load(strSystemFonts))
 //      {
@@ -1178,91 +1178,91 @@ breakFilter2:
 //      {
 //
 //
-//#ifdef FONT_MONO
+//#ifdef os_font_name(e_font_mono)
 //
 //         pitem = __new(::draw2d::font_enum_item);
 //
-//         pitem->m_strFile = FONT_MONO;
+//         pitem->m_strFile = os_font_name(e_font_mono);
 //
-//         pitem->m_strName = FONT_MONO;
+//         pitem->m_strName = os_font_name(e_font_mono);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef FONT_SANS
+//#ifdef os_font_name(e_font_sans)
 //
 //         pitem = __new(::draw2d::font_enum_item);
 //
-//         pitem->m_strFile = FONT_SANS;
+//         pitem->m_strFile = os_font_name(e_font_sans);
 //
-//         pitem->m_strName = FONT_SANS;
+//         pitem->m_strName = os_font_name(e_font_sans);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef FONT_SERIF
+//#ifdef os_font_name(e_font_serif)
 //
 //         pitem = __new(::draw2d::font_enum_item);
 //
-//         pitem->m_strFile = FONT_SERIF;
+//         pitem->m_strFile = os_font_name(e_font_serif);
 //
-//         pitem->m_strName = FONT_SERIF;
+//         pitem->m_strName = os_font_name(e_font_serif);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef FONT_SANS_EX
+//#ifdef os_font_name(e_font_sans_ex)
 //
 //         pitem = __new(::draw2d::font_enum_item);
 //
-//         pitem->m_strFile = FONT_SANS_EX;
+//         pitem->m_strFile = os_font_name(e_font_sans_ex);
 //
-//         pitem->m_strName = FONT_SANS_EX;
+//         pitem->m_strName = os_font_name(e_font_sans_ex);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef FONT_SERIF_EX
+//#ifdef os_font_name(e_font_serif_ex)
 //
 //         pitem = __new(::draw2d::font_enum_item);
 //
-//         pitem->m_strFile = FONT_SERIF_EX;
+//         pitem->m_strFile = os_font_name(e_font_serif_ex);
 //
-//         pitem->m_strName = FONT_SERIF_EX;
+//         pitem->m_strName = os_font_name(e_font_serif_ex);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef FONT_SANS_FX
+//#ifdef os_font_name(e_font_sans_fx)
 //
 //         pitem = __new(::draw2d::font_enum_item);
 //
-//         pitem->m_strFile = FONT_SANS_FX;
+//         pitem->m_strFile = os_font_name(e_font_sans_fx);
 //
-//         pitem->m_strName = FONT_SANS_FX;
+//         pitem->m_strName = os_font_name(e_font_sans_fx);
 //
 //         itema.add(pitem);
 //
 //#endif
 //
 //
-//#ifdef FONT_SERIF_FX
+//#ifdef os_font_name(e_font_serif_fx)
 //
 //         pitem = __new(::draw2d::font_enum_item);
 //
-//         pitem->m_strFile = FONT_SERIF_FX;
+//         pitem->m_strFile = os_font_name(e_font_serif_fx);
 //
-//         pitem->m_strName = FONT_SERIF_FX;
+//         pitem->m_strName = os_font_name(e_font_serif_fx);
 //
 //         itema.add(pitem);
 //

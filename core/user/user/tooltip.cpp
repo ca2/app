@@ -13,7 +13,7 @@ namespace user
       m_font(e_create)
    {
 
-      m_font->create_point_font(FONT_SANS_EX,12.0);
+      m_font->create_point_font(os_font_name(e_font_sans_ex),12.0);
 
       m_bError = false;
 

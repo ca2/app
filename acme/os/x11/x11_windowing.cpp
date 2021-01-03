@@ -62,7 +62,7 @@ GC x11_create_gc(Colormap colormap, Display* pdisplay, Window window, byte a, by
 int x11_message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox)
 {
 
-   defer_init_x11();
+   defer_initialize_x11();
 
    auto pdisplay = __new(simple_ui_display(str, strTitle, emessagebox));
 
@@ -76,7 +76,7 @@ CLASS_DECL_ACME string message_box_result_to_string(int iResult);
 
 CLASS_DECL_ACME void x11_message_box(const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox, const ::promise::process & process);
 
-//::estatus os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::future future)
+//::e_status os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::future future)
 //{
 //
 //   x11_message_box(pszMessage, pszTitle, emessagebox, future);
@@ -281,23 +281,25 @@ void x11_handle_just_hooks()
 }
 
 
-bool init_x11();
+::e_status initialize_x11();
 
+bool g_bInitializeX11 = false;
 
-bool g_bInitX11 = false;
+::e_status g_estatusInitializeX11 = ::error_not_initialized;
 
-
-void defer_init_x11()
+::e_status defer_initialize_x11()
 {
 
-   if(!g_bInitX11)
+   if(!g_bInitializeX11)
    {
 
-      g_bInitX11 = true;
+      g_bInitializeX11 = true;
 
-      init_x11();
+      g_estatusInitializeX11 = initialize_x11();
 
    }
+
+   return g_estatusInitializeX11;
 
 }
 
@@ -305,13 +307,13 @@ void defer_init_x11()
 i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
 
 
-bool init_x11()
+::e_status initialize_x11()
 {
 
    if(!XInitThreads())
    {
 
-      return false;
+      return ::error_failed;
 
    }
 
@@ -319,11 +321,9 @@ bool init_x11()
 
    g_pmutexX11 = new ::mutex();
 
-   return true;
+   return ::success;
 
 }
-
-
 
 
 

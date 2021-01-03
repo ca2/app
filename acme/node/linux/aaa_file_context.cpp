@@ -26,7 +26,7 @@ namespace linux
    }
 
 
-   ::estatus file_context::initialize(::matter * pobjectContext)
+   ::e_status file_context::initialize(::matter * pobjectContext)
    {
 
       auto estatus = ::matter::initialize(pobjectContext);
@@ -52,7 +52,7 @@ namespace linux
    }
 
 
-   ::estatus file_context::init_system()
+   ::e_status file_context::init_system()
    {
 
    auto estatus = ::file_context::init_system();
@@ -69,7 +69,7 @@ namespace linux
    }
 
 
-   ::estatus file_context::init_context()
+   ::e_status file_context::init_context()
    {
 
    auto estatus = ::file_context::init_context();

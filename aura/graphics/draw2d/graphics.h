@@ -101,7 +101,7 @@ namespace draw2d
 
       }
 
-      virtual ::file::path get_font_path(const string& strName);
+      virtual ::file::path get_font_path(const string& strName, int iWeight, bool bItalic);
 
       virtual oswindow get_window_handle() const;
 
@@ -121,7 +121,7 @@ namespace draw2d
       virtual void thread_select();
 
 
-      virtual ::estatus clear_current_point();
+      virtual ::e_status clear_current_point();
 
 
       virtual bool attach(void * pdata);
@@ -203,11 +203,11 @@ namespace draw2d
 
       virtual bool set_text_color(color c);
 
-      virtual ::estatus set(::draw2d::region* pregion);
-      virtual ::estatus set(::draw2d::pen* ppen);
-      virtual ::estatus set(::draw2d::font* pfont);
-      virtual ::estatus set(::draw2d::brush* pbrush);
-      virtual ::estatus set(::draw2d::bitmap* pbitmap);
+      virtual ::e_status set(::draw2d::region* pregion);
+      virtual ::e_status set(::draw2d::pen* ppen);
+      virtual ::e_status set(::draw2d::font* pfont);
+      virtual ::e_status set(::draw2d::brush* pbrush);
+      virtual ::e_status set(::draw2d::bitmap* pbitmap);
       virtual ::draw2d::object* set_stock_object(i32 nIndex);
 
 
@@ -339,35 +339,35 @@ namespace draw2d
       
 
       
-      virtual ::estatus add_shapes(const shape_array & shapea);
-      virtual ::estatus reset_clip();
-      virtual ::estatus intersect_clip(const ::rect& rect);
-      virtual ::estatus intersect_clip(const ::rectd& rect);
-      virtual ::estatus intersect_clip(const ::oval& oval);
-      virtual ::estatus intersect_clip(const ::ovald& oval);
-      virtual ::estatus intersect_clip(const ::polygon& polygon);
-      virtual ::estatus intersect_clip(const ::polygond& polygon);
+      virtual ::e_status add_shapes(const shape_array & shapea);
+      virtual ::e_status reset_clip();
+      virtual ::e_status intersect_clip(const ::rect& rect);
+      virtual ::e_status intersect_clip(const ::rectd& rect);
+      virtual ::e_status intersect_clip(const ::oval& oval);
+      virtual ::e_status intersect_clip(const ::ovald& oval);
+      virtual ::e_status intersect_clip(const ::polygon& polygon);
+      virtual ::e_status intersect_clip(const ::polygond& polygon);
 
       // Maybe used by some 2d Graphics backends as group of helper
       // methods working together for some purpose
       // (initially created for clipping).
       // It should be an aid when the 2d graphics backend supports
       // "inline" paths.
-      virtual ::estatus _intersect_clip();
-      virtual ::estatus _add_shape(___shape* pshape);
-      virtual ::estatus _add_shape(const ::rect & rect);
-      virtual ::estatus _add_shape(const ::rectd & rect);
-      virtual ::estatus _add_shape(const ::oval & oval);
-      virtual ::estatus _add_shape(const ::ovald & oval);
-      virtual ::estatus _add_shape(const ::polygon & polygon);
-      virtual ::estatus _add_shape(const ::polygond & polygon);
+      virtual ::e_status _intersect_clip();
+      virtual ::e_status _add_shape(___shape* pshape);
+      virtual ::e_status _add_shape(const ::rect & rect);
+      virtual ::e_status _add_shape(const ::rectd & rect);
+      virtual ::e_status _add_shape(const ::oval & oval);
+      virtual ::e_status _add_shape(const ::ovald & oval);
+      virtual ::e_status _add_shape(const ::polygon & polygon);
+      virtual ::e_status _add_shape(const ::polygond & polygon);
 
       
 
       
-      //virtual ::estatus IntersectClipRgn(::draw2d::region * pregion);
-      //virtual ::estatus IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2);
-      //virtual ::estatus IntersectClipRect(const ::rect & rect);
+      //virtual ::e_status IntersectClipRgn(::draw2d::region * pregion);
+      //virtual ::e_status IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2);
+      //virtual ::e_status IntersectClipRect(const ::rect & rect);
       //virtual i32 ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2);
       //virtual i32 ExcludeClipRect(const ::rect & rect);
       //virtual i32 ExcludeUpdateRgn(::user::interaction_impl * pwindow);
@@ -864,7 +864,7 @@ namespace draw2d
       virtual void draw_rect(const ::rect & rect, const ::color& color, const ::e_border & eborder = e_border_all);
       virtual void draw_rect(const rectd & rectd, const ::color& color, const ::e_border & eborder = e_border_all);
 
-      virtual bool set_font(::user::interaction* pinteraction, ::user::eelement eelement = ::user::e_element_none, ::user::estate estate = ::user::e_state_none);
+      virtual bool set_font(::user::interaction* pinteraction, ::user::enum_element eelement = ::user::e_element_none, ::user::enum_state estate = ::user::e_state_none);
 
 
       virtual bool get(matrix & matrix);

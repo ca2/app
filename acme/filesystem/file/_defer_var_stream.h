@@ -63,7 +63,7 @@ inline void __exchange_save_array(::var_stream& stream, ARRAY& array)
 
    auto c = array.get_count();
 
-   stream.stream_exchange(property_count, c);
+   stream.stream_exchange(e_property_count, c);
 
    if (stream.fail())
    {
@@ -95,7 +95,7 @@ inline void __exchange_load_array(::var_stream& stream, ARRAY& array)
 
    auto c = array.get_count();
 
-   stream.stream_exchange(property_count, c);
+   stream.stream_exchange(e_property_count, c);
 
    if (stream.fail())
    {

@@ -8,7 +8,7 @@
 //public:
 //
 //
-//   ::estatus m_estatus;
+//   ::e_status m_estatus;
 //   //__pointer(::apex::system) m_psystem;
 //
 //   void create_system()
@@ -63,7 +63,7 @@
 //   void init()
 //   {
 //
-//      m_estatus = (::estatus) m_psystem->inline_init();
+//      m_estatus = (::e_status) m_psystem->inline_init();
 //
 //   }
 //
@@ -136,7 +136,7 @@
 //
 //   psystem->system_construct(argc, argv);
 //
-//   ::estatus estatus = (::estatus) psystem->inline_init();
+//   ::e_status estatus = (::e_status) psystem->inline_init();
 //
 //   if (::succeeded(estatus))
 //   {

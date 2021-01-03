@@ -66,7 +66,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   m_nswindow  = nullptr;
 //   m_pimpl       = nullptr;
-//   m_plongmap  = new int_ptr_to_int_ptr;
+//   m_plongmap  = new iptr_to_iptr;
 //   m_bNsWindowRect = false;
 //}
 //
@@ -76,7 +76,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //   m_nswindow  = window;
 //   m_pimpl       = nullptr;
-//   m_plongmap  = new int_ptr_to_int_ptr;
+//   m_plongmap  = new iptr_to_iptr;
 //   m_bNsWindowRect = false;
 //}
 //

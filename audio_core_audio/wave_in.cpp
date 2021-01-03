@@ -13,7 +13,7 @@ namespace multimedia
       {
 
          m_pencoder = nullptr;
-         m_estate = state_initial;
+         m_estate = e_state_initial;
          m_bResetting = false;
 
       }
@@ -25,7 +25,7 @@ namespace multimedia
       }
 
 
-      ::estatus in::init_thread()
+      ::e_status in::init_thread()
       {
 
          TRACE("in::init_instance %X\n", get_ithread());
@@ -72,10 +72,10 @@ namespace multimedia
          return thread::pre_translate_message(pbase);
       }
 
-      ::estatus     in::in_open(i32 iBufferCount, i32 iBufferSampleCount)
+      ::e_status     in::in_open(i32 iBufferCount, i32 iBufferSampleCount)
       {
 
-         if(m_Queue != nullptr && m_estate != state_initial)
+         if(m_Queue != nullptr && m_estate != e_state_initial)
          {
             in_initialize_encoder();
             return ::success;
@@ -86,7 +86,7 @@ namespace multimedia
 
 //         single_lock sLock(mutex(), TRUE);
 //         ASSERT(m_Queue == nullptr);
-//         ASSERT(m_estate == state_initial);
+//         ASSERT(m_estate == e_state_initial);
 //
 //         m_pwaveformat->wFormatTag = 0;
 //         m_pwaveformat->nChannels = 2;
@@ -205,29 +205,29 @@ namespace multimedia
 //         if(m_pencoder != nullptr && !in_initialize_encoder())
 //         {
 //
-//            m_estate = state_opened;
+//            m_estate = e_state_opened;
 //
 //            in_close();
 //
-//            return (::estatus    ) -1;
+//            return (::e_status    ) -1;
 //
 //         }
 //
-//         m_estate = state_opened;
+//         m_estate = e_state_opened;
 //
 //         return ::success;
 
       }
 
 
-      ::estatus     in::in_close()
+      ::e_status     in::in_close()
       {
 
          single_lock sLock(mutex(), TRUE);
 
-         ::estatus     mmr;
+         ::e_status     mmr;
 
-         if(m_estate != state_opened && m_estate != state_stopped)
+         if(m_estate != e_state_opened && m_estate != state_stopped)
             return ::success;
 
          mmr = in_reset();
@@ -256,14 +256,14 @@ namespace multimedia
 
          m_Queue = nullptr;
 
-         m_estate = state_initial;
+         m_estate = e_state_initial;
 
          return mmr;
 
       }
 
 
-      ::estatus     in::in_start()
+      ::e_status     in::in_start()
       {
 
          single_lock sLock(mutex(), TRUE);
@@ -271,7 +271,7 @@ namespace multimedia
          if(m_estate == state_recording)
             return ::success;
 
-         if(m_estate != state_opened && m_estate != state_stopped)
+         if(m_estate != e_state_opened && m_estate != state_stopped)
             return ::success;
 
          if(::success != (m_estatusWave = translate(AudioQueueStart(m_Queue, nullptr))))
@@ -290,7 +290,7 @@ namespace multimedia
       }
 
 
-      ::estatus     in::in_stop()
+      ::e_status     in::in_stop()
       {
 
          single_lock sLock(mutex(), TRUE);
@@ -300,7 +300,7 @@ namespace multimedia
 
          OSStatus status;
 
-         m_estate = state_stopping;
+         m_estate = e_state_stopping;
 
          try
          {
@@ -351,7 +351,7 @@ namespace multimedia
       //         }
         //    }*/
 
-      ::estatus     in::in_reset()
+      ::e_status     in::in_reset()
       {
          single_lock sLock(mutex(), TRUE);
          m_bResetting = true;
@@ -360,7 +360,7 @@ namespace multimedia
             return error_failed;
          }
 
-         ::estatus     mmr;
+         ::e_status     mmr;
 //         OSStatus status;
          if(m_estate == state_recording)
          {
@@ -383,7 +383,7 @@ namespace multimedia
          {
          }
 
-         m_estate = state_opened;
+         m_estate = e_state_opened;
 
          m_bResetting = false;
 
@@ -393,7 +393,7 @@ namespace multimedia
 
 
 
-      ::estatus     in::in_add_buffer(i32 iBuffer)
+      ::e_status     in::in_add_buffer(i32 iBuffer)
       {
 
          AudioQueueBufferRef buf = audio_buffer(iBuffer);

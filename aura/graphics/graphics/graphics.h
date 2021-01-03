@@ -20,7 +20,7 @@ namespace graphics
       virtual ~graphics();
 
 
-      virtual ::estatus initialize_graphics_graphics(::user::interaction_impl * pimpl);
+      virtual ::e_status initialize_graphics_graphics(::user::interaction_impl * pimpl);
       virtual void finalize();
 
       virtual void destroy_buffer();

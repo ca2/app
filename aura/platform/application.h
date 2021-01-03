@@ -150,7 +150,7 @@ namespace aura
       virtual ~application();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
       virtual void assert_valid() const override;
@@ -169,7 +169,7 @@ namespace aura
       //virtual bool app_data_set(const ::id & id, object & obj) override;
       //virtual bool app_data_get(const ::id & id, object & obj) override;
 
-//      virtual ::estatus     interactive_credentials(::account::credentials * pcredentials) override;
+//      virtual ::e_status     interactive_credentials(::account::credentials * pcredentials) override;
 
       //virtual ::database::key calc_data_key() override;
 
@@ -195,32 +195,32 @@ namespace aura
       inline ::context_image& image() { return *m_pcontextimage; }
 
 
-      virtual ::estatus verb() override;
+      virtual ::e_status verb() override;
 
 
       virtual bool Ex2OnAppInstall() override;
       virtual bool Ex2OnAppUninstall() override;
 
-      //virtual ::estatus init_application() override;
+      //virtual ::e_status init_application() override;
 
-      virtual ::estatus init1() override;
-      virtual ::estatus init2() override;
-      virtual ::estatus init3() override;
-
-
-      virtual ::estatus init() override;
+      virtual ::e_status init1() override;
+      virtual ::e_status init2() override;
+      virtual ::e_status init3() override;
 
 
-      virtual ::estatus init_instance() override;
+      virtual ::e_status init() override;
 
 
-      //virtual ::estatus     run() override;
-      //virtual ::estatus     main() override;
-      //virtual ::estatus     on_run();
+      virtual ::e_status init_instance() override;
 
-      //virtual ::estatus application_pre_run();
+
+      //virtual ::e_status     run() override;
+      //virtual ::e_status     main() override;
+      //virtual ::e_status     on_run();
+
+      //virtual ::e_status application_pre_run();
       //virtual bool initial_check_directrix() override;
-      //virtual ::estatus os_native_bergedge_start();
+      //virtual ::e_status os_native_bergedge_start();
 
 
 
@@ -255,7 +255,7 @@ namespace aura
       //virtual void SetCurrentHandles() override;
 
 
-      //virtual ::estatus process_exception(::exception_pointer pe) override;
+      //virtual ::e_status process_exception(::exception_pointer pe) override;
 
 
       //virtual __pointer(::aura::application) assert_running(const char * pszAppId) override;
@@ -304,7 +304,7 @@ namespace aura
 
 
 
-      virtual ::estatus process_init() override;
+      virtual ::e_status process_init() override;
 
 
 
@@ -371,7 +371,7 @@ namespace aura
       //virtual string get_locale_schema_dir();
 
 
-      //virtual ::estatus initialize(::layered * pobjectContext) override;
+      //virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
       //::apex::application_menu & applicationmenu();
@@ -450,16 +450,16 @@ namespace aura
       //// os_* functions generally
       //// reserves a lot of surprises from each
       //// operating system specific behavior
-      //virtual ::estatus os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
-      //virtual ::estatus ui_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual ::estatus ui_message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status ui_message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status ui_message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       //using ::aura::context_thread::message_box;
-      //virtual ::estatus message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
-      //virtual ::estatus message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status message_box(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
+      //virtual ::e_status message_box_timeout(::user::primitive * puiOwner, const char * pszMessage, const char* pszTitle = nullptr, const ::duration& durationTimeOut = duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, ::callback callback = ::callback());
 
 
       //virtual void on_file_new() override;
@@ -499,7 +499,7 @@ namespace aura
 
       //virtual void process_message_filter(i32 code,::message::message * pmessage) override;
 
-      virtual ::estatus on_thread_on_idle(::thread * pthread,::i32 lCount) override;
+      virtual ::e_status on_thread_on_idle(::thread * pthread,::i32 lCount) override;
 
 
       //virtual bool app_set(string strPath, string strValue) override;
@@ -518,42 +518,42 @@ namespace aura
 
 //      virtual __pointer(::interprocess_intercommunication) create_interprocess_intercommunication() override;
 
-      //virtual ::estatus process_init();
+      //virtual ::e_status process_init();
       //virtual void process_term() override;
 
-      //virtual ::estatus impl_process_init();
-      //virtual ::estatus impl_init1();
-      //virtual ::estatus impl_init2();
-      //virtual ::estatus impl_init3();
+      //virtual ::e_status impl_process_init();
+      //virtual ::e_status impl_init1();
+      //virtual ::e_status impl_init2();
+      //virtual ::e_status impl_init3();
 
       //virtual void impl_process_term();
       //virtual void impl_term1();
       //virtual void impl_term2();
       //virtual void impl_term3();
 
-      //virtual ::estatus init1();
-      //virtual ::estatus init2();
-      //virtual ::estatus init3();
+      //virtual ::e_status init1();
+      //virtual ::e_status init2();
+      //virtual ::e_status init3();
 
       virtual void term1() override;
       virtual void term2() override;
       virtual void term3() override;
 
-      //virtual ::estatus init_thread() override;
-      //virtual ::estatus init_application();
+      //virtual ::e_status init_thread() override;
+      //virtual ::e_status init_application();
       //virtual void term_application();
       //virtual void term_thread() override;
 
-      //virtual ::estatus init_instance() override;
+      //virtual ::e_status init_instance() override;
       virtual void term_instance() override;
 
-      //virtual ::estatus init();
+      //virtual ::e_status init();
       //virtual void term();
 
-      //virtual ::estatus notify_process_init();
-      //virtual ::estatus notify_init1();
-      //virtual ::estatus notify_init2();
-      //virtual ::estatus notify_init3();
+      //virtual ::e_status notify_process_init();
+      //virtual ::e_status notify_init1();
+      //virtual ::e_status notify_init2();
+      //virtual ::e_status notify_init3();
 
       //virtual void notify_term3();
       //virtual void notify_term2();
@@ -564,15 +564,15 @@ namespace aura
       // virtual bool is_unstalling();
 
       //virtual string get_version();
-      //virtual ::estatus     run() override;
-      //virtual ::estatus     main() override;
-      //virtual ::estatus     on_run();
+      //virtual ::e_status     run() override;
+      //virtual ::e_status     main() override;
+      //virtual ::e_status     on_run();
 
-      virtual ::estatus on_before_launching() override;
-      //virtual ::estatus os_native_bergedge_start();
+      virtual ::e_status on_before_launching() override;
+      //virtual ::e_status os_native_bergedge_start();
 
-      //virtual ::estatus pre_run() override;
-      //virtual ::estatus application_pre_run();
+      //virtual ::e_status pre_run() override;
+      //virtual ::e_status application_pre_run();
 
       virtual void on_pos_run_thread() override;
       virtual void pos_run() override;
@@ -596,7 +596,7 @@ namespace aura
 
       //virtual bool _001OnDDECommand(const char * pcsz) override;
 
-      virtual ::estatus _001InitializeShellOpen() override;
+      virtual ::e_status _001InitializeShellOpen() override;
       virtual void _001OnFileNew(::message::message * pmessage) override;
 
 
@@ -626,7 +626,7 @@ namespace aura
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this new additional instance creation
-      //virtual ::estatus on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId) override;
+      //virtual ::e_status on_exclusive_instance_conflict(bool & bHandled, EExclusiveInstance eexclusive, string strId) override;
 
       /// return true if this instance might continue execution
       /// bHandled true if some action was done in response to this new additional instance creation
@@ -638,7 +638,7 @@ namespace aura
 
       /// return true if the external additional instance might continue execution
       /// bHandled true if some action was done in response to the external new additional instance creation
-      //virtual ::estatus on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;
+      //virtual ::e_status on_additional_local_instance(bool & bHandled, string strModule, int iPid, string strCommandLine) override;
 
       //virtual void on_new_instance(string strModule, const ::id & idPid) override;
 
@@ -679,8 +679,8 @@ namespace aura
 
       //virtual bool assert_user_logged_in();
 
-      //virtual ::estatus     do_request(::create * pcreate) override;
-      virtual ::estatus     call_request(::create * pcreate) override;
+      //virtual ::e_status     do_request(::create * pcreate) override;
+      virtual ::e_status     call_request(::create * pcreate) override;
 
 
       //virtual void process_message(::message::base * base) override;
@@ -849,24 +849,24 @@ namespace aura
       virtual void HideApplication() override;
 
 
-      //virtual ::estatus initialize(::layered * pobjectContext) override;
+      //virtual ::e_status initialize(::layered * pobjectContext) override;
 
-      //virtual ::estatus process_init() override;
+      //virtual ::e_status process_init() override;
 
-      //virtual ::estatus init1() override; // first initialization
-      //virtual ::estatus init2() override; // second initialization
-      //virtual ::estatus init3() override; // third initialization and so on...
+      //virtual ::e_status init1() override; // first initialization
+      //virtual ::e_status init2() override; // second initialization
+      //virtual ::e_status init3() override; // third initialization and so on...
 
-      //virtual ::estatus init() override; // last initialization
+      //virtual ::e_status init() override; // last initialization
 
-      //virtual ::estatus bergedge_start();
-      //virtual ::estatus os_native_bergedge_start() override;
+      //virtual ::e_status bergedge_start();
+      //virtual ::e_status os_native_bergedge_start() override;
 
       //virtual void term_application() override;
 
       //virtual void term() override;
 
-      //virtual ::estatus     main() override;
+      //virtual ::e_status     main() override;
 
       //virtual ::aura::application * get_context_application() const override;
 
@@ -1112,9 +1112,9 @@ namespace aura
 
 
 
-      //virtual ::estatus init_application() override;
+      //virtual ::e_status init_application() override;
 
-      //virtual ::estatus init_instance() override;
+      //virtual ::e_status init_instance() override;
 
 
 //      virtual bool process_exception(::exception_pointer pe) override;
@@ -1141,7 +1141,7 @@ namespace aura
 
       virtual ::user::interaction * get_desktop_window();
 
-      //virtual ::estatus     run() override;
+      //virtual ::e_status     run() override;
 
       //::aura::application * get_context_system();
 
@@ -1158,7 +1158,7 @@ namespace aura
       //virtual string get_theme() override;
 
 
-      virtual ::estatus initialize_contextualized_theme() override;
+      virtual ::e_status initialize_contextualized_theme() override;
 
 
 
@@ -1239,12 +1239,12 @@ namespace aura
       //       virtual __pointer(::bergedge::document) get_document();
 
 
-      //virtual ::estatus add_library(::apex::library * plibrary);
+      //virtual ::e_status add_library(::apex::library * plibrary);
 
-      //virtual ::estatus initialize_userex();
-      //virtual ::estatus userfs_init1();
-      //virtual ::estatus initialize1_experience();
-      //virtual ::estatus userfs_process_init();
+      //virtual ::e_status initialize_userex();
+      //virtual ::e_status userfs_init1();
+      //virtual ::e_status initialize1_experience();
+      //virtual ::e_status userfs_process_init();
 
       //virtual __pointer(::userex::userex) create_userex();
       //virtual __pointer(::userfs::userfs) create_userfs();
@@ -1344,18 +1344,18 @@ namespace aura
       //virtual ~application();
 
 
-      //virtual ::estatus     initialize(::layered * pobjectContext) override;
+      //virtual ::e_status     initialize(::layered * pobjectContext) override;
 
 
       //virtual void install_message_routing(::channel * pchannel) override;
 
       //virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
-      //virtual ::estatus process_init() override;
+      //virtual ::e_status process_init() override;
 
-      //virtual ::estatus init_instance() override;
+      //virtual ::e_status init_instance() override;
 
-      virtual ::estatus     create_impact_system() override;
+      virtual ::e_status     create_impact_system() override;
 
       //virtual ::type user_default_controltype_to_typeinfo(::user::enum_control_type econtroltype) override;
       //virtual ::type control_type_from_id(const ::id& id, ::user::enum_control_type& econtroltype) override;

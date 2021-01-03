@@ -78,7 +78,7 @@ namespace music
          }
          
 
-         ::estatus     department::enumerate_midi_devices()
+         ::e_status     department::enumerate_midi_devices()
          {
 
             return ::success;
@@ -86,10 +86,10 @@ namespace music
          }
 
 
-         ::estatus     department::translate_os_result(string & strMessage, string & strOsMessage, ::music::midi::object * pobject, i64 iOsResult, const string & strContext, const string & strText)
+         ::e_status     department::translate_os_result(string & strMessage, string & strOsMessage, ::music::midi::object * pobject, i64 iOsResult, const string & strContext, const string & strText)
          {
 
-            ::estatus     estatus = iOsResult == 0 ? ::success : error_failed;
+            ::e_status     estatus = iOsResult == 0 ? ::success : error_failed;
 
             if (estatus == ::success)
             {

@@ -18,7 +18,7 @@ namespace fs
    }
 
 
-   ::estatus fs::initialize(::layered * pobjectContext)
+   ::e_status fs::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::apex::department::initialize(pobjectContext);

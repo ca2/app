@@ -261,7 +261,7 @@ inline prodevian::prodevian(::user::interaction* pinteraction) :
 
 
 //inline bool thread::has_property(const ::id& id) const { return command() && has_property(id); }
-//inline payload thread::command_value(const ::id& id) const { return has_property(id) ? (const payload&)&command()->m_varQuery[id] : (const payload&)type_new; }
+//inline payload thread::command_value(const ::id& id) const { return has_property(id) ? (const payload&)&command()->m_varQuery[id] : (const payload&)e_type_new; }
 //inline bool thread::command_value_is_true(const ::id& id) const { return has_property(id) ? command()->m_varQuery.is_true(id) : false; }
 
 
@@ -272,7 +272,7 @@ inline prodevian::prodevian(::user::interaction* pinteraction) :
 //{
 //
 //
-//   inline bool graphics::set_font(::user::interaction* pinteraction, ::user::enum_element eelement, ::user::estate estate)
+//   inline bool graphics::set_font(::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate)
 //   {
 //
 //      return set(pinteraction->get_font(pinteraction->get_style(m_puserstyle), eelement, estate));

@@ -18,16 +18,16 @@ namespace axis
       virtual ~session();
 
 
-      virtual ::estatus     initialize(::layered * pobjectContext) override;
+      virtual ::e_status     initialize(::layered * pobjectContext) override;
 
 
-      virtual ::estatus process_init() override;
+      virtual ::e_status process_init() override;
 
-      virtual ::estatus init1() override;
+      virtual ::e_status init1() override;
 
-      virtual ::estatus init2() override;
+      virtual ::e_status init2() override;
 
-      virtual ::estatus init() override;
+      virtual ::e_status init() override;
 
       virtual void term() override;
 

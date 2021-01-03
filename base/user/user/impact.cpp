@@ -218,7 +218,7 @@ namespace user
    }
 
 
-   ::estatus impact::initialize_view(::user::document * pdocument)
+   ::e_status impact::initialize_view(::user::document * pdocument)
    {
 
       auto estatus = ::user::box::initialize(pdocument);
@@ -370,7 +370,7 @@ namespace user
 
       auto psession = Session;
 
-      __pointer(channel) ptarget = psession->get_keyboard_focus();
+      __pointer(channel) ptarget = get_keyboard_focus();
 
       if (ptarget != nullptr && ptarget != this && ptarget != this)
       {
@@ -679,7 +679,7 @@ namespace user
    }
 
 
-   ::estatus impact::set_notify_user_interaction(::user::interaction* puserinteractionNotify)
+   ::e_status impact::set_notify_user_interaction(::user::interaction* puserinteractionNotify)
    {
 
       auto estatus = __refer(m_puserinteractionImpactNotify, puserinteractionNotify);
@@ -825,7 +825,7 @@ namespace user
 
       __pointer(::user::interaction) pinteraction;
 
-      ::estatus estatus = ::success;
+      ::e_status estatus = ::success;
 
       if (pusercreate->m_puiNew != nullptr)
       {
@@ -1108,7 +1108,7 @@ namespace user
 
          auto psession = Session;
 
-         __pointer(::user::interaction) oswindow_Focus = psession->get_focus_ui();
+         __pointer(::user::interaction) oswindow_Focus = get_keyboard_focus();
 
          if (pview == this &&
                this != oswindow_Focus && !is_child(oswindow_Focus))
@@ -1165,7 +1165,7 @@ namespace user
 
          auto psession = Session;
 
-         __pointer(::user::interaction) oswindow_Focus = psession->get_focus_ui();
+         __pointer(::user::interaction) oswindow_Focus = get_keyboard_focus();
 
          if (pview == this &&
                this != oswindow_Focus && !is_child(oswindow_Focus))

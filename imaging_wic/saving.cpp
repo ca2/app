@@ -10,7 +10,7 @@ namespace imaging_wic
 {
 
 
-   ::estatus context_image::save_image(memory & mem, const ::image * pimage, const ::save_image * psaveimage)
+   ::e_status context_image::save_image(memory & mem, const ::image * pimage, const ::save_image * psaveimage)
    {
 
       if (::is_null(pimage))

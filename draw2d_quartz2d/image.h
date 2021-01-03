@@ -37,9 +37,9 @@ namespace draw2d_quartz2d
       bool dc_select(bool bSelect = true) override;
 
 
-      ::estatus create(const ::size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false) override;
-      //::estatus create(i32 iWidth, i32 iHeight, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false) override;
-      ::estatus create(::draw2d::graphics * pgraphics) override;
+      ::e_status create(const ::size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false) override;
+      //::e_status create(i32 iWidth, i32 iHeight, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false) override;
+      ::e_status create(::draw2d::graphics * pgraphics) override;
       virtual bool destroy() override;
 
 
@@ -47,7 +47,7 @@ namespace draw2d_quartz2d
       bool from(const ::point & pointDest, ::draw2d::graphics * pgraphics, const ::point & point, const ::size & sz) override;
       bool to(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc) override;
 
-      ::estatus SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy) override;
+      ::e_status SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy) override;
 
       virtual bool set_mapped() override;
 

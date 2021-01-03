@@ -763,7 +763,7 @@ public:
 
       ::draw2d::font_pointer font(e_create);
 
-      font->create_point_font(FONT_SANS, 12.0);
+      font->create_point_font(os_font_name(e_font_sans), 12.0);
 
       g->selectFont(font);
 

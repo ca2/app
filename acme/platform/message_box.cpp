@@ -53,7 +53,7 @@ message_box::~message_box()
 }
 
 
-//::estatus message_box::show(::matter* pobject)
+//::e_status message_box::show(::matter* pobject)
 //{
 //
 //   //if (::is_null(pobject))
@@ -68,7 +68,7 @@ message_box::~message_box()
 //}
 
 
-CLASS_DECL_ACME ::estatus message_box(oswindow oswindow, const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+CLASS_DECL_ACME ::e_status message_box(oswindow oswindow, const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
    __throw(todo("message_box"));

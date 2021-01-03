@@ -97,7 +97,7 @@ namespace filemanager
    void impact::_001Refresh()
    {
 
-      filemanager_document()->browse(filemanager_item(),::source_sync);
+      filemanager_document()->browse(filemanager_item(),::e_source_sync);
 
    }
 
@@ -244,7 +244,7 @@ namespace filemanager
             for (index i = 0; i < DBG_LOOP; i++)
             {
 
-               browse_sync(psubject->m_actioncontext + ::source_sync);
+               browse_sync(psubject->m_actioncontext + ::e_source_sync);
 
             }
 
@@ -252,7 +252,7 @@ namespace filemanager
          else
          {
 
-            knowledge(psubject->m_pfileitem->m_filepathUser, psubject->m_actioncontext + ::source_sync);
+            knowledge(psubject->m_pfileitem->m_filepathUser, psubject->m_actioncontext + ::e_source_sync);
 
          }
 

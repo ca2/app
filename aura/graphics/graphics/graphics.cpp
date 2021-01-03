@@ -30,7 +30,7 @@ namespace graphics
    }
 
 
-   ::estatus graphics::initialize_graphics_graphics(::user::interaction_impl * pimpl)
+   ::e_status graphics::initialize_graphics_graphics(::user::interaction_impl * pimpl)
    {
 
       try

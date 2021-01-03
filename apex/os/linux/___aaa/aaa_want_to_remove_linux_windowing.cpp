@@ -1783,6 +1783,67 @@ void wm_centerwindow(oswindow w, bool bCenterWindow)
 }
 
 
+void wm_arbitrarypositionwindow(oswindow w, bool bDockWindow)
+{
+
+   fork_x11([=]()
+            {
+
+               windowing_output_debug_string("\n::wm_toolwindow 1");
+
+               xdisplay d(w->display());
+
+               if(d.is_null())
+               {
+
+                  windowing_output_debug_string("\n::wm_toolwindow 1.1");
+
+                  fflush(stdout);
+
+                  return;
+
+               }
+
+               Window window = w->window();
+
+               Window windowRoot = d.default_root_window();
+
+               Atom atomWindowType = d.intern_atom("_NET_WM_WINDOW_TYPE", False);
+
+               if(atomWindowType != None)
+               {
+
+                  Atom atomWindowTypeValue;
+
+                  if(bDockWindow)
+                  {
+
+                     atomWindowTypeValue = d.intern_atom("_NET_WM_WINDOW_TYPE_ЕЩЩ", False);
+
+                  }
+                  else
+                  {
+
+                     atomWindowTypeValue = d.intern_atom("_NET_WM_WINDOW_TYPE_NORMAL", False);
+
+                  }
+
+                  if(atomWindowType != None)
+                  {
+
+                     XChangeProperty(d, window, atomWindowType, XA_ATOM, 32, PropModeReplace, (unsigned char *) &atomWindowTypeValue, 1);
+
+                  }
+
+               }
+
+               windowing_output_debug_string("\n::wm_toolwindow 2");
+
+            });
+
+}
+
+
 void wm_dockwindow(oswindow w, bool bDockWindow)
 {
 

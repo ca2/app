@@ -942,7 +942,7 @@ namespace tsf
        BOOL    fOldNotify = m_fNotify;
        m_fNotify = FALSE;
        //SetWindowTextW(m_hwndEdit, NULL);
-       _001SetText("", ::source_user);
+       _001SetText("", ::e_source_user);
        m_fNotify = fOldNotify;
 
        //update current selection

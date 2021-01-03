@@ -111,7 +111,7 @@ namespace html
          if(::is_set(m_pedit) && m_pedit->is_window() && pdata->m_pcoredata->m_bEdit)
          {
 
-            m_pedit->_001SetText(str, ::action_context(::source_data) +  ::source_load);
+            m_pedit->_001SetText(str, ::action_context(::e_source_data) +  ::e_source_load);
 
          }
 

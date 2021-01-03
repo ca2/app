@@ -129,7 +129,7 @@ namespace process
    }
 
 
-   ::estatus     department::process_thread::run()
+   ::e_status     department::process_thread::run()
    {
 
       if(m_bElevated)
@@ -250,7 +250,7 @@ namespace process
 
       m_pprocess->synch_elevated(m_strCmdLine,e_display_none,m_millisTimeout,m_pbPotentialTimeout);
 
-      m_result.add((::estatus    ) m_pprocess->m_exitstatus.m_iExitCode);
+      m_result.add((::e_status    ) m_pprocess->m_exitstatus.m_iExitCode);
 
       if(m_pexitstatus != nullptr)
       {

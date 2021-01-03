@@ -43,7 +43,7 @@ namespace datetime
    }
 
 
-   ::estatus department::initialize(::layered * pobjectContext)
+   ::e_status department::initialize(::layered * pobjectContext)
    {
     
       auto estatus = ::apex::department::initialize(pobjectContext);
@@ -80,7 +80,7 @@ namespace datetime
    }
 
 
-   ::estatus department::international::initialize(::layered* pobjectContext)
+   ::e_status department::international::initialize(::layered* pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -97,7 +97,7 @@ namespace datetime
    }
 
 
-   ::estatus department::str::initialize(::layered* pobjectContext)
+   ::e_status department::str::initialize(::layered* pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

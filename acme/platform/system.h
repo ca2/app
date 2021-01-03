@@ -12,6 +12,10 @@ namespace acme
    public:
 
 
+#ifdef LINUX
+      enum_linux_distribution                            m_elinuxdistribution;
+#endif
+
       ::mutex                                            m_mutexTask;
       task_map                                           m_taskmap;
       task_id_map                                        m_taskidmap;
@@ -29,8 +33,15 @@ namespace acme
 
       string                                             m_strOsUserTheme;
 
+
+
+
       system();
       virtual ~system();
+
+
+      void os_construct();
+
 
 
 
@@ -43,8 +54,15 @@ namespace acme
       //virtual void defer_calc_os_user_theme();
 
 
-      virtual ::estatus os_application_system_run();
+      virtual ::e_status os_application_system_run();
 
+      enum_operating_system get_operating_system() const;
+
+#ifdef LINUX
+
+      inline enum_linux_distribution get_linux_distribution() const {return m_elinuxdistribution;}
+
+#endif
 
       using ::promise::handler::on_subject;
       virtual void on_subject(::promise::subject * psubject) override;
@@ -55,9 +73,9 @@ namespace acme
       virtual void open_url(string strUrl, string strProfile, string strTarget);
 
 
-      virtual ::estatus main_user_async(const ::promise::routine & routine, ::e_priority epriority = priority_normal);
+      virtual ::e_status main_user_async(const ::promise::routine & routine, ::e_priority epriority = priority_normal);
 
-      virtual ::estatus main_user_sync(const ::promise::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
+      virtual ::e_status main_user_sync(const ::promise::routine & routine, const ::duration & duration = one_minute(), e_priority epriority = priority_normal);
 
 
       ::task * get_task(ithread_t ithread);
@@ -67,6 +85,13 @@ namespace acme
 
 
       virtual string __get_text(const string & str);
+
+#ifdef LINUX
+
+      virtual ::e_status defer_initialize_x11();
+
+#endif
+
 
 
    };

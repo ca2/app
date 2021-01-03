@@ -1,7 +1,8 @@
 #include "framework.h"
+#include "_imaging_freeimage.h"
 
 
-unsigned DLL_CALLCONV  __ReadProc2(void * buffer, unsigned size, unsigned count, fi_handle handle)
+unsigned DLL_CALLCONV __ReadProc2(void * buffer, unsigned size, unsigned count, fi_handle handle)
 {
 
    memsize dwRead;

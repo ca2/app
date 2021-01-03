@@ -223,7 +223,7 @@ namespace android
    }
 
 
-   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::interaction * puiParent, id id)
+   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::primitive * puiParent, id id)
    {
 
       auto oswindow = puiParent ? puiParent->get_safe_handle() : nullptr;
@@ -293,7 +293,7 @@ namespace android
 
          m_puserinteraction->display(e_display_full_screen);
 
-         //::estatus estatus = __compose(m_pgraphics);
+         //::e_status estatus = __compose(m_pgraphics);
 
          //if (!estatus)
          //{
@@ -324,7 +324,7 @@ namespace android
 
          }
 
-         ::estatus estatusLast = get_last_status();
+         ::e_status estatusLast = get_last_status();
 
          //string strLastError = FormatMessageFromSystem(dwLastError);
 
@@ -460,7 +460,7 @@ namespace android
    }
 
 
-   bool interaction_impl::create_window(::user::interaction * pinteraction, const char * lpszClassName, const char * lpszWindowName, u32 dwStyle, const ::rect & rect, ::user::interaction * pParentWnd, id id, ::create * pcreate)
+   bool interaction_impl::create_window(::user::interaction * pinteraction, const char * lpszClassName, const char * lpszWindowName, u32 dwStyle, const ::rect & rect, ::user::primitive * pParentWnd, id id, ::create * pcreate)
    {
 
       // can't use for desktop or pop-up android (use create_window_ex instead)
@@ -693,6 +693,7 @@ namespace android
       dumpcontext << "\nm_oswindow_ = " << ((::android::interaction_impl *)this)->get_handle();
 
    }
+
 
    void interaction_impl::on_set_parent(::user::interaction * pinteraction)
    {
@@ -1284,7 +1285,9 @@ namespace android
 
          message::key * pkey = (::message::key *) pmessage;
 
-         __pointer(::user::interaction) puiFocus = psession->get_keyboard_focus();
+         auto puserinteractionHost = m_puserinteraction->get_host_window();
+
+         __pointer(::user::interaction) puiFocus = puserinteractionHost->get_keyboard_focus();
 
          if(puiFocus != nullptr && puiFocus->is_window() && puiFocus != m_puserinteraction)
          {
@@ -1933,7 +1936,7 @@ namespace android
    //   }
 
 
-   //   static ::estatus     c_cdecl s_print_window(LPVOID pvoid)
+   //   static ::e_status     c_cdecl s_print_window(LPVOID pvoid)
    //   {
    //      print_window * pprintwindow = (print_window *)pvoid;
    //      try
@@ -4616,9 +4619,9 @@ namespace android
 
       ::oslocal()->m_strEditorText = strText;
 
-      ::oslocal()->m_bEditorSelection = true;
+      ::oslocal()->m_bEditorSelectionUpdated = true;
 
-      ::oslocal()->m_bEditorText = true;
+      ::oslocal()->m_bEditorTextUpdated = true;
 
       ::oslocal()->m_bShowKeyboard = true;
 
@@ -4766,28 +4769,40 @@ namespace android
    }
    
 
-   void interaction_impl::show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd)
+   ::e_status interaction_impl::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
    {
 
-      if (bShow)
-      {
+      auto plocal = g_poslocal;
 
-         auto plocal = g_poslocal;
+      plocal->m_bShowKeyboard = true;
 
-         plocal->m_bShowKeyboard = true;
+      m_pprimitiveSoftwareKeyboard = pprimitive;
 
-      }
-      else
-      {
-
-         auto plocal = g_poslocal;
-
-         plocal->m_bHideKeyboard = true;
-
-
-      }
+      return ::success;
 
    }
+
+
+   ::e_status interaction_impl::hide_software_keyboard(::user::primitive * pprimitive)
+   {
+
+      if (!::is_null(pprimitive) && pprimitive != m_pprimitiveSoftwareKeyboard)
+      {
+
+         return ::error_invalid_argument;
+
+      }
+
+      m_pprimitiveSoftwareKeyboard = nullptr;
+
+      auto plocal = g_poslocal;
+
+      plocal->m_bHideKeyboard = true;
+
+      return ::success;
+
+   }
+
 
 } // namespace android
 

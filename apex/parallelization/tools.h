@@ -39,10 +39,10 @@ public:
    tool_thread();
 
 
-   virtual ::estatus initialize_tool_thread(::thread_group* pgroup);
+   virtual ::e_status initialize_tool_thread(::thread_group* pgroup);
 
 
-   virtual ::estatus run() override;
+   virtual ::e_status run() override;
 
 
    bool set_pred(::pred_holder_base * ppred);
@@ -68,7 +68,7 @@ public:
    virtual ~thread_tool_item();
 
 
-   virtual ::estatus     run() override;
+   virtual ::e_status     run() override;
 
 
 };

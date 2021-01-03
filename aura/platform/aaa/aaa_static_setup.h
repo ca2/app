@@ -18,7 +18,7 @@ class CLASS_DECL_AURA static_setup
 public:
 
 
-   enum e_flag
+   enum enum_flag
    {
 
       e_flag_none,
@@ -33,24 +33,24 @@ public:
 
 
    const char *                  m_pszName;
-   e_flag                        m_eflag;
+   enum_flag                        m_eflag;
    static_setup*                 m_psetupNext;
 
 
    static static_setup *         s_psetupList;
 
 
-   static_setup(::static_setup::e_flag eflag, const char * pszName);
+   static_setup(::static_setup::enum_flag eflag, const char * pszName);
 
 
    void construct();
 
 
    inline bool should_install() { return !has_flag(flag_do_not_install); }
-   bool has_flag(::static_setup::e_flag eflag) { return ((int)m_eflag & (int)eflag) == (int)eflag; }
+   bool has_flag(::static_setup::enum_flag eflag) { return ((int)m_eflag & (int)eflag) == (int)eflag; }
 
 
-   static static_setup* get_first(::static_setup::e_flag eflag, const char* pszName = nullptr);
+   static static_setup* get_first(::static_setup::enum_flag eflag, const char* pszName = nullptr);
 
    virtual ::matter * create_new_object();
    virtual ::aura::application* create_new_application();
@@ -95,7 +95,7 @@ public:
    virtual ::matter * new_object() override { return new OBJECT; }
 
 
-   static_object_factory(::static_setup::e_flag eflag, const char* pszName = "") :
+   static_object_factory(::static_setup::enum_flag eflag, const char* pszName = "") :
       static_setup(eflag, pszName)
    {
 

@@ -3,7 +3,7 @@
 
 ::static_setup * static_setup::s_psetupList = nullptr;
 
-static_setup::static_setup(::static_setup::e_flag eflag, const char * pszName) :
+static_setup::static_setup(::static_setup::enum_flag eflag, const char * pszName) :
    m_pszName(pszName),
    //m_pfnNewAuraApplication(nullptr),
    //m_pfnNewAuraLibrary(nullptr),
@@ -48,7 +48,7 @@ void static_setup::construct()
 }
 
 
-static_setup* static_setup::get_first(::static_setup::e_flag eflag, const char* pszName)
+static_setup* static_setup::get_first(::static_setup::enum_flag eflag, const char* pszName)
 {
 
    auto psetup = s_psetupList;
@@ -111,7 +111,7 @@ static_setup* static_setup::get_first(::static_setup::e_flag eflag, const char* 
 //}
 
 
-//bool static_setup::has_flag(::static_setup::e_flag eflag)
+//bool static_setup::has_flag(::static_setup::enum_flag eflag)
 //{
 //
 //   auto psetup = s_psetupList;

@@ -210,7 +210,7 @@ namespace user
 
       ::user::item* get_user_item(const ::user::item& item);
 
-      virtual ::user::e_state get_user_state() const;
+      virtual ::user::enum_state get_user_state() const;
 
       virtual bool has_hover() const;
 
@@ -271,23 +271,23 @@ namespace user
       virtual bool get_element_rect(RECT32* prect, enum_element eelement);
 
       virtual enum_element get_default_element() const;
-      virtual ::draw2d::font_pointer get_font(style * pstyle, enum_element eelement, estate estate = e_state_none) const;
-      inline ::draw2d::font_pointer get_font(style* pstyle, estate estate = e_state_none) const { return get_font(pstyle, get_default_element(), estate); }
+      virtual ::draw2d::font_pointer get_font(style * pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
+      inline ::draw2d::font_pointer get_font(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_font(pstyle, get_default_element(), estate); }
       virtual enum_translucency get_translucency(style* pstyle) const;
-      virtual int get_int(style* pstyle, enum_int eint, int iDefault = 0) const;
-      virtual double get_double(style* pstyle, enum_double edouble, double dDefault = 0.) const;
-      virtual ::rectd get_border(style* pstyle, enum_element eelement, estate estate = e_state_none) const;
-      inline ::rectd get_border(style* pstyle, estate estate = e_state_none) const { return get_border(pstyle, get_default_element(), estate); }
-      virtual ::rectd get_padding(style* pstyle, enum_element eelement, estate elayout = e_state_none) const;
-      inline ::rectd get_padding(style* pstyle, estate estate = e_state_none) const { return get_padding(pstyle, get_default_element(), estate); }
-      virtual ::rectd get_margin(style* pstyle, enum_element eelement, estate elayout = e_state_none) const;
-      inline ::rectd get_margin(style* pstyle, estate estate = e_state_none) const { return get_margin(pstyle, get_default_element(), estate); }
-      virtual ::color get_color(style* pstyle, enum_element eelement, estate elayout = e_state_none) const;
-      inline ::color get_color(style* pstyle, estate estate = e_state_none) const { return get_color(pstyle, get_default_element(), estate); }
+      virtual int get_int(style* pstyle, enum_int eint, ::user::enum_state estate = e_state_none, int iDefault = 0) const;
+      virtual double get_double(style* pstyle, enum_double edouble, ::user::enum_state estate = e_state_none, double dDefault = 0.) const;
+      virtual ::rectd get_border(style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
+      inline ::rectd get_border(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_border(pstyle, get_default_element(), estate); }
+      virtual ::rectd get_padding(style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none) const;
+      inline ::rectd get_padding(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_padding(pstyle, get_default_element(), estate); }
+      virtual ::rectd get_margin(style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
+      inline ::rectd get_margin(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_margin(pstyle, get_default_element(), estate); }
+      virtual ::color get_color(style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none) const;
+      inline ::color get_color(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_color(pstyle, get_default_element(), estate); }
 
       virtual eflag get_draw_flags(style* pstyle) const;
 
-      virtual estate get_state() const;
+      virtual ::user::enum_state get_state() const;
 
       virtual ::user::style* _get_style() const;
 

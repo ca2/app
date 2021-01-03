@@ -244,7 +244,7 @@ namespace data
    public:
 
 
-      enum e_flag
+      enum enum_flag
       {
 
          flag_previous_or_parent = 1,

@@ -18,7 +18,7 @@ namespace multimedia
       {
 
          m_pencoder = nullptr;
-         m_estate = state_initial;
+         m_estate = e_state_initial;
          m_bResetting = false;
 
 
@@ -73,7 +73,7 @@ namespace multimedia
       ::e_status     in::in_open(i32 iBufferCount, i32 iBufferSampleCount)
       {
 
-         if(m_Queue != nullptr && m_estate != state_initial)
+         if(m_Queue != nullptr && m_estate != e_state_initial)
          {
             in_initialize_encoder();
             return ::success;
@@ -84,7 +84,7 @@ namespace multimedia
 
 //         single_lock sLock(mutex(), TRUE);
 //         ASSERT(m_Queue == nullptr);
-//         ASSERT(m_estate == state_initial);
+//         ASSERT(m_estate == e_state_initial);
 //
 //         m_pwaveformat->wFormatTag = 0;
 //         m_pwaveformat->nChannels = 2;
@@ -203,7 +203,7 @@ namespace multimedia
 //         if(m_pencoder != nullptr && !in_initialize_encoder())
 //         {
 //
-//            m_estate = state_opened;
+//            m_estate = e_state_opened;
 //
 //            in_close();
 //
@@ -211,7 +211,7 @@ namespace multimedia
 //
 //         }
 //
-//         m_estate = state_opened;
+//         m_estate = e_state_opened;
 //
 //         return ::success;
 
@@ -225,7 +225,7 @@ namespace multimedia
 
          ::e_status     mmr;
 
-         if(m_estate != state_opened && m_estate != state_stopped)
+         if(m_estate != e_state_opened && m_estate != state_stopped)
             return ::success;
 
          mmr = in_reset();
@@ -254,7 +254,7 @@ namespace multimedia
 
          m_Queue = nullptr;
 
-         m_estate = state_initial;
+         m_estate = e_state_initial;
 
          return mmr;
 
@@ -269,7 +269,7 @@ namespace multimedia
          if(m_estate == state_recording)
             return ::success;
 
-         if(m_estate != state_opened && m_estate != state_stopped)
+         if(m_estate != e_state_opened && m_estate != state_stopped)
             return ::success;
 
          if(::success != (m_estatusWave = translate(AudioQueueStart(m_Queue, nullptr))))
@@ -298,7 +298,7 @@ namespace multimedia
 
          OSStatus status;
 
-         m_estate = state_stopping;
+         m_estate = e_state_stopping;
 
          try
          {
@@ -381,7 +381,7 @@ namespace multimedia
          {
          }
 
-         m_estate = state_opened;
+         m_estate = e_state_opened;
 
          m_bResetting = false;
 

@@ -163,7 +163,7 @@ namespace music
 
          void player::pause()
          {
-            if (get_sequence()->get_state() == sequence::state_paused)
+            if (get_sequence()->get_state() == sequence::e_state_paused)
             {
                get_sequence()->Restart();
             }
@@ -176,15 +176,15 @@ namespace music
 
          void player::SetPosition(double dRate)
          {
-            if (sequence::state_playing != get_sequence()->get_state() &&
-                  sequence::state_stopping != get_sequence()->get_state() &&
-                  sequence::state_opened != get_sequence()->get_state())
+            if (sequence::e_state_playing != get_sequence()->get_state() &&
+                  sequence::e_state_stopping != get_sequence()->get_state() &&
+                  sequence::e_state_opened != get_sequence()->get_state())
                return;
 
             if(get_sequence()->IsPlaying())
             {
                auto & link = get_sequence()->GetPlayerLink();
-               link() |= sequence::FlagSettingPos;
+               link() |= sequence::e_flag_setting_position;
                link.m_tkRestart = RateToTicks(dRate);
                get_sequence()->Stop();
             }
@@ -358,8 +358,8 @@ namespace music
                 get_sequence()->SetTempoChangeFlag();
                 sequence::PlayerLink & link = get_sequence()->GetPlayerLink();
                 link.ModifyFlag(
-                sequence::FlagTempoChange,
-                sequence::FlagNull);
+                sequence::e_flag_tempo_change,
+                sequence::e_flag_null);
                 imedia_time tk = get_sequence()->GetPositionTicks();
                 get_sequence()->m_evMmsgDone.ResetEvent();
                 link.m_tkRestart = tk + get_sequence()->m_tkBase;
@@ -454,7 +454,7 @@ namespace music
 
                auto & link = get_sequence()->GetPlayerLink();
 
-               link() |= sequence::FlagTempoChange;
+               link() |= sequence::e_flag_tempo_change;
 
                link.m_tkRestart = tkPosition;
 

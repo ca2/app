@@ -188,32 +188,41 @@ namespace user
 
          ::draw2d::brush_pointer brushText(e_create);
 
-
          auto pstyle = get_style(pgraphics);
 
          brushText->create_solid(get_color(pstyle,::user::e_element_text));
 
-
-
-
          auto pointViewportOrg = pgraphics->GetViewportOrg();
+
          pgraphics->set(brushText);
+
          ::size_array sizea;
+
          m_dcextension.GetTextExtent(pgraphics, m_strTopText, sizea);
+
          index x = 0;
+
          index right = (index)rectClient.right;
+
          double y = m_dItemHeight;
+
          index iStart = 0;
+
          index iNewStart = 0;
+
          index w;
+
          for (index i = 0; i < sizea.get_size(); i++)
          {
 
             if ((sizea[i].cx - x > right)
                   || i == sizea.get_upper_bound())
             {
+
                ::rect rect;
+
                rect.top = ::i32(y - pointOffset.y);
+
                if (i == 0)
                {
                   w = sizea[0].cx - x;
@@ -248,7 +257,6 @@ namespace user
          return;
 
       }
-
 
       m_pdrawlistitem->m_pgraphics = pgraphics;
       m_pdrawlistitem->m_iItemRectItem = -1;
@@ -1460,7 +1468,7 @@ namespace user
    i32 list::_001CalcItemHeight(::user::style * pstyle, int iBaseHeight)
    {
 
-      return (i32) (iBaseHeight * get_double(pstyle, ::user::e_double_list_item_height_rate, 1.0));
+      return (i32) (iBaseHeight * get_double(pstyle, ::user::e_double_list_item_height_rate, ::user::e_state_none, 1.0));
 
    }
 
@@ -1481,7 +1489,6 @@ namespace user
          }
 
       }
-
 
       index iItemHeight = 0;
 
@@ -1858,7 +1865,39 @@ namespace user
    ::count list::_001CalcDisplayItemCount()
    {
 
-      if (m_eview == impact_icon)
+      if (m_eview == impact_list)
+      {
+
+         ::rect rectView;
+
+         get_client_rect(&rectView);
+
+         index dHeight = (rectView.height() / m_dItemHeight) * m_dItemHeight;
+
+         index iWidth = rectView.width();
+
+         int iViewRowCount = 1;
+
+         if(m_dItemHeight > 0)
+         {
+
+            iViewRowCount = max(1, dHeight / m_dItemHeight);
+
+         }
+
+         int iColumnCount = 1;
+
+         if(m_iItemWidth > 0)
+         {
+
+            iColumnCount = iWidth / m_iItemWidth;
+
+         }
+
+         return iViewRowCount * iColumnCount;
+
+      }
+      else if (m_eview == impact_icon)
       {
 
          ::rect rectView;
@@ -2266,7 +2305,7 @@ namespace user
 
          }
 
-         double dHeight = m_dItemHeight;
+         index dHeight = (rectClient.height() / m_dItemHeight) * m_dItemHeight;
 
          auto pointOffset = get_viewport_offset();
 
@@ -2281,18 +2320,40 @@ namespace user
          else
          {
 
-            iy = (index)((point.y + pointOffset.y) + (((point.x + pointOffset.x) / m_iItemWidth)) * dHeight);
+            iy = (index)(point.y + pointOffset.y);
 
          }
 
          index iItem = -1;
 
+         int iViewRowCount = 1;
+
+         if(m_dItemHeight > 0)
+         {
+
+            iViewRowCount = max(1, dHeight / m_dItemHeight);
+
+         }
+
+         int iColumn = 0;
+
+         if(m_iItemWidth > 0)
+         {
+
+            iColumn = (point.x + pointOffset.x) / m_iItemWidth;
+
+         }
+
+         int iRow = 0;
+
          if (m_dItemHeight != 0)
          {
 
-            iItem = iy / m_dItemHeight;
+            iRow = iy / m_dItemHeight;
 
          }
+
+         iItem = iColumn * iViewRowCount + iRow;
 
          if (iItem < 0)
          {
@@ -2710,12 +2771,18 @@ namespace user
 
          index dHeight = (rectClient.height() / m_dItemHeight) * m_dItemHeight;
 
-         if (dHeight != 0)
+         if (dHeight != 0 && m_dItemHeight != 0)
          {
 
-            pdrawitem->m_rectItem.left = (::i32)(((pdrawitem->m_iItem * m_dItemHeight) / dHeight) * m_iItemWidth);
+            int iViewRowCount = max(1, dHeight / m_dItemHeight);
 
-            pdrawitem->m_rectItem.top = (::i32)fmod(pdrawitem->m_iItem * m_dItemHeight, dHeight);
+            int iColumn = pdrawitem->m_iItem / iViewRowCount;
+
+            int iRow = pdrawitem->m_iItem % iViewRowCount;
+
+            pdrawitem->m_rectItem.left = iColumn * m_iItemWidth;
+
+            pdrawitem->m_rectItem.top = iRow * m_dItemHeight;
 
          }
 
@@ -5732,7 +5799,7 @@ namespace user
 
          pgraphics->set_font(this, ::user::e_element_none);
 
-         m_dcextension.GetTextExtent(pgraphics, item.m_strText, size);
+         m_dcextension.GetTextExtent(pgraphics, item.m_strText, ::user::e_state_none, size);
 
          cx += size.cx;
 
@@ -5740,7 +5807,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      return (i32)(cx * get_double(pstyle, ::user::e_double_width_rate, 1.2));
+      return (i32)(cx * get_double(pstyle, ::user::e_double_width_rate, ::user::e_state_none, 1.2));
 
    }
 
@@ -6801,7 +6868,9 @@ namespace user
       pmessage->previous();
 
       m_iTopDisplayIndex = _001CalcDisplayTopIndex();
+
       index iLow = 0;
+
       for (m_iTopGroup = 0; m_iTopGroup < m_nGroupCount; m_iTopGroup++)
       {
          if (m_iTopDisplayIndex >= iLow && m_iTopDisplayIndex < (iLow + _001GetGroupItemCount(m_iTopGroup)))

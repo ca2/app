@@ -4,7 +4,7 @@
 
 CLASS_DECL_ACME int get_simple_ui_darkness();
 CLASS_DECL_ACME void set_simple_ui_darkness(int iDarkness);
-CLASS_DECL_ACME color get_simple_ui_color(::user::eelement eelement, ::user::estate estate = ::user::e_state_none);
+CLASS_DECL_ACME color get_simple_ui_color(::user::enum_element eelement, ::user::enum_state estate = ::user::e_state_none);
 
 
 namespace user

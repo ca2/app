@@ -10,20 +10,6 @@
 #ifdef __cplusplus
 
 
-//namespace acme
-//{
-//
-//
-//   //class patch;
-//   //class history;
-//   //class application;
-//   //class session;
-//   //class system;
-//
-//
-//} // namespace acme
-
-
 #undef SYSTEM_TYPE
 #define SYSTEM_TYPE ::acme::system
 
@@ -49,10 +35,6 @@
 
 #include "acme/const/_const.h"
 
-//#include "acme/platform/struct.h"
-
-//#include "acme/os/acme.h"
-
 #include "acme/memory/heap_c.h"
 
 #include "acme/memory/allocate_processor_cache_oriented.h"
@@ -61,14 +43,5 @@
 
 #include "acme/include/_include.h"
 
-
-
-//#define __get_acid_app \
-//extern "C" __declspec(dllexport) ::acme::application * get_acid_app() \
-//{ \
-//\
-//   return new application(); \
-//\
-//}
 
 

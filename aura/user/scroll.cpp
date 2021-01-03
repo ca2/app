@@ -385,7 +385,9 @@ namespace user
 
             auto pstyle = get_style(pgraphics);
 
-            rectNewPos.left = rectClient.right - get_int(pstyle,e_int_scroll_bar_width);
+            int iScrollBarWidth = get_int(pstyle,e_int_scroll_bar_width);
+
+            rectNewPos.left = rectClient.right - iScrollBarWidth;
             rectNewPos.top = rectClient.top;
             rectNewPos.right = rectClient.right;
             rectNewPos.bottom = rectNewPos.top+ rectClient.height() - get_final_x_scroll_bar_width();

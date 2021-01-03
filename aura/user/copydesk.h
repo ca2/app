@@ -20,7 +20,7 @@ namespace user
       };
 
 
-      enum e_flag
+      enum enum_flag
       {
 
          e_flag_none = 0,
@@ -50,7 +50,7 @@ namespace user
       virtual bool has_filea();
 
       virtual bool set_plain_text(const string & str, bool bForceSetIfEmpty = false);
-      virtual bool get_plain_text(string & str, e_flag eflag = e_flag_none);
+      virtual bool get_plain_text(string & str, enum_flag eflag = e_flag_none);
       virtual bool has_plain_text();
 
       virtual bool desk_to_image(::image_pointer & pimage);

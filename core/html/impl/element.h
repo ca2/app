@@ -25,7 +25,7 @@ namespace html
 
 
          enum_position              m_eposition;
-         flags < e_flag >        m_flags;
+         flags < enum_flag >        m_flags;
          float                   m_cxMax;
          float                   m_cxMin;
          string_map < i32, i32 > m_mapFont;

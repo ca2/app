@@ -13,7 +13,7 @@ namespace experience
    {
 
       m_pframewindow = pframewindow;
-      m_enumState = state_initial;
+      m_enumState = e_state_initial;
 
    }
 
@@ -57,7 +57,7 @@ namespace experience
             //pbase->m_bRet = true;
             //return;
          }
-         m_enumState = state_initial;
+         m_enumState = e_state_initial;
       }
    }
 
@@ -110,7 +110,7 @@ namespace experience
             pbase->m_bRet = true;
             return;
          }
-         m_enumState = state_initial;
+         m_enumState = e_state_initial;
       }
    }
 

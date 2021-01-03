@@ -2818,7 +2818,7 @@ namespace file
 
 
    DECLARE_C_FLAG(e_open, enum_open);
-   DECLARE_C_FLAG(e_state, enum_state);
+   DECLARE_C_FLAG(enum_state, enum_state);
 
 
 } // namespace file

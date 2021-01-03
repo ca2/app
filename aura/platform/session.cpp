@@ -215,9 +215,10 @@ namespace aura
    }
 
 
-   void session::simple_ui_draw_focus_rect(::user::interaction* pinteraction, ::draw2d::graphics_pointer& pgraphics)
+   bool session::simple_ui_draw_focus_rect(::user::interaction* pinteraction, ::draw2d::graphics_pointer& pgraphics)
    {
 
+      return false;
 
    }
 
@@ -4188,7 +4189,7 @@ namespace aura
    }
 
 
-   ::color session::get_color(::user::enum_element eelement, ::user::estate estate)
+   ::color session::get_color(const ::user::interaction * puserinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (eelement == ::user::e_element_background)
@@ -4256,6 +4257,22 @@ namespace aura
       }
 
       return ::color();
+
+   }
+
+
+   bool session::get_int(const ::user::interaction* pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate) const
+   {
+
+      return false;
+
+   }
+
+
+   bool session::get_double(const ::user::interaction* pinteraction, double & d, ::user::enum_double eint, ::user::enum_state estate) const
+   {
+
+      return false;
 
    }
 

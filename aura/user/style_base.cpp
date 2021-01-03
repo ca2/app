@@ -16,6 +16,54 @@ namespace user
    }
 
 
+   bool style_base::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame * pframe)
+   {
+
+      return false;
+
+   }
+
+
+   bool style_base::draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::rect & rect, ::draw2d::graphics_pointer & pgraphics)
+   {
+
+      return false;
+
+   }
+
+
+   bool style_base::simple_ui_draw_focus_rect(::user::interaction * pinteraction,::draw2d::graphics_pointer & pgraphics)
+   {
+
+      return false;
+
+   }
+
+
+   bool style_base::_001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, index iItem, ::user::toolbar * ptoolbar)
+   {
+
+      return false;
+
+   }
+
+
+   bool style_base::_001DrawSimpleScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pbar)
+   {
+
+      return false;
+
+   }
+
+
+   bool style_base::_001DrawScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pbar)
+   {
+
+      return false;
+
+   }
+
+
    enum_control_type style_base::get_control_type() const
    {
 
@@ -24,7 +72,7 @@ namespace user
    }
 
 
-   ::color style_base::get_color(const ::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate) const
+   ::color style_base::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (::is_set(pinteraction))
@@ -47,6 +95,22 @@ namespace user
       }
 
       return ::color();
+
+   }
+
+
+   bool style_base::get_int(const ::user::interaction * pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate) const
+   {
+
+      return false;
+
+   }
+
+
+   bool style_base::get_double(const ::user::interaction* pinteraction, double & d, ::user::enum_double edouble, ::user::enum_state estate) const
+   {
+
+      return false;
 
    }
 

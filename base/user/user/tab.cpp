@@ -79,7 +79,7 @@ namespace user
       m_iTabScrollMax = 0;
       m_iTabSize = 0;
       m_edisplayParentFrameAutoHide = ::e_display_none;
-      m_estate = state_initial;
+      m_estate = e_state_initial;
 
       m_iRestoredTabCount = 0;
 
@@ -3556,7 +3556,7 @@ namespace user
          else
          {
 
-            m_estate = state_initial;
+            m_estate = e_state_initial;
 
          }
 
@@ -3579,7 +3579,7 @@ namespace user
       if (m_estate == state_drag_commanded)
       {
 
-         m_estate = state_initial;
+         m_estate = e_state_initial;
 
       }
 

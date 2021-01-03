@@ -1499,7 +1499,7 @@ namespace user
 
       auto pstyle = get_style(g);
 
-      m_dItemHeight = (i32) (iItemHeight * get_double(pstyle, ::user::e_double_tree_item_height_rate, 1.0));
+      m_dItemHeight = (i32) (iItemHeight * get_double(pstyle, ::user::e_double_tree_item_height_rate, ::user::e_state_none, 1.0));
 
       //on_ui_event(event_calc_item_height, object_tree, this);
 

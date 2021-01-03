@@ -4,32 +4,7 @@
 
 
 
-//CLASS_DECL_APEX void os_trace(e_trace_level elevel, const char * pszTag, const char * pszMessage);
 CLASS_DECL_APEX void trace(e_trace_level elevel, const char * pszTag, const char * psz, const char * pszFile = nullptr, int iLine = -1);
-
-
-//#define _DEBUG_WIDE_(s) L ## s
-//#define _DEBUG_WIDE(s) _DEBUG_WIDE_(s)
-//
-//#define _NORMAL_BLOCK 1
-//
-//
-//CLASS_DECL_APEX i32 DECL_C debug_report(
-//i32 _ReportType,
-//const char * _Filename,
-//i32 _LineNumber,
-//const char * _ModuleName,
-//const char * _Format,
-//...);
-//
-//
-//CLASS_DECL_APEX i32 DECL_C debug_report(
-//i32 _ReportType,
-//const wchar_t * _Filename,
-//i32 _LineNumber,
-//const wchar_t * _ModuleName,
-//const wchar_t * _Format,
-//...);
 
 
 //////////////////////////////////////////////////////////////////////////////////

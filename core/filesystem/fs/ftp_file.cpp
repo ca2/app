@@ -76,7 +76,7 @@ retry:
 
       }
 
-      pclient->m_estate = ::ftp::client_socket::state_initial;
+      pclient->m_estate = ::ftp::client_socket::e_state_initial;
 
       iTry++;
 

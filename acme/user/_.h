@@ -14,11 +14,7 @@ DECLARE_C_FLAG(e_toolbar_item_style, enum_toolbar_item_style);
 namespace user
 {
 
-
-   using estate = cflag < enum_state >;
-
-   using eelement = cflag < enum_element >;
-
+   DECLARE_C_FLAG(enum_state, enum_state);
 
    CLASS_DECL_ACME string get_wallpaper(::index iIndex);
 

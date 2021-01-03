@@ -89,7 +89,7 @@ namespace user
       void draw_text();
 
 
-      ::user::estate get_user_state() const;
+      ::user::enum_state get_user_state() const;
 
 
    };

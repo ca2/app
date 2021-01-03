@@ -74,7 +74,7 @@ namespace experience
       }
 
    
-      ::color style::get_color(const ::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate) const
+      ::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
       {
 
          if (::is_set(pinteraction))
@@ -481,7 +481,7 @@ namespace experience
 
       ::index iTab = -1;
 
-      ::draw2d::brush_pointer brushText;
+      ::draw2d::brush_pointer brushText(e_create);
 
       ::draw2d::pen_pointer penBorder(e_create);
 
@@ -1272,7 +1272,7 @@ namespace experience
 
       ::u32 uImage = pmenucentral->command_image(item.m_id);
       
-      ::user::estate estate = ptoolbar->get_item_user_state(iItem);
+      ::user::enum_state estate = ptoolbar->get_item_user_state(iItem);
 
 //      ::user::toolbar::enum_element eelement = ::user::toolbar::e_element_item;
 //      ::user::toolbar::enum_element eelementImage = ::user::toolbar::element_image;
@@ -1581,7 +1581,7 @@ namespace experience
 
       ::u32 uImage = pmenucentral->command_image(item.m_id);
 
-      ::user::estate estate = ptoolbar->get_item_user_state(iItem);
+      ::user::enum_state estate = ptoolbar->get_item_user_state(iItem);
 
       ptoolbar->_001GetElementRect(iItem, rectItem, ::user::e_element_item, estate);
 

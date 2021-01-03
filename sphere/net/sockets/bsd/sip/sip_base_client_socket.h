@@ -21,7 +21,7 @@ namespace sockets
       };
 
       
-      enum e_state
+      enum enum_state
       {
          
          state_free, // caller/receiver
@@ -35,7 +35,7 @@ namespace sockets
       
 
       e_error        m_eerrorLast;
-      e_state        m_estate;
+      enum_state        m_estate;
       string         m_strTo;
       string         m_strFrom;
 

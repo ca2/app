@@ -9,7 +9,7 @@ namespace sockets
       public http_tunnel
    {
    public:
-      enum e_state
+      enum enum_state
       {
          state_free, // caller/receiver
          state_waiting_call_trying, // caller/server

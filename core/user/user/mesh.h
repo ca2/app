@@ -33,7 +33,7 @@ namespace user
          ItemStateSelected = 2,
       };
 
-      enum e_flag
+      enum enum_flag
       {
          flag_auto_arrange,
          flag_align_to_grid,
@@ -196,7 +196,7 @@ namespace user
       ::draw2d::pen_pointer                 m_penFocused;
       ::draw2d::pen_pointer                 m_penHighlight;
       EView                            m_eview;
-      flags < e_flag >                 m_flags;
+      flags < enum_flag >                 m_flags;
       __pointer(icon_layout)           m_piconlayout;
       __pointer(mesh_layout)           m_pmeshlayout;
       //::mutex                            m_mutex;

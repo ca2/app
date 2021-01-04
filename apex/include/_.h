@@ -325,8 +325,6 @@ CLASS_DECL_APEX void register_get_new_apex_library(const char* psz, PFN_NEW_APEX
 
 
 #define DECLARE_NEW_APEX_LIBRARY(X) extern "C" \
-
-
 ::apex::library * X##_new_apex_library()
 
 

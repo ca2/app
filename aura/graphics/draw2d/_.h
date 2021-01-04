@@ -1,9 +1,9 @@
 #pragma once
 
 
-DECLARE_C_FLAG(e_dock, enum_dock);
-DECLARE_C_FLAG(e_border, enum_border);
-DECLARE_C_FLAG(e_grip, enum_grip);
+DECLARE_ENUMERATION(e_dock, enum_dock);
+DECLARE_ENUMERATION(e_border, enum_border);
+DECLARE_ENUMERATION(e_grip, enum_grip);
 
 
 class image_frame_array;

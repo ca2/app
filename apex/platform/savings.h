@@ -24,8 +24,8 @@ namespace apex
    public:
 
 
-      cflag < enum_resource > m_eresourceflagsShouldSave;
-      cflag < enum_resource > m_eresourceflagsWarning;
+      enumeration < enum_resource > m_eresourceflagsShouldSave;
+      enumeration < enum_resource > m_eresourceflagsWarning;
 
 
       savings();

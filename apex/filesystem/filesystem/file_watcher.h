@@ -56,7 +56,7 @@ namespace file
       watch_id             m_id;
       ::file::path         m_pathFolder;
       ::file::path         m_pathFile;
-      cflag < e_action >   m_eaction;
+      enumeration < e_action >   m_eaction;
 
 
    };

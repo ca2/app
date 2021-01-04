@@ -6,11 +6,12 @@
 #include <sys/types.h>
 #include <unistd.h>
 #endif
-//#include "trace_category.h"
+#include "simple_trace.h"
+#include "trace.h"
 
 
-CLASS_DECL_APEX void __simple_tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
-CLASS_DECL_APEX void __simple_tracev(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+CLASS_DECL_ACME void __simple_tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_ACME void __simple_tracev(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
 
 
 //CLASS_DECL_APEX void FUNCTION_DEBUGBOX(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
@@ -56,7 +57,7 @@ void o_debug_string(const char * psz)
 }
 
 
-CLASS_DECL_APEX void __trace(enum_trace_level elevel, const char * pszTag, const char * pszText, const char * pszFile, int iLine)
+CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const char * pszText, const char * pszFile, int iLine)
 {
 
    strsize iLen;

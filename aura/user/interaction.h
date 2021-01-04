@@ -102,7 +102,7 @@ namespace user
       ::user::item                                 m_itemHoverMouse;
       ::size                                       m_sizeRestoreBroad;
       ::size                                       m_sizeRestoreCompact;
-      cflag < e_non_client >                       m_flagNonClient;
+      enumeration < e_non_client >                       m_flagNonClient;
       bool                                         m_bTrackMouseLeave;
       bool                                         m_bMouseHover;
       bool                                         m_bSimpleUIDefaultMouseHandling;

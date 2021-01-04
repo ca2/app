@@ -34,7 +34,7 @@ namespace file
    CLASS_DECL_APEX e_path get_path_type(const string & str, e_path epathForce = path_none);
 
    struct CLASS_DECL_APEX path_meta :
-      public cflag < ::file::enum_flag >
+      public enumeration < ::file::enum_flag >
    {
 
       e_path                     m_epath;
@@ -45,7 +45,7 @@ namespace file
       strsize                    m_iRelative; // if negative, not set/calculated/retrieved where relative starts - this information is very, very relative :-) much more than all own other ::file::path cached information (relative to which folders... not stored this information...)
 
 
-      path_meta(e_path epath = path_none, i64 iSize = -1, i32 iDir = -1, i64 iName = -1, strsize iRelative = -1, cflag < ::file::enum_flag > eflag = ::file::e_flag_none)
+      path_meta(e_path epath = path_none, i64 iSize = -1, i32 iDir = -1, i64 iName = -1, strsize iRelative = -1, enumeration < ::file::enum_flag > eflag = ::file::e_flag_none)
       {
 
          m_epath                             = epath;
@@ -53,7 +53,7 @@ namespace file
          m_iDir                              = iDir;
          m_iName                             = (strsize) iName;
          m_iRelative                         = iRelative;
-         cflag < ::file::enum_flag >::m_eenum   = eflag.cflag < ::file::enum_flag >::m_eenum;
+         enumeration < ::file::enum_flag >::m_eenum   = eflag.enumeration < ::file::enum_flag >::m_eenum;
 
       }
 

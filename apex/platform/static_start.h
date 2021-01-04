@@ -12,6 +12,7 @@
 
 
 class plex_heap_alloc_array;
+class simple_trace;
 
 
 namespace apex
@@ -37,11 +38,11 @@ namespace apex
 
 
 
-   extern critical_section* g_pcsTrace;
+   //extern critical_section * g_pcsTrace;
 
-   extern ::matter* g_ptrace;
+   //extern ::matter * g_ptrace;
 
-   extern simple_trace* g_psimpletrace;
+   //extern simple_trace * g_psimpletrace;
 
 
 

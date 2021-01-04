@@ -1708,7 +1708,7 @@ void simple_tool_command::SetText(const char *, const ::action_context & context
 //}
 
 
-//cflag < ::enum_toolbar_item_style > simple_toolbar::GetButtonStyle(index nIndex)
+//enumeration < ::enum_toolbar_item_style > simple_toolbar::GetButtonStyle(index nIndex)
 //{
 //
 //   __pointer(::user::toolbar_item) pitem = m_itema[nIndex];

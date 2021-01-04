@@ -46,8 +46,8 @@ namespace user
 
          string                        m_strPath;
          string                        m_strShellThemePrefix;
-         cflag < e_file_attribute >    m_eattribute;
-         cflag < e_icon >              m_eicon;
+         enumeration < e_file_attribute >    m_eattribute;
+         enumeration < e_icon >              m_eicon;
          i32                           m_iIcon;
          string                        m_strExtension;
 

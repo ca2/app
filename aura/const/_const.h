@@ -95,11 +95,11 @@
 //{
 //
 //   lib_main_none = 0,
-//   lib_main_any = 1 << 0,
-//   lib_main_process_attach = 1 << 1,
-//   lib_main_process_detach = 1 << 2,
-//   lib_main_thread_attach = 1 << 3,
-//   lib_main_thread_detach = 1 << 4,
+//   e_library_main_any = 1 << 0,
+//   e_library_main_process_attach = 1 << 1,
+//   e_library_main_process_attach = 1 << 2,
+//   e_library_main_thread_attach = 1 << 3,
+//   e_library_main_thread_detach = 1 << 4,
 //
 //};
 //

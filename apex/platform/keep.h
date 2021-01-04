@@ -955,11 +955,11 @@ sl.unlock()
 //public:
 //
 //
-//   cflag < FLAG >& m_eflagVariable;
-//   cflag < FLAG >          m_eflag;
+//   enumeration < FLAG >& m_eflagVariable;
+//   enumeration < FLAG >          m_eflag;
 //
 //
-//   ___keep_flag_on(cflag < FLAG >& eflagVariable, i64 iFlag) :
+//   ___keep_flag_on(enumeration < FLAG >& eflagVariable, i64 iFlag) :
 //      m_eflagVariable(eflagVariable),
 //      m_eflag(iFlag)
 //   {
@@ -987,7 +987,7 @@ sl.unlock()
 //};
 //
 //template < typename FLAG >
-//inline ___keep_flag_on < FLAG > keep_flag_on(cflag < FLAG > & eflagVariable, i64 iFlag)
+//inline ___keep_flag_on < FLAG > keep_flag_on(enumeration < FLAG > & eflagVariable, i64 iFlag)
 //{
 //
 //   return ___keep_flag_on < FLAG >(eflagVariable, iFlag);
@@ -1099,11 +1099,11 @@ inline ___keep_thread_flag keep_thread_flag(const ::id & id)
 //public:
 //
 //
-//   cflag < FLAG > &        m_eflagVariable;
-//   cflag < FLAG >          m_eflag;
+//   enumeration < FLAG > &        m_eflagVariable;
+//   enumeration < FLAG >          m_eflag;
 //
 //
-//   ___keep_flag_on(cflag < FLAG > & eflagVariable, i64 iFlag) :
+//   ___keep_flag_on(enumeration < FLAG > & eflagVariable, i64 iFlag) :
 //      m_eflagVariable(eflagVariable),
 //      m_eflag(iFlag)
 //   {
@@ -1131,7 +1131,7 @@ inline ___keep_thread_flag keep_thread_flag(const ::id & id)
 //};
 //
 //template < typename FLAG >
-//inline ___keep_flag_on < FLAG > keep_flag_on(cflag < FLAG > & eflagVariable, i64 iFlag)
+//inline ___keep_flag_on < FLAG > keep_flag_on(enumeration < FLAG > & eflagVariable, i64 iFlag)
 //{
 //
 //   return ___keep_flag_on < FLAG >(eflagVariable, iFlag);

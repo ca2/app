@@ -47,7 +47,7 @@ namespace linux
 //   }
 //
 //
-//   file::file(::object * pobject, const ::file::path & pszFileName, const cflag < ::file::e_open > & eopen) :
+//   file::file(::object * pobject, const ::file::path & pszFileName, const enumeration < ::file::e_open > & eopen) :
 //      ::object(pobject)
 //   {
 //
@@ -89,7 +89,7 @@ namespace linux
 //   }
 //
 
-   ::status::result file::open(const ::file::path & pszFileName, const cflag < ::file::e_open > & openParam)
+   ::status::result file::open(const ::file::path & pszFileName, const enumeration < ::file::e_open > & openParam)
    {
 
       if (m_iFile != INVALID_FILE)

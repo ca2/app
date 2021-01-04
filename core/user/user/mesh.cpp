@@ -5562,10 +5562,11 @@ namespace user
       }
    }
 
+
    ::user::enum_state draw_mesh_item::get_user_state() const
    {
 
-      ::user::enum_state estate = e_state_none;
+      ::user::e_state estate = e_state_none;
 
       if (m_bListItemSelected)
       {

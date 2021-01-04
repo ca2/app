@@ -125,7 +125,7 @@ namespace axis
 
          }
 
-         ::user::enum_state estate;
+         ::user::e_state estate;
 
          if (bHover)
          {

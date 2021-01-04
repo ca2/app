@@ -192,7 +192,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason,
 
    UNREFERENCED_PARAMETER(pReserved);
 
-   if (iLibMainDebugBox & lib_main_any)
+   if (iLibMainDebugBox & e_library_main_any)
    {
 
       module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain");
@@ -202,7 +202,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason,
    if (dwReason == DLL_PROCESS_ATTACH)
    {
 
-      if (iLibMainDebugBox & lib_main_process_attach)
+      if (iLibMainDebugBox & e_library_main_process_attach)
       {
 
          module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain process attach");
@@ -220,7 +220,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason,
    if (dwReason == DLL_PROCESS_DETACH)
    {
 
-      if (iLibMainDebugBox & lib_main_process_detach)
+      if (iLibMainDebugBox & e_library_main_process_attach)
       {
 
          module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain process detach");
@@ -238,7 +238,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason,
    if (dwReason == DLL_THREAD_ATTACH)
    {
 
-      if (iLibMainDebugBox & lib_main_thread_attach)
+      if (iLibMainDebugBox & e_library_main_thread_attach)
       {
 
          module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain thread attach");
@@ -256,7 +256,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason,
    if (dwReason == DLL_THREAD_DETACH)
    {
 
-      if (iLibMainDebugBox & lib_main_thread_detach)
+      if (iLibMainDebugBox & e_library_main_thread_detach)
       {
 
          module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain thread detach");

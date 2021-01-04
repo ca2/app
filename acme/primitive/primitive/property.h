@@ -574,7 +574,7 @@ public:
 ////
 ////   property & operator = (const block & block) { m_var = block; return *this; }
 ////   template < class E >
-////   property & operator = (const cflag < E > & eflag)
+////   property & operator = (const enumeration < E > & eflag)
 ////   {
 ////      m_var = eflag;
 ////      return *this;

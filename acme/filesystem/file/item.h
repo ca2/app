@@ -13,14 +13,14 @@ namespace file
 
       ::file::path               m_filepathUser;
       ::file::path               m_filepathFinal;
-      cflag < enum_flag >           m_flags;
+      enumeration < enum_flag >           m_flags;
       string                     m_strName;
 
 
       item();
       item(const item & item);
       item(const ::file::path & filepathUser, const ::file::path & filepathFinal);
-      item(const ::file::path & filepathUser, const ::file::path & filepathFinal, const cflag < enum_flag > & flags);
+      item(const ::file::path & filepathUser, const ::file::path & filepathFinal, const enumeration < enum_flag > & flags);
       virtual ~item();
 
 

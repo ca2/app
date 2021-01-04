@@ -1425,6 +1425,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="platform\obj_typ_ctr.cpp" />
     <ClCompile Include="platform\profiler.cpp" />
     <ClCompile Include="platform\regex.cpp" />
+    <ClCompile Include="platform\simple_trace.cpp" />
     <ClCompile Include="platform\static_start.cpp" />
     <ClCompile Include="platform\system.cpp" />
     <ClCompile Include="platform\text.cpp" />
@@ -1434,6 +1435,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="platform\timer_event.cpp" />
     <ClCompile Include="platform\timer_item.cpp" />
     <ClCompile Include="platform\timer_task.cpp" />
+    <ClCompile Include="platform\trace.cpp" />
     <ClCompile Include="platform\trace_category.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />
@@ -1756,6 +1758,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="platform\serial_impl.h" />
     <ClInclude Include="platform\shell_launcher.h" />
     <ClInclude Include="platform\simple_app.h" />
+    <ClInclude Include="platform\simple_trace.h" />
     <ClInclude Include="platform\static_start.h" />
     <ClInclude Include="platform\status.h" />
     <ClInclude Include="platform\system.h" />
@@ -1766,6 +1769,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="platform\timer_event.h" />
     <ClInclude Include="platform\timer_item.h" />
     <ClInclude Include="platform\timer_task.h" />
+    <ClInclude Include="platform\trace.h" />
     <ClInclude Include="platform\trace_category.h" />
     <ClInclude Include="platform\version.h" />
     <ClInclude Include="platform\_generic_object_constructor_impl.h" />

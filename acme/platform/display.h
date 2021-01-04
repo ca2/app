@@ -4,9 +4,9 @@
 #ifdef __cplusplus
 
 
-DECLARE_C_FLAG(e_display, enum_display);
-DECLARE_C_FLAG(e_activation, enum_activation);
-DECLARE_C_FLAG(e_appearance, enum_appearance);
+DECLARE_ENUMERATION(e_display, enum_display);
+DECLARE_ENUMERATION(e_activation, enum_activation);
+DECLARE_ENUMERATION(e_appearance, enum_appearance);
 
 
 #endif

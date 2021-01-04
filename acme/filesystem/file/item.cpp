@@ -31,7 +31,7 @@ namespace file
    }
 
 
-   item::item(const ::file::path & filepathUser, const ::file::path & filepathFinal, const cflag < enum_flag > & flags)
+   item::item(const ::file::path & filepathUser, const ::file::path & filepathFinal, const enumeration < enum_flag > & flags)
    {
 
       m_filepathUser = filepathUser;

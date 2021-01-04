@@ -956,7 +956,7 @@ namespace design
 #include "align.h"
 
 
-DECLARE_C_FLAG(e_align, enum_align);
+DECLARE_ENUMERATION(e_align, enum_align);
 
 
 inline ::i32 area(::i32 cx, ::i32 cy) { return (cx < 0 && cy < 0 ? -1 : 1) * cx * cy; }

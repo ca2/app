@@ -44,7 +44,7 @@ namespace user
       //struct window_state                     m_stateEventScreen;
 
 
-      cflag < enum_flag >                          m_eflag;
+      enumeration < enum_flag >                          m_eflag;
       bool                                      m_bFillParent;
       ::rect                                    m_rectHint;
       ::rect                                    m_rectPadding;

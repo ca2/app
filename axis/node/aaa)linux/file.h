@@ -52,7 +52,7 @@ namespace linux
       file();
       //file(::layered * pobjectContext);
       //file(::object * pobject, int hFile);
-      //file(::object * pobject, const ::file::path & pszFileName, const cflag < ::file::e_open > & eflag);
+      //file(::object * pobject, const ::file::path & pszFileName, const enumeration < ::file::e_open > & eflag);
 
       virtual ~file();
 
@@ -70,7 +70,7 @@ namespace linux
       virtual void SetFilePath(const char * pszNewName);
 
 
-      virtual ::status::result open(const ::file::path & pszFileName, const cflag < ::file::e_open > & eflag) override;
+      virtual ::status::result open(const ::file::path & pszFileName, const enumeration < ::file::e_open > & eflag) override;
 
 
       //virtual bool PASCAL GetStatus(const char * pszFileName, ::file::file_status& rStatus);

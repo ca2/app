@@ -494,36 +494,17 @@ CLASS_DECL_ACME enum_platform_level get_platform_level();
 #define __u64xy(u)                                    __u64x(u), __u64y(u)
 
 
-//#ifndef GET_X_LPARAM
-//#define GET_X_LPARAM(lparam)                          ((i32)(i16)LOWORD(lparam))
-//#endif
-//
-//
-//#ifndef GET_Y_LPARAM
-//#define GET_Y_LPARAM(lparam)                          ((i32)(i16)HIWORD(lparam))
-//#endif
-
 #define GET_X_LPARAM64(lparam)                        ((i32)(i16)LODWORD(lparam))
 #define GET_Y_LPARAM64(lparam)                        ((i32)(i16)HIDWORD(lparam))
 
 
-//CLASS_DECL_ACME int get_acme_init();
 
-//extern "C"
-//CLASS_DECL_ACME int_bool defer_acme_init();
-
-//extern "C"
-//CLASS_DECL_ACME int_bool defer_acme_term();
+//typedef struct rdp_freerdp freerdp;
 
 
-
-
-typedef struct rdp_freerdp freerdp;
-
-
-CLASS_DECL_ACME int_bool
-freerdp_authenticate(void *instance, char **username, char **password, char **domain, const char *pszServerName,
-                     int bInteractive);
+//CLASS_DECL_ACME int_bool
+//freerdp_authenticate(void *instance, char **username, char **password, char **domain, const char *pszServerName,
+  //                   int bInteractive);
 
 
 #if !defined(O_BINARY) && !defined(WINDOWS)
@@ -543,7 +524,6 @@ CLASS_DECL_ACME void ansi_unlink(const char *psz);
 
 
 CLASS_DECL_ACME ::e_status get_last_status();
-//CLASS_DECL_ACME void set_last_status(::e_status estatus);
 
 typedef char ansichar;
 
@@ -645,6 +625,39 @@ CLASS_DECL_ACME extern u32 g_tickStartTime;
 //CLASS_DECL_ACME void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
 //CLASS_DECL_ACME void __tracef(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
 //CLASS_DECL_ACME void __tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
+
+
+
+
+
+
+#define ALOG_CONTEXT context_trace_object()
+
+#define _S_ALOG_CONTEXT ::context_trace_object()
+
+
+
+CLASS_DECL_ACME::matter * general_trace_object();
+
+CLASS_DECL_ACME int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable);
+
+inline ::matter * context_trace_object() { return general_trace_object(); }
+
+
+CLASS_DECL_ACME void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+CLASS_DECL_ACME void __tracef(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
+CLASS_DECL_ACME void __tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
+
+
+#define __alog(...) __tracef(__VA_ARGS__)
+
+#define INFO(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+#define WARN(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_warning, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+#define ERR(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+#define FATAL(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+
+#define TRACE(...) INFO(__VA_ARGS__)
+
 
 
 CLASS_DECL_ACME const char *trace_category_name(e_trace_category ecategory);
@@ -2577,7 +2590,7 @@ using size = size_type<SIZE32, POINT32, RECT32>;
 #include "acme/primitive/primitive/block.h"
 #include "acme/memory/memory.h"
 
-#include "acme/primitive/primitive/cflag.h"
+#include "acme/primitive/primitive/enumeration.h"
 
 
 class thread;
@@ -2600,7 +2613,7 @@ class action_context;
 #include "acme/primitive/primitive/eobject.h"
 
 
-DECLARE_C_FLAG(e_message_box, enum_message_box);
+DECLARE_ENUMERATION(e_message_box, enum_message_box);
 
 
 namespace user
@@ -2648,14 +2661,14 @@ namespace file
 {
 
 
-   DECLARE_C_FLAG(e_open, enum_open);
-   DECLARE_C_FLAG(e_state, enum_state);
+   DECLARE_ENUMERATION(e_open, enum_open);
+   DECLARE_ENUMERATION(e_state, enum_state);
 
 
 } // namespace file
 
 
-using eiostate = ::cflag<::file::e_iostate>;
+using eiostate = ::enumeration<::file::e_iostate>;
 
 using ecommand = ::enumeration<enum_command>;
 
@@ -2910,7 +2923,7 @@ CLASS_DECL_ACME __pointer(callstack) get_callstack(const char *pszFormat = "%f(%
 
 CLASS_DECL_ACME __pointer(callstack) get_callstack(e_callstack ecallstack, int iCallStackAddUp = 0);
 
-CLASS_DECL_ACME void set_callstack_mask(cflag<e_callstack> ecallstack);
+CLASS_DECL_ACME void set_callstack_mask(enumeration<e_callstack> ecallstack);
 
 CLASS_DECL_ACME e_callstack get_callstack_mask();
 

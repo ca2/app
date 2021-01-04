@@ -1219,7 +1219,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="platform\console_application.cpp" />
     <ClCompile Include="platform\context.cpp" />
     <ClCompile Include="platform\context_thread.cpp" />
-    <ClCompile Include="platform\debug.cpp" />
     <ClCompile Include="platform\department.cpp" />
     <ClCompile Include="platform\history.cpp" />
     <ClCompile Include="platform\international_locale_schema.cpp" />
@@ -1240,15 +1239,12 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\shell_launcher.cpp" />
     <ClCompile Include="platform\simple_log.cpp" />
-    <ClCompile Include="platform\simple_trace.cpp" />
     <ClCompile Include="platform\static_setup.cpp" />
     <ClCompile Include="platform\static_start.cpp" />
     <ClCompile Include="platform\static_start_apex.cpp" />
     <ClCompile Include="platform\str_context.cpp" />
     <ClCompile Include="platform\system.cpp" />
-    <ClCompile Include="platform\system_trace.cpp" />
     <ClCompile Include="platform\text.cpp" />
-    <ClCompile Include="platform\trace.cpp" />
     <ClCompile Include="platform\_.cpp" />
     <ClCompile Include="primitive\data\container.cpp" />
     <ClCompile Include="primitive\data\data.cpp" />
@@ -1435,7 +1431,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="platform\const.h" />
     <ClInclude Include="platform\context.h" />
     <ClInclude Include="platform\context_thread.h" />
-    <ClInclude Include="platform\debug.h" />
     <ClInclude Include="platform\definition.h" />
     <ClInclude Include="platform\department.h" />
     <ClInclude Include="platform\display.h" />
@@ -1478,14 +1473,11 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="platform\shell_launcher.h" />
     <ClInclude Include="platform\simple_app.h" />
     <ClInclude Include="platform\simple_log.h" />
-    <ClInclude Include="platform\simple_trace.h" />
     <ClInclude Include="platform\static_setup.h" />
     <ClInclude Include="platform\static_start.h" />
     <ClInclude Include="platform\status.h" />
     <ClInclude Include="platform\str_context.h" />
     <ClInclude Include="platform\system.h" />
-    <ClInclude Include="platform\trace.h" />
-    <ClInclude Include="platform\trace_category.h" />
     <ClInclude Include="platform\version.h" />
     <ClInclude Include="platform\_generic_object_constructor_impl.h" />
     <ClInclude Include="platform\_platform.h" />

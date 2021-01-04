@@ -14355,7 +14355,7 @@ restart:
       if (m_pdrawcontext != nullptr)
       {
 
-         ::user::enum_state estate = e_state_none;
+         ::user::e_state estate = e_state_none;
 
          if (!is_window_enabled())
          {
@@ -14396,7 +14396,7 @@ restart:
       else
       {
 
-         ::user::enum_state estate = ::user::e_state_none;
+         ::user::e_state estate = ::user::e_state_none;
 
          if (!is_window_enabled())
          {

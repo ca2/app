@@ -168,7 +168,7 @@ public:
    }
 
    template < typename ENUM >
-   payload(const cflag < ENUM > & eflag)
+   payload(const enumeration < ENUM > & eflag)
    {
       m_etype = e_type_new;
       operator = (eflag);
@@ -487,12 +487,12 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    }
 
    template < typename ENUM >
-   payload& operator = (const cflag < ENUM > & eflag)
+   payload& operator = (const enumeration < ENUM > & eflag)
    {
       return operator =(eflag.m_eenum);
    }
 
-   payload & operator |= (cflag < ::file::enum_flag > eflag);
+   payload & operator |= (enumeration < ::file::enum_flag > eflag);
 
    payload& operator = (const ::e_status & estatus)
    {

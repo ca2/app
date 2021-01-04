@@ -5791,7 +5791,7 @@ void payload::null()
 }
 
 
-payload & payload::operator |= (cflag < ::file::enum_flag > eflag)
+payload & payload::operator |= (enumeration < ::file::enum_flag > eflag)
 {
 
    auto pfile = cast < ::file::file > ();

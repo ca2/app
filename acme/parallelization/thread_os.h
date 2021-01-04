@@ -58,8 +58,8 @@ CLASS_DECL_ACME hthread_t get_current_hthread();
 
 //#define __prevent_bad_status_exception __keep_thread_flag(id_thread_prevent_bad_status_exception)
 
-//CLASS_DECL_ACME cflag < e_thread_flag > & thread_flags();
-//CLASS_DECL_ACME void thread_set_flag(const cflag < e_thread_flag > & eflag, bool bSet = true);
+//CLASS_DECL_ACME enumeration < e_thread_flag > & thread_flags();
+//CLASS_DECL_ACME void thread_set_flag(const enumeration < e_thread_flag > & eflag, bool bSet = true);
 //CLASS_DECL_ACME void thread_set_fast_path(bool bFastPath = true);
 //CLASS_DECL_ACME bool thread_is_fast_path();
 //CLASS_DECL_ACME void thread_set_zip_is_dir(bool bZipIsDir = true);

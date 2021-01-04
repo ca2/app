@@ -167,34 +167,6 @@ extern CLASS_DECL_APEX int g_bApex;
 #endif
 
 
-#define ALOG_CONTEXT context_trace_object()
-
-#define _S_ALOG_CONTEXT ::context_trace_object()
-
-
-
-CLASS_DECL_APEX ::matter * general_trace_object();
-
-CLASS_DECL_APEX int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable);
-
-inline ::matter * context_trace_object() { return general_trace_object(); }
-
-
-CLASS_DECL_APEX void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-CLASS_DECL_APEX void __tracef(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
-CLASS_DECL_APEX void __tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
-
-
-#define __alog(...) __tracef(__VA_ARGS__)
-
-#define INFO(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-#define WARN(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_warning, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-#define ERR(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-#define FATAL(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-
-#define TRACE(...) INFO(__VA_ARGS__)
-
-
 namespace aqua
 {
 

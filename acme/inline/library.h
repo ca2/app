@@ -10,16 +10,16 @@
 #include "acme/os/windows_common/_c.h"
 
 
-#ifndef LIB_MAIN_DEBUG_BOX
+#ifndef LIBRARY_MAIN_DEBUG_BOX
 
-#define LIB_MAIN_DEBUG_BOX lib_main_none
+#define LIBRARY_MAIN_DEBUG_BOX e_library_main_none
 
 #endif
 
 
-#ifndef LIB_MAIN_INT_DELAY_MS
+#ifndef LIBRARY_MAIN_INT_DELAY_MS
 
-#define LIB_MAIN_INT_DELAY_MS {}
+#define LIBRARY_MAIN_INT_DELAY_MS {}
 
 #endif
 
@@ -30,7 +30,7 @@
 BOOL WINAPI DllMain(HINSTANCE hinstance, ::u32 dwReason, LPVOID pReserved)
 {
 
-   return _001DefaultDllMain(hinstance, dwReason, pReserved, LIB_MAIN_DEBUG_BOX, LIB_MAIN_INT_DELAY_MS);
+   return _001DefaultDllMain(hinstance, dwReason, pReserved, LIBRARY_MAIN_DEBUG_BOX, LIBRARY_MAIN_INT_DELAY_MS);
 
 }
 

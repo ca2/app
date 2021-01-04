@@ -44,7 +44,7 @@
    }
 
 
-#define __discrete_cflag(EXPORT, CLASS, ENUM) __class(EXPORT, CLASS, cflag < ENUM >)
+#define __discrete_cflag(EXPORT, CLASS, ENUM) __class(EXPORT, CLASS, enumeration < ENUM >)
 
 
 #define TOKENPASTE(x, y) x ## y

@@ -6,20 +6,6 @@ CLASS_DECL_ACME void __tracea(::matter * pmatter, enum_trace_level elevel, const
 CLASS_DECL_ACME void __tracev(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
 
 
-class CLASS_DECL_ACME simple_trace :
-   virtual public ::matter
-{
-public:
-
-
-   simple_trace();
-   virtual ~simple_trace();
-
-
-   virtual void __tracea(::matter * pmatter, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz) override;
-
-
-};
 
 
 extern const char * g_pszTraceLevelName[];

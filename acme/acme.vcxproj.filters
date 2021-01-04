@@ -2381,6 +2381,12 @@
     <ClInclude Include="os\windows_common\prop_variant.h">
       <Filter>Header Files\os\windows_common</Filter>
     </ClInclude>
+    <ClInclude Include="platform\trace.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\simple_trace.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3148,9 +3154,6 @@
     <ClCompile Include="platform\checked.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\debug.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\display.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -3504,6 +3507,15 @@
     </ClCompile>
     <ClCompile Include="graphics\draw2d\os_font_name.cpp">
       <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\simple_trace.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\trace.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\debug.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

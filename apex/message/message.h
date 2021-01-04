@@ -26,7 +26,7 @@ namespace message
       wparam                     m_wparam;
       lparam                     m_lparam;
       LRESULT                    m_lresult;
-      cflag < enum_flag >           m_eflagMessage;
+      enumeration < enum_flag >           m_eflagMessage;
 
       index                      m_iRouteIndex;
       index                      m_iParam;

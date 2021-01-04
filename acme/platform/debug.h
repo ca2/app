@@ -350,7 +350,7 @@ namespace papaya
 }
 //
 //
-//inline enum_trace_level e_trace_level_constraint(enum_trace_level elevel)
+//inline enum_trace_level trace_level_constraint(enum_trace_level elevel)
 //{
 //
 //   return ::papaya::constraint(elevel, e_trace_level_none, e_trace_level_count);
@@ -362,22 +362,22 @@ namespace papaya
 //
 //
 
-enum_trace_level e_trace_level_constraint(enum_trace_level elevel);
+CLASS_DECL_ACME enum_trace_level trace_level_constraint(enum_trace_level elevel);
 //{
 //
-// return g_pszTraceLevelName[e_trace_level_constraint(elevel)];
+// return g_pszTraceLevelName[trace_level_constraint(elevel)];
 //
 //// }
 
-CLASS_DECL_ACME const char * e_trace_level_name(enum_trace_level elevel);
+CLASS_DECL_ACME const char * trace_level_name(enum_trace_level elevel);
 
 
 //extern char g_chaTraceLevel[];;;
 //
 //
-CLASS_DECL_ACME char e_trace_level_char(enum_trace_level elevel);
+CLASS_DECL_ACME char trace_level_char(enum_trace_level elevel);
 //{
 //
-//   return g_chaTraceLevel[e_trace_level_constraint(elevel)];
+//   return g_chaTraceLevel[trace_level_constraint(elevel)];
 //
 //}

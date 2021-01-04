@@ -389,13 +389,13 @@ CLASS_DECL_ACME void __simple_tracea(::matter * pobjectContext, enum_trace_level
 
       ::str::begins_eat_ci(strTopic, "struct ");
 
-      strMessage.Format("%c:%s> %s", e_trace_level_char(elevel), strTopic.c_str(), psz);
+      strMessage.Format("%c:%s> %s", trace_level_char(elevel), strTopic.c_str(), psz);
 
    }
    else
    {
 
-      strMessage.Format("%c> %s", e_trace_level_char(elevel), psz);
+      strMessage.Format("%c> %s", trace_level_char(elevel), psz);
 
    }
 

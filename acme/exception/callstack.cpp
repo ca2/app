@@ -129,7 +129,7 @@ CLASS_DECL_ACME __pointer(callstack) get_callstack(e_callstack ecallstack, int i
 }
 
 
-CLASS_DECL_ACME void set_callstack_mask(cflag < e_callstack > ecallstack)
+CLASS_DECL_ACME void set_callstack_mask(enumeration < e_callstack > ecallstack)
 {
 
    g_ecallstack = ecallstack;

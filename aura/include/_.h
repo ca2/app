@@ -2523,15 +2523,15 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //#include "aura/primitive/primitive/block.h"
 //#include "aura/memory/memory.h"
 //
-//#include "aura/primitive/primitive/cflag.h"
+//#include "aura/primitive/primitive/enumeration.h"
 
 //
 //namespace user
 //{
 //
 //
-//   //DECLARE_C_FLAG(enum_state, enum_state);
-//   using eelement = cflag < enum_element >;
+//   //DECLARE_ENUMERATION(enum_state, enum_state);
+//   using eelement = enumeration < enum_element >;
 //
 //
 //} // namespace user
@@ -2543,12 +2543,12 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 //
 //
-////using eobject = cflag < ::enum_object >;
+////using eobject = enumeration < ::enum_object >;
 //class action_context;
 //
 //#include "aura/primitive/primitive/eobject.h"
 //
-//using emessagebox = cflag < enum_message_box >;
+//using emessagebox = enumeration < enum_message_box >;
 //
 //#include "aura/primitive/primitive/function_base.h"
 //
@@ -2564,9 +2564,9 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //#include "aura/platform/status.h"
 //#include "aura/primitive/primitive/enum_type.h"
 //
-//using efileopen = cflag < ::file::e_open >;
+//using efileopen = enumeration < ::file::e_open >;
 //
-//using eiostate = ::cflag < ::file::e_iostate >;
+//using eiostate = ::enumeration < ::file::e_iostate >;
 //
 //using ecommand = ::enumeration < enum_command >;
 //

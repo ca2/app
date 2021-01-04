@@ -52,7 +52,7 @@ namespace linux
       file();
       //file(::matter * pobject);
       //file(::matter * pobject, int hFile);
-      //file(::matter * pobject, const ::file::path & pszFileName, const cflag < ::file::e_open > & eflag);
+      //file(::matter * pobject, const ::file::path & pszFileName, const enumeration < ::file::e_open > & eflag);
 
       virtual ~file();
 

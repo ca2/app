@@ -47,7 +47,7 @@ namespace linux
 //   }
 //
 //
-//   file::file(::matter * pobject, const ::file::path & pszFileName, const cflag < ::file::e_open > & eopen) :
+//   file::file(::matter * pobject, const ::file::path & pszFileName, const enumeration < ::file::e_open > & eopen) :
 //      ::matter(pobject)
 //   {
 //

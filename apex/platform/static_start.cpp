@@ -125,11 +125,6 @@ namespace apex
 
    //bool g_bOutputDebugString;
 
-   critical_section* g_pcsTrace;
-
-   ::matter* g_ptrace;
-
-   simple_trace* g_psimpletrace;
 
 //#ifdef __APPLE__
 //
@@ -291,11 +286,11 @@ namespace apex
 
       //g_bOutputDebugString = true;
 
-      g_pcsTrace = nullptr;
+      //g_pcsTrace = nullptr;
 
-      g_ptrace = nullptr;
+      //g_ptrace = nullptr;
 
-      g_psimpletrace = nullptr;
+      //g_psimpletrace = nullptr;
 
 
       g_pexceptionengine = nullptr;
@@ -433,7 +428,7 @@ namespace apex
 
 #endif
 
-      g_pcsTrace = new critical_section;
+
 
 //#ifdef WINDOWS
 //
@@ -494,10 +489,6 @@ namespace apex
 //      g_pmapObjTypCtr = new map < const char*, const char*, ::i64, ::i64 >;
 //
 //#endif
-
-      g_psimpletrace = new simple_trace;
-
-      g_ptrace = g_psimpletrace;
 
 #ifdef BSD_STYLE_SOCKETS
 
@@ -725,8 +716,6 @@ namespace apex
 
       ::channel::s_pmutexChannel.release();
 
-      g_ptrace = g_psimpletrace;
-
       ::acme::del(g_pmapRTL);
 
 #if defined(LINUX) || defined(__APPLE__)
@@ -808,9 +797,9 @@ namespace apex
 
 #endif
 
-      ::acme::del(g_psimpletrace);
+      //::acme::del(g_psimpletrace);
 
-      ::acme::del(g_pcsTrace);
+      //::acme::del(g_pcsTrace);
 
 //#ifdef ANDROID
 //

@@ -5,6 +5,7 @@
 #include "acme/primitive/primitive/malloc.h"
 #include "acme/astr.h"
 #include "acme/os/_os.h"
+#include "acme/platform/simple_trace.h"
 
 
 ::array < ::promise::routine > * g_proutineaOsTerm;
@@ -149,6 +150,12 @@ namespace acme
    critical_section* g_pcsGlobal;
 
    bool g_bOutputDebugString;
+
+   critical_section * g_pcsTrace;
+
+   ::matter * g_ptrace;
+
+   simple_trace * g_psimpletrace;
 
    //critical_section* g_pcsTrace;
 
@@ -316,6 +323,12 @@ namespace acme
       g_pcsGlobal = nullptr;
 
       g_bOutputDebugString = true;
+
+      g_pcsTrace = nullptr;
+
+      g_ptrace = nullptr;
+
+      g_psimpletrace = nullptr;
 
       //g_pcsTrace = nullptr;
 
@@ -551,6 +564,13 @@ namespace acme
 #endif
 
       trace_category_static_init();
+
+      g_pcsTrace = new critical_section;
+
+      g_psimpletrace = new simple_trace;
+
+      g_ptrace = g_psimpletrace;
+
 
       // acme commented
       //g_psimpletrace = new simple_trace;
@@ -804,8 +824,12 @@ namespace acme
 
       ::acme::del(g_pacmestrpool);
 
+
+
       // acme commented
       //g_ptrace = g_psimpletrace;
+
+      g_ptrace = g_psimpletrace;
 
       ::acme::del(g_pmapRTL);
 
@@ -904,6 +928,10 @@ namespace acme
       //::acme::del(g_psimpletrace);
 
       //::acme::del(g_pcsTrace);
+      
+      ::acme::del(g_psimpletrace);
+
+      ::acme::del(g_pcsTrace);
 
       trace_category_static_term();
 

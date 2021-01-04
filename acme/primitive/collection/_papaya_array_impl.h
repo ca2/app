@@ -147,7 +147,7 @@ namespace papaya
          {
 
          }
-         else if (payload.get_type() == ::type_stra)
+         else if (payload.get_type() == ::e_type_stra)
          {
 
             i = ::papaya::array::add(array, payload.stra());
@@ -177,7 +177,7 @@ namespace papaya
             }
 
          }
-         else if (payload.get_type() == ::type_inta)
+         else if (payload.get_type() == ::e_type_inta)
          {
 
             for (::index i = 0; i < payload.inta().get_count(); i++)
@@ -195,7 +195,7 @@ namespace papaya
             }
 
          }
-         else if (payload.get_type() == ::type_propset)
+         else if (payload.get_type() == ::e_type_propset)
          {
 
             for (auto & value : payload.propset().values())

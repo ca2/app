@@ -24,7 +24,7 @@ namespace multimedia
 
       string strPath;
 
-      if (varFile.get_type() == ::type_string)
+      if (varFile.get_type() == ::e_type_string)
       {
          
          strPath = varFile;

@@ -35,7 +35,7 @@ void stream::write_object(const ::id & id, ::matter * pobject)
 
    auto strId = factory_id_to_text(pobject->type_name());
 
-   exchange(property_id, strId);
+   exchange(e_property_id, strId);
 
    pobject->exchange(*this);
 
@@ -47,7 +47,7 @@ __pointer(::matter) stream::read_object(const ::id & id)
 
    string strId;
 
-   exchange(property_id, strId);
+   exchange(e_property_id, strId);
 
    auto pobject = create_object_from_text(strId);
 
@@ -403,95 +403,95 @@ void stream::write(const payload & payload)
 
    switch (etype)
    {
-   case type_parareturn:
+   case e_type_parareturn:
    case e_type_new:
    case e_type_null:
-   case type_key_exists:
+   case e_type_key_exists:
    case e_type_empty:
    case e_type_empty_argument:
-   case type_not_found:
+   case e_type_not_found:
       break;
-   case type_string:
+   case e_type_string:
    {
       write(payload.m_str);
    }
    break;
-   case type_pstring:
+   case e_type_pstring:
    {
       write(*payload.m_pstr);
    }
    break;
-   case type_i8:
+   case e_type_i8:
       *this << payload.m_i8;
       break;
-   case type_i16:
+   case e_type_i16:
       *this << payload.m_i16;
       break;
-   case type_u8:
+   case e_type_u8:
       *this << payload.m_u8;
       break;
-   case type_u16:
+   case e_type_u16:
       *this << payload.m_u16;
       break;
-   case type_i32:
+   case e_type_i32:
       *this << payload.m_i32;
       break;
-   case type_i64:
+   case e_type_i64:
       *this << payload.m_i64;
       break;
-   case type_u32:
+   case e_type_u32:
       *this << payload.m_u32;
       break;
-   case type_u64:
+   case e_type_u64:
       *this << payload.m_u64;
       break;
-   case type_pi8:
+   case e_type_pi8:
       *this << *payload.m_pi8;
       break;
-   case type_pi16:
+   case e_type_pi16:
       *this << *payload.m_pi16;
       break;
-   case type_pu8:
+   case e_type_pu8:
       *this << *payload.m_pu8;
       break;
-   case type_pu16:
+   case e_type_pu16:
       *this << *payload.m_pu16;
       break;
-   case type_pi32:
+   case e_type_pi32:
       *this << *payload.m_pi32;
       break;
-   case type_pi64:
+   case e_type_pi64:
       *this << *payload.m_pi64;
       break;
-   case type_pu32:
+   case e_type_pu32:
       *this << *payload.m_pu32;
       break;
-   case type_pu64:
+   case e_type_pu64:
       *this << *payload.m_pu64;
       break;
-   case type_double:
+   case e_type_double:
       *this << payload.m_d;
       break;
-   case type_bool:
+   case e_type_bool:
       *this << payload.m_b;
       break;
-   case type_inta:
+   case e_type_inta:
       *this << payload.inta();
       break;
-   case type_memory:
+   case e_type_memory:
       *this << payload.memory();
       break;
-   case type_stra:
+   case e_type_stra:
       *this << payload.stra();
       break;
-   case type_propset:
+   case e_type_propset:
       *this << payload.propset();
       break;
-   case type_id:
+   case e_type_id:
       *this << payload.m_id;
       break;
-   case type_element:
-   case type_path:
+   case e_type_element:
+   case e_type_path:
    {
 
       __save_object(*this, payload.cast <::matter>());

@@ -910,7 +910,7 @@ namespace apex
 
    //   ::function_arg function;
 
-   //   if (payload.get_type() != type_propset)
+   //   if (payload.get_type() != e_type_propset)
    //   {
 
    //      strMessage = payload;
@@ -10834,7 +10834,7 @@ namespace apex
    string application::as_string(const payload& payload)
    {
 
-      if (payload.get_type() == ::type_string)
+      if (payload.get_type() == ::e_type_string)
       {
 
          if (is_url(payload))

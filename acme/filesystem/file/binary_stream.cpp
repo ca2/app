@@ -171,101 +171,101 @@ void binary_stream::write(const payload & payload)
 
    switch (etype)
    {
-   case type_parareturn:
+   case e_type_parareturn:
    case e_type_new:
    case e_type_null:
-   case type_key_exists:
+   case e_type_key_exists:
    case e_type_empty:
    case e_type_empty_argument:
-   case type_not_found:
+   case e_type_not_found:
       break;
-   case type_string:
+   case e_type_string:
    {
       write(payload.m_str);
    }
    break;
-   case type_pstring:
+   case e_type_pstring:
    {
       write(*payload.m_pstr);
    }
    break;
-   case type_i8:
+   case e_type_i8:
       *this << payload.m_i8;
       break;
-   case type_i16:
+   case e_type_i16:
       *this << payload.m_i16;
       break;
-   case type_u8:
+   case e_type_u8:
       *this << payload.m_u8;
       break;
-   case type_u16:
+   case e_type_u16:
       *this << payload.m_u16;
       break;
-   case type_i32:
+   case e_type_i32:
       *this << payload.m_i32;
       break;
-   case type_i64:
+   case e_type_i64:
       *this << payload.m_i64;
       break;
-   case type_u32:
+   case e_type_u32:
       *this << payload.m_u32;
       break;
-   case type_u64:
+   case e_type_u64:
       *this << payload.m_u64;
       break;
-   case type_pi8:
+   case e_type_pi8:
       *this << *payload.m_pi8;
       break;
-   case type_pi16:
+   case e_type_pi16:
       *this << *payload.m_pi16;
       break;
-   case type_pu8:
+   case e_type_pu8:
       *this << *payload.m_pu8;
       break;
-   case type_pu16:
+   case e_type_pu16:
       *this << *payload.m_pu16;
       break;
-   case type_pi32:
+   case e_type_pi32:
       *this << *payload.m_pi32;
       break;
-   case type_pi64:
+   case e_type_pi64:
       *this << *payload.m_pi64;
       break;
-   case type_pu32:
+   case e_type_pu32:
       *this << *payload.m_pu32;
       break;
-   case type_pu64:
+   case e_type_pu64:
       *this << *payload.m_pu64;
       break;
-   case type_double:
+   case e_type_double:
       *this << payload.m_d;
       break;
-   case type_bool:
+   case e_type_bool:
       *this << payload.m_b;
       break;
-   case type_inta:
+   case e_type_inta:
       *this << payload.inta();
       break;
-   case type_memory:
+   case e_type_memory:
       *this << *payload.m_pmemory;
       break;
-   case type_stra:
+   case e_type_stra:
       *this << *payload.m_pstra;
       break;
-   case type_propset:
+   case e_type_propset:
       *this << *payload.m_pset;
       break;
-   case type_i64a:
+   case e_type_i64a:
       *this << *payload.m_pi64a;
       break;
    //case type_image:
    //   *this << *payload.m_pimage;
    //   break;
-   case type_id:
+   case e_type_id:
       *this << payload.m_id;
       break;
-   case type_element:
-   case type_path:
+   case e_type_element:
+   case e_type_path:
    {
 
       __save_object(*this, payload.cast < ::matter >());
@@ -832,13 +832,13 @@ void binary_stream::read_var_body(payload & payload, enum_type etype)
 
    switch (etype)
    {
-   case type_parareturn:
+   case e_type_parareturn:
    case e_type_new:
    case e_type_null:
-   case type_key_exists:
+   case e_type_key_exists:
    case e_type_empty:
    case e_type_empty_argument:
-   case type_not_found:
+   case e_type_not_found:
    {
 
       payload.set_type(etype, false);
@@ -846,122 +846,122 @@ void binary_stream::read_var_body(payload & payload, enum_type etype)
       break;
 
    }
-   case type_pstring:
-   case type_string:
+   case e_type_pstring:
+   case e_type_string:
    {
 
-      payload.set_type(type_string, false);
+      payload.set_type(e_type_string, false);
 
       read(payload.m_str);
 
    }
    break;
-   case type_pi32:
-   case type_i32:
+   case e_type_pi32:
+   case e_type_i32:
    {
 
-      payload.set_type(type_i32, false);
+      payload.set_type(e_type_i32, false);
 
       *this >> payload.m_i32;
 
    }
    break;
-   case type_pi64:
-   case type_i64:
+   case e_type_pi64:
+   case e_type_i64:
    {
 
-      payload.set_type(type_i64, false);
+      payload.set_type(e_type_i64, false);
 
       *this >> payload.m_i64;
 
    }
    break;
-   case type_pu32:
-   case type_u32:
+   case e_type_pu32:
+   case e_type_u32:
    {
 
-      payload.set_type(::type_u32, false);
+      payload.set_type(::e_type_u32, false);
 
       *this >> payload.m_u32;
 
    }
    break;
-   case type_pu64:
-   case type_u64:
+   case e_type_pu64:
+   case e_type_u64:
    {
 
-      payload.set_type(::type_u64, false);
+      payload.set_type(::e_type_u64, false);
 
       *this >> payload.m_u64;
 
    }
    break;
-   case type_bool:
+   case e_type_bool:
    {
 
-      payload.set_type(::type_bool, false);
+      payload.set_type(::e_type_bool, false);
 
       *this >> payload.m_b;
 
    }
    break;
-   case type_double:
+   case e_type_double:
    {
 
-      payload.set_type(::type_double, false);
+      payload.set_type(::e_type_double, false);
 
       *this >> payload.m_d;
 
    }
    break;
-   case type_float:
+   case e_type_float:
    {
 
-      payload.set_type(::type_float, false);
+      payload.set_type(::e_type_float, false);
 
       *this >> payload.m_d;
 
    }
    break;
-   case type_inta:
+   case e_type_inta:
    {
 
       __exchange_save_array(*this, payload.inta());
 
    }
    break;
-   case type_memory:
+   case e_type_memory:
    {
 
       *this >> payload.memory();
 
    }
    break;
-   case type_stra:
+   case e_type_stra:
    {
 
       __exchange_load_array(*this, payload.stra());
 
    }
    break;
-   case type_propset:
+   case e_type_propset:
    {
 
       __exchange_load_array(*this, payload.propset());
 
    }
    break;
-   case type_id:
+   case e_type_id:
    {
 
-      payload.set_type(::type_id, false);
+      payload.set_type(::e_type_id, false);
 
       *this >> payload.m_id;
 
    }
    break;
-   case type_element:
-   case type_path:
+   case e_type_element:
+   case e_type_path:
    {
 
       payload.set_element(::__load_object<::matter>(*this));

@@ -231,7 +231,7 @@ var_stream::~var_stream()
 //
 //   string strId = stream.factory_id_to_text(idType);
 //
-//   stream.var_exchange(property_id, strId);
+//   stream.var_exchange(e_property_id, strId);
 //
 //   stream.set_storing();
 //
@@ -247,7 +247,7 @@ var_stream::~var_stream()
 //
 //   string strId;
 //
-//   stream.var_exchange(property_id, strId);
+//   stream.var_exchange(e_property_id, strId);
 //
 //   auto pobject = stream.create_object_from_text(strId);
 //
@@ -269,7 +269,7 @@ void var_stream::read(block & block)
 
    }
 
-   if (m_pvar->m_etype != type_memory || ::is_null(m_pvar->m_pmemory))
+   if (m_pvar->m_etype != e_type_memory || ::is_null(m_pvar->m_pmemory))
    {
 
       set_fail_bit();

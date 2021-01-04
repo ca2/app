@@ -37,7 +37,7 @@ public:
 
    object() : m_pmeta(nullptr) { set_layer(0, this); }
    object(::layered * pobjectContext);
-   object(e_default_init) : ::object() {};
+   object(enum_default_initialization) : ::object() {};
    virtual ~object();
 
 

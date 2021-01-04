@@ -693,7 +693,7 @@ namespace sphere
          else
          {
             alt1:
-            if(pcreate->m_pcommandline->m_varFile.get_type() == ::type_string)
+            if(pcreate->m_pcommandline->m_varFile.get_type() == ::e_type_string)
             {
                if(::str::ends_ci(pcreate->m_pcommandline->m_varFile, ".ca2"))
                {

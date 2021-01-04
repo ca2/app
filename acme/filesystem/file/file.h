@@ -44,7 +44,7 @@ namespace file
 
       ::file::e_open             m_eopen;
       ::file::path               m_path;
-      ::file::enum_state            m_estate;
+      ::file::e_state            m_estate;
       ::millis                   m_millisErrorBlockTimeout;
 
 

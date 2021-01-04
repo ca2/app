@@ -13,7 +13,7 @@ message_box::message_box()
 message_box::message_box(const payload & payload)
 {
 
-   if (payload.get_type() == type_string)
+   if (payload.get_type() == e_type_string)
    {
 
       m_strMessage = payload;

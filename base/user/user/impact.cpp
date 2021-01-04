@@ -134,7 +134,7 @@ namespace user
          if(::user::impact::get_document() == nullptr)
          {
 
-            TRACE(trace_category_appmsg, trace_level_warning, "Warning: Creating a pane with no ::user::document.\n");
+            TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: Creating a pane with no ::user::document.\n");
 
          }
 

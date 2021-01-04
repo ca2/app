@@ -91,6 +91,7 @@ list(APPEND apex_source
    database/stringhelper.h
    filesystem/file/_.h
    filesystem/file/_data.h
+   filesystem/file/_file.h
    filesystem/file/edit_file.cpp
    filesystem/file/edit_file.h
    filesystem/file/html_file.cpp
@@ -447,8 +448,8 @@ list(APPEND apex_source
    platform/context.h
    platform/context_thread.cpp
    platform/context_thread.h
-   platform/debug.cpp
-   platform/debug.h
+   #platform/debug.cpp
+   #platform/debug.h
    platform/definition.h
    platform/department.cpp
    platform/department.h
@@ -500,8 +501,8 @@ list(APPEND apex_source
    platform/simple_app.h
    platform/simple_log.cpp
    platform/simple_log.h
-   platform/simple_trace.cpp
-   platform/simple_trace.h
+   ../acme/platform/simple_trace.cpp
+   ../acme/platform/simple_trace.h
    platform/static_setup.cpp
    platform/static_setup.h
    platform/static_start.cpp
@@ -514,8 +515,8 @@ list(APPEND apex_source
    platform/system_trace.cpp
    platform/text.cpp
    platform/thread_set.h
-   platform/trace.cpp
-   platform/trace.h
+   ../acme/platform/trace.cpp
+   ../acme/platform/trace.h
    primitive/data/_.h
    primitive/data/_data.h
    primitive/data/_impl.h
@@ -1341,7 +1342,7 @@ else ()
 endif ()
 
 
-add_library(apex SHARED ${apex_source} filesystem/file/_file.h)
+add_library(apex SHARED ${apex_source})
 
 target_precompile_headers(apex PRIVATE framework.h)
 

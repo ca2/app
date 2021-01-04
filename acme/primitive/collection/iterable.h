@@ -3932,7 +3932,7 @@ end:
 
       iterable.remove_all();
 
-      if (varSrc.get_type() == ::type_stra)
+      if (varSrc.get_type() == ::e_type_stra)
       {
 
          varSrc.get_array(iterable);

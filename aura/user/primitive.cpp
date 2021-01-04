@@ -758,7 +758,7 @@ namespace user
    //i32 primitive::sync_message_box(payload payload)
    //{
 
-   //   if (payload.get_type() == type_string)
+   //   if (payload.get_type() == e_type_string)
    //   {
 
    //      payload["message"] = payload;
@@ -786,7 +786,7 @@ namespace user
 
    //   payload payload;
 
-   //   if (varParam.get_type() == type_propset)
+   //   if (varParam.get_type() == e_type_propset)
    //   {
 
    //      payload = varParam;

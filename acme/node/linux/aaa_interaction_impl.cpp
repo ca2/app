@@ -437,9 +437,9 @@ namespace linux
 
                strMessage.Format("%s\n\nSystem Error Code: %d", strLastError.c_str(), dwLastError);
 
-               TRACE(trace_category_appmsg, trace_level_warning, "Warning: oswindow creation failed: get_last_error returned:\n");
+               TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: oswindow creation failed: get_last_error returned:\n");
 
-               TRACE(trace_category_appmsg, trace_level_warning, "%s\n", strMessage.c_str());
+               TRACE(trace_category_appmsg, e_trace_level_warning, "%s\n", strMessage.c_str());
 
                try
                {

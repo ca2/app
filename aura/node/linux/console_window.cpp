@@ -1,7 +1,9 @@
 #include "framework.h"
 #include "acme/os/console.h"
 #include "console_window.h"
+#define trace ncurses_trace
 #include <ncurses.h>
+
 
 
 namespace linux

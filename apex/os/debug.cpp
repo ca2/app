@@ -1,15 +1,15 @@
 #include "framework.h"
 
 
-CLASS_DECL_APEX void __simple_tracev(e_trace_category ecategory, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
-CLASS_DECL_APEX void __simple_tracea(e_trace_category ecategory, e_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz);
-CLASS_DECL_APEX void __simple_tracev(matter* pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
-CLASS_DECL_APEX void __simple_tracea(matter* pobject, e_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz);
+CLASS_DECL_APEX void __simple_tracev(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+CLASS_DECL_APEX void __simple_tracea(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz);
+CLASS_DECL_APEX void __simple_tracev(matter* pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+CLASS_DECL_APEX void __simple_tracea(matter* pobject, enum_trace_level elevel, const char * pszFunction, const char *pszFileName, i32 iLine, const char * psz);
 
 
 
 
-//char os_trace_level_char(e_trace_level elevel)
+//char os_trace_level_char(enum_trace_level elevel)
 //{
 //
 //   switch (elevel)
@@ -28,7 +28,7 @@ CLASS_DECL_APEX void __simple_tracea(matter* pobject, e_trace_level elevel, cons
 
 
 
-//CLASS_DECL_APEX void __tracea(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+//CLASS_DECL_APEX void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
 //{
 //
 //   if (::is_null(::get_context_system()))
@@ -44,7 +44,7 @@ CLASS_DECL_APEX void __simple_tracea(matter* pobject, e_trace_level elevel, cons
 //
 //}
 //
-//CLASS_DECL_APEX void __tracef(::matter* pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
+//CLASS_DECL_APEX void __tracef(::matter* pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
 //{
 //
 //   va_list list;
@@ -67,7 +67,7 @@ CLASS_DECL_APEX void __simple_tracea(matter* pobject, e_trace_level elevel, cons
 //}
 //
 //
-//CLASS_DECL_APEX void __tracev(::matter* pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
+//CLASS_DECL_APEX void __tracev(::matter* pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
 //{
 //
 //   if (::is_null(::get_context_system()))

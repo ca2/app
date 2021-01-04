@@ -909,7 +909,7 @@ bool thread::pump_message()
 
          }
 
-         TRACE(trace_category_appmsg, trace_level_information, string(type_name()) + " thread::pump_message - Received e_message_quit.\n");
+         TRACE(trace_category_appmsg, e_trace_level_information, string(type_name()) + " thread::pump_message - Received e_message_quit.\n");
 
          INFO("%s thread::pump_message - Received e_message_quit.\n", type_name());
 
@@ -1054,7 +1054,7 @@ bool thread::raw_pump_message()
 
          }
 
-         TRACE(trace_category_appmsg, trace_level_information, "xx" + strType + " thread::raw_pump_message - Received e_message_quit");
+         TRACE(trace_category_appmsg, e_trace_level_information, "xx" + strType + " thread::raw_pump_message - Received e_message_quit");
 
          ::output_debug_string("xx" + strType + " thread::raw_pump_message - Received e_message_quit.\n");
 
@@ -4073,7 +4073,7 @@ void thread::message_handler(::message::base * pbase)
       if(m_nDisablePumpCount != 0)
       {
 
-         TRACE(trace_category_appmsg, trace_level_error,"Error: thread::pump_message called when not permitted.\n");
+         TRACE(trace_category_appmsg, e_trace_level_error,"Error: thread::pump_message called when not permitted.\n");
 
       }
 

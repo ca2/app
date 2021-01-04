@@ -29,7 +29,7 @@ public:
 inline payload operator + (payload payload, const ::enum_message_box& emessagebox)
 {
 
-   if (payload.get_type() != type_propset)
+   if (payload.get_type() != e_type_propset)
    {
 
       payload["message"] = payload.get_string();

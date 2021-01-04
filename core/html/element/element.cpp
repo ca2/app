@@ -885,7 +885,7 @@ namespace html
 
       payload payload;
 
-      payload.set_type(::type_string);
+      payload.set_type(::e_type_string);
 
       if (m_pbase->get_type() == base::type_tag)
       {

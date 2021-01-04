@@ -303,7 +303,7 @@ list(APPEND aura_source
    template/list.h
    user/_.cpp
    user/_.h
-   user/_const-.h
+   #user/_const-.h
    user/_const.h
    user/_data.h
    user/_experience_const.h
@@ -1088,7 +1088,7 @@ else ()
 endif ()
 
 
-add_library(aura SHARED ${aura_source} node/linux/system.cpp)
+add_library(aura SHARED ${aura_source})
 
 
 target_precompile_headers(aura PRIVATE framework.h)

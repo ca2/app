@@ -3,7 +3,7 @@
 #include "aura/platform/app_core.h"
 
 
-CLASS_DECL_AURA e_trace_level get_global_trace_level();
+CLASS_DECL_AURA enum_trace_level get_global_trace_level();
 CLASS_DECL_AURA string thread_get_name();
 
 
@@ -80,7 +80,7 @@ namespace aura
    }
 
 
-   ::e_status log::initialize_aura_log(e_trace_level etracelevelMin, const ::id & id)
+   ::e_status log::initialize_aura_log(enum_trace_level etracelevelMin, const ::id & id)
    {
 
       auto estatus = __compose_new(m_ptrace);
@@ -120,46 +120,46 @@ namespace aura
 
       }
 
-      //set_trace_category(trace_category_general, trace_level_information);
-      //set_trace_category(trace_category_com, trace_level_warning);
-      //set_trace_category(trace_category_qi, trace_level_warning);
-      //set_trace_category(trace_category_registrar, "category_Registrar", trace_level_warning);
-      //set_trace_category(trace_category_refcount, "category_Refcount", trace_level_warning);
-      //set_trace_category(trace_category_windowing, "category_Windowing", trace_level_warning);
-      //set_trace_category(trace_category_controls, "category_Controls", trace_level_warning);
-      //set_trace_category(trace_category_hosting, "category_Hosting", trace_level_warning);
-      //set_trace_category(trace_category_dbclient, "category_DBClient", trace_level_warning);
-      //set_trace_category(trace_category_dbprovider, "category_DBProvider", trace_level_warning);
-      //set_trace_category(trace_category_snapin, "category_Snapin", trace_level_warning);
-      //set_trace_category(trace_category_notimpl, "category_NotImpl", trace_level_warning);
-      //set_trace_category(trace_category_allocation, "category_Allocation", trace_level_warning);
-      //set_trace_category(trace_category_exception, "category_Exception", trace_level_warning);
-      //set_trace_category(trace_category_time, "category_Time", trace_level_warning);
-      //set_trace_category(trace_category_cache, "category_Cache", trace_level_warning);
-      //set_trace_category(trace_category_stencil, "category_Stencil", trace_level_warning);
-      //set_trace_category(trace_category_string, "category_String", trace_level_warning);
-      //set_trace_category(trace_category_map, "category_Map", trace_level_warning);
-      //set_trace_category(trace_category_util, "category_Util", trace_level_warning);
-      //set_trace_category(trace_category_security, "category_Security", trace_level_warning);
-      //set_trace_category(trace_category_sync, "category_Sync", trace_level_warning);
-      //set_trace_category(trace_category_isapi, "category_ISAPI", trace_level_warning);
+      //set_trace_category(trace_category_general, e_trace_level_information);
+      //set_trace_category(trace_category_com, e_trace_level_warning);
+      //set_trace_category(trace_category_qi, e_trace_level_warning);
+      //set_trace_category(trace_category_registrar, "category_Registrar", e_trace_level_warning);
+      //set_trace_category(trace_category_refcount, "category_Refcount", e_trace_level_warning);
+      //set_trace_category(trace_category_windowing, "category_Windowing", e_trace_level_warning);
+      //set_trace_category(trace_category_controls, "category_Controls", e_trace_level_warning);
+      //set_trace_category(trace_category_hosting, "category_Hosting", e_trace_level_warning);
+      //set_trace_category(trace_category_dbclient, "category_DBClient", e_trace_level_warning);
+      //set_trace_category(trace_category_dbprovider, "category_DBProvider", e_trace_level_warning);
+      //set_trace_category(trace_category_snapin, "category_Snapin", e_trace_level_warning);
+      //set_trace_category(trace_category_notimpl, "category_NotImpl", e_trace_level_warning);
+      //set_trace_category(trace_category_allocation, "category_Allocation", e_trace_level_warning);
+      //set_trace_category(trace_category_exception, "category_Exception", e_trace_level_warning);
+      //set_trace_category(trace_category_time, "category_Time", e_trace_level_warning);
+      //set_trace_category(trace_category_cache, "category_Cache", e_trace_level_warning);
+      //set_trace_category(trace_category_stencil, "category_Stencil", e_trace_level_warning);
+      //set_trace_category(trace_category_string, "category_String", e_trace_level_warning);
+      //set_trace_category(trace_category_map, "category_Map", e_trace_level_warning);
+      //set_trace_category(trace_category_util, "category_Util", e_trace_level_warning);
+      //set_trace_category(trace_category_security, "category_Security", e_trace_level_warning);
+      //set_trace_category(trace_category_sync, "category_Sync", e_trace_level_warning);
+      //set_trace_category(trace_category_isapi, "category_ISAPI", e_trace_level_warning);
 
-      //set_trace_category(trace_category_user, "category_User", trace_level_warning);
-      //set_trace_category(trace_category_user2, "category_User2", trace_level_warning);
-      //set_trace_category(trace_category_user3, "category_User3", trace_level_warning);
-      //set_trace_category(trace_category_user4, "category_User4", trace_level_warning);
+      //set_trace_category(trace_category_user, "category_User", e_trace_level_warning);
+      //set_trace_category(trace_category_user2, "category_User2", e_trace_level_warning);
+      //set_trace_category(trace_category_user3, "category_User3", e_trace_level_warning);
+      //set_trace_category(trace_category_user4, "category_User4", e_trace_level_warning);
 
 
-      //set_trace_category(trace_category_appmsg, "AppMsg", trace_level_warning);        // Main message pump trace (includes DDE)
-      //set_trace_category(trace_category_winmsg, "category_WinMsg", trace_level_warning);         // Windows message tracing
-      //set_trace_category(trace_category_cmdrouting, "category_CmdRouting", trace_level_warning);     // Windows command routing trace
-      //set_trace_category(trace_category_ole, "category_Ole", trace_level_warning);           // special OLE callback trace
-      //set_trace_category(trace_category_database, "category_Database", trace_level_warning);      // special database trace
-      //set_trace_category(trace_category_internet, "category_Internet", trace_level_warning);      // special Internet client trace
-      //set_trace_category(trace_category_dumpcontext, "category_dumpContext", trace_level_warning);    // traces from dump_context
-      //set_trace_category(trace_category_memory, "category_Memory", trace_level_warning);       // matter non-kernel memory traces
-      //set_trace_category(trace_category_html, "category_Html", trace_level_warning);          // Html traces
-      //set_trace_category(trace_category_socket, "category_Socket", trace_level_warning);       // socket traces
+      //set_trace_category(trace_category_appmsg, "AppMsg", e_trace_level_warning);        // Main message pump trace (includes DDE)
+      //set_trace_category(trace_category_winmsg, "category_WinMsg", e_trace_level_warning);         // Windows message tracing
+      //set_trace_category(trace_category_cmdrouting, "category_CmdRouting", e_trace_level_warning);     // Windows command routing trace
+      //set_trace_category(trace_category_ole, "category_Ole", e_trace_level_warning);           // special OLE callback trace
+      //set_trace_category(trace_category_database, "category_Database", e_trace_level_warning);      // special database trace
+      //set_trace_category(trace_category_internet, "category_Internet", e_trace_level_warning);      // special Internet client trace
+      //set_trace_category(trace_category_dumpcontext, "category_dumpContext", e_trace_level_warning);    // traces from dump_context
+      //set_trace_category(trace_category_memory, "category_Memory", e_trace_level_warning);       // matter non-kernel memory traces
+      //set_trace_category(trace_category_html, "category_Html", e_trace_level_warning);          // Html traces
+      //set_trace_category(trace_category_socket, "category_Socket", e_trace_level_warning);       // socket traces
 
 
       sync_lock sl(mutex());
@@ -298,7 +298,7 @@ namespace aura
    }
 
 
-   //void log::tracev(e_trace_category ecategory, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
+   //void log::tracev(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args)
    //{
 
    //   string str;
@@ -310,7 +310,7 @@ namespace aura
    //}
 
 
-   void log::__tracea(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   void log::__tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
    {
 
       const char * pszTopicText = ::is_set(pobjectContext) ? pobjectContext->topic_text() : nullptr;
@@ -319,7 +319,7 @@ namespace aura
 
       ::aura::trace::category * pcategory = nullptr;
 
-      if (elevel != trace_level_none)
+      if (elevel != e_trace_level_none)
       {
 
          pcategory = m_ptrace->enabled_get(object_trace_category(pobjectContext), elevel);
@@ -601,7 +601,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
 
    }
 
-   //void log::trace2(e_trace_category ecategory, e_trace_level elevel, const char * pszFormat, ...)
+   //void log::trace2(e_trace_category ecategory, enum_trace_level elevel, const char * pszFormat, ...)
    //{
    //   if(!m_bTrace)
    //      return;
@@ -622,14 +622,14 @@ skip_further_possible_recursive_impossible_logging_in_file:
 
       va_start(valist, pszFormat);
 
-      __tracef(general_trace_object(), trace_level_information, nullptr, nullptr, -1, pszFormat, valist);
+      __tracef(general_trace_object(), e_trace_level_information, nullptr, nullptr, -1, pszFormat, valist);
 
       va_end(valist);
 
    }
 
 
-   //::e_status log::initialize_aura_log(e_trace_level etracelevelMin, const char * pszId)
+   //::e_status log::initialize_aura_log(enum_trace_level etracelevelMin, const char * pszId)
    //{
 
    //   //if (!initialize(id(pszId)))
@@ -733,7 +733,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
    }
 
 
-   void log::set_trace_category(e_trace_category ecategory,  e_trace_level elevelMin)
+   void log::set_trace_category(e_trace_category ecategory,  enum_trace_level elevelMin)
    {
 
       auto pcategory = m_ptrace->operator[](ecategory);
@@ -744,7 +744,7 @@ skip_further_possible_recursive_impossible_logging_in_file:
 
       pcategory->m_elevelMin = elevelMin;
 
-      pcategory->m_bEnabled = elevelMin > trace_level_none;
+      pcategory->m_bEnabled = elevelMin > e_trace_level_none;
 
    }
 
@@ -766,11 +766,11 @@ skip_further_possible_recursive_impossible_logging_in_file:
 
    //   va_list ptr;
    //   va_start(ptr, pszFormat);
-   //   trace_v(nullptr, -1, trace_category_general, trace_level_information, pszFormat, ptr);
+   //   trace_v(nullptr, -1, trace_category_general, e_trace_level_information, pszFormat, ptr);
    //   va_end(ptr);
    //}
 
-   /*void log::trace2(e_trace_category ecategory, e_trace_level elevel, const char * pszFormat, ...)
+   /*void log::trace2(e_trace_category ecategory, enum_trace_level elevel, const char * pszFormat, ...)
    {
       if(!m_bTrace)
          return;

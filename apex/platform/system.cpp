@@ -58,7 +58,7 @@ extern "C"
 extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
 
 
-CLASS_DECL_APEX void __simple_tracea(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_APEX void __simple_tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
 
 
 #ifdef WINDOWS
@@ -2537,7 +2537,7 @@ namespace apex
 
       m_ptrace->set_extended_log();
 
-      estatus = m_ptrace->initialize_apex_log(trace_level_warning, pszId);
+      estatus = m_ptrace->initialize_apex_log(e_trace_level_warning, pszId);
 
       if(!estatus)
       {
@@ -3699,7 +3699,7 @@ namespace apex
    }
 
 
-   void system::__tracea(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   void system::__tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
    {
 
       if (m_ptrace.is_null())

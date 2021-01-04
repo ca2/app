@@ -24,7 +24,7 @@ namespace user
    {
 #ifdef _DEBUG
       if (m_pdocument != nullptr)
-         TRACE(trace_category_appmsg, trace_level_warning, "Warning: destroying single_document_template with live ::user::document.\n");
+         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: destroying single_document_template with live ::user::document.\n");
 #endif
    }
 
@@ -211,7 +211,7 @@ namespace user
          if (!pdocument->on_new_document())
          {
             // user has been alerted to what failed in on_new_document
-            TRACE(trace_category_appmsg, trace_level_warning, "::user::document::on_new_document returned FALSE.\n");
+            TRACE(trace_category_appmsg, e_trace_level_warning, "::user::document::on_new_document returned FALSE.\n");
 
             if (bCreated)
                pFrame->DestroyWindow();    // will destroy ::user::document
@@ -235,7 +235,7 @@ namespace user
          if (!on_open_document(pdocument, pcreate))
          {
             // user has been alerted to what failed in on_open_document
-            TRACE(trace_category_appmsg, trace_level_warning, "::user::document::on_open_document returned FALSE.\n");
+            TRACE(trace_category_appmsg, e_trace_level_warning, "::user::document::on_open_document returned FALSE.\n");
 
             if (bCreated)
             {
@@ -253,7 +253,7 @@ namespace user
 
                if (!pdocument->on_new_document())
                {
-                  TRACE(trace_category_appmsg, trace_level_warning, "Error: on_new_document failed after trying "
+                  TRACE(trace_category_appmsg, e_trace_level_warning, "Error: on_new_document failed after trying "
                         "to open a ::user::document - trying to continue.\n");
                   // assume we can continue
                }

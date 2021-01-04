@@ -549,14 +549,14 @@ namespace user
 
             //   switch(payload.get_type())
             //   {
-            //   case ::type_string:
+            //   case ::e_type_string:
             //   {
             //      string str;
             //      str = payload.m_str;
             //      pinteraction->_001SetText(str, ::e_source_database);
             //   }
             //   break;
-            //   case ::type_i32:
+            //   case ::e_type_i32:
             //   {
             //      string str;
             //      str.Format("%d", payload.i32());
@@ -950,7 +950,7 @@ namespace user
                pinteraction->GetComboBox()->m_wstra.remove_all();
                pinteraction->GetComboBox()->m_dwaData.remove_all();
                payload payload;
-               payload.m_etype = ::type_element;
+               payload.m_etype = ::e_type_element;
                payload.m_pca2 = pinteraction->GetComboBox();
                VmsDataGet(
                   pinteraction->GetComboBox()->m_datakeyFill,

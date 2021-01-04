@@ -21,7 +21,7 @@ namespace database
       for (auto & payload : list)
       {
 
-         if (payload.get_type() == type_bool)
+         if (payload.get_type() == e_type_bool)
          {
 
             m_bLocalData = (bool)(payload);

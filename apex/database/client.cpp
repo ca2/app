@@ -187,7 +187,7 @@ namespace database
       if (m_pdataserver != nullptr)
       {
 
-         if (payload.get_type() == ::type_memory)
+         if (payload.get_type() == ::e_type_memory)
          {
 
             if (!m_pdataserver->_data_server_load(this, key, *payload.m_pmemory))

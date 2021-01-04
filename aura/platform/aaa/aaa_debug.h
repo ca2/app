@@ -271,8 +271,8 @@
 ////
 ////
 ////
-////   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, e_trace_level elevel, const string & strContext, i32 iError, const string & strContext) override;
-////   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, e_trace_level elevel, const string & strContext, i32 iError, const string & strContext) override;
+////   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const string & strContext, i32 iError, const string & strContext) override;
+////   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const string & strContext, i32 iError, const string & strContext) override;
 ////
 ////
 ////};
@@ -281,8 +281,8 @@
 //extern critical_section * g_pcsTrace;
 //extern context_object * g_pobjecTracer;
 //
-//CLASS_DECL_AURA void os_trace(e_trace_level elevel, const char * pszTag, const char * pszMessage);
-//CLASS_DECL_AURA void trace(e_trace_level elevel, const char * pszTag, const char * psz, const char * pszFile = nullptr, int iLine = -1);
+//CLASS_DECL_AURA void os_trace(enum_trace_level elevel, const char * pszTag, const char * pszMessage);
+//CLASS_DECL_AURA void trace(enum_trace_level elevel, const char * pszTag, const char * psz, const char * pszFile = nullptr, int iLine = -1);
 //
 //
 //
@@ -294,16 +294,16 @@
 //
 //
 //
-////#define cinfo LOG(trace_level_information, LOG_TAG)
-////#define cwarn LOG(trace_level_warning, LOG_TAG)
-////#define cerror LOG(trace_level_error, LOG_TAG)
-////#define cfatal LOG(trace_level_fatal, LOG_TAG)
+////#define cinfo LOG(e_trace_level_information, LOG_TAG)
+////#define cwarn LOG(e_trace_level_warning, LOG_TAG)
+////#define cerror LOG(e_trace_level_error, LOG_TAG)
+////#define cfatal LOG(e_trace_level_fatal, LOG_TAG)
 //
 //
-////#define thisinfo LOG(trace_level_information, LOG_THIS_TAG) << LOG_MEMBER_PREFIX << "; "
-////#define thiswarn LOG(trace_level_warning, LOG_THIS_TAG)  << LOG_MEMBER_PREFIX << "; "
-////#define thiserr LOG(trace_level_error, LOG_THIS_TAG) << LOG_MEMBER_PREFIX << "; "
-////#define thisfatal LOG(trace_level_fatal, LOG_THIS_TAG) << LOG_MEMBER_PREFIX << "; "
+////#define thisinfo LOG(e_trace_level_information, LOG_THIS_TAG) << LOG_MEMBER_PREFIX << "; "
+////#define thiswarn LOG(e_trace_level_warning, LOG_THIS_TAG)  << LOG_MEMBER_PREFIX << "; "
+////#define thiserr LOG(e_trace_level_error, LOG_THIS_TAG) << LOG_MEMBER_PREFIX << "; "
+////#define thisfatal LOG(e_trace_level_fatal, LOG_THIS_TAG) << LOG_MEMBER_PREFIX << "; "
 //
 ////#define thisstart thisinfo << "start "
 ////#define thisexit thisinfo << "exit " << str_flag_ifnumberparenthesizeandspace

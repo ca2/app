@@ -589,9 +589,9 @@ namespace windows
 
          strMessage.Format("%s\n\nSystem Error Code: %d", strLastError, dwLastError);
 
-         TRACE(trace_category_appmsg, trace_level_warning, "Warning: Window creation failed: get_last_error returned:\n");
+         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: Window creation failed: get_last_error returned:\n");
 
-         TRACE(trace_category_appmsg, trace_level_warning, "%s\n", strMessage);
+         TRACE(trace_category_appmsg, e_trace_level_warning, "%s\n", strMessage);
 
          try
          {
@@ -1326,7 +1326,7 @@ namespace windows
    //   // need to use top level parent (for the case where get_handle() is in DLL)
    //   __pointer(::user::interaction) pwindow = EnsureTopLevelParent();
 
-   //   TRACE(trace_category_appmsg, trace_level_warning, "WinHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
+   //   TRACE(trace_category_appmsg, e_trace_level_warning, "WinHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
 
    //   // finally, run the Windows Help engine
    //   /* trans   if (!::WinHelp((pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
@@ -1354,7 +1354,7 @@ namespace windows
    //// need to use top level parent (for the case where get_handle() is in DLL)
    //__pointer(::user::interaction) pwindow = EnsureTopLevelParent();
 
-   //TRACE(trace_category_appmsg, trace_level_warning, "HtmlHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
+   //TRACE(trace_category_appmsg, e_trace_level_warning, "HtmlHelp: pszHelpFile = '%s', dwData: $%lx, fuCommand: %d.\n", pApp->m_pszHelpFilePath, dwData, nCmd);
 
    //// run the HTML Help engine
    ///* trans   if (!::aura::HtmlHelp((pwindow)->get_handle(), pApp->m_pszHelpFilePath, nCmd, dwData))
@@ -2236,9 +2236,9 @@ namespace windows
       else if (*plpfn != oldWndProc)
       {
 
-         TRACE(trace_category_appmsg, trace_level_warning, "point: Trying to use subclass_window with incorrect interaction_impl\n");
-         TRACE(trace_category_appmsg, trace_level_warning, "\tderived class.\n");
-         TRACE(trace_category_appmsg, trace_level_warning, "\toswindow_ = $%08X (nIDC=$%08X) is not a %hs.\n", (::u32)(uptr)oswindow, __get_dialog_control_id(oswindow), typeid(*this).name());
+         TRACE(trace_category_appmsg, e_trace_level_warning, "point: Trying to use subclass_window with incorrect interaction_impl\n");
+         TRACE(trace_category_appmsg, e_trace_level_warning, "\tderived class.\n");
+         TRACE(trace_category_appmsg, e_trace_level_warning, "\toswindow_ = $%08X (nIDC=$%08X) is not a %hs.\n", (::u32)(uptr)oswindow, __get_dialog_control_id(oswindow), typeid(*this).name());
 
          ASSERT(FALSE);
 

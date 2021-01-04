@@ -34,7 +34,7 @@
 //   
 //   payload payload;
 //   
-//   if(varParam.get_type () != type_propset)
+//   if(varParam.get_type () != e_type_propset)
 //   {
 //      
 //      payload["message"] = varParam.get_string();

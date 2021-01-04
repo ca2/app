@@ -47,7 +47,7 @@ namespace user
 #ifdef WINDOWS
       MESSAGE_LINK(WM_CTLCOLOR, pchannel, this, &control_bar::_001OnCtlColor);
 #endif
-      MESSAGE_LINK(WM_SIZEPARENT, pchannel, this, &control_bar::_001OnSizeParent);
+      MESSAGE_LINK(e_message_size_parent, pchannel, this, &control_bar::_001OnSizeParent);
       MESSAGE_LINK(e_message_window_position_changing, pchannel, this, &control_bar::_001OnWindowPosChanging);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &control_bar::_001OnMouseMove);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &control_bar::_001OnLButtonDown);

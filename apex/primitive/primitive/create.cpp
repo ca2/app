@@ -25,7 +25,7 @@ create::create()
          m_ecommand = arg.m_ecommand;
 
       }
-      else if(arg.get_type() == type_string)
+      else if(arg.get_type() == e_type_string)
       {
 
          auto estatus = __construct(m_pcommandline);

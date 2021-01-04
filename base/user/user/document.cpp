@@ -45,7 +45,7 @@ namespace user
       if (is_modified())
       {
 
-         TRACE(trace_category_appmsg, trace_level_warning, "Warning: destroying an unsaved document.\n");
+         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: destroying an unsaved document.\n");
 
       }
 #endif
@@ -677,7 +677,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(bAddToMRU);
       string strPathName;
-      if (varFile.get_type() == ::type_propset && varFile.propset()["url"].get_string().has_char())
+      if (varFile.get_type() == ::e_type_propset && varFile.propset()["url"].get_string().has_char())
       {
          strPathName = varFile.propset()["url"];
       }
@@ -1199,7 +1199,7 @@ namespace user
          //   {
          //      ::file::exception * pfe = dynamic_cast <::file::exception *> (e);
          //      // ::exception::throw_not_implemented();
-         //      TRACE(trace_category_appmsg, trace_level_warning, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
+         //      TRACE(trace_category_appmsg, e_trace_level_warning, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
          //         pfe->m_lOsError);
 
          //      if (pfe->m_strFileName.is_empty())
@@ -1492,7 +1492,7 @@ namespace user
             catch (const ::exception_pointer & pe)
             {
 
-               TRACE(trace_category_appmsg, trace_level_warning, "Warning: failed to delete file after failed SaveAs.\n");
+               TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: failed to delete file after failed SaveAs.\n");
 
                ::exception_pointer esp(pe);
 
@@ -1521,7 +1521,7 @@ namespace user
          if (!do_save(payload(::e_type_empty)))
          {
 
-            TRACE(trace_category_appmsg, trace_level_warning, "Warning: File save with new name failed.\n");
+            TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: File save with new name failed.\n");
 
             return FALSE;
 
@@ -1534,7 +1534,7 @@ namespace user
          if (!do_save(m_path))
          {
 
-            TRACE(trace_category_appmsg, trace_level_warning, "Warning: File save failed.\n");
+            TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: File save failed.\n");
 
             return false;
 

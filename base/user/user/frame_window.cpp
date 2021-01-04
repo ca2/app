@@ -868,7 +868,7 @@ namespace user
       if (!::user::interaction::create_window_ex(pcreatestruct, puiParent, pcreate->m_id))
       {
 
-         TRACE(trace_category_appmsg, trace_level_warning, "Warning: failed to create frame_window.\n");
+         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: failed to create frame_window.\n");
 
          return false;
 
@@ -971,7 +971,7 @@ namespace user
       if (!on_create_client(pcreatestruct, pcreate))
       {
 
-         TRACE(trace_category_appmsg, trace_level_error, "Failed to create client pane/::user::impact for frame.\n");
+         TRACE(trace_category_appmsg, e_trace_level_error, "Failed to create client pane/::user::impact for frame.\n");
 
          return -1;
 

@@ -3066,7 +3066,7 @@ LRESULT simple_frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
    // don't execute the command when the u is disabled
    if (!is_window_enabled())
    {
-      TRACE(trace_category_appmsg, trace_level_warning, "Warning: DDE command '%s' ignored because u is disabled.\n",
+      TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: DDE command '%s' ignored because u is disabled.\n",
             string(strCommand).c_str());
       return 0;
    }
@@ -3076,7 +3076,7 @@ LRESULT simple_frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
 
    //if (!System.OnDDECommand(pszCommand))
 
-   //   TRACE(trace_category_appmsg, trace_level_warning, "Error: failed to execute DDE command '%s'.\n", pszCommand);
+   //   TRACE(trace_category_appmsg, e_trace_level_warning, "Error: failed to execute DDE command '%s'.\n", pszCommand);
 
    //strCommand.release_string_buffer();
 

@@ -284,6 +284,21 @@ namespace html
 
       m_element.implement(this);
 
+      for (auto & pinteraction : m_pform->m_puiptraChild->interactiona())
+      {
+
+         ::user::control_event event;
+
+         event.m_eevent = ::user::e_event_initialize_control;
+
+         event.m_puie = pinteraction;
+
+         event.m_id = pinteraction->m_id;
+
+         m_pform->route_control_event(&event);
+
+      }
+
       MESSAGE_LINK(e_message_key_down, m_puserinteraction, this, &core_data::_001OnKeyDown);
 
       m_bImplemented = true;

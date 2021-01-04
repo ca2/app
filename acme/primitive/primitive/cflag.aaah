@@ -7,8 +7,8 @@ inline bool __enum_is_failed(const ENUM & e) { return !(::i64)e; }
 inline bool __enum_is_failed(const ::e_status & e);
 
 template < typename ENUM >
-class cflag :
-   public memory_template < cflag < ENUM > >
+class enumeration :
+   public memory_template < enumeration < ENUM > >
 {
 public:
 
@@ -132,9 +132,9 @@ public:
 };
 
 
-#define DECLARE_C_FLAG(CFLAG, ENUM) \
+#define DECLARE_ENUMERATION(ENUMERATION, ENUM) \
 inline ENUM operator | (ENUM e1, ENUM e2) { return (ENUM) ((::u64)e1 | (::u64)e2); } \
-using CFLAG = cflag < ENUM >;
+using ENUMERATION = cflag < ENUM >;
 
 
 

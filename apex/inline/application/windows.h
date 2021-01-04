@@ -24,6 +24,17 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, TCHAR * pCmdL
 
    }
 
+   auto papplicationStartup = psystem->new_application(strAppId);
+
+   if (!papplicationStartup)
+   {
+
+      return -1;
+
+   }
+
+   __bind(psystem, m_papplicationStartup, papplicationStartup);
+
    psystem->m_bConsole = false;
 
    application_common(psystem);

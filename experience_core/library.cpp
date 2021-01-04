@@ -59,7 +59,6 @@ namespace experience
       }
 
    
-      __namespace_library_factory("experience_lite");
       __namespace_library_factory("experience_core");
    
 
@@ -69,19 +68,3 @@ namespace experience
 } // namespace experience
 
 
-//#ifdef CUBE
-//extern "C" ::apex::library * experience_get_new_library()
-//#else
-//extern "C" ::apex::library * experience_lite_get_new_library()
-//#endif
-//{
-//
-//   return new ::experience::apex::library;
-//
-//}
-
-//
-//__namespace_library_factory2(experience, aura, "experience_lite");
-//
-//
-//

@@ -2,6 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
 #endif
+#include "acme/id.h"
 
 
 namespace user
@@ -60,50 +61,63 @@ namespace user
    }
 
 
-   //void style::select_default()
-   //{
+   void style::set_style(enum_style estyle)
+   {
 
-   //   if (pstyle.is_set())
-   //   {
+      m_estyle = estyle;
 
-   //      m_puserstyleSelect = pstyle;
-
-   //   }
-   //   else
-   //   {
-
-   //      m_puserstyleSelect = this;
-
-   //   }
-
-   //}
+   }
 
 
+   void style::set_style(const char * pszStyle)
+   {
+
+      //::experience::frame::set_style(pszStyle);
+
+      string strStyle(pszStyle);
+
+      if (strStyle == "TranslucidWarmGray")
+      {
+         set_style(StyleTranslucidWarmGray);
+      }
+      else if (strStyle == "DarkWarmBlue")
+      {
+         set_style(StyleDarkWarmBlue);
+      }
+      else if (strStyle == "WarmGray")
+      {
+         set_style(StyleTranslucidWarmGray);
+      }
+      else if (strStyle == "BlueRedPurple")
+      {
+         set_style(StyleBlueRedPurple);
+      }
+      else if (strStyle == "RedOrange")
+      {
+         set_style(StyleRedOrange);
+      }
+      else if (strStyle == "DarkRed")
+      {
+         set_style(StyleDarkRed);
+      }
+      else if (strStyle == "LightBlue")
+      {
+         set_style(StyleLightBlue);
+      }
+      else if (strStyle == "LightGreen")
+      {
+         set_style(StyleLightGreen);
+      }
+
+   }
 
 
+   void style::on_style_change()
+   {
 
+      deliver(id_user_style_change);
 
-
-
-   //void style::initialize_style()
-   //{
-
-   //   ::user::style::initialize_style();
-
-   //   color color;
-   //   color.set_rgb(psession->get_default_color(COLOR_HIGHLIGHT));
-
-   //   class color colorHover(color);
-   //   colorHover.hls_rate(0.0, 0.3, 0.0);
-
-   //   class color colorPress(color);
-   //   colorPress.hls_rate(0.0, 0.7, 0.0);
-
-   //   m_eschema = schema_default;
-
-   //   create_opaque_color(color_text, ::color_black);
-
-   //}
+   }
 
 
    bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame * pframe)

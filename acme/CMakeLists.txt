@@ -200,6 +200,7 @@ list(APPEND acme_source
    platform/printf.cpp
    platform/profiler.cpp
    platform/regex.cpp
+   platform/simple_trace.cpp
    platform/sprintf.cpp
    platform/static_start.cpp
    platform/static_start_aura.cpp
@@ -1012,7 +1013,7 @@ list(APPEND acme_source
    primitive/primitive/atomic.h
    primitive/primitive/bit.h
    primitive/primitive/block.h
-   primitive/primitive/cflag.h
+   primitive/primitive/enumeration.h
    primitive/promise/context.h
    primitive/primitive/collection.h
    primitive/primitive/collection_file.h

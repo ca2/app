@@ -184,47 +184,6 @@ namespace experience
       }
 
 
-      void frame::set_style(const char * pszStyle)
-      {
-
-         ::experience::frame::set_style(pszStyle);
-
-         string strStyle(pszStyle);
-
-         if (strStyle == "TranslucidWarmGray")
-         {
-            set_style(StyleTranslucidWarmGray);
-         }
-         else if (strStyle == "DarkWarmBlue")
-         {
-            set_style(StyleDarkWarmBlue);
-         }
-         else if (strStyle == "WarmGray")
-         {
-            set_style(StyleTranslucidWarmGray);
-         }
-         else if (strStyle == "BlueRedPurple")
-         {
-            set_style(StyleBlueRedPurple);
-         }
-         else if (strStyle == "RedOrange")
-         {
-            set_style(StyleRedOrange);
-         }
-         else if (strStyle == "DarkRed")
-         {
-            set_style(StyleDarkRed);
-         }
-         else if (strStyle == "LightBlue")
-         {
-            set_style(StyleLightBlue);
-         }
-         else if (strStyle == "LightGreen")
-         {
-            set_style(StyleLightGreen);
-         }
-
-
       }
 
 
@@ -544,6 +503,18 @@ namespace experience
 
       }
 
+
+      void frame::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+      {
+
+         if(psubject->m_id)
+         {
+
+
+
+         }
+
+      }
 
 
       void frame::on_style_change()

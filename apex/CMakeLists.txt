@@ -512,7 +512,6 @@ list(APPEND apex_source
    platform/str_context.h
    platform/system.cpp
    platform/system.h
-   platform/system_trace.cpp
    platform/text.cpp
    platform/thread_set.h
    ../acme/platform/trace.cpp

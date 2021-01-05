@@ -5,6 +5,7 @@ namespace user
 {
 
 
+
    class CLASS_DECL_AURA style :
       virtual public style_base
    {
@@ -62,6 +63,13 @@ namespace user
 
 
       virtual ::e_status initialize_style();
+
+      virtual void set_style(enum_style estyle) override;
+
+      virtual void set_style(const char * pszStyle) override;
+
+      virtual void on_style_change() override;
+
 
 
       virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame * pframe) override;

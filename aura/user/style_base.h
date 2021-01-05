@@ -5,15 +5,49 @@ namespace user
 {
 
 
+   enum enum_style
+   {
+
+
+      StyleLightBlue,
+      StyleBlackBorder,
+      StyleLightGreen,
+      StyleRedOrange,
+      StyleDarkRed,
+      StyleBlueRedPurple,
+      StyleEveningSun,
+      StyleTranslucidLightBlue,
+      StyleTranslucidLightGreen,
+      StyleTranslucidWarmGray,
+      StyleTranslucidWarmLiteGray,
+      StyleDarkWarmBlue,
+
+   };
+
+
    class CLASS_DECL_AURA style_base :
       virtual public object
    {
    public:
 
 
+      enum_style        m_estyle;
+
+
+      style_base();
+      virtual ~style_base();
+
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle, menu_item * pitem) = 0;
       //virtual bool prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) = 0;
       //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) = 0;
+      virtual void set_style(enum_style estyle);
+
+      virtual void set_style(const char * pszStyle);
+
+      virtual void on_style_change();
+
+
+
 
 
       virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame * pframe);

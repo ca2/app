@@ -74,7 +74,7 @@ namespace experience
       virtual int adjust_client_height(int iHeight);
       virtual int adjust_client_width(int iWidth);
 
-      virtual void set_style(const char * pszStyle);
+      //virtual void set_style(const char * pszStyle);
       virtual void on_initialize_experience_frame();
       virtual void on_initialize_appearance();
 
@@ -128,6 +128,8 @@ namespace experience
 
       virtual void OnMove(__pointer(::user::interaction) pframewindow);
 
+
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
       virtual void on_style_change();
 

@@ -22,28 +22,12 @@
             public:
 
 
-               enum e_style
-               {
-                  StyleLightBlue,
-                  StyleBlackBorder,
-                  StyleLightGreen,
-                  StyleRedOrange,
-                  StyleDarkRed,
-                  StyleBlueRedPurple,
-                  StyleEveningSun,
-                  StyleTranslucidLightBlue,
-                  StyleTranslucidLightGreen,
-                  StyleTranslucidWarmGray,
-                  StyleTranslucidWarmLiteGray,
-                  StyleDarkWarmBlue,
-               };
-
 
 
 
                //::draw2d::font_pointer                m_fontButton;
                //::draw2d::font_pointer                m_fontCaption;
-               e_style                          m_estyle;
+               //e_style                          m_estyle;
                //::user::front_end_schema         m_schema;
                color32_t                         m_crFrameBorder;
                color32_t                         m_crMoveableBorderHilight;
@@ -87,11 +71,6 @@
 
                virtual void OnMove(__pointer(::user::interaction) pframewindow) override;
 
-               virtual void set_style(e_style estyle);
-
-               virtual void set_style(const char * pszStyle) override;
-
-               virtual void on_style_change() override;
 
                virtual void _001OnBeforeMove(const ::rect & rectWindow);
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "_windows.h"
+#include "media_foundation.h"
 #undef Context
 #include <mfapi.h>
 

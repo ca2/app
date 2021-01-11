@@ -202,7 +202,7 @@ namespace browser
          if (!m_pdocMenu->open_document(path))
          {
 
-            Application.message_box(GetParentFrame(), "Failed to open the menu.", e_message_box_ok);
+            Application.message_box(get_parent_frame(), "Failed to open the menu.", e_message_box_ok);
 
             return;
 
@@ -302,7 +302,7 @@ namespace browser
 
          ::user::impact * pview = m_pdocMenu->get_view(0);
 
-         m_pimpactdata->m_puserinteraction = pview->GetParentFrame();
+         m_pimpactdata->m_puserinteraction = pview->get_parent_frame();
 
       }
       break;

@@ -832,7 +832,7 @@ int_bool SetWindowPos(oswindow_data * pdata, oswindow_data * pdataAfter, int x, 
 }
 
 
-//oswindow_data * GetParent(oswindow_data * pdata)
+//oswindow_data * get_parent(oswindow_data * pdata)
 //{
 //
 //   if (pdata == nullptr)

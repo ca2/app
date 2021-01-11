@@ -226,8 +226,8 @@ typedef int wxCoord;
 //   Rect              m_portBounds;
 //   bool              m_wasSwapped;
 //   
-//   color32_t          m_crText;
-//   color32_t          m_crBk;
+//   color32_t          m_colorText;
+//   color32_t          m_colorBk;
 //   CGColorRef        m_cgcolorrefText;
 //   CGColorRef        m_cgcolorrefBk;
 //   CTFontRef         m_ctfontref;

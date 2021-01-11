@@ -870,7 +870,7 @@ namespace core
    void user::data_on_after_change(::message::message * pmessage)
    {
 
-      SCAST_PTR(::database::change_event, pchange, pmessage);
+      __pointer(::database::change_event) pchange(pmessage);
 
       if (pchange->m_datakey == "ca2.savings")
       {
@@ -931,9 +931,9 @@ namespace core
 
       __pointer(::userex::color_view) pview = pdocument->get_typed_view < ::userex::color_view >();
 
-      __pointer(::user::frame_window) pframe = pview->GetTopLevelFrame();
+      __pointer(::user::frame_window) pframe = pview->top_level_frame();
 
-      pframe->SetOwner(puiOwner);
+      pframe->set_owner(puiOwner);
 
       pframe->_001RunModalLoop();
 

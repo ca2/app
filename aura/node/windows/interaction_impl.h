@@ -20,8 +20,9 @@ namespace windows
    {
    public:
 
-      bool                                      m_bFocusImpl;
-      bool                                      m_bSystemCaret;
+      bool                                      m_bClipboardOpened : 1;
+      bool                                      m_bFocusImpl : 1;
+      bool                                      m_bSystemCaret : 1;
 
       ::rect                                    m_rectLast;
 
@@ -417,6 +418,10 @@ namespace windows
       virtual void SetDlgItemText(i32 nID, const char * pszString);
 
 
+      virtual bool open_clipboard() override;
+      virtual bool close_clipboard() override;
+
+
       // Scrolling Functions
       virtual i32 GetScrollPos(i32 nBar) const;
       virtual void GetScrollRange(i32 nBar, LPINT pMinPos, LPINT lpMaxPos) const;
@@ -466,13 +471,13 @@ namespace windows
       virtual ::user::interaction * GetWindow(::u32 nCmd) const;
       virtual ::user::interaction * GetLastActivePopup() const;
 
-      virtual ::user::interaction * GetParent() const;
-      virtual ::user::interaction * SetParent(::user::interaction * pWndNewParent);
+      virtual ::user::interaction * get_parent() const;
+      virtual ::user::interaction * set_parent(::user::interaction * pWndNewParent);
       //      virtual ::user::interaction * WindowFromPoint(const ::point & point);
 
 
-      virtual ::user::interaction * SetOwner(::user::interaction * pWndNewParent);
-      virtual ::user::interaction * GetOwner() const;
+      virtual ::user::interaction * set_owner(::user::interaction * pWndNewParent);
+      virtual ::user::interaction * get_owner() const;
 
       // virtual bool FlashWindow(bool bInvert);
 
@@ -489,7 +494,7 @@ namespace windows
       // Clipboard Functions
       virtual bool ChangeClipboardChain(oswindow oswindow_Next);
       virtual ::oswindow  SetClipboardViewer();
-      virtual bool OpenClipboard();
+      //virtual bool OpenClipboard();
       virtual ::user::interaction * GetClipboardOwner();
       virtual ::user::interaction * GetClipboardViewer();
       virtual ::user::interaction * GetOpenClipboardWindow();

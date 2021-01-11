@@ -26,10 +26,10 @@ namespace prompt
 
       __pointer(::user::interaction) pinteraction =  (this);
 
-      if(pinteraction != nullptr && pinteraction->GetParent() != nullptr)
+      if(pinteraction != nullptr && pinteraction->get_parent() != nullptr)
       {
 
-         return pinteraction->GetParent()->on_control_event(pevent);
+         return pinteraction->get_parent()->on_control_event(pevent);
 
       }
 

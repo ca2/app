@@ -27,7 +27,7 @@ namespace experience
    void menu_manager::relay_event(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       if (m_pframewindow == nullptr || pbase->userinteraction() != m_pframewindow)
       {

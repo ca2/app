@@ -12,6 +12,7 @@
 #include "aura/const/idpool.h"
 #ifdef _UWP
 #include "aura/node/uwp/directx_application.h"
+#include "aura/os/windows_common/draw2d_direct2d_global.h"
 #endif
 
 int GetMainScreenRect(LPRECT32 lprect);
@@ -109,6 +110,7 @@ namespace aura
    system::system()
    {
 
+
       m_paurasystem = this;
 
       m_bAvoidFirstResponder = false;
@@ -177,8 +179,6 @@ namespace aura
 
       g_pmutexImage = new ::mutex();
 
-      m_bThreadToolsForIncreasedFps = false;
-
 #ifndef WINDOWS
 
       exception::translator::attach();
@@ -244,7 +244,7 @@ namespace aura
   
       m_pDraw2dFactoryExchange = nullptr;
 
-      create_factory < ::user::control_descriptor >();
+      //create_factory < ::user::control_descriptor >();
 
       create_factory < ::draw2d::icon >();
 

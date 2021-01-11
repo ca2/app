@@ -81,7 +81,7 @@ namespace filemanager
                pcolumn->m_iSubItem = SubItemId;
                //      pcolumn->m_uiSmallBitmap = IDB_ALBUM_SMALL_256;
                pcolumn->m_iSmallImageWidth = 16;
-               pcolumn->m_crSmallMask = RGB(255, 0, 255);
+               pcolumn->m_colorSmallMask = RGB(255, 0, 255);
                pcolumn->m_pil = m_pil;
                */
                pcolumn->m_iWidth = 170;
@@ -89,7 +89,7 @@ namespace filemanager
                pcolumn->m_iSubItem = SubItemTitle;
                //      pcolumn->m_uiSmallBitmap = IDB_ALBUM_SMALL_256;
                pcolumn->m_iSmallImageWidth = 16;
-               pcolumn->m_crSmallMask = RGB(255, 0, 255);
+               pcolumn->m_colorSmallMask = RGB(255, 0, 255);
                pcolumn->m_pil = m_pil;
 
 
@@ -226,7 +226,7 @@ namespace filemanager
          void list_view::_001OnLButtonDblClk(::message::message * pmessage)
          {
 
-            SCAST_PTR(::message::mouse, pmouse, pmessage);
+            __pointer(::message::mouse) pmouse(pmessage);
 
             index iItem;
 
@@ -569,7 +569,7 @@ namespace filemanager
 
          void list_view::_001OnFillTaskResponse(::message::message * pmessage)
          {
-            SCAST_PTR(::message::base, pbase, pmessage);
+            __pointer(::message::base) pbase(pmessage);
             m_bKickActive = true;
             if(pbase->m_wparam == 0)
             {
@@ -633,7 +633,7 @@ namespace filemanager
          void list_view::_001OnContextMenu(::message::message * pmessage)
          {
 
-            SCAST_PTR(::message::context_menu, pcontextmenu, pmessage);
+            __pointer(::message::context_menu) pcontextmenu(pmessage);
 
             ::point point = pcontextmenu->GetPoint();
 
@@ -646,7 +646,7 @@ namespace filemanager
             {
             SimpleMenu* pPopup = (SimpleMenu *) menu.GetSubMenu(0);
             ASSERT(pPopup != nullptr);
-            __pointer(::user::frame_window) pframe = GetParentFrame()->GetParentFrame();
+            __pointer(::user::frame_window) pframe = get_parent_frame()->get_parent_frame();
             pPopup->track_popup_menu(point.x, point.y,
             (::user::interaction_impl *) pframe);
             }
@@ -658,7 +658,7 @@ namespace filemanager
             {
             ::user::menu* pPopup = menu.GetSubMenu(0);
             ASSERT(pPopup != nullptr);
-            __pointer(::user::frame_window) pframe = GetParentFrame()->GetParentFrame();
+            __pointer(::user::frame_window) pframe = get_parent_frame()->get_parent_frame();
             pPopup->track_popup_menu(
             point.x, point.y,
             (::user::interaction_impl *) pframe);
@@ -794,7 +794,7 @@ namespace filemanager
 
          void list_view::_001OnEraseBkgnd(::message::message * pmessage)
          {
-            SCAST_PTR(::message::erase_bkgnd, perasebkgnd, pmessage);
+            __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
             perasebkgnd->m_bRet = true;
             perasebkgnd->set_result(TRUE);
          }

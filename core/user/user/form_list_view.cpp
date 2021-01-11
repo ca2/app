@@ -183,10 +183,11 @@ namespace user
 
    }
 
-   void form_list_view::set_viewport_offset(int x, int y)
+
+   void form_list_view::set_viewport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
    {
 
-      ::user::list_view::set_viewport_offset(x, y);
+      ::user::list_view::set_viewport_offset(pgraphics, x, y);
 
    }
 
@@ -264,7 +265,7 @@ namespace user
       if (m_pcontrolEdit.is_set())
       {
 
-         return m_iEditItem;
+         return m_iItem;
 
       }
 

@@ -17,7 +17,7 @@ namespace message
    CLASS_DECL_APEX bool is_idle_message(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base,pbase,pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       // Return FALSE if the message just dispatched should _not_
       // cause on_idle to be run.  Messages which do not usually

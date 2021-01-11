@@ -105,7 +105,7 @@ namespace user
             if (pframe.is_set())
             {
 
-               pview = pframe->GetActiveView();
+               pview = pframe->get_active_view();
 
             }
 
@@ -164,7 +164,7 @@ namespace user
 
    void tab_view::_001OnMenuMessage(::message::message * pmessage)
    {
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
       if(pbase->m_wparam == 0 && pbase->m_lparam == 0)
       {
          set_cur_tab_by_id(m_pimpactdataOld->m_id);
@@ -211,7 +211,7 @@ namespace user
             //puiChild->post_pred([puiChild]()
             //{
 
-            //   puiChild->SetParent(nullptr);
+            //   puiChild->set_parent(nullptr);
 
             //});
 
@@ -640,12 +640,12 @@ namespace user
 
       }
 
-      auto pframe = GetParentFrame();
+      auto pframe = get_parent_frame();
 
       if (::is_set(pframe))
       {
 
-         pframe->SetActiveView(pview);
+         pframe->set_active_view(pview);
 
       }
 
@@ -1127,7 +1127,7 @@ namespace user
    void tab_drop_target_window::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       ReleaseCapture();
 

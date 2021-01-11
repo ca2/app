@@ -2437,7 +2437,7 @@ namespace http
    void context::get(::message::message * pmessage)
    {
 
-      SCAST_PTR(message, pmessageMessage, pmessage);
+      __pointer(message) pmessageMessage(pmessage);
 
       if (pmessageMessage == nullptr)
       {
@@ -2446,7 +2446,7 @@ namespace http
 
       }
 
-      //SCAST_PTR(message, pmessage, pmessage);
+      //__pointer(message) pmessage(pmessage);
 
       ::url_domain domain;
 

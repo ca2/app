@@ -28,7 +28,7 @@ void MetaControlBox::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
 void MetaControlBox::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
 
-   if(GetTopLevel()->frame_is_transparent() && !GetTopLevel()->is_active())
+   if(get_top_level()->frame_is_transparent() && !get_top_level()->is_active())
    {
 
       return;
@@ -46,20 +46,20 @@ void MetaControlBox::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    color32_t crBackground;
 
-   if(GetTopLevel()->frame_is_transparent())
+   if(get_top_level()->frame_is_transparent())
    {
 
-      crBackground = ARGB(84,colorref_get_r_value(m_crBackground),colorref_get_g_value(m_crBackground),colorref_get_b_value(m_crBackground));
+      crBackground = ARGB(84,colorref_get_r_value(m_colorBackground),colorref_get_g_value(m_colorBackground),colorref_get_b_value(m_colorBackground));
 
    }
    else
    {
 
-      crBackground = m_crBackground;
+      crBackground = m_colorBackground;
 
    }
 
-   pgraphics->fill_rect(rectClient, m_crBackground);
+   pgraphics->fill_rect(rectClient, m_colorBackground);
 
 }
 

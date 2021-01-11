@@ -69,7 +69,7 @@ void imm_client::_001OnKillFocus(::message::message * pmessage)
 void imm_client::_011OnChar(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::base, pbase, pmessage);
+   __pointer(::message::base) pbase(pmessage);
 
    if (pbase->m_id == e_message_char)
    {
@@ -109,7 +109,7 @@ void imm_client::_011OnChar(::message::message * pmessage)
       //if (!::str::begins_eat_ci(m_strImeComposition, strChar))
       //{
 
-      insert_text(strChar, false);
+      insert_text(strChar, false, e_source_user);
 
       //}
 
@@ -118,7 +118,7 @@ void imm_client::_011OnChar(::message::message * pmessage)
 }
 
 
-void imm_client::insert_text(string str, bool bForceNewStep)
+void imm_client::insert_text(string str, bool bForceNewStep, const ::action_context & context)
 {
 
 
@@ -132,7 +132,7 @@ void imm_client::_001OnIme(::message::message * pmessage)
 
 #ifdef WINDOWS_DESKTOP
 
-   SCAST_PTR(::message::base, pbase, pmessage);
+   __pointer(::message::base) pbase(pmessage);
 
    if (pmessage->m_id == WM_INPUTLANGCHANGE)
    {
@@ -452,7 +452,7 @@ void imm_client::_001OnKeyDown(::message::message * pmessage)
 
 #ifdef WINDOWS_DESKTOP
 
-   SCAST_PTR(::message::key, pkey, pmessage);
+   __pointer(::message::key) pkey(pmessage);
 
    if (pkey->m_ekey == ::user::key_escape)
    {

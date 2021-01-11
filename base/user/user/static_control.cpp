@@ -11,6 +11,8 @@ namespace user
    static_control::static_control()
    {
 
+      m_econtroltype = e_control_type_static;
+
       m_etype = type_text;
 
       m_bLButtonDown = false;
@@ -80,7 +82,7 @@ namespace user
    void static_control::_001OnCreate(::message::message * pmessage)
    {
 
-      descriptor().set_control_type(e_control_type_static);
+      //descriptor().set_control_type(e_control_type_static);
 
       pmessage->previous();
 
@@ -92,7 +94,7 @@ namespace user
    void static_control::_001OnLButtonDown(::message::message * pmessage)
    {
 
-//      SCAST_PTR(::message::mouse, pmouse, pmessage);
+//      __pointer(::message::mouse) pmouse(pmessage);
       UNREFERENCED_PARAMETER(pmessage);
 
       m_bLButtonDown = true;
@@ -103,7 +105,7 @@ namespace user
    void static_control::_001OnLButtonUp(::message::message * pmessage)
    {
 
-//      SCAST_PTR(::message::mouse, pmouse, pmessage);
+//      __pointer(::message::mouse) pmouse(pmessage);
       UNREFERENCED_PARAMETER(pmessage);
 
       if (m_bLButtonDown)
@@ -126,7 +128,7 @@ namespace user
    void static_control::_001OnMouseMove(::message::message * pmessage)
    {
 
-//      SCAST_PTR(::message::mouse, pmouse, pmessage);
+//      __pointer(::message::mouse) pmouse(pmessage);
       UNREFERENCED_PARAMETER(pmessage);
    }
 
@@ -134,7 +136,7 @@ namespace user
    void static_control::_001OnMouseLeave(::message::message * pmessage)
    {
 
-//      SCAST_PTR(::message::mouse, pleave, pmessage);
+//      __pointer(::message::mouse) pleave(pmessage);
       UNREFERENCED_PARAMETER(pmessage);
 
       m_bLButtonDown = false;

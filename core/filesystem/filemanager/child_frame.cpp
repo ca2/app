@@ -35,7 +35,7 @@ namespace filemanager
    bool child_frame::on_create_bars()
    {
 
-      //auto pdocument = GetActiveDocument();
+      //auto pdocument = get_active_document();
 
       //return pdocument->on_create_bars(this);
 
@@ -63,7 +63,7 @@ namespace filemanager
    __pointer(document) child_frame::filemanager_document()
    {
 
-      return  GetActiveDocument();
+      return  get_active_document();
 
    }
 
@@ -99,7 +99,7 @@ namespace filemanager
    ::file::item_array child_frame::get_selected_items()
    {
 
-      __pointer(file_list) plist = GetActiveView();
+      __pointer(file_list) plist = get_active_view();
 
       if (plist.is_null())
       {

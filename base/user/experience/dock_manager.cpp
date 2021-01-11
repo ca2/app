@@ -325,10 +325,10 @@ namespace experience
 
          //auto pointMove = point;
 
-         //if (m_pframewindow->GetParent() != nullptr)
+         //if (m_pframewindow->get_parent() != nullptr)
          //{
 
-         //   m_pframewindow->GetParent()->_001ScreenToClient(pointMove);
+         //   m_pframewindow->get_parent()->_001ScreenToClient(pointMove);
 
          //}
 
@@ -559,7 +559,7 @@ namespace experience
 
          pointOrigin += pinteraction->layout().origin();
 
-         pinteraction = pinteraction->GetParent();
+         pinteraction = pinteraction->get_parent();
 
       }
 

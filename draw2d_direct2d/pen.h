@@ -14,7 +14,7 @@ namespace draw2d_direct2d
 
       Microsoft::WRL::ComPtr<ID2D1SolidColorBrush>    m_pbrush;
       bool                                            m_bMetroColor;
-      color32_t                                        m_crMetro;
+      color32_t                                        m_colorMetro;
 
 
       pen();

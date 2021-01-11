@@ -16,6 +16,8 @@ namespace draw2d_direct2d
    font::~font()
    {
 
+      destroy();
+
    }
 
 
@@ -40,7 +42,7 @@ namespace draw2d_direct2d
 
          }
 
-         IDWriteFactory * pfactory = global_draw_get_write_factory();
+         IDWriteFactory * pfactory = System.draw2d().direct2d()->dwrite_factory();
 
          DWRITE_FONT_STYLE style;
 
@@ -63,7 +65,14 @@ namespace draw2d_direct2d
 
          float fFontSize;
 
-         oswindow oswindow = pgraphics->get_window_handle();
+         oswindow oswindow = nullptr;
+         
+         if (::is_set(pgraphics))
+         {
+          
+            oswindow = pgraphics->get_window_handle();
+
+         }
 
          if(m_eunitFontSize == ::draw2d::unit_point)
          {
@@ -78,7 +87,12 @@ namespace draw2d_direct2d
 
          }
 
-         fFontSize *= (float) pgraphics->m_dFontFactor;
+         if (::is_set(pgraphics))
+         {
+
+            fFontSize *= (float)pgraphics->m_dFontFactor;
+
+         }
 
          if (fFontSize <= 0.000001)
          {

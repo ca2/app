@@ -318,11 +318,11 @@ namespace html
 
                double dLineSpacing = textmetric.get_line_spacing();
 
-               pdata->m_pcoredata->m_layoutstate1.m_cy = dLineSpacing;
+               pdata->m_pcoredata->m_layoutstate1.m_cy = (float) dLineSpacing;
 
-               pdata->m_pcoredata->m_layoutstate1.m_cya.last() = dLineSpacing;
+               pdata->m_pcoredata->m_layoutstate1.m_cya.last() = (float) dLineSpacing;
 
-               m_box.set_height(dLineSpacing);
+               m_box.set_height((float) dLineSpacing);
 
             }
 
@@ -451,7 +451,7 @@ namespace html
 
                   pgraphics->get_text_metrics(&textmetric);
 
-                  sizeText.cy = textmetric.get_line_spacing();
+                  sizeText.cy = (float) textmetric.get_line_spacing();
 
                   m_straLines.add(strLine.Left(iLastSpace));
 
@@ -486,7 +486,7 @@ namespace html
 
             pgraphics->get_text_metrics(&textmetric);
 
-            sizeText.cy = textmetric.get_line_spacing();
+            sizeText.cy = (float) textmetric.get_line_spacing();
 
             m_straLines.add(strLine);
 
@@ -1061,7 +1061,7 @@ namespace html
       void text::OnLButtonDown(::message::message * pmessage)
       {
 
-         SCAST_PTR(::html::message, phtml, pmessage);
+         __pointer(::html::message) phtml(pmessage);
 
          if(m_pelemental->m_pdata->m_pcoredata->m_bEdit)
          {
@@ -1093,7 +1093,7 @@ namespace html
       void text::OnLButtonUp(::message::message * pmessage)
       {
 
-         SCAST_PTR(::html::message, phtml, pmessage);
+         __pointer(::html::message) phtml(pmessage);
 
          if(m_pelemental->m_pdata->m_pcoredata->m_bEdit)
          {
@@ -1130,7 +1130,7 @@ namespace html
          if (m_pelemental->m_pdata->m_pcoredata->m_bEdit)
          {
 
-            SCAST_PTR(::html::message, phtml, pmessage);
+            __pointer(::html::message) phtml(pmessage);
 
             m_pedit->_002OnMouseMove(phtml->m_psignal);
 

@@ -46,6 +46,21 @@ namespace aqua
    }
 
 
+   void application::_001OnFranceExit()
+   {
+
+      if (System.m_pmultimedia)
+      {
+
+         System.m_pmultimedia->_001OnFranceExit();
+
+      }
+
+      ::apex::application::_001OnFranceExit();
+
+   }
+
+
 } // namespace aqua
 
 

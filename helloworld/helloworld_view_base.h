@@ -21,7 +21,7 @@ namespace helloworld
 
       int                     m_yDrawStatus;
       ::draw2d::font_pointer       m_fontDrawStatus;
-      color32_t                m_crDrawStatus;
+      color32_t                m_colorDrawStatus;
 
       double                  m_dFps;
       ::u32                   m_dwRoll;

@@ -237,7 +237,7 @@ namespace filehandler
    void view::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       auto point = screen_to_client(pmouse->m_point);
 

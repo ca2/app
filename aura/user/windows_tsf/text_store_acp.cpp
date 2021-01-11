@@ -999,13 +999,13 @@ namespace tsf
 
    /**************************************************************************
 
-      edit_window::GetActiveView()
+      edit_window::get_active_view()
 
    **************************************************************************/
 
-   STDMETHODIMP edit_window::GetActiveView(TsViewCookie *pvcView)
+   STDMETHODIMP edit_window::get_active_view(TsViewCookie *pvcView)
    {
-       OutputDebugString(TEXT("edit_window::GetActiveView \n"));
+       OutputDebugString(TEXT("edit_window::get_active_view \n"));
 
        //this app only supports one view, so this can be constant
        *pvcView = EDIT_VIEW_COOKIE;

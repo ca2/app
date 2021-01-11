@@ -641,7 +641,7 @@ int_bool IsChild(oswindow oswindowParent, ::oswindow oswindowcandidateChildOrDes
 }
 
 
-oswindow WINAPI GetParent(::oswindow oswindow)
+oswindow WINAPI get_parent(::oswindow oswindow)
 {
 
    if(::is_null(oswindow))

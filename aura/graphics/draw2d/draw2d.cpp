@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/os/windows_common/draw2d_direct2d_global.h"
 
 
 namespace aura
@@ -72,6 +73,22 @@ namespace draw2d
    {
 
       return *m_papi;
+
+   }
+
+   ::draw2d_direct2d::plugin * draw2d::direct2d()
+   {
+
+      if (!m_pplugin)
+      {
+
+         __compose_new(m_pplugin);
+
+         //m_pplugin->initialize();
+
+      }
+
+      return m_pplugin;
 
    }
 

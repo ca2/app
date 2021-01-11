@@ -142,7 +142,7 @@ namespace user
    string box::window_data_key_modifier()
    {
 
-      if (GetParent() != nullptr)
+      if (get_parent() != nullptr)
       {
 
          return m_strDisplay + ".child";
@@ -519,7 +519,7 @@ namespace user
    bool box::parent_is_local_data()
    {
 
-      ::user::interaction * puiParent = GetParent();
+      ::user::interaction * puiParent = get_parent();
 
       __pointer(::database::client) pclient = puiParent;
 

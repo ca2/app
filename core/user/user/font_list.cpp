@@ -21,6 +21,8 @@ namespace user
    void font_list::user_font_list_common_construct()
    {
 
+      m_econtroltype = ::user::e_control_type_list;
+
       m_flagNonClient.add(non_client_hover_rect);
 
       m_bFirstShown = false;
@@ -58,9 +60,7 @@ namespace user
    void font_list::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
-
-      descriptor().set_control_type(::user::e_control_type_list);
+      __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
 
@@ -168,7 +168,7 @@ namespace user
    void font_list::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       auto item = hit_test(pmouse);
 
@@ -218,7 +218,7 @@ namespace user
    void font_list::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       auto item = hit_test(pmouse);
 
@@ -584,7 +584,7 @@ namespace user
    void font_list::_001OnShowWindow(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
 
       if (pshowwindow->m_bShow)
       {

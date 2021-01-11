@@ -259,7 +259,7 @@ namespace user
    void interaction_child::_001OnShowWindow(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
 
    }
 
@@ -662,7 +662,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_child::SetOwner(::user::primitive * pinteraction)
+   ::user::interaction * interaction_child::set_owner(::user::primitive * pinteraction)
    {
 
       m_puiOwner = pinteraction;
@@ -672,7 +672,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_child::GetOwner() const
+   ::user::interaction * interaction_child::get_owner() const
    {
 
       if (m_puiOwner != nullptr)
@@ -682,7 +682,7 @@ namespace user
 
       }
 
-      return GetParent();
+      return get_parent();
 
    }
 

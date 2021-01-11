@@ -145,10 +145,10 @@ namespace user
                              ::user::interaction * puiParent = nullptr,
                              ::create * pcreate = nullptr);
 
-      virtual ::user::document * GetActiveDocument();
+      virtual ::user::document * get_active_document();
 
-      virtual ::user::impact * GetActiveView() const override;           // active ::user::impact or nullptr
-      virtual void SetActiveView(::user::impact * pViewNew, bool bNotify = TRUE);
+      virtual ::user::impact * get_active_view() const override;           // active ::user::impact or nullptr
+      virtual void set_active_view(::user::impact * pViewNew, bool bNotify = TRUE) override;
       // active ::user::impact or nullptr, bNotify == FALSE if focus should not be set
 
       // Active frame (for frames within frames -- MDI)

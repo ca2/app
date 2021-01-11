@@ -1287,7 +1287,7 @@ oswindow oswindow_get_if_found(Window w)
 }
 
 
-oswindow GetParent(oswindow oswindow);
+oswindow get_parent(oswindow oswindow);
 
 
 oswindow _get_window_relative(oswindow oswindowParam, enum_relative erelative, Window * windowa, int numItems)
@@ -1420,7 +1420,7 @@ oswindow get_window(oswindow oswindowParam, enum_relative erelative)
    erelative == e_relative_previous_sibling)
    {
 
-      ::oswindow oswindowParent = ::GetParent(oswindowParam);
+      ::oswindow oswindowParent = ::get_parent(oswindowParam);
 
       if(oswindowParent == nullptr)
       {
@@ -4247,7 +4247,7 @@ namespace user
 
          __pointer(::user::interaction) pinteraction = m_puserinteraction;
 
-         while(pinteraction != nullptr && pinteraction->GetParent() != nullptr)
+         while(pinteraction != nullptr && pinteraction->get_parent() != nullptr)
          {
 
             try
@@ -4273,7 +4273,7 @@ namespace user
             try
             {
 
-               pinteraction = pinteraction->GetParent();
+               pinteraction = pinteraction->get_parent();
 
             }
             catch(...)
@@ -5248,7 +5248,7 @@ void os_menu_item_check(void * pitem, bool bCheck)
 }
 
 
-oswindow GetParent(oswindow oswindow)
+oswindow get_parent(oswindow oswindow)
 {
 
    return nullptr;

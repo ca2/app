@@ -14,6 +14,7 @@ namespace user
    menu_list_window::menu_list_window()
    {
 
+      m_econtroltype = e_control_type_menu;
       m_bInline = true;
       m_bAutoDelete = true;
       m_bOwnItem = false;
@@ -57,7 +58,7 @@ namespace user
    void menu_list_window::_001OnCreate(::message::message * pmessage)
    {
 
-      descriptor().set_control_type(e_control_type_menu);
+      //descriptor().set_control_type(e_control_type_menu);
 
       UNREFERENCED_PARAMETER(pmessage);
 
@@ -154,7 +155,7 @@ namespace user
 
       }
 
-      if(GetParent() == nullptr)
+      if(get_parent() == nullptr)
       {
 
          return;
@@ -172,7 +173,7 @@ namespace user
 
       ::rect rectClient;
 
-      GetParent()->get_client_rect(rectClient);
+      get_parent()->get_client_rect(rectClient);
 
       pgraphics->set_font(this, ::user::e_element_none);
 
@@ -190,9 +191,9 @@ namespace user
 
       m_size.cx = iMaxWidth + 4;
 
-      m_size.cy = m_dHeaderHeight + pitem->m_iSeparatorCount * 3 + pitem->m_iFullHeightItemCount * m_dItemHeight + 4;
+      m_size.cy = (LONG) (m_dHeaderHeight + pitem->m_iSeparatorCount * 3 + pitem->m_iFullHeightItemCount * m_dItemHeight + 4);
 
-      ::rect rect(4, m_dHeaderHeight + 4, m_size.cx - 8, 4);
+      ::rect rect(4, (LONG) m_dHeaderHeight + 4, m_size.cx - 8, 4);
 
       string str;
 
@@ -234,7 +235,7 @@ namespace user
 
          menu_item * pitem = pitemParent->m_pmenuitema->element_at(i);
 
-         prect->bottom = prect->top + m_dItemHeight - 2;
+         prect->bottom = (LONG) (prect->top + m_dItemHeight - 2);
 
          if(prect->bottom > rectBound.bottom)
          {
@@ -243,7 +244,7 @@ namespace user
 
             prect->top = rectBound.top;
 
-            prect->bottom = prect->top + m_dItemHeight - 2;
+            prect->bottom = (LONG) (prect->top + m_dItemHeight - 2);
 
          }
 

@@ -25,3 +25,12 @@ bool timer_callback::remove_timer(::timer* ptimer)
 }
 
 
+::user::interaction * timer_callback::get_user_interaction()
+{
+
+   return nullptr;
+
+}
+
+
+

@@ -10,7 +10,6 @@ namespace uwp
    {
    internal:
 
-
       Windows::Foundation::Point                      m_pointLastCursor;
 
       ::u32                                           m_dwMouseMoveThrottle;
@@ -49,7 +48,9 @@ namespace uwp
 
       void initialize_directx_application();
 
-      
+      virtual widestring get_input_text() override;
+      virtual bool set_input_text(const widestring & wstr) override;
+
 
       //::aura::system * get_context_system() const;
 
@@ -77,6 +78,7 @@ namespace uwp
       virtual ~directx_framework_view();
 
    private:
+
 
       void OnUISettingsColorValuesChange(Windows::UI::ViewManagement::UISettings^, Platform::Object^);
 
@@ -108,7 +110,7 @@ namespace uwp
       _In_ Object^ args
       );
 
-      
+      void OnWindowClosed(Windows::UI::Core::CoreWindow ^ sender, Windows::UI::Core::CoreWindowEventArgs ^ args);
       void OnWindowVisibilityChanged(Windows::UI::Core::CoreWindow^, Windows::UI::Core::VisibilityChangedEventArgs^ args);
 
       void OnPointerMoved(Windows::UI::Core::CoreWindow^, Windows::UI::Core::PointerEventArgs^ args);

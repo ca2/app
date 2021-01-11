@@ -43,18 +43,18 @@
                ::draw2d::fastblur               m_blur1;
                e_style                          m_estyle;
                //::user::front_end_schema         m_schema;
-               color32_t                         m_crFrameBorder;
-               color32_t                         m_crMoveableBorderHilight;
-               color32_t                         m_crMoveableBorderDkShadow;
-               color32_t                         m_crCaptionTextBk;
-               color32_t                         m_crActiveCaptionTextBk;
-               color32_t                         m_crCaptionText;
+               color32_t                         m_colorFrameBorder;
+               color32_t                         m_colorMoveableBorderHilight;
+               color32_t                         m_colorMoveableBorderDkShadow;
+               color32_t                         m_colorCaptionTextBk;
+               color32_t                         m_colorActiveCaptionTextBk;
+               color32_t                         m_colorCaptionText;
                ::draw2d::pen_pointer                 m_penText1;
                ::draw2d::pen_pointer                 m_penFace1;
                ::draw2d::pen_pointer                 m_penHilight1;
                ::draw2d::pen_pointer                 m_penShadow1;
                ::draw2d::pen_pointer                 m_penDkShadow1;
-               color32_t                         m_crDkShadow;
+               color32_t                         m_colorDkShadow;
                size                             m_minSize;
 
                ::draw2d::pen_pointer                 m_penHollow1;

@@ -597,7 +597,7 @@ namespace macos
 //
 //      }
 //
-//      SCAST_PTR(::message::move, pmove, pmessage);
+//      __pointer(::message::move) pmove(pmessage);
 //
 //      m_puserinteraction->window_state().m_point = pmove->m_point;
 //
@@ -646,7 +646,7 @@ namespace macos
 //
 //      }
 //
-//      SCAST_PTR(::message::size, psize, pmessage);
+//      __pointer(::message::size) psize(pmessage);
 //
 //      m_puserinteraction->window_state().m_size = psize->m_size;
 //
@@ -809,7 +809,7 @@ namespace macos
       ((::user::interaction_impl *) this)->m_puserinteraction->get_window_rect(rect);
       
       dumpcontext << "\nrect = " << rect;
-      dumpcontext << "\nparent ::user::interaction * = " << (void *)((::user::interaction_impl *) this)->GetParent();
+      dumpcontext << "\nparent ::user::interaction * = " << (void *)((::user::interaction_impl *) this)->get_parent();
 
       //      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
       //    if (::GetWindowLong(get_handle(), GWL_STYLE) & WS_CHILD)
@@ -1091,7 +1091,7 @@ namespace macos
             pbase->m_id == e_message_char)
       {
 
-         SCAST_PTR(::message::key, pkey, pbase);
+         __pointer(::message::key) pkey(pbase);
 
          psession->translate_os_key_message(pkey);
 
@@ -1314,7 +1314,7 @@ namespace macos
 
          if (puiFocus != nullptr
                && puiFocus->is_window()
-               && puiFocus->GetTopLevel() != nullptr
+               && puiFocus->get_top_level() != nullptr
                && puiFocus != m_puserinteraction)
          {
 
@@ -1418,7 +1418,7 @@ namespace macos
 
    /*
 
-   __pointer(::user::frame_window) interaction_impl::GetTopLevelFrame()
+   __pointer(::user::frame_window) interaction_impl::top_level_frame()
    {
       if (get_handle() == nullptr) // no oswindow attached
          return nullptr;
@@ -1429,12 +1429,12 @@ namespace macos
       if(m_puserinteraction != nullptr)
          pFrameWnd = dynamic_cast < ::user::frame_window * > (m_puserinteraction);
       if (pFrameWnd == nullptr || !pFrameWnd->is_frame_window())
-         pFrameWnd = GetParentFrame();
+         pFrameWnd = get_parent_frame();
 
       if (pFrameWnd != nullptr)
       {
          ::user::frame_window* pTemp;
-         while ((pTemp = pFrameWnd->GetParentFrame()) != nullptr)
+         while ((pTemp = pFrameWnd->get_parent_frame()) != nullptr)
             pFrameWnd = pTemp;
       }
       return pFrameWnd;
@@ -1594,11 +1594,11 @@ namespace macos
 //      ASSERT(puiStop == nullptr || puiStop->is_window());
 //      ASSERT(pmessage != nullptr);
 //
-//      SCAST_PTR(::message::base, pbase, pmessage);
+//      __pointer(::message::base) pbase(pmessage);
 //      // walk from the target user::interaction up to the hWndStop user::interaction checking
 //      //  if any user::interaction wants to translate this message
 //
-//      for (__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction; pinteraction != nullptr; pinteraction->GetParent())
+//      for (__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
 //      {
 //
 //         pinteraction->pre_translate_message(pmessage);
@@ -2133,7 +2133,7 @@ namespace macos
    void interaction_impl::_001OnPrint(::message::message * pmessage)
    {
       __throw(not_implemented());
-      //      SCAST_PTR(::message::base, pbase, pmessage);
+      //      __pointer(::message::base) pbase(pmessage);
       //
       //      if(pbase->m_wparam == nullptr)
       //         return;
@@ -2623,7 +2623,7 @@ namespace macos
    }
 
 
-   ::user::interaction * interaction_impl::GetParent() const
+   ::user::interaction * interaction_impl::get_parent() const
    {
 
       return nullptr;
@@ -2950,7 +2950,7 @@ namespace macos
 ////
 ////         }
 ////
-////         if (m_puserinteraction->GetParent() != nullptr && !m_puserinteraction->GetParent()->is_window_visible())
+////         if (m_puserinteraction->get_parent() != nullptr && !m_puserinteraction->get_parent()->is_window_visible())
 ////         {
 ////
 ////            return false;
@@ -3808,7 +3808,7 @@ namespace macos
 //
 //   void interaction_impl::_001OnSetCursor(::message::message * pmessage)
 //   {
-//      SCAST_PTR(::message::base, pbase, pmessage);
+//      __pointer(::message::base) pbase(pmessage);
 //      if (psession->get_cursor() != nullptr
 //            && psession->get_cursor()->m_ecursor != cursor_system)
 //      {
@@ -4224,7 +4224,7 @@ namespace macos
 //   void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
 //   {
 //
-//      SCAST_PTR(::message::erase_bkgnd, perasebkgnd, pmessage);
+//      __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
 //
 //      perasebkgnd->m_bRet = true;
 //
@@ -5084,7 +5084,7 @@ namespace macos
 //
 //      }
 //
-//      ///SCAST_PTR(::message::move, pmove, pmessage);
+//      ///__pointer(::message::move) pmove(pmessage);
 //
 //      if (m_puserinteraction->layout().sketch().m_point != pointMove)
 //      {

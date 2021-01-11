@@ -24,6 +24,8 @@ namespace user
    list::list()
    {
 
+      m_econtroltype = e_control_type_list;
+
       m_bHighHighLight = true;
 
       //m_ecolorBackground = color_list_background;
@@ -664,15 +666,13 @@ namespace user
 
       auto pstyle = get_style(pdrawitem->m_pgraphics);
 
-      pdrawitem->m_crText = get_color(pstyle, ::user::e_element_text);
+      pdrawitem->m_colorText = get_color(pstyle, ::user::e_element_item_text);
 
-      pdrawitem->m_crTextBackground = 0;
+      pdrawitem->m_colorTextBackground = 0;
 
-      pdrawitem->m_crItemBackground = 0;
+      pdrawitem->m_colorItemBackground = 0;
 
       pdrawitem->update_item_color();
-
-      pdrawitem->set_text_color();
 
       if (pdrawitem->m_bListItemSelected)
       {
@@ -692,15 +692,15 @@ namespace user
          else
          {
 
-            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, pdrawitem->m_crItemBackground);
+            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, pdrawitem->m_colorItemBackground);
 
          }
 
       }
-      else if (pdrawitem->m_crItemBackground != 0)
+      else if (pdrawitem->m_colorItemBackground.is_set())
       {
 
-         pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, pdrawitem->m_crItemBackground);
+         pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, pdrawitem->m_colorItemBackground);
 
       }
 
@@ -786,7 +786,7 @@ namespace user
          if (pdrawitem->m_plist->m_bMorePlain)
          {
 
-            auto color = get_color(pstyle, ::user::e_element_text);
+            auto color = get_color(pstyle, ::user::e_element_item_text);
 
             if (!color)
             {
@@ -926,7 +926,7 @@ namespace user
       //if (m_puserstyle == nullptr)
       //{
 
-      //   m_puserstyle = GetTopLevelFrame();
+      //   m_puserstyle = top_level_frame();
 
       //}
 
@@ -1101,7 +1101,12 @@ namespace user
 
       //}
 
-      set_viewport_offset(pointOffset.x, pointOffset.y);
+      queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
+         {
+
+            set_viewport_offset(pgraphics, pointOffset.x, pointOffset.y);
+
+         });
 
       set_need_redraw();
 
@@ -1315,120 +1320,7 @@ namespace user
    }
 
 
-   list_column::list_column()
-   {
-
-      m_bNew = true;
-      m_uiSmallBitmap = (::u32)-1;
-      m_iOrder = -1;
-      m_iColumn = -1;
-      m_bVisible = true;
-      m_pil = nullptr;
-      m_iControl = -1;
-      m_bEditOnSecondClick = false;
-      m_bCustomDraw = false;
-      m_bIcon = false;
-      m_pil = nullptr;
-      m_pilHover = nullptr;
-      m_sizeIcon.cx = 0;
-      m_sizeIcon.cy = 0;
-
-   }
-
-
-   list_column::~list_column()
-   {
-
-   }
-
-
-   ::index list_column::get_index() const
-   {
-
-      return m_pcontainer->get_index(this);
-
-   }
-
-
-   ::index list_column::item_index() const
-   {
-
-      return get_index();
-
-   }
-
-
-   bool list_column::bind(::user::control_descriptor * pinteraction)
-   {
-
-      if (is_null(pinteraction))
-      {
-
-         return false;
-
-      }
-
-      m_iControl = pinteraction->m_iControl;
-
-      return m_iControl >= 0;
-   }
-
-
-   ::index list_column::get_visible_index() const
-   {
-
-      return m_pcontainer->get_visible_index(this);
-
-   }
-
-
-   bool list_column::operator ==(const list_column & column) const
-   {
-
-      return m_iSubItem == column.m_iSubItem;
-
-   }
-
-
-   int list_column::CompareOrderSectEndNonVisible(const __pointer(list_column) & pcolumna, const __pointer(list_column) & pcolumnb)
-   {
-
-      if (pcolumna->m_bVisible && pcolumnb->m_bVisible)
-      {
-
-         return (int) (pcolumna->m_iOrder - pcolumnb->m_iOrder);
-
-      }
-      else if (pcolumna->m_bVisible)
-      {
-
-         return -1;
-
-      }
-      else if (pcolumnb->m_bVisible)
-      {
-
-         return 1;
-
-      }
-      else
-      {
-
-         return 0;
-
-      }
-
-   }
-
-
-   int list_column::CompareOrder(const __pointer(list_column) & pcolumna, const __pointer(list_column) & pcolumnb)
-   {
-
-      return (int)(pcolumna->m_iOrder - pcolumnb->m_iOrder);
-
-   }
-
-
+   
 
 
    //list_column & list_column::operator = (const list_column & column)
@@ -1440,7 +1332,7 @@ namespace user
    //   m_uiText = pcolumn->m_uiText;
    //   m_iWidth = pcolumn->m_iWidth;
    //   m_uiSmallBitmap = pcolumn->m_uiSmallBitmap;
-   //   m_crSmallMask = pcolumn->m_crSmallMask;
+   //   m_colorSmallMask = pcolumn->m_colorSmallMask;
    //   m_iSmallImageWidth = pcolumn->m_iSmallImageWidth;
    //   m_pil = pcolumn->m_pil;
    //   m_pilHover = pcolumn->m_pilHover;
@@ -1834,7 +1726,7 @@ namespace user
 
       index iItem;
 
-      if (_001DisplayHitTest(point(0, m_bHeaderCtrl ? m_dItemHeight : 0.), iItem))
+      if (_001DisplayHitTest(point(0, (LONG) (m_bHeaderCtrl ? m_dItemHeight : 0.)), iItem))
       {
 
          return (::index) iItem;
@@ -1872,7 +1764,7 @@ namespace user
 
          get_client_rect(&rectView);
 
-         index dHeight = (rectView.height() / m_dItemHeight) * m_dItemHeight;
+         index dHeight = (::index) ((rectView.height() / m_dItemHeight) * m_dItemHeight);
 
          index iWidth = rectView.width();
 
@@ -1890,7 +1782,7 @@ namespace user
          if(m_iItemWidth > 0)
          {
 
-            iColumnCount = iWidth / m_iItemWidth;
+            iColumnCount = (int) (iWidth / m_iItemWidth);
 
          }
 
@@ -1935,7 +1827,7 @@ namespace user
 
             }
 
-            ::count iItemCount = ceil(dHeight / m_dItemHeight);
+            ::count iItemCount = (::count) ceil(dHeight / m_dItemHeight);
 
             return iItemCount;
 
@@ -2242,7 +2134,7 @@ namespace user
          if (m_dItemHeight != 0)
          {
 
-            iItem = iy / m_dItemHeight;
+            iItem = (::index) (iy / m_dItemHeight);
 
          }
 
@@ -2301,11 +2193,11 @@ namespace user
          if (m_bHeaderCtrl)
          {
 
-            rectClient.top += m_dItemHeight;
+            rectClient.top += (LONG) m_dItemHeight;
 
          }
 
-         index dHeight = (rectClient.height() / m_dItemHeight) * m_dItemHeight;
+         index dHeight = (::index) ((rectClient.height() / m_dItemHeight) * m_dItemHeight);
 
          auto pointOffset = get_viewport_offset();
 
@@ -2349,7 +2241,7 @@ namespace user
          if (m_dItemHeight != 0)
          {
 
-            iRow = iy / m_dItemHeight;
+            iRow = (int) (iy / m_dItemHeight);
 
          }
 
@@ -2599,7 +2491,7 @@ namespace user
                   if (m_bHeaderCtrl)
                   {
 
-                     pdrawitem->m_rectItem.top += m_dItemHeight;
+                     pdrawitem->m_rectItem.top += (LONG) (m_dItemHeight);
 
                   }
 
@@ -2610,7 +2502,7 @@ namespace user
 
                   }
 
-                  pdrawitem->m_rectItem.bottom = pdrawitem->m_rectItem.top + m_dItemHeight;
+                  pdrawitem->m_rectItem.bottom = (LONG) (pdrawitem->m_rectItem.top + m_dItemHeight);
 
               //    pdrawitem->m_rectItem.offset(-pointOffset.x, -pointOffset.y);
 
@@ -2623,14 +2515,14 @@ namespace user
 
                   pdrawitem->m_rectItem.top -= iOffset;
 
-                  pdrawitem->m_rectItem.bottom = pdrawitem->m_rectItem.top + m_dItemHeight;
+                  pdrawitem->m_rectItem.bottom = (LONG) (pdrawitem->m_rectItem.top + m_dItemHeight);
 
                   while (pdrawitem->m_iGroupTopDisplayIndex + pdrawitem->m_iGroupCount < pdrawitem->m_iDisplayItem)
                   {
 
                      pdrawitem->m_rectItem.top += iOffset;
 
-                     pdrawitem->m_rectItem.bottom = pdrawitem->m_rectItem.top + m_dItemHeight;
+                     pdrawitem->m_rectItem.bottom = (LONG) (pdrawitem->m_rectItem.top + m_dItemHeight);
 
                      if ((pdrawitem->m_iGroup + 1) >= m_nGroupCount)
                      {
@@ -2657,7 +2549,7 @@ namespace user
 
                   pdrawitem->m_rectItem.top -= iOffset;
 
-                  pdrawitem->m_rectItem.bottom = pdrawitem->m_rectItem.top + m_dItemHeight;
+                  pdrawitem->m_rectItem.bottom = (LONG)(pdrawitem->m_rectItem.top + m_dItemHeight);
 
                   while (pdrawitem->m_iGroupTopDisplayIndex + pdrawitem->m_iGroupCount > pdrawitem->m_iDisplayItem)
                   {
@@ -2675,7 +2567,7 @@ namespace user
 
                      pdrawitem->m_rectItem.top -= dHeight;
 
-                     pdrawitem->m_rectItem.bottom = pdrawitem->m_rectItem.top + m_dItemHeight;
+                     pdrawitem->m_rectItem.bottom = (LONG)(pdrawitem->m_rectItem.top + m_dItemHeight);
 
                      pdrawitem->m_iGroupCount = _001GetGroupItemCount(pdrawitem->m_iGroup);
 
@@ -2694,7 +2586,7 @@ namespace user
 
                   pdrawitem->m_rectItem.top += (::i32)((pdrawitem->m_iItemRectItem - pdrawitem->m_iGroupTopDisplayIndex) * m_dItemHeight);
 
-                  pdrawitem->m_rectItem.bottom = pdrawitem->m_rectItem.top + m_dItemHeight;
+                  pdrawitem->m_rectItem.bottom = (LONG)(pdrawitem->m_rectItem.top + m_dItemHeight);
 
                }
 
@@ -2719,7 +2611,7 @@ namespace user
             if (m_bHeaderCtrl)
             {
 
-               pdrawitem->m_rectItem.top += m_dItemHeight;
+               pdrawitem->m_rectItem.top += (LONG)(m_dItemHeight);
 
             }
 
@@ -2732,7 +2624,7 @@ namespace user
 
             }
 
-            pdrawitem->m_rectItem.bottom = pdrawitem->m_rectItem.top + m_dItemHeight;
+            pdrawitem->m_rectItem.bottom = (LONG)(pdrawitem->m_rectItem.top + m_dItemHeight);
 
             //pdrawitem->m_rectItem.offset(-pointOffset.x, -pointOffset.y);
 
@@ -2758,7 +2650,7 @@ namespace user
          if (m_bHeaderCtrl)
          {
 
-            rectClient.top += m_dItemHeight;
+            rectClient.top += (LONG)(m_dItemHeight);
 
          }
 
@@ -2769,20 +2661,20 @@ namespace user
 
          }
 
-         index dHeight = (rectClient.height() / m_dItemHeight) * m_dItemHeight;
+         index dHeight = (::index) ((rectClient.height() / m_dItemHeight) * m_dItemHeight);
 
          if (dHeight != 0 && m_dItemHeight != 0)
          {
 
             int iViewRowCount = max(1, dHeight / m_dItemHeight);
 
-            int iColumn = pdrawitem->m_iItem / iViewRowCount;
+            int iColumn = (int) (pdrawitem->m_iItem / iViewRowCount);
 
             int iRow = pdrawitem->m_iItem % iViewRowCount;
 
             pdrawitem->m_rectItem.left = iColumn * m_iItemWidth;
 
-            pdrawitem->m_rectItem.top = iRow * m_dItemHeight;
+            pdrawitem->m_rectItem.top = (LONG)(iRow * m_dItemHeight);
 
          }
 
@@ -2796,11 +2688,11 @@ namespace user
          if (m_bHeaderCtrl)
          {
 
-            pdrawitem->m_rectItem.top += m_dItemHeight;
+            pdrawitem->m_rectItem.top += (LONG)(m_dItemHeight);
 
          }
 
-         pdrawitem->m_rectItem.bottom = pdrawitem->m_rectItem.top + m_dItemHeight;
+         pdrawitem->m_rectItem.bottom = (LONG)(pdrawitem->m_rectItem.top + m_dItemHeight);
 
          pdrawitem->m_rectItem.right = (::i32)(pdrawitem->m_rectItem.left + m_iItemWidth);
 
@@ -2963,6 +2855,32 @@ namespace user
    }
 
 
+   ::user::interaction * list::get_subitem_control(::index iSubItem)
+   {
+
+      auto pcolumn = m_columna.get_by_subitem(iSubItem);
+
+      if (!pcolumn)
+      {
+
+         return nullptr;
+
+      }
+
+      auto puserinteraction = get_child_by_id(pcolumn->m_id);
+
+      if (!puserinteraction)
+      {
+
+         return nullptr;
+
+      }
+
+      return puserinteraction;
+
+   }
+
+
    void list::_001GetElementRect(::user::draw_list_item * pdrawitem, ::user::mesh::enum_element eelement)
    {
 
@@ -3043,7 +2961,7 @@ namespace user
 
             pdrawitem->m_rectText.right = pdrawitem->m_rectGroup.right;
 
-            pdrawitem->m_rectText.bottom = pdrawitem->m_rectText.top + m_dItemHeight;
+            pdrawitem->m_rectText.bottom = (LONG)(pdrawitem->m_rectText.top + m_dItemHeight);
 
             return_(pdrawitem->m_bOk, true);
 
@@ -3293,7 +3211,7 @@ namespace user
    void list::_001OnKeyDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       if (pkey->previous()) // give chance to child
          return;
@@ -3403,7 +3321,7 @@ namespace user
    void list::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmouse->m_lresult = 1;
 
@@ -3582,7 +3500,7 @@ namespace user
 
                m_iTimerHoverSelect = 0;
 
-               //SetTimer(12321, 800, nullptr);
+               //SetTimer(e_timer_hover_select, 800, nullptr);
 
             }
 
@@ -3597,7 +3515,7 @@ namespace user
    void list::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       SetCapture();
 
@@ -3955,7 +3873,7 @@ namespace user
    void list::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       auto point = pmouse->m_point;
 
@@ -4152,7 +4070,7 @@ namespace user
    void list::_001OnRButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmouse->previous();
 
@@ -4227,7 +4145,7 @@ namespace user
       //else
       //{
 
-      //   GetParent()->send_message(e_message_event, 0, (LPARAM)&ev);
+      //   get_parent()->send_message(e_message_event, 0, (LPARAM)&ev);
 
       //}
 
@@ -4418,7 +4336,7 @@ namespace user
    void list::_001OnLButtonDblClk(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       m_iClick = 2;
 
@@ -4453,9 +4371,9 @@ namespace user
 
       }
 
-      /* trans window_id wndidNotify = pwnd->GetOwner()->GetSafeoswindow_();
+      /* trans window_id wndidNotify = pwnd->get_owner()->GetSafeoswindow_();
       if(wndidNotify == nullptr)
-      wndidNotify = pwnd->GetParent()->GetSafeoswindow_();*/
+      wndidNotify = pwnd->get_parent()->GetSafeoswindow_();*/
 
       LRESULT lresult = 0;
 
@@ -4800,6 +4718,27 @@ namespace user
    }
 
 
+   index list_column_array::control_id_index(const ::id & id)
+   {
+
+      for (index iIndex = 0; iIndex < this->get_size(); iIndex++)
+      {
+
+         list_column * pcolumn = element_at(iIndex);
+
+         if (pcolumn != nullptr && pcolumn->m_id == id)
+         {
+
+            return iIndex;
+
+         }
+
+      }
+
+      return -1;
+
+   }
+
    list_column * list_column_array::get_by_subitem(index iSubItem)
    {
 
@@ -4807,80 +4746,25 @@ namespace user
 
       return get_by_index(iIndex);
 
+   }
+
+
+   list_column * list_column_array::get_by_control_id(const ::id & id)
+   {
+
+      index iIndex = subitem_index(id);
+
+      return get_by_index(iIndex);
 
    }
 
-   //list_column * list_column_array::GlobalOrderGetPrevious(index iKey)
-   //{
-   //   for (index i = 0; i < this->get_size(); i++)
-   //   {
-   //      list_column * pcolumn = element_at(i);
-   //      if (pcolumn->m_iNextGlobalOrderKey == iKey)
-   //      {
-   //         return pcolumn;
-   //      }
-   //   }
-   //   return nullptr;
-   //}
 
-   //list_column * list_column_array::GlobalOrderGetNext(index iIndex)
-   //{
-   //   list_column * pcolumn = element_at(iKey);
-   //   return _001GetByKey(pcolumn->m_iNextGlobalOrderKey);
-   //}
+   list_column * list_column_array::get_by_control(::user::interaction * pinteraction)
+   {
 
+      return get_by_control_id(pinteraction->m_id);
 
-   //list_column * list_column_array::get_visible(index iKeyVisible)
-   //{
-
-   //   ::count cVisible = 0;
-
-   //   for (index i = 0; i < this->get_size(); i++)
-   //   {
-   //
-   //      list_column * pcolumn = element_at(i);
-   //
-   //      if(pcolumn->m_bVisible)
-   //      {
-
-   //         if (cVisible == iKeyVisible)
-   //         {
-
-   //            return pcolumn;
-
-   //         }
-
-   //         cVisible++;
-   //
-   //      }
-
-   //   }
-
-   //   return nullptr;
-
-   //}
-
-
-   //list_column * list_column_array::_001GetNonVisible(index iKeyNonVisible)
-   //{
-
-   //   if (iKeyNonVisible < 0)
-   //   {
-
-   //      return nullptr;
-
-   //   }
-
-   //   if (iKeyNonVisible >= get_size())
-   //   {
-
-   //      return nullptr;
-
-   //   }
-
-   //   return element_at(iKeyNonVisible);
-
-   //}
+   }
 
 
    index list_column_array::add(list_column * pcolumn)
@@ -5412,11 +5296,9 @@ namespace user
    void list::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       pmessage->previous();
-
-      descriptor().set_control_type(e_control_type_list);
 
       if (pcreate->m_lresult == -1)
       {
@@ -5508,7 +5390,7 @@ namespace user
          MAKEINTRESOURCE(pcolumn->m_uiSmallBitmap),
          pcolumn->m_iSmallImageWidth,
          0,
-         pcolumn->m_crSmallMask))
+         pcolumn->m_colorSmallMask))
       {
       }
       */
@@ -5718,7 +5600,7 @@ namespace user
          pcolumn->m_iWidth = -1;
          pcolumn->m_iSubItem = 0;
          pcolumn->m_iSmallImageWidth = 16;
-         pcolumn->m_crSmallMask = ARGB(255, 255, 0, 255);
+         pcolumn->m_colorSmallMask = ARGB(255, 255, 0, 255);
 
 
 
@@ -5799,7 +5681,7 @@ namespace user
 
          pgraphics->set_font(this, ::user::e_element_none);
 
-         m_dcextension.GetTextExtent(pgraphics, item.m_strText, ::user::e_state_none, size);
+         m_dcextension.GetTextExtent(pgraphics, item.m_strText, item.m_strText.get_length(), size);
 
          cx += size.cx;
 
@@ -5834,6 +5716,7 @@ namespace user
       return m_columna.config_id_index(key);
 
    }
+
 
 
    list_column * list_column_array::get_by_config_id(const ::database::key & key)
@@ -5976,9 +5859,14 @@ namespace user
 
          pointOffset.y = (::i32)(iItem * m_dItemHeight);
 
-         set_viewport_offset_y(pointOffset.y);
+         queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
+            {
 
-         on_change_viewport_offset();
+               set_viewport_offset_y(pgraphics, pointOffset.y);
+
+               on_change_viewport_offset(pgraphics);
+
+            });
 
          if (bRedraw)
          {
@@ -6002,7 +5890,14 @@ namespace user
 
          pointOffset.y = (::i32)(iItem * m_dItemHeight);
 
-         on_change_viewport_offset();
+         queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
+            {
+
+               set_viewport_offset_y(pgraphics, pointOffset.y);
+
+               on_change_viewport_offset(pgraphics);
+
+            });
 
          if (bRedraw)
          {
@@ -6042,7 +5937,12 @@ namespace user
 
          pointOffset.y = (::i32)(iyScroll * m_dItemHeight);
 
-         on_change_viewport_offset();
+         queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+            {
+
+               on_change_viewport_offset(pgraphics);
+
+            });
 
          item.set_lower_bound(iyScroll);
 
@@ -6202,7 +6102,12 @@ namespace user
 
       SetTimer(0xfffffffe, 50, nullptr);
 
-      set_viewport_offset(0, 0);
+      queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+         {
+
+            set_viewport_offset(pgraphics, 0, 0);
+
+         });
 
       m_efilterstate = FilterStateFilter;
 
@@ -6361,7 +6266,12 @@ namespace user
          m_pmeshlayout->m_iaDisplayToStrict = (*m_piaFilterMesh);
       }
 
-      set_viewport_offset(0, 0);
+      queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+         {
+
+            set_viewport_offset(pgraphics, 0, 0);
+
+         });
 
       m_efilterstate = FilterStateFilter;
 
@@ -6597,12 +6507,12 @@ namespace user
    i32 list::get_wheel_scroll_delta()
    {
 
-      return 3 * m_dItemHeight;
+      return (::i32) (3.* m_dItemHeight);
 
    }
 
 
-   void list::on_change_viewport_offset()
+   void list::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
       sync_lock sl(mutex());
@@ -6670,7 +6580,7 @@ namespace user
 
       update_hover(psession->get_cursor_pos());
 
-      ::user::scroll_base::on_change_viewport_offset();
+      ::user::scroll_base::on_change_viewport_offset(pgraphics);
 
       set_need_redraw();
 
@@ -6863,7 +6773,7 @@ namespace user
 
    void list::_001OnHScroll(::message::message * pmessage)
    {
-      //      SCAST_PTR(::message::scroll, pscroll, pmessage);
+      //      __pointer(::message::scroll) pscroll(pmessage);
 
       pmessage->previous();
 
@@ -7169,7 +7079,7 @@ namespace user
 
    void list::_001OnUpdateListViewAutoArrange(::message::message * pmessage)
    {
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
       pcommand->_001SetCheck(get_auto_arrange());
       pcommand->enable();
    }
@@ -7317,9 +7227,9 @@ namespace user
       m_iOrder = -1;
       m_iSubItem = -1;
       m_iListItem = -1;
-      m_crText = (color32_t)-1;
-      m_crTextBackground = ARGB(255, 0, 0, 0);
-      m_crItemBackground = 0;
+      m_colorText = (color32_t)-1;
+      m_colorTextBackground = ARGB(255, 0, 0, 0);
+      m_colorItemBackground = 0;
       m_iState = -1;
       m_iImage = -1;
       m_bOk = false;
@@ -7558,9 +7468,9 @@ namespace user
 
       auto pstyle = m_plist->get_style(m_pgraphics);
 
-      m_crText = m_plist->get_color(pstyle, ::user::e_element_item_text, estate);
+      m_colorText = m_plist->get_color(pstyle, ::user::e_element_item_text, estate);
 
-      m_crItemBackground = m_plist->get_color(pstyle, ::user::e_element_item_background, estate);
+      m_colorItemBackground = m_plist->get_color(pstyle, ::user::e_element_item_background, estate);
 
    }
 
@@ -7575,7 +7485,7 @@ namespace user
 
          color c;
 
-         c.set_COLORREF(m_crText);
+         c.set_COLORREF(m_colorText);
 
          c.m_iA = c.m_iA / 3;
 
@@ -7585,7 +7495,7 @@ namespace user
       else
       {
 
-         brushText->create_solid(m_crText);
+         brushText->create_solid(m_colorText);
 
       }
 
@@ -7618,16 +7528,16 @@ namespace user
                      pimage2,
                      m_pgraphics->m_pfont,
                   m_ealign, m_edrawtext,
-                     m_crText,
-                     m_crTextBackground,
+                     m_colorText,
+                     m_colorTextBackground,
                      m_plist->m_iTextSpreadRadius, m_plist->m_iTextBlurRadius,
                      m_plist->m_iTextBlur,
-                     m_strText != m_plist->m_mapText[m_iItem] || m_crTextBackground != m_plist->m_mapBackColor[m_iItem]))
+                     m_strText != m_plist->m_mapText[m_iItem] || m_colorTextBackground != m_plist->m_mapBackColor[m_iItem]))
                {
 
                   m_plist->m_mapText[m_iItem] = m_strText;
 
-                  m_plist->m_mapBackColor[m_iItem] = m_crTextBackground;
+                  m_plist->m_mapBackColor[m_iItem] = m_colorTextBackground;
 
                }
 
@@ -7641,7 +7551,7 @@ namespace user
 
             update_item_color();
 
-            //brushText->create_solid(m_crText);
+            //brushText->create_solid(m_colorText);
 
             //m_pgraphics->set(brushText);
 
@@ -7652,6 +7562,8 @@ namespace user
             auto ealign = (::enum_align) m_plist->get_int(pstyle, e_int_list_item_text_align);
 
             auto edrawtext = (::enum_draw_text) m_plist->get_int(pstyle, e_int_list_item_draw_text_flags);
+
+            set_text_color();
 
             m_pgraphics->draw_text(m_strText, m_rectText, ealign, edrawtext);
 
@@ -7809,6 +7721,55 @@ namespace user
    }
 
 
+   //::index list::item_index(::user::interaction * pinteractionControl)
+   //{
+
+   //   m_
+
+   //}
+
+
+   ::index list::subitem_index(::user::interaction * pinteractionControl)
+   {
+
+      auto pcolumn = m_columna.get_by_control(pinteractionControl);
+
+      if (!pcolumn)
+      {
+
+         return -1;
+
+      }
+
+      return pcolumn->m_iSubItem;
+
+   }
+
+
+   //::index list::list_item_index(::user::interaction * pinteractionControl)
+   //{
+
+
+   //}
+
+
+   ::index list::column_index(::user::interaction * pinteractionControl) 
+   {
+
+      auto pcolumn = m_columna.get_by_control(pinteractionControl);
+
+      if (!pcolumn)
+      {
+
+         return -1;
+
+      }
+
+      return pcolumn->m_iColumn;
+
+   }
+
+
    //bool list::get_client_rect(RECT32 * prect)
 
    //{
@@ -7888,6 +7849,9 @@ namespace user
       }
 
    }
+
+
+
 
 
 } // namespace user

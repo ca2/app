@@ -95,7 +95,7 @@ void html_view::_001OnContextMenu(::message::message * pmessage)
 void html_view::_001OnSetCursor(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   __pointer(::message::mouse) pmouse(pmessage);
 
    pmouse->m_ecursor = cursor_arrow;
 

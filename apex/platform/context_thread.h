@@ -16,7 +16,7 @@ namespace apex
       __reference_array(::create)            m_createaPending;
       __reference_array(::create)            m_createaHistory;
       __reference(::create)                  m_pcreate;
-      __pointer(::task_pool)                 m_ptaskpool;
+      //__pointer(::task_pool)                 m_ptaskpool;
 
 
       context_thread();
@@ -37,7 +37,7 @@ namespace apex
 
       virtual void finalize() override;
 
-      virtual ::task_pool* taskpool() override;
+      //virtual ::task_pool* taskpool() override;
 
 
    };

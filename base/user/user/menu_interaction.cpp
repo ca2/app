@@ -13,6 +13,8 @@ namespace user
       ::object(pitem)
    {
 
+      m_econtroltype = e_control_type_menu_button;
+
    }
 
 
@@ -133,7 +135,7 @@ namespace user
    void menu_interaction::_001OnCreate(::message::message * pmessage)
    {
 
-      descriptor().set_control_type(e_control_type_menu_button);
+      //descriptor().set_control_type(e_control_type_menu_button);
 
       pmessage->previous();
 
@@ -143,7 +145,7 @@ namespace user
    void menu_interaction::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmouse->previous();
 

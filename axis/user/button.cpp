@@ -37,6 +37,9 @@ namespace user
    void button::user_button_construct()
    {
 
+      m_econtroltype = e_control_type_button;
+
+
       //m_erectMargin = rect_button_margin;
       //m_erectBorder = rect_button_border;
       //m_erectPadding = rect_button_padding;
@@ -234,8 +237,6 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      descriptor().set_control_type(e_control_type_button);
-
       if (m_estyle == style_none)
       {
 
@@ -279,10 +280,10 @@ namespace user
    }
 
 
-   bool button::create_control(class control_descriptor * pdescriptor)
+   bool button::create_control(::user::interaction * pinteractionParent, const ::id & id)
    {
 
-      return interaction::create_control(pdescriptor);
+      return interaction::create_control(pinteractionParent, id);
 
    }
 
@@ -424,7 +425,7 @@ namespace user
    void button::_001OnKeyDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       ::user::e_key iKey = pkey->m_ekey;
 

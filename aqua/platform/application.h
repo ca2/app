@@ -23,6 +23,8 @@ namespace aqua
       virtual ::e_status initialize(::layered * pobjectContext) override;
       //virtual __pointer(progress_control) show_progress(::user::interaction* puiParent, const char* pszTitle, ::count iProgressCount);
 
+      virtual void _001OnFranceExit() override;
+
    };
 
 

@@ -199,7 +199,7 @@ namespace user
 
 
       //virtual ::user::interaction * get_owner();
-      virtual void set_owner(::user::interaction * pOwnerWnd);
+      virtual ::user::primitive * set_owner(::user::primitive * pprimitiveOwner) override;
 
       virtual bool has_pending_redraw_flags() override;
       virtual bool setWMClass(const char * psz) override;

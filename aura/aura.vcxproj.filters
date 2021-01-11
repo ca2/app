@@ -1181,6 +1181,12 @@
     <ClInclude Include="os\windows\imm_client.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
+    <ClInclude Include="graphics\draw2d\device_lock.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="user\style_control.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="graphics\draw2d\apple\image_gif.cpp">
@@ -1664,6 +1670,12 @@
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="user\call_message_handler_task.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\device_lock.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="user\style_control.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>

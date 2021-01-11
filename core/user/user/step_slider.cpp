@@ -42,7 +42,7 @@ namespace user
    void step_slider::_001OnCreate(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-//      SCAST_PTR(::message::create, pcreate, pmessage);
+//      __pointer(::message::create) pcreate(pmessage);
 
    }
 
@@ -63,7 +63,7 @@ namespace user
    void step_slider::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       m_itemLButtonDown = hit_test(pmouse);
 
@@ -73,7 +73,7 @@ namespace user
    void step_slider::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       auto item = hit_test(pmouse);
 
@@ -90,7 +90,7 @@ namespace user
    void step_slider::_001OnMouseMove(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-//      SCAST_PTR(::message::mouse, pmouse, pmessage);
+//      __pointer(::message::mouse) pmouse(pmessage);
       SetTimer(1, 200, nullptr);
       m_itemHover = true;
       update_hover();

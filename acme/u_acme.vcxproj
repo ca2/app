@@ -277,7 +277,8 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -300,7 +301,8 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -323,7 +325,8 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -346,7 +349,8 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -369,7 +373,8 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -392,7 +397,8 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -413,9 +419,10 @@
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -436,9 +443,10 @@
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -459,9 +467,10 @@
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -484,7 +493,8 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -507,7 +517,8 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -530,7 +541,8 @@
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -1360,6 +1372,7 @@
     </ClCompile>
     <ClCompile Include="graphics\draw2d\color.cpp" />
     <ClCompile Include="graphics\draw2d\colorref_array.cpp" />
+    <ClCompile Include="graphics\draw2d\os_font_name.cpp" />
     <ClCompile Include="graphics\draw2d\_.cpp" />
     <ClCompile Include="include\_.cpp" />
     <ClCompile Include="memory\alloc.cpp" />
@@ -1510,12 +1523,13 @@
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
     </ClCompile>
     <ClCompile Include="memory\plex.cpp" />
-    <ClCompile Include="memory\plex_heap1.cpp" />
+    <ClCompile Include="memory\plex_heap.cpp" />
     <ClCompile Include="node\uwp\error.cpp" />
     <ClCompile Include="node\uwp\factory_exchange.cpp" />
     <ClCompile Include="node\uwp\file.cpp" />
     <ClCompile Include="node\uwp\file_find.cpp" />
     <ClCompile Include="node\uwp\native_buffer.cpp" />
+    <ClCompile Include="node\uwp\system.cpp" />
     <ClCompile Include="node\uwp\timer.cpp" />
     <ClCompile Include="node\uwp\util.cpp" />
     <ClCompile Include="node\windows\console.cpp">
@@ -1717,7 +1731,6 @@
     <ClCompile Include="os\cross\windows\error.cpp" />
     <ClCompile Include="os\cross\windows\locale.cpp" />
     <ClCompile Include="os\cross\windows\shared_memory.cpp" />
-    <ClCompile Include="os\cross\windows\thread_local_storage.cpp" />
     <ClCompile Include="os\cross\windows\user.cpp" />
     <ClCompile Include="os\cross\windows\windows.cpp" />
     <ClCompile Include="os\debug.cpp" />
@@ -1725,7 +1738,6 @@
     <ClCompile Include="os\http.cpp" />
     <ClCompile Include="os\parallelization.cpp" />
     <ClCompile Include="os\time.cpp" />
-    <ClCompile Include="os\uwp\application_system_run.cpp" />
     <ClCompile Include="os\uwp\aura.cpp" />
     <ClCompile Include="os\uwp\debug.cpp" />
     <ClCompile Include="os\uwp\direct2d_tls.cpp" />
@@ -2210,6 +2222,7 @@
     <ClCompile Include="platform\printf.cpp" />
     <ClCompile Include="platform\profiler.cpp" />
     <ClCompile Include="platform\regex.cpp" />
+    <ClCompile Include="platform\simple_trace.cpp" />
     <ClCompile Include="platform\sprintf.cpp" />
     <ClCompile Include="platform\static_start.cpp" />
     <ClCompile Include="platform\static_start_aura.cpp" />
@@ -2221,6 +2234,7 @@
     <ClCompile Include="platform\timer_event.cpp" />
     <ClCompile Include="platform\timer_item.cpp" />
     <ClCompile Include="platform\timer_task.cpp" />
+    <ClCompile Include="platform\trace.cpp" />
     <ClCompile Include="platform\trace_category.cpp" />
     <ClCompile Include="platform\version.cpp" />
     <ClCompile Include="platform\_.cpp" />

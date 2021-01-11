@@ -38,7 +38,7 @@ namespace music
 
             void window::_001OnMmsgDone(::message::message * pmessage)
             {
-               SCAST_PTR(::message::base, pbase, pmessage);
+               __pointer(::message::base) pbase(pmessage);
                if(get_callback() != nullptr)
                {
                   ::music::midi::sequence * pseq = (::music::midi::sequence *) pbase->m_wparam;
@@ -56,7 +56,7 @@ namespace music
 
             void window::_001OnNotifyEvent(::message::message * pmessage)
             {
-               SCAST_PTR(::message::base, pbase, pmessage);
+               __pointer(::message::base) pbase(pmessage);
                ::music::midi::player::notify_event * pdata = (::music::midi::player::notify_event *) pbase->m_lparam.m_lparam;
                if(get_callback() != nullptr)
                {
@@ -94,7 +94,7 @@ namespace music
 
             void window::_001OnUserMessage(::message::message * pmessage)
             {
-               SCAST_PTR(::message::base, pbase, pmessage);
+               __pointer(::message::base) pbase(pmessage);
                switch(pbase->m_wparam)
                {
                case 3388:
@@ -114,7 +114,7 @@ namespace music
             void window::_001OnApp3388Message(::message::message * pmessage)
             {
                __throw(not_implemented());
-               SCAST_PTR(::message::base, pbase, pmessage);
+               __pointer(::message::base) pbase(pmessage);
                /*            MSG msg;
 
                while(PeekMessage(

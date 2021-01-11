@@ -16,7 +16,7 @@ namespace user
       
       __pointer(T) point;
       
-      ::user::interaction * puiParent = GetParent();  // start with one parent up
+      ::user::interaction * puiParent = get_parent();  // start with one parent up
       
       while (puiParent != nullptr)
       {
@@ -30,7 +30,7 @@ namespace user
             
          }
          
-         puiParent = puiParent->GetParent();
+         puiParent = puiParent->get_parent();
     
       }
       
@@ -123,17 +123,11 @@ namespace user
 
    }
 
+
    inline bool interaction::is_window_visible(enum_layout elayout) const
    {
 
-      if (!m_pdescriptor)
-      {
-
-         return false;
-
-      }
-
-      return m_pdescriptor->m_puserinteractionParent && !m_pdescriptor->m_puserinteractionParent->is_window_visible(elayout) ? false : layout().state(elayout).is_visible();
+      return m_puserinteractionParent && !m_puserinteractionParent->is_window_visible(elayout) ? false : layout().state(elayout).is_visible();
 
    }
 
@@ -141,14 +135,7 @@ namespace user
    inline bool interaction::is_window_screen_visible(enum_layout elayout) const
    {
 
-      if (::is_null(m_pdescriptor))
-      {
-
-         return false;
-
-      }
-
-      return m_pdescriptor->m_puserinteractionParent && !m_pdescriptor->m_puserinteractionParent->is_window_screen_visible(elayout) ? false : is_screen_visible(layout().state(elayout).display());
+      return m_puserinteractionParent && !m_puserinteractionParent->is_window_screen_visible(elayout) ? false : is_screen_visible(layout().state(elayout).display());
 
    }
 

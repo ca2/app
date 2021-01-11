@@ -106,6 +106,20 @@ namespace draw2d
       virtual oswindow get_window_handle() const;
 
 
+//#ifdef _UWP
+//
+//
+//      virtual void set_direct2d_plugin(::draw2d_direct2d::plugin * pplugin);
+//
+//
+//#endif
+
+
+      virtual bool on_begin_draw();
+
+
+
+
       void draw_ca2(int x,int y,int z,const ::color & colorBk,const ::color & color);
       void draw_ca2_with_border(int x,int y,int z,int b,const ::color & colorBk,const ::color & color,const ::color & colorOut);
       void draw_ca2_border2(int x,int y,int z,int bOut,int bIn,const ::color & colorBk,const ::color & color,const ::color & colorBorderOut,const ::color & colorIn);

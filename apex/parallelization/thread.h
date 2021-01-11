@@ -43,6 +43,7 @@ public:
    bool                                               m_bLastingThread;
    bool                                               m_bMessageThread;
    bool                                               m_bDedicated;
+   bool                                               m_bPreferLessGraphicsParallelization;
    bool                                               m_bThreadToolsForIncreasedFps;
    ::e_status                                          m_estatus;
    user_interaction_ptr_array *                       m_puiptraThread;

@@ -1404,6 +1404,7 @@ namespace user
    class printer;
    class primitive;
    class interaction;
+   class impact;
    class interaction_layout;
    class scroll_base;
    class form;

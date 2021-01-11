@@ -230,7 +230,7 @@ namespace music
 
             void player::pre_translate_message(::message::message * pmessage)
             {
-               SCAST_PTR(::message::base, pbase, pmessage);
+               __pointer(::message::base) pbase(pmessage);
                //ASSERT(GetMainWnd() == nullptr);
                //   if(pMsg->message == MM_MOM_DONE ||
                //      pMsg->message == MM_MOM_POSITIONCB ||
@@ -283,7 +283,7 @@ namespace music
 
             void player::OnUserMessage(::message::message * pmessage)
             {
-               SCAST_PTR(::message::base, pbase, pmessage);
+               __pointer(::message::base) pbase(pmessage);
                if(pbase->m_wparam == 3377)
                {
                   m_puie->send_message(WM_USER, pbase->m_wparam, pbase->m_lparam);
@@ -409,7 +409,7 @@ namespace music
 
             void player::on_attribute_change(::message::message * pmessage)
             {
-               SCAST_PTR(::music::midi::attribute_message, pchange, pmessage);
+               __pointer(::music::midi::attribute_message) pchange(pmessage);
 
                switch(pchange->m_eattribute)
                {
@@ -441,7 +441,7 @@ namespace music
             void player::OnMultimediaMidiOutputMessageDone(::message::message * pmessage)
             {
 
-               SCAST_PTR(::message::base, pbase, pmessage);
+               __pointer(::message::base) pbase(pmessage);
 
                HMIDISTRM hmidistream = (HMIDISTRM) pbase->m_wparam;
 
@@ -457,7 +457,7 @@ namespace music
 
             void player::OnMultimediaMidiOutputMessagePositionCB(::message::message * pmessage)
             {
-               SCAST_PTR(::message::base, pbase, pmessage);
+               __pointer(::message::base) pbase(pmessage);
                LPMIDIHDR lpmidihdr = (LPMIDIHDR) pbase->m_wparam;
                //          get_sequence()->OnPositionCB(lpmidihdr);
 
@@ -473,7 +473,7 @@ namespace music
 
             void player::OnNotifyEvent(::message::message * pmessage)
             {
-               SCAST_PTR(::message::base, pbase, pmessage);
+               __pointer(::message::base) pbase(pmessage);
                __pointer(::music::midi::player::notify_event) pdata(pbase->m_lparam);
                pdata->m_pplayer = this;
                if(m_puie != nullptr)

@@ -530,6 +530,7 @@ const WCHAR *get_locale_value_name( ::u32 lctype )
    return 0;
 }
 
+#ifndef _UWP
 
 /***********************************************************************
  *		GetSystemDefaultLCID (KERNEL32.@)
@@ -552,7 +553,6 @@ LCID WINAPI GetSystemDefaultLCID(void)
    return lcid;
 }
 
-#ifndef _UWP
 /******************************************************************************
  *		ConvertDefaultLocale (KERNEL32.@)
  *

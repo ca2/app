@@ -856,9 +856,6 @@
     <ClCompile Include="memory\plex.cpp">
       <Filter>Source Files\memory</Filter>
     </ClCompile>
-    <ClCompile Include="memory\plex_heap1.cpp">
-      <Filter>Source Files\memory</Filter>
-    </ClCompile>
     <ClCompile Include="memory\inline\heap_bare.cpp">
       <Filter>Source Files\memory\inline</Filter>
     </ClCompile>
@@ -1282,9 +1279,6 @@
     <ClCompile Include="os\cross\windows\shared_memory.cpp">
       <Filter>Source Files\os\cross\windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\cross\windows\thread_local_storage.cpp">
-      <Filter>Source Files\os\cross\windows</Filter>
-    </ClCompile>
     <ClCompile Include="os\cross\windows\user.cpp">
       <Filter>Source Files\os\cross\windows</Filter>
     </ClCompile>
@@ -1468,11 +1462,23 @@
     <ClCompile Include="user\os_theme_colors.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\application_system_run.cpp">
-      <Filter>Source Files\os\uwp</Filter>
-    </ClCompile>
     <ClCompile Include="os\uwp\parallelization.cpp">
       <Filter>Source Files\os\uwp</Filter>
+    </ClCompile>
+    <ClCompile Include="memory\plex_heap.cpp">
+      <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\simple_trace.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\trace.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="node\uwp\system.cpp">
+      <Filter>Source Files\node\uwp</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\os_font_name.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

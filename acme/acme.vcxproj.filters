@@ -2387,6 +2387,9 @@
     <ClInclude Include="platform\simple_trace.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
+    <ClInclude Include="user\_style.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

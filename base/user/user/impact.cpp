@@ -106,7 +106,7 @@ namespace user
    void impact::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pmessagecreate, pmessage);
+      __pointer(::message::create) pmessagecreate(pmessage);
 
       if (!(m_ewindowflag & e_window_flag_window_created))
       {
@@ -166,10 +166,10 @@ namespace user
 
       }
 
-      //if (GetParentFrame() != nullptr)
+      //if (get_parent_frame() != nullptr)
       //{
 
-      //   GetParentFrame()->m_interactionaCommandHandlers.add(this);
+      //   get_parent_frame()->m_interactionaCommandHandlers.add(this);
 
       //}
 
@@ -183,19 +183,19 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      __pointer(::user::frame_window) pFrame = GetParentFrame();
+      __pointer(::user::frame_window) pFrame = get_parent_frame();
 
-      if (pFrame != nullptr && pFrame->GetActiveView() == this)
+      if (pFrame != nullptr && pFrame->get_active_view() == this)
       {
 
-         pFrame->SetActiveView(nullptr, false);    // deactivate during death
+         pFrame->set_active_view(nullptr, false);    // deactivate during death
 
       }
 
-      //if (GetParentFrame() != nullptr)
+      //if (get_parent_frame() != nullptr)
       //{
 
-      //   GetParentFrame()->m_interactionaCommandHandlers.remove(this);
+      //   get_parent_frame()->m_interactionaCommandHandlers.remove(this);
 
       //}
 
@@ -316,7 +316,7 @@ namespace user
       //for (auto& pinteraction : m_interactionaCommandHandlers)
       //{
 
-      //   if (pinteraction && pinteraction != GetActiveView())
+      //   if (pinteraction && pinteraction != get_active_view())
       //   {
 
       //      pinteraction->on_command_message(pcommand);
@@ -333,7 +333,7 @@ namespace user
       //}
 
       // then pump through parent
-      __pointer(::user::interaction) puiParent = GetParent();
+      __pointer(::user::interaction) puiParent = get_parent();
 
       while (puiParent)
       {
@@ -347,7 +347,7 @@ namespace user
 
          }
 
-         puiParent = puiParent->GetParent();
+         puiParent = puiParent->get_parent();
 
       }
 
@@ -491,14 +491,14 @@ namespace user
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
    return nResult;   // frame does not want to activate
 
-   __pointer(::user::frame_window) pParentFrame = GetParentFrame();
+   __pointer(::user::frame_window) pParentFrame = get_parent_frame();
    if (pParentFrame != nullptr)
    {
    // eat it if this will cause activation
    ASSERT(pParentFrame == pDesktopWnd || pDesktopWnd->IsChild(pParentFrame));
 
    // either re-activate the current ::user::impact, or set this ::user::impact to be active
-   __pointer(::user::impact) pview = pParentFrame->GetActiveView();
+   __pointer(::user::impact) pview = pParentFrame->get_active_view();
    oswindow oswindow_Focus = ::GetFocus();
    if (pview == this &&
    get_handle() != oswindow_Focus && !::IsChild(get_handle(), oswindow_Focus))
@@ -509,7 +509,7 @@ namespace user
    else
    {
    // activate this ::user::impact
-   pParentFrame->SetActiveView(this);
+   pParentFrame->set_active_view(this);
    }
    }
    return nResult;
@@ -698,7 +698,7 @@ namespace user
    //void impact::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    //{
 
-   //   SCAST_PTR(::message::base, pbase, pmessage);
+   //   __pointer(::message::base) pbase(pmessage);
 
    //   //if (pbase->m_wparam == ::user::impact_message_update)
    //   //{
@@ -888,13 +888,13 @@ namespace user
       //if (pinteraction.is_set())
       //{
 
-      //   if (pinteraction->GetParent() != nullptr)
+      //   if (pinteraction->get_parent() != nullptr)
       //   {
 
-      //      if (pinteraction->GetParent()->is_place_holder())
+      //      if (pinteraction->get_parent()->is_place_holder())
       //      {
 
-      //         pinteraction->GetParent()->place_hold(pinteraction);
+      //         pinteraction->get_parent()->place_hold(pinteraction);
 
       //      }
 
@@ -914,10 +914,10 @@ namespace user
 
       pmessage->previous();
 
-      if (GetParentFrame() != nullptr)
+      if (get_parent_frame() != nullptr)
       {
 
-         GetParentFrame()->SetActiveView(this);
+         get_parent_frame()->set_active_view(this);
 
       }
 
@@ -926,13 +926,13 @@ namespace user
    void impact::_001OnLButtonUp(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //SCAST_PTR(::message::mouse, pmouse, pmessage);
+      //__pointer(::message::mouse) pmouse(pmessage);
    }
 
    void impact::_001OnMouseMove(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //   SCAST_PTR(::message::mouse, pmouse, pmessage);
+      //   __pointer(::message::mouse) pmouse(pmessage);
    }
 
 
@@ -1082,7 +1082,7 @@ namespace user
 
    void impact::_001OnMouseActivate(::message::message * pmessage)
    {
-      SCAST_PTR(::message::mouse_activate, pmouseactivate, pmessage);
+      __pointer(::message::mouse_activate) pmouseactivate(pmessage);
       pmessage->previous();
       //i32 nResult = pmouseactivate->get_lresult();
 
@@ -1096,7 +1096,7 @@ namespace user
 
       }
 
-      __pointer(::user::frame_window) pParentFrame = (GetParentFrame());
+      __pointer(::user::frame_window) pParentFrame = (get_parent_frame());
       if (pParentFrame != nullptr)
       {
          // eat it if this will cause activation
@@ -1104,7 +1104,7 @@ namespace user
                 || pmouseactivate->get_desktop_window()->is_child(pParentFrame));
 
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
-         __pointer(::user::impact) pview = pParentFrame->GetActiveView();
+         __pointer(::user::impact) pview = pParentFrame->get_active_view();
 
          auto psession = Session;
 
@@ -1119,7 +1119,7 @@ namespace user
          else
          {
             // activate this ::user::impact
-            pParentFrame->SetActiveView(this);
+            pParentFrame->set_active_view(this);
          }
       }
 
@@ -1153,7 +1153,7 @@ namespace user
 
    void impact::on_select()
    {
-      __pointer(::user::frame_window) pParentFrame = (GetParentFrame());
+      __pointer(::user::frame_window) pParentFrame = (get_parent_frame());
       if (pParentFrame != nullptr)
       {
          // eat it if this will cause activation
@@ -1161,7 +1161,7 @@ namespace user
          || pmouseactivate->get_desktop_window()->IsChild(pParentFrame));*/
 
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
-         __pointer(::user::impact) pview = pParentFrame->GetActiveView();
+         __pointer(::user::impact) pview = pParentFrame->get_active_view();
 
          auto psession = Session;
 
@@ -1176,7 +1176,7 @@ namespace user
          else
          {
             // activate this ::user::impact
-            pParentFrame->SetActiveView(this);
+            pParentFrame->set_active_view(this);
          }
       }
    }
@@ -1352,17 +1352,17 @@ namespace user
    void impact::_001OnRButtonDown(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //SCAST_PTR(::message::mouse, pmouse, pmessage);
+      //__pointer(::message::mouse) pmouse(pmessage);
 
-      GetParentFrame()->SetActiveView((this));
+      get_parent_frame()->set_active_view((this));
    }
 
    void impact::_001OnMButtonDown(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      //      __pointer(::message::mouse) pmouse(pmessage);
 
-      GetParentFrame()->SetActiveView((this));
+      get_parent_frame()->set_active_view((this));
    }
 
 
@@ -1412,7 +1412,7 @@ namespace user
       try
       {
 
-         GetParentFrame()->pre_translate_message(pmessage);
+         get_parent_frame()->pre_translate_message(pmessage);
 
       }
       catch(...)

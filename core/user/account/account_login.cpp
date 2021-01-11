@@ -346,7 +346,7 @@ namespace account
 
          m_bSubmitted = true;
 
-         auto puiParent = GetParent();
+         auto puiParent = get_parent();
          
          if(puiParent)
          {
@@ -392,7 +392,7 @@ namespace account
 
          m_bSubmitted = true;
 
-         auto puiParent = GetParent();
+         auto puiParent = get_parent();
 
          if (puiParent)
          {
@@ -416,11 +416,11 @@ namespace account
 
          m_bSubmitted = true;
 
-         GetParent()->display(e_display_none);
+         get_parent()->display(e_display_none);
 
          m_ppassword->_001SetText("",::e_source_database);
 
-         GetParent()->EndModalLoop("cancel");
+         get_parent()->EndModalLoop("cancel");
 
          return true;
 
@@ -434,7 +434,7 @@ namespace account
    void login::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create,pcreate,pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       if(pcreate->previous())
       {

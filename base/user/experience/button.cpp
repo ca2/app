@@ -34,7 +34,7 @@ namespace experience
    void button::_001OnLButtonDown(::message::message* pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (m_ebutton == button_dock)
       {
@@ -129,7 +129,7 @@ namespace experience
 
                i++;
 
-               pinteraction = pinteraction->GetParent();
+               pinteraction = pinteraction->get_parent();
 
             }
             

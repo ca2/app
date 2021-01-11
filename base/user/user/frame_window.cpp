@@ -191,7 +191,7 @@ namespace user
    void frame_window::update_active_document(::promise::subject * psubject)
    {
 
-      auto pdocument = GetActiveDocument();
+      auto pdocument = get_active_document();
 
       if (::is_null(pdocument))
       {
@@ -208,7 +208,7 @@ namespace user
    void frame_window::update_active_document(const ::id & id)
    {
 
-      auto pdocument = GetActiveDocument();
+      auto pdocument = get_active_document();
 
       if (::is_null(pdocument))
       {
@@ -225,7 +225,7 @@ namespace user
    ::id frame_window::get_topic_view_id()
    {
 
-      auto pdocument = GetActiveDocument();
+      auto pdocument = get_active_document();
 
       if (::is_null(pdocument))
       {
@@ -242,7 +242,7 @@ namespace user
    bool frame_window::set_topic_view_by_id(const ::id & id)
    {
 
-      auto pdocument = GetActiveDocument();
+      auto pdocument = get_active_document();
 
       if (::is_null(pdocument))
       {
@@ -451,7 +451,7 @@ namespace user
       // use ::user::document specific accelerator table over m_hAccelTable
       HACCEL hAccelTable = m_hAccelTable;
       HACCEL hAccel;
-      __pointer(::user::document) pDoc = GetActiveDocument();
+      __pointer(::user::document) pDoc = get_active_document();
       if (pDoc != nullptr && (hAccel = pDoc->GetDefaultAccelerator()) != nullptr)
          hAccelTable = hAccel;
 
@@ -610,7 +610,7 @@ namespace user
       if (psession->GetCapture() == get_handle())
       psession->ReleaseCapture();
 
-      __pointer(::user::frame_window) pFrameWnd = GetTopLevelFrame();
+      __pointer(::user::frame_window) pFrameWnd = top_level_frame();
       ENSURE_VALID(pFrameWnd);
       pFrameWnd->m_bHelpMode = m_bHelpMode = HELP_INACTIVE;
       PostMessage(WM_KICKIDLE);   // trigger idle update
@@ -619,10 +619,13 @@ namespace user
 
    bool frame_window::OnSetCursor(__pointer(::user::interaction) pwindow, ::u32 nHitTest, const ::id & id)
    {
+      
       UNREFERENCED_PARAMETER(pwindow);
       UNREFERENCED_PARAMETER(nHitTest);
       UNREFERENCED_PARAMETER(id);
-      __pointer(::user::frame_window) pFrameWnd = GetTopLevelFrame();
+      
+      __pointer(::user::frame_window) pFrameWnd = top_level_frame();
+
       ENSURE_VALID(pFrameWnd);
       if (pFrameWnd->m_bHelpMode)
       {
@@ -669,7 +672,7 @@ namespace user
    //   //   ::oswindow oswindow_Ctrl = (::oswindow) lParam;
    //   //   ::u32 nID = LOWORD(wParam);
 
-   //   __pointer(::user::frame_window) pFrameWnd = GetTopLevelFrame();
+   //   __pointer(::user::frame_window) pFrameWnd = top_level_frame();
    //   ENSURE_VALID(pFrameWnd);
    //   /*   if (pFrameWnd->m_bHelpMode && oswindow_Ctrl == nullptr &&
    //   nID != ID_HELP && nID != ID_DEFAULT_HELP && nID != ID_CONTEXT_HELP)
@@ -699,7 +702,7 @@ namespace user
 
       // determine top-level parent, since that is the true parent of any
       //  modeless windows anyway...
-      __pointer(::user::interaction) pParent = EnsureTopLevel();
+      __pointer(::user::interaction) pParent = get_top_level();
 
       m_uiptraDisable.remove_all();
 
@@ -940,7 +943,7 @@ namespace user
 
 #endif
 
-      SCAST_PTR(::message::create, pcreatemessage, pmessage);
+      __pointer(::message::create) pcreatemessage(pmessage);
 
       if (!(m_ewindowflag & e_window_flag_window_created))
       {
@@ -988,7 +991,7 @@ namespace user
       if (bMakeVisible)
       {
 
-         if (GetParent() == nullptr || !GetParent()->is_place_holder())
+         if (get_parent() == nullptr || !get_parent()->is_place_holder())
          {
 
             InitialFramePosition();
@@ -1112,7 +1115,7 @@ namespace user
       if (hMenuAlt == nullptr)
       {
          // attempt to get default menu from ::user::document
-         __pointer(::user::document) pDoc = GetActiveDocument();
+         __pointer(::user::document) pDoc = get_active_document();
          if (pDoc != nullptr)
             hMenuAlt = pDoc->GetDefaultMenu();
          // use default menu stored in frame if none from ::user::document
@@ -1133,7 +1136,7 @@ namespace user
       // if the frame does not have an active ::user::impact, set to first pane
       __pointer(::user::impact) pview;
 
-      if (GetActiveView() == nullptr)
+      if (get_active_view() == nullptr)
       {
 
          __pointer(::user::interaction) pwindow = get_child_by_id("pane_first");
@@ -1143,7 +1146,7 @@ namespace user
 
             pview = pwindow;
 
-            SetActiveView(pview, FALSE);
+            set_active_view(pview, FALSE);
 
          }
 
@@ -1191,12 +1194,12 @@ namespace user
          pDoc->update_frame_counts();
       on_update_frame_title(TRUE);
 
-      //if (GetParent() != nullptr
-      //      && GetParent()->is_place_holder()
+      //if (get_parent() != nullptr
+      //      && get_parent()->is_place_holder()
       //      && !is_true("should_not_be_automatically_holded_on_initial_update_frame"))
       //{
-      //   GetParent()->place_hold(this);
-      //   //GetParent()->on_layout(::draw2d::graphics_pointer & pgraphics);
+      //   get_parent()->place_hold(this);
+      //   //get_parent()->on_layout(::draw2d::graphics_pointer & pgraphics);
       //}
 
    }
@@ -1229,7 +1232,7 @@ namespace user
       (*m_lpfnCloseProc)(this);
 
       // Note: only queries the active ::user::document
-      __pointer(::user::document) pdocument = GetActiveDocument();
+      __pointer(::user::document) pdocument = get_active_document();
       if (pdocument != nullptr && !pdocument->can_close_frame(this))
       {
       // ::user::document can't close right now -- don't close it
@@ -1268,7 +1271,7 @@ namespace user
       {
       __pointer(::user::impact) pview = pdocument->get_view(pos);
       ENSURE_VALID(pview);
-      if (pview->GetParentFrame() != this)
+      if (pview->get_parent_frame() != this)
       {
       bOtherFrame = TRUE;
       break;
@@ -1309,7 +1312,7 @@ namespace user
    {
 
       // pump through current ::user::impact FIRST
-      __pointer(::user::impact) pview = GetActiveView();
+      __pointer(::user::impact) pview = get_active_view();
 
       if (pview != nullptr)
       {
@@ -1344,7 +1347,7 @@ namespace user
       //for (auto& pinteraction : m_interactionaCommandHandlers)
       //{
 
-      //   if (pinteraction && pinteraction != GetActiveView())
+      //   if (pinteraction && pinteraction != get_active_view())
       //   {
 
       //      pinteraction->on_command_message(pcommand);
@@ -1401,7 +1404,7 @@ namespace user
       }
 
       // then pump through parent
-      __pointer(::user::interaction) puiParent = GetParent();
+      __pointer(::user::interaction) puiParent = get_parent();
 
       while (puiParent)
       {
@@ -1436,7 +1439,7 @@ namespace user
 
       __pointer(channel) ptarget = get_keyboard_focus();
 
-      if (ptarget != nullptr && ptarget != this && ptarget != GetActiveView())
+      if (ptarget != nullptr && ptarget != this && ptarget != get_active_view())
       {
 
          ptarget->on_command_message(pcommand);
@@ -1454,7 +1457,7 @@ namespace user
       //for (auto& pinteraction : m_interactionaCommandHandlers)
       //{
 
-      //   if (pinteraction && pinteraction != GetActiveView())
+      //   if (pinteraction && pinteraction != get_active_view())
       //   {
 
       //      pinteraction->on_command_message(pcommand);
@@ -1502,7 +1505,7 @@ namespace user
       //}
 
       // then pump through parent
-      //__pointer(::user::interaction) puiParent = GetParent();
+      //__pointer(::user::interaction) puiParent = get_parent();
       //while (puiParent)
       //{
 
@@ -1536,7 +1539,7 @@ namespace user
 
       //__pointer(channel) ptarget = psession->get_keyboard_focus();
 
-      //if (ptarget != nullptr && ptarget != this && ptarget != GetActiveView()
+      //if (ptarget != nullptr && ptarget != this && ptarget != get_active_view()
       //   && !m_interactionaCommandHandlers.contains(ptarget))
       //{
 
@@ -1577,7 +1580,7 @@ namespace user
       ////}
 
       ////// pump through current ::user::impact FIRST
-      ////__pointer(::user::impact) pview = GetActiveView();
+      ////__pointer(::user::impact) pview = get_active_view();
 
       ////if (pview != nullptr)
       ////{
@@ -1596,7 +1599,7 @@ namespace user
       ////for (auto& pview : m_interactionaCommandHandlers)
       ////{
 
-      ////   if (pview != nullptr && pview != GetActiveView())
+      ////   if (pview != nullptr && pview != get_active_view())
       ////   {
 
       ////      pview->route_command_message(pcommand);
@@ -1644,7 +1647,7 @@ namespace user
       ////}
 
       ////// then pump through parent
-      ////__pointer(::user::interaction) puiParent = GetParent();
+      ////__pointer(::user::interaction) puiParent = get_parent();
 
       ////if (puiParent != nullptr)
       ////{
@@ -1700,7 +1703,7 @@ namespace user
    // Delegate scroll messages to active ::user::impact as well
    void frame_window::OnHScroll(::u32, ::u32, CScrollBar*)
    {
-      __pointer(::user::interaction) pActiveView = GetActiveView();
+      __pointer(::user::interaction) pActiveView = get_active_view();
       if (pActiveView != nullptr)
       {
          // trans const MESSAGE* pMsg = GetCurrentMessage();
@@ -1710,7 +1713,7 @@ namespace user
 
    void frame_window::OnVScroll(::u32, ::u32, CScrollBar*)
    {
-      __pointer(::user::interaction) pActiveView = GetActiveView();
+      __pointer(::user::interaction) pActiveView = get_active_view();
       if (pActiveView != nullptr)
       {
          // trans      const MESSAGE* pMsg = GetCurrentMessage();
@@ -1732,11 +1735,22 @@ namespace user
       // deactivate current active ::user::impact
       //thread *pThread = get_task();
       //ASSERT(pThread);
-      __pointer(::user::impact) pActiveView = GetActiveView();
+      
+      __pointer(::user::impact) pActiveView = get_active_view();
+
       if (pActiveView == nullptr)
-         pActiveView = GetActiveFrame()->GetActiveView();
+      {
+
+         pActiveView = GetActiveFrame()->get_active_view();
+
+      }
+
       if (pActiveView != nullptr)
+      {
+
          pActiveView->OnActivateView(FALSE, pActiveView, pActiveView);
+
+      }
 
       return 0;
 
@@ -1744,7 +1758,7 @@ namespace user
 
    void frame_window::_001OnActivate(::message::message * pmessage)
    {
-      SCAST_PTR(::message::activate, pactivate, pmessage);
+      __pointer(::message::activate) pactivate(pmessage);
 
       __pointer(::user::interaction) pActive = (pactivate->m_eactivate == e_activate_inactive ? pactivate->m_pWndOther : this);
 
@@ -1752,16 +1766,18 @@ namespace user
 
       // get top level frame unless this is a child interaction_impl
       // determine if interaction_impl should be active or not
-      __pointer(::user::frame_window) pTopLevel = (GetStyle() & WS_CHILD) ? this : GetTopLevelFrame();
+      __pointer(::user::frame_window) pTopLevel = (GetStyle() & WS_CHILD) ? this : top_level_frame();
 
       if (pTopLevel == nullptr)
+      {
+
          pTopLevel = this;
 
-
+      }
 
       //bool bStayActive =
       //(pTopLevel == pActive ||
-      // (pActive && pTopLevel == pActive->GetTopLevelFrame() &&
+      // (pActive && pTopLevel == pActive->top_level_frame() &&
       //  (pActive == pTopLevel ||
       //   (pActive && pActive->send_message(WM_FLOATSTATUS, FS_SYNCACTIVE) != 0))));
       ////pTopLevel->m_nFlags &= ~WF_STAYACTIVE;
@@ -1772,9 +1788,15 @@ namespace user
       //NotifyFloatingWindows(bStayActive ? FS_ACTIVATE : FS_DEACTIVATE);
 
       // get active ::user::impact (use active frame if no active ::user::impact)
-      __pointer(::user::impact) pActiveView = GetActiveView();
+      
+      __pointer(::user::impact) pActiveView = get_active_view();
+
       if (pActiveView == nullptr)
-         pActiveView = (GetActiveFrame()->GetActiveView());
+      {
+
+         pActiveView = GetActiveFrame()->get_active_view();
+
+      }
 
       // when frame gets activated, re-activate current ::user::impact
       if (pActiveView != nullptr)
@@ -1794,7 +1816,7 @@ namespace user
    void frame_window::_001OnNcActivate(::message::message * pmessage)
    {
 
-      //SCAST_PTR(::message::nc_activate, pncactivate, pmessage);
+      //__pointer(::message::nc_activate) pncactivate(pmessage);
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1827,8 +1849,11 @@ namespace user
 
    void frame_window::OnSysCommand(::u32 nID, LPARAM lParam)
    {
+      
       UNREFERENCED_PARAMETER(lParam);
-      __pointer(::user::frame_window) pFrameWnd = GetTopLevelFrame();
+
+      __pointer(::user::frame_window) pFrameWnd = top_level_frame();
+
       ENSURE_VALID(pFrameWnd);
 
       // set status bar as appropriate
@@ -1922,7 +1947,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // frame_window attributes
 
-   ::user::impact * frame_window::GetActiveView() const
+   ::user::impact * frame_window::get_active_view() const
    {
 
       ASSERT(m_pviewActive == nullptr || base_class < ::user::impact >::bases(m_pviewActive));
@@ -1932,51 +1957,61 @@ namespace user
    }
 
 
-   void frame_window::SetActiveView(::user::impact * pViewNew, bool bNotify)
+   void frame_window::set_active_view(::user::impact * pviewNew, bool bNotify)
    {
 
-      __pointer(::user::impact) pViewOld = m_pviewActive;
+      __pointer(::user::impact) pviewOld = m_pviewActive;
 
+      __pointer(frame_window) pframewindow = get_parent_frame();
 
-      __pointer(frame_window) point = GetParentFrame();
-
-      if (point.is_set())
+      if (pframewindow)
       {
 
-         point->SetActiveView(pViewNew, bNotify);
+         pframewindow->set_active_view(pviewNew, bNotify);
 
       }
 
-      if (pViewNew == pViewOld)
+      if (pviewNew == pviewOld)
       {
 
-         return;     // do not re-activate if SetActiveView called more than once
+         return;     // do not re-activate if set_active_view called more than once
 
       }
 
       m_pviewActive = nullptr;   // no active for the following processing
 
       // deactivate the old one
-      if (pViewOld != nullptr && bNotify)
+      if (pviewOld != nullptr && bNotify)
       {
 
-         pViewOld->OnActivateView(FALSE, pViewNew, pViewOld);
+         pviewOld->OnActivateView(FALSE, pviewNew, pviewOld);
 
       }
 
       // if the OnActivateView moves the active interaction_impl,
       //    that will veto this machine
       if (m_pviewActive != nullptr)
-         return;     // already set
-      m_pviewActive = pViewNew;
-      // activate
-      if (pViewNew != nullptr)
       {
+
+         return;     // already set
+
+      }
+
+      m_pviewActive = pviewNew;
+
+      // activate
+      if (pviewNew != nullptr)
+      {
+
          if (bNotify)
          {
-            pViewNew->OnActivateView(TRUE, pViewNew, pViewOld);
+
+            pviewNew->OnActivateView(TRUE, pviewNew, pviewOld);
+
          }
+
       }
+
    }
 
 
@@ -1994,14 +2029,25 @@ namespace user
       */
    }
 
-   ::user::document * frame_window::GetActiveDocument()
+   
+   ::user::document * frame_window::get_active_document()
    {
+
       ASSERT_VALID(this);
-      __pointer(::user::impact) pview = GetActiveView();
+
+      __pointer(::user::impact) pview = get_active_view();
+
       if (pview != nullptr)
+      {
+
          return pview->get_document();
+
+      }
+
       return nullptr;
+
    }
+
 
    /////////////////////////////////////////////////////////////////////////////
    // Command prompts
@@ -2095,7 +2141,7 @@ namespace user
 
 
          // update owner of the bar in terms of last message selected
-         __pointer(::user::frame_window) pFrameWnd = pMessageBar->GetParentFrame();
+         __pointer(::user::frame_window) pFrameWnd = pMessageBar->get_parent_frame();
 
          if (pFrameWnd != nullptr)
          {
@@ -2166,7 +2212,7 @@ namespace user
          return;     // leave it alone!
 
 
-      __pointer(::user::document) pdocument = GetActiveDocument();
+      __pointer(::user::document) pdocument = get_active_document();
       if (bAddToTitle && pdocument != nullptr)
          UpdateFrameTitleForDocument(pdocument->get_title());
       else
@@ -2591,9 +2637,9 @@ namespace user
 
 #ifdef WINDOWS
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
-      if (GetParent() == nullptr)
+      if (get_parent() == nullptr)
       {
 
          if (pbase->m_wparam == SC_RESTORE)
@@ -3054,10 +3100,10 @@ namespace user
 
       //}
 
-      //if (GetParent() != nullptr)
+      //if (get_parent() != nullptr)
       //{
 
-      //   if (GetParent()->has_command_handler(pcommand))
+      //   if (get_parent()->has_command_handler(pcommand))
       //   {
 
       //      return true;

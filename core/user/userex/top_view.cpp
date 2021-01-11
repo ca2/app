@@ -96,7 +96,7 @@ namespace userex
    bool top_view::is_this_visible(::user::enum_layout elayout)
    {
 
-      return ::user::split_view::is_this_visible(elayout) && !GetTopLevel()->frame_is_transparent();
+      return ::user::split_view::is_this_visible(elayout) && !get_top_level()->frame_is_transparent();
 
    }
 

@@ -3157,37 +3157,7 @@ retry_license:
 
       INFO("apex::application::process_init");
 
-      //m_bAuraProcessInitialize = true;
-
-      //m_bAuraProcessInitializeResult = false;
-
-      //if (!is_system())
-      {
-
-         if (get_context_system() != nullptr)
-         {
-
-            m_bThreadToolsForIncreasedFps = System.m_bThreadToolsForIncreasedFps;
-
-         }
-
-      }
-
-
-
-      //if (!__construct(m_spdir))
-      //{
-
-      //   return false;
-
-      //}
-
-      //if (!__construct(m_spfile))
-      //{
-
-      //   return false;
-
-      //}
+      m_bThreadToolsForIncreasedFps = System.m_bThreadToolsForIncreasedFps;
 
       if (::get_task() == nullptr)
       {
@@ -4859,17 +4829,8 @@ retry_license:
    void application::_001OnFranceExit()
    {
 
-      //if (System.m_pmultimedia)
-      //{
-
-      //   System.m_pmultimedia->_001OnFranceExit();
-
-      //}
-
 
       HideApplication();
-
-      //close(::apex::e_end_app);
 
       finish(get_context());
 
@@ -6944,7 +6905,7 @@ retry_license:
    //void application::process_message_filter(i32 code, ::message::message * pmessage)
    //{
 
-   //   //SCAST_PTR(::message::base,pbase,pmessage);
+   //   //__pointer(::message::base) pbase(pmessage);
 
    //   UNREFERENCED_PARAMETER(code);
 
@@ -7690,7 +7651,7 @@ namespace apex
 
       ENSURE_ARG(pmessage != nullptr);
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       // handle certain messages in thread
 
@@ -9512,7 +9473,7 @@ namespace apex
    void application::pre_translate_message(::message::message* pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       if (pbase->m_id == WM_USER + 124 && pbase->m_playeredUserPrimitive == nullptr)
       {
@@ -10409,7 +10370,7 @@ namespace apex
       //if (pmessage == nullptr)
       //   return;   // not handled
 
-      //SCAST_PTR(::message::base, pbase, pmessage);
+      //__pointer(::message::base) pbase(pmessage);
 
       //__pointer(::user::frame_window) pTopFrameWnd;
       ////::user::interaction * pMainWnd;
@@ -10429,7 +10390,7 @@ namespace apex
 
       //   if (pMsgWnd != nullptr)
       //   {
-      //      pTopFrameWnd = pMsgWnd->GetTopLevelFrame();
+      //      pTopFrameWnd = pMsgWnd->top_level_frame();
       //      if (pTopFrameWnd != nullptr && pTopFrameWnd->IsTracking() &&
       //         pTopFrameWnd->m_bHelpMode)
       //      {

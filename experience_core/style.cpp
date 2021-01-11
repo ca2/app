@@ -320,9 +320,17 @@ namespace experience
                   else
                   {
 
-                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,175,175,170),ARGB(250,195,195,190));
+                     ::draw2d::brush_pointer brushFill(e_create);
 
-                     pgraphics->set(pane.m_brushFill);
+                     brushFill->CreateLinearGradientBrush(
+                        rectBorder.top_left(),
+                        rectBorder.bottom_left(),
+                        ARGB(230, 175, 175, 170),
+                        ARGB(250, 195, 195, 190)); //*/
+
+                        // brushFill->create_solid(::color::white);
+
+                     pgraphics->set(brushFill);
 
                      pgraphics->fill_path(path);
 
@@ -334,7 +342,9 @@ namespace experience
 
                      pgraphics->set_font(ptab, ::user::e_element_none);
 
-                     brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text));
+                     auto colorText = ptab->get_color(pstyle, ::user::e_element_item_text);
+
+                     brushText->create_solid(colorText);
 
                   }
 
@@ -414,6 +424,8 @@ namespace experience
          if(straTitle.get_count() <= 1)
          {
 
+            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+
             pgraphics->_DrawText(pane.get_title(), rect, e_align_bottom_left, e_draw_text_no_prefix);
 
          }
@@ -423,22 +435,37 @@ namespace experience
             ::rect rectText(rect);
 
             ::draw2d::font_pointer font;
+
             font = pgraphics->get_current_font();
+
             size sSep = ptab->get_data()->m_sizeSep;
+
             ::rect rectEmp;
+
             for(index i = 0; i < straTitle.get_size(); i++)
             {
+
                string str = straTitle[i];
+
                size s = pane.m_sizeaText[i];
+
                rectText.right =rectText.left + s.cx;
+
                pgraphics->_DrawText(str,rectText, e_align_bottom_left, e_draw_text_no_prefix);
+
                rectText.left += s.cx;
+
                if(i < straTitle.get_upper_bound())
                {
+
                   rectText.right = rectText.left + sSep.cx;
+
                   rectEmp = rectText;
-                  rectEmp.deflate(1,1);
+
+                  rectEmp.deflate(1, 1);
+
                   ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
+
                   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
                   ::color colorText;
@@ -446,7 +473,7 @@ namespace experience
                   if(ptab->m_itemHover == (::index) ::user::e_element_split + i)
                   {
 
-                     pgraphics->fill_rect(rectEmp,ARGB(128, 150, 184, 255));
+                     pgraphics->fill_rect(rectEmp,ARGB(128, 150, 190, 255));
 
                      colorText = ptab->get_color(this, ::user::e_element_item_text, ::user::e_state_hover);
 
@@ -465,8 +492,11 @@ namespace experience
                   pgraphics->set(brush);
 
                   pgraphics->set_font(ptab, ::user::e_element_close_tab_button);
+
                   pgraphics->set_alpha_mode(emode);
+
                   pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectText, e_align_center, e_draw_text_no_prefix);
+
                   rectText.left += sSep.cx;
 
                }
@@ -478,7 +508,7 @@ namespace experience
       }
 
 
-      bool style::_001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab)
+      bool style::_001OnTabLayout(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab)
       {
 
          if (!ptab->get_data()->m_bCreated)
@@ -731,7 +761,7 @@ namespace experience
 
             rect & rectTabClient = ptab->get_data()->m_rectTabClient;
 
-            //bool bTabbedClient = ptab->m_bShowTabs && !ptab->GetTopLevelFrame()->layout().is_full_screen();
+            //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
             bool bTabbedClient = ptab->m_bShowTabs;
 
             rectTabClient.left = ptab->get_data()->m_rectTab.left;
@@ -907,7 +937,8 @@ namespace experience
                }
 
             }
-            else if (econtroltype == ::user::e_control_type_list)
+            else if (econtroltype == ::user::e_control_type_list
+            || econtroltype == ::user::e_control_type_tree)
             {
 
                if (eelement == ::user::e_element_background)
@@ -929,7 +960,18 @@ namespace experience
                else if (eelement == ::user::e_element_item_background)
                {
 
-                  return ::color(0, 0, 0, 0);
+                  if (estate & ::user::e_state_selected)
+                  {
+
+                     return __acolor(127, 0, 0, 0);
+
+                  }
+                  else
+                  {
+
+                     return ::color(0, 0, 0, 0);
+
+                  }
 
                }
                else if (eelement == ::user::e_element_item_text)
@@ -1145,6 +1187,7 @@ namespace experience
                }
 
             }
+         }
             else if (eelement == ::user::e_element_background)
             {
 
@@ -1179,8 +1222,6 @@ namespace experience
                }
 
             }
-
-         }
 
          return ::color();
 

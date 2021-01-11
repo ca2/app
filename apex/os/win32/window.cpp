@@ -200,24 +200,24 @@ namespace win32
    }
 
 
-
    void window::set_parent(window * pwindow)
    {
 
       if(::is_null(pwindow))
       {
 
-         SetParent(m_hwnd, nullptr);
+         ::SetParent(m_hwnd, nullptr);
+
       }
       else
       {
 
-         SetParent(m_hwnd, pwindow->m_hwnd);
+         ::SetParent(m_hwnd, pwindow->m_hwnd);
 
       }
 
-
    }
+
 
    iptr window::get_combo_sel()
    {

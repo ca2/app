@@ -979,6 +979,13 @@ void font::destroy()
    
    bool font::_get_text_metric(::draw2d::graphics * pgraphics, text_metric & tm)
    {
+
+      if (::is_null(pgraphics))
+      {
+
+         return false;
+
+      }
    
       pgraphics->set(this);
    

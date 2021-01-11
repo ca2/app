@@ -602,7 +602,7 @@ namespace user
    void check_box::_001OnKeyUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       if(pkey->m_ekey == ::user::key_space)
       {

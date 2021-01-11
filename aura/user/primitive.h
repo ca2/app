@@ -4,6 +4,15 @@
 namespace user
 {
 
+   enum enum_next
+   {
+
+      e_next_sibling,
+      e_next_proper,
+
+
+   };
+
 
    class CLASS_DECL_AURA primitive :
       virtual public channel,
@@ -137,7 +146,7 @@ namespace user
       virtual bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
 
 
-      //virtual bool defer_set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags); // only set_windows_pos if GetParent()->_001ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(RECT32 * prect);
+      //virtual bool defer_set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags); // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(RECT32 * prect);
 
       //virtual i32 SetWindowRgn(HRGN hRgn,bool bRedraw);
       //virtual i32 GetWindowRgn(HRGN hRgn);
@@ -248,7 +257,7 @@ namespace user
       virtual bool update_data(bool bSaveAndValidate = true);
 
 
-      virtual ::user::interaction * GetFocus();
+      virtual ::user::primitive * get_keyboard_focus();
 
 
       virtual bool on_keyboard_focus(::user::primitive * pfocus);
@@ -410,6 +419,15 @@ namespace user
       virtual id GetDlgCtrlId() const;
       virtual id SetDlgCtrlId(::id id);
 
+
+#ifdef WINDOWS_DESKTOP
+
+      virtual bool open_clipboard();
+      virtual bool close_clipboard();
+
+#endif
+
+
       virtual bool SetCapture(::user::interaction * pinteraction = nullptr);
       virtual bool ReleaseCapture();
       virtual ::user::interaction * GetCapture();
@@ -461,26 +479,22 @@ namespace user
       virtual ::user::interaction_impl * get_impl() const;
       virtual ::thread * get_task() const;
 
-      virtual ::user::primitive * SetParent(::user::primitive * pinteraction);
-      virtual ::user::primitive * SetOwner(::user::primitive * pinteraction);
+      virtual ::user::primitive * set_parent(::user::primitive * pinteraction);
+      virtual ::user::primitive * set_owner(::user::primitive * pinteraction);
 
 
-      virtual ::user::interaction * GetTopWindow() const;
-      virtual ::user::interaction * GetParent() const;
-      virtual ::user::interaction * GetTopLevel() const;
-      virtual ::user::interaction * GetParentTopLevel() const;
-      virtual ::user::interaction * EnsureTopLevel();
-      virtual ::user::interaction * EnsureParentTopLevel();
-      virtual ::user::interaction * GetOwner() const;
-      virtual ::user::interaction * GetParentOwner() const;
-      virtual ::user::interaction * GetParentOrOwner() const;
-      virtual ::user::interaction * GetTopLevelOwner() const;
-      virtual ::user::frame * GetFrame() const;
-      virtual ::user::frame * GetParentFrame() const;
-      virtual ::user::frame * GetTopLevelFrame() const;
-      virtual ::user::frame * GetParentTopLevelFrame() const;
-      virtual ::user::frame * EnsureParentFrame();
-      virtual ::user::frame * GetOwnerFrame() const;
+      virtual ::user::frame * frame() const;
+      virtual ::user::frame * top_level_frame() const;
+
+
+      virtual ::user::interaction * get_parent() const;
+      virtual ::user::interaction * get_top_level() const;
+      virtual ::user::interaction * get_owner() const;
+      virtual ::user::interaction * get_parent_owner() const;
+      virtual ::user::interaction * get_parent_or_owner() const;
+      virtual ::user::interaction * get_top_level_owner() const;
+      virtual ::user::frame * get_parent_frame() const;
+      virtual ::user::frame * get_owner_frame() const;
 
       virtual bool is_top_level_window() const;
 
@@ -511,9 +525,13 @@ namespace user
 
       virtual ::e_status set_tool_window(bool bSet = true);
 
+      
       virtual ::user::interaction * get_next_window(bool bIgnoreChildren = false, const ::user::interaction * puiInteractionStop = nullptr) const;
+      virtual ::user::interaction * get_window(enum_next enext) const;
+
 
       virtual ::user::interaction * GetLastActivePopup();
+
 
       virtual bool is_message_only_window() const;
 
@@ -766,6 +784,8 @@ namespace user
 
       virtual void edit_on_text(string str);
       virtual void edit_on_sel(strsize iBeg, strsize iEnd);
+      virtual void insert_text(string str, bool bForceNewStep, const ::action_context & context);
+
 
       virtual void on_text_composition(string str);
       virtual void on_text_commit(string str);

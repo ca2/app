@@ -62,7 +62,7 @@ namespace user
       ::size               m_sizeButton; // current button size
       bool                 m_bSimpleLayout;
       string_to_ptr *      m_pStringMap;  // used as CMapStringTo::u32
-      index                m_iButtonPressItem;
+      //index                m_iButtonPressItem;
 
 
 
@@ -122,7 +122,7 @@ namespace user
       virtual ::size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz);
       virtual ::size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, index nLength, u32 nMode);
       //virtual void OnUpdateCmdUI(__pointer(::user::frame_window) pTarget, bool bDisableIfNoHndler);
-      __pointer(::user::interaction)  SetOwner(__pointer(::user::interaction) pOwnerWnd);
+      __pointer(::user::interaction)  set_owner(__pointer(::user::interaction) pOwnerWnd);
 
 
 #ifdef WINDOWS_DESKTOP

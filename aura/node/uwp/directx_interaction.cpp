@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "_uwp.h"
+#include "aura/os/windows_common/draw2d_direct2d_global.h"
 
 
 namespace uwp
@@ -19,10 +20,59 @@ namespace uwp
    }
 
 
+   bool directx_interaction::is_host_top_level() const
+   {
+
+      return true;
+
+   }
+
+
+   bool directx_interaction::is_os_host() const
+   {
+
+      return true;
+
+   }
+
+
    void directx_interaction::_001DrawThis(::draw2d::graphics_pointer & pgraphics)
    {
 
       return ::user::interaction::_001DrawThis(pgraphics);
+
+   }
+
+
+   void directx_interaction::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
+   {
+
+      try
+      {
+
+         if (m_puiptraChild && m_puiptraChild->has_interaction())
+         {
+
+            try
+            {
+
+               _001DrawChildren(pgraphics);
+
+            }
+            catch (...)
+            {
+
+               TRACE("Exception: interaction::_000OnDraw _001DrawChildren %s", typeid(*this).name());
+
+            }
+
+         }
+
+      }
+      catch (...)
+      {
+
+      }
 
    }
 
@@ -64,14 +114,6 @@ namespace uwp
          }
 
       }
-
-   }
-
-
-   void directx_interaction::_000OnDraw(::draw2d::graphics_pointer & pgraphics)
-   {
-
-      ::user::interaction::_000OnDraw(pgraphics);
 
    }
 

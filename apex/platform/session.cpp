@@ -720,7 +720,7 @@ namespace apex
             //create_bergedge(pcreate);
             //if(get_document() != nullptr && get_document()->get_typed_view < ::bergedge::view >() != nullptr)
             //{
-            //   __pointer(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame());
+            //   __pointer(::simple_frame_window) pframe =  (get_document()->get_typed_view < ::bergedge::view >()->get_parent_frame());
             //   if(pframe != nullptr)
             //   {
             //      pframe->display(e_display_normal);

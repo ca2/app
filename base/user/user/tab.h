@@ -8,67 +8,6 @@ namespace user
    class tab_callback;
 
 
-   class CLASS_DECL_BASE tab_pane:
-      virtual public ::matter
-   {
-   public: 
-
-      string                              m_strTitle;
-
-
-   public:
-
-
-      tab *                               m_ptab;
-      ::draw2d::brush_pointer             m_brushFill;
-      ::draw2d::brush_pointer             m_brushFillSel;
-      ::draw2d::brush_pointer             m_brushFillHover;
-      id                                  m_id;
-      ::image_pointer                     m_pimage;
-      __pointer(place_holder)             m_pplaceholder;
-      __pointer(impact_data)              m_pimpactdata;
-      bool                                m_bTabPaneVisible;
-      bool                                m_bPermanent;
-      size                                m_size;
-      string_array                        m_straTitle;
-      ::size_array                        m_sizeaText;
-      point                               m_point;
-      eflag                               m_eflag;
-
-
-      tab_pane(tab * ptab);
-      tab_pane(const tab_pane & tab_pane);
-      virtual ~tab_pane();
-
-
-      tab_pane & operator = (const tab_pane & tab_pane);
-
-
-      string get_title();
-      void set_title(const char * pszTitle);
-
-
-      virtual void do_split_layout(::draw2d::graphics_extension & dc,::draw2d::graphics_pointer & pgraphics);
-
-
-   };
-
-
-   class CLASS_DECL_BASE tab_pane_array:
-      public __pointer_array(tab_pane)
-   {
-   public:
-
-
-      tab_pane_array();
-      virtual ~tab_pane_array();
-
-
-      virtual tab_pane * get_by_id(id id);
-      ::count get_visible_count();
-
-   };
-
 
    class CLASS_DECL_BASE tab :
       virtual public ::user::interaction,
@@ -98,55 +37,6 @@ namespace user
 
 
 
-      class CLASS_DECL_BASE data :
-         virtual public ::data::data
-      {
-      public:
-
-         
-         ::size                           m_sizeSep;
-         i32                              m_iHeightAddUp;
-         ::draw2d::pen_pointer                 m_pen;
-         //::draw2d::brush_pointer               m_brushTextHover;
-         //::draw2d::brush_pointer               m_brushTextSel;
-         //::draw2d::brush_pointer               m_brushText;
-         ::draw2d::brush_pointer               m_brushCloseHover;
-         ::draw2d::brush_pointer               m_brushCloseSel;
-         ::draw2d::brush_pointer               m_brushClose;
-         //::draw2d::pen_pointer                 m_penBorder;
-         //::draw2d::pen_pointer                 m_penBorderSel;
-         //::draw2d::pen_pointer                 m_penBorderHover;
-         bool                             m_bCreated;
-         i32                          m_iTabHeight;
-         i32                          m_iTabWidth;
-         tab_pane_array                   m_panea;
-         ::rect                           m_rectTab;
-         ::rect                           m_rectTabClient;
-         draw2d::graphics_extension       m_dcextension;
-         id_array                         m_idaSel;
-         ::rect                           m_rectBorder;
-         ::rect                           m_rectMargin;
-         ::rect                           m_rectTextMargin;
-         __pointer(::image_list)          m_pimagelist;
-         tab_callback *                   m_pcallback;
-         ::index                          m_iClickTab;
-         bool                             m_bDrag;
-         bool                             m_bVertical;
-         ::match::any                     m_matchanyRestore;
-         bool                             m_bEnableCloseAll;
-         bool                             m_bNoClient;
-         ::size                           m_sizeTabTotal;
-
-
-         data();
-         virtual ~data();
-
-         virtual tab_pane * get_pane_by_id(id id);
-
-         ::count get_visible_tab_count();
-
-      };
-
 
       class CLASS_DECL_BASE remove_tab_exception
       {
@@ -163,7 +53,7 @@ namespace user
 
 
       enum_state                       m_estate;
-      __pointer(data)                  m_pdata;
+      __pointer(tab_data)              m_pdata;
       ::draw2d::graphics_extension     m_dcextension;
       bool                             m_bDisableSavingRestorableTabs;
       bool                             m_bShowTabs;
@@ -201,7 +91,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnAppLanguage);
 
 
-      data * get_data();
+      tab_data * get_data();
 
 
       virtual void on_change_cur_sel();

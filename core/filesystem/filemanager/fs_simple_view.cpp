@@ -125,7 +125,7 @@ namespace filemanager
          void view::on_request_response(::message::message * pmessage)
          {
 
-            SCAST_PTR(::http::message, psignal, pmessage);
+            __pointer(::http::message) psignal(pmessage);
 
             string strResponse;
 

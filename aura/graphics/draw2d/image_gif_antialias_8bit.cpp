@@ -14,7 +14,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 
 //   color32_t cr;
 //
-//   color32_t crBack = imagea.m_crTransparent;
+//   color32_t crBack = imagea.m_colorTransparent;
 //
 //   double dA1 = colorref_get_a_value(crBack);
 //

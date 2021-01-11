@@ -223,6 +223,9 @@ namespace user
 
 
 #include "tab_callback.h"
+#include "tab_pane.h"
+#include "tab_pane_array.h"
+#include "tab_data.h"
 #include "tab.h"
 
 

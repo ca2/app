@@ -56,7 +56,7 @@ namespace user
    void format_tool::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
 
@@ -258,7 +258,7 @@ namespace user
    bool format_tool::is_showing_for_ui(::user::interaction * pinteraction)
    {
 
-      return GetOwner() == pinteraction;
+      return get_owner() == pinteraction;
 
    }
 
@@ -456,7 +456,7 @@ namespace user
 
                      m_eattribute |= ::user::rich_text::attribute_foreground;
 
-                     m_formata[0]->m_crForeground = cc.rgbResult | (255 << 24);
+                     m_formata[0]->m_colorForeground = cc.rgbResult | (255 << 24);
 
                      update_data(true);
 
@@ -705,7 +705,7 @@ namespace user
       
       pinteraction->get_window_rect(rectOther);
 
-      SetOwner(pinteraction);
+      set_owner(pinteraction);
 
       ::rect rect(rectOther.top_left() - ::size(0, 48), ::size(100, 100));
 

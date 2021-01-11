@@ -145,55 +145,54 @@ namespace user
    void scroll_x_base::_001OnHScroll(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::scroll, pscroll, pmessage);
+      __pointer(::message::scroll) pscroll(pmessage);
 
-      {
-
-         sync_lock slUser(mutex());
-
-         if (pscroll->m_nSBCode == SB_LINELEFT)
+      queue_graphics_call([this, pscroll](::draw2d::graphics_pointer & pgraphics)
          {
 
-            set_viewport_offset_x((::i32) (get_viewport_offset().x - m_scrolldataHorz.m_iLine));
+            if (pscroll->m_nSBCode == SB_LINELEFT)
+            {
 
-         }
-         else if (pscroll->m_nSBCode == SB_PAGELEFT)
-         {
+               set_viewport_offset_x(pgraphics, (::i32)(get_viewport_offset().x - m_scrolldataHorz.m_iLine));
 
-            set_viewport_offset_x((::i32) (get_viewport_offset().x - m_scrolldataHorz.m_iPage));
+            }
+            else if (pscroll->m_nSBCode == SB_PAGELEFT)
+            {
 
-         }
-         else if (pscroll->m_nSBCode == SB_PAGERIGHT)
-         {
+               set_viewport_offset_x(pgraphics, (::i32)(get_viewport_offset().x - m_scrolldataHorz.m_iPage));
 
-            set_viewport_offset_x((::i32) (get_viewport_offset().x + m_scrolldataHorz.m_iPage));
+            }
+            else if (pscroll->m_nSBCode == SB_PAGERIGHT)
+            {
 
-         }
-         else if (pscroll->m_nSBCode == SB_LINERIGHT)
-         {
+               set_viewport_offset_x(pgraphics, (::i32)(get_viewport_offset().x + m_scrolldataHorz.m_iPage));
 
-            set_viewport_offset_x((::i32) (get_viewport_offset().x + m_scrolldataHorz.m_iLine));
+            }
+            else if (pscroll->m_nSBCode == SB_LINERIGHT)
+            {
 
-         }
-         else if (pscroll->m_nSBCode == SB_THUMBTRACK)
-         {
+               set_viewport_offset_x(pgraphics, (::i32)(get_viewport_offset().x + m_scrolldataHorz.m_iLine));
 
-            set_viewport_offset_x(pscroll->m_nPos);
+            }
+            else if (pscroll->m_nSBCode == SB_THUMBTRACK)
+            {
 
-         }
-         else if (pscroll->m_nSBCode == SB_THUMBPOSITION)
-         {
+               set_viewport_offset_x(pgraphics, pscroll->m_nPos);
 
-            set_viewport_offset_x(pscroll->m_nPos);
+            }
+            else if (pscroll->m_nSBCode == SB_THUMBPOSITION)
+            {
 
-         }
+               set_viewport_offset_x(pgraphics, pscroll->m_nPos);
 
-      }
+            }
+
+         });
 
    }
 
 
-   void scroll_x_base::on_change_viewport_offset()
+   void scroll_x_base::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
       sync_lock sl(mutex());
@@ -304,7 +303,7 @@ namespace user
 
          layout_scroll_bar(pgraphics);
 
-         on_change_viewport_offset();
+         on_change_viewport_offset(pgraphics);
 
       }
 
@@ -461,46 +460,50 @@ namespace user
    void scroll_y_base::_001OnVScroll(::message::message * pmessage)
    {
 
+      __pointer(::message::scroll) pscroll(pmessage);
 
-      SCAST_PTR(::message::scroll, pscroll, pmessage);
+      queue_graphics_call([this, pscroll](::draw2d::graphics_pointer & pgraphics)
+         {
 
+            if (pscroll->m_nSBCode == SB_LINEUP)
+            {
 
-      if (pscroll->m_nSBCode == SB_LINEUP)
-      {
+               set_viewport_offset_y(pgraphics, (::i32)(get_viewport_offset().y - m_scrolldataVert.m_iLine));
 
-         set_viewport_offset_y((::i32) (get_viewport_offset().y - m_scrolldataVert.m_iLine));
+            }
+            else if (pscroll->m_nSBCode == SB_PAGEUP)
+            {
 
-      }
-      else if (pscroll->m_nSBCode == SB_PAGEUP)
-      {
+               set_viewport_offset_y(pgraphics, (::i32)(get_viewport_offset().y - m_scrolldataVert.m_iPage));
 
-         set_viewport_offset_y((::i32) (get_viewport_offset().y - m_scrolldataVert.m_iPage));
+            }
+            else if (pscroll->m_nSBCode == SB_PAGEDOWN)
+            {
 
-      }
-      else if (pscroll->m_nSBCode == SB_PAGEDOWN)
-      {
+               set_viewport_offset_y(pgraphics, (::i32)(get_viewport_offset().y + m_scrolldataVert.m_iPage));
 
-         set_viewport_offset_y((::i32) (get_viewport_offset().y + m_scrolldataVert.m_iPage));
+            }
+            else if (pscroll->m_nSBCode == SB_LINEDOWN)
+            {
 
-      }
-      else if (pscroll->m_nSBCode == SB_LINEDOWN)
-      {
+               set_viewport_offset_y(pgraphics, (::i32)(get_viewport_offset().y + m_scrolldataVert.m_iLine));
 
-         set_viewport_offset_y((::i32) (get_viewport_offset().y + m_scrolldataVert.m_iLine));
+            }
+            else if (pscroll->m_nSBCode == SB_THUMBTRACK)
+            {
 
-      }
-      else if (pscroll->m_nSBCode == SB_THUMBTRACK)
-      {
+               set_viewport_offset_y(pgraphics, pscroll->m_nPos);
 
-         set_viewport_offset_y(pscroll->m_nPos);
+            }
+            else if (pscroll->m_nSBCode == SB_THUMBPOSITION)
+            {
 
-      }
-      else if (pscroll->m_nSBCode == SB_THUMBPOSITION)
-      {
+               set_viewport_offset_y(pgraphics, pscroll->m_nPos);
 
-         set_viewport_offset_y(pscroll->m_nPos);
+            }
 
-      }
+         });
+
    }
 
 
@@ -513,8 +516,7 @@ namespace user
    }
 
 
-
-   void scroll_y_base::on_change_viewport_offset()
+   void scroll_y_base::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
       sync_lock sl(mutex());
@@ -539,7 +541,7 @@ namespace user
 
       }
 
-      SCAST_PTR(::message::mouse_wheel, pmousewheel, pmessage);
+      __pointer(::message::mouse_wheel) pmousewheel(pmessage);
 
       if (pmousewheel->GetDelta() > 0)
       {
@@ -687,7 +689,7 @@ namespace user
 
          layout_scroll_bar(pgraphics);
 
-         on_change_viewport_offset();
+         on_change_viewport_offset(pgraphics);
 
       }
 
@@ -731,11 +733,16 @@ namespace user
       scroll_y_base::install_message_routing(pchannel);
    }
 
-   void scroll_base::on_change_viewport_offset()
+
+   void scroll_base::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
    {
-      scroll_x_base::on_change_viewport_offset();
-      scroll_y_base::on_change_viewport_offset();
-      ::user::interaction::on_change_viewport_offset();
+
+      scroll_x_base::on_change_viewport_offset(pgraphics);
+
+      scroll_y_base::on_change_viewport_offset(pgraphics);
+
+      ::user::interaction::on_change_viewport_offset(pgraphics);
+
    }
 
 
@@ -857,7 +864,7 @@ namespace user
 
          layout_scroll_bar(pgraphics);
 
-         on_change_viewport_offset();
+         on_change_viewport_offset(pgraphics);
 
       }
       else
@@ -951,7 +958,12 @@ namespace user
    void scroll_x_base::scroll_horz(int nPos)
    {
 
-      set_viewport_offset_x(nPos);
+      queue_graphics_call([this, nPos](::draw2d::graphics_pointer & pgraphics)
+         {
+
+            set_viewport_offset_x(pgraphics, nPos);
+
+         });
 
    }
 
@@ -1037,9 +1049,15 @@ namespace user
    void scroll_y_base::scroll_vert(int nPos)
    {
 
-      set_viewport_offset_y(nPos);
+      queue_graphics_call([this, nPos](::draw2d::graphics_pointer & pgraphics)
+         {
+
+            set_viewport_offset_y(pgraphics, nPos);
+
+         });
 
    }
+
 
    bool scroll_base::GetActiveClientRect(RECT32 * prect)
    {

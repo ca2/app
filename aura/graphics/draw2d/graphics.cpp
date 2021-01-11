@@ -71,6 +71,22 @@ namespace draw2d
    }
 
 
+   //void graphics::set_direct2d_plugin(::draw2d_direct2d::plugin * pplugin)
+   //{
+
+
+   //}
+
+
+   bool graphics::on_begin_draw()
+   {
+
+      m_ealphamode = ::draw2d::alpha_mode_none;
+
+      return true;
+
+   }
+
    //void *  graphics::get_os_data(int i) const
    //{
 
@@ -5396,7 +5412,7 @@ namespace draw2d
       rect.left = 0;
       rect.top = 0;
       rect.right = (::i32) sz.cx;
-      rect.bottom = dLineSpacing;
+      rect.bottom = (LONG) (dLineSpacing);
 
       //::e_align ealign;
 
@@ -5498,7 +5514,7 @@ namespace draw2d
       if (!bLastLine && str2.get_length() > 0)
       {
 
-         rectClip.top += dLineSpacing;
+         rectClip.top = (LONG) (rectClip.top+dLineSpacing);
 
          _DrawText(str2, rectClip, ealign, edrawtext);
 

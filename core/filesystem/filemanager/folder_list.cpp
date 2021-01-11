@@ -55,7 +55,7 @@ namespace filemanager
    void folder_list::_001OnLButtonDblClk(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       index iItem;
 

@@ -1268,7 +1268,7 @@ inline void copy(RECTF* prectDst, const D2D1_RECT_F* prectSrc) { ::copy_rect(pre
 
 #ifdef _UWP
 
-inline void copy(rect * prectDst, const Windows::Foundation::Rect * prectSrc)
+inline void copy(rect * prectDst, const ::Windows::Foundation::Rect * prectSrc)
 {
    prectDst->left = (::i32) prectSrc->X;
    prectDst->top = (::i32)prectSrc->Y;
@@ -1276,7 +1276,7 @@ inline void copy(rect * prectDst, const Windows::Foundation::Rect * prectSrc)
    prectDst->bottom = (::i32) (prectSrc->Y + prectSrc->Height);
 }
 
-inline void copy(Windows::Foundation::Rect* prectDst, rect* prectSrc)
+inline void copy(::Windows::Foundation::Rect* prectDst, rect* prectSrc)
 {
    prectDst->X = (float) prectSrc->left;
    prectDst->Y = (float) prectSrc->top;

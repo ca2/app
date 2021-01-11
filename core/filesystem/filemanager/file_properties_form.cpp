@@ -77,7 +77,7 @@ namespace filemanager
 
       pview->set_cur_tab_by_id(1);
 
-      return pview->GetParentFrame();
+      return pview->get_parent_frame();
 
    }
 
@@ -124,7 +124,7 @@ namespace filemanager
             m_pviewGeneral = m_pdocGeneral->get_typed_view < ::user::form > ();
             m_pviewGeneral->set_form_callback(this);
             pimpactdata->m_pdocument = m_pdocGeneral;
-            pimpactdata->m_puserinteraction = m_pviewGeneral->GetParentFrame();
+            pimpactdata->m_puserinteraction = m_pviewGeneral->get_parent_frame();
          }
       }
       break;
@@ -133,7 +133,7 @@ namespace filemanager
          /*if(m_netcfg.create(m_ptabview))
          {
             pimpactdata->m_pdocument = m_netcfg.m_pdocument;
-            pimpactdata->m_puserinteraction = m_netcfg.m_pview->GetParentFrame();
+            pimpactdata->m_puserinteraction = m_netcfg.m_pview->get_parent_frame();
          }*/
 
       }

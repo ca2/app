@@ -16,37 +16,20 @@
             public:
 
 
-               enum e_style
-               {
-                  StyleLightBlue,
-                  StyleBlackBorder,
-                  StyleLightGreen,
-                  StyleRedOrange,
-                  StyleBlueRedPurple,
-                  StyleEveningSun,
-                  StyleTranslucidLightBlue,
-                  StyleTranslucidLightGreen,
-                  StyleTranslucidWarmGray,
-                  StyleTranslucidWarmLiteGray,
-                  StyleDarkWarmBlue,
-                  StyleBlackPiano,
-               };
 
 
-
-
-               e_style                             m_estyle;
-               color32_t                            m_crFrameBorder;
-               color32_t                            m_crMoveableBorderHilight;
-               color32_t                            m_crMoveableBorderDkShadow;
-               color32_t                            m_crCaptionTextBk;
-               color32_t                            m_crCaptionText;
+               //e_style                             m_pframewindow->m_estyle;
+               color32_t                            m_colorFrameBorder;
+               color32_t                            m_colorMoveableBorderHilight;
+               color32_t                            m_colorMoveableBorderDkShadow;
+               color32_t                            m_colorCaptionTextBk;
+               color32_t                            m_colorCaptionText;
                ::draw2d::pen_pointer               m_penText1;
                ::draw2d::pen_pointer               m_penFace1;
                ::draw2d::pen_pointer               m_penHilight1;
                ::draw2d::pen_pointer               m_penShadow1;
                ::draw2d::pen_pointer               m_penDkShadow1;
-               color32_t                            m_crDkShadow;
+               color32_t                            m_colorDkShadow;
                size                                m_minSize;
 
                ::draw2d::pen_pointer               m_penHollow0;
@@ -64,10 +47,9 @@
 
                virtual void on_initialize_experience_frame();
 
+               virtual string get_default_user_style() const;
 
                virtual color32_t get_border_main_body_color();
-
-               virtual bool is_translucid_style(e_style estyle);
 
                virtual void set_moveable_border_color(color32_t cr);
 
@@ -77,13 +59,13 @@
 
                virtual void on_style_change_001_and_002();
 
-               virtual color32_t get_style_moveable_border_color(e_style estyle);
+               //virtual color32_t get_style_moveable_border_color(::user::enum_style estyle);
 
                virtual void OnMove(__pointer(::user::interaction) pframewindow);
 
-               virtual void set_style(e_style estyle);
+               //virtual void set_style(::user::enum_style estyle);
 
-               virtual e_style translate_style(const char * pszStyle);
+               //virtual enum_style translate_style(const char * pszStyle);
 
                virtual void on_style_change();
 

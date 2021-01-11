@@ -570,7 +570,7 @@ namespace user
    }
 
 
-   __pointer(::user::interaction)  toolbar_control::SetOwner(__pointer(::user::interaction) pwindow)
+   __pointer(::user::interaction)  toolbar_control::set_owner(__pointer(::user::interaction) pwindow)
    {
 
 #ifdef WINDOWS_DESKTOP

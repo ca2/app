@@ -478,7 +478,7 @@ Opened:
        void out::OnMultimediaDone(::message::message * pmessage)
        {
 
-       SCAST_PTR(::message::base, pbase, pmessage);
+       __pointer(::message::base) pbase(pmessage);
 
        LPWAVEHDR lpwavehdr = (LPWAVEHDR) pbase->m_lparam.m_lparam;
 

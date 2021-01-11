@@ -35,6 +35,8 @@ enum enum_source : u64
    e_source_command_line= 1 << 24,
    e_source_internal= 1 << 25,
 
+   e_source_compose = 1 << 26,
+
 };
 
 

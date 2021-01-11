@@ -290,14 +290,14 @@ namespace android
       virtual ::user::interaction * GetLastActivePopup() override;
 
       //virtual bool IsChild(::user::interaction *  pWnd);
-      //virtual ::user::interaction * GetParent();
+      //virtual ::user::interaction * get_parent();
       //using ::user::interaction_impl::SetParent;
       //::user::interaction * SetParent(::user::interaction * pWndNewParent);
       //static::user::interaction * PASCAL oswindowFromPoint(POINT32 point);
 
 
       //virtual ::user::interaction * SetOwner(::user::interaction * pWndNewParent);
-      //virtual ::user::interaction * GetOwner() const;
+      //virtual ::user::interaction * get_owner() const;
 
       //virtual bool FlashWindow(bool bInvert);
 

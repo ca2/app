@@ -211,7 +211,7 @@ namespace sockets
          if (use_creator)
          {
             m_creator = new SOCKET_IMPL(h);
-            base_socket *tmp = m_creator -> create();
+            base_socket *tmp = m_creator ->new_listen_socket();
             if (tmp && dynamic_cast<SOCKET_IMPL *>(tmp))
             {
                m_bHasCreate = true;
@@ -415,7 +415,7 @@ namespace sockets
          if (m_bHasCreate)
          {
 
-            pstreamsocket = dynamic_cast <stream_socket*>(m_creator->create());
+            pstreamsocket = dynamic_cast <stream_socket*>(m_creator->new_listen_socket());
                
          }
          else

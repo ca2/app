@@ -1066,7 +1066,7 @@ oswindow GetWindow(oswindow windowParam, int iParentHood)
          || iParentHood == GW_HWNDPREV)
    {
 
-      window = ::GetParent(window);
+      window = ::get_parent(window);
 
       if(window == nullptr)
          return nullptr;

@@ -30,6 +30,7 @@ namespace tts
 
    }
 
+
    bool speaker::speak(const string & strLang, const string & strText, bool bSynch)
    {
 
@@ -43,6 +44,22 @@ namespace tts
       return m_pspeakerFallback->speak(strLang, strText, bSynch);
 
    }
+
+
+   bool speaker::speak(const string & strAttributes, const string & strLang, const string & strText, bool bSynch)
+   {
+
+      if (m_pspeakerFallback.is_null())
+      {
+
+         return false;
+
+      }
+
+      return m_pspeakerFallback->speak(strAttributes, strLang, strText, bSynch);
+
+   }
+
 
    bool speaker::stop(string strLang)
    {

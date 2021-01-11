@@ -202,7 +202,11 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
 
          auto millis = duration.u32_millis();
 
-         winResult = ::WaitForMultipleObjectsEx((u32)m_hsyncaCache.size(), m_hsyncaCache.get_data(), waitForAll, millis, bWaitMessageQueue);
+         ::u32 uCount = (u32)m_hsyncaCache.size();
+
+         auto psynca = m_hsyncaCache.get_data();
+
+         winResult = ::WaitForMultipleObjectsEx(uCount, psynca, waitForAll, millis, bWaitMessageQueue);
 
       }
 

@@ -90,7 +90,7 @@ namespace user
       virtual index _001FindListText(const string & str) const;
       virtual count _001GetListCount() const;
 
-      virtual bool create_control(class control_descriptor * pdescriptor) override;
+      virtual bool create_control(::user::interaction * pinteractionParent, const ::id & id) override;
 
       virtual bool get_element_rect(RECT32 * prect, enum_element eelement) override;
 

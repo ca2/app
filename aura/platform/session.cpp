@@ -830,7 +830,7 @@ namespace aura
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//         oswindow = ::GetParent(oswindow);
+//         oswindow = ::get_parent(oswindow);
 //
 //         if (oswindow != nullptr)
 //         {
@@ -1449,7 +1449,7 @@ namespace aura
 
          }
 
-         if (puiFocus->GetFocus() != puiFocus->get_wnd())
+         if (puiFocus->get_keyboard_focus() != puiFocus->get_wnd())
          {
 
             if (puiFocus->get_wnd() != nullptr)

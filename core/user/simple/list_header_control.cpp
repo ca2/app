@@ -53,9 +53,9 @@ void simple_list_header_control::install_message_routing(::channel * pchannel)
 void simple_list_header_control::_001OnEndTrack(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::notify, pnotify, pmessage);
+   __pointer(::message::notify) pnotify(pmessage);
 
-   GetParent()->send_message(::user::list::MESSAGE_ENDCOLUMNHEADERTRACK);
+   get_parent()->send_message(::user::list::MESSAGE_ENDCOLUMNHEADERTRACK);
 
    pnotify->m_bRet = false;
 
@@ -65,9 +65,9 @@ void simple_list_header_control::_001OnEndTrack(::message::message * pmessage)
 void simple_list_header_control::_001OnTrack(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::notify, pnotify, pmessage);
+   __pointer(::message::notify) pnotify(pmessage);
 
-   GetParent()->send_message(::user::list::MESSAGE_COLUMNHEADERTRACK);
+   get_parent()->send_message(::user::list::MESSAGE_COLUMNHEADERTRACK);
 
    pnotify->m_bRet = false;
 
@@ -77,7 +77,7 @@ void simple_list_header_control::_001OnTrack(::message::message * pmessage)
 void simple_list_header_control::_001OnCreate(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::create, pcreate, pmessage);
+   __pointer(::message::create) pcreate(pmessage);
 
    pcreate->m_bRet = false;
 
@@ -87,9 +87,9 @@ void simple_list_header_control::_001OnCreate(::message::message * pmessage)
 void simple_list_header_control::_001OnEndDrag(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::notify, pnotify, pmessage);
+   __pointer(::message::notify) pnotify(pmessage);
 
-   GetParent()->send_message(::user::list::MESSAGE_ENDCOLUMNHEADERDRAG);
+   get_parent()->send_message(::user::list::MESSAGE_ENDCOLUMNHEADERDRAG);
 
    pnotify->m_lresult = FALSE;
 
@@ -104,7 +104,7 @@ void simple_list_header_control::_001OnEndDrag(::message::message * pmessage)
    CTransparentWndInterface * ptwi = nullptr;
    CTransparentWndInterface::CGetProperty getp;
    getp.m_eproperty = CTransparentWndInterface::PropertyInterface;
-   GetParent()->SendMessage(CTransparentWndInterface::MessageGetProperty, 0, (LPARAM) &getp);
+   get_parent()->SendMessage(CTransparentWndInterface::MessageGetProperty, 0, (LPARAM) &getp);
    ptwi = getp.m_pinterface;
    if(ptwi != nullptr)
    {

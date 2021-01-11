@@ -29,17 +29,17 @@ namespace experience
       ::draw2d::pen_pointer              m_penButtonBackFocus;
       ::draw2d::pen_pointer              m_penButtonBackDisabled;
 
-      color32_t                      m_crButtonFore;
-      color32_t                      m_crButtonForeSel;
-      color32_t                      m_crButtonForeFocus;
-      color32_t                      m_crButtonForeDisabled;
+      color32_t                      m_colorButtonFore;
+      color32_t                      m_colorButtonForeSel;
+      color32_t                      m_colorButtonForeFocus;
+      color32_t                      m_colorButtonForeDisabled;
 
       map < e_button, e_button, id >           m_mapButtonId;
       id_map < e_button >           m_mapIdButton;
       map < e_button, e_button, bool, bool >       m_buttonmapPresent;
             
 
-      color32_t                      m_crBackground;
+      color32_t                      m_colorBackground;
 
 
       map < e_button, e_button, __pointer(button), __pointer(button) >      m_buttonmap;

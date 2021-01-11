@@ -59,7 +59,7 @@ namespace user
    void system_interaction_impl::_001OnDestroy(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       ::output_debug_string("system_interaction_impl::_001OnDestroy");
 
@@ -69,7 +69,7 @@ namespace user
    void system_interaction_impl::_001OnMessage(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       if (pbase != nullptr)
       {

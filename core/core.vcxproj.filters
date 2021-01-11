@@ -2212,6 +2212,9 @@
     <ClCompile Include="html\impl\element.cpp">
       <Filter>Source Files\html\impl</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\list_column.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="filesystem\_impl.h">

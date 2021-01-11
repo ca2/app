@@ -11,7 +11,7 @@ namespace winrt
    public:
 
 
-      Windows::Security::Cryptography::Core::CryptographicKey ^ m_pkey;
+      ::Windows::Security::Cryptography::Core::CryptographicKey ^ m_pkey;
 
 
       rsa();

@@ -13,7 +13,7 @@ void simple_frame_window::defer_set_icon()
 
 #endif
 
-   if (GetParent() == nullptr
+   if (get_parent() == nullptr
          && m_bWindowFrame
          && m_picon.is_null())
    {

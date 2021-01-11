@@ -368,7 +368,7 @@ void channel::default_toggle_check_handling(const ::id & id)
    connect_command_pred(id, [this, id, pproperty](::message::message* pmessage)
       {
 
-         SCAST_PTR(::user::command, pcommand, pmessage);
+         __pointer(::user::command) pcommand(pmessage);
 
          if (pproperty->get_bool())
          {

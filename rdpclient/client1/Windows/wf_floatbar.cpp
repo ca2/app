@@ -231,7 +231,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 		case e_message_create:
 			floatbar = (FloatBar *)((CREATESTRUCT *)lParam)->lpCreateParams;
 			floatbar->hwnd = hWnd;
-			floatbar->parent = GetParent(hWnd);
+			floatbar->parent = get_parent(hWnd);
 
 			get_window_rect(floatbar->hwnd, &floatbar->rect);
 			floatbar->width = floatbar->rect.right - floatbar->rect.left;

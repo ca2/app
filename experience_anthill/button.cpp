@@ -41,7 +41,7 @@ namespace experience
    void button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if ((GetTopLevel()->frame_is_transparent() && !GetTopLevel()->is_active()) || !GetTopLevelFrame()->m_bShowControlBox)
+      if ((get_top_level()->frame_is_transparent() && !get_top_level()->is_active()) || !top_level_frame()->m_bShowControlBox)
       {
 
          return;
@@ -68,7 +68,7 @@ namespace experience
 
          pgraphics->set(m_pcontrolbox->m_penButtonBackDisabled);
 
-         crText = m_pcontrolbox->m_crButtonForeDisabled;
+         crText = m_pcontrolbox->m_colorButtonForeDisabled;
 
       }
       else if (hover_item().is_set())
@@ -78,7 +78,7 @@ namespace experience
 
          pgraphics->set(m_pcontrolbox->m_penButtonBackSel);
 
-         crText = m_pcontrolbox->m_crButtonForeSel;
+         crText = m_pcontrolbox->m_colorButtonForeSel;
 
       }
       else if (has_focus())
@@ -88,7 +88,7 @@ namespace experience
 
          pgraphics->set(m_pcontrolbox->m_penButtonBackFocus);
 
-         crText = m_pcontrolbox->m_crButtonForeFocus;
+         crText = m_pcontrolbox->m_colorButtonForeFocus;
 
       }
       else
@@ -98,7 +98,7 @@ namespace experience
 
          pgraphics->set(m_pcontrolbox->m_penButtonBack);
 
-         crText = m_pcontrolbox->m_crButtonFore;
+         crText = m_pcontrolbox->m_colorButtonFore;
 
       }
 
@@ -171,7 +171,7 @@ namespace experience
    {
 
 
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
 
 
       if (pshowwindow->m_bShow)

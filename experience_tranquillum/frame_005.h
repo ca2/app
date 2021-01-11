@@ -23,6 +23,7 @@ namespace experience
                virtual ~frame_005();
 
 
+               virtual string get_default_user_style() const override;
                virtual void on_style_change();
 
                virtual void on_initialize_experience_frame();

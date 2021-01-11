@@ -17,53 +17,9 @@ namespace experience
       style::style()
       {
 
+         m_pfont.create(e_create);
 
-   //      create_translucency(::user::e_element_none, ::user::e_translucency_present);
-   //
-   //      create_point_font(::user::font_default,os_font_name(e_font_sans_ui), 12.0);
-   //
-   //      userstyle()->m_mapFont->operator[](::user::font_default)->m_etextrenderinghint = ::draw2d::text_rendering_hint_clear_type_grid_fit;
-   //
-   //      create_color(::user::color_text, ARGB(255, 0, 0, 0));
-   //      create_color(::user::color_edit_text, ARGB(255, 0, 0, 0));
-   //      create_color(::user::color_background, ARGB(255, 255, 255, 255));
-   //      create_color(::user::color_list_background, ARGB(255, 255, 255, 255));
-   //      create_color(::user::color_edit_background, ARGB(255, 255, 255, 255));
-   //      create_color(::user::color_tree_background, ARGB(255, 255, 255, 255));
-   //      create_color(::user::color_view_background, ARGB(255, 255, 255, 255));
-   //      create_color(::user::color_scrollbar_background, ARGB(255, 255, 255, 255));
-   //      create_color(::user::color_tab_layout_background, ARGB(255, 255, 255, 255));
-   //      create_color(::user::color_tab_client_background, ARGB(255, 255, 255, 255));
-   //      create_color(::user::color_split_layout_background, ARGB(255, 255, 255, 255));
-   //      create_color(::user::color_background_selected, ARGB(255, 155, 185, 255));
-   //      create_color(::user::color_list_header, ARGB(255, 255, 255, 255));
-   //      create_color(::user::color_list_header_background, ARGB(255, 0x58, 0x5C, 0x5D));
-   //      create_color(::user::color_list_item_text, ARGB(255, 0, 0, 0));
-   //      create_color(::user::color_list_item_text_hover, ARGB(255, 100, 150, 200));
-   //      create_color(::user::color_list_item_background, ARGB(30, 0, 0, 0));
-   //      create_color(::user::color_list_item_background_hover, ARGB(50, 0, 0, 0));
-   //      create_color(::user::color_list_item_background_selected, ARGB(255, 160, 210, 235));
-   //      create_color(::user::color_list_item_background_selected_hover, ARGB(255, 160, 220, 255));
-   //      create_color(::user::color_list_header_separator, 0);
-   //      create_color(::user::color_toolbar_background, ARGB(255, 0xF3, 0XF5, 0xF5));
-   //      create_color(::user::color_button_background_disabled, ARGB(255, 128, 128, 128));
-   //      create_color(::user::color_button_background_hover, ARGB(255, 0x55, 0x99, 0xC2));
-   //      create_color(::user::color_button_background, ARGB(255, 0x30, 0x75, 0xA0));
-   //      create_color(::user::color_button_background_press, ARGB(255, 0x07, 0x6D, 0x91));
-   //      create_color(::user::color_button_text_disabled, ARGB(255, 0xD0, 0xD0, 0xD0));
-   //      create_color(::user::color_button_text_hover, ARGB(255, 255, 255, 255));
-   //      create_color(::user::color_button_text, ARGB(255, 255, 255, 255));
-   //      create_color(::user::color_button_text_press, ARGB(255, 255, 255, 255));
-   //      create_color(::user::color_text_selected_highlight, ARGB(255, 150, 200, 250));
-   //      create_color(::user::color_text_highlight, ARGB(255, 100, 150, 200));
-   //
-   //
-   //
-   //      create_rect_coord(::user::rect_tab_padding, 0.4, 0.4, 0.4, 0.4);
-   //
-   //      create_int(::user::int_button_press_shift_cx, 4);
-   //      create_int(::user::int_button_press_shift_cy, 4);
-   //
+         m_pfont->create_point_font(os_font_name(e_font_sans_ui), 12.0);
 
       }
 
@@ -113,15 +69,15 @@ namespace experience
                   if (::user::is_app_dark_mode())
                   {
 
-
-                     return __acolor(255, 0x20, 0x45, 0x60);
+                     //return __acolor(255, 0x20, 0x45, 0x60);
+                     return pinteraction->top_level_frame()->get_moveable_border_color();
 
                   }
                   else
                   {
 
-
-                     return __acolor(255, 0x30, 0x75, 0xA0);
+                     //return __acolor(255, 0x30, 0x75, 0xA0);
+                     return pinteraction->top_level_frame()->get_moveable_border_color();
 
                   }
 
@@ -158,11 +114,17 @@ namespace experience
                   if(estate & ::user::e_state_hover)
                   {
                      
-                     return __acolor(255, 0x55, 0x99, 0xC2);
+                     auto colorHover = pinteraction->top_level_frame()->get_moveable_border_color();
+
+                     colorHover.lightness_rate(0.2);
+
+                     return colorHover;
+                     //return __acolor(255, 0x55, 0x99, 0xC2);
                      
                   }
 
-                  return __acolor(255, 0x30, 0x75, 0xA0);
+                  //return __acolor(255, 0x30, 0x75, 0xA0);
+                  return pinteraction->top_level_frame()->get_moveable_border_color();
 
                }
 
@@ -355,7 +317,6 @@ namespace experience
                   }
 
                }
-
 
             }
             else
@@ -763,7 +724,9 @@ namespace experience
 
                      pgraphics->draw_path(path);
 
-                     pgraphics->set(ptab->get_font(pstyle, ::user::e_state_hover));
+                     auto pfont = ptab->get_font(pstyle, ::user::e_state_hover);
+
+                     pgraphics->set(pfont);
 
                      brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_hover));
 
@@ -783,7 +746,9 @@ namespace experience
 
                      pgraphics->draw_path(path);
 
-                     pgraphics->set(ptab->get_font(pstyle));
+                     auto pfont = ptab->get_font(pstyle);
+
+                     pgraphics->set(pfont);
 
                      brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item, ::user::e_state_hover));
 
@@ -808,7 +773,6 @@ namespace experience
                }
 
             }
-
 
          }
 
@@ -935,24 +899,19 @@ namespace experience
    }
 
 
-
    bool style::_001OnTabLayout(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab)
    {
 
-
       auto pstyle = ptab->get_style(pgraphics);
 
+      if (!ptab->get_data()->m_bCreated)
       {
 
-         //         ::u32 dwTime2= ::millis::now();
-
-         //TRACE("message_handler call time0= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-         //TRACE("usertab::on_layout call time1= %d ms",dwTime2 - t_time1.operator DWORD_PTR());
-      }
-      if(!ptab->get_data()->m_bCreated)
          return false;
 
-      ::user::tab::data * pdata = ptab->get_data();
+      }
+
+      ::user::tab_data * pdata = ptab->get_data();
 
       ptab->m_bDrawTabAtBackground = true;
 
@@ -987,24 +946,27 @@ namespace experience
 
       }
 
-
       ptab->m_dcextension.GetTextExtent(pgraphics,MAGIC_PALACE_TAB_SIZE,ptab->get_data()->m_sizeSep);
-
-
 
       if(ptab->get_data()->m_bVertical)
       {
+
          i32 iTabWidth = 16;
          i32 iTabHeight = 8;
          i32 cx;
          i32 cy;
+
          for(i32 iPane = 0; iPane < ptab->get_data()->m_panea.get_size(); iPane++)
          {
 
             ::user::tab_pane & tab_pane = ptab->get_data()->m_panea(iPane);
 
-            if(!tab_pane.m_bTabPaneVisible)
+            if (!tab_pane.m_bTabPaneVisible)
+            {
+
                continue;
+
+            }
 
             string str = tab_pane.get_title();
 
@@ -1729,14 +1691,14 @@ namespace experience
          else
          {
 
-            if (!(estate & ::user::e_state_disabled))
-            {
+            //if (!(estate & ::user::e_state_disabled))
+            //{
 
-               ptoolbar->_001GetElementRect(iItem, rectItem, ::user::e_element_item, ::user::e_state_none);
+            //   ptoolbar->_001GetElementRect(iItem, rectItem, ::user::e_element_item, ::user::e_state_none);
 
-               pgraphics->fill_rect(rectItem, ptoolbar->get_color(pstyle, ::user::e_element_background));
+            //   pgraphics->fill_rect(rectItem, ptoolbar->get_color(pstyle, ::user::e_element_background));
 
-            }
+            //}
 
             if (estate & ::user::e_state_checked)
             {

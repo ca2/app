@@ -10,56 +10,57 @@ namespace experience
    {
 
 
+      library::library() 
+      {
+
+      }
 
 
+      library::~library()
+      {
 
-         library::library() 
+      }
+
+
+      ::matter * library::new_object(const char * pszClass)
+      {
+
+         if(string(pszClass) == "experience")
          {
-         }
 
-
-         library::~library()
-         {
-         }
-
-
-         ::context_object * library::new_object(::layered * pobjectContext, const char * pszClass)
-         {
-
-            if(string(pszClass) == "experience")
-            {
-
-               return new experience;
-
-            }
-            else if(string(pszClass) == "control_box")
-            {
-
-               return new control_box;
-
-            }
-            else if(string(pszClass) == "button")
-            {
-
-               return new button;
-
-            }
-            else if(string(pszClass) == "user_theme")
-            {
-
-               return new style;
-
-            }
-            else
-            {
-
-               return nullptr;
-
-            }
+            return new experience;
 
          }
+         else if(string(pszClass) == "control_box")
+         {
+
+            return new control_box;
+
+         }
+         else if(string(pszClass) == "button")
+         {
+
+            return new button;
+
+         }
+         else if(string(pszClass) == "user_theme")
+         {
+
+            return new style;
+
+         }
+         else
+         {
+
+            return nullptr;
+
+         }
+
+      }
+
 
       __namespace_library_factory("experience_anthill");
+
 
    } // namespace anthill
 
@@ -68,15 +69,3 @@ namespace experience
 
 
 
-
-
-//
-//extern "C"
-//::apex::library * experience_anthill_get_new_library()
-//{
-//
-//   return new ::experience::anthill::library();
-//
-//}
-//
-//

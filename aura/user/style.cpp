@@ -41,14 +41,24 @@ namespace user
    void style::default_style_construct()
    {
 
-      m_pfont = ::draw2d::point_font(os_font_name(e_font_sans), 14.0);
-      //m_pfontMenu;
-      //m_pfontButton;
-      //m_pfontList;
-      //m_pfontTree;
-      //m_pfontStill;
-      //m_pfontEdit;
-      //m_pfontCombo;
+      m_iUpdate = 0;
+
+      m_pfont = ::draw2d::point_font(os_font_name(e_font_sans_ui), 12.0);
+
+   }
+
+
+   void style::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   {
+
+      if (psubject->m_id == id_user_style_change 
+         || psubject->m_id == id_os_user_theme
+         || psubject->m_id == id_os_dark_mode)
+      {
+
+         m_iUpdate++;
+
+      }
 
    }
 
@@ -61,61 +71,72 @@ namespace user
    }
 
 
-   void style::set_style(enum_style estyle)
+   //::user::plain_edit_internal * style::get_plain_edit_internal(::draw2d::graphics_pointer & pgraphics, ::user::plain_edit * pedit)
+   //{
+
+   //   if (!m_pplaineditinternal)
+   //   {
+
+   //      __construct(m_pplaineditinternal);
+
+   //      m_pplaineditinternal->update(pgraphics, )
+
+   //   }
+
+
+   //   return m_pplaineditinternal;
+
+   //}
+
+
+   color32_t style::get_style_moveable_border_color(enum_style estyle)
    {
 
-      m_estyle = estyle;
-
-   }
-
-
-   void style::set_style(const char * pszStyle)
-   {
-
-      //::experience::frame::set_style(pszStyle);
-
-      string strStyle(pszStyle);
-
-      if (strStyle == "TranslucidWarmGray")
+      switch (estyle)
       {
-         set_style(StyleTranslucidWarmGray);
+      case StyleLightBlue:
+      case StyleTranslucidLightBlue:
+         return ARGB(255, 116, 160, 220);
+      case StyleTranslucidWarmGray:
+         return ARGB(255, 190, 184, 177);
+         break;
+      case StyleDarkRed:
+         //return ARGB(255, 34, 54, 75);
+      //{
+      //   int iR = 220;
+      //   int iG = 40;
+      //   int iB = 60;
+      //   return ARGB(255, iR, iG, iB);
+      //}
+      {
+         int iR = 165;
+         int iG = 32;
+         int iB = 32;
+         return ARGB(255, iR, iG, iB);
       }
-      else if (strStyle == "DarkWarmBlue")
-      {
-         set_style(StyleDarkWarmBlue);
-      }
-      else if (strStyle == "WarmGray")
-      {
-         set_style(StyleTranslucidWarmGray);
-      }
-      else if (strStyle == "BlueRedPurple")
-      {
-         set_style(StyleBlueRedPurple);
-      }
-      else if (strStyle == "RedOrange")
-      {
-         set_style(StyleRedOrange);
-      }
-      else if (strStyle == "DarkRed")
-      {
-         set_style(StyleDarkRed);
-      }
-      else if (strStyle == "LightBlue")
-      {
-         set_style(StyleLightBlue);
-      }
-      else if (strStyle == "LightGreen")
-      {
-         set_style(StyleLightGreen);
+      break;
+      case StyleDarkWarmBlue:
+         return ARGB(255, 34, 54, 75);
+         break;
+      case StyleBlackBorder:
+         return RGB(116, 160, 220) | 0xff000000;
+      case StyleLightGreen:
+      case StyleTranslucidLightGreen:
+         return RGB(116, 220, 160) | 0xff000000;
+      case StyleRedOrange:
+         return RGB(255, 170, 136) | 0xff000000;
+      case StyleBlueRedPurple:
+         return RGB(200, 100, 220) | 0xff000000;
+      case StyleEveningSun:
+         return RGB(255, 210, 100) | 0xff000000;
+      case StyleTranslucidWarmLiteGray:
+         return RGB(239, 230, 219) | 0xff000000;
+      default:
+         return RGB(200, 100, 220) | 0xff000000;
       }
 
-   }
-
-
-   void style::on_style_change()
-   {
-
-      deliver(id_user_style_change);
+      // Light Green/Translucid Light Green
+      return RGB(116, 220, 160) | 0xff000000;
 
    }
 

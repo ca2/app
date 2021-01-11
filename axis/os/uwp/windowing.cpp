@@ -107,7 +107,7 @@ bool oswindow_data::is_child(::oswindow oswindow)
 
    }
 
-   ::user::interaction * pinteraction = m_pimpl->m_puserinteraction->GetParent();
+   ::user::interaction * pinteraction = m_pimpl->m_puserinteraction->get_parent();
 
    if (pinteraction == nullptr)
    {

@@ -1415,7 +1415,7 @@ namespace ios
    //         m_callCurrent.m_oswindow,
    //         m_callCurrent.m_pimagekey,
    //         m_callCurrent.m_lpcszExtra,
-   //         m_callCurrent.m_crBk);
+   //         m_callCurrent.m_colorBk);
    //      m_callCurrent.m_bCall = false;
    //      m_eventReady.SetEvent();
 

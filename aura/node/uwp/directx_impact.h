@@ -65,9 +65,11 @@ namespace uwp
 
    internal:
 
+      virtual widestring get_input_text() = 0;
+      virtual bool set_input_text(const widestring & wstr) = 0;
 
       bool                                                     m_bTextCompositionActive;
-      widestring                                               m_strText;
+      //widestring                                               m_strText;
       widestring                                               m_strNewText;
       ::aura::system *                                         m_psystem;
 
@@ -108,8 +110,9 @@ namespace uwp
       impact();
 
 
-      
-      inline ::user::interaction* host() { return Sess(m_psystem->get_context_session())->host(); }
+      //inline ::user::interaction* host() { return Sess(m_psystem->get_context_session())->host(); }
+      //inline ::user::interaction * host() { return m_puserinteraction->get_host_window(); }
+      inline ::user::interaction * host() { return m_puserinteraction; }
 
 
       void CoreWindow_PointerPressed(::Windows::UI::Core::CoreWindow^ sender, Windows::UI::Core::PointerEventArgs^ args);

@@ -33,7 +33,7 @@
 
                m_bHollow = false;
 
-               set_style(StyleTranslucidWarmLiteGray);
+               ///set_style(StyleTranslucidWarmLiteGray);
 
                m_penHollow1.create(this);
                m_penHollow2.create(this);
@@ -46,6 +46,14 @@
 
             frame_008::~frame_008()
             {
+
+            }
+
+
+            string frame_008::get_default_user_style() const
+            {
+
+               return "TranslucidWarmLiteGray";
 
             }
 
@@ -227,9 +235,9 @@ SizingNone:
 
                if(pframewindow->is_active())
                {
-                  crMoveableBorder = m_crMoveableBorder;
-                  crMoveableBorderHilight = m_crMoveableBorderHilight;
-                  crMoveableBorderShadow = m_crMoveableBorderShadow;
+                  crMoveableBorder = m_colorMoveableBorder;
+                  crMoveableBorderHilight = m_colorMoveableBorderHilight;
+                  crMoveableBorderShadow = m_colorMoveableBorderShadow;
                }
                else
                {
@@ -249,16 +257,17 @@ SizingNone:
                enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
                ::rect rectA(rectClient);
 
+               auto estyle = pframewindow->m_estyle;
 
                if(m_bHollow)
                {
 
 
                }
-               else if(m_estyle == StyleLightBlue || m_estyle == StyleRedOrange)
+               else if(estyle == ::user::StyleLightBlue || estyle == ::user::StyleRedOrange)
                {
                   //rectA.deflate(1,1,1,1);
-                  Draw3dRectSide(pgraphics,rectA,eside, crMoveableBorderHilight,0);//m_crMoveableBorderDkShadow);
+                  Draw3dRectSide(pgraphics,rectA,eside, crMoveableBorderHilight,0);//m_colorMoveableBorderDkShadow);
 
                   //if(!m_bHollow)
                   //{
@@ -284,9 +293,9 @@ SizingNone:
                   //}
 
                }
-               else if(m_estyle == StyleTranslucidWarmGray
-                       || m_estyle == StyleTranslucidLightBlue
-                       || m_estyle == StyleTranslucidLightGreen)
+               else if(estyle == ::user::StyleTranslucidWarmGray
+                       || estyle == ::user::StyleTranslucidLightBlue
+                       || estyle == ::user::StyleTranslucidLightGreen)
                {
                   ::rect rect;
                   GetBorderRect(rectClient, rect, eside);
@@ -319,14 +328,14 @@ SizingNone:
                   rectA.right--;
                   if(edock == e_dock_none)
                   {
-                     Draw3dRectSide(pgraphics, rectA, eside, m_crDkShadow, m_crDkShadow);
+                     Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow, m_colorDkShadow);
                   }
 
                   rectA.top++;
                   rectA.bottom--;
                   rectA.left++;
                   rectA.right--;
-                  Draw3dRectSide(pgraphics, rectA, eside, m_crDkShadow, m_crDkShadow);
+                  Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow, m_colorDkShadow);
 
                   rectA.top++;
                   rectA.bottom--;
@@ -334,7 +343,7 @@ SizingNone:
                   rectA.right--;
                   if(edock == e_dock_none)
                   {
-                     Draw3dRectSide(pgraphics, rectA, eside, m_crDkShadow, m_crDkShadow);
+                     Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow, m_colorDkShadow);
                   }
                }
 
@@ -404,6 +413,9 @@ SizingNone:
 
                auto prectMargin = get_margin_rect();
 
+               auto pframewindow = m_pframewindow;
+
+               auto estyle = pframewindow->m_estyle;
 
                if(m_bHollow)
                {
@@ -465,13 +477,13 @@ SizingNone:
                         pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
 
-                        if (m_estyle == StyleRedOrange)
+                        if (estyle == ::user::StyleRedOrange)
                         {
 
                            pgraphics->draw_rect(rectA, ARGB(255, 255, 170, 136), eborder);
 
                         }
-                        else if (m_estyle == StyleLightGreen)
+                        else if (estyle == ::user::StyleLightGreen)
                         {
 
                            pgraphics->draw_rect(rectA, ARGB(255, 128, 230, 150), eborder);
@@ -576,30 +588,34 @@ SizingNone:
                on_style_change_001_and_002();
                m_rectMarginNormal.set(10, 10, 10, 10);
 
-               if (m_estyle == StyleDarkRed)
+               auto pframewindow = m_pframewindow;
+
+               auto estyle = pframewindow->m_estyle;
+
+               if (estyle == ::user::StyleDarkRed)
                {
                   //m_penHollow1->create_solid(1.0, ARGB(20, 0, 0, 0));
                   //m_penHollow2->create_solid(1.0, ARGB(60, 20, 20, 20));
                   //m_penHollow3->create_solid(1.0, ARGB(100, 40, 40, 40));
                   //m_penHollow4->create_solid(1.0, ARGB(140, 60, 60, 60));
                   //m_penHollow5->create_solid(1.0, ARGB(255, 90, 220, 100));
-                  m_crCaptionTextBk = ARGB(255, 200, 200, 200);
-                  m_crActiveCaptionTextBk = ARGB(255, 165, 32, 32);
+                  m_colorCaptionTextBk = ARGB(255, 200, 200, 200);
+                  m_colorActiveCaptionTextBk = ARGB(255, 165, 32, 32);
                }
-               else if (m_estyle == StyleLightGreen)
+               else if (estyle == ::user::StyleLightGreen)
                {
                   //m_penHollow1->create_solid(1.0, ARGB(20, 0, 0, 0));
                   //m_penHollow2->create_solid(1.0, ARGB(60, 20, 20, 20));
                   //m_penHollow3->create_solid(1.0, ARGB(100, 40, 40, 40));
                   //m_penHollow4->create_solid(1.0, ARGB(140, 60, 60, 60));
                   //m_penHollow5->create_solid(1.0, ARGB(255, 90, 220, 100));
-                  m_crCaptionTextBk = ARGB(255, 200, 200, 200);
-                  m_crActiveCaptionTextBk = ARGB(255, 140, 200, 160);
+                  m_colorCaptionTextBk = ARGB(255, 200, 200, 200);
+                  m_colorActiveCaptionTextBk = ARGB(255, 140, 200, 160);
                }
                else
                {
-                  m_crCaptionTextBk = ARGB(255, 200, 200, 200);
-                  m_crActiveCaptionTextBk = ARGB(255, 0x07, 0x6D, 0x91);
+                  m_colorCaptionTextBk = ARGB(255, 200, 200, 200);
+                  m_colorActiveCaptionTextBk = ARGB(255, 0x07, 0x6D, 0x91);
                   //m_penHollow1->create_solid(1.0, ARGB(20, 50, 100, 200));
                   //m_penHollow2->create_solid(1.0, ARGB(60, 50, 100, 200));
                   //m_penHollow3->create_solid(1.0, ARGB(100, 50, 100, 200));
@@ -612,30 +628,30 @@ SizingNone:
 
                   m_pcontrolbox->m_brushButtonBackSel = m_pcontrolbox->m_brushButtonBack;
                   m_pcontrolbox->m_penButtonBackSel = m_pcontrolbox->m_penButtonBack;
-                  m_pcontrolbox->m_crButtonForeSel = m_pcontrolbox->m_crButtonFore;
+                  m_pcontrolbox->m_colorButtonForeSel = m_pcontrolbox->m_colorButtonFore;
 
                }
 
             }
 
 
-            color32_t frame_008::get_border_main_body_color()
-            {
+            //color32_t frame_008::get_border_main_body_color()
+            //{
 
-               if (m_estyle == StyleRedOrange)
-               {
+            //   if (m_estyle == StyleRedOrange)
+            //   {
 
-                  return ARGB(255, 255, 170, 136);
+            //      return ARGB(255, 255, 170, 136);
 
-               }
-               else
-               {
+            //   }
+            //   else
+            //   {
 
-                  return ARGB(255, 50, 100, 200);
+            //      return ARGB(255, 50, 100, 200);
 
-               }
+            //   }
 
-            }
+            //}
 
 
             //bool frame_008::get_color(color32_t & cr, ::user::e_color ecolor, ::user::style_context * pstyle)

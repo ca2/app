@@ -106,7 +106,7 @@ namespace user
       for (auto & pview : m_viewa)
       {
 
-         uia.add_unique_interaction(pview->GetTopLevel());
+         uia.add_unique_interaction(pview->get_top_level());
 
       }
 
@@ -266,7 +266,7 @@ namespace user
    //   //for (auto& pinteraction : m_interactionaCommandHandlers)
    //   //{
 
-   //   //   if (pinteraction && pinteraction != GetActiveView())
+   //   //   if (pinteraction && pinteraction != get_active_view())
    //   //   {
 
    //   //      pinteraction->on_command_message(pcommand);
@@ -283,7 +283,7 @@ namespace user
    //   //}
 
    //   // then pump through parent
-   //   __pointer(::user::interaction) puiParent = GetParent();
+   //   __pointer(::user::interaction) puiParent = get_parent();
    //   while (puiParent)
    //   {
 
@@ -317,7 +317,7 @@ namespace user
 
    //   __pointer(channel) ptarget = psession->get_keyboard_focus();
 
-   //   if (ptarget != nullptr && ptarget != this && ptarget != GetActiveView()
+   //   if (ptarget != nullptr && ptarget != this && ptarget != get_active_view()
    //      && !m_interactionaCommandHandlers.contains(ptarget))
    //   {
 
@@ -400,14 +400,14 @@ namespace user
       if (pview)
       {
 
-         __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+         __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
          while (pframe.is_set())
          {
 
             pframe->set_window_text(str);
 
-            pframe = pframe->GetParentFrame();
+            pframe = pframe->get_parent_frame();
 
          }
 
@@ -600,7 +600,7 @@ namespace user
 
          auto edisplay = windows_show_window_to_edisplay(nCmdShow, eactivation);
 
-         pview->GetParentFrame()->display(edisplay, eactivation);
+         pview->get_parent_frame()->display(edisplay, eactivation);
 
       }
    }
@@ -1037,7 +1037,7 @@ namespace user
          for (auto & pview : m_viewa.ptra())
          {
 
-            __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+            __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
             if (pframe.is_set())
             {
@@ -1088,7 +1088,7 @@ namespace user
       for(auto & pview : viewptra.ptra())
       {
 
-         __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+         __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
          if (pframe.is_set())
          {
@@ -1104,7 +1104,7 @@ namespace user
       for(auto & pview : viewptra.ptra())
       {
 
-         __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+         __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
          if (pframe.is_set())
          {
@@ -1283,7 +1283,7 @@ namespace user
 
          ASSERT_VALID(pview);
 
-         __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+         __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
          // assume frameless views are ok to close
          if (pframe != nullptr)
@@ -1566,7 +1566,7 @@ namespace user
          if (pview->is_window_visible())
          {
 
-            __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+            __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
             if (pframe != nullptr)
             {
@@ -1594,7 +1594,7 @@ namespace user
          if (pview->is_window_visible())
          {
 
-            __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+            __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
             if (pframe != nullptr && pframe->m_nWindow == -1)
             {
@@ -1626,7 +1626,7 @@ namespace user
          if (pview->is_window_visible())   // Do not ::count invisible windows.
          {
 
-            __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+            __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
             if (pframe != nullptr && pframe->m_nWindow == iFrame)
             {

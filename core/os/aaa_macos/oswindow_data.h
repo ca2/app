@@ -126,7 +126,7 @@ bool oswindow_remove(nswindow window);
 //   return oswindowParent->is_child(oswindowCandidateChildOrDescendant);
 //}
 
-//inline oswindow GetParent(::oswindow window)
+//inline oswindow get_parent(::oswindow window)
 //{
 //   return window->get_parent();
 //}

@@ -177,7 +177,7 @@ namespace userstack
 
    void view::_001OnContextMenu(::message::message * pmessage)
    {
-//      SCAST_PTR(::message::context_menu, pcontextmenu, pmessage);
+//      __pointer(::message::context_menu) pcontextmenu(pmessage);
 //      ::point point = pcontextmenu->GetPoint();
 
    }
@@ -193,7 +193,7 @@ namespace userstack
    void view::_001OnSetCursor(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmouse->m_ecursor = cursor_arrow;
 
@@ -272,7 +272,7 @@ namespace userstack
 
    void view::_001OnLButtonUp(::message::message * pmessage)
    {
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
       pmouse->m_lresult = 1;
       KillTimer(5432180);
       auto point = pmouse->m_point;

@@ -14,64 +14,18 @@
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
 
+
 millis g_tickDragStart;
+
+
 namespace user
 {
 
 
-   tab::data::data() :
-      m_pen(e_create),
-      //m_brushTextHover(e_create),
-      //m_brushTextSel(e_create),
-      //m_brushText(e_create),
-      m_brushCloseHover(e_create),
-      m_brushCloseSel(e_create),
-      m_brushClose(e_create)
-      //,
-      //m_penBorder(e_create),
-      //m_penBorderSel(e_create),
-      //m_penBorderHover(e_create)
-   {
-
-      m_bNoClient = false;
-      //m_brushTextHover->create_solid(ARGB(255, 0, 127, 255));
-      //m_brushTextSel->create_solid(ARGB(255, 0, 0, 0));
-      //m_brushText->create_solid(ARGB(163, 0, 0, 0));
-      m_brushCloseHover->create_solid(ARGB(255, 255, 127, 0));
-      m_brushCloseSel->create_solid(ARGB(255, 0, 0, 0));
-      m_brushClose->create_solid(ARGB(163, 0, 0, 0));
-      //m_penBorderHover->create_solid(1.0, ARGB(255, 0, 0, 0));
-      //m_penBorderSel->create_solid(1.0, ARGB(255, 0, 0, 0));
-      //m_penBorder->create_solid(1.0, ARGB(163, 90, 90, 80));
-
-      m_bEnableCloseAll = false;
-      m_rectTabClient.set(0,0,0,0);
-
-   }
-
-   tab::data::~data()
-   {
-   }
-
-
-   tab_pane * tab::data::get_pane_by_id(id id)
-   {
-
-      return m_panea.get_by_id(id);
-
-   }
-
-
-   ::count tab::data::get_visible_tab_count()
-   {
-
-      return m_panea.get_visible_count();
-
-   }
-
-
    tab::tab()
    {
+
+      m_econtroltype = e_control_type_tab;
 
       m_bMouseDown = false;
 
@@ -83,7 +37,7 @@ namespace user
 
       m_iRestoredTabCount = 0;
 
-      m_pdata = __new(data);
+      m_pdata = __new(tab_data);
 
       get_data()->m_iHeightAddUp = 0;
       get_data()->m_pcallback    = nullptr;
@@ -408,7 +362,7 @@ namespace user
 
       }
 
-      //__pointer(::experience::frame_window) pchannel = GetTopLevelFrame();
+      //__pointer(::experience::frame_window) pchannel = top_level_frame();
       //
       //if (pchannel != nullptr && pchannel->m_bInitialFramePosition)
       //{
@@ -417,12 +371,12 @@ namespace user
 
       bool bNeedLayout = false;
 
-      ::user::interaction * puiTopLevel = GetTopLevel();
+      ::user::interaction * puiTopLevel = get_top_level();
 
       if (puiTopLevel != nullptr)
       {
 
-         if (puiTopLevel->frame_is_transparent() && !GetTopLevelFrame()->layout().is_full_screen())
+         if (puiTopLevel->frame_is_transparent() && !top_level_frame()->layout().is_full_screen())
          {
 
             if (m_bShowTabs)
@@ -441,7 +395,7 @@ namespace user
 
             }
 
-            m_edisplayParentFrameAutoHide = GetTopLevelFrame()->layout().design().display();
+            m_edisplayParentFrameAutoHide = top_level_frame()->layout().design().display();
 
             return bNeedLayout;
 
@@ -468,7 +422,7 @@ namespace user
 
          }
 
-         m_edisplayParentFrameAutoHide = GetTopLevelFrame()->layout().design().display();
+         m_edisplayParentFrameAutoHide = top_level_frame()->layout().design().display();
 
          return bNeedLayout;
 
@@ -477,7 +431,7 @@ namespace user
       if(m_bShowTabs)
       {
 
-         if(GetTopLevelFrame()!= nullptr && GetTopLevelFrame()->layout().is_full_screen())
+         if(top_level_frame()!= nullptr && top_level_frame()->layout().is_full_screen())
          {
 
             ::rect rectTab(get_data()->m_rectTab);
@@ -512,7 +466,7 @@ namespace user
       else
       {
 
-         auto pframe = GetParentFrame();
+         auto pframe = get_parent_frame();
 
          if(::is_set(pframe) && !pframe->layout().is_full_screen())
          {
@@ -573,10 +527,10 @@ namespace user
 
       }
 
-      if (GetParentFrame() != nullptr && (bNeedLayout || !GetParentFrame()->is_this_screen_visible()))
+      if (get_parent_frame() != nullptr && (bNeedLayout || !get_parent_frame()->is_this_screen_visible()))
       {
 
-         m_edisplayParentFrameAutoHide = GetParentFrame()->layout().design().display();
+         m_edisplayParentFrameAutoHide = get_parent_frame()->layout().design().display();
 
       }
 
@@ -597,7 +551,7 @@ namespace user
 
       }
 
-      if (GetTopLevel()->frame_is_transparent())
+      if (get_top_level()->frame_is_transparent())
       {
 
          return;
@@ -1625,7 +1579,7 @@ namespace user
    void tab::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmouse->previous();
 
@@ -1726,7 +1680,7 @@ namespace user
    void tab::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if(m_bMouseDown)
       {
@@ -1793,7 +1747,7 @@ namespace user
    void tab::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if(m_bMouseDown)
       {
@@ -1858,7 +1812,7 @@ namespace user
    {
 
       UNREFERENCED_PARAMETER(pmessage);
-      //SCAST_PTR(::message::base, pbase, pmessage);
+      //__pointer(::message::base) pbase(pmessage);
 
    }
 
@@ -2423,7 +2377,7 @@ namespace user
 
       ::user::interaction * pwnd;
 
-      if ((pwnd = GetParent()->get_wnd()) != nullptr)
+      if ((pwnd = get_parent()->get_wnd()) != nullptr)
       {
 
          return pwnd;
@@ -2454,7 +2408,7 @@ namespace user
 
       m_bNoTabs = System.has_property("no_tabs");
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       if(pmessage->previous())
          return;
@@ -2588,129 +2542,6 @@ namespace user
 
    }
 
-
-   tab_pane::tab_pane(const ::user::tab_pane & tab_pane)
-   {
-
-      operator = (tab_pane);
-
-   }
-
-
-   tab_pane::~tab_pane()
-   {
-
-   }
-
-
-   tab_pane & tab_pane::operator = (const tab_pane & tab_pane)
-   {
-
-      if(this != &tab_pane)
-      {
-
-         m_ptab            = tab_pane.m_ptab;
-         m_id              = tab_pane.m_id;
-         m_strTitle        = tab_pane.m_strTitle;
-         m_pimage          = tab_pane.m_pimage;
-         m_pplaceholder    = tab_pane.m_pplaceholder;
-         m_bTabPaneVisible = tab_pane.m_bTabPaneVisible;
-         m_bPermanent      = tab_pane.m_bPermanent;
-      }
-
-      return *this;
-
-   }
-
-
-   string tab_pane::get_title()
-   {
-
-      return m_strTitle;
-
-   }
-
-
-   void tab_pane::set_title(const char * pszTitle)
-   {
-
-      string strTitle(pszTitle);
-
-      auto pdocument = create_xml_document();
-
-      if (pdocument->load(strTitle))
-      {
-
-         strTitle = pdocument->root()->get_value();
-
-      }
-
-      m_strTitle = strTitle;
-
-      m_ptab->set_need_layout();
-
-   }
-
-
-   void tab_pane::do_split_layout(::draw2d::graphics_extension & dc, ::draw2d::graphics_pointer & pgraphics)
-   {
-
-      string_array straTitle = m_straTitle.c_stra();
-
-      straTitle.explode(MAGIC_PALACE_TAB_SPLT,get_title());
-
-      m_sizeaText.set_size(straTitle.get_count());
-
-      for(int iTitle = 0; iTitle < straTitle.get_count(); iTitle++)
-      {
-
-         dc.GetTextExtent(pgraphics,straTitle[iTitle],m_sizeaText[iTitle]);
-
-      }
-
-   }
-
-
-   tab_pane_array::tab_pane_array()
-   {
-
-   }
-
-
-   tab_pane_array::~tab_pane_array()
-   {
-
-   }
-
-
-   tab_pane * tab_pane_array::get_by_id(id id)
-   {
-
-      for(i32 i = 0; i < this->get_count(); i++)
-      {
-         if(this->element_at(i)->m_id == id)
-         {
-            return element_at(i);
-         }
-      }
-      return nullptr;
-   }
-
-   ::count tab_pane_array::get_visible_count()
-   {
-
-      ::count count = 0;
-
-      for(i32 i = 0; i < this->get_count(); i++)
-      {
-         if(this->element_at(i)->m_bTabPaneVisible)
-         {
-            count++;
-         }
-      }
-
-      return count;
-   }
 
 
    void tab::_001OnAppLanguage(::message::message * pmessage)
@@ -3684,7 +3515,7 @@ namespace user
    }
 
 
-   tab::data * tab::get_data()
+   tab_data * tab::get_data()
    {
 
       return m_pdata;
@@ -4043,7 +3874,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-//      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+//      __pointer(::message::show_window) pshowwindow(pmessage);
 
 //      ::user::place_holder * pholder = tab_holder(_001GetSel());
 //

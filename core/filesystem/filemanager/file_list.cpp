@@ -15,7 +15,7 @@ namespace filemanager
       m_bStatic = false;
       m_bFileSize = false;
       m_bShow = false;
-      m_bHoverSelect2 = false;
+      m_bHoverSelect2 = true;
 
    }
 
@@ -140,7 +140,7 @@ namespace filemanager
    void file_list::_001OnContextMenu(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pcontextmenu, pmessage);
+      __pointer(::message::mouse) pcontextmenu(pmessage);
 
       sync_lock sl(fs_list()->mutex());
 
@@ -343,14 +343,14 @@ namespace filemanager
 
    void file_list::_001OnShellCommand(::message::message * pmessage)
    {
-      SCAST_PTR(::message::command, pcommand, pmessage);
+      __pointer(::message::command) pcommand(pmessage);
       m_contextmenu.OnCommand(pcommand->GetId());
    }
 
    void file_list::_001OnFileManagerItemCommand(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       ::file::item_array itema;
 
@@ -384,7 +384,7 @@ namespace filemanager
    void file_list::_001OnFileManagerItemUpdate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       sync_lock sl(fs_list()->mutex());
 
@@ -434,7 +434,7 @@ namespace filemanager
          if (pmenu->create_menu(straCommand, straCommandTitle))
          {
 
-            pmenu->track_popup_menu(GetParentFrame());
+            pmenu->track_popup_menu(get_parent_frame());
 
          }
 
@@ -499,11 +499,11 @@ namespace filemanager
 
    void file_list::_001OnUpdateFileRename(::message::message * pmessage)
    {
-      //      SCAST_PTR(::user::command, pcommand, pmessage);
+      //      __pointer(::user::command) pcommand(pmessage);
       //    pcommand->enable(_001GetSelectedItemCount() == 1);
       //  pmessage->m_bRet = true;
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
       ::user::range range;
       _001GetSelection(range);
       pcommand->enable(
@@ -517,7 +517,7 @@ namespace filemanager
    void file_list::_001OnUpdateEditCopy(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       ::user::range range;
 
@@ -549,7 +549,7 @@ namespace filemanager
    void file_list::_001OnUpdateTrashThatIsNotTrash(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       ::user::range range;
 
@@ -581,23 +581,22 @@ namespace filemanager
    void file_list::_001OnUpdateOpenWith(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
-      ::user::menu_command * pmenucommandui = dynamic_cast <::user::menu_command *> (pcommand);
+      __pointer(::user::menu_command) pmenucommandui(pcommand);
 
-      if (pmenucommandui != nullptr)
+      if (pmenucommandui)
       {
 
-         ::user::menu_item_ptra * pitema = pmenucommandui->m_pitema;
+         auto pitema = pmenucommandui->m_pitema;
 
-         ::user::menu * pmenu = pitema->element_at(pmenucommandui->m_iIndex)->m_pmenu;
+         auto pmenu = pitema->element_at(pmenucommandui->m_iIndex)->m_pmenu;
 
          pitema->remove_at(pcommand->m_iIndex);
 
-
          index iStartIndex = pcommand->m_iIndex;
-         index iIndex = iStartIndex;
 
+         index iIndex = iStartIndex;
 
          auto patha = get_selected_final_path();
 
@@ -606,12 +605,15 @@ namespace filemanager
          string strExt = strPath.extension();
 
          string_array stra;
+
          Context.os().file_extension_get_open_with_list_keys(stra, strExt);
 
          m_straOpenWith = stra;
+
          ::count iCount = stra.get_size();
 
          string str;
+
          for (i32 i = 0; i < iCount; i++)
          {
 
@@ -626,12 +628,16 @@ namespace filemanager
 
             }
 
-
             pmenuitem->m_iLevel = pitema->m_pitemParent != nullptr ? pitema->m_pitemParent->m_iLevel + 1 : 0;
+
             pmenuitem->m_pmenu = pmenu;
+
             pitema->insert_at(iIndex, pmenuitem);
+
             iIndex++;
+
          }
+
          pcommand->m_iIndex = iStartIndex;
 
          pcommand->m_iCount += iCount - 1;
@@ -740,7 +746,7 @@ namespace filemanager
 
    //void file_list::_001OnUpdateSpafy(::message::message * pmessage)
    //{
-   //   SCAST_PTR(::user::command, pcommand, pmessage);
+   //   __pointer(::user::command) pcommand(pmessage);
    //   ::user::range range;
    //   _001GetSelection(range);
    //   pcommand->enable(range.get_item_count() > 0);
@@ -813,7 +819,7 @@ namespace filemanager
 
    //void file_list::_001OnUpdateSpafy2(::message::message * pmessage)
    //{
-   //   SCAST_PTR(::user::command, pcommand, pmessage);
+   //   __pointer(::user::command) pcommand(pmessage);
    //   pcommand->enable(TRUE);
    //   pmessage->m_bRet = true;
    //}
@@ -942,7 +948,7 @@ namespace filemanager
    void file_list::_001OnShowWindow(::message::message * pmessage)
    {
 
-      //SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      //__pointer(::message::show_window) pshowwindow(pmessage);
 
       UNREFERENCED_PARAMETER(pmessage);
 
@@ -1179,7 +1185,12 @@ namespace filemanager
 
       _001ClearSelection();
 
-      set_viewport_offset(0, 0);
+      queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+         {
+
+            set_viewport_offset(pgraphics, 0, 0);
+
+         });
 
       set_need_layout();
 
@@ -1225,13 +1236,15 @@ namespace filemanager
 
          index iControl;
 
+         ::id id = 1000 + i;
+
          {
 
-            auto pinteraction = __new( user::control_descriptor);
+            auto pinteraction = __new( user::button);
             pinteraction->m_bTransparent = true;
-            pinteraction->set_control_type(user::e_control_type_button);
-            pinteraction->m_type = __type(::user::button);
-            pinteraction->m_id = 1000 + i;
+            //pinteraction->set_control_type(user::e_control_type_button);
+            //pinteraction->m_type = __type(::user::button);
+            pinteraction->m_id = id;
             pinteraction->add_function(user::e_control_function_action);
             iControl = _001AddControl(pinteraction);
 
@@ -1243,7 +1256,7 @@ namespace filemanager
 
             pcolumn->m_iWidth = 18;
             pcolumn->m_iSubItem = i;
-            pcolumn->m_iControl = iControl;
+            pcolumn->m_id = id;
             pcolumn->m_bCustomDraw = true;
             pcolumn->m_bEditOnSecondClick = true;
             pcolumn->m_uiText = "";
@@ -1264,7 +1277,7 @@ namespace filemanager
          //pcolumn->m_bIcon                = true;
          pcolumn->m_sizeIcon.cx = filemanager_data()->m_iIconSize;
          pcolumn->m_sizeIcon.cy = filemanager_data()->m_iIconSize;
-         pcolumn->m_iControl = -1;
+         //pcolumn->m_iControl = -1;
          pcolumn->m_uiText = "";
          pcolumn->m_datakey = "FILE_MANAGER_ID_FILE_NAME";
          pcolumn->m_bEditOnSecondClick = false;
@@ -1289,17 +1302,17 @@ namespace filemanager
          if (bRenameEdit)
          {
 
-            auto pinteraction = __new( user::control_descriptor);
-            pinteraction->set_control_type(user::e_control_type_edit_plain_text);
+            auto pinteraction = __new( user::plain_edit);
+            //pinteraction->set_control_type(user::e_control_type_edit_plain_text);
             pinteraction->m_datakey = "FILE_MANAGER_ID_FILE_NAME";
-            //pinteraction->descriptor().m_id = _vms::FILE_MANAGER_ID_FILE_NAME;
+            //pinteraction->m_id = _vms::FILE_MANAGER_ID_FILE_NAME;
             pinteraction->set_data_type(user::e_control_data_type_string);
             pinteraction->add_function(user::e_control_function_vms_data_edit);
             pinteraction->m_type = __type(::user::plain_edit);
-            pinteraction->m_iSubItem = i;
+            //pinteraction->m_iSubItem = i;
             pinteraction->m_id = 1000 + i;
             index iControl = _001AddControl(pinteraction);
-            pcolumn->m_iControl = iControl;
+            pcolumn->m_id = pinteraction->m_id;
 
          }
 
@@ -1392,7 +1405,7 @@ namespace filemanager
    //void file_list::_001OnMainPostMessage(::message::message * pmessage)
    //{
 
-   //   SCAST_PTR(::message::base, pbase, pmessage);
+   //   __pointer(::message::base) pbase(pmessage);
 
    //   switch (pbase->m_wparam)
    //   {
@@ -1604,7 +1617,7 @@ namespace filemanager
 
          pbutton->set_button_style(::user::button::style_list);
 
-         pcallback->InitializeActionButton(((i32)pinteraction->descriptor().m_id) - 1000, pbutton);
+         pcallback->InitializeActionButton(((i32)pinteraction->m_id) - 1000, pbutton);
 
       }
 
@@ -1621,11 +1634,11 @@ namespace filemanager
 
          ::file::item item;
 
-         index iItem = pinteraction->GetEditItem();
+         index iItem = pinteraction->m_iItem;
 
          index iStrict = _001DisplayToStrict(iItem);
 
-         pcallback->OnButtonAction((i32)pinteraction->descriptor().m_id - 1000, fs_list_item(iStrict));
+         pcallback->OnButtonAction(pinteraction->m_id, fs_list_item(iStrict));
 
       }
 
@@ -1672,7 +1685,7 @@ namespace filemanager
    void file_list::_001OnVScroll(::message::message * pmessage)
    {
 
-      //SCAST_PTR(::message::scroll, pscroll, pmessage);
+      //__pointer(::message::scroll) pscroll(pmessage);
 
       //m_iCreateImageListStep = pscroll->m_nPos;
 
@@ -2047,7 +2060,7 @@ namespace filemanager
       else if (psubject->id() == id_get_active_view_selection)
       {
 
-         if (GetParentFrame()->GetActiveView() == (this))
+         if (get_parent_frame()->get_active_view() == (this))
          {
 
             get_selected_items(*psubject->cast <::file::item_array>(id_selected));

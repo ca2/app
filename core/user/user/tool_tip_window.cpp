@@ -31,13 +31,13 @@ namespace user
    {
       if(is_window())
          return;
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
       switch(pbase->m_id)
       {
       case e_message_mouse_move:
       {
          
-         if(ptool->BaseToolTipGetWnd()->GetTopLevel() == pbase->userinteraction())
+         if(ptool->BaseToolTipGetWnd()->get_top_level() == pbase->userinteraction())
          {
             
             auto psession = Session;

@@ -53,7 +53,7 @@ namespace user
    void slider::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       //::rect rect;
 
@@ -89,7 +89,7 @@ namespace user
    void slider::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if(m_bSlide)
       {
@@ -114,7 +114,7 @@ namespace user
    void slider::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if(m_bSlide)
       {

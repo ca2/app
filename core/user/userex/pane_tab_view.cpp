@@ -84,7 +84,7 @@ namespace userex
          for(; i > 0; i--)
          {
 
-            puiNext = pinteraction->GetParent();
+            puiNext = pinteraction->get_parent();
 
             if (puiNext == nullptr || !puiNext->is_window())
             {
@@ -118,7 +118,7 @@ namespace userex
 
             uia.add_interaction(pinteraction);
 
-            puiNext = pinteraction->GetParent();
+            puiNext = pinteraction->get_parent();
 
             if (puiNext == nullptr || (pinteraction->m_pimpl) != nullptr)
             {
@@ -158,7 +158,7 @@ namespace userex
    void pane_tab_view::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       m_pcreate = (::create *) pcreate->get_create();
 
@@ -184,7 +184,7 @@ namespace userex
       }
 
 
-      __pointer(simple_frame_window) pframe = GetParent();
+      __pointer(simple_frame_window) pframe = get_parent();
 
       if (pframe.is_set())
       {
@@ -224,7 +224,7 @@ namespace userex
    void pane_tab_view::_001OnUpdateFileSaveAs(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       auto pdocument = m_pimpactdata->m_pdocument;
 
@@ -241,10 +241,10 @@ namespace userex
       if(m_pimpactdataOld != nullptr && is_filemanager(m_pimpactdataOld->m_id))
       {
 
-         if(GetParentFrame()->ContinueModal())
+         if(get_parent_frame()->ContinueModal())
          {
 
-            GetParentFrame()->EndModalLoop("yes");
+            get_parent_frame()->EndModalLoop("yes");
 
          }
 
@@ -573,7 +573,7 @@ namespace userex
             if(pview != nullptr)
             {
 
-               __pointer(::user::frame_window) pframe = (__pointer(::user::frame_window)) pview->GetParentFrame();
+               __pointer(::user::frame_window) pframe = (__pointer(::user::frame_window)) pview->get_parent_frame();
 
                if(pframe != nullptr)
                {
@@ -607,7 +607,7 @@ namespace userex
       //      if(pview != nullptr)
       //      {
 
-      //         __pointer(::user::frame_window) pframe = (__pointer(::user::frame_window)) pview->GetParentFrame();
+      //         __pointer(::user::frame_window) pframe = (__pointer(::user::frame_window)) pview->get_parent_frame();
 
       //         if(pframe != nullptr)
       //         {
@@ -648,7 +648,7 @@ namespace userex
 
                ::user::impact * pview = pdocument->get_view(0);
 
-               pimpactdata->m_puserinteraction = pview->GetParentFrame();
+               pimpactdata->m_puserinteraction = pview->get_parent_frame();
 
                prepare_form(pimpactdata->m_id, pdocument);
 
@@ -702,11 +702,11 @@ namespace userex
 
       ::user::tab::_001OnTabClose(iTab);
 
-      if(GetParentFrame()->ContinueModal() && is_set_ref(filemanager_document())
+      if(get_parent_frame()->ContinueModal() && is_set_ref(filemanager_document())
             && filemanager_document()->filemanager_data()->m_pdocumentTopic!= nullptr)
       {
 
-         GetParentFrame()->EndModalLoop("yes");
+         get_parent_frame()->EndModalLoop("yes");
 
       }
 
@@ -780,7 +780,7 @@ namespace userex
 
       string strAppOptions = "matter://options.html";
 
-      __pointer(simple_frame_window) pframe = GetParent();
+      __pointer(simple_frame_window) pframe = get_parent();
 
       if (pframe.is_set())
       {

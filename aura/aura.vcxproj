@@ -1107,6 +1107,7 @@
     <ClCompile Include="gpu\gpu\program.cpp" />
     <ClCompile Include="gpu\gpu\shader.cpp" />
     <ClCompile Include="graphics\draw2d\context_image.cpp" />
+    <ClCompile Include="graphics\draw2d\device_lock.cpp" />
     <ClCompile Include="graphics\graphics\monitor.cpp" />
     <ClCompile Include="include\_.cpp" />
     <ClCompile Include="message\timer.cpp" />
@@ -1190,6 +1191,7 @@
     <ClCompile Include="user\scroll_bar.cpp" />
     <ClCompile Include="user\style.cpp" />
     <ClCompile Include="user\style_base.cpp" />
+    <ClCompile Include="user\style_control.cpp" />
     <ClCompile Include="user\tool_window.cpp" />
     <ClCompile Include="user\user.cpp" />
     <ClCompile Include="user\wait_cursor.cpp" />
@@ -1332,6 +1334,7 @@
     <ClInclude Include="gpu\gpu\shader.h" />
     <ClInclude Include="gpu\gpu\_.h" />
     <ClInclude Include="graphics\draw2d\context_image.h" />
+    <ClInclude Include="graphics\draw2d\device_lock.h" />
     <ClInclude Include="graphics\draw2d\_const.h" />
     <ClInclude Include="graphics\draw2d\_draw2d.h" />
     <ClInclude Include="graphics\text\bounding_rect.h" />
@@ -1465,6 +1468,7 @@
     <ClInclude Include="user\scroll_info.h" />
     <ClInclude Include="user\style.h" />
     <ClInclude Include="user\style_base.h" />
+    <ClInclude Include="user\style_control.h" />
     <ClInclude Include="user\tool_window.h" />
     <ClInclude Include="user\user.h" />
     <ClInclude Include="user\wait_cursor.h" />

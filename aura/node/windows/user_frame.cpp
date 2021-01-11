@@ -9,7 +9,7 @@ namespace user
    void frame::_001OnSysCommand(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       if (pbase->m_wparam == SC_SCREENSAVE)
       {

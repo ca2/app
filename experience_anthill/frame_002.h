@@ -19,7 +19,10 @@ namespace experience
                frame_002();
                virtual ~frame_002();
 
+               
+               virtual string get_default_user_style() const;
                virtual void on_style_change();
+
 
                void on_draw_frame(::draw2d::graphics_pointer & pgraphics);
                void DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient);

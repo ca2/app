@@ -360,7 +360,7 @@ namespace user
 
          }
 
-         ::user::interaction * puiParent = GetParent();
+         ::user::interaction * puiParent = get_parent();
 
          if (puiParent != nullptr)
          {

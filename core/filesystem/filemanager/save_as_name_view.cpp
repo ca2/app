@@ -333,10 +333,10 @@ namespace filemanager
          if (psubject->id() == id_topic_saved)
          {
 
-            if (GetTopLevelFrame()->m_bModal)
+            if (top_level_frame()->m_bModal)
             {
 
-               GetTopLevelFrame()->EndModalLoop("yes");
+               top_level_frame()->EndModalLoop("yes");
 
             }
 
@@ -344,10 +344,10 @@ namespace filemanager
          else if (psubject->id() == id_topic_save_failed)
          {
 
-            if (GetTopLevelFrame()->m_bModal)
+            if (top_level_frame()->m_bModal)
             {
 
-               GetTopLevelFrame()->EndModalLoop("no");
+               top_level_frame()->EndModalLoop("no");
 
             }
 

@@ -160,7 +160,7 @@
 //
 //            p->m_rect.bottom = h;
 //
-//            p->m_crTransparent = 0;
+//            p->m_colorTransparent = 0;
 //
 //            p->m_bTransparent = false;
 //

@@ -50,7 +50,7 @@ namespace http
    void application::get(::message::message * pmessage)
    {
 
-      SCAST_PTR(message, pmessage, pmessage);
+      __pointer(message) pmessage(pmessage);
 
       ::url_domain domain;
 

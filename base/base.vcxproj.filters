@@ -775,6 +775,15 @@
     <ClCompile Include="const\idpool.cpp">
       <Filter>Source Files\const</Filter>
     </ClCompile>
+    <ClCompile Include="user\user\tab_data.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\tab_pane.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\tab_pane_array.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="user\user\_impl.h">

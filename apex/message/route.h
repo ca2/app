@@ -35,7 +35,7 @@ namespace message
       void on_message(message * pobject)
       {
 
-         SCAST_PTR(MESSAGE, pmessage, pobject);
+         __pointer(MESSAGE) pmessage(pobject);
 
          m_messagepred(pmessage);
 

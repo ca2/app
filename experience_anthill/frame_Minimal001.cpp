@@ -30,7 +30,7 @@ namespace experience
             frame_Minimal001::frame_Minimal001()
             {
 
-               set_style(StyleLightBlue);
+               //set_style(StyleLightBlue);
 
                m_rectMarginNormal.set(0,0,0,0);
 
@@ -40,6 +40,14 @@ namespace experience
 
             frame_Minimal001::~frame_Minimal001()
             {
+
+            }
+
+
+            string frame_Minimal001::get_default_user_style() const
+            {
+
+               return "LightBlue";
 
             }
 
@@ -216,11 +224,11 @@ namespace experience
                if(pframewindow->m_fActive)
                {
 
-                  crMoveableBorder = m_crMoveableBorder;
+                  crMoveableBorder = m_colorMoveableBorder;
 
-                  crMoveableBorderHilight = m_crMoveableBorderHilight;
+                  crMoveableBorderHilight = m_colorMoveableBorderHilight;
 
-                  crMoveableBorderShadow = m_crMoveableBorderShadow;
+                  crMoveableBorderShadow = m_colorMoveableBorderShadow;
 
                }
                else
@@ -241,7 +249,7 @@ namespace experience
 
                //::rect rectA(rectClient);
 
-               if(is_translucid_style(m_estyle))
+               if(is_translucid())
                {
 
                   ::rect rect;

@@ -62,7 +62,7 @@ public:
    ::draw2d::font_pointer                    m_fontPrefix;
    ::draw2d::font_pointer                    m_fontLink;
    color32_t                         m_cr;
-   color32_t                         m_crOutline;
+   color32_t                         m_colorOutline;
    ::rect                           m_rectClient;
    double                           m_floatRateX;
    //LOGFONTW                          m_logfont;
@@ -89,12 +89,12 @@ public:
    double                           m_dAnimateProgressIncrement;
    i32                              m_iTextEffect;
    ::draw2d::pen *                      m_lpPenEmboss;
-   color32_t                         m_crForeground;
+   color32_t                         m_colorForeground;
    ::draw2d::pen *                      m_ppenLyricLeft;
    ::draw2d::pen *                      m_ppenLyricRight;
    ::size                             m_sizeLyricMargin;
-   color32_t                         m_crLyricLeft;
-   color32_t                         m_crLyricRight;
+   color32_t                         m_colorLyricLeft;
+   color32_t                         m_colorLyricRight;
 
    xfplayer_view_line();
    xfplayer_view_line(const xfplayer_view_line & line);

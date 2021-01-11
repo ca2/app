@@ -34,7 +34,7 @@ namespace user
       virtual void on_command(::user::command* pcommand) override;
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
-      virtual void set_viewport_offset(int, int) override;
+      virtual void set_viewport_offset(::draw2d::graphics_pointer & pgraphics, int, int) override;
       virtual ::point get_viewport_offset() override;
       virtual ::sized get_total_size() override;
 

@@ -201,7 +201,7 @@ IFACEMETHODIMP CustomTextRenderer::DrawGlyphRun(
 
    Microsoft::WRL::ComPtr<ID2D1GeometrySink>        pSink;
 
-   hr = get_d2d1_factory1()->CreatePathGeometry(&pPathGeometry);
+   hr = m_pfactory->CreatePathGeometry(&pPathGeometry);
 
    if(SUCCEEDED(hr))
    {

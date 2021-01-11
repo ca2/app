@@ -1970,186 +1970,12 @@ retry_license:
 
       }
 
-//      string_array stra;
-//
-//      stra.explode("/", m_strAppId);
-//
-//      m_strRoot = stra[0];
-//
-//      m_strDomain = stra.slice(1).implode("/");
-//
-//      add_matter_locator(this);
-//
-//
-//      //if (is_system() || is_session())
-//      //{
-//
-//      //   on_update_matter_locator();
-//
-//      //}
-//      //else
-//      //{
-//
-//
-//      //}
-//
-//      if (!m_bAppHasInstallerChangedProtected)
-//      {
-//
-//#ifdef _UWP
-//
-//         set_has_installer(false);
-//
-//#else
-//
-//         //if (System.m_pappcore == nullptr)
-//         //{
-//
-//         //   set_has_installer(false);
-//
-//         //}
-//         //else
-//         {
-//
-//            //set_has_installer(!System.has_aura_application_factory());
-//
-//         }
-//
-//#endif
-//
-//      }
-//
-//      auto estatus = initialize_context();
-//
-//      if (!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//      //if (m_bAuraProcessInitialize)
-//      //{
-//
-//      //   return m_bAuraProcessInitializeResult;
-//
-//      //}
-//
-//      INFO("aura::application::process_init");
-//
-//      //m_bAuraProcessInitialize = true;
-//
-//      //m_bAuraProcessInitializeResult = false;
-//
-//      //if (!is_system())
-//      {
-//
-//         if (get_context_system() != nullptr)
-//         {
-//
-//            m_bThreadToolsForIncreasedFps = System.m_bThreadToolsForIncreasedFps;
-//
-//         }
-//
-//      }
-
-
-
-      //if (!__construct(m_spdir))
-      //{
-
-      //   return false;
-
-      //}
-
-      //if (!__construct(m_spfile))
-      //{
-
-      //   return false;
-
-      //}
-
-      //if (::get_task() == nullptr)
-      //{
-
-      //   ::set_thread(dynamic_cast <thread *> (this));
-
-      //}
-
-      //if (!notify_process_init())
-      //{
-
-      //   FATAL("aura::application::process_init .1");
-
-      //   return false;
-
-      //}
-
-      //if (!impl_process_init())
-      //{
-
-      //   FATAL("aura::application::process_init .2");
-
-      //   return false;
-
-      //}
-
-//      m_bAuraProcessInitializeResult = true;
-
-      //INFO("aura::application::process_init success");
-
-      //create_factory < ::database::field_array >();
-      //create_factory < ::database::row >();
-      //create_factory < ::database::row_array >();
-
-      //if (m_bAxisProcessInitialize)
-      //{
-
-      //   return m_bAxisProcessInitializeResult;
-
-      //}
 
       INFO("axis::application::process_init");
 
-      //m_bAxisProcessInitialize = true;
-
-      //m_bAxisProcessInitializeResult = false;
-
-      //if (m_psimpledb.is_null())
-      //{
-
-      //   __construct_new(m_psimpledb);
-
-      //}
-
-      //if (!::aura::application::process_init())
-      //{
-
-      //   FATAL("axis::application::process_init .1");
-
-      //   return false;
-
-      //}
-
-
-      //m_bAxisProcessInitializeResult = true;
 
       INFO("aura::application::process_init success");
 
-      //return true;
-
-      //estatus = userfs_process_init();
-
-      //if(!estatus && estatus != error_not_implemented)
-      //{
-
-      //   ERR(".2");
-
-      //   return false;
-
-      //}
-
-      //INFO("success");
 
       return true;
 
@@ -5504,7 +5330,7 @@ retry_license:
    //void application::process_message_filter(i32 code, ::message::message * pmessage)
    //{
 
-   //   //SCAST_PTR(::message::base,pbase,pmessage);
+   //   //__pointer(::message::base) pbase(pmessage);
 
    //   UNREFERENCED_PARAMETER(code);
 
@@ -6278,7 +6104,7 @@ namespace aura
 
       ENSURE_ARG(pmessage != nullptr);
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       // handle certain messages in thread
 
@@ -8109,7 +7935,7 @@ namespace aura
    void application::pre_translate_message(::message::message* pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       if (pbase->m_id == WM_USER + 124 && pbase->userinteraction() == nullptr)
       {
@@ -8939,7 +8765,7 @@ namespace aura
       //if (pmessage == nullptr)
       //   return;   // not handled
 
-      //SCAST_PTR(::message::base, pbase, pmessage);
+      //__pointer(::message::base) pbase(pmessage);
 
       //__pointer(::user::frame_window) pTopFrameWnd;
       ////::user::interaction * pMainWnd;
@@ -8959,7 +8785,7 @@ namespace aura
 
       //   if (pMsgWnd != nullptr)
       //   {
-      //      pTopFrameWnd = pMsgWnd->GetTopLevelFrame();
+      //      pTopFrameWnd = pMsgWnd->top_level_frame();
       //      if (pTopFrameWnd != nullptr && pTopFrameWnd->IsTracking() &&
       //         pTopFrameWnd->m_bHelpMode)
       //      {

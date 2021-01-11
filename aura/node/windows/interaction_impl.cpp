@@ -755,7 +755,7 @@ namespace windows
    void interaction_impl::_001OnShowWindow(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
 
       if (pshowwindow->m_bShow)
       {
@@ -828,7 +828,7 @@ namespace windows
 
       }
 
-      SCAST_PTR(::message::move, pmove, pmessage);
+      __pointer(::message::move) pmove(pmessage);
 
       if (m_puserinteraction->layout().sketch().origin() != pmove->m_point)
       {
@@ -875,7 +875,7 @@ namespace windows
 
       }
 
-      SCAST_PTR(::message::size, psize, pmessage);
+      __pointer(::message::size) psize(pmessage);
 
       if (m_puserinteraction->layout().sketch().size() != psize->m_size)
       {
@@ -901,7 +901,7 @@ namespace windows
    void interaction_impl::_001OnEnable(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::enable, penable, pmessage);
+      __pointer(::message::enable) penable(pmessage);
 
       if (penable != nullptr)
       {
@@ -1035,7 +1035,7 @@ namespace windows
       ::rect rect;
       ((::windows::interaction_impl *) this)->m_puserinteraction->layout().window().screen_rect(&rect);
       dumpcontext << "\nrect = " << rect;
-      dumpcontext << "\nparent ::user::interaction_impl * = " << ::hex::lower_from((::iptr)((::windows::interaction_impl *)this)->GetParent());
+      dumpcontext << "\nparent ::user::interaction_impl * = " << ::hex::lower_from((::iptr)((::windows::interaction_impl *)this)->get_parent());
 
       dumpcontext << "\nstyle = " << (uptr)::GetWindowLong(((::windows::interaction_impl *)this)->get_handle(), GWL_STYLE);
       if (::GetWindowLong(((::windows::interaction_impl *)this)->get_handle(), GWL_STYLE) & WS_CHILD)
@@ -1094,7 +1094,7 @@ namespace windows
    void interaction_impl::pre_translate_message(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
    }
 
@@ -1473,17 +1473,26 @@ namespace windows
    }
 
 
-
-
    bool interaction_impl::IsTopParentActive()
    {
+      
       ASSERT(get_handle() != nullptr);
+      
       ASSERT_VALID(this);
 
-      __pointer(::user::interaction)pWndTopLevel = EnsureTopLevel();
+      auto puserinteractionTopLevel = get_top_level();
 
-      return interaction_impl::GetForegroundWindow() == pWndTopLevel->GetLastActivePopup();
+      if (!puserinteractionTopLevel)
+      {
+
+         return false;
+
+      }
+
+      return interaction_impl::GetForegroundWindow() == puserinteractionTopLevel->GetLastActivePopup();
+
    }
+
 
    void interaction_impl::ActivateTopParent()
    {
@@ -1493,7 +1502,16 @@ namespace windows
       {
          // clicking on floating frame when it does not have
          // focus itself -- activate the toplevel frame instead.
-         EnsureTopLevel()->SetForegroundWindow();
+
+         auto puserinteractionTopLevel = get_top_level();
+
+         if (puserinteractionTopLevel)
+         {
+
+            puserinteractionTopLevel->SetForegroundWindow();
+
+         }
+
       }
 
    }
@@ -1636,7 +1654,7 @@ namespace windows
    bool interaction_impl::HandleFloatingSysCommand(::u32 nID, LPARAM lParam)
    {
 
-      __pointer(::user::interaction) pParent = GetTopLevel();
+      __pointer(::user::interaction) pParent = get_top_level();
 
       switch (nID & 0xfff0)
       {
@@ -1936,7 +1954,7 @@ namespace windows
    void interaction_impl::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
 
       {
@@ -2083,7 +2101,7 @@ namespace windows
 
       }
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       ::rect rectWindow;
 
@@ -2395,7 +2413,7 @@ namespace windows
 
       ////::ScreenToClient(m_oswindow, m_puserinteraction->m_pointScreenClient);
 
-      ////HWND hwndParent = ::GetParent(m_oswindow);
+      ////HWND hwndParent = ::get_parent(m_oswindow);
 
       ////if (hwndParent != NULL)
       ////{
@@ -2466,10 +2484,10 @@ namespace windows
 
       //*prect = rectWindow;
 
-      //if (GetParent() != nullptr)
+      //if (get_parent() != nullptr)
       //{
 
-      //   GetParent()->_001ClientToScreen(prect);
+      //   get_parent()->_001ClientToScreen(prect);
 
       //}
 
@@ -2502,10 +2520,10 @@ namespace windows
 
       //   }
 
-      //   if (GetParent() != nullptr)
+      //   if (get_parent() != nullptr)
       //   {
 
-      //      GetParent()->_001ScreenToClient(rect32);
+      //      get_parent()->_001ScreenToClient(rect32);
 
       //   }
 
@@ -2605,7 +2623,7 @@ namespace windows
    }
 
 
-   ::user::interaction * interaction_impl::GetParent() const
+   ::user::interaction * interaction_impl::get_parent() const
    {
 
       if (!::is_window(get_handle()))
@@ -2617,14 +2635,18 @@ namespace windows
       HWND hwndParent = ::GetParent(get_handle());
 
       if (hwndParent == nullptr)
+      {
+
          return nullptr;
+
+      }
 
       return System.ui_from_handle(hwndParent);
 
    }
 
 
-   ::user::interaction * interaction_impl::SetParent(::user::interaction * pWndNewParent)
+   ::user::interaction * interaction_impl::set_parent(::user::interaction * pWndNewParent)
    {
 
       ASSERT(::is_window(get_handle()));
@@ -2633,7 +2655,8 @@ namespace windows
 
    }
 
-   ::user::interaction * interaction_impl::GetOwner() const
+
+   ::user::interaction * interaction_impl::get_owner() const
    {
 
       if (!::is_window(get_handle()))
@@ -2645,12 +2668,12 @@ namespace windows
       HWND hwndParent = ::GetWindow(get_handle(), GW_OWNER);
 
       if (hwndParent == nullptr)
-         return GetParent();
+         return get_parent();
 
       return System.ui_from_handle(hwndParent);
    }
 
-   ::user::interaction * interaction_impl::SetOwner(::user::interaction * pWndNewParent)
+   ::user::interaction * interaction_impl::set_owner(::user::interaction * pWndNewParent)
    {
 
       return nullptr;
@@ -2886,7 +2909,7 @@ namespace windows
    //void interaction_impl::bring_to_top(::e_display edisplay)
    //{
 
-   //   if (GetParent() == nullptr)
+   //   if (get_parent() == nullptr)
    //   {
 
    //      // place the interaction_impl on top except for certain nCmdShow
@@ -3705,14 +3728,55 @@ namespace windows
 
    }
 
-   bool interaction_impl::OpenClipboard()
+   
+   bool interaction_impl::open_clipboard()
    {
 
-      ASSERT(::is_window(get_handle()));
+      if (m_bClipboardOpened)
+      {
 
-      return ::OpenClipboard(get_handle()) != FALSE;
+         return true;
+
+      }
+
+      if (!::OpenClipboard(get_handle()))
+      {
+
+         return false;
+
+      }
+
+      m_bClipboardOpened = true;
+
+      return true;
 
    }
+
+
+
+   bool interaction_impl::close_clipboard()
+   {
+
+      if (!m_bClipboardOpened)
+      {
+
+         return false;
+
+      }
+
+      if (!::CloseClipboard())
+      {
+
+         return false;
+
+      }
+
+      m_bClipboardOpened = false;
+
+      return true;
+
+   }
+
 
    ::user::interaction * interaction_impl::GetOpenClipboardWindow()
    {
@@ -3996,7 +4060,7 @@ namespace windows
    void interaction_impl::_001OnSetCursor(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       auto psession = Session;
 
@@ -4159,7 +4223,7 @@ namespace windows
    void interaction_impl::_001OnGetMinMaxInfo(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
    }
 
@@ -4541,7 +4605,11 @@ namespace windows
 
       // a popup interaction_impl cannot be owned by a child interaction_impl
       while (oswindow != nullptr && (::GetWindowLong(oswindow, GWL_STYLE) & WS_CHILD))
+      {
+
          oswindow = ::GetParent(oswindow);
+
+      }
 
       // determine toplevel interaction_impl to disable as well
       ::oswindow oswindow_Top = oswindow;
@@ -4683,7 +4751,7 @@ namespace windows
 
    void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
    {
-      SCAST_PTR(::message::erase_bkgnd, perasebkgnd, pmessage);
+      __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
       perasebkgnd->m_bRet = true;
       perasebkgnd->set_result(TRUE);
    }
@@ -4912,7 +4980,7 @@ namespace windows
 
 //#ifdef WINDOWS_DESKTOP
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       WPARAM wparam;
 
@@ -4970,7 +5038,7 @@ namespace windows
 
 //#ifdef WINDOWS_DESKTOP
 
-      SCAST_PTR(::message::nc_calc_size, pcalcsize, pmessage);
+      __pointer(::message::nc_calc_size) pcalcsize(pmessage);
 
       BOOL bCalcValidRects = pcalcsize->GetCalcValidRects();
       NCCALCSIZE_PARAMS* pncsp = pcalcsize->m_pparams;
@@ -5064,7 +5132,7 @@ namespace windows
       }
 
 
-      //SCAST_PTR(::message::base, pbase, pmessage);
+      //__pointer(::message::base) pbase(pmessage);
 
       pcalcsize->m_lresult = 0;
 
@@ -5394,8 +5462,10 @@ void CLASS_DECL_AURA _handle_activate(::user::interaction_impl * pwindow, WPARAM
    // send WM_ACTIVATETOPLEVEL when top-level parents change
    if (!((pwindow)->GetStyle() & WS_CHILD))
    {
-      __pointer(::user::interaction) pTopLevel = (pwindow)->GetTopLevel();
-      if (pTopLevel && (!pWndOther || !::is_window((pWndOther)->get_handle()) || pTopLevel != (pWndOther)->GetTopLevel()))
+      
+      __pointer(::user::interaction) pTopLevel = pwindow->get_top_level();
+
+      if (pTopLevel && (!pWndOther || !::is_window((pWndOther)->get_handle()) || pTopLevel != (pWndOther)->get_top_level()))
       {
          // lParam points to interaction_impl getting the e_message_activate message and
          //  oswindow_Other from the e_message_activate.
@@ -5580,7 +5650,7 @@ namespace windows
          message == WM_IME_ENDCOMPOSITION)
       {
 
-         SCAST_PTR(::message::key, pkey, pbase);
+         __pointer(::message::key) pkey(pbase);
 
          if (message == e_message_key_down)
          {

@@ -63,7 +63,7 @@ namespace userex
 
       set_impact_title("Font");
 
-      GetParentFrame()->set_frame_title("Font");
+      get_parent_frame()->set_frame_title("Font");
 
    }
 
@@ -71,7 +71,7 @@ namespace userex
    void font_view::_001OnShowWindow(::message::message* /* pmessage */)
    {
 
-      //SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      //__pointer(::message::show_window) pshowwindow(pmessage);
    
 
    }

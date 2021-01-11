@@ -48,7 +48,7 @@ namespace simple_ui
    void top::_001OnActivate(::message::message * pmessage)
    {
 
-      //SCAST_PTR(::message::activate, pactivate, pmessage);
+      //__pointer(::message::activate) pactivate(pmessage);
 
       pmessage->previous();
 
@@ -60,7 +60,7 @@ namespace simple_ui
    void top::_001OnNcActivate(::message::message * pmessage)
    {
 
-      ///SCAST_PTR(::message::nc_activate, pncactivate, pmessage);
+      ///__pointer(::message::nc_activate) pncactivate(pmessage);
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -100,7 +100,7 @@ namespace simple_ui
    void top::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create,pcreate,pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       if(pcreate->previous())
          return;
@@ -111,7 +111,7 @@ namespace simple_ui
    void top::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (pmessage->previous())
          return;
@@ -137,7 +137,7 @@ namespace simple_ui
 
       m_bLButtonDown = false;
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if(pmouse->previous())
          return;
@@ -154,7 +154,7 @@ namespace simple_ui
    void top::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (m_bLButtonDown)
       {

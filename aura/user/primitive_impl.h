@@ -229,21 +229,23 @@ virtual bool setWMClass(const char * psz);
       virtual ::user::interaction * get_wnd(::u32 nCmd) const override;
 
 
-      virtual ::user::interaction * GetTopWindow() const override;
-      virtual ::user::interaction * GetParent() const override;
-      virtual ::user::interaction * GetTopLevel() const override;
-      virtual ::user::interaction * GetParentTopLevel() const override;
-      virtual ::user::interaction * EnsureTopLevel() override;
-      virtual ::user::interaction * EnsureParentTopLevel() override;
-      virtual ::user::interaction * GetOwner() const override;
-      virtual ::user::interaction * GetParentOwner() const override;
-      virtual ::user::interaction * GetParentOrOwner() const override;
-      virtual ::user::interaction * GetTopLevelOwner() const override;
-      virtual ::user::frame * GetFrame() const override;
-      virtual ::user::frame * GetParentFrame() const override;
-      virtual ::user::frame * GetTopLevelFrame() const override;
-      virtual ::user::frame * GetParentTopLevelFrame() const override;
-      virtual ::user::frame * EnsureParentFrame() override;
+      virtual ::user::frame * frame() const override;
+      virtual ::user::frame * top_level_frame() const override;
+
+
+      //virtual ::user::interaction * GetTopWindow() const override;
+      virtual ::user::interaction * get_parent() const override;
+      virtual ::user::interaction * get_top_level() const override;
+      //virtual ::user::interaction * GetParentTopLevel() const override;
+      //virtual ::user::interaction * EnsureTopLevel() override;
+      //virtual ::user::interaction * EnsureParentTopLevel() override;
+      virtual ::user::interaction * get_owner() const override;
+      virtual ::user::interaction * get_parent_owner() const override;
+      virtual ::user::interaction * get_parent_or_owner() const override;
+      virtual ::user::interaction * get_top_level_owner() const override;
+      virtual ::user::frame * get_parent_frame() const override;
+      //virtual ::user::frame * GetParentTopLevelFrame() const override;
+      //virtual ::user::frame * EnsureParentFrame() override;
 
 
       virtual LRESULT message_call(const ::id & id, WPARAM wparam, lparam lparam) override;

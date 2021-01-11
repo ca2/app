@@ -124,7 +124,7 @@ namespace user
 
          ::user::impact * pimpact = pdocument->get_view();
 
-         pFrame = pimpact->GetParentFrame();
+         pFrame = pimpact->get_parent_frame();
 
          ASSERT(pFrame != nullptr);
 

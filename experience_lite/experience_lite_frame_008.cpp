@@ -222,9 +222,9 @@ SizingNone:
 
                if(pframewindow->m_fActive)
                {
-                  crMoveableBorder = m_crMoveableBorder;
-                  crMoveableBorderHilight = m_crMoveableBorderHilight;
-                  crMoveableBorderShadow = m_crMoveableBorderShadow;
+                  crMoveableBorder = m_colorMoveableBorder;
+                  crMoveableBorderHilight = m_colorMoveableBorderHilight;
+                  crMoveableBorderShadow = m_colorMoveableBorderShadow;
                }
                else
                {
@@ -252,7 +252,7 @@ SizingNone:
                else if(m_estyle == StyleLightBlue || m_estyle == StyleRedOrange)
                {
                   //rectA.deflate(1,1,1,1);
-                  Draw3dRectSide(pgraphics,rectA,eside, crMoveableBorderHilight,0);//m_crMoveableBorderDkShadow);
+                  Draw3dRectSide(pgraphics,rectA,eside, crMoveableBorderHilight,0);//m_colorMoveableBorderDkShadow);
 
                   //if(!m_bHollow)
                   //{
@@ -310,14 +310,14 @@ SizingNone:
                   rectA.right--;
                   if(edock == e_dock_none)
                   {
-                     Draw3dRectSide(pgraphics, rectA, eside, m_crDkShadow, m_crDkShadow);
+                     Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow, m_colorDkShadow);
                   }
 
                   rectA.top++;
                   rectA.bottom--;
                   rectA.left++;
                   rectA.right--;
-                  Draw3dRectSide(pgraphics, rectA, eside, m_crDkShadow, m_crDkShadow);
+                  Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow, m_colorDkShadow);
 
                   rectA.top++;
                   rectA.bottom--;
@@ -325,7 +325,7 @@ SizingNone:
                   rectA.right--;
                   if(edock == e_dock_none)
                   {
-                     Draw3dRectSide(pgraphics, rectA, eside, m_crDkShadow, m_crDkShadow);
+                     Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow, m_colorDkShadow);
                   }
                }
 
@@ -551,8 +551,8 @@ SizingNone:
                   //m_penHollow3->create_solid(1.0, ARGB(100, 40, 40, 40));
                   //m_penHollow4->create_solid(1.0, ARGB(140, 60, 60, 60));
                   //m_penHollow5->create_solid(1.0, ARGB(255, 90, 220, 100));
-                  m_crCaptionTextBk = ARGB(255, 200, 200, 200);
-                  m_crActiveCaptionTextBk = ARGB(255, 165, 32, 32);
+                  m_colorCaptionTextBk = ARGB(255, 200, 200, 200);
+                  m_colorActiveCaptionTextBk = ARGB(255, 165, 32, 32);
                   create_color(::user::color_button_background, ARGB(255, 165, 32, 32));
                   create_color(::user::color_button_background_hover, ARGB(255, 195, 64, 64));
                   create_color(::user::color_button_background_press, ARGB(255, 208, 72, 72));
@@ -565,13 +565,13 @@ SizingNone:
                   //m_penHollow3->create_solid(1.0, ARGB(100, 40, 40, 40));
                   //m_penHollow4->create_solid(1.0, ARGB(140, 60, 60, 60));
                   //m_penHollow5->create_solid(1.0, ARGB(255, 90, 220, 100));
-                  m_crCaptionTextBk = ARGB(255, 200, 200, 200);
-                  m_crActiveCaptionTextBk = ARGB(255, 140, 200, 160);
+                  m_colorCaptionTextBk = ARGB(255, 200, 200, 200);
+                  m_colorActiveCaptionTextBk = ARGB(255, 140, 200, 160);
                }
                else
                {
-                  m_crCaptionTextBk = ARGB(255, 200, 200, 200);
-                  m_crActiveCaptionTextBk = ARGB(255, 0x07, 0x6D, 0x91);
+                  m_colorCaptionTextBk = ARGB(255, 200, 200, 200);
+                  m_colorActiveCaptionTextBk = ARGB(255, 0x07, 0x6D, 0x91);
                   //m_penHollow1->create_solid(1.0, ARGB(20, 50, 100, 200));
                   //m_penHollow2->create_solid(1.0, ARGB(60, 50, 100, 200));
                   //m_penHollow3->create_solid(1.0, ARGB(100, 50, 100, 200));
@@ -584,7 +584,7 @@ SizingNone:
 
                   m_spcontrolbox->m_brushButtonBackSel = m_spcontrolbox->m_brushButtonBack;
                   m_spcontrolbox->m_penButtonBackSel = m_spcontrolbox->m_penButtonBack;
-                  m_spcontrolbox->m_crButtonForeSel = m_spcontrolbox->m_crButtonFore;
+                  m_spcontrolbox->m_colorButtonForeSel = m_spcontrolbox->m_colorButtonFore;
 
                }
 

@@ -7,6 +7,9 @@
 #include  "_const_key.h"
 
 
+#include  "_style.h"
+
+
 DECLARE_ENUMERATION(e_toolbar_item_state, enum_toolbar_item_state);
 DECLARE_ENUMERATION(e_toolbar_item_style, enum_toolbar_item_style);
 

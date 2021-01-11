@@ -612,7 +612,7 @@ namespace android
    void interaction_impl::_001OnNcCalcSize(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base,pbase,pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       pbase->set_lresult(0);
 
@@ -1081,7 +1081,7 @@ namespace android
             pmessage->m_id == e_message_sys_char)
       {
 
-         SCAST_PTR(::message::key, pkey, pmessage);
+         __pointer(::message::key) pkey(pmessage);
 
          auto psession = Session;
 
@@ -1584,11 +1584,11 @@ namespace android
    //   ASSERT(puiStop == nullptr || puiStop->is_window());
    //   ASSERT(pmessage != nullptr);
 
-   //   SCAST_PTR(::message::base, pbase, pmessage);
+   //   __pointer(::message::base) pbase(pmessage);
    //   // walk from the target interaction_impl up to the hWndStop interaction_impl checking
    //   //  if any interaction_impl wants to translate this message
 
-   //   for (__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction; pinteraction != nullptr; pinteraction->GetParent())
+   //   for (__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
    //   {
 
    //      pinteraction->pre_translate_message(pmessage);
@@ -1997,7 +1997,7 @@ namespace android
    void interaction_impl::_001OnPrint(::message::message * pmessage)
    {
       __throw(not_implemented());
-      //      SCAST_PTR(::message::base, pbase, pmessage);
+      //      __pointer(::message::base) pbase(pmessage);
       //
       //      if(pbase->m_wparam == nullptr)
       //         return;
@@ -2148,7 +2148,7 @@ namespace android
       //      if (pAlternateOwner == nullptr)
       //      {
       //         if (dwStyle & WS_CHILD)
-      //            hWndCenter = GetParent();
+      //            hWndCenter = get_parent();
       //         else
       //            hWndCenter = GetWindow(GW_OWNER);
       //         if (hWndCenter != nullptr)
@@ -2201,7 +2201,7 @@ namespace android
       //      else
       //      {
       //         // center within parent client coordinates
-      //         hWndParent = GetParent();
+      //         hWndParent = get_parent();
       //         ASSERT(hWndParent->is_window());
       //
       //         hWndParent->get_client_rect(&rcarea);
@@ -2931,7 +2931,7 @@ namespace android
    __pointer(::user::frame_window) interaction_impl::EnsureParentFrame()
    {
 
-   __pointer(::user::frame_window) pFrameWnd=GetParentFrame();
+   __pointer(::user::frame_window) pFrameWnd=get_parent_frame();
 
    ENSURE_VALID(pFrameWnd);
 
@@ -2988,7 +2988,7 @@ namespace android
    }
 
 
-   //::user::interaction * interaction_impl::GetParent()
+   //::user::interaction * interaction_impl::get_parent()
    //{
 
    //   if (!::is_window((oswindow)get_handle()))
@@ -2997,7 +2997,7 @@ namespace android
    //   if (get_handle() == nullptr)
    //      return nullptr;
 
-   //   //return ::linux::interaction_impl::from_handle(::GetParent(get_handle()));
+   //   //return ::linux::interaction_impl::from_handle(::get_parent(get_handle()));
 
    //   return nullptr;
 
@@ -3240,7 +3240,7 @@ namespace android
 
          }
 
-         if (m_puserinteraction->GetParent() != nullptr && !m_puserinteraction->GetParent()->is_window_visible())
+         if (m_puserinteraction->get_parent() != nullptr && !m_puserinteraction->get_parent()->is_window_visible())
             return false;
 
       }
@@ -4028,7 +4028,7 @@ namespace android
    void interaction_impl::_001OnSetCursor(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       auto psession = Session;
 
@@ -4467,7 +4467,7 @@ namespace android
 //
 //      // a popup ::user::interaction_impl cannot be owned by a child ::user::interaction_impl
 //      while (hWnd != nullptr && (::GetWindowLong(hWnd, GWL_STYLE) & WS_CHILD))
-//         hWnd = ::GetParent(hWnd);
+//         hWnd = ::get_parent(hWnd);
 //
 //      // determine toplevel ::user::interaction_impl to disable as well
 //      oswindow hWndTop = hWnd, hWndTemp = hWnd;
@@ -4477,7 +4477,7 @@ namespace android
 //            break;
 //         else
 //            hWndTop = hWndTemp;
-//         hWndTemp = ::GetParent(hWndTop);
+//         hWndTemp = ::get_parent(hWndTop);
 //      }
 //
 //      __throw(todo());
@@ -4510,7 +4510,7 @@ namespace android
 //
 //void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
 //{
-//   SCAST_PTR(::message::erase_bkgnd, perasebkgnd, pmessage);
+//   __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
 //   perasebkgnd->m_bRet = true;
 //   perasebkgnd->set_result(TRUE);
 //}
@@ -4700,7 +4700,7 @@ namespace android
    void interaction_impl::edit_on_set_focus(::user::interaction* pinteraction)
    {
 
-      auto puserinteraction = pinteraction->GetParentFrame();
+      auto puserinteraction = pinteraction->get_parent_frame();
 
       ::rect rWindowFrame;
 
@@ -4749,7 +4749,7 @@ namespace android
    void interaction_impl::edit_on_kill_focus(::user::interaction* pinteraction)
    {
 
-      auto puserinteraction = pinteraction->GetParentFrame();
+      auto puserinteraction = pinteraction->get_parent_frame();
 
       ::rect rWindowFrame;
 

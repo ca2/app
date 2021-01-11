@@ -434,7 +434,7 @@ void FileSystemSizeWnd::_001OnCopyData(::message::message * pmessage)
 
 #ifdef WINDOWS_DESKTOP
 
-   SCAST_PTR(::message::base, pbase, pmessage);
+   __pointer(::message::base) pbase(pmessage);
 
    COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pbase->m_lparam.m_lparam;
    if(pstruct->dwData == 0)

@@ -8,6 +8,10 @@
 #include "interaction_prodevian.h"
 #include "aura/os/_os.h"
 #include "aura/platform/mq.h"
+#include "aura/node/_node.h"
+#ifdef _UWP
+#include "aura/os/windows_common/draw2d_direct2d_global.h"
+#endif
 
 point g_pointLastBottomRight;
 
@@ -591,8 +595,6 @@ namespace user
          bProdevianThread = false;
 
       }
-
-      //m_puserinteraction->create_layout(true);
 
       m_puserinteraction->place(rect_dim(
                             pcreatestruct->m_createstruct.x,
@@ -2087,7 +2089,7 @@ namespace user
    //    if (m_puserinteraction->is_this_visible() && m_puserinteraction->window_state3().m_edisplay3 != ::e_display_iconic)
    //    {
 
-   //       if (m_puserinteraction->GetParent() == nullptr)
+   //       if (m_puserinteraction->get_parent() == nullptr)
    //       {
 
    //          m_puserinteraction->check_transparent_mouse_events();
@@ -2359,10 +2361,16 @@ namespace user
 
    }
 
-   void interaction_impl::set_owner(::user::interaction * pOwnerWnd)
+
+   ::user::primitive * interaction_impl::set_owner(::user::primitive * pprimitiveOwner)
    {
-      UNREFERENCED_PARAMETER(pOwnerWnd);
+
+      UNREFERENCED_PARAMETER(pprimitiveOwner);
+
       ::exception::throw_interface_only();
+
+      return nullptr;
+
    }
 
 
@@ -3250,7 +3258,7 @@ namespace user
    void interaction_impl::_001OnShowWindow(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
 
       if (pshowwindow->m_bShow)
       {
@@ -3260,7 +3268,7 @@ namespace user
          if (m_puserinteraction->layout().design().display() != ::e_display_iconic)
          {
 
-            if (m_puserinteraction->GetParent() == nullptr)
+            if (m_puserinteraction->get_parent() == nullptr)
             {
 
                m_puserinteraction->check_transparent_mouse_events();
@@ -3504,6 +3512,8 @@ namespace user
 
          sync_lock sl(psync);
 
+         ::draw2d::device_lock devicelock(m_puserinteraction);
+
          ::draw2d::graphics_pointer pgraphics = m_pgraphics->on_begin_draw();
 
          slGraphics.unlock();
@@ -3517,6 +3527,7 @@ namespace user
 
          }
 
+#ifdef _UWP
          if (pgraphics == nullptr || pgraphics->get_os_data() == nullptr)
          {
 
@@ -3534,6 +3545,10 @@ namespace user
             return;
 
          }
+
+#endif
+
+         pgraphics->on_begin_draw();
 
          pgraphics->m_puserstyle.release();
 
@@ -3777,7 +3792,7 @@ namespace user
 
       ASSERT(::is_set(pinteraction));
 
-      __pointer(::user::interaction) puiParent = pinteraction->GetParent();
+      __pointer(::user::interaction) puiParent = pinteraction->get_parent();
 
       ASSERT(puiParent != nullptr);
 
@@ -3894,12 +3909,7 @@ namespace user
    bool interaction_impl::prodevian_update_screen()
    {
 
-      //if (m_bUpdateBufferScreen || m_puserinteraction->layout().is_moving())
-      {
-
-         _001UpdateScreen();
-
-      }
+      _001UpdateScreen();
 
       return true;
 
@@ -4015,7 +4025,7 @@ namespace user
    void interaction_impl::_001OnSetFocus(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
 
       if (m_bFocus)
       {
@@ -4067,7 +4077,7 @@ namespace user
    void interaction_impl::_001OnKillFocus(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
+      __pointer(::message::kill_focus) pkillfocus(pmessage);
 
 
       if (!m_bFocus)
@@ -4150,12 +4160,7 @@ namespace user
 
       auto oswindow = m_oswindow;
 
-      if (!::set_focus(oswindow))
-      {
-
-         return false;
-
-      }
+      auto oswindowPrevious = ::set_focus(oswindow);
 
       m_pprimitiveFocus = pprimitiveFocusNew;
 
@@ -5078,7 +5083,7 @@ namespace user
 
       }
 
-      SCAST_PTR(::message::move, pmove, pmessage);
+      __pointer(::message::move) pmove(pmessage);
 
       if(m_puserinteraction->m_ewindowflag & e_window_flag_postpone_visual_update)
       {
@@ -5160,7 +5165,7 @@ namespace user
 
       }
 
-      SCAST_PTR(::message::size, psize, pmessage);
+      __pointer(::message::size) psize(pmessage);
 
       bool bLayered = m_puserinteraction->GetExStyle() & WS_EX_LAYERED;
 

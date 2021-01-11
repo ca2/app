@@ -573,7 +573,7 @@ namespace aura
 //         //{
 //         //   pframeApp->display(e_display_full_screen);
 //         //}
-//         //__pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::pane_view >()->GetParentFrame();
+//         //__pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::pane_view >()->get_parent_frame();
 //         //if(pframe != nullptr)
 //         //{
 //         //   pframe->display(e_display_normal);
@@ -583,7 +583,7 @@ namespace aura
 //      {
 //         //if(get_document() != nullptr && get_document()->get_typed_view < ::bergedge::view >() != nullptr)
 //         //{
-//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame();
+//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::view >()->get_parent_frame();
 //         //   if(pframe != nullptr)
 //         //   {
 //         //      pframe->display(e_display_normal);
@@ -603,7 +603,7 @@ namespace aura
 ////      {
 ////         try
 ////         {
-////            get_view()->GetParentFrame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
+////            get_view()->get_parent_frame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
 ////         }
 ////         catch (...)
 ////         {
@@ -815,18 +815,25 @@ namespace user
    {
 
       if (pinteraction == nullptr)
+      {
+
          return false;
+
+      }
 
       ::user::interaction* puiAscendant = pinteraction;
 
       do
       {
 
-         puiAscendant = puiAscendant->GetOwner();
-
+         puiAscendant = puiAscendant->get_owner();
 
          if (puiParent == puiAscendant)
+         {
+
             return true;
+
+         }
 
       } while (puiAscendant != nullptr);
 
@@ -836,11 +843,14 @@ namespace user
       do
       {
 
-         puiAscendant = puiAscendant->GetParent();
-
+         puiAscendant = puiAscendant->get_parent();
 
          if (puiParent == puiAscendant)
+         {
+
             return true;
+
+         }
 
       } while (puiAscendant != nullptr);
 

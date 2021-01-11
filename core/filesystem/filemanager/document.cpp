@@ -69,16 +69,16 @@ namespace filemanager
       i32 iWidth = rectOpen.width();
       i32 iHeight = rectOpen.width();
       rectOpen.deflate(iWidth / 5, iHeight / 5);
-      pview->GetParentFrame()->order(zorder_top);
-      pview->GetParentFrame()->place(rectOpen);
-      pview->GetParentFrame()->display();
+      pview->get_parent_frame()->order(zorder_top);
+      pview->get_parent_frame()->place(rectOpen);
+      pview->get_parent_frame()->display();
 
 #endif
       pview->set_cur_tab_by_id(1);
-      pview->GetParentFrame()->set_need_redraw();
-      pview->GetParentFrame()->RunModalLoop();
+      pview->get_parent_frame()->set_need_redraw();
+      pview->get_parent_frame()->RunModalLoop();
       varFile = pdocument->m_strTopic;
-      pview->GetParentFrame()->DestroyWindow();
+      pview->get_parent_frame()->DestroyWindow();
       return TRUE;
 
    }
@@ -459,7 +459,7 @@ namespace filemanager
                if (pchildframe.is_set())
                {
 
-                  __pointer(document) pdocument = pchildframe->GetActiveDocument();
+                  __pointer(document) pdocument = pchildframe->get_active_document();
 
                   if (pdocument.is_set())
                   {
@@ -755,7 +755,7 @@ namespace filemanager
    void document::_001OnUpdateNewManager(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       pcommand->enable(TRUE);
 
@@ -783,7 +783,7 @@ namespace filemanager
    void document::_001OnUpdateDelManager(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       pcommand->enable(TRUE);
 
@@ -825,7 +825,7 @@ namespace filemanager
    void document::_001OnUpdateLevelUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       if (m_pitem.is_null() || m_pitem->m_filepathUser.is_empty())
       {
@@ -855,7 +855,7 @@ namespace filemanager
    void document::_001OnUpdateAddLocation(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       pcommand->enable(TRUE);
 
@@ -877,7 +877,7 @@ namespace filemanager
    void document::_001OnUpdateReplaceText(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       pcommand->enable(TRUE);
 
@@ -901,7 +901,7 @@ namespace filemanager
    void document::_001OnUpdateNewFolder(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       pcommand->enable(TRUE);
 
@@ -924,7 +924,7 @@ namespace filemanager
 
    void document::_001OnUpdateEditPaste(::message::message * pmessage)
    {
-      //      SCAST_PTR(::user::command, pcommand, pmessage);
+      //      __pointer(::user::command) pcommand(pmessage);
 
       //         pcommand->enable(System.m_strCopy.is_empty());
       pmessage->m_bRet = true;
@@ -940,19 +940,19 @@ namespace filemanager
 
    void document::_001OnUpdateFileSaveAs(::message::message * pmessage)
    {
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
       pcommand->enable(TRUE);
    }
 
    void document::_001OnUpdateFileImport(::message::message * pmessage)
    {
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
       pcommand->enable(TRUE);
    }
 
    void document::_001OnUpdateFileExport(::message::message * pmessage)
    {
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
       pcommand->enable(TRUE);
    }
 
@@ -1469,7 +1469,7 @@ namespace filemanager
 
       strToolbar = filemanager_data()->m_setToolbar[m_emode];
 
-      if(pframe->GetParent() != nullptr)
+      if(pframe->get_parent() != nullptr)
       {
 
          ::file::path path = strToolbar;

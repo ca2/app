@@ -54,7 +54,7 @@ namespace filemanager
 
    void  frame::_001OnSetText(::message::message * pmessage)
    {
-      //   SCAST_PTR(::message::base, pbase, pmessage);
+      //   __pointer(::message::base) pbase(pmessage);
 
       pmessage->previous();
 

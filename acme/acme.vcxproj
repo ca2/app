@@ -1871,6 +1871,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="user\_.h" />
     <ClInclude Include="user\_const.h" />
     <ClInclude Include="user\_const_key.h" />
+    <ClInclude Include="user\_style.h" />
     <ClInclude Include="version\version.h" />
     <ClInclude Include="filesystem\file\_var_stream_impl.h" />
     <ClInclude Include="filesystem\file\___serialization_draft.h" />

@@ -61,13 +61,13 @@ namespace papaya
       inline ::index find_first_item(::Windows::Foundation::Collections::IVectorView < T > ^ ivectorview, const ITEM & item)
       {
 
-         for (::index i = 0; i < ivectorview->Size; i++)
+         for (::u32 u = 0; u < ivectorview->Size; u++)
          {
 
-            if (ivectorview->GetAt(i) == item)
+            if (ivectorview->GetAt(u) == item)
             {
 
-               return i;
+               return u;
 
             }
 

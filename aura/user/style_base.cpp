@@ -22,26 +22,6 @@ namespace user
    }
 
 
-   void style_base::set_style(enum_style estyle)
-   {
-
-
-   }
-
-
-   void style_base::set_style(const char * pszStyle)
-   {
-
-
-   }
-
-
-   void style_base::on_style_change()
-   {
-
-
-   }
-
 
    bool style_base::_001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout)
    {

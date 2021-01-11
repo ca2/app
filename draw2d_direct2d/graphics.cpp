@@ -130,13 +130,15 @@ namespace draw2d_direct2d
 
       }
 
-      defer_direct2d_initialize();
+      /*System.draw2d().direct2d() = __new(::draw2d_direct2d::plugin);
+
+      System.draw2d().direct2d()->initialize();*/
 
       HRESULT hr;
 
       Microsoft::WRL::ComPtr<ID2D1DeviceContext> pdevicecontextTemplate;
 
-      if (FAILED(hr = global_draw_get_d2d1_device()->CreateDeviceContext(
+      if (FAILED(hr = System.draw2d().direct2d()->m_pd2device->CreateDeviceContext(
                       D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
                       //D2D1_DEVICE_CONTEXT_OPTIONS_ENABLE_MULTITHREADED_OPTIMIZATIONS,
                       &pdevicecontextTemplate)))
@@ -184,7 +186,7 @@ namespace draw2d_direct2d
                       nullptr,
                       &sizeu,
                       &pixelformat,
-                      D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS_NONE,
+         D2D1_COMPATIBLE_RENDER_TARGET_OPTIONS_GDI_COMPATIBLE,
                       &m_pbitmaprendertarget)))
       {
 
@@ -1376,7 +1378,7 @@ namespace draw2d_direct2d
 
       Microsoft::WRL::ComPtr<ID2D1PathGeometry> pgeometry;
 
-      HRESULT hr = ::get_d2d1_factory1()->CreatePathGeometry(&pgeometry);
+      HRESULT hr = ::draw2d_direct2d::plugin::d2d1_factory1()->CreatePathGeometry(&pgeometry);
 
       {
 
@@ -1422,7 +1424,7 @@ namespace draw2d_direct2d
 
       Microsoft::WRL::ComPtr<ID2D1PathGeometry> pgeometry;
 
-      HRESULT hr = ::get_d2d1_factory1()->CreatePathGeometry(&pgeometry);
+      HRESULT hr = ::draw2d_direct2d::plugin::d2d1_factory1()->CreatePathGeometry(&pgeometry);
 
       {
 
@@ -1467,7 +1469,7 @@ namespace draw2d_direct2d
 
       Microsoft::WRL::ComPtr<ID2D1PathGeometry> pgeometry;
 
-      HRESULT hr = ::get_d2d1_factory1()->CreatePathGeometry(&pgeometry);
+      HRESULT hr = ::draw2d_direct2d::plugin::d2d1_factory1()->CreatePathGeometry(&pgeometry);
 
       {
 
@@ -2023,9 +2025,12 @@ namespace draw2d_direct2d
       if (::is_null(pwritetextformat))
       {
 
-         lpMetrics->tmAscent = 0;
-         lpMetrics->tmDescent = 0;
-         lpMetrics->tmHeight = 0;
+         lpMetrics->m_dAscent = 0;
+         lpMetrics->m_dDescent = 0;
+         lpMetrics->m_dHeight = 24;
+         lpMetrics->m_dInternalLeading = 0;
+         lpMetrics->m_dExternalLeading = 0;
+
 
          return true;
 
@@ -2038,9 +2043,11 @@ namespace draw2d_direct2d
       if (pcollection == nullptr)
       {
 
-         lpMetrics->tmAscent = 0;
-         lpMetrics->tmDescent = 0;
-         lpMetrics->tmHeight = 0;
+         lpMetrics->m_dAscent = 0;
+         lpMetrics->m_dDescent = 0;
+         lpMetrics->m_dHeight = 24;
+         lpMetrics->m_dInternalLeading = 0;
+         lpMetrics->m_dExternalLeading = 0;
 
          return true;
 
@@ -2051,11 +2058,20 @@ namespace draw2d_direct2d
       if (!exists)
       {
 
-         lpMetrics->tmAscent = 0;
-         lpMetrics->tmDescent = 0;
-         lpMetrics->tmHeight = 0;
+         pcollection->FindFamilyName(L"Arial", &findex, &exists);
 
-         return true;
+         if (!exists)
+         {
+
+            lpMetrics->m_dAscent = 0;
+            lpMetrics->m_dDescent = 0;
+            lpMetrics->m_dHeight = 24;
+            lpMetrics->m_dInternalLeading = 0;
+            lpMetrics->m_dExternalLeading = 0;
+
+            return true;
+
+         }
 
       }
 
@@ -2066,9 +2082,11 @@ namespace draw2d_direct2d
       if (ffamily == nullptr)
       {
 
-         lpMetrics->tmAscent = 0;
-         lpMetrics->tmDescent = 0;
-         lpMetrics->tmHeight = 0;
+         lpMetrics->m_dAscent = 0;
+         lpMetrics->m_dDescent = 0;
+         lpMetrics->m_dHeight = 24;
+         lpMetrics->m_dInternalLeading = 0;
+         lpMetrics->m_dExternalLeading = 0;
 
          return true;
 
@@ -2081,9 +2099,11 @@ namespace draw2d_direct2d
       if (pfont == nullptr)
       {
 
-         lpMetrics->tmAscent = 0;
-         lpMetrics->tmDescent = 0;
-         lpMetrics->tmHeight = 0;
+         lpMetrics->m_dAscent = 0;
+         lpMetrics->m_dDescent = 0;
+         lpMetrics->m_dHeight = 24;
+         lpMetrics->m_dInternalLeading = 0;
+         lpMetrics->m_dExternalLeading = 0;
 
          return true;
 
@@ -2095,11 +2115,11 @@ namespace draw2d_direct2d
 
       double ratio = pwritetextformat->GetFontSize() / (float)metrics.designUnitsPerEm;
 
-      lpMetrics->tmAscent = (::i32) (metrics.ascent * ratio);
-      lpMetrics->tmDescent = (::i32) (metrics.descent * ratio);
-      lpMetrics->tmInternalLeading = (::i32) 0;
-      lpMetrics->tmExternalLeading = (::i32) (metrics.lineGap * ratio);
-      lpMetrics->tmHeight = (::i32) ((metrics.ascent + metrics.descent + metrics.lineGap) * ratio);
+      lpMetrics->m_dAscent = (::i32) (metrics.ascent * ratio);
+      lpMetrics->m_dDescent = (::i32) (metrics.descent * ratio);
+      lpMetrics->m_dInternalLeading = (::i32) 0;
+      lpMetrics->m_dExternalLeading = (::i32) (metrics.lineGap * ratio);
+      lpMetrics->m_dHeight = (::i32) ((metrics.ascent + metrics.descent + metrics.lineGap) * ratio);
 
       return true;
 
@@ -3519,8 +3539,8 @@ namespace draw2d_direct2d
    // color32_t graphics::SetTextColor(const ::color & color)
 //   {
    //  return set_color(crColor);
-   //const ::color & colorRetVal = m_crColor;
-   //m_crColor = crColor;
+   //const ::color & colorRetVal = m_colorColor;
+   //m_colorColor = crColor;
    /*      const ::color & colorRetVal = CLR_INVALID;
    if(get_handle1() != nullptr && get_handle1() != get_handle2())
    crRetVal = ::SetTextColor(get_handle1(), crColor);
@@ -3760,7 +3780,9 @@ namespace draw2d_direct2d
 
          ::draw2d::region_pointer pregion(e_create);
 
-         pregion->create_rect(rect);
+         auto rectClip = rect + m_pointAddShapeTranslate;
+
+         pregion->create_rect(rectClip);
 
          D2D1::Matrix3x2F m = {};
 
@@ -3772,7 +3794,11 @@ namespace draw2d_direct2d
 
          ID2D1Geometry* pgeometry = (ID2D1Geometry*)pregion->get_os_data(this);
 
-         m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), pgeometry), nullptr);
+         auto layerparameters = D2D1::LayerParameters(
+            D2D1::InfiniteRect(),
+            pgeometry);
+
+         m_prendertarget->PushLayer(layerparameters, nullptr);
 
       }
 
@@ -3786,25 +3812,27 @@ namespace draw2d_direct2d
 
       ::draw2d::lock draw2dlock;
 
-      {
+      ::draw2d::region_pointer pregion(e_create);
 
-         ::draw2d::region_pointer pregion(e_create);
+      auto rectClip = rect + m_pointAddShapeTranslate;
 
-         pregion->create_rect(rect);
+      pregion->create_rect(rectClip);
 
-         D2D1::Matrix3x2F m = {};
+      D2D1::Matrix3x2F m = {};
 
-         m_prendertarget->GetTransform(&m);
+      m_prendertarget->GetTransform(&m);
 
-         m_pstate->m_sparegionClip.add(pregion);
+      m_pstate->m_sparegionClip.add(pregion);
 
-         m_pstate->m_maRegion.add(m);
+      m_pstate->m_maRegion.add(m);
 
-         ID2D1Geometry* pgeometry = (ID2D1Geometry*)pregion->get_os_data(this);
+      ID2D1Geometry* pgeometry = (ID2D1Geometry*)pregion->get_os_data(this);
 
-         m_prendertarget->PushLayer(D2D1::LayerParameters(D2D1::InfiniteRect(), pgeometry), nullptr);
+      auto layerparameters = D2D1::LayerParameters(
+         D2D1::InfiniteRect(),
+         pgeometry);
 
-      }
+      m_prendertarget->PushLayer(layerparameters, nullptr);
 
       return 0;
 
@@ -4706,7 +4734,7 @@ namespace draw2d_direct2d
 
       ::u32 uLength = (::u32)text.m_wstr.get_length();
 
-      hr = global_draw_get_write_factory()->CreateTextLayout(
+      hr = System.draw2d().direct2d()->dwrite_factory()->CreateTextLayout(
            text.m_wstr,                // The string to be laid out and formatted.
            uLength,   // The length of the string.
            pfont,    // The text format to apply to the string (contains font information, etc).
@@ -5017,9 +5045,27 @@ namespace draw2d_direct2d
 
       defer_primitive_blend();
 
-      m_prendertarget->DrawLine(p1, p2, pbrush, (FLOAT) (dynamic_cast < ::draw2d_direct2d::pen * > (m_ppen.m_p))->m_dWidth);
+      FLOAT fWidth = (FLOAT)(dynamic_cast <::draw2d_direct2d::pen *> (m_ppen.m_p))->m_dWidth;
+
+      m_prendertarget->DrawLine(p1, p2, pbrush, fWidth);
 
       m_point = point;
+
+      return true;
+
+   }
+
+
+   bool graphics::on_begin_draw()
+   {
+
+      reset_clip();
+
+      ::draw2d::graphics::on_begin_draw();
+
+      m_ealphamodeDevice = ::draw2d::alpha_mode_none;
+
+      set_alpha_mode(::draw2d::alpha_mode_blend);
 
       return true;
 
@@ -5167,7 +5213,7 @@ namespace draw2d_direct2d
                                             D2D1_FEATURE_LEVEL_DEFAULT
                                             );
 
-      HRESULT hr = get_d2d1_factory1()->CreateDCRenderTarget(&props,&m_pdcrendertarget);
+      HRESULT hr = ::draw2d_direct2d::plugin::d2d1_factory1()->CreateDCRenderTarget(&props,&m_pdcrendertarget);
 
       if (FAILED(hr))
       {
@@ -5308,6 +5354,10 @@ namespace draw2d_direct2d
 
    bool graphics::draw_path(::draw2d::path * ppath, ::draw2d::pen * ppen)
    {
+
+      __stack(m_bOutline, true);
+
+      ppath->set_modified();
 
       ID2D1PathGeometry * pgeometry = ppath->get_os_data < ID2D1PathGeometry * >(this);
 
@@ -5474,7 +5524,7 @@ namespace draw2d_direct2d
 
       IDWriteTextFormat * pformat = textout.m_pfont->get_os_data < IDWriteTextFormat * > (this);
 
-      IDWriteFactory * pfactory = global_draw_get_write_factory();
+      IDWriteFactory * pfactory = System.draw2d().direct2d()->dwrite_factory();
 
       IDWriteTextLayout * playout = nullptr;
 
@@ -5494,7 +5544,7 @@ namespace draw2d_direct2d
 
       }
 
-      CustomTextRenderer renderer(get_d2d1_factory1(),m_prendertarget.Get(),ppen->get_os_data < ID2D1Brush * >(this));
+      CustomTextRenderer renderer(::draw2d_direct2d::plugin::d2d1_factory1(),m_prendertarget.Get(),ppen->get_os_data < ID2D1Brush * >(this));
 
       defer_text_primitive_blend();
 
@@ -5514,7 +5564,7 @@ namespace draw2d_direct2d
 
       IDWriteTextFormat * pformat = textout.m_pfont->get_os_data < IDWriteTextFormat * >(this);
 
-      IDWriteFactory * pfactory = global_draw_get_write_factory();
+      IDWriteFactory * pfactory = System.draw2d().direct2d()->dwrite_factory();
 
       IDWriteTextLayout * playout = nullptr;
 
@@ -5539,7 +5589,7 @@ namespace draw2d_direct2d
       if (posbrush)
       {
 
-         CustomTextRenderer renderer(get_d2d1_factory1(), m_prendertarget.Get(), nullptr, posbrush);
+         CustomTextRenderer renderer(::draw2d_direct2d::plugin::d2d1_factory1(), m_prendertarget.Get(), nullptr, posbrush);
 
          defer_text_primitive_blend();
 
@@ -5561,7 +5611,7 @@ namespace draw2d_direct2d
 
       IDWriteTextFormat* pformat = drawtext.m_pfont->get_os_data < IDWriteTextFormat* >(this);
 
-      IDWriteFactory* pfactory = global_draw_get_write_factory();
+      IDWriteFactory* pfactory = System.draw2d().direct2d()->dwrite_factory();
 
       IDWriteTextLayout* playout = nullptr;
 
@@ -5581,7 +5631,7 @@ namespace draw2d_direct2d
 
       }
 
-      CustomTextRenderer renderer(get_d2d1_factory1(), m_prendertarget.Get(), ppen->get_os_data < ID2D1Brush* >(this));
+      CustomTextRenderer renderer(::draw2d_direct2d::plugin::d2d1_factory1(), m_prendertarget.Get(), ppen->get_os_data < ID2D1Brush* >(this));
 
       defer_text_primitive_blend();
 
@@ -5601,7 +5651,7 @@ namespace draw2d_direct2d
 
       IDWriteTextFormat* pformat = drawtext.m_pfont->get_os_data < IDWriteTextFormat* >(this);
 
-      IDWriteFactory* pfactory = global_draw_get_write_factory();
+      IDWriteFactory* pfactory = System.draw2d().direct2d()->dwrite_factory();
 
       IDWriteTextLayout* playout = nullptr;
 
@@ -5626,7 +5676,7 @@ namespace draw2d_direct2d
       if (posbrush)
       {
 
-         CustomTextRenderer renderer(get_d2d1_factory1(), m_prendertarget.Get(), nullptr, posbrush);
+         CustomTextRenderer renderer(::draw2d_direct2d::plugin::d2d1_factory1(), m_prendertarget.Get(), nullptr, posbrush);
 
          defer_text_primitive_blend();
 
@@ -5666,7 +5716,7 @@ namespace draw2d_direct2d
 
       ::comptr<IDWriteFontCollection> pFontCollection;
 
-      HRESULT hr = global_draw_get_write_factory()->GetSystemFontCollection(&pFontCollection);
+      HRESULT hr = System.draw2d().direct2d()->dwrite_factory()->GetSystemFontCollection(&pFontCollection);
 
       ::u32 familyCount = 0;
 
@@ -5783,6 +5833,14 @@ namespace draw2d_direct2d
       });
 
    }
+
+
+   //void graphics::set_direct2d_plugin(::draw2d_direct2d::plugin * pplugin)
+   //{
+
+   //   System.draw2d().direct2d() = pplugin;
+
+   //}
 
 
 } // namespace draw2d_direct2d

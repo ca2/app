@@ -575,7 +575,7 @@ namespace html
 }
 
 
-#define SCAST_PTR(TYPE, ptarget, psource) TYPE * ptarget = dynamic_cast < TYPE * > (psource);
+//#define SCAST_PTR(TYPE, ptarget, psource) __pointer(TYPE) ptarget(psource);
 #define SCAST_REF(TYPE, rtarget, psource) TYPE & rtarget = *(dynamic_cast < TYPE * > (psource))
 
 

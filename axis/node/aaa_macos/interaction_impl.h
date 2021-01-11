@@ -397,7 +397,7 @@ namespace macos
       virtual ::user::interaction *  GetLastActivePopup() override;
 
       virtual bool IsChild(::user::interaction *    pWnd);
-      virtual ::user::interaction * GetParent() const override;
+      virtual ::user::interaction * get_parent() const override;
       using ::user::interaction_impl::SetParent;
       ::user::interaction * SetParent(::user::interaction * pWndNewParent) override;
       static ::user::interaction * PASCAL oswindowFromPoint(POINT32 point);

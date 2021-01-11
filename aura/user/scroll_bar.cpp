@@ -60,7 +60,7 @@ namespace user
 
       }
 
-      __pointer(::user::interaction) puiParent = GetParent();
+      __pointer(::user::interaction) puiParent = get_parent();
 
       puiParent->send(pscroll);
 
@@ -80,14 +80,14 @@ namespace user
    point scroll_bar::get_ascendant_viewport_offset() const
    {
 
-      if (GetParent() == nullptr)
+      if (get_parent() == nullptr)
       {
 
          return nullptr;
 
       }
 
-      return GetParent()->get_ascendant_viewport_offset();
+      return get_parent()->get_ascendant_viewport_offset();
 
    }
 
@@ -262,7 +262,7 @@ namespace user
 
             i++;
 
-            pinteraction = pinteraction->GetParent();
+            pinteraction = pinteraction->get_parent();
 
          }
 

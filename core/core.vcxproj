@@ -1691,6 +1691,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="user\user\image_manager.cpp" />
     <ClCompile Include="user\user\list.cpp" />
     <ClCompile Include="user\user\list_cache.cpp" />
+    <ClCompile Include="user\user\list_column.cpp" />
     <ClCompile Include="user\user\list_data.cpp" />
     <ClCompile Include="user\user\list_header.cpp" />
     <ClCompile Include="user\user\list_view.cpp" />

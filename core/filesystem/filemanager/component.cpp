@@ -879,7 +879,7 @@ namespace filemanager
 
 //               __pointer(::user::frame_window) pframe = ptabview->get_pane(0)->m_pholder->get_hold();
 
-//               document * pdocument = pframe->GetActiveDocument();
+//               document * pdocument = pframe->get_active_document();
 
 //               pdocument->FileManagerBrowse(pathFolder, action::e_source_user);
 

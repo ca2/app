@@ -24,7 +24,11 @@ CLASS_DECL_ACME color32_t argb_swap_rb(color32_t cr);
 
 
 typedef RGBQUAD WINRGBQUAD;
+#ifdef _UWP
+typedef WINRGBQUAD * LPWINRGBQUAD;
+#else
 typedef LPRGBQUAD LPWINRGBQUAD;
+#endif
 
 
 #else

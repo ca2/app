@@ -64,7 +64,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //      pimageCanvas.get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 //
-//   //      color32_t crBack = pframea->m_crBack;
+//   //      color32_t crBack = pframea->m_colorBack;
 //
 //   //      byte bAlpha = colorref_get_a_value(crBack);
 //
@@ -102,7 +102,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //   //   if (pframe->m_bTransparent)
 //   //   {
 //
-//   //      crBack = pframea->m_crTransparent;
+//   //      crBack = pframea->m_colorTransparent;
 //
 //   //      pframea->m_iTransparentIndex = transparentIndex;
 //
@@ -112,7 +112,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //   //   else
 //   //   {
 //
-//   //      crBack = pframe->m_crTransparent;
+//   //      crBack = pframe->m_colorTransparent;
 //
 //   //      size s = pframe->m_pimage->get_size();
 //
@@ -230,7 +230,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //         pimageCanvas->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 //
-//         color32_t crBack = pframea->m_crBack;
+//         color32_t crBack = pframea->m_colorBack;
 //
 //         byte bAlpha = colorref_get_a_value(crBack);
 //

@@ -1198,7 +1198,7 @@ m_millisHeartBeat.Now();
    void application::process_message_filter(i32 code,::message::message * pmessage)
    {
 
-      //SCAST_PTR(::message::base,pbase,pmessage);
+      //__pointer(::message::base) pbase(pmessage);
 
       UNREFERENCED_PARAMETER(code);
 

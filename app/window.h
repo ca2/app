@@ -20,6 +20,7 @@ namespace app_app
 
 
       window();
+      virtual ~window();
 
 
       virtual void on_create_user_interaction() override;

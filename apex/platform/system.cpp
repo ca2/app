@@ -111,6 +111,16 @@ namespace apex
 
       m_papexsystem = this;
 
+#ifdef _UWP
+
+      m_bPreferLessGraphicsParallelization = true;
+
+#else
+
+      m_bPreferLessGraphicsParallelization = false;
+
+#endif
+
       m_bMessageThread = true;
 
       m_bSystemSynchronizedCursor = true;
@@ -240,7 +250,18 @@ namespace apex
 
       }
 
-      m_bThreadToolsForIncreasedFps = false;
+      if (m_bPreferLessGraphicsParallelization)
+      {
+
+         m_bThreadToolsForIncreasedFps = false;
+
+      }
+      else
+      {
+
+         m_bThreadToolsForIncreasedFps = false;
+
+      }
 
       //::factory::g_pfactorymap->InitHashTable(16189);
 
@@ -898,7 +919,7 @@ namespace apex
 
          {
 
-            System.__compose(plibrary);
+            System.__compose_new(plibrary);
 
             if (!plibrary->open(strLibrary))
             {

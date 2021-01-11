@@ -104,7 +104,7 @@ namespace user
    void split_bar::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       sync_lock sl(mutex());
 
@@ -130,7 +130,7 @@ namespace user
    void split_bar::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       sync_lock sl(mutex());
 
@@ -155,7 +155,7 @@ namespace user
    void split_bar::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       sync_lock sl(mutex());
 

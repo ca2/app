@@ -1681,7 +1681,7 @@ namespace draw2d_xlib
          /* p::image_pointer pimage1(get_object());
                       pimage1 = create_image(rectText.size());
                       pimage1->Fill(0, 0, 0, 0);
-         //               pimage1->get_graphics()->set_color(m_crColor);
+         //               pimage1->get_graphics()->set_color(m_colorColor);
                       pimage1->get_graphics()->SelectObject(&get_current_font());
                       pimage1->get_graphics()->SetBkMode(TRANSPARENT);
                       pimage1->get_graphics()->text_out(0, 0, str);

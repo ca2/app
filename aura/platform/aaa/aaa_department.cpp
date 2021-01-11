@@ -121,7 +121,7 @@ namespace aura
    void department::on_application_message(::message::message * pmessage)
    {
 
-      SCAST_PTR(::aura::application_message,papplicationsignal,pmessage);
+      __pointer(::aura::application_message) papplicationsignal(pmessage);
 
       try
       {

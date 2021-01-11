@@ -12,7 +12,10 @@ namespace user
    public:
 
 
+      ::index                                m_iUpdate;
       __pointer(::apex::library)             m_plibrary;
+      isomap < ::user::enum_control_type, __pointer(control_style) > m_controlstyle;
+      //__pointer(::user::plain_edit_style)    m_pplaineditstyel;
 
       ::draw2d::font_pointer                 m_pfont;
       ::draw2d::font_pointer                 m_pfontMenu;
@@ -61,16 +64,16 @@ namespace user
       //virtual bool prepare_menu(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) override;
       //virtual bool prepare_menu_button(::draw2d::graphics_pointer& pgraphics, ::user::menu_item * pitem) override;
 
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
       virtual ::e_status initialize_style();
 
-      virtual void set_style(enum_style estyle) override;
+      //virtual ::user::plain_edit_internal * get_plain_edit_internal();
 
-      virtual void set_style(const char * pszStyle) override;
+      virtual color32_t get_style_moveable_border_color(enum_style estyle);
 
-      virtual void on_style_change() override;
-
-
+      template < typename CONTROL_STYLE >
+      void get(__pointer(CONTROL_STYLE) & pcontrolstyleImpl, ::draw2d::graphics_pointer & pgraphics, ::user::interaction * pinteraction);
 
       virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame * pframe) override;
 
@@ -159,6 +162,13 @@ namespace user
 
    };
 
+   
+   inline bool control_style::is_up_to_date(::user::style * pstyle) const
+   {
+
+      return m_iUpdate == pstyle->m_iUpdate;
+
+   }
 
 
 } // namespace user

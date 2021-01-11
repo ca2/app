@@ -1926,7 +1926,7 @@ retry_session:
    void system::get(::message::message * pmessage)
    {
 
-      SCAST_PTR(message, pmessage, pmessage);
+      __pointer(message) pmessage(pmessage);
 
       if(pmessage == nullptr)
       {

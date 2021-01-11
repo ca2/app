@@ -59,6 +59,12 @@ namespace user
       virtual ::e_draw_text get_draw_text_flags(EView eview);
 
 
+      //virtual ::index item_index(::user::interaction * pinteractionControl);
+      virtual ::index subitem_index(::user::interaction * pinteractionControl);
+      //virtual ::index list_item_index(::user::interaction * pinteractionControl);
+      virtual ::index column_index(::user::interaction * pinteractionControl);
+
+
 
       __pointer(list_column) new_list_column();
 
@@ -83,6 +89,8 @@ namespace user
       virtual i32 _001CalcListWidth(::draw2d::graphics_pointer& pgraphics);
       virtual void _001OnSort() override;
 
+
+      inline ::user::list_column_array & column_array() { return m_columna; }
 
       virtual void _001OnBeforeDeleteRange(range & range) override;
       virtual void _001OnDeleteRange(range & range) override;
@@ -217,6 +225,8 @@ namespace user
       virtual void _001GetSubItemRect(draw_list_item * pitem);
       virtual void _001GetElementRect(draw_list_item * pitem, ::user::mesh::enum_element eelement);
 
+      virtual ::user::interaction * get_subitem_control(::index iSubItem);
+
       virtual void _001OnColumnChange();
 
       virtual bool _001SetColumnWidth(index iColumn, i32 iWidth) override;
@@ -349,7 +359,7 @@ namespace user
 
       virtual i32 get_wheel_scroll_delta() override;
 
-      virtual void on_change_viewport_offset() override;
+      virtual void on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual bool keyboard_focus_is_focusable() const override;
 

@@ -309,7 +309,7 @@ namespace html
    void core_data::_001OnKeyDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       if (pkey->m_ekey == ::user::key_tab)
       {
@@ -854,7 +854,7 @@ namespace html
    __pointer(::user::interaction) core_data::get_frame()
    {
       
-      return  (get_form()->GetParentFrame());
+      return  (get_form()->get_parent_frame());
 
    }
 

@@ -62,9 +62,9 @@ namespace html
             pattr->set_value(pTag->getAttributes()->getAttribute(i).getValue());
          }
       }
-      if(m_ptag->GetParent() != nullptr && pTag->getTagName() == "draw2d")
+      if(m_ptag->get_parent() != nullptr && pTag->getTagName() == "draw2d")
       {
-         m_ptag = m_ptag->GetParent();
+         m_ptag = m_ptag->get_parent();
       }
       bAbort = false;
    }
@@ -73,9 +73,9 @@ namespace html
    {
       UNREFERENCED_PARAMETER(pTag);
       UNREFERENCED_PARAMETER(dwAppData);
-      if(m_ptag->GetParent() != nullptr && pTag->getTagName() != "draw2d")
+      if(m_ptag->get_parent() != nullptr && pTag->getTagName() != "draw2d")
       {
-         m_ptag = m_ptag->GetParent();
+         m_ptag = m_ptag->get_parent();
       }
 
       bAbort = false;

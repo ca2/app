@@ -32,9 +32,9 @@ namespace user
       ::data::tree_item *                       m_pitemFirstVisible;
       index                                     m_iFirstVisibleItemProperIndex;
       i32                                       m_iCurrentViewWidth;
-      //color32_t                                m_crTextSelected;
-      //color32_t                                m_crTextHighlight;
-      //color32_t                                m_crTextSelectedHighlight;
+      //color32_t                                m_colorTextSelected;
+      //color32_t                                m_colorTextHighlight;
+      //color32_t                                m_colorTextSelectedHighlight;
       u32_array                                 m_dwaItemState;
       __pointer(::image_list)                   m_pimagelist;
       index                                     m_iImageCollapse;
@@ -113,7 +113,7 @@ namespace user
 
       virtual i32 get_wheel_scroll_delta() override;
 
-      virtual void on_change_viewport_offset() override;
+      virtual void on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
 
       __pointer(::image_list) get_image_list();
 

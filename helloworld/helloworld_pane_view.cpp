@@ -239,7 +239,7 @@ namespace helloworld
 
          ::user::impact * pview = m_pdocMenu->get_view(0);
 
-         m_pimpactdata->m_puserinteraction = pview->GetParentFrame();
+         m_pimpactdata->m_puserinteraction = pview->get_parent_frame();
 
 
          //::file::path path = prepare_menu_view();

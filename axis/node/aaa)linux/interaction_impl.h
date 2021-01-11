@@ -63,7 +63,7 @@ namespace linux
       bool ModifyStyle(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags = 0) override;
       bool ModifyStyleEx(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags = 0) override;
 
-      //virtual ::user::interaction * GetOwner();
+      //virtual ::user::interaction * get_owner();
       virtual void set_owner(::user::interaction * pOwnerWnd) override;
 
       virtual oswindow get_handle() const override;
@@ -454,7 +454,7 @@ namespace linux
 //      virtual ::user::interaction * GetWindow(::u32 nCmd);
 //
 //      virtual bool IsChild(::user::interaction *  pWnd);
-//      virtual ::user::interaction * GetParent();
+//      virtual ::user::interaction * get_parent();
 //      using ::user::interaction_impl::SetParent;
 //      ::user::interaction * SetParent(::user::interaction * pWndNewParent);
 //      static::user::interaction * PASCAL oswindowFromPoint(const ::point & point);

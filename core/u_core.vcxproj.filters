@@ -178,12 +178,6 @@
     <Filter Include="Source Files\html\hi5">
       <UniqueIdentifier>{8672b0f1-095c-4f98-ab37-4ced78d34e6c}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\os">
-      <UniqueIdentifier>{a02d3aa4-ae37-4639-b9e8-2a954c0daf65}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\os\ansios">
-      <UniqueIdentifier>{c9449436-b6ef-4f12-af70-537d81e54e66}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\inline">
       <UniqueIdentifier>{9cacec42-50ac-4712-b2a1-0ac83c76befc}</UniqueIdentifier>
     </Filter>
@@ -1966,36 +1960,6 @@
     <ClCompile Include="html\hi5\hi5_twitter_authorization.cpp">
       <Filter>Source Files\html\hi5</Filter>
     </ClCompile>
-    <ClCompile Include="os\ansios\base.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\datetime.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\exception_engine.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\file.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\file_raw.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\file_std.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\language.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\memory.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\user.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
-    <ClCompile Include="os\ansios\win.cpp">
-      <Filter>Source Files\os\ansios</Filter>
-    </ClCompile>
     <ClCompile Include="include\_.cpp">
       <Filter>Source Files\include</Filter>
     </ClCompile>
@@ -2022,6 +1986,9 @@
     </ClCompile>
     <ClCompile Include="html\element\element.cpp">
       <Filter>Source Files\html\element</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\list_column.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

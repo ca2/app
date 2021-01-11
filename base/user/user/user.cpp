@@ -666,7 +666,7 @@ namespace base
 //         //{
 //         //   pframeApp->display(e_display_full_screen);
 //         //}
-//         //__pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::pane_view >()->GetParentFrame();
+//         //__pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::pane_view >()->get_parent_frame();
 //         //if(pframe != nullptr)
 //         //{
 //         //   pframe->display(e_display_normal);
@@ -676,7 +676,7 @@ namespace base
 //      {
 //         //if(get_document() != nullptr && get_document()->get_typed_view < ::bergedge::view >() != nullptr)
 //         //{
-//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame();
+//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::view >()->get_parent_frame();
 //         //   if(pframe != nullptr)
 //         //   {
 //         //      pframe->display(e_display_normal);
@@ -696,7 +696,7 @@ namespace base
 ////      {
 ////         try
 ////         {
-////            get_view()->GetParentFrame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
+////            get_view()->get_parent_frame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
 ////         }
 ////         catch (...)
 ////         {
@@ -915,7 +915,7 @@ namespace base
    //   do
    //   {
 
-   //      puiAscendant = puiAscendant->GetOwner();
+   //      puiAscendant = puiAscendant->get_owner();
 
 
    //      if (puiParent == puiAscendant)
@@ -929,7 +929,7 @@ namespace base
    //   do
    //   {
 
-   //      puiAscendant = puiAscendant->GetParent();
+   //      puiAscendant = puiAscendant->get_parent();
 
 
    //      if (puiParent == puiAscendant)
@@ -984,7 +984,7 @@ namespace base
    bool user::track_popup_menu(::user::interaction* pinteraction, ::user::menu_item * pitem, i32 iFlags, ::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       ::point point = pmouse->m_point;
 
@@ -998,7 +998,7 @@ namespace base
    __pointer(::user::menu) user::track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags, ::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       auto point = pmouse->m_point;
 
@@ -1013,7 +1013,7 @@ namespace base
    __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const char * pszMatter, i32 iFlags, ::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       ::point point = pmouse->m_point;
 

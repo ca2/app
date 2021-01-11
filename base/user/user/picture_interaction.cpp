@@ -27,7 +27,7 @@ namespace user
 
          item.m_pointScreen = point;
 
-         auto pointClient = GetParent()->screen_to_client(item.m_pointScreen);
+         auto pointClient = get_parent()->screen_to_client(item.m_pointScreen);
 
          item.m_pointClient = drag_rtransform(pointClient);
 

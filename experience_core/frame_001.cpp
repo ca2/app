@@ -23,13 +23,20 @@ namespace experience
             frame_001::frame_001()
             {
 
-               m_strStyle = "LightBlue";
 
             }
 
 
             frame_001::~frame_001()
             {
+
+            }
+
+
+            string frame_001::get_default_user_style() const
+            {
+
+               return "LightBlue";
 
             }
 
@@ -197,11 +204,11 @@ SizingNone:;
                if(pframewindow->is_active())
                {
 
-                  crMoveableBorder = m_crMoveableBorder;
+                  crMoveableBorder = m_colorMoveableBorder;
 
-                  crMoveableBorderHilight = m_crMoveableBorderHilight;
+                  crMoveableBorderHilight = m_colorMoveableBorderHilight;
 
-                  crMoveableBorderShadow = m_crMoveableBorderShadow;
+                  crMoveableBorderShadow = m_colorMoveableBorderShadow;
 
                }
                else
@@ -225,7 +232,7 @@ SizingNone:;
 
                //::rect rectA(rectClient);
 
-               if(is_translucid_style(m_estyle))
+               if(pframewindow->is_translucid_user_style(m_pframewindow->m_estyle))
                {
 
                   ::rect rect;
@@ -237,7 +244,7 @@ SizingNone:;
                   imaging.color_blend(pgraphics, rect, crMoveableBorder, 127);
 
                }
-               /*else if(m_estyle == StyleLightBlue)
+               /*else if(m_pframewindow->m_estyle == StyleLightBlue)
                {
 
                   ::rect rect;

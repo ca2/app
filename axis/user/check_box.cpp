@@ -28,6 +28,8 @@ namespace user
 
       m_estyle = estyle;
 
+      m_econtroltype = e_control_type_check_box;
+
    }
 
 
@@ -612,7 +614,7 @@ namespace user
    void check_box::_001OnKeyUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       if(pkey->m_ekey == ::user::key_space)
       {
@@ -670,7 +672,7 @@ namespace user
 
       bind_update(m_ppropertyCheck);
 
-      m_pdescriptor->m_econtroltype = e_control_type_edit;
+      
 
    }
 

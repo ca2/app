@@ -16,7 +16,7 @@ namespace draw2d_direct2d
    brush::~brush()
    {
 
-      //destroy();
+      destroy();
 
    }
 
@@ -75,18 +75,21 @@ namespace draw2d_direct2d
          if(m_plineargradientbrush == nullptr)
          {
 
-            D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES prop;
+            D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES prop{};
 
-            prop.startPoint.x    = (FLOAT) m_point1.x;
-            prop.startPoint.y    = (FLOAT) m_point1.y;
-            prop.endPoint.x      = (FLOAT) m_point2.x;
-            prop.endPoint.y      = (FLOAT) m_point2.y;
+            //auto pointViewport = pgraphics->GetViewportOrg();
+            ::point pointViewport(0, 0);
+
+            prop.startPoint.x    = (FLOAT) m_point1.x + pointViewport.x;
+            prop.startPoint.y    = (FLOAT) m_point1.y + pointViewport.y;
+            prop.endPoint.x      = (FLOAT) m_point2.x + pointViewport.x;
+            prop.endPoint.y      = (FLOAT) m_point2.y + pointViewport.y;
 
             // Create an array of gradient stops to put in the gradient stop
             // collection that will be used in the gradient brush.
-            ID2D1GradientStopCollection * pgradientstops = nullptr;
+            ::comptr<ID2D1GradientStopCollection> pstopcollection;
 
-            D2D1_GRADIENT_STOP gradientstops[2];
+            D2D1_GRADIENT_STOP gradientstops[2] = {};
 
             __copy(gradientstops[0].color, m_color1);
             gradientstops[0].position = 0.0f;
@@ -96,11 +99,14 @@ namespace draw2d_direct2d
 
             // Create the ID2D1GradientStopCollection from a previously
             // declared array of D2D1_GRADIENT_STOP structs.
-            HRESULT hr = pgraphics->m_prendertarget->CreateGradientStopCollection(gradientstops, 2, D2D1_GAMMA_2_2, D2D1_EXTEND_MODE_CLAMP, &pgradientstops);
+            HRESULT hr = pgraphics->m_prendertarget->CreateGradientStopCollection(gradientstops, 2, D2D1_GAMMA_2_2, D2D1_EXTEND_MODE_CLAMP, &pstopcollection);
 
-            hr = pgraphics->m_prendertarget->CreateLinearGradientBrush(prop, pgradientstops, &m_plineargradientbrush);
+            D2D1_BRUSH_PROPERTIES brushproperties;
 
-            pgradientstops->Release();
+            brushproperties.opacity = 1.0f;
+            brushproperties.transform =  D2D1::IdentityMatrix();
+
+            hr = pgraphics->m_prendertarget->CreateLinearGradientBrush(&prop, &brushproperties, pstopcollection, &m_plineargradientbrush);
 
             if(m_plineargradientbrush != nullptr)
             {

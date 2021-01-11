@@ -88,7 +88,7 @@ namespace user
    bool combo_list::on_set_owner(::user::primitive * pprimitive)
    {
 
-      auto puserinteractionOwner = pprimitive->GetOwner();
+      auto puserinteractionOwner = pprimitive->get_owner();
 
       if(puserinteractionOwner)
       {
@@ -121,7 +121,7 @@ namespace user
    void combo_list::_001OnDestroy(::message::message * pmessage)
    {
 
-      auto puserinteractionOwner = GetOwner();
+      auto puserinteractionOwner = get_owner();
 
       if(puserinteractionOwner)
       {
@@ -549,7 +549,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
    void combo_list::_001OnShowWindow(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
 
       if (pshowwindow->m_bShow)
       {
@@ -588,7 +588,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
 
             set_timer(e_timer_kill_focus, 300_ms);
 
-            //SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
+            //__pointer(::message::kill_focus) pkillfocus(pmessage);
 
             //oswindow oswindowThis = get_safe_handle();
 
@@ -652,7 +652,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
    void combo_list::_001OnActivate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::activate, pactivate, pmessage);
+      __pointer(::message::activate) pactivate(pmessage);
 
       __pointer(::user::interaction) pActive = (pactivate->m_eactivate == e_activate_inactive ? pactivate->m_pWndOther : this);
 
@@ -706,7 +706,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
    void combo_list::_001OnMouseActivate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse_activate, pactivate, pmessage);
+      __pointer(::message::mouse_activate) pactivate(pmessage);
 
       pactivate->m_lresult = MA_NOACTIVATE;
 
@@ -719,7 +719,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
    void combo_list::_001OnKeyDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       if (pkey->m_ekey == ::user::key_escape)
       {
@@ -787,7 +787,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
    void combo_list::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
 
@@ -816,7 +816,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
    void combo_list::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
 
@@ -871,7 +871,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
    void combo_list::_001OnMButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       auto point = pmouse->m_point;
 
@@ -898,7 +898,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
    void combo_list::_001OnRButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       auto point = pmouse->m_point;
 
@@ -926,7 +926,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
    {
 
       UNREFERENCED_PARAMETER(pmessage);
-      //SCAST_PTR(::message::mouse, pmouse, pmessage);
+      //__pointer(::message::mouse) pmouse(pmessage);
 
       //pmessage->m_bRet = true;
 
@@ -1065,7 +1065,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
       if (i < 0)
       {
 
-         m_pcombo->GetParent()->get_window_rect(rectMonitor);
+         m_pcombo->get_parent()->get_window_rect(rectMonitor);
 
       }
 
@@ -1120,7 +1120,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
       if (i < 0)
       {
 
-         m_pcombo->GetParent()->_001ScreenToClient(rectList);
+         m_pcombo->get_parent()->_001ScreenToClient(rectList);
 
       }
 
@@ -1133,7 +1133,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
 
          pcreatestruct->set_rect(::rect(rectList).inflate(m_iBorder));
 
-         if (!create_window_ex(pcreatestruct, i >= 0 ? nullptr : m_pcombo->GetParent()))
+         if (!create_window_ex(pcreatestruct, i >= 0 ? nullptr : m_pcombo->get_parent()))
          {
 
             m_pcombo->m_plist.release();
@@ -1142,7 +1142,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
 
          }
 
-         SetOwner(m_pcombo);
+         set_owner(m_pcombo);
 
       }
       else

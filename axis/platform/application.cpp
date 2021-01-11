@@ -785,46 +785,6 @@ namespace axis
 
       INFO("axis::application::process_init");
 
-      //m_bAuraProcessInitialize = true;
-
-      //m_bAuraProcessInitializeResult = false;
-
-      ////if (!is_system())
-      //{
-
-      //   if (get_context_system() != nullptr)
-      //   {
-
-      //      m_bThreadToolsForIncreasedFps = System.m_bThreadToolsForIncreasedFps;
-
-      //   }
-
-      //}
-
-
-
-      ////if (!__construct(m_spdir))
-      ////{
-
-      ////   return false;
-
-      ////}
-
-      ////if (!__construct(m_spfile))
-      ////{
-
-      ////   return false;
-
-      ////}
-
-      //if (::get_task() == nullptr)
-      //{
-
-      //   ::set_thread(dynamic_cast <thread *> (this));
-
-      //}
-
-
       create_factory < ::database::field_array >();
       create_factory < ::database::row >();
       create_factory < ::database::row_array >();

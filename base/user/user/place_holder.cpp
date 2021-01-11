@@ -103,10 +103,10 @@ namespace user
    void place_holder::on_remove_child(::user::interaction * pinteraction)
    {
 
-      if (GetParent() != nullptr)
+      if (get_parent() != nullptr)
       {
 
-         GetParent()->on_remove_place_holder_child(pinteraction);
+         get_parent()->on_remove_place_holder_child(pinteraction);
 
       }
 
@@ -116,10 +116,10 @@ namespace user
    void place_holder::on_hide_child(::user::interaction * pinteraction)
    {
 
-      if (GetParent() != nullptr)
+      if (get_parent() != nullptr)
       {
 
-         GetParent()->on_hide_place_holder_child(pinteraction);
+         get_parent()->on_hide_place_holder_child(pinteraction);
 
       }
 
@@ -169,7 +169,7 @@ namespace user
 
       }
 
-      puiChild->SetParent(this);
+      puiChild->set_parent(this);
 
       return this;
 
@@ -246,7 +246,7 @@ namespace user
 
       }
 
-      if(!pholder->::user::interaction::create_window(GetParent(),m_id))
+      if(!pholder->::user::interaction::create_window(get_parent(),m_id))
       {
 
          return nullptr;
@@ -407,7 +407,7 @@ namespace user
          return;
 
       // then pump through parent
-      __pointer(::user::interaction) puiParent = GetParent();
+      __pointer(::user::interaction) puiParent = get_parent();
 
       if (puiParent != nullptr)
       {
@@ -429,7 +429,7 @@ namespace user
    void place_holder::get_child_rect(RECT32* prect)
    {
 
-      GetParent()->get_child_rect(prect);
+      get_parent()->get_child_rect(prect);
 
       offset(prect, -prect->left, -prect->top);
 

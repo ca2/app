@@ -137,7 +137,7 @@ namespace prompt
 
             if(pview != nullptr)
             {
-               __pointer(::user::frame_window) pframe =  (pview->GetParentFrame());
+               __pointer(::user::frame_window) pframe =  (pview->get_parent_frame());
                if(pframe != nullptr)
                {
 #ifdef WINDOWS_DESKTOP
@@ -174,7 +174,7 @@ namespace prompt
 //            __pointer(::user::impact) pview = pdocument->get_view();
 //            if(pview != nullptr)
 //            {
-//               __pointer(::user::frame_window) pframe =  (pview->GetParentFrame());
+//               __pointer(::user::frame_window) pframe =  (pview->get_parent_frame());
 //               if(pframe != nullptr)
 //               {
 //#ifdef WINDOWS_DESKTOP
@@ -222,7 +222,7 @@ namespace prompt
 
             if(pview != nullptr)
             {
-               __pointer(::user::frame_window) pframe =  (pview->GetParentFrame());
+               __pointer(::user::frame_window) pframe =  (pview->get_parent_frame());
                if(pframe != nullptr)
                {
 #ifdef WINDOWS_DESKTOP
@@ -258,7 +258,7 @@ namespace prompt
          pdocument->update_all_views(pupdate);
 
 
-         pimpactdata->m_puserinteraction = (pview->GetParentFrame());
+         pimpactdata->m_puserinteraction = (pview->get_parent_frame());
 //         __pointer(form_child_frame) pframe = (pimpactdata->m_puserinteraction);
          //pframe->m_iTabId = iId;
          pimpactdata->m_pdocument = pdocument;
@@ -371,9 +371,9 @@ namespace prompt
 
       }
 
-      //GetParentFrame()->hide();
+      //get_parent_frame()->hide();
       
-      GetParentFrame()->display();
+      get_parent_frame()->display();
 
    }
 

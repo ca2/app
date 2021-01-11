@@ -52,8 +52,9 @@ namespace user
 
 
       bool                                      m_bRedraw;
-      bool                                      m_bUpdateBuffer;
-      bool                                      m_bUpdateWindow;
+      bool                                      m_bUpdateBuffer; // internal offscreen buffer
+      bool                                      m_bUpdateScreen; // screen buffer
+      bool                                      m_bUpdateWindow; // window frame
 
 
       bool                                      m_bExclusiveMode;
@@ -84,7 +85,7 @@ namespace user
       bool prodevian_iteration();
       bool prodevian_update_buffer(bool bRedraw);
       bool prodevian_update_screen();
-      void update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool bForce = false);
+      void update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce = false);
       bool update_screen();
 
       
@@ -99,8 +100,9 @@ namespace user
 
       virtual void finalize() override;
 
-      virtual ::e_status     run() override;
+      virtual ::e_status run() override;
 
+      virtual ::e_status do_task() override;
 
 
    };

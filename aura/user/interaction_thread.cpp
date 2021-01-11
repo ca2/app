@@ -231,9 +231,7 @@ namespace user
 
       //attach_thread_input_to_main_thread();
 
-
 #endif
-
 
       if (!m_pimpl->m_puserinteraction->is_system_message_window())
       {
@@ -265,6 +263,13 @@ namespace user
          if (!m_pimpl->_native_create_window_ex(m_pcreatestruct))
          {
 
+            if (is_debugger_attached())
+            {
+
+               message_box("Window not created", "Window not created", e_message_box_icon_warning, nullptr);
+
+            }
+
             //delete m_pcreatestruct;
 
             m_pcreatestruct = nullptr;
@@ -287,19 +292,20 @@ namespace user
 
       //}
 
-            //m_himc = ImmGetContext(m_pimpl->get_handle());
+      //m_himc = ImmGetContext(m_pimpl->get_handle());
 
-            __bind(this, m_pprodevian, m_pimpl->m_pprodevian);
+      __bind(this, m_pprodevian, m_pimpl->m_pprodevian);
 
-            m_oswindow = m_pimpl->m_oswindow;
+      m_oswindow = m_pimpl->m_oswindow;
 
-            //delete m_pcreatestruct;
+      //delete m_pcreatestruct;
 
-            m_pcreatestruct = nullptr;
+      m_pcreatestruct = nullptr;
 
       return true;
 
    }
+
 
    bool thread::pump_runnable()
    {

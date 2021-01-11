@@ -122,8 +122,6 @@ thread::thread()
 
    m_epriority = priority_normal;
 
-   //m_bFork = false;
-
    m_pmutexThreadUiPtra = nullptr;
 
    m_puiptraThread = nullptr;
@@ -140,8 +138,6 @@ thread::thread()
 
    m_bReady = false;
 
-   //m_bitRunThisThread = false;
-
    m_pevReady = nullptr;
 
    m_bZipIsDir2 = true;
@@ -151,10 +147,6 @@ thread::thread()
    m_pfileinfo = nullptr;
 
    m_bDupHandle = false;
-
-   //m_hthread = (hthread_t) nullptr;
-
-   //m_ithread = 0;
 
    m_nDisablePumpCount = 0;
 
@@ -169,9 +161,6 @@ thread::thread()
    memcnts_inc(this);
 
 }
-
-
-//CLASS_DECL_APEX ::thread * get_thread_raw();
 
 
 void thread::thread_common_construct()
@@ -2144,7 +2133,7 @@ void thread::system_pre_translate_message(::message::message * pmessage)
 void thread::process_window_procedure_exception(::exception_pointer pe,::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::base,pbase,pmessage);
+   __pointer(::message::base) pbase(pmessage);
 
    if(pbase->m_id == e_message_create)
    {
@@ -2173,13 +2162,13 @@ namespace thread_util
 
    inline bool IsEnterKey(::message::message * pmessage)
    {
-      SCAST_PTR(::message::base,pbase,pmessage);
+      __pointer(::message::base) pbase(pmessage);
       return pbase->m_id == e_message_key_down && pbase->m_wparam == VK_RETURN;
    }
 
    inline bool IsButtonUp(::message::message * pmessage)
    {
-      SCAST_PTR(::message::base,pbase,pmessage);
+      __pointer(::message::base) pbase(pmessage);
       return pbase->m_id == e_message_left_button_up;
    }
 
@@ -3170,6 +3159,13 @@ bool thread::send_message(const ::id & id, WPARAM wParam, lparam lParam, ::durat
 
       if(!init_thread())
       {
+
+         if (m_pevStarted)
+         {
+
+            m_pevStarted.release();
+
+         }
 
          bError = true;
 
@@ -4353,7 +4349,7 @@ bool thread::kick_thread()
 //void thread::_001OnThreadMessage(::message::message * pmessage)
 //{
 //
-//   SCAST_PTR(::message::base, pbase, pmessage);
+//   __pointer(::message::base) pbase(pmessage);
 //
 //
 //

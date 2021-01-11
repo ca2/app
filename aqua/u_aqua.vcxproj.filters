@@ -61,6 +61,18 @@
     <Filter Include="Header Files\game">
       <UniqueIdentifier>{831b97b3-345f-4253-bd5c-ad9d4846927d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\os\windows_common">
+      <UniqueIdentifier>{0b57d7ad-244c-4488-819a-225dd8e05524}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node">
+      <UniqueIdentifier>{8c219d43-301a-4c7f-b462-6f6090651385}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node\windows_common">
+      <UniqueIdentifier>{5b73ebc7-a907-4557-a0ab-d1203a860f28}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node\uwp">
+      <UniqueIdentifier>{13478262-ba65-49bc-9c9a-f6a0ea533f9a}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="xml\xmlite.cpp">
@@ -176,6 +188,12 @@
     </ClCompile>
     <ClCompile Include="game\game.cpp">
       <Filter>Source Files\game</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows_common\media_foundation.cpp">
+      <Filter>Source Files\node\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="node\uwp\system.cpp">
+      <Filter>Source Files\node\uwp</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

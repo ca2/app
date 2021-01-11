@@ -36,6 +36,8 @@ namespace user
 
       m_flagNonClient += ::user::interaction::non_client_hover_rect;
 
+      m_econtroltype = ::user::e_control_type_tree;
+
       m_pitemFirstVisible        = nullptr;
       m_itemHover                = nullptr;
       m_iItemCount               = 0;
@@ -55,9 +57,7 @@ namespace user
    void tree::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
-
-      descriptor().set_control_type(::user::e_control_type_tree);
+      __pointer(::message::create) pcreate(pmessage);
 
       if (pmessage->previous())
       {
@@ -555,7 +555,7 @@ namespace user
    void tree::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (!m_bTrackMouseLeave)
       {
@@ -581,7 +581,7 @@ namespace user
    void tree::_001OnLButtonDblClk(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       //on_click(item);
 
@@ -609,7 +609,7 @@ namespace user
    void tree::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmouse->previous();
 
@@ -635,7 +635,7 @@ namespace user
    void tree::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       m_uiLButtonUpFlags = (::u32) pmouse->m_nFlags;
 
@@ -725,7 +725,7 @@ namespace user
    void tree::_001OnRButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmouse->previous();
 
@@ -739,7 +739,7 @@ namespace user
    void tree::_001OnRButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       perform_right_click(pmouse->m_nFlags, pmouse->m_point);
 
@@ -781,7 +781,7 @@ namespace user
 
       index iItem = -1;
 
-      index iItemHeight = _001GetItemHeight();
+      index iItemHeight = (::index) _001GetItemHeight();
 
       auto pointOffset = get_viewport_offset();
 
@@ -881,19 +881,19 @@ namespace user
       {
       case e_tree_element_expand_box:
       {
-         prect->left   = drawitem.m_rect.left;
+         prect->left   = (LONG)(drawitem.m_rect.left);
 
          prect->right  = min(prect->left + 16, drawitem.m_rect.right);
 
-         prect->top    = drawitem.m_rect.top;
+         prect->top    = (LONG)(drawitem.m_rect.top);
 
-         prect->bottom = drawitem.m_rect.bottom;
+         prect->bottom = (LONG)(drawitem.m_rect.bottom);
 
       }
       break;
       case e_tree_element_image:
       {
-         prect->left   = drawitem.m_rect.left + 18;
+         prect->left   = (LONG)(drawitem.m_rect.left + 18);
 
          prect->right  = min(prect->left + 16, drawitem.m_rect.right);
 
@@ -902,25 +902,25 @@ namespace user
          if (m_pimagelist != nullptr)
          {
 
-            iHDiff = drawitem.m_rect.height() - m_pimagelist->m_size.cy;
+            iHDiff = (::i32) (drawitem.m_rect.height() - m_pimagelist->m_size.cy);
 
          }
 
-         prect->top    = drawitem.m_rect.top +iHDiff/2;
+         prect->top    = (LONG)(drawitem.m_rect.top +iHDiff/2);
 
-         prect->bottom = drawitem.m_rect.bottom - iHDiff / 2;
+         prect->bottom = (LONG)(drawitem.m_rect.bottom - iHDiff / 2);
 
       }
       break;
       case e_tree_element_text:
       {
-         prect->left   = drawitem.m_rect.left + 38;
+         prect->left   = (LONG)(drawitem.m_rect.left + 38);
 
-         prect->right  = drawitem.m_rect.right;
+         prect->right  = (LONG)(drawitem.m_rect.right);
 
-         prect->top    = drawitem.m_rect.top;
+         prect->top    = (LONG)(drawitem.m_rect.top);
 
-         prect->bottom = drawitem.m_rect.bottom;
+         prect->bottom = (LONG)(drawitem.m_rect.bottom);
 
       }
       break;
@@ -989,7 +989,7 @@ namespace user
             else
             {
 
-               iDivision = pointOffset.y / _001GetItemHeight();
+               iDivision = (::index) (pointOffset.y / _001GetItemHeight());
 
             }
 
@@ -1005,10 +1005,20 @@ namespace user
 
                index iNewScroll = (i32) (pointOffset.y + iObscured * _001GetItemHeight());
 
-               if(iNewScroll > (iParentIndex * _001GetItemHeight()))
-                  iNewScroll = (iParentIndex * _001GetItemHeight());
+               if (iNewScroll > (iParentIndex * _001GetItemHeight()))
+               {
 
-               set_viewport_offset_y((int) max(iNewScroll, 0));
+                  iNewScroll = (::index)(iParentIndex * _001GetItemHeight());
+
+               }
+
+               queue_graphics_call([this, iNewScroll](::draw2d::graphics_pointer & pgraphics)
+                  {
+
+
+                     set_viewport_offset_y(pgraphics, (int)max(iNewScroll, 0));
+
+                  });
                //            _001SetYScroll(max(iNewScroll, 0), false);
                //m_pscrollbarVert->_001SetScrollPos(pointOffset.y);
             }
@@ -1138,16 +1148,16 @@ namespace user
       __defer_construct(m_fontTreeItem);
 
       m_brushTextSelectedHighlight->create_solid(get_color(pstyle, ::user::e_element_hilite_text, ::user::e_state_selected));
-      m_brushTextSelected->create_solid(get_color(pstyle, ::user::e_element_text, ::user::e_state_selected));
-      m_brushTextHighlight->create_solid(get_color(pstyle, ::user::e_element_text, ::user::e_state_selected));
-      m_brushText->create_solid(get_color(pstyle, ::user::e_element_text));
+      m_brushTextSelected->create_solid(get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
+      m_brushTextHighlight->create_solid(get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
+      m_brushText->create_solid(get_color(pstyle, ::user::e_element_item_text));
 
       m_fontTreeItem = get_font(pstyle);
 
    }
 
 
-   void tree::on_change_viewport_offset()
+   void tree::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
       m_pitemFirstVisible = CalcFirstVisibleItem(m_iFirstVisibleItemProperIndex);
@@ -1182,7 +1192,7 @@ namespace user
       //if (m_puserstyle == nullptr)
       //{
 
-      //   m_puserstyle = GetTopLevel();
+      //   m_puserstyle = get_top_level();
 
       //}
 
@@ -1207,7 +1217,7 @@ namespace user
 
       on_change_view_size(pgraphics);
 
-      on_change_viewport_offset();
+      on_change_viewport_offset(pgraphics);
 
    }
 
@@ -1320,7 +1330,7 @@ namespace user
 
       get_client_rect(rect);
 
-      return rect.height() / _001GetItemHeight() - 1;
+      return (::count)(rect.height() / _001GetItemHeight() - 1);
 
    }
 
@@ -1400,7 +1410,7 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      int iItemHeight = _001GetItemHeight();
+      int iItemHeight = (int)(_001GetItemHeight());
 
       nOffset = pointOffset.y / iItemHeight;
 
@@ -1459,7 +1469,7 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      nOffset = pointOffset.y / _001GetItemHeight();
+      nOffset = (::index)(pointOffset.y / _001GetItemHeight());
 
       nOffset = INT_MAX;
 
@@ -1628,7 +1638,7 @@ namespace user
    i32 tree::get_wheel_scroll_delta()
    {
 
-      return 3.0 * m_dItemHeight;
+      return (::i32) (3.0 * m_dItemHeight);
 
    }
 
@@ -2139,7 +2149,14 @@ namespace user
 
          index iNewScrollIndex = iIndex;
 
-         set_viewport_offset_y((int) max(iNewScrollIndex,0) * m_dItemHeight);
+         int iy = (int)(max(iNewScrollIndex, 0) * m_dItemHeight);
+
+         queue_graphics_call([this, iy](::draw2d::graphics_pointer & pgraphics)
+            {
+
+               set_viewport_offset_y(pgraphics, iy);
+
+            });
 
          set_need_layout();
 

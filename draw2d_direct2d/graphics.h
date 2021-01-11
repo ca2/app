@@ -30,7 +30,6 @@ namespace draw2d_direct2d
 
       };
 
-
       Microsoft::WRL::ComPtr<ID2D1DeviceContext>         m_pdevicecontext; // 0
       Microsoft::WRL::ComPtr<ID2D1RenderTarget>          m_prendertarget; // 1
       Microsoft::WRL::ComPtr<ID2D1BitmapRenderTarget>    m_pbitmaprendertarget; // 2
@@ -58,7 +57,7 @@ namespace draw2d_direct2d
       bool                                               m_bPrinting;
 
       HDC                                                m_hdcAttach;
-      ::draw2d::enum_alpha_mode                             m_ealphamodeDevice;
+      ::draw2d::enum_alpha_mode                          m_ealphamodeDevice;
 
 
       graphics();
@@ -71,6 +70,8 @@ namespace draw2d_direct2d
       bool IsPrinting() override;            // TRUE if being used for printing
 
       
+      virtual bool on_begin_draw() override;
+
       using ::draw2d::graphics::set;
       virtual ::e_status graphics::set(::draw2d::bitmap* pbitmap) override;
 
@@ -574,6 +575,9 @@ namespace draw2d_direct2d
 
       virtual void enum_fonts(::draw2d::font_enum_item_array & itema) override;
 
+//#ifdef _UWP
+//      virtual void set_direct2d_plugin(::draw2d_direct2d::plugin * pplugin);
+//#endif
 
       //virtual bool update_window(::image* pimage) override;
 
@@ -581,13 +585,6 @@ namespace draw2d_direct2d
 
 
 } // namespace draw2d_direct2d
-
-
-
-
-
-
-
 
 
 

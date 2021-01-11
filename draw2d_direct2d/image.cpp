@@ -45,6 +45,8 @@ namespace draw2d_direct2d
    image::~image()
    {
 
+      destroy();
+
    }
 
 
@@ -1394,6 +1396,8 @@ namespace draw2d_direct2d
          return false;
 
       }
+
+      //pgraphics->m_pplugin = pgraphicsMap->m_pplugin;
 
       pgraphics->m_pbitmap = pbitmap;
 

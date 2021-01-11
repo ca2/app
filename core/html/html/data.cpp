@@ -109,7 +109,7 @@ void html_data::implement(::draw2d::graphics_pointer & pgraphics)
 void html_data::_001OnKeyDown(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::key, pkey, pmessage);
+   __pointer(::message::key) pkey(pmessage);
 
    if(pkey->m_ekey == ::user::key_tab)
    {
@@ -233,7 +233,7 @@ bool html_data::open_document(const payload & varFile)
 
 __pointer(::user::interaction) html_data::get_frame()
 {
-   return  (get_form()->GetParentFrame());
+   return  (get_form()->get_parent_frame());
 }
 
 

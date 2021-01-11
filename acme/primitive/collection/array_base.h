@@ -70,6 +70,7 @@ public:
    __declare_iterator_struct_ok(array_base, TYPE *, m_pelement, this->m_pelement >= this->m_pcontainer->m_pData && this->m_pelement < this->m_pcontainer->m_pData + this->m_pcontainer->m_nSize);
 
    array_base();
+   array_base(TYPE * p, ::count c);
    array_base(const array_base & a);
    array_base(array_base && a) noexcept;
    virtual ~array_base();
@@ -507,6 +508,13 @@ public:
    ::index insert_at(::index nIndex, const TYPE & newElement, ::count nCount = 1);
    ::index remove_at(::index nIndex, ::count nCount = 1);
    ::index insert_at(::index nStartIndex, array_base * pNewArray);
+
+   
+   TYPE pick_at(::index nIndex);
+   TYPE pick_first(::index nIndex = 0) { return pick_at(nIndex); }
+   TYPE pick_last(::index nIndex = -1) { return pick_at(m_nSize + nIndex); }
+   array_base pick_at(::index nIndex, ::count nCount);
+
 
    ::index remove_item(TYPE * p);
 

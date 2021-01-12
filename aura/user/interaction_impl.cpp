@@ -2367,7 +2367,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pprimitiveOwner);
 
-      ::exception::throw_interface_only();
+      //::exception::throw_interface_only();
 
       return nullptr;
 
@@ -3527,7 +3527,7 @@ namespace user
 
          }
 
-#ifdef _UWP
+//#ifdef _UWP
          if (pgraphics == nullptr || pgraphics->get_os_data() == nullptr)
          {
 
@@ -3546,7 +3546,7 @@ namespace user
 
          }
 
-#endif
+//#endif
 
          pgraphics->on_begin_draw();
 

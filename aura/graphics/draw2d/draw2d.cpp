@@ -1,4 +1,7 @@
 #include "framework.h"
+#ifdef WINDOWS
+#include "aura/os/windows_common/draw2d_direct2d_global.h"
+#endif
 
 
 namespace aura

@@ -191,9 +191,9 @@ namespace user
 
       m_size.cx = iMaxWidth + 4;
 
-      m_size.cy = (LONG) (m_dHeaderHeight + pitem->m_iSeparatorCount * 3 + pitem->m_iFullHeightItemCount * m_dItemHeight + 4);
+      m_size.cy = (::i32) (m_dHeaderHeight + pitem->m_iSeparatorCount * 3 + pitem->m_iFullHeightItemCount * m_dItemHeight + 4);
 
-      ::rect rect(4, (LONG) m_dHeaderHeight + 4, m_size.cx - 8, 4);
+      ::rect rect(4, (::i32) m_dHeaderHeight + 4, m_size.cx - 8, 4);
 
       string str;
 
@@ -235,7 +235,7 @@ namespace user
 
          menu_item * pitem = pitemParent->m_pmenuitema->element_at(i);
 
-         prect->bottom = (LONG) (prect->top + m_dItemHeight - 2);
+         prect->bottom = (::i32) (prect->top + m_dItemHeight - 2);
 
          if(prect->bottom > rectBound.bottom)
          {
@@ -244,7 +244,7 @@ namespace user
 
             prect->top = rectBound.top;
 
-            prect->bottom = (LONG) (prect->top + m_dItemHeight - 2);
+            prect->bottom = (::i32) (prect->top + m_dItemHeight - 2);
 
          }
 

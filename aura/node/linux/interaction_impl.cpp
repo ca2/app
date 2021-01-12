@@ -3204,10 +3204,29 @@ namespace linux
    }
 
 
-   void interaction_impl::set_owner(::user::interaction * pOwnerWnd)
+   ::user::primitive * interaction_impl::set_owner(::user::primitive * pprimitiveOwner)
    {
-//      m_puiOwner = pOwnerWnd;
-      m_puserinteraction->SetOwner((pOwnerWnd));
+
+      auto puserinteraction = m_puserinteraction;
+
+      if(::is_null(puserinteraction))
+      {
+
+         return nullptr;
+
+      }
+
+      auto puserinteractionOwner = puserinteraction->m_puserinteractionOwner;
+
+      if(::is_null(puserinteractionOwner))
+      {
+
+         return nullptr;
+
+      }
+
+      return puserinteractionOwner;
+
    }
 
 
@@ -3854,24 +3873,15 @@ namespace linux
    }
 
 
-   ::user::interaction * interaction_impl::GetFocus()
+   ::user::interaction * interaction_impl::get_keyboard_focus()
    {
 
-      oswindow w = ::get_focus();
-
-      if(w == nullptr)
-      {
-
-         return nullptr;
-
-      }
-
-      return w->m_pimpl->m_puserinteraction;
+      return __user_interaction(m_pprimitiveFocus);
 
    }
 
 
-   bool interaction_impl::SetFocus()
+   ::e_status interaction_impl::set_keyboard_focus()
    {
 
       oswindow w = ::set_focus(get_handle());

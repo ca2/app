@@ -29,7 +29,6 @@ namespace user
       m_cxDefaultGap = 2;
       //m_rectBorder.top = m_rectBorder.bottom = 1;
       m_bAutoDelete = FALSE;
-      m_puiOwner = nullptr;
       m_nStateFlags = 0;
       m_pDockSite = nullptr;
       m_pDockBar = nullptr;

@@ -3009,7 +3009,7 @@ gboolean x11_source_func(gpointer ppointer)
    try
    {
 
-      x11_wait_timer_or_event(pdisplay);
+      //x11_wait_timer_or_event(pdisplay);
 
       sync_lock sl(x11_mutex());
 
@@ -3069,16 +3069,17 @@ gboolean x11_source_func(gpointer ppointer)
 
    }
 
-   while(::thread_get_run())
+   //while(::thread_get_run())
+   //try
    {
 
       try
       {
 
-         if(!x11_step())
+         while(x11_step())
          {
 
-            break;
+            //break;
 
          }
 
@@ -3086,7 +3087,7 @@ gboolean x11_source_func(gpointer ppointer)
       catch(...)
       {
 
-         break;
+         //break;
 
       }
 

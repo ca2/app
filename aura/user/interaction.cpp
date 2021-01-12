@@ -139,7 +139,7 @@ namespace user
 
       m_bCursorInside = false;
 
-      m_puiOwner = nullptr;
+      //m_puiOwner = nullptr;
 
       m_ecursor = cursor_default;
 
@@ -6180,13 +6180,13 @@ namespace user
 
       }
 
-      if (m_puiOwner != nullptr)
+      if (m_puserinteractionOwner != nullptr)
       {
 
          try
          {
 
-            m_puiOwner->m_uiptraOwned.remove(this);
+            m_puserinteractionOwner->m_uiptraOwned.remove(this);
 
          }
          catch (...)
@@ -6196,20 +6196,20 @@ namespace user
 
       }
 
-      m_puiOwner = pprimitive;
+      m_puserinteractionOwner = pprimitive;
 
-      m_puiOwner->on_add_owned(this);
+      m_puserinteractionOwner->on_add_owned(this);
 
       ::user::primitive * puiRet = m_pimpl->set_owner(pprimitive);
 
       if (m_ewindowflag & e_window_flag_satellite_window)
       {
 
-         __bind(this, m_pthreadUserInteraction, m_puiOwner->m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
+         __bind(this, m_pthreadUserInteraction, m_puserinteractionOwner->m_pthreadUserInteraction OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
 
       }
 
-      on_set_owner(m_puiOwner);
+      on_set_owner(m_puserinteractionOwner);
 
       return puiRet;
 
@@ -6227,10 +6227,10 @@ namespace user
    ::user::interaction * interaction::get_owner() const
    {
 
-      if (m_puiOwner != nullptr)
+      if (m_puserinteractionOwner != nullptr)
       {
 
-         return m_puiOwner;
+         return m_puserinteractionOwner;
 
       }
 
@@ -11451,6 +11451,9 @@ restart:
    }
 
 
+#ifdef WINDOWS_DESKTOP
+
+
    bool interaction::open_clipboard()
    {
 
@@ -11479,6 +11482,9 @@ restart:
       return m_pimpl->close_clipboard();
 
    }
+
+
+#endif
 
 
    bool interaction::get_rect_normal(RECT32 * prect)

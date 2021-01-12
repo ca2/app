@@ -20,7 +20,7 @@ namespace user
 
       m_bHiddenOnNotifyIcon = false;
 
-      m_puiOwner = nullptr;
+      m_puserinteractionOwner = nullptr;
 
       m_strMatter = pszMatter;
       m_typeDocument = pDocClass;
@@ -249,10 +249,10 @@ namespace user
 
       }
 
-      if (m_puiOwner != nullptr)
+      if (m_puserinteractionOwner != nullptr)
       {
 
-         pframe->m_puiOwner = m_puiOwner;
+         pframe->m_puserinteractionOwner = m_puserinteractionOwner;
 
       }
 

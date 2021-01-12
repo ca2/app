@@ -617,7 +617,7 @@ namespace filemanager
          for (i32 i = 0; i < iCount; i++)
          {
 
-            auto pmenuitem = __new(::user::menu_item);
+            auto pmenuitem = __create_new < ::user::menu_item > ();
 
             pmenuitem->m_id = "open with" + stra[i];
 
@@ -1240,7 +1240,7 @@ namespace filemanager
 
          {
 
-            auto pinteraction = __new( user::button);
+            auto pinteraction = __create_new <  user::button > ();
             pinteraction->m_bTransparent = true;
             //pinteraction->set_control_type(user::e_control_type_button);
             //pinteraction->m_type = __type(::user::button);
@@ -1302,7 +1302,7 @@ namespace filemanager
          if (bRenameEdit)
          {
 
-            auto pinteraction = __new( user::plain_edit);
+            auto pinteraction = __create_new <  user::plain_edit > ();
             //pinteraction->set_control_type(user::e_control_type_edit_plain_text);
             pinteraction->m_datakey = "FILE_MANAGER_ID_FILE_NAME";
             //pinteraction->m_id = _vms::FILE_MANAGER_ID_FILE_NAME;

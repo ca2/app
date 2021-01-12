@@ -5412,7 +5412,7 @@ namespace draw2d
       rect.left = 0;
       rect.top = 0;
       rect.right = (::i32) sz.cx;
-      rect.bottom = (LONG) (dLineSpacing);
+      rect.bottom = (::i32) (dLineSpacing);
 
       //::e_align ealign;
 
@@ -5514,7 +5514,7 @@ namespace draw2d
       if (!bLastLine && str2.get_length() > 0)
       {
 
-         rectClip.top = (LONG) (rectClip.top+dLineSpacing);
+         rectClip.top = (::i32) (rectClip.top+dLineSpacing);
 
          _DrawText(str2, rectClip, ealign, edrawtext);
 

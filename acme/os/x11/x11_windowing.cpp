@@ -267,7 +267,7 @@ void x11_handle_just_hooks()
 
       }
 
-      x11_wait_timer_or_event(pdisplay);
+//      x11_wait_timer_or_event(pdisplay);
 
       if(__x11_hook_list_is_empty())
       {

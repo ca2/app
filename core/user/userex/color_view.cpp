@@ -54,7 +54,7 @@ namespace visual
 {
 
 
-   COLORREF image_color_with_shade_of_grey(int i, int j, double dw, double dh)
+   color32_t image_color_with_shade_of_grey(int i, int j, double dw, double dh)
    {
 
       double dR, dG, dB;
@@ -155,7 +155,7 @@ namespace visual
 
    }
 
-   COLORREF color_with_shade_of_grey(int i, int j, double dw, double dh)
+   color32_t color_with_shade_of_grey(int i, int j, double dw, double dh)
    {
 
       auto cr = image_color_with_shade_of_grey(i, j, dw, dh);

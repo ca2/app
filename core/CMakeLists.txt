@@ -489,6 +489,7 @@ list(APPEND core_source
    user/user/list.h
    user/user/list_cache.cpp
    user/user/list_cache.h
+   user/user/list_column.cpp
    user/user/list_column.h
    user/user/list_column_array.h
    user/user/list_data.cpp

@@ -5090,7 +5090,7 @@ finished_update:
 
 #if defined(LINUX) || defined(MACOS)
 
-         insert_text(strText, false);
+         insert_text(strText, false, e_source_user);
 
 #else
 

@@ -273,7 +273,7 @@ namespace user
       primitive_ptra                               m_uiptraOwned;
       __pointer(interaction_array)                 m_puiptraChild;
       string                                       m_strName;
-      __pointer(interaction)                       m_puiOwner;
+      __pointer(interaction)                       m_puserinteractionOwner;
       u64                                          m_uiUserInteractionFlags;
       bool                                         m_bCursorInside;
       e_cursor                                     m_ecursor;

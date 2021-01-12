@@ -89,6 +89,8 @@ list(APPEND aura_source
    graphics/draw2d/cursor_set.cpp
    graphics/draw2d/cursor_set.h
    graphics/draw2d/debug.cpp
+   graphics/draw2d/device_lock.cpp
+   graphics/draw2d/device_lock.h
    graphics/draw2d/draw2d.cpp
    graphics/draw2d/draw2d.h
    graphics/draw2d/fastblur.cpp
@@ -380,6 +382,8 @@ list(APPEND aura_source
    user/style.h
    user/style_base.cpp
    user/style_base.h
+   user/style_control.cpp
+   user/style_control.h
    user/tool_window.cpp
    user/tool_window.h
    user/user.cpp

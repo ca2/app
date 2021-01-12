@@ -881,19 +881,19 @@ namespace user
       {
       case e_tree_element_expand_box:
       {
-         prect->left   = (LONG)(drawitem.m_rect.left);
+         prect->left   = (::i32)(drawitem.m_rect.left);
 
          prect->right  = min(prect->left + 16, drawitem.m_rect.right);
 
-         prect->top    = (LONG)(drawitem.m_rect.top);
+         prect->top    = (::i32)(drawitem.m_rect.top);
 
-         prect->bottom = (LONG)(drawitem.m_rect.bottom);
+         prect->bottom = (::i32)(drawitem.m_rect.bottom);
 
       }
       break;
       case e_tree_element_image:
       {
-         prect->left   = (LONG)(drawitem.m_rect.left + 18);
+         prect->left   = (::i32)(drawitem.m_rect.left + 18);
 
          prect->right  = min(prect->left + 16, drawitem.m_rect.right);
 
@@ -906,21 +906,21 @@ namespace user
 
          }
 
-         prect->top    = (LONG)(drawitem.m_rect.top +iHDiff/2);
+         prect->top    = (::i32)(drawitem.m_rect.top +iHDiff/2);
 
-         prect->bottom = (LONG)(drawitem.m_rect.bottom - iHDiff / 2);
+         prect->bottom = (::i32)(drawitem.m_rect.bottom - iHDiff / 2);
 
       }
       break;
       case e_tree_element_text:
       {
-         prect->left   = (LONG)(drawitem.m_rect.left + 38);
+         prect->left   = (::i32)(drawitem.m_rect.left + 38);
 
-         prect->right  = (LONG)(drawitem.m_rect.right);
+         prect->right  = (::i32)(drawitem.m_rect.right);
 
-         prect->top    = (LONG)(drawitem.m_rect.top);
+         prect->top    = (::i32)(drawitem.m_rect.top);
 
-         prect->bottom = (LONG)(drawitem.m_rect.bottom);
+         prect->bottom = (::i32)(drawitem.m_rect.bottom);
 
       }
       break;

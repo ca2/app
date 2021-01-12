@@ -4529,6 +4529,13 @@ namespace user
    void interaction_impl::window_show()
    {
 
+      if(::is_null(m_puserinteraction))
+      {
+
+         return;
+
+      }
+
       // Request / Incoming changes / Prepare Internal Buffer
       auto & stateOutput = m_puserinteraction->layout().design();
 

@@ -66,7 +66,7 @@ namespace linux
       virtual ::e_status set_tool_window(bool bSet = true) override;
 
       //virtual ::user::interaction * get_owner();
-      virtual void set_owner(::user::interaction * pOwnerWnd) override;
+      virtual ::user::primitive * set_owner(::user::primitive * pprimitiveOwner) override;
 
       virtual oswindow get_handle() const override;
 
@@ -353,8 +353,8 @@ namespace linux
       //virtual bool SetCapture(::user::interaction * pinterface = nullptr) override;
       //virtual bool ReleaseCapture() override;
       //virtual ::user::interaction * get_capture();
-      virtual ::user::interaction * GetFocus() override;
-      virtual bool SetFocus() override;
+      virtual ::user::interaction * get_keyboard_focus() override;
+      virtual ::e_status set_keyboard_focus() override;
 
       static::user::interaction * get_desktop_window();
 

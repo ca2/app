@@ -880,7 +880,7 @@ namespace user
 
       }
 
-      return m_puserinteraction->m_puiOwner;
+      return m_puserinteraction->m_puserinteractionOwner;
 
    }
 

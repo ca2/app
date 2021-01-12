@@ -271,7 +271,7 @@ namespace experience
 
       }
 
-      straLibrary.add("experience_lite");
+      straLibrary.add("experience_core");
       straLibrary.add("experience_metro");
       straLibrary.add("experience_rootkiller");
       straLibrary.add("experience_hyper");

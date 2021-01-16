@@ -92,11 +92,11 @@ namespace draw2d_cairo
       // Type-safe selection helpers
    public:
       virtual ::draw2d::object* set_stock_object(i32 nIndex) override;
-      //virtual ::estatus set(::draw2d::pen* ppen) override;
-      //virtual ::estatus set(::draw2d::brush* pbrush) override;
-      //virtual ::estatus set(::draw2d::font* pfont) override;
-      virtual ::estatus set(::draw2d::bitmap* pbitmap) override;
-      virtual ::estatus set(::draw2d::region* pregion) override;       // special return for regions
+      //virtual ::e_status set(::draw2d::pen* ppen) override;
+      //virtual ::e_status set(::draw2d::brush* pbrush) override;
+      //virtual ::e_status set(::draw2d::font* pfont) override;
+      virtual ::e_status set(::draw2d::bitmap* pbitmap) override;
+      virtual ::e_status set(::draw2d::region* pregion) override;       // special return for regions
       //::draw2d_cairo::object* SelectObject(::draw2d_cairo::object* pObject);
       // ::draw2d_cairo::object* provided so compiler doesn't use SelectObject(HGDIOBJ)
 
@@ -202,20 +202,20 @@ namespace draw2d_cairo
       //i32 SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine) override;
 
 
-      virtual ::estatus reset_clip() override;
+      virtual ::e_status reset_clip() override;
 
       // Maybe used by some 2d Graphics backends as group of helper
       // methods working together for some purpose
       // (initially created for clipping).
       // It should be an aid when the 2d graphics backend supports
       // "inline" paths.
-      virtual ::estatus _intersect_clip() override;
-      virtual ::estatus _add_shape(const ::rect & rect) override;
-      virtual ::estatus _add_shape(const ::rectd & rect) override;
-      virtual ::estatus _add_shape(const ::oval & oval) override;
-      virtual ::estatus _add_shape(const ::ovald & oval) override;
-      virtual ::estatus _add_shape(const ::polygon & polygon) override;
-      virtual ::estatus _add_shape(const ::polygond & polygon) override;
+      virtual ::e_status _intersect_clip() override;
+      virtual ::e_status _add_shape(const ::rect & rect) override;
+      virtual ::e_status _add_shape(const ::rectd & rect) override;
+      virtual ::e_status _add_shape(const ::oval & oval) override;
+      virtual ::e_status _add_shape(const ::ovald & oval) override;
+      virtual ::e_status _add_shape(const ::polygon & polygon) override;
+      virtual ::e_status _add_shape(const ::polygond & polygon) override;
 
       // Line-Output Functions
       pointd current_position() override;
@@ -387,12 +387,12 @@ namespace draw2d_cairo
       //xxx      u32 GetCharacterPlacement(const char * lpString, i32 nCount, i32 nMaxExtent, LPGCP_RESULTS lpResults, u32 dwFlags) override;
       //xxx      u32 GetCharacterPlacement(string & str, i32 nMaxExtent, LPGCP_RESULTS lpResults, u32 dwFlags) override;
 
-#if (_WIN32_WINNT >= 0x0500)
-
-      bool GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE32 LPSIZE32) override;
-      bool GetTextExtentPointI(LPWORD pgiIn, i32 cgi, __out_opt LPSIZE32 LPSIZE32) override;
-
-#endif
+//#if (_WIN32_WINNT >= 0x0500)
+//
+//      bool GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE32 LPSIZE32) override;
+//      bool GetTextExtentPointI(LPWORD pgiIn, i32 cgi, __out_opt LPSIZE32 LPSIZE32) override;
+//
+//#endif
 
 //      // Advanced Drawing
 //      bool DrawEdge(const ::rect & rect, ::u32 nEdge, ::u32 nFlags) override;
@@ -505,7 +505,7 @@ namespace draw2d_cairo
 
       virtual bool attach(void * pdata) override;
 
-      virtual ::estatus clear_current_point() override;
+      virtual ::e_status clear_current_point() override;
       //xxx      virtual Gdiplus::FillMode gdiplus_get_fill_mode();
 
       bool blur(bool bExpand, double dRadius, const ::rect & rect) override;
@@ -567,10 +567,10 @@ namespace draw2d_cairo
 
       virtual void enum_fonts(::draw2d::font_enum_item_array & itema) override;
 
-      virtual string get_font_path(string str);
+      virtual ::file::path get_font_path(const string & strName, int iWeight, bool bItalic) override;
 
 
-      FT_Face ftface(const char* pszFontName);
+      FT_Face ftface(const char* pszFontName, int iWeight, bool bItalic);
 
       //virtual void on_apply_clip_region() override;
 

@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "aura/os/android/windowing.h"
+#include "aura/platform/static_start.h"
 #include "apex/platform/app_core.h"
 #include "aura/user/interaction_thread.h"
 #include "aura/user/interaction_prodevian.h"
@@ -673,6 +674,7 @@ static oswindow g_oswindowFocus;
 static oswindow g_oswindowActive;
 
 
+
 oswindow get_capture()
 {
 
@@ -682,6 +684,8 @@ oswindow get_capture()
 
 oswindow set_capture(oswindow oswindow)
 {
+
+   sync_lock sl(::aura::g_pmutexWindowing);
 
    ::oswindow oswindowCapturePrevious = g_oswindowCapture;
 
@@ -695,6 +699,8 @@ oswindow set_capture(oswindow oswindow)
 int_bool release_capture()
 {
 
+   sync_lock sl(::aura::g_pmutexWindowing);
+
    g_oswindowCapture = nullptr;
 
    return true;
@@ -705,11 +711,46 @@ int_bool release_capture()
 oswindow set_focus(oswindow oswindow)
 {
 
+   sync_lock sl(::aura::g_pmutexWindowing);
+
    ::oswindow oswindowFocusPrevious = g_oswindowFocus;
 
    g_oswindowFocus = oswindow;
 
    return g_oswindowFocus;
+
+}
+
+
+bool remove_focus(oswindow oswindow)
+{
+
+   sync_lock sl(::aura::g_pmutexWindowing);
+
+   ::oswindow oswindowFocusPrevious = g_oswindowFocus;
+
+   if (oswindowFocusPrevious != oswindow)
+   {
+
+      return false;
+
+   }
+
+   g_oswindowFocus = nullptr;
+
+   return true;
+
+}
+
+
+bool clear_focus()
+{
+
+   sync_lock sl(::aura::g_pmutexWindowing);
+
+   g_oswindowFocus = nullptr;
+
+   return true;
 
 }
 
@@ -791,7 +832,7 @@ int_bool SetWindowPos(oswindow_data * pdata, oswindow_data * pdataAfter, int x, 
 }
 
 
-//oswindow_data * GetParent(oswindow_data * pdata)
+//oswindow_data * get_parent(oswindow_data * pdata)
 //{
 //
 //   if (pdata == nullptr)
@@ -1566,7 +1607,7 @@ i64 oswindow_id(oswindow w)
 }
 
 
-CLASS_DECL_AURA::estatus _android_os_message_box(const char * pText, const char * lpCaption, const ::e_message_box & emessagebox)
+CLASS_DECL_AURA::e_status _android_os_message_box(const char * pText, const char * lpCaption, const ::e_message_box & emessagebox)
 {
 
    while (::oslocal()->m_iMessageBoxResult > 0)
@@ -1675,7 +1716,7 @@ CLASS_DECL_AURA::estatus _android_os_message_box(const char * pText, const char 
 }
 
 
-CLASS_DECL_AURA ::estatus android_os_message_box(const char * pText, const char * lpCaption, const ::e_message_box & emessageboxParam, const ::promise::process & processParam)
+CLASS_DECL_AURA ::e_status android_os_message_box(const char * pText, const char * lpCaption, const ::e_message_box & emessageboxParam, const ::promise::process & processParam)
 {
 
    string strText(pText);

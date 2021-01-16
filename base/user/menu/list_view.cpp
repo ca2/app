@@ -86,7 +86,7 @@ namespace user
    //   if (!menu_list_window::add_menu(pnode))
    //      return false;
 
-   //   //menu_fill(GetParentFrame(), this);
+   //   //menu_fill(get_parent_frame(), this);
 
    //   m_puiMenuNotify = puiNotify;
 

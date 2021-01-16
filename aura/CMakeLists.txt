@@ -89,6 +89,8 @@ list(APPEND aura_source
    graphics/draw2d/cursor_set.cpp
    graphics/draw2d/cursor_set.h
    graphics/draw2d/debug.cpp
+   graphics/draw2d/device_lock.cpp
+   graphics/draw2d/device_lock.h
    graphics/draw2d/draw2d.cpp
    graphics/draw2d/draw2d.h
    graphics/draw2d/fastblur.cpp
@@ -303,7 +305,7 @@ list(APPEND aura_source
    template/list.h
    user/_.cpp
    user/_.h
-   user/_const-.h
+   #user/_const-.h
    user/_const.h
    user/_data.h
    user/_experience_const.h
@@ -313,6 +315,8 @@ list(APPEND aura_source
    user/_user.h
    user/box.cpp
    user/box.h
+   user/call_message_handler_task.cpp
+   user/call_message_handler_task.h
    user/callback.cpp
    user/callback.h
    user/control_descriptor.cpp
@@ -378,6 +382,8 @@ list(APPEND aura_source
    user/style.h
    user/style_base.cpp
    user/style_base.h
+   user/style_control.cpp
+   user/style_control.h
    user/tool_window.cpp
    user/tool_window.h
    user/user.cpp
@@ -625,6 +631,7 @@ if (LINUX)
       node/linux/factory_exchange.h
       node/linux/interaction_impl.cpp
       node/linux/interaction_impl.h
+      node/linux/system.cpp
       os/gdk/aura_gdk.cpp
       os/gdk/aura_gdk.h
       os/linux/_.h

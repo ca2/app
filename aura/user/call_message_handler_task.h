@@ -1,0 +1,36 @@
+// Created By Camilo 2020-12-27 21:59 BRT <3ThomasBS, Mummi and bilbo!!
+// twitch streams... twitch chatting...
+
+
+namespace user
+{
+
+
+   class CLASS_DECL_AURA call_message_handler_task :
+      virtual public matter
+   {
+   public:
+
+
+      __pointer(interaction)        m_pinteraction;
+      ::id                          m_id;
+      WPARAM                        m_wparam;
+      LPARAM                        m_lparam;
+
+
+      call_message_handler_task(interaction * pinteraction, const ::id & id, WPARAM wparam, LPARAM lparam);
+      virtual ~call_message_handler_task();
+
+
+      virtual ::e_status run();
+
+
+   };
+
+
+} // namespace user
+
+
+
+
+

@@ -24,13 +24,21 @@ namespace experience
             frame_001::frame_001()
             {
 
-               set_style(StyleLightBlue);
+               //set_style(StyleLightBlue);
 
             }
 
 
             frame_001::~frame_001()
             {
+
+            }
+
+
+            string frame_001::get_default_user_style() const
+            {
+
+               return "LightBlue";
 
             }
 
@@ -200,11 +208,11 @@ SizingNone:;
                if(pframewindow->m_fActive)
                {
 
-                  crMoveableBorder = m_crMoveableBorder;
+                  crMoveableBorder = m_colorMoveableBorder;
 
-                  crMoveableBorderHilight = m_crMoveableBorderHilight;
+                  crMoveableBorderHilight = m_colorMoveableBorderHilight;
 
-                  crMoveableBorderShadow = m_crMoveableBorderShadow;
+                  crMoveableBorderShadow = m_colorMoveableBorderShadow;
 
                }
                else
@@ -227,7 +235,7 @@ SizingNone:;
 
                //::rect rectA(rectClient);
 
-               if(is_translucid_style(m_estyle))
+               if(is_translucid())
                {
 
                   ::rect rect;

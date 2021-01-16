@@ -133,7 +133,7 @@ i32 defer_run_system(char ** pszaFileName, int iFileCount)
 void apple_on_new_file()
 {
 
-   System.on_open_file(::type_empty, "");
+   System.on_open_file(::e_type_empty, "");
 
 }
 

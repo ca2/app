@@ -27,8 +27,6 @@
 
                m_bHollow = false;
 
-               m_strStyle = "TranslucidWarmLiteGray";
-
                m_penHollow0.create(this);
                m_penHollow1.create(this);
                m_penHollow2.create(this);
@@ -44,6 +42,13 @@
 
             }
 
+
+            //string frame_008::get_default_user_style() const
+            //{
+
+            //   return "LightGreen";
+
+            //}
 
 
             e_hittest frame_008::_001HitTest(const ::point & pointCursor)
@@ -221,9 +226,9 @@ SizingNone:;
 
                if(pframewindow->is_active())
                {
-                  crMoveableBorder = m_crMoveableBorder;
-                  crMoveableBorderHilight = m_crMoveableBorderHilight;
-                  crMoveableBorderShadow = m_crMoveableBorderShadow;
+                  crMoveableBorder = m_colorMoveableBorder;
+                  crMoveableBorderHilight = m_colorMoveableBorderHilight;
+                  crMoveableBorderShadow = m_colorMoveableBorderShadow;
                }
                else
                {
@@ -247,14 +252,14 @@ SizingNone:;
                   ::rect rect;
                   GetBorderRect(rectA, rect, eside);
 
-                  pgraphics->fill_rect(rect, A_RGB(255, crMoveableBorder));//m_crMoveableBorderDkShadow);
+                  pgraphics->fill_rect(rect, A_RGB(255, crMoveableBorder));//m_colorMoveableBorderDkShadow);
 
                   // RGB(255, 170, 136) RedOrange
                }
-               else if(m_estyle == StyleLightBlue || m_estyle == StyleRedOrange)
+               else if(m_pframewindow->m_estyle == ::user::StyleLightBlue || m_pframewindow->m_estyle == ::user::StyleRedOrange)
                {
                   rectA.deflate(1,1,1,1);
-                  Draw3dRectSide(pgraphics,rectA,eside,crMoveableBorder,0);//m_crMoveableBorderDkShadow);
+                  Draw3dRectSide(pgraphics,rectA,eside,crMoveableBorder,0);//m_colorMoveableBorderDkShadow);
 
                   if(!m_bHollow)
                   {
@@ -279,9 +284,9 @@ SizingNone:;
                   }
 
                }
-               else if(m_estyle == StyleTranslucidWarmGray
-                       || m_estyle == StyleTranslucidLightBlue
-                       || m_estyle == StyleTranslucidLightGreen)
+               else if(m_pframewindow->m_estyle == ::user::StyleTranslucidWarmGray
+                       || m_pframewindow->m_estyle == ::user::StyleTranslucidLightBlue
+                       || m_pframewindow->m_estyle == ::user::StyleTranslucidLightGreen)
                {
                   ::rect rect;
                   GetBorderRect(rectClient, rect, eside);
@@ -312,14 +317,14 @@ SizingNone:;
                   rectA.right--;
                   if(edock == e_dock_none)
                   {
-                     Draw3dRectSide(pgraphics, rectA, eside, m_crDkShadow, m_crDkShadow);
+                     Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow, m_colorDkShadow);
                   }
 
                   rectA.top++;
                   rectA.bottom--;
                   rectA.left++;
                   rectA.right--;
-                  Draw3dRectSide(pgraphics, rectA, eside, m_crDkShadow, m_crDkShadow);
+                  Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow, m_colorDkShadow);
 
                   rectA.top++;
                   rectA.bottom--;
@@ -327,7 +332,7 @@ SizingNone:;
                   rectA.right--;
                   if(edock == e_dock_none)
                   {
-                     Draw3dRectSide(pgraphics, rectA, eside, m_crDkShadow, m_crDkShadow);
+                     Draw3dRectSide(pgraphics, rectA, eside, m_colorDkShadow, m_colorDkShadow);
                   }
                }
 
@@ -463,7 +468,7 @@ SizingNone:;
                   pgraphics->set(m_penHollow5);
                   pgraphics->draw_rect(rectA);
 
-                  //Draw3dRectSide(pgraphics,rectA,eside,m_crMoveableBorderDkShadow,m_crMoveableBorderDkShadow);
+                  //Draw3dRectSide(pgraphics,rectA,eside,m_colorMoveableBorderDkShadow,m_colorMoveableBorderDkShadow);
 
                }
                else
@@ -539,7 +544,7 @@ SizingNone:;
 
                on_style_change_001_and_002();
 
-               ::color color = m_crMoveableBorderDkShadow;
+               ::color color = m_colorMoveableBorderDkShadow;
 
                color.m_iA = 8;
                m_penHollow0->create_solid(1.0,color);

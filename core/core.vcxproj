@@ -1605,16 +1605,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     </ClCompile>
     <ClCompile Include="node\windows\shell.cpp" />
     <ClCompile Include="node\windows_common\application.cpp" />
-    <ClCompile Include="os\ansios\base.cpp" />
-    <ClCompile Include="os\ansios\datetime.cpp" />
-    <ClCompile Include="os\ansios\exception_engine.cpp" />
-    <ClCompile Include="os\ansios\file.cpp" />
-    <ClCompile Include="os\ansios\file_raw.cpp" />
-    <ClCompile Include="os\ansios\file_std.cpp" />
-    <ClCompile Include="os\ansios\language.cpp" />
-    <ClCompile Include="os\ansios\memory.cpp" />
-    <ClCompile Include="os\ansios\user.cpp" />
-    <ClCompile Include="os\ansios\win.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />
@@ -1701,6 +1691,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="user\user\image_manager.cpp" />
     <ClCompile Include="user\user\list.cpp" />
     <ClCompile Include="user\user\list_cache.cpp" />
+    <ClCompile Include="user\user\list_column.cpp" />
     <ClCompile Include="user\user\list_data.cpp" />
     <ClCompile Include="user\user\list_header.cpp" />
     <ClCompile Include="user\user\list_view.cpp" />

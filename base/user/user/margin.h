@@ -85,10 +85,10 @@ namespace user
       }
 
 
-      void set_viewport_offset(int x,int y) override
+      void set_viewport_offset(::draw2d::graphics_pointer & pgraphics, int x,int y) override
       {
 
-         BASE::set_viewport_offset(x - m_rectMargin.left, y - m_rectMargin.top);
+         BASE::set_viewport_offset(pgraphics, x - m_rectMargin.left, y - m_rectMargin.top);
 
       }
 

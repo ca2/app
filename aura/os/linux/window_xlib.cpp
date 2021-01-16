@@ -30,7 +30,7 @@ namespace xlib
    }
 
 
-   ::estatus buffer::initialize_graphics_graphics(::user::interaction_impl * pimpl)
+   ::e_status buffer::initialize_graphics_graphics(::user::interaction_impl * pimpl)
    {
 
       auto estatus = double_buffer::initialize_graphics_graphics(pimpl);
@@ -224,12 +224,12 @@ namespace xlib
 //   }
 //
 
-   bool buffer::round_swap_key_buffers()
+   bool buffer::buffer_lock_round_swap_key_buffers()
    {
 
-      bool bOk1 = double_buffer::round_swap_key_buffers();
+      bool bOk1 = double_buffer::buffer_lock_round_swap_key_buffers();
 
-      bool bOk2 = bitmap_source_buffer::round_swap_key_buffers();
+      bool bOk2 = bitmap_source_buffer::buffer_lock_round_swap_key_buffers();
 
       return bOk1 && bOk2;
 
@@ -255,15 +255,27 @@ namespace xlib
 
       }
 
-      if(!(m_pimpl->m_puserinteraction->GetStyle() & WS_VISIBLE))
+      string strType = m_pimpl->m_puserinteraction->type_c_str();
+
+      bool bComboList = strType.contains_ci("combo_list");
+
+      if(bComboList)
       {
+
+         //output_debug_string("combo_list update_window");
+
+      }
+
+      if(!m_pimpl->m_puserinteraction->is_window_screen_visible())
+      {
+
+         bool bReallyNotVisible = !(m_pimpl->m_puserinteraction->GetStyle() & WS_VISIBLE);
 
          INFO("XPutImage not called. Ui is not visible.");
 
          return false;
 
       }
-
 
       if(m_oswindow == nullptr)
       {
@@ -307,11 +319,19 @@ namespace xlib
       //if(!pximage)
       {
 
+         color32_t colora[8];
+
+         memcpy(colora, pimage->get_data(), sizeof(colora));
+
+         int iDefaultDepth = DefaultDepth(m_oswindow->display(), m_oswindow->m_iScreen);
+
+         int iWindowDepth = m_oswindow->m_iDepth;
+
          pximage =
             XCreateImage(
                m_oswindow->display(),
                m_oswindow->visual(),
-               m_oswindow->m_iDepth,
+               iWindowDepth,
                ZPixmap,
                0,
                (char *) pimage->get_data(),
@@ -336,17 +356,61 @@ namespace xlib
       try
       {
 
-         XGCValues gcvalues = {};
+         //XGCValues gcvalues = {};
 
-//         auto gc = XCreateGC(m_oswindow->display(), m_oswindow->window(), 0, &gcvalues);
+//       auto gc = XCreateGC(m_oswindow->display(), m_oswindow->window(), 0, &gcvalues);
 
-         XPutImage(m_oswindow->display(), m_oswindow->window(), m_gc, pximage, 0, 0, 0, 0, pximage->width, pximage->height);
+         int iWidth = pximage->width;
 
-  //       XFreeGC(m_oswindow->display(), gc);
+         int iHeight = pximage->height;
+
+         //if(!bComboList)
+         //{
+
+            XPutImage(m_oswindow->display(), m_oswindow->window(), m_gc, pximage, 0, 0, 0, 0, iWidth, iHeight);
+
+         //}
+
+  //     XFreeGC(m_oswindow->display(), gc);
+
+//         if(bComboList)
+//         {
+//
+//            XColor xcolour;
+//
+//            // I guess XParseColor will work here
+//
+//            xcolour.red = 32000;
+//
+//            xcolour.green = 65000;
+//
+//            xcolour.blue = 32000;
+//
+//            xcolour.flags = DoRed | DoGreen | DoBlue;
+//
+//            XAllocColor(m_oswindow->display(), m_oswindow->m_colormap, &xcolour);
+//
+//            XSetForeground(m_oswindow->display(), m_gc, xcolour.pixel);
+//
+//            XFillRectangle(m_oswindow->display(), m_oswindow->window(), m_gc, 0, 0, iWidth, iHeight);
+//
+//         }
 
          #ifdef VERI_BASIC_TEST
 
-         XFillRectangle(m_oswindow->display(), m_oswindow->window(), m_gc, 100, 100, 200, 200);
+         XColor xcolour;
+
+         // I guess XParseColor will work here
+
+         xcolour.red = 32000; xcolour.green = 65000; xcolour.blue = 32000;
+
+         xcolour.flags = DoRed | DoGreen | DoBlue;
+
+         XAllocColor(m_oswindow->display(), m_oswindow->m_colormap, &xcolour);
+
+         XSetForeground(m_oswindow->display(), m_gc, xcolour.pixel);
+
+         XFillRectangle(m_oswindow->display(), m_oswindow->window(), m_gc, 0, 0, iWidth, iHeight);
 
          #endif
 
@@ -359,6 +423,15 @@ namespace xlib
       pximage->data = nullptr;
 
       XDestroyImage(pximage);
+
+      if(m_pimpl->m_puserinteraction->m_ewindowflag & e_window_flag_arbitrary_positioning)
+      {
+
+         //XFlush(m_oswindow->display());
+
+         //XSync(m_oswindow->display(), false);
+
+      }
 
       return true;
 

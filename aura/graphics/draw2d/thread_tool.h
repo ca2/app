@@ -37,7 +37,7 @@ namespace draw2d
 
 
 
-      virtual ::estatus     run() override;
+      virtual ::e_status     run() override;
 
    };
 

@@ -232,9 +232,9 @@ namespace database
       for (i32 i=0; i<field_count(); i++)
       {
 
-         m_row[i].set_type(::type_new);
+         m_row[i].set_type(::e_type_new);
 
-         m_rowEdit[i].set_type(::type_new);
+         m_rowEdit[i].set_type(::e_type_new);
 
       }
 

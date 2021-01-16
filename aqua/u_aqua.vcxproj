@@ -272,12 +272,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -294,12 +295,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -316,12 +318,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -338,12 +341,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -360,12 +364,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -382,12 +387,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -404,12 +410,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -426,12 +433,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -448,12 +456,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -470,12 +479,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -492,12 +502,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -514,12 +525,13 @@
       <PreprocessorDefinitions>_AQUA_LIBRARY;_WINDLL;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -596,6 +608,8 @@
     <ClCompile Include="multimedia\exception.cpp" />
     <ClCompile Include="multimedia\file_application.cpp" />
     <ClCompile Include="multimedia\multimedia.cpp" />
+    <ClCompile Include="node\uwp\system.cpp" />
+    <ClCompile Include="node\windows_common\media_foundation.cpp" />
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\system.cpp" />

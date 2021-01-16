@@ -553,10 +553,10 @@ namespace user
 bool g_bInitGtk = false;
 
 
-::estatus g_estatusInitGtk = ::error_none;
+::e_status g_estatusInitGtk = ::error_none;
 
 
-::estatus os_defer_init_gtk()
+::e_status os_defer_init_gtk()
 {
 
    if(!g_bInitGtk)

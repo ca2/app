@@ -51,7 +51,7 @@ namespace helloworld
    }
 
 
-   ::estatus application::init_instance()
+   ::e_status application::init_instance()
    {
 
       ::aura::session * pcoression = get_context_application()->m_psession;
@@ -171,7 +171,7 @@ namespace helloworld
       if (m_varTopicQuery["wfi_maximize"].is_set())
       {
 
-         pcreate->m_pcommandline->m_varQuery["document"].cast < document >()->get_typed_view < ::userex::pane_tab_view >()->GetTopLevelFrame()->_001WindowMaximize();
+         pcreate->m_pcommandline->m_varQuery["document"].cast < document >()->get_typed_view < ::userex::pane_tab_view >()->top_level_frame()->_001WindowMaximize();
 
       }
 

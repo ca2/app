@@ -38,7 +38,7 @@
       virtual payload connection_settings_get_auto_detect();
       virtual payload connection_settings_get_auto_config_url();
 
-      virtual ::estatus     link_open(string strUrl);
+      virtual ::e_status     link_open(string strUrl);
 
       virtual bool local_machine_set_run(const char * pszKey, const char * pszCommand, bool bSet);
       virtual bool local_machine_set_run_once(const char * pszKey, const char * pszCommand, bool bSet);
@@ -61,13 +61,13 @@
       virtual bool native_modern_web_browser(const char * pcsz);
 
 
-      virtual ::estatus create_service();
+      virtual ::e_status create_service();
 
-      virtual ::estatus remove_service();
+      virtual ::e_status remove_service();
 
-      virtual ::estatus start_service();
+      virtual ::e_status start_service();
 
-      virtual ::estatus stop_service();
+      virtual ::e_status stop_service();
 
       virtual bool create_service(const string & strServiceName, const string & strDisplayName, const string & strCommand, const string & strUser = "", const string & strPass = "");
 

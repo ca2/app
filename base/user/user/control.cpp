@@ -65,7 +65,7 @@
 //   void control::_001OnCreate(::message::message* pmessage)
 //   {
 //
-//      SCAST_PTR(::message::create, pcreate, pmessage);
+//      __pointer(::message::create) pcreate(pmessage);
 //
 //      pcreate->previous();
 //
@@ -317,7 +317,7 @@
 //   }
 //
 //
-//   bool control::create_control(class control_descriptor* pdescriptor)
+//   bool control::create_control(::user::interaction * pinteractionParent, const ::id & id)
 //   {
 //
 //      m_pdescriptor = pdescriptor;
@@ -495,7 +495,7 @@
 //   void control::_001OnKillFocus(::message::message * pmessage)
 //   {
 //
-//      SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
+//      __pointer(::message::kill_focus) pkillfocus(pmessage);
 //
 //      ::user::control_event ev;
 //
@@ -635,9 +635,9 @@
 ////      // the style must be visible
 ////      if (bVis)
 ////      {
-////         __pointer(::user::frame_window) pTarget = pview->GetOwner();
+////         __pointer(::user::frame_window) pTarget = pview->get_owner();
 ////         if (pTarget == nullptr)
-////            pTarget = pview->GetParentFrame();
+////            pTarget = pview->get_parent_frame();
 ////         if (pTarget != nullptr)
 ////            BaseControlExOnUpdateCmdUI(pTarget, wParam != FALSE);
 ////      }
@@ -665,7 +665,7 @@
 ////      for (; pwndIterator != nullptr; pwndIterator = pwndIterator->get_next_window())
 ////      {
 ////
-////         pwnd = pwndIterator->GetTopLevel();
+////         pwnd = pwndIterator->get_top_level();
 ////
 ////         pcontrolex = nullptr;
 ////
@@ -737,7 +737,7 @@
 ////         {
 ////            //xxx id idCommand = m_commandui.GetControlCommand(wParam & 0xffff);
 ////            //::user::command command(idCommand);
-////            //xxx get_window()->GetParentFrame()->_001SendCommand(&command);
+////            //xxx get_window()->get_parent_frame()->_001SendCommand(&command);
 ////         }
 ////
 ////#endif
@@ -803,7 +803,7 @@
 //   //   if (is_window_enabled())
 //   //   {
 //
-//   //      SCAST_PTR(::message::mouse, pmouse, pmessage);
+//   //      __pointer(::message::mouse) pmouse(pmessage);
 //
 //   //      auto point = screen_to_client(pmouse->m_point);
 //
@@ -955,7 +955,7 @@
 //   {
 //
 //      UNREFERENCED_PARAMETER(pmessage);
-//      //      SCAST_PTR(::message::key,pkey,pmessage);
+//      //      __pointer(::message::key) pkey(pmessage);
 //
 //
 //   }
@@ -964,7 +964,7 @@
 //   void control::_001OnEnable(::message::message * pmessage)
 //   {
 //
-//      SCAST_PTR(::message::enable, penable, pmessage);
+//      __pointer(::message::enable) penable(pmessage);
 //
 //      if (m_puiLabel != nullptr)
 //      {

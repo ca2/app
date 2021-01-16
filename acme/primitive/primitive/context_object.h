@@ -20,7 +20,7 @@ public:
    __pointer(::layered)             m_pobjectContext;
    ::id                             m_id;
    __pointer(::i64_array)           m_pia;
-   ::estatus                        m_estatus;
+   ::e_status                        m_estatus;
    __pointer(property_set)          m_pset;
    __pointer(matter_array)          m_pnotifya;
 
@@ -49,7 +49,7 @@ public:
    virtual void dump(dump_context & action_context) const override;
 
 
-   virtual ::estatus    initialize(::layered * pobjectContext) override;
+   virtual ::e_status    initialize(::layered * pobjectContext) override;
    virtual void         finalize() override;
 
 
@@ -64,7 +64,7 @@ public:
 
 
 
-   virtual ::estatus finish(::context_object * pcontextobjectFinish = nullptr) override;
+   virtual ::e_status finish(::context_object * pcontextobjectFinish = nullptr) override;
 
 
 
@@ -73,7 +73,7 @@ public:
 
 
    template < typename TYPE >
-   inline ::estatus __construct_new(__pointer(TYPE)& pbase);
+   inline ::e_status __construct_new(__pointer(TYPE)& pbase);
 
 
    virtual void keep_alive();
@@ -81,7 +81,7 @@ public:
    virtual bool is_alive();
 
 
-   virtual ::estatus operator()() override;
+   virtual ::e_status operator()() override;
 
 
    inline ::i64_array & idarray() const;
@@ -94,7 +94,7 @@ public:
    inline bool has_failed_status() const { return !is_status_ok(); }
 
 
-   virtual ::estatus run() override;
+   virtual ::e_status run() override;
 
 
    virtual ::object * source_channel();

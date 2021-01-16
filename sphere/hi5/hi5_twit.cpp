@@ -664,7 +664,7 @@ namespace hi5
 
          log_line(m_strError);
 
-         return ::type_new;
+         return ::e_type_new;
 
       }
 
@@ -728,7 +728,7 @@ namespace hi5
 
          log_line(m_strError);
 
-         return ::type_new;
+         return ::e_type_new;
 
       }
 

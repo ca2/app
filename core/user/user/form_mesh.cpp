@@ -60,9 +60,9 @@ namespace user
 
       if(pinteraction != nullptr)
       {
-         if(pinteraction->descriptor().has_function(::user::e_control_function_action))
+         if(pinteraction->has_function(::user::e_control_function_action))
          {
-            if(pinteraction->descriptor().get_control_type() == ::user::e_control_type_button)
+            if(pinteraction->get_control_type() == ::user::e_control_type_button)
             {
 
 
@@ -109,9 +109,9 @@ namespace user
 
       draw_mesh_item item(this);
 
-      item.m_iDisplayItem = _001DisplayToStrict(pinteraction->m_iEditItem);
-      item.m_iItem = pinteraction->m_iEditItem;
-      item.m_iSubItem = pinteraction->descriptor().m_iSubItem;
+      item.m_iDisplayItem = _001StrictToDisplay(pinteraction->m_iItem);
+      item.m_iItem = pinteraction->m_iItem;
+      item.m_iSubItem = pinteraction->m_iSubItem;
       item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
       item.m_iListItem = -1;
       _001GetElementRect(&item,::user::mesh::e_element_text);
@@ -179,7 +179,7 @@ namespace user
       if(pinteraction != nullptr)
       {
 
-         _001PlaceControl(pinteraction, pinteraction->m_iEditItem);
+         _001PlaceControl(pinteraction, pinteraction->m_iItem);
 
       }
 
@@ -203,7 +203,7 @@ namespace user
       if(pinteraction != nullptr)
       {
 
-         _001PlaceControl(pinteraction, pinteraction->m_iEditItem);
+         _001PlaceControl(pinteraction, pinteraction->m_iItem);
 
       }
 
@@ -244,7 +244,7 @@ namespace user
       user::Notify * pnotify = (user::Notify *) lparam;
 
 
-      switch(pinteraction->descriptor().get_type())
+      switch(pinteraction->get_type())
       {
       case e_control_type_edit:
       switch(pnotify->m_uiCode)
@@ -313,25 +313,13 @@ namespace user
 
       }
 
-      for(i32 i = 0; i < m_controldescriptorset.get_count(); i++)
+      for(auto pinteraction : proper_children())
       {
 
-         class ::user::control_descriptor & descriptor = m_controldescriptorset(i);
-
-         if(descriptor.m_econtroltype == e_control_type_edit  || descriptor.m_econtroltype == e_control_type_edit_plain_text)
+         if(pinteraction->m_econtroltype == e_control_type_edit  || pinteraction->m_econtroltype == e_control_type_edit_plain_text)
          {
 
-            for(auto pair : descriptor.m_controlmap)
-            {
-
-               if(pair.element2().is_set())
-               {
-
-                  pair.element2()->display(e_display_none);
-
-               }
-
-            }
+            pinteraction->display(e_display_none);
 
          }
 
@@ -342,23 +330,34 @@ namespace user
 
    void form_mesh::_001HideControl(::user::interaction * pinteraction)
    {
+
       pinteraction->display(e_display_none);
+
    }
 
 
    void form_mesh::_001OnKeyDown(::message::message * pmessage)
    {
-      SCAST_PTR(::message::key,pkey,pmessage);
+
+      __pointer(::message::key) pkey(pmessage);
 
       if(pkey->m_ekey == ::user::key_return)
       {
+
          _001SaveEdit(_001GetEditControl());
+
          _001HideEditingControls();
+
          pmessage->m_bRet = true;
+
          return;
+
       }
+
       pkey->previous();
+
    }
+
 
    void form_mesh::_001DrawSubItem(draw_mesh_item * pdrawitem)
    {
@@ -389,11 +388,11 @@ namespace user
    bool form_mesh::_001IsPointInside(::user::interaction * pinteraction,point64 point)
    {
 
-      if(pinteraction->m_pdescriptor != nullptr)
+      if(pinteraction != nullptr)
       {
 
-         if(pinteraction->m_pdescriptor->m_econtroltype == e_control_type_edit
-               || pinteraction->m_pdescriptor->m_econtroltype == e_control_type_edit_plain_text)
+         if(pinteraction->m_econtroltype == e_control_type_edit
+               || pinteraction->m_econtroltype == e_control_type_edit_plain_text)
          {
 
             if(pinteraction == _001GetEditControl())
@@ -422,7 +421,7 @@ namespace user
       draw_mesh_item item(this);
 
       return m_itemControl.is_set()
-         && m_itemControl.m_iSubItem == pinteraction->descriptor().m_iSubItem;
+         && m_itemControl.m_iSubItem == pinteraction->m_iSubItem;
 
       //i32 iEditItem;
       //i32 iEditSubItem;
@@ -433,7 +432,7 @@ namespace user
       //    item.m_iItem = pinteraction->m_iEditItem;
 //      item.m_iDisplayItem = DisplayToStrict(pinteraction->m_iEditItem);
 //
-//      item.m_iSubItem = pinteraction->descriptor().m_iSubItem;
+//      item.m_iSubItem = pinteraction->m_iSubItem;
 //      item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
 //      item.m_iListItem = -1;
 //      //_001GetElementRect(&item, ::user::mesh::element_sub_item);
@@ -456,7 +455,7 @@ namespace user
    //   {
    //      if(m_columna[i]->m_iControl >= 0 && m_columna[i]->m_iControl < m_controldescriptorset.get_size())
    //      {
-   //         class control_descriptor * pdescriptor = m_controldescriptorset.element_at(m_columna[i]->m_iControl);
+   //         ::user::interaction * pinteractionParent, const ::id & id = m_controldescriptorset.element_at(m_columna[i]->m_iControl);
    //         if(pdescriptor != nullptr)
    //         {
    //            if(m_columna[i]->m_iSubItem >= 0)
@@ -625,7 +624,7 @@ namespace user
 
       }
 
-      item.m_iSubItem = pinteraction->descriptor().m_iSubItem;
+      item.m_iSubItem = pinteraction->m_iSubItem;
 
       item.m_iOrder = _001MapSubItemToOrder(item.m_iSubItem);
 
@@ -686,19 +685,19 @@ namespace user
 
       sync_lock sl(mutex());
 
-      index iItem;
+      //index iItem;
 
-      index iSubItem;
+      //index iSubItem;
 
-      if(m_controldescriptorset.find_control(pinteraction,iItem,iSubItem))
-      {
+      //if(find_control(pinteraction,iItem,iSubItem))
+      //{
 
-         pinteraction->order(zorder_top);
-         
-         pinteraction->display();
-         //, nullptr, SWP_NOSIZE | SWP_NOMOVE);
+      //   pinteraction->order(zorder_top);
+      //   
+      //   pinteraction->display();
+      //   //, nullptr, SWP_NOSIZE | SWP_NOMOVE);
 
-      }
+      //}
 
       return true;
 
@@ -711,11 +710,11 @@ namespace user
 
       sync_lock sl(mutex());
 
-      index iItem;
+      //index iItem;
 
-      index iSubItem;
+      //index iSubItem;
 
-      if(m_controldescriptorset.find_control(pinteraction,iItem,iSubItem))
+      /*if(m_controldescriptorset.find_control(pinteraction,iItem,iSubItem))
       {
 
          __pointer(::user::plain_edit) pedit = pinteraction;
@@ -732,7 +731,7 @@ namespace user
 
          }
 
-      }
+      }*/
 
       return true;
 

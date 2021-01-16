@@ -11,6 +11,8 @@ namespace user
    static_control::static_control()
    {
 
+      m_econtroltype = e_control_type_static;
+
       m_etype = type_text;
 
       m_bLButtonDown = false;
@@ -37,7 +39,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer static_control::get_font(style * pstyle, enum_element eelement, estate estate) const
+   ::draw2d::font_pointer static_control::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (pstyle)
@@ -80,7 +82,7 @@ namespace user
    void static_control::_001OnCreate(::message::message * pmessage)
    {
 
-      descriptor().set_control_type(e_control_type_static);
+      //descriptor().set_control_type(e_control_type_static);
 
       pmessage->previous();
 
@@ -92,7 +94,7 @@ namespace user
    void static_control::_001OnLButtonDown(::message::message * pmessage)
    {
 
-//      SCAST_PTR(::message::mouse, pmouse, pmessage);
+//      __pointer(::message::mouse) pmouse(pmessage);
       UNREFERENCED_PARAMETER(pmessage);
 
       m_bLButtonDown = true;
@@ -103,7 +105,7 @@ namespace user
    void static_control::_001OnLButtonUp(::message::message * pmessage)
    {
 
-//      SCAST_PTR(::message::mouse, pmouse, pmessage);
+//      __pointer(::message::mouse) pmouse(pmessage);
       UNREFERENCED_PARAMETER(pmessage);
 
       if (m_bLButtonDown)
@@ -114,7 +116,7 @@ namespace user
          ::user::control_event ev;
          ev.m_puie = this;
          ev.m_eevent = ::user::e_event_button_clicked;
-         ev.m_actioncontext = ::source_user;
+         ev.m_actioncontext = ::e_source_user;
 
          on_control_event(&ev);
 
@@ -126,7 +128,7 @@ namespace user
    void static_control::_001OnMouseMove(::message::message * pmessage)
    {
 
-//      SCAST_PTR(::message::mouse, pmouse, pmessage);
+//      __pointer(::message::mouse) pmouse(pmessage);
       UNREFERENCED_PARAMETER(pmessage);
    }
 
@@ -134,7 +136,7 @@ namespace user
    void static_control::_001OnMouseLeave(::message::message * pmessage)
    {
 
-//      SCAST_PTR(::message::mouse, pleave, pmessage);
+//      __pointer(::message::mouse) pleave(pmessage);
       UNREFERENCED_PARAMETER(pmessage);
 
       m_bLButtonDown = false;

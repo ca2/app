@@ -415,7 +415,7 @@ namespace user
    void notify_icon::_001OnNotifyIconMessage(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       if (pbase->m_lparam == e_message_left_button_down)
       {

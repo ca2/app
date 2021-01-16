@@ -20,7 +20,7 @@ namespace userfs
    }
 
 
-   ::estatus document::initialize(::layered * pobjectContext)
+   ::e_status document::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::user::document::initialize(pobjectContext);
@@ -256,7 +256,7 @@ namespace userfs
 
       psubject->m_pfileitem = pitem;
 
-      psubject->m_actioncontext = context + ::source_sync;
+      psubject->m_actioncontext = context + ::e_source_sync;
 
       update_all_views(psubject);
 

@@ -594,7 +594,7 @@ namespace macos
    }
 
 
-   ::estatus os_context::create_service()
+   ::e_status os_context::create_service()
    {
 
       //    __throw(not_implemented());
@@ -647,7 +647,7 @@ namespace macos
    }
 
 
-   ::estatus os_context::remove_service()
+   ::e_status os_context::remove_service()
    {
       //   __throw(not_implemented());
       return false;
@@ -688,7 +688,7 @@ namespace macos
        */
    }
 
-   ::estatus os_context::start_service()
+   ::e_status os_context::start_service()
    {
       //  __throw(not_implemented());
       return false;
@@ -730,7 +730,7 @@ namespace macos
    }
 
 
-   ::estatus os_context::stop_service()
+   ::e_status os_context::stop_service()
    {
       //    __throw(not_implemented());
       return false;
@@ -1142,7 +1142,7 @@ namespace macos
    }
 
 
-   ::estatus os_context::link_open(string strUrl)
+   ::e_status os_context::link_open(string strUrl)
    {
 
       ns_main_async(^

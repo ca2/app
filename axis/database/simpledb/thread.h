@@ -29,7 +29,7 @@ namespace simpledb
       virtual ~thread() {}
 
 
-      virtual ::estatus     run() override;
+      virtual ::e_status     run() override;
 
       void queue(const char * pszKey, block block);
 

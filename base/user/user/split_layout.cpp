@@ -56,7 +56,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      //SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      //__pointer(::message::show_window) pshowwindow(pmessage);
 
       //bool bIsWindowVisible = pshowwindow->m_bShow;
 

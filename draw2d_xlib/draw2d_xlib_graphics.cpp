@@ -28,7 +28,7 @@ namespace draw2d_xlib
       m_etextrenderinghint  = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
 
       m_pfont.create(this);
-      m_pfont->m_strFontFamilyName = FONT_SANS;
+      m_pfont->m_strFontFamilyName = os_font_name(e_font_sans);
       m_pfont->m_dFontSize = 12.0;
 
 
@@ -1681,7 +1681,7 @@ namespace draw2d_xlib
          /* p::image_pointer pimage1(get_object());
                       pimage1 = create_image(rectText.size());
                       pimage1->Fill(0, 0, 0, 0);
-         //               pimage1->get_graphics()->set_color(m_crColor);
+         //               pimage1->get_graphics()->set_color(m_colorColor);
                       pimage1->get_graphics()->SelectObject(&get_current_font());
                       pimage1->get_graphics()->SetBkMode(TRANSPARENT);
                       pimage1->get_graphics()->text_out(0, 0, str);
@@ -5403,7 +5403,7 @@ namespace draw2d_xlib
       char * szmf;
 
       pfont->m_pft = XftFontOpen (m_pdc->m_pdisplay, m_pdc->m_iScreen,
-                                  XFT_FAMILY, XftTypeString, FONT_SANS,
+                                  XFT_FAMILY, XftTypeString, os_font_name(e_font_sans),
                                   pfont->m_eunitFontSize == ::draw2d::unit_point ? XFT_SIZE : XFT_PIXEL_SIZE, XftTypeDouble, pfont->m_dFontSize,
                                   nullptr);
 

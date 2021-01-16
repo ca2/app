@@ -86,10 +86,10 @@ void sn_start_context()
 
 
 
-//::estatus app_core::system_start()
+//::e_status app_core::system_start()
 //{
 //
-//   ::estatus estatus = system_pre_run();
+//   ::e_status estatus = system_pre_run();
 //
 //   if (!estatus)
 //   {
@@ -129,11 +129,11 @@ namespace apex
 {
 
 
-   ::estatus system::os_application_system_run()
+   ::e_status system::os_application_system_run()
    {
 
 
-      //   ::estatus estatus = psystem->begin_synch();
+      //   ::e_status estatus = psystem->begin_synch();
       //
       //   if(!estatus)
       //   {
@@ -172,10 +172,19 @@ namespace apex
 
 #endif
 
+      ::e_status estatus = ::success;
+
       if (m_bUser)
       {
 
-         init_x11();
+         estatus = defer_initialize_x11();
+
+         if(!estatus)
+         {
+
+            return estatus;
+
+         }
 
       }
 
@@ -283,7 +292,7 @@ void os_post_quit()
 
 }
 
-::estatus     run_runnable(::matter * pobjectTask);
+::e_status     run_runnable(::matter * pobjectTask);
 
 
 gboolean gdk_callback_run_runnable(gpointer pdata)

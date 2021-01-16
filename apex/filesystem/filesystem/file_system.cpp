@@ -14,7 +14,7 @@ file_system::~file_system()
 }
 
 
-::estatus file_system::initialize(::layered * pobjectContext)
+::e_status file_system::initialize(::layered * pobjectContext)
 {
    
    auto estatus = ::object::initialize(pobjectContext);
@@ -31,7 +31,7 @@ file_system::~file_system()
 }
 
 
-::estatus file_system::init_system()
+::e_status file_system::init_system()
 {
    
    auto estatus = update_module_path();
@@ -48,7 +48,7 @@ file_system::~file_system()
 }
 
 
-::estatus file_system::update_module_path()
+::e_status file_system::update_module_path()
 {
 
    return ::success;

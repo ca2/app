@@ -67,7 +67,7 @@ namespace user
    void elastic_slider::_001OnLButtonDown(::message::message * pmessage)
    {
       
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
       
       ::rect rect;
       
@@ -93,7 +93,7 @@ namespace user
 
    void elastic_slider::_001OnLButtonUp(::message::message * pmessage)
    {
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
       if(m_bSlide)
       {
 
@@ -107,7 +107,7 @@ namespace user
    void elastic_slider::_001OnMouseMove(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-//      SCAST_PTR(::message::mouse, pmouse, pmessage);
+//      __pointer(::message::mouse) pmouse(pmessage);
    }
 
    void elastic_slider::Slide()

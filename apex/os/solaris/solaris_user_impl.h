@@ -196,7 +196,7 @@ inline bool IsChild(oswindow oswindowParent, ::oswindow oswindowcandidateChildOr
    return oswindowParent->is_child(oswindowcandidateChildOrDescendant);
 }
 
-// inline oswindow GetParent(::oswindow oswindow)
+// inline oswindow get_parent(::oswindow oswindow)
 // {
 //    return oswindow->get_parent();
 // }

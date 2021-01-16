@@ -73,7 +73,7 @@ namespace data
    };
 
 
-   inline ::xml::node* __xml(::data::node* pnode) { return pnode->get_xml_node(); }
+   inline ::xml::node* __xml(::data::node* pnode) { return pnode == nullptr ? nullptr : pnode->get_xml_node(); }
 
 } // namespace acme
 

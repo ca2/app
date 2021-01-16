@@ -10,13 +10,15 @@ namespace draw2d_direct2d
 
       m_pthis = this;
       m_bMetroColor     = false;
-      m_crMetro         = 0;
+      m_colorMetro         = 0;
 
    }
 
 
    pen::~pen()
    {
+
+      destroy();
 
    }
 
@@ -34,7 +36,7 @@ namespace draw2d_direct2d
 
       auto pgraphics = __graphics(pgraphicsParam);
 
-      if((!m_bMetroColor || m_crMetro != m_color) || m_pbrush == nullptr)
+      if((!m_bMetroColor || m_colorMetro != m_color) || m_pbrush == nullptr)
       {
 
          D2D1_COLOR_F color;
@@ -48,7 +50,7 @@ namespace draw2d_direct2d
 
             m_osdata[0] = (ID2D1Brush *) m_pbrush.Get();
             
-            m_crMetro       = m_color;
+            m_colorMetro       = m_color;
 
             m_bMetroColor   = true;
             

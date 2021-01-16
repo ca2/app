@@ -130,16 +130,23 @@ CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
    if (!pmap->m_map.lookup(oswindow, pbase))
    {
 
-      auto pimpl = thread_value("wnd_init").cast < ::user::interaction_impl >();
+      auto ptask = ::get_task();
 
-      if (::is_set(pimpl))
+      if(::is_set(ptask))
       {
 
-         thread_value("wnd_init") = nullptr;
+         auto pimpl = ptask->value("wnd_init").cast<::user::interaction_impl>();
 
-         pimpl->attach(oswindow);
+         if (::is_set(pimpl))
+         {
 
-         return oswindow_interaction_impl(oswindow);
+            thread_value("wnd_init") = nullptr;
+
+            pimpl->attach(oswindow);
+
+            return oswindow_interaction_impl(oswindow);
+
+         }
 
       }
 
@@ -150,7 +157,6 @@ CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
    return dynamic_cast <::user::interaction_impl *>(pbase);
 
 }
-
 
 
 //CLASS_DECL_AURA string message_box_result_to_string(int iResult)

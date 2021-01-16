@@ -19,7 +19,7 @@ namespace graphics
    }
 
 
-   ::estatus double_buffer::initialize_graphics_graphics(::user::interaction_impl * pimpl)
+   ::e_status double_buffer::initialize_graphics_graphics(::user::interaction_impl * pimpl)
    {
 
       auto estatus = graphics::initialize_graphics_graphics(pimpl);
@@ -225,7 +225,7 @@ namespace graphics
 
          byte a = p[3];
 
-         ::output_debug_string("argb " +__str(r) + "," + __str(g) + "," +__str(b) + "," + __str(a));
+         //::output_debug_string("argb " +__str(r) + "," + __str(g) + "," +__str(b) + "," + __str(a));
 
       }
 

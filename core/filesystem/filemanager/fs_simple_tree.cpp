@@ -31,7 +31,7 @@ namespace filemanager
          }
 
 
-         ::estatus tree::initialize(::layered * pobjectContext)
+         ::e_status tree::initialize(::layered * pobjectContext)
          {
 
             auto estatus = ::user::tree_data::initialize(pobjectContext);

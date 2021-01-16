@@ -20,7 +20,7 @@ namespace sockets
       SetLineProtocol();
       m_bOk = false;
       m_bDirect = false;
-      m_estate = state_initial;
+      m_estate = e_state_initial;
       ///m_memoryBuf.set_size(1024 * 16);
       m_iProxyPort = -1;
 
@@ -59,7 +59,7 @@ namespace sockets
       }
       else
       {
-         if (m_estate == state_initial)
+         if (m_estate == e_state_initial)
          {
             string str;
             str.Format("CONNECT %s:%d HTTP/1.0\r\n", GetUrlHost().c_str(), (int)GetUrlPort());

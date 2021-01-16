@@ -548,10 +548,10 @@ namespace experience
 
       ::rect rectParentClient = rectAfter;
 
-      if(m_pframewindow->GetParent() != nullptr)
+      if(m_pframewindow->get_parent() != nullptr)
       {
 
-         m_pframewindow->GetParent()->_001ScreenToClient(rectParentClient);
+         m_pframewindow->get_parent()->_001ScreenToClient(rectParentClient);
 
       }
 

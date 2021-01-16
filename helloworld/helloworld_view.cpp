@@ -25,7 +25,7 @@ namespace helloworld
       m_flagNonClient.remove(non_client_background);
       m_flagNonClient.remove(non_client_focus_rect);
 
-      m_strNewFont = FONT_SANS;
+      m_strNewFont = os_font_name(e_font_sans);
 
       m_eeffect                  = effect_none;
 
@@ -83,7 +83,7 @@ namespace helloworld
    void view::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create,pcreate,pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
 
@@ -106,12 +106,12 @@ namespace helloworld
          if(GetTypedParent<::user::split_view>()->get_child_by_id("top_edit_view") != nullptr)
          {
 
-            GetTypedParent<::user::split_view>()->get_child_by_id("top_edit_view")->_001SetText(strText,::source_initialize);
+            GetTypedParent<::user::split_view>()->get_child_by_id("top_edit_view")->_001SetText(strText,::e_source_initialize);
 
 
-//            file_put_contents("C:\\dennisheazle\\ft.txt", __str((iptr)GetTopLevel()->get_handle()));
+//            file_put_contents("C:\\dennisheazle\\ft.txt", __str((iptr)get_top_level()->get_handle()));
 
-            //GetTypedParent<::user::split_view>()->get_child_by_id("top_edit_view")->_001SetText(__str((iptr)GetTopLevel()->get_handle()), ::source_initialize);
+            //GetTypedParent<::user::split_view>()->get_child_by_id("top_edit_view")->_001SetText(__str((iptr)get_top_level()->get_handle()), ::e_source_initialize);
 
 
          }

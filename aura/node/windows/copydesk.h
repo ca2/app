@@ -6,12 +6,15 @@ namespace windows
 
 
    class CLASS_DECL_AURA copydesk :
-      virtual public ::user::copydesk
+      virtual public ::user::copydesk,
+      virtual public ::user::message_queue
    {
    public:
 
 
-      HWND m_hwnd;
+      //HWND m_hwnd;
+
+      //__pointer(::user::interaction)      m_puserinteraction;
 
       /// negative value undefined
       ::count  m_cFileCount;
@@ -29,11 +32,17 @@ namespace windows
       virtual ~copydesk();
 
 
-      static LRESULT WINAPI WindowProc(HWND hwnd, ::u32 message, WPARAM wparam, LPARAM lparam);
+      //static LRESULT WINAPI WindowProc(HWND hwnd, ::u32 message, WPARAM wparam, LPARAM lparam);
+
+
+      DECL_GEN_SIGNAL(_001OnClipboardUpdate);
+      DECL_GEN_SIGNAL(_001OnDestroy);
+
+      virtual void install_message_routing(::channel * pchannel) override;
 
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
       virtual void finalize() override;
 
 

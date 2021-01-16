@@ -15,7 +15,7 @@ namespace user
       virtual ~validate();
 
 
-      virtual ::estatus Validate(string& strParam, ::user::control_descriptor* pdescriptor);
+      virtual ::e_status Validate(string& strParam, ::user::interaction * pinteraction);
 
 
 

@@ -8,30 +8,30 @@ class CLASS_DECL_BASE simple_frame_window :
 public:
 
 
-   bool                                            m_bFramePayloadFlags;
-   bool                                            m_bProdevianFrame;
+   bool                                            m_bDefaultNotifyIcon : 1;
+   bool                                            m_bShowTask : 1;
+   bool                                            m_bFramePayloadFlags : 1;
+   bool                                            m_bProdevianFrame : 1;
+   bool                                            m_bFirstShow : 1;
+   bool                                            m_bPendingSaveWindowRect : 1;
+   bool                                            m_bDefaultCreateToolbar : 1;
+   bool                                            m_bTransparentFrameEnable : 1;
+   bool                                            m_bCustomFrameBefore : 1;
    __pointer(::user::tool_window)                  m_ptoolwindowFont;
-   bool                                            m_bFirstShow;
-   millis                                            m_millisLastSaveWindowRect;
-   millis                                            m_millisLastSaveWindowRectRequest;
-   bool                                            m_bPendingSaveWindowRect;
-   bool                                            m_bDefaultCreateToolbar;
-   bool                                            m_bTransparentFrameEnable;
+   millis                                          m_millisLastSaveWindowRect;
+   millis                                          m_millisLastSaveWindowRectRequest;
    ::image_pointer                                 m_pimageBk;
-   bool                                            m_bCustomFrameBefore;
    ::rect                                          m_FullScreenWindowRect;
    draw2d::fastblur                                m_blur;
    ::image_pointer                                 m_pimageBlur;
-   ::user::enum_translucency                          m_etranslucencyFrame;
+   ::user::enum_translucency                       m_etranslucencyFrame;
    map < ::id, const ::id &, __composite(::user::toolbar) >
                                                    m_toolbarmap;
    ::image_pointer                                 m_pimageAlpha;
    ::database::key                                 m_datakeyFrame;
-   bool                                            m_bDefaultNotifyIcon;
-   bool                                            m_bShowTask;
    __pointer(::draw2d::icon)                       m_piconNotify;
    __pointer(::user::notify_icon)                  m_pnotifyicon;
-   payload                                             m_varFrame;
+   payload                                         m_varFrame;
 
 
    simple_frame_window();
@@ -40,7 +40,7 @@ public:
 
 
 
-   virtual ::estatus initialize(::layered * pobjectContext) override;
+   virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
    virtual ::user::enum_translucency get_translucency(::user::style* pstyle) const override;
@@ -71,7 +71,7 @@ public:
    virtual void install_message_routing(::channel * pchannel) override;
 
    virtual bool on_before_set_parent(__pointer(::user::interaction) pframewindow);
-   virtual bool on_set_parent(::user::interaction * puiParent) override;
+   virtual bool on_set_parent(::user::primitive * puiParent) override;
    virtual void on_after_set_parent() override;
 
    virtual bool get_client_rect(RECT32 * prect);

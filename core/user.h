@@ -13,7 +13,7 @@ namespace graphics
 
 
 
-#define WM_SIZEPARENT       0x0361  // lParam = &__SIZEPARENTPARAMS
+#define e_message_size_parent       0x0361  // lParam = &__SIZEPARENTPARAMS
 
 
 

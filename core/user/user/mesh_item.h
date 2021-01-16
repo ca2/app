@@ -21,13 +21,13 @@ namespace user
       index           m_iOrder;
       index           m_iSubItem;
       index           m_iListItem;
-      string                  m_strText;
-      color32_t                m_crText;
-      color32_t                m_crTextBackground;
-      color32_t                m_crItemBackground;
-      i32                     m_iState;
+      string          m_strText;
+      ::color         m_colorText;
+      ::color         m_colorTextBackground;
+      ::color         m_colorItemBackground;
+      i32             m_iState;
       index           m_iImage;
-      bool                    m_bOk;
+      bool            m_bOk;
 
       index          m_iGroupTopDisplayIndex;
       ::count        m_iGroupCount;
@@ -89,7 +89,7 @@ namespace user
       void draw_text();
 
 
-      ::user::estate get_user_state() const;
+      ::user::enum_state get_user_state() const;
 
 
    };

@@ -46,7 +46,7 @@ namespace axis
       virtual ~application();
 
 
-      virtual ::estatus     initialize(::layered * pobjectContext) override;
+      virtual ::e_status     initialize(::layered * pobjectContext) override;
 
 
       virtual void assert_valid() const override;
@@ -59,7 +59,7 @@ namespace axis
       //virtual bool app_data_set(const ::id & id, object & obj) override;
       //virtual bool app_data_get(const ::id & id, object & obj) override;
 
-//      virtual ::estatus     interactive_credentials(::account::credentials * pcredentials) override;
+//      virtual ::e_status     interactive_credentials(::account::credentials * pcredentials) override;
 
       virtual string calc_data_key() override;
 
@@ -81,32 +81,32 @@ namespace axis
       virtual ::database::server * dataserver();
 
 
-      virtual ::estatus verb() override;
+      virtual ::e_status verb() override;
 
 
       virtual bool Ex2OnAppInstall() override;
       virtual bool Ex2OnAppUninstall() override;
 
-      virtual ::estatus init_application() override;
+      virtual ::e_status init_application() override;
 
-      virtual ::estatus init1() override;
-      virtual ::estatus init2() override;
-      virtual ::estatus init3() override;
-
-
-      virtual ::estatus init() override;
+      virtual ::e_status init1() override;
+      virtual ::e_status init2() override;
+      virtual ::e_status init3() override;
 
 
-      virtual ::estatus init_instance() override;
+      virtual ::e_status init() override;
 
 
-      virtual ::estatus     run() override;
-      virtual ::estatus     main() override;
-      virtual ::estatus     on_run() override;
+      virtual ::e_status init_instance() override;
 
-      virtual ::estatus application_pre_run() override;
+
+      virtual ::e_status     run() override;
+      virtual ::e_status     main() override;
+      virtual ::e_status     on_run() override;
+
+      virtual ::e_status application_pre_run() override;
       //virtual bool initial_check_directrix() override;
-      virtual ::estatus os_native_bergedge_start() override;
+      virtual ::e_status os_native_bergedge_start() override;
 
 
 
@@ -188,7 +188,7 @@ namespace axis
 
 
 
-      virtual ::estatus process_init() override;
+      virtual ::e_status process_init() override;
 
 
 

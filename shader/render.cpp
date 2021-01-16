@@ -28,7 +28,7 @@ namespace app_shader
    }
 
 
-   ::estatus render::initialize(::layered * pobjectContext)
+   ::e_status render::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -146,7 +146,7 @@ namespace app_shader
    }
 
 
-   ::estatus render::update_shader()
+   ::e_status render::update_shader()
    {
 
       m_bUpdateShader = true;
@@ -171,10 +171,10 @@ namespace app_shader
    }
 
 
-   ::estatus render::_update_shader()
+   ::e_status render::_update_shader()
    {
 
-      ::estatus estatus = ::success_none;
+      ::e_status estatus = ::success_none;
 
       if(m_strProjection.is_empty())
       {

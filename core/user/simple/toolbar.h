@@ -76,10 +76,10 @@ public:
    //virtual void OnUpdateHover();
    void SetItemImage(index iItem, index iImage);
    void GetButtonText(index i, string & str);
-   //void SetButtonStyle(index nIndex, const cflag < ::enum_toolbar_item_style > & nStyle);
-   //cflag < ::enum_toolbar_item_style > GetButtonStyle(index iButton);
-   //bool SetItemStyle(index iItem, const cflag < ::enum_toolbar_item_style > & bStyle);
-   //cflag < ::enum_toolbar_item_style > GetItemStyle(index iItem);
+   //void SetButtonStyle(index nIndex, const enumeration < ::enum_toolbar_item_style > & nStyle);
+   //enumeration < ::enum_toolbar_item_style > GetButtonStyle(index iButton);
+   //bool SetItemStyle(index iItem, const enumeration < ::enum_toolbar_item_style > & bStyle);
+   //enumeration < ::enum_toolbar_item_style > GetItemStyle(index iItem);
    void _001SetImageList(__pointer(::image_list) imagelist);
    void _001DiscardImageList();
    virtual bool on_click(const ::user::item & item) override;
@@ -106,7 +106,7 @@ public:
 //  virtual bool _001GetItemRect(index iItem,RECT32 * prect)
 
    virtual bool _001GetElementRect(index iItem,RECT32 * prect, ::user::enum_element eelement,
-                                   ::user::estate estate) override;
+                                   ::user::enum_state estate) override;
 
 
 

@@ -22,7 +22,7 @@ namespace coreimage_imaging
 {
 
 
-   ::estatus context_image::_load_image(::image * pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
+   ::e_status context_image::_load_image(::image * pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
    {
 
       if(!pmemory || pmemory->is_empty())
@@ -164,7 +164,7 @@ namespace coreimage_imaging
 
                p->m_rect.bottom = h;
 
-               p->m_crTransparent = 0;
+               p->m_colorTransparent = 0;
 
                p->m_bTransparent = false;
 

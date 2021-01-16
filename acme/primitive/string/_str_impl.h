@@ -1321,7 +1321,7 @@ namespace str
 //inline void string_format::defer_get_additional_argument(const ansichar * & s, const T & value, Args... args)
 //{
 //
-//   if(m_estate == state_initial || m_estate == state_parse_precision || m_estate == state_parse_length)
+//   if(m_estate == e_state_initial || m_estate == state_parse_precision || m_estate == state_parse_length)
 //   {
 //
 //      if(!parse(s))
@@ -1329,7 +1329,7 @@ namespace str
 //
 //         ::str::format_type(this, value);
 //
-//         m_estate = state_initial;
+//         m_estate = e_state_initial;
 //
 //         format(s, args...);
 //

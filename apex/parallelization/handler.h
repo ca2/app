@@ -22,14 +22,14 @@ public:
    virtual ~handler_manager();
 
 
-   virtual ::estatus set_finish_composites(::context_object * pcontextobjectFinish) override;
+   virtual ::e_status set_finish_composites(::context_object * pcontextobjectFinish) override;
 
 
-   ::estatus async(const ::promise::routine & routine);
-   ::estatus sync(const ::promise::routine & routine);
+   ::e_status async(const ::promise::routine & routine);
+   ::e_status sync(const ::promise::routine & routine);
 
 
-   ::estatus handle(const ::promise::routine & routine, bool bSync);
+   ::e_status handle(const ::promise::routine & routine, bool bSync);
 
 
    ::promise::routine pick_new_task();

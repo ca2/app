@@ -91,6 +91,7 @@ list(APPEND apex_source
    database/stringhelper.h
    filesystem/file/_.h
    filesystem/file/_data.h
+   filesystem/file/_file.h
    filesystem/file/edit_file.cpp
    filesystem/file/edit_file.h
    filesystem/file/html_file.cpp
@@ -256,10 +257,11 @@ list(APPEND apex_source
    net/sockets/base/base_socket_handler.cpp
    net/sockets/base/base_socket_handler.h
    net/sockets/bsd/basic/_.h
+   net/sockets/bsd/basic/basic_net.cpp
    net/sockets/bsd/basic/listen_socket.cpp
    net/sockets/bsd/basic/listen_socket.h
-   net/sockets/bsd/basic/net.cpp
-   net/sockets/bsd/basic/net.h
+   #net/sockets/bsd/basic/net.cpp
+   #net/sockets/bsd/basic/net.h
    net/sockets/bsd/basic/sctp_socket.cpp
    net/sockets/bsd/basic/sctp_socket.h
    net/sockets/bsd/basic/socket.cpp
@@ -446,8 +448,8 @@ list(APPEND apex_source
    platform/context.h
    platform/context_thread.cpp
    platform/context_thread.h
-   platform/debug.cpp
-   platform/debug.h
+   #platform/debug.cpp
+   #platform/debug.h
    platform/definition.h
    platform/department.cpp
    platform/department.h
@@ -499,8 +501,8 @@ list(APPEND apex_source
    platform/simple_app.h
    platform/simple_log.cpp
    platform/simple_log.h
-   platform/simple_trace.cpp
-   platform/simple_trace.h
+   ../acme/platform/simple_trace.cpp
+   ../acme/platform/simple_trace.h
    platform/static_setup.cpp
    platform/static_setup.h
    platform/static_start.cpp
@@ -510,11 +512,10 @@ list(APPEND apex_source
    platform/str_context.h
    platform/system.cpp
    platform/system.h
-   platform/system_trace.cpp
    platform/text.cpp
    platform/thread_set.h
-   platform/trace.cpp
-   platform/trace.h
+   ../acme/platform/trace.cpp
+   ../acme/platform/trace.h
    primitive/data/_.h
    primitive/data/_data.h
    primitive/data/_impl.h
@@ -1340,7 +1341,7 @@ else ()
 endif ()
 
 
-add_library(apex SHARED ${apex_source} filesystem/file/_file.h)
+add_library(apex SHARED ${apex_source})
 
 target_precompile_headers(apex PRIVATE framework.h)
 
@@ -1365,7 +1366,7 @@ elseif (LINUX)
    #target_compile_options(apex PRIVATE -std=c++14)
    #target_link_options(apex PRIVATE ${GTK_LDFLAGS})
    target_link_options(apex PRIVATE -Wl,-rpath=\$ORIGIN)
-   target_link_libraries(apex PRIVATE dl pthread idn z)
+   target_link_libraries(apex PRIVATE dl pthread idn z X11)
    target_link_libraries(apex PRIVATE ${PKGCONFIG_LIBRARIES})
    target_link_libraries(apex PRIVATE acme)
    target_link_options(apex PRIVATE -Wl,-z,defs)

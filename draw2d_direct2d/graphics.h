@@ -30,7 +30,6 @@ namespace draw2d_direct2d
 
       };
 
-
       Microsoft::WRL::ComPtr<ID2D1DeviceContext>         m_pdevicecontext; // 0
       Microsoft::WRL::ComPtr<ID2D1RenderTarget>          m_prendertarget; // 1
       Microsoft::WRL::ComPtr<ID2D1BitmapRenderTarget>    m_pbitmaprendertarget; // 2
@@ -58,7 +57,7 @@ namespace draw2d_direct2d
       bool                                               m_bPrinting;
 
       HDC                                                m_hdcAttach;
-      ::draw2d::enum_alpha_mode                             m_ealphamodeDevice;
+      ::draw2d::enum_alpha_mode                          m_ealphamodeDevice;
 
 
       graphics();
@@ -71,8 +70,10 @@ namespace draw2d_direct2d
       bool IsPrinting() override;            // TRUE if being used for printing
 
       
+      virtual bool on_begin_draw() override;
+
       using ::draw2d::graphics::set;
-      virtual ::estatus graphics::set(::draw2d::bitmap* pbitmap) override;
+      virtual ::e_status graphics::set(::draw2d::bitmap* pbitmap) override;
 
 
       oswindow get_window_handle();
@@ -142,11 +143,11 @@ namespace draw2d_direct2d
   //                    int (CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData) override;
 
       //virtual ::draw2d::object* set_stock_object(int nIndex) override;
-      //virtual ::estatus set(::draw2d::font * pfont) override;
-      //virtual ::estatus set(::draw2d::pen* pPen) override;
-      //virtual ::estatus set(::draw2d::brush* pBrush) override;
-      //virtual ::estatus set(::draw2d::font* pFont) override;
-      //virtual ::estatus set(::draw2d::bitmap* pBitmap) override;
+      //virtual ::e_status set(::draw2d::font * pfont) override;
+      //virtual ::e_status set(::draw2d::pen* pPen) override;
+      //virtual ::e_status set(::draw2d::brush* pBrush) override;
+      //virtual ::e_status set(::draw2d::font* pFont) override;
+      //virtual ::e_status set(::draw2d::bitmap* pBitmap) override;
       //virtual i32 SelectObject(::draw2d::region* pRgn) override;       // special return for regions
       //::draw2d::object* SelectObject(::draw2d::object* pObject) override;
       // ::draw2d::object* provided so compiler doesn't use SelectObject(HGDIOBJ)
@@ -184,7 +185,7 @@ namespace draw2d_direct2d
       virtual bool _get(::draw2d::matrix & matrix) override;
       virtual bool _set(const ::draw2d::matrix & matrix) override;
 
-      virtual ::estatus clear_current_point() override;
+      virtual ::e_status clear_current_point() override;
 
       virtual bool draw_path(::draw2d::path * ppath) override;
       virtual bool fill_path(::draw2d::path * ppath) override;
@@ -252,14 +253,14 @@ namespace draw2d_direct2d
       virtual int GetClipBox(RECT32 * prect) override;
 
 
-      virtual ::estatus add_shapes(const shape_array& shapea);
-      virtual ::estatus reset_clip();
-      virtual ::estatus intersect_clip(const ::rect& rect);
-      virtual ::estatus intersect_clip(const ::rectd& rect);
-      virtual ::estatus intersect_clip(const ::oval& oval);
-      virtual ::estatus intersect_clip(const ::ovald& oval);
-      virtual ::estatus intersect_clip(const ::polygon& polygon);
-      virtual ::estatus intersect_clip(const ::polygond& polygon);
+      virtual ::e_status add_shapes(const shape_array& shapea);
+      virtual ::e_status reset_clip();
+      virtual ::e_status intersect_clip(const ::rect& rect);
+      virtual ::e_status intersect_clip(const ::rectd& rect);
+      virtual ::e_status intersect_clip(const ::oval& oval);
+      virtual ::e_status intersect_clip(const ::ovald& oval);
+      virtual ::e_status intersect_clip(const ::polygon& polygon);
+      virtual ::e_status intersect_clip(const ::polygond& polygon);
 
       //virtual bool PtVisible(int x, int y) override;
       //bool PtVisible(const ::point & point) override;
@@ -574,6 +575,9 @@ namespace draw2d_direct2d
 
       virtual void enum_fonts(::draw2d::font_enum_item_array & itema) override;
 
+//#ifdef _UWP
+//      virtual void set_direct2d_plugin(::draw2d_direct2d::plugin * pplugin);
+//#endif
 
       //virtual bool update_window(::image* pimage) override;
 
@@ -581,13 +585,6 @@ namespace draw2d_direct2d
 
 
 } // namespace draw2d_direct2d
-
-
-
-
-
-
-
 
 
 

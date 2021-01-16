@@ -55,7 +55,7 @@ namespace promise
 
       virtual ::promise::context * context(::matter *pmatter);
 
-      virtual ::estatus run() override;
+      virtual ::e_status run() override;
 
       void post_destroy_all();
 

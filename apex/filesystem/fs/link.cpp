@@ -18,7 +18,7 @@ namespace fs
    }
 
 
-   ::estatus link::initialize(::layered* pobjectContext) 
+   ::e_status link::initialize(::layered* pobjectContext) 
    {
 
       auto estatus = ::fs::native::initialize(pobjectContext);

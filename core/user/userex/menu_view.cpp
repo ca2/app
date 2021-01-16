@@ -35,10 +35,10 @@ void menu_view::on_control_event(::user::control_event * pevent)
 
    }
 
-   if(GetParent() != nullptr)
+   if(get_parent() != nullptr)
    {
 
-      GetParent()->on_control_event(pevent);
+      get_parent()->on_control_event(pevent);
 
       if(pevent->m_bRet)
       {
@@ -104,7 +104,7 @@ void menu_view::_001OnTimer(::timer * ptimer)
 
       KillTimer(24);
 
-      GetTopLevelFrame()->EndModalLoop(e_dialog_result_ok);
+      top_level_frame()->EndModalLoop(e_dialog_result_ok);
 
    }
 
@@ -113,10 +113,10 @@ void menu_view::_001OnTimer(::timer * ptimer)
 
 //void menu_view::_001OnUser123(::message::message * pmessage)
 //{
-//   SCAST_PTR(::message::base, pbase, pmessage);
+//   __pointer(::message::base) pbase(pmessage);
 //   if(pbase->m_wparam == 0x80000001)
 //   {
-//      GetTopLevel()->EndModalLoop(e_dialog_result_ok);
+//      get_top_level()->EndModalLoop(e_dialog_result_ok);
 //      return;
 //   }
 //   if(m_pcallback != nullptr)

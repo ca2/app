@@ -77,10 +77,10 @@ void sn_start_context()
 
 
 
-//::estatus app_core::system_start()
+//::e_status app_core::system_start()
 //{
 //
-//   ::estatus estatus = system_pre_run();
+//   ::e_status estatus = system_pre_run();
 //
 //   if (!estatus)
 //   {
@@ -113,10 +113,10 @@ void sn_start_context()
 //}
 
 
-::estatus os_application_system_run(::aura::system * psystem)
+::e_status os_application_system_run(::aura::system * psystem)
 {
 
-//   ::estatus estatus = psystem->begin_synch();
+//   ::e_status estatus = psystem->begin_synch();
 //
 //   if(!estatus)
 //   {
@@ -232,7 +232,7 @@ void os_post_quit()
 
 }
 
-::estatus     run_runnable(::matter * pobjectTask);
+::e_status     run_runnable(::matter * pobjectTask);
 
 
 gboolean gdk_callback_run_runnable(gpointer pdata)

@@ -32,15 +32,15 @@ namespace sqlite
       //virtual __pointer(::database::dataset) dataset() override;
       virtual ::database::e_connection connection_status() override;
 
-      virtual ::estatus     set_error_code(i32 iErrorCode) override;
+      virtual ::e_status     set_error_code(i32 iErrorCode) override;
 
       virtual void * get_handle() override;
       virtual string get_error_message() override;
 
-      virtual ::estatus     _connect() override;
+      virtual ::e_status     _connect() override;
       virtual void disconnect() override;
-      virtual ::estatus     create() override;
-      virtual ::estatus     drop() override;
+      virtual ::e_status     create() override;
+      virtual ::e_status     drop() override;
 
 
 

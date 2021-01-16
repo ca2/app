@@ -29,7 +29,7 @@ namespace aqua
    }
 
 
-   ::estatus application::initialize(::layered * pobjectContext)
+   ::e_status application::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::apex::application::initialize(pobjectContext);
@@ -42,6 +42,21 @@ namespace aqua
       }
 
       return estatus;
+
+   }
+
+
+   void application::_001OnFranceExit()
+   {
+
+      if (System.m_pmultimedia)
+      {
+
+         System.m_pmultimedia->_001OnFranceExit();
+
+      }
+
+      ::apex::application::_001OnFranceExit();
 
    }
 

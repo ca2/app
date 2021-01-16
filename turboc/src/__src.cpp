@@ -12,8 +12,8 @@
 #include "fnkeys.h"
 
 
-//O volume na unidade Z � eco
-// O N�mero de S�rie do Volume � 4A91-94E4
+//O volume na unidade Z  eco
+// O Nmero de Srie do Volume  4A91-94E4
 //
 // Pasta de Z:\ca2\app\turboc\src
 
@@ -116,4 +116,4 @@
 #include "_setcursortype..cpp"
 //2015-01-09  17:45                 0 _src.cpp"
 //              97 arquivo(s)        244.815 bytes
-//               0 pasta(s)   68.345.704.448 bytes dispon�veis
+//               0 pasta(s)   68.345.704.448 bytes disponveis

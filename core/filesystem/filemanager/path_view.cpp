@@ -57,7 +57,7 @@ namespace filemanager
 
       }
 
-      _001SetText(filemanager_item()->get_user_path(), ::source_sync);
+      _001SetText(filemanager_item()->get_user_path(), ::e_source_sync);
 
    }
 
@@ -97,7 +97,7 @@ namespace filemanager
          if (strPreviousPath != strPath)
          {
 
-            filemanager_document()->browse(str, context + ::source_sync);
+            filemanager_document()->browse(str, context + ::e_source_sync);
 
          }
 
@@ -124,7 +124,7 @@ namespace filemanager
 
                   __keep(m_bVoidSync);
 
-                  filemanager_document()->browse(pathAddress, context + ::source_sync);
+                  filemanager_document()->browse(pathAddress, context + ::e_source_sync);
 
                }
 

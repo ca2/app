@@ -8,7 +8,7 @@
 XfplayerViewLineSelection::XfplayerViewLineSelection()
 {
 
-   m_estate = state_initial;
+   m_estate = e_state_initial;
 
 }
 
@@ -21,7 +21,7 @@ XfplayerViewLineSelection::~XfplayerViewLineSelection()
 
 void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::message::message * pmessage)
 {
-   SCAST_PTR(::message::base, pbase, pmessage);
+   __pointer(::message::base) pbase(pmessage);
 
    ::u32 message;
 
@@ -205,7 +205,7 @@ void XfplayerViewLineSelection::OnSelEvent(xfplayer_view_line & viewline, Xfplay
       m_item.GetLineEnd(),
       m_item.GetCharStart(),
       m_item.GetCharEnd(), false);
-      m_estate = state_initial;
+      m_estate = e_state_initial;
       //      viewline.GetTemplate()->OnSelEnd(&viewline);
 
       break;
@@ -653,7 +653,7 @@ bool XfplayerViewLineSelection::OnLButtonUp(xfplayer_view_line & viewline, ::u32
       }
    }
    if(GetState() == StateTracking)
-      m_estate = state_initial;
+      m_estate = e_state_initial;
    return false;
 }
 

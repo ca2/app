@@ -58,15 +58,15 @@ namespace linux
       bool operator==(const ::user::interaction_impl& wnd) const;
       bool operator!=(const ::user::interaction_impl& wnd) const;
 
-      ::u32 GetStyle() const override;
-      ::u32 GetExStyle() const override;
+//      ::u32 GetStyle() const override;
+      //::u32 GetExStyle() const override;
       bool ModifyStyle(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags = 0) override;
       bool ModifyStyleEx(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags = 0) override;
 
-      virtual ::estatus set_tool_window(bool bSet = true) override;
+      virtual ::e_status set_tool_window(bool bSet = true) override;
 
-      //virtual ::user::interaction * GetOwner();
-      virtual void set_owner(::user::interaction * pOwnerWnd) override;
+      //virtual ::user::interaction * get_owner();
+      virtual ::user::primitive * set_owner(::user::primitive * pprimitiveOwner) override;
 
       virtual oswindow get_handle() const override;
 
@@ -353,8 +353,8 @@ namespace linux
       //virtual bool SetCapture(::user::interaction * pinterface = nullptr) override;
       //virtual bool ReleaseCapture() override;
       //virtual ::user::interaction * get_capture();
-      virtual ::user::interaction * GetFocus() override;
-      virtual bool SetFocus() override;
+      virtual ::user::interaction * get_keyboard_focus() override;
+      virtual ::e_status set_keyboard_focus() override;
 
       static::user::interaction * get_desktop_window();
 
@@ -433,7 +433,7 @@ namespace linux
 //      virtual ::user::interaction * GetWindow(::u32 nCmd);
 //
 //      virtual bool IsChild(::user::interaction *  pWnd);
-//      virtual ::user::interaction * GetParent();
+//      virtual ::user::interaction * get_parent();
 //      using ::user::interaction_impl::SetParent;
 //      ::user::interaction * SetParent(::user::interaction * pWndNewParent);
 //      static::user::interaction * PASCAL oswindowFromPoint(const ::point & point);
@@ -468,8 +468,8 @@ namespace linux
 
       //static void get_app_wnda(user::oswindow_array & wnda);
 
-      virtual iptr get_window_long_ptr(i32 nIndex) const override;
-      virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
+      //virtual iptr get_window_long_ptr(i32 nIndex) const override;
+      //virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
 
       //void _001OnTriggerMouseInside();
 

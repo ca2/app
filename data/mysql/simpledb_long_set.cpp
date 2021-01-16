@@ -204,7 +204,7 @@ db_long_set::~db_long_set()
 
 }
 
-// Adiciona na matriz System nomes dos diret�rios de imagens.
+// Adiciona na matriz System nomes dos diretrios de imagens.
 bool db_long_set::load(const char * lpKey, i64 * plValue)
 {
 

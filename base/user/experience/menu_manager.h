@@ -16,7 +16,7 @@ namespace experience
 
          enum States
          {
-            state_initial = 0,
+            e_state_initial = 0,
             StateMBDown = 1 // MOUSE BUtton down
          };
 

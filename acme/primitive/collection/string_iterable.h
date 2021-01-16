@@ -190,7 +190,7 @@ typename ITERABLE::iterator string_iterable < ITERABLE >::add(const payload & pa
    {
       return end();
    }
-   else if (payload.get_type() == ::type_stra)
+   else if (payload.get_type() == ::e_type_stra)
    {
       ::papaya::array::add(*this, payload.stra());
    }
@@ -205,14 +205,14 @@ typename ITERABLE::iterator string_iterable < ITERABLE >::add(const payload & pa
          add((Type) payload.vara()[i].get_string());
       }
    }
-   else if (payload.get_type() == ::type_inta)
+   else if (payload.get_type() == ::e_type_inta)
    {
       for (i32 i = 0; i < payload.inta().get_count(); i++)
       {
          add((Type) __str(payload.inta()[i]));
       }
    }
-   else if (payload.get_type() == ::type_propset)
+   else if (payload.get_type() == ::e_type_propset)
    {
       for (auto assoc : payload.propset())
       {

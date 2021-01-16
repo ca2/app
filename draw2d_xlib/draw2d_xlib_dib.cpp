@@ -2583,7 +2583,7 @@ namespace draw2d_xlib
    bool image::print_window(::user::user::interaction_impl * pwnd, ::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       if(pbase->m_wparam == nullptr)
          return false;

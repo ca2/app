@@ -31,7 +31,7 @@ namespace user
 
 
 
-      virtual ::estatus set_notify_user_interaction(::user::interaction* puserinteractionNotify);
+      virtual ::e_status set_notify_user_interaction(::user::interaction* puserinteractionNotify);
 
 
 
@@ -77,7 +77,7 @@ namespace user
 
       __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument = nullptr, ::user::interaction * pwndParent = nullptr, ::id id = ::id(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);
 
-      virtual ::estatus initialize_view(::user::document * pdocument);
+      virtual ::e_status initialize_view(::user::document * pdocument);
 
       template < class VIEW >
       __pointer(VIEW) create_view(::user::document * pdocument = nullptr, ::user::interaction * pwndParent = nullptr,::id id = ::id(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
@@ -228,7 +228,7 @@ namespace user
       }
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override
+      virtual ::e_status initialize(::layered * pobjectContext) override
       {
 
          auto estatus = ::user::impact::initialize(pobjectContext);
@@ -360,7 +360,7 @@ namespace user
 
          }
 
-         ::user::interaction * puiParent = GetParent();
+         ::user::interaction * puiParent = get_parent();
 
          if (puiParent != nullptr)
          {

@@ -17,6 +17,8 @@ namespace user
          style_image
       };
 
+
+      ::draw2d::font_pointer              m_pfont;
       ::image_pointer                     m_pimage;          // not pressed default bitmap
       //::rect                              m_rectMargin;
       //::rect                              m_rectBorder;
@@ -40,9 +42,9 @@ namespace user
 
       virtual bool has_link() const override;
 
-      virtual bool create_control(class control_descriptor * pdescriptor) override;
+      virtual bool create_control(::user::interaction * pinteractionParent, const ::id & id) override;
 
-      virtual ::draw2d::font_pointer get_font(style * pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
+      virtual ::draw2d::font_pointer get_font(style * pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) const override;
 
       virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics) override;
 
@@ -57,6 +59,9 @@ namespace user
       //virtual ::enum_check _001GetCheck() override;
 
       //virtual bool is_pressed();
+
+      //virtual ::draw2d::font_pointer get_font(style * pstyle, enum_element eelement, estate estate = e_state_none) const;
+
 
 
       //virtual void on_hit_test(::user::item & item) override;

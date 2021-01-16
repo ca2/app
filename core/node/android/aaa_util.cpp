@@ -99,7 +99,7 @@ void CLASS_DECL_lnx AfxcancelModes(oswindow hWndRcvr)
    if (!_AfxIsComboBoxControl(hWndcancel, (::u32)CBS_DROPDOWNLIST))
    {
       // check as a dropdown
-      hWndcancel = ::GetParent(hWndcancel);   // parent of edit is combo
+      hWndcancel = ::get_parent(hWndcancel);   // parent of edit is combo
       if (hWndcancel == hWndRcvr)
          return;     // let input go to part of combo
 
@@ -110,7 +110,7 @@ void CLASS_DECL_lnx AfxcancelModes(oswindow hWndRcvr)
    // combo-box is active, but if receiver is a popup, do nothing
    if (hWndRcvr != nullptr &&
      (::GetWindowLong(hWndRcvr, GWL_STYLE) & WS_CHILD) != 0 &&
-     ::GetParent(hWndRcvr) == ::get_desktop_window())
+     ::get_parent(hWndRcvr) == ::get_desktop_window())
       return;
 
    // finally, we should cancel the mode!

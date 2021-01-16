@@ -50,7 +50,7 @@ void matter::dump(dump_context & dumpcontext) const
 }
 
 
-::estatus matter::initialize(::layered * pobjectContext)
+::e_status matter::initialize(::layered * pobjectContext)
 {
 
    return ::success;
@@ -65,7 +65,7 @@ void matter::on_finish()
 }
 
 
-::estatus matter::set_finish_composites(::context_object * pcontextobjectFinish)
+::e_status matter::set_finish_composites(::context_object * pcontextobjectFinish)
 {
 
    return ::success;
@@ -76,7 +76,7 @@ void matter::on_finish()
 
 
 
-::estatus matter::set_finish(::context_object * pcontextobjectFinish)
+::e_status matter::set_finish(::context_object * pcontextobjectFinish)
 {
 
    set_finish_bit();
@@ -86,7 +86,7 @@ void matter::on_finish()
 }
 
 
-::estatus matter::finish(::context_object * pcontextobjectFinish)
+::e_status matter::finish(::context_object * pcontextobjectFinish)
 {
 
    set_finish_bit();
@@ -220,7 +220,7 @@ void matter::defer_create_mutex()
 }
 
 
-::estatus matter::do_task()
+::e_status matter::do_task()
 {
 
    return on_task();
@@ -228,7 +228,7 @@ void matter::defer_create_mutex()
 }
 
 
-::estatus matter::on_task()
+::e_status matter::on_task()
 {
 
    return run();
@@ -311,10 +311,10 @@ void matter::kick_idle()
 }
 
 
-::estatus matter::operator()()
+::e_status matter::operator()()
 {
 
-   ::estatus estatus;
+   ::e_status estatus;
 
    try
    {
@@ -346,7 +346,7 @@ void matter::on_future(const ::payload& payload)
 }
 
 
-::estatus matter::run()
+::e_status matter::run()
 {
 
    return ::success;
@@ -362,7 +362,7 @@ void matter::on_future(const ::payload& payload)
 }
 
 
-::estatus matter::add_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::e_status matter::add_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    __throw(not_implemented);
@@ -372,7 +372,7 @@ void matter::on_future(const ::payload& payload)
 }
 
 
-::estatus matter::add_reference(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::e_status matter::add_reference(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;
@@ -380,7 +380,7 @@ void matter::on_future(const ::payload& payload)
 }
 
 
-::estatus matter::release_composite2(::matter * pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::e_status matter::release_composite2(::matter * pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;
@@ -388,7 +388,7 @@ void matter::on_future(const ::payload& payload)
 }
 
 
-::estatus matter::finalize_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::e_status matter::finalize_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;
@@ -396,7 +396,7 @@ void matter::on_future(const ::payload& payload)
 }
 
 
-::estatus matter::release_reference(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
+::e_status matter::release_reference(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
    return ::success_none;
@@ -453,7 +453,7 @@ void matter::on_future(const ::payload& payload)
 }
 
 
-::estatus matter::set_generic_object_name(const char* pszName)
+::e_status matter::set_generic_object_name(const char* pszName)
 {
 
    return ::success_none;
@@ -478,14 +478,14 @@ void matter::delete_this()
 }
 
 
-void matter::__tracea(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
+void matter::__tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz)
 {
 
 
 }
 
 
-void matter::__tracef(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
+void matter::__tracef(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...)
 {
 
    va_list valist;
@@ -499,7 +499,7 @@ void matter::__tracef(::matter * pobject, e_trace_level elevel, const char * psz
 }
 
 
-void matter::__tracev(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list valist)
+void matter::__tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list valist)
 {
 
    string str;
@@ -628,10 +628,10 @@ bool matter::should_run_async() const
 }
 
 
-::estatus matter::__thread_main()
+::e_status matter::__thread_main()
 {
 
-   ::estatus estatus = operator()();
+   ::e_status estatus = operator()();
 
    return estatus;
 
@@ -640,16 +640,16 @@ bool matter::should_run_async() const
 
 
 
-//::estatus matter::__thread_procedure()
+//::e_status matter::__thread_procedure()
 //{
 //
 //   ::u32 u = -1;
 //
-//   ::estatus estatus = error_failed;
+//   ::e_status estatus = error_failed;
 //
-//   ::estatus estatusOs = error_failed;
+//   ::e_status estatusOs = error_failed;
 //
-//   ::estatus estatusStart = error_failed;
+//   ::e_status estatusStart = error_failed;
 //
 //   {
 //
@@ -707,7 +707,7 @@ bool matter::should_run_async() const
 //}
 
 
-::estatus matter::osthread_init()
+::e_status matter::osthread_init()
 {
 
    return ::success;
@@ -715,7 +715,7 @@ bool matter::should_run_async() const
 }
 
 
-::estatus matter::__thread_init()
+::e_status matter::__thread_init()
 {
 
    return ::success;
@@ -723,7 +723,7 @@ bool matter::should_run_async() const
 }
 
 
-::estatus matter::__thread_term()
+::e_status matter::__thread_term()
 {
 
    return ::success;
@@ -731,7 +731,7 @@ bool matter::should_run_async() const
 }
 
 
-::estatus matter::osthread_term()
+::e_status matter::osthread_term()
 {
 
    return ::success;
@@ -777,7 +777,7 @@ void matter::on_subject(::promise::subject * psubject, ::promise::context * pcon
 }
 
 
-CLASS_DECL_ACME ::estatus __call(const ::promise::routine & routine)
+CLASS_DECL_ACME ::e_status __call(const ::promise::routine & routine)
 {
 
    return routine();

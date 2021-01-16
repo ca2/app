@@ -535,7 +535,7 @@ namespace user
    {
       //#if !defined(_UWP) && !defined(APPLE_IOS)
       //      ::rect rectMajor;
-      //      ::oswindow oswindowParent = ::GetParent(oswindow);
+      //      ::oswindow oswindowParent = ::get_parent(oswindow);
       //      if(oswindowParent == nullptr)
       //      {
       //
@@ -768,7 +768,11 @@ namespace user
 #ifdef WINDOWS_DESKTOP
 
       if (::GetParent(oswindow) == MESSAGE_WINDOW_PARENT)
+      {
+
          return 0x7fffffff;
+
+      }
       
 #endif
 
@@ -937,11 +941,23 @@ namespace user
 #ifdef WINDOWS_DESKTOP
       while (true)
       {
+
          oswindowDescendant = ::GetParent(oswindowDescendant);
+
          if (oswindowDescendant == nullptr)
+         {
+
             return false;
+
+         }
+
          if (oswindowDescendant == oswindowAscendant)
+         {
+
             return true;
+
+         }
+
       }
 #else
       return false;
@@ -954,39 +970,6 @@ namespace user
 
 
 
-
-   /*
-      interaction_ptra::interaction_ptra()
-      {
-
-      }
-
-
-      interaction_ptra::interaction_ptra(const interaction_ptra & a)
-      {
-
-         this->operator = (a);
-
-      }
-
-      interaction_ptra::interaction_ptra(const ref_array < ::user::interaction > & a)
-      {
-
-         this->operator = (a);
-
-      }*/
-
-   //interaction_ptra::interaction_ptra(const interaction_pointer_array & a)
-   //{
-
-   //   for(index i = 0; i < a.get_count(); i++)
-   //   {
-
-   //      add(a[i]);
-
-   //   }
-
-   //}
 
    interaction_ptra & interaction_ptra::operator=(const interaction_array & a)
    {
@@ -1002,43 +985,6 @@ namespace user
 
    }
 
-
-   /*   interaction_ptra::interaction_ptra(interaction_ptra && a)
-      {
-
-         this->operator = (a);
-
-      }
-
-
-      interaction_ptra & interaction_ptra::operator = (const interaction_ptra & a)
-      {
-
-         ref_array < ::user::interaction >::operator = (a);
-
-         return *this;
-
-      }
-
-
-      interaction_ptra & interaction_ptra::operator = (const ref_array < ::user::interaction > & a)
-      {
-
-         ref_array < ::user::interaction >::operator = (a);
-
-         return *this;
-
-      }
-
-
-      interaction_ptra & interaction_ptra::operator = (interaction_ptra && a)
-      {
-
-         ref_array < ::user::interaction >::operator = (a);
-
-         return *this;
-
-      }*/
 
 
    oswindow_array interaction_ptra::get_hwnda()
@@ -1097,10 +1043,306 @@ namespace user
 
    }
 
+   bool interaction_ptra::get_child(__pointer(::user::interaction) & pinteraction)
+   {
+
+      //sync_lock sl(mutex());
+
+      if (get_count() <= 0)
+      {
+
+         return false;
+
+      }
+
+      if (pinteraction == nullptr)
+      {
+
+         pinteraction = element_at(0);
+
+         return true;
+
+      }
+      else
+      {
+
+         for (index i = get_upper_bound(); i >= 0; i--)
+         {
+
+            if (element_at(i) == pinteraction)
+            {
+
+               i++;
+
+               if (i < get_count())
+               {
+
+                  pinteraction = element_at(i);
+
+                  return true;
+
+               }
+               else
+               {
+
+                  return false;
+
+               }
+
+            }
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+   bool interaction_ptra::rget_child(__pointer(::user::interaction) & pinteraction)
+   {
+
+      //sync_lock sl(mutex());
+
+      if (get_count() <= 0)
+      {
+
+         return false;
+
+      }
+
+      if (pinteraction == nullptr)
+      {
+
+         pinteraction = last();
+
+         return true;
+
+      }
+      else
+      {
+
+         for (index i = 0; i < get_size(); i++)
+         {
+
+            if (element_at(i) == pinteraction)
+            {
+
+               i--;
+
+               if (i >= 0)
+               {
+
+                  pinteraction = element_at(i);
+
+                  return true;
+
+               }
+               else
+               {
+
+                  return false;
+
+               }
+
+            }
+
+         }
+
+      }
+
+      return false;
+
+   }
 
 
 
+   primitive_ptra & primitive_ptra::operator=(const primitive_ptra & a)
+   {
 
+      remove_all();
+
+      for (index i = 0; i < a.get_count(); i++)
+      {
+
+         add(a.element_at(i));
+
+      }
+
+      return *this;
+
+   }
+
+
+   oswindow_array primitive_ptra::get_hwnda()
+   {
+
+      oswindow_array oswindowa;
+
+      for (i32 i = 0; i < this->get_size(); i++)
+      {
+
+         oswindowa.add(this->element_at(i)->get_handle());
+
+      }
+
+      return oswindowa;
+
+   }
+
+
+   ::user::primitive * primitive_ptra::find_first_typed(const ::type & type)
+   {
+
+      for (i32 i = 0; i < this->get_size(); i++)
+      {
+
+         ::user::primitive * pprimitive = this->element_at(i);
+
+         if (type == pprimitive)
+         {
+
+            return pprimitive;
+
+         }
+
+      }
+
+      return nullptr;
+
+   }
+
+
+   ::user::primitive * primitive_ptra::find_first(oswindow oswindow)
+   {
+
+      for (i32 i = 0; i < this->get_size(); i++)
+      {
+
+         if (this->element_at(i)->get_safe_handle() == oswindow)
+         {
+
+            return this->element_at(i);
+         }
+      }
+
+      return nullptr;
+
+   }
+
+
+
+   bool primitive_ptra::get_child(__pointer(::user::primitive) & pprimitive)
+   {
+
+      //sync_lock sl(mutex());
+
+      if (get_count() <= 0)
+      {
+
+         return false;
+
+      }
+
+      if (pprimitive == nullptr)
+      {
+
+         pprimitive = element_at(0);
+
+         return true;
+
+      }
+      else
+      {
+
+         for (index i = get_upper_bound(); i >= 0; i--)
+         {
+
+            if (element_at(i) == pprimitive)
+            {
+
+               i++;
+
+               if (i < get_count())
+               {
+
+                  pprimitive = element_at(i);
+
+                  return true;
+
+               }
+               else
+               {
+
+                  return false;
+
+               }
+
+            }
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+   bool primitive_ptra::rget_child(__pointer(::user::primitive) & pprimitive)
+   {
+
+      //sync_lock sl(mutex());
+
+      if (get_count() <= 0)
+      {
+
+         return false;
+
+      }
+
+      if (pprimitive == nullptr)
+      {
+
+         pprimitive = last();
+
+         return true;
+
+      }
+      else
+      {
+
+         for (index i = 0; i < get_size(); i++)
+         {
+
+            if (element_at(i) == pprimitive)
+            {
+
+               i--;
+
+               if (i >= 0)
+               {
+
+                  pprimitive = element_at(i);
+
+                  return true;
+
+               }
+               else
+               {
+
+                  return false;
+
+               }
+
+            }
+
+         }
+
+      }
+
+      return false;
+
+   }
 
 
 
@@ -1418,121 +1660,7 @@ namespace user
    }
 
 
-   bool interaction_ptra::get_child(__pointer(::user::interaction) & pinteraction)
-   {
-
-      //sync_lock sl(mutex());
-
-      if (get_count() <= 0)
-      {
-
-         return false;
-
-      }
-
-      if (pinteraction == nullptr)
-      {
-
-         pinteraction = element_at(0);
-
-         return true;
-
-      }
-      else
-      {
-
-         for (index i = get_upper_bound(); i >= 0; i--)
-         {
-
-            if (element_at(i) == pinteraction)
-            {
-
-               i++;
-
-               if (i < get_count())
-               {
-
-                  pinteraction = element_at(i);
-
-                  return true;
-
-               }
-               else
-               {
-
-                  return false;
-
-               }
-
-            }
-
-         }
-
-      }
-
-      return false;
-
-   }
-
-   bool interaction_ptra::rget_child(__pointer(::user::interaction) & pinteraction)
-   {
-
-      //sync_lock sl(mutex());
-
-      if (get_count() <= 0)
-      {
-
-         return false;
-
-      }
-
-      if (pinteraction == nullptr)
-      {
-
-         pinteraction = last();
-
-         return true;
-
-      }
-      else
-      {
-
-         for (index i = 0; i < get_size(); i++)
-         {
-
-            if (element_at(i) == pinteraction)
-            {
-
-               i--;
-
-               if (i >= 0)
-               {
-
-                  pinteraction = element_at(i);
-
-                  return true;
-
-               }
-               else
-               {
-
-                  return false;
-
-               }
-
-            }
-
-         }
-
-      }
-
-      return false;
-
-   }
 } // namespace user
-
-
-
 
 
 

@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "aura/graphics/snippet/close_button.h"
 
-#define STEPPY_DEBUG 1
+#define STEPPY_DEBUG 0
 
 namespace app_app
 {
@@ -17,6 +17,13 @@ namespace app_app
       m_dStartTime = ::get_secs();
 
       m_dPhaseShift = 0.0;
+
+   }
+
+
+   window::~window()
+   {
+
 
    }
 
@@ -51,6 +58,7 @@ namespace app_app
 
    void window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
+      //return;
 
       m_iCloseButtonDraw = 0;
 
@@ -70,6 +78,8 @@ namespace app_app
       pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
       pgraphics->fill_rect(rectClient, ARGB(127, 255, 255, 255));
+
+      //return;
 
       double dBase = (double) rectClient.minimum_signed_absolute_dimension() / 17.0;
 

@@ -26,7 +26,7 @@ html_form::~html_form()
 }
 
 
-::estatus html_form::initialize(::layered * pobjectContext)
+::e_status html_form::initialize(::layered * pobjectContext)
 {
 
    auto estatus = ::user::form_view::initialize(pobjectContext);
@@ -217,7 +217,7 @@ void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 void html_form::_001OnCreate(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::create, pcreate, pmessage);
+   __pointer(::message::create) pcreate(pmessage);
 
    System.defer_create_html();
 
@@ -234,7 +234,7 @@ void html_form::_001OnCreate(::message::message * pmessage)
 void html_form::_001OnLButtonDown(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   __pointer(::message::mouse) pmouse(pmessage);
 
    ::point point;
 
@@ -267,9 +267,7 @@ void html_form::_001OnLButtonDown(::message::message * pmessage)
    else
    {
 
-      auto psession = Session;
-
-      psession->clear_focus();
+      clear_keyboard_focus();
 
    }
 
@@ -283,7 +281,7 @@ void html_form::_001OnLButtonDown(::message::message * pmessage)
 void html_form::_001OnMouseMove(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   __pointer(::message::mouse) pmouse(pmessage);
 
    track_mouse_hover();
 
@@ -364,7 +362,7 @@ void html_form::_001OnMouseLeave(::message::message * pmessage)
 void html_form::_001OnLButtonUp(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   __pointer(::message::mouse) pmouse(pmessage);
 
    ::point point(pmouse->m_point);
 
@@ -480,7 +478,7 @@ void html_form::set_need_load_form_data()
 }
 
 
-::estatus html_form::open_document(const payload & varFile)
+::e_status html_form::open_document(const payload & varFile)
 {
 
    auto path = varFile.get_file_path();
@@ -488,7 +486,7 @@ void html_form::set_need_load_form_data()
    if (path.is_empty())
    {
 
-      if (varFile.get_type() == ::type_propset && varFile.propset()["url"].get_string().has_char())
+      if (varFile.get_type() == ::e_type_propset && varFile.propset()["url"].get_string().has_char())
       {
 
          path = varFile.propset()["url"];
@@ -525,7 +523,7 @@ void html_form::set_need_load_form_data()
 }
 
 
-::estatus html_form::open_html(const ::string & str)
+::e_status html_form::open_html(const ::string & str)
 {
 
    auto phtmldata = get_html_data();
@@ -557,7 +555,9 @@ void html_form::_001SetText(const string & str, const ::action_context & context
 
    auto psession = Session;
 
-   bool bFocus = has_focus() || is_descendant(dynamic_cast < ::user::interaction * > (psession->get_keyboard_focus()));
+   auto puserinteraction = get_keyboard_focus()->cast < ::user::interaction >();
+
+   bool bFocus = has_focus() || is_descendant(puserinteraction, true);
 
    __pointer(::html_data) sphtmldata;
 
@@ -573,15 +573,22 @@ void html_form::_001SetText(const string & str, const ::action_context & context
 
    if(bFocus)
    {
+
       __pointer(::user::primitive) pfocus = get_focusable_descendant();
+
       if(pfocus != nullptr)
       {
+
          auto psession = Session;
 
-         psession->set_keyboard_focus(pfocus);
+         pfocus->set_keyboard_focus();
+
       }
+
    }
+
    _001OnInitializeForm();
+
 }
 
 
@@ -632,7 +639,7 @@ html_document * html_form::get_document()
 
 void html_form::_001OnKeyDown(::message::message * pmessage)
 {
-   SCAST_PTR(::message::key, pkey, pmessage);
+   __pointer(::message::key) pkey(pmessage);
    if(pkey->m_ekey == ::user::key_tab)
    {
       pkey->m_bRet = true;
@@ -774,17 +781,10 @@ void html_form_view::on_subject(::promise::subject * psubject, ::promise::contex
 
          _001UpdateFunctionStatic();
 
-         for (auto & pdescriptor : m_controldescriptorset.ptra())
+         for (auto pinteraction : proper_children())
          {
 
-            auto pinteraction = pdescriptor->m_pinteraction;
-
-            if (pinteraction)
-            {
-
-               _001Update(pinteraction);
-
-            }
+            _001Update(pinteraction);
 
          }
 
@@ -792,7 +792,7 @@ void html_form_view::on_subject(::promise::subject * psubject, ::promise::contex
 
          on_document_complete(psubject->value(id_url));
 
-         GetParentFrame()->SetActiveView(this);
+         get_parent_frame()->set_active_view(this);
 
          SetFocus();
 

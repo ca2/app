@@ -58,8 +58,8 @@ CLASS_DECL_APEX void __dec_threading_count();
 
 #define __prevent_bad_status_exception __keep_thread_flag(id_thread_prevent_bad_status_exception)
 
-//CLASS_DECL_APEX cflag < e_thread_flag > & thread_flags();
-//CLASS_DECL_APEX void thread_set_flag(const cflag < e_thread_flag > & eflag, bool bSet = true);
+//CLASS_DECL_APEX enumeration < e_thread_flag > & thread_flags();
+//CLASS_DECL_APEX void thread_set_flag(const enumeration < e_thread_flag > & eflag, bool bSet = true);
 //CLASS_DECL_APEX void thread_set_fast_path(bool bFastPath = true);
 //CLASS_DECL_APEX bool thread_is_fast_path();
 //CLASS_DECL_APEX void thread_set_zip_is_dir(bool bZipIsDir = true);

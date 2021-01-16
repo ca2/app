@@ -68,7 +68,7 @@ namespace sqlite
    }
 
 
-   ::estatus     database::set_error_code(i32 iErrorCode)
+   ::e_status     database::set_error_code(i32 iErrorCode)
    {
 
       switch (iErrorCode)
@@ -218,7 +218,7 @@ namespace sqlite
    }
 
 
-   ::estatus     database::_connect()
+   ::e_status     database::_connect()
    {
 
       sync_lock sl(mutex());
@@ -298,7 +298,7 @@ namespace sqlite
    }
 
 
-   ::estatus     database::create()
+   ::e_status     database::create()
    {
 
       return _connect();
@@ -306,7 +306,7 @@ namespace sqlite
    }
 
 
-   ::estatus      database::drop()
+   ::e_status      database::drop()
    {
 
       sync_lock sl(mutex());

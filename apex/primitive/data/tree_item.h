@@ -244,7 +244,7 @@ namespace data
    public:
 
 
-      enum e_flag
+      enum enum_flag
       {
 
          flag_previous_or_parent = 1,
@@ -374,7 +374,7 @@ namespace data
       virtual ::image_list * get_image_list() const;
 
 
-      void SetParent(tree_item * pparent);
+      void set_parent(tree_item * pparent);
 
       void remove_tree_item();
       void remove_tree_item_descendants();

@@ -5,7 +5,7 @@
 //inline payload::payload()
 //{
 //
-//   m_etype = type_new;
+//   m_etype = e_type_new;
 //   clear_data();
 //
 //}
@@ -20,7 +20,7 @@
 //}
 //
 //
-////inline payload::payload(const ::estatus & estatus)
+////inline payload::payload(const ::e_status & estatus)
 ////{
 ////
 ////   set_type(type_enum_status);
@@ -62,20 +62,20 @@
 //{
 //   switch(m_etype)
 //   {
-//   case type_bool:
+//   case e_type_bool:
 //      return 1;
-//   case type_inta:
+//   case e_type_inta:
 //      return ::is_null(m_pia) ? 0 : m_pia->get_count();
-//   case type_stra:
+//   case e_type_stra:
 //      return ::is_null(m_pstra) ? 0 : m_pstra->get_count();
 //   case type_vara:
 //      return ::is_null(m_pvara) ? 0 : m_pvara->get_count();
-//   case type_propset:
+//   case e_type_propset:
 //      return ::is_null(m_pset) ? 0 : m_pset->get_count();
-//   case type_empty:
+//   case e_type_empty:
 //   case e_type_null:
-//   case type_new:
-//   case type_empty_argument:
+//   case e_type_new:
+//   case e_type_empty_argument:
 //      return 0;
 //   default:
 //      return 1;
@@ -85,10 +85,10 @@
 //
 //inline ::count payload::array_get_count() const
 //{
-//   if(m_etype == type_new
+//   if(m_etype == e_type_new
 //         || m_etype == e_type_null
-//         || m_etype == type_empty
-//         || m_etype == type_empty_argument)
+//         || m_etype == e_type_empty
+//         || m_etype == e_type_empty_argument)
 //   {
 //      return -1; // indicates that this payload is not an array
 //   }
@@ -102,10 +102,10 @@
 //
 //inline index payload::array_get_upper_bound() const
 //{
-//   if(m_etype == type_new
+//   if(m_etype == e_type_new
 //         || m_etype == e_type_null
-//         || m_etype == type_empty
-//         || m_etype == type_empty_argument)
+//         || m_etype == e_type_empty
+//         || m_etype == e_type_empty_argument)
 //   {
 //      return -1; // indicates that this payload is not an array
 //   }
@@ -119,10 +119,10 @@
 //inline bool payload::is_array() const
 //{
 //
-//   if(m_etype == type_stra
-//         || m_etype == type_inta
+//   if(m_etype == e_type_stra
+//         || m_etype == e_type_inta
 //         || m_etype == type_vara
-//         || m_etype == type_propset)
+//         || m_etype == e_type_propset)
 //   {
 //      return true;
 //   }
@@ -130,7 +130,7 @@
 //   {
 //      return prop().is_array();
 //   }
-//   else if(m_etype == type_element)
+//   else if(m_etype == e_type_element)
 //   {
 //      return false;
 //   }

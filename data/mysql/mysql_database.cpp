@@ -47,7 +47,7 @@ namespace mysql
    }
 
 
-   ::estatus database::initialize(::layered * pobjectContext)
+   ::e_status database::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::database::database::initialize(pobjectContext);
@@ -90,7 +90,7 @@ namespace mysql
    }
 
 
-   ::estatus database::_connect()
+   ::e_status database::_connect()
    {
 
       /* initialize connection handler */

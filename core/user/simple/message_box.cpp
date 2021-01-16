@@ -10,7 +10,7 @@
 //i32(*g_pfn_message_box)(oswindow,const char *,const char *,u32, const function_arg &) = nullptr;
 
 
-//CLASS_DECL_CORE ::estatus os_message_box(oswindow oswindow, const char * pszText, const char * pszTitle, u32 uFlags, function_arg function)
+//CLASS_DECL_CORE ::e_status os_message_box(oswindow oswindow, const char * pszText, const char * pszTitle, u32 uFlags, function_arg function)
 //{
 //
 //#ifndef _UWP
@@ -29,12 +29,12 @@
 //}
 
 
-//CLASS_DECL_CORE ::estatus os_message_box(const payload & varParam)
+//CLASS_DECL_CORE ::e_status os_message_box(const payload & varParam)
 //{
 //   
 //   payload payload;
 //   
-//   if(varParam.get_type () != type_propset)
+//   if(varParam.get_type () != e_type_propset)
 //   {
 //      
 //      payload["message"] = varParam.get_string();

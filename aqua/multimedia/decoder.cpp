@@ -47,7 +47,7 @@ namespace multimedia
    //}
 
 
-   ::estatus decoder::multimedia_open(::file::file * pfile)
+   ::e_status decoder::multimedia_open(::file::file * pfile)
    {
 
       return ::success;
@@ -63,7 +63,7 @@ namespace multimedia
    }
 
 
-   ::estatus decoder::impl_multimedia_open(::file::file * pfile)
+   ::e_status decoder::impl_multimedia_open(::file::file * pfile)
    {
 
       return ::error_failed;
@@ -259,7 +259,7 @@ namespace multimedia
       else
       {
 
-         payload = ::type_empty;
+         payload = ::e_type_empty;
 
       }
 

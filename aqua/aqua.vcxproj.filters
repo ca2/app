@@ -64,6 +64,24 @@
     <Filter Include="Source Files\os\windows">
       <UniqueIdentifier>{67a44733-0a0b-4eca-95c8-fda0ff76b3b3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\node">
+      <UniqueIdentifier>{d77e15ab-fc03-42af-855b-f31189092ab1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\node\windows">
+      <UniqueIdentifier>{bc8bf4fa-94f8-41d2-87f2-5079dc0646af}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node">
+      <UniqueIdentifier>{ed3da094-dc16-4724-bb04-3c6cdfdc4635}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node\windows">
+      <UniqueIdentifier>{a940bded-2113-4ed9-a6f9-1f71bb5f4b69}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node\windows_common">
+      <UniqueIdentifier>{199c73fe-55a1-4765-a905-bbac1664312f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\node\windows_common">
+      <UniqueIdentifier>{3cf728ae-d610-4900-a193-1607eaab851e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="platform\application.h">
@@ -201,6 +219,15 @@
     <ClInclude Include="inline\library.h">
       <Filter>Header Files\inline</Filter>
     </ClInclude>
+    <ClInclude Include="node\windows\system.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\_windows.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows_common\media_foundation.h">
+      <Filter>Header Files\node\windows_common</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="framework.cpp">
@@ -319,6 +346,12 @@
     </ClCompile>
     <ClCompile Include="os\windows\audio.cpp">
       <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\system.cpp">
+      <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows_common\media_foundation.cpp">
+      <Filter>Source Files\node\windows_common</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

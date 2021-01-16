@@ -66,16 +66,16 @@ namespace music
             message_in(::object * pobject, int iPort);
             virtual ~message_in();
             
-            virtual ::estatus open(int iPort) override;
+            virtual ::e_status open(int iPort) override;
             
-            virtual ::estatus start() override;
-            virtual ::estatus stop() override;
-            virtual ::estatus close() override;
+            virtual ::e_status start() override;
+            virtual ::e_status stop() override;
+            virtual ::e_status close() override;
             
             
-            virtual ::estatus note_on(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override;
-            virtual ::estatus note_off(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override;
-            virtual ::estatus program_change(int iChannel, unsigned char uchProgram) override;
+            virtual ::e_status note_on(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override;
+            virtual ::e_status note_off(int iChannel, unsigned char uchNote, unsigned char uchVelocity) override;
+            virtual ::e_status program_change(int iChannel, unsigned char uchProgram) override;
             virtual void control_change(int iChannel, unsigned char uchController, unsigned char uchValue) override;
             virtual void pitch_bend(int iChannel, unsigned short ushBend) override;
             virtual void sysex(const ::block & block) override;

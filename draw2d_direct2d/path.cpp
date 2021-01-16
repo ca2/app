@@ -158,7 +158,7 @@ namespace draw2d_direct2d
 
       wstring szOutline(strText);
 
-      IDWriteFactory * pfactory = global_draw_get_write_factory();
+      IDWriteFactory * pfactory = System.draw2d().direct2d()->dwrite_factory();
 
       Microsoft::WRL::ComPtr < IDWriteTextLayout> textLayout;
 
@@ -187,6 +187,10 @@ namespace draw2d_direct2d
 
       m_psink->AddLine({ (FLOAT) x, (FLOAT)y });
 
+      m_pointEnd.x = x;
+
+      m_pointEnd.y = y;
+
       return true;
 
    }
@@ -209,8 +213,6 @@ namespace draw2d_direct2d
 
       }
 
-      m_psink->BeginFigure({(FLOAT) x, (FLOAT) y}, pgraphics->m_bOutline ? D2D1_FIGURE_BEGIN_HOLLOW : D2D1_FIGURE_BEGIN_FILLED);
-
       if (m_efillmode == ::draw2d::fill_mode_winding)
       {
 
@@ -223,6 +225,8 @@ namespace draw2d_direct2d
          m_psink->SetFillMode(D2D1_FILL_MODE_ALTERNATE);
 
       }
+
+      m_psink->BeginFigure({(FLOAT) x, (FLOAT) y}, pgraphics->m_bOutline ? D2D1_FIGURE_BEGIN_HOLLOW : D2D1_FIGURE_BEGIN_FILLED);
 
       m_bFigureOpened = true;
 
@@ -309,7 +313,7 @@ namespace draw2d_direct2d
 
          }
 
-         hr = ::get_d2d1_factory1()->CreatePathGeometry(&m_ppathHollow);
+         hr = ::draw2d_direct2d::plugin::d2d1_factory1()->CreatePathGeometry(&m_ppathHollow);
 
          m_ppath = m_ppathHollow;
 
@@ -317,7 +321,7 @@ namespace draw2d_direct2d
       else
       {
 
-         if (m_ppathHollow.Get())
+         if (m_ppathFilled.Get())
          {
 
             m_osdata[path_filled] = m_ppathFilled.Get();
@@ -326,7 +330,7 @@ namespace draw2d_direct2d
 
          }
 
-         hr = ::get_d2d1_factory1()->CreatePathGeometry(&m_ppathFilled);
+         hr = ::draw2d_direct2d::plugin::d2d1_factory1()->CreatePathGeometry(&m_ppathFilled);
          
          m_ppath = m_ppathFilled;
 
@@ -360,7 +364,7 @@ namespace draw2d_direct2d
       if(m_psink != nullptr)
       {
          
-         m_psink->Close();
+         HRESULT hr = m_psink->Close();
 
          m_osdata[iCreate] = m_ppath.Get();
 
@@ -428,7 +432,7 @@ namespace draw2d_direct2d
    //   case ::draw2d::path::matter::type_rect:
    //      set(e.u.m_rect);
    //      break;
-   //   case ::draw2d::path::matter::type_string:
+   //   case ::draw2d::path::matter::e_type_string:
    //      set(pgraphics,e.m_stringpath);
    //      break;
    //   case ::draw2d::path::matter::type_end:
@@ -549,7 +553,7 @@ namespace draw2d_direct2d
    bool path::_set(::draw2d::graphics* pgraphics, const ::lined& line)
    {
 
-      if (line.m_p1 != m_pointEnd)
+      if (line.m_p1 != m_pointEnd || !m_bFigureOpened)
       {
 
          if (!internal_start_figure(pgraphics, line.m_p1.x, line.m_p1.y))
@@ -558,6 +562,8 @@ namespace draw2d_direct2d
             return false;
 
          }
+
+         m_pointEnd = line.m_p1;
 
       }
 

@@ -111,7 +111,7 @@
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup Label="Globals">
-    <ProjectName>experience_lite</ProjectName>
+    <ProjectName>experience_core</ProjectName>
     <ProjectGuid>{E2D7833B-9B59-4826-BBDF-C270A2115E86}</ProjectGuid>
     <RootNamespace>app</RootNamespace>
     <Keyword>Win32Proj</Keyword>

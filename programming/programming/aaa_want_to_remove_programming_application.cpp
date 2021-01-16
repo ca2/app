@@ -21,7 +21,7 @@ namespace programming
    void application::on_application_signal(::message::message * pmessage)
    {
 
-      SCAST_PTR(::aura::application_message, psignal, pmessage);
+      __pointer(::aura::application_message) psignal(pmessage);
 
       if (psignal->m_esignal == ::aura::application_message_process_init)
       {

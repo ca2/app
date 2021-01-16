@@ -1839,11 +1839,11 @@ add_executable(app
         acme/platform/_global.h
         acme/platform/_impl.h
         acme/platform/_platform.h
-        acme/platform/aaa_history.cpp
-        acme/platform/aaa_history.h
-        acme/platform/aaa_update.h
-        acme/platform/aaa_update_item.h
-        acme/platform/aaa_want_to_remove_printf.cpp
+   acme/platform/aaa/aaa_history.cpp
+   acme/platform/aaa/aaa_history.h
+   acme/platform/aaa/aaa_update.h
+   acme/platform/aaa/aaa_update_item.h
+   acme/platform/aaa/aaa_want_to_remove_printf.cpp
         acme/platform/acme_str_pool.h
         acme/platform/all.h
         acme/platform/assert.cpp
@@ -3846,8 +3846,8 @@ add_executable(app
         apex/platform/simple_app.h
         apex/platform/simple_log.cpp
         apex/platform/simple_log.h
-        apex/platform/simple_trace.cpp
-        apex/platform/simple_trace.h
+   acme/platform/simple_trace.cpp
+   acme/platform/simple_trace.h
         apex/platform/static_setup.cpp
         apex/platform/static_setup.h
         apex/platform/static_start.cpp
@@ -3860,8 +3860,8 @@ add_executable(app
         apex/platform/system_trace.cpp
         apex/platform/text.cpp
         apex/platform/thread_set.h
-        apex/platform/trace.cpp
-        apex/platform/trace.h
+   acme/platform/trace.cpp
+   acme/platform/trace.h
         apex/primitive/data/_.h
         apex/primitive/data/_data.h
         apex/primitive/data/_impl.h
@@ -5615,8 +5615,7 @@ add_executable(app
         aura/user/windows_tsf/winres.h
         aura/user/_.cpp
         aura/user/_.h
-        aura/user/_const-.h
-        aura/user/_const.h
+   aura/user/_const.h
         aura/user/_data.h
         aura/user/_experience_const.h
         aura/user/_impl.h

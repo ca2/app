@@ -130,7 +130,7 @@ namespace experience
    }
 
 
-   ::experience::frame * department::experience_get_frame2(::layered * pobjectContext, const char * pszLibrary, const char * pszFrame, const char * pszStyle)
+   ::experience::frame * department::experience_get_frame2(::layered * pobjectContext, const char * pszLibrary, const char * pszFrame)
    {
 
       string_array straLibrary;
@@ -271,7 +271,7 @@ namespace experience
 
       }
 
-      straLibrary.add("experience_lite");
+      straLibrary.add("experience_core");
       straLibrary.add("experience_metro");
       straLibrary.add("experience_rootkiller");
       straLibrary.add("experience_hyper");
@@ -325,13 +325,6 @@ namespace experience
 
       pframe->m_strName = pszFrame;
 
-      if (::is_set(pszStyle) && ::strlen(pszStyle) > 0)
-      {
-
-         pframe->set_style(pszStyle);
-
-      }
-
       return pframe;
 
    }
@@ -344,7 +337,7 @@ namespace base
 {
 
 
-   ::estatus user::initialize1_experience()
+   ::e_status user::initialize1_experience()
    {
 
       INFO("start");

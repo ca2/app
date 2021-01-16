@@ -43,9 +43,9 @@ namespace multimedia
 
 
 
-      /*::estatus     department::CreateNewDevice(u32 uiMixerID)
+      /*::e_status     department::CreateNewDevice(u32 uiMixerID)
       {
-      ::estatus     mmrc;
+      ::e_status     mmrc;
       if(MMSYSERR_NOERROR != (mmrc = m_pmixer->set_new_device(
       uiMixerID,
       (u32) m_oswindow_,
@@ -60,9 +60,9 @@ namespace multimedia
       return mmrc;
       }
 
-      ::estatus     department::CreateNewDestination(u32 dwComponentType)
+      ::e_status     department::CreateNewDestination(u32 dwComponentType)
       {
-      ::estatus     mmrc;
+      ::e_status     mmrc;
       ::multimedia::audio_mixer::destination * pdestination = nullptr;
 
       if(MMSYSERR_NOERROR != (mmrc =  m_pmixer->m_pdevice->get_destination(
@@ -94,7 +94,7 @@ namespace multimedia
          //   m_pmixerthread = (::multimedia::audio_mixer::thread *) __begin_thread(__type(::multimedia::audio_mixer::thread));
          //   if(m_pmixerthread == nullptr)
          //      return false;
-         //   return true�
+         //   return true
          return true;
       }
 

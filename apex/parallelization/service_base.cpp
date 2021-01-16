@@ -340,7 +340,7 @@ void service_base::call_server()
 
    m_bStopping = false;
 
-   ::estatus estatus = ::error_failed;
+   ::e_status estatus = ::error_failed;
 
    estatus = osthread_init();
 

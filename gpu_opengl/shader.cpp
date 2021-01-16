@@ -73,7 +73,7 @@ namespace opengl
 
       string strSummary;
 
-      ::estatus estatus = shader_compile_errors(uShader, type, strSummary);
+      ::e_status estatus = shader_compile_errors(uShader, type, strSummary);
 
       if (!estatus)
       {
@@ -88,7 +88,7 @@ namespace opengl
    }
 
 
-   ::estatus shader::create_shader(const char * pszVertex, const char * pszFragment, const char * pszGeometry)
+   ::e_status shader::create_shader(const char * pszVertex, const char * pszFragment, const char * pszGeometry)
    {
 
       unsigned int uVertex = create_shader(pszVertex, GL_VERTEX_SHADER);
@@ -134,7 +134,7 @@ namespace opengl
 
       string strSummary;
 
-      ::estatus estatus = program_compile_errors(m_uId, strSummary);
+      ::e_status estatus = program_compile_errors(m_uId, strSummary);
 
       if (estatus)
       {
@@ -296,10 +296,10 @@ namespace opengl
    }
 
 
-   ::estatus shader::shader_compile_errors(GLuint shader, GLenum type, string & strSummary)
+   ::e_status shader::shader_compile_errors(GLuint shader, GLenum type, string & strSummary)
    {
 
-      ::estatus estatus = ::success;
+      ::e_status estatus = ::success;
 
       GLint success = 0;
 
@@ -335,10 +335,10 @@ namespace opengl
    }
 
 
-   ::estatus shader::program_compile_errors(GLuint program, string & strSummary)
+   ::e_status shader::program_compile_errors(GLuint program, string & strSummary)
    {
 
-      ::estatus estatus = ::success;
+      ::e_status estatus = ::success;
 
       GLint success;
 

@@ -23,7 +23,7 @@ namespace user
       virtual ~language_map();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
       virtual bool set_language_resource_map(INT_STRING * pstringintLanguageResourceMap);

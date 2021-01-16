@@ -90,7 +90,7 @@ struct CLASS_DECL_APEX oswindow_data
 
 
    bool is_child(oswindow oswindowCandidateChildOrDescendant); // or descendant
-   oswindow GetParent();
+   oswindow get_parent();
    oswindow SetParent(oswindow oswindowNewParent);
    long get_state();
    bool is_iconic();

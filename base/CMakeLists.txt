@@ -221,7 +221,13 @@ list(APPEND base_source
         user/user/tab.h
         user/user/tab_callback.cpp
         user/user/tab_callback.h
+        user/user/tab_data.cpp
+        user/user/tab_data.h
         user/user/tab_drop_target_window.h
+        user/user/tab_pane.cpp
+        user/user/tab_pane.h
+        user/user/tab_pane_array.cpp
+        user/user/tab_pane_array.cpp
         user/user/tab_view.cpp
         user/user/tab_view.h
         user/user/toolbar.cpp

@@ -8,9 +8,9 @@
 		<Option extended_obj_names="1" />
 		<Build>
 			<Target title="basis">
-				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 		 		<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -20,13 +20,13 @@
 					<Add option="-D_DEBUG" />
 				</Compiler>
 				<Linker>
-					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 			</Target>
 			<Target title="memdleak">
-				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 		 		<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -45,7 +45,7 @@
 					<Add directory="$(WORKSPACE_DIR)/../../.." />
 				</Compiler>
 				<Linker>
-					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 			</Target>
 		</Build>
@@ -87,7 +87,7 @@
 			<Add option="-laxisfreerdp" />
 			<Add option="-laxisclientchannels" />
 			<Add option="-Wl,-z,defs" />
-			<Add directory="$(WORKSPACE_DIR)/../$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+			<Add directory="$(WORKSPACE_DIR)/../$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 		</Linker>
 		<Unit filename="client/ca2/ca2rdp.cpp" />
 		<Unit filename="client/ca2/ca2rdp.h" />

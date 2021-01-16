@@ -16,7 +16,7 @@ namespace multimedia
       out::out()
       {
 
-         m_estate             = state_initial;
+         m_estate             = e_state_initial;
          m_pthreadCallback    = nullptr;
          m_estatusWave        = ::success;
          m_bDone              = false;
@@ -38,7 +38,7 @@ namespace multimedia
       }
 
 
-      ::estatus out::init_thread()
+      ::e_status out::init_thread()
       {
 
          if(!::wave::out::init_thread())
@@ -72,12 +72,12 @@ namespace multimedia
       }
 
 
-      ::estatus out::out_open_ex(thread * pthreadCallback, u32 uiSamplesPerSec, u32 uiChannelCount, u32 uiBitsPerSample, ::wave::e_purpose epurpose)
+      ::e_status out::out_open_ex(thread * pthreadCallback, u32 uiSamplesPerSec, u32 uiChannelCount, u32 uiBitsPerSample, ::wave::e_purpose epurpose)
       {
 
          sync_lock sl(mutex());
 
-         if(m_Queue != nullptr && m_estate != state_initial)
+         if(m_Queue != nullptr && m_estate != e_state_initial)
          {
 
             return ::success;
@@ -88,7 +88,7 @@ namespace multimedia
 
          ASSERT(m_Queue == nullptr);
 
-         ASSERT(m_estate == state_initial);
+         ASSERT(m_estate == e_state_initial);
 
          m_pwaveformat->wFormatTag        = 0;
          m_pwaveformat->nChannels         = (::u16) uiChannelCount;
@@ -162,24 +162,24 @@ namespace multimedia
 
          m_pprebuffer->open( m_pwaveformat->nChannels, iBufferCount, iBufferSampleCount);
 
-         m_estate = state_opened;
+         m_estate = e_state_opened;
 
          return m_estatusWave;
 
       }
 
 
-      ::estatus out::out_close()
+      ::e_status out::out_close()
       {
 
-         if(m_estate == state_playing)
+         if(m_estate == e_state_playing)
          {
 
             out_stop();
 
          }
 
-         if(m_estate != state_opened)
+         if(m_estate != e_state_opened)
          {
 
             return ::success;
@@ -243,7 +243,7 @@ namespace multimedia
 
          m_Queue = nullptr;
 
-         m_estate = state_initial;
+         m_estate = e_state_initial;
 
          return ::success;
 
@@ -253,10 +253,10 @@ namespace multimedia
       void out::out_filled(index iBuffer)
       {
 
-         if(out_get_state() != state_playing)
+         if(out_get_state() != e_state_playing)
          {
 
-            TRACE("ERROR out::BufferReady while out_get_state() != state_playing");
+            TRACE("ERROR out::BufferReady while out_get_state() != e_state_playing");
 
             return;
 
@@ -282,19 +282,19 @@ namespace multimedia
       }
 
    
-      ::estatus out::out_stop()
+      ::e_status out::out_stop()
       {
 
          sync_lock sl(mutex());
 
-         if(m_estate != state_playing && m_estate != state_paused)
+         if(m_estate != e_state_playing && m_estate != e_state_paused)
          {
 
             return error_failed;
 
          }
 
-         m_estate = state_stopping;
+         m_estate = e_state_stopping;
          
          OSStatus status = AudioQueueStop(m_Queue, FALSE);
 
@@ -303,7 +303,7 @@ namespace multimedia
          if(m_estatusWave == ::success)
          {
 
-            m_estate = state_opened;
+            m_estate = e_state_opened;
 
          }
 
@@ -312,14 +312,14 @@ namespace multimedia
       }
 
 
-      ::estatus out::out_pause()
+      ::e_status out::out_pause()
       {
 
          sync_lock sl(mutex());
 
-         ASSERT(m_estate == state_playing);
+         ASSERT(m_estate == e_state_playing);
 
-         if(m_estate != state_playing)
+         if(m_estate != e_state_playing)
          {
 
             return error_failed;
@@ -340,7 +340,7 @@ namespace multimedia
          if(m_estatusWave == ::success)
          {
 
-            m_estate = state_paused;
+            m_estate = e_state_paused;
 
          }
 
@@ -349,14 +349,14 @@ namespace multimedia
       }
 
 
-      ::estatus out::out_restart()
+      ::e_status out::out_restart()
       {
 
          sync_lock sl(mutex());
 
-         ASSERT(m_estate == state_paused);
+         ASSERT(m_estate == e_state_paused);
 
-         if(m_estate != state_paused)
+         if(m_estate != e_state_paused)
          {
 
             m_estatusWave = error_failed;
@@ -372,7 +372,7 @@ namespace multimedia
       }
 
 
-      ::estatus out::_out_start()
+      ::e_status out::_out_start()
       {
 
          sync_lock sl(mutex());
@@ -396,7 +396,7 @@ namespace multimedia
          if(m_estatusWave == ::success)
          {
 
-            m_estate = state_playing;
+            m_estate = e_state_playing;
 
          }
 
@@ -535,7 +535,7 @@ namespace multimedia
       bool out::on_run_step()
       {
 
-         if(m_estate == state_playing)
+         if(m_estate == e_state_playing)
          {
 
             CFRunLoopRunInMode(kCFRunLoopDefaultMode, 0.25, false);
@@ -547,10 +547,10 @@ namespace multimedia
       }
 
 
-      ::estatus     out::out_start(const imedia_time & position)
+      ::e_status     out::out_start(const imedia_time & position)
       {
 
-         ::estatus     estatus = ::wave::out::out_start(position);
+         ::e_status     estatus = ::wave::out::out_start(position);
 
          if(failed(estatus))
          {

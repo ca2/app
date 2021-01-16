@@ -117,7 +117,7 @@ list(APPEND acme_source
    memory/heap.cpp
    memory/new.cpp
    memory/plex.cpp
-   memory/plex_heap1.cpp
+   memory/plex_heap.cpp
    parallelization/_.cpp
    parallelization/condition.cpp
    parallelization/critical_section.cpp
@@ -200,6 +200,7 @@ list(APPEND acme_source
    platform/printf.cpp
    platform/profiler.cpp
    platform/regex.cpp
+   platform/simple_trace.cpp
    platform/sprintf.cpp
    platform/static_start.cpp
    platform/static_start_aura.cpp
@@ -211,6 +212,7 @@ list(APPEND acme_source
    platform/timer_event.cpp
    platform/timer_item.cpp
    platform/timer_task.cpp
+   platform/trace.cpp
    platform/trace_category.cpp
    #platform/update.cpp
    platform/version.cpp
@@ -405,7 +407,7 @@ list(APPEND acme_source
    exception/callstack.h
    exception/call_stack.h
    exception/cancel.h
-   exception/debug.h
+   #exception/debug.h
    exception/debug_stream.h
    exception/dump_context.h
    exception/engine.h
@@ -595,7 +597,7 @@ list(APPEND acme_source
    parallelization/_types.h
    node/android/android1.h
    node/android/application.h
-   node/android/buffer.h
+   #node/android/buffer.h
    node/android/factory_exchange.h
    node/android/file.h
    node/android/implementation.h
@@ -1011,7 +1013,7 @@ list(APPEND acme_source
    primitive/primitive/atomic.h
    primitive/primitive/bit.h
    primitive/primitive/block.h
-   primitive/primitive/cflag.h
+   primitive/primitive/enumeration.h
    primitive/promise/context.h
    primitive/primitive/collection.h
    primitive/primitive/collection_file.h
@@ -1376,11 +1378,12 @@ if (LINUX)
       node/linux/root_tools.cpp
       #        node/linux/shell.cpp
       #        node/linux/shell_linux.cpp
+      node/linux/system.cpp
       node/linux/stdio_file.cpp
       node/linux/thread.cpp
       node/linux/trace.cpp
       node/linux/util.cpp
-      os/linux/application_system_run.cpp
+      #os/linux/application_system_run.cpp
       os/linux/_.cpp
       os/linux/callstack.cpp
       os/linux/cross_win_file.cpp
@@ -1716,7 +1719,7 @@ else ()
 endif ()
 
 
-add_library(acme SHARED ${acme_source} const/code_page.h const/_.h os/posix/time.h)
+add_library(acme SHARED ${acme_source} const/code_page.h const/_.h os/posix/time.h graphics/draw2d/os_font_name.cpp os/x11/_.h)
 
 target_precompile_headers(acme PRIVATE framework.h)
 

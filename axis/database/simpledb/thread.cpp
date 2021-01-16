@@ -8,7 +8,7 @@ namespace simpledb
 {
 
 
-   ::estatus thread::run()
+   ::e_status thread::run()
    {
 
       single_lock sl(mutex());

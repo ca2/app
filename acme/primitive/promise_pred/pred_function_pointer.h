@@ -12,7 +12,7 @@
 //   sync_method();
 //   virtual ~sync_method() { }
 //
-//   inline virtual ::estatus operator()() override;
+//   inline virtual ::e_status operator()() override;
 //
 //   virtual bool should_run_async() const override { return true; }
 //
@@ -32,7 +32,7 @@
 //   sync_function();
 //   virtual ~sync_function() { }
 //
-//   virtual ::estatus operator()() override;
+//   virtual ::e_status operator()() override;
 //
 //   virtual void operator()(const payload& payload) override;
 //

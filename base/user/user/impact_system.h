@@ -43,7 +43,7 @@ namespace user
       string                           m_strToolbar;
       bool                             m_bHiddenOnNotifyIcon;
 
-      ::user::interaction *            m_puiOwner;
+      ::user::interaction *            m_puserinteractionOwner;
       // back pointer to OLE or other server (nullptr if none or disabled)
       object *                         m_pAttachedFactory;
 

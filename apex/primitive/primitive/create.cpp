@@ -11,10 +11,10 @@ create::create()
 
 
 
-::estatus create::initialize_create(arguments arguments) 
+::e_status create::initialize_create(arguments arguments) 
 {
 
-   create_common_construct(::type_empty_argument, nullptr);
+   create_common_construct(::e_type_empty_argument, nullptr);
 
    for(auto & arg : arguments)
    {
@@ -25,7 +25,7 @@ create::create()
          m_ecommand = arg.m_ecommand;
 
       }
-      else if(arg.get_type() == type_string)
+      else if(arg.get_type() == e_type_string)
       {
 
          auto estatus = __construct(m_pcommandline);
@@ -68,7 +68,7 @@ create::create()
 }
 
 
-::estatus create::initialize_create(string strAppId, payload varFile, const payload & varOptions, ::user::primitive * puiParent, ewindowflag ewindowflag, ::id id)
+::e_status create::initialize_create(string strAppId, payload varFile, const payload & varOptions, ::user::primitive * puiParent, ewindowflag ewindowflag, ::id id)
 {
 
    m_ewindowflag = ewindowflag;
@@ -147,10 +147,10 @@ void create::create_common_construct(const ::payload & varOptions, ::user::primi
 }
 
 
-::estatus create::finish_initialization()
+::e_status create::finish_initialization()
 {
 
-   ::estatus estatus = ::success;
+   ::e_status estatus = ::success;
 
    if(!m_pcommandline)
    {

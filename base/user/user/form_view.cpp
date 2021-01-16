@@ -72,7 +72,7 @@ namespace user
    }
 
 
-   ::estatus form_view::open_document(const payload & varFile)
+   ::e_status form_view::open_document(const payload & varFile)
    {
 
       System.defer_create_html();
@@ -180,14 +180,14 @@ namespace user
    }
 
 
-   ::estatus form_view::open_html(const string & str)
+   ::e_status form_view::open_html(const string & str)
    {
 
       sync_lock sl(mutex());
 
       auto pformOld = m_pform;
 
-      ::estatus     estatus = error_failed;
+      ::e_status     estatus = error_failed;
 
       //__pointer(::user::form_view) pformChild = create_view(psession->userex()->get_html_view_type());
       //

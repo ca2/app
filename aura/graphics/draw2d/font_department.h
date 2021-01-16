@@ -68,7 +68,7 @@ public:
    virtual ~font_department();
 
 
-   virtual ::estatus initialize(::layered * pobjectContext);
+   virtual ::e_status initialize(::layered * pobjectContext);
    virtual void finalize();
 
 

@@ -38,7 +38,7 @@
 //}
 //
 //
-//inline ::estatus object::__compose(__composite(::image) & pimage)
+//inline ::e_status object::__compose(__composite(::image) & pimage)
 //{
 //
 //   return __compose < ::image >(pimage);
@@ -46,7 +46,7 @@
 //}
 //
 //
-//inline ::estatus object::__compose(__composite(::image) & pimage, ::image * pimageSource)
+//inline ::e_status object::__compose(__composite(::image) & pimage, ::image * pimageSource)
 //{
 //
 //   if (pimageSource)
@@ -61,7 +61,7 @@
 //}
 
 
-//inline ::estatus object::__compose(__composite(::image) & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+//inline ::e_status object::__compose(__composite(::image) & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 //{
 //
 //   __compose(pimage);
@@ -78,7 +78,7 @@
 //}
 
 
-//inline ::estatus object::__internal_preserve_ownership(__composite(::image) & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride)
+//inline ::e_status object::__internal_preserve_ownership(__composite(::image) & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride)
 //{
 //
 //   return __compose(pimage, size, uidCreate, iGoodStride, true);
@@ -86,7 +86,7 @@
 //}
 
 
-//inline ::estatus object::__construct(::image_pointer & pimage)
+//inline ::e_status object::__construct(::image_pointer & pimage)
 //{
 //
 //   m_estatus = ::success;
@@ -117,7 +117,7 @@
 //
 
 //template < typename IMAGE_SOURCE >
-//inline estatus object::__construct(::image_pointer & pimage, IMAGE_SOURCE pimageSource)
+//inline ::e_status object::__construct(::image_pointer & pimage, IMAGE_SOURCE pimageSource)
 //{
 //
 //   m_estatus = __construct(pimage);
@@ -139,7 +139,7 @@
 //}
 
 
-//inline ::estatus object::__construct(::image_pointer & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+//inline ::e_status object::__construct(::image_pointer & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 //{
 //
 //   // DIFFERENT __construct behaviour (for image)
@@ -164,7 +164,7 @@
 //}
 
 
-//inline ::estatus object::__preserve(::image_pointer & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride)
+//inline ::e_status object::__preserve(::image_pointer & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride)
 //{
 //
 //   return __construct(pimage, size, eobjectCreate, iGoodStride, true);
@@ -243,7 +243,7 @@ inline ::image_pointer create_image(const ::size & size, ::eobject eobjectFlag =
 
 
 // template < typename COMPOSER >
-// inline ::estatus __compose(COMPOSER && pcomposer, __composite(::image) & pimage)
+// inline ::e_status __compose(COMPOSER && pcomposer, __composite(::image) & pimage)
 // {
 
 //    //if (((uptr)&pimage) < (uptr)pcomposer || ((uptr)&pimage) >= ((uptr)pcomposer) + sizeof(COMPOSER))
@@ -259,7 +259,7 @@ inline ::image_pointer create_image(const ::size & size, ::eobject eobjectFlag =
 
 
 // template < typename COMPOSER >
-// inline ::estatus __compose(COMPOSER && pcomposer, __composite(::image) & pimage, ::image * pimageSource)
+// inline ::e_status __compose(COMPOSER && pcomposer, __composite(::image) & pimage, ::image * pimageSource)
 // {
 
 //    return pcomposer->__compose(pimage, pimageSource);
@@ -269,7 +269,7 @@ inline ::image_pointer create_image(const ::size & size, ::eobject eobjectFlag =
 
 
 // template < typename COMPOSER >
-// inline ::estatus __compose(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+// inline ::e_status __compose(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 // {
 
 //    auto estatus = __compose(pcomposer, pimage);
@@ -294,7 +294,7 @@ inline ::image_pointer create_image(const ::size & size, ::eobject eobjectFlag =
 
 
 // template < typename COMPOSER >
-// inline ::estatus __preserve(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride)
+// inline ::e_status __preserve(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride)
 // {
 
 //    //if (((uptr)&pimage) < (uptr)pcomposer || ((uptr)&pimage) >= ((uptr)pcomposer) + sizeof(COMPOSER))
@@ -309,7 +309,7 @@ inline ::image_pointer create_image(const ::size & size, ::eobject eobjectFlag =
 // }
 
 
-inline ::estatus __construct(::image_pointer & pimage)
+inline ::e_status __construct(::image_pointer & pimage)
 {
 
    if (!pimage)
@@ -324,7 +324,7 @@ inline ::estatus __construct(::image_pointer & pimage)
 }
 
 
-inline ::estatus __construct(::image_pointer & pimage, ::image * pimageSource)
+inline ::e_status __construct(::image_pointer & pimage, ::image * pimageSource)
 {
 
    auto estatus = __construct(pimage);
@@ -358,7 +358,7 @@ inline ::image_pointer & __construct(::image_pointer & pimage, ::object * pobjec
 }
 
 
-inline ::estatus __construct(::image_pointer & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+inline ::e_status __construct(::image_pointer & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 {
 
    auto estatus = __construct(pimage);
@@ -382,7 +382,7 @@ inline ::estatus __construct(::image_pointer & pimage, const ::size & size, ::eo
 }
 
 
-inline ::estatus __preserve_construct(::image_pointer & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride)
+inline ::e_status __preserve_construct(::image_pointer & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride)
 {
 
    return __construct(pimage, size, eobjectCreate, iGoodStride, true);

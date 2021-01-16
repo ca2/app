@@ -35,7 +35,7 @@ namespace uwp
       ::user::primitive *                                               m_pbasewnd;
       ::user::interaction *                                             m_pguieCapture;
 
-      int_ptr_to_int_ptr                                                m_mapLong;
+      iptr_to_iptr                                                m_mapLong;
       ::mutex                                                           m_mutexQueue;
       manual_reset_event                                                m_evQueue;
       __pointer_array(::message::base)                                  m_messageaQueue;
@@ -82,7 +82,7 @@ namespace uwp
       bool ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0);
       bool ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0);
 
-      //virtual ::user::interaction * GetOwner();
+      //virtual ::user::interaction * get_owner();
       //virtual ::user::interaction * SetOwner(::user::interaction * pOwnerWnd);
 
       virtual oswindow _get_handle();
@@ -91,7 +91,7 @@ namespace uwp
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
-      virtual ::estatus main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
+      virtual ::e_status main_async(const ::promise::routine & routine, e_priority epriority = priority_normal);
 
       void _002OnDraw(::image * pimage);
 
@@ -139,7 +139,7 @@ namespace uwp
       virtual bool is_composite() override;
 
 
-      virtual ::estatus update_graphics_resources() override;
+      virtual ::e_status update_graphics_resources() override;
 
       // for child windows, views, panes etc
       //virtual bool create_window(::user::interaction * pinteraction, const char * lpszClassName,const char * lpszWindowName,u32 dwStyle,const RECT32 & rect,::user::interaction * pParentWnd,id id, ::create * pcreate = nullptr) override;
@@ -383,8 +383,8 @@ namespace uwp
       virtual ::user::interaction *  GetLastActivePopup();
 
       virtual bool IsChild(::user::interaction *   pWnd);
-      virtual ::user::interaction *  GetParent();
-      using ::user::interaction_impl::SetParent;
+      virtual ::user::interaction *  get_parent() const override;
+      using ::user::interaction_impl::set_parent;
 //      ::user::interaction *  SetParent(::user::interaction *  pWndNewParent);
       static __pointer(::user::interaction_impl) WindowFromPoint(POINT32 point);
 
@@ -696,7 +696,9 @@ namespace uwp
 
       virtual bool _is_window() const override;
 
-      virtual void show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd) override;
+      virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
+
+      virtual ::e_status hide_software_keyboard(::user::primitive * pprimitive) override;
 
       virtual void edit_on_set_focus(::user::interaction* pinteraction) override;
 

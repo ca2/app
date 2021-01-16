@@ -20,10 +20,10 @@ namespace opengl
    }
 
 
-   //::estatus context::initialize(::layered * pobjectContext)
+   //::e_status context::initialize(::layered * pobjectContext)
    //{
 
-   //   ::estatus estatus = ::object::initialize(pobjectContext);
+   //   ::e_status estatus = ::object::initialize(pobjectContext);
 
    //   if (!estatus)
    //   {
@@ -37,7 +37,7 @@ namespace opengl
    //}
 
 
-   ::estatus context::draw()
+   ::e_status context::draw()
    {
 
       if (m_VAO != 0)
@@ -94,7 +94,7 @@ namespace opengl
    }
 
 
-   ::estatus context::start()
+   ::e_status context::start()
    {
 
       glClearColor(0.2f, 0.3f, 0.3f, 0.3f);
@@ -122,7 +122,7 @@ namespace opengl
    }
 
 
-   ::estatus context::render()
+   ::e_status context::render()
    {
 
 //#ifdef __APPLE__
@@ -142,7 +142,7 @@ namespace opengl
    }
 
 
-   //::estatus context::create_offscreen_buffer(const ::size& size)
+   //::e_status context::create_offscreen_buffer(const ::size& size)
    //{
 
    //   auto pgpu = System.get_gpu();
@@ -154,7 +154,7 @@ namespace opengl
 
    //   }
 
-   //   ::estatus estatus = __construct(m_pbuffer);
+   //   ::e_status estatus = __construct(m_pbuffer);
 
    //   if (!estatus)
    //   {
@@ -186,7 +186,7 @@ namespace opengl
    //}
 
 
-   //::estatus context::_create_offscreen_buffer(const ::size& size)
+   //::e_status context::_create_offscreen_buffer(const ::size& size)
    //{
 
    //   return ::success_none;
@@ -194,7 +194,7 @@ namespace opengl
    //}
 
 
-   //::estatus context::resize_offscreen_buffer(const ::size& size)
+   //::e_status context::resize_offscreen_buffer(const ::size& size)
    //{
 
    //   return ::success_none;
@@ -203,7 +203,7 @@ namespace opengl
 
 
 
-   //::estatus context::make_current()
+   //::e_status context::make_current()
    //{
 
    //   return ::success_none;
@@ -211,7 +211,7 @@ namespace opengl
    //}
 
 
-   //::estatus context::destroy_offscreen_buffer()
+   //::e_status context::destroy_offscreen_buffer()
    //{
 
    //   return ::success_none;

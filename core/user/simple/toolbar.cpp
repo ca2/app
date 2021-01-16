@@ -11,11 +11,11 @@ class simple_tool_command : public ::user::command        // class private to th
 public: // re-implementations only
 
    simple_tool_command(::layered * pobjectContext);
-   virtual void enable(bool bOn = TRUE, const ::action_context & context = ::source_system);
-   //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::source_system);   // 0, 1 or 2 (indeterminate)
-   virtual void _001SetCheck(enum_check echeck, const ::action_context & context = ::source_system);   // 0, 1 or 2 (indeterminate)
-//   virtual void SetRadio(bool bOn = TRUE, const ::action_context & context = ::source_system);
-   virtual void SetText(const char * pszText, const ::action_context & context = ::source_system);
+   virtual void enable(bool bOn = TRUE, const ::action_context & context = ::e_source_system);
+   //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
+   virtual void _001SetCheck(enum_check echeck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
+//   virtual void SetRadio(bool bOn = TRUE, const ::action_context & context = ::e_source_system);
+   virtual void SetText(const char * pszText, const ::action_context & context = ::e_source_system);
 
 };
 
@@ -49,6 +49,8 @@ public: // re-implementations only
 
 simple_toolbar::simple_toolbar()
 {
+
+   m_econtroltype = ::user::e_control_type_toolbar;
 
    m_iImageSpacing = -1;
 
@@ -390,9 +392,13 @@ void simple_toolbar::_001OnCreate(::message::message * pmessage)
 {
 
    if (pmessage->previous())
+   {
+
       return;
+
+   }
    
-   descriptor().m_econtroltype = ::user::e_control_type_toolbar;
+   //descriptor().m_econtroltype = ::user::e_control_type_toolbar;
 
    m_pimageDraft = create_image({20,  20 });
 
@@ -950,7 +956,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 }
 
 
-bool simple_toolbar::_001GetElementRect(index iItem, RECT32 * prect, ::user::enum_element eelement, ::user::estate estate)
+bool simple_toolbar::_001GetElementRect(index iItem, RECT32 * prect, ::user::enum_element eelement, ::user::enum_state estate)
 {
 
    if (iItem < 0 || iItem >= m_itema.get_size())
@@ -1149,9 +1155,9 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 
    auto pstyle = get_style(pgraphics);
 
-   m_sizePress.cx = get_int(pstyle, ::user::e_int_button_press_shift_cx, 2);
+   m_sizePress.cx = get_int(pstyle, ::user::e_int_button_press_shift_cx, ::user::e_state_none, 2);
 
-   m_sizePress.cy = get_int(pstyle, ::user::e_int_button_press_shift_cy, 2);
+   m_sizePress.cy = get_int(pstyle, ::user::e_int_button_press_shift_cy, ::user::e_state_none, 2);
 
    //m_bDelayedButtonLayout = false;
 
@@ -1224,7 +1230,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //void simple_toolbar::_001OnMouseMove(::message::message * pmessage)
 //{
 //
-//   SCAST_PTR(::message::mouse, pmouse, pmessage);
+//   __pointer(::message::mouse) pmouse(pmessage);
 //
 //   ::point point = pmouse->m_point;
 //
@@ -1260,7 +1266,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //void simple_toolbar::_001OnLButtonDown(::message::message * pmessage)
 //{
 //
-//   SCAST_PTR(::message::mouse, pmouse, pmessage);
+//   __pointer(::message::mouse) pmouse(pmessage);
 //
 //   auto point = screen_to_client(pmouse->m_point);
 //
@@ -1285,7 +1291,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //void simple_toolbar::_001OnLButtonUp(::message::message * pmessage)
 //{
 //
-//   SCAST_PTR(::message::mouse, pmouse, pmessage);
+//   __pointer(::message::mouse) pmouse(pmessage);
 //
 //   auto point = pmouse->m_point;
 //
@@ -1315,12 +1321,12 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //
 //      }
 //
-//      __pointer(::user::frame_window) pTarget = GetOwner();
+//      __pointer(::user::frame_window) pTarget = get_owner();
 //
 //      if (pTarget == nullptr)
 //      {
 //
-//         pTarget = GetParentFrame();
+//         pTarget = get_parent_frame();
 //
 //      }
 //
@@ -1470,7 +1476,7 @@ void simple_toolbar::_001OnTimer(::timer * ptimer)
 bool simple_toolbar::on_click(const ::user::item & item)
 {
 
-   __pointer(::user::interaction) pwnd = GetOwner();
+   __pointer(::user::interaction) pwnd = get_owner();
 
    if (!item.is_set())
    {
@@ -1708,7 +1714,7 @@ void simple_tool_command::SetText(const char *, const ::action_context & context
 //}
 
 
-//cflag < ::enum_toolbar_item_style > simple_toolbar::GetButtonStyle(index nIndex)
+//enumeration < ::enum_toolbar_item_style > simple_toolbar::GetButtonStyle(index nIndex)
 //{
 //
 //   __pointer(::user::toolbar_item) pitem = m_itema[nIndex];
@@ -1756,7 +1762,7 @@ void simple_toolbar::_001OnNcCalcSize(::message::message * pmessage)
 
 #if defined(WINDOWS_DESKTOP) //|| defined(LINUX)
 
-   SCAST_PTR(::message::nc_calc_size, pnccalcsize, pmessage);
+   __pointer(::message::nc_calc_size) pnccalcsize(pmessage);
 
    // calculate border space (will add to top/bottom, subtract from right/bottom)
    ::rect rect;
@@ -1788,7 +1794,7 @@ void simple_toolbar::_001OnNcCalcSize(::message::message * pmessage)
 //void simple_toolbar::_001OnNcHitTest(::message::message * pmessage)
 //{
 //
-//   SCAST_PTR(::message::nchittest, pnchittest, pmessage);
+//   __pointer(::message::nchittest) pnchittest(pmessage);
 //
 //   pnchittest->set_lresult(HTCLIENT);
 //
@@ -2469,7 +2475,7 @@ size simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, in
 //void simple_toolbar::_001OnMouseLeave(::message::message * pmessage)
 //{
 //
-//   SCAST_PTR(::message::base, pbase, pmessage);
+//   __pointer(::message::base) pbase(pmessage);
 //
 //   m_itemHover = ::user::e_element_none;
 //

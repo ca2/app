@@ -30,7 +30,7 @@ namespace opengl
    }
 
 
-   ::estatus context_egl::_create_offscreen_buffer(const ::size & size)
+   ::e_status context_egl::_create_offscreen_buffer(const ::size & size)
    {
 
       auto pgpu = System.get_gpu();
@@ -163,7 +163,7 @@ namespace opengl
    }
 
 
-   ::estatus context_egl::make_current()
+   ::e_status context_egl::make_current()
    {
 
       bool bMakeCurrentOk = eglMakeCurrent(
@@ -186,7 +186,7 @@ namespace opengl
    }
 
 
-   ::estatus context_egl::resize_offscreen_buffer(const ::size& size)
+   ::e_status context_egl::resize_offscreen_buffer(const ::size& size)
    {
 
       auto estatus = ::gpu::context::resize_offscreen_buffer(size);
@@ -226,10 +226,10 @@ namespace opengl
    }
 
 
-   ::estatus context_egl::destroy_offscreen_buffer()
+   ::e_status context_egl::destroy_offscreen_buffer()
    {
 
-      ::estatus estatus = error_failed;
+      ::e_status estatus = error_failed;
 
       return estatus;
 

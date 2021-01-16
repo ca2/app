@@ -25,7 +25,7 @@ namespace windows
 
    //}
 
-   ::estatus     print_job::run()
+   ::e_status     print_job::run()
    {
 
       if (!m_phprinter->is_opened())

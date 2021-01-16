@@ -106,7 +106,16 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_keyPreImeDown(JNIEnv * env, 
 
    set_context(env);
 
-   android_key(e_message_key_down, keyCode, iUni);
+   try
+   {
+
+      android_key(e_message_key_down, keyCode, iUni);
+
+   }
+   catch (...)
+   {
+
+   }
 
 }
 
@@ -117,7 +126,16 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_keyPreImeUp(JNIEnv * env, jo
 
    set_context(env);
 
-   android_key(e_message_key_up, keyCode, iUni);
+   try
+   {
+
+      android_key(e_message_key_up, keyCode, iUni);
+
+   }
+   catch (...)
+   {
+
+   }
 
 }
 
@@ -146,35 +164,42 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_lButtonDown(JNIEnv * env, jo
 
    set_context(env);
 
-   android_mouse(e_message_left_button_down, x, y);
+   try
+   {
+
+      android_mouse(e_message_left_button_down, x, y);
+
+   }
+   catch (...)
+   {
+
+   }
 
 }
 
 extern "C"
-JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_aura_1on_1text_1composition(JNIEnv * env, jobject  obj, jstring str, jint i)
+JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionBeginBatchEdit(JNIEnv * env, jobject  obj)
 {
 
    set_context(env);
 
-   const wd16char* utf16 = (wd16char*)env->GetStringChars(str, NULL);
-
-   if (utf16 == NULL)
-   {
-
-      return false;
-
-   }
-
-   size_t length = (size_t)env->GetStringLength(str);
-
    auto psession = Session;
 
-   if (psession->get_focus_ui())
+   auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
+
+   if (pprimitiveFocus)
    {
 
-      wd16string wstr(utf16, length);
+      try
+      {
 
-      psession->get_focus_ui()->on_text_composition(wstr);
+         pprimitiveFocus->InputConnectionBeginBatchEdit();
+
+      }
+      catch (...)
+      {
+
+      }
 
    }
    else
@@ -184,7 +209,100 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_aura_1on_1text_1composit
 
    }
 
-   env->ReleaseStringChars(str, (jchar*)utf16);
+   return TRUE;
+
+
+}
+
+
+extern "C"
+JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionEndBatchEdit(JNIEnv * env, jobject  obj)
+{
+
+   set_context(env);
+
+   auto psession = Session;
+
+   auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
+
+   if (pprimitiveFocus)
+   {
+
+      try
+      {
+
+         pprimitiveFocus->InputConnectionEndBatchEdit();
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+   else
+   {
+
+      //android_on_text(os_text_keyboard, utf16, length);
+
+   }
+
+   return TRUE;
+
+
+}
+
+
+extern "C"
+JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionSetComposingText(JNIEnv * env, jobject  obj, jstring text, jint newCursorPosition)
+{
+
+   set_context(env);
+
+   const wd16char* utf16 = (wd16char*)env->GetStringChars(text, NULL);
+
+   if (utf16 == NULL)
+   {
+
+      return false;
+
+   }
+
+   size_t length = (size_t)env->GetStringLength(text);
+
+   auto psession = Session;
+
+   auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
+
+   if (pprimitiveFocus)
+   {
+
+      wd16string wstr(utf16, length);
+
+      string str(wstr);
+
+      const char * pszComposingText = str;
+
+      try
+      {
+
+         pprimitiveFocus->InputConnectionSetComposingText(str, newCursorPosition);
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+   else
+   {
+
+      //android_on_text(os_text_keyboard, utf16, length);
+
+   }
+
+   env->ReleaseStringChars(text, (jchar*)utf16);
 
    return TRUE;
 
@@ -192,30 +310,28 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_aura_1on_1text_1composit
 
 
 extern "C"
-JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_aura_1on_1text_1commit(JNIEnv * env, jobject  obj, jstring str, jint i)
+JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionSetComposingRegion(JNIEnv * env, jobject obj, jint start, jint end)
 {
 
    set_context(env);
 
-   const wd16char * utf16 = (wd16char *)env->GetStringChars(str, NULL);
-
-   if (utf16 == NULL)
-   {
-
-      return false;
-
-   }
-
-   size_t length = (size_t)env->GetStringLength(str);
-
    auto psession = Session;
 
-   if (psession->get_focus_ui())
+   auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
+
+   if (pprimitiveFocus)
    {
 
-      wd16string wstr(utf16, length);
+      try
+      {
 
-      psession->get_focus_ui()->on_text_commit(wstr);
+         pprimitiveFocus->InputConnectionSetComposingRegion(start, end);
+
+      }
+      catch (...)
+      {
+
+      }
 
    }
    else
@@ -225,7 +341,136 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_aura_1on_1text_1commit(J
 
    }
 
-   env->ReleaseStringChars(str, (jchar *)utf16);
+   return TRUE;
+
+}
+
+extern "C"
+JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionSetSelection(JNIEnv * env, jobject obj, jint start, jint end)
+{
+
+   set_context(env);
+
+   auto psession = Session;
+
+   auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
+
+   if (pprimitiveFocus)
+   {
+
+      try
+      {
+
+         pprimitiveFocus->InputConnectionSetSelection(start, end);
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+   else
+   {
+
+      //android_on_text(os_text_keyboard, utf16, length);
+
+   }
+
+   return TRUE;
+
+}
+
+
+// This behaves like calling setComposingText(text, newCursorPosition) then finishComposingText().
+
+extern "C"
+JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionCommitText(JNIEnv * env, jobject  obj, jstring text, jint newCursorPosition)
+{
+
+   set_context(env);
+
+   const wd16char * utf16 = (wd16char *)env->GetStringChars(text, NULL);
+
+   if (utf16 == NULL)
+   {
+
+      return false;
+
+   }
+
+   size_t length = (size_t)env->GetStringLength(text);
+
+   auto psession = Session;
+
+   auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
+
+   if (pprimitiveFocus)
+   {
+
+      wd16string wstr(utf16, length);
+
+      string str(wstr);
+
+      const char * pszComposingText = str;
+
+      try
+      {
+
+         pprimitiveFocus->InputConnectionCommitText(str, newCursorPosition);
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+   else
+   {
+
+      //android_on_text(os_text_keyboard, utf16, length);
+
+   }
+
+   env->ReleaseStringChars(text, (jchar *)utf16);
+
+   return TRUE;
+
+}
+
+
+extern "C"
+JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionFinishComposingText(JNIEnv * env, jobject  obj)
+{
+
+   set_context(env);
+
+   auto psession = Session;
+
+   auto pprimitiveFocus = psession->get_host_window()->get_keyboard_focus();
+
+   if (pprimitiveFocus)
+   {
+
+      try
+      {
+
+         pprimitiveFocus->InputConnectionFinishComposingText();
+
+      }
+      catch (...)
+      {
+
+      }
+
+   }
+   else
+   {
+
+      //android_on_text(os_text_keyboard, utf16, length);
+
+   }
 
    return TRUE;
 
@@ -238,7 +483,16 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_mouseMove(JNIEnv * env, jobj
 
    set_context(env);
 
-   android_mouse(e_message_mouse_move, x, y);
+   try
+   {
+
+      android_mouse(e_message_mouse_move, x, y);
+
+   }
+   catch (...)
+   {
+
+   }
 
 }
 
@@ -249,7 +503,16 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_lButtonUp(JNIEnv * env, jobj
 
    set_context(env);
 
-   android_mouse(e_message_left_button_up, x, y);
+   try
+   {
+
+      android_mouse(e_message_left_button_up, x, y);
+
+   }
+   catch (...)
+   {
+
+   }
 
 }
 
@@ -278,7 +541,16 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_onText(JNIEnv * env, jobject
 
    size_t length = (size_t)env->GetStringLength(bytes);
 
-   android_on_text(os_text_keyboard, utf16, length);
+   try
+   {
+
+      android_on_text(os_text_keyboard, utf16, length);
+
+   }
+   catch (...)
+   {
+
+   }
 
    env->ReleaseStringChars(bytes, (jchar*)utf16);
 
@@ -298,7 +570,16 @@ JNIEXPORT void JNICALL Java_com_android_1app_impact_aura_1size_1changed(JNIEnv *
    rect.right = g_posremote->getWidth();
    rect.bottom = g_posremote->getHeight();
 
-   SetMainScreenRect(rect);
+   try
+   {
+
+      SetMainScreenRect(rect);
+
+   }
+   catch (...)
+   {
+
+   }
 
    //auto pimpl = puserinteraction->m_pimpl.cast < ::user::interaction_impl >();
 

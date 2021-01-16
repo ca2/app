@@ -223,7 +223,7 @@ namespace userex
    //void image_list_view::_001OnLButtonDown(::message::message * pmessage)
    //{
 
-   //   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   //   __pointer(::message::mouse) pmouse(pmessage);
 
    //   const ::point & point = pmouse->m_point;
 
@@ -250,7 +250,7 @@ namespace userex
    //void image_list_view::_001OnMouseMove(::message::message * pmessage)
    //{
 
-   //   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   //   __pointer(::message::mouse) pmouse(pmessage);
 
    //   const ::point & point = pmouse->m_point;
 
@@ -293,7 +293,7 @@ namespace userex
    void image_list_view::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
 

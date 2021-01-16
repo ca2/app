@@ -19,7 +19,7 @@ namespace userfs
    }
 
    
-   ::estatus userfs::initialize(::layered * pobjectContext)
+   ::e_status userfs::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::apex::department::initialize(pobjectContext);
@@ -53,7 +53,7 @@ namespace userfs
    }
 
 
-   ::estatus userfs::init1()
+   ::e_status userfs::init1()
    {
 
       return ::success;
@@ -79,7 +79,7 @@ namespace core
    //}
 
 
-   ::estatus user::userfs_process_init()
+   ::e_status user::userfs_process_init()
    {
 
       INFO("start");
@@ -110,7 +110,7 @@ namespace core
    }
 
 
-   ::estatus user::userfs_init1()
+   ::e_status user::userfs_init1()
    {
 
       INFO("start");

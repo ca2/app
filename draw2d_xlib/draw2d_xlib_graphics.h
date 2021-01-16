@@ -28,7 +28,7 @@ namespace draw2d_xlib
       //bool                    m_bBackColor;
       //u64                m_uiForeColor;
       //u64                m_uiBackColor;
-      //color32_t                m_crTextColor;
+      //color32_t                m_colorTextColor;
       //xxx ::Gdiplus::GraphicsPath *     m_ppath;
       //xxx ::Gdiplus::GraphicsPath *     m_ppathPaint;
       //xxx HDC                           m_hdc;

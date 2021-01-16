@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "app/draw2d_direct2d/_.h"
+#include "aura/os/windows_common/draw2d_direct2d_global.h"
 #include "_uwp.h"
 
 
@@ -25,6 +26,8 @@ namespace uwp
    directx_base::directx_base() :
       m_dpi(-1.0f)
    {
+
+      m_ephase = e_phase_draw;
 
       m_bCreated = false;
 
@@ -101,12 +104,37 @@ namespace uwp
 
       ::draw2d::lock draw2dlock;
 
-      // Reset these member variables to ensure that SetDpi recreates all resources.
+      //// Reset these member variables to ensure that SetDpi recreates all resources.
       float dpi = m_dpi;
       m_dpi = -1.0f;
       m_windowBounds.Width = 0;
       m_windowBounds.Height = 0;
       m_swapChain = nullptr;
+
+      {
+
+         ID3D11RenderTargetView * nullViews[] = { nullptr };
+         if (System.draw2d().direct2d()->m_pd3devicecontext)
+         {
+            System.draw2d().direct2d()->m_pd3devicecontext->OMSetRenderTargets(ARRAYSIZE(nullViews), nullViews, nullptr);
+
+         }
+         m_d3dRenderTargetView = nullptr;
+         if (System.draw2d().direct2d()->m_pd2devicecontext)
+         {
+            System.draw2d().direct2d()->m_pd2devicecontext->SetTarget(nullptr);
+         }
+         m_d2dTargetBitmap = nullptr;
+         m_d3dDepthStencilView = nullptr;
+         System.draw2d().direct2d()->m_pd3devicecontext->Flush();
+
+         m_pd2d1devicecontext = nullptr;
+         m_d2dTargetBitmap = nullptr;
+         m_d3dRenderTargetView = nullptr;
+         m_d3dDepthStencilView = nullptr;
+
+
+      }
 
       CreateDeviceResources();
 
@@ -238,11 +266,17 @@ namespace uwp
 
       ::draw2d::lock draw2dlock;
 
-      m_d3dDevice = global_draw_get_d3d11_device1();
+      //System.draw2d().direct2d() = __new(::draw2d_direct2d::plugin);
 
-      m_d3dContext = global_draw_get_d3d11_device_context1();
+      //System.draw2d().direct2d()->initialize();
 
-      m_d2dDevice = global_draw_get_d2d1_device();
+      // m_d3dDevice = global_draw_get_d3d11_device1();
+
+      //System.draw2d().direct2d()->m_pd3devicecontext = global_draw_get_d3d11_device_context1();
+
+      //m_d2dDevice = global_draw_get_d2d1_device();
+
+      //::draw2d_direct2d::g_pdirect2dplugin->g_pd2factory.As(&m_d2dMultithread);
 
    }
 
@@ -413,7 +447,9 @@ namespace uwp
    void directx_base::CreateWindowSizeDependentResources()
    {
 
-      ::draw2d::device_lock devicelock;
+      HRESULT hr;
+
+      ::draw2d::device_lock devicelock(m_pimpl->m_puserinteraction);
 
       // Store the window bounds so the next time we get a SizeChanged event we can
       // avoid rebuilding everything if the size is identical.
@@ -424,12 +460,12 @@ namespace uwp
       {
          return;
          ID3D11RenderTargetView * nullViews[] = { nullptr };
-         m_d3dContext->OMSetRenderTargets(ARRAYSIZE(nullViews), nullViews, nullptr);
+         System.draw2d().direct2d()->m_pd3devicecontext->OMSetRenderTargets(ARRAYSIZE(nullViews), nullViews, nullptr);
          m_d3dRenderTargetView = nullptr;
          m_pd2d1devicecontext->SetTarget(nullptr);
          m_d2dTargetBitmap = nullptr;
          m_d3dDepthStencilView = nullptr;
-         m_d3dContext->Flush();
+         System.draw2d().direct2d()->m_pd3devicecontext->Flush();
 
          m_pd2d1devicecontext = nullptr;
          m_d2dTargetBitmap = nullptr;
@@ -438,13 +474,12 @@ namespace uwp
          //m_windowSizeChangeInProgress = true;
 
 
-         HRESULT hr;
-         m_d3dContext->Flush();
-         m_d3dContext->ClearState();
-         m_d2dDevice->ClearResources();
+         System.draw2d().direct2d()->m_pd3devicecontext->Flush();
+         System.draw2d().direct2d()->m_pd3devicecontext->ClearState();
+         System.draw2d().direct2d()->m_pd2device->ClearResources();
          {
             Microsoft::WRL::ComPtr < ID3D11CommandList > pcommandlist;
-            hr = m_d3dContext->FinishCommandList(FALSE, &pcommandlist);
+            hr = System.draw2d().direct2d()->m_pd3devicecontext->FinishCommandList(FALSE, &pcommandlist);
             if (SUCCEEDED(hr))
             {
             }
@@ -474,13 +509,18 @@ namespace uwp
          }
          else
          {
-            ::uwp::throw_if_failed(hr);
+            if (FAILED(hr))
+            {
+               ::uwp::throw_if_failed(hr);
+
+            }
          }
       }
       else
       {
 
          m_sizeBuffer = winrt_get_big_back_buffer_size();
+
          // Otherwise, create a new one using the same adapter as the existing Direct3D device.
          DXGI_SWAP_CHAIN_DESC1 swapChainDesc = {0};
          swapChainDesc.Width = m_sizeBuffer.cx;                                     // Use automatic sizing.
@@ -497,35 +537,40 @@ namespace uwp
          swapChainDesc.Flags = 0;
 
          ComPtr<IDXGIDevice1> dxgiDevice;
-         ::uwp::throw_if_failed(
-         m_d3dDevice.As(&dxgiDevice)
-         );
+         
+         hr = System.draw2d().direct2d()->m_pd3device.As(&dxgiDevice);
+
+         ::uwp::throw_if_failed(hr);
 
          ComPtr<IDXGIAdapter> dxgiAdapter;
-         ::uwp::throw_if_failed(
-         dxgiDevice->GetAdapter(&dxgiAdapter)
-         );
+
+         hr = dxgiDevice->GetAdapter(&dxgiAdapter);
+            
+         ::uwp::throw_if_failed(hr);
 
          ComPtr<IDXGIFactory2> dxgiFactory;
-         ::uwp::throw_if_failed(
-         dxgiAdapter->GetParent(IID_PPV_ARGS(&dxgiFactory))
-         );
+
+         hr = dxgiAdapter->GetParent(IID_PPV_ARGS(&dxgiFactory));
+
+         ::uwp::throw_if_failed(hr);
 
          CoreWindow ^ window = m_window.Get();
 
-         ::uwp::throw_if_failed(
-         dxgiFactory->CreateSwapChainForCoreWindow(
-         m_d3dDevice.Get(),
-         reinterpret_cast<IUnknown*>(window),
-         &swapChainDesc,
-         nullptr,
-         &m_swapChain
-         )
+         hr = dxgiFactory->CreateSwapChainForCoreWindow(
+            System.draw2d().direct2d()->m_pd3device.Get(),
+            reinterpret_cast<IUnknown *>(window),
+            &swapChainDesc,
+            nullptr,
+            &m_swapChain
          );
+
+         ::uwp::throw_if_failed(hr);
 
          // Ensure that DXGI does not queue more than one frame at a time. This both reduces latency and
          // ensures that the application will only render after each VSync, minimizing power consumption.
-         ::uwp::throw_if_failed(dxgiDevice->SetMaximumFrameLatency(1));
+         hr = dxgiDevice->SetMaximumFrameLatency(1);
+
+         ::uwp::throw_if_failed(hr);
 
       }
 
@@ -534,17 +579,18 @@ namespace uwp
 
          // Create a Direct3D render target view of the __swap chain back buffer.
          ComPtr<ID3D11Texture2D> backBuffer;
-         ::uwp::throw_if_failed(
-         m_swapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer))
+
+         HRESULT hr = m_swapChain->GetBuffer(0, IID_PPV_ARGS(&backBuffer));
+         
+         ::uwp::throw_if_failed(hr);
+
+         hr = System.draw2d().direct2d()->m_pd3device->CreateRenderTargetView(
+            backBuffer.Get(),
+            nullptr,
+            &m_d3dRenderTargetView
          );
 
-         ::uwp::throw_if_failed(
-         m_d3dDevice->CreateRenderTargetView(
-         backBuffer.Get(),
-         nullptr,
-         &m_d3dRenderTargetView
-         )
-         );
+         ::uwp::throw_if_failed(hr);
 
          // Cache the rendertarget dimensions in our helper class for convenient use.
          D3D11_TEXTURE2D_DESC backBufferDesc = { 0 };
@@ -563,22 +609,23 @@ namespace uwp
          );
 
          ComPtr<ID3D11Texture2D> depthStencil;
-         ::uwp::throw_if_failed(
-         m_d3dDevice->CreateTexture2D(
-         &depthStencilDesc,
-         nullptr,
-         &depthStencil
-         )
+         hr = System.draw2d().direct2d()->m_pd3device->CreateTexture2D(
+            &depthStencilDesc,
+            nullptr,
+            &depthStencil
          );
 
+         ::uwp::throw_if_failed(hr);
+
          auto viewDesc = CD3D11_DEPTH_STENCIL_VIEW_DESC(D3D11_DSV_DIMENSION_TEXTURE2D);
-         ::uwp::throw_if_failed(
-         m_d3dDevice->CreateDepthStencilView(
+         
+         hr = System.draw2d().direct2d()->m_pd3device->CreateDepthStencilView(
          depthStencil.Get(),
          &viewDesc,
          &m_d3dDepthStencilView
-         )
          );
+
+         ::uwp::throw_if_failed(hr);
 
          // Set the 3D rendering viewport to target the entire window.
          CD3D11_VIEWPORT viewport(
@@ -588,7 +635,7 @@ namespace uwp
          static_cast<float>(backBufferDesc.Height)
          );
 
-         m_d3dContext->RSSetViewports(1, &viewport);
+         System.draw2d().direct2d()->m_pd3devicecontext->RSSetViewports(1, &viewport);
 
       }
 
@@ -603,29 +650,56 @@ namespace uwp
       );
 
 
-      ::draw2d_direct2d::throw_if_failed(
-      global_draw_get_d2d1_device()->CreateDeviceContext(
-      //D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
-      D2D1_DEVICE_CONTEXT_OPTIONS_ENABLE_MULTITHREADED_OPTIMIZATIONS,
-      &m_pd2d1devicecontext
-      )
+      hr = System.draw2d().direct2d()->m_pd2device->CreateDeviceContext(
+         //D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
+         D2D1_DEVICE_CONTEXT_OPTIONS_ENABLE_MULTITHREADED_OPTIMIZATIONS,
+         &m_pd2d1devicecontext
       );
+
+      ::draw2d_direct2d::throw_if_failed(hr);
 
 
       ComPtr<IDXGISurface> dxgiBackBuffer;
-      ::uwp::throw_if_failed(
-      m_swapChain->GetBuffer(0,IID_PPV_ARGS(&dxgiBackBuffer))
-      );
+      
+      hr = m_swapChain->GetBuffer(0, IID_PPV_ARGS(&dxgiBackBuffer));
 
-      ::uwp::throw_if_failed(
-      m_pd2d1devicecontext->CreateBitmapFromDxgiSurface(
-      dxgiBackBuffer.Get(),
-      &bitmapProperties,
-      &m_d2dTargetBitmap
-      )
-      );
+      ::uwp::throw_if_failed(hr);
+
+      
+      hr = m_pd2d1devicecontext->CreateBitmapFromDxgiSurface(
+         dxgiBackBuffer.Get(),
+         &bitmapProperties,
+         &m_d2dTargetBitmap);
+      
+      ::uwp::throw_if_failed(hr);
 
       m_pd2d1devicecontext->SetTarget(m_d2dTargetBitmap.Get());
+
+   }
+
+
+   void directx_base::DestroyWindowSizeDependentResources()
+   {
+
+      HRESULT hr;
+
+      ::draw2d::device_lock devicelock(m_pimpl->m_puserinteraction);
+
+      // Store the window bounds so the next time we get a SizeChanged event we can
+      // avoid rebuilding everything if the size is identical.
+      m_windowBounds.Width = (float)m_size.cx;
+      m_windowBounds.Height = (float)m_size.cy;
+
+      m_sizeBuffer = { 0,0 };
+
+         
+      m_swapChain = nullptr;
+
+      m_d3dRenderTargetView = nullptr;
+      m_d3dDepthStencilView = nullptr;
+      m_pd2d1devicecontext->SetTarget(nullptr);
+      m_pd2d1devicecontext = nullptr;
+      m_d2dTargetBitmap = nullptr;
 
    }
 
@@ -633,9 +707,18 @@ namespace uwp
    void directx_base::Present()
    {
 
+      if (m_pimpl->m_pframeworkview->m_directx->m_ephase != ::uwp::e_phase_present)
+      {
+
+         return ;
+
+      }
+
       HRESULT hr = S_OK;
 
       {
+
+         ::draw2d::device_lock devicelock(m_pimpl->m_puserinteraction);
 
          if (!defer_init())
          {
@@ -646,7 +729,6 @@ namespace uwp
 
          try
          {
-
 
             // The application may optionally specify "dirty" or "scroll" rects to improve efficiency
             // in certain scenarios.  In this sample, however, we do not utilize those features.
@@ -669,14 +751,13 @@ namespace uwp
 
             {
 
-               ::draw2d::device_lock devicelock;
 
                // The first argument instructs DXGI to block until VSync, putting the application
                // to sleep until the next VSync. This ensures we don't waste any cycles rendering
                // frames that will never be displayed to the screen.
                hr = m_swapChain->Present1(1, 0, &parameters);
 
-               if (m_d3dContext.Get())
+               if (System.draw2d().direct2d()->m_pd3devicecontext.Get())
                {
 
                   if (m_d3dRenderTargetView.Get())
@@ -685,7 +766,7 @@ namespace uwp
                      // Discard the contents of the render target.
                      // This is a valid operation only when the existing contents will be entirely
                      // overwritten. If dirty or scroll rects are used, this call should be removed.
-                     m_d3dContext->DiscardView(m_d3dRenderTargetView.Get());
+                     System.draw2d().direct2d()->m_pd3devicecontext1->DiscardView(m_d3dRenderTargetView.Get());
 
                   }
 
@@ -693,7 +774,7 @@ namespace uwp
                   {
 
                      // Discard the contents of the depth stencil.
-                     m_d3dContext->DiscardView(m_d3dDepthStencilView.Get());
+                     System.draw2d().direct2d()->m_pd3devicecontext1->DiscardView(m_d3dDepthStencilView.Get());
 
                   }
 
@@ -713,8 +794,13 @@ namespace uwp
             }
             else
             {
+               if (FAILED(hr))
+               {
 
-               ::uwp::throw_if_failed(hr);
+                  ::uwp::throw_if_failed(hr);
+
+
+               }
 
             }
 
@@ -723,6 +809,8 @@ namespace uwp
          {
 
          }
+
+         m_pimpl->m_pframeworkview->m_directx->m_ephase = ::uwp::e_phase_draw;
 
       }
 
@@ -745,8 +833,10 @@ namespace uwp
 
    }
 
+
    void directx_base::ValidateDevice()
    {
+
       ::draw2d::lock draw2dlock;
       // The D3D Device is no longer valid if the default adapter changes or if
       // the device has been removed.
@@ -756,7 +846,7 @@ namespace uwp
       ComPtr<IDXGIDevice1> dxgiDevice;
       ComPtr<IDXGIAdapter> deviceAdapter;
       DXGI_ADAPTER_DESC deviceDesc;
-      ::uwp::throw_if_failed(m_d3dDevice.As(&dxgiDevice));
+      ::uwp::throw_if_failed(System.draw2d().direct2d()->m_pd3device.As(&dxgiDevice));
       ::uwp::throw_if_failed(dxgiDevice->GetAdapter(&deviceAdapter));
       ::uwp::throw_if_failed(deviceAdapter->GetDesc(&deviceDesc));
 
@@ -774,7 +864,7 @@ namespace uwp
 
       if((deviceDesc.AdapterLuid.LowPart != currentDesc.AdapterLuid.LowPart) ||
             (deviceDesc.AdapterLuid.HighPart != currentDesc.AdapterLuid.HighPart) ||
-            FAILED(m_d3dDevice->GetDeviceRemovedReason()))
+            FAILED(System.draw2d().direct2d()->m_pd3device->GetDeviceRemovedReason()))
       {
          // Release references to resources related to the old device.
          dxgiDevice = nullptr;
@@ -782,7 +872,9 @@ namespace uwp
 
          // Create a new device and __swap chain.
          HandleDeviceLost();
+
       }
+
    }
 
 

@@ -15,7 +15,7 @@ shell_open::~shell_open()
 }
 
 
-::estatus shell_open::initialize(::layered * pobjectContext)
+::e_status shell_open::initialize(::layered * pobjectContext)
 {
 
    auto estatus = ::object::initialize(pobjectContext);
@@ -32,7 +32,7 @@ shell_open::~shell_open()
 }
 
 
-::estatus shell_open::initialize_shell_open()
+::e_status shell_open::initialize_shell_open()
 {
 
    return ::success;

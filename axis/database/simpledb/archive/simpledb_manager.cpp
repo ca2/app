@@ -65,7 +65,7 @@ namespace simpledb
 
    void manager::message_queue_message_handler(::message::message * pmessage)
    {
-      SCAST_PTR(::message::database, pbase, pmessage);
+      __pointer(::message::database) pbase(pmessage);
       if(pbase->m_id == WM_APP + 13)
       {
          //if(wparam == 0)

@@ -23,10 +23,10 @@ namespace multimedia
       virtual ~decoder();
 
 
-      virtual ::estatus multimedia_open(::file::file * varFile);
+      virtual ::e_status multimedia_open(::file::file * varFile);
       virtual bool multimedia_close();
 
-      virtual ::estatus impl_multimedia_open(::file::file * varFile);
+      virtual ::e_status impl_multimedia_open(::file::file * varFile);
       virtual bool impl_multimedia_close();
 
 

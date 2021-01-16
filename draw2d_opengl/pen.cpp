@@ -52,7 +52,7 @@ namespace draw2d_opengl
 
       m_nPenStyle    = nPenStyle;
       m_dWidth       = dWidth;
-      m_crColor      = crColor;
+      m_colorColor      = crColor;
       m_ppen         = new plusplus::Pen(plusplus::Color(crColor), dWidth);
 
    }

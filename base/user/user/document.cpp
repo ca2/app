@@ -45,7 +45,7 @@ namespace user
       if (is_modified())
       {
 
-         TRACE(trace_category_appmsg, trace_level_warning, "Warning: destroying an unsaved document.\n");
+         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: destroying an unsaved document.\n");
 
       }
 #endif
@@ -106,7 +106,7 @@ namespace user
       for (auto & pview : m_viewa)
       {
 
-         uia.add_unique_interaction(pview->GetTopLevel());
+         uia.add_unique_interaction(pview->get_top_level());
 
       }
 
@@ -115,7 +115,7 @@ namespace user
    }
 
    
-   ::estatus document::set_finish_composites(::context_object * pcontextobjectFinish)
+   ::e_status document::set_finish_composites(::context_object * pcontextobjectFinish)
    {
 
       bool bStillFinishing = false;
@@ -266,7 +266,7 @@ namespace user
    //   //for (auto& pinteraction : m_interactionaCommandHandlers)
    //   //{
 
-   //   //   if (pinteraction && pinteraction != GetActiveView())
+   //   //   if (pinteraction && pinteraction != get_active_view())
    //   //   {
 
    //   //      pinteraction->on_command_message(pcommand);
@@ -283,7 +283,7 @@ namespace user
    //   //}
 
    //   // then pump through parent
-   //   __pointer(::user::interaction) puiParent = GetParent();
+   //   __pointer(::user::interaction) puiParent = get_parent();
    //   while (puiParent)
    //   {
 
@@ -317,7 +317,7 @@ namespace user
 
    //   __pointer(channel) ptarget = psession->get_keyboard_focus();
 
-   //   if (ptarget != nullptr && ptarget != this && ptarget != GetActiveView()
+   //   if (ptarget != nullptr && ptarget != this && ptarget != get_active_view()
    //      && !m_interactionaCommandHandlers.contains(ptarget))
    //   {
 
@@ -400,14 +400,14 @@ namespace user
       if (pview)
       {
 
-         __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+         __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
          while (pframe.is_set())
          {
 
             pframe->set_window_text(str);
 
-            pframe = pframe->GetParentFrame();
+            pframe = pframe->get_parent_frame();
 
          }
 
@@ -600,7 +600,7 @@ namespace user
 
          auto edisplay = windows_show_window_to_edisplay(nCmdShow, eactivation);
 
-         pview->GetParentFrame()->display(edisplay, eactivation);
+         pview->get_parent_frame()->display(edisplay, eactivation);
 
       }
    }
@@ -677,7 +677,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(bAddToMRU);
       string strPathName;
-      if (varFile.get_type() == ::type_propset && varFile.propset()["url"].get_string().has_char())
+      if (varFile.get_type() == ::e_type_propset && varFile.propset()["url"].get_string().has_char())
       {
          strPathName = varFile.propset()["url"];
       }
@@ -1037,7 +1037,7 @@ namespace user
          for (auto & pview : m_viewa.ptra())
          {
 
-            __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+            __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
             if (pframe.is_set())
             {
@@ -1088,7 +1088,7 @@ namespace user
       for(auto & pview : viewptra.ptra())
       {
 
-         __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+         __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
          if (pframe.is_set())
          {
@@ -1104,7 +1104,7 @@ namespace user
       for(auto & pview : viewptra.ptra())
       {
 
-         __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+         __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
          if (pframe.is_set())
          {
@@ -1199,7 +1199,7 @@ namespace user
          //   {
          //      ::file::exception * pfe = dynamic_cast <::file::exception *> (e);
          //      // ::exception::throw_not_implemented();
-         //      TRACE(trace_category_appmsg, trace_level_warning, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
+         //      TRACE(trace_category_appmsg, e_trace_level_warning, "Reporting file I/O exception on Save/Load with lOsError = $%lX.\n",
          //         pfe->m_lOsError);
 
          //      if (pfe->m_strFileName.is_empty())
@@ -1283,7 +1283,7 @@ namespace user
 
          ASSERT_VALID(pview);
 
-         __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+         __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
          // assume frameless views are ok to close
          if (pframe != nullptr)
@@ -1492,7 +1492,7 @@ namespace user
             catch (const ::exception_pointer & pe)
             {
 
-               TRACE(trace_category_appmsg, trace_level_warning, "Warning: failed to delete file after failed SaveAs.\n");
+               TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: failed to delete file after failed SaveAs.\n");
 
                ::exception_pointer esp(pe);
 
@@ -1518,10 +1518,10 @@ namespace user
 
          // we do not have read-write access or the file does not (now) exist
 
-         if (!do_save(payload(::type_empty)))
+         if (!do_save(payload(::e_type_empty)))
          {
 
-            TRACE(trace_category_appmsg, trace_level_warning, "Warning: File save with new name failed.\n");
+            TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: File save with new name failed.\n");
 
             return FALSE;
 
@@ -1534,7 +1534,7 @@ namespace user
          if (!do_save(m_path))
          {
 
-            TRACE(trace_category_appmsg, trace_level_warning, "Warning: File save failed.\n");
+            TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: File save failed.\n");
 
             return false;
 
@@ -1566,7 +1566,7 @@ namespace user
          if (pview->is_window_visible())
          {
 
-            __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+            __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
             if (pframe != nullptr)
             {
@@ -1594,7 +1594,7 @@ namespace user
          if (pview->is_window_visible())
          {
 
-            __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+            __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
             if (pframe != nullptr && pframe->m_nWindow == -1)
             {
@@ -1626,7 +1626,7 @@ namespace user
          if (pview->is_window_visible())   // Do not ::count invisible windows.
          {
 
-            __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+            __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
             if (pframe != nullptr && pframe->m_nWindow == iFrame)
             {
@@ -1680,7 +1680,7 @@ namespace user
    // ::user::impact operations
 
 
-   ::estatus document::add_view(::user::impact * pview)
+   ::e_status document::add_view(::user::impact * pview)
    {
 
       single_lock sl(mutex(), true);
@@ -1710,7 +1710,7 @@ namespace user
    }
 
 
-   ::estatus document::remove_view(::user::impact * pview)
+   ::e_status document::remove_view(::user::impact * pview)
    {
 
       sync_lock sl(mutex());

@@ -50,7 +50,7 @@ namespace account
    }
 
 
-   ::estatus user::initialize(::layered * pobjectContext)
+   ::e_status user::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -243,7 +243,7 @@ namespace account
       if(!is_authenticated())
       {
 
-         TRACE(trace_category_general, trace_level_error, "User not logged in!");
+         TRACE(trace_category_general, e_trace_level_error, "User not logged in!");
 
          return;
 
@@ -258,7 +258,7 @@ namespace account
    }
 
 
-   ::estatus  user::do_logon(::file::path pathUrl, bool bInteractive)
+   ::e_status  user::do_logon(::file::path pathUrl, bool bInteractive)
    {
 
       auto psession = Session;

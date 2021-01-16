@@ -29,7 +29,7 @@ namespace html
       }
 
 
-      ::estatus element::initialize_html_impl_elemental(::html_data * pdata)
+      ::e_status element::initialize_html_impl_elemental(::html_data * pdata)
       {
 
          auto estatus = initialize(pdata);
@@ -119,7 +119,7 @@ namespace html
       void element::OnLButtonDown(::message::message * pmessage)
       {
          
-         SCAST_PTR(::html::message, phtml, pmessage);
+         __pointer(::html::message) phtml(pmessage);
          
          SCAST_PTR(::message::mouse, pmouse, phtml->m_psignal);
          
@@ -137,7 +137,7 @@ namespace html
       void element::OnMouseMove(::message::message * pmessage)
       {
 
-         SCAST_PTR(::html::message, phtml, pmessage);
+         __pointer(::html::message) phtml(pmessage);
 
          SCAST_PTR(::message::mouse, pmouse, phtml->m_psignal);
 
@@ -199,7 +199,7 @@ namespace html
 
       void element::OnLButtonUp(::message::message * pmessage)
       {
-         SCAST_PTR(::html::message, phtml, pmessage);
+         __pointer(::html::message) phtml(pmessage);
          if (has_link())
          {
             phtml->m_pdata->open_link(link());

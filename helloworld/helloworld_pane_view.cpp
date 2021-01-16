@@ -185,7 +185,7 @@ namespace helloworld
          if (m_prollfps != nullptr)
          {
 
-            m_prollfps->_001SetText(str, ::source_database);
+            m_prollfps->_001SetText(str, ::e_source_database);
 
          }
 
@@ -199,7 +199,7 @@ namespace helloworld
 
                m_checkptraBilbo.add(dynamic_cast <::user::check_box *> (pview->get_child_by_id("bilbo" + __str(i))));
 
-               m_checkptraBilbo.last()->_001SetCheck(bilbo.m_b ? ::check_checked : ::check_unchecked, ::source_sync);
+               m_checkptraBilbo.last()->_001SetCheck(bilbo.m_b ? ::check_checked : ::check_unchecked, ::e_source_sync);
 
                i++;
 
@@ -239,7 +239,7 @@ namespace helloworld
 
          ::user::impact * pview = m_pdocMenu->get_view(0);
 
-         m_pimpactdata->m_puserinteraction = pview->GetParentFrame();
+         m_pimpactdata->m_puserinteraction = pview->get_parent_frame();
 
 
          //::file::path path = prepare_menu_view();
@@ -250,7 +250,7 @@ namespace helloworld
 //         m_prollspf = pview->get_child_by_id("roll_spf");
          //try
          //{
-         //   pform->get_child_by_id("clockverse_auto")->_001SetCheck(Application.should_auto_launch_clockverse_on_hover(),::source_initialize);
+         //   pform->get_child_by_id("clockverse_auto")->_001SetCheck(Application.should_auto_launch_clockverse_on_hover(),::e_source_initialize);
          //}
          //catch(...)
          //{
@@ -258,7 +258,7 @@ namespace helloworld
 
          //try
          //{
-         //   pform->get_child_by_id("flag")->_001SetCheck(Application.should_bind_flag_country_ca2_domain_image_on_hover(),::source_initialize);
+         //   pform->get_child_by_id("flag")->_001SetCheck(Application.should_bind_flag_country_ca2_domain_image_on_hover(),::e_source_initialize);
          //}
          //catch(...)
          //{
@@ -266,7 +266,7 @@ namespace helloworld
 
          //try
          //{
-         //   pform->get_child_by_id("flag_auto")->_001SetCheck(Application.should_auto_launch_flag_on_hover(),::source_initialize);
+         //   pform->get_child_by_id("flag_auto")->_001SetCheck(Application.should_auto_launch_flag_on_hover(),::e_source_initialize);
          //}
          //catch(...)
          //{
@@ -306,8 +306,8 @@ namespace helloworld
          if(pevent->m_eevent == ::user::e_event_after_change_text)
          {
 
-            if(m_prollfps != nullptr && pevent->m_puie->m_id == "roll_fps" && !pevent->m_context.is_source(::source_initialize)
-                  && !pevent->m_context.is_source(::source_database))
+            if(m_prollfps != nullptr && pevent->m_puie->m_id == "roll_fps" && !pevent->m_context.is_source(::e_source_initialize)
+                  && !pevent->m_context.is_source(::e_source_database))
             {
 
                try
@@ -342,11 +342,11 @@ namespace helloworld
                   }
                   //if(fabs(d) < 0.0000000001)
                   //{
-                  //   m_prollspf->_001SetText("",::source_initialize);
+                  //   m_prollspf->_001SetText("",::e_source_initialize);
                   //}
                   //else
                   //{
-                  //   m_prollspf->_001SetText(__str(1.0/d),::source_initialize);
+                  //   m_prollspf->_001SetText(__str(1.0/d),::e_source_initialize);
                   //}
                }
                catch(...)
@@ -354,7 +354,7 @@ namespace helloworld
                }
 
             }
-            //else if(pevent->m_puie->m_id == "roll_spf" && !pevent->m_context.is_source(::source_initialize))
+            //else if(pevent->m_puie->m_id == "roll_spf" && !pevent->m_context.is_source(::e_source_initialize))
             //{
 
             //   try
@@ -364,13 +364,13 @@ namespace helloworld
             //      double d = atof(str);
             //      if(fabs(d) < 0.0000000001)
             //      {
-            //         m_prollfps->_001SetText("",::source_initialize);
+            //         m_prollfps->_001SetText("",::e_source_initialize);
             //      }
             //      else
             //      {
             //         m_pflagview->m_dFps = 1.0/ d;
             //         m_pflagview->m_dwRoll= ::millis::now();
-            //         m_prollfps->_001SetText(__str(1.0 / d),::source_initialize);
+            //         m_prollfps->_001SetText(__str(1.0 / d),::e_source_initialize);
             //      }
             //   }
             //   catch(...)
@@ -390,8 +390,8 @@ namespace helloworld
             if (::str::begins_eat_ci(strCheck, "bilbo"))
             {
 
-               if (pevent->m_puie != nullptr && !pevent->m_context.is_source(::source_initialize)
-                     && !pevent->m_context.is_source(::source_sync))
+               if (pevent->m_puie != nullptr && !pevent->m_context.is_source(::e_source_initialize)
+                     && !pevent->m_context.is_source(::e_source_sync))
                {
 
                   int iCheck = atoi(strCheck);

@@ -19,7 +19,7 @@ public:
    virtual ~message_box();
 
 
-   //::estatus show(::matter* pobject);
+   //::e_status show(::matter* pobject);
 
 
 };
@@ -30,7 +30,7 @@ public:
 inline payload operator + (payload payload, const ::enum_message_box& emessagebox)
 {
 
-   if (payload.get_type() != type_propset)
+   if (payload.get_type() != e_type_propset)
    {
 
       payload["message"] = payload.get_string();
@@ -63,7 +63,7 @@ inline payload operator + (const char* psz, const ::enum_message_box& emessagebo
 }
 
 
-CLASS_DECL_ACME ::estatus os_message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+CLASS_DECL_ACME ::e_status os_message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
 
 
 

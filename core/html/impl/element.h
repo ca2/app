@@ -25,7 +25,7 @@ namespace html
 
 
          enum_position              m_eposition;
-         flags < e_flag >        m_flags;
+         flags < enum_flag >        m_flags;
          float                   m_cxMax;
          float                   m_cxMin;
          string_map < i32, i32 > m_mapFont;
@@ -41,7 +41,7 @@ namespace html
          virtual ~element();
 
 
-         virtual ::estatus initialize_html_impl_elemental(::html_data * pdata);
+         virtual ::e_status initialize_html_impl_elemental(::html_data * pdata);
 
 
          virtual void delete_implementation(html_data * pdocument);

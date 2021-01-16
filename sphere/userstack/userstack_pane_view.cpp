@@ -49,7 +49,7 @@ namespace userstack
       if(pmessage->previous())
          return;
 
-      __pointer(frame) pframe =  (GetParentFrame());
+      __pointer(frame) pframe =  (get_parent_frame());
       pframe->m_ppaneview = this;
 
 
@@ -94,7 +94,7 @@ namespace userstack
    void pane_view::on_change_cur_sel()
    {
       ::userex::pane_tab_view::on_change_cur_sel();
-//      __pointer(frame) pframe =  (GetParentFrame());
+//      __pointer(frame) pframe =  (get_parent_frame());
       string strId = get_view_id();
       if(::str::begins_eat(strId, "app:"))
       {
@@ -116,7 +116,7 @@ namespace userstack
       //   {
       //      /*bergedge::menu_view * pview = dynamic_cast < bergedge::menu_view *  > (get_view());
       //      __pointer(::filemanager::document) pdocument = (pview->get_document());
-      //      pdocument->FileManagerBrowse(Context.dir().appdata() / "bergedge\\menu"), ::source_system);*/
+      //      pdocument->FileManagerBrowse(Context.dir().appdata() / "bergedge\\menu"), ::e_source_system);*/
       //   }
       //   else if(get_view_id() ==CONFIGURATION_IMPACT)
       //   {
@@ -141,7 +141,7 @@ namespace userstack
       //         check_desktop_dir(strDir);
       //      }
       //      __pointer(::filemanager::document) pdocument =  (m_pimpactdata->m_pdocument);
-      //      pdocument->FileManagerBrowse(strDir, ::source_system);
+      //      pdocument->FileManagerBrowse(strDir, ::e_source_system);
       //   }
       else
       {
@@ -274,7 +274,7 @@ namespace userstack
       if(itema.get_size() > 0)
       {
          i32 i = (i32) ::ShellExecuteW(
-            GetTopLevel()->get_handle(),
+            get_top_level()->get_handle(),
             nullptr,
             L"\"" + ::str::international::utf8_to_unicode(itema[0].m_strPath) + L"\"",
             nullptr,
@@ -287,7 +287,7 @@ namespace userstack
          {
          }
       }
-      //GetParentFrame()->hide();
+      //get_parent_frame()->hide();
    }*/
 
    void pane_view::check_menu_dir(const ::file::path & psz)
@@ -485,14 +485,14 @@ namespace userstack
    void pane_view::_001OnRButtonUp(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-//      SCAST_PTR(::message::mouse, pmouse, pmessage);
+//      __pointer(::message::mouse) pmouse(pmessage);
       /*if(get_view_id() == ::bergedge::impact_winactionarea)
       {
          ::user::menu menu(get_object());
          menu.LoadXmlMenu("bergedge\\popup_winactionarea.xml");
          ::user::menu menuPopup(get_context_application(), menu.GetSubMenu(0));
-         GetParentFrame()->SetActiveView(this);
-         menuPopup.track_popup_menu(0, pmouse->m_point.x, pmouse->m_point.y, GetParentFrame());
+         get_parent_frame()->set_active_view(this);
+         menuPopup.track_popup_menu(0, pmouse->m_point.x, pmouse->m_point.y, get_parent_frame());
       }*/
    }
 

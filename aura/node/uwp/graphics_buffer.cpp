@@ -6,6 +6,7 @@
 #include "buffer.h"
 #include <stdio.h>
 #include "aura/node/uwp/directx_application.h"
+#include "aura/os/windows_common/draw2d_direct2d_global.h"
 
 
 #include "__debug_power.h"
@@ -37,10 +38,10 @@ namespace uwp
    }
 
 
-   ::estatus buffer::initialize_graphics_graphics(::user::interaction_impl* pimpl)
+   ::e_status buffer::initialize_graphics_graphics(::user::interaction_impl* pimpl)
    {
 
-      ::estatus estatus = ::graphics::bitmap_source_buffer::initialize_graphics_graphics(pimpl);
+      ::e_status estatus = ::graphics::bitmap_source_buffer::initialize_graphics_graphics(pimpl);
 
       if (!estatus)
       {
@@ -60,6 +61,9 @@ namespace uwp
 
    bool buffer::create_os_buffer(const ::size& size, int iStrideParam)
    {
+
+
+
 
       return true;
 
@@ -86,23 +90,46 @@ namespace uwp
 
       }
 
-
-      auto directx = pframeworkview->m_directx;
-
-      auto pdevicecontext = directx->get_device_context();
-
-      if(pdevicecontext == nullptr)
+      if (!pframeworkview->m_directx->m_bCoreWindowVisible
+         || pframeworkview->m_directx->m_ephase != ::uwp::e_phase_draw)
       {
 
          return nullptr;
 
       }
 
+      auto directx = m_pframeworkview->m_directx;
+
+      auto pdevicecontext = directx->get_device_context();
+
+      if (pdevicecontext == nullptr)
+      {
+
+         return false;
+
+      }
+
       __defer_construct(m_pdraw2dgraphics);
 
-      m_pdraw2dgraphics->attach(pdevicecontext);
+      if (m_pd2d1devicecontext.Get() != pdevicecontext)
+      {
 
-      pdevicecontext->BeginDraw();
+         //m_pdraw2dgraphics->set_direct2d_plugin(pframeworkview->m_directx->m_pplugin);
+
+         m_pdraw2dgraphics->attach(pdevicecontext);
+
+         m_pd2d1devicecontext = pdevicecontext;
+
+      }
+
+      if (!m_pd2d1devicecontext.Get())
+      {
+
+         return nullptr;
+
+      }
+
+      m_pd2d1devicecontext->BeginDraw();
 
       auto colorBackground = m_pframeworkview->m_puisettings->GetColorValue(Windows::UI::ViewManagement::UIColorType::Background);
 
@@ -113,9 +140,9 @@ namespace uwp
       cr.g = colorBackground.G / 255.f;
       cr.b = colorBackground.B / 255.f;
 
-      pdevicecontext->Clear(cr);
+      m_pd2d1devicecontext->Clear(cr);
 
-      pdevicecontext->SetTransform(D2D1::Matrix3x2F::Identity());
+      m_pd2d1devicecontext->SetTransform(D2D1::Matrix3x2F::Identity());
 
       return m_pdraw2dgraphics;
 
@@ -125,14 +152,20 @@ namespace uwp
    void buffer::on_end_draw()
    {
 
-      auto pdevicecontext = (ID2D1DeviceContext*)m_pdraw2dgraphics->detach();
+      //auto pdevicecontext = (ID2D1DeviceContext*)m_pdraw2dgraphics->detach();
 
-      if (pdevicecontext)
+      if (m_pd2d1devicecontext)
       {
 
-         HRESULT hr = pdevicecontext->EndDraw();
+         HRESULT hr = m_pd2d1devicecontext->EndDraw();
 
-         if (FAILED(hr))
+         if (SUCCEEDED(hr))
+         {
+            
+            m_pframeworkview->m_directx->m_ephase = ::uwp::e_phase_present;
+
+         }
+         else
          {
 
             output_debug_string("finished drawing with errors");
@@ -190,10 +223,10 @@ namespace uwp
    }
 
 
-   bool buffer::round_swap_key_buffers()
+   bool buffer::buffer_lock_round_swap_key_buffers()
    {
 
-      bool bOk2 = bitmap_source_buffer::round_swap_key_buffers();
+      bool bOk2 = bitmap_source_buffer::buffer_lock_round_swap_key_buffers();
 
       return bOk2;
 

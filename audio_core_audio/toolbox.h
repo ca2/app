@@ -43,7 +43,7 @@ namespace multimedia
 
          
          
-         virtual ::estatus init_thread() override;
+         virtual ::e_status init_thread() override;
          virtual void term_thread() override;
          
          

@@ -15,10 +15,10 @@ namespace windows
       virtual ~file_system();
 
 
-      virtual ::estatus init_system() override;
+      virtual ::e_status init_system() override;
 
 
-      virtual ::estatus update_module_path() override;
+      virtual ::e_status update_module_path() override;
 
 
    };

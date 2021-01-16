@@ -1,3 +1,4 @@
+
 #include "framework.h"
 #include "_linux.h"
 
@@ -24,7 +25,7 @@ namespace linux
    }
 
 
-   ::status::result stdio_file::open(const ::file::path & pszFileName, const cflag < ::file::e_open > & eopen)
+   ::status::result stdio_file::open(const ::file::path & pszFileName, const ::file::e_open & eopen)
    {
 
       ASSERT(pszFileName.has_char());

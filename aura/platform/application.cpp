@@ -115,13 +115,6 @@ namespace aura
 
 
 
-      if(::get_global_application() == nullptr)
-      {
-
-         set_global_application(this);
-
-      }
-
       m_strLocale = "_std";
       m_strSchema = "_std";
 
@@ -195,7 +188,7 @@ namespace aura
    }
 
 
-   ::estatus application::initialize(::layered * pobjectContext)
+   ::e_status application::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::apex::application::initialize(pobjectContext);
@@ -351,7 +344,7 @@ namespace aura
    }
 
 
-   ::estatus     application::call_request(::create * pcreate)
+   ::e_status     application::call_request(::create * pcreate)
    {
 
       if (pcreate->m_ecommand == ::command_protocol)
@@ -526,7 +519,7 @@ namespace aura
    }
 
 
-   //::estatus application::os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //::e_status application::os_message_box(::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   return ::os_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, emessagebox, callback);
@@ -534,7 +527,7 @@ namespace aura
    //}
 
 
-   //::estatus application::ui_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //::e_status application::ui_message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -549,7 +542,7 @@ namespace aura
    //}
 
 
-   //::estatus application::ui_message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //::e_status application::ui_message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration& durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   if (!Session || !psession->userex())
@@ -564,7 +557,7 @@ namespace aura
    //}
 
 
-   //::estatus application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
+   //::e_status application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box(puiOwner, pszMessage, pszTitle, emessagebox, callback);
@@ -581,7 +574,7 @@ namespace aura
    //}
 
 
-   //::estatus application::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
+   //::e_status application::message_box_timeout(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, ::callback callback)
    //{
 
    //   auto estatus = ui_message_box_timeout(puiOwner, pszMessage, pszTitle, durationTimeout, emessagebox, callback);
@@ -598,7 +591,7 @@ namespace aura
    //}
 
 
-   //::estatus application::message_box(const payload & payload)
+   //::e_status application::message_box(const payload & payload)
    //{
 
    //   __pointer(::user::primitive) puiOwner;
@@ -613,7 +606,7 @@ namespace aura
 
    //   ::function_arg function;
 
-   //   if (payload.get_type() != type_propset)
+   //   if (payload.get_type() != e_type_propset)
    //   {
 
    //      strMessage = payload;
@@ -1197,7 +1190,7 @@ namespace aura
    //}
 
 
-   //::estatus application::init_thread()
+   //::e_status application::init_thread()
    //{
 
    //   try
@@ -1265,7 +1258,7 @@ namespace aura
    //}
 
 
-//   ::estatus application::pre_run()
+//   ::e_status application::pre_run()
 //   {
 //
 //      INFO("aura::application::pre_run");
@@ -1349,10 +1342,10 @@ namespace aura
 //   }
 
 
-//   ::estatus application::on_run()
+//   ::e_status application::on_run()
 //   {
 //
-//      ::estatus     estatus = ::success;
+//      ::e_status     estatus = ::success;
 //
 //      try
 //      {
@@ -1505,7 +1498,7 @@ namespace aura
    }
 
 
-   ::estatus application::init_instance()
+   ::e_status application::init_instance()
    {
 
       auto estatus = ::apex::application::init_instance();
@@ -1528,7 +1521,7 @@ namespace aura
 
    }
 
-   //::estatus application::notify_init3()
+   //::e_status application::notify_init3()
    //{
 
    //   ::message::application message(::message::application_init3);
@@ -1540,7 +1533,7 @@ namespace aura
    //}
 
 
-   ::estatus application::_001InitializeShellOpen()
+   ::e_status application::_001InitializeShellOpen()
    {
 
       //ASSERT(m_atomApp == nullptr && m_atomSystemTopic == nullptr); // do once
@@ -1668,7 +1661,7 @@ namespace aura
    }
 
 
-   ::estatus application::on_before_launching()
+   ::e_status application::on_before_launching()
    {
 
       auto psession = Session;
@@ -1905,7 +1898,7 @@ retry_license:
    //}
 
 
-   //::estatus application::os_native_bergedge_start()
+   //::e_status application::os_native_bergedge_start()
    //{
 
    //   return true;
@@ -1913,7 +1906,7 @@ retry_license:
    //}
 
 
-   //::estatus     application::run()
+   //::e_status     application::run()
    //{
 
    //   if (is_system())
@@ -1965,7 +1958,7 @@ retry_license:
 
 
 
-   ::estatus application::process_init()
+   ::e_status application::process_init()
    {
 
       auto estatus = ::apex::application::process_init();
@@ -1977,186 +1970,12 @@ retry_license:
 
       }
 
-//      string_array stra;
-//
-//      stra.explode("/", m_strAppId);
-//
-//      m_strRoot = stra[0];
-//
-//      m_strDomain = stra.slice(1).implode("/");
-//
-//      add_matter_locator(this);
-//
-//
-//      //if (is_system() || is_session())
-//      //{
-//
-//      //   on_update_matter_locator();
-//
-//      //}
-//      //else
-//      //{
-//
-//
-//      //}
-//
-//      if (!m_bAppHasInstallerChangedProtected)
-//      {
-//
-//#ifdef _UWP
-//
-//         set_has_installer(false);
-//
-//#else
-//
-//         //if (System.m_pappcore == nullptr)
-//         //{
-//
-//         //   set_has_installer(false);
-//
-//         //}
-//         //else
-//         {
-//
-//            //set_has_installer(!System.has_aura_application_factory());
-//
-//         }
-//
-//#endif
-//
-//      }
-//
-//      auto estatus = initialize_context();
-//
-//      if (!estatus)
-//      {
-//
-//         return estatus;
-//
-//      }
-//
-//      //if (m_bAuraProcessInitialize)
-//      //{
-//
-//      //   return m_bAuraProcessInitializeResult;
-//
-//      //}
-//
-//      INFO("aura::application::process_init");
-//
-//      //m_bAuraProcessInitialize = true;
-//
-//      //m_bAuraProcessInitializeResult = false;
-//
-//      //if (!is_system())
-//      {
-//
-//         if (get_context_system() != nullptr)
-//         {
-//
-//            m_bThreadToolsForIncreasedFps = System.m_bThreadToolsForIncreasedFps;
-//
-//         }
-//
-//      }
-
-
-
-      //if (!__construct(m_spdir))
-      //{
-
-      //   return false;
-
-      //}
-
-      //if (!__construct(m_spfile))
-      //{
-
-      //   return false;
-
-      //}
-
-      //if (::get_task() == nullptr)
-      //{
-
-      //   ::set_thread(dynamic_cast <thread *> (this));
-
-      //}
-
-      //if (!notify_process_init())
-      //{
-
-      //   FATAL("aura::application::process_init .1");
-
-      //   return false;
-
-      //}
-
-      //if (!impl_process_init())
-      //{
-
-      //   FATAL("aura::application::process_init .2");
-
-      //   return false;
-
-      //}
-
-//      m_bAuraProcessInitializeResult = true;
-
-      //INFO("aura::application::process_init success");
-
-      //create_factory < ::database::field_array >();
-      //create_factory < ::database::row >();
-      //create_factory < ::database::row_array >();
-
-      //if (m_bAxisProcessInitialize)
-      //{
-
-      //   return m_bAxisProcessInitializeResult;
-
-      //}
 
       INFO("axis::application::process_init");
 
-      //m_bAxisProcessInitialize = true;
-
-      //m_bAxisProcessInitializeResult = false;
-
-      //if (m_psimpledb.is_null())
-      //{
-
-      //   __construct_new(m_psimpledb);
-
-      //}
-
-      //if (!::aura::application::process_init())
-      //{
-
-      //   FATAL("axis::application::process_init .1");
-
-      //   return false;
-
-      //}
-
-
-      //m_bAxisProcessInitializeResult = true;
 
       INFO("aura::application::process_init success");
 
-      //return true;
-
-      //estatus = userfs_process_init();
-
-      //if(!estatus && estatus != error_not_implemented)
-      //{
-
-      //   ERR(".2");
-
-      //   return false;
-
-      //}
-
-      //INFO("success");
 
       return true;
 
@@ -2174,7 +1993,7 @@ retry_license:
    //}
 
 
-//   ::estatus application::init_application()
+//   ::e_status application::init_application()
 //   {
 //
 //      auto estatus = ::apex::application::init_application();
@@ -2296,10 +2115,10 @@ retry_license:
    //}
 
 
-   ::estatus application::init1()
+   ::e_status application::init1()
    {
 
-      ::estatus estatus = ::apex::application::init1();
+      ::e_status estatus = ::apex::application::init1();
 
       if (!estatus)
       {
@@ -2362,7 +2181,7 @@ retry_license:
 
    }
 
-   ::estatus application::init2()
+   ::e_status application::init2()
    {
 
       //if (!impl_init2())
@@ -2412,7 +2231,7 @@ retry_license:
 
    }
 
-   ::estatus application::init3()
+   ::e_status application::init3()
    {
 
       string strFolder = m_strAppName;
@@ -2555,7 +2374,7 @@ retry_license:
 
 
 
-//   ::estatus application::notify_init2()
+//   ::e_status application::notify_init2()
 //   {
 //
 //      ::message::application message(::message::application_init2);
@@ -2624,7 +2443,7 @@ retry_license:
    //}
 
 //
-//   ::estatus application::check_exclusive(bool & bHandled)
+//   ::e_status application::check_exclusive(bool & bHandled)
 //   {
 //
 //#ifdef _UWP
@@ -2807,7 +2626,7 @@ retry_license:
 //   }
 //
 //
-//   ::estatus application::release_exclusive()
+//   ::e_status application::release_exclusive()
 //   {
 //
 //      m_mapExclusive.remove_all();
@@ -3954,7 +3773,7 @@ retry_license:
    void application::defer_create_keyboard()
    {
 
-      //set_keyboard_layout(nullptr,::source_database);
+      //set_keyboard_layout(nullptr,::e_source_database);
 
    }
 
@@ -3967,7 +3786,7 @@ retry_license:
    }
 
 
-   bool application::keyboard_focus_OnSetFocus(::user::primitive * pue)
+   bool application::keyboard_focus_OnSetFocus(::user::primitive * pprimitive)
    {
 
       return true;
@@ -4973,7 +4792,7 @@ retry_license:
    }
 
 
-   ::estatus application::verb()
+   ::e_status application::verb()
    {
 
       return true;
@@ -5005,7 +4824,7 @@ retry_license:
    //}
 
 
-   //::estatus     application::main()
+   //::e_status     application::main()
    //{
 
    //   return ::aura::application::main();
@@ -5013,7 +4832,7 @@ retry_license:
    //}
 
 
-   //::estatus application::on_run()
+   //::e_status application::on_run()
    //{
 
    //   //try
@@ -5115,7 +4934,7 @@ retry_license:
    //}
 
 
-   //::estatus application::init_application()
+   //::e_status application::init_application()
    //{
 
    //   return ::aura::application::init_application();
@@ -5123,7 +4942,7 @@ retry_license:
    //}
 
 
-   //::estatus application::application_pre_run()
+   //::e_status application::application_pre_run()
    //{
 
    //   return ::aura::application::application_pre_run();
@@ -5196,7 +5015,7 @@ retry_license:
    //}
 
 
-   //::estatus application::os_native_bergedge_start()
+   //::e_status application::os_native_bergedge_start()
    //{
 
    //   if (!::aura::application::os_native_bergedge_start())
@@ -5219,7 +5038,7 @@ retry_license:
    //}
 
 
-   //::estatus     application::run()
+   //::e_status     application::run()
    //{
 
    //   return ::aura::application::run();
@@ -5250,7 +5069,7 @@ retry_license:
 
 
 
-   ::estatus application::init()
+   ::e_status application::init()
    {
 
       auto estatus = ::apex::application::init();
@@ -5511,7 +5330,7 @@ retry_license:
    //void application::process_message_filter(i32 code, ::message::message * pmessage)
    //{
 
-   //   //SCAST_PTR(::message::base,pbase,pmessage);
+   //   //__pointer(::message::base) pbase(pmessage);
 
    //   UNREFERENCED_PARAMETER(code);
 
@@ -5621,14 +5440,14 @@ retry_license:
    }
 
 
-   //estatus application::userfs_init1()
+   //::e_status application::userfs_init1()
    //{
 
    //   return error_not_implemented;
 
    //}
 
-   //estatus application::userfs_process_init()
+   //::e_status application::userfs_process_init()
    //{
 
    //   return error_not_implemented;
@@ -5868,7 +5687,7 @@ retry_license:
 
 
 
-   //   ::estatus     application::interactive_credentials(::account::credentials * pcredentials)
+   //   ::e_status     application::interactive_credentials(::account::credentials * pcredentials)
    //   {
    //
    //      return ::aura::applciation::interactive_credentials(pcredentials);
@@ -6046,7 +5865,7 @@ namespace aura
    //}
 
 
-   //::estatus application::initialize(::layered * pobjectContext)
+   //::e_status application::initialize(::layered * pobjectContext)
    //{
 
    //   auto estatus = ::aura::application::initialize(pobjectContext);
@@ -6262,7 +6081,7 @@ namespace aura
 
 
 
-  /* ::estatus     application::run()
+  /* ::e_status     application::run()
    {
 
       return ::aura::application::run();
@@ -6285,7 +6104,7 @@ namespace aura
 
       ENSURE_ARG(pmessage != nullptr);
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       // handle certain messages in thread
 
@@ -8056,7 +7875,7 @@ namespace aura
    //}
 
 
-   //::estatus application::bergedge_start()
+   //::e_status application::bergedge_start()
    //{
 
    //   string strId = m_strId;
@@ -8116,15 +7935,15 @@ namespace aura
    void application::pre_translate_message(::message::message* pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       if (pbase->m_id == WM_USER + 124 && pbase->userinteraction() == nullptr)
       {
 
          /*
 
-         OnMachineEvent((flags < machine_event::e_flag> *) pmsg->lParam);
-         delete (flags < machine_event::e_flag> *) pmsg->lParam;
+         OnMachineEvent((flags < machine_event::enum_flag> *) pmsg->lParam);
+         delete (flags < machine_event::enum_flag> *) pmsg->lParam;
 
          */
 
@@ -8582,11 +8401,11 @@ namespace aura
    //   // keyboard on_layout
    //   //if(data_get("keyboard_layout",str) && str.has_char())
    //   {
-   //      // psession->set_keyboard_layout(str,::source_database);
+   //      // psession->set_keyboard_layout(str,::e_source_database);
    //   }
    //   //else
    //   {
-   //      set_keyboard_layout(nullptr, ::source_database);
+   //      set_keyboard_layout(nullptr, ::e_source_database);
    //   }
 
    //}
@@ -8752,7 +8571,7 @@ namespace aura
    }
 
 
-   estatus application::initialize_contextualized_theme()
+   ::e_status application::initialize_contextualized_theme()
    {
 
       auto estatus = __compose_new(m_ptheme);
@@ -8845,7 +8664,7 @@ namespace aura
    //}
 
 
-   //::estatus application::initialize(::layered * pobjectContext)
+   //::e_status application::initialize(::layered * pobjectContext)
    //{
 
    //   auto estatus = ::aura::application::initialize(pobjectContext);
@@ -8893,7 +8712,7 @@ namespace aura
       //}
 
 
-   //::estatus application::process_init()
+   //::e_status application::process_init()
    //{
 
    //   if (::aura::application::process_init())
@@ -8908,7 +8727,7 @@ namespace aura
    //}
 
 
-   //::estatus application::init_instance()
+   //::e_status application::init_instance()
    //{
 
    //   if (!::aura::application::init_instance())
@@ -8932,7 +8751,7 @@ namespace aura
    //}
 
 
-   ::estatus     application::create_impact_system()
+   ::e_status     application::create_impact_system()
    {
 
       return ::success;
@@ -8946,7 +8765,7 @@ namespace aura
       //if (pmessage == nullptr)
       //   return;   // not handled
 
-      //SCAST_PTR(::message::base, pbase, pmessage);
+      //__pointer(::message::base) pbase(pmessage);
 
       //__pointer(::user::frame_window) pTopFrameWnd;
       ////::user::interaction * pMainWnd;
@@ -8966,7 +8785,7 @@ namespace aura
 
       //   if (pMsgWnd != nullptr)
       //   {
-      //      pTopFrameWnd = pMsgWnd->GetTopLevelFrame();
+      //      pTopFrameWnd = pMsgWnd->top_level_frame();
       //      if (pTopFrameWnd != nullptr && pTopFrameWnd->IsTracking() &&
       //         pTopFrameWnd->m_bHelpMode)
       //      {
@@ -9075,7 +8894,7 @@ namespace aura
    //}
 
 
-   ::estatus application::on_thread_on_idle(::thread* pthread, ::i32 lCount)
+   ::e_status application::on_thread_on_idle(::thread* pthread, ::i32 lCount)
    {
 
      if (lCount <= 0)
@@ -9248,7 +9067,7 @@ namespace aura
 
                   pcheck->_001SetCheck(
                      Context.os().is_user_auto_start(get_executable_appid()),
-                     ::source_initialize);
+                     ::e_source_initialize);
 
                }
             }

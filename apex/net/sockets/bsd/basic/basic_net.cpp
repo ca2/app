@@ -49,7 +49,7 @@ namespace sockets
    }
 
 
-   ::estatus     net::initialize(::layered * pobjectContext)
+   ::e_status     net::initialize(::layered * pobjectContext)
    {
 
       if(m_bInitialized)

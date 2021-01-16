@@ -18,7 +18,7 @@
 //
 //   future_pred(const TYPE & t, PRED pred) : m_result(t), m_pred(pred) { }
 //
-//   virtual ::estatus     run() override
+//   virtual ::e_status     run() override
 //   {
 //
 //      return m_pred(m_result);

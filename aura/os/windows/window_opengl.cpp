@@ -19,7 +19,7 @@ namespace opengl
    }
 
 
-   estatus buffer::initialize_graphics_graphics(::user::interaction_impl * pimpl)
+   ::e_status buffer::initialize_graphics_graphics(::user::interaction_impl * pimpl)
    {
 
       return ::success;

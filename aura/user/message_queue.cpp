@@ -34,7 +34,12 @@ namespace user
 
       }
 
-      m_plistener->install_message_queue_routing(this);
+      if (m_plistener)
+      {
+
+         m_plistener->install_message_queue_routing(this);
+
+      }
 
       return true;
 

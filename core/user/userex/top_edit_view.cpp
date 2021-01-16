@@ -38,7 +38,7 @@ namespace userex
    }
 
 
-   ::draw2d::font_pointer top_edit_view::get_font(::user::style* pstyle, ::user::enum_element eelement, ::user::estate estate) const
+   ::draw2d::font_pointer top_edit_view::get_font(::user::style* pstyle, ::user::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (m_pfont)
@@ -56,7 +56,7 @@ namespace userex
    void top_edit_view::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
 
@@ -75,7 +75,7 @@ namespace userex
    void top_edit_view::_001OnKeyDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       auto psubject = subject(id_key_down);
 

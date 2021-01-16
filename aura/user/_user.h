@@ -228,6 +228,9 @@ namespace user
 //#include "aura/primitive/primitive/form_property_set.h"
 
 
+#include "graphics_call.h"
+
+
 #include "interaction.h"
 
 
@@ -615,7 +618,7 @@ class mini_dock_frame_window;    // forward context_object (see afxpriv.h)
 
 
 //#include "button.h"
-#include "plain_edit.h"
+//#include "plain_edit.h"
 
 
 
@@ -761,5 +764,39 @@ typedef struct _AppIndicator AppIndicator;
 
 
 #include "_impl.h"
+
+
+
+namespace user
+{
+
+
+   template < typename CONTROL_STYLE >
+   void style::get(__pointer(CONTROL_STYLE) & pcontrolstyleImpl, ::draw2d::graphics_pointer & pgraphics, ::user::interaction * pinteraction)
+   {
+
+      auto & pcontrolstyle = m_controlstyle[pinteraction->m_econtroltype];
+
+      if (!pcontrolstyle)
+      {
+
+         pcontrolstyle = __new(CONTROL_STYLE);
+
+      }
+
+      if (!pcontrolstyle->is_up_to_date(this))
+      {
+
+         pcontrolstyle->update(pgraphics, this, pinteraction);
+
+      }
+
+      pcontrolstyleImpl = pcontrolstyle;
+
+   }
+
+
+} // namespace user
+
 
 

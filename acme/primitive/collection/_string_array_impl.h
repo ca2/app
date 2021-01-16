@@ -91,7 +91,7 @@ template < class Type, class RawType >
 string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::operator = (payload varSrc)
 {
    this->remove_all();
-   if (varSrc.get_type() == ::type_stra)
+   if (varSrc.get_type() == ::e_type_stra)
    {
       varSrc.get_array(*this);
    }

@@ -53,7 +53,7 @@ namespace html
 
    }
 
-   ::estatus core_data::initialize_html_data(html_data * pdata)
+   ::e_status core_data::initialize_html_data(html_data * pdata)
    {
 
       auto estatus = ::html_data::initialize_html_data(pdata);
@@ -284,6 +284,21 @@ namespace html
 
       m_element.implement(this);
 
+      for (auto & pinteraction : m_pform->m_puiptraChild->interactiona())
+      {
+
+         ::user::control_event event;
+
+         event.m_eevent = ::user::e_event_initialize_control;
+
+         event.m_puie = pinteraction;
+
+         event.m_id = pinteraction->m_id;
+
+         m_pform->route_control_event(&event);
+
+      }
+
       MESSAGE_LINK(e_message_key_down, m_puserinteraction, this, &core_data::_001OnKeyDown);
 
       m_bImplemented = true;
@@ -294,14 +309,12 @@ namespace html
    void core_data::_001OnKeyDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       if (pkey->m_ekey == ::user::key_tab)
       {
 
-         auto psession = Session;
-
-         ::user::primitive * pfocus = psession->get_keyboard_focus();
+         auto pfocus = get_form()->get_keyboard_focus();
 
          if (pfocus != nullptr)
          {
@@ -313,7 +326,7 @@ namespace html
          if (pfocus != nullptr)
          {
 
-            psession->set_keyboard_focus(pfocus);
+            pfocus->set_keyboard_focus();
 
          }
 
@@ -769,7 +782,7 @@ namespace html
    }
    
    
-   ::estatus     core_data::open_html(const ::string & strParam)
+   ::e_status     core_data::open_html(const ::string & strParam)
    {
       
       string str(strParam);
@@ -841,7 +854,7 @@ namespace html
    __pointer(::user::interaction) core_data::get_frame()
    {
       
-      return  (get_form()->GetParentFrame());
+      return  (get_form()->get_parent_frame());
 
    }
 

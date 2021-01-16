@@ -19,7 +19,7 @@ namespace simpledb
       virtual ~simpledb();
 
       
-      virtual ::estatus initialize_simpledb(server * pserver);
+      virtual ::e_status initialize_simpledb(server * pserver);
 
 
       bool load(const ::database::key & key, get_memory getmemory);

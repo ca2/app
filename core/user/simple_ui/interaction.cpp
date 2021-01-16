@@ -60,7 +60,7 @@ namespace simple_ui
 //   {
 //
 //      UNREFERENCED_PARAMETER(pmessage);
-//      //SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+//      //__pointer(::message::show_window) pshowwindow(pmessage);
 //
 //
 //
@@ -70,7 +70,7 @@ namespace simple_ui
 //   bool interaction::simple_process_system_message(::message::message * pmessage, ::user::enum_event eevent)
 //   {
 //
-//      SCAST_PTR(::message::base, pbase, pmessage);
+//      __pointer(::message::base) pbase(pmessage);
 //
 //      if (eevent == ::user::e_event_button_down)
 //      {
@@ -111,7 +111,7 @@ namespace simple_ui
 //   void interaction::_001OnLButtonDown(::message::message * pmessage)
 //   {
 //
-//      SCAST_PTR(::message::mouse, pmouse, pmessage);
+//      __pointer(::message::mouse) pmouse(pmessage);
 //
 //      if (!is_window_enabled())
 //      {
@@ -157,7 +157,7 @@ namespace simple_ui
 //   void interaction::_001OnMButtonDown(::message::message * pmessage)
 //   {
 //
-//      SCAST_PTR(::message::mouse, pmouse, pmessage);
+//      __pointer(::message::mouse) pmouse(pmessage);
 //
 //      pmessage->previous();
 //
@@ -181,7 +181,7 @@ namespace simple_ui
 //   void interaction::_001OnMButtonUp(::message::message * pmessage)
 //   {
 //
-//      SCAST_PTR(::message::mouse, pmouse, pmessage);
+//      __pointer(::message::mouse) pmouse(pmessage);
 //
 //      pmessage->previous();
 //
@@ -205,7 +205,7 @@ namespace simple_ui
 //   void interaction::_001OnLButtonUp(::message::message * pmessage)
 //   {
 //
-//      SCAST_PTR(::message::mouse, pmouse, pmessage);
+//      __pointer(::message::mouse) pmouse(pmessage);
 //
 //      if (!is_window_enabled())
 //      {
@@ -250,7 +250,7 @@ namespace simple_ui
 //
 //            ev.m_item = item;
 //
-//            ev.m_context.add(::source_user);
+//            ev.m_context.add(::e_source_user);
 //
 //            on_control_event(&ev);
 //
@@ -288,7 +288,7 @@ namespace simple_ui
 //   void interaction::_001OnMouseMove(::message::message * pmessage)
 //   {
 //
-//      SCAST_PTR(::message::mouse, pmouse, pmessage);
+//      __pointer(::message::mouse) pmouse(pmessage);
 //
 //      if (!is_window_enabled())
 //      {
@@ -352,7 +352,7 @@ namespace simple_ui
 //   void interaction::_001OnMouseLeave(::message::message * pmessage)
 //   {
 //
-//      SCAST_PTR(::message::base, pbase, pmessage);
+//      __pointer(::message::base) pbase(pmessage);
 //
 //      auto itemOldHover = m_itemHover;
 //

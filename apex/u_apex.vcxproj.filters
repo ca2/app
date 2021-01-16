@@ -775,9 +775,6 @@
     <ClCompile Include="platform\context_thread.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\debug.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\department.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -835,9 +832,6 @@
     <ClCompile Include="platform\simple_log.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\simple_trace.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\static_setup.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -853,13 +847,7 @@
     <ClCompile Include="platform\system.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\system_trace.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\text.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
-    <ClCompile Include="platform\trace.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
     <ClCompile Include="platform\_.cpp">

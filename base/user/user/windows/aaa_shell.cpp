@@ -1048,7 +1048,7 @@ namespace user
       //}
 
 
-      ::estatus windows::initialize(::layered * pobjectContext)
+      ::e_status windows::initialize(::layered * pobjectContext)
       {
 
          if (m_bInitialized)

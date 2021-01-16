@@ -97,12 +97,12 @@ namespace dynamic_source
       virtual ~script_compiler();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
       void prepare_compile_and_link_environment();
 
       void run_persistent();
 
-      virtual estatus init1();
+      virtual ::e_status init1();
 
       bool defer_run_persistent(const char *psz);
 

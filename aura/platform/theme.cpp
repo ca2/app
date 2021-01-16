@@ -20,7 +20,7 @@ namespace aura
    }
 
 
-   estatus theme::initialize(::layered * pobjectContext)
+   ::e_status theme::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -148,12 +148,12 @@ namespace aura
    }
 
 
-   void theme::get_theme_text_color(color32_t & crText, color32_t & crBack)
+   void theme::get_theme_text_color(::color & colorText, ::color & colorBack)
    {
 
-      crText = get_theme_text_color();
+      colorText = get_theme_text_color();
 
-      crBack = get_theme_icon_glow_color();
+      colorBack = get_theme_icon_glow_color();
 
    }
 
@@ -393,7 +393,7 @@ namespace aura
    }
 
 
-   ::estatus theme::initialize_contextualized_theme()
+   ::e_status theme::initialize_contextualized_theme()
    {
 
       auto & dark = m_mapColors["dark"];
@@ -406,29 +406,29 @@ namespace aura
       
       m_pcolors = lite;
 
-      dark->m_crBg = ARGB(160, 0x16, 0x19, 0x1e);
-      blue->m_crBg = ARGB(160, 0x50, 0x58, 0x88);
-      lite->m_crBg = ARGB(160, 0xff, 0xff, 0xff);
+      dark->m_colorBg = ARGB(160, 0x16, 0x19, 0x1e);
+      blue->m_colorBg = ARGB(160, 0x50, 0x58, 0x88);
+      lite->m_colorBg = ARGB(160, 0xff, 0xff, 0xff);
 
-      dark->m_crIconGlow = ARGB(255, 0x16, 0x19, 0x1e);
-      blue->m_crIconGlow = ARGB(255, 0x40, 0x58, 0x68);
-      lite->m_crIconGlow = ARGB(255, 0xff, 0xff, 0xff);
+      dark->m_colorIconGlow = ARGB(255, 0x16, 0x19, 0x1e);
+      blue->m_colorIconGlow = ARGB(255, 0x40, 0x58, 0x68);
+      lite->m_colorIconGlow = ARGB(255, 0xff, 0xff, 0xff);
 
-      dark->m_crMg = ARGB(151, 0x16, 0x19, 0x1e);
-      blue->m_crMg = ARGB(151, 0xA0, 0xA8, 0xB8);
-      lite->m_crMg = ARGB(140, 255, 255, 255);
+      dark->m_colorMg = ARGB(151, 0x16, 0x19, 0x1e);
+      blue->m_colorMg = ARGB(151, 0xA0, 0xA8, 0xB8);
+      lite->m_colorMg = ARGB(140, 255, 255, 255);
 
-      dark->m_crFg = ARGB(255, 223, 223, 208);
-      blue->m_crFg = ARGB(255, 255, 255, 255);
-      lite->m_crFg = ARGB(255, 0, 0, 0);
+      dark->m_colorFg = ARGB(255, 223, 223, 208);
+      blue->m_colorFg = ARGB(255, 255, 255, 255);
+      lite->m_colorFg = ARGB(255, 0, 0, 0);
 
-      dark->m_crText = ARGB(255, 155, 155, 155);
-      blue->m_crText = ARGB(255, 55, 50, 80);
-      lite->m_crText = ARGB(255, 0, 0, 0);
+      dark->m_colorText = ARGB(255, 155, 155, 155);
+      blue->m_colorText = ARGB(255, 55, 50, 80);
+      lite->m_colorText = ARGB(255, 0, 0, 0);
 
-      dark->m_crBack = ARGB(160, 0, 0, 0);
-      blue->m_crBack = ARGB(160, 205, 200, 250);
-      lite->m_crBack = ARGB(160, 255, 255, 255);
+      dark->m_colorBack = ARGB(160, 0, 0, 0);
+      blue->m_colorBack = ARGB(160, 205, 200, 250);
+      lite->m_colorBack = ARGB(160, 255, 255, 255);
 
       //__throw(todo("core"));
       //Sess(this).userex()->shell()->m_straThemeableIconName.add("google-android.ico");

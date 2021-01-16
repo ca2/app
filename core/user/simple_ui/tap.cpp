@@ -74,14 +74,14 @@ namespace simple_ui
    void tap::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmouse->m_bRet = true;
 
       if(keyboard_focus_is_focusable())
       {
 
-         keyboard_set_focus();
+         set_keyboard_focus();
 
       }
       else
@@ -99,7 +99,7 @@ namespace simple_ui
    void tap::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmouse->m_bRet = true;
 
@@ -118,7 +118,7 @@ namespace simple_ui
    void tap::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       INFO("simple_ui::tap::_001OnMouseMove");
 
@@ -474,7 +474,7 @@ namespace simple_ui
 
       ::draw2d::font_pointer f(e_create);
 
-      f->create_pixel_font(FONT_SANS_EX, (i32)rectClient.height()* 0.7);
+      f->create_pixel_font(os_font_name(e_font_sans_ex), (i32)rectClient.height()* 0.7);
 
       pgraphics->set(f);
 
@@ -486,7 +486,7 @@ namespace simple_ui
    void tap::_001OnKeyDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key,pkey,pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       ::user::e_key iKey = pkey->m_ekey;
 

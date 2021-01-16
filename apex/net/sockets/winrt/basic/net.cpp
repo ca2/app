@@ -30,7 +30,7 @@ namespace sockets
    }
 
 
-   ::estatus net::initialize(::layered* pobjectContext)
+   ::e_status net::initialize(::layered* pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -47,7 +47,7 @@ namespace sockets
    }
 
 
-   //::estatus net::initialize(::layered* pobjectContext)
+   //::e_status net::initialize(::layered* pobjectContext)
    //{
 
    //   return ::success;

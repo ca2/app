@@ -97,7 +97,7 @@ namespace filemanager
    void impact::_001Refresh()
    {
 
-      filemanager_document()->browse(filemanager_item(),::source_sync);
+      filemanager_document()->browse(filemanager_item(),::e_source_sync);
 
    }
 
@@ -122,7 +122,7 @@ namespace filemanager
    void impact::_001OnUpdateEditPaste(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command,pcommand,pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       auto psession = Session;
          
@@ -187,7 +187,7 @@ namespace filemanager
    void impact::_001OnOperationDocMessage(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base,pbase,pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       if(pbase->m_wparam == 4096)
       {
@@ -216,7 +216,7 @@ namespace filemanager
          if (filemanager_document() == psubject->cast < ::user::document >(DOCUMENT_ID))
          {
 
-            __pointer(::database::client) pclient = GetParentFrame();
+            __pointer(::database::client) pclient = get_parent_frame();
 
             if (pclient != nullptr && !pclient->m_id.to_string().contains("::frame"))
             {
@@ -244,7 +244,7 @@ namespace filemanager
             for (index i = 0; i < DBG_LOOP; i++)
             {
 
-               browse_sync(psubject->m_actioncontext + ::source_sync);
+               browse_sync(psubject->m_actioncontext + ::e_source_sync);
 
             }
 
@@ -252,7 +252,7 @@ namespace filemanager
          else
          {
 
-            knowledge(psubject->m_pfileitem->m_filepathUser, psubject->m_actioncontext + ::source_sync);
+            knowledge(psubject->m_pfileitem->m_filepathUser, psubject->m_actioncontext + ::e_source_sync);
 
          }
 

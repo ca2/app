@@ -15,9 +15,9 @@ namespace user
       public:
 
 
-         virtual ::estatus     text_format_load(data * pdata, ::file::file * pfileIn);
+         virtual ::e_status     text_format_load(data * pdata, ::file::file * pfileIn);
 
-         virtual ::estatus     text_format_save(::file::file* pfileOut, data * pdata);
+         virtual ::e_status     text_format_save(::file::file* pfileOut, data * pdata);
 
 
       };

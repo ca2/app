@@ -47,7 +47,7 @@ namespace macos
 
       virtual void release_graphics_resources();
       
-      virtual ::estatus update_graphics_resources() override;
+      virtual ::e_status update_graphics_resources() override;
 
 
       //virtual bool create_message_queue(::user::interaction * pinteraction, const char * pszName) override;
@@ -397,7 +397,7 @@ namespace macos
       virtual ::user::interaction *  GetLastActivePopup() override;
 
       virtual bool IsChild(::user::interaction *    pWnd);
-      virtual ::user::interaction * GetParent() const override;
+      virtual ::user::interaction * get_parent() const override;
       using ::user::interaction_impl::SetParent;
       ::user::interaction * SetParent(::user::interaction * pWndNewParent) override;
       static ::user::interaction * PASCAL oswindowFromPoint(POINT32 point);

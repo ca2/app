@@ -4,6 +4,7 @@
 #endif
 #include "aura/update.h"
 #include "core/user/userex/_userex.h"
+#include "aura/os/windows_common/graphics.h"
 
 
 //#if defined(APPLEOS)
@@ -19,7 +20,6 @@
 //#define COLORREF_get_g_value(cr) colorref_get_g_value(cr)
 //#define COLORREF_get_b_value(cr) colorref_get_r_value(cr)
 //#endif
-
 
 
 namespace flag
@@ -54,7 +54,128 @@ namespace visual
 {
 
 
-   void gay_with_shades_of_grey(::image * pimage)
+   color32_t image_color_with_shade_of_grey(int i, int j, double dw, double dh)
+   {
+
+      double dR, dG, dB;
+
+      double dH = (double)i / (double)dw;
+
+      dH *= 6.0;
+
+      double dA = dH - (double)((i32)dH);
+
+      if (dH >= 3.0)
+      {
+         if (dH >= 4.0)
+         {
+            if (dH >= 5.0)
+            {
+               // 5.0
+               // magenta to red
+               dR = 1.0;
+               dG = 0.0;
+               dB = 1.0 - dA;
+            }
+            else
+            {
+               // 4.0
+               // blue to magenta
+               dR = dA;
+               dG = 0.0;
+               dB = 1.0;
+            }
+         }
+         else
+         {
+            // 3.0
+            // cyan to blue
+            dR = 0.0;
+            dG = 1.0 - dA;
+            dB = 1.0;
+         }
+      }
+      else /// if(dH >= 0.0)
+      {
+         if (dH >= 2.0)
+         {
+            // 2
+            // green to cyan
+            dR = 0.0;
+            dG = 1.0;
+            dB = dA;
+         }
+         else // (dH >= 0.0 && dH < 2.0)
+         {
+            if (dH >= 1.0)
+            {
+               // 1
+               // yellow to green
+               dR = 1.0 - dA;
+               dG = 1.0;
+               dB = 0.0;
+            }
+            else // if(dh >= 0 && dH < 1.0);
+            {
+               // 0
+               // red to yellow
+               dR = 1.0;
+               dG = dA;
+               dB = 0.0;
+            }
+         }
+      }
+
+      double dL = 0.5;
+
+      double dS = 1.0 - ((double)j / dh);
+#if defined(APPLEOS)
+      dS = 1.0 - dS;
+#endif
+
+      double dCMin;
+      double dCAdd;
+      double dSL = dS * dL;
+      if (dL >= 0.5)
+      {
+         dCMin = dL - dS + dSL;
+         dCAdd = 2.0 * dS - 2.0 * dSL;
+      }
+      else
+      {
+         dCMin = dL - dSL;
+         dCAdd = 2.0 * dSL;
+      }
+
+      double _dR = (dCMin + dR * dCAdd);
+      double _dG = (dCMin + dG * dCAdd);
+      double _dB = (dCMin + dB * dCAdd);
+
+      return IMAGE_ARGB(255, byte(_dR * 255.0), byte(_dG * 255.0), byte(_dB * 255.0));
+
+   }
+
+   color32_t color_with_shade_of_grey(int i, int j, double dw, double dh)
+   {
+
+      auto cr = image_color_with_shade_of_grey(i, j, dw, dh);
+
+      int a = image_a_value(cr);
+
+      int r = image_r_value(cr);
+
+      int g = image_g_value(cr);
+
+      int b = image_b_value(cr);
+
+      cr = ARGB(a, r, g, b);
+
+      return cr;
+
+   }
+
+
+   void colors_with_shades_of_grey(::image * pimage)
    {
 
       pimage->map();
@@ -62,8 +183,6 @@ namespace visual
       ::count w = pimage->width();
 
       ::count h = pimage->height();
-
-      color c;
 
       double dw = (double) w;
 
@@ -78,124 +197,21 @@ namespace visual
       for (index i = 0; i < w; i++)
       {
 
-         double dR, dG, dB;
-
          pline = pimage->get_data() + i;
-
-         double dH = (double)i / (double)dw;
-
-         dH *= 6.0;
-
-         double dA = dH - (double)((i32)dH);
-
-         if (dH >= 3.0)
-         {
-            if (dH >= 4.0)
-            {
-               if (dH >= 5.0)
-               {
-                  // 5.0
-                  // magenta to red
-                  dR = 1.0;
-                  dG = 0.0;
-                  dB = 1.0 - dA;
-               }
-               else
-               {
-                  // 4.0
-                  // blue to magenta
-                  dR = dA;
-                  dG = 0.0;
-                  dB = 1.0;
-               }
-            }
-            else
-            {
-               // 3.0
-               // cyan to blue
-               dR = 0.0;
-               dG = 1.0 - dA;
-               dB = 1.0;
-            }
-         }
-         else /// if(dH >= 0.0)
-         {
-            if (dH >= 2.0)
-            {
-               // 2
-               // green to cyan
-               dR = 0.0;
-               dG = 1.0;
-               dB = dA;
-            }
-            else // (dH >= 0.0 && dH < 2.0)
-            {
-               if (dH >= 1.0)
-               {
-                  // 1
-                  // yellow to green
-                  dR = 1.0 - dA;
-                  dG = 1.0;
-                  dB = 0.0;
-               }
-               else // if(dh >= 0 && dH < 1.0);
-               {
-                  // 0
-                  // red to yellow
-                  dR = 1.0;
-                  dG = dA;
-                  dB = 0.0;
-               }
-            }
-         }
-
-         double dL = 0.5;
 
          for (index j = 0; j < h; j++)
          {
 
-
-
-            double dS = 1.0 - ((double) j / dh);
-#if defined(APPLEOS)
-            dS = 1.0 - dS;
-#endif
-
-            double dCMin;
-            double dCAdd;
-            double dSL = dS * dL;
-            if (dL >= 0.5)
-            {
-               dCMin = dL - dS + dSL;
-               dCAdd = 2.0 * dS - 2.0 * dSL;
-            }
-            else
-            {
-               dCMin = dL - dSL;
-               dCAdd = 2.0 * dSL;
-            }
-
-
-            double _dR = (dCMin + dR * dCAdd);
-            double _dG = (dCMin + dG * dCAdd);
-            double _dB = (dCMin + dB * dCAdd);
-
-            //byte uchR = (byte)primitive_color_round(m_dR * 255.0);
-            //m_uchG = (byte)primitive_color_round(m_dG * 255.0);
-            //m_uchB = (byte)primitive_color_round(m_dB * 255.0);
-
-
-            *pline = IMAGE_ARGB(255, byte(_dR*255.0), byte(_dG*255.0), byte(_dB*255.0));
+            *pline = image_color_with_shade_of_grey((int) i, (int) j, dw, dh);
 
             pline+=uScan;
 
          }
 
-
       }
 
-
    }
+
 
    void shades_of_luminance(::image * pimage, double dH, double dS)
    {
@@ -326,16 +342,11 @@ namespace visual
 
             *pline = cr;
 
-
-
-
             pline ++;
 
          }
 
-
       }
-
 
    }
 
@@ -348,6 +359,8 @@ namespace userex
 
    color_view::color_view()
    {
+
+      m_bMouseColorBeam = false;
 
       m_bCompact = false;
 
@@ -394,7 +407,7 @@ namespace userex
 
       m_pimageTemplate = create_image({2048,  2048});
 
-      ::visual::gay_with_shades_of_grey(m_pimageTemplate);
+      ::visual::colors_with_shades_of_grey(m_pimageTemplate);
 
       m_pimageLuminance = create_image({100,  100});
 
@@ -434,7 +447,7 @@ namespace userex
 
 
 
-      //GetParentFrame()->m_id += ".color_sel";
+      //get_parent_frame()->m_id += ".color_sel";
 
       pmessage->previous();
 
@@ -447,7 +460,7 @@ namespace userex
 
       //set_impact_title("__CoLoR_");
 
-      GetParentFrame()->set_frame_title("__CoLoR_");
+      get_parent_frame()->set_frame_title("__CoLoR_");
 
    }
 
@@ -456,7 +469,7 @@ namespace userex
    {
 
       UNREFERENCED_PARAMETER(pmessage);
-      //SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      //__pointer(::message::show_window) pshowwindow(pmessage);
 
    }
 
@@ -478,6 +491,8 @@ namespace userex
    void color_view::set_color(color color)
    {
 
+      m_bMouseColorBeam = false;
+
       color.get_hls(m_hls);
 
       set_need_layout();
@@ -490,23 +505,49 @@ namespace userex
    void color_view::on_mouse(const ::point & point)
    {
 
-      sync_lock sl(mutex());
+      //sync_lock sl(mutex());
 
       if (point.y >= m_rectColors.bottom)
-         return;
-      if (point.x < m_rectColors.left)
-         return;
-      if (point.y < m_rectColors.top)
-         return;
-
-      if (point.x < m_rectColors.center().x)
       {
 
-         m_pimage->map();
+         return;
 
-         auto pointColor = point - m_rectColors.top_left();
+      }
 
-         color32_t cr = m_pimage->GetPixel(__point(pointColor));
+      if (point.x < m_rectColors.left)
+      {
+
+         return;
+
+      }
+
+      if (point.y < m_rectColors.top)
+      {
+
+         return;
+
+      }
+
+      int iColorsLeft = m_rectColors.left;
+
+      int iColorsWidth = m_pimage->width();
+
+      int iColorsRight = iColorsLeft + iColorsWidth;
+
+      if (point.x < iColorsRight)
+      {
+
+         int x = point.x - iColorsLeft;
+
+         int y = point.y - m_rectColors.top;
+
+         m_pointMouseColorBeam = point;
+
+         m_bMouseColorBeam = true;
+
+         color32_t cr = visual::color_with_shade_of_grey(
+            x, y,
+            iColorsWidth, m_rectColors.height());
 
          color c(cr);
 
@@ -528,7 +569,7 @@ namespace userex
 
          ev.m_puie = this;
 
-         ev.m_actioncontext = ::source_user;
+         ev.m_actioncontext = ::e_source_user;
 
          route_control_event(&ev);
 
@@ -538,11 +579,7 @@ namespace userex
       else if (point.x < m_rectColors.center().x + m_rectColors.width() / 8)
       {
 
-         m_pimageLuminance->map();
-
          auto pointLuminance = point - ::size(m_rectColors.center().x, m_rectColors.top);
-
-//         color32_t cr = m_pimageLuminance->m_pcolorref[point->x + (m_pimage->m_iScan / sizeof(color32_t)) * point->y];
 
          m_hls.m_dL = 1.0 - ((double)pointLuminance.y / (double) m_pimage->height());
 
@@ -554,7 +591,7 @@ namespace userex
 
          ev.m_puie = this;
 
-         ev.m_actioncontext = ::source_user;
+         ev.m_actioncontext = ::e_source_user;
 
          route_control_event(&ev);
 
@@ -567,6 +604,8 @@ namespace userex
 
    void color_view::rebuild_luminance()
    {
+
+      ::draw2d::device_lock devicelock(this);
 
       ::visual::shades_of_luminance(m_pimageLuminance, m_hls.m_dH, m_hls.m_dS);
 
@@ -648,7 +687,6 @@ namespace userex
 
 
    void color_view::draw_level(::draw2d::graphics_pointer & pgraphics, const ::rect & rectW, int yParam)
-
    {
 
       double y = yParam;
@@ -656,7 +694,6 @@ namespace userex
       double dSize = 17.0;
 
       rectd rectInner(rectW);
-
 
       rectd rectOuter(rectInner);
 
@@ -694,7 +731,6 @@ namespace userex
 
       }
 
-
    }
 
 
@@ -722,19 +758,26 @@ namespace userex
 
       ::rect r2 = m_pimage->rect();
 
-//      m_pimage->map();
-
-//      m_pimage->fill(0x800000ff);
-
       ::rect rCursor;
 
       pgraphics->stretch(r1, m_pimage, r2);
 
       ::point point;
 
-      point.x = (::i32) (r1.left + r1.width() * m_hls.m_dH);
+      if (m_bMouseColorBeam)
+      {
 
-      point.y = (::i32) (r1.top + r1.height() * (1.0 - m_hls.m_dS));
+         point = m_pointMouseColorBeam;
+
+      }
+      else
+      {
+
+         point.x = (::i32)(r1.left + r1.width() * m_hls.m_dH);
+
+         point.y = (::i32)(r1.top + r1.height() * (1.0 - m_hls.m_dS));
+
+      }
 
       draw_beam(pgraphics, point);
 
@@ -766,7 +809,7 @@ namespace userex
    void color_view::_001OnLButtonDown(::message::message * pmessage)
    {
       
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       ::point point = pmouse->m_point;
 
@@ -786,7 +829,7 @@ namespace userex
    void color_view::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
       
       ::point point = pmouse->m_point;
       
@@ -808,7 +851,7 @@ namespace userex
 
       ev.m_puie = this;
 
-      ev.m_actioncontext = ::source_user;
+      ev.m_actioncontext = ::e_source_user;
 
       route_control_event(&ev);
 
@@ -817,7 +860,8 @@ namespace userex
 
    void color_view::_001OnMouseMove(::message::message * pmessage)
    {
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (m_bLButtonPressed)
       {

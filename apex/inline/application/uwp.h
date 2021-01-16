@@ -1,5 +1,16 @@
 
+class RunBeforeMain
+{
+public:
+   RunBeforeMain()
+   {
+      //HMODULE hNtDll = (HMODULE)LoadLibrary(_T("ntdll.dll"));
+      //FARPROC lpNeeded = GetProcAddress(hNtDll, "NtWaitForMultipleObjects");
+      //DebugBreakPoint();
+   }
+};
 
+RunBeforeMain go;
 [MTAThread]
 int main(Array < String ^ > ^ stra)
 {
@@ -10,13 +21,30 @@ int main(Array < String ^ > ^ stra)
 
    auto psystem = platform_create_system(strAppId);
 
-   psystem->m_bConsole = false;
+   if (!psystem)
+   {
 
+      return -1;
+
+   }
+
+   auto papplicationStartup = psystem->new_application(strAppId);
+
+   if (!papplicationStartup)
+   {
+
+      return -1;
+
+   }
+
+   __bind(psystem, m_papplicationStartup, papplicationStartup);
+
+   psystem->m_bConsole = false;
    application_common(psystem);
 
    psystem->system_construct(stra);
 
-   ::estatus estatus = psystem->os_application_system_run();
+   ::e_status estatus = psystem->os_application_system_run();
 
    ::i32 iErrorStatus = estatus.error_status();
 

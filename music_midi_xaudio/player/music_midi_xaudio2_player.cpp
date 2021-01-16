@@ -148,7 +148,7 @@ namespace music
             void player::CloseFile()
             {
 
-               ::estatus                estatus;
+               ::e_status                estatus;
 
                if(::success != (estatus = get_sequence()->CloseFile()) && estatus != error_unsupported_function)
                {
@@ -162,7 +162,7 @@ namespace music
             void player::Pause()
             {
 
-               if (get_sequence()->GetState() == ::music::midi::sequence::state_paused)
+               if (get_sequence()->GetState() == ::music::midi::sequence::e_state_paused)
                {
 
                   get_sequence()->Restart();
@@ -179,17 +179,17 @@ namespace music
 
             void player::SetPosition(double dRate)
             {
-               if (::music::midi::sequence::state_playing != get_sequence()->GetState() &&
-                     ::music::midi::sequence::state_stopping != get_sequence()->GetState() &&
-                     ::music::midi::sequence::state_opened != get_sequence()->GetState())
+               if (::music::midi::sequence::e_state_playing != get_sequence()->GetState() &&
+                     ::music::midi::sequence::e_state_stopping != get_sequence()->GetState() &&
+                     ::music::midi::sequence::e_state_opened != get_sequence()->GetState())
                   return;
 
                if(get_sequence()->IsPlaying())
                {
                   ::music::midi::sequence::PlayerLink & link = get_sequence()->GetPlayerLink();
                   link.ModifyFlag(
-                  ::music::midi::sequence::FlagSettingPos,
-                  ::music::midi::sequence::FlagNull);
+                  ::music::midi::sequence::e_flag_setting_position,
+                  ::music::midi::sequence::e_flag_null);
                   link.m_tkRestart = RateToTicks(dRate);
                   get_sequence()->Stop();
                }
@@ -230,7 +230,7 @@ namespace music
 
             void player::pre_translate_message(::message::message * pmessage)
             {
-               SCAST_PTR(::message::base, pbase, pmessage);
+               __pointer(::message::base) pbase(pmessage);
                //ASSERT(GetMainWnd() == nullptr);
                //   if(pMsg->message == MM_MOM_DONE ||
                //      pMsg->message == MM_MOM_POSITIONCB ||
@@ -269,7 +269,7 @@ namespace music
             void player::SaveFile(const char * lpszPathName)
             {
 
-               ::estatus                estatus;
+               ::e_status                estatus;
 
                if((estatus = get_sequence()->SaveFile(lpszPathName)) != ::success)
                {
@@ -283,7 +283,7 @@ namespace music
 
             void player::OnUserMessage(::message::message * pmessage)
             {
-               SCAST_PTR(::message::base, pbase, pmessage);
+               __pointer(::message::base) pbase(pmessage);
                if(pbase->m_wparam == 3377)
                {
                   m_puie->send_message(WM_USER, pbase->m_wparam, pbase->m_lparam);
@@ -308,7 +308,7 @@ namespace music
             }
 
 
-            ::estatus     player::Initialize(thread * pthread)
+            ::e_status     player::Initialize(thread * pthread)
             {
                UNREFERENCED_PARAMETER(pthread);
                return ::success;
@@ -319,7 +319,7 @@ namespace music
             //    m_pView = pview;
             //}
 
-            ::estatus     player::SetInterface(player_interface * pinterface)
+            ::e_status     player::SetInterface(player_interface * pinterface)
             {
                m_pinterface = pinterface;
                get_sequence()->m_pthread   = m_psequencethread;
@@ -347,8 +347,8 @@ namespace music
                   get_sequence()->SetTempoChangeFlag();
                   ::music::midi::sequence::PlayerLink & link = get_sequence()->GetPlayerLink();
                   link.ModifyFlag(
-                  ::music::midi::sequence::FlagTempoChange,
-                  ::music::midi::sequence::FlagNull);
+                  ::music::midi::sequence::e_flag_tempo_change,
+                  ::music::midi::sequence::e_flag_null);
                   imedia_time tk = get_sequence()->GetPositionTicks();
                   get_sequence()->m_evMmsgDone.ResetEvent();
                   link.m_tkRestart = tk + get_sequence()->m_tkBase;
@@ -409,7 +409,7 @@ namespace music
 
             void player::on_attribute_change(::message::message * pmessage)
             {
-               SCAST_PTR(::music::midi::attribute_message, pchange, pmessage);
+               __pointer(::music::midi::attribute_message) pchange(pmessage);
 
                switch(pchange->m_eattribute)
                {
@@ -429,8 +429,8 @@ namespace music
                   get_sequence()->GetPosition(tkPosition);
                   ::music::midi::sequence::PlayerLink & link = get_sequence()->GetPlayerLink();
                   link.ModifyFlag(
-                  ::music::midi::sequence::FlagTempoChange,
-                  ::music::midi::sequence::FlagNull);
+                  ::music::midi::sequence::e_flag_tempo_change,
+                  ::music::midi::sequence::e_flag_null);
                   link.m_tkRestart = tkPosition;
                   get_sequence()->Stop();
                }
@@ -441,7 +441,7 @@ namespace music
             void player::OnMultimediaMidiOutputMessageDone(::message::message * pmessage)
             {
 
-               SCAST_PTR(::message::base, pbase, pmessage);
+               __pointer(::message::base) pbase(pmessage);
 
                HMIDISTRM hmidistream = (HMIDISTRM) pbase->m_wparam;
 
@@ -457,7 +457,7 @@ namespace music
 
             void player::OnMultimediaMidiOutputMessagePositionCB(::message::message * pmessage)
             {
-               SCAST_PTR(::message::base, pbase, pmessage);
+               __pointer(::message::base) pbase(pmessage);
                LPMIDIHDR lpmidihdr = (LPMIDIHDR) pbase->m_wparam;
                //          get_sequence()->OnPositionCB(lpmidihdr);
 
@@ -473,7 +473,7 @@ namespace music
 
             void player::OnNotifyEvent(::message::message * pmessage)
             {
-               SCAST_PTR(::message::base, pbase, pmessage);
+               __pointer(::message::base) pbase(pmessage);
                __pointer(::music::midi::player::notify_event) pdata(pbase->m_lparam);
                pdata->m_pplayer = this;
                if(m_puie != nullptr)
@@ -488,7 +488,7 @@ namespace music
             void player::SendReset()
             {
                HMIDIOUT hmidiout = nullptr;
-               ::estatus     estatus;
+               ::e_status     estatus;
                u32 uDeviceID = 0;
                estatus = midiOutOpen(&hmidiout, uDeviceID,  0, 0, CALLBACK_NULL);
                if(estatus != MMSYSERR_NOERROR)

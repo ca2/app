@@ -106,9 +106,6 @@
     <ClCompile Include="region.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="ttf_util.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <None Include="draw2d_cairo.def">

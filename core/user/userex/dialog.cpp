@@ -101,7 +101,7 @@ bool dialog::show(const char * pszMatter)
 
    }
 
-   m_pframe = m_pdocument->get_view()->GetParentFrame();
+   m_pframe = m_pdocument->get_view()->get_parent_frame();
 
    m_pframe->m_bCloseApplicationIfLastVisibleFrame = false;
 

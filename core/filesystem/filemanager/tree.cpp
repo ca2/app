@@ -24,7 +24,7 @@ namespace filemanager
    }
 
 
-   ::estatus tree::initialize_filemanager_tree(document * pdocument)
+   ::e_status tree::initialize_filemanager_tree(document * pdocument)
    {
 
       auto estatus = initialize_view(pdocument);
@@ -227,7 +227,7 @@ namespace filemanager
                else
                {
 
-                  ptreeitemChild->SetParent(ptreeitemParent);
+                  ptreeitemChild->set_parent(ptreeitemParent);
 
                }
 
@@ -281,7 +281,7 @@ namespace filemanager
             else
             {
 
-               ptreeitemChild->SetParent(ptreeitemParent);
+               ptreeitemChild->set_parent(ptreeitemParent);
 
             }
 
@@ -378,7 +378,7 @@ namespace filemanager
 
          //::file::listing & listingFinal = ::userfs::tree::get_document()->m_listingFolderFinal2;
 
-         if (!context.is(::source_system))
+         if (!context.is(::e_source_system))
          {
 
             //filemanager_tree_insert(filepath, listingUser, listingFinal, context, true);
@@ -426,7 +426,12 @@ namespace filemanager
 
       }
 
-      set_viewport_offset(pointOffset.x, pointOffset.y);
+      queue_graphics_call([this, pointOffset](::draw2d::graphics_pointer & pgraphics)
+         {
+
+            set_viewport_offset(pgraphics, pointOffset.x, pointOffset.y);
+
+         });
 
       auto puser = User;
 
@@ -469,7 +474,7 @@ namespace filemanager
    void tree::_001OnMainPostMessage(::message::message * pmessage)
    {
       
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
       
       switch(pbase->m_wparam)
       {
@@ -665,17 +670,22 @@ namespace filemanager
 
          }
 
-         ptimer->m_ptimercallback->user_interaction()->set_need_redraw();
+         ptimer->m_ptimercallback->get_user_interaction()->set_need_redraw();
 
       }
       else if (ptimer->m_uEvent == 123)
       {
 
-         ptimer->m_ptimercallback->user_interaction()->set_need_redraw();
+         m_usertreea.pred_each([](auto & ptree)
+            {
+
+               ptree->set_need_redraw();
+
+            });
 
          m_bTimer123 = false;
 
-         ptimer->m_ptimercallback->user_interaction()->KillTimer(123);
+         ptimer->m_ptimercallback->get_user_interaction()->KillTimer(123);
 
       }
 
@@ -709,7 +719,7 @@ namespace filemanager
    void tree::_001OnShellCommand(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::command, pcommand, pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
       m_contextmenu.OnCommand(pcommand->GetId());
 

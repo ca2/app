@@ -16,11 +16,10 @@ namespace colorertake5
 } // namespace colorertake5
 
 
+
 namespace user
 {
 
-
-   class plain_edit_internal;
 
    class CLASS_DECL_AURA plain_edit :
       virtual public ::user::scroll_base,
@@ -68,18 +67,111 @@ namespace user
          string                           m_strMessage;
       };
 
+      //enum enum_call
+      //{
+
+      //   e_call_update,
+      //   e_call_on_set_text_and_on_update,
+      //   e_call_set_sel_end,
+      //   e_call_set_sel_end_on_point,
+
+      //};
+
+      //class call
+      //{
+      //public:
+
+
+      //   enum_call         m_ecall;
+      //   bool              m_bFullUpdate;
+      //   ::index           m_iLineUpdate;
+
+      //   action_context    m_actioncontext;
+
+      //   ::point           m_point;
+      //   ::index           m_iSelEnd;
+
+      //   call() {}
+
+
+
+
+
+      //};
+
+      //class call_on_update :
+      //   public call
+      //{
+      //public:
+      //   call_on_update(bool bOnSetText, bool bOnUpdate, action_context actioncontext)
+      //   {
+
+      //      m_ecall = e_call_on_set_text_and_on_update;
+      //      m_actioncontext = actioncontext;
+
+      //   }
+      //};
+
+      //class call_update :
+      //   public call
+      //{
+      //public:
+      //   call_update(bool bFullUpdate, ::index iLineUpdate)
+      //   {
+
+      //      m_ecall = e_call_update;
+      //      m_bFullUpdate = bFullUpdate;
+      //      m_iLineUpdate = iLineUpdate;
+
+      //   }
+
+      //};
+
+      //class call_set_sel_end :
+      //   public call
+      //{
+      //public:
+      //   call_set_sel_end(strsize iSelEnd)
+      //   {
+
+      //      m_ecall = e_call_set_sel_end;
+      //      m_iSelEnd = iSelEnd;
+
+      //   }
+
+      //};
+
+      //class call_set_sel_end_on_point :
+      //   public call
+      //{
+      //public:
+
+      //   call_set_sel_end_on_point(point point)
+      //   {
+
+      //      m_ecall = e_call_set_sel_end;
+      //      m_point = point;
+
+      //   }
+
+      //};
+
       int                                 m_iDrawTextFlags;
       millis                              m_millisLastDraw;
       array < error >                     m_errora;
       __pointer(::message::key)           m_pmessagekeyLast;
 
+      //bool                                m_bPendingOnSetText;
+      //bool                                m_bPendingOnUpdate;
+      //::action_context                    m_actioncontextPending;
 
       bool                                m_bNewSel;
       bool                                m_bCaretVisible;
       string                              m_strEmtpyText;
-      plain_edit_internal *               m_pinternal;
+      __pointer(plain_edit_style)         m_pcontrolstyle;
       bool                                m_bNeedCalcLayout;
       bool                                m_bCalcLayoutHintNoTextChange;
+      int                                 m_iInputConnectionBatch;
 
       int                                 m_iTabWidth;
       bool                                m_bColorerTake5;
@@ -134,11 +226,13 @@ namespace user
       bool                                m_bLastCaret;
 
 
+
       plain_edit();
       virtual ~plain_edit();
 
 
       void plain_edit_common_construct();
+
 
 
       virtual void set_format(const string& strFormat);
@@ -156,6 +250,15 @@ namespace user
       virtual void on_text_composition_done() override;
 
 
+      virtual void InputConnectionBeginBatchEdit() override;
+      virtual void InputConnectionEndBatchEdit() override;
+      virtual void InputConnectionCommitText(const string & str, strsize iNewCursorPosition) override;
+      virtual void InputConnectionSetComposingText(const string & str, strsize iNewCursorPosition) override;
+      virtual void InputConnectionSetComposingRegion(strsize iStart, strsize iEnd) override;
+      virtual void InputConnectionSetSelection(strsize iStart, strsize iEnd) override;
+      virtual void InputConnectionFinishComposingText() override;
+
+
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void on_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
@@ -166,7 +269,7 @@ namespace user
       virtual void _001ReplaceSel(const char * pszText);
       virtual bool _001ReplaceSel(const char * pszText, bool & bFullUpdate, index & iLineUpdate);
 
-      virtual void plain_edit_on_end_update();
+      virtual void plain_edit_on_end_update(::draw2d::graphics_pointer & pgraphics);
 
       virtual bool plain_edit_is_enabled();
 
@@ -174,7 +277,7 @@ namespace user
       void _001OnTimer(::timer * ptimer) override;
 
 
-      virtual ::rectd get_margin(style * pstyle, enum_element eelement = ::user::e_element_none, estate estate = ::user::e_state_none) const override;
+      virtual ::rectd get_margin(style * pstyle, enum_element eelement = ::user::e_element_none, ::user::enum_state estate = ::user::e_state_none) const override;
   
 
       DECL_GEN_SIGNAL(_001OnLButtonDown);
@@ -211,6 +314,10 @@ namespace user
       DECL_GEN_SIGNAL(keyboard_focus_OnKeyDown) override;
       DECL_GEN_SIGNAL(keyboard_focus_OnKeyUp) override;
       DECL_GEN_SIGNAL(keyboard_focus_OnChar) override;
+
+
+      virtual enum_input_type preferred_input_type() const override;
+
 
       virtual bool keyboard_focus_is_focusable() const override;
 
@@ -252,9 +359,9 @@ namespace user
       virtual void on_updata_data(::data::simple_data * pdata, i32 iHint);
 
 
-      virtual bool create_control(class ::user::control_descriptor * pdescriptor) override;
+      virtual bool create_control(::user::interaction * pinteraction, const ::id & id) override;
 
-      virtual strsize plain_edit_char_hit_test(::draw2d::graphics_pointer& pgraphics, i32 x, i32 y);
+      virtual strsize plain_edit_char_hit_test(::draw2d::graphics_pointer& pgraphics, const ::point & point);
       virtual strsize plain_edit_line_char_hit_test(::draw2d::graphics_pointer& pgraphics, i32 x, index iLine);
 
       //colorertake5::file_type * colorer_select_type();
@@ -271,11 +378,11 @@ namespace user
       void _001SetSelText(const char * psz, const ::action_context & action_context) override;
       void _001SetSelEnd(strsize iSelEnd) override;
       void _set_sel_end(::draw2d::graphics_pointer& pgraphics, strsize iSelEnd);
-      void _001SetSel(strsize iSelStart, strsize iSelEnd) override;
+      void _001SetSel(strsize iSelStart, strsize iSelEnd, const ::action_context & action_context = ::e_source_user) override;
       void _001GetSel(strsize & iSelStart, strsize & iSelEnd) const override;
 
-      void _001EnsureVisibleChar(strsize iChar);
-      void _001EnsureVisibleLine(index iLine);
+      void _001EnsureVisibleChar(::draw2d::graphics_pointer & pgraphics, strsize iChar);
+      void _001EnsureVisibleLine(::draw2d::graphics_pointer & pgraphics, index iLine);
 
       void plain_edit_ensure_visible_char(::draw2d::graphics_pointer & pgraphics, strsize iChar);
       void plain_edit_ensure_visible_line(::draw2d::graphics_pointer & pgraphics, index iLine);
@@ -340,7 +447,7 @@ namespace user
 
       //virtual bool display(edisplay edisplay) override;
 
-      virtual void on_change_viewport_offset() override;
+      virtual void on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual ::sized get_total_size() override;
 
@@ -349,7 +456,7 @@ namespace user
 
       virtual void on_before_change_text();
 
-      virtual void insert_text(string str, bool bForceNewStep) override;
+      virtual void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
 
       virtual void plain_edit_insert_text(::draw2d::graphics_pointer& pgraphics, string str, bool bForceNewStep);
 

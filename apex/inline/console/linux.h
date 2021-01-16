@@ -31,7 +31,7 @@
 //
 //   psystem->system_construct(argc, argv);
 //
-//   ::estatus estatus = (::estatus) psystem->inline_init();
+//   ::e_status estatus = (::e_status) psystem->inline_init();
 //
 //   if (::succeeded(estatus))
 //   {
@@ -57,7 +57,7 @@
       public:
 
 
-         ::estatus m_estatus;
+         ::e_status m_estatus;
 
          __pointer(::apex::system) m_psystem;
 
@@ -69,6 +69,12 @@
             string strAppId = executable_get_app_id();
 
             m_psystem = ::move_transfer(platform_create_system(strAppId));
+
+            auto papplicationStartup = m_psystem->new_application(strAppId);
+
+            __bind(m_psystem, m_papplicationStartup, papplicationStartup);
+
+            m_psystem->set_main_struct(*m_psystem->m_papplicationStartup);
 
             m_psystem->m_bConsole = true;
 
@@ -112,7 +118,7 @@
          void init()
          {
 
-            m_estatus = (::estatus) m_psystem->inline_init();
+            m_estatus = (::e_status) m_psystem->inline_init();
 
          }
 

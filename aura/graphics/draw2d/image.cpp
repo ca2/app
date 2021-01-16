@@ -169,7 +169,7 @@ bool image::defer_realize(::draw2d::graphics * pgraphics) const
 }
 
 
-::estatus image::create(const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+::e_status image::create(const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 {
 
    return ::error_interface_only;
@@ -177,7 +177,7 @@ bool image::defer_realize(::draw2d::graphics * pgraphics) const
 }
 
 
-//::estatus     image::create(i32 width, i32 height, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+//::e_status     image::create(i32 width, i32 height, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 //{
 //
 //   return create(::size(width, height), uidCreateImage);
@@ -213,7 +213,7 @@ bool image::dc_select(bool bSelect)
 }
 
 
-::estatus     image::create(::draw2d::graphics * pgraphics)
+::e_status     image::create(::draw2d::graphics * pgraphics)
 {
 
    ::draw2d::bitmap & bitmap = *pgraphics->get_current_bitmap();
@@ -4991,7 +4991,7 @@ i32 xCenter, i32 yCenter, i32 iRadius)
 
 
 
-::estatus image::SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy)
+::e_status image::SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy)
 {
 
 //      __throw(todo());
@@ -8680,8 +8680,8 @@ save_image::save_image(const ::payload & varFile, const ::payload & varOptions)
 
    }
 
-   if (varOptions["quality"].get_type() == type_double
-      || varOptions["quality"].get_type() == type_float)
+   if (varOptions["quality"].get_type() == e_type_double
+      || varOptions["quality"].get_type() == e_type_float)
    {
 
       m_iQuality = (int) (varOptions["quality"].get_double() * 100.0);
@@ -9209,7 +9209,7 @@ stream & image::read(::stream & stream)
 }
 
 
-//::estatus image::create_image()
+//::e_status image::create_image()
 //{
 //
 //   if(::is_null(this))
@@ -9224,7 +9224,7 @@ stream & image::read(::stream & stream)
 //}
 
 
-//::estatus     image::create(int cx, int cy, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+//::e_status     image::create(int cx, int cy, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 //{
 //
 //   if(!create(cx, cy, uidCreateImage, iGoodStride, bPreserve))
@@ -9239,7 +9239,7 @@ stream & image::read(::stream & stream)
 //}
 
 
-//::estatus     image::create(const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+//::e_status     image::create(const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 //{
 //
 //   if(!create(size, uidCreateImage))
@@ -9275,7 +9275,7 @@ payload jpeg2 = new byte[]{ 255, 216, 255, 225 }; // jpeg canon
 
 
 
-::estatus image::transform(enum_image eimage)
+::e_status image::transform(enum_image eimage)
 {
 
    if (eimage == image_grayscale)

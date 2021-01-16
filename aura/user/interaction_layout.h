@@ -20,7 +20,7 @@ namespace user
       // and visibility/order problems.
 
 
-      enum e_flag
+      enum enum_flag
       {
 
          flag_creating = 1 << 0,
@@ -44,7 +44,7 @@ namespace user
       //struct window_state                     m_stateEventScreen;
 
 
-      cflag < e_flag >                          m_eflag;
+      enumeration < enum_flag >                          m_eflag;
       bool                                      m_bFillParent;
       ::rect                                    m_rectHint;
       ::rect                                    m_rectPadding;

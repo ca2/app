@@ -25,7 +25,7 @@ namespace draw2d_gdiplus
          virtual ~document_properties();
 
 
-         virtual ::estatus initialize_document_properties(::draw2d_gdiplus::printer * pprinter, DEVMODE * pdevmode = nullptr);
+         virtual ::e_status initialize_document_properties(::draw2d_gdiplus::printer * pprinter, DEVMODE * pdevmode = nullptr);
          virtual bool close();
          virtual ::draw2d::graphics * create_graphics();
 
@@ -40,7 +40,7 @@ namespace draw2d_gdiplus
       virtual ~printer();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
       virtual bool open(const char * pszDeviceName);
       virtual ::draw2d::graphics * create_graphics();

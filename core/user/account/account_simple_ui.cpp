@@ -37,7 +37,7 @@ namespace account
    }
 
 
-   ::estatus simple_ui::initialize_simple_ui(::account::credentials * pcredentials)
+   ::e_status simple_ui::initialize_simple_ui(::account::credentials * pcredentials)
    {
 
       auto estatus = initialize(pcredentials);
@@ -89,7 +89,7 @@ namespace account
    void simple_ui::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create,pcreate,pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       if(pcreate->previous())
       {
@@ -129,7 +129,7 @@ namespace account
    void simple_ui::_001OnChar(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       if(pkey->m_ekey == ::user::key_return)
       {
@@ -357,12 +357,12 @@ namespace account
 
          bool bParentChange = false;
 
-         if(GetParent() != nullptr)
+         if(get_parent() != nullptr)
          {
 
             ::rect rectParent;
 
-            GetParent()->get_window_rect(rectParent);
+            get_parent()->get_window_rect(rectParent);
 
             if(rectParent != m_rectParent)
             {
@@ -379,10 +379,10 @@ namespace account
 
             ::rect rectDesktop;
 
-            if(GetParent() != nullptr)
+            if(get_parent() != nullptr)
             {
 
-               GetParent()->get_window_rect(rectDesktop);
+               get_parent()->get_window_rect(rectDesktop);
 
             }
             else
@@ -424,8 +424,8 @@ namespace account
             rectFontopus.bottom = rectFontopus.top + h;
 
 
-            if(GetParent() != nullptr)
-               GetParent()->_001ScreenToClient(rectFontopus);
+            if(get_parent() != nullptr)
+               get_parent()->_001ScreenToClient(rectFontopus);
 
 
             set_window_pos(zorder_top,rectFontopus,SWP_SHOWWINDOW);
@@ -450,7 +450,7 @@ namespace account
    void simple_ui::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (pmessage->previous())
          return;
@@ -480,7 +480,7 @@ namespace account
 
       m_bLButtonDown = false;
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if(pmouse->previous())
          return;
@@ -497,7 +497,7 @@ namespace account
    void simple_ui::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (m_bLButtonDown)
       {

@@ -11,6 +11,8 @@ namespace user
    form::form()
    {
 
+      m_econtroltype = e_control_type_form;
+
       m_pform = this;
 
    }
@@ -30,23 +32,23 @@ namespace user
    //}
 
 
-   bool form::create_control(class control_descriptor * pdescriptor, index iItem)
-   {
+   //bool form::create_control(::user::interaction * pinteractionParent, const ::id & id)
+   //{
 
-      return false;
+   //   return false;
 
-   }
-
-
-   __pointer(control_descriptor) form::new_form_control()
-   {
-
-      return nullptr;
-
-   }
+   //}
 
 
-   ::estatus form::open_html(const ::string& str)
+   //__pointer(control_descriptor) form::new_form_control()
+   //{
+
+   //   return nullptr;
+
+   //}
+
+
+   ::e_status form::open_html(const ::string& str)
    {
 
       return ::error_interface_only;
@@ -54,7 +56,7 @@ namespace user
    }
 
 
-   ::estatus form::open_document(const payload& varFile)
+   ::e_status form::open_document(const payload& varFile)
    {
 
       return ::error_interface_only;
@@ -84,7 +86,7 @@ namespace user
 //   }
 
 
-   ::estatus form::initialize(::layered * pobjectContext)
+   ::e_status form::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::user::interaction::initialize(pobjectContext);
@@ -114,17 +116,16 @@ namespace user
    void form::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
 
-      m_pdescriptor->m_econtroltype = e_control_type_form;
 
    }
 
 
 
-   ::estatus form::set_form_callback(::user::form_callback* pcallback)
+   ::e_status form::set_form_callback(::user::form_callback* pcallback)
    {
 
       auto estatus = __refer(m_pcallback, pcallback);
@@ -141,7 +142,7 @@ namespace user
    }
 
 
-   ::estatus form::set_parent_form(::user::form* pform)
+   ::e_status form::set_parent_form(::user::form* pform)
    {
 
       auto estatus = __refer(m_pformParent, pform);
@@ -177,6 +178,14 @@ namespace user
    {
 
       return m_pformParent.get();
+
+   }
+
+
+   bool form::_001AddControl(::user::interaction * pinteraction)
+   {
+
+      return -1;
 
    }
 

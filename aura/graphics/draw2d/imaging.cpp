@@ -1,6 +1,6 @@
 #include "framework.h"
-//#include "freeimage/Source/FreeImage.h"
-//#include "visual_FreeImageFileProc.h"
+
+
 #ifdef WINDOWS_DESKTOP
 
 //void fastblur(::image * ppimg, i32 radius);
@@ -47,7 +47,7 @@ imaging::~imaging()
 }
 
 
-::estatus imaging::initialize(::layered * pobjectContext)
+::e_status imaging::initialize(::layered * pobjectContext)
 {
 
    auto estatus = ::object::initialize(pobjectContext);
@@ -2054,7 +2054,7 @@ bool imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point & po
 }
 
 
-::estatus imaging::trait(::image * pimage, ::i64 iTrait)
+::e_status imaging::trait(::image * pimage, ::i64 iTrait)
 {
 
    return pimage->transform((enum_image)iTrait);
@@ -6837,7 +6837,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const 
 
 //#ifndef __APPLE__
 //
-// ::estatus imaging::_load_image(::context_image * pobjectContext, ::image * pimageParam, const payload & varFile, bool bSync, bool bCreateHelperMaps)
+// ::e_status imaging::_load_image(::context_image * pobjectContext, ::image * pimageParam, const payload & varFile, bool bSync, bool bCreateHelperMaps)
 // {
 //
 //   return ::error_failed;
@@ -6845,7 +6845,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const 
 // }
 //
 //
-// ::estatus imaging::_load_image(::image * pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
+// ::e_status imaging::_load_image(::image * pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
 // {
 //
 //    return ::error_failed;
@@ -6853,7 +6853,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const 
 // }
 //
 //
-// ::estatus imaging::save_image(memory & memory, const ::image * pimage, ::save_image * psaveimage)
+// ::e_status imaging::save_image(memory & memory, const ::image * pimage, ::save_image * psaveimage)
 // {
 //
 //    return ::error_failed;
@@ -6945,7 +6945,7 @@ void imaging::free_work_image(::image * pimage)
 }
 
 
-::estatus context_image::load_svg(::image * pimage, ::memory_pointer pmemory)
+::e_status context_image::load_svg(::image * pimage, ::memory_pointer pmemory)
 {
 
    const char * psz = (const char *)pmemory->get_data();

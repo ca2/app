@@ -153,7 +153,7 @@ void simple_menu_bar::route_command_message(::user::command * pcommand)
 
 //void simple_menu_bar::_001OnMouseMove(::message::message * pmessage)
 //{
-//   SCAST_PTR(::message::mouse, pmouse, pmessage);
+//   __pointer(::message::mouse) pmouse(pmessage);
 //   _001Hover(pmouse->m_point);
 //   pmessage->previous();
 //}
@@ -164,7 +164,7 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
 
    TRACE("simple_menu_bar::_track_popup_menu % d\n", iItem);
    m_iTracking = iItem;
-   m_iButtonPressItem = iItem;
+   m_itemPressed = iItem;
    set_need_redraw();
    ::rect rect;
    _001GetElementRect(iItem, rect, ::user::e_element_item, ::user::e_state_none);
@@ -187,7 +187,7 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
 //void simple_menu_bar::_001OnNcMouseMove(::message::message * pmessage)
 //{
 //
-//   SCAST_PTR(::message::mouse, pmouse, pmessage);
+//   __pointer(::message::mouse) pmouse(pmessage);
 //
 //   _001Hover(pmouse->m_point);
 //
@@ -199,7 +199,7 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
 void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::base, pbase, pmessage);
+   __pointer(::message::base) pbase(pmessage);
 
    if (pbase->m_id == WM_USER && pbase->userinteraction() == this)
    {
@@ -223,7 +223,7 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 void simple_menu_bar::_001OnCreate(::message::message * pmessage)
 {
 
-   //   SCAST_PTR(::message::create, pcreate, pmessage);
+   //   __pointer(::message::create) pcreate(pmessage);
 
    if (pmessage->previous())
    {
@@ -689,7 +689,7 @@ bool simple_menu_bar::create_window_ex(::user::interaction * puiParent, u32 dwCt
 
 //void simple_menu_bar::_001OnLButtonDown(::message::message * pmessage)
 //{
-//   SCAST_PTR(::message::mouse, pmouse, pmessage);
+//   __pointer(::message::mouse) pmouse(pmessage);
 //
 //   auto item = hit_test(pmouse->m_point);
 //
@@ -920,7 +920,7 @@ bool simple_menu_bar::on_click(const ::user::item & item)
 
 //void simple_menu_bar::_001OnAppLanguage(::message::message * pmessage)
 //{
-//   SCAST_PTR(::message::base, pbase, pmessage);
+//   __pointer(::message::base) pbase(pmessage);
 //   send_message(WM_CANCELMODE);
 //   LoadMenuBar(m_uResourceId);
 //   set_need_redraw();

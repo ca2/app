@@ -52,7 +52,7 @@ namespace linux
       file();
       //file(::matter * pobject);
       //file(::matter * pobject, int hFile);
-      //file(::matter * pobject, const ::file::path & pszFileName, const cflag < ::file::e_open > & eflag);
+      //file(::matter * pobject, const ::file::path & pszFileName, const enumeration < ::file::e_open > & eflag);
 
       virtual ~file();
 
@@ -70,7 +70,7 @@ namespace linux
       virtual void SetFilePath(const char * pszNewName);
 
 
-      virtual ::status::result open(const ::file::path & pszFileName, const cflag < ::file::e_open > & eflag) override;
+      virtual ::status::result open(const ::file::path & pszFileName, const ::file::e_open & eopen) override;
 
 
       //virtual bool PASCAL GetStatus(const char * pszFileName, ::file::file_status& rStatus);
@@ -111,8 +111,8 @@ namespace linux
 //   {
 //
 //
-//      ::estatus os_error_to_exception(::i32 lOsError);
-////      ::estatus PASCAL ErrnoToException(i32 nErrno);
+//      ::e_status os_error_to_exception(::i32 lOsError);
+////      ::e_status PASCAL ErrnoToException(i32 nErrno);
 //      void throw_os_error(::i32 lOsError, const char * pszFileName = nullptr);
 
 //      //void PASCAL ThrowErrno(__pointer(::acme::application) papp, i32 nErrno, const char * pszFileName = nullptr);

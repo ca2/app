@@ -15,7 +15,7 @@ namespace calculator
       virtual ~department();
 
 
-      virtual ::estatus init_instance() override;
+      virtual ::e_status init_instance() override;
 
 
 

@@ -304,7 +304,7 @@ namespace user
 //      if (edisplay == e_display_normal)
 //      {
 //
-//         if (m_pdescriptor.is_set() && m_pdescriptor->m_puserinteractionParent == nullptr)
+//         if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
 //         {
 //
 //            INFO("Parent is Null. Display Request -> normal");
@@ -315,7 +315,7 @@ namespace user
 //      else if (edisplay == e_display_hide)
 //      {
 //
-//         if (m_pdescriptor.is_set() && m_pdescriptor->m_puserinteractionParent == nullptr)
+//         if (m_pdescriptor.is_set() && m_puserinteractionParent == nullptr)
 //         {
 //
 //            INFO("Parent is Null. Display Request -> hide");

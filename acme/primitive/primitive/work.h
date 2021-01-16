@@ -11,7 +11,7 @@ public:
    virtual ~work();
 
 
-   virtual ::estatus start_work();
+   virtual ::e_status start_work();
 
 
 };

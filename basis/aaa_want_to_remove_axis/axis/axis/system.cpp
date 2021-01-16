@@ -21,7 +21,7 @@ namespace axis
    }
 
 
-   ::estatus     system::initialize_system(::layered * pobjectContext, app_core * pappcore)
+   ::e_status     system::initialize_system(::layered * pobjectContext, app_core * pappcore)
    {
 
       auto estatus = ::aura::system::initialize_system(pobjectContext, pappcore);
@@ -75,7 +75,7 @@ namespace axis
    }
 
 
-   ::estatus system::process_init()
+   ::e_status system::process_init()
    {
 
       create_factory < ::database::field >();
@@ -134,7 +134,7 @@ namespace axis
    }
 
 
-   ::estatus system::init1()
+   ::e_status system::init1()
    {
 
       if(!::aura::system::init1())
@@ -150,7 +150,7 @@ namespace axis
    }
 
 
-   ::estatus system::init2()
+   ::e_status system::init2()
    {
 
       if(!::aura::system::init2())
@@ -165,7 +165,7 @@ namespace axis
    }
 
 
-   ::estatus system::verb() // ambigous inheritance from ::aura::system/::axis::application
+   ::e_status system::verb() // ambigous inheritance from ::aura::system/::axis::application
    {
 
       return ::aura::system::verb();
@@ -174,7 +174,7 @@ namespace axis
 
 
 
-   ::estatus system::init_system()
+   ::e_status system::init_system()
    {
 
       if (!::aura::system::init_system())
@@ -272,7 +272,7 @@ namespace axis
    }
 
 
-   ::estatus system::init()
+   ::e_status system::init()
    {
 
       //if (!::axis::application::init())

@@ -76,7 +76,9 @@ namespace aura
 
    CLASS_DECL_AURA critical_section * g_pcsFont = nullptr;
 
-   CLASS_DECL_AURA string_to_string * g_pmapFontFaceName = nullptr;
+   CLASS_DECL_AURA mutex * g_pmutexWindowing = nullptr;
+
+   CLASS_DECL_AURA string_map < int_to_string > * g_pmapFontFaceName = nullptr;
 
    ::mutex* g_pmutexChildren;
    ::mutex* g_pmutexThreadWaitClose;
@@ -406,6 +408,8 @@ namespace aura
 
       g_pmapFontFaceName = nullptr;
 
+      g_pmutexWindowing = nullptr;
+
 
 
    }
@@ -626,7 +630,9 @@ namespace aura
 
       g_pcsFont = new critical_section();
 
-      g_pmapFontFaceName = new string_to_string();
+      g_pmapFontFaceName = new string_map < int_map < string > >();
+
+      g_pmutexWindowing = new mutex();
 
       init();
 
@@ -638,7 +644,7 @@ namespace aura
 
       term();
 
-
+      ::acme::del(g_pmutexWindowing);
 
       ::acme::del(g_pmapFontFaceName);
 
@@ -913,7 +919,7 @@ namespace aura
 
 
 
-   ::estatus aura::init()
+   ::e_status aura::init()
    {
 
       //::aura::static_start::init();
@@ -949,7 +955,7 @@ namespace aura
    }
 
 
-   ::estatus aura::term()
+   ::e_status aura::term()
    {
 
       //::parallelization::wait_threads(1_min);
@@ -1046,10 +1052,10 @@ namespace aura
 //}
 
 
-//thread_int_ptr < ::estatus    > t_estatus;
+//thread_int_ptr < ::e_status    > t_estatus;
 
 
-//CLASS_DECL_AURA void set_last_status(const ::estatus & estatus)
+//CLASS_DECL_AURA void set_last_status(const ::e_status & estatus)
 //{
 //
 //   ::get_task()->m_estatus = estatus;
@@ -1057,7 +1063,7 @@ namespace aura
 //}
 
 
-//CLASS_DECL_AURA ::estatus  get_last_status()
+//CLASS_DECL_AURA ::e_status  get_last_status()
 //{
 //
 //   return ::get_task()->m_estatus;

@@ -75,7 +75,7 @@ public:
       class nanos *              m_pnanos;
       class duration             m_duration;
       class duration *           m_pduration;
-      ::estatus                  m_estatus;
+      ::e_status                  m_estatus;
       ::enum_command             m_ecommand;
       ::enum_check               m_echeck;
 
@@ -149,34 +149,34 @@ public:
 
    payload(const block & block)
    {
-      m_etype = type_new;
+      m_etype = e_type_new;
       operator = (block);
    }
 
    template < class T >
    payload(const __pointer(T) & sp)
    {
-      m_etype = type_new;
+      m_etype = e_type_new;
       operator = (sp.m_p);
    }
 
    template < typename BLOCK_TYPE >
    payload(const memory_template < BLOCK_TYPE > & memorytemplate)
    {
-      m_etype = type_new;
+      m_etype = e_type_new;
       operator = (memorytemplate.block());
    }
 
    template < typename ENUM >
-   payload(const cflag < ENUM > & eflag)
+   payload(const enumeration < ENUM > & eflag)
    {
-      m_etype = type_new;
+      m_etype = e_type_new;
       operator = (eflag);
    }
 
-   payload(const ::estatus & estatus)
+   payload(const ::e_status & estatus)
    {
-      m_etype = type_new;
+      m_etype = e_type_new;
       operator = (estatus.m_estatus);
    }
 
@@ -225,7 +225,7 @@ public:
 
    ::enum_type set_element(::matter * pobject);
 
-   bool is_element() const { return m_etype >= type_element && m_etype < __type_last_element; }
+   bool is_element() const { return m_etype >= e_type_element && m_etype < __type_last_element; }
 
    bool is_element_set() const { return is_element() && ::is_set(m_p); }
 
@@ -396,7 +396,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    operator ::u64() const;
    operator float() const;
    operator double() const;
-   operator ::estatus() const;
+   operator ::e_status() const;
    operator class secs() const;
    operator class millis() const;
    operator class micros() const;
@@ -433,7 +433,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    inline operator float & ();
    inline operator double & ();
 
-   inline operator ::estatus & ();
+   inline operator ::e_status & ();
 
    void get_string(char * psz) const;
 
@@ -467,7 +467,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    inline payload & operator = (::memory * pmemory)
    {
 
-      set_type(type_memory, false);
+      set_type(e_type_memory, false);
 
       m_pmemory = pmemory;
 
@@ -481,20 +481,20 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    inline payload & operator = (const ::file::path & path)
    {
-      set_type(type_path, false);
+      set_type(e_type_path, false);
       m_ppath = new ::file::path_object(path);
       return *this;
    }
 
    template < typename ENUM >
-   payload& operator = (const cflag < ENUM > & eflag)
+   payload& operator = (const enumeration < ENUM > & eflag)
    {
       return operator =(eflag.m_eenum);
    }
 
-   payload & operator |= (cflag < ::file::e_flag > eflag);
+   payload & operator |= (enumeration < ::file::enum_flag > eflag);
 
-   payload& operator = (const ::estatus & estatus)
+   payload& operator = (const ::e_status & estatus)
    {
       return operator =(estatus.m_estatus);
    }
@@ -629,7 +629,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    ::matter * matter()
    {
-      if (m_etype == type_element) { return m_p; }
+      if (m_etype == e_type_element) { return m_p; }
       return cast < ::matter >();
    }
 
@@ -1003,7 +1003,7 @@ inline payload::operator double() const
 
 
 // returns 0.0 for unknown conversions?
-inline payload::operator ::estatus() const
+inline payload::operator ::e_status() const
 {
 
    return estatus();
@@ -1167,7 +1167,7 @@ inline class payload & payload::operator = (string && str)
 
 inline void payload::set_string(const char * psz)
 {
-   if(get_type() == type_pstring)
+   if(get_type() == e_type_pstring)
    {
       *m_pstr = psz;
    }
@@ -1181,7 +1181,7 @@ inline void payload::set_string(const char * psz)
    }
    else
    {
-      set_type(type_string,false);
+      set_type(e_type_string,false);
       m_str = psz;
    }
 }
@@ -1190,7 +1190,7 @@ inline void payload::set_string(const char * psz)
 inline void payload::set_string(const string & str)
 {
 
-   if(get_type() == type_pstring)
+   if(get_type() == e_type_pstring)
    {
       *m_pstr = str;
    }
@@ -1204,14 +1204,14 @@ inline void payload::set_string(const string & str)
    }
    else
    {
-      set_type(type_string,false);
+      set_type(e_type_string,false);
       m_str = str;
    }
 }
 
 inline void payload::set_string(string && str)
 {
-   if(get_type() == type_pstring)
+   if(get_type() == e_type_pstring)
    {
       *m_pstr = ::move(str);
    }
@@ -1225,7 +1225,7 @@ inline void payload::set_string(string && str)
    }
    else
    {
-      set_type(type_string,false);
+      set_type(e_type_string,false);
       m_str = ::move(str);
    }
 }
@@ -1257,7 +1257,7 @@ public:
 //
 //         auto & str = ::payload::operator string & ();
 //
-//         set_type(type_string, false);
+//         set_type(e_type_string, false);
 //
 //         return str;
 //
@@ -1285,7 +1285,7 @@ public:
 
 inline payload __visible(payload varOptions, bool bVisible = true);
 
-inline payload __visible(bool bVisible = true) { return __visible(::type_new, bVisible); }
+inline payload __visible(bool bVisible = true) { return __visible(::e_type_new, bVisible); }
 
 
 

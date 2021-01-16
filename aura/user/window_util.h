@@ -52,13 +52,43 @@ namespace user
    };
 
 
+
+   class CLASS_DECL_AURA primitive_ptra :
+      public address_array < ::user::primitive * >
+   {
+   public:
+
+
+      //DECLARE_AND_IMPLEMENT_DEFAULT_CONSTRUCTION_AND_ASSIGNMENT(interaction_ptra, ref_array < ::user::interaction >)
+
+
+      //interaction_ptra(const interaction_array & a);
+
+
+      primitive_ptra & operator = (const primitive_ptra & a);
+
+
+      ::user::oswindow_array get_hwnda();
+
+
+      using address_array < ::user::primitive * >::find_first;
+      ::user::primitive * find_first_typed(const ::type & type);
+      ::user::primitive * find_first(oswindow oswindow);
+
+
+      virtual bool get_child(__pointer(::user::primitive) & pprimitive);
+      virtual bool rget_child(__pointer(::user::primitive) & pprimitive);
+
+
+   };
+
    class CLASS_DECL_AURA interaction_array :
       virtual public matter
    {
    public:
 
 
-      DEFAULT_ARRAY_OF(interaction_array, interaction, ::user::interaction);
+      DECLARE_ARRAY_OF(interaction_array, interaction, ::user::interaction);
 
 
       interaction_array();

@@ -25,7 +25,7 @@ namespace sockets
       string code = pa.getword();
 
       code.make_upper();
-      if(m_estate == state_initial)
+      if(m_estate == e_state_initial)
       {
          if(code == "220")
          {

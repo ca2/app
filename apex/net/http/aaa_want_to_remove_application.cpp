@@ -50,7 +50,7 @@ namespace http
    void application::get(::message::message * pmessage)
    {
 
-      SCAST_PTR(message, pmessage, pmessage);
+      __pointer(message) pmessage(pmessage);
 
       ::url_domain domain;
 
@@ -89,7 +89,7 @@ namespace http
    }
 
 
-   estatus application::get(memory_base & memory, const char * pszUrl, property_set & set)
+   ::e_status application::get(memory_base & memory, const char * pszUrl, property_set & set)
    {
 
       set["get_memory"] = &memory;
@@ -103,7 +103,7 @@ namespace http
    }
 
 
-//   estatus application::get(string & str, const char * pszUrl, property_set & set)
+//   ::e_status application::get(string & str, const char * pszUrl, property_set & set)
 //   {
 //
 //      set["get_response"].get_value() = &str;
@@ -137,7 +137,7 @@ namespace http
    }
 
 
-   estatus application::_get(const char * pszUrl, property_set & set)
+   ::e_status application::_get(const char * pszUrl, property_set & set)
    {
 
       set["get_response"] = "";
@@ -166,7 +166,7 @@ namespace http
    }
 
 
-   estatus application::get(string & str, const char * pszUrl, property_set & set)
+   ::e_status application::get(string & str, const char * pszUrl, property_set & set)
    {
 
       set["get_response"] = "";

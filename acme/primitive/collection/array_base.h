@@ -4,7 +4,7 @@
 #define __default_array_array_base(TYPE) ::array_base < TYPE, const TYPE &, ::allocator::def < TYPE > >
 
 
-#define DEFAULT_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE) \
+#define DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE) \
 __pointer(TYPE) & ITEM ## _at(::index i) { return CONTAINER[i]; } \
 TYPE * get_ ## ITEM(::index i) const { return CONTAINER.bounds(i) ? CONTAINER[i] : nullptr; } \
 ::count ITEM ## _count() const { return CONTAINER.get_count(); } \
@@ -23,27 +23,27 @@ TYPE * get_last_ ## ITEM() const { return CONTAINER.get_last_pointer(); } \
 ::index ITEM ## _last_index(::index i = -1) const { return CONTAINER.last_index(i); } \
 CONTAINER_TYPE CONTAINER
 
-#define DEFAULT_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE) \
-DEFAULT_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, __pointer_array(TYPE))
+#define DECLARE_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE) \
+DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, __pointer_array(TYPE))
 
-#define DEFAULT_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE) \
+#define DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE) \
 ::index add_ ## ITEM(TYPE * p) { return CONTAINER.add_item(p); } \
 ::index add_unique_ ## ITEM(TYPE * p) { return CONTAINER.add_unique(p); } \
 ::index remove_ ## ITEM(TYPE * p) { return CONTAINER.remove(p); } \
 CONTAINER_TYPE ITEM ## a_section(::index iStart = 0, ::count nCount = -1){return CONTAINER.slice < CONTAINER_TYPE >(iStart, nCount);} \
 template < typename ARRAY > \
 void ITEM ## a_slice(ARRAY & a, ::index iStart = 0, ::count nCount = -1){ CONTAINER.slice(a, iStart, nCount);} \
-DEFAULT_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE)
+DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE)
 
 #define HAVE_ARRAY_OF(ITEM, CONTAINER, TYPE) \
-DEFAULT_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, __pointer_array(TYPE))
+DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, __pointer_array(TYPE))
 
-#define _DEFAULT_ARRAY_OF(ARRAY, ITEM, CONTAINER, TYPE) \
+#define _DECLARE_ARRAY_OF(ARRAY, ITEM, CONTAINER, TYPE) \
 ARRAY(const ::std::initializer_list < TYPE * > & list) : CONTAINER(list) { } \
-DEFAULT_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, __pointer_array(TYPE))
+DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, __pointer_array(TYPE))
 
-#define DEFAULT_ARRAY_OF(ARRAY, ITEM, TYPE) \
-_DEFAULT_ARRAY_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)
+#define DECLARE_ARRAY_OF(ARRAY, ITEM, TYPE) \
+_DECLARE_ARRAY_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)
 
 
 
@@ -70,6 +70,7 @@ public:
    __declare_iterator_struct_ok(array_base, TYPE *, m_pelement, this->m_pelement >= this->m_pcontainer->m_pData && this->m_pelement < this->m_pcontainer->m_pData + this->m_pcontainer->m_nSize);
 
    array_base();
+   array_base(TYPE * p, ::count c);
    array_base(const array_base & a);
    array_base(array_base && a) noexcept;
    virtual ~array_base();
@@ -507,6 +508,13 @@ public:
    ::index insert_at(::index nIndex, const TYPE & newElement, ::count nCount = 1);
    ::index remove_at(::index nIndex, ::count nCount = 1);
    ::index insert_at(::index nStartIndex, array_base * pNewArray);
+
+   
+   TYPE pick_at(::index nIndex);
+   TYPE pick_first(::index nIndex = 0) { return pick_at(nIndex); }
+   TYPE pick_last(::index nIndex = -1) { return pick_at(m_nSize + nIndex); }
+   array_base pick_at(::index nIndex, ::count nCount);
+
 
    ::index remove_item(TYPE * p);
 

@@ -35,7 +35,7 @@ namespace account
       virtual ~dialog();
 
 
-      virtual ::estatus initialize_account_dialog(::account::credentials * pcredentials);
+      virtual ::e_status initialize_account_dialog(::account::credentials * pcredentials);
 
       virtual void get_credentials();
 

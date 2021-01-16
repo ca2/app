@@ -122,7 +122,7 @@ namespace multimedia
       }
 
 
-      ::estatus toolbox::init_thread()
+      ::e_status toolbox::init_thread()
       {
 
          m_runloop = CFRunLoopGetCurrent();

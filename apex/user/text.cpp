@@ -102,11 +102,12 @@ namespace user
    }
 
 
-   void text::_001SetSel(strsize iBeg, strsize iEnd)
+   void text::_001SetSel(strsize iBeg, strsize iEnd, const ::action_context & action_context)
    {
 
       UNREFERENCED_PARAMETER(iBeg);
       UNREFERENCED_PARAMETER(iEnd);
+      UNREFERENCED_PARAMETER(action_context);
 
    }
 

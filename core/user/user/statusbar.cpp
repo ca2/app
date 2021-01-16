@@ -204,7 +204,7 @@ namespace user
 //      ::user::control_bar::CalcInsideRect(rect, bHorz);
 //#ifdef WINDOWS_DESKTOP
 //      // subtract size grip if present
-//      if ((GetStyle() & SBARS_SIZEGRIP) && !GetParent()->layout().is_zoomed())
+//      if ((GetStyle() & SBARS_SIZEGRIP) && !get_parent()->layout().is_zoomed())
 //      {
 //         // get border metrics from common control
 //         i32 rgBorders[3];
@@ -533,7 +533,7 @@ namespace user
 
    void status_bar::_001OnNcHitTest(::message::message * pmessage)
    {
-      //SCAST_PTR(::message::nchittest, pnchittest, pmessage);
+      //__pointer(::message::nchittest) pnchittest(pmessage);
       //::u32 nResult = (::u32)default_window_procedure();
       //if (nResult == HTBOTTOMRIGHT)
       //{
@@ -554,7 +554,7 @@ namespace user
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      SCAST_PTR(::message::nc_calc_size, pnccalcsize, pmessage);
+//      __pointer(::message::nc_calc_size) pnccalcsize(pmessage);
 //
 //      // calculate border space (will add to top/bottom, subtract from right/bottom)
 //
@@ -659,7 +659,7 @@ namespace user
    void status_bar::_001OnWindowPosChanging(::message::message * pmessage)
    {
 #ifdef WINDOWS_DESKTOP
-      SCAST_PTR(::message::window_pos, pwindowpos, pmessage);
+      __pointer(::message::window_pos) pwindowpos(pmessage);
       // not necessary to invalidate the borders
       u32 uStyle = m_dwStyle;
       m_dwStyle &= ~(CBRS_BORDER_ANY);
@@ -673,7 +673,7 @@ namespace user
 
    void status_bar::_001OnSetText(::message::message * pmessage)
    {
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
       ASSERT_VALID(this);
       ASSERT(is_window());
 
@@ -692,7 +692,7 @@ namespace user
    void status_bar::_001OnGetText(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       ASSERT_VALID(this);
 
@@ -748,7 +748,7 @@ namespace user
 
    void status_bar::_001OnGetTextLength(::message::message * pmessage)
    {
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       ASSERT_VALID(this);
       ASSERT(is_window());
@@ -776,7 +776,7 @@ namespace user
    void status_bar::_001OnSetMinHeight(::message::message * pmessage)
    {
 
-      //SCAST_PTR(::message::base, pbase, pmessage);
+      //__pointer(::message::base) pbase(pmessage);
 
       //LRESULT lResult = default_window_procedure();
 

@@ -30,7 +30,7 @@
             frame_Minimal001::frame_Minimal001()
             {
 
-               set_style(StyleLightBlue);
+               //set_style(StyleLightBlue);
 
                m_rectMarginNormal.set(0,0,0,0);
 
@@ -42,6 +42,15 @@
             {
 
             }
+
+
+            string frame_Minimal001::get_default_user_style() const
+            {
+
+               return "LightBlue";
+
+            }
+
 
 
             e_hittest frame_Minimal001::_001HitTest(const ::point & pointCursor)
@@ -216,11 +225,11 @@ SizingNone:;
                if(pframewindow->is_active())
                {
 
-                  crMoveableBorder = m_crMoveableBorder;
+                  crMoveableBorder = m_colorMoveableBorder;
 
-                  crMoveableBorderHilight = m_crMoveableBorderHilight;
+                  crMoveableBorderHilight = m_colorMoveableBorderHilight;
 
-                  crMoveableBorderShadow = m_crMoveableBorderShadow;
+                  crMoveableBorderShadow = m_colorMoveableBorderShadow;
 
                }
                else
@@ -240,7 +249,7 @@ SizingNone:;
 
                //::rect rectA(rectClient);
 
-               if(is_translucid_style(m_estyle))
+               if(pframewindow->is_translucid_user_style(m_pframewindow->m_estyle))
                {
 
                   ::rect rect;
@@ -252,7 +261,7 @@ SizingNone:;
                   imaging.color_blend(pgraphics, rect, crMoveableBorder, 127);
 
                }
-               /*else if(m_estyle == StyleLightBlue)
+               /*else if(m_pframewindow->m_estyle == StyleLightBlue)
                {
 
                   ::rect rect;

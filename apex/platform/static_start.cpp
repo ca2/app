@@ -125,11 +125,6 @@ namespace apex
 
    //bool g_bOutputDebugString;
 
-   critical_section* g_pcsTrace;
-
-   ::matter* g_ptrace;
-
-   simple_trace* g_psimpletrace;
 
 //#ifdef __APPLE__
 //
@@ -291,11 +286,11 @@ namespace apex
 
       //g_bOutputDebugString = true;
 
-      g_pcsTrace = nullptr;
+      //g_pcsTrace = nullptr;
 
-      g_ptrace = nullptr;
+      //g_ptrace = nullptr;
 
-      g_psimpletrace = nullptr;
+      //g_psimpletrace = nullptr;
 
 
       g_pexceptionengine = nullptr;
@@ -433,7 +428,7 @@ namespace apex
 
 #endif
 
-      g_pcsTrace = new critical_section;
+
 
 //#ifdef WINDOWS
 //
@@ -494,10 +489,6 @@ namespace apex
 //      g_pmapObjTypCtr = new map < const char*, const char*, ::i64, ::i64 >;
 //
 //#endif
-
-      g_psimpletrace = new simple_trace;
-
-      g_ptrace = g_psimpletrace;
 
 #ifdef BSD_STYLE_SOCKETS
 
@@ -725,8 +716,6 @@ namespace apex
 
       ::channel::s_pmutexChannel.release();
 
-      g_ptrace = g_psimpletrace;
-
       ::acme::del(g_pmapRTL);
 
 #if defined(LINUX) || defined(__APPLE__)
@@ -808,9 +797,9 @@ namespace apex
 
 #endif
 
-      ::acme::del(g_psimpletrace);
+      //::acme::del(g_psimpletrace);
 
-      ::acme::del(g_pcsTrace);
+      //::acme::del(g_pcsTrace);
 
 //#ifdef ANDROID
 //
@@ -895,7 +884,7 @@ namespace apex
 
 
 
-   ::estatus apex::init()
+   ::e_status apex::init()
    {
 
       //::apex::static_start::init();
@@ -931,7 +920,7 @@ namespace apex
    }
 
 
-   ::estatus apex::term()
+   ::e_status apex::term()
    {
 
       //::parallelization::wait_threads(1_min);
@@ -1028,10 +1017,10 @@ namespace apex
 //}
 
 
-//thread_int_ptr < ::estatus    > t_estatus;
+//thread_int_ptr < ::e_status    > t_estatus;
 
 
-//CLASS_DECL_APEX void set_last_status(const ::estatus & estatus)
+//CLASS_DECL_APEX void set_last_status(const ::e_status & estatus)
 //{
 //
 //   ::get_task()->m_estatus = estatus;
@@ -1039,7 +1028,7 @@ namespace apex
 //}
 
 
-//CLASS_DECL_APEX ::estatus  get_last_status()
+//CLASS_DECL_APEX ::e_status  get_last_status()
 //{
 //
 //   return ::get_task()->m_estatus;

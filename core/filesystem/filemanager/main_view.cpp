@@ -205,15 +205,15 @@ namespace filemanager
          else if (psubject->id() == id_pop)
          {
 
-            OnActivateFrame(e_activate_inactive, ((GetParentFrame())));
+            OnActivateFrame(e_activate_inactive, ((get_parent_frame())));
 
-            GetParentFrame()->ActivateFrame(e_display_normal);
+            get_parent_frame()->ActivateFrame(e_display_normal);
 
             OnActivateView(TRUE, this, this);
 
             set_need_redraw();
 
-            __pointer(frame) pframe = GetParentFrame();
+            __pointer(::user::frame) pframe = get_parent_frame();
 
             if (pframe != nullptr)
             {
@@ -225,7 +225,7 @@ namespace filemanager
          else if (psubject->id() == id_create_bars)
          {
 
-            __pointer(simple_frame_window) pframe = GetParentFrame();
+            __pointer(simple_frame_window) pframe = get_parent_frame();
 
             //if(pframe != nullptr)
             {

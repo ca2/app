@@ -96,7 +96,7 @@ namespace core
    }
 
 
-   estatus user::initialize(::layered * pobjectContext)
+   ::e_status user::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::apex::department::initialize(pobjectContext);
@@ -113,7 +113,7 @@ namespace core
    }
 
 
-   ::estatus user::init1()
+   ::e_status user::init1()
    {
 
       create_factory < ::user::picture::picture_impl >();
@@ -190,7 +190,7 @@ namespace core
    }
 
 
-   ::estatus user::init()
+   ::e_status user::init()
    {
 
       if (!::base::user::init())
@@ -358,14 +358,14 @@ namespace core
       if (strLangUser.has_char())
       {
 
-         Application.set_locale(strLangUser, ::source_database);
+         Application.set_locale(strLangUser, ::e_source_database);
 
       }
 
       if (strStyleUser.has_char())
       {
 
-         Application.set_schema(strStyleUser, ::source_database);
+         Application.set_schema(strStyleUser, ::e_source_database);
 
       }
 
@@ -438,7 +438,7 @@ namespace core
    }
 
 
-   ::estatus user::init2()
+   ::e_status user::init2()
    {
 
       if (!::apex::department::init2())
@@ -581,7 +581,7 @@ namespace core
    }
 
 
-   ::estatus user::dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset, const ::promise::process & process)
+   ::e_status user::dialog_box(::layered * pobjectContext, const char * pszMatter, property_set & propertyset, const ::promise::process & process)
    {
 
       auto pbox = __object(pobjectContext)->__create_new < class ::userex::message_box >();
@@ -602,7 +602,7 @@ namespace core
    }
 
 
-   ::estatus user::ui_message_box(::layered* pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+   ::e_status user::ui_message_box(::layered* pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
    {
 
       auto pbox = __object(pobjectContext)->__create_new < ::userex::message_box >();
@@ -727,7 +727,7 @@ namespace core
    }
 
 
-   ::estatus user::ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::promise::process & process)
+   ::e_status user::ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char* pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const ::promise::process & process)
    {
 
       UNREFERENCED_PARAMETER(puiOwner);
@@ -870,7 +870,7 @@ namespace core
    void user::data_on_after_change(::message::message * pmessage)
    {
 
-      SCAST_PTR(::database::change_event, pchange, pmessage);
+      __pointer(::database::change_event) pchange(pmessage);
 
       if (pchange->m_datakey == "ca2.savings")
       {
@@ -931,9 +931,9 @@ namespace core
 
       __pointer(::userex::color_view) pview = pdocument->get_typed_view < ::userex::color_view >();
 
-      __pointer(::user::frame_window) pframe = pview->GetTopLevelFrame();
+      __pointer(::user::frame_window) pframe = pview->top_level_frame();
 
-      pframe->SetOwner(puiOwner);
+      pframe->set_owner(puiOwner);
 
       pframe->_001RunModalLoop();
 
@@ -1011,7 +1011,7 @@ namespace core
 
       }
 
-      if (payload.get_type() == ::type_propset && payload.has_property("hold") && !(bool)payload["hold"])
+      if (payload.get_type() == ::e_type_propset && payload.has_property("hold") && !(bool)payload["hold"])
       {
 
          pcreate->m_bHold = false;
@@ -1095,7 +1095,7 @@ namespace core
 
       }
 
-      if (payload.get_type() == ::type_propset && payload.has_property("hold") && !(bool)payload["hold"])
+      if (payload.get_type() == ::e_type_propset && payload.has_property("hold") && !(bool)payload["hold"])
       {
 
          pcreate->m_bHold = false;
@@ -1184,7 +1184,7 @@ namespace core
 
       }
 
-      if (payload.get_type() == ::type_propset && payload.has_property("hold") && !(bool)payload["hold"])
+      if (payload.get_type() == ::e_type_propset && payload.has_property("hold") && !(bool)payload["hold"])
       {
 
          pcreate->m_bHold = false;
@@ -2006,7 +2006,7 @@ namespace core
 {
 
 
-   ::estatus user::initialize_userex()
+   ::e_status user::initialize_userex()
    {
 
       ////if (is_system())
@@ -2259,7 +2259,7 @@ namespace core
    }
 
 
-   //::estatus application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::u32 uFlags, ::function_arg function)
+   //::e_status application::message_box(::user::primitive* puiOwner, const char* pszMessage, const char* pszTitle, ::u32 uFlags, ::function_arg function)
    //{
 
    //   auto estatus = ui_message_box(puiOwner->get_safe_handle(), pszMessage, pszTitle, fuStyle, functionarg);

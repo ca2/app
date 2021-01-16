@@ -43,8 +43,9 @@ public:
    bool                                               m_bLastingThread;
    bool                                               m_bMessageThread;
    bool                                               m_bDedicated;
+   bool                                               m_bPreferLessGraphicsParallelization;
    bool                                               m_bThreadToolsForIncreasedFps;
-   ::estatus                                          m_estatus;
+   ::e_status                                          m_estatus;
    user_interaction_ptr_array *                       m_puiptraThread;
    ::mutex *                                          m_pmutexThreadUiPtra;
    single_lock *                                      m_pslUser;
@@ -143,8 +144,8 @@ public:
    user_interaction_ptr_array & uiptra();
 
 
-   virtual ::estatus set_finish(::context_object * pcontextobjectFinish) override;
-   virtual ::estatus set_finish_composites(::context_object * pcontextobjectFinish) override;
+   virtual ::e_status set_finish(::context_object * pcontextobjectFinish) override;
+   virtual ::e_status set_finish_composites(::context_object * pcontextobjectFinish) override;
 
 
    //virtual context_object* calc_parent_thread() override;
@@ -166,7 +167,7 @@ public:
    virtual bool is_running() const override;
 
 
-   virtual ::estatus start(
+   virtual ::e_status start(
       ::matter * pmatter,
       ::e_priority epriority = priority_normal,
       u32 nStackSize = 0,
@@ -305,7 +306,7 @@ public:
    virtual void app_pre_translate_message(::message::message * pmessage);
    virtual void session_pre_translate_message(::message::message * pmessage);
    virtual void system_pre_translate_message(::message::message * pmessage);
-   virtual ::estatus thread_loop(); // low level thread loop
+   virtual ::e_status thread_loop(); // low level thread loop
    virtual bool thread_step();     // low level step
    virtual bool pump_message();     // low level message pump
    virtual bool pump_runnable();
@@ -313,21 +314,21 @@ public:
    virtual bool raw_pump_message();     // low level message pump
    virtual bool defer_pump_message();     // deferred message pump
    virtual void process_message(::message::base * pbase);
-   virtual ::estatus process_base_message(::message::base * pbase);
+   virtual ::e_status process_base_message(::message::base * pbase);
    virtual void process_thread_message(::message::base * pbase);
    // apex commented
    //virtual void process_window_message(::message::base * pbase);
-   virtual ::estatus process_message();     // route message
-   virtual ::estatus raw_process_message();     // route message
+   virtual ::e_status process_message();     // route message
+   virtual ::e_status raw_process_message();     // route message
    // virtual bool on_idle(::i32 lCount); // return TRUE if more idle processing
-   virtual ::estatus on_thread_on_idle(::thread * pthread, ::i32 lCount);
+   virtual ::e_status on_thread_on_idle(::thread * pthread, ::i32 lCount);
    virtual bool is_idle_message(::message::message * pmessage);  // checks for special messages
    virtual bool is_idle_message();  // checks for special messages
 
-   virtual ::estatus init_thread();
-   virtual ::estatus on_pre_run_thread();
+   virtual ::e_status init_thread();
+   virtual ::e_status on_pre_run_thread();
 
-   virtual ::estatus run() override;
+   virtual ::e_status run() override;
 
    virtual void on_pos_run_thread();
    virtual void term_thread();
@@ -355,7 +356,7 @@ public:
    virtual void dispatch_thread_message(::message::message * pmessage);  // helper
 
 
-   virtual ::estatus     main();
+   virtual ::e_status     main();
 
 
    virtual void wait();
@@ -365,7 +366,7 @@ public:
 
 
 
-   virtual ::estatus verb();
+   virtual ::e_status verb();
 
 
    static void post_quit_to_all_threads();
@@ -421,24 +422,24 @@ public:
    //virtual void delete_this();
 
    /// thread implementation
-   virtual ::estatus on_thread_init();
-   virtual ::estatus on_thread_term();
-   //virtual ::estatus     on_thread_end();
+   virtual ::e_status on_thread_init();
+   virtual ::e_status on_thread_term();
+   //virtual ::e_status     on_thread_end();
    //virtual void thread_delete();
    operator hthread_t() const;
 
 
-   virtual ::estatus initialize(::layered * pobjectContext) override;
+   virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
-   virtual ::estatus do_task() override;
+   virtual ::e_status do_task() override;
 
 
-   virtual ::estatus osthread_init() override;
-   virtual ::estatus __thread_init() override;
-   virtual ::estatus __thread_main() override;
-   virtual ::estatus __thread_term() override;
-   virtual ::estatus osthread_term() override;
+   virtual ::e_status osthread_init() override;
+   virtual ::e_status __thread_init() override;
+   virtual ::e_status __thread_main() override;
+   virtual ::e_status __thread_term() override;
+   virtual ::e_status osthread_term() override;
 
 
    virtual bool begin_thread(
@@ -464,8 +465,8 @@ public:
    LPSECURITY_ATTRIBUTES psa = nullptr);
 
 
-   virtual ::estatus inline_init();
-   virtual ::estatus inline_term();
+   virtual ::e_status inline_init();
+   virtual ::e_status inline_term();
 
 
 
@@ -473,9 +474,9 @@ public:
 
    virtual void message_handler(::message::base * pbase);
 
-   virtual ::estatus     do_request(::create * pcreate) override;
+   virtual ::e_status     do_request(::create * pcreate) override;
 
-   virtual ::estatus     get_result_status();
+   virtual ::e_status     get_result_status();
 
    virtual void delete_this() override;
 
@@ -485,10 +486,10 @@ protected:
 
    virtual void __priority_and_affinity();
    virtual void __os_initialize();
-//   virtual ::estatus __os_thread_start();
+//   virtual ::e_status __os_thread_start();
    virtual void __set_thread_on();
    virtual void __os_finalize();
-  // virtual ::estatus __os_thread_end();
+  // virtual ::e_status __os_thread_end();
 
    // last called function for the thread lifetime.
    // after its call, the thread object must considered invalid/destroyed

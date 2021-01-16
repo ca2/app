@@ -17,7 +17,7 @@ namespace mail
    public:
 
 
-      enum e_state
+      enum enum_state
       {
 
          state_disconnected,
@@ -52,7 +52,7 @@ namespace mail
       string m_strKey;
       string m_strValue;
 
-      e_state  m_estate;
+      enum_state  m_estate;
 
 
       pop3_socket(::sockets::socket_handler & handler);

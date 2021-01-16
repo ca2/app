@@ -160,7 +160,7 @@ namespace aura
    }
 
 
-   ::estatus session::initialize(::layered * pobjectContext)
+   ::e_status session::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::aqua::session::initialize(pobjectContext);
@@ -215,9 +215,10 @@ namespace aura
    }
 
 
-   void session::simple_ui_draw_focus_rect(::user::interaction* pinteraction, ::draw2d::graphics_pointer& pgraphics)
+   bool session::simple_ui_draw_focus_rect(::user::interaction* pinteraction, ::draw2d::graphics_pointer& pgraphics)
    {
 
+      return false;
 
    }
 
@@ -281,7 +282,7 @@ namespace aura
    }
 
 
-   //::estatus session::init_thread()
+   //::e_status session::init_thread()
    //{
 
    //   auto estatus = process_init();
@@ -322,7 +323,7 @@ namespace aura
    //}
 
 
-   ::estatus session::process_init()
+   ::e_status session::process_init()
    {
 
       INFO("aura::session::process_init");
@@ -417,7 +418,7 @@ namespace aura
 
       }
 
-      ::estatus estatus = __compose(m_puiSession, move_transfer(create_system_message_window(this)));
+      ::e_status estatus = __compose(m_puiSession, move_transfer(create_system_message_window(this)));
 
       if (!estatus)
       {
@@ -759,94 +760,96 @@ namespace aura
    }
 
 
-   ::user::primitive * session::clear_focus()
-   {
+   //::user::primitive * session::clear_focus()
+   //{
 
-      ::user::primitive * pprimitiveFocus = get_keyboard_focus();
+   //   ::user::primitive * pprimitiveFocus = get_keyboard_focus();
 
-      if(::is_null(pprimitiveFocus))
-      {
+   //   if(::is_null(pprimitiveFocus))
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      auto puserinteraction = pprimitiveFocus->get_wnd();
+   //   auto puserinteraction = pprimitiveFocus->get_wnd();
 
-      if(!puserinteraction)
-      {
+   //   if(!puserinteraction)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      puserinteraction->set_focus_primitive(nullptr);
+   //   puserinteraction->clear_keyboard_focus();
 
-      set_keyboard_focus(nullptr);
+   //   set_keyboard_focus(nullptr);
 
-      puserinteraction->set_need_redraw();
+   //   puserinteraction->set_need_redraw();
 
-      puserinteraction->post_redraw();
+   //   puserinteraction->post_redraw();
 
-      return pprimitiveFocus;
+   //   return pprimitiveFocus;
 
-   }
+   //}
 
-   ::user::primitive * session::get_keyboard_focus()
-   {
-
-      oswindow oswindowFocus = ::get_focus();
-
-      if (oswindowFocus == nullptr)
-      {
-
-         return nullptr;
-
-      }
-
-      oswindow oswindow = oswindowFocus;
-
-      while (oswindow != nullptr)
-      {
-
-         ::user::interaction_impl * pimpl = ::oswindow_interaction_impl(oswindow);
-
-         if (pimpl != nullptr)
-         {
-
-            if (pimpl->get_focus_primitive() != nullptr)
-            {
-
-               return pimpl->get_focus_primitive();
-
-            }
-
-            return pimpl->m_puserinteraction;
-
-         }
-
-#ifdef WINDOWS_DESKTOP
-
-         oswindow = ::GetParent(oswindow);
-
-         if (oswindow != nullptr)
-         {
-
-            oswindow = ::get_window(oswindow, e_relative_owner);
-
-         }
-
-#else
-
-         break;
-
-#endif
-
-      }
-
-      return nullptr;
-
-   }
+//   ::user::primitive * session::get_keyboard_focus()
+//   {
+//
+//      oswindow oswindowFocus = ::get_focus();
+//
+//      if (oswindowFocus == nullptr)
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      oswindow oswindow = oswindowFocus;
+//
+//      while (oswindow != nullptr)
+//      {
+//
+//         ::user::interaction_impl * pimpl = ::oswindow_interaction_impl(oswindow);
+//
+//         if (pimpl != nullptr)
+//         {
+//
+//            auto pprimitiveFocus = pimpl->get_keyboard_focus();
+//
+//            if (pprimitiveFocus != nullptr)
+//            {
+//
+//               return pprimitiveFocus;
+//
+//            }
+//
+//            return pimpl->m_puserinteraction;
+//
+//         }
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//         oswindow = ::get_parent(oswindow);
+//
+//         if (oswindow != nullptr)
+//         {
+//
+//            oswindow = ::get_window(oswindow, e_relative_owner);
+//
+//         }
+//
+//#else
+//
+//         break;
+//
+//#endif
+//
+//      }
+//
+//      return nullptr;
+//
+//   }
 
 
    ::user::keyboard& session::keyboard()
@@ -884,173 +887,487 @@ namespace aura
    }
 
 
-   bool session::set_keyboard_focus(::user::primitive * pprimitive)
-   {
-
-      if (pprimitive == nullptr)
-      {
-
-         m_pimplPendingFocus2 = nullptr;
-
-         ::set_focus(nullptr);
-
-         return false;
-
-      }
-
-      ::user::interaction * pinteraction = pprimitive->get_host_wnd();
-
-      if (pinteraction == nullptr)
-      {
-
-         return false;
-
-      }
-
-      ::user::interaction * puiImpl = pinteraction->get_host_wnd();
-
-      if (puiImpl == nullptr)
-      {
-
-         return false;
-
-      }
-
-      ::user::interaction_impl * pimpl = puiImpl->m_pimpl.cast < ::user::interaction_impl > ();
-
-      if (pimpl == nullptr)
-      {
-
-         ASSERT(FALSE);
-
-         return false;
-
-      }
-
-      bool bHasFocus = puiImpl->has_focus();
-
-      if (!pimpl->set_focus_primitive(pprimitive))
-      {
-
-         return false;
-
-      }
-
-      if(bHasFocus)
-      {
-
-         return true;
-
-      }
-
-#ifdef WINDOWS_DESKTOP
-      //if (!IsWindowVisible(pimpl->m_oswindow) || pinteraction->GetExStyle() & WS_EX_LAYERED)
-      if (!IsWindowVisible(pimpl->m_oswindow))
-      {
-
-         pimpl->set_pending_focus();
-
-      }
-      else
-#endif
-      {
-
-         ::set_focus(pimpl->m_oswindow);
-
-      }
-
-      return true;
-
-      //::user::primitive * pkeyboardfocusParam = pkeyboardfocus;
-
-      //if (pkeyboardfocus == nullptr)
-      //{
-
-      //   pkeyboardfocus = (::user::primitive *) (ulong_ptr) 1;
-
-      //}
-
-      //if (m_pkeyboardfocus != nullptr && m_pkeyboardfocus != pkeyboardfocus && m_pkeyboardfocusRequest != pkeyboardfocus)
-      //{
-
-      //   ::user::primitive * pkeyboardfocusOld = m_pkeyboardfocus;
-
-      //   m_pkeyboardfocusRequest = pkeyboardfocus;
-
-      //   try
-      //   {
-
-      //      if (pkeyboardfocusOld != nullptr)
-      //      {
-
-      //         output_debug_string("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
-
-      //         if (!pkeyboardfocusOld->keyboard_focus_OnKillFocus( (pkeyboardfocus != nullptr &&
-      //               pkeyboardfocus != (::user::primitive *) (ulong_ptr) 1) ?
-      //               pkeyboardfocus->get_safe_handle() : nullptr))
-      //         {
-
-      //            return;
-
-      //         }
-
-      //         __pointer(::user::interaction) pinteraction = pkeyboardfocusOld;
-
-      //         if (pinteraction.is_set())
-      //         {
-
-      //            pinteraction->send_message(e_message_kill_focus, (WPARAM) ( (pkeyboardfocus != nullptr &&
-      //                              pkeyboardfocus != (::user::primitive *) (ulong_ptr) 1 )?
-      //                              pkeyboardfocus->get_safe_handle() : nullptr));
-
-      //         }
-
-      //      }
-
-      //   }
-      //   catch (...)
-      //   {
-
-      //   }
-
-      //}
-
-      //if (pkeyboardfocus == (::user::primitive *) (ulong_ptr) 1)
-      //{
-
-      //   pkeyboardfocus = nullptr;
-
-      //}
-
-      //if (pkeyboardfocus != nullptr)
-      //{
-
-      //   if (!pkeyboardfocus->keyboard_focus_OnSetFocus())
-      //   {
-
-      //      return;
-
-      //   }
-
-      //   if (pkeyboardfocus->get_wnd() != nullptr)
-      //   {
-
-      //      if (!pkeyboardfocus->get_wnd_primitive()->on_keyboard_focus(pkeyboardfocus))
-      //      {
-
-      //         return;
-
-      //      }
-
-      //   }
-
-      //}
-
-      //m_pkeyboardfocus = pkeyboardfocus;
-
-      //on_finally_focus_set(pkeyboardfocus);
-
-   }
+//   bool session::set_keyboard_focus(::user::primitive * pprimitive)
+//   {
+//
+//      //m_p
+//
+////      if (::is_null(pprimitive))
+////      {
+////
+////         m_pimplPendingFocus2 = nullptr;
+////
+////         ::clear_focus();
+////
+////         return false;
+////
+////      }
+////
+////      ::user::interaction * pinteraction = pprimitive->get_host_window();
+////
+////      if (::is_null(pinteraction))
+////      {
+////
+////         return false;
+////
+////      }
+////
+////      ::user::interaction_impl * pimpl = pinteraction->m_pimpl.cast < ::user::interaction_impl > ();
+////
+////      if (::is_null(pimpl))
+////      {
+////
+////         return false;
+////
+////      }
+////
+////      bool bHasFocus = pinteraction->has_focus();
+////
+////      if (!pimpl->set_keyboard_focus(pprimitive))
+////      {
+////
+////         return false;
+////
+////      }
+////
+////      if(bHasFocus)
+////      {
+////
+////         return true;
+////
+////      }
+////
+////#ifdef WINDOWS_DESKTOP
+////      //if (!IsWindowVisible(pimpl->m_oswindow) || pinteraction->GetExStyle() & WS_EX_LAYERED)
+////      if (!IsWindowVisible(pimpl->m_oswindow))
+////      {
+////
+////         pimpl->set_pending_focus();
+////
+////      }
+////      else
+////#endif
+////      {
+////
+////         ::set_focus(pimpl->m_oswindow);
+////
+////      }
+////
+////      return true;
+////
+////      //::user::primitive * pkeyboardfocusParam = pkeyboardfocus;
+////
+////      //if (pkeyboardfocus == nullptr)
+////      //{
+////
+////      //   pkeyboardfocus = (::user::primitive *) (ulong_ptr) 1;
+////
+////      //}
+////
+////      //if (m_pkeyboardfocus != nullptr && m_pkeyboardfocus != pkeyboardfocus && m_pkeyboardfocusRequest != pkeyboardfocus)
+////      //{
+////
+////      //   ::user::primitive * pkeyboardfocusOld = m_pkeyboardfocus;
+////
+////      //   m_pkeyboardfocusRequest = pkeyboardfocus;
+////
+////      //   try
+////      //   {
+////
+////      //      if (pkeyboardfocusOld != nullptr)
+////      //      {
+////
+////      //         output_debug_string("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
+////
+////      //         if (!pkeyboardfocusOld->keyboard_focus_OnKillFocus( (pkeyboardfocus != nullptr &&
+////      //               pkeyboardfocus != (::user::primitive *) (ulong_ptr) 1) ?
+////      //               pkeyboardfocus->get_safe_handle() : nullptr))
+////      //         {
+////
+////      //            return;
+////
+////      //         }
+////
+////      //         __pointer(::user::interaction) pinteraction = pkeyboardfocusOld;
+////
+////      //         if (pinteraction.is_set())
+////      //         {
+////
+////      //            pinteraction->send_message(e_message_kill_focus, (WPARAM) ( (pkeyboardfocus != nullptr &&
+////      //                              pkeyboardfocus != (::user::primitive *) (ulong_ptr) 1 )?
+////      //                              pkeyboardfocus->get_safe_handle() : nullptr));
+////
+////      //         }
+////
+////      //      }
+////
+////      //   }
+////      //   catch (...)
+////      //   {
+////
+////      //   }
+////
+////      //}
+////
+////      //if (pkeyboardfocus == (::user::primitive *) (ulong_ptr) 1)
+////      //{
+////
+////      //   pkeyboardfocus = nullptr;
+////
+////      //}
+////
+////      //if (pkeyboardfocus != nullptr)
+////      //{
+////
+////      //   if (!pkeyboardfocus->keyboard_focus_OnSetFocus())
+////      //   {
+////
+////      //      return;
+////
+////      //   }
+////
+////      //   if (pkeyboardfocus->get_wnd() != nullptr)
+////      //   {
+////
+////      //      if (!pkeyboardfocus->get_wnd_primitive()->on_keyboard_focus(pkeyboardfocus))
+////      //      {
+////
+////      //         return;
+////
+////      //      }
+////
+////      //   }
+////
+////      //}
+////
+////      //m_pkeyboardfocus = pkeyboardfocus;
+////
+////      //on_finally_focus_set(pkeyboardfocus);
+//
+//   }
+
+
+//   bool session::remove_keyboard_focus(::user::primitive * pprimitive)
+//   {
+//
+//      if (pprimitive == nullptr)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      ::user::interaction * pinteraction = pprimitive->get_host_window();
+//
+//      if (pinteraction == nullptr)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      ::user::interaction * puiImpl = pinteraction->get_host_window();
+//
+//      if (puiImpl == nullptr)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      ::user::interaction_impl * pimpl = puiImpl->m_pimpl.cast < ::user::interaction_impl >();
+//
+//      if (pimpl == nullptr)
+//      {
+//
+//         ASSERT(FALSE);
+//
+//         return false;
+//
+//      }
+//
+//      bool bHasFocus = puiImpl->has_focus();
+//
+//      if (!pimpl->remove_keyboard_focus(pprimitive))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if (!bHasFocus)
+//      {
+//
+//         return true;
+//
+//      }
+////
+////#ifdef WINDOWS_DESKTOP
+////      //if (!IsWindowVisible(pimpl->m_oswindow) || pinteraction->GetExStyle() & WS_EX_LAYERED)
+////      if (!IsWindowVisible(pimpl->m_oswindow))
+////      {
+////
+////         pimpl->set_pending_focus();
+////
+////      }
+////      else
+////#endif
+//      {
+//
+//         ::remove_focus(pimpl->m_oswindow);
+//
+//      }
+//
+//      return true;
+//
+//      //::user::primitive * pkeyboardfocusParam = pkeyboardfocus;
+//
+//      //if (pkeyboardfocus == nullptr)
+//      //{
+//
+//      //   pkeyboardfocus = (::user::primitive *) (ulong_ptr) 1;
+//
+//      //}
+//
+//      //if (m_pkeyboardfocus != nullptr && m_pkeyboardfocus != pkeyboardfocus && m_pkeyboardfocusRequest != pkeyboardfocus)
+//      //{
+//
+//      //   ::user::primitive * pkeyboardfocusOld = m_pkeyboardfocus;
+//
+//      //   m_pkeyboardfocusRequest = pkeyboardfocus;
+//
+//      //   try
+//      //   {
+//
+//      //      if (pkeyboardfocusOld != nullptr)
+//      //      {
+//
+//      //         output_debug_string("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
+//
+//      //         if (!pkeyboardfocusOld->keyboard_focus_OnKillFocus( (pkeyboardfocus != nullptr &&
+//      //               pkeyboardfocus != (::user::primitive *) (ulong_ptr) 1) ?
+//      //               pkeyboardfocus->get_safe_handle() : nullptr))
+//      //         {
+//
+//      //            return;
+//
+//      //         }
+//
+//      //         __pointer(::user::interaction) pinteraction = pkeyboardfocusOld;
+//
+//      //         if (pinteraction.is_set())
+//      //         {
+//
+//      //            pinteraction->send_message(e_message_kill_focus, (WPARAM) ( (pkeyboardfocus != nullptr &&
+//      //                              pkeyboardfocus != (::user::primitive *) (ulong_ptr) 1 )?
+//      //                              pkeyboardfocus->get_safe_handle() : nullptr));
+//
+//      //         }
+//
+//      //      }
+//
+//      //   }
+//      //   catch (...)
+//      //   {
+//
+//      //   }
+//
+//      //}
+//
+//      //if (pkeyboardfocus == (::user::primitive *) (ulong_ptr) 1)
+//      //{
+//
+//      //   pkeyboardfocus = nullptr;
+//
+//      //}
+//
+//      //if (pkeyboardfocus != nullptr)
+//      //{
+//
+//      //   if (!pkeyboardfocus->keyboard_focus_OnSetFocus())
+//      //   {
+//
+//      //      return;
+//
+//      //   }
+//
+//      //   if (pkeyboardfocus->get_wnd() != nullptr)
+//      //   {
+//
+//      //      if (!pkeyboardfocus->get_wnd_primitive()->on_keyboard_focus(pkeyboardfocus))
+//      //      {
+//
+//      //         return;
+//
+//      //      }
+//
+//      //   }
+//
+//      //}
+//
+//      //m_pkeyboardfocus = pkeyboardfocus;
+//
+//      //on_finally_focus_set(pkeyboardfocus);
+//
+//   }
+
+
+//   bool session::clear_keyboard_focus()
+//   {
+//
+//      auto pprimitive = get_focus_ui();
+//
+//      if (::is_null(pprimitive))
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      ::user::interaction * puiImpl = pprimitive->get_host_window();
+//
+//      if (puiImpl == nullptr)
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      ::user::interaction_impl * pimpl = puiImpl->m_pimpl.cast < ::user::interaction_impl >();
+//
+//      if (pimpl == nullptr)
+//      {
+//
+//         ASSERT(FALSE);
+//
+//         return false;
+//
+//      }
+//
+//      bool bHasFocus = puiImpl->has_focus();
+//
+//      if (!pimpl->clear_keyboard_focus())
+//      {
+//
+//         return false;
+//
+//      }
+//
+//      if (!bHasFocus)
+//      {
+//
+//         return true;
+//
+//      }
+//
+////#ifdef WINDOWS_DESKTOP
+////      //if (!IsWindowVisible(pimpl->m_oswindow) || pinteraction->GetExStyle() & WS_EX_LAYERED)
+////      if (!IsWindowVisible(pimpl->m_oswindow))
+////      {
+////
+////         pimpl->set_pending_focus();
+////
+////      }
+////      else
+////#endif
+//      {
+//
+//         ::clear_focus();
+//
+//      }
+//
+//      return true;
+//
+//      //::user::primitive * pkeyboardfocusParam = pkeyboardfocus;
+//
+//      //if (pkeyboardfocus == nullptr)
+//      //{
+//
+//      //   pkeyboardfocus = (::user::primitive *) (ulong_ptr) 1;
+//
+//      //}
+//
+//      //if (m_pkeyboardfocus != nullptr && m_pkeyboardfocus != pkeyboardfocus && m_pkeyboardfocusRequest != pkeyboardfocus)
+//      //{
+//
+//      //   ::user::primitive * pkeyboardfocusOld = m_pkeyboardfocus;
+//
+//      //   m_pkeyboardfocusRequest = pkeyboardfocus;
+//
+//      //   try
+//      //   {
+//
+//      //      if (pkeyboardfocusOld != nullptr)
+//      //      {
+//
+//      //         output_debug_string("axis::session::set_keyboard_focus pkeyboardfocusOld->keyboard_focus_OnKillFocus()\n");
+//
+//      //         if (!pkeyboardfocusOld->keyboard_focus_OnKillFocus( (pkeyboardfocus != nullptr &&
+//      //               pkeyboardfocus != (::user::primitive *) (ulong_ptr) 1) ?
+//      //               pkeyboardfocus->get_safe_handle() : nullptr))
+//      //         {
+//
+//      //            return;
+//
+//      //         }
+//
+//      //         __pointer(::user::interaction) pinteraction = pkeyboardfocusOld;
+//
+//      //         if (pinteraction.is_set())
+//      //         {
+//
+//      //            pinteraction->send_message(e_message_kill_focus, (WPARAM) ( (pkeyboardfocus != nullptr &&
+//      //                              pkeyboardfocus != (::user::primitive *) (ulong_ptr) 1 )?
+//      //                              pkeyboardfocus->get_safe_handle() : nullptr));
+//
+//      //         }
+//
+//      //      }
+//
+//      //   }
+//      //   catch (...)
+//      //   {
+//
+//      //   }
+//
+//      //}
+//
+//      //if (pkeyboardfocus == (::user::primitive *) (ulong_ptr) 1)
+//      //{
+//
+//      //   pkeyboardfocus = nullptr;
+//
+//      //}
+//
+//      //if (pkeyboardfocus != nullptr)
+//      //{
+//
+//      //   if (!pkeyboardfocus->keyboard_focus_OnSetFocus())
+//      //   {
+//
+//      //      return;
+//
+//      //   }
+//
+//      //   if (pkeyboardfocus->get_wnd() != nullptr)
+//      //   {
+//
+//      //      if (!pkeyboardfocus->get_wnd_primitive()->on_keyboard_focus(pkeyboardfocus))
+//      //      {
+//
+//      //         return;
+//
+//      //      }
+//
+//      //   }
+//
+//      //}
+//
+//      //m_pkeyboardfocus = pkeyboardfocus;
+//
+//      //on_finally_focus_set(pkeyboardfocus);
+//
+//   }
 
 
    //void session::on_finally_focus_set(::user::primitive * pprimitiveFocus)
@@ -1068,39 +1385,39 @@ namespace aura
    }
 
 
-   ::user::primitive * session::get_focus_ui()
-   {
+   //::user::primitive * session::get_focus_ui()
+   //{
 
-      auto window = ::get_focus();
+   //   auto window = ::get_focus();
 
-      if (!window)
-      {
+   //   if (!window)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      auto puserinteraction = System.ui_from_handle(window);
+   //   auto puserinteraction = System.ui_from_handle(window);
 
-      if (!puserinteraction)
-      {
+   //   if (!puserinteraction)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      auto puserinteractionFocus = puserinteraction->get_focus_primitive();
+   //   auto puserinteractionFocus = puserinteraction->get_keyboard_focus();
 
-      if (!puserinteractionFocus)
-      {
+   //   if (!puserinteractionFocus)
+   //   {
 
-         return puserinteraction;
+   //      return puserinteraction;
 
-      }
+   //   }
 
-      return puserinteractionFocus;
+   //   return puserinteractionFocus;
 
-   }
+   //}
 
 
    void session::on_finally_focus_set(::user::primitive * pprimitiveFocus)
@@ -1132,7 +1449,7 @@ namespace aura
 
          }
 
-         if (puiFocus->GetFocus() != puiFocus->get_wnd())
+         if (puiFocus->get_keyboard_focus() != puiFocus->get_wnd())
          {
 
             if (puiFocus->get_wnd() != nullptr)
@@ -1510,7 +1827,7 @@ namespace aura
 
 #endif
 
-   ::estatus session::finish(::context_object * pcontextobjectFinish)
+   ::e_status session::finish(::context_object * pcontextobjectFinish)
    {
 
       return ::aqua::session::finish(pcontextobjectFinish);
@@ -3130,7 +3447,7 @@ ret:
    }
 
 
-   ::estatus session::init1()
+   ::e_status session::init1()
    {
 
       auto estatus = ::apex::session::init1();
@@ -3289,7 +3606,7 @@ ret:
    }
 
 
-   ::estatus session::defer_initialize_host_window(LPCRECT32 lpcrect)
+   ::e_status session::defer_initialize_host_window(LPCRECT32 lpcrect)
    {
 
 #if !defined(APPLE_IOS) && !defined(_UWP) && !defined(ANDROID)
@@ -3375,10 +3692,10 @@ ret:
    }
 
 
-   ::estatus session::init2()
+   ::e_status session::init2()
    {
 
-      ::estatus estatus = ::apex::session::init2();
+      ::e_status estatus = ::apex::session::init2();
 
       if (!estatus)
       {
@@ -3417,10 +3734,10 @@ ret:
    }
 
 
-   ::estatus session::init()
+   ::e_status session::init()
    {
 
-      ::estatus estatus = ::apex::session::init();
+      ::e_status estatus = ::apex::session::init();
 
       //__pointer(::fs::set) pfsset = m_pfsdata;
 
@@ -3578,7 +3895,7 @@ namespace aura
 
 
 
-   //::estatus session::initialize(::layered * pobjectContext)
+   //::e_status session::initialize(::layered * pobjectContext)
    //{
 
    //   auto estatus = ::aura::session::initialize(pobjectContext);
@@ -3630,7 +3947,7 @@ namespace aura
    }
 
 
-   ::estatus     session::do_request(::create* pcreate)
+   ::e_status     session::do_request(::create* pcreate)
    {
 
       return ::thread::do_request(pcreate);
@@ -3837,7 +4154,7 @@ namespace aura
    }
 
 
-   ::estatus     session::main()
+   ::e_status     session::main()
    {
 
       //return ::aura::session::main();
@@ -3872,7 +4189,7 @@ namespace aura
    }
 
 
-   ::color session::get_color(::user::enum_element eelement, ::user::estate estate)
+   ::color session::get_color(const ::user::interaction * puserinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (eelement == ::user::e_element_background)
@@ -3940,6 +4257,22 @@ namespace aura
       }
 
       return ::color();
+
+   }
+
+
+   bool session::get_int(const ::user::interaction* pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate) const
+   {
+
+      return false;
+
+   }
+
+
+   bool session::get_double(const ::user::interaction* pinteraction, double & d, ::user::enum_double eint, ::user::enum_state estate) const
+   {
+
+      return false;
 
    }
 

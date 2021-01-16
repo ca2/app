@@ -83,7 +83,7 @@ namespace sockets
    }
 
 
-   ::estatus socket::run()
+   ::e_status socket::run()
    {
 
       if(m_bOnConnect)

@@ -36,7 +36,7 @@ namespace user
    }
 
 
-   ::estatus user::init1()
+   ::e_status user::init1()
    {
 
 
@@ -65,7 +65,7 @@ namespace user
    }
 
 
-   ::estatus user::init()
+   ::e_status user::init()
    {
 
       if (!::apex::department::init())
@@ -120,10 +120,10 @@ namespace user
       //}
 
       //if(strLangUser.has_char())
-      //   psession->set_locale(strLangUser,::source_database);
+      //   psession->set_locale(strLangUser,::e_source_database);
 
       //if(strStyleUser.has_char())
-      //   psession->set_schema(strStyleUser,::source_database);
+      //   psession->set_schema(strStyleUser,::e_source_database);
 
       //string strLicense = Application.get_license_id();
 
@@ -143,7 +143,7 @@ namespace user
    }
 
 
-   ::estatus user::init2()
+   ::e_status user::init2()
    {
 
       if (!::apex::department::init2())
@@ -193,7 +193,24 @@ namespace user
    void user::set_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
    {
 
+      sync_lock sl(mutex());
+
       m_pmousefocusLButtonDown = pmousefocus;
+
+   }
+
+
+   void user::defer_remove_mouse_focus_LButtonDown(::user::primitive * pmousefocus)
+   {
+
+      sync_lock sl(mutex());
+
+      if (m_pmousefocusLButtonDown == pmousefocus)
+      {
+
+         m_pmousefocusLButtonDown = nullptr;
+
+      }
 
    }
 
@@ -306,7 +323,7 @@ namespace user
    }
 
 
-   //::estatus user::close_all_documents(bool bEndSession)
+   //::e_status user::close_all_documents(bool bEndSession)
    //{
 
    //   return ::error_interface_only;
@@ -556,7 +573,7 @@ namespace aura
 //         //{
 //         //   pframeApp->display(e_display_full_screen);
 //         //}
-//         //__pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::pane_view >()->GetParentFrame();
+//         //__pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::pane_view >()->get_parent_frame();
 //         //if(pframe != nullptr)
 //         //{
 //         //   pframe->display(e_display_normal);
@@ -566,7 +583,7 @@ namespace aura
 //      {
 //         //if(get_document() != nullptr && get_document()->get_typed_view < ::bergedge::view >() != nullptr)
 //         //{
-//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame();
+//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::view >()->get_parent_frame();
 //         //   if(pframe != nullptr)
 //         //   {
 //         //      pframe->display(e_display_normal);
@@ -586,7 +603,7 @@ namespace aura
 ////      {
 ////         try
 ////         {
-////            get_view()->GetParentFrame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
+////            get_view()->get_parent_frame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
 ////         }
 ////         catch (...)
 ////         {
@@ -798,18 +815,25 @@ namespace user
    {
 
       if (pinteraction == nullptr)
+      {
+
          return false;
+
+      }
 
       ::user::interaction* puiAscendant = pinteraction;
 
       do
       {
 
-         puiAscendant = puiAscendant->GetOwner();
-
+         puiAscendant = puiAscendant->get_owner();
 
          if (puiParent == puiAscendant)
+         {
+
             return true;
+
+         }
 
       } while (puiAscendant != nullptr);
 
@@ -819,11 +843,14 @@ namespace user
       do
       {
 
-         puiAscendant = puiAscendant->GetParent();
-
+         puiAscendant = puiAscendant->get_parent();
 
          if (puiParent == puiAscendant)
+         {
+
             return true;
+
+         }
 
       } while (puiAscendant != nullptr);
 

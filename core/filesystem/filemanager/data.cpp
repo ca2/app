@@ -71,7 +71,7 @@ namespace filemanager
    }
 
 
-   ::estatus data::initialize_filemanager_data(::layered * pobjectContext)
+   ::e_status data::initialize_filemanager_data(::layered * pobjectContext)
    {
 
       auto estatus = ::data::data::initialize(pobjectContext);
@@ -218,7 +218,7 @@ namespace filemanager
 
 
          m_pdocument = dynamic_cast < ::filemanager::document * >
-                       (m_pdocumenttemplate->open_document_file(pappOnBehalfOf, type_empty,
+                       (m_pdocumenttemplate->open_document_file(pappOnBehalfOf, e_type_empty,
                              bMakeVisible,
                              puiParent));
 
@@ -339,7 +339,7 @@ namespace filemanager
    }
 
 
-   ::estatus data::set_last_browse_path(::object * pobjectContext, const ::file::path& path)
+   ::e_status data::set_last_browse_path(::object * pobjectContext, const ::file::path& path)
    {
 
       string strPath(path);

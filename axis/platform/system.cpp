@@ -46,7 +46,7 @@ CLASS_DECL_AXIS ::user::interaction * create_system_message_window(::layered * p
 extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
 
 
-CLASS_DECL_AXIS void __simple_tracea(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_AXIS void __simple_tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
 
 
 #ifdef WINDOWS
@@ -143,7 +143,7 @@ namespace axis
    }
 
 
-   ::estatus system::initialize(::layered * pobjectContext)
+   ::e_status system::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::aura::system::initialize(pobjectContext);
@@ -185,7 +185,7 @@ namespace axis
 
 
 
-   ::estatus system::process_init()
+   ::e_status system::process_init()
    {
 
       auto estatus = ::aura::system::process_init();
@@ -205,7 +205,7 @@ namespace axis
 
 
 
-   ::estatus system::init()
+   ::e_status system::init()
    {
 
       auto estatus = ::aura::system::init();
@@ -222,7 +222,7 @@ namespace axis
    }
 
 
-   ::estatus system::init1()
+   ::e_status system::init1()
    {
 
       auto estatus = ::aura::system::init1();
@@ -239,7 +239,7 @@ namespace axis
    }
 
 
-   ::estatus system::post_create_requests()
+   ::e_status system::post_create_requests()
    {
 
       auto estatus = ::aura::system::post_create_requests();
@@ -256,10 +256,10 @@ namespace axis
    }
 
 
-   ::estatus system::inline_init()
+   ::e_status system::inline_init()
    {
 
-      ::estatus estatus = ::aura::system::inline_init();
+      ::e_status estatus = ::aura::system::inline_init();
 
       if (!estatus)
       {
@@ -273,10 +273,10 @@ namespace axis
    }
 
 
-   ::estatus system::inline_term()
+   ::e_status system::inline_term()
    {
 
-      ::estatus estatus = ::aura::system::inline_term();
+      ::e_status estatus = ::aura::system::inline_term();
 
       if (!estatus)
       {
@@ -290,7 +290,7 @@ namespace axis
    }
 
 
-   ::estatus system::init_system()
+   ::e_status system::init_system()
    {
 
       auto estatus = aura::system::init_system();
@@ -487,7 +487,7 @@ namespace axis
 
 
 
-   ::estatus system::verb()
+   ::e_status system::verb()
    {
 
       return ::aura::system::verb();
@@ -503,7 +503,7 @@ namespace axis
 
 
 
-   ::estatus system::init2()
+   ::e_status system::init2()
    {
 
       auto estatus = ::aura::system::init2();

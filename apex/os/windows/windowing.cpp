@@ -349,7 +349,7 @@ CLASS_DECL_APEX int_bool show_window(oswindow oswindow, const ::e_display & edis
 //CLASS_DECL_APEX string message_box_result_to_string(int iResult);
 //
 //
-//CLASS_DECL_APEX ::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::future future)
+//CLASS_DECL_APEX ::e_status _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::future future)
 //{
 //
 //   string strMessage(pszMessage);
@@ -371,10 +371,10 @@ CLASS_DECL_APEX int_bool show_window(oswindow oswindow, const ::e_display & edis
 //}
 //
 
-CLASS_DECL_ACME::estatus _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process);
+CLASS_DECL_ACME::e_status _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process);
 
 
-CLASS_DECL_APEX ::estatus apex_os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+CLASS_DECL_APEX ::e_status apex_os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
    if (System.is_dedicated_thread())

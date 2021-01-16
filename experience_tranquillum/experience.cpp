@@ -23,7 +23,7 @@ namespace experience
       }
 
 
-         ::estatus experience::initialize(::layered * pobjectContext)
+         ::e_status experience::initialize(::layered * pobjectContext)
          {
 
             auto estatus = ::experience::experience::initialize(pobjectContext);

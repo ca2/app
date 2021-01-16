@@ -11,6 +11,8 @@ namespace userex
    public:
 
 
+      bool                             m_bMouseColorBeam;
+      ::point                          m_pointMouseColorBeam;
       bool                             m_bCompact;
       bool                             m_bLButtonPressed;
       ::user::plain_edit_view          m_editRed;
@@ -82,7 +84,7 @@ namespace visual
 {
 
 
-   CLASS_DECL_CORE void gay_with_shades_of_grey(::image * pimage);
+   CLASS_DECL_CORE void colors_with_shades_of_grey(::image * pimage);
 
    CLASS_DECL_CORE void shades_of_luminance(::image * pimage, double dH, double dS);
 

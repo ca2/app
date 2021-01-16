@@ -101,7 +101,7 @@ namespace html
                if (strValue.has_char())
                {
 
-                  m_pcombo->_001SetText(pelement->m_pbase->get_tag()->get_attr_value("value"), ::action_context(::source_data) +  ::source_load);
+                  m_pcombo->_001SetText(pelement->m_pbase->get_tag()->get_attr_value("value"), ::action_context(::e_source_data) +  ::e_source_load);
 
                }
                

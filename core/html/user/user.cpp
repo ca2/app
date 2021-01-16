@@ -8,7 +8,7 @@ namespace core
 {
 
 
-   ::estatus user::initialize_html()
+   ::e_status user::initialize_html()
    {
 
 

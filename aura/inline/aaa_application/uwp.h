@@ -12,7 +12,7 @@ int main(Array < String ^ > ^ stra)
 
    psystem->system_construct(stra);
 
-   ::estatus estatus = os_application_system_run(psystem);
+   ::e_status estatus = os_application_system_run(psystem);
 
    ::i32 iErrorStatus = estatus.error_status();
 

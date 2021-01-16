@@ -202,9 +202,9 @@ namespace file
 
       virtual class insert_item * Insert(const void * pdata,memsize nCount);
 
-      virtual void change_insert_item_data(class insert_item * pinsertitem, string & str);
+      virtual void change_insert_item_data(class insert_item * pinsertitem, const string & str);
 
-      virtual void append_insert_item_data(class insert_item * pinsertitem, string & str);
+      virtual void append_insert_item_data(class insert_item * pinsertitem, const string & str);
 
       virtual delete_item * Delete(memsize uiCount);
 

@@ -32,7 +32,7 @@
 //   }
 //
 //
-//   virtual ::estatus run() override
+//   virtual ::e_status run() override
 //   {
 //
 //      m_pred();
@@ -72,9 +72,9 @@ public:
    //method(const ::method & method) : matter_pointer(method) { }
 
 
-   //inline ::estatus operator()() const;
+   //inline ::e_status operator()() const;
 
-   virtual ::estatus run() override
+   virtual ::e_status run() override
    {
 
       m_pred();
@@ -107,7 +107,7 @@ template < typename PRED >
 
 
 
-::estatus run_task(::matter * pobjectTask);
+::e_status run_task(::matter * pobjectTask);
 
 
 class processor

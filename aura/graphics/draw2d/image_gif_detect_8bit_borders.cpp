@@ -242,7 +242,7 @@
 ////
 ////   }
 ////
-////   pimagepointera->m_crTransparent = crBack;
+////   pimagepointera->m_colorTransparent = crBack;
 ////
 ////   return true;
 //

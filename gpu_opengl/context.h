@@ -35,26 +35,26 @@ namespace opengl
       virtual ~context();
 
 
-      //virtual ::estatus initialize(::layered * pobjectContext) override;
+      //virtual ::e_status initialize(::layered * pobjectContext) override;
 
       virtual string _001GetIntroProjection() override;
       virtual string _001GetIntroFragment() override;
 
-      virtual ::estatus draw() override;
-      virtual ::estatus start() override;
-      virtual ::estatus render() override;
+      virtual ::e_status draw() override;
+      virtual ::e_status start() override;
+      virtual ::e_status render() override;
 
-      //virtual ::estatus create_offscreen_buffer(const ::size& size);
-      //virtual ::estatus _create_offscreen_buffer(const ::size& size);
+      //virtual ::e_status create_offscreen_buffer(const ::size& size);
+      //virtual ::e_status _create_offscreen_buffer(const ::size& size);
 
-      //virtual ::estatus resize_offscreen_buffer(const ::size& size);
-      //virtual ::estatus destroy_offscreen_buffer();
+      //virtual ::e_status resize_offscreen_buffer(const ::size& size);
+      //virtual ::e_status destroy_offscreen_buffer();
 
    /*   virtual void translate_shader(string & str);
 
       virtual void _translate_shader(string_array& stra);*/
 
-      //virtual ::estatus make_current();
+      //virtual ::e_status make_current();
 
       // virtual string load_fragment(const char* pszPath, enum_shader_source& eshadersource);
 

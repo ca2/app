@@ -413,6 +413,76 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR >::pick_at(::index nIndex)
+{
+
+   ::count nCount = 1;
+
+   ::index nUpperBound = nIndex + nCount;
+
+   if (nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
+   {
+
+      __throw(invalid_argument_exception());
+
+   }
+
+   ::count nMoveCount = (::count_cast)m_nSize - (nUpperBound);
+
+   auto t = m_pData[nIndex];
+
+   ALLOCATOR::destruct_count(m_pData + nIndex, nCount OBJ_REF_DBG_COMMA_THIS);
+
+   if (nMoveCount)
+   {
+
+      ::acme::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE), m_pData + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
+
+   }
+
+   m_nSize -= nCount;
+
+   return t;
+
+}
+
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+array_base < TYPE, ARG_TYPE, ALLOCATOR > array_base < TYPE, ARG_TYPE, ALLOCATOR >::pick_at(::index nIndex, ::count nCount)
+{
+
+   //ASSERT_VALID(this);
+
+   ::index nUpperBound = nIndex + nCount;
+
+   if (nIndex < 0 || nCount < 0 || (nUpperBound > m_nSize) || (nUpperBound < nIndex) || (nUpperBound < nCount))
+   {
+
+      __throw(invalid_argument_exception());
+
+   }
+
+   ::count nMoveCount = (::count_cast)m_nSize - (nUpperBound);
+
+   array_base < TYPE, ARG_TYPE, ALLOCATOR > a(m_pData + nIndex, (size_t)nMoveCount);
+
+   ALLOCATOR::destruct_count(m_pData + nIndex, nCount OBJ_REF_DBG_COMMA_THIS);
+
+   if (nMoveCount)
+   {
+
+      ::acme::memmove_s(m_pData + nIndex, (size_t)nMoveCount * sizeof(TYPE), m_pData + nUpperBound, (size_t)nMoveCount * sizeof(TYPE));
+
+   }
+
+   m_nSize -= nCount;
+
+   return a;
+
+}
+
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 ::count array_base < TYPE, ARG_TYPE, ALLOCATOR >::set_raw_size(::count nNewSize,::count nGrowBy)
 {
 

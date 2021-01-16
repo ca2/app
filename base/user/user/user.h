@@ -34,23 +34,23 @@ namespace base
       virtual ~user();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
       //inline ::user::shell* shell() { return m_pshell; }
 
       //::user::style * get_user_style();
 
-      //virtual ::estatus create_user_shell();
+      //virtual ::e_status create_user_shell();
 
       inline ::user::menu_central* menu() { return m_pmenucentral; }
 
       inline ::experience::department* experience() { return m_pexperience; }
 
 
-      virtual ::estatus init1() override;
-      virtual ::estatus init2() override;
-      virtual ::estatus init() override;
+      virtual ::e_status init1() override;
+      virtual ::e_status init2() override;
+      virtual ::e_status init() override;
 
   
       inline ::type get_html_document_type() { return m_typeHtmlDocument; }
@@ -65,7 +65,7 @@ namespace base
       virtual void set_mouse_focus_RButtonDown(::user::primitive * pmousefocus) override;
 
 
-      virtual ::estatus initialize1_experience();
+      virtual ::e_status initialize1_experience();
 
       virtual void finalize() override;
 

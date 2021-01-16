@@ -27,8 +27,8 @@ namespace apex
       library() {}
       virtual ~library();
 
-      virtual ::estatus     initialize(::layered * pobjectContext);
-      virtual ::estatus     initialize_apex_library(::layered * pobjectContext, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
+      virtual ::e_status     initialize(::layered * pobjectContext);
+      virtual ::e_status     initialize_apex_library(::layered * pobjectContext, int iDesmabi, const char * pszRoot = nullptr, const char * pszName = nullptr, const char * pszFolder = nullptr);
 
       virtual bool open(const char * pszPath,bool bAutoClose = true,bool bCa2Path = false);
 
@@ -72,11 +72,11 @@ namespace apex
 
 
       // impl
-      virtual __result(::apex::application) get_new_application(::layered * pobjectContext, const char * pszAppId);
+      virtual __result(::apex::application) new_application(const char * pszAppId);
       virtual void get_app_list(string_array & stra);
 
 
-      virtual ::matter* new_object(::layered * pobjectContext, const char* pszClass);
+      virtual ::matter* new_object(const char* pszClass);
 
 
       virtual __pointer(::matter) create_object(::layered * pobjectContext, const char* pszClass);
@@ -91,7 +91,7 @@ namespace apex
       virtual void get_extension_list(string_array & stra);
 
 
-      virtual ::matter * factory_new(::layered * pobjectContext, const char * lpszClass);
+      // virtual ::matter * factory_new(::layered * pobjectContext, const char * lpszClass);
 
 
       virtual __pointer(::matter) factory_create(::layered * pobjectContext, const char * lpszClass);
@@ -131,10 +131,11 @@ namespace apex
       }
 
       // impl
-      virtual __result(::apex::application) get_new_application(::layered * pobjectContext, const char * pszAppId) override;
+      virtual __result(::apex::application) new_application(const char * pszAppId) override;
 
 
       virtual void get_extension_list(string_array & stra) override;
+
 
    };
 

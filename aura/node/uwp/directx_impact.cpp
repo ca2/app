@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "_uwp.h"
+#include "aura/os/windows_common/draw2d_direct2d_global.h"
 
 
 #undef System
@@ -228,7 +229,11 @@ namespace uwp
    void impact::SetText(String^ text, int iBeg, int iEnd)
    {
 
-      m_strText = text;
+      //auto 
+
+//      m_strText = text;
+
+      set_input_text(text);
       
       sync([this, iBeg, iEnd, text]()
       {
@@ -239,7 +244,9 @@ namespace uwp
 
          sel.EndCaretPosition = iEnd < 0 ? text->Length() + iEnd + 1 : iEnd;
 
-         m_editcontext->NotifyTextChanged(m_selection, m_strText.length(), sel);
+         widestring wstrText = get_input_text();
+
+         m_editcontext->NotifyTextChanged(m_selection, wstrText.length(), sel);
 
       });
 
@@ -250,13 +257,15 @@ namespace uwp
    void impact::ReplaceText(CoreTextRange  modifiedRange, String ^ text)
    {
 
+      wstring wstrText = get_input_text();
+
       // Modify the internal text store.
-      m_strText = m_strText.Left(modifiedRange.StartCaretPosition) +
+      wstrText = wstrText.Left(modifiedRange.StartCaretPosition) +
          text->Begin() +
-         m_strText.Mid(modifiedRange.EndCaretPosition);
+         wstrText.Mid(modifiedRange.EndCaretPosition);
 
       // Move the caret to the end of the replacement text.
-      m_selection.StartCaretPosition = modifiedRange.StartCaretPosition + m_strText.length();
+      m_selection.StartCaretPosition = modifiedRange.StartCaretPosition + wstrText.length();
       m_selection.EndCaretPosition = m_selection.StartCaretPosition;
 
       // Update the selection of the edit context.  There is no need to notify the system
@@ -264,7 +273,7 @@ namespace uwp
       SetSelection(m_selection);
 
       // Let the CoreTextEditContext know what changed.
-      m_editcontext->NotifyTextChanged(modifiedRange, m_strText.length(), m_selection);
+      m_editcontext->NotifyTextChanged(modifiedRange, wstrText.length(), m_selection);
 
    }
 
@@ -308,9 +317,13 @@ namespace uwp
       
       CoreTextTextRequest ^ request = args->Request;
 
-      request->Text = m_strText.Mid(
+      widestring wstrText = get_input_text();
+
+      wstrText = wstrText.Mid(
          request->Range.StartCaretPosition,
-         min(request->Range.EndCaretPosition, m_strText.length()) - request->Range.StartCaretPosition);
+         min(request->Range.EndCaretPosition, wstrText.length()) - request->Range.StartCaretPosition);
+
+      request->Text = wstrText;
 
    }
 
@@ -337,14 +350,16 @@ namespace uwp
 
       CoreTextRange newSelection = args->NewSelection;
 
-      auto pwsz= newText.c_str();
+      auto pwsz = newText.c_str();
 
-      string strText = m_strText.Left( range.StartCaretPosition) + newText + m_strText.Mid(range.EndCaretPosition);
+      widestring wstrText = get_input_text();
 
-      m_strNewText = strText;
+      string strText = wstrText.Left( range.StartCaretPosition) + newText + wstrText.Mid(range.EndCaretPosition);
+
+      m_strNewText = newText;
 
       // Modify the internal text store.
-      m_strText = strText;
+      //m_strText = strText;
 
       // You can set the proper font or direction for the updated text based on the language by checking
       // args.InputLanguage.  We will not do that in this sample.
@@ -359,12 +374,12 @@ namespace uwp
       if(m_strNewText.has_char())
       {
 
-         auto pfocusui = Session->get_focus_ui();
+         auto pfocusui = host()->get_keyboard_focus();
 
          if (pfocusui)
          {
 
-            pfocusui->on_text_composition(m_strText);
+            pfocusui->insert_text(m_strNewText, false, e_source_sync);
 
          }
          else
@@ -378,7 +393,7 @@ namespace uwp
 
             auto psession = Session;
 
-            bool bTextFocus = psession->get_focus_ui() != nullptr;
+            bool bTextFocus = host()->get_user_interaction() != nullptr;
 
             bool bSpecialKey = false;
 
@@ -524,9 +539,7 @@ namespace uwp
 
       m_bTextCompositionActive = false;
 
-      auto psession = Session;
-
-      auto pfocusui = psession->get_focus_ui();
+      auto pfocusui = m_puserinteraction->get_keyboard_focus();
 
       //m_strText.Empty();
 
@@ -708,7 +721,9 @@ namespace uwp
       else
       {
 
-         range.EndCaretPosition = min(m_strText.length(), range.EndCaretPosition + direction);
+         widestring wstrText = get_input_text();
+
+         range.EndCaretPosition = min(wstrText.length(), range.EndCaretPosition + direction);
 
       }
 

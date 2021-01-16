@@ -433,7 +433,7 @@ namespace ios
 //
 //         mem.set_size(0);
 //
-//         if(varFile.get_type() == ::type_string)
+//         if(varFile.get_type() == ::e_type_string)
 //         {
 //
 //            string strPath = varFile.get_string();

@@ -21,7 +21,7 @@ namespace helloworld
    {
       m_prender = nullptr;
       m_fontDrawStatus->create_pixel_font("Arial", 20, 400);
-      m_crDrawStatus = ARGB(255, 255, 255, 0);
+      m_colorDrawStatus = ARGB(255, 255, 255, 0);
 
 
 
@@ -214,7 +214,7 @@ auto m_millisRoll = ::millis::now();
 
       //pdcParam->set_font(m_fontDrawStatus);
 
-      //pdcParam->set_text_color(m_crDrawStatus);
+      //pdcParam->set_text_color(m_colorDrawStatus);
 
       //string str1;
       //str1 = "FPS: " + __str((int) get_wnd()->m_pimpl.cast<::user::interaction_impl>()->m_dUpdateScreenFps);

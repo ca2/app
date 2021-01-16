@@ -6,10 +6,10 @@ namespace apex
 {
 
 
-   ::estatus system::initialize_sockets()
+   ::e_status system::initialize_sockets()
    {
 
-      ::estatus estatus = ::success_none;
+      ::e_status estatus = ::success_none;
 
       if (!m_psockets)
       {

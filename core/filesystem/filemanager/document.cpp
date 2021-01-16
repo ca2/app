@@ -69,16 +69,16 @@ namespace filemanager
       i32 iWidth = rectOpen.width();
       i32 iHeight = rectOpen.width();
       rectOpen.deflate(iWidth / 5, iHeight / 5);
-      pview->GetParentFrame()->order(zorder_top);
-      pview->GetParentFrame()->place(rectOpen);
-      pview->GetParentFrame()->display();
+      pview->get_parent_frame()->order(zorder_top);
+      pview->get_parent_frame()->place(rectOpen);
+      pview->get_parent_frame()->display();
 
 #endif
       pview->set_cur_tab_by_id(1);
-      pview->GetParentFrame()->set_need_redraw();
-      pview->GetParentFrame()->RunModalLoop();
+      pview->get_parent_frame()->set_need_redraw();
+      pview->get_parent_frame()->RunModalLoop();
       varFile = pdocument->m_strTopic;
-      pview->GetParentFrame()->DestroyWindow();
+      pview->get_parent_frame()->DestroyWindow();
       return TRUE;
 
    }
@@ -116,7 +116,7 @@ namespace filemanager
 
          m_pitem = __new(::file::item(*pitem));
 
-         OnFileManagerBrowse(context + ::source_sync);
+         OnFileManagerBrowse(context + ::e_source_sync);
 
       }
       catch (string & str)
@@ -131,7 +131,7 @@ namespace filemanager
 
             m_pitem = __new(::file::item(Context.defer_process_path(strOldPath), strOldPath));
 
-            OnFileManagerBrowse(context + ::source_sync);
+            OnFileManagerBrowse(context + ::e_source_sync);
 
          }
 
@@ -409,7 +409,7 @@ namespace filemanager
 
       string strParent = filemanager_item()->m_filepathUser.up();
 
-      browse(strParent, context + ::source_sync);
+      browse(strParent, context + ::e_source_sync);
 
    }
 
@@ -459,7 +459,7 @@ namespace filemanager
                if (pchildframe.is_set())
                {
 
-                  __pointer(document) pdocument = pchildframe->GetActiveDocument();
+                  __pointer(document) pdocument = pchildframe->get_active_document();
 
                   if (pdocument.is_set())
                   {
@@ -631,7 +631,7 @@ namespace filemanager
 
          auto psubject = subject(SYNCHRONIZE_PATH_ID);
 
-         psubject->m_actioncontext = context + ::source_sync + ::source_system;
+         psubject->m_actioncontext = context + ::e_source_sync + ::e_source_system;
 
          psubject->m_pfileitem = pitem;
 
@@ -666,7 +666,7 @@ namespace filemanager
 
       auto psubject = subject(SYNCHRONIZE_PATH_ID);
 
-      psubject->m_actioncontext = context + ::source_sync;
+      psubject->m_actioncontext = context + ::e_source_sync;
 
       psubject->m_pfileitem = pitem;
 
@@ -724,7 +724,7 @@ namespace filemanager
          if (pcommand->m_id == filemanager_data()->m_strLevelUp)
          {
 
-            FileManagerOneLevelUp(::source_user);
+            FileManagerOneLevelUp(::e_source_user);
 
             pcommand->m_bRet = true;
 
@@ -755,7 +755,7 @@ namespace filemanager
    void document::_001OnUpdateNewManager(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       pcommand->enable(TRUE);
 
@@ -783,7 +783,7 @@ namespace filemanager
    void document::_001OnUpdateDelManager(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       pcommand->enable(TRUE);
 
@@ -825,7 +825,7 @@ namespace filemanager
    void document::_001OnUpdateLevelUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       if (m_pitem.is_null() || m_pitem->m_filepathUser.is_empty())
       {
@@ -847,7 +847,7 @@ namespace filemanager
 
    void document::_001OnLevelUp(::message::message * pmessage)
    {
-      FileManagerOneLevelUp(::source_user);
+      FileManagerOneLevelUp(::e_source_user);
       pmessage->m_bRet = true;
    }
 
@@ -855,7 +855,7 @@ namespace filemanager
    void document::_001OnUpdateAddLocation(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       pcommand->enable(TRUE);
 
@@ -877,7 +877,7 @@ namespace filemanager
    void document::_001OnUpdateReplaceText(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       pcommand->enable(TRUE);
 
@@ -901,7 +901,7 @@ namespace filemanager
    void document::_001OnUpdateNewFolder(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       pcommand->enable(TRUE);
 
@@ -924,7 +924,7 @@ namespace filemanager
 
    void document::_001OnUpdateEditPaste(::message::message * pmessage)
    {
-      //      SCAST_PTR(::user::command, pcommand, pmessage);
+      //      __pointer(::user::command) pcommand(pmessage);
 
       //         pcommand->enable(System.m_strCopy.is_empty());
       pmessage->m_bRet = true;
@@ -940,19 +940,19 @@ namespace filemanager
 
    void document::_001OnUpdateFileSaveAs(::message::message * pmessage)
    {
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
       pcommand->enable(TRUE);
    }
 
    void document::_001OnUpdateFileImport(::message::message * pmessage)
    {
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
       pcommand->enable(TRUE);
    }
 
    void document::_001OnUpdateFileExport(::message::message * pmessage)
    {
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
       pcommand->enable(TRUE);
    }
 
@@ -1027,7 +1027,7 @@ namespace filemanager
 
       psubject->value(id_document) = this;
 
-      browse(path, ::source_database);
+      browse(path, ::e_source_database);
 
       update_all_views(psubject);
 
@@ -1059,7 +1059,7 @@ namespace filemanager
 
          auto path = filemanager_data()->get_last_browse_path(this, filemanager_data()->m_pathDefault);
 
-            browse(path, ::source_initialize);
+            browse(path, ::e_source_initialize);
 
 //         if (get_file.data_get({true, "last_browse_folder"}, str))
 //         {
@@ -1084,13 +1084,13 @@ namespace filemanager
 //               if (Application.data_get({true, "last_browse_folder." + __str(idMachine)}, str))
 //               {
 //
-//                  browse(str, ::source_database);
+//                  browse(str, ::e_source_database);
 //
 //               }
 //               else
 //               {
 //
-//                  browse("", ::source_system);
+//                  browse("", ::e_source_system);
 //
 //               }
 //
@@ -1098,7 +1098,7 @@ namespace filemanager
 //            else
 //            {
 //
-               //browse(str, ::source_database);
+               //browse(str, ::e_source_database);
 
 //            }
 
@@ -1106,13 +1106,13 @@ namespace filemanager
          //else if (filemanager_data()->m_pathDefault.has_char())
          //{
 
-         //   browse(filemanager_data()->m_pathDefault, ::source_initialize);
+         //   browse(filemanager_data()->m_pathDefault, ::e_source_initialize);
 
          //}
          //else
          //{
 
-         //   browse("", ::source_system);
+         //   browse("", ::e_source_system);
 
          //}
 
@@ -1150,7 +1150,7 @@ namespace filemanager
 
          auto psubject = subject(id_synchronize_locations);
 
-         psubject->m_actioncontext = ::source_sync;
+         psubject->m_actioncontext = ::e_source_sync;
 
          psubject->value(id_document) = this;
 
@@ -1469,7 +1469,7 @@ namespace filemanager
 
       strToolbar = filemanager_data()->m_setToolbar[m_emode];
 
-      if(pframe->GetParent() != nullptr)
+      if(pframe->get_parent() != nullptr)
       {
 
          ::file::path path = strToolbar;
@@ -1502,7 +1502,7 @@ namespace filemanager
             || eaction == ::file::action_modify)
       {
 
-         OnFileManagerBrowse(::source_sync);
+         OnFileManagerBrowse(::e_source_sync);
 
       }
 

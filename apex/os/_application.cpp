@@ -31,7 +31,7 @@ PFN_NEW_APEX_APPLICATION get_apex_application_factory()
 const char * g_pszMainAppId = nullptr;
 
 
-CLASS_DECL_APEX ::estatus set_main_app_id(const char * pszAppId)
+CLASS_DECL_APEX ::e_status set_main_app_id(const char * pszAppId)
 {
 
    g_pszMainAppId = pszAppId;

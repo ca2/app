@@ -52,7 +52,7 @@ namespace turboc
    void lite_view::_001OnCreate(signal_details * pmessage)
    {
 
-      SCAST_PTR(::message::create,pcreate,pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
 

@@ -50,7 +50,7 @@ namespace user
    void split_view::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
 
@@ -121,7 +121,7 @@ namespace user
 
    void split_view::_001OnSize(::message::message * pmessage)
    {
-      SCAST_PTR(::message::size, psize, pmessage);
+      __pointer(::message::size) psize(pmessage);
       psize->previous();
       //on_layout(::draw2d::graphics_pointer & pgraphics);
    }
@@ -212,7 +212,7 @@ namespace user
 
    void split_view::_001OnShowWindow(::message::message * pmessage)
    {
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
       pshowwindow->previous();
       //on_layout(::draw2d::graphics_pointer & pgraphics);
    }

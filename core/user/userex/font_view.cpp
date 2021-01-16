@@ -63,7 +63,7 @@ namespace userex
 
       set_impact_title("Font");
 
-      GetParentFrame()->set_frame_title("Font");
+      get_parent_frame()->set_frame_title("Font");
 
    }
 
@@ -71,7 +71,7 @@ namespace userex
    void font_view::_001OnShowWindow(::message::message* /* pmessage */)
    {
 
-      //SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      //__pointer(::message::show_window) pshowwindow(pmessage);
    
 
    }
@@ -170,7 +170,7 @@ namespace userex
       if (m_bSourceFontSel)
       {
 
-         m_ptopview->m_peditview->_001SetText(str, source_sync);
+         m_ptopview->m_peditview->_001SetText(str, ::e_source_sync);
 
          m_ptopview->m_peditview->m_pfont.defer_create();
 
@@ -222,7 +222,7 @@ namespace userex
 
                strText = m_pview->m_pfontlist->m_strFontFamily;
 
-               m_ptopview->m_peditview->_001SetText(strText, source_sync);
+               m_ptopview->m_peditview->_001SetText(strText, ::e_source_sync);
 
                m_ptopview->m_peditview->m_pfont.defer_create();
 

@@ -126,7 +126,7 @@ namespace windows
    }
 
 
-   estatus registry::key::_open(HKEY hkey, const char * pcszSubKey, bool bCreate)
+   ::e_status registry::key::_open(HKEY hkey, const char * pcszSubKey, bool bCreate)
    {
 
       LSTATUS lstatus;
@@ -200,7 +200,7 @@ namespace windows
 
 
 
-   estatus registry::key::_value(void* pvalue, const char* pcszValueName, ::u32& dwType, ::u32& cbValue)
+   ::e_status registry::key::_value(void* pvalue, const char* pcszValueName, ::u32& dwType, ::u32& cbValue)
    {
 
       if (ERROR_SUCCESS != ::RegQueryValueExW(m_hkey, wstring(pcszValueName), nullptr, (LPDWORD) &dwType, (byte*)pvalue, (LPDWORD) &cbValue))
@@ -215,7 +215,7 @@ namespace windows
    }
 
 
-   estatus registry::key::_get(const char * pcszValueName, ::u32 & dwValue)
+   ::e_status registry::key::_get(const char * pcszValueName, ::u32 & dwValue)
    {
       
       ::u32 dwType;
@@ -254,7 +254,7 @@ namespace windows
    }
 
 
-   estatus registry::key::_get(const char * pcszValueName, string &str)
+   ::e_status registry::key::_get(const char * pcszValueName, string &str)
    {
 
       ::u32 dwType;
@@ -299,7 +299,7 @@ namespace windows
    }
 
 
-   estatus registry::key::_get(const char * pcszValueName, memory & mem)
+   ::e_status registry::key::_get(const char * pcszValueName, memory & mem)
    {
 
       ::u32 dwType;
@@ -340,7 +340,7 @@ namespace windows
    }
 
    
-   estatus registry::key::_set_value(const void* pvalue, const char* pcszValueName, ::u32 dwType, ::u32 cbValue)
+   ::e_status registry::key::_set_value(const void* pvalue, const char* pcszValueName, ::u32 dwType, ::u32 cbValue)
    {
 
       auto lstatus = RegSetValueExW(m_hkey, wstring(pcszValueName), 0, dwType, (const byte *) pvalue, cbValue);
@@ -367,7 +367,7 @@ namespace windows
    }
 
 
-   estatus registry::key::_set(const char * pcszValueName, const string & strValue)
+   ::e_status registry::key::_set(const char * pcszValueName, const string & strValue)
    {
 
       wstring wstr(strValue);
@@ -377,7 +377,7 @@ namespace windows
    }
 
 
-   estatus registry::key::_set(const char * pcszValueName, const char * pszValue)
+   ::e_status registry::key::_set(const char * pcszValueName, const char * pszValue)
    {
 
       return _set(pcszValueName, string(pszValue));
@@ -385,7 +385,7 @@ namespace windows
    }
 
 
-   estatus registry::key::_set(const char * pcszValueName, const memory & memValue)
+   ::e_status registry::key::_set(const char * pcszValueName, const memory & memValue)
    {
 
       return _set_value(memValue.get_data(), pcszValueName, REG_BINARY, (::u32) memValue.get_size());
@@ -393,7 +393,7 @@ namespace windows
    }
 
 
-   estatus registry::key::_set(const char * pcszValueName, ::u32 dwValue)
+   ::e_status registry::key::_set(const char * pcszValueName, ::u32 dwValue)
    {
 
       return _set_value(&dwValue, pcszValueName, REG_DWORD, sizeof(dwValue));
@@ -512,7 +512,7 @@ namespace windows
    }
 
 
-   estatus registry::key::_delete_value(const char * pcszValueName)
+   ::e_status registry::key::_delete_value(const char * pcszValueName)
    {
 
       wstring wstr(pcszValueName);
@@ -529,7 +529,7 @@ namespace windows
    }
 
 
-   estatus registry::key::_delete_key()
+   ::e_status registry::key::_delete_key()
    {
 
       ASSERT(FALSE);
@@ -548,7 +548,7 @@ namespace windows
    }
 
 
-   estatus registry::key::_ls_key(string_array & stra)
+   ::e_status registry::key::_ls_key(string_array & stra)
    {
 
       DWORD dwMaxSubKeyLen;
@@ -584,7 +584,7 @@ namespace windows
       return m_hkey;
    }
 
-   estatus registry::key::_ls_value(string_array & stra)
+   ::e_status registry::key::_ls_value(string_array & stra)
    {
       
       ::u32 dwMaxValueNameLen = 16384;

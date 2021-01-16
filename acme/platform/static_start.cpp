@@ -5,6 +5,7 @@
 #include "acme/primitive/primitive/malloc.h"
 #include "acme/astr.h"
 #include "acme/os/_os.h"
+#include "acme/platform/simple_trace.h"
 
 
 ::array < ::promise::routine > * g_proutineaOsTerm;
@@ -106,9 +107,9 @@ namespace acme
 
 #endif
 
-   CLASS_DECL_ACME critical_section* g_pcsFont = nullptr;
+   //CLASS_DECL_ACME critical_section* g_pcsFont = nullptr;
 
-   CLASS_DECL_ACME string_to_string * g_pmapFontFaceName = nullptr;
+   //CLASS_DECL_ACME string_map < int_to_string > * g_pmapFontFaceName = nullptr;
 
    ::mutex* g_pmutexChildren;
    ::mutex* g_pmutexThreadWaitClose;
@@ -149,6 +150,12 @@ namespace acme
    critical_section* g_pcsGlobal;
 
    bool g_bOutputDebugString;
+
+   critical_section * g_pcsTrace;
+
+   ::matter * g_ptrace;
+
+   simple_trace * g_psimpletrace;
 
    //critical_section* g_pcsTrace;
 
@@ -317,6 +324,12 @@ namespace acme
 
       g_bOutputDebugString = true;
 
+      g_pcsTrace = nullptr;
+
+      g_ptrace = nullptr;
+
+      g_psimpletrace = nullptr;
+
       //g_pcsTrace = nullptr;
 
       // acme commented
@@ -434,9 +447,9 @@ namespace acme
 
 #endif
 
-      g_pcsFont = nullptr;
+      //g_pcsFont = nullptr;
 
-      g_pmapFontFaceName = nullptr;
+      //g_pmapFontFaceName = nullptr;
 
 
 
@@ -552,6 +565,13 @@ namespace acme
 
       trace_category_static_init();
 
+      g_pcsTrace = new critical_section;
+
+      g_psimpletrace = new simple_trace;
+
+      g_ptrace = g_psimpletrace;
+
+
       // acme commented
       //g_psimpletrace = new simple_trace;
 
@@ -665,9 +685,9 @@ namespace acme
       g_iObjTypCtrInit = 1;
 #endif
 
-      g_pcsFont = new critical_section();
+      //g_pcsFont = new critical_section();
 
-      g_pmapFontFaceName = new string_to_string();
+      //g_pmapFontFaceName = new string_to_string();
 
       init();
 
@@ -696,9 +716,9 @@ namespace acme
 
       term();
 
-      ::acme::del(g_pmapFontFaceName);
+      //::acme::del(g_pmapFontFaceName);
 
-      ::acme::del(g_pcsFont);
+      //::acme::del(g_pcsFont);
 
 #if OBJ_TYP_CTR
       g_iObjTypCtrInit = 0;
@@ -804,8 +824,12 @@ namespace acme
 
       ::acme::del(g_pacmestrpool);
 
+
+
       // acme commented
       //g_ptrace = g_psimpletrace;
+
+      g_ptrace = g_psimpletrace;
 
       ::acme::del(g_pmapRTL);
 
@@ -904,6 +928,10 @@ namespace acme
       //::acme::del(g_psimpletrace);
 
       //::acme::del(g_pcsTrace);
+      
+      ::acme::del(g_psimpletrace);
+
+      ::acme::del(g_pcsTrace);
 
       trace_category_static_term();
 
@@ -996,7 +1024,7 @@ namespace acme
 
 
 
-   ::estatus acme::init()
+   ::e_status acme::init()
    {
 
       //::acme::static_start::init();
@@ -1037,7 +1065,7 @@ namespace acme
    }
 
 
-   ::estatus acme::term()
+   ::e_status acme::term()
    {
 
       //::parallelization::wait_threads(1_min);
@@ -1138,10 +1166,10 @@ CLASS_DECL_ACME color32_t dk_red() // <3 tbs
 }
 
 
-thread_local  ::estatus t_estatus;
+thread_local  ::e_status t_estatus;
 
 
-CLASS_DECL_ACME void set_last_status(const ::estatus & estatus)
+CLASS_DECL_ACME void set_last_status(const ::e_status & estatus)
 {
 
    t_estatus = estatus;
@@ -1149,7 +1177,7 @@ CLASS_DECL_ACME void set_last_status(const ::estatus & estatus)
 }
 
 
-CLASS_DECL_ACME ::estatus get_last_status()
+CLASS_DECL_ACME ::e_status get_last_status()
 {
 
    return t_estatus;

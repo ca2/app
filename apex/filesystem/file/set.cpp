@@ -113,13 +113,13 @@ namespace file
          if(bRecursive)
          {
 
-            Context.dir().rls_pattern(m_listing, pathFolder, m_straFilter);
+            Context.dir().rls_file_pattern(m_listing, pathFolder, m_straFilter);
 
          }
          else
          {
 
-            Context.dir().ls_pattern(m_listing, pathFolder, m_straFilter);
+            Context.dir().ls_file_pattern(m_listing, pathFolder, m_straFilter);
 
          }
 

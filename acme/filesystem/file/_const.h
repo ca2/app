@@ -14,7 +14,7 @@ namespace file
 
 
 
-   enum e_flag :
+   enum enum_flag :
       i64
    {
 

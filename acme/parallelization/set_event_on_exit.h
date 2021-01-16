@@ -11,10 +11,10 @@ class CLASS_DECL_ACME set_event_on_exit
 public:
    
    
-   event * m_pevent;
+   ::event * m_pevent;
    
    
-   set_event_on_exit(event & ev) { m_pevent = &ev; }
+   set_event_on_exit(::event & ev) { m_pevent = &ev; }
    ~set_event_on_exit() { if(m_pevent != nullptr) m_pevent->set_event(); }
    
    
@@ -23,7 +23,7 @@ public:
 
 
 template < typename PRED >
-class  pred_on_exit
+class pred_on_exit
 {
 public:
    

@@ -22,28 +22,28 @@ namespace tranquillum
 
 //      m_fontEdit->create_point_font("MS Sans Serif", 9.0);
 
-      //    m_fontList->create_point_font("Segoe UI", 10, e_font_weight_bold);
+      //    m_fontList->create_point_font(os_font_name(e_font_sans_ui), 10, e_font_weight_bold);
 
       //theme_current_control(::user::control_none);
 
       //create_translucency(::user::e_element_none, ::user::e_translucency_none);
 
-      //create_point_font(::user::font_default,"Segoe UI", 12.0);
-      //create_point_font(::user::font_button, "Segoe UI", 12.0, 800);
-      //create_point_font(::user::font_plain_edit, "Segoe UI", 12.0, 800);
-      //create_point_font(::user::font_list_header, "Segoe UI", 12.0, 800);
+      //create_point_font(::user::font_default,os_font_name(e_font_sans_ui), 12.0);
+      //create_point_font(::user::font_button, os_font_name(e_font_sans_ui), 12.0, 800);
+      //create_point_font(::user::font_plain_edit, os_font_name(e_font_sans_ui), 12.0, 800);
+      //create_point_font(::user::font_list_header, os_font_name(e_font_sans_ui), 12.0, 800);
 
-      //create_point_font(::user::font_tab, "Segoe UI", 13.0, 400);
+      //create_point_font(::user::font_tab, os_font_name(e_font_sans_ui), 13.0, 400);
       //{
-      //   auto font = create_point_font(::user::font_tab_hover, "Segoe UI", 13.0, 400);
+      //   auto font = create_point_font(::user::font_tab_hover, os_font_name(e_font_sans_ui), 13.0, 400);
       //   font->m_bUnderline = true;
       //}
-      //create_point_font(::user::font_tab_sel, "Segoe UI", 13.0, 800);
+      //create_point_font(::user::font_tab_sel, os_font_name(e_font_sans_ui), 13.0, 800);
       //{
-      //   auto font = create_point_font(::user::font_tab_sel_hover, "Segoe UI", 13.0, 800);
+      //   auto font = create_point_font(::user::font_tab_sel_hover, os_font_name(e_font_sans_ui), 13.0, 800);
       //   font->m_bUnderline = true;
       //}
-      //create_point_font(::user::font_tab_big_bold, "Segoe UI", 13.0, 800);
+      //create_point_font(::user::font_tab_big_bold, os_font_name(e_font_sans_ui), 13.0, 800);
 
       //create_rect_coord(::user::rect_edit_padding, 0.2, 0.2, 0.2, 0.2);
 
@@ -107,7 +107,7 @@ namespace tranquillum
    }
 
 
-   ::color style::get_color(const ::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate) const
+   ::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (::is_set(pinteraction))
@@ -115,7 +115,22 @@ namespace tranquillum
 
          auto econtroltype = pinteraction->get_control_type();
 
-         if (econtroltype == ::user::e_control_type_list)
+         if (econtroltype == ::user::e_control_type_tab)
+         {
+
+         }
+         else if (econtroltype == ::user::e_control_type_button)
+         {
+
+            if (eelement == ::user::e_element_background)
+            {
+
+               return ARGB(255, 116, 160, 220);
+
+            }
+
+         }
+         else if (econtroltype == ::user::e_control_type_list)
          {
 
             if (eelement == ::user::e_element_background)
@@ -147,13 +162,31 @@ namespace tranquillum
          else
          {
 
-            return __acolor(255, 0, 0, 0);
+            return __acolor(255, 80, 80, 80);
+
+         }
+
+      }
+      else if (eelement == ::user::e_element_item_text)
+      {
+
+         if (estate & ::user::e_state_new_input)
+         {
+
+            return __acolor(255, 192, 192, 192);
+
+         }
+         else
+         {
+
+            return __acolor(255, 80, 80, 80);
 
          }
 
       }
 
-      return ::color();
+
+      return ::base::style::get_color(pinteraction, eelement, estate);
 
    }
 
@@ -317,10 +350,14 @@ namespace tranquillum
 
             ptab->m_dcextension.GetTextExtent(pgraphics, str, size);
 
+            ::draw2d::text_metric metric;
+
+            pgraphics->get_text_metrics(&metric);
+
             if (tab_pane.m_pimage->is_set())
             {
 
-               size.cy = max(size.cy, tab_pane.m_pimage->size().cy);
+               size.cy = max(max(size.cy, tab_pane.m_pimage->size().cy), metric.get_line_spacing());
 
             }
 
@@ -402,7 +439,7 @@ namespace tranquillum
 
          rect & rectTabClient = ptab->get_data()->m_rectTabClient;
 
-         //bool bTabbedClient = ptab->m_bShowTabs && !ptab->GetTopLevelFrame()->layout().is_full_screen();
+         //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
          bool bTabbedClient = ptab->m_bShowTabs;
 
          rectTabClient.left = ptab->get_data()->m_rectTab.left;
@@ -695,7 +732,7 @@ namespace tranquillum
 
                   pgraphics->fill_path(path);
 
-                  penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_selected));
+                  penBorder->create_solid(1.0, ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
 
                   pgraphics->set(penBorder);
 
@@ -717,7 +754,7 @@ namespace tranquillum
 
                   }
 
-                  brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_selected));
+                  brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
 
                }
                else
@@ -740,7 +777,7 @@ namespace tranquillum
 
                      pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_hover);
 
-                     brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_border, ::user::e_state_selected));
+                     brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_selected));
 
                   }
                   else

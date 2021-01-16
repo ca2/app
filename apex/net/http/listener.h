@@ -11,7 +11,7 @@ namespace http
    public:
 
 
-      void on_http_complete(::sockets::http_socket * psocket,const ::estatus & estatus);
+      void on_http_complete(::sockets::http_socket * psocket,const ::e_status & estatus);
 
 
    };

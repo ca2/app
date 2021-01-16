@@ -9,12 +9,12 @@
       <Configuration>Debug</Configuration>
       <Platform>x86</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="stage|ARM">
-      <Configuration>stage</Configuration>
+    <ProjectConfiguration Include="Release|ARM">
+      <Configuration>Release</Configuration>
       <Platform>ARM</Platform>
     </ProjectConfiguration>
-    <ProjectConfiguration Include="stage|x86">
-      <Configuration>stage</Configuration>
+    <ProjectConfiguration Include="Release|x86">
+      <Configuration>Release</Configuration>
       <Platform>x86</Platform>
     </ProjectConfiguration>
   </ItemGroup>
@@ -43,14 +43,14 @@
     <ThumbMode>Disabled</ThumbMode>
     <AndroidAPILevel>android-19</AndroidAPILevel>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
     <AndroidAPILevel>android-19</AndroidAPILevel>
     <UseOfStl>c++_shared</UseOfStl>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'" Label="Configuration">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'" Label="Configuration">
     <ConfigurationType>DynamicLibrary</ConfigurationType>
     <UseDebugLibraries>false</UseDebugLibraries>
     <PlatformToolset>Clang_5_0</PlatformToolset>
@@ -63,10 +63,10 @@
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|ARM'">
     <Import Project="..\..\..\archive\platform-android\Common.props" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <Import Project="..\..\..\archive\platform-android\Common.props" />
   </ImportGroup>
-  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <Import Project="..\..\..\archive\platform-android\Common.props" />
   </ImportGroup>
   <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x86'">
@@ -85,13 +85,13 @@
     <UseMultiToolTask>true</UseMultiToolTask>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
     <TargetName>lib$(ProjectName)</TargetName>
   </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <OutDir>$(SolutionDir)..\..\..\time-android\$(Platform)\$(Configuration)\</OutDir>
     <IntDir>$(SolutionDir)..\..\..\time-android\intermediate\$(Platform)\$(Configuration)\$(ProjectName)\</IntDir>
     <UseMultiToolTask>true</UseMultiToolTask>
@@ -141,7 +141,7 @@
       <LibraryDependencies>sqlite;ssl;crypto;idn;bzip2;zlib;pcre;iconv;android;log;m;$(StlLibraryName);jnigraphics;android</LibraryDependencies>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|ARM'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|ARM'">
     <ClCompile>
       <DebugInformationFormat>FullDebug</DebugInformationFormat>
       <AdditionalIncludeDirectories>$(NDKRoot)\platforms\$(AndroidAPILevel)\arch-x86\usr\include;$(StlIncludeDirectories);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
@@ -163,7 +163,7 @@
       <AdditionalLibraryDirectories>$(OutDir);$(__archive)storage-android\third\library\$(Platform)\$(Configuration)\;$(__archive)storage-android\library\$(Platform)\$(Configuration)\;%(AdditionalLibraryDirectories);$(ToolchainPrebuiltPath)\lib\gcc\$(ToolchainName)\$(ToolchainVersion)\$(PlatformShortName);$(StlLibraryPath)</AdditionalLibraryDirectories>
     </Link>
   </ItemDefinitionGroup>
-  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='stage|x86'">
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x86'">
     <ClCompile>
       <DebugInformationFormat>FullDebug</DebugInformationFormat>
       <ExceptionHandling>Enabled</ExceptionHandling>
@@ -284,6 +284,7 @@
     <ClCompile Include="platform\theme.cpp" />
     <ClCompile Include="user\box.cpp" />
     <ClCompile Include="user\callback.cpp" />
+    <ClCompile Include="user\call_message_handler_task.cpp" />
     <ClCompile Include="user\control_descriptor.cpp" />
     <ClCompile Include="user\control_event.cpp" />
     <ClCompile Include="user\copydesk.cpp" />
@@ -531,158 +532,21 @@
     <ClInclude Include="os\_c.h" />
     <ClInclude Include="os\_impl.h" />
     <ClInclude Include="os\_os.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_application_common.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_common.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_console_window2.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_extras.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_runnable.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_system_common.h" />
-    <ClInclude Include="platform\aaa_want_to_remove_template.h" />
-    <ClInclude Include="platform\all.h" />
-    <ClInclude Include="platform\app.h" />
     <ClInclude Include="platform\application.h" />
-    <ClInclude Include="platform\application_array.h" />
-    <ClInclude Include="platform\application_consumer.h" />
-    <ClInclude Include="platform\application_container.h" />
-    <ClInclude Include="platform\application_heap.h" />
-    <ClInclude Include="platform\application_impl.h" />
-    <ClInclude Include="platform\application_menu.h" />
-    <ClInclude Include="platform\application_message.h" />
-    <ClInclude Include="platform\application_signal_details.h" />
-    <ClInclude Include="platform\app_core.h" />
-    <ClInclude Include="platform\app_launcher.h" />
-    <ClInclude Include="platform\assert_running_task.h" />
-    <ClInclude Include="platform\async.h" />
-    <ClInclude Include="platform\atomic2.h" />
-    <ClInclude Include="platform\aura.h" />
-    <ClInclude Include="platform\aura_aura.h" />
-    <ClInclude Include="platform\aura_main_data.h" />
-    <ClInclude Include="platform\aura_main_struct.h" />
-    <ClInclude Include="platform\aura_regex.h" />
-    <ClInclude Include="platform\aura_status.h" />
-    <ClInclude Include="platform\auto.h" />
-    <ClInclude Include="platform\auto_pointer.h" />
-    <ClInclude Include="platform\back_insert_iterator.h" />
-    <ClInclude Include="platform\class.h" />
-    <ClInclude Include="platform\cmp.h" />
-    <ClInclude Include="platform\cmp2.h" />
-    <ClInclude Include="platform\common.h" />
-    <ClInclude Include="platform\console_application.h" />
-    <ClInclude Include="platform\const.h" />
-    <ClInclude Include="platform\constraint.h" />
-    <ClInclude Include="platform\context.h" />
-    <ClInclude Include="platform\conv.h" />
-    <ClInclude Include="platform\core.h" />
-    <ClInclude Include="platform\core1.h" />
-    <ClInclude Include="platform\cpu_architecture.h" />
-    <ClInclude Include="platform\cregexp.h" />
-    <ClInclude Include="platform\cregexp_util.h" />
-    <ClInclude Include="platform\debug.h" />
-    <ClInclude Include="platform\definition.h" />
-    <ClInclude Include="platform\department.h" />
-    <ClInclude Include="platform\department_container.h" />
-    <ClInclude Include="platform\display.h" />
-    <ClInclude Include="platform\document_manager_container.h" />
     <ClInclude Include="platform\drawable.h" />
     <ClInclude Include="platform\draw_context2.h" />
-    <ClInclude Include="platform\enum.h" />
-    <ClInclude Include="platform\error.h" />
-    <ClInclude Include="platform\exclusive.h" />
-    <ClInclude Include="platform\e_status.h" />
-    <ClInclude Include="platform\factory.h" />
-    <ClInclude Include="platform\filestream.h" />
-    <ClInclude Include="platform\fixed_alloc.h" />
-    <ClInclude Include="platform\fixed_alloc_impl.h" />
-    <ClInclude Include="platform\flags.h" />
-    <ClInclude Include="platform\gudo2.h" />
-    <ClInclude Include="platform\Header.h" />
-    <ClInclude Include="platform\history.h" />
-    <ClInclude Include="platform\hyperlink.h" />
-    <ClInclude Include="platform\international.h" />
-    <ClInclude Include="platform\ipc.h" />
-    <ClInclude Include="platform\ipi.h" />
-    <ClInclude Include="platform\keep.h" />
-    <ClInclude Include="platform\keep_true.h" />
-    <ClInclude Include="platform\launcher.h" />
-    <ClInclude Include="platform\less.h" />
-    <ClInclude Include="platform\library.h" />
-    <ClInclude Include="platform\library_object_allocator.h" />
-    <ClInclude Include="platform\live_signal.h" />
-    <ClInclude Include="platform\log.h" />
-    <ClInclude Include="platform\logic.h" />
-    <ClInclude Include="platform\lparam.h" />
-    <ClInclude Include="platform\machine_event2.h" />
-    <ClInclude Include="platform\machine_event_central2.h" />
-    <ClInclude Include="platform\machine_event_data2.h" />
-    <ClInclude Include="platform\main.h" />
-    <ClInclude Include="platform\match.h" />
-    <ClInclude Include="platform\message_loop.h" />
-    <ClInclude Include="platform\muldiv32.h" />
-    <ClInclude Include="platform\muldiv64.h" />
-    <ClInclude Include="platform\net.h" />
-    <ClInclude Include="platform\number.h" />
-    <ClInclude Include="platform\os_context.h" />
-    <ClInclude Include="platform\os_history.h" />
-    <ClInclude Include="platform\patch.h" />
-    <ClInclude Include="platform\plane.h" />
-    <ClInclude Include="platform\printer.h" />
-    <ClInclude Include="platform\printf.h" />
-    <ClInclude Include="platform\process_data.h" />
-    <ClInclude Include="platform\profiler2.h" />
-    <ClInclude Include="platform\progress.h" />
-    <ClInclude Include="platform\progress_interface.h" />
-    <ClInclude Include="platform\regex.h" />
-    <ClInclude Include="platform\restore.h" />
-    <ClInclude Include="platform\runnable2.h" />
-    <ClInclude Include="platform\runnable_pred.h" />
-    <ClInclude Include="platform\run_start_installer.h" />
-    <ClInclude Include="platform\savings.h" />
-    <ClInclude Include="platform\serial.h" />
-    <ClInclude Include="platform\serializable.h" />
-    <ClInclude Include="platform\serial_impl.h" />
+    <ClInclude Include="platform\mq.h" />
     <ClInclude Include="platform\session.h" />
-    <ClInclude Include="platform\session_common.h" />
-    <ClInclude Include="platform\session_heap.h" />
-    <ClInclude Include="platform\shell_launcher.h" />
-    <ClInclude Include="platform\simple_app.h" />
-    <ClInclude Include="platform\simple_log.h" />
-    <ClInclude Include="platform\smart_pointer_query.h" />
-    <ClInclude Include="platform\sprintf.h" />
-    <ClInclude Include="platform\static_setup.h" />
+    <ClInclude Include="platform\shell_open.h" />
     <ClInclude Include="platform\static_start.h" />
-    <ClInclude Include="platform\status.h" />
-    <ClInclude Include="platform\std_pair.h" />
-    <ClInclude Include="platform\strn.h" />
-    <ClInclude Include="platform\struct.h" />
-    <ClInclude Include="platform\str_context.h" />
     <ClInclude Include="platform\system.h" />
-    <ClInclude Include="platform\system_heap.h" />
-    <ClInclude Include="platform\system_str.h" />
     <ClInclude Include="platform\theme.h" />
-    <ClInclude Include="platform\this_build_number.h" />
-    <ClInclude Include="platform\millis.h" />
-    <ClInclude Include="platform\timer.h" />
-    <ClInclude Include="platform\timer_array.h" />
-    <ClInclude Include="platform\timer_callback.h" />
-    <ClInclude Include="platform\timer_event.h" />
-    <ClInclude Include="platform\timer_item.h" />
-    <ClInclude Include="platform\trace.h" />
-    <ClInclude Include="platform\trace_category.h" />
-    <ClInclude Include="platform\types.h" />
-    <ClInclude Include="platform\update (2).h" />
-    <ClInclude Include="platform\user_edit_window.h" />
-    <ClInclude Include="platform\util1.h" />
-    <ClInclude Include="platform\v8stdint.h" />
-    <ClInclude Include="platform\version.h" />
-    <ClInclude Include="platform\_defer.h" />
+    <ClInclude Include="platform\timeout.h" />
+    <ClInclude Include="platform\title.h" />
+    <ClInclude Include="platform\user_parent.h" />
     <ClInclude Include="platform\_features.h" />
     <ClInclude Include="platform\_impl.h" />
     <ClInclude Include="platform\_platform.h" />
-    <ClInclude Include="platform\_system_id_impl.h" />
-    <ClInclude Include="platform\_system_object_impl.h" />
-    <ClInclude Include="platform\_system_smart_pointer_impl.h" />
-    <ClInclude Include="platform\_system_var_impl.h" />
-    <ClInclude Include="platform\_system_xml_impl.h" />
     <ClInclude Include="primitive\api\api.h" />
     <ClInclude Include="primitive\api\api_rotate.h" />
     <ClInclude Include="primitive\collection\aaa_want_to_remove_collection_point_array.h" />
@@ -1052,6 +916,7 @@
     <ClInclude Include="user\aaa_text.h" />
     <ClInclude Include="user\box.h" />
     <ClInclude Include="user\callback.h" />
+    <ClInclude Include="user\call_message_handler_task.h" />
     <ClInclude Include="user\control_descriptor.h" />
     <ClInclude Include="user\control_event.h" />
     <ClInclude Include="user\copydesk.h" />
@@ -1106,9 +971,6 @@
   <ItemGroup>
     <None Include="aura.def" />
     <None Include="inline\aaa_want_to_remove_app_prelude.inl" />
-    <None Include="platform\aura1.inl" />
-    <None Include="platform\aura2.inl" />
-    <None Include="platform\gudo_application2.inl" />
     <None Include="primitive\geometry\geometry_size.inl" />
     <None Include="primitive\primitive.inl" />
     <None Include="primitive\factory_impl.inl" />

@@ -27,7 +27,7 @@ namespace xlib
       virtual ~buffer();
 
 
-      virtual ::estatus initialize_graphics_graphics(::user::interaction_impl * pimpl) override;
+      virtual ::e_status initialize_graphics_graphics(::user::interaction_impl * pimpl) override;
       virtual void finalize() override;
 
 
@@ -41,7 +41,7 @@ namespace xlib
       virtual bool update_window(::image * pimage) override;
 
 
-      virtual bool round_swap_key_buffers() override;
+      virtual bool buffer_lock_round_swap_key_buffers() override;
 
       //void update_window();
 

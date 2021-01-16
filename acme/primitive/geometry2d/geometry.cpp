@@ -17,7 +17,7 @@ namespace geometry
    }
 
 
-   ::estatus geometry::initialize(::layered * pobjectContext)
+   ::e_status geometry::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::matter::initialize(pobjectContext);

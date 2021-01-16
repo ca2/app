@@ -163,7 +163,7 @@ static const __MAP_MESSAGE allMessages[] =
    DEFINE_MESSAGE(e_message_window_position_changed),
    DEFINE_MESSAGE(e_message_window_position_changing),
    // ca2 API specific messages
-   DEFINE_MESSAGE(WM_SIZEPARENT),
+   DEFINE_MESSAGE(e_message_size_parent),
    DEFINE_MESSAGE(WM_SETMESSAGESTRING),
    DEFINE_MESSAGE(WM_IDLEUPDATECMDUI),
    DEFINE_MESSAGE(WM_INITIALUPDATE),
@@ -277,7 +277,7 @@ void __trace_message(const char * lpszPrefix, ::message::message * pmessage)
 {
    //   ENSURE_ARG(AfxIsValidString(lpszPrefix));
    ENSURE_ARG(pmessage != nullptr);
-   SCAST_PTR(::message::base, pbase, pmessage);
+   __pointer(::message::base) pbase(pmessage);
 
    if (pbase->m_id == e_message_mouse_move || pbase->m_id == e_message_non_client_mouse_move ||
          pbase->m_id == e_message_nchittest || pbase->m_id == e_message_set_cursor ||

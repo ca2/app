@@ -178,6 +178,9 @@
     <Filter Include="Source Files\asset">
       <UniqueIdentifier>{9c0c8dbb-8662-431d-8881-71a265c80eeb}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\os\windows_common\NewFilter1">
+      <UniqueIdentifier>{d9e1e991-d973-469b-a01c-9ff82833b629}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="graphics\graphics.h">
@@ -1653,6 +1656,27 @@
     <ClInclude Include="node\uwp\directx_application.h">
       <Filter>Header Files\node\uwp</Filter>
     </ClInclude>
+    <ClInclude Include="user\call_message_handler_task.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows_common\_windows_common.h">
+      <Filter>Header Files\os\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="user\style_control.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\aaaa_plain_edit_style.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\device_lock.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\graphics_call.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="user\graphics_call.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="graphics\draw2d\draw2d.inl">
@@ -2110,9 +2134,6 @@
     <ClCompile Include="platform\aura_mq.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="os\uwp\application_system_run.cpp">
-      <Filter>Source Files\os\uwp</Filter>
-    </ClCompile>
     <ClCompile Include="os\uwp\main.cpp">
       <Filter>Source Files\os\uwp</Filter>
     </ClCompile>
@@ -2124,6 +2145,18 @@
     </ClCompile>
     <ClCompile Include="node\uwp\directx_application.cpp">
       <Filter>Source Files\node\uwp</Filter>
+    </ClCompile>
+    <ClCompile Include="node\uwp\system.cpp">
+      <Filter>Source Files\node\uwp</Filter>
+    </ClCompile>
+    <ClCompile Include="user\call_message_handler_task.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\style_control.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\device_lock.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

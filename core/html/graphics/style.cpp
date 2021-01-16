@@ -653,7 +653,7 @@ namespace html
             {
                if(ansi_compare_ci("font-family", idName) == 0)
                {
-                  str = FONT_SERIF;
+                  str = os_font_name(e_font_serif);
                   return true;
                }
                else if(ansi_compare_ci("font-size", idName) == 0)
@@ -675,7 +675,7 @@ namespace html
             {
                if(ansi_compare_ci("font-family", idName) == 0)
                {
-                  str = FONT_SERIF;
+                  str = os_font_name(e_font_serif);
                   return true;
                }
                else if(ansi_compare_ci("font-size", idName) == 0)
@@ -697,7 +697,7 @@ namespace html
             {
                if(ansi_compare_ci("font-family", idName) == 0)
                {
-                  str = FONT_SERIF;
+                  str = os_font_name(e_font_serif);
                   return true;
                }
                else if(ansi_compare_ci("font-size", idName) == 0)
@@ -719,7 +719,7 @@ namespace html
             {
                if(ansi_compare_ci("font-family", idName) == 0)
                {
-                  str = FONT_SERIF;
+                  str = os_font_name(e_font_serif);
                   return true;
                }
                else if(ansi_compare_ci("font-size", idName) == 0)

@@ -761,7 +761,7 @@ int_bool SetWindowPos(oswindow_data * pdata, oswindow_data * pdataAfter, int x, 
 }
 
 
-//oswindow_data * GetParent(oswindow_data * pdata)
+//oswindow_data * get_parent(oswindow_data * pdata)
 //{
 //
 //   if (pdata == nullptr)
@@ -1468,7 +1468,7 @@ i64 oswindow_id(oswindow w)
 }
 
 
-CLASS_DECL_APEX ::estatus os_message_box(oswindow oswindow, const char * pText, const char * lpCaption, const ::e_message_box & emessagebox, ::callback callback)
+CLASS_DECL_APEX ::e_status os_message_box(oswindow oswindow, const char * pText, const char * lpCaption, const ::e_message_box & emessagebox, ::callback callback)
 {
 
    while (System.oslocal().m_iMessageBoxResult > 0)

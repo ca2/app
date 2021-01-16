@@ -20229,7 +20229,7 @@
 //
 // Either the appliCAtion has not called WSAStartup, or WSAStartup failed.
 //
-#define WSANOTINITIALISED                10093L
+//#define WSANOTINITIALISED                10093L
 
 //
 // MessageId: WSAEDISCON

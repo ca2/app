@@ -60,7 +60,7 @@ bool simple_tab_view::get_client_rect(RECT32 * prect)
 void simple_tab_view::_001OnCreate(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::create, pcreate, pmessage);
+   __pointer(::message::create) pcreate(pmessage);
 
    if(pcreate->previous())
       return;
@@ -95,7 +95,7 @@ void simple_tab_view::install_message_routing(::channel * pchannel)
 void simple_tab_view::_001OnLButtonUp(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   __pointer(::message::mouse) pmouse(pmessage);
    
    ::user::tab::_001OnLButtonUp(pmessage);
    
@@ -112,7 +112,7 @@ void simple_tab_view::_001OnLButtonUp(::message::message * pmessage)
 void simple_tab_view::_001OnMouseMove(::message::message * pmessage)
 {
    
-   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   __pointer(::message::mouse) pmouse(pmessage);
    
    ::user::tab::_001OnMouseMove(pmessage);
    
@@ -129,7 +129,7 @@ void simple_tab_view::_001OnMouseMove(::message::message * pmessage)
 void simple_tab_view::_001OnMouseLeave(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   __pointer(::message::mouse) pmouse(pmessage);
 
    ::user::tab::_001OnMouseLeave(pmessage);
 

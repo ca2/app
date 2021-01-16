@@ -305,7 +305,7 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline ::estatus __compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite)
+// inline ::e_status __compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite)
 // {
 
 //    //if (((uptr)&pcomposite) < (uptr)pobject || ((uptr)&pcomposite) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
@@ -321,7 +321,7 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 
 
 // template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-// inline ::estatus __compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const __pointer(SOURCE) & psource)
+// inline ::e_status __compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const __pointer(SOURCE) & psource)
 // {
 
 //    return __compose(pobject, pcomposite, psource.m_p);
@@ -330,7 +330,7 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 
 
 // template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-// inline ::estatus __compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::member < SOURCE > & psource)
+// inline ::e_status __compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::member < SOURCE > & psource)
 // {
 
 //    return __compose(pobject, pcomposite, psource.operator SOURCE * ());
@@ -339,7 +339,7 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 
 
 // template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-// inline ::estatus __compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const SOURCE * psource)
+// inline ::e_status __compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const SOURCE * psource)
 // {
 // //
 // //#ifdef DEBUG
@@ -363,7 +363,7 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline ::estatus __id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::id & id)
+// inline ::e_status __id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::id & id)
 // {
 
 //    //if (((uptr)&pcomposite) < (uptr)pobject || ((uptr)&pcomposite) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
@@ -379,7 +379,7 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline ::estatus __id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::type & type)
+// inline ::e_status __id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::type & type)
 // {
 
 //    return pobject->__id_compose(pcomposite, (id) type);
@@ -388,7 +388,7 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 
 
 // template < typename OBJECT, typename TYPE >
-// inline ::estatus __raw_compose_new(OBJECT && pobject, __composite(TYPE) & pcomposite)
+// inline ::e_status __raw_compose_new(OBJECT && pobject, __composite(TYPE) & pcomposite)
 // {
 
 //    return pobject->__raw_compose_new(pcomposite);
@@ -397,7 +397,7 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 
 
 // template < typename OBJECT, typename TYPE >
-// inline ::estatus __compose_new(OBJECT && pobject, __composite(TYPE) & pcomposite)
+// inline ::e_status __compose_new(OBJECT && pobject, __composite(TYPE) & pcomposite)
 // {
 
 //    return pobject->__compose_new(pcomposite);
@@ -407,25 +407,25 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline ::estatus __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite) { return !pcomposite ? __compose(pobject, pcomposite) : ::success; }
+// inline ::e_status __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite) { return !pcomposite ? __compose(pobject, pcomposite) : ::success; }
 
 // template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-// inline ::estatus __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const SOURCE * psource) { return !pcomposite ? __compose(pobject, pcomposite, psource) : ::success; }
+// inline ::e_status __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const SOURCE * psource) { return !pcomposite ? __compose(pobject, pcomposite, psource) : ::success; }
 
 // template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-// inline ::estatus __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const __pointer(SOURCE) & psource) { return !pcomposite ? __compose(pobject, pcomposite, psource) : ::success; }
+// inline ::e_status __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const __pointer(SOURCE) & psource) { return !pcomposite ? __compose(pobject, pcomposite, psource) : ::success; }
 
 // template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-// inline ::estatus __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::member < SOURCE > & psource) { return !pcomposite ? __compose(pobject, pcomposite, psource) : ::success; }
+// inline ::e_status __defer_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::member < SOURCE > & psource) { return !pcomposite ? __compose(pobject, pcomposite, psource) : ::success; }
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline ::estatus __defer_id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::id & id) { return !pcomposite ? __id_compose(pobject, pcomposite) : ::success; }
+// inline ::e_status __defer_id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::id & id) { return !pcomposite ? __id_compose(pobject, pcomposite) : ::success; }
 
 // //template < typename OBJECT, typename BASE_TYPE >
-// //inline ::estatus __defer_id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::type & type)  { return !pcomposite ? __compose(pobject, pcomposite) : ::success; }
+// //inline ::e_status __defer_id_compose(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite, const ::type & type)  { return !pcomposite ? __compose(pobject, pcomposite) : ::success; }
 
 // template < typename OBJECT, typename BASE_TYPE >
-// inline ::estatus __defer_compose_new(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite) { return !pcomposite ? __compose_new(pobject, pcomposite) : ::success; }
+// inline ::e_status __defer_compose_new(OBJECT && pobject, __composite(BASE_TYPE) & pcomposite) { return !pcomposite ? __compose_new(pobject, pcomposite) : ::success; }
 
 
 // __compose __reference
@@ -433,7 +433,7 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 
 //
 //template < typename OBJECT, typename BASE_TYPE >
-//inline ::estatus __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference)
+//inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference)
 //{
 //
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
@@ -449,7 +449,7 @@ inline __pointer(TYPE) __create_new(::matter * pobjectContext)
 
 
 template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-inline ::estatus __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource)
+inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource)
 {
 
    return __refer(pobject, preference, psource.m_p);
@@ -458,7 +458,7 @@ inline ::estatus __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference,
 
 
 template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-inline ::estatus __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & psource)
+inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & psource)
 {
 
    return __refer(pobject, preference, psource.operator SOURCE * ());
@@ -467,7 +467,7 @@ inline ::estatus __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference,
 
 
 template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-inline ::estatus __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const SOURCE * psource)
+inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const SOURCE * psource)
 {
 
 //#ifdef DEBUG
@@ -491,18 +491,18 @@ inline ::estatus __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference,
 
 
 //template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//inline ::estatus __defer_refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const SOURCE * psource) {}
+//inline ::e_status __defer_refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const SOURCE * psource) {}
 //
 //template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//inline ::estatus __defer_refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource) {}
+//inline ::e_status __defer_refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource) {}
 //
 //template < typename OBJECT, typename BASE_TYPE, typename SOURCE >
-//inline ::estatus __defer_refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const ::member < SOURCE > & psource) {}
+//inline ::e_status __defer_refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const ::member < SOURCE > & psource) {}
 
 
 //
 //template < typename OBJECT, typename BASE_TYPE >
-//inline ::estatus __id_refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const ::id & id)
+//inline ::e_status __id_refer(OBJECT && pobject, __reference(BASE_TYPE) & preference, const ::id & id)
 //{
 //
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
@@ -518,7 +518,7 @@ inline ::estatus __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference,
 
 
 //template < typename OBJECT, typename BASE_TYPE >
-//inline ::estatus __id_compose(OBJECT && pobject, __reference(BASE_TYPE) & preference, const ::type & type)
+//inline ::e_status __id_compose(OBJECT && pobject, __reference(BASE_TYPE) & preference, const ::type & type)
 //{
 //
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
@@ -534,7 +534,7 @@ inline ::estatus __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference,
 
 
 //template < typename OBJECT, typename BASE_TYPE >
-//inline ::estatus __compose_new(OBJECT && pobject, __reference(BASE_TYPE) & preference)
+//inline ::e_status __compose_new(OBJECT && pobject, __reference(BASE_TYPE) & preference)
 //{
 //
 //   if (((uptr)&preference) < (uptr)pobject || ((uptr)&preference) >= ((uptr)pobject) + sizeof(typename ::raw_type < OBJECT>::RAW_TYPE))
@@ -553,7 +553,7 @@ inline ::estatus __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference,
 
 
 template < typename BASE_TYPE >
-inline ::estatus __construct(__pointer(BASE_TYPE) & pbase)
+inline ::e_status __construct(__pointer(BASE_TYPE) & pbase)
 {
 
    auto & pfactory = ::factory::get_factory < BASE_TYPE >();
@@ -596,10 +596,10 @@ inline ::estatus __construct(__pointer(BASE_TYPE) & pbase)
 
 
 template < typename BASE_TYPE >
-inline ::estatus __defer_construct(__pointer(BASE_TYPE) & pbase)
+inline ::e_status __defer_construct(__pointer(BASE_TYPE) & pbase)
 {
 
-   ::estatus estatus = ::success_none;
+   ::e_status estatus = ::success_none;
 
    if(!pbase)
    {
@@ -614,7 +614,7 @@ inline ::estatus __defer_construct(__pointer(BASE_TYPE) & pbase)
 
 
 template < typename BASE_TYPE >
-inline ::estatus __id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id)
+inline ::e_status __id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id)
 {
 
    auto pfactory = ::factory::get_factory(id);
@@ -654,11 +654,11 @@ inline ::estatus __id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id)
 
 
 template < typename BASE_TYPE >
-inline ::estatus __defer_id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id) { return !pbase ? __construct(pbase, id) : ::success; }
+inline ::e_status __defer_id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id) { return !pbase ? __construct(pbase, id) : ::success; }
 
 
 template < typename TYPE >
-inline ::estatus __construct_new(__pointer(TYPE) & ptype)
+inline ::e_status __construct_new(__pointer(TYPE) & ptype)
 {
 
    ptype = __new(TYPE());
@@ -676,10 +676,10 @@ inline ::estatus __construct_new(__pointer(TYPE) & ptype)
 
 
 template < typename TYPE >
-inline ::estatus __defer_construct_new(__pointer(TYPE) & ptype)
+inline ::e_status __defer_construct_new(__pointer(TYPE) & ptype)
 {
 
-   return !ptype ? __construct_new(ptype) : ::estatus(::success);
+   return !ptype ? __construct_new(ptype) : ::e_status(::success);
 
 }
 

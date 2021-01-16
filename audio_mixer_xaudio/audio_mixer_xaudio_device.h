@@ -27,7 +27,7 @@ namespace multimedia
          ::multimedia::audio_mixer::audio_mixer * get_mixer();
          virtual string get_product_name();
          bool OnCommand(WPARAM wparam, LPARAM lparam);
-         ::estatus     close();
+         ::e_status     close();
          void MapDlgCtrlIDToLineControls(::multimedia::audio_mixer::source * pSource);
          void MapDlgCtrlIDToControls();
          void MapLineControls(::multimedia::audio_mixer::source * pSource);
@@ -35,10 +35,10 @@ namespace multimedia
          void OnMixerLineChange(u32 dwLineID);
          void map_lines();
          void map_controls();
-         ::estatus     get_destination(::multimedia::audio_mixer::e_destination edestination, ::multimedia::audio_mixer::destination ** ppDestination);
-         ::estatus     initialize_destinations();
-         ::estatus     initialize_capabilities();
-         ::estatus     open(u32 uiMixerId, u32 dwCallback, u32 dwInstance, u32 fdwOpen);
+         ::e_status     get_destination(::multimedia::audio_mixer::e_destination edestination, ::multimedia::audio_mixer::destination ** ppDestination);
+         ::e_status     initialize_destinations();
+         ::e_status     initialize_capabilities();
+         ::e_status     open(u32 uiMixerId, u32 dwCallback, u32 dwInstance, u32 fdwOpen);
 
 
       };

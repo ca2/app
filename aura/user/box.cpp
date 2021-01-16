@@ -31,7 +31,7 @@ namespace user
    }
 
 
-   ::estatus box::initialize(::layered * pobjectContext)
+   ::e_status box::initialize(::layered * pobjectContext)
    {
 
       auto estatus = interaction::initialize(pobjectContext);
@@ -233,7 +233,7 @@ namespace user
    string box::window_data_key_modifier()
    {
 
-      if (GetParent() != nullptr)
+      if (get_parent() != nullptr)
       {
 
          return m_strDisplay + ".child";
@@ -578,7 +578,7 @@ namespace user
    }
 
 
-   bool box::on_before_set_parent(::user::interaction * puiParent)
+   bool box::on_before_set_parent(::user::primitive * puiParent)
    {
 
       if (!::user::interaction::on_before_set_parent(puiParent))
@@ -595,7 +595,7 @@ namespace user
    }
 
 
-   bool box::on_set_parent(::user::interaction * puiParent)
+   bool box::on_set_parent(::user::primitive * puiParent)
    {
 
       if(!::user::interaction::on_set_parent(puiParent))
@@ -621,7 +621,7 @@ namespace user
    bool box::parent_is_local_data()
    {
 
-      ::user::interaction * puiParent = GetParent();
+      ::user::interaction * puiParent = get_parent();
 
       __pointer(::database::client) pclient = puiParent;
 

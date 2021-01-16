@@ -35,12 +35,12 @@ namespace experience
    }
 
 
-   void frame::set_style(const char * pszStyle)
-   {
+   //void frame::set_style(const char * pszStyle)
+   //{
 
-      m_strStyle = pszStyle;
+   //   m_strStyle = pszStyle;
 
-   }
+   //}
 
    
    int frame::adjust_client_height(int iHeight)
@@ -232,7 +232,7 @@ namespace experience
    color32_t frame::get_border_main_body_color()
    {
 
-      return 0;
+      return m_colorMoveableBorder;
 
    }
 
@@ -243,20 +243,26 @@ namespace experience
       if(!m_pframewindow->layout().is_zoomed() && !m_pframewindow->layout().is_full_screen())
       {
 
-         //if(m_pframewindow->dock_manager()->_001OnLButtonDown(pmouse->)
-         // return true;
+         if (m_pframewindow->size_manager()->_001OnLButtonDown(pmouse))
+         {
 
-         if(m_pframewindow->size_manager()->_001OnLButtonDown(pmouse))
             return true;
 
-         if(m_pframewindow->move_manager()->_001OnLButtonDown(pmouse))
+         }
+
+         if (m_pframewindow->move_manager()->_001OnLButtonDown(pmouse))
+         {
+
             return true;
+
+         }
 
       }
 
       return false;
 
    }
+
 
    bool frame::_001OnLButtonUp(::message::mouse * pmouse)
    {
@@ -937,15 +943,11 @@ namespace experience
 
          m_pcontrolbox->create_window(pframewindow, 1);
 
+         m_pcontrolbox->update_control_box_buttons();
+
       }
 
-      m_pcontrolbox->update_control_box_buttons();
-
       on_style_change();
-
-      //update_drawing_objects();
-
-      //update_window();
 
       on_initialize_experience_frame();
 
@@ -975,8 +977,39 @@ namespace experience
    //}
 
 
-   bool frame::get_window_client_rect(RECT32 * prect)
+   string frame::get_default_user_style() const
+   {
 
+      return "LightBlue";
+
+   }
+
+
+   void frame::set_moveable_border_color(const ::color & colorParam)
+   {
+
+      m_colorMoveableBorder = colorParam;
+
+      ::color color;
+
+      color = colorParam;
+      color.hls_rate(0.0, 0.5, 0.0);
+      m_colorMoveableBorderHilight = color.get_rgb() | (0xff << 24);
+
+      color = colorParam;
+      color.hls_rate(0.0, -0.3, 0.0);
+      m_colorMoveableBorderShadow = color.get_rgb() | (0xff << 24);
+
+      color = colorParam;
+      color.hls_rate(8.0, -0.8, 0.0);
+      m_colorMoveableBorderDkShadow = color.get_rgb() | (0xff << 24);
+
+      m_colorCaptionTextBk = m_colorMoveableBorderShadow;
+
+   }
+
+
+   bool frame::get_window_client_rect(RECT32 * prect)
    {
 
       if (string(type_name()).contains_ci("file"))
@@ -1037,8 +1070,27 @@ namespace experience
    }
 
 
+   void frame::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   {
+
+      if (psubject->m_id == id_user_style_change)
+      {
+
+         on_style_change();
+
+      }
+
+   }
+
+
    void frame::on_style_change()
    {
+
+      auto estyle = m_pframewindow->m_estyle;
+
+      auto color = m_pframewindow->m_puserstyle->get_style_moveable_border_color(estyle);
+
+      set_moveable_border_color(color);
 
    }
 
@@ -1181,7 +1233,7 @@ namespace experience
       if (m_pframewindow->layout().is_this_screen_visible())
       {
 
-         if (m_pframewindow->GetParent() == nullptr)
+         if (m_pframewindow->get_parent() == nullptr)
          {
 
             if (!(m_pframewindow->m_ewindowflag & e_window_flag_disable_window_placement_snapping)

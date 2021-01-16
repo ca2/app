@@ -137,10 +137,10 @@ namespace http
       virtual payload length(const char * pszUrl, payload * pvarQuery, property_set & set);
 
       //virtual string get(const char * pszUrl, property_set & set);
-      virtual ::estatus _get(const char * pszUrl, property_set & set);
+      virtual ::e_status _get(const char * pszUrl, property_set & set);
 
-      virtual ::estatus get(string & str, const char * pszUrl, property_set & set);
-      virtual ::estatus get(memory_base * pmemory, const char * pszUrl, property_set & set);
+      virtual ::e_status get(string & str, const char * pszUrl, property_set & set);
+      virtual ::e_status get(memory_base * pmemory, const char * pszUrl, property_set & set);
 
       //virtual bool request(const char * pszRequest, const char * pszUrl, property_set & set);
 

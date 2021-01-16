@@ -12,6 +12,7 @@
 #include "aura/const/idpool.h"
 #ifdef _UWP
 #include "aura/node/uwp/directx_application.h"
+#include "aura/os/windows_common/draw2d_direct2d_global.h"
 #endif
 
 int GetMainScreenRect(LPRECT32 lprect);
@@ -50,7 +51,7 @@ CLASS_DECL_AURA ::user::interaction * create_system_message_window(::layered * p
 extern string_map < __pointer(::apex::library) > * g_pmapLibrary;
 
 
-CLASS_DECL_AURA void __simple_tracea(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+CLASS_DECL_AURA void __simple_tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
 
 
 #ifdef WINDOWS
@@ -109,6 +110,7 @@ namespace aura
    system::system()
    {
 
+
       m_paurasystem = this;
 
       m_bAvoidFirstResponder = false;
@@ -139,7 +141,7 @@ namespace aura
    }
 
 
-   ::estatus system::initialize(::layered * pobjectContext)
+   ::e_status system::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::aqua::system::initialize(pobjectContext);
@@ -176,8 +178,6 @@ namespace aura
       m_pDraw2dFactoryExchange = nullptr;
 
       g_pmutexImage = new ::mutex();
-
-      m_bThreadToolsForIncreasedFps = false;
 
 #ifndef WINDOWS
 
@@ -244,7 +244,7 @@ namespace aura
   
       m_pDraw2dFactoryExchange = nullptr;
 
-      create_factory < ::user::control_descriptor >();
+      //create_factory < ::user::control_descriptor >();
 
       create_factory < ::draw2d::icon >();
 
@@ -498,7 +498,7 @@ namespace aura
 
 
 
-   ::estatus system::process_init()
+   ::e_status system::process_init()
    {
 
       auto estatus = ::apex::system::process_init();
@@ -999,10 +999,10 @@ namespace aura
    }
 
 
-   ::estatus system::init_draw2d()
+   ::e_status system::init_draw2d()
    {
 
-      ::estatus estatus = ::success;
+      ::e_status estatus = ::success;
 
       try
       {
@@ -1103,39 +1103,50 @@ namespace aura
 
       string str;
 
-      if (file_exists(::dir::system() / "config\\system\\draw2d.txt"))
+      ::file::path path = ::dir::config() / "system/draw2d.txt";
+
+      str = file_as_string(path);
+
+      if(str.has_char())
       {
 
-         str = file_as_string(::dir::system() / "config\\system\\draw2d.txt");
-
-   }
-      else
-      {
-
-         ::file::path strPath;
-
-         strPath = ::dir::appdata() / "draw2d.txt";
-
-         str = file_as_string(strPath);
+         return "draw2d_" + str;
 
       }
 
-      if (str.has_char())
+      path = ::dir::appdata() / "draw2d.txt";
+
+      str = file_as_string(path);
+
+      if(str.has_char())
+      {
+
          return "draw2d_" + str;
-      else
-      #ifdef WINDOWS_DESKTOP
-         return "draw2d_gdiplus";
+
+      }
+
+#ifdef WINDOWS_DESKTOP
+      
+      return "draw2d_gdiplus";
+
 #elif __APPLE__
+      
       return "draw2d_quartz2d";
+
 #elif defined(_UWP)
-         return "draw2d_direct2d";
+      
+      return "draw2d_direct2d";
+
 #else
-         return "draw2d_cairo";
-      #endif
+      
+      return "draw2d_cairo";
+
+#endif
+
    }
 
 
-   ::estatus system::draw2d_factory_exchange()
+   ::e_status system::draw2d_factory_exchange()
    {
 
       string strLibrary;
@@ -1160,7 +1171,7 @@ namespace aura
 
       }
 
-      ::estatus estatus;
+      ::e_status estatus;
 
       if (strLibrary.has_char())
       {
@@ -1304,7 +1315,7 @@ namespace aura
 
       }
 
-      ::estatus estatus = ::error_failed;
+      ::e_status estatus = ::error_failed;
 
       if (strLibrary.has_char())
       {
@@ -1426,7 +1437,7 @@ namespace aura
    }
 
 
-   ::estatus system::init_thread()
+   ::e_status system::init_thread()
    {
 
       
@@ -1472,7 +1483,7 @@ namespace aura
    }
 
 
-   ::estatus system::init()
+   ::e_status system::init()
    {
 
       m_millisHeartBeat.Now();
@@ -1517,7 +1528,7 @@ namespace aura
    }
 
 
-   ::estatus system::init1()
+   ::e_status system::init1()
    {
 //
 //#ifdef DEBUG
@@ -1599,7 +1610,7 @@ namespace aura
    }
 
 
-   ::estatus system::post_create_requests()
+   ::e_status system::post_create_requests()
    {
 
       //while(auto pcreate = get_command()->get_create())
@@ -1615,10 +1626,10 @@ namespace aura
    }
 
 
-   ::estatus system::inline_init()
+   ::e_status system::inline_init()
    {
 
-      ::estatus estatus = ::aqua::system::inline_init();
+      ::e_status estatus = ::aqua::system::inline_init();
 
       if (!estatus)
       {
@@ -1632,10 +1643,10 @@ namespace aura
    }
 
 
-   ::estatus system::inline_term()
+   ::e_status system::inline_term()
    {
 
-      ::estatus estatus = ::aqua::system::inline_term();
+      ::e_status estatus = ::aqua::system::inline_term();
 
       if (!estatus)
       {
@@ -1659,7 +1670,7 @@ namespace aura
    }
 
 
-   ::estatus system::system_prep()
+   ::e_status system::system_prep()
    {
 
       auto estatus = ::aqua::system::system_prep();
@@ -1781,7 +1792,7 @@ namespace aura
    }
 
 
-   ::estatus system::thread_loop()
+   ::e_status system::thread_loop()
    {
 
 //#ifdef LINUX
@@ -2229,7 +2240,7 @@ namespace aura
    //}
 
 
-   ::estatus system::initialize_log(const char * pszId)
+   ::e_status system::initialize_log(const char * pszId)
    {
 
       if (m_ptrace)
@@ -2250,7 +2261,7 @@ namespace aura
 
       m_ptrace->set_extended_log();
 
-      estatus = m_ptrace->initialize_apex_log(trace_level_warning, pszId);
+      estatus = m_ptrace->initialize_apex_log(e_trace_level_warning, pszId);
 
       if(!estatus)
       {
@@ -2511,7 +2522,7 @@ namespace aura
    }
 
 
-   ::estatus system::create_session(index iEdge)
+   ::e_status system::create_session(index iEdge)
    {
 
       if (session(iEdge))
@@ -2876,7 +2887,7 @@ namespace aura
    }
 
 
-   ::estatus system::do_request(::create * pcreate)
+   ::e_status system::do_request(::create * pcreate)
    {
 
       if (pcreate->m_ecommand == ::command_check_exit)
@@ -3858,7 +3869,7 @@ namespace aura
    //}
 
 
-   void system::__tracea(::matter * pobjectContext, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
+   void system::__tracea(::matter * pobjectContext, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz)
    {
 
       if (m_ptrace.is_null())
@@ -4386,7 +4397,7 @@ namespace aura
    }
 
 
-   ::estatus system::get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory)
+   ::e_status system::get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -4407,7 +4418,7 @@ namespace aura
          key.get("Install Directory", strInstallDirectory);
 
       }
-      catch (const ::estatus & estatus)
+      catch (const ::e_status & estatus)
       {
 
          return estatus;
@@ -4425,7 +4436,7 @@ namespace aura
    }
 
 
-   ::estatus system::firefox(string strUrl, string strBrowser, string strProfile, string strParam)
+   ::e_status system::firefox(string strUrl, string strBrowser, string strProfile, string strParam)
    {
 
 #ifdef _UWP
@@ -4611,7 +4622,7 @@ namespace aura
 
 
 //#ifdef _OPENGL
-   ::estatus system::create_gpu()
+   ::e_status system::create_gpu()
    {
 
       if (m_pgpu)
@@ -4777,7 +4788,7 @@ namespace aura
 
 
 
-   ::estatus system::verb() // ambigous inheritance from ::aura::system/::axis::application
+   ::e_status system::verb() // ambigous inheritance from ::aura::system/::axis::application
    {
 
       return ::thread::verb();
@@ -4786,7 +4797,7 @@ namespace aura
 
 
 
-   //::estatus system::init_system()
+   //::e_status system::init_system()
    //{
 
    //   if (!::aura::system::init_system())
@@ -5219,7 +5230,7 @@ namespace aura
      //}
 
 
-  //   ::estatus system::initialize_system(::object* pobject, app_core* pappcore)
+  //   ::e_status system::initialize_system(::object* pobject, app_core* pappcore)
   //   {
   //
   //      auto estatus = ::aura::system::initialize_system(pobject, pappcore);
@@ -5372,7 +5383,7 @@ namespace aura
    //}
 
 
-   //::estatus system::defer_xml()
+   //::e_status system::defer_xml()
    //{
 
    //   if (m_pxml)
@@ -5415,7 +5426,7 @@ namespace aura
 
 
 
-   ::estatus system::init2()
+   ::e_status system::init2()
    {
 
       //if(!::aura::application::init2())
@@ -5473,7 +5484,7 @@ namespace aura
    //}
 
 //
-//   ::estatus system::process_init()
+//   ::e_status system::process_init()
 //   {
 //
 //      //if (m_bProcessInitialize)
@@ -5546,7 +5557,7 @@ namespace aura
 //   }
 
 
-   //::estatus system::init()
+   //::e_status system::init()
    //{
    //   //
    //   //#ifndef APPLEOS
@@ -5570,7 +5581,7 @@ namespace aura
    //}
 
 
-//   ::estatus system::init1()
+//   ::e_status system::init1()
 //   {
 //
 //      m_pfilehandler = __new(::filehandler::handler(this));
@@ -5674,7 +5685,7 @@ namespace aura
    }
 
 
-   //::estatus system::init3()
+   //::e_status system::init3()
    //{
 
    //   //if(!::aura::application::init3())
@@ -5694,7 +5705,7 @@ namespace aura
    //}
 
 
-   //::estatus system::init_system()
+   //::e_status system::init_system()
    //{
 
    //   if (!::aura::system::init_system())
@@ -5705,13 +5716,13 @@ namespace aura
    //   }
 
    //   /*set_enum_name(::e_type_null      , "null");
-   //   set_enum_name(::type_empty     , "is_empty");
-   //   set_enum_name(::type_string    , "string");
+   //   set_enum_name(::e_type_empty     , "is_empty");
+   //   set_enum_name(::e_type_string    , "string");
    //   set_enum_name(::type_int32   , "integer");
    //   set_enum_name(::type_::u32     , "ulong");
-   //   set_enum_name(::type_element       , "ca2");
-   //   set_enum_name(::type_bool      , "bool");
-   //   set_enum_name(::type_double    , "double");*/
+   //   set_enum_name(::e_type_element       , "ca2");
+   //   set_enum_name(::e_type_bool      , "bool");
+   //   set_enum_name(::e_type_double    , "double");*/
 
    //   //if (!::aura::application::init_application())
    //   //{
@@ -5728,7 +5739,7 @@ namespace aura
    //}
 
 
-   //::estatus system::bergedge_start()
+   //::e_status system::bergedge_start()
    //{
 
    //   return true;
@@ -5839,7 +5850,7 @@ namespace aura
    //}
 
 
-   estatus system::set_history(::apex::history* phistory)
+   ::e_status system::set_history(::apex::history* phistory)
    {
 
       auto estatus = __compose(m_phistory, phistory);
@@ -6092,7 +6103,7 @@ namespace aura
    }
 
 
-   ::estatus system::add_view_library(::apex::library* plibrary)
+   ::e_status system::add_view_library(::apex::library* plibrary)
    {
 
       m_libraryspa.add(plibrary);
@@ -6128,14 +6139,14 @@ namespace aura
    //      if(m_varTopicQuery["locale"].array_get_count() > 0)
    //      {
    //
-   //         psession->set_locale(m_varTopicQuery["locale"].stra()[0],::source_user);
+   //         psession->set_locale(m_varTopicQuery["locale"].stra()[0],::e_source_user);
    //
    //      }
    //
    //      if(m_varTopicQuery["schema"].array_get_count() > 0)
    //      {
    //
-   //         psession->set_schema(m_varTopicQuery["schema"].stra()[0],::source_user);
+   //         psession->set_schema(m_varTopicQuery["schema"].stra()[0],::e_source_user);
    //
    //      }
    //
@@ -6185,7 +6196,7 @@ namespace aura
 #endif
 
 
-   //::estatus     system::do_request(::create* pcreate)
+   //::e_status     system::do_request(::create* pcreate)
    //{
 
    //   return aura::system::do_request(pcreate);
@@ -6209,7 +6220,7 @@ namespace aura
    }
 
 
-   ::estatus     system::main()
+   ::e_status     system::main()
    {
 
       return ::aqua::system::main();
@@ -6244,7 +6255,7 @@ namespace aura
 
 
 //
-//   ::estatus system::initialize_system(::object* pobjectContext, ::app_core* pappcore)
+//   ::e_status system::initialize_system(::object* pobjectContext, ::app_core* pappcore)
 //   {
 //
 //      auto estatus = ::aura::system::initialize_system(pobjectContext, pappcore);
@@ -6382,7 +6393,7 @@ namespace aura
    }
 
 
-   ::estatus system::initialize_estamira()
+   ::e_status system::initialize_estamira()
    {
 
       if (m_pestamira)
@@ -6717,7 +6728,7 @@ namespace aura
    //}
 
 
-   ::estatus system::main_user_async(const ::promise::routine & routine, ::e_priority epriority)
+   ::e_status system::main_user_async(const ::promise::routine & routine, ::e_priority epriority)
    {
 
 #ifdef _UWP

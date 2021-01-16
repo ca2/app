@@ -305,7 +305,7 @@ namespace music
       }
       
       
-         ::estatus message_out::open(int iPort)
+         ::e_status message_out::open(int iPort)
          {
          
             mach_timebase_info(&sTimebaseInfo);
@@ -383,7 +383,7 @@ namespace music
          }
 
 
-         ::estatus message_out::note_off(int channel, unsigned char note, unsigned char velocity)
+         ::e_status message_out::note_off(int channel, unsigned char note, unsigned char velocity)
          {
             
             Byte message[3];
@@ -401,7 +401,7 @@ namespace music
          }
          
          
-         ::estatus message_out::note_on(int channel, unsigned char note, unsigned char volume)
+         ::e_status message_out::note_on(int channel, unsigned char note, unsigned char volume)
          {
 
             Byte message[3];
@@ -435,7 +435,7 @@ namespace music
          }
          
          
-         ::estatus message_out::program_change(int channel, unsigned char instrument)
+         ::e_status message_out::program_change(int channel, unsigned char instrument)
          {
             
             Byte message[2];

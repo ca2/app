@@ -19,7 +19,7 @@
 //
 //      virtual e_action translate_os_action(i32 iAction);
 //
-//      virtual ::estatus     run() override;
+//      virtual ::e_status     run() override;
 //
 //
 //   };

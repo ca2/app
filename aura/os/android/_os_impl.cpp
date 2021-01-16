@@ -167,7 +167,7 @@ void* load_lib(const char* l)
 }
 
 
-::estatus os_application_system_run(::aura::system* psystem);
+::e_status os_application_system_run(::aura::system* psystem);
 
 
 
@@ -187,7 +187,7 @@ void android_aura_main()
 
    psystem->system_construct(plocal, e_display_default);
 
-   ::estatus estatus = psystem->os_application_system_run();
+   ::e_status estatus = psystem->os_application_system_run();
    
    if (!estatus)
    {
@@ -281,15 +281,6 @@ void android_exchange()
 
    auto premote = g_posremote;
 
-   if (plocal->m_bShowKeyboard)
-   {
-
-      premote->setShowKeyboard(true);
-
-      plocal->m_bShowKeyboard = false;
-
-   }
-
    if (plocal->m_bHideKeyboard)
    {
 
@@ -377,6 +368,30 @@ void android_exchange()
 
    }
 
+   if (plocal->m_bEditorSelectionUpdated)
+   {
+
+      plocal->m_bEditorSelectionUpdated = false;
+
+      premote->setEditorSelectionStart(plocal->m_iEditorSelectionStart);
+
+      premote->setEditorSelectionEnd(plocal->m_iEditorSelectionEnd);
+
+      premote->setEditorSelectionUpdated(true);
+
+   }
+
+   if (plocal->m_bEditorTextUpdated)
+   {
+
+      plocal->m_bEditorTextUpdated = false;
+
+      premote->setEditorText(plocal->m_strEditorText);
+
+      premote->setEditorTextUpdated(true);
+
+   }
+
    if (plocal->m_bEditFocusSet)
    {
 
@@ -391,12 +406,6 @@ void android_exchange()
       premote->setEditFocusRight(plocal->m_rectEditFocus.right);
 
       premote->setEditFocusBottom(plocal->m_rectEditFocus.bottom);
-
-      premote->setEditFocusText(plocal->m_strEditFocus);
-
-      premote->setEditFocusSelBeg(plocal->m_iEditFocusSelBeg);
-
-      premote->setEditFocusSelEnd(plocal->m_iEditFocusSelEnd);
 
    }
 
@@ -418,11 +427,40 @@ void android_exchange()
 
    }
 
+   if (plocal->m_bInputMethodManagerUpdateSelection)
+   {
+
+      plocal->m_bInputMethodManagerUpdateSelection = false;
+
+      premote->setInputMethodManagerSelectionStart(plocal->m_iInputMethodManagerSelectionStart);
+
+      premote->setInputMethodManagerSelectionEnd(plocal->m_iInputMethodManagerSelectionEnd);
+
+      premote->setInputMethodManagerCandidateStart(plocal->m_iInputMethodManagerCandidateStart);
+
+      premote->setInputMethodManagerCandidateEnd(plocal->m_iInputMethodManagerCandidateEnd);
+
+      premote->setInputMethodManagerUpdateSelection(true);
+
+   }
+
+
+   if (plocal->m_bShowKeyboard)
+   {
+
+      premote->setShowKeyboard(true);
+
+      plocal->m_bShowKeyboard = false;
+
+   }
+
 }
 
 
 void android_edit_on_set_focus(int l, int t, int r, int b, const char * pszText, int iBeg, int iEnd)
 {
+
+   sync_lock sl(osmutex());
 
    auto plocal = g_poslocal;
 
@@ -433,10 +471,12 @@ void android_edit_on_set_focus(int l, int t, int r, int b, const char * pszText,
    plocal->m_rectEditFocus.right = r;
    plocal->m_rectEditFocus.bottom = b;
 
-   plocal->m_strEditFocus = pszText;
+   plocal->m_iEditorSelectionStart = iBeg;
+   plocal->m_iEditorSelectionEnd = iEnd;
+   plocal->m_bEditorSelectionUpdated = true;
 
-   plocal->m_iEditFocusSelBeg = iBeg;
-   plocal->m_iEditFocusSelEnd = iEnd;
+   plocal->m_strEditorText = pszText;
+   plocal->m_bEditorTextUpdated = true;
 
    plocal->m_bEditFocusSet = true;
 
@@ -446,11 +486,13 @@ void android_edit_on_set_focus(int l, int t, int r, int b, const char * pszText,
 void android_edit_on_kill_focus()
 {
 
+   sync_lock sl(osmutex());
+
    auto plocal = g_poslocal;
 
-   plocal->m_bEditFocusSet = true;
+   plocal->m_bEditFocusKill = true;
 
-   plocal->m_bEditFocusKill = false;
+   plocal->m_bEditFocusSet = false;
 
 }
 

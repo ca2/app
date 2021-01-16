@@ -152,7 +152,7 @@ namespace apex
       virtual ~session();
 
 
-      virtual ::estatus     initialize(::layered * pobjectContext) override;
+      virtual ::e_status     initialize(::layered * pobjectContext) override;
 
       //inline ::userpresence::department & userpresence() { return *m_puserpresence; }
 
@@ -181,15 +181,15 @@ namespace apex
 
       //virtual index get_ui_wkspace(::user::interaction * pinteraction);
 
-      virtual ::estatus process_init();
+      virtual ::e_status process_init();
 
-      virtual ::estatus init1();
+      virtual ::e_status init1();
 
-      virtual ::estatus init2();
+      virtual ::e_status init2();
 
-      virtual ::estatus init_session();
+      virtual ::e_status init_session();
 
-      virtual ::estatus init();
+      virtual ::e_status init();
 
       virtual void term();
 
@@ -225,7 +225,7 @@ namespace apex
 
       //virtual void defer_initialize_user_presence();
 
-      //virtual ::estatus     interactive_credentials(::account::credentials * pcredentials) override;
+      //virtual ::e_status     interactive_credentials(::account::credentials * pcredentials) override;
 
       virtual bool on_create_frame_window();
 
@@ -249,7 +249,7 @@ namespace apex
       virtual string get_locale_schema_dir() override;
 
 
-      //virtual ::estatus     initialize(::layered * pobjectContext) override;
+      //virtual ::e_status     initialize(::layered * pobjectContext) override;
 
 
       virtual ::user::interaction * get_session_window();
@@ -259,17 +259,17 @@ namespace apex
 
       //virtual bool is_session() const override;
 
-      virtual ::estatus init_thread() override;
+      virtual ::e_status init_thread() override;
 
-      //virtual ::estatus process_init();
+      //virtual ::e_status process_init();
 
-      //virtual ::estatus init1();
+      //virtual ::e_status init1();
 
-      //virtual ::estatus init2();
+      //virtual ::e_status init2();
 
-      //virtual ::estatus init_session();
+      //virtual ::e_status init_session();
 
-      //virtual ::estatus init();
+      //virtual ::e_status init();
 
       //virtual void term();
       virtual void term2();
@@ -379,16 +379,16 @@ namespace apex
 
 
 
-      //virtual ::estatus initialize(::layered * pobjectContext) override;
+      //virtual ::e_status initialize(::layered * pobjectContext) override;
 
       virtual void install_message_routing(::channel* pchannel) override;
 
-      //virtual ::estatus userex_process_init();
-      //virtual ::estatus userex_init1();
-      //virtual ::estatus init2() override;
+      //virtual ::e_status userex_process_init();
+      //virtual ::e_status userex_init1();
+      //virtual ::e_status init2() override;
       //virtual bool init3() override;
       //virtual bool initialize_filemanager();
-      ///virtual ::estatus init_session() override;
+      ///virtual ::e_status init_session() override;
       //virtual void add_document_template(::user::impact_system * ptemplate);
 
       //virtual void term_session() override;
@@ -398,15 +398,15 @@ namespace apex
       virtual void finalize() override;
 
       //template < typename VIEW >
-      //__pointer(::user::document)   create_form(__pointer(::user::interaction) pwndParent = nullptr, payload payload = ::payload(::type_empty_argument), ::payload varArgs = ::payload(::type_empty_argument));
-      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::type_empty_argument), ::payload varArgs = ::payload(::type_empty_argument));
-      //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::type_empty_argument), ::payload varArgs = ::payload(::type_empty_argument));
-      //__pointer(::user::document)   create_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::type_empty_argument), ::payload varArgs = ::payload(::type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::type_empty_argument), ::payload varArgs = ::payload(::type_empty_argument));
+      //__pointer(::user::document)   create_form(__pointer(::user::interaction) pwndParent = nullptr, payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
       //template < typename VIEW >
-      //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) pwndParent, payload payload = ::payload(::type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::type_empty_argument));
-      //__pointer(::user::document)   create_child_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::type_empty_argument));
+      //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument));
 
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle,::user::menu_item* pitem) override;
@@ -416,7 +416,7 @@ namespace apex
 
       virtual bool InitializeLocalDataCentral();
 
-      //virtual ::estatus bergedge_start() override;
+      //virtual ::e_status bergedge_start() override;
 
       void _001OnFileNew();
 
@@ -444,7 +444,7 @@ namespace apex
       //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::patha& patha);
 
 
-      virtual ::estatus do_request(::create* pcreate) override;
+      virtual ::e_status do_request(::create* pcreate) override;
 
       // apex commented
       //virtual ::user::interaction* get_request_parent_ui(::user::interaction* pinteraction, ::create* pcreate);
@@ -473,17 +473,17 @@ namespace apex
       //inline ::userex::userex* userex() { return m_puserex; }
 
 
-      //virtual ::estatus process_init() override;
+      //virtual ::e_status process_init() override;
 
-      //virtual ::estatus init1() override;
+      //virtual ::e_status init1() override;
 
-      //virtual ::estatus init() override;
+      //virtual ::e_status init() override;
 
-      //virtual ::estatus os_native_bergedge_start() override;
+      //virtual ::e_status os_native_bergedge_start() override;
 
-      virtual ::estatus main() override;
+      virtual ::e_status main() override;
 
-      virtual ::estatus defer_initialize_host_window(LPCRECT32 lpcrect = nullptr);
+      virtual ::e_status defer_initialize_host_window(LPCRECT32 lpcrect = nullptr);
 
       __pointer(::apex::application) get_current_application();
 
@@ -495,7 +495,7 @@ namespace apex
 
       virtual string_array get_user_wallpaper();
 
-      inline ::user::interaction* host() { return __user_interaction(m_puiHost); }
+      virtual ::user::interaction * get_host_window() override;
 
 
    };

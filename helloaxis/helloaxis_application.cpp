@@ -46,7 +46,7 @@ namespace helloaxis
    }
 
 
-   ::estatus application::init_instance()
+   ::e_status application::init_instance()
    {
 
       if (!::axis::application::init_instance())

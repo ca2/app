@@ -94,7 +94,7 @@ namespace draw2d_cairo
 //   }
 
 
-   ::estatus image::create(const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+   ::e_status image::create(const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
    {
 
       if (m_pbitmap.is_set()
@@ -201,7 +201,7 @@ namespace draw2d_cairo
    }
 
 
-   ::estatus image::create(::draw2d::graphics * pgraphics)
+   ::e_status image::create(::draw2d::graphics * pgraphics)
    {
 
       ::draw2d::bitmap * pbitmap = (dynamic_cast < ::draw2d_cairo::graphics * > (pgraphics))->get_current_bitmap();
@@ -592,7 +592,7 @@ namespace draw2d_cairo
    }
 
 
-   ::estatus image::SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy)
+   ::e_status image::SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy)
    {
 
       if (!create({cx, cy}))
@@ -737,7 +737,7 @@ namespace draw2d_cairo
 //   bool image::print_window(::aura::draw_interface * pwnd, ::message::message * pmessage)
 //   {
 //
-//      SCAST_PTR(::message::base, pbase, pmessage);
+//      __pointer(::message::base) pbase(pmessage);
 //
 //      if(pbase->m_wparam == 0)
 //         return false;

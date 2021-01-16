@@ -18,7 +18,7 @@ namespace sockets
    //public:
 
 
-   //   virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, e_trace_level elevel, const string & strContext, i32 iError, const char * pszFormat, va_list args) = 0;
+   //   virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const string & strContext, i32 iError, const char * pszFormat, va_list args) = 0;
 
 
    //};

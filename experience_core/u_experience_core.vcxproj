@@ -338,7 +338,7 @@
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
+      <AdditionalOptions>/await /bigobj </AdditionalOptions>
       <CompileAsManaged>false</CompileAsManaged>
       <FloatingPointModel>Fast</FloatingPointModel>
       <FloatingPointExceptions>false</FloatingPointExceptions>
@@ -347,7 +347,7 @@
       <EnableParallelCodeGeneration>false</EnableParallelCodeGeneration>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <ExceptionHandling>Async</ExceptionHandling>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -369,13 +369,13 @@
       <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
+      <AdditionalOptions>/await /bigobj </AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_EXPERIENCE_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -395,13 +395,13 @@
       <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
+      <AdditionalOptions>/await /bigobj </AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_EXPERIENCE_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -422,12 +422,12 @@
       <CompileAsManaged>false</CompileAsManaged>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
+      <AdditionalOptions>/await /bigobj </AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_EXPERIENCE_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -449,12 +449,12 @@
       <CompileAsManaged>false</CompileAsManaged>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
+      <AdditionalOptions>/await /bigobj </AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_EXPERIENCE_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -475,13 +475,13 @@
       <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
+      <AdditionalOptions>/await /bigobj </AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_EXPERIENCE_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -501,13 +501,13 @@
       <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
+      <AdditionalOptions>/await /bigobj </AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_EXPERIENCE_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -527,13 +527,13 @@
       <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
+      <AdditionalOptions>/await /bigobj </AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_EXPERIENCE_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -553,13 +553,13 @@
       <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
+      <AdditionalOptions>/await /bigobj </AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_EXPERIENCE_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -580,13 +580,13 @@
       <CompileAsManaged>false</CompileAsManaged>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
+      <AdditionalOptions>/await /bigobj </AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_EXPERIENCE_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -607,13 +607,13 @@
       <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
+      <AdditionalOptions>/await /bigobj </AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_EXPERIENCE_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>
@@ -633,13 +633,13 @@
       <CompileAsWinRT>true</CompileAsWinRT>
       <PrecompiledHeaderFile>framework.h</PrecompiledHeaderFile>
       <PrecompiledHeaderOutputFile>$(IntDir)framework.pch</PrecompiledHeaderOutputFile>
-      <AdditionalOptions>/bigobj </AdditionalOptions>
+      <AdditionalOptions>/await /bigobj </AdditionalOptions>
       <ExceptionHandling>Async</ExceptionHandling>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <PreprocessorDefinitions>_APP_EXPERIENCE_CORE_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <CompileAsManaged>false</CompileAsManaged>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
     </ClCompile>

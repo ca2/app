@@ -4,9 +4,9 @@
 #ifdef __cplusplus
 
 
-using edisplay = cflag < enum_display >;
-using eactivation = cflag < enum_activation >;
-using eappearance = cflag < enum_appearance >;
+using edisplay = enumeration < enum_display >;
+using eactivation = enumeration < enum_activation >;
+using eappearance = enumeration < enum_appearance >;
 
 
 #endif

@@ -166,7 +166,7 @@
 //
 //}
 //
-//::estatus timer::run()
+//::e_status timer::run()
 //{
 //
 //   while(task_sleep(::millis(m_dwMillis)))

@@ -22,7 +22,7 @@ namespace apex
    // not contain advanced initialization as the
    // papp application pointer may be incompletely
    // initialized specially its virtual functions.
-   ::estatus department::initialize(::layered * pobjectContext)
+   ::e_status department::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -47,7 +47,7 @@ namespace apex
    }
 
 
-   ::estatus department::process_init()
+   ::e_status department::process_init()
    {
 
       return ::success;
@@ -55,7 +55,7 @@ namespace apex
    }
 
 
-   ::estatus department::init()
+   ::e_status department::init()
    {
 
       return ::success;
@@ -63,7 +63,7 @@ namespace apex
    }
 
 
-   ::estatus department::init1()
+   ::e_status department::init1()
    {
 
       return ::success;
@@ -71,7 +71,7 @@ namespace apex
    }
 
 
-   ::estatus department::init2()
+   ::e_status department::init2()
    {
 
       return ::success;
@@ -79,14 +79,14 @@ namespace apex
    }
 
 
-   ::estatus department::init3()
+   ::e_status department::init3()
    {
 
       return ::success;
 
    }
 
-   ::estatus department::init_instance()
+   ::e_status department::init_instance()
    {
 
       return ::success;
@@ -122,7 +122,7 @@ namespace apex
    void department::on_application_message(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::application,papplicationsignal,pmessage);
+      __pointer(::message::application) papplicationsignal(pmessage);
 
       try
       {

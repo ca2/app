@@ -177,7 +177,7 @@ namespace draw2d_direct2d
 
          ID2D1PathGeometry * ppathgeometry = nullptr;
 
-         HRESULT hr = get_d2d1_factory1()->CreatePathGeometry(&ppathgeometry);
+         HRESULT hr = ::draw2d_direct2d::plugin::d2d1_factory1()->CreatePathGeometry(&ppathgeometry);
 
          if(FAILED(hr))
             return nullptr;
@@ -204,12 +204,23 @@ namespace draw2d_direct2d
    }
 
 
-   ID2D1Geometry * region::get_rect(::draw2d::graphics* pgraphics)
+   ID2D1Geometry * region::get_rect(::draw2d::graphics* pgraphicsParam)
    {
 
       ID2D1RectangleGeometry * pgeometry = nullptr;
 
-      get_d2d1_factory1()->CreateRectangleGeometry(D2D1::RectF((FLOAT)m_x1, (FLOAT)m_y1, (FLOAT)m_x2, (FLOAT)m_y2), &pgeometry);
+      auto pgraphics = __graphics(pgraphicsParam);
+
+      if (!pgraphics)
+      {
+
+         return nullptr;
+
+      }
+
+      D2D1_RECT_F r{ (FLOAT)m_x1, (FLOAT)m_y1, (FLOAT)m_x2, (FLOAT)m_y2 };
+
+      ::draw2d_direct2d::plugin::d2d1_factory1()->CreateRectangleGeometry(r, &pgeometry);
 
       return pgeometry;
 
@@ -228,7 +239,7 @@ namespace draw2d_direct2d
 
       ID2D1EllipseGeometry * pgeometry = nullptr;
 
-      get_d2d1_factory1()->CreateEllipseGeometry(ellipse, &pgeometry);
+      ::draw2d_direct2d::plugin::d2d1_factory1()->CreateEllipseGeometry(ellipse, &pgeometry);
 
       return pgeometry;
 
@@ -311,7 +322,7 @@ namespace draw2d_direct2d
 
       Microsoft::WRL::ComPtr <ID2D1PathGeometry> ppathgeometry ;
 
-      HRESULT hr = get_d2d1_factory1()->CreatePathGeometry(&ppathgeometry);
+      HRESULT hr = ::draw2d_direct2d::plugin::d2d1_factory1()->CreatePathGeometry(&ppathgeometry);
 
       Microsoft::WRL::ComPtr < ID2D1GeometrySink > psink ;
 

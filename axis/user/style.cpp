@@ -24,7 +24,7 @@ namespace axis
    void style::default_style_construct()
    {
 
-      m_pfont = ::draw2d::point_font("Segoe UI", 14.0);
+      //m_pfont = ::draw2d::point_font(os_font_name(e_font_sans_ex), 14.0);
       //m_pfontMenu;
       //m_pfontButton;
       //m_pfontList;
@@ -36,7 +36,7 @@ namespace axis
    }
 
 
-   ::estatus style::initialize_style()
+   ::e_status style::initialize_style()
    {
 
       return ::success;
@@ -125,7 +125,7 @@ namespace axis
 
          }
 
-         ::user::estate estate;
+         ::user::e_state estate;
 
          if (bHover)
          {
@@ -726,7 +726,7 @@ namespace axis
    //}
 
 
-   //bool style::create_flag(e_flag eflag, bool bFlag)
+   //bool style::create_flag(enum_flag eflag, bool bFlag)
    //{
 
    //   if (userstyle()->m_mapFlag.is_null())
@@ -866,7 +866,7 @@ namespace axis
    }
 
 
-   ::color style::get_color(const ::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate) const
+   ::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (::is_set(pinteraction))
@@ -893,7 +893,10 @@ namespace axis
    }
 
 
-   //void style::nextstyle(style_context * pcontext)
+
+
+
+//void style::nextstyle(style_context * pcontext)
    //{
 
    //   if (::is_set(m_pgraphics) && ::is_set(m_pgraphics->m_puserinteraction))
@@ -1327,7 +1330,7 @@ namespace axis
       //}
 
 
-      //bool style::create_flag(e_flag eflag, bool bFlag)
+      //bool style::create_flag(enum_flag eflag, bool bFlag)
       //{
 
       //   if (userstyle()->m_mapFlag.is_null())

@@ -20,7 +20,7 @@ using i64_to_i64 = i64_map < i64 >;
 using int_to_string =  int_map < string, const string & > ;
 using i64_to_string = i64_map < string, const string & >;
 
-using int_ptr_to_int_ptr= int_ptr_map < iptr,iptr >;
+using iptr_to_iptr= int_ptr_map < iptr,iptr >;
 
 using int_ptr_to_string =  int_ptr_map < string, const string & > ;
 

@@ -13,7 +13,7 @@ namespace axis
    }
 
 
-   ::estatus application::initialize(::layered * pobjectContext)
+   ::e_status application::initialize(::layered * pobjectContext)
    {
 
       auto estatus = aura::application::initialize(pobjectContext);
@@ -291,7 +291,7 @@ namespace axis
    }
 
 
-   ::estatus application::verb()
+   ::e_status application::verb()
    {
 
       return true;
@@ -323,7 +323,7 @@ namespace axis
    }
 
 
-   ::estatus     application::main()
+   ::e_status     application::main()
    {
 
       return ::aura::application::main();
@@ -331,7 +331,7 @@ namespace axis
    }
 
 
-   ::estatus     application::on_run()
+   ::e_status     application::on_run()
    {
 
       try
@@ -433,7 +433,7 @@ resume_on_exception:
    }
 
 
-   ::estatus application::init_application()
+   ::e_status application::init_application()
    {
 
       return ::aura::application::init_application();
@@ -441,7 +441,7 @@ resume_on_exception:
    }
 
 
-   ::estatus application::application_pre_run()
+   ::e_status application::application_pre_run()
    {
 
       return ::aura::application::application_pre_run();
@@ -514,7 +514,7 @@ resume_on_exception:
    }
 
 
-   ::estatus application::os_native_bergedge_start()
+   ::e_status application::os_native_bergedge_start()
    {
 
       if (!::aura::application::os_native_bergedge_start())
@@ -537,7 +537,7 @@ resume_on_exception:
    }
 
 
-   ::estatus     application::run()
+   ::e_status     application::run()
    {
 
       return ::aura::application::run();
@@ -566,7 +566,7 @@ resume_on_exception:
    //}
 
 
-   ::estatus application::process_init()
+   ::e_status application::process_init()
    {
 
       create_factory < ::database::field_array >();
@@ -612,7 +612,7 @@ resume_on_exception:
    }
 
 
-   ::estatus application::init_instance()
+   ::e_status application::init_instance()
    {
 
       //if (m_bAxisInitializeInstance)
@@ -697,7 +697,7 @@ resume_on_exception:
    }
 
 
-   ::estatus application::init1()
+   ::e_status application::init1()
    {
 
       //if (m_bAxisInitialize1)
@@ -736,7 +736,7 @@ resume_on_exception:
    }
 
 
-   ::estatus application::init2()
+   ::e_status application::init2()
    {
 
       if(!::aura::application::init2())
@@ -747,7 +747,7 @@ resume_on_exception:
    }
 
 
-   ::estatus application::init3()
+   ::e_status application::init3()
    {
 
       if(!::aura::application::init3())
@@ -762,7 +762,7 @@ resume_on_exception:
    }
 
 
-   ::estatus application::init()
+   ::e_status application::init()
    {
 
       //if (m_bAxisInitialize)
@@ -1198,7 +1198,7 @@ m_millisHeartBeat.Now();
    void application::process_message_filter(i32 code,::message::message * pmessage)
    {
 
-      //SCAST_PTR(::message::base,pbase,pmessage);
+      //__pointer(::message::base) pbase(pmessage);
 
       UNREFERENCED_PARAMETER(code);
 
@@ -1544,7 +1544,7 @@ m_millisHeartBeat.Now();
    }
 
 
-//   ::estatus     application::interactive_credentials(::account::credentials * pcredentials)
+//   ::e_status     application::interactive_credentials(::account::credentials * pcredentials)
 //   {
 //
 //      return ::aura::applciation::interactive_credentials(pcredentials);

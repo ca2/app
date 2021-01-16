@@ -46,7 +46,7 @@ namespace user
    }
 
 
-   bool interaction_child::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::interaction * puiParent, id id)
+   bool interaction_child::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::primitive * puiParent, id id)
    {
 
       if (_is_window())
@@ -190,7 +190,7 @@ namespace user
    }
 
 
-   bool interaction_child::create_window(::user::interaction * pinteraction, const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, id id, ::create * pcreate)
+   bool interaction_child::create_window(::user::interaction * pinteraction, const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::primitive * puiParent, id id, ::create * pcreate)
    {
 
       auto pcreatestruct = __new(::user::create_struct);
@@ -226,7 +226,7 @@ namespace user
    }
 
 
-   bool interaction_child::create_window(::user::interaction * pinteraction, const ::rect & rect, ::user::interaction * puiParent, id id)
+   bool interaction_child::create_window(::user::interaction * pinteraction, const ::rect & rect, ::user::primitive * puiParent, id id)
    {
 
       return create_window(pinteraction, nullptr, nullptr, WS_CHILD | WS_VISIBLE, rect, puiParent, id, nullptr);
@@ -259,7 +259,7 @@ namespace user
    void interaction_child::_001OnShowWindow(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
 
    }
 
@@ -294,7 +294,7 @@ namespace user
       if (m_puserinteraction->keyboard_focus_is_focusable())
       {
 
-         m_puserinteraction->keyboard_set_focus();
+         m_puserinteraction->set_keyboard_focus();
 
       }
 
@@ -662,7 +662,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_child::SetOwner(::user::interaction * pinteraction)
+   ::user::interaction * interaction_child::set_owner(::user::primitive * pinteraction)
    {
 
       m_puiOwner = pinteraction;
@@ -672,7 +672,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_child::GetOwner() const
+   ::user::interaction * interaction_child::get_owner() const
    {
 
       if (m_puiOwner != nullptr)
@@ -682,7 +682,7 @@ namespace user
 
       }
 
-      return GetParent();
+      return get_parent();
 
    }
 

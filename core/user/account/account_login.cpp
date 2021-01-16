@@ -88,7 +88,7 @@ namespace account
    }
 
 
-   ::estatus login::initialize(::layered * pobjectContext)
+   ::e_status login::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::user::interaction::initialize(pobjectContext);
@@ -300,11 +300,11 @@ namespace account
 
          ::draw2d::font_pointer f(e_create);
 
-         /*f->create_pixel_font(FONT_SANS_EX, (i32)height(rectClient) * 0.7);
+         /*f->create_pixel_font(os_font_name(e_font_sans_ex), (i32)height(rectClient) * 0.7);
 
          float fMargin = (height(rectClient) * ((1.0f - 0.7f) / 2.0f));*/
 
-         f->create_point_font(FONT_SANS_EX, fHeight * 1.0);
+         f->create_point_font(os_font_name(e_font_sans_ex), fHeight * 1.0);
 
 
          pgraphics->set(f);
@@ -346,7 +346,7 @@ namespace account
 
          m_bSubmitted = true;
 
-         auto puiParent = GetParent();
+         auto puiParent = get_parent();
          
          if(puiParent)
          {
@@ -366,7 +366,7 @@ namespace account
 
             strText = System.crypto().nessie(strText);
 
-            m_ppassword->_001SetText(strText,::source_database);
+            m_ppassword->_001SetText(strText,::e_source_database);
 
          }
          
@@ -392,7 +392,7 @@ namespace account
 
          m_bSubmitted = true;
 
-         auto puiParent = GetParent();
+         auto puiParent = get_parent();
 
          if (puiParent)
          {
@@ -416,11 +416,11 @@ namespace account
 
          m_bSubmitted = true;
 
-         GetParent()->display(e_display_none);
+         get_parent()->display(e_display_none);
 
-         m_ppassword->_001SetText("",::source_database);
+         m_ppassword->_001SetText("",::e_source_database);
 
-         GetParent()->EndModalLoop("cancel");
+         get_parent()->EndModalLoop("cancel");
 
          return true;
 
@@ -434,7 +434,7 @@ namespace account
    void login::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create,pcreate,pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       if(pcreate->previous())
       {
@@ -478,7 +478,7 @@ namespace account
 
       set_dim(0,0,stdw,stdh);
 
-      m_peditUser->keyboard_set_focus();
+      m_peditUser->set_keyboard_focus();
 
       display(::e_display_normal, e_activation_no_activate);
 

@@ -311,7 +311,7 @@ namespace windows
          }
 
       }
-      catch (const ::estatus & estatus)
+      catch (const ::e_status & estatus)
       {
 
          return estatus;
@@ -336,7 +336,7 @@ namespace windows
          key.get("AutoConfigURL", strUrl);
 
       }
-      catch (const ::estatus & estatus)
+      catch (const ::e_status & estatus)
       {
 
          return estatus;
@@ -597,7 +597,7 @@ namespace windows
    bool os_context::file_association_set_shell_open_command(const char * pszExtension, const char * pszExtensionNamingClass,  const char * pszCommand, const char * pszParam)
    {
 
-      ::estatus estatus = ::success;
+      ::e_status estatus = ::success;
 
       try
       {
@@ -1267,7 +1267,7 @@ retry:
    }
 
 
-   ::estatus os_context::create_service()
+   ::e_status os_context::create_service()
    {
 
       string strServiceName = calc_service_name();
@@ -1341,7 +1341,7 @@ retry:
    }
 
 
-   ::estatus os_context::remove_service()
+   ::e_status os_context::remove_service()
    {
 
       string strServiceName = calc_service_name();
@@ -1353,7 +1353,7 @@ retry:
 
    }
 
-   ::estatus os_context::start_service()
+   ::e_status os_context::start_service()
    {
 
       string strServiceName = calc_service_name();
@@ -1466,7 +1466,7 @@ retry:
 
    }
 
-   ::estatus  os_context::stop_service()
+   ::e_status  os_context::stop_service()
    {
 
       string strServiceName = calc_service_name();
@@ -2509,7 +2509,7 @@ repeat:
       strTargetProgId.replace("\\", "_");
       strTargetProgId.replace("/", "_");
 
-      ::estatus estatus = ::success;
+      ::e_status estatus = ::success;
 
       {
 
@@ -3693,7 +3693,7 @@ HRESULT win_create_link(const widechar * pszPathObj, const widechar * pszPathLin
 }
 
 
-CLASS_DECL_APEX ::estatus os_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
+CLASS_DECL_APEX ::e_status os_create_link(::file::path pathObj, ::file::path pathLnk, string strDesc, ::file::path pathIco, int iIcon)
 {
 
    wstring wstrObj(pathObj);

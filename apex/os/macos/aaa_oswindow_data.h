@@ -25,7 +25,7 @@ public:
    ::user::interaction_impl *    m_pimpl;
    __pointer(::mq)               m_pmq;
 
-   int_ptr_to_int_ptr *          m_plongmap;
+   iptr_to_iptr *          m_plongmap;
 
    bool                          m_bNsWindowRect;
    RECT32                          m_rectNsWindow;
@@ -126,7 +126,7 @@ bool oswindow_remove(nswindow window);
 //   return oswindowParent->is_child(oswindowCandidateChildOrDescendant);
 //}
 
-//inline oswindow GetParent(::oswindow window)
+//inline oswindow get_parent(::oswindow window)
 //{
 //   return window->get_parent();
 //}

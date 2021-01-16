@@ -47,7 +47,7 @@ namespace linux
 //   }
 //
 //
-//   file::file(::matter * pobject, const ::file::path & pszFileName, const cflag < ::file::e_open > & eopen) :
+//   file::file(::matter * pobject, const ::file::path & pszFileName, const enumeration < ::file::e_open > & eopen) :
 //      ::matter(pobject)
 //   {
 //
@@ -89,7 +89,7 @@ namespace linux
 //   }
 //
 
-   ::status::result file::open(const ::file::path & pszFileName, const cflag < ::file::e_open > & openParam)
+   ::status::result file::open(const ::file::path & pszFileName, const ::file::e_open & openParam)
    {
 
       if (m_iFile != INVALID_FILE)
@@ -192,11 +192,11 @@ namespace linux
 
          int iError = errno;
 
-         ::estatus estatus = ::get_last_status();
+         ::e_status estatus = ::get_last_status();
 
          //return //::fesp(get_context_application(), file_exception::os_error_to_exception(dwLastError), dwLastError, m_path);
 
-         return ::file::errno_to_status(estatus);
+         return estatus;
 
       }
 
@@ -519,7 +519,7 @@ namespace linux
 
 
 
-//   ::estatus PASCAL file_exception::os_error_to_exception(::i32 lOsErr)
+//   ::e_status PASCAL file_exception::os_error_to_exception(::i32 lOsErr)
 //   {
 //      // NT Error codes
 //      switch ((::u32)lOsErr)

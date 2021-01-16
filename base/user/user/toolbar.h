@@ -62,7 +62,7 @@ namespace user
       ::size               m_sizeButton; // current button size
       bool                 m_bSimpleLayout;
       string_to_ptr *      m_pStringMap;  // used as CMapStringTo::u32
-      index                m_iButtonPressItem;
+      //index                m_iButtonPressItem;
 
 
 
@@ -92,7 +92,7 @@ namespace user
 
       // pIDArray can be nullptr to allocate is_empty buttons
 
-      //virtual ::user::estate get_button_state(int iItem);
+      //virtual ::user::enum_state get_button_state(int iItem);
 
       // standard control bar things
       index CommandToIndex(::u32 nIDFind);
@@ -122,7 +122,7 @@ namespace user
       virtual ::size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz);
       virtual ::size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, index nLength, u32 nMode);
       //virtual void OnUpdateCmdUI(__pointer(::user::frame_window) pTarget, bool bDisableIfNoHndler);
-      __pointer(::user::interaction)  SetOwner(__pointer(::user::interaction) pOwnerWnd);
+      __pointer(::user::interaction)  set_owner(__pointer(::user::interaction) pOwnerWnd);
 
 
 #ifdef WINDOWS_DESKTOP
@@ -140,7 +140,7 @@ namespace user
 
       virtual bool _001GetItemRect(index iItem,RECT32 * prect);
 
-      virtual bool _001GetElementRect(index iItem,RECT32 * prect,enum_element eelement, estate estate);
+      virtual bool _001GetElementRect(index iItem,RECT32 * prect,enum_element eelement, ::user::enum_state estate);
 
       virtual bool _001SetItem(index iItem, toolbar_item * pitem);
       virtual toolbar_item * _001GetItem(index iItem);

@@ -15,7 +15,7 @@ namespace uwp
       virtual ~copydesk();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
       virtual void finalize() override;
 
       virtual bool _set_filea(const ::file::patha & stra, e_op eop) override;

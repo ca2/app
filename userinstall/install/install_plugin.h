@@ -38,7 +38,7 @@ namespace install
 
          //virtual bool on_run_step();
 
-         virtual ::estatus     run() override;
+         virtual ::e_status     run() override;
 
 
       } ;
@@ -95,7 +95,7 @@ namespace install
 
       virtual void on_prepare_memory();
 
-      virtual void on_login_result(const ::estatus & estatus, const char * pszResponse);
+      virtual void on_login_result(const ::e_status & estatus, const char * pszResponse);
 
       DECL_GEN_SIGNAL(_001OnLButtonUp);
       

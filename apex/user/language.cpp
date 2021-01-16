@@ -33,10 +33,10 @@ namespace user
    }
 
 
-   ::estatus language::initialize(::layered * pobjectContext)
+   ::e_status language::initialize(::layered * pobjectContext)
    {
 
-      ::estatus estatus = ::object::initialize(pobjectContext);
+      ::e_status estatus = ::object::initialize(pobjectContext);
 
       if (!estatus)
       {

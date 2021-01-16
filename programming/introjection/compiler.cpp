@@ -70,7 +70,7 @@ namespace introjection
    }
 
 
-   ::estatus compiler::initialize(::layered * pobjectContext)
+   ::e_status compiler::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);

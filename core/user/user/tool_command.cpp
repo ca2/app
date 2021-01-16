@@ -31,7 +31,7 @@ namespace user
       ASSERT_KINDOF(toolbar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
 
-      auto estyleNew = pToolBar->get_item_style(m_iIndex) & ~e_toolbar_item_style_disabled;
+      auto estyleNew = pToolBar->get_item_style(m_iIndex) - e_toolbar_item_style_disabled;
 
       if (!bOn)
       {
@@ -59,7 +59,7 @@ namespace user
       ASSERT_KINDOF(toolbar, pToolBar);
       ASSERT(m_iIndex < m_iCount);
 
-      auto estyleNew = pToolBar->get_item_style(m_iIndex) & ~(e_toolbar_item_style_checked | e_toolbar_item_style_indeterminate);
+      auto estyleNew = pToolBar->get_item_style(m_iIndex) - (e_toolbar_item_style_checked | e_toolbar_item_style_indeterminate);
 
       if (nCheck == 1)
       {

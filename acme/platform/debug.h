@@ -1,7 +1,12 @@
 #pragma once
 
 
-//#include "acme/net/sockets/trace_interface.h"
+
+
+#include "apex/net/sockets/trace_interface.h"
+
+
+CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const char * psz, const char * pszFile = nullptr, int iLine = -1);
 
 
 #define _DEBUG_WIDE_(s) L ## s
@@ -272,8 +277,8 @@ CLASS_DECL_ACME ::count get_mem_info2(i32 ** ppiUse, const char *** ppszFile, DW
 //
 //
 //
-//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, e_trace_level elevel, const string & strContext, i32 iError, const string & strContext) override;
-//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, e_trace_level elevel, const string & strContext, i32 iError, const string & strContext) override;
+//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const string & strContext, i32 iError, const string & strContext) override;
+//   //virtual void sockets_trace(::sockets::base_socket_handler * phandler, ::sockets::base_socket * psocket, enum_trace_level elevel, const string & strContext, i32 iError, const string & strContext) override;
 //
 //
 //};
@@ -282,8 +287,8 @@ CLASS_DECL_ACME ::count get_mem_info2(i32 ** ppiUse, const char *** ppszFile, DW
 //extern critical_section * g_pcsTrace;
 //extern matter * g_pobjecTracer;
 //
-CLASS_DECL_ACME void os_trace(e_trace_level elevel, const char * pszTag, const char * pszMessage);
-//CLASS_DECL_ACME void trace(e_trace_level elevel, const char * pszTag, const char * psz, const char * pszFile = nullptr, int iLine = -1);
+CLASS_DECL_ACME void os_trace(enum_trace_level elevel, const char * pszTag, const char * pszMessage);
+//CLASS_DECL_ACME void trace(enum_trace_level elevel, const char * pszTag, const char * psz, const char * pszFile = nullptr, int iLine = -1);
 
 
 
@@ -295,16 +300,16 @@ CLASS_DECL_ACME void os_trace(e_trace_level elevel, const char * pszTag, const c
 
 
 
-//#define cinfo LOG(trace_level_information, LOG_TAG)
-//#define cwarn LOG(trace_level_warning, LOG_TAG)
-//#define cerror LOG(trace_level_error, LOG_TAG)
-//#define cfatal LOG(trace_level_fatal, LOG_TAG)
+//#define cinfo LOG(e_trace_level_information, LOG_TAG)
+//#define cwarn LOG(e_trace_level_warning, LOG_TAG)
+//#define cerror LOG(e_trace_level_error, LOG_TAG)
+//#define cfatal LOG(e_trace_level_fatal, LOG_TAG)
 
 
-//#define thisinfo LOG(trace_level_information, LOG_THIS_TAG) << LOG_MEMBER_PREFIX << "; "
-//#define thiswarn LOG(trace_level_warning, LOG_THIS_TAG)  << LOG_MEMBER_PREFIX << "; "
-//#define thiserr LOG(trace_level_error, LOG_THIS_TAG) << LOG_MEMBER_PREFIX << "; "
-//#define thisfatal LOG(trace_level_fatal, LOG_THIS_TAG) << LOG_MEMBER_PREFIX << "; "
+//#define thisinfo LOG(e_trace_level_information, LOG_THIS_TAG) << LOG_MEMBER_PREFIX << "; "
+//#define thiswarn LOG(e_trace_level_warning, LOG_THIS_TAG)  << LOG_MEMBER_PREFIX << "; "
+//#define thiserr LOG(e_trace_level_error, LOG_THIS_TAG) << LOG_MEMBER_PREFIX << "; "
+//#define thisfatal LOG(e_trace_level_fatal, LOG_THIS_TAG) << LOG_MEMBER_PREFIX << "; "
 
 //#define thisstart thisinfo << "start "
 //#define thisexit thisinfo << "exit " << str_flag_ifnumberparenthesizeandspace
@@ -345,10 +350,10 @@ namespace papaya
 }
 //
 //
-//inline e_trace_level trace_level_constraint(e_trace_level elevel)
+//inline enum_trace_level trace_level_constraint(enum_trace_level elevel)
 //{
 //
-//   return ::papaya::constraint(elevel, trace_level_none, trace_level_count);
+//   return ::papaya::constraint(elevel, e_trace_level_none, e_trace_level_count);
 //
 //}
 
@@ -356,18 +361,21 @@ namespace papaya
 //extern const char * g_pszTraceLevelName[];
 //
 //
-CLASS_DECL_ACME const char * trace_level_name(e_trace_level elevel);
-// {
 
-//   return g_pszTraceLevelName[trace_level_constraint(elevel)];
+CLASS_DECL_ACME enum_trace_level trace_level_constraint(enum_trace_level elevel);
+//{
+//
+// return g_pszTraceLevelName[trace_level_constraint(elevel)];
+//
+//// }
 
-// }
+CLASS_DECL_ACME const char * trace_level_name(enum_trace_level elevel);
 
 
 //extern char g_chaTraceLevel[];;;
 //
 //
-CLASS_DECL_ACME char trace_level_char(e_trace_level elevel);
+CLASS_DECL_ACME char trace_level_char(enum_trace_level elevel);
 //{
 //
 //   return g_chaTraceLevel[trace_level_constraint(elevel)];

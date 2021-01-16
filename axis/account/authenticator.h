@@ -19,9 +19,9 @@ namespace account
       authenticator(::layered * pobjectContext);
       virtual ~authenticator();
       
-      virtual ::estatus  pre_authenticate(credentials * pcredentials);
+      virtual ::e_status  pre_authenticate(credentials * pcredentials);
       
-      virtual ::estatus  authenticate(credentials * pcredentials);
+      virtual ::e_status  authenticate(credentials * pcredentials);
       
 
    };

@@ -10,7 +10,7 @@ namespace imaging_wic
    bool windows_image_from_bitmap_source(::image * pimageFrame, IWICBitmapSource * pbitmapsource, IWICImagingFactory * pimagingfactory);
 
 
-   ::estatus context_image::_load_image(::image * pimageParam, const payload & varFile, bool bSync, bool bCreateHelperMaps)
+   ::e_status context_image::_load_image(::image * pimageParam, const payload & varFile, bool bSync, bool bCreateHelperMaps)
    {
 
       auto ploadimage = __new(load_image(this));
@@ -53,7 +53,7 @@ namespace imaging_wic
 
 
 
-   ::estatus context_image::load_image::run()
+   ::e_status context_image::load_image::run()
    {
 
       //defer_co_initialize_ex(false);

@@ -39,7 +39,7 @@ namespace account
    }
 
 
-   ::estatus dialog::initialize_account_dialog(::account::credentials * pcredentials)
+   ::e_status dialog::initialize_account_dialog(::account::credentials * pcredentials)
    {
 
       auto estatus = initialize(pcredentials);
@@ -91,7 +91,7 @@ namespace account
    void dialog::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create,pcreate,pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       if(pcreate->previous())
       {
@@ -131,7 +131,7 @@ namespace account
    void dialog::_001OnChar(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       if(pkey->m_ekey == ::user::key_return)
       {
@@ -503,7 +503,7 @@ namespace account
    void dialog::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse,pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (pmessage->previous())
       {
@@ -536,7 +536,7 @@ namespace account
 
       m_bLButtonDown = false;
 
-      SCAST_PTR(::message::mouse,pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       ReleaseCapture();
 
@@ -557,7 +557,7 @@ namespace account
    void dialog::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse,pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (m_bLButtonDown)
       {

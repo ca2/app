@@ -72,10 +72,10 @@ namespace user
 
       void user_button_construct();
 
-      virtual bool create_control(class control_descriptor* pdescriptor) override;
+      virtual bool create_control(::user::interaction * pinteractionParent, const ::id & id) override;
 
 
-      virtual ::draw2d::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
+      virtual ::draw2d::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) const override;
       virtual enum_translucency get_translucency(style * pstyle) const override;
 
 

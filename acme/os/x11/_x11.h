@@ -36,13 +36,12 @@ CLASS_DECL_ACME mutex * x11_mutex();
 #include "x11_message_box.h"
 
 
-
-void defer_init_x11();
+::e_status defer_initialize_x11();
 void x11_handle_just_hooks();
 void x11_defer_handle_just_hooks();
 int x11_message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox);
 bool __x11_hook_process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie);
 
 
-//::estatus __x11_hook(x11_hook * phook);
-//::estatus __x11_unhook(x11_hook * phook);
+//::e_status __x11_hook(x11_hook * phook);
+//::e_status __x11_unhook(x11_hook * phook);

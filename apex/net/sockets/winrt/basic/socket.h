@@ -37,7 +37,7 @@ namespace sockets
       by a call to base_socket() or otherwise. */
       //void attach(os_data & osdata);
 
-      virtual ::estatus     run() override;
+      virtual ::e_status     run() override;
 
       void close();
 

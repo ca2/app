@@ -34,12 +34,23 @@ public:
 
    bool           m_bEditFocusSet;
    rect           m_rectEditFocus;
-   string         m_strEditFocus;
-   int            m_iEditFocusSelBeg;
-   int            m_iEditFocusSelEnd;
    bool           m_bEditFocusKill;
    
    bool           m_bRedraw;
+
+   bool           m_bEditorSelectionUpdated;
+   int            m_iEditorSelectionStart;
+   int            m_iEditorSelectionEnd;
+
+   bool           m_bEditorTextUpdated;
+   string         m_strEditorText;
+
+
+   bool           m_bInputMethodManagerUpdateSelection;
+   int            m_iInputMethodManagerSelectionStart;
+   int            m_iInputMethodManagerSelectionEnd;
+   int            m_iInputMethodManagerCandidateStart;
+   int            m_iInputMethodManagerCandidateEnd;
 
 
 };

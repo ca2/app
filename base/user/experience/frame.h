@@ -22,10 +22,16 @@ namespace experience
       };
 
 
+      ::color                                m_colorFrameBorder;
+      ::color                                m_colorMoveableBorderHilight;
+      ::color                                m_colorMoveableBorderDkShadow;
+      ::color                                m_colorCaptionTextBk;
+      ::color                                m_colorActiveCaptionTextBk;
+      ::color                                m_colorCaptionText;
+
       bool                                 m_bHollow;
       string                               m_strLibrary;
       string                               m_strName;
-      string                               m_strStyle;
       ::rect                               m_rectCaption;
       ::rect                               m_rectCaptionTextBk;
       ::rect                               m_rectWindowText;
@@ -35,8 +41,8 @@ namespace experience
       point                                m_pointWindowIcon;
       point                                m_pointMoveGripMinimal;
 
-      color32_t                             m_crMoveableBorder;
-      color32_t                             m_crMoveableBorderShadow;
+      ::color                             m_colorMoveableBorder;
+      ::color                             m_colorMoveableBorderShadow;
 
 
       ::experience::experience *           m_pexperience;
@@ -71,10 +77,14 @@ namespace experience
       virtual ~frame();
 
 
+
+
+
+
       virtual int adjust_client_height(int iHeight);
       virtual int adjust_client_width(int iWidth);
 
-      virtual void set_style(const char * pszStyle);
+      //virtual void set_style(const char * pszStyle);
       virtual void on_initialize_experience_frame();
       virtual void on_initialize_appearance();
 
@@ -91,6 +101,12 @@ namespace experience
       //virtual void update_window_style();
 
       virtual void defer_frame_placement_snapping();
+
+
+      virtual string get_default_user_style() const;
+
+
+      virtual void set_moveable_border_color(const ::color & color);
 
 
 
@@ -128,6 +144,8 @@ namespace experience
 
       virtual void OnMove(__pointer(::user::interaction) pframewindow);
 
+
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
       virtual void on_style_change();
 

@@ -441,10 +441,10 @@ namespace parallelization
 
 
 
-CLASS_DECL_ACME ::estatus call(const ::promise::routine & routine)
+CLASS_DECL_ACME ::e_status call(const ::promise::routine & routine)
 {
 
-   ::estatus estatus;
+   ::e_status estatus;
 
    try
    {
@@ -685,10 +685,10 @@ void thread_name_abbreviate(string & strName, int len)
 }
 
 
-::estatus run_runnable(::matter * pmatter)
+::e_status run_runnable(::matter * pmatter)
 {
 
-   ::estatus     estatus = error_exception;
+   ::e_status     estatus = error_exception;
 
    try
    {
@@ -715,10 +715,10 @@ void thread_name_abbreviate(string & strName, int len)
 }
 
 
-::estatus run_routine(const ::promise::routine & routine)
+::e_status run_routine(const ::promise::routine & routine)
 {
 
-   ::estatus estatus = error_exception;
+   ::e_status estatus = error_exception;
 
    try
    {

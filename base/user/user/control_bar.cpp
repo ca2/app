@@ -29,7 +29,6 @@ namespace user
       m_cxDefaultGap = 2;
       //m_rectBorder.top = m_rectBorder.bottom = 1;
       m_bAutoDelete = FALSE;
-      m_puiOwner = nullptr;
       m_nStateFlags = 0;
       m_pDockSite = nullptr;
       m_pDockBar = nullptr;
@@ -47,7 +46,7 @@ namespace user
 #ifdef WINDOWS
       MESSAGE_LINK(WM_CTLCOLOR, pchannel, this, &control_bar::_001OnCtlColor);
 #endif
-      MESSAGE_LINK(WM_SIZEPARENT, pchannel, this, &control_bar::_001OnSizeParent);
+      MESSAGE_LINK(e_message_size_parent, pchannel, this, &control_bar::_001OnSizeParent);
       MESSAGE_LINK(e_message_window_position_changing, pchannel, this, &control_bar::_001OnWindowPosChanging);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &control_bar::_001OnMouseMove);
       MESSAGE_LINK(e_message_left_button_down, pchannel, this, &control_bar::_001OnLButtonDown);
@@ -256,7 +255,7 @@ namespace user
    bool control_bar::SetStatusText(i32 nHit)
    {
 
-      __pointer(::user::interaction) pOwner = GetOwner();
+      __pointer(::user::interaction) pOwner = get_owner();
 
       //if (nHit == -1)
       //{
@@ -294,11 +293,11 @@ namespace user
       if(pmessage->m_bRet)
          return;
 
-      __pointer(::user::interaction) pOwner = GetOwner();
+      __pointer(::user::interaction) pOwner = get_owner();
 
 #ifdef WINDOWS_DESKTOP
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       ::u32 message;
 
@@ -316,7 +315,7 @@ namespace user
 #endif
 
       // don't translate dialog messages when in Shift+F1 help mode
-      __pointer(::user::frame_window) pFrameWnd = (GetTopLevelFrame());
+      __pointer(::user::frame_window) pFrameWnd = top_level_frame();
       if (pFrameWnd != nullptr && pFrameWnd->m_bHelpMode)
          return;
 
@@ -330,7 +329,7 @@ namespace user
             return;
 
          // try parent frames until there are no parent frames
-         pOwner = pOwner->GetParentFrame();
+         pOwner = pOwner->get_parent_frame();
       }
 
       // filter both messages to dialog and from children
@@ -377,7 +376,7 @@ namespace user
          //      else
       {
          // try owner next
-         lResult = GetOwner()->send_message((enum_message) message, pbase->m_wparam, pbase->m_lparam);
+         lResult = get_owner()->send_message((enum_message) message, pbase->m_wparam, pbase->m_lparam);
 
          // special case for TTN_NEEDTEXTA and TTN_NEEDTEXTW
 //#ifdef WINDOWS_DESKTOP
@@ -416,7 +415,7 @@ namespace user
    void control_bar::_001OnHelpHitTest(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-//      SCAST_PTR(::message::base, pbase, pmessage);
+//      __pointer(::message::base) pbase(pmessage);
       ASSERT_VALID(this);
 
    }
@@ -438,7 +437,7 @@ namespace user
       if(pmessage->previous())
          return;
 
-      __pointer(::user::frame_window) pframe = GetParent();
+      __pointer(::user::frame_window) pframe = get_parent();
 
       if (pframe.is_set())
       {
@@ -478,7 +477,7 @@ namespace user
 
    void control_bar::_001OnMouseActivate(::message::message * pmessage)
    {
-      SCAST_PTR(::message::mouse_activate, pmouseactivate, pmessage);
+      __pointer(::message::mouse_activate) pmouseactivate(pmessage);
       // call default when toolbar is not floating
       if (!IsFloating())
       {
@@ -571,7 +570,7 @@ namespace user
    void control_bar::_001OnCtlColor(::message::message * pmessage)
    {
       
-      SCAST_PTR(::message::ctl_color,pctlcolor,pmessage);
+      __pointer(::message::ctl_color) pctlcolor(pmessage);
 
       auto pinteraction =pctlcolor->userinteraction();
       
@@ -598,7 +597,7 @@ namespace user
 
    void control_bar::_001OnLButtonDown(::message::message * pmessage)
    {
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
       // only start dragging if clicked in "void" space
       if (m_pDockBar != nullptr )
          //!m_pDockContext->m_bTracking  && OnToolHitTest(pmouse->m_point, nullptr) == -1)
@@ -616,7 +615,7 @@ namespace user
 
    void control_bar::_001OnLButtonUp(::message::message * pmessage)
    {
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
       if(m_bDockTrack)
       {
          //      m_pDockContext->OnBarLButtonUp(pmouse->m_nFlags, pmouse->m_point);
@@ -626,7 +625,7 @@ namespace user
 
    void control_bar::_001OnMouseMove(::message::message * pmessage)
    {
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
       if(m_bDockTrack)
       {
          //      m_pDockContext->OnBarMouseMove(pmouse->m_nFlags, pmouse->m_point);
@@ -636,13 +635,13 @@ namespace user
 
    void control_bar::_001OnLButtonDblClk(::message::message * pmessage)
    {
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
       pmouse->previous();
    }
 
 //    void control_bar::_001OnIdleUpdateCmdUI(::message::message * pmessage)
 //    {
-//       SCAST_PTR(::message::base, pbase, pmessage);
+//       __pointer(::message::base) pbase(pmessage);
 //       // handle delay hide/show
 //       bool bVis = (GetStyle() & WS_VISIBLE) != 0;
 //       ::u32 swpFlags = 0;
@@ -660,9 +659,9 @@ namespace user
 //       // the dockbar style must also be visible
 //       if ((GetStyle() & WS_VISIBLE))
 //       {
-//          __pointer(::user::frame_window) pTarget = (GetOwner());
+//          __pointer(::user::frame_window) pTarget = (get_owner());
 //          if (pTarget == nullptr)
-//             pTarget = (GetParentFrame());
+//             pTarget = (get_parent_frame());
 //          if (pTarget != nullptr)
 //             OnUpdateCmdUI(pTarget, pbase->m_wparam != FALSE);
 //       }
@@ -766,7 +765,7 @@ namespace user
    void control_bar::_001OnSizeParent(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
       SIZEPARENTPARAMS * playout = (SIZEPARENTPARAMS *) pbase->m_lparam.m_lparam;
 
       u32 uStyle = RecalcDelayShow(playout);
@@ -1177,7 +1176,7 @@ namespace user
    __pointer(::user::frame_window) control_bar::GetDockingFrame()
    {
 
-      __pointer(::user::frame_window) pFrameWnd = (GetParentFrame());
+      __pointer(::user::frame_window) pFrameWnd = (get_parent_frame());
 
       if (pFrameWnd == nullptr)
          pFrameWnd = m_pDockSite;

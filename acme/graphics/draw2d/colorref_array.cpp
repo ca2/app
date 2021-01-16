@@ -44,7 +44,7 @@ void colorref_array::create_web_palette()
 }
 
 
-CLASS_DECL_ACME void cra_from_quada(colorref_array & colorrefa, RGBQUAD * prgbquad, int iCount)
+CLASS_DECL_ACME void cra_from_quada(colorref_array & colorrefa, WINRGBQUAD * prgbquad, int iCount)
 {
 
    colorrefa.set_size(iCount);

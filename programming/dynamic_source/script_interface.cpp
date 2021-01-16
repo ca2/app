@@ -33,7 +33,7 @@ namespace dynamic_source
    }
 
 
-   ::estatus script_interface::initialize(::layered * pobjectContext)
+   ::e_status script_interface::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::html::file::initialize(pobjectContext);
@@ -64,10 +64,10 @@ namespace dynamic_source
    }
 
 
-   ::estatus script_interface::init1()
+   ::e_status script_interface::init1()
    {
 
-      ::estatus estatus = ::success_none;
+      ::e_status estatus = ::success_none;
 
       return estatus;
 
@@ -86,7 +86,7 @@ namespace dynamic_source
    }
 
 
-   ::estatus     script_interface::run()
+   ::e_status     script_interface::run()
    {
 
       return ::success;
@@ -139,7 +139,7 @@ namespace dynamic_source
    }
 
 
-   ::estatus script_interface::on_initialize()
+   ::e_status script_interface::on_initialize()
    {
 
       return ::success;
@@ -147,7 +147,7 @@ namespace dynamic_source
    }
 
 
-   //::estatus script_interface::initialize_dynamic_source_script_interface(script_interface * pinterfaceMain, script_interface * pinterfaceParent, httpd_socket * pdssocket, script_manager * pmanager)
+   //::e_status script_interface::initialize_dynamic_source_script_interface(script_interface * pinterfaceMain, script_interface * pinterfaceParent, httpd_socket * pdssocket, script_manager * pmanager)
    //{
 
    //   auto estatus = initialize(pinterfaceMain);
@@ -187,7 +187,7 @@ namespace dynamic_source
    payload script_interface::get_session_value(id)
    {
 
-      return payload(::type_new);
+      return payload(::e_type_new);
 
    }
 
@@ -262,7 +262,7 @@ namespace dynamic_source
       if (!bOk)
       {
 
-         return type_empty;
+         return e_type_empty;
 
       }
 

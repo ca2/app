@@ -6,7 +6,7 @@ namespace apex
 
 
    template < class APP >
-   __result(::apex::application) single_application_library < APP > ::get_new_application(::layered * pobjectContext, const char * pszAppId)
+   __result(::apex::application) single_application_library < APP > ::new_application(const char * pszAppId)
    {
 
       if(!contains_app(pszAppId))
@@ -36,14 +36,14 @@ namespace apex
 
       }
 
-      auto estatus = papp->initialize(pobjectContext);
-
-      if (!estatus)
-      {
-
-         return estatus;
-
-      }
+//      auto estatus = papp->initialize(pobjectContext);
+//
+//      if (!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
 
       return papp;
 

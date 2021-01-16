@@ -35,7 +35,7 @@ namespace app_shader
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnKeyDown);
 
-      virtual bool keyboard_focus_is_focusable() override;
+      virtual bool keyboard_focus_is_focusable() const override;
 
       virtual ::user::enum_translucency get_translucency(::user::style* pstyle) const override;
 

@@ -32,7 +32,7 @@ namespace user
          virtual ~edit_impl();
 
 
-         virtual ::estatus initialize(::layered * pobjectContext) override;
+         virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
          virtual void on_after_change(::user::enum_event eevent) override;
@@ -81,7 +81,7 @@ namespace user
 
          virtual void on_selection_change() override;
 
-         virtual void insert_text(string str, bool bForceNewStep) override;
+         virtual void insert_text(string str, bool bForceNewStep, const ::action_context & context) override;
 
          virtual void install_message_routing(::channel * psender) override;
 

@@ -19,9 +19,9 @@ namespace sockets
       } reason_t;
 
 
-      enum e_state
+      enum enum_state
       {
-         state_initial,
+         e_state_initial,
          state_hello,
          state_auth,
          state_auth_login,
@@ -36,7 +36,7 @@ namespace sockets
          state_end
       };
 
-      e_state m_estate;
+      enum_state m_estate;
 
       ::net::email m_email;
 

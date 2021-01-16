@@ -22,7 +22,7 @@ namespace user
       virtual ~box();
 
       
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
       void install_message_routing(::channel * pchannel) override;
@@ -67,8 +67,8 @@ namespace user
       virtual void on_command(::user::command * pcommand) override;
 
 
-      virtual bool on_set_parent(::user::interaction * puiParent) override;
-      virtual bool on_before_set_parent(::user::interaction * pinterface) override;
+      virtual bool on_set_parent(::user::primitive * puiParent) override;
+      virtual bool on_before_set_parent(::user::primitive * pinterface) override;
 
 
       virtual bool parent_is_local_data();

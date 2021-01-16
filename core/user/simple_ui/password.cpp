@@ -185,7 +185,7 @@ namespace simple_ui
       //size size3;
       ::draw2d::text_metric metric;
        pgraphics->get_text_metrics(&metric);
-      i32 iLineHeight = metric.get_line_spacing();
+      double dLineHeight = metric.get_line_spacing();
 //      string_array & straLines = m_plines->lines;
       string_array & straLines = m_straLines;
       string_array straLineFeed;
@@ -259,19 +259,26 @@ namespace simple_ui
          //maxcy = max(maxcy, size3.cy);
          if(bFocus && bCaretOn && i3 == str1.get_length())
          {
+            
             pgraphics->set(penCaret);
             pgraphics->move_to(left + size1.cx,y);
-            pgraphics->line_to(left + size1.cx,y + iLineHeight);
+            pgraphics->line_to(left + size1.cx,y + dLineHeight);
+
          }
          else if(bFocus && bCaretOn && i3 == (str1.get_length() + str2.get_length()))
          {
+            
             pgraphics->set(penCaret);
             pgraphics->move_to(left + size2.cx + size1.cx,y);
-            pgraphics->line_to(left + size2.cx + size1.cx,y + iLineHeight);
+            pgraphics->line_to(left + size2.cx + size1.cx,y + dLineHeight);
+
          }
-         y += iLineHeight;
+
+         y += dLineHeight;
          lim += straLines[i].get_length();
+
          //ASSERT(FALSE);
+
       }
 
    }

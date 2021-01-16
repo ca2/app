@@ -25,7 +25,7 @@ namespace hellobase
       m_flagNonClient.remove(non_client_background);
       m_flagNonClient.remove(non_client_focus_rect);
 
-      m_strNewFont = FONT_SANS;
+      m_strNewFont = os_font_name(e_font_sans);
 
       m_eeffect                  = effect_none;
 
@@ -84,7 +84,7 @@ namespace hellobase
    void view::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create,pcreate,pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
 

@@ -18,7 +18,7 @@
 //void * cg_image_get_image_data(int & width, int & height, int & iScan, CGImageRef image);
 //
 //
-//::estatus imaging::_load_image(::image * pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
+//::e_status imaging::_load_image(::image * pimage, __pointer(image_frame_array) & pframea, ::memory_pointer pmemory)
 //{
 //
 //   if(!pmemory || pmemory->is_empty())
@@ -160,7 +160,7 @@
 //
 //            p->m_rect.bottom = h;
 //
-//            p->m_crTransparent = 0;
+//            p->m_colorTransparent = 0;
 //
 //            p->m_bTransparent = false;
 //

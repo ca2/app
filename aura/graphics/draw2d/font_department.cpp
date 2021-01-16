@@ -1,9 +1,9 @@
 #include "framework.h"
 
 
-#define FONTFACENAME_MENU FONT_SANS
+#define FONTFACENAME_MENU os_font_name(e_font_sans)
 
-#define FONTFACENAME_LUCIDA FONT_SANS
+#define FONTFACENAME_LUCIDA os_font_name(e_font_sans)
 
 
 font_department::font_department()
@@ -43,7 +43,7 @@ bool font_department::is_initialized()
 }
 
 
-::estatus font_department::initialize(::layered * pobjectContext)
+::e_status font_department::initialize(::layered * pobjectContext)
 {
 
    if (is_initialized())

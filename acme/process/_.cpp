@@ -375,7 +375,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
    enum enum_state
    {
 
-      state_initial,
+      e_state_initial,
 
       state_quote,
 
@@ -383,14 +383,14 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
    };
 
-   enum_state e = state_initial;
+   enum_state e = e_state_initial;
 
    char quote = '\0';
 
    while(psz != nullptr && *psz != '\0')
    {
 
-      if(e == state_initial)
+      if(e == e_state_initial)
       {
 
          if(*psz == ' ')
@@ -455,7 +455,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             psz = point;
 
-            e = state_initial;
+            e = e_state_initial;
 
          }
          else
@@ -478,7 +478,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
             psz = point;
 
-            e = state_initial;
+            e = e_state_initial;
 
          }
          else

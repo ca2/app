@@ -50,7 +50,7 @@ void simple_tree_view::dump(dump_context & dumpcontext) const
 void simple_tree_view::_001OnCreate(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::create, pcreate, pmessage);
+   __pointer(::message::create) pcreate(pmessage);
 
    pcreate->previous();
 

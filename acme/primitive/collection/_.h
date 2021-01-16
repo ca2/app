@@ -10,7 +10,7 @@ inline ::count __iterable_count(const ITERABLE & iterable);
 
 
 template < typename T >
-inline ::count __iterable_count(Windows::Foundation::Collections::IVectorView < T > ^ a)
+inline ::count __iterable_count(::Windows::Foundation::Collections::IVectorView < T > ^ a)
 {
 
    return a.Size;

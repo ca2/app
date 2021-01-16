@@ -63,7 +63,7 @@ index oswindow_find(::user::interaction_impl * pimpl)
 
 oswindow_data::oswindow_data(::user::interaction_impl * pimpl)
 {
-   m_plongptrmap = new int_ptr_to_int_ptr();
+   m_plongptrmap = new iptr_to_iptr();
    m_pimpl = pimpl;
 
 }
@@ -107,7 +107,7 @@ bool oswindow_data::is_child(::oswindow oswindow)
 
    }
 
-   ::user::interaction * pinteraction = m_pimpl->m_puserinteraction->GetParent();
+   ::user::interaction * pinteraction = m_pimpl->m_puserinteraction->get_parent();
 
    if (pinteraction == nullptr)
    {
@@ -131,22 +131,22 @@ bool oswindow_data::is_child(::oswindow oswindow)
 
    }
 
-   ::user::interaction * pinteraction;
+   ::user::primitive * pprimitive;
 
    if (oswindow == nullptr || oswindow->m_pimpl == nullptr || oswindow->m_pimpl->m_puserinteraction == nullptr)
    {
 
-      pinteraction = m_pimpl->m_puserinteraction->SetParent(nullptr);
+      pprimitive = m_pimpl->m_puserinteraction->set_parent(nullptr);
 
    }
    else
    {
 
-      pinteraction = m_pimpl->m_puserinteraction->SetParent(oswindow->m_pimpl->m_puserinteraction);
+      pprimitive = m_pimpl->m_puserinteraction->set_parent(oswindow->m_pimpl->m_puserinteraction);
 
    }
 
-   return pinteraction->get_safe_handle();
+   return __user_interaction(pprimitive)->get_safe_handle();
 
 }
 
@@ -570,11 +570,12 @@ CLASS_DECL_AURA oswindow get_window(oswindow oswindow, int iWindow)
 
 
 
-CLASS_DECL_AURA int_bool show_window(oswindow oswindow, int iShowCmd)
+CLASS_DECL_AURA int_bool show_window(oswindow oswindow, const ::e_display & edisplay, const ::e_activation & eactivation)
 {
 
    UNREFERENCED_PARAMETER(oswindow);
-   UNREFERENCED_PARAMETER( iShowCmd);
+   UNREFERENCED_PARAMETER(edisplay);
+   UNREFERENCED_PARAMETER(eactivation);
 
    return TRUE;
 

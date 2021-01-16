@@ -816,15 +816,15 @@ namespace user
          if(pview != nullptr)
          {
             ASSERT_VALID(pview);
-            __pointer(::user::frame_window) pFrame = pview->GetParentFrame();
+            __pointer(::user::frame_window) pFrame = pview->get_parent_frame();
 
             if (pFrame == nullptr)
-               TRACE(trace_category_appmsg, trace_level_error, "Error: Can not find a frame for document to activate.\n");
+               TRACE(trace_category_appmsg, e_trace_level_error, "Error: Can not find a frame for document to activate.\n");
             else
             {
                pFrame->ActivateFrame();
 
-               if (pFrame->GetParent() != nullptr)
+               if (pFrame->get_parent() != nullptr)
                {
                   __pointer(::user::frame_window) pAppFrame;
                   ASSERT_KINDOF(frame_window, pAppFrame);
@@ -833,7 +833,7 @@ namespace user
             }
          }
          else
-            TRACE(trace_category_appmsg, trace_level_error, "Error: Can not find a ::user::impact for document to activate.\n");
+            TRACE(trace_category_appmsg, e_trace_level_error, "Error: Can not find a ::user::impact for document to activate.\n");
 
          pcreate->m_pcommandline->m_varQuery["document"] = pOpenDocument;
       }

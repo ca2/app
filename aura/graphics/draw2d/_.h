@@ -1,9 +1,9 @@
 #pragma once
 
 
-DECLARE_C_FLAG(e_dock, enum_dock);
-DECLARE_C_FLAG(e_border, enum_border);
-DECLARE_C_FLAG(e_grip, enum_grip);
+DECLARE_ENUMERATION(e_dock, enum_dock);
+DECLARE_ENUMERATION(e_border, enum_border);
+DECLARE_ENUMERATION(e_grip, enum_grip);
 
 
 class image_frame_array;
@@ -21,7 +21,7 @@ CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const char * pString, i32 ca
 
 CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const char * pchText, i32 cchText, RECT32 * lprc, ::u32 format);
 
-CLASS_DECL_AURA void cra_from_quada(colorref_array & colorrefa, RGBQUAD * prgbquad, int iCount);
+CLASS_DECL_AURA void cra_from_quada(colorref_array & colorrefa, WINRGBQUAD * prgbquad, int iCount);
 
 
 namespace draw2d
@@ -192,6 +192,22 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image * pm_p, i32 dx, i32 dy, void *
 //}
 
 
+#ifdef WINDOWS
+
+
+namespace draw2d_direct2d
+{
+
+
+   class plugin;
+
+
+} // namespace draw2d_direct2d
+
+
+#endif
+
+
 #include "aura/platform/draw_context2.h"
 #include "graphics.h"
 
@@ -247,7 +263,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::bitmap >()
    {
 
-      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_bitmap);
+      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_bitmap);
 
    }
 
@@ -256,7 +272,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::brush >()
    {
 
-      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_brush);
+      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_brush);
 
    }
 
@@ -265,7 +281,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::font >()
    {
 
-      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_font);
+      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_font);
 
    }
 
@@ -274,7 +290,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::graphics >()
    {
 
-      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_graphics);
+      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_graphics);
 
    }
 
@@ -283,7 +299,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::image >()
    {
 
-      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_image);
+      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_image);
 
    }
 
@@ -292,7 +308,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::path >()
    {
 
-      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_path);
+      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_path);
 
    }
 
@@ -301,7 +317,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::pen >()
    {
 
-      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_pen);
+      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_pen);
 
    }
 
@@ -310,12 +326,15 @@ namespace factory
    inline __pointer(factory_interface) & get_factory < ::draw2d::region >()
    {
 
-      return ::factory::get_factory_array()->element_at_grow(factory_draw2d_region);
+      return ::factory::get_factory_array()->element_at_grow(e_factory_draw2d_region);
 
    }
 
 
 } // namespace factory
+
+
+#include "device_lock.h"
 
 
 

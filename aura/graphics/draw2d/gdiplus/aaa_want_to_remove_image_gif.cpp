@@ -19,7 +19,7 @@ color32_t windows_image_metadata_get_background_color(IWICMetadataQueryReader * 
 comptr < IWICImagingFactory > wic_get_imaging_factory();
 
 
-::estatus imaging::_load_image(::image * pimageCompose, __pointer(image_frame_array) & pframea, memory_pointer pmemory)
+::e_status imaging::_load_image(::image * pimageCompose, __pointer(image_frame_array) & pframea, memory_pointer pmemory)
 {
 
    HRESULT hr = E_FAIL;
@@ -138,7 +138,7 @@ comptr < IWICImagingFactory > wic_get_imaging_factory();
 
       }
 
-      pframea->m_crBack = windows_image_metadata_get_background_color(pimetadataqueryreader, pbitmapdecoder, pimagingfactory);
+      pframea->m_colorBack = windows_image_metadata_get_background_color(pimetadataqueryreader, pbitmapdecoder, pimagingfactory);
 
       pframea->set_size(cFrames);
 
@@ -463,7 +463,7 @@ comptr < IWICImagingFactory > wic_get_imaging_factory();
 
             pimageCompose->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-            color32_t crBack = pframea->m_crBack;
+            color32_t crBack = pframea->m_colorBack;
 
             byte bAlpha = colorref_get_a_value(crBack);
 
@@ -1018,13 +1018,13 @@ HRESULT windows_image_get_frame(::image * pimageCompose,
    if (SUCCEEDED(hr))
    {
 
-      pframe->m_crTransparent = pframea->m_colorrefa[transparentIndex];
+      pframe->m_colorTransparent = pframea->m_colorrefa[transparentIndex];
 
    }
    else
    {
 
-      pframe->m_crTransparent = ARGB(255, 255, 255, 255);
+      pframe->m_colorTransparent = ARGB(255, 255, 255, 255);
 
    }
 
@@ -1044,7 +1044,7 @@ HRESULT windows_image_get_frame(::image * pimageCompose,
       else
       {
 
-         pimageCompose->fill(pframea->m_crBack);
+         pimageCompose->fill(pframea->m_colorBack);
 
 
       }

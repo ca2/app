@@ -16,7 +16,7 @@ dir_system::~dir_system()
 }
 
 
-::estatus dir_system::initialize(::layered * pobjectContext)
+::e_status dir_system::initialize(::layered * pobjectContext)
 {
 
    auto estatus = ::object::initialize(pobjectContext);
@@ -34,7 +34,7 @@ dir_system::~dir_system()
 }
 
 
-::estatus dir_system::init_system()
+::e_status dir_system::init_system()
 {
 
    if (!update_module_path())

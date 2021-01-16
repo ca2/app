@@ -14,7 +14,7 @@ html_data::~html_data()
 }
 
 
-::estatus html_data::initialize_html_data(::html_data * phtmldata)
+::e_status html_data::initialize_html_data(::html_data * phtmldata)
 {
 
    auto estatus = ::form_data::initialize(phtmldata);
@@ -109,14 +109,12 @@ void html_data::implement(::draw2d::graphics_pointer & pgraphics)
 void html_data::_001OnKeyDown(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::key, pkey, pmessage);
+   __pointer(::message::key) pkey(pmessage);
 
    if(pkey->m_ekey == ::user::key_tab)
    {
 
-      auto psession = Session;
-
-      ::user::primitive * pfocus = psession->get_keyboard_focus();
+      auto pfocus = get_form()->get_keyboard_focus();
 
       if (pfocus != nullptr)
       {
@@ -128,7 +126,7 @@ void html_data::_001OnKeyDown(::message::message * pmessage)
       if (pfocus != nullptr)
       {
 
-         psession->set_keyboard_focus(pfocus);
+         pfocus->set_keyboard_focus();
 
       }
 
@@ -213,7 +211,7 @@ bool html_data::open_document(const payload & varFile)
 }
 
 
-::estatus     html_data::open_html(const ::string & str)
+::e_status     html_data::open_html(const ::string & str)
 {
 
    return m_pcoredata->open_html(str);
@@ -235,7 +233,7 @@ bool html_data::open_document(const payload & varFile)
 
 __pointer(::user::interaction) html_data::get_frame()
 {
-   return  (get_form()->GetParentFrame());
+   return  (get_form()->get_parent_frame());
 }
 
 

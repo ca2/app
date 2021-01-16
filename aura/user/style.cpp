@@ -2,6 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
 #endif
+#include "acme/id.h"
 
 
 namespace user
@@ -40,19 +41,29 @@ namespace user
    void style::default_style_construct()
    {
 
-      m_pfont = ::draw2d::point_font("Segoe UI", 14.0);
-      //m_pfontMenu;
-      //m_pfontButton;
-      //m_pfontList;
-      //m_pfontTree;
-      //m_pfontStill;
-      //m_pfontEdit;
-      //m_pfontCombo;
+      m_iUpdate = 0;
+
+      m_pfont = ::draw2d::point_font(os_font_name(e_font_sans_ui), 12.0);
 
    }
 
 
-   ::estatus style::initialize_style()
+   void style::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   {
+
+      if (psubject->m_id == id_user_style_change 
+         || psubject->m_id == id_os_user_theme
+         || psubject->m_id == id_os_dark_mode)
+      {
+
+         m_iUpdate++;
+
+      }
+
+   }
+
+
+   ::e_status style::initialize_style()
    {
 
       return ::success;
@@ -60,50 +71,74 @@ namespace user
    }
 
 
-   //void style::select_default()
+   //::user::plain_edit_internal * style::get_plain_edit_internal(::draw2d::graphics_pointer & pgraphics, ::user::plain_edit * pedit)
    //{
 
-   //   if (pstyle.is_set())
+   //   if (!m_pplaineditinternal)
    //   {
 
-   //      m_puserstyleSelect = pstyle;
+   //      __construct(m_pplaineditinternal);
+
+   //      m_pplaineditinternal->update(pgraphics, )
 
    //   }
-   //   else
-   //   {
 
-   //      m_puserstyleSelect = this;
 
-   //   }
+   //   return m_pplaineditinternal;
 
    //}
 
 
+   color32_t style::get_style_moveable_border_color(enum_style estyle)
+   {
 
+      switch (estyle)
+      {
+      case StyleLightBlue:
+      case StyleTranslucidLightBlue:
+         return ARGB(255, 116, 160, 220);
+      case StyleTranslucidWarmGray:
+         return ARGB(255, 190, 184, 177);
+         break;
+      case StyleDarkRed:
+         //return ARGB(255, 34, 54, 75);
+      //{
+      //   int iR = 220;
+      //   int iG = 40;
+      //   int iB = 60;
+      //   return ARGB(255, iR, iG, iB);
+      //}
+      {
+         int iR = 165;
+         int iG = 32;
+         int iB = 32;
+         return ARGB(255, iR, iG, iB);
+      }
+      break;
+      case StyleDarkWarmBlue:
+         return ARGB(255, 34, 54, 75);
+         break;
+      case StyleBlackBorder:
+         return RGB(116, 160, 220) | 0xff000000;
+      case StyleLightGreen:
+      case StyleTranslucidLightGreen:
+         return RGB(116, 220, 160) | 0xff000000;
+      case StyleRedOrange:
+         return RGB(255, 170, 136) | 0xff000000;
+      case StyleBlueRedPurple:
+         return RGB(200, 100, 220) | 0xff000000;
+      case StyleEveningSun:
+         return RGB(255, 210, 100) | 0xff000000;
+      case StyleTranslucidWarmLiteGray:
+         return RGB(239, 230, 219) | 0xff000000;
+      default:
+         return RGB(200, 100, 220) | 0xff000000;
+      }
 
+      // Light Green/Translucid Light Green
+      return RGB(116, 220, 160) | 0xff000000;
 
-
-
-
-   //void style::initialize_style()
-   //{
-
-   //   ::user::style::initialize_style();
-
-   //   color color;
-   //   color.set_rgb(psession->get_default_color(COLOR_HIGHLIGHT));
-
-   //   class color colorHover(color);
-   //   colorHover.hls_rate(0.0, 0.3, 0.0);
-
-   //   class color colorPress(color);
-   //   colorPress.hls_rate(0.0, 0.7, 0.0);
-
-   //   m_eschema = schema_default;
-
-   //   create_opaque_color(color_text, ::color_black);
-
-   //}
+   }
 
 
    bool style::_001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame * pframe)
@@ -709,7 +744,7 @@ namespace user
    //}
 
 
-   //bool style::create_flag(e_flag eflag, bool bFlag)
+   //bool style::create_flag(enum_flag eflag, bool bFlag)
    //{
 
    //   if (userstyle()->m_mapFlag.is_null())
@@ -848,7 +883,7 @@ namespace user
    }
 
 
-   ::color style::get_color(const ::user::interaction* pinteraction, ::user::eelement eelement, ::user::estate estate) const
+   ::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (::is_set(pinteraction))
@@ -883,6 +918,30 @@ namespace user
 
    }
 
+
+   bool style::get_int(const ::user::interaction * pinteraction, int & i, ::user::enum_int eint, ::user::enum_state estate) const
+   {
+
+      if(eint == e_int_scroll_bar_width)
+      {
+
+         i = 16;
+
+         return true;
+
+      }
+
+      return false;
+
+   }
+
+
+   bool style::get_double(const ::user::interaction* pinteraction, double & d, ::user::enum_double edouble, ::user::enum_state estate) const
+   {
+
+      return false;
+
+   }
 
    //void style::nextstyle(style_context * pcontext)
    //{

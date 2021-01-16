@@ -87,7 +87,7 @@ namespace music
          void sequence_thread::OnMidiSequenceEvent(::message::message * pmessage)
          {
 
-            SCAST_PTR(::message::base, pbase, pmessage);
+            __pointer(::message::base) pbase(pmessage);
 
             __pointer(sequence::event) pevent(pbase->m_lparam);
 
@@ -97,19 +97,19 @@ namespace music
 
             switch(pevent->m_eevent)
             {
-            case sequence::EventMidiPlaybackEnd:
+            case sequence::e_event_midi_playback_end:
             {
                auto & link = get_sequence()->GetPlayerLink();
-               if(link() & sequence::FlagTempoChange)
+               if(link() & sequence::e_flag_tempo_change)
                {
                   PrerollAndWait(link.m_tkRestart);
                   get_sequence()->SetTempoChangeFlag(false);
                   get_sequence()->Start();
-                  link() -= sequence::FlagTempoChange;
+                  link() -= sequence::e_flag_tempo_change;
                }
-               else if(link() & sequence::FlagSettingPos)
+               else if(link() & sequence::e_flag_setting_position)
                {
-                  link() -= sequence::FlagSettingPos;
+                  link() -= sequence::e_flag_setting_position;
                   try
                   {
                      PrerollAndWait(link.m_tkRestart);
@@ -121,9 +121,9 @@ namespace music
                   get_sequence()->Start();
                   PostNotifyEvent(notify_event_position_set);
                }
-               else if(link() & sequence::FlagMidiOutDeviceChange)
+               else if(link() & sequence::e_flag_midi_out_device_change)
                {
-                  link() -= sequence::FlagMidiOutDeviceChange;
+                  link() -= sequence::e_flag_midi_out_device_change;
                   try
                   {
                      PrerollAndWait(link.m_tkRestart);
@@ -143,9 +143,9 @@ namespace music
                    0);      */
 
                }
-               else if(link() & sequence::FlagStopAndRestart)
+               else if(link() & sequence::e_flag_midi_out_and_restart)
                {
-                  link() -= sequence::FlagStopAndRestart;
+                  link() -= sequence::e_flag_midi_out_and_restart;
                   try
                   {
                      PrerollAndWait(link.m_tkRestart);
@@ -160,9 +160,9 @@ namespace music
                else
                {
 
-   //                  if(link.TestFlag(sequence::FlagStop))
+   //                  if(link.TestFlag(sequence::e_flag_stop))
                   {
-                     link() -= sequence::FlagStop;
+                     link() -= sequence::e_flag_stop;
                      link.OnFinishCommand(command_stop);
                      PostNotifyEvent(notify_event_playback_end);
 
@@ -173,13 +173,13 @@ namespace music
             }
             break;
                   
-            case sequence::event_operation:
+            case sequence::e_event_operation:
             {
                PostNotifyEvent(notify_event_generic_mmsg_done);
             }
             break;
             
-            case sequence::EventMidiPlaybackStart:
+            case sequence::e_event_midi_playback_start:
             {
 
                //pseq->seq_start();
@@ -194,7 +194,7 @@ namespace music
 
             }
             break;
-            case sequence::EventMidiStreamOut:
+            case sequence::e_event_midi_playback_out:
             {
                PostNotifyEvent(notify_event_midi_stream_out);
             }
@@ -218,7 +218,7 @@ namespace music
          void sequence_thread::Play(imedia_time tkStart)
          {
             ASSERT(get_sequence() != nullptr);
-            ASSERT(get_sequence()->get_state() == sequence::state_opened);
+            ASSERT(get_sequence()->get_state() == sequence::e_state_opened);
 
             PrerollAndWait(tkStart);
             get_sequence()->Start();
@@ -227,7 +227,7 @@ namespace music
          void sequence_thread::PlayRate(double dRate)
          {
             ASSERT(get_sequence() != nullptr);
-            ASSERT(get_sequence()->get_state() == sequence::state_opened);
+            ASSERT(get_sequence()->get_state() == sequence::e_state_opened);
 
             PrerollAndWait(dRate);
             get_sequence()->Start();

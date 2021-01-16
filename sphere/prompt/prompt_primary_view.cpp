@@ -76,7 +76,7 @@ namespace prompt
 
                   strNewText.replace("\r\n", "\n");
 
-                  _001SetText(strNewText, ::source_sync);
+                  _001SetText(strNewText, ::e_source_sync);
 
                   str = strNewText;
 
@@ -128,7 +128,7 @@ namespace prompt
 
                         strNewText.replace("\r\n", "\n");
 
-                        _001SetText(strNewText, ::source_sync);
+                        _001SetText(strNewText, ::e_source_sync);
 
                         str = strNewText;
 
@@ -164,7 +164,7 @@ namespace prompt
 
                         strNewText.replace("\r\n", "\n");
 
-                        _001SetText(strNewText, ::source_sync);
+                        _001SetText(strNewText, ::e_source_sync);
 
                         str = strNewText;
 
@@ -203,7 +203,7 @@ namespace prompt
                   {
                      string strNewText = str + "executing " + strLine  + "...";
                      strNewText.replace("\r\n", "\n");
-                     _001SetText(strNewText, context + ::source_sync + ::source_system);
+                     _001SetText(strNewText, context + ::e_source_sync + ::e_source_system);
                      m_iCompromised = m_ptree->m_iSelBeg = m_ptree->m_iSelEnd = strNewText.get_length();
                   }
 
@@ -223,7 +223,7 @@ namespace prompt
 
    void primary_view::_001OnUpdateEditCopy(::message::message * pmessage)
    {
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
       pcommand->enable(TRUE);
    }
 
@@ -235,7 +235,7 @@ namespace prompt
 
    void primary_view::_001OnUpdateEditPaste(::message::message * pmessage)
    {
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
       pcommand->enable(TRUE);
    }
 
@@ -250,7 +250,7 @@ namespace prompt
    void primary_view::_001OnContextMenu(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::context_menu, pcontextmenu, pmessage);
+      __pointer(::message::context_menu) pcontextmenu(pmessage);
 
       track_popup_xml_menu("matter://command/popup_primary_verbing.xml", 0, pcontextmenu->GetPoint());
 

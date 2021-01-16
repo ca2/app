@@ -32,7 +32,7 @@ void simple_printer_list_view::install_message_routing(::channel * pchannel)
 
 void simple_printer_list_view::_001OnCreate(::message::message * pmessage)
 {
-//   SCAST_PTR(::message::create, pcreate, pmessage);
+//   __pointer(::message::create) pcreate(pmessage);
 
    pmessage->previous();
 

@@ -15,7 +15,6 @@ namespace user
    class copydesk;
    class create_struct;
    class control_event;
-   //class control_descriptor;
    class interaction_child;
    class interaction_impl;
    class interaction_pointer_array;
@@ -32,7 +31,6 @@ namespace user
    class scroll_bar;
    class split_layout;
    class style;
-//   class theme;
    class scroll_info;
    class window_map;
    using style_pointer = __pointer(style);
@@ -42,28 +40,6 @@ namespace user
 
    class menu;
    class place_holder;
-
-//
-//#if defined(APPLE_IOS) || defined(ANDROID)
-//
-//
-//   class CLASS_DECL_BASE native_window_initialize
-//   {
-//   public:
-//
-//      RECT32   m_rect;
-//
-//   };
-//
-//
-//#else
-//
-//
-//   class native_window_initialize;
-//
-//
-//#endif
-
 
    class control_event;
    class frame_window;
@@ -82,9 +58,6 @@ namespace experience
 } // namespace experience
 
 
-//#include "aura/primitive/primitive/match.h"
-
-
 #include "base/user/experience/experience_updown.h"
 
 #include "style.h"
@@ -101,18 +74,11 @@ namespace experience
 #include "menu.h"
 
 
-//#include "box.h"
 #include "control.h"
 #include "control_property.h"
 
 
-//#include "tool_window.h"
-
-//#include "callback.h"
-
-
 #include "form_data.h"
-//#include "form.h"
 
 
 #ifdef WINDOWS_DESKTOP
@@ -155,11 +121,7 @@ namespace user
 }
 
 
-
-
 #include "margin.h"
-
-//#include "aura/user/rich_text/_const.h"
 
 
 namespace user
@@ -194,6 +156,7 @@ namespace userex
 
 class cregexp;
 
+
 namespace database
 {
 
@@ -201,8 +164,8 @@ namespace database
 
 } // namespace database
 
+
 class image_list;
-//class simple_list_data;
 
 
 namespace user
@@ -215,21 +178,7 @@ namespace user
    class front_end;
    class menu_item;
 
-   //class list_column_array;
-
-
-
-   //class list_header;
    class scroll_bar;
-   //class list_column_array;
-
-
-
-
-
-   //CLASS_DECL_BASE bool set_wallpaper(string strLocalImagePath);
-   //CLASS_DECL_BASE string_array get_wallpaper();
-
 
 
 } // namespace user
@@ -237,41 +186,6 @@ namespace user
 
 #define USER_TIMER 50000
 
-
-//class simple_mesh_data;
-
-//
-//enum enum_position
-//{
-//   e_position_none = 0,
-//   e_position_top = 1,
-//   e_position_left = 2,
-//   position_top_left = 3,
-//   e_position_right = 4,
-//   position_top_right = 5,
-//   position_hcenter = 6,
-//   position_top_center = 7,
-//   e_position_bottom = 8,
-//   position_vcenter = 9,
-//   position_bottom_left = 10,
-//   position_left_center = 11,
-//   position_bottom_right = 12,
-//   position_right_center = 13,
-//   position_bottom_center = 14,
-//   position_center = 15,
-//};
-//
-//
-//namespace user
-//{
-//   enum enum_line_hit
-//   {
-//      e_line_hit_none,
-//      e_line_hit_normal,
-//      e_line_hit_link,
-//   };
-//}
-//
 
 #include "picture.h"
 #include "picture_interaction.h"
@@ -294,67 +208,24 @@ namespace user
 } // namespace user
 
 
-//#include "imm_client.h"
-
-
-//#include "aura/user/rich_text/edit.h"
-
-
-//#include "list_column.h"
-//
-//#include "list_column_array.h"
-//
-//#include "list_header.h"
-//#include "tool_window.h"
-
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
 #ifdef WINDOWS
 #include "windows_tsf/edit_window.h"
 #endif
 #endif
 
-//#include "plain_edit.h"
-
-//#include "combo_box.h"
-//#include "combo_list.h"
-
 #include "base/user/experience/_const.h"
 
-//#include "check_box.h"
-//#include "toggle_switch.h"
-
-
-
-
-//#include "mesh.h"
-//#include "list.h"
-
 #include "impact.h"
-
-//#include "list_view.h"
-//#include "mesh_cache_interface.h"
-//#include "mesh_cache.h"
-//#include "list_cache.h"
-
-//#include "aura/user/simple/mesh_data.h"
-//#include "aura/user/simple/list_data.h"
-
-//#include "tree.h"
-
-//#include "form.h"
-//#include "form_list.h"
-//#include "form_list_view.h"
-
-
-
-//#include "place_holder.h"
-//#include "place_holder_container.h"
 
 #include "acme/primitive/primitive/match.h"
 
 
 
 #include "tab_callback.h"
+#include "tab_pane.h"
+#include "tab_pane_array.h"
+#include "tab_data.h"
 #include "tab.h"
 
 

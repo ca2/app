@@ -222,10 +222,10 @@ bool oswindow_remove(UIWindow * window)
 //   if(::is_null(this))
 //      return nullptr;
 //
-//   if(m_pimpl->GetParent() == nullptr)
+//   if(m_pimpl->get_parent() == nullptr)
 //      return nullptr;
 //
-//   return m_pimpl->GetParent()->get_handle();
+//   return m_pimpl->get_parent()->get_handle();
 //
 //}
 //

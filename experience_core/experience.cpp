@@ -17,7 +17,7 @@ namespace experience
       }
 
 
-      ::estatus experience::initialize(::layered * pobjectContext)
+      ::e_status experience::initialize(::layered * pobjectContext)
       {
 
          auto estatus = ::experience::experience::initialize(pobjectContext);
@@ -30,7 +30,7 @@ namespace experience
          }
 
 #if !defined(CUBE)
-         fork([this]()
+         fork([]()
             {
 
                System.draw2d().set_cursor_set_from_matter("cursor/antialiased-classic");
@@ -117,8 +117,6 @@ namespace experience
          return nullptr;
 
       }
-
-
 
 
    } // namespace core

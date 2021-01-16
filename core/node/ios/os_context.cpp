@@ -601,7 +601,7 @@ namespace ios
    }
 
 
-   ::estatus os_context::create_service()
+   ::e_status os_context::create_service()
    {
 
       //    __throw(not_implemented());
@@ -654,7 +654,7 @@ namespace ios
    }
 
 
-   ::estatus os_context::remove_service()
+   ::e_status os_context::remove_service()
    {
 
       return false;
@@ -696,7 +696,7 @@ namespace ios
    }
 
 
-   ::estatus os_context::start_service()
+   ::e_status os_context::start_service()
    {
       //  __throw(not_implemented());
       return false;
@@ -738,7 +738,7 @@ namespace ios
    }
 
 
-   ::estatus os_context::stop_service()
+   ::e_status os_context::stop_service()
    {
       //    __throw(not_implemented());
       return false;

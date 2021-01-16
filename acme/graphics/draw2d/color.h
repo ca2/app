@@ -140,6 +140,9 @@ public:
 
    void hls_mult(double dRateH, double dRateL, double dRateS);
    void hls_rate(double dRateH, double dRateL, double dRateS);
+   void hue_rate(double dRateL);
+   void lightness_rate(double dRateL);
+   void saturation_rate(double dRateL);
    void set_rgb(color32_t cr);
    void set_argb(color32_t cr);
    void set_bgr(u32 dw);
@@ -150,6 +153,8 @@ public:
    void hls_rate(hls & hls);
    void get_hls(hls & hls) const;
    void set_hls(const hls & hls);
+
+
 
    ::hls get_hls() const { hls hls; get_hls(hls); return hls; }
 
@@ -166,6 +171,8 @@ public:
    void set(int R, int G, int B);
    void set(int R, int G, int B, int A);
    void set(double R, double G, double B, double A);
+
+   void make_black_and_white();
 
    operator color32_t() const;
 

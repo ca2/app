@@ -132,7 +132,7 @@ CLASS_DECL_ACME string message_box_result_to_string(enum_dialog_result edialogre
 }
 
 
-CLASS_DECL_ACME color get_simple_ui_color(::user::eelement eelement, ::user::estate estate)
+CLASS_DECL_ACME color get_simple_ui_color(::user::enum_element eelement, ::user::enum_state estate)
 {
 
    ::color color;

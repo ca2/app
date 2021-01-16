@@ -13,7 +13,7 @@ namespace html
    };
 
 
-   enum e_flag
+   enum enum_flag
    {
       // the width can be expanded
       FlagWidthExpandable,

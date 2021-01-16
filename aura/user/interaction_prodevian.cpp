@@ -24,13 +24,18 @@ namespace user
 
       m_bRedraw = false;
       m_bUpdateBuffer = false;
+      m_bUpdateScreen = false;
       m_bUpdateWindow = false;
 
       m_bAuraMessageQueue = true;
 
       m_bUpdatingScreen = false;
 
+#ifdef _UWP
+      m_bExclusiveMode = true;
+#else
       m_bExclusiveMode = false;
+#endif
 
       m_bVisualUpdated = true;
 
@@ -75,7 +80,7 @@ namespace user
 #endif
 
 
-   ::estatus prodevian::initialize_prodevian(interaction_impl * pimpl)
+   ::e_status prodevian::initialize_prodevian(interaction_impl * pimpl)
    {
 
       auto estatus = initialize(pimpl);
@@ -134,10 +139,16 @@ namespace user
 
    }
 
+   
+   ::e_status prodevian::do_task()
+   {
+
+      return ::thread::do_task();
+
+   }
 
 
-
-   ::estatus prodevian::run()
+   ::e_status prodevian::run()
    {
 
       //m_pimpl->m_puserinteraction->task_add(this);
@@ -524,7 +535,7 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   bool bWait = (m_bUpdateWindow && !bStartWindowVisual) || bRedraw;
+   bool bWait = ((m_bUpdateWindow || m_bUpdateScreen) && !bStartWindowVisual) || bRedraw;
 
    if (bHasProdevian || (bWait && ((m_nanosNow - m_nanosLastFrame) < m_nanosPostRedraw / 2)))
    {
@@ -709,7 +720,7 @@ bool prodevian::prodevian_iteration()
 
    bool bWindowsApplyVisual = true;
 
-   if (m_bUpdateWindow && (bWindowsApplyVisual || !bStartWindowVisual))
+   if (m_bUpdateScreen && (bWindowsApplyVisual || !bStartWindowVisual))
    {
 
       prodevian_update_screen();
@@ -780,9 +791,11 @@ bool prodevian::prodevian_iteration()
 
       m_bUpdateBuffer = false;
 
+      m_bUpdateScreen = false;
+
       m_bUpdateWindow = false;
 
-      update_buffer(m_bUpdateBuffer, m_bUpdateWindow, bRedraw);
+      update_buffer(m_bUpdateBuffer, m_bUpdateScreen, m_bUpdateWindow, bRedraw);
 
       m_bUpdateBufferUpdateWindowPending = m_bUpdateWindow;
 
@@ -826,7 +839,7 @@ bool prodevian::prodevian_iteration()
    }
 
 
-   void prodevian::update_buffer(bool & bUpdateBuffer, bool & bUpdateWindow, bool bForce)
+   void prodevian::update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce)
    {
 
       try
@@ -900,9 +913,9 @@ bool prodevian::prodevian_iteration()
 
             sl.unlock();
 
-            ::draw2d::graphics_pointer pgraphicsNull;
+            ::draw2d::graphics_pointer pgraphicsNull(e_create);
 
-            //m_puserinteraction->update_modified();
+            pgraphicsNull->CreateCompatibleDC(nullptr);
 
             m_puserinteraction->sketch_to_design(pgraphicsNull, bUpdateBuffer, bUpdateWindow);
 
@@ -1023,6 +1036,8 @@ bool prodevian::prodevian_iteration()
 
             bUpdateBuffer = true;
 
+            bUpdateScreen = true;
+
             m_millisAfterDrawing.Now();
 
             m_millisDuringDrawing = m_millisAfterDrawing - m_millisBeforeDrawing;
@@ -1070,6 +1085,15 @@ bool prodevian::prodevian_iteration()
 
       try
       {
+
+         string strType = m_puserinteraction->type_c_str();
+
+         if(strType.contains_ci("combo_list"))
+         {
+
+            output_debug_string("We're on the combo_list update_screen");
+
+         }
 
          m_millisBeforeUpdateScreen.Now();
 

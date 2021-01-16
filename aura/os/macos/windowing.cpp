@@ -66,7 +66,7 @@ oswindow_data::oswindow_data()
 
    m_nswindow  = nullptr;
    m_pimpl       = nullptr;
-   m_plongmap  = new int_ptr_to_int_ptr;
+   m_plongmap  = new iptr_to_iptr;
    m_bNsWindowRect = false;
 }
 
@@ -76,7 +76,7 @@ oswindow_data::oswindow_data(nswindow window)
 
    m_nswindow  = window;
    m_pimpl       = nullptr;
-   m_plongmap  = new int_ptr_to_int_ptr;
+   m_plongmap  = new iptr_to_iptr;
    m_bNsWindowRect = false;
 }
 

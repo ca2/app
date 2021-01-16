@@ -63,7 +63,7 @@ index oswindow_find(::user::interaction_impl * pimpl)
 
 oswindow_data::oswindow_data(::user::interaction_impl * pimpl)
 {
-   m_plongptrmap = new int_ptr_to_int_ptr();
+   m_plongptrmap = new iptr_to_iptr();
    m_pimpl = pimpl;
 
 }
@@ -107,7 +107,7 @@ bool oswindow_data::is_child(::oswindow oswindow)
 
    }
 
-   ::user::interaction * pinteraction = m_pimpl->m_puserinteraction->GetParent();
+   ::user::interaction * pinteraction = m_pimpl->m_puserinteraction->get_parent();
 
    if (pinteraction == nullptr)
    {

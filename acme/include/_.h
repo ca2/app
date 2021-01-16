@@ -3,7 +3,7 @@
 //   
 //    
 //        ------------------ - --/ ------------------------ - ----/ -------------------------------------- - --
-//        DOMAS_16-09-0.1989 > ThomasBS_ / ------ - ---/ aura.dll Release(Win32) / aura.lib Static Release(Win32)   ø      helloaura.exe     Static     Release(Win32)   ----   -    -- <3Thomas Boregaard SørensenCamilo SasukeThomas Boregaard Sørensen!!
+//        DOMAS_16-09-0.1989 > ThomasBS_ / ------ - ---/ aura.dll Release(Win32) / aura.lib Static Release(Win32)   oe      helloaura.exe     Static     Release(Win32)   ----   -    -- <3Thomas Boregaard SoerensenCamilo SasukeThomas Boregaard Soerensen!!
 //        2020 - 08 - 18 01:38 / 17, 180kb---- - ---/ 189, 893kb-------- - ---/ 12, 187kb------------------ - --
 //        2020 - 08 - 20 07:41 / 13, 915kb / 137, 668kb / 9, 715kb------------------ - --
 //        rebuild mark / ---------------- - ------------------------- - -------------------------------- - --
@@ -39,6 +39,8 @@
 //        ------------------------------------------------------------------------------
 //
 //
+//        <3 ThomasBS - 400th follower
+//
 //
 //        ca2 is an all-purpose multi-platform framework
 //        and set of libraries written in C++ language with
@@ -53,7 +55,7 @@
 //
 //        c(s)t(s)<tb(s)!!
 //
-//01234567-∞8888∞+∞ ∞∞∞ ∞∞∞ ∞∞∞∞∞ ∞∞∞∞∞∞∞∞∞∞∞ ∞∞∞∞∞ ∞∞∞∞∞∞∞∞∞∞ ∞∞∞∞∞∞∞ ∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞∞
+//01234567-?8888?+? ??? ??? ????? ??????????? ????? ?????????? ??????? ???????????????????????
 //
 //
 //
@@ -64,23 +66,11 @@
 #define __spin_namespace acme // back bone / four-letter "spin*" namespace name
 
 
-//
-
-
 #pragma once
 
 
 #undef Sys
-//#undef Sess
-//#undef App
 
-
-//#define Sys(psystem) (*psystem)
-//#define Sess(pcontextsession) (pcontextsession)
-//#define App(playered) (*::get_context_application(playered))
-
-//#define Sess(pobject) (*pobject->get_context_session())
-//#define App(pobject) (*pobject->get_app())
 
 #define System (*::get_context_system())
 
@@ -112,6 +102,7 @@ typedef __MAIN_DEFERRED_RUN *__LPFN_MAIN_DEFERRED_RUN;
 extern CLASS_DECL_ACME __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
 
 
+
 #ifdef __DEBUG
 
 #define INLINE
@@ -122,6 +113,7 @@ extern CLASS_DECL_ACME __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
 
 #endif
 
+
 namespace acme
 {
 
@@ -129,20 +121,11 @@ namespace acme
 
 } // namespace acme
 
+
 class layered;
 
 
 CLASS_DECL_ACME ::acme::system *get_context_system();
-//CLASS_DECL_ACME ::acme::system * get_context_system(::layered * pobjectContext);
-//CLASS_DECL_ACME inline ::acme::system * get_context_system(::acme::system * psystem);
-
-
-
-
-//#include "acme/platform/cpu_architecture.h"
-
-
-//#include "acme/message/global.h"
 
 
 template<typename TYPE>
@@ -216,7 +199,6 @@ inline TYPE & xxf_zero(TYPE & t);
 namespace opengl
 {
 
-
    class opengl;
 
 
@@ -225,12 +207,17 @@ namespace opengl
 
 enum enum_normalize
 {
+
    e_normalize
+
 };
+
 
 enum enum_null
 {
+
    e_null
+
 };
 
 
@@ -243,11 +230,11 @@ struct INT_STRING
 };
 
 
-
 CLASS_DECL_ACME void throw_todo(void);
 
 
-CLASS_DECL_ACME void set_last_status(const ::estatus &estatus);
+CLASS_DECL_ACME void set_last_status(const ::e_status &estatus);
+
 
 CLASS_DECL_ACME void windowing_output_debug_string(const char *pszDebugString);
 
@@ -255,17 +242,21 @@ CLASS_DECL_ACME void windowing_output_debug_string(const char *pszDebugString);
 namespace acme
 {
 
+
    class acme;
 
 
    extern CLASS_DECL_ACME bool g_bAcme;
+
 
 } // namespace acme
 
 
 CLASS_DECL_ACME int __assert_failed_line(const char *pszFileName, int iLineNumber);
 
+
 CLASS_DECL_ACME int is_debugger_attached(void);
+
 
 CLASS_DECL_ACME void debug_print(const char *psz, ...);
 
@@ -503,36 +494,17 @@ CLASS_DECL_ACME enum_platform_level get_platform_level();
 #define __u64xy(u)                                    __u64x(u), __u64y(u)
 
 
-//#ifndef GET_X_LPARAM
-//#define GET_X_LPARAM(lparam)                          ((i32)(i16)LOWORD(lparam))
-//#endif
-//
-//
-//#ifndef GET_Y_LPARAM
-//#define GET_Y_LPARAM(lparam)                          ((i32)(i16)HIWORD(lparam))
-//#endif
-
 #define GET_X_LPARAM64(lparam)                        ((i32)(i16)LODWORD(lparam))
 #define GET_Y_LPARAM64(lparam)                        ((i32)(i16)HIDWORD(lparam))
 
 
-//CLASS_DECL_ACME int get_acme_init();
 
-//extern "C"
-//CLASS_DECL_ACME int_bool defer_acme_init();
-
-//extern "C"
-//CLASS_DECL_ACME int_bool defer_acme_term();
+//typedef struct rdp_freerdp freerdp;
 
 
-
-
-typedef struct rdp_freerdp freerdp;
-
-
-CLASS_DECL_ACME int_bool
-freerdp_authenticate(void *instance, char **username, char **password, char **domain, const char *pszServerName,
-                     int bInteractive);
+//CLASS_DECL_ACME int_bool
+//freerdp_authenticate(void *instance, char **username, char **password, char **domain, const char *pszServerName,
+  //                   int bInteractive);
 
 
 #if !defined(O_BINARY) && !defined(WINDOWS)
@@ -551,8 +523,7 @@ CLASS_DECL_ACME void ansi_get_errno(i32 *perrno);
 CLASS_DECL_ACME void ansi_unlink(const char *psz);
 
 
-CLASS_DECL_ACME ::estatus get_last_status();
-//CLASS_DECL_ACME void set_last_status(::estatus estatus);
+CLASS_DECL_ACME ::e_status get_last_status();
 
 typedef char ansichar;
 
@@ -651,9 +622,42 @@ CLASS_DECL_ACME extern u32 g_tickStartTime;
 //inline ::matter * context_trace_object() { return general_trace_object(); }
 
 
-//CLASS_DECL_ACME void __tracea(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
-//CLASS_DECL_ACME void __tracef(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
-//CLASS_DECL_ACME void __tracev(::matter * pobject, e_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
+//CLASS_DECL_ACME void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+//CLASS_DECL_ACME void __tracef(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
+//CLASS_DECL_ACME void __tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
+
+
+
+
+
+
+#define ALOG_CONTEXT context_trace_object()
+
+#define _S_ALOG_CONTEXT ::context_trace_object()
+
+
+
+CLASS_DECL_ACME::matter * general_trace_object();
+
+CLASS_DECL_ACME int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable);
+
+inline ::matter * context_trace_object() { return general_trace_object(); }
+
+
+CLASS_DECL_ACME void __tracea(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz);
+CLASS_DECL_ACME void __tracef(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, ...);
+CLASS_DECL_ACME void __tracev(::matter * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * psz, va_list vargs);
+
+
+#define __alog(...) __tracef(__VA_ARGS__)
+
+#define INFO(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+#define WARN(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_warning, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+#define ERR(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+#define FATAL(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+
+#define TRACE(...) INFO(__VA_ARGS__)
+
 
 
 CLASS_DECL_ACME const char *trace_category_name(e_trace_category ecategory);
@@ -668,10 +672,10 @@ CLASS_DECL_ACME e_trace_category object_trace_category(::matter *pcontextobject)
 //
 //#define __alog(...) __tracef(__VA_ARGS__)
 //
-//#define INFO(...) __alog(trace_object(ALOG_CONTEXT), trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-//#define WARN(...) __alog(trace_object(ALOG_CONTEXT), trace_level_warning, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-//#define ERR(...) __alog(trace_object(ALOG_CONTEXT), trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
-//#define FATAL(...) __alog(trace_object(ALOG_CONTEXT), trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+//#define INFO(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_information, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+//#define WARN(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_warning, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+//#define ERR(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_error, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
+//#define FATAL(...) __alog(trace_object(ALOG_CONTEXT), e_trace_level_fatal, ALOG_FUNCTION, ALOG_FILE, ALOG_LINE, __VA_ARGS__)
 //
 //#define TRACE(...) INFO(__VA_ARGS__)
 //
@@ -1069,9 +1073,9 @@ class sync;
 //CLASS_DECL_ACME i32 acme_run_system(::acme::system* psystem);
 
 
-//CLASS_DECL_ACME ::estatus acme_run_system_init(::acme::system * psystem);
-//CLASS_DECL_ACME ::estatus acme_run_system_proc(::acme::system * psystem);
-//CLASS_DECL_ACME ::estatus acme_run_system_term(::acme::system * psystem);
+//CLASS_DECL_ACME ::e_status acme_run_system_init(::acme::system * psystem);
+//CLASS_DECL_ACME ::e_status acme_run_system_proc(::acme::system * psystem);
+//CLASS_DECL_ACME ::e_status acme_run_system_term(::acme::system * psystem);
 
 
 template<typename VAR>
@@ -1538,7 +1542,6 @@ class property_set;
 class matter;
 
 
-//class base_edit;
 class var_array;
 
 
@@ -1547,13 +1550,6 @@ class property;
 
 class timer_future;
 
-
-//namespace handle
-//{
-//
-//   class ini;
-//
-//} // namespace handle
 
 namespace acme
 {
@@ -1601,9 +1597,6 @@ namespace message
 
 } // namespace message
 
-
-//#include "acme/user/_const.h"
-//#include "acme/user/_const_key.h"
 
 namespace draw2d
 {
@@ -1654,47 +1647,6 @@ class base_enum;
 
 class form_property_set;
 
-
-//namespace user
-//{
-//
-//
-//   class create;
-//   class control_event;
-//   class item;
-//   class check;
-//   class create_struct;
-//   class command;
-//   class interaction_impl;
-//   class primitive;
-//   class frame;
-//   class printer;
-//   class primitive;
-//   class interaction;
-//   class interaction_layout;
-//   class form;
-//   class form_future;
-//   class menu_interaction;
-//   class toolbar;
-//   class split_layout;
-//   class style_rect;
-//   class scroll_bar;
-//   class scroll_data;
-//   class style;
-//
-//   using style_pointer = __pointer(style);
-//
-//   using eflag = flags < enum_flag >;
-//
-//#if defined(_UWP) || defined(APPLE_IOS) || defined(ANDROID)
-//
-//   class native_window_initialize;
-//
-//#endif
-//
-//
-//} // namespace user
-//
 
 namespace acme
 {
@@ -1761,6 +1713,7 @@ namespace url
 
 class compress_department; // only usable from axis.dll and dependants
 
+
 class channel;
 
 
@@ -1785,7 +1738,6 @@ class critical_section;
 class var_array;
 
 
-//class thread;
 class channel;
 
 
@@ -1829,7 +1781,6 @@ namespace datetime
 
 
 } // namespace datetime
-
 
 
 template<typename Type, typename RawType = Type>
@@ -1963,7 +1914,7 @@ namespace acme
 
       //Thank you Fiora a Eterna!!
 
-      //Fiora Aeterna☄ ‏@FioraAeterna 20m20 minutes ago
+      //Fiora Aeterna? ?@FioraAeterna 20m20 minutes ago
 
       //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
       //   Details
@@ -2006,7 +1957,7 @@ namespace acme
 
       //Thank you Fiora a Eterna!!
 
-      //Fiora Aeterna☄ ‏@FioraAeterna 20m20 minutes ago
+      //Fiora Aeterna? ?@FioraAeterna 20m20 minutes ago
 
       //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
       //   Details
@@ -2045,7 +1996,7 @@ namespace acme
 
       //Thank you Fiora a Eterna!!
 
-      //Fiora Aeterna☄ ‏@FioraAeterna some minutes ago
+      //Fiora Aeterna? ?@FioraAeterna some minutes ago
 
       //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
       //   Details
@@ -2086,7 +2037,7 @@ namespace acme
 
       //Thank you Fiora a Eterna!!
 
-      //Fiora Aeterna☄ ‏@FioraAeterna some minutes ago
+      //Fiora Aeterna? ?@FioraAeterna some minutes ago
 
       //   maybe it's cynical but I'm starting to think the real reason so many newer games have constant autosaves is because they crash all the time
       //   Details
@@ -2152,26 +2103,6 @@ namespace acme
 {
 
 
-//#if defined _UWP && defined(__cplusplus_winrt)
-//
-//   interface class system_window
-//   {
-//
-//      virtual Windows::Foundation::Rect get_window_rect() = 0;
-//      virtual Windows::Foundation::Point get_cursor_pos() = 0;
-//
-//
-//
-//   };
-//
-//   CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow,RECTD * prect);
-
-//   CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow,RECT32 * prect);
-
-//
-//#endif
-
-
    class file;
 
 
@@ -2186,25 +2117,12 @@ namespace acme
 
 } // namespace acme
 
-//CLASS_DECL_ACME bool enable_trace_category(e_trace_category ecategory, bool bEnable = true);
-
-//// only usable from axis and axis dependants
-//namespace acme
-//{
-//
-//   class application;
-//   class session;
-//   class system;
-//
-//}
-
 
 // only usable from base and base dependants
 namespace base
 {
 
    class application;
-
 
    class session;
 
@@ -2213,29 +2131,8 @@ namespace base
 
 }
 
-//// only usable from acme and acme dependants
-//namespace acme
-//{
-//
-//   //class application;
-//   //class session;
-//   //class system;
-//
-//}
-
 
 class app_core;
-
-
-//extern "C"
-//typedef ::acme::system *  CREATE_SYSTEM(app_core * pappcore);
-//typedef ::acme::system * CREATE_SYSTEM();
-
-//typedef CREATE_SYSTEM * LPFN_CREATE_SYSTEM;
-
-//CLASS_DECL_ACME extern LPFN_CREATE_SYSTEM g_pfn_create_system;
-//CLASS_DECL_ACME extern const char * g_pszCooperativeLevel;
-//CLASS_DECL_ACME extern int g_iDerivedApplication; // one-based-index of derived application, zero if Main application
 
 
 namespace data
@@ -2259,10 +2156,6 @@ namespace xml
 
 
 } // namespace xml
-
-
-
-
 
 
 enum e_extract
@@ -2292,26 +2185,7 @@ namespace str
 } // namespace str
 
 
-
 class event;
-
-
-//class thread;
-
-
-
-
-//class thread;
-
-
-//typedef pointer < thread > thread_pointer;
-//typedef pointer_array < thread > thread_spa;
-
-
-//class thread_impl;
-
-
-//typedef pointer < thread_impl > thread_impl_pointer;
 
 
 namespace html
@@ -2375,13 +2249,6 @@ class var_array;
 
 using arguments = var_array;
 
-//class context;
-
-
-
-
-//CLASS_DECL_ACME bool acme_init();
-//CLASS_DECL_ACME bool acme_term();
 
 CLASS_DECL_ACME bool __node_acme_pre_init();
 
@@ -2454,14 +2321,12 @@ class type;
 #define __unbind(holder, ...) (holder)->__release((holder)-> __VA_ARGS__ )
 
 
-CLASS_DECL_ACME ::estatus __realize(::matter * pmatter, const ::promise::process & process);
+CLASS_DECL_ACME ::e_status __realize(::matter * pmatter, const ::promise::process & process);
 
 // C-includes
 //#include "acme/os/os.h"
 
 class thread_parameter;
-
-//#include "acme/primitive/primitive/enum.h"
 
 
 #include "acme/primitive/primitive/interlocked_long.h"
@@ -2561,7 +2426,9 @@ inline bool is_null_ref(const TYPE &t)
 template<typename TYPE>
 inline bool is_set_ref(const TYPE &t)
 {
+
    return !is_null_ref(t);
+
 }
 
 
@@ -2581,10 +2448,6 @@ using matter_pointer = __pointer(::matter);
 #include "acme/primitive/promise/process.h"
 
 
-
-
-//#include "acme/platform/_.h"
-
 template<class POINTER_TYPE>
 inline auto &__typed(__pointer(POINTER_TYPE) &p) { return *p; }
 
@@ -2597,7 +2460,6 @@ inline auto &__typed(__pointer(POINTER_TYPE) &p) { return *p; }
 using file_pointer = __pointer(::file::file);
 
 using file_result = __result(::file::file);
-
 
 class stream;
 
@@ -2612,7 +2474,9 @@ inline stream &__save_object(stream &stream, BASE_TYPE *p);
 template<typename BASE_TYPE>
 inline stream &__save_object(stream &stream, const __pointer(BASE_TYPE) &p)
 {
+
    return __save_object(stream, (BASE_TYPE *) p.m_p);
+
 }
 
 
@@ -2649,9 +2513,8 @@ using wparam = c_number<WPARAM>;
 #include "acme/platform/common.h"
 
 
-//#include "acme/primitive/string/_.h"
-
 class filetime;
+
 
 #include "acme/primitive/datetime/date_span.h"
 #include "acme/primitive/datetime/time_span.h"
@@ -2668,8 +2531,10 @@ namespace status
 
 } // namespace status
 
+
 namespace message
 {
+
    class message;
 
 } // namespace status
@@ -2725,41 +2590,30 @@ using size = size_type<SIZE32, POINT32, RECT32>;
 #include "acme/primitive/primitive/block.h"
 #include "acme/memory/memory.h"
 
-#include "acme/primitive/primitive/cflag.h"
-
-
+#include "acme/primitive/primitive/enumeration.h"
 
 
 class thread;
 
+
 namespace user
 {
-//
-//   using estate = cflag < enum_state >;
-//   using eelement = cflag < enum_element >;
-//
 
    class primitive;
 
-
    class create;
+
 
 } // namespace user
 
 
-
-
-
-
-
-//using eobject = cflag < ::enum_object >;
 class action_context;
 
 
 #include "acme/primitive/primitive/eobject.h"
 
 
-DECLARE_C_FLAG(e_message_box, enum_message_box);
+DECLARE_ENUMERATION(e_message_box, enum_message_box);
 
 
 namespace user
@@ -2776,8 +2630,6 @@ namespace user
 class function;
 
 
-
-
 namespace factory
 {
 
@@ -2788,15 +2640,11 @@ namespace factory
 } // namespace factory
 
 
-
 #include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/primitive/layered.h"
 
 
 class manual_reset_event;
-
-
-//#include "acme/primitive/promiseλ/pred_pointer.h"
 
 
 #include "acme/primitive/primitive/work.h"
@@ -2809,27 +2657,25 @@ class manual_reset_event;
 #include "acme/primitive/primitive/enumeration.h"
 
 
-
-
 namespace file
 {
 
 
-   DECLARE_C_FLAG(e_open, enum_open);
-   DECLARE_C_FLAG(e_state, enum_state);
+   DECLARE_ENUMERATION(e_open, enum_open);
+   DECLARE_ENUMERATION(e_state, enum_state);
 
 
 } // namespace file
 
 
-using eiostate = ::cflag<::file::e_iostate>;
+using eiostate = ::enumeration<::file::e_iostate>;
 
 using ecommand = ::enumeration<enum_command>;
 
 using echeck = ::enumeration<enum_check>;
 
 
-typedef ::estatus THREAD_ROUTINE(thread_parameter parameter);
+typedef ::e_status THREAD_ROUTINE(thread_parameter parameter);
 
 
 inline bool succeeded(const ::payload &payload);
@@ -3041,21 +2887,11 @@ CLASS_DECL_ACME void add_release_on_end(::matter * pmatter);
 
 class message_box;
 
-//#include "acme/primitive/primitive/matter.h"
-
-//#include "acme/primitive/primitive/object_meta.h"
-
-//#include "acme/platform/trace.h"
-
-//#include "acme/platform/pred_method.h"
-
 #include "acme/platform/debug.h"
 
 #include "acme/platform/class.h"
 
 #include "acme/primitive/comparison/md5.h"
-
-//#include "acme/platform/conv.h"
 
 #include "acme/primitive/primitive/request_interface.h"
 
@@ -3087,7 +2923,7 @@ CLASS_DECL_ACME __pointer(callstack) get_callstack(const char *pszFormat = "%f(%
 
 CLASS_DECL_ACME __pointer(callstack) get_callstack(e_callstack ecallstack, int iCallStackAddUp = 0);
 
-CLASS_DECL_ACME void set_callstack_mask(cflag<e_callstack> ecallstack);
+CLASS_DECL_ACME void set_callstack_mask(enumeration<e_callstack> ecallstack);
 
 CLASS_DECL_ACME e_callstack get_callstack_mask();
 
@@ -3594,29 +3430,9 @@ void set_osremote(os_remote * posremote);
 
 #include "acme/os/process.h"
 
-//#include "acme/filesystem/filesystem/file_watcher.h"
-
-//#include "acme/platform/os_context.h"
-
-//#include "acme/crypto/crypto.h"
-
-//#include "acme/database/_.h"
-
-//#include "acme/database/simpledb/_.h"
-
-//#include "acme/user/_.h"
 
 
 
-
-//#include "acme/multimedia/_.h"
-
-
-
-
-//#include "acme/user/style_coord.h"
-//#include "acme/user/style_rect.h"
-//#include "acme/user/item.h"
 
 
 #include "acme/platform/exclusive.h"
@@ -3646,59 +3462,7 @@ namespace fs
 
 class ifs;
 
-//#include "axis/programming/javascript/javascript.h"
-
-//#include "acme/filesystem/fs/_fs.h"
-
-//#include "acme/user/userpresence/_.h"
-
-//#include "acme/html/html_lite/_.h"
-
-//#include "core/user/experience/_.h"
-
-//#include "acme/filesystem/userfs/_.h"
-
-//#include "acme/filesystem/filehandler/_.h"
-
-//#include "acme/game/_.h"
-
 #include "acme/_.h"
-
-//#include "acme/message/_.h"
-
-//#include "acme/platform/context_thread.h"
-
-//#include "acme/filesystem/filemanager/future.h"
-
-//#include "acme/platform/application.h"
-
-//#include "acme/platform/app.h"
-
-//#include "acme/platform/application_message.h"
-
-//#include "acme/account/_account.h"
-
-//#include "acme/filesystem/filemanager/item_action.h"
-
-//#include "acme/filesystem/filemanager/component.h"
-
-//#include "core/user/userex/userex.h"
-
-//#include "acme/platform/session.h"
-
-//#include "acme/parallelization/retry.h"
-
-
-//CLASS_DECL_ACME::file::path application_installer_folder(const ::file::path & pathExe, string strAppId, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
-//CLASS_DECL_ACME bool is_application_installed(const ::file::path & pathExe, string strAppId, string & strBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
-//CLASS_DECL_ACME bool set_application_installed(const ::file::path & pathExe, string strAppId, const char * pszBuild, const char * pszPlatform, const char * pszConfiguration, const char * pszLocale, const char * pszSchema);
-//CLASS_DECL_ACME::file::path get_application_path(string strAppId, const char * pszPlatform, const char * pszConfiguration);
-//CLASS_DECL_ACME::file::path get_last_run_application_path_file(string strAppId);
-//CLASS_DECL_ACME::file::path get_last_run_application_path(string strAppId);
-//CLASS_DECL_ACME bool set_last_run_application_path(string strAppId);
-
-//CLASS_DECL_ACME ::estatus load_factory_library(string strLibrary);
-
 
 class node_data_exchange;
 
@@ -3712,144 +3476,13 @@ namespace xml
 } // namespace xml
 
 
-//#include "acme/multimedia/audio/speaker.h"
-
-
-//#include "acme/multimedia/audio.h"
-
-//#include "acme/multimedia/multimedia.h"
-
-//#include "acme/platform/app_core.h"
-
-//#include "acme/primitive/collection/map.h"
-
-//#include "acme/primitive/collection/strid_map.h"
-
-//#include "acme/platform/system.h"
-
-//#include "acme/platform/system_str.h"
-
-
-
-
 #define new ACME_NEW
-
-
-
-
-/*namespace numeric_info
-{
-
-
-template < typename T >
-inline T get_maximum_value()
-{
-__throw(not_implemented(get_object()));
-}
-
-template < typename T >
-inline T get_minimum_value()
-{
-__throw(not_implemented(get_object()));
-}
-template < typename T >
-inline T get_null_value()
-{
-return 0;
-}
-template < typename T >
-inline T get_unitary_value()
-{
-return 1;
-}
-
-template < typename T >
-inline T get_allset_value()
-{
-T t;
-__memset(&t,0xff,sizeof(T));
-return t;
-}
-
-template < typename T >
-inline bool is_signed()
-{
-return ((T)-1) < 0;
-}
-
-template < typename T >
-inline bool is_integer()
-{
-// guess, as float and double is implemented
-return true;
-}
-
-
-template < typename T >
-inline string json(const T & value)
-{
-return __str(value);
-}
-
-} // namespace numeric_info
-
-*/
-
-
-//#ifdef VARIADIC_TEMPLATE_FORMAT2
-//
-//template<typename T,typename... Args>
-//inline void string_format::format(const char * & s,const T & value,Args... args)
-//{
-//
-//   while(*s)
-//   {
-//
-//      if(*s == '%' && *(++s) != '%')
-//      {
-//
-//         defer_get_additional_argument(s,value,args...);
-//
-//         return;
-//
-//      }
-//
-//      append(*s++);
-//
-//   }
-//
-//   __throw(::exception::exception("extra arguments provided to format"));
-//
-//
-//}
-//
-//
-//
-//
-//#endif
-
-
-
-//#include "acme/core_os.h"
 
 
 #include "acme/os/chronometer.h"
 
 
-//#include "acme/platform/assert_running_task.h"
-
-
 #include "acme/platform/number.h"
-
-
-#include "acme/platform/debug.h"
-
-
-//#include "acme/platform/printf.h"
-//#include "acme/platform/sprintf.h"
-
-
-//#include "acme/math/_math.h"
 
 
 // C++ Includes
@@ -3915,7 +3548,7 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 
 
 //CLASS_DECL_ACME void set_system_update(PFN_CALL_UPDATE pfnCallUpdate);
-//CLASS_DECL_ACME void system_update(const ::id & id, const payload & payload = ::type_new);
+//CLASS_DECL_ACME void system_update(const ::id & id, const payload & payload = ::e_type_new);
 
 
 

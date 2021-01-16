@@ -23,7 +23,7 @@ namespace account
    }
    
    
-   ::estatus storage_client::initialize_account_storage_client(storage * pstorage)
+   ::e_status storage_client::initialize_account_storage_client(storage * pstorage)
    {
 
       auto estatus = ::object::initialize(pstorage);
@@ -42,13 +42,13 @@ namespace account
    }
 
 
-   ::estatus     storage_client::get(string strKey, string & strValue)
+   ::e_status     storage_client::get(string strKey, string & strValue)
    {
       
       if(m_strToken.is_empty())
       {
          
-         TRACE(trace_category_general, trace_level_error, "::account::storage_client::get Token is Empty!");
+         TRACE(trace_category_general, e_trace_level_error, "::account::storage_client::get Token is Empty!");
          
          ASSERT(FALSE);
          
@@ -68,7 +68,7 @@ namespace account
       {
          
          
-         TRACE(trace_category_general, trace_level_error, "::account::storage_client::set Token is Empty!");
+         TRACE(trace_category_general, e_trace_level_error, "::account::storage_client::set Token is Empty!");
          
          //ASSERT(FALSE);
          

@@ -42,7 +42,7 @@ namespace draw2d_quartz2d
 
 
    // bPreserve is currently disregarded
-   ::estatus image::create(const ::size & size, ::eobject eobjectCreateImage, int iGoodStride, bool bPreserve)
+   ::e_status image::create(const ::size & size, ::eobject eobjectCreateImage, int iGoodStride, bool bPreserve)
    {
 
       if(m_pbitmap.is_set()
@@ -141,7 +141,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::estatus image::create(::draw2d::graphics * pgraphics)
+   ::e_status image::create(::draw2d::graphics * pgraphics)
    {
 
       ::draw2d::bitmap_pointer pbitmap = pgraphics->get_current_bitmap();
@@ -209,7 +209,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::estatus image::SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy)
+   ::e_status image::SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy)
    {
       
       if(cx <= 0 || cy <= 0)

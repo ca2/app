@@ -18,7 +18,7 @@ namespace android
    }
 
 
-   ::estatus dir_system::initialize(::layered * pobjectContext)
+   ::e_status dir_system::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::dir_system::initialize(pobjectContext);
@@ -31,6 +31,8 @@ namespace android
       }
 
       m_pathInstall = ::dir::install();
+
+      m_pathHome = System.m_pathCacheDirectory / "home";
 
       return estatus;
 

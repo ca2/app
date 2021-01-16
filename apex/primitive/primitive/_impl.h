@@ -79,7 +79,7 @@ inline __result(TYPE) object::__create_new()
 
 
 template < typename BASE_TYPE >
-inline ::estatus object::__compose(__composite(BASE_TYPE) & pbase)
+inline ::e_status object::__compose(__composite(BASE_TYPE) & pbase)
 {
 
   if (!pbase)
@@ -138,7 +138,7 @@ inline ::estatus object::__compose(__composite(BASE_TYPE) & pbase)
 
 
 template < typename BASE_TYPE >
-inline ::estatus object::__raw_compose(__composite(BASE_TYPE) & pbase)
+inline ::e_status object::__raw_compose(__composite(BASE_TYPE) & pbase)
 {
 
   if (!pbase)
@@ -188,7 +188,7 @@ inline ::estatus object::__raw_compose(__composite(BASE_TYPE) & pbase)
 
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::estatus object::__compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
+inline ::e_status object::__compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
   pbase = psource;
@@ -216,7 +216,7 @@ inline ::estatus object::__compose(__composite(BASE_TYPE) & pbase, const SOURCE 
 }
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::estatus object::__raw_compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource)
+inline ::e_status object::__raw_compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource)
 {
 
   pbase = psource;
@@ -236,7 +236,7 @@ inline ::estatus object::__raw_compose(__composite(BASE_TYPE) & pbase, const SOU
 
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::estatus object::__compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
+inline ::e_status object::__compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
   return __compose(pbase, psource.get() OBJ_REF_DBG_COMMA_ARGS);
@@ -245,7 +245,7 @@ inline ::estatus object::__compose(__composite(BASE_TYPE) & pbase, const __point
 
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::estatus object::__raw_compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource)
+inline ::e_status object::__raw_compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource)
 {
 
   return __raw_compose(pbase, psource.get());
@@ -254,7 +254,7 @@ inline ::estatus object::__raw_compose(__composite(BASE_TYPE) & pbase, const __p
 
 
 template < typename BASE_TYPE >
-inline ::estatus object::__id_compose(__composite(BASE_TYPE) & pbase, const ::id & id)
+inline ::e_status object::__id_compose(__composite(BASE_TYPE) & pbase, const ::id & id)
 {
 
   auto & pfactory = ::factory::get_factory(id);
@@ -308,7 +308,7 @@ inline ::estatus object::__id_compose(__composite(BASE_TYPE) & pbase, const ::id
 
 
 template < typename TYPE >
-inline ::estatus object::__raw_compose_new(__composite(TYPE) & p)
+inline ::e_status object::__raw_compose_new(__composite(TYPE) & p)
 {
 
   auto ptypeNew = __new(TYPE);
@@ -339,7 +339,7 @@ inline ::estatus object::__raw_compose_new(__composite(TYPE) & p)
 
 
 template < typename TYPE >
-inline ::estatus object::__compose_new(__composite(TYPE) & p)
+inline ::e_status object::__compose_new(__composite(TYPE) & p)
 {
 
   auto ptypeNew = __new(TYPE);
@@ -379,7 +379,7 @@ inline ::estatus object::__compose_new(__composite(TYPE) & p)
 
 
 template < typename TYPE >
-inline ::estatus object::__construct(__pointer(TYPE) & p)
+inline ::e_status object::__construct(__pointer(TYPE) & p)
 {
 
   auto estatus = ::__construct(p);
@@ -397,7 +397,7 @@ inline ::estatus object::__construct(__pointer(TYPE) & p)
 
 
 template < typename TYPE >
-inline ::estatus object::__id_construct(__pointer(TYPE) & p, const ::id & id)
+inline ::e_status object::__id_construct(__pointer(TYPE) & p, const ::id & id)
 {
 
   auto estatus = ::__id_construct(p, id);
@@ -415,7 +415,7 @@ inline ::estatus object::__id_construct(__pointer(TYPE) & p, const ::id & id)
 
 
 template < typename TYPE >
-inline ::estatus object::__construct_new(__pointer(TYPE) & p)
+inline ::e_status object::__construct_new(__pointer(TYPE) & p)
 {
 
   auto estatus = ::__construct_new(p);
@@ -433,7 +433,7 @@ inline ::estatus object::__construct_new(__pointer(TYPE) & p)
 
 
 template < typename BASE_TYPE >
-inline ::estatus object::__release(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_COMMA_PARAMS_DEF)
+inline ::e_status object::__release(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
   if (pcomposite)
@@ -461,7 +461,7 @@ inline ::estatus object::__release(__composite(BASE_TYPE) & pcomposite OBJ_REF_D
 
 
 template < typename BASE_TYPE >
-inline ::estatus object::__release(__reference(BASE_TYPE) & preference OBJ_REF_DBG_COMMA_PARAMS_DEF)
+inline ::e_status object::__release(__reference(BASE_TYPE) & preference OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
   if (preference)
@@ -497,7 +497,7 @@ inline ::estatus object::__release(__reference(BASE_TYPE) & preference OBJ_REF_D
 
 
 template < typename SOURCE >
-inline ::estatus object::release_reference(__pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
+inline ::e_status object::release_reference(__pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
   return release_reference(psource.m_p);
@@ -509,7 +509,7 @@ CLASS_DECL_APEX void object_on_add_composite(const matter * pbase);
 
 
 template < typename BASE_TYPE >
-inline ::estatus object::add_composite(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_COMMA_PARAMS_DEF)
+inline ::e_status object::add_composite(__composite(BASE_TYPE) & pcomposite OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
   return add_composite(pcomposite.get() OBJ_REF_DBG_COMMA_ARGS);
@@ -518,7 +518,7 @@ inline ::estatus object::add_composite(__composite(BASE_TYPE) & pcomposite OBJ_R
 
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::estatus object::__refer(__reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource  OBJ_REF_DBG_COMMA_PARAMS_DEF)
+inline ::e_status object::__refer(__reference(BASE_TYPE) & preference, const __pointer(SOURCE) & psource  OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
   return __refer(preference, psource.get()  OBJ_REF_DBG_COMMA_ARGS);
@@ -527,7 +527,7 @@ inline ::estatus object::__refer(__reference(BASE_TYPE) & preference, const __po
 
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::estatus object::__refer(__reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & pmember OBJ_REF_DBG_COMMA_PARAMS_DEF)
+inline ::e_status object::__refer(__reference(BASE_TYPE) & preference, const ::primitive::member < SOURCE > & pmember OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
   return __refer(preference, pmember.get()  OBJ_REF_DBG_COMMA_ARGS);
@@ -536,7 +536,7 @@ inline ::estatus object::__refer(__reference(BASE_TYPE) & preference, const ::pr
 
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::estatus object::__refer(__reference(BASE_TYPE) & preference, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
+inline ::e_status object::__refer(__reference(BASE_TYPE) & preference, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
   preference = psource;
@@ -554,7 +554,7 @@ inline ::estatus object::__refer(__reference(BASE_TYPE) & preference, const SOUR
 
 
 template < typename SOURCE >
-inline ::estatus object::add_reference(__pointer(SOURCE) & psource  OBJ_REF_DBG_COMMA_PARAMS_DEF)
+inline ::e_status object::add_reference(__pointer(SOURCE) & psource  OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
   return add_reference(psource.get() OBJ_REF_DBG_COMMA_ARGS);
@@ -563,7 +563,7 @@ inline ::estatus object::add_reference(__pointer(SOURCE) & psource  OBJ_REF_DBG_
 
 
 template < typename SOURCE >
-inline ::estatus object::add_reference(__reference(SOURCE) & preference OBJ_REF_DBG_COMMA_PARAMS_DEF)
+inline ::e_status object::add_reference(__reference(SOURCE) & preference OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
   return add_reference(preference.get() OBJ_REF_DBG_COMMA_ARGS);
@@ -572,7 +572,7 @@ inline ::estatus object::add_reference(__reference(SOURCE) & preference OBJ_REF_
 
 
 template < typename SOURCE >
-inline ::estatus object::add_reference(SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
+inline ::e_status object::add_reference(SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
   ::matter * pmatter = psource;
@@ -715,7 +715,7 @@ inline void object::defer_set_context_object(::layered * pobjectContext)
 //}
 //
 
-inline ::estatus context::load_from_file(::matter* pobject, const ::payload& varFile, const payload* pvarOptions)
+inline ::e_status context::load_from_file(::matter* pobject, const ::payload& varFile, const payload* pvarOptions)
 {
 
   if (pvarOptions)
@@ -727,22 +727,22 @@ inline ::estatus context::load_from_file(::matter* pobject, const ::payload& var
   else
   {
 
-     return _load_from_file(pobject, varFile, type_empty_argument);
+     return _load_from_file(pobject, varFile, e_type_empty_argument);
 
   }
 
 }
 
 
-inline ::estatus context::load_from_file(::matter* pobject, const ::payload& varFile)
+inline ::e_status context::load_from_file(::matter* pobject, const ::payload& varFile)
 {
 
-  return _load_from_file(pobject, varFile, type_empty_argument);
+  return _load_from_file(pobject, varFile, e_type_empty_argument);
 
 }
 
 
-inline ::estatus context::save_to_file(const ::payload& varFile, const payload* pvarOptions, const ::matter * pobject)
+inline ::e_status context::save_to_file(const ::payload& varFile, const payload* pvarOptions, const ::matter * pobject)
 {
 
   if (pvarOptions)
@@ -754,17 +754,17 @@ inline ::estatus context::save_to_file(const ::payload& varFile, const payload* 
   else
   {
 
-     return _save_to_file(varFile, type_empty_argument, pobject);
+     return _save_to_file(varFile, e_type_empty_argument, pobject);
 
   }
 
 }
 
 
-inline ::estatus context::save_to_file(const ::payload& varFile, const ::matter* pobject)
+inline ::e_status context::save_to_file(const ::payload& varFile, const ::matter* pobject)
 {
 
-  return _save_to_file(varFile, type_empty_argument, pobject);
+  return _save_to_file(varFile, e_type_empty_argument, pobject);
 
 }
 
@@ -820,18 +820,18 @@ inline void context_object::get(const ::id & id, TYPE & t)
 //     return m_pprop->operator string & ();
 //
 //  }
-//  else if (m_etype == ::type_pstring)
+//  else if (m_etype == ::e_type_pstring)
 //  {
 //
 //     return *m_pstr;
 //
 //  }
-//  else if (m_etype != ::type_string)
+//  else if (m_etype != ::e_type_string)
 //  {
 //
 //     m_str = get_string();
 //
-//     set_type(type_string, false);
+//     set_type(e_type_string, false);
 //
 //  }
 //
@@ -914,7 +914,7 @@ inline void context_object::get(const ::id & id, TYPE & t)
 
 
 template < typename TYPE >
-inline ::estatus object::__construct(::thread_pointer & p, void (TYPE:: * pfn)(), e_priority epriority)
+inline ::e_status object::__construct(::thread_pointer & p, void (TYPE:: * pfn)(), e_priority epriority)
 {
 
   p = fork(pfn, epriority);
@@ -932,7 +932,7 @@ inline ::estatus object::__construct(::thread_pointer & p, void (TYPE:: * pfn)()
 
 
 template < typename TYPE >
-inline ::estatus object::__construct_below_normal(::thread_pointer & p, void (TYPE:: * pfn)())
+inline ::e_status object::__construct_below_normal(::thread_pointer & p, void (TYPE:: * pfn)())
 {
 
   return __construct(p, pfn, priority_below_normal);
@@ -1037,19 +1037,19 @@ inline void add_process(::promise::process_array & futurevara, PRED pred)
 //
 //
 //
-//inline payload::operator ::estatus &()
+//inline payload::operator ::e_status &()
 //{
 //
 //  if(m_etype == ::type_pvar)
 //  {
 //
-//     return m_pvar->operator ::estatus &();
+//     return m_pvar->operator ::e_status &();
 //
 //  }
 //  else if(m_etype == ::type_prop)
 //  {
 //
-//     return m_pprop->operator ::estatus &();
+//     return m_pprop->operator ::e_status &();
 //
 //  }
 //  else if(m_etype == ::type_enum_status)
@@ -1164,7 +1164,7 @@ inline void add_process(::promise::process_array & futurevara, PRED pred)
 //
 //     }
 //
-//     if (m_etype != type_element)
+//     if (m_etype != e_type_element)
 //     {
 //
 //        return defer_create_type < T >(pDefault);
@@ -1197,14 +1197,14 @@ inline void add_process(::promise::process_array & futurevara, PRED pred)
 //
 //#define CAST_ELEMENT(P, ENUM_TYPE) \
 //if(m_etype == ENUM_TYPE) { return dynamic_cast < T * >(P); }
-//     CAST_ELEMENT(m_p, type_element);
-//     CAST_ELEMENT(m_pstra, type_stra);
-//     CAST_ELEMENT(m_pia, type_inta);
+//     CAST_ELEMENT(m_p, e_type_element);
+//     CAST_ELEMENT(m_pstra, e_type_stra);
+//     CAST_ELEMENT(m_pia, e_type_inta);
 //     CAST_ELEMENT(m_pvara, type_vara);
-//     CAST_ELEMENT(m_pset, type_propset);
-//     CAST_ELEMENT(m_pi64a, type_i64a);
-//     CAST_ELEMENT(m_pmemory, type_memory);
-//     CAST_ELEMENT(m_ppath, type_path);
+//     CAST_ELEMENT(m_pset, e_type_propset);
+//     CAST_ELEMENT(m_pi64a, e_type_i64a);
+//     CAST_ELEMENT(m_pmemory, e_type_memory);
+//     CAST_ELEMENT(m_ppath, e_type_path);
 //     CAST_ELEMENT(m_pimage, type_image);
 //     return nullptr;
 //#undef CAST_ELEMENT
@@ -1360,10 +1360,10 @@ inline ::count fork_count_end(::object* pobject, ::count iCount, PRED pred, inde
 
 
 template < typename TYPE >
-inline ::estatus context_object::__construct_new(__pointer(TYPE)& pbase)
+inline ::e_status context_object::__construct_new(__pointer(TYPE)& pbase)
 {
 
-  ::estatus estatus = ::__construct_new(pbase);
+  ::e_status estatus = ::__construct_new(pbase);
 
   if (!estatus)
   {
@@ -1400,7 +1400,7 @@ inline ::estatus context_object::__construct_new(__pointer(TYPE)& pbase)
 //  inline message_box::message_box(const payload& payload)
 //  {
 //
-//     if (payload.get_type() == type_string)
+//     if (payload.get_type() == e_type_string)
 //     {
 //
 //        m_strMessage = payload;
@@ -1442,7 +1442,7 @@ inline ::estatus context_object::__construct_new(__pointer(TYPE)& pbase)
 
 
 
-inline ::estatus object::defer_start(::thread_pointer& pthread, const ::promise::routine & routine)
+inline ::e_status object::defer_start(::thread_pointer& pthread, const ::promise::routine & routine)
 {
 
    auto estatus = __defer_construct(pthread);

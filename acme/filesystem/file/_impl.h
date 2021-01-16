@@ -680,7 +680,7 @@ inline void __exchange_save_array(::stream & stream, ARRAY & array)
 
    auto c = array.get_count();
 
-   stream.exchange(property_count, c);
+   stream.exchange(e_property_count, c);
 
    if (stream.fail())
    {
@@ -712,7 +712,7 @@ inline void __exchange_load_array(::stream & stream, ARRAY & array)
 
    auto c = array.get_count();
 
-   stream.exchange(property_count, c);
+   stream.exchange(e_property_count, c);
 
    if (stream.fail())
    {

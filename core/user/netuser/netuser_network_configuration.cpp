@@ -84,11 +84,11 @@ namespace usernet
          
          auto pinteraction = m_pview->get_child_by_name("server");
          
-         pinteraction->_001SetText(strProxy, ::action_context(::source_data) +  ::source_load);
+         pinteraction->_001SetText(strProxy, ::action_context(::e_source_data) +  ::e_source_load);
 
          pinteraction = m_pview->get_child_by_name("port");
          
-         pinteraction->_001SetText(__str(iProxyPort), ::action_context(::source_data) +  ::source_load);
+         pinteraction->_001SetText(__str(iProxyPort), ::action_context(::e_source_data) +  ::e_source_load);
 
       }
 

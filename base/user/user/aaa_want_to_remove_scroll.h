@@ -172,8 +172,8 @@ namespace user
       virtual ::size get_total_size() override;
 
 
-      virtual ::estatus set_total_size(const ::sized& size) override;
-      virtual ::estatus set_page_size(const ::sized& size) override;
+      virtual ::e_status set_total_size(const ::sized& size) override;
+      virtual ::e_status set_page_size(const ::sized& size) override;
 
 
       virtual void defer_draw_scroll_gap(::draw2d::graphics_pointer & pgraphics);

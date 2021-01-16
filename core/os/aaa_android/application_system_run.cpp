@@ -57,7 +57,7 @@ string ca2_command_line()
 //}
 //
 
-::estatus os_application_system_run(::aura::system * psystem)
+::e_status os_application_system_run(::aura::system * psystem)
 {
 
    string strPrgName = psystem->m_strAppId;

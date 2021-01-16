@@ -68,7 +68,7 @@ namespace exception
 {
 
 
-   exception::exception(const char * pszMessage, const ::estatus & estatus, i32 iSkip, void * caller_address)
+   exception::exception(const char * pszMessage, const ::e_status & estatus, i32 iSkip, void * caller_address)
    {
 
 #if !defined(__SANITIZE_ADDRESS__)
@@ -488,7 +488,7 @@ namespace exception
 //CLASS_DECL_ACME __pointer(::exception::exception) __trace_context_move_throw_exception(::matter * trace_context, ::exception::exception * pexceptionNew)
 //{
 //
-//   __trace_logger_level(trace_context, trace_level_error);
+//   __trace_logger_level(trace_context, e_trace_level_error);
 //
 //   return ::__move_transfer(pexceptionNew);
 //
@@ -499,7 +499,7 @@ namespace exception
 
 
 
-const char* status_message(const ::estatus& estatus)
+const char* status_message(const ::e_status& estatus)
 {
 
    auto psz = ::file::status_message(estatus);

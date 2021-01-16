@@ -27,7 +27,7 @@ namespace xlib
       virtual ~buffer();
 
 
-      virtual ::estatus initialize_graphics_graphics(::user::interaction_impl * pimpl) override;
+      virtual ::e_status initialize_graphics_graphics(::user::interaction_impl * pimpl) override;
       virtual void finalize() override;
 
 

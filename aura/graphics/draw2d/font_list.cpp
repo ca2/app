@@ -610,7 +610,7 @@ namespace draw2d
    }
 
 
-   ::estatus font_list::initialize(::layered* pobjectContext)
+   ::e_status font_list::initialize(::layered* pobjectContext)
    {
 
       auto estatus = ::object::initialize(pobjectContext);
@@ -1017,7 +1017,7 @@ namespace draw2d
                pitem->m_echarseta = m_pitema->ptr_at(iItem)->m_echarseta;
 
             }
-            else if (pitem->m_strFont != m_pitema->ptr_at(iItem)->m_strFile)
+            else if (pitem->m_strFont != m_pitema->ptr_at(iItem)->m_mapFileName[0])
             {
 
                TRACE("what?!?!");

@@ -208,7 +208,7 @@ namespace experience
       else
       {
 
-         //      __pointer(::user::interaction) pwnd = ::user::interaction::GetParent();
+         //      __pointer(::user::interaction) pwnd = ::user::interaction::get_parent();
 
 
          ::rect rect;

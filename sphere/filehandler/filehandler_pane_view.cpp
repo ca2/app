@@ -106,7 +106,7 @@ namespace filehandler
    void pane_view::on_create_impact(::user::impact_data * pimpactdata)
    {
 
-      //         __pointer(application) papp =  (( (GetParentFrame()))->get_context_application());
+      //         __pointer(application) papp =  (( (get_parent_frame()))->get_context_application());
 
       string strFile = pimpactdata->m_id;
 
@@ -138,7 +138,7 @@ namespace filehandler
          pview->call_update(INITIAL_UPDATE);
          if(pview != nullptr)
          {
-         __pointer(::user::frame_window) pframe =  (pview->GetParentFrame());
+         __pointer(::user::frame_window) pframe =  (pview->get_parent_frame());
          if(pframe != nullptr)
          {
          pimpactdata->m_pdocument = pdocument;

@@ -10,7 +10,7 @@ namespace windows
    copydesk::copydesk()
    {
 
-      m_hwnd = nullptr;
+      //m_hwnd = nullptr;
 
       defer_create_mutex();
 
@@ -20,7 +20,7 @@ namespace windows
    copydesk::~copydesk()
    {
 
-      ::DestroyWindow(m_hwnd);
+      //::DestroyWindow(m_hwnd);
 
    }
 
@@ -38,32 +38,42 @@ namespace windows
    }
 
 
-   LRESULT WINAPI copydesk::WindowProc(HWND hwnd, ::u32 message, WPARAM wparam, LPARAM lparam)
+   void copydesk::_001OnClipboardUpdate(::message::message * pmessage)
    {
 
-      if(message == WM_CLIPBOARDUPDATE)
-      {
+      //if(message == WM_CLIPBOARDUPDATE)
+      //{
 
-         LONG_PTR l = ::GetWindowLongPtrA(hwnd, GWLP_USERDATA);
+        // LONG_PTR l = ::GetWindowLongPtrA(hwnd, GWLP_USERDATA);
 
-         copydesk * pdesk = (copydesk *) l;
+         //copydesk * pdesk = (copydesk *) l;
 
-         if(pdesk != nullptr)
-         {
+         //if(pdesk != nullptr)
+         //{
 
-            pdesk->OnClipboardUpdate();
+            OnClipboardUpdate();
 
-         }
+         //}
 
-      }
+//      }
 
-      return DefWindowProc(hwnd, message, wparam, lparam);
+  //    return DefWindowProc(hwnd, message, wparam, lparam);
 
 
    }
 
+   
+   void copydesk::install_message_routing(::channel * pchannel)
+   {
 
-   ::estatus copydesk::initialize(::layered * pobjectContext)
+      ::user::message_queue::install_message_routing(pchannel);
+
+      MESSAGE_LINK(WM_CLIPBOARDUPDATE, pchannel, this, &copydesk::_001OnClipboardUpdate);
+
+   }
+
+
+   ::e_status copydesk::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::user::copydesk::initialize(pobjectContext);
@@ -77,50 +87,53 @@ namespace windows
 
       sync_lock sl(mutex());
 
-      WNDCLASS wndcls = {};
+      //WNDCLASS wndcls = {};
 
-      wstring strClass = L"ca2_copydesk_windows_message_queue";
+      //wstring strClass = L"ca2_copydesk_windows_message_queue";
 
-      HINSTANCE hinstance = System.m_hinstance;
+      //HINSTANCE hinstance = System.m_hinstance;
 
-      if (!GetClassInfoW(hinstance, strClass, &wndcls))
+      //if (!GetClassInfoW(hinstance, strClass, &wndcls))
+      //{
+
+      //   wndcls.style = 0;
+      //   wndcls.lpfnWndProc = &copydesk::WindowProc;
+
+      //   wndcls.cbClsExtra = 0;
+      //   wndcls.cbWndExtra = 0;
+      //   wndcls.hInstance = System.m_hinstance;
+      //   wndcls.hIcon = nullptr;
+      //   wndcls.hCursor = nullptr;
+      //   wndcls.hbrBackground = nullptr;
+      //   wndcls.lpszMenuName = nullptr;
+
+      //   wndcls.lpszClassName = strClass;
+
+
+      //   if (!::RegisterClass(&wndcls))
+      //   {
+
+      //      return false;
+
+      //   }
+
+      //}
+
+      if(!create_message_queue("::windows::copydesk"))
       {
 
-         wndcls.style = 0;
-         wndcls.lpfnWndProc = &copydesk::WindowProc;
+      //m_hwnd = ::CreateWindowEx(0, strClass, 0, 0, 0, 0, 0, 0, HWND_MESSAGE, 0, 0, nullptr);
 
-         wndcls.cbClsExtra = 0;
-         wndcls.cbWndExtra = 0;
-         wndcls.hInstance = System.m_hinstance;
-         wndcls.hIcon = nullptr;
-         wndcls.hCursor = nullptr;
-         wndcls.hbrBackground = nullptr;
-         wndcls.lpszMenuName = nullptr;
-
-         wndcls.lpszClassName = strClass;
-
-
-         if (!::RegisterClass(&wndcls))
-         {
-
-            return false;
-
-         }
-
-      }
-
-      m_hwnd = ::CreateWindowEx(0, strClass, 0, 0, 0, 0, 0, 0, HWND_MESSAGE, 0, 0, nullptr);
-
-      if (m_hwnd == nullptr)
-      {
+      //if (m_hwnd == nullptr)
+      //{
 
          return false;
 
       }
 
-      ::SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (LONG_PTR) this);
+      //::SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (LONG_PTR) this);
 
-      if(!::AddClipboardFormatListener(m_hwnd))
+      if(!::AddClipboardFormatListener(get_handle()))
       {
 
          finalize();
@@ -139,18 +152,21 @@ namespace windows
    void copydesk::finalize()
    {
 
-      if(m_hwnd == nullptr)
-      {
-
-         return;
-
-      }
-
-      bool bOk1 = ::RemoveClipboardFormatListener(m_hwnd);
-
-      bool bOk2 = ::DestroyWindow(m_hwnd);
-
       ::user::copydesk::finalize();
+
+      ::user::message_queue::finalize();
+
+   }
+
+
+   void copydesk::_001OnDestroy(::message::message * pmessage)
+   {
+
+      bool bOk1 = ::RemoveClipboardFormatListener(get_handle());
+
+      //bool bOk2 = ::DestroyWindow(m_hwnd);
+
+      //::user::copydesk::finalize();
 
    }
 
@@ -329,7 +345,8 @@ namespace windows
 
             sync_lock sl(mutex());
 
-            if (!::OpenClipboard(m_hwnd))
+            if (!open_clipboard())
+            //if(!OpenClipboard())
             {
 
                m_cFileCount =  0;
@@ -349,7 +366,7 @@ namespace windows
 
                }
 
-               ::CloseClipboard();
+               close_clipboard();
 
                m_cFileCount = c;
 
@@ -378,7 +395,7 @@ namespace windows
 
       sync_lock sl(mutex());
 
-      if (!::OpenClipboard(m_hwnd))
+      if (!open_clipboard())
       {
 
          return false;
@@ -402,7 +419,7 @@ namespace windows
 
       }
 
-      ::CloseClipboard();
+      close_clipboard();
 
       return true;
 
@@ -412,11 +429,11 @@ namespace windows
    bool copydesk::_set_filea(const ::file::patha & patha, e_op eop)
    {
 
-      ASSERT(::IsWindow(m_hwnd));
+      //ASSERT(::IsWindow(m_hwnd));
 
       sync_lock sl(mutex());
 
-      if (!::OpenClipboard(m_hwnd))
+      if (!open_clipboard())
       {
 
          return false;
@@ -431,7 +448,7 @@ namespace windows
 
       SetClipboardData(CF_TEXT, hglobal_get_utf8_text(patha.implode("\r\n")));
 
-      VERIFY(::CloseClipboard());
+      VERIFY(close_clipboard());
 
       return true;
 
@@ -458,11 +475,11 @@ namespace windows
    bool copydesk::_set_plain_text(const string & str)
    {
 
-      ASSERT(::IsWindow(m_hwnd));
+      //ASSERT(::IsWindow(m_hwnd));
 
       sync_lock sl(mutex());
 
-      if (!::OpenClipboard(m_hwnd))
+      if (!open_clipboard())
       {
 
          return false;
@@ -484,7 +501,7 @@ namespace windows
 
       }
 
-      VERIFY(::CloseClipboard());
+      VERIFY(close_clipboard());
 
       return true;
 
@@ -505,7 +522,7 @@ namespace windows
 
       sync_lock sl(mutex());
 
-      if (!::OpenClipboard(m_hwnd))
+      if (!open_clipboard())
       {
 
          return false;
@@ -535,7 +552,7 @@ namespace windows
 
       GlobalUnlock(hglb);
 
-      VERIFY(::CloseClipboard());
+      VERIFY(close_clipboard());
 
       return true;
 
@@ -571,8 +588,12 @@ namespace windows
 
       sync_lock sl(mutex());
 
-      if (!::OpenClipboard(m_hwnd))
+      if (!open_clipboard())
       {
+
+         DWORD dwLastError = ::GetLastError();
+
+         TRACELASTERROR();
 
          return false;
 
@@ -647,7 +668,7 @@ namespace windows
 
          ::DeleteObject((HGDIOBJ)hbitmap);
 
-         ::CloseClipboard();
+         close_clipboard();
 
       }
 
@@ -659,11 +680,11 @@ namespace windows
    bool copydesk::_image_to_desk(const ::image * pimage)
    {
 
-      ASSERT(::IsWindow(m_hwnd));
+      //ASSERT(::IsWindow(m_hwnd));
 
       sync_lock sl(mutex());
 
-      if (!::OpenClipboard(m_hwnd))
+      if (!open_clipboard())
       {
 
          return false;
@@ -676,7 +697,7 @@ namespace windows
       SetClipboardData(CF_DIB, hglobal_get_image(pimage));
 
 
-      VERIFY(::CloseClipboard());
+      VERIFY(close_clipboard());
 
       return true;
 

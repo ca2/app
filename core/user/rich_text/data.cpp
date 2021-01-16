@@ -2175,7 +2175,7 @@ namespace user
 
                   ::draw2d::path_pointer path(e_create);
 
-                  //path->add_draw_text(pbox->get_text(), rect, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_crForeground);
+                  //path->add_draw_text(pbox->get_text(), rect, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_colorForeground);
                   path->add_draw_text(pbox->get_text(), rect, e_align_bottom_left, e_draw_text_single_line, pformat->get_font(pgraphics));
 
                   ::draw2d::pen_pointer pen(e_create);
@@ -2184,7 +2184,7 @@ namespace user
 
                   pen->create_solid(m_pedit->m_ppictureimpl->m_iOutlineWidth, color(m_pedit->m_ppictureimpl->m_hlsOutline));
 
-                  brush->create_solid(pformat->m_crForeground);
+                  brush->create_solid(pformat->m_colorForeground);
 
                   pgraphics->set(pen);
 
@@ -2198,7 +2198,7 @@ namespace user
 
                   pgraphics->set(pformat->get_font(pgraphics));
 
-                  pgraphics->set_text_color(pformat->m_crForeground);
+                  pgraphics->set_text_color(pformat->m_colorForeground);
 
                   string strText = pbox->get_text();
 

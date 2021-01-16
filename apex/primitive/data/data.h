@@ -52,7 +52,7 @@ namespace data
    protected:
 
 
-      virtual ::estatus initialize_data(::data::data_container_base* pdocument);
+      virtual ::e_status initialize_data(::data::data_container_base* pdocument);
 
 
 

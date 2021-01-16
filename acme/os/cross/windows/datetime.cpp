@@ -1067,7 +1067,7 @@ CLASS_DECL_ACME void GetSystemTime(LPSYSTEMTIME systime)
 #endif // !defined(_UWP)
 
 
-::estatus mkgmtime_from_filetime(time_t & time, const ::filetime_t & filetime)
+::e_status mkgmtime_from_filetime(time_t & time, const ::filetime_t & filetime)
 {
 
    SYSTEMTIME systemtime;

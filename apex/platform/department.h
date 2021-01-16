@@ -15,18 +15,18 @@ namespace apex
       virtual ~department();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext);
+      virtual ::e_status initialize(::layered * pobjectContext);
 
 
       virtual void connect_to_application_signal();
 
-      virtual ::estatus process_init();
+      virtual ::e_status process_init();
 
-      virtual ::estatus init();
-      virtual ::estatus init1();
-      virtual ::estatus init2();
-      virtual ::estatus init3();
-      virtual ::estatus init_instance();
+      virtual ::e_status init();
+      virtual ::e_status init1();
+      virtual ::e_status init2();
+      virtual ::e_status init3();
+      virtual ::e_status init_instance();
 
       virtual void term_instance();
       virtual void term3();

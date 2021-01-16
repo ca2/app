@@ -33,7 +33,7 @@ namespace filemanager
 
       void step();
 
-      virtual ::estatus     run() override;
+      virtual ::e_status     run() override;
 
 
    };

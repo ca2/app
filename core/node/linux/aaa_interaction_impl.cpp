@@ -441,9 +441,9 @@ namespace linux
 
                strMessage.Format("%s\n\nSystem Error Code: %d", strLastError.c_str(), dwLastError);
 
-               TRACE(trace_category_appmsg, trace_level_warning, "Warning: oswindow creation failed: get_last_error returned:\n");
+               TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: oswindow creation failed: get_last_error returned:\n");
 
-               TRACE(trace_category_appmsg, trace_level_warning, "%s\n", strMessage.c_str());
+               TRACE(trace_category_appmsg, e_trace_level_warning, "%s\n", strMessage.c_str());
 
                try
                {
@@ -827,7 +827,7 @@ namespace linux
    void interaction_impl::_001OnMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::size, psize, pmessage);
+      __pointer(::message::size) psize(pmessage);
 
       if (m_bDestroyImplOnly)
       {
@@ -845,7 +845,7 @@ namespace linux
 
       }
 
-      SCAST_PTR(::message::move, pmove, pmessage);
+      __pointer(::message::move) pmove(pmessage);
 
 //      m_puserinteraction->window_state3().m_point = pmove->m_point;
 //
@@ -882,7 +882,7 @@ namespace linux
 
       }
 
-      SCAST_PTR(::message::size, psize, pmessage);
+      __pointer(::message::size) psize(pmessage);
 
 //      m_puserinteraction->window_state3().m_size = psize->m_size;
 //
@@ -903,7 +903,7 @@ namespace linux
    void interaction_impl::_001OnShowWindow(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
 
       if(!m_puserinteraction)
       {
@@ -1119,7 +1119,7 @@ namespace linux
       ::rect rect;
       ((::user::interaction_impl *) this)->m_puserinteraction->get_window_rect(&rect);
       dumpcontext << "\nrect = " << rect;
-      dumpcontext << "\nparent __pointer(::interaction_impl) = " << (void *)((::user::interaction_impl *) this)->GetParent();
+      dumpcontext << "\nparent __pointer(::interaction_impl) = " << (void *)((::user::interaction_impl *) this)->get_parent();
 
 //      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
       //    if (::GetWindowLong(get_handle(), GWL_STYLE) & WS_CHILD)
@@ -1604,11 +1604,11 @@ namespace linux
 
          ::message::key * pkey = (::message::key *) pbase;
 
-         __pointer(::user::interaction) puiFocus =  get_focus_primitive();
+         __pointer(::user::interaction) puiFocus =  get_keyboard_focus();
 
          if(puiFocus != nullptr
                && puiFocus->is_window()
-               && puiFocus->GetTopLevel() != nullptr
+               && puiFocus->get_top_level() != nullptr
                && puiFocus != m_puserinteraction)
          {
 
@@ -1711,7 +1711,7 @@ namespace linux
 //   }
 
 
-//   ::user::interaction * interaction_impl::GetParent()
+//   ::user::interaction * interaction_impl::get_parent()
 //   {
 //
 //      if(!::is_window((oswindow) get_handle()))
@@ -1728,14 +1728,14 @@ namespace linux
 //
 //      }
 //
-//      //return ::linux::interaction_impl::from_handle(::GetParent(get_handle()));
+//      //return ::linux::interaction_impl::from_handle(::get_parent(get_handle()));
 //
 //      return nullptr;
 //
 //   }
 
 
-//   ::user::interaction * interaction_impl::GetTopLevel()
+//   ::user::interaction * interaction_impl::get_top_level()
 //   {
 //
 //      if(!::is_window((oswindow) get_handle()))
@@ -1776,7 +1776,7 @@ namespace linux
    //         oswindow hWndParent = get_handle();
    //         oswindow hWndT;
    //         while ((::GetWindowLong(hWndParent, GWL_STYLE) & WS_CHILD) &&
-   //            (hWndT = ::GetParent(hWndParent)) != nullptr)
+   //            (hWndT = ::get_parent(hWndParent)) != nullptr)
    //         {
    //            hWndParent = hWndT;
    //         }
@@ -1811,7 +1811,7 @@ namespace linux
 //   }
 
    /*
-      __pointer(::user::frame_window) interaction_impl::GetTopLevelFrame()
+      __pointer(::user::frame_window) interaction_impl::top_level_frame()
       {
          if (get_handle() == nullptr) // no oswindow attached
             return nullptr;
@@ -1824,12 +1824,12 @@ namespace linux
          else
             pFrameWnd =  (this);
          if (pFrameWnd == nullptr || !pFrameWnd->is_frame_window())
-            pFrameWnd = GetParentFrame();
+            pFrameWnd = get_parent_frame();
 
          if (pFrameWnd != nullptr)
          {
             __pointer(::user::frame_window) pTemp;
-            while ((pTemp = pFrameWnd->GetParentFrame()) != nullptr)
+            while ((pTemp = pFrameWnd->get_parent_frame()) != nullptr)
                pFrameWnd = pTemp;
          }
          return pFrameWnd;
@@ -2054,11 +2054,11 @@ namespace linux
 //      ASSERT(puiStop == nullptr || puiStop->is_window());
 //      ASSERT(pmessage != nullptr);
 //
-//      SCAST_PTR(::message::base, pbase, pmessage);
+//      __pointer(::message::base) pbase(pmessage);
 //      // walk from the target interaction_impl up to the hWndStop interaction_impl checking
 //      //  if any interaction_impl wants to translate this message
 //
-//      for (__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction; pinteraction != nullptr; pinteraction->GetParent())
+//      for (__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
 //      {
 //
 //         pinteraction->pre_translate_message(pmessage);
@@ -2460,7 +2460,7 @@ namespace linux
 //      }
 //
 //
-//      virtual ::estatus     run() override
+//      virtual ::e_status     run() override
 //      {
 //
 //         try
@@ -3300,7 +3300,7 @@ namespace linux
 //      __pointer(::user::frame_window) interaction_impl::EnsureParentFrame()
 //      {
 //
-//         __pointer(::user::frame_window) pFrameWnd=GetParentFrame();
+//         __pointer(::user::frame_window) pFrameWnd=get_parent_frame();
 //
 //         ENSURE_VALID(pFrameWnd);
 //
@@ -3567,10 +3567,10 @@ namespace linux
 //
 //      }
 //
-//      if(m_puserinteraction->m_pdescriptor->m_puserinteractionParent != nullptr)
+//      if(m_puserinteraction->m_puserinteractionParent != nullptr)
 //      {
 //
-//         if(!m_puserinteraction->m_pdescriptor->m_puserinteractionParent->is_window_visible())
+//         if(!m_puserinteraction->m_puserinteractionParent->is_window_visible())
 //         {
 //
 //            return false;
@@ -4395,7 +4395,7 @@ namespace linux
 //
    void interaction_impl::_001OnSetCursor(::message::message * pmessage)
    {
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
       if(psession->get_cursor() != nullptr
             && psession->get_cursor()->m_ecursor != cursor_system)
       {
@@ -4695,7 +4695,7 @@ namespace linux
 //
 //      // a popup ::user::interaction_impl cannot be owned by a child ::user::interaction_impl
 //      while (hWnd != nullptr && (::GetWindowLong(hWnd, GWL_STYLE) & WS_CHILD))
-//         hWnd = ::GetParent(hWnd);
+//         hWnd = ::get_parent(hWnd);
 //
 //      // determine toplevel ::user::interaction_impl to disable as well
 //      oswindow hWndTop = hWnd, hWndTemp = hWnd;
@@ -4705,7 +4705,7 @@ namespace linux
 //            break;
 //         else
 //            hWndTop = hWndTemp;
-//         hWndTemp = ::GetParent(hWndTop);
+//         hWndTemp = ::get_parent(hWndTop);
 //      }
 //
 //      __s_throw(todo());
@@ -4738,7 +4738,7 @@ namespace linux
 //
 ////   void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
 ////   {
-////      SCAST_PTR(::message::erase_bkgnd, perasebkgnd, pmessage);
+////      __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
 ////      perasebkgnd->m_bRet = true;
 ////      perasebkgnd->set_result(TRUE);
 ////   }

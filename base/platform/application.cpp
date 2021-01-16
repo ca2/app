@@ -17,7 +17,7 @@ namespace base
    }
 
 
-   ::estatus     application::initialize(::layered * pobjectContext)
+   ::e_status     application::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::axis::application::initialize(pobjectContext);
@@ -88,7 +88,7 @@ namespace base
 
 
 
-   ::estatus     application::create_impact_system()
+   ::e_status     application::create_impact_system()
    {
 
       return ::success;

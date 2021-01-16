@@ -82,7 +82,7 @@ namespace ftp
       enum enum_state
       {
 
-         state_initial,
+         e_state_initial,
          state_logged
 
       };

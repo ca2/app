@@ -45,10 +45,12 @@ namespace draw2d_direct2d
    image::~image()
    {
 
+      destroy();
+
    }
 
 
-   ::estatus image::create(const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+   ::e_status image::create(const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
    {
 
       if (m_pbitmap.is_set() && size == this->size())
@@ -271,7 +273,7 @@ namespace draw2d_direct2d
    //}
 
 
-   ::estatus image::SetIconMask(::draw2d::icon * picon, int cx, int cy)
+   ::e_status image::SetIconMask(::draw2d::icon * picon, int cx, int cy)
    {
 
       if (cx <= 0 || cy <= 0)
@@ -1394,6 +1396,8 @@ namespace draw2d_direct2d
          return false;
 
       }
+
+      //pgraphics->m_pplugin = pgraphicsMap->m_pplugin;
 
       pgraphics->m_pbitmap = pbitmap;
 

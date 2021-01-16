@@ -17,8 +17,8 @@ namespace account
       string                                    m_strLogin;
       string                                    m_strUserId;
       
-      ::estatus                                      m_estatus;
-      ::estatus                                      m_estatusAuthentication;
+      ::e_status                                      m_estatus;
+      ::e_status                                      m_estatusAuthentication;
 
       ::datetime::time                          m_timeAuthenticationRequest;
       ::datetime::time                          m_timeAuthentication;
@@ -49,14 +49,14 @@ namespace account
       virtual ~user();
       
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
       virtual void logon_local(string strAccount);
       
       virtual void logon(::file::path pathUrl, bool bInteractive);
 
-      virtual ::estatus  do_logon(::file::path pathUrl, bool bInteractive);
+      virtual ::e_status  do_logon(::file::path pathUrl, bool bInteractive);
       
       void not_auth(string strServer);
       

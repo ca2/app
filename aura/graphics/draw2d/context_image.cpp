@@ -16,7 +16,7 @@ context_image::~context_image()
 }
 
 
-::estatus context_image::initialize(::layered * pobjectContext)
+::e_status context_image::initialize(::layered * pobjectContext)
 {
 
    auto estatus = ::object::initialize(pobjectContext);
@@ -33,7 +33,7 @@ context_image::~context_image()
 }
 
 
-::estatus context_image::set_finish_composites(::context_object * pcontextobjectFinish)
+::e_status context_image::set_finish_composites(::context_object * pcontextobjectFinish)
 {
 
    return ::object::set_finish_composites(pcontextobjectFinish);
@@ -53,7 +53,7 @@ context_image::~context_image()
 }
 
 
-::estatus context_image::_save_to_file(const ::payload & varFile, const image * pimage, const ::payload & varOptions)
+::e_status context_image::_save_to_file(const ::payload & varFile, const image * pimage, const ::payload & varOptions)
 {
 
    ::save_image saveimage(varFile, varOptions);
@@ -329,7 +329,7 @@ context_image::~context_image()
 }
 
 
-::estatus context_image::_get_image(image * pimage, const payload & varFile, bool bSync)
+::e_status context_image::_get_image(image * pimage, const payload & varFile, bool bSync)
 {
 
    return _load_image(pimage, varFile, bSync);
@@ -337,7 +337,7 @@ context_image::~context_image()
 }
 
 
-::estatus context_image::_matter_image(image * pimage, const string & strMatter, bool bSync)
+::e_status context_image::_matter_image(image * pimage, const string & strMatter, bool bSync)
 {
 
    if (bSync)
@@ -361,7 +361,7 @@ context_image::~context_image()
 }
 
 
-::estatus context_image::_load_image(image * pimage, const ::payload & varFile, bool bSync, bool bCreateHelperMaps)
+::e_status context_image::_load_image(image * pimage, const ::payload & varFile, bool bSync, bool bCreateHelperMaps)
 {
    
    return ::success;
@@ -369,7 +369,7 @@ context_image::~context_image()
 }
 
 
-::estatus context_image::_load_matter_image(image * pimage, const string & strMatter, bool bSync, bool bCreateHelperMaps)
+::e_status context_image::_load_matter_image(image * pimage, const string & strMatter, bool bSync, bool bCreateHelperMaps)
 {
 
    ::file::path path = Context.dir().matter(strMatter);
@@ -388,7 +388,7 @@ context_image::~context_image()
 }
 
 
-::estatus context_image::_load_matter_icon(image * pimage, string_array & straMatter, string strIcon)
+::e_status context_image::_load_matter_icon(image * pimage, string_array & straMatter, string strIcon)
 {
 
    ::file::path path;
@@ -416,7 +416,7 @@ context_image::~context_image()
 }
 
 
-::estatus context_image::_load_thumbnail(image * pimage, const ::payload & varFile, int w, int h)
+::e_status context_image::_load_thumbnail(image * pimage, const ::payload & varFile, int w, int h)
 {
 
    try
@@ -457,7 +457,7 @@ context_image::~context_image()
 }
 
 
-::estatus context_image::_load_thumbnail(image * pimage, const payload & varFile)
+::e_status context_image::_load_thumbnail(image * pimage, const payload & varFile)
 {
 
    if (!pimage->create_thumbnail(varFile))
@@ -476,7 +476,7 @@ context_image::~context_image()
 }
 
 
-::estatus context_image::_load_dib(image * pimage, const ::file::path & pathDib)
+::e_status context_image::_load_dib(image * pimage, const ::file::path & pathDib)
 {
 
    try
@@ -523,7 +523,7 @@ context_image::~context_image()
 }
 
 
-::estatus context_image::save_image(const ::payload & varFile, const image * pimage, const ::save_image * psaveimage)
+::e_status context_image::save_image(const ::payload & varFile, const image * pimage, const ::save_image * psaveimage)
 {
    
    memory mem;
@@ -540,7 +540,7 @@ context_image::~context_image()
 }
 
 
-::estatus context_image::save_image(::memory & memory, const image * pimage, const ::save_image * psaveimage)
+::e_status context_image::save_image(::memory & memory, const image * pimage, const ::save_image * psaveimage)
 {
 
    auto pfile = create_memory_file(memory);
@@ -559,7 +559,7 @@ context_image::~context_image()
 }
 
 
-::estatus context_image::save_dib(const ::file::path & pathDib, const image * pimage)
+::e_status context_image::save_dib(const ::file::path & pathDib, const image * pimage)
 {
 
    try
@@ -591,7 +591,7 @@ context_image::~context_image()
 
 
 
-::estatus context_image::_load_image(::image* pimage, __pointer(image_frame_array)& pframea, ::memory_pointer pmemory)
+::e_status context_image::_load_image(::image* pimage, __pointer(image_frame_array)& pframea, ::memory_pointer pmemory)
 {
 
    return ::success;
@@ -599,7 +599,7 @@ context_image::~context_image()
 }
 
 
-::estatus context_image::load_cursor(::draw2d::cursor* pcursor, ::file::path path, bool bSync, bool bFromCache)
+::e_status context_image::load_cursor(::draw2d::cursor* pcursor, ::file::path path, bool bSync, bool bFromCache)
 {
 
    if (::is_null(pcursor))

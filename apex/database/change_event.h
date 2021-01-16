@@ -37,7 +37,7 @@ namespace database
          if (!_data_get(payload))
          {
 
-            return ::type_not_found;
+            return ::e_type_not_found;
 
          }
 

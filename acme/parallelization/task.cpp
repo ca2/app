@@ -221,7 +221,7 @@ bool task::on_get_thread_name(string & strThreadName)
 }
 
 
-::estatus task::task_caller_on_init()
+::e_status task::task_caller_on_init()
 {
 
    return ::success;
@@ -307,7 +307,7 @@ void task::term_task()
 }
 
 
-::estatus task::do_task()
+::e_status task::do_task()
 {
 
    init_task();
@@ -321,10 +321,10 @@ void task::term_task()
 }
 
 
-::estatus task::on_task()
+::e_status task::on_task()
 {
 
-   ::estatus estatus = ::success;
+   ::e_status estatus = ::success;
 
    while (!m_bitSetFinish)
    {
@@ -363,7 +363,7 @@ void task::term_task()
 }
 
 
-::estatus task::start(
+::e_status task::start(
    ::matter* pmatter,
    ::e_priority epriority,
    u32 nStackSize,
@@ -379,7 +379,7 @@ void task::term_task()
 }
 
 
-::estatus task::begin_task(
+::e_status task::begin_task(
    ::e_priority epriority,
    u32 nStackSize,
    u32 uCreateFlags)

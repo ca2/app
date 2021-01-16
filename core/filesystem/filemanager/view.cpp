@@ -113,7 +113,7 @@ namespace filemanager
 
          //   str.Format("(%s)", filemanager_data()->m_id.str().c_str());
 
-         //   __pointer(::database::client) pframe = GetParentFrame();
+         //   __pointer(::database::client) pframe = get_parent_frame();
 
          //   if (pframe != nullptr)
          //   {
@@ -127,9 +127,9 @@ namespace filemanager
          if (psubject->id() == id_pop)
          {
 
-            OnActivateFrame(e_activate_inactive, GetParentFrame());
+            OnActivateFrame(e_activate_inactive, get_parent_frame());
 
-            __pointer(::user::frame_window) spframewindow = GetParentFrame();
+            __pointer(::user::frame_window) spframewindow = get_parent_frame();
 
             if (spframewindow.is_set())
             {
@@ -146,7 +146,7 @@ namespace filemanager
          else if (psubject->id() == id_create_bars)
          {
 
-            __pointer(simple_frame_window) pframe = GetParentFrame();
+            __pointer(simple_frame_window) pframe = get_parent_frame();
 
             if (pframe != nullptr)
             {
@@ -162,7 +162,7 @@ namespace filemanager
             if (filemanager_document()->m_emode != ::userfs::mode_import && get_pane_count() == 2)
             {
 
-               __pointer(simple_frame_window) pframe = GetParentFrame();
+               __pointer(simple_frame_window) pframe = get_parent_frame();
 
                if (pframe != nullptr)
                {
@@ -258,7 +258,7 @@ namespace filemanager
 
       }
 
-      //tab_view * ptabview = GetParentFrame()->GetTypedParent < tab_view >();
+      //tab_view * ptabview = get_parent_frame()->GetTypedParent < tab_view >();
       //if (ptabview != nullptr)
       //{
       //   ptabview->on_update(this, eupdate, pobject);

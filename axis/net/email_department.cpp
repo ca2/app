@@ -22,7 +22,7 @@ namespace net
       if(!socket.open((const string &) Context.file().as_string("C:\\sensitive\\sensitive\\seed\\default_sendmail_host.txt"), (port_t) 25))
          return false;
 
-      socket.m_estate = ::sockets::smtp_socket::state_initial;
+      socket.m_estate = ::sockets::smtp_socket::e_state_initial;
 
       socket.m_pemail = pemail;
 

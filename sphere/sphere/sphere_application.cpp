@@ -36,7 +36,7 @@ namespace sphere
    }
 
 
-   ::estatus application::init_instance()
+   ::e_status application::init_instance()
    {
 
       if (!::aura::application::init_instance())
@@ -125,7 +125,7 @@ namespace sphere
    }
 
 
-   //::estatus application::init_instance()
+   //::e_status application::init_instance()
    //{
 
 
@@ -438,7 +438,7 @@ namespace sphere
    }
 
 
-   ::estatus     application::run()
+   ::e_status     application::run()
    {
 
       return ::aura::application::run();
@@ -693,7 +693,7 @@ namespace sphere
          else
          {
             alt1:
-            if(pcreate->m_pcommandline->m_varFile.get_type() == ::type_string)
+            if(pcreate->m_pcommandline->m_varFile.get_type() == ::e_type_string)
             {
                if(::str::ends_ci(pcreate->m_pcommandline->m_varFile, ".ca2"))
                {
@@ -893,7 +893,7 @@ namespace sphere
    }
 
 
-   ::estatus     application::main()
+   ::e_status     application::main()
    {
 
       return ::aura::application::main();

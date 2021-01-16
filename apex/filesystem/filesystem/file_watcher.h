@@ -56,7 +56,7 @@ namespace file
       watch_id             m_id;
       ::file::path         m_pathFolder;
       ::file::path         m_pathFile;
-      cflag < e_action >   m_eaction;
+      enumeration < e_action >   m_eaction;
 
 
    };
@@ -194,7 +194,7 @@ namespace file
 
       virtual void remove_watch(watch_id watch_id);
 
-      virtual ::estatus     run() override;
+      virtual ::e_status     run() override;
 
       virtual bool step();
 

@@ -24,6 +24,17 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, TCHAR * pCmdL
 
    }
 
+   auto papplicationStartup = psystem->new_application(strAppId);
+
+   if (!papplicationStartup)
+   {
+
+      return -1;
+
+   }
+
+   __bind(psystem, m_papplicationStartup, papplicationStartup);
+
    psystem->m_bConsole = false;
 
    application_common(psystem);
@@ -34,7 +45,7 @@ i32 WINAPI _tWinMain(HINSTANCE hinstance, HINSTANCE hPrevInstance, TCHAR * pCmdL
 
    psystem->set_current_handles();
 
-   ::estatus estatus = psystem->do_task();
+   ::e_status estatus = psystem->do_task();
 
    ::i32 iErrorStatus = estatus.error_status();
 

@@ -37,7 +37,7 @@ namespace file
       if (this->get_count() <= 0)
       {
 
-         return ::payload(::type_empty);
+         return ::payload(::e_type_empty);
 
       }
       else if (this->get_count() == 1)
@@ -93,7 +93,7 @@ namespace file
       if (this->get_count() <= 0)
       {
 
-         return ::payload(::type_empty);
+         return ::payload(::e_type_empty);
 
       }
       else if (this->get_count() == 1)
@@ -149,7 +149,7 @@ namespace file
       if (this->get_count() <= 0)
       {
 
-         return ::payload(::type_empty);
+         return ::payload(::e_type_empty);
 
       }
       else if (this->get_count() == 1)
@@ -157,7 +157,7 @@ namespace file
 
          class payload payload;
 
-         payload["FileManagerItem_flags"] = __new(flags < e_flag >(this->element_at(0)->m_flags));
+         payload["FileManagerItem_flags"] = __new(flags < enum_flag >(this->element_at(0)->m_flags));
 
          return payload;
 
@@ -172,7 +172,7 @@ namespace file
 
             class payload varPropSet;
 
-            varPropSet["FileManagerItem_flags"] = __new(flags < e_flag >(this->element_at(i)->m_flags));
+            varPropSet["FileManagerItem_flags"] = __new(flags < enum_flag >(this->element_at(i)->m_flags));
 
             payload.vara().add(varPropSet);
 

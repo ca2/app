@@ -21,10 +21,10 @@ namespace user
    }
 
 
-   ::estatus validate::Validate(string& strParam, ::user::control_descriptor* pdescriptor)
+   ::e_status validate::Validate(string& strParam, ::user::interaction * pinteraction)
    {
 
-      switch (control_descriptor().get_data_type())
+      switch (pinteraction->get_data_type())
       {
       case e_control_data_type_string:
          return true;

@@ -96,20 +96,20 @@ namespace draw2d_cairo
    }
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-   bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP lpBitmap)
-   {
-
-      return false;
-
-   }
-
-
-#endif
-
-
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//   bool bitmap::CreateBitmapIndirect(::draw2d::graphics * pgraphics, LPBITMAP lpBitmap)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//
+//#endif
+//
+//
    bool bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size & size, void ** ppdata, int * pstride)
    {
 
@@ -343,20 +343,20 @@ namespace draw2d_cairo
    }
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-   i32 bitmap::GetBitmap(BITMAP* pBitMap)
-   {
-
-      return 0;
-
-   }
-
-
-#endif
-
-
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//   i32 bitmap::GetBitmap(BITMAP* pBitMap)
+//   {
+//
+//      return 0;
+//
+//   }
+//
+//
+//#endif
+//
+//
    void bitmap::dump(dump_context & dumpcontext) const
    {
 
@@ -398,7 +398,7 @@ namespace draw2d_cairo
 
       m_psurface = (cairo_surface_t *) psurface;
 
-      get_surface_size((cairo_surface_t *) psurface, &m_size.cx, &m_size.cy);
+      get_surface_size((cairo_surface_t *) psurface, (::i32 *) &m_size.cx, (::i32 *)&m_size.cy);
 
       m_osdata[0] = m_psurface;
 

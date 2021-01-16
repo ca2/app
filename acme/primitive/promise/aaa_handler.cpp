@@ -66,7 +66,7 @@ namespace promise
 #endif
 
 
-   ::estatus handler::run()
+   ::e_status handler::run()
    {
 
       auto ptask = ::get_task();

@@ -30,16 +30,16 @@ namespace exception
 
       const char *         m_pszFile;
       int                  m_iLine;
-      ::estatus                 m_estatus;
+      ::e_status                 m_estatus;
 
 
-      exception(const ::estatus & estatus = error_exception, i32 iSkip = callstack_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr) :
+      exception(const ::e_status & estatus = error_exception, i32 iSkip = callstack_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr) :
          exception(nullptr, estatus, iSkip, caller_address)
       {
 
       }
 
-      exception(const char * pszMessage, const ::estatus & estatus = error_exception, i32 iSkip = callstack_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
+      exception(const char * pszMessage, const ::e_status & estatus = error_exception, i32 iSkip = callstack_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
       virtual ~exception();
 
 

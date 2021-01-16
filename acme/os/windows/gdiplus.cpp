@@ -8,7 +8,7 @@ DWORD_PTR                        g_gdiplusHookToken = NULL;
 
 
 
-CLASS_DECL_ACME::estatus init_gdi_plus()
+CLASS_DECL_ACME::e_status init_gdi_plus()
 {
 
    g_pgdiplusStartupInput = new Gdiplus::GdiplusStartupInput();

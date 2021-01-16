@@ -2,7 +2,6 @@
 #include "graphics.h"
 
 
-
 #include <winapifamily.h>
 #include <shlwapi.h>
 #include <wrl/client.h>
@@ -20,11 +19,12 @@
 #include "draw2d_direct2d_global.h"
 
 
+#define d2d1_fax_options D2D1_FACTORY_OPTIONS // fax of merde
+#define d2d1_thread_model D2D1_FACTORY_TYPE_MULTI_THREADED // ???? muliple performance multi thread hidden option there exists cost uses?
+
 
 namespace draw2d
 {
-
-   ID2D1Factory1* device_lock::g_pfactory = nullptr;
 
 
    ::mutex* lock::g_pmutex = nullptr;
@@ -113,31 +113,16 @@ namespace draw2d_direct2d
 {
 
 
-   class plugin
-   {
-   public:
 
-      Microsoft::WRL::ComPtr<IDWriteFactory> g_pwritefactory;
-      Microsoft::WRL::ComPtr<ID2D1Factory1> g_pd2factory;
-      Microsoft::WRL::ComPtr<ID2D1Device> g_pd2device;
-      Microsoft::WRL::ComPtr<ID2D1DeviceContext> g_pd2devicecontext;
-      Microsoft::WRL::ComPtr<ID3D11DeviceContext> g_pd3devicecontext;
-      Microsoft::WRL::ComPtr<ID3D11DeviceContext1> g_pd3devicecontext1;
-      Microsoft::WRL::ComPtr<ID3D11Device> g_pd3device;
-      Microsoft::WRL::ComPtr<ID3D11Device1> g_pd3device1;
-      Microsoft::WRL::ComPtr<IDXGIDevice> g_pdxgidevice;
-
-      D3D_FEATURE_LEVEL g_featurelevel;
-
-      void initialize();
-
-   } *g_pdirect2dplugin;
+   Microsoft::WRL::ComPtr<IDWriteFactory>      plugin::s_pwritefactory;
+   Microsoft::WRL::ComPtr<ID2D1Factory1>       plugin::s_pd2factory;
 
 
+    //plugin * g_pdirect2dplugin = nullptr;
    CLASS_DECL_AURA void direct2d_finalize()
    {
 
-      delete g_pdirect2dplugin;
+      //delete g_pdirect2dplugin;
 
       delete g_pdxgidebug;
 
@@ -146,21 +131,21 @@ namespace draw2d_direct2d
    CLASS_DECL_AURA void defer_direct2d_initialize()
    {
 
-      if (g_pdirect2dplugin == nullptr)
+      if (g_pdxgidebug == nullptr)
       {
 
          g_pdxgidebug = new dxgidebug;
 
-         g_pdirect2dplugin = new plugin;
+         //g_pdirect2dplugin = new plugin;
 
-         g_pdirect2dplugin->initialize();
+         //g_pdirect2dplugin->initialize();
 
       }
 
    }
 
 
-   void plugin::initialize()
+   ::e_status plugin::initialize(::layered * pbojectContext)
    {
 
       // This flag adds support for surfaces with a different color channel ordering
@@ -203,7 +188,7 @@ namespace draw2d_direct2d
                    ARRAYSIZE(featureLevels),
                    D3D11_SDK_VERSION,          // Always set this to D3D11_SDK_VERSION for Metro style apps.
                    &device,                    // Returns the Direct3D device created.
-                   &g_featurelevel,            // Returns feature level of device created.
+                   &m_featurelevel,            // Returns feature level of device created.
                    &context                    // Returns the device immediate context.
                    );
 
@@ -212,133 +197,141 @@ namespace draw2d_direct2d
 
       // Get the Direct3D 11.1 API device and context interfaces.
       ::dx::throw_if_failed(
-      device.As(&g_pd3device)
+      device.As(&m_pd3device)
       );
 
       ::dx::throw_if_failed(
-      device.As(&g_pd3device1)
+      device.As(&m_pd3device1)
       );
 
       ::dx::throw_if_failed(
-      context.As(&g_pd3devicecontext)
+      context.As(&m_pd3devicecontext)
       );
 
       ::dx::throw_if_failed(
-      context.As(&g_pd3devicecontext1)
+      context.As(&m_pd3devicecontext1)
       );
 
       // Get the underlying DXGI device of the Direct3D device.
       ::dx::throw_if_failed(
-      device.As(&g_pdxgidevice)
+      device.As(&m_pdxgidevice)
       );
 
       // Create the Direct2D device object and a corresponding context.
       ::dx::throw_if_failed(
-      get_d2d1_factory1()->CreateDevice(g_pdxgidevice.Get(), &g_pd2device)
+      d2d1_factory1()->CreateDevice(m_pdxgidevice.Get(), &m_pd2device)
       );
+
+
+      d2d1_factory1()->QueryInterface(IID_PPV_ARGS(&m_d2dMultithread));
+
+      return ::success;
+
+   }
+
+
+   IDWriteFactory * plugin::dwrite_factory(bool bCreate)
+   {
+
+      if (s_pwritefactory != nullptr || !bCreate)
+      {
+
+         return s_pwritefactory.Get();
+
+      }
+
+      HRESULT hr = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory), &s_pwritefactory);
+
+      if (FAILED(hr))
+      {
+
+         return nullptr;
+
+      }
+
+      return s_pwritefactory.Get();
+
+   }
+
+
+   ID2D1Factory1 * plugin::d2d1_factory1(bool bCreate)
+   {
+
+
+      if (s_pd2factory != nullptr || !bCreate)
+      {
+
+         return s_pd2factory.Get();
+
+      }
+
+      d2d1_fax_options options;
+
+      __memset(&options, 0, sizeof(options));
+
+      HRESULT hr = ::D2D1CreateFactory(d2d1_thread_model, __uuidof(ID2D1Factory1), &options, &s_pd2factory);
+
+      if (FAILED(hr))
+      {
+
+         return nullptr;
+
+      }
+
+      //dpi_initialize(::draw2d::device_lock::g_pfactory);
+
+      return s_pd2factory.Get();
+
+   }
+
+
+   ID3D11Device * plugin::draw_get_d3d11_device()
+   {
+
+      return m_pd3device.Get();
+
+   }
+
+
+   ID3D11Device1 * plugin::draw_get_d3d11_device1()
+   {
+
+      return m_pd3device1.Get();
+
+   }
+
+
+   ID3D11DeviceContext * plugin::draw_get_d3d11_device_context()
+   {
+
+      return m_pd3devicecontext.Get();
+
+   }
+
+
+   ID3D11DeviceContext1 * plugin::draw_get_d3d11_device_context1()
+   {
+
+      return m_pd3devicecontext1.Get();
+
+   }
+
+   IDXGIDevice * plugin::draw_get_dxgi_device()
+   {
+
+      return m_pdxgidevice.Get();
+
+   }
+
+   ID2D1Device * plugin::draw_get_d2d1_device()
+   {
+
+      return m_pd2device.Get();
 
    }
 
 
 } // namespace draw2d_direct2d
-
-
-#define d2d1_fax_options D2D1_FACTORY_OPTIONS // fax of merde
-#define d2d1_thread_model D2D1_FACTORY_TYPE_MULTI_THREADED // ???? muliple performance multi thread hidden option there exists cost uses?
-
-CLASS_DECL_AURA IDWriteFactory * global_draw_get_write_factory(bool bCreate)
-{
-
-   if (::draw2d_direct2d::g_pdirect2dplugin->g_pwritefactory != nullptr || !bCreate)
-      return ::draw2d_direct2d::g_pdirect2dplugin->g_pwritefactory.Get();
-
-   HRESULT hr = DWriteCreateFactory(DWRITE_FACTORY_TYPE_SHARED, __uuidof(IDWriteFactory), &::draw2d_direct2d::g_pdirect2dplugin->g_pwritefactory);
-
-   if (FAILED(hr))
-      return nullptr;
-
-   return ::draw2d_direct2d::g_pdirect2dplugin->g_pwritefactory.Get();
-
-}
-
-
-ID2D1Factory1 * get_d2d1_factory1(bool bCreate)
-{
-
-
-   if (::draw2d_direct2d::g_pdirect2dplugin->g_pd2factory != nullptr || !bCreate)
-   {
-
-      return ::draw2d_direct2d::g_pdirect2dplugin->g_pd2factory.Get();
-
-   }
-
-   d2d1_fax_options options;
-
-   __memset(&options, 0, sizeof(options));
-
-   HRESULT hr = ::D2D1CreateFactory(d2d1_thread_model, __uuidof(ID2D1Factory1), &options, &::draw2d_direct2d::g_pdirect2dplugin->g_pd2factory);
-
-   if (FAILED(hr))
-   {
-
-      return nullptr;
-
-   }
-
-   ::draw2d::device_lock::g_pfactory = ::draw2d_direct2d::g_pdirect2dplugin->g_pd2factory.Get();
-
-   //dpi_initialize(::draw2d::device_lock::g_pfactory);
-
-   return ::draw2d_direct2d::g_pdirect2dplugin->g_pd2factory.Get();
-
-}
-
-
-ID3D11Device * global_draw_get_d3d11_device()
-{
-
-   return ::draw2d_direct2d::g_pdirect2dplugin->g_pd3device.Get();
-
-}
-
-
-ID3D11Device1 * global_draw_get_d3d11_device1()
-{
-
-   return ::draw2d_direct2d::g_pdirect2dplugin->g_pd3device1.Get();
-
-}
-
-
-ID3D11DeviceContext * global_draw_get_d3d11_device_context()
-{
-
-   return ::draw2d_direct2d::g_pdirect2dplugin->g_pd3devicecontext.Get();
-
-}
-
-
-ID3D11DeviceContext1 * global_draw_get_d3d11_device_context1()
-{
-
-   return ::draw2d_direct2d::g_pdirect2dplugin->g_pd3devicecontext1.Get();
-
-}
-
-IDXGIDevice * global_draw_get_dxgi_device()
-{
-
-   return ::draw2d_direct2d::g_pdirect2dplugin->g_pdxgidevice.Get();
-
-}
-
-ID2D1Device * global_draw_get_d2d1_device()
-{
-
-   return ::draw2d_direct2d::g_pdirect2dplugin->g_pd2device.Get();
-
-}
 
 
 

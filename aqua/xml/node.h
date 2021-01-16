@@ -122,6 +122,7 @@ namespace xml
       node *                  GetChildByAnyAttr(const char * lpszName, string_array & straName, string_array & straAttrValue);
       node *                  GetChildByAllAttr(const char * lpszName, string_array & straName, string_array & straAttrValue);
 
+      node * get_child_at( index iIndex);
       node *                  get_child_at(const char * lpszName, index iIndex, index iDepth = 0);
       ::count get_child_attr_value(string_array & stra, const char * lpszName, const char * pszAttrName, index iDepth = 1);
       ::count remove_child_with_attr(const char * lpszName, const char * pszAttrName, index iIndex, ::count iCount = 1, index iDepth = 1);
@@ -159,7 +160,7 @@ namespace xml
       ::property              attribute(const ::id & id) { return m_set[id]; }
       ::property *            attribute_at(index i) { return m_set.element_at(i); }
       ::property *            set_attribute(const property & property) { return set_attribute(property.m_id, property); }
-      ::property *            set_attribute(const ::id & id, const payload & payload = ::type_new);
+      ::property *            set_attribute(const ::id & id, const payload & payload = ::e_type_new);
       bool                    remove_attribute(::property * pproperty) { return remove_attribute(pproperty->m_id); }
       bool                    remove_attribute(const ::id & id) { return m_set.remove_by_name(id) > 0; }
 

@@ -91,14 +91,14 @@ namespace apex
    }
 
 
-   ::task_pool* context_thread::taskpool()
-   {
+   //::task_pool* context_thread::taskpool()
+   //{
 
-      __defer_construct_new(m_ptaskpool);
+   //   __defer_construct_new(m_ptaskpool);
 
-      return m_ptaskpool;
+   //   return m_ptaskpool;
 
-   }
+   //}
 
 
    //void command::on_create(::create* pcreate)

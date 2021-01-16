@@ -15,7 +15,7 @@
 //   virtual ~sync_task();
 //
 //
-//   virtual ::estatus call() override;
+//   virtual ::e_status call() override;
 //
 //
 //};

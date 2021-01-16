@@ -60,7 +60,7 @@ namespace file
       virtual ~os_watcher();
 
 
-      //virtual ::estatus     run() override;
+      //virtual ::e_status     run() override;
 
       virtual bool step();
 

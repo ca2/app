@@ -8,7 +8,7 @@ class console
 public:
 
 
-   ::estatus                     m_estatus;
+   ::e_status                     m_estatus;
    __pointer(::apex::system)     m_psystem;
 
 
@@ -65,7 +65,7 @@ public:
    void init()
    {
 
-      m_estatus = (::estatus) m_psystem->inline_init();
+      m_estatus = (::e_status) m_psystem->inline_init();
 
    }
 

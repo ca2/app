@@ -13,7 +13,7 @@ namespace experience
    {
 
       m_pframewindow = pframewindow;
-      m_enumState = state_initial;
+      m_enumState = e_state_initial;
 
    }
 
@@ -27,7 +27,7 @@ namespace experience
    void menu_manager::relay_event(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       if (m_pframewindow == nullptr || pbase->userinteraction() != m_pframewindow)
       {
@@ -57,7 +57,7 @@ namespace experience
             //pbase->m_bRet = true;
             //return;
          }
-         m_enumState = state_initial;
+         m_enumState = e_state_initial;
       }
    }
 
@@ -110,7 +110,7 @@ namespace experience
             pbase->m_bRet = true;
             return;
          }
-         m_enumState = state_initial;
+         m_enumState = e_state_initial;
       }
    }
 

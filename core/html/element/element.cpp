@@ -885,7 +885,7 @@ namespace html
 
       payload payload;
 
-      payload.set_type(::type_string);
+      payload.set_type(::e_type_string);
 
       if (m_pbase->get_type() == base::type_tag)
       {
@@ -1357,7 +1357,7 @@ namespace html
    }
 
 
-   ::estatus element::initialize_html_elemental(html_data * pdata, element * pparent)
+   ::e_status element::initialize_html_elemental(html_data * pdata, element * pparent)
    {
 
       auto estatus = ::user::primitive::initialize(pdata);

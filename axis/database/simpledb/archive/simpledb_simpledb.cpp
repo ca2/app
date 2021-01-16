@@ -147,13 +147,13 @@ namespace simpledb
       if(get_context_application()->m_varTopicQuery["locale"].get_count() > 0)
       {
          string str = get_context_application()->m_varTopicQuery["locale"].stra()[0];
-         get_context_application()->m_psession->set_locale(str,::source_database);
+         get_context_application()->m_psession->set_locale(str,::e_source_database);
       }
 
       if(get_context_application()->m_varTopicQuery["schema"].get_count() > 0)
       {
          string str = get_context_application()->m_varTopicQuery["schema"].stra()[0];
-         get_context_application()->m_psession->set_schema(str,::source_database);
+         get_context_application()->m_psession->set_schema(str,::e_source_database);
       }
 
 //      if(&AppUser(this) == nullptr)

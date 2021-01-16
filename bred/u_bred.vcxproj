@@ -331,11 +331,12 @@
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
       <PreprocessorDefinitions>_BRED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -353,11 +354,12 @@
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
       <PreprocessorDefinitions>_BRED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -375,11 +377,12 @@
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
       <PreprocessorDefinitions>_BRED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -397,11 +400,12 @@
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
       <PreprocessorDefinitions>_BRED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -419,11 +423,12 @@
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
       <PreprocessorDefinitions>_BRED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -441,11 +446,12 @@
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
       <PreprocessorDefinitions>_BRED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -463,11 +469,12 @@
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
       <PreprocessorDefinitions>_BRED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -485,11 +492,12 @@
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
       <PreprocessorDefinitions>_BRED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -507,11 +515,12 @@
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
       <PreprocessorDefinitions>_BRED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -529,11 +538,12 @@
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
       <PreprocessorDefinitions>_BRED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -551,11 +561,12 @@
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
       <PreprocessorDefinitions>_BRED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>
@@ -573,11 +584,12 @@
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <ObjectFileName>$(IntDir)%(RelativeDir)</ObjectFileName>
       <RuntimeTypeInfo>true</RuntimeTypeInfo>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpp17</LanguageStandard>
       <AdditionalIncludeDirectories>$(SolutionDir)../../inc;$(__sensitive)/sensitive/include;$(SolutionDir)../../../source/include;$(__archive)local/include;$(__archive)third-uwp/$(PlatformName)/$(Configuration)/include;$(__archive)third-uwp/include;$(__archive)third-uwp/third/include;$(__archive)third-uwp/third/include/include;$(SolutionDir)../../platform-uwp/_include;$(SolutionDir)../../platform-uwp;$(SolutionDir)../../../source/app/_include;$(SolutionDir)../../../source/third/include;.;$(IntDir);$(SolutionDir)../../../;$(SolutionDir)../../../source/app;$(ProjectDir)../..;$(ProjectDir)../../;$(ProjectDir)../;$(ProjectDir);%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <CompileAsManaged>false</CompileAsManaged>
       <ExceptionHandling>Async</ExceptionHandling>
       <PreprocessorDefinitions>_BRED_LIBRARY;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalOptions>/await </AdditionalOptions>
     </ClCompile>
     <Link>
       <SubSystem>Console</SubSystem>

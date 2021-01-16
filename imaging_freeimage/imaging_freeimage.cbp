@@ -7,9 +7,9 @@
 		<Option compiler="gcc" />
 		<Build>
 			<Target title="basis">
-				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -24,13 +24,13 @@
 				<Linker>
 					<Add option="-pg" />
 					<Add option="-m64" />
-					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 			</Target>
 			<Target title="stage">
-				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -45,13 +45,13 @@
 					<Add option="-pg" />
 					<Add option="-m64" />
 					<Add option="-O0" />
-					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 			</Target>
 			<Target title="memdleak">
-				<Option output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
-				<Option working_dir="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
-				<Option object_output="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
+				<Option output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/lib$(PROJECT_NAME).so" prefix_auto="0" extension_auto="0" />
+				<Option working_dir="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)/" />
+				<Option object_output="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/intermediate/$(TARGET_NAME)/$(PROJECT_NAME)" />
 				<Option type="3" />
 				<Option compiler="gcc" />
 				<Option createDefFile="1" />
@@ -62,7 +62,7 @@
 					<Add option="-DMEMDLEAK" />
 				</Compiler>
 				<Linker>
-					<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+					<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 				</Linker>
 			</Target>
 		</Build>
@@ -105,9 +105,10 @@
 			<Add option="-laura" />
 			<Add option="-lfreeimage" />
 			<Add option="-Wl,-z,defs" />
-			<Add directory="$(WORKSPACEDIR)/../../../source/time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
+			<Add directory="$(WORKSPACEDIR)/../../../time-$(#platform_modifier)/x64/$(TARGET_NAME)" />
 		</Linker>
 		<Unit filename="_.h" />
+		<Unit filename="_imaging_freeimage.h" />
 		<Unit filename="context_image.cpp" />
 		<Unit filename="context_image.h" />
 		<Unit filename="factory_exchange.cpp" />
@@ -117,7 +118,6 @@
 		<Unit filename="fimemory.h" />
 		<Unit filename="framework.cpp" />
 		<Unit filename="framework.h" />
-		<Unit filename="imaging_freeimage.cpp" />
 		<Unit filename="loading.cpp" />
 		<Unit filename="loading_gif.cpp" />
 		<Unit filename="saving.cpp" />

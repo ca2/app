@@ -504,7 +504,7 @@ extern "C"
 
 
 
-CLASS_DECL_BASE ::estatus load_factory_library(string strLibrary)
+CLASS_DECL_BASE ::e_status load_factory_library(string strLibrary)
 {
 
 

@@ -204,7 +204,7 @@
       //}
 
 
-      void * rx::on_ipc_receive(rx * prx, const char * pszMessage)
+      void * rx::on_interprocess_receive(rx * prx, const char * pszMessage)
       {
 
          if (m_preceiver != nullptr)
@@ -218,7 +218,7 @@
 
       }
 
-      void * rx::on_ipc_receive(rx * prx, int message, void * pdata, memsize len)
+      void * rx::on_interprocess_receive(rx * prx, int message, void * pdata, memsize len)
       {
 
          if (m_preceiver != nullptr)
@@ -233,12 +233,14 @@
       }
 
 
-      void * rx::on_ipc_post(rx * prx, long long int a, long long int b)
+      void * rx::on_interprocess_post(rx * prx, long long int a, long long int b)
       {
 
          if (m_preceiver != nullptr)
          {
+
             m_preceiver->on_interprocess_post(prx, a, b);
+
          }
 
          // ODOW - on date of writing : return ignored by this windows implementation

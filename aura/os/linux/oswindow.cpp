@@ -97,7 +97,7 @@ Display * x11_get_display();
 oswindow_data::oswindow_data()
 {
 
-   m_plongmap  = new int_ptr_to_int_ptr;
+   //m_plongmap  = new iptr_to_iptr;
 
    m_iXic = 0;
 
@@ -138,7 +138,7 @@ oswindow_data::oswindow_data()
 oswindow_data::~oswindow_data()
 {
 
-   ::acme::del(m_plongmap);
+   //::acme::del(m_plongmap);
 
 }
 
@@ -836,7 +836,7 @@ void oswindow_data::send_client_event(Atom atom, unsigned int numArgs, ...)
 }
 
 
-bool oswindow_data::show_window(::e_display edisplay)
+bool oswindow_data::show_window(const ::e_display & edisplay, const ::e_activation & eactivationi)
 {
 
    windowing_output_debug_string("\n::oswindow_data::show_window 1");
@@ -1104,7 +1104,7 @@ void oswindow_data::exit_zoomed()
 iptr oswindow_data::get_window_long_ptr(i32 nIndex)
 {
 
-   return m_plongmap->operator[](nIndex);
+   return m_pimpl->get_window_long_ptr(nIndex);
 
 }
 
@@ -1112,7 +1112,9 @@ iptr oswindow_data::get_window_long_ptr(i32 nIndex)
 iptr oswindow_data::set_window_long_ptr(i32 nIndex, iptr i)
 {
 
-   iptr iOld = m_plongmap->operator[](nIndex);
+   return m_pimpl->set_window_long_ptr(nIndex, i);
+
+   //iptr iOld = m_plongmap->operator[](nIndex);
 
 //   if(nIndex == GWL_EXSTYLE)
 //   {
@@ -1126,9 +1128,9 @@ iptr oswindow_data::set_window_long_ptr(i32 nIndex, iptr i)
 //
 //   }
 
-   m_plongmap->operator[](nIndex) = i;
+   //m_plongmap->operator[](nIndex) = i;
 
-   return iOld;
+   //return iOld;
 
 }
 
@@ -1541,13 +1543,13 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
 
 
 
-int_bool show_window(oswindow oswindow, int iShow)
+int_bool show_window(oswindow oswindow, const ::e_display & edisplay, const ::e_activation & eactivation)
 {
 
-   x11_sync([oswindow, iShow]()
+   x11_sync([oswindow, edisplay, eactivation]()
    {
 
-      return oswindow->show_window(iShow);
+      return oswindow->show_window(edisplay, eactivation);
 
    });
 

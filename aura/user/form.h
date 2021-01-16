@@ -5,9 +5,6 @@ namespace user
 {
 
 
-   class control_descriptor;
-
-
    class CLASS_DECL_AURA form :
       virtual public ::user::interaction
    {
@@ -27,14 +24,14 @@ namespace user
       virtual ~form();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
       virtual void install_message_routing(::channel * pchannel) override;
 
       DECL_GEN_SIGNAL(_001OnCreate);
 
-      ::estatus set_form_callback(::user::form_callback* pcallback);
-      ::estatus set_parent_form(::user::form* pform);
+      ::e_status set_form_callback(::user::form_callback* pcallback);
+      ::e_status set_parent_form(::user::form* pform);
 
 
       virtual ::user::form_callback* get_form_callback();
@@ -44,16 +41,16 @@ namespace user
 
       //virtual enum_control_type get_control_type() const override;
 
-
-      virtual bool create_control(class control_descriptor * pdescriptor, index iItem);
-
-
-      virtual __pointer(control_descriptor) new_form_control();
+      virtual bool _001AddControl(::user::interaction * pinteraction);
+      //virtual bool create_control(::user::interaction * pinteractionParent, const ::id & id);
 
 
-      virtual ::estatus open_html(const ::string& str);
+      //virtual __pointer(control_descriptor) new_form_control();
 
-      virtual ::estatus open_document(const payload& varFile);
+
+      virtual ::e_status open_html(const ::string& str);
+
+      virtual ::e_status open_document(const payload& varFile);
 
       virtual void soft_reload();
 

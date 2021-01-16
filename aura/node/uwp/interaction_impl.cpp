@@ -3,6 +3,7 @@
 #include "_uwp.h"
 #include "aura/platform/mq.h"
 #include "directx_application.h"
+#include "aura/os/windows_common/draw2d_direct2d_global.h"
 
 
 CLASS_DECL_ACME void set_core_window_once_visible();
@@ -134,10 +135,10 @@ namespace uwp
                   else
                   {
 
-                     m_rect.left = m_window->Bounds.X;
-                     m_rect.top = m_window->Bounds.Y;
-                     m_rect.right = m_rect.left + m_window->Bounds.Width;
-                     m_rect.bottom = m_rect.top + m_window->Bounds.Height;
+                     m_rect.left = (LONG) m_window->Bounds.X;
+                     m_rect.top = (LONG)m_window->Bounds.Y;
+                     m_rect.right = (LONG)(m_rect.left + m_window->Bounds.Width);
+                     m_rect.bottom = (LONG)(m_rect.top + m_window->Bounds.Height);
 
                   }
 
@@ -395,7 +396,7 @@ namespace uwp
    void interaction_impl::_001OnSetFocus(::message::message* pmessage)
    {
 
-      SCAST_PTR(::message::set_focus, psetfocus, pmessage);
+      __pointer(::message::set_focus) psetfocus(pmessage);
 
       //if (psession->get_focus_ui())
       //{
@@ -410,7 +411,7 @@ namespace uwp
    void interaction_impl::_001OnKillFocus(::message::message* pmessage)
    {
 
-      SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
+      __pointer(::message::kill_focus) pkillfocus(pmessage);
 
       m_pframeworkview->RemoveInternalFocus();
 
@@ -557,7 +558,7 @@ namespace uwp
       ::rect rect;
       ((::user::interaction_impl *) this)->m_puserinteraction->get_window_rect(&rect);
       dumpcontext << "\nrect = " << rect;
-      dumpcontext << "\nparent ::user::interaction_impl * = " << (void *)((::user::interaction_impl *) this)->GetParent();
+      dumpcontext << "\nparent ::user::interaction_impl * = " << (void *)((::user::interaction_impl *) this)->get_parent();
 
 #ifdef WINDOWS_DESKTOP
       dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
@@ -840,7 +841,7 @@ namespace uwp
       send_message_to_descendants(WM_CANCELMODE,0,0,TRUE,TRUE);
 
       // need to use top level parent (for the case where get_handle() is in DLL)
-      ::user::interaction * pWnd = EnsureTopLevel();
+      ::user::interaction * pWnd = get_top_level();
       pWnd->send_message(WM_CANCELMODE);
       pWnd->send_message_to_descendants(WM_CANCELMODE,0,0,TRUE,TRUE);
 
@@ -903,7 +904,7 @@ namespace uwp
    }
 
 
-   ::estatus interaction_impl::main_async(const ::promise::routine & routine, e_priority epriority)
+   ::e_status interaction_impl::main_async(const ::promise::routine & routine, e_priority epriority)
    {
 
       Windows::UI::Core::CoreDispatcher ^ pdispatcher;
@@ -988,7 +989,7 @@ namespace uwp
             pbase->m_id == e_message_sys_char)
       {
 
-         SCAST_PTR(::message::key, pkey, pbase);
+         __pointer(::message::key) pkey(pbase);
 
          //psession->keyboard().translate_os_key_message(pkey);
 
@@ -1152,10 +1153,11 @@ namespace uwp
 
          auto psession = Session;
 
-         ::user::interaction * puiFocus = dynamic_cast <::user::interaction *> (psession->get_keyboard_focus());
+         ::user::interaction * puiFocus = __user_interaction(m_puserinteraction->get_keyboard_focus());
+
          if(puiFocus != nullptr
                && puiFocus->is_window()
-               && puiFocus->GetTopLevel() != nullptr)
+               && puiFocus->get_top_level() != nullptr)
          {
             puiFocus->send(pkey);
             if(pbase->m_bRet)
@@ -1678,7 +1680,7 @@ return TRUE;
    /////////////////////////////////////////////////////////////////////////////
    // interaction_impl extensions
 
-   //::user::frame_window *  interaction_impl::GetParentFrame()
+   //::user::frame_window *  interaction_impl::get_parent_frame()
    //{
    //   if(get_handle() == nullptr) // no Window attached
    //   {
@@ -1687,14 +1689,14 @@ return TRUE;
 
    //   ASSERT_VALID(this);
 
-   //   ::user::interaction * puiParent = GetParent();  // start with one parent up
+   //   ::user::interaction * puiParent = get_parent();  // start with one parent up
    //   while(puiParent != nullptr)
    //   {
    //      if(puiParent->is_frame_window())
    //      {
    //         return dynamic_cast <::user::frame_window *> (puiParent);
    //      }
-   //      puiParent = puiParent->GetParent();
+   //      puiParent = puiParent->get_parent();
    //   }
    //   return nullptr;
    //}
@@ -1704,15 +1706,15 @@ return TRUE;
    //// check for permanent-owned interaction_impl first
    //::user::interaction_impl * pWnd = ::uwp::interaction_impl::FromHandlePermanent(hWnd);
    //if (pWnd != nullptr)
-   //return WIN_WINDOW(pWnd)->GetOwner();
+   //return WIN_WINDOW(pWnd)->get_owner();
 
    //// otherwise, return parent in the Windows sense
    //return (::GetWindowLong(hWnd, GWL_STYLE) & WS_CHILD) ?
-   //::GetParent(hWnd) : ::GetWindow(hWnd, GW_OWNER);
+   //::get_parent(hWnd) : ::GetWindow(hWnd, GW_OWNER);
    //}*/
 
 
-   //::user::interaction *  interaction_impl::GetTopLevel()
+   //::user::interaction *  interaction_impl::get_top_level()
    //{
    //   if(get_handle() == nullptr) // no Window attached
    //      return nullptr;
@@ -1759,7 +1761,7 @@ return TRUE;
    //   //oswindow hWndParent = get_handle();
    //   //oswindow hWndT;
    //   //while ((::GetWindowLong(hWndParent, GWL_STYLE) & WS_CHILD) &&
-   //   //   (hWndT = ::GetParent(hWndParent)) != nullptr)
+   //   //   (hWndT = ::get_parent(hWndParent)) != nullptr)
    //   //{
    //   //   hWndParent = hWndT;
    //   //}
@@ -1792,7 +1794,7 @@ return TRUE;
       //}
    }
 
-   //::user::frame_window *  interaction_impl::GetTopLevelFrame()
+   //::user::frame_window *  interaction_impl::top_level_frame()
    //{
    //   if(get_handle() == nullptr) // no Window attached
    //      return nullptr;
@@ -1805,12 +1807,12 @@ return TRUE;
    //   else
    //      pFrameWnd = dynamic_cast <::user::frame_window *> (this);
    //   if(pFrameWnd == nullptr || !pFrameWnd->is_frame_window())
-   //      pFrameWnd = GetParentFrame();
+   //      pFrameWnd = get_parent_frame();
 
    //   if(pFrameWnd != nullptr)
    //   {
    //      ::user:: frame_window* pTemp;
-   //      while((pTemp = pFrameWnd->GetParentFrame()) != nullptr)
+   //      while((pTemp = pFrameWnd->get_parent_frame()) != nullptr)
    //         pFrameWnd = pTemp;
    //   }
    //   return pFrameWnd;
@@ -1972,7 +1974,7 @@ return TRUE;
       __throw(todo());
 
 
-      //::user::interaction* pParent = GetTopLevel();
+      //::user::interaction* pParent = get_top_level();
       //switch (nID & 0xfff0)
       //{
       //case SC_PREVWINDOW:
@@ -2020,11 +2022,11 @@ return TRUE;
       ASSERT(puiStop == nullptr || puiStop->is_window());
       ASSERT(pmessage != nullptr);
 
-      SCAST_PTR(::message::base,pbase,pmessage);
+      __pointer(::message::base) pbase(pmessage);
       // walk from the target interaction_impl up to the hWndStop interaction_impl checking
       //  if any interaction_impl wants to translate this message
 
-      for(::user::interaction * pinteraction = pbase->userinteraction(); pinteraction != nullptr; pinteraction->GetParent())
+      for(::user::interaction * pinteraction = pbase->userinteraction(); pinteraction != nullptr; pinteraction->get_parent())
       {
 
          pinteraction->pre_translate_message(pmessage);
@@ -2390,7 +2392,7 @@ return TRUE;
    //   }
 
 
-   //    ::estatus     c_cdecl print_window(LPVOID pvoid)
+   //    ::e_status     c_cdecl print_window(LPVOID pvoid)
    //   {
    //      __throw(todo(::get_context_application()));
 
@@ -2433,7 +2435,7 @@ return TRUE;
    {
       __throw(todo());
 
-      //SCAST_PTR(::message::base, pbase, pmessage);
+      //__pointer(::message::base) pbase(pmessage);
 
       //if(pbase->m_wparam == nullptr)
       //   return;
@@ -2595,7 +2597,7 @@ return TRUE;
       ////if (pAlternateOwner == nullptr)
       ////{
       ////   if (uStyle & WS_CHILD)
-      ////      hWndCenter = GetParent();
+      ////      hWndCenter = get_parent();
       ////   else
       ////      hWndCenter = GetWindow(GW_OWNER);
       ////   if (hWndCenter != nullptr)
@@ -2648,7 +2650,7 @@ return TRUE;
       ////else
       ////{
       ////   // center within parent client coordinates
-      ////   hWndParent = GetParent();
+      ////   hWndParent = get_parent();
       ////   ASSERT(hWndParent->is_window());
 
       ////   hWndParent->get_client_rect(&rcArea);
@@ -2788,7 +2790,7 @@ return TRUE;
 //      ::i32 lIdleCount = 0;
 ////      bool bShowIdle = (dwFlags & MLF_SHOWONIDLE) && !(GetStyle() & WS_VISIBLE);
 //      bool bShowIdle = !(GetStyle() & WS_VISIBLE);
-//      oswindow hWndParent = oswindow_get(GetParent()->m_pimpl.cast < ::user::interaction_impl >());
+//      oswindow hWndParent = oswindow_get(get_parent()->m_pimpl.cast < ::user::interaction_impl >());
 ////      m_puserinteraction->m_iModal = m_puserinteraction->m_iModalCount;
 //      //    int iLevel = m_puserinteraction->m_iModal;
 //      //prop(string("RunModalLoop.thread(") + __str(iLevel) + ")") = ::get_task();
@@ -3408,16 +3410,17 @@ return TRUE;
 
 
 
-   ::user::interaction *  interaction_impl::GetParent()
+   ::user::interaction *  interaction_impl::get_parent() const
    {
 
+      return nullptr;
       __throw(todo());
 
       //if(!::is_window(get_handle()))
       //   return nullptr;
       //if(get_handle() == nullptr)
       //   return nullptr;
-      //return ::uwp::interaction_impl::from_handle(::GetParent(get_handle()));
+      //return ::uwp::interaction_impl::from_handle(::get_parent(get_handle()));
    }
 
    ::i32 interaction_impl::GetWindowLong(int nIndex)
@@ -3550,7 +3553,7 @@ return TRUE;
             return spbase->get_lresult();
             try
             {
-            pinteraction = pinteraction->GetParent();
+            pinteraction = pinteraction->get_parent();
             }
             catch(...)
             {
@@ -3671,14 +3674,14 @@ return TRUE;
 
    //::user::frame_window *  interaction_impl::EnsureParentFrame()
    //{
-   //   ::user::frame_window * pFrameWnd=GetParentFrame();
+   //   ::user::frame_window * pFrameWnd=get_parent_frame();
    //   ENSURE_VALID(pFrameWnd);
    //   return pFrameWnd;
    //}
 
    //::user::interaction *  interaction_impl::EnsureTopLevelParent()
    //{
-   //   ::user::interaction *pWnd=GetTopLevel();
+   //   ::user::interaction *pWnd=get_top_level();
    //   ENSURE_VALID(pWnd);
    //   return pWnd;
    //}
@@ -3872,7 +3875,7 @@ return TRUE;
          if(!m_puserinteraction->is_this_visible())
             return false;
 
-         if(m_puserinteraction->GetParent() != nullptr && !m_puserinteraction->GetParent()->is_window_visible())
+         if(m_puserinteraction->get_parent() != nullptr && !m_puserinteraction->get_parent()->is_window_visible())
             return false;
 
       }
@@ -4723,7 +4726,7 @@ return TRUE;
 
       __throw(todo());
 
-      //SCAST_PTR(::message::base, pbase, pmessage);
+      //__pointer(::message::base) pbase(pmessage);
       //if(System.get_cursor() != nullptr
       //   && System.get_cursor()->m_ecursor != cursor_system)
       //{
@@ -5179,7 +5182,7 @@ return TRUE;
 
       //// a popup ::user::interaction_impl cannot be owned by a child ::user::interaction_impl
       //while (hWnd != nullptr && (::GetWindowLong(hWnd, GWL_STYLE) & WS_CHILD))
-      //   hWnd = ::GetParent(hWnd);
+      //   hWnd = ::get_parent(hWnd);
 
       //// determine toplevel ::user::interaction_impl to disable as well
       //oswindow hWndTop = hWnd, hWndTemp = hWnd;
@@ -5189,7 +5192,7 @@ return TRUE;
       //      break;
       //   else
       //      hWndTop = hWndTemp;
-      //   hWndTemp = ::GetParent(hWndTop);
+      //   hWndTemp = ::get_parent(hWndTop);
       //}
 
       //// get last active popup of first non-child that was found
@@ -5438,7 +5441,7 @@ lCallNextHook:
 
    //void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
    //{
-   //   SCAST_PTR(::message::erase_bkgnd,perasebkgnd,pmessage);
+   //   __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
    //   perasebkgnd->m_bRet = true;
    //   perasebkgnd->set_result(TRUE);
    //}
@@ -5652,8 +5655,8 @@ __handle_activate(::user::interaction_impl * pWnd, WPARAM nState, ::user::intera
    // send WM_ACTIVATETOPLEVEL when top-level parents change
    if (!(WIN_WINDOW(pWnd)->GetStyle() & WS_CHILD))
    {
-      ::user::interaction * pTopLevel= WIN_WINDOW(pWnd)->GetTopLevel();
-      if (pTopLevel && (pWndOther == nullptr || !::is_window(WIN_WINDOW(pWndOther)->get_handle()) || pTopLevel != WIN_WINDOW(pWndOther)->GetTopLevel()))
+      ::user::interaction * pTopLevel= WIN_WINDOW(pWnd)->get_top_level();
+      if (pTopLevel && (pWndOther == nullptr || !::is_window(WIN_WINDOW(pWndOther)->get_handle()) || pTopLevel != WIN_WINDOW(pWndOther)->get_top_level()))
       {
          // lParam points to interaction_impl getting the e_message_activate message and
          //  hWndOther from the e_message_activate.
@@ -5681,7 +5684,7 @@ __handle_set_cursor(::user::interaction_impl * pWnd, ::u32 nHitTest, ::u32 nMsg)
           nMsg == e_message_right_button_down))
    {
       // activate the last active interaction_impl if not active
-      ::user::interaction * pLastActive = WIN_WINDOW(pWnd)->GetTopLevel();
+      ::user::interaction * pLastActive = WIN_WINDOW(pWnd)->get_top_level();
       if (pLastActive != nullptr)
          pLastActive = pLastActive->GetLastActivePopup();
       if (pLastActive != nullptr &&
@@ -6086,6 +6089,19 @@ namespace uwp
 
          ::output_debug_string("interaction_impl::on_after_graphical_update NotifyLayoutCompleted\n");
 
+         if (m_pframeworkview->m_directx->m_bCoreWindowVisible)
+         {
+
+            ::output_debug_string("WindowVisible\n");
+
+         }
+         else
+         {
+
+            ::output_debug_string("WindowNotVisible\n");
+
+         }
+
          //if (m_bPendingActivation)
          //{
 
@@ -6102,7 +6118,7 @@ namespace uwp
    }
 
 
-   ::estatus interaction_impl::update_graphics_resources()
+   ::e_status interaction_impl::update_graphics_resources()
    {
 
       return ::user::interaction_impl::update_graphics_resources();
@@ -6240,14 +6256,25 @@ namespace uwp
    }
 
 
-   void interaction_impl::show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd)
+   ::e_status interaction_impl::show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd)
    {
 
       m_pframeworkview->SetText(str, iBeg, iEnd);
 
+      return ::success;
+
    }
 
-   
+
+   ::e_status interaction_impl::hide_software_keyboard(::user::primitive * pprimitive)
+   {
+
+      //m_pframeworkview->SetText(str, iBeg, iEnd);
+
+      return ::success;
+
+   }
+
    void interaction_impl::edit_on_set_focus(::user::interaction* pinteraction)
    {
 

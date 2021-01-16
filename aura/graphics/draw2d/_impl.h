@@ -590,8 +590,11 @@ namespace draw2d
    //inline bool graphics::draw_dim(i32 x, i32 y, i32 w, i32 h, ::image * pimage, i32 xSrc, i32 ySrc) { return draw(rect_dim(x, y, w, h), pimage, ::point(xSrc, ySrc)); }
    //inline bool graphics::BitBlt (i32 x, i32 y, i32 w, i32 h, ::image * pimage, i32 xSrc, i32 ySrc) { return draw_dim(x, y, w, h, pimage, xSrc, ySrc); }
 
+   
 
 } // namespace draw2d
+
+
 
 
 

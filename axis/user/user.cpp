@@ -21,7 +21,7 @@ namespace axis
 
    }
 
-   ::estatus user::init()
+   ::e_status user::init()
    {
 
       if (!::user::user::init())

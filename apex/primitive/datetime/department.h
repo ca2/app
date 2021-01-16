@@ -37,7 +37,7 @@ namespace datetime
          international();
 
 
-         virtual ::estatus initialize(::layered* pobjectContext) override;
+         virtual ::e_status initialize(::layered* pobjectContext) override;
 
 
          void parse_str(const char * psz,property_set & set);
@@ -76,7 +76,7 @@ namespace datetime
          
          str();
 
-         virtual ::estatus initialize(::layered * pobjectContext) override;
+         virtual ::e_status initialize(::layered * pobjectContext) override;
          
          string get_gmt_date_time();
 
@@ -105,7 +105,7 @@ namespace datetime
       department();
 
 
-      virtual ::estatus initialize(::layered* pobjectContext) override;
+      virtual ::e_status initialize(::layered* pobjectContext) override;
       virtual void finalize() override;
 
       i32 get_month_day_count(i32 year,i32 month);

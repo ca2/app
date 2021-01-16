@@ -22,7 +22,7 @@ namespace graphics
 
    }
 
-   ::estatus bitmap_source_buffer::initialize_graphics_graphics(::user::interaction_impl* pimpl)
+   ::e_status bitmap_source_buffer::initialize_graphics_graphics(::user::interaction_impl* pimpl)
    {
 
       auto estatus = graphics::initialize_graphics_graphics(pimpl);

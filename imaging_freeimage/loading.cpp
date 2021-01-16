@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "_imaging_freeimage.h"
 
 
 namespace imaging_freeimage
@@ -231,7 +232,7 @@ namespace imaging_freeimage
    //#endif // WINDOWS_DESKTOP
 
 
-   ::estatus context_image::_load_image(::image * pimage, const payload & varFile, bool bSync, bool bCreateHelperMaps)
+   ::e_status context_image::_load_image(::image * pimage, const payload & varFile, bool bSync, bool bCreateHelperMaps)
    {
 
       auto pmemory = create_memory();

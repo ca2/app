@@ -7,7 +7,7 @@ void simple_frame_window::defer_set_icon()
 {
 
 
-   if (GetParent() == nullptr)
+   if (get_parent() == nullptr)
    {
 
       //get_handle()->bamf_set_icon();

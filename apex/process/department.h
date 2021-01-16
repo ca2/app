@@ -32,7 +32,7 @@ namespace process
 
          virtual void construct_process_thread(::object * pobjectParent, const string & strCmdLine, const ::duration & dur, bool * pbPotentialTimeout = nullptr, string * pstrRead = nullptr, bool bElevated = false);
 
-         virtual ::estatus     run() override;
+         virtual ::e_status     run() override;
 
          void run_normal();
 

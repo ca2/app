@@ -49,7 +49,7 @@ namespace experience
    void control_box::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
 
       if (m_pframewindow != nullptr
@@ -75,7 +75,7 @@ namespace experience
    void control_box::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (m_pframewindow != nullptr
             && m_pframewindow->m_pframe != nullptr
@@ -102,7 +102,7 @@ namespace experience
    void control_box::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (m_pframewindow != nullptr
             && m_pframewindow->m_pframe != nullptr
@@ -141,7 +141,7 @@ namespace experience
 
       //::rect rectParent;
 
-      //GetParent()->get_client_rect(rectParent);
+      //get_parent()->get_client_rect(rectParent);
 
       //::rect rectClient;
 
@@ -151,7 +151,7 @@ namespace experience
 
       //get_window_rect(rectWindow);
 
-      //GetParent()->_001ScreenToClient(rectWindow);
+      //get_parent()->_001ScreenToClient(rectWindow);
 
       //m_pframewindow->m_pframe->m_iControlBoxRight = rectParent.right - x - rectWindow.width();
 
@@ -163,7 +163,7 @@ namespace experience
 
       //::point pointScreen(point);
 
-      //GetParent()->_001ClientToScreen(pointScreen);
+      //get_parent()->_001ClientToScreen(pointScreen);
 
       //m_pframewindow->m_pframe->m_iControlBoxRight = rectParent.right - point.x - rectWindow.width();
 
@@ -181,7 +181,7 @@ namespace experience
    void control_box::_001OnShowWindow(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::show_window, pshow, pmessage);
+      __pointer(::message::show_window) pshow(pmessage);
 
       m_bDrag = false;
 
@@ -203,7 +203,7 @@ namespace experience
       if (ptimer->m_uEvent == e_timer_check_hover)
       {
 
-         if (GetTopLevel()->layout().is_moving())
+         if (get_top_level()->layout().is_moving())
          {
 
             //TRACE("experience control_box : top level is moving : ignoring e_message_timer");
@@ -211,7 +211,7 @@ namespace experience
             return;
 
          }
-         else if (GetTopLevel()->layout().is_sizing())
+         else if (get_top_level()->layout().is_sizing())
          {
 
             //TRACE("experience control_box : top level is sizing : ignoring e_message_timer");
@@ -942,7 +942,7 @@ namespace experience
 
          pbutton->set_stock_icon(get_control_box_button_stock_icon(ebutton));
 
-         pbutton->SetParent(this);
+         pbutton->set_parent(this);
 
          pbutton->set_window_text(strCaption);
 
@@ -1327,10 +1327,10 @@ namespace experience
       m_penButtonBackFocus->create_solid(2, ARGB(255, 255, 255, 255));
       m_penButtonBackDisabled->create_solid(2, ARGB(255, 220, 220, 215));
 
-      m_crButtonFore = ARGB(255, 255, 255, 255);
-      m_crButtonForeSel = ARGB(255, 255, 255, 255);
-      m_crButtonForeFocus = ARGB(255, 255, 255, 255);
-      m_crButtonForeDisabled = ARGB(255, 220, 220, 215);
+      m_colorButtonFore = ARGB(255, 255, 255, 255);
+      m_colorButtonForeSel = ARGB(255, 255, 255, 255);
+      m_colorButtonForeFocus = ARGB(255, 255, 255, 255);
+      m_colorButtonForeDisabled = ARGB(255, 220, 220, 215);
 
    }
 
@@ -1452,7 +1452,7 @@ namespace experience
 
                m_pshapeaClip->add_item(__new(intersect_clip_shape));
 
-               pinteraction = pinteraction->GetParent();
+               pinteraction = pinteraction->get_parent();
                
             }
 

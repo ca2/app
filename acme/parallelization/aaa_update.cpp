@@ -24,7 +24,7 @@ update::~update()
 }
 
 
-::estatus update::run()
+::e_status update::run()
 {
 
    while(!g_bDestroyAll)

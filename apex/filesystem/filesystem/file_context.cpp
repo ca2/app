@@ -46,7 +46,7 @@ file_context::~file_context()
 }
 
 
-::estatus file_context::initialize(::layered *pobjectContext)
+::e_status file_context::initialize(::layered *pobjectContext)
 {
 
    auto estatus = ::object::initialize(pobjectContext);
@@ -560,7 +560,7 @@ payload file_context::as_json(const payload &varFile)
    if (str.is_empty())
    {
 
-      return ::type_new;
+      return ::e_type_new;
 
    }
 
@@ -581,7 +581,7 @@ payload file_context::as_json(const payload &varFile)
 
       TRACE(esp->get_message());
 
-      v = ::type_new;
+      v = ::e_type_new;
 
    }
    catch (...)
@@ -589,7 +589,7 @@ payload file_context::as_json(const payload &varFile)
 
       TRACE("GENERAL Exception parsing json file_context::as_json : \"" + str + "\"");
 
-      v = ::type_new;
+      v = ::e_type_new;
 
    }
 
@@ -2102,7 +2102,7 @@ bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strF
 }
 
 
-::estatus file_context::init_system()
+::e_status file_context::init_system()
 {
 
    auto estatus = System.m_pfilesystem->update_module_path();
@@ -2119,7 +2119,7 @@ bool file_context::get_last_write_time(filetime_t *pfiletime, const string &strF
 }
 
 
-::estatus file_context::init_context()
+::e_status file_context::init_context()
 {
 
    return ::success;
@@ -2527,7 +2527,7 @@ file_result file_context::http_get_file(const payload &varFile, const ::file::e_
 
    ::file_result preader;
 
-   if (varFile.m_etype == ::type_element)
+   if (varFile.m_etype == ::e_type_element)
    {
 
       preader = varFile.cast<::file::file>();
@@ -2551,7 +2551,7 @@ file_result file_context::http_get_file(const payload &varFile, const ::file::e_
 
    ::file_result pwriter;
 
-   if (varFile.m_etype == ::type_element)
+   if (varFile.m_etype == ::e_type_element)
    {
 
       pwriter = varFile.cast<::file::file>();
@@ -2578,7 +2578,7 @@ file_result file_context::get_file(const payload &varFile, const ::file::e_open 
 
       ::file_pointer pfile;
 
-      if (varFile.get_type() == ::type_element)
+      if (varFile.get_type() == ::e_type_element)
       {
 
          pfile = varFile.cast<::file::file>();
@@ -2591,7 +2591,7 @@ file_result file_context::get_file(const payload &varFile, const ::file::e_open 
          }
 
       }
-      else if (varFile.get_type() == ::type_propset)
+      else if (varFile.get_type() == ::e_type_propset)
       {
 
          if (varFile.has_property("file"))
@@ -3448,7 +3448,7 @@ bool file_context::touch(const ::file::path &path)
 
 
 
-::estatus file_context::update_module_path()
+::e_status file_context::update_module_path()
 {
 
 

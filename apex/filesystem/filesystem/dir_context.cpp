@@ -64,7 +64,7 @@ dir_context::~dir_context()
 }
 
 
-::estatus dir_context::initialize(::layered * pobjectContext)
+::e_status dir_context::initialize(::layered * pobjectContext)
 {
 
    auto estatus = ::object::initialize(pobjectContext);
@@ -81,7 +81,7 @@ dir_context::~dir_context()
 }
 
 
-::estatus dir_context::init_system()
+::e_status dir_context::init_system()
 {
 
    return ::success;
@@ -90,7 +90,7 @@ dir_context::~dir_context()
 
 
 
-::estatus dir_context::init_context()
+::e_status dir_context::init_context()
 {
 
    return ::success;
@@ -579,6 +579,7 @@ inline bool myspace(char ch)
 
 }
 
+
 ::file::listing& dir_context::rls_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
 {
 
@@ -587,6 +588,24 @@ inline bool myspace(char ch)
    listing.m_bRecursive = true;
 
    listing.m_bDir = true;
+
+   listing.m_bFile = true;
+
+   listing.m_straPattern = straPattern;
+
+   return ls(listing);
+
+}
+
+
+::file::listing& dir_context::rls_file_pattern(::file::listing& listing, const ::file::path& path, const string_array& straPattern)
+{
+
+   listing.m_pathUser = path;
+
+   listing.m_bRecursive = true;
+
+   listing.m_bDir = false;
 
    listing.m_bFile = true;
 
@@ -606,7 +625,7 @@ inline bool myspace(char ch)
 
    listing.m_bFile = true;
 
-   listing.m_straPattern.remove_all();
+   //listing.m_straPattern.remove_all();
 
    return ls(listing);
 
@@ -1892,7 +1911,7 @@ ret:
 
       System.file().del(pathMeta);
 
-      ((cflag < ::file::e_flag >&)path) = patha[0];
+      ((enumeration < ::file::enum_flag >&)path) = patha[0];
 
    }
 

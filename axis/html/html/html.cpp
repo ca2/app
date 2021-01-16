@@ -25,7 +25,7 @@ namespace html
    }
 
 
-   ::estatus html::initialize(::layered * pobjectContext)
+   ::e_status html::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::apex::department::initialize(pobjectContext);
@@ -363,7 +363,7 @@ namespace html
    }
 
 
-   //::estatus html::initialize(::layered * pobjectContext)
+   //::e_status html::initialize(::layered * pobjectContext)
    //{
 
 
@@ -791,10 +791,10 @@ namespace axis
 {
 
 
-   ::estatus system::defer_create_html()
+   ::e_status system::defer_create_html()
    {
 
-      ::estatus estatus = ::success;
+      ::e_status estatus = ::success;
 
       if (!m_phtml)
       {
@@ -808,7 +808,7 @@ namespace axis
    }
 
 
-   ::estatus system::create_html()
+   ::e_status system::create_html()
    {
 
       auto estatus = __compose_new(m_phtml);

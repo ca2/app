@@ -12,7 +12,7 @@ public:
 
    ::user::interaction_impl *    m_pimpl;
 
-   int_ptr_to_int_ptr *          m_plongptrmap;
+   iptr_to_iptr *          m_plongptrmap;
 
 
    ::user::interaction_impl* window();

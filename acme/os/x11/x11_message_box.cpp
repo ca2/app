@@ -91,7 +91,7 @@ void setWindowTitle(const char* title, const Window *win, Display *dpy){
 //     }
 // }
 
-//::estatus x11MessageBoxA(const char* title, const char * text, const Button* buttons, int numButtons);
+//::e_status x11MessageBoxA(const char* title, const char * text, const Button* buttons, int numButtons);
 
 
 
@@ -111,7 +111,7 @@ void setWindowTitle(const char* title, const Window *win, Display *dpy){
 
 
 
-//::estatus x11MessageBoxA(const char* title, const char * text, const Button* btsData, int numButtons)
+//::e_status x11MessageBoxA(const char* title, const char * text, const Button* btsData, int numButtons)
 //{
 //    //setlocale(LC_ALL,"");
 //

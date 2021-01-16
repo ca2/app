@@ -166,7 +166,7 @@ namespace user
 
       on_control_event(&event);
 
-      _001SetSelection(iaSel, ::source_user);
+      _001SetSelection(iaSel, ::e_source_user);
 
       m_itemCurrent     = item;
 
@@ -179,7 +179,7 @@ namespace user
    void image_list::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
 
@@ -685,7 +685,7 @@ namespace user
    void image_list_view::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
 

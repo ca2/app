@@ -19,30 +19,36 @@ namespace draw2d
       map < i32, i32, __pointer(memory) > m_alpha_spread__32CC_filterMap;
 
 
-      __pointer(cursor_set)                                     m_pcursorset;
-      __pointer(class ::draw2d::api)                            m_papi;
-      __pointer(class font_department)                          m_pfontdepartment;
+      __pointer(cursor_set)                                    m_pcursorset;
+      __pointer(class ::draw2d::api)                           m_papi;
+      __pointer(class font_department)                         m_pfontdepartment;
 
       //__pointer(::mutex)                                        m_pmutexFont;
-
-
+#ifdef WINDOWS
+      __composite(::draw2d_direct2d::plugin)                     m_pplugin;
+#endif
 
       draw2d();
       virtual ~draw2d();
 
 
-      virtual ::estatus initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
 
-      virtual ::estatus process_init() override;
+      virtual ::e_status process_init() override;
 
-      virtual ::estatus init() override;
-      virtual ::estatus init1() override;
+      virtual ::e_status init() override;
+      virtual ::e_status init1() override;
 
       virtual void term() override;
 
       virtual void finalize() override;
 
       virtual class api & api();
+
+
+#ifdef WINDOWS
+      ::draw2d_direct2d::plugin * direct2d();
+#endif
 
       virtual double font_similarity(const char * pszSystem, const char * pszUser);
 

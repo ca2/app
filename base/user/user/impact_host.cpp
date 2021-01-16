@@ -17,7 +17,7 @@ namespace user
       if (pframewindow)
       {
 
-         return pframewindow->GetActiveDocument();
+         return pframewindow->get_active_document();
 
       }
       else
@@ -89,7 +89,7 @@ namespace user
    id impact_host::get_view_id()
    {
 
-      return id(::type_empty);
+      return id(::e_type_empty);
 
    }
 
@@ -604,7 +604,7 @@ namespace user
 
 
 
-         pinteraction->SetParent(pimpactdata->m_pplaceholder);
+         pinteraction->set_parent(pimpactdata->m_pplaceholder);
 
          on_after_host_impact(pimpactdata);
 

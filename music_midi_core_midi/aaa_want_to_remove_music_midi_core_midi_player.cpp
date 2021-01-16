@@ -153,7 +153,7 @@ namespace music
 
 //         void player::close_file()
 //         {
-//            ::estatus                estatus;
+//            ::e_status                estatus;
 //            if(::failed(estatus = get_sequence()->close_file()) &&
 //                  estatus != ::error_unsupported_function)
 //            {
@@ -163,7 +163,7 @@ namespace music
 
          void player::pause()
          {
-            if (get_sequence()->get_state() == sequence::state_paused)
+            if (get_sequence()->get_state() == sequence::e_state_paused)
             {
                get_sequence()->Restart();
             }
@@ -176,15 +176,15 @@ namespace music
 
          void player::SetPosition(double dRate)
          {
-            if (sequence::state_playing != get_sequence()->get_state() &&
-                  sequence::state_stopping != get_sequence()->get_state() &&
-                  sequence::state_opened != get_sequence()->get_state())
+            if (sequence::e_state_playing != get_sequence()->get_state() &&
+                  sequence::e_state_stopping != get_sequence()->get_state() &&
+                  sequence::e_state_opened != get_sequence()->get_state())
                return;
 
             if(get_sequence()->IsPlaying())
             {
                auto & link = get_sequence()->GetPlayerLink();
-               link() |= sequence::FlagSettingPos;
+               link() |= sequence::e_flag_setting_position;
                link.m_tkRestart = RateToTicks(dRate);
                get_sequence()->Stop();
             }
@@ -223,7 +223,7 @@ namespace music
 
          void player::pre_translate_message(::message::message * pmessage)
          {
-            //SCAST_PTR(::message::base, pbase, pmessage);
+            //__pointer(::message::base) pbase(pmessage);
             //ASSERT(GetMainWnd() == nullptr);
             //   if(pMsg->message == MM_MOM_DONE ||
             //      pMsg->message == MM_MOM_POSITIONCB ||
@@ -261,7 +261,7 @@ namespace music
 
 //         void player::SaveFile(const char * lpszPathName)
 //         {
-//            ::estatus                estatus;
+//            ::e_status                estatus;
 //            if(::music::failed(estatus = get_sequence()->SaveFile(lpszPathName)) )
 //            {
 //               __throw(multimedia::exception(multimedia::exception_music, ::music::error_midi_player_save));
@@ -272,7 +272,7 @@ namespace music
 
          void player::OnUserMessage(::message::message * pmessage)
          {
-            SCAST_PTR(::message::base, pbase, pmessage);
+            __pointer(::message::base) pbase(pmessage);
             if(pbase->m_wparam == 3377)
             {
                m_puie->send_message(WM_USER, pbase->m_wparam, pbase->m_lparam);
@@ -297,7 +297,7 @@ namespace music
 //         }
 
 
-         ::estatus     player::Initialize(thread * pthread)
+         ::e_status     player::Initialize(thread * pthread)
          {
             UNREFERENCED_PARAMETER(pthread);
             return ::success;
@@ -308,7 +308,7 @@ namespace music
          //    m_pView = pview;
          //}
 
-//         ::estatus     player::SetInterface(player_interface * pinterface)
+//         ::e_status     player::SetInterface(player_interface * pinterface)
 //         {
 //            m_pinterface = pinterface;
 //            get_sequence()->m_pthread   = m_psequencethread;
@@ -322,7 +322,7 @@ namespace music
 //
 
 
-//         ::estatus     player::set_client(player_client * pclient)
+//         ::e_status     player::set_client(player_client * pclient)
 //         {
 //
 //            m_pclient = pclient;
@@ -358,8 +358,8 @@ namespace music
                 get_sequence()->SetTempoChangeFlag();
                 sequence::PlayerLink & link = get_sequence()->GetPlayerLink();
                 link.ModifyFlag(
-                sequence::FlagTempoChange,
-                sequence::FlagNull);
+                sequence::e_flag_tempo_change,
+                sequence::e_flag_null);
                 imedia_time tk = get_sequence()->GetPositionTicks();
                 get_sequence()->m_evMmsgDone.ResetEvent();
                 link.m_tkRestart = tk + get_sequence()->m_tkBase;
@@ -428,7 +428,7 @@ namespace music
 
          void player::on_attribute_change(::message::message * pmessage)
          {
-            SCAST_PTR(::music::midi::attribute_message, pchange, pmessage);
+            __pointer(::music::midi::attribute_message) pchange(pmessage);
 
             switch(pchange->m_eattribute)
             {
@@ -454,7 +454,7 @@ namespace music
 
                auto & link = get_sequence()->GetPlayerLink();
 
-               link() |= sequence::FlagTempoChange;
+               link() |= sequence::e_flag_tempo_change;
 
                link.m_tkRestart = tkPosition;
 
@@ -469,7 +469,7 @@ namespace music
          {
 
             UNREFERENCED_PARAMETER(pmessage);
-//            SCAST_PTR(::message::base, pbase, pmessage);
+//            __pointer(::message::base) pbase(pmessage);
 
             /*seq_context_t * pseq = (seq_context_t *) pbase->m_wparam;
 
@@ -486,7 +486,7 @@ namespace music
 //         void player::OnMultimediaMidiOutputMessagePositionCB(::message::message * pmessage)
 //         {
 //            UNREFERENCED_PARAMETER(pmessage);
-////            SCAST_PTR(::message::base, pbase, pmessage);
+////            __pointer(::message::base) pbase(pmessage);
 //            /*            LPMIDIHDR lpmidihdr = (LPMIDIHDR) pbase->m_wparam;
 //             //          get_sequence()->OnPositionCB(lpmidihdr);
 //
@@ -502,7 +502,7 @@ namespace music
 
 //         void player::OnNotifyEvent(::message::message * pmessage)
 //         {
-//            SCAST_PTR(::message::base, pbase, pmessage);
+//            __pointer(::message::base) pbase(pmessage);
 //            __pointer(::music::midi::player::notify_event) pdata(pbase->m_lparam);
 //            pdata->m_pplayer = this;
 //            if(m_puie != nullptr)
@@ -517,7 +517,7 @@ namespace music
 //         void player::SendReset()
 //         {
 //            /*            HMIDIOUT hmidiout = nullptr;
-//             ::estatus     estatus;
+//             ::e_status     estatus;
 //             u32 uDeviceID = 0;
 //             estatus = midiOutOpen(&hmidiout, uDeviceID,  0, 0, CALLBACK_NULL);
 //             if(estatus != ::success)

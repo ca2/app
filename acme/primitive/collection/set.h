@@ -842,7 +842,7 @@ set < ELEMENT, ARG_ELEMENT >::new_element(ARG_ELEMENT key)
 
    //this->m_passocFree  = this->m_passocFree->m_pnext;
 
-   //�zero_pointer(pelement);
+   //zero_pointer(pelement);
 
    if (this->m_pelementHead != nullptr)
    {

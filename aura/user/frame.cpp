@@ -12,11 +12,11 @@ namespace user
    frame::frame()
    {
 
+      set_layer(LAYERED_USER_FRAME, this);
       m_bDerivedHeight = false;
       m_bShowControlBox = true;
       m_bDefaultNotifyIcon = false;
       m_bCloseApplicationIfLastVisibleFrame = true;
-      m_pframe = this;
 
    }
 
@@ -38,7 +38,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-      if (m_puserinteraction->is_frame_window())
+      if (is_frame_window())
       {
 
          MESSAGE_LINK((::enum_message)WM_SYSCOMMAND, pchannel, this, &frame::_001OnSysCommand);
@@ -54,9 +54,9 @@ namespace user
    void frame::_001OnAppExit(::message::message* pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
-      if (GetParent() != nullptr)
+      if (get_parent() != nullptr)
       {
 
          pmessage->m_bRet = false;
@@ -90,7 +90,15 @@ namespace user
    }
 
 
-   style * frame::_get_style() const
+   bool frame::is_os_host() const
+   {
+
+      return false;
+
+   }
+
+
+   style * frame::get_style() const
    {
 
       return m_puserstyle;
@@ -106,7 +114,7 @@ namespace user
    }
 
 
-   ::estatus frame::add_menu_item(const string & strPath, const string & strText, const string & strId)
+   ::e_status frame::add_menu_item(const string & strPath, const string & strText, const string & strId)
    {
 
       m_straMenuParent.add(strPath);
@@ -118,7 +126,7 @@ namespace user
    }
 
 
-   ::user::interaction* frame::GetActiveView() const
+   ::user::interaction* frame::get_active_view() const
    {
 
       return nullptr;
@@ -126,11 +134,12 @@ namespace user
    }
 
 
-   void frame::SetActiveView(::user::interaction* pViewNew, bool bNotify)
+   void frame::set_active_view(::user::impact* pViewNew, bool bNotify)
    {
 
 
    }
+
 
    void frame::ActivateFrame(::e_display edisplay)
    {
@@ -161,6 +170,170 @@ namespace user
    {
 
       return m_strFrameTitle;
+
+   }
+
+   
+   ::color frame::get_moveable_border_color()
+   {
+
+      return m_puserstyle->get_style_moveable_border_color(m_estyle);
+
+   }
+
+
+   bool frame::is_translucid_user_style(enum_style estyle)
+   {
+
+      return
+         estyle == ::user::StyleTranslucidWarmGray
+         || estyle == ::user::StyleTranslucidLightBlue
+         || estyle == ::user::StyleTranslucidLightGreen
+         || estyle == ::user::StyleTranslucidWarmLiteGray;
+
+   }
+
+
+   ::user::enum_style frame::translate_user_style(const char * pszStyle)
+   {
+
+      string strStyle(pszStyle);
+
+      if (strStyle == "TranslucidLightBlue")
+      {
+
+         return StyleTranslucidLightBlue;
+
+      }
+      else if (strStyle == "DarkRed")
+      {
+
+         return StyleDarkRed;
+
+      }
+      else if (strStyle == "TranslucidLightGreen")
+      {
+
+         return StyleTranslucidLightGreen;
+
+      }
+      else if (strStyle == "TranslucidWarmGray")
+      {
+
+         return StyleTranslucidWarmGray;
+
+      }
+      else if (strStyle == "TranslucidWarmLiteGray")
+      {
+
+         return StyleTranslucidWarmLiteGray;
+
+      }
+      else if (strStyle == "DarkWarmBlue")
+      {
+
+         return StyleDarkWarmBlue;
+
+      }
+      else if (strStyle == "WarmGray")
+      {
+
+         return StyleTranslucidWarmGray;
+
+      }
+      else if (strStyle == "BlueRedPurple")
+      {
+
+         return StyleBlueRedPurple;
+
+      }
+      else if (strStyle == "RedOrange")
+      {
+
+         return StyleRedOrange;
+
+      }
+      else if (strStyle == "LightBlue")
+      {
+
+         return StyleLightBlue;
+
+      }
+      else if (strStyle == "BlackBorder")
+      {
+
+         return StyleBlackBorder;
+
+      }
+      else if (strStyle == "LightGreen")
+      {
+
+         return StyleLightGreen;
+
+      }
+      else if (strStyle == "EveningSun")
+      {
+
+         return StyleEveningSun;
+
+      }
+      else if (strStyle == "BlackPiano")
+      {
+
+         return StyleBlackPiano;
+
+      }
+      else
+      {
+
+         return StyleLightBlue;
+
+      }
+
+   }
+
+
+   
+   void frame::set_user_style(enum_style estyle)
+   {
+
+      m_estyle = estyle;
+
+   }
+
+
+   void frame::set_user_style(const char * pszStyle)
+   {
+
+      string strStyle(pszStyle);
+
+      m_strStyle = strStyle;
+
+      auto estyle = translate_user_style(strStyle);
+
+      set_user_style(estyle);
+
+   }
+
+
+
+
+   void frame::on_user_style_change()
+   {
+
+   }
+
+
+
+   void frame::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+   {
+
+      if (psubject->m_id == id_user_style_change)
+      {
+
+         on_user_style_change();
+
+      }
 
    }
 

@@ -20,7 +20,7 @@ namespace ios
    }
 
 
-   ::estatus dir_system::initialize(::matter * pobjectContext)
+   ::e_status dir_system::initialize(::matter * pobjectContext)
    {
 
       auto estatus = ::dir_system::initialize(pobjectContext);

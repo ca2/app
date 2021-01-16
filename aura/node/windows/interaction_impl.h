@@ -20,8 +20,9 @@ namespace windows
    {
    public:
 
-      bool                                      m_bFocusImpl;
-      bool                                      m_bSystemCaret;
+      bool                                      m_bClipboardOpened : 1;
+      bool                                      m_bFocusImpl : 1;
+      bool                                      m_bSystemCaret : 1;
 
       ::rect                                    m_rectLast;
 
@@ -97,7 +98,7 @@ namespace windows
 
       //virtual const MSG* GetCurrentMessage();
 
-      //virtual ::estatus update_graphics_resources();
+      //virtual ::e_status update_graphics_resources();
 
 
       virtual bool __windows_message_bypass(HWND oswindow, ::u32 message, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
@@ -163,7 +164,7 @@ namespace windows
       virtual void * get_os_data() const;
 
 
-      virtual ::estatus finish(::context_object * pcontextobjectFinish) override;
+      virtual ::e_status finish(::context_object * pcontextobjectFinish) override;
 
 
       //      virtual ::user::interaction * from_handle(oswindow oswindow);
@@ -417,6 +418,10 @@ namespace windows
       virtual void SetDlgItemText(i32 nID, const char * pszString);
 
 
+      virtual bool open_clipboard() override;
+      virtual bool close_clipboard() override;
+
+
       // Scrolling Functions
       virtual i32 GetScrollPos(i32 nBar) const;
       virtual void GetScrollRange(i32 nBar, LPINT pMinPos, LPINT lpMaxPos) const;
@@ -466,13 +471,13 @@ namespace windows
       virtual ::user::interaction * GetWindow(::u32 nCmd) const;
       virtual ::user::interaction * GetLastActivePopup() const;
 
-      virtual ::user::interaction * GetParent() const;
-      virtual ::user::interaction * SetParent(::user::interaction * pWndNewParent);
+      virtual ::user::interaction * get_parent() const;
+      virtual ::user::interaction * set_parent(::user::interaction * pWndNewParent);
       //      virtual ::user::interaction * WindowFromPoint(const ::point & point);
 
 
-      virtual ::user::interaction * SetOwner(::user::interaction * pWndNewParent);
-      virtual ::user::interaction * GetOwner() const;
+      virtual ::user::interaction * set_owner(::user::interaction * pWndNewParent);
+      virtual ::user::interaction * get_owner() const;
 
       // virtual bool FlashWindow(bool bInvert);
 
@@ -489,7 +494,7 @@ namespace windows
       // Clipboard Functions
       virtual bool ChangeClipboardChain(oswindow oswindow_Next);
       virtual ::oswindow  SetClipboardViewer();
-      virtual bool OpenClipboard();
+      //virtual bool OpenClipboard();
       virtual ::user::interaction * GetClipboardOwner();
       virtual ::user::interaction * GetClipboardViewer();
       virtual ::user::interaction * GetOpenClipboardWindow();
@@ -734,7 +739,7 @@ namespace windows
       //void PrepareForHelp();
 
 
-      virtual ::estatus set_tool_window(bool bSet);
+      virtual ::e_status set_tool_window(bool bSet);
 
 
       friend class frame_window;

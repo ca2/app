@@ -63,7 +63,7 @@ namespace user
 #endif
 
 
-      virtual ::estatus     initialize_user_thread(interaction_impl * pimpl, __pointer(::user::create_struct) pcreatestruct);
+      virtual ::e_status     initialize_user_thread(interaction_impl * pimpl, __pointer(::user::create_struct) pcreatestruct);
 
 
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
@@ -74,7 +74,7 @@ namespace user
 
 #endif
 #endif
-      virtual ::estatus init_thread() override;
+      virtual ::e_status init_thread() override;
       virtual void term_thread() override;
 
 #ifdef WINDOWS_DESKTOP
@@ -85,23 +85,23 @@ namespace user
 
       virtual bool pump_runnable() override;
 
-      virtual ::estatus process_message() override;
+      virtual ::e_status process_message() override;
 
-      virtual ::estatus process_base_message(::message::base * pbase) override;
+      virtual ::e_status process_base_message(::message::base * pbase) override;
 
-      virtual ::estatus run() override;
+      virtual ::e_status run() override;
 
-      virtual ::estatus finish(::context_object * pcontextobjectFinish = nullptr) override;
+      virtual ::e_status finish(::context_object * pcontextobjectFinish = nullptr) override;
 
       virtual void finalize() override;
 
       virtual bool thread_get_run() const override;
 
-      virtual ::estatus set_finish_composites(::context_object * pcontextobjectFinish) override;
+      virtual ::e_status set_finish_composites(::context_object * pcontextobjectFinish) override;
 
       void start_window_visual();
 
-      virtual ::estatus task_caller_on_init() override;
+      virtual ::e_status task_caller_on_init() override;
 
 
    };

@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "aura/graphics/draw2d/common.h"
+#include "aura/os/windows_common/draw2d_direct2d_global.h"
 #include "_uwp.h"
 #include <shlobj.h>
 
@@ -107,7 +108,7 @@ namespace uwp
 
    }
 
-   ::estatus copydesk::initialize(::layered * pobjectContext)
+   ::e_status copydesk::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::user::copydesk::initialize(pobjectContext);

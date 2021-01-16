@@ -215,11 +215,11 @@
                if(pframewindow->m_fActive)
                {
 
-                  crMoveableBorder = m_crMoveableBorder;
+                  crMoveableBorder = m_colorMoveableBorder;
 
-                  crMoveableBorderHilight = m_crMoveableBorderHilight;
+                  crMoveableBorderHilight = m_colorMoveableBorderHilight;
 
-                  crMoveableBorderShadow = m_crMoveableBorderShadow;
+                  crMoveableBorderShadow = m_colorMoveableBorderShadow;
 
                }
                else

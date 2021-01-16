@@ -1890,7 +1890,7 @@ namespace draw2d_opengl
 
       //::plusplus::Font font2(pfamilyMono, pfamilyMono->GetEmHeight(((graphics * )this)->gl2d_font()->GetStyle()));
 
-      //wstring wstr(L"123AWZwmc123AWZwmcpQ�g");
+      //wstring wstr(L"123AWZwmc123AWZwmcpQg");
       //plusplus::RectF rect(0.f, 0.f, 1024.f * 1024.f, 1024.f * 1024.f);
       //plusplus::RectF rect2;
       //plusplus::PointF origin(0, 0);
@@ -4985,7 +4985,7 @@ namespace draw2d_opengl
    }
 
 
-   ::estatus graphics::set(::draw2d::region* pregion)
+   ::e_status graphics::set(::draw2d::region* pregion)
    {
 
       return ::success;
@@ -4993,7 +4993,7 @@ namespace draw2d_opengl
    }
 
 
-   ::estatus graphics::set(::draw2d::pen * ppen)
+   ::e_status graphics::set(::draw2d::pen * ppen)
    {
 
       //glLineWidth(ppen->m_dWidth);
@@ -5006,7 +5006,7 @@ namespace draw2d_opengl
 
 
 
-   ::estatus graphics::set(::draw2d::brush * pbrush)
+   ::e_status graphics::set(::draw2d::brush * pbrush)
    {
 
       ::opengl::color(pbrush->m_color);
@@ -5017,7 +5017,7 @@ namespace draw2d_opengl
 
 
 
-   ::estatus graphics::set(::draw2d::font * pfont)
+   ::e_status graphics::set(::draw2d::font * pfont)
    {
 
       if (::is_null(pfont))
@@ -5034,7 +5034,7 @@ namespace draw2d_opengl
    }
 
 
-   ::estatus graphics::set(::draw2d::bitmap* pbitmap)
+   ::e_status graphics::set(::draw2d::bitmap* pbitmap)
    {
 
       return ::success;

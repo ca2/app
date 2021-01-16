@@ -38,6 +38,6 @@ HANDLE                  hTemplateFile
 );
 
 
-CLASS_DECL_ACME ::estatus hfile_close(hfile hfile);
+CLASS_DECL_ACME ::e_status hfile_close(hfile hfile);
 CLASS_DECL_ACME memsize hfile_read(hfile hfile, void * p, memsize s);
-CLASS_DECL_ACME ::estatus hfile_write(hfile hfile, const void* p, memsize s);
+CLASS_DECL_ACME ::e_status hfile_write(hfile hfile, const void* p, memsize s);

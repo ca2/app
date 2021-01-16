@@ -37,6 +37,9 @@ namespace user
    void button::user_button_construct()
    {
 
+      m_econtroltype = e_control_type_button;
+
+
       //m_erectMargin = rect_button_margin;
       //m_erectBorder = rect_button_border;
       //m_erectPadding = rect_button_padding;
@@ -52,7 +55,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer button::get_font(style * pstyle, enum_element eelement, estate estate) const
+   ::draw2d::font_pointer button::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (pstyle)
@@ -234,8 +237,6 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      descriptor().set_control_type(e_control_type_button);
-
       if (m_estyle == style_none)
       {
 
@@ -279,10 +280,10 @@ namespace user
    }
 
 
-   bool button::create_control(class control_descriptor * pdescriptor)
+   bool button::create_control(::user::interaction * pinteractionParent, const ::id & id)
    {
 
-      return interaction::create_control(pdescriptor);
+      return interaction::create_control(pinteractionParent, id);
 
    }
 
@@ -424,7 +425,7 @@ namespace user
    void button::_001OnKeyDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       ::user::e_key iKey = pkey->m_ekey;
 
@@ -724,7 +725,7 @@ namespace user
          pimage = m_pbitmap->m_pimageSel;
       else if(m_itemHover.is_set() && is_window_enabled() && ::is_ok(m_pbitmap->m_pimageHover))
          pimage = m_pbitmap->m_pimageHover;
-      else if(psession->get_focus_ui() == this && ::is_ok(m_pbitmap->m_pimageFocus))
+      else if(get_keyboard_focus() == this && ::is_ok(m_pbitmap->m_pimageFocus))
          pimage = m_pbitmap->m_pimageFocus;   // third image for focused
       else if(!is_window_enabled() && ::is_ok(m_pbitmap->m_pimageDisabled))
          pimage = m_pbitmap->m_pimageDisabled;   // last image for disabled
@@ -808,7 +809,7 @@ namespace user
             pimage = m_pbitmap->m_pimageSel;
          else if (m_itemHover.is_set() && is_window_enabled() && m_pbitmap->m_pimageHover->is_set() && m_pbitmap->m_pimageHover->area() > 0)
             pimage = m_pbitmap->m_pimageHover;
-         else if (psession->get_focus_ui() == this && m_pbitmap->m_pimageFocus->is_set() && m_pbitmap->m_pimageFocus->area() > 0)
+         else if (get_keyboard_focus() == this && m_pbitmap->m_pimageFocus->is_set() && m_pbitmap->m_pimageFocus->area() > 0)
            pimage = m_pbitmap->m_pimageFocus;   // third image for focused
          else if (!is_window_enabled() && m_pbitmap->m_pimageDisabled->is_set() && m_pbitmap->m_pimageDisabled->area() > 0)
             pimage = m_pbitmap->m_pimageDisabled;   // last image for disabled

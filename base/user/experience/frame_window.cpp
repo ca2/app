@@ -78,7 +78,7 @@ namespace experience
          || pmessage->m_id == e_message_sys_key_up)
       {
 
-         SCAST_PTR(::message::key, pkey, pmessage);
+         __pointer(::message::key) pkey(pmessage);
 
          auto psession = Session;
 
@@ -241,7 +241,17 @@ namespace experience
 
       auto puser = User;
 
-      return puser->experience()->experience_get_frame2(this, pszExperienceLibrary, pszFrame, pszStyle);
+      auto pframe = puser->experience()->experience_get_frame2(this, pszExperienceLibrary, pszFrame);
+
+      pframe->m_pframewindow = this;
+
+      auto psubject = subject(id_user_style_change);
+
+      psubject->add(pframe);
+
+      set_user_style(pszStyle);
+
+      return pframe;
 
    }
 
@@ -254,7 +264,7 @@ namespace experience
       ns_main_async(^()
                      {
 
-      if(GetParent() == nullptr && GetOwner() == nullptr)
+      if(get_parent() == nullptr && get_owner() == nullptr)
       {
 
          if(!is_window_visible()
@@ -932,7 +942,7 @@ namespace experience
    void frame_window::_001OnSysCommand(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
    }
 
@@ -950,7 +960,7 @@ namespace experience
    void frame_window::_001OnCommand(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       if (m_pframe == nullptr)
       {
@@ -1134,7 +1144,7 @@ namespace experience
    void frame_window::_001OnActivate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::activate,pactivate,pmessage);
+      __pointer(::message::activate) pactivate(pmessage);
 
       __pointer(::user::interaction) pActive = (pactivate->m_eactivate == e_activate_inactive ? pactivate->m_pWndOther : this);
 
@@ -1218,7 +1228,7 @@ namespace experience
    void frame_window::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if(!is_frame_experience_enabled())
       {
@@ -1265,7 +1275,7 @@ namespace experience
    void frame_window::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if(!is_frame_experience_enabled())
       {
@@ -1318,7 +1328,7 @@ namespace experience
    void frame_window::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if(!is_frame_experience_enabled())
       {
@@ -1346,7 +1356,7 @@ namespace experience
    void frame_window::_001OnNcLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if(!is_frame_experience_enabled())
       {
@@ -1373,7 +1383,7 @@ namespace experience
    void frame_window::_001OnNcMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if(!is_frame_experience_enabled())
       {
@@ -1397,7 +1407,7 @@ namespace experience
 
    void frame_window::_001OnNcLButtonUp(::message::message * pmessage)
    {
-   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   __pointer(::message::mouse) pmouse(pmessage);
    if(!is_frame_experience_enabled())
    {
    pmouse->m_bRet = false;
@@ -1414,7 +1424,7 @@ namespace experience
 
    void frame_window::_001OnNcHitTest(::message::message * pmessage)
    {
-   SCAST_PTR(::message::nchittest,pnchittest,pmessage);
+   __pointer(::message::nchittest) pnchittest(pmessage);
    if(!is_frame_experience_enabled())
    {
    pnchittest->m_bRet = false;

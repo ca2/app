@@ -72,7 +72,7 @@ namespace ftp
       virtual ~file_status();
 
 
-      virtual ::estatus     initialize(::layered * pobjectContext) override;
+      virtual ::e_status     initialize(::layered * pobjectContext) override;
 
 
       file_status& operator=(const file_status& rhs);

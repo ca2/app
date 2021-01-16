@@ -22,7 +22,7 @@ handler_manager::~handler_manager()
 }
 
 
-::estatus handler_manager::handle(const ::promise::routine & routine, bool bSync)
+::e_status handler_manager::handle(const ::promise::routine & routine, bool bSync)
 {
 
    if (bSync)
@@ -41,7 +41,7 @@ handler_manager::~handler_manager()
 }
 
 
-::estatus handler_manager::sync(const ::promise::routine & routine)
+::e_status handler_manager::sync(const ::promise::routine & routine)
 {
 
    if (m_bUseDedicatedThread)
@@ -66,7 +66,7 @@ handler_manager::~handler_manager()
 }
 
 
-::estatus handler_manager::set_finish_composites(::context_object * pcontextobjectFinish)
+::e_status handler_manager::set_finish_composites(::context_object * pcontextobjectFinish)
 {
 
    return ::object::set_finish_composites(pcontextobjectFinish);
@@ -75,7 +75,7 @@ handler_manager::~handler_manager()
 
 
 
-::estatus handler_manager::async(const ::promise::routine & routine)
+::e_status handler_manager::async(const ::promise::routine & routine)
 {
 
    {

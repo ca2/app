@@ -95,13 +95,13 @@ namespace simpledb
       if(get_context_application()->m_pcoreapp->m_varTopicQuery["locale"].get_count() > 0)
       {
          string str = get_context_application()->m_pcoreapp->m_varTopicQuery["locale"].stra()[0];
-         get_context_application()->m_psession->set_locale(str,::source_database);
+         get_context_application()->m_psession->set_locale(str,::e_source_database);
       }
 
       if(get_context_application()->m_pcoreapp->m_varTopicQuery["schema"].get_count() > 0)
       {
          string str = get_context_application()->m_pcoreapp->m_varTopicQuery["schema"].stra()[0];
-         get_context_application()->m_psession->set_schema(str,::source_database);
+         get_context_application()->m_psession->set_schema(str,::e_source_database);
       }
 
 //      if(&AppUser(this) == nullptr)
@@ -132,7 +132,7 @@ namespace simpledb
       //if(!get_context_application()->m_pcoreapp->is_installing() && !get_context_application()->m_pcoreapp->is_unstalling() && !get_context_application()->m_pcoreapp->is_system())
       //{
 
-      //   set_keyboard_layout(nullptr, context + ::source_sync + ::source_system;
+      //   set_keyboard_layout(nullptr, context + ::e_source_sync + ::e_source_system;
 
       //}
 

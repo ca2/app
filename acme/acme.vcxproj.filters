@@ -2381,6 +2381,15 @@
     <ClInclude Include="os\windows_common\prop_variant.h">
       <Filter>Header Files\os\windows_common</Filter>
     </ClInclude>
+    <ClInclude Include="platform\trace.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\simple_trace.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="user\_style.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -3148,9 +3157,6 @@
     <ClCompile Include="platform\checked.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="platform\debug.cpp">
-      <Filter>Source Files\platform</Filter>
-    </ClCompile>
     <ClCompile Include="platform\display.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -3496,11 +3502,23 @@
     <ClCompile Include="primitive\datetime\secs.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\application_system_run.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="memory\plex_heap.cpp">
       <Filter>Source Files\memory</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\system.cpp">
+      <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\os_font_name.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\simple_trace.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\trace.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\debug.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

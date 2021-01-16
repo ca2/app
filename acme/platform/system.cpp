@@ -2,15 +2,22 @@
 #include "acme/id.h"
 
 
-
-
 ::acme::system * g_psystem = nullptr;
+
 
 namespace acme
 {
 
    system::system()
    {
+
+#ifdef LINUX
+
+      m_elinuxdistribution = e_linux_distribution_unknown;
+
+#endif
+
+      os_construct();
 
 
       if (g_psystem == nullptr)
@@ -144,7 +151,7 @@ namespace acme
 
 
 
-   ::estatus system::main_user_async(const ::promise::routine & routine, ::e_priority epriority)
+   ::e_status system::main_user_async(const ::promise::routine & routine, ::e_priority epriority)
    {
 
       return ::error_interface_only;
@@ -152,7 +159,7 @@ namespace acme
    }
 
 
-   ::estatus system::main_user_sync(const ::promise::routine & routine, const ::duration & duration, e_priority epriority)
+   ::e_status system::main_user_sync(const ::promise::routine & routine, const ::duration & duration, e_priority epriority)
    {
 
       auto proutine = ___sync_routine(routine);

@@ -21,7 +21,7 @@ namespace user
    }
 
 
-   ::estatus print_task::initialize(::layered * pobjectContext)
+   ::e_status print_task::initialize(::layered * pobjectContext)
    {
 
       auto estatus = ::task::initialize(pobjectContext);
@@ -44,7 +44,7 @@ namespace user
    }
 
 
-   ::estatus     print_task::run()
+   ::e_status     print_task::run()
    {
 
       return error_interface_only;

@@ -1,6 +1,8 @@
 ﻿#pragma once
 
 
+
+
 template < typename T >
 inline void waiter_null_result(T & t)
 {

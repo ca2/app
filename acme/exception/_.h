@@ -29,13 +29,13 @@ namespace win
 }
 
 
-CLASS_DECL_ACME::estatus errno_to_status(i32 nErrno);
+CLASS_DECL_ACME::e_status errno_to_status(i32 nErrno);
 
 
 #ifdef WINDOWS
 
 
-CLASS_DECL_ACME ::estatus os_error_to_status(DWORD dwError);
+CLASS_DECL_ACME ::e_status os_error_to_status(DWORD dwError);
 
 
 #endif
@@ -201,11 +201,6 @@ CLASS_DECL_ACME string __get_thread_note();
 CLASS_DECL_ACME void __set_thread_note(const char * pszNote);
 
 
-
-#include "debug.h"
-
-
-
 // Debug ASSERTs then throws. Retail throws if condition not met
 #define ENSURE_THROW(cond, exception)   \
    do { i32 _gen__condVal=!!(cond); ASSERT(_gen__condVal); if (!(_gen__condVal)){exception;} } while (false)
@@ -317,9 +312,9 @@ CLASS_DECL_ACME void __cdecl __clearerr_s(FILE *stream);
 
 CLASS_DECL_ACME int __assert_failed_line(const char * pszFileName, int nLine);
 
-//CLASS_DECL_ACME void TRACE(e_trace_category ecategory, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
-//CLASS_DECL_ACME void __tracef(e_trace_category ecategory, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...);
-//CLASS_DECL_ACME void __tracev(e_trace_category ecategory, e_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
+//CLASS_DECL_ACME void TRACE(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * psz);
+//CLASS_DECL_ACME void __tracef(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, ...);
+//CLASS_DECL_ACME void __tracev(e_trace_category ecategory, enum_trace_level elevel, const char * pszFunction, const char * pszFile, i32 iLine, const char * pszFormat, va_list args);
 CLASS_DECL_ACME void __assert_valid_object(const ::matter * pOb, const char * pszFileName, i32 nLine);
 
 CLASS_DECL_ACME void __dump(const ::matter * pOb);

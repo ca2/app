@@ -29,7 +29,7 @@ namespace opengl
    }
 
 
-   ::estatus context_glx::_create_offscreen_buffer(const ::size & size)
+   ::e_status context_glx::_create_offscreen_buffer(const ::size & size)
    {
 
       auto pgpu = System.get_gpu();
@@ -127,7 +127,7 @@ namespace opengl
 
       }
 
-      ::estatus estatus = make_current();
+      ::e_status estatus = make_current();
 
       if(!estatus)
       {
@@ -151,10 +151,10 @@ namespace opengl
    }
 
 
-   ::estatus context_glx::make_current()
+   ::e_status context_glx::make_current()
    {
 
-      ::estatus estatus = ::success;
+      ::e_status estatus = ::success;
 
       sync_lock sl(x11_mutex());
 
@@ -176,7 +176,7 @@ namespace opengl
    }
 
 
-   ::estatus context_glx::resize_offscreen_buffer(const ::size& size)
+   ::e_status context_glx::resize_offscreen_buffer(const ::size& size)
    {
 
       if(!m_pbuffer)
@@ -232,10 +232,10 @@ namespace opengl
    }
 
 
-   ::estatus context_glx::destroy_offscreen_buffer()
+   ::e_status context_glx::destroy_offscreen_buffer()
    {
 
-      ::estatus estatus = error_failed;
+      ::e_status estatus = error_failed;
 
       return estatus;
 

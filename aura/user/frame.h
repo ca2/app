@@ -4,17 +4,6 @@
 #include "apex/user/menu_shared.h"
 
 
-//
-//namespace userex
-//{
-//
-//
-//   class font_format_tool;
-//
-//
-//} // namespace userex
-
-
 #ifndef TBSTYLE_FLAT
 #define TBSTYLE_BUTTON          0x0000  // obsolete; use BTNS_BUTTON instead
 #define TBSTYLE_SEP             0x0001  // obsolete; use BTNS_SEP instead
@@ -95,11 +84,12 @@ namespace user
    public:
 
 
-      enum_display                                    m_edisplayRestore;
+      enum_style                                   m_estyle;
+      string                                       m_strStyle;
+      enum_display                                 m_edisplayRestore;
       bool                                         m_bDefaultNotifyIcon;
       string                                       m_strFrameTitle;
       ::size                                       m_sizeMinimum;
-//      __pointer_array(::user::interaction)         m_interactionaCommandHandlers;
       bool                                         m_bCloseApplicationIfLastVisibleFrame;
       __reference(::user::style)                   m_puserstyle;
       bool                                         m_bShowControlBox;
@@ -120,10 +110,25 @@ namespace user
 
       virtual ::task_pool  * taskpool() override;
 
-      virtual style * _get_style() const override;
+      virtual bool is_os_host() const override;
+
+      using box::get_style;
+      virtual style * get_style() const override;
 
       virtual void set_frame_title(const string& strFrameTitle);
       virtual string get_frame_title() const;
+
+      
+      virtual bool is_translucid_user_style(enum_style estyle);
+      virtual ::user::enum_style translate_user_style(const char * pszStyle);
+      virtual ::color get_moveable_border_color();
+
+      virtual void set_user_style(enum_style estyle);
+      virtual void set_user_style(const char * pszStyle);
+      virtual void on_user_style_change();
+
+
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext);
 
 
       virtual void display_previous_restore();
@@ -134,13 +139,11 @@ namespace user
 
       virtual ::color get_border_main_body_color();
 
-      ::estatus add_menu_item(const string & strPath, const string & strText, const string & strId);
+      ::e_status add_menu_item(const string & strPath, const string & strText, const string & strId);
 
 
-      //virtual ::task_pool* taskpool() override;
-      
-      virtual ::user::interaction * GetActiveView() const;
-      virtual void SetActiveView(::user::interaction* pViewNew, bool bNotify = TRUE);
+      virtual ::user::interaction * get_active_view() const;
+      virtual void set_active_view(::user::impact * pViewNew, bool bNotify = TRUE);
 
       virtual ::user::tool_window * tool_window(enum_tool etool, bool bCreate = false);
 

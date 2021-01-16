@@ -27,7 +27,7 @@ namespace xlib
    }
 
 
-   ::estatus buffer::initialize_graphics_graphics(::user::interaction_impl * pimpl)
+   ::e_status buffer::initialize_graphics_graphics(::user::interaction_impl * pimpl)
    {
 
       auto estatus = double_buffer::initialize_graphics_graphics(pimpl);

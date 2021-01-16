@@ -58,6 +58,8 @@ namespace user
 
       install_simple_ui_default_mouse_handling(pchannel);
 
+      MESSAGE_LINK(e_message_create, pchannel, this, &combo_list::_001OnCreate);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &combo_list::_001OnDestroy);
       MESSAGE_LINK(e_message_set_focus, pchannel, this, &combo_list::_001OnSetFocus);
       MESSAGE_LINK(e_message_kill_focus, pchannel, this, &combo_list::_001OnKillFocus);
       MESSAGE_LINK(e_message_close, pchannel, this, &combo_list::_001OnClose);
@@ -71,6 +73,80 @@ namespace user
       MESSAGE_LINK(e_message_right_button_down, pchannel, this, &combo_list::_001OnRButtonDown);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &combo_list::_001OnMouseMove);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &combo_list::_001OnShowWindow);
+
+   }
+
+
+   void combo_list::_001OnCreate(::message::message * pmessage)
+   {
+
+      pmessage->previous();
+
+   }
+
+
+   bool combo_list::on_set_owner(::user::primitive * pprimitive)
+   {
+
+      auto puserinteractionOwner = pprimitive->get_owner();
+
+      if(puserinteractionOwner)
+      {
+
+         auto puserinteractionHost = puserinteractionOwner->get_host_window();
+
+         if (puserinteractionHost)
+         {
+
+            auto pimpl = puserinteractionHost->m_pimpl.cast<::user::interaction_impl>();
+
+            if (pimpl)
+            {
+
+               sync_lock sl(pimpl->mutex());
+
+               pimpl->m_userinteractionaHideOnConfigurationChange.add_unique_interaction(this);
+
+            }
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+
+   void combo_list::_001OnDestroy(::message::message * pmessage)
+   {
+
+      auto puserinteractionOwner = get_owner();
+
+      if(puserinteractionOwner)
+      {
+
+         auto puserinteractionHost = puserinteractionOwner->get_host_window();
+
+         if(puserinteractionHost)
+         {
+
+            auto pimpl = puserinteractionHost->m_pimpl.cast<::user::interaction_impl>();
+
+            if (pimpl)
+            {
+
+               sync_lock sl(pimpl->mutex());
+
+               pimpl->m_userinteractionaHideOnConfigurationChange.remove_interaction(this);
+
+            }
+
+         }
+
+      }
+
+      pmessage->previous();
 
    }
 
@@ -119,8 +195,6 @@ namespace user
 
       ::rect rectItem;
 
-      //point p = pgraphics->GetViewportOrg();
-
       rectItem = rectClient;
 
       rectItem.bottom = rectClient.top;
@@ -166,10 +240,6 @@ namespace user
 
             if (iItem == iCurSel)
             {
-
-               //crBk = _001GetColor(::user::color_list_item_background_selected_hover);
-
-               //cr = _001GetColor(::user::color_list_item_text_selected_hover);
 
                crBk = ARGB(255, 120, 190, 220);
 
@@ -233,8 +303,6 @@ namespace user
 
       }
 
-      //color32_t crBorder = _001GetColor(::user::color_border);
-
       color32_t crBorder = ARGB(255, 0, 0, 0);
 
       ::draw2d::pen_pointer pen(e_create);
@@ -250,7 +318,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer combo_list::get_font(style *pstyle, enum_element eelement, estate estate) const
+   ::draw2d::font_pointer combo_list::get_font(style *pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (m_pcombo)
@@ -266,26 +334,6 @@ namespace user
          }
 
       }
-
-      //if (pstyle)
-      //{
-
-      //   if (pstyle->m_pfontCombo)
-      //   {
-
-      //      return pstyle->m_pfontCombo;
-
-      //   }
-      //   else if (pstyle->m_pfont)
-      //   {
-
-      //      return pstyle->m_pfont;
-
-      //   }
-
-      //}
-
-      //return nullptr;
 
       return ::user::interaction::get_font(pstyle, eelement, estate);
 
@@ -501,14 +549,14 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
    void combo_list::_001OnShowWindow(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
 
       if (pshowwindow->m_bShow)
       {
 
 #ifdef WINDOWS
 
-         keyboard_set_focus();
+         set_keyboard_focus();
 
 #endif
 
@@ -540,7 +588,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
 
             set_timer(e_timer_kill_focus, 300_ms);
 
-            //SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
+            //__pointer(::message::kill_focus) pkillfocus(pmessage);
 
             //oswindow oswindowThis = get_safe_handle();
 
@@ -604,7 +652,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
    void combo_list::_001OnActivate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::activate, pactivate, pmessage);
+      __pointer(::message::activate) pactivate(pmessage);
 
       __pointer(::user::interaction) pActive = (pactivate->m_eactivate == e_activate_inactive ? pactivate->m_pWndOther : this);
 
@@ -647,9 +695,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
       else
       {
 
-         auto psession = Session;
-
-         psession->set_keyboard_focus(this);
+         set_keyboard_focus(this);
 
 
       }
@@ -660,7 +706,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
    void combo_list::_001OnMouseActivate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse_activate, pactivate, pmessage);
+      __pointer(::message::mouse_activate) pactivate(pmessage);
 
       pactivate->m_lresult = MA_NOACTIVATE;
 
@@ -673,7 +719,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
    void combo_list::_001OnKeyDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       if (pkey->m_ekey == ::user::key_escape)
       {
@@ -691,7 +737,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
          if (pelemental.is_set())
          {
 
-            pelemental->keyboard_set_focus();
+            pelemental->set_keyboard_focus();
 
          }
 
@@ -712,7 +758,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
       else if (pkey->m_ekey == ::user::key_return)
       {
 
-         m_pcombo->set_current_item(m_pcombo->m_itemHover, ::source_user);
+         m_pcombo->set_current_item(m_pcombo->m_itemHover, ::e_source_user);
 
          m_pcombo->ShowDropDown(false);
 
@@ -721,7 +767,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
          if (pelemental.is_set())
          {
 
-            pelemental->keyboard_set_focus();
+            pelemental->set_keyboard_focus();
 
          }
 
@@ -741,7 +787,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
    void combo_list::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
 
@@ -770,7 +816,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
    void combo_list::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       auto point = screen_to_client(pmouse->m_point, e_layout_sketch);
 
@@ -805,7 +851,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
 
             ev.m_eevent = ::user::e_event_after_change_cur_sel;
 
-            ev.m_actioncontext = ::source_user;
+            ev.m_actioncontext = ::e_source_user;
 
             ev.m_item = itemHit;
 
@@ -825,7 +871,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
    void combo_list::_001OnMButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       auto point = pmouse->m_point;
 
@@ -852,7 +898,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
    void combo_list::_001OnRButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       auto point = pmouse->m_point;
 
@@ -880,7 +926,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
    {
 
       UNREFERENCED_PARAMETER(pmessage);
-      //SCAST_PTR(::message::mouse, pmouse, pmessage);
+      //__pointer(::message::mouse) pmouse(pmessage);
 
       //pmessage->m_bRet = true;
 
@@ -1019,7 +1065,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
       if (i < 0)
       {
 
-         m_pcombo->GetParent()->get_window_rect(rectMonitor);
+         m_pcombo->get_parent()->get_window_rect(rectMonitor);
 
       }
 
@@ -1074,7 +1120,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
       if (i < 0)
       {
 
-         m_pcombo->GetParent()->_001ScreenToClient(rectList);
+         m_pcombo->get_parent()->_001ScreenToClient(rectList);
 
       }
 
@@ -1087,7 +1133,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
 
          pcreatestruct->set_rect(::rect(rectList).inflate(m_iBorder));
 
-         if (!create_window_ex(pcreatestruct, i >= 0 ? nullptr : m_pcombo->GetParent()))
+         if (!create_window_ex(pcreatestruct, i >= 0 ? nullptr : m_pcombo->get_parent()))
          {
 
             m_pcombo->m_plist.release();
@@ -1096,7 +1142,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
 
          }
 
-         SetOwner(m_pcombo);
+         set_owner(m_pcombo);
 
       }
       else
@@ -1141,7 +1187,7 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
 
          }
 
-         keyboard_set_focus();
+         set_keyboard_focus();
 
       }
       else

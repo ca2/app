@@ -2,7 +2,6 @@
 #include "aura/os/windows_common/draw2d_direct2d_global.h"
 #include "aura/os/uwp/_winrt.h"
 #include "aura/node/uwp/_uwp.h"
-#include "aura/os/windows_common/draw2d_direct2d_global.h"
 #include "aura/node/uwp/buffer.h"
 #include "_uwp.h"
 
@@ -25,7 +24,6 @@ using namespace Windows::System;
 using namespace Windows::Graphics::Display;
 using namespace Windows::System::Threading;
 
-bool g_bCoreWindowOnceVisible = false;
 
 
 namespace uwp
@@ -65,7 +63,7 @@ namespace uwp
 
       //      psystem->get_context_session()->m_frameworkview = this;
 
-      m_pdxi = __new(directx_interaction);
+      m_pdxi = psystem->m_papplicationStartup->__create_new < directx_interaction>();
 
    }
 
@@ -129,7 +127,7 @@ namespace uwp
 
                //auto pchanged = ref new Windows::UI::Core::WindowSizeChangedEventArgs();
 
-               ::size size(m_window->Bounds.Width, m_window->Bounds.Height);
+               ::size size((LONG) m_window->Bounds.Width, (LONG) m_window->Bounds.Height);
 
                //pchanged->Size.Height = m_window->Bounds.Height;
 
@@ -160,10 +158,10 @@ namespace uwp
 
       m_pimpl = __create < ::user::interaction_impl >();
 
-      m_pimpl->m_rect.left = m_window->Bounds.X;
-      m_pimpl->m_rect.top = m_window->Bounds.Y;
-      m_pimpl->m_rect.right = m_window->Bounds.X + m_window->Bounds.Width;
-      m_pimpl->m_rect.top = m_window->Bounds.Y + m_window->Bounds.Height;
+      m_pimpl->m_rect.left = (LONG) m_window->Bounds.X;
+      m_pimpl->m_rect.top = (LONG) m_window->Bounds.Y;
+      m_pimpl->m_rect.right = (LONG) (m_window->Bounds.X + m_window->Bounds.Width);
+      m_pimpl->m_rect.top = (LONG) (m_window->Bounds.Y + m_window->Bounds.Height);
 
       m_pimpl->m_window = m_window;
 
@@ -290,7 +288,7 @@ namespace uwp
    void directx_framework_view::OnWindowSizeChanged(CoreWindow ^ sender, WindowSizeChangedEventArgs ^ args)
    {
 
-      ::size size(args->Size.Width, args->Size.Height);
+      ::size size((LONG) args->Size.Width, (LONG) args->Size.Height);
 
       on_window_size_changed(sender, size);
 
@@ -439,7 +437,7 @@ namespace uwp
 
       pbase = pkey;
 
-      bool bTextFocus = m_psystem->get_context_session()->m_paurasession->get_focus_ui() != nullptr;
+      bool bTextFocus = m_puserinteraction->get_keyboard_focus() != nullptr;
 
       bool bSpecialKey = false;
 
@@ -496,7 +494,7 @@ namespace uwp
          m_bFontopusShift = false;
       }
       
-      bool bTextFocus = m_psystem->get_context_session()->m_paurasession->get_focus_ui() != nullptr;
+      bool bTextFocus = m_puserinteraction->get_keyboard_focus() != nullptr;
 
       bool bSpecialKey = false;
 
@@ -553,16 +551,51 @@ namespace uwp
 
    }
 
+
+   void directx_framework_view::OnWindowClosed(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::CoreWindowEventArgs ^ args)
+   {
+
+   }
+
+
    void directx_framework_view::OnWindowVisibilityChanged(Windows::UI::Core::CoreWindow^, Windows::UI::Core::VisibilityChangedEventArgs^ args)
    {
 
       if (args->Visible)
       {
 
-         if (!g_bCoreWindowOnceVisible)
+         if (m_directx->m_bCoreWindowVisible.is_empty())
          {
 
-            g_bCoreWindowOnceVisible = true;
+            m_directx->m_bCoreWindowVisible = true;
+
+         }
+         else if (m_directx->m_bCoreWindowVisible.isFalse())
+         {
+
+            m_directx->m_bCoreWindowVisible = true;
+
+            CoreWindow ^ window = m_window.Get();
+
+            if (window)
+            {
+
+               m_directx->HandleDeviceLost();
+
+            }
+
+         }
+
+      }
+      else
+      {
+
+         if (m_directx->m_bCoreWindowVisible)
+         {
+
+            m_directx->m_bCoreWindowVisible = false;
+
+            m_directx->DestroyWindowSizeDependentResources();
 
          }
 
@@ -610,7 +643,9 @@ namespace uwp
 
       auto pimpl = __uwp_user_interaction_impl(puiHost->m_pimpl);
 
-      pimpl->m_pointCursor.set(pointerPoint->RawPosition.X, pointerPoint->RawPosition.Y);
+      pimpl->m_pointCursor.set(
+         (LONG) pointerPoint->RawPosition.X, 
+         (LONG) pointerPoint->RawPosition.Y);
 
       puiHost->m_pimpl->queue_message_handler(pbase);
 
@@ -622,16 +657,28 @@ namespace uwp
    void directx_framework_view::OnPointerPressed(Windows::UI::Core::CoreWindow ^, Windows::UI::Core::PointerEventArgs ^ args)
    {
 
-      if(m_psystem == nullptr)
+      if (m_psystem == nullptr)
+      {
+
          return;
+
+      }
 
       auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
 
       if (puiHost == nullptr)
+      {
+
          return;
 
+      }
+
       if (puiHost->m_pimpl == nullptr)
+      {
+
          return;
+
+      }
 
       __pointer(::message::base) pbase;
 
@@ -785,7 +832,25 @@ namespace uwp
    Windows::Foundation::Rect directx_framework_view::get_input_content_rect()
    {
 
-      Windows::Foundation::Rect rect = m_rectInputContentRect;
+      Windows::Foundation::Rect rect;
+      
+      auto pfocusui = m_puserinteraction->get_keyboard_focus();
+
+      auto puserinteraction = __user_interaction(pfocusui);
+
+      if (puserinteraction)
+      {
+
+         ::rect r = puserinteraction->get_window_rect();
+
+         m_rectInputContentRect.X = (float) r.left;
+         m_rectInputContentRect.Y = (float)r.top;
+         m_rectInputContentRect.Width = (float)r.width();
+         m_rectInputContentRect.Height = (float)r.height();
+
+      }
+
+      rect = m_rectInputContentRect;
 
       return rect;
 
@@ -800,6 +865,62 @@ namespace uwp
       return rect;
 
    }
+
+   
+   widestring directx_framework_view::get_input_text()
+   {
+
+      widestring wstrText;
+
+      auto pfocusui = m_puserinteraction->get_keyboard_focus();
+
+      auto puserinteraction = __user_interaction(pfocusui);
+
+      if (puserinteraction)
+      {
+
+         string strText;
+
+         puserinteraction->_001GetText(strText);
+
+         wstrText = strText;
+
+      }
+
+      return wstrText;
+
+   }
+
+
+   bool directx_framework_view::set_input_text(const widestring & wstr)
+   {
+
+      auto pfocusui = m_puserinteraction->get_keyboard_focus();
+
+      auto puserinteraction = __user_interaction(pfocusui);
+
+      if (puserinteraction)
+      {
+
+         string strText;
+
+         strText = wstr;
+
+         puserinteraction->_001SetText(strText, e_source_user);
+
+      }
+
+      //return wstrText;
+      return true;
+
+   }
+
+
+   //void directx_framework_view::get_input_text(const widestring & wstr)
+   //{
+
+
+   //}
 
 
    Windows::Foundation::Rect directx_framework_view::get_window_rect()

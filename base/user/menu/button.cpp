@@ -13,6 +13,7 @@ namespace user
       ::user::menu_interaction(pitem)
    {
 
+      m_econtroltype = e_control_type_menu_button;
       //m_erectMargin = rect_menu_item_margin;
       //m_erectBorder = rect_menu_item_border;
       //m_erectPadding = rect_menu_item_padding;
@@ -314,7 +315,7 @@ namespace user
    void menu_button::_001OnCreate(::message::message * pmessage)
    {
 
-      descriptor().set_control_type(e_control_type_menu_button);
+      //descriptor().set_control_type(e_control_type_menu_button);
 
       pmessage->previous();
 
@@ -324,7 +325,7 @@ namespace user
    void menu_button::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmouse->previous();
 

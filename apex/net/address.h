@@ -84,7 +84,8 @@ namespace net
       string get_display_number() const;
 
       port_t get_service_number() const;
-      void set_service_number(port_t iPort);
+      port_t use_address_service_number_as_offset_for_base_port(port_t portBase) const;
+      void set_service_number(port_t port);
 
 
       bool is_in_same_net(const address & addr,const address & addrMask) const;

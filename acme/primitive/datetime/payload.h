@@ -5,7 +5,7 @@ namespace datetime
 {
 
 
-   class CLASS_DECL_ACME value
+   class CLASS_DECL_ACME payload
    {
    public:
 
@@ -17,9 +17,15 @@ namespace datetime
       i32            m_iSecond;
       bool           m_bSpan;
 
+<<<<<<< HEAD
+      payload(const ::datetime::time & time);
+      payload();
+      ~payload();
+=======
       value(const ::datetime::time & time);
       value();
       ~value();
+>>>>>>> origin/basis
 
       // ano gregoriano mdio de 365,2425 dias solares
       double get_years() const;
@@ -32,7 +38,11 @@ namespace datetime
 
       ::datetime::time get_time() const;
       ::datetime::time_span GetSpan() const;
+<<<<<<< HEAD
+      payload & operator = (const ::datetime::time & time);
+=======
       value & operator = (const ::datetime::time & time);
+>>>>>>> origin/basis
 
    };
 
@@ -45,6 +55,14 @@ CLASS_DECL_ACME datetime::payload operator + (const datetime::payload & val1, co
 CLASS_DECL_ACME datetime::payload operator - (const datetime::payload & val1, const datetime::payload & val2);
 CLASS_DECL_ACME datetime::payload operator * (const datetime::payload & val1, double d);
 CLASS_DECL_ACME datetime::payload operator / (const datetime::payload & val1, double d);
+<<<<<<< HEAD
+<<<<<<< HEAD
+payload
+=======
 
+>>>>>>> origin/basis
+=======
+
+>>>>>>> origin/basis
 
 

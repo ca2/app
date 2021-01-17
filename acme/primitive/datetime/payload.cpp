@@ -5,7 +5,11 @@ namespace datetime
 {
 
 
+<<<<<<< HEAD
    value::value(const ::datetime::time & time)
+=======
+   payload::payload(const ::datetime::time & time)
+>>>>>>> origin/basis
    {
 
       operator =(time);
@@ -13,7 +17,11 @@ namespace datetime
    }
 
 
+<<<<<<< HEAD
    value::value()
+=======
+   payload::payload()
+>>>>>>> origin/basis
    {
       m_iYear     = 0;
       m_iMonth    = 0;
@@ -27,41 +35,73 @@ namespace datetime
 
    }
 
+<<<<<<< HEAD
    value::~value()
    {
    }
 
    double value::get_years() const
+=======
+   payload::~payload()
+   {
+   }
+
+   double payload::get_years() const
+>>>>>>> origin/basis
    {
       return m_iYear + m_iMonth / 12.0 +  (m_iDay + (m_iHour +  (m_iMinute + (m_iSecond / 60.0) / 60.0) / 24.0)) / 365.2425;
    }
 
+<<<<<<< HEAD
    double value::get_months() const
+=======
+   double payload::get_months() const
+>>>>>>> origin/basis
    {
       return m_iYear / 12.0 + m_iMonth +  12.0 * (m_iDay + (m_iHour +  (m_iMinute + (m_iSecond / 60.0) / 60.0) / 24.0)) / 365.2425;
    }
 
+<<<<<<< HEAD
    double value::get_days() const
+=======
+   double payload::get_days() const
+>>>>>>> origin/basis
    {
       return (m_iYear * 365.2425 + m_iMonth * 365.2425 / 12.0 + m_iDay) + (m_iHour +  (m_iMinute + (m_iSecond / 60.0) / 60.0) / 24.0);
    }
 
+<<<<<<< HEAD
    double value::get_hours() const
+=======
+   double payload::get_hours() const
+>>>>>>> origin/basis
    {
       return (m_iYear * 365.2425 + m_iMonth * 365.2425 / 12.0 + m_iDay) * 24.0 + m_iHour +  (m_iMinute + (m_iSecond / 60.0) / 60.0);
    }
 
+<<<<<<< HEAD
    double value::get_minutes() const
+=======
+   double payload::get_minutes() const
+>>>>>>> origin/basis
    {
       return (((m_iYear * 365.2425 + m_iMonth * 365.2425 / 12.0 + m_iDay) * 24  + m_iHour) * 60.0) + m_iMinute + (m_iSecond / 60.0);
    }
 
+<<<<<<< HEAD
    double value::get_seconds() const
+=======
+   double payload::get_seconds() const
+>>>>>>> origin/basis
    {
       return (((m_iYear * 365.2425 + m_iMonth * 365.2425 / 12.0 + m_iDay) * 24.0  + m_iHour) * 60.0 + m_iMinute) * 60.0 + m_iSecond;
    }
 
+<<<<<<< HEAD
    ::datetime::time value::get_time() const
+=======
+   ::datetime::time payload::get_time() const
+>>>>>>> origin/basis
    {
       ASSERT(!m_bSpan);
       try
@@ -74,13 +114,21 @@ namespace datetime
       }
    }
 
+<<<<<<< HEAD
    ::datetime::time_span value::GetSpan() const
+=======
+   ::datetime::time_span payload::GetSpan() const
+>>>>>>> origin/basis
    {
       ASSERT(m_bSpan);
       return ::datetime::time_span((::i32) (m_iDay + m_iMonth * (365.0 * 4.0 + 1.0) /(12.0 *4.0) + m_iYear *(365.0 * 4.0 + 1.0) /(4.0)), m_iHour, m_iMinute, m_iSecond);
    }
 
+<<<<<<< HEAD
    value & value::operator = (const ::datetime::time & time)
+=======
+   payload & payload::operator = (const ::datetime::time & time)
+>>>>>>> origin/basis
    {
       m_bSpan     = false;
       m_iYear     = time.GetYear();

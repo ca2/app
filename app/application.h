@@ -7,7 +7,7 @@ namespace app_app
 
 
    class CLASS_DECL_APP_APP_APP application :
-      virtual public ::apex::application
+      virtual public ::aura::application
    {
    public:
 

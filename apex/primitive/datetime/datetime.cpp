@@ -428,7 +428,11 @@ namespace datetime
    }
 
 
+<<<<<<< HEAD
    string to_string(::layered * pobjectContext, const ::apex::str_context * pcontext,const ::datetime::payload & payload)
+=======
+   string to_string(::layered * pobjectContext, const ::apex::str_context * pcontext,const ::datetime::payload & value)
+>>>>>>> origin/basis
    {
       string str;
       if(payload.m_bSpan)

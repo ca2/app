@@ -39,7 +39,7 @@ namespace dynamic_source
    }
 
 
-   ds_script * script_cache::create_new_ds_script(const string & strName)
+   __pointer(ds_script) script_cache::create_new_ds_script(const string & strName)
    {
 
       auto pscript = __create_new< ds_script >();
@@ -47,8 +47,6 @@ namespace dynamic_source
       pscript->m_pmanager = m_pmanager;
 
       pscript->m_strName = strName;
-
-      cache(pscript);
 
       return pscript;
 
@@ -68,18 +66,18 @@ namespace dynamic_source
 
       sync_lock sl(mutex());
 
-      auto ppair = m_map.plookup(strName);
+      auto passoc = m_map.get_assoc(strName);
 
-      if (::is_set(ppair) 
-         && ppair->element2().is_set()
-         && ppair->element2()->m_strName == strName)
+      if (::is_set(passoc)
+         && passoc->element2().is_set()
+         && passoc->element2()->m_strName == strName)
       {
 
-         return ppair->element2();
+         return passoc->element2();
 
       }
 
-      return create_new_ds_script(strName);
+      return passoc->m_element2 = create_new_ds_script(strName);
 
    }
 
@@ -95,7 +93,7 @@ namespace dynamic_source
 
       single_lock sl(mutex(), TRUE);
 
-      strsp(script)::pair * ppair = m_map.plookup(strName);
+      strsp(script)::pair * ppair = m_map.get_assoc(strName);
 
       if(ppair != nullptr)
       {
@@ -109,8 +107,6 @@ namespace dynamic_source
       pscript->m_pmanager = m_pmanager;
 
       pscript->m_strName = strName;
-
-      cache(pscript);
 
       return pscript;
 
@@ -163,8 +159,6 @@ namespace dynamic_source
       if(!pscript->m_bNew && pscript->ShouldBuild())
       {
 
-         slScript.unlock();
-
          pscript = create_new_ds_script(strName);
 
       }
@@ -174,14 +168,14 @@ namespace dynamic_source
    }
 
 
-   void script_cache::cache(script * pscript)
-   {
+   //void script_cache::cache(script * pscript)
+   //{
 
-      single_lock sl(mutex(), true);
+   //   single_lock sl(mutex(), true);
 
-      m_map.set_at(pscript->m_strName, pscript);
+   //   m_map.set_at(pscript->m_strName, pscript);
 
-   }
+   //}
 
 
    void script_cache::uncache(script * pscript)

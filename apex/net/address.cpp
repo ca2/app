@@ -486,10 +486,6 @@ namespace net
 
 #if defined(BSD_STYLE_SOCKETS)
 
-      ::apex::application * pappThread = get_context_application();
-
-      //auto * psystem = pappThread->get_context_system();
-
       auto * psockets = &System.sockets();
 
       auto * pnet = &psockets->net();
@@ -631,6 +627,14 @@ namespace net
 #endif
 
       return a;
+
+   }
+
+
+   port_t address::use_address_service_number_as_offset_for_base_port(port_t portBase) const
+   {
+
+      return portBase + get_service_number();
 
    }
 

@@ -469,7 +469,7 @@ namespace datetime
 //   }
 //
 //
-//   string to_string(::matter * pobject, const ::acme::str_context * pcontext,const ::datetime::value & value)
+//   string to_string(::matter * pobject, const ::acme::str_context * pcontext,const ::datetime::payload & value)
 //   {
 //      string str;
 //      if(value.m_bSpan)

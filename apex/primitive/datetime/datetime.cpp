@@ -428,7 +428,7 @@ namespace datetime
    }
 
 
-   string to_string(::layered * pobjectContext, const ::apex::str_context * pcontext,const ::datetime::value & value)
+   string to_string(::layered * pobjectContext, const ::apex::str_context * pcontext,const ::datetime::payload & value)
    {
       string str;
       if(value.m_bSpan)

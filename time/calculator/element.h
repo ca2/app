@@ -20,7 +20,7 @@ namespace datetime
       element *   m_pelement3;
 
 
-      ::datetime::value get_value(const ::apex::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
+      ::datetime::payload get_value(const ::apex::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
       string get_expression(const ::apex::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const;
 
 

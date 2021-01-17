@@ -41,10 +41,10 @@ namespace datetime
 } // namespace datetime
 
 
-CLASS_DECL_ACME datetime::value operator + (const datetime::value & val1, const datetime::value & val2);
-CLASS_DECL_ACME datetime::value operator - (const datetime::value & val1, const datetime::value & val2);
-CLASS_DECL_ACME datetime::value operator * (const datetime::value & val1, double d);
-CLASS_DECL_ACME datetime::value operator / (const datetime::value & val1, double d);
+CLASS_DECL_ACME datetime::payload operator + (const datetime::payload & val1, const datetime::payload & val2);
+CLASS_DECL_ACME datetime::payload operator - (const datetime::payload & val1, const datetime::payload & val2);
+CLASS_DECL_ACME datetime::payload operator * (const datetime::payload & val1, double d);
+CLASS_DECL_ACME datetime::payload operator / (const datetime::payload & val1, double d);
 
 
 

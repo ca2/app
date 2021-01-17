@@ -98,9 +98,9 @@ namespace datetime
 } // namespace datetime
 
 
-datetime::value operator + (const datetime::value & val1, const datetime::value & val2)
+datetime::payload operator + (const datetime::payload & val1, const datetime::payload & val2)
 {
-   datetime::value val;
+   datetime::payload val;
    if(val1.m_bSpan && val2.m_bSpan)
    {
       val.m_bSpan = true;
@@ -117,8 +117,8 @@ datetime::value operator + (const datetime::value & val1, const datetime::value 
    }
    else if((val1.m_bSpan && !val2.m_bSpan) || (val2.m_bSpan && !val1.m_bSpan))
    {
-      const datetime::value * pdate = nullptr;
-      const datetime::value * pspan = nullptr;
+      const datetime::payload * pdate = nullptr;
+      const datetime::payload * pspan = nullptr;
       if(val1.m_bSpan)
       {
          pdate = &val2;
@@ -138,9 +138,9 @@ datetime::value operator + (const datetime::value & val1, const datetime::value 
    return val;
 }
 
-datetime::value operator - (const datetime::value & val1, const datetime::value & val2)
+datetime::payload operator - (const datetime::payload & val1, const datetime::payload & val2)
 {
-   datetime::value val;
+   datetime::payload val;
    if(val1.m_bSpan && val2.m_bSpan)
    {
       val.m_bSpan = true;
@@ -159,8 +159,8 @@ datetime::value operator - (const datetime::value & val1, const datetime::value 
    }
    else if(val2.m_bSpan && !val1.m_bSpan)
    {
-      const datetime::value * pdate = &val1;
-      const datetime::value * pspan = &val2;
+      const datetime::payload * pdate = &val1;
+      const datetime::payload * pspan = &val2;
       val = ::datetime::time(pdate->get_time() - pspan->GetSpan());
    }
    else
@@ -182,9 +182,9 @@ datetime::value operator - (const datetime::value & val1, const datetime::value 
    return val;
 }
 
-datetime::value operator * (const datetime::value & val1, double d)
+datetime::payload operator * (const datetime::payload & val1, double d)
 {
-   datetime::value val;
+   datetime::payload val;
    if(val1.m_bSpan)
    {
       val.m_bSpan = true;
@@ -205,9 +205,9 @@ datetime::value operator * (const datetime::value & val1, double d)
    return val;
 }
 
-datetime::value operator / (const datetime::value & val1, double d)
+datetime::payload operator / (const datetime::payload & val1, double d)
 {
-   datetime::value val;
+   datetime::payload val;
    if(val1.m_bSpan)
    {
       val.m_bSpan = true;

@@ -106,7 +106,7 @@ namespace dynamic_source
 
       auto ft = get_filetime_set(m_strSourcePath);
 
-      bMatches = m_ft == ft;
+      bMatches = m_ftDs == ft;
 
       m_bLastVersionCheck = bMatches;
       return bMatches;
@@ -547,7 +547,7 @@ namespace dynamic_source
 
       m_millisLastBuildTime= ::millis::now();
 
-      m_ft = get_filetime_set(m_strSourcePath);
+      //m_ft = get_filetime_set(m_strSourcePath);
 
       Load();
 

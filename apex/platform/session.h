@@ -17,7 +17,7 @@ namespace apex
 
 
       class CLASS_DECL_APEX map:
-         virtual public isomap < index, __pointer(::apex::session) >
+         virtual public ::map < index, __pointer(::apex::session) >
       {
 
 
@@ -58,7 +58,7 @@ namespace apex
 
       index                                                 m_iEdge;
 
-      ::map < ::user::e_key, ::user::e_key, bool, bool > *  m_pmapKeyPressed;
+      ::map < ::user::e_key, bool > *                       m_pmapKeyPressed;
 
       bool                                                  m_bProgrammerMode;
 

@@ -821,3 +821,75 @@ inline filesize stream_meta::precision() const
 
 
 
+
+namespace file
+{
+
+
+   inline string listing::title(index i)
+   {
+
+      if (i >= 0 && i < m_straTitle.get_count())
+      {
+
+         return m_straTitle[i];
+
+      }
+
+      return operator[](i).title();
+
+   }
+
+
+   inline string listing::name(index i)
+   {
+
+      if (i >= 0 && i < m_straTitle.get_count())
+      {
+
+         return m_straTitle[i];
+
+      }
+
+      return operator[](i).name();
+
+   }
+
+
+   inline void listing::to_name()
+   {
+
+      for (index i = 0; i < get_size(); i++)
+      {
+
+         element_at(i) = element_at(i).name();
+
+      }
+
+   }
+
+
+   inline listing & listing::operator = (const listing & listing)
+   {
+
+      if (this == &listing)
+         return *this;
+
+      patha::operator         = (listing);
+      *((listing_meta *)this) = (const listing_meta &)listing;
+      m_pathUser = listing.m_pathUser;
+      m_pathFinal = listing.m_pathFinal;
+      m_straPattern = listing.m_straPattern;
+      m_straIgnoreName = listing.m_straIgnoreName;
+      m_statusresult = listing.m_statusresult;
+      m_straTitle = listing.m_straTitle;
+
+      return *this;
+
+   }
+
+
+} // namespace file
+
+
+

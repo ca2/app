@@ -56,7 +56,7 @@ namespace draw2d
       void ClearDC();
       void SelectFont();
       void SetDC(::draw2d::graphics_pointer & pgraphics);
-      void EmbossedTextOut(
+      void embossed_text_out(
       ::draw2d::graphics_pointer & pgraphics,
       const rect &               pcrect,
 
@@ -64,7 +64,7 @@ namespace draw2d
       double               dHeight,
       string                 &str);
 
-      void EmbossedTextOut(
+      void embossed_text_out(
       ::draw2d::graphics_pointer & pgraphics,
       const rect &               pcrect,
 
@@ -76,7 +76,7 @@ namespace draw2d
       i32                     iCharsPositions,
       i32                  iOffset);
 
-      void SimpleTextOut(
+      void simple_text_out(
       ::draw2d::graphics_pointer & pgraphics,
       i32                     x,
       i32                     y,

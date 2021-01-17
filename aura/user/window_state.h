@@ -120,10 +120,13 @@ namespace user
       ::point& screen_origin() { return m_pointScreen; }
 
       ::size size() const { return m_size; }
-      visual_state& operator = (const ::size & size) { set_modified(); m_size = size; return *this; }
+
+      template < primitive_size SIZE >
+      visual_state& operator = (const SIZE & size) { set_modified(); m_size = size; return *this; }
 
 
-      visual_state& operator = (const ::rect & rect) { set_modified(); m_point = rect.origin(); m_size = rect.size(); return *this; }
+      template < primitive_rectangle RECTANGLE >
+      visual_state& operator = (const RECTANGLE & rectangle) { set_modified(); m_point = rectangle.origin(); m_size = rectangle.size(); return *this; }
 
 
       ::i32 width() const { return m_size.cx; }

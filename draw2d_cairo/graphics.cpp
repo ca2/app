@@ -111,7 +111,7 @@ string_to_string * g_pmapFontPath;
 
 #endif
 
-string_map < int_map < FT_Face > > * g_pmapFontFace = nullptr;
+string_map < i32_map < FT_Face > > * g_pmapFontFace = nullptr;
 
 string_map < cairo_font_face_t * > * g_pmapCairoFontFace = nullptr;
 
@@ -659,7 +659,7 @@ point graphics::SetWindowOrg(const ::point & point)
 }
 
 
-size graphics::SetWindowExt(const ::size & size)
+size graphics::set_window_ext(const ::size & size)
 {
 
     return ::size(0, 0);
@@ -896,7 +896,7 @@ bool graphics::Arc(const ::rect & rect, const ::point & pointStart, const ::poin
 }
 
 
-bool graphics::Polyline(const POINT32* lpPoints, count nCount)
+bool graphics::polyline(const POINT32* lpPoints, count nCount)
 {
 
     return draw_polygon(lpPoints, nCount);
@@ -2566,7 +2566,7 @@ i32 graphics::GetArcDirection()
 }
 
 
-bool graphics::PolyPolyline(const POINT32* lpPoints, const ::i32 * lpPolyPoints, count nCount)
+bool graphics::poly_polyline(const POINT32* lpPoints, const ::i32 * lpPolyPoints, count nCount)
 {
 
    ::exception::throw_not_implemented();
@@ -2616,7 +2616,7 @@ bool graphics::PolyPolyline(const POINT32* lpPoints, const ::i32 * lpPolyPoints,
 //}
 
 
-bool graphics::PolyBezier(const POINT32* lpPoints, count nCount)
+bool graphics::poly_bezier(const POINT32* lpPoints, count nCount)
 {
 
     ::exception::throw_not_implemented();
@@ -3459,7 +3459,7 @@ point graphics::SetWindowOrg(i32 x, i32 y)
 }
 
 
-point graphics::OffsetWindowOrg(i32 nWidth, i32 nHeight)
+point graphics::offset_window_org(i32 nWidth, i32 nHeight)
 {
 
     ::exception::throw_not_implemented();
@@ -3469,7 +3469,7 @@ point graphics::OffsetWindowOrg(i32 nWidth, i32 nHeight)
 }
 
 
-size graphics::SetWindowExt(i32 x, i32 y)
+size graphics::set_window_ext(i32 x, i32 y)
 {
 
     ::exception::throw_not_implemented();
@@ -3479,7 +3479,7 @@ size graphics::SetWindowExt(i32 x, i32 y)
 }
 
 
-size graphics::ScaleWindowExt(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom)
+size graphics::scale_window_ext(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom)
 {
 
     ::exception::throw_not_implemented();
@@ -3489,7 +3489,7 @@ size graphics::ScaleWindowExt(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom)
 }
 
 
-i32 graphics::GetClipBox(RECT32 * prect)
+i32 graphics::get_clip_box(RECT32 * prect)
 {
 
     return 0;
@@ -3705,7 +3705,7 @@ bool graphics::PolyDraw(const POINT32* lpPoints, const byte* lpTypes, count nCou
 }
 
 
-bool graphics::PolylineTo(const POINT32* lpPoints, count nCount)
+bool graphics::polyline_to(const POINT32* lpPoints, count nCount)
 {
 
     ::exception::throw_not_implemented();
@@ -3715,7 +3715,7 @@ bool graphics::PolylineTo(const POINT32* lpPoints, count nCount)
 }
 
 
-bool graphics::PolyBezierTo(const POINT32* lpPoints, count nCount)
+bool graphics::poly_bezier_to(const POINT32* lpPoints, count nCount)
 {
 
     ::exception::throw_not_implemented();

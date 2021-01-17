@@ -677,11 +677,11 @@ namespace user
             if (iCurLineSelEnd > iCurLineSelBeg)
             {
 
-               pgraphics->fill_solid_rect_dim(
-               (double)((double)left + x1),
+               pgraphics->fill_rect(
+               ::rectd_dim((double)((double)left + x1),
                (double)y,
                (double)min(x2-x1, (double)rectClient.right - ((double)left + x1)),
-               (double)min((double)m_dLineHeight, (double)rectClient.bottom - y),
+               (double)min((double)m_dLineHeight, (double)rectClient.bottom - y)),
                crBkSel);
 
                pgraphics->set(brushTextSel);
@@ -691,11 +691,11 @@ namespace user
             if (bComposing && iCurLineComposeEnd > iCurLineComposeBeg)
             {
 
-               pgraphics->fill_solid_rect_dim(
-                  (double)((double)left + compose1),
+               pgraphics->fill_rect(
+                  ::rectd_dim((double)((double)left + compose1),
                   (double)y,
                   (double)min(compose2 - compose1, (double)rectClient.right - ((double)left + compose1)),
-                  (double)min((double)m_dLineHeight, (double)rectClient.bottom - y),
+                  (double)min((double)m_dLineHeight, (double)rectClient.bottom - y)),
                   colorComposeBk);
 
                pgraphics->set(brushTextSel);

@@ -370,7 +370,7 @@ inline ::e_status __construct(::image_pointer & pimage, const ::size & size, ::e
 
    }
 
-   if (pimage && pimage->size() != size)
+   if (pimage && pimage->get_size() != size)
    {
 
       estatus = pimage->create(size, eobjectCreate, iGoodStride, bPreserve);

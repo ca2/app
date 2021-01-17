@@ -643,50 +643,37 @@ string context::defer_get_file_title(string strParam)
 
          }
 
+         string strFsType;
+            
+         strFsType = set["get_headers"]["x-fstype"];
 
-            string strFsType = set["get_headers"]["x-fstype"];
-
-            if (strFsType.has_char())
+         if (strFsType.has_char())
+         {
+            if (strFsType == "directory")
             {
-               if (strFsType == "directory")
-               {
-
-                  if (!retry([&]()
-                     {
-
-                        return dir().mk(pathCache);
-
-                     }))
-                  {
-
-                     return "";
-
-                  }
-
-
-               }
-               else
-               {
-                  pfile->seek_to_begin();
-
-                  if (!retry([&]()
-                     {
-
-                        return file().copy(pathCache, pfile, false);
-
-                     }))
-                  {
-
-                     return "";
-
-                  }
-
-               }
 
                if (!retry([&]()
                   {
 
-                     return file_set_line_dup(pathMeta, 0, strFsType);
+                     return dir().mk(pathCache);
+
+                  }))
+               {
+
+                  return "";
+
+               }
+
+
+            }
+            else
+            {
+               pfile->seek_to_begin();
+
+               if (!retry([&]()
+                  {
+
+                     return file().copy(pathCache, pfile, false);
 
                   }))
                {
@@ -696,16 +683,30 @@ string context::defer_get_file_title(string strParam)
                }
 
             }
-            else
+
+            if (!retry([&]()
+               {
+
+                  return file_set_line_dup(pathMeta, 0, strFsType);
+
+               }))
             {
-               retry([&]()
-                  {
 
-                     return file_set_line_dup(pathMeta, 0, "itdoesntexist");
-
-                  });
                return "";
+
             }
+
+         }
+         else
+         {
+            retry([&]()
+               {
+
+                  return file_set_line_dup(pathMeta, 0, "itdoesntexist");
+
+               });
+            return "";
+         }
 
 
 

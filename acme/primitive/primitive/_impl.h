@@ -2002,10 +2002,8 @@ inline bool type::operator == (const ::id& id) const
 }
 
 
-
-
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(const payload& payload) :
+inline string_base < TYPE_CHAR >::string_base(const payload & payload) :
    string_base(payload.to_string())
 {
 
@@ -2022,7 +2020,6 @@ inline string_base < TYPE_CHAR >::string_base(const property& property) :
 }
 
 
-
 template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR >::string_base(const id& id) :
    string_base(id.to_string())
@@ -2032,6 +2029,31 @@ inline string_base < TYPE_CHAR >::string_base(const id& id) :
 }
 
 
+template < typename TYPE_CHAR >
+inline string_base < TYPE_CHAR >::string_base(payload & payload) :
+   string_base(payload.to_string())
+{
+
+
+}
+
+
+template < typename TYPE_CHAR >
+inline string_base < TYPE_CHAR >::string_base(property & property) :
+   string_base(property.to_string())
+{
+
+
+}
+
+
+template < typename TYPE_CHAR >
+inline string_base < TYPE_CHAR >::string_base(id & id) :
+   string_base(id.to_string())
+{
+
+
+}
 
 
 
@@ -2108,18 +2130,26 @@ inline string_base < TYPE_CHAR >::string_base(const id& id) :
    }
 
 
-
-      template < class T >
+   template < class T >
    inline __pointer(T) payload::cast()
    {
 
-      if(m_etype == type_pvar && m_pvar != nullptr)
+      if (m_etype == type_pvar && m_pvar != nullptr)
+      {
+
          return m_pvar->cast < T >();
+
+      }
+
       if (m_etype == type_prop && m_pprop != nullptr)
+      {
+
          return m_pprop->cast < T >();
 
+      }
+
 #define CAST_ELEMENT(P, ENUM_TYPE) \
-if(m_etype == ENUM_TYPE) { return dynamic_cast < T * >(P); }
+      if(m_etype == ENUM_TYPE) { return dynamic_cast < T * >(P); }
       CAST_ELEMENT(m_p, e_type_element);
       CAST_ELEMENT(m_pstra, e_type_stra);
       CAST_ELEMENT(m_pia, e_type_inta);

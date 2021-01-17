@@ -2423,7 +2423,9 @@ bool dir_context::is_inside(const ::file::path & pszDir, const ::file::path & ps
 
    set.parse_ini(strIni);
 
-   string strLibrary = set["library"];
+   string strLibrary;
+   
+   strLibrary = set["library"];
 
    ::str::tokenizer token(strLibrary);
 

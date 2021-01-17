@@ -147,7 +147,7 @@ namespace str
       inline void from(string & str, const signed char & ch)
    {
 
-      str = ch;
+      str = (ansichar) ch;
 
    }
 

@@ -189,7 +189,9 @@ namespace aura
 
          TRACELASTERROR();
 
-         goto error;
+         DestroyPhysicalMonitors(1, &monitor);
+
+         return 0;
 
       }
 
@@ -285,118 +287,117 @@ namespace aura
 
 #undef F
 
-      if (!bDifferent)
+
+
+      for(int iRepeat = 0; iRepeat < 3 && !bDifferent; iRepeat)
       {
+         //repeat:
 
-         goto finalize;
+         bDifferent = false;
 
-      }
-
-      int iRepeat = 0;
-   repeat:
-
-      bDifferent = false;
-
-      if (GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, &dwMinDriveR, &dwCurDriveR,
-         &dwMaxDriveR))
-      {
-
-         if (dwCurDriveR != dwMaxDriveR)
-         {
-            sleep(500_ms);
-            SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, dwMaxDriveR);
-            sleep(500_ms);
-            bDifferent = true;
-         }
-
-      }
-
-      if (GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, &dwMinDriveG, &dwCurDriveG,
-         &dwMaxDriveG))
-      {
-
-         if (dwCurDriveG != dwMaxDriveG)
-         {
-            sleep(500_ms);
-            SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, dwMaxDriveG);
-            sleep(500_ms);
-            bDifferent = true;
-         }
-
-      }
-
-      if (GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, &dwMinDriveB, &dwCurDriveB,
-         &dwMaxDriveB))
-      {
-
-         if (dwCurDriveB != dwMaxDriveB)
-         {
-            sleep(500_ms);
-            SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, dwMaxDriveB);
-            sleep(500_ms);
-            bDifferent = true;
-         }
-
-      }
-
-      if (GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, &dwMinGainR, &dwCurGainR, &dwMaxGainR))
-      {
-
-         if (dwCurGainR != dwR)
-         {
-            sleep(500_ms);
-            SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwR);
-            sleep(500_ms);
-            bDifferent = true;
-         }
-
-
-      }
-
-      if (GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, &dwMinGainG, &dwCurGainG, &dwMaxGainG))
-      {
-
-         if (dwCurGainG != dwG)
-         {
-            sleep(500_ms);
-            SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwG);
-            sleep(500_ms);
-            bDifferent = true;
-         }
-
-      }
-
-      if (GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, &dwMinGainB, &dwCurGainB, &dwMaxGainB))
-      {
-
-         if (dwCurGainB != dwB)
-         {
-            sleep(500_ms);
-            SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwB);
-            sleep(500_ms);
-            bDifferent = true;
-         }
-
-      }
-
-      if (bDifferent)
-      {
-
-         iRepeat++;
-
-         if (iRepeat < 3)
+         if (GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, &dwMinDriveR, &dwCurDriveR,
+            &dwMaxDriveR))
          {
 
-            goto repeat;
+            if (dwCurDriveR != dwMaxDriveR)
+            {
+               sleep(500_ms);
+               SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_RED_DRIVE, dwMaxDriveR);
+               sleep(500_ms);
+               bDifferent = true;
+            }
 
          }
 
+         if (GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, &dwMinDriveG, &dwCurDriveG,
+            &dwMaxDriveG))
+         {
+
+            if (dwCurDriveG != dwMaxDriveG)
+            {
+               sleep(500_ms);
+               SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_GREEN_DRIVE, dwMaxDriveG);
+               sleep(500_ms);
+               bDifferent = true;
+            }
+
+         }
+
+         if (GetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, &dwMinDriveB, &dwCurDriveB,
+            &dwMaxDriveB))
+         {
+
+            if (dwCurDriveB != dwMaxDriveB)
+            {
+               sleep(500_ms);
+               SetMonitorRedGreenOrBlueDrive(monitor.hPhysicalMonitor, MC_BLUE_DRIVE, dwMaxDriveB);
+               sleep(500_ms);
+               bDifferent = true;
+            }
+
+         }
+
+         if (GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, &dwMinGainR, &dwCurGainR, &dwMaxGainR))
+         {
+
+            if (dwCurGainR != dwR)
+            {
+               sleep(500_ms);
+               SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_RED_GAIN, dwR);
+               sleep(500_ms);
+               bDifferent = true;
+            }
+
+
+         }
+
+         if (GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, &dwMinGainG, &dwCurGainG, &dwMaxGainG))
+         {
+
+            if (dwCurGainG != dwG)
+            {
+               sleep(500_ms);
+               SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_GREEN_GAIN, dwG);
+               sleep(500_ms);
+               bDifferent = true;
+            }
+
+         }
+
+         if (GetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, &dwMinGainB, &dwCurGainB, &dwMaxGainB))
+         {
+
+            if (dwCurGainB != dwB)
+            {
+               sleep(500_ms);
+               SetMonitorRedGreenOrBlueGain(monitor.hPhysicalMonitor, MC_BLUE_GAIN, dwB);
+               sleep(500_ms);
+               bDifferent = true;
+            }
+
+         }
+
+         //if (bDifferent)
+         //{
+
+         //   iRepeat++;
+
+         //   if (iRepeat < 3)
+         //   {
+
+         //      goto repeat;
+
+         //   }
+
+         //}
+      
       }
+
       sleep(500_ms);
-   finalize:;
+   //finalize:;
       DestroyPhysicalMonitors(1, &monitor);
-      return true;
-   error:;
+      //return true;
+   //error:;
       sleep(500_ms);
       // Close the monitor handles.
       DestroyPhysicalMonitors(1, &monitor);

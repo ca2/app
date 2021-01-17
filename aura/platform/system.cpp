@@ -1296,7 +1296,9 @@ namespace aura
       if (has_property("imaging"))
       {
 
-         string strImaging = value("imaging");
+         string strImaging;
+         
+         strImaging = value("imaging");
 
          strImaging.trim();
 
@@ -5981,7 +5983,9 @@ namespace aura
 
       }
 
-      string strLocation = set["get_headers"]["Location"];
+      string strLocation;
+      
+      strLocation = set["get_headers"]["Location"];
 
       if (strLocation.has_char())
       {

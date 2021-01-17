@@ -1072,7 +1072,7 @@ template < typename TYPE >
 inline ::file::file & operator >> (::file::file & file, TYPE & t)
 {
 
-   if (::is_null_ref(file))
+   if (::is_null(file))
    {
 
       __throw(io_exception());

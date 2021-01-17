@@ -160,7 +160,7 @@ CLASS_DECL_AURA ::user::interaction * create_system_message_window(::layered * p
     if (!pimpl->create_window_ex(pcreatestruct, nullptr, "::user::system_interaction_impl"))
     {
 
-       return false;
+       return nullptr;
 
     }
 

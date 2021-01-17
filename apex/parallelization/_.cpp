@@ -416,7 +416,7 @@ namespace parallelization
    if (pthread->get_context())
    {
 
-      if (::is_null_ref(pthread->get_context()->file()))
+      if (::is_null(pthread->get_context()->file()))
       {
 
          pthread->get_context()->initialize_context();

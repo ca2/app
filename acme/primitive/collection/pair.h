@@ -92,7 +92,7 @@ class pair
 
    PAIR_DEFAULT_IMPL(pair, T1, T2, ARG_T1, ARG_T2, m_element1, m_element2)
 
-      pair & get_pair(T1 & t1, T2 & t2)
+   pair & get_pair(T1 & t1, T2 & t2)
    {
 
       t1 = m_element1;

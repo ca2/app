@@ -46,7 +46,7 @@ namespace base
 //      thread_map                                         m_threadmap;
 //      thread_id_map                                      m_threadidmap;
 //      ::mutex                                            m_mutexThreadOn;
-//      isomap < ithread_t, ithread_t >                        m_mapThreadOn;
+//      map < ithread_t, ithread_t >                        m_mapThreadOn;
 //
 //      ::mutex                                            m_mutexUserChildren;
 //      __composite(class imaging)                         m_pimaging;

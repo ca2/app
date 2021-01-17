@@ -451,7 +451,7 @@
  return sizeExtOld;
  }
  
- size preview_dc::SetWindowExt(i32 x, i32 y)
+ size preview_dc::set_window_ext(i32 x, i32 y)
  {
  ASSERT(get_handle2() != nullptr);
  size sizeExtOld;
@@ -460,7 +460,7 @@
  return sizeExtOld;
  }
  
- size preview_dc::ScaleWindowExt(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom)
+ size preview_dc::scale_window_ext(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom)
  {
  ASSERT(get_handle2() != nullptr);
  size sizeExtOld;

@@ -2250,7 +2250,7 @@ namespace apex
       if (m_pmapKeyPressed == nullptr)
       {
 
-         m_pmapKeyPressed = new ::map < ::user::e_key, ::user::e_key, bool, bool >;
+         m_pmapKeyPressed = new ::map < ::user::e_key, bool >;
 
       }
 
@@ -2323,7 +2323,7 @@ ret:
       if (m_pmapKeyPressed == nullptr)
       {
 
-         m_pmapKeyPressed = new ::map < ::user::e_key, ::user::e_key, bool, bool >;
+         m_pmapKeyPressed = new ::map < ::user::e_key, bool >;
 
       }
 

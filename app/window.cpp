@@ -87,11 +87,11 @@ namespace app_app
 
       double y = dBase * 3;
 
-      pgraphics->fill_solid_rect_dim(x, y, dBase * 5.0, dBase * 5.0, ARGB(127, 40, 150, 235));
+      pgraphics->fill_rect(::rectd_dim(x, y, dBase * 5.0, dBase * 5.0), ARGB(127, 40, 150, 235));
 
-      pgraphics->fill_solid_rect_dim(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0, ARGB(127, 40, 150, 235));
+      pgraphics->fill_rect(::rectd_dim(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), ARGB(127, 40, 150, 235));
 
-      pgraphics->fill_solid_rect_dim(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0, ARGB(127, 255, 110, 150));
+      pgraphics->fill_rect(::rectd_dim(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ARGB(127, 255, 110, 150));
 
       rectClient.deflate((::i32) dBase);
 

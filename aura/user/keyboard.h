@@ -16,9 +16,9 @@ namespace user
       index                                     m_iSoftwareKeyboardEventId;
 
 
-      ::int_map < ::user::e_key >              m_mapExt;
-      ::int_map < ::user::e_key >              m_mapScan;
-      ::int_map < ::user::e_key >              m_mapKey;
+      ::i32_map < ::user::e_key >              m_mapExt;
+      ::i32_map < ::user::e_key >              m_mapScan;
+      ::i32_map < ::user::e_key >              m_mapKey;
       //__pointer(keyboard_layout)                    m_playout;
 
       keyboard();

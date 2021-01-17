@@ -630,7 +630,7 @@ namespace aura
 
       g_pcsFont = new critical_section();
 
-      g_pmapFontFaceName = new string_map < int_map < string > >();
+      g_pmapFontFaceName = new string_map < i32_map < string > >();
 
       g_pmutexWindowing = new mutex();
 

@@ -213,12 +213,12 @@ bool image::dc_select(bool bSelect)
 }
 
 
-::e_status     image::create(::draw2d::graphics * pgraphics)
+::e_status image::create(::draw2d::graphics * pgraphics)
 {
 
    ::draw2d::bitmap & bitmap = *pgraphics->get_current_bitmap();
 
-   if (is_null_ref(bitmap))
+   if (::is_null(bitmap))
    {
 
       return ::error_failed;
@@ -493,7 +493,7 @@ bool image::stretch(const ::image * pimage)
 
    }
 
-   return pgraphics->stretch(this->size(), pimage->g(), pimage->size());
+   return pgraphics->stretch(::rectd(this->size()), pimage->g(), ::rectd(pimage->size()));
 
 }
 
@@ -3865,7 +3865,7 @@ bool image::copy_from(::image * pimage, i32 x, i32 y)
    if (s.area() > 0)
    {
 
-      if (!g()->draw(s, pimage, { x, y }))
+      if (!g()->draw(::rectd(s), pimage, ::pointd(x, y)))
       {
 
          return false;
@@ -5715,7 +5715,7 @@ bool image::fill_byte(uchar uch)
          
       }
       
-      g()->fill_solid_rect_dim(0, 0, m_size.cx, m_size.cy, color);
+      g()->fill_rect(::rectd(m_size), color);
       
       if(ealphamode != ::draw2d::alpha_mode_set)
       {
@@ -6339,7 +6339,7 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
 
       int y = 0;
 
-      get_graphics()->draw(::size(cxSource, cySource), pimage->g());
+      get_graphics()->stretch(::sized(cxSource, cySource), pimage->g());
 
       while (cx >= 1.0 && cy >= 1.0)
       {
@@ -7945,7 +7945,7 @@ bool image::map(bool bApplyAlphaTransform) const
    if (!m_bMapped)
    {
 
-      ((::image *)this)->_map(bApplyAlphaTransform);
+      ((::image *)this)->map(bApplyAlphaTransform);
 
       pixmap::map();
 
@@ -9301,7 +9301,7 @@ payload jpeg2 = new byte[]{ 255, 216, 255, 225 }; // jpeg canon
 
 
 
-bool image::_map(bool bApplyAlphaTransform)
+bool image::map(bool bApplyAlphaTransform)
 {
 
    return true;

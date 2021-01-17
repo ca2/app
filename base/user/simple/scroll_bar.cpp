@@ -1254,7 +1254,7 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 
             _001ScreenToClient(rectFocus);
             
-            m_pshapeaClip->add_item(__new(rect_shape(rectFocus)));
+            m_pshapeaClip->add_item(__new(rectd_shape(rectFocus)));
 
             m_pshapeaClip->add_item(__new(intersect_clip_shape()));
 
@@ -1596,7 +1596,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    pgraphics->set(penArrow);
 
-   pgraphics->Polyline(m_ptaA, 3);
+   pgraphics->polyline(m_ptaA, 3);
 
    cr = scrollbar_draw_color(pstyle, ::user::e_element_scrollbar_rectB);
 
@@ -1604,7 +1604,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    pgraphics->set(penArrow);
 
-   pgraphics->Polyline(m_ptaB, 3);
+   pgraphics->polyline(m_ptaB, 3);
 
 }
 
@@ -1661,7 +1661,7 @@ void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgrap
 void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphics, const ::rect & rectDrawParam, const ::rect & lpcrectClip,byte uchAlpha)
 {
 
-   ::rect rectDraw(rectDrawParam);
+   ::rectd rectDraw(rectDrawParam);
 
    rectDraw.bottom--;
 
@@ -1741,7 +1741,15 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
    pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-   pgraphics->alpha_blend(rectDraw.top_left(), rectDraw.size(), m_pimageDots->g(), point((::i32)iDiv, (::i32)iDiv), m_pimageDots->get_size() - ::size((::i32)(iDiv * 2), (::i32)(iDiv * 2)), uchAlpha / 255.0);
+   auto rectDst = rectDraw;
+
+   auto pointSrc = ::pointd(iDiv, iDiv);
+
+   auto sizeSrc = m_pimageDots->get_size() - ::sized(iDiv * 2, iDiv * 2);
+
+   auto rectSrc = ::rectd(pointSrc, sizeSrc);
+
+   pgraphics->alpha_blend(rectDst, m_pimageDots->g(), rectSrc, uchAlpha / 255.0);
 
 }
 

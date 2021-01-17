@@ -350,7 +350,9 @@ namespace aura
       if (pcreate->m_ecommand == ::command_protocol)
       {
 
-         string str = pcreate->m_varFile;
+         string str;
+         
+         str = pcreate->m_varFile;
 
          if (!m_pinterprocessintercommunication)
          {

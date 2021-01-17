@@ -14,7 +14,7 @@
 #include "_comparable_eq_list.h"
 #include "_comparable_list.h"
 
-#include "_map.h"
+#include "map.h"
 
 #include "_array_smart_ptr.h"
 #include "_array_ptr.h"

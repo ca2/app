@@ -848,7 +848,7 @@ namespace user
    //   if (userstyle()->m_mapInt.is_null())
    //   {
 
-   //      userstyle()->m_mapInt = __new(::user::int_map);
+   //      userstyle()->m_mapInt = __new(::user::i32_map);
 
    //   }
 

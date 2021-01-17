@@ -57,7 +57,7 @@ namespace aura
       //thread_map                                         m_threadmap;
       //thread_id_map                                      m_threadidmap;
       //::mutex                                            m_mutexThreadOn;
-      //isomap < ithread_t, ithread_t >                        m_mapThreadOn;
+      //map < ithread_t, ithread_t >                        m_mapThreadOn;
 
       ::mutex                                            m_mutexUserChildren;
       __composite(class imaging)                         m_pimaging;
@@ -175,9 +175,9 @@ namespace aura
 //
 //#endif
 //
-//      //factory_map                                      m_factorymap;
+//    //factory_map                                    m_factorymap;
 
-      keymap < ::file::path, ::image_pointer >           m_mapImage;
+      map < ::file::path, ::image_pointer >              m_mapImage;
 
       __composite(::user::window_map)                    m_pwindowmap;
 

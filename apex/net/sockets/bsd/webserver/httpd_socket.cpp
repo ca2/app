@@ -176,9 +176,9 @@ namespace sockets
    }
 
 
-   map < int, int, DH *, DH * > * g_pmapdh = nullptr;
+   map < int, DH * > * g_pmapdh = nullptr;
 
-   map < int, int, DH *, DH * > * dh_map()
+   map < int, DH * > * dh_map()
    {
 
       sync_lock sl(::get_globals_mutex());
@@ -186,7 +186,7 @@ namespace sockets
       if (g_pmapdh == nullptr)
       {
 
-         g_pmapdh = new map < int, int, DH *, DH * >();
+         g_pmapdh = new map < int, DH * >();
 
       }
 

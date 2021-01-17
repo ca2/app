@@ -158,13 +158,13 @@ namespace draw2d_cairo
       point GetWindowOrg() override;
       point SetWindowOrg(i32 x, i32 y) override;
       point SetWindowOrg(const ::point & point) override;
-      point OffsetWindowOrg(i32 nWidth, i32 nHeight) override;
+      point offset_window_org(i32 nWidth, i32 nHeight) override;
 
       // Window extent
       size GetWindowExt() override;
-      virtual size SetWindowExt(i32 cx, i32 cy) override;
-      size SetWindowExt(const ::size & size) override;
-      virtual size ScaleWindowExt(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom) override;
+      virtual size set_window_ext(i32 cx, i32 cy) override;
+      size set_window_ext(const ::size & size) override;
+      virtual size scale_window_ext(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom) override;
 
       // Coordinate Functions
       void DPtoLP(POINT32 * lpPoints, count nCount = 1) override;
@@ -187,7 +187,7 @@ namespace draw2d_cairo
       bool PaintRgn(::draw2d::region* pRgn) override;
 
       // Clipping Functions
-      virtual i32 GetClipBox(RECT32 * prect) override;
+      virtual i32 get_clip_box(RECT32 * prect) override;
       //virtual bool PtVisible(i32 x, i32 y) override;
       //bool PtVisible(const ::point & point) override;
       //virtual bool RectVisible(const ::rect & rect) override;
@@ -230,7 +230,7 @@ namespace draw2d_cairo
       bool Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
       bool Arc(double x, double y, double w, double h, angle start, angle extends) override;
       bool Arc(const ::rect & rect, const ::point & pointStart, const ::point & pointEnd) override;
-      bool Polyline(const POINT32* lpPoints, count nCount) override;
+      bool polyline(const POINT32* lpPoints, count nCount) override;
 
       bool AngleArc(i32 x, i32 y, i32 nRadius, angle fStartAngle, angle fSweepAngle) override;
       bool ArcTo(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4) override;
@@ -239,11 +239,11 @@ namespace draw2d_cairo
       i32 SetArcDirection(i32 nArcDirection) override;
 
       bool PolyDraw(const POINT32* lpPoints, const byte* lpTypes, count nCount) override;
-      bool PolylineTo(const POINT32* lpPoints, count nCount) override;
-      bool PolyPolyline(const POINT32* lpPoints, const ::i32 * lpPolyPoints, count nCount) override;
+      bool polyline_to(const POINT32* lpPoints, count nCount) override;
+      bool poly_polyline(const POINT32* lpPoints, const ::i32 * lpPolyPoints, count nCount) override;
 
-      bool PolyBezier(const POINT32* lpPoints, count nCount) override;
-      bool PolyBezierTo(const POINT32* lpPoints, count nCount) override;
+      bool poly_bezier(const POINT32* lpPoints, count nCount) override;
+      bool poly_bezier_to(const POINT32* lpPoints, count nCount) override;
 
       // Simple Drawing Functions
       bool fill_rect(const ::rect & rect, ::draw2d::brush* pBrush) override;

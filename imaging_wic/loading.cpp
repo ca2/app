@@ -721,7 +721,7 @@ namespace imaging_wic
          {
 
             PROPBAG2 option = { 0 };
-            option.pstrName = L"ImageQuality";
+            option.pstrName = (LPOLESTR) L"ImageQuality";
             VARIANT varValue;
             VariantInit(&varValue);
             varValue.vt = VT_R4;

@@ -2662,7 +2662,7 @@ namespace draw2d_opengl
 #define new ACME_NEW
 
 
-   bool image::_map(bool bApplyTransform)
+   bool image::map(bool bApplyTransform)
    {
 
       if (m_bMapped)

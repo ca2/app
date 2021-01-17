@@ -57,7 +57,7 @@ namespace draw2d
       
       bool internal_contains(const POINT32 & point);
 
-      bool internal_rect_contains(const POINT32 & point);
+      bool internal_rectangle_contains(const POINT32 & point);
 
       bool internal_oval_contains(const POINT32 & point);
 
@@ -71,7 +71,7 @@ namespace draw2d
 
       bool internal_contains(const POINTD & point);
 
-      bool internal_rect_contains(const POINTD & point);
+      bool internal_rectangle_contains(const POINTD & point);
 
       bool internal_oval_contains(const POINTD & point);
 

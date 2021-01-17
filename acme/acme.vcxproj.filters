@@ -2390,6 +2390,12 @@
     <ClInclude Include="user\_style.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="memory\_impl.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\promise\_.h">
+      <Filter>Header Files\primitive\promise</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

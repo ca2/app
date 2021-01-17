@@ -25,8 +25,7 @@ public:
    draw2d::fastblur                                m_blur;
    ::image_pointer                                 m_pimageBlur;
    ::user::enum_translucency                       m_etranslucencyFrame;
-   map < ::id, const ::id &, __composite(::user::toolbar) >
-                                                   m_toolbarmap;
+   id_map < __composite(::user::toolbar) >         m_toolbarmap;
    ::image_pointer                                 m_pimageAlpha;
    ::database::key                                 m_datakeyFrame;
    __pointer(::draw2d::icon)                       m_piconNotify;

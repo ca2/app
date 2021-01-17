@@ -380,7 +380,7 @@ namespace experience
 
       ::rect r2;
 
-      pgraphics->GetClipBox(r2);
+      pgraphics->get_clip_box(r2);
 
       auto pstyle = ptab->get_style(pgraphics);
 

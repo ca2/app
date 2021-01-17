@@ -54,7 +54,7 @@ WCHAR* wrap_dup_w(const WCHAR* pwsz, const WCHAR* pwszPrefix = nullptr, const WC
 }
 
 
-WCHAR* module_debug_wcsdup(HINSTANCE hinstance, WCHAR* pwszPrefix = nullptr, WCHAR* pwszSuffix = nullptr)
+WCHAR* module_debug_wcsdup(HINSTANCE hinstance, const WCHAR* pwszPrefix = nullptr, const WCHAR* pwszSuffix = nullptr)
 {
 
    auto prefix_len = ::is_set(pwszPrefix) ? wcslen(pwszPrefix) : 0;
@@ -122,7 +122,7 @@ WCHAR* module_debug_wcsdup(HINSTANCE hinstance, WCHAR* pwszPrefix = nullptr, WCH
 }
 
 
-void module_debug_box_w(const ::e_message_box & emessagebox, HINSTANCE hinstance, WCHAR* pwszCaption, WCHAR* pwszSuffix = nullptr)
+void module_debug_box_w(const ::e_message_box & emessagebox, HINSTANCE hinstance, const WCHAR* pwszCaption, WCHAR* pwszSuffix = nullptr)
 {
 
    WCHAR* pwsz = nullptr;
@@ -159,7 +159,7 @@ void module_debug_box_w(const ::e_message_box & emessagebox, HINSTANCE hinstance
 }
 
 
-void module_output_debug_string_w(HINSTANCE hinstance, WCHAR* pwszPrefix = nullptr, WCHAR* pwszSuffix = nullptr)
+void module_output_debug_string_w(HINSTANCE hinstance, const WCHAR* pwszPrefix = nullptr, const WCHAR* pwszSuffix = nullptr)
 {
 
    auto pwsz = module_debug_wcsdup(hinstance, pwszPrefix, pwszSuffix);

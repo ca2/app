@@ -613,7 +613,7 @@ namespace draw2d
       case e_region_none:
          return false;
       case e_region_rect:
-         return internal_rect_contains(point);
+         return internal_rectangle_contains(point);
 
       case e_region_oval:
          return internal_oval_contains(point);
@@ -636,7 +636,7 @@ namespace draw2d
    }
 
 
-   bool region::internal_rect_contains(const POINTD & point)
+   bool region::internal_rectangle_contains(const POINTD & point)
    {
 
       return point.x >= m_x1 && point.y >= m_y1 && point.x <= m_x2 && point.y <= m_y2;
@@ -853,10 +853,10 @@ namespace draw2d
    }
 
 
-   bool region::internal_rect_contains(const POINT32 & point)
+   bool region::internal_rectangle_contains(const POINT32 & point)
    {
 
-      return internal_rect_contains(pointd(point));
+      return internal_rectangle_contains(pointd(point));
 
    }
 

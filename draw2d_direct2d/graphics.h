@@ -221,13 +221,13 @@ namespace draw2d_direct2d
       point GetWindowOrg() override;
       point SetWindowOrg(int x, int y) override;
       point SetWindowOrg(const ::point & point) override;
-      point OffsetWindowOrg(int nWidth, int nHeight) override;
+      point offset_window_org(int nWidth, int nHeight) override;
 
       // Window extent
       size GetWindowExt() override;
-      virtual size SetWindowExt(int cx, int cy) override;
-      size SetWindowExt(const ::size & size) override;
-      virtual size ScaleWindowExt(int xNum, int xDenom, int yNum, int yDenom) override;
+      virtual size set_window_ext(int cx, int cy) override;
+      size set_window_ext(const ::size & size) override;
+      virtual size scale_window_ext(int xNum, int xDenom, int yNum, int yDenom) override;
 
       // Coordinate Functions
       void DPtoLP(POINT32 * lpPoints,count nCount = 1) override;
@@ -250,7 +250,7 @@ namespace draw2d_direct2d
       bool PaintRgn(::draw2d::region* pRgn) override;
 
       // Clipping Functions
-      virtual int GetClipBox(RECT32 * prect) override;
+      virtual int get_clip_box(RECT32 * prect) override;
 
 
       virtual ::e_status add_shapes(const shape_array& shapea);
@@ -287,7 +287,7 @@ namespace draw2d_direct2d
       bool Arc(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) override;
       bool Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
       bool Arc(const ::rect & rect, const ::point & pointStart, const ::point & pointEnd) override;
-      bool Polyline(const POINT32* lpPoints,count nCount) override;
+      bool polyline(const POINT32* lpPoints,count nCount) override;
 
       bool AngleArc(int x, int y, int nRadius, angle fStartAngle, angle fSweepAngle) override;
       bool ArcTo(int x1, int y1, int x2, int y2, int x3, int y3, int x4, int y4) override;
@@ -296,11 +296,11 @@ namespace draw2d_direct2d
       int SetArcDirection(int nArcDirection) override;
 
       bool PolyDraw(const POINT32* lpPoints, const byte* lpTypes,count nCount) override;
-      bool PolylineTo(const POINT32* lpPoints,count nCount) override;
-      bool PolyPolyline(const POINT32* lpPoints, const ::i32 * lpPolyPoints,count nCount) override;
+      bool polyline_to(const POINT32* lpPoints,count nCount) override;
+      bool poly_polyline(const POINT32* lpPoints, const ::i32 * lpPolyPoints,count nCount) override;
 
-      bool PolyBezier(const POINT32* lpPoints,count nCount) override;
-      bool PolyBezierTo(const POINT32* lpPoints,count nCount) override;
+      bool poly_bezier(const POINT32* lpPoints,count nCount) override;
+      bool poly_bezier_to(const POINT32* lpPoints,count nCount) override;
 
 
       virtual void frame_rect(const ::rect & rect, ::draw2d::brush* pBrush) override;

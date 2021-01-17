@@ -1720,10 +1720,14 @@ namespace xml
       return (node != nullptr)? (const char *)node->m_strValue : nullptr;
    }
 
-   string   node::get_child_text( const char * lpszName, disp_option * opt /*= &optDefault*/ )
+   
+   string node::get_child_text( const char * lpszName, disp_option * opt /*= &optDefault*/ )
    {
+      
       node * node = get_child( lpszName );
-      return (node != nullptr)? node->get_text(opt) : "";
+
+      return node != nullptr ? node->get_text(opt).c_str() : "";
+
    }
 
    

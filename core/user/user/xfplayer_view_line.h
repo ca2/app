@@ -127,7 +127,7 @@ public:
 
    void SetColors(color32_t cr, color32_t crOutline);
 
-   void EmbossedTextOut(
+   void embossed_text_out(
    ::draw2d::graphics_pointer & pgraphics,
    const char * pcsz,
 
@@ -139,7 +139,7 @@ public:
    strsize iLen,
    double dBlend);
 
-   void EmbossedTextOut(
+   void embossed_text_out(
    ::draw2d::graphics_pointer & pgraphics,
    ::image * pimageCache,
    const char * pcsz,

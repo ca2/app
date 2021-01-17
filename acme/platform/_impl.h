@@ -440,29 +440,29 @@ namespace papaya
 } // namespace papaya
 
 
-inline float i32muldiv(float f, i32 iNum, i32 iDen)
-{
-
-   return (float) (f * iNum / iDen);
-
-}
-
-
-inline double i32muldiv(double d, i32 iNum, i32 iDen)
-{
-
-   return (double) (d * iNum / iDen);
-
-}
-
-
-inline i32 i32muldiv(i32 i, i32 iNum, i32 iDen)
-{
-
-   return (i32) ::MulDiv(i, iNum, iDen);
-
-}
-
+//inline float i32muldiv(float f, i32 iNum, i32 iDen)
+//{
+//
+//   return (float) (f * iNum / iDen);
+//
+//}
+//
+//
+//inline double i32muldiv(double d, i32 iNum, i32 iDen)
+//{
+//
+//   return (double) (d * iNum / iDen);
+//
+//}
+//
+//
+//inline i32 i32muldiv(i32 i, i32 iNum, i32 iDen)
+//{
+//
+//   return (i32) ::MulDiv(i, iNum, iDen);
+//
+//}
+//
 
 #ifndef WINDOWS
 
@@ -477,10 +477,11 @@ inline i64 MulDiv(i64 nNumber, i32 iNum, i32 iDen)
 #endif
 
 
-inline ::i64 i32muldiv(::i64 i, i32 iNum, i32 iDen)
+template < primitive_integral MULTIPLICATOR, primitive_integral NUMERATOR, primitive_integral DENOMINATOR, primitive_integral RESULT >
+inline RESULT muldiv(MULTIPLICATOR iMultiplicator, NUMERATOR iNumerator, DENOMINATOR iDenominator)
 {
 
-   return i * iNum / iDen;
+   return iMultiplicator * iNumerator / iDenominator;
 
 }
 

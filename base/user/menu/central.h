@@ -12,7 +12,7 @@ namespace user
 
 
       id_map < int >          m_mapCommandImage;
-      ::int_map < id >        m_mapImageCommand;
+      ::i32_map < id >        m_mapImageCommand;
 
       __pointer(::image_list)      m_pil;
       __pointer(::image_list)      m_pilHue;

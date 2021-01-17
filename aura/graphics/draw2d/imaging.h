@@ -317,7 +317,7 @@ public:
 
    
 
-   void EmbossedTextOut(
+   void embossed_text_out(
    ::draw2d::graphics *        pdc,
    i32                 x,
    i32                 y,

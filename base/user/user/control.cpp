@@ -1038,7 +1038,7 @@
 //   }
 //
 //
-//   void control::get_simple_drop_down_open_arrow_polygon(point_array & pointa)
+//   void control::get_simple_drop_down_open_arrow_polygon(pointd_array & pointa)
 //   {
 //
 //      ::rect rectDropDown;

@@ -819,5 +819,3 @@ bool file_context::output(::file::file * pfileOut, T * p, bool (T:: * pfnOuput)(
 //
 //}
 
-
-

@@ -150,9 +150,10 @@ namespace draw3d
 
             m_pdc->set(pen);
 
-            m_pdc->draw_line(__point(point[point1[iMax]]),__point(point[point2[iMax]]));
+            m_pdc->draw_line(__pointd(point[point1[iMax]]), __pointd(point[point2[iMax]]));
 
          }
+
          point1.remove_at(iMax);
          point2.remove_at(iMax);
 

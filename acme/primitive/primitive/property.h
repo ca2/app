@@ -74,7 +74,6 @@ public:
 
    ::id              m_id;
 
-
    property() {}
    property(const ::id & id) : m_id(id) {}
    property(const ::id & id, const payload & varValue) : m_id(id), payload(varValue) {}
@@ -88,6 +87,8 @@ public:
    const ::id& element1() const { return m_id; };
    ::payload& element2() { return *this; };
    const ::payload& element2() const { return *this; };
+
+
 
    property & operator = (const property & property)
    {

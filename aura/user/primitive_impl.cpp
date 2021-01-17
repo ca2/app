@@ -11,7 +11,8 @@ namespace user
 {
 
 
-   int_ptr_map < string > * g_p = nullptr;
+   iptr_map < string > * g_p = nullptr;
+
 
    primitive_impl::primitive_impl()
    {
@@ -1542,7 +1543,7 @@ namespace user
       if (g_p == nullptr)
       {
 
-         g_p = new int_ptr_map < string >;
+         g_p = new iptr_map < string >;
 
       }
 

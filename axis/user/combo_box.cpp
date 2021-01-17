@@ -182,7 +182,7 @@ namespace user
    }
 
 
-   void combo_box::get_simple_drop_down_open_arrow_polygon(point_array& pointa)
+   void combo_box::get_simple_drop_down_open_arrow_polygon(pointd_array& pointa)
    {
 
       ::rect rectDropDown;
@@ -332,7 +332,7 @@ namespace user
 
       ::draw2d::path_pointer path(e_create);
 
-      point_array pointa;
+      pointd_array pointa;
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 

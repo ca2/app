@@ -5243,7 +5243,9 @@ namespace apex
 
       }
 
-      string strLocation = set["get_headers"]["Location"];
+      string strLocation;
+      
+      strLocation = set["get_headers"]["Location"];
 
       if (strLocation.has_char())
       {

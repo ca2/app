@@ -10,39 +10,39 @@ namespace experience
    public:
 
 
-      ::experience::frame_window * m_pframewindow;
-      millis m_millisShow;
+      ::experience::frame_window *  m_pframewindow;
+      millis                        m_millisShow;
       bool                          m_bShowAttempt;
       bool                          m_bDrag;
       point                         m_pointDrag;
       i32                           m_iDefaultButtonMargin;
       ::size                        m_sizeButtonDefault;
-      ::draw2d::font_pointer             m_fontMarlett;
+      ::draw2d::font_pointer        m_fontMarlett;
 
-      ::draw2d::brush_pointer            m_brushButtonBack;
-      ::draw2d::brush_pointer            m_brushButtonBackSel;
-      ::draw2d::brush_pointer            m_brushButtonBackFocus;
-      ::draw2d::brush_pointer            m_brushButtonBackDisabled;
+      ::draw2d::brush_pointer       m_brushButtonBack;
+      ::draw2d::brush_pointer       m_brushButtonBackSel;
+      ::draw2d::brush_pointer       m_brushButtonBackFocus;
+      ::draw2d::brush_pointer       m_brushButtonBackDisabled;
 
-      ::draw2d::pen_pointer              m_penButtonBack;
-      ::draw2d::pen_pointer              m_penButtonBackSel;
-      ::draw2d::pen_pointer              m_penButtonBackFocus;
-      ::draw2d::pen_pointer              m_penButtonBackDisabled;
+      ::draw2d::pen_pointer         m_penButtonBack;
+      ::draw2d::pen_pointer         m_penButtonBackSel;
+      ::draw2d::pen_pointer         m_penButtonBackFocus;
+      ::draw2d::pen_pointer         m_penButtonBackDisabled;
 
-      color32_t                      m_colorButtonFore;
-      color32_t                      m_colorButtonForeSel;
-      color32_t                      m_colorButtonForeFocus;
-      color32_t                      m_colorButtonForeDisabled;
+      color32_t                     m_colorButtonFore;
+      color32_t                     m_colorButtonForeSel;
+      color32_t                     m_colorButtonForeFocus;
+      color32_t                     m_colorButtonForeDisabled;
 
-      map < e_button, e_button, id >           m_mapButtonId;
+      map < e_button, id >          m_mapButtonId;
       id_map < e_button >           m_mapIdButton;
-      map < e_button, e_button, bool, bool >       m_buttonmapPresent;
+      map < e_button, bool >        m_buttonmapPresent;
             
 
-      color32_t                      m_colorBackground;
+      color32_t                     m_colorBackground;
 
 
-      map < e_button, e_button, __pointer(button), __pointer(button) >      m_buttonmap;
+      map < e_button, __pointer(button) >      m_buttonmap;
 
 
       control_box();

@@ -11,15 +11,15 @@ namespace fs
    public:
 
 
-      __pointer_array(data)              m_spafsdata;
-      strsp(data)                   m_fsdatamap;
+      __pointer_array(data)               m_spafsdata;
+      string_map < __pointer(data) >      m_fsdatamap;
 
 
       set();
       virtual ~set();
 
 
-      strsp(data) & fsmap();
+      string_map < __pointer(data) > & fsmap();
       __pointer_array(data) & fsa();
 
 

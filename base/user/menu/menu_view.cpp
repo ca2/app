@@ -414,7 +414,9 @@ namespace user
 
          xml::node * pnode = pnodeMain->get_child_at("menubar", i, 1);
 
-         string strTitle = pnode->attribute("title");
+         string strTitle;
+         
+         strTitle = pnode->attribute("title");
 
          pgraphics->set(m_fontTitle);
 
@@ -797,7 +799,7 @@ namespace user
 
       int h = ::height(rect);
 
-      point_array pta;
+      pointd_array pta;
       pta.add(rect.right, rect.bottom - h / 3 - 2);
 
       pta.add(rect.right + h * 3 / 16, rect.bottom - h / 2 - 2);
@@ -828,7 +830,7 @@ namespace user
 
       int h = ::height(rect);
 
-      point_array pta;
+      pointd_array pta;
       pta.add(rect.right, rect.bottom - h / 3 - 2);
 
       pta.add(rect.right + h * 3 / 16, rect.bottom - h / 2 - 2);

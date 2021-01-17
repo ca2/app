@@ -105,7 +105,7 @@ namespace user
          rectPopupArrow.right = rectClient.right - 4;
          rectPopupArrow.top = ((rectClient.top + rectClient.bottom) / 2) - 4;
          rectPopupArrow.bottom = ((rectClient.top + rectClient.bottom) / 2) + 4;
-         point_array pointa;
+         pointd_array pointa;
          pointa.add(point(rectPopupArrow.left, rectPopupArrow.bottom));
          pointa.add(point(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
          pointa.add(point(rectPopupArrow.left, rectPopupArrow.top));

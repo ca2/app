@@ -85,15 +85,15 @@ inline byte __byte(::i64 i) { return (byte)__minmax(i, 0, 255); }
 
 #endif
 
-inline bool is_null(const void * p)
-{
-
-   return (uptr) p < 65536;
-
-}
-inline bool is_set(const void * p)
-{
-
-   return !is_null(p);
-
-}
+//inline bool is_null(const void * p)
+//{
+//
+//   return (uptr) p < 65536;
+//
+//}
+//inline bool is_set(const void * p)
+//{
+//
+//   return !is_null(p);
+//
+//}

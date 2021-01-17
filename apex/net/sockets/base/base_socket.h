@@ -774,9 +774,9 @@ namespace sockets
    };
 
 
-   __declare_map_key_value_ns(socket_flag_map, socket_flag, base_socket *, m_pbasesocket, bool, m_bFlag);
-   __declare_map_key_value_ns(socket_socket_flag_map, socket_socket_flag, SOCKET, m_socket, socket_flag_map, m_pmap);
-   __declare_map_key_value_ns(socket_map, socket_pointer_pair, SOCKET, m_socket, socket_pointer, m_psocket);
+   __declare_key_value_map(socket_flag_map, socket_flag, base_socket *, m_pbasesocket, bool, m_bFlag);
+   __declare_key_value_map(socket_socket_flag_map, socket_socket_flag, SOCKET, m_socket, socket_flag_map, m_pmap);
+   __declare_key_value_map(socket_map, socket_pointer_pair, SOCKET, m_socket, socket_pointer, m_psocket);
 
 
    typedef comparable_list < socket_pointer > socket_pointer_list;

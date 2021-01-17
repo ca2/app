@@ -55,7 +55,8 @@ public:
    virtual void fast_copy(color32_t * pcolor32FullImage);
 
    inline ::size get_size() const;
-   //inline ::size size() const;
+   using image_meta::size;
+   inline ::size size(const ::sized & sizeHint) const { return get_size(); }
 
    
    inline ::rect rect(const ::point & point = nullptr);
@@ -102,7 +103,7 @@ public:
    virtual bool unmap() const; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 
 
-   virtual bool _map(bool bApplyAlphaTransform = true);
+   virtual bool map(bool bApplyAlphaTransform = true);
    virtual bool _unmap();
 
    virtual bool set_mapped();
@@ -364,7 +365,8 @@ public:
 
    
    virtual ::draw2d::graphics * g() const; // { return get_graphics(); }
-
+   inline ::draw2d::graphics * g(const ::sized & sizeHint) { return g(); }
+   inline ::sized origin() const { return ::sized(); }
    
    inline color32_t pixel(int x, int y) const;
 

@@ -15,8 +15,8 @@ namespace draw2d
 
       bool           m_bSettingCursorMatter;
 
-      map < i32, i32, __pointer(memory) > m_alpha_spread__24CC_filterMap;
-      map < i32, i32, __pointer(memory) > m_alpha_spread__32CC_filterMap;
+      i32_map < __pointer(memory) > m_alpha_spread__24CC_filterMap;
+      i32_map < __pointer(memory) > m_alpha_spread__32CC_filterMap;
 
 
       __pointer(cursor_set)                                    m_pcursorset;

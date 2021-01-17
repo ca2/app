@@ -1089,7 +1089,7 @@ namespace draw2d_direct2d
    //}
 
 
-   bool image::_map(bool bApplyAlphaTransform)
+   bool image::map(bool bApplyAlphaTransform)
    {
 
       ::draw2d::lock draw2dlock;

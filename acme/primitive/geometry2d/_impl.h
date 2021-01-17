@@ -80,12 +80,12 @@ inline auto get_normal_dimension(e_orientation eorientation, X x, Y y)
 }
 
 
-template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE >
-inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECT_BASE_TYPE >::size_type(const POINT_TYPE & point) noexcept : size_type((size_type&)point) {}
-
-
-template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE >
-inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECT_BASE_TYPE >::size_type(const RECT_TYPE & rect) noexcept : size_type(rect.width(), rect.height()) {}
+//template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE >
+//inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECT_BASE_TYPE >::size_type(const POINT_TYPE & point) noexcept : size_type((size_type&)point) {}
+//
+//
+//template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE >
+//inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECT_BASE_TYPE >::size_type(const RECT_TYPE & rect) noexcept : size_type(rect.width(), rect.height()) {}
 
 
 template < typename UNIT_TYPE >
@@ -237,3 +237,13 @@ bool _shape < SHAPE, ESHAPE >::expand_bounding_rect(RECT32* prect) const
 
 
 
+
+template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
+inline void rect_type < BASE_TYPE, POINT_BASE_TYPE, SIZE_BASE_TYPE >::normalize() noexcept
+{
+   
+   __sort(this->left, this->right); 
+   
+   __sort(this->top, this->bottom); 
+
+}

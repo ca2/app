@@ -30,7 +30,7 @@ namespace core
 
 
 
-      keymap < ::type, ::user::impact_system * >   m_mapTemplate;
+      map < ::type, ::user::impact_system * >      m_mapTemplate;
 
       id_map < ::user::impact_system * >           m_mapimpactsystem;
 

@@ -15,12 +15,12 @@ template < typename TYPE >
 TYPE __random();
 
 
-float __random(float f1, float f2);
-double __random(double d1, double d2);
-i64 __random(i64 i1, i64 i2);
-i32 __random(i32 i1, i32 i2);
-template < typename ::i32 >
-::i32 __random_int(::i32 i1, ::i32 i2);
+//float __random(float f1, float f2);
+//double __random(double d1, double d2);
+//i64 __random(i64 i1, i64 i2);
+//i32 __random(i32 i1, i32 i2);
+//template < typename ::i32 >
+//::i32 __random_int(::i32 i1, ::i32 i2);
 
 
 namespace math

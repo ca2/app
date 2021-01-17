@@ -163,9 +163,9 @@ namespace user
 
       }
 
-      ::rect rectClipBox;
+      ::rectd rectClipBox;
 
-      pgraphics->GetClipBox(rectClipBox);
+      pgraphics->get_clip_box(&rectClipBox);
 
       pgraphics->reset_clip();
 

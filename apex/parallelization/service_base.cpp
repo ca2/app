@@ -86,7 +86,7 @@ void service_base::_server()
 
       // Even though the service name is ignored for own process services,
       // it must be a valid string and cannot be 0.
-      { L"", ServiceMain },
+      { (WCHAR *) L"", ServiceMain },
 
       // Designates the end of table.
       { 0, 0 }

@@ -20,8 +20,8 @@ namespace user
 
 
    critical_section * g_pcsImpl = nullptr;
-   map < oswindow,oswindow,::user::interaction_impl *,::user::interaction_impl * > * g_pmapImpl = nullptr;
-   map < ::user::interaction_impl *,::user::interaction_impl *, oswindow,oswindow > * g_pmapHandle = nullptr;
+   map < oswindow, ::user::interaction_impl * > * g_pmapImpl = nullptr;
+   map < ::user::interaction_impl *, oswindow > * g_pmapHandle = nullptr;
 
 
    CLASS_DECL_AURA void init_windowing()
@@ -29,9 +29,9 @@ namespace user
 
       g_pcsImpl = new critical_section();
 
-      g_pmapImpl = new map < oswindow,oswindow,::user::interaction_impl *,::user::interaction_impl * >;
+      g_pmapImpl = new map < oswindow, ::user::interaction_impl * >;
 
-      g_pmapHandle = new  map < ::user::interaction_impl *,::user::interaction_impl *,oswindow,oswindow >;
+      g_pmapHandle = new  map < ::user::interaction_impl *, oswindow >;
       
       
 #ifdef WINDOWS_DESKTOP
@@ -58,8 +58,7 @@ namespace user
 } // namespace user
 
 
-
-CLASS_DECL_AURA bool oswindow_assign(oswindow oswindow,::user::interaction_impl * pimpl)
+CLASS_DECL_AURA bool oswindow_assign(oswindow oswindow, ::user::interaction_impl * pimpl)
 {
 
    if (oswindow == nullptr)

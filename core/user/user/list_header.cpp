@@ -644,9 +644,10 @@ namespace user
                _001ScreenToClient(rectFocus);
 
                rectFocus.bottom++;
+
                rectFocus.right++;
 
-               m_pshapeaClip->add_item(__new(rect_shape(rectIntersect)));
+               m_pshapeaClip->add_item(__new(rectd_shape(rectIntersect)));
 
                m_pshapeaClip->add_item(__new(intersect_clip_shape));
 
@@ -683,9 +684,9 @@ namespace user
 
       ::rect rectUpdate(rectClient);
 
-      ::rect rectClipBox;
+      ::rectd rectClipBox;
 
-      pgraphics->GetClipBox(rectClipBox);
+      pgraphics->get_clip_box(&rectClipBox);
 
       rectClipBox.right--;
 

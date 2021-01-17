@@ -1,6 +1,31 @@
 #pragma once
 
 
+template < typename POINT >
+concept primitive_point = requires(POINT point)
+{
+   point.x;
+   point.y;
+};
+
+
+template < typename SIZE >
+concept primitive_size = requires(SIZE size)
+{
+   size.cx;
+   size.cy;
+};
+
+
+template < typename RECTANGLE >
+concept primitive_rectangle = requires(RECTANGLE rectangle)
+{
+   rectangle.left;
+   rectangle.top;
+   rectangle.right;
+   rectangle.bottom;
+};
+
 struct POINT64
 {
    i64    x;

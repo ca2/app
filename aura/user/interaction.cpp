@@ -18,7 +18,7 @@
 #include "aura/node/windows/system_interaction_impl.h"
 
 #elif defined(_UWP)
-#define MESSAGE_WINDOW_PARENT HWND_MESSAGE
+
 #include "aura/os/uwp/_uwp.h"
 
 #endif // _UWP
@@ -2246,7 +2246,7 @@ namespace user
 
                _001ScreenToClient(rectClient);
 
-               m_pshapeaClip->add_item(__new(rect_shape(rectClient)));
+               m_pshapeaClip->add_item(__new(rectd_shape(::rectd(rectClient))));
 
                m_pshapeaClip->add_item(__new(intersect_clip_shape()));
 
@@ -2469,7 +2469,11 @@ namespace user
 
             _001OnClip(pgraphics);
 
-            get_client_rect(pgraphics->m_rectDraw);
+            ::rect rectDraw;
+
+            get_client_rect(rectDraw);
+
+            __copy(pgraphics->m_rectDraw, rectDraw);
 
             _001OnDraw(pgraphics);
 
@@ -2897,7 +2901,7 @@ namespace user
 
       auto psession = Session;
 
-      if (!is_null_ref(Session) && psession->m_bDrawCursor)
+      if (!is_null(Session) && psession->m_bDrawCursor)
       {
 
          {
@@ -8403,7 +8407,7 @@ namespace user
          if (rectPlace.size().any_lt(get_window_minimum_size()))
          {
 
-            rectPlace = get_window_minimum_size();
+            rectPlace.set_size(get_window_minimum_size());
 
          }
 
@@ -10156,7 +10160,7 @@ restart:
          else
          {
 
-            auto& pthread = value("transparent_mouse_event_thread").cast<::thread>();
+            auto pthread = value("transparent_mouse_event_thread").cast<::thread>();
 
             if (pthread)
             {
@@ -14973,7 +14977,7 @@ restart:
    }
 
 
-   void interaction::get_simple_drop_down_open_arrow_polygon(point_array& pointa)
+   void interaction::get_simple_drop_down_open_arrow_polygon(pointd_array& pointa)
    {
 
       ::rect rectDropDown;

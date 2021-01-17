@@ -119,7 +119,7 @@ inline int image::line(int line)
 inline ::rect image::rect(const ::point& point)
 {
 
-   return ::rect(point, size() - point);
+   return ::rect(point, get_size() - point);
 
 }
 
@@ -127,7 +127,7 @@ inline ::rect image::rect(const ::point& point)
 inline ::rect image::rect(const ::point& point) const
 {
 
-   return ::rect(point, size() - point);
+   return ::rect(point, get_size() - point);
 
 }
 
@@ -441,7 +441,6 @@ inline void __exchange(::stream& s, ::hls& hls)
 
 
 inline ::size image::get_size() const { return size(); }
-
 
 
 namespace draw2d

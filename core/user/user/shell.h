@@ -69,13 +69,14 @@ namespace user
       };
 
 
+      template < typename VALUE, class ARG_VALUE = typename argument_of < VALUE >::type, class PAIR = pair < image_key, VALUE, typename argument_of < image_key >::type, ARG_VALUE > >
+      using image_key_map = map< image_key, VALUE, typename argument_of < image_key >::type, ARG_VALUE, PAIR >;
 
-      template < typename VALUE, typename ARG_VALUE >
-      using image_key_map = map< image_key, const image_key&, VALUE, ARG_VALUE >;
+
    protected:
 
-      ::int_map < __pointer(::image_list) >                                   m_pil; // int is the size
-      ::int_map < __pointer(::image_list) >                                   m_pilHover; // int is the size;
+      ::i32_map < __pointer(::image_list) >                                   m_pil; // int is the size
+      ::i32_map < __pointer(::image_list) >                                   m_pilHover; // int is the size;
 
    public:
 
@@ -116,8 +117,8 @@ namespace user
    public:
 
 
-      image_key_map < i32, i32 >                         m_imagemap;
-      image_key_map < image_key, const image_key & >     m_imagekeymap;
+      image_key_map < i32 >                              m_imagemap;
+      image_key_map < image_key >                        m_imagekeymap;
 
       string                                             m_strShellThemePrefix;
       string_array                                       m_straThemeableIconName;

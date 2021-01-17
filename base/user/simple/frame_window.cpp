@@ -589,7 +589,9 @@ void simple_frame_window::_001OnDestroy(::message::message * pmessage)
 
    auto pframe = get_frame_experience(m_varFrame["experience"], m_varFrame["schema"]);
 
-   string strStyle = m_varFrame["style"];
+   string strStyle;
+   
+   strStyle = m_varFrame["style"];
 
    auto psubject = subject(id_user_style_change);
 
@@ -2520,7 +2522,10 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
       pgraphicsParam->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      pgraphicsParam->alpha_blend(nullptr,rectClient.size(),pgraphics,nullptr,dAlpha);
+
+      ::rectd rectDst(rectClient.size());
+
+      pgraphicsParam->alpha_blend(rectDst, pgraphics, dAlpha);
 
    }
 
@@ -2589,8 +2594,12 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
          if(m_pimageBlur->is_ok())
          {
 
-            m_pimageBlur->g()->draw(rectClient.size(), pgraphics);
+            ::rectd rectDst(rectClient.size());
+
+            m_pimageBlur->g()->draw(rectDst, pgraphics);
+
             m_blur.blur(m_pimageBlur, 2);
+
             imaging.bitmap_blend(
             m_pimageBlur->g(),
             nullptr,
@@ -3188,7 +3197,7 @@ void simple_frame_window::_001OnQueryEndSession(::message::message * pmessage)
 
    __pointer(::message::base) pbase(pmessage);
 
-   if (::is_set_ref(Application) && Application.m_puiMain1 == this)
+   if (::is_set(Application) && Application.m_puiMain1 == this)
    {
 
       pbase->m_lresult = Application.save_all_modified();
@@ -4057,7 +4066,7 @@ void simple_frame_window::on_select_user_style()
    if (m_puserstyle.is_null())
    {
 
-      string strSchema = m_varFrame["experience"];
+      string strSchema(m_varFrame["experience"]);
 
       if (strSchema.has_char() || is_top_level_window())
       {

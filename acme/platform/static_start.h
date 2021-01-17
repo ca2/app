@@ -117,7 +117,7 @@ namespace acme
    extern CLASS_DECL_ACME array < matter* >* g_paAura;
 
 
-   extern ::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
+   extern id_to_id * g_pmapRTL;
 
    extern plex_heap_alloc_array* g_pheap;
 

@@ -189,12 +189,12 @@ namespace userex
       if (pframe.is_set())
       {
 
-         string strAppOptions = pframe->m_varFrame["app_options"]["resource"];
+         string strAppOptions(pframe->m_varFrame["app_options"]["resource"]);
 
          if (strAppOptions.has_char())
          {
 
-            string strTitle = pframe->m_varFrame["app_options"]["title"];
+            string strTitle(pframe->m_varFrame["app_options"]["title"]);
 
             add_tab(strTitle, "app_options");
 
@@ -248,7 +248,7 @@ namespace userex
 
          }
 
-         if(is_set_ref(filemanager_document()))
+         if(::is_set(filemanager_document()))
          {
 
             filemanager_document()->filemanager_data()->m_pdocumentTopic = nullptr;
@@ -702,7 +702,7 @@ namespace userex
 
       ::user::tab::_001OnTabClose(iTab);
 
-      if(get_parent_frame()->ContinueModal() && is_set_ref(filemanager_document())
+      if(get_parent_frame()->ContinueModal() && ::is_set(filemanager_document())
             && filemanager_document()->filemanager_data()->m_pdocumentTopic!= nullptr)
       {
 

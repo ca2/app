@@ -23,7 +23,9 @@ public:
 
    };
 
-   filepathmap(dir_listing)     m_map;
+
+   file_path_map < dir_listing >    m_map;
+
 
    //file_path_map < u32 >    m_mapdirTimeout;
    //file_path_map < u32 >    m_mapfileTimeout;

@@ -245,7 +245,9 @@ namespace simple_ui
 
          if(iEnd > iStart)
          {
-            pgraphics->fill_solid_rect_dim((i32)(left + size1.cx),(i32)y,(i32)size2.cx,(i32)size2.cy,ARGB(255,120,240,180));
+
+            auto rectFill = ::rectd_dim((i32)(left + size1.cx), (i32)y, (i32)size2.cx, (i32)size2.cy);
+            pgraphics->fill_rect(rectFill,ARGB(255,120,240,180));
             brushText->create_solid(crSel);
             pgraphics->set(brushText);
             pgraphics->text_out(left + size1.cx,y,strExtent2);

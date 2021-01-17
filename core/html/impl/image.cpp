@@ -25,7 +25,13 @@ namespace html
 
                m_pimage->defer_realize(pgraphics);
 
-               pgraphics->draw({::point((::i32)left(), (::i32)top()), m_pimage->size()},m_pimage->get_graphics());
+               auto pointDst = ::pointd((::i32)left(), (::i32)top());
+
+               auto sizeDst = m_pimage->size();
+
+               auto rectDst = ::rectd(pointDst, sizeDst);
+
+               pgraphics->draw(rectDst, m_pimage->get_graphics());
                
             }
 
@@ -44,7 +50,7 @@ namespace html
          if (pelement->m_pbase->get_type() == ::html::base::type_tag)
          {
 
-            string strSrc = pelement->m_propertyset["src"];
+            string strSrc(pelement->m_propertyset["src"]);
 
             m_pimage = pdata->get_image(strSrc);
 

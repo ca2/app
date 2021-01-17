@@ -192,7 +192,7 @@ namespace acme
    array < matter* >* g_paAura;
 
 
-   ::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
+   //::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
 
    plex_heap_alloc_array* g_pheap;
 
@@ -360,7 +360,7 @@ namespace acme
 
       g_paAura = nullptr;
 
-      g_pmapRTL = nullptr;
+      //g_pmapRTL = nullptr;
 
       //::map < void *, void *,::acme::application *, ::acme::application * > * g_pmapAura;
 
@@ -623,7 +623,7 @@ namespace acme
 
 #endif // defined(LINUX) || defined(__APPLE__)
 
-      g_pmapRTL = nullptr;
+      //g_pmapRTL = nullptr;
 
       //&System.g_mutexLibrary = new ::mutex;
 
@@ -770,7 +770,7 @@ namespace acme
 
       //}
 
-      if(g_pmapRTL)
+      /*if(g_pmapRTL)
       {
 
          try
@@ -784,23 +784,23 @@ namespace acme
 
          }
 
-      }
+      }*/
 
-      if(g_pmapRTL)
-      {
+      //if(g_pmapRTL)
+      //{
 
-         try
-         {
+      //   try
+      //   {
 
-            g_pmapRTL->remove_all();
+      //      g_pmapRTL->remove_all();
 
-         }
-         catch(...)
-         {
+      //   }
+      //   catch(...)
+      //   {
 
-         }
+      //   }
 
-      }
+      //}
 
       try
       {
@@ -831,7 +831,7 @@ namespace acme
 
       g_ptrace = g_psimpletrace;
 
-      ::acme::del(g_pmapRTL);
+      //::acme::del(g_pmapRTL);
 
 #if defined(LINUX) || defined(__APPLE__)
 

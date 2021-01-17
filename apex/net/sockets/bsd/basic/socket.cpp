@@ -64,7 +64,7 @@ namespace sockets
       if (m_socket == INVALID_SOCKET) // this could happen
       {
 
-         if(!is_null_ref(Handler()))
+         if(!is_null(Handler()))
          {
 
             WARN("socket::close", 0, "file descriptor invalid");
@@ -80,7 +80,7 @@ namespace sockets
       if ((n = close_socket(m_socket)) == -1)
       {
 
-         if(!is_null_ref(Handler()))
+         if(!is_null(Handler()))
          {
 
             // failed...
@@ -90,7 +90,7 @@ namespace sockets
 
       }
 
-      if(!is_null_ref(Handler()))
+      if(!is_null(Handler()))
       {
 
          Handler().set(m_socket, false, false, false); // remove from fd_set's

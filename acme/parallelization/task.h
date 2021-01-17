@@ -2,8 +2,8 @@
 
 
 typedef __pointer_array(::matter) object_array;
-typedef isomap < ithread_t, __pointer(task) > task_map;
-typedef isomap < task *, ithread_t > task_id_map;
+typedef map < ithread_t, __pointer(task) > task_map;
+typedef map < task *, ithread_t > task_id_map;
 
 
 class CLASS_DECL_ACME task :

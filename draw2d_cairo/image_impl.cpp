@@ -440,7 +440,7 @@ namespace draw2d_cairo
    //}
 
 
-   bool image::_map(bool bApplyAlphaTransform)
+   bool image::map(bool bApplyAlphaTransform)
    {
 
       sync_lock ml(cairo_mutex());

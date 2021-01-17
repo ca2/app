@@ -98,6 +98,8 @@ namespace file
 
    inline char path_sep(e_path epath);
 
+   inline const char * path_sepsz(e_path epath);
+
    inline char path_osep(e_path epath);
 
    // not rigorous at all file::path ... more "ryg"orous with performance and like you should know what are you doing
@@ -134,6 +136,13 @@ namespace file
       {
 
          return path_sep(m_epath);
+
+      }
+
+      inline const char* sepsz() const
+      {
+
+         return path_sepsz(m_epath);
 
       }
 
@@ -380,6 +389,24 @@ namespace file
 #endif
 
       return '/';
+
+   }
+
+   inline const char * path_sepsz(e_path epath)
+   {
+
+#ifdef WINDOWS
+
+      if (epath == path_file)
+      {
+
+         return "\\";
+
+      }
+
+#endif
+
+      return "/";
 
    }
 

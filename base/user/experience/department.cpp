@@ -25,7 +25,9 @@ namespace experience
 
       string strId(pszExperienceLibrary);
 
-      string strBuild = System.value("build");
+      string strBuild;
+      
+      strBuild = System.value("build");
 
       if(strBuild.is_empty())
       {
@@ -189,7 +191,9 @@ namespace experience
 
       {
 
-         string strConfig = App(pobjectContext).value("experience");
+         string strConfig;
+         
+         strConfig = App(pobjectContext).value("experience");
 
          if (strConfig.has_char())
          {

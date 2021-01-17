@@ -2002,58 +2002,58 @@ inline bool type::operator == (const ::id& id) const
 }
 
 
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(const payload & payload) :
-   string_base(payload.to_string())
-{
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR >::string_base(const payload & payload) :
+//   string_base(payload.to_string())
+//{
+//
+//
+//}
 
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR >::string_base(const property& property) :
+//   string_base(property.to_string())
+//{
+//
+//
+//}
 
-}
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR >::string_base(const id& id) :
+//   string_base(id.to_string())
+//{
+//
+//
+//}
 
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR >::string_base(payload & payload) :
+//   string_base(payload.to_string())
+//{
+//
+//
+//}
 
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(const property& property) :
-   string_base(property.to_string())
-{
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR >::string_base(property & property) :
+//   string_base(property.to_string())
+//{
+//
+//
+//}
 
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(const id& id) :
-   string_base(id.to_string())
-{
-
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(payload & payload) :
-   string_base(payload.to_string())
-{
-
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(property & property) :
-   string_base(property.to_string())
-{
-
-
-}
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(id & id) :
-   string_base(id.to_string())
-{
-
-
-}
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR >::string_base(id & id) :
+//   string_base(id.to_string())
+//{
+//
+//
+//}
 
 
 

@@ -78,82 +78,82 @@ namespace dynamic_source
       };
 
 
-      void *                                       m_posdataNetnodeManager;
+      void *                                                m_posdataNetnodeManager;
 
 
-      __pointer_array(plugin_map_item)             m_pluginmapitema;
+      __pointer_array(plugin_map_item)                      m_pluginmapitema;
 
 
-      ::mutex                                      m_mutexIncludeMatches;
-      string_map < bool >                          m_mapIncludeMatchesFileExists;
-      string_map < bool >                          m_mapIncludeMatchesIsDir;
-      ::mutex                                      m_mutexIncludeHasScript;
-      string_map < bool >                          m_mapIncludeHasScript;
-      ::mutex                                      m_mutexShouldBuild;
-      string_map < bool >                          m_mapShouldBuild;
-      ::mutex                                      m_mutexIncludeExpandMd5;
-      string_to_string                             m_mapIncludeExpandMd5;
-      __composite(::user::message_queue)           m_pmessagequeue;
+      ::mutex                                               m_mutexIncludeMatches;
+      string_map < bool >                                   m_mapIncludeMatchesFileExists;
+      string_map < bool >                                   m_mapIncludeMatchesIsDir;
+      ::mutex                                               m_mutexIncludeHasScript;
+      string_map < bool >                                   m_mapIncludeHasScript;
+      ::mutex                                               m_mutexShouldBuild;
+      string_map < bool >                                   m_mapShouldBuild;
+      ::mutex                                               m_mutexIncludeExpandMd5;
+      string_to_string                                      m_mapIncludeExpandMd5;
+      __composite(::user::message_queue)                    m_pmessagequeue;
 
-      i32                                          m_iTunnelPluginCount;
-      ::mutex                                      m_mutexOutLink;
-      strsp(::sockets::link_out_socket)            m_mapOutLink;
-      ::mutex                                      m_mutexInLink;
-      ::sockets::in_link_map                       m_mapInLink;
-      ::mutex                                      m_mutexTunnel;
-      strmap(tunnel_map_item)                      m_mapTunnel;
-
-
-      ::mutex                                      m_mutexImageSize;
-      string_map < ::size >                        m_mapImageSize;
+      i32                                                   m_iTunnelPluginCount;
+      ::mutex                                               m_mutexOutLink;
+      string_map < __pointer(::sockets::link_out_socket) >  m_mapOutLink;
+      ::mutex                                               m_mutexInLink;
+      ::sockets::in_link_map                                m_mapInLink;
+      ::mutex                                               m_mutexTunnel;
+      strmap(tunnel_map_item)                               m_mapTunnel;
 
 
-
-      string                                       m_strRepos;
-      string                                       m_strNamespace;
-      ::file::path                                 m_strNetnodePath;
-      ::file::path                                 m_strNetseedPath;
-      ::file::path                                 m_strNetseedDsCa2Path;
-
-      ::mutex                                      m_mutexSimage;
-      ::mutex                                      m_mutexSpider;
-
-      ::mutex                                      m_mutexRsa;
-
-      ::crypto::rsaptra                            m_rsaptra;
-
-      millis                                         m_millisLastRsa;
+      ::mutex                                               m_mutexImageSize;
+      string_map < ::size >                                 m_mapImageSize;
 
 
 
-      i64                                          m_iDatabaseWaitTimeOut;
+      string                                                m_strRepos;
+      string                                                m_strNamespace;
+      ::file::path                                          m_strNetnodePath;
+      ::file::path                                          m_strNetseedPath;
+      ::file::path                                          m_strNetseedDsCa2Path;
 
-      ::mutex                                      m_mutexSession;
-      strsp(::dynamic_source::session)             m_mapSession;
-      ::mutex                                      m_mutexMusicDbPool;
-      ::mutex                                      m_mutexWayDbPool;
-      __pointer(script_cache)                      m_pcache;
-      __pointer(script_compiler)                   m_pcompiler;
-      i32                                          m_iBuildTimeWindow;
-      i32                                          m_iBuildTimeRandomWindow;
+      ::mutex                                               m_mutexSimage;
+      ::mutex                                               m_mutexSpider;
 
-      string_to_string                             m_strmapFunUserKey;
+      ::mutex                                               m_mutexRsa;
 
-      string                                       m_strPersistentError;
+      ::crypto::rsaptra                                     m_rsaptra;
 
-      ::mutex                                      m_mutexPersistentStr;
-      ::mutex                                      m_mutexUiRedir;
-      ::mutex                                      m_mutexTagId;
-      string_to_string                             m_tagid;
-      string_to_string                             m_usersecuretagid;
-      ::mutex                                      m_mutexTagName;
-      string_to_string                             m_tagname;
+      millis                                                  m_millisLastRsa;
 
 
-      string                                       m_strSeed;
+
+      i64                                                   m_iDatabaseWaitTimeOut;
+
+      ::mutex                                               m_mutexSession;
+      string_map < __pointer(::dynamic_source::session) >   m_mapSession;
+      ::mutex                                               m_mutexMusicDbPool;
+      ::mutex                                               m_mutexWayDbPool;
+      __pointer(script_cache)                               m_pcache;
+      __pointer(script_compiler)                            m_pcompiler;
+      i32                                                   m_iBuildTimeWindow;
+      i32                                                   m_iBuildTimeRandomWindow;
+
+      string_to_string                                      m_strmapFunUserKey;
+
+      string                                                m_strPersistentError;
+
+      ::mutex                                               m_mutexPersistentStr;
+      ::mutex                                               m_mutexUiRedir;
+      ::mutex                                               m_mutexTagId;
+      string_to_string                                      m_tagid;
+      string_to_string                                      m_usersecuretagid;
+      ::mutex                                               m_mutexTagName;
+      string_to_string                                      m_tagname;
 
 
-      bool                                         m_bCompiler;
+      string                                                m_strSeed;
+
+
+      bool                                                  m_bCompiler;
 
 
       script_manager();

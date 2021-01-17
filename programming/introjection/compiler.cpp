@@ -29,7 +29,7 @@ string vs_build()
 #endif
 
 
-::u32 RunSilent(const char* strFunct, char* strstrParams);
+::u32 RunSilent(const char* strFunct, const char* strstrParams);
 
 
 namespace introjection
@@ -1422,7 +1422,7 @@ auto tickStart = ::millis::now();
 }
 
 
-::u32 RunSilent(const char* strFunct, char* strstrParams)
+::u32 RunSilent(const char* strFunct, const char* strstrParams)
 {
 
 #if defined(_UWP)
@@ -1439,7 +1439,7 @@ auto tickStart = ::millis::now();
 
    char *pEnvCMD = nullptr;
 
-   char *pDefaultCMD = "CMD.EXE";
+   const char *pDefaultCMD = "CMD.EXE";
 
    ULONG rc;
 

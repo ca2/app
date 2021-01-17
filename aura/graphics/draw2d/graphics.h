@@ -695,6 +695,13 @@ namespace draw2d
 
       }
 
+      template < primitive_size SIZE_DST, graphics_source_pointer GRAPHICS_SOURCE_POINTER, primitive_size SIZE_SRC >
+      inline bool stretch(const SIZE_DST& sizeDst, GRAPHICS_SOURCE_POINTER pgraphicssource, const SIZE_SRC& sizeSrc)
+      {
+
+         return _draw(sizeDst, pgraphicssource->g(sizeDst), sizeSrc);
+
+      }
 
       virtual bool _draw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc = ::rectd());
       virtual bool _draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc = ::rectd());

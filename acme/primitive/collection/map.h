@@ -1204,7 +1204,7 @@ void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assert_valid() const
 }
 
 
-#define ptrptr(T1, T2) map < T1 *, T1 *, T2 *, T2 * >
+//#define ptrptr(T1, T2) map < T1 *, T1 *, T2 *, T2 * >
 
 
 template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type >

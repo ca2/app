@@ -1069,10 +1069,10 @@ inline const ansichar *__c_str(const string &str);
 
 
 template < typename T >
-concept has_to_string = requires(T * p)
+concept has_to_string = requires(T t)
 {
 
-   { p->to_string() } -> ::std::same_as<::string>;
+   { t.to_string() } -> std::same_as < ::string >;
 
 };
 

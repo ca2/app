@@ -14,12 +14,12 @@ namespace dynamic_source
    public:
 
 
-      strsp(script)                 m_map;
-      __pointer(script_manager)     m_pmanager;
+      string_map < __pointer(script) >    m_map;
+      __pointer(script_manager)           m_pmanager;
 
 
       script_cache();
-      ~script_cache();
+      virtual ~script_cache();
 
 
       virtual ::e_status initialize(::layered * pobjectContext) override;

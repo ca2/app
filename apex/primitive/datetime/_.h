@@ -14,11 +14,7 @@ namespace datetime
 {
 
 
-<<<<<<< HEAD
    CLASS_DECL_APEX string to_string(::layered * pobjectContext, const ::apex::str_context * pcontext, const ::datetime::payload & payload);
-=======
-   CLASS_DECL_APEX string to_string(::layered * pobjectContext, const ::apex::str_context * pcontext, const ::datetime::payload & value);
->>>>>>> origin/basis
 
 
    CLASS_DECL_APEX payload span_strtotime(::layered * pobjectContext, const ::apex::str_context * pcontext, const char * psz);

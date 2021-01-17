@@ -45,10 +45,5 @@ CLASS_DECL_ACME datetime::payload operator + (const datetime::payload & val1, co
 CLASS_DECL_ACME datetime::payload operator - (const datetime::payload & val1, const datetime::payload & val2);
 CLASS_DECL_ACME datetime::payload operator * (const datetime::payload & val1, double d);
 CLASS_DECL_ACME datetime::payload operator / (const datetime::payload & val1, double d);
-<<<<<<< HEAD
-payload
-=======
-
->>>>>>> origin/basis
 
 

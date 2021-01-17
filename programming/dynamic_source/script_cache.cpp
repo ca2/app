@@ -93,7 +93,7 @@ namespace dynamic_source
 
       single_lock sl(mutex(), TRUE);
 
-      strsp(script)::pair * ppair = m_map.get_assoc(strName);
+      auto ppair = m_map.get_assoc(strName);
 
       if(ppair != nullptr)
       {

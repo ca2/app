@@ -86,7 +86,8 @@ namespace aura
 
 
    application::application(const char * pszAppId) :
-      ::apex::application(pszAppId)
+      ::apex::application(pszAppId)//,
+      //m_semCompiler(64, 64)
    {
 
       m_pauraapplication = this;

@@ -61,6 +61,8 @@ public:
 
    template < has_to_string HAS_TO_STRING >
    string_base(const HAS_TO_STRING & has_to_string) : string_base(has_to_string.to_string()) { }
+   //template < has_to_string HAS_TO_STRING >
+   //string_base(HAS_TO_STRING& has_to_string) : string_base(has_to_string.to_string()) { }
 
    string_base(const ansichar * pansichar);
    string_base(const ansichar * pansichar, strsize len);
@@ -72,9 +74,9 @@ public:
    string_base(const wd32char * pwd32char, strsize len);
    string_base(const wd32char * pwd32char, strsize len, strsize pos) : string_base(pwd32char + pos, len) { }
 #ifdef WINDOWS
-   string_base(const USHORT * pszSrc) : string_base((const wd16char * )pszSrc) {}
+   explicit string_base(const USHORT * pszSrc) : string_base((const wd16char * )pszSrc) {}
 #endif
-   string_base(const ansistring & ansistr);
+   string_base(const ansistring & wd32str);
    string_base(const wd16string & wd16str);
    string_base(const wd32string & wd32str);
    string_base(const natural_ansistring& ansistr);
@@ -89,12 +91,12 @@ public:
    string_base(Object ^ o);
 #endif
 
-   string_base(const payload & payload);
-   string_base(const property & property);
-   string_base(const id & id);
-   string_base(payload & payload);
-   string_base(property & property);
-   string_base(id & id);
+   //string_base(const payload & payload);
+   //string_base(const property & property);
+   //string_base(const id & id);
+   //string_base(payload & payload);
+   //string_base(property & property);
+   //string_base(id & id);
 
 
    inline const string_base & to_string() const { return *this; }

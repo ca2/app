@@ -16,7 +16,7 @@
 #ifdef WINDOWS_DESKTOP
 #include "aura/os/windows/windowing.h"
 #include "aura/node/windows/system_interaction_impl.h"
-
+#define MESSAGE_WINDOW_PARENT HWND_MESSAGE
 #elif defined(_UWP)
 
 #include "aura/os/uwp/_uwp.h"

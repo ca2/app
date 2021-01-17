@@ -26,7 +26,7 @@ void GetSystemTime(LPSYSTEMTIME systime);
 //{
 //
 //
-//   CLASS_DECL_ACME string to_string(::matter * pobject, const ::acme::str_context * pcontext, const ::datetime::value & value);
+//   CLASS_DECL_ACME string to_string(::matter * pobject, const ::acme::str_context * pcontext, const ::datetime::payload & value);
 //
 //
 //   CLASS_DECL_ACME value span_strtotime(::matter * pobject, const ::acme::str_context * pcontext, const char * psz);

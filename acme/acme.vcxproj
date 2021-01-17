@@ -1442,6 +1442,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="platform\static_start_aura.cpp" />
     <ClCompile Include="primitive\datetime\filetime.cpp" />
     <ClCompile Include="primitive\datetime\filetime_span.cpp" />
+    <ClCompile Include="primitive\datetime\payload.cpp" />
     <ClCompile Include="primitive\datetime\secs.cpp" />
     <ClCompile Include="primitive\geometry2d\shape.cpp" />
     <ClCompile Include="primitive\primitive\block.cpp" />
@@ -1808,6 +1809,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\comparison\sign.h" />
     <ClInclude Include="primitive\datetime\filetime.h" />
     <ClInclude Include="primitive\datetime\filetime_span.h" />
+    <ClInclude Include="primitive\datetime\payload.h" />
     <ClInclude Include="primitive\geometry2d\angle.h" />
     <ClInclude Include="primitive\geometry2d\arc.h" />
     <ClInclude Include="primitive\geometry2d\bounding_rect.h" />
@@ -1919,7 +1921,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="primitive\datetime\mktime.cpp" />
     <ClCompile Include="primitive\datetime\time.cpp" />
     <ClCompile Include="primitive\datetime\time_span.cpp" />
-    <ClCompile Include="primitive\datetime\value.cpp" />
     <ClCompile Include="primitive\datetime\zonetime.cpp" />
     <ClCompile Include="primitive\datetime\_c.cpp" />
     <ClCompile Include="primitive\geometry2d\geometry.cpp" />

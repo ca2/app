@@ -313,38 +313,10 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
 }
 
 
-::e_status graphics::_add_shape(const ::rect & rect)
-{
-
-   cairo_rectangle(m_pdc, rect.left + m_pointAddShapeTranslate.x, rect.top + m_pointAddShapeTranslate.y, rect.width(), rect.height());
-
-   return ::success;
-
-}
-
-
 ::e_status graphics::_add_shape(const ::rectd & rect)
 {
 
    cairo_rectangle(m_pdc, rect.left + m_pointAddShapeTranslate.x, rect.top + m_pointAddShapeTranslate.y, rect.width(), rect.height());
-
-   return ::success;
-
-}
-
-
-::e_status graphics::_add_shape(const ::oval & oval)
-{
-
-   cairo_keep keep(m_pdc);
-
-   cairo_new_sub_path(m_pdc);
-
-   cairo_translate(m_pdc, (oval.left + oval.right) / 2.0 + m_pointAddShapeTranslate.x, (oval.top + oval.bottom) / 2.0 + m_pointAddShapeTranslate.y);
-
-   cairo_scale(m_pdc, (oval.right - oval.left) / 2.0, (oval.bottom - oval.top) / 2.0);
-
-   cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
 
    return ::success;
 
@@ -365,34 +337,6 @@ bool graphics::CreateCompatibleDC(::draw2d::graphics * pgraphics)
    cairo_arc(m_pdc, 0.0, 0.0, 1.0, 0.0, 2.0 * 3.1415);
 
    return ::success;
-
-}
-
-
-::e_status graphics::_add_shape(const ::polygon & polygon)
-{
-
-    if (polygon.is_empty())
-    {
-
-        return ::success;
-
-    }
-
-    cairo_new_sub_path(m_pdc);
-
-    cairo_move_to(m_pdc, polygon[0].x + m_pointAddShapeTranslate.x, polygon[0].y+ m_pointAddShapeTranslate.y);
-
-    for (i32 i = 1; i < polygon.get_count(); i++)
-    {
-
-        cairo_line_to(m_pdc, polygon[i].x + m_pointAddShapeTranslate.x, polygon[i].y + m_pointAddShapeTranslate.y);
-
-    }
-
-    cairo_close_path(m_pdc);
-
-    return ::success;
 
 }
 
@@ -445,7 +389,17 @@ i32 graphics::GetDevicecaps(i32 nIndex)
 }
 
 
-point graphics::GetBrushOrg()
+pointd graphics::GetBrushOrg()
+{
+
+    ::exception::throw_not_implemented();
+
+    return ::pointd();
+
+}
+
+
+pointd graphics::SetBrushOrg(double x, double y)
 {
 
     ::exception::throw_not_implemented();
@@ -455,22 +409,12 @@ point graphics::GetBrushOrg()
 }
 
 
-point graphics::SetBrushOrg(i32 x, i32 y)
+pointd graphics::SetBrushOrg(const ::pointd & point)
 {
 
     ::exception::throw_not_implemented();
 
-    return ::point();
-
-}
-
-
-point graphics::SetBrushOrg(const ::point & point)
-{
-
-    ::exception::throw_not_implemented();
-
-    return ::point();
+    return ::pointd();
 
 }
 
@@ -610,32 +554,32 @@ i32 graphics::GetGraphicsMode()
 //}
 
 
-size graphics::GetViewportExt()
+sized graphics::GetViewportExt()
 {
 
-    return ::size(0, 0);
+    return ::sized(0, 0);
 
 }
 
 
-point graphics::GetWindowOrg()
+pointd graphics::GetWindowOrg()
 {
 
-    return ::point();
+    return ::pointd();
 
 }
 
 
-size graphics::GetWindowExt()
+sized graphics::GetWindowExt()
 {
 
-    return ::size(0, 0);
+    return ::sized(0, 0);
 
 }
 
 
 // non-virtual helpers calling virtual mapping functions
-point graphics::SetViewportOrg(const ::point & point)
+pointd graphics::SetViewportOrg(const ::pointd & point)
 {
 
    return SetViewportOrg(point.x, point.y);
@@ -643,65 +587,55 @@ point graphics::SetViewportOrg(const ::point & point)
 }
 
 
-size graphics::SetViewportExt(const ::size & size)
+sized graphics::SetViewportExt(const ::sized & sized)
 {
 
-    return ::size(0, 0);
+    return ::sized(0, 0);
 
 }
 
 
-point graphics::SetWindowOrg(const ::point & point)
+pointd graphics::SetWindowOrg(const ::pointd & point)
 {
 
-    return ::point();
+    return ::pointd();
 
 }
 
 
-size graphics::set_window_ext(const ::size & size)
+sized graphics::set_window_ext(const ::sized & sized)
 {
 
-    return ::size(0, 0);
+    return ::sized(0, 0);
 
 }
 
 
-void graphics::DPtoLP(POINT32 * lpPoints, count nCount)
-{
-
-}
-
-
-void graphics::DPtoLP(RECT32 * prect)
+void graphics::DPtoLP(::pointd * lpPoints, count nCount)
 {
 
 }
 
 
-void graphics::LPtoDP(POINT32 * lpPoints, count nCount)
+void graphics::DPtoLP(::rectd * prect)
 {
 
 }
 
 
-void graphics::LPtoDP(RECT32 * prect)
+void graphics::LPtoDP(::pointd * lpPoints, count nCount)
 {
 
 }
 
 
-bool graphics::FillRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush)
+void graphics::LPtoDP(::rectd * prect)
 {
-
-    ::exception::throw_not_implemented();
-
-    return false;
 
 }
 
 
-bool graphics::FrameRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush, i32 nWidth, i32 nHeight)
+bool graphics::fill_region(::draw2d::region* pRgn, ::draw2d::brush* pBrush)
 {
 
     ::exception::throw_not_implemented();
@@ -711,7 +645,7 @@ bool graphics::FrameRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush, i32 nWi
 }
 
 
-bool graphics::InvertRgn(::draw2d::region* pRgn)
+bool graphics::frame_region(::draw2d::region* pRgn, ::draw2d::brush* pBrush, double nWidth, double nHeight)
 {
 
     ::exception::throw_not_implemented();
@@ -721,7 +655,7 @@ bool graphics::InvertRgn(::draw2d::region* pRgn)
 }
 
 
-bool graphics::PaintRgn(::draw2d::region* pRgn)
+bool graphics::invert_region(::draw2d::region* pRgn)
 {
 
     ::exception::throw_not_implemented();
@@ -731,7 +665,17 @@ bool graphics::PaintRgn(::draw2d::region* pRgn)
 }
 
 
-//bool graphics::PtVisible(i32 x, i32 y)
+bool graphics::paint_region(::draw2d::region* pRgn)
+{
+
+    ::exception::throw_not_implemented();
+
+    return false;
+
+}
+
+
+//bool graphics::PtVisible(double x, double y)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -741,7 +685,7 @@ bool graphics::PaintRgn(::draw2d::region* pRgn)
 //}
 
 
-//bool graphics::PtVisible(const ::point & point)
+//bool graphics::PtVisible(const ::pointd & point)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -769,7 +713,7 @@ pointd graphics::current_position()
 }
 
 
-bool graphics::Arc(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4)
+bool graphics::Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
 {
 
    sync_lock ml(cairo_mutex());
@@ -781,43 +725,6 @@ bool graphics::Arc(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y
    double radiusx = abs(x2 - x1) / 2.0;
 
    double radiusy = abs(y2 - y1) / 2.0;
-
-   if (radiusx == 0.0 || radiusy == 0.0)
-   {
-
-      return false;
-
-   }
-
-   double start = atan2(y3 - centery, x3 - centerx);
-
-   double end = atan2(y4 - centery, x4 - centerx);
-
-   cairo_keep keep(m_pdc);
-
-   cairo_translate(m_pdc, centerx, centery);
-
-   cairo_scale(m_pdc, radiusx, radiusy);
-
-   cairo_arc(m_pdc, 0.0, 0.0, 1.0, start, end);
-
-   return draw();
-
-}
-
-
-bool graphics::Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
-{
-
-   sync_lock ml(cairo_mutex());
-
-   double centerx = (x2 + x1) / 2.0;
-
-   double centery = (y2 + y1) / 2.0;
-
-   double radiusx = fabs(x2 - x1) / 2.0;
-
-   double radiusy = fabs(y2 - y1) / 2.0;
 
    if (radiusx == 0.0 || radiusy == 0.0)
    {
@@ -880,7 +787,7 @@ bool graphics::Arc(double x, double y, double w, double h, angle start, angle ex
 }
 
 
-bool graphics::Arc(const ::rect & rect, const ::point & pointStart, const ::point & pointEnd)
+bool graphics::Arc(const ::rectd & rect, const ::pointd & pointStart, const ::pointd & pointEnd)
 {
 
     return Arc(
@@ -896,7 +803,7 @@ bool graphics::Arc(const ::rect & rect, const ::point & pointStart, const ::poin
 }
 
 
-bool graphics::polyline(const POINT32* lpPoints, count nCount)
+bool graphics::polyline(const ::pointd* lpPoints, count nCount)
 {
 
     return draw_polygon(lpPoints, nCount);
@@ -904,7 +811,7 @@ bool graphics::polyline(const POINT32* lpPoints, count nCount)
 }
 
 
-bool graphics::fill_rect(const ::rect & rect, ::draw2d::brush * pbrush)
+bool graphics::fill_rect(const ::rectd & rect, ::draw2d::brush * pbrush)
 {
 
     sync_lock ml(cairo_mutex());
@@ -925,15 +832,7 @@ bool graphics::fill_rect(const ::rect & rect, ::draw2d::brush * pbrush)
 }
 
 
-void graphics::frame_rect(const ::rect & rect, ::draw2d::brush* pBrush)
-{
-
-    fill_rect(rect, pBrush->m_color);
-
-}
-
-
-bool graphics::draw_rect(const ::rect & rect, ::draw2d::pen * ppen)
+bool graphics::draw_rect(const ::rectd & rect, ::draw2d::pen * ppen)
 {
 
     sync_lock ml(cairo_mutex());
@@ -954,17 +853,17 @@ bool graphics::draw_rect(const ::rect & rect, ::draw2d::pen * ppen)
 }
 
 
-void graphics::invert_rect(const ::rect & rect)
+bool graphics::invert_rect(const ::rectd & rect)
 {
 
     ::exception::throw_not_implemented();
 
-    return;
+    return false;
 
 }
 
 
-//bool graphics::DrawIcon(i32 x, i32 y, ::draw2d::icon * picon)
+//bool graphics::DrawIcon(double x, double y, ::draw2d::icon * picon)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -974,7 +873,7 @@ void graphics::invert_rect(const ::rect & rect)
 //}
 
 
-//bool graphics::DrawIcon(const ::point & point, ::draw2d::icon * picon)
+//bool graphics::DrawIcon(const ::pointd & point, ::draw2d::icon * picon)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -1048,7 +947,7 @@ void graphics::invert_rect(const ::rect & rect)
 //
 //                ::draw2d::bitmap_pointer b(e_create);
 //
-//                b->CreateBitmap(this, ::size(cx, cy), 1, 32, pcolorref, cx * sizeof(color32_t));
+//                b->CreateBitmap(this, ::sized(cx, cy), 1, 32, pcolorref, cx * sizeof(color32_t));
 //
 //                cairo_surface_t * psurface = (cairo_surface_t *)b->get_os_data();
 //
@@ -1112,7 +1011,7 @@ void graphics::invert_rect(const ::rect & rect)
 //#endif
 
 
-//bool graphics::DrawState(const ::point & point, const ::size & size, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
+//bool graphics::DrawState(const ::pointd & point, const ::sized & sized, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -1122,7 +1021,7 @@ void graphics::invert_rect(const ::rect & rect)
 //}
 //
 //
-//bool graphics::DrawState(const ::point & point, const ::size & size, ::draw2d::bitmap* pBitmap, ::u32 nFlags, ::draw2d::brush* pBrush)
+//bool graphics::DrawState(const ::pointd & point, const ::sized & sized, ::draw2d::bitmap* pBitmap, ::u32 nFlags, ::draw2d::brush* pBrush)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -1132,7 +1031,7 @@ void graphics::invert_rect(const ::rect & rect)
 //}
 //
 //
-//bool graphics::DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, HBRUSH hBrush)
+//bool graphics::DrawState(const ::pointd & point, const ::sized & sized, const char * lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, HBRUSH hBrush)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -1142,7 +1041,7 @@ void graphics::invert_rect(const ::rect & rect)
 //}
 //
 //
-//bool graphics::DrawState(const ::point & point, const ::size & size, const char * lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, ::draw2d::brush* pBrush)
+//bool graphics::DrawState(const ::pointd & point, const ::sized & sized, const char * lpszText, ::u32 nFlags, bool bPrefixText, i32 nTextLen, ::draw2d::brush* pBrush)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -1172,7 +1071,7 @@ void graphics::invert_rect(const ::rect & rect)
 //}
 
 
-bool graphics::Chord(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4)
+bool graphics::Chord(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
 {
 
     ::exception::throw_not_implemented();
@@ -1182,7 +1081,7 @@ bool graphics::Chord(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32
 }
 
 
-bool graphics::Chord(const ::rect & rect, const ::point & pointStart, const ::point & pointEnd)
+bool graphics::Chord(const ::rectd & rect, const ::pointd & pointStart, const ::pointd & pointEnd)
 {
 
     ::exception::throw_not_implemented();
@@ -1192,7 +1091,7 @@ bool graphics::Chord(const ::rect & rect, const ::point & pointStart, const ::po
 }
 
 
-void graphics::DrawFocusRect(const ::rect & rect)
+void graphics::DrawFocusRect(const ::rectd & rect)
 {
 
     ::exception::throw_not_implemented();
@@ -1298,7 +1197,7 @@ bool graphics::fill_ellipse(const ::rectd & rect)
 }
 
 
-bool graphics::Pie(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4)
+bool graphics::Pie(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
 {
 
     ::exception::throw_not_implemented();
@@ -1308,7 +1207,7 @@ bool graphics::Pie(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y
 }
 
 
-bool graphics::Pie(const ::rect & rect, const ::point & pointStart, const ::point & pointEnd)
+bool graphics::Pie(const ::rectd & rect, const ::pointd & pointStart, const ::pointd & pointEnd)
 {
 
     ::exception::throw_not_implemented();
@@ -1346,32 +1245,6 @@ bool graphics::fill_polygon(const POINTD * pa, count nCount)
 }
 
 
-bool graphics::fill_polygon(const POINT32* pa, count nCount)
-{
-
-    sync_lock ml(cairo_mutex());
-
-    if (nCount <= 0)
-    {
-
-        return true;
-
-    }
-
-    cairo_move_to(m_pdc, pa[0].x, pa[0].y);
-
-    for (i32 i = 1; i < nCount; i++)
-    {
-
-        cairo_line_to(m_pdc, pa[i].x, pa[i].y);
-
-    }
-
-    fill();
-
-    return true;
-
-}
 
 
 bool graphics::draw_polygon(const POINTD * pa, count nCount)
@@ -1402,60 +1275,6 @@ bool graphics::draw_polygon(const POINTD * pa, count nCount)
 }
 
 
-bool graphics::draw_polygon(const POINT32* pa, count nCount)
-{
-
-    sync_lock ml(cairo_mutex());
-
-    if (nCount <= 0)
-    {
-
-        return true;
-
-    }
-
-    cairo_move_to(m_pdc, pa[0].x, pa[0].y);
-
-    for (i32 i = 1; i < nCount; i++)
-    {
-
-        cairo_line_to(m_pdc, pa[i].x, pa[i].y);
-
-    }
-
-    draw();
-
-    return true;
-
-}
-
-
-bool graphics::polygon(const POINT32 * pa, count nCount)
-{
-
-    sync_lock ml(cairo_mutex());
-
-    if (nCount <= 0)
-    {
-
-        return true;
-
-    }
-
-    cairo_move_to(m_pdc, pa[0].x, pa[0].y);
-
-    for (i32 i = 1; i < nCount; i++)
-    {
-
-        cairo_line_to(m_pdc, pa[i].x, pa[i].y);
-
-    }
-
-    return fill_and_draw();
-
-}
-
-
 bool graphics::polygon(const POINTD * pa, count nCount)
 {
 
@@ -1482,7 +1301,8 @@ bool graphics::polygon(const POINTD * pa, count nCount)
 }
 
 
-bool graphics::rectangle(const ::rect & rect)
+
+bool graphics::rectangle(const ::rectd & rect)
 {
 
     sync_lock ml(cairo_mutex());
@@ -1494,7 +1314,7 @@ bool graphics::rectangle(const ::rect & rect)
 }
 
 
-bool graphics::round_rect(const ::rect & rect, const ::point & point)
+bool graphics::round_rect(const ::rectd & rect, double dRadius)
 {
 
     ::exception::throw_not_implemented();
@@ -1504,40 +1324,7 @@ bool graphics::round_rect(const ::rect & rect, const ::point & point)
 }
 
 
-//bool graphics::PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight)
-//{
-//
-//    ::exception::throw_not_implemented();
-//
-//    return false;
-//
-//}
-
-
-//void graphics::on_apply_clip_region()
-//{
-//
-//   cairo_reset_clip(m_pdc);
-//
-//   if(m_pregion)
-//   {
-//
-//      m_pregion.cast < region >()->clip(m_pdc);
-//
-//   }
-//
-////         if(m_pregion)
-////         {
-////
-////            _mask(m_pregion);
-////
-////         }
-////
-//
-//}
-
-
-bool graphics::draw_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::point & pointSrc)
+bool graphics::_draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::pointd & pointSrc)
 {
 
    sync_lock ml(cairo_mutex());
@@ -1647,7 +1434,7 @@ bool graphics::draw_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSr
 }
 
 
-bool graphics::stretch_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rect & rectSrc)
+bool graphics::_stretch_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc)
 {
 
     sync_lock ml(cairo_mutex());
@@ -1770,7 +1557,7 @@ bool graphics::stretch_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphic
 }
 
 
-::color graphics::GetPixel(i32 x, i32 y)
+::color graphics::GetPixel(double x, double y)
 {
 
     ::exception::throw_not_implemented();
@@ -1780,7 +1567,7 @@ bool graphics::stretch_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphic
 }
 
 
-::color graphics::GetPixel(const ::point & point)
+::color graphics::GetPixel(const ::pointd & point)
 {
 
     ::exception::throw_not_implemented();
@@ -1790,7 +1577,7 @@ bool graphics::stretch_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphic
 }
 
 
-::color graphics::SetPixel(i32 x, i32 y, const ::color & color)
+::color graphics::SetPixel(double x, double y, const ::color & color)
 {
 
     ::exception::throw_not_implemented();
@@ -1800,7 +1587,7 @@ bool graphics::stretch_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphic
 }
 
 
-::color graphics::SetPixel(const ::point & point, const ::color & color)
+::color graphics::SetPixel(const ::pointd & point, const ::color & color)
 {
 
     ::exception::throw_not_implemented();
@@ -1810,7 +1597,7 @@ bool graphics::stretch_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphic
 }
 
 
-//bool graphics::FloodFill(i32 x, i32 y, const ::color & color)
+//bool graphics::FloodFill(double x, double y, const ::color & color)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -1820,7 +1607,7 @@ bool graphics::stretch_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphic
 //}
 //
 //
-//bool graphics::ExtFloodFill(i32 x, i32 y, const ::color & color, ::u32 nFillType)
+//bool graphics::ExtFloodFill(double x, double y, const ::color & color, ::u32 nFillType)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -1837,7 +1624,7 @@ bool graphics::stretch_raw(const ::rect & rectDst, ::draw2d::graphics * pgraphic
 //// COLOR_DEST = SRC_ALPHA * BLEND_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA * BLEND_ALPHA) * COLOR_DST
 
 
-bool graphics::text_out(i32 x, i32 y, const string & str)
+bool graphics::text_out(double x, double y, const string & str)
 {
 
     return ::draw2d::graphics::text_out(double(x), double(y), str);
@@ -1845,15 +1632,7 @@ bool graphics::text_out(i32 x, i32 y, const string & str)
 }
 
 
-bool graphics::text_out(double x, double y, const string & str)
-{
-
-    return text_out((int) x, (int) y, str, (i32)str.get_length());
-
-}
-
-
-bool graphics::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rect & rect, const char * lpszString, strsize nCount, int * lpDxWidths)
+bool graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectd & rect, const char * lpszString, strsize nCount, int * lpDxWidths)
 {
 
     ::exception::throw_not_implemented();
@@ -1863,77 +1642,67 @@ bool graphics::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rect & rect, con
 }
 
 
-bool graphics::ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rect & rect, const string & str, int * lpDxWidths)
+sized graphics::TabbedTextOut(double x, double y, const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
 {
 
     ::exception::throw_not_implemented();
 
-    return false;
+    return ::sized(0, 0);
 
 }
 
 
-size graphics::TabbedTextOut(i32 x, i32 y, const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
+sized graphics::TabbedTextOut(double x, double y, const string & str, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
 {
 
     ::exception::throw_not_implemented();
 
-    return ::size(0, 0);
+    return ::sized(0, 0);
 
 }
 
 
-size graphics::TabbedTextOut(i32 x, i32 y, const string & str, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin)
+sized graphics::GetTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions)
 {
 
     ::exception::throw_not_implemented();
 
-    return ::size(0, 0);
+    return ::sized(0, 0);
 
 }
 
 
-size graphics::GetTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions)
+sized graphics::GetTabbedTextExtent(const string & str, count nTabPositions, int * lpnTabStopPositions)
 {
 
     ::exception::throw_not_implemented();
 
-    return ::size(0, 0);
+    return ::sized(0, 0);
 
 }
 
 
-size graphics::GetTabbedTextExtent(const string & str, count nTabPositions, int * lpnTabStopPositions)
+sized graphics::GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions)
 {
 
     ::exception::throw_not_implemented();
 
-    return ::size(0, 0);
+    return ::sized(0, 0);
 
 }
 
 
-size graphics::GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions)
+sized graphics::GetOutputTabbedTextExtent(const string & str, count nTabPositions, int * lpnTabStopPositions)
 {
 
     ::exception::throw_not_implemented();
 
-    return ::size(0, 0);
+    return ::sized(0, 0);
 
 }
 
 
-size graphics::GetOutputTabbedTextExtent(const string & str, count nTabPositions, int * lpnTabStopPositions)
-{
-
-    ::exception::throw_not_implemented();
-
-    return ::size(0, 0);
-
-}
-
-
-//bool graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, i32), LPARAM lpData, i32 nCount, i32 x, i32 y, i32 nWidth, i32 nHeight)
+//bool graphics::GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, i32), LPARAM lpData, i32 nCount, double x, double y, i32 nWidth, i32 nHeight)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -2138,12 +1907,12 @@ bool graphics::get_output_text_metrics(::draw2d::text_metric * lpMetrics)
 //}
 //
 
-//size graphics::GetAspectRatioFilter()
+//sized graphics::GetAspectRatioFilter()
 //{
 //
 //    ::exception::throw_not_implemented();
 //
-//    return size(0, 0);
+//    return sized(0, 0);
 //
 //}
 //
@@ -2170,7 +1939,7 @@ bool graphics::get_output_text_metrics(::draw2d::text_metric * lpMetrics)
 
 
 // graphics 3.1 Specific functions
-::u32 graphics::SetBoundsRect(const ::rect & rectBounds, ::u32 flags)
+::u32 graphics::SetBoundsRect(const ::rectd & rectBounds, ::u32 flags)
 {
 
     ::exception::throw_not_implemented();
@@ -2180,7 +1949,7 @@ bool graphics::get_output_text_metrics(::draw2d::text_metric * lpMetrics)
 }
 
 
-::u32 graphics::GetBoundsRect(LPRECT32 rectBounds, ::u32 flags)
+::u32 graphics::GetBoundsRect(::rectd * rectBounds, ::u32 flags)
 {
 
     ::exception::throw_not_implemented();
@@ -2250,7 +2019,7 @@ i32 graphics::EndDoc()
 }
 
 
-//bool graphics::MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask)
+//bool graphics::MaskBlt(double x, double y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, ::draw2d::bitmap& maskBitmap, double xMask, double yMask)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -2260,7 +2029,7 @@ i32 graphics::EndDoc()
 //}
 
 
-//bool graphics::PlgBlt(POINT32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 nXSrc, i32 nYSrc, i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask)
+//bool graphics::PlgBlt(::pointd * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 nXSrc, i32 nYSrc, i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, double xMask, double yMask)
 //{
 //
 //    if (::is_null(m_pdc))
@@ -2516,7 +2285,7 @@ i32 graphics::EndDoc()
 //}
 
 
-bool graphics::SetPixelV(i32 x, i32 y, const ::color & color)
+bool graphics::SetPixelV(double x, double y, const ::color & color)
 {
 
    ::exception::throw_not_implemented();
@@ -2526,7 +2295,7 @@ bool graphics::SetPixelV(i32 x, i32 y, const ::color & color)
 }
 
 
-bool graphics::SetPixelV(const ::point & point, const ::color & color)
+bool graphics::SetPixelV(const ::pointd & point, const ::color & color)
 {
 
    ::exception::throw_not_implemented();
@@ -2536,7 +2305,7 @@ bool graphics::SetPixelV(const ::point & point, const ::color & color)
 }
 
 
-bool graphics::AngleArc(i32 x, i32 y, i32 nRadius, angle fStartAngle, angle fSweepAngle)
+bool graphics::AngleArc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle)
 {
 
    ::exception::throw_not_implemented();
@@ -2546,7 +2315,7 @@ bool graphics::AngleArc(i32 x, i32 y, i32 nRadius, angle fStartAngle, angle fSwe
 }
 
 
-bool graphics::ArcTo(const ::rect & rect, const ::point & pointStart, const ::point & pointEnd)
+bool graphics::ArcTo(const ::rect & rect, const ::pointd & pointStart, const ::pointd & pointEnd)
 {
 
    ::exception::throw_not_implemented();
@@ -2566,7 +2335,7 @@ i32 graphics::GetArcDirection()
 }
 
 
-bool graphics::poly_polyline(const POINT32* lpPoints, const ::i32 * lpPolyPoints, count nCount)
+bool graphics::poly_polyline(const ::pointd* lpPoints, const ::i32 * lpPolyPoints, count nCount)
 {
 
    ::exception::throw_not_implemented();
@@ -2616,7 +2385,7 @@ bool graphics::poly_polyline(const POINT32* lpPoints, const ::i32 * lpPolyPoints
 //}
 
 
-bool graphics::poly_bezier(const POINT32* lpPoints, count nCount)
+bool graphics::poly_bezier(const ::pointd* lpPoints, count nCount)
 {
 
     ::exception::throw_not_implemented();
@@ -2726,7 +2495,7 @@ float graphics::GetMiterLimit()
 }
 
 //
-//i32 graphics::GetPath(POINT32 * lpPoints, byte * lpTypes, count nCount)
+//i32 graphics::GetPath(::pointd * lpPoints, byte * lpTypes, count nCount)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -2856,7 +2625,7 @@ bool graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
 // India India
 // Member
 
-bool graphics::alpha_blendRaw(i32 xDst, i32 yDst, i32 nDstWidth, i32 nDstHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, double dRate)
+bool graphics::alpha_blendRaw(double xDst, double yDst, i32 nDstWidth, i32 nDstHeight, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, i32 nSrcWidth, i32 nSrcHeight, double dRate)
 {
 
     sync_lock ml(cairo_mutex());
@@ -2966,7 +2735,7 @@ bool graphics::alpha_blendRaw(i32 xDst, i32 yDst, i32 nDstWidth, i32 nDstHeight,
 }
 
 
-//bool graphics::TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, ::u32 crTransparent)
+//bool graphics::TransparentBlt(double xDest, double yDest, i32 nDestWidth, i32 nDestHeight, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, i32 nSrcWidth, i32 nSrcHeight, ::u32 crTransparent)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -3144,7 +2913,7 @@ void graphics::HIMETRICtoLP(LPSIZE32 LPSIZE32)
 //}
 
 
-//   void graphics::DrawDragRect(const ::rect & rect, const ::size & size, const ::rect & rectLast, const ::size & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
+//   void graphics::DrawDragRect(const ::rect & rect, const ::sized & sized, const ::rect & rectLast, const ::sized & sizeLast, ::draw2d::brush* pBrush, ::draw2d::brush* pBrushLast)
 //   {
 //
 //      ::exception::throw_not_implemented();
@@ -3407,7 +3176,7 @@ i32 graphics::SetMapMode(i32 nMapMode)
 }
 
 
-point graphics::GetViewportOrg()
+pointd graphics::GetViewportOrg()
 {
 
     return ::draw2d::graphics::GetViewportOrg();
@@ -3415,7 +3184,7 @@ point graphics::GetViewportOrg()
 }
 
 
-point graphics::SetViewportOrg(i32 x, i32 y)
+pointd graphics::SetViewportOrg(double x, double y)
 {
 
     return ::draw2d::graphics::SetViewportOrg(x, y);
@@ -3423,7 +3192,7 @@ point graphics::SetViewportOrg(i32 x, i32 y)
 }
 
 
-point graphics::OffsetViewportOrg(i32 nWidth, i32 nHeight)
+pointd graphics::OffsetViewportOrg(i32 nWidth, i32 nHeight)
 {
 
     return ::draw2d::graphics::OffsetViewportOrg(nWidth, nHeight);
@@ -3431,17 +3200,17 @@ point graphics::OffsetViewportOrg(i32 nWidth, i32 nHeight)
 }
 
 
-size graphics::SetViewportExt(i32 x, i32 y)
+sized graphics::SetViewportExt(double x, double y)
 {
 
     ::exception::throw_not_implemented();
 
-    return ::size(0, 0);
+    return ::sized(0, 0);
 
 }
 
 
-size graphics::ScaleViewportExt(double xNum, double xDenom, double yNum, double yDenom)
+sized graphics::ScaleViewportExt(double xNum, double xDenom, double yNum, double yDenom)
 {
 
     return ::draw2d::graphics::ScaleViewportExt(xNum, xDenom, yNum, yDenom);
@@ -3449,7 +3218,7 @@ size graphics::ScaleViewportExt(double xNum, double xDenom, double yNum, double 
 }
 
 
-point graphics::SetWindowOrg(i32 x, i32 y)
+pointd graphics::SetWindowOrg(double x, double y)
 {
 
     ::exception::throw_not_implemented();
@@ -3459,37 +3228,37 @@ point graphics::SetWindowOrg(i32 x, i32 y)
 }
 
 
-point graphics::offset_window_org(i32 nWidth, i32 nHeight)
+pointd graphics::offset_window_org(i32 nWidth, i32 nHeight)
 {
 
     ::exception::throw_not_implemented();
 
-    return ::point();
+    return ::pointd();
 
 }
 
 
-size graphics::set_window_ext(i32 x, i32 y)
+sized graphics::set_window_ext(double x, double y)
 {
 
     ::exception::throw_not_implemented();
 
-    return ::size(0, 0);
+    return ::sized(0, 0);
 
 }
 
 
-size graphics::scale_window_ext(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom)
+sized graphics::scale_window_ext(double xNum, double xDenom, double yNum, double yDenom)
 {
 
     ::exception::throw_not_implemented();
 
-    return ::size(0, 0);
+    return ::sized(0, 0);
 
 }
 
 
-i32 graphics::get_clip_box(RECT32 * prect)
+i32 graphics::get_clip_box(::rectd * prect)
 {
 
     return 0;
@@ -3520,7 +3289,7 @@ i32 graphics::get_clip_box(RECT32 * prect)
 //}
 
 
-//i32 graphics::ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
+//i32 graphics::ExcludeClipRect(double x1, double y1, double x2, double y2)
 //{
 //
 //    //::exception::throw_not_implemented();
@@ -3540,7 +3309,7 @@ i32 graphics::get_clip_box(RECT32 * prect)
 //}
 //
 
-//i32 graphics::IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2)
+//i32 graphics::IntersectClipRect(double x1, double y1, double x2, double y2)
 //{
 //
 //   sync_lock ml(cairo_mutex());
@@ -3562,7 +3331,7 @@ i32 graphics::get_clip_box(RECT32 * prect)
 //}
 
 
-//i32 graphics::OffsetClipRgn(i32 x, i32 y)
+//i32 graphics::OffsetClipRgn(double x, double y)
 //{
 //
 //   return ::draw2d::graphics::OffsetClipRgn(x, y);
@@ -3577,19 +3346,19 @@ i32 graphics::get_clip_box(RECT32 * prect)
 //}
 
 
-//i32 graphics::OffsetClipRgn(const ::size & size)
+//i32 graphics::OffsetClipRgn(const ::sized & sized)
 //{
 //
 //    //::exception::throw_not_implemented();
 //
 //    //return 0;
 //
-//    return ::draw2d::graphics::OffsetClipRgn(size);
+//    return ::draw2d::graphics::OffsetClipRgn(sized);
 //
 //}
 
 
-bool graphics::move_to(const ::point & point)
+bool graphics::move_to(const ::pointd & point)
 {
 
     sync_lock ml(cairo_mutex());
@@ -3675,7 +3444,7 @@ u32 graphics::SetLayout(u32 dwSetLayout)
 }
 
 
-bool graphics::ArcTo(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4)
+bool graphics::ArcTo(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
 {
 
     ::exception::throw_not_implemented();
@@ -3695,7 +3464,7 @@ i32 graphics::SetArcDirection(i32 nArcDirection)
 }
 
 
-bool graphics::PolyDraw(const POINT32* lpPoints, const byte* lpTypes, count nCount)
+bool graphics::PolyDraw(const ::pointd* lpPoints, const byte* lpTypes, count nCount)
 {
 
     ::exception::throw_not_implemented();
@@ -3705,7 +3474,7 @@ bool graphics::PolyDraw(const POINT32* lpPoints, const byte* lpTypes, count nCou
 }
 
 
-bool graphics::polyline_to(const POINT32* lpPoints, count nCount)
+bool graphics::polyline_to(const ::pointd* lpPoints, count nCount)
 {
 
     ::exception::throw_not_implemented();
@@ -3715,7 +3484,7 @@ bool graphics::polyline_to(const POINT32* lpPoints, count nCount)
 }
 
 
-bool graphics::poly_bezier_to(const POINT32* lpPoints, count nCount)
+bool graphics::poly_bezier_to(const ::pointd* lpPoints, count nCount)
 {
 
     ::exception::throw_not_implemented();
@@ -3971,7 +3740,7 @@ bool graphics::internal_draw_text(const ::block & block, const ::rectd & rect, c
 
     cairo_font_extents(m_pdc, &e);
 
-    size sz = GetTextExtent(str);
+    sized sz = GetTextExtent(str);
 
     double dx;
 
@@ -4138,7 +3907,7 @@ sized graphics::GetTextExtent(const string & str)
 }
 
 
-size graphics::GetOutputTextExtent(const char * lpszString, strsize nCount)
+sized graphics::GetOutputTextExtent(const char * lpszString, strsize nCount)
 {
 
     ::exception::throw_not_implemented();
@@ -4148,17 +3917,17 @@ size graphics::GetOutputTextExtent(const char * lpszString, strsize nCount)
 }
 
 
-size graphics::GetOutputTextExtent(const string & str)
+sized graphics::GetOutputTextExtent(const string & str)
 {
 
     ::exception::throw_not_implemented();
 
-    return ::size(0, 0);
+    return ::sized(0, 0);
 
 }
 
 
-bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex)
+bool graphics::GetTextExtent(sized & sized, const char * lpszString, strsize nCount, strsize iIndex)
 {
 
    string str(lpszString, min_non_neg(iIndex, nCount));
@@ -4285,7 +4054,7 @@ bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCou
 }
 
 
-bool graphics::_GetTextExtent(sized & size, const char * lpszString, strsize nCount, strsize iIndex)
+bool graphics::_GetTextExtent(sized & sized, const char * lpszString, strsize nCount, strsize iIndex)
 {
 
     if (iIndex < 0)
@@ -4410,18 +4179,18 @@ bool graphics::_GetTextExtent(sized & size, const char * lpszString, strsize nCo
 }
 
 
-bool graphics::GetTextExtent(sized & size, const char * lpszString, strsize nCount)
+bool graphics::GetTextExtent(sized & sized, const char * lpszString, strsize nCount)
 {
 
-    return GetTextExtent(size, lpszString, nCount, -1);
+    return GetTextExtent(sized, lpszString, nCount, -1);
 
 }
 
 
-bool graphics::GetTextExtent(sized & size, const string & str)
+bool graphics::GetTextExtent(sized & sized, const string & str)
 {
 
-    return GetTextExtent(size, str, str.get_length());
+    return GetTextExtent(sized, str, str.get_length());
 
 }
 
@@ -4468,7 +4237,7 @@ void graphics::fill_rect(const ::rectd & rect, const ::color & color)
 }
 
 
-bool graphics::text_out(i32 x, i32 y, const char * lpszString, strsize nCount)
+bool graphics::text_out(double x, double y, const char * lpszString, strsize nCount)
 {
 
     return text_out(x, y, string(lpszString, nCount));
@@ -4532,7 +4301,7 @@ bool graphics::line_to(const ::pointd & point)
 }
 
 
-bool graphics::draw_line(const ::point & point1, const ::point & point2, ::draw2d::pen * ppen)
+bool graphics::draw_line(const ::pointd & point1, const ::pointd & point2, ::draw2d::pen * ppen)
 {
 
     sync_lock ml(cairo_mutex());
@@ -4691,7 +4460,7 @@ void cairo_image_surface_blur(cairo_surface_t* surface, double radius)
         for (channel = 0; channel < 4; channel++)
         {
 
-            i32 x, y;
+            double x, y;
 
             // precomputation step.
             unsigned char* pix = src;

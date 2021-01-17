@@ -494,8 +494,8 @@ namespace draw2d
       virtual bool poly_bezier_to(const ::pointd * ppoints, ::count nCount);
 
 
-      virtual void frame_rect(const ::rectd & rect, ::draw2d::brush* pbrush);
-      virtual void invert_rect(const ::rectd & rect);
+      virtual bool frame_rect(const ::rectd & rect, ::draw2d::brush* pbrush);
+      virtual bool invert_rect(const ::rectd & rect);
       
 //      virtual bool DrawState(const ::pointd & point, const ::sized & ::sized, HBITMAP hBitmap, ::u32 nFlags, HBRUSH hBrush = nullptr);
 //      virtual bool DrawState(const ::pointd & point, const ::sized & ::sized, ::draw2d::bitmap* pBitmap, ::u32 nFlags,::draw2d::brush* pBrush = nullptr);
@@ -706,6 +706,9 @@ namespace draw2d
       virtual bool _draw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc = ::rectd());
       virtual bool _draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc = ::rectd());
       virtual bool _draw_blend(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc = ::rectd());
+
+      virtual bool _draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::pointd & pointSrc = ::pointd());
+      virtual bool _stretch_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc = ::rectd());
 
 
 

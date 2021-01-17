@@ -220,7 +220,7 @@ namespace draw2d_cairo
          return FALSE;
       }
 
-      g()->draw(size, pgraphics);
+      g()->stretch(size, pgraphics);
 
       return TRUE;
 
@@ -621,7 +621,7 @@ namespace draw2d_cairo
 
       pimage1->set_rgb(255, 255, 255);
 
-      pimage1->g()->draw(::size(cx, cy), picon);
+      pimage1->g()->stretch(::size(cx, cy), picon);
 
       // Black blend image_impl
       auto pimage2 = create_image({cx, cy});
@@ -635,7 +635,7 @@ namespace draw2d_cairo
 
       pimage2->fill(0, 0, 0, 0);
 
-      pimage2->g()->draw(::size(cx, cy), picon);
+      pimage2->g()->stretch(::size(cx, cy), picon);
 
       // Mask image_impl
       auto pimageM = create_image({cx, cy});
@@ -647,7 +647,7 @@ namespace draw2d_cairo
 
       }
 
-      pimageM->g()->draw(::size(cx, cy), picon);
+      pimageM->g()->stretch(::size(cx, cy), picon);
 
       byte * r1=(byte*)pimage1->colorref();
       byte * r2=(byte*)pimage2->get_data();

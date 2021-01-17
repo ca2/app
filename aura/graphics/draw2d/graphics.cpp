@@ -847,29 +847,25 @@ namespace draw2d
    }
 
 
-   void graphics::frame_rect(const ::rectd & rect, ::draw2d::brush * pbrush)
+   bool graphics::frame_rect(const ::rectd & rect, ::draw2d::brush * pbrush)
    {
 
       UNREFERENCED_PARAMETER(rect);
       UNREFERENCED_PARAMETER(pbrush);
 
+      return false;
+
    }
 
 
-   void graphics::invert_rect(const ::rectd & rect)
+   bool graphics::invert_rect(const ::rectd & rect)
    {
 
       UNREFERENCED_PARAMETER(rect);
 
+      return false;
+
    }
-
-
-   //bool graphics::draw(const ::rectd & rectDst, icon * picon)
-   //{
-
-   //   return draw(rectDst, picon->get_image(rectDst.size()));
-
-   //}
 
 
    bool graphics::Chord(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4)
@@ -1209,7 +1205,36 @@ namespace draw2d
    }
 
 
-   bool graphics::_draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & pointSrc)
+   bool graphics::_draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc)
+   {
+
+      if (rectDst.size() == rectSrc.size())
+      {
+
+         _draw_raw(rectDst, pgraphicsSrc, rectSrc.top_left());
+
+      }
+      else
+      {
+
+         _stretch_raw(rectDst, pgraphicsSrc, rectSrc);
+
+      }
+
+      return false;
+
+   }
+
+   
+   bool graphics::_draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::pointd & pointSrc)
+   {
+
+      return false;
+
+   }
+
+
+   bool graphics::_stretch_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc)
    {
 
       return false;

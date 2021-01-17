@@ -79,12 +79,12 @@ namespace draw2d_cairo
       virtual bool RestoreDC(i32 nSavedDC) override;
       i32 GetDevicecaps(i32 nIndex);
       ::u32 SetBoundsRect(const ::rectd & rectBounds, ::u32 flags) override;
-      ::u32 GetBoundsRect(LPRECT32 rectBounds, ::u32 flags) override;
+      ::u32 GetBoundsRect(::rectd * rectBounds, ::u32 flags) override;
       // xxx      bool ResetDC(const DEVMODE* lpDevMode) override;
 
       // Drawing-Tool Functions
       pointd GetBrushOrg() override;
-      pointd SetBrushOrg(i32 x, i32 y) override;
+      pointd SetBrushOrg(double x, double y) override;
       pointd SetBrushOrg(const ::pointd & pointd) override;
       //i32 EnumObjects(i32 nObjectType,
                       //i32(CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData) override;
@@ -144,60 +144,60 @@ namespace draw2d_cairo
       virtual pointd GetViewportOrg() override;
       virtual i32 SetMapMode(i32 nMapMode) override;
       // Viewport Origin
-      virtual pointd SetViewportOrg(i32 x, i32 y) override;
+      virtual pointd SetViewportOrg(double x, double y) override;
       virtual pointd SetViewportOrg(const ::pointd & pointd) override;
-      virtual pointd OffsetViewportOrg(i32 nWidth, i32 nHeight) override;
+      virtual pointd OffsetViewportOrg(double nWidth, double nHeight) override;
 
       // Viewport Extent
       virtual sized GetViewportExt() override;
-      virtual sized SetViewportExt(i32 cx, i32 cy) override;
+      virtual sized SetViewportExt(double cx, double cy) override;
       virtual sized SetViewportExt(const ::sized & sized) override;
       virtual sized ScaleViewportExt(double xNum, double xDenom, double yNum, double yDenom) override;
 
       // Window Origin
       pointd GetWindowOrg() override;
-      pointd SetWindowOrg(i32 x, i32 y) override;
+      pointd SetWindowOrg(double x, double y) override;
       pointd SetWindowOrg(const ::pointd & pointd) override;
-      pointd offset_window_org(i32 nWidth, i32 nHeight) override;
+      pointd offset_window_org(double nWidth, double nHeight) override;
 
       // Window extent
       sized GetWindowExt() override;
-      virtual sized set_window_ext(i32 cx, i32 cy) override;
+      virtual sized set_window_ext(double cx, double cy) override;
       sized set_window_ext(const ::sized & sized) override;
-      virtual sized scale_window_ext(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom) override;
+      virtual sized scale_window_ext(double xNum, double xDenom, double yNum, double yDenom) override;
 
       // Coordinate Functions
-      void DPtoLP(POINTD * lpPoints, count nCount = 1) override;
-      void DPtoLP(RECT32 * prect) override;
-      void DPtoLP(LPSIZE32 LPSIZE32) override;
-      void LPtoDP(POINTD * lpPoints, count nCount = 1) override;
-      void LPtoDP(RECT32 * prect) override;
-      void LPtoDP(LPSIZE32 LPSIZE32) override;
+      void DPtoLP(::pointd * lpPoints, count nCount = 1) override;
+      void DPtoLP(::rectd * prect) override;
+      void DPtoLP(::sized * psize) override;
+      void LPtoDP(::pointd * lpPoints, count nCount = 1) override;
+      void LPtoDP(::rectd * prect) override;
+      void LPtoDP(::sized * psize) override;
 
       // Special Coordinate Functions (useful for dealing with metafiles and OLE)
-      void DPtoHIMETRIC(LPSIZE32 LPSIZE32) override;
-      void LPtoHIMETRIC(LPSIZE32 LPSIZE32) override;
-      void HIMETRICtoDP(LPSIZE32 LPSIZE32) override;
-      void HIMETRICtoLP(LPSIZE32 LPSIZE32) override;
+      void DPtoHIMETRIC(::sized * psize) override;
+      void LPtoHIMETRIC(::sized * psize) override;
+      void HIMETRICtoDP(::sized * psize) override;
+      void HIMETRICtoLP(::sized * psize) override;
 
       // Region Functions
-      bool FillRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush) override;
-      bool FrameRgn(::draw2d::region* pRgn, ::draw2d::brush* pBrush, i32 nWidth, i32 nHeight) override;
-      bool InvertRgn(::draw2d::region* pRgn) override;
-      bool PaintRgn(::draw2d::region* pRgn) override;
+      bool fill_region(::draw2d::region* pRgn, ::draw2d::brush* pBrush) override;
+      bool frame_region(::draw2d::region* pRgn, ::draw2d::brush* pBrush, double nWidth, double nHeight) override;
+      bool invert_region(::draw2d::region* pRgn) override;
+      bool paint_region(::draw2d::region* pRgn) override;
 
       // Clipping Functions
-      virtual i32 get_clip_box(RECT32 * prect) override;
-      //virtual bool PtVisible(i32 x, i32 y) override;
+      virtual i32 get_clip_box(::rectd * prect) override;
+      //virtual bool PtVisible(double x, double y) override;
       //bool PtVisible(const ::pointd & pointd) override;
       //virtual bool RectVisible(const ::rectd & rectd) override;
       //i32 SelectClipRgn(::draw2d::region* pRgn) override;
-      //i32 ExcludeClipRect(i32 x1, i32 y1, i32 x2, i32 y2) override;
+      //i32 ExcludeClipRect(double x1, double y1, double x2, double y2) override;
       //i32 ExcludeClipRect(const ::rectd & rectd) override;
       //i32 ExcludeUpdateRgn(::user::primitive * pwindow);
-      //virtual i32 IntersectClipRect(i32 x1, i32 y1, i32 x2, i32 y2) override;
+      //virtual i32 IntersectClipRect(double x1, double y1, double x2, double y2) override;
       //virtual i32 IntersectClipRect(const ::rectd & rectd) override;
-      //i32 OffsetClipRgn(i32 x, i32 y) override;
+      //i32 OffsetClipRgn(double x, double y) override;
       //i32 OffsetClipRgn(const ::sized & sized) override;
       //i32 SelectClipRgn(::draw2d::region* pRgn, ::draw2d::enum_combine ecombine) override;
 
@@ -219,38 +219,38 @@ namespace draw2d_cairo
 
       // Line-Output Functions
       pointd current_position() override;
-      bool move_to(const ::pointd & pointd) override;
+      bool move_to(double x, double y) override;
       //    pointd MoveTo(const ::pointd & pointd) override;
-      bool line_to(const ::pointd & pointd) override;
+      bool line_to(double x, double y) override;
       //  bool LineTo(const ::pointd & pointd) override;
-      virtual bool draw_line(const ::pointd & point1, const ::pointd & point2, ::draw2d::pen * ppen) override;
-      //bool Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
+      virtual bool draw_line(double x1, double y1, double x2, double y2, ::draw2d::pen * ppen) override;
+      bool Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
       bool Arc(double x, double y, double w, double h, angle start, angle extends) override;
       bool Arc(const ::rectd & rectd, const ::pointd & pointStart, const ::pointd & pointEnd) override;
-      bool polyline(const POINTD* lpPoints, count nCount) override;
+      bool polyline(const ::pointd * lpPoints, count nCount) override;
 
-      //bool AngleArc(i32 x, i32 y, i32 nRadius, angle fStartAngle, angle fSweepAngle) override;
-      //bool ArcTo(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4) override;
+      bool AngleArc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle) override;
+      //bool ArcTo(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
       bool ArcTo(const ::rectd & rectd, const ::pointd & pointStart, const ::pointd & pointEnd) override;
       //i32 GetArcDirection() override;
       //i32 SetArcDirection(i32 nArcDirection) override;
 
-      bool PolyDraw(const POINTD* lpPoints, const byte* lpTypes, count nCount) override;
-      bool polyline_to(const POINTD* lpPoints, count nCount) override;
-      bool poly_polyline(const POINTD* lpPoints, const ::i32 * lpPolyPoints, count nCount) override;
+      bool polydraw(const ::pointd* lpPoints, const byte* lpTypes, count nCount) override;
+      bool polyline_to(const ::pointd* lpPoints, count nCount) override;
+      bool poly_polyline(const ::pointd* lpPoints, const ::i32 * lpPolyPoints, count nCount) override;
 
-      bool poly_bezier(const POINTD* lpPoints, count nCount) override;
-      bool poly_bezier_to(const POINTD* lpPoints, count nCount) override;
+      bool poly_bezier(const ::pointd* lpPoints, count nCount) override;
+      bool poly_bezier_to(const ::pointd* lpPoints, count nCount) override;
 
       // Simple Drawing Functions
-      bool fill_rect(const ::rectd & rectd, ::draw2d::brush* pBrush) override;
-      bool draw_rect(const ::rectd & rectd, ::draw2d::pen * ppen) override;
-      void frame_rect(const ::rectd & rectd, ::draw2d::brush* pBrush) override;
-      void invert_rect(const ::rectd & rectd) override;
+      virtual bool fill_rect(const ::rectd & rectd, ::draw2d::brush* pBrush) override;
+      virtual bool draw_rect(const ::rectd & rectd, ::draw2d::pen * ppen) override;
+      virtual bool frame_rect(const ::rectd & rectd, ::draw2d::brush* pBrush) override;
+      virtual bool invert_rect(const ::rectd & rectd) override;
 
-      //bool DrawIcon(i32 x, i32 y, ::draw2d::icon * picon) override;
+      //bool DrawIcon(double x, double y, ::draw2d::icon * picon) override;
       //virtual bool draw(const ::pointd & pointd, ::draw2d::icon * picon, const ::sized & sized) override;
-      //bool DrawIcon(i32 x, i32 y, ::draw2d::icon * picon, i32 cx, i32 cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags) override;
+      //bool DrawIcon(double x, double y, ::draw2d::icon * picon, double cx, double cy, ::u32 istepIfAniCur, HBRUSH hbrFlickerFreeDraw, ::u32 diFlags) override;
       //bool DrawState(const ::pointd & pointd, const ::sized & sized, HBITMAP hBitmap, ::u32 nFlags,
         //             HBRUSH hBrush = nullptr) override;
 //      bool DrawState(const ::pointd & pointd, const ::sized & sized, ::draw2d::bitmap* pBitmap, ::u32 nFlags,
@@ -263,15 +263,15 @@ namespace draw2d_cairo
 
 
 
-      bool Chord(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3,
-                 i32 x4, i32 y4) override;
+      bool Chord(double x1, double y1, double x2, double y2, double x3, double y3,
+                 double x4, double y4) override;
       bool Chord(const ::rectd & rectd, const ::pointd & pointStart, const ::pointd & pointEnd) override;
       void DrawFocusRect(const ::rectd & rectd) override;
 
-//      bool DrawEllipse(i32 x1, i32 y1, i32 x2, i32 y2) override;
+//      bool DrawEllipse(double x1, double y1, double x2, double y2) override;
 //      bool DrawEllipse(const ::rectd & rectd) override;
 //
-//      bool FillEllipse(i32 x1, i32 y1, i32 x2, i32 y2) override;
+//      bool FillEllipse(double x1, double y1, double x2, double y2) override;
 //      bool FillEllipse(const ::rectd & rectd) override;
 
       bool draw_ellipse(double x1, double y1, double x2, double y2) override;
@@ -280,65 +280,65 @@ namespace draw2d_cairo
       bool fill_ellipse(double x1, double y1, double x2, double y2) override;
       bool fill_ellipse(const ::rectd & rectd) override;
 
-      bool Pie(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4) override;
+      bool Pie(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
       bool Pie(const ::rectd & rectd, const ::pointd & pointStart, const ::pointd & pointEnd) override;
 
-      virtual bool fill_polygon(const POINTD* lpPoints, count nCount) override;
+      virtual bool fill_polygon(const POINTD * lpPoints, count nCount) override;
 
-      virtual bool draw_polygon(const POINTD* lpPoints, count nCount) override;
+      virtual bool draw_polygon(const POINTD * lpPoints, count nCount) override;
 
 
       bool polygon(const POINTD * lpPoints, count nCount) override;
       bool rectangle(const ::rectd & rectd) override;
-      //virtual bool draw_rect(i32 x1, i32 y1, i32 x2, i32 y2) override;
+      //virtual bool draw_rect(double x1, double y1, double x2, double y2) override;
       //virtual bool DrawRectangle(const ::rectd & rectd) override;
-      //virtual bool FillRectangle(i32 x1, i32 y1, i32 x2, i32 y2) override;
+      //virtual bool FillRectangle(double x1, double y1, double x2, double y2) override;
       //virtual bool FillRectangle(const ::rectd & rectd) override;
-      //bool roundRect(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3) override;
-      bool round_rect(const ::rectd & rectd, const ::pointd & pointd) override;
+      //bool roundRect(double x1, double y1, double x2, double y2, double x3, double y3) override;
+      bool round_rect(const ::rectd & rectd, double dRadius) override;
 
       // Bitmap Functions
-      //bool PatBlt(i32 x, i32 y, i32 nWidth, i32 nHeight) override;
+      //bool PatBlt(double x, double y, double nWidth, double nHeight) override;
 
 
-      bool draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::pointd & pointSrc) override;
-      bool stretch_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc) override;
+      bool _draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::pointd & pointSrc) override;
+      bool _stretch_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc) override;
 
 
-      ::color GetPixel(i32 x, i32 y) override;
+      ::color GetPixel(double x, double y) override;
       ::color GetPixel(const ::pointd & pointd) override;
-      ::color SetPixel(i32 x, i32 y, const ::color & color) override;
+      ::color SetPixel(double x, double y, const ::color & color) override;
       ::color SetPixel(const ::pointd & pointd, const ::color & color) override;
-//      bool FloodFill(i32 x, i32 y, const ::color & color) override;
-//      bool ExtFloodFill(i32 x, i32 y, const ::color & color, ::u32 nFillType) override;
-//      bool MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
-//                   i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask,
+//      bool FloodFill(double x, double y, const ::color & color) override;
+//      bool ExtFloodFill(double x, double y, const ::color & color, ::u32 nFillType) override;
+//      bool MaskBlt(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc,
+//                   double xSrc, double ySrc, ::draw2d::bitmap& maskBitmap, double xMask, double yMask,
 //                   u32 dwRop) override;
-//      bool PlgBlt(POINTD * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
-//                  i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask) override;
-      bool SetPixelV(i32 x, i32 y, const ::color & color) override;
+//      bool PlgBlt(::pointd * lpPoint, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc,
+//                  double nWidth, double nHeight, ::draw2d::bitmap& maskBitmap, double xMask, double yMask) override;
+      bool SetPixelV(double x, double y, const ::color & color) override;
       bool SetPixelV(const ::pointd & pointd, const ::color & color) override;
 //      bool GradientFill(TRIVERTEX* pVertices, WINULONG nVertices,
 //                        void * pMesh, WINULONG nMeshElements, u32 dwMode) override;
-//      bool TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight,
-//                          ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight,
+//      bool TransparentBlt(double xDest, double yDest, i32 nDestWidth, i32 nDestHeight,
+//                          ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, i32 nSrcWidth, i32 nSrcHeight,
 //                          ::u32 clrTransparent) override;
 
-      virtual bool alpha_blendRaw(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, double dOpacity) override;
+      virtual bool _alpha_blend_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc, double dOpacity) override;
 
-      /*bool alpha_blend(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight,
-        ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight,
+      /*bool alpha_blend(double xDest, double yDest, i32 nDestWidth, i32 nDestHeight,
+        ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, i32 nSrcWidth, i32 nSrcHeight,
         BLENDFUNCTION blend);*/
 
       // Text Functions
-      virtual bool text_out(i32 x, i32 y, const char * lpszString, strsize nCount) override;
-      virtual bool text_out(i32 x, i32 y, const string & str) override;
-      virtual bool TextOutRaw(double x, double y, const string & str) override;
+      virtual bool text_out(double x, double y, const char * lpszString, strsize nCount) override;
       virtual bool text_out(double x, double y, const string & str) override;
-      virtual bool ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rectd & rectd, const char * lpszString, strsize nCount, int * lpDxWidths) override;
-      virtual bool ExtTextOut(i32 x, i32 y, ::u32 nOptions, const ::rectd & rectd, const string & str, int * lpDxWidths) override;
-      virtual sized TabbedTextOut(i32 x, i32 y, const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
-      virtual sized TabbedTextOut(i32 x, i32 y, const string & str, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
+      virtual bool TextOutRaw(double x, double y, const string & str) override;
+      ///virtual bool text_out(double x, double y, const string & str) override;
+      virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectd & rectd, const char * lpszString, strsize nCount, int * lpDxWidths) override;
+      virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectd & rectd, const string & str, int * lpDxWidths) override;
+      virtual sized TabbedTextOut(double x, double y, const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
+      virtual sized TabbedTextOut(double x, double y, const string & str, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
 
 #if defined(USE_PANGO)
       //virtual bool internal_draw_text_cairo(const block & block, const ::rectd & rectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, PFN_CAIRO_TEXT pfnText = nullptr);
@@ -367,7 +367,7 @@ namespace draw2d_cairo
       sized GetTabbedTextExtent(const string & str, count nTabPositions, int * lpnTabStopPositions) override;
       sized GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions) override;
       sized GetOutputTabbedTextExtent(const string & str, count nTabPositions, int * lpnTabStopPositions) override;
-      //virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, i32), LPARAM lpData, i32 nCount, i32 x, i32 y, i32 nWidth, i32 nHeight) override;
+      //virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, i32), LPARAM lpData, i32 nCount, double x, double y, double nWidth, double nHeight) override;
       ::u32 GetTextAlign() override;
       ::u32 SetTextAlign(::u32 nFlags) override;
       i32 GetTextFace(count nCount, char * lpszFacename) override;
@@ -383,8 +383,8 @@ namespace draw2d_cairo
 
 //#if (_WIN32_WINNT >= 0x0500)
 //
-//      bool GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt LPSIZE32 LPSIZE32) override;
-//      bool GetTextExtentPointI(LPWORD pgiIn, i32 cgi, __out_opt LPSIZE32 LPSIZE32) override;
+//      bool GetTextExtentExPointI(LPWORD pgiIn, i32 cgi, i32 nMaxExtent, LPINT lpnFit, LPINT alpDx, __out_opt ::sized ::sized) override;
+//      bool GetTextExtentPointI(LPWORD pgiIn, i32 cgi, __out_opt ::sized ::sized) override;
 //
 //#endif
 
@@ -462,7 +462,7 @@ namespace draw2d_cairo
 
       float GetMiterLimit() override;
       bool SetMiterLimit(float fMiterLimit) override;
-      //i32 GetPath(POINTD * lpPoints, LPBYTE lpTypes, count nCount) override;
+      //i32 GetPath(::pointd * lpPoints, LPBYTE lpTypes, count nCount) override;
       bool SelectClipPath(i32 nMode) override;
 
       // Misc Helper Functions
@@ -472,10 +472,10 @@ namespace draw2d_cairo
 //                        ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr) override;
       //void fill_rect(const RECT64 * rectd, color32_t clr) override;
       //void fill_rect(const ::rectd & rectd, const ::color & color) override;
-      void fill_rect(const ::rectd & rectd, const ::color & color) override;
-      //void fill_rect(i32 x, i32 y, i32 cx, i32 cy, color32_t clr) override;
-      void draw_3drect(const ::rectd & rectd, const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
-      //void draw3d_rect(i32 x, i32 y, i32 cx, i32 cy,
+      bool fill_rect(const ::rectd & rectd, const ::color & color) override;
+      //void fill_rect(double x, double y, double cx, double cy, color32_t clr) override;
+      bool draw_3drect(const ::rectd & rectd, const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
+      //void draw3d_rect(double x, double y, double cx, double cy,
       //              color32_t clrTopLeft, color32_t clrBottomRight) override;
 
 
@@ -524,13 +524,9 @@ namespace draw2d_cairo
       bool _set(___shape * pshape);
       bool _set(const enum_shape & eshape);
       bool _set(const ::arc & arc);
-      bool _set(const ::line & line);
       bool _set(const ::lined & line);
-      bool _set(const ::lines & lines);
       bool _set(const ::linesd & lines);
       bool _set(const ::rectd & rectd);
-      bool _set(const ::rectd & rectd);
-      bool _set(const ::polygon & polygon);
       bool _set(const ::polygond & polygond);
       bool _set(const ::text_out & textout);
       bool _set(const ::draw_text & textout);

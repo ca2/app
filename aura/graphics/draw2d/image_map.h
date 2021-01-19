@@ -3,7 +3,7 @@
 
 
 class image_map :
-   virtual public isomap < enum_image, ::image_pointer >
+   virtual public map < enum_image, ::image_pointer >
 {
 public:
 
@@ -11,7 +11,7 @@ public:
 
 
 class CLASS_DECL_AURA size_image :
-   virtual public keymap < size, ::image_pointer >
+   virtual public map < size, ::image_pointer >
 {
 public:
 
@@ -23,7 +23,7 @@ public:
 };
 
 
-using image_descriptor_map_base = keymap < image_header, ::image_pointer >;
+using image_descriptor_map_base = map < image_header, ::image_pointer >;
 
 
 class CLASS_DECL_AURA image_descriptor_map :

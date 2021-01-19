@@ -7,6 +7,18 @@
 CLASS_DECL_ACME ::millis os_get_system_update_poll_time(const ::id & id);
 
 
+namespace promise
+{
+
+
+   class context;
+
+   using matter_context = map < __pointer(::matter), __pointer(::promise::context) >;
+
+
+} // namespace promise
+
+
 #include "acme/primitive/promise/subject.h"
 
 

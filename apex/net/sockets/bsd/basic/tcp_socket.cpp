@@ -2051,7 +2051,7 @@ namespace sockets
       UNREFERENCED_PARAMETER(rwflag);
       socket *p0 = static_cast<socket *>(userdata);
       tcp_socket *point = dynamic_cast<tcp_socket *>(p0);
-      string pw = point ? point -> GetPassword() : "";
+      string pw = point ? point -> GetPassword().c_str() : "";
       if(num < pw.get_length() + 1)
       {
          return 0;

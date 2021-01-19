@@ -8,7 +8,7 @@ namespace promise
    CLASS_DECL_ACME int os_get_system_update_poll_time(const ::id &id);
 
 
-   using matter_context = isomap<__pointer(::matter), __pointer(::promise::context)>;
+   using matter_context = map<__pointer(::matter), __pointer(::promise::context)>;
 
 
    class CLASS_DECL_ACME handler :

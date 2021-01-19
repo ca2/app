@@ -163,7 +163,7 @@ namespace file
    public:
 
 
-      typedef isomap < watch_id, __pointer(watch)> watch_map;
+      typedef ::map < watch_id, __pointer(watch) > watch_map;
 
       watch_map            m_watchmap;
 

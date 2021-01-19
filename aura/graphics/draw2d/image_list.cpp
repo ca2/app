@@ -115,7 +115,7 @@ i32 image_list::get_image_count() const
 }
 
 
-bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point & point, i32 iFlag)
+bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::pointd & point, i32 iFlag)
 {
 
    sync_lock sl(mutex());
@@ -126,9 +126,9 @@ bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point &
       UNREFERENCED_PARAMETER(iFlag);
 
       return pgraphics->draw(
-         { point, m_size },
-         m_pimage->get_graphics(), 
-         {iImage * m_size.cx, 0});
+         rectd( point, m_size ),
+         m_pimage, 
+         pointd((double) (iImage * m_size.cx), 0.));
 
    }
    catch(...)
@@ -142,7 +142,7 @@ bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point &
 }
 
 
-bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point & point, i32 iFlag, byte alpha)
+bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::pointd & point, i32 iFlag, byte alpha)
 {
 
    sync_lock sl(mutex());
@@ -157,12 +157,10 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point 
 }
 
 
-bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point & point, size sz, const ::point & pointOffsetParam, i32 iFlag)
+bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::pointd & point, ::sized sz, const ::pointd & pointOffsetParam, i32 iFlag)
 {
 
-   ::point pointOffset(pointOffsetParam);
-
-   //ASSERT(iImage >= 0 && iImage < get_image_count());
+   ::pointd pointOffset(pointOffsetParam);
 
    if(iImage < 0)
    {
@@ -187,7 +185,10 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point 
    pointOffset.x = min(m_size.cx, pointOffset.x);
    pointOffset.y = min(m_size.cy, pointOffset.y);
 
-   return pgraphics->draw({ point, sz }, m_pimage, {iImage * m_size.cx + pointOffset.x, pointOffset.y});
+   return pgraphics->draw(
+      rectd(point, sz ), 
+      m_pimage,
+      pointd(iImage * m_size.cx + pointOffset.x, pointOffset.y));
 
 }
 
@@ -247,9 +248,12 @@ i32 image_list::add(::draw2d::icon * picon, int iItem)
 
    iItem = reserve_image(iItem);
 
+   auto rect = ::rectd_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
+   
    m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   m_pimage->g()->fill_solid_rect_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy, 0);
+   m_pimage->g()->fill_rect(rect, 0);
+
 
 //#ifdef _UWP
 //
@@ -257,7 +261,13 @@ i32 image_list::add(::draw2d::icon * picon, int iItem)
 //
 //#else
 
-   m_pimage->get_graphics()->draw({ { iItem * m_size.cx , 0 }, m_size }, picon);
+   auto pointDst = ::pointd((iItem * m_size.cx), 0.);
+
+   auto sizeDst = m_size;
+
+   auto rectDst = ::rectd(pointDst, sizeDst);
+
+   m_pimage->get_graphics()->draw(rectDst, picon);
 
 //#endif
 
@@ -321,7 +331,7 @@ i32 image_list::add_file(payload varFile, int iItem)
          m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
          m_pimage->get_graphics()->draw(
-            { ::point(iItem * m_size.cx, 0),  m_size },
+            ::rectd(::point(iItem * m_size.cx, 0),  m_size ),
             pimage->get_graphics());
 
       });
@@ -347,12 +357,14 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 
    m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   m_pimage->get_graphics()->fill_solid_rect_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy, ARGB(0, 0, 0, 0));
+   auto rect = rectd_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
+
+   m_pimage->get_graphics()->fill_rect(rect, ARGB(0, 0, 0, 0));
 
    m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
    m_pimage->get_graphics()->draw(
-      {::point(iItem * m_size.cx, 0), m_size}, pimage, {x, y});
+      ::rectd(::pointd(iItem * m_size.cx, 0), m_size), pimage, ::pointd((double) x, (double) y));
 
    return iItem;
 

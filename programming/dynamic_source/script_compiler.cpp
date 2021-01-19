@@ -16,7 +16,7 @@
 #include <ctype.h>
 #endif
 
-::u32 RunSilent(const char* strFunct, char* strstrParams);
+::u32 RunSilent(const char* strFunct, const char* strstrParams);
 
 
 

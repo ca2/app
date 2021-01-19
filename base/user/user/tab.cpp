@@ -560,9 +560,9 @@ namespace user
 
       //point pointViewportOffset = pgraphics->GetViewportOrg();
 
-      ::rect rClip;
+      ::rectd rClip;
 
-      pgraphics->GetClipBox(rClip);
+      pgraphics->get_clip_box(&rClip);
 
       __pointer(::base::style) pstyle = get_style(pgraphics);
 
@@ -3317,7 +3317,7 @@ namespace user
                if (pchild)
                {
 
-                  string strTitle = pchild->value("place_child_title");
+                  string strTitle(pchild->value("place_child_title"));
 
                   ppane->set_title(strTitle);
 

@@ -79,7 +79,9 @@ namespace usernet
 
       if(doc.load(Context.file().as_string(Context.dir().appdata()/"proxy.xml")))
       {
-         string strProxy = doc.root()->attribute("server");
+         
+         string strProxy(doc.root()->attribute("server"));
+
          i32 iProxyPort = doc.root()->attribute("port");
          
          auto pinteraction = m_pview->get_child_by_name("server");

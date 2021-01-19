@@ -30,9 +30,8 @@ bool _shape < SHAPE, ESHAPE >::contains(const ::POINT32 & point) const
    }
 
 
-      template < typename SHAPE, enum_shape ESHAPE >
-bool _shape < SHAPE, ESHAPE >::contains(const ::POINTD & point) const
-
+   template < typename SHAPE, enum_shape ESHAPE >
+   bool _shape < SHAPE, ESHAPE >::contains(const ::POINTD & point) const
    {
 
       return ::shape_contains(&m_shape, point);

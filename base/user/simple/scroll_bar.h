@@ -15,11 +15,11 @@ public:
    ::rect                           m_rectTrack;
    ::rect                           m_rectA;
    ::rect                           m_rectB;
-   point                            m_ptaA[4]; // pontos da primeira seta
-   point                            m_ptaB[4]; // pontos da segunda seta
+   pointd                           m_ptaA[4]; // pontos da primeira seta
+   pointd                           m_ptaB[4]; // pontos da segunda seta
    ::draw2d::region_pointer         m_rgnA; // região da primeira seta
    ::draw2d::region_pointer         m_rgnB; // região da segunda seta
-   ::u32                             m_uiTimer;
+   ::u32                            m_uiTimer;
 
 
    simple_scroll_bar();

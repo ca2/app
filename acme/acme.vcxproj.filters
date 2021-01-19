@@ -2390,6 +2390,15 @@
     <ClInclude Include="user\_style.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
+    <ClInclude Include="memory\_impl.h">
+      <Filter>Header Files\memory</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\promise\_.h">
+      <Filter>Header Files\primitive\promise</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\payload.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">
@@ -2666,9 +2675,6 @@
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\time_span.cpp">
-      <Filter>Source Files\primitive\datetime</Filter>
-    </ClCompile>
-    <ClCompile Include="primitive\datetime\value.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
     <ClCompile Include="primitive\datetime\zonetime.cpp">
@@ -3519,6 +3525,9 @@
     </ClCompile>
     <ClCompile Include="platform\debug.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="primitive\datetime\payload.cpp">
+      <Filter>Source Files\primitive\datetime</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

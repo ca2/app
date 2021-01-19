@@ -50,7 +50,7 @@ public:
    // sort clockwise
    void sort();
 
-   bool bounding_rect_contains(const POINT_TYPE & point) const;
+   bool bounding_rectangle_contains(const POINT_TYPE & point) const;
 
    polygon_base& operator = (const polygon_base& polygon);
    polygon_base& operator = (polygon_base&& polygon);
@@ -77,7 +77,7 @@ inline polygon_base < POINT_TYPE >::polygon_base(polygon_base&& polygon) :
 }
 
 template < typename POINT_TYPE >
-inline bool polygon_base < POINT_TYPE >::bounding_rect_contains(const POINT_TYPE & point) const
+inline bool polygon_base < POINT_TYPE >::bounding_rectangle_contains(const POINT_TYPE & point) const
 {
 
    return this->bounding_rect().contains(point);

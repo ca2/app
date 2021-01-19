@@ -86,7 +86,8 @@ namespace aura
 
 
    application::application(const char * pszAppId) :
-      ::apex::application(pszAppId)
+      ::apex::application(pszAppId)//,
+      //m_semCompiler(64, 64)
    {
 
       m_pauraapplication = this;
@@ -350,7 +351,9 @@ namespace aura
       if (pcreate->m_ecommand == ::command_protocol)
       {
 
-         string str = pcreate->m_varFile;
+         string str;
+         
+         str = pcreate->m_varFile;
 
          if (!m_pinterprocessintercommunication)
          {

@@ -16,9 +16,9 @@
 #ifdef WINDOWS_DESKTOP
 #include "aura/os/windows/windowing.h"
 #include "aura/node/windows/system_interaction_impl.h"
-
-#elif defined(_UWP)
 #define MESSAGE_WINDOW_PARENT HWND_MESSAGE
+#elif defined(_UWP)
+
 #include "aura/os/uwp/_uwp.h"
 
 #endif // _UWP
@@ -1154,6 +1154,7 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &interaction::_001OnCreate);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::_001OnDestroy);
+      MESSAGE_LINK(e_message_post_user, pchannel, this, &interaction::_001OnPostUser);
       MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
 
       primitive::install_message_routing(pchannel);
@@ -1493,6 +1494,32 @@ namespace user
       user_interaction_on_destroy();
 
       pmessage->previous();
+
+   }
+
+
+   void interaction::_001OnPostUser(::message::message * pmessage)
+   {
+
+      if (pmessage->m_wparam == 1)
+      {
+
+         __pointer(::message::base) pbase(pmessage->m_lparam);
+
+         if (pbase)
+         {
+
+            message_handler(pbase);
+
+         }
+
+      }
+      else
+      {
+
+         __throw(invalid_argument_exception);
+
+      }
 
    }
 
@@ -2246,7 +2273,7 @@ namespace user
 
                _001ScreenToClient(rectClient);
 
-               m_pshapeaClip->add_item(__new(rect_shape(rectClient)));
+               m_pshapeaClip->add_item(__new(rectd_shape(::rectd(rectClient))));
 
                m_pshapeaClip->add_item(__new(intersect_clip_shape()));
 
@@ -2469,7 +2496,11 @@ namespace user
 
             _001OnClip(pgraphics);
 
-            get_client_rect(pgraphics->m_rectDraw);
+            ::rect rectDraw;
+
+            get_client_rect(rectDraw);
+
+            __copy(pgraphics->m_rectDraw, rectDraw);
 
             _001OnDraw(pgraphics);
 
@@ -2897,7 +2928,7 @@ namespace user
 
       auto psession = Session;
 
-      if (!is_null_ref(Session) && psession->m_bDrawCursor)
+      if (!is_null(Session) && psession->m_bDrawCursor)
       {
 
          {
@@ -8403,7 +8434,7 @@ namespace user
          if (rectPlace.size().any_lt(get_window_minimum_size()))
          {
 
-            rectPlace = get_window_minimum_size();
+            rectPlace.set_size(get_window_minimum_size());
 
          }
 
@@ -10156,7 +10187,7 @@ restart:
          else
          {
 
-            auto& pthread = value("transparent_mouse_event_thread").cast<::thread>();
+            auto pthread = value("transparent_mouse_event_thread").cast<::thread>();
 
             if (pthread)
             {
@@ -11613,7 +11644,7 @@ restart:
    void interaction::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      set_need_redraw();
+      //set_need_redraw();
 
    }
 
@@ -14973,7 +15004,7 @@ restart:
    }
 
 
-   void interaction::get_simple_drop_down_open_arrow_polygon(point_array& pointa)
+   void interaction::get_simple_drop_down_open_arrow_polygon(pointd_array& pointa)
    {
 
       ::rect rectDropDown;

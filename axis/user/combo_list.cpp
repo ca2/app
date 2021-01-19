@@ -163,9 +163,9 @@ namespace user
 
       }
 
-      ::rect rectClipBox;
+      ::rectd rectClipBox;
 
-      pgraphics->GetClipBox(rectClipBox);
+      pgraphics->get_clip_box(&rectClipBox);
 
       pgraphics->reset_clip();
 
@@ -371,14 +371,14 @@ namespace user
          if (size.cx > psize->cx)
          {
 
-            psize->cx = size.cx;
+            psize->cx = (LONG)size.cx;
 
          }
 
          if (size.cy > m_dItemHeight)
          {
 
-            m_dItemHeight = size.cy;
+            m_dItemHeight = (LONG)size.cy;
 
             if (size.cy != 18)
             {
@@ -436,7 +436,7 @@ namespace user
    i32 combo_list::_001GetItemHeight() const
    {
 
-      return m_dItemHeight + m_iPadding * 2;
+      return (::i32)(m_dItemHeight + m_iPadding * 2);
 
    }
 

@@ -157,7 +157,7 @@ namespace filemanager
 
                pfolder->m_strName = pnodeItem->attribute("name");
 
-               string strType = pnodeItem->attribute("type");
+               string strType(pnodeItem->attribute("type"));
 
                if(strType == "normal")
                {

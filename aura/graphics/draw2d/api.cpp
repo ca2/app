@@ -17,14 +17,12 @@ namespace draw2d
    }
 
 
-   void api::DrawBeziers(
-   ::draw2d::graphics_pointer & pgraphics,
-   POINT32 *             ppoints,
-
-   i32                  iCount,
-   double               dRateX,
-   POINT32 *               ppointOffset)
-
+   void api::draw_beziers(
+      ::draw2d::graphics_pointer &  pgraphics,
+      ::pointd *                    ppoints,
+      i32                           iCount,
+      double                        dRateX,
+      ::pointd *                    ppointOffset)
    {
 
       ::rect clipRect;
@@ -38,24 +36,23 @@ namespace draw2d
       pgraphics->ScaleViewportExt((i32)dRateX, 1, 1, 1);
 
       pgraphics->begin_path();
-      pgraphics->PolyBezier(ppoints, iCount);
+      pgraphics->poly_bezier(ppoints, iCount);
 
       pgraphics->end_path();
       pgraphics->stroke_path();
 
-      pgraphics->SetWindowExt(viewportExt);
+      pgraphics->set_window_ext(viewportExt);
       pgraphics->SetViewportOrg(viewportOrg);
 
    }
 
-   void api::DrawAndFillBeziers(
-   ::draw2d::graphics_pointer & pgraphics,
-   POINT32 *             ppoints,
 
+   void api::draw_and_fill_beziers(
+   ::draw2d::graphics_pointer & pgraphics,
+   ::pointd *             ppoints,
    i32                  iCount,
    double               dRateX,
-   POINT32 *               ppointOffset)
-
+   ::pointd *               ppointOffset)
    {
 
       ::rect clipRect;
@@ -72,23 +69,23 @@ namespace draw2d
       pgraphics->ScaleViewportExt((i32)dRateX, 1, 1, 1);
 
       pgraphics->begin_path();
-      pgraphics->PolyBezier(ppoints, iCount);
+      pgraphics->poly_bezier(ppoints, iCount);
 
       pgraphics->end_path();
       pgraphics->stroke_and_fill_path();
 
-      pgraphics->SetWindowExt(viewportExt);
+      pgraphics->set_window_ext(viewportExt);
       pgraphics->SetViewportOrg(viewportOrg);
 
    }
 
-   void api::DrawAndFillBeziers(
+   void api::draw_and_fill_beziers(
    ::draw2d::graphics_pointer & pgraphics,
-   array<point_array, point_array &> *
+   array<pointd_array, pointd_array &> *
    pglyph,
 
    double               dRateX,
-   POINT32 *               ppointOffset)
+   pointd *               ppointOffset)
 
    {
 
@@ -108,25 +105,26 @@ namespace draw2d
       for (i32 i = 0; i < pglyph->get_size(); i++)
 
       {
-         pgraphics->PolyBezier(pglyph->element_at(i).get_data(), (i32)pglyph->element_at(i).get_size());
+         pgraphics->poly_bezier(pglyph->element_at(i).get_data(), (i32)pglyph->element_at(i).get_size());
 
       }
 
-      pgraphics->SetWindowExt(viewportExt);
+      pgraphics->set_window_ext(viewportExt);
       pgraphics->SetViewportOrg(viewportOrg);
 
    }
 
-   void api::EmbossedTextOut(
-   ::draw2d::graphics_pointer &  pgraphics,
-   const rect &                  rect,
-   double                        dRateX,
-   double                        dHeight,
-   const char *                  psz,
-   int *                         piCharsPositions,
-   i32                           iCharsPositions,
-   i32                           iOffset)
+   void api::embossed_text_out(
+   ::draw2d::graphics_pointer &     pgraphics,
+   const rectd &                    rect,
+   double                           dRateX,
+   double                           dHeight,
+   const char *                     psz,
+   int *                            piCharsPositions,
+   i32                              iCharsPositions,
+   i32                              iOffset)
    {
+
       ::rect clipRect;
 
 
@@ -165,7 +163,7 @@ namespace draw2d
    }
 
 
-   void api::EmbossedTextOut(
+   void api::embossed_text_out(
    ::draw2d::graphics_pointer & pgraphics,
    const char *   psz,
    i32            iLeft,
@@ -226,9 +224,9 @@ namespace draw2d
 //         nullptr));
    }
 
-   void api::SimpleTextOut(
+   void api::simple_text_out(
    ::draw2d::graphics_pointer &  pgraphics,
-   const rect &                  pcrect,
+   const rectd &                 pcrect,
    double                        dRateX,
    double                        dHeight,
    const char *                  psz,
@@ -254,7 +252,7 @@ namespace draw2d
    }
 
 
-   void api::EmbossedTextOut(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, double dHeight, double dRateX, const char * psz)
+   void api::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::rectd & rect, double dHeight, double dRateX, const char * psz)
    {
 
       pgraphics->text_out(rect.left, rect.top, psz);

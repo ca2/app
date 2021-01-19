@@ -651,7 +651,9 @@ namespace apex
       if (pcreate->m_ecommand == ::command_protocol)
       {
 
-         string str = pcreate->m_varFile;
+         string str;
+         
+         str = pcreate->m_varFile;
 
             // apex commented
             //__throw(todo("interaction"));
@@ -4354,7 +4356,11 @@ retry_license:
    string application::get_local_mutex_id()
    {
 
-      return value("local_mutex_id");
+      string str;
+
+      str = value("local_mutex_id");
+
+      return str;
 
    }
 
@@ -4362,7 +4368,11 @@ retry_license:
    string application::get_global_mutex_id()
    {
 
-      return value("global_mutex_id");
+      string str;
+
+      str = value("global_mutex_id");
+
+      return str;
 
    }
 
@@ -10795,13 +10805,15 @@ namespace apex
    string application::as_string(const payload& payload)
    {
 
-      if (payload.get_type() == ::e_type_string)
+      auto path = payload.get_file_path();
+
+      if(path.has_char())
       {
 
-         if (is_url(payload))
+         if (::is_url(path) || ::file_exists(path))
          {
 
-            return file().as_string(payload.get_file_path());
+            return file().as_string(path);
 
          }
 

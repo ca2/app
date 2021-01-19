@@ -27,7 +27,7 @@ namespace user
    }
 
 
-   void scroll_bar::send_scroll_message(::u32 nSBCode)
+   void scroll_bar::post_scroll_message(::u32 nSBCode)
    {
 
       auto pscroll = __new(::message::scroll);
@@ -62,7 +62,7 @@ namespace user
 
       __pointer(::user::interaction) puiParent = get_parent();
 
-      puiParent->send(pscroll);
+      puiParent->post(pscroll);
 
    }
 

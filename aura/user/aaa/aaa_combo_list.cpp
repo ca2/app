@@ -89,7 +89,7 @@ namespace user
 
       ::rect rectClipBox;
 
-      pgraphics->GetClipBox(rectClipBox);
+      pgraphics->get_clip_box(rectClipBox);
 
       pgraphics->SelectClipRgn(nullptr);
 

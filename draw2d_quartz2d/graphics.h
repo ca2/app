@@ -160,13 +160,13 @@ namespace draw2d_quartz2d
       point GetWindowOrg() override;
       point SetWindowOrg(i32 x, i32 y) override;
       point SetWindowOrg(const ::point & point) override;
-      point OffsetWindowOrg(i32 nWidth, i32 nHeight) override;
+      point offset_window_org(i32 nWidth, i32 nHeight) override;
 
       // Window extent
       size GetWindowExt() override;
-      virtual size SetWindowExt(i32 cx, i32 cy) override;
-      size SetWindowExt(const ::size & size) override;
-      virtual size ScaleWindowExt(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom) override;
+      virtual size set_window_ext(i32 cx, i32 cy) override;
+      size set_window_ext(const ::size & size) override;
+      virtual size scale_window_ext(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom) override;
 
       // Coordinate Functions
       void DPtoLP(POINT32 * lpPoints, i32 nCount = 1) const;
@@ -189,7 +189,7 @@ namespace draw2d_quartz2d
       bool PaintRgn(::draw2d::region* pRgn) override;
 
       // Clipping Functions
-      virtual i32 GetClipBox(RECT32 * prect) override;
+      virtual i32 get_clip_box(RECT32 * prect) override;
       //virtual bool PtVisible(i32 x, i32 y) override;
       //virtual bool PtVisible(const ::point & point) override;
       //virtual bool RectVisible(const ::rect & rect) override;
@@ -227,7 +227,7 @@ namespace draw2d_quartz2d
 //      virtual bool Arc(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4) override;
       virtual bool Arc(double x, double y, double w, double h, angle start, angle end) override;
 //      virtual bool Arc(const ::rectd & rect, const ::pointd & pointStart, const ::pointd & pointEnd) override;
-      virtual bool Polyline(const POINT32* lpPoints, count nCount) override;
+      virtual bool polyline(const POINT32* lpPoints, count nCount) override;
 
       virtual bool AngleArc(i32 x, i32 y, i32 nRadius, angle fStartAngle, angle fSweepAngle) override;
 //      virtual bool ArcTo(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3, i32 x4, i32 y4) override;
@@ -236,12 +236,12 @@ namespace draw2d_quartz2d
       virtual i32 SetArcDirection(i32 nArcDirection) override;
 
       bool PolyDraw(const POINT32* lpPoints, const byte* lpTypes, i32 nCount);
-      bool PolylineTo(const POINT32* lpPoints, i32 nCount);
-      bool PolyPolyline(const POINT32* lpPoints,
+      bool polyline_to(const POINT32* lpPoints, i32 nCount);
+      bool poly_polyline(const POINT32* lpPoints,
                         const ::u32* lpPolyPoints, i32 nCount);
 
-      bool PolyBezier(const POINT32* lpPoints, i32 nCount);
-      bool PolyBezierTo(const POINT32* lpPoints, i32 nCount);
+      bool poly_bezier(const POINT32* lpPoints, i32 nCount);
+      bool poly_bezier_to(const POINT32* lpPoints, i32 nCount);
 
       // Simple Drawing Functions
       virtual bool fill_rect(const ::rectd & rect, ::draw2d::brush* pbrush) override;

@@ -904,13 +904,13 @@ namespace experience_lite
 
       pgraphics->SelectObject(penArrow);
 
-      pgraphics->Polyline(pbar->m_ptaA, 3);
+      pgraphics->polyline(pbar->m_ptaA, 3);
 
       penArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(::user::e_element_scrollbar_rectB));
 
       pgraphics->SelectObject(penArrow);
 
-      pgraphics->Polyline(pbar->m_ptaB, 3);
+      pgraphics->polyline(pbar->m_ptaB, 3);
 
 
 

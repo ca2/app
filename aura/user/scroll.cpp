@@ -579,7 +579,7 @@ namespace user
 
       m_pscrollbarVert->m_scrollinfo.nPos =  (i32) nPos;
 
-      m_pscrollbarVert->send_scroll_message(SB_THUMBPOSITION);
+      m_pscrollbarVert->post_scroll_message(SB_THUMBPOSITION);
 
       pmousewheel->m_lresult = 0;
 

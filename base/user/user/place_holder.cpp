@@ -45,6 +45,13 @@ namespace user
 
       auto puiptraChild = m_puiptraChild;
 
+      if (!puiptraChild)
+      {
+
+         return false;
+
+      }
+
       if (puiptraChild->contains_interaction(pinteraction))
       {
 
@@ -52,13 +59,6 @@ namespace user
 
       }
 
-      //auto puiptraChild = m_puiptraChild;
-      if (puiptraChild->has_no_interaction())
-      {
-
-         return false;
-
-      }
 
       return puiptraChild->first_interaction()->can_merge(pinteraction);
 
@@ -129,18 +129,17 @@ namespace user
    __pointer(place_holder) place_holder::place_hold(::user::interaction * puiChild)
    {
 
+      if (::is_null(puiChild))
       {
 
-         //sync_lock sl(mutex_children());
+         return this;
 
-         auto puiptraChild = m_puiptraChild;
+      }
 
-         if (!puiptraChild)
-         {
+      auto puiptraChild = m_puiptraChild;
 
-            return nullptr;
-
-         }
+      if (puiptraChild)
+      {
 
          if (puiptraChild->contains_interaction(puiChild))
          {
@@ -148,8 +147,6 @@ namespace user
             return this;
 
          }
-
-         //auto puiptraChild = m_puiptraChild;
 
          for (auto & puiChildOld : puiptraChild->interactiona())
          {
@@ -160,12 +157,6 @@ namespace user
 
          m_puiptraChild.release();
 
-      }
-
-      if (puiChild == nullptr)
-      {
-
-         return this;
 
       }
 

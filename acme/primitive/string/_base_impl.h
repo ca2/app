@@ -1047,7 +1047,8 @@ strsize string_base < TYPE_CHAR >::replace(CHAR_TYPE chOld, CHAR_TYPE chNew, str
 }
 
 template < typename TYPE_CHAR >
-strsize string_base < TYPE_CHAR >::replace(const CHAR_TYPE* pszOld, const CHAR_TYPE* pszNew, strsize iStart)
+template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+strsize string_base < TYPE_CHAR >::replace(PCHAR1 pszOld, PCHAR2 pszNew, strsize iStart)
 {
    // can't have is_empty or nullptr pszOld
 
@@ -1110,8 +1111,10 @@ strsize string_base < TYPE_CHAR >::replace(const CHAR_TYPE* pszOld, const CHAR_T
    return(nCount);
 }
 
+
 template < typename TYPE_CHAR >
-strsize string_base < TYPE_CHAR >::replace_ci(const CHAR_TYPE * pszOld, const CHAR_TYPE * pszNew, strsize iStart)
+template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+strsize string_base < TYPE_CHAR >::replace_ci(PCHAR1 pszOld, PCHAR2 pszNew, strsize iStart)
 {
    // can't have is_empty or nullptr pszOld
 
@@ -1175,7 +1178,8 @@ strsize string_base < TYPE_CHAR >::replace_ci(const CHAR_TYPE * pszOld, const CH
 }
 
 template < typename TYPE_CHAR >
-::count string_base < TYPE_CHAR >::replace_count(const CHAR_TYPE * pszOld, const CHAR_TYPE * pszNew, strsize iStart)
+template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+::count string_base < TYPE_CHAR >::replace_count(PCHAR1 pszOld, PCHAR2 pszNew, strsize iStart)
 {
    // can't have is_empty or nullptr pszOld
 
@@ -1255,7 +1259,8 @@ template < typename TYPE_CHAR >
 
 
 template < typename TYPE_CHAR >
-::count string_base < TYPE_CHAR >::replace_ci_count(const CHAR_TYPE * pszOld, const CHAR_TYPE * pszNew, strsize iStart)
+template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+::count string_base < TYPE_CHAR >::replace_ci_count(PCHAR1 pszOld, PCHAR2 pszNew, strsize iStart)
 {
    // can't have is_empty or nullptr pszOld
 
@@ -2298,9 +2303,10 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim(CHAR_TYPE chTarget)
 
 // remove all leading and trailing occurrences of any of the characters in the string_base < TYPE_CHAR > 'pszTargets'
 template < typename TYPE_CHAR >
-string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim(const CHAR_TYPE* pszTargets)
+template < pointer_castable < TYPE_CHAR > PCHAR >
+string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim(PCHAR szTargets)
 {
-   return(trim_right(pszTargets).trim_left(pszTargets));
+   return(trim_right(szTargets).trim_left(szTargets));
 }
 
 // trimming anything (either side)
@@ -2345,8 +2351,12 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right(CHAR_TYPE chTar
 
 // remove all trailing occurrences of any of the characters in string_base < TYPE_CHAR > 'pszTargets'
 template < typename TYPE_CHAR >
-string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right(const CHAR_TYPE* pszTargets)
+template < pointer_castable < TYPE_CHAR > PCHAR>
+string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_right(PCHAR szTargets)
 {
+
+   const CHAR_TYPE * pszTargets = szTargets;
+
    // if we're not trimming anything, we're not doing any work
    if ((pszTargets == nullptr) || (*pszTargets == 0))
    {
@@ -2416,8 +2426,12 @@ string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left(CHAR_TYPE chTarg
 
 // remove all leading occurrences of any of the characters in string_base < TYPE_CHAR > 'pszTargets'
 template < typename TYPE_CHAR >
-string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left(const CHAR_TYPE* pszTargets)
+template < pointer_castable < TYPE_CHAR > PCHAR >
+string_base < TYPE_CHAR >& string_base < TYPE_CHAR >::trim_left(PCHAR szTargets)
 {
+
+   const CHAR_TYPE * pszTargets = szTargets;
+
    // if we're not trimming anything, we're not doing any work
    if ((pszTargets == nullptr) || (*pszTargets == 0))
    {
@@ -3453,28 +3467,28 @@ inline bool string_ends_eat(STRING & ansistr, const STRING & strSuffix)
 
 
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(const ansichar * pszSrc)
+inline string_base < TYPE_CHAR >::string_base(const ansichar * pansichar)
 {
 
-   ::str::assign(*this, pszSrc);
+   ::str::assign(*this, pansichar);
 
 }
 
 
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(const wd16char * pszSrc)
+inline string_base < TYPE_CHAR >::string_base(const wd16char * pwd16char)
 {
 
-   ::str::assign(*this, pszSrc);
+   ::str::assign(*this, pwd16char);
 
 }
 
 
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(const wd32char * pszSrc)
+inline string_base < TYPE_CHAR >::string_base(const wd32char * pwd32char)
 {
 
-   ::str::assign(*this, pszSrc);
+   ::str::assign(*this, pwd32char);
 
 }
 
@@ -3570,55 +3584,55 @@ inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const na
 
 
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator = (const ansistring & strSrc)
+inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator = (const ansistring & ansistr)
 {
 
-   return ::str::assign(*this, strSrc.c_str());
+   return ::str::assign(*this, ansistr.c_str());
 
 }
 
 
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd16string & strSrc)
+inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd16string & wd16str)
 {
 
-   return ::str::assign(*this, strSrc.c_str());
+   return ::str::assign(*this, wd16str.c_str());
 
 }
 
 
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd32string & strSrc)
+inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd32string & wd32str)
 {
 
-   return ::str::assign(*this, strSrc.c_str());
+   return ::str::assign(*this, wd32str.c_str());
 
 }
 
 
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const ansichar * pszSrc)
+inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const ansichar * pansichar)
 {
 
-   return ::str::assign(*this, pszSrc);
+   return ::str::assign(*this, pansichar);
 
 }
 
 
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd16char * pszSrc)
+inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd16char * pwd16char)
 {
 
-   return ::str::assign(*this, pszSrc);
+   return ::str::assign(*this, pwd16char);
 
 }
 
 
 template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd32char * pszSrc)
+inline string_base < TYPE_CHAR > & string_base < TYPE_CHAR >::operator=(const wd32char * pwd32char)
 {
 
-   return ::str::assign(*this, pszSrc);
+   return ::str::assign(*this, pwd32char);
 
 }
 
@@ -4853,6 +4867,14 @@ inline const TYPE_CHAR * FormatArgument(const string_base < TYPE_CHAR > & value)
 
 
 template < typename TYPE_CHAR >
+inline string_base < TYPE_CHAR >::string_base(const block & block) :
+   string_base((const ansichar *)block.get_data(), (strsize)block.get_size())
+{
+
+
+}
+
+template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR >::string_base(const ansistring & ansistr)
 {
 
@@ -5065,7 +5087,8 @@ bool string_base < TYPE_CHAR >::contains_all_wci(const STRINGA & stra) const
 
 
 template < typename TYPE_CHAR >
-string_base < TYPE_CHAR > string_base < TYPE_CHAR >::Tokenize(const CHAR_TYPE * pszTokens, strsize & iStart) const
+template < pointer_castable < TYPE_CHAR > PCHAR >
+string_base < TYPE_CHAR > string_base < TYPE_CHAR >::Tokenize(PCHAR pszTokens, strsize & iStart) const
 {
    ASSERT(iStart >= 0);
 

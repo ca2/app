@@ -20,7 +20,7 @@ namespace acme
       task_map                                           m_taskmap;
       task_id_map                                        m_taskidmap;
       ::mutex                                            m_mutexTaskOn;
-      isomap < ithread_t, ithread_t >                    m_mapTaskOn;
+      map < ithread_t, ithread_t >                       m_mapTaskOn;
 
 
       ::apex::system *                                   m_papexsystem;

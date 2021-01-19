@@ -10,6 +10,62 @@
 #endif
 
 
+#ifdef WINDOWS_DESKTOP
+
+
+inline auto left(const Gdiplus::Rect * prect) { return prect->X; }
+inline auto top(const Gdiplus::Rect * prect) { return prect->Y; }
+inline auto left(const Gdiplus::RectF * prect) { return prect->X; }
+inline auto top(const Gdiplus::RectF * prect) { return prect->Y; }
+
+inline auto width(const Gdiplus::Rect * prect) { return prect->Width; }
+inline auto height(const Gdiplus::Rect * prect) { return prect->Height; }
+inline auto width(const Gdiplus::RectF * prect) { return prect->Width; }
+inline auto height(const Gdiplus::RectF * prect) { return prect->Height; }
+
+
+template <  typename L, typename T, typename W, typename H >
+inline auto _001SetRectDim(Gdiplus::Rect * p, L l, T t, W w, H h) { return set_XYWH_dim(p, l, t, w, h); }
+template <  typename L, typename T, typename W, typename H >
+inline auto _001SetRectDim(Gdiplus::RectF * p, L l, T t, W w, H h) { return set_XYWH_dim(p, l, t, w, h); }
+
+
+inline auto copy(Gdiplus::Rect * prectTarget, const RECT32 * prectSource) { return ::_001CopyRect(prectTarget, prectSource); }
+inline auto copy(Gdiplus::Rect * prectTarget, const RECTD * prectSource) { return _001CopyRect(prectTarget, prectSource); }
+inline auto copy(Gdiplus::RectF * prectTarget, const RECT32 * prectSource) { return ::_001CopyRect(prectTarget, prectSource); }
+inline auto copy(Gdiplus::RectF * prectTarget, const RECTD * prectSource) { return ::_001CopyRect(prectTarget, prectSource); }
+
+
+inline void copy(Gdiplus::Point * ppoint1, const POINTD * ppoint2)
+{
+
+   ppoint1->X = (::i32)ppoint2->x;
+   ppoint1->Y = (::i32)ppoint2->y;
+
+}
+
+
+inline void copy(Gdiplus::Point * ppoint1, const POINT32 * ppoint2)
+{
+
+   ppoint1->X = (::i32)ppoint2->x;
+   ppoint1->Y = (::i32)ppoint2->y;
+
+}
+
+
+inline void copy(Gdiplus::PointF * ppoint1, const POINTD * ppoint2)
+{
+
+   ppoint1->X = (Gdiplus::REAL)ppoint2->x;
+   ppoint1->Y = (Gdiplus::REAL)ppoint2->y;
+
+}
+
+
+
+#endif
+
 
 template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename SIZE_BASE_TYPE >
 class rect_type :
@@ -25,7 +81,7 @@ public:
    using POINT_ARRAY_TYPE = typename POINT_TYPE::POINT_ARRAY_TYPE;
 
    rect_type() noexcept : rect_type((UNIT_TYPE)0) { }
-   rect_type(e_no_init) noexcept { }
+   rect_type(enum_no_init) noexcept { }
    rect_type(::std::nullptr_t) noexcept : rect_type((UNIT_TYPE)0) {}
    rect_type(UNIT_TYPE l, UNIT_TYPE t, UNIT_TYPE r, UNIT_TYPE b) noexcept { this->left = (UNIT_TYPE)l; this->top = (UNIT_TYPE)t; this->right = (UNIT_TYPE)r; this->bottom = (UNIT_TYPE)b; }
    rect_type(UNIT_TYPE x, UNIT_TYPE y) noexcept : rect_type(x, y, x, y) {}
@@ -48,17 +104,16 @@ public:
    rect_type(const CGRect * p) noexcept : { ::copy(this, p); }
    rect_type(const Gdiplus::RectF* p) noexcept : { ::copy(this, p); }
 #endif
-   rect_type(const POINT_TYPE& point, const SIZE_TYPE& size) noexcept : rect_type(point.x, point.y, point.x + size.cx, point.y + size.cy) {}
-   rect_type(const SIZE_TYPE& size) noexcept : rect_type(nullptr, size) {}
-   rect_type(const POINT_TYPE& point1, const POINT_TYPE& point2) noexcept { top_left() = point1; bottom_right() = point2; }
-   rect_type(const RECT32& t) noexcept { ::copy_rect(this, &t); }
-   rect_type(const RECT64& t) noexcept { ::copy_rect(this, &t); }
-   rect_type(const RECTF& t) noexcept { ::copy_rect(this, &t); }
-   rect_type(const RECTD& t) noexcept { ::copy_rect(this, &t); }
-   rect_type(const RECT32* p) noexcept { ::copy_rect(this, p); }
-   rect_type(const RECT64* p) noexcept { ::copy_rect(this, p); }
-   rect_type(const RECTF* p) noexcept { ::copy_rect(this, p); }
-   rect_type(const RECTD* p) noexcept { ::copy_rect(this, p); }
+   template < primitive_point POINT, primitive_size SIZE >
+   rect_type(const POINT & point, const SIZE & size) noexcept : rect_type((UNIT_TYPE)point.x, (UNIT_TYPE)point.y, (UNIT_TYPE)(point.x + size.cx), (UNIT_TYPE)(point.y + size.cy)) {}
+   template < primitive_size SIZE >
+   rect_type(const SIZE & size) noexcept : rect_type(POINT_TYPE(), size) {}
+   template < primitive_point POINT1, primitive_point POINT2 >
+   rect_type(const POINT1 & point1, const POINT2 & point2) noexcept { top_left() = point1; bottom_right() = point2; }
+   template < primitive_rectangle RECTANGLE >
+   rect_type(const RECTANGLE & t) noexcept { ::copy_rect(this, &t); }
+   template < primitive_rectangle RECTANGLE >
+   rect_type(const RECTANGLE * p) noexcept { ::copy_rect(this, p); }
 
  //UNIT_TYPE width() const noexcept;
  //UNIT_TYPE height() const noexcept;
@@ -78,9 +133,10 @@ public:
  inline bool is_set() const noexcept { return !is_empty(); }
  inline bool is_empty() const noexcept { return ::is_rect_empty(this); }
  inline bool is_null() const noexcept { return ::is_rect_null(this); }
- inline bool contains(const POINT_TYPE& point) const noexcept { return ::rect_contains(this, point.x, point.y); }
- inline bool contains_x(UNIT_TYPE x) const noexcept { return ::rect_contains_x(this, x); }
- inline bool contains_y(UNIT_TYPE y) const noexcept { return ::rect_contains_y(this, y); }
+ template < primitive_point POINT >
+ inline bool contains(const POINT & point) const noexcept { return ::rectangle_contains(this, point.x, point.y); }
+ inline bool contains_x(UNIT_TYPE x) const noexcept { return ::rectangle_contains_x(this, x); }
+ inline bool contains_y(UNIT_TYPE y) const noexcept { return ::rectangle_contains_y(this, y); }
 
 
  POINT_TYPE random_point() {  return POINT_TYPE(__random(this->left, this->right), __random(this->top, this->bottom)); }
@@ -195,8 +251,13 @@ public:
  rect_type& inflate(UNIT_TYPE u) noexcept { return *::rect_inflate_unit(this, u); }
  rect_type& deflate(UNIT_TYPE u) noexcept { return *::rect_deflate_unit(this, u); }
 
- rect_type & offset(const POINT_TYPE & point) noexcept { return *::offset_rect(this, point.x, point.y); }
- rect_type & offset(const SIZE_TYPE& size) noexcept { return *::offset_rect(this, size.cx, size.cy); }
+ template < primitive_point POINT >
+ rect_type & offset(const POINT & point) noexcept { return *::offset_rect(this, point.x, point.y); }
+
+
+ template < primitive_size SIZE >
+ rect_type & offset(const SIZE & size) noexcept { return *::offset_rect(this, size.cx, size.cy); }
+
 
  bool x_intersects(const rect_type& rect) const noexcept { return ::x_intersect_rect((RECT_BASE_TYPE*)nullptr, this, &rect); }
  bool y_intersects(const rect_type& rect) const noexcept { return ::y_intersect_rect((RECT_BASE_TYPE*)nullptr, this, &rect); }
@@ -253,13 +314,20 @@ public:
  bool operator==(const rect_type& rect) const noexcept { return ::rect_equals(this, &rect); }
  bool operator!=(const rect_type& rect) const noexcept { return !operator ==(rect); }
 
- rect_type & operator+=(const POINT_TYPE & point) noexcept { return *::offset_rect(this, point.x, point.y); }
- rect_type & operator+=(const SIZE_TYPE& size) noexcept { return *::offset_rect(this, size.cx, size.cy); }
+ template < primitive_point POINT >
+ rect_type & operator+=(const POINT & point) noexcept { return *::offset_rect(this, point.x, point.y); }
+
+ template < primitive_size SIZE >
+ rect_type & operator+=(const SIZE & size) noexcept { return *::offset_rect(this, size.cx, size.cy); }
+
  rect_type & operator+=(const rect_type & rect) noexcept { return*::rect_inflate(this, &rect); }
  rect_type & operator*=(const rect_type & rect) noexcept { return*::rect_multiply_inline(this, &rect); }
 
- rect_type & operator-=(const POINT_TYPE& point) noexcept { return *::subtract_rect(this, point.x, point.y); }
- rect_type & operator-=(const SIZE_TYPE& size) noexcept { return *::subtract_rect(this, -size.cx, -size.cy); }
+ template < primitive_point POINT >
+ rect_type & operator-=(const POINT & point) noexcept { return *::subtract_rect(this, point.x, point.y); }
+
+ template < primitive_size SIZE >
+ rect_type & operator-=(const SIZE & size) noexcept { return *::subtract_rect(this, -size.cx, -size.cy); }
  rect_type & operator-=(const rect_type & rect) noexcept { return *::rect_deflate(this, &rect); }
 
  rect_type & operator&=(const rect_type & rect) noexcept { ::intersect_rect(this, this, &rect); return*this;}
@@ -306,7 +374,7 @@ public:
    return ::subtract_rect(this, &rectSrc1, &rectSrc2);
  }
 
- void normalize() noexcept { __sort(this->left, this->right); __sort(this->top, this->bottom); }
+ void normalize() noexcept;
 
  void inflate(const rect_type & rect) noexcept
 
@@ -337,7 +405,16 @@ public:
  this->right -= r; this->bottom -= b;
  }
 
- rect_type muldiv(i32 iMul, i32 iDiv) const noexcept { return rect_type(::i32muldiv(this->left, iMul, iDiv), ::i32muldiv(this->top, iMul, iDiv), ::i32muldiv(this->right, iMul, iDiv), ::i32muldiv(this->bottom, iMul, iDiv)); }
+ template < primitive_integral NUMERATOR, primitive_integral DENOMINATOR >
+   rect_type muldiv(NUMERATOR numerator, DENOMINATOR denominator) const noexcept
+   { 
+      return rect_type(
+         ::muldiv(this->left     , numerator, denominator),
+         ::muldiv(this->top      , numerator, denominator),
+         ::muldiv(this->right    , numerator, denominator),
+         ::muldiv(this->bottom   , numerator, denominator)
+      );
+   }
 
 
    UNIT_TYPE area() const
@@ -845,8 +922,8 @@ public:
 
  }
 
-
- bool contains(const rect_type & rect) const
+ template < primitive_rectangle RECTANGLE >
+ bool contains(const RECTANGLE & rect) const
  {
     return rect.left >= this->left
        && rect.right <= this->right
@@ -1083,29 +1160,35 @@ public:
    inline bool operator==(::std::nullptr_t) const noexcept { return ::is_rect_null(this); }
    inline bool operator!=(::std::nullptr_t) const noexcept { return !operator==(nullptr); }
 
-   inline bool operator == (const SIZE_TYPE & size) const noexcept { return this->width() == size.cx && this->height() == size.cy; }
-   inline bool operator != (const SIZE_TYPE & size) const noexcept { return !operator ==(size); }
+   template < primitive_size SIZE >
+   inline bool operator == (const SIZE & size) const noexcept { return this->width() == size.cx && this->height() == size.cy; }
+   
+   template < primitive_size SIZE >
+   inline bool operator != (const SIZE & size) const noexcept { return !operator ==(size); }
 
-   inline bool operator > (const SIZE_TYPE & size) const noexcept { return this->size() > size; }
-   inline bool operator >= (const SIZE_TYPE & size) const noexcept { return this->size() >= size; }
-   inline bool operator < (const SIZE_TYPE & size) const noexcept { return this->size() < size; }
-   inline bool operator <= (const SIZE_TYPE & size) const noexcept { return this->size() <= size; }
+   template < primitive_size SIZE >
+   inline bool operator > (const SIZE & size) const noexcept { return this->size() > size; }
 
-//   inline bool operator > (const rect_type & rect) const noexcept { return this->operator > (rect.size()); }
-//   inline bool operator >= (const rect_type & rect) const noexcept { return this->operator >= (rect.size()); }
-//   inline bool operator < (const rect_type & rect) const noexcept { return this->operator < (rect.size()); }
-//   inline bool operator <= (const rect_type & rect) const noexcept { return this->operator <= (rect.size()); }
+   template < primitive_size SIZE >
+   inline bool operator >= (const SIZE & size) const noexcept { return this->size() >= size; }
 
-   inline bool any_gt (const SIZE_TYPE & size) const noexcept { return this->size().any_gt(size); }
-   inline bool any_ge (const SIZE_TYPE & size) const noexcept { return this->size().any_ge(size); }
-   inline bool any_lt (const SIZE_TYPE & size) const noexcept { return this->size().any_lt(size); }
-   inline bool any_le (const SIZE_TYPE & size) const noexcept { return this->size().any_le(size); }
+   template < primitive_size SIZE >
+   inline bool operator < (const SIZE & size) const noexcept { return this->size() < size; }
 
-//   inline bool any_gt (const rect_type & rect) const noexcept { return this->any_gt(rect.size()); }
-//   inline bool any_ge (const rect_type & rect) const noexcept { return this->any_ge(rect.size()); }
-//   inline bool any_lt (const rect_type & rect) const noexcept { return this->any_lt(rect.size()); }
-//   inline bool any_le (const rect_type & rect) const noexcept { return this->any_le(rect.size()); }
+   template < primitive_size SIZE >
+   inline bool operator <= (const SIZE & size) const noexcept { return this->size() <= size; }
 
+   template < primitive_size SIZE >
+   inline bool any_gt (const SIZE & size) const noexcept { return this->size().any_gt(size); }
+
+   template < primitive_size SIZE >
+   inline bool any_ge (const SIZE & size) const noexcept { return this->size().any_ge(size); }
+
+   template < primitive_size SIZE >
+   inline bool any_lt (const SIZE & size) const noexcept { return this->size().any_lt(size); }
+
+   template < primitive_size SIZE >
+   inline bool any_le (const SIZE & size) const noexcept { return this->size().any_le(size); }
 
 };
 

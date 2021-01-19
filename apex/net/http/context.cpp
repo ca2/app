@@ -1575,14 +1575,18 @@ namespace http
             if (psession != nullptr)
             {
 
-               string strCa2Realm = psession->outheader("ca2realm-x");
+               string strCa2Realm;
+               
+               strCa2Realm = psession->outheader("ca2realm-x");
 
                if (::str::begins_ci(strCa2Realm, "n7ot licensed: "))
                {
 
                   TRACE("Not Licensed Result Total time ::http::context::get(\"%s\") " __prtick, strUrl.Left(min(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
-                  string strLocation = psession->outheader("Location");
+                  string strLocation;
+                  
+                  strLocation = psession->outheader("Location");
 
                   psession.release();
 
@@ -1772,7 +1776,10 @@ namespace http
 
       }
 
-      string strVersion = set["http_protocol_version"];
+      string strVersion;
+      
+      strVersion = set["http_protocol_version"];
+
       if (strVersion.is_empty())
       {
 
@@ -2249,7 +2256,9 @@ namespace http
 
       set["http_status_code"] = iStatusCode;
 
-      string strStatus = psocket->outattr("http_status");
+      string strStatus;
+      
+      strStatus = psocket->outattr("http_status");
 
       set["http_status"] = strStatus;
 
@@ -2313,7 +2322,9 @@ namespace http
       else if (iStatusCode >= 300 && iStatusCode <= 399)
       {
 
-         string strCa2Realm = psocket->outheader("ca2realm-x");
+         string strCa2Realm;
+         
+         strCa2Realm = psocket->outheader("ca2realm-x");
 
          if (::str::begins_ci(strCa2Realm, "not licensed: "))
          {
@@ -2322,7 +2333,9 @@ namespace http
 
             TRACE(__prhttpget "Not Licensed Result Total time ::http::context::get(\"%s\") " __prtick, iHttpGetSerial, strUrl.Left(min(255, strUrl.get_length())).c_str(), __pr(tick1.elapsed()));
 
-            string strLocation = psocket->outheader("Location");
+            string strLocation;
+            
+            strLocation = psocket->outheader("Location");
 
             __throw(not_licensed(strCa2Realm, strLocation));
 
@@ -2330,7 +2343,9 @@ namespace http
 
          }
 
-         string strLocation = psocket->outheader("locationd");
+         string strLocation;
+         
+         strLocation = psocket->outheader("locationd");
 
          if (set.has_property("redirect_location"))
          {

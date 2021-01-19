@@ -2175,9 +2175,6 @@
     <None Include="primitive\datetime\_impl.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </None>
-    <None Include="filesystem\file\_impl.h">
-      <Filter>Header Files\filesystem\file</Filter>
-    </None>
     <None Include="filesystem\file\_serializable_impl.h">
       <Filter>Header Files\filesystem\file</Filter>
     </None>

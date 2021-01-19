@@ -153,7 +153,7 @@ namespace apex
    array < matter* >* g_paAura;
 
 
-   ::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
+   //::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
 
 //   plex_heap_alloc_array* g_pheap;
 
@@ -298,7 +298,7 @@ namespace apex
 
       g_paAura = nullptr;
 
-      g_pmapRTL = nullptr;
+      //g_pmapRTL = nullptr;
 
       //::map < void *, void *,::apex::application *, ::apex::application * > * g_pmapAura;
 
@@ -535,7 +535,7 @@ namespace apex
 
 #endif // defined(LINUX) || defined(__APPLE__)
 
-      g_pmapRTL = nullptr;
+      //g_pmapRTL = nullptr;
 
       //&System.g_mutexLibrary = new ::mutex;
 
@@ -672,37 +672,37 @@ namespace apex
 
       //}
 
-      if(g_pmapRTL)
-      {
+      //if(g_pmapRTL)
+      //{
 
-         try
-         {
+      //   try
+      //   {
 
-            g_pmapRTL->remove_all();
+      //      g_pmapRTL->remove_all();
 
-         }
-         catch(...)
-         {
+      //   }
+      //   catch(...)
+      //   {
 
-         }
+      //   }
 
-      }
+      //}
 
-      if(g_pmapRTL)
-      {
+      //if(g_pmapRTL)
+      //{
 
-         try
-         {
+      //   try
+      //   {
 
-            g_pmapRTL->remove_all();
+      //      g_pmapRTL->remove_all();
 
-         }
-         catch(...)
-         {
+      //   }
+      //   catch(...)
+      //   {
 
-         }
+      //   }
 
-      }
+      //}
 
       //::acme::del(::thread::g_pmutex);
 
@@ -716,7 +716,7 @@ namespace apex
 
       ::channel::s_pmutexChannel.release();
 
-      ::acme::del(g_pmapRTL);
+      //::acme::del(g_pmapRTL);
 
 #if defined(LINUX) || defined(__APPLE__)
 

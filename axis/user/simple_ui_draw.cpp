@@ -183,18 +183,18 @@ namespace simple_ui
       pgraphics->set_alpha_mode(draw2d::alpha_mode_blend);
 
       // front
-      point pa[4];
+      pointd pa[4];
       //  0       1
       //
       //
       //  3       2
 
       // back
-      point pb[4];
+      pointd pb[4];
 
 
       // guards
-      point pc[4];
+      pointd pc[4];
 
 
       pa[0].x = rect.left;

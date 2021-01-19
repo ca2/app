@@ -15,7 +15,7 @@ inline bool shape_contains(const ::text_out * ptextout, const POINT32 & point)
 
    }
 
-   return ::rect_contains(&rectBounding, point.x, point.y);
+   return ::rectangle_contains(&rectBounding, point.x, point.y);
 
 }
 
@@ -34,7 +34,7 @@ inline bool shape_contains(const ::text_out* ptextout, const POINTD& point)
 
    }
 
-   return ::rect_contains(&rectBounding, point.x, point.y);
+   return ::rectangle_contains(&rectBounding, point.x, point.y);
 
 }
 
@@ -53,7 +53,7 @@ inline bool shape_contains(const ::draw_text * ptextout, const POINT32& point)
 
    }
 
-   return ::rect_contains(&rectBounding, point.x, point.y);
+   return ::rectangle_contains(&rectBounding, point.x, point.y);
 
 }
 
@@ -72,7 +72,7 @@ inline bool shape_contains(const ::draw_text* ptextout, const POINTD& point)
 
    }
 
-   return rect_contains(&rectBounding, point.x, point.y);
+   return rectangle_contains(&rectBounding, point.x, point.y);
 
 }
 

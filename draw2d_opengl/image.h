@@ -138,7 +138,7 @@ namespace draw2d_opengl
       //double pi();
 
 
-      virtual bool _map(bool bApplyTransform = true) override;
+      virtual bool map(bool bApplyTransform = true) override;
       virtual bool _unmap() override;
 
       //virtual bool update_window(::aura::draw_interface * pwnd, ::message::message * pmessage, bool bTransferBuffer = true) override;

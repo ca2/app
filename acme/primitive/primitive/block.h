@@ -14,11 +14,12 @@ struct CLASS_DECL_ACME block :
    public BLOCK
 {
 
-
+   block(enum_no_init) {}
    block(const void * pdata = nullptr, i64 iSize = 0) { m_pdata = (byte *) pdata; m_iSize = iSize; }
    block(const memory_base & memory);
    block(const memory_base * pmemory);
    block(const block & block) : ::block(block.m_pdata, block.m_iSize) {}
+   block(const id & id) : ::block(id.is_text() ? id.m_pszId : nullptr, id.is_text() ? strlen(id.m_pszId) : 0) {}
    block(const string & str) : ::block(str.c_str(), str.get_length()) {}
    block(const string & str, ::strsize s) : ::block((const void *)str.c_str(), (::i64)( s >= 0 ? s : str.get_length() + s + 1)) {}
    block(const char * psz, ::strsize s = -1) : ::block((const void *)psz, (::i64) (s >= 0 ? s : strlen(psz) + s + 1)) {}
@@ -29,6 +30,8 @@ struct CLASS_DECL_ACME block :
    void * get_data() const { return m_pdata; }
    memsize get_size() const { return (memsize_cast) m_iSize; }
    memsize size() const { return (memsize)m_iSize; }
+
+   inline bool is_empty() const { return get_size() <= 0; }
 
 #ifdef _UWP
 
@@ -51,6 +54,13 @@ struct CLASS_DECL_ACME block :
       }
 
       return __memcmp(block.get_data(), get_data(), (size_t) get_size()) == 0;
+
+   }
+
+   void to_string(string & str) const
+   {
+
+      str.assign((const ansichar *) get_data(), get_size());
 
    }
 

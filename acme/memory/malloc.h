@@ -268,13 +268,9 @@ namespace acme
 namespace str
 {
 
+   
    template < typename POINTER >
-   inline void from(string & str, const ::acme::memory_alloc < POINTER > & memoryallocpointer)
-   {
-
-      from(str, memoryallocpointer.m_p);
-
-   }
+   inline void from(string & str, const ::acme::memory_alloc < POINTER > & memoryallocpointer);
 
 
 } // namespace str

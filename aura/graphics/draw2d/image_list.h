@@ -71,9 +71,9 @@ public:
    ::image_pointer get_image(int iImage);
 
 
-   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point & point, i32 iFlag);
-   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point & point, i32 iFlag, byte alpha);
-   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point & point, size sz, const ::point & pointOffset, i32 iFlag);
+   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::pointd & point, i32 iFlag);
+   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::pointd & point, i32 iFlag, byte alpha);
+   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::pointd & point, ::sized sz, const ::pointd & pointOffset, i32 iFlag);
    i32 get_image_count() const;
 
    void copy_from(const image_list * plist);

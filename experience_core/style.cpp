@@ -1534,13 +1534,13 @@ namespace experience
 
          pgraphics->set(penArrow);
 
-         pgraphics->Polyline(pbar->m_ptaA, 3);
+         pgraphics->polyline(pbar->m_ptaA, 3);
 
          penArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::user::e_element_scrollbar_rectB));
 
          pgraphics->set(penArrow);
 
-         pgraphics->Polyline(pbar->m_ptaB, 3);
+         pgraphics->polyline(pbar->m_ptaB, 3);
 
          return true;
 

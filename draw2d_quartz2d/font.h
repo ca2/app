@@ -21,7 +21,7 @@ namespace draw2d_quartz2d
 //         CGFloat width;
 //
 //         // mode, brush color, pen color
-//         isomap < CGTextDrawingMode, colorrefmap < colorrefmap < CTLineRef > > > m_map;
+//         map < CGTextDrawingMode, colorrefmap < colorrefmap < CTLineRef > > > m_map;
 //
 //
 //         metrics() {}

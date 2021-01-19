@@ -266,15 +266,17 @@ using LPMESSAGE = MESSAGE *;
 
 typedef const MESSAGE * LPCMESSAGE;
 
+#define MESSAGE_WINDOW_PARENT HWND_MESSAGE
+
 
 #else
 
 
+#ifdef _UWP
+
 #define MESSAGE_WINDOW_PARENT (::oswindow((void *) (iptr) 1))
 
-
-#ifndef _UWP
-
+#else
 
 /* Types use for passing & returning polymorphic values */
 typedef uptr            WPARAM;

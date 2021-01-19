@@ -227,18 +227,18 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
             if (iLink >= m_iaLinkStart.get_size())
             {
                const ::size & size = pgraphics->GetTextExtent(strFinal.Left(iChar));
-               EmbossedTextOut(pgraphics, strFinal.Mid(iChar), rectTextOut.left + size.cx, rectTextOut.top, 0, m_cr, m_colorOutline, strFinal.get_length() - iChar, dBlend);
+               embossed_text_out(pgraphics, strFinal.Mid(iChar), rectTextOut.left + size.cx, rectTextOut.top, 0, m_cr, m_colorOutline, strFinal.get_length() - iChar, dBlend);
                break;
             }
             else if (m_iaLinkStart[iLink] > iChar)
             {
                const ::size & size = pgraphics->GetTextExtent(strFinal.Left(iChar));
-               EmbossedTextOut(pgraphics, strFinal.Mid(iChar), rectTextOut.left + size.cx, rectTextOut.top, 0, m_cr, m_colorOutline, m_iaLinkStart[iLink], dBlend);
+               embossed_text_out(pgraphics, strFinal.Mid(iChar), rectTextOut.left + size.cx, rectTextOut.top, 0, m_cr, m_colorOutline, m_iaLinkStart[iLink], dBlend);
             }
             pgraphics->set(m_fontLink);
             const ::size & size = pgraphics->GetTextExtent(strFinal.Left(m_iaLinkStart[iLink]));
 
-            EmbossedTextOut(pgraphics, strFinal.Mid(m_iaLinkStart[iLink]), rectTextOut.left + size.cx, rectTextOut.top, 0, m_cr, m_colorOutline, m_iaLinkEnd[iLink] - m_iaLinkStart[iLink] + 1, dBlend);
+            embossed_text_out(pgraphics, strFinal.Mid(m_iaLinkStart[iLink]), rectTextOut.left + size.cx, rectTextOut.top, 0, m_cr, m_colorOutline, m_iaLinkEnd[iLink] - m_iaLinkStart[iLink] + 1, dBlend);
             iChar = m_iaLinkEnd[iLink] + 1;
             iLink++;
          }
@@ -335,7 +335,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
       rectTextOut.left += iLeftOffset;
       if (bDraw)
       {
-         EmbossedTextOut(pgraphics, strLeft, rectTextOut.left, rectTextOut.top,
+         embossed_text_out(pgraphics, strLeft, rectTextOut.left, rectTextOut.top,
                          0,
                          m_cr,
                          m_colorOutline,
@@ -360,11 +360,11 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
          rectTextOut.left = iRight;
          if (bDraw)
          {
-            EmbossedTextOut(pgraphics, strRight, rectTextOut.left, rectTextOut.top, 0, m_cr, m_colorOutline, strFinal.get_length(), dBlend);
+            embossed_text_out(pgraphics, strRight, rectTextOut.left, rectTextOut.top, 0, m_cr, m_colorOutline, strFinal.get_length(), dBlend);
          }
       }
 
-      if (is_set_ref(rectaModified))
+      if (::is_set(rectaModified))
       {
          ::rect baserect;
          prgn->get_bounding_box(baserect);
@@ -406,7 +406,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
 
       ::rect rect(m_rectInvalidate);
 
-      if (!is_null_ref(rectaModified))
+      if (!is_null(rectaModified))
       {
          ::rect baserect(rect);
          rectaModified.add(baserect);
@@ -1285,13 +1285,13 @@ bool xfplayer_view_line::IsVisible()
 }
 
 
-void xfplayer_view_line::EmbossedTextOut(::draw2d::graphics_pointer & pgraphics, const char * pcsz, i32 iLeft, i32 iTop, i32 iWidth, color32_t cr, color32_t crOutline, strsize iLen, double dBlend)
+void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const char * pcsz, i32 iLeft, i32 iTop, i32 iWidth, color32_t cr, color32_t crOutline, strsize iLen, double dBlend)
 
 {
 
    single_lock sl(m_pContainer->mutex());
 
-   EmbossedTextOut(
+   embossed_text_out(
    pgraphics,
    m_pimageMain,
    pcsz,
@@ -1307,7 +1307,7 @@ void xfplayer_view_line::EmbossedTextOut(::draw2d::graphics_pointer & pgraphics,
 }
 
 
-void xfplayer_view_line::EmbossedTextOut(::draw2d::graphics_pointer & pgraphics, ::image * pimageCache, const char * pcsz, i32 iLeft, i32 iTop, i32 iWidth, color32_t cr, color32_t crOutline, strsize iLen, double dBlend)
+void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphics, ::image * pimageCache, const char * pcsz, i32 iLeft, i32 iTop, i32 iWidth, color32_t cr, color32_t crOutline, strsize iLen, double dBlend)
 {
 
    single_lock sl(m_pContainer->mutex());

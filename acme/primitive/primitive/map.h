@@ -8,7 +8,7 @@
 #include "collection/map_association.h"
 #include "collection/map.h"
 #include "collection/string_map.h"
-#include "collection/int_map.h"
+#include "collection/i32_map.h"
 #include "collection/string_to_string_map.h"
 
 

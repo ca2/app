@@ -18,7 +18,7 @@ namespace draw2d
       double                              m_y2;
       double                              m_x3;
       double                              m_y3;
-      POINTD *                            m_lppoints;
+      ::pointd *                          m_lppoints;
       int *                               m_lppolycounts;
       i32                                 m_nCount;
       ::draw2d::enum_fill_mode            m_efillmode;
@@ -57,7 +57,7 @@ namespace draw2d
       
       bool internal_contains(const POINT32 & point);
 
-      bool internal_rect_contains(const POINT32 & point);
+      bool internal_rectangle_contains(const POINT32 & point);
 
       bool internal_oval_contains(const POINT32 & point);
 
@@ -71,7 +71,7 @@ namespace draw2d
 
       bool internal_contains(const POINTD & point);
 
-      bool internal_rect_contains(const POINTD & point);
+      bool internal_rectangle_contains(const POINTD & point);
 
       bool internal_oval_contains(const POINTD & point);
 

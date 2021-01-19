@@ -425,8 +425,9 @@ namespace user
       if (bHover) // selected
       {
 
-         data.m_pdc->fill_solid_rect_coord(data.m_rectClient.left, data.m_rect.top, data.m_rectClient.right, data.m_rect.bottom,
-               ARGB(127, 125, 166, 228));
+         auto rectFill = ::rectd(data.m_rectClient.left, data.m_rect.top, data.m_rectClient.right, data.m_rect.bottom);
+
+         data.m_pdc->fill_rect(rectFill, ARGB(127, 125, 166, 228));
 
       }
 

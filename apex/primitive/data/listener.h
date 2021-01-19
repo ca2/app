@@ -29,8 +29,9 @@ namespace data
 
    };
 
-   template < class VALUE, class ARG_VALUE = const VALUE &, class PAIR = pair < listener *, VALUE > >
-   using listener_map = map < listener *, listener *, VALUE, ARG_VALUE, PAIR >;
+
+   template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type, class PAIR = pair < listener *, VALUE > >
+   using listener_map = ::map < listener *, VALUE, ARG_VALUE, PAIR >;
 
 
 } // namespace data

@@ -91,7 +91,18 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-                  return __acolor(255, 255, 255, 255);
+                  if (::user::is_app_dark_mode())
+                  {
+
+                     return __acolor(255, 0, 0, 0);
+
+                  }
+                  else
+                  {
+
+                     return __acolor(255, 255, 255, 255);
+
+                  }
 
                }
                else if (eelement == ::user::e_element_face)
@@ -378,9 +389,9 @@ namespace experience
 
       ::rect r1 = ptab->get_client_rect();
 
-      ::rect r2;
+      ::rectd r2;
 
-      pgraphics->GetClipBox(r2);
+      pgraphics->get_clip_box(&r2);
 
       auto pstyle = ptab->get_style(pgraphics);
 

@@ -175,9 +175,9 @@ namespace user
 
       ::size sizeTotal;
 
-      sizeTotal.cx = size.cx;
+      sizeTotal.cx = (LONG) size.cx;
 
-      sizeTotal.cy = tm.get_line_spacing();
+      sizeTotal.cy = (LONG)tm.get_line_spacing();
 
       return sizeTotal;
 
@@ -267,13 +267,13 @@ namespace user
 
       ::rect rect;
 
-      rect.left = rectClient.left + (rectClient.width() - sizeText.cx) / 2;
+      rect.left = (LONG)(rectClient.left + (rectClient.width() - sizeText.cx) / 2);
 
-      rect.top = rectClient.top + (rectClient.height() - sizeText.cy) / 2;
+      rect.top = (LONG)(rectClient.top + (rectClient.height() - sizeText.cy) / 2);
 
-      rect.right = rect.left + sizeText.cx;
+      rect.right = (LONG)(rect.left + sizeText.cx);
 
-      rect.bottom = rect.top + sizeText.cy;
+      rect.bottom = (LONG)(rect.top + sizeText.cy);
 
       m_rectText = rect;
 

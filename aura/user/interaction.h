@@ -863,7 +863,7 @@ namespace user
 
       virtual void get_child_rect(RECT32* prect);
 
-      inline auto get_child_rect() { ::rect rect(no_init); get_child_rect(&rect); return rect; }
+      inline auto get_child_rect() { ::rect rect(e_no_init); get_child_rect(&rect); return rect; }
 
       virtual bool scroll_bar_get_client_rect(RECT32* prect);
 
@@ -1109,6 +1109,7 @@ namespace user
       virtual bool on_timer(::timer* ptimer) override;
       DECL_GEN_SIGNAL(_001OnChar);
       DECL_GEN_SIGNAL(_001OnDestroy);
+      DECL_GEN_SIGNAL(_001OnPostUser);
       DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(_001OnMove);
       DECL_GEN_SIGNAL(_001OnCreate);
@@ -1646,7 +1647,7 @@ namespace user
       //virtual bool simple_on_control_event(::message::message * pmessage, ::user::enum_event eevent) override;
       //virtual void walk_pre_translate_tree(::message::message * pmessage,__pointer(::user::interaction) puiStop);
       //virtual bool get_element_rect(RECT32* prect, enum_element eelement);
-      virtual void get_simple_drop_down_open_arrow_polygon(point_array& pointa);
+      virtual void get_simple_drop_down_open_arrow_polygon(pointd_array& pointa);
       // control member functions END
 
 

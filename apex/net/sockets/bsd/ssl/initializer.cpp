@@ -89,7 +89,7 @@ namespace sockets
 
 #if OPENSSL_API_COMPAT < 0x10100000L
 
-   map < i32, i32, ::mutex *, ::mutex *>  * g_pmapMutex = nullptr;
+   map < i32, ::mutex * >  * g_pmapMutex = nullptr;
 
    ::mutex * g_pmutexMap = nullptr;
 
@@ -126,7 +126,7 @@ namespace sockets
 
       m_rand_size = 1024;
 
-      g_pmapMutex = new map < i32, i32, ::mutex *, ::mutex *>;
+      g_pmapMutex = new map < i32, ::mutex *>;
 
       g_pmutexMap = new ::mutex();
 

@@ -107,7 +107,18 @@ int_bool file_copy_dup(const char * pszNew, const char * pszSrc, int_bool bOverw
    wstring wstrSrc(strSrc);
 
    //return ::CopyFileExW(wstrSrc,wstrNew, nullptr, nullptr, nullptr, COPY_FILE_NO_BUFFERING | (bOverwrite ? 0 : COPY_FILE_FAIL_IF_EXISTS)) ? true : false;
-   return ::CopyFileExW(wstrSrc, wstrNew, nullptr, nullptr, nullptr, (bOverwrite ? 0 : COPY_FILE_FAIL_IF_EXISTS)) ? true : false;
+   auto bCopy = ::CopyFileExW(wstrSrc, wstrNew, nullptr, nullptr, nullptr, (bOverwrite ? 0 : COPY_FILE_FAIL_IF_EXISTS)) ? true : false;
+
+   if (!bCopy)
+   {
+
+      TRACELASTERROR();
+
+      return false;
+
+   }
+
+   return true;
 
 }
 

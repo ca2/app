@@ -341,10 +341,10 @@ namespace user
             __sort(y1, y2);
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+            
+            pgraphics->fill_rect(::rectd(x1, y1, x2, y2), ARGB(90, 250, 250, 255));
 
-            pgraphics->draw_rect_dim(x1, y1, x2 - x1, y2 - y1, ARGB(192, 192, 192, 208));
-
-            pgraphics->fill_solid_rect_dim(x1, y1, x2 - x1, y2 - y1, ARGB(90, 250, 250, 255));
+            pgraphics->draw_rect(::rectd(x1, y1, x2, y2), ARGB(192, 192, 192, 208));
 
          }
 
@@ -3937,7 +3937,7 @@ namespace user
                   if(defer_drop(iDisplayItemDrop, iDisplayItemDrag))
                   {
 
-                     string strSort = m_pmeshdata ? m_pmeshdata->m_strMeshSort : "";
+                     string strSort(m_pmeshdata ? m_pmeshdata->m_strMeshSort.c_str() : "");
 
                      if (strSort.has_char())
                      {
@@ -7341,7 +7341,7 @@ namespace user
 
                pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-               pimage->get_graphics()->fill_solid_rect_dim(0, 0, pimage->width(), pimage->height(), 0);
+               pimage->get_graphics()->fill_rect(pimage->size(), 0);
 
                get_image_list()->draw(pimage->g(), (i32)m_iImage,
                                       point(m_plist->m_iIconBlurRadius*iRate, m_plist->m_iIconBlurRadius *iRate), m_rectImage.size(), ::point(), 0);
@@ -7812,7 +7812,7 @@ namespace user
 
       sync_lock sl(mutex());
 
-      string strSort = m_pmeshdata ? m_pmeshdata->m_strMeshSort : "";
+      string strSort(m_pmeshdata ? m_pmeshdata->m_strMeshSort.c_str() : "");
 
       if (strSort.has_char())
       {

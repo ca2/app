@@ -68,7 +68,7 @@ namespace user
 
       virtual enum_input_type preferred_input_type() const override;
 
-      virtual void get_simple_drop_down_open_arrow_polygon(point_array& pointa) override;
+      virtual void get_simple_drop_down_open_arrow_polygon(pointd_array& pointa) override;
 
       virtual void set_current_item(const ::user::item & item, const ::action_context & action_context) override;
 

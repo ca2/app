@@ -406,9 +406,9 @@ namespace draw2d_quartz2d
       return ::point();
    }
 
-   size graphics::SetWindowExt(const ::size & size)
+   size graphics::set_window_ext(const ::size & size)
    {
-      //return SetWindowExt(size.cx, size.cy);
+      //return set_window_ext(size.cx, size.cy);
       return ::size(0, 0);
    }
 
@@ -561,7 +561,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool graphics::Polyline(const POINT32* lpPoints, count nCount)
+   bool graphics::polyline(const POINT32* lpPoints, count nCount)
    {
 
       if(nCount < 2)
@@ -2254,14 +2254,14 @@ namespace draw2d_quartz2d
 
    }
 
-   bool graphics::PolyPolyline(const POINT32* lpPoints, const ::u32* lpPolyPoints, i32 nCount)
+   bool graphics::poly_polyline(const POINT32* lpPoints, const ::u32* lpPolyPoints, i32 nCount)
    {
 
       __throw(not_implemented());
       return false;
 
       //      ASSERT(get_handle1() != nullptr);
-      //      return ::PolyPolyline(get_handle1(), lpPoints, lpPolyPoints, nCount) != FALSE;
+      //      return ::poly_polyline(get_handle1(), lpPoints, lpPolyPoints, nCount) != FALSE;
 
    }
 
@@ -2317,14 +2317,14 @@ namespace draw2d_quartz2d
 
    }
 
-   bool graphics::PolyBezier(const POINT32* lpPoints, i32 nCount)
+   bool graphics::poly_bezier(const POINT32* lpPoints, i32 nCount)
    {
 
       __throw(not_implemented());
       return false;
 
       //      ASSERT(get_handle1() != nullptr);
-      //      return ::PolyBezier(get_handle1(), lpPoints, nCount) != FALSE;
+      //      return ::poly_bezier(get_handle1(), lpPoints, nCount) != FALSE;
 
    }
 
@@ -3075,7 +3075,7 @@ namespace draw2d_quartz2d
 //       {
 //       // brushes are different -- erase old region first
 //       SelectClipRgn(&rgnLast);
-//       GetClipBox(&rect);
+//       get_clip_box(&rect);
 //       pBrushOld = SelectObject(pBrushLast);
 //       PatBlt(rect.left, rect.top, rect.width(), rect.height(), PATINVERT);
 //       SelectObject(pBrushOld);
@@ -3084,7 +3084,7 @@ namespace draw2d_quartz2d
 //
 //       // draw into the update/new region
 //       SelectClipRgn(rgnUpdate.get_os_data() != nullptr ? &rgnUpdate : &rgnNew);
-//       GetClipBox(&rect);
+//       get_clip_box(&rect);
 //       pBrushOld = SelectObject(pBrush);
 //       PatBlt(rect.left, rect.top, rect.width(), rect.height(), PATINVERT);
 //
@@ -3681,7 +3681,7 @@ namespace draw2d_quartz2d
        */
    }
 
-   point graphics::OffsetWindowOrg(i32 nWidth, i32 nHeight)
+   point graphics::offset_window_org(i32 nWidth, i32 nHeight)
    {
 
       __throw(not_implemented());
@@ -3698,7 +3698,7 @@ namespace draw2d_quartz2d
 
    }
 
-   size graphics::SetWindowExt(i32 x, i32 y)
+   size graphics::set_window_ext(i32 x, i32 y)
    {
 
       __throw(not_implemented());
@@ -3715,7 +3715,7 @@ namespace draw2d_quartz2d
 
    }
 
-   size graphics::ScaleWindowExt(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom)
+   size graphics::scale_window_ext(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom)
    {
 
       __throw(not_implemented());
@@ -3732,7 +3732,7 @@ namespace draw2d_quartz2d
 
    }
 
-   i32 graphics::GetClipBox(RECT32 * prect)
+   i32 graphics::get_clip_box(RECT32 * prect)
    {
 
       CGRect rect =CGContextGetClipBoundingBox (m_pdc);
@@ -3744,7 +3744,7 @@ namespace draw2d_quartz2d
 
       return 0;
 
-      /*      return ::GetClipBox(get_handle1(), rect);*/
+      /*      return ::get_clip_box(get_handle1(), rect);*/
    }
 
 //   i32 graphics::SelectClipRgn(::draw2d::region * pregion)
@@ -4135,7 +4135,7 @@ namespace draw2d_quartz2d
 
    }
 
-   bool graphics::PolylineTo(const POINT32* lpPoints, i32 nCount)
+   bool graphics::polyline_to(const POINT32* lpPoints, i32 nCount)
    {
 
       __throw(not_implemented());
@@ -4143,7 +4143,7 @@ namespace draw2d_quartz2d
 
       /*
        ASSERT(get_handle1() != nullptr);
-       bool bResult = ::PolylineTo(get_handle1(), lpPoints, nCount) != FALSE;
+       bool bResult = ::polyline_to(get_handle1(), lpPoints, nCount) != FALSE;
        if (get_handle1() != get_handle2())
        {
        ::point point;
@@ -4174,7 +4174,7 @@ namespace draw2d_quartz2d
 
    //   }
 
-   bool graphics::PolyBezierTo(const POINT32* lpPoints, i32 nCount)
+   bool graphics::poly_bezier_to(const POINT32* lpPoints, i32 nCount)
    {
 
       __throw(not_implemented());
@@ -4182,7 +4182,7 @@ namespace draw2d_quartz2d
 
       /*
        ASSERT(get_handle1() != nullptr);
-       bool bResult = ::PolyBezierTo(get_handle1(), lpPoints, nCount) != FALSE;
+       bool bResult = ::poly_bezier_to(get_handle1(), lpPoints, nCount) != FALSE;
        if (get_handle1() != get_handle2())
        {
        ::point point;

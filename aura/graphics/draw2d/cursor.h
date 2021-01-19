@@ -37,6 +37,11 @@ namespace draw2d
 
       static bool reset(::user::interaction * pinteraction, ::aura::session * psession);
 
+      inline ::draw2d::graphics * g() const { return m_pimage->g(); }
+      inline ::draw2d::graphics * g(const ::sized & sizeHint) { return m_pimage->g(sizeHint); }
+      inline ::sized size(const ::sized & sizeHint) { return m_pimage->size(sizeHint); }
+      inline ::sized origin() const { return m_szHotspotOffset; }
+
 
    };
 

@@ -218,9 +218,11 @@ int_bool mq::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFilterMin,
 
 }
 
+
 mutex * g_pmutexMq;
 
-map < ithread_t, ithread_t, __pointer(mq), __pointer(mq) > * g_pmapMq;
+
+map < ithread_t, __pointer(mq) > * g_pmapMq;
 
 
 mq * get_mq(ithread_t ithread, bool bCreate)
@@ -448,7 +450,7 @@ void init_global_mq()
 
    g_pmutexMq = new mutex();
 
-   g_pmapMq = new map < ithread_t, ithread_t, __pointer(mq), __pointer(mq) >();
+   g_pmapMq = new map < ithread_t, __pointer(mq) >();
 
 }
 

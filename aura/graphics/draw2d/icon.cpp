@@ -173,7 +173,7 @@ namespace draw2d
          if (hIcon != nullptr)
          {
 
-            m_iconmap[size(i, i)] = hIcon;
+            m_iconmap[::size(i, i)] = hIcon;
 
             m_picon = hIcon;
 

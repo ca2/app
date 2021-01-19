@@ -2970,7 +2970,9 @@ bool file_context::is_link(string strPath)
 
    set.parse_ini(strIni);
 
-   string strCid = set["cid"];
+   string strCid;
+   
+   strCid = set["cid"];
 
    ::file::path pathIni = ::dir::roaming() / "OneDrive/Settings/Personal/" + strCid + ".ini";
 

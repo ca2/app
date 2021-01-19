@@ -11,6 +11,27 @@
 #include "acme/os/windows/_windows.h"
 
 
+
+::e_status hresult_to_estatus(HRESULT hresult)
+{
+
+   if (SUCCEEDED(hresult))
+   {
+
+      return ::success;
+
+   }
+   else
+   {
+
+      return ::error_failed;
+
+   }
+
+}
+
+
+
 CREDUIAPI
 BOOL
 WINAPI
@@ -3701,6 +3722,6 @@ CLASS_DECL_APEX ::e_status os_create_link(::file::path pathObj, ::file::path pat
    wstring wstrDsc(strDesc);
    wstring wstrIco(pathIco);
 
-   return win_create_link(wstrObj, wstrLnk, wstrDsc, wstrIco, iIcon);
+   return hresult_to_estatus(win_create_link(wstrObj, wstrLnk, wstrDsc, wstrIco, iIcon));
 
 }

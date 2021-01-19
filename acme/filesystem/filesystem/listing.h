@@ -121,65 +121,17 @@ namespace file
       void clear_results() { m_straTitle.remove_all(); m_statusresult.clear(); remove_all(); }
 
 
-      string title(index i)
-      {
-
-         if(i >= 0 && i < m_straTitle.get_count())
-         {
-
-            return m_straTitle[i];
-
-         }
-
-         return operator[](i).title();
-
-      }
-
-      string name(index i)
-      {
-
-         if (i >= 0 && i < m_straTitle.get_count())
-         {
-
-            return m_straTitle[i];
-
-         }
-
-         return operator[](i).name();
-
-      }
+      string title(index i);
 
 
-      void to_name()
-      {
+      string name(index i);
 
-         for(index i = 0; i < get_size(); i++)
-         {
 
-            element_at(i) = element_at(i).name();
+      void to_name();
 
-         }
 
-      }
+      listing & operator = (const listing & listing);
 
-      listing & operator = (const listing & listing)
-      {
-
-         if(this == &listing)
-            return *this;
-
-         patha::operator         = (listing);
-         *((listing_meta*)this)  = (const listing_meta &) listing;
-         m_pathUser              = listing.m_pathUser;
-         m_pathFinal             = listing.m_pathFinal;
-         m_straPattern           = listing.m_straPattern;
-         m_straIgnoreName        = listing.m_straIgnoreName;
-         m_statusresult          = listing.m_statusresult;
-         m_straTitle             = listing.m_straTitle;
-
-         return *this;
-
-      }
 
       index name_find_first_ci(const path & pcsz,index find = 0,index last = -1) const
 
@@ -205,7 +157,16 @@ namespace file
          if(i < 0)
             return false;
          path point = element_at(i);
-         string t = i < m_straTitle.get_count() ? m_straTitle[ i] : "";
+         
+         string t;
+         
+         if (i < m_straTitle.get_count())
+         {
+         
+            t = m_straTitle[i];
+
+         }
+
          remove_at(i);
          insert_at(iIndex,pcsz);
 

@@ -339,7 +339,9 @@ namespace sockets
 
       m_b_complete = true;
 
-      string strContentEncoding = outheader(__id(content_encoding));
+      string strContentEncoding;
+      
+      strContentEncoding = outheader(__id(content_encoding));
 
       if (strContentEncoding.compare_ci("gzip") == 0)
       {

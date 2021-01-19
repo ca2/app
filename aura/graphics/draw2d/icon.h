@@ -12,7 +12,7 @@ namespace draw2d
 
       
       void *                        m_picon;
-      map < size, size, void * >    m_iconmap;
+      map < size, void * >          m_iconmap;
       bool                          m_bAutoDelete;
       string                        m_strAppTrayIcon;
       size                          m_size;
@@ -54,12 +54,18 @@ namespace draw2d
       virtual void on_update_icon();
 
       image_pointer get_image(const ::size & size);
+      const image_pointer get_image(const ::size & size) const;
 
+      inline ::draw2d::graphics * g(const ::size & sizeHint) { return get_image(sizeHint)->g(); }
+      inline ::sized origin() const { return ::sized(); }
+      inline ::sized size(const ::size & sizeHint) { return get_image(sizeHint)->size(sizeHint); }
+
+         
    };
 
 
    class CLASS_DECL_AURA icon_int_map :
-      virtual public int_map < icon * >
+      virtual public i32_map < icon * >
    {
    public:
 

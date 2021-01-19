@@ -1724,10 +1724,11 @@ namespace user
                                  r = pboxEnd->get_pos_left(iBoxPosEnd);
                               }
 
-                              pgraphics->fill_solid_rect_coord(l,
+                              pgraphics->fill_rect(
+                                 ::rectd_dim(l,
                                  pboxBeg->m_rectBox.top,
                                  r,
-                                 pboxEnd->m_rectBox.bottom,
+                                 pboxEnd->m_rectBox.bottom),
                                  crBkSel);
 
                            }
@@ -1819,10 +1820,12 @@ namespace user
 
                   }
 
-                  pgraphics->fill_solid_rect_coord(r,
+                  auto dDescent = pbox->m_pspan->m_pformat->m_font->get_descent(pgraphics);
+
+                  pgraphics->fill_rect(::rectd(r,
                      pbox->m_rectBox.top + 1,
                      r + 0.5,
-                     pbox->m_rectBox.bottom - pbox->m_pspan->m_pformat->m_font->get_descent(pgraphics),
+                     pbox->m_rectBox.bottom - dDescent),
                      ARGB(255, 0, 0, 0));
 
                }

@@ -1,14 +1,13 @@
 #pragma once
 
 
-//template < typename TASK_POINTER >
 class CLASS_DECL_ACME task_pool :
    virtual public ::context_object
 {
 protected:
 
 
-   task_pointer& task(const ::id& id) { return m_map[id]; }
+   task_pointer & task(const ::id & id) { return m_map[id]; }
 
 
 public:

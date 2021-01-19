@@ -159,8 +159,8 @@ inline ::count fork_count_end(::object* pobject, ::count iCount, PRED pred, inde
 
 
 
-using thread_group_map = isomap < e_priority, __pointer_array(::thread_group) >;
-using thread_tool_map = isomap < enum_thread_tool, __pointer_array(::thread_tool) >;
+using thread_group_map = map < e_priority, __pointer_array(::thread_group) >;
+using thread_tool_map = map < enum_thread_tool, __pointer_array(::thread_tool) >;
 
 
 

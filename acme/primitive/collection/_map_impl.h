@@ -1,8 +1,8 @@
 #pragma once
 
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class PAIR >
-void map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::InitHashTable(
+template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
+void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::InitHashTable(
    ::u32 nHashSize, bool bAllocNow)
    //
    // Used to force allocation of a hash table or to override the default
@@ -18,8 +18,8 @@ void map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::InitHashTable(
 }
 
 
-template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class PAIR >
-void map < KEY, ARG_KEY, VALUE, ARG_VALUE, PAIR >::dump(dump_context& dumpcontext) const
+template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
+void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::dump(dump_context& dumpcontext) const
 {
 
    ::matter::dump(dumpcontext);

@@ -553,13 +553,10 @@ namespace user
       //pgraphics->IntersectClipRect(rectWindow);
       //SendMessage(e_message_erase_background, (WPARAM)spgraphics->get_handle1());
       pgraphics->reset_clip();
-      pgraphics->fill_solid_rect_dim(
-      0,
-      0,
-      rectWindow.width(),
-      rectWindow.height(),
-      ARGB(128, 192, 192, 187));
 
+      auto rect = ::rectd_dim(0, 0, rectWindow.width(), rectWindow.height());
+
+      pgraphics->fill_rect(rect, ARGB(128, 192, 192, 187));
 
       // draw gripper in non-client area
       DrawGripper(pgraphics, rectWindow);
@@ -938,31 +935,31 @@ namespace user
       {
          if(uStyle & CBRS_GRIPPER)
          {
-            pgraphics->fill_solid_rect_dim(0, rect.top + 7, CX_BORDER, rect.height() - 7, clr);
+            pgraphics->fill_rect(::rectd_dim(0, rect.top + 7, CX_BORDER, rect.height() - 7), clr);
          }
          else
          {
-            pgraphics->fill_solid_rect_dim(0, rect2.top, CX_BORDER, rect2.height(), clr);
+            pgraphics->fill_rect(::rectd_dim(0, rect2.top, CX_BORDER, rect2.height()), clr);
          }
       }
       if (uStyle & CBRS_BORDER_TOP)
       {
          if(uStyle & CBRS_GRIPPER)
          {
-            pgraphics->fill_solid_rect_dim(
-            rect.left + 7,
+            pgraphics->fill_rect(
+            ::rectd(rect.left + 7,
             rect.top,
             rect.right - 7,
-            1,
+            1),
             RGB(128, 128, 123));
          }
          else
          {
-            pgraphics->fill_solid_rect_dim(
-            rect.left,
+            pgraphics->fill_rect(
+            ::rectd(rect.left,
             rect.top,
             rect.right,
-            1,
+            1),
             RGB(128, 128, 123));
          }
          //      pgraphics->fill_rect(0, 0, rect.right, CY_BORDER, clr);
@@ -986,9 +983,9 @@ namespace user
 
       // draw right and bottom
       if (uStyle & CBRS_BORDER_RIGHT)
-         pgraphics->fill_solid_rect_dim(rect1.right, rect2.top, -CX_BORDER, rect2.height(), clr);
+         pgraphics->fill_rect(::rectd(rect1.right, rect2.top, -CX_BORDER, rect2.height()), clr);
       if (uStyle & CBRS_BORDER_BOTTOM)
-         pgraphics->fill_solid_rect_dim(0, rect1.bottom, rect.right, -CY_BORDER, clr);
+         pgraphics->fill_rect(::rectd(0, rect1.bottom, rect.right, -CY_BORDER), clr);
 
       if (uStyle & CBRS_BORDER_3D)
       {
@@ -998,21 +995,21 @@ namespace user
 
          // draw left and top
          if (uStyle & CBRS_BORDER_LEFT)
-            pgraphics->fill_solid_rect_dim(1, rect2.top, CX_BORDER, rect2.height(), clr);
+            pgraphics->fill_rect(::rectd(1, rect2.top, CX_BORDER, rect2.height()), clr);
          if (uStyle & CBRS_BORDER_TOP)
          {
             if(uStyle & CBRS_GRIPPER)
-               pgraphics->fill_solid_rect_dim(rect.left + 7, rect.top + 1, rect.width() - 7, 1, clr);
+               pgraphics->fill_rect(::rectd(rect.left + 7, rect.top + 1, rect.width() - 7, 1), clr);
             else
-               pgraphics->fill_solid_rect_dim(rect.left, rect.top + 1, rect.width(), 1, clr);
+               pgraphics->fill_rect(::rectd(rect.left, rect.top + 1, rect.width(), 1), clr);
             //pgraphics->fill_rect(0, 1, rect.right, CY_BORDER, clr);
          }
 
          // draw right and bottom
          if (uStyle & CBRS_BORDER_RIGHT)
-            pgraphics->fill_solid_rect_dim(rect.right, rect2.top, -CX_BORDER, rect2.height(), clr);
+            pgraphics->fill_rect(::rectd(rect.right, rect2.top, -CX_BORDER, rect2.height()), clr);
          if (uStyle & CBRS_BORDER_BOTTOM)
-            pgraphics->fill_solid_rect_dim(0, rect.bottom, rect.right, -CY_BORDER, clr);
+            pgraphics->fill_rect(::rectd(0, rect.bottom, rect.right, -CY_BORDER), clr);
       }
 
       if (uStyle & CBRS_BORDER_LEFT)

@@ -185,7 +185,7 @@ namespace user
    bool form::_001AddControl(::user::interaction * pinteraction)
    {
 
-      return -1;
+      return false;
 
    }
 

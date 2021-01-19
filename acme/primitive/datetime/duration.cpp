@@ -48,26 +48,6 @@ void duration::normalize()
 //}
 
 
-nanosecond::nanosecond(long double d) :
-   duration((i64)(d / (1000.0 * 1000.0 * 1000.0)), (i64)fmod(d, 1000.0 * 1000.0 * 1000.0))
-{
-
-}
-
-
-microsecond::microsecond(long double d) :
-   duration(((i64)(d / (1000.0 * 1000.0)), (i64)fmod(d * 1000.0, 1000.0 * 1000.0 * 1000.0)))
-{
-
-}
-
-
-millisecond::millisecond(long double d) :
-   duration((i64)(d / 1000.0), (i64)fmod(d * 1000 * 1000.0, 1000.0 * 1000.0 * 1000.0))
-{
-
-}
-
 
 
 

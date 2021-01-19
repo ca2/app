@@ -399,7 +399,11 @@ namespace sockets
       string strLine;
       strLine = m_response.attr(__id(http_version)).get_string() + " " + m_response.attr(__id(http_status_code)) + " " + m_response.attr(__id(http_status));
       msg = strLine + "\r\n";
-      string strHost = m_response.header(__id(host));
+      
+      string strHost;
+      
+      strHost = m_response.header(__id(host));
+
       if(strHost.has_char())
       {
          msg += "Host: " + strHost + "\r\n";

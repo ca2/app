@@ -1695,7 +1695,7 @@ namespace experience
 
          bool bCursorPosition = layout().is_moving();
 
-         ::point pointCursor(no_init);
+         ::point pointCursor(e_no_init);
 
          if (bCursorPosition)
          {

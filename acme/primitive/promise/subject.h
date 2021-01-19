@@ -3,7 +3,7 @@
 
 namespace promise
 {
-   using matter_context = isomap<__pointer(::matter), __pointer(::promise::context)>;
+
 
    class CLASS_DECL_ACME subject :
       virtual public context_object

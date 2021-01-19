@@ -777,7 +777,7 @@ namespace sphere
 
       }
 
-      if (is_null_ref(App(papp)))
+      if (is_null(App(papp)))
       {
 
          return nullptr;

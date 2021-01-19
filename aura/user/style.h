@@ -14,7 +14,7 @@ namespace user
 
       ::index                                m_iUpdate;
       __pointer(::apex::library)             m_plibrary;
-      isomap < ::user::enum_control_type, __pointer(control_style) > m_controlstyle;
+      map < ::user::enum_control_type, __pointer(control_style) > m_controlstyle;
       //__pointer(::user::plain_edit_style)    m_pplaineditstyel;
 
       ::draw2d::font_pointer                 m_pfont;
@@ -34,7 +34,7 @@ namespace user
       //__pointer(translucency_map)          m_mapTranslucency;
       //__pointer(flag_map)                  m_mapFlag;
       //__pointer(rect_map)                  m_mapRect;
-      //__pointer(::user::int_map)           m_mapInt;
+      //__pointer(::user::i32_map)           m_mapInt;
       //__pointer(::user::double_map)        m_mapDouble;
 
       __pointer(::user::style)               m_puserstyle;

@@ -117,6 +117,15 @@ constexpr const auto min(const A & a, const B & b)
 }
 
 
+template < primitive_integral A, primitive_integral B >
+constexpr const auto max(const A & a, const B & b)
+{
+
+   return b < a ? a : (A)b;
+
+}
+
+
 // if a == b, max returns first argument
 template < typename A, typename B >
 constexpr const auto max(const A & a, const B & b)

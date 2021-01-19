@@ -361,7 +361,7 @@ namespace ftp
    };
 
 
-   class CLASS_DECL_CORE command::info2 : private map<enum_command, enum_command, __pointer(extended_info), extended_info * >
+   class CLASS_DECL_CORE command::info2 : private map<enum_command, __pointer(extended_info) >
    {
    public:
 

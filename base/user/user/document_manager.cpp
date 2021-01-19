@@ -372,13 +372,17 @@ namespace user
 
    void document_manager::add_document_template(::user::impact_system * ptemplate)
    {
+      
       ASSERT_VALID(ptemplate);
+      
       if(m_templateptra.add_unique(ptemplate))
       {
+
          ptemplate->load_template();
+
       }
       
-      add_composite(ptemplate);
+      //add_composite(ptemplate);
 
    }
 

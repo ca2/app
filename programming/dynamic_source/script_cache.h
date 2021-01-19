@@ -14,12 +14,12 @@ namespace dynamic_source
    public:
 
 
-      strsp(script)                 m_map;
-      __pointer(script_manager)     m_pmanager;
+      string_map < __pointer(script) >    m_map;
+      __pointer(script_manager)           m_pmanager;
 
 
       script_cache();
-      ~script_cache();
+      virtual ~script_cache();
 
 
       virtual ::e_status initialize(::layered * pobjectContext) override;
@@ -30,8 +30,8 @@ namespace dynamic_source
 
       void set_out_of_date(string str);
 
-      void cache(script * pscript);
-      ds_script * create_new_ds_script(const string & strName);
+      //void cache(script * pscript);
+      __pointer(ds_script) create_new_ds_script(const string & strName);
       void uncache(script * pscript);
 
       script * get(const char * lpcszName);

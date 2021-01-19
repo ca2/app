@@ -431,7 +431,7 @@ namespace user
 
       ::draw2d::path_pointer path(e_create);
 
-      point_array pointa;
+      pointd_array pointa;
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 

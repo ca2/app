@@ -67,7 +67,7 @@ bool image_array::explode(::object * pobject, const ::size & sizeParam, payload 
 
          auto pimage = create_image(size);
 
-         pimage->g()->stretch(pimage->rect(), pimageSource->g(), ::rect_dim(sizeSource.cx * col, sizeSource.cy * row, sizeSource.cx, sizeSource.cy));
+         pimage->g()->stretch(pimage->rect(), pimageSource, ::rect_dim(sizeSource.cx * col, sizeSource.cy * row, sizeSource.cx, sizeSource.cy));
 
          add(pimage);
 

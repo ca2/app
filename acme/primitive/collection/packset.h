@@ -1,9 +1,9 @@
 #pragma once
 
-template <class ID_TYPE, class ARG_ID_TYPE, class ITEM_TYPE, class ARG_ITEM_TYPE,
-          class ARRAY = array < ITEM_TYPE, ARG_ITEM_TYPE > >
+
+template < typename ID_TYPE, typename ARG_ID_TYPE, typename ITEM_TYPE, typename ARG_ITEM_TYPE, typename ARRAY = array < ITEM_TYPE, ARG_ITEM_TYPE > >
 class packset :
-   public map < ID_TYPE, ARG_ID_TYPE, ARRAY, ARRAY >
+   public map < ID_TYPE, ARRAY, ARG_ID_TYPE, const ARRAY & >
 {
 public:
    
@@ -21,38 +21,51 @@ public:
 };
 
 
-template <class ID_TYPE, class ARG_ID_TYPE, class ITEM_TYPE, class ARG_ITEM_TYPE, class ARRAY >
-packset <ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY> ::
-packset()
+template < typename ID_TYPE, typename ARG_ID_TYPE, typename ITEM_TYPE, typename ARG_ITEM_TYPE, typename ARRAY >
+packset < ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY > ::packset()
 {
+
 }
 
 
-template <class ID_TYPE, class ARG_ID_TYPE, class ITEM_TYPE, class ARG_ITEM_TYPE, class ARRAY >
-void packset <ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY> ::
-pack(ARG_ID_TYPE id, ARG_ITEM_TYPE item)
+template < typename ID_TYPE, typename ARG_ID_TYPE, typename ITEM_TYPE, typename ARG_ITEM_TYPE, typename ARRAY >
+void packset < ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY > ::pack(ARG_ID_TYPE id, ARG_ITEM_TYPE item)
 {
+   
    this->operator[](id).add(item);
+
 }
 
 
-template <class ID_TYPE, class ARG_ID_TYPE, class ITEM_TYPE, class ARG_ITEM_TYPE, class ARRAY >
-::count packset <ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY> ::
-get_pack_count()
+template < typename ID_TYPE, typename ARG_ID_TYPE, typename ITEM_TYPE, typename ARG_ITEM_TYPE, typename ARRAY >
+::count packset < ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY > ::get_pack_count()
 {
+   
    return this->get_size();
+
 }
 
-template <class ID_TYPE, class ARG_ID_TYPE, class ITEM_TYPE, class ARG_ITEM_TYPE, class ARRAY >
-::count packset <ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY> ::
-get_item_count()
+
+template < typename ID_TYPE, typename ARG_ID_TYPE, typename ITEM_TYPE, typename ARG_ITEM_TYPE, typename ARRAY >
+::count packset < ID_TYPE, ARG_ID_TYPE, ITEM_TYPE, ARG_ITEM_TYPE, ARRAY > ::get_item_count()
 {
+   
    ::count count = 0;
-   typename map < ID_TYPE, ARG_ID_TYPE, ARRAY, ARRAY >::pair * point = this->get_start();
-   while(point != nullptr)
+
+   auto ppair = this->get_start();
+   
+   while(ppair != nullptr)
    {
-      count += point->element2().get_count();
-      this->get_next(point);
+      
+      count += ppair->element2().get_count();
+
+      this->get_next(ppair);
+
    }
+
    return count;
+
 }
+
+
+

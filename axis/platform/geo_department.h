@@ -16,7 +16,7 @@ namespace geo
       bool                                         m_bInitialLocalityTimeZoneInit;
 
       __pointer(::mutex)                                 m_spmutexOpenweatherCity;
-      int_ptr_map < ::datetime::department::time_zone >     m_cityTimeZone;
+      iptr_map < ::datetime::department::time_zone >     m_cityTimeZone;
       //string_map < time_zone >      m_countryTimeZone;
 
       string_array                                       m_straCityLo;

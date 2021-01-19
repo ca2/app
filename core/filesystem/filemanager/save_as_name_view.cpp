@@ -273,7 +273,9 @@ namespace filemanager
 
       //auto pupdate = new_update();
 
-      if (filemanager_data()->m_pdocumentTopic->on_filemanager_save(filemanager_document(), path))
+      auto pdocumentTopic = filemanager_data()->m_pdocumentTopic;
+
+      if (pdocumentTopic->on_filemanager_save(filemanager_document(), path))
       {
 
          //psubject->id() = id_topic_saved;

@@ -50,8 +50,8 @@ namespace filemanager
 
       };
 
-      FolderArray         m_foldera;
-      map < ::draw2d::icon *, ::draw2d::icon *, i32, i32 > m_iconmap;
+      FolderArray                      m_foldera;
+      map < ::draw2d::icon *, i32 >    m_iconmap;
 
 
       folder_list ();

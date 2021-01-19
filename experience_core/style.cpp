@@ -1054,7 +1054,6 @@ namespace experience
 
                }
 
-
             }
 
          }
@@ -1076,7 +1075,6 @@ namespace experience
                   return __acolor(255, 0, 0, 0);
 
                }
-
 
             }
             else if (estate & ::user::e_state_selected)
@@ -1163,7 +1161,6 @@ namespace experience
 
                }
 
-
             }
 
          }
@@ -1187,9 +1184,27 @@ namespace experience
                }
 
             }
-         }
-            else if (eelement == ::user::e_element_background)
+            else
             {
+
+               if (::user::is_app_dark_mode())
+               {
+
+                  return __acolor(255, 230, 230, 230);
+
+               }
+               else
+               {
+
+                  return __acolor(255, 40, 40, 40);
+
+               }
+
+            }
+
+        }
+        else if (eelement == ::user::e_element_background)
+        {
 
                if (::user::is_app_dark_mode())
                {

@@ -4867,6 +4867,14 @@ inline const TYPE_CHAR * FormatArgument(const string_base < TYPE_CHAR > & value)
 
 
 template < typename TYPE_CHAR >
+inline string_base < TYPE_CHAR >::string_base(const block & block) :
+   string_base((const ansichar *)block.get_data(), (strsize)block.get_size())
+{
+
+
+}
+
+template < typename TYPE_CHAR >
 inline string_base < TYPE_CHAR >::string_base(const ansistring & ansistr)
 {
 

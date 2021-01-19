@@ -13,7 +13,7 @@ namespace logic
       enum_bit m_ebit;
 
 
-      inline bit(e_optional) { m_ebit = e_bit_none; }
+      inline bit(enum_optional) { m_ebit = e_bit_none; }
 
 
       inline bit() { m_ebit = e_bit_none; }

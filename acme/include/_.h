@@ -1045,6 +1045,9 @@ inline bool returns_false(PRED pred, bool bOnVoid, Args... args)
 #endif
 
 
+struct block;
+
+
 template<typename CHAR_TYPE>
 class string_base;
 
@@ -1914,18 +1917,18 @@ namespace audio
 #include "acme/primitive/collection/forward.h"
 
 
-enum e_optional
+enum enum_optional
 {
 
-   optional,
+   e_optional,
 
 };
 
 
-enum e_no_init
+enum enum_no_init
 {
 
-   no_init,
+   e_no_init,
 
 };
 

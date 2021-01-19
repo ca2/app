@@ -342,10 +342,10 @@ namespace graphics
          if (ch == (char)209)// horizontal double / down simple
          {
 
-            ::draw2d::pen_pointer & point2 = get_pen2(iColor);
-            ::draw2d::pen_pointer & point = get_pen1(iColor);
+            ::draw2d::pen_pointer & pen2 = get_pen2(iColor);
+            ::draw2d::pen_pointer & pen1 = get_pen1(iColor);
 
-            m_pimage->g()->set(point2);
+            m_pimage->g()->set(pen2);
 
             m_pimage->g()->draw_line(
                ::point(m_iBorder + x * m_sizeTile.cx,
@@ -354,7 +354,7 @@ namespace graphics
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
             );
 
-            m_pimage->g()->set(point);
+            m_pimage->g()->set(pen1);
 
             m_pimage->g()->draw_line(
                ::point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
@@ -373,9 +373,9 @@ namespace graphics
             if (m_iLastPen != 2 || m_iLastPenColor != iColor)
             {
 
-               ::draw2d::pen_pointer & point2 = get_pen2(iColor);
+               ::draw2d::pen_pointer & pen2 = get_pen2(iColor);
 
-               m_pimage->g()->set(point2);
+               m_pimage->g()->set(pen2);
 
             }
 
@@ -396,9 +396,9 @@ namespace graphics
             if (m_iLastPen != 1 || m_iLastPenColor != iColor)
             {
 
-               ::draw2d::pen_pointer & point = get_pen1(iColor);
+               ::draw2d::pen_pointer & pen1 = get_pen1(iColor);
 
-               m_pimage->g()->set(point);
+               m_pimage->g()->set(pen1);
 
             }
 
@@ -419,9 +419,9 @@ namespace graphics
             if (m_iLastPen != 2 || m_iLastPenColor != iColor)
             {
 
-               ::draw2d::pen_pointer & point2 = get_pen2(iColor);
+               ::draw2d::pen_pointer & pen2 = get_pen2(iColor);
 
-               m_pimage->g()->set(point2);
+               m_pimage->g()->set(pen2);
 
             }
 
@@ -438,9 +438,9 @@ namespace graphics
          }
          else if (ch == (char)199) // vertical double / right simple
          {
-            ::draw2d::pen_pointer & point2 = get_pen2(iColor);
-            ::draw2d::pen_pointer & point = get_pen1(iColor);
-            m_pimage->g()->set(point2);
+            ::draw2d::pen_pointer & pen2 = get_pen2(iColor);
+            ::draw2d::pen_pointer & pen1 = get_pen1(iColor);
+            m_pimage->g()->set(pen2);
 
            m_pimage->g()->draw_line(
               ::pointd( m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
@@ -448,7 +448,7 @@ namespace graphics
               ::pointd( m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1 )
             );
-            m_pimage->g()->set(point);
+            m_pimage->g()->set(pen1);
 
             m_pimage->g()->draw_line(
                ::pointd(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
@@ -463,9 +463,9 @@ namespace graphics
          }
          else if (ch == (char)182) // vertical double / left simple
          {
-            ::draw2d::pen_pointer & point2 = get_pen2(iColor);
-            ::draw2d::pen_pointer & point = get_pen1(iColor);
-            m_pimage->g()->set(point2);
+            ::draw2d::pen_pointer & pen2 = get_pen2(iColor);
+            ::draw2d::pen_pointer & pen1 = get_pen1(iColor);
+            m_pimage->g()->set(pen2);
 
             m_pimage->g()->draw_line(
                ::pointd(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
@@ -473,7 +473,7 @@ namespace graphics
                ::pointd(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, 
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1)
             );
-            m_pimage->g()->set(point);
+            m_pimage->g()->set(pen1);
 
             m_pimage->g()->draw_line(
                ::pointd(m_iBorder + x * m_sizeTile.cx,
@@ -492,9 +492,9 @@ namespace graphics
             if (m_iLastPen != 1 || m_iLastPenColor != iColor)
             {
 
-               ::draw2d::pen_pointer & point = get_pen1(iColor);
+               ::draw2d::pen_pointer & pen1 = get_pen1(iColor);
 
-               m_pimage->g()->set(point);
+               m_pimage->g()->set(pen1);
 
             }
 
@@ -515,9 +515,9 @@ namespace graphics
             if (m_iLastPen != 1 || m_iLastPenColor != iColor)
             {
 
-               ::draw2d::pen_pointer & point = get_pen1(iColor);
+               ::draw2d::pen_pointer & pen1 = get_pen1(iColor);
 
-               m_pimage->g()->set(point);
+               m_pimage->g()->set(pen1);
 
             }
 
@@ -543,9 +543,9 @@ namespace graphics
             if (m_iLastPen != 2 || m_iLastPenColor != iColor)
             {
 
-               ::draw2d::pen_pointer & point2 = get_pen2(iColor);
+               ::draw2d::pen_pointer & pen2 = get_pen2(iColor);
 
-               m_pimage->g()->set(point2);
+               m_pimage->g()->set(pen2);
 
             }
 
@@ -570,9 +570,9 @@ namespace graphics
             if (m_iLastPen != 2 || m_iLastPenColor != iColor)
             {
 
-               ::draw2d::pen_pointer & point2 = get_pen2(iColor);
+               ::draw2d::pen_pointer & pen2 = get_pen2(iColor);
 
-               m_pimage->g()->set(point2);
+               m_pimage->g()->set(pen2);
 
             }
 
@@ -597,9 +597,9 @@ namespace graphics
             if (m_iLastPen != 1 || m_iLastPenColor != iColor)
             {
 
-               ::draw2d::pen_pointer & point = get_pen1(iColor);
+               ::draw2d::pen_pointer & pen1 = get_pen1(iColor);
 
-               m_pimage->g()->set(point);
+               m_pimage->g()->set(pen1);
 
             }
 
@@ -624,9 +624,9 @@ namespace graphics
             if (m_iLastPen != 2 || m_iLastPenColor != iColor)
             {
 
-               ::draw2d::pen_pointer & point2 = get_pen2(iColor);
+               ::draw2d::pen_pointer & pen2 = get_pen2(iColor);
 
-               m_pimage->g()->set(point2);
+               m_pimage->g()->set(pen2);
 
             }
 
@@ -651,9 +651,9 @@ namespace graphics
             if (m_iLastPen != 1 || m_iLastPenColor != iColor)
             {
 
-               ::draw2d::pen_pointer & point = get_pen1(iColor);
+               ::draw2d::pen_pointer & pen1 = get_pen1(iColor);
 
-               m_pimage->g()->set(point);
+               m_pimage->g()->set(pen1);
 
             }
 
@@ -678,9 +678,9 @@ namespace graphics
             if (m_iLastPen != 2 || m_iLastPenColor != iColor)
             {
 
-               ::draw2d::pen_pointer & point2 = get_pen2(iColor);
+               ::draw2d::pen_pointer & pen2 = get_pen2(iColor);
 
-               m_pimage->g()->set(point2);
+               m_pimage->g()->set(pen2);
 
             }
 
@@ -705,9 +705,9 @@ namespace graphics
             if (m_iLastPen != 1 || m_iLastPenColor != iColor)
             {
 
-               ::draw2d::pen_pointer & point = get_pen1(iColor);
+               ::draw2d::pen_pointer & pen1 = get_pen1(iColor);
 
-              m_pimage->g()->set(point);
+              m_pimage->g()->set(pen1);
 
             }
 

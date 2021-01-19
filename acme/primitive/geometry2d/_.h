@@ -12,7 +12,7 @@ public:
    double m_d; // in radians
 
    angle() : m_d(0.0) {}
-   angle(e_no_init) {}
+   angle(enum_no_init) {}
    angle(nullptr_t) : m_d(0.0) {}
    angle(double d) : m_d(d) {}
 
@@ -897,8 +897,8 @@ inline RECT_TYPE* swap_rect_left_right(RECT_TYPE* prect) { __swap(prect->left, p
 
 
 
-template < typename POINT_TYPE >
-inline bool polygon_contains_point(const POINT_TYPE * ppPolygon, i32 iCount, const POINT_TYPE & point)
+template < primitive_point POINT1, primitive_point POINT2 >
+inline bool polygon_contains_point(const POINT1 * ppPolygon, i32 iCount, const POINT2 & point)
 {
 
    int i, j = iCount - 1;

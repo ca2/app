@@ -20,17 +20,27 @@ public:
    };
 
 
-   //e_duration      m_eduration;
    ::nanos           m_nanos;
    ::secs            m_secs;
 
 
+   duration() :
+      m_secs(), m_nanos(0)
+   { }
+
    explicit duration(long double dSeconds);
-   duration(i64 iSeconds = 0, i64 iNanoseconds = 0) : m_secs(iSeconds), m_nanos(iNanoseconds) {}
+
+   template < primitive_integral INTEGRAL >
+   duration(INTEGRAL iSeconds) :
+      m_secs(iSeconds), m_nanos(0)
+   { }
+
+   template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
+   duration(INTEGRAL1 iSeconds, INTEGRAL2 iNanoseconds) : 
+      m_secs(iSeconds), m_nanos(iNanoseconds) 
+   { }
+
    duration(enum_normalize, i64 iSeconds, i64 iNanoseconds);
-   duration(u64 uSeconds, i64 iNanoseconds = 0) : duration((::i64) uSeconds, iNanoseconds) {}
-   duration(i32 iSeconds, i64 iNanoseconds = 0) : duration((::i64) iSeconds, iNanoseconds) {}
-   duration(u32 uSeconds, i64 iNanoseconds = 0) : duration((::i64) uSeconds, iNanoseconds) {}
    duration(const class ::nanos & nanos);
    duration(const class ::micros & micros);
    duration(const class ::millis & millis);
@@ -66,7 +76,6 @@ public:
    inline static duration infinite();
    inline static duration pos_infinity();
    inline static duration zero();
-   //inline bool operator == (const duration & duration) const;
 
 
    duration & operator = (const ::secs & secs);
@@ -290,25 +299,28 @@ inline duration duration::zero()
 }
 
 
-//inline bool duration::operator == (const duration & duration) const
-//{
-//
-//   return m_secs.m_iSeconds == duration.m_secs.m_iSeconds && m_nanos.m_iNanoseconds == duration.m_nanos.m_iNanoseconds;
-//
-//}
-
-
 class CLASS_DECL_ACME nanosecond :
    public duration
 {
 public:
 
 
-   inline nanosecond(i64 iNanoseconds = 0);
-   inline nanosecond(u64 uNanoseconds) : nanosecond((::i64)uNanoseconds){}
-   inline nanosecond(i32 iNanoseconds);
-   inline nanosecond(u32 dwNanoseconds);
-   nanosecond(long double dNanoseconds);
+   inline nanosecond() : duration() {}
+
+   
+   template < primitive_integral INTEGRAL >
+   inline nanosecond(INTEGRAL iNanoseconds);
+
+   template < primitive_floating FLOATING >
+   inline nanosecond(FLOATING fNanoseconds);
+
+
+   nanosecond(const class ::nanos & nanos) : duration(nanos) {}
+   nanosecond(const class ::micros & micros) : duration(micros) {}
+   nanosecond(const class ::millis & millis) : duration(millis) {}
+   nanosecond(const class ::secs & secs) : duration(secs) {}
+   nanosecond(const class ::duration & duration) : duration(duration) {}
+
 
 };
 
@@ -322,11 +334,23 @@ class CLASS_DECL_ACME microsecond :
 public:
 
 
-   inline microsecond(i64 iMicroseconds = 0);
-   inline microsecond(u64 uMicroseconds) : microsecond((::i64)uMicroseconds) {}
-   inline microsecond(i32 iMicroseconds);
-   inline microsecond(u32 uMicroseconds);
-   microsecond(long double dMicroseconds);
+   inline microsecond() : duration() {}
+
+   
+   template < primitive_integral INTEGRAL >
+   inline microsecond(INTEGRAL iMicroseconds);
+
+
+   template < primitive_floating FLOATING >
+   inline microsecond(FLOATING fMicroseconds);
+
+
+   microsecond(const class ::nanos & nanos) : duration(nanos) {}
+   microsecond(const class ::micros & micros) : duration(micros) {}
+   microsecond(const class ::millis & millis) : duration(millis) {}
+   microsecond(const class ::secs & secs) : duration(secs) {}
+   microsecond(const class ::duration & duration) : duration(duration) {}
+
 
 };
 
@@ -340,14 +364,25 @@ class CLASS_DECL_ACME millisecond :
 public:
 
 
-   inline millisecond(i64 iMillisecond = 0);
-   inline millisecond(u64 uMillisecond);
-   inline millisecond(i32 iMillisecond);
-   inline millisecond(u32 uMillisecond);
-   inline millisecond(double dMillisecond);
-   millisecond(long double dMillisecond);
+   inline millisecond() : duration() {}
+
+   template < primitive_integral INTEGRAL >
+   inline millisecond(INTEGRAL iMillisecond);
+
+
+   template < primitive_floating FLOATING >
+   inline millisecond(FLOATING fMillisecond);
+
+   millisecond(const class ::nanos & nanos) : duration(nanos) {}
+   millisecond(const class ::micros & micros) : duration(micros) {}
+   millisecond(const class ::millis & millis) : duration(millis) {}
+   millisecond(const class ::secs & secs) : duration(secs) {}
+   millisecond(const class ::duration & duration) : duration(duration) {}
+
 
 };
+
+
 //
 //const char *
 //unsigned long long int
@@ -411,11 +446,20 @@ class CLASS_DECL_ACME seconds :
 public:
 
 
-   inline seconds(i64 iSeconds = 0);
-   inline seconds(u64 u) :seconds((::i64)u) {}
-   inline seconds(i32 iSeconds);
-   inline seconds(u32 dwSeconds);
-   seconds(long double dSeconds);
+   inline seconds() : duration() {}
+
+   template < primitive_integral INTEGRAL >
+   inline seconds(INTEGRAL iSeconds) : duration(iSeconds) { }
+
+   template < primitive_floating FLOATING >
+   inline seconds(FLOATING fSeconds) : duration(fSeconds) { }
+
+   seconds(const class ::nanos & nanos) : duration(nanos) {}
+   seconds(const class ::micros & micros) : duration(micros) {}
+   seconds(const class ::millis & millis) : duration(millis) {}
+   seconds(const class ::secs & secs) : duration(secs) {}
+   seconds(const class ::duration & duration) : duration(duration) {}
+
 
 
 };
@@ -443,11 +487,16 @@ class CLASS_DECL_ACME minutes :
 public:
 
 
-   inline minutes(i64 iMinutes = 0);
-   inline minutes(u64 u) :minutes((::i64)u) {}
-   inline minutes(i32 iMinutes);
-   inline minutes(u32 dwMinutes);
-   inline minutes(long double dMinutes);
+   inline minutes() : duration() {}
+   
+   template < primitive_integral INTEGRAL >
+   inline minutes(INTEGRAL u) : duration(u) {}
+
+   minutes(const class ::nanos & nanos) : duration(nanos) {}
+   minutes(const class ::micros & micros) : duration(micros) {}
+   minutes(const class ::millis & millis) : duration(millis) {}
+   minutes(const class ::secs & secs) : duration(secs) {}
+   minutes(const class ::duration & duration) : duration(duration) {}
 
 
 };
@@ -473,11 +522,27 @@ class CLASS_DECL_ACME hours :
 public:
 
 
-   inline hours(i64 iHours, int iMinutes = 0, int iSeconds = 0);
-   inline hours(u64 u, int iMinutes = 0, int iSeconds = 0) :hours((::i64)u, iMinutes, iSeconds) {}
-   inline hours(i32 iHours, int iMinutes = 0, int iSeconds = 0);
-   inline hours(u32 dwHours, int iMinutes = 0, int iSeconds = 0);
-   inline hours(long double dHours);
+   inline hours() : duration() {}
+
+
+   template < primitive_integral INTEGRAL1 >
+   inline hours(INTEGRAL1 iHours);
+
+   template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
+   inline hours(INTEGRAL1 iHours, INTEGRAL2 iMinutes);
+
+   template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2, primitive_integral INTEGRAL3 >
+   inline hours(INTEGRAL1 iHours, INTEGRAL2 iMinutes, INTEGRAL3 iSeconds);
+
+   template < primitive_floating FLOATING >
+   inline hours(FLOATING fHours);
+
+
+   hours(const class ::nanos & nanos) : duration(nanos) {}
+   hours(const class ::micros & micros) : duration(micros) {}
+   hours(const class ::millis & millis) : duration(millis) {}
+   hours(const class ::secs & secs) : duration(secs) {}
+   hours(const class ::duration & duration) : duration(duration) {}
 
 
 };
@@ -504,11 +569,22 @@ class CLASS_DECL_ACME days :
 public:
 
 
-   inline days(i64 iDays = 0);
-   inline days(u64 u) :days((::i64)u) {}
-   inline days(i32 iDays);
-   inline days(u32 dwDays);
-   inline days(long double dDays);
+
+   inline days() : duration(){}
+
+   template < primitive_integral INTEGRAL >
+   inline days(INTEGRAL iDays);
+
+
+   template < primitive_floating FLOATING >
+   inline days(FLOATING fDays);
+
+   days(const class ::nanos & nanos) : duration(nanos) {}
+   days(const class ::micros & micros) : duration(micros) {}
+   days(const class ::millis & millis) : duration(millis) {}
+   days(const class ::secs & secs) : duration(secs) {}
+   days(const class ::duration & duration) : duration(duration) {}
+
 
 
 };
@@ -518,188 +594,64 @@ inline days operator "" _days(unsigned long long int u) { return (::u64) u; }
 inline days operator "" _day(unsigned long long int u) { return (::u64) u; }
 
 
-inline nanosecond::nanosecond(i64 i) :
+template < primitive_integral INTEGRAL >
+inline nanosecond::nanosecond(INTEGRAL i) :
    duration(i / (1'000'000'000), (i % (1'000'000'000)))
 {
 
 }
 
 
-inline nanosecond::nanosecond(i32 i) :
-   duration(i / (1'000'000'000), (i % (1'000'000'000)))
-{
-
-}
-
-
-inline nanosecond::nanosecond(u32 dw) :
-   duration(dw / (1'000'000'000), (dw % (1'000'000'000)))
-{
-
-}
-
-
-inline microsecond::microsecond(i64 i) :
+template < primitive_integral INTEGRAL >
+inline microsecond::microsecond(INTEGRAL i) :
    duration(i / (1'000'000), (i % (1'000'000)) * 1'000)
 {
 
 }
 
 
-inline microsecond::microsecond(i32 i) :
-   duration(i / (1'000'000), (i % (1'000'000)) * 1'000)
+template < primitive_integral INTEGRAL1 >
+inline hours::hours(INTEGRAL1 iHours) :
+   duration(iHours * 3600)
 {
 
 }
 
 
-inline microsecond::microsecond(u32 dw) :
-   duration(dw / (1'000'000), (dw % (1'000'000)) * 1'000)
+template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2 >
+inline hours::hours(INTEGRAL1 iHours, INTEGRAL2 iMinutes) :
+   duration(iHours * 3600 + iMinutes * 60)
 {
 
 }
 
 
-inline millisecond::millisecond(i64 i) :
-   duration(i / 1'000, (i % 1'000) * 1'000'000)
-{
-
-}
-
-
-inline millisecond::millisecond(u64 u) :
-duration(u / 1'000, (u % 1'000) * 1'000'000)
-{
-
-}
-
-
-inline millisecond::millisecond(i32 i) :
-   duration(i / 1'000, (i % 1'000) * 1'000'000)
-{
-
-}
-
-
-inline millisecond::millisecond(u32 dw) :
-   duration(dw / 1'000, (dw % 1'000) * 1'000'000)
-{
-
-}
-
-inline millisecond::millisecond(double d) :
-   duration((::i64) (d / 1'000.0), (::i64) (fmod(d, 1'000.0) * 1'000'000.0))
-{
-
-}
-
-
-inline seconds::seconds(i64 i) :
-   duration(i)
-{
-
-}
-
-
-inline seconds::seconds(i32 i) :
-   duration(i)
-{
-
-}
-
-
-inline seconds::seconds(u32 dw) :
-   duration(dw)
-{
-
-}
-
-
-inline seconds::seconds(long double d) :
-   duration(d)
-{
-
-}
-
-
-inline minutes::minutes(i64 i) :
-   duration(i * 60)
-{
-
-}
-
-
-inline minutes::minutes(i32 i) :
-   duration(i * 60)
-{
-
-}
-
-
-inline minutes::minutes(u32 dw) :
-   duration(dw * 60)
-{
-
-}
-
-
-inline minutes::minutes(long double d) :
-   duration(d * 60.0)
-{
-
-}
-
-
-inline hours::hours(i64 iHours, i32 iMinutes, i32 iSeconds) :
+template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2, primitive_integral INTEGRAL3 >
+inline hours::hours(INTEGRAL1 iHours, INTEGRAL2 iMinutes, INTEGRAL3 iSeconds) :
    duration(iHours * 3600 + iMinutes * 60 + iSeconds)
 {
 
 }
 
 
-inline hours::hours(i32 iHours, i32 iMinutes, i32 iSeconds) :
-   duration(iHours * 3600 + iMinutes * 60 + iSeconds)
-{
-
-}
-
-
-inline hours::hours(u32 dwHours, i32 iMinutes, i32 iSeconds) :
-   duration(dwHours * 3600 + iMinutes * 60 + iSeconds)
-{
-
-}
-
-
-inline hours::hours(long double d) :
+template < primitive_floating FLOATING >
+inline hours::hours(FLOATING d) :
    duration(d * 3600.0)
 {
 
 }
 
 
-inline days::days(i64 i) :
+template < primitive_integral INTEGRAL >
+inline days::days(INTEGRAL i) :
    duration(i * 86400)
 {
 
 }
 
 
-inline days::days(i32 i) :
-   duration(i * 86400)
-{
-
-}
-
-
-inline days::days(u32 dw) :
-   duration(dw * 86400)
-{
-
-}
-
-
-inline days::days(long double d) :
+template < primitive_floating FLOATING >
+inline days::days(FLOATING d) :
    duration(d * 86400.0)
 {
 
@@ -832,4 +784,27 @@ inline u32 __os(const ::duration & duration) { return duration.u32_millis(); }
 #endif
 
 
+
+template < primitive_floating FLOATING >
+inline nanosecond::nanosecond(FLOATING fNanos) :
+   duration((i64)(fNanos / (1'000'000'000.0)), (i64)fmod(fNanos, 1'000'000'000.0))
+{
+
+}
+
+
+template < primitive_floating FLOATING >
+inline microsecond::microsecond(FLOATING fMicroseconds) :
+   duration(((i64)(fMicroseconds / (1'000'000.0)), (i64)fmod(fMicroseconds * 1'000.0, 1'000'000'000.0)))
+{
+
+}
+
+
+template < primitive_floating FLOATING >
+inline millisecond::millisecond(FLOATING fMilliseconds) :
+   duration((i64)(fMilliseconds / 1'000.0), (i64)fmod(fMilliseconds * 1'000'000.0, 1'000'000'000.0))
+{
+
+}
 

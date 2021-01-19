@@ -863,7 +863,7 @@ namespace user
 
       virtual void get_child_rect(RECT32* prect);
 
-      inline auto get_child_rect() { ::rect rect(no_init); get_child_rect(&rect); return rect; }
+      inline auto get_child_rect() { ::rect rect(e_no_init); get_child_rect(&rect); return rect; }
 
       virtual bool scroll_bar_get_client_rect(RECT32* prect);
 
@@ -1109,6 +1109,7 @@ namespace user
       virtual bool on_timer(::timer* ptimer) override;
       DECL_GEN_SIGNAL(_001OnChar);
       DECL_GEN_SIGNAL(_001OnDestroy);
+      DECL_GEN_SIGNAL(_001OnPostUser);
       DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(_001OnMove);
       DECL_GEN_SIGNAL(_001OnCreate);

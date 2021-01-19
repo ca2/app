@@ -14,17 +14,9 @@ public:
 
 
    binary_stream() {}
-   binary_stream(const ::file_pointer & p) : m_p(p) { }
-   binary_stream(const binary_stream & base) :
-      m_p(base.m_p)
-   {
-
-   }
-   binary_stream(binary_stream & base) :
-      m_p(::move(base.m_p))
-   {
-
-   }
+   binary_stream(const ::file_pointer & p);
+   binary_stream(const binary_stream & base);
+   binary_stream(binary_stream & base);
    virtual ~binary_stream();
 
    inline payload & options();

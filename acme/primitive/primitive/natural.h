@@ -134,7 +134,7 @@ public:
    DATA *      m_pdata;
 
 
-   inline natural_pointer(e_no_init) { }
+   inline natural_pointer(enum_no_init) { }
 
    inline natural_pointer(nullptr_t) { m_pdata = nullptr; }
 

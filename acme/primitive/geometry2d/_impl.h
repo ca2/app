@@ -5,10 +5,14 @@
 #include "_size_impl.h"
 
 
-inline constexpr auto __horz(const ::point & point) { return point.x; }
-inline constexpr auto __vert(const ::point & point) { return point.y; }
-inline constexpr auto __horz(const ::size & size) { return size.cx; }
-inline constexpr auto __vert(const ::size & size) { return size.cy; }
+template < primitive_point POINT >
+inline constexpr auto __horz(const POINT & point) { return point.x; }
+template < primitive_point POINT >
+inline constexpr auto __vert(const POINT & point) { return point.y; }
+template < primitive_size SIZE >
+inline constexpr auto __horz(const SIZE & size) { return size.cx; }
+template < primitive_size SIZE >
+inline constexpr auto __vert(const SIZE & size) { return size.cy; }
 
 inline point& top_left(const RECT32* prect) { return *(point*)prect; }
 inline point& bottom_right(const RECT32* prect) { return *(point*)& prect->right; }

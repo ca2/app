@@ -746,8 +746,7 @@ namespace draw2d
    bool graphics::draw_line(double x1, double y1, double x2, double y2)
    {
 
-      //return draw_line(point1, point2, m_ppen);
-      return false;
+      return draw_line(x1, y1, x2, y2, m_ppen);
 
    }
 
@@ -1466,13 +1465,13 @@ namespace draw2d
    }
 
 
-   bool graphics::text_out(double x, double y, const char * pszString, strsize nCount)
-   {
+   //bool graphics::text_out(double x, double y, const char * pszString, strsize nCount)
+   //{
 
-      return text_out((double)x, (double)y, pszString, nCount);
+   //   return text_out(x, y, string(pszString, nCount));
 
 
-   }
+   //}
 
 
    //bool graphics::text_out(double x, double y, const string & str)
@@ -1491,13 +1490,13 @@ namespace draw2d
    //}
 
 
-   bool graphics::text_out(double x, double y, const string & str)
+   bool graphics::text_out(double x, double y, const block & block)
    {
 
       if (m_pimageAlphaBlend)
       {
 
-         if (TextOutAlphaBlend(x, y, str))
+         if (TextOutAlphaBlend(x, y, block))
          {
 
             return true;
@@ -1506,7 +1505,7 @@ namespace draw2d
 
       }
 
-      if (TextOutRaw(x, y, str))
+      if (TextOutRaw(x, y, block))
       {
 
          return true;
@@ -1518,7 +1517,7 @@ namespace draw2d
    }
 
 
-   bool graphics::TextOutRaw(double x, double y, const string & str)
+   bool graphics::TextOutRaw(double x, double y, const block & str)
    {
 
       return false;
@@ -1526,11 +1525,17 @@ namespace draw2d
    }
 
 
-   bool graphics::TextOutAlphaBlend(double x, double y, const string &str)
+   bool graphics::TextOutAlphaBlend(double x, double y, const block & block)
    {
 
+      if (block.get_size() <= 0)
+      {
+
+         return false;
+
+      }
+
       ASSERT(m_pimageAlphaBlend->is_ok());
-      ASSERT(str.has_char());
 
       single_lock sl(mutex());
 
@@ -1538,7 +1543,7 @@ namespace draw2d
 
       ::rectd rectIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
 
-      const ::size & size = ::size(GetTextExtent(str));
+      const ::size & size = ::size(GetTextExtent((const char *) block.get_data(), block.get_size()));
 
 
       //size.cx = size.cx * 110 / 100;
@@ -1563,7 +1568,7 @@ namespace draw2d
 
          pimage1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-         pimage1->get_graphics()->text_out(0, 0, str);
+         pimage1->get_graphics()->text_out(0, 0, block);
 
          pimage1->blend(nullptr, m_pimageAlphaBlend, point((int)max(0, x - m_pointAlphaBlend.x), (int)max(0, y - m_pointAlphaBlend.y)), rectText.size());
 
@@ -1862,7 +1867,7 @@ namespace draw2d
    }
 
 
-   bool graphics::AngleArc(double x, double y, i32 nRadius, angle fStartAngle, angle fSweepAngle)
+   bool graphics::AngleArc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle)
    {
 
       UNREFERENCED_PARAMETER(x);
@@ -2169,7 +2174,11 @@ namespace draw2d
    void graphics::LPtoHIMETRIC(::sized * psize)
    {
 
-      UNREFERENCED_PARAMETER(psize);
+      ASSERT(__is_valid_address(psize, sizeof(::sized)));
+
+      LPtoDP(psize);
+
+      DPtoHIMETRIC(psize);
 
    }
 
@@ -2177,7 +2186,11 @@ namespace draw2d
    void graphics::HIMETRICtoLP(::sized * psize)
    {
 
-      UNREFERENCED_PARAMETER(psize);
+      ASSERT(__is_valid_address(psize, sizeof(sized)));
+
+      HIMETRICtoDP(psize);
+
+      DPtoLP(psize);
 
    }
 
@@ -4355,7 +4368,7 @@ namespace draw2d
       if (iUnderline >= 0 && iUnderline < str.get_length())
       {
 
-         pgraphics->text_out(rect.left, rect.top, str, (i32)min(iUnderline, str.get_length()));
+         pgraphics->text_out(rect.left, rect.top, { str.c_str(), (i32)min(iUnderline, str.get_length()) });
          /*::TextOutU(
          (HDC)pgraphics->get_os_data(),
          rect.left,
@@ -4378,7 +4391,7 @@ namespace draw2d
             rect.top,
             &wch,
             1);*/
-            pgraphics->text_out(rect.left + sz.cx, (double) rect.top, &wch, 1);
+            pgraphics->text_out(rect.left + sz.cx, (double)rect.top, { &wch, 1 });
             if (iUnderline + 1 <= str.get_length())
             {
                sz = pgraphics->GetTextExtent(str, (i32)(iUnderline + 1));
@@ -4388,7 +4401,7 @@ namespace draw2d
                iUnderline + 1,
                &sz);*/
                strsize iCount = str.get_length() - iUnderline - 1;
-               pgraphics->text_out(rect.left + sz.cx, (double)rect.top, str.Right(iCount), (i32)iCount);
+               pgraphics->text_out(rect.left + sz.cx, (double)rect.top, { str.Right(iCount).c_str(), (i32)iCount });
                /*::TextOutU(
                (HDC)pgraphics->get_os_data(),
                rect.left + sz.cx,

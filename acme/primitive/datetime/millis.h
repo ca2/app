@@ -32,14 +32,9 @@ public:
 
    millis() { m_iMilliseconds = 0; }
    millis(enum e_tick_now) { m_iMilliseconds = get_tick(); }
-   millis(enum e_no_init) {}
-   millis(::i32 i) { m_iMilliseconds = i; }
-   millis(::u32 u) { m_iMilliseconds = u; }
-   millis(::i64 i) { m_iMilliseconds = i; }
-   millis(::u64 u) { m_iMilliseconds = u; }
-#if defined(LINUX)
-   millis(unsigned long long int u) { m_iMilliseconds = u; }
-#endif
+   millis(enum enum_no_init) {}
+   template < primitive_integral INTEGRAL >
+   millis(INTEGRAL i) { m_iMilliseconds = i; }
    millis(const secs & secs) { m_iMilliseconds = secs.m_iSeconds * 1'000; }
    millis(const millis & millis) { m_iMilliseconds = millis.m_iMilliseconds; }
    millis(const micros & micros);

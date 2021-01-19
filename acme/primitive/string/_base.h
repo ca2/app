@@ -53,11 +53,11 @@ public:
 
 
    string_base() { }
-   string_base(e_no_init) : POINTER(no_init) { }
+   string_base(enum_no_init) : POINTER(e_no_init) { }
    string_base(nullptr_t) { }
    string_base(for_moving) { }
    string_base(e_get_buffer, strsize len) { get_string_buffer(len); }
-   string_base(string_base && s) : string_base(no_init) { this->m_pdata = s.m_pdata; s.m_pdata = nullptr; }
+   string_base(string_base && s) : string_base(e_no_init) { this->m_pdata = s.m_pdata; s.m_pdata = nullptr; }
 
    template < has_to_string HAS_TO_STRING >
    string_base(const HAS_TO_STRING & has_to_string) : string_base(has_to_string.to_string()) { }
@@ -67,6 +67,7 @@ public:
    string_base(const ansichar * pansichar);
    string_base(const ansichar * pansichar, strsize len);
    string_base(const ansichar * pansichar, strsize len, strsize pos) : string_base(pansichar + pos, len) { }
+   string_base(const block & block);
    string_base(const wd16char * pwd16char);
    string_base(const wd16char * pwd16char, strsize len);
    string_base(const wd16char * pwd16char, strsize len, strsize pos) : string_base(pwd16char + pos, len) { }

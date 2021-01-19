@@ -1154,6 +1154,7 @@ namespace user
 
       MESSAGE_LINK(e_message_create, pchannel, this, &interaction::_001OnCreate);
       MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction::_001OnDestroy);
+      MESSAGE_LINK(e_message_post_user, pchannel, this, &interaction::_001OnPostUser);
       MESSAGE_LINK(e_message_text_composition, pchannel, this, &interaction::_001OnTextComposition);
 
       primitive::install_message_routing(pchannel);
@@ -1493,6 +1494,32 @@ namespace user
       user_interaction_on_destroy();
 
       pmessage->previous();
+
+   }
+
+
+   void interaction::_001OnPostUser(::message::message * pmessage)
+   {
+
+      if (pmessage->m_wparam == 1)
+      {
+
+         __pointer(::message::base) pbase(pmessage->m_lparam);
+
+         if (pbase)
+         {
+
+            message_handler(pbase);
+
+         }
+
+      }
+      else
+      {
+
+         __throw(invalid_argument_exception);
+
+      }
 
    }
 
@@ -11617,7 +11644,7 @@ restart:
    void interaction::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      set_need_redraw();
+      //set_need_redraw();
 
    }
 

@@ -5241,7 +5241,7 @@ finished_update:
 
       ::index iAfterComposingCursorPosition;
 
-      int iOffset = 0;
+      strsize iOffset = 0;
 
       if (iNewCursorPosition > 0)
       {
@@ -6209,7 +6209,7 @@ finished_update:
 
          HWND hwnd = get_handle();
 
-         ::CreateCaret(hwnd, 0, 1, m_dLineHeight);
+         ::CreateCaret(hwnd, 0, 1, (int) m_dLineHeight);
 
          ::point pointCaret = layout().design().origin();
 

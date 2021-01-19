@@ -81,7 +81,7 @@ public:
    using POINT_ARRAY_TYPE = typename POINT_TYPE::POINT_ARRAY_TYPE;
 
    rect_type() noexcept : rect_type((UNIT_TYPE)0) { }
-   rect_type(e_no_init) noexcept { }
+   rect_type(enum_no_init) noexcept { }
    rect_type(::std::nullptr_t) noexcept : rect_type((UNIT_TYPE)0) {}
    rect_type(UNIT_TYPE l, UNIT_TYPE t, UNIT_TYPE r, UNIT_TYPE b) noexcept { this->left = (UNIT_TYPE)l; this->top = (UNIT_TYPE)t; this->right = (UNIT_TYPE)r; this->bottom = (UNIT_TYPE)b; }
    rect_type(UNIT_TYPE x, UNIT_TYPE y) noexcept : rect_type(x, y, x, y) {}
@@ -105,7 +105,7 @@ public:
    rect_type(const Gdiplus::RectF* p) noexcept : { ::copy(this, p); }
 #endif
    template < primitive_point POINT, primitive_size SIZE >
-   rect_type(const POINT & point, const SIZE & size) noexcept : rect_type(point.x, point.y, point.x + size.cx, point.y + size.cy) {}
+   rect_type(const POINT & point, const SIZE & size) noexcept : rect_type((UNIT_TYPE)point.x, (UNIT_TYPE)point.y, (UNIT_TYPE)(point.x + size.cx), (UNIT_TYPE)(point.y + size.cy)) {}
    template < primitive_size SIZE >
    rect_type(const SIZE & size) noexcept : rect_type(POINT_TYPE(), size) {}
    template < primitive_point POINT1, primitive_point POINT2 >

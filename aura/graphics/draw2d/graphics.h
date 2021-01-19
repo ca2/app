@@ -478,7 +478,7 @@ namespace draw2d
 //      virtual bool Arc(const rectd & rectd, angle start, angle extends);
 
 
-      virtual bool AngleArc(double x, double y, i32 nRadius, angle fStartAngle, angle fSweepAngle);
+      virtual bool AngleArc(double x, double y, double nRadius, angle fStartAngle, angle fSweepAngle);
       virtual bool ArcTo(double x1, double y1, double x2, double y2, double x3, double y3, double x4, double y4);
       virtual bool ArcTo(const ::rectd & rect,const ::pointd & pointStart,const ::pointd & pointEnd);
       //virtual i32 GetArcDirectdion();
@@ -646,6 +646,23 @@ namespace draw2d
 
       }
 
+      template < primitive_size SIZE, graphics_source_pointer GRAPHICS_SOURCE_POINTER, primitive_point POINT >
+      inline bool stretch(const SIZE & sizeDst, GRAPHICS_SOURCE_POINTER pgraphicssource, const POINT & pointSrc)
+      {
+
+         auto sizeSrc = pgraphicssource->size(::sized()) - ::sized(pointSrc);
+
+         return _draw(::rectd(sizeDst), pgraphicssource->g(sizeSrc), ::rectd(pointSrc, sizeSrc));
+
+      }
+
+      template < primitive_size SIZE, graphics_source_pointer GRAPHICS_SOURCE_POINTER, primitive_rectangle RECTANGLE >
+      inline bool stretch(const SIZE & sizeDst, GRAPHICS_SOURCE_POINTER pgraphicssource, const RECTANGLE & rectSrc)
+      {
+
+         return _draw(::rectd(sizeDst), pgraphicssource->g(rectSrc.size()), rectSrc);
+
+      }
 
       template < primitive_size SIZE, graphics_source_pointer GRAPHICS_SOURCE_POINTER, primitive_point POINT >
       inline bool draw(const SIZE & size, GRAPHICS_SOURCE_POINTER pgraphicssource, const POINT & point)
@@ -680,9 +697,9 @@ namespace draw2d
       inline bool draw(const RECTANGLE & rectangle, GRAPHICS_SOURCE_POINTER pgraphicssource, const POINT & pointSrc)
       {
 
-         auto sizeDst = ::sized(rectangle.size()) - ::sized(pointSrc);
+         auto sizeDst = ::sized(rectangle.size());
          
-         return _draw(::rectd(rectangle.top_left(), sizeDst), pgraphicssource->g(sizeDst), ::rectd(pointSrc, pgraphicssource->size(sizeDst) - pointSrc));
+         return _draw(::rectd(rectangle.top_left(), sizeDst), pgraphicssource->g(sizeDst), ::rectd(pointSrc, sizeDst));
 
       }
 
@@ -720,6 +737,16 @@ namespace draw2d
       //virtual bool stretch_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc = ::rectd());
       //virtual bool stretch_blend(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc = ::rectd());
 
+
+      template < primitive_size SIZE, graphics_source_pointer GRAPHICS_SOURCE_POINTER >
+      inline bool alpha_blend(const SIZE & sizeDst, GRAPHICS_SOURCE_POINTER pgraphicssource, double dOpacity)
+      {
+
+         return _alpha_blend(::rectd(sizeDst), pgraphicssource, ::rectd(sizeDst), dOpacity);
+
+      }
+
+
       template < primitive_rectangle RECTANGLE, graphics_source_pointer GRAPHICS_SOURCE_POINTER >
       inline bool alpha_blend(const RECTANGLE & rectDst, GRAPHICS_SOURCE_POINTER pgraphicssource, double dOpacity)
       {
@@ -732,6 +759,13 @@ namespace draw2d
       template < primitive_rectangle RECTANGLE, graphics_source_pointer GRAPHICS_SOURCE_POINTER, primitive_point POINT >
       inline bool alpha_blend(const RECTANGLE & rectDst, GRAPHICS_SOURCE_POINTER pgraphicssource, const POINT & pointSrc, double dOpacity)
       {
+
+         if (::is_null(pgraphicssource))
+         {
+
+            return false;
+
+         }
 
          auto sizeDst = rectDst.size() - pointSrc;
 
@@ -783,11 +817,16 @@ namespace draw2d
 
 
       // Text Functions
-      virtual bool text_out(double x, double y, const char * pszString, strsize nCount);
+      //virtual bool text_out(double x, double y, const char * pszString, strsize nCount);
 
-      virtual bool text_out(const ::pointd& point, const string& str) { return text_out((::i32) point.x, (::i32) point.y, str); }
+      inline bool text_out(const ::pointd & point, const block & block)
+      {
 
-      virtual bool text_out(double x, double y, const string & str);
+         return text_out(point.x, point.y, block);
+
+      }
+
+      virtual bool text_out(double x, double y, const block & str);
       virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectd & rect, const char * pszString, strsize nCount, i32 * lpDxWidths);
 
       virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectd & rect, const string & str, i32 * lpDxWidths);
@@ -798,9 +837,9 @@ namespace draw2d
 
 
 
-      virtual bool TextOutRaw(double x, double y, const string & str);
+      virtual bool TextOutRaw(double x, double y, const block & block);
 
-      virtual bool TextOutAlphaBlend(double x, double y, const string & str);
+      virtual bool TextOutAlphaBlend(double x, double y, const block & block);
 
 
       virtual bool _001DrawText(const string & str, rectd & prectd, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none, bool bMeasure = false);

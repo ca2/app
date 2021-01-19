@@ -96,11 +96,18 @@ void simple_scroll_bar::_001OnMouseMove(::message::message * pmessage)
 
       point -= m_sizeTrackOffset;
 
-      auto pgraphics = create_memory_graphics();
+      queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+         {
 
-      SetTrackingPos(point, pgraphics);
+            SetTrackingPos(point, pgraphics);
 
-      send_scroll_message(SB_THUMBTRACK);
+            post_scroll_message(SB_THUMBTRACK);
+
+         });
+
+      set_need_redraw();
+
+      post_redraw();
 
       pmouse->m_lresult = 1;
 
@@ -239,7 +246,7 @@ void simple_scroll_bar::_001OnLButtonUp(::message::message * pmessage)
 
       }
 
-      send_scroll_message(SB_THUMBPOSITION);
+      post_scroll_message(SB_THUMBPOSITION);
 
       set_need_redraw();
 
@@ -838,11 +845,15 @@ bool simple_scroll_bar::scrollbar_lineA(::draw2d::graphics_pointer & pgraphics)
 
    if(m_eorientation == orientation_horizontal)
    {
-      send_scroll_message(SB_LINELEFT);
+      
+      post_scroll_message(SB_LINELEFT);
+
    }
    else
    {
-      send_scroll_message(SB_LINEUP);
+      
+      post_scroll_message(SB_LINEUP);
+
    }
 
    if(m_scrollinfo.nPos == m_scrollinfo.nMin)
@@ -860,22 +871,34 @@ bool simple_scroll_bar::scrollbar_lineB(::draw2d::graphics_pointer & pgraphics)
 
    nPos+=3;
 
-   if(nPos > m_scrollinfo.nMax - m_scrollinfo.nPage)
+   if (nPos > m_scrollinfo.nMax - m_scrollinfo.nPage)
+   {
+
       nPos = m_scrollinfo.nMax - m_scrollinfo.nPage;
+
+   }
 
    m_scrollinfo.nPos = nPos;
 
    if(m_eorientation == orientation_horizontal)
    {
-      send_scroll_message(SB_LINERIGHT);
+      
+      post_scroll_message(SB_LINERIGHT);
+
    }
    else
    {
-      send_scroll_message(SB_LINEDOWN);
+      
+      post_scroll_message(SB_LINEDOWN);
+
    }
 
-   if(m_scrollinfo.nPos == m_scrollinfo.nMax - m_scrollinfo.nPage)
+   if (m_scrollinfo.nPos == m_scrollinfo.nMax - m_scrollinfo.nPage)
+   {
+
       return false;
+
+   }
 
    return true;
 
@@ -896,11 +919,15 @@ bool simple_scroll_bar::scrollbar_pageA(const ::point & point, ::draw2d::graphic
 
    if(m_eorientation == orientation_horizontal)
    {
-      send_scroll_message(SB_PAGELEFT);
+      
+      post_scroll_message(SB_PAGELEFT);
+
    }
    else
    {
-      send_scroll_message(SB_PAGEUP);
+
+      post_scroll_message(SB_PAGEUP);
+
    }
 
    ::rect rectClient;
@@ -940,11 +967,15 @@ bool simple_scroll_bar::scrollbar_pageB(const ::point & point, ::draw2d::graphic
 
    if(m_eorientation == orientation_horizontal)
    {
-      send_scroll_message(SB_PAGERIGHT);
+
+      post_scroll_message(SB_PAGERIGHT);
+
    }
    else
    {
-      send_scroll_message(SB_PAGEDOWN);
+
+      post_scroll_message(SB_PAGEDOWN);
+
    }
 
    ::rect rectClient;

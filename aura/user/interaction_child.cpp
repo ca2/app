@@ -291,6 +291,13 @@ namespace user
    bool interaction_child::SetFocus()
    {
 
+      if (::is_null(m_puserinteraction))
+      {
+
+         return false;
+
+      }
+
       if (m_puserinteraction->keyboard_focus_is_focusable())
       {
 

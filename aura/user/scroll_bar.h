@@ -28,7 +28,7 @@ namespace user
 
       virtual bool create_window(e_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::id id);
 
-      virtual void send_scroll_message(::u32 nSBCode);
+      virtual void post_scroll_message(::u32 nSBCode);
 
       virtual ::point get_parent_viewport_offset() const override;
       virtual ::point get_ascendant_viewport_offset() const override;

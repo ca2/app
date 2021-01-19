@@ -1,6 +1,48 @@
 #include "framework.h"
 
 
+binary_stream::binary_stream(const ::file_pointer & p) :
+   m_p(p) 
+{ 
+
+   if(m_p->m_eopen & ::file::e_open_write)
+   {
+   
+      defer_set_storing();
+
+   }
+
+}
+
+
+binary_stream::binary_stream(const binary_stream & base) :
+   m_p(base.m_p)
+{
+
+   if (m_p->m_eopen & ::file::e_open_write)
+   {
+
+      defer_set_storing();
+
+   }
+
+}
+
+
+binary_stream::binary_stream(binary_stream & base) :
+   m_p(::move(base.m_p))
+{
+
+   if (m_p->m_eopen & ::file::e_open_write)
+   {
+
+      defer_set_storing();
+
+   }
+
+}
+
+
 binary_stream::~binary_stream()
 {
 

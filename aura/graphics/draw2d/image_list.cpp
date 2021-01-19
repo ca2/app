@@ -261,7 +261,13 @@ i32 image_list::add(::draw2d::icon * picon, int iItem)
 //
 //#else
 
-   m_pimage->get_graphics()->draw(rectd(pointd( (iItem * m_size.cx) , 0. ), m_size), picon);
+   auto pointDst = ::pointd((iItem * m_size.cx), 0.);
+
+   auto sizeDst = m_size;
+
+   auto rectDst = ::rectd(pointDst, sizeDst);
+
+   m_pimage->get_graphics()->draw(rectDst, picon);
 
 //#endif
 

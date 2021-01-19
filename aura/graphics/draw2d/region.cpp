@@ -110,7 +110,7 @@ namespace draw2d
 
       m_nCount = nCount;
       ::acme::del(m_lppoints);
-      m_lppoints = new POINTD[m_nCount];
+      m_lppoints = new ::pointd[m_nCount];
       ::memcpy_dup(m_lppoints, ppoints, sizeof(POINTD) * m_nCount);
 
       m_efillmode = efillmode;
@@ -133,7 +133,7 @@ namespace draw2d
 
       m_nCount = nCount;
 
-      m_lppoints = new POINTD[m_nCount];
+      m_lppoints = new ::pointd[m_nCount];
 
       for(index i = 0; i < m_nCount; i++)
       {
@@ -178,7 +178,7 @@ namespace draw2d
 
       }
 
-      m_lppoints = new POINTD[iTotalCount];
+      m_lppoints = new ::pointd[iTotalCount];
 
       ::memcpy_dup(m_lppoints, ppoints, sizeof(POINTD) * iTotalCount);
 
@@ -216,7 +216,7 @@ namespace draw2d
 
       }
 
-      m_lppoints = new POINTD[iTotalCount];
+      m_lppoints = new ::pointd[iTotalCount];
 
       for(i32 i = 0; i < iTotalCount; i++)
       {
@@ -288,7 +288,7 @@ namespace draw2d
          return *this;
       case e_region_polygon:
          m_nCount = regionSrc.m_nCount;
-         m_lppoints = new POINTD[m_nCount];
+         m_lppoints = new ::pointd[m_nCount];
          ::memcpy_dup(m_lppoints, regionSrc.m_lppoints, sizeof(POINTD) * m_nCount);
          m_efillmode = regionSrc.m_efillmode;
          return *this;
@@ -302,7 +302,7 @@ namespace draw2d
          {
             iTotalCount += m_lppolycounts[i];
          }
-         m_lppoints = new POINTD[iTotalCount];
+         m_lppoints = new ::pointd[iTotalCount];
          ::memcpy_dup(m_lppoints, regionSrc.m_lppoints, sizeof(POINTD) * iTotalCount);
          m_efillmode = regionSrc.m_efillmode;
       }

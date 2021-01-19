@@ -300,9 +300,7 @@ namespace draw2d_direct2d
 
 #ifdef WINDOWS_DESKTOP
 
-      pimage1->g()->draw(
-      ::size(cx, cy),
-      picon);
+      pimage1->g()->stretch(::sized(cx, cy), picon);
 
 #else
 
@@ -316,7 +314,7 @@ namespace draw2d_direct2d
       pimage2->fill(0, 0, 0, 0);
 
 //#ifdef WINDOWS_DESKTOP
-      pimage2->get_graphics()->draw(::size(cx, cy),picon);
+      pimage2->get_graphics()->stretch(::sized(cx, cy),picon);
 //#else
 //      pimage2->get_graphics()->DrawIcon(
 //      0, 0,
@@ -330,7 +328,7 @@ namespace draw2d_direct2d
       // Mask image
       auto pimageM = create_image({cx,  cy});
 
-      pimageM->g()->draw(::size(cx, cy), picon);
+      pimageM->g()->stretch(::sized(cx, cy), picon);
 
       byte * r1 = (byte*) pimage1->colorref();
       byte * r2 = (byte*) pimage2->colorref();
@@ -1166,6 +1164,8 @@ namespace draw2d_direct2d
       }
 
       m_bMapped = true;
+
+      ::image::map(bApplyAlphaTransform);
 
       return true;
 

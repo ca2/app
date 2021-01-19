@@ -97,7 +97,7 @@ namespace draw2d_direct2d
          if (fFontSize <= 0.000001)
          {
 
-            return nullptr;
+            return false;
 
          }
 
@@ -116,7 +116,7 @@ namespace draw2d_direct2d
 
             trace_hr("font::get_os_font", hr);
 
-            return nullptr;
+            return false;
 
          }
 

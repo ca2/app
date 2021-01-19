@@ -1614,17 +1614,17 @@ class form_document;
 //
 ////#include "aura/primitive/collection/forward.h"
 //
-//enum e_optional
+//enum enum_optional
 //{
 //
 //   optional,
 //
 //};
 //
-//enum e_no_init
+//enum enum_no_init
 //{
 //
-//   no_init,
+//   e_no_init,
 //
 //};
 //
@@ -1634,7 +1634,7 @@ class form_document;
 //
 //   e_set    m_eset;
 //
-//   inline set(e_optional) { m_eset = set_none; }
+//   inline set(enum_optional) { m_eset = set_none; }
 //   inline set() { m_eset = set_none; }
 //   inline set(int i) { operator = (i); }
 //   inline set(bool b) { operator = (b); }

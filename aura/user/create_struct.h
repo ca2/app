@@ -54,7 +54,7 @@ namespace user
 
       void add_visible(bool bAdd = true);
 
-      inline auto get_rect() { ::rect rect(no_init); get_rect(&rect); return rect; }
+      inline auto get_rect() { ::rect rect(e_no_init); get_rect(&rect); return rect; }
 
    };
 

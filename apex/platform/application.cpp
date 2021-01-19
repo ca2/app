@@ -10805,13 +10805,15 @@ namespace apex
    string application::as_string(const payload& payload)
    {
 
-      if (payload.get_type() == ::e_type_string)
+      auto path = payload.get_file_path();
+
+      if(path.has_char())
       {
 
-         if (is_url(payload))
+         if (::is_url(path) || ::file_exists(path))
          {
 
-            return file().as_string(payload.get_file_path());
+            return file().as_string(path);
 
          }
 

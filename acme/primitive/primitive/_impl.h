@@ -2433,3 +2433,48 @@ inline bool millis::done() const { return elapsed() >= 0; }
 
 
 
+
+
+template < >
+inline uptr uptr_hash < block >(block b)
+{
+
+   if (::is_null(b.get_data()) || b.is_empty())
+   {
+
+      return 0;
+
+   }
+
+   auto psz = (const char *)b.get_data();
+
+   u32 uHash = 0;
+
+   strsize i = 1;
+
+   for (; i < b.get_size(); i++)
+   {
+
+      if (i % 4 == 3)
+      {
+
+         uHash = (uHash << 5) + ((u32 *)psz)[i >> 2];
+
+      }
+
+   }
+
+   psz += i;
+
+   i %= 4;
+
+   if (i > 0)
+   {
+
+      while (i-- >= 0) uHash = (uHash << 5) + *(--psz);
+
+   }
+
+   return uHash;
+
+}

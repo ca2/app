@@ -9304,6 +9304,8 @@ payload jpeg2 = new byte[]{ 255, 216, 255, 225 }; // jpeg canon
 bool image::map(bool bApplyAlphaTransform)
 {
 
+   pixmap::map(bApplyAlphaTransform);
+
    return true;
 
 }

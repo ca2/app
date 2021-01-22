@@ -8,12 +8,23 @@
 #pragma once
 
 
-namespace apex
+#ifdef LINUX
+
+namespace linux
+{
+
+   class appindicator;
+
+}
+
+#endif
+
+namespace aura
 {
 
 
    class CLASS_DECL_ACME node :
-      virtual public ::acme::node
+      virtual public ::apex::node
    {
    public:
 
@@ -22,15 +33,27 @@ namespace apex
       virtual ~node();
 
 
+#ifdef LINUX
 
+      virtual ::linux::appindicator * appindicator_allocate();
+      virtual void appindicator_destroy(::linux::appindicator * pappindicator);
+
+#endif
 
       virtual void set_application_menu(::apex::application_menu * pmenu, ::apex::application * papplication);
+
+//      virtual void * node_wrap_window(void * pdisplay, i64 window);
+
+      using apex::node::user_fork;
+
+      virtual void user_fork(const ::promise::routine & routine) override;
+
 
 
    };
 
 
-} // namespace apex
+} // namespace aura
 
 
 

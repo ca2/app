@@ -521,7 +521,7 @@ namespace sockets
    }
 
 
-   void websocket_client::step()
+   ::e_status websocket_client::step()
    {
 
       if (!m_bWebSocket)

@@ -77,6 +77,7 @@ enum enum_status
    error_invalid_flags,
    error_insufficient_buffer,
    error_not_initialized,
+   e_status_no_work,
 
    error_time_bag = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),
    error_open_failed,

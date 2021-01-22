@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_linux.h"
-#include "apex/const/id.h"
+#include "acme/id.h"
 #include "apex/const/message.h"
 #include "third/sn/sn.h"
 #include <fcntl.h> // library for fcntl function
@@ -2856,25 +2856,25 @@ void x11_thread(osdisplay_data * pdisplaydata)
 
    g_pdisplayX11 = pdisplay;
 
-   {
-
-      sync_lock sl(x11_mutex());
-
-      xdisplay d(pdisplay);
-
-      g_atomKickIdle = XInternAtom(pdisplay, "__WM_KICKIDLE", False);
-
-      g_windowX11Client = XCreateSimpleWindow(pdisplay, DefaultRootWindow(pdisplay), 10, 10, 10, 10, 0, 0, 0);
-
-      XSelectInput(pdisplay, g_windowX11Client, StructureNotifyMask);
-
-      g_oswindowDesktop = oswindow_get(pdisplay, DefaultRootWindow(pdisplay));
-
-      g_oswindowDesktop->m_pimpl = nullptr;
-
-      XSelectInput(pdisplay, g_oswindowDesktop->window(), StructureNotifyMask | PropertyChangeMask);
-
-   }
+//   {
+//
+//      sync_lock sl(x11_mutex());
+//
+//      xdisplay d(pdisplay);
+//
+//      g_atomKickIdle = XInternAtom(pdisplay, "__WM_KICKIDLE", False);
+//
+//      g_windowX11Client = XCreateSimpleWindow(pdisplay, DefaultRootWindow(pdisplay), 10, 10, 10, 10, 0, 0, 0);
+//
+//      XSelectInput(pdisplay, g_windowX11Client, StructureNotifyMask);
+//
+//      g_oswindowDesktop = oswindow_get(pdisplay, DefaultRootWindow(pdisplay));
+//
+//      g_oswindowDesktop->m_pimpl = nullptr;
+//
+//      XSelectInput(pdisplay, g_oswindowDesktop->window(), StructureNotifyMask | PropertyChangeMask);
+//
+//   }
 
    XEvent e = {};
 
@@ -3099,11 +3099,13 @@ extern bool b_prevent_xdisplay_lock_log;
 //    x11_
 
 #if !defined(RASPBIAN)
-bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie *cookie)
+bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericEventCookie *cookie)
 #else
 bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 #endif
 {
+
+   XEvent & e = *pevent;
 
    //sync_lock sl(x11_mutex());
 

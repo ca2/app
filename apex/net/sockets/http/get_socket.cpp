@@ -80,10 +80,8 @@ namespace sockets
    }
 
 
-   void http_get_socket::step()
+   ::e_status http_get_socket::step()
    {
-
-
 
       if (!(bool)inattr("minimal_headers"))
       {

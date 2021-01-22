@@ -757,8 +757,8 @@ namespace sockets
       //@}
 
 
-      virtual ::e_status     run() override;
-      virtual void step();
+      virtual ::e_status run() override;
+      virtual ::e_status step() override;
 
       //virtual void __tracef(context_object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * pszFormat, ...);
       //virtual void __tracef(context_object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, e_log elog, const string & strContext, i32 err, const string & strMessage);

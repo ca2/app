@@ -7,23 +7,23 @@
 
 
 
-const char * linux_g_direct_get_file_icon_path(const char * pszPath, int iSize);
+// const char * linux_g_direct_get_file_icon_path(const char * pszPath, int iSize);
 
-string linux_get_file_icon_path(string strPath, int iSize)
-{
+// string linux_get_file_icon_path(string strPath, int iSize)
+// {
 
-   return ::str::from_strdup(linux_g_direct_get_file_icon_path(strPath, iSize));
+//    return ::str::from_strdup(linux_g_direct_get_file_icon_path(strPath, iSize));
 
-}
+// }
 
-const char * linux_g_direct_get_file_content_type(const char * pszFile);
+// const char * linux_g_direct_get_file_content_type(const char * pszFile);
 
-string core_linux_get_file_content_type(string strPath)
-{
+// string core_linux_get_file_content_type(string strPath)
+// {
 
-   return ::str::from_strdup(linux_g_direct_get_file_content_type(strPath));
+//    return ::str::from_strdup(linux_g_direct_get_file_content_type(strPath));
 
-}
+// }
 
 
 
@@ -40,7 +40,7 @@ namespace linux
       shell::shell()
       {
 
-         set_get_file_content_type_function(&core_linux_get_file_content_type);
+         //set_get_file_content_type_function(&core_linux_get_file_content_type);
 
          defer_create_mutex();
          //begin();
@@ -767,9 +767,11 @@ namespace linux
          else
          {
 
-            strIcon48 = linux_get_file_icon_path(imagekey.m_strPath, 48);
+            auto pnode = Node;
 
-            strIcon16 = linux_get_file_icon_path(imagekey.m_strPath, 16);
+            strIcon48 = pnode->get_file_icon_path(imagekey.m_strPath, 48);
+
+            strIcon16 = pnode->get_file_icon_path(imagekey.m_strPath, 16);
 
          }
 

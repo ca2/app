@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(aura CXX)
 
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
@@ -34,8 +34,8 @@ list(APPEND aura_source
    axispolicy/policy_objc.h
    axispolicy/policy_objcpp.h
    axispolicy/policy_winrt.h
-   const/_const.h
-   const/charset.h
+   #const/_const.h
+   #const/charset.h
    const/idpool.cpp
    const/idpool.h
    filesystem/filemanager/callback.cpp
@@ -288,6 +288,8 @@ list(APPEND aura_source
    platform/drawable.cpp
    platform/drawable.h
    platform/mq.h
+   platform/node.cpp
+   platform/node.h
    platform/session.cpp
    platform/session.h
    platform/shell_open.cpp
@@ -625,15 +627,15 @@ if (LINUX)
       node/linux/application.h
       node/linux/console_window.cpp
       node/linux/console_window.h
-      node/linux/copydesk.cpp
-      node/linux/copydesk.h
+      #node/linux/copydesk.cpp
+      #node/linux/copydesk.h
       node/linux/factory_exchange.cpp
       node/linux/factory_exchange.h
       node/linux/interaction_impl.cpp
       node/linux/interaction_impl.h
       node/linux/system.cpp
-      os/gdk/aura_gdk.cpp
-      os/gdk/aura_gdk.h
+      #os/gdk/aura_gdk.cpp
+      #os/gdk/aura_gdk.h
       os/linux/_.h
       os/linux/_c.h
       os/linux/_glib.h
@@ -657,13 +659,6 @@ if (LINUX)
       os/linux/exception_engine.h
       os/linux/file.cpp
       os/linux/file.h
-      os/linux/gnome.cpp
-      os/linux/gnome.h
-      os/linux/gnome_direct.cpp
-      os/linux/gnome_gnome.h
-      os/linux/gnome_internal_glue.h
-      os/linux/gnome_shared.h
-      os/linux/gnu_source.cpp
       os/linux/graphics.cpp
       os/linux/graphics.h
       os/linux/graphics2.h
@@ -1108,8 +1103,8 @@ if (MSVC)
    target_link_options(aura PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/aura.def")
    target_link_libraries(aura PRIVATE acme apex aqua zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
 elseif (LINUX)
-   pkg_check_modules(PKGCONFIG glib-2.0 gdk-3.0 gtk+-3.0 appindicator3-0.1)
-   #pkg_check_modules(PKGCONFIG freetype2  )
+   #pkg_check_modules(PKGCONFIG glib-2.0 gdk-3.0 gtk+-3.0 appindicator3-0.1)
+   pkg_check_modules(PKGCONFIG freetype2  )
    target_compile_options(aura PRIVATE -fpermissive)
    target_compile_options(aura PRIVATE ${PKGCONFIG_CFLAGS})
 

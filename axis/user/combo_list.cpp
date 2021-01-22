@@ -371,14 +371,14 @@ namespace user
          if (size.cx > psize->cx)
          {
 
-            psize->cx = (LONG)size.cx;
+            psize->cx = (::i32)size.cx;
 
          }
 
          if (size.cy > m_dItemHeight)
          {
 
-            m_dItemHeight = (LONG)size.cy;
+            m_dItemHeight = (::i32)size.cy;
 
             if (size.cy != 18)
             {

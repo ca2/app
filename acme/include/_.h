@@ -75,6 +75,9 @@
 #define System (*::get_context_system())
 
 
+#define Node (::get_context_system()->node())
+
+
 #include "acme/primitive/primitive/estatus.h"
 
 
@@ -234,6 +237,9 @@ struct INT_STRING
 
 template < typename T >
 concept a_pointer = std::is_pointer < T >::value;
+
+template < typename T >
+concept not_a_pointer = !std::is_pointer < T >::value;
 
 
 template < typename T >
@@ -750,6 +756,9 @@ namespace apex
    class session;
 
 
+   class node;
+
+
    class system;
 
 
@@ -784,6 +793,9 @@ namespace aura
 
 
    class session;
+
+
+   class node;
 
 
    class system;
@@ -1689,6 +1701,27 @@ namespace draw2d
 } // namespace draw2d
 
 
+template < typename ARGUMENT >
+class argument_of
+{
+public:
+
+   using type = typename smaller_type < ARGUMENT, const ARGUMENT & >::type;
+
+};
+
+
+template < >
+class argument_of < ::string >
+{
+public:
+
+   using type = ::block;
+
+};
+
+
+
 template < typename T1, typename T2, typename ARG_T1 = typename argument_of < T1 >::type, typename ARG_T2 = typename argument_of < T2 >::type >
 class pair;
 
@@ -2489,8 +2522,8 @@ inline bool is_set(const __reference(TYPE) &p)
 
 
 
-template < typename TYPE >
-inline bool is_null(const TYPE & t)
+template < not_a_pointer NOT_A_POINTER >
+inline bool is_null(const NOT_A_POINTER & t)
 {
 
    return is_null(&t);
@@ -3929,6 +3962,9 @@ namespace draw2d
 
 
 #include "acme/user/_.h"
+
+
+#include "acme/platform/node.h"
 
 
 #include "acme/platform/system.h"

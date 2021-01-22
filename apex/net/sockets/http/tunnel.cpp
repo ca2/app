@@ -59,66 +59,115 @@ namespace sockets
       }
       else
       {
+
          if (m_estate == e_state_initial)
          {
+
             string str;
+
             str.Format("CONNECT %s:%d HTTP/1.0\r\n", GetUrlHost().c_str(), (int)GetUrlPort());
+
             print(str);
+
             str.Format("host: %s:%d\r\n", GetUrlHost().c_str(), (int)GetUrlPort());
+
             print(str);
+
             str = "\r\n";
+
             print(str);
+
             m_estate = state_connect_sent;
+
          }
+
       }
+
    }
+
 
    void http_tunnel::OnLine(const string & strParam)
    {
+
       if (m_bOk || m_bDirect)
       {
+
          http_socket::OnLine(strParam);
+
       }
       else
       {
+
          string str(strParam);
+
          m_straProxy.add(str);
+
          if (m_straProxy.get_count() == 1)
          {
+
             strsize iPos = str.find(" ");
+
             string strStatus;
+
             if (iPos >= 0)
             {
+
                strStatus = str.Mid(iPos + 1);
+
             }
+
             if (::str::begins(strStatus, astr.s200Space))
             {
+
                m_estate = state_proxy_ok;
+
             }
+
          }
+
          str.trim();
+
          if (str.is_empty())
          {
+
             if (m_estate != state_proxy_ok)
+            {
+
                return;
+
+            }
+
             m_bOk = true;
+
             if (m_bSslTunnel)
             {
+
                EnableSSL();
+
                OnSSLConnect();
+
                m_estate = state_init_ssl;
+
             }
             else
             {
+
                step();
+
             }
+
          }
+
       }
+
    }
 
-   void http_tunnel::step()
+
+   ::e_status http_tunnel::step()
    {
+
       string str;
+
       m_request.attr(__id(http_method)) = "GET";
       m_request.attr(__id(request_uri)) = m_strRequest;
       m_request.attr(__id(http_version)) = "HTTP/1.1";

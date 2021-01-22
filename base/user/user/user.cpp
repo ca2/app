@@ -1082,10 +1082,10 @@ namespace base
 
       ::point point(pointParam);
 
-      fork([=]()
+      fork([this, strMatterSource, iFlags, point, pinteraction]()
       {
 
-         __pointer(::user::menu) pmenu = __create <  ::user::menu  >();
+         auto pmenu = __create <  ::user::menu  >();
 
          string strMatter(strMatterSource);
 

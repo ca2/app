@@ -80,9 +80,9 @@ namespace experience
 
       virtual i32 calc_control_box_normal_width();
 
-      virtual i32 calc_control_box_zoomed_width();
+      //virtual i32 calc_control_box_zoomed_width();
 
-      virtual i32 calc_control_box_full_screen_width();
+      //virtual i32 calc_control_box_full_screen_width();
 
       virtual void reset_layout(::draw2d::graphics_pointer & pgraphics);
 

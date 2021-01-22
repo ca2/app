@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "apex/message.h"
-#include "apex/update.h"
+#include "acme/update.h"
 #if OBJ_REF_DBG
 #include "acme/platform/obj_ref_dbg_impl.h"
 #endif
@@ -660,11 +660,13 @@ void object::child_post_quit_and_wait(const char * pszTag, const duration & dura
 
       pmatter->finalize();
 
+      string strTag(pszTag);
+
       pred_Sleep(duration,
-                 [=]()
+                 [this, strTag]()
       {
 
-         return running(pszTag).is_set();
+         return running(strTag).is_set();
 
       });
 

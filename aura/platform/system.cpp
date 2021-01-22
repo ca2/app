@@ -382,7 +382,12 @@ namespace aura
 
       ::acme::del(g_pmutexImage);
 
-      os_post_quit();
+      if(m_pnode)
+      {
+
+         m_pnode->os_post_quit();
+
+      }
 
    }
 
@@ -970,11 +975,11 @@ namespace aura
 
       ::acme::profiler::initialize();
 
-#ifdef LINUX
-
-      ::user::g_defer_init();
-
-#endif // LINUX
+//#ifdef LINUX
+//
+//      ::user::g_defer_init();
+//
+//#endif // LINUX
 
       INFO("success");
 
@@ -4752,7 +4757,7 @@ namespace aura
    void system::open_profile_link(string strUrl, string strProfile, string strTarget)
    {
 
-      fork([=]()
+      fork([this, strUrl, strProfile, strTarget]()
       {
 
          browser(strUrl, "", strProfile, strTarget);
@@ -4765,7 +4770,7 @@ namespace aura
    void system::open_url(string strUrl, string strProfile, string strTarget)
    {
 
-      fork([=]()
+      fork([this, strUrl, strProfile, strTarget]()
          {
 
             browser(strUrl, "", strProfile, strTarget);
@@ -4779,7 +4784,7 @@ namespace aura
    void system::open_link(string strUrl, string strProfile, string strTarget)
    {
 
-      fork([=]()
+      fork([this, strUrl, strProfile, strTarget]()
          {
 
             browser(strUrl, "", strProfile, strTarget);

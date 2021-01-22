@@ -1645,70 +1645,9 @@ namespace core
    bool user::impl_set_os_desktop_theme(string strTheme)
    {
 
-      // https://ubuntuforums.org/showthread.php?t=2140488
-      // gsettings set org.gnome.desktop.interface gtk-theme your_theme
+      auto pnode = Node;
 
-      // indirect wall-changer sourceforge.net contribution
-
-      switch (::user::get_edesktop())
-      {
-
-      case ::user::desktop_gnome:
-      case ::user::desktop_ubuntu_gnome:
-      case ::user::desktop_unity_gnome:
-      {
-
-         bool bOk1 = ::user::gsettings_set("org.gnome.desktop.interface", "gtk-theme", strTheme);
-
-         bool bOk2 = true;
-
-         //if(::file::system_short_name().contains_ci("manjaro"))
-         {
-
-            bOk2 = ::user::gsettings_set("org.gnome.desktop.wm.preferences", "theme", strTheme);
-
-         }
-
-         sleep(300_ms);
-
-         ::user::gsettings_sync();
-
-         sleep(300_ms);
-
-         return bOk1 && bOk2;
-
-      }
-
-      case ::user::desktop_mate:
-
-      //return ::user::gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
-
-      case ::user::desktop_lxde:
-
-         //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
-
-         break;
-
-      case ::user::desktop_xfce:
-      {
-         //        Q_FOREACH(QString entry, Global::getOutputOfCommand("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << "/backdrop" << "-l").split("\n")){
-         //          if(entry.contains("image-path") || entry.contains("last-image")){
-         //            QProcess::startDetached("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << entry << "-s" << image);
-         //      }
-         //}
-
-      }
-
-      //break;
-
-      default:
-
-         output_debug_string("Failed to change wallpaper. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
-         return false;
-
-      }
-
-      return true;
+      return pnode->os_set_user_theme(strTheme);
 
    }
 
@@ -1726,45 +1665,16 @@ namespace core
 
       // wall-changer sourceforge.net contribution
 
-      switch (::user::get_edesktop())
+      auto pnode = Node;
+
+      if(::is_null(pnode))
       {
 
-      case ::user::desktop_gnome:
-      case ::user::desktop_ubuntu_gnome:
-      case ::user::desktop_unity_gnome:
-
-         return ::user::gsettings_set("org.gnome.desktop.background", "picture-uri", "file://" + strLocalImagePath);
-
-      case ::user::desktop_mate:
-
-         return ::user::gsettings_set("org.mate.background", "picture-filename", strLocalImagePath);
-
-      case ::user::desktop_lxde:
-
-         call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
-
-         break;
-
-      case ::user::desktop_xfce:
-      {
-         //        Q_FOREACH(QString entry, Global::getOutputOfCommand("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << "/backdrop" << "-l").split("\n")){
-         //          if(entry.contains("image-path") || entry.contains("last-image")){
-         //            QProcess::startDetached("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << entry << "-s" << image);
-         //      }
-         //}
-
-      }
-
-      //break;
-
-      default:
-
-         output_debug_string("Failed to change wallpaper. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
          return false;
 
       }
 
-      return true;
+      return pnode->set_wallpaper(iScreen, strLocalImagePath);
 
    }
 
@@ -1780,47 +1690,56 @@ namespace core
    void user::enable_wallpaper_change_notification()
    {
 
-      switch (::user::get_edesktop())
+      auto pnode = Node;
+
+      if(pnode)
       {
 
-      case ::user::desktop_gnome:
-      case ::user::desktop_ubuntu_gnome:
-      case ::user::desktop_unity_gnome:
-
-         ::user::g_enable_wallpaper_change_notification("org.gnome.desktop.background", "picture-uri");
-
-         break;
-
-      case ::user::desktop_mate:
-
-         ::user::g_enable_wallpaper_change_notification("org.mate.background", "picture-filename");
-
-         break;
-
-      case ::user::desktop_lxde:
-
-         //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
-
-         break;
-
-      case ::user::desktop_xfce:
-      {
-         //        Q_FOREACH(QString entry, Global::getOutputOfCommand("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << "/backdrop" << "-l").split("\n")){
-         //          if(entry.contains("image-path") || entry.contains("last-image")){
-         //            QProcess::startDetached("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << entry << "-s" << image);
-         //      }
-         //}
+         pnode->enable_wallpaper_change_notification();
 
       }
 
-      break;
-
-      default:
-
-         output_debug_string("Failed to get wallpaper setting. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
-         //return "";
-
-      }
+//      switch (::user::get_edesktop())
+//      {
+//
+//      case ::user::desktop_gnome:
+//      case ::user::desktop_ubuntu_gnome:
+//      case ::user::desktop_unity_gnome:
+//
+//         ::user::g_enable_wallpaper_change_notification("org.gnome.desktop.background", "picture-uri");
+//
+//         break;
+//
+//      case ::user::desktop_mate:
+//
+//         ::user::g_enable_wallpaper_change_notification("org.mate.background", "picture-filename");
+//
+//         break;
+//
+//      case ::user::desktop_lxde:
+//
+//         //call_async("pcmanfm", "-w " + strLocalImagePath, nullptr, e_display_none, false);
+//
+//         break;
+//
+//      case ::user::desktop_xfce:
+//      {
+//         //        Q_FOREACH(QString entry, Global::getOutputOfCommand("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << "/backdrop" << "-l").split("\n")){
+//         //          if(entry.contains("image-path") || entry.contains("last-image")){
+//         //            QProcess::startDetached("xfconf-query", QStringList() << "-c" << "xfce4-desktop" << "-point" << entry << "-s" << image);
+//         //      }
+//         //}
+//
+//      }
+//
+//      break;
+//
+//      default:
+//
+//         output_debug_string("Failed to get wallpaper setting. If your Desktop Environment is not listed at \"Preferences->Integration-> Current Desktop Environment\", then it is not supported.");
+//         //return "";
+//
+//      }
 
    }
 

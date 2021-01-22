@@ -349,7 +349,29 @@ void matter::on_future(const ::payload& payload)
 ::e_status matter::run()
 {
 
+   while(true)
+   {
+
+      auto estatus = step();
+
+      if(!estatus)
+      {
+
+         break;
+
+      }
+
+   }
+
    return ::success;
+
+}
+
+
+::e_status matter::step()
+{
+
+   return ::error_failed;
 
 }
 

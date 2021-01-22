@@ -73,9 +73,6 @@ CLASS_DECL_AURA const char * __get_app_name();
 
 
 
-#include "copydesk.h"
-
-
 #include "factory_exchange.h"
 
 

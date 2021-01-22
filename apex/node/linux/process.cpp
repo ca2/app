@@ -30,7 +30,7 @@ struct chldstatus
 };
 
 
-typedef int_ptr_map < chldstatus > chldstatus_map;
+typedef iptr_map < chldstatus > chldstatus_map;
 
 
 critical_section * g_pcsPid2 = nullptr;

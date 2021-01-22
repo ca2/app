@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(axis CXX)
 
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
@@ -74,23 +74,23 @@ list(APPEND axis_source
         compress/bz.h
         compress/bzip.h
         #const/_const.h
-        const/callback.h
-        const/charset.h
-        const/check.h
-        const/context.h
-        const/GLOBAL_ID.h
-        const/id.h
+   #const/callback.h
+   #const/charset.h
+   #const/check.h
+   #    const/context.h
+   #    const/GLOBAL_ID.h
+   #    const/id.h
         const/idpool.cpp
         const/idpool.h
-        const/impact.h
-        const/message.h
-        const/procedure.h
-        const/simple_command.h
-        const/source.h
-        const/status.h
-        const/status_range_authentication.h
-        const/thread.h
-        const/timer.h
+   #       const/impact.h
+   #  const/message.h
+   #    const/procedure.h
+   #     const/simple_command.h
+   #    const/source.h
+   #const/status.h
+   #     const/status_range_authentication.h
+   #    const/thread.h
+    #    const/timer.h
         database/database/_.h
         database/database/_impl.h
         database/database/const.h
@@ -716,10 +716,10 @@ if (MSVC)
     target_link_options(axis PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/axis.def")
     target_link_libraries(axis PRIVATE acme apex aqua aura pcre sqlite bzip2 ws2_32 kernel32 user32 gdi32 winspool comdlg32 advapi32 shell32 ole32 oleaut32 uuid odbc32 odbccp32)
 elseif(LINUX)
-    pkg_check_modules(PKGCONFIG glib-2.0 gdk-3.0 gtk+-3.0 appindicator3-0.1)
+    #pkg_check_modules(PKGCONFIG glib-2.0 gdk-3.0 gtk+-3.0 appindicator3-0.1)
     #pkg_check_modules(PKGCONFIG freetype2  )
     target_compile_options(axis PRIVATE -fpermissive)
-    target_compile_options(axis PRIVATE ${PKGCONFIG_CFLAGS})
+    #target_compile_options(axis PRIVATE ${PKGCONFIG_CFLAGS})
 
     #target_compile_options(axis PRIVATE -std=c++14)
     #target_link_options(axis PRIVATE ${GTK_LDFLAGS})

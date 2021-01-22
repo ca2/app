@@ -95,23 +95,26 @@ namespace sockets
          //m_mapContentLength[filename]  = Context.file().length(filename);
          //m_mapContentType[filename]    = type;
          //m_bMultipart                  = true;
+
       }
       else
       {
 
 #ifdef BSD_STYLE_SOCKETS
+
          FATAL(log_this, "AddFile", Errno, bsd_socket_error(Errno));
+
 #endif
 
          SetCloseAndDelete();
 
       }
+
    }
 
-   void http_post_socket::step()
+
+   ::e_status http_post_socket::step()
    {
-
-
 
       if (m_pmultipart != nullptr)
       {
@@ -122,20 +125,26 @@ namespace sockets
       else
       {
 
-
          string body;
 
          if (m_fields.has_property("json") && m_fields["json"].get_type() == ::e_type_propset)
          {
+
             m_fields["json"].propset().get_json(body);
+
             TRACE("JSON BODY:\n%s\n\n", body.c_str());
+
             if (inheader(__id(content_type)).get_string().find_ci("application/json") < 0)
             {
+
                inheader(__id(content_type)) = "application/json" + ::str::has_char(inheader(__id(content_type)).get_string(), "; ");
+
             }
+
          }
          else if (m_fields.has_property("xml") && m_fields["xml"].get_type() == ::e_type_element)
          {
+
             __throw(todo("xml"));
 
             //::xml::node * pnode = m_fields["xml"].cast < ::xml::node >();
@@ -145,14 +154,20 @@ namespace sockets
             //{
             //   inheader(__id(content_type)) = "application/xml; " + inheader(__id(content_type)).get_string();
             //}
+
          }
          else
          {
+
             m_fields.get_http_post(body);
+
             if(inheader(__id(content_type)).get_string().find_ci("application/x-www-form-urlencoded") < 0)
             {
+
                inheader(__id(content_type)) = "application/x-www-form-urlencoded" + ::str::has_char(inheader(__id(content_type)).get_string(),"; ");
+
             }
+
          }
 
          // only fields, no files, add urlencoding
@@ -180,12 +195,18 @@ namespace sockets
 
          // build header, send body
          m_request.attr(__id(http_method)) = "POST";
+
          m_request.attr(__id(http_version)) = "HTTP/1.1";
+
          string strHost = GetUrlHost();
+
          inheader(__id(host)) = strHost; // oops - this is actually a request header that we're adding..
+
          string strUserAgent = MyUseragent();
+
          if(!(bool)m_request.attr("minimal_headers"))
          {
+
             inheader(__id(user_agent)) = "ca2_netnode";
 
             if(inheader(__id(accept)).is_empty())
@@ -213,8 +234,11 @@ namespace sockets
          {
             // send body
             print( body );
+
          }
+
       }
+
    }
 
 
@@ -259,8 +283,6 @@ namespace sockets
 
             strFields += value + "\r\n";
 
-
-
          }
 
          length += (long)strFields.get_length();
@@ -268,6 +290,7 @@ namespace sockets
       }
 
       {
+
          for (auto & pair : m_pmultipart->m_map)
          {
 
@@ -339,17 +362,26 @@ namespace sockets
 
       // end
       tmp = "--" + m_boundary + "--\r\n";
+
       length += (long)tmp.get_length();
 
       // build header, send body
       m_request.attr(__id(http_method)) = "POST";
+
       m_request.attr(__id(http_version)) = "HTTP/1.1";
+
       string strHost = GetUrlHost();
+
       inheader(__id(host)) = strHost; // oops - this is actually a request header that we're adding..
+
       inheader(__id(user_agent)) = MyUseragent();
+
       inheader(__id(accept)) = "text/html, text/plain, */*;q=0.01";
+
       //inheader(__id(connection)) = "close";
+
       inheader(__id(content_type)) = "multipart/form-data; boundary=" + m_boundary;
+
       inheader(__id(content_length)) = (i64) length;
 
 #if !defined(BSD_STYLE_SOCKETS)
@@ -378,10 +410,14 @@ namespace sockets
          //      //tmp += value + "\r\n";
          //   //}
          //}
+
          if (strFields.has_char())
          {
+
             print(strFields);
+
          }
+
       }
 
       // send files
@@ -463,6 +499,7 @@ namespace sockets
 
       // end of send
       print("--" + m_boundary + "--\r\n");
+
    }
 
 
@@ -473,5 +510,6 @@ namespace sockets
 
 
 }
+
 
 

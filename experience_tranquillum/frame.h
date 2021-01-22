@@ -1,24 +1,16 @@
 #pragma once
 
 
+namespace experience
+{
 
 
-
-   namespace experience
+   namespace tranquillum
    {
 
-
-      
-
-
-         namespace tranquillum
-
-         {
-
-
-            class CLASS_DECL_APP_EXPERIENCE_TRANQUILLUM frame :
-               public ::experience::frame
-            {
+      class CLASS_DECL_APP_EXPERIENCE_TRANQUILLUM frame :
+         public ::experience::frame
+      {
             public:
 
 

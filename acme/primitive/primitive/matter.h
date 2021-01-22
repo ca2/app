@@ -256,6 +256,7 @@ public:
    virtual ::e_status operator()();
    virtual void operator()(const ::payload & payload);
    virtual ::e_status run();
+   virtual ::e_status step();
    virtual ::payload realize();
    virtual void on_future(const ::payload& payload);
 

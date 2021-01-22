@@ -52,7 +52,9 @@ namespace sockets
       virtual void request(const string & strMethod, const string & pszRequest);
       virtual void request(e_http_method emethod, const string & pszRequest);
 
-      virtual void step();
+
+      virtual ::e_status step() override;
+
 
       virtual void OnHeaderComplete();
       virtual void OnDataComplete();

@@ -319,7 +319,7 @@ public:
    nanosecond(const class ::micros & micros) : duration(micros) {}
    nanosecond(const class ::millis & millis) : duration(millis) {}
    nanosecond(const class ::secs & secs) : duration(secs) {}
-   nanosecond(const class ::duration & duration) : duration(duration) {}
+   nanosecond(const class ::duration & duration) : ::duration(duration) {}
 
 
 };
@@ -349,7 +349,7 @@ public:
    microsecond(const class ::micros & micros) : duration(micros) {}
    microsecond(const class ::millis & millis) : duration(millis) {}
    microsecond(const class ::secs & secs) : duration(secs) {}
-   microsecond(const class ::duration & duration) : duration(duration) {}
+   microsecond(const class ::duration & duration) : ::duration(duration) {}
 
 
 };
@@ -377,7 +377,7 @@ public:
    millisecond(const class ::micros & micros) : duration(micros) {}
    millisecond(const class ::millis & millis) : duration(millis) {}
    millisecond(const class ::secs & secs) : duration(secs) {}
-   millisecond(const class ::duration & duration) : duration(duration) {}
+   millisecond(const class ::duration & duration) : ::duration(duration) {}
 
 
 };
@@ -458,7 +458,7 @@ public:
    seconds(const class ::micros & micros) : duration(micros) {}
    seconds(const class ::millis & millis) : duration(millis) {}
    seconds(const class ::secs & secs) : duration(secs) {}
-   seconds(const class ::duration & duration) : duration(duration) {}
+   seconds(const class ::duration & duration) : ::duration(duration) {}
 
 
 
@@ -496,7 +496,7 @@ public:
    minutes(const class ::micros & micros) : duration(micros) {}
    minutes(const class ::millis & millis) : duration(millis) {}
    minutes(const class ::secs & secs) : duration(secs) {}
-   minutes(const class ::duration & duration) : duration(duration) {}
+   minutes(const class ::duration & duration) : ::duration(duration) {}
 
 
 };
@@ -542,7 +542,7 @@ public:
    hours(const class ::micros & micros) : duration(micros) {}
    hours(const class ::millis & millis) : duration(millis) {}
    hours(const class ::secs & secs) : duration(secs) {}
-   hours(const class ::duration & duration) : duration(duration) {}
+   hours(const class ::duration & duration) : ::duration(duration) {}
 
 
 };
@@ -583,7 +583,7 @@ public:
    days(const class ::micros & micros) : duration(micros) {}
    days(const class ::millis & millis) : duration(millis) {}
    days(const class ::secs & secs) : duration(secs) {}
-   days(const class ::duration & duration) : duration(duration) {}
+   days(const class ::duration & duration) : ::duration(duration) {}
 
 
 

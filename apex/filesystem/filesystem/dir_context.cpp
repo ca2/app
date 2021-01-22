@@ -1,9 +1,7 @@
 #include "framework.h"
 #include "apex/platform/app_core.h"
 #include "apex/compress/zip/_.h"
-#include "apex/const/id.h"
-
-//extern const char* g_pszServerCa2Cc;
+#include "acme/id.h"
 
 
 CLASS_DECL_ACME const char* get_server_ca2_cc();

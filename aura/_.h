@@ -191,7 +191,7 @@ namespace aura
 
 //#include "aura/platform/obj_typ_ctr.h"
 
-#include "aura/const/_const.h"
+//#include "aura/const/_const.h"
 
 //#include "aura/platform/struct.h"
 

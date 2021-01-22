@@ -20,9 +20,9 @@
 #include <locale.h>
 #endif
 
-#ifdef LINUX
-#include <glib.h> // sudo apt-get install libglib2.0-dev
-#endif
+//#ifdef LINUX
+//#include <glib.h> // sudo apt-get install libglib2.0-dev
+//#endif
 
 
 
@@ -37,20 +37,20 @@ void trace_category_static_term();
 #undef new
 
 
-#ifdef LINUX
-static void
-log_handler (const gchar   *log_domain,
-             GLogLevelFlags log_level,
-             const gchar   *message,
-             gpointer       user_data)
-{
-   g_log_default_handler (log_domain, log_level, message, user_data);
-
-   g_on_error_query (nullptr);
-}
-
-
-#endif
+//#ifdef LINUX
+//static void
+//log_handler (const gchar   *log_domain,
+//             GLogLevelFlags log_level,
+//             const gchar   *message,
+//             gpointer       user_data)
+//{
+//   g_log_default_handler (log_domain, log_level, message, user_data);
+//
+//   g_on_error_query (nullptr);
+//}
+//
+//
+//#endif
 
 
 namespace aura

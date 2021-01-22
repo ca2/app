@@ -2672,10 +2672,13 @@ namespace sockets
    }
 
 
-   void base_socket::step()
+   ::e_status base_socket::step()
    {
 
+      return ::e_status_no_work;
+
    }
+
 
    string base_socket::get_short_description()
    {

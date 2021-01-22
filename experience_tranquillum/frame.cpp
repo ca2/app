@@ -16,33 +16,17 @@ namespace experience
          m_penShadow1(e_create),
          m_penDkShadow1(e_create)
       {
-         m_colorActiveCaptionTextBk = 0;
-         m_rectControlBoxMarginNormal = nullptr;
 
-         m_rectMarginNormal.set(5, 5, 5, 5);
+         m_colorActiveCaptionTextBk = 0;
+
+         m_rectMarginNormal.set(0, 0, 0, 0);
 
          m_colorCaptionText = ARGB(255, 255, 255, 255);
 
          m_rectClient = nullptr;
 
-         //               m_iMargin = 7;
-
-         //class font_department & fonts = System.draw2d().fonts();
-
-         //
-         //fonts.GetCaptionFont()->create_point_font("MS Sans Serif", 9.0);
-
-         
-
-         //create_point_font(::user::font_button, "MS Sans Serif", 9.0);
-         //create_point_font(::user::font_window_title, "MS Sans Serif", 12.0);
-
-         //m_fontEdit->m_etextrenderinghint = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
-         //m_fontList->m_etextrenderinghint = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
-         //m_fontButton->m_etextrenderinghint = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
-         //m_fontCaption->m_etextrenderinghint = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
-
       }
+
 
       frame::~frame()
       {
@@ -232,9 +216,9 @@ namespace experience
 
             prect->top = m_pointMoveGripMinimal.y + 2;
 
-            prect->right = prect->left + get_control_box_rect()->height() - 4;
+            prect->right = prect->left + m_iCaptionHeight - 4;
 
-            prect->bottom = prect->top + get_control_box_rect()->height() - 4;
+            prect->bottom = prect->top + m_iCaptionHeight - 4;
 
 
             return true;
@@ -815,8 +799,6 @@ namespace experience
       }
 
 
-
-
       void frame::GetFrameRect(rect * prect)
       {
 
@@ -824,7 +806,7 @@ namespace experience
 
          prect->offset(-prect->top_left());
 
-         prect->deflate(*get_margin_rect());
+         prect->deflate(get_margin_rect());
 
       }
 

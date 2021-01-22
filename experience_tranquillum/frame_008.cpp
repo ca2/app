@@ -411,7 +411,7 @@ SizingNone:
                //                | e_border_left));
                //}
 
-               auto prectMargin = get_margin_rect();
+               auto rectMargin = get_margin_rect();
 
                auto pframewindow = m_pframewindow;
 
@@ -427,16 +427,16 @@ SizingNone:
 
                   pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
-                  auto iMaxBorder = prectMargin->max_border();
+                  auto iMaxBorder = rectMargin.max_dimension();
 
                   if (iMaxBorder > 0)
                   {
 
                      ::rect rectDeflate(
-                        prectMargin->left / iMaxBorder,
-                        prectMargin->top / iMaxBorder,
-                        prectMargin->right / iMaxBorder,
-                        prectMargin->bottom / iMaxBorder);
+                        rectMargin.left / iMaxBorder,
+                        rectMargin.top / iMaxBorder,
+                        rectMargin.right / iMaxBorder,
+                        rectMargin.bottom / iMaxBorder);
 
                      for (index i = 0; i < iMaxBorder; i++)
                      {

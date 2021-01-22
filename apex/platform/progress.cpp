@@ -148,7 +148,8 @@ void progress_control::format_status(const char *pszFormat)
 
 }
 
-void progress_control::step()
+
+::e_status progress_control::step()
 {
 
    ASSERT(m_iStep + 1 <= m_iStepCount);

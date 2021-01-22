@@ -67,7 +67,7 @@ void term_global_mq();
 
 
 #ifdef LINUX
-#include <glib.h> // sudo apt-get install libglib2.0-dev
+//#include <glib.h> // sudo apt-get install libglib2.0-dev
 
 
 void x11_hook_init();

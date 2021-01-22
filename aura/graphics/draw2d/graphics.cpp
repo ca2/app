@@ -2279,12 +2279,14 @@ namespace draw2d
       {
 
          if (!fill_rect(
-            rectd_dim(
+            ::rectd_dim(
                rect.right, 
-               rect.top + (eborder & e_border_top ? 1.0 : 0),
+               //rect.top + (eborder & e_border_top ? 1.0 : 0),
+               rect.top,
                1.0, 
-               rect.height() - (eborder & e_border_top ? 1.0 : 0) - 
-               (eborder & e_border_bottom ? 1.0 : 0)), colorBottomRight))
+               rect.height()),// - (eborder & e_border_top ? 1.0 : 0) -
+               //(eborder & e_border_bottom ? 1.0 : 0)),
+               colorBottomRight))
          {
 
             return false;

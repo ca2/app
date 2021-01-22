@@ -334,6 +334,14 @@ namespace user
          on_user_style_change();
 
       }
+      else if (psubject->m_id == id_os_dark_mode)
+      {
+
+         set_need_redraw();
+
+         post_redraw();
+
+      }
 
    }
 

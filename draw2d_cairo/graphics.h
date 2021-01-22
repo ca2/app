@@ -331,9 +331,9 @@ namespace draw2d_cairo
         BLENDFUNCTION blend);*/
 
       // Text Functions
-      virtual bool text_out(double x, double y, const char * lpszString, strsize nCount) override;
-      virtual bool text_out(double x, double y, const string & str) override;
-      virtual bool TextOutRaw(double x, double y, const string & str) override;
+      //virtual bool text_out(double x, double y, const char * lpszString, strsize nCount) override;
+      //virtual bool text_out(double x, double y, const string & str) override;
+      virtual bool TextOutRaw(double x, double y, const block & block) override;
       ///virtual bool text_out(double x, double y, const string & str) override;
       //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectd & rectd, const char * lpszString, strsize nCount, int * lpDxWidths) override;
       //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectd & rectd, const string & str, int * lpDxWidths) override;

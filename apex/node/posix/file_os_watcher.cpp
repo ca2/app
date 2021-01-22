@@ -162,27 +162,7 @@ namespace file
    }
 
 
-   //::e_status     os_watcher::run()
-   //{
-
-   //   while (::thread_get_run())
-   //   {
-
-   //      if (!step())
-   //      {
-
-   //         break;
-
-   //      }
-
-   //   }
-
-   //   return ::success;
-
-   //}
-
-
-   bool os_watcher::step()
+   ::e_status os_watcher::step()
    {
 
       FD_ZERO(&mDescriptorSet);

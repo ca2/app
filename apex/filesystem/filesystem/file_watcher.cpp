@@ -114,10 +114,10 @@ namespace file
    }
 
 
-   bool watch::step()
+   ::e_status watch::step()
    {
 
-      return true;
+      return ::success;
 
    }
 
@@ -325,9 +325,7 @@ namespace file
    }
 
 
-
-
-   bool watcher::step()
+   ::e_status watcher::step()
    {
 
 restart:

@@ -35,9 +35,10 @@ namespace experience
       ::rect                               m_rectCaption;
       ::rect                               m_rectCaptionTextBk;
       ::rect                               m_rectWindowText;
-      ::rect                               m_rectControlBoxFullScreen;
-      ::rect                               m_rectControlBoxZoomed;
-      ::rect                               m_rectControlBoxNormal;
+      int                                 m_iControlBoxPosition;
+      //::rect                               m_rectControlBoxFullScreen;
+      //::rect                               m_rectControlBoxZoomed;
+      //::rect                               m_rectControlBoxNormal;
       point                                m_pointWindowIcon;
       point                                m_pointMoveGripMinimal;
 
@@ -52,10 +53,7 @@ namespace experience
 
       i32                                  m_iCaptionHeight;
 
-      ::rect                               m_rectControlBoxMarginFullScreen;
-      ::rect                               m_rectControlBoxMarginZoomed;
-      ::rect                               m_rectControlBoxMarginNormal;
-      ::rect                               m_rectControlBoxMarginDock;
+      ::rect                               m_rectControlBoxMargin;
 
 
       ::rect                               m_rectMarginFullScreen;
@@ -116,7 +114,7 @@ namespace experience
       virtual bool get_draw_client_rect(RECT32 * prect);
 
 
-      virtual void calc_window_client_rect(RECT32 * prect, const rect & lprectWindow);
+      //virtual void calc_window_client_rect(RECT32 * prect, const rect & lprectWindow);
 
 
       virtual bool get_element_rect(RECT32 * prect, enum_element eelement);
@@ -124,20 +122,18 @@ namespace experience
 
       virtual void get_parent_rect(RECT32 * prect);
 
-      virtual rect * get_control_box_rect();
-      virtual rect * get_control_box_margin_rect();
-      virtual rect * get_margin_rect();
+      virtual rect get_control_box_margin_rect();
+      virtual rect get_margin_rect();
       virtual i32 get_caption_height();
       virtual i32 calc_caption_height();
       virtual i32 calc_caption_height(edisplay edisplay);
 
-      //virtual i32 title_bar_layout(bool bInitialControlBoxPosition);
       virtual void title_bar_layout();
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
       virtual void on_reposition();
 
-      virtual i32 calc_control_box_left(bool bLayout);
+      //virtual i32 calc_control_box_left(bool bLayout);
 
       virtual __pointer(control_box) get_control_box();
 

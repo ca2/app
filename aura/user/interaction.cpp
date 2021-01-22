@@ -672,19 +672,19 @@ namespace user
 
       //sync_lock slChildren(::user::mutex_children());
 
-      if (m_puiptraChild)
-      {
-
-         auto puiptraChild = m_puiptraChild;
-
-         for (auto & pinteraction : puiptraChild->interactiona())
-         {
-
-            pinteraction->set_reposition();
-
-         }
-
-      }
+//      if (m_puiptraChild)
+//      {
+//
+//         auto puiptraChild = m_puiptraChild;
+//
+//         for (auto & pinteraction : puiptraChild->interactiona())
+//         {
+//
+//            pinteraction->set_reposition();
+//
+//         }
+//
+//      }
 
    }
 
@@ -2269,9 +2269,9 @@ namespace user
 
                pinteraction->get_client_rect(rectClient);
 
-               pinteraction->_001ClientToScreen(rectClient);
+               pinteraction->_001ClientToHost(rectClient);
 
-               _001ScreenToClient(rectClient);
+               _001HostToClient(rectClient);
 
                m_pshapeaClip->add_item(__new(rectd_shape(::rectd(rectClient))));
 
@@ -6890,6 +6890,8 @@ namespace user
 
       ::point pointScreen;
 
+      ::point pointHost;
+
       const char* pszType = this->type_c_str();
 
       auto p = this;
@@ -6897,9 +6899,16 @@ namespace user
       while(p)
       {
 
-         pointScreen += p->layout().sketch().origin();
-
          auto pParent = p->get_parent();
+
+         if(pParent != nullptr)
+         {
+
+            pointHost += p->layout().sketch().origin();
+
+         }
+
+         pointScreen += p->layout().sketch().origin();
 
          if(pParent && p->m_bParentScroll)
          {
@@ -6916,14 +6925,46 @@ namespace user
 
       ::point screenOriginDesignBefore = layout().design().screen_origin();
 
-      layout().sketch().screen_origin() = pointScreen;
+      bool bRepositionThis =
+         layout().sketch().screen_origin() != pointScreen ||
+         layout().design().screen_origin() != pointScreen;
 
-      layout().design().screen_origin() = pointScreen;
+      if(bRepositionThis)
+      {
+
+         layout().sketch().screen_origin() = pointScreen;
+
+         layout().design().screen_origin() = pointScreen;
+
+         layout().sketch().host_origin() = pointHost;
+
+         layout().design().host_origin() = pointHost;
+
+      }
 
       if(string(type_name()).contains_ci("tap"))
       {
 
          INFO("tap prodevian_reposition (%d, %d)", layout().sketch().screen_origin().x, layout().sketch().screen_origin().y);
+
+      }
+
+      if(bRepositionThis)
+      {
+
+         auto puiptraChild = m_puiptraChild;
+
+         if(puiptraChild)
+         {
+
+            for(auto & pinteraction : puiptraChild->interactiona())
+            {
+
+               pinteraction->set_reposition(true);
+
+            }
+
+         }
 
       }
 

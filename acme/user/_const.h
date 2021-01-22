@@ -507,6 +507,22 @@ namespace user
    };
 
 
+   // wall-changer sourceforge.net contribution
+   enum enum_desktop
+   {
+
+      // please note that the row of these must match the row of the corresponding combobox in Preferences Dialog.
+      e_desktop_none,
+      e_desktop_unity_gnome,
+      e_desktop_gnome,
+      e_desktop_xfce,
+      e_desktop_lxde,
+      e_desktop_mate,
+      e_desktop_ubuntu_gnome,
+
+   };
+
+
 } // namespace user
 
 

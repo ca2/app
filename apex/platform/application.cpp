@@ -11,6 +11,7 @@
 #ifndef WINDOWS
 #include "acme/os/cross/windows/_windows.h"
 #endif
+#include "apex/platform/node.h"
 
 
 #include "apex/node/_node.h"
@@ -318,7 +319,14 @@ namespace apex
       if(System.m_bGtkApp)
       {
 
-         apex_application_set_application_menu(m_papplicationmenu, this);
+         auto pnode = Node;
+
+         if(pnode)
+         {
+
+            pnode->set_application_menu(m_papplicationmenu, this);
+
+         }
 
       }
 

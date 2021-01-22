@@ -31,10 +31,10 @@ off_t tell64(int fd);
 //#include "windowing.h"
 
 
-#include "gnome.h"
+//#include "gnome.h"
 
 
-int_bool gdk_launch_uri(const char * pszUri, char * pszError = NULL, int iBufferSize = 0);
+//int_bool gdk_launch_uri(const char * pszUri, char * pszError = NULL, int iBufferSize = 0);
 
 
 typedef struct _cairo_rectangle_int cairo_rectangle_int_t;

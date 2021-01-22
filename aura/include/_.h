@@ -21,11 +21,13 @@
 
 
 #undef System
+#undef Node
 #undef Sess
 #undef App
 
 
 #define System (*::get_context_system()->m_paurasystem)
+#define Node (::get_context_system()->node()->m_pauranode)
 #define Sess(pcontextsession) (pcontextsession->m_paurasession)
 #define App(playered) (*::get_context_application(playered)->m_pauraapplication)
 
@@ -2723,6 +2725,8 @@ namespace draw2d
 #include "aura/filesystem/filemanager/item_action.h"
 
 #include "aura/platform/session.h"
+
+#include "aura/platform/node.h"
 
 #include "aura/platform/system.h"
 

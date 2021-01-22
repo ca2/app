@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "apex/platform/app_core.h"
 #include "_linux.h"
-#include "apex/os/linux/gnome_gnome.h"
+//#include "apex/os/linux/gnome_gnome.h"
 #include <unistd.h>
 
 i32 daemonize_process(const char * _cmd_line, i32 * pprocessId);
@@ -20,21 +20,21 @@ string empty_get_file_content_type(string)
 
 }
 
-PFN_GET_FILE_CONTENT_TYPE g_pfnGetFileContentType = &empty_get_file_content_type;
-
-string linux_get_file_content_type(string strPath)
-{
-
-   return (*g_pfnGetFileContentType)(strPath);
-
-}
-
-void set_get_file_content_type_function(PFN_GET_FILE_CONTENT_TYPE pfnGetFileContentType)
-{
-
-   g_pfnGetFileContentType = pfnGetFileContentType;
-
-}
+//PFN_GET_FILE_CONTENT_TYPE g_pfnGetFileContentType = &empty_get_file_content_type;
+//
+//string linux_get_file_content_type(string strPath)
+//{
+//
+//   return (*g_pfnGetFileContentType)(strPath);
+//
+//}
+//
+//void set_get_file_content_type_function(PFN_GET_FILE_CONTENT_TYPE pfnGetFileContentType)
+//{
+//
+//   g_pfnGetFileContentType = pfnGetFileContentType;
+//
+//}
 
 
 bool linux_can_exec(const char *file)
@@ -108,7 +108,9 @@ bool linux_can_exec(const char *file)
    if ((st.st_mode & S_IEXEC) != 0)
    {
 
-      string strContentType = linux_get_file_content_type(str);
+      auto pnode = Node;
+
+      string strContentType = pnode->get_file_content_type(str);
 
       if(strContentType == "application/x-shellscript")
       {
@@ -1069,7 +1071,9 @@ namespace linux
 
          //::system("nohup xdg-open \"" + strTarget + "\" > /dev/null 2>&1&");
 
-         gdk_fork([strTarget]()
+         auto pnode = Node;
+
+         pnode->node_fork([strTarget]()
          {
 
             string strUri = strTarget;
@@ -1087,7 +1091,9 @@ namespace linux
 
             char * pszError = strError.get_string_buffer(iBufferSize);
 
-            int iBool = gdk_launch_uri(strUri, pszError, iBufferSize);
+            auto pnode = Node;
+
+            int iBool = pnode->os_launch_uri(strUri, pszError, iBufferSize);
 
             strError.release_string_buffer();
 

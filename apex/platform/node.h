@@ -8,12 +8,12 @@
 #pragma once
 
 
-namespace acme
+namespace apex
 {
 
 
    class CLASS_DECL_ACME node :
-      virtual public ::context_object
+      virtual public ::acme::node
    {
    public:
 
@@ -21,19 +21,16 @@ namespace acme
       node();
       virtual ~node();
 
-      virtual void os_calc_user_dark_mode();
 
-      virtual string os_get_user_theme();
 
-      virtual void os_process_user_theme(string strTheme);
 
-      virtual void os_launch_uri(const char * pszUri, char * pszError = NULL, int iBufferSize = 0);
+      virtual void set_application_menu(::apex::application_menu * pmenu, ::apex::application * papplication);
 
 
    };
 
 
-} // namespace linux
+} // namespace apex
 
 
 

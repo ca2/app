@@ -692,7 +692,13 @@ namespace experience
 
             display(e_display_zoomed);
 
+            set_reposition(true);
+
+            set_need_layout();
+
             set_need_redraw();
+
+            post_redraw();
 
             pevent->m_bRet = true;
 
@@ -703,8 +709,6 @@ namespace experience
             TRACE("button_clicked : button_restore");
 
             frame_experience_restore();
-
-            set_need_redraw();
 
             pevent->m_bRet = true;
 
@@ -1941,8 +1945,6 @@ namespace experience
       void frame_window::_001OnAfterAppearance()
       {
 
-         //m_pframe->title_bar_layout();
-
       }
 
 
@@ -2166,6 +2168,14 @@ namespace experience
          display(e_display_compact);
 
       }
+
+      set_reposition(true);
+
+      set_need_layout();
+
+      set_need_redraw();
+
+      post_redraw();
 
    }
 

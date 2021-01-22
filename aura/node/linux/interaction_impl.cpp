@@ -4,7 +4,7 @@
 #include "aura/os/linux/_linux.h"
 #include <X11/Xatom.h>
 #include "third/sn/sn.h"
-#include <gdk/gdkx.h>
+//#include <gdk/gdkx.h>
 
 #define TEST 0
 
@@ -118,7 +118,8 @@ namespace linux
 
       XWindowAttributes             m_attr;
       XVisualInfo                   m_visualinfo;
-      GdkWindow *                   m_pgdkwindow;
+      // GdkWindow *                   m_pgdkwindow;
+      void *                        m_pgdkwindow;
 
    };
 
@@ -311,7 +312,7 @@ namespace linux
          x11_sync([&]()
          {
 
-            Display * display    = x11_get_display();
+            Display * display = x11_get_display();
 
             if(display == nullptr)
             {
@@ -493,6 +494,10 @@ namespace linux
             m_oswindow->set_user_interaction(this);
 
             m_puserinteraction->m_pimpl = this;
+
+//            auto pnode = Node;
+
+//            pnode->node_wrap_window(display, window);
 
             m_puserinteraction->add_ref(OBJ_REF_DBG_P_NOTE(this, "native_create_window"));
 
@@ -715,24 +720,28 @@ namespace linux
 
    void interaction_impl::install_message_routing(::channel * pchannel)
    {
+
       //m_pbuffer->InstallMessageHandling(pinterface);
 
       ::user::interaction_impl::last_install_message_routing(pchannel);
+
       ::user::interaction_impl::install_message_routing(pchannel);
 
       if(!m_puserinteraction->m_bMessageWindow)
       {
+
          MESSAGE_LINK(e_message_paint, pchannel, this,&interaction_impl::_001OnPaint);
 //         MESSAGE_LINK(WM_PRINT, pchannel, this,&interaction_impl::_001OnPrint);
+
       }
 
       m_puserinteraction->install_message_routing(pchannel);
+
       MESSAGE_LINK(e_message_create, pchannel, this,&interaction_impl::_001OnCreate);
-
-
 
       if(!m_puserinteraction->m_bMessageWindow)
       {
+
          MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::_001OnSetCursor);
          //MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
          //MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::_001OnSize);
@@ -2586,7 +2595,19 @@ namespace linux
 
       }
 
-      m_oswindow->exit_iconify();
+      auto pnode = Node;
+
+      if(pnode)
+      {
+
+         pnode->user_fork([this]()
+                          {
+
+                             m_oswindow->exit_iconify();
+
+                          });
+
+      }
 
    }
 
@@ -2616,7 +2637,9 @@ namespace linux
 
       }
 
-      x11_sync([this]()
+      auto pnode = Node;
+
+      pnode->user_fork([this]()
       {
 
          m_oswindow->exit_zoomed();

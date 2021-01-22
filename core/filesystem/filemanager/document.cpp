@@ -639,14 +639,12 @@ namespace filemanager
 
       }
 
-
-      opt_fork(__routine([=]()
+      opt_fork(__routine([this, pitem, context]()
       {
 
          full_browse(pitem, context);
 
       }));
-
 
    }
 

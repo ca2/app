@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(app_app CXX)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
@@ -63,7 +63,7 @@ elseif(LINUX)
     target_link_libraries(app_app PRIVATE acme apex aqua aura)
     target_link_options(app_app PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
-    add_dependencies(app_app draw2d_cairo)
+    add_dependencies(app_app draw2d_cairo node_gnome)
 endif()
 
 

@@ -120,26 +120,6 @@ public:
 };
 
 
-template < typename ARGUMENT >
-class argument_of
-{
-public:
-
-   using type = typename smaller_type < ARGUMENT, const ARGUMENT & >::type;
-
-};
-
-
-template < >
-class argument_of < ::string >
-{
-public:
-
-   using type = ::block;
-
-};
-
-
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
 class map :

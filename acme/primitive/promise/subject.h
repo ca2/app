@@ -47,6 +47,7 @@ namespace promise
       virtual i64 release(OBJ_REF_DBG_PARAMS) override;
 #endif
 
+      virtual ::e_status step() override;
       virtual ::e_status run() override;
 
       //virtual void process(const ::payload & payload);

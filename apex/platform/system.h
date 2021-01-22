@@ -257,6 +257,9 @@ namespace apex
       virtual bool thread_get_run() const override;
 
 
+      virtual ::e_status create_os_node() override;
+
+
          //::thread * get_task(ithread_t ithread);
       //ithread_t get_thread_id(::thread * pthread);
       //void set_thread(ithread_t ithread, ::thread * pthread);

@@ -271,8 +271,8 @@ namespace experience
 
                   lprect->left = m_pointMoveGripMinimal.x + 2;
                   lprect->top = m_pointMoveGripMinimal.y + 2;
-                  lprect->right = lprect->left + get_control_box_rect()->height() - 4;
-                  lprect->bottom = lprect->top + get_control_box_rect()->height() - 4;
+                  lprect->right = lprect->left + m_iCaptionHeight - 4;
+                  lprect->bottom = lprect->top + m_iCaptionHeight - 4;
 
                   return true;
 

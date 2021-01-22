@@ -1762,6 +1762,18 @@ namespace user
 
 
       template < typename POINT_OFFSETABLE >
+      inline void _001HostToClient(POINT_OFFSETABLE& o, enum_layout elayout = e_layout_design) { o -= layout().host_origin(elayout); o += get_parent_accumulated_scroll(elayout); }
+      template < typename POINT_OFFSETABLE >
+      inline void _001HostToClient(POINT_OFFSETABLE* po, enum_layout elayout = e_layout_design) { _001HostToClient(*po, elayout); }
+
+
+      template < typename POINT_OFFSETABLE >
+      inline void _001ClientToHost(POINT_OFFSETABLE& o, enum_layout elayout = e_layout_design) { o += layout().host_origin(elayout); o -= get_parent_accumulated_scroll(elayout); }
+      template < typename POINT_OFFSETABLE >
+      inline void _001ClientToHost(POINT_OFFSETABLE* po, enum_layout elayout = e_layout_design) { _001ClientToHost(*po, elayout); }
+
+
+      template < typename POINT_OFFSETABLE >
       inline void _001ParentToClient(POINT_OFFSETABLE& o, enum_layout elayout = e_layout_design) { o -= layout().origin(elayout); }
       template < typename POINT_OFFSETABLE >
       inline void _001ParentToClient(POINT_OFFSETABLE* po, enum_layout elayout = e_layout_design) { _001ParentToClient(*po, elayout); }

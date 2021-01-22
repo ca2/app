@@ -216,6 +216,10 @@ namespace experience
 
       enum_display edisplayDock = e_display_none;
 
+      enum_display edisplayOld = m_pframewindow->layout().sketch().display();
+
+      ::rect rectScreenOld = m_pframewindow->layout().sketch().screen_rect();
+
       if (rectCenter.contains_x(pointCursor.x))
       {
 
@@ -310,46 +314,53 @@ namespace experience
       if (edisplayDock == ::e_display_normal)
       {
 
-         if (m_pframewindow->layout().sketch().display() != e_display_normal)
+         bool bChange = false;
+
+         if (edisplayOld != e_display_normal)
          {
 
             m_pframewindow->set_size(m_pframewindow->m_windowrect.m_rectRestored.size());
 
+            bChange = true;
+
+         }
+         else
+         {
+
+            ::rect rectNew(pointMove, m_pframewindow->m_windowrect.m_rectRestored.size());
+
+            rectNew._001Constraint(rectWork);
+
+            if(rectNew != rectScreenOld)
+            {
+
+               m_pframewindow->move_to(pointMove);
+
+               bChange = true;
+
+            }
+
          }
 
-         m_pframewindow->move_to(pointMove);
+         if(bChange)
+         {
 
-         m_pframewindow->display(e_display_normal);
+            m_pframewindow->display(e_display_normal);
 
-         m_pframewindow->set_need_redraw();
+            m_pframewindow->set_need_redraw();
 
-         //auto pointMove = point;
+            m_pframewindow->post_redraw();
 
-         //if (m_pframewindow->get_parent() != nullptr)
-         //{
-
-         //   m_pframewindow->get_parent()->_001ScreenToClient(pointMove);
-
-         //}
-
-         //m_pframewindow->order(zorder_top);
-
-         //m_pframewindow->move_to(pointMove);
-
-         //m_pframewindow->set_size(m_pframewindow->m_windowrect.m_rectRestored.size());
-
-         //m_pframewindow->display(e_display_normal);
-
-         //m_pframewindow->set_need_redraw();
+         }
 
       }
       else if (is_docking_appearance(edisplayDock))
       {
 
-         if (m_iDockMove <= 0 || m_iDockMove >= m_iConsiderDockMove)
+         //if (m_iDockMove <= 0 || m_iDockMove >= m_iConsiderDockMove)
          {
 
-            if (m_pframewindow->layout().sketch().display() != edisplayDock || rectDock != rectWindow)
+            if (edisplayDock == edisplayOld || rectDock != rectWindow)
             {
 
                m_pframewindow->order(zorder_top);
@@ -360,7 +371,9 @@ namespace experience
 
                m_pframewindow->set_need_redraw();
 
-               if (m_iDockMove <= 0)
+               m_pframewindow->post_redraw();
+
+               //if (m_iDockMove <= 0)
                {
 
                   m_bPendingCursorPos = true;
@@ -376,6 +389,7 @@ namespace experience
       return true;
 
    }
+
 
    void dock_manager::defer_cursor_pos()
    {

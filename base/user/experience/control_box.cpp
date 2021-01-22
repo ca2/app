@@ -193,6 +193,12 @@ namespace experience
          m_millisShow.Now();
 
       }
+      else
+      {
+
+         output_debug_string(".");
+
+      }
 
    }
 
@@ -572,7 +578,7 @@ namespace experience
 
       m_pframewindow->m_pframe->m_iControlBoxRight = rectParent.right - rect.right;
 
-      *m_pframewindow->m_pframe->get_control_box_rect() = rect;
+      //*m_pframewindow->m_pframe->get_control_box_rect() = rect;
 
       reset_layout(pgraphics);
 
@@ -1241,7 +1247,7 @@ namespace experience
       for(; point != nullptr; point = m_buttonmap.get_next(point))
       {
 
-         iHeight = max(iHeight,get_button_size(point->element1()).cy + get_button_margin(point->element1()).top + get_button_margin(point->element1()).bottom);
+         iHeight = max(iHeight,get_button_size(point->element1()).cy);
 
       }
 
@@ -1262,28 +1268,28 @@ namespace experience
    }
 
 
-   i32 control_box::calc_control_box_zoomed_width()
-   {
+//   i32 control_box::calc_control_box_zoomed_width()
+//   {
+//
+//      int iWidth;
+//
+//      iWidth = (m_sizeButtonDefault.cx + m_iDefaultButtonMargin) * 8;
+//
+//      return iWidth;
+//
+//   }
 
-      int iWidth;
 
-      iWidth = (m_sizeButtonDefault.cx + m_iDefaultButtonMargin) * 8;
-
-      return iWidth;
-
-   }
-
-
-   i32 control_box::calc_control_box_full_screen_width()
-   {
-
-      int iWidth;
-
-      iWidth = (m_sizeButtonDefault.cx + m_iDefaultButtonMargin) * 13;
-
-      return iWidth;
-
-   }
+//   i32 control_box::calc_control_box_full_screen_width()
+//   {
+//
+//      int iWidth;
+//
+//      iWidth = (m_sizeButtonDefault.cx + m_iDefaultButtonMargin) * 13;
+//
+//      return iWidth;
+//
+//   }
 
 
    //i32 control_box::get_button_margin()
@@ -1352,23 +1358,23 @@ namespace experience
 
       m_pframewindow->m_pframe->m_bControlBoxAlignRight = rect.center().x > (rectWindow.width() / 2);
 
-      if (rect != *m_pframewindow->m_pframe->get_control_box_rect())
-      {
-
-         *m_pframewindow->m_pframe->get_control_box_rect() = rect;
-
-         m_pframewindow->m_millisLastVisualChange.Now();
-
-         //auto pframe = m_pframewindow;
-
-         //if (::is_set(pframe))
-         //{
-
-         //   pframe->defer_save_window_placement();
-
-         //}
-
-      }
+//      if (rect != *m_pframewindow->m_pframe->get_control_box_rect())
+//      {
+//
+//         *m_pframewindow->m_pframe->get_control_box_rect() = rect;
+//
+//         m_pframewindow->m_millisLastVisualChange.Now();
+//
+//         //auto pframe = m_pframewindow;
+//
+//         //if (::is_set(pframe))
+//         //{
+//
+//         //   pframe->defer_save_window_placement();
+//
+//         //}
+//
+//      }
 
    }
 

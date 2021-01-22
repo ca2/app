@@ -5,11 +5,13 @@
 #include "node.h"
 
 
-namespace acme
+namespace apex
 {
 
    node::node()
    {
+
+      m_papexnode = this;
 
    }
 
@@ -21,39 +23,13 @@ namespace acme
    }
 
 
-   void node::os_calc_user_dark_mode()
+   void node::set_application_menu(::apex::application_menu * pmenu, ::apex::application * papplication)
    {
-
 
    }
 
 
-   string node::os_get_user_theme()
-   {
-
-      return "";
-
-   }
-
-
-   void node::os_process_user_theme(string strTheme)
-   {
-
-
-   }
-
-
-   void node::os_launch_uri(const char * pszUri, char * pszError, int iBufferSize)
-   {
-
-
-
-   }
-
-
-
-
-} // namespace acme
+} // namespace apex
 
 
 

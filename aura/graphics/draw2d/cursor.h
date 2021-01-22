@@ -15,7 +15,7 @@ namespace draw2d
       bool                    m_bDefaultCursor;
       ::image_pointer         m_pimage;
       ::image_pointer         m_pimageCursor;
-      size                    m_szHotspotOffset;
+      ::size                  m_szHotspotOffset;
 
 
       HCURSOR                 m_hcursor;

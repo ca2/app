@@ -3,22 +3,20 @@
 // (as caThworansfer (also fun :/ ... few times... so seriously F****) from aura/os/application_system_run.cpp)
 #include "framework.h"
 #include "aura/os/linux/_user.h"
-#include <gtk/gtk.h>
+//#include <gtk/gtk.h>
 #include "third/sn/sn.h"
 #include "apex/platform/app_core.h"
-#include "apex/os/linux/gnome_apex_application.h"
+//#include "apex/os/linux/gnome_apex_application.h"
 
 extern ::app_core * g_pappcore;
-
+void x11_main();
 void os_post_quit();
 //Display * x11_get_display();
 
 CLASS_DECL_AURA i32 ca2_main();
 
 
-
-gboolean linux_start_system(gpointer data);
-
+//gboolean linux_start_system(gpointer data);
 
 
 void CLASS_DECL_AURA __cdecl _ca2_purecall()
@@ -128,6 +126,7 @@ namespace aura{
 i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
 #endif
 
+void x11_add_gdk_filter();
 
 namespace aura
 {
@@ -135,6 +134,15 @@ namespace aura
 
    ::e_status system::os_application_system_run()
    {
+
+      auto estatus = create_os_node();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
 
 
       //   ::e_status estatus = psystem->begin_synch();
@@ -147,13 +155,13 @@ namespace aura
       //   }
       //
 
-      const char *pszName = m_strAppId;
+//      const char *pszName = m_strAppId;
 
-      g_set_application_name(pszName);
+//      g_set_application_name(pszName);
 
-      const char *pszPrgName = m_strProgName;
+//      const char *pszPrgName = m_strProgName;
 
-      g_set_prgname(pszPrgName);
+//      g_set_prgname(pszPrgName);
 
       //auto idle_source = g_idle_source_new();
 
@@ -167,7 +175,9 @@ namespace aura
 
 #if !defined(__SANITIZE_ADDRESS__)
 
-      if (!gtk_init_check(&m_argc, &m_argv))
+      auto pnode = Node;
+
+      if (!pnode->node_init_check(&m_argc, &m_argv))
       {
 
          return ::error_failed;
@@ -199,38 +209,41 @@ namespace aura
 
       }
 
-      if (m_bGtkApp)
-      {
+      pnode->os_application_system_run();
 
-         apex_application_run(m_strAppId, m_strProgName);
-
-      }
-      else
-      {
-
-         //      g_set_application_name(psystem->m_strAppId);
-         //
-         //      g_set_prgname(psystem->m_strProgName);
-         //
-         //      //auto idle_source = g_idle_source_new();
-         //
-         //      //g_source_set_callback(idle_source, &linux_start_system, (::aura::system *) m_psystem, nullptr);
-         //
-         //      //g_source_attach(idle_source, g_main_context_default());
-         //
-         //      //int c = 2;
-         //
-         //      //const char * argv[]={"app", "--g-fatal-warnings"};
-         //
-         //#if !defined(__SANITIZE_ADDRESS__)
-         //
-         //      gtk_init_check(&psystem->m_argc, &psystem->m_argv);
-         //
-         //#endif
-
-         gtk_main();
-
-      }
+      //x11_main();
+//      if (m_bGtkApp)
+//      {
+//
+//         apex_application_run(m_strAppId, m_strProgName);
+//
+//      }
+//      else
+//      {
+//
+//         //      g_set_application_name(psystem->m_strAppId);
+//         //
+//         //      g_set_prgname(psystem->m_strProgName);
+//         //
+//         //      //auto idle_source = g_idle_source_new();
+//         //
+//         //      //g_source_set_callback(idle_source, &linux_start_system, (::aura::system *) m_psystem, nullptr);
+//         //
+//         //      //g_source_attach(idle_source, g_main_context_default());
+//         //
+//         //      //int c = 2;
+//         //
+//         //      //const char * argv[]={"app", "--g-fatal-warnings"};
+//         //
+//         //#if !defined(__SANITIZE_ADDRESS__)
+//         //
+//         //      gtk_init_check(&psystem->m_argc, &psystem->m_argv);
+//         //
+//         //#endif
+//         //x11_add_gdk_filter();
+//         //gtk_main();
+//
+//      }
 
       //::parallelization::post_quit_and_wait(get_context_system(), one_minute());
 
@@ -286,64 +299,64 @@ void os_term_application()
 }
 
 
-gboolean gtk_quit_callback(gpointer data)
-{
+//gboolean gtk_quit_callback(gpointer data)
+//{
+//
+//   gtk_main_quit();
+//
+//   return FALSE;
+//
+//}
 
-   gtk_main_quit();
-
-   return FALSE;
-
-}
-
-
-void os_post_quit()
-{
-
-   auto idle_source = g_idle_source_new();
-
-   g_source_set_callback(idle_source, &gtk_quit_callback, nullptr, nullptr);
-
-   g_source_attach(idle_source, g_main_context_default());
-
-}
-
-::e_status     run_runnable(::matter * pobjectTask);
-
-
-gboolean gdk_callback_run_runnable(gpointer pdata)
-{
-
-   run_runnable((matter *) pdata);
-
-   return FALSE;
-
-}
-
-
-void gdk_branch(matter * prunnable, e_priority epriority)
-{
-
-   prunnable->add_ref(OBJ_REF_DBG_P_NOTE(nullptr, "gdk_branch"));
-
-   auto idle_source = g_idle_source_new();
-
-   g_source_set_priority(idle_source, G_PRIORITY_DEFAULT);
-
-   g_source_set_callback(idle_source, &gdk_callback_run_runnable, prunnable, nullptr);
-
-   g_source_attach(idle_source, g_main_context_default());
-
-}
-
-
-CLASS_DECL_AURA void main_branch(::matter * prunnable, e_priority epriority)
-{
-
-   prunnable->add_ref(OBJ_REF_DBG_P_NOTE(nullptr, "main_branch"));
-
-   gdk_branch(prunnable, epriority);
-
-}
+//
+//void os_post_quit()
+//{
+//
+//   auto idle_source = g_idle_source_new();
+//
+//   g_source_set_callback(idle_source, &gtk_quit_callback, nullptr, nullptr);
+//
+//   g_source_attach(idle_source, g_main_context_default());
+//
+//}
+//
+//::e_status     run_runnable(::matter * pobjectTask);
+//
+//
+//gboolean gdk_callback_run_runnable(gpointer pdata)
+//{
+//
+//   run_runnable((matter *) pdata);
+//
+//   return FALSE;
+//
+//}
+//
+//
+//void gdk_branch(matter * prunnable, e_priority epriority)
+//{
+//
+//   prunnable->add_ref(OBJ_REF_DBG_P_NOTE(nullptr, "gdk_branch"));
+//
+//   auto idle_source = g_idle_source_new();
+//
+//   g_source_set_priority(idle_source, G_PRIORITY_DEFAULT);
+//
+//   g_source_set_callback(idle_source, &gdk_callback_run_runnable, prunnable, nullptr);
+//
+//   g_source_attach(idle_source, g_main_context_default());
+//
+//}
+//
+//
+//CLASS_DECL_AURA void main_branch(::matter * prunnable, e_priority epriority)
+//{
+//
+//   prunnable->add_ref(OBJ_REF_DBG_P_NOTE(nullptr, "main_branch"));
+//
+//   gdk_branch(prunnable, epriority);
+//
+//}
 
 void init_x11();
 namespace aura

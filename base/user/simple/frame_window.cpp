@@ -1625,8 +1625,13 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
 
 #ifdef LINUX
       //if(is_window_visible())
-      if(::user::get_edesktop() == ::user::desktop_unity_gnome
-            || ::user::get_edesktop() == ::user::desktop_ubuntu_gnome)
+
+      auto pnode = Node;
+
+      auto edesktop = pnode->get_edesktop();
+
+      if(edesktop == ::user::e_desktop_unity_gnome
+            || edesktop == ::user::e_desktop_ubuntu_gnome)
       {
 
          display(e_display_none);

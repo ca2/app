@@ -69,6 +69,8 @@ namespace experience
 
 #endif
 
+      //return;
+
       try
       {
 
@@ -117,11 +119,11 @@ namespace experience
             while (pinteraction != nullptr)
             {
 
-               pinteraction->get_window_rect(rectFocus);
+               pinteraction->get_client_rect(rectFocus);
 
-               rectFocus.offset(rectClient.top_left());
+               pinteraction->_001ClientToHost(rectFocus);
 
-               _001ScreenToClient(rectFocus);
+               _001HostToClient(rectFocus);
 
                m_pshapeaClip->add_item(__new(rectd_shape(rectFocus)));
                

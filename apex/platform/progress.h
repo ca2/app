@@ -67,7 +67,7 @@ public:
    virtual void format_status(const char* pszFormat);
 
    virtual void redraw();
-   virtual void step();
+   virtual ::e_status step() override;
 
    virtual void close_progress();
 

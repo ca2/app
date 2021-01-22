@@ -11,7 +11,7 @@
 //#include <X11/Xatom.h>
 // // Ubuntu apt-get install libcairo2-dev
 
-#include <glib.h> // gtk3-devel libglib2.0-dev gtk-3-dev
+//#include <glib.h> // gtk3-devel libglib2.0-dev gtk-3-dev
 
 
 enum e_net_wm_state
@@ -88,7 +88,7 @@ void set_xcolor(XColor & color, color32_t cr);
 //#define HWND_MESSAGE ((::oswindow_data *) (iptr) 1)
 //#
 
-#include "gnome_apex_application.h"
+//#include "gnome_apex_application.h"
 
 
 
@@ -127,7 +127,7 @@ public:
 
 
 
-gboolean gdk_callback_run_runnable(gpointer pdata);
+//gboolean gdk_callback_run_runnable(gpointer pdata);
 
 
 

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/os/linux/gnome_gnome.h"
+//#include "apex/os/linux/gnome_gnome.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
 #endif
@@ -163,10 +163,12 @@ namespace user
 
          pathFolder = path.folder();
 
-         gdk_sync(5_s, __routine([=]()
+         auto pnode = Node;
+
+         pnode->node_sync(5_s, __routine([this, pnode, strNotifyIcon, pathFolder]()
          {
 
-            m_pindicator = ::linux::allocate_appindicator();
+            m_pindicator = pnode->appindicator_allocate();
 
             m_pindicator->create(m_strId, strNotifyIcon + "_128", pathFolder, this);
 
@@ -378,7 +380,9 @@ namespace user
       if(m_pindicator)
       {
 
-         ::linux::appindicator_destroy(m_pindicator);
+         auto pnode = Node;
+
+         pnode->appindicator_destroy(m_pindicator);
 
          m_pindicator = nullptr;
 
@@ -465,7 +469,7 @@ namespace user
    }
 
 
-   void notify_icon::step()
+   ::e_status notify_icon::step()
    {
 
 #if defined(LINUX)

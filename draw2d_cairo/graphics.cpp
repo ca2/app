@@ -1623,13 +1623,13 @@ bool graphics::_stretch_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraph
 // double blend
 //// COLOR_DEST = SRC_ALPHA * BLEND_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA * BLEND_ALPHA) * COLOR_DST
 
-
-bool graphics::text_out(double x, double y, const string & str)
-{
-
-    return ::draw2d::graphics::text_out(double(x), double(y), str);
-
-}
+//
+//bool graphics::text_out(double x, double y, const string & str)
+//{
+//
+//    return ::draw2d::graphics::text_out(double(x), double(y), str);
+//
+//}
 
 
 //bool graphics::ExtTextOut(double x, double y, ::u32 nOptions, const ::rectd & rect, const char * lpszString, strsize nCount, int * lpDxWidths)
@@ -3482,7 +3482,7 @@ void graphics::DPtoLP(::sized * psize)
 #if defined(USE_PANGO)
 
 
-bool graphics::draw_text(const string & strParam, const ::rect & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
+bool graphics::draw_text(const string & strParam, const ::rectd & rectParam, const ::e_align & ealign, const ::e_draw_text & edrawtext)
 {
 
     sync_lock ml(cairo_mutex());
@@ -4180,15 +4180,15 @@ bool graphics::fill_rect(const ::rectd & rect, const ::color & color)
 //}
 
 
-bool graphics::text_out(double x, double y, const char * lpszString, strsize nCount)
-{
+//bool graphics::text_out(double x, double y, const char * lpszString, strsize nCount)
+//{
+//
+//    return text_out(x, y, string(lpszString, nCount));
+//
+//}
 
-    return text_out(x, y, string(lpszString, nCount));
 
-}
-
-
-bool graphics::TextOutRaw(double x, double y, const string & str)
+bool graphics::TextOutRaw(double x, double y, const block & block)
 {
 
     sync_lock ml(cairo_mutex());
@@ -4199,7 +4199,7 @@ bool graphics::TextOutRaw(double x, double y, const string & str)
 
     auto rect = ::rectd(pointd(x, y), sized(65535.0, 65535.0));
 
-    internal_draw_text(str, rect, e_align_none);
+    internal_draw_text(block, rect, e_align_none);
 
 #else
 

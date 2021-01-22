@@ -32,7 +32,7 @@ namespace acme
       ::core::system *                                   m_pcoresystem;
 
       string                                             m_strOsUserTheme;
-
+      __pointer(::acme::node)                       m_pnode;
 
 
 
@@ -43,7 +43,10 @@ namespace acme
       void os_construct();
 
 
+      ::acme::node * node();
 
+
+      virtual ::e_status create_os_node();
 
       virtual string os_get_user_theme();
 

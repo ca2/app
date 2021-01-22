@@ -13,12 +13,14 @@
 #pragma once
 
 
+#undef Node
 #undef System
 #undef Sess
 #undef App
 
 
 #define System (*::get_context_system()->m_papexsystem)
+#define Node (::get_context_system()->node()->m_papexnode)
 #define Sess(pcontextsession) (pcontextsession)
 #define App(playered) (*::get_context_application(playered))
 
@@ -310,9 +312,6 @@ namespace install
 
 
 } // namespace install
-
-
-#include "apex/const/_const.h"
 
 
 class command_line;
@@ -1085,6 +1084,9 @@ namespace xml
 
 
 #include "apex/primitive/math/department.h"
+
+
+#include "apex/platform/node.h"
 
 
 #include "apex/platform/system.h"

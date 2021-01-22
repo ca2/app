@@ -12,10 +12,10 @@ namespace draw2d
 
       
       void *                        m_picon;
-      map < size, void * >          m_iconmap;
+      map < ::size, void * >        m_iconmap;
       bool                          m_bAutoDelete;
       string                        m_strAppTrayIcon;
-      size                          m_size;
+      ::size                        m_size;
       __pointer(size_image)         m_pimagemap;
 
 

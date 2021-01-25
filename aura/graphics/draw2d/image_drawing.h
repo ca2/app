@@ -20,6 +20,13 @@ public:
    bool get_color_matrix(color_matrix & matrix) const;
 
 
+   template < primitive_floating FLOATING >
+   void opacity(FLOATING fAlpha) { m_pcolorfilter = __new(opacity_color_filter(fAlpha)); }
+
+   template < primitive_integral INTEGRAL >
+   void opacity(INTEGRAL bAlpha) { opacity(bAlpha/255.0); }
+
+
 };
 
 

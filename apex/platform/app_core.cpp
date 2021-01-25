@@ -120,7 +120,7 @@ string ca2_command_line2();
 #undef USE_MISC
 
 
-#define APP_CORE_BASE_DIR "/payload/tmp/ca2/config/system"
+#define APP_CORE_BASE_DIR "/::payload/tmp/ca2/config/system"
 
 
 #endif

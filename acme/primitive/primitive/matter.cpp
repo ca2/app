@@ -340,7 +340,7 @@ void matter::operator()(const ::payload & payload)
 }
 
 
-void matter::on_future(const ::payload& payload)
+void matter::on_future(const ::payload & payload)
 {
 
 }

@@ -183,6 +183,9 @@ namespace sockets
       //   outheader("Host") = GetUrlHost();
       outheader(__id(host)) = m_host;
       SendRequest();
+
+      return true;
+
    }
 
    void http_tunnel::OnFirst()

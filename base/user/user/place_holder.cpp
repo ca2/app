@@ -217,12 +217,12 @@ namespace user
    }
 
 
-   bool place_holder::create_window(::user::place_holder_container * pcontainer,id id)
-   {
+   //bool place_holder::create_interaction(::user::place_holder_container * pcontainer,id id)
+   //{
 
-      return ::user::interaction::create_window(pcontainer, id) != FALSE;
+   //   return ::user::interaction::create_interaction(pcontainer, id) != FALSE;
 
-   }
+   //}
 
 
    __pointer(place_holder) place_holder::create_shadow_clone()
@@ -237,7 +237,7 @@ namespace user
 
       }
 
-      if(!pholder->::user::interaction::create_window(get_parent(),m_id))
+      if(!pholder->::user::interaction::create_child(get_parent()))
       {
 
          return nullptr;

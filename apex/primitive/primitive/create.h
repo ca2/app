@@ -17,11 +17,11 @@ public:
    string                                                      m_strDescription;
    enum_command                                                m_ecommand;
    string                                                      m_strAppId;
-   payload                                                     m_varFile;
-   payload                                                     m_varArgs;
-   payload                                                     m_varOptions;
+   ::payload                                                   m_varFile;
+   ::payload                                                   m_varArgs;
+   ::payload                                                   m_varOptions;
    string                                                      m_strExtra;
-   ::e_status                                                   m_estatus;
+   ::e_status                                                  m_estatus;
 
    bool                                                        m_bMakeVisible;
    bool                                                        m_bTransparentBackground;
@@ -31,7 +31,7 @@ public:
    ::user::primitive *                                         m_puserinteractionParent;
    ::user::primitive *                                         m_puiAlloc;
    __pointer(command_line)                                     m_pcommandline;
-   __pointer(::layered)                                        m_pusercreate;
+   __pointer(::layered)                                        m_pusersystem;
    ewindowflag                                                 m_ewindowflag;
    ::id                                                        m_id;
 
@@ -42,10 +42,10 @@ public:
 
    
    virtual ::e_status initialize_create(arguments arguments);
-   virtual ::e_status initialize_create(string strAppId, payload varFile, const payload& varOptions = __visible(true), ::user::primitive* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id = ::id());
+   virtual ::e_status initialize_create(string strAppId, ::payload varFile, const ::payload& varOptions = __visible(true), ::user::primitive* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id = ::id());
 
 
-   void create_common_construct(const payload & varOptions, ::user::primitive * puiParent);
+   void create_common_construct(const ::payload & varOptions, ::user::primitive * puiParent);
 
 
    ::apex::application* create_get_application(::apex::application* pappFallback = nullptr);
@@ -62,7 +62,7 @@ public:
    //create & operator = (const create & create);
 
 
-   inline ::user::create * get_user_create() { return __user_create(m_pusercreate); }
+   inline ::user::system * get_user_create() { return __user_system(m_pusersystem); }
 
 
 };

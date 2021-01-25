@@ -127,7 +127,7 @@ namespace user
    }
 
 
-   bool split_view::pre_create_window(::user::create_struct * pcreatestruct)
+   bool split_view::pre_create_window(::user::system * pusersystem)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -136,7 +136,7 @@ namespace user
 
 #endif
 
-      return impact::pre_create_window(pcreatestruct);
+      return impact::pre_create_window(pusersystem);
 
    }
 

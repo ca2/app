@@ -14,7 +14,7 @@ namespace dynamic_source
    //script_instance * get_seed_instance()
    //{
    //   
-   //   return thread_value(id_thread_dynamic_source_script_instance).cast < script_instance >();
+   //   return thread_property(id_thread_dynamic_source_script_instance).cast < script_instance >();
 
    //}
 
@@ -22,7 +22,7 @@ namespace dynamic_source
    //void set_seed_instance(script_instance * pinstance)
    //{
 
-   //   thread_value(id_thread_dynamic_source_script_instance) = pinstance;
+   //   thread_property(id_thread_dynamic_source_script_instance) = pinstance;
 
    //}
 
@@ -471,7 +471,7 @@ namespace dynamic_source
    }
 
 
-   payload script_manager::get_output_internal(::dynamic_source::script_interface * pinstanceParent, const string & strNameParam)
+   ::payload script_manager::get_output_internal(::dynamic_source::script_interface * pinstanceParent, const string & strNameParam)
    {
 
       string strName = ::str::get_word(strNameParam, "?");
@@ -500,7 +500,7 @@ namespace dynamic_source
 
       }
 
-      payload payload;
+      ::payload payload;
 
       __pointer(script_interface) pimpl;
 
@@ -643,7 +643,7 @@ namespace dynamic_source
 
       }
 
-      return payload;
+      return ::payload;
 
    }
 

@@ -23,7 +23,7 @@ namespace calculator
       virtual ~element();
 
 
-      class payload get_payload();
+      class result get_result();
       string get_expression();
 
    };

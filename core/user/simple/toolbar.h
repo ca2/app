@@ -55,9 +55,9 @@ public:
    virtual ::rect get_bar_border();
    virtual ::rect get_item_pad();
 
-   bool create(::user::interaction * puiParent, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, id nID = "__IDW_TOOLBAR");
-   using ::user::interaction::create_window_ex;
-   virtual bool create_toolbar(::user::interaction * puiParent, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, id nID = "__IDW_TOOLBAR") override;
+   //bool create(::user::interaction * puiParent, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, id nID = "__IDW_TOOLBAR");
+   //using ::user::interaction::create_window_ex;
+   //virtual bool create_toolbar(::user::interaction * puiParent, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, id nID = "__IDW_TOOLBAR") override;
 
 
    virtual index WrapToolBar(::draw2d::graphics_pointer& pgraphics, index nCount, index nWidth);

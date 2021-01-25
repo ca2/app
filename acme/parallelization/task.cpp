@@ -92,7 +92,7 @@ bool task::set_thread_name(const char* pszThreadName)
 bool task::thread_get_run() const
 {
 
-   return !m_bitSetFinish;
+   return !m_bSetFinish;
 
 }
 
@@ -326,7 +326,7 @@ void task::term_task()
 
    ::e_status estatus = ::success;
 
-   while (!m_bitSetFinish)
+   while (!m_bSetFinish)
    {
 
       ::matter* pmatter;

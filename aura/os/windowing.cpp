@@ -135,12 +135,12 @@ CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
       if(::is_set(ptask))
       {
 
-         auto pimpl = ptask->value("wnd_init").cast<::user::interaction_impl>();
+         auto pimpl = ptask->payload("wnd_init").cast<::user::interaction_impl>();
 
          if (::is_set(pimpl))
          {
 
-            thread_value("wnd_init") = nullptr;
+            thread_property("wnd_init") = nullptr;
 
             pimpl->attach(oswindow);
 

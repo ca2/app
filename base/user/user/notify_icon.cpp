@@ -81,7 +81,7 @@ namespace user
 
       m_strId.Format("notify_icon_%d", uId);
 
-      m_strId = "ca2-" + pvisualicon->m_strAppTrayIcon + "-" + m_strId;
+      m_strId = "ca2-" + pvisualicon->get_tray_icon_name() + "-" + m_strId;
 
 #ifdef WINDOWS_DESKTOP
 
@@ -482,6 +482,8 @@ namespace user
 //      });
 
 #endif
+
+      return ::success;
 
    }
 

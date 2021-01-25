@@ -103,7 +103,7 @@ namespace userex
 
       m_idaHandledCommands.add(m_id);
 
-      m_buttonMenu.create_window(this, m_id);
+      m_buttonMenu.create_control(this, m_id);
 
       m_buttonMenu.set_button_style(::user::button::style_image_and_text);
 

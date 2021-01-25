@@ -104,8 +104,8 @@ namespace userfs
             return false;
          if(iUItem >= pdata->m_itema.get_size())
             iUItem = pdata->m_itema.get_upper_bound();
-         payload varFile;
-         payload varQuery;
+         ::payload varFile;
+         ::payload varQuery;
          if(iUItem == iLItem)
          {
 
@@ -183,7 +183,7 @@ namespace userfs
    }
 
    
-   bool list::pre_create_window(::user::create_struct * pcreatestruct)
+   bool list::pre_create_window(::user::system * pusersystem)
    {
 
 
@@ -191,7 +191,7 @@ namespace userfs
 
 #endif
 
-      return ::user::form_list_view::pre_create_window(pcreatestruct);
+      return ::user::form_list_view::pre_create_window(pusersystem);
 
    }
 

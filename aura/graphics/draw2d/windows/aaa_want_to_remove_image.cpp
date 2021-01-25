@@ -43,7 +43,7 @@ CLASS_DECL_AURA bool node_save_image(Windows::Storage::Streams::IRandomAccessStr
    node_save_image(pstream, pimage, psaveimage);
 
    STATSTG stg;
-   xxf_zero(stg);
+   __zero(stg);
    pstream->Stat(&stg, STATFLAG_NONAME);
    LARGE_INTEGER l;
    l.QuadPart = 0;

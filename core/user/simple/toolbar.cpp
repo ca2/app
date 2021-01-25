@@ -114,44 +114,44 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
 }
 
 
-bool simple_toolbar::create(::user::interaction * puiParent, u32 uStyle, id nID)
-{
+//bool simple_toolbar::create(::user::interaction * puiParent, u32 uStyle, id nID)
+//{
+//
+//   return create_toolbar(puiParent, 0, uStyle, nID);
+//
+//}
 
-   return create_toolbar(puiParent, 0, uStyle, nID);
 
-}
-
-
-bool simple_toolbar::create_toolbar(::user::interaction * puiParent, u32 dwCtrlStyle, u32 uStyle, id nID)
-{
-
-   ASSERT_VALID(puiParent);   // must have a parent
-   ASSERT(!((uStyle & CBRS_SIZE_FIXED) && (uStyle & CBRS_SIZE_DYNAMIC)));
-
-   //SetBorders(rectBorders);
-
-   // save the style
-   m_dwStyle = (uStyle & CBRS_ALL);
-   if (nID == __IDW_TOOLBAR)
-      m_dwStyle |= CBRS_HIDE_INPLACE;
-
-   uStyle &= ~CBRS_ALL;
-   uStyle |= CCS_NOPARENTALIGN | CCS_NOMOVEY | CCS_NODIVIDER | CCS_NORESIZE;
-   uStyle |= dwCtrlStyle & 0xffff;
-   m_dwCtrlStyle = dwCtrlStyle & (0xffff0000 | TBSTYLE_FLAT);
-
-   if (!::user::interaction::create_window(nullptr, nullptr, uStyle, puiParent, nID))
-   {
-
-      return FALSE;
-
-   }
-
-   SetSizes(m_sizeButton, m_sizeImage);
-
-   return true;
-
-}
+//bool simple_toolbar::create_toolbar(::user::interaction * puiParent, u32 dwCtrlStyle, u32 uStyle, id nID)
+//{
+//
+//   ASSERT_VALID(puiParent);   // must have a parent
+//   ASSERT(!((uStyle & CBRS_SIZE_FIXED) && (uStyle & CBRS_SIZE_DYNAMIC)));
+//
+//   //SetBorders(rectBorders);
+//
+//   // save the style
+//   m_dwStyle = (uStyle & CBRS_ALL);
+//   if (nID == __IDW_TOOLBAR)
+//      m_dwStyle |= CBRS_HIDE_INPLACE;
+//
+//   uStyle &= ~CBRS_ALL;
+//   uStyle |= CCS_NOPARENTALIGN | CCS_NOMOVEY | CCS_NODIVIDER | CCS_NORESIZE;
+//   uStyle |= dwCtrlStyle & 0xffff;
+//   m_dwCtrlStyle = dwCtrlStyle & (0xffff0000 | TBSTYLE_FLAT);
+//
+//   if (!::user::interaction::create_window(nullptr, nullptr, uStyle, puiParent, nID))
+//   {
+//
+//      return FALSE;
+//
+//   }
+//
+//   SetSizes(m_sizeButton, m_sizeImage);
+//
+//   return true;
+//
+//}
 
 
 size simple_toolbar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz)

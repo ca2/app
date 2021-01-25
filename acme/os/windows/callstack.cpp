@@ -1,7 +1,7 @@
 #include "framework.h"
-#include "callstack.h"
-
 #undef Context
+#undef Node
+#include "callstack.h"
 
 
 #include <malloc.h>
@@ -255,10 +255,13 @@ return ReadProcessMemory(GetCurrentProcess(), pBaseAddress, lpBuffer, nSize, lpN
 #endif
 */
 
+
 namespace windows
 {
 
+
    critical_section callstack::g_cs;
+
 
    callstack::callstack(const char * pszFormat, i32 iSkip, void * caller_address, int iCount):
       m_iSkip(iSkip),
@@ -272,9 +275,11 @@ namespace windows
 
       m_iHa = 0;
       m_iMa = 0;
-      xxf_zero(m_szaModule);
+
+      __zero(m_szaModule);
 
    }
+
 
    callstack::~callstack()
    {

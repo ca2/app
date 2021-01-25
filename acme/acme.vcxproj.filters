@@ -237,6 +237,12 @@
     <Filter Include="Header Files\primitive\logic\NewFilter1">
       <UniqueIdentifier>{a438e428-fa53-4435-9ffd-70a76c03e239}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\graphics">
+      <UniqueIdentifier>{d0364683-3fa6-44bf-bab8-f4017b7096bd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\graphics\draw2d">
+      <UniqueIdentifier>{0cb109af-b237-4a4d-981f-97a8743d5c2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -1598,9 +1604,6 @@
     <ClInclude Include="primitive\primitive\member.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="inline\application\windows.h">
-      <Filter>Header Files\inline\application</Filter>
-    </ClInclude>
     <ClInclude Include="inline\application\uwp.h">
       <Filter>Header Files\inline\application</Filter>
     </ClInclude>
@@ -2398,6 +2401,9 @@
     </ClInclude>
     <ClInclude Include="primitive\datetime\payload.h">
       <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\_const.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3528,6 +3534,9 @@
     </ClCompile>
     <ClCompile Include="primitive\datetime\payload.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\node.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

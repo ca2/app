@@ -74,7 +74,7 @@ inline ::thread* ___thread(::layered* playered)
 namespace user
 {
 
-   class create;
+   class system;
    class interaction;
    class frame;
    class primitive;
@@ -83,10 +83,10 @@ namespace user
 } // namespace user
 
 
-inline ::user::create* __user_create(::layered* playered)
+inline ::user::system* __user_system(::layered* playered)
 {
 
-   return (::user::create *) playered->layer(LAYERED_USER_CREATE);
+   return (::user::system *) playered->layer(LAYERED_USER_CREATE);
 
 }
 

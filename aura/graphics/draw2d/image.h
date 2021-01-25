@@ -1,9 +1,13 @@
 #pragma once
 
 
+/// <summary>
+/// image * -> image_source_pointer concept
+/// </summary>
 class CLASS_DECL_AURA image :
    virtual public ::image_meta,
-   virtual public ::context_object
+   virtual public ::context_object,
+   virtual public ::image_drawer
 {
 public:
 
@@ -55,9 +59,14 @@ public:
    virtual void fast_copy(color32_t * pcolor32FullImage);
 
    inline ::size get_size() const;
-   using image_meta::size;
-   inline ::size size(const ::sized & sizeHint) const { return get_size(); }
 
+
+   inline ::image * get_image(const concrete < ::size > &) { return this; }
+
+
+   // inline concrete < ::size > size(const ::sized &, const ::sized &, enum_image_selection) const { return get_size(); }
+   inline concrete < ::size > size(const ::sized &, enum_image_selection ) const { return get_size(); }
+   using image_meta::size;
    
    inline ::rect rect(const ::point & point = nullptr);
    inline ::rect rect(const ::point & point = nullptr) const;
@@ -234,6 +243,7 @@ public:
    //virtual bool draw_image(::draw2d::graphics* pgraphics);
    //virtual bool draw_image(::draw2d::graphics* pgraphics, const ::size & size);
    //virtual bool from(const ::point & pointDst, ::draw2d::graphics* pgraphics, const ::point & pointSrc, const ::size & size);
+   using image_drawer::draw;
    virtual bool draw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc = ::point());
    virtual bool draw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc, byte bA);
    //virtual bool blend(const ::point & pointDst, ::image * piml, const ::point & pointSrc, const ::size & size);
@@ -428,6 +438,10 @@ public:
    inline ::image & operator = (const ::image & image);
    inline bool operator == (const ::image & image) const;
    inline bool operator != (const ::image & image) const;
+
+
+   virtual bool _draw_blend(const image_drawing & imagedrawing) override;
+   virtual bool _draw_raw(const image_drawing & imagedrawing) override;
 
 
 };

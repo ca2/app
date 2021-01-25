@@ -253,7 +253,7 @@ namespace android
    //}
 
 
-   payload os_context::connection_settings_get_auto_detect()
+   ::payload os_context::connection_settings_get_auto_detect()
    {
       //::exception::throw_not_implemented();
       return false;
@@ -275,7 +275,7 @@ namespace android
 
 
 
-   payload os_context::connection_settings_get_auto_config_url()
+   ::payload os_context::connection_settings_get_auto_config_url()
    {
 
       //::exception::throw_not_implemented();

@@ -373,7 +373,7 @@ void object::call_routine(const ::id & id)
 }
 
 
-void object::send_payload(const ::id & idProcess, const ::payload& payload)
+void object::send_payload(const ::id & idProcess, const ::payload & payload)
 {
 
    auto pprocessa = processa(idProcess);
@@ -443,7 +443,7 @@ void object::add_each_process_from(const ::id & id, ::object * pobjectSource)
 
 }
 
-context& object::__context(const payload& payload)
+context& object::__context(const ::payload & payload)
 {
 
    if (payload.has_property("value"))
@@ -465,7 +465,7 @@ context& object::__context(const payload& payload)
 }
 
 
-payload object::__context_value(const payload& payload)
+::payload object::__context_value(const ::payload & payload)
 {
 
    if (payload.has_property("context") && payload.has_property("value"))
@@ -737,7 +737,7 @@ void object::defer_update_object_id()
 }
 
 
-::e_status     object::request_file(const ::payload& varFile,payload varQuery)
+::e_status     object::request_file(const ::payload& varFile,::payload varQuery)
 {
 
    auto pcommandline = __create_new< command_line >();
@@ -789,7 +789,7 @@ void object::defer_update_object_id()
 }
 
 
-//::e_status object::message_box(const ::payload& payload)
+//::e_status object::message_box(const ::payload & payload)
 //{
 //
 //   __pointer(::user::primitive) pinteraction = get_context_object();
@@ -1069,7 +1069,7 @@ void object::copy_from(const object & o)
 
          auto pcomposite = m_pcompositea->element_at(iComposite);
 
-         if (!pcomposite || pcomposite->m_bitSetFinish)
+         if (!pcomposite || pcomposite->m_bSetFinish)
          {
 
             continue;
@@ -1170,7 +1170,7 @@ void object::copy_from(const object & o)
 
    __pointer(::object) pobjectHold = this;
 
-   m_bitFinishing = true;
+   m_bFinishing = true;
 
    auto estatus = set_finish_composites(pcontextobjectFinish);
 
@@ -2062,7 +2062,7 @@ __pointer(::matter) object::running(const char * pszTag) const
 //}
 
 
-::file_result object::get_file(const payload & varFile, const ::file::e_open & eopen)
+::file_result object::get_file(const ::payload & varFile, const ::file::e_open & eopen)
 {
 
    return Context.file().get_file(varFile, eopen);
@@ -2191,7 +2191,7 @@ bool __no_continue(::e_status estatus)
 
 
 
-string object::get_text(const payload& payload, const ::id& id)
+string object::get_text(const ::payload & payload, const ::id& id)
 {
 
    if (payload.has_property(id) && payload[id].has_char())

@@ -310,7 +310,7 @@ namespace windows
    }
 
 
-   payload os_context::connection_settings_get_auto_detect()
+   ::payload os_context::connection_settings_get_auto_detect()
    {
 
       try
@@ -344,7 +344,7 @@ namespace windows
    }
 
 
-   payload os_context::connection_settings_get_auto_config_url()
+   ::payload os_context::connection_settings_get_auto_config_url()
    {
 
       string strUrl;
@@ -1016,7 +1016,7 @@ namespace windows
 
 
       // Display a dialog box to request credentials.
-      xxf_zero(u);
+      __zero(u);
       u.cbSize = sizeof(u);
       u.hwndParent = nullptr;
 
@@ -1748,7 +1748,7 @@ retry:
 
       SHFILEINFOW info;
 
-      xxf_zero(info);
+      __zero(info);
 
       defer_co_initialize_ex(false);
 
@@ -2049,7 +2049,7 @@ retry:
 
          SHELLEXECUTEINFOW si;
 
-         xxf_zero(si);
+         __zero(si);
 
          PeekMessage(nullptr, nullptr, 0, 0, 0);
 

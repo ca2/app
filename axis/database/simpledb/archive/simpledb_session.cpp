@@ -45,7 +45,7 @@ namespace simpledb
       return true;
    }
 
-   bool session::query(const char * pszQuery, payload & payload)
+   bool session::query(const char * pszQuery, ::payload & payload)
    {
       string_array stra;
       property_set dataset;

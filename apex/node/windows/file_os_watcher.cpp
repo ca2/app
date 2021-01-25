@@ -83,7 +83,7 @@ namespace file
 
       wstring wstrFolder(pathFolder);
 
-      xxf_zero(m_overlapped);
+      __zero(m_overlapped);
 
       m_bRefresh = true;
 
@@ -226,7 +226,7 @@ namespace file
    }
 
 
-   bool os_watch::step()
+   ::e_status os_watch::step()
    {
 
       return ReadDirectoryChangesW(
@@ -256,7 +256,7 @@ namespace file
    }
 
 
-   bool os_watcher::step()
+   ::e_status os_watcher::step()
    {
 
       MsgWaitForMultipleObjectsEx(0,nullptr,500,QS_ALLINPUT,MWMO_ALERTABLE);

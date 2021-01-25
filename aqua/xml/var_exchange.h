@@ -13,7 +13,7 @@ namespace xml
    public:
    
 
-      payload * m_pvar;
+      ::payload * m_pvar;
 
 
       var_exchange(::layered * pobjectContext);

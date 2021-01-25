@@ -611,9 +611,9 @@
     <ClInclude Include="math\calculator\element.h" />
     <ClInclude Include="math\calculator\parser.h" />
     <ClInclude Include="math\calculator\parser_exception.h" />
+    <ClInclude Include="math\calculator\result.h" />
     <ClInclude Include="math\calculator\scanner.h" />
     <ClInclude Include="math\calculator\token.h" />
-    <ClInclude Include="math\calculator\value.h" />
     <ClInclude Include="math\calculator\_.h" />
     <ClInclude Include="math\kissfft\fft.h" />
     <ClInclude Include="math\kissfft\fftd.h" />

@@ -357,7 +357,7 @@ bool is_good_active_w(oswindow w)
 //   INPUT input;
 //   if (iShift)
 //   {
-//      xxf_zero(input);
+//      __zero(input);
 //      input.type = INPUT_KEYBOARD;
 //      input.ki.wVk = VK_SHIFT;
 //      input.ki.wScan = 0;
@@ -369,7 +369,7 @@ bool is_good_active_w(oswindow w)
 //
 //   }
 //
-//   xxf_zero(input);
+//   __zero(input);
 //
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = i - '0' + 0x30;
@@ -380,7 +380,7 @@ bool is_good_active_w(oswindow w)
 //   SendInput(1, &input, sizeof(input));
 //   sleep(iSleep / 8);
 //
-//   xxf_zero(input);
+//   __zero(input);
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = i - '0' + 0x30;
 //   input.ki.wScan = 0;
@@ -391,7 +391,7 @@ bool is_good_active_w(oswindow w)
 //   sleep(iSleep/8);
 //   if (iShift)
 //   {
-//      xxf_zero(input);
+//      __zero(input);
 //      input.type = INPUT_KEYBOARD;
 //      input.ki.wVk = VK_SHIFT;
 //      input.ki.wScan = 0;
@@ -414,7 +414,7 @@ bool is_good_active_w(oswindow w)
 //{
 //   INPUT input;
 //
-//   xxf_zero(input);
+//   __zero(input);
 //
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = i - 'a' + 0x41;
@@ -425,7 +425,7 @@ bool is_good_active_w(oswindow w)
 //   SendInput(1, &input, sizeof(input));
 //   sleep(iSleep / 8);
 //
-//   xxf_zero(input);
+//   __zero(input);
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = i - 'a' + 0x41;
 //   input.ki.wScan = 0;
@@ -446,7 +446,7 @@ bool is_good_active_w(oswindow w)
 //
 //   if (iShift)
 //   {
-//      xxf_zero(input);
+//      __zero(input);
 //      input.type = INPUT_KEYBOARD;
 //      input.ki.wVk = VK_SHIFT;
 //      input.ki.wScan = 0;
@@ -458,7 +458,7 @@ bool is_good_active_w(oswindow w)
 //
 //   }
 //
-//   xxf_zero(input);
+//   __zero(input);
 //
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = i;
@@ -469,7 +469,7 @@ bool is_good_active_w(oswindow w)
 //   SendInput(1, &input, sizeof(input));
 //   sleep(iSleep / 8);
 //
-//   xxf_zero(input);
+//   __zero(input);
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = i;
 //   input.ki.wScan = 0;
@@ -482,7 +482,7 @@ bool is_good_active_w(oswindow w)
 //
 //   if (iShift)
 //   {
-//      xxf_zero(input);
+//      __zero(input);
 //      input.type = INPUT_KEYBOARD;
 //      input.ki.wVk = VK_SHIFT;
 //      input.ki.wScan = 0;
@@ -507,7 +507,7 @@ bool is_good_active_w(oswindow w)
 //
 //   if (iShift)
 //   {
-//      xxf_zero(input);
+//      __zero(input);
 //      input.type = INPUT_KEYBOARD;
 //      input.ki.wVk = VK_SHIFT;
 //      input.ki.wScan = 0;
@@ -519,7 +519,7 @@ bool is_good_active_w(oswindow w)
 //
 //   }
 //
-//   xxf_zero(input);
+//   __zero(input);
 //
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = 0;
@@ -530,7 +530,7 @@ bool is_good_active_w(oswindow w)
 //   SendInput(1, &input, sizeof(input));
 //   sleep(iSleep / 8);
 //
-//   xxf_zero(input);
+//   __zero(input);
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = 0;
 //   input.ki.wScan = i;
@@ -543,7 +543,7 @@ bool is_good_active_w(oswindow w)
 //
 //   if (iShift)
 //   {
-//      xxf_zero(input);
+//      __zero(input);
 //      input.type = INPUT_KEYBOARD;
 //      input.ki.wVk = VK_SHIFT;
 //      input.ki.wScan = 0;
@@ -565,7 +565,7 @@ bool is_good_active_w(oswindow w)
 //bool send_input_caps_alpha(int i, int iSleep)
 //{
 //   INPUT input;
-//   xxf_zero(input);
+//   __zero(input);
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = VK_SHIFT;
 //   input.ki.wScan = 0;
@@ -577,7 +577,7 @@ bool is_good_active_w(oswindow w)
 //
 //   send_input_alpha(i + 'a' - 'A', iSleep / 8);
 //
-//   xxf_zero(input);
+//   __zero(input);
 //   input.type = INPUT_KEYBOARD;
 //   input.ki.wVk = VK_SHIFT;
 //   input.ki.wScan = 0;

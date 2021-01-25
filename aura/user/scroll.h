@@ -13,28 +13,28 @@ namespace user
    public:
 
 
-      ::i32        m_iPage;
-      ::i32        m_iLine;
-      bool        m_bScroll;
-      i32     m_iWidth;
-      bool        m_bScrollEnable;
+      ::i32          m_iPage;
+      ::i32          m_iLine;
+      bool           m_bScroll;
+      i32            m_iWidth;
+      bool           m_bScrollEnable;
 
 
    };
 
 
-   class CLASS_DECL_AURA scroll_x_base :
+   class CLASS_DECL_AURA horizontal_scroll_base :
       virtual public interaction
    {
    public:
 
 
-      __pointer(scroll_bar)    m_pscrollbarHorz;
-      scroll_data       m_scrolldataHorz;
+      __pointer(scroll_bar)      m_pscrollbarHorizontal;
+      scroll_data                m_scrolldataHorizontal;
 
 
-      scroll_x_base();
-      virtual ~scroll_x_base();
+      horizontal_scroll_base();
+      virtual ~horizontal_scroll_base();
 
 
       virtual scroll_bar* get_horizontal_scroll_bar() override;
@@ -49,10 +49,10 @@ namespace user
 
       virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics) override;
       virtual void on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void create_x_scroll_bar(const ::rect & rect);
+      virtual bool create_horizontal_scroll_bar();
       virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001DeferCreateXScrollBar();
-      virtual void _001OnDeferCreateXScrollBar();
+      virtual void defer_create_horizontal_scroll_bar();
+      //virtual void on_create_horizontal_scroll_bar();
       virtual bool validate_viewport_offset(point & point) override;
       virtual void scroll_left_line();
       virtual void scroll_right_line();
@@ -69,40 +69,20 @@ namespace user
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   class CLASS_DECL_AURA scroll_y_base :
+   class CLASS_DECL_AURA vertical_scroll_base :
       virtual public interaction
    {
    public:
 
-      //int                  m_iVScrollOffset;
-      __pointer(scroll_bar)       m_pscrollbarVert;
-      scroll_data          m_scrolldataVert;
-      i16              m_iWheelDelta;
-      i16              m_iWheelDeltaScroll;
+
+      __pointer(scroll_bar)         m_pscrollbarVertical;
+      scroll_data                   m_scrolldataVertical;
+      i16                           m_iWheelDelta;
+      i16                           m_iWheelDeltaScroll;
 
 
-      scroll_y_base();
-      virtual ~scroll_y_base();
+      vertical_scroll_base();
+      virtual ~vertical_scroll_base();
 
 
       virtual scroll_bar* get_vertical_scroll_bar() override;
@@ -116,10 +96,10 @@ namespace user
       virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics) override;
       virtual void on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
       virtual i32 get_wheel_scroll_delta() override;
-      virtual void create_y_scroll_bar(const ::rect & rect);
+      virtual bool create_vertical_scroll_bar();
       virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics) override;
-      virtual void _001DeferCreateYScrollBar();
-      virtual void _001OnDeferCreateYScrollBar();
+      virtual void defer_create_vertical_scroll_bar();
+      //virtual void on_create_vertical_scroll_bar();
       virtual bool validate_viewport_offset(point & point) override;
 
 
@@ -140,8 +120,8 @@ namespace user
 
 
    class CLASS_DECL_AURA scroll_base :
-      virtual public ::user::scroll_x_base,
-      virtual public ::user::scroll_y_base
+      virtual public ::user::horizontal_scroll_base,
+      virtual public ::user::vertical_scroll_base
    {
    public:
 

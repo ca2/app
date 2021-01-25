@@ -7,7 +7,7 @@ var_array::var_array()
 }
 
 
-var_array::var_array(const std::initializer_list < payload > & varlist)
+var_array::var_array(const std::initializer_list < ::payload > & varlist)
 {
 
    for (auto & payload : varlist)
@@ -45,7 +45,7 @@ var_array::~var_array()
 }
 
 
-index var_array::add(const payload & payload)
+index var_array::add(const ::payload & payload)
 {
 
    if(payload.is_empty())
@@ -55,7 +55,7 @@ index var_array::add(const payload & payload)
 
    }
 
-   return ::array < class payload >::add(payload);
+   return ::array < class ::payload >::add(payload);
 
 }
 
@@ -135,7 +135,7 @@ index var_array::find_first_ci(const char * psz, index find, index last) const
 }
 
 
-index var_array::find_first(const payload & payload, index find, index last) const
+index var_array::find_first(const ::payload & payload, index find, index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -171,7 +171,7 @@ bool var_array::contains(const char * pcsz, index find, index last, ::count coun
    return count >= countMin && conditional(countMax >= 0, count <= countMax);
 }
 
-bool var_array::contains(const payload & payload, index find, index last, ::count countMin, ::count countMax) const
+bool var_array::contains(const ::payload & payload, index find, index last, ::count countMin, ::count countMax) const
 {
    ::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax))
@@ -198,7 +198,7 @@ bool var_array::contains(const payload & payload, index find, index last, ::coun
    return find;
 }
 
-::count var_array::remove_first(const payload & payload, index find, index last)
+::count var_array::remove_first(const ::payload & payload, index find, index last)
 {
    if((find = find_first(payload, find, last)) >= 0)
       remove_at(find);
@@ -234,7 +234,7 @@ bool var_array::contains(const payload & payload, index find, index last, ::coun
 }
 
 
-::count var_array::remove(const payload & payload, index find, index last, ::count countMin, ::count countMax)
+::count var_array::remove(const ::payload & payload, index find, index last, ::count countMin, ::count countMax)
 {
    ::count count = 0;
    if(contains(payload, find, last, countMin, countMax))
@@ -261,7 +261,7 @@ bool var_array::contains(const payload & payload, index find, index last, ::coun
    }
 }
 
-var_array & var_array::operator -=(payload payload)
+var_array & var_array::operator -=(::payload payload)
 {
    remove(payload);
    return *this;
@@ -273,7 +273,7 @@ var_array & var_array::operator -=(var_array vara)
    return *this;
 }
 
-var_array var_array::operator -(payload payload) const
+var_array var_array::operator -(::payload payload) const
 {
    var_array vara(*this);
    vara.remove(payload);
@@ -287,7 +287,7 @@ var_array var_array::operator -(var_array varaParam) const
    return vara;
 }
 
-var_array & var_array::operator +=(payload payload)
+var_array & var_array::operator +=(::payload payload)
 {
    add(payload);
    return *this;
@@ -299,7 +299,7 @@ var_array & var_array::operator +=(var_array vara)
    return *this;
 }
 
-var_array var_array::operator +(payload payload) const
+var_array var_array::operator +(::payload payload) const
 {
    var_array vara(*this);
    vara.add(payload);

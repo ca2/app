@@ -23,7 +23,7 @@ public:
    memory_container(memsize size = 0);
    memory_container(const memory_container & container);
    memory_container(void * pdata, memsize size);
-   memory_container(payload & payload);
+   memory_container(::payload & payload);
    memory_container(memory_base & memory);
    memory_container(memory_base * pmemory);
    template < typename MEMORY>
@@ -52,7 +52,7 @@ public:
    void from_string(const widechar * pwsz);
    void from_string(const char * psz);
    void from_string(const string & str);
-   void from_string(const payload & str);
+   void from_string(const ::payload & str);
    virtual void to_string(const string_exchange & str) const override;
 
    void read(memory_base *pmemorystorage);
@@ -161,7 +161,7 @@ inline void memory_container ::from_string(const string & str)
 
 }
 
-inline void memory_container ::from_string(const payload & payload)
+inline void memory_container ::from_string(const ::payload & payload)
 {
 
    if(m_pmemory.is_null())

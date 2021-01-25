@@ -391,7 +391,7 @@ bool node_save_image(::file::file * pfile, const ::image * pimage, ::save_image 
    }
 
    STATSTG stg;
-   xxf_zero(stg);
+   __zero(stg);
    pstream->Stat(&stg, STATFLAG_NONAME);
    LARGE_INTEGER l;
    l.QuadPart = 0;

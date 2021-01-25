@@ -203,7 +203,7 @@ void scExec(CScriptVar *ca, void *data) {
 void scEval(CScriptVar *ca, void *data) {
     tinyjs *tinyJS = (tinyjs *)data;
     string str = ca->getParameter("jsCode")->getString();
-    ca->setReturnVar(tinyJS->evaluateComplex(str).payload);
+    ca->setReturnVar(tinyJS->evaluateComplex(str).::payload);
 }
 
 void scArrayContains(CScriptVar *ca, void *data) {
@@ -212,7 +212,7 @@ void scArrayContains(CScriptVar *ca, void *data) {
 
   bool contains = false;
   while (v) {
-      if (v->payload->equals(obj)) {
+      if (v->::payload->equals(obj)) {
         contains = true;
         break;
       }
@@ -229,7 +229,7 @@ void scArrayRemove(CScriptVar *ca, void *data) {
   // remove
   v = ca->getParameter("this")->firstChild;
   while (v) {
-      if (v->payload->equals(obj)) {
+      if (v->::payload->equals(obj)) {
         removedIndices.push_back(v->getIntName());
       }
       v = v->nextSibling;

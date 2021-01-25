@@ -5,7 +5,7 @@ namespace datetime
 {
 
 
-   class CLASS_DECL_ACME payload
+   class CLASS_DECL_ACME ::payload
    {
    public:
 
@@ -18,8 +18,8 @@ namespace datetime
       bool           m_bSpan;
 
 <<<<<<< HEAD
-      payload(const ::datetime::time & time);
-      payload();
+      ::payload(const ::datetime::time & time);
+      ::payload();
       ~payload();
 =======
       value(const ::datetime::time & time);
@@ -39,7 +39,7 @@ namespace datetime
       ::datetime::time get_time() const;
       ::datetime::time_span GetSpan() const;
 <<<<<<< HEAD
-      payload & operator = (const ::datetime::time & time);
+      ::payload & operator = (const ::datetime::time & time);
 =======
       value & operator = (const ::datetime::time & time);
 >>>>>>> origin/basis
@@ -57,7 +57,7 @@ CLASS_DECL_ACME datetime::payload operator * (const datetime::payload & val1, do
 CLASS_DECL_ACME datetime::payload operator / (const datetime::payload & val1, double d);
 <<<<<<< HEAD
 <<<<<<< HEAD
-payload
+::payload
 =======
 
 >>>>>>> origin/basis

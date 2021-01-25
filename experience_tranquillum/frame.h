@@ -15,8 +15,8 @@ namespace experience
 
 
 
-
-
+               ::rect m_rectCaptionTextBk;
+               ::point m_pointMoveGripMinimal;
                //::draw2d::font_pointer                m_fontButton;
                //::draw2d::font_pointer                m_fontCaption;
                //e_style                          m_estyle;
@@ -63,6 +63,8 @@ namespace experience
 
                virtual void OnMove(__pointer(::user::interaction) pframewindow) override;
 
+
+               virtual void title_bar_layout(::draw2d::graphics_pointer & pgraphics) override;
 
                virtual void _001OnBeforeMove(const ::rect & rectWindow);
 

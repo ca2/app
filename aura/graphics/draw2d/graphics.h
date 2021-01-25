@@ -1,8 +1,8 @@
 #pragma once
 
 
-struct NSVGimage;
 
+struct NSVGimage;
 
 namespace draw2d
 {
@@ -11,31 +11,34 @@ namespace draw2d
    class graphics;
 
 
-   template < typename GRAPHICS_SOURCE_POINTER >
-   concept graphics_source_pointer = requires(GRAPHICS_SOURCE_POINTER pgraphicssource, const ::sized & sizeHint)
-   {
+   //template < typename GRAPHICS_SOURCE_POINTER >
+   //concept graphics_source_pointer = requires(const ::image_drawing & imagedrawing, const ::sized & sizeHint)
+   //{
 
-      { pgraphicssource->g(sizeHint) } -> ::std::convertible_to < ::draw2d::graphics * >;
-      { pgraphicssource->origin() } -> ::std::convertible_to < ::sized >;
-      { pgraphicssource->size(sizeHint) } -> ::std::convertible_to < ::sized >;
+   //   { pgraphicssource->g(sizeHint) } -> ::std::convertible_to < ::draw2d::graphics * >;
+   //   { pgraphicssource->origin() } -> ::std::convertible_to < ::sized >;
+   //   { pgraphicssource->size(sizeHint) } -> ::std::convertible_to < ::sized >;
 
-   };
+   //};
 
-
+/// <summary>
+/// graphics * -> image_source_pointer concept
+/// </summary>
    class CLASS_DECL_AURA graphics :
-      virtual public ::aura::simple_chain < ::aura::draw_context >
+      virtual public ::aura::simple_chain < ::aura::draw_context >,
+      virtual public image_drawer
    {
    public:
 
 
       bool                                   m_bOutline;
-      void * m_pthis;
-      ::user::interaction * m_puserinteraction;
+      void *                                 m_pthis;
+      ::user::interaction *                  m_puserinteraction;
 
       bool                                   m_bPat;
 
       __reference(::apex::str_context)       m_pstrcontext;
-      ::aura::draw_context * m_pdrawcontext;
+      ::aura::draw_context *                 m_pdrawcontext;
       ::image_pointer                        m_pimageAlphaBlend;
       ::pointd                               m_pointAlphaBlend;
       __pointer(::task)                      m_ptask;
@@ -50,7 +53,7 @@ namespace draw2d
       ::draw2d::region_pointer               m_pregion;
       bool                                   m_bStoreThumbnails;
 
-      ::pointd                                 m_point;
+      ::pointd                               m_point;
 
       enum_alpha_mode                        m_ealphamode;
       e_smooth_mode                          m_esmoothmode;
@@ -123,7 +126,14 @@ namespace draw2d
       
       inline ::draw2d::graphics * g(const ::sized & sizeHint) { return this; }
       inline ::sized origin() const { return ::sized(); }
-      virtual ::sized size(const ::sized & sizeHint) const;
+
+
+      inline ::image * get_image(const concrete < ::size > & sizeDst) { return m_pimage->get_image(sizeDst); }
+
+
+      inline concrete < ::size > size(const ::sized & sizeDst, enum_image_selection eimageselection) const { return m_pimage->size(sizeDst, eimageselection); }
+      inline concrete < ::size > size() const { return m_pimage->size(); }
+
 
       //#ifdef _UWP
       //
@@ -185,6 +195,8 @@ namespace draw2d
       virtual bool set_compositing_quality(e_compositing_quality ecompositingquality);
 
       virtual bool set_text_rendering_hint(e_text_rendering_hint etextrenderinghint);
+
+      virtual e_smooth_mode get_smooth_mode();
 
       virtual bool blur(bool bExpand, double dRadius, const ::rectd & rect);
 
@@ -605,127 +617,16 @@ namespace draw2d
       //virtual bool draw_at(const ::pointd & pointDst, ::draw2d::graphics * pgraphicsSrc);
 
 
-      template < primitive_point POINT, graphics_source_pointer GRAPHICS_SOURCE_POINTER  >
-      inline bool draw(const POINT & pointDst, GRAPHICS_SOURCE_POINTER pgraphicssource)
-      {
-
-         auto sizeSrc = pgraphicssource->size(::sized());
-
-         return stretch(::rectd(pointDst, sizeSrc), pgraphicssource, ::rectd(sizeSrc));
-
-      }
-
-
-      template < graphics_source_pointer GRAPHICS_SOURCE_POINTER >
-      inline bool draw(GRAPHICS_SOURCE_POINTER pgraphicssource)
-      {
-
-         auto sizeSrc = pgraphicssource->size(::sized());
-
-         return _draw(sizeSrc, pgraphicssource->g(), sizeSrc);
-
-      }
-
-
-      template < graphics_source_pointer GRAPHICS_SOURCE_POINTER, primitive_point POINT >
-      inline bool draw(GRAPHICS_SOURCE_POINTER pgraphicssource, const POINT & pointSrc)
-      {
-
-         return draw(rectd(pgraphicssource->size() - pointSrc), pgraphicssource, pointSrc);
-
-      }
-
-
-      template < primitive_size SIZE, graphics_source_pointer GRAPHICS_SOURCE_POINTER >
-      inline bool stretch(const SIZE & size, GRAPHICS_SOURCE_POINTER pgraphicssource)
-      {
-
-         auto sizeSrc = pgraphicssource->size(::sized());
-
-         return _draw(::rectd(size), pgraphicssource->g(sizeSrc), sizeSrc);
-
-      }
-
-      template < primitive_size SIZE, graphics_source_pointer GRAPHICS_SOURCE_POINTER, primitive_point POINT >
-      inline bool stretch(const SIZE & sizeDst, GRAPHICS_SOURCE_POINTER pgraphicssource, const POINT & pointSrc)
-      {
-
-         auto sizeSrc = pgraphicssource->size(::sized()) - ::sized(pointSrc);
-
-         return _draw(::rectd(sizeDst), pgraphicssource->g(sizeSrc), ::rectd(pointSrc, sizeSrc));
-
-      }
-
-      template < primitive_size SIZE, graphics_source_pointer GRAPHICS_SOURCE_POINTER, primitive_rectangle RECTANGLE >
-      inline bool stretch(const SIZE & sizeDst, GRAPHICS_SOURCE_POINTER pgraphicssource, const RECTANGLE & rectSrc)
-      {
-
-         return _draw(::rectd(sizeDst), pgraphicssource->g(rectSrc.size()), rectSrc);
-
-      }
-
-      template < primitive_size SIZE, graphics_source_pointer GRAPHICS_SOURCE_POINTER, primitive_point POINT >
-      inline bool draw(const SIZE & size, GRAPHICS_SOURCE_POINTER pgraphicssource, const POINT & point)
-      {
-
-         auto sizeSrc = pgraphicssource->size(size);
-
-         return _draw(::rectd(size), pgraphicssource->g(sizeSrc), ::rectd(point, sizeSrc));
-
-      }
+      virtual bool _draw_blend(const ::image_drawing & imagedrawing) override;
 
       
-      template < primitive_rectangle RECTANGLE, graphics_source_pointer GRAPHICS_SOURCE_POINTER >
-      inline bool draw(const RECTANGLE & rectangle, GRAPHICS_SOURCE_POINTER pgraphicssource)
-      {
+      //virtual bool _draw(const ::rectd & rectDst, const image_drawing & imagedrawing, const ::rectd & rectSrc) override;
+      //virtual bool _draw_raw(const ::rectd & rectDst, const image_drawing & imagedrawing, const ::rectd & rectSrc) override;
+      //virtual bool _draw_blend(const ::rectd & rectDst, const image_drawing & imagedrawing, const ::rectd & rectSrc) override;
 
-         return _draw(rectangle, pgraphicssource->g(rectangle.size()), ::rectd(rectangle.size()));
-
-      }
-
-      template < primitive_rectangle RECTANGLE, graphics_source_pointer GRAPHICS_SOURCE_POINTER >
-      inline bool stretch(const RECTANGLE & rectangle, GRAPHICS_SOURCE_POINTER pgraphicssource)
-      {
-
-         auto sizeSrc = pgraphicssource->size(::sized());
-
-         return _draw(rectangle, pgraphicssource->g(sizeSrc),::rectd(sizeSrc));
-
-      }
-
-      template < primitive_rectangle RECTANGLE, graphics_source_pointer GRAPHICS_SOURCE_POINTER, primitive_point POINT >
-      inline bool draw(const RECTANGLE & rectangle, GRAPHICS_SOURCE_POINTER pgraphicssource, const POINT & pointSrc)
-      {
-
-         auto sizeDst = ::sized(rectangle.size());
-         
-         return _draw(::rectd(rectangle.top_left(), sizeDst), pgraphicssource->g(sizeDst), ::rectd(pointSrc, sizeDst));
-
-      }
-
-
-      template < primitive_rectangle RECTANGLE_DST, graphics_source_pointer GRAPHICS_SOURCE_POINTER, primitive_rectangle RECTANGLE_SRC >
-      inline bool stretch(const RECTANGLE_DST & rectDst, GRAPHICS_SOURCE_POINTER pgraphicssource, const RECTANGLE_SRC & rectSrc)
-      {
-
-         return _draw(rectDst, pgraphicssource->g(rectDst.size()), rectSrc);
-
-      }
-
-      template < primitive_size SIZE_DST, graphics_source_pointer GRAPHICS_SOURCE_POINTER, primitive_size SIZE_SRC >
-      inline bool stretch(const SIZE_DST& sizeDst, GRAPHICS_SOURCE_POINTER pgraphicssource, const SIZE_SRC& sizeSrc)
-      {
-
-         return _draw(sizeDst, pgraphicssource->g(sizeDst), sizeSrc);
-
-      }
-
-      virtual bool _draw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc = ::rectd());
-      virtual bool _draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc = ::rectd());
-      virtual bool _draw_blend(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc = ::rectd());
-
-      virtual bool _draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::pointd & pointSrc = ::pointd());
-      virtual bool _stretch_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc = ::rectd());
+      //
+      //virtual bool _draw_raw(const ::rectd & rectDst, const image_drawing & imagedrawing, const ::pointd & pointSrc) override;
+      //virtual bool _stretch_raw(const ::rectd & rectDst, const image_drawing & imagedrawing, const ::rectd & rectSrc) override;
 
 
 
@@ -738,54 +639,58 @@ namespace draw2d
       //virtual bool stretch_blend(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc = ::rectd());
 
 
-      template < primitive_size SIZE, graphics_source_pointer GRAPHICS_SOURCE_POINTER >
-      inline bool alpha_blend(const SIZE & sizeDst, GRAPHICS_SOURCE_POINTER pgraphicssource, double dOpacity)
-      {
+      //template < primitive_size SIZE >
+      //inline bool alpha_blend(const SIZE & sizeDst, const ::image_drawing & imagedrawing, double dOpacity)
+      //{
 
-         return _alpha_blend(::rectd(sizeDst), pgraphicssource, ::rectd(sizeDst), dOpacity);
+      //   auto finalSrcSize = pimagesource->size(sizeDst, sizeSrc, eimageselection);
 
-      }
+      //   auto pimage = pimagesource->get_image(sizeSrc);
 
+      //   return _alpha_blend(::rectd(sizeDst), pgraphicssource, ::rectd(sizeDst), dOpacity);
 
-      template < primitive_rectangle RECTANGLE, graphics_source_pointer GRAPHICS_SOURCE_POINTER >
-      inline bool alpha_blend(const RECTANGLE & rectDst, GRAPHICS_SOURCE_POINTER pgraphicssource, double dOpacity)
-      {
-
-         return _alpha_blend(rectDst, pgraphicssource, ::rectd(rectDst.size()), dOpacity);
-
-      }
-
-      
-      template < primitive_rectangle RECTANGLE, graphics_source_pointer GRAPHICS_SOURCE_POINTER, primitive_point POINT >
-      inline bool alpha_blend(const RECTANGLE & rectDst, GRAPHICS_SOURCE_POINTER pgraphicssource, const POINT & pointSrc, double dOpacity)
-      {
-
-         if (::is_null(pgraphicssource))
-         {
-
-            return false;
-
-         }
-
-         auto sizeDst = rectDst.size() - pointSrc;
-
-         return _alpha_blend(rectd(rectDst.top_left(), sizeDst), pgraphicssource->g(sizeDst), ::rectd(pointSrc, pgraphicssource->size(sizeDst) - pointSrc), dOpacity);
-
-      }
+      //}
 
 
-      template < primitive_rectangle RECTANGLE_DST, graphics_source_pointer GRAPHICS_SOURCE_POINTER, primitive_rectangle RECTANGLE_SRC >
-      inline bool alpha_blend(const RECTANGLE_DST & rectDst, GRAPHICS_SOURCE_POINTER pgraphicssource, const RECTANGLE_SRC & rectSrc, double dOpacity)
-      {
+      //template < primitive_rectangle RECTANGLE >
+      //inline bool alpha_blend(const RECTANGLE & rectDst, const ::image_drawing & imagedrawing, double dOpacity)
+      //{
 
-         return _alpha_blend(rectDst, pgraphicssource, rectSrc, dOpacity);
+      //   return _alpha_blend(rectDst, pgraphicssource, ::rectd(rectDst.size()), dOpacity);
 
-      }
+      //}
+
+      //
+      //template < primitive_rectangle RECTANGLE, primitive_point POINT >
+      //inline bool alpha_blend(const RECTANGLE & rectDst, const ::image_drawing & imagedrawing, const POINT & pointSrc, double dOpacity)
+      //{
+
+      //   if (::is_null(pgraphicssource))
+      //   {
+
+      //      return false;
+
+      //   }
+
+      //   auto sizeDst = rectDst.size() - pointSrc;
+
+      //   return _alpha_blend(rectd(rectDst.top_left(), sizeDst), pgraphicssource, ::rectd(pointSrc, pgraphicssource->size(sizeDst) - pointSrc), dOpacity);
+
+      //}
 
 
-      virtual bool _alpha_blend(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc, double dOpacity);
-      virtual bool _alpha_blend_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc, double dRate);
-      virtual bool _alpha_blend_blend(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc, double dRate);
+      //template < primitive_rectangle RECTANGLE_DST, primitive_rectangle RECTANGLE_SRC >
+      //inline bool alpha_blend(const RECTANGLE_DST & rectDst, const ::image_drawing & imagedrawing, const RECTANGLE_SRC & rectSrc, double dOpacity)
+      //{
+
+      //   return _alpha_blend(rectDst, pgraphicssource, rectSrc, dOpacity);
+
+      //}
+
+
+      //virtual bool _alpha_blend(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc, double dOpacity);
+      //virtual bool _alpha_blend_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc, double dRate);
+      //virtual bool _alpha_blend_blend(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc, double dRate);
 
 
       //virtual bool draw(const ::rectd & point, cursor * pcursor);

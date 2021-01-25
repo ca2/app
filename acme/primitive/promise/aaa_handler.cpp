@@ -218,7 +218,7 @@ namespace promise
    }
 
 
-   void handler::process(const ::payload &payload)
+   void handler::process(const ::payload & payload)
    {
 
       ::promise::subject subject(this);

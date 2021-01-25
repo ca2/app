@@ -59,7 +59,7 @@ namespace user
 
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext);
 
-      virtual bool do_prompt_file_name(payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      virtual bool do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
 
       virtual bool OnDDECommand(char * pszCommand);
 

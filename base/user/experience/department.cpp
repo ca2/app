@@ -27,7 +27,7 @@ namespace experience
 
       string strBuild;
       
-      strBuild = System.value("build");
+      strBuild = System.payload("build");
 
       if(strBuild.is_empty())
       {
@@ -137,7 +137,7 @@ namespace experience
 
       string_array straLibrary;
 
-      auto strExperience = System.value("experience").get_string();
+      auto strExperience = System.payload("experience").get_string();
 
       if (strExperience.has_char())
       {
@@ -193,7 +193,7 @@ namespace experience
 
          string strConfig;
          
-         strConfig = App(pobjectContext).value("experience");
+         strConfig = App(pobjectContext).payload("experience");
 
          if (strConfig.has_char())
          {

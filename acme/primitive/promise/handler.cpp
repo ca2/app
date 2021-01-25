@@ -172,7 +172,7 @@ namespace promise
    }
 
 
-   void handler::process_subject(const ::id &id, const ::payload &payload)
+   void handler::process_subject(const ::id &id, const ::payload & payload)
    {
 
       auto psubject = subject(id);

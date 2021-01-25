@@ -25,8 +25,10 @@ namespace user
       virtual bool _001GetScrollInfo(scroll_info * psi) = 0;
       virtual bool _001SetScrollInfo(scroll_info * psi, bool bRedraw = true) = 0;
 
+      
+      //using ::user::interaction::create_interaction;
+      //virtual bool create_interaction(e_orientation eorientation, ::user::interaction * puiParent);
 
-      virtual bool create_window(e_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::id id);
 
       virtual void post_scroll_message(::u32 nSBCode);
 

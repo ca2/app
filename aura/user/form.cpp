@@ -32,7 +32,7 @@ namespace user
    //}
 
 
-   //bool form::create_control(::user::interaction * pinteractionParent, const ::id & id)
+   //bool form::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
    //{
 
    //   return false;
@@ -56,7 +56,7 @@ namespace user
    }
 
 
-   ::e_status form::open_document(const payload& varFile)
+   ::e_status form::open_document(const ::payload& varFile)
    {
 
       return ::error_interface_only;

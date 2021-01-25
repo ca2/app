@@ -254,7 +254,7 @@ using HSYNC = sync *;
 #endif // !defined(WINDOWS)
 
 
-#ifdef WINDOWS_DESTKOP
+#ifdef WINDOWS_DESKTOP
 
 using MESSAGE = MSG;
 

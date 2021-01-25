@@ -128,7 +128,7 @@ namespace user
       //string strLicense = Application.get_license_id();
 
 
-      //payload & varTopicQuey = System.commnam_varTopicQuery;
+      //::payload & varTopicQuey = System.commnam_varTopicQuery;
 
       bool bHasInstall = System.is_true("install");
 
@@ -359,19 +359,12 @@ namespace user
 
 
    //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * pWindowName, u32 uStyle, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam)
-   CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * pWindowName, u32 uStyle, ::user::interaction * puiParent, id id)
+   CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, ::user::interaction * pinteractionParent)
    {
 
-      UNREFERENCED_PARAMETER(dwExStyle);
-      UNREFERENCED_PARAMETER(pClassName);
-      UNREFERENCED_PARAMETER(pWindowName);
-      UNREFERENCED_PARAMETER(uStyle);
-      //UNREFERENCED_PARAMETER(hInstance);
-      //UNREFERENCED_PARAMETER(pParam);
+      auto pinteraction = pobject->__create_new < ::user::interaction >();
 
-      auto pinteraction = __new(::user::interaction);
-
-      if(pinteraction->create_window(puiParent, id))
+      if(pinteraction->create_child(pinteractionParent))
       {
 
          return pinteraction;

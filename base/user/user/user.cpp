@@ -180,7 +180,7 @@ namespace base
       //string strLicense = Application.get_license_id();
 
 
-      //payload & varTopicQuey = System.commnam_varTopicQuery;
+      //::payload & varTopicQuey = System.commnam_varTopicQuery;
 
       bool bHasInstall = System.is_true("install");
 
@@ -399,7 +399,7 @@ namespace base
 
          pinteraction->set_button_style(::user::button::style_image_and_text);
 
-         enum_image eimage = (enum_image)pitem->m_pmenu->value("image_transform").i32();
+         enum_image eimage = (enum_image)pitem->m_pmenu->payload("image_transform").i32();
 
          ::image_pointer pimage = pitem->m_pimage + eimage;
 
@@ -434,7 +434,7 @@ namespace base
    CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * lpWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam);
 
 
-   CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * pWindowName, u32 uStyle, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam)
+   CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * pWindowName, u32 uStyle, ::user::interaction * puiParent, HINSTANCE hInstance, LPVOID pParam)
    {
 
       UNREFERENCED_PARAMETER(dwExStyle);
@@ -446,7 +446,7 @@ namespace base
 
       auto pinteraction = __new(::user::interaction);
 
-      if(pinteraction->create_window(puiParent, id))
+      if(pinteraction->create_child(puiParent))
       {
 
          return pinteraction;
@@ -1043,7 +1043,7 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_menu(::user::interaction* pinteraction, const payload & varXml, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
+   __pointer(::user::menu) user::track_popup_xml_menu(::user::interaction* pinteraction, const ::payload & varXml, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
    {
 
       __pointer(::user::menu) pmenu = __create <  ::user::menu  > ();
@@ -1125,7 +1125,7 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_menu_file(::user::interaction * pinteraction, payload varXmlFile, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
+   __pointer(::user::menu) user::track_popup_xml_menu_file(::user::interaction * pinteraction, ::payload varXmlFile, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
    {
 
       string strXml = Context.file().as_string(varXmlFile);
@@ -1238,7 +1238,7 @@ namespace base
          if (has_property("experience"))
          {
 
-            strConfig = value("experience");
+            strConfig = payload("experience");
 
          }
 

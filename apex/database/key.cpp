@@ -13,7 +13,7 @@ namespace database
    }
 
 
-   key::key(const std::initializer_list < payload > & list)
+   key::key(const std::initializer_list < ::payload > & list)
    {
 
       m_bLocalData = false;

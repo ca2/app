@@ -98,7 +98,7 @@ public:
 
 };
 
-inline payload & assign(payload & payload, const ::hls & hls);
+inline ::payload & assign(::payload & payload, const ::hls & hls);
 
 class CLASS_DECL_ACME color :
    public rgba

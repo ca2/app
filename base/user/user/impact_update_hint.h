@@ -12,7 +12,7 @@ public:
    ::user::interaction *               m_puserinteraction;
    ::user::e_key                       m_ekey;
    bool                                m_bEnterKeyPressed;
-   payload                                 m_varFile;
+   ::payload                                 m_varFile;
    e_impact                            m_epaneview;
    string                              m_strView;
    __pointer_array(::user::impact)     m_viewaAttachable;

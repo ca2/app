@@ -54,34 +54,34 @@ void simple_scroll_bar::install_message_routing(::channel * pchannel)
 }
 
 
-bool simple_scroll_bar::create_window(const char * pszClassName, const char * pszWindowName, u32 uStyle, ::user::interaction * puiParent, const ::id & id, ::create * pcreate)
-{
+//bool simple_scroll_bar::create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle, ::user::interaction * puiParent, const ::id & id, ::create * pcreate)
+//{
+//
+//   if(!::user::interaction::create_interaction(pszClassName, pszWindowName, uStyle, puiParent, id, pcreate))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
 
-   if(!::user::interaction::create_window(pszClassName, pszWindowName, uStyle, puiParent, id, pcreate))
-   {
 
-      return false;
-
-   }
-
-   return true;
-
-}
-
-
-bool simple_scroll_bar::create_window(e_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::id id)
-{
-
-   if(!::user::scroll_bar::create_window(eorientation, uStyle, puiParent, id))
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
+//bool simple_scroll_bar::create_interaction(e_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::id id)
+//{
+//
+//   if(!::user::scroll_bar::create_interaction(eorientation, uStyle, puiParent, id))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
 
 
 void simple_scroll_bar::_001OnMouseMove(::message::message * pmessage)
@@ -1190,9 +1190,10 @@ public:
    trw()
    {
 
-      auto pcreatestruct = __new(::user::create_struct (WS_EX_LAYERED, nullptr, "", WS_VISIBLE));
+      //auto pusersystem = __new(::user::system_struct (WS_EX_LAYERED, nullptr, "", WS_VISIBLE));
 
-      if(create_window_ex(pcreatestruct))
+      //if(create_window_ex(pusersystem))
+      if(create_host())
       {
 
          TRACE("created trw");
@@ -1780,7 +1781,11 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
    auto rectSrc = ::rectd(pointSrc, sizeSrc);
 
-   pgraphics->alpha_blend(rectDst, m_pimageDots->g(), rectSrc, uchAlpha / 255.0);
+   image_drawing imagedrawing(rectDst, m_pimageDots, rectSrc);
+
+   imagedrawing.m_pcolorfilter = __new(opacity_color_filter(uchAlpha / 255.0));
+
+   pgraphics->draw(imagedrawing);
 
 }
 

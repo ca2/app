@@ -428,7 +428,7 @@ extern "C"
 //}
 //
 //
-//void system_update(const ::id & id, const payload & payload)
+//void system_update(const ::id & id, const ::payload & payload)
 //{
 //
 //   if(g_pfnCallUpdateSystem)

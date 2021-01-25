@@ -98,7 +98,7 @@ namespace account
 
       }
 
-      if(!m_plogin->create_window(this,"pane_first"))
+      if(!m_plogin->create_child(this))
       {
 
          pcreate->m_lresult = -1;
@@ -189,7 +189,7 @@ namespace account
 
       auto psession = Session;
 
-      ::user::interaction * puiParent = psession->value("plugin_parent").cast < ::user::interaction >();
+      ::user::interaction * puiParent = psession->payload("plugin_parent").cast < ::user::interaction >();
 
       ::rect rectDesktop;
 
@@ -257,9 +257,9 @@ namespace account
 
       }
 
-      auto pcreatestruct = __new(::user::create_struct (0, nullptr, nullptr, 0, rectFontopus));
+      //auto pusersystem = __new(::user::system_struct (0, nullptr, nullptr, 0, rectFontopus));
 
-      if (!create_window_ex(pcreatestruct, puiParent))
+      if (!create_host())
       {
 
          return "";

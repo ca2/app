@@ -19,7 +19,7 @@ namespace experience
 
          m_colorActiveCaptionTextBk = 0;
 
-         m_rectMarginNormal.set(0, 0, 0, 0);
+         m_rectMarginNormal.set(1, 1, 1, 1);
 
          m_colorCaptionText = ARGB(255, 255, 255, 255);
 
@@ -190,19 +190,19 @@ namespace experience
          case ElementTopLeftIcon:
 
             if (m_pframewindow == nullptr || m_pframewindow->m_picon == nullptr)
+            {
+
                return false;
 
-            prect->left = m_pointWindowIcon.x;
+            }
 
-            prect->top = m_pointWindowIcon.y;
+            prect->left = m_rectCaption.left;
 
-            //prect->right = prect->left + m_pframewindow->m_picon->get_size().cx;
+            prect->top = m_rectCaption.top;
 
-            //prect->bottom = prect->top + m_pframewindow->m_picon->get_size().cy;
+            prect->right = prect->left + m_iCaptionHeight;
 
-            prect->right = prect->left + 24;
-
-            prect->bottom = prect->top + 24;
+            prect->bottom = prect->top + m_iCaptionHeight;
 
 
             return true;
@@ -428,8 +428,8 @@ namespace experience
          ::rect rect(rectParam);
          i32 x = rect.left;
          i32 y = rect.top;
-         i32 cx = rect.width();
-         i32 cy = rect.height();
+         i32 cx = rect.width() - 1;
+         i32 cy = rect.height() - 1;
 
 
 
@@ -518,6 +518,17 @@ namespace experience
       //}
 
 
+      void frame::title_bar_layout(::draw2d::graphics_pointer & pgraphics)
+      {
+
+         ::experience::frame::title_bar_layout(pgraphics);
+
+         m_rectCaptionTextBk = m_rectCaption;
+
+      }
+
+
+
       void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
@@ -568,7 +579,11 @@ namespace experience
                if (picon != nullptr)
                {
 
-                  pgraphics->draw(rectIcon, picon);
+                  ::rectd rectDst(picon->get_smaller_size(rectIcon.size()));
+
+                  rectDst.CenterOf(rectIcon);
+
+                  pgraphics->draw(rectDst, picon);
 
                }
 
@@ -673,6 +688,8 @@ namespace experience
             if(m_pframewindow->is_active())
             {
 
+               pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
+
                pgraphics->fill_rect(m_rectCaptionTextBk, m_colorActiveCaptionTextBk);
 
             }
@@ -747,6 +764,10 @@ namespace experience
 
                if (picon != nullptr)
                {
+
+                  ::rectd rectDst(picon->get_smaller_size(rectIcon.size()));
+
+                  rectDst.CenterOf(rectIcon);
 
                   pgraphics->draw(rectIcon, picon);
 

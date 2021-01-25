@@ -573,7 +573,7 @@ namespace mysql
 
 
 
-   payload database::query_item(const char * pszSql, payload varDefault)
+   ::payload database::query_item(const char * pszSql, ::payload varDefault)
    {
 
       MYSQL_RES * pres = _mysql_query_result(pszSql);
@@ -602,7 +602,7 @@ namespace mysql
       else
       {
 
-         return payload(row[0]);
+         return ::payload(row[0]);
 
       }
 
@@ -779,7 +779,7 @@ namespace mysql
    }
 
 
-   payload database::query_table_item(const char * table, const char * item, const char *where, payload notfound)
+   ::payload database::query_table_item(const char * table, const char * item, const char *where, ::payload notfound)
    {
       string strSql;
       strSql.Format("SELECT `%s` FROM `%s` WHERE %s", item, table, where);
@@ -787,7 +787,7 @@ namespace mysql
    }
 
 
-   payload database::get_agent(const char * pszTable, const char * psz, const char * pszUser)
+   ::payload database::get_agent(const char * pszTable, const char * psz, const char * pszUser)
    {
       string strSql;
       string strAgent(psz);
@@ -861,7 +861,7 @@ namespace mysql
    }
 
 
-   payload database::get_insert_id()
+   ::payload database::get_insert_id()
    {
       return (u64) mysql_insert_id((MYSQL *) m_pmysql);
    }

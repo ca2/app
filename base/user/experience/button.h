@@ -11,7 +11,7 @@ namespace experience
    public:
 
 
-      e_button             m_ebutton;
+      enum_button          m_ebutton;
       control_box *        m_pcontrolbox;
 
 

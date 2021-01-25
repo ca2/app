@@ -755,7 +755,7 @@ namespace user
    }
 
 
-   //i32 primitive::sync_message_box(payload payload)
+   //i32 primitive::sync_message_box(::payload payload)
    //{
 
    //   if (payload.get_type() == e_type_string)
@@ -784,7 +784,7 @@ namespace user
    //::e_status primitive::message_box(const ::payload& varParam)
    //{
 
-   //   payload payload;
+   //   ::payload payload;
 
    //   if (varParam.get_type() == e_type_propset)
    //   {
@@ -1195,6 +1195,18 @@ namespace user
    }
 
 
+   string primitive::get_class_name()
+   {
+
+      auto econtroltype = get_control_type();
+
+      string strClassName = Application.get_window_class_name(econtroltype);
+
+      return strClassName;
+
+   }
+
+
    bool primitive::subclass_window(oswindow posdata)
    {
 
@@ -1215,19 +1227,7 @@ namespace user
    }
 
 
-   //bool primitive::create_native_window(::user::native_window_initialize * pinitialize)
-   //{
-
-   //   UNREFERENCED_PARAMETER(pinitialize);
-
-   //   ::exception::throw_interface_only();
-
-   //   return true;
-
-   //}
-
-
-   bool primitive::create_window(::user::interaction *pparent, const ::id & id)
+   bool primitive::create_child(::user::interaction * puserinteractionParent)
    {
 
       ::exception::throw_interface_only();
@@ -1236,21 +1236,85 @@ namespace user
 
    }
 
-
-   bool primitive::create_window(const char * pszClassName,const char * pszWindowName,u32 uStyle, ::user::interaction * puiParent, const ::id & id, ::create * pcreate)
+   
+   bool primitive::create_control(::user::interaction * puserinteractionParent, const ::id & id)
    {
 
-      ::exception::throw_interface_only();
+      m_id = id;
 
-      return false;
+      if (!create_child(puserinteractionParent))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   bool primitive::create_window_ex(__pointer(::user::create_struct) pcs, ::user::interaction * puiParent, const ::id & id)
+   enum_control_type primitive::get_control_type() const
    {
 
-      ::exception::throw_interface_only();
+      return e_control_type_none;
+
+   }
+
+
+   //bool primitive::create_interaction(::user::interaction * puiParent, ::create * pcreate, ::u32 uExStyle, ::u32 uStyle)
+   //{
+
+   //   ::exception::throw_interface_only();
+
+   //   return false;
+
+   //}
+
+
+   bool primitive::create_interaction(::user::interaction * puserinteractionParent, const ::id & id)
+   {
+
+      if (!id.is_empty())
+      {
+
+         m_id = id;
+
+      }
+
+      if (!puserinteractionParent)
+      {
+
+         if (!create_host())
+         {
+
+            return false;
+
+         }
+
+      }
+      else
+      {
+
+         if (!create_child(puserinteractionParent))
+         {
+
+            return false;
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+
+   //bool primitive::create_window_ex(__pointer(::user::system_struct) pcs, ::user::interaction * puiParent, const ::id & id)
+   bool primitive::create_host()
+   {
+
+      //::exception::throw_interface_only();
 
       return true;
 
@@ -1976,7 +2040,7 @@ namespace user
 #endif
 
 
-   bool primitive::pre_create_window(::user::create_struct * pcreatestruct)
+   bool primitive::pre_create_window(::user::system * pusersystem)
    {
 
       ::exception::throw_interface_only();
@@ -3006,7 +3070,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_menu(const payload & varXml,i32 iFlags, const ::point & point, const size & size)
+   //__pointer(::user::menu) primitive::track_popup_xml_menu(const ::payload & varXml,i32 iFlags, const ::point & point, const size & size)
    //{
 
    //   ::exception::throw_interface_only();
@@ -3026,7 +3090,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_menu_file(payload varFile, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
+   //__pointer(::user::menu) primitive::track_popup_xml_menu_file(::payload varFile, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
    //{
 
    //   ::exception::throw_interface_only();

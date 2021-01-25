@@ -60,25 +60,25 @@
 //
 //   pimpl->m_oswindow->set_user_interaction_impl(pimpl);
 //
-//   ::user::create_struct createstruct;
-//   pcreatestruct->m_createstruct.dwExStyle = 0;
-//   pcreatestruct->m_createstruct.lpszClass = 0;
-//   pcreatestruct->m_createstruct.lpszName = nullptr;
-//   pcreatestruct->m_createstruct.style = 0;
-//   pcreatestruct->m_createstruct.x = 0;
-//   pcreatestruct->m_createstruct.y = 0;
-//   pcreatestruct->m_createstruct.cx = 0;
-//   pcreatestruct->m_createstruct.cy = 0;
-//   //      pcreatestruct->m_createstruct.hwndParent = hWndParent;
-//   //   pcreatestruct->m_createstruct.hMenu = hWndParent == nullptr ? nullptr : nIDorHMenu;
-//   pcreatestruct->m_createstruct.hMenu = nullptr;
-//   //      pcreatestruct->m_createstruct.hInstance = System.m_hInstance;
-//   pcreatestruct->m_createstruct.lpCreateParams = nullptr;
+//   ::user::system_struct createstruct;
+//   pusersystem->m_createstruct.dwExStyle = 0;
+//   pusersystem->m_createstruct.lpszClass = 0;
+//   pusersystem->m_createstruct.lpszName = nullptr;
+//   pusersystem->m_createstruct.style = 0;
+//   pusersystem->m_createstruct.x = 0;
+//   pusersystem->m_createstruct.y = 0;
+//   pusersystem->m_createstruct.cx = 0;
+//   pusersystem->m_createstruct.cy = 0;
+//   //      pusersystem->m_createstruct.hwndParent = hWndParent;
+//   //   pusersystem->m_createstruct.hMenu = hWndParent == nullptr ? nullptr : nIDorHMenu;
+//   pusersystem->m_createstruct.hMenu = nullptr;
+//   //      pusersystem->m_createstruct.hInstance = System.m_hInstance;
+//   pusersystem->m_createstruct.lpCreateParams = nullptr;
 //
 //   if(pimpl->m_puserinteraction != nullptr)
 //   {
 //
-//      if(!pimpl->m_puserinteraction->pre_create_window(pcreatestruct))
+//      if(!pimpl->m_puserinteraction->pre_create_window(pusersystem))
 //      {
 //
 //         pimpl->PostNcDestroy();
@@ -91,7 +91,7 @@
 //   else
 //   {
 //
-//      if (!pimpl->pre_create_window(pcreatestruct))
+//      if (!pimpl->pre_create_window(pusersystem))
 //      {
 //
 //         pimpl->PostNcDestroy();
@@ -102,10 +102,10 @@
 //
 //   }
 //
-//   if(pcreatestruct->m_createstruct.hwndParent == nullptr)
+//   if(pusersystem->m_createstruct.hwndParent == nullptr)
 //   {
 //
-//      pcreatestruct->m_createstruct.style &= ~WS_CHILD;
+//      pusersystem->m_createstruct.style &= ~WS_CHILD;
 //
 //   }
 //

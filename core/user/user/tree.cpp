@@ -1021,7 +1021,7 @@ namespace user
 
                   });
                //            _001SetYScroll(max(iNewScroll, 0), false);
-               //m_pscrollbarVert->_001SetScrollPos(pointOffset.y);
+               //m_pscrollbarVertical->_001SetScrollPos(pointOffset.y);
             }
          }
       }

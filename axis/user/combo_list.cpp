@@ -444,8 +444,8 @@ namespace user
    void combo_list::_001EnsureVisible(index iItem)
    {
 
-      if (m_pscrollbarVert != nullptr
-         && m_scrolldataVert.m_bScroll
+      if (m_pscrollbarVertical != nullptr
+         && m_scrolldataVertical.m_bScroll
          && iItem >= 0 && iItem < m_pcombo->_001GetListCount())
       {
 
@@ -525,24 +525,30 @@ namespace user
    }
 
 
-   bool combo_list::pre_create_window(::user::create_struct * pcreatestruct)
+   bool combo_list::pre_create_window(::user::system * pusersystem)
    {
 
 #ifdef WINDOWS_DESKTOP
 
-      if (pcreatestruct->m_createstruct.style & WS_BORDER)
+      if (pusersystem->m_createstruct.style & WS_BORDER)
       {
-pcreatestruct->m_createstruct.style &= ~WS_BORDER;
+
+         pusersystem->m_createstruct.style &= ~WS_BORDER;
+
       }
-      pcreatestruct->m_createstruct.dwExStyle |= WS_EX_TOOLWINDOW;
-      pcreatestruct->m_createstruct.dwExStyle |= WS_EX_TOPMOST;
+
+      pusersystem->m_createstruct.dwExStyle |= WS_EX_TOOLWINDOW;
+
+      pusersystem->m_createstruct.dwExStyle |= WS_EX_TOPMOST;
 
 #endif
 
-      pcreatestruct->m_createstruct.dwExStyle |= WS_EX_LAYERED;
-      //pcreatestruct->m_createstruct.dwExStyle |= WS_EX_NOACTIVATE;
+      pusersystem->m_createstruct.dwExStyle |= WS_EX_LAYERED;
+      
+      //pusersystem->m_createstruct.dwExStyle |= WS_EX_NOACTIVATE;
 
       return TRUE;
+
    }
 
 
@@ -1127,13 +1133,14 @@ pcreatestruct->m_createstruct.style &= ~WS_BORDER;
       if (!is_window())
       {
 
-         auto pcreatestruct = __new(::user::create_struct(0, nullptr, "combo_list", i >= 0 ? 0 : WS_CHILD));
+         auto pusersystem = __new(::user::system(0, nullptr, "combo_list", i >= 0 ? 0 : WS_CHILD));
 
-         pcreatestruct->m_puserinteractionOwner = m_pcombo;
+         pusersystem->m_puserinteractionOwner = m_pcombo;
 
-         pcreatestruct->set_rect(::rect(rectList).inflate(m_iBorder));
+         pusersystem->set_rect(::rect(rectList).inflate(m_iBorder));
 
-         if (!create_window_ex(pcreatestruct, i >= 0 ? nullptr : m_pcombo->get_parent()))
+         //if (!create_window_ex(pusersystem, i >= 0 ? nullptr : m_pcombo->get_parent()))
+         if(!create_host())
          {
 
             m_pcombo->m_plist.release();

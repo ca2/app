@@ -6,7 +6,7 @@ namespace match
 {
 
 
-   bool _and::matches(const payload& payload) const
+   bool _and::matches(const ::payload & payload) const
    {
       return m_pitem1->matches(payload) && m_pitem2->matches(payload);
    }
@@ -16,7 +16,7 @@ namespace match
    {
    }
 
-   bool string::matches(const payload& payload) const
+   bool string::matches(const ::payload & payload) const
    {
       return payload.get_string() == m_str;
    }
@@ -26,7 +26,7 @@ namespace match
    {
    }
 
-   bool ci_string::matches(const payload& payload) const
+   bool ci_string::matches(const ::payload & payload) const
    {
       return payload.get_string().compare_ci(m_str) == 0;
    }
@@ -36,7 +36,7 @@ namespace match
    {
    }
 
-   bool prefix::matches(const payload& payload) const
+   bool prefix::matches(const ::payload & payload) const
    {
       return ::str::begins(payload.get_string(), m_str);
    }
@@ -46,7 +46,7 @@ namespace match
    {
    }
 
-   bool ci_prefix::matches(const payload& payload) const
+   bool ci_prefix::matches(const ::payload & payload) const
    {
       return ::str::begins_ci(payload.get_string(), m_str);
    }
@@ -56,7 +56,7 @@ namespace match
    {
    }
 
-   bool suffix::matches(const payload& payload) const
+   bool suffix::matches(const ::payload & payload) const
    {
       return ::str::ends(payload.get_string(), m_str);
    }
@@ -66,12 +66,12 @@ namespace match
    {
    }
 
-   bool ci_suffix::matches(const payload& payload) const
+   bool ci_suffix::matches(const ::payload & payload) const
    {
       return ::str::ends_ci(payload.get_string(), m_str);
    }
 
-   bool any::matches(const payload& payload) const
+   bool any::matches(const ::payload & payload) const
    {
       if (this->m_itema.get_count() <= 0)
          return true;

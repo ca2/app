@@ -594,7 +594,7 @@ namespace aura
    //}
 
 
-   //::e_status application::message_box(const payload & payload)
+   //::e_status application::message_box(const ::payload & payload)
    //{
 
    //   __pointer(::user::primitive) puiOwner;
@@ -1078,7 +1078,7 @@ namespace aura
 
 
 
-   /*::user::document *  application::_001OpenDocumentFile(payload varFile)
+   /*::user::document *  application::_001OpenDocumentFile(::payload varFile)
    {
 
       ::exception::throw_interface_only();
@@ -1673,7 +1673,7 @@ namespace aura
 
       string strLicense = get_license_id();
 
-      //payload & varTopicQuey = System.m_varTopicQuery;
+      //::payload & varTopicQuey = System.m_varTopicQuery;
 
       bool bHasInstall = System.is_true("install");
 
@@ -2989,7 +2989,7 @@ retry_license:
    //}
 
 
-   ////i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, payload payload, const char * pszTitle, ::duration durationTimeOut, ::u32 fuStyle)
+   ////i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, ::payload payload, const char * pszTitle, ::duration durationTimeOut, ::u32 fuStyle)
    ////{
 
    ////   UNREFERENCED_PARAMETER(durationTimeOut);
@@ -3358,7 +3358,7 @@ retry_license:
    //}
 
 
-   //void application::play_audio(payload varFile, bool bSynch)
+   //void application::play_audio(::payload varFile, bool bSynch)
    //{
 
    //   UNREFERENCED_PARAMETER(varFile);
@@ -3545,7 +3545,7 @@ retry_license:
    //}
 
 
-   //bool application::on_open_document_file(payload varFile)
+   //bool application::on_open_document_file(::payload varFile)
    //{
 
    //   request_file(varFile);
@@ -4182,7 +4182,7 @@ retry_license:
 
       string strExperience;
 
-      strExperience = value("experience");
+      strExperience = payload("experience");
 
       if (strExperience.has_char())
       {
@@ -4219,13 +4219,13 @@ retry_license:
    //   if (bBigIcon)
    //   {
 
-   //      pobject->value("big_icon") = (__pointer(object)) picon;
+   //      pobject->payload("big_icon") = (__pointer(object)) picon;
 
    //   }
    //   else
    //   {
 
-   //      pobject->value("small_icon") = (__pointer(object)) picon;
+   //      pobject->payload("small_icon") = (__pointer(object)) picon;
 
    //   }
 
@@ -4785,6 +4785,14 @@ retry_license:
    //}
 
 
+   string application::get_window_class_name(::user::enum_control_type econtroltype)
+   {
+
+      return "";
+
+   }
+
+
    ::database::server * application::dataserver()
    {
 
@@ -5295,7 +5303,7 @@ retry_license:
    string application::matter_as_string(const char * pszMatter, const char * pszMatter2)
    {
 
-      payload varFile;
+      ::payload varFile;
 
       varFile["disable_ca2_sessid"] = true;
 
@@ -5467,7 +5475,7 @@ retry_license:
 
    }
 
-   //bool application::do_prompt_file_name(payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+   //bool application::do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
    //{
 
    //   UNREFERENCED_PARAMETER(varFile);
@@ -5626,7 +5634,7 @@ retry_license:
    //}
 
 
-   //bool application::on_open_document(::user::document * pdocument, payload varFile)
+   //bool application::on_open_document(::user::document * pdocument, ::payload varFile)
    //{
 
    //   UNREFERENCED_PARAMETER(pdocument);
@@ -5636,7 +5644,7 @@ retry_license:
    //}
 
 
-   //bool application::on_save_document(::user::document * pdocument, payload varFile)
+   //bool application::on_save_document(::user::document * pdocument, ::payload varFile)
    //{
 
    //   UNREFERENCED_PARAMETER(pdocument);
@@ -7676,14 +7684,16 @@ namespace aura
    //}
 
 
-   ::user::interaction* application::get_request_parent_ui(::user::interaction* pinteraction, ::create* pcreate)
+   ::user::interaction* application::get_request_parent_ui(::user::interaction* pinteraction, ::user::system* pusersystem)
    {
 
       ::user::interaction* puiParent = nullptr;
 
-      if (puiParent == nullptr)
+      if (puiParent == nullptr && pusersystem->m_pcreate)
       {
-         puiParent = dynamic_cast <::user::interaction*> (pcreate->m_puserinteractionParent);
+
+         puiParent = dynamic_cast <::user::interaction*> (pusersystem->m_pcreate->m_puserinteractionParent);
+
       }
 
       //      if (puiParent == nullptr && pcreate->m_papplicationbias.is_set())
@@ -7711,9 +7721,9 @@ namespace aura
    void application::_001OnFileNew(::message::message* pmessage)
    {
 
-      payload varFile;
+      ::payload varFile;
 
-      payload varQuery;
+      ::payload varQuery;
 
       varQuery["command"] = "new_file";
 
@@ -7725,14 +7735,14 @@ namespace aura
 
 
 
-   //   bool application::on_open_document_file(payload varFile)
+   //   bool application::on_open_document_file(::payload varFile)
    //   {
    //
    //      return _001OpenDocumentFile(varFile);
    //
    //   }
 
-   //::user::document* application::_001OpenDocumentFile(payload varFile)
+   //::user::document* application::_001OpenDocumentFile(::payload varFile)
    //{
 
    //   request_file(varFile);
@@ -8357,7 +8367,7 @@ namespace aura
 
 
 
-   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::promise::subject * psubject)
+   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::promise::subject * psubject)
    {
 
    }
@@ -9018,13 +9028,13 @@ namespace aura
       if (bBigIcon)
       {
 
-         pobject->value("big_icon") = (__pointer(object)) picon;
+         pobject->payload("big_icon") = (__pointer(object)) picon;
 
       }
       else
       {
 
-         pobject->value("small_icon") = (__pointer(object)) picon;
+         pobject->payload("small_icon") = (__pointer(object)) picon;
 
       }
 

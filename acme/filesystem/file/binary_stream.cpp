@@ -202,7 +202,7 @@ void binary_stream::write(const id & id)
 }
 
 
-void binary_stream::write(const payload & payload)
+void binary_stream::write(const ::payload & payload)
 {
 
    enum_type etype = payload.get_type();
@@ -316,7 +316,7 @@ void binary_stream::write(const payload & payload)
    break;
    default:
       write(payload.m_all, sizeof(payload.m_all));
-      //__throw(::exception::exception("payload::write payload type not recognized"));
+      //__throw(::exception::exception("payload::write ::payload type not recognized"));
    }
 
    return;
@@ -328,7 +328,7 @@ void binary_stream::write(const property & property)
 {
 
    write(property.m_id);
-   write((const payload &) property);
+   write((const ::payload &) property);
 
    return;
 
@@ -827,7 +827,7 @@ void binary_stream::read(id & id)
 //}
 
 
-void binary_stream::read(payload & payload)
+void binary_stream::read(::payload & payload)
 {
 
    enum_type etype = e_type_new;
@@ -869,7 +869,7 @@ void binary_stream::save_var_type(enum_type etype)
 }
 
 
-void binary_stream::read_var_body(payload & payload, enum_type etype)
+void binary_stream::read_var_body(::payload & payload, enum_type etype)
 {
 
    switch (etype)
@@ -1029,7 +1029,7 @@ void binary_stream::read(property & property)
 {
 
    read(property.m_id);
-   read((payload &) property);
+   read((::payload &) property);
 
    return;
 

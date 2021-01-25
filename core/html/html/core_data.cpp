@@ -651,7 +651,7 @@ namespace html
    }
 
 
-   bool core_data::open_document(const payload & varFile)
+   bool core_data::open_document(const ::payload & varFile)
    {
 
       //i32 iRetry = 0;
@@ -661,7 +661,7 @@ namespace html
    //restart:
 
 
-      //payload payload;
+      //::payload payload;
 
       //payload = 1;
 
@@ -827,7 +827,7 @@ namespace html
    }
 
 
-   //void core_data::on_before_navigate(payload& varFile, u32 nFlags, const char* pszTargetFrameName, byte_array& baPostedData, const char* pszHeaders, bool* pbCancel)
+   //void core_data::on_before_navigate(::payload& varFile, u32 nFlags, const char* pszTargetFrameName, byte_array& baPostedData, const char* pszHeaders, bool* pbCancel)
 
    //{
    //   if (m_pcallback != nullptr)

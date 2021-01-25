@@ -96,10 +96,10 @@ namespace uwp
    }
 
 
-   payload file_context::length(const ::file::path& path)
+   ::payload file_context::length(const ::file::path& path)
    {
 
-      payload varRet;
+      ::payload varRet;
 
       WIN32_FILE_ATTRIBUTE_DATA data;
 
@@ -121,7 +121,7 @@ namespace uwp
    }
 
 
-   file_result file_context::get_file(const payload& varFile, const ::file::e_open & eopen)
+   file_result file_context::get_file(const ::payload& varFile, const ::file::e_open & eopen)
    {
 
       file_pointer spfile;

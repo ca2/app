@@ -58,6 +58,7 @@ namespace acme
 
 
       virtual ::e_status os_application_system_run();
+      virtual ::e_status run_system();
 
       enum_operating_system get_operating_system() const;
 

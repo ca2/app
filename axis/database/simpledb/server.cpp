@@ -181,7 +181,7 @@ namespace simpledb
 
          sync_lock sl(pdatabase->mutex());
 
-         payload item = pdatabase->query_item("select COUNT(*) from sqlite_master where type like 'table' and name like '" + strTable + "'");
+         ::payload item = pdatabase->query_item("select COUNT(*) from sqlite_master where type like 'table' and name like '" + strTable + "'");
 
          if (item.i32() <= 0)
          {

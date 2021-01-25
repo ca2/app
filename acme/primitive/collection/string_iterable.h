@@ -37,7 +37,7 @@ public:
 
    iterator add(unichar wch);
 
-   iterator add(const payload & payload);
+   iterator add(const ::payload & payload);
 
    iterator add(const property & prop);
 
@@ -184,7 +184,7 @@ typename string_iterable < ITERABLE >::iterator string_iterable < ITERABLE >::ad
 
 
 template < typename ITERABLE >
-typename ITERABLE::iterator string_iterable < ITERABLE >::add(const payload & payload)
+typename ITERABLE::iterator string_iterable < ITERABLE >::add(const ::payload & payload)
 {
    if (payload.is_empty())
    {

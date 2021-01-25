@@ -28,7 +28,7 @@ namespace user
 
 
    template < class VIEW >
-   inline __pointer(VIEW) impact::create_view(::user::document* pdocument, ::user::interaction* pwndParent, id id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
+   inline __pointer(VIEW) impact::create_view(::user::document* pdocument, ::user::interaction* pwndParent, const ::id & id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
    {
 
       return create_view(__type(VIEW), pdocument, pwndParent, id, pviewLast, pimpactdata);
@@ -37,7 +37,7 @@ namespace user
 
 
    template < class VIEW >
-   inline __pointer(VIEW) impact::create_view(::user::interaction* pwndParent, id id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
+   inline __pointer(VIEW) impact::create_view(::user::interaction* pwndParent, const ::id & id, ::user::interaction* pviewLast, ::user::impact_data* pimpactdata)
    {
 
       return create_view < VIEW >(get_document(), pwndParent, id, pviewLast, pimpactdata);

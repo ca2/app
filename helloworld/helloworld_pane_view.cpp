@@ -330,7 +330,7 @@ namespace helloworld
 
                      {
 
-                        payload v;
+                        ::payload v;
 
                         v = d;
 

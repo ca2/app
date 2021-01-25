@@ -129,7 +129,7 @@ namespace user
    }
 
 
-   bool tab_view::pre_create_window(::user::create_struct * pcreatestruct)
+   bool tab_view::pre_create_window(::user::system * pusersystem)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -138,7 +138,7 @@ namespace user
 
 #endif
 
-      return impact::pre_create_window(pcreatestruct);
+      return impact::pre_create_window(pusersystem);
 
    }
 
@@ -376,9 +376,13 @@ namespace user
 
       pchannel->_001ClientToScreen(&rect);
 
-      auto pcreatestruct = __new(::user::create_struct (WS_EX_LAYERED, nullptr, nullptr, 0, rect));
+      auto pusersystem = __new(::user::system (WS_EX_LAYERED, nullptr, nullptr, 0, rect));
 
-      m_pdroptargetwindow->create_window_ex(pcreatestruct);
+      //m_pdroptargetwindow->create_window_ex(pusersystem);
+
+      //m_pdroptargetwindow->create_window_ex(pusersystem);
+
+      m_pdroptargetwindow->create_host();
 
       m_pdroptargetwindow->order(zorder_top_most);
 

@@ -170,7 +170,7 @@ namespace http
 
          ppac->m_strUrl = pszUrl;
 
-         payload varFile;
+         ::payload varFile;
 
          varFile["url"] = ppac->m_strUrl;
          varFile["disable_ca2_sessid"] = true;
@@ -276,7 +276,7 @@ namespace http
 
       strHost = ad.get_display_number();
 
-      string payload;
+      string ::payload;
       try
       {
          payload = ppac->m_pjs->evaluate("FindProxyForURL('" + string(pszUrl) + "', '" +strHost +"');");
@@ -2014,7 +2014,7 @@ retry_session:
    }
 
 
-   bool system::download(sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszRequest,payload varFile,property_set & set)
+   bool system::download(sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession,const char * pszRequest,::payload varFile,property_set & set)
    {
 
       file_pointer spfile = set.cast < ::apex::application >("app",get_context_application())->get_context_session()->file().get_file(varFile,
@@ -2031,7 +2031,7 @@ retry_session:
    }
 
 
-   bool system::download(const char * pszUrl, payload varFile, property_set & set)
+   bool system::download(const char * pszUrl, ::payload varFile, property_set & set)
    {
 
       ::sockets::socket_handler handler(get_object());
@@ -2181,7 +2181,7 @@ retry_session:
    }
 
 
-   payload system::length(const char * pszUrl, ::property_set & set)
+   ::payload system::length(const char * pszUrl, ::property_set & set)
    {
 
       ::sockets::socket_handler handler(get_object());
@@ -2221,7 +2221,7 @@ retry_session:
       else
       {
 
-         return payload(::e_type_null);
+         return ::payload(::e_type_null);
 
       }
 

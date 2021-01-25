@@ -17,8 +17,8 @@ namespace calculator
 
       m_pcallback = nullptr;
 
-      m_payload.m_dR = 0.0;
-      m_payload.m_dI = 0.0;
+      m_result.m_dR = 0.0;
+      m_result.m_dI = 0.0;
 
    }
 
@@ -42,8 +42,8 @@ namespace calculator
 
       ::payload payload;
 
-      payload["real"] = m_payload.m_dR;
-      payload["imaginary"] = m_payload.m_dI;
+      payload["real"] = m_result.m_dR;
+      payload["imaginary"] = m_result.m_dI;
       payload["text"] = ::user::plain_edit::get_payload();
 
       return payload;
@@ -236,7 +236,7 @@ namespace calculator
             if (pelement != nullptr)
             {
 
-               m_payload = pelement->get_payload();
+               m_result = pelement->get_result();
 
                str = strExp;
 
@@ -257,56 +257,56 @@ namespace calculator
                      {
                         if (strSource == "Hz")
                         {
-                           if (m_payload.mod() == 0.0)
+                           if (m_result.mod() == 0.0)
                            {
                               strVal = "(infinite)";
                            }
                            else
                            {
-                              strVal = __str(1.0 / m_payload.mod());
+                              strVal = __str(1.0 / m_result.mod());
                            }
                         }
                      }
                      else if (strFormat == "Hz")
                      {
-                        if (m_payload.mod() == 0.0)
+                        if (m_result.mod() == 0.0)
                         {
                            strVal = "(infinite)";
                         }
                         else if (strSource == "ms")
                         {
-                           m_payload.m_dR = 1000.0 / m_payload.m_dR;
-                           m_payload.m_dI = 0.0;
-                           strVal = m_payload.to_string();
+                           m_result.m_dR = 1000.0 / m_result.m_dR;
+                           m_result.m_dI = 0.0;
+                           strVal = m_result.to_string();
                         }
                         else if (strSource == "s")
                         {
-                           m_payload.m_dR = 1.0 / m_payload.m_dR;
-                           m_payload.m_dI = 0.0;
-                           strVal = m_payload.to_string();
+                           m_result.m_dR = 1.0 / m_result.m_dR;
+                           m_result.m_dI = 0.0;
+                           strVal = m_result.to_string();
                         }
                         else if (strSource == "min")
                         {
-                           m_payload.m_dR = 1.0 / (60.0 * m_payload.m_dR);
-                           m_payload.m_dI = 0.0;
-                           strVal = m_payload.to_string();
+                           m_result.m_dR = 1.0 / (60.0 * m_result.m_dR);
+                           m_result.m_dI = 0.0;
+                           strVal = m_result.to_string();
 
                         }
                         else if (strSource == "hour")
                         {
-                           m_payload.m_dR = 1.0 / (60.0 * 60.0 * m_payload.m_dR);
-                           m_payload.m_dI = 0.0;
-                           strVal = m_payload.to_string();
+                           m_result.m_dR = 1.0 / (60.0 * 60.0 * m_result.m_dR);
+                           m_result.m_dI = 0.0;
+                           strVal = m_result.to_string();
                         }
                         else if (strSource == "day")
                         {
-                           m_payload.m_dR = 1.0 / (24.0 * 60.0 * 60.0 * m_payload.m_dR);
-                           m_payload.m_dI = 0.0;
-                           strVal = m_payload.to_string();
+                           m_result.m_dR = 1.0 / (24.0 * 60.0 * 60.0 * m_result.m_dR);
+                           m_result.m_dI = 0.0;
+                           strVal = m_result.to_string();
                         }
                         else
                         {
-                           strVal = m_payload.to_string();
+                           strVal = m_result.to_string();
                         }
                      }
 
@@ -316,12 +316,12 @@ namespace calculator
                {
                   e.m_strMessage = "(unknown conversion)";
                   bConv = false;
-                  strVal = m_payload.to_string();
+                  strVal = m_result.to_string();
                }
             }
             else
             {
-               strVal = m_payload.to_string();
+               strVal = m_result.to_string();
             }
 
             if (!bConv)

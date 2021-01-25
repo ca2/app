@@ -99,7 +99,7 @@ void aura_main_data::system_construct(const char* pszCommandLine, const ::e_disp
 
    m_poslocal = nullptr;
 
-   xxf_zero(m_mainrunnera);
+   __zero(m_mainrunnera);
 
 }
 
@@ -112,7 +112,7 @@ void aura_main_data::system_construct(os_local* poslocal, const ::e_display& edi
 
    m_poslocal = poslocal;
 
-   xxf_zero(m_mainrunnera);
+   __zero(m_mainrunnera);
 
 }
 
@@ -143,7 +143,7 @@ void aura_main_data::system_construct(HINSTANCE hinstance, HINSTANCE hPrevInstan
 
    m_poslocal = nullptr;
 
-   xxf_zero(m_mainrunnera);
+   __zero(m_mainrunnera);
 
 }
 
@@ -172,7 +172,7 @@ void aura_main_data::system_construct(Array < String^ >^ refstra)
 
    m_edisplay = e_display_default;
 
-   xxf_zero(m_mainrunnera);
+   __zero(m_mainrunnera);
 
 }
 

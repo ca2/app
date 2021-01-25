@@ -149,7 +149,7 @@ namespace geo
 
                //const char * pszJson = "{\"_id\":6322752, \"name\" : \"Curitiba\", \"country\" : \"BR\", \"coord\" : {\"lon\":-49.290821, \"lat\" : -25.50395}}";
 
-               payload v;
+               ::payload v;
 
                v.parse_json(pszJson);
 
@@ -498,7 +498,7 @@ namespace geo
 
       const char* pszJson = str;
 
-      payload v;
+      ::payload v;
 
       v.parse_json(pszJson);
 
@@ -627,7 +627,7 @@ namespace geo
 
          const char* pszJson = str;
 
-         payload v;
+         ::payload v;
 
          try
          {
@@ -755,7 +755,7 @@ namespace geo
       //
       //            const char * pszJson = str;
       //
-      //            payload v;
+      //            ::payload v;
       //
       //            try
       //            {

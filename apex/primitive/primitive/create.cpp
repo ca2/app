@@ -68,7 +68,7 @@ create::create()
 }
 
 
-::e_status create::initialize_create(string strAppId, payload varFile, const payload & varOptions, ::user::primitive * puiParent, ewindowflag ewindowflag, ::id id)
+::e_status create::initialize_create(string strAppId, ::payload varFile, const ::payload & varOptions, ::user::primitive * puiParent, ewindowflag ewindowflag, ::id id)
 {
 
    m_ewindowflag = ewindowflag;

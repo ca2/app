@@ -11,9 +11,20 @@ namespace acme
    ::e_status system::os_application_system_run()
    {
 
-      return ::success;
+      auto estatus = do_task();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
+
+
 
 
    void system::os_construct()

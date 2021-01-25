@@ -89,7 +89,7 @@ CLASS_DECL_AURA ::user::primitive* __user_primitive(oswindow oswindow);
 //#include "language_map.h"
 
 
-#include "create_struct.h"
+#include "system.h"
 
 
 #include "windowing.h"

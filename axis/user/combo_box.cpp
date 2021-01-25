@@ -25,6 +25,7 @@ namespace user
       m_estyle                = style_simply;
       m_bEdit                 = true;
       m_edatamode             = data_mode_opaque;
+      m_bMultiLine            = false;
 
    }
 
@@ -971,19 +972,19 @@ namespace user
    }
 
 
-   bool combo_box::create_window(::user::interaction * puiParent, const ::id & id)
-   {
+   //bool combo_box::create_interaction(::user::interaction * puiParent, const ::id & id)
+   //{
 
-      if (!::user::plain_edit::create_window(puiParent, id))
-      {
+   //   if (!::user::plain_edit::create_interaction(puiParent, id))
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
 #ifdef WINDOWS_DESKTOP
@@ -1665,25 +1666,25 @@ namespace user
    }
 
 
-   bool combo_box::create_control(::user::interaction * pinteractionParent, const ::id & id)
-   {
+   //bool combo_box::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
+   //{
 
-      if (!::user::interaction::create_control(pinteractionParent, id))
-      {
+   //   if (!::user::interaction::create_interaction(pinteractionParent, id))
+   //   {
 
-         TRACE("Failed to create control");
+   //      TRACE("Failed to create control");
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      display(e_display_none);
+   //   display(e_display_none);
 
-      m_bMultiLine = false;
+   //   m_bMultiLine = false;
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    void combo_box::_001OnLButtonDblClk(::message::message * pmessage)

@@ -139,7 +139,7 @@ namespace html
    }
 
 
-   bool style_sheet_array::greater(style *& pstyleRet, index & iRet, payload & varRet, style * pstyle1, index i1, const payload & var1, style * pstyle2, index i2, const payload & var2)
+   bool style_sheet_array::greater(style *& pstyleRet, index & iRet, ::payload & varRet, style * pstyle1, index i1, const ::payload & var1, style * pstyle2, index i2, const ::payload & var2)
    {
 
       return ((const style_sheet_array *)this)->greater((const style * &) pstyleRet, iRet, varRet, pstyle1, i1, var1, pstyle2, i2, var2);
@@ -147,7 +147,7 @@ namespace html
    }
 
 
-   bool style_sheet_array::greater(const style *& pstyleRet, index & iRet, payload & varRet, const style * pstyle1, index i1, const payload & var1, const style * pstyle2, index i2, const payload & var2) const
+   bool style_sheet_array::greater(const style *& pstyleRet, index & iRet, ::payload & varRet, const style * pstyle1, index i1, const ::payload & var1, const style * pstyle2, index i2, const ::payload & var2) const
    {
 
       if(pstyle1 == nullptr)

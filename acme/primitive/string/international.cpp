@@ -551,7 +551,7 @@ namespace str
       }
 
 
-      wstring utf8_to_unicode(const payload & payload)
+      wstring utf8_to_unicode(const ::payload & payload)
       {
 
          return MultiByteToUnicode(CodePageUtf8, (const string &) payload);

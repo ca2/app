@@ -73,7 +73,7 @@ INT_PTR NSISCALL nsishelper_str_to_ptr(LPCTSTR s);
 unsigned int NSISCALL myatou(LPCTSTR s); // converts a string to an unsigned integer, decimal only
 int NSISCALL myatoi_or(LPCTSTR s); // with support for or'ing (2|4|8)
 char * NSISCALL getuservariable(const int varnum);
-void NSISCALL setuservariable(const int varnum, LPCTSTR payload);
+void NSISCALL setuservariable(const int varnum, LPCTSTR ::payload);
 
 #ifdef UNICODE
 #define PopStringW(x) popstring(x)

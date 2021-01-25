@@ -21,20 +21,20 @@ simple_child_frame::~simple_child_frame()
 }
 
 
-bool simple_child_frame::pre_create_window(::user::create_struct * pcreatestruct)
+bool simple_child_frame::pre_create_window(::user::system * pusersystem)
 {
 
-   pcreatestruct->m_createstruct.style |= WS_CHILD;
+   pusersystem->m_createstruct.style |= WS_CHILD;
 
 #ifdef WINDOWS_DESKTOP
 
 
-   pcreatestruct->m_createstruct.style &= ~WS_BORDER;
-   pcreatestruct->m_createstruct.style &= ~WS_THICKFRAME;
+   pusersystem->m_createstruct.style &= ~WS_BORDER;
+   pusersystem->m_createstruct.style &= ~WS_THICKFRAME;
 
 #endif
 
-   if (!simple_frame_window::pre_create_window(pcreatestruct))
+   if (!simple_frame_window::pre_create_window(pusersystem))
    {
 
       return FALSE;
@@ -43,7 +43,7 @@ bool simple_child_frame::pre_create_window(::user::create_struct * pcreatestruct
 
 #ifdef WINDOWS_DESKTOP
 
-   if(pcreatestruct->m_createstruct.hwndParent == nullptr)
+   if(pusersystem->m_createstruct.hwndParent == nullptr)
    {
 
       auto puiMain1 = Application.m_puiMain1;
@@ -53,7 +53,7 @@ bool simple_child_frame::pre_create_window(::user::create_struct * pcreatestruct
 
          auto pui = __user_interaction(Application.m_puiMain1);
 
-         pcreatestruct->m_createstruct.hwndParent = pui->get_handle();
+         pusersystem->m_createstruct.hwndParent = pui->get_handle();
 
       }
 
@@ -61,7 +61,7 @@ bool simple_child_frame::pre_create_window(::user::create_struct * pcreatestruct
 
 #endif
 
-   pcreatestruct->m_createstruct.style &= ~WS_OVERLAPPEDWINDOW;
+   pusersystem->m_createstruct.style &= ~WS_OVERLAPPEDWINDOW;
 
    return TRUE;
 

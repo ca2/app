@@ -8641,7 +8641,7 @@ bool image::on_exif_orientation()
 //}
 
 
-//bool image::save_to_file(payload varFile, save_image * psaveimage)
+//bool image::save_to_file(::payload varFile, save_image * psaveimage)
 //{
 //
 //   return write_to_file(varFile, psaveimage);
@@ -9258,13 +9258,13 @@ stream & image::read(::stream & stream)
 
 /*
 http://www.sparkhound.com/blog/detect-image-file-types-through-byte-arrays
-payload bmp = Encoding.ASCII.GetBytes("BM"); // BMP
-payload gif = Encoding.ASCII.GetBytes("GIF"); // GIF
-payload png = new byte[]{ 137, 80, 78, 71 }; // PNG
-payload tiff = new byte[]{ 73, 73, 42 }; // TIFF
-payload tiff2 = new byte[]{ 77, 80, 42 }; // TIFF
-payload jpeg = new byte[]{ 255, 216, 255, 224 }; // jpeg
-payload jpeg2 = new byte[]{ 255, 216, 255, 225 }; // jpeg canon
+::payload bmp = Encoding.ASCII.GetBytes("BM"); // BMP
+::payload gif = Encoding.ASCII.GetBytes("GIF"); // GIF
+::payload png = new byte[]{ 137, 80, 78, 71 }; // PNG
+::payload tiff = new byte[]{ 73, 73, 42 }; // TIFF
+::payload tiff2 = new byte[]{ 77, 80, 42 }; // TIFF
+::payload jpeg = new byte[]{ 255, 216, 255, 224 }; // jpeg
+::payload jpeg2 = new byte[]{ 255, 216, 255, 225 }; // jpeg canon
 */
 
 
@@ -9278,14 +9278,14 @@ payload jpeg2 = new byte[]{ 255, 216, 255, 225 }; // jpeg canon
 ::e_status image::transform(enum_image eimage)
 {
 
-   if (eimage == image_grayscale)
-   {
+if (eimage == image_grayscale)
+{
 
-      return saturation(0.0);
+   return saturation(0.0);
 
-   }
+}
 
-   return ::error_not_found;
+return ::error_not_found;
 
 }
 
@@ -9364,5 +9364,52 @@ bool image::_unmap()
 
 }
 
+
+bool image::_draw_blend(const image_drawing & imagedrawing)
+{
+
+   auto pgraphics = get_graphics();
+
+   if (::is_null(pgraphics))
+   {
+
+      return false;
+
+   }
+
+   if(!pgraphics->_draw_blend(imagedrawing))
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+bool image::_draw_raw(const image_drawing & imagedrawing)
+{
+
+   auto pgraphics = get_graphics();
+
+   if (::is_null(pgraphics))
+   {
+
+      return false;
+
+   }
+
+   if(!pgraphics->_draw_raw(imagedrawing))
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
 
 

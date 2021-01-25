@@ -4,7 +4,7 @@
 #include "ifs_file.h"
 
 
-ifs_file::ifs_file(payload varFile) :
+ifs_file::ifs_file(::payload varFile) :
    m_varFile(varFile)
 {
 

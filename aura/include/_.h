@@ -1231,7 +1231,7 @@ using image_pointer_array = __pointer_array(::image);
 //
 //
 //class istring;
-//class payload;
+//class ::payload;
 //class property_set;
 //class object;
 ////class base_edit;
@@ -1394,11 +1394,11 @@ namespace user
 {
 
 
-   class create;
+   //class create;
    class control_event;
    class item;
    class check;
-   class create_struct;
+   class system;
    class command;
    class interaction_impl;
    class primitive;
@@ -2175,7 +2175,7 @@ namespace draw2d
 //
 //class matter;
 //
-//class payload;
+//class ::payload;
 //
 //using argument = payload;
 //
@@ -2235,7 +2235,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //#define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 //
 //
-//class payload;
+//class ::payload;
 //class id;
 //
 //

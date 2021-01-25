@@ -40,13 +40,13 @@ namespace calculator
    }
 
 
-   bool frame::pre_create_window(::user::create_struct * pcreatestruct)
+   bool frame::pre_create_window(::user::system * pusersystem)
    {
 
-      if( !simple_frame_window::pre_create_window(pcreatestruct) )
+      if( !simple_frame_window::pre_create_window(pusersystem) )
          return FALSE;
 
-      pcreatestruct->m_createstruct.dwExStyle &= ~WS_EX_WINDOWEDGE;
+      pusersystem->m_createstruct.dwExStyle &= ~WS_EX_WINDOWEDGE;
 
       return TRUE;
    }

@@ -22,17 +22,17 @@ extern "C" int mkostemps64 (char *__template, int __suffixlen, int __flags);
 #ifdef ANDROID
 /*
 
-@deftypefn Replacement int mkstemps (char *@payload{pattern}, int @payload{suffix_len})
+@deftypefn Replacement int mkstemps (char *@::payload{pattern}, int @::payload{suffix_len})
 
-Generate a unique temporary file name from @payload{pattern}.
-@payload{pattern} has the form:
+Generate a unique temporary file name from @::payload{pattern}.
+@::payload{pattern} has the form:
 
 @example
-@payload{path}/ccXXXXXX@payload{suffix}
+@::payload{path}/ccXXXXXX@::payload{suffix}
 @end example
 
-@payload{suffix_len} tells us how long @payload{suffix} is (it can be zero
-length).  The last six characters of @payload{pattern} before @payload{suffix}
+@::payload{suffix_len} tells us how long @::payload{suffix} is (it can be zero
+length).  The last six characters of @::payload{pattern} before @::payload{suffix}
 must be @samp{XXXXXX}; they are replaced with a string that makes the
 filename unique.  Returns a file descriptor open on the file for
 reading and writing.

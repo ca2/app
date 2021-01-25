@@ -84,7 +84,7 @@ namespace experience
 
       ::rect rectDockButtonWindow;
 
-      m_pframewindow->m_pframe->get_control_box()->get_button(::experience::button_dock)->get_window_rect(rectDockButtonWindow);
+      m_pframewindow->m_pframe->get_control_box()->get_button(e_button_dock)->get_window_rect(rectDockButtonWindow);
 
       ::point pointDock = rectDockButtonWindow.center();
 
@@ -391,28 +391,28 @@ namespace experience
    }
 
 
-   void dock_manager::defer_cursor_pos()
-   {
+   //void dock_manager::defer_cursor_pos()
+   //{
 
-      if (m_bPendingCursorPos)
-      {
+   //   if (m_bPendingCursorPos)
+   //   {
 
-         m_bPendingCursorPos = false;
+   //      m_bPendingCursorPos = false;
 
-         if (window_is_docking())
-         {
+   //      //if (window_is_docking())
+   //      //{
 
-            auto pointCursor = m_pframewindow->layout().sketch().origin() + (dock_button()->layout().parent_client_rect().origin() + m_pointCursorDockOrigin);
+   //      //   auto pointCursor = m_pframewindow->layout().sketch().origin() + (dock_button()->layout().parent_client_rect().origin() + m_pointCursorDockOrigin);
 
-            auto psession = Session;
+   //      //   auto psession = Session;
 
-            psession->set_cursor_pos(pointCursor);
+   //      //   psession->set_cursor_pos(pointCursor);
 
-         }
+   //      //}
 
-      }
+   //   }
 
-   }
+   //}
 
 
    bool dock_manager::_001OnMouseMove(::message::mouse * pmouse)
@@ -556,7 +556,7 @@ namespace experience
    ::user::button * dock_manager::dock_button()
    {
 
-      return m_pframewindow->m_pframe->m_pcontrolbox->get_button(button_dock);
+      return m_pframewindow->m_pframe->m_pcontrolbox->get_button(e_button_dock);
 
    }
 

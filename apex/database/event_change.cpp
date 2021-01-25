@@ -12,7 +12,7 @@ namespace database
       m_bOk = true;
    }
 
-   change_event::change_event(payload & payload) :
+   change_event::change_event(::payload & payload) :
       m_pvar(&payload)
    {
       m_pserver = nullptr;
@@ -20,7 +20,7 @@ namespace database
       m_bOk = true;
    }
 
-   bool change_event::_data_get(payload & payload)
+   bool change_event::_data_get(::payload & payload)
    {
 
       if(m_pserver != nullptr)

@@ -21,7 +21,7 @@ namespace user
       __pointer(place_holder) create_shadow_clone();
 
 
-      virtual bool create_window(::user::place_holder_container * pcontainer,id id);
+      //virtual bool create_child(::user::place_holder_container * pcontainer);
 
       virtual void install_message_routing(::channel * pchannel) override;
 

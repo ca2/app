@@ -239,6 +239,8 @@ namespace sockets
 
       }
 
+      return ::success;
+
    }
 
 
@@ -275,7 +277,7 @@ namespace sockets
 
             id & id = pproperty->m_id;
 
-            payload & payload = *pproperty;
+            ::payload & payload = *pproperty;
 
             strFields += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + id.to_string() + "\"\r\n\r\n";
 
@@ -400,7 +402,7 @@ namespace sockets
          //for(auto & property : m_fields)
          //{
          //   id & id = property.element1();
-         //   payload & payload = property.element2();
+         //   ::payload & payload = property.element2();
          //   tmp += "--" + m_boundary + "\r\nContent-Disposition: form-data; name=\"" + id.to_string() + "\"\r\n\r\n";
          //   string value = payload.get_string();
          //   tmp += value + "\r\n";

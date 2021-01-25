@@ -779,7 +779,7 @@ string module_path_from_pid(u32 pid)
 
 // http://stackoverflow.com/questions/4178443/get-the-full-path-from-a-pid-using-delphi
 //function GetPathFromPID(const PID: cardinal): string;
-//payload
+//::payload
 //hProcess: THandle;
 //path: array[0..MAX_PATH - 1] of char;
 //begin

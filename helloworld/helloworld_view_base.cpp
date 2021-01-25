@@ -61,7 +61,7 @@ namespace helloworld
 
       pmessage->previous();
 
-      payload v;
+      ::payload v;
 
       data_get("cur_fps", v);
 

@@ -94,8 +94,8 @@ namespace apex
 
       //void *                                             m_ftlibrary;
 
-      payload                                                m_varFile;
-//      payload                                                m_
+      ::payload                                                m_varFile;
+//      ::payload                                                m_
 
       __pointer(::mutex)                                 m_spmutexUserAppData;
       __pointer(::mutex)                                 m_spmutexSystemAppData;
@@ -604,7 +604,7 @@ namespace apex
       static inline ::id id(const string & str);
       static inline ::id id(i64 i);
       static inline ::id_space & id();
-      inline ::id id(const payload & payload);
+      inline ::id id(const ::payload & payload);
       inline ::id id(const property & prop);
 
 
@@ -713,7 +713,7 @@ namespace apex
 
       virtual bool merge_accumulated_on_open_file(::create * pcreate);
 
-      virtual bool on_open_file(payload varFile, string strExtra);
+      virtual bool on_open_file(::payload varFile, string strExtra);
 
       // apex commented
       //virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);

@@ -24,8 +24,9 @@ namespace user
 
 
 
-      using ::user::interaction::create_window;
-      bool create_window(u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, ::id id);
+      //using ::user::interaction::create_window;
+      //bool create_window(u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, ::id id);
+      //bool create_child(::user::interaction * puserinteraction);
 
 
       bool IsButtonEnabled(i32 nID);

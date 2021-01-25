@@ -1108,6 +1108,8 @@
     <ClCompile Include="gpu\gpu\shader.cpp" />
     <ClCompile Include="graphics\draw2d\context_image.cpp" />
     <ClCompile Include="graphics\draw2d\device_lock.cpp" />
+    <ClCompile Include="graphics\draw2d\image_drawer.cpp" />
+    <ClCompile Include="graphics\draw2d\image_drawing.cpp" />
     <ClCompile Include="graphics\graphics\monitor.cpp" />
     <ClCompile Include="include\_.cpp" />
     <ClCompile Include="message\timer.cpp" />
@@ -1122,7 +1124,7 @@
     <ClCompile Include="node\windows\graphics_buffer.cpp" />
     <ClCompile Include="node\windows\interaction_impl.cpp" />
     <ClCompile Include="node\windows\interaction_impl_message_bypass.cpp" />
-    <ClCompile Include="node\windows\system_interaction_impl.cpp" />
+    <ClCompile Include="node\windows\system_interaction.cpp" />
     <ClCompile Include="node\windows\timer.cpp" />
     <ClCompile Include="node\windows\trace.cpp" />
     <ClCompile Include="node\windows_common\application.cpp" />
@@ -1152,6 +1154,7 @@
     <ClCompile Include="platform\aura_mq.cpp" />
     <ClCompile Include="platform\drawable.cpp" />
     <ClCompile Include="platform\draw_context.cpp" />
+    <ClCompile Include="platform\node.cpp" />
     <ClCompile Include="platform\session.cpp" />
     <ClCompile Include="platform\shell_open.cpp" />
     <ClCompile Include="platform\static_start.cpp" />
@@ -1164,8 +1167,7 @@
     <ClCompile Include="user\control_descriptor.cpp" />
     <ClCompile Include="user\control_event.cpp" />
     <ClCompile Include="user\copydesk.cpp" />
-    <ClCompile Include="user\create.cpp" />
-    <ClCompile Include="user\create_struct.cpp" />
+    <ClCompile Include="user\system.cpp" />
     <ClCompile Include="user\form.cpp" />
     <ClCompile Include="user\form_callback.cpp" />
     <ClCompile Include="user\frame.cpp" />
@@ -1333,9 +1335,12 @@
     <ClInclude Include="gpu\gpu\program.h" />
     <ClInclude Include="gpu\gpu\shader.h" />
     <ClInclude Include="gpu\gpu\_.h" />
+    <ClInclude Include="graphics\draw2d\color_filter.h" />
     <ClInclude Include="graphics\draw2d\context_image.h" />
     <ClInclude Include="graphics\draw2d\device_lock.h" />
-    <ClInclude Include="graphics\draw2d\_const.h" />
+    <ClInclude Include="graphics\draw2d\image_drawer.h" />
+    <ClInclude Include="graphics\draw2d\image_drawing.h" />
+    <ClInclude Include="graphics\draw2d\image_source.h" />
     <ClInclude Include="graphics\draw2d\_draw2d.h" />
     <ClInclude Include="graphics\text\bounding_rect.h" />
     <ClInclude Include="graphics\text\contains.h" />
@@ -1349,7 +1354,6 @@
     <ClInclude Include="inline\application\linux.h" />
     <ClInclude Include="inline\application\macos.h" />
     <ClInclude Include="inline\application\uwp.h" />
-    <ClInclude Include="inline\application\windows.h" />
     <ClInclude Include="inline\application_common.h" />
     <ClInclude Include="inline\aaa_console.h" />
     <ClInclude Include="inline\console\aaa_linux.h" />
@@ -1377,7 +1381,7 @@
     <ClInclude Include="node\windows\factory_exchange.h" />
     <ClInclude Include="node\windows\interaction_impl.h" />
     <ClInclude Include="node\windows\shell_open.h" />
-    <ClInclude Include="node\windows\system_interaction_impl.h" />
+    <ClInclude Include="node\windows\system_interaction.h" />
     <ClInclude Include="node\windows\user.h" />
     <ClInclude Include="node\windows\_.h" />
     <ClInclude Include="node\windows\_node_windows.h" />
@@ -1398,6 +1402,7 @@
     <ClInclude Include="platform\drawable.h" />
     <ClInclude Include="platform\draw_context2.h" />
     <ClInclude Include="platform\mq.h" />
+    <ClInclude Include="platform\node.h" />
     <ClInclude Include="platform\session.h" />
     <ClInclude Include="platform\shell_open.h" />
     <ClInclude Include="platform\static_start.h" />
@@ -1436,8 +1441,8 @@
     <ClInclude Include="user\control_descriptor.h" />
     <ClInclude Include="user\control_event.h" />
     <ClInclude Include="user\copydesk.h" />
-    <ClInclude Include="user\create.h" />
-    <ClInclude Include="user\create_struct.h" />
+    <ClInclude Include="user\aaa_create.h" />
+    <ClInclude Include="user\system.h" />
     <ClInclude Include="user\form.h" />
     <ClInclude Include="user\form_callback.h" />
     <ClInclude Include="user\frame.h" />

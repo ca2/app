@@ -8,7 +8,7 @@ template < typename TYPE >
 inline void __string_exchange(text_stream & s, TYPE & t);
 
 
-inline void __string_exchange(stream & s, payload & payload);
+inline void __string_exchange(stream & s, ::payload & payload);
 
 inline void __string_exchange(text_stream & s, ansichar & ansich);
 inline void __string_exchange(text_stream & s, widechar & widech);

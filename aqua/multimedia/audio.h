@@ -25,7 +25,7 @@ namespace aqua
       virtual ~audio();
 
 
-      virtual void play_audio(const payload & varFile, bool bSynch = false);
+      virtual void play_audio(const ::payload & varFile, bool bSynch = false);
 
 
       virtual __pointer(::tts::speaker) create_tts_speaker();

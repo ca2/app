@@ -134,14 +134,14 @@ namespace filemanager
       }
       else if (psubject->id() == FILTER_ID)
       {
-         /*if(psubject->value(id_filter).is_empty())
+         /*if(psubject->payload(id_filter).is_empty())
          {
          FilterClose();
          }
          else
          {
          FilterBegin();
-         Filter1(psubject->value(id_filter));
+         Filter1(psubject->payload(id_filter));
          FilterApply();
          }*/
       }
@@ -225,7 +225,7 @@ namespace filemanager
             if (filemanager_document()->fs_data()->file_exists(strPath))
             {
 
-               auto pfuture = __process([this, strPath](const ::payload& payload)
+               auto pfuture = __process([this, strPath](const ::payload & payload)
                   {
 
                      if (payload == "yes")
@@ -372,14 +372,14 @@ namespace filemanager
          }
          else if (psubject->id() == id_filter)
          {
-            /*if(psubject->value(id_filter).is_empty())
+            /*if(psubject->payload(id_filter).is_empty())
             {
             FilterClose();
             }
             else
             {
             FilterBegin();
-            Filter1(psubject->value(id_filter));
+            Filter1(psubject->payload(id_filter));
             FilterApply();
             }*/
          }

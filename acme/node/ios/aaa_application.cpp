@@ -29,7 +29,7 @@ namespace acme
 //      //      ::ca2::pointer < ::application_base > ::m_p->_001OnFileNew(nullptr);
 //   }
 //
-//   ::user::document * application::_001OpenDocumentFile(payload varFile)
+//   ::user::document * application::_001OpenDocumentFile(::payload varFile)
 //   {
 //      //    return ::ca2::pointer < ::application_base > ::m_p->_001OpenDocumentFile(varFile);
 //      return nullptr;
@@ -291,11 +291,11 @@ namespace acme
 ////         static std::collection::map<string, char *> vmap;
 ////         if (vmap.find(payload) != vmap.end())
 ////         {
-////            delete[] vmap[payload];
+////            delete[] vmap[::payload];
 ////         }
-////         vmap[payload] = new char[payload.get_length() + 1 + value.get_length() + 1];
-////         sprintf(vmap[payload], "%s=%s", payload, value);
-////         putenv( vmap[payload] );
+////         vmap[::payload] = new char[payload.get_length() + 1 + value.get_length() + 1];
+////         sprintf(vmap[::payload], "%s=%s", payload, value);
+////         putenv( vmap[::payload] );
 ////      }
 ////#elif defined _WIN32
 ////      {

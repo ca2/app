@@ -145,7 +145,7 @@ bool __os_term_thread()
 
    //thread_shutdown();
 
-   if(SUCCEEDED(thread_value("hresult_co_initialize").i64()))
+   if(SUCCEEDED(thread_property("hresult_co_initialize").i64()))
    {
 
       CoUninitialize();

@@ -30,9 +30,16 @@ namespace message
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
 
-      CREATESTRUCT * pcreatestruct = (CREATESTRUCT *)lparam.m_lparam;
+      //m_pusersystem = __user_interaction(playeredUserPrimitive)->payload("user_create").cast < ::user::system_struct >();
 
-      m_pcreatestruct = (::user::create_struct *) pcreatestruct->CREATE_STRUCT_P_CREATE_PARAMS;
+      //CREATESTRUCT * pusersystem = (CREATESTRUCT *)lparam.m_lparam;
+
+      //if (pusersystem)
+      //{
+
+      //   m_pusersystem = (::user::system *)pusersystem->CREATE_STRUCT_P_CREATE_PARAMS;
+
+      //}
 
    }
 
@@ -63,10 +70,10 @@ namespace message
    }
 
 
-   ::user::create_struct * create::get_create_struct()
+   ::user::system * create::get_user_create()
    {
 
-      return m_pcreatestruct;
+      return m_pusersystem;
 
    }
 
@@ -74,18 +81,18 @@ namespace message
    ::create * create::get_create()
    {
 
-      auto pusercreatestruct = get_create_struct();
+      auto pusersystem = get_user_create();
 
-      if (::is_null(pusercreatestruct))
+      if (::is_null(pusersystem))
       {
 
          return nullptr;
 
       }
 
-      auto pcreate = pusercreatestruct->m_pcreate;
+      auto pcreate = pusersystem->m_pcreate;
 
-      if (::is_null(pusercreatestruct))
+      if (::is_null(pusersystem))
       {
 
          return nullptr;
@@ -97,45 +104,45 @@ namespace message
    }
 
 
-   ::user::create * create::get_user_create()
-   {
+   //::user::system * create::get_user_create()
+   //{
 
-      auto pcreate = get_create();
+   //   auto pcreate = get_create();
 
-      if (::is_null(pcreate))
-      {
+   //   if (::is_null(pcreate))
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      auto pusercreate = __user_create(pcreate->m_pusercreate);
+   //   auto pusersystem = __user_system(pcreate->m_pusersystem);
 
-      if (!pusercreate)
-      {
+   //   if (!pusersystem)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      return pusercreate;
+   //   return pusersystem;
 
-   }
+   //}
 
 
    ::matter * create::get_impact_data()
    {
 
-      auto pusercreate = get_user_create();
+      auto pusersystem = get_user_create();
 
-      if (!pusercreate)
+      if (!pusersystem)
       {
 
          return nullptr;
 
       }
 
-      return pusercreate->m_pimpactdata;
+      return pusersystem->m_pimpactdata;
 
    }
 

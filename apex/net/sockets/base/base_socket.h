@@ -241,7 +241,7 @@ namespace sockets
 
       /** Called by listen_socket after accept but before base_socket is added to handler.
       * CTcpSocket uses this to create its ICrypt member payload.
-      * The ICrypt member payload is created by a virtual method, therefore
+      * The ICrypt member ::payload is created by a virtual method, therefore
       * it can't be called directly from the CTcpSocket constructor.
       * Also used to determine if incoming HTTP connection is normal (port 80)
       * or ssl (port 443).
@@ -774,9 +774,9 @@ namespace sockets
    };
 
 
-   __declare_key_value_map(socket_flag_map, socket_flag, base_socket *, m_pbasesocket, bool, m_bFlag);
-   __declare_key_value_map(socket_socket_flag_map, socket_socket_flag, SOCKET, m_socket, socket_flag_map, m_pmap);
-   __declare_key_value_map(socket_map, socket_pointer_pair, SOCKET, m_socket, socket_pointer, m_psocket);
+   __declare_map(socket_flag_map, socket_flag, base_socket *, m_pbasesocket, bool, m_bFlag);
+   __declare_map(socket_socket_flag_map, socket_socket_flag, SOCKET, m_socket, socket_flag_map, m_pmap);
+   __declare_map(socket_map, socket_pointer_pair, SOCKET, m_socket, socket_pointer, m_psocket);
 
 
    typedef comparable_list < socket_pointer > socket_pointer_list;

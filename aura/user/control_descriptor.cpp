@@ -345,7 +345,7 @@
 //
 //   //   iItem = 0;
 //
-//   //   if (!pform->create_control(this, iItem))
+//   //   if (!pform->create_interaction(this, iItem))
 //   //   {
 //
 //   //      pinteraction.release();

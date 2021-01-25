@@ -387,7 +387,7 @@ namespace datetime
 
       struct ::tm tm;
 
-      xxf_zero(tm);
+      __zero(tm);
       tm.tm_hour = iHour;
       tm.tm_min = iMinute;
       tm.tm_sec = iSecond;
@@ -407,7 +407,7 @@ namespace datetime
 
       struct ::tm tm;
 
-      xxf_zero(tm);
+      __zero(tm);
       tm.tm_hour = iHour;
       tm.tm_min = iMinute;
       tm.tm_sec = iSecond;

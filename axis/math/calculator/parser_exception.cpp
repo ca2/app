@@ -41,7 +41,7 @@ CLASS_DECL_AXIS bool throw_numeric_parser_exception(const string & strMessage)
 avoid_numeric_parser_exception::avoid_numeric_parser_exception()
 {
 
-   m_iBefore = thread_value(id_thread_avoid_numeric_parser_exception);
+   m_iBefore = thread_property(id_thread_avoid_numeric_parser_exception);
 
    thread_set(id_thread_avoid_numeric_parser_exception);
 
@@ -50,7 +50,7 @@ avoid_numeric_parser_exception::avoid_numeric_parser_exception()
 avoid_numeric_parser_exception::~avoid_numeric_parser_exception()
 {
 
-   thread_value(id_thread_avoid_numeric_parser_exception) = m_iBefore;
+   thread_property(id_thread_avoid_numeric_parser_exception) = m_iBefore;
 
 }
 

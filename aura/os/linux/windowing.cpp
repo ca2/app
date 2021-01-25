@@ -400,7 +400,7 @@ void mapped_net_state_raw(bool add, Display * d, Window w, int iScreen, Atom sta
 #define _NET_WM_STATE_ADD           1    /* add/set property */
 #define _NET_WM_STATE_TOGGLE        2    /* toggle property  */
 
-   xxf_zero(xclient);
+   __zero(xclient);
    xclient.type = ClientMessage;
    xclient.window = w;
    xclient.message_type = XInternAtom(d, "_NET_WM_STATE", False);
@@ -429,7 +429,7 @@ void unmapped_net_state_raw(Display * d, Window w, ...)
 
    va_start(argp, w);
 
-   xxf_zero(xevent);
+   __zero(xevent);
 
    array < Atom > atoms;
 
@@ -1244,7 +1244,7 @@ oswindow set_active_window(oswindow window)
 
       XEvent xev;
 
-      xxf_zero(xev);
+      __zero(xev);
 
       Window windowRoot = window->root_window_raw();
 
@@ -1759,7 +1759,7 @@ void wm_add_remove_state_mapped_raw(oswindow w, e_net_wm_state estate, bool bSet
 
    XClientMessageEvent xclient;
 
-   xxf_zero(xclient);
+   __zero(xclient);
 
    xclient.type            = ClientMessage;
    xclient.window          = window;
@@ -3412,7 +3412,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
    MESSAGE msg;
 
-   xxf_zero(msg);
+   __zero(msg);
 
    bool bRet = false;
 
@@ -3457,9 +3457,9 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             auto psubject = System.subject(eid);
 
-            psubject->value("return") = is_return_key((XIRawEvent*)cookie->data);
+            psubject->payload("return") = is_return_key((XIRawEvent*)cookie->data);
 
-            psubject->value("space") = is_space_key((XIRawEvent*)cookie->data);
+            psubject->payload("space") = is_space_key((XIRawEvent*)cookie->data);
 
             ::promise::context context;
 
@@ -4177,11 +4177,11 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                if(xim)
                {
 
-                  msg.hwnd->m_pimpl->value("xim") = (iptr) xim;
+                  msg.hwnd->m_pimpl->payload("xim") = (iptr) xim;
 
                   XIMStyles * pximstyles = nullptr;
 
-                  xxf_zero_pointer(pximstyles);
+                  __zero(pximstyles);
 
                   XGetIMValues (xim, XNQueryInputStyle, &pximstyles, NULL, NULL);
 
@@ -4213,7 +4213,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                      if(best_style != 0)
                      {
 
-                        msg.hwnd->m_pimpl->set("xim_flag", msg.hwnd->m_pimpl->value("xim_flag").i32() | 2);
+                        msg.hwnd->m_pimpl->set("xim_flag", msg.hwnd->m_pimpl->payload("xim_flag").i32() | 2);
 
                      }
 
@@ -5377,10 +5377,10 @@ void x11_store_name(oswindow oswindow, const char * pszName)
 //
 //   auto point = rect.top_left();
 //
-//   millis tickLastMoveDiff = pinteraction->value("tickLastMoveDiff").i64();
-//   millis tickLastSizeDiff = pinteraction->value("tickLastSizeDiff").i64();
-//   bool bMoveDiff = pinteraction->value("bMoveDiff").get_bool();
-//   bool bSizeDiff = pinteraction->value("bsizeDiff").get_bool();
+//   millis tickLastMoveDiff = pinteraction->payload("tickLastMoveDiff").i64();
+//   millis tickLastSizeDiff = pinteraction->payload("tickLastSizeDiff").i64();
+//   bool bMoveDiff = pinteraction->payload("bMoveDiff").get_bool();
+//   bool bSizeDiff = pinteraction->payload("bsizeDiff").get_bool();
 //
 //   if(!bMoveDiff)
 //   {
@@ -5465,10 +5465,10 @@ void x11_store_name(oswindow oswindow, const char * pszName)
 //
 //   }
 //
-//   pinteraction->value("bMoveDiff") = bMoveDiff;
-//   pinteraction->value("bsizeDiff") = bSizeDiff;
-//   pinteraction->value("tickLastMoveDiff") = __i64(tickLastMoveDiff);
-//   pinteraction->value("tickLastSizeDiff") = __i64(tickLastSizeDiff);
+//   pinteraction->payload("bMoveDiff") = bMoveDiff;
+//   pinteraction->payload("bsizeDiff") = bSizeDiff;
+//   pinteraction->payload("tickLastMoveDiff") = __i64(tickLastMoveDiff);
+//   pinteraction->payload("tickLastSizeDiff") = __i64(tickLastSizeDiff);
 //
 //}
 

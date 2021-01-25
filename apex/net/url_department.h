@@ -27,20 +27,20 @@ namespace url
       string get_object(const char *); // page?id=1
       string get_script(const char *); // page
       string get_query(const char *); // id=1
-      string set_key(const char * pszUrl, const char * pszKey, payload payload);
-      void set_key(string & strUrl, const char * pszUrl, const char * pszKey, payload payload);
+      string set_key(const char * pszUrl, const char * pszKey, ::payload payload);
+      void set_key(string & strUrl, const char * pszUrl, const char * pszKey, ::payload payload);
       void set_param(string & strUrl, const char * pszUrl, const char * pszKey, const char * strParam);
       void set_param(string & strUrl, const char * pszKey, const char * strParam);
-      string string_set(string & strUrl, const char * pszKey, payload payload);
-      string string_set_if_not_empty(string& strUrl, const char* pszKey, payload payload);
-      payload & var_set(payload & varUrl, const char * pszKey, payload payload);
-      property & property_set(property & propUrl, const char * pszKey, payload payload);
+      string string_set(string & strUrl, const char * pszKey, ::payload payload);
+      string string_set_if_not_empty(string& strUrl, const char* pszKey, ::payload payload);
+      ::payload & var_set(::payload & varUrl, const char * pszKey, ::payload payload);
+      property & property_set(property & propUrl, const char * pszKey, ::payload payload);
       string set_script(const char * pszUrl, const char * pszScript);
       string override_if_empty(const char * pszDest, const char * pszSrc, bool bOverrideQuery = false);
       string override_if_set_at_source(const char * pszDest, const char * pszSrc);
       string remove_key(const char * pszUrl, const char * pszKey);
       string string_remove(string & strUrl, const char * pszKey);
-      payload & var_remove(payload & varUrl, const char * pszKey);
+      ::payload & var_remove(::payload & varUrl, const char * pszKey);
       property & property_remove(property & propUrl, const char * pszKey);
       // Example: page?id=1
       string object_get_script(const char *); // page
@@ -49,7 +49,7 @@ namespace url
       bool is_url(const char * pszCandidate);
       
       string object(const char * pszScript, const char * pszQuery);
-      string object_set(const char * pszObject, const char * pszKey, payload payload);
+      string object_set(const char * pszObject, const char * pszKey, ::payload payload);
 
       string path(const char * psz1, const char * psz2);
       string path(const char * psz1, const char * psz2, const char * psz3);
@@ -61,14 +61,14 @@ namespace url
       string query_append(const char * pszUrl, const char * pszQuery);
       string query_remove(const char * pszQuery, string_array & straKey);
       string query_remove(const char * pszQuery, const char * pszKey);
-      string query_set(const char * pszQuery, const char * pszKey, payload payload);
+      string query_set(const char * pszQuery, const char * pszKey, ::payload payload);
       string query_set_param(const char * pszQuery, const char * pszKey, const string & strParam);
       bool query_get_param(string & strValue, const string & strUrl, const string & strKey);
       bool query_has_param(const string & strUrl, const string & strKey);
       bool query_param_has_char(const string & strUrl, const string & strKey);
 
-      payload get_var(const char * pszQuery, const char * pszKey);
-      payload query_get_var(const char * pszQuery, const char * pszKey);
+      ::payload get_var(const char * pszQuery, const char * pszKey);
+      ::payload query_get_var(const char * pszQuery, const char * pszKey);
       string get_param(const char * pszQuery, const char * pszKey);
       string query_get_param(const string & strQuery, const string & strKey);
       bool query_has_param_replace(string & strQuery, const string & strKey, const string & strValue);

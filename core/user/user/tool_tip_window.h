@@ -71,7 +71,7 @@ namespace user
       virtual ~tool_tip_window();
 
 
-      //virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
+      //virtual bool pre_create_window(::user::system * pusersystem) override;
 
 
       void RemoveAllTools();
@@ -85,7 +85,7 @@ namespace user
       bool IsTipEnabled();
       void EnableTip(bool bEnable = true);
       bool HideTip();
-      virtual bool create(::user::interaction * puserinteraction, const id & id);
+      //virtual bool create(::user::interaction * puserinteraction, const id & id);
       bool CalcRect(::draw2d::graphics_pointer & pgraphics, RECT32 * prect, const ::rect & lprectToolScreen, const char * pcsz);
 
       void ShowTip(i32 iTool, bool bForce = false);

@@ -713,9 +713,6 @@
     <ClInclude Include="node\windows\interaction_impl.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
-    <ClInclude Include="node\windows\system_interaction_impl.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
     <ClInclude Include="node\windows\user.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
@@ -766,9 +763,6 @@
     </ClInclude>
     <ClInclude Include="_defer.h">
       <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="inline\application\windows.h">
-      <Filter>Header Files\inline\application</Filter>
     </ClInclude>
     <ClInclude Include="inline\application\uwp.h">
       <Filter>Header Files\inline\application</Filter>
@@ -900,12 +894,6 @@
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\copydesk.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\create.h">
-      <Filter>Header Files\user</Filter>
-    </ClInclude>
-    <ClInclude Include="user\create_struct.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
     <ClInclude Include="user\interaction.h">
@@ -1175,9 +1163,6 @@
     <ClInclude Include="platform\shell_open.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="graphics\draw2d\_const.h">
-      <Filter>Header Files\graphics\draw2d</Filter>
-    </ClInclude>
     <ClInclude Include="os\windows\imm_client.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
@@ -1185,6 +1170,30 @@
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
     <ClInclude Include="user\style_control.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="platform\node.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\image_source.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\image_drawer.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\image_drawing.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="graphics\draw2d\color_filter.h">
+      <Filter>Header Files\graphics\draw2d</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\system_interaction.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="user\aaa_create.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\system.h">
       <Filter>Header Files\user</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1387,9 +1396,6 @@
     <ClCompile Include="node\windows\interaction_impl_message_bypass.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="node\windows\system_interaction_impl.cpp">
-      <Filter>Source Files\node\windows</Filter>
-    </ClCompile>
     <ClCompile Include="node\windows\timer.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
@@ -1460,12 +1466,6 @@
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\copydesk.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\create.cpp">
-      <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="user\create_struct.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
     <ClCompile Include="user\interaction.cpp">
@@ -1676,6 +1676,21 @@
       <Filter>Source Files\graphics\draw2d</Filter>
     </ClCompile>
     <ClCompile Include="user\style_control.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\node.cpp">
+      <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\image_drawer.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="graphics\draw2d\image_drawing.cpp">
+      <Filter>Source Files\graphics\draw2d</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\system_interaction.cpp">
+      <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="user\system.cpp">
       <Filter>Source Files\user</Filter>
     </ClCompile>
   </ItemGroup>

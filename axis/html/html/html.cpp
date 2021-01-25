@@ -672,7 +672,7 @@ namespace html
    }
 
 
-   bool html::defer_get_html(string& strHtml, ::file::path& pathHtml, ::object* pobjectContext, const ::payload& payload)
+   bool html::defer_get_html(string& strHtml, ::file::path& pathHtml, ::object* pobjectContext, const ::payload & payload)
    {
 
       bool bHtml = false;
@@ -709,7 +709,7 @@ namespace html
    }
 
 
-   edisplay html::display_name_to_id(const payload & varDisplay,e_tag e_tag)
+   edisplay html::display_name_to_id(const ::payload & varDisplay,e_tag e_tag)
    {
 
       if(varDisplay.is_empty())

@@ -29,7 +29,7 @@ namespace user
       m_idView = FONTSEL_IMPACT;
       //m_puserstyle = this;
       //m_econtroltype = e_control_type_list;
-      m_scrolldataVert.m_bScrollEnable = true;
+      m_scrolldataVertical.m_bScrollEnable = true;
       m_bEnsureVisible = false;
 
       //m_bNeedLayoutAfterExtentUpdate = false;

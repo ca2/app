@@ -34,7 +34,7 @@
 //
 //   virtual ::e_status operator()() override;
 //
-//   virtual void operator()(const payload& payload) override;
+//   virtual void operator()(const ::payload & payload) override;
 //
 //
 //};

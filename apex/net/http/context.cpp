@@ -19,7 +19,7 @@ namespace http
 
       m_setHttp["max_http_post"] = 5 * 1024 * 1024; // 5MB;
 
-      value("dw")= ::millis::now();
+      payload("dw")= ::millis::now();
 
       m_pmutexPac = nullptr;
       m_pmutexProxy = nullptr;
@@ -129,7 +129,7 @@ namespace http
    }
 
 
-   payload context::get(const char * pszUrl, property_set & set)
+   ::payload context::get(const char * pszUrl, property_set & set)
    {
 
       set["get_response"] = ""; // create get_response field
@@ -162,7 +162,7 @@ namespace http
    }
 
 
-   bool context::is_file_or_dir(const char * pszUrl, payload * pvarQuery, ::file::enum_type * petype, property_set & set)
+   bool context::is_file_or_dir(const char * pszUrl, ::payload * pvarQuery, ::file::enum_type * petype, property_set & set)
    {
 
       string strUrl(pszUrl);
@@ -302,7 +302,7 @@ namespace http
    }
 
 
-   //payload context::length(const char * pszUrl, property_set & set)
+   //::payload context::length(const char * pszUrl, property_set & set)
    //{
 
    //   return length(pszUrl, nullptr, set);
@@ -310,7 +310,7 @@ namespace http
    //}
 
 
-   payload context::length(const char * pszUrl, payload * pvarQuery, property_set & set)
+   ::payload context::length(const char * pszUrl, ::payload * pvarQuery, property_set & set)
    {
 
       string strUrl(pszUrl);
@@ -351,7 +351,7 @@ namespace http
 
       }
 
-      payload len = length(strUrl, process_set(set, pszUrl));
+      ::payload len = length(strUrl, process_set(set, pszUrl));
 
       if (len.is_empty())
       {
@@ -381,7 +381,7 @@ namespace http
    //}
 
 
-   //bool context::download(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszUrl, payload varFile, property_set & set)
+   //bool context::download(::sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszUrl, ::payload varFile, property_set & set)
    //{
 
    //   return download(handler, psession, pszUrl, varFile, process_set(set, pszUrl));
@@ -389,7 +389,7 @@ namespace http
    //}
 
 
- /*  bool context::download(const char * pszUrl, payload varFile, property_set & set)
+ /*  bool context::download(const char * pszUrl, ::payload varFile, property_set & set)
    {
       return download(pszUrl, varFile, process_set(set, pszUrl));
    }*/
@@ -647,7 +647,7 @@ namespace http
 
          ppac->m_strUrl = pszUrl;
 
-         payload varFile;
+         ::payload varFile;
 
          varFile["url"] = ppac->m_strUrl;
          varFile["disable_ca2_sessid"] = true;
@@ -1435,7 +1435,7 @@ namespace http
 
          TRACE("opening preparation context::request time(%d) = " __prtick, __pr(tickBegA.elapsed()));
 
-         tick1 = value("dw").millis();
+         tick1 = payload("dw").millis();
 
          tick2.Now();
 
@@ -1706,7 +1706,7 @@ namespace http
 
       auto ptask = ::get_task();
 
-      __keep(ptask->value("work_url"), pszUrl);
+      __keep(ptask->payload("work_url"), pszUrl);
 
       i64 iHttpGetSerial = ++System.sockets().m_lHttpGetSerial;
 
@@ -2551,7 +2551,7 @@ namespace http
    }
 
 
-   bool context::download(sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszRequest, payload varFile, property_set & set)
+   bool context::download(sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszRequest, ::payload varFile, property_set & set)
    {
 
       file_pointer spfile = Context.file().get_file(varFile,
@@ -2568,7 +2568,7 @@ namespace http
    }
 
 
-   bool context::download(const char * pszUrl, payload varFile, property_set & set)
+   bool context::download(const char * pszUrl, ::payload varFile, property_set & set)
    {
 
       ::sockets::socket_handler handler(get_context_object());
@@ -2718,7 +2718,7 @@ namespace http
    }
 
 
-   payload context::length(const char * pszUrl, ::property_set & set)
+   ::payload context::length(const char * pszUrl, ::property_set & set)
    {
 
       ::sockets::socket_handler handler(get_context_object());

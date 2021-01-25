@@ -273,9 +273,6 @@
     <ClInclude Include="math\calculator\token.h">
       <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
-    <ClInclude Include="math\calculator\value.h">
-      <Filter>Header Files\math\calculator</Filter>
-    </ClInclude>
     <ClInclude Include="math\kissfft\_.h">
       <Filter>Header Files\math\kissfft</Filter>
     </ClInclude>
@@ -590,6 +587,9 @@
     </ClInclude>
     <ClInclude Include="net\netserver\_netserver.h">
       <Filter>Header Files\net\netserver</Filter>
+    </ClInclude>
+    <ClInclude Include="math\calculator\result.h">
+      <Filter>Header Files\math\calculator</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

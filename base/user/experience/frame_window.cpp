@@ -658,11 +658,11 @@ namespace experience
 
          TRACE("frame_window::on_control_event btn_clkd=%s", str.c_str());
 
-         e_button ebutton = m_pframe->get_control_box()->get_control_box_button_type(id);
+         auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(id);
 
          switch (ebutton)
          {
-         case ::experience::button_close:
+         case e_button_close:
 
             TRACE("button_clicked : button_close");
 
@@ -674,7 +674,7 @@ namespace experience
 
             return;
 
-         case ::experience::button_minimize:
+         case e_button_minimize:
 
             TRACE("button_clicked : button_minimize");
 
@@ -686,7 +686,7 @@ namespace experience
 
             return;
 
-         case ::experience::button_maximize:
+         case e_button_maximize:
 
             TRACE("button_clicked : button_maximize");
 
@@ -704,7 +704,7 @@ namespace experience
 
             return;
 
-         case ::experience::button_restore:
+         case e_button_restore:
 
             TRACE("button_clicked : button_restore");
 
@@ -714,7 +714,7 @@ namespace experience
 
             return;
 
-         case ::experience::button_up:
+         case e_button_up:
 
             TRACE("button_clicked : button_up");
 
@@ -726,7 +726,7 @@ namespace experience
 
             return;
 
-         case ::experience::button_down:
+         case e_button_down:
 
             TRACE("button_clicked : button_down");
 
@@ -738,7 +738,7 @@ namespace experience
 
             return;
 
-         case ::experience::button_transparent_frame:
+         case e_button_transparent_frame:
 
             TRACE("button_clicked : button_transparent_frame");
 
@@ -758,7 +758,7 @@ namespace experience
 
             return;
 
-         case ::experience::button_notify_icon:
+         case e_button_notify_icon:
 
             TRACE("button_clicked : button_notify_icon");
 
@@ -787,11 +787,11 @@ namespace experience
       if (pcommand->m_id == ::e_message_system_command && m_pframe != nullptr)
       {
 
-         ::experience::e_button ebutton = m_pframe->get_control_box()->get_control_box_button_type(pcommand->m_id);
+         auto ebutton = m_pframe->get_control_box()->get_control_box_button_type(pcommand->m_id);
 
          switch (ebutton)
          {
-         case ::experience::button_close:
+         case e_button_close:
 
             post_message(e_message_close);
 
@@ -801,7 +801,7 @@ namespace experience
 
             return;
 
-         case ::experience::button_minimize:
+         case e_button_minimize:
 
             display(e_display_iconic, e_activation_no_activate);
 
@@ -811,7 +811,7 @@ namespace experience
 
             return;
 
-         case ::experience::button_maximize:
+         case e_button_maximize:
 
             display(e_display_zoomed);
 
@@ -821,7 +821,7 @@ namespace experience
 
             return;
 
-         case ::experience::button_restore:
+         case e_button_restore:
 
             frame_experience_restore();
 
@@ -831,7 +831,7 @@ namespace experience
 
             return;
 
-         case ::experience::button_up:
+         case e_button_up:
 
             display(e_display_up);
 
@@ -841,7 +841,7 @@ namespace experience
 
             return;
 
-         case ::experience::button_down:
+         case e_button_down:
 
             display(e_display_down);
 
@@ -851,7 +851,7 @@ namespace experience
 
             return;
 
-         case ::experience::button_transparent_frame:
+         case e_button_transparent_frame:
 
             layout().toggle_appearance(e_appearance_transparent_frame);
 
@@ -865,7 +865,7 @@ namespace experience
 
             return;
 
-         case ::experience::button_dock:
+         case e_button_dock:
 
             pcommand->m_bRet = false;
 
@@ -1266,12 +1266,12 @@ namespace experience
       ::user::frame_window::on_visual_applied();
 
 
-      if (layout().is_docking())
-      {
+      //if (layout().is_docking())
+      //{
 
-         dock_manager()->defer_cursor_pos();
+      //   dock_manager()->defer_cursor_pos();
 
-      }
+      //}
 
    }
 
@@ -1520,22 +1520,40 @@ namespace experience
 
       m_bEnableFrameExperience = bEnable;
 
-      if (m_pframe != nullptr)
-      {
-
-         m_pframe->title_bar_layout();
-
-      }
+      set_need_layout();
 
    }
 
 
-   ::experience::button * frame_window::get_box_button(e_button ebutton)
+   button * frame_window::get_box_button(enum_button ebutton)
    {
 
-   ::exception::throw_interface_only();
+      if (!m_pframe)
+      {
 
-   return nullptr;
+         return nullptr;
+
+      }
+
+      auto pcontrolbox = m_pframe->get_control_box();
+
+      if (!pcontrolbox)
+      {
+
+         return nullptr; 
+
+      }
+
+      auto pbutton = pcontrolbox->get_button(ebutton);
+
+      if (!pbutton)
+      {
+
+         return nullptr;
+
+      }
+
+      return nullptr;
 
    }
 
@@ -1996,12 +2014,7 @@ namespace experience
 
          ::user::box::_001OnExitFullScreen();
 
-         if (m_pframe)
-         {
-
-            m_pframe->title_bar_layout();
-
-         }
+         set_need_layout();
 
       }
 

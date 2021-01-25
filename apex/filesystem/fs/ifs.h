@@ -57,7 +57,7 @@ public:
    virtual file_result get_file(const ::file::path & path, const ::file::e_open & eopen) override;
 
    virtual bool file_exists(const ::file::path & pszPath) override;
-   virtual payload file_length(const ::file::path & pszPath) override;
+   virtual ::payload file_length(const ::file::path & pszPath) override;
 
    virtual void defer_initialize();
 

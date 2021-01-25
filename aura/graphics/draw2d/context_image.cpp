@@ -42,7 +42,7 @@ context_image::~context_image()
 
 
 
-::image_result context_image::_load_image_from_file(const ::payload & varFile, const payload & varOptions)
+::image_result context_image::_load_image_from_file(const ::payload & varFile, const ::payload & varOptions)
 {
 
    return load_image(
@@ -63,7 +63,7 @@ context_image::~context_image()
 }
 
 
-::image_result context_image::get_image(const payload & varFile, bool bCache, bool bSync)
+::image_result context_image::get_image(const ::payload & varFile, bool bCache, bool bSync)
 {
 
    image_pointer pimage;
@@ -133,7 +133,7 @@ context_image::~context_image()
 }
 
 
-::image_result context_image::load_image(const payload & varFile, bool bCache, bool bSync, bool bCreateHelperMaps)
+::image_result context_image::load_image(const ::payload & varFile, bool bCache, bool bSync, bool bCreateHelperMaps)
 {
 
    image_pointer pimage;
@@ -329,7 +329,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::_get_image(image * pimage, const payload & varFile, bool bSync)
+::e_status context_image::_get_image(image * pimage, const ::payload & varFile, bool bSync)
 {
 
    return _load_image(pimage, varFile, bSync);
@@ -457,7 +457,7 @@ context_image::~context_image()
 }
 
 
-::e_status context_image::_load_thumbnail(image * pimage, const payload & varFile)
+::e_status context_image::_load_thumbnail(image * pimage, const ::payload & varFile)
 {
 
    if (!pimage->create_thumbnail(varFile))

@@ -575,7 +575,7 @@ namespace filemanager
    }
 
 
-   document * component::find_filemanager(payload varFile)
+   document * component::find_filemanager(::payload varFile)
    {
 
       __throw(todo("core"));
@@ -617,7 +617,7 @@ namespace filemanager
    }
 
 
-   document * component::open_filemanager(payload varFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
+   document * component::open_filemanager(::payload varFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
    {
 
       //document * pdocument;
@@ -672,7 +672,7 @@ namespace filemanager
    }
 
 
-   document * component::restore_filemanager(payload varFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
+   document * component::restore_filemanager(::payload varFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
    {
 
       __throw(todo("core"));
@@ -715,7 +715,7 @@ namespace filemanager
    }
 
 
-   bool component::remove_filemanager(payload varFile)
+   bool component::remove_filemanager(::payload varFile)
    {
 
       //document * pdocument = find_manager(varFile);

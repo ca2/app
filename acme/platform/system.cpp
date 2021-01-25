@@ -82,6 +82,36 @@ namespace acme
    }
 
 
+   ::e_status system::run_system()
+   {
+
+      auto estatus = create_os_node();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = os_application_system_run();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+
+
+
+
    string system::os_get_user_theme()
    {
 

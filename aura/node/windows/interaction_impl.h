@@ -182,13 +182,13 @@ namespace windows
 
 
       // for child windows, views, panes etc
-      //virtual bool create_window(::user::interaction * pinteraction, const char * pszClassName,const char * pszWindowName,u32 dwStyle,const ::rect & rect,::user::interaction * pParentWnd,id id, ::create * pcreate = nullptr) override;
+      //virtual bool create_interaction(::user::interaction * pinteraction, const char * pszClassName,const char * pszWindowName,u32 dwStyle,const ::rect & rect,::user::interaction * pParentWnd,id id, ::create * pcreate = nullptr) override;
 
 
       // advanced creation (allows access to extended styles)
-      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::interaction * puiParent, id id) override;
+      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system_struct) pusersystem, ::user::interaction * puiParent, id id) override;
 
-      virtual bool _native_create_window_ex(__pointer(::user::create_struct) pcreatestruct);
+      virtual bool native_create_host() override;
 
       virtual bool destroy_impl_only() override;
       virtual bool DestroyWindow() override;
@@ -196,7 +196,7 @@ namespace windows
       virtual void destroy_window() override;
 
       // special pre-creation and interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(::user::create_struct * pcreatestruct);
+      virtual bool pre_create_window(::user::system * pusersystem);
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
@@ -582,7 +582,7 @@ namespace windows
       //bool OnNcActivate(bool bActive);
       //void OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS* pncsp);
 
-      //bool OnNcCreate(::user::create_struct * pCreateStruct);
+      //bool OnNcCreate(::user::system_struct * pCreateStruct);
 
       //LRESULT OnNcHitTest(const ::point & point);
       //void OnNcLButtonDblClk(::u32 nHitTest, const ::point & point);

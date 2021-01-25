@@ -53,8 +53,8 @@ public:
    virtual void set_cursor_image(const image * pimage, int xHotSpot, int yHotSpot);
 
 
-   virtual ::image_result _load_image_from_file(const ::payload & varFile, const payload & varOptions);
-   virtual ::e_status _save_to_file(const ::payload & varFile, const image * pimage, const payload & varOptions);
+   virtual ::image_result _load_image_from_file(const ::payload & varFile, const ::payload & varOptions);
+   virtual ::e_status _save_to_file(const ::payload & varFile, const image * pimage, const ::payload & varOptions);
    
    virtual ::e_status _load_image(::image* pimage, __pointer(image_frame_array)& pframea, ::memory_pointer pmemory);
    

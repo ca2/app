@@ -81,9 +81,9 @@ namespace user
       };
 
 
-      bool                                m_bFocus;
-      millis                                m_millisFocusStart;
-      bool                                m_bUserPrimitiveOk;
+      bool                          m_bFocus;
+      millis                        m_millisFocusStart;
+      bool                          m_bUserPrimitiveOk;
 
 
       primitive();
@@ -98,11 +98,11 @@ namespace user
 
       virtual bool create_message_queue(const char * lpszName);
 
+
       virtual void set_config_fps(double dConfigFps);
       virtual double get_config_fps();
       virtual double get_output_fps();
 
-      //virtual bool create_native_window(::user::native_window_initialize * pinitialize);
 
       __pointer(::message::base) get_message_base(oswindow oswindow, const ::id & id, WPARAM wparam, lparam lparam) override;
 
@@ -125,19 +125,12 @@ namespace user
 #endif
       virtual strsize _009GetWindowTextLength();
 
-      //virtual pointd client_screen_top_left();
-
       virtual bool GetFocusRect(RECT32 * prect);
 
       virtual void defer_update_display();
 
-      //using ::user::primitive::get_client_rect;
-      //using ::user::primitive::get_window_rect;
-
-      //virtual bool _get_client_size(SIZE32 * psize) override;
-      //virtual bool _get_window_size(SIZE32 * psize) override;
-
-      //virtual bool SetPlacement(const ::rect & rect,::u32 nFlags = SWP_SHOWWINDOW) override;
+      
+      virtual enum_control_type get_control_type() const;
 
 
       virtual bool add_prodevian(::context_object * pobject);
@@ -145,30 +138,9 @@ namespace user
 
       virtual bool display(::e_display edisplay = e_display_default, ::e_activation eactivation = e_activation_default);
 
-
-      //virtual bool defer_set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags); // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(RECT32 * prect);
-
-      //virtual i32 SetWindowRgn(HRGN hRgn,bool bRedraw);
-      //virtual i32 GetWindowRgn(HRGN hRgn);
-
+      
       virtual string get_title();
 
-      //virtual i32 sync_message_box(payload payload);
-
-      //template < typename PRED >
-      //void pred_message_box(PRED pred, payload payload)
-      //{
-
-      //   fork([=]()
-      //      {
-
-      //         pred(sync_message_box(payload));
-
-      //      });
-
-      //}
-
-      //virtual ::e_status message_box(const payload & payload) override;
 
       virtual void install_message_routing(::channel * pchannel) override;
 
@@ -229,8 +201,6 @@ namespace user
       virtual ::user::interaction * under_sibling(::user::interaction * pinteraction);
 
 
-
-
       virtual void mouse_hover_add(::user::interaction * pinterface);
       virtual bool mouse_hover_remove(::user::interaction * pinterface);
 
@@ -240,12 +210,11 @@ namespace user
       virtual void track_mouse_hover();
       virtual void track_mouse_leave();
 
-      // dialog support
       virtual void update_dialog_controls(channel * ptarget);
       virtual void CenterWindow(::user::interaction * pAlternateOwner = nullptr);
-      virtual id   run_modal_loop(::user::interaction * pinteraction, u32 dwFlags = 0);
-      virtual id   RunModalLoop(u32 dwFlags = 0);
-      virtual id   _001RunModalLoop(u32 dwFlags = 0);
+      virtual id run_modal_loop(::user::interaction * pinteraction, u32 dwFlags = 0);
+      virtual id RunModalLoop(u32 dwFlags = 0);
+      virtual id _001RunModalLoop(u32 dwFlags = 0);
       virtual bool ContinueModal();
       virtual void EndModalLoop(id nResult);
 
@@ -309,17 +278,23 @@ namespace user
       //virtual bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 
 
-      virtual bool pre_create_window(::user::create_struct * pcreatestruct);
+      virtual bool pre_create_window(::user::system * pusersystem);
 
 
       virtual bool subclass_window(oswindow posdata);
       virtual oswindow unsubclass_window();
 
+      virtual string get_class_name();
 
-      virtual bool create_window(::user::interaction * pparent, const ::id & id);
-      virtual bool create_window(const char * pszClassName, const char * pszWindowName,u32 uStyle, ::user::interaction * puiParent, const ::id & id, ::create * pcreate = nullptr);
+      
+      virtual bool create_interaction(::user::interaction * puserinteractionParent, const ::id & id = nullptr);
 
-      virtual bool create_window_ex(__pointer(::user::create_struct) pcs, ::user::interaction * puiParent, const ::id & id);
+
+      virtual bool create_host();
+      virtual bool create_child(::user::interaction * puserinteractionParent);
+      virtual bool create_control(::user::interaction * puserinteractionParent, const ::id & id);
+
+      //virtual bool create_window_ex(__pointer(::user::system_struct) pcs, ::user::interaction * puiParent, const ::id & id);
       virtual void CalcWindowRect(RECT32 * pClientRect,::u32 nAdjustType = adjustBorder);
 
 
@@ -612,8 +587,8 @@ namespace user
 
       //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point & point = nullptr);
       //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const char * pszMatter,i32 iFlags, const ::point & point);
-      //virtual __pointer(::user::menu) track_popup_xml_menu(const payload & varXml, i32 iFlags, const ::point & pointScreen = nullptr, const ::size& sizeMinimum = size(0, 0));
-      //virtual __pointer(::user::menu) track_popup_xml_menu_file(payload varFile, i32 iFlags, const ::point & point = nullptr, const ::size & sizeMinimum = size(0, 0));
+      //virtual __pointer(::user::menu) track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point & pointScreen = nullptr, const ::size& sizeMinimum = size(0, 0));
+      //virtual __pointer(::user::menu) track_popup_xml_menu_file(::payload varFile, i32 iFlags, const ::point & point = nullptr, const ::size & sizeMinimum = size(0, 0));
 
       //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags,::message::message * pmessage);
       //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const char * pszMatter,i32 iFlags,::message::message * pmessage);

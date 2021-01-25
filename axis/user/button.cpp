@@ -280,12 +280,12 @@ namespace user
    }
 
 
-   bool button::create_control(::user::interaction * pinteractionParent, const ::id & id)
-   {
+   //bool button::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
+   //{
 
-      return interaction::create_control(pinteractionParent, id);
+   //   return interaction::create_interaction(pinteractionParent, id);
 
-   }
+   //}
 
 
    void button::_002OnDraw(::draw2d::graphics_pointer & pgraphics)

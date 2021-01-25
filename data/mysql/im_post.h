@@ -16,19 +16,19 @@ public:
    /*class CLASS_DECL_AURA record
    {
    public:
-      payload sender;
-      payload recipient;
-      payload sent;
-      payload send_time;
-      payload index;
-      payload message;
+      ::payload sender;
+      ::payload recipient;
+      ::payload sent;
+      ::payload send_time;
+      ::payload index;
+      ::payload message;
    };*/
 
 
-   bool write(payload record);
-   payload get_since(payload record);
-   payload last(payload user1, payload user2);
-   payload current();
+   bool write(::payload record);
+   ::payload get_since(::payload record);
+   ::payload last(::payload user1, ::payload user2);
+   ::payload current();
 
 
 };

@@ -105,10 +105,10 @@
 //
 
 
-inline payload & thread_value(const ::id & id)
+inline ::payload & thread_property(const ::id & id)
 {
 
-   return ::get_task()->value(id);
+   return ::get_task()->payload(id);
 
 }
 
@@ -136,7 +136,7 @@ inline bool thread_is_set(const ::id & id)
 
    }
 
-   return ::get_task()->value(id);
+   return ::get_task()->payload(id);
 
 }
 

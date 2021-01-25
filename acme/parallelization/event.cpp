@@ -145,7 +145,7 @@ event::event(char * sz, bool bInitiallyOwn, bool bManualReset, const char * pstr
       if(pstrName != nullptr && *pstrName != '\0')
       {
 
-         string strPath = "/payload/tmp/ca2/ftok/event/" + string(pstrName);
+         string strPath = "/::payload/tmp/ca2/ftok/event/" + string(pstrName);
 
          m_sem = semget(ftok(strPath, 0), 1, 0666 | IPC_CREAT);
 

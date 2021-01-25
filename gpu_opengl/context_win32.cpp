@@ -101,7 +101,7 @@ namespace opengl
 
       }
 
-      xxf_zero(pixformat);
+      __zero(pixformat);
       pixformat.nSize = sizeof(pixformat);
       pixformat.nVersion = 1;
       pixformat.dwFlags = PFD_DRAW_TO_WINDOW | PFD_SUPPORT_OPENGL | PFD_DOUBLEBUFFER;

@@ -443,12 +443,12 @@ namespace account
 
       }
 
-      if(!m_plabelUser->create_window(this,"label_user")
-            || !m_peditUser->create_window(this,"edit_user")
-            || !m_plabelPassword->create_window(this,"label_password")
-            || !m_ppassword->create_window(this,"password")
-            || !m_ptap->create_window(this,"submit")
-            || !m_ptapClose->create_window(this,"escape"))
+      if(!m_plabelUser->create_control(this,"label_user")
+            || !m_peditUser->create_control(this,"edit_user")
+            || !m_plabelPassword->create_control(this,"label_password")
+            || !m_ppassword->create_control(this,"password")
+            || !m_ptap->create_control(this,"submit")
+            || !m_ptapClose->create_control(this,"escape"))
       {
 
          pcreate->m_lresult = -1;

@@ -783,12 +783,12 @@ namespace user
 
 
 
-   /*bool mesh::pre_create_window(::user::create_struct * pcreatestruct)
+   /*bool mesh::pre_create_window(::user::system * pusersystem)
    {
 
-   //pcreatestruct->m_createstruct.style |= LVS_NOSCROLL;
+   //pusersystem->m_createstruct.style |= LVS_NOSCROLL;
 
-   return window::pre_create_window(pcreatestruct);
+   return window::pre_create_window(pusersystem);
    }*/
 
    /*void mesh::OnSize(::u32 nType, index cx, index cy)

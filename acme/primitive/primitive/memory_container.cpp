@@ -21,7 +21,7 @@ memory_container ::memory_container(void * pdata, memsize size)
 }
 
 
-memory_container::memory_container(payload & payload)
+memory_container::memory_container(::payload & payload)
 {
 
    //m_pvppa = nullptr;

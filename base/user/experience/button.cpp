@@ -36,7 +36,7 @@ namespace experience
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      if (m_ebutton == button_dock)
+      if (m_ebutton == e_button_dock)
       {
 
          auto item = hit_test(pmouse);

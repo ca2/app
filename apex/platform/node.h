@@ -12,7 +12,7 @@ namespace apex
 {
 
 
-   class CLASS_DECL_ACME node :
+   class CLASS_DECL_APEX node :
       virtual public ::acme::node
    {
    public:

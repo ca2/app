@@ -2586,7 +2586,7 @@ string_base < TYPE_CHAR > string_base < TYPE_CHAR >::left_trimmed(const CHAR_TYP
 
 }
 
-//CLASS_DECL_ACME void __throw_what_exclamation_exclamation(const char * payload);
+//CLASS_DECL_ACME void __throw_what_exclamation_exclamation(const char * ::payload);
 
 
 // Convert the string_base < TYPE_CHAR > to the OEM character set
@@ -2924,7 +2924,7 @@ BSTR string_base < TYPE_CHAR >::SetSysString(BSTR * pbstr) const
 
 #endif
 
-// set the string_base < TYPE_CHAR > to the value of environment payload 'pszVar'
+// set the string_base < TYPE_CHAR > to the value of environment ::payload 'pszVar'
 template < typename TYPE_CHAR >
 bool string_base < TYPE_CHAR >::get_environment_variable(const CHAR_TYPE* pszVar)
 {

@@ -22,7 +22,7 @@ public:
    virtual void form_document_set_callback(form_callback * pcallback);
 
 
-   virtual bool open_document(const payload & varFile) override;
+   virtual bool open_document(const ::payload & varFile) override;
 
 
 };

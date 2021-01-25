@@ -42,7 +42,7 @@ namespace aura
 //   }
 
 
-//   ::aura::document * application::_001opendocumentfile(payload varfile)
+//   ::aura::document * application::_001opendocumentfile(::payload varfile)
 //   {
 //
 //      return m_pimpl->_001opendocumentfile(varfile);
@@ -418,11 +418,11 @@ namespace aura
 //         static std::collection::map<string, char *> vmap;
 //         if (vmap.find(payload) != vmap.end())
 //         {
-//            delete[] vmap[payload];
+//            delete[] vmap[::payload];
 //         }
-//         vmap[payload] = new char[payload.get_length() + 1 + value.get_length() + 1];
-//         sprintf(vmap[payload], "%s=%s", payload, value);
-//         putenv( vmap[payload] );
+//         vmap[::payload] = new char[payload.get_length() + 1 + value.get_length() + 1];
+//         sprintf(vmap[::payload], "%s=%s", payload, value);
+//         putenv( vmap[::payload] );
 //      }
 //#elif defined _WIN32
 //      {

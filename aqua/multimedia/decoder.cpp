@@ -87,7 +87,7 @@ namespace multimedia
    void decoder::FillTitleInfo(string_array & wstraFormat, string2a & wstr2aTitle)
    {
 
-      payload strAttr;
+      ::payload strAttr;
 
       string str;
       string wstrAttr;
@@ -221,7 +221,7 @@ namespace multimedia
    }
 
 
-   bool decoder::multimedia_get_attribute(::e_id eattribute, payload & payload)
+   bool decoder::multimedia_get_attribute(::e_id eattribute, ::payload & payload)
    {
 
       sync_lock lock(mutex());
@@ -229,31 +229,31 @@ namespace multimedia
       if (eattribute == id_title)
       {
 
-         payload = value("name");
+         payload = this->payload("name");
 
       }
       else if (eattribute == id_album)
       {
 
-         payload = value("album");
+         payload = this->payload("album");
 
       }
       else if (eattribute == id_artist)
       {
 
-         payload = value("artist");
+         payload = this->payload("artist");
 
       }
       else if (eattribute == id_year)
       {
 
-         payload = value("year");
+         payload = this->payload("year");
 
       }
       else if (eattribute == id_composer)
       {
 
-         payload = value("composer");
+         payload = this->payload("composer");
 
       }
       else

@@ -75,7 +75,7 @@ namespace html
 
             m_pedit->m_bSendEnterKey = true;
 
-            m_pedit->create_window(pdata->m_pcoredata->m_pform, 1004);
+            m_pedit->create_child(pdata->m_pcoredata->m_pform);
 
             m_pedit->m_pform = pdata->m_pcoredata->m_pform;
 

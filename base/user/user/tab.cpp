@@ -2462,9 +2462,9 @@ namespace user
       if(get_data()->m_matchanyRestore.m_itema.get_count() > 0)
       {
 
-         payload payload;
+         ::payload payload;
 
-         //if(data_get("restore_tab",payload))
+         //if(data_get("restore_tab",::payload))
          //{
 
          //   c = open_tabs(payload.vara());
@@ -3288,7 +3288,7 @@ namespace user
       if (psubject->id() == id_get_topic_view_id)
       {
 
-         psubject->value(id_id) = get_cur_tab_id();
+         psubject->payload(id_id) = get_cur_tab_id();
 
          psubject->m_bRet = true;
 
@@ -3296,7 +3296,7 @@ namespace user
       else if (psubject->id() == id_set_topic_view_by_id)
       {
 
-         set_cur_tab_by_id(psubject->value(id_id));
+         set_cur_tab_by_id(psubject->payload(id_id));
 
          psubject->m_bRet = true;
 
@@ -3317,7 +3317,7 @@ namespace user
                if (pchild)
                {
 
-                  string strTitle(pchild->value("place_child_title"));
+                  string strTitle(pchild->payload("place_child_title"));
 
                   ppane->set_title(strTitle);
 
@@ -3749,12 +3749,12 @@ namespace user
    }
 
 
-   bool tab::matches_restorable_tab(const payload & varId, ::user::place_holder * pholder)
+   bool tab::matches_restorable_tab(const ::payload & varId, ::user::place_holder * pholder)
    {
 
       ::match::any & matchany = get_data()->m_matchanyRestore;
 
-      if (pholder != nullptr && (bool) pholder->value("void_restore"))
+      if (pholder != nullptr && (bool) pholder->payload("void_restore"))
       {
 
          return false;
@@ -3782,7 +3782,7 @@ namespace user
    void tab::get_restore_tab(var_array & vara)
    {
 
-      payload varId;
+      ::payload varId;
 
       tab_pane_array & panea = get_data()->m_panea;
 
@@ -3810,7 +3810,7 @@ namespace user
 
       if(matchany.is_there_no_item())
          return false;
-      payload varId;
+      ::payload varId;
       tab_pane_array & panea = get_data()->m_panea;
       for(i32 i = 0; i < panea.get_count(); i++)
       {

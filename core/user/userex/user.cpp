@@ -372,7 +372,7 @@ namespace core
       //string strLicense = Application.get_license_id();
 
 
-      //payload & varTopicQuey = System.m_varTopicQuery;
+      //::payload & varTopicQuey = System.m_varTopicQuery;
 
 //      bool bHasInstall = System.has_property("install");
 //
@@ -499,7 +499,7 @@ namespace core
 
 
 
-   __pointer(::form_document) user::create_form(::object * pobject, ::type type, __pointer(::user::interaction) pwndParent, payload payload, ::payload varArgs)
+   __pointer(::form_document) user::create_form(::object * pobject, ::type type, __pointer(::user::interaction) pwndParent, ::payload payload, ::payload varArgs)
    {
 
       if (!type)
@@ -734,13 +734,13 @@ namespace core
 
       auto pbox = __object(pobjectContext)->__create_new < ::userex::message_box >();
 
-      pbox->value("message") = pszMessage;
+      pbox->payload("message") = pszMessage;
 
       pbox->add_process(DIALOG_RESULT_PROCESS, process);
 
       string strTitle = App(__object(pobjectContext)).get_title();
 
-      pbox->value("application_name") = strTitle;
+      pbox->payload("application_name") = strTitle;
 
       pbox->m_millisDelay = durationTimeout;
 
@@ -980,7 +980,7 @@ namespace core
    }
 
 
-   __pointer(::form_document) user::create_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, payload payload, ::payload varArgs)
+   __pointer(::form_document) user::create_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload, ::payload varArgs)
    {
 
       if (m_ptemplateForm == nullptr)
@@ -1043,7 +1043,7 @@ namespace core
    }
 
 
-   __pointer(::form_document) user::create_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, payload payload, ::payload varArgs)
+   __pointer(::form_document) user::create_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload, ::payload varArgs)
    {
 
       auto ptemplateForm = m_ptemplateForm;
@@ -1127,7 +1127,7 @@ namespace core
    }
 
 
-   __pointer(::form_document) user::create_child_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, payload payload, ::payload varArgs)
+   __pointer(::form_document) user::create_child_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload, ::payload varArgs)
    {
 
       if (m_ptemplateChildForm == nullptr)
@@ -1218,7 +1218,7 @@ namespace core
    }
 
 
-   __pointer(::form_document) user::create_child_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, payload payload, ::payload varArgs)
+   __pointer(::form_document) user::create_child_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload, ::payload varArgs)
    {
 
       ::apex::application * papp = ::get_context_application(pobject);
@@ -1300,7 +1300,7 @@ namespace core
       return file_extension_dup(strFilePath).contains_ci("htm");
    }
 
-   __pointer(::form_document) user::create_child_form(::object * pobject, ::type type, __pointer(::user::interaction) pwndParent, payload payload, ::payload varArgs)
+   __pointer(::form_document) user::create_child_form(::object * pobject, ::type type, __pointer(::user::interaction) pwndParent, ::payload payload, ::payload varArgs)
    {
 
       if (!type)
@@ -1961,7 +1961,7 @@ namespace core
    //}
 
 
-   //i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, payload payload, ::duration durationTimeOut, ::u32 fuStyle)
+   //i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, ::payload payload, ::duration durationTimeOut, ::u32 fuStyle)
    //{
 
    //   if (psession->user() == nullptr)

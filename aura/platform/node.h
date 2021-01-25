@@ -23,7 +23,7 @@ namespace aura
 {
 
 
-   class CLASS_DECL_ACME node :
+   class CLASS_DECL_AURA node :
       virtual public ::apex::node
    {
    public:

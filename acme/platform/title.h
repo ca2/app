@@ -12,7 +12,7 @@ public:
 
 
 
-inline payload operator + (payload payload, const ::title& title)
+inline ::payload operator + (::payload payload, const ::title& title)
 {
 
    if (payload.get_type() != e_type_propset)
@@ -24,16 +24,16 @@ inline payload operator + (payload payload, const ::title& title)
 
    payload["title"] = (const ::string&) title;
 
-   return payload;
+   return ::payload;
 
 }
 
 
 
-inline payload operator + (const char* psz, const ::title& title)
+inline ::payload operator + (const char* psz, const ::title& title)
 {
 
-   return operator +((::payload)psz, title);
+   return operator +((payload)psz, title);
 
 }
 

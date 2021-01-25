@@ -129,7 +129,7 @@ namespace userex
 
                psubject->m_puserinteraction = this;
 
-               psubject->value(id_enter_key_pressed) = bEnterKeyPressed;
+               psubject->payload(id_enter_key_pressed) = bEnterKeyPressed;
 
                pdocument->update_all_views(psubject);
 

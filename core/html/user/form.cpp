@@ -478,7 +478,7 @@ void html_form::set_need_load_form_data()
 }
 
 
-::e_status html_form::open_document(const payload & varFile)
+::e_status html_form::open_document(const ::payload & varFile)
 {
 
    auto path = varFile.get_file_path();
@@ -790,7 +790,7 @@ void html_form_view::on_subject(::promise::subject * psubject, ::promise::contex
 
          defer_html_layout();
 
-         on_document_complete(psubject->value(id_url));
+         on_document_complete(psubject->payload(id_url));
 
          get_parent_frame()->set_active_view(this);
 
@@ -806,17 +806,17 @@ void html_form_view::on_subject(::promise::subject * psubject, ::promise::contex
       if (psubject->id() == id_browse)
       {
 
-         if (!psubject->value(id_form).is_empty())
+         if (!psubject->payload(id_form).is_empty())
          {
 
             ::file::path matter;
 
-            matter = Context.dir().matter(psubject->value(id_form));
+            matter = Context.dir().matter(psubject->payload(id_form));
 
             if (get_document()->on_open_document(matter))
             {
 
-               m_strPath = psubject->value(id_form);
+               m_strPath = psubject->payload(id_form);
 
             }
 
@@ -824,7 +824,7 @@ void html_form_view::on_subject(::promise::subject * psubject, ::promise::contex
          else if (psubject->id() == id_get_form_view)
          {
 
-            psubject->value(id_form) = this;
+            psubject->payload(id_form) = this;
 
          }
 
@@ -833,7 +833,7 @@ void html_form_view::on_subject(::promise::subject * psubject, ::promise::contex
       if (m_pcallback != nullptr)
       {
 
-         psubject->value(id_form) = this;
+         psubject->payload(id_form) = this;
 
          m_pcallback->process(psubject);
 
@@ -871,7 +871,7 @@ void html_view::on_subject(::promise::subject * psubject, ::promise::context * p
 
          }
 
-         on_document_complete(psubject->value(id_url));
+         on_document_complete(psubject->payload(id_url));
 
          set_need_layout();
 

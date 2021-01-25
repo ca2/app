@@ -1324,7 +1324,7 @@ bool graphics::round_rect(const ::rectd & rect, double dRadius)
 }
 
 
-bool graphics::_draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::pointd & pointSrc)
+bool graphics::_draw_raw(const ::rectd & rectDst, ::image * pimage, const ::image_drawing_options & imagedrawingoptions, const ::pointd & pointSrc)
 {
 
    sync_lock ml(cairo_mutex());
@@ -1334,7 +1334,16 @@ bool graphics::_draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphics
    try
    {
 
-      if (pgraphicsSrc == nullptr)
+      if (::is_null(pimage))
+      {
+
+         return false;
+
+      }
+
+      auto pgraphicsSrc = pimage->get_graphics();
+
+      if (pgraphicsSrc->get_os_data() == nullptr)
       {
 
          return false;
@@ -1342,13 +1351,6 @@ bool graphics::_draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphics
       }
 
       if (rectDst.width() <= 0 || rectDst.height() <= 0)
-      {
-
-         return false;
-
-      }
-
-      if(pgraphicsSrc->get_os_data() == nullptr)
       {
 
          return false;
@@ -1404,16 +1406,40 @@ bool graphics::_draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphics
 
       }
 
+      auto dOpacity = imagedrawingoptions.opacity();
+
       if (m_pregion.is_set() && !m_pregion.cast < region >()->is_simple_positive_region())
       {
 
-         m_pregion.cast < region >()->mask(m_pdc);
+         if (dOpacity < 1.0)
+         {
+
+            m_pregion.cast < region >()->mask_paint_with_alpha(m_pdc, dOpacity);
+
+         }
+         else
+         {
+
+            m_pregion.cast < region >()->mask_paint(m_pdc);
+
+         }
 
       }
       else
       {
 
-         cairo_paint(m_pdc);
+         if (dOpacity < 1.0)
+         {
+
+            cairo_paint_with_alpha(m_pdc, dOpacity);
+
+         }
+         else
+         {
+
+            cairo_paint(m_pdc);
+
+         }
 
       }
 
@@ -1434,17 +1460,26 @@ bool graphics::_draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphics
 }
 
 
-bool graphics::_stretch_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc)
+bool graphics::_stretch_raw(const ::rectd & rectDst, ::image * pimage, const ::image_drawing_options & imagedrawingoptions, const ::rectd & rectSrc)
 {
 
     sync_lock ml(cairo_mutex());
 
     cairo_keep keep(m_pdc);
 
-    if (pgraphicsSrc == nullptr)
+    if (::is_null(pimage))
     {
 
         return false;
+
+    }
+
+    auto pgraphicsSrc = pimage->get_graphics();
+
+    if (::is_null(pgraphicsSrc))
+    {
+
+       return false;
 
     }
 
@@ -1535,19 +1570,42 @@ bool graphics::_stretch_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraph
 
     }
 
+    double dOpacity = imagedrawingoptions.opacity();
+
     if (m_pregion.is_set() && !m_pregion.cast < region >()->is_simple_positive_region())
     {
 
-        m_pregion.cast < region >()->mask(m_pdc);
+       if (dOpacity < 1.0)
+       {
+
+          m_pregion.cast < region >()->mask_paint_with_alpha(m_pdc, dOpacity);
+
+       }
+       else
+       {
+
+          m_pregion.cast < region >()->mask_paint(m_pdc);
+
+       }
 
     }
     else
     {
 
-        cairo_paint(m_pdc);
+       if (dOpacity < 1.0)
+       {
+
+          cairo_paint_with_alpha(m_pdc, dOpacity);
+
+       }
+       else
+       {
+
+          cairo_paint(m_pdc);
+
+       }
 
     }
-
     cairo_pattern_set_matrix(ppattern, &matrixOld);
 
     cairo_pattern_destroy(ppattern);
@@ -2619,120 +2677,120 @@ bool graphics::fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush)
 // double blend
 // COLOR_DEST = SRC_ALPHA * BLEND_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA * BLEND_ALPHA) * COLOR_DST
 
-// Thank you
-// Jiju George T
-// Web Developer
-// India India
-// Member
-
-bool graphics::_alpha_blend_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc, double dRate)
-{
-
-    sync_lock ml(cairo_mutex());
-
-    cairo_keep keep(m_pdc);
-
-    try
-    {
-
-        if (pgraphicsSrc == nullptr)
-        {
-
-            return false;
-
-        }
-
-        if (rectDst.area() <= 0)
-        {
-
-            return false;
-
-        }
-
-        if (pgraphicsSrc->get_os_data() == nullptr)
-        {
-
-            return false;
-
-        }
-
-        cairo_surface_t * psurface = cairo_get_target((cairo_t *)pgraphicsSrc->get_os_data());
-
-        if (psurface == nullptr)
-        {
-
-            return false;
-
-        }
-
-        cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
-
-        if (ppattern == nullptr)
-        {
-
-            return false;
-
-        }
-
-        cairo_matrix_t matrix;
-
-        cairo_matrix_t matrixOld;
-
-        cairo_translate(m_pdc, rectDst.left, rectDst.right);
-
-        cairo_pattern_get_matrix(ppattern, &matrixOld);
-
-        cairo_matrix_init_translate(&matrix, rectSrc.left, rectSrc.top);
-
-        cairo_pattern_set_matrix(ppattern, &matrix);
-
-        cairo_rectangle(m_pdc, 0, 0, rectDst.width(), rectDst.height());
-
-        cairo_clip(m_pdc);
-
-        cairo_set_source(m_pdc, ppattern);
-
-        if (m_ealphamode == ::draw2d::alpha_mode_blend)
-        {
-
-            cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
-
-        }
-        else if (m_ealphamode == ::draw2d::alpha_mode_set)
-        {
-
-            cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
-
-        }
-
-        if (m_pregion.is_set() && !m_pregion.cast < region >()->is_simple_positive_region())
-        {
-
-            m_pregion.cast < region >()->mask(m_pdc);
-
-        }
-        else
-        {
-
-            cairo_paint_with_alpha(m_pdc, dRate);
-
-        }
-
-        cairo_pattern_set_matrix(ppattern, &matrixOld);
-
-        cairo_pattern_destroy(ppattern);
-
-        return true;
-
-    }
-    catch (...)
-    {
-
-        return false;
-
-    }
-
-}
+//// Thank you
+//// Jiju George T
+//// Web Developer
+//// India India
+//// Member
+//
+//bool graphics::_alpha_blend_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc, double dRate)
+//{
+//
+//    sync_lock ml(cairo_mutex());
+//
+//    cairo_keep keep(m_pdc);
+//
+//    try
+//    {
+//
+//        if (pgraphicsSrc == nullptr)
+//        {
+//
+//            return false;
+//
+//        }
+//
+//        if (rectDst.area() <= 0)
+//        {
+//
+//            return false;
+//
+//        }
+//
+//        if (pgraphicsSrc->get_os_data() == nullptr)
+//        {
+//
+//            return false;
+//
+//        }
+//
+//        cairo_surface_t * psurface = cairo_get_target((cairo_t *)pgraphicsSrc->get_os_data());
+//
+//        if (psurface == nullptr)
+//        {
+//
+//            return false;
+//
+//        }
+//
+//        cairo_pattern_t * ppattern = cairo_pattern_create_for_surface(psurface);
+//
+//        if (ppattern == nullptr)
+//        {
+//
+//            return false;
+//
+//        }
+//
+//        cairo_matrix_t matrix;
+//
+//        cairo_matrix_t matrixOld;
+//
+//        cairo_translate(m_pdc, rectDst.left, rectDst.right);
+//
+//        cairo_pattern_get_matrix(ppattern, &matrixOld);
+//
+//        cairo_matrix_init_translate(&matrix, rectSrc.left, rectSrc.top);
+//
+//        cairo_pattern_set_matrix(ppattern, &matrix);
+//
+//        cairo_rectangle(m_pdc, 0, 0, rectDst.width(), rectDst.height());
+//
+//        cairo_clip(m_pdc);
+//
+//        cairo_set_source(m_pdc, ppattern);
+//
+//        if (m_ealphamode == ::draw2d::alpha_mode_blend)
+//        {
+//
+//            cairo_set_operator(m_pdc, CAIRO_OPERATOR_OVER);
+//
+//        }
+//        else if (m_ealphamode == ::draw2d::alpha_mode_set)
+//        {
+//
+//            cairo_set_operator(m_pdc, CAIRO_OPERATOR_SOURCE);
+//
+//        }
+//
+//        if (m_pregion.is_set() && !m_pregion.cast < region >()->is_simple_positive_region())
+//        {
+//
+//            m_pregion.cast < region >()->mask(m_pdc);
+//
+//        }
+//        else
+//        {
+//
+//            cairo_paint_with_alpha(m_pdc, dRate);
+//
+//        }
+//
+//        cairo_pattern_set_matrix(ppattern, &matrixOld);
+//
+//        cairo_pattern_destroy(ppattern);
+//
+//        return true;
+//
+//    }
+//    catch (...)
+//    {
+//
+//        return false;
+//
+//    }
+//
+//}
 
 
 //bool graphics::TransparentBlt(double xDest, double yDest, i32 nDestWidth, i32 nDestHeight, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, i32 nSrcWidth, i32 nSrcHeight, ::u32 crTransparent)
@@ -4210,7 +4268,7 @@ bool graphics::TextOutRaw(double x, double y, const block & block)
                       65535
                   );
 
-    internal_draw_text(str, rect, e_null, e_null, &cairo_show_text);
+    internal_draw_text(block, rect, e_null, e_null, &cairo_show_text);
 
     return true;
 
@@ -4872,7 +4930,7 @@ bool graphics::_fill2(::draw2d::brush* pbrush, double xOrg, double yOrg)
 
       cairo_pop_group_to_source(m_pdc);
 
-      m_pregion.cast < region >()->mask(m_pdc);
+      m_pregion.cast < region >()->mask_fill(m_pdc);
 
    }
 

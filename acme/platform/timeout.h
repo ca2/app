@@ -11,7 +11,7 @@ public:
 
 
 
-inline payload operator + (payload payload, const ::timeout& timeout)
+inline ::payload operator + (::payload payload, const ::timeout& timeout)
 {
 
    if (payload.get_type() != e_type_propset)
@@ -23,25 +23,25 @@ inline payload operator + (payload payload, const ::timeout& timeout)
 
    payload["timeout"] = (const ::duration&) timeout;
 
-   return payload;
+   return ::payload;
 
 }
 
 
-inline payload operator + (const char* psz, const ::timeout& timeout)
+inline ::payload operator + (const char* psz, const ::timeout& timeout)
 {
 
-   return payload(psz) + timeout;
+   return ::payload(psz) + timeout;
 
 }
 
 
 
 template < typename TYPE_CHAR >
-inline payload operator + (const string_base < TYPE_CHAR >& str, const ::timeout& timeout)
+inline ::payload operator + (const string_base < TYPE_CHAR >& str, const ::timeout& timeout)
 {
 
-   return payload(str) + timeout;
+   return ::payload(str) + timeout;
 
 }
 

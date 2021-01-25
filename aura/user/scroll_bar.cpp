@@ -67,14 +67,14 @@ namespace user
    }
 
 
-   bool scroll_bar::create_window(e_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::id id)
-   {
+   //bool scroll_bar::create_interaction(e_orientation eorientation, ::user::interaction * puiParent)
+   //{
 
-      m_eorientation = eorientation;
+   //   m_eorientation = eorientation;
 
-      return ::user::interaction::create_window(nullptr, nullptr, uStyle, puiParent, id);
+   //   return create_interaction(puiParent);
 
-   }
+   //}
 
 
    point scroll_bar::get_ascendant_viewport_offset() const

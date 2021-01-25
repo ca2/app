@@ -340,7 +340,7 @@ namespace helloworld
 
 
                get_document()->on_open_document(m_strImage);
-               //   payload varFile;
+               //   ::payload varFile;
                //
                //   varFile["url"] = strImage;
                //

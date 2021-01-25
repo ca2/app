@@ -25,8 +25,6 @@ namespace draw2d
       virtual ~cursor();
 
 
-      //bool to(::draw2d::graphics_pointer & pgraphics, const ::point & point);
-
       bool initialize_system_default();
 
       virtual void finalize() override;
@@ -39,8 +37,13 @@ namespace draw2d
 
       inline ::draw2d::graphics * g() const { return m_pimage->g(); }
       inline ::draw2d::graphics * g(const ::sized & sizeHint) { return m_pimage->g(sizeHint); }
-      inline ::sized size(const ::sized & sizeHint) { return m_pimage->size(sizeHint); }
-      inline ::sized origin() const { return m_szHotspotOffset; }
+
+      
+      inline ::image * get_image(const concrete < ::size > & concreteSize) { return m_pimage->get_image(concreteSize); }
+
+
+      inline concrete < ::size > size(const ::sized & sizeDst, enum_image_selection eimageselection) const { return m_pimage->size(sizeDst, eimageselection); }
+      inline concrete < ::size > size() const { return m_pimage->size(); }
 
 
    };

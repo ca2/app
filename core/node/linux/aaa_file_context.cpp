@@ -44,7 +44,7 @@ namespace linux
    }
 
 
-   file_result file_context::get_file(const payload & varFile, const ::file::e_open & eopen)
+   file_result file_context::get_file(const ::payload & varFile, const ::file::e_open & eopen)
    {
 
       return ::file_context::get_file(varFile, eopen);
@@ -91,7 +91,7 @@ namespace linux
 
       struct stat stat;
 
-      xxf_zero(stat);
+      __zero(stat);
 
       if(lstat(strPath, &stat) != 0)
       {

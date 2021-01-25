@@ -20,7 +20,7 @@ namespace xml
       virtual ~output_tree();
 
 
-      void set_attribute(const ::id & id, const payload & payload);
+      void set_attribute(const ::id & id, const ::payload & payload);
 
       //void set_attr(const char * pcszName, i64 iValue, bool bOptional = true);
 
@@ -33,7 +33,7 @@ namespace xml
       virtual node * export_node(exportable & exportable);
       virtual node * export_node(const char * pcszName, exportable & exportable);
 
-      virtual node * export_node(const char * pcszName, payload payload);
+      virtual node * export_node(const char * pcszName, ::payload payload);
 
 
       virtual void SetNodeName(const char * pcszName);

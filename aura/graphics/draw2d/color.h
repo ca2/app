@@ -98,7 +98,7 @@
 //
 //};
 //
-//inline payload & assign(payload & payload, const ::hls & hls);
+//inline ::payload & assign(::payload & payload, const ::hls & hls);
 //
 //class CLASS_DECL_AURA color :
 //   public rgba

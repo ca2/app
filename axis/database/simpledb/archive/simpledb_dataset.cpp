@@ -108,7 +108,7 @@ namespace simpledb
 
 
       database::SqlRecord rec;
-      payload v;
+      ::payload v;
 
       if (reslt != nullptr)
       {
@@ -191,7 +191,7 @@ namespace simpledb
 
 
       database::SqlRecord rec;
-      payload v;
+      ::payload v;
 
       if (reslt != nullptr)
       {
@@ -800,7 +800,7 @@ namespace simpledb
       return true;
    }
 
-   bool dataset::SetFieldValue(const char *f_name, const payload &value)
+   bool dataset::SetFieldValue(const char *f_name, const ::payload &value)
    {
       bool found = false;
       if(m_edataset == ::database::dataset_select)
@@ -830,7 +830,7 @@ namespace simpledb
    }
 
 
-   bool dataset::SetFieldValue(index iFieldIndex, const payload &value)
+   bool dataset::SetFieldValue(index iFieldIndex, const ::payload &value)
    {
       if(m_edataset == ::database::dataset_select)
       {
@@ -853,7 +853,7 @@ namespace simpledb
       //  return false;
    }
 
-   payload & dataset::FieldValueAt(index iFieldIndex)
+   ::payload & dataset::FieldValueAt(index iFieldIndex)
    {
       //if(m_edataset == dataset_select)
       {
@@ -889,7 +889,7 @@ namespace simpledb
       return -1;
    }
 
-   bool dataset::find_first(char * fieldname, payload & value)
+   bool dataset::find_first(char * fieldname, ::payload & value)
    {
       index iFound = -1;
       if(m_edataset == ::database::dataset_select)
@@ -993,7 +993,7 @@ namespace simpledb
 
 
       ::database::record rec;
-      payload v;
+      ::payload v;
 
       if (reslt != nullptr)
       {

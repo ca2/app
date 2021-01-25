@@ -2126,7 +2126,7 @@ ret:
 ::file::path dir_context::commonappdata_root()
 {
 
-   return "/payload/lib";
+   return "/::payload/lib";
 
 }
 

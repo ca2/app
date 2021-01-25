@@ -23,7 +23,7 @@ int GetMainScreenRect(LPRECT32 lprect);
 
 const char* g_pszMultimediaLibraryName = nullptr;
 
-void apex_system_update(const ::id & id, const ::payload& payload);
+void apex_system_update(const ::id & id, const ::payload & payload);
 
 void apex_system_set_modified(const ::id& id);
 
@@ -2248,6 +2248,10 @@ namespace apex
 
       estatus = do_factory_exchange("node", "gnome");
 
+#elif defined(WINDOWS_DESKTOP)
+
+      estatus = do_factory_exchange("node", "windows");
+
 #endif
 
       if(!estatus)
@@ -3508,7 +3512,7 @@ namespace apex
    }
 
 
-   bool system::on_open_file(payload varFile, string strExtra)
+   bool system::on_open_file(::payload varFile, string strExtra)
    {
 
       auto psession = Session;
@@ -5775,7 +5779,7 @@ namespace apex
 } // namespace apex
 
 
-void apex_system_update(const ::id & id, const ::payload& payload)
+void apex_system_update(const ::id & id, const ::payload & payload)
 {
 
    System.process_subject(id, payload);

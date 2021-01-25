@@ -71,7 +71,7 @@ class CLASS_DECL_ACME var_stream :
 public:
 
 
-   class payload *          m_pvar;
+   class ::payload *          m_pvar;
 
 
    var_stream();
@@ -79,8 +79,8 @@ public:
    virtual ~var_stream();
 
 
-   class payload & payload();
-   const class payload & payload() const;
+   class ::payload & payload();
+   const class ::payload & payload() const;
 
 
    template < typename TYPE >

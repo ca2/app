@@ -4960,7 +4960,7 @@ namespace draw2d_direct2d
 
       DWRITE_TRIMMING trim;
 
-      xxf_zero(trim);
+      __zero(trim);
 
       trim.granularity = DWRITE_TRIMMING_GRANULARITY_NONE;
 

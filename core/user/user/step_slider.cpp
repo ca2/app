@@ -21,12 +21,12 @@ namespace user
    }
 
 
-   bool step_slider::create_window(::user::interaction * pwndParent, id id)
-   {
+   //bool step_slider::create_window(::user::interaction * pwndParent, id id)
+   //{
 
-      return ::user::interaction::create_window(nullptr, nullptr, WS_CHILD, pwndParent, id) != FALSE;
+   //   return ::user::interaction::create_window(nullptr, nullptr, WS_CHILD, pwndParent, id) != FALSE;
 
-   }
+   //}
 
 
    void step_slider::install_message_routing(::channel * pchannel)

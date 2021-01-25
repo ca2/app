@@ -45,7 +45,7 @@ namespace file
       static void CALLBACK callback(DWORD dwErrorCode, DWORD dwNumberOfBytesTransfered, LPOVERLAPPED pOverlapped);
 
 
-      virtual bool step() override;
+      virtual ::e_status step() override;
 
    };
 
@@ -62,7 +62,7 @@ namespace file
 
       //virtual ::e_status     run() override;
 
-      virtual bool step();
+      virtual ::e_status step();
 
 
    };

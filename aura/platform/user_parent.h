@@ -13,7 +13,7 @@ public:
 inline ::user_parent parent(::user::primitive* pinteraction) { return pinteraction; }
 
 
-inline payload operator + (payload payload, const ::function_arg& functionarg)
+inline ::payload operator + (::payload payload, const ::function_arg& functionarg)
 {
 
    if (payload.get_type() != e_type_propset)
@@ -25,11 +25,11 @@ inline payload operator + (payload payload, const ::function_arg& functionarg)
 
    payload["function_arg"] = functionarg;
 
-   return payload;
+   return ::payload;
 
 }
 
-inline payload operator + (payload payload, const ::user_parent& parent)
+inline ::payload operator + (::payload payload, const ::user_parent& parent)
 {
 
    if (payload.get_type() != e_type_propset)
@@ -41,7 +41,7 @@ inline payload operator + (payload payload, const ::user_parent& parent)
 
    payload["parent"] = parent.m_puserinteraction;
 
-   return payload;
+   return ::payload;
 
 }
 

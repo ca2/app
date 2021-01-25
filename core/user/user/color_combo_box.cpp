@@ -115,10 +115,10 @@ namespace user
 
                m_pframewindow->set_owner(this);
 
-               m_pframewindow->m_ebuttonaHide.add(::experience::button_dock);
-               m_pframewindow->m_ebuttonaHide.add(::experience::button_down);
-               m_pframewindow->m_ebuttonaHide.add(::experience::button_up);
-               m_pframewindow->m_ebuttonaHide.add(::experience::button_minimize);
+               m_pframewindow->m_ebuttonaHide.add(::experience::e_button_dock);
+               m_pframewindow->m_ebuttonaHide.add(::experience::e_button_down);
+               m_pframewindow->m_ebuttonaHide.add(::experience::e_button_up);
+               m_pframewindow->m_ebuttonaHide.add(::experience::e_button_minimize);
 
             }
 

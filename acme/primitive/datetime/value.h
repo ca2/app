@@ -17,8 +17,8 @@ namespace datetime
       i32            m_iSecond;
       bool           m_bSpan;
 
-      payload(const ::datetime::time & time);
-      payload();
+      ::payload(const ::datetime::time & time);
+      ::payload();
       ~payload();
 
       // ano gregoriano mdio de 365,2425 dias solares

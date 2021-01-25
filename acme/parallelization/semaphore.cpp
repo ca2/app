@@ -85,7 +85,7 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
       }
       else
       {
-         strPath = "/payload/tmp/ca2/ftok/semaphore/" + string(pstrName);
+         strPath = "/::payload/tmp/ca2/ftok/semaphore/" + string(pstrName);
       }
 
       dir::mk(::file::path(strPath).folder());

@@ -229,8 +229,12 @@ public:
  rect_type& set(UNIT_TYPE i) noexcept { return *::set_rect(this, i, i, i, i); }
  rect_type& set(UNIT_TYPE x, UNIT_TYPE y) noexcept { return *::set_rect(this, x, y, x, y); }
  rect_type& set(UNIT_TYPE l, UNIT_TYPE t, UNIT_TYPE r, UNIT_TYPE b) noexcept { return *::set_rect(this, l, t, r, b); }
- rect_type& set(const POINT_TYPE& p1, const POINT_TYPE& p2) noexcept { return *::set_rect(this, p1.x, p1.y, p2.x, p2.y); }
- rect_type& set(const POINT_TYPE& p, const SIZE_TYPE& s) noexcept { return *::set_rect_point_size(this, p, s); }
+ template < primitive_size SIZE >
+ rect_type & set(const SIZE & s) noexcept { return *::set_rect_point_size(this, POINT_TYPE(), s); }
+ template < primitive_point POINT1, primitive_point POINT2 >
+ rect_type& set(const POINT1 & p1, const POINT2 & p2) noexcept { return *::set_rect(this, p1.x, p1.y, p2.x, p2.y); }
+ template < primitive_point POINT, primitive_size SIZE >
+ rect_type& set(const POINT & p, const SIZE & s) noexcept { return *::set_rect_point_size(this, p, s); }
 
  rect_type& set_dim(UNIT_TYPE l, UNIT_TYPE t, UNIT_TYPE w, UNIT_TYPE h) noexcept { return *::set_rect_dim(this, l, t, w, h); }
 

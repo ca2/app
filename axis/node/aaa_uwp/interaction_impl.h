@@ -131,7 +131,7 @@ namespace uwp
       // for child windows, views, panes etc
       //virtual bool create_window(::user::interaction * pinteraction, const char * lpszClassName,const char * lpszWindowName,u32 dwStyle,const RECT32 & rect,::user::interaction * pParentWnd,id id, ::create * pcreate = nullptr) override;
 
-      virtual bool _native_create_window_ex(::user::create_struct& cs);
+      virtual bool _native_create_window_ex(::user::system_struct& cs);
 
 
       //virtual bool CreateEx(u32 dwExStyle, const char * lpszClassName,
@@ -148,7 +148,7 @@ namespace uwp
       virtual bool DestroyWindow();
 
       // special pre-creation and ::user::interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(::user::create_struct * pcreatestruct);
+      virtual bool pre_create_window(::user::system * pusersystem);
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };

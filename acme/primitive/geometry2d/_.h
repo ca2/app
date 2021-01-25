@@ -696,14 +696,27 @@ template <  typename L, typename T, typename W, typename H >
 inline auto _001SetRectDim(RECTD * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 
 
-template < typename RECT_TYPE, typename POINT_TYPE, typename SIZE_TYPE >
-RECT_TYPE* set_rect_point_size(RECT_TYPE* prect, const POINT_TYPE & point, const SIZE_TYPE & size)
+template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size SIZE >
+RECTANGLE * set_rect_size_bottom_right(RECTANGLE * prect, const SIZE & size)
 {
 
-   prect->left = (decltype(RECT_TYPE::left))point.x;
-   prect->top = (decltype(RECT_TYPE::top))point.y;
-   prect->right = (decltype(RECT_TYPE::right))(point.x + size.cx);
-   prect->bottom = (decltype(RECT_TYPE::bottom))(point.y + size.cy);
+   prect->right = (decltype(RECTANGLE::right))(prect->left + size.cx);
+   prect->bottom = (decltype(RECTANGLE::bottom))(prect->top + size.cy);
+
+   return prect;
+
+}
+
+
+
+template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size SIZE >
+RECTANGLE * set_rect_point_size(RECTANGLE * prect, const POINT & point, const SIZE & size)
+{
+
+   prect->left = (decltype(RECTANGLE::left))point.x;
+   prect->top = (decltype(RECTANGLE::top))point.y;
+   prect->right = (decltype(RECTANGLE::right))(point.x + size.cx);
+   prect->bottom = (decltype(RECTANGLE::bottom))(point.y + size.cy);
 
    return prect;
 

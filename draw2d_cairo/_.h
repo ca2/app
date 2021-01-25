@@ -34,6 +34,23 @@ void destroy_cairo_mutex();
 #endif
 
 
+namespace draw2d_cairo
+{
+
+
+   enum enum_mask
+   {
+
+      e_mask_fill,
+      e_mask_paint,
+      e_mask_paint_with_alpha,
+
+   };
+
+
+} // namespace draw2d_cairo
+
+
 #define __graphics(pgraphics) ((::draw2d_cairo::graphics *) pgraphics->m_pthis)
 #define __pen(ppen) ((::draw2d_cairo::pen *) ppen->m_pthis)
 #define __brush(pbrush) ((::draw2d_cairo::brush *) pbrush->m_pthis)

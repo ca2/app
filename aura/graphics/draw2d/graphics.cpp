@@ -190,12 +190,12 @@ namespace draw2d
    }
 
 
-   ::sized graphics::size(const ::sized & sizeHint) const
-   {
+   //::sized graphics::size(const ::sized & sizeHint) const
+   //{
 
-      return m_pimage->size(sizeHint);
+   //   return m_pimage->size(sizeHint);
 
-   }
+   //}
 
 
    bool graphics::IsPrinting()
@@ -1097,6 +1097,77 @@ namespace draw2d
    }
 
 
+   bool graphics::_draw_blend(const ::image_drawing & imagedrawing)
+   {
+
+      if (m_pimageAlphaBlend->is_ok())
+      {
+
+         ::rectd rectIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->size());
+
+         if (rectIntersect.intersect(rectIntersect, imagedrawing.m_rectDst))
+         {
+
+            auto & rectSrc = imagedrawing.m_rectSrc;
+
+            auto & rectDst = imagedrawing.m_rectDst;
+
+            ::point pointSrc(imagedrawing.m_rectSrc.top_left());
+
+            ::point pointDst(imagedrawing.m_rectDst.top_left());
+
+            ::size size(imagedrawing.m_rectDst.size());
+
+            ::image_pointer pimage1 = create_image(size);
+
+            if (!pimage1)
+            {
+
+               return false;
+
+            }
+
+            if (!pimage1->draw(::rectd(size), imagedrawing.m_pimage, pointSrc))
+            {
+
+               return false;
+
+            }
+
+            ::image_pointer pimage2 = create_image(size);
+
+            if (!pimage2)
+            {
+
+               return false;
+
+            }
+
+            pimage2->fill(255, 0, 0, 0);
+
+            pimage2->g()->draw(::rectd(pointd(max(0, m_pointAlphaBlend.x - rectDst.left), max(0, m_pointAlphaBlend.y - rectDst.top)), size),
+               m_pimageAlphaBlend->get_graphics(),
+               ::pointd(max(0, rectDst.left - m_pointAlphaBlend.x), max(0, rectDst.top - m_pointAlphaBlend.y)));
+
+            pimage1->channel_multiply(::color::channel_alpha, pimage2);
+
+            stretch(::rectd(pointDst, size), pimage1->g(), ::rectd(pointSrc, size));
+
+            return true;
+
+         }
+
+      }
+
+      return false;
+
+   }
+
+
+
+
+
+
    //bool graphics::draw(const ::pointd & point, cursor * pcursor)
    //{
    //
@@ -1175,78 +1246,6 @@ namespace draw2d
    //}
 
 
-   bool graphics::_draw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc)
-   {
-
-      if (::is_null(pgraphicsSrc))
-      {
-
-         return false;
-
-      }
-
-      if (_draw_blend(rectDst, pgraphicsSrc, rectSrc))
-      {
-
-         return true;
-
-      }
-
-      if (_draw_raw(rectDst, pgraphicsSrc, rectSrc))
-      {
-
-         return true;
-
-      }
-
-      return false;
-
-   }
-
-
-   bool graphics::_draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc)
-   {
-
-      if (rectDst.size() == rectSrc.size())
-      {
-
-         _draw_raw(rectDst, pgraphicsSrc, rectSrc.top_left());
-
-      }
-      else
-      {
-
-         _stretch_raw(rectDst, pgraphicsSrc, rectSrc);
-
-      }
-
-      return false;
-
-   }
-
-   
-   bool graphics::_draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::pointd & pointSrc)
-   {
-
-      return false;
-
-   }
-
-
-   bool graphics::_stretch_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc)
-   {
-
-      return false;
-
-   }
-
-
-   bool graphics::_draw_blend(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & pointSrc)   
-   {
-
-      return false;
-
-   }
 
 
    //bool graphics::stretch_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc)
@@ -1544,11 +1543,6 @@ namespace draw2d
       ::rectd rectIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->get_size());
 
       const ::size & size = ::size(GetTextExtent((const char *) block.get_data(), block.get_size()));
-
-
-      //size.cx = size.cx * 110 / 100;
-
-      //size.cy = size.cy * 110 / 100;
 
       ::rectd rectText(point((::i32)x, (::i32)y), size);
 
@@ -3546,180 +3540,6 @@ namespace draw2d
 #endif
 
 
-   //bool graphics::alpha_blend(const ::rectd & rectDst, ::image * pimage, double dOpacity)
-   //{
-
-   //   return alpha_blend(rectDst, pimage, pointd(), dOpacity);
-
-   //}
-
-
-   //bool graphics::alpha_blend(const ::rectd & rectDst, ::image_frame * pimageframe, double dOpacity)
-   //{
-
-   //   return alpha_blend(rectDst, pimageframe, pointd(), dOpacity);
-
-   //}
-
-
-   //bool graphics::alpha_blend(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, double dOpacity)
-   //{
-
-   //   return alpha_blend(rectDst, pgraphicsSrc, pointd(), dOpacity);
-
-   //}
-
-
-   //bool graphics::alpha_blend(const ::rectd & rectDst, ::image * pimage, const ::pointd & pointSrc, double dOpacity)
-   //{
-
-   //   return alpha_blend(rectDst, pimage, { pointSrc, rectDst.size() }, dOpacity);
-
-   //}
-
-
-   //bool graphics::alpha_blend(const ::rectd & rectDst, ::image_frame * pimageframe, const ::pointd & pointSrc, double dOpacity)
-   //{
-
-   //   return alpha_blend(rectDst, pimageframe, { pointSrc, rectDst.size() }, dOpacity);
-
-   //}
-
-
-   //bool graphics::alpha_blend(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::pointd & pointSrc, double dOpacity)
-   //{
-
-   //   return alpha_blend(rectDst, pgraphicsSrc, { pointSrc, rectDst.size() }, dOpacity);
-
-   //}
-
-
-   //bool graphics::alpha_blend(const ::rectd & rectDst, ::image * pimage, const ::rectd & rectSrc, double dOpacity)
-   //{
-
-   //   return alpha_blend(rectDst, pimage->g(), rectDst, dOpacity);
-
-   //}
-
-
-   //bool graphics::alpha_blend(const ::rectd & rectDst, ::image_frame * pimageframe, const ::rectd & rectSrc, double dOpacity)
-   //{
-
-   //   return alpha_blend(rectDst, pimageframe, rectDst, dOpacity);
-
-   //}
-
-
-   bool graphics::_alpha_blend(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc, double dOpacity)
-   {
-
-      if (dOpacity == 1.0)
-      {
-
-         if (rectDst.height() == rectSrc.height() && rectDst.width() == rectSrc.width())
-         {
-
-            return draw(rectDst, pgraphicsSrc, rectSrc.top_left());
-
-         }
-         else
-         {
-
-            return stretch(rectDst, pgraphicsSrc, rectSrc);
-
-         }
-
-      }
-
-      if (_alpha_blend_blend(rectDst, pgraphicsSrc, rectSrc, dOpacity))
-      {
-
-         return true;
-
-      }
-
-      if (_alpha_blend_raw(rectDst, pgraphicsSrc, rectSrc, dOpacity))
-      {
-
-         return true;
-
-      }
-
-      return false;
-
-   }
-
-
-   bool graphics::_alpha_blend_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc, double dRate)
-   {
-
-      return false;
-
-   }
-
-
-   bool graphics::_alpha_blend_blend(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc, double dRate)
-   {
-
-      if (m_pimageAlphaBlend->is_ok())
-      {
-
-         ::rectd rectIntersect(m_pointAlphaBlend, m_pimageAlphaBlend->size());
-
-         if (rectIntersect.intersect(rectIntersect, rectDst))
-         {
-
-            ::point pointSrc(rectSrc.top_left());
-
-            ::point pointDst(rectDst.top_left());
-
-            ::size size(rectDst.size());
-
-            ::image_pointer pimage1 = create_image(size);
-
-            if (!pimage1)
-            {
-
-               return false;
-
-            }
-
-            if (!pimage1->draw(::rectd(size), pgraphicsSrc->m_pimage, pointSrc))
-            {
-
-               return false;
-
-            }
-
-            ::image_pointer pimage2 = create_image(size);
-
-            if (!pimage2)
-            {
-
-               return false;
-
-            }
-
-            pimage2->fill(255, 0, 0, 0);
-
-            pimage2->g()->draw(::rectd(pointd(max(0, m_pointAlphaBlend.x - rectDst.left), max(0, m_pointAlphaBlend.y - rectDst.top)), size ),
-                        m_pimageAlphaBlend->get_graphics(),
-               ::pointd(max(0, rectDst.left - m_pointAlphaBlend.x), max(0, rectDst.top - m_pointAlphaBlend.y)));
-
-            pimage1->channel_multiply(::color::channel_alpha, pimage2);
-
-            stretch(::rectd(pointDst, size), pimage1->g(), ::rectd(pointSrc, size));
-
-            return true;
-
-         }
-
-      }
-
-      return false;
-
-   }
-
 
    bool graphics::set_alpha_mode(enum_alpha_mode ealphamode)
    {
@@ -3768,6 +3588,14 @@ namespace draw2d
       m_etextrenderinghint = etextrenderinghint;
 
       return true;
+
+   }
+
+
+   e_smooth_mode graphics::get_smooth_mode()
+   {
+
+      return m_esmoothmode;
 
    }
 
@@ -4968,7 +4796,9 @@ namespace draw2d
 
          set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         draw(::rectd(::pointd(x1, h), pimage->size()), pimage->get_graphics());
+         auto rectDst = ::rectd(::pointd(x1, h), pimage->size());
+
+         draw(rectDst, pimage->get_graphics());
 
       }
 

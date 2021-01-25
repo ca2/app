@@ -400,7 +400,7 @@ namespace ios
 
    bool interaction_impl::create_window_ex(
    ::user::interaction * pinteraction,
-   __pointer(::user::create_struct) pcreatestruct,
+   __pointer(::user::system_struct) pusersystem,
    ::user::interaction * puiParent,
    id id)
    {
@@ -419,7 +419,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::_native_create_window_ex(__pointer(::user::create_struct) pcreatestruct)
+   bool interaction_impl::_native_create_window_ex(__pointer(::user::system_struct) pusersystem)
    {
 
       if(::is_window(get_handle()))
@@ -431,12 +431,12 @@ namespace ios
 
       //m_puserinteraction = pinteraction;
 
-      ENSURE_ARG(pcreatestruct->m_createstruct.lpszName == nullptr || __is_valid_string(pcreatestruct->m_createstruct.lpszName));
+      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
 
       if(m_puserinteraction != nullptr)
       {
 
-         if(!m_puserinteraction->pre_create_window(pcreatestruct))
+         if(!m_puserinteraction->pre_create_window(pusersystem))
          {
 
             PostNcDestroy();
@@ -449,7 +449,7 @@ namespace ios
       else
       {
 
-         if (!pre_create_window(pcreatestruct))
+         if (!pre_create_window(pusersystem))
          {
 
             PostNcDestroy();
@@ -460,16 +460,16 @@ namespace ios
 
       }
 
-      if(pcreatestruct->m_createstruct.hwndParent == nullptr)
+      if(pusersystem->m_createstruct.hwndParent == nullptr)
       {
 
-         pcreatestruct->m_createstruct.style &= ~WS_CHILD;
+         pusersystem->m_createstruct.style &= ~WS_CHILD;
 
       }
 
       ::rect rectCreate;
 
-      pcreatestruct->m_createstruct.get_rect(rectCreate);
+      pusersystem->m_createstruct.get_rect(rectCreate);
 
       CGRect rect;
 
@@ -477,7 +477,7 @@ namespace ios
       
       install_message_routing(m_puserinteraction);
 
-      if(pcreatestruct->m_createstruct.hwndParent != HWND_MESSAGE)
+      if(pusersystem->m_createstruct.hwndParent != HWND_MESSAGE)
       {
 
          m_oswindow = oswindow_get(new_round_window(this, rect));
@@ -504,15 +504,15 @@ namespace ios
 
 
    // for child windows
-   bool interaction_impl::pre_create_window(::user::create_struct * pcreatestruct)
+   bool interaction_impl::pre_create_window(::user::system * pusersystem)
    {
-      /*      if (pcreatestruct->m_createstruct.lpszClass == nullptr)
+      /*      if (pusersystem->m_createstruct.lpszClass == nullptr)
        {
        // make sure the default user::interaction class is registered
-       VERIFY(__end_defer_register_class(__WND_REG, &pcreatestruct->m_createstruct.lpszClass));
+       VERIFY(__end_defer_register_class(__WND_REG, &pusersystem->m_createstruct.lpszClass));
 
        // no WNDCLASS provided - use child user::interaction default
-       ASSERT(pcreatestruct->m_createstruct.style & WS_CHILD);
+       ASSERT(pusersystem->m_createstruct.style & WS_CHILD);
        }*/
       return true;
    }
@@ -526,7 +526,7 @@ namespace ios
       
       ASSERT((uStyle & WS_POPUP) == 0);
 
-      ::user::create_struct createstruct(0, pszClassName, pszWindowName, uStyle | WS_CHILD,
+      ::user::system_struct createstruct(0, pszClassName, pszWindowName, uStyle | WS_CHILD,
                                rect);
 
       return create_window_ex(pinteraction, createstruct, puiParent, id);
@@ -544,7 +544,7 @@ namespace ios
    }
 
 
-//   bool interaction_impl::native_create_window_ex(::user::create_struct & createstruct)
+//   bool interaction_impl::native_create_window_ex(::user::system_struct & createstruct)
 //   {
 //
 //      CGRect rect;
@@ -593,7 +593,7 @@ namespace ios
    //    else
    //    {
 
-   //       ::user::create_struct createstruct(0, nullptr, pszName, WS_CHILD);
+   //       ::user::system_struct createstruct(0, nullptr, pszName, WS_CHILD);
 
    //       if(!native_create_window_ex(pinteraction, cs, HWND_MESSAGE, pszName))
    //       {
@@ -4342,7 +4342,7 @@ namespace ios
       
       
    }
-   bool interaction_impl::OnNcCreate(::user::create_struct *)
+   bool interaction_impl::OnNcCreate(::user::system_struct *)
    {
 
       return true;

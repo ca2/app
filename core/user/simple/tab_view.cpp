@@ -65,7 +65,7 @@ void simple_tab_view::_001OnCreate(::message::message * pmessage)
    if(pcreate->previous())
       return;
 
-   if(!::user::interaction::create_window(this, 1))
+   if(!::user::interaction::create_child(this))
    {
       pcreate->m_lresult = -1;
       return;

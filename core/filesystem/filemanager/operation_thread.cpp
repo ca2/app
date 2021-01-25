@@ -16,10 +16,17 @@ namespace filemanager
    }
 
 
-   void operation_thread::step()
+   ::e_status operation_thread::step()
    {
 
-      __task_guard(m_bStep);
+      if (m_bStep)
+      {
+
+         return ::success;
+
+      }
+
+      __keep(m_bStep);
 
       switch(m_estate)
       {
@@ -60,11 +67,14 @@ namespace filemanager
       break;
       case ::filemanager::e_state_initial:
       {
-         return;
+         return ::success;
       }
       default:
          ASSERT(FALSE);
       }
+
+      return ::success;
+
    }
 
 

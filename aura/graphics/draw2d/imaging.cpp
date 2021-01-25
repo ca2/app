@@ -1616,32 +1616,32 @@ bool imaging::BitmapDivBlend(
 }
 
 
-bool imaging::bitmap_blend(
-::draw2d::graphics * pdcDst, // destination device
-const ::point & pointDst,
-const ::size & size,
-::draw2d::graphics * pdcSrc, // source device
-const ::point & pointSrc,
-byte bAlpha)
-{
-
-   return pdcDst->alpha_blend(rectd(pointDst,size), pdcSrc, pointSrc, bAlpha / 255.0);
-
-}
-
-
-bool imaging::bitmap_blend(::draw2d::graphics * pdcDst,
-                           const ::point & pointDst,
-                           const ::size & size,
-                           ::image * pimage,
-                           const ::point & pointSrc,
-                           byte bAlpha)
-{
-
-   return pdcDst->alpha_blend(::rectd(pointDst, size), pimage, pointSrc, bAlpha / 255.0);
-
-}
-
+//bool imaging::bitmap_blend(
+//::draw2d::graphics * pdcDst, // destination device
+//const ::point & pointDst,
+//const ::size & size,
+//::draw2d::graphics * pdcSrc, // source device
+//const ::point & pointSrc,
+//byte bAlpha)
+//{
+//
+//   return pdcDst->alpha_blend(rectd(pointDst,size), pdcSrc, pointSrc, bAlpha / 255.0);
+//
+//}
+//
+//
+//bool imaging::bitmap_blend(::draw2d::graphics * pdcDst,
+//                           const ::point & pointDst,
+//                           const ::size & size,
+//                           ::image * pimage,
+//                           const ::point & pointSrc,
+//                           byte bAlpha)
+//{
+//
+//   return pdcDst->alpha_blend(::rectd(pointDst, size), pimage, pointSrc, bAlpha / 255.0);
+//
+//}
+//
 
 bool imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 cy)
 {
@@ -6846,7 +6846,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const 
 
 //#ifndef __APPLE__
 //
-// ::e_status imaging::_load_image(::context_image * pobjectContext, ::image * pimageParam, const payload & varFile, bool bSync, bool bCreateHelperMaps)
+// ::e_status imaging::_load_image(::context_image * pobjectContext, ::image * pimageParam, const ::payload & varFile, bool bSync, bool bCreateHelperMaps)
 // {
 //
 //   return ::error_failed;

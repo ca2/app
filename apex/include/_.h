@@ -676,7 +676,7 @@ CLASS_DECL_APEX ::apex::system * get_context_system(::layered * pobjectContext);
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 
 
-class payload;
+class ::payload;
 class id;
 
 

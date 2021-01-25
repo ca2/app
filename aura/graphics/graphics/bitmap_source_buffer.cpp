@@ -37,7 +37,7 @@ namespace graphics
       if (m_strBitmapSource.is_empty())
       {
 
-         m_strBitmapSource = pimpl->value("bitmap-source");
+         m_strBitmapSource = pimpl->payload("bitmap-source");
 
       }
 
@@ -48,7 +48,7 @@ namespace graphics
    void bitmap_source_buffer::defer_initialize_bitmap_source_buffer()
    {
 
-      if (m_oswindow == nullptr || m_pimpl->m_puserinteraction->value("bitmap-source").is_empty())
+      if (m_oswindow == nullptr || m_pimpl->m_puserinteraction->payload("bitmap-source").is_empty())
       {
 
          return;
@@ -62,7 +62,7 @@ namespace graphics
 
       }
 
-      m_strBitmapSource = m_pimpl->m_puserinteraction->value("bitmap-source");
+      m_strBitmapSource = m_pimpl->m_puserinteraction->payload("bitmap-source");
 
       char szName[] = "Local\\bitmap-source-%s";
 
@@ -137,7 +137,7 @@ namespace graphics
 
       }
 
-      if (m_pimpl->m_puserinteraction->value("bitmap-source").has_char())
+      if (m_pimpl->m_puserinteraction->payload("bitmap-source").has_char())
       {
 
          if (!ipc_copy(get_screen_image()))

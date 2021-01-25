@@ -37,7 +37,7 @@ namespace userstack
 
       void OnHoverAction();
 
-      virtual bool pre_create_window(::user::create_struct * pcreatestruct);
+      virtual bool pre_create_window(::user::system * pusersystem);
 
       void ShowControlBars(bool bShow);
 

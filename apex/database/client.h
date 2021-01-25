@@ -38,13 +38,13 @@ namespace database
 //      DECL_GEN_SIGNAL(data_on_before_change);
       DECL_GEN_SIGNAL(data_on_after_change);
 
-      virtual bool data_on_before_change(client* pclient, const key& id, payload& payload, ::promise::subject * psubject);
+      virtual bool data_on_before_change(client* pclient, const key& id, ::payload& payload, ::promise::subject * psubject);
       virtual void data_on_after_change(client* pclient, const key& id, const ::payload & payload, ::promise::subject * psubject);
 
 
 
-      virtual bool _data_set(const key& key, const payload & payload, ::promise::subject * psubject = nullptr);
-      virtual bool _data_set(const selection & selection, const payload & payload, ::promise::subject * psubject = nullptr);
+      virtual bool _data_set(const key& key, const ::payload & payload, ::promise::subject * psubject = nullptr);
+      virtual bool _data_set(const selection & selection, const ::payload & payload, ::promise::subject * psubject = nullptr);
 
 
       template < typename TYPE >
@@ -89,7 +89,7 @@ namespace database
       }
 
 
-      virtual bool _data_get(const key& key, payload & payload);
+      virtual bool _data_get(const key& key, ::payload & payload);
 
       template < typename TYPE >
       inline bool binary_get(const key & key, TYPE & t);
@@ -103,10 +103,10 @@ namespace database
       }
 
 
-      virtual payload data_get(const key & key)
+      virtual ::payload data_get(const key & key)
       {
 
-         payload payload;
+         ::payload payload;
 
          if (!_data_get(key, payload))
          {

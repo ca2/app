@@ -85,7 +85,7 @@ namespace uwp
    }
 
 
-   bool interaction_impl::_native_create_window_ex(__pointer(::user::create_struct) pcreatestruct)
+   bool interaction_impl::_native_create_window_ex(__pointer(::user::system_struct) pusersystem)
    {
 
       if (!m_window.Get())
@@ -94,16 +94,16 @@ namespace uwp
          manual_reset_event ev;
 
          Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
-            ref new Windows::UI::Core::DispatchedHandler([this, pcreatestruct, &ev]()
+            ref new Windows::UI::Core::DispatchedHandler([this, pusersystem, &ev]()
                {
 
                   //get_context_system()->m_paurasystem->m_applicationsource->m_pimplHook = this;
 
                   m_view = Windows::ApplicationModel::Core::CoreApplication::CreateNewView();
-                  if (pcreatestruct->m_createstruct.cx > 0 && pcreatestruct->m_createstruct.cy > 0)
+                  if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0)
                   {
 
-                     m_applicationview->SetPreferredMinSize({ (float)pcreatestruct->m_createstruct.cx, (float)pcreatestruct->m_createstruct.cy });
+                     m_applicationview->SetPreferredMinSize({ (float)pusersystem->m_createstruct.cx, (float)pusersystem->m_createstruct.cy });
 
                   }
 
@@ -123,13 +123,13 @@ namespace uwp
                      Id1,
                      Windows::UI::ViewManagement::ViewSizePreference::UseMore);
 
-                  if (pcreatestruct->m_createstruct.cx > 0 && pcreatestruct->m_createstruct.cy > 0)
+                  if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0)
                   {
 
-                     m_rect.left = pcreatestruct->m_createstruct.x;
-                     m_rect.top = pcreatestruct->m_createstruct.y;
-                     m_rect.right = pcreatestruct->m_createstruct.cx;
-                     m_rect.bottom = pcreatestruct->m_createstruct.cy;
+                     m_rect.left = pusersystem->m_createstruct.x;
+                     m_rect.top = pusersystem->m_createstruct.y;
+                     m_rect.right = pusersystem->m_createstruct.cx;
+                     m_rect.bottom = pusersystem->m_createstruct.cy;
 
                   }
                   else
@@ -150,10 +150,10 @@ namespace uwp
                   //   Id2,
                   //   Windows::UI::ViewManagement::ViewSizePreference::Default));
 
-                  if (pcreatestruct->m_createstruct.cx > 0 && pcreatestruct->m_createstruct.cy > 0)
+                  if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0)
                   {
 
-                     m_applicationview->TryResizeView(::Windows::Foundation::Size({ (float)pcreatestruct->m_createstruct.cx,(float)pcreatestruct->m_createstruct.cy }));
+                     m_applicationview->TryResizeView(::Windows::Foundation::Size({ (float)pusersystem->m_createstruct.cx,(float)pusersystem->m_createstruct.cy }));
 
                   }
 
@@ -173,19 +173,19 @@ namespace uwp
       else
       {
 
-         if (pcreatestruct->m_createstruct.cx > 0 && pcreatestruct->m_createstruct.cy > 0 && m_rect.is_empty())
+         if (pusersystem->m_createstruct.cx > 0 && pusersystem->m_createstruct.cy > 0 && m_rect.is_empty())
          {
 
-            m_rect.left = pcreatestruct->m_createstruct.x;
-            m_rect.top = pcreatestruct->m_createstruct.y;
-            m_rect.right = pcreatestruct->m_createstruct.cx;
-            m_rect.bottom = pcreatestruct->m_createstruct.cy;
+            m_rect.left = pusersystem->m_createstruct.x;
+            m_rect.top = pusersystem->m_createstruct.y;
+            m_rect.right = pusersystem->m_createstruct.cx;
+            m_rect.bottom = pusersystem->m_createstruct.cy;
 
          }
 
       }
 
-      if(!m_puserinteraction->pre_create_window(pcreatestruct))
+      if(!m_puserinteraction->pre_create_window(pusersystem))
       {
       
          return false;
@@ -194,17 +194,17 @@ namespace uwp
 
       m_oswindow = oswindow_get(this);
 
-      set_window_long(GWL_STYLE, pcreatestruct->m_createstruct.style);
+      set_window_long(GWL_STYLE, pusersystem->m_createstruct.style);
 
-      set_window_long(GWL_EXSTYLE, pcreatestruct->m_createstruct.dwExStyle);
+      set_window_long(GWL_EXSTYLE, pusersystem->m_createstruct.dwExStyle);
 
       install_message_routing(m_puserinteraction);
 
       m_rectWindowScreen =  m_rect;
 
-      send_message(e_message_create, 0, (LPARAM)&pcreatestruct->m_createstruct);
+      send_message(e_message_create, 0, (LPARAM)&pusersystem->m_createstruct);
 
-      //send_message(e_message_size, 0, MAKELPARAM(pcreatestruct->m_createstruct.cx, pcreatestruct->m_createstruct.cy));
+      //send_message(e_message_size, 0, MAKELPARAM(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy));
 
       //::size sizeDrawn;
 
@@ -244,17 +244,17 @@ namespace uwp
 
 
    // for child windows
-   bool interaction_impl::pre_create_window(::user::create_struct * pcreatestruct)
+   bool interaction_impl::pre_create_window(::user::system * pusersystem)
    {
 
 #ifdef WINDOWS_DESKTOP
-      if (pcreatestruct->m_createstruct.lpszClass == nullptr)
+      if (pusersystem->m_createstruct.lpszClass == nullptr)
       {
          // make sure the default interaction_impl class is registered
-         VERIFY(__end_defer_register_class(__WND_REG, &pcreatestruct->m_createstruct.lpszClass));
+         VERIFY(__end_defer_register_class(__WND_REG, &pusersystem->m_createstruct.lpszClass));
 
          // no WNDCLASS provided - use child interaction_impl default
-         ASSERT(pcreatestruct->m_createstruct.style & WS_CHILD);
+         ASSERT(pusersystem->m_createstruct.style & WS_CHILD);
       }
 #else
       __throw(todo());

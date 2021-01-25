@@ -263,7 +263,7 @@ namespace exception
 //string __get_thread_note()
 //{
 //   
-//   return thread_value("strNote");
+//   return thread_property("strNote");
 //
 //}
 //
@@ -271,7 +271,7 @@ namespace exception
 //void __set_thread_note(const char * pszNote)
 //{
 //   
-//   thread_value("strNote") = pszNote;
+//   thread_property("strNote") = pszNote;
 //
 //}
 

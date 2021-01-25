@@ -7,8 +7,6 @@
 #pragma once
 
 
-
-
 inline color32_t get_pixel(const pixmap* ppixmap, int x, int y)
 {
 
@@ -342,7 +340,7 @@ inline image::operator const image_extension* () const
 inline __pointer(image_frame_array) image_meta::frames() { return m_pextension ? m_pextension->m_pframea : nullptr; }
 
 
-inline ::rgb& rgb::operator =(const ::payload& payload)
+inline ::rgb& rgb::operator =(const ::payload & payload)
 {
 
    m_iR = payload["red"];
@@ -354,7 +352,7 @@ inline ::rgb& rgb::operator =(const ::payload& payload)
 }
 
 
-inline payload& assign(payload& payload, const rgb& rgb)
+inline ::payload& assign(::payload& payload, const rgb& rgb)
 {
 
    payload["red"] = rgb.m_iR;
@@ -375,7 +373,7 @@ inline void __exchange(::stream& s, ::rgb& rgb)
 }
 
 
-inline ::rgba& rgba::operator =(const ::payload& payload)
+inline ::rgba& rgba::operator =(const ::payload & payload)
 {
 
    rgb::operator=(payload);
@@ -387,7 +385,7 @@ inline ::rgba& rgba::operator =(const ::payload& payload)
 }
 
 
-inline payload& assign(payload& payload, const ::rgba& rgba)
+inline ::payload& assign(::payload& payload, const ::rgba& rgba)
 {
 
    assign(payload, (const ::rgb&) rgba);
@@ -408,7 +406,7 @@ inline void __exchange(::stream& s, ::rgba& rgba)
 }
 
 
-inline ::hls& hls::operator =(const ::payload& payload)
+inline ::hls& hls::operator =(const ::payload & payload)
 {
 
    m_dH = payload["hue"];
@@ -420,7 +418,7 @@ inline ::hls& hls::operator =(const ::payload& payload)
 }
 
 
-inline payload& assign(payload& payload, const ::hls& hls)
+inline ::payload& assign(::payload& payload, const ::hls& hls)
 {
 
    payload["hue"] = hls.m_dH;
@@ -463,27 +461,24 @@ namespace draw2d
    }
 
 
-
    template < typename PRED >
    bool draw2d::emboss_pred(
-   ::draw2d::graphics_pointer & pgraphics,
-   const ::rect & rect,
-   PRED pred,
-   ::draw2d::fastblur & blur,
-   ::image_pointer & pimageBlur,
-   color32_t crGlow,
-   int iSpreadRadius,
-   int iBlurRadius,
-   int iBlur,
-   bool bUpdate,
-   double dAlpha)
+      ::draw2d::graphics_pointer & pgraphics,
+      const ::rect & rect,
+      PRED pred,
+      ::draw2d::fastblur & blur,
+      ::image_pointer & pimageBlur,
+      color32_t crGlow,
+      int iSpreadRadius,
+      int iBlurRadius,
+      int iBlur,
+      bool bUpdate,
+      const ::color_filter * pcolorfilter)
    {
-
 
       int iR = iSpreadRadius + iBlurRadius + iBlur + 1;
 
       ::rect rectEmboss = rect;
-
 
       rectEmboss.left -= (::i32)(iR * g_dEmboss);
       rectEmboss.top -= (::i32)(iR * g_dEmboss);
@@ -510,7 +505,6 @@ namespace draw2d
          rectCache.right = rectCache.left + rect.width();
 
          rectCache.bottom = rectCache.top + rect.height();
-
 
          ::image_pointer pimage;
 
@@ -539,18 +533,13 @@ namespace draw2d
          brushText->create_solid(ARGB(255, 255, 255, 255));
          pimage->get_graphics()->set(brushText);
 
-
          pimage->get_graphics()->OffsetViewportOrg(rectCache.left - rect.left, rectCache.top - rect.top);
-
 
          pred(pimage->get_graphics());
 
-
          pimage->get_graphics()->OffsetViewportOrg(-rectCache.left + rect.left, -rectCache.top + rect.top);
 
-
          System.imaging().channel_spread_set_color(pimageBlur->g(), nullptr, size, pimage->g(), nullptr, ::color::channel_alpha, iEffectiveSpreadRadius, ARGB(255, 255, 255, 255));
-
 
          for (iptr i = 0; i < iBlur; i++)
          {
@@ -567,33 +556,18 @@ namespace draw2d
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      pgraphics->alpha_blend(rectEmboss, pimageBlur->g(), dAlpha);
+      image_drawing imagedrawing(rectEmboss, pimageBlur);
 
-      //::draw2d::brush_pointer brushText(e_create);
-      //brushText->create_solid(crText);
-      //pgraphics->set(brushText);
-      //pgraphics->set(pfont);
-      //pgraphics->_DrawText(strText, *pcrect, iDrawTextFlags);
+      imagedrawing.m_pcolorfilter = pcolorfilter;
 
+      pgraphics->draw(imagedrawing);
 
       return true;
 
    }
 
 
-   //inline bool graphics::draw(::image * pimage) { return draw(rect(pimage->get_size()), pimage); }
-   //inline bool graphics::draw(const point & pDst, const ::size & size, ::image * pimage, const point & pSrc) { return draw(rect(pDst, size), pimage, pSrc); }
-
-   //inline bool graphics::draw(const ::size & size, ::image * pimage, const point & pSrc) { return draw(rect(size), pimage, pSrc); }
-
-   //inline bool graphics::draw_dim(i32 x, i32 y, i32 w, i32 h, ::image * pimage, i32 xSrc, i32 ySrc) { return draw(rect_dim(x, y, w, h), pimage, ::point(xSrc, ySrc)); }
-   //inline bool graphics::BitBlt (i32 x, i32 y, i32 w, i32 h, ::image * pimage, i32 xSrc, i32 ySrc) { return draw_dim(x, y, w, h, pimage, xSrc, ySrc); }
-
-   
-
 } // namespace draw2d
-
-
 
 
 

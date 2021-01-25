@@ -10,7 +10,7 @@ menu_document::menu_document()
 }
 
 //
-//void menu_document::on_before_navigate(::form_data * pdata, payload & varFile, u32 nFlags, const char * pszTargetFrameName, byte_array& baPostedData, const char * pszHeaders, bool* pbCancel)
+//void menu_document::on_before_navigate(::form_data * pdata, ::payload & varFile, u32 nFlags, const char * pszTargetFrameName, byte_array& baPostedData, const char * pszHeaders, bool* pbCancel)
 //
 //{
 //

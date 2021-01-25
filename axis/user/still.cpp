@@ -550,12 +550,12 @@ namespace user
    }
 
 
-   bool still::create_control(::user::interaction * pinteractionParent, const ::id & id)
-   {
+   //bool still::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
+   //{
 
-      return interaction::create_control(pinteractionParent, id);
+   //   return interaction::create_interaction(pinteractionParent, id);
 
-   }
+   //}
 
 
    ::draw2d::font_pointer still::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const

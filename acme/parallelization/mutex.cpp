@@ -234,7 +234,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName, LPSECUR
 
 #ifdef ANDROID
 
-         path = ::dir::system() / "payload/tmp/ca2/lock/mutex" / string(pstrName);
+         path = ::dir::system() / "::payload/tmp/ca2/lock/mutex" / string(pstrName);
 
 #else
 
@@ -313,7 +313,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName, LPSECUR
       if(str::begins_ci(pstrName, "Global"))
       {
 
-         path = "/payload/lock/ca2/mutex/named";
+         path = "/::payload/lock/ca2/mutex/named";
 
       }
       else
@@ -1543,7 +1543,7 @@ __pointer(mutex) open_mutex(const char * lpszName)
    if (str::begins_ci(lpszName, "Global"))
    {
 
-      path = "/payload/tmp/ca2/lock/mutex/named";
+      path = "/::payload/tmp/ca2/lock/mutex/named";
 
    }
    else
@@ -1661,14 +1661,14 @@ CLASS_DECL_ACME mutex * get_ui_destroyed_mutex()
 null_dacl_security_attributes::null_dacl_security_attributes()
 {
 
-   xxf_zero(m_securityattributes);
+   __zero(m_securityattributes);
 
    m_securityattributes.nLength = sizeof(m_securityattributes);
 
    m_securityattributes.bInheritHandle = FALSE; // matter uninheritable
 
    // declare and initialize a security descriptor
-   xxf_zero(m_securitydescriptor);
+   __zero(m_securitydescriptor);
 
    bool bInitOk = InitializeSecurityDescriptor(&m_securitydescriptor,SECURITY_DESCRIPTOR_REVISION) != FALSE;
 

@@ -18,7 +18,7 @@ namespace windows
    }
 
    
-   payload registry::key::get(const char * pcszValueName)
+   ::payload registry::key::get(const char * pcszValueName)
    {
 
       ::u32 dwType;

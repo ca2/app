@@ -632,7 +632,7 @@ namespace papaya
       inline ::index add(string_array & stra, const ::property & property)
       {
 
-         return add(stra, (const payload & ) property);
+         return add(stra, (const ::payload & ) property);
 
       }
 

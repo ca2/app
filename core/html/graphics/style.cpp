@@ -382,13 +382,13 @@ namespace html
 
       const style *     pstyle1           = nullptr;
       index               i1                = -1;
-      payload               var1              = f;
+      ::payload               var1              = f;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyle1, i1, var1, pstyle, i, var1, pstyleW, iW, fW);
 
 
       const style *     pstyleCur;
       index               iCur;
-      payload               varCur;
+      ::payload               varCur;
 
       pstyleCur         = pstyle1;
       iCur              = i1;
@@ -553,13 +553,13 @@ namespace html
 
       const style *     pstyle1           = nullptr;
       index               i1                 = -1;
-      payload               var1                 = (u32) cr;
+      ::payload               var1                 = (u32) cr;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyle1, i1, var1, pstyle, i, var1, pstyleW, iW, (u32 &) crW);
 
 
       const style *     pstyleCur;
       index               iCur;
-      payload               varCur;
+      ::payload               varCur;
 
       pstyleCur         = pstyle1;
       iCur              = i1;

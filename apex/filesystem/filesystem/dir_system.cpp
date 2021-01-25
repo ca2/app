@@ -125,7 +125,7 @@ dir_system::~dir_system()
    if (System.has_property("app_folder"))
    {
 
-      pathAppData = System.value("app_folder");
+      pathAppData = System.payload("app_folder");
 
    }
 

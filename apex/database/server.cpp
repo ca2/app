@@ -80,7 +80,7 @@ namespace database
    }
 
 
-   bool server::on_before_data_change(client * pclient, const key & id, payload & payload, ::promise::subject * psubject)
+   bool server::on_before_data_change(client * pclient, const key & id, ::payload & payload, ::promise::subject * psubject)
    {
 
       //::database::change_event signal(payload);
@@ -137,7 +137,7 @@ namespace database
    }
 
 
-   payload server::data_load(client * pclient, const key & id, ::promise::subject * psubject)
+   ::payload server::data_load(client * pclient, const key & id, ::promise::subject * psubject)
    {
 
       ::memory_stream is;
@@ -153,7 +153,7 @@ namespace database
 
       }
 
-      payload payload;
+      ::payload payload;
 
       is >> payload;
 
@@ -162,7 +162,7 @@ namespace database
    }
 
 
-   bool server::data_save(client * pclient, const key & id, payload & payload, ::promise::subject * psubject)
+   bool server::data_save(client * pclient, const key & id, ::payload & payload, ::promise::subject * psubject)
    {
 
       ::memory_stream writer;

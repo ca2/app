@@ -110,7 +110,7 @@ namespace uwp
 
       ::user::os_calc_dark_mode();
 
-      auto pcs = __new(::user::create_struct);
+      auto pcs = __new(::user::system_struct);
 
       auto puiHost = __user_interaction(m_psystem->get_context_session()->m_puiHost);
 

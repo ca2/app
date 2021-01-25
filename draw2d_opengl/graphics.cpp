@@ -44,14 +44,14 @@ namespace draw2d_opengl
    graphics * thread_graphics()
    {
 
-      return ::get_task()->value("draw2d_opengl::graphics").cast < graphics >();
+      return ::get_task()->payload("draw2d_opengl::graphics").cast < graphics >();
 
    }
 
    void thread_graphics(graphics * pgraphics)
    {
 
-      ::get_task()->value("draw2d_opengl::graphics") = pgraphics;
+      ::get_task()->payload("draw2d_opengl::graphics") = pgraphics;
 
    }
 
@@ -827,8 +827,8 @@ namespace draw2d_opengl
       //   BITMAPINFO biC;
       //   BITMAPINFO biM;
 
-      //   xxf_zero(biC);
-      //   xxf_zero(biM);
+      //   __zero(biC);
+      //   __zero(biM);
 
 
 

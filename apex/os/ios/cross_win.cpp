@@ -4,7 +4,7 @@
 //::u32 get_last_error()
 //{
 //   
-//   return ::get_task()->value("last_error").u32();
+//   return ::get_task()->payload("last_error").u32();
 //   
 //}
 //
@@ -12,7 +12,7 @@
 //void set_last_error(::u32 uLastError)
 //{
 //   
-//   ::get_task()->value("last_error") = uLastError;
+//   ::get_task()->payload("last_error") = uLastError;
 //   
 //}
 //

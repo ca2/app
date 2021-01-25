@@ -604,9 +604,12 @@ namespace sockets
 
          //}
 
-
       }
+
+      return ::success;
+
    }
+
 
    void websocket_client::OnLine(const string & line)
    {
@@ -744,7 +747,7 @@ namespace sockets
    }
 
 
-   bool websocket_client::send_json(payload varJson)
+   bool websocket_client::send_json(::payload varJson)
    {
 
       string strJson;
@@ -882,7 +885,7 @@ namespace sockets
 
             }
 
-            xxf_zero(m_maskingkey);
+            __zero(m_maskingkey);
 
             if (m_memResponse.get_size() < m_header_size)
             {

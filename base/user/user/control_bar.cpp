@@ -73,10 +73,10 @@ namespace user
    }
 
 
-   bool control_bar::pre_create_window(::user::create_struct * pcreatestruct)
+   bool control_bar::pre_create_window(::user::system * pusersystem)
    {
 
-      if (!::user::interaction::pre_create_window(pcreatestruct))
+      if (!::user::interaction::pre_create_window(pusersystem))
       {
 
          return FALSE;
@@ -87,7 +87,7 @@ namespace user
 #ifdef WINDOWS_DESKTOP
 
       // force clipsliblings (otherwise will cause repaint problems)
-      pcreatestruct->m_createstruct.style |= WS_CLIPSIBLINGS;
+      pusersystem->m_createstruct.style |= WS_CLIPSIBLINGS;
 
 #endif
 

@@ -33,7 +33,7 @@ namespace user
 
       }
 
-      if(!m_placeholdera.last_pointer()->::user::interaction::create_window(this,m_placeholdera.get_upper_bound()))
+      if(!m_placeholdera.last_pointer()->::user::interaction::create_child(this))
       {
 
          m_placeholdera.remove_last();
@@ -121,12 +121,12 @@ namespace user
    }
 
 
-   bool place_holder_container::create_window(::user::interaction * puiParent,id id)
-   {
+   //bool place_holder_container::create_interaction(::user::interaction * puiParent,id id)
+   //{
 
-      return ::user::interaction::create_window(puiParent,id) != FALSE;
+   //   return ::user::interaction::create_interaction(puiParent) != FALSE;
 
-   }
+   //}
 
 
    place_holder_ptra place_holder_container_ptra::place(::user::interaction * pinteraction,const rect & rectCreate)

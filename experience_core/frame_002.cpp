@@ -37,7 +37,7 @@ namespace experience
 
                //m_strStyle = "LightGreen";
 
-               m_rectControlBoxMarginNormal.top = 0;
+               //m_rectControlBoxMarginNormal.top = 0;
 
 
             }

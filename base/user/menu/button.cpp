@@ -41,19 +41,19 @@ namespace user
    }
 
 
-   bool menu_button::create_window(::user::interaction *pparent, const ::id & id)
-   {
+   //bool menu_button::create_interaction(::user::interaction *pparent, const ::id & id)
+   //{
 
-      if (!button::create_window(pparent, id))
-      {
+   //   if (!button::create_interaction(pparent, id))
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    void menu_button::_001OnDrawDefault(::draw2d::graphics_pointer & pgraphics)

@@ -51,7 +51,7 @@ multi_lock::multi_lock(::count c, const sync_array & synca, bool bInitialLock)
 
    m_synca.add(synca);
 
-   xxf_zero(m_byteaLocked);
+   __zero(m_byteaLocked);
 
    if (bInitialLock)
    {

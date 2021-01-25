@@ -53,14 +53,14 @@
 //      //virtual void prev() override;
 //      //virtual void next() override;
 //
-//      //virtual index find_first(const char * fieldname, payload & value);
+//      //virtual index find_first(const char * fieldname, ::payload & value);
 //      //virtual bool seek(index pos=0) override;
 //
-//      //virtual bool SetFieldValue(const char *f_name, const payload &value) override;
-//      //virtual bool SetFieldValue(index iFieldIndex, const payload &value);
+//      //virtual bool SetFieldValue(const char *f_name, const ::payload &value) override;
+//      //virtual bool SetFieldValue(index iFieldIndex, const ::payload &value);
 //
-//      //virtual payload field_value_at(index iFieldIndex) override;
-//      //virtual payload FieldValueAt(index iFieldIndex);
+//      //virtual ::payload field_value_at(index iFieldIndex) override;
+//      //virtual ::payload FieldValueAt(index iFieldIndex);
 //      //virtual i32 GetFieldIndex(const char *f_name);
 //
 //

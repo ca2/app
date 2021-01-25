@@ -18,7 +18,7 @@ namespace user
       virtual ~step_slider();
 
       
-      bool create_window(::user::interaction * pwndParent, id id);
+      //bool create_window(::user::interaction * pwndParent, id id);
 
 
       virtual void install_message_routing(::channel * pchannel);

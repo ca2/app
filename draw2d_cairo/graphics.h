@@ -301,8 +301,10 @@ namespace draw2d_cairo
       //bool PatBlt(double x, double y, double nWidth, double nHeight) override;
 
 
-      bool _draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::pointd & pointSrc) override;
-      bool _stretch_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc) override;
+      //virtual bool _draw_raw(const ::image_drawing & imagedrawing) override;
+      virtual bool _draw_raw(const ::rectd & rectDst, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::pointd & pointSrc);
+      virtual bool _stretch_raw(const ::rectd & rectDst, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::rectd & rectdSrc);
+      //bool _stretch_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc) override;
 
 
       ::color GetPixel(double x, double y) override;
@@ -324,7 +326,7 @@ namespace draw2d_cairo
 //                          ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, i32 nSrcWidth, i32 nSrcHeight,
 //                          ::u32 clrTransparent) override;
 
-      virtual bool _alpha_blend_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc, double dOpacity) override;
+      //virtual bool _alpha_blend_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc, double dOpacity) override;
 
       /*bool alpha_blend(double xDest, double yDest, i32 nDestWidth, i32 nDestHeight,
         ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, i32 nSrcWidth, i32 nSrcHeight,

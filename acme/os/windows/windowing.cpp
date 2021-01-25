@@ -70,7 +70,7 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
 //
 //   ::u32 dwThread = GetWindowThreadProcessId(hwndForeground, nullptr);
 //
-//   xxf_zero_pointer(pinfo);
+//   __zero(pinfo);
 //
 //   pinfo->cbSize = sizeof(GUITHREADINFO);
 //

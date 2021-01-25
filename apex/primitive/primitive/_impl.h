@@ -596,7 +596,7 @@ inline ::e_status object::add_reference(SOURCE * psource OBJ_REF_DBG_COMMA_PARAM
 inline const char * object::topic_text() { return ::is_null(m_pmeta) ? nullptr : m_pmeta->m_strTopicText; }
 
 
-inline payload object::context_value(const payload& payload)
+inline ::payload object::context_value(const ::payload & payload)
 {
 
   ::payload varContextValue;
@@ -715,7 +715,7 @@ inline void object::defer_set_context_object(::layered * pobjectContext)
 //}
 //
 
-inline ::e_status context::load_from_file(::matter* pobject, const ::payload& varFile, const payload* pvarOptions)
+inline ::e_status context::load_from_file(::matter* pobject, const ::payload& varFile, const ::payload* pvarOptions)
 {
 
   if (pvarOptions)
@@ -742,7 +742,7 @@ inline ::e_status context::load_from_file(::matter* pobject, const ::payload& va
 }
 
 
-inline ::e_status context::save_to_file(const ::payload& varFile, const payload* pvarOptions, const ::matter * pobject)
+inline ::e_status context::save_to_file(const ::payload& varFile, const ::payload* pvarOptions, const ::matter * pobject)
 {
 
   if (pvarOptions)
@@ -769,7 +769,7 @@ inline ::e_status context::save_to_file(const ::payload& varFile, const ::matter
 }
 
 
-inline ::file_result object::get_reader(const payload & varFile, const ::file::e_open & eopen)
+inline ::file_result object::get_reader(const ::payload & varFile, const ::file::e_open & eopen)
 {
 
    return get_file(varFile, eopen | ::file::e_open_read) ;
@@ -777,7 +777,7 @@ inline ::file_result object::get_reader(const payload & varFile, const ::file::e
 }
 
 
-inline ::file_result object::get_writer(const payload & varFile, const ::file::e_open & eopen)
+inline ::file_result object::get_writer(const ::payload & varFile, const ::file::e_open & eopen)
 {
 
   return get_file(varFile, eopen | ::file::e_open_write);
@@ -789,7 +789,7 @@ template < typename TYPE >
 inline void context_object::set(const ::id & id, const TYPE & t)
 {
 
-  ::assign(value(id), t);
+  ::assign(payload(id), t);
 
   set(e_object_property_set_modified);
 
@@ -800,7 +800,7 @@ template < typename TYPE >
 inline void context_object::get(const ::id & id, TYPE & t)
 {
 
-  ::assign(t, value(id));
+  ::assign(t, payload(id));
 
 }
 
@@ -953,7 +953,7 @@ inline ::thread_pointer object::__start_thread(const ::id & id, void(TYPE:: * pf
 }
 
 //
-//inline payload & payload::operator = (::memory * pmemory)
+//inline ::payload & payload::operator = (::memory * pmemory)
 //{
 //
 //   set_element(pmemory);
@@ -1082,7 +1082,7 @@ inline void add_process(::promise::process_array & futurevara, PRED pred)
 //
 //
 //template < typename TYPE_CHAR >
-//inline string_base < TYPE_CHAR >::string_base(const payload& payload) :
+//inline string_base < TYPE_CHAR >::string_base(const ::payload & payload) :
 //  string_base(payload.to_string())
 //{
 //
@@ -1236,7 +1236,7 @@ template < typename TYPE >
 inline __pointer(TYPE) context_object::cast(const ::id & id)
 {
 
-  return value(id).cast < TYPE>();
+  return payload(id).cast < TYPE>();
 
 }
 
@@ -1265,7 +1265,7 @@ inline __pointer(TYPE) context_object::cast(const ::id & id)
 //}
 
 //
-//inline payload __visible(payload varOptions, bool bVisible)
+//inline ::payload __visible(::payload varOptions, bool bVisible)
 //{
 //
 //  varOptions["visible"] = bVisible;
@@ -1344,7 +1344,7 @@ inline ::count fork_count_end(::object* pobject, ::count iCount, PRED pred, inde
 }
 
 
-//inline void callback::receive_response(const payload & payload) const
+//inline void callback::receive_response(const ::payload & payload) const
 //{
 //
 //  if (!m_pobjectTask)
@@ -1397,7 +1397,7 @@ inline ::e_status context_object::__construct_new(__pointer(TYPE)& pbase)
 ////{
 //
 //
-//  inline message_box::message_box(const payload& payload)
+//  inline message_box::message_box(const ::payload & payload)
 //  {
 //
 //     if (payload.get_type() == e_type_string)

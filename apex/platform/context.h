@@ -85,7 +85,7 @@ public:
 
 
    // get a file and if there are exceptions, should show end user friendly messages
-   virtual file_pointer friendly_get_file(payload varFile, const ::file::e_open & eopen);
+   virtual file_pointer friendly_get_file(::payload varFile, const ::file::e_open & eopen);
 
 
    virtual bool os_resolve_alias(::file::path & path, const char * psz, bool bNoUI = false, bool bNoMount = false);
@@ -134,8 +134,8 @@ public:
    //virtual ::e_status save_dib(const ::file::path & path, const image * pimage);
 
 
-   //virtual ::image_result _load_image_from_file(const ::payload & varFile, const payload & varOptions);
-   //virtual ::e_status _save_to_file(const ::payload & varFile, const image * pimage, const payload & varOptions);
+   //virtual ::image_result _load_image_from_file(const ::payload & varFile, const ::payload & varOptions);
+   //virtual ::e_status _save_to_file(const ::payload & varFile, const image * pimage, const ::payload & varOptions);
 
 
    virtual string matter_locator(string strApp);
@@ -147,13 +147,13 @@ public:
    virtual void add_matter_locator(::apex::application * papp);
 
 
-   virtual ::e_status _load_from_file(::matter * pobject, const ::payload& varFile, const payload& varOptions);
-   virtual ::e_status _save_to_file(const ::payload& varFile, const payload& varOptions, const ::matter* pobject);
+   virtual ::e_status _load_from_file(::matter * pobject, const ::payload& varFile, const ::payload& varOptions);
+   virtual ::e_status _save_to_file(const ::payload& varFile, const ::payload& varOptions, const ::matter* pobject);
 
 
-   inline ::e_status load_from_file(::matter* pobject, const ::payload& varFile, const payload* pvarOptions);
+   inline ::e_status load_from_file(::matter* pobject, const ::payload& varFile, const ::payload* pvarOptions);
    inline ::e_status load_from_file(::matter* pobject, const ::payload& varFile);
-   inline ::e_status save_to_file(const ::payload& varFile, const payload* pvarOptions, const ::matter* pobject);
+   inline ::e_status save_to_file(const ::payload& varFile, const ::payload* pvarOptions, const ::matter* pobject);
    inline ::e_status save_to_file(const ::payload& varFile, const ::matter* pobject);
 
 

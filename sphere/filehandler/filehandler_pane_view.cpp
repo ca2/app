@@ -96,11 +96,11 @@ namespace filehandler
 
 
 
-   bool pane_view::pre_create_window(::user::create_struct * pcreatestruct)
+   bool pane_view::pre_create_window(::user::system * pusersystem)
    {
 
 
-      return ::user::impact::pre_create_window(pcreatestruct);
+      return ::user::impact::pre_create_window(pusersystem);
    }
 
    void pane_view::on_create_impact(::user::impact_data * pimpactdata)

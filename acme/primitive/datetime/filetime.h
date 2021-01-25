@@ -87,7 +87,7 @@ struct CLASS_DECL_ACME filetime_set
    filetime_set()
    {
 
-      xxf_zero_pointer(this);
+      __zero(this);
 
    }
 

@@ -307,13 +307,13 @@ void enum_display_monitors(::apex::system * psystem)
 
          GdkRectangle rect;
 
-         xxf_zero(rect);
+         __zero(rect);
 
          gdk_monitor_get_workarea(pmonitor, &rect);
 
          __copy(rectWork, rect);
 
-         xxf_zero(rect);
+         __zero(rect);
 
          gdk_monitor_get_geometry(pmonitor, &rect);
 

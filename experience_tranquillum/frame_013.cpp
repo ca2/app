@@ -1,38 +1,34 @@
 #include "framework.h"
 
 
+namespace experience
+{
 
 
-
-   namespace experience
+   namespace tranquillum
    {
 
 
-      
+      frame_013::frame_013()
+      {
+
+         m_bHollow = true;
+
+         m_rectMarginNormal.set(10, 10, 10, 10);
+
+      }
 
 
-         namespace tranquillum
+      frame_013::~frame_013()
+      {
 
-         {
-
-
-            frame_013::frame_013()
-            {
-
-               m_bHollow = true;
-
-            }
+      }
 
 
-            frame_013::~frame_013()
-            {
-
-            }
+   } // namespace tranquillum
 
 
-         } // namespace tranquillum
-
-   } // namespace experience
+} // namespace experience
 
 
 

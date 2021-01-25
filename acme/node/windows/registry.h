@@ -63,7 +63,7 @@ namespace windows
          ::e_status _get(const char * pcszValueName, memory & mem);
 
 
-         inline payload get(const char* pcszValueName);
+         inline ::payload get(const char* pcszValueName);
 
 
          void set(const char * pcszValueName, ::u32 dwValue);

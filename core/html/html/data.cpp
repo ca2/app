@@ -203,7 +203,7 @@ bool html_data::open_link(const char * pszPath)
 }
 
 
-bool html_data::open_document(const payload & varFile)
+bool html_data::open_document(const ::payload & varFile)
 {
 
  return m_pcoredata->open_document(varFile);
@@ -219,7 +219,7 @@ bool html_data::open_document(const payload & varFile)
 }
 
 
-//void html_data::on_before_navigate(payload & varFile, u32 nFlags, const char * pszTargetFrameName, byte_array& baPostedData, const char * pszHeaders, bool* pbCancel)
+//void html_data::on_before_navigate(::payload & varFile, u32 nFlags, const char * pszTargetFrameName, byte_array& baPostedData, const char * pszHeaders, bool* pbCancel)
 //{
 //
 //   m_pcoredata->on_before_navigate(varFile, nFlags, pszTargetFrameName, baPostedData, pszHeaders, pbCancel);

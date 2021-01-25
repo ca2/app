@@ -100,7 +100,7 @@ namespace account
 
       }
 
-      if(!m_plogin->create_window(this,"pane_first"))
+      if(!m_plogin->create_child(this))
       {
 
          pcreate->m_lresult = -1;
@@ -366,9 +366,9 @@ namespace account
 
 #endif
 
-      auto pcreatestruct = __new(::user::create_struct (rectFontopus));
+      // auto pusersystem = __new(::user::system_struct(rectFontopus));
 
-      if(!create_window_ex(pcreatestruct, puiParent))
+      if(!create_child(puiParent))
       {
 
          return;

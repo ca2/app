@@ -95,7 +95,7 @@ namespace user
       m_routineUpdateScreen = __routine([this]()
          {
 
-            if (!m_bitFinishing && !m_bitSetFinish)
+            if (!m_bFinishing && !m_bSetFinish)
             {
 
                update_screen();
@@ -1011,10 +1011,10 @@ bool prodevian::prodevian_iteration()
 
          }
 
-         if (m_puserinteraction->m_bitFinishing
-            || m_puserinteraction->m_bitSetFinish
-            || m_pimpl->m_bitFinishing
-            || m_pimpl->m_bitSetFinish)
+         if (m_puserinteraction->m_bFinishing
+            || m_puserinteraction->m_bSetFinish
+            || m_pimpl->m_bFinishing
+            || m_pimpl->m_bSetFinish)
          {
 
             bDraw = false;

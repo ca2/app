@@ -269,8 +269,8 @@ namespace experience
 
                   }
 
-                  lprect->left = m_pointMoveGripMinimal.x + 2;
-                  lprect->top = m_pointMoveGripMinimal.y + 2;
+                  //lprect->left = m_pointMoveGripMinimal.x + 2;
+                  //lprect->top = m_pointMoveGripMinimal.y + 2;
                   lprect->right = lprect->left + m_iCaptionHeight - 4;
                   lprect->bottom = lprect->top + m_iCaptionHeight - 4;
 
@@ -623,7 +623,8 @@ namespace experience
                else if(!pframewindow->layout().is_full_screen() && !m_pframewindow->frame_is_transparent())
                {
 
-                  pgraphics->fill_rect(m_rectCaptionTextBk, m_colorCaptionTextBk);
+                  //pgraphics->fill_rect(m_rectCaptionTextBk, m_colorCaptionTextBk);
+                  pgraphics->fill_rect(m_rectCaption, m_colorCaptionTextBk);
 
                   ::rect rectIcon;
 

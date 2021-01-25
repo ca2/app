@@ -83,19 +83,19 @@ namespace filemanager
          if (pimpactdata->m_id == "new_folder")
          {
 
-            psubject->value(FORM_ID) = "matter://filemanager/new_folder.html";
+            psubject->payload(FORM_ID) = "matter://filemanager/new_folder.html";
 
          }
          if (pimpactdata->m_id == "replace_name")
          {
 
-            psubject->value(FORM_ID) = "matter://filemanager/replace_name_in_file_system.html";
+            psubject->payload(FORM_ID) = "matter://filemanager/replace_name_in_file_system.html";
 
          }
          else if (pimpactdata->m_id == "add_location")
          {
 
-            psubject->value(FORM_ID) = "matter://filemanager/add_location_1.html";
+            psubject->payload(FORM_ID) = "matter://filemanager/add_location_1.html";
 
          }
 
@@ -158,7 +158,7 @@ namespace filemanager
 
          pcreate->m_puserinteractionParent = pimpactdata->m_pplaceholder;
 
-         pcreate->value("filemanager::data") = pfilemanagerdata;
+         pcreate->payload("filemanager::data") = pfilemanagerdata;
 
          string str = pimpactdata->m_id;
 

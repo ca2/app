@@ -157,13 +157,15 @@ void progress_control::format_status(const char *pszFormat)
    if (m_iStep + 1 > m_iStepCount)
    {
 
-      return;
+      return ::success;
 
    }
 
    m_iStep++;
 
    redraw();
+
+   return ::success;
 
 }
 

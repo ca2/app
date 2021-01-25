@@ -23,7 +23,7 @@ public:
    virtual void on_document_complete(const char * pszUrl);
 
    virtual void install_message_routing(::channel * pchannel) override;
-   virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
+   virtual bool pre_create_window(::user::system * pusersystem) override;
    virtual void OnDraw(::draw2d::graphics_pointer & pgraphics);      // overridden to draw this ::user::impact
    virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 

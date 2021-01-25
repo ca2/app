@@ -190,7 +190,7 @@
 //   }
 //
 //
-//   bool control::get_data(__pointer(::user::interaction)pwnd, payload& payload)
+//   bool control::get_data(__pointer(::user::interaction)pwnd, ::payload& payload)
 //   {
 //
 //      string str;
@@ -317,7 +317,7 @@
 //   }
 //
 //
-//   bool control::create_control(::user::interaction * pinteractionParent, const ::id & id)
+//   bool control::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
 //   {
 //
 //      m_pdescriptor = pdescriptor;
@@ -325,7 +325,7 @@
 //      try
 //      {
 //
-//         if (!create_window(pdescriptor->m_puserinteractionParent, pdescriptor->m_id))
+//         if (!create_interaction(pdescriptor->m_puserinteractionParent, pdescriptor->m_id))
 //         {
 //
 //            m_pdescriptor.release();

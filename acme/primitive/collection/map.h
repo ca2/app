@@ -1254,19 +1254,19 @@ template<> ALIENATED_ANDROID_ANARCHY ::std::tuple_size< pair > : ::std::integral
 #endif
 
 
-#define __declare_key_value_map(xmaptype, xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue) \
+#define __declare_map(xmaptype, xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue) \
 __declare_key_value(xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue); \
 using xmaptype = pair_map < xkeyvaluetype >
 
 
 #ifdef CPP17
 #define __declare_map_key_value(xmaptype, xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue) \
-__declare_key_value_map(xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue); \
+__declare_map(xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue); \
 __declare_pair_tuple_size(xmaptype)
 #else
 
 #define __declare_map_key_value(xmaptype, xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue) \
-__declare_key_value_map(xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue);
+__declare_map(xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue);
 
 #endif
 

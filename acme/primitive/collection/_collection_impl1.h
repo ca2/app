@@ -38,7 +38,7 @@ namespace gen
       }
 
       template < class TYPE, class ARG_TYPE >
-      bool CopySafeArray(array < TYPE, ARG_TYPE > & ar, VARIANT * payload)
+      bool CopySafeArray(array < TYPE, ARG_TYPE > & ar, VARIANT * ::payload)
       {
       //    AFX_MANAGE_STATE(AfxGetStaticModuleState())
           ASSERT(pvar->vt == (VT_ARRAY | VT_I4));

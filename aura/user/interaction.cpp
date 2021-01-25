@@ -4860,11 +4860,11 @@ namespace user
 //
 //            wstring wstrWindowName(pszWindowName);
 //
-//            ::user::system_struct pusersystem(0, wstrClassName, wstrWindowName, uStyle, rect, pcreate);
+//            ::user::system pusersystem(0, wstrClassName, wstrWindowName, uStyle, rect, pcreate);
 //
 //#else
 
-            //auto pusersystem = __new(::user::system_struct(uExStyle, uStyle, rect, pcreate));
+            //auto pusersystem = __new(::user::system(uExStyle, uStyle, rect, pcreate));
 
 //#endif
 
@@ -12415,11 +12415,11 @@ restart:
 //
 ////#ifdef WINDOWS_DESKTOP
 ////
-////         ::user::system_struct pusersystem(WS_EX_LAYERED | WS_EX_TOOLWINDOW, nullptr, L"tooltip", 0, nullptr);
+////         ::user::system pusersystem(WS_EX_LAYERED | WS_EX_TOOLWINDOW, nullptr, L"tooltip", 0, nullptr);
 ////
 ////#else
 //
-//         ::user::system_struct pusersystem(WS_EX_LAYERED | WS_EX_TOOLWINDOW, nullptr, "tooltip", 0, nullptr);
+//         ::user::system pusersystem(WS_EX_LAYERED | WS_EX_TOOLWINDOW, nullptr, "tooltip", 0, nullptr);
 //
 ////#endif
 //

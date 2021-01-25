@@ -186,7 +186,7 @@ namespace windows
 
 
       // advanced creation (allows access to extended styles)
-      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system_struct) pusersystem, ::user::interaction * puiParent, id id) override;
+      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pusersystem, ::user::interaction * puiParent, id id) override;
 
       virtual bool native_create_host() override;
 
@@ -582,7 +582,7 @@ namespace windows
       //bool OnNcActivate(bool bActive);
       //void OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS* pncsp);
 
-      //bool OnNcCreate(::user::system_struct * pCreateStruct);
+      //bool OnNcCreate(::user::system * pCreateStruct);
 
       //LRESULT OnNcHitTest(const ::point & point);
       //void OnNcLButtonDblClk(::u32 nHitTest, const ::point & point);

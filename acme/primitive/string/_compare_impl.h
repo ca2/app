@@ -178,7 +178,7 @@ namespace str
 
       }
 
-      ::payload = str;
+      payload = str;
 
       return true;
 
@@ -198,7 +198,7 @@ namespace str
 
       }
 
-      ::payload = str;
+      payload = str;
 
       return true;
 

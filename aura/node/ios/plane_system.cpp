@@ -60,7 +60,7 @@
 //
 //   pimpl->m_oswindow->set_user_interaction_impl(pimpl);
 //
-//   ::user::system_struct createstruct;
+//   ::user::system createstruct;
 //   pusersystem->m_createstruct.dwExStyle = 0;
 //   pusersystem->m_createstruct.lpszClass = 0;
 //   pusersystem->m_createstruct.lpszName = nullptr;

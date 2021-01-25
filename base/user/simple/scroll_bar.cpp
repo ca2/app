@@ -1190,7 +1190,7 @@ public:
    trw()
    {
 
-      //auto pusersystem = __new(::user::system_struct (WS_EX_LAYERED, nullptr, "", WS_VISIBLE));
+      //auto pusersystem = __new(::user::system (WS_EX_LAYERED, nullptr, "", WS_VISIBLE));
 
       //if(create_window_ex(pusersystem))
       if(create_host())

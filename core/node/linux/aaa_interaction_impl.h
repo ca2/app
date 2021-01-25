@@ -128,16 +128,16 @@ namespace linux
 //      // advanced creation (allows access to extended styles)
 //      virtual bool create_window_ex(
 //      ::user::interaction * pinteraction,
-//      __pointer(::user::system_struct) pusersystem,
+//      __pointer(::user::system) pusersystem,
 //      ::user::interaction * pParentWnd = nullptr,
 //      id id = ::id()) override;
 
-    virtual bool _native_create_window_ex(__pointer(::user::system_struct) pusersystem) override;
+    virtual bool _native_create_window_ex(__pointer(::user::system) pusersystem) override;
 
 
 //      virtual bool native_create_window_ex(
 //      ::user::interaction * pinteraction,
-//      __pointer(::user::system_struct) pusersystem,
+//      __pointer(::user::system) pusersystem,
 //      ::user::interaction * pParentWnd = nullptr,
 //      id id = ::id());
 

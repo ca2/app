@@ -257,7 +257,7 @@ namespace account
 
       }
 
-      //auto pusersystem = __new(::user::system_struct (0, nullptr, nullptr, 0, rectFontopus));
+      //auto pusersystem = __new(::user::system (0, nullptr, nullptr, 0, rectFontopus));
 
       if (!create_host())
       {

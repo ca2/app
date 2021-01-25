@@ -294,7 +294,7 @@ namespace user
       virtual bool create_child(::user::interaction * puserinteractionParent);
       virtual bool create_control(::user::interaction * puserinteractionParent, const ::id & id);
 
-      //virtual bool create_window_ex(__pointer(::user::system_struct) pcs, ::user::interaction * puiParent, const ::id & id);
+      //virtual bool create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::id & id);
       virtual void CalcWindowRect(RECT32 * pClientRect,::u32 nAdjustType = adjustBorder);
 
 

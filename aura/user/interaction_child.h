@@ -82,7 +82,7 @@ namespace user
       virtual bool create_child(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent);
 
 
-      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system_struct) pcs, ::user::primitive * puiParent, id id) override;
+      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, id id) override;
 
       //virtual bool create_interaction() override;
 

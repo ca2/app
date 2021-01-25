@@ -273,7 +273,7 @@ namespace macos
    }
 
 
-   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system_struct) pusersystem, ::user::interaction *  puiParent, id id)
+   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pusersystem, ::user::interaction *  puiParent, id id)
    {
 
       if (!native_create_window_ex(pinteraction, cs,
@@ -324,7 +324,7 @@ namespace macos
    }
 
 
-   bool interaction_impl::_native_create_window_ex(__pointer(::user::system_struct) pusersystem)
+   bool interaction_impl::_native_create_window_ex(__pointer(::user::system) pusersystem)
    {
 
       //if (::is_window(get_handle()))
@@ -339,7 +339,7 @@ namespace macos
       ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
 
       // allow modification of several common create parameters
-      //::user::system_struct createstruct;
+      //::user::system createstruct;
       //      pusersystem->m_createstruct.hwndParent = hWndParent;
       //   pusersystem->m_createstruct.hMenu = hWndParent == nullptr ? nullptr : nIDorHMenu;
       pusersystem->m_createstruct.hMenu = nullptr;
@@ -473,7 +473,7 @@ namespace macos
 
       ASSERT(puiParent != nullptr);
       
-      ::user::system_struct createstruct(0, lpszClassName, lpszWindowName, uStyle, rect, pcreate);
+      ::user::system createstruct(0, lpszClassName, lpszWindowName, uStyle, rect, pcreate);
 
       pusersystem->m_createstruct.hwndParent = puiParent->get_safe_handle();
 
@@ -496,7 +496,7 @@ namespace macos
    //    else
    //    {
 
-   //       ::user::system_struct createstruct(0, nullptr, pszName, WS_CHILD, nullptr);
+   //       ::user::system createstruct(0, nullptr, pszName, WS_CHILD, nullptr);
 
    //       if (!native_create_window_ex(pinteraction, createstruct, MESSAGE_WINDOW_PARENT, "message_queue"))
    //       {
@@ -3861,7 +3861,7 @@ namespace macos
 //      Default();
 //   }
 //
-//   bool interaction_impl::OnNcCreate(::user::system_struct *)
+//   bool interaction_impl::OnNcCreate(::user::system *)
 //   {
 //
 //      return Default() != FALSE;

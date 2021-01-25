@@ -119,6 +119,10 @@ list(APPEND aura_source
    graphics/draw2d/image.h
    graphics/draw2d/image_array.cpp
    graphics/draw2d/image_array.h
+   graphics/draw2d/image_drawer.cpp
+   graphics/draw2d/image_drawer.h
+   graphics/draw2d/image_drawing.cpp
+   graphics/draw2d/image_drawing.h
    graphics/draw2d/image_dynamic.cpp
    graphics/draw2d/image_dynamic.h
    graphics/draw2d/image_extension.cpp
@@ -327,10 +331,8 @@ list(APPEND aura_source
    user/control_event.h
    user/copydesk.cpp
    user/copydesk.h
-   user/create.cpp
-   user/create.h
-   user/create_struct.cpp
-   user/create_struct.h
+   user/system.cpp
+   user/system.h
    user/form.cpp
    user/form.h
    user/form_callback.cpp

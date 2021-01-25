@@ -144,7 +144,7 @@ namespace uwp
       // for child windows, views, panes etc
       //virtual bool create_window(::user::interaction * pinteraction, const char * lpszClassName,const char * lpszWindowName,u32 dwStyle,const RECT32 & rect,::user::interaction * pParentWnd,id id, ::create * pcreate = nullptr) override;
 
-      virtual bool _native_create_window_ex(__pointer(::user::system_struct) pcs);
+      virtual bool _native_create_window_ex(__pointer(::user::system) pcs);
 
 
       virtual ::point get_cursor_pos() const;

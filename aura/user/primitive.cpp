@@ -1310,7 +1310,7 @@ namespace user
    }
 
 
-   //bool primitive::create_window_ex(__pointer(::user::system_struct) pcs, ::user::interaction * puiParent, const ::id & id)
+   //bool primitive::create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::id & id)
    bool primitive::create_host()
    {
 

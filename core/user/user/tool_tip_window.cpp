@@ -340,7 +340,7 @@ namespace user
 
    //   m_font->create_point_font(os_font_name(e_font_sans), 10.0);
 
-   //   auto pusersystem = __new(::user::system_struct);
+   //   auto pusersystem = __new(::user::system);
 
    //   return create_window_ex(pusersystem, nullptr, id) != 0;
 

@@ -252,8 +252,8 @@ list(APPEND acme_source
    primitive/datetime/secs.h
    primitive/datetime/time.cpp
    primitive/datetime/time_span.cpp
-   primitive/datetime/payload.cpp
-   primitive/datetime/payload.h
+   primitive/datetime/result.cpp
+   primitive/datetime/result.h
    primitive/datetime/zonetime.cpp
    primitive/geometry2d/_.cpp
    primitive/geometry2d/geometry.cpp
@@ -945,7 +945,6 @@ list(APPEND acme_source
    primitive/datetime/filetime_span.h
    primitive/datetime/time.h
    primitive/datetime/time_span.h
-   primitive/datetime/value.h
    primitive/datetime/zonetime.h
    primitive/datetime/_.h
    primitive/datetime/_c.h

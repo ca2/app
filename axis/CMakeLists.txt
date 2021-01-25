@@ -185,8 +185,8 @@ list(APPEND axis_source
         math/calculator/parser.h
         math/calculator/parser_exception.cpp
         math/calculator/parser_exception.h
-        math/calculator/payload.cpp
-        math/calculator/payload.h
+        math/calculator/result.cpp
+        math/calculator/result.h
         math/calculator/scanner.cpp
         math/calculator/scanner.h
         math/calculator/token.h

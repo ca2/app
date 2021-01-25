@@ -143,7 +143,7 @@ namespace user
       //index_map < __pointer(interaction) >      m_controlmap;
 
       __pointer(graphics_call_array)            m_pgraphicscalla;
-      id                                        m_id;
+      //id                                        m_id;
       id                                        m_uiText;
       ::type                                    m_type;
       id                                        m_idPrivateDataSection;
@@ -909,7 +909,7 @@ namespace user
 
       // virtual bool create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle, ::user::interaction * puiParent, ::create * pcreate = nullptr) override;
 
-      //virtual bool create_window_ex(__pointer(::user::system_struct) pcs, ::user::interaction* puiParent = nullptr, const ::id& id = ::id()) override;
+      //virtual bool create_window_ex(__pointer(::user::system) pcs, ::user::interaction* puiParent = nullptr, const ::id& id = ::id()) override;
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
       virtual void CalcWindowRect(RECT32* pClientRect, ::u32 nAdjustType = adjustBorder) override;
 

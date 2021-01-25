@@ -292,7 +292,7 @@ public:
    void OnGetMinMaxInfo(MINMAXINFO* pMMI);
    LRESULT OnFloatStatus(WPARAM wParam, LPARAM lParam);
    LRESULT OnQueryCenterWnd(WPARAM wParam, LPARAM lParam);
-   bool OnNcCreate(::user::system_struct * pcs);
+   bool OnNcCreate(::user::system * pcs);
 
 
 public:

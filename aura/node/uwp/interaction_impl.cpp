@@ -85,7 +85,7 @@ namespace uwp
    }
 
 
-   bool interaction_impl::_native_create_window_ex(__pointer(::user::system_struct) pusersystem)
+   bool interaction_impl::_native_create_window_ex(__pointer(::user::system) pusersystem)
    {
 
       if (!m_window.Get())

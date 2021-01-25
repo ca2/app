@@ -156,7 +156,7 @@ CLASS_DECL_AURA __pointer(::user::interaction) create_system_message_window(::la
 
    //psysteminteraction->initialize(pobjectContext);
 
-   //auto pusersystem = __new(::user::system_struct);
+   //auto pusersystem = __new(::user::system);
 
    psysteminteraction->display(e_display_none);
 

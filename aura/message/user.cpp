@@ -30,7 +30,7 @@ namespace message
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
 
-      //m_pusersystem = __user_interaction(playeredUserPrimitive)->payload("user_create").cast < ::user::system_struct >();
+      //m_pusersystem = __user_interaction(playeredUserPrimitive)->payload("user_create").cast < ::user::system >();
 
       //CREATESTRUCT * pusersystem = (CREATESTRUCT *)lparam.m_lparam;
 

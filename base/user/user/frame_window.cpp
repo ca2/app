@@ -868,7 +868,7 @@ namespace user
 
    //   m_strFrameTitle = pszWindowName;    // save title for later
 
-   //   auto pusersystem = __new(::user::system_struct (dwExStyle, pszClassName, pszWindowName, uStyle, rect, pcreate));
+   //   auto pusersystem = __new(::user::system (dwExStyle, pszClassName, pszWindowName, uStyle, rect, pcreate));
 
    //   if (!::user::interaction::create_window_ex(pusersystem, puiParent, pcreate->m_id))
    //   {
@@ -1039,7 +1039,7 @@ namespace user
 
       output_debug_string("\nm_bLayoutEnable FALSE");
 
-      //auto pusersystem = __new(::user::system_struct (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectFrame, pcreate));
+      //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectFrame, pcreate));
 
       //if (!create_window_ex(pusersystem, puiParent, pcreate->m_id))
       //{

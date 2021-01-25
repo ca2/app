@@ -68,7 +68,7 @@ namespace user
    //}
 
 
-   //bool primitive_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system_struct) pcs, ::user::primitive * puiParent, id id)
+   //bool primitive_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, id id)
    //{
 
    //   ::exception::throw_interface_only();

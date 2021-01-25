@@ -108,7 +108,7 @@ virtual bool setWMClass(const char * psz);
       //virtual bool create_interaction(::user::interaction * pinteraction, const ::rect & rect, ::user::primitive * pparent, id id);
       //virtual bool create_interaction(::user::interaction * pinteraction, ::u32 uExStyle, u32 uStyle, const ::rect & rect, ::user::primitive * puiParent, ::create * pcreate = nullptr);
 
-      //virtual bool _create_window(::user::interaction * pinteraction,__pointer(::user::system_struct) pcs, ::user::primitive * puiParent = nullptr, id id = ::id());
+      //virtual bool _create_window(::user::interaction * pinteraction,__pointer(::user::system) pcs, ::user::primitive * puiParent = nullptr, id id = ::id());
 
       //virtual bool _create_interaction(::user::interaction * pinteraction, ::user::primitive * pparent);
 

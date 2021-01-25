@@ -261,7 +261,7 @@ namespace user
 
 
       // advanced creation (allows access to extended styles)
-      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system_struct) pcs, ::user::primitive * puiParent, id id) override;
+      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, id id) override;
 
       //virtual bool create_interaction() override;
 
@@ -269,9 +269,9 @@ namespace user
       //virtual bool _native_create_window(::user::interaction * pinteraction, oswindow oswindow);
 
       
-      //virtual bool _native_create_window_ex(__pointer(::user::system_struct) pusersystem);
+      //virtual bool _native_create_window_ex(__pointer(::user::system) pusersystem);
 
-      //virtual bool _native_create_window_ex(__pointer(::user::system_struct) pusersystem);
+      //virtual bool _native_create_window_ex(__pointer(::user::system) pusersystem);
 
       //virtual bool create_host();
 

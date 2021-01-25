@@ -759,8 +759,8 @@ namespace user
 //      //pfontformattool->m_ewindowflag |= e_window_flag_embedded_prodevian;
 //      //pfontformattool->m_ewindowflag |= e_window_flag_satellite_window;
 //
-//      ::user::system_struct createstruct(WS_EX_NOACTIVATE | WS_EX_TOPMOST | WS_EX_TOOLWINDOW | WS_EX_LAYERED);
-//      //::user::system_struct createstruct;
+//      ::user::system createstruct(WS_EX_NOACTIVATE | WS_EX_TOPMOST | WS_EX_TOOLWINDOW | WS_EX_LAYERED);
+//      //::user::system createstruct;
 //
 //      pfontformattool->create_window_ex(createstruct, nullptr, "textformat_sys_format_tool");
 //

@@ -74,7 +74,7 @@ namespace promise
 
       auto pnode = Node;
 
-      if(pnode->defer_launch_on_node(psubject))
+      if(pnode && pnode->defer_launch_on_node(psubject))
       {
 
       }

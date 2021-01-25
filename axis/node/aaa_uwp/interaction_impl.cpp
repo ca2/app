@@ -152,7 +152,7 @@ namespace uwp
    //{
 
 
-   bool interaction_impl::_native_create_window_ex(::user::system_struct& cs)
+   bool interaction_impl::_native_create_window_ex(::user::system& cs)
    {
 
       __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task());

@@ -138,7 +138,7 @@ namespace user
 
       {
 
-         string strAppId = pvisualicon->m_strAppTrayIcon;
+         string strAppId = pvisualicon->get_tray_icon_name();
 
          string strId(strAppId);
 

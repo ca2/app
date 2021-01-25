@@ -49,7 +49,7 @@ namespace user
 
       bool bInitialFramePosition = _001InitialFramePosition(rectWindow, m_rectInitialRateOrSize);
 
-      //auto pcs = __new(::user::system_struct(0, nullptr, Application.m_strAppId, WS_VISIBLE, rectWindow));
+      //auto pcs = __new(::user::system(0, nullptr, Application.m_strAppId, WS_VISIBLE, rectWindow));
 
       bool bOk = create_host();
 

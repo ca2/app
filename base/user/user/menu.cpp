@@ -456,7 +456,7 @@ namespace user
 
          }
 
-         //auto pusersystem = __new(::user::system_struct (iStyleEx, nullptr, nullptr, 0, nullptr, pcreate));
+         //auto pusersystem = __new(::user::system (iStyleEx, nullptr, nullptr, 0, nullptr, pcreate));
 
          //if (!create_window_ex(pusersystem, puiParent))
          if (!create_host())

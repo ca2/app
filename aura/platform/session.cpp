@@ -3664,7 +3664,7 @@ ret:
 //
 //      }
 
-      auto pcs = __new(::user::system_struct(0, nullptr, nullptr, WS_VISIBLE, rectScreen));
+      auto pcs = __new(::user::system(0, nullptr, nullptr, WS_VISIBLE, rectScreen));
 
       auto puiHost = __user_interaction(m_puiHost);
 

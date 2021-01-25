@@ -1050,7 +1050,7 @@ namespace user
       if (!is_window())
       {
 
-         ::user::system_struct createstruct(0, nullptr, "combo_list");
+         ::user::system createstruct(0, nullptr, "combo_list");
 
          pusersystem->m_createstruct.set_rect(::rect(rectList).inflate(m_iBorder));
 

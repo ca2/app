@@ -66,7 +66,7 @@ namespace app_shader
 
       m_pwindow->_001InitialFramePosition(rectWindow, { 0.05, 0.05, 0.4, 0.4 });
 
-      //auto pusersystem = __new(::user::system_struct(0, nullptr, "app_app", WS_VISIBLE, rectWindow));
+      //auto pusersystem = __new(::user::system(0, nullptr, "app_app", WS_VISIBLE, rectWindow));
 
       //m_pwindow->create_window_ex(pusersystem);
 

@@ -105,7 +105,7 @@ namespace uwp
 
       ::user::os_update_dark_mode();
 
-      ::user::system_struct cs;
+      ::user::system cs;
 
       if (!m_psystem->get_context_session()->m_puiHost->create_window_ex(cs))
       {

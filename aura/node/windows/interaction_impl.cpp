@@ -740,7 +740,7 @@ namespace windows
 
    //    }
 
-   //    ::user::system_struct createstruct(0, nullptr, lpszName, WS_CHILD, nullptr);
+   //    ::user::system createstruct(0, nullptr, lpszName, WS_CHILD, nullptr);
 
    //    pusersystem->m_createstruct.hwndParent = HWND_MESSAGE;
 
@@ -4295,7 +4295,7 @@ namespace windows
 //      Default();
 //   }
 //
-//   bool interaction_impl::OnNcCreate(::user::system_struct *)
+//   bool interaction_impl::OnNcCreate(::user::system *)
 //   {
 //
 //      return Default() != FALSE;
@@ -4702,7 +4702,7 @@ namespace windows
 
    //   ASSERT(lParam != 0);
 
-   //   ::user::system_struct * pcs = (::user::system_struct *) ((LPCBT_CREATEWND)lParam)->lpcs;
+   //   ::user::system * pcs = (::user::system *) ((LPCBT_CREATEWND)lParam)->lpcs;
 
    //   ASSERT(pcs != nullptr);
 

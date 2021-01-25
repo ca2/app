@@ -256,7 +256,7 @@ namespace linux
    }
 
 
-   bool interaction_impl::_native_create_window_ex(__pointer(::user::system_struct) pusersystem)
+   bool interaction_impl::_native_create_window_ex(__pointer(::user::system) pusersystem)
    {
 
       ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
@@ -4429,7 +4429,7 @@ namespace linux
 //   //Default();
 //   }
 //
-//   bool interaction_impl::OnNcCreate(::user::system_struct *)
+//   bool interaction_impl::OnNcCreate(::user::system *)
 //   {
 //
 ////      return Default() != FALSE;

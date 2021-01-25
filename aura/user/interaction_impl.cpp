@@ -317,7 +317,7 @@ namespace user
       else
       {
 
-         //auto pusersystem=__new(::user::system_struct(0, nullptr, lpszName, WS_CHILD, nullptr));
+         //auto pusersystem=__new(::user::system(0, nullptr, lpszName, WS_CHILD, nullptr));
 
          //pusersystem->m_createstruct.hwndParent = MESSAGE_WINDOW_PARENT;
 
@@ -842,7 +842,7 @@ namespace user
 //      //ASSERT(puiParent != nullptr);
 //      //ASSERT((uStyle & WS_POPUP) == 0);
 //
-//      //auto pusersystem = __new(::user::system_struct);
+//      //auto pusersystem = __new(::user::system);
 //
 //      //pusersystem->m_createstruct.dwExStyle = 0;
 //

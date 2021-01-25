@@ -401,7 +401,7 @@ namespace ios
 
    bool interaction_impl::create_window_ex(
    ::user::interaction * pinteraction,
-   __pointer(::user::system_struct) pusersystem,
+   __pointer(::user::system) pusersystem,
    ::user::interaction * puiParent,
    id id)
    {
@@ -420,7 +420,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::_native_create_window_ex(__pointer(::user::system_struct) pusersystem)
+   bool interaction_impl::_native_create_window_ex(__pointer(::user::system) pusersystem)
    {
 
       if(::is_window(get_handle()))
@@ -527,7 +527,7 @@ namespace ios
       
       ASSERT((uStyle & WS_POPUP) == 0);
 
-      ::user::system_struct createstruct(0, pszClassName, pszWindowName, uStyle | WS_CHILD,
+      ::user::system createstruct(0, pszClassName, pszWindowName, uStyle | WS_CHILD,
                                rect);
 
       return create_window_ex(pinteraction, createstruct, puiParent, id);
@@ -545,7 +545,7 @@ namespace ios
    }
 
 
-//   bool interaction_impl::native_create_window_ex(::user::system_struct & createstruct)
+//   bool interaction_impl::native_create_window_ex(::user::system & createstruct)
 //   {
 //
 //      CGRect rect;
@@ -594,7 +594,7 @@ namespace ios
    //    else
    //    {
 
-   //       ::user::system_struct createstruct(0, nullptr, pszName, WS_CHILD);
+   //       ::user::system createstruct(0, nullptr, pszName, WS_CHILD);
 
    //       if(!native_create_window_ex(pinteraction, cs, HWND_MESSAGE, pszName))
    //       {
@@ -4343,7 +4343,7 @@ namespace ios
       
       
    }
-   bool interaction_impl::OnNcCreate(::user::system_struct *)
+   bool interaction_impl::OnNcCreate(::user::system *)
    {
 
       return true;

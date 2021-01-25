@@ -126,11 +126,11 @@ namespace macos
       // advanced creation (allows access to extended styles)
       virtual bool create_window_ex(
       ::user::interaction * pinteraction,
-      __pointer(::user::system_struct) pusersystem,
+      __pointer(::user::system) pusersystem,
       ::user::interaction * puiParent,
       id id) override;
 
-      virtual bool _native_create_window_ex(__pointer(::user::system_struct) pusersystem) override;
+      virtual bool _native_create_window_ex(__pointer(::user::system) pusersystem) override;
 
       virtual bool DestroyWindow() override;
 
@@ -490,7 +490,7 @@ namespace macos
       // Nonclient-Area message handler member functions
 //      bool OnNcActivate(bool bActive);
 //      void OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS* lpncsp);
-//      bool OnNcCreate(::user::system_struct * lpCreateStruct);
+//      bool OnNcCreate(::user::system * lpCreateStruct);
 
 //      LRESULT OnNcHitTest(::point point);
 //      void OnNcLButtonDblClk(::u32 nHitTest, const ::point & point);

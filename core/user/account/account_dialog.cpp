@@ -366,7 +366,7 @@ namespace account
 
 #endif
 
-      // auto pusersystem = __new(::user::system_struct(rectFontopus));
+      // auto pusersystem = __new(::user::system(rectFontopus));
 
       if(!create_child(puiParent))
       {

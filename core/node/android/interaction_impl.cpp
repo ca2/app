@@ -217,7 +217,7 @@ namespace android
    }
 
 
-   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system_struct) pusersystem, ::user::interaction * puiParent, id id)
+   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pusersystem, ::user::interaction * puiParent, id id)
    {
 
       auto oswindow = puiParent ? puiParent->get_safe_handle() : nullptr;
@@ -250,7 +250,7 @@ namespace android
    }
 
 
-   bool interaction_impl::_native_create_window_ex(::user::system_struct& cs)
+   bool interaction_impl::_native_create_window_ex(::user::system& cs)
    {
 
 //      __throw(not_implemented("no multiple native windows per application"));
@@ -460,7 +460,7 @@ namespace android
       ASSERT(pParentWnd != nullptr);
       ASSERT((dwStyle & WS_POPUP) == 0);
 
-      ::user::system_struct createstruct;
+      ::user::system createstruct;
 
       pusersystem->m_createstruct.dwExStyle = 0;
       pusersystem->m_createstruct.lpszClass = lpszClassName;
@@ -487,7 +487,7 @@ namespace android
 
    //    }
 
-   //    ::user::system_struct createstruct(0, nullptr, pszName, WS_CHILD, ::rect());
+   //    ::user::system createstruct(0, nullptr, pszName, WS_CHILD, ::rect());
 
    //    pusersystem->m_createstruct.hwndParent = HWND_MESSAGE;
 
@@ -4083,7 +4083,7 @@ namespace android
       Default();
    }
 
-   bool interaction_impl::OnNcCreate(::user::system_struct *)
+   bool interaction_impl::OnNcCreate(::user::system *)
    {
 
       return Default() != FALSE;

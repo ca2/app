@@ -196,7 +196,7 @@ namespace user
 //   bool interaction_child::create_child(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent)
 //   {
 //
-//      auto pusersystem = __new(::user::system_struct);
+//      auto pusersystem = __new(::user::system);
 //
 //      ::rect rect;
 //

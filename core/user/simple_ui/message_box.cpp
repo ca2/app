@@ -162,7 +162,7 @@ namespace simple_ui
 
       rectFontopus.bottom = rectFontopus.top + h;
 
-      //auto pusersystem = __new(::user::system_struct (WS_EX_LAYERED, nullptr, nullptr, 0, rectFontopus));
+      //auto pusersystem = __new(::user::system (WS_EX_LAYERED, nullptr, nullptr, 0, rectFontopus));
 
       if(!create_interaction(puiParent))
       {

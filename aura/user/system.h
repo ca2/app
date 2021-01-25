@@ -5,8 +5,8 @@ namespace user
 {
 
 
-   class CLASS_DECL_AURA create_struct :
-      virtual public ::matter
+   class CLASS_DECL_AURA system :
+      virtual public ::context_object
    {
    public:
 
@@ -32,18 +32,51 @@ namespace user
       __pointer(::create)                    m_pcreate;
 
 
-      create_struct(const create_struct &);
+
+
+
+      bool                             m_bAutoWindowFrame;
+      bool                             m_bWindowFrame;
+      ::type                           m_typeNewView;
+      //::user::document *             m_pdocumentCurrent;
+      ::object * m_pdocumentCurrent;
+      ::user::primitive * m_puiNew;
+
+      // multiple document interface children
+      //::user::impact_system *          m_ptemplateNewDocument;
+      ::object * m_ptemplateNewDocument;
+
+      // original view/frame
+      ::user::primitive * m_puiLastView;
+      ::user::primitive * m_puiCurrentFrame;
+      //__pointer(impact_data)         m_pimpactdata;
+      __pointer(::matter)              m_pimpactdata;
+
+
+      //create();
+      //virtual ~create();
+
+
+
+
+      system(const system &);
       
-      create_struct(
-                  u32 uiExStyle = 0,
+      system(
+                  u32 uExStyle = 0,
                   const char * pszClassName = 0,
                   const char * pszWindowName = 0,
                   u32 uStyle = 0,
                   ::rect rect = nullptr,
                   ::create * pcreate = nullptr);
 
-      create_struct(const ::rect & rect);
-      
+      system(
+         const ::rect & rect,
+         ::u32 uExStyle = 0,
+         ::u32 uStyle = 0,
+         ::create * pcreate = nullptr);
+
+      void create_common_construct();
+
       void set_class_name(const char * pszClassName);
       
       void set_window_name(const char * pszWindowName);

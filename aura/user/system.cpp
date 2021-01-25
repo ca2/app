@@ -1,0 +1,150 @@
+//
+//  user_create_struct.cpp
+//  aura
+//
+//  Created by Camilo Sasuke Tsumanuma on 19/06/18.
+//
+#include "framework.h"
+#if !BROAD_PRECOMPILED_HEADER
+#include "aura/user/_user.h"
+#endif
+
+
+namespace user
+{
+
+
+   system::system(const system & system)
+   {
+
+      create_common_construct();
+
+#ifdef WINDOWS
+      m_createstruct = system.m_createstruct;
+      set_class_name(string(system.m_createstruct.lpszClass));
+      set_window_name(string(system.m_createstruct.lpszName));
+#else
+      m_createstruct = system.m_createstruct;
+      set_class_name(system.m_createstruct.lpszClass);
+      set_window_name(system.m_createstruct.lpszName);
+#endif
+      m_puserinteractionOwner = nullptr;
+      m_routineFailure = system.m_routineFailure;
+      m_routineSuccess = system.m_routineSuccess;
+      m_createstruct.CREATE_STRUCT_P_CREATE_PARAMS = (::user::system *) this;
+   }
+
+
+   system::system(u32 uiExStyle, const char * pszClassName, const char * pszWindowName, u32 uStyle, ::rect rect, ::create * pcreate) :
+   system(rect)
+   {
+
+      m_createstruct.dwExStyle = uiExStyle;
+      set_class_name(pszClassName);
+      set_window_name(pszWindowName);
+      m_createstruct.style = uStyle;
+      //m_createstruct.CREATE_STRUCT_P_CREATE_PARAMS = pvCreateParams;
+      m_pcreate = pcreate;
+      m_puserinteractionOwner = nullptr;
+
+   }
+
+
+   system::system(const ::rect & rect, ::u32 uExStyle, ::u32 uStyle, ::create * pcreate)
+   {
+
+      __zero(m_createstruct);
+
+      create_common_construct();
+         
+      set_rect(rect);
+
+      m_createstruct.dwExStyle = uExStyle;
+
+      m_createstruct.style = uStyle;
+
+      m_createstruct.CREATE_STRUCT_P_CREATE_PARAMS = (::user::system *)this;
+
+   }
+
+
+   void system::create_common_construct()
+   {
+
+      set_layer(LAYERED_USER_CREATE, this);
+
+      m_bAutoWindowFrame = true;
+      m_bWindowFrame = false;
+      m_pdocumentCurrent = nullptr;
+      m_ptemplateNewDocument = nullptr;
+      m_puiLastView = nullptr;
+      m_puiCurrentFrame = nullptr;
+      m_puiNew = nullptr;
+
+   }
+
+
+   void system::set_class_name(const char * pszClassName)
+   {
+
+      m_strClassName = pszClassName;
+
+      m_createstruct.lpszClass = m_strClassName;
+
+   }
+
+
+   void system::set_window_name(const char * pszWindowName)
+   {
+
+      m_strWindowName = pszWindowName;
+
+      m_createstruct.lpszName = m_strWindowName;
+
+   }
+
+
+   void system::set_rect(const ::rect & rect)
+   {
+
+      m_createstruct.x = rect.left;
+      m_createstruct.y = rect.top;
+      m_createstruct.cx = rect.width();
+      m_createstruct.cy = rect.height();
+
+   }
+
+   void system::add_visible(bool bAdd)
+   {
+
+      if (!bAdd)
+      {
+
+         return;
+
+      }
+
+      if (!(m_createstruct.style & WS_VISIBLE))
+      {
+
+         m_createstruct.style |= WS_VISIBLE;
+
+      }
+
+   }
+
+   void system::get_rect(LPRECT32 lprect)
+   {
+
+      lprect->left = m_createstruct.x;
+      lprect->top = m_createstruct.y;
+      lprect->right = m_createstruct.x + m_createstruct.cx;
+      lprect->bottom = m_createstruct.y + m_createstruct.cy;
+
+   }
+
+
+} // namespace user
+
+
+

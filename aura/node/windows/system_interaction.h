@@ -9,14 +9,14 @@ namespace user
 
    // top level window for receiving system messages broadcasted to top level windows in Windows
 
-   class CLASS_DECL_AURA system_interaction_impl :
+   class CLASS_DECL_AURA system_interaction :
       virtual public ::user::interaction
    {
       public:
 
          
-         system_interaction_impl();
-         virtual ~system_interaction_impl();
+         system_interaction();
+         virtual ~system_interaction();
 
 
          virtual void install_message_routing(::channel * pchannel) override;

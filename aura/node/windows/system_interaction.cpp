@@ -4,43 +4,43 @@
 #endif
 #include "aura/message.h"
 #include "aura/procedure.h"
-#include "system_interaction_impl.h"
+#include "system_interaction.h"
 
 
 namespace user
 {
 
 
-   system_interaction_impl::system_interaction_impl()
+   system_interaction::system_interaction()
    {
 
       m_ewindowflag -= e_window_flag_graphical;
-      m_bMessageWindow = true;
+      //m_bMessageWindow = true;
 
    }
 
 
-   system_interaction_impl::~system_interaction_impl()
+   system_interaction::~system_interaction()
    {
 
 
    }
 
 
-   void system_interaction_impl::install_message_routing(::channel * pchannel)
+   void system_interaction::install_message_routing(::channel * pchannel)
    {
 
       ::user::interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_destroy, pchannel, this, &system_interaction_impl::_001OnDestroy);
-      MESSAGE_LINK(WM_SETTINGCHANGE, pchannel,this,&system_interaction_impl::_001OnMessage);
-      MESSAGE_LINK(e_message_display_change, pchannel,this,&system_interaction_impl::_001OnMessage);
-      MESSAGE_LINK(WM_FONTCHANGE, pchannel, this, &system_interaction_impl::_001OnMessage);
+      MESSAGE_LINK(e_message_destroy, pchannel, this, &system_interaction::_001OnDestroy);
+      MESSAGE_LINK(WM_SETTINGCHANGE, pchannel,this,&system_interaction::_001OnMessage);
+      MESSAGE_LINK(e_message_display_change, pchannel,this,&system_interaction::_001OnMessage);
+      MESSAGE_LINK(WM_FONTCHANGE, pchannel, this, &system_interaction::_001OnMessage);
 
    }
 
 
-   bool system_interaction_impl::is_system_message_window()
+   bool system_interaction::is_system_message_window()
    {
 
       return true;
@@ -48,7 +48,7 @@ namespace user
    }
 
 
-   bool system_interaction_impl::DestroyWindow()
+   bool system_interaction::DestroyWindow()
    {
 
       return ::user::interaction::DestroyWindow();
@@ -56,17 +56,17 @@ namespace user
    }
 
 
-   void system_interaction_impl::_001OnDestroy(::message::message * pmessage)
+   void system_interaction::_001OnDestroy(::message::message * pmessage)
    {
 
       __pointer(::message::base) pbase(pmessage);
 
-      ::output_debug_string("system_interaction_impl::_001OnDestroy");
+      ::output_debug_string("system_interaction::_001OnDestroy");
 
    }
 
 
-   void system_interaction_impl::_001OnMessage(::message::message * pmessage)
+   void system_interaction::_001OnMessage(::message::message * pmessage)
    {
 
       __pointer(::message::base) pbase(pmessage);
@@ -75,6 +75,7 @@ namespace user
       {
 
          WPARAM wparam = pbase->m_wparam;
+
          LPARAM lparam = pbase->m_lparam;
 
          string strLparamString;
@@ -148,23 +149,25 @@ namespace user
 } // namespace base
 
 
-CLASS_DECL_AURA ::user::interaction * create_system_message_window(::layered * pobjectContext)
+CLASS_DECL_AURA __pointer(::user::interaction) create_system_message_window(::layered * pobjectContext)
 {
 
-   ::user::system_interaction_impl * pimpl = new ::user::system_interaction_impl;
+   auto psysteminteraction = __object(pobjectContext)->__create_new < ::user::system_interaction >();
 
-    pimpl->initialize(pobjectContext);
+   //psysteminteraction->initialize(pobjectContext);
 
-    auto pcreatestruct = __new(::user::create_struct);
+   //auto pusersystem = __new(::user::system_struct);
 
-    if (!pimpl->create_window_ex(pcreatestruct, nullptr, "::user::system_interaction_impl"))
-    {
+   psysteminteraction->display(e_display_none);
 
-       return nullptr;
+   if (!psysteminteraction->create_host())
+   {
 
-    }
+      return nullptr;
 
-    return pimpl;
+   }
+
+   return psysteminteraction;
 
 }
 

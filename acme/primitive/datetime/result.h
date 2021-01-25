@@ -5,9 +5,10 @@ namespace datetime
 {
 
 
-   class CLASS_DECL_ACME payload
+   class CLASS_DECL_ACME result
    {
    public:
+
 
       i32            m_iYear;
       i32            m_iMonth;
@@ -17,9 +18,10 @@ namespace datetime
       i32            m_iSecond;
       bool           m_bSpan;
 
-      ::payload(const ::datetime::time & time);
-      ::payload();
-      ~payload();
+
+      result(const ::datetime::time & time);
+      result();
+      ~result();
 
       // ano gregoriano mdio de 365,2425 dias solares
       double get_years() const;
@@ -32,18 +34,19 @@ namespace datetime
 
       ::datetime::time get_time() const;
       ::datetime::time_span GetSpan() const;
-      payload & operator = (const ::datetime::time & time);
+      result & operator = (const ::datetime::time & time);
+
 
    };
-
 
 
 } // namespace datetime
 
 
-CLASS_DECL_ACME datetime::payload operator + (const datetime::payload & val1, const datetime::payload & val2);
-CLASS_DECL_ACME datetime::payload operator - (const datetime::payload & val1, const datetime::payload & val2);
-CLASS_DECL_ACME datetime::payload operator * (const datetime::payload & val1, double d);
-CLASS_DECL_ACME datetime::payload operator / (const datetime::payload & val1, double d);
+CLASS_DECL_ACME datetime::result operator + (const datetime::result & val1, const datetime::result & val2);
+CLASS_DECL_ACME datetime::result operator - (const datetime::result & val1, const datetime::result & val2);
+CLASS_DECL_ACME datetime::result operator * (const datetime::result & val1, double d);
+CLASS_DECL_ACME datetime::result operator / (const datetime::result & val1, double d);
+
 
 

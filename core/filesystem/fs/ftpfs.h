@@ -24,8 +24,7 @@ public:
    {
    public:
 
-      u32          m_uiTimeout;
-      u32          m_uiLsTimeout;
+      ::millis          m_millisLast;
 
    };
 

@@ -115,32 +115,27 @@ public:
    template < primitive_rectangle RECTANGLE >
    rect_type(const RECTANGLE * p) noexcept { ::copy_rect(this, p); }
 
- //UNIT_TYPE width() const noexcept;
- //UNIT_TYPE height() const noexcept;
- //SIZE_TYPE size() const noexcept;
- //void set_size(UNIT_TYPE cx, UNIT_TYPE cy) noexcept;
- //void set_size(const SIZE_TYPE& size) noexcept;
- //POINT_TYPE& top_left() noexcept;
- POINT_TYPE& origin() noexcept { return top_left(); }
- const POINT_TYPE& origin() const noexcept { return top_left(); }
- const POINT_TYPE& bottom_right() const noexcept { return ((rect_type*)this)->bottom_right(); }
- const POINT_TYPE& top_left() const noexcept { return ((rect_type *)this)->top_left(); }
- UNIT_TYPE center_x() const { return (this->left + this->right) / (UNIT_TYPE)2; }
- UNIT_TYPE center_y() const { return (this->top + this->bottom) / (UNIT_TYPE)2; }
- POINT_TYPE center() const noexcept { return POINT_TYPE(center_x(), center_y()); }
+
+   POINT_TYPE& origin() noexcept { return top_left(); }
+   const POINT_TYPE& origin() const noexcept { return top_left(); }
+   const POINT_TYPE& bottom_right() const noexcept { return ((rect_type*)this)->bottom_right(); }
+   const POINT_TYPE& top_left() const noexcept { return ((rect_type *)this)->top_left(); }
+   UNIT_TYPE center_x() const { return (this->left + this->right) / (UNIT_TYPE)2; }
+   UNIT_TYPE center_y() const { return (this->top + this->bottom) / (UNIT_TYPE)2; }
+   POINT_TYPE center() const noexcept { return POINT_TYPE(center_x(), center_y()); }
 
 
- inline bool is_set() const noexcept { return !is_empty(); }
- inline bool is_empty() const noexcept { return ::is_rect_empty(this); }
- inline bool is_null() const noexcept { return ::is_rect_null(this); }
- template < primitive_point POINT >
- inline bool contains(const POINT & point) const noexcept { return ::rectangle_contains(this, point.x, point.y); }
- inline bool contains_x(UNIT_TYPE x) const noexcept { return ::rectangle_contains_x(this, x); }
- inline bool contains_y(UNIT_TYPE y) const noexcept { return ::rectangle_contains_y(this, y); }
+   inline bool is_set() const noexcept { return !is_empty(); }
+   inline bool is_empty() const noexcept { return ::is_rect_empty(this); }
+   inline bool is_null() const noexcept { return ::is_rect_null(this); }
+   template < primitive_point POINT >
+   inline bool contains(const POINT & point) const noexcept { return ::rectangle_contains(this, point.x, point.y); }
+   inline bool contains_x(UNIT_TYPE x) const noexcept { return ::rectangle_contains_x(this, x); }
+   inline bool contains_y(UNIT_TYPE y) const noexcept { return ::rectangle_contains_y(this, y); }
 
 
- POINT_TYPE random_point() {  return POINT_TYPE(__random(this->left, this->right), __random(this->top, this->bottom)); }
- POINT_TYPE random_point(double dRate) { ::rect rect(this); rect.rate(dRate); return rect.random_point(); }
+   POINT_TYPE random_point() {  return POINT_TYPE(__random(this->left, this->right), __random(this->top, this->bottom)); }
+   POINT_TYPE random_point(double dRate) { ::rect rect(this); rect.rate(dRate); return rect.random_point(); }
 
 
    template < typename RECT_TYPE >
@@ -235,12 +230,17 @@ public:
  rect_type& set(const POINT1 & p1, const POINT2 & p2) noexcept { return *::set_rect(this, p1.x, p1.y, p2.x, p2.y); }
  template < primitive_point POINT, primitive_size SIZE >
  rect_type& set(const POINT & p, const SIZE & s) noexcept { return *::set_rect_point_size(this, p, s); }
+ template < primitive_rectangle RECTANGLE >
+ rect_type & set(const RECTANGLE & rectangle) noexcept { return copy(rectangle); }
 
  rect_type& set_dim(UNIT_TYPE l, UNIT_TYPE t, UNIT_TYPE w, UNIT_TYPE h) noexcept { return *::set_rect_dim(this, l, t, w, h); }
 
  rect_type& Null() noexcept { return *::null_rect(this); }
 
- rect_type& copy(const rect_type& rect) noexcept { ::copy(this, &rect); return *this; }
+ template < primitive_rectangle RECTANGLE >
+ rect_type& copy(const RECTANGLE & rectangle) noexcept { ::copy(this, &rectangle); return *this; }
+ template < primitive_rectangle RECTANGLE >
+ rect_type & copy(const RECTANGLE * prectangle) noexcept { ::copy(this, prectangle); return *this; }
 
  bool is_equal(const rect_type & rect) const noexcept { return ::rect_equals(this, &rect); }
 

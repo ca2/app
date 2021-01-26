@@ -96,7 +96,7 @@ inline void copy(cairo_matrix_t* pcairomatrix,  const ::draw2d::matrix* pmatrix)
 #include "font.h"
 #include "palette.h"
 #include "region.h"
-#include "image_impl.h"
+#include "image.h"
 #include "path.h"
 
 

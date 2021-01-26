@@ -578,9 +578,12 @@ namespace apex
 
       void CLASS_DECL_APEX srand();
 
+
       i32 CLASS_DECL_APEX time_seed()
       {
-         return (time(nullptr) % 5000 + (::get_tick() / 100) % 5000) % 1000;
+
+         return (time(nullptr) % 5000 + (::get_millis() / 100) % 5000) % 1000;
+
       }
 
 

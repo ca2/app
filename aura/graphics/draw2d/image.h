@@ -60,6 +60,8 @@ public:
 
    inline ::size get_size() const;
 
+   virtual ::size get_image_drawer_size() const;
+
 
    inline ::image * get_image(const concrete < ::size > &) { return this; }
 
@@ -232,20 +234,21 @@ public:
    virtual bool DivideARGB(i32 iDivide);
    virtual bool DivideA(i32 iDivide);
 
+   
+   using image_drawer::stretch;
+   virtual bool stretch(::image * pimage);
 
-   //virtual bool stretch_image(::image * pimpl);
 
-
-   virtual bool stretch(::draw2d::graphics * pgraphics);
+   //virtual bool stretch(::draw2d::graphics * pgraphics);
    //virtual bool to(::image * piml) const;
    virtual bool copy(const ::image * pimage, eobject eobjectCreate = e_object_success);
-   virtual bool stretch(const ::image * pimage);
+   //virtual bool stretch(const ::image * pimage);
    //virtual bool draw_image(::draw2d::graphics* pgraphics);
    //virtual bool draw_image(::draw2d::graphics* pgraphics, const ::size & size);
    //virtual bool from(const ::point & pointDst, ::draw2d::graphics* pgraphics, const ::point & pointSrc, const ::size & size);
-   using image_drawer::draw;
-   virtual bool draw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc = ::point());
-   virtual bool draw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc, byte bA);
+   //using image_drawer::draw;
+   virtual bool _draw_raw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc = ::point());
+   virtual bool blend(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc, byte bA);
    //virtual bool blend(const ::point & pointDst, ::image * piml, const ::point & pointSrc, const ::size & size);
    virtual bool draw_ignore_alpha(const ::point & pointDst, ::image * pimage, const ::rect & rectSrc);
 

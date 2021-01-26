@@ -309,7 +309,7 @@ SizingNone:
 
                   pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
-                  auto prect = get_margin_rect();
+                  auto rect = get_margin_rect();
 
 
          for (index i = 0; i < 11; i++)
@@ -324,10 +324,10 @@ SizingNone:
             pgraphics->draw_rect_side(rectA, eside);
 
             rectA.deflate(
-               prect->left > 0 ? 1 : 0,
-               prect->top > 0 ? 1 : 0,
-               prect->right > 0 ? 1 : 0,
-               prect->bottom > 0 ? 1 : 0);
+               rect.left > 0 ? 1 : 0,
+               rect.top > 0 ? 1 : 0,
+               rect.right > 0 ? 1 : 0,
+               rect.bottom > 0 ? 1 : 0);
 
          }
 

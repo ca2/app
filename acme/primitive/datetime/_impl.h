@@ -4,9 +4,9 @@
 inline duration& duration::operator = (const class ::nanos & nanos)
 {
 
-   m_secs = nanos.m_iNanoseconds / 1'000'000'000;
+   m_secs = nanos.m_i / 1'000'000'000;
 
-   m_nanos = nanos.m_iNanoseconds % 1'000'000'000;
+   m_nanos = nanos.m_i % 1'000'000'000;
 
    return *this;
 
@@ -16,9 +16,9 @@ inline duration& duration::operator = (const class ::nanos & nanos)
 inline duration& duration::operator = (const class ::micros & micros)
 {
 
-   m_secs = micros.m_iMicroseconds / 1'000'000;
+   m_secs = micros.m_i / 1'000'000;
 
-   m_nanos = (micros.m_iMicroseconds % 1'000'000) * 1'000;
+   m_nanos = (micros.m_i % 1'000'000) * 1'000;
 
    return *this;
 
@@ -28,9 +28,9 @@ inline duration& duration::operator = (const class ::micros & micros)
 inline duration& duration::operator = (const class ::millis & millis)
 {
 
-   m_secs = millis.m_iMilliseconds / 1'000;
+   m_secs = millis.m_i / 1'000;
 
-   m_nanos = (millis.m_iMilliseconds % 1'000) * 1'000'000;
+   m_nanos = (millis.m_i % 1'000) * 1'000'000;
 
    return *this;
 

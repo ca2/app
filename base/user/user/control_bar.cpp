@@ -759,21 +759,23 @@ namespace user
 //      return uStyle; // return new style
    }
 
+
    void control_bar::_001OnSizeParent(::message::message * pmessage)
    {
 
       __pointer(::message::base) pbase(pmessage);
+
       SIZEPARENTPARAMS * playout = (SIZEPARENTPARAMS *) pbase->m_lparam.m_lparam;
 
       u32 uStyle = RecalcDelayShow(playout);
 
-
       if ((uStyle & WS_VISIBLE) && (uStyle & CBRS_ALIGN_ANY) != 0)
       {
+         
          // align the control bar
          ::rect rect;
-         rect.copy(&playout->rect);
 
+         rect.copy(&playout->rect);
 
          ::size sizeAvail = rect.size();  // maximum size available
 

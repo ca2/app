@@ -60,7 +60,7 @@ namespace user
       bool                             m_bNoTabs;
       item                             m_itemClick;
       ::draw2d::font_pointer           m_pfontTab;
-      __pointer(::create)              m_pcreate;
+      //__pointer(::create)              m_pcreate;
       ::count                          m_iRestoredTabCount;
       bool                             m_bDrawTabAtBackground;
       ::logic::bit                     m_bitLastShowTabs;

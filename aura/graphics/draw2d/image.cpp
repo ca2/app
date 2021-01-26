@@ -98,6 +98,14 @@ image::~image()
 //}
 
 
+::size image::get_image_drawer_size() const
+{
+
+   return get_size();
+
+}
+
+
 ::draw2d::graphics * image::get_graphics() const
 {
 
@@ -466,15 +474,15 @@ bool image::destroy()
 //}
 
 
-bool image::stretch(::draw2d::graphics * pgraphics)
-{
+//bool image::stretch(::draw2d::graphics * pgraphics)
+//{
+//
+//   return stretch(pgraphics->m_pimage);
+//
+//}
 
-   return stretch(pgraphics->m_pimage);
 
-}
-
-
-bool image::stretch(const ::image * pimage)
+bool image::stretch(::image * pimage)
 {
 
    auto pgraphics = get_graphics();
@@ -498,7 +506,7 @@ bool image::stretch(const ::image * pimage)
 }
 
 
-bool image::draw(const ::rect & rectDstParam, ::image * pimageSrc, const ::point & pointSrcParam)
+bool image::_draw_raw(const ::rect & rectDstParam, ::image * pimageSrc, const ::point & pointSrcParam)
 {
 
    ::image * pimageDst = this;
@@ -642,7 +650,7 @@ bool image::draw(const ::rect & rectDstParam, ::image * pimageSrc, const ::point
 }
 
 
-bool image::draw(const ::rect & rectDstParam, ::image * pimageSrc, const ::point & pointSrcParam, byte bA)
+bool image::blend(const ::rect & rectDstParam, ::image * pimageSrc, const ::point & pointSrcParam, byte bA)
 {
 
    ::image * pimageDst = this;
@@ -2698,7 +2706,8 @@ bool image::BitBlt(::image * pimage, i32 op)
    if (op == 123) // zero dest RGB, invert alpha, and OR src RGB
    {
 
-      stretch(pimage);
+      __throw(todo());
+      //stretch(pimage);
 
    }
 
@@ -8531,6 +8540,7 @@ bool image::hue_offset(double dRadians)
    return true;
 
 }
+
 
 
 void image::fast_copy(color32_t * p)

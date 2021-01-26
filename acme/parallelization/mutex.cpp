@@ -655,9 +655,9 @@ sync_result mutex::wait(const duration & duration)
 
       timespec delay;
 
-      delay.tv_sec = duration.m_iSeconds;
+      delay.tv_sec = duration.m_i;
 
-      delay.tv_nsec = duration.m_iNanoseconds;
+      delay.tv_nsec = duration.m_i;
 
       i32 ret = sem_timedwait(m_psem, &delay);
 
@@ -811,9 +811,9 @@ sync_result mutex::wait(const duration & duration)
 
       timespec timeout;
 
-      timeout.tv_sec = duration.m_iSeconds;
+      timeout.tv_sec = duration.m_i;
 
-      timeout.tv_nsec = duration.m_iNanoseconds;
+      timeout.tv_nsec = duration.m_i;
 
       struct sembuf operation[1] ;
 
@@ -915,15 +915,15 @@ sync_result mutex::wait(const duration & duration)
 
             ::duration d;
 
-            d.m_secs = abs_time.tv_sec + duration.m_secs.m_iSeconds;
+            d.m_secs = abs_time.tv_sec + duration.m_secs.m_i;
 
-            d.m_nanos = abs_time.tv_nsec + duration.m_nanos.m_iNanoseconds;
+            d.m_nanos = abs_time.tv_nsec + duration.m_nanos.m_i;
 
             d.normalize();
 
-            abs_time.tv_sec = d.m_secs.m_iSeconds;
+            abs_time.tv_sec = d.m_secs.m_i;
 
-            abs_time.tv_nsec = d.m_nanos.m_iNanoseconds;
+            abs_time.tv_nsec = d.m_nanos.m_i;
 
             bFirst = false;
 
@@ -989,15 +989,15 @@ sync_result mutex::wait(const duration & duration)
 
       ::duration d;
 
-      d.m_iSeconds = abs_time.tv_sec + duration.m_iSeconds;
+      d.m_i = abs_time.tv_sec + duration.m_i;
 
-      d.m_iNanoseconds = abs_time.tv_nsec + duration.m_iNanoseconds;
+      d.m_i = abs_time.tv_nsec + duration.m_i;
 
       d.normalize();
 
-      abs_time.tv_sec = d.m_iSeconds;
+      abs_time.tv_sec = d.m_i;
 
-      abs_time.tv_nsec = d.m_iNanoseconds;
+      abs_time.tv_nsec = d.m_i;
 
       int rc = pthread_mutex_timedlock (&m_mutex, &abs_time);
 

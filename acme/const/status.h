@@ -152,6 +152,8 @@ enum enum_status
    error_file_lock_violation,
    error_disk_full,
    error_end_of_file,
+   error_end_of_coding,
+   error_end_of_decoding,
 
 
    error_network = INT_FAILURE_STATUS(STATUS_RANGE_NETWORK),

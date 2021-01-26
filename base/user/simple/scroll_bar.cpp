@@ -1781,9 +1781,11 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
    auto rectSrc = ::rectd(pointSrc, sizeSrc);
 
-   image_drawing imagedrawing(rectDst, m_pimageDots, rectSrc);
+   image_drawing imagedrawing;
+   
+   imagedrawing.set(rectDst, m_pimageDots, rectSrc);
 
-   imagedrawing.m_pcolorfilter = __new(opacity_color_filter(uchAlpha / 255.0));
+   imagedrawing.opacity(uchAlpha);
 
    pgraphics->draw(imagedrawing);
 

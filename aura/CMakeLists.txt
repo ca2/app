@@ -78,7 +78,7 @@ list(APPEND aura_source
    graphics/draw2d/brush.h
    graphics/draw2d/buffered_graphics.cpp
    graphics/draw2d/buffered_graphics.h
-   graphics/draw2d/color.h
+   #graphics/draw2d/color.h
    graphics/draw2d/color_matrix.cpp
    graphics/draw2d/color_matrix.h
    graphics/draw2d/common.h
@@ -448,8 +448,8 @@ if (WIN32)
       node/windows/interaction_impl_message_bypass.cpp
       node/windows/shell_open.cpp
       node/windows/shell_open.h
-      node/windows/system_interaction_impl.cpp
-      node/windows/system_interaction_impl.h
+      node/windows/system_interaction.cpp
+      node/windows/system_interaction.h
       node/windows/thread.cpp
       node/windows/timer.cpp
       node/windows/trace.cpp

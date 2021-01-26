@@ -646,6 +646,8 @@ namespace experience
 
       pbutton = m_pframewindow->m_pframe->m_pexperience->m_plibrary->create_object(this, "button");
 
+      pbutton->display(e_display_none);
+
       if (!pbutton->is_window() && !pbutton->create_child(this))
       {
 

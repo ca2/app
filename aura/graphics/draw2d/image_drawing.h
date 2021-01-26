@@ -5,26 +5,13 @@
 
 
 class CLASS_DECL_AURA image_drawing_options :
-   virtual public ::matter
+   public color_filter
 {
 public:
 
-   
-   color_filter_pointer       m_pcolorfilter;
 
-
-   inline double opacity() const { return m_pcolorfilter.is_set() && m_pcolorfilter->opacity(); }
-   inline bool is_color_matrix_filter() const { return m_pcolorfilter.is_set() && m_pcolorfilter->is_color_matrix_filter(); };
-
-
-   bool get_color_matrix(color_matrix & matrix) const;
-
-
-   template < primitive_floating FLOATING >
-   void opacity(FLOATING fAlpha) { m_pcolorfilter = __new(opacity_color_filter(fAlpha)); }
-
-   template < primitive_integral INTEGRAL >
-   void opacity(INTEGRAL bAlpha) { opacity(bAlpha/255.0); }
+   using color_filter::color_filter;
+   using color_filter::operator=;
 
 
 };
@@ -34,7 +21,7 @@ using image_drawing_options_pointer = __pointer(image_drawing_options);
 
 
 class CLASS_DECL_AURA image_drawing :
-   virtual public ::image_drawing_options
+   public ::image_drawing_options
 {
 public:
 
@@ -43,13 +30,13 @@ public:
    ::rectd                    m_rectSrc;
    image_pointer              m_pimage;
 
-   
-   image_drawing() {}
-   virtual ~image_drawing();
+
+   using image_drawing_options::image_drawing_options;
+   using image_drawing_options::operator=;
 
 
    template < primitive_point POINT, image_source_pointer IMAGE_SOURCE_POINTER >
-   image_drawing(const POINT & pointDst, IMAGE_SOURCE_POINTER pimagesource)
+   void set(const POINT & pointDst, IMAGE_SOURCE_POINTER pimagesource)
    {
 
       auto concreteSize = pimagesource->size();
@@ -64,7 +51,7 @@ public:
 
 
    template < image_source_pointer IMAGE_SOURCE_POINTER >
-   image_drawing(IMAGE_SOURCE_POINTER pimagesource)
+   void set(IMAGE_SOURCE_POINTER pimagesource)
    {
 
       auto concreteSize = pimagesource->size();
@@ -79,7 +66,7 @@ public:
 
 
    template < image_source_pointer IMAGE_SOURCE_POINTER, primitive_point POINT >
-   image_drawing(IMAGE_SOURCE_POINTER pimagesource, const POINT & pointSrc, enum_image_selection eimageselection = ::e_image_selection_default)
+   void set(IMAGE_SOURCE_POINTER pimagesource, const POINT & pointSrc)
    {
 
       auto concreteSize = pimagesource->size();
@@ -95,23 +82,40 @@ public:
    }
 
 
-   template < primitive_size SIZE, image_source_pointer IMAGE_SOURCE_POINTER >
-   image_drawing(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, enum_image_selection eimageselection = e_image_selection_default)
+   template < image_source_pointer IMAGE_SOURCE_POINTER, primitive_rectangle RECTANGLE >
+   void set(IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE & rectSrc)
    {
 
-      auto concreteSize = pimagesource->size(sizeDst, eimageselection);
+      auto concreteSize = pimagesource->size();
+
+      auto sizeSrc = rectSrc.size();
+
+      m_pimage = pimagesource->get_image(concreteSize);
+
+      m_rectDst.set(sizeSrc);
+
+      m_rectSrc.set(rectSrc);
+
+   }
+
+
+   template < primitive_size SIZE, image_source_pointer IMAGE_SOURCE_POINTER >
+   void set(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource)
+   {
+
+      auto concreteSize = pimagesource->size();
 
       m_pimage = pimagesource->get_image(concreteSize);
 
       m_rectDst.set(sizeDst);
 
-      m_rectSrc.set(concreteSize);
+      m_rectSrc.set(sizeDst);
 
    }
 
 
    template < primitive_size SIZE, image_source_pointer IMAGE_SOURCE_POINTER, primitive_point POINT >
-   image_drawing(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, const POINT & pointSrc, enum_image_selection eimageselection)
+   void set(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, const POINT & pointSrc)
    {
 
       auto concreteSize = pimagesource->size();
@@ -128,7 +132,7 @@ public:
 
 
    template < primitive_size SIZE, image_source_pointer IMAGE_SOURCE_POINTER, primitive_rectangle RECTANGLE >
-   image_drawing(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE & rectSrc, enum_image_selection eimageselection = e_image_selection_default)
+   void set(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE & rectSrc, enum_image_selection eimageselection = e_image_selection_default)
    {
 
       auto concreteSize = pimagesource->size();
@@ -142,25 +146,8 @@ public:
    }
 
 
-   template < primitive_size SIZE, image_source_pointer IMAGE_SOURCE_POINTER, primitive_point POINT >
-   image_drawing(const SIZE & sizeDst, IMAGE_SOURCE_POINTER pimagesource, const POINT & pointSrc)
-   {
-
-      auto concreteSize = pimagesource->size();
-
-      auto sizeSrc = concreteSize - pointSrc;
-
-      m_pimage = pimagesource->get_image(concreteSize);
-
-      m_rectDst.set(sizeDst);
-
-      m_rectSrc.set(sizeSrc);
-
-   }
-
-
    template < primitive_rectangle RECTANGLE, image_source_pointer IMAGE_SOURCE_POINTER >
-   image_drawing(const RECTANGLE & rectDst, IMAGE_SOURCE_POINTER pimagesource)
+   void set(const RECTANGLE & rectDst, IMAGE_SOURCE_POINTER pimagesource)
    {
 
       auto concreteSize = pimagesource->size();
@@ -177,7 +164,7 @@ public:
 
 
    template < primitive_rectangle RECTANGLE, image_source_pointer IMAGE_SOURCE_POINTER >
-   image_drawing(const RECTANGLE & rectDst, IMAGE_SOURCE_POINTER pimagesource, enum_image_selection eimageselection)
+   void set(const RECTANGLE & rectDst, IMAGE_SOURCE_POINTER pimagesource, enum_image_selection eimageselection)
    {
 
       auto sizeDst = ::size(rectDst);
@@ -194,7 +181,7 @@ public:
 
 
    template < primitive_rectangle RECTANGLE, image_source_pointer IMAGE_SOURCE_POINTER, primitive_point POINT >
-   image_drawing(const RECTANGLE & rectDst, IMAGE_SOURCE_POINTER pimagesource, const POINT & pointSrc)
+   void set(const RECTANGLE & rectDst, IMAGE_SOURCE_POINTER pimagesource, const POINT & pointSrc)
    {
 
       auto concreteSize = pimagesource->size();
@@ -209,7 +196,7 @@ public:
 
 
    template < primitive_rectangle RECTANGLE_DST, image_source_pointer IMAGE_SOURCE_POINTER, primitive_rectangle RECTANGLE_SRC >
-   image_drawing(const RECTANGLE_DST & rectDst, IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE_SRC & rectSrc)
+   void set(const RECTANGLE_DST & rectDst, IMAGE_SOURCE_POINTER pimagesource, const RECTANGLE_SRC & rectSrc)
    {
 
       auto concreteSize = pimagesource->size();
@@ -226,7 +213,7 @@ public:
 
 
    template < primitive_size SIZE_DST, image_source_pointer IMAGE_SOURCE_POINTER, primitive_size SIZE_SRC >
-   image_drawing(const SIZE_DST & sizeDst, IMAGE_SOURCE_POINTER pimagesource, const SIZE_SRC & sizeSrc)
+   void set(const SIZE_DST & sizeDst, IMAGE_SOURCE_POINTER pimagesource, const SIZE_SRC & sizeSrc)
    {
 
       auto concreteSize = pimagesource->size();

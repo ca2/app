@@ -1880,7 +1880,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
    }
 
-   path = "itdoesntexist." + __str(millis::now().m_iMilliseconds);
+   path = "itdoesntexist." + __str(millis::now().m_i);
 
 ret:
 

@@ -803,8 +803,8 @@ namespace userex
 
       draw_level(pgraphics, rectLum1, y);
 
-
    }
+
 
    void color_view::_001OnLButtonDown(::message::message * pmessage)
    {

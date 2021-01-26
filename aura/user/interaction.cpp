@@ -2345,7 +2345,7 @@ namespace user
                if (tickElapsed > 100)
                {
 
-                  output_debug_string("\ndrawing took " + __str(tickElapsed.m_iMilliseconds) + "!!");
+                  output_debug_string("\ndrawing took " + __str(tickElapsed.m_i) + "!!");
                   output_debug_string("\ndrawing took more than 100ms to complete!!");
                   output_debug_string("\n");
 
@@ -2444,7 +2444,7 @@ namespace user
             if (tickElapsed > 100)
             {
 
-               CINFO(prodevian)("\ndrawing took " + __str(tickElapsed.m_iMilliseconds) + "!!");
+               CINFO(prodevian)("\ndrawing took " + __str(tickElapsed.m_i) + "!!");
                CINFO(prodevian)("\ndrawing took more than 100ms more than 50ms to complete!!");
 
                // let's trye to see what happened?
@@ -2518,7 +2518,7 @@ namespace user
             {
 
                output_debug_string("\ndrawing at " + string(type_name()) + "!!");
-               output_debug_string("\ndrawing took " + __str(tickElapsed.m_iMilliseconds) + "!!");
+               output_debug_string("\ndrawing took " + __str(tickElapsed.m_i) + "!!");
                output_debug_string("\ndrawing took more more than 100ms more than 50ms to complete!!");
                output_debug_string("\n");
 
@@ -3291,12 +3291,12 @@ namespace user
 
                millis d1 = t1.elapsed();
 
-               if (d1.m_iMilliseconds > 50)
+               if (d1.m_i > 50)
                {
 
                   string strType = type_name();
 
-                  CINFO(prodevian)("(more than 50ms) " + strType + "::_008CallOnDraw took " + __str(d1.m_iMilliseconds) + "millis.\n");
+                  CINFO(prodevian)("(more than 50ms) " + strType + "::_008CallOnDraw took " + __str(d1.m_i) + "millis.\n");
 
                }
 
@@ -8654,6 +8654,8 @@ namespace user
          layout().design().copy_display(layout().sketch());
 
       }
+
+      layout().design() = layout().sketch().appearance();
 
       layout().sketch().clear_ephemeral();
 

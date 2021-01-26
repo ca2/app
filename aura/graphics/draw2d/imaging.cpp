@@ -1607,7 +1607,7 @@ bool imaging::BitmapDivBlend(
 
    }
 
-   pimage->g()->stretch(size, pdcSrc);
+   pimage->stretch(size, pdcSrc);
 
    pimage->DivideRGB(bAlpha);
 

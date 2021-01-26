@@ -13,13 +13,13 @@ public:
    bool           m_bInitialized;
    string         m_strServer;
 
+
    class CLASS_DECL_APEX dir_listing :
       public ::file::listing
    {
    public:
 
-      u32          m_uiTimeout;
-      u32          m_uiLsTimeout;
+      ::millis       m_millisLast;
 
    };
 

@@ -550,8 +550,8 @@ sync_result event::wait (const duration & durationTimeout)
 
    ((duration & ) durationTimeout).normalize();
 
-   end.tv_sec +=durationTimeout.m_secs.m_iSeconds;
-   end.tv_nsec +=durationTimeout.m_nanos.m_iNanoseconds;
+   end.tv_sec +=durationTimeout.m_secs.m_i;
+   end.tv_nsec +=durationTimeout.m_nanos.m_i;
 
    end.tv_sec += end.tv_nsec / (1000 * 1000 * 1000);
    end.tv_nsec %= 1000 * 1000 * 1000;
@@ -574,8 +574,8 @@ sync_result event::wait (const duration & durationTimeout)
    {
 
       timespec delay;
-      delay.tv_sec = durationTimeout.m_secs.m_iSeconds;
-      delay.tv_nsec = durationTimeout.m_nanos.m_iNanoseconds;
+      delay.tv_sec = durationTimeout.m_secs.m_i;
+      delay.tv_nsec = durationTimeout.m_nanos.m_i;
       pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &delay);
 
    }
@@ -635,9 +635,9 @@ sync_result event::wait (const duration & durationTimeout)
 
          clock_getrealtime(&abstime);
 
-         abstime.tv_sec += durationTimeout.m_secs.m_iSeconds;
+         abstime.tv_sec += durationTimeout.m_secs.m_i;
 
-         abstime.tv_nsec += durationTimeout.m_nanos.m_iNanoseconds;
+         abstime.tv_nsec += durationTimeout.m_nanos.m_i;
 
          while(abstime.tv_nsec > 1000 * 1000 * 1000)
          {
@@ -862,8 +862,8 @@ bool event::lock(const duration & durationTimeout)
 //      {
 //
 //         timespec delay;
-//         delay.tv_sec = durationTimeout.m_iSeconds;
-//         delay.tv_nsec = durationTimeout.m_iNanoseconds;
+//         delay.tv_sec = durationTimeout.m_i;
+//         delay.tv_nsec = durationTimeout.m_i;
 //         if(pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &delay))
 //            break;
 //
@@ -876,8 +876,8 @@ bool event::lock(const duration & durationTimeout)
 //   {
 //
 //      timespec delay;
-//      delay.tv_sec = durationTimeout.m_iSeconds;
-//      delay.tv_nsec = durationTimeout.m_iNanoseconds;
+//      delay.tv_sec = durationTimeout.m_i;
+//      delay.tv_nsec = durationTimeout.m_i;
 //      pthread_cond_timedwait((pthread_cond_t *) m_pcond, (pthread_mutex_t *) m_pmutex, &delay);
 //
 //      return is_locked();

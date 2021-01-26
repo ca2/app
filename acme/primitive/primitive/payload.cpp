@@ -5966,21 +5966,21 @@ bool payload::is_false() const
 
    // enum
    case type_secs:
-      return !m_secs.m_iSeconds;
+      return !m_secs.m_i;
    case type_psecs:
-      return !m_psecs || !m_psecs->m_iSeconds;
+      return !m_psecs || !m_psecs->m_i;
    case type_millis:
-      return !m_millis.m_iMilliseconds;
+      return !m_millis.m_i;
    case type_pmillis:
-      return !m_pmillis || !m_pmillis->m_iMilliseconds;
+      return !m_pmillis || !m_pmillis->m_i;
    case type_micros:
-      return !m_micros.m_iMicroseconds;
+      return !m_micros.m_i;
    case type_pmicros:
-      return !m_pmicros || !m_pmicros->m_iMicroseconds;
+      return !m_pmicros || !m_pmicros->m_i;
    case type_nanos:
-      return !m_nanos.m_iNanoseconds;
+      return !m_nanos.m_i;
    case type_pnanos:
-      return !m_pnanos || !m_pnanos->m_iNanoseconds;
+      return !m_pnanos || !m_pnanos->m_i;
    case type_enum_command:
    case type_enum_status:
    case type_enum_check:
@@ -6107,21 +6107,21 @@ bool payload::is_set_false() const
 
    // enum
    case type_secs:
-      return !m_secs.m_iSeconds;
+      return !m_secs.m_i;
    case type_psecs:
-      return !m_psecs || !m_psecs->m_iSeconds;
+      return !m_psecs || !m_psecs->m_i;
    case type_millis:
-      return !m_millis.m_iMilliseconds;
+      return !m_millis.m_i;
    case type_pmillis:
-      return !m_pmillis || !m_pmillis->m_iMilliseconds;
+      return !m_pmillis || !m_pmillis->m_i;
    case type_micros:
-      return !m_micros.m_iMicroseconds;
+      return !m_micros.m_i;
    case type_pmicros:
-      return !m_pmicros || !m_pmicros->m_iMicroseconds;
+      return !m_pmicros || !m_pmicros->m_i;
    case type_nanos:
-      return !m_nanos.m_iNanoseconds;
+      return !m_nanos.m_i;
    case type_pnanos:
-      return !m_pnanos || !m_pnanos->m_iNanoseconds;
+      return !m_pnanos || !m_pnanos->m_i;
    case type_enum_command:
    case type_enum_status:
    case type_enum_check:

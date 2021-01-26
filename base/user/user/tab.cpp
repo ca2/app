@@ -3077,7 +3077,7 @@ namespace user
          if (::is_set(pcreate))
          {
 
-            m_pcreate = pcreate;
+            m_pusersystem->m_pcreate = pcreate;
 
          }
 
@@ -3121,10 +3121,10 @@ namespace user
 
       }
 
-      if (::is_set(pcreate) && pcreate == m_pcreate)
+      if (::is_set(pcreate) && pcreate == m_pusersystem->m_pcreate)
       {
 
-         m_pcreate = nullptr;
+         m_pusersystem->m_pcreate = nullptr;
 
       }
 

@@ -78,7 +78,7 @@ inline void __exchange(stream & s, memory_base & memory)
 inline stream & operator <<(stream & s, const ::millis & millis)
 {
 
-   s << millis.m_iMilliseconds;
+   s << millis.m_i;
 
    return s;
 
@@ -89,7 +89,7 @@ inline stream & operator <<(stream & s, const ::millis & millis)
 inline stream & operator >>(stream & s, ::millis & millis)
 {
 
-   s >> millis.m_iMilliseconds;
+   s >> millis.m_i;
 
    return s;
 

@@ -58,7 +58,7 @@
 
       color_matrix & brightness(double r, double g, double b);
       color_matrix & saturation(double r, double g, double b, double s);
-      color_matrix & opacity(double o);
+      color_matrix & opacity(class ::opacity opacity);
       color_matrix & invert();
       color_matrix & grayscale();
 

@@ -307,7 +307,7 @@ namespace draw2d_direct2d
    //}
 
    
-   bool graphics::_draw_blend(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc)
+   bool graphics::_draw_blend(const ::image_drawing & imagedrawing)
    {
 
       //return ::draw2d::graphics::BitBltAlphaBlend(x, y, nWidth, nHeight, pgraphicsSrc, xSrc, ySrc);
@@ -420,6 +420,10 @@ namespace draw2d_direct2d
       if (m_pimageAlphaBlend->is_set())
       {
 
+         auto rectDst = imagedrawing.m_rectDst;
+         auto rectSrc = imagedrawing.m_rectSrc;
+
+
          auto x = rectDst.left;
          auto y = rectDst.top;
          auto xSrc = rectSrc.left;
@@ -485,13 +489,13 @@ namespace draw2d_direct2d
 
             //}
             //else
-            {
+            //{
 
                auto pimage1 = create_image(rectBlt.size());
 
                pimage1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-               if (!pimage1->g()->draw(rectBlt.size(), pgraphicsSrc, ::pointd(xSrc, ySrc)))
+               if (!pimage1->draw(::rectd(rectBlt.size()), imagedrawing.m_pimage, ::pointd(xSrc, ySrc)))
                {
 
                   return false;
@@ -500,9 +504,11 @@ namespace draw2d_direct2d
 
                pimage1->blend2(::pointd(), m_pimageAlphaBlend, pointd(x - m_pointAlphaBlend.x, y - m_pointAlphaBlend.y), rectBlt.size(), 255);
 
-               _draw_raw(rectDst, pimage1->get_graphics(), ::rectd(rectDst.size()));
+               image_drawing_options imagedrawingoptions;
 
-            }
+               _draw_raw(rectDst, pimage1, imagedrawingoptions, ::pointd());
+
+            //}
 
             return true;
 
@@ -1658,7 +1664,7 @@ namespace draw2d_direct2d
    //}
 
 
-   bool graphics::_draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::pointd & pointSrc)
+   bool graphics::_draw_raw(const ::rectd & rectDst, ::image * pimage, const image_drawing_options & imagedrawingoptions, const ::pointd & pointSrc)
    {
 
       ::draw2d::lock draw2dlock;
@@ -1666,26 +1672,26 @@ namespace draw2d_direct2d
       try
       {
 
-         if (pgraphicsSrc == nullptr)
+         if (pimage == nullptr)
          {
 
             return false;
 
          }
 
-         if (pgraphicsSrc->get_current_bitmap() == nullptr)
-         {
+         //if (pgraphicsSrc->get_current_bitmap() == nullptr)
+         //{
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
-         if (pgraphicsSrc->get_current_bitmap()->get_os_data() == nullptr)
-         {
+         //if (pgraphicsSrc->get_current_bitmap()->get_os_data() == nullptr)
+         //{
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
          double x = rectDst.left;
          double y = rectDst.top;
@@ -1739,7 +1745,7 @@ namespace draw2d_direct2d
 
          {
 
-            D2D1_SIZE_U sz = ((ID2D1Bitmap *)pgraphicsSrc->get_current_bitmap()->get_os_data())->GetPixelSize();
+            D2D1_SIZE_U sz = ((ID2D1Bitmap *)pimage->get_bitmap()->get_os_data())->GetPixelSize();
 
             if (nWidth + xSrc > sz.width)
             {
@@ -1757,29 +1763,29 @@ namespace draw2d_direct2d
 
          }
 
-         D2D1_RECT_F rectDst = D2D1::RectF((float) x, (float) y, (float) (x + nWidth), (float) (y + nHeight));
+         D2D1_RECT_F rectDst = D2D1::RectF((float)x, (float)y, (float)(x + nWidth), (float)(y + nHeight));
 
-         D2D1_RECT_F rectSrc = D2D1::RectF((float) xSrc, (float) ySrc, (float) (xSrc + nWidth), (float) (ySrc + nHeight));
+         D2D1_RECT_F rectSrc = D2D1::RectF((float)xSrc, (float)ySrc, (float)(xSrc + nWidth), (float)(ySrc + nHeight));
 
-         HRESULT hr = ((ID2D1DeviceContext *) pgraphicsSrc->get_os_data())->EndDraw();
+         HRESULT hr = ((ID2D1DeviceContext *)pimage->g()->get_os_data())->EndDraw();
 
          defer_primitive_blend();
 
-         m_pdevicecontext->DrawBitmap((ID2D1Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), rectDst, 1.0, D2D1_INTERPOLATION_MODE_NEAREST_NEIGHBOR, rectSrc);
+         m_pdevicecontext->DrawBitmap((ID2D1Bitmap *)pimage->g()->get_current_bitmap()->get_os_data(), rectDst, 1.0, D2D1_INTERPOLATION_MODE_NEAREST_NEIGHBOR, rectSrc);
 
-         if(SUCCEEDED(hr))
+         if (SUCCEEDED(hr))
          {
 
-            ((ID2D1DeviceContext *)pgraphicsSrc->get_os_data())->BeginDraw();
+            ((ID2D1DeviceContext *)pimage->g()->get_os_data())->BeginDraw();
 
          }
 
          return true;
 
       }
-      catch(...)
+      catch (...)
       {
-         
+
          return FALSE;
 
       }
@@ -1787,7 +1793,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::_stretch_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc)
+   bool graphics::_stretch_raw(const ::rectd & rectDst, ::image * pimage, const image_drawing_options & imagedrawingoptions, const ::rectd & rectSrc)
    {
 
       try
@@ -1802,52 +1808,52 @@ namespace draw2d_direct2d
          double nSrcWidth = rectSrc.width();
          double nSrcHeight = rectSrc.height();
 
-         if (pgraphicsSrc == nullptr)
-         {
+         //if (pgraphicsSrc == nullptr)
+         //{
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
-         if (pgraphicsSrc->get_current_bitmap() == nullptr)
-         {
+         //if (pgraphicsSrc->get_current_bitmap() == nullptr)
+         //{
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
-         if (pgraphicsSrc->get_current_bitmap()->get_os_data() == nullptr)
-         {
+         //if (pgraphicsSrc->get_current_bitmap()->get_os_data() == nullptr)
+         //{
 
-            return false;
+         //   return false;
 
-         }
+         //}
 
-         D2D1_RECT_F rectDst = D2D1::RectF((float) xDst, (float) yDst, (float) (xDst + nDstWidth), (float) (yDst + nDstHeight));
+         D2D1_RECT_F rectDst = D2D1::RectF((float)xDst, (float)yDst, (float)(xDst + nDstWidth), (float)(yDst + nDstHeight));
 
-         D2D1_RECT_F rectSrc = D2D1::RectF((float) xSrc, (float) ySrc, (float) (xSrc + nSrcWidth), (float) (ySrc + nSrcHeight));
+         D2D1_RECT_F rectSrc = D2D1::RectF((float)xSrc, (float)ySrc, (float)(xSrc + nSrcWidth), (float)(ySrc + nSrcHeight));
 
-         HRESULT hr = ((ID2D1DeviceContext *) pgraphicsSrc->get_os_data())->EndDraw();
+         HRESULT hr = ((ID2D1DeviceContext *)pimage->g()->get_os_data())->EndDraw();
 
          defer_primitive_blend();
 
-         if(m_prendertarget != nullptr)
+         if (m_prendertarget != nullptr)
          {
 
-            m_prendertarget->DrawBitmap((ID2D1Bitmap *)pgraphicsSrc->get_current_bitmap()->get_os_data(), &rectDst, 1.0,m_bitmapinterpolationmode,& rectSrc);
+            m_prendertarget->DrawBitmap((ID2D1Bitmap *)pimage->g()->get_current_bitmap()->get_os_data(), &rectDst, 1.0, m_bitmapinterpolationmode, &rectSrc);
 
          }
          else
          {
 
-            m_pdevicecontext->DrawBitmap((ID2D1Bitmap *)pgraphicsSrc->get_current_bitmap()->get_os_data(), rectDst, 1.0,m_interpolationmode,rectSrc);
+            m_pdevicecontext->DrawBitmap((ID2D1Bitmap *)pimage->g()->get_current_bitmap()->get_os_data(), rectDst, 1.0, m_interpolationmode, rectSrc);
 
          }
 
-         if(SUCCEEDED(hr))
+         if (SUCCEEDED(hr))
          {
 
-            ((ID2D1DeviceContext *)pgraphicsSrc->get_os_data())->BeginDraw();
+            ((ID2D1DeviceContext *)pimage->g()->get_os_data())->BeginDraw();
 
          }
          else
@@ -1860,7 +1866,7 @@ namespace draw2d_direct2d
          return true;
 
       }
-      catch(...)
+      catch (...)
       {
 
       }
@@ -1868,6 +1874,20 @@ namespace draw2d_direct2d
       return false;
 
    }
+
+
+   //bool graphics::_draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::pointd & pointSrc)
+   //{
+
+
+   //}
+
+
+   //bool graphics::_stretch_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc)
+   //{
+
+
+   //}
 
 
    ::color graphics::GetPixel(double x, double y)
@@ -2834,125 +2854,125 @@ namespace draw2d_direct2d
    // Member
 
 
-   bool graphics::_alpha_blend_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc, double dRate)
-   {
+   //bool graphics::_alpha_blend_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc, double dRate)
+   //{
 
-      ::draw2d::lock draw2dlock;
+   //   ::draw2d::lock draw2dlock;
 
-      /*      float fA = (float) dRate;
+   //   /*      float fA = (float) dRate;
 
-            Gdiplus::ColorMatrix matrix = {
-               1.0f, 0.0f, 0.0f, 0.0f, 0.0f,
-               0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
-               0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
-               0.0f, 0.0f, 0.0f, fA  , 0.0f,
-               0.0f, 0.0f, 0.0f, 0.0f, 1.0f
-            };
+   //         Gdiplus::ColorMatrix matrix = {
+   //            1.0f, 0.0f, 0.0f, 0.0f, 0.0f,
+   //            0.0f, 1.0f, 0.0f, 0.0f, 0.0f,
+   //            0.0f, 0.0f, 1.0f, 0.0f, 0.0f,
+   //            0.0f, 0.0f, 0.0f, fA  , 0.0f,
+   //            0.0f, 0.0f, 0.0f, 0.0f, 1.0f
+   //         };
 
-            Gdiplus::ImageAttributes attributes;
+   //         Gdiplus::ImageAttributes attributes;
 
-            attributes.SetColorMatrix(&matrix, Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
+   //         attributes.SetColorMatrix(&matrix, Gdiplus::ColorMatrixFlagsDefault, Gdiplus::ColorAdjustTypeBitmap);
 
-            Gdiplus::RectF dstRect((Gdiplus::REAL) xDest, (Gdiplus::REAL) yDest, (Gdiplus::REAL) nDestWidth, (Gdiplus::REAL) nDestHeight);
+   //         Gdiplus::RectF dstRect((Gdiplus::REAL) xDest, (Gdiplus::REAL) yDest, (Gdiplus::REAL) nDestWidth, (Gdiplus::REAL) nDestHeight);
 
-            m_prendertarget->DrawImage((Gdiplus::Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), dstRect,
-               (Gdiplus::REAL) xSrc, (Gdiplus::REAL) ySrc, (Gdiplus::REAL) nSrcWidth, (Gdiplus::REAL) nSrcHeight, Gdiplus::UnitPixel, &attributes);*/
+   //         m_prendertarget->DrawImage((Gdiplus::Bitmap *) pgraphicsSrc->get_current_bitmap()->get_os_data(), dstRect,
+   //            (Gdiplus::REAL) xSrc, (Gdiplus::REAL) ySrc, (Gdiplus::REAL) nSrcWidth, (Gdiplus::REAL) nSrcHeight, Gdiplus::UnitPixel, &attributes);*/
 
-      try
-      {
+   //   try
+   //   {
 
-         if(pgraphicsSrc == nullptr)
-            return FALSE;
+   //      if(pgraphicsSrc == nullptr)
+   //         return FALSE;
 
-         if(pgraphicsSrc->get_current_bitmap() == nullptr)
-            return FALSE;
+   //      if(pgraphicsSrc->get_current_bitmap() == nullptr)
+   //         return FALSE;
 
-         if(pgraphicsSrc->get_current_bitmap()->m_osdata[0] == nullptr)
-            return FALSE;
+   //      if(pgraphicsSrc->get_current_bitmap()->m_osdata[0] == nullptr)
+   //         return FALSE;
 
-         //D2D1_RECT_F rectDst = D2D1::RectF((float) xDst, (float) yDst, (float) (xDst + nDstWidth), (float) (yDst + nDstHeight));
-         //D2D1_RECT_F rectSrc = D2D1::RectF((float) xSrc, (float) ySrc, (float) (xSrc + nSrcWidth), (float) (ySrc + nSrcHeight));
-         /*
-                  if (get_current_bitmap() != nullptr && get_current_bitmap()->get_os_data() != nullptr)
-                  {
+   //      //D2D1_RECT_F rectDst = D2D1::RectF((float) xDst, (float) yDst, (float) (xDst + nDstWidth), (float) (yDst + nDstHeight));
+   //      //D2D1_RECT_F rectSrc = D2D1::RectF((float) xSrc, (float) ySrc, (float) (xSrc + nSrcWidth), (float) (ySrc + nSrcHeight));
+   //      /*
+   //               if (get_current_bitmap() != nullptr && get_current_bitmap()->get_os_data() != nullptr)
+   //               {
 
-                     D2D1_SIZE_U sz = ((ID2D1Bitmap *)get_current_bitmap()->get_os_data())->GetPixelSize();
+   //                  D2D1_SIZE_U sz = ((ID2D1Bitmap *)get_current_bitmap()->get_os_data())->GetPixelSize();
 
-                     if (natural(nDstWidth + xDst) > sz.width)
-                        nDstWidth = sz.width - xDst;
+   //                  if (natural(nDstWidth + xDst) > sz.width)
+   //                     nDstWidth = sz.width - xDst;
 
-                     if (natural(nDstHeight + yDst) > sz.height)
-                        nDstHeight = sz.height - yDst;
+   //                  if (natural(nDstHeight + yDst) > sz.height)
+   //                     nDstHeight = sz.height - yDst;
 
-                  }
+   //               }
 
-                  {
+   //               {
 
-                     D2D1_SIZE_U sz = ((ID2D1Bitmap *)pgraphicsSrc->get_current_bitmap()->get_os_data())->GetPixelSize();
+   //                  D2D1_SIZE_U sz = ((ID2D1Bitmap *)pgraphicsSrc->get_current_bitmap()->get_os_data())->GetPixelSize();
 
-                     if (natural(nSrcWidth + xSrc) > sz.width)
-                        nSrcWidth = sz.width - xSrc;
+   //                  if (natural(nSrcWidth + xSrc) > sz.width)
+   //                     nSrcWidth = sz.width - xSrc;
 
-                     if (natural(nSrcHeight + ySrc) > sz.height)
-                        nSrcHeight = sz.height - ySrc;
+   //                  if (natural(nSrcHeight + ySrc) > sz.height)
+   //                     nSrcHeight = sz.height - ySrc;
 
-                  }*/
+   //               }*/
 
-         D2D1_RECT_F rDst = D2D1::RectF((float)rectDst.left, (float)rectDst.top, (float) rectDst.right, (float) rectDst.bottom);
-         D2D1_RECT_F rSrc = D2D1::RectF((float)rectSrc.left, (float)rectSrc.top, (float) rectSrc.right, (float) rectSrc.bottom);
-
-
-         //dynamic_cast <::draw2d_direct2d::graphics *> (pgraphicsSrc)->SaveClip();
-
-         HRESULT hr = ((ID2D1DeviceContext *) pgraphicsSrc->get_os_data())->EndDraw();
-
-         defer_primitive_blend();
-
-         if(m_pdevicecontext != nullptr)
-         {
-
-            m_pdevicecontext->DrawBitmap((ID2D1Bitmap*)pgraphicsSrc->get_current_bitmap()->get_os_data(), rDst, (float)dRate, m_interpolationmode, rSrc);
-
-         }
-         else
-         {
-
-            m_prendertarget->DrawBitmap((ID2D1Bitmap*)pgraphicsSrc->get_current_bitmap()->get_os_data(), rDst, (float)dRate, m_bitmapinterpolationmode, rSrc);
-
-         }
+   //      D2D1_RECT_F rDst = D2D1::RectF((float)rectDst.left, (float)rectDst.top, (float) rectDst.right, (float) rectDst.bottom);
+   //      D2D1_RECT_F rSrc = D2D1::RectF((float)rectSrc.left, (float)rectSrc.top, (float) rectSrc.right, (float) rectSrc.bottom);
 
 
-         //auto pimage = (ID2D1Bitmap*)pgraphicsSrc->get_current_bitmap()->get_os_data();
-         //auto ecomposite = m_ealphamode == ::draw2d::alpha_mode_blend ? D2D1_COMPOSITE_MODE_SOURCE_OVER : D2D1_COMPOSITE_MODE_SOURCE_IN;
+   //      //dynamic_cast <::draw2d_direct2d::graphics *> (pgraphicsSrc)->SaveClip();
 
-         //m_pdevicecontext->DrawImage(pimage, pointDst, rectSrc, m_interpolationmode, ecomposite);
+   //      HRESULT hr = ((ID2D1DeviceContext *) pgraphicsSrc->get_os_data())->EndDraw();
 
+   //      defer_primitive_blend();
 
-         //hr = m_prendertarget->Flush();
-         //flush();
+   //      if(m_pdevicecontext != nullptr)
+   //      {
 
-         if(SUCCEEDED(hr))
-         {
+   //         m_pdevicecontext->DrawBitmap((ID2D1Bitmap*)pgraphicsSrc->get_current_bitmap()->get_os_data(), rDst, (float)dRate, m_interpolationmode, rSrc);
 
-            ((ID2D1DeviceContext *)pgraphicsSrc->get_os_data())->BeginDraw();
+   //      }
+   //      else
+   //      {
 
-            //dynamic_cast <::draw2d_direct2d::graphics *> (pgraphicsSrc)->RestoreClip();
+   //         m_prendertarget->DrawBitmap((ID2D1Bitmap*)pgraphicsSrc->get_current_bitmap()->get_os_data(), rDst, (float)dRate, m_bitmapinterpolationmode, rSrc);
 
-         }
-
-         return true;
-
-      }
-      catch(...)
-      {
-         return FALSE;
-      }
+   //      }
 
 
+   //      //auto pimage = (ID2D1Bitmap*)pgraphicsSrc->get_current_bitmap()->get_os_data();
+   //      //auto ecomposite = m_ealphamode == ::draw2d::alpha_mode_blend ? D2D1_COMPOSITE_MODE_SOURCE_OVER : D2D1_COMPOSITE_MODE_SOURCE_IN;
 
-      return true;
+   //      //m_pdevicecontext->DrawImage(pimage, pointDst, rectSrc, m_interpolationmode, ecomposite);
 
-   }
+
+   //      //hr = m_prendertarget->Flush();
+   //      //flush();
+
+   //      if(SUCCEEDED(hr))
+   //      {
+
+   //         ((ID2D1DeviceContext *)pgraphicsSrc->get_os_data())->BeginDraw();
+
+   //         //dynamic_cast <::draw2d_direct2d::graphics *> (pgraphicsSrc)->RestoreClip();
+
+   //      }
+
+   //      return true;
+
+   //   }
+   //   catch(...)
+   //   {
+   //      return FALSE;
+   //   }
+
+
+
+   //   return true;
+
+   //}
 
 
    /*bool graphics::alpha_blend(double xDest, double yDest, double dDestWidth, double dDestHeight,
@@ -5893,6 +5913,8 @@ namespace draw2d_direct2d
 
 
 } // namespace draw2d_direct2d
+
+
 
 
 

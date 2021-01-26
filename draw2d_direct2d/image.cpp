@@ -949,55 +949,55 @@ namespace draw2d_direct2d
    //   }
    //}
 
-  bool image::draw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc)
+  bool image::_draw_raw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc)
    {
 
       return ::image::draw(rectDst, pimage, pointSrc);
 
    }
 
-   bool image::stretch(const ::image * pimage)
-   {
+   //bool image::stretch(const ::image * pimage)
+   //{
 
-      pimage->unmap();
+   //   pimage->unmap();
 
-      unmap();
+   //   unmap();
 
-      if (pimage->get_bitmap() == nullptr)
-      {
+   //   if (pimage->get_bitmap() == nullptr)
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      if (pimage->get_bitmap()->m_osdata[0] == nullptr)
-      {
+   //   if (pimage->get_bitmap()->m_osdata[0] == nullptr)
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      D2D1_RECT_F rectDest = D2D1::RectF(0, 0, (FLOAT)this->width(), (FLOAT)this->height());
+   //   D2D1_RECT_F rectDest = D2D1::RectF(0, 0, (FLOAT)this->width(), (FLOAT)this->height());
 
-      D2D1_RECT_F rectSource = D2D1::RectF(0, 0, (FLOAT) pimage->width(), (FLOAT) pimage->height());
+   //   D2D1_RECT_F rectSource = D2D1::RectF(0, 0, (FLOAT) pimage->width(), (FLOAT) pimage->height());
 
-      ((ID2D1RenderTarget *)m_pgraphics->get_os_data())->DrawBitmap(((ID2D1Bitmap1 *) pimage->get_bitmap()->m_osdata[0]), rectDest, 1.0, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, rectSource);
+   //   ((ID2D1RenderTarget *)m_pgraphics->get_os_data())->DrawBitmap(((ID2D1Bitmap1 *) pimage->get_bitmap()->m_osdata[0]), rectDest, 1.0, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, rectSource);
 
-      /*
-      ::StretchDIBits(
-      SP_HDC(m_pgraphics),
-      0, 0,
-      cx, cy,
-      0, 0,
-      pimage->cx, pimage->cy,
-      pimage->get_data(),
-      &pimage->m_info,
-      DIB_RGB_COLORS,
-      SRCCOPY);*/
+   //   /*
+   //   ::StretchDIBits(
+   //   SP_HDC(m_pgraphics),
+   //   0, 0,
+   //   cx, cy,
+   //   0, 0,
+   //   pimage->cx, pimage->cy,
+   //   pimage->get_data(),
+   //   &pimage->m_info,
+   //   DIB_RGB_COLORS,
+   //   SRCCOPY);*/
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    ::draw2d::graphics * image::_get_graphics() const

@@ -330,9 +330,9 @@ i32 image_list::add_file(::payload varFile, int iItem)
 
          m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-         m_pimage->get_graphics()->draw(
+         m_pimage->draw(
             ::rectd(::point(iItem * m_size.cx, 0),  m_size ),
-            pimage->get_graphics());
+            pimage);
 
       });
 

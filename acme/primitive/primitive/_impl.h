@@ -25,7 +25,7 @@ inline duration & duration::operator = (const ::datetime::time_span & span)
 inline duration & duration::operator += (const ::datetime::time_span & span)
 {
 
-   set(m_secs.m_iSeconds + span.GetTotalSeconds(), m_nanos.m_iNanoseconds);
+   set(m_secs.m_i + span.GetTotalSeconds(), m_nanos.m_i);
 
    return *this;
 
@@ -35,7 +35,7 @@ inline duration & duration::operator += (const ::datetime::time_span & span)
 inline duration & duration::operator -= (const ::datetime::time_span & span)
 {
 
-   set(m_secs.m_iSeconds - span.GetTotalSeconds(), m_nanos.m_iNanoseconds);
+   set(m_secs.m_i - span.GetTotalSeconds(), m_nanos.m_i);
 
    return *this;
 

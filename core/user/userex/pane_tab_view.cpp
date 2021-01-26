@@ -160,7 +160,7 @@ namespace userex
 
       __pointer(::message::create) pcreate(pmessage);
 
-      m_pcreate = (::create *) pcreate->get_create();
+      //m_pusersystem->m_pcreate = (::create *) pcreate->get_create();
 
       //if (Application.m_pmainpane == nullptr)
       //{

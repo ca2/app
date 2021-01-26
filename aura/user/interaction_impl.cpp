@@ -776,7 +776,7 @@ namespace user
          //else
          //{
 
-         //   psynca->wait();
+            psynca->wait();
 
          //   (*proutine)();
 

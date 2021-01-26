@@ -1312,7 +1312,7 @@ namespace experience
                {
 
                   pbar->payload("tracking_on") = true;
-                  pbar->payload("tracking_start") = (u32)(::get_tick() + uchAlpha * tickFadeIn / 255);
+                  pbar->payload("tracking_start") = (u32)(::get_millis() + uchAlpha * tickFadeIn / 255);
                   pbar->payload("tracking_fade_in") = true;
                   pbar->payload("tracking_fade_out") = false;
                   pbar->payload("tracking_simple") = __random(1, 2) == 1;
@@ -1328,7 +1328,7 @@ namespace experience
 
                   pbar->payload("tracking_fade_in") = false;
                   pbar->payload("tracking_fade_out") = true;
-                  pbar->payload("tracking_start") = (u32)(::get_tick() + (255 - uchAlpha) * tickFadeOut / 255);
+                  pbar->payload("tracking_start") = (u32)(::get_millis() + (255 - uchAlpha) * tickFadeOut / 255);
 
                }
 

@@ -833,7 +833,7 @@
     <ClCompile Include="math\calculator\element.cpp">
       <Filter>Source Files\math\calculator</Filter>
     </ClCompile>
-    <ClCompile Include="math\calculator\payload.cpp">
+    <ClCompile Include="math\calculator\result.cpp">
       <Filter>Source Files\math\calculator</Filter>
     </ClCompile>
   </ItemGroup>

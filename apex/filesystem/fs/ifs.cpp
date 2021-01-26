@@ -18,11 +18,9 @@ bool ifs::fast_has_subdir(const ::file::path & path)
 
    sync_lock sl(mutex());
 
-//   millis tickTimeout;
-
    dir_listing & dir = m_map[path];
 
-   if(::get_tick() < dir.m_uiLsTimeout)
+   if(dir.m_millisLast.elapsed() < ::get_context_system()->m_millisFileListingCache)
    {
 
       return dir.get_count() > 0;
@@ -38,29 +36,24 @@ bool ifs::has_subdir(const ::file::path & path)
 
    sync_lock sl(mutex());
 
-//   millis tickTimeout;
-
    dir_listing & dir = m_map[path];
 
-   if(::get_tick() < dir.m_uiLsTimeout)
+   if (dir.m_millisLast.elapsed() < ::get_context_system()->m_millisFileListingCache)
    {
 
       return dir.get_count() > 0;
 
    }
+
+   sl.unlock();
 
    ::file::listing listing;
 
    Context.dir().ls(listing, path);
 
-   if(::get_tick() < dir.m_uiLsTimeout)
-   {
+   sl.lock();
 
-      return dir.get_count() > 0;
-
-   }
-
-   return false;
+   return dir.get_count() > 0;
 
 }
 
@@ -86,11 +79,9 @@ bool ifs::has_subdir(const ::file::path & path)
 
    sync_lock sl(mutex());
 
-//   millis tickTimeout;
-
    dir_listing & dir = m_map[listing.m_pathUser];
 
-   if(::get_tick() < dir.m_uiLsTimeout)
+   if (dir.m_millisLast.elapsed() < ::get_context_system()->m_millisFileListingCache)
    {
 
       listing = dir;
@@ -99,19 +90,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    }
 
-   dir.clear_results();
-
    listing.clear_results();
-
-
-   //::file::patha  straDir;
-   //::file::patha  straDirName;
-   //::file::patha  straFile;
-   //::file::patha  straFileName;
-   //i64_array    iaFileSize;
-   //i64_array    iaFolderSize;
-   //bool_array     baFileDir;
-   //bool_array     baFolderDir;
 
    try
    {
@@ -129,7 +108,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
       }
 
-      dir.m_uiLsTimeout = (u32) (::get_tick() + ((5000) * 4));
+      dir.m_millisLast.now();
 
       listing = ::error_failed;
 
@@ -277,33 +256,39 @@ int ifs::is_dir(const ::file::path & path)
 
    if(path.is_empty())
    {
+
       return 1;
+
    }
 
    if(ansi_compare_ci(path, "uifs://") == 0)
    {
+
       return 1;
+
    }
+
    if(ansi_compare_ci(path,"uifs:/") == 0)
    {
+
       return 1;
+
    }
+
    if(ansi_compare_ci(path,"uifs:") == 0)
    {
+
       return 1;
+
    }
 
-
    defer_initialize();
-
-
-   //millis tickTimeout;
 
    sync_lock sl(mutex());
 
    dir_listing & dir = m_map[path.folder()];
 
-   if(::get_tick() > dir.m_uiTimeout)
+   if(dir.m_millisLast.timeout(::get_context_system()->m_millisFileListingCache))
    {
 
       ::file::listing listing;
@@ -322,7 +307,6 @@ int ifs::is_dir(const ::file::path & path)
    }
 
    return dir[iFind].m_iDir;
-
 
 }
 

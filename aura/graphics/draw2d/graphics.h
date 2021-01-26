@@ -26,7 +26,7 @@ namespace draw2d
 /// </summary>
    class CLASS_DECL_AURA graphics :
       virtual public ::aura::simple_chain < ::aura::draw_context >,
-      virtual public image_drawer
+      virtual public ::image_drawer
    {
    public:
 
@@ -282,7 +282,9 @@ namespace draw2d
       virtual bool sync_flush();
 
 
-      virtual ::sized get_size();
+      virtual ::sized get_size() const;
+
+      virtual ::size get_image_drawer_size() const;
 
 
 

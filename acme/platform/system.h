@@ -32,8 +32,10 @@ namespace acme
       ::core::system *                                   m_pcoresystem;
 
       string                                             m_strOsUserTheme;
-      __pointer(::acme::node)                       m_pnode;
+      __pointer(::acme::node)                            m_pnode;
 
+      
+      ::millis                                           m_millisFileListingCache;
 
 
       system();

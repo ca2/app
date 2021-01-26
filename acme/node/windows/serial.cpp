@@ -349,10 +349,10 @@ void Serial::SerialImpl::reconfigurePort ()
 
    // Setup timeouts
    COMMTIMEOUTS timeouts = {0};
-   timeouts.ReadIntervalTimeout = (DWORD) m_timeout.m_millisInterByteTimeout.m_iMilliseconds;
-   timeouts.ReadTotalTimeoutConstant = (DWORD) m_timeout.m_millisReadTimeoutConstant.m_iMilliseconds;
+   timeouts.ReadIntervalTimeout = (DWORD) m_timeout.m_millisInterByteTimeout.m_i;
+   timeouts.ReadTotalTimeoutConstant = (DWORD) m_timeout.m_millisReadTimeoutConstant.m_i;
    timeouts.ReadTotalTimeoutMultiplier = m_timeout.m_uReadTimeoutMultiplier;
-   timeouts.WriteTotalTimeoutConstant = (DWORD) m_timeout.m_millisWriteTimeoutConstant.m_iMilliseconds;
+   timeouts.WriteTotalTimeoutConstant = (DWORD) m_timeout.m_millisWriteTimeoutConstant.m_i;
    timeouts.WriteTotalTimeoutMultiplier = m_timeout.m_uWriteTimeoutMultiplier;
    if (!SetCommTimeouts(m_hFile, &timeouts))
    {

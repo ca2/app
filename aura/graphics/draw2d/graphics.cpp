@@ -1564,7 +1564,7 @@ namespace draw2d
 
          pimage1->get_graphics()->text_out(0, 0, block);
 
-         pimage1->blend(nullptr, m_pimageAlphaBlend, point((int)max(0, x - m_pointAlphaBlend.x), (int)max(0, y - m_pointAlphaBlend.y)), rectText.size());
+         pimage1->draw(m_pimageAlphaBlend, ::rectd(point((int)max(0, x - m_pointAlphaBlend.x), (int)max(0, y - m_pointAlphaBlend.y)), rectText.size()));
 
          draw(::rectd(::pointd(x, y), rectText.size()), pimage1);
 
@@ -3674,7 +3674,7 @@ namespace draw2d
    }
 
 
-   ::sized graphics::get_size()
+   ::sized graphics::get_size() const
    {
 
       if (::is_null(m_pimage))
@@ -3685,6 +3685,14 @@ namespace draw2d
       }
 
       return m_pimage->get_size();
+
+   }
+
+
+   ::size graphics::get_image_drawer_size() const
+   {
+
+      return get_size();
 
    }
 

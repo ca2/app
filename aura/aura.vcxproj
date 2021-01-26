@@ -1106,6 +1106,7 @@
     <ClCompile Include="gpu\gpu\context.cpp" />
     <ClCompile Include="gpu\gpu\program.cpp" />
     <ClCompile Include="gpu\gpu\shader.cpp" />
+    <ClCompile Include="graphics\draw2d\color_filter.cpp" />
     <ClCompile Include="graphics\draw2d\context_image.cpp" />
     <ClCompile Include="graphics\draw2d\device_lock.cpp" />
     <ClCompile Include="graphics\draw2d\image_drawer.cpp" />
@@ -1606,8 +1607,6 @@
     <ClInclude Include="graphics\draw2d\bitmap.h" />
     <ClInclude Include="graphics\draw2d\brush.h" />
     <ClInclude Include="graphics\draw2d\buffered_graphics.h" />
-    <ClInclude Include="graphics\draw2d\color.h" />
-    <ClInclude Include="graphics\draw2d\colorref_array.h" />
     <ClInclude Include="graphics\draw2d\color_matrix.h" />
     <ClInclude Include="graphics\draw2d\common.h" />
     <ClInclude Include="graphics\draw2d\cursor.h" />

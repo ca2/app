@@ -27,9 +27,9 @@ namespace user
 
       m_elayoutexperience = e_layout_experience_none;
 
-      sketch() = e_display_none;
-      window() = e_display_none;
-      design() = e_display_none;
+      //sketch() = e_display_none;
+      //window() = e_display_none;
+      //design() = e_display_none;
 
    }
 

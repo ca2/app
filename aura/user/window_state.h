@@ -80,7 +80,7 @@ namespace user
 
    public:
 
-      visual_state() { m_bReady = true; m_bModified = false; }
+      visual_state() { m_bReady = true; m_bModified = false; m_edisplay3 = e_display_none;  }
 
       //void set_interaction_layout(::user::interaction_layout* playout) { m_playout = playout; }
 

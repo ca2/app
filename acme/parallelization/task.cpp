@@ -553,7 +553,7 @@ CLASS_DECL_ACME bool __task_sleep(task* task)
 CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 {
 
-   if (millis.m_iMilliseconds < 1000)
+   if (millis.m_i < 1000)
    {
 
       if (!pthread->thread_get_run())
@@ -569,9 +569,9 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis)
 
    }
 
-   auto iTenths = millis.m_iMilliseconds / 10;
+   auto iTenths = millis.m_i / 10;
 
-   auto iMillis = millis.m_iMilliseconds % 10;
+   auto iMillis = millis.m_i % 10;
 
    try
    {
@@ -661,7 +661,7 @@ CLASS_DECL_ACME bool __task_sleep(::task* pthread, sync* psync)
 CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, sync* psync)
 {
 
-   if (millis.m_iMilliseconds < 1000)
+   if (millis.m_i < 1000)
    {
 
       if (!pthread->thread_get_run())
@@ -677,9 +677,9 @@ CLASS_DECL_ACME bool __task_sleep(task* pthread, millis millis, sync* psync)
 
    }
 
-   auto iTenths = millis.m_iMilliseconds / 100;
+   auto iTenths = millis.m_i / 100;
 
-   auto iMillis = millis.m_iMilliseconds % 100;
+   auto iMillis = millis.m_i % 100;
 
    try
    {

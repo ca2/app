@@ -1406,15 +1406,15 @@ bool graphics::_draw_raw(const ::rectd & rectDst, ::image * pimage, const ::imag
 
       }
 
-      auto dOpacity = imagedrawingoptions.opacity();
+      auto opacity = imagedrawingoptions.opacity();
 
       if (m_pregion.is_set() && !m_pregion.cast < region >()->is_simple_positive_region())
       {
 
-         if (dOpacity < 1.0)
+         if (opacity.is_translucent())
          {
 
-            m_pregion.cast < region >()->mask_paint_with_alpha(m_pdc, dOpacity);
+            m_pregion.cast < region >()->mask_paint_with_alpha(m_pdc, opacity.get_opacity_rate());
 
          }
          else
@@ -1428,10 +1428,10 @@ bool graphics::_draw_raw(const ::rectd & rectDst, ::image * pimage, const ::imag
       else
       {
 
-         if (dOpacity < 1.0)
+         if (opacity.is_translucent())
          {
 
-            cairo_paint_with_alpha(m_pdc, dOpacity);
+            cairo_paint_with_alpha(m_pdc, opacity.get_opacity_rate());
 
          }
          else
@@ -1570,15 +1570,15 @@ bool graphics::_stretch_raw(const ::rectd & rectDst, ::image * pimage, const ::i
 
     }
 
-    double dOpacity = imagedrawingoptions.opacity();
+    auto opacity = imagedrawingoptions.opacity();
 
     if (m_pregion.is_set() && !m_pregion.cast < region >()->is_simple_positive_region())
     {
 
-       if (dOpacity < 1.0)
+       if (opacity.is_translucent())
        {
 
-          m_pregion.cast < region >()->mask_paint_with_alpha(m_pdc, dOpacity);
+          m_pregion.cast < region >()->mask_paint_with_alpha(m_pdc, opacity.get_opacity_rate());
 
        }
        else
@@ -1592,10 +1592,10 @@ bool graphics::_stretch_raw(const ::rectd & rectDst, ::image * pimage, const ::i
     else
     {
 
-       if (dOpacity < 1.0)
+       if (opacity.is_translucent())
        {
 
-          cairo_paint_with_alpha(m_pdc, dOpacity);
+          cairo_paint_with_alpha(m_pdc, opacity.get_opacity_rate());
 
        }
        else

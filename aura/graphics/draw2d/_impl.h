@@ -473,7 +473,7 @@ namespace draw2d
       int iBlurRadius,
       int iBlur,
       bool bUpdate,
-      const ::color_filter * pcolorfilter)
+      const ::color_filter & colorfilter)
    {
 
       int iR = iSpreadRadius + iBlurRadius + iBlur + 1;
@@ -556,9 +556,11 @@ namespace draw2d
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      image_drawing imagedrawing(rectEmboss, pimageBlur);
+      image_drawing imagedrawing;
+      
+      imagedrawing.set(rectEmboss, pimageBlur);
 
-      imagedrawing.m_pcolorfilter = pcolorfilter;
+      imagedrawing = colorfilter;
 
       pgraphics->draw(imagedrawing);
 

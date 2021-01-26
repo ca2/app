@@ -4,34 +4,4 @@
 #include "framework.h"
 
 
-image_drawing::~image_drawing()
-{
-
-
-}
-
-
-bool image_drawing_options::get_color_matrix(color_matrix & colormatrix) const
-{
-
-   if (m_pcolorfilter.is_null())
-   {
-
-      return false;
-
-   }
-
-
-   if(!m_pcolorfilter->get_color_matrix(colormatrix))
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
-
-
 

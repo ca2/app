@@ -204,19 +204,19 @@ class duration;
 //public:
 //
 //
-//   ::i64       m_iMilliseconds;
+//   ::i64       m_i;
 //
 //
-//   millis() { m_iMilliseconds = 0; }
-//   millis(::i64 i) { m_iMilliseconds = i; }
+//   millis() { m_i = 0; }
+//   millis(::i64 i) { m_i = i; }
 //
 //
-//   millis & operator = (const secs & secs) { m_iMilliseconds = secs.m_iSeconds * 1'000; return *this; }
-//   millis & operator = (const millis & millis) { m_iMilliseconds = millis.m_iMilliseconds; return *this; }
+//   millis & operator = (const secs & secs) { m_i = secs.m_i * 1'000; return *this; }
+//   millis & operator = (const millis & millis) { m_i = millis.m_i; return *this; }
 //   millis & operator = (const micros & micros);
 //   millis & operator = (const nanos & nanos);
 //   millis & operator = (const duration & duration);
-//   millis & operator = (::i64 i) { m_iMilliseconds = i; return *this; }
+//   millis & operator = (::i64 i) { m_i = i; return *this; }
 //
 //
 //};

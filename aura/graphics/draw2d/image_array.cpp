@@ -71,7 +71,7 @@ bool image_array::explode(::object * pobject, const ::size & sizeParam, ::payloa
 
          auto rectSrc = ::rect_dim(sizeSource.cx * col, sizeSource.cy * row, sizeSource.cx, sizeSource.cy);
 
-         pimage->g()->stretch(rectDst, pimageSource, rectSrc);
+         pimage->stretch(rectDst, pimageSource, rectSrc);
 
          add(pimage);
 

@@ -306,6 +306,9 @@ template < typename TYPE, std::size_t SIZE >
 inline std::size_t item_count(const array_reference < TYPE, SIZE > &) { return SIZE; }
 
 
+template < typename T >
+inline byte byte_clip(const T & t) { return ((byte)(((t) < (byte)0) ? (byte)0 : (((t) > (byte)255) ? (byte)255 : (byte)t))); }
+
 
 
 
@@ -2665,6 +2668,8 @@ using wparam = c_number<WPARAM>;
 
 
 #include "acme/primitive/datetime/nanos.h"
+
+
 
 
 #include "acme/primitive/datetime/duration.h"

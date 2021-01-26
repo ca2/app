@@ -1141,7 +1141,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
    if (Application.is_true("client_only") && get_parent() == nullptr)
    {
 
-      auto rect = Session->get_host_window()->get_client_rect();
+      auto rect = get_host_window()->get_client_rect();
 
       set_dim(rect.left, rect.top, rect.width(), rect.height());
 
@@ -2533,9 +2533,11 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
       pgraphicsParam->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      image_drawing imagedrawing(rectClient.size(), pgraphics);
+      image_drawing imagedrawing;
+      
+      imagedrawing.set(rectClient.size(), pgraphics);
 
-      imagedrawing.m_pcolorfilter = __new(opacity_color_filter(dAlpha));
+      imagedrawing.opacity(dAlpha);
 
       pgraphicsParam->draw(imagedrawing);
 
@@ -2612,9 +2614,11 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
             m_blur.blur(m_pimageBlur, 2);
 
-            image_drawing imagedrawing(rectClient.size(), m_pimageBk);
+            image_drawing imagedrawing;
+            
+            imagedrawing.set(rectClient.size(), m_pimageBk);
 
-            imagedrawing.m_pcolorfilter = __new(opacity_color_filter(49.0 / 255.0));
+            imagedrawing.opacity(49);
 
             m_pimageBlur->draw(imagedrawing);
 

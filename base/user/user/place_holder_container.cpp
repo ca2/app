@@ -26,23 +26,27 @@ namespace user
    ::user::place_holder * place_holder_container::get_new_place_holder(const ::rect & rectCreate)
    {
 
-      if (!m_placeholdera.add_new(this))
+      auto pplaceholder = __create_new < ::user::place_holder >();
+
+      if (!pplaceholder)
       {
 
          return nullptr;
 
       }
 
-      if(!m_placeholdera.last_pointer()->::user::interaction::create_child(this))
-      {
+      pplaceholder->display(e_display_normal);
 
-         m_placeholdera.remove_last();
+      if(!pplaceholder->create_child(this))
+      {
 
          return nullptr;
 
       }
 
-      return m_placeholdera.last_pointer();
+      m_placeholdera.add(pplaceholder);
+
+      return pplaceholder;
 
    }
 

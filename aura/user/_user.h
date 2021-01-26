@@ -201,10 +201,7 @@ namespace user
 //#include "aura/primitive/primitive/create.h"
 #include "system.h"
 
-//#include "check.h"
-//#include "text.h"
 #include "window_util.h"
-#include "aura/graphics/draw2d/color.h"
 #include "aura/graphics/draw2d/text_box.h"
 #include "aura/graphics/draw2d/font_list.h"
 #include "window_state.h"

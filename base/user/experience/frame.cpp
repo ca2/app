@@ -32,14 +32,6 @@ namespace experience
    }
 
 
-   //void frame::set_style(const char * pszStyle)
-   //{
-
-   //   m_strStyle = pszStyle;
-
-   //}
-
-   
    int frame::adjust_client_height(int iHeight)
    {
 
@@ -532,15 +524,13 @@ namespace experience
    i32 frame::calc_caption_height(::draw2d::graphics_pointer & pgraphics)
    {
 
-      return get_control_box()->calc_button_size(pgraphics);
+      auto rect = get_control_box()->get_button_margin(e_button_close);
 
-      /*auto pstyle = m_pframewindow->get_style(pgraphics);
+      auto iButtonSize = get_control_box()->calc_button_size(pgraphics);
 
-      auto pfont = m_pframewindow->get_font(pstyle);
+      auto iCaptionHeight = rect.top + iButtonSize + rect.bottom;
 
-      double dCaptionHeight = pfont->get_height(pgraphics);
-
-      return (::i32) dCaptionHeight;*/
+      return iCaptionHeight;
 
    }
 

@@ -1,10 +1,10 @@
 #pragma once
 
 
-enum e_tick_now
+enum enum_now
 {
 
-   tick_now,
+   e_now,
 
 };
 
@@ -27,43 +27,43 @@ class CLASS_DECL_ACME millis
 public:
 
 
-   ::i64       m_iMilliseconds;
+   ::i64       m_i;
 
 
-   millis() { m_iMilliseconds = 0; }
-   millis(enum e_tick_now) { m_iMilliseconds = get_tick(); }
+   millis() { m_i = 0; }
+   millis(enum enum_now) { m_i = get_millis(); }
    millis(enum enum_no_init) {}
    template < primitive_integral INTEGRAL >
-   millis(INTEGRAL i) { m_iMilliseconds = i; }
-   millis(const secs & secs) { m_iMilliseconds = secs.m_iSeconds * 1'000; }
-   millis(const millis & millis) { m_iMilliseconds = millis.m_iMilliseconds; }
+   millis(INTEGRAL i) { m_i = i; }
+   millis(const secs & secs) { m_i = secs.m_i * 1'000; }
+   millis(const millis & millis) { m_i = millis.m_i; }
    millis(const micros & micros);
    millis(const nanos & nanos);
    millis(const duration & duration);
 
-   millis & operator = (const millis & millis) { m_iMilliseconds = millis.m_iMilliseconds; return *this; }
+   millis & operator = (const millis & millis) { m_i = millis.m_i; return *this; }
 
-   inline static millis now() { return millis(::get_tick()); }
+   inline static millis now() { return get_millis(); }
 
    inline static millis infinite() { return {-1}; }
 
-   inline bool is_infinite() const { return m_iMilliseconds < 0; }
+   inline bool is_infinite() const { return m_i < 0; }
 
-   inline bool is_infinity() const { return m_iMilliseconds < 0; }
+   inline bool is_infinity() const { return m_i < 0; }
 
    inline bool timeout(const millis & tickTimeout)
    {
 
-      ::millis tickNow = now();
+      auto millisNow = get_millis();
 
-      if(tickNow.m_iMilliseconds - m_iMilliseconds < tickTimeout.m_iMilliseconds)
+      if(millisNow - m_i < tickTimeout.m_i)
       {
 
          return false;
 
       }
 
-      m_iMilliseconds = tickNow.m_iMilliseconds;
+      m_i = millisNow;
 
       return true;
 
@@ -88,7 +88,7 @@ public:
    inline millis elapsed(const ::millis & millis) const
    {
 
-      return millis.m_iMilliseconds - m_iMilliseconds;
+      return millis.m_i - m_i;
 
    }
 
@@ -120,11 +120,11 @@ public:
    inline ::u32 u32() const
    {
 
-      return (::u32) (m_iMilliseconds % 0x100000000ULL);
+      return (::u32) (m_i % 0x100000000ULL);
 
    }
 
-   inline i64 seconds()const { return m_iMilliseconds / 1000; }
+   inline i64 seconds()const { return m_i / 1000; }
 
    inline void Now()
    {
@@ -137,7 +137,7 @@ public:
    inline void Null()
    {
 
-      m_iMilliseconds = 0;
+      m_i = 0;
 
    }
 
@@ -145,7 +145,7 @@ public:
    inline bool on_off(const ::millis & period) const
    {
 
-      return (elapsed().m_iMilliseconds % period.m_iMilliseconds) < period.m_iMilliseconds >> 1;
+      return (elapsed().m_i % period.m_i) < period.m_i >> 1;
 
 
    }
@@ -154,7 +154,7 @@ public:
    inline bool on_off(const ::millis & period, double dRate) const
    {
 
-      return (elapsed().m_iMilliseconds % period.m_iMilliseconds) < period.m_iMilliseconds * dRate;
+      return (elapsed().m_i % period.m_i) < period.m_i * dRate;
 
 
    }
@@ -171,42 +171,42 @@ public:
    //inline millis& operator += (const ::duration& duration) ;
 
 
-   //inline bool operator == (const ::millis & millis) const { return m_iMilliseconds == millis.m_iMilliseconds; }
-   //inline bool operator != (const ::millis & millis) const { return m_iMilliseconds != millis.m_iMilliseconds; }
-   //inline bool operator < (const ::millis & millis) const { return m_iMilliseconds < millis.m_iMilliseconds; }
-   //inline bool operator <= (const ::millis & millis) const { return m_iMilliseconds <= millis.m_iMilliseconds; }
-   //inline bool operator > (const ::millis & millis) const { return m_iMilliseconds > millis.m_iMilliseconds; }
-   //inline bool operator >= (const ::millis & millis) const { return m_iMilliseconds >= millis.m_iMilliseconds; }
-   inline millis operator - (const ::millis & millis) const { return m_iMilliseconds - millis.m_iMilliseconds; }
-   inline millis operator + (const ::millis & millis) const { return m_iMilliseconds + millis.m_iMilliseconds; }
-   inline millis& operator -= (const ::millis & millis) { m_iMilliseconds -= millis.m_iMilliseconds; return *this; }
-   inline millis& operator += (const ::millis & millis) { m_iMilliseconds += millis.m_iMilliseconds; return *this; }
+   //inline bool operator == (const ::millis & millis) const { return m_i == millis.m_i; }
+   //inline bool operator != (const ::millis & millis) const { return m_i != millis.m_i; }
+   //inline bool operator < (const ::millis & millis) const { return m_i < millis.m_i; }
+   //inline bool operator <= (const ::millis & millis) const { return m_i <= millis.m_i; }
+   //inline bool operator > (const ::millis & millis) const { return m_i > millis.m_i; }
+   //inline bool operator >= (const ::millis & millis) const { return m_i >= millis.m_i; }
+   inline millis operator - (const ::millis & millis) const { return m_i - millis.m_i; }
+   inline millis operator + (const ::millis & millis) const { return m_i + millis.m_i; }
+   inline millis& operator -= (const ::millis & millis) { m_i -= millis.m_i; return *this; }
+   inline millis& operator += (const ::millis & millis) { m_i += millis.m_i; return *this; }
 
 
-   //inline bool operator == (i64 i) const { return m_iMilliseconds == i; }
-   //inline bool operator != (i64 i) const { return m_iMilliseconds != i; }
-   //inline bool operator < (i64 i) const { return m_iMilliseconds < i; }
-   //inline bool operator <= (i64 i) const{ return m_iMilliseconds <= i; }
-   //inline bool operator > (i64 i) const { return m_iMilliseconds > i; }
-   //inline bool operator >= (i64 i) const { return m_iMilliseconds >= i; }
-   //inline millis operator - (i64 i) const { return m_iMilliseconds - i; }
-   //inline millis operator + (i64 i) const { return m_iMilliseconds + i; }
-   //inline millis& operator -= (i64 i) { m_iMilliseconds -= i; return *this; }
-   //inline millis& operator += (i64 i) { m_iMilliseconds += i; return *this; }
+   //inline bool operator == (i64 i) const { return m_i == i; }
+   //inline bool operator != (i64 i) const { return m_i != i; }
+   //inline bool operator < (i64 i) const { return m_i < i; }
+   //inline bool operator <= (i64 i) const{ return m_i <= i; }
+   //inline bool operator > (i64 i) const { return m_i > i; }
+   //inline bool operator >= (i64 i) const { return m_i >= i; }
+   //inline millis operator - (i64 i) const { return m_i - i; }
+   //inline millis operator + (i64 i) const { return m_i + i; }
+   //inline millis& operator -= (i64 i) { m_i -= i; return *this; }
+   //inline millis& operator += (i64 i) { m_i += i; return *this; }
 
 
-   inline millis operator * (double d) const { return (::i64)(m_iMilliseconds * d); }
-   inline millis& operator *= (double d) { m_iMilliseconds = (::i64)(m_iMilliseconds * d); return *this; }
+   inline millis operator * (double d) const { return (::i64)(m_i * d); }
+   inline millis& operator *= (double d) { m_i = (::i64)(m_i * d); return *this; }
 
-   inline ::i64 operator / (const millis& millis) const { return m_iMilliseconds / millis.m_iMilliseconds; }
-   inline millis operator / (::i64 i) const { return m_iMilliseconds / i; }
-   inline millis& operator /= (::i64 i)  { m_iMilliseconds /= i; return *this; }
-   inline millis& operator %= (const millis & millis) { m_iMilliseconds %= millis.m_iMilliseconds; return *this; }
+   inline ::i64 operator / (const millis& millis) const { return m_i / millis.m_i; }
+   inline millis operator / (::i64 i) const { return m_i / i; }
+   inline millis& operator /= (::i64 i)  { m_i /= i; return *this; }
+   inline millis& operator %= (const millis & millis) { m_i %= millis.m_i; return *this; }
 
 
-   inline millis operator % (::i32 i) const { return m_iMilliseconds % i; }
-   inline millis operator % (::i64 i) const { return m_iMilliseconds % i; }
-   inline millis operator % (const ::millis & millis) const { return m_iMilliseconds % millis.m_iMilliseconds; }
+   inline millis operator % (::i32 i) const { return m_i % i; }
+   inline millis operator % (::i64 i) const { return m_i % i; }
+   inline millis operator % (const ::millis & millis) const { return m_i % millis.m_i; }
 
 
    void sleep() const;
@@ -215,7 +215,7 @@ public:
 };
 
 
-inline millis operator * (double d, const millis & millis) { return (::i64)(d * millis.m_iMilliseconds); }
+inline millis operator * (double d, const millis & millis) { return (::i64)(d * millis.m_i); }
 
 
 namespace papaya
@@ -237,11 +237,13 @@ namespace papaya
 
       }
 
+
       template <  >
       inline millis default_value < millis > ()
       {
+
          // estimate a delay of half of max millis positive value
-         return ::get_tick() - (MAXI64 >> 1);
+         return ::get_millis() - (MAXI64 >> 1);
 
       }
 
@@ -258,22 +260,22 @@ namespace papaya
 #define __prtick "%" PRtick " ms"
 
 
-inline double __double(const ::millis & millis) { return (double) millis.m_iMilliseconds; }
+inline double __double(const ::millis & millis) { return (double) millis.m_i; }
 
 
-inline auto __pr(const ::millis & millis) { return millis.m_iMilliseconds; }
+inline auto __pr(const ::millis & millis) { return millis.m_i; }
 
 
-inline u32 __os(const ::millis & millis) { return millis.m_iMilliseconds > (i64) MAXI32 ? U32_INFINITE_TIMEOUT : millis.m_iMilliseconds < 0 ? 0 : (u32) millis.m_iMilliseconds; }
+inline u32 __os(const ::millis & millis) { return millis.m_i > (i64) MAXI32 ? U32_INFINITE_TIMEOUT : millis.m_i < 0 ? 0 : (u32) millis.m_i; }
 
 
-inline ::i32 __i32(const ::millis & millis) { return (::i32) millis.m_iMilliseconds; }
+inline ::i32 __i32(const ::millis & millis) { return (::i32) millis.m_i; }
 
 
-inline ::i64 __i64(const ::millis & millis) { return (::i64) millis.m_iMilliseconds; }
+inline ::i64 __i64(const ::millis & millis) { return (::i64) millis.m_i; }
 
 
-inline byte __byte(const ::millis & millis) { return (byte) __minmax(millis.m_iMilliseconds, 0, 255); }
+inline byte __byte(const ::millis & millis) { return (byte) __minmax(millis.m_i, 0, 255); }
 
 
 inline millis __tick(double d) { return (::i64) d; }
@@ -285,9 +287,10 @@ inline millis operator "" _tick(unsigned long long int u) { return u; }
 typedef CLASS_DECL_ACME numeric_array < millis > tick_array;
 
 
-inline secs::secs(const millis & millis) { m_iSeconds = millis.m_iMilliseconds / 1'000; }
+inline secs::secs(const millis & millis) { m_i = millis.m_i / 1'000; }
 
 
 inline millis operator "" _ms(unsigned long long int u) { return (::i64) u; }
+
 
 

@@ -47,7 +47,7 @@ public:
 auto inline red(color32_t rgba) { return ((byte)(rgba & 0xff)); }
 auto inline green(color32_t rgba) { return ((byte)((rgba >> 8) & 0xff)); }
 auto inline blue(color32_t rgba) { return ((byte)((rgba >> 16) & 0xff)); }
-auto inline opacity(color32_t rgba) { return ((byte)((rgba >> 24) & 0xff)); }
+auto inline alpha(color32_t rgba) { return ((byte)((rgba >> 24) & 0xff)); }
 
 class rgba :
    public rgb
@@ -74,8 +74,8 @@ public:
 inline auto red(const rgb & rgb) { return rgb.m_iR; }
 inline auto green(const rgb & rgb) { return rgb.m_iG; }
 inline auto blue(const rgb & rgb) { return rgb.m_iB; }
-inline auto opacity(const rgb & rgba) { return 255; }
-inline auto opacity(const rgba & rgba) { return rgba.m_iA; }
+inline auto alpha(const rgb & rgba) { return 255; }
+inline auto alpha(const rgba & rgba) { return rgba.m_iA; }
 
 #define A_RGB(a, rgb) ARGB(a, ::red(rgb), ::green(rgb), ::blue(rgb))
 

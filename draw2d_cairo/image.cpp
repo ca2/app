@@ -256,7 +256,7 @@ namespace draw2d_cairo
 //
 //   }
 
-   bool image::draw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc)
+   bool image::_draw_raw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc)
    {
       return g()->draw(rectDst, pimage, pointSrc);
 //      ::draw2d::bitmap_pointer bitmap;
@@ -688,19 +688,19 @@ namespace draw2d_cairo
    }
 
 
-   bool image::stretch(const ::image * pimage)
-   {
+   //bool image::stretch(const ::image * pimage)
+   //{
 
-      if (!get_graphics()->stretch(this->rect(), pimage->g(), pimage->rect()))
-      {
+   //   if (!get_graphics()->stretch(this->rect(), pimage->g(), pimage->rect()))
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    ::draw2d::graphics * image::_get_graphics() const

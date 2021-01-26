@@ -40,8 +40,8 @@ namespace draw2d_cairo
 
 
       virtual bool on_host_read_pixels(const ::pixmap * ppixmap) override;
-      virtual bool stretch(const ::image * pimage) override;
-      virtual bool draw(const ::rect & rect, ::image * pimage, const ::point & point = ::point()) override;
+      //virtual bool stretch(const ::image * pimage) override;
+      virtual bool _draw_raw(const ::rect & rect, ::image * pimage, const ::point & point = ::point()) override;
 
       //bool to(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc) override;
       virtual ::e_status SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy) override;

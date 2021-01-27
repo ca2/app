@@ -19,7 +19,7 @@
 CLASS_DECL_ACME void sleep(const ::secs & secs)
 {
 
-   ::sleep((unsigned int) (secs.m_iSeconds * 1'000));
+   ::sleep((unsigned int) (secs.m_i * 1'000));
 
 }
 
@@ -27,7 +27,7 @@ CLASS_DECL_ACME void sleep(const ::secs & secs)
 CLASS_DECL_ACME void sleep(const millis & millis)
 {
 
-   ::usleep((useconds_t) millis.m_iMilliseconds * 1'000);
+   ::usleep((useconds_t) millis.mi * 1'000);
 
 }
 

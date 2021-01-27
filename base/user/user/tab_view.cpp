@@ -842,10 +842,15 @@ namespace user
 
       auto puiptraChild = pimpactdata->m_pplaceholder->m_puiptraChild;
 
-      if (pimpactdata->m_pplaceholder != nullptr && puiptraChild->interaction_count() == 1)
+      if (puiptraChild)
       {
 
-         return puiptraChild->first_interaction();
+         if (pimpactdata->m_pplaceholder != nullptr && puiptraChild->interaction_count() == 1)
+         {
+
+            return puiptraChild->first_interaction();
+
+         }
 
       }
 
@@ -934,6 +939,20 @@ namespace user
 
       ::user::tab_pane* ppane = get_pane_by_id(pimpactdata->m_id);
 
+      //if (!ppane)
+      //{
+
+      //   if (!add_tab(pimpactdata->m_idTitle, pimpactdata->m_id))
+      //   {
+
+      //      return false;
+
+      //   }
+
+      //   ppane = get_pane_by_id(pimpactdata->m_id);
+
+      //}
+
       if (ppane != nullptr)
       {
 
@@ -992,40 +1011,9 @@ namespace user
 
       }
 
-      //if (get_view_uie() != nullptr)
-      //{
-
-      //   get_view_uie()->route_command_message(pcommand);
-
-      //   if (pcommand->m_bRet)
-      //   {
-
-      //      return;
-
-      //   }
-
-      //}
-
       impact::route_command_message(pcommand);
 
    }
-
-   //void tab_view::set_impact_creator(::user::impact_creator * pviewcreator)
-   //{
-
-   //   m_pviewcreator = pviewcreator;
-
-   //   if(m_pviewcreator != nullptr)
-   //   {
-   //      m_pviewcreator->m_pimpacthost = this;
-   //   }
-
-   //}
-
-   //::user::impact_creator * tab_view::get_view_creator()
-   //{
-   //   return m_pviewcreator;
-   //}
 
 
    tab_drop_target_window::tab_drop_target_window(::user::tab * ptab, index iTab) :

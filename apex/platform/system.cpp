@@ -2228,7 +2228,12 @@ namespace apex
       // ... always happen as the wish the program finishes when it is closed ...
       auto pnode = m_pnode;
 
-      pnode->post_quit();
+      if(pnode)
+      {
+
+         pnode->post_quit();
+
+      }
 
 #elif defined(__APPLE__)
 

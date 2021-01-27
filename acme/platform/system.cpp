@@ -90,7 +90,9 @@ namespace acme
       if (!estatus)
       {
 
-         return estatus;
+         //return estatus;
+
+         estatus = ::success_none;
 
       }
 

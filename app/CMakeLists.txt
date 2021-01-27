@@ -53,6 +53,13 @@ if (MSVC)
     target_link_libraries(app_app PRIVATE acme apex aqua aura)
     add_dependencies(app_app draw2d_gdiplus)
 elseif(LINUX)
+
+    if(EXISTS $ENV{HOME}/__config/gnome.txt)
+        add_dependencies(app_app node_gnome)
+    endif()
+    if(EXISTS $ENV{HOME}/__config/kde.txt)
+        add_dependencies(app_app node_kde)
+    endif()
     #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
     #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
     #target_compile_options(app_app PRIVATE ${PKGCONFIG_CFLAGS})
@@ -63,7 +70,8 @@ elseif(LINUX)
     target_link_libraries(app_app PRIVATE acme apex aqua aura)
     target_link_options(app_app PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
-    add_dependencies(app_app draw2d_cairo node_gnome)
+    add_dependencies(app_app draw2d_cairo)
+
 endif()
 
 

@@ -135,15 +135,15 @@ namespace aura
    ::e_status system::os_application_system_run()
    {
 
-      auto estatus = create_os_node();
-
-      if(!estatus)
-      {
-
-         return estatus;
-
-      }
-
+//      auto estatus = create_os_node();
+//
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
 
       //   ::e_status estatus = psystem->begin_synch();
       //
@@ -175,12 +175,17 @@ namespace aura
 
 #if !defined(__SANITIZE_ADDRESS__)
 
-      auto pnode = Node;
+      auto pnode = m_pnode;
 
-      if (!pnode->node_init_check(&m_argc, &m_argv))
+      if(pnode)
       {
 
-         return ::error_failed;
+         if (!pnode->node_init_check(&m_argc, &m_argv))
+         {
+
+            return ::error_failed;
+
+         }
 
       }
 
@@ -209,7 +214,18 @@ namespace aura
 
       }
 
-      pnode->os_application_system_run();
+      if(pnode)
+      {
+
+         pnode->os_application_system_run();
+
+      }
+      else
+      {
+
+         x11_main();
+
+      }
 
       //x11_main();
 //      if (m_bGtkApp)

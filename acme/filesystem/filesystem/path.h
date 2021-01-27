@@ -57,6 +57,10 @@ namespace file
 
       }
 
+
+      using enumeration < ::file::enum_flag >::operator -=;
+
+
    };
 
 
@@ -365,6 +369,7 @@ namespace file
       path & go_up();
       path & go_up(int i);
       path & operator -= (int i);
+      using path_meta::operator -=;
 
       inline path operator | (enum_flag e) const { path path(*this); path |= e; return path; }
 

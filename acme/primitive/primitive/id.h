@@ -635,25 +635,25 @@ inline void id::raw_set(const char * psz)
 inline string id::str() const
 {
 
-   if(m_etype == e_type_null)
+   if((m_etype & 63) == e_type_null)
    {
 
       return "(null)";
 
    }
-   else if(m_etype == e_type_empty)
+   else if((m_etype & 63) == e_type_empty)
    {
 
       return "(empty)";
 
    }
-   else if(m_etype == e_type_text)
+   else if((m_etype & 63) == e_type_text)
    {
 
       return m_psz;
 
    }
-   else if(m_etype == e_type_integer)
+   else if((m_etype & 63) == e_type_integer)
    {
 
       return __str(m_i);

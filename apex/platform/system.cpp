@@ -3,7 +3,7 @@
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
 #include "apex/platform/app_core.h"
-#include "apex/const/id.h"
+#include "acme/id.h"
 #include "apex/node/_node.h"
 #include "acme/platform/profiler.h"
 #include "apex/platform/static_setup.h"
@@ -23,7 +23,7 @@ int GetMainScreenRect(LPRECT32 lprect);
 
 const char* g_pszMultimediaLibraryName = nullptr;
 
-void apex_system_update(const ::id & id, const ::payload& payload);
+void apex_system_update(const ::id & id, const ::payload & payload);
 
 void apex_system_set_modified(const ::id& id);
 
@@ -1029,7 +1029,9 @@ namespace apex
 
 #ifdef LINUX
 
-      os_post_quit();
+      auto pnode = Node;
+
+      pnode->post_quit();
 
 #elif defined(__APPLE__)
 
@@ -1700,11 +1702,22 @@ namespace apex
 
       //::apex::profiler::initialize();
 
-#ifdef LINUX
+//      estatus = create_os_node();
 
-      ::user::g_defer_init();
+//      if(!estatus)
+//      {
 
-#endif // LINUX
+//         return estatus;
+
+//      }
+
+//      estatus = node()->initialize()
+//
+//#ifdef LINUX
+//
+//      ::user::g_defer_init();
+//
+//#endif // LINUX
 
       INFO("success");
 
@@ -2213,13 +2226,56 @@ namespace apex
       // ... do this call, but this requires all references to ::apex::system ...
       // ... to be released. This is a bit of an ideal situation that may not ...
       // ... always happen as the wish the program finishes when it is closed ...
-      os_post_quit();
+      auto pnode = m_pnode;
+
+      if(pnode)
+      {
+
+         pnode->post_quit();
+
+      }
 
 #elif defined(__APPLE__)
 
       os_post_quit();
 
 #endif
+
+   }
+
+
+   ::e_status system::create_os_node()
+   {
+
+      ::e_status estatus = ::success;
+
+#ifdef LINUX
+
+      estatus = do_factory_exchange("node", "gnome");
+
+#elif defined(WINDOWS_DESKTOP)
+
+      estatus = do_factory_exchange("node", "windows");
+
+#endif
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = ::acme::system::create_os_node();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -3461,7 +3517,7 @@ namespace apex
    }
 
 
-   bool system::on_open_file(payload varFile, string strExtra)
+   bool system::on_open_file(::payload varFile, string strExtra)
    {
 
       auto psession = Session;
@@ -4585,7 +4641,7 @@ namespace apex
    void system::open_profile_link(string strUrl, string strProfile, string strTarget)
    {
 
-      fork([=]()
+      fork([this, strUrl, strProfile, strTarget]()
       {
 
          browser(strUrl, "", strProfile, strTarget);
@@ -5728,7 +5784,7 @@ namespace apex
 } // namespace apex
 
 
-void apex_system_update(const ::id & id, const ::payload& payload)
+void apex_system_update(const ::id & id, const ::payload & payload)
 {
 
    System.process_subject(id, payload);

@@ -228,7 +228,7 @@ public:
    virtual ::task_pool* taskpool() override;
 
    //inline bool has_property(const ::id& id) const;
-   //inline payload command_value(const ::id& id) const;
+   //inline ::payload command_value(const ::id& id) const;
    //inline bool command_value_is_true(const ::id& id) const;
 
 

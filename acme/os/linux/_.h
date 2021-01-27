@@ -10,7 +10,7 @@ off_t tell64(int fd);
 ::e_status os_defer_init_gtk();
 
 
-#include "gdk.h"
+//#include "gdk.h"
 
 
 typedef struct _cairo_rectangle_int cairo_rectangle_int_t;

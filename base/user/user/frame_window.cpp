@@ -831,28 +831,28 @@ namespace user
    }
 
 
-   bool frame_window::pre_create_window(::user::create_struct * pcreatestruct)
+   bool frame_window::pre_create_window(::user::system * pusersystem)
    {
 
-      if (pcreatestruct->m_createstruct.style & FWS_ADDTOTITLE)
+      if (pusersystem->m_createstruct.style & FWS_ADDTOTITLE)
       {
 
-         pcreatestruct->m_createstruct.style |= FWS_PREFIXTITLE;
+         pusersystem->m_createstruct.style |= FWS_PREFIXTITLE;
 
       }
 
-      if(pcreatestruct->m_createstruct.hwndParent != nullptr)
+      if(pusersystem->m_createstruct.hwndParent != nullptr)
       {
 
-         pcreatestruct->m_createstruct.style |= WS_CHILD;
+         pusersystem->m_createstruct.style |= WS_CHILD;
 
       }
 
-      //pcreatestruct->m_createstruct.style &= ~WS_VISIBLE;
+      //pusersystem->m_createstruct.style &= ~WS_VISIBLE;
 
 #ifdef WINDOWS_DESKTOP
 
-      pcreatestruct->m_createstruct.style &= ~WS_CAPTION;
+      pusersystem->m_createstruct.style &= ~WS_CAPTION;
 
 #endif
 
@@ -861,49 +861,42 @@ namespace user
    }
 
 
-   bool frame_window::create_window(const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, const char * pszMenuName, u32 dwExStyle, ::create * pcreate)
+   //bool frame_window::create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, const char * pszMenuName, u32 dwExStyle, ::create * pcreate)
+   //{
+
+   //   UNREFERENCED_PARAMETER(pszMenuName);
+
+   //   m_strFrameTitle = pszWindowName;    // save title for later
+
+   //   auto pusersystem = __new(::user::system (dwExStyle, pszClassName, pszWindowName, uStyle, rect, pcreate));
+
+   //   if (!::user::interaction::create_window_ex(pusersystem, puiParent, pcreate->m_id))
+   //   {
+
+   //      TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: failed to create frame_window.\n");
+
+   //      return false;
+
+   //   }
+
+   //   return true;
+
+   //}
+
+
+   bool frame_window::on_create_client(::user::system * pusersystem)
    {
 
-      UNREFERENCED_PARAMETER(pszMenuName);
-
-      m_strFrameTitle = pszWindowName;    // save title for later
-
-      auto pcreatestruct = __new(::user::create_struct (dwExStyle, pszClassName, pszWindowName, uStyle, rect, pcreate));
-
-      if (!::user::interaction::create_window_ex(pcreatestruct, puiParent, pcreate->m_id))
+      if (pusersystem != nullptr)
       {
 
-         TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: failed to create frame_window.\n");
-
-         return false;
-
-      }
-
-      return true;
-
-   }
-
-
-   bool frame_window::on_create_client(::user::create_struct *, ::create * pcreate)
-   {
-
-      if (pcreate != nullptr)
-      {
-         
-         auto pusercreate = __user_create(pcreate->m_pusercreate);
-         
-         if (pusercreate != nullptr)
+         if (pusersystem->m_typeNewView || pusersystem->m_puiNew != nullptr)
          {
 
-            if (pusercreate->m_typeNewView || pusercreate->m_puiNew != nullptr)
+            if (::user::create_view(pusersystem, this, "pane_first").is_null())
             {
 
-               if (::user::create_view(pcreate, this, "pane_first").is_null())
-               {
-
-                  return false;
-
-               }
+               return false;
 
             }
 
@@ -950,9 +943,7 @@ namespace user
       if (!(m_ewindowflag & e_window_flag_window_created))
       {
 
-         __pointer(::create) pcreate((::create*) pcreatemessage->get_create());
-
-         pcreatemessage->m_lresult = OnCreateHelper(pcreatemessage->get_create_struct(), pcreate);
+         pcreatemessage->m_lresult = OnCreateHelper(m_pusersystem);
 
          pcreatemessage->m_bRet = pcreatemessage->m_lresult == -1;
 
@@ -970,10 +961,10 @@ namespace user
    }
 
 
-   i32 frame_window::OnCreateHelper(::user::create_struct * pcreatestruct, ::create * pcreate)
+   i32 frame_window::OnCreateHelper(::user::system * pusersystem)
    {
 
-      if (!on_create_client(pcreatestruct, pcreate))
+      if (!on_create_client(pusersystem))
       {
 
          TRACE(trace_category_appmsg, e_trace_level_error, "Failed to create client pane/::user::impact for frame.\n");
@@ -1005,7 +996,7 @@ namespace user
    }
 
 
-   bool frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::create * pcreate)
+   bool frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pcreate)
    {
 
       UNREFERENCED_PARAMETER(puiParent);
@@ -1048,12 +1039,36 @@ namespace user
 
       output_debug_string("\nm_bLayoutEnable FALSE");
 
-      auto pcreatestruct = __new(::user::create_struct (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectFrame, pcreate));
+      //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectFrame, pcreate));
 
-      if (!create_window_ex(pcreatestruct, puiParent, pcreate->m_id))
+      //if (!create_window_ex(pusersystem, puiParent, pcreate->m_id))
+      //{
+
+      //   return false;   // will self destruct on failure normally
+
+      //}
+
+      if (puiParent)
       {
 
-         return false;   // will self destruct on failure normally
+         if (!create_child(puiParent))
+         {
+
+            return false;
+
+         }
+
+      }
+      else
+      {
+
+         if (!create_host())
+         {
+
+            return false;
+
+         }
+
 
       }
 
@@ -1222,6 +1237,14 @@ namespace user
       ActivateTopParent();
 
       ActivateFrame();
+
+      set_reposition();
+
+      set_need_layout();
+
+      set_need_redraw();
+
+      post_redraw();
 
    }
 
@@ -2648,6 +2671,14 @@ namespace user
          {
 
             display(e_display_restore);
+
+            set_need_layout();
+
+            set_reposition();
+
+            set_need_redraw();
+
+            post_redraw();
 
             pbase->m_bRet = true;
 

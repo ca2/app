@@ -329,14 +329,14 @@ message_box_callback::message_box_callback(::message_box_w * pmessageboxw)
 
    auto psystem = ::get_context_system();
 
-   auto pobjectarray = psystem->value("message_box_array").cast < ::object_array >();
+   auto pobjectarray = psystem->payload("message_box_array").cast < ::object_array >();
    
    if (!pobjectarray)
    {
 
-      psystem->value("message_box_array") = __new(object_array);
+      psystem->payload("message_box_array") = __new(object_array);
 
-      pobjectarray = psystem->value("message_box_array").cast < ::object_array >();
+      pobjectarray = psystem->payload("message_box_array").cast < ::object_array >();
 
    }
 
@@ -371,7 +371,7 @@ void message_box_callback::CommandInvokedHandler(IUICommand^ cmd)
 
    auto psystem = ::get_context_system();
 
-   auto pobjectarray = psystem->value("message_box_array").cast < ::object_array >();
+   auto pobjectarray = psystem->payload("message_box_array").cast < ::object_array >();
 
    pobjectarray->remove(m_pmessageboxw);
 

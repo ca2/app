@@ -37,6 +37,12 @@ namespace acme
             m_elinuxdistribution = e_linux_distribution_ubuntu;
 
          }
+         else if (strId == "manjaro")
+         {
+
+            m_elinuxdistribution = e_linux_distribution_manjaro;
+
+         }
 
       }
 

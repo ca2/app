@@ -1,7 +1,7 @@
 #pragma once
 
 
-class payload;
+class ::payload;
 
 
 namespace str

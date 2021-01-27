@@ -64,7 +64,7 @@ namespace draw2d_cairo
    }
 
 
-   bool region::mask(cairo_t * pgraphics)
+   bool region::_mask(cairo_t * pgraphics, double dOpacity, enum_mask emask)
    {
 
       sync_lock ml(cairo_mutex());
@@ -201,6 +201,30 @@ namespace draw2d_cairo
       }
 
       return true;
+
+   }
+
+
+   bool region::mask_fill(cairo_t * pdc)
+   {
+
+      return _mask(pdc, 0.0, e_mask_fill);
+
+   }
+
+
+   bool region::mask_paint(cairo_t * pdc)
+   {
+
+      return _mask(pdc, 0.0, e_mask_paint);
+
+   }
+
+
+   bool region::mask_paint_with_alpha(cairo_t * pdc, double dOpacity)
+   {
+
+      return _mask(pdc, dOpacity, e_mask_paint_with_alpha);
 
    }
 

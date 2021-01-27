@@ -49,7 +49,7 @@ namespace filemanager
 
    }
 
-   bool document::do_prompt_file_name(payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocumentOther)
+   bool document::do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocumentOther)
    {
 
       UNREFERENCED_PARAMETER(nIDSTitle);
@@ -227,7 +227,7 @@ namespace filemanager
 
          auto psubject = subject(TOPIC_OK_ID);
 
-         psubject->value(DOCUMENT_ID) = pdocument;
+         psubject->payload(DOCUMENT_ID) = pdocument;
 
          psubject->m_pfileitem = itema.get_first_pointer();
 
@@ -239,9 +239,9 @@ namespace filemanager
       else if (filemanager_data()->m_pcallback != nullptr)
       {
 
-         payload varFile;
+         ::payload varFile;
 
-         payload varQuery;
+         ::payload varQuery;
 
          if (itema.get_count() == 2 && m_id == "filemanager::main::left")
          {
@@ -585,7 +585,7 @@ namespace filemanager
 
 
 
-   bool document::on_open_document(const payload & varFile)
+   bool document::on_open_document(const ::payload & varFile)
    {
 
       ::file::path path = varFile.get_file_path();
@@ -639,14 +639,12 @@ namespace filemanager
 
       }
 
-
-      opt_fork(__routine([=]()
+      opt_fork(__routine([this, pitem, context]()
       {
 
          full_browse(pitem, context);
 
       }));
-
 
    }
 
@@ -967,7 +965,7 @@ namespace filemanager
 
          auto psubject = subject(id_topic_ok);
 
-         psubject->value(id_document) = this;
+         psubject->payload(id_document) = this;
 
          update_all_views(psubject);
 
@@ -988,7 +986,7 @@ namespace filemanager
 
          auto psubject = subject(id_topic_ok);
 
-         psubject->value(id_document) = this;
+         psubject->payload(id_document) = this;
 
          update_all_views(psubject);
 
@@ -1007,7 +1005,7 @@ namespace filemanager
 
          auto psubject = subject(id_topic_ok);
 
-         psubject->value(id_document) = this;
+         psubject->payload(id_document) = this;
 
          update_all_views(psubject);
 
@@ -1025,7 +1023,7 @@ namespace filemanager
 
       auto psubject = subject(id_create_bars);
 
-      psubject->value(id_document) = this;
+      psubject->payload(id_document) = this;
 
       browse(path, ::e_source_database);
 
@@ -1050,7 +1048,7 @@ namespace filemanager
 
       auto psubject = subject(id_create_bars);
 
-      psubject->value(id_document) = this;
+      psubject->payload(id_document) = this;
 
       if (bInitialBrowsePath)
       {
@@ -1140,7 +1138,7 @@ namespace filemanager
 
          auto psubject = subject(id_initialize);
 
-         psubject->value(id_document) = this;
+         psubject->payload(id_document) = this;
 
          update_all_views(psubject);
 
@@ -1152,7 +1150,7 @@ namespace filemanager
 
          psubject->m_actioncontext = ::e_source_sync;
 
-         psubject->value(id_document) = this;
+         psubject->payload(id_document) = this;
 
          update_all_views(psubject);
 
@@ -1168,7 +1166,7 @@ namespace filemanager
 
          auto psubject = fork_subject(id_create_bars);
 
-         psubject->value(id_document) = this;
+         psubject->payload(id_document) = this;
 
          update_all_views(psubject);
 
@@ -1304,7 +1302,7 @@ namespace filemanager
 
          auto psubject = fork_subject(id_topic_start);
 
-         psubject->value(id_document) = this;
+         psubject->payload(id_document) = this;
 
          update_all_views(psubject);
 
@@ -1332,7 +1330,7 @@ namespace filemanager
 
          auto psubject = fork_subject(id_topic_start);
 
-         psubject->value(id_document) = this;
+         psubject->payload(id_document) = this;
 
          update_all_views(psubject);
 
@@ -1360,7 +1358,7 @@ namespace filemanager
 
          auto psubject = fork_subject(id_topic_start);
 
-         psubject->value(id_document) = this;
+         psubject->payload(id_document) = this;
 
          update_all_views(psubject);
 

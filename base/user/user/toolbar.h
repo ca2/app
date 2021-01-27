@@ -70,10 +70,10 @@ namespace user
       virtual ~toolbar();
 
 
-      using ::user::control_bar::create_window;
-      virtual bool create_window(::user::interaction * puiParent,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, ::id id = __IDW_TOOLBAR);
-      using ::user::control_bar::create_window_ex;
-      virtual bool create_toolbar(::user::interaction * puiParent, u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, id nID = __IDW_TOOLBAR);
+      //using ::user::control_bar::create_interaction;
+      //virtual bool create_interaction(::user::interaction * puiParent,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, ::id id = __IDW_TOOLBAR);
+      //using ::user::control_bar::create_window_ex;
+      //virtual bool create_toolbar(::user::interaction * puiParent, u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, id nID = __IDW_TOOLBAR);
 
       void SetSizes(const ::size & sizeButton, const ::size & sizeImage);
       // button size should be bigger than image

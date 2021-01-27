@@ -66,7 +66,7 @@ namespace user
    }
 
 
-   ::e_status thread::initialize_user_thread(interaction_impl * pimpl, __pointer(::user::create_struct) pcreatestruct)
+   ::e_status thread::initialize_user_thread(interaction_impl * pimpl)
    {
 
       auto estatus = initialize(pimpl);
@@ -79,9 +79,6 @@ namespace user
       }
 
       m_pimpl = pimpl;
-
-      //m_pcreatestruct = new ::user::create_struct(pcreatestruct);
-      m_pcreatestruct = pcreatestruct;
 
       string strType = ::str::demangle(m_pimpl->m_puserinteraction->type_name());
 
@@ -182,12 +179,12 @@ namespace user
       //if (!m_bCreateNativeWindowOnInteractionThread)
       //{
 
-      //   if (!m_pimpl->_native_create_window_ex(*m_pcreatestruct))
+      //   if (!m_pimpl->_native_create_window_ex(*m_pusersystem))
       //   {
 
-      //      //delete m_pcreatestruct;
+      //      //delete m_pusersystem;
 
-      //      m_pcreatestruct = nullptr;
+      //      m_pusersystem = nullptr;
 
       //      m_estatus = error_failed;
 
@@ -260,7 +257,7 @@ namespace user
       //if (m_bCreateNativeWindowOnInteractionThread)
       //{
 
-         if (!m_pimpl->_native_create_window_ex(m_pcreatestruct))
+         if (!m_pimpl->native_create_host())
          {
 
             if (is_debugger_attached())
@@ -270,9 +267,9 @@ namespace user
 
             }
 
-            //delete m_pcreatestruct;
+            //delete m_pusersystem;
 
-            m_pcreatestruct = nullptr;
+            //m_pusersystem = nullptr;
 
             m_estatus = error_failed;
 
@@ -298,9 +295,9 @@ namespace user
 
       m_oswindow = m_pimpl->m_oswindow;
 
-      //delete m_pcreatestruct;
+      //delete m_pusersystem;
 
-      m_pcreatestruct = nullptr;
+      //m_pusersystem = nullptr;
 
       return true;
 

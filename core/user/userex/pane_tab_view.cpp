@@ -160,7 +160,7 @@ namespace userex
 
       __pointer(::message::create) pcreate(pmessage);
 
-      m_pcreate = (::create *) pcreate->get_create();
+      //m_pusersystem->m_pcreate = (::create *) pcreate->get_create();
 
       //if (Application.m_pmainpane == nullptr)
       //{
@@ -444,13 +444,13 @@ namespace userex
 
          //auto pcreate = __new(create(this));
 
-         //pcreate->m_pusercreate = __new(user::create);
+         //pcreate->m_pusersystem = __new(user::create);
 
          //pcreate->m_puserinteractionParent = pimpactdata->m_pplaceholder;
 
          //pcreate->m_bMakeVisible = false;
 
-         //pcreate->m_pusercreate
+         //pcreate->m_pusersystem
 
 //         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->do_request(get_context_application(), ::e_type_null, false, pimpactdata->m_pplaceholder);
          auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->open_document_file(get_context_application(), ::e_type_null, __visible(true), pimpactdata->m_pplaceholder);
@@ -512,10 +512,10 @@ namespace userex
          //pfilemanagerdata->m_id = pimpactdata->m_id;
 
          if (has_property("filemanager_toolbar")
-               && value("filemanager_toolbar").m_etype == ::e_type_propset)
+               && payload("filemanager_toolbar").m_etype == ::e_type_propset)
          {
 
-            auto & set = value("filemanager_toolbar").propset();
+            auto & set = payload("filemanager_toolbar").propset();
 
             if (set[::userfs::mode_normal].is_set())
                pfilemanagerdata->m_setToolbar[::userfs::mode_normal] = set[::userfs::mode_normal];
@@ -789,7 +789,7 @@ namespace userex
 
       }
 
-      value("app_options_title") = get_pane_by_id(pimpactdata->m_id)->get_title();
+      payload("app_options_title") = get_pane_by_id(pimpactdata->m_id)->get_title();
 
       auto puser = User;
 

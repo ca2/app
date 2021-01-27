@@ -394,8 +394,8 @@ namespace user
    void combo_list::_001EnsureVisible(index iItem)
    {
 
-      if (m_pscrollbarVert != nullptr
-         && m_scrolldataVert.m_bScroll
+      if (m_pscrollbarVertical != nullptr
+         && m_scrolldataVertical.m_bScroll
          && iItem >= 0 && iItem < m_pcombo->_001GetListCount())
       {
 
@@ -474,20 +474,20 @@ namespace user
    }
 
 
-   bool combo_list::pre_create_window(::user::create_struct * pcreatestruct)
+   bool combo_list::pre_create_window(::user::system * pusersystem)
    {
 
-      if (pcreatestruct->m_createstruct.style & WS_BORDER)
+      if (pusersystem->m_createstruct.style & WS_BORDER)
       {
 
-         pcreatestruct->m_createstruct.style &= ~WS_BORDER;
+         pusersystem->m_createstruct.style &= ~WS_BORDER;
 
       }
 
-      pcreatestruct->m_createstruct.dwExStyle |= WS_EX_LAYERED;
-      pcreatestruct->m_createstruct.dwExStyle |= WS_EX_TOOLWINDOW;
-      pcreatestruct->m_createstruct.dwExStyle |= WS_EX_TOPMOST;
-      //pcreatestruct->m_createstruct.dwExStyle |= WS_EX_NOACTIVATE;
+      pusersystem->m_createstruct.dwExStyle |= WS_EX_LAYERED;
+      pusersystem->m_createstruct.dwExStyle |= WS_EX_TOOLWINDOW;
+      pusersystem->m_createstruct.dwExStyle |= WS_EX_TOPMOST;
+      //pusersystem->m_createstruct.dwExStyle |= WS_EX_NOACTIVATE;
 
       return TRUE;
    }
@@ -1050,9 +1050,9 @@ namespace user
       if (!is_window())
       {
 
-         ::user::create_struct createstruct(0, nullptr, "combo_list");
+         ::user::system createstruct(0, nullptr, "combo_list");
 
-         pcreatestruct->m_createstruct.set_rect(::rect(rectList).inflate(m_iBorder));
+         pusersystem->m_createstruct.set_rect(::rect(rectList).inflate(m_iBorder));
 
          if (!create_window_ex(createstruct))
          {

@@ -76,21 +76,20 @@ namespace user
    //
    // ::user::impact second phase construction - bind to ::user::document
 
-   bool impact::pre_create_window(::user::create_struct * pcreatestruct)
+   bool impact::pre_create_window(::user::system * pusersystem)
    {
 
-      ASSERT(pcreatestruct->m_createstruct.style & WS_CHILD);
+      ASSERT(pusersystem->m_createstruct.style & WS_CHILD);
 
 
 #ifdef WINDOWS_DESKTOP
 
-
-      if (pcreatestruct->m_createstruct.style & WS_BORDER)
+      if (pusersystem->m_createstruct.style & WS_BORDER)
       {
 
-         pcreatestruct->m_createstruct.dwExStyle |= WS_EX_CLIENTEDGE;
+         pusersystem->m_createstruct.dwExStyle |= WS_EX_CLIENTEDGE;
 
-         pcreatestruct->m_createstruct.style &= ~WS_BORDER;
+         pusersystem->m_createstruct.style &= ~WS_BORDER;
 
       }
 
@@ -113,21 +112,14 @@ namespace user
 
          ASSERT(::user::impact::get_document() == nullptr);
 
-         __pointer(class ::create) pcreate(pmessagecreate->get_create());
+         auto pusersystem = m_pusersystem;
 
-         if (pcreate != nullptr)
+         if (pusersystem && pusersystem->m_pdocumentCurrent != nullptr)
          {
 
-            auto pusercreate = __user_create(pcreate->m_pusercreate);
+            __pointer(::user::document) pdocument = pusersystem->m_pdocumentCurrent;
 
-            if (pusercreate && pusercreate->m_pdocumentCurrent != nullptr)
-            {
-
-               __pointer(::user::document) pdocument = pusercreate->m_pdocumentCurrent;
-
-               pdocument->add_view(this);
-
-            }
+            pdocument->add_view(this);
 
          }
 
@@ -723,51 +715,51 @@ namespace user
 
       __pointer(::create) pcreate(e_create);
 
-      auto pusercreate = __new(::user::create);
+      auto pusersystem = __new(::user::system);
 
-      pusercreate = pusercreate;
+      pusersystem = pusersystem;
 
-      pusercreate->m_puiNew = pimpactAlloc;
+      pusersystem->m_puiNew = pimpactAlloc;
 
-      pusercreate->m_puiLastView = pviewLast;
+      pusersystem->m_puiLastView = pviewLast;
 
-      pusercreate->m_pdocumentCurrent = get_document();
+      pusersystem->m_pdocumentCurrent = get_document();
 
-      return ::user::create_view(pcreate, pimpactdata->m_pplaceholder, pimpactdata->m_id);
+      return ::user::create_view(pusersystem, pimpactdata->m_pplaceholder, pimpactdata->m_id);
 
    }
 
 
-   __pointer(::user::interaction) impact::create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
+   __pointer(::user::interaction) impact::create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * pwndParent, const ::id & id, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
 
       __pointer(::create) pcreate(e_create);
 
-      auto pusercreate = __new(::user::create);
+      auto pusersystem = __new(::user::system);
 
-      pcreate->m_pusercreate = pusercreate;
+      pcreate->m_pusersystem = pusersystem;
 
       if (::is_set(pimpactdata))
       {
 
-         pusercreate->m_pimpactdata = pimpactdata;
+         pusersystem->m_pimpactdata = pimpactdata;
 
       }
 
-      pusercreate->m_typeNewView = type;
+      pusersystem->m_typeNewView = type;
 
-      pusercreate->m_puiLastView = pviewLast;
+      pusersystem->m_puiLastView = pviewLast;
 
       if (pdocument == nullptr)
       {
 
-         pusercreate->m_pdocumentCurrent = get_document();
+         pusersystem->m_pdocumentCurrent = get_document();
 
       }
       else
       {
 
-         pusercreate->m_pdocumentCurrent = pdocument;
+         pusersystem->m_pdocumentCurrent = pdocument;
 
       }
 
@@ -778,48 +770,46 @@ namespace user
 
       }
 
-      if (id.is_empty())
+      ::id idCreate(id);
+
+      if (idCreate.is_empty())
       {
 
-         id = (const ::id &) pusercreate->m_typeNewView.name();
+         idCreate = (const ::id &) pusersystem->m_typeNewView.name();
 
       }
 
-      return ::user::create_view(pcreate, pwndParent, id);
+      return ::user::create_view(pusersystem, pwndParent, idCreate);
 
    }
 
 
-   __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
+   __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * pwndParent, const ::id & id, ::user::interaction * pviewLast)
    {
 
       __pointer(::create) pcreate(e_create_new, pdocument);
 
-      auto pusercreate= __new(::user::create);
+      auto pusersystem= __new(::user::system);
 
-      pusercreate = pusercreate;
+      pusersystem = pusersystem;
 
-      pusercreate->m_typeNewView = type;
+      pusersystem->m_typeNewView = type;
 
-      pusercreate->m_puiLastView = pviewLast;
+      pusersystem->m_puiLastView = pviewLast;
 
-      pusercreate->m_pdocumentCurrent = pdocument;
+      pusersystem->m_pdocumentCurrent = pdocument;
 
-      return ::user::create_view(pcreate, pwndParent, id);
+      return ::user::create_view(pusersystem, pwndParent, id);
 
    }
 
 
-   __pointer(::user::interaction) create_view(::create * pcreate, ::user::interaction * pwndParent, id id)
+   __pointer(::user::interaction) create_view(::user::system * pusersystem, ::user::interaction * pwndParent, const ::id & id)
    {
 
-      ASSERT(pcreate != nullptr);
+      ASSERT(pusersystem != nullptr);
 
-      auto pusercreate = __user_create(pcreate->m_pusercreate);
-
-      ASSERT(pusercreate != nullptr);
-
-      ASSERT(pusercreate->m_typeNewView || pusercreate->m_puiNew != nullptr);
+      ASSERT(pusersystem->m_typeNewView || pusersystem->m_puiNew != nullptr);
 
       ::apex::application * papp = pwndParent->get_context_application();
 
@@ -827,16 +817,16 @@ namespace user
 
       ::e_status estatus = ::success;
 
-      if (pusercreate->m_puiNew != nullptr)
+      if (pusersystem->m_puiNew != nullptr)
       {
 
-         pinteraction = pusercreate->m_puiNew;
+         pinteraction = pusersystem->m_puiNew;
 
       }
       else
       {
 
-         __pointer(::object) pobject = pusercreate->m_pdocumentCurrent;
+         __pointer(::object) pobject = pusersystem->m_pdocumentCurrent;
 
          if(pobject.is_null())
          {
@@ -854,7 +844,7 @@ namespace user
 
          }
 
-         estatus = pobject->__id_construct(pinteraction, pusercreate->m_typeNewView);
+         estatus = pobject->__id_construct(pinteraction, pusersystem->m_typeNewView);
 
       }
 
@@ -865,7 +855,14 @@ namespace user
 
       }
 
-      if (!pinteraction->create_window(nullptr, nullptr, WS_VISIBLE | WS_CHILD, pwndParent, id, pcreate))
+      pinteraction->m_pusersystem = pusersystem;
+
+      pinteraction->display(e_display_normal);
+
+      pinteraction->m_id = id;
+
+      //if (!pinteraction->create_interaction(nullptr, nullptr, WS_VISIBLE | WS_CHILD, pwndParent, id, pcreate))
+      if (!pinteraction->create_child(pwndParent))
       {
 
          return nullptr;

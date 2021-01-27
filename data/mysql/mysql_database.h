@@ -54,20 +54,20 @@ namespace mysql
 
       virtual ::count get_affected_rows_count() override;
 
-      virtual payload query_item(const char * pszSql, payload varDefault = false);
+      virtual ::payload query_item(const char * pszSql, ::payload varDefault = false);
       virtual bool query_blob(memory_base & memory, const char * pszSql);
       virtual __pointer(var_array) query_items(const char * pszSql) override;
       virtual __pointer(::database::row) query_row(const char * pszSql) override;
       virtual __pointer(::database::row_array) query_rows(const char * pszSql) override;
 
-      virtual payload query_table_item(const char * table, const char * item, const char *where, payload notfound = false);
+      virtual ::payload query_table_item(const char * table, const char * item, const char *where, ::payload notfound = false);
 
-      virtual payload get_agent(const char * pszTable, const char * pszEmail, const char * pszUser);
+      virtual ::payload get_agent(const char * pszTable, const char * pszEmail, const char * pszUser);
 
       string escape(void * p, strsize iLine);
       string escape(const char * psz);
 
-      payload get_insert_id();
+      ::payload get_insert_id();
 
       virtual string error1(const char * pszPrefix = nullptr) override;
 

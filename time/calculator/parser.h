@@ -34,10 +34,10 @@ namespace datetime
 
       ::datetime::element *new_node();
       int32_t precedence(enum_token next, enum_token current);
-      ::datetime::payload parse(::datetime::element *current_node);
-      ::datetime::payload node_traverse(::datetime::element *current_node, double value);
-      ::datetime::payload apply_traverse_operator(::datetime::element *current_node, double total);
-      ::datetime::payload apply_operator(::datetime::element *current_node, double total, double m_etype);
+      ::datetime::result parse(::datetime::element *current_node);
+      ::datetime::result node_traverse(::datetime::element *current_node, double value);
+      ::datetime::result apply_traverse_operator(::datetime::element *current_node, double total);
+      ::datetime::result apply_operator(::datetime::element *current_node, double total, double m_etype);
 
       
    };

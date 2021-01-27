@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "apex/platform/app_core.h"
 #include "_user.h"
-#include <gdk/gdk.h>
+//#include <gdk/gdk.h>
 
 
 extern ::app_core * g_pappcore;
@@ -114,7 +114,7 @@ osdisplay_data * osdisplay_get(Display * pdisplay)
 
          g_posdisplaydataMain = pdisplaydata;
 
-         defer_init_ui();
+         //defer_init_ui();
 
       }
 
@@ -261,66 +261,8 @@ Window osdisplay_data::default_root_window()
 void enum_display_monitors(::aura::session * psession)
 {
 
-   main_async(__routine([psession]
-   {
+   auto pnode = Node;
 
-      sync_lock sl(x11_mutex());
-
-      xdisplay d(x11_get_display());
-
-      GdkDisplay * pdisplay = gdk_display_get_default();
-
-      if(pdisplay == nullptr)
-      {
-
-         return;
-
-      }
-
-      sync_lock slSession(psession->mutex());
-
-      ::count iMonitorCount = gdk_display_get_n_monitors(pdisplay);
-
-      psession->m_rectaWkspace.set_size(iMonitorCount);
-
-      psession->m_rectaMonitor.set_size(iMonitorCount);
-
-      for(index iMonitor = 0; iMonitor < iMonitorCount; iMonitor++)
-      {
-
-         GdkMonitor * pmonitor = gdk_display_get_monitor(pdisplay, iMonitor);
-
-         auto & rectWkspace = psession->m_rectaWkspace[iMonitor];
-
-         auto & rectMonitor = psession->m_rectaMonitor[iMonitor];
-
-         if(pmonitor == nullptr)
-         {
-
-            rectWkspace.Null();
-
-            rectMonitor.Null();
-
-            continue;
-
-         }
-
-         GdkRectangle rect;
-
-         xxf_zero(rect);
-
-         gdk_monitor_get_workarea(pmonitor, &rect);
-
-         __copy(rectWkspace, rect);
-
-         xxf_zero(rect);
-
-         gdk_monitor_get_geometry(pmonitor, &rect);
-
-         __copy(rectMonitor, rect);
-
-      }
-
-   }));
+   pnode->enum_display_monitors(psession);
 
 }

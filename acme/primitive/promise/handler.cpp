@@ -72,7 +72,13 @@ namespace promise
 
       process(psubject);
 
-      if (psubject->should_poll(psubject->poll_time()))
+      auto pnode = Node;
+
+      if(pnode && pnode->defer_launch_on_node(psubject))
+      {
+
+      }
+      else if (psubject->should_poll(psubject->poll_time()))
       {
 
          ::task::launch(psubject);
@@ -87,7 +93,14 @@ namespace promise
    void handler::deliver(const ::id &id)
    {
 
-      subject(id)->deliver();
+      auto psubject = subject(id);
+
+      if(psubject)
+      {
+
+         psubject->deliver();
+
+      }
 
    }
 
@@ -159,7 +172,7 @@ namespace promise
    }
 
 
-   void handler::process_subject(const ::id &id, const ::payload &payload)
+   void handler::process_subject(const ::id &id, const ::payload & payload)
    {
 
       auto psubject = subject(id);

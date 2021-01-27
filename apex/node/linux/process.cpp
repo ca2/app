@@ -30,7 +30,7 @@ struct chldstatus
 };
 
 
-typedef int_ptr_map < chldstatus > chldstatus_map;
+typedef iptr_map < chldstatus > chldstatus_map;
 
 
 critical_section * g_pcsPid2 = nullptr;
@@ -130,7 +130,7 @@ void install_sigchld_handler()
 
    struct sigaction sa;
 
-   xxf_zero(sa);
+   __zero(sa);
 
    sa.sa_handler = &ansios_sigchld_handler;
 

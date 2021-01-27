@@ -314,16 +314,16 @@ namespace user
          return false;
       }
 
-      payload payload;
+      ::payload payload;
 
-      if(!pinteraction->get_data(pinteraction,payload))
+      if(!pinteraction->get_data(pinteraction, payload))
       {
 
          return false;
 
       }
 
-      if(!_001Validate(pinteraction,payload))
+      if(!_001Validate(pinteraction, payload))
       {
          return false;
       }
@@ -450,7 +450,7 @@ namespace user
          return;
       ASSERT(pinteraction->get_control_type() == e_control_type_check_box);
 
-      payload payload;
+      ::payload payload;
 
       //if(data_get(pinteraction->m_datakey, payload))
       //{
@@ -495,7 +495,7 @@ namespace user
 
       if(pinteraction->has_function(e_control_function_vms_data_edit))
       {
-         payload payload;
+         ::payload payload;
          ::database::selection selection;
          _001GetSelection(pinteraction->m_datakey,selection);
          if(selection.get_item_count() > 0)
@@ -510,7 +510,7 @@ namespace user
 
             }
 
-            //if(data_get(pinteraction->m_datakey.m_strDataKey + "." + item.m_datakey.m_strDataKey,payload))
+            //if(data_get(pinteraction->m_datakey.m_strDataKey + "." + item.m_datakey.m_strDataKey,::payload))
             //{
             //   switch(payload.get_type())
             //   {
@@ -603,7 +603,7 @@ namespace user
 
       }
 
-      payload payload;
+      ::payload payload;
 
       //if(!data_get(pinteraction->m_datakey, payload))
       //{
@@ -724,7 +724,7 @@ namespace user
    }
 
 
-   bool form_control::_001Validate(::user::interaction * pinteraction,payload & payload)
+   bool form_control::_001Validate(::user::interaction * pinteraction,::payload & payload)
    {
 
       UNREFERENCED_PARAMETER(pinteraction);
@@ -788,7 +788,7 @@ namespace user
    }
 
 
-   void form_control::data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::promise::subject * psubject)
+   void form_control::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::promise::subject * psubject)
    {
 
       for(auto pinteraction : proper_children())
@@ -935,13 +935,13 @@ namespace user
       {
       pinteraction->GetComboBox()->m_wstra.remove_all();
       pinteraction->GetComboBox()->m_dwaData.remove_all();
-      payload payload;
+      ::payload payload;
       payload.m_etype = ::e_type_element;
       payload.m_pca2 = pinteraction->GetComboBox();
       VmsDataGet(
       pinteraction->GetComboBox()->m_datakeyFill,
       0, 0,
-      payload);
+      ::payload);
       __pointer(::user::combo_box) pcombo = (__pointer(::user::combo_box)) pinteraction->m_puserinteraction;
       pcombo->ResetContent();
       string str;
@@ -1008,53 +1008,53 @@ namespace user
    }
 
 
-   bool form_control::create_control(::user::interaction * pinteractionParent, const ::id & id)
-   {
+   //bool form_control::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
+   //{
 
-      //if(!normalize_control_descriptor_typeinfo(pdescriptor))
-      //{
-      //   TRACE("form_control::create_control: failed to create control, could not find proper type for allocation");
-      //   return false;
-      //}
+   //   //if(!normalize_control_descriptor_typeinfo(pdescriptor))
+   //   //{
+   //   //   TRACE("form_control::create_interaction: failed to create control, could not find proper type for allocation");
+   //   //   return false;
+   //   //}
 
-   /*   __pointer(object) pobject;
+   ///*   __pointer(object) pobject;
 
-      __id_construct(pobject, pdescriptor->m_type);
+   //   __id_construct(pobject, pdescriptor->m_type);
 
-      if(!pobject)
-      {
+   //   if(!pobject)
+   //   {
 
-         TRACE("form_control::create_control: failed to create control, allocation error");
+   //      TRACE("form_control::create_interaction: failed to create control, allocation error");
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      __pointer(interaction) pinteraction = pobject;
+   //   __pointer(interaction) pinteraction = pobject;
 
-      if(!pinteraction)
-      {
+   //   if(!pinteraction)
+   //   {
 
-         pobject.release();
+   //      pobject.release();
 
-         TRACE("form_control::create_control: failed to create control, object is not derived from user::control_descriptor");
+   //      TRACE("form_control::create_interaction: failed to create control, object is not derived from user::control_descriptor");
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      pdescriptor->m_iItem = iIndex;*/
+   //   pdescriptor->m_iItem = iIndex;*/
 
-      if(!create_control(pinteractionParent, id))
-      {
+   //   if(!create_interaction(pinteractionParent, id))
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+//   }
 
 
    void form_control::_001SetControlFactory()
@@ -1077,7 +1077,7 @@ namespace user
    }
 
 
-   ::e_status form_control::open_document(const payload & varFile)
+   ::e_status form_control::open_document(const ::payload & varFile)
    {
 
       return true;
@@ -1352,7 +1352,7 @@ namespace user
    //}
 
 
-   //void form_control::on_before_navigate(payload & varFile,u32 nFlags,const char * pszTargetFrameName,byte_array& baPostedData,const char * pszHeaders,bool* pbCancel)
+   //void form_control::on_before_navigate(::payload & varFile,u32 nFlags,const char * pszTargetFrameName,byte_array& baPostedData,const char * pszHeaders,bool* pbCancel)
 
    //{
 

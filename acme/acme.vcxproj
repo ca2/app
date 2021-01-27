@@ -1421,6 +1421,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="platform\muldiv64.cpp" />
     <ClCompile Include="platform\nano_timer.cpp" />
     <ClCompile Include="platform\net.cpp" />
+    <ClCompile Include="platform\node.cpp" />
     <ClCompile Include="platform\obj_ref_dbg.cpp" />
     <ClCompile Include="platform\obj_typ_ctr.cpp" />
     <ClCompile Include="platform\profiler.cpp" />
@@ -1442,7 +1443,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="platform\static_start_aura.cpp" />
     <ClCompile Include="primitive\datetime\filetime.cpp" />
     <ClCompile Include="primitive\datetime\filetime_span.cpp" />
-    <ClCompile Include="primitive\datetime\payload.cpp" />
+    <ClCompile Include="primitive\datetime\result.cpp" />
     <ClCompile Include="primitive\datetime\secs.cpp" />
     <ClCompile Include="primitive\geometry2d\shape.cpp" />
     <ClCompile Include="primitive\primitive\block.cpp" />
@@ -1569,11 +1570,15 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="filesystem\file\_defer_var_stream.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="framework_c.h" />
+    <ClInclude Include="graphics\draw2d\color.h" />
+    <ClInclude Include="graphics\draw2d\colorref_array.h" />
+    <ClInclude Include="graphics\draw2d\opacity.h" />
+    <ClInclude Include="graphics\draw2d\_.h" />
+    <ClInclude Include="graphics\draw2d\_const.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="inline\application\linux.h" />
     <ClInclude Include="inline\application\macos.h" />
     <ClInclude Include="inline\application\uwp.h" />
-    <ClInclude Include="inline\application\windows.h" />
     <ClInclude Include="inline\application_common.h" />
     <ClInclude Include="inline\console.h" />
     <ClInclude Include="inline\console\linux.h" />
@@ -1809,7 +1814,12 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\comparison\sign.h" />
     <ClInclude Include="primitive\datetime\filetime.h" />
     <ClInclude Include="primitive\datetime\filetime_span.h" />
+    <ClInclude Include="primitive\datetime\micros.h" />
+    <ClInclude Include="primitive\datetime\millis.h" />
+    <ClInclude Include="primitive\datetime\nanos.h" />
     <ClInclude Include="primitive\datetime\payload.h" />
+    <ClInclude Include="primitive\datetime\result.h" />
+    <ClInclude Include="primitive\datetime\secs.h" />
     <ClInclude Include="primitive\geometry2d\angle.h" />
     <ClInclude Include="primitive\geometry2d\arc.h" />
     <ClInclude Include="primitive\geometry2d\bounding_rect.h" />
@@ -2124,7 +2134,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\datetime\duration.h" />
     <ClInclude Include="primitive\datetime\time.h" />
     <ClInclude Include="primitive\datetime\time_span.h" />
-    <ClInclude Include="primitive\datetime\value.h" />
     <ClInclude Include="primitive\datetime\zonetime.h" />
     <ClInclude Include="primitive\datetime\_c.h" />
     <ClInclude Include="primitive\geometry2d\align.h" />

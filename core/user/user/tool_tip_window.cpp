@@ -333,18 +333,18 @@ namespace user
    }
 
 
-   bool tool_tip_window::create(::user::interaction * puserinteraction, const id & id)
-   {
-      
-      m_puserinteraction = puserinteraction;
+   //bool tool_tip_window::create(::user::interaction * puserinteraction, const id & id)
+   //{
+   //   
+   //   m_puserinteraction = puserinteraction;
 
-      m_font->create_point_font(os_font_name(e_font_sans), 10.0);
+   //   m_font->create_point_font(os_font_name(e_font_sans), 10.0);
 
-      auto pcreatestruct = __new(::user::create_struct);
+   //   auto pusersystem = __new(::user::system);
 
-      return create_window_ex(pcreatestruct, nullptr, id) != 0;
+   //   return create_window_ex(pusersystem, nullptr, id) != 0;
 
-   }
+   //}
 
    ///////////////////////////////////////////////////////////
    //

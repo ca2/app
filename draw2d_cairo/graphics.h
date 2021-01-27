@@ -176,9 +176,9 @@ namespace draw2d_cairo
 
       // Special Coordinate Functions (useful for dealing with metafiles and OLE)
       void DPtoHIMETRIC(::sized * psize) override;
-      void LPtoHIMETRIC(::sized * psize) override;
+      //void LPtoHIMETRIC(::sized * psize) override;
       void HIMETRICtoDP(::sized * psize) override;
-      void HIMETRICtoLP(::sized * psize) override;
+      //void HIMETRICtoLP(::sized * psize) override;
 
       // Region Functions
       bool fill_region(::draw2d::region* pRgn, ::draw2d::brush* pBrush) override;
@@ -245,7 +245,7 @@ namespace draw2d_cairo
       // Simple Drawing Functions
       virtual bool fill_rect(const ::rectd & rectd, ::draw2d::brush* pBrush) override;
       virtual bool draw_rect(const ::rectd & rectd, ::draw2d::pen * ppen) override;
-      virtual bool frame_rect(const ::rectd & rectd, ::draw2d::brush* pBrush) override;
+      //virtual bool frame_rect(const ::rectd & rectd, ::draw2d::brush* pBrush) override;
       virtual bool invert_rect(const ::rectd & rectd) override;
 
       //bool DrawIcon(double x, double y, ::draw2d::icon * picon) override;
@@ -301,8 +301,10 @@ namespace draw2d_cairo
       //bool PatBlt(double x, double y, double nWidth, double nHeight) override;
 
 
-      bool _draw_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::pointd & pointSrc) override;
-      bool _stretch_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc) override;
+      //virtual bool _draw_raw(const ::image_drawing & imagedrawing) override;
+      virtual bool _draw_raw(const ::rectd & rectDst, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::pointd & pointSrc);
+      virtual bool _stretch_raw(const ::rectd & rectDst, ::image * pimage, const ::image_drawing_options & imagedrawing, const ::rectd & rectdSrc);
+      //bool _stretch_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc) override;
 
 
       ::color GetPixel(double x, double y) override;
@@ -324,19 +326,19 @@ namespace draw2d_cairo
 //                          ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, i32 nSrcWidth, i32 nSrcHeight,
 //                          ::u32 clrTransparent) override;
 
-      virtual bool _alpha_blend_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc, double dOpacity) override;
+      //virtual bool _alpha_blend_raw(const ::rectd & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectd & rectSrc, double dOpacity) override;
 
       /*bool alpha_blend(double xDest, double yDest, i32 nDestWidth, i32 nDestHeight,
         ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc, i32 nSrcWidth, i32 nSrcHeight,
         BLENDFUNCTION blend);*/
 
       // Text Functions
-      virtual bool text_out(double x, double y, const char * lpszString, strsize nCount) override;
-      virtual bool text_out(double x, double y, const string & str) override;
-      virtual bool TextOutRaw(double x, double y, const string & str) override;
+      //virtual bool text_out(double x, double y, const char * lpszString, strsize nCount) override;
+      //virtual bool text_out(double x, double y, const string & str) override;
+      virtual bool TextOutRaw(double x, double y, const block & block) override;
       ///virtual bool text_out(double x, double y, const string & str) override;
-      virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectd & rectd, const char * lpszString, strsize nCount, int * lpDxWidths) override;
-      virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectd & rectd, const string & str, int * lpDxWidths) override;
+      //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectd & rectd, const char * lpszString, strsize nCount, int * lpDxWidths) override;
+      //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectd & rectd, const string & str, int * lpDxWidths) override;
       virtual sized TabbedTextOut(double x, double y, const char * lpszString, strsize nCount, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
       virtual sized TabbedTextOut(double x, double y, const string & str, count nTabPositions, int * lpnTabStopPositions, i32 nTabOrigin) override;
 
@@ -474,7 +476,7 @@ namespace draw2d_cairo
       //void fill_rect(const ::rectd & rectd, const ::color & color) override;
       bool fill_rect(const ::rectd & rectd, const ::color & color) override;
       //void fill_rect(double x, double y, double cx, double cy, color32_t clr) override;
-      bool draw_3drect(const ::rectd & rectd, const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
+      //bool draw_3drect(const ::rectd & rectd, const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
       //void draw3d_rect(double x, double y, double cx, double cy,
       //              color32_t clrTopLeft, color32_t clrBottomRight) override;
 

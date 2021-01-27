@@ -5,7 +5,8 @@
 namespace aura
 {
 
-   
+
+
    ::e_status system::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const promise::process & process)
    {
 
@@ -23,6 +24,15 @@ namespace aura
 
    ::e_status system::os_application_system_run()
    {
+
+      auto estatus = ::aqua::system::os_application_system_run();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
 
       return ::success;
 

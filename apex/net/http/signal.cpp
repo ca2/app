@@ -20,13 +20,13 @@ namespace http
       if (::is_set(pbase))
       {
 
-         value("get_memory") = create_memory();
+         payload("get_memory") = create_memory();
 
       }
       else
       {
 
-         value("get_memory") = pbase;
+         payload("get_memory") = pbase;
 
       }
 
@@ -44,7 +44,7 @@ namespace http
    memory_pointer message::get_memory_response()
    {
 
-      return value("get_memory").cast < memory>();
+      return payload("get_memory").cast < memory>();
 
    }
 

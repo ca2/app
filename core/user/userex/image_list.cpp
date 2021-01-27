@@ -155,7 +155,7 @@ namespace userex
                if (pimage1->is_set())
                {
 
-                  pimage1->extension()->value("read_only_link") = get_link_prefix() + path.name();
+                  pimage1->extension()->payload("read_only_link") = get_link_prefix() + path.name();
 
                   sl.lock();
 

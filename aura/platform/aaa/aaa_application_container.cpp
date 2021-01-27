@@ -282,9 +282,9 @@ __pointer(::aura::application) application_container::instantiate_application(co
    else
    {
 
-      papp->value("SessionSynchronizedInput") = true;
+      papp->payload("SessionSynchronizedInput") = true;
 
-      papp->value("NativeWindowFocus") = true;
+      papp->payload("NativeWindowFocus") = true;
 
    }
 

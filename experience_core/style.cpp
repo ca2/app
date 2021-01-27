@@ -1054,7 +1054,6 @@ namespace experience
 
                }
 
-
             }
 
          }
@@ -1076,7 +1075,6 @@ namespace experience
                   return __acolor(255, 0, 0, 0);
 
                }
-
 
             }
             else if (estate & ::user::e_state_selected)
@@ -1163,7 +1161,6 @@ namespace experience
 
                }
 
-
             }
 
          }
@@ -1187,9 +1184,27 @@ namespace experience
                }
 
             }
-         }
-            else if (eelement == ::user::e_element_background)
+            else
             {
+
+               if (::user::is_app_dark_mode())
+               {
+
+                  return __acolor(255, 230, 230, 230);
+
+               }
+               else
+               {
+
+                  return __acolor(255, 40, 40, 40);
+
+               }
+
+            }
+
+        }
+        else if (eelement == ::user::e_element_background)
+        {
 
                if (::user::is_app_dark_mode())
                {
@@ -1296,11 +1311,11 @@ namespace experience
                if (!pbar->is_true("tracking_on"))
                {
 
-                  pbar->value("tracking_on") = true;
-                  pbar->value("tracking_start") = (u32)(::get_tick() + uchAlpha * tickFadeIn / 255);
-                  pbar->value("tracking_fade_in") = true;
-                  pbar->value("tracking_fade_out") = false;
-                  pbar->value("tracking_simple") = __random(1, 2) == 1;
+                  pbar->payload("tracking_on") = true;
+                  pbar->payload("tracking_start") = (u32)(::get_millis() + uchAlpha * tickFadeIn / 255);
+                  pbar->payload("tracking_fade_in") = true;
+                  pbar->payload("tracking_fade_out") = false;
+                  pbar->payload("tracking_simple") = __random(1, 2) == 1;
 
                }
 
@@ -1308,12 +1323,12 @@ namespace experience
             else
             {
 
-               if (!pbar->value("tracking_fade_out"))
+               if (!pbar->payload("tracking_fade_out"))
                {
 
-                  pbar->value("tracking_fade_in") = false;
-                  pbar->value("tracking_fade_out") = true;
-                  pbar->value("tracking_start") = (u32)(::get_tick() + (255 - uchAlpha) * tickFadeOut / 255);
+                  pbar->payload("tracking_fade_in") = false;
+                  pbar->payload("tracking_fade_out") = true;
+                  pbar->payload("tracking_start") = (u32)(::get_millis() + (255 - uchAlpha) * tickFadeOut / 255);
 
                }
 
@@ -1338,7 +1353,7 @@ namespace experience
             if (pbar->is_true("tracking_fade_in"))
             {
 
-               auto tickFade = pbar->value("tracking_start").millis().elapsed();
+               auto tickFade = pbar->payload("tracking_start").millis().elapsed();
 
                if (tickFade < tickFadeIn)
                {
@@ -1351,7 +1366,7 @@ namespace experience
 
                   uchAlpha = 255;
 
-                  pbar->value("tracking_fade_in") = false;
+                  pbar->payload("tracking_fade_in") = false;
 
                }
 
@@ -1359,7 +1374,7 @@ namespace experience
             else if (pbar->is_true("tracking_fade_out"))
             {
 
-               auto dwFade = pbar->value("tracking_start").millis().elapsed();
+               auto dwFade = pbar->payload("tracking_start").millis().elapsed();
 
                if (dwFade < tickFadeOut)
                {
@@ -1372,9 +1387,9 @@ namespace experience
 
                   uchAlpha = 0;
 
-                  pbar->value("tracking_on") = false;
+                  pbar->payload("tracking_on") = false;
 
-                  pbar->value("tracking_fade_out") = false;
+                  pbar->payload("tracking_fade_out") = false;
 
                }
 
@@ -1427,7 +1442,7 @@ namespace experience
 
             }
 
-            pbar->value("tracking_alpha") = uchAlpha;
+            pbar->payload("tracking_alpha") = uchAlpha;
 
          }
 

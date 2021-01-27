@@ -4,7 +4,7 @@
 class context_object;
 class task;
 class action_context;
-class payload;
+class ::payload;
 class layered;
 class object;
 class dump_context;
@@ -40,9 +40,10 @@ public:
       struct
       {
 
-         bool     m_bitSetFinish : 1;
-         bool     m_bitFinishing : 1;
-         bool     m_bitProcessed : 1;
+         bool        m_bHeapAllocated : 1;
+         bool        m_bSetFinish : 1;
+         bool        m_bFinishing : 1;
+         bool        m_bProcessed : 1;
 
       };
 
@@ -186,9 +187,9 @@ public:
    inline ::u64 get_object_flag() { return m_eobject; }
 
 
-   inline void clear_finish_bit() { m_bitSetFinish = false; }
-   inline void set_finish_bit() { m_bitSetFinish = true; }
-   inline bool finish_bit() const { return m_bitSetFinish; }
+   inline void clear_finish_bit() { m_bSetFinish = false; }
+   inline void set_finish_bit() { m_bSetFinish = true; }
+   inline bool finish_bit() const { return m_bSetFinish; }
 
 
    virtual void on_finish();
@@ -256,8 +257,9 @@ public:
    virtual ::e_status operator()();
    virtual void operator()(const ::payload & payload);
    virtual ::e_status run();
+   virtual ::e_status step();
    virtual ::payload realize();
-   virtual void on_future(const ::payload& payload);
+   virtual void on_future(const ::payload & payload);
 
    virtual void clear_member() { }
 

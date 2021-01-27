@@ -18,7 +18,7 @@ namespace draw2d
       double                              m_y2;
       double                              m_x3;
       double                              m_y3;
-      POINTD *                            m_lppoints;
+      ::pointd *                          m_lppoints;
       int *                               m_lppolycounts;
       i32                                 m_nCount;
       ::draw2d::enum_fill_mode            m_efillmode;

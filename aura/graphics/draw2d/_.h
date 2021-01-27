@@ -12,7 +12,6 @@ class colorref_array;
 
 
 
-#define byte_clip(i)  ((byte) (((i) < 0) ? 0 : (((i)> 255) ? 255 : i)))
 
 
 CLASS_DECL_AURA bool TextOutU(HDC hdc, i32 x, i32 y, const char * pString, i32 ca);
@@ -66,12 +65,19 @@ class image_array;
 
 #include "common.h"
 #include "matrix.h"
-//#include "color.h"
 #include "color_matrix.h"
-//#include "colorref_array.h"
+
+
+#include "color_filter.h"
 
 
 #include "_image.h"
+
+
+#include "image_source.h"
+
+
+#include "image_drawing.h"
 
 
 #include "image_header.h"
@@ -125,6 +131,9 @@ class image_frame_array;
 
 #include "image_dynamic.h"
 #include "image_meta.h"
+
+
+#include "image_drawer.h"
 
 
 #include "image.h"

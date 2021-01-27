@@ -31,13 +31,13 @@ namespace file
    }
 
 
-   payload item_array::get_var_file() const
+   ::payload item_array::get_var_file() const
    {
 
       if (this->get_count() <= 0)
       {
 
-         return ::payload(::e_type_empty);
+         return payload(::e_type_empty);
 
       }
       else if (this->get_count() == 1)
@@ -60,7 +60,7 @@ namespace file
       else
       {
 
-         class payload payload;
+         class ::payload payload;
 
          for (index i = 0; i < this->get_count(); i++)
          {
@@ -87,13 +87,13 @@ namespace file
    }
 
 
-   payload item_array::get_var_final_path() const
+   ::payload item_array::get_var_final_path() const
    {
 
       if (this->get_count() <= 0)
       {
 
-         return ::payload(::e_type_empty);
+         return payload(::e_type_empty);
 
       }
       else if (this->get_count() == 1)
@@ -116,7 +116,7 @@ namespace file
       else
       {
 
-         class payload payload;
+         class ::payload payload;
 
          for (index i = 0; i < this->get_count(); i++)
          {
@@ -143,19 +143,19 @@ namespace file
    }
 
 
-   payload item_array::get_var_query() const
+   ::payload item_array::get_var_query() const
    {
 
       if (this->get_count() <= 0)
       {
 
-         return ::payload(::e_type_empty);
+         return payload(::e_type_empty);
 
       }
       else if (this->get_count() == 1)
       {
 
-         class payload payload;
+         class ::payload payload;
 
          payload["FileManagerItem_flags"] = __new(flags < enum_flag >(this->element_at(0)->m_flags));
 
@@ -165,12 +165,12 @@ namespace file
       else
       {
 
-         class payload payload;
+         class ::payload payload;
 
          for (index i = 0; i < this->get_count(); i++)
          {
 
-            class payload varPropSet;
+            class ::payload varPropSet;
 
             varPropSet["FileManagerItem_flags"] = __new(flags < enum_flag >(this->element_at(i)->m_flags));
 

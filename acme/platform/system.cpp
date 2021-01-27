@@ -50,6 +50,70 @@ namespace acme
    }
 
 
+   ::acme::node * system::node()
+   {
+
+      return m_pnode;
+
+   }
+
+
+   ::e_status system::create_os_node()
+   {
+
+      if(m_pnode)
+      {
+
+         return ::success;
+
+      }
+
+      auto estatus = __construct(m_pnode);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status system::run_system()
+   {
+
+      auto estatus = create_os_node();
+
+      if (!estatus)
+      {
+
+         //return estatus;
+
+         estatus = ::success_none;
+
+      }
+
+      estatus = os_application_system_run();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+
+
+
+
    string system::os_get_user_theme()
    {
 

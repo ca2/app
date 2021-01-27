@@ -89,9 +89,8 @@ namespace userex
 
       m_ptoggleview->m_ptopview = this;
 
-
-
    }
+
 
    bool top_view::is_this_visible(::user::enum_layout elayout)
    {
@@ -128,9 +127,6 @@ namespace userex
       }
 
    }
-
-
-
 
 
 } // namespace userex

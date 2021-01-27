@@ -109,15 +109,17 @@ namespace user
 
       };
 
-      int                                          m_bitExtendOnParent : 1;
-      int                                          m_bitExtendOnParentIfClientOnly : 1;
+      bool                                         m_bExtendOnParent : 1;
+      bool                                         m_bExtendOnParentIfClientOnly : 1;
 
-      int                                          m_bitToolWindow:1;
+      bool                                         m_bToolWindow:1;
+      bool                                         m_bMessageWindow : 1;
+
 
       ewindowflag                                  m_ewindowflag;
       bool                                         m_bDerivedHeight;
 
-
+      __pointer(::user::system)                    m_pusersystem;
       __pointer(::user::interaction)               m_puserinteractionParent;
 
 
@@ -141,7 +143,7 @@ namespace user
       //index_map < __pointer(interaction) >      m_controlmap;
 
       __pointer(graphics_call_array)            m_pgraphicscalla;
-      id                                        m_id;
+      //id                                        m_id;
       id                                        m_uiText;
       ::type                                    m_type;
       id                                        m_idPrivateDataSection;
@@ -279,7 +281,6 @@ namespace user
       e_cursor                                     m_ecursor;
       bool                                         m_bRectOk;
       bool                                         m_bParentScroll;
-      bool                                         m_bMessageWindow;
       string                                       m_strWindowText;
       bool                                         m_bModal;
       __pointer(::thread)                          m_pthreadModal;
@@ -325,9 +326,9 @@ namespace user
       //class control_descriptor& descriptor();
       //const class control_descriptor& descriptor() const;
 
-      ::user::interaction* get_host_window() const override;
+      ::user::interaction * get_host_window() const override;
 
-      ::user::item* get_user_item(const ::user::item& item);
+      ::user::item * get_user_item(const ::user::item& item);
 
       virtual ::user::enum_state get_user_state() const;
 
@@ -347,7 +348,7 @@ namespace user
       void control_descriptor_common_construct();
       //bool operator == (const control_descriptor & control_descriptor) const;
       //control_descriptor & operator = (const control_descriptor & control_descriptor);
-      enum_control_type get_control_type();
+      virtual enum_control_type get_control_type() const override;
       void set_control_type(enum_control_type e_control);
       void add_function(enum_control_function enum_control_function);
       void remove_function(enum_control_function enum_control_function);
@@ -470,7 +471,7 @@ namespace user
       /// you should be able (control developer pay attention now),
       /// to build a default control with a default constructed
       /// ::user::control_descriptor.
-      virtual bool create_control(::user::interaction * pinteractionParent, const ::id & id);
+      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id);
 
 
 //      virtual bool add_control(arguments arguments);
@@ -863,7 +864,7 @@ namespace user
 
       virtual void get_child_rect(RECT32* prect);
 
-      inline auto get_child_rect() { ::rect rect(no_init); get_child_rect(&rect); return rect; }
+      inline auto get_child_rect() { ::rect rect(e_no_init); get_child_rect(&rect); return rect; }
 
       virtual bool scroll_bar_get_client_rect(RECT32* prect);
 
@@ -890,7 +891,7 @@ namespace user
 #endif
 
 
-      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
+      virtual bool pre_create_window(::user::system * pusersystem) override;
 
 
       virtual bool subclass_window(oswindow posdata) override;
@@ -901,12 +902,14 @@ namespace user
       /// you should be able (control developer pay attention now),
       /// to build a default control with a default constructed
       /// ::user::control_descriptor.
-      //virtual bool create_control(class ::user::control_descriptor * pdescriptor);
+      //virtual bool create_interaction(class ::user::control_descriptor * pdescriptor);
 
-      virtual bool create_window(::user::interaction* pparent, const ::id& id) override;
-      virtual bool create_window(const char* pszClassName, const char* pszWindowName, u32 uStyle, ::user::interaction* puiParent, const ::id& id, ::create* pcreate = nullptr) override;
+      virtual bool create_host() override;
+      virtual bool create_child(::user::interaction * pparent) override;
 
-      virtual bool create_window_ex(__pointer(::user::create_struct) pcs, ::user::interaction* puiParent = nullptr, const ::id& id = ::id()) override;
+      // virtual bool create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle, ::user::interaction * puiParent, ::create * pcreate = nullptr) override;
+
+      //virtual bool create_window_ex(__pointer(::user::system) pcs, ::user::interaction* puiParent = nullptr, const ::id& id = ::id()) override;
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
       virtual void CalcWindowRect(RECT32* pClientRect, ::u32 nAdjustType = adjustBorder) override;
 
@@ -1109,6 +1112,7 @@ namespace user
       virtual bool on_timer(::timer* ptimer) override;
       DECL_GEN_SIGNAL(_001OnChar);
       DECL_GEN_SIGNAL(_001OnDestroy);
+      DECL_GEN_SIGNAL(_001OnPostUser);
       DECL_GEN_SIGNAL(_001OnSize);
       DECL_GEN_SIGNAL(_001OnMove);
       DECL_GEN_SIGNAL(_001OnCreate);
@@ -1302,7 +1306,7 @@ namespace user
 
 
       //virtual bool track_popup_menu(::user::menu_item* pitem, i32 iFlags, const ::point& point) override;
-      //virtual __pointer(::user::menu) track_popup_xml_menu(const payload & varXml, i32 iFlags, const ::point& pointScreen = nullptr, const ::size& sizeMinimum = nullptr) override;
+      //virtual __pointer(::user::menu) track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point& pointScreen = nullptr, const ::size& sizeMinimum = nullptr) override;
 
 
       virtual void _001OnExitIconic() override;
@@ -1339,8 +1343,6 @@ namespace user
 
 
       virtual void display_child(const ::rect & rect);
-      virtual void display_child(const ::point& point, const ::size& size);
-      virtual void display_child(i32 x, i32 y, i32 cx, i32 cy);
 
 
       virtual ::user::interaction* best_top_level_parent(RECT32* prect);
@@ -1442,8 +1444,8 @@ namespace user
       virtual void _001GetSel(strsize& iBeg, strsize& iEnd) const override;
 
 
-      virtual void _001GetXScrollInfo(scroll_info& info);
-      virtual void _001GetYScrollInfo(scroll_info& info);
+      virtual void get_horizontal_scroll_info(scroll_info& info);
+      virtual void get_vertical_scroll_info(scroll_info& info);
       virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics);
 
 
@@ -1601,14 +1603,14 @@ namespace user
       /// you should be able (control developer pay attention now),
       /// to build a default control with a default constructed
       /// ::user::control_descriptor.
-      //virtual bool create_control(::user::interaction * pinteractionParent, const ::id & id) override;
+      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
       //virtual elayout get_state() const override;
       //bool _003IsCustomMessage();
       //::user::primitive* _003GetCustomMessageWnd();
       //virtual void _001OnDraw(::draw2d::graphics_pointer& pgraphics) override;
       virtual void route_command_message(::user::command* pcommand) override;
       virtual bool has_function(enum_control_function econtrolfunction) const;
-      virtual enum_control_type get_control_type() const;
+      //virtual enum_control_type get_control_type() const;
       //virtual void _003CallCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
       //virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) pwnd, const ::id & id, WPARAM wparam, LPARAM lparam, LRESULT& lresult);
       //virtual void _003OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
@@ -1617,7 +1619,7 @@ namespace user
       //virtual bool _001IsPointInside(::point point) override;
       //control null() { return control(); }
       //bool Validate(string& str);
-      bool get_data(__pointer(::user::interaction) pwnd, payload& payload);
+      bool get_data(__pointer(::user::interaction) pwnd, ::payload& payload);
       //void SetEditItem(index iItem);
       //void SetEditSubItem(index iItem);
       //index GetEditSubItem();
@@ -1758,6 +1760,18 @@ namespace user
       inline void _001ClientToScreen(POINT_OFFSETABLE& o, enum_layout elayout = e_layout_design) { o += layout().screen_origin(elayout); o -= get_parent_accumulated_scroll(elayout); }
       template < typename POINT_OFFSETABLE >
       inline void _001ClientToScreen(POINT_OFFSETABLE* po, enum_layout elayout = e_layout_design) { _001ClientToScreen(*po, elayout); }
+
+
+      template < typename POINT_OFFSETABLE >
+      inline void _001HostToClient(POINT_OFFSETABLE& o, enum_layout elayout = e_layout_design) { o -= layout().host_origin(elayout); o += get_parent_accumulated_scroll(elayout); }
+      template < typename POINT_OFFSETABLE >
+      inline void _001HostToClient(POINT_OFFSETABLE* po, enum_layout elayout = e_layout_design) { _001HostToClient(*po, elayout); }
+
+
+      template < typename POINT_OFFSETABLE >
+      inline void _001ClientToHost(POINT_OFFSETABLE& o, enum_layout elayout = e_layout_design) { o += layout().host_origin(elayout); o -= get_parent_accumulated_scroll(elayout); }
+      template < typename POINT_OFFSETABLE >
+      inline void _001ClientToHost(POINT_OFFSETABLE* po, enum_layout elayout = e_layout_design) { _001ClientToHost(*po, elayout); }
 
 
       template < typename POINT_OFFSETABLE >

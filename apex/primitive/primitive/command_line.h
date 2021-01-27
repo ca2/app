@@ -38,14 +38,14 @@ public:
    i32                              m_nCmdShow;
 
    // not valid for file_new
-   payload                              m_varFile;
+   ::payload                              m_varFile;
 
    // valid only for file_print_to
    string                           m_strPrinterName;
    string                           m_strDriverName;
    string                           m_strPortName;
 
-   payload                              m_varQuery;
+   ::payload                              m_varQuery;
    ::file::item_array *             m_pitema;
 
    __pointer(::apex::application)   m_pappFork;

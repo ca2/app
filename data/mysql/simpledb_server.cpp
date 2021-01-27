@@ -41,7 +41,7 @@ namespace simpledb
       return true;
    }
 
-   bool server::sql(const char * pszQuery, payload & payload)
+   bool server::sql(const char * pszQuery, ::payload & payload)
    {
       if(m_pbase == nullptr)
          return false;

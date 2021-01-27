@@ -152,7 +152,7 @@ namespace uwp
    //{
 
 
-   bool interaction_impl::_native_create_window_ex(::user::create_struct& cs)
+   bool interaction_impl::_native_create_window_ex(::user::system& cs)
    {
 
       __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task());
@@ -163,22 +163,22 @@ namespace uwp
 
       //m_strDebug += ::str::demangle(m_puserinteraction->type_name()) + ";";
 
-      if(!m_puserinteraction->pre_create_window(pcreatestruct))
+      if(!m_puserinteraction->pre_create_window(pusersystem))
       {
       
          return false;
          
       }
 
-      set_window_long(GWL_STYLE, pcreatestruct->m_createstruct.style);
+      set_window_long(GWL_STYLE, pusersystem->m_createstruct.style);
 
-      set_window_long(GWL_EXSTYLE, pcreatestruct->m_createstruct.dwExStyle);
+      set_window_long(GWL_EXSTYLE, pusersystem->m_createstruct.dwExStyle);
 
       install_message_routing(m_puserinteraction);
 
       send_message(e_message_create,0,(LPARAM)&cs);
 
-      m_puserinteraction->set_window_pos(0,pcreatestruct->m_createstruct.x,pcreatestruct->m_createstruct.cy,pcreatestruct->m_createstruct.cx,pcreatestruct->m_createstruct.cy,0);
+      m_puserinteraction->set_window_pos(0,pusersystem->m_createstruct.x,pusersystem->m_createstruct.cy,pusersystem->m_createstruct.cx,pusersystem->m_createstruct.cy,0);
 
       send_message(e_message_size);
 
@@ -196,17 +196,17 @@ namespace uwp
 
 
    // for child windows
-   bool interaction_impl::pre_create_window(::user::create_struct * pcreatestruct)
+   bool interaction_impl::pre_create_window(::user::system * pusersystem)
    {
 
 #ifdef WINDOWS_DESKTOP
-      if (pcreatestruct->m_createstruct.lpszClass == nullptr)
+      if (pusersystem->m_createstruct.lpszClass == nullptr)
       {
          // make sure the default interaction_impl class is registered
-         VERIFY(__end_defer_register_class(__WND_REG, &pcreatestruct->m_createstruct.lpszClass));
+         VERIFY(__end_defer_register_class(__WND_REG, &pusersystem->m_createstruct.lpszClass));
 
          // no WNDCLASS provided - use child interaction_impl default
-         ASSERT(pcreatestruct->m_createstruct.style & WS_CHILD);
+         ASSERT(pusersystem->m_createstruct.style & WS_CHILD);
       }
 #else
       __throw(todo());

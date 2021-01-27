@@ -228,7 +228,7 @@ namespace html
    }
 
 
-   bool style_sheet::greater(style * & pstyleRet, index & iRet, payload & varRet, style * pstyle1, index i1, const payload & var1, style * pstyle2, index i2, const payload & var2) const
+   bool style_sheet::greater(style * & pstyleRet, index & iRet, ::payload & varRet, style * pstyle1, index i1, const ::payload & var1, style * pstyle2, index i2, const ::payload & var2) const
    {
 
       if(pstyle1 == nullptr)
@@ -315,7 +315,7 @@ namespace html
    }
 
 
-   bool style_sheet::greater(const style * & pstyleRet, index & iRet, payload & varRet, const style * pstyle1, index i1, const payload & var1, const style * pstyle2, index i2, const payload & var2) const
+   bool style_sheet::greater(const style * & pstyleRet, index & iRet, ::payload & varRet, const style * pstyle1, index i1, const ::payload & var1, const style * pstyle2, index i2, const ::payload & var2) const
    {
 
       return greater((style * &) pstyleRet, iRet, varRet, (style *) pstyle1, i1, var1, (style *) pstyle2, i2, var2);

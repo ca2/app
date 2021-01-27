@@ -407,7 +407,7 @@ namespace draw2d
    int iBlurRadius,
    int iBlur,
    bool bUpdate,
-   double dAlpha)
+   const ::color_filter & colorfilter)
    {
 
       if (strText.is_empty())
@@ -436,9 +436,10 @@ namespace draw2d
       iBlurRadius,
       iBlur,
       bUpdate,
-      dAlpha);
+      colorfilter);
 
-      byte bA = (byte)(dAlpha * 255.0);
+      auto bA = colorfilter.opacity().get_alpha();
+
       ::draw2d::brush_pointer pbrushText(e_create);
       pbrushText->create_solid((crText & 0x00ffffffu) | (bA << 24));
       pgraphics->set(pbrushText);

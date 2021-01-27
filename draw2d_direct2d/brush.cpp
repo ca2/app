@@ -39,7 +39,7 @@ namespace draw2d_direct2d
       if (pgraphics->m_prendertarget == nullptr)
       {
 
-         return nullptr;
+         return false;
 
       }
 
@@ -241,7 +241,7 @@ namespace draw2d_direct2d
 
       }
 
-      return nullptr;
+      return false;
 
    }
 

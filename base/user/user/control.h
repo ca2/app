@@ -33,7 +33,7 @@ namespace user
    //   /// you should be able (control developer pay attention now),
    //   /// to build a default control with a default constructed
    //   /// ::user::control_descriptor.
-   //   virtual bool create_control(::user::interaction * pinteractionParent, const ::id & id) override;
+   //   virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
 
 
    //   virtual estate get_state() const override;
@@ -61,7 +61,7 @@ namespace user
 
    //   control null() { return control(); }
    //   bool Validate(string & str);
-   //   bool get_data(__pointer(::user::interaction) pwnd, payload & payload);
+   //   bool get_data(__pointer(::user::interaction) pwnd, ::payload & payload);
    //   void SetEditItem(index iItem);
    //   void SetEditSubItem(index iItem);
    //   index GetEditSubItem();

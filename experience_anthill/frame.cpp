@@ -247,10 +247,10 @@ namespace experience
                   if (m_pframewindow == nullptr || m_pframewindow->layout().design().display() != ::e_display_minimal)
                      return false;
 
-                  lprect->left = m_pointMoveGripMinimal.x + 2;
-                  lprect->top = m_pointMoveGripMinimal.y + 2;
-                  lprect->right = lprect->left + get_control_box_rect()->height() - 4;
-                  lprect->bottom = lprect->top + get_control_box_rect()->height() - 4;
+                  //lprect->left = m_pointMoveGripMinimal.x + 2;
+                  //lprect->top = m_pointMoveGripMinimal.y + 2;
+                  lprect->right = lprect->left + get_caption_height() - 4;
+                  lprect->bottom = lprect->top + get_caption_height() - 4;
 
                   return true;
 
@@ -598,13 +598,13 @@ namespace experience
                   if (m_pframewindow->is_active() && m_colorActiveCaptionTextBk.is_set())
                   {
 
-                     pgraphics->fill_rect(m_rectCaptionTextBk, m_colorActiveCaptionTextBk);
+                     pgraphics->fill_rect(m_rectCaption, m_colorActiveCaptionTextBk);
 
                   }
                   else
                   {
 
-                     pgraphics->fill_rect(m_rectCaptionTextBk, m_colorCaptionTextBk);
+                     pgraphics->fill_rect(m_rectCaption, m_colorCaptionTextBk);
 
                   }
 

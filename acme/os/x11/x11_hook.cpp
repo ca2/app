@@ -69,8 +69,10 @@ bool __x11_hook_list_is_empty()
 }
 
 
-bool __x11_hook_process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie)
+bool __x11_hook_process_event(Display * pdisplay, XEvent * pevent, XGenericEventCookie * cookie)
 {
+
+   XEvent & e = *pevent;
 
    for(auto & phook : g_x11hooka)
    {

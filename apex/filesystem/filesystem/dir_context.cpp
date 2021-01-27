@@ -1,9 +1,7 @@
 #include "framework.h"
 #include "apex/platform/app_core.h"
 #include "apex/compress/zip/_.h"
-#include "apex/const/id.h"
-
-//extern const char* g_pszServerCa2Cc;
+#include "acme/id.h"
 
 
 CLASS_DECL_ACME const char* get_server_ca2_cc();
@@ -1882,7 +1880,7 @@ void dir_context::matter_ls_file(const ::file::path & str, ::file::listing & str
 
    }
 
-   path = "itdoesntexist." + __str(millis::now().m_iMilliseconds);
+   path = "itdoesntexist." + __str(millis::now().m_i);
 
 ret:
 
@@ -2128,7 +2126,7 @@ ret:
 ::file::path dir_context::commonappdata_root()
 {
 
-   return "/payload/lib";
+   return "/::payload/lib";
 
 }
 

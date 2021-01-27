@@ -181,7 +181,7 @@ namespace filemanager
    }
 
 
-   bool file_list::pre_create_window(::user::create_struct * pcreatestruct)
+   bool file_list::pre_create_window(::user::system * pusersystem)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -190,7 +190,7 @@ namespace filemanager
 
 #endif
 
-      return ::user::impact::pre_create_window(pcreatestruct);
+      return ::user::impact::pre_create_window(pusersystem);
 
    }
 
@@ -2041,7 +2041,7 @@ namespace filemanager
       else if (psubject->id() == id_filter)
       {
 
-         if (psubject->value(id_filter).is_empty())
+         if (psubject->payload(id_filter).is_empty())
          {
 
             FilterClose();
@@ -2052,7 +2052,7 @@ namespace filemanager
 
             FilterBegin();
 
-            Filter1(psubject->value(id_filter));
+            Filter1(psubject->payload(id_filter));
 
          }
 
@@ -2071,7 +2071,7 @@ namespace filemanager
       else if (psubject->id() == id_after_browse)
       {
 
-         if (psubject->value(id_after_browse) == "filemanager\\replace_name_in_file_system.xhtml")
+         if (psubject->payload(id_after_browse) == "filemanager\\replace_name_in_file_system.xhtml")
          {
 
             //html::matter * pelemental = dynamic_cast < html::matter * > (pupdate->m_pformview->get_html_data()->get_element_by_name("encontrar"));
@@ -2087,7 +2087,7 @@ namespace filemanager
             if (pitem)
             {
 
-               pinteraction->_001SetText(psubject->value(id_name), psubject->m_actioncontext);
+               pinteraction->_001SetText(psubject->payload(id_name), psubject->m_actioncontext);
 
             }
 
@@ -2096,12 +2096,12 @@ namespace filemanager
          if (psubject->id() == id_replace_name)
          {
 
-            if (psubject->value(id_find).has_char())
+            if (psubject->payload(id_find).has_char())
             {
 
                ::file::path pathFolder = filemanager_item()->get_user_path();
 
-               Context.file().replace(pathFolder, psubject->value(id_find), psubject->value(id_replace));
+               Context.file().replace(pathFolder, psubject->payload(id_find), psubject->payload(id_replace));
 
             }
 
@@ -2109,10 +2109,10 @@ namespace filemanager
          else if (psubject->id() == id_new_folder)
          {
 
-            if (psubject->value(id_folder).has_char())
+            if (psubject->payload(id_folder).has_char())
             {
 
-               ::file::path pathFolder = filemanager_item()->get_user_path() / psubject->value(id_folder);
+               ::file::path pathFolder = filemanager_item()->get_user_path() / psubject->payload(id_folder);
 
                Context.dir().mk(pathFolder);
 

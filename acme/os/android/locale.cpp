@@ -10,7 +10,7 @@
    struct lconv *localeconv(void)
    {
 
-      lconv * plconv = (lconv *) get_task()->value("localeconv").iptr();
+      lconv * plconv = (lconv *) get_task()->payload("localeconv").iptr();
 
       if(plconv == nullptr)
       {
@@ -19,7 +19,7 @@
 
          plconv->decimal_point = ".";
 
-         get_task()->value("localeconv") = (iptr)plconv;
+         get_task()->payload("localeconv") = (iptr)plconv;
 
       }
 

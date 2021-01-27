@@ -22,7 +22,7 @@ public:
 
 
    point_type() noexcept { this->x = (UNIT_TYPE)0; this->y = (UNIT_TYPE)0; }
-   point_type(e_no_init) noexcept {  }
+   point_type(enum_no_init) noexcept {  }
    point_type(::std::nullptr_t) noexcept { this->x = (UNIT_TYPE)0; this->y = (UNIT_TYPE)0; }
    point_type(UNIT_TYPE x, UNIT_TYPE y) noexcept { this->x = x; this->y = y; }
    //point_type(const ::lparam& lparam) noexcept : point_type(lparam.x(), lparam.y()) {}
@@ -102,16 +102,16 @@ public:
    inline bool operator!=(::std::nullptr_t) const noexcept { return !::is_point_null(this); }
 
    template < primitive_size SIZE >
-   inline point_type& operator+=(const SIZE& size) noexcept { this->x += size.cx; this->y += size.cy; return *this; }
+   inline point_type& operator+=(const SIZE& size) noexcept { this->x = (UNIT_TYPE) (this->x + size.cx); this->y = (UNIT_TYPE)(this->y + size.cy); return *this; }
 
    template < primitive_size SIZE >
-   inline point_type& operator-=(const SIZE& size) noexcept { this->x -= size.cx; this->y -= size.cy; return *this; }
+   inline point_type& operator-=(const SIZE& size) noexcept { this->x = (UNIT_TYPE)(this->x - size.cx); this->y = (UNIT_TYPE)(this->y - size.cy); return *this; }
 
    template < primitive_point POINT >
-   inline point_type& operator+=(const POINT& point) noexcept { this->x += point.x; this->y += point.y; return *this; }
+   inline point_type& operator+=(const POINT& point) noexcept { this->x = (UNIT_TYPE)(this->x + point.x); this->y = (UNIT_TYPE)(this->y + point.y); return *this; }
 
    template < primitive_point POINT >
-   inline point_type& operator-=(const POINT& point) noexcept { this->x -= point.x; this->y -= point.y; return *this; }
+   inline point_type& operator-=(const POINT& point) noexcept { this->x = (UNIT_TYPE)(this->x - point.x); this->y = (UNIT_TYPE)(this->y - point.y); return *this; }
 
    template < primitive_size SIZE >
    inline point_type operator+(const SIZE & size) const noexcept { return point_type(this->x + size.cx, this->y + size.cy); }

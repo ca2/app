@@ -11,7 +11,7 @@ namespace calculator
    public:
 
 
-      ::calculator::payload      m_payload;
+      ::calculator::result       m_result;
       callback *                 m_pcallback;
 
       string                     m_strFormat;

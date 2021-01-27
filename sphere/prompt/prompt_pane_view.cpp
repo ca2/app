@@ -98,11 +98,11 @@ namespace prompt
    }
 
 
-   bool pane_view::pre_create_window(::user::create_struct * pcreatestruct)
+   bool pane_view::pre_create_window(::user::system * pusersystem)
    {
 
 
-      return ::user::impact::pre_create_window(pcreatestruct);
+      return ::user::impact::pre_create_window(pusersystem);
    }
 
 
@@ -248,7 +248,7 @@ namespace prompt
          auto pupdate = new_update();
          pupdate->m_actioncontext = ::e_source_system;
          psubject->id() = id_browse;
-         psubject->value(id_form) = "filemanager\\replace_name_in_file_system.xhtml";
+         psubject->payload(id_form) = "filemanager\\replace_name_in_file_system.xhtml";
          pdocument->update_all_views(pupdate);
 
          psubject->id() = id_get_form_view;

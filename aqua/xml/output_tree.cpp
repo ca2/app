@@ -65,7 +65,7 @@ namespace xml
    }
 
 
-   node * output_tree::export_node(const char * pcszName, payload payload)
+   node * output_tree::export_node(const char * pcszName, ::payload payload)
 
    {
       m_varexchange.m_pvar = &payload;
@@ -74,7 +74,7 @@ namespace xml
    }
 
 
-   void output_tree::set_attribute(const ::id & id, const payload & payload)
+   void output_tree::set_attribute(const ::id & id, const ::payload & payload)
    {
 
       m_pnode->set_attribute(id, payload);

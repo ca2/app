@@ -64,6 +64,7 @@ namespace user
    {
 
       ::point                       m_pointScreen;
+      ::point                       m_pointHost;
       ::point                       m_pointClient;
       ::point                       m_pointHitTest;
       ::rect                        m_rect;

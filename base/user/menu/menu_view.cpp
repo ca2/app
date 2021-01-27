@@ -18,7 +18,7 @@ namespace user
       m_pen(e_create)
    {
 
-      value(FONTSEL_IMPACT) = true;
+      payload(FONTSEL_IMPACT) = true;
 
       m_flagNonClient.remove(non_client_background);
 
@@ -631,7 +631,7 @@ namespace user
    }
 
 
-   bool menu_view::load_xml(payload varFile)
+   bool menu_view::load_xml(::payload varFile)
    {
 
       string str = Context.file().as_string(varFile);

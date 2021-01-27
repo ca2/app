@@ -14,7 +14,7 @@
 CLASS_DECL_ACME void sleep(const ::secs & secs)
 {
 
-   ::Sleep((DWORD) (secs.m_iSeconds * 1'000));
+   ::Sleep((DWORD) (secs.m_i * 1'000));
 
 }
 
@@ -22,7 +22,7 @@ CLASS_DECL_ACME void sleep(const ::secs & secs)
 CLASS_DECL_ACME void sleep(const millis & millis)
 {
 
-   ::Sleep((DWORD) millis.m_iMilliseconds);
+   ::Sleep((DWORD) millis.m_i);
 
 }
 

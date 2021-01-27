@@ -60,7 +60,7 @@ bool compress_bz::transfer(::file::file * pfileBzFileCompressed, ::file::file * 
    i32                    m_z_err;   /* error code for last stream operation */
    iptr                    ret;
 
-   xxf_zero(zstream);
+   __zero(zstream);
 
    int iBlockSize             = m_iBlockSize;
    int iVerbosity             = m_iVerbosity;
@@ -199,7 +199,7 @@ bool uncompress_bz::transfer(::file::file * pfileOut, ::file::file * pfileIn)
    i64 uRead = pfileIn->read(memIn.get_data(), memIn.get_size());
 
    bz_stream zstream;
-   xxf_zero(zstream);
+   __zero(zstream);
    zstream.next_in = (char *)memIn.get_data();
    zstream.avail_in = (u32)uRead;
 

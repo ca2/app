@@ -86,7 +86,7 @@ struct pixmap
 
       inline ::point top_left() const noexcept { return m_point; }
       inline ::point origin() const noexcept { return top_left(); }
-      inline ::size size() const noexcept { return m_size; }
+      inline concrete < ::size > size() const noexcept { return m_size; }
       inline int width() const noexcept { return m_size.cx; }
       inline int height() const noexcept { return m_size.cy; }
       inline int area() const noexcept { return m_size.area(); }

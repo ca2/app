@@ -94,28 +94,28 @@ namespace user
       estatus = __compose(m_pbuttonAlignRight);
       iControl++; if (!estatus) { pcreate->failed("Failed to create control for format_tool (" + __str(iControl) + ")"); return; }
 
-      m_pbuttonBold->create_window(this, "font_bold");
+      m_pbuttonBold->create_control(this, "font_bold");
       m_pbuttonBold->LoadBitmaps("matter://fontformat/bold-text-option12.png");
       m_pbuttonBold->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
       m_pbuttonBold->m_flagNonClient.remove(::user::interaction::non_client_background);
 
-      m_pbuttonItalic->create_window(this, "font_italic");
+      m_pbuttonItalic->create_control(this, "font_italic");
       m_pbuttonItalic->LoadBitmaps("matter://fontformat/italicize-text12.png");
       m_pbuttonItalic->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
       m_pbuttonItalic->m_flagNonClient.remove(::user::interaction::non_client_background);
 
-      m_pbuttonUnderline->create_window(this, "font_underline");
+      m_pbuttonUnderline->create_control(this, "font_underline");
       m_pbuttonUnderline->LoadBitmaps("matter://fontformat/underline-text-option12.png");
       m_pbuttonUnderline->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
       m_pbuttonUnderline->m_flagNonClient.remove(::user::interaction::non_client_background);
 
-      m_pcomboFamily->create_window(this, "combo_family");
+      m_pcomboFamily->create_control(this, "combo_family");
       //auto pfont = m_pcomboFamily->create_point_font(::user::font_plain_edit, os_font_name(e_font_sans_ui), 9.0);
       //pfont->m_etextrenderinghint = ::draw2d::text_rendering_hint_clear_type_grid_fit;
       //m_pcomboFamily->create_color(::user::color_text, ARGB(255, 80, 80, 80));
       //m_pcomboFamily->create_color(::user::color_background, ARGB(255, 255, 255, 255));
 
-      m_pcomboSize->create_window(this, "combo_size");
+      m_pcomboSize->create_control(this, "combo_size");
       //pfont = m_pcomboSize->create_point_font(::user::font_plain_edit, os_font_name(e_font_sans_ui), 9.0);
       //pfont->m_etextrenderinghint = ::draw2d::text_rendering_hint_clear_type_grid_fit;
       //m_pcomboSize->create_color(::user::color_text, ARGB(255, 80, 80, 80));
@@ -152,38 +152,38 @@ namespace user
       m_pcomboSize->AddString("72", "72");
       m_pcomboSize->AddString("144", "144");
 
-      m_pbuttonForeground->create_window(this, "font_foreground");
+      m_pbuttonForeground->create_control(this, "font_foreground");
       m_pbuttonForeground->LoadBitmaps("matter://fontformat/font-foreground12.png");
 
       m_pbuttonForeground->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
       m_pbuttonForeground->m_flagNonClient.remove(::user::interaction::non_client_background);
 
-      m_pbuttonBackground->create_window(this, "font_background");
+      m_pbuttonBackground->create_control(this, "font_background");
       m_pbuttonBackground->LoadBitmaps("matter://fontformat/text-background12.png");
       m_pbuttonBackground->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
       m_pbuttonBackground->m_flagNonClient.remove(::user::interaction::non_client_background);
 
-      m_pbuttonSubscript->create_window(this, "font_subscript");
+      m_pbuttonSubscript->create_control(this, "font_subscript");
       m_pbuttonSubscript->LoadBitmaps("matter://fontformat/x2-symbol-of-a-letter-and-a-number-subscript12.png");
       m_pbuttonSubscript->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
       m_pbuttonSubscript->m_flagNonClient.remove(::user::interaction::non_client_background);
 
-      m_pbuttonSuperscript->create_window(this, "font_superscript");
+      m_pbuttonSuperscript->create_control(this, "font_superscript");
       m_pbuttonSuperscript->LoadBitmaps("matter://fontformat/superscript-text-formatting12.png");
       m_pbuttonSuperscript->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
       m_pbuttonSuperscript->m_flagNonClient.remove(::user::interaction::non_client_background);
 
-      m_pbuttonAlignLeft->create_window(this, "e_align_left");
+      m_pbuttonAlignLeft->create_control(this, "e_align_left");
       m_pbuttonAlignLeft->LoadBitmaps("matter://fontformat/align-to-left12.png");
       m_pbuttonAlignLeft->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
       m_pbuttonAlignLeft->m_flagNonClient.remove(::user::interaction::non_client_background);
 
-      m_pbuttonAlignCenter->create_window(this, "e_align_center");
+      m_pbuttonAlignCenter->create_control(this, "e_align_center");
       m_pbuttonAlignCenter->LoadBitmaps("matter://fontformat/center-text-alignment12.png");
       m_pbuttonAlignCenter->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
       m_pbuttonAlignCenter->m_flagNonClient.remove(::user::interaction::non_client_background);
 
-      m_pbuttonAlignRight->create_window(this, "e_align_right");
+      m_pbuttonAlignRight->create_control(this, "e_align_right");
       m_pbuttonAlignRight->LoadBitmaps("matter://fontformat/align-to-right12.png");
       m_pbuttonAlignRight->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
       m_pbuttonAlignRight->m_flagNonClient.remove(::user::interaction::non_client_background);
@@ -215,32 +215,32 @@ namespace user
 
    void format_tool::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
-
-      m_pbuttonBold->display_child(5, 5, 20, 20);
-      m_pbuttonItalic->display_child(25, 5, 20, 20);
-      m_pbuttonUnderline->display_child(45, 5, 20, 20);
-      m_pcomboFamily->display_child(70, 5, 120, 20);
-      m_pcomboSize->display_child(195, 5, 40, 20);
+      throw "create line layout";
+      //m_pbuttonBold->display_child(5, 5, 20, 20);
+      //m_pbuttonItalic->display_child(25, 5, 20, 20);
+      //m_pbuttonUnderline->display_child(45, 5, 20, 20);
+      //m_pcomboFamily->display_child(70, 5, 120, 20);
+      //m_pcomboSize->display_child(195, 5, 40, 20);
 
       int x = 245;
-
-      m_pbuttonForeground->display_child(x, 5, 20, 20);
-      x += 20;
-      m_pbuttonBackground->display_child(x, 5, 20, 20);
-      x += 20;
-      m_pbuttonSubscript->display_child(x, 5, 20, 20);
-      x += 20;
-      m_pbuttonSuperscript->display_child(x, 5, 20, 20);
-      x += 20;
+      throw "create line layout";
+      //m_pbuttonForeground->display_child(x, 5, 20, 20);
+      //x += 20;
+      //m_pbuttonBackground->display_child(x, 5, 20, 20);
+      //x += 20;
+      //m_pbuttonSubscript->display_child(x, 5, 20, 20);
+      //x += 20;
+      //m_pbuttonSuperscript->display_child(x, 5, 20, 20);
+      //x += 20;
 
       x += 10;
 
-      m_pbuttonAlignLeft->display_child(x, 5, 20, 20);
-      x += 20;
-      m_pbuttonAlignCenter->display_child(x, 5, 20, 20);
-      x += 20;
-      m_pbuttonAlignRight->display_child(x, 5, 20, 20);
-      x += 20;
+      //m_pbuttonAlignLeft->display_child(x, 5, 20, 20);
+      //x += 20;
+      //m_pbuttonAlignCenter->display_child(x, 5, 20, 20);
+      //x += 20;
+      //m_pbuttonAlignRight->display_child(x, 5, 20, 20);
+      //x += 20;
 
       //m_pbuttonItalic->
       //m_pbuttonUnderline->
@@ -759,8 +759,8 @@ namespace user
 //      //pfontformattool->m_ewindowflag |= e_window_flag_embedded_prodevian;
 //      //pfontformattool->m_ewindowflag |= e_window_flag_satellite_window;
 //
-//      ::user::create_struct createstruct(WS_EX_NOACTIVATE | WS_EX_TOPMOST | WS_EX_TOOLWINDOW | WS_EX_LAYERED);
-//      //::user::create_struct createstruct;
+//      ::user::system createstruct(WS_EX_NOACTIVATE | WS_EX_TOPMOST | WS_EX_TOOLWINDOW | WS_EX_LAYERED);
+//      //::user::system createstruct;
 //
 //      pfontformattool->create_window_ex(createstruct, nullptr, "textformat_sys_format_tool");
 //

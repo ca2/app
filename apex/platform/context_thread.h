@@ -12,7 +12,7 @@ namespace apex
    public:
 
 
-      payload                                    m_varFile;
+      ::payload                                    m_varFile;
       __reference_array(::create)            m_createaPending;
       __reference_array(::create)            m_createaHistory;
       __reference(::create)                  m_pcreate;

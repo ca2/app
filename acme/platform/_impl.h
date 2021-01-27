@@ -387,7 +387,7 @@ namespace str
    inline void from(string & str, const millis & millis)
    {
 
-      str.Format(__prtick, millis.m_iMilliseconds);
+      str.Format(__prtick, millis.m_i);
 
    }
 

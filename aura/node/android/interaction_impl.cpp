@@ -42,9 +42,9 @@ namespace android
       //m_bEnabled           = true;
       m_pthreadDraw = nullptr;
 
-      //xxf_zero(m_rectParentClient);
-      xxf_zero(m_size);
-      xxf_zero(m_point);
+      //__zero(m_rectParentClient);
+      __zero(m_size);
+      __zero(m_point);
 
 
 
@@ -62,9 +62,9 @@ namespace android
    //   m_bUpdateGraphics    = false;
    //   m_bEnabled           = true;
    //   m_pthreadDraw = nullptr;
-   //   //xxf_zero(m_rectParentClient);
-   //   xxf_zero(m_size);
-   //   xxf_zero(m_point);
+   //   //__zero(m_rectParentClient);
+   //   __zero(m_size);
+   //   __zero(m_point);
 
    //   set_handle(oswindow);
 
@@ -82,9 +82,9 @@ namespace android
    //   m_bIgnoreMoveEvent   = false;
    //   m_bEnabled           = true;
    //   m_pthreadDraw = nullptr;
-   //   xxf_zero(m_rectParentClient);
-   //   xxf_zero(m_size);
-   //   xxf_zero(m_point);
+   //   __zero(m_rectParentClient);
+   //   __zero(m_size);
+   //   __zero(m_point);
 
    //}
 
@@ -223,7 +223,7 @@ namespace android
    }
 
 
-   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::primitive * puiParent, id id)
+   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pusersystem, ::user::primitive * puiParent, id id)
    {
 
       auto oswindow = puiParent ? puiParent->get_safe_handle() : nullptr;
@@ -231,7 +231,7 @@ namespace android
       if(puiParent == nullptr)
       {
 
-         if(!native_create_window_ex(pinteraction, pcreatestruct, oswindow, id))
+         if(!native_create_window_ex(pinteraction, pusersystem, oswindow, id))
          {
 
             return false;
@@ -242,7 +242,7 @@ namespace android
       else
       {
 
-         if(!native_create_window_ex(pinteraction, pcreatestruct, oswindow, id))
+         if(!native_create_window_ex(pinteraction, pusersystem, oswindow, id))
          {
 
             return false;
@@ -256,16 +256,16 @@ namespace android
    }
 
 
-   bool interaction_impl::_native_create_window_ex(__pointer(::user::create_struct) pcreatestruct)
+   bool interaction_impl::_native_create_window_ex(__pointer(::user::system) pusersystem)
    {
 
 //      __throw(not_implemented("no multiple native windows per application"));
 
 //      return false;
 
-      ENSURE_ARG(pcreatestruct->m_createstruct.lpszClass == nullptr || __is_valid_string(pcreatestruct->m_createstruct.lpszClass));
+      ENSURE_ARG(pusersystem->m_createstruct.lpszClass == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszClass));
 
-      if (pcreatestruct->m_createstruct.hwndParent == HWND_MESSAGE)
+      if (pusersystem->m_createstruct.hwndParent == HWND_MESSAGE)
       {
 
          m_puserinteraction->m_bMessageWindow = true;
@@ -287,7 +287,7 @@ namespace android
 
          ::rect rectCreate;
 
-         pcreatestruct->get_rect(rectCreate);
+         pusersystem->get_rect(rectCreate);
 
          m_puserinteraction->place(rectCreate);
 
@@ -393,7 +393,7 @@ namespace android
 
       output_debug_string("android_interaction_impl send e_message_create");
 
-      m_puserinteraction->send_message(e_message_create, 0, (::lparam)&pcreatestruct->m_createstruct);
+      m_puserinteraction->send_message(e_message_create, 0, (::lparam)&pusersystem->m_createstruct);
 
       m_puserinteraction->send_message(e_message_size);
 
@@ -452,7 +452,7 @@ namespace android
 
 
    // for child android
-   bool interaction_impl::pre_create_window(::user::create_struct * pcreatestruct)
+   bool interaction_impl::pre_create_window(::user::system * pusersystem)
    {
 
       return true;
@@ -468,20 +468,20 @@ namespace android
       ASSERT(pParentWnd != nullptr);
       ASSERT((dwStyle & WS_POPUP) == 0);
 
-      auto pcreatestruct = __new(::user::create_struct);
+      auto pusersystem = __new(::user::system);
 
-      pcreatestruct->m_createstruct.dwExStyle = 0;
-      pcreatestruct->m_createstruct.lpszClass = lpszClassName;
-      pcreatestruct->m_createstruct.lpszName = lpszWindowName;
-      pcreatestruct->m_createstruct.style = dwStyle | WS_CHILD;
-      pcreatestruct->m_createstruct.x = rect.left;
-      pcreatestruct->m_createstruct.y = rect.top;
-      pcreatestruct->m_createstruct.cx = width(rect);
-      pcreatestruct->m_createstruct.cy = height(rect);
-      pcreatestruct->m_createstruct.hwndParent = pParentWnd->get_safe_handle();
-      pcreatestruct->m_createstruct.lpCreateParams = (LPVOID)pcreate;
+      pusersystem->m_createstruct.dwExStyle = 0;
+      pusersystem->m_createstruct.lpszClass = lpszClassName;
+      pusersystem->m_createstruct.lpszName = lpszWindowName;
+      pusersystem->m_createstruct.style = dwStyle | WS_CHILD;
+      pusersystem->m_createstruct.x = rect.left;
+      pusersystem->m_createstruct.y = rect.top;
+      pusersystem->m_createstruct.cx = width(rect);
+      pusersystem->m_createstruct.cy = height(rect);
+      pusersystem->m_createstruct.hwndParent = pParentWnd->get_safe_handle();
+      pusersystem->m_createstruct.lpCreateParams = (LPVOID)pcreate;
 
-      return create_window_ex(pinteraction, pcreatestruct, pParentWnd, id);
+      return create_window_ex(pinteraction, pusersystem, pParentWnd, id);
 
    }
 
@@ -496,9 +496,9 @@ namespace android
 
    //    }
 
-   //    ::user::create_struct createstruct(0, nullptr, pszName, WS_CHILD, ::rect());
+   //    ::user::system createstruct(0, nullptr, pszName, WS_CHILD, ::rect());
 
-   //    pcreatestruct->m_createstruct.hwndParent = HWND_MESSAGE;
+   //    pusersystem->m_createstruct.hwndParent = HWND_MESSAGE;
 
    //    if(!native_create_window_ex(pinteraction, createstruct))
    //    {
@@ -1149,7 +1149,7 @@ namespace android
          //}
          //::DeleteObject(hrgn); /* finished with region */
          //WINDOWPLACEMENT wp;
-         //xxf_zero(wp);
+         //__zero(wp);
          //wp.length = sizeof(WINDOWPLACEMENT);
          //::GetWindowPlacement(get_handle(),&wp);
          //bool bZoomed = ::IsZoomed(get_handle()) != FALSE;
@@ -4106,7 +4106,7 @@ namespace android
       Default();
    }*/
 
-   bool interaction_impl::OnNcCreate(::user::create_struct *)
+   bool interaction_impl::OnNcCreate(::user::system *)
    {
 
       return Default() != FALSE;

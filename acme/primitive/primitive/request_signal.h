@@ -7,8 +7,8 @@
 //public:
 //
 //
-//   payload         m_varFile;
-//   payload         m_varQuery;
+//   ::payload         m_varFile;
+//   ::payload         m_varQuery;
 //
 //
 //   request_signal(::matter * pobject);

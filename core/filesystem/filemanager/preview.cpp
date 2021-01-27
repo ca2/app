@@ -79,14 +79,14 @@ namespace filemanager
       }
       else if (psubject->id() == FILTER_ID)
       {
-         /*if(psubject->value(id_filter).is_empty())
+         /*if(psubject->payload(id_filter).is_empty())
          {
          FilterClose();
          }
          else
          {
          FilterBegin();
-         Filter1(psubject->value(id_filter));
+         Filter1(psubject->payload(id_filter));
          FilterApply();
          }*/
       }

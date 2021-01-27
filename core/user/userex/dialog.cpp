@@ -72,7 +72,7 @@ bool dialog::show(const char * pszMatter)
 
    m_strMatter = ::file::path(strMatter);
 
-   payload payload;
+   ::payload payload;
 
    payload["url"] = strMatter;
 

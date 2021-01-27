@@ -42,31 +42,31 @@ struct CLASS_DECL_ACME matter :
    inline property * find_property(const ::id & id) const;
 
 
-   inline payload attribute(const ::id & id);
+   inline ::payload attribute(const ::id & id);
    ::property * find_attribute(const ::id & id);
 
    template < typename TYPE >
    inline bool find_attribute(const ::id & id, TYPE & t);
  
-   inline payload find_value(const ::id & id) const;
-   inline payload find_value(const ::id & id, const payload & varDefault) const;
+   inline ::payload find_value(const ::id & id) const;
+   inline ::payload find_value(const ::id & id, const ::payload & varDefault) const;
    
    
-   inline payload & matter(const ::id & id);
+   inline ::payload & matter(const ::id & id);
 
 
-   inline payload operator()(const ::id & id) const;
-   inline payload operator()(const ::id & id, const payload & varDefault) const;
+   inline ::payload operator()(const ::id & id) const;
+   inline ::payload operator()(const ::id & id, const ::payload & varDefault) const;
 
 
    inline property & operator[](const ::id & id);
 
 
-   inline payload operator[](const ::id & id) const;
+   inline ::payload operator[](const ::id & id) const;
 
 
-   inline payload value(const ::id & id) const;
-   inline payload value(const ::id & id, const payload & varDefault) const;
+   inline ::payload value(const ::id & id) const;
+   inline ::payload value(const ::id & id, const ::payload & varDefault) const;
 
 
    inline string find_string(const ::id & id, const ansichar * pszDefault = nullptr) const;
@@ -86,7 +86,7 @@ struct CLASS_DECL_ACME matter :
 
 
    inline bool is_true(const ::id & id) const;
-   inline bool is_true(const ::id & id, const payload & varDefault, bool bDefault) const;
+   inline bool is_true(const ::id & id, const ::payload & varDefault, bool bDefault) const;
 
 
 }; // struct matter

@@ -234,7 +234,7 @@ namespace userex
       
       pmessage->previous();
 
-      if (!m_pprogress->create_window(this, "progress_control"))
+      if (!m_pprogress->create_control(this, "progress_control"))
       {
 
 

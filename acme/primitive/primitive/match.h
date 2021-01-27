@@ -15,7 +15,7 @@ namespace match
       virtual ~item() {}
 
 
-      virtual bool matches(const payload& payload) const = 0;
+      virtual bool matches(const ::payload & payload) const = 0;
 
 
    };
@@ -31,7 +31,7 @@ namespace match
       item* m_pitem2;
 
 
-      virtual bool matches(const payload& payload) const;
+      virtual bool matches(const ::payload & payload) const;
 
    };
 
@@ -48,7 +48,7 @@ namespace match
       string(const char* psz = nullptr);
 
 
-      virtual bool matches(const payload& payload) const;
+      virtual bool matches(const ::payload & payload) const;
 
 
    };
@@ -63,7 +63,7 @@ namespace match
       ci_string(const char* psz = nullptr);
 
 
-      virtual bool matches(const payload& payload) const;
+      virtual bool matches(const ::payload & payload) const;
 
 
    };
@@ -78,7 +78,7 @@ namespace match
       prefix(const char* psz = nullptr);
 
 
-      virtual bool matches(const payload& payload) const;
+      virtual bool matches(const ::payload & payload) const;
 
 
    };
@@ -93,7 +93,7 @@ namespace match
       ci_prefix(const char* psz = nullptr);
 
 
-      virtual bool matches(const payload& payload) const;
+      virtual bool matches(const ::payload & payload) const;
 
 
    };
@@ -108,7 +108,7 @@ namespace match
       suffix(const char* psz = nullptr);
 
 
-      virtual bool matches(const payload& payload) const;
+      virtual bool matches(const ::payload & payload) const;
 
 
    };
@@ -123,7 +123,7 @@ namespace match
       ci_suffix(const char* psz = nullptr);
 
 
-      virtual bool matches(const payload& payload) const;
+      virtual bool matches(const ::payload & payload) const;
 
    };
 
@@ -137,7 +137,7 @@ namespace match
       HAVE_ARRAY_OF(item, m_itema, item);
 
 
-      virtual bool matches(const payload& payload) const;
+      virtual bool matches(const ::payload & payload) const;
 
 
 

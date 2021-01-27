@@ -368,7 +368,7 @@ namespace browser
 
                      {
 
-                        payload v;
+                        ::payload v;
 
                         v = d;
 

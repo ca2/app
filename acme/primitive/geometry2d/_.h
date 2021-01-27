@@ -12,7 +12,7 @@ public:
    double m_d; // in radians
 
    angle() : m_d(0.0) {}
-   angle(e_no_init) {}
+   angle(enum_no_init) {}
    angle(nullptr_t) : m_d(0.0) {}
    angle(double d) : m_d(d) {}
 
@@ -696,14 +696,27 @@ template <  typename L, typename T, typename W, typename H >
 inline auto _001SetRectDim(RECTD * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 
 
-template < typename RECT_TYPE, typename POINT_TYPE, typename SIZE_TYPE >
-RECT_TYPE* set_rect_point_size(RECT_TYPE* prect, const POINT_TYPE & point, const SIZE_TYPE & size)
+template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size SIZE >
+RECTANGLE * set_rect_size_bottom_right(RECTANGLE * prect, const SIZE & size)
 {
 
-   prect->left = (decltype(RECT_TYPE::left))point.x;
-   prect->top = (decltype(RECT_TYPE::top))point.y;
-   prect->right = (decltype(RECT_TYPE::right))(point.x + size.cx);
-   prect->bottom = (decltype(RECT_TYPE::bottom))(point.y + size.cy);
+   prect->right = (decltype(RECTANGLE::right))(prect->left + size.cx);
+   prect->bottom = (decltype(RECTANGLE::bottom))(prect->top + size.cy);
+
+   return prect;
+
+}
+
+
+
+template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size SIZE >
+RECTANGLE * set_rect_point_size(RECTANGLE * prect, const POINT & point, const SIZE & size)
+{
+
+   prect->left = (decltype(RECTANGLE::left))point.x;
+   prect->top = (decltype(RECTANGLE::top))point.y;
+   prect->right = (decltype(RECTANGLE::right))(point.x + size.cx);
+   prect->bottom = (decltype(RECTANGLE::bottom))(point.y + size.cy);
 
    return prect;
 
@@ -897,8 +910,8 @@ inline RECT_TYPE* swap_rect_left_right(RECT_TYPE* prect) { __swap(prect->left, p
 
 
 
-template < typename POINT_TYPE >
-inline bool polygon_contains_point(const POINT_TYPE * ppPolygon, i32 iCount, const POINT_TYPE & point)
+template < primitive_point POINT1, primitive_point POINT2 >
+inline bool polygon_contains_point(const POINT1 * ppPolygon, i32 iCount, const POINT2 & point)
 {
 
    int i, j = iCount - 1;

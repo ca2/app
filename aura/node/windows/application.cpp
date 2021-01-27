@@ -41,7 +41,7 @@ namespace aura
    //}
 
 
-   //::user::document *  application::_001OpenDocumentFile(payload varFile)
+   //::user::document *  application::_001OpenDocumentFile(::payload varFile)
    //{
 
    //   return nullptr;

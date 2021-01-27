@@ -33,8 +33,6 @@
 
                m_bHollow = false;
 
-               ///set_style(StyleTranslucidWarmLiteGray);
-
                m_penHollow1.create(this);
                m_penHollow2.create(this);
                m_penHollow3.create(this);
@@ -266,31 +264,8 @@ SizingNone:
                }
                else if(estyle == ::user::StyleLightBlue || estyle == ::user::StyleRedOrange)
                {
-                  //rectA.deflate(1,1,1,1);
-                  Draw3dRectSide(pgraphics,rectA,eside, crMoveableBorderHilight,0);//m_colorMoveableBorderDkShadow);
 
-                  //if(!m_bHollow)
-                  //{
-
-                  //   rectA.deflate(1,1,1,1);
-                  //   Draw3dRectSide(pgraphics,rectA,eside,crMoveableBorderHilight,crMoveableBorderShadow);
-
-                  //   rectA.deflate(1,1,1,1);
-                  //   Draw3dRectSide(pgraphics,rectA,eside,crMoveableBorder,crMoveableBorder);
-
-                  //   rectA.deflate(1,1,1,1);
-                  //   Draw3dRectSide(pgraphics,rectA,eside,crMoveableBorder,crMoveableBorder);
-
-                  //   ::rect rect;
-                  //   GetBorderRect(rectClient,rect,eside);
-
-                  //   class imaging & imaging = System.imaging();
-                  //   imaging.color_blend(pgraphics,
-                  //      rect,
-                  //      crMoveableBorder,
-                  //      127);
-
-                  //}
+                  Draw3dRectSide(pgraphics, rectA, eside, color::black, color::black);
 
                }
                else if(estyle == ::user::StyleTranslucidWarmGray
@@ -411,7 +386,7 @@ SizingNone:
                //                | e_border_left));
                //}
 
-               auto prectMargin = get_margin_rect();
+               auto rectMargin = get_margin_rect();
 
                auto pframewindow = m_pframewindow;
 
@@ -427,16 +402,16 @@ SizingNone:
 
                   pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
-                  auto iMaxBorder = prectMargin->max_border();
+                  auto iMaxBorder = rectMargin.max_dimension();
 
                   if (iMaxBorder > 0)
                   {
 
                      ::rect rectDeflate(
-                        prectMargin->left / iMaxBorder,
-                        prectMargin->top / iMaxBorder,
-                        prectMargin->right / iMaxBorder,
-                        prectMargin->bottom / iMaxBorder);
+                        rectMargin.left / iMaxBorder,
+                        rectMargin.top / iMaxBorder,
+                        rectMargin.right / iMaxBorder,
+                        rectMargin.bottom / iMaxBorder);
 
                      for (index i = 0; i < iMaxBorder; i++)
                      {
@@ -586,8 +561,7 @@ SizingNone:
             {
 
                on_style_change_001_and_002();
-               m_rectMarginNormal.set(10, 10, 10, 10);
-
+               
                auto pframewindow = m_pframewindow;
 
                auto estyle = pframewindow->m_estyle;

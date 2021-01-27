@@ -12,7 +12,7 @@ public:
 
 
    virtual void route_command_message(::user::command * pcommand) override;
-   virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
+   virtual bool pre_create_window(::user::system * pusersystem) override;
 
 
    virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;

@@ -265,7 +265,7 @@ namespace macos
 
 
 
-   payload os_context::connection_settings_get_auto_detect()
+   ::payload os_context::connection_settings_get_auto_detect()
    {
 //      __throw(not_implemented());
       return false;
@@ -287,7 +287,7 @@ namespace macos
 
 
 
-   payload os_context::connection_settings_get_auto_config_url()
+   ::payload os_context::connection_settings_get_auto_config_url()
    {
 
 //      __throw(not_implemented());

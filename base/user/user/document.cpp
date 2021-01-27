@@ -362,7 +362,7 @@ namespace user
 
       update_all_views(psubject);
 
-      return psubject->value(id_id);
+      return psubject->payload(id_id);
 
    }
 
@@ -372,7 +372,7 @@ namespace user
 
       auto psubject = subject(id_get_topic_view_id);
 
-      psubject->value(id_id) = id;
+      psubject->payload(id_id) = id;
 
       update_all_views(psubject);
 
@@ -673,7 +673,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // File/Path commands
 
-   void document::set_path_name(payload varFile, bool bAddToMRU)
+   void document::set_path_name(::payload varFile, bool bAddToMRU)
    {
       UNREFERENCED_PARAMETER(bAddToMRU);
       string strPathName;
@@ -807,7 +807,7 @@ namespace user
    }
 
 
-   bool document::open_document(const payload & varFile)
+   bool document::open_document(const ::payload & varFile)
    {
 
       delete_contents();
@@ -915,7 +915,7 @@ namespace user
    }
 
 
-   bool document::on_open_document(const payload & varFile)
+   bool document::on_open_document(const ::payload & varFile)
    {
 
       auto preader = Context.file().get_reader(varFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
@@ -966,7 +966,7 @@ namespace user
    }
 
 
-   bool document::on_save_document(const payload & varFile)
+   bool document::on_save_document(const ::payload & varFile)
    {
 
       auto pwriter = Context.file().get_writer(varFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive);
@@ -1042,7 +1042,7 @@ namespace user
             if (pframe.is_set())
             {
 
-               pframe->value("hold_impact_system") = m_pimpactsystem;
+               pframe->payload("hold_impact_system") = m_pimpactsystem;
 
                frameptra.add_unique(pframe);
 
@@ -1148,7 +1148,7 @@ namespace user
    }
 
 
-   void document::report_load_exception(const payload & varFile, file_result presult, const char * pszDefault)
+   void document::report_load_exception(const ::payload & varFile, file_result presult, const char * pszDefault)
    {
 
       report_save_load_exception(varFile, presult, false, pszDefault);
@@ -1156,7 +1156,7 @@ namespace user
    }
 
 
-   void document::report_save_exception(const payload & varFile, file_result presult, const char * pszDefault)
+   void document::report_save_exception(const ::payload & varFile, file_result presult, const char * pszDefault)
    {
 
       report_save_load_exception(varFile, presult, true, pszDefault);
@@ -1164,7 +1164,7 @@ namespace user
    }
 
 
-   void document::report_save_load_exception(const payload & varFile, file_result presult, bool bSave, const char * pszDefault)
+   void document::report_save_load_exception(const ::payload & varFile, file_result presult, bool bSave, const char * pszDefault)
    {
 
       try
@@ -1410,7 +1410,7 @@ namespace user
    }
 
 
-   bool document::on_filemanager_open(::filemanager::document * pmanager, payload varFile)
+   bool document::on_filemanager_open(::filemanager::document * pmanager, ::payload varFile)
    {
 
       return on_open_document(varFile);
@@ -1418,7 +1418,7 @@ namespace user
    }
 
 
-   bool document::on_filemanager_save(::filemanager::document * pmanager, payload varFile, bool bReplace)
+   bool document::on_filemanager_save(::filemanager::document * pmanager, ::payload varFile, bool bReplace)
    {
 
       return do_save(varFile, bReplace);
@@ -1426,7 +1426,7 @@ namespace user
    }
 
 
-   bool document::do_save(payload varFile, bool bReplace)
+   bool document::do_save(::payload varFile, bool bReplace)
    // Save the document_interface data to a file
    // pszPathName = path name where to save document_interface file
 
@@ -1438,7 +1438,7 @@ namespace user
    // if 'bReplace' is FALSE will not machine path name (SaveCopyAs)
    {
 
-      payload newName = varFile;
+      ::payload newName = varFile;
 
       if (newName.is_empty())
       {
@@ -1518,7 +1518,7 @@ namespace user
 
          // we do not have read-write access or the file does not (now) exist
 
-         if (!do_save(payload(::e_type_empty)))
+         if (!do_save(::payload(::e_type_empty)))
          {
 
             TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: File save with new name failed.\n");
@@ -1759,7 +1759,7 @@ namespace user
    }
 
 
-   //void document::on_before_navigate(::form_data * pdata,payload & varFile,u32 nFlags,const char * pszTargetFrameName,byte_array& baPostedData,const char * pszHeaders,bool* pbCancel)
+   //void document::on_before_navigate(::form_data * pdata,::payload & varFile,u32 nFlags,const char * pszTargetFrameName,byte_array& baPostedData,const char * pszHeaders,bool* pbCancel)
    //{
 
    //   UNREFERENCED_PARAMETER(pdata);

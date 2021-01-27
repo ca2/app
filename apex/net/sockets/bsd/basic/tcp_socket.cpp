@@ -356,7 +356,7 @@ namespace sockets
          bind(s,bind_ad.sa(),bind_ad.sa_len());
       }
       in_addr addrSocks4 = GetSocks4Host();
-      if(!skip_socks && !xxf_is_zero(addrSocks4) && GetSocks4Port())
+      if(!skip_socks && !__is_zero(addrSocks4) && GetSocks4Port())
       {
          ::net::address sa(GetSocks4Host(),GetSocks4Port());
          {

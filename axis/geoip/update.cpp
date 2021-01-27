@@ -153,7 +153,7 @@ void GeoIP_printf(void (*f)(char *), const char *str,...) {
 /* GeoIP Hostname where proxy forwards requests. */
 //static const char * GeoIPProxiedHost = "";
 
-/* read http_proxy env. payload & parse it.
+/* read http_proxy env. ::payload & parse it.
  * -----------------------------------------
  * Allow only these formats:
  * "http://server.com", "http://server.com:8080"

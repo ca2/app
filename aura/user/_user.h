@@ -51,7 +51,7 @@ namespace user
 
 
    class copydesk;
-   class create_struct;
+   class system;
    class control_event;
    //class control_descriptor;
    class interaction_child;
@@ -72,7 +72,7 @@ namespace user
    class style;
    class scroll_info;
    class window_map;
-   class system_interaction_impl;
+   class system_interaction;
 
 
    //class place_holder;
@@ -199,12 +199,9 @@ namespace user
 
 
 //#include "aura/primitive/primitive/create.h"
-#include "create.h"
+#include "system.h"
 
-//#include "check.h"
-//#include "text.h"
 #include "window_util.h"
-#include "aura/graphics/draw2d/color.h"
 #include "aura/graphics/draw2d/text_box.h"
 #include "aura/graphics/draw2d/font_list.h"
 #include "window_state.h"
@@ -662,7 +659,7 @@ public:
    void OnGetMinMaxInfo(MINMAXINFO* pMMI);
    LRESULT OnFloatStatus(WPARAM wParam, LPARAM lParam);
    LRESULT OnQueryCenterWnd(WPARAM wParam, LPARAM lParam);
-   bool OnNcCreate(::user::create_struct * pcs);
+   bool OnNcCreate(::user::system * pcs);
 
 
 public:
@@ -670,7 +667,7 @@ public:
 
 
 protected:
-   virtual bool pre_create_window(::user::create_struct * pcreatestruct);
+   virtual bool pre_create_window(::user::system * pusersystem);
 
 protected:
    bool m_bSysTracking;

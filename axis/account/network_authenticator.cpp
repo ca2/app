@@ -349,7 +349,7 @@ namespace account
 
          millis tickEnd = ::millis::now();
 
-         TRACE( "get_account_login HTTP GET time = %dms", set["http_get_serial"].i64(),  (tickEnd - tickStart).m_iMilliseconds);
+         TRACE( "get_account_login HTTP GET time = %dms", set["http_get_serial"].i64(),  (tickEnd - tickStart).m_i);
 
       }
       catch(...)

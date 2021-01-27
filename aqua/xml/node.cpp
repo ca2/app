@@ -77,7 +77,7 @@ namespace xml
    }
 
 
-   //payload node::attr(const char * pcszName)
+   //::payload node::attr(const char * pcszName)
    //{
 
    //   return set(pcszName);
@@ -127,7 +127,7 @@ namespace xml
    //}
 
 
-   property * node::set_attribute(const ::id & id, const payload & payload)
+   property * node::set_attribute(const ::id & id, const ::payload & payload)
    {
 
       auto & property = m_set.get(id);

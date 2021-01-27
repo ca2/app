@@ -24,7 +24,7 @@ namespace user
       m_iPad = 10;
       m_ealign = e_align_top_left;
 
-      //m_scrolldataVert.m_bScrollEnable = true;
+      //m_scrolldataVertical.m_bScrollEnable = true;
 
    }
 
@@ -99,7 +99,7 @@ namespace user
 
       }
 
-      return string(get_current_image()->extension()->value("read_only_link"));
+      return string(get_current_image()->extension()->payload("read_only_link"));
 
    }
 
@@ -634,7 +634,7 @@ namespace user
 
       //m_sizeTotal = rectTotal.size();
 
-      //m_scrolldataVert.m_iPage = rectClient.height();
+      //m_scrolldataVertical.m_iPage = rectClient.height();
 
       ::user::box::on_layout(pgraphics);
 

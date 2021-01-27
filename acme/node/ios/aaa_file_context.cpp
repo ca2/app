@@ -46,7 +46,7 @@ namespace ios
       if(System.has_property("user_folder_relative_path"))
       {
 
-         strUserFolderShift = strRelative / Application.value("user_folder_relative_path").get_string();
+         strUserFolderShift = strRelative / Application.payload("user_folder_relative_path").get_string();
 
       }
       else
@@ -94,10 +94,10 @@ namespace ios
    }
 
 
-   payload file_context::length(const ::file::path & path, payload * pvarQuery)
+   ::payload file_context::length(const ::file::path & path, ::payload * pvarQuery)
    {
 
-      payload varRet;
+      ::payload varRet;
 
       struct stat stat;
 

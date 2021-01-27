@@ -29,8 +29,8 @@ namespace os
 
       m_bNoDecorations = false;
 
-      xxf_zero(m_size);
-      xxf_zero(m_point);
+      __zero(m_size);
+      __zero(m_point);
 
 
    }
@@ -106,7 +106,7 @@ namespace os
 
       XSetWindowAttributes attr;
 
-      xxf_zero(attr);
+      __zero(attr);
 
       attr.colormap = XCreateColormap( display, rootwin, vis, AllocNone);
 
@@ -531,7 +531,7 @@ namespace os
 
       byte baState[256];
 
-      xxf_zero(baState);
+      __zero(baState);
       for (int i = 0; i < 256; i++)
       {
 //         baState[i] = (byte)GetAsyncKeyState(i);

@@ -571,7 +571,7 @@ int iFrame)
       HRESULT hr = pbitmapdecoder->GetFrame(iFrame, &pframe);
 
       WICPixelFormatGUID px;
-      xxf_zero(px);
+      __zero(px);
       if (!pframe)
       {
          return false;

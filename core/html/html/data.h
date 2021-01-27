@@ -24,7 +24,7 @@ public:
    virtual i64 dec_ref(OBJ_REF_DBG_PARAMS);
 
 
-   virtual bool open_document(const payload & varFile);
+   virtual bool open_document(const ::payload & varFile);
    virtual ::e_status     open_html(const ::string & str);
 
 

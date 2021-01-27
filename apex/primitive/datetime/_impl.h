@@ -18,8 +18,8 @@
 //   {
 //
 //      m_eduration = duration.m_eduration;
-//      m_iSeconds = duration.m_iSeconds;
-//      m_iNanoseconds = duration.m_iNanoseconds;
+//      m_i = duration.m_i;
+//      m_i = duration.m_i;
 //
 //   }
 //

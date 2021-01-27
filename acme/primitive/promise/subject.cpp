@@ -126,51 +126,41 @@ namespace promise
 #endif
 
 
-   ::e_status subject::run()
+   ::e_status subject::step()
    {
 
       auto ptask = ::get_task();
 
-//      int iUpdateSerial;
-
-      while (!::promise::handler::g_bDestroyAll && ptask->thread_get_run())
+      if(::promise::handler::g_bDestroyAll || !ptask->thread_get_run())
       {
 
-         //iUpdateSerial = m_iUpdateSerial;
+         return ::error_failed;
+
+      }
+
+      m_phandler->process(this);
+
+      return ::success;
+
+   }
+
+
+   ::e_status subject::run()
+   {
+
+      while (true)
+      {
+
+         auto estatus = step();
+
+         if(!estatus)
+         {
+
+            return estatus;
+
+         }
 
          m_phandler->process(this);
-
-//         if (iUpdateSerial != m_iUpdateSerial)
-//         {
-//
-//            deliver();
-//
-//         }
-
-         //if (m_iUpdateSerial < 0)
-//         {
-//
-//            m_pbacking->process_subject(m_id);
-//
-//         }
-
-//         if (m_bModified)
-//         {
-//
-//            m_bModified = false;
-//
-//            try
-//            {
-//
-//               notify();
-//
-//            }
-//            catch (...)
-//            {
-//
-//            }
-//
-//         }
 
          // fetch updated polling time
          auto iPollMillis = poll_time();
@@ -189,15 +179,6 @@ namespace promise
 
          }
 
-         //m_psource->apply_update(m_id);
-
-         //if (m_bModified)
-         //{
-
-//            continue;
-
-  //       }
-
          ::sleep(iPollMillis);
 
       }
@@ -205,30 +186,6 @@ namespace promise
       return ::success;
 
    }
-
-
-   //void subject::process(const ::payload & payload)
-   //{
-
-
-   //   process();
-
-   //}
-
-   //void subject::process(const ::action_context & actioncontext)
-   //{
-
-   //   m_actioncontext = actioncontext;
-
-   //   process();
-
-   //}
-
-   //void subject::process()
-   //{
-
-
-   //}
 
 
    void subject::deliver()

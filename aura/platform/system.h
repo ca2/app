@@ -96,8 +96,8 @@ namespace aura
 
       //void *                                             m_ftlibrary;
 
-//      payload                                                m_varFile;
-////      payload                                                m_
+//      ::payload                                                m_varFile;
+////      ::payload                                                m_
 //
 //      __pointer(::mutex)                                 m_spmutexUserAppData;
 //      __pointer(::mutex)                                 m_spmutexSystemAppData;
@@ -279,6 +279,9 @@ namespace aura
 
 //      virtual ::e_status init_system() override;
 //      virtual void term_system() override;
+
+
+      virtual ::e_status run_system() override;
 
       virtual void term() override;
 
@@ -623,7 +626,7 @@ namespace aura
       static inline ::id id(const string & str);
       static inline ::id id(i64 i);
       static inline ::id_space & id();
-      inline ::id id(const payload & payload);
+      inline ::id id(const ::payload & payload);
       inline ::id id(const property & prop);
 
 
@@ -732,7 +735,7 @@ namespace aura
 
       virtual bool merge_accumulated_on_open_file(::create * pcreate) override;
 
-      virtual bool on_open_file(payload varFile, string strExtra) override;
+      virtual bool on_open_file(::payload varFile, string strExtra) override;
 
       virtual LPWAVEOUT waveout_open(int iChannel, LPAUDIOFORMAT pformat, LPWAVEOUT_CALLBACK pcallback);
 

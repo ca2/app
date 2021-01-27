@@ -30,6 +30,7 @@
 //::millis g_tickLastX11WindowConfigurationCheck;
 
 
+
 //void _x11_defer_check_configuration(oswindow oswindow);
 //void x11_defer_check_configuration(oswindow oswindow);
 
@@ -399,7 +400,7 @@ void mapped_net_state_raw(bool add, Display * d, Window w, int iScreen, Atom sta
 #define _NET_WM_STATE_ADD           1    /* add/set property */
 #define _NET_WM_STATE_TOGGLE        2    /* toggle property  */
 
-   xxf_zero(xclient);
+   __zero(xclient);
    xclient.type = ClientMessage;
    xclient.window = w;
    xclient.message_type = XInternAtom(d, "_NET_WM_STATE", False);
@@ -428,7 +429,7 @@ void unmapped_net_state_raw(Display * d, Window w, ...)
 
    va_start(argp, w);
 
-   xxf_zero(xevent);
+   __zero(xevent);
 
    array < Atom > atoms;
 
@@ -453,7 +454,7 @@ void unmapped_net_state_raw(Display * d, Window w, ...)
 
       XChangeProperty(d, w, XInternAtom(d, "_NET_WM_STATE", False),
                       XA_ATOM, 32, PropModeReplace,
-                      (guchar*) atoms.get_data(), atoms.get_size());
+                      (char *) atoms.get_data(), atoms.get_size());
    }
    else
    {
@@ -1243,7 +1244,7 @@ oswindow set_active_window(oswindow window)
 
       XEvent xev;
 
-      xxf_zero(xev);
+      __zero(xev);
 
       Window windowRoot = window->root_window_raw();
 
@@ -1758,7 +1759,7 @@ void wm_add_remove_state_mapped_raw(oswindow w, e_net_wm_state estate, bool bSet
 
    XClientMessageEvent xclient;
 
-   xxf_zero(xclient);
+   __zero(xclient);
 
    xclient.type            = ClientMessage;
    xclient.window          = window;
@@ -2800,7 +2801,7 @@ bool wm_add_remove_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
 #if !defined(RASPBIAN)
 
 
-bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie * cookie);
+bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericEventCookie * cookie);
 
 
 #else
@@ -2887,13 +2888,13 @@ bool post_ui_message(const MESSAGE & message);
 
 
 
-gboolean x11_source_func(gpointer ppointer);
+//gboolean x11_source_func(gpointer ppointer);
 
 
 Atom g_atomKickIdle = 0;
 
 
-bool g_bFinishX11SourceFunc = false;
+bool g_bFinishX11Thread = false;
 
 
 //void start_x11_thread(osdisplay_data * pdisplaydata)
@@ -2937,23 +2938,116 @@ bool g_bFinishX11SourceFunc = false;
 //}
 
 
-bool g_bInitX11SourceFunc = false;
+bool g_bInitX11Thread = false;
 
 
 void finish_x11_thread()
 {
 
-   g_bFinishX11SourceFunc = true;
+   g_bFinishX11Thread = true;
 
-   g_bInitX11SourceFunc = false;
+   g_bInitX11Thread = false;
 
 }
 
 
 osdisplay_data * x11_main_display();
 
+bool x11_on_event(XEvent * pevent)
+{
 
-gboolean x11_source_func(gpointer ppointer)
+   osdisplay_data * pdisplaydata = (osdisplay_data *) x11_main_display();
+
+   if(pdisplaydata == nullptr)
+   {
+
+      return false;
+
+   }
+
+   Display * pdisplay = pdisplaydata->display();
+
+   if(pdisplay == nullptr)
+   {
+
+      return false;
+
+   }
+
+
+            XGenericEventCookie * cookie;
+
+
+#if defined(RASPBIAN)
+
+            cookie = nullptr;
+
+#else
+
+            if(g_pobjectaExtendedEventListener)
+            {
+
+               cookie = &pevent->xcookie;
+
+            }
+            else
+            {
+
+               cookie = nullptr;
+
+            }
+
+#endif
+
+   if(!__x11_hook_process_event(pdisplay, pevent, cookie))
+   {
+
+#if !defined(RASPBIAN)
+
+      if(!x11_process_event(pdisplaydata, pevent, cookie))
+
+#else
+
+         if(!x11_process_event(pdisplaydata, e))
+
+#endif
+      {
+
+         return false;
+
+      }
+
+
+
+
+   }
+
+   return true;
+
+}
+//catch(...)
+//{
+//
+//}
+//
+//return true;
+//
+//}
+
+
+void x11_add_gdk_filter();
+
+
+
+
+//gboolean x11_source_func(gpointer)
+//{
+
+  // return false;
+
+//}
+
+bool x11_message_handler(XEvent * pevent)
 {
 
    osdisplay_data * pdisplaydata = (osdisplay_data *) x11_main_display();
@@ -2967,59 +3061,176 @@ gboolean x11_source_func(gpointer ppointer)
 
    }
 
-   //::set_thread_name("x11_thread");
-
-   if(!g_bInitX11SourceFunc)
-   {
-
-      g_bInitX11SourceFunc = true;
-//   g_pdisplayX11 = pdisplay;
-
-//   {
-
-      sync_lock sl(x11_mutex());
-
-      xdisplay d(pdisplay);
-
-      g_atomKickIdle = XInternAtom(pdisplay, "__WM_KICKIDLE", False);
-
-      g_windowX11Client = XCreateSimpleWindow(pdisplay, DefaultRootWindow(pdisplay), 10, 10, 10, 10, 0, 0, 0);
-
-      XSelectInput(pdisplay, g_windowX11Client, StructureNotifyMask);
-
-      g_oswindowDesktop = oswindow_get(pdisplay, DefaultRootWindow(pdisplay));
-
-      g_oswindowDesktop->m_pimpl = nullptr;
-
-      XSelectInput(pdisplay, g_oswindowDesktop->window(), StructureNotifyMask | PropertyChangeMask);
-
-   }
-
-   XEvent e = {};
-
-#if !defined(RASPBIAN)
-
-   XGenericEventCookie * cookie;
-
-#endif
-
-   //while(::get_context_system() != nullptr && ::thread_get_run())
-//   {
 
    try
    {
 
-      //x11_wait_timer_or_event(pdisplay);
+      sync_lock sl(x11_mutex());
+
+      xdisplay d(pdisplay);
+
+
+         try
+         {
+
+            XEvent & e = *pevent;
+
+#if !defined(RASPBIAN)
+
+            XGenericEventCookie * cookie;
+
+#endif
+
+#if !defined(RASPBIAN)
+
+            if(g_pobjectaExtendedEventListener)
+            {
+
+               cookie = &e.xcookie;
+
+            }
+            else
+            {
+
+               cookie = nullptr;
+
+            }
+
+#endif
+
+            if(!__x11_hook_process_event(pdisplaydata->display(), &e, cookie))
+            {
+
+#if !defined(RASPBIAN)
+
+               if(!x11_process_event(pdisplaydata, &e, cookie))
+
+#else
+
+                  if(!x11_process_event(pdisplaydata, e))
+
+#endif
+               {
+
+
+               }
+
+
+
+
+            }
+
+         }
+         catch(...)
+         {
+
+         }
+
+   }
+   catch(...)
+   {
+
+   }
+
+   while(!g_bFinishX11Thread)
+   {
+
+      try
+      {
+
+         if(!x11_step())
+         {
+
+            break;
+
+         }
+
+      }
+      catch(...)
+      {
+
+      }
+
+   }
+
+   if(g_bFinishX11Thread)
+   {
+
+#if !defined(RASPBIAN)
+
+      g_pobjectaExtendedEventListener.release();
+
+#endif
+
+      output_debug_string("x11_thread end thread");
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+//gboolean x11_source_func(gpointer)
+bool x11_message_loop_step()
+{
+
+   osdisplay_data * pdisplaydata = (osdisplay_data *) x11_main_display();
+
+   Display * pdisplay = pdisplaydata->display();
+
+   if(pdisplay == nullptr)
+   {
+
+      return true;
+
+   }
+
+//   if(!g_bInitX11Thread)
+//   {
+//
+//      g_bInitX11Thread = true;
+//
+//      sync_lock sl(x11_mutex());
+//
+//      xdisplay d(pdisplay);
+//
+//      g_atomKickIdle = XInternAtom(pdisplay, "__WM_KICKIDLE", False);
+//
+//      g_windowX11Client = XCreateSimpleWindow(pdisplay, DefaultRootWindow(pdisplay), 10, 10, 10, 10, 0, 0, 0);
+//
+//      XSelectInput(pdisplay, g_windowX11Client, StructureNotifyMask);
+//
+//      g_oswindowDesktop = oswindow_get(pdisplay, DefaultRootWindow(pdisplay));
+//
+//      g_oswindowDesktop->m_pimpl = nullptr;
+//
+//      XSelectInput(pdisplay, g_oswindowDesktop->window(), StructureNotifyMask | PropertyChangeMask);
+//
+//   }
+
+
+   try
+   {
 
       sync_lock sl(x11_mutex());
 
       xdisplay d(pdisplay);
 
-      while(XPending(pdisplay) && ::thread_get_run())
+      while(XPending(pdisplay) && !g_bFinishX11Thread)
       {
 
          try
          {
+
+            XEvent e = {};
+
+#if !defined(RASPBIAN)
+
+            XGenericEventCookie * cookie;
+
+#endif
 
 #if !defined(RASPBIAN)
 
@@ -3040,18 +3251,28 @@ gboolean x11_source_func(gpointer ppointer)
 
             XNextEvent(pdisplay, &e);
 
-            if(!__x11_hook_process_event(pdisplaydata->display(), e, cookie))
+            if(!__x11_hook_process_event(pdisplaydata->display(), &e, cookie))
             {
 
 #if !defined(RASPBIAN)
 
-               x11_process_event(pdisplaydata, e, cookie);
+               if(!x11_process_event(pdisplaydata, &e, cookie))
 
 #else
 
-               x11_process_event(pdisplaydata, e);
+               if(!x11_process_event(pdisplaydata, e))
 
 #endif
+               {
+
+                  //XPutBackEvent(pdisplay, &e);
+
+                  //break;
+
+               }
+
+
+
 
             }
 
@@ -3069,17 +3290,16 @@ gboolean x11_source_func(gpointer ppointer)
 
    }
 
-   //while(::thread_get_run())
-   //try
+   while(!g_bFinishX11Thread)
    {
 
       try
       {
 
-         while(x11_step())
+         if(!x11_step())
          {
 
-            //break;
+            break;
 
          }
 
@@ -3087,15 +3307,11 @@ gboolean x11_source_func(gpointer ppointer)
       catch(...)
       {
 
-         //break;
-
       }
 
    }
 
-//   }
-
-   if(g_bFinishX11SourceFunc)
+   if(g_bFinishX11Thread)
    {
 
 #if !defined(RASPBIAN)
@@ -3115,12 +3331,12 @@ gboolean x11_source_func(gpointer ppointer)
 }
 
 
-#ifdef XDISPLAY_LOCK_LOG
-
-extern bool b_prevent_xdisplay_lock_log;
-
-#endif
-
+//#ifdef XDISPLAY_LOCK_LOG
+//
+//extern bool b_prevent_xdisplay_lock_log;
+//
+//#endif
+//
 
 //thread_pointer < XComposeStatus > t_pcomposestatus;
 //thread_int_ptr < XIM > t_xim;
@@ -3184,19 +3400,19 @@ extern bool b_prevent_xdisplay_lock_log;
 //    x11_
 
 #if !defined(RASPBIAN)
-bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie *cookie)
+bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericEventCookie *cookie)
 #else
 bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 #endif
 {
 
-   //sync_lock sl(x11_mutex());
+   XEvent & e = *pevent;
 
    Display * pdisplay = pdisplaydata->m_pdisplay;
 
    MESSAGE msg;
 
-   xxf_zero(msg);
+   __zero(msg);
 
    bool bRet = false;
 
@@ -3241,9 +3457,9 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             auto psubject = System.subject(eid);
 
-            psubject->value("return") = is_return_key((XIRawEvent*)cookie->data);
+            psubject->payload("return") = is_return_key((XIRawEvent*)cookie->data);
 
-            psubject->value("space") = is_space_key((XIRawEvent*)cookie->data);
+            psubject->payload("space") = is_space_key((XIRawEvent*)cookie->data);
 
             ::promise::context context;
 
@@ -3280,9 +3496,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
    if(msg.hwnd == nullptr)
    {
 
-      windowing_output_debug_string("\nmsg.hwnd == nullptr");
-
-      return true;
+      return false;
 
    }
 
@@ -3643,7 +3857,74 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
                   auto sizeWindow = pinteraction->layout().window().size();
 
-                  if(pointWindow != point)
+                  // Robbers -> Smart -> Tough Law
+                  // Kids -> Soft Law
+                  // 5 year smart
+                  // 80 year kids
+                  // big companies are?
+                  // small companies are?
+                  // big companies moved by auto sustainability...
+                  // No human is auto sustainable, it currently needs iPhone or something....
+                  // so?
+                  // art as vanity and not for auto sustainability...
+                  // not just for six... six... six...
+                  // because sometimes we want cake and flesh and raw fish and not carrots with bread and oreo...
+                  // now I imagine: sick of eating flesh-free carrots and bread, and getting drunk with cheetos and oreo
+                  // we should let the flesh and the cake for the doctors,
+                  // lawyers, politicians, google collaborators, drug-makers,
+                  // ill-makers, sue-makers, idea-makers, religious-people,
+                  // that make new ammendments to ammendment itself,
+                  // people above-the-law... flesh save them...
+                  // ... retired and poor, widow people, complaining of dead/gone people,
+                  // must eat bird seed grains.... no redemption, only in paradise...
+                  // slaves of THEIR their, given by the GODs, laws ...
+
+                  // X11 "knows" window manager can redirect a request
+                  // (evidence: override_redirect flag - but that when set leave you outside of much more things)
+                  // Lets not fight this X11 "thing"
+                  // Accept-"stall" "authocratic" "top-down" window manager set position and size.
+                  // This means setting same size and position to all three sketch and window states.
+                  // The buffer may need to be resized so don't mess with current design state.
+
+                  bool bPositionFix = pinteraction->layout().sketch().origin() != point;
+
+#ifdef X11_PERMISSIVE_WITH_WINDOW_MANAGERS_THE_LAW_MAKERS_BECAUSE_YEAH_KNOW_WHAT_IS_BETTER_FOR_THE_USER_BUTT_DEV_STAKE_IS_MONEY_MONEY_MONEY_COMMODITY_THEY_ARE_BURNING_VALUE_AND_BURYING_MONEY_AND_TREASURES_BELOW_THE_DEAD_LAKE_OF_AVERAGING_BUT_GOD_WILL_SHAKE_THIS_FOR_LIFE
+
+               if(bPositionFix)
+                  {
+
+                     pinteraction->layout().sketch().origin() = point;
+
+                     pinteraction->layout().window().origin() = point;
+
+                     pinteraction->layout().sketch().screen_origin() = point;
+
+                     pinteraction->layout().window().screen_origin() = point;
+
+                     pinteraction->set_reposition(true);
+
+                  }
+
+#endif
+
+                  bool bSizeFix = pinteraction->layout().sketch().size() != size;
+
+#ifdef X11_PERMISSIVE_WITH_WINDOW_MANAGERS_THE_LAW_MAKERS_BECAUSE_YEAH_KNOW_WHAT_IS_BETTER_FOR_THE_USER_BUTT_DEV_STAKE_IS_MONEY_MONEY_MONEY_COMMODITY_THEY_ARE_BURNING_VALUE_AND_BURYING_MONEY_AND_TREASURES_BELOW_THE_DEAD_LAKE_OF_AVERAGING_BUT_GOD_WILL_SHAKE_THIS_FOR_LIFE_FOR_AWESOME_FILE
+
+                  if(bSizeFix)
+                  {
+
+                     pinteraction->layout().sketch().size() = size;
+
+                     pinteraction->layout().window().size() = size;
+
+                     pinteraction->set_need_layout();
+
+                  }
+
+#endif
+
+                  if(bPositionFix)
                   {
 
                      msg.message       = e_message_move;
@@ -3654,7 +3935,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
                   }
 
-                  if(sizeWindow != size)
+                  if(bSizeFix)
                   {
 
                      msg.message       = e_message_size;
@@ -3896,11 +4177,11 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                if(xim)
                {
 
-                  msg.hwnd->m_pimpl->value("xim") = (iptr) xim;
+                  msg.hwnd->m_pimpl->payload("xim") = (iptr) xim;
 
                   XIMStyles * pximstyles = nullptr;
 
-                  xxf_zero_pointer(pximstyles);
+                  __zero(pximstyles);
 
                   XGetIMValues (xim, XNQueryInputStyle, &pximstyles, NULL, NULL);
 
@@ -3932,7 +4213,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                      if(best_style != 0)
                      {
 
-                        msg.hwnd->m_pimpl->set("xim_flag", msg.hwnd->m_pimpl->value("xim_flag").i32() | 2);
+                        msg.hwnd->m_pimpl->set("xim_flag", msg.hwnd->m_pimpl->payload("xim_flag").i32() | 2);
 
                      }
 
@@ -4919,21 +5200,21 @@ void x11_start();
 
 //void x11_stop();
 
-void defer_init_ui()
-{
+//void defer_init_ui()
+//{
 
-   if(g_iX11Ref > 0)
-   {
+//   if(g_iX11Ref > 0)
+  // {
 
-      return;
+    //  return;
 
-   }
+   //}
 
-   g_iX11Ref = 1;
+//   g_iX11Ref = 1;
 
-   g_idle_add(x11_source_func, nullptr);
+  // g_idle_add(x11_source_func, nullptr);
 
-}
+//}
 
 
 void ui_post_quit();
@@ -4969,6 +5250,23 @@ void x11_thread(osdisplay_data * pdisplaydata);
 
 __pointer(::thread) g_pthreadXlib;
 ithread_t g_ithreadXlib;
+
+
+ithread_t x11_get_ithread()
+{
+
+   return g_ithreadXlib;
+
+}
+
+
+CLASS_DECL_ACME ::thread * x11_get_thread()
+{
+
+   return g_pthreadXlib;
+
+}
+
 
 //void * x11_thread_proc(void * p)
 //{
@@ -5079,10 +5377,10 @@ void x11_store_name(oswindow oswindow, const char * pszName)
 //
 //   auto point = rect.top_left();
 //
-//   millis tickLastMoveDiff = pinteraction->value("tickLastMoveDiff").i64();
-//   millis tickLastSizeDiff = pinteraction->value("tickLastSizeDiff").i64();
-//   bool bMoveDiff = pinteraction->value("bMoveDiff").get_bool();
-//   bool bSizeDiff = pinteraction->value("bsizeDiff").get_bool();
+//   millis tickLastMoveDiff = pinteraction->payload("tickLastMoveDiff").i64();
+//   millis tickLastSizeDiff = pinteraction->payload("tickLastSizeDiff").i64();
+//   bool bMoveDiff = pinteraction->payload("bMoveDiff").get_bool();
+//   bool bSizeDiff = pinteraction->payload("bsizeDiff").get_bool();
 //
 //   if(!bMoveDiff)
 //   {
@@ -5167,10 +5465,10 @@ void x11_store_name(oswindow oswindow, const char * pszName)
 //
 //   }
 //
-//   pinteraction->value("bMoveDiff") = bMoveDiff;
-//   pinteraction->value("bsizeDiff") = bSizeDiff;
-//   pinteraction->value("tickLastMoveDiff") = __i64(tickLastMoveDiff);
-//   pinteraction->value("tickLastSizeDiff") = __i64(tickLastSizeDiff);
+//   pinteraction->payload("bMoveDiff") = bMoveDiff;
+//   pinteraction->payload("bsizeDiff") = bSizeDiff;
+//   pinteraction->payload("tickLastMoveDiff") = __i64(tickLastMoveDiff);
+//   pinteraction->payload("tickLastSizeDiff") = __i64(tickLastSizeDiff);
 //
 //}
 
@@ -5365,6 +5663,19 @@ int_bool set_foreground_window(oswindow oswindow)
    });
 
    return TRUE;
+
+}
+
+
+void x11_main()
+{
+
+   while(!g_bFinishX11Thread)
+   {
+
+      x11_message_loop_step();
+
+   }
 
 }
 

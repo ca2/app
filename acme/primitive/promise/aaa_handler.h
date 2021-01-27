@@ -37,7 +37,7 @@ namespace promise
       virtual i64 release(OBJ_REF_DBG_PARAMS);
    #endif
 
-      virtual void process(const ::payload &payload);
+      virtual void process(const ::payload & payload);
 
       virtual void process(const ::action_context &actioncontext);
 

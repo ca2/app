@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-//future & future::operator = (const ::payload& payload)
+//future & future::operator = (const ::payload & payload)
 //{
 //
 //   if (payload.get_type() == ::type_future)
@@ -34,7 +34,7 @@
 //}
 
 
-//void future::receive_response(const payload& payload)
+//void future::receive_response(const ::payload & payload)
 //{
 //
 //   if (::is_null(m_pobjectTask))

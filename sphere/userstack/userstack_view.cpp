@@ -84,10 +84,10 @@ namespace userstack
    // ::view
 
 
-   bool view::pre_create_window(::user::create_struct * pcreatestruct)
+   bool view::pre_create_window(::user::system * pusersystem)
    {
 
-      return ::user::impact::pre_create_window(pcreatestruct);
+      return ::user::impact::pre_create_window(pusersystem);
    }
 
 

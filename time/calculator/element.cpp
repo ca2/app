@@ -20,7 +20,7 @@ namespace datetime
    }
 
 
-   payload element::get_result(const ::apex::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const
+   ::payload element::get_result(const ::apex::str_context * pcontext, int32_t & iPath, int32_t & iPathCount) const
    {
 
       if(m_ptoken->m_etoken == e_token_number || m_ptoken->m_etoken == e_token_identifier)

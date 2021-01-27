@@ -19,7 +19,7 @@ namespace user
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool create_window(::user::interaction *pparent, const ::id & id) override;
+      // virtual bool create_interaction(::user::interaction * pparent, const ::id & id) override;
 
       virtual void _001DrawCheck(::draw2d::graphics_pointer & pgraphics) override;
 

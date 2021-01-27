@@ -26,7 +26,7 @@ form_document::~form_document()
 }
 
 
-bool form_document::on_open_document(const payload & varFile)
+bool form_document::on_open_document(const ::payload & varFile)
 {
 
    auto pformview = get_typed_view < ::user::form_view >();

@@ -294,7 +294,7 @@ namespace database
    }
 
 
-   payload dataset::field_value_at(index i)
+   ::payload dataset::field_value_at(index i)
    {
 
       auto prow = proper_row();
@@ -353,7 +353,7 @@ namespace database
    }
 
 
-   payload dataset::field_value(const char * name)
+   ::payload dataset::field_value(const char * name)
    {
 
       auto pfield = field(name);
@@ -370,7 +370,7 @@ namespace database
    }
 
 
-   payload dataset::select_field_value(index iField)
+   ::payload dataset::select_field_value(index iField)
    {
 
       if (m_edataset == dataset_none)
@@ -384,7 +384,7 @@ namespace database
 
    }
 
-   //const payload dataset::f_old(const char *f_name)
+   //const ::payload dataset::f_old(const char *f_name)
    //{
    //   if (m_edataset != dataset_none)
    //   {
@@ -607,10 +607,10 @@ namespace database
    }
 
 
-   payload dataset::query_item(const char * pszQuery)
+   ::payload dataset::query_item(const char * pszQuery)
    {
 
-      payload item;
+      ::payload item;
 
       if (!query_item(item, pszQuery) || item.failed())
       {
@@ -624,7 +624,7 @@ namespace database
    }
 
 
-   bool dataset::query_item(payload & item, const char * pszQuery)
+   bool dataset::query_item(::payload & item, const char * pszQuery)
    {
 
       if (!query(pszQuery))

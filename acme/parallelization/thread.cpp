@@ -19,7 +19,7 @@ CLASS_DECL_ACME bool __simple_task_sleep()
 CLASS_DECL_ACME bool __simple_task_sleep(millis millis)
 {
 
-   auto i = millis.m_iMilliseconds;
+   auto i = millis.m_i;
 
    while (i > 300)
    {
@@ -74,7 +74,7 @@ CLASS_DECL_ACME bool __simple_task_sleep(sync* psync)
 CLASS_DECL_ACME bool __simple_task_sleep(millis millis, sync* psync)
 {
 
-   auto i = millis.m_iMilliseconds;
+   auto i = millis.m_i;
 
    while (i > 300)
    {

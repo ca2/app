@@ -44,15 +44,15 @@ namespace user
          if(psubject->id() == id_browse)
          {
 
-            if(!psubject->value(id_form).is_empty())
+            if(!psubject->payload(id_form).is_empty())
             {
 
-               string strMatter = Context.dir().matter(psubject->value(id_form));
+               string strMatter = Context.dir().matter(psubject->payload(id_form));
 
                if(get_document()->on_open_document(strMatter))
                {
 
-                  m_strPath = psubject->value(id_form);
+                  m_strPath = psubject->payload(id_form);
 
                }
 
@@ -62,7 +62,7 @@ namespace user
          else if(psubject->id() == id_get_form_view)
          {
 
-            psubject->value(id_form) = this;
+            psubject->payload(id_form) = this;
 
          }
 
@@ -71,7 +71,7 @@ namespace user
       if(m_pcallback != nullptr)
       {
 
-         psubject->value(id_form) = this;
+         psubject->payload(id_form) = this;
 
          m_pcallback->process(psubject);
 
@@ -135,10 +135,10 @@ namespace user
    }
 
 
-   bool form_list_view::pre_create_window(::user::create_struct * pcreatestruct)
+   bool form_list_view::pre_create_window(::user::system * pusersystem)
    {
 
-      if (!::user::list_view::pre_create_window(pcreatestruct))
+      if (!::user::list_view::pre_create_window(pusersystem))
       {
 
          return false;

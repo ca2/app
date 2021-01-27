@@ -52,7 +52,7 @@ namespace user
 
       ::user::document * get_document();
 
-      bool load_xml(payload varFile);
+      bool load_xml(::payload varFile);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 

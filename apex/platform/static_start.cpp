@@ -37,9 +37,9 @@ extern ::array < __pointer(thread) >* g_pthreadaDeferredCreate;
 #include <locale.h>
 #endif
 
-#ifdef LINUX
-#include <glib.h> // sudo apt-get install libglib2.0-dev
-#endif
+//#ifdef LINUX
+//#include <glib.h> // sudo apt-get install libglib2.0-dev
+//#endif
 
 
 
@@ -52,20 +52,6 @@ extern ::array < __pointer(thread) >* g_pthreadaDeferredCreate;
 #undef new
 
 
-#ifdef LINUX
-static void
-log_handler (const gchar   *log_domain,
-             GLogLevelFlags log_level,
-             const gchar   *message,
-             gpointer       user_data)
-{
-   g_log_default_handler (log_domain, log_level, message, user_data);
-
-   g_on_error_query (nullptr);
-}
-
-
-#endif
 
 
 namespace apex
@@ -572,11 +558,11 @@ namespace apex
 
       __construct_new(::channel::s_pmutexChannel);
 
-#ifdef LINUX
-
-      ::user::initialize_edesktop();
-
-#endif
+//#ifdef LINUX
+//
+//      ::user::initialize_edesktop();
+//
+//#endif
 
       //g_papexstrpool = new apex_str_pool();
 

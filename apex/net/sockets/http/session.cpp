@@ -84,7 +84,8 @@ namespace sockets
 
    }
 
-   void http_session::step()
+
+   ::e_status http_session::step()
    {
 
       inheader(__id(connection)) = "Keep-Alive";
@@ -118,6 +119,8 @@ namespace sockets
          break;
 
       }
+
+      return ::success;
 
    }
 

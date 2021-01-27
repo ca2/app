@@ -62,7 +62,7 @@ namespace sockets
       void SetContentType(const string & );
 
       /** http put client implemented in OnConnect */
-      virtual void step();
+      virtual ::e_status step() override;
 
    };
 

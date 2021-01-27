@@ -261,7 +261,13 @@ i32 image_list::add(::draw2d::icon * picon, int iItem)
 //
 //#else
 
-   m_pimage->get_graphics()->draw(rectd(pointd( (iItem * m_size.cx) , 0. ), m_size), picon);
+   auto pointDst = ::pointd((iItem * m_size.cx), 0.);
+
+   auto sizeDst = m_size;
+
+   auto rectDst = ::rectd(pointDst, sizeDst);
+
+   m_pimage->get_graphics()->draw(rectDst, picon);
 
 //#endif
 
@@ -270,7 +276,7 @@ i32 image_list::add(::draw2d::icon * picon, int iItem)
 }
 
 
-i32 image_list::add_icon(payload varFile, int iItem)
+i32 image_list::add_icon(::payload varFile, int iItem)
 {
 
    ::draw2d::icon icon;
@@ -303,7 +309,7 @@ i32 image_list::add_matter_icon(const char * pszMatter, int iItem)
 }
 
 
-i32 image_list::add_file(payload varFile, int iItem)
+i32 image_list::add_file(::payload varFile, int iItem)
 {
 
    sync_lock sl(mutex());
@@ -324,9 +330,9 @@ i32 image_list::add_file(payload varFile, int iItem)
 
          m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-         m_pimage->get_graphics()->draw(
+         m_pimage->draw(
             ::rectd(::point(iItem * m_size.cx, 0),  m_size ),
-            pimage->get_graphics());
+            pimage);
 
       });
 

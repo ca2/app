@@ -2,8 +2,7 @@
 #include "gnome_internal_glue.h"
 #include "apex/message/message_global.h"
 #include "platform/platform/platform.h"
-#include "apex/const/_const.h"
-#include "apex/const/id.h"
+#include "acme/id.h"
 
 // apt-get install libgtk2.0-dev
 // and restart codeblocks/IDE
@@ -472,8 +471,10 @@ GtkWidget * linux_g_direct_app_indicator_init(AppIndicator * pindicator, user_no
 
 
 
-namespace user
+namespace node_gnome
 {
+
+   char * gsettings_get_malloc(const char * pszSchema, const char * pszKey);
 
    bool g_bGInitialized = false;
    pthread_mutex_t g_mutexG;

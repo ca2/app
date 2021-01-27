@@ -120,15 +120,6 @@ public:
 };
 
 
-template < typename ARGUMENT >
-class argument_of
-{
-public:
-
-   using type = typename smaller_type < ARGUMENT, const ARGUMENT & >::type;
-
-};
-
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
 class map :
@@ -1204,12 +1195,8 @@ void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assert_valid() const
 }
 
 
-//#define ptrptr(T1, T2) map < T1 *, T1 *, T2 *, T2 * >
-
-
 template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type >
 using colorrefmap = map < color32_t, VALUE, typename argument_of < color32_t >::type, ARG_VALUE >;
-
 
 template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type >
 using double_map = map < double, VALUE, typename argument_of < double >::type, ARG_VALUE >;
@@ -1217,11 +1204,10 @@ using double_map = map < double, VALUE, typename argument_of < double >::type, A
 using double_to_double = double_map < double >;
 
 template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type >
-using dword_map = map < ::u32, VALUE, typename argument_of < uptr >::type, ARG_VALUE >;
+using dword_map = map < ::u32, VALUE, typename argument_of < ::u32 >::type, ARG_VALUE >;
 
 template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type >
 using uptr_map = map < uptr, VALUE, typename argument_of < uptr >::type, ARG_VALUE >;
-
 
 template < typename KEY_TYPE, typename VALUE_TYPE >
 class key_value
@@ -1268,19 +1254,19 @@ template<> ALIENATED_ANDROID_ANARCHY ::std::tuple_size< pair > : ::std::integral
 #endif
 
 
-#define __declare_key_value_map(xmaptype, xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue) \
+#define __declare_map(xmaptype, xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue) \
 __declare_key_value(xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue); \
 using xmaptype = pair_map < xkeyvaluetype >
 
 
 #ifdef CPP17
 #define __declare_map_key_value(xmaptype, xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue) \
-__declare_key_value_map(xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue); \
+__declare_map(xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue); \
 __declare_pair_tuple_size(xmaptype)
 #else
 
 #define __declare_map_key_value(xmaptype, xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue) \
-__declare_key_value_map(xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue);
+__declare_map(xkeyvaluetype, xkeytype, xkey, xvaluetype, xvalue);
 
 #endif
 

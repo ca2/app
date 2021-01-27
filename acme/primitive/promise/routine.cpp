@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-//method & method::operator = (const ::payload& payload)
+//method & method::operator = (const ::payload & payload)
 //{
 //   
 //   if (payload.get_type() == ::type_method)

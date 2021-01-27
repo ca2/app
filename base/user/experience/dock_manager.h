@@ -49,7 +49,7 @@ namespace experience
 
       bool set_frame_window(frame_window * pframewindow);
 
-      void defer_cursor_pos();
+      //void defer_cursor_pos();
 
       ::user::button * dock_button();
       ::point dock_origin();

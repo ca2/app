@@ -43,12 +43,10 @@ namespace file
       virtual ~os_watcher();
 
 
-     virtual watch_id add_watch(const ::file::path & pathFolder, listener * plistenerParam, bool bRecursive) override;
+      virtual watch_id add_watch(const ::file::path & pathFolder, listener * plistenerParam, bool bRecursive) override;
 
 
-      virtual bool step() override;
-
-      //virtual ::e_status     run() override;
+      virtual ::e_status step() override;
 
 
    };

@@ -247,7 +247,7 @@ namespace filehandler
       {
 
          /*
-         payload varRequest;
+         ::payload varRequest;
 
          varRequest = "app://" + m_list[iItem].m_strApp + "/" + m_strName;
 

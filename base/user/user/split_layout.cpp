@@ -159,7 +159,7 @@ namespace user
 
                splitbar.m_iIndex = i;
 
-               if (splitbar.create_window(this))
+               if (splitbar.create_child(this))
                {
 
                   splitbar.m_dwPosition = 0;
@@ -922,7 +922,7 @@ namespace user
 
          splitbar.m_iIndex = i;
 
-         if (!splitbar.create_window(this))
+         if (!splitbar.create_child(this))
          {
 
             return false;
@@ -999,7 +999,7 @@ namespace user
 
          splitbar.m_iIndex = i;
 
-         if (!splitbar.create_window(this))
+         if (!splitbar.create_child(this))
          {
 
             return false;

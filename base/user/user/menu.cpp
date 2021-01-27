@@ -230,7 +230,7 @@ namespace user
    }
 
 
-   bool menu::load_xml_menu(const payload & varXml)
+   bool menu::load_xml_menu(const ::payload & varXml)
    {
 
       auto strXml = Application.as_string(varXml.get_string());
@@ -456,9 +456,10 @@ namespace user
 
          }
 
-         auto pcreatestruct = __new(::user::create_struct (iStyleEx, nullptr, nullptr, 0, nullptr, pcreate));
+         //auto pusersystem = __new(::user::system (iStyleEx, nullptr, nullptr, 0, nullptr, pcreate));
 
-         if (!create_window_ex(pcreatestruct, puiParent))
+         //if (!create_window_ex(pusersystem, puiParent))
+         if (!create_host())
          {
 
             return false;
@@ -495,7 +496,8 @@ namespace user
 
             m_pitemClose->m_puserinteraction = pinteraction;
 
-            if (!m_pitemClose->m_puserinteraction->create_window(this, "close_menu"))
+            //if (!m_pitemClose->m_puserinteraction->create_interaction(this, "close_menu"))
+            if (!m_pitemClose->m_puserinteraction->create_child(this))
             {
 
                return false;
@@ -1352,14 +1354,14 @@ namespace user
    }
 
 
-   bool menu::pre_create_window(::user::create_struct * pcreatestruct)
+   bool menu::pre_create_window(::user::system * pusersystem)
    {
 
 #ifdef WINDOWS_DESKTOP
 
-      pcreatestruct->m_createstruct.dwExStyle = WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW;
+      pusersystem->m_createstruct.dwExStyle = WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW;
 
-      pcreatestruct->m_createstruct.style &= ~WS_VISIBLE;
+      pusersystem->m_createstruct.style &= ~WS_VISIBLE;
 
 #endif
 

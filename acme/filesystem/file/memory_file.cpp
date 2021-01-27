@@ -63,7 +63,7 @@ memory_file::memory_file(void * pMemory, memsize dwSize) :
 }
 
 
-memory_file::memory_file(payload & payload, const ::file::e_open & eopen) :
+memory_file::memory_file(::payload & payload, const ::file::e_open & eopen) :
    memory_container(payload)
 {
 
@@ -457,7 +457,7 @@ void memory_file::dump(dump_context & dumpcontext) const
 }
 
 
-//void memory_file::full_load(payload varFile)
+//void memory_file::full_load(::payload varFile)
 //{
 //
 //   ASSERT(is_valid());

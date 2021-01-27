@@ -49,7 +49,7 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //
 //
 //
-//   //virtual bool load_image(payload varFile, bool bCache = true, bool bCreateHelperMaps = false)= 0;
+//   //virtual bool load_image(::payload varFile, bool bCache = true, bool bCreateHelperMaps = false)= 0;
 //   //virtual bool load_image(const char * pszMatter, bool bCache = true, bool bCreateHelperMaps = false)= 0;
 //   ////virtual bool read_from_file(file_pointer  pfile)= 0;
 //
@@ -57,23 +57,23 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //   //virtual bool load_matter_icon(string_array & straMatter, string strIcon)= 0;
 //
 //
-//   //virtual bool load_thumbnail(payload varFile, int w, int h)= 0;
+//   //virtual bool load_thumbnail(::payload varFile, int w, int h)= 0;
 //
 //
-//   //virtual bool save_image(payload varFile, ::save_image * psaveimage = nullptr) = 0;
-//   //virtual bool save_dib(payload varFile) = 0;
+//   //virtual bool save_image(::payload varFile, ::save_image * psaveimage = nullptr) = 0;
+//   //virtual bool save_dib(::payload varFile) = 0;
 //
-//   virtual image get_image(payload varFile, bool bSync = false) = 0;
+//   virtual image get_image(::payload varFile, bool bSync = false) = 0;
 //   virtual image matter_image(string strMatter, bool bSync = false) = 0;
-//   virtual image load_image(payload varFile, bool bCreateHelperMaps = false) = 0;
+//   virtual image load_image(::payload varFile, bool bCreateHelperMaps = false) = 0;
 //   virtual image load_matter_image(const char * pszMatter, bool bCache = true, bool bCreateHelperMaps = false) = 0;
 //   virtual image load_matter_icon(string_array & straMatter, string strIcon) = 0;
-//   virtual image load_thumbnail(payload varFile, int w, int h) = 0;
+//   virtual image load_thumbnail(::payload varFile, int w, int h) = 0;
 //   virtual image load_thumbnail(const char * pszPath) = 0;
 //   virtual image load_dib(const ::file::path & pathDib) = 0;
 //
 //
-//   virtual bool save_image(payload varFile, ::save_image * psaveimage = nullptr) = 0;
+//   virtual bool save_image(::payload varFile, ::save_image * psaveimage = nullptr) = 0;
 //   virtual bool save_dib(const ::file::path & pathDib) = 0;
 //
 //

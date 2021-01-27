@@ -1,30 +1,22 @@
 #pragma once
 
 
+namespace experience
+{
 
 
-
-   namespace experience
+   namespace tranquillum
    {
 
-
-      
-
-
-         namespace tranquillum
-
-         {
-
-
-            class CLASS_DECL_APP_EXPERIENCE_TRANQUILLUM frame :
-               public ::experience::frame
-            {
+      class CLASS_DECL_APP_EXPERIENCE_TRANQUILLUM frame :
+         public ::experience::frame
+      {
             public:
 
 
 
-
-
+               ::rect m_rectCaptionTextBk;
+               ::point m_pointMoveGripMinimal;
                //::draw2d::font_pointer                m_fontButton;
                //::draw2d::font_pointer                m_fontCaption;
                //e_style                          m_estyle;
@@ -71,6 +63,8 @@
 
                virtual void OnMove(__pointer(::user::interaction) pframewindow) override;
 
+
+               virtual void title_bar_layout(::draw2d::graphics_pointer & pgraphics) override;
 
                virtual void _001OnBeforeMove(const ::rect & rectWindow);
 

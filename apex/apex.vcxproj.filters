@@ -1466,6 +1466,9 @@
     <ClInclude Include="net\sockets\_sockets.h">
       <Filter>Header Files\net\sockets</Filter>
     </ClInclude>
+    <ClInclude Include="platform\node.h">
+      <Filter>Header Files\platform</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\command_line.cpp">
@@ -2166,6 +2169,9 @@
     </ClCompile>
     <ClCompile Include="net\sockets\bsd\basic\basic_net.cpp">
       <Filter>Source Files\net\sockets\bsd\basic</Filter>
+    </ClCompile>
+    <ClCompile Include="platform\node.cpp">
+      <Filter>Source Files\platform</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

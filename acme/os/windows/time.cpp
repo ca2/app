@@ -116,7 +116,7 @@ CLASS_DECL_ACME int_bool get_filetime(HANDLE hFile, LPFILETIME pCreationTime, LP
 //   }
 //
 //   /* Set timer properties */
-//   li.QuadPart = -(nanos.m_iNanoseconds / 100LL );
+//   li.QuadPart = -(nanos.m_i / 100LL );
 //
 //   if (!SetWaitableTimer(timer, &li, 0, nullptr, nullptr, FALSE))
 //   {

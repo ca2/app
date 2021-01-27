@@ -276,7 +276,8 @@ namespace filemanager
       return true;
    }
 
-   bool operation::step()
+   
+   ::e_status operation::step()
    {
       switch(m_eoperation)
       {
@@ -470,7 +471,7 @@ namespace filemanager
 
       m_dSize = 0.0;
 
-      payload varLen;
+      ::payload varLen;
 
       for(i32 i = 0; i < m_stra.get_size(); i++)
       {

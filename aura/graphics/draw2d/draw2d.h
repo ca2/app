@@ -80,7 +80,7 @@ namespace draw2d
       int iBlurRadius,
       int iBlur,
       bool bUpdate,
-      double dAlpha = 1.0);
+      const ::color_filter & colorfilter = nullptr);
 
 
       template < typename PRED >
@@ -95,7 +95,7 @@ namespace draw2d
       int iBlurRadius,
       int iBlur,
       bool bUpdate,
-      double dAlpha = 1.0);
+      const color_filter & colorfilter = nullptr);
 
       virtual void alpha_spread__24CC(byte * pbDest, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy, byte * pbSrc, i32 ySrc, i32 xSrc, i32 wSrc, byte bMin, i32 iRadius);
 

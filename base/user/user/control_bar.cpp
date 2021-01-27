@@ -73,10 +73,10 @@ namespace user
    }
 
 
-   bool control_bar::pre_create_window(::user::create_struct * pcreatestruct)
+   bool control_bar::pre_create_window(::user::system * pusersystem)
    {
 
-      if (!::user::interaction::pre_create_window(pcreatestruct))
+      if (!::user::interaction::pre_create_window(pusersystem))
       {
 
          return FALSE;
@@ -87,7 +87,7 @@ namespace user
 #ifdef WINDOWS_DESKTOP
 
       // force clipsliblings (otherwise will cause repaint problems)
-      pcreatestruct->m_createstruct.style |= WS_CLIPSIBLINGS;
+      pusersystem->m_createstruct.style |= WS_CLIPSIBLINGS;
 
 #endif
 
@@ -759,21 +759,23 @@ namespace user
 //      return uStyle; // return new style
    }
 
+
    void control_bar::_001OnSizeParent(::message::message * pmessage)
    {
 
       __pointer(::message::base) pbase(pmessage);
+
       SIZEPARENTPARAMS * playout = (SIZEPARENTPARAMS *) pbase->m_lparam.m_lparam;
 
       u32 uStyle = RecalcDelayShow(playout);
 
-
       if ((uStyle & WS_VISIBLE) && (uStyle & CBRS_ALIGN_ANY) != 0)
       {
+         
          // align the control bar
          ::rect rect;
-         rect.copy(&playout->rect);
 
+         rect.copy(&playout->rect);
 
          ::size sizeAvail = rect.size();  // maximum size available
 

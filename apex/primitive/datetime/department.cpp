@@ -201,7 +201,7 @@ namespace datetime
       }
 
       ::datetime::time time;
-      ::datetime::payload val = ::datetime::strtotime(get_context_application(), pcontext, psz, iPath, iPathCount, false);
+      ::datetime::result val = ::datetime::strtotime(get_context_application(), pcontext, psz, iPath, iPathCount, false);
       if (val.m_bSpan)
          time = time.get_current_time() + val.GetSpan();
       else
@@ -222,7 +222,7 @@ namespace datetime
       UNREFERENCED_PARAMETER(iPath);
       ::datetime::time time(timeParam);
       iPathCount = 1;
-      ::datetime::payload val = ::datetime::payload(time) +
+      ::datetime::result val = ::datetime::result(time) +
                               ::datetime::span_strtotime(get_context_application(), pcontext, psz);
       return val.get_time().get_time();
    }
@@ -238,7 +238,7 @@ namespace datetime
       }
 
       ::datetime::time time;
-      ::datetime::payload val = ::datetime::strtotime(get_context_application(), pcontext, psz, iPath, iPathCount, true);
+      ::datetime::result val = ::datetime::strtotime(get_context_application(), pcontext, psz, iPath, iPathCount, true);
       if (val.m_bSpan)
          time = time.get_current_time() + val.GetSpan();
       else
@@ -387,7 +387,7 @@ namespace datetime
 
       struct ::tm tm;
 
-      xxf_zero(tm);
+      __zero(tm);
       tm.tm_hour = iHour;
       tm.tm_min = iMinute;
       tm.tm_sec = iSecond;
@@ -407,7 +407,7 @@ namespace datetime
 
       struct ::tm tm;
 
-      xxf_zero(tm);
+      __zero(tm);
       tm.tm_hour = iHour;
       tm.tm_min = iMinute;
       tm.tm_sec = iSecond;

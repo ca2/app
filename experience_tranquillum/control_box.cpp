@@ -14,6 +14,8 @@ namespace experience
 
    m_fontMarlett->create_point_font("Marlett", 24);
 
+   m_colorBackground.set(0, 0, 0, 0);
+
 }
 
 
@@ -53,7 +55,7 @@ void control_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    if(get_top_level()->frame_is_transparent())
    {
 
-      crBackground = ARGB(84,colorref_get_r_value(m_colorBackground),colorref_get_g_value(m_colorBackground),colorref_get_b_value(m_colorBackground));
+      crBackground = ARGB(90,colorref_get_r_value(m_colorBackground),colorref_get_g_value(m_colorBackground),colorref_get_b_value(m_colorBackground));
 
    }
    else
@@ -63,7 +65,12 @@ void control_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   pgraphics->fill_rect(rectClient, m_colorBackground);
+   if (m_colorBackground.m_iA > 0)
+   {
+
+      pgraphics->fill_rect(rectClient, m_colorBackground);
+
+   }
 
 }
 

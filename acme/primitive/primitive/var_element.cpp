@@ -34,7 +34,7 @@ payload.P = dynamic_cast < TYPE * >(pobject); \
 if(::is_set(payload.m_pstra)) return ENUM_TYPE;
 
 
-enum_type set_element(payload & payload, ::matter * pobject)
+enum_type set_element(::payload & payload, ::matter * pobject)
 {
 
    VAR_SET_ELEMENT(m_pstra    , ::string_array             , ::e_type_stra);

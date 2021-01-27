@@ -128,11 +128,11 @@ namespace draw3d
             if(iHint == 0)
             {
 
-               ca.set_hls(fmod(__double(::get_tick()),dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
+               ca.set_hls(fmod(__double(::get_millis()),dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
             }
             else
             {
-               ca.set_hls(fmod(__double(::get_tick()) + dPeriod / 2,dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
+               ca.set_hls(fmod(__double(::get_millis()) + dPeriod / 2,dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
             }
 
             color32_t clr = ca.get_rgb();
@@ -289,11 +289,11 @@ namespace draw3d
             if(iHint == 0)
             {
 
-               ca.set_hls(fmod(__double(::get_tick()),dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
+               ca.set_hls(fmod(__double(::get_millis()),dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
             }
             else
             {
-               ca.set_hls(fmod(__double(::get_tick()) + dPeriod / 2,dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
+               ca.set_hls(fmod(__double(::get_millis()) + dPeriod / 2,dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
             }
 
             color32_t clr = ca.get_rgb();

@@ -51,6 +51,9 @@ typedef struct tagWINRGBQUAD {
 #include "colorref_array.h"
 
 
+#include "opacity.h"
+
+
 #include "color.h"
 
 

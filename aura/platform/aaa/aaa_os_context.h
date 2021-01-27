@@ -35,8 +35,8 @@
 
       virtual int get_pid();
 
-      virtual payload connection_settings_get_auto_detect();
-      virtual payload connection_settings_get_auto_config_url();
+      virtual ::payload connection_settings_get_auto_detect();
+      virtual ::payload connection_settings_get_auto_config_url();
 
       virtual ::e_status     link_open(string strUrl);
 

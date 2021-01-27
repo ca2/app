@@ -13,7 +13,7 @@
 
 // sudo apt install libgtk-3-dev
 // gtk3-devel
-#include <glib.h>
+//#include <glib.h>
 
 
 enum e_net_wm_state
@@ -129,7 +129,7 @@ public:
 
 
 
-gboolean gdk_callback_run_runnable(gpointer pdata);
+//gboolean gdk_callback_run_runnable(gpointer pdata);
 
 
 

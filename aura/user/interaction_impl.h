@@ -69,54 +69,54 @@ namespace user
 
 
 #if defined(WINDOWS_DESKTOP) && !defined(ENABLE_TEXT_SERVICES_FRAMEWORK)
-      //HIMC                          m_himc;
+      //HIMC                                    m_himc;
 #endif
 
-      ::rect                              m_rectWindowScreen;
-      ::rect                              m_rectClientScreen;
-      int                                 m_iState1;
-      ::u32                               m_uCodePage;
-      int                                 m_iLangId;
-      bool                                m_bEatSizeEvent;
-      bool                                m_bEatMoveEvent;
-      millis                              m_millisLastExposureAddUp;
-      __composite(prodevian)              m_pprodevian;
-      __composite(::user::thread)         m_puserthread;
-      simple_object_ptra                  m_ptraProdevian;
-      bool                                m_bTransparentMouseEvents;
-      bool                                m_bOfflineRender;
-      bool                                m_bFocus;
-      bool                                m_bCursorRedraw;
-      double                              m_dConfigFps;
-      double                              m_dOutputFps;
-      bool                                m_bLockWindowUpdate;
-      point                               m_pointCursor;
-      bool                                m_bOkToUpdateScreen;
-      ::size                              m_sizeDrawn;
-      reference_addressa                  m_ptraRedraw;
+      ::rect                                    m_rectWindowScreen;
+      ::rect                                    m_rectClientScreen;
+      int                                       m_iState1;
+      ::u32                                     m_uCodePage;
+      int                                       m_iLangId;
+      bool                                      m_bEatSizeEvent;
+      bool                                      m_bEatMoveEvent;
+      millis                                    m_millisLastExposureAddUp;
+      __composite(prodevian)                    m_pprodevian;
+      __composite(::user::thread)               m_puserthread;
+      simple_object_ptra                        m_ptraProdevian;
+      bool                                      m_bTransparentMouseEvents;
+      bool                                      m_bOfflineRender;
+      bool                                      m_bFocus;
+      bool                                      m_bCursorRedraw;
+      double                                    m_dConfigFps;
+      double                                    m_dOutputFps;
+      bool                                      m_bLockWindowUpdate;
+      point                                     m_pointCursor;
+      bool                                      m_bOkToUpdateScreen;
+      ::size                                    m_sizeDrawn;
+      reference_addressa                        m_ptraRedraw;
 
-      ::rect                              m_rectUpdateBuffer;
+      ::rect                                    m_rectUpdateBuffer;
 
-      bool                                m_bPointInside;
-      ::point                             m_pointInside;
-      ::user::primitive *                 m_pprimitiveFocus;
-      ::user::primitive *                 m_pprimitiveSoftwareKeyboard;
+      bool                                      m_bPointInside;
+      ::point                                   m_pointInside;
+      ::user::primitive *                       m_pprimitiveFocus;
+      ::user::primitive *                       m_pprimitiveSoftwareKeyboard;
 
-      oswindow                            m_oswindow;
-      bool                                m_bScreenRelativeMouseMessagePosition;
-      bool                                m_bTranslateMouseMessageCursor;
-      bool                                m_bComposite;
-      bool                                m_bUpdateGraphics;
+      oswindow                                  m_oswindow;
+      bool                                      m_bScreenRelativeMouseMessagePosition;
+      bool                                      m_bTranslateMouseMessageCursor;
+      bool                                      m_bComposite;
+      bool                                      m_bUpdateGraphics;
 
-      point                               m_point;
-      size                                m_size;
+      point                                     m_point;
+      size                                      m_size;
 
-      //native_window *                     m_pwindow;
+      //native_window *                         m_pwindow;
 
-      __composite(::graphics::graphics)   m_pgraphics;
+      __composite(::graphics::graphics)         m_pgraphics;
 
-      __pointer(::mutex)                  m_pmutexDraw;
-      __pointer(::mutex)                  m_pmutexRedraw;
+      __pointer(::mutex)                        m_pmutexDraw;
+      __pointer(::mutex)                        m_pmutexRedraw;
 
       ::user::interaction_ptra                  m_guieptraMouseHover;
 
@@ -156,6 +156,9 @@ namespace user
       virtual bool post(::message::base* pbase) override;
 
       virtual ::e_status update_graphics_resources();
+
+
+      virtual bool create_host(::user::interaction * pinteraction);
 
 
       virtual ::e_status main_async(const ::promise::routine & routine, e_priority epriority = priority_normal) override;
@@ -249,20 +252,30 @@ namespace user
 
 
 
-      using ::user::primitive::create_window;
-      using ::user::primitive::create_window_ex;
+      //using ::user::primitive::create_interaction;
+      //using ::user::primitive::create_window_ex;
+
 
       // for child windows, views, panes etc
-      virtual bool create_window(::user::interaction * pinteraction, const char * pszClassName,const char * pszWindowName,u32 uStyle,const ::rect & rect,::user::primitive * puiParent,id id, ::create * pcreate = nullptr) override;
+      //virtual bool create_interaction(::user::interaction * pinteraction, ::u32 uExStyle, u32 uStyle, const ::rect & rect, ::user::primitive * puiParent, ::create * pcreate = nullptr) override;
 
 
       // advanced creation (allows access to extended styles)
-      virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcs, ::user::primitive * puiParent, id id) override;
+      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, id id) override;
+
+      //virtual bool create_interaction() override;
 
 
-      virtual bool native_create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, oswindow oswindowParent = nullptr, id id = ::id());
+      //virtual bool _native_create_window(::user::interaction * pinteraction, oswindow oswindow);
 
-      virtual bool _native_create_window_ex(__pointer(::user::create_struct) pcreatestruct);
+      
+      //virtual bool _native_create_window_ex(__pointer(::user::system) pusersystem);
+
+      //virtual bool _native_create_window_ex(__pointer(::user::system) pusersystem);
+
+      //virtual bool create_host();
+
+      virtual bool native_create_host();
 
 
       virtual bool destroy_impl_only() override;
@@ -270,7 +283,7 @@ namespace user
       virtual void destroy_window() override;
 
       // special pre-creation and interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
+      virtual bool pre_create_window(::user::system * pusersystem) override;
 
       // Advanced: virtual AdjustWindowRect
 //      enum AdjustType { adjustBorder = 0,adjustOutside = 1 };

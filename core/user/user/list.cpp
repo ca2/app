@@ -106,16 +106,17 @@ namespace user
       {
          if (!m_plistheader->is_window())
          {
-            bool bOk = m_plistheader->create_window(
-                       nullptr,
-                       "",
-                       WS_CHILD
-                       | WS_VISIBLE
-                       | HDS_FULLDRAG
-                       | HDS_HOTTRACK
-                       | HDS_DRAGDROP,
-                       this,
-                       1023) != 0;
+            bool bOk = m_plistheader->create_child(this) != 0;
+            //bool bOk = m_plistheader->create_window(
+            //           nullptr,
+            //           "",
+            //           WS_CHILD
+            //           | WS_VISIBLE
+            //           | HDS_FULLDRAG
+            //           | HDS_HOTTRACK
+            //           | HDS_DRAGDROP,
+            //           this,
+            //           1023) != 0;
             //if (bOk)
             //{
             //   m_plistheader->m_font = m_font;
@@ -3824,9 +3825,9 @@ namespace user
 
                _001GetItemRect(&item);
 
-               value("offx") = point.x - item.m_rectItem.left;
+               payload("offx") = point.x - item.m_rectItem.left;
 
-               value("offy") = point.y - item.m_rectItem.top;
+               payload("offy") = point.y - item.m_rectItem.top;
 
                if (!m_rangeSelection.has_item(item.m_iDisplayItem))
                {

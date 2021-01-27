@@ -297,7 +297,7 @@ namespace xlib
 
       xdisplay d(m_oswindow->display());
 
-      //XImage * pximage = (XImage *)pimage->value("pximage").i64();
+      //XImage * pximage = (XImage *)pimage->payload("pximage").i64();
 
       XImage * pximage;
 
@@ -317,7 +317,7 @@ namespace xlib
                sizeof(color32_t) * 8,
                pimage->scan_size());
 
-         //pimage->value("pximage") = (::i64) pximage;
+         //pimage->payload("pximage") = (::i64) pximage;
 
       }
 

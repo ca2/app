@@ -418,7 +418,7 @@ namespace aura
 //            do
 //            {
 //
-//               xxf_zero(data);
+//               __zero(data);
 //               if((result = msgrcv(m_iQueue,&data,length,2000,IPC_NOWAIT)) == -1)
 //               {
 //

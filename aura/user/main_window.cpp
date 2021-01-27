@@ -11,7 +11,7 @@ namespace user
    main_window::main_window()
    {
 
-      m_bitExtendOnParentIfClientOnly = true;
+      m_bExtendOnParentIfClientOnly = true;
 
    }
 
@@ -49,9 +49,9 @@ namespace user
 
       bool bInitialFramePosition = _001InitialFramePosition(rectWindow, m_rectInitialRateOrSize);
 
-      auto pcs = __new(::user::create_struct(0, nullptr, Application.m_strAppId, WS_VISIBLE, rectWindow));
+      //auto pcs = __new(::user::system(0, nullptr, Application.m_strAppId, WS_VISIBLE, rectWindow));
 
-      bool bOk = create_window_ex(pcs);
+      bool bOk = create_host();
 
       if (!bOk)
       {

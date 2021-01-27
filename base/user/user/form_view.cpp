@@ -30,13 +30,13 @@ namespace user
       if (psubject->id() == id_browse)
       {
 
-         if (!psubject->value(id_form).is_empty())
+         if (!psubject->payload(id_form).is_empty())
          {
 
-            if (get_document()->on_open_document(psubject->value(id_form)))
+            if (get_document()->on_open_document(psubject->payload(id_form)))
             {
 
-               m_strPath = psubject->value(id_form);
+               m_strPath = psubject->payload(id_form);
 
             }
 
@@ -46,14 +46,14 @@ namespace user
       else if (psubject->id() == id_get_form_view)
       {
 
-         psubject->value(id_form) = this;
+         psubject->payload(id_form) = this;
 
       }
 
       if(m_pcallback != nullptr)
       {
 
-         psubject->value(id_form) = this;
+         psubject->payload(id_form) = this;
 
          m_pcallback->process(psubject);
 
@@ -72,7 +72,7 @@ namespace user
    }
 
 
-   ::e_status form_view::open_document(const payload & varFile)
+   ::e_status form_view::open_document(const ::payload & varFile)
    {
 
       System.defer_create_html();

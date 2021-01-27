@@ -10,7 +10,7 @@ message_box::message_box()
 }
 
 
-message_box::message_box(const payload & payload)
+message_box::message_box(const ::payload & payload)
 {
 
    if (payload.get_type() == e_type_string)

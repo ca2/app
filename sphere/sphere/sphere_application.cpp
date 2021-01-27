@@ -401,7 +401,7 @@ namespace sphere
    }
 
 
-   ::user::document *  application::_001OpenDocumentFile(payload varFile)
+   ::user::document *  application::_001OpenDocumentFile(::payload varFile)
    {
 
       //string strId = m_strId;
@@ -727,7 +727,7 @@ namespace sphere
          }
       }*/
 
-   void application::request_topic_file(payload & varQuery)
+   void application::request_topic_file(::payload & varQuery)
    {
    }
 

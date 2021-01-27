@@ -372,13 +372,17 @@ namespace user
 
    void document_manager::add_document_template(::user::impact_system * ptemplate)
    {
+      
       ASSERT_VALID(ptemplate);
+      
       if(m_templateptra.add_unique(ptemplate))
       {
+
          ptemplate->load_template();
+
       }
       
-      add_composite(ptemplate);
+      //add_composite(ptemplate);
 
    }
 
@@ -479,7 +483,7 @@ namespace user
    }
 
 
-   bool document_manager::do_prompt_file_name(payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+   bool document_manager::do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
    {
 
       throw_todo();

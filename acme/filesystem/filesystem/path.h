@@ -57,6 +57,10 @@ namespace file
 
       }
 
+
+      using enumeration < ::file::enum_flag >::operator -=;
+
+
    };
 
 
@@ -246,13 +250,13 @@ namespace file
 
       //      bool operator == (const string & str) const;
       //      bool operator == (const char * psz) const;
-      bool operator == (const payload & payload) const;
+      bool operator == (const ::payload & payload) const;
 
       //      bool operator != (const path & path) const;
 
       //      bool operator != (const string & str) const;
       //      bool operator != (const char * psz) const;
-      bool operator != (const payload & payload) const;
+      bool operator != (const ::payload & payload) const;
 
       path operator + (const path & path) const;
 
@@ -260,7 +264,7 @@ namespace file
       path operator + (const string & str) const;
 
       path operator + (const char * psz) const;
-      path operator + (const payload & payload) const;
+      path operator + (const ::payload & payload) const;
       path operator + (const property & property) const;
       path operator + (const id & id) const;
 
@@ -269,7 +273,7 @@ namespace file
       path operator / (const path & path) const;
       path operator / (const string & str) const;
       path operator / (const char * psz) const;
-      path operator / (const payload & payload) const;
+      path operator / (const ::payload & payload) const;
       path operator / (const property & property) const;
       patha operator / (const string_array & path) const;
 
@@ -295,8 +299,8 @@ namespace file
       path & operator = (const char * psz);
       path & operator += (const char * psz);
 
-      path & operator = (const payload & payload);
-      path & operator += (const payload & payload);
+      path & operator = (const ::payload & payload);
+      path & operator += (const ::payload & payload);
 
       path & operator = (const property & property);
       path & operator += (const property & property);
@@ -365,6 +369,7 @@ namespace file
       path & go_up();
       path & go_up(int i);
       path & operator -= (int i);
+      using path_meta::operator -=;
 
       inline path operator | (enum_flag e) const { path path(*this); path |= e; return path; }
 

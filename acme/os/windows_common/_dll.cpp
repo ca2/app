@@ -208,7 +208,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason,
          module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain process attach");
 
       }
-      else if (intDelayMs.m_millisProcessAttach.m_iMilliseconds)
+      else if (intDelayMs.m_millisProcessAttach.m_i)
       {
 
          ::sleep(intDelayMs.m_millisProcessAttach);
@@ -226,7 +226,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason,
          module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain process detach");
 
       }
-      else if (intDelayMs.m_millisProcessDetach.m_iMilliseconds)
+      else if (intDelayMs.m_millisProcessDetach.m_i)
       {
 
          ::sleep(intDelayMs.m_millisProcessDetach);
@@ -244,7 +244,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason,
          module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain thread attach");
 
       }
-      else if (intDelayMs.m_millisThreadAttach.m_iMilliseconds)
+      else if (intDelayMs.m_millisThreadAttach.m_i)
       {
 
          ::sleep(intDelayMs.m_millisThreadAttach);
@@ -262,7 +262,7 @@ int_bool CLASS_DECL_ACME _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason,
          module_debug_box_w(e_message_box_icon_information, hinstance, L"_001DefaultDllMain thread detach");
 
       }
-      else if (intDelayMs.m_millisThreadDetach.m_iMilliseconds)
+      else if (intDelayMs.m_millisThreadDetach.m_i)
       {
 
          ::sleep(intDelayMs.m_millisThreadDetach);

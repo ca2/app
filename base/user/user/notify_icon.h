@@ -9,6 +9,7 @@
 
 
 #ifdef LINUX
+#include "apex/user/notify_icon_bridge.h"
 namespace linux { class appindicator; }
 #endif
 
@@ -91,7 +92,7 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      virtual void step();
+      virtual ::e_status step() override;
 
 #if defined(APPLE_IOS) || defined(WINDOWS_DESKTOP) || defined(ANDROID) || defined(_UWP)
       virtual void notify_icon_play(const char * action);

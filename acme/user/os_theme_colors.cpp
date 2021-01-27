@@ -43,7 +43,49 @@ namespace user
    }
 
 
+   string os_get_user_theme()
+   {
+
+      string strTheme;
+
+      auto pnode = Node;
+
+      if(pnode)
+      {
+
+         strTheme = pnode->os_get_user_theme();
+
+      }
+
+      return strTheme;
+
+   }
+
+
 } // namespace user
 
 
+namespace os
+{
 
+
+   string get_wallpaper(::index iScreen)
+   {
+
+      string strWallpaper;
+
+      auto pnode = Node;
+
+      if(pnode)
+      {
+
+         strWallpaper = pnode->get_wallpaper(iScreen);
+
+      }
+
+      return strWallpaper;
+
+   }
+
+
+} // namespace os

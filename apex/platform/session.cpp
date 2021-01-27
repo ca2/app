@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/const/id.h"
+#include "acme/id.h"
 #include "apex/platform/app_core.h"
 #include "apex/platform/static_setup.h"
 #ifndef WINDOWS
@@ -795,9 +795,9 @@ namespace apex
 
                   message_box("Could not create requested application: \"" + strApp + "\"");
 
-                  ::count c = System.value("app").array_get_count();
+                  ::count c = System.payload("app").array_get_count();
 
-                  if (c == 1 && System.value("app").at(0) == strApp)
+                  if (c == 1 && System.payload("app").at(0) == strApp)
                   {
 
                      ::parallelization::finish(&System);
@@ -2740,7 +2740,7 @@ namespace apex
 
 
 
-   void session::request_topic_file(payload& varQuery)
+   void session::request_topic_file(::payload& varQuery)
    {
 
       auto psession = Session;

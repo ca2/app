@@ -92,8 +92,8 @@ namespace core
       ////__pointer(::account::licensing)                     m_plicensing;
       ////__composite(::user::interaction)                      m_puserinteractionSystem;
 
-      //payload                                                   m_varTopicFile;
-      //payload                                                   m_varCurrentViewFile;
+      //::payload                                                   m_varTopicFile;
+      //::payload                                                   m_varCurrentViewFile;
       //bool                                                  m_bShowPlatform;
 
       //__composite(::apex::str_context)                      m_puserstrcontext;
@@ -158,7 +158,7 @@ namespace core
 
       virtual ::e_status ui_message_box(::layered * pobjectContext, ::user::primitive * puiOwner, const char * pszMessage, const char * pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
       virtual ::e_status ui_message_box_timeout(::layered * pobjectContext, ::user::primitive * puiOwner, const char* pszMessage, const char * pszTitle = nullptr, const ::duration & durationTimeout = ::duration::infinite(), const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
-      //virtual ::e_status ui_message_box_timeout(::object* pobjectContext, ::user::primitive* puiOwner, payload payload, ::duration durationTimeout, ::u32 fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
+      //virtual ::e_status ui_message_box_timeout(::object* pobjectContext, ::user::primitive* puiOwner, ::payload payload, ::duration durationTimeout, ::u32 fuStyle = e_message_box_ok, ::aura::application* papp = nullptr, const function_arg& functionargResult = function_arg());
 
       virtual void on_file_manager_open(::filemanager::data* pdata, ::file::item_array& itema);
 
@@ -206,15 +206,15 @@ namespace core
       __pointer(::user::impact_system) get_template(index index) const;
 
 
-      __pointer(::form_document)   create_form(::object * pobject, ::type point, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      __pointer(::form_document)   create_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      __pointer(::form_document)   create_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      __pointer(::form_document)   create_child_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      __pointer(::form_document)   create_child_form(::object * pobject, ::type point, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      __pointer(::form_document)   create_child_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      __pointer(::form_document)   create_form(::object * pobject, ::type point, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      __pointer(::form_document)   create_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      __pointer(::form_document)   create_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      __pointer(::form_document)   create_child_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      __pointer(::form_document)   create_child_form(::object * pobject, ::type point, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      __pointer(::form_document)   create_child_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
 
       template < typename FORM >
-      __pointer(::form_document)   create_child_form(::object * pobject, ::user::impact_data * pimpactdata, payload payload = ::payload(::e_type_empty_argument))
+      __pointer(::form_document)   create_child_form(::object * pobject, ::user::impact_data * pimpactdata, ::payload payload = ::payload(::e_type_empty_argument))
       {
 
          return create_child_form(pobject, __type(FORM), pimpactdata->m_pplaceholder, payload);
@@ -256,7 +256,7 @@ namespace core
       virtual ::e_status     initialize(::layered * pobjectContext) override;
 
 
-      virtual bool do_prompt_file_name(payload& varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      virtual bool do_prompt_file_name(::payload& varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
 
 
       virtual ::e_status initialize_userex();
@@ -538,15 +538,15 @@ namespace core
       ////virtual bool finalize_filemanager();
 
       //template < typename VIEW >
-      //__pointer(::user::document)   create_form(__pointer(::user::interaction) pwndParent = nullptr, payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(__pointer(::user::interaction) pwndParent = nullptr, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
       //template < typename VIEW >
-      //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument));
 
 
       ////virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle, ::user::menu_item* pitem) override;
@@ -589,7 +589,7 @@ namespace core
 
       //virtual bool place(::user::main_frame* pmainframe, ::create* pcreate);
 
-      //virtual void request_topic_file(payload& varQuery);
+      //virtual void request_topic_file(::payload& varQuery);
 
       //virtual void request_topic_file();
 

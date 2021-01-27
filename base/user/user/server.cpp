@@ -63,7 +63,7 @@ namespace user
    }
 
 
-   ::user::document* server::open_document_file(::apex::application* pappOnBehalfOf, payload varFile, bool bMakeVisible, ::user::interaction* puiParent, ewindowflag eflag, ::id id)
+   ::user::document* server::open_document_file(::apex::application* pappOnBehalfOf, ::payload varFile, bool bMakeVisible, ::user::interaction* puiParent, ewindowflag eflag, ::id id)
    {
 
       auto pcreate = pappOnBehalfOf->__create_new< ::create>();

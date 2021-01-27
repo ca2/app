@@ -75,6 +75,9 @@
 #define System (*::get_context_system())
 
 
+#define Node (::get_context_system()->node())
+
+
 #include "acme/primitive/primitive/estatus.h"
 
 
@@ -127,12 +130,6 @@ class layered;
 
 CLASS_DECL_ACME ::acme::system *get_context_system();
 
-
-template<typename TYPE>
-inline TYPE & xxf_zero_pointer(TYPE * p);
-
-template<typename TYPE>
-inline TYPE & xxf_zero(TYPE & t);
 
 #define ___STR(s) #s
 #define __STR(s) ___STR(s)
@@ -230,10 +227,24 @@ struct INT_STRING
 };
 
 
+template < typename CONCRETE >
+class concrete :
+   public CONCRETE
+{
+public:
+
+
+   using CONCRETE::CONCRETE;
+
+
+};
 
 
 template < typename T >
 concept a_pointer = std::is_pointer < T >::value;
+
+template < typename T >
+concept non_pointer = !std::is_pointer < T >::value;
 
 
 template < typename T >
@@ -284,11 +295,54 @@ struct largest_type_of_3 {
 };
 
 
+template < typename TYPE, std::size_t SIZE >
+using array_reference = TYPE ( & ) [ SIZE ];
+
+
+
+
+
+template < typename TYPE, std::size_t SIZE >
+inline std::size_t item_count(const array_reference < TYPE, SIZE > &) { return SIZE; }
+
+
+template < typename T >
+inline byte byte_clip(const T & t) { return ((byte)(((t) < (byte)0) ? (byte)0 : (((t) > (byte)255) ? (byte)255 : (byte)t))); }
+
+
+
+
+
+template < typename TYPE, std::size_t SIZE >
+inline array_reference < TYPE, SIZE > & __zero(TYPE(&)[SIZE]);
+
+template < a_pointer POINTER>
+inline typename std::remove_pointer<POINTER>::type & __zero(POINTER p);
+
+template < non_pointer NON_POINTER>
+inline NON_POINTER & __zero(NON_POINTER & t);
+
+
+
+
+
+template < typename TYPE, std::size_t Size >
+inline bool __is_zero(TYPE(&array)[Size]);
+
+template < a_pointer POINTER >
+inline bool __is_zero(const POINTER p);
+
+template < non_pointer NON_POINTER >
+inline bool __is_zero(const NON_POINTER & t);
+
+
+
+
+
+
 CLASS_DECL_ACME void throw_todo(void);
 
-
 CLASS_DECL_ACME void set_last_status(const ::e_status &estatus);
-
 
 CLASS_DECL_ACME void windowing_output_debug_string(const char *pszDebugString);
 
@@ -750,6 +804,9 @@ namespace apex
    class session;
 
 
+   class node;
+
+
    class system;
 
 
@@ -784,6 +841,9 @@ namespace aura
 
 
    class session;
+
+
+   class node;
 
 
    class system;
@@ -1043,6 +1103,9 @@ inline bool returns_false(PRED pred, bool bOnVoid, Args... args)
 }
 
 #endif
+
+
+struct block;
 
 
 template<typename CHAR_TYPE>
@@ -1426,7 +1489,13 @@ inline auto &__typed_defer_create(__pointer(T) &p)
 template<typename T>
 inline __pointer(T) move_transfer(T *p);
 
-#define __new(...) move_transfer( new __VA_ARGS__ )
+
+template < typename T >
+inline T * set_heap_allocated(T * p) { p->m_bHeapAllocated = true;  return p; }
+
+#define ___new(...) set_heap_allocated( new __VA_ARGS__ )
+
+#define __new(...) move_transfer( ___new(__VA_ARGS__ ) )
 
 
 template<typename TYPE1, typename TYPE2>
@@ -1686,6 +1755,27 @@ namespace draw2d
 } // namespace draw2d
 
 
+template < typename ARGUMENT >
+class argument_of
+{
+public:
+
+   using type = typename smaller_type < ARGUMENT, const ARGUMENT & >::type;
+
+};
+
+
+template < >
+class argument_of < ::string >
+{
+public:
+
+   using type = ::block;
+
+};
+
+
+
 template < typename T1, typename T2, typename ARG_T1 = typename argument_of < T1 >::type, typename ARG_T2 = typename argument_of < T2 >::type >
 class pair;
 
@@ -1914,18 +2004,18 @@ namespace audio
 #include "acme/primitive/collection/forward.h"
 
 
-enum e_optional
+enum enum_optional
 {
 
-   optional,
+   e_optional,
 
 };
 
 
-enum e_no_init
+enum enum_no_init
 {
 
-   no_init,
+   e_no_init,
 
 };
 
@@ -2302,7 +2392,7 @@ CLASS_DECL_ACME HRESULT defer_co_initialize_ex(bool bMultiThread, bool bDisableO
 class matter;
 
 
-class payload;
+class ::payload;
 
 
 using argument = payload;
@@ -2329,7 +2419,7 @@ CLASS_DECL_ACME bool __node_acme_pos_term();
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 
 
-class payload;
+class ::payload;
 
 
 class id;
@@ -2486,8 +2576,8 @@ inline bool is_set(const __reference(TYPE) &p)
 
 
 
-template < typename TYPE >
-inline bool is_null(const TYPE & t)
+template < non_pointer NOT_A_POINTER >
+inline bool is_null(const NOT_A_POINTER & t)
 {
 
    return is_null(&t);
@@ -2578,6 +2668,8 @@ using wparam = c_number<WPARAM>;
 
 
 #include "acme/primitive/datetime/nanos.h"
+
+
 
 
 #include "acme/primitive/datetime/duration.h"
@@ -2673,7 +2765,7 @@ namespace user
 
    class primitive;
 
-   class create;
+   //class create;
 
 
 } // namespace user
@@ -2750,12 +2842,12 @@ using echeck = ::enumeration<enum_check>;
 typedef ::e_status THREAD_ROUTINE(thread_parameter parameter);
 
 
-inline bool succeeded(const ::payload &payload);
+inline bool succeeded(const ::payload & payload);
 
 inline bool succeeded(const ::property &set);
 
 
-inline bool failed(const ::payload &payload) { return !::succeeded(payload); }
+inline bool failed(const ::payload & payload) { return !::succeeded(payload); }
 
 
 inline bool failed(const ::property &set) { return !::succeeded(set); }
@@ -3037,7 +3129,7 @@ inline bool is_font_sel(::id id) { return is_impact_group(id.i64(), FONTSEL_IMPA
 namespace acme
 {
 
-   inline ::id id(const class payload &payload);
+   inline ::id id(const class ::payload & payload);
 
    inline ::id id(const property &prop);
 
@@ -3621,7 +3713,7 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 #include "acme/platform/simple_app.h"
 
 
-//typedef void CALL_UPDATE(const ::id & id, const payload & payload);
+//typedef void CALL_UPDATE(const ::id & id, const ::payload & payload);
 //using PFN_CALL_UPDATE = CALL_UPDATE *;
 
 //typedef void SET_MODIFIED(const ::id& id);
@@ -3629,7 +3721,7 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 
 
 //CLASS_DECL_ACME void set_system_update(PFN_CALL_UPDATE pfnCallUpdate);
-//CLASS_DECL_ACME void system_update(const ::id & id, const payload & payload = ::e_type_new);
+//CLASS_DECL_ACME void system_update(const ::id & id, const ::payload & payload = ::e_type_new);
 
 
 
@@ -3926,6 +4018,9 @@ namespace draw2d
 
 
 #include "acme/user/_.h"
+
+
+#include "acme/platform/node.h"
 
 
 #include "acme/platform/system.h"

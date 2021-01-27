@@ -295,7 +295,7 @@ namespace sockets
 
    //string http_base_socket::set_cookie(
    //const char * name,
-   //payload payload,
+   //::payload payload,
    //i32 iExpire,
    //const char * path,
    //const char * domain,
@@ -303,14 +303,14 @@ namespace sockets
    //{
    //   m_request.cookies().set_cookie(
    //   name,
-   //   payload,
+   //   ::payload,
    //   iExpire,
    //   path,
    //   domain,
    //   bSecure);
    //   return m_response.cookies().set_cookie(
    //          name,
-   //          payload,
+   //          ::payload,
    //          iExpire,
    //          path,
    //          domain,

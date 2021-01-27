@@ -23,7 +23,7 @@
 //
 //   auto psystem = __new(::acme::system());
 //
-//   psystem->value("main_string") = strMainString;
+//   psystem->payload("main_string") = strMainString;
 //
 //   psystem->construct_system(&mainstruct, hinstance, hPrevInstance, pCmdLine, nCmdShow);
 //

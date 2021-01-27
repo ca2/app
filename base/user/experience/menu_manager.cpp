@@ -127,15 +127,7 @@ namespace experience
          return false;
 
       }
-      /*xxx client::enum_element eelement;
-      if(m_pframewindow->m_pappearance->_001HitTest(point, eelement))
-      {
-      if(eelement == client::ElementTopLeftIcon)
-      {
-      m_pframewindow->WindowClose();
-      return true;
-      }
-      }*/
+
       return false;
 
    }

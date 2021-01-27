@@ -80,7 +80,7 @@ namespace user
 ////         else
 ////         {
 ////
-////            if(create_control(pdescriptor))
+////            if(create_interaction(pdescriptor))
 ////            {
 ////            }
 ////            else
@@ -91,7 +91,7 @@ namespace user
 ////         }
 ////
 ////      }
-////      else if(create_control(pdescriptor))
+////      else if(create_interaction(pdescriptor))
 ////      {
 ////      }
 ////      if(pdescriptor->m_pcontrol != nullptr)
@@ -348,7 +348,7 @@ namespace user
          return false;
       }
 
-      payload payload;
+      ::payload payload;
 
       if(!pinteraction->get_data(pinteraction, payload))
       {
@@ -531,7 +531,7 @@ namespace user
       if(pinteraction->has_function(e_control_function_vms_data_edit))
       {
 
-         payload payload;
+         ::payload payload;
          ::database::selection selection;
          _001GetSelection(pinteraction->m_datakey, selection);
          if(selection.get_item_count() > 0)
@@ -726,7 +726,7 @@ namespace user
    }
 
 
-   bool form_window::_001Validate(::user::interaction * pinteraction, payload & payload)
+   bool form_window::_001Validate(::user::interaction * pinteraction, ::payload & payload)
    {
 
       UNREFERENCED_PARAMETER(pinteraction);
@@ -757,7 +757,7 @@ namespace user
    }
 
 
-   void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::promise::subject * psubject)
+   void form_window::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::promise::subject * psubject)
    {
 
       sync_lock sl(mutex());
@@ -947,13 +947,13 @@ namespace user
             {
                pinteraction->GetComboBox()->m_wstra.remove_all();
                pinteraction->GetComboBox()->m_dwaData.remove_all();
-               payload payload;
+               ::payload payload;
                payload.m_etype = ::e_type_element;
                payload.m_pca2 = pinteraction->GetComboBox();
                VmsDataGet(
                   pinteraction->GetComboBox()->m_datakeyFill,
                   0, 0,
-                  payload);
+                  ::payload);
                __pointer(::user::combo_box) pcombo = (__pointer(::user::combo_box)) pinteraction->m_puserinteraction;
                pcombo->ResetContent();
                string str;
@@ -1020,45 +1020,45 @@ namespace user
    }
 
 
-   bool form_window::create_control(::user::interaction * pinteractionParent, const ::id & id)
-   {
+   //bool form_window::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
+   //{
 
-      //if(!normalize_control_descriptor_typeinfo(pdescriptor))
-      //{
+   //   //if(!normalize_control_descriptor_typeinfo(pdescriptor))
+   //   //{
 
-      //   TRACE("form_window::create_control: failed to create control, could not find proper type for allocation");
+   //   //   TRACE("form_window::create_interaction: failed to create control, could not find proper type for allocation");
 
-      //   return false;
+   //   //   return false;
 
-      //}
+   //   //}
 
-      //auto pinteraction = Application.__id_create <::user::interaction>(pdescriptor->m_type);
+   //   //auto pinteraction = Application.__id_create <::user::interaction>(pdescriptor->m_type);
 
-      //if(!pinteraction)
-      //{
+   //   //if(!pinteraction)
+   //   //{
 
-      //   TRACE("form_window::create_control: failed to create control, allocation error");
+   //   //   TRACE("form_window::create_interaction: failed to create control, allocation error");
 
-      //   return false;
+   //   //   return false;
 
-      //}
+   //   //}
 
-      if(!create_control(pinteractionParent, id))
-      {
+   //   if(!create_interaction(pinteractionParent, id))
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      //pinteraction->m_iEditItem = iItem;
+   //   //pinteraction->m_iEditItem = iItem;
 
-      //_001OnInitializeControl(pinteraction);
+   //   //_001OnInitializeControl(pinteraction);
 
-      //pdescriptor->m_pinteraction = pinteraction;
+   //   //pdescriptor->m_pinteraction = pinteraction;
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    void form_window::_001SetControlFactory()
@@ -1073,7 +1073,7 @@ namespace user
    }
 
 
-   ::e_status form_window::open_document(const payload & varFile)
+   ::e_status form_window::open_document(const ::payload & varFile)
    {
 
       auto estatus = ::user::form_control::open_document(varFile);
@@ -1260,7 +1260,7 @@ namespace user
    //}
 
 
-   //void form_window::on_before_navigate(payload & varFile, u32 nFlags, const char * pszTargetFrameName, byte_array& baPostedData, const char * pszHeaders, bool* pbCancel)
+   //void form_window::on_before_navigate(::payload & varFile, u32 nFlags, const char * pszTargetFrameName, byte_array& baPostedData, const char * pszHeaders, bool* pbCancel)
 
    //{
 

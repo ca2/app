@@ -208,9 +208,9 @@ namespace user
 
       m_bCalcLayoutHintNoTextChange = false;
 
-      m_scrolldataHorz.m_bScrollEnable = false;
+      m_scrolldataHorizontal.m_bScrollEnable = false;
 
-      m_scrolldataVert.m_bScrollEnable = false;
+      m_scrolldataVertical.m_bScrollEnable = false;
 
       m_dy = -1;
       m_iViewOffset = 0;
@@ -2504,7 +2504,7 @@ namespace user
 
       m_dLineHeight = metric.get_line_spacing();
 
-      m_scrolldataVert.m_iLine = (::i32) m_dLineHeight;
+      m_scrolldataVertical.m_iLine = (::i32) m_dLineHeight;
 
       if (m_dLineHeight <= 0)
       {
@@ -5241,7 +5241,7 @@ finished_update:
 
       ::index iAfterComposingCursorPosition;
 
-      int iOffset = 0;
+      strsize iOffset = 0;
 
       if (iNewCursorPosition > 0)
       {
@@ -6156,25 +6156,25 @@ finished_update:
    }
 
 
-   bool plain_edit::create_control(::user::interaction * puserinteractionParent, const ::id & id)
-   {
+   //bool plain_edit::create_interaction(::user::interaction * puserinteractionParent, const ::id & id)
+   //{
 
-      if (!::user::interaction::create_control(puserinteractionParent, id))
-      {
+   //   if (!::user::interaction::create_interaction(puserinteractionParent, id))
+   //   {
 
-         TRACE("Failed to create control");
+   //      TRACE("Failed to create control");
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      display(e_display_none);
+   //   display(e_display_none);
 
-      //m_bMultiLine = pdescriptor->has_function(e_control_function_edit_multi_line);
+   //   //m_bMultiLine = pdescriptor->has_function(e_control_function_edit_multi_line);
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    enum_input_type plain_edit::preferred_input_type() const
@@ -6209,7 +6209,7 @@ finished_update:
 
          HWND hwnd = get_handle();
 
-         ::CreateCaret(hwnd, 0, 1, m_dLineHeight);
+         ::CreateCaret(hwnd, 0, 1, (int) m_dLineHeight);
 
          ::point pointCaret = layout().design().origin();
 
@@ -6493,7 +6493,7 @@ finished_update:
    }
 
 
-   payload plain_edit::get_payload()
+   ::payload plain_edit::get_payload()
    {
 
       string str;

@@ -11,7 +11,7 @@ public:
 
 
    i32     m_iCode;
-   payload         m_varRet;
+   ::payload         m_varRet;
 
 
    exit_exception(i32 iCode);

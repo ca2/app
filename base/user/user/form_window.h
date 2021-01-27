@@ -18,7 +18,7 @@ namespace user
       virtual ~form_window();
 
       virtual string get_path() override;
-      virtual ::e_status open_document(const payload & varFile) override;
+      virtual ::e_status open_document(const ::payload & varFile) override;
 
 
       //using ::user::interaction::_001IsPointInside;
@@ -39,7 +39,7 @@ namespace user
       void _001UpdateFunctionStatic();
       virtual bool _001OnBeforeSave(interaction * pinteraction) override;
       //virtual void _001RemoveControls() override;
-      virtual bool _001Validate(interaction * pinteraction, payload & payload);
+      virtual bool _001Validate(interaction * pinteraction, ::payload & payload);
       virtual bool _001SaveEdit(interaction * pinteraction);
       virtual void on_command(::user::command * pcommand) override;
       DECL_GEN_SIGNAL(_001OnNotify);
@@ -81,10 +81,10 @@ namespace user
 
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::promise::subject * psubject = nullptr) override;
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::promise::subject * psubject = nullptr) override;
 
 
-      virtual bool create_control(::user::interaction * pinteractionParent, const ::id & id) override;
+      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
       //virtual bool normalize_control_descriptor_typeinfo(class ::user::control_descriptor * pdescriptor) override;
 
       bool operator == (const interaction & interaction) const;

@@ -8,7 +8,7 @@ namespace calculator
 #define INITIALIZE_TABLE(table, function) if(table[0] == 0) function(table)
 
 /*
-payload:
+::payload:
 a(ad)*
 a = a-z, A-Z, _
 d = 0-9

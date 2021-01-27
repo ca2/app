@@ -47,7 +47,7 @@ namespace user
 
       virtual void on_change_combo_sel(index iSel);
 
-      bool pre_create_window(::user::create_struct * pcreatestruct) override;
+      bool pre_create_window(::user::system * pusersystem) override;
 
       virtual void _001EnsureVisible(index iItem);
 

@@ -10,7 +10,7 @@
 #include "main.h"
 #include "apex/os/_.h"
 #include "apex/os/_os.h"
-#include "apex/update.h"
+#include "acme/update.h"
 //char * ns_realpath(const char * pszPath);
 char * mm_ca2_command_line();
 
@@ -339,7 +339,7 @@ bool __node_further_file_is_equal(file::path const & path1, file::path const & p
 
    char sz[4096];
 
-   xxf_zero(sz);
+   __zero(sz);
 
    return realpath(path, sz);
 

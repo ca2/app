@@ -5,7 +5,7 @@ namespace comparison
 {
 
 
-   var_strict::var_strict(const class payload & payload)
+   var_strict::var_strict(const class ::payload & payload)
    {
       
       m_pvar = &payload;
@@ -21,7 +21,7 @@ namespace comparison
    }
 
 
-   bool var_strict::operator == (const class payload & payload) const
+   bool var_strict::operator == (const class ::payload & payload) const
    {
       return m_pvar->strict_equal(payload);
    }
@@ -51,7 +51,7 @@ namespace comparison
       return m_pvar->strict_equal(b);
    }
 
-   bool var_strict::operator != (const class payload & payload) const
+   bool var_strict::operator != (const class ::payload & payload) const
    {
       return m_pvar->strict_different(payload);
    }

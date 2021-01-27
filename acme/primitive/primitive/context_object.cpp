@@ -54,7 +54,7 @@ void context_object::finalize()
 void context_object::notify_on_finish(::context_object * pcontextobjectFinish)
 {
 
-   if (m_bitFinishing)
+   if (m_bFinishing)
    {
 
       finish(nullptr);
@@ -97,7 +97,7 @@ void context_object::on_finish()
       for (auto pmatter : *pnotifya)
       {
 
-         if (pmatter && pmatter->m_bitFinishing)
+         if (pmatter && pmatter->m_bFinishing)
          {
 
             sl.unlock();
@@ -677,7 +677,7 @@ property * context_object::fetch_property(const ::id & idParam, bool bCreate)
 //}
 
 
-string context_object::get_text(const payload & payload, const ::id & id)
+string context_object::get_text(const ::payload & payload, const ::id & id)
 {
 
    if (payload.has_property(id) && payload[id].has_char())

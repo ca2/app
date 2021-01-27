@@ -21,11 +21,13 @@
 
 
 #undef System
+#undef Node
 #undef Sess
 #undef App
 
 
 #define System (*::get_context_system()->m_paurasystem)
+#define Node (::get_context_system()->m_pnode ? ::get_context_system()->m_pnode->m_pauranode : nullptr)
 #define Sess(pcontextsession) (pcontextsession->m_paurasession)
 #define App(playered) (*::get_context_application(playered)->m_pauraapplication)
 
@@ -1229,7 +1231,7 @@ using image_pointer_array = __pointer_array(::image);
 //
 //
 //class istring;
-//class payload;
+//class ::payload;
 //class property_set;
 //class object;
 ////class base_edit;
@@ -1392,11 +1394,11 @@ namespace user
 {
 
 
-   class create;
+   //class create;
    class control_event;
    class item;
    class check;
-   class create_struct;
+   class system;
    class command;
    class interaction_impl;
    class primitive;
@@ -1614,17 +1616,17 @@ class form_document;
 //
 ////#include "aura/primitive/collection/forward.h"
 //
-//enum e_optional
+//enum enum_optional
 //{
 //
 //   optional,
 //
 //};
 //
-//enum e_no_init
+//enum enum_no_init
 //{
 //
-//   no_init,
+//   e_no_init,
 //
 //};
 //
@@ -1634,7 +1636,7 @@ class form_document;
 //
 //   e_set    m_eset;
 //
-//   inline set(e_optional) { m_eset = set_none; }
+//   inline set(enum_optional) { m_eset = set_none; }
 //   inline set() { m_eset = set_none; }
 //   inline set(int i) { operator = (i); }
 //   inline set(bool b) { operator = (b); }
@@ -2173,7 +2175,7 @@ namespace draw2d
 //
 //class matter;
 //
-//class payload;
+//class ::payload;
 //
 //using argument = payload;
 //
@@ -2233,7 +2235,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //#define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 //
 //
-//class payload;
+//class ::payload;
 //class id;
 //
 //
@@ -2723,6 +2725,8 @@ namespace draw2d
 #include "aura/filesystem/filemanager/item_action.h"
 
 #include "aura/platform/session.h"
+
+#include "aura/platform/node.h"
 
 #include "aura/platform/system.h"
 

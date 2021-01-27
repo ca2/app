@@ -32,7 +32,7 @@
 //}
 
 //
-//void function::operator()(const payload& payload)
+//void function::operator()(const ::payload & payload)
 //{
 //
 //   (*m_pmatterFunction)(payload);
@@ -53,7 +53,7 @@
 //}
 //
 //
-//void sync_function::operator()(const payload& payload)
+//void sync_function::operator()(const ::payload & payload)
 //{
 //   
 //   (*m_pmatterFunction)(payload);

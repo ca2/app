@@ -40,7 +40,7 @@ extern "C"
 //void enum_display_monitors(::aura::system * psystem);
 
 #ifdef WINDOWS_DESKTOP
-CLASS_DECL_AURA ::user::interaction * create_system_message_window(::layered * pobjectContext);
+CLASS_DECL_AURA __pointer(::user::interaction) create_system_message_window(::layered * pobjectContext);
 #endif
 
 
@@ -278,6 +278,23 @@ namespace aura
    }
 
 
+   ::e_status system::run_system()
+   {
+
+      auto estatus = ::apex::system::run_system();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
    bool system::on_get_thread_name(string& strThreadName)
    {
 
@@ -382,7 +399,12 @@ namespace aura
 
       ::acme::del(g_pmutexImage);
 
-      os_post_quit();
+      if(m_pnode)
+      {
+
+         m_pnode->os_post_quit();
+
+      }
 
    }
 
@@ -970,11 +992,11 @@ namespace aura
 
       ::acme::profiler::initialize();
 
-#ifdef LINUX
-
-      ::user::g_defer_init();
-
-#endif // LINUX
+//#ifdef LINUX
+//
+//      ::user::g_defer_init();
+//
+//#endif // LINUX
 
       INFO("success");
 
@@ -1154,7 +1176,7 @@ namespace aura
       if (has_property("draw2d"))
       {
 
-         strLibrary = value("draw2d");
+         strLibrary = payload("draw2d");
 
          //strDraw2d.trim();
 
@@ -1298,7 +1320,7 @@ namespace aura
 
          string strImaging;
          
-         strImaging = value("imaging");
+         strImaging = payload("imaging");
 
          strImaging.trim();
 
@@ -3149,7 +3171,7 @@ namespace aura
    }
 
 
-   bool system::on_open_file(payload varFile, string strExtra)
+   bool system::on_open_file(::payload varFile, string strExtra)
    {
 
       auto psession = Session;
@@ -4752,7 +4774,7 @@ namespace aura
    void system::open_profile_link(string strUrl, string strProfile, string strTarget)
    {
 
-      fork([=]()
+      fork([this, strUrl, strProfile, strTarget]()
       {
 
          browser(strUrl, "", strProfile, strTarget);
@@ -4765,7 +4787,7 @@ namespace aura
    void system::open_url(string strUrl, string strProfile, string strTarget)
    {
 
-      fork([=]()
+      fork([this, strUrl, strProfile, strTarget]()
          {
 
             browser(strUrl, "", strProfile, strTarget);
@@ -4779,7 +4801,7 @@ namespace aura
    void system::open_link(string strUrl, string strProfile, string strTarget)
    {
 
-      fork([=]()
+      fork([this, strUrl, strProfile, strTarget]()
          {
 
             browser(strUrl, "", strProfile, strTarget);

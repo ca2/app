@@ -662,7 +662,7 @@ break_click:;
 
          }
 
-         //payload payload;
+         //::payload payload;
          //::database::selection selection;
          //_001GetSelection(pinteraction->m_dataid, selection);
          //if (selection.get_item_count() > 0)
@@ -868,7 +868,7 @@ break_click:;
 
       }
 
-      payload payload;
+      ::payload payload;
 
       if (!pinteraction->get_data(pinteraction, payload))
       {

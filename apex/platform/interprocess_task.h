@@ -10,7 +10,7 @@ public:
    ::id                                m_idPid;
    ::i64                               m_iTask;
    __pointer(interprocess_call)               m_pcall;
-   payload                                 m_var;
+   ::payload                                 m_var;
    __pointer(manual_reset_event)       m_pevReady;
 
 

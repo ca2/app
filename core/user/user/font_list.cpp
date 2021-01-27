@@ -27,12 +27,8 @@ namespace user
 
       m_bFirstShown = false;
       m_idView = FONTSEL_IMPACT;
-      //m_puserstyle = this;
-      //m_econtroltype = e_control_type_list;
-      m_scrolldataVert.m_bScrollEnable = true;
+      m_scrolldataVertical.m_bScrollEnable = true;
       m_bEnsureVisible = false;
-
-      //m_bNeedLayoutAfterExtentUpdate = false;
 
    }
 
@@ -71,30 +67,7 @@ namespace user
 
       }
 
-      //psession->add(method(e_routine_font_change, [this]() { on_font_change(); }));
-
    }
-
-
-   // void font_list::on_font_change()
-   // {
-
-   //    ::rect rectClient;
-
-   //    get_client_rect(rectClient);
-
-   //    if (rectClient.area() > 0)
-   //    {
-
-   //       m_pfontlist->m_rectClient = rectClient;
-
-   //       m_pfontlist->update();
-
-   //    }
-
-   //    TRACE("pane_tab_view::on_change_cur_sel font_check_need_update thread finished!!");
-
-   // }
 
 
    void font_list::set_font_list_type(::draw2d::font_list::enum_type etype)

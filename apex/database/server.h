@@ -33,12 +33,12 @@ namespace database
       virtual bool data_pulse_change      (client * pclient, const key & key, ::promise::subject * psubject = nullptr);
 
 
-      virtual bool on_before_data_change  (client * pclient, const key & key, payload & varNew, ::promise::subject * psubject = nullptr);
-      virtual bool on_after_data_change   (client * pclient, const key & key, const payload & payload, ::promise::subject * psubject = nullptr);
+      virtual bool on_before_data_change  (client * pclient, const key & key, ::payload & varNew, ::promise::subject * psubject = nullptr);
+      virtual bool on_after_data_change   (client * pclient, const key & key, const ::payload & payload, ::promise::subject * psubject = nullptr);
 
 
-      virtual payload data_load(client * pclient, const key & key, ::promise::subject * psubject = nullptr);
-      virtual bool data_save(client * pclient, const key & key, payload & payload, ::promise::subject * psubject = nullptr);
+      virtual ::payload data_load(client * pclient, const key & key, ::promise::subject * psubject = nullptr);
+      virtual bool data_save(client * pclient, const key & key, ::payload & payload, ::promise::subject * psubject = nullptr);
 
 
    };

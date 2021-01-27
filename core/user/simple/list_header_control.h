@@ -14,8 +14,8 @@ public:
    virtual ~simple_list_header_control();
 
 
-   using ::user::list_header::create_window;
-   virtual bool create_window(u32 uStyle, ::user::interaction * puiParent, ::id id);
+   //using ::user::list_header::create_window;
+   //virtual bool create_window(u32 uStyle, ::user::interaction * puiParent, ::id id);
 
 
    virtual void install_message_routing(::channel * pchannel);

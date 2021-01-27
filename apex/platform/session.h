@@ -98,8 +98,8 @@ namespace apex
       //__pointer(::account::licensing)                     m_plicensing;
       //__composite(::layered)                      m_puserinteractionSystem;
 
-      payload                                                   m_varTopicFile;
-      payload                                                   m_varCurrentViewFile;
+      ::payload                                                   m_varTopicFile;
+      ::payload                                                   m_varCurrentViewFile;
       bool                                                  m_bShowPlatform;
 
       __composite(::apex::str_context)                      m_puserstrcontext;
@@ -398,15 +398,15 @@ namespace apex
       virtual void finalize() override;
 
       //template < typename VIEW >
-      //__pointer(::user::document)   create_form(__pointer(::user::interaction) pwndParent = nullptr, payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(__pointer(::user::interaction) pwndParent = nullptr, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //template < typename VIEW >
-      //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, payload payload = ::payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
 
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle,::user::menu_item* pitem) override;
@@ -452,7 +452,7 @@ namespace apex
       // apex commented
       //virtual bool place(::user::main_frame* pmainframe, ::create* pcreate);
 
-      virtual void request_topic_file(payload& varQuery);
+      virtual void request_topic_file(::payload& varQuery);
 
       virtual void request_topic_file();
 

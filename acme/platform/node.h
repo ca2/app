@@ -1,0 +1,115 @@
+//
+// Created by camilo on 19/01/2021. <33TBS!!
+//
+
+//
+// Created by camilo on 19/01/2021. <3-<3ThomasBS!!
+//
+#pragma once
+
+
+namespace acme
+{
+
+
+   class CLASS_DECL_ACME node :
+      virtual public ::context_object
+   {
+   public:
+
+
+      ::apex::node *       m_papexnode;
+      ::aura::node *       m_pauranode;
+
+
+      node();
+      virtual ~node();
+
+
+      virtual int node_init_check(int * pi, char *** ppz);
+
+      virtual void os_application_system_run();
+
+      virtual void os_calc_user_dark_mode();
+
+      virtual string os_get_user_theme();
+
+      virtual bool os_set_user_theme(const ::string & strUserTheme);
+
+      virtual void os_process_user_theme(string strTheme);
+
+      virtual bool set_wallpaper(index iScreen, string strLocalImagePath);
+
+      virtual string get_wallpaper(index iScreen);
+
+      virtual string get_file_icon_path(const char * pszPath, int iSize);
+
+      virtual string get_file_content_type(const char * pszPath);
+
+      virtual int os_launch_uri(const char * pszUri, char * pszError = NULL, int iBufferSize = 0);
+
+      virtual void enable_wallpaper_change_notification();
+
+      template < typename PRED >
+      void node_fork(PRED pred)
+      {
+
+         node_fork(__routine(pred));
+
+      }
+
+      virtual void node_fork(const ::promise::routine & routine);
+
+      template < typename PRED >
+      void node_sync(const ::duration & durationTimeout, PRED pred)
+      {
+
+         node_sync(durationTimeout, __routine(pred));
+
+      }
+
+      virtual void node_sync(const ::duration & durationTimeout, const ::promise::routine & routine);
+
+      template < typename PRED >
+      void user_fork(PRED pred)
+      {
+
+         user_fork(__routine(pred));
+
+      }
+
+      virtual void user_fork(const ::promise::routine & routine);
+
+      template < typename PRED >
+      void user_sync(const ::duration & durationTimeout, PRED pred)
+      {
+
+         user_sync(durationTimeout, __routine(pred));
+
+      }
+
+      virtual void user_sync(const ::duration & durationTimeout, const ::promise::routine & routine);
+
+
+      virtual void node_post_quit();
+
+      virtual ::user::enum_desktop get_edesktop();
+
+      virtual void enum_display_monitors(::aura::session * psession);
+
+      virtual void os_post_quit();
+
+      virtual bool should_launch_on_node(::promise::subject * psubject);
+
+      virtual bool defer_launch_on_node(::promise::subject * psubject);
+
+      virtual bool launch_on_node(::promise::subject * psubject);
+
+
+   };
+
+
+} // namespace linux
+
+
+

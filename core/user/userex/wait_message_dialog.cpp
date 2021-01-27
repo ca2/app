@@ -51,7 +51,7 @@ namespace userex
                
                m_pform->set_timer(e_timer_reload, 50_ms);
                
-               value("wait_message_dialog_timeout") = m_millisDelay.seconds();
+               payload("wait_message_dialog_timeout") = m_millisDelay.seconds();
                
             }
             
@@ -162,7 +162,7 @@ namespace userex
       if (m_pdocument != nullptr)
       {
 
-         value("wait_message_dialog_timeout") = iSecond;
+         payload("wait_message_dialog_timeout") = iSecond;
 
          m_pform->soft_reload();
 

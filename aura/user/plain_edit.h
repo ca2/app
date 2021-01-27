@@ -359,7 +359,8 @@ namespace user
       virtual void on_updata_data(::data::simple_data * pdata, i32 iHint);
 
 
-      virtual bool create_control(::user::interaction * pinteraction, const ::id & id) override;
+      //virtual bool create_interaction(::user::interaction * pinteraction) override;
+
 
       virtual strsize plain_edit_char_hit_test(::draw2d::graphics_pointer& pgraphics, const ::point & point);
       virtual strsize plain_edit_line_char_hit_test(::draw2d::graphics_pointer& pgraphics, i32 x, index iLine);
@@ -451,7 +452,7 @@ namespace user
 
       virtual ::sized get_total_size() override;
 
-      virtual payload get_payload();
+      virtual ::payload get_payload();
 
 
       virtual void on_before_change_text();

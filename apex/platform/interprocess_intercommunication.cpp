@@ -440,7 +440,7 @@ void interprocess_intercommunication::on_interprocess_receive(::interprocess_com
 
    }
 
-   payload varRet;
+   ::payload varRet;
 
    on_interprocess_call(varRet, strObject, strMember, vara);
 
@@ -504,7 +504,7 @@ __pointer(interprocess_call) interprocess_intercommunication::create_call(const 
 }
 
 
-void interprocess_intercommunication::on_interprocess_call(payload & payload, const string & strObject, const string & strMember, var_array & vara)
+void interprocess_intercommunication::on_interprocess_call(::payload & payload, const string & strObject, const string & strMember, var_array & vara)
 {
 
    if(strObject == "application")

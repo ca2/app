@@ -60,7 +60,7 @@ namespace user
       bool                             m_bNoTabs;
       item                             m_itemClick;
       ::draw2d::font_pointer           m_pfontTab;
-      __pointer(::create)              m_pcreate;
+      //__pointer(::create)              m_pcreate;
       ::count                          m_iRestoredTabCount;
       bool                             m_bDrawTabAtBackground;
       ::logic::bit                     m_bitLastShowTabs;
@@ -219,7 +219,7 @@ namespace user
 
       virtual bool has_restore_tab();
       virtual void get_restore_tab(var_array & vara);
-      virtual bool matches_restorable_tab(const payload & varId, ::user::place_holder * pholder = nullptr);
+      virtual bool matches_restorable_tab(const ::payload & varId, ::user::place_holder * pholder = nullptr);
       virtual ::count open_tabs(const var_array & vara);
       virtual ::count restore_tabs();
       virtual void save_restorable_tabs();

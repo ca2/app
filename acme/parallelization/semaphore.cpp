@@ -85,7 +85,7 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
       }
       else
       {
-         strPath = "/payload/tmp/ca2/ftok/semaphore/" + string(pstrName);
+         strPath = "/::payload/tmp/ca2/ftok/semaphore/" + string(pstrName);
       }
 
       dir::mk(::file::path(strPath).folder());
@@ -127,8 +127,8 @@ sync_result semaphore::wait(const duration & durationTimeout)
 
    ((duration &)durationTimeout).normalize();
 
-   ts.tv_nsec = durationTimeout.m_nanos.m_iNanoseconds;
-   ts.tv_sec = durationTimeout.m_secs.m_iSeconds;
+   ts.tv_nsec = durationTimeout.m_nanos.m_i;
+   ts.tv_sec = durationTimeout.m_secs.m_i;
 
    sem_timedwait(m_psem, &ts);
 
@@ -161,8 +161,8 @@ sync_result semaphore::wait(const duration & durationTimeout)
 
       ((duration &)durationTimeout).normalize();
 
-      ts.tv_nsec = durationTimeout.m_nanos.m_iNanoseconds;
-      ts.tv_sec = durationTimeout.m_secs.m_iSeconds;
+      ts.tv_nsec = durationTimeout.m_nanos.m_i;
+      ts.tv_sec = durationTimeout.m_secs.m_i;
 
       iRet = semtimedop(static_cast < i32 > (m_hsync), &sb, 1, &ts);
 

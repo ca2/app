@@ -31,12 +31,12 @@ namespace user
 
 
 
-   bool static_control::create_window(::user::interaction * puiParent,id id)
-   {
+   //bool static_control::create_interaction(::user::interaction * puiParent,id id)
+   //{
 
-      return ::user::interaction::create_window(puiParent, id);
+   //   return ::user::interaction::create_interaction(puiParent, id);
 
-   }
+   //}
 
 
    ::draw2d::font_pointer static_control::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const

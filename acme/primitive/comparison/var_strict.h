@@ -10,21 +10,21 @@ namespace comparison
    public:
 
 
-      const payload * m_pvar;
+      const ::payload * m_pvar;
 
 
-      var_strict(const payload & payload);
+      var_strict(const ::payload & payload);
       var_strict(const ::comparison::var_strict & compare);
 
 
-      bool operator == (const payload & payload) const;
+      bool operator == (const ::payload & payload) const;
       bool operator == (const char * psz) const;
       bool operator == (const string & str) const;
       bool operator == (double d) const;
       bool operator == (i32 i) const;
       bool operator == (bool b) const;
 
-      bool operator != (const payload & payload) const;
+      bool operator != (const ::payload & payload) const;
       bool operator != (const char * psz) const;
       bool operator != (const string & str) const;
       bool operator != (double d) const;

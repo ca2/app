@@ -44,10 +44,11 @@ namespace user
       status_bar();
       virtual ~status_bar();
 
-      using ::user::control_bar::create_window;
-      using ::user::control_bar::create_window_ex;
-      virtual bool create_window(::user::interaction * puiParent,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,id nID = "status_bar");
-      virtual bool create_window_ex(::user::interaction * puiParent,u32 dwCtrlStyle = 0,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM, id nID = "status_bar");
+      //using ::user::control_bar::create_window;
+      //using ::user::control_bar::create_window_ex;
+      //virtual bool create_window(::user::interaction * puiParent,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM,id nID = "status_bar");
+      //virtual bool create_window_ex(::user::interaction * puiParent,u32 dwCtrlStyle = 0,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_BOTTOM, id nID = "status_bar");
+      //virtual bool create_child(::user)
       bool SetIndicators(string_array & stra);
 
       void SetBorders(const ::rect & rect);
@@ -81,7 +82,7 @@ namespace user
 #endif
 
       virtual ::size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
-      bool pre_create_window(::user::create_struct * pcreatestruct) override;
+      bool pre_create_window(::user::system * pusersystem) override;
       //bool AllocElements(i32 nElements, i32 cbElement);
       void CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::rect& rect, bool bHorz);
       virtual void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle) override;

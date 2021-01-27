@@ -29,9 +29,9 @@ public:
 
    virtual ::matter * source_channel() override;
 
-   virtual ::file_result get_file(const payload& varFile, const ::file::e_open & eopen);
-   virtual ::file_result get_reader(const payload& varFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
-   virtual ::file_result get_writer(const payload& varFile, const ::file::e_open & eopen = ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_no_truncate | ::file::e_open_create);
+   virtual ::file_result get_file(const ::payload& varFile, const ::file::e_open & eopen);
+   virtual ::file_result get_reader(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open_read | ::file::e_open_binary);
+   virtual ::file_result get_writer(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open_write | ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_no_truncate | ::file::e_open_create);
 
 
    inline bool is_ok() const
@@ -64,7 +64,7 @@ public:
    }
 
 
-   virtual string get_text(const payload & payload, id id);
+   virtual string get_text(const ::payload & payload, id id);
 
    virtual property * parent_lookup_property(const id & id) const;
 

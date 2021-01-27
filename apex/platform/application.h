@@ -303,9 +303,9 @@ namespace apex
 
 
 
-      //virtual bool do_prompt_file_name(payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
-      //virtual bool do_prompt_file_name(payload& varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
-      //user virtual bool do_prompt_file_name(payload& varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      //virtual bool do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument);
+      //virtual bool do_prompt_file_name(::payload& varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
+      //user virtual bool do_prompt_file_name(::payload& varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument);
 
 
       virtual void process_message_filter(i32 code, ::message::message * pmessage) override;
@@ -363,8 +363,8 @@ namespace apex
 
 
 
-      //user virtual bool on_open_document(::user::document * pdocument, payload varFile);
-      //user virtual bool on_save_document(::user::document * pdocument, payload varFile);
+      //user virtual bool on_open_document(::user::document * pdocument, ::payload varFile);
+      //user virtual bool on_save_document(::user::document * pdocument, ::payload varFile);
 
 
 
@@ -764,7 +764,7 @@ namespace apex
 
       //virtual void throw_not_installed();
 
-      //virtual void play_audio(payload varFile, bool bSynch = false);
+      //virtual void play_audio(::payload varFile, bool bSynch = false);
 
       virtual void post_critical_error_message(const char * pszMessage, bool bShowLog = true);
 
@@ -787,7 +787,7 @@ namespace apex
 
 
 
-      virtual bool on_open_document_file(payload varFile);
+      virtual bool on_open_document_file(::payload varFile);
 
       virtual string get_app_id(string wstr);
 
@@ -978,7 +978,7 @@ namespace apex
       void EnableHtmlHelp();
 
 
-      //virtual i32 sync_message_box_timeout(::user::primitive * puiOwner,payload payload, const char * pszTitle, ::duration durationTimeout,::u32 fuStyle = e_message_box_ok) override;
+      //virtual i32 sync_message_box_timeout(::user::primitive * puiOwner,::payload payload, const char * pszTitle, ::duration durationTimeout,::u32 fuStyle = e_message_box_ok) override;
       //virtual i32 sync_message_box(::user::primitive * puiOwner,const char * pszMessage, const char * pszTitle, ::u32 fuStyle = e_message_box_ok) override;
 
 
@@ -1089,7 +1089,7 @@ namespace apex
       // registered with the doc manager.
       i32 get_open_document_count();
 
-      //virtual bool do_prompt_file_name(payload& varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument) override;
+      //virtual bool do_prompt_file_name(::payload& varFile, string strTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument) override;
 
       void EnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
@@ -1150,8 +1150,8 @@ namespace apex
       //      virtual ::apex::file_system & file_system();
       //virtual bool _001OnDDECommand(const char* pcsz) override;
 
-      //user virtual ::user::document* _001OpenDocumentFile(payload varFile);
-      //virtual bool on_open_document_file(payload varFile) override;
+      //user virtual ::user::document* _001OpenDocumentFile(::payload varFile);
+      //virtual bool on_open_document_file(::payload varFile) override;
       //DECL_GEN_SIGNAL(_001OnFileNew) override;
 
 
@@ -1310,7 +1310,7 @@ namespace apex
       }
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const payload& payload, ::promise::subject * psubject) override;
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& id, const ::payload & payload, ::promise::subject * psubject) override;
 
 
       //user virtual ::user::document* open_document_file(::object* pobject, const char* pszFileName);
@@ -1434,7 +1434,7 @@ namespace apex
       virtual string get_default_playlist_path();
 
 
-      virtual string as_string(const payload& payload);
+      virtual string as_string(const ::payload & payload);
 
 
    };

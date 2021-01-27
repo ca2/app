@@ -178,7 +178,7 @@ namespace dynamic_source
       __pointer(script_instance) get(const string & strNafme);
       __pointer(script_instance) get(const string & strName, __pointer(script) & pscript);
       virtual void handle(::dynamic_source::httpd_socket * psocket);
-      payload get_output_internal(::dynamic_source::script_interface * pinstanceParent, const string & strName);
+      ::payload get_output_internal(::dynamic_source::script_interface * pinstanceParent, const string & strName);
       void run(const char * lpcszName);
 
       void LoadEnv();

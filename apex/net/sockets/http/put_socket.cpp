@@ -73,25 +73,28 @@ namespace sockets
 
    void http_put_socket::SetContentType(const string & type)
    {
+
       m_content_type = type;
+
    }
 
 
-
-
-
-   void http_put_socket::step()
+   ::e_status http_put_socket::step()
    {
 
       if(m_file.is_set())
       {
+
          m_content_length = (long) m_file->get_size();
+
       }
 
-
       m_request.attr(__id(http_method))    = "PUT";
+
       m_request.attr(__id(http_version))   = "HTTP/1.1";
+
       //inheader(__id(host))                = GetUrlHost();
+
       if(m_content_type.has_char())
       {
          outheader(__id(content_type))     = m_content_type;
@@ -125,6 +128,9 @@ namespace sockets
             fclose(fil);
          }
       }
+
+
+      return true;
 
    }
 

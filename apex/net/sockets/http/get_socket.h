@@ -45,9 +45,10 @@ namespace sockets
       http_get_socket(base_socket_handler &);
       http_get_socket(base_socket_handler &,const string & url);
       http_get_socket(base_socket_handler &,const string & host,port_t port,const string & url);
-      ~http_get_socket();
+      virtual ~http_get_socket();
 
-      void step();
+      virtual ::e_status step() override;
+
 
    };
 

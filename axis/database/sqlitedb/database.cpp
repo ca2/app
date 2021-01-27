@@ -579,7 +579,7 @@ i32 axis_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char** cols)
 
       auto prow = __new(::database::row);
 
-      payload payload;
+      ::payload payload;
 
       ::count iMaxColumn = min_non_neg((::count) ncol, presultset->m_iMaxColumnCount);
 

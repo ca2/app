@@ -707,14 +707,14 @@ void simple_frame_window::_001OnCreate(::message::message * pmessage)
    if (::is_set(pcreateContext))
    {
 
-      auto pusercreate = pcreateContext->m_pusercreate;
+      auto pusersystem = pcreateContext->m_pusersystem;
 
-      if (::is_set(pusercreate))
+      if (::is_set(pusersystem))
       {
 
-         m_bAutoWindowFrame = __user_create(pusercreate)->m_bAutoWindowFrame;
+         m_bAutoWindowFrame = __user_system(pusersystem)->m_bAutoWindowFrame;
 
-         m_bWindowFrame = __user_create(pusercreate)->m_bWindowFrame;
+         m_bWindowFrame = __user_system(pusersystem)->m_bWindowFrame;
 
       }
 
@@ -802,14 +802,14 @@ void simple_frame_window::_001OnCreate(::message::message * pmessage)
                || !m_bTransparentFrameEnable)
             {
 
-               m_ebuttonaHide.add(::experience::button_transparent_frame);
+               m_ebuttonaHide.add(::experience::e_button_transparent_frame);
 
             }
 
             if (m_varFrame["control_box"]["dock_button"]["visible"].is_set_false())
             {
 
-               m_ebuttonaHide.add(::experience::button_dock);
+               m_ebuttonaHide.add(::experience::e_button_dock);
 
             }
 
@@ -824,7 +824,7 @@ void simple_frame_window::_001OnCreate(::message::message * pmessage)
    if (get_parent() == nullptr)
    {
 
-      if (m_ebuttonaHide.contains(::experience::button_transparent_frame))
+      if (m_ebuttonaHide.contains(::experience::e_button_transparent_frame))
       {
 
          layout().remove_appearance(e_appearance_transparent_frame);
@@ -908,7 +908,7 @@ void simple_frame_window::_001OnCreate(::message::message * pmessage)
 
          if (m_pframe != nullptr
             && m_pframe->get_control_box() != nullptr
-            && m_pframe->get_control_box()->has_button(::experience::button_transparent_frame))
+            && m_pframe->get_control_box()->has_button(::experience::e_button_transparent_frame))
          {
 
             notify_icon_insert_item(iNotifyIconItem, "separator");
@@ -1068,18 +1068,18 @@ void simple_frame_window::_001OnMove(::message::message * pmessage)
 }
 
 
-bool simple_frame_window::on_create_client(::user::create_struct * pcs, ::create * pcreate)
+bool simple_frame_window::on_create_client(::user::system * pusersystem)
 {
 
-   return ::user::frame_window::on_create_client(pcs, pcreate);
+   return ::user::frame_window::on_create_client(pusersystem);
 
 }
 
 
-bool simple_frame_window::pre_create_window(::user::create_struct * pcreatestruct)
+bool simple_frame_window::pre_create_window(::user::system * pusersystem)
 {
 
-   if (!::user::frame_window::pre_create_window(pcreatestruct))
+   if (!::user::frame_window::pre_create_window(pusersystem))
    {
 
       return false;
@@ -1088,23 +1088,23 @@ bool simple_frame_window::pre_create_window(::user::create_struct * pcreatestruc
 
 #ifdef WINDOWS_DESKTOP
 
-   //pcreatestruct->m_createstruct.style = WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME;
-   //pcreatestruct->m_createstruct.style |= WS_OVERLAPPEDWINDOW;
-   //pcreatestruct->m_createstruct.style |= WS_THICKFRAME;
-   pcreatestruct->m_createstruct.style |= WS_POPUP;
-   //pcreatestruct->m_createstruct.style &= ~WS_VISIBLE;
-   pcreatestruct->m_createstruct.style |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
+   //pusersystem->m_createstruct.style = WS_OVERLAPPEDWINDOW & ~WS_THICKFRAME;
+   //pusersystem->m_createstruct.style |= WS_OVERLAPPEDWINDOW;
+   //pusersystem->m_createstruct.style |= WS_THICKFRAME;
+   pusersystem->m_createstruct.style |= WS_POPUP;
+   //pusersystem->m_createstruct.style &= ~WS_VISIBLE;
+   pusersystem->m_createstruct.style |= WS_SYSMENU | WS_MINIMIZEBOX | WS_MAXIMIZEBOX;
 
 #endif
 
-   ::create * pcreateContext = pcreatestruct->m_pcreate;
+   ::create * pcreateContext = pusersystem->m_pcreate;
 
    if(pcreateContext && would_display_notify_icon())
    {
 
-      auto pusercreate = pcreateContext->get_user_create();
+      auto pusersystem = pcreateContext->get_user_create();
 
-      __pointer(::user::document) pdocument = pusercreate->m_pdocumentCurrent;
+      __pointer(::user::document) pdocument = pusersystem->m_pdocumentCurrent;
 
       if (pdocument->get_document_template()->m_bHiddenOnNotifyIcon)
       {
@@ -1117,7 +1117,7 @@ bool simple_frame_window::pre_create_window(::user::create_struct * pcreatestruc
 
          pcreateContext->m_bMakeVisible = false;
 
-         pcreatestruct->m_createstruct.style &= ~WS_VISIBLE;
+         pusersystem->m_createstruct.style &= ~WS_VISIBLE;
 
       }
 
@@ -1141,7 +1141,7 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
    if (Application.is_true("client_only") && get_parent() == nullptr)
    {
 
-      auto rect = Session->get_host_window()->get_client_rect();
+      auto rect = get_host_window()->get_client_rect();
 
       set_dim(rect.left, rect.top, rect.width(), rect.height());
 
@@ -1277,7 +1277,7 @@ void simple_frame_window::WfiOnFullScreen()
 //bool simple_frame_window::display(display_transparent_frame)
 //{
 //
-//   if (m_ebuttonaHide.contains(::experience::button_transparent_frame))
+//   if (m_ebuttonaHide.contains(::experience::e_button_transparent_frame))
 //   {
 //
 //      m_eshow -= ::show_transparent_frame;
@@ -1625,8 +1625,13 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
 
 #ifdef LINUX
       //if(is_window_visible())
-      if(::user::get_edesktop() == ::user::desktop_unity_gnome
-            || ::user::get_edesktop() == ::user::desktop_ubuntu_gnome)
+
+      auto pnode = Node;
+
+      auto edesktop = pnode->get_edesktop();
+
+      if(edesktop == ::user::e_desktop_unity_gnome
+            || edesktop == ::user::e_desktop_ubuntu_gnome)
       {
 
          display(e_display_none);
@@ -1931,7 +1936,7 @@ void simple_frame_window::_001OnActivate(::message::message * pmessage)
 }
 
 
-bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::create * pcreate)
+bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, ::user::interaction * puiParent, ::user::system * pusersystem)
 {
 
    //if (m_pdescriptor.is_null())
@@ -1941,7 +1946,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
    //}
 
-   m_id = pcreate->m_id.to_string() + "::frame";
+   m_id = pusersystem->m_id.to_string() + "::frame";
 
    UNREFERENCED_PARAMETER(puiParent);
 
@@ -1950,7 +1955,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
    if (puiParent == nullptr)
    {
 
-      puiParent = Application.get_request_parent_ui(this, pcreate);
+      puiParent = Application.get_request_parent_ui(this, pusersystem);
 
    }
 
@@ -1976,14 +1981,14 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
    }
 
-   auto pcreatestruct = __new(::user::create_struct(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectFrame, pcreate));
+   //auto pusersystem = __new(::user::system(0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectFrame, pcreate));
 
-   if (!pre_create_window(pcreatestruct))
-   {
+   //if (!pre_create_window(pusersystem))
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
    if(puiParent == nullptr || wfi_is_up_down())
    {
@@ -2023,7 +2028,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
             else if (m_eupdown == updown_down)
             {
 
-               __pointer(::user::document) pdocument = __user_create(pcreate->m_pusercreate)->m_pdocumentCurrent;
+               __pointer(::user::document) pdocument = pusersystem->m_pdocumentCurrent;
 
                __pointer(::user::impact_host) pimpacthost;
 
@@ -2056,12 +2061,12 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
       rectFrame = layout().sketch().screen_rect();
 
-      pcreatestruct->set_rect(rectFrame);
+      pusersystem->set_rect(rectFrame);
 
       INFO("(2) simple_frame_window::LoadFrame rectFrame (l=%d, t=%d) (w=%d, h=%d)", rectFrame.left, rectFrame.top, rectFrame.width(), rectFrame.height());
       INFO("(2) simple_frame_window::LoadFrame edisplay=%s", __cstr(layout().sketch().display().eflag()));
 
-      if (pcreate->m_bMakeVisible)
+      if (pusersystem->m_pcreate->m_bMakeVisible)
       {
 
          layout().sketch() = e_activation_set_foreground;
@@ -2087,7 +2092,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
    if (puiParent != nullptr)
    {
 
-      pcreatestruct->m_createstruct.style |= WS_CHILD;
+      pusersystem->m_createstruct.style |= WS_CHILD;
 
    }
 
@@ -2097,7 +2102,13 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
    m_ewindowflag -= e_window_flag_load_window_rect_on_impl;
 
-   bool bCreated = create_window_ex(pcreatestruct, puiParent, m_id);
+   //bool bCreated = create_window_ex(pusersystem, puiParent, m_id);
+
+   bool bCreated;
+
+   m_pusersystem = pusersystem;
+
+   bCreated = create_interaction(puiParent, id());
 
    if (bLoadImplRect)
    {
@@ -2113,7 +2124,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
    }
 
-   if (pcreate == nullptr)   // send initial update
+   if (pusersystem == nullptr)   // send initial update
    {
 
       send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (LPARAM)0, TRUE, TRUE);
@@ -2522,10 +2533,13 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
       pgraphicsParam->set_alpha_mode(::draw2d::alpha_mode_blend);
 
+      image_drawing imagedrawing;
+      
+      imagedrawing.set(rectClient.size(), pgraphics);
 
-      ::rectd rectDst(rectClient.size());
+      imagedrawing.opacity(dAlpha);
 
-      pgraphicsParam->alpha_blend(rectDst, pgraphics, dAlpha);
+      pgraphicsParam->draw(imagedrawing);
 
    }
 
@@ -2600,14 +2614,15 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
             m_blur.blur(m_pimageBlur, 2);
 
-            imaging.bitmap_blend(
-            m_pimageBlur->g(),
-            nullptr,
-            rectClient.size(),
-            m_pimageBk->g(),
-            nullptr,
-            49);
-            pgraphics->stretch(rectClient, m_pimageBlur->g());
+            image_drawing imagedrawing;
+            
+            imagedrawing.set(rectClient.size(), m_pimageBk);
+
+            imagedrawing.opacity(49);
+
+            m_pimageBlur->draw(imagedrawing);
+
+            pgraphics->stretch(rectClient, m_pimageBlur);
 
          }
 
@@ -2737,7 +2752,7 @@ bool simple_frame_window::LoadToolBar(::type type, id idToolBar, const char * ps
 
       }
 
-      if (!ptoolbar->create_toolbar(this, dwCtrlStyle, uStyle))
+      if (!ptoolbar->create_child(this))
       {
 
          return false;
@@ -2755,7 +2770,7 @@ bool simple_frame_window::LoadToolBar(::type type, id idToolBar, const char * ps
 
    string strMatter = Context.dir().matter(pszToolBar);
 
-   if (ptoolbar->value("matter_annotation") == strMatter)
+   if (ptoolbar->payload("matter_annotation") == strMatter)
    {
 
       return true;
@@ -2777,7 +2792,7 @@ bool simple_frame_window::LoadToolBar(::type type, id idToolBar, const char * ps
 
    ptoolbar->set_need_layout();
 
-   ptoolbar->value("matter_annotation") = strMatter;
+   ptoolbar->payload("matter_annotation") = strMatter;
 
    set_need_layout();
 
@@ -2920,12 +2935,12 @@ void simple_frame_window::design_up()
 }
 
 
-bool simple_frame_window::create_window(const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, const char * pszMenuName, u32 dwExStyle, ::create * pcreate)
-{
-
-   return ::user::frame_window::create_window(pszClassName, pszWindowName, uStyle, rect, puiParent, pszMenuName, dwExStyle, pcreate);
-
-}
+//bool simple_frame_window::create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, const char * pszMenuName, u32 dwExStyle, ::create * pcreate)
+//{
+//
+//   return ::user::frame_window::create_interaction(pszClassName, pszWindowName, uStyle, rect, puiParent, pszMenuName, dwExStyle, pcreate);
+//
+//}
 
 
 void simple_frame_window::route_command_message(::user::command * pcommand)

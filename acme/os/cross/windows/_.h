@@ -254,7 +254,7 @@ using HSYNC = sync *;
 #endif // !defined(WINDOWS)
 
 
-#ifdef WINDOWS_DESTKOP
+#ifdef WINDOWS_DESKTOP
 
 using MESSAGE = MSG;
 
@@ -272,11 +272,9 @@ typedef const MESSAGE * LPCMESSAGE;
 #else
 
 
-#ifdef _UWP
-
 #define MESSAGE_WINDOW_PARENT (::oswindow((void *) (iptr) 1))
 
-#else
+#ifndef _UWP
 
 /* Types use for passing & returning polymorphic values */
 typedef uptr            WPARAM;

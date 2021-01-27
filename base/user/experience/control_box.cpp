@@ -23,15 +23,15 @@ namespace experience
 
       m_strInteractionTag = "control_box";
 
-      set_control_box_button_id(button_close, "frame::ButtonClose");
-      set_control_box_button_id(button_up, "frame::button_up");
-      set_control_box_button_id(button_down, "frame::button_down");
-      set_control_box_button_id(button_minimize, "frame::button_minimize");
-      set_control_box_button_id(button_maximize, "frame::button_maximize");
-      set_control_box_button_id(button_restore, "frame::button_restore");
-      set_control_box_button_id(button_notify_icon, "frame::button_notify_icon");
-      set_control_box_button_id(button_transparent_frame,"frame::button_transparent_frame");
-      set_control_box_button_id(button_dock,"frame::button_dock");
+      set_control_box_button_id(e_button_close, "frame::ButtonClose");
+      set_control_box_button_id(e_button_up, "frame::e_button_up");
+      set_control_box_button_id(e_button_down, "frame::e_button_down");
+      set_control_box_button_id(e_button_minimize, "frame::e_button_minimize");
+      set_control_box_button_id(e_button_maximize, "frame::e_button_maximize");
+      set_control_box_button_id(e_button_restore, "frame::e_button_restore");
+      set_control_box_button_id(e_button_notify_icon, "frame::e_button_notify_icon");
+      set_control_box_button_id(e_button_transparent_frame,"frame::e_button_transparent_frame");
+      set_control_box_button_id(e_button_dock,"frame::e_button_dock");
       m_bDrag = false;
       m_iDefaultButtonMargin = 3;
 
@@ -191,6 +191,12 @@ namespace experience
       {
 
          m_millisShow.Now();
+
+      }
+      else
+      {
+
+         output_debug_string(".");
 
       }
 
@@ -385,7 +391,7 @@ namespace experience
    }
 
 
-   bool control_box::should_show_button(e_button ebutton)
+   bool control_box::should_show_button(enum_button ebutton) const
    {
 
       if (!has_button(ebutton))
@@ -395,25 +401,25 @@ namespace experience
 
       }
 
-      if (ebutton == button_close)
+      if (ebutton == e_button_close)
       {
 
          return true;
 
       }
-      else if (ebutton == button_up)
+      else if (ebutton == e_button_up)
       {
 
          return m_pframewindow->updown_get_up_enable();
 
       }
-      else if (ebutton == button_down)
+      else if (ebutton == e_button_down)
       {
 
          return m_pframewindow->updown_get_down_enable();
 
       }
-      else if (ebutton == button_maximize)
+      else if (ebutton == e_button_maximize)
       {
 
          if (m_pframewindow->updown_get_up_enable())
@@ -426,7 +432,7 @@ namespace experience
          return !m_pframewindow->layout().is_zoomed();
 
       }
-      else if (ebutton == button_restore)
+      else if (ebutton == e_button_restore)
       {
 
          if (m_pframewindow->updown_get_up_enable())
@@ -446,7 +452,7 @@ namespace experience
             //|| is_docking_appearance(edisplay);
 
       }
-      else if (ebutton == button_minimize)
+      else if (ebutton == e_button_minimize)
       {
 
          if (m_pframewindow->updown_get_up_enable())
@@ -459,7 +465,7 @@ namespace experience
          return true;
 
       }
-      else if (ebutton == button_notify_icon)
+      else if (ebutton == e_button_notify_icon)
       {
 
          if (m_pframewindow->updown_get_up_enable())
@@ -472,7 +478,7 @@ namespace experience
          return m_pframewindow->window_is_notify_icon_enabled();
 
       }
-      else if (ebutton == button_transparent_frame)
+      else if (ebutton == e_button_transparent_frame)
       {
 
          if (m_pframewindow->updown_get_up_enable())
@@ -485,7 +491,7 @@ namespace experience
          return true;
 
       }
-      else if (ebutton == button_dock)
+      else if (ebutton == e_button_dock)
       {
 
          if (m_pframewindow->updown_get_up_enable())
@@ -498,14 +504,13 @@ namespace experience
          return true;
 
       }
-
 
       return false;
 
    }
 
 
-   void control_box::_layout_button(e_button ebutton, ::rect& rect)
+   void control_box::_layout_button(enum_button ebutton, ::rect& rect)
    {
 
       auto pbutton = get_box_button(ebutton);
@@ -554,8 +559,6 @@ namespace experience
    void control_box::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      //auto edisplay = m_pframewindow->layout().sketch().display();
-
       ::rect rectWindow;
 
       m_pframewindow->get_window_rect(rectWindow);
@@ -570,10 +573,6 @@ namespace experience
 
       m_pframewindow->_001ScreenToClient(rect);
 
-      m_pframewindow->m_pframe->m_iControlBoxRight = rectParent.right - rect.right;
-
-      *m_pframewindow->m_pframe->get_control_box_rect() = rect;
-
       reset_layout(pgraphics);
 
       ::rect rectClient;
@@ -585,416 +584,71 @@ namespace experience
 
       rect.left = iWidth;
 
-      _layout_button(button_close, rect);
+      _layout_button(e_button_close, rect);
 
-      //if(!has_button(button_close))
-      //{
+      _layout_button(e_button_up, rect);
 
-      //   get_box_button(button_close)->display(e_display_none);
+      _layout_button(e_button_down, rect);
 
-      //}
-      //else
-      //{
+      _layout_button(e_button_maximize, rect);
 
-      //   rect.top = rectMargin.top;
-      //   rect.bottom = sizeButton.cy + rect.top;
-      //   rect.right = iWidth - rectMargin.right;
-      //   rect.left = rect.right - sizeButton.cx;
-      //   auto pbutton = get_box_button(button_close);
-      //   pbutton->order(zorder_top);
-      //   pbutton->place(rect);
-      //   pbutton->display();
-      //   pbutton->UpdateWndRgn();
-      //   rect.left -= rectMargin.left;
+      _layout_button(e_button_restore, rect);
 
-      //}
+      _layout_button(e_button_minimize, rect);
 
-      //auto pframewindow = m_pframewindow;
+      _layout_button(e_button_notify_icon, rect);
 
-      _layout_button(button_up, rect);
+      _layout_button(e_button_transparent_frame, rect);
 
-//            if(!has_button(button_up))
-//            {
-//
-//               get_box_button(button_up)->display(e_display_none);
-//
-//            }
-//            else if(pframewindow->updown_get_up_enable())
-//            {
-//
-//               sizeButton = get_button_size(button_up);
-//
-//               rectMargin = get_button_margin(button_up);
-//
-//               rect.top = rectMargin.top;
-//               rect.bottom = sizeButton.cy + rect.top;
-//               rect.right = rect.left - rectMargin.right;
-//               rect.left = rect.right - sizeButton.cx;
-//
-//               auto pbutton = get_box_button(button_up);
-//
-//               if (pbutton)
-//               {
-//
-//                  pbutton->place(rect);
-//                  pbutton->display();
-//                  pbutton->UpdateWndRgn();
-//
-//               }
-//
-//               rect.left -= rectMargin.left;
-//
-//            }
-//            else
-//            {
-//
-//               get_box_button(button_up)->display(e_display_none);
-//
-//            }
-//
+      _layout_button(e_button_dock, rect);
 
-      _layout_button(button_down, rect);
-
-//            if(!has_button(button_down))
-//            {
-//
-//               get_box_button(button_down)->display(e_display_none);
-//
-//            }
-//            else if(pframewindow->updown_get_down_enable())
-//            {
-//
-//               sizeButton = get_button_size(button_down);
-//               rectMargin = get_button_margin(button_down);
-//
-//               rect.top = rectMargin.top;
-//               rect.bottom = sizeButton.cy + rect.top;
-//               rect.right = rect.left - rectMargin.right;
-//               rect.left = rect.right - sizeButton.cx;
-//
-//               get_box_button(button_down)->place(rect);
-//               get_box_button(button_down)->display();
-//
-////               get_box_button(button_down)->::user::interaction::set_window_pos(
-////               zorder_top,
-////               rect.left,
-////               rect.top,
-////               rect.width(),
-////               rect.height(),
-////               SWP_SHOWWINDOW);
-//
-//               get_box_button(button_down)->UpdateWndRgn();
-//               rect.left -= rectMargin.left;
-//            }
-//            else
-//            {
-//               get_box_button(button_down)->display(e_display_none);
-//            }
-
-      _layout_button(button_maximize, rect);
-
-//            if(!has_button(button_maximize))
-//            {
-//               get_box_button(button_maximize)->display(e_display_none);
-//            }
-//            else if (is_zoomed(edisplay))
-//            {
-//               get_box_button(button_maximize)->display(e_display_none);
-//            }
-//            else
-//            {
-//               sizeButton = get_button_size(button_maximize);
-//               rectMargin = get_button_margin(button_maximize);
-//
-//               rect.top = rectMargin.top;
-//               rect.bottom = sizeButton.cy + rect.top;
-//               rect.right = rect.left - rectMargin.right;
-//               rect.left = rect.right - sizeButton.cx;
-//
-////               get_box_button(button_maximize)->::user::interaction::set_window_pos(
-////               zorder_top,
-////               rect.left,
-////               rect.top,
-////               rect.width(),
-////               rect.height(),
-////               SWP_SHOWWINDOW);
-//
-//               auto pbutton = get_box_button(button_maximize);
-//
-//               if (pbutton)
-//               {
-//
-//                  pbutton->place(rect);
-//                  pbutton->display();
-//                  pbutton->UpdateWndRgn();
-//
-//               }
-//
-//               rect.left -= rectMargin.left;
-//            }
-
-      _layout_button(button_restore, rect);
-
-//            auto pbutton = get_box_button(button_restore);
-//
-//            if(!has_button(button_restore))
-//            {
-//
-//               if (pbutton)
-//               {
-//
-//                  pbutton->hide();
-//
-//               }
-//
-//            }
-//            else if (is_iconic(edisplay)
-//                     || is_full_screen(edisplay)
-//                     || is_zoomed(edisplay)
-//                     || is_docking_appearance(edisplay))
-//            {
-//               sizeButton = get_button_size(button_restore);
-//               rectMargin = get_button_margin(button_restore);
-//
-//               rect.top = rectMargin.top;
-//               rect.bottom = sizeButton.cy + rect.top;
-//               rect.right = rect.left - rectMargin.right;
-//               rect.left = rect.right - sizeButton.cx;
-//
-////               get_box_button(button_restore)->::user::interaction::set_window_pos(
-////               zorder_top,
-////               rect.left,
-////               rect.top,
-////               rect.width(),
-////               rect.height(),
-////               SWP_SHOWWINDOW);
-//
-//               if (pbutton)
-//               {
-//
-//                  pbutton->place(rect);
-//                  pbutton->display();
-//                  pbutton->UpdateWndRgn();
-//
-//               }
-//
-//               rect.left -= rectMargin.left;
-//            }
-//            else
-//            {
-//
-//               if (pbutton)
-//               {
-//
-//                  pbutton->hide();
-//
-//               }
-//
-//            }
-
-      _layout_button(button_minimize, rect);
-
-      //pbutton = get_box_button(button_minimize);
-
-      //if (is_iconic(edisplay) || !has_button(button_minimize))
-      //{
-      //
-      //   pbutton->hide();
-
-      //}
-      //else
-      //{
-      //   sizeButton = get_button_size(button_minimize);
-      //   rectMargin = get_button_margin(button_minimize);
-
-      //   rect.top = rectMargin.top;
-      //   rect.bottom = sizeButton.cy + rect.top;
-      //   rect.right = rect.left - rectMargin.right;
-      //   rect.left = rect.right - sizeButton.cx;
-
-      //   //get_box_button(button_minimize)->::user::interaction::set_window_pos(zorder_top, rect, SWP_SHOWWINDOW);
-
-      //   if (pbutton)
-      //   {
-
-      //      pbutton->place(rect);
-      //      pbutton->display();
-      //      pbutton->UpdateWndRgn();
-
-      //   }
-
-      //   rect.left -= rectMargin.left;
-      //}
-
-      _layout_button(button_notify_icon, rect);
-
-      //if(!has_button(button_notify_icon))
-      //{
-      //   get_box_button(button_notify_icon)->display(e_display_none);
-      //}
-      //else if(m_pframewindow->window_is_notify_icon_enabled())
-      //{
-      //   sizeButton = get_button_size(button_notify_icon);
-      //   rectMargin = get_button_margin(button_notify_icon);
-
-      //   rect.top = rectMargin.top;
-      //   rect.bottom = sizeButton.cy + rect.top;
-      //   rect.right = rect.left - rectMargin.right;
-      //   rect.left = rect.right - sizeButton.cx;
-
-      //   //get_box_button(button_notify_icon)->::user::interaction::set_window_pos(zorder_top, rect, SWP_SHOWWINDOW);
-      //   get_box_button(button_notify_icon)->place(rect);
-      //   get_box_button(button_notify_icon)->display();
-
-      //   get_box_button(button_notify_icon)->UpdateWndRgn();
-      //   rect.left -= rectMargin.left;
-      //}
-      //else
-      //{
-      //   get_box_button(button_notify_icon)->display(e_display_none);
-      //}
-
-      _layout_button(button_transparent_frame, rect);
-
-      //if(!has_button(button_transparent_frame))
-      //{
-      //   get_box_button(button_transparent_frame)->display(e_display_none);
-      //}
-      //else
-      //{
-      //   sizeButton = get_button_size(button_transparent_frame);
-      //   rectMargin = get_button_margin(button_transparent_frame);
-
-      //   rect.top = rectMargin.top;
-      //   rect.bottom = sizeButton.cy + rect.top;
-      //   rect.right = rect.left - rectMargin.right;
-      //   rect.left = rect.right - sizeButton.cx;
-
-      //   //get_box_button(button_transparent_frame)->::user::interaction::set_window_pos(zorder_top, rect,SWP_SHOWWINDOW);
-
-      //   auto pbutton = get_box_button(button_transparent_frame);
-
-      _layout_button(button_dock, rect);
-
-      //   if (pbutton)
-      //   {
-      //
-      //      pbutton->place(rect);
-      //
-      //      pbutton->display();
-
-      //      pbutton->UpdateWndRgn();
-
-      //   }
-
-      //   rect.left -= rectMargin.left;
-      //}
-
-      //if(!has_button(button_dock))
-      //{
-      //   get_box_button(button_dock)->display(e_display_none);
-      //}
-      //else
-      //{
-      //   sizeButton = get_button_size(button_dock);
-      //   rectMargin = get_button_margin(button_dock);
-
-      //   rect.top = rectMargin.top;
-      //   rect.bottom = sizeButton.cy + rect.top;
-      //   rect.right = rect.left - rectMargin.right;
-      //   rect.left = rect.right - sizeButton.cx;
-
-      //   //get_box_button(button_dock)->::user::interaction::set_window_pos(zorder_top, rect, SWP_SHOWWINDOW);
-
-      //   auto pbutton = get_box_button(button_dock);
-
-      //   if (pbutton)
-      //   {
-
-      //      pbutton->place(rect);
-
-      //      pbutton->display();
-
-      //      pbutton->UpdateWndRgn();
-
-      //   }
-
-      //   rect.left -= rectMargin.left;
-
-      //}
 
    }
 
 
-
-
-   void control_box::update_control_box_button(e_button ebutton)
+   control_box::item * control_box::get_item(enum_button ebutton, bool bCreate)
    {
 
-      __pointer(button) pbutton;
+      auto ppair = m_itemmap.plookup(ebutton);
 
-      if (m_buttonmap.lookup(ebutton, pbutton))
+      if (!ppair)
       {
 
-         string strCaption;
-
-         get_control_box_button_caption(ebutton, strCaption);
-
-         pbutton->set_stock_icon(get_control_box_button_stock_icon(ebutton));
-
-         pbutton->set_parent(this);
-
-         pbutton->set_window_text(strCaption);
-
-         pbutton->m_pcontrolbox = this;
+         return nullptr;
 
       }
+
+      if (bCreate)
+      {
+
+         __defer_construct_new(ppair->m_pitem);
+
+      }
+
+      return ppair->m_pitem;
 
    }
 
 
-   bool control_box::create_button(e_button ebutton)
+   bool control_box::create_button(enum_button ebutton)
    {
 
-      //auto pframewindow = m_pframewindow;
+      auto pitem = get_item(ebutton, true);
 
-      __pointer(button) pbutton;
-
-      if (!m_buttonmap.lookup(ebutton, pbutton))
+      if (!pitem)
       {
 
-         pbutton = m_pframewindow->m_pframe->m_pexperience->m_plibrary->create_object(this, "button");
-
-         m_buttonmap.set_at(ebutton, pbutton);
+         return false;
 
       }
 
-      pbutton->m_ebutton = ebutton;
+      auto & pbutton = pitem->m_pbutton;
 
-      string strCaption;
+      pbutton = m_pframewindow->m_pframe->m_pexperience->m_plibrary->create_object(this, "button");
 
-      get_control_box_button_caption(ebutton, strCaption);
+      pbutton->display(e_display_none);
 
-      id id = get_control_box_button_id(ebutton);
-
-      if (m_buttonmap.lookup(ebutton, pbutton))
-      {
-
-         if (!pbutton->is_window() && !pbutton->create_window(this, id))
-         {
-
-            return false;
-
-         }
-
-         string strTag = get_control_box_button_tag(ebutton);
-
-         pbutton->m_strInteractionTag = strTag;
-
-         update_control_box_button(ebutton);
-
-      }
-      else
+      if (!pbutton->is_window() && !pbutton->create_child(this))
       {
 
          return false;
@@ -1006,10 +660,58 @@ namespace experience
    }
 
 
+   bool control_box::update_control_box_button(enum_button ebutton)
+   {
+
+      auto pitem = get_item(ebutton);
+
+      if (!pitem)
+      {
+
+         return false;
+
+      }
+
+      auto pbutton = pitem->m_pbutton;
+
+      if (!pbutton)
+      {
+
+         return false;
+
+      }
+
+      pbutton->m_ebutton = ebutton;
+
+      id id = get_control_box_button_id(ebutton);
+
+      pbutton->m_id = id;
+
+      string strTag = get_control_box_button_tag(ebutton);
+
+      pbutton->m_strInteractionTag = strTag;
+
+      string strCaption;
+
+      get_control_box_button_caption(ebutton, strCaption);
+
+      pbutton->set_stock_icon(get_control_box_button_stock_icon(ebutton));
+
+      pbutton->set_parent(this);
+
+      pbutton->set_window_text(strCaption);
+
+      pbutton->m_pcontrolbox = this;
+
+      return true;
+
+   }
+
+
    void control_box::update_control_box_buttons()
    {
 
-      for (auto & ebutton : m_buttonmap.keys())
+      for (auto & ebutton : m_itemmap.keys())
       {
 
          update_control_box_button(ebutton);
@@ -1023,110 +725,133 @@ namespace experience
    bool control_box::create_buttons()
    {
 
-      create_button(button_close);
-      create_button(button_up);
-      create_button(button_down);
-      create_button(button_minimize);
-      create_button(button_maximize);
-      create_button(button_restore);
-      create_button(button_notify_icon);
-      create_button(button_transparent_frame);
-      create_button(button_dock);
+      create_button(e_button_close);
+      create_button(e_button_up);
+      create_button(e_button_down);
+      create_button(e_button_minimize);
+      create_button(e_button_maximize);
+      create_button(e_button_restore);
+      create_button(e_button_notify_icon);
+      create_button(e_button_transparent_frame);
+      create_button(e_button_dock);
 
       return true;
 
    }
 
 
-   bool control_box::get_control_box_button_caption(e_button ebutton, string &strCaption)
+   bool control_box::get_control_box_button_caption(enum_button ebutton, string &strCaption) const
    {
+
       bool bOk = true;
+
       switch (ebutton)
       {
-      case button_close:
+      case e_button_close:
          strCaption = (char)114;
          break;
-      case button_up:
+      case e_button_up:
          strCaption = (char)53;
          break;
-      case button_down:
+      case e_button_down:
          strCaption = (char)54;
          break;
-      case button_minimize:
+      case e_button_minimize:
          strCaption = (char)48;
          break;
-      case button_maximize:
+      case e_button_maximize:
          strCaption = (char)49;
          break;
-      case button_restore:
+      case e_button_restore:
          strCaption = (char)50;
          break;
-      case button_notify_icon:
+      case e_button_notify_icon:
          strCaption = (char)0x69;
          break;
-      case button_transparent_frame:
+      case e_button_transparent_frame:
          strCaption = (char)' ';
          break;
-      case button_dock:
+      case e_button_dock:
          strCaption = (char)0x6E;
          break;
 
       default:
          bOk = false;
       }
+
       return bOk;
 
    }
 
 
-   e_stock_icon control_box::get_control_box_button_stock_icon(e_button ebutton)
+   e_stock_icon control_box::get_control_box_button_stock_icon(enum_button ebutton)
    {
 
-      return (e_stock_icon)((int) ebutton - (int)button_begin + (int) stock_icon_control_box_begin);
+      return (e_stock_icon)((int) ebutton - (int)e_button_begin + (int) stock_icon_control_box_begin);
 
    }
 
 
-   void control_box::set_control_box_button_id(e_button ebutton, id id)
+   ::e_status control_box::set_control_box_button_id(enum_button ebutton, id id)
    {
 
-      m_mapButtonId[ebutton] = id;
+      auto estatus = __defer_construct_new(m_itemmap[ebutton]);
 
-      m_mapIdButton[id] = ebutton;
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      m_itemmap[ebutton]->m_id = id;
+
+      m_idmap[id] = ebutton;
+
+      return estatus;
 
    }
 
 
-   id control_box::get_control_box_button_id(e_button ebutton)
+   id control_box::get_control_box_button_id(enum_button ebutton) const
    {
 
-      return m_mapButtonId[ebutton];
+      auto pitem = get_item(ebutton);
+
+      if (!pitem)
+      {
+
+         return ::id();
+
+      }
+
+      return m_itemmap[ebutton]->m_id;
 
    }
 
 
-   string control_box::get_control_box_button_tag(e_button ebutton)
+   string control_box::get_control_box_button_tag(enum_button ebutton) const
    {
 
       switch(ebutton)
       {
-         case button_close: // stock_icon_close
+         case e_button_close: // stock_icon_close
             return "button_close";
-         case button_up: // stock_icon_level_up
+         case e_button_up: // stock_icon_level_up
             return "button_up";
-         case button_down: // stock_icon_level_down
+         case e_button_down: // stock_icon_level_down
             return "button_down";
-         case button_minimize: // stock_icon_iconify
+         case e_button_minimize: // stock_icon_iconify
             return "button_minimize";
-         case button_restore: // stock_icon_restore
+         case e_button_restore: // stock_icon_restore
             return "button_restore";
-         case button_maximize: // stock_icon_maximize
+         case e_button_maximize: // stock_icon_maximize
             return "button_maximize";
-         case button_notify_icon: // stock_icon_notify
+         case e_button_notify_icon: // stock_icon_notify
             return "button_notify_icon";
-         case button_transparent_frame: // stock_icon_transparent_frame
+         case e_button_transparent_frame: // stock_icon_transparent_frame
             return "button_transparent_frame";
-         case button_dock: // stock_icon_dock
+         case e_button_dock: // stock_icon_dock
             return "button_dock";
          default:
             break;
@@ -1137,26 +862,35 @@ namespace experience
    }
 
 
-   e_button control_box::get_control_box_button_type(id id)
+   enum_button control_box::get_control_box_button_type(id id) const
    {
 
-      return m_mapIdButton[id];
+      return m_idmap[id];
 
    }
 
 
-   void control_box::hide_button(e_button ebutton, bool bHide)
+   bool control_box::hide_button(enum_button ebutton, bool bHide)
    {
 
-      m_buttonmapPresent[ebutton] = !bHide;
+      auto pitem = get_item(ebutton);
+
+      if (!pitem)
+      {
+
+         return false;
+
+      }
+
+      pitem->m_bPresent = !bHide;
+
+      return true;
 
    }
 
 
-   bool control_box::has_button(e_button ebutton)
+   bool control_box::has_button(enum_button ebutton) const
    {
-
-      bool bPresent;
 
       if (m_pframewindow->m_ebuttonaHide.contains(ebutton))
       {
@@ -1164,20 +898,17 @@ namespace experience
          return false;
 
       }
-      else if (m_buttonmapPresent.lookup(ebutton, bPresent))
+
+      auto pitem = get_item(ebutton);
+
+      if (!pitem)
       {
 
-         return bPresent;
+         return false;
 
       }
-      else
-      {
-
-         m_buttonmapPresent[ebutton] = true;
-
-         return true;
-
-      }
+         
+      return pitem->m_bPresent;
 
    }
 
@@ -1189,14 +920,11 @@ namespace experience
 
       m_sizeButtonDefault = ::size(iDefaultButtonSize,iDefaultButtonSize);
 
-      int iControlBoxRight = m_pframewindow->find_i32("control_box_right_to_right");
-
-      m_pframewindow->m_pframe->m_iControlBoxRight = iControlBoxRight;
 
    }
 
 
-   size control_box::get_button_size(e_button ebutton)
+   size control_box::get_button_size(enum_button ebutton)
    {
 
       return m_sizeButtonDefault;
@@ -1204,7 +932,7 @@ namespace experience
    }
 
 
-   rect control_box::get_button_margin(e_button ebutton)
+   rect control_box::get_button_margin(enum_button ebutton)
    {
 
       ::rect rectMargin;
@@ -1231,82 +959,74 @@ namespace experience
    }
 
 
-   i32 control_box::calc_control_box_height()
+   ::count control_box::get_visible_control_box_button() const
    {
 
-      int iHeight = 0;
+      ::count cVisible = 0;
 
-      auto point = m_buttonmap.get_start();
-
-      for(; point != nullptr; point = m_buttonmap.get_next(point))
+      for (auto ebutton : m_itemmap.keys())
       {
+         
+         if (should_show_button(ebutton))
+         {
 
-         iHeight = max(iHeight,get_button_size(point->element1()).cy + get_button_margin(point->element1()).top + get_button_margin(point->element1()).bottom);
+            cVisible++;
+
+         }
 
       }
 
-      return iHeight;
+      return cVisible++;
 
    }
 
 
-   i32 control_box::calc_control_box_normal_width()
+   i32 control_box::calc_control_box_width(::draw2d::graphics_pointer & pgraphics)
    {
 
-      int iWidth;
+      m_iDefaultButtonSize = calc_button_size(pgraphics);
 
-      iWidth = (m_sizeButtonDefault.cx + m_iDefaultButtonMargin) * 8;
+      int iWidth = 0;
+
+      for (auto & pitem : m_itemmap.values())
+      {
+
+         auto & pbutton = pitem->m_pbutton;
+
+         if (pbutton)
+         {
+
+            iWidth += m_iDefaultButtonSize;
+
+            iWidth += m_iDefaultButtonMargin;
+
+         }
+
+      }
 
       return iWidth;
 
    }
 
 
-   i32 control_box::calc_control_box_zoomed_width()
+   __pointer(button) control_box::get_button(enum_button ebutton)
    {
 
-      int iWidth;
+      auto pitem = get_item(ebutton);
 
-      iWidth = (m_sizeButtonDefault.cx + m_iDefaultButtonMargin) * 8;
+      if (!pitem)
+      {
 
-      return iWidth;
+         return nullptr;
+
+      }
+
+      return pitem->m_pbutton;
 
    }
 
 
-   i32 control_box::calc_control_box_full_screen_width()
-   {
-
-      int iWidth;
-
-      iWidth = (m_sizeButtonDefault.cx + m_iDefaultButtonMargin) * 13;
-
-      return iWidth;
-
-   }
-
-
-   //i32 control_box::get_button_margin()
-   //{
-
-   //   return m_iDefaultButtonSize;
-
-   //}
-
-
-   __pointer(button) control_box::get_button(e_button ebutton)
-   {
-
-      __pointer(button) pbutton;
-
-      m_buttonmap.lookup(ebutton, pbutton);
-
-      return pbutton;
-
-   }
-
-
-   __pointer(::experience::button) control_box::get_box_button(e_button ebutton)
+   __pointer(::experience::button) control_box::get_box_button(enum_button ebutton)
    {
 
       return get_button(ebutton);
@@ -1348,27 +1068,25 @@ namespace experience
 
       m_pframewindow->_001ScreenToClient(rect);
 
-      m_pframewindow->m_pframe->m_iControlBoxRight = rectWindow.width() - rect.right;
-
       m_pframewindow->m_pframe->m_bControlBoxAlignRight = rect.center().x > (rectWindow.width() / 2);
 
-      if (rect != *m_pframewindow->m_pframe->get_control_box_rect())
-      {
-
-         *m_pframewindow->m_pframe->get_control_box_rect() = rect;
-
-         m_pframewindow->m_millisLastVisualChange.Now();
-
-         //auto pframe = m_pframewindow;
-
-         //if (::is_set(pframe))
-         //{
-
-         //   pframe->defer_save_window_placement();
-
-         //}
-
-      }
+//      if (rect != *m_pframewindow->m_pframe->get_control_box_rect())
+//      {
+//
+//         *m_pframewindow->m_pframe->get_control_box_rect() = rect;
+//
+//         m_pframewindow->m_millisLastVisualChange.Now();
+//
+//         //auto pframe = m_pframewindow;
+//
+//         //if (::is_set(pframe))
+//         //{
+//
+//         //   pframe->defer_save_window_placement();
+//
+//         //}
+//
+//      }
 
    }
 

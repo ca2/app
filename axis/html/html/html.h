@@ -34,11 +34,11 @@ namespace html
 
 
       e_tag tag_name_to_id(id idTag);
-      edisplay display_name_to_id(const payload & varDisplay,e_tag e_tag);
+      edisplay display_name_to_id(const ::payload & varDisplay,e_tag e_tag);
       edisplay tag_to_display(e_tag etag);
       id concat(id id1,id id2);
 
-      virtual bool defer_get_html(string& strHtml, ::file::path& pathHtml, ::object* pobjectContext, const ::payload& payload);
+      virtual bool defer_get_html(string& strHtml, ::file::path& pathHtml, ::object* pobjectContext, const ::payload & payload);
 
       static bool tag_visible(e_tag etag);
 

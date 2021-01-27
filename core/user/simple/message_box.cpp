@@ -29,10 +29,10 @@
 //}
 
 
-//CLASS_DECL_CORE ::e_status os_message_box(const payload & varParam)
+//CLASS_DECL_CORE ::e_status os_message_box(const ::payload & varParam)
 //{
 //   
-//   payload payload;
+//   ::payload payload;
 //   
 //   if(varParam.get_type () != e_type_propset)
 //   {

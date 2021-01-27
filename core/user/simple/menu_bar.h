@@ -35,12 +35,12 @@ public:
    virtual ~simple_menu_bar();
 
 
-   using ::simple_toolbar::create_window;
-   bool create_window(::user::interaction * puiParent, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, ::id id = __IDW_TOOLBAR) override;
+   //using ::simple_toolbar::create_window;
+   //bool create_window(::user::interaction * puiParent, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, ::id id = __IDW_TOOLBAR) override;
 
 
-   using ::simple_toolbar::create_window_ex;
-   bool create_window_ex(::user::interaction * puiParent, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, ::id id = __IDW_TOOLBAR);
+   //using ::simple_toolbar::create_window_ex;
+   //bool create_window_ex(::user::interaction * puiParent, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, ::id id = __IDW_TOOLBAR);
 
 
 #ifdef WINDOWS_DESKTOP
@@ -59,7 +59,7 @@ public:
 
 
 protected:
-   virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
+   virtual bool pre_create_window(::user::system * pusersystem) override;
 
    //virtual index _001GetHoverItem() override;
    //virtual void OnUpdateHover() override;

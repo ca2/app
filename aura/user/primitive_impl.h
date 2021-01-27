@@ -61,6 +61,11 @@ namespace user
       virtual bool is_active() override;
       virtual bool is_this_enabled() const override;
 
+
+      virtual bool create_host(::user::interaction * puserinteraction);
+      virtual bool create_child(::user::interaction * puserinteraction, ::user::primitive * puserprimitiveParent);
+
+
       //virtual bool check_need_layout();
       //virtual void clear_need_layout();
       virtual void set_need_layout();
@@ -95,11 +100,17 @@ virtual bool setWMClass(const char * psz);
       //virtual void SetWindowDisplayChanged() override;
 
 
+      //virtual bool create_message_queue(::user::interaction * pinteraction, const char * lpszName);
       virtual bool create_message_queue(::user::interaction * pinteraction, const char * lpszName);
-      virtual bool create_window(::user::interaction * pinteraction, const ::rect & rect, ::user::primitive * pparent, id id);
-      virtual bool create_window(::user::interaction * pinteraction, const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::primitive * puiParent, id id, ::create * pcreate = nullptr);
+      
+      //virtual bool create_interaction();
+      
+      //virtual bool create_interaction(::user::interaction * pinteraction, const ::rect & rect, ::user::primitive * pparent, id id);
+      //virtual bool create_interaction(::user::interaction * pinteraction, ::u32 uExStyle, u32 uStyle, const ::rect & rect, ::user::primitive * puiParent, ::create * pcreate = nullptr);
 
-      virtual bool create_window_ex(::user::interaction * pinteraction,__pointer(::user::create_struct) pcs, ::user::primitive * puiParent = nullptr, id id = ::id());
+      //virtual bool _create_window(::user::interaction * pinteraction,__pointer(::user::system) pcs, ::user::primitive * puiParent = nullptr, id id = ::id());
+
+      //virtual bool _create_interaction(::user::interaction * pinteraction, ::user::primitive * pparent);
 
 
 

@@ -403,10 +403,10 @@ namespace axis
 
          }
 
-         if (value("locale").get_count() > 0)
+         if (payload("locale").get_count() > 0)
          {
 
-            str = value("locale").stra()[0];
+            str = payload("locale").stra()[0];
 
             data_set({ "system_locale", true }, str);
 
@@ -415,10 +415,10 @@ namespace axis
             set_locale(str, ::e_source_database);
 
          }
-         else if (value("lang").get_count() > 0)
+         else if (payload("lang").get_count() > 0)
          {
 
-            str = value("lang").stra()[0];
+            str = payload("lang").stra()[0];
 
             data_set({ "system_locale", true }, str);
 
@@ -474,10 +474,10 @@ namespace axis
 
          }
 
-         if (value("schema").get_count() > 0)
+         if (payload("schema").get_count() > 0)
          {
 
-            str = value("schema").stra()[0];
+            str = payload("schema").stra()[0];
 
             data_set({ "system_schema", true }, str);
 
@@ -539,10 +539,10 @@ namespace axis
 
          }
 
-         if (value("locale").get_count() > 0)
+         if (payload("locale").get_count() > 0)
          {
 
-            str = value("locale").stra()[0];
+            str = payload("locale").stra()[0];
 
             data_set({ "system_locale", true }, str);
 
@@ -551,10 +551,10 @@ namespace axis
             set_locale(str, ::e_source_database);
 
          }
-         else if (value("lang").get_count() > 0)
+         else if (payload("lang").get_count() > 0)
          {
 
-            str = value("lang").stra()[0];
+            str = payload("lang").stra()[0];
 
             data_set({ "system_locale", true }, str);
 
@@ -610,10 +610,10 @@ namespace axis
 
          }
 
-         if (value("schema").get_count() > 0)
+         if (payload("schema").get_count() > 0)
          {
 
-            str = value("schema").stra()[0];
+            str = payload("schema").stra()[0];
 
             data_set({ "system_schema", true }, str);
 
@@ -1105,31 +1105,31 @@ namespace axis
 
 
 
-      //if (System.value("locale").get_count() > 0)
+      //if (System.payload("locale").get_count() > 0)
       //{
 
-      //   strLocale = System.value("locale").stra()[0];
+      //   strLocale = System.payload("locale").stra()[0];
 
       //}
 
-      //if (System.value("schema").get_count() > 0)
+      //if (System.payload("schema").get_count() > 0)
       //{
 
-      //   strSchema = System.value("schema").stra()[0];
+      //   strSchema = System.payload("schema").stra()[0];
 
       //}
 
-      //if (Application.value("locale").get_count() > 0)
+      //if (Application.payload("locale").get_count() > 0)
       //{
 
-      //   strLocale = Application.value("locale").stra()[0];
+      //   strLocale = Application.payload("locale").stra()[0];
 
       //}
 
-      //if (Application.value("schema").get_count() > 0)
+      //if (Application.payload("schema").get_count() > 0)
       //{
 
-      //   strSchema = Application.value("schema").stra()[0];
+      //   strSchema = Application.payload("schema").stra()[0];
 
       //}
 

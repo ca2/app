@@ -883,7 +883,7 @@ namespace html
 
       m_elementalptra.remove_all();
 
-      payload payload;
+      ::payload payload;
 
       payload.set_type(::e_type_string);
 

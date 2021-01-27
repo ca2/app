@@ -130,7 +130,7 @@ namespace file
 //   }
 
 
-//   path::path(const payload & payload, e_path epath, int iDir) :
+//   path::path(const ::payload & payload, e_path epath, int iDir) :
 //      path(payload.get_string(), epath, iDir)
 //   {
 //

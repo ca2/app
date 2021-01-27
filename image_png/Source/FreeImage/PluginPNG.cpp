@@ -646,7 +646,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
          {
             png_::u32_32 res_x, res_y;
 
-            // we'll overload this payload and use 0 to mean no phys data,
+            // we'll overload this ::payload and use 0 to mean no phys data,
             // since if it's not in meters we can't use it anyway
 
             int res_unit_type = PNG_RESOLUTION_UNKNOWN;

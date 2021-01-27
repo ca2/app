@@ -1,8 +1,8 @@
 #pragma once
 
 
-namespace draw2d
-{
+//namespace draw2d
+//{
 
 
    class CLASS_DECL_AURA color_matrix
@@ -56,8 +56,9 @@ namespace draw2d
 
       color_matrix & operator = (const color_matrix &) = default;
 
-      color_matrix & brightness(double rect, double g, double b);
-      color_matrix & saturation(double rect, double g, double b, double s);
+      color_matrix & brightness(double r, double g, double b);
+      color_matrix & saturation(double r, double g, double b, double s);
+      color_matrix & opacity(class ::opacity opacity);
       color_matrix & invert();
       color_matrix & grayscale();
 
@@ -68,13 +69,14 @@ namespace draw2d
 
    };
 
-
-} // namespace draw2d
+//
+//} // namespace draw2d
+//
 
 
 
 template < typename A, typename B >
-void copy_color_matrix(A & a, const B & b)
+inline void copy_color_matrix(A & a, const B & b)
 {
 
    for (index i = 0; i < 5; i++)
@@ -90,5 +92,20 @@ void copy_color_matrix(A & a, const B & b)
    }
 
 }
+
+
+#ifdef WINDOWS_DESKTOP
+
+
+inline void copy(Gdiplus::ColorMatrix & a, const color_matrix & b)
+{
+
+   copy_color_matrix(a.m, b.a);
+
+}
+
+
+#endif
+
 
 

@@ -47,36 +47,45 @@ namespace user
    }
 
 
-   bool primitive_impl::create_window(::user::interaction * pinteraction, const ::rect & rect, ::user::primitive * pparent, id id)
-   {
+   //bool primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * pparent)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return true;
+   //   return true;
 
-   }
-
-
-   bool primitive_impl::create_window(::user::interaction * pinteraction, const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::primitive * puiParent, id id, ::create * pcreate)
-
-   {
-
-      ::exception::throw_interface_only();
-
-      return false;
-
-   }
+   //}
 
 
-   bool primitive_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcs, ::user::primitive * puiParent, id id)
-   {
+   //bool primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * puiParent)
 
-      ::exception::throw_interface_only();
+   //{
 
-      return true;
+   //   ::exception::throw_interface_only();
 
-   }
+   //   return false;
 
+   //}
+
+
+   //bool primitive_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, id id)
+   //{
+
+   //   ::exception::throw_interface_only();
+
+   //   return true;
+
+   //}
+
+
+   //bool primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * pparent)
+   //{
+
+   //   ::exception::throw_interface_only();
+
+   //   return true;
+
+   //}
 
    ::user::interaction_impl * primitive_impl::get_user_interaction_impl()
    {
@@ -1664,6 +1673,22 @@ namespace user
       }
 
       return m_puserinteraction == m_puserinteraction->GetActiveWindow();
+
+   }
+
+
+   bool primitive_impl::create_host(::user::interaction * puserinteraction)
+   {
+
+      return false;
+
+   }
+
+
+   bool primitive_impl::create_child(::user::interaction * puserinteraction, ::user::primitive * puserprimitiveParent)
+   {
+
+      return false;
 
    }
 

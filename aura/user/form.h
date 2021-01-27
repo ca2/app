@@ -42,7 +42,7 @@ namespace user
       //virtual enum_control_type get_control_type() const override;
 
       virtual bool _001AddControl(::user::interaction * pinteraction);
-      //virtual bool create_control(::user::interaction * pinteractionParent, const ::id & id);
+      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id);
 
 
       //virtual __pointer(control_descriptor) new_form_control();
@@ -50,7 +50,7 @@ namespace user
 
       virtual ::e_status open_html(const ::string& str);
 
-      virtual ::e_status open_document(const payload& varFile);
+      virtual ::e_status open_document(const ::payload& varFile);
 
       virtual void soft_reload();
 

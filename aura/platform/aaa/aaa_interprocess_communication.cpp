@@ -83,7 +83,7 @@ namespace aura
    }
 
 
-   void interprocess_communication::call::add_arg(const payload & payload)
+   void interprocess_communication::call::add_arg(const ::payload & payload)
    {
 
       m_varaArgs.add(payload);
@@ -644,7 +644,7 @@ started:
 
       }
 
-      payload varRet;
+      ::payload varRet;
 
       on_interprocess_call(varRet, strObject, strMember, vara);
 
@@ -708,7 +708,7 @@ started:
    }
 
 
-   void interprocess_communication::on_interprocess_call(payload & payload, const string & strObject, const string & strMember, var_array & vara)
+   void interprocess_communication::on_interprocess_call(::payload & payload, const string & strObject, const string & strMember, var_array & vara)
    {
 
       if(strObject == "application")

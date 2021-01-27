@@ -71,9 +71,6 @@ namespace userex
    void font_view::_001OnShowWindow(::message::message* /* pmessage */)
    {
 
-      //__pointer(::message::show_window) pshowwindow(pmessage);
-   
-
    }
 
 
@@ -82,24 +79,19 @@ namespace userex
 
       ::user::split_view::on_subject(psubject, pcontext);
 
-      ////__update(::update)
+      if (psubject->id() == id_after_change_text)
       {
 
-         if (psubject->id() == id_after_change_text)
+         if (m_ptopview != nullptr && psubject->m_puserinteraction == m_ptopview->m_peditview)
          {
 
-            if (m_ptopview != nullptr && psubject->m_puserinteraction == m_ptopview->m_peditview)
-            {
+            sync_lock sl(m_pview->m_pfontlist->mutex());
 
-               sync_lock sl(m_pview->m_pfontlist->mutex());
+            string strText;
 
-               string strText;
+            m_ptopview->m_peditview->_001GetText(strText);
 
-               m_ptopview->m_peditview->_001GetText(strText);
-
-               m_pview->m_pfontlist->m_strText = strText;
-
-            }
+            m_pview->m_pfontlist->m_strText = strText;
 
          }
 

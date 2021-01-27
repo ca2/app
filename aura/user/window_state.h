@@ -66,10 +66,11 @@ namespace user
    protected:
 
       ::point                                m_pointScreen;
+      ::point                                m_pointHost;
       ::point                                m_point;
       ::size                                 m_size;
-      ::e_display                             m_edisplay3;
-      ::e_appearance                          m_eappearance;
+      ::e_display                            m_edisplay3;
+      ::e_appearance                         m_eappearance;
       bool                                   m_bReady;
       bool                                   m_bModified;
       //::user::interaction_layout *           m_playout; // had mutex dependency, not anymore for now so commented out
@@ -79,7 +80,7 @@ namespace user
 
    public:
 
-      visual_state() { m_bReady = true; m_bModified = false; }
+      visual_state() { m_bReady = true; m_bModified = false; m_edisplay3 = e_display_none;  }
 
       //void set_interaction_layout(::user::interaction_layout* playout) { m_playout = playout; }
 
@@ -119,6 +120,9 @@ namespace user
       ::point screen_origin() const { return m_pointScreen; }
       ::point& screen_origin() { return m_pointScreen; }
 
+      ::point host_origin() const { return m_pointHost; }
+      ::point& host_origin() { return m_pointHost; }
+
       ::size size() const { return m_size; }
 
       template < primitive_size SIZE >
@@ -140,6 +144,8 @@ namespace user
       inline auto screen_rect() const { return ::rect(m_pointScreen, m_size); }
       void screen_rect(LPRECT32 lprect) const { *lprect = screen_rect(); }
 
+      inline auto host_rect() const { return ::rect(m_pointHost, m_size); }
+      void host_rect(LPRECT32 lprect) const { *lprect = host_rect(); }
 
       auto client_rect() const { return ::rect(m_size); }
       void client_rect(LPRECT32 lprect) const { *lprect = client_rect(); }
@@ -210,6 +216,7 @@ namespace user
       {
 
          m_pointScreen = windowstate.m_pointScreen;
+         m_pointHost = windowstate.m_pointHost;
          m_point = windowstate.m_point;
 
          return *this;

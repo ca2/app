@@ -47,7 +47,7 @@ namespace hotplugin
 
       int w = 284;
 
-      int v = (int) (::get_tick() * 484 / 1000);
+      int v = (int) (::get_millis() * 484 / 1000);
 
       int x = v % rectBar.width();
 

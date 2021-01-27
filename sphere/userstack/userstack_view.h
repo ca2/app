@@ -62,7 +62,7 @@ namespace userstack
       virtual void pre_translate_message(::message::message * pmessage) override;
 
       virtual void install_message_routing(::channel * pchannel) override;
-      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
+      virtual bool pre_create_window(::user::system * pusersystem) override;
       virtual void OnDraw(::draw2d::graphics_pointer & pgraphics);
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 

@@ -15,7 +15,7 @@ public:
 
 
    message_box();
-   message_box(const payload & payload);
+   message_box(const ::payload & payload);
    virtual ~message_box();
 
 
@@ -27,7 +27,7 @@ public:
 
 
 
-inline payload operator + (payload payload, const ::enum_message_box& emessagebox)
+inline ::payload operator + (::payload payload, const ::enum_message_box& emessagebox)
 {
 
    if (payload.get_type() != e_type_propset)
@@ -45,20 +45,20 @@ inline payload operator + (payload payload, const ::enum_message_box& emessagebo
 
 
 template < typename TYPE_CHAR >
-inline payload operator +(const string_base < TYPE_CHAR >& str, const enum_message_box& e)
+inline ::payload operator +(const string_base < TYPE_CHAR >& str, const enum_message_box& e)
 {
 
-   return payload(str) + e;
+   return ::payload(str) + e;
 
 }
 
 
 
 
-inline payload operator + (const char* psz, const ::enum_message_box& emessagebox)
+inline ::payload operator + (const char* psz, const ::enum_message_box& emessagebox)
 {
 
-   return payload(psz) + emessagebox;
+   return ::payload(psz) + emessagebox;
 
 }
 

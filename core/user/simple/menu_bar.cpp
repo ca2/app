@@ -112,9 +112,9 @@ void simple_menu_bar::SetMenuID(::u32 uResourceId)
    m_uResourceId = uResourceId;
 }
 
-bool simple_menu_bar::pre_create_window(::user::create_struct * pcreatestruct)
+bool simple_menu_bar::pre_create_window(::user::system * pusersystem)
 {
-   return simple_toolbar::pre_create_window(pcreatestruct);
+   return simple_toolbar::pre_create_window(pusersystem);
 }
 
 
@@ -638,53 +638,53 @@ index simple_menu_bar::_001HitTest(const POINT32 *ppoint)
 }*/
 
 
-bool simple_menu_bar::create_window(::user::interaction * puiParent, u32 uStyle, ::id id)
-{
+//bool simple_menu_bar::create_window(::user::interaction * puiParent, u32 uStyle, ::id id)
+//{
+//
+//   return create_window_ex(puiParent, 0, uStyle, id);
+//
+//}
 
-   return create_window_ex(puiParent, 0, uStyle, id);
 
-}
-
-
-bool simple_menu_bar::create_window_ex(::user::interaction * puiParent, u32 dwCtrlStyle, u32 uStyle, ::id id)
-{
-
-   ASSERT_VALID(puiParent);   // must have a parent
-   ASSERT(!((uStyle & CBRS_SIZE_FIXED) && (uStyle & CBRS_SIZE_DYNAMIC)));
-
-   //SetBorders(rect);
-
-   // save the style
-   m_dwStyle = (uStyle & CBRS_ALL);
-   if (id == __IDW_TOOLBAR)
-      m_dwStyle |= CBRS_HIDE_INPLACE;
-
-   uStyle &= ~CBRS_ALL;
-#ifdef WINDOWS_DESKTOP
-   uStyle |= CCS_NOPARENTALIGN | CCS_NOMOVEY | CCS_NODIVIDER | CCS_NORESIZE;
-#endif
-   uStyle |= dwCtrlStyle;
-
-   //   ASSERT(gen_ComCtlVersion != -1);
-   //   _::aura::GetDropDownWidth();
-   //   ASSERT(gen_DropDownWidth != -1);
-
-   // create the oswindow
-   if (!::user::interaction::create_window(nullptr, nullptr, uStyle, puiParent, id))
-   {
-
-      return false;
-
-   }
-
-   // sync up the sizes
-//   SetSizes(m_sizeButton, m_sizeImage);
-
-   // Note: Parent must resize itself for control bar to be resized
-
-   return true;
-
-}
+//bool simple_menu_bar::create_window_ex(::user::interaction * puiParent, u32 dwCtrlStyle, u32 uStyle, ::id id)
+//{
+//
+//   ASSERT_VALID(puiParent);   // must have a parent
+//   ASSERT(!((uStyle & CBRS_SIZE_FIXED) && (uStyle & CBRS_SIZE_DYNAMIC)));
+//
+//   //SetBorders(rect);
+//
+//   // save the style
+//   m_dwStyle = (uStyle & CBRS_ALL);
+//   if (id == __IDW_TOOLBAR)
+//      m_dwStyle |= CBRS_HIDE_INPLACE;
+//
+//   uStyle &= ~CBRS_ALL;
+//#ifdef WINDOWS_DESKTOP
+//   uStyle |= CCS_NOPARENTALIGN | CCS_NOMOVEY | CCS_NODIVIDER | CCS_NORESIZE;
+//#endif
+//   uStyle |= dwCtrlStyle;
+//
+//   //   ASSERT(gen_ComCtlVersion != -1);
+//   //   _::aura::GetDropDownWidth();
+//   //   ASSERT(gen_DropDownWidth != -1);
+//
+//   // create the oswindow
+//   if (!::user::interaction::create_window(nullptr, nullptr, uStyle, puiParent, id))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   // sync up the sizes
+////   SetSizes(m_sizeButton, m_sizeImage);
+//
+//   // Note: Parent must resize itself for control bar to be resized
+//
+//   return true;
+//
+//}
 
 
 //void simple_menu_bar::_001OnLButtonDown(::message::message * pmessage)

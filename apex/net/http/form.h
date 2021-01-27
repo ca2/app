@@ -19,12 +19,12 @@ namespace http
       /**
        * Default constructor (used in POST operations).
        * Input is read from stdin. Number of characters to read
-       * can be found in the environment payload CONTENT_LENGTH.
+       * can be found in the environment ::payload CONTENT_LENGTH.
       */
       void parse_body(::file::file *, const char * pszContentType, strsize content_length);
       /**
        * Another constructor (used in GET operations).
-       * Input is read from the environment payload QUERY_STRING.
+       * Input is read from the environment ::payload QUERY_STRING.
        * @lparam query_string The httpd server provided QUERY_STRING
        * @lparam length Query string length.
       */

@@ -45,7 +45,7 @@ namespace experience
 
       __composite(::draw2d::icon)                  m_picon;
 
-      comparable_array < ::experience::e_button >  m_ebuttonaHide;
+      comparable_array < enum_button >             m_ebuttonaHide;
       i32                                          m_iIndex;
       bool                                         m_bFullScreenOnZoom;
       bool                                         m_bInitialFramePosition;
@@ -196,11 +196,12 @@ namespace experience
       bool is_sizing_enabled();
       bool is_sysmenu_enabled();
 
-      //virtual void on_command_message(::user::command * pcommand) override;
 
       e_hittest _001HitTest(const ::point& point);
 
-      virtual ::experience::button * get_box_button(e_button ebutton);
+      
+      virtual button * get_box_button(enum_button ebutton);
+
 
       virtual void on_defer_display() override;
 

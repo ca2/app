@@ -13,7 +13,7 @@ namespace app_shader
 
       m_iShader = 0;
 
-      value(FONTSEL_IMPACT) = true;
+      payload(FONTSEL_IMPACT) = true;
 
       m_flagNonClient.remove(non_client_background);
 

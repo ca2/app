@@ -935,7 +935,7 @@
     <ClInclude Include="font.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="graphics.h" />
-    <ClInclude Include="image_impl.h" />
+    <ClInclude Include="image.h" />
     <ClInclude Include="keep.h" />
     <ClInclude Include="object.h" />
     <ClInclude Include="palette.h" />
@@ -964,7 +964,7 @@
       <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">Create</PrecompiledHeader>
     </ClCompile>
     <ClCompile Include="graphics.cpp" />
-    <ClCompile Include="image_impl.cpp" />
+    <ClCompile Include="image.cpp" />
     <ClCompile Include="keep.cpp" />
     <ClCompile Include="object.cpp" />
     <ClCompile Include="palette.cpp" />

@@ -28,11 +28,11 @@ namespace macos
       
       virtual ::e_status initialize(::layered * pobjectContext) override;
 
-      virtual payload length(const ::file::path & path) override;
+      virtual ::payload length(const ::file::path & path) override;
 
       virtual ::e_status update_module_path() override;
 
-      virtual file_result get_file(const payload & varFile, const ::file::e_open & eopen) override;
+      virtual file_result get_file(const ::payload & varFile, const ::file::e_open & eopen) override;
 
 
    };

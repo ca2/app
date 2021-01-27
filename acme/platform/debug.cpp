@@ -85,7 +85,7 @@ void system_call_update_app_activated()
 //
 //   auto pupdate = new_update();
 //
-//   psubject->value(id_filter) = "*.jpg";
+//   psubject->payload(id_filter) = "*.jpg";
 //
 //}
 

@@ -92,7 +92,7 @@ namespace userpresence
 
       }
 
-      if(Application.value("app") == "simpledbcfg" || Application.value("app") == "app-core/netnodelite")
+      if(Application.payload("app") == "simpledbcfg" || Application.payload("app") == "app-core/netnodelite")
       {
 
          return true;

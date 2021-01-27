@@ -23,7 +23,7 @@
 //      bool _001OnDDECommand(const char * pcsz);
 //
 //      virtual void _001EnableShellOpen();
-//      //virtual ::acme::document * _001OpenDocumentFile(payload varFile);
+//      //virtual ::acme::document * _001OpenDocumentFile(::payload varFile);
 //      virtual void _001OnFileNew();
 //
 //

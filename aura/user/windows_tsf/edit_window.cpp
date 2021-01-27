@@ -1043,7 +1043,7 @@ namespace tsf
                    while((hr = pEnumRanges->Next(1, &pPropRange, &uFetched)) == S_OK && uFetched) 
                    {
                        //get the attribute property for the property range
-                       VARIANT payload;
+                       VARIANT ::payload;
 
                        VariantInit(&payload);
 
@@ -1178,7 +1178,7 @@ namespace tsf
                    while((hr = pEnumRanges->Next(1, &pPropRange, &uFetched)) == S_OK && uFetched) 
                    {
                        //get the attribute property for the property range
-                       VARIANT payload;
+                       VARIANT ::payload;
 
                        VariantInit(&payload);
 
@@ -1289,7 +1289,7 @@ namespace tsf
                    while((hr = pEnumRanges->Next(1, &pPropRange, &uFetched)) == S_OK && uFetched) 
                    {
                        //get the attribute property for the property range
-                       VARIANT payload;
+                       VARIANT ::payload;
 
                        VariantInit(&payload);
 
@@ -1398,7 +1398,7 @@ namespace tsf
                    while((hr = pEnumRanges->Next(1, &pPropRange, &uFetched)) == S_OK && uFetched) 
                    {
                        //get the attribute property for the property range
-                       variant payload;
+                       variant ::payload;
 
                        
                        hr = pTrackProperty->GetValue(m_EditCookie, pPropRange, &payload);

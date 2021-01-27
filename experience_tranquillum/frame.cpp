@@ -16,33 +16,17 @@ namespace experience
          m_penShadow1(e_create),
          m_penDkShadow1(e_create)
       {
-         m_colorActiveCaptionTextBk = 0;
-         m_rectControlBoxMarginNormal = nullptr;
 
-         m_rectMarginNormal.set(5, 5, 5, 5);
+         m_colorActiveCaptionTextBk = 0;
+
+         m_rectMarginNormal.set(1, 1, 1, 1);
 
          m_colorCaptionText = ARGB(255, 255, 255, 255);
 
          m_rectClient = nullptr;
 
-         //               m_iMargin = 7;
-
-         //class font_department & fonts = System.draw2d().fonts();
-
-         //
-         //fonts.GetCaptionFont()->create_point_font("MS Sans Serif", 9.0);
-
-         
-
-         //create_point_font(::user::font_button, "MS Sans Serif", 9.0);
-         //create_point_font(::user::font_window_title, "MS Sans Serif", 12.0);
-
-         //m_fontEdit->m_etextrenderinghint = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
-         //m_fontList->m_etextrenderinghint = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
-         //m_fontButton->m_etextrenderinghint = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
-         //m_fontCaption->m_etextrenderinghint = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
-
       }
+
 
       frame::~frame()
       {
@@ -206,19 +190,19 @@ namespace experience
          case ElementTopLeftIcon:
 
             if (m_pframewindow == nullptr || m_pframewindow->m_picon == nullptr)
+            {
+
                return false;
 
-            prect->left = m_pointWindowIcon.x;
+            }
 
-            prect->top = m_pointWindowIcon.y;
+            prect->left = m_rectCaption.left;
 
-            //prect->right = prect->left + m_pframewindow->m_picon->get_size().cx;
+            prect->top = m_rectCaption.top;
 
-            //prect->bottom = prect->top + m_pframewindow->m_picon->get_size().cy;
+            prect->right = prect->left + m_iCaptionHeight;
 
-            prect->right = prect->left + 24;
-
-            prect->bottom = prect->top + 24;
+            prect->bottom = prect->top + m_iCaptionHeight;
 
 
             return true;
@@ -232,9 +216,9 @@ namespace experience
 
             prect->top = m_pointMoveGripMinimal.y + 2;
 
-            prect->right = prect->left + get_control_box_rect()->height() - 4;
+            prect->right = prect->left + m_iCaptionHeight - 4;
 
-            prect->bottom = prect->top + get_control_box_rect()->height() - 4;
+            prect->bottom = prect->top + m_iCaptionHeight - 4;
 
 
             return true;
@@ -444,8 +428,8 @@ namespace experience
          ::rect rect(rectParam);
          i32 x = rect.left;
          i32 y = rect.top;
-         i32 cx = rect.width();
-         i32 cy = rect.height();
+         i32 cx = rect.width() - 1;
+         i32 cy = rect.height() - 1;
 
 
 
@@ -534,6 +518,17 @@ namespace experience
       //}
 
 
+      void frame::title_bar_layout(::draw2d::graphics_pointer & pgraphics)
+      {
+
+         ::experience::frame::title_bar_layout(pgraphics);
+
+         m_rectCaptionTextBk = m_rectCaption;
+
+      }
+
+
+
       void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
@@ -584,7 +579,11 @@ namespace experience
                if (picon != nullptr)
                {
 
-                  pgraphics->draw(rectIcon, picon);
+                  ::rectd rectDst(picon->get_smaller_size(rectIcon.size()));
+
+                  rectDst.CenterOf(rectIcon);
+
+                  pgraphics->draw(rectDst, picon);
 
                }
 
@@ -689,6 +688,8 @@ namespace experience
             if(m_pframewindow->is_active())
             {
 
+               pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
+
                pgraphics->fill_rect(m_rectCaptionTextBk, m_colorActiveCaptionTextBk);
 
             }
@@ -764,6 +765,10 @@ namespace experience
                if (picon != nullptr)
                {
 
+                  ::rectd rectDst(picon->get_smaller_size(rectIcon.size()));
+
+                  rectDst.CenterOf(rectIcon);
+
                   pgraphics->draw(rectIcon, picon);
 
                }
@@ -815,8 +820,6 @@ namespace experience
       }
 
 
-
-
       void frame::GetFrameRect(rect * prect)
       {
 
@@ -824,7 +827,7 @@ namespace experience
 
          prect->offset(-prect->top_left());
 
-         prect->deflate(*get_margin_rect());
+         prect->deflate(get_margin_rect());
 
       }
 

@@ -78,7 +78,7 @@ namespace html
 
             m_pedit->m_pform = pdata->m_pcoredata->m_pform;
 
-            m_pedit->create_window(pdata->m_pcoredata->m_puserinteraction, id);
+            m_pedit->create_child(pdata->m_pcoredata->m_puserinteraction);
 
             pdata->on_create_interaction(m_pedit);
 

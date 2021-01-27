@@ -278,7 +278,7 @@ namespace user
 
          }
 
-         if (!pinteraction->create_window(pmenu, pitem->m_id))
+         if (!pinteraction->create_child(pmenu))
          {
 
             return false;

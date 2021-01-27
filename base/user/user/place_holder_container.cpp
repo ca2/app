@@ -26,23 +26,27 @@ namespace user
    ::user::place_holder * place_holder_container::get_new_place_holder(const ::rect & rectCreate)
    {
 
-      if (!m_placeholdera.add_new(this))
+      auto pplaceholder = __create_new < ::user::place_holder >();
+
+      if (!pplaceholder)
       {
 
          return nullptr;
 
       }
 
-      if(!m_placeholdera.last_pointer()->::user::interaction::create_window(this,m_placeholdera.get_upper_bound()))
-      {
+      pplaceholder->display(e_display_normal);
 
-         m_placeholdera.remove_last();
+      if(!pplaceholder->create_child(this))
+      {
 
          return nullptr;
 
       }
 
-      return m_placeholdera.last_pointer();
+      m_placeholdera.add(pplaceholder);
+
+      return pplaceholder;
 
    }
 
@@ -121,12 +125,12 @@ namespace user
    }
 
 
-   bool place_holder_container::create_window(::user::interaction * puiParent,id id)
-   {
+   //bool place_holder_container::create_interaction(::user::interaction * puiParent,id id)
+   //{
 
-      return ::user::interaction::create_window(puiParent,id) != FALSE;
+   //   return ::user::interaction::create_interaction(puiParent) != FALSE;
 
-   }
+   //}
 
 
    place_holder_ptra place_holder_container_ptra::place(::user::interaction * pinteraction,const rect & rectCreate)

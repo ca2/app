@@ -4,6 +4,7 @@
 #include "_struct.h"
 
 
+
 class CLASS_DECL_ACME angle
 {
 public:
@@ -11,7 +12,7 @@ public:
    double m_d; // in radians
 
    angle() : m_d(0.0) {}
-   angle(e_no_init) {}
+   angle(enum_no_init) {}
    angle(nullptr_t) : m_d(0.0) {}
    angle(double d) : m_d(d) {}
 
@@ -84,6 +85,7 @@ inline auto left(const RECTF * prect) { return prect->left; }
 inline auto top(const RECTF * prect) { return prect->top; }
 inline auto left(const RECTD * prect) { return prect->left; }
 inline auto top(const RECTD * prect) { return prect->top; }
+
 
 
 
@@ -582,14 +584,26 @@ RECT_TYPE1 * copy_rect(RECT_TYPE1 * prect1, const RECT_TYPE2* prect2)
 }
 
 
-template < typename POINT_TYPE1, typename POINT_TYPE2 >
-POINT_TYPE1 * copy_point(POINT_TYPE1 * ppoint1, const POINT_TYPE2 * ppoint2)
+template < primitive_point POINT1, primitive_point POINT2 >
+POINT1 * copy_point(POINT1 * ppoint1, const POINT2 * ppoint2)
 {
 
-   ppoint1->x = (decltype(POINT_TYPE1::x))ppoint2->x;
-   ppoint1->y = (decltype(POINT_TYPE1::y))ppoint2->y;
+   ppoint1->x = (decltype(POINT1::x))ppoint2->x;
+   ppoint1->y = (decltype(POINT1::y))ppoint2->y;
 
    return ppoint1;
+
+}
+
+
+template < primitive_point POINT, primitive_size SIZE >
+POINT * copy(POINT * ppoint, const SIZE * psize)
+{
+
+   ppoint->x = (decltype(POINT::x))psize->cx;
+   ppoint->y = (decltype(POINT::y))psize->cy;
+
+   return ppoint;
 
 }
 
@@ -682,14 +696,27 @@ template <  typename L, typename T, typename W, typename H >
 inline auto _001SetRectDim(RECTD * p, L l, T t, W w, H h) { return set_rect_dim(p, l, t, w, h); }
 
 
-template < typename RECT_TYPE, typename POINT_TYPE, typename SIZE_TYPE >
-RECT_TYPE* set_rect_point_size(RECT_TYPE* prect, const POINT_TYPE & point, const SIZE_TYPE & size)
+template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size SIZE >
+RECTANGLE * set_rect_size_bottom_right(RECTANGLE * prect, const SIZE & size)
 {
 
-   prect->left = (decltype(RECT_TYPE::left))point.x;
-   prect->top = (decltype(RECT_TYPE::top))point.y;
-   prect->right = (decltype(RECT_TYPE::right))(point.x + size.cx);
-   prect->bottom = (decltype(RECT_TYPE::bottom))(point.y + size.cy);
+   prect->right = (decltype(RECTANGLE::right))(prect->left + size.cx);
+   prect->bottom = (decltype(RECTANGLE::bottom))(prect->top + size.cy);
+
+   return prect;
+
+}
+
+
+
+template < primitive_rectangle RECTANGLE, primitive_point POINT, primitive_size SIZE >
+RECTANGLE * set_rect_point_size(RECTANGLE * prect, const POINT & point, const SIZE & size)
+{
+
+   prect->left = (decltype(RECTANGLE::left))point.x;
+   prect->top = (decltype(RECTANGLE::top))point.y;
+   prect->right = (decltype(RECTANGLE::right))(point.x + size.cx);
+   prect->bottom = (decltype(RECTANGLE::bottom))(point.y + size.cy);
 
    return prect;
 
@@ -757,8 +784,8 @@ bool is_point_null(const POINT_TYPE* ppoint)
 
 
 
-template < typename RECT_BASE_TYPE, typename X >
-inline bool rect_contains_x(const RECT_BASE_TYPE * prect, X x)
+template < primitive_rectangle RECTANGLE, typename X >
+inline bool rectangle_contains_x(const RECTANGLE * prect, X x)
 {
 
    return x >= prect->left && x <= prect->right;
@@ -766,8 +793,8 @@ inline bool rect_contains_x(const RECT_BASE_TYPE * prect, X x)
 }
 
 
-template < typename RECT_BASE_TYPE, typename Y >
-inline bool rect_contains_y(const RECT_BASE_TYPE * prect, Y y)
+template < primitive_rectangle RECTANGLE, typename Y >
+inline bool rectangle_contains_y(const RECTANGLE * prect, Y y)
 {
 
    return y >= prect->top && y <= prect->bottom;
@@ -775,11 +802,11 @@ inline bool rect_contains_y(const RECT_BASE_TYPE * prect, Y y)
 }
 
 
-template < typename RECT_BASE_TYPE, typename X, typename Y >
-inline bool rect_contains(const RECT_BASE_TYPE * prect, X x, Y y)
+template < primitive_rectangle RECTANGLE, typename X, typename Y >
+inline bool rectangle_contains(const RECTANGLE * prect, X x, Y y)
 {
 
-   return rect_contains_x(prect, x) && rect_contains_y(prect, y);
+   return rectangle_contains_x(prect, x) && rectangle_contains_y(prect, y);
 
 }
 
@@ -883,8 +910,8 @@ inline RECT_TYPE* swap_rect_left_right(RECT_TYPE* prect) { __swap(prect->left, p
 
 
 
-template < typename POINT_TYPE >
-inline bool polygon_contains_point(const POINT_TYPE * ppPolygon, i32 iCount, const POINT_TYPE & point)
+template < primitive_point POINT1, primitive_point POINT2 >
+inline bool polygon_contains_point(const POINT1 * ppPolygon, i32 iCount, const POINT2 & point)
 {
 
    int i, j = iCount - 1;
@@ -1012,13 +1039,17 @@ using pointf_array = point_array_base < pointf >;
 using pointd_array = point_array_base < pointd >;
 
 
-inline float i32muldiv(float f, i32 iNum, i32 iDen);
-inline double i32muldiv(double d, i32 iNum, i32 iDen);
-inline i32 i32muldiv(i32 i, i32 iNum, i32 iDen);
-#ifndef WINDOWS
-inline i64 MulDiv(i64 nNumber, i32 iNum, i32 iDen);
-#endif
-inline i64 i32muldiv(i64 i, i32 iNum, i32 iDen);
+//inline float i32muldiv(float f, i32 iNum, i32 iDen);
+//inline double i32muldiv(double d, i32 iNum, i32 iDen);
+//inline i32 i32muldiv(i32 i, i32 iNum, i32 iDen);
+//#ifndef WINDOWS
+//inline i64 MulDiv(i64 nNumber, i32 iNum, i32 iDen);
+//#endif
+//inline i64 i32muldiv(i64 i, i64 iNum, i64 iDen);
+
+
+template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2, primitive_integral INTEGRAL3, primitive_integral INTEGRAL_RESULT = typename ::largest_type_of_3 < INTEGRAL1, INTEGRAL2, INTEGRAL3 >::type >
+inline INTEGRAL_RESULT muldiv(INTEGRAL1 i, INTEGRAL2 iNumerator, INTEGRAL3 iDenominator);
 
 
 inline void copy(POINT32* ppointDst, const POINT32* ppointSrc) { *ppointDst = *ppointSrc; }
@@ -1080,7 +1111,7 @@ inline void copy(RECTD* prectDst, const RECTD* prectSrc) { *prectDst = *prectSrc
 
 
 
-inline bool contains(const RECT32* prect, const POINT32& point) { return ::rect_contains(prect, point.x, point.y); }
+inline bool contains(const RECT32* prect, const POINT32& point) { return ::rectangle_contains(prect, point.x, point.y); }
 inline RECT32* null(RECT32* prectDst) { return ::null_rect(prectDst); }
 inline bool is_equal(const RECT32* prect1, const RECT32* prect2) { return ::rect_equals(prect1, prect2); }
 inline RECT32* inflate(RECT32 * prect, ::i32 x, ::i32 y) { return ::rect_inflate_point(prect, x, y); }
@@ -1114,7 +1145,7 @@ inline bool is_empty(SIZED* psize) { return psize->cx <= 0. || psize->cy <= 0.; 
 
 
 
-inline bool contains(const RECT64* prect, const POINT32& point) { return ::rect_contains(prect, point.x, point.y); }
+inline bool contains(const RECT64* prect, const POINT32& point) { return ::rectangle_contains(prect, point.x, point.y); }
 inline RECT64* null(RECT64* prectDst) { return ::null_rect(prectDst); }
 inline bool is_equal(const RECT64* prect1, const RECT64* prect2) { return ::rect_equals(prect1, prect2); }
 inline RECT64* inflate(RECT64 * prect, i64 x, i64 y) { return ::rect_inflate_point(prect, x, y); }
@@ -1138,7 +1169,7 @@ inline void swap_left_right(RECT64 & rect) noexcept { ::swap_left_right(&rect); 
 
 
 
-inline bool contains(const RECTF* prect, const POINTF& point) { return ::rect_contains(prect, point.x, point.y); }
+inline bool contains(const RECTF* prect, const POINTF& point) { return ::rectangle_contains(prect, point.x, point.y); }
 inline RECTF* null(RECTF* prectFst) { return ::null_rect(prectFst); }
 inline bool is_equal(const RECTF* prect1, const RECTF* prect2) { return ::rect_equals(prect1, prect2); }
 inline RECTF* inflate(RECTF* prect, float x, float y) { return ::rect_inflate_point(prect, x, y); }
@@ -1161,7 +1192,7 @@ inline void swap_left_right(RECTF& rect) noexcept { ::swap_left_right(&rect); }
 
 
 
-inline bool contains(const RECTD * prect, const POINTD & point) { return ::rect_contains(prect, point.x, point.y); }
+inline bool contains(const RECTD * prect, const POINTD & point) { return ::rectangle_contains(prect, point.x, point.y); }
 inline RECTD* null(RECTD* prectDst) { return ::null_rect(prectDst); }
 inline bool is_equal(const RECTD* prect1, const RECTD* prect2) { return ::rect_equals(prect1, prect2); }
 inline RECTD* inflate(RECTD* prect, double x, double y) { return ::rect_inflate_point(prect, x, y); }
@@ -1268,7 +1299,7 @@ inline void copy(RECTF* prectDst, const D2D1_RECT_F* prectSrc) { ::copy_rect(pre
 
 #ifdef _UWP
 
-inline void copy(rect * prectDst, const Windows::Foundation::Rect * prectSrc)
+inline void copy(rect * prectDst, const ::Windows::Foundation::Rect * prectSrc)
 {
    prectDst->left = (::i32) prectSrc->X;
    prectDst->top = (::i32)prectSrc->Y;
@@ -1276,7 +1307,7 @@ inline void copy(rect * prectDst, const Windows::Foundation::Rect * prectSrc)
    prectDst->bottom = (::i32) (prectSrc->Y + prectSrc->Height);
 }
 
-inline void copy(Windows::Foundation::Rect* prectDst, rect* prectSrc)
+inline void copy(::Windows::Foundation::Rect* prectDst, rect* prectSrc)
 {
    prectDst->X = (float) prectSrc->left;
    prectDst->Y = (float) prectSrc->top;

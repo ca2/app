@@ -307,7 +307,8 @@ namespace user
 
       inline ::size size(enum_layout elayout = e_layout_design) const { return state(elayout).size(); }
 
-      inline ::point origin(enum_layout elayout = e_layout_design) const { return state(elayout).origin();; }
+      inline ::point origin(enum_layout elayout = e_layout_design) const { return state(elayout).origin(); }
+      inline ::point host_origin(enum_layout elayout = e_layout_design) const { return state(elayout).host_origin(); }
       inline ::point screen_origin(enum_layout elayout = e_layout_design) const { return state(elayout).screen_origin(); }
 
       inline ::i32 area(enum_layout elayout = e_layout_design) const { return size(elayout).area(); }

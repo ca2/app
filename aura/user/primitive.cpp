@@ -216,7 +216,7 @@ namespace user
    bool primitive::is_window_enabled() const
    {
 
-      auto puiParent = GetParent();
+      auto puiParent = get_parent();
 
       if (puiParent != nullptr)
       {
@@ -755,7 +755,7 @@ namespace user
    }
 
 
-   //i32 primitive::sync_message_box(payload payload)
+   //i32 primitive::sync_message_box(::payload payload)
    //{
 
    //   if (payload.get_type() == e_type_string)
@@ -784,7 +784,7 @@ namespace user
    //::e_status primitive::message_box(const ::payload& varParam)
    //{
 
-   //   payload payload;
+   //   ::payload payload;
 
    //   if (varParam.get_type() == e_type_propset)
    //   {
@@ -1154,7 +1154,7 @@ namespace user
    // }
 
 
-   ::user::frame * primitive::GetTopLevelFrame() const
+   ::user::frame * primitive::top_level_frame() const
    {
 
       ::exception::throw_interface_only();
@@ -1195,6 +1195,18 @@ namespace user
    }
 
 
+   string primitive::get_class_name()
+   {
+
+      auto econtroltype = get_control_type();
+
+      string strClassName = Application.get_window_class_name(econtroltype);
+
+      return strClassName;
+
+   }
+
+
    bool primitive::subclass_window(oswindow posdata)
    {
 
@@ -1215,19 +1227,7 @@ namespace user
    }
 
 
-   //bool primitive::create_native_window(::user::native_window_initialize * pinitialize)
-   //{
-
-   //   UNREFERENCED_PARAMETER(pinitialize);
-
-   //   ::exception::throw_interface_only();
-
-   //   return true;
-
-   //}
-
-
-   bool primitive::create_window(::user::interaction *pparent, const ::id & id)
+   bool primitive::create_child(::user::interaction * puserinteractionParent)
    {
 
       ::exception::throw_interface_only();
@@ -1236,21 +1236,85 @@ namespace user
 
    }
 
-
-   bool primitive::create_window(const char * pszClassName,const char * pszWindowName,u32 uStyle, ::user::interaction * puiParent, const ::id & id, ::create * pcreate)
+   
+   bool primitive::create_control(::user::interaction * puserinteractionParent, const ::id & id)
    {
 
-      ::exception::throw_interface_only();
+      m_id = id;
 
-      return false;
+      if (!create_child(puserinteractionParent))
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
 
-   bool primitive::create_window_ex(__pointer(::user::create_struct) pcs, ::user::interaction * puiParent, const ::id & id)
+   enum_control_type primitive::get_control_type() const
    {
 
-      ::exception::throw_interface_only();
+      return e_control_type_none;
+
+   }
+
+
+   //bool primitive::create_interaction(::user::interaction * puiParent, ::create * pcreate, ::u32 uExStyle, ::u32 uStyle)
+   //{
+
+   //   ::exception::throw_interface_only();
+
+   //   return false;
+
+   //}
+
+
+   bool primitive::create_interaction(::user::interaction * puserinteractionParent, const ::id & id)
+   {
+
+      if (!id.is_empty())
+      {
+
+         m_id = id;
+
+      }
+
+      if (!puserinteractionParent)
+      {
+
+         if (!create_host())
+         {
+
+            return false;
+
+         }
+
+      }
+      else
+      {
+
+         if (!create_child(puserinteractionParent))
+         {
+
+            return false;
+
+         }
+
+      }
+
+      return true;
+
+   }
+
+
+   //bool primitive::create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::id & id)
+   bool primitive::create_host()
+   {
+
+      //::exception::throw_interface_only();
 
       return true;
 
@@ -1358,7 +1422,16 @@ namespace user
 
    }
 
-//      if(nFlag == GW_HWNDNEXT)
+   
+   ::user::interaction * primitive::get_window(enum_next enext) const
+   {
+
+      return nullptr;
+
+   }
+
+
+   //      if(nFlag == GW_HWNDNEXT)
 //      {
 //
 //         return get_next(true, nullptr);
@@ -1392,16 +1465,6 @@ namespace user
       ::exception::throw_interface_only();
 
       return false;
-
-   }
-
-
-   ::user::interaction * primitive::GetTopWindow() const
-   {
-
-      ::exception::throw_interface_only();
-
-      return nullptr;
 
    }
 
@@ -1545,7 +1608,27 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::EnsureTopLevel()
+   //::user::interaction * primitive::EnsureTopLevel()
+   //{
+
+   //   ::exception::throw_interface_only();
+
+   //   return nullptr;
+
+   //}
+
+
+   //::user::interaction * primitive::EnsureParentTopLevel()
+   //{
+
+   //   ::exception::throw_interface_only();
+
+   //   return nullptr;
+
+   //}
+
+
+   ::user::interaction * primitive::get_top_level() const
    {
 
       ::exception::throw_interface_only();
@@ -1555,54 +1638,34 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::EnsureParentTopLevel()
-   {
+   //::user::interaction * primitive::GetParentTopLevel() const
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return nullptr;
+   //   return nullptr;
 
-   }
-
-
-   ::user::interaction * primitive::GetTopLevel() const
-   {
-
-      ::exception::throw_interface_only();
-
-      return nullptr;
-
-   }
+   //}
 
 
-   ::user::interaction * primitive::GetParentTopLevel() const
-   {
+   //::user::frame * primitive::GetParentTopLevelFrame() const
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return nullptr;
+   //   return nullptr;
 
-   }
-
-
-   ::user::frame * primitive::GetParentTopLevelFrame() const
-   {
-
-      ::exception::throw_interface_only();
-
-      return nullptr;
-
-   }
+   //}
 
 
-   ::user::frame * primitive::EnsureParentFrame()
-   {
+   //::user::frame * primitive::EnsureParentFrame()
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    //LRESULT primitive::default_window_procedure()
@@ -1659,7 +1722,17 @@ namespace user
    }
 
 
-   ::user::frame * primitive::GetParentFrame() const
+   ::user::interaction * primitive::get_parent() const
+   {
+
+      ::exception::throw_interface_only();
+
+      return nullptr;
+
+   }
+
+
+   ::user::frame * primitive::get_parent_frame() const
    {
 
       ::exception::throw_interface_only();
@@ -1686,7 +1759,7 @@ namespace user
    }
 
 
-   ::user::primitive * primitive::SetOwner(::user::primitive * pinteraction)
+   ::user::primitive * primitive::set_owner(::user::primitive * pinteraction)
    {
 
       //::exception::throw_interface_only();
@@ -1696,7 +1769,7 @@ namespace user
    }
 
 
-   ::user::primitive * primitive::SetParent(::user::primitive * pinteraction)
+   ::user::primitive * primitive::set_parent(::user::primitive * pinteraction)
    {
 
       ::exception::throw_interface_only();
@@ -1706,29 +1779,30 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::GetOwner() const
+   ::user::interaction * primitive::get_owner() const
    {
 
-      //::exception::throw_interface_only();
+      ::exception::throw_interface_only();
 
       return nullptr;
 
    }
 
 
-   ::user::frame * primitive::GetOwnerFrame() const
+   ::user::frame * primitive::get_owner_frame() const
    {
 
-      //::exception::throw_interface_only();
+      ::exception::throw_interface_only();
 
       return nullptr;
 
    }
+
 
    bool primitive::is_top_level_window() const
    {
 
-      auto puiParent = GetParent();
+      auto puiParent = get_parent();
 
       if (::is_null(puiParent))
       {
@@ -1760,7 +1834,17 @@ namespace user
    }
 
 
-   interaction * primitive::GetParent() const
+   //interaction * primitive::get_parent() const
+   //{
+
+   //   ::exception::throw_interface_only();
+
+   //   return nullptr;
+
+   //}
+
+
+   ::user::frame * primitive::frame() const
    {
 
       ::exception::throw_interface_only();
@@ -1770,7 +1854,7 @@ namespace user
    }
 
 
-   ::user::frame * primitive::GetFrame() const
+   ::user::interaction * primitive::get_parent_owner() const
    {
 
       ::exception::throw_interface_only();
@@ -1780,7 +1864,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::GetParentOwner() const
+   ::user::interaction * primitive::get_parent_or_owner() const
    {
 
       ::exception::throw_interface_only();
@@ -1790,17 +1874,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::GetParentOrOwner() const
-   {
-
-      ::exception::throw_interface_only();
-
-      return nullptr;
-
-   }
-
-
-   ::user::interaction * primitive::GetTopLevelOwner() const
+   ::user::interaction * primitive::get_top_level_owner() const
    {
 
       ::exception::throw_interface_only();
@@ -1966,7 +2040,7 @@ namespace user
 #endif
 
 
-   bool primitive::pre_create_window(::user::create_struct * pcreatestruct)
+   bool primitive::pre_create_window(::user::system * pusersystem)
    {
 
       ::exception::throw_interface_only();
@@ -1979,7 +2053,7 @@ namespace user
    bool primitive::IsTopParentActive()
    {
 
-      ::user::interaction * puiTopLevel = GetTopLevel();
+      ::user::interaction * puiTopLevel = get_top_level();
 
       if (puiTopLevel == nullptr)
       {
@@ -2721,7 +2795,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::GetFocus()
+   ::user::primitive * primitive::get_keyboard_focus()
    {
 
       auto puserinteractionHost = get_host_window();
@@ -2996,7 +3070,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_menu(const payload & varXml,i32 iFlags, const ::point & point, const size & size)
+   //__pointer(::user::menu) primitive::track_popup_xml_menu(const ::payload & varXml,i32 iFlags, const ::point & point, const size & size)
    //{
 
    //   ::exception::throw_interface_only();
@@ -3016,7 +3090,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_menu_file(payload varFile, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
+   //__pointer(::user::menu) primitive::track_popup_xml_menu_file(::payload varFile, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
    //{
 
    //   ::exception::throw_interface_only();
@@ -3165,6 +3239,31 @@ namespace user
       return ::id();
 
    }
+
+
+#ifdef WINDOWS_DESKTOP
+
+   bool primitive::open_clipboard()
+   {
+
+      __throw(interface_only_exception);
+
+      return false;
+
+   }
+
+
+   bool primitive::close_clipboard()
+   {
+
+      __throw(interface_only_exception);
+
+      return false;
+
+   }
+
+
+#endif
 
 
    //oswindow primitive::get_safe_handle() const
@@ -3901,7 +4000,7 @@ namespace user
       {
 
 
-         if (puiThis->GetParent() != nullptr)
+         if (puiThis->get_parent() != nullptr)
          {
 
             pinteraction = puiThis->get_parent_window()->keyboard_get_next_focusable(puiFocus, true);
@@ -4127,6 +4226,12 @@ namespace user
 
 
    void primitive::edit_on_sel(strsize iBeg, strsize iEnd)
+   {
+
+   }
+
+
+   void primitive::insert_text(string str, bool bForceNewStep, const ::action_context & context)
    {
 
    }

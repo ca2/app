@@ -840,7 +840,7 @@ namespace user
 //
 //   MONITORINFO mi;
 //
-//   xxf_zero(mi);
+//   __zero(mi);
 //
 //   mi.cbSize = sizeof(MONITORINFO);
 //

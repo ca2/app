@@ -11,6 +11,7 @@
 #ifndef WINDOWS
 #include "acme/os/cross/windows/_windows.h"
 #endif
+#include "apex/platform/node.h"
 
 
 #include "apex/node/_node.h"
@@ -203,7 +204,7 @@ namespace apex
       // almost always forgotten, assumed, as exception, responsability of application to add first ref on constructor.
       //::add_ref(this);
 
-      srand((u32) ::get_tick());
+      srand((u32) ::get_nanos());
 
       m_bService = false;
 
@@ -318,7 +319,14 @@ namespace apex
       if(System.m_bGtkApp)
       {
 
-         apex_application_set_application_menu(m_papplicationmenu, this);
+         auto pnode = Node;
+
+         if(pnode)
+         {
+
+            pnode->set_application_menu(m_papplicationmenu, this);
+
+         }
 
       }
 
@@ -651,7 +659,9 @@ namespace apex
       if (pcreate->m_ecommand == ::command_protocol)
       {
 
-         string str = pcreate->m_varFile;
+         string str;
+         
+         str = pcreate->m_varFile;
 
             // apex commented
             //__throw(todo("interaction"));
@@ -895,7 +905,7 @@ namespace apex
    //}
 
 
-   //::e_status application::message_box(const payload & payload)
+   //::e_status application::message_box(const ::payload & payload)
    //{
 
    //   __pointer(::user::primitive) puiOwner;
@@ -1380,7 +1390,7 @@ namespace apex
 
 
 
-   /*::user::document *  application::_001OpenDocumentFile(payload varFile)
+   /*::user::document *  application::_001OpenDocumentFile(::payload varFile)
    {
 
       ::exception::throw_interface_only();
@@ -2104,10 +2114,10 @@ namespace apex
 
          }
 
-         if (value("locale").get_count() > 0)
+         if (payload("locale").get_count() > 0)
          {
 
-            str = value("locale").stra()[0];
+            str = payload("locale").stra()[0];
 
             data_set({ "system_locale", true }, str);
 
@@ -2116,10 +2126,10 @@ namespace apex
             set_locale(str, ::e_source_database);
 
          }
-         else if (value("lang").get_count() > 0)
+         else if (payload("lang").get_count() > 0)
          {
 
-            str = value("lang").stra()[0];
+            str = payload("lang").stra()[0];
 
             data_set({ "system_locale", true }, str);
 
@@ -2175,10 +2185,10 @@ namespace apex
 
          }
 
-         if (value("schema").get_count() > 0)
+         if (payload("schema").get_count() > 0)
          {
 
-            str = value("schema").stra()[0];
+            str = payload("schema").stra()[0];
 
             data_set({ "system_schema", true }, str);
 
@@ -2244,10 +2254,10 @@ namespace apex
 
          }
 
-         if (value("locale").get_count() > 0)
+         if (payload("locale").get_count() > 0)
          {
 
-            str = value("locale").stra()[0];
+            str = payload("locale").stra()[0];
 
             data_set({ "system_locale", true }, str);
 
@@ -2256,10 +2266,10 @@ namespace apex
             set_locale(str, ::e_source_database);
 
          }
-         else if (value("lang").get_count() > 0)
+         else if (payload("lang").get_count() > 0)
          {
 
-            str = value("lang").stra()[0];
+            str = payload("lang").stra()[0];
 
             data_set({ "system_locale", true }, str);
 
@@ -2315,10 +2325,10 @@ namespace apex
 
          }
 
-         if (value("schema").get_count() > 0)
+         if (payload("schema").get_count() > 0)
          {
 
-            str = value("schema").stra()[0];
+            str = payload("schema").stra()[0];
 
             data_set({ "system_schema", true }, str);
 
@@ -2651,7 +2661,7 @@ namespace apex
 
       string strLicense = get_license_id();
 
-      //payload & varTopicQuey = System.m_varTopicQuery;
+      //::payload & varTopicQuey = System.m_varTopicQuery;
 
       bool bHasInstall = System.is_true("install");
 
@@ -2798,8 +2808,8 @@ retry_license:
       string_array straLocale;
       string_array straSchema;
 
-      straLocale = value("locale");
-      straSchema = value("schema");
+      straLocale = payload("locale");
+      straSchema = payload("schema");
 
       ::file::path pathExe = ::file::app_module();
 
@@ -3157,37 +3167,7 @@ retry_license:
 
       INFO("apex::application::process_init");
 
-      //m_bAuraProcessInitialize = true;
-
-      //m_bAuraProcessInitializeResult = false;
-
-      //if (!is_system())
-      {
-
-         if (get_context_system() != nullptr)
-         {
-
-            m_bThreadToolsForIncreasedFps = System.m_bThreadToolsForIncreasedFps;
-
-         }
-
-      }
-
-
-
-      //if (!__construct(m_spdir))
-      //{
-
-      //   return false;
-
-      //}
-
-      //if (!__construct(m_spfile))
-      //{
-
-      //   return false;
-
-      //}
+      m_bThreadToolsForIncreasedFps = System.m_bThreadToolsForIncreasedFps;
 
       if (::get_task() == nullptr)
       {
@@ -3558,31 +3538,31 @@ retry_license:
 
          }
 
-         if (System.value("locale").get_count() > 0)
+         if (System.payload("locale").get_count() > 0)
          {
 
-            strLocale = System.value("locale").stra()[0];
+            strLocale = System.payload("locale").stra()[0];
 
          }
 
-         if (System.value("schema").get_count() > 0)
+         if (System.payload("schema").get_count() > 0)
          {
 
-            strSchema = System.value("schema").stra()[0];
+            strSchema = System.payload("schema").stra()[0];
 
          }
 
-         if (Application.value("locale").get_count() > 0)
+         if (Application.payload("locale").get_count() > 0)
          {
 
-            strLocale = Application.value("locale").stra()[0];
+            strLocale = Application.payload("locale").stra()[0];
 
          }
 
-         if (Application.value("schema").get_count() > 0)
+         if (Application.payload("schema").get_count() > 0)
          {
 
-            strSchema = Application.value("schema").stra()[0];
+            strSchema = Application.payload("schema").stra()[0];
 
          }
 
@@ -4384,7 +4364,11 @@ retry_license:
    string application::get_local_mutex_id()
    {
 
-      return value("local_mutex_id");
+      string str;
+
+      str = payload("local_mutex_id");
+
+      return str;
 
    }
 
@@ -4392,7 +4376,11 @@ retry_license:
    string application::get_global_mutex_id()
    {
 
-      return value("global_mutex_id");
+      string str;
+
+      str = payload("global_mutex_id");
+
+      return str;
 
    }
 
@@ -4535,7 +4523,7 @@ retry_license:
    }
 
 
-   //i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, payload payload, const char * pszTitle, ::duration durationTimeOut, ::u32 fuStyle)
+   //i32 application::sync_message_box_timeout(::user::primitive * pwndOwner, ::payload payload, const char * pszTitle, ::duration durationTimeOut, ::u32 fuStyle)
    //{
 
    //   UNREFERENCED_PARAMETER(durationTimeOut);
@@ -4757,19 +4745,19 @@ retry_license:
 
       string_array stra;
 
-      stra = value("locale").stra();
+      stra = payload("locale").stra();
 
       stra.remove_ci("_std");
 
-      straLocale.add_unique(value("locale").stra());
+      straLocale.add_unique(payload("locale").stra());
 
       stra.empty();
 
-      stra = value("schema").stra();
+      stra = payload("schema").stra();
 
       stra.remove_ci("_std");
 
-      straSchema.add_unique(value("schema").stra());
+      straSchema.add_unique(payload("schema").stra());
 
       localeschema.m_idLocale = straLocale[0];
       localeschema.m_idSchema = straSchema[0];
@@ -4859,17 +4847,8 @@ retry_license:
    void application::_001OnFranceExit()
    {
 
-      //if (System.m_pmultimedia)
-      //{
-
-      //   System.m_pmultimedia->_001OnFranceExit();
-
-      //}
-
 
       HideApplication();
-
-      //close(::apex::e_end_app);
 
       finish(get_context());
 
@@ -4894,7 +4873,7 @@ retry_license:
    //}
 
 
-   //void application::play_audio(payload varFile, bool bSynch)
+   //void application::play_audio(::payload varFile, bool bSynch)
    //{
 
    //   UNREFERENCED_PARAMETER(varFile);
@@ -5077,7 +5056,7 @@ retry_license:
    }
 
 
-   bool application::on_open_document_file(payload varFile)
+   bool application::on_open_document_file(::payload varFile)
    {
 
       request_file(varFile);
@@ -5498,7 +5477,7 @@ retry_license:
 
       string strExperience;
 
-      strExperience = value("experience");
+      strExperience = payload("experience");
 
       if (strExperience.has_char())
       {
@@ -5535,13 +5514,13 @@ retry_license:
    //   if (bBigIcon)
    //   {
 
-   //      pobject->value("big_icon") = (__pointer(object)) picon;
+   //      pobject->payload("big_icon") = (__pointer(object)) picon;
 
    //   }
    //   else
    //   {
 
-   //      pobject->value("small_icon") = (__pointer(object)) picon;
+   //      pobject->payload("small_icon") = (__pointer(object)) picon;
 
    //   }
 
@@ -6906,7 +6885,7 @@ retry_license:
    string application::matter_as_string(const char * pszMatter, const char * pszMatter2)
    {
 
-      payload varFile;
+      ::payload varFile;
 
       varFile["disable_ca2_sessid"] = true;
 
@@ -6944,7 +6923,7 @@ retry_license:
    //void application::process_message_filter(i32 code, ::message::message * pmessage)
    //{
 
-   //   //SCAST_PTR(::message::base,pbase,pmessage);
+   //   //__pointer(::message::base) pbase(pmessage);
 
    //   UNREFERENCED_PARAMETER(code);
 
@@ -7078,7 +7057,7 @@ retry_license:
 
    }
 
-   //bool application::do_prompt_file_name(payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+   //bool application::do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
    //{
 
    //   UNREFERENCED_PARAMETER(varFile);
@@ -7237,7 +7216,7 @@ retry_license:
    //}
 
 
-   //bool application::on_open_document(::user::document * pdocument, payload varFile)
+   //bool application::on_open_document(::user::document * pdocument, ::payload varFile)
    //{
 
    //   UNREFERENCED_PARAMETER(pdocument);
@@ -7247,7 +7226,7 @@ retry_license:
    //}
 
 
-   //bool application::on_save_document(::user::document * pdocument, payload varFile)
+   //bool application::on_save_document(::user::document * pdocument, ::payload varFile)
    //{
 
    //   UNREFERENCED_PARAMETER(pdocument);
@@ -7690,7 +7669,7 @@ namespace apex
 
       ENSURE_ARG(pmessage != nullptr);
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       // handle certain messages in thread
 
@@ -9285,9 +9264,9 @@ namespace apex
    void application::_001OnFileNew(::message::message* pmessage)
    {
 
-      payload varFile;
+      ::payload varFile;
 
-      payload varQuery;
+      ::payload varQuery;
 
       varQuery["command"] = "new_file";
 
@@ -9299,14 +9278,14 @@ namespace apex
 
 
 
-   //   bool application::on_open_document_file(payload varFile)
+   //   bool application::on_open_document_file(::payload varFile)
    //   {
    //
    //      return _001OpenDocumentFile(varFile);
    //
    //   }
 
-   //::user::document* application::_001OpenDocumentFile(payload varFile)
+   //::user::document* application::_001OpenDocumentFile(::payload varFile)
    //{
 
    //   request_file(varFile);
@@ -9512,7 +9491,7 @@ namespace apex
    void application::pre_translate_message(::message::message* pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       if (pbase->m_id == WM_USER + 124 && pbase->m_playeredUserPrimitive == nullptr)
       {
@@ -10063,7 +10042,7 @@ namespace apex
 
 
 
-   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::promise::subject * psubject)
+   void application::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::promise::subject * psubject)
    {
 
 
@@ -10409,7 +10388,7 @@ namespace apex
       //if (pmessage == nullptr)
       //   return;   // not handled
 
-      //SCAST_PTR(::message::base, pbase, pmessage);
+      //__pointer(::message::base) pbase(pmessage);
 
       //__pointer(::user::frame_window) pTopFrameWnd;
       ////::user::interaction * pMainWnd;
@@ -10429,7 +10408,7 @@ namespace apex
 
       //   if (pMsgWnd != nullptr)
       //   {
-      //      pTopFrameWnd = pMsgWnd->GetTopLevelFrame();
+      //      pTopFrameWnd = pMsgWnd->top_level_frame();
       //      if (pTopFrameWnd != nullptr && pTopFrameWnd->IsTracking() &&
       //         pTopFrameWnd->m_bHelpMode)
       //      {
@@ -10660,13 +10639,13 @@ namespace apex
    //   if (bBigIcon)
    //   {
 
-   //      pobject->value("big_icon") = (__pointer(object)) picon;
+   //      pobject->payload("big_icon") = (__pointer(object)) picon;
 
    //   }
    //   else
    //   {
 
-   //      pobject->value("small_icon") = (__pointer(object)) picon;
+   //      pobject->payload("small_icon") = (__pointer(object)) picon;
 
    //   }
 
@@ -10831,16 +10810,18 @@ namespace apex
    }
 
 
-   string application::as_string(const payload& payload)
+   string application::as_string(const ::payload & payload)
    {
 
-      if (payload.get_type() == ::e_type_string)
+      auto path = payload.get_file_path();
+
+      if(path.has_char())
       {
 
-         if (is_url(payload))
+         if (::is_url(path) || ::file_exists(path))
          {
 
-            return file().as_string(payload.get_file_path());
+            return file().as_string(path);
 
          }
 
@@ -10871,7 +10852,7 @@ namespace apex
    }
 
 
-   //bool application::do_prompt_file_name(payload& varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument)
+   //bool application::do_prompt_file_name(::payload& varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system* ptemplate, ::user::document* pdocument)
    //{
 
    //   __throw(todo("core and os"));

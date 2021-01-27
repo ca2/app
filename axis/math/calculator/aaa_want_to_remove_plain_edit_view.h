@@ -35,7 +35,7 @@ namespace calculator
 
       //virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
 
-      virtual payload get_ex_value() override;
+      virtual ::payload get_ex_value() override;
 
    };
 

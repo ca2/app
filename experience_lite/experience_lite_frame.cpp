@@ -27,12 +27,12 @@
                m_penDkShadow1(e_create),
                m_blur1(this)
             {
-               m_crActiveCaptionTextBk = 0;
+               m_colorActiveCaptionTextBk = 0;
                m_rectControlBoxMarginNormal = ::rect();
 
                m_rectMarginNormal.set(5, 5, 5, 5);
 
-               m_crCaptionText = ARGB(255, 255, 255, 255);
+               m_colorCaptionText = ARGB(255, 255, 255, 255);
 
                m_rectClient = ::rect();
 
@@ -290,24 +290,24 @@
 
             void frame::set_moveable_border_color(color32_t cr)
             {
-               m_crMoveableBorder = cr;
+               m_colorMoveableBorder = cr;
 
                color color;
 
                color.set_rgb(cr);
                color.hls_rate(0.0, 0.5, 0.0);
-               m_crMoveableBorderHilight = color.get_rgb() | (0xff << 24);
+               m_colorMoveableBorderHilight = color.get_rgb() | (0xff << 24);
 
                color.set_rgb(cr);
                color.hls_rate(0.0, -0.3, 0.0);
-               m_crMoveableBorderShadow = color.get_rgb() | (0xff << 24);
+               m_colorMoveableBorderShadow = color.get_rgb() | (0xff << 24);
 
                color.set_rgb(cr);
                color.hls_rate(8.0, -0.8, 0.0);
-               m_crMoveableBorderDkShadow = color.get_rgb() | (0xff << 24);
+               m_colorMoveableBorderDkShadow = color.get_rgb() | (0xff << 24);
 
 
-               m_crCaptionTextBk = m_crMoveableBorderShadow;
+               m_colorCaptionTextBk = m_colorMoveableBorderShadow;
 
             }
 
@@ -360,8 +360,8 @@
                m_penHilight1->create_solid(1, crButtonHilite | 0xff000000);
                m_penShadow1->create_solid(1, crButtonShadow | 0xff000000);
                m_penDkShadow1->create_solid(1, crButtonDarkShadow | 0xff000000);
-               m_crDkShadow = crButtonDarkShadow;
-               m_crFrameBorder = RGB(0, 0, 0) | 0xff000000;
+               m_colorDkShadow = crButtonDarkShadow;
+               m_colorFrameBorder = RGB(0, 0, 0) | 0xff000000;
 
 
             }
@@ -380,11 +380,11 @@
                set_frame_color_system_default_001();
                set_moveable_border_color(get_style_moveable_border_color(m_estyle));
 
-               set_button_color_schema_001(m_crMoveableBorder);
+               set_button_color_schema_001(m_colorMoveableBorder);
 
                if (m_estyle == StyleTranslucidWarmGray || m_estyle == StyleDarkWarmBlue)
                {
-                  pcontrolbox->m_crBackground = m_crCaptionTextBk;
+                  pcontrolbox->m_colorBackground = m_colorCaptionTextBk;
                }
 
 
@@ -591,16 +591,16 @@
                else if (!pframewindow->layout().is_full_screen() && !m_pframewindow->GetWndDraw()->frame_is_transparent())
                {
 
-                  if (m_pframewindow->GetWndDraw()->is_active() && m_crActiveCaptionTextBk != 0)
+                  if (m_pframewindow->GetWndDraw()->is_active() && m_colorActiveCaptionTextBk != 0)
                   {
 
-                     pgraphics->fill_rect(m_rectCaptionTextBk, m_crActiveCaptionTextBk);
+                     pgraphics->fill_rect(m_rectCaptionTextBk, m_colorActiveCaptionTextBk);
 
                   }
                   else
                   {
 
-                     pgraphics->fill_rect(m_rectCaptionTextBk, m_crCaptionTextBk);
+                     pgraphics->fill_rect(m_rectCaptionTextBk, m_colorCaptionTextBk);
 
                   }
 
@@ -621,11 +621,11 @@
                   if (pframewindow->m_fActive)
                   {
 
-                     crMoveableBorder = m_crMoveableBorder;
+                     crMoveableBorder = m_colorMoveableBorder;
 
-                     crMoveableBorderHilight = m_crMoveableBorderHilight;
+                     crMoveableBorderHilight = m_colorMoveableBorderHilight;
 
-                     crMoveableBorderShadow = m_crMoveableBorderShadow;
+                     crMoveableBorderShadow = m_colorMoveableBorderShadow;
 
                   }
                   else
@@ -672,7 +672,7 @@
 
                   ::draw2d::brush_pointer brushText(e_create);
 
-                  brushText->create_solid(m_crCaptionText);
+                  brushText->create_solid(m_colorCaptionText);
 
                   pgraphics->SelectObject(brushText);
 

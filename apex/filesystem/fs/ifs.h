@@ -13,17 +13,19 @@ public:
    bool           m_bInitialized;
    string         m_strServer;
 
+
    class CLASS_DECL_APEX dir_listing :
       public ::file::listing
    {
    public:
 
-      u32          m_uiTimeout;
-      u32          m_uiLsTimeout;
+      ::millis       m_millisLast;
 
    };
 
-   filepathmap(dir_listing)     m_map;
+
+   file_path_map < dir_listing >    m_map;
+
 
    //file_path_map < u32 >    m_mapdirTimeout;
    //file_path_map < u32 >    m_mapfileTimeout;
@@ -55,7 +57,7 @@ public:
    virtual file_result get_file(const ::file::path & path, const ::file::e_open & eopen) override;
 
    virtual bool file_exists(const ::file::path & pszPath) override;
-   virtual payload file_length(const ::file::path & pszPath) override;
+   virtual ::payload file_length(const ::file::path & pszPath) override;
 
    virtual void defer_initialize();
 

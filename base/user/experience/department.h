@@ -11,7 +11,9 @@ namespace experience
    public:
 
 
+      
       string_map < __composite(::experience::experience) >   m_mapExperience;
+
 
       department();
       virtual ~department();
@@ -19,7 +21,7 @@ namespace experience
 
       virtual ::experience::experience * get_new_experience2(::layered * pobjectContext, const char * pszExperienceLibrary);
       virtual ::experience::experience * get_experience2(::layered * pobjectContext, const char * pszExperienceLibrary);
-      virtual ::experience::frame * experience_get_frame2(::layered * pobjectContext, const char * pszExperienceLibrary, const char * pszFrame, const char * pszStyle = nullptr);
+      virtual ::experience::frame * experience_get_frame2(::layered * pobjectContext, const char * pszExperienceLibrary, const char * pszFrame);
 
    };
 

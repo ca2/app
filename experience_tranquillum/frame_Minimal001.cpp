@@ -34,7 +34,7 @@
             frame_Minimal001::frame_Minimal001()
             {
 
-               set_style(StyleLightBlue);
+               //set_style(::user::StyleLightBlue);
 
                m_rectMarginNormal.set(0,0,0,0);
 
@@ -205,56 +205,49 @@ SizingNone:;
 
                }
 
-               auto psession = Session;
-
                auto pframewindow = m_pframewindow;
 
-               color32_t    crMoveableBorder;
+               auto pstyle = pframewindow->get_style(pgraphics);
 
-               color32_t    crMoveableBorderHilight;
+               ::color    colorMoveableBorder;
 
-               color32_t    crMoveableBorderShadow;
+               ::color    colorMoveableBorderHilight;
+
+               ::color    colorMoveableBorderShadow;
 
                if(pframewindow->is_active())
                {
 
-                  crMoveableBorder = m_crMoveableBorder;
+                  colorMoveableBorder = m_colorMoveableBorder;
 
-                  crMoveableBorderHilight = m_crMoveableBorderHilight;
+                  colorMoveableBorderHilight = m_colorMoveableBorderHilight;
 
-                  crMoveableBorderShadow = m_crMoveableBorderShadow;
+                  colorMoveableBorderShadow = m_colorMoveableBorderShadow;
 
                }
                else
                {
-                  auto psession = Session;
 
-                  auto pstyle = pframewindow->get_style(pgraphics);
+                  colorMoveableBorder = pframewindow->get_color(pstyle, ::user::e_element_button_background);
 
-                  crMoveableBorder = pframewindow->get_color(pstyle, ::user::e_element_button_background);
+                  colorMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
 
-                  crMoveableBorderHilight = pframewindow->get_color(pstyle, ::user::e_element_button_hilite);
+                  colorMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
 
-                  crMoveableBorderShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
+               }
 
-}
+               auto estyle = pframewindow->m_estyle;
 
-//               enum_dock edock = m_pframewindow->dock_manager()->GetDockState();
-
-               //::rect rectA(rectClient);
-
-
-               if(is_translucid_style(m_estyle))
+               if(is_translucid_style(estyle))
                {
 
                   ::rect rect;
 
                   GetBorderRect(rectClient, rect, eside);
 
-
                   class imaging & imaging = System.imaging();
 
-                  imaging.color_blend(pgraphics, rect, crMoveableBorder, 127);
+                  imaging.color_blend(pgraphics, rect, colorMoveableBorder, 127);
 
                }
                /*else if(m_estyle == StyleLightBlue)
@@ -296,7 +289,7 @@ SizingNone:;
 
                   class imaging & imaging = System.imaging();
 
-                  imaging.color_blend(pgraphics, rect, crMoveableBorder, 127);
+                  imaging.color_blend(pgraphics, rect, colorMoveableBorder, 127);
 
                }
 
@@ -434,6 +427,14 @@ SizingNone:;
                   rect.bottom = rectBig.bottom;
                }
                *prect = rect;
+
+            }
+
+
+            string frame_Minimal001::get_default_user_style() const
+            {
+
+               return "LightBlue";
 
             }
 

@@ -14,20 +14,12 @@ public:
 
 
    binary_stream() {}
-   binary_stream(const ::file_pointer & p) : m_p(p) { }
-   binary_stream(const binary_stream & base) :
-      m_p(base.m_p)
-   {
-
-   }
-   binary_stream(binary_stream & base) :
-      m_p(::move(base.m_p))
-   {
-
-   }
+   binary_stream(const ::file_pointer & p);
+   binary_stream(const binary_stream & base);
+   binary_stream(binary_stream & base);
    virtual ~binary_stream();
 
-   inline payload & options();
+   inline ::payload & options();
 
 
    RAW_POINTER operator ->() { return m_p; }
@@ -255,7 +247,7 @@ public:
    virtual void write(const unichar * wch) { write(string(wch)); }
 #endif
    virtual void write(const id & id) override;
-   virtual void write(const payload & payload) override;
+   virtual void write(const ::payload & payload) override;
    virtual void write(const property & property) override;
    virtual void write(const string & str) override;
    virtual void write(const matter * pobject) override;
@@ -296,9 +288,9 @@ public:
    //virtual void read(SIZE32 & size) { raw_read(size); }
    //virtual void read(RECT32 & rect) { raw_read(rect); }
    virtual void read(id & id) override;
-   virtual void read(payload & payload) override;
+   virtual void read(::payload & payload) override;
    virtual void read_var_type(enum_type & etype) override;
-   virtual void read_var_body(payload & payload, enum_type etype) override;
+   virtual void read_var_body(::payload & payload, enum_type etype) override;
    virtual void read(property & property) override;
    virtual void read(string & str) override;
    //virtual void read(matter * pobject);

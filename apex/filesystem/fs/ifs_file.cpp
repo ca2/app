@@ -4,7 +4,7 @@
 #include "ifs_file.h"
 
 
-ifs_file::ifs_file(payload varFile) :
+ifs_file::ifs_file(::payload varFile) :
    m_varFile(varFile)
 {
 
@@ -119,7 +119,9 @@ void ifs_file::set_file_data()
 
       strMd5Here = Context.file().md5(m_varFile["xml"].cast < ::memory_file >());
 
-      string strMd5There = set["md5"];
+      string strMd5There;
+      
+      strMd5There = set["md5"];
 
       if (strMd5Here == strMd5There)
       {

@@ -103,22 +103,23 @@ void _001AddPacks(string_to_string & base64map, string & str)
 namespace user
 {
 
-   class plain_edit_internal
-   {
-   public:
+   //class plain_edit_internal :
+   //   virut
+   //{
+   //public:
 
-      ::draw2d::pen_pointer              m_penCaret;
-      ::draw2d::brush_pointer            m_brushText;
-      ::draw2d::brush_pointer            m_brushTextCr;
-      ::draw2d::brush_pointer            m_brushTextSel;
-      ::draw2d::brush_pointer            m_brushTextEmpty;
+   //   ::draw2d::pen_pointer              m_penCaret;
+   //   ::draw2d::brush_pointer            m_brushText;
+   //   ::draw2d::brush_pointer            m_brushTextCr;
+   //   ::draw2d::brush_pointer            m_brushTextSel;
+   //   ::draw2d::brush_pointer            m_brushTextEmpty;
 
-      plain_edit_internal();
-      ~plain_edit_internal();
+   //   plain_edit_internal();
+   //   ~plain_edit_internal();
 
-      void update(::draw2d::graphics_pointer& pgraphics, plain_edit * pedit);
+   //   void update(::draw2d::graphics_pointer& pgraphics, plain_edit * pedit);
 
-   };
+   //};
 
 
 
@@ -144,8 +145,6 @@ namespace user
    plain_edit::~plain_edit()
    {
 
-      ::acme::del(m_pinternal);
-
    }
 
 
@@ -162,9 +161,10 @@ namespace user
    }
 
 
-
    void plain_edit::plain_edit_common_construct()
    {
+
+      m_econtroltype = e_control_type_edit;
 
       m_bCaretVisible = false;
 
@@ -176,7 +176,7 @@ namespace user
 
       m_bEnterKeyOnPaste = false;
 
-      m_pinternal = new plain_edit_internal();
+      //m_pcontrolstyle = new plain_edit_internal();
 
       m_psetsel = nullptr;
 
@@ -208,9 +208,9 @@ namespace user
 
       m_bCalcLayoutHintNoTextChange = false;
 
-      m_scrolldataHorz.m_bScrollEnable = false;
+      m_scrolldataHorizontal.m_bScrollEnable = false;
 
-      m_scrolldataVert.m_bScrollEnable = false;
+      m_scrolldataVertical.m_bScrollEnable = false;
 
       m_dy = -1;
       m_iViewOffset = 0;
@@ -299,13 +299,16 @@ namespace user
       if(psubject->id() == id_current_text_changed)
       {
 
-         ::draw2d::graphics_pointer pgraphics = ::draw2d::create_memory_graphics();
+         queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+         {
 
-         plain_edit_on_update(pgraphics, ::e_source_sync);
+            plain_edit_on_update(pgraphics, ::e_source_sync);
 
-         m_bCalcLayoutHintNoTextChange = false;
+            m_bCalcLayoutHintNoTextChange = false;
 
-         plain_edit_on_calc_layout(pgraphics);
+            plain_edit_on_calc_layout(pgraphics);
+
+         });
 
       }
       else
@@ -351,6 +354,8 @@ namespace user
    }
 
 
+   
+
    void plain_edit::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
@@ -382,9 +387,9 @@ namespace user
       if (bComposing)
       {
 
-         iComposeBeg = m_pitemComposing->m_position;
+         iComposeBeg = (strsize) m_pitemComposing->m_position;
 
-         iComposeEnd = m_pitemComposing->m_position + m_pitemComposing->get_extent();
+         iComposeEnd = (strsize) (m_pitemComposing->m_position + m_pitemComposing->get_extent());
 
       }
 
@@ -399,7 +404,7 @@ namespace user
       colorComposeBk.blend(crBkSel, 0.5);
       colorComposeBk.m_iA = 127;
 
-      m_pinternal->update(pgraphics, this);
+      pstyle->get(m_pcontrolstyle, pgraphics, this);
 
       bool bCaretOn = is_caret_on();
 
@@ -424,20 +429,20 @@ namespace user
       strsize iSelEndOriginal;
       strsize lim = 0;
 
-      ::draw2d::pen_pointer & penCaret = m_pinternal->m_penCaret;
+      ::draw2d::pen_pointer & penCaret = m_pcontrolstyle->m_penCaret;
 
-      ::draw2d::brush_pointer & brushText = m_pinternal->m_brushText;
+      ::draw2d::brush_pointer & brushText = m_pcontrolstyle->m_brushText;
 
-      ::draw2d::brush_pointer & brushTextCr = m_pinternal->m_brushTextCr;
+      ::draw2d::brush_pointer & brushTextCr = m_pcontrolstyle->m_brushTextCr;
 
-      ::draw2d::brush_pointer & brushTextSel = m_pinternal->m_brushTextSel;
+      ::draw2d::brush_pointer & brushTextSel = m_pcontrolstyle->m_brushTextSel;
 
       auto pointOffset = get_viewport_offset();
 
       if (m_dLineHeight > 0.)
       {
 
-         int iVerticalOffsetModule = fmod(pointOffset.y, m_dLineHeight);
+         int iVerticalOffsetModule = (int) fmod(pointOffset.y, m_dLineHeight);
 
          if (iVerticalOffsetModule > 0)
          {
@@ -491,7 +496,7 @@ namespace user
          if (m_strEmtpyText.has_char())
          {
 
-            pgraphics->set(m_pinternal->m_brushTextEmpty);
+            pgraphics->set(m_pcontrolstyle->m_brushTextEmpty);
 
             pgraphics->text_out(left, y, m_strEmtpyText);
 
@@ -672,11 +677,11 @@ namespace user
             if (iCurLineSelEnd > iCurLineSelBeg)
             {
 
-               pgraphics->fill_solid_rect_dim(
-               (double)((double)left + x1),
+               pgraphics->fill_rect(
+               ::rectd_dim((double)((double)left + x1),
                (double)y,
                (double)min(x2-x1, (double)rectClient.right - ((double)left + x1)),
-               (double)min((double)m_dLineHeight, (double)rectClient.bottom - y),
+               (double)min((double)m_dLineHeight, (double)rectClient.bottom - y)),
                crBkSel);
 
                pgraphics->set(brushTextSel);
@@ -686,11 +691,11 @@ namespace user
             if (bComposing && iCurLineComposeEnd > iCurLineComposeBeg)
             {
 
-               pgraphics->fill_solid_rect_dim(
-                  (double)((double)left + compose1),
+               pgraphics->fill_rect(
+                  ::rectd_dim((double)((double)left + compose1),
                   (double)y,
                   (double)min(compose2 - compose1, (double)rectClient.right - ((double)left + compose1)),
-                  (double)min((double)m_dLineHeight, (double)rectClient.bottom - y),
+                  (double)min((double)m_dLineHeight, (double)rectClient.bottom - y)),
                   colorComposeBk);
 
                pgraphics->set(brushTextSel);
@@ -761,7 +766,7 @@ namespace user
 
                pgraphics->set(point);
 
-               pgraphics->draw_error_line((double)xA, m_dLineHeight, (int)xB, 1);
+               pgraphics->draw_error_line((int)xA, (int) m_dLineHeight, (int)xB, 1);
 
             }
 
@@ -833,14 +838,13 @@ namespace user
    void plain_edit::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       set_cursor(cursor_text_select);
 
 
       pcreate->previous();
 
-      m_pdescriptor->m_econtroltype = e_control_type_edit;
 
 #if !defined(APPLE_IOS) && !defined(ANDROID)
 
@@ -864,11 +868,14 @@ namespace user
 
          m_bGetTextNeedUpdate = true;
 
-         auto pgraphics = ::draw2d::create_memory_graphics();
+         queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+            {
 
-         plain_edit_on_set_text(pgraphics, ::e_source_system);
+               plain_edit_on_set_text(pgraphics, ::e_source_system);
 
-         plain_edit_on_update(pgraphics, ::e_source_system);
+               plain_edit_on_update(pgraphics, ::e_source_system);
+
+            });
 
       }
 
@@ -895,7 +902,7 @@ namespace user
    void plain_edit::_001OnRButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       ::point point = pmouse->m_point;
 
@@ -903,24 +910,23 @@ namespace user
 
       m_bRMouseDown = true;
 
-      {
-
-         sync_lock sl(mutex());
-
-         auto pgraphics = ::draw2d::create_memory_graphics();
-
-         strsize iHit = plain_edit_char_hit_test(pgraphics, point.x, point.y);
-
-         if (iHit <= m_ptree->m_iSelBeg || iHit >= m_ptree->m_iSelEnd)
+      queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
          {
 
-            m_ptree->m_iSelBeg = iHit;
+            strsize iHit = plain_edit_char_hit_test(pgraphics, point);
 
-            m_ptree->m_iSelEnd = iHit;
+            if (iHit <= m_ptree->m_iSelBeg || iHit >= m_ptree->m_iSelEnd)
+            {
 
-         }
+               m_ptree->m_iSelBeg = iHit;
 
-      }
+               m_ptree->m_iSelEnd = iHit;
+
+            }
+
+         });
+
+   
 
       set_need_redraw();
 
@@ -940,7 +946,7 @@ namespace user
    void plain_edit::_001OnRButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       ::point point = pmouse->m_point;
 
@@ -1115,7 +1121,7 @@ namespace user
 
       INFO("_001OnKeyDown (2)");
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       if (pkey->m_ekey == ::user::key_return)
       {
@@ -1131,7 +1137,7 @@ namespace user
 
          }
 
-         if ((!m_bMultiLine || m_bSendEnterKey) && GetParent() != nullptr)
+         if ((!m_bMultiLine || m_bSendEnterKey) && get_parent() != nullptr)
          {
 
             ::user::control_event ev;
@@ -1296,9 +1302,13 @@ namespace user
             if (is_window_enabled())
             {
 
-               auto pgraphics = ::draw2d::create_memory_graphics();
 
-               plain_edit_on_delete(pgraphics);
+               queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+                  {
+
+                     plain_edit_on_delete(pgraphics);
+
+                  });
 
             }
 
@@ -1322,7 +1332,7 @@ namespace user
    void plain_edit::_001OnKeyUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       auto psession = Session;
 
@@ -1569,9 +1579,12 @@ namespace user
 
       }
 
-      auto pgraphics = ::draw2d::create_memory_graphics();
+      queue_graphics_call([this, context](::draw2d::graphics_pointer & pgraphics)
+         {
 
-      plain_edit_on_update(pgraphics, context);
+            plain_edit_on_update(pgraphics, context);
+
+         });
 
       set_need_redraw();
 
@@ -1581,17 +1594,18 @@ namespace user
    void plain_edit::_001SetSelEnd(strsize iSelEnd)
    {
 
-      auto pgraphics = ::draw2d::create_memory_graphics();
+      queue_graphics_call([this, iSelEnd](::draw2d::graphics_pointer & pgraphics)
+         {
 
-      return _set_sel_end(pgraphics, iSelEnd);
+            _set_sel_end(pgraphics, iSelEnd);
+
+         });
 
    }
 
 
    void plain_edit::_set_sel_end(::draw2d::graphics_pointer& pgraphics, strsize iSelEnd)
    {
-
-      sync_lock sl(mutex());
 
       index iColumn = plain_edit_sel_to_column_x(pgraphics, iSelEnd, m_iColumnX);
 
@@ -1636,11 +1650,11 @@ namespace user
       if (xViewport != get_viewport_offset().x)
       {
 
-         set_viewport_offset_x((int) xViewport);
+         set_viewport_offset_x(pgraphics, (int) xViewport);
 
       }
 
-      _001EnsureVisibleChar(iSelEnd);
+      _001EnsureVisibleChar(pgraphics, iSelEnd);
 
 #ifndef      SEARCH_SCROLLING_PROFILING
 
@@ -1651,13 +1665,13 @@ namespace user
    }
 
 
-   void plain_edit::plain_edit_on_end_update()
+   void plain_edit::plain_edit_on_end_update(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (m_bNewSel)
       {
 
-         _001EnsureVisibleChar(m_ptree->m_iSelEnd);
+         _001EnsureVisibleChar(pgraphics, m_ptree->m_iSelEnd);
 
 #ifndef      SEARCH_SCROLLING_PROFILING
 
@@ -1720,12 +1734,10 @@ namespace user
    }
 
 
-   void plain_edit::_001EnsureVisibleChar(strsize iChar)
+   void plain_edit::_001EnsureVisibleChar(::draw2d::graphics_pointer & pgraphics, strsize iChar)
    {
 
-      auto pgraphics = ::draw2d::create_memory_graphics();
-
-      plain_edit_ensure_visible_char(pgraphics, iChar);
+       plain_edit_ensure_visible_char(pgraphics, iChar);
 
    }
 
@@ -1738,10 +1750,8 @@ namespace user
    }
 
 
-   void plain_edit::_001EnsureVisibleLine(index iLine)
+   void plain_edit::_001EnsureVisibleLine(::draw2d::graphics_pointer & pgraphics, index iLine)
    {
-
-      auto pgraphics = ::draw2d::create_memory_graphics();
 
       plain_edit_ensure_visible_line(pgraphics, iLine);
 
@@ -1754,7 +1764,7 @@ namespace user
       if (!m_bMultiLine)
       {
 
-         set_viewport_offset_y(0);
+         set_viewport_offset_y(pgraphics, 0);
 
       }
       else
@@ -1773,13 +1783,13 @@ namespace user
          if (iCandidateCursorOffset < iCurrentPageOffsetStart)
          {
 
-            set_viewport_offset_y((int)iCandidateCursorOffset);
+            set_viewport_offset_y(pgraphics, (int)iCandidateCursorOffset);
 
          }
          else if (iCandidateCursorOffset > iCurrentPageOffsetEnd)
          {
 
-            set_viewport_offset_y((int)(iCandidateCursorOffset - iCurrentPageOffsetEnd + iCurrentPageOffsetStart));
+            set_viewport_offset_y(pgraphics, (int)(iCandidateCursorOffset - iCurrentPageOffsetEnd + iCurrentPageOffsetStart));
 
          }
 
@@ -1798,16 +1808,14 @@ namespace user
    }
 
 
-   void plain_edit::on_change_viewport_offset()
+   void plain_edit::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::user::interaction::on_change_viewport_offset();
-
-      auto pgraphics = ::draw2d::create_memory_graphics();
+      ::user::interaction::on_change_viewport_offset(pgraphics);
 
       plain_edit_on_calc_offset(pgraphics);
 
-      set_need_redraw();
+      //set_need_redraw();
 
    }
 
@@ -1827,7 +1835,7 @@ namespace user
       if (plain_edit_is_enabled())
       {
 
-         SCAST_PTR(::message::mouse, pmouse, pmessage);
+         __pointer(::message::mouse) pmouse(pmessage);
 
          pmouse->m_ecursor = cursor_text_select;
 
@@ -1857,9 +1865,12 @@ namespace user
 
                }
 
-               auto pgraphics = ::draw2d::create_memory_graphics();
+               queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+                  {
 
-               _set_sel_end(pgraphics, plain_edit_char_hit_test(pgraphics,point.x, point.y));
+                     _set_sel_end(pgraphics, plain_edit_char_hit_test(pgraphics, point));
+
+                  });
 
             }
 
@@ -1885,7 +1896,7 @@ namespace user
    void plain_edit::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (plain_edit_is_enabled())
       {
@@ -1904,15 +1915,19 @@ namespace user
 
             SetCapture();
 
-            auto pgraphics = ::draw2d::create_memory_graphics();
+            queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+               {
 
-            auto iSelBeg = plain_edit_char_hit_test(pgraphics, point.x, point.y);
+                  auto iSelBeg = plain_edit_char_hit_test(pgraphics, point);
 
-            auto iSelEnd = iSelBeg;
+                  auto iSelEnd = iSelBeg;
 
-            _001SetSel(iSelBeg, iSelEnd);
+                  _001SetSel(iSelBeg, iSelEnd);
 
-            m_iColumn = plain_edit_sel_to_column_x(pgraphics, m_ptree->m_iSelEnd, m_iColumnX);
+                  m_iColumn = plain_edit_sel_to_column_x(pgraphics, m_ptree->m_iSelEnd, m_iColumnX);
+
+               });
+
 
 #if defined(WINDOWS_DESKTOP)
 
@@ -1946,7 +1961,7 @@ namespace user
    void plain_edit::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       ReleaseCapture();
 
@@ -1957,9 +1972,12 @@ namespace user
 
          _001ScreenToClient(point);
 
-         auto pgraphics = ::draw2d::create_memory_graphics();
+         queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+            {
 
-         _set_sel_end(pgraphics, plain_edit_char_hit_test(pgraphics, point.x, point.y));
+               _set_sel_end(pgraphics, plain_edit_char_hit_test(pgraphics, point));
+
+            });
 
       }
 
@@ -2045,7 +2063,7 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      m_iLineCount = ceil((double)rectClient.height() / m_dLineHeight);
+      m_iLineCount = (::count) ceil((double)rectClient.height() / m_dLineHeight);
 
       m_iLineOffset = min(max(0, pointOffset.y / m_dLineHeight), m_iaLineBeg.get_upper_bound());
 
@@ -2431,7 +2449,14 @@ namespace user
 
       }
 
-      m_pinternal->update(pgraphics, this);
+      auto pstyle = get_style(pgraphics);
+
+      if (::is_set(pstyle))
+      {
+
+         pstyle->get(m_pcontrolstyle, pgraphics, this);
+
+      }
 
       if (m_ptree == nullptr)
       {
@@ -2479,7 +2504,7 @@ namespace user
 
       m_dLineHeight = metric.get_line_spacing();
 
-      m_scrolldataVert.m_iLine = m_dLineHeight;
+      m_scrolldataVertical.m_iLine = (::i32) m_dLineHeight;
 
       if (m_dLineHeight <= 0)
       {
@@ -2490,7 +2515,7 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      m_iLineCount = ceil((double) rectClient.height() / m_dLineHeight);
+      m_iLineCount = (::count) ceil((double) rectClient.height() / m_dLineHeight);
 
       m_iLineOffset = min(max(0, pointOffset.y / m_dLineHeight), m_iaLineBeg.get_upper_bound());
 
@@ -3214,28 +3239,28 @@ namespace user
    }
 
 
-   strsize plain_edit::plain_edit_char_hit_test(::draw2d::graphics_pointer& pgraphics, i32 px, i32 py)
+   strsize plain_edit::plain_edit_char_hit_test(::draw2d::graphics_pointer& pgraphics, const ::point & pointParam)
    {
 
-      sync_lock sl(mutex());
+      ::point point(pointParam);
 
       ::rect rectClient;
 
       GetFocusRect(rectClient);
 
-      py -= rectClient.top;
+      point.y -= rectClient.top;
 
       auto pointOffset = get_viewport_offset();
 
       if (m_dLineHeight > 0)
       {
 
-         int iVerticalOffsetModule = fmod(pointOffset.y, m_dLineHeight);
+         int iVerticalOffsetModule = (int) fmod(pointOffset.y, m_dLineHeight);
 
          if (iVerticalOffsetModule > 0)
          {
 
-            py += iVerticalOffsetModule;
+            point.y += iVerticalOffsetModule;
 
          }
 
@@ -3258,7 +3283,7 @@ namespace user
       for (iLine = m_iLineStart; iLine < m_iLineEnd; iLine++)
       {
 
-         if (py < dy + dLineHeight)
+         if (point.y < dy + dLineHeight)
          {
 
             bFound = true;
@@ -3285,7 +3310,7 @@ namespace user
 
       }
 
-      return plain_edit_line_char_hit_test(pgraphics, px, iLine);
+      return plain_edit_line_char_hit_test(pgraphics, point.x, iLine);
 
    }
 
@@ -3856,7 +3881,7 @@ finished_update:
    void plain_edit::_001OnUniChar(::message::message * pmessage)
    {
 
-      //      SCAST_PTR(::message::base, pbase, pmessage);
+      //      __pointer(::message::base) pbase(pmessage);
       //
       //      if (::str::ch::is_legal_uni_index(pbase->m_wparam))
       //      {
@@ -4251,7 +4276,7 @@ finished_update:
 
          INFO("plain_edit::_001OnChar (1)");
 
-         SCAST_PTR(::message::key, pkey, pmessage);
+         __pointer(::message::key) pkey(pmessage);
 
          string strChar;
 
@@ -4328,38 +4353,40 @@ finished_update:
 
                }
 
+               queue_graphics_call([this, bShift](::draw2d::graphics_pointer & pgraphics)
+                  {
 
-               on_reset_focus_start_tick();
+                     on_reset_focus_start_tick();
 
-               i32 x;
+                     i32 x;
 
-               auto pgraphics = ::draw2d::create_memory_graphics();
+                     index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
-               index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
+                     ::rect rectClient;
 
-               ::rect rectClient;
+                     GetFocusRect(rectClient);
 
-               GetFocusRect(rectClient);
+                     iLine -= (::index)(rectClient.height() / m_dLineHeight);
 
-               iLine -= rectClient.height() / m_dLineHeight;
+                     if (iLine < 0)
+                     {
 
-               if (iLine < 0)
-               {
+                        iLine = 0;
 
-                  iLine = 0;
+                     }
 
-               }
+                     m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, m_iColumnX);
 
-               m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, m_iColumnX);
+                     if (!bShift)
+                     {
 
-               if (!bShift)
-               {
+                        m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
 
-                  m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+                     }
 
-               }
+                     _001EnsureVisibleLine(pgraphics, iLine);
 
-               _001EnsureVisibleLine(iLine);
+                  });
 
             }
             else if (pkey->m_ekey == ::user::key_next)
@@ -4372,38 +4399,39 @@ finished_update:
 
                }
 
+               queue_graphics_call([this, bShift](::draw2d::graphics_pointer & pgraphics)
+                  {
 
-               on_reset_focus_start_tick();
+                     on_reset_focus_start_tick();
 
-               i32 x;
+                     i32 x;
 
-               auto pgraphics = ::draw2d::create_memory_graphics();
+                     index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
-               index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
+                     ::rect rectClient;
 
-               ::rect rectClient;
+                     GetFocusRect(rectClient);
 
-               GetFocusRect(rectClient);
+                     iLine += (::index) (rectClient.height() / m_dLineHeight);
 
-               iLine += rectClient.height() / m_dLineHeight;
+                     if (iLine >= m_iaLineBeg.get_size())
+                     {
 
-               if (iLine >= m_iaLineBeg.get_size())
-               {
+                        iLine = m_iaLineBeg.get_upper_bound();
 
-                  iLine = m_iaLineBeg.get_upper_bound();
+                     }
+                     m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, m_iColumnX);
 
-               }
+                     if (!bShift)
+                     {
 
-               m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, m_iColumnX);
+                        m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
 
-               if (!bShift)
-               {
+                     }
 
-                  m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+                     _001EnsureVisibleLine(pgraphics, iLine);
 
-               }
-
-               _001EnsureVisibleLine(iLine);
+                  });
 
             }
             else if (pkey->m_ekey == ::user::key_back)
@@ -4541,7 +4569,12 @@ finished_update:
                if (is_window_enabled())
                {
 
-                  plain_edit_on_delete(pgraphics);
+                  queue_graphics_call([this](::draw2d::graphics_pointer & pgraphics)
+                     {
+
+                        plain_edit_on_delete(pgraphics);
+
+                     });
 
                }
 
@@ -4558,31 +4591,35 @@ finished_update:
 
                }
 
+               queue_graphics_call([this, bShift](::draw2d::graphics_pointer & pgraphics)
+                  {
 
-               on_reset_focus_start_tick();
+                     on_reset_focus_start_tick();
 
-               i32 x;
-               index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
+                     i32 x;
+                     index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
-               iLine--;
+                     iLine--;
 
-               if (iLine < 0)
-               {
+                     if (iLine < 0)
+                     {
 
-                  iLine = 0;
+                        iLine = 0;
 
-               }
+                     }
 
-               m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, m_iColumnX);
+                     m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, m_iColumnX);
 
-               if (!bShift)
-               {
+                     if (!bShift)
+                     {
 
-                  m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+                        m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
 
-               }
+                     }
 
-               _001EnsureVisibleLine(iLine);
+                     _001EnsureVisibleLine(pgraphics, iLine);
+
+                  });
 
             }
             else if (pkey->m_ekey == ::user::key_down)
@@ -4595,39 +4632,48 @@ finished_update:
 
                }
 
+               queue_graphics_call([this, bShift](::draw2d::graphics_pointer & pgraphics)
+                  {
 
-               on_reset_focus_start_tick();
+                     on_reset_focus_start_tick();
 
-               i32 x;
+                     i32 x;
 
-               index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
+                     index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
-               iLine++;
+                     iLine++;
 
-               if (iLine >= m_iaLineBeg.get_size())
-               {
+                     if (iLine >= m_iaLineBeg.get_size())
+                     {
 
-                  iLine = m_iaLineBeg.get_upper_bound();
+                        iLine = m_iaLineBeg.get_upper_bound();
 
-               }
+                     }
 
-               m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, m_iColumnX);
+                     m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, m_iColumnX);
 
-               if (!bShift)
-               {
-                  m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
-               }
-               _001EnsureVisibleLine(iLine);
+                     if (!bShift)
+                     {
+                        m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+
+
+
+                     }
+
+                     _001EnsureVisibleLine(pgraphics, iLine);
+
+                  });
+
             }
             else if (pkey->m_ekey == ::user::key_right)
             {
+
                if (is_text_composition_active())
                {
 
                   return;
 
                }
-
 
                on_reset_focus_start_tick();
 
@@ -4722,32 +4768,36 @@ finished_update:
 
                }
 
+               queue_graphics_call([this, bControl, bShift](::draw2d::graphics_pointer & pgraphics)
+                  {
 
-               on_reset_focus_start_tick();
+                     on_reset_focus_start_tick();
 
-               if (bControl)
-               {
+                     if (bControl)
+                     {
 
-                  m_ptree->m_iSelEnd = 0;
+                        m_ptree->m_iSelEnd = 0;
 
-                  _001EnsureVisibleLine(0);
+                        _001EnsureVisibleLine(pgraphics, 0);
 
-               }
+                     }
 
-               {
+                     {
 
-                  index iLine = plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
+                        index iLine = plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
 
-                  m_ptree->m_iSelEnd = plain_edit_line_column_to_sel(pgraphics, iLine, 0);
+                        m_ptree->m_iSelEnd = plain_edit_line_column_to_sel(pgraphics, iLine, 0);
 
-               }
+                     }
 
-               if (!bShift)
-               {
+                     if (!bShift)
+                     {
 
-                  m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+                        m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
 
-               }
+                     }
+
+                  });
 
             }
             else if (pkey->m_ekey == ::user::key_end)
@@ -4760,34 +4810,38 @@ finished_update:
 
                }
 
+               queue_graphics_call([this, bControl, bShift](::draw2d::graphics_pointer & pgraphics)
+                  {
 
-               on_reset_focus_start_tick();
+                     on_reset_focus_start_tick();
 
-               if (bControl)
-               {
+                     if (bControl)
+                     {
 
-                  index iLine = m_iaLineBeg.get_upper_bound();
+                        index iLine = m_iaLineBeg.get_upper_bound();
 
-                  m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, i32 (m_iaLineLen[iLine]));
+                        m_ptree->m_iSelEnd = plain_edit_line_x_to_sel(pgraphics, iLine, i32(m_iaLineLen[iLine]));
 
-                  _001EnsureVisibleLine(iLine);
+                        _001EnsureVisibleLine(pgraphics, iLine);
 
-               }
-               else
-               {
+                     }
+                     else
+                     {
 
-                  index iLine = plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
+                        index iLine = plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
 
-                  m_ptree->m_iSelEnd = plain_edit_line_column_to_sel(pgraphics, iLine, -1);
+                        m_ptree->m_iSelEnd = plain_edit_line_column_to_sel(pgraphics, iLine, -1);
 
-               }
+                     }
 
-               if (!bShift)
-               {
+                     if (!bShift)
+                     {
 
-                  m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+                        m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
 
-               }
+                     }
+
+                  });
 
             }
             else if (pkey->m_ekey == ::user::key_escape)
@@ -4800,7 +4854,7 @@ finished_update:
                if(m_bMultiLine)
                {
 
-                  insert_text("\n", true);
+                    insert_text("\n", true, e_source_user);
 
                }
 
@@ -4882,7 +4936,7 @@ finished_update:
                      __throw(todo("keyboard"));
                   }
 
-                  insert_text(str, false);
+                  insert_text(str, false, e_source_user);
 
                   bUpdate = false;
 
@@ -4917,7 +4971,12 @@ finished_update:
       if (bUpdate)
       {
 
-         plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
+         queue_graphics_call([this, bFullUpdate, iLineUpdate](::draw2d::graphics_pointer & pgraphics)
+            {
+
+               plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
+
+            });
 
       }
 
@@ -4985,32 +5044,35 @@ finished_update:
 
          index i1 = (index) (m_pitemComposing->m_position + m_pitemComposing->get_extent());
 
-         auto pgraphics = ::draw2d::create_memory_graphics();
+         queue_graphics_call([this, i1](::draw2d::graphics_pointer & pgraphics)
+            {
 
-         int iLineUpdate = (int) plain_edit_sel_to_line(pgraphics, i1);
+               int iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, i1);
 
-         m_ptree->m_iSelEnd = i1;
-         m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
-         m_psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
-         m_psetsel->m_iSelBeg = m_ptree->m_iSelEnd;
+               m_ptree->m_iSelEnd = i1;
+               m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+               m_psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
+               m_psetsel->m_iSelBeg = m_ptree->m_iSelEnd;
 
-         bool bFullUpdate = false;
+               bool bFullUpdate = false;
 
-         plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
+               plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
 
-         if (iLineUpdate < 0)
-         {
+               if (iLineUpdate < 0)
+               {
 
-            iLineUpdate = (int) plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
+                  iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
 
-         }
+               }
 
-         if (iLineUpdate >= 0)
-         {
+               if (iLineUpdate >= 0)
+               {
 
-            _001EnsureVisibleLine(iLineUpdate + 1);
+                  _001EnsureVisibleLine(pgraphics, iLineUpdate + 1);
 
-         }
+               }
+
+            });
 
          set_need_redraw();
 
@@ -5028,11 +5090,11 @@ finished_update:
 
 #if defined(LINUX) || defined(MACOS)
 
-         insert_text(strText, false);
+         insert_text(strText, false, e_source_user);
 
 #else
 
-         insert_text(strText, true);
+         insert_text(strText, true, e_source_user);
 
          __refer(m_pitemComposing, m_pinsert);
 
@@ -5055,32 +5117,35 @@ finished_update:
 
          index i1 = (index)(m_pitemComposing->m_position + m_pitemComposing->get_extent());
 
-         auto pgraphics = ::draw2d::create_memory_graphics();
+         queue_graphics_call([this, i1](::draw2d::graphics_pointer & pgraphics)
+            {
 
-         int iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, i1);
+               int iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, i1);
 
-         m_ptree->m_iSelEnd = i1;
-         m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
-         m_psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
-         m_psetsel->m_iSelBeg = m_ptree->m_iSelEnd;
+               m_ptree->m_iSelEnd = i1;
+               m_ptree->m_iSelBeg = m_ptree->m_iSelEnd;
+               m_psetsel->m_iSelEnd = m_ptree->m_iSelEnd;
+               m_psetsel->m_iSelBeg = m_ptree->m_iSelEnd;
 
-         bool bFullUpdate = false;
+               bool bFullUpdate = false;
 
-         plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
+               plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
 
-         if (iLineUpdate < 0)
-         {
+               if (iLineUpdate < 0)
+               {
 
-            iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
+                  iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
 
-         }
+               }
 
-         if (iLineUpdate >= 0)
-         {
+               if (iLineUpdate >= 0)
+               {
 
-            _001EnsureVisibleLine(iLineUpdate + 1);
+                  _001EnsureVisibleLine(pgraphics, iLineUpdate + 1);
 
-         }
+               }
+
+            });
 
          set_need_redraw();
 
@@ -5164,7 +5229,7 @@ finished_update:
       else
       {
 
-         insert_text(strText, true);
+         insert_text(strText, true, e_source_user);
 
          __refer(m_pitemComposing, m_pinsert);
 
@@ -5176,7 +5241,7 @@ finished_update:
 
       ::index iAfterComposingCursorPosition;
 
-      int iOffset = 0;
+      strsize iOffset = 0;
 
       if (iNewCursorPosition > 0)
       {
@@ -5223,27 +5288,30 @@ finished_update:
 
          strsize i1 = iNewCursorPosition;
 
-         auto pgraphics = ::draw2d::create_memory_graphics();
+         queue_graphics_call([this, i1](::draw2d::graphics_pointer & pgraphics)
+            {
 
-         int iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, i1);
+               int iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, i1);
 
-         bool bFullUpdate = false;
+               bool bFullUpdate = false;
 
-         plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
+               plain_edit_update(pgraphics, bFullUpdate, iLineUpdate);
 
-         if (iLineUpdate < 0)
-         {
+               if (iLineUpdate < 0)
+               {
 
-            iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
+                  iLineUpdate = (int)plain_edit_sel_to_line(pgraphics, m_ptree->m_iSelEnd);
 
-         }
+               }
 
-         if (iLineUpdate >= 0)
-         {
+               if (iLineUpdate >= 0)
+               {
 
-            _001EnsureVisibleLine(iLineUpdate + 1);
+                  _001EnsureVisibleLine(pgraphics, iLineUpdate + 1);
 
-         }
+               }
+
+            });
 
          set_need_redraw();
 
@@ -5353,7 +5421,7 @@ finished_update:
 
       sync_lock sl(mutex());
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       if (pkey->m_ekey == ::user::key_delete)
       {
@@ -5433,7 +5501,7 @@ finished_update:
 
       ::point pointOffset = get_viewport_offset();
 
-      set_viewport_offset_y(pointOffset.y - m_dLineHeight);
+      set_viewport_offset_y(pgraphics, (int) ( pointOffset.y - m_dLineHeight));
 
       double dHeight = 0.;
 
@@ -5848,14 +5916,9 @@ finished_update:
 
       string str(strParam);
 
-      ::draw2d::graphics_pointer pgraphics;
-
       {
 
          sync_lock sl(mutex());
-
-
-
 
          if (m_bParseDataPacks)
          {
@@ -5893,9 +5956,14 @@ finished_update:
 
       }
 
-      plain_edit_on_set_text(pgraphics, context);
+      queue_graphics_call([this, context](::draw2d::graphics_pointer & pgraphics)
+         {
 
-      plain_edit_on_update(pgraphics, context);
+            plain_edit_on_set_text(pgraphics, context);
+
+            plain_edit_on_update(pgraphics, context);
+
+         });
 
    }
 
@@ -6013,7 +6081,7 @@ finished_update:
 
       }
 
-      insert_text(str, true);
+      insert_text(str, true, e_source_user);
 
       if(m_bEnterKeyOnPaste)
       {
@@ -6050,7 +6118,7 @@ finished_update:
    i32 plain_edit::get_wheel_scroll_delta()
    {
 
-      return m_dLineHeight * 3.0;
+      return (::i32) (m_dLineHeight * 3.0);
 
    }
 
@@ -6088,27 +6156,25 @@ finished_update:
    }
 
 
-   bool plain_edit::create_control(class control_descriptor * pdescriptor)
-   {
+   //bool plain_edit::create_interaction(::user::interaction * puserinteractionParent, const ::id & id)
+   //{
 
-      ASSERT(pdescriptor->get_control_type() == e_control_type_edit_plain_text);
+   //   if (!::user::interaction::create_interaction(puserinteractionParent, id))
+   //   {
 
-      if (!::user::interaction::create_control(pdescriptor))
-      {
+   //      TRACE("Failed to create control");
 
-         TRACE("Failed to create control");
+   //      return false;
 
-         return false;
+   //   }
 
-      }
+   //   display(e_display_none);
 
-      display(e_display_none);
+   //   //m_bMultiLine = pdescriptor->has_function(e_control_function_edit_multi_line);
 
-      m_bMultiLine = pdescriptor->has_function(e_control_function_edit_multi_line);
+   //   return true;
 
-      return true;
-
-   }
+   //}
 
 
    enum_input_type plain_edit::preferred_input_type() const
@@ -6143,7 +6209,7 @@ finished_update:
 
          HWND hwnd = get_handle();
 
-         ::CreateCaret(hwnd, 0, 1, m_dLineHeight);
+         ::CreateCaret(hwnd, 0, 1, (int) m_dLineHeight);
 
          ::point pointCaret = layout().design().origin();
 
@@ -6244,7 +6310,7 @@ finished_update:
    void plain_edit::_001OnUpdateEditCut(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       string str;
 
@@ -6279,7 +6345,7 @@ finished_update:
    void plain_edit::_001OnUpdateEditCopy(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       string str;
 
@@ -6304,7 +6370,7 @@ finished_update:
    void plain_edit::_001OnUpdateEditPaste(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       auto psession = Session;
 
@@ -6333,7 +6399,7 @@ finished_update:
    void plain_edit::_001OnUpdateEditDelete(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       string str;
 
@@ -6427,7 +6493,7 @@ finished_update:
    }
 
 
-   payload plain_edit::get_payload()
+   ::payload plain_edit::get_payload()
    {
 
       string str;
@@ -6500,12 +6566,15 @@ finished_update:
    }
 
 
-   void plain_edit::insert_text(string strText, bool bForceNewStep)
+   void plain_edit::insert_text(string strText, bool bForceNewStep, const ::action_context & actioncontext)
    {
 
-      auto pgraphics = ::draw2d::create_memory_graphics();
+      queue_graphics_call([this, strText, bForceNewStep](::draw2d::graphics_pointer & pgraphics)
+         {
 
-      return plain_edit_insert_text(pgraphics, strText, bForceNewStep);
+            plain_edit_insert_text(pgraphics, strText, bForceNewStep);
+
+         });
 
    }
 
@@ -6640,13 +6709,13 @@ finished_update:
          if (iLineUpdate >= 0)
          {
 
-            _001EnsureVisibleLine(iLineUpdate + 1);
+            _001EnsureVisibleLine(pgraphics, iLineUpdate + 1);
 
          }
          else
          {
 
-            _001EnsureVisibleLine(0);
+            _001EnsureVisibleLine(pgraphics, 0);
 
          }
 
@@ -6654,7 +6723,7 @@ finished_update:
       else
       {
 
-         _001EnsureVisibleLine(0);
+         _001EnsureVisibleLine(pgraphics, 0);
 
       }
 
@@ -6691,21 +6760,21 @@ finished_update:
    }
 
 
-   plain_edit_internal::plain_edit_internal()
+   plain_edit_style::plain_edit_style()
    {
 
 
    }
 
 
-   plain_edit_internal::~plain_edit_internal()
+   plain_edit_style::~plain_edit_style()
    {
 
 
    }
 
 
-   void plain_edit_internal::update(::draw2d::graphics_pointer& pgraphics, plain_edit * pedit)
+   void plain_edit_style::on_update(::draw2d::graphics_pointer& pgraphics, ::user::style * pstyle, ::user::interaction * puserinteraction)
    {
 
       m_penCaret.release();
@@ -6728,19 +6797,17 @@ finished_update:
 
       __construct(m_brushTextEmpty);
 
-      auto pstyle = pedit->get_style(pgraphics);
-
-      auto color = pedit->get_color(pstyle, e_element_text);
+      auto color = puserinteraction->get_color(pstyle, e_element_text);
 
       m_penCaret->create_solid(1.0, color);
 
       m_brushTextCr->create_solid(color);
 
-      color = pedit->get_color(pstyle, e_element_text, e_state_selected);
+      color = puserinteraction->get_color(pstyle, e_element_text, e_state_selected);
 
       m_brushTextSel->create_solid(color);
 
-      color = pedit->get_color(pstyle, e_element_text, e_state_new_input);
+      color = puserinteraction->get_color(pstyle, e_element_text, e_state_new_input);
 
       m_brushTextEmpty->create_solid(color);
 

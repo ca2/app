@@ -15,17 +15,18 @@ namespace draw2d
 
       bool           m_bSettingCursorMatter;
 
-      map < i32, i32, __pointer(memory) > m_alpha_spread__24CC_filterMap;
-      map < i32, i32, __pointer(memory) > m_alpha_spread__32CC_filterMap;
+      i32_map < __pointer(memory) > m_alpha_spread__24CC_filterMap;
+      i32_map < __pointer(memory) > m_alpha_spread__32CC_filterMap;
 
 
-      __pointer(cursor_set)                                     m_pcursorset;
-      __pointer(class ::draw2d::api)                            m_papi;
-      __pointer(class font_department)                          m_pfontdepartment;
+      __pointer(cursor_set)                                    m_pcursorset;
+      __pointer(class ::draw2d::api)                           m_papi;
+      __pointer(class font_department)                         m_pfontdepartment;
 
       //__pointer(::mutex)                                        m_pmutexFont;
-
-
+#ifdef WINDOWS
+      __composite(::draw2d_direct2d::plugin)                     m_pplugin;
+#endif
 
       draw2d();
       virtual ~draw2d();
@@ -43,6 +44,11 @@ namespace draw2d
       virtual void finalize() override;
 
       virtual class api & api();
+
+
+#ifdef WINDOWS
+      ::draw2d_direct2d::plugin * direct2d();
+#endif
 
       virtual double font_similarity(const char * pszSystem, const char * pszUser);
 
@@ -74,7 +80,7 @@ namespace draw2d
       int iBlurRadius,
       int iBlur,
       bool bUpdate,
-      double dAlpha = 1.0);
+      const ::color_filter & colorfilter = nullptr);
 
 
       template < typename PRED >
@@ -89,7 +95,7 @@ namespace draw2d
       int iBlurRadius,
       int iBlur,
       bool bUpdate,
-      double dAlpha = 1.0);
+      const color_filter & colorfilter = nullptr);
 
       virtual void alpha_spread__24CC(byte * pbDest, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy, byte * pbSrc, i32 ySrc, i32 xSrc, i32 wSrc, byte bMin, i32 iRadius);
 

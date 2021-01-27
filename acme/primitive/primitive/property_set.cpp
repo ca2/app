@@ -13,7 +13,7 @@ extern locale_t g_localeC;
 #endif
 
 
-property_set::property_set(::std::initializer_list < payload > list)
+property_set::property_set(::std::initializer_list < ::payload > list)
 {
 
    ::id id;
@@ -106,7 +106,7 @@ bool property_set::has_properties(::count countMinimum) const
 }
 
 
-property * property_set::find_value_ci(const payload & payload) const
+property * property_set::find_value_ci(const ::payload & payload) const
 {
 
    for(auto & pproperty : *this)
@@ -148,7 +148,7 @@ property * property_set::find_value_ci(const char * psz) const
 
 
 
-property * property_set::find_value(const payload & payload) const
+property * property_set::find_value(const ::payload & payload) const
 {
 
    for(auto & pproperty : *this)
@@ -188,7 +188,7 @@ property * property_set::find_value(const char * psz) const
 }
 
 
-bool property_set::contains_value_ci(const payload & payload, ::count countMin, ::count countMax) const
+bool property_set::contains_value_ci(const ::payload & payload, ::count countMin, ::count countMax) const
 {
    ::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax)) && find_value_ci(payload) != nullptr)
@@ -208,7 +208,7 @@ bool property_set::contains_value_ci(const char * psz, ::count countMin, ::count
 }
 
 
-bool property_set::contains_value(const payload & payload, ::count countMin, ::count countMax) const
+bool property_set::contains_value(const ::payload & payload, ::count countMin, ::count countMax) const
 {
    ::count count = 0;
    while((count < countMin || (countMax >= 0 && count <= countMax)) && (find_value(payload)) != nullptr)
@@ -226,7 +226,7 @@ bool property_set::contains_value(const char * psz, ::count countMin, ::count co
 }
 
 
-bool property_set::remove_first_value_ci(const payload & payload)
+bool property_set::remove_first_value_ci(const ::payload & payload)
 {
 
    property * pproperty = find_value_ci(payload);
@@ -260,7 +260,7 @@ bool property_set::remove_first_value_ci(const char * pcsz)
 }
 
 
-bool property_set::remove_first_value(const payload & payload)
+bool property_set::remove_first_value(const ::payload & payload)
 {
 
    property * pproperty = find_value(payload);
@@ -294,7 +294,7 @@ bool property_set::remove_first_value(const char * pcsz)
 }
 
 
-::count property_set::remove_value_ci(const payload & payload, ::count countMin, ::count countMax)
+::count property_set::remove_value_ci(const ::payload & payload, ::count countMin, ::count countMax)
 {
 
    ::count count = 0;
@@ -338,7 +338,7 @@ bool property_set::remove_first_value(const char * pcsz)
 }
 
 
-::count property_set::remove_value(const payload & payload, ::count countMin, ::count countMax)
+::count property_set::remove_value(const ::payload & payload, ::count countMin, ::count countMax)
 {
 
    ::count count = 0;
@@ -478,7 +478,7 @@ bool property_set::is_empty(const id & idName) const
 }
 
 
-void property_set::_008ParseCommandLine(const char * pszCmdLineParam, payload & varFile)
+void property_set::_008ParseCommandLine(const char * pszCmdLineParam, ::payload & varFile)
 {
 
    string strApp;
@@ -488,7 +488,7 @@ void property_set::_008ParseCommandLine(const char * pszCmdLineParam, payload & 
 }
 
 
-void property_set::_008ParseCommandFork(const char * pszCmdLineParam, payload & varFile, string & strApp)
+void property_set::_008ParseCommandFork(const char * pszCmdLineParam, ::payload & varFile, string & strApp)
 {
 
    _008Parse(true, pszCmdLineParam, varFile, strApp);
@@ -545,7 +545,7 @@ void property_set::_008Add(const char * pszKey, const char * pszValue)
 }
 
 
-void property_set::_008Parse(bool bApp, const char * pszCmdLine, payload & varFile, string & strApp)
+void property_set::_008Parse(bool bApp, const char * pszCmdLine, ::payload & varFile, string & strApp)
 {
 
    if(pszCmdLine == nullptr)
@@ -1173,7 +1173,7 @@ property & property_set::at(index iIndex)
 }
 
 
-payload property_set::at(index iIndex) const
+::payload property_set::at(index iIndex) const
 {
 
    return operator[](iIndex);
@@ -1181,7 +1181,7 @@ payload property_set::at(index iIndex) const
 }
 
 
-property_set& property_set::operator = (const payload& payload)
+property_set& property_set::operator = (const ::payload & payload)
 {
 
    if (payload.m_etype == e_type_propset)
@@ -1248,7 +1248,7 @@ property_set & property_set::add(const property_set & set)
 property_set & property_set::merge(const property_set & set)
 {
 
-   if (::is_set_ref(set) && &set != this)
+   if (::is_set(set) && &set != this)
    {
 
       for(auto & pproperty : set)
@@ -1379,7 +1379,7 @@ property_set & property_set::operator |= (const property_set & set)
 //
 //      string strKey = set.pair_set_interface_get_key(i);
 //
-//      class payload payload = set.pair_set_interface_get_value(i);
+//      class ::payload payload = set.pair_set_interface_get_value(i);
 //
 //      set_at(strKey, payload);
 //   }
@@ -1407,7 +1407,7 @@ property_set & property_set::operator |= (const property_set & set)
 //
 //      string strKey = set.str_str_interface_get_key(i);
 //
-//      class payload payload = set.str_str_interface_get_value(i);
+//      class ::payload payload = set.str_str_interface_get_value(i);
 //
 //      set_at(strKey, payload);
 //   }
@@ -1608,7 +1608,7 @@ string & property_set::get_http_post(string & strPost) const
 //}
 //
 //
-//property & stable_property_set::set_at(const id & id, const payload & payload)
+//property & stable_property_set::set_at(const id & id, const ::payload & payload)
 //{
 //
 //   index iFind = find(id);

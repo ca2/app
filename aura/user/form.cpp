@@ -11,6 +11,8 @@ namespace user
    form::form()
    {
 
+      m_econtroltype = e_control_type_form;
+
       m_pform = this;
 
    }
@@ -30,20 +32,20 @@ namespace user
    //}
 
 
-   bool form::create_control(class control_descriptor * pdescriptor, index iItem)
-   {
+   //bool form::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
+   //{
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   __pointer(control_descriptor) form::new_form_control()
-   {
+   //__pointer(control_descriptor) form::new_form_control()
+   //{
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    ::e_status form::open_html(const ::string& str)
@@ -54,7 +56,7 @@ namespace user
    }
 
 
-   ::e_status form::open_document(const payload& varFile)
+   ::e_status form::open_document(const ::payload& varFile)
    {
 
       return ::error_interface_only;
@@ -114,11 +116,10 @@ namespace user
    void form::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
 
-      m_pdescriptor->m_econtroltype = e_control_type_form;
 
    }
 
@@ -177,6 +178,14 @@ namespace user
    {
 
       return m_pformParent.get();
+
+   }
+
+
+   bool form::_001AddControl(::user::interaction * pinteraction)
+   {
+
+      return false;
 
    }
 

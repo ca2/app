@@ -128,7 +128,7 @@ namespace user
       //string strLicense = Application.get_license_id();
 
 
-      //payload & varTopicQuey = System.commnam_varTopicQuery;
+      //::payload & varTopicQuey = System.commnam_varTopicQuery;
 
       bool bHasInstall = System.is_true("install");
 
@@ -359,19 +359,12 @@ namespace user
 
 
    //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * pWindowName, u32 uStyle, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam)
-   CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * pWindowName, u32 uStyle, ::user::interaction * puiParent, id id)
+   CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, ::user::interaction * pinteractionParent)
    {
 
-      UNREFERENCED_PARAMETER(dwExStyle);
-      UNREFERENCED_PARAMETER(pClassName);
-      UNREFERENCED_PARAMETER(pWindowName);
-      UNREFERENCED_PARAMETER(uStyle);
-      //UNREFERENCED_PARAMETER(hInstance);
-      //UNREFERENCED_PARAMETER(pParam);
+      auto pinteraction = pobject->__create_new < ::user::interaction >();
 
-      auto pinteraction = __new(::user::interaction);
-
-      if(pinteraction->create_window(puiParent, id))
+      if(pinteraction->create_child(pinteractionParent))
       {
 
          return pinteraction;
@@ -573,7 +566,7 @@ namespace aura
 //         //{
 //         //   pframeApp->display(e_display_full_screen);
 //         //}
-//         //__pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::pane_view >()->GetParentFrame();
+//         //__pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::pane_view >()->get_parent_frame();
 //         //if(pframe != nullptr)
 //         //{
 //         //   pframe->display(e_display_normal);
@@ -583,7 +576,7 @@ namespace aura
 //      {
 //         //if(get_document() != nullptr && get_document()->get_typed_view < ::bergedge::view >() != nullptr)
 //         //{
-//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame();
+//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::view >()->get_parent_frame();
 //         //   if(pframe != nullptr)
 //         //   {
 //         //      pframe->display(e_display_normal);
@@ -603,7 +596,7 @@ namespace aura
 ////      {
 ////         try
 ////         {
-////            get_view()->GetParentFrame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
+////            get_view()->get_parent_frame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
 ////         }
 ////         catch (...)
 ////         {
@@ -815,18 +808,25 @@ namespace user
    {
 
       if (pinteraction == nullptr)
+      {
+
          return false;
+
+      }
 
       ::user::interaction* puiAscendant = pinteraction;
 
       do
       {
 
-         puiAscendant = puiAscendant->GetOwner();
-
+         puiAscendant = puiAscendant->get_owner();
 
          if (puiParent == puiAscendant)
+         {
+
             return true;
+
+         }
 
       } while (puiAscendant != nullptr);
 
@@ -836,11 +836,14 @@ namespace user
       do
       {
 
-         puiAscendant = puiAscendant->GetParent();
-
+         puiAscendant = puiAscendant->get_parent();
 
          if (puiParent == puiAscendant)
+         {
+
             return true;
+
+         }
 
       } while (puiAscendant != nullptr);
 

@@ -541,7 +541,7 @@ namespace lite
       if(!ptab->get_data()->m_bCreated)
          return false;
 
-      ::user::tab::data * pdata = ptab->get_data();
+      ::user::tab_data * pdata = ptab->get_data();
 
       ptab->m_bDrawTabAtBackground = true;
 

@@ -20,8 +20,9 @@ namespace windows
    {
    public:
 
-      bool                                      m_bFocusImpl;
-      bool                                      m_bSystemCaret;
+      bool                                      m_bClipboardOpened : 1;
+      bool                                      m_bFocusImpl : 1;
+      bool                                      m_bSystemCaret : 1;
 
       ::rect                                    m_rectLast;
 
@@ -181,13 +182,13 @@ namespace windows
 
 
       // for child windows, views, panes etc
-      //virtual bool create_window(::user::interaction * pinteraction, const char * pszClassName,const char * pszWindowName,u32 dwStyle,const ::rect & rect,::user::interaction * pParentWnd,id id, ::create * pcreate = nullptr) override;
+      //virtual bool create_interaction(::user::interaction * pinteraction, const char * pszClassName,const char * pszWindowName,u32 dwStyle,const ::rect & rect,::user::interaction * pParentWnd,id id, ::create * pcreate = nullptr) override;
 
 
       // advanced creation (allows access to extended styles)
-      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::interaction * puiParent, id id) override;
+      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pusersystem, ::user::interaction * puiParent, id id) override;
 
-      virtual bool _native_create_window_ex(__pointer(::user::create_struct) pcreatestruct);
+      virtual bool native_create_host() override;
 
       virtual bool destroy_impl_only() override;
       virtual bool DestroyWindow() override;
@@ -195,7 +196,7 @@ namespace windows
       virtual void destroy_window() override;
 
       // special pre-creation and interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(::user::create_struct * pcreatestruct);
+      virtual bool pre_create_window(::user::system * pusersystem);
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
@@ -417,6 +418,10 @@ namespace windows
       virtual void SetDlgItemText(i32 nID, const char * pszString);
 
 
+      virtual bool open_clipboard() override;
+      virtual bool close_clipboard() override;
+
+
       // Scrolling Functions
       virtual i32 GetScrollPos(i32 nBar) const;
       virtual void GetScrollRange(i32 nBar, LPINT pMinPos, LPINT lpMaxPos) const;
@@ -466,13 +471,13 @@ namespace windows
       virtual ::user::interaction * GetWindow(::u32 nCmd) const;
       virtual ::user::interaction * GetLastActivePopup() const;
 
-      virtual ::user::interaction * GetParent() const;
-      virtual ::user::interaction * SetParent(::user::interaction * pWndNewParent);
+      virtual ::user::interaction * get_parent() const;
+      virtual ::user::interaction * set_parent(::user::interaction * pWndNewParent);
       //      virtual ::user::interaction * WindowFromPoint(const ::point & point);
 
 
-      virtual ::user::interaction * SetOwner(::user::interaction * pWndNewParent);
-      virtual ::user::interaction * GetOwner() const;
+      virtual ::user::interaction * set_owner(::user::interaction * pWndNewParent);
+      virtual ::user::interaction * get_owner() const;
 
       // virtual bool FlashWindow(bool bInvert);
 
@@ -489,7 +494,7 @@ namespace windows
       // Clipboard Functions
       virtual bool ChangeClipboardChain(oswindow oswindow_Next);
       virtual ::oswindow  SetClipboardViewer();
-      virtual bool OpenClipboard();
+      //virtual bool OpenClipboard();
       virtual ::user::interaction * GetClipboardOwner();
       virtual ::user::interaction * GetClipboardViewer();
       virtual ::user::interaction * GetOpenClipboardWindow();
@@ -577,7 +582,7 @@ namespace windows
       //bool OnNcActivate(bool bActive);
       //void OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS* pncsp);
 
-      //bool OnNcCreate(::user::create_struct * pCreateStruct);
+      //bool OnNcCreate(::user::system * pCreateStruct);
 
       //LRESULT OnNcHitTest(const ::point & point);
       //void OnNcLButtonDblClk(::u32 nHitTest, const ::point & point);

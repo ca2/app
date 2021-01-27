@@ -491,7 +491,7 @@ namespace user
    void combo_box::_001OnShowWindow(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
 
       if (!pshowwindow->m_bShow)
       {
@@ -528,7 +528,7 @@ namespace user
    void combo_box::_001OnKeyDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key,pkey,pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       if(pkey->m_ekey == ::user::key_down)
       {
@@ -564,7 +564,7 @@ namespace user
    void combo_box::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmouse->previous();
 
@@ -600,7 +600,7 @@ namespace user
    void combo_box::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (is_window_enabled())
       {
@@ -646,7 +646,7 @@ namespace user
    void combo_box::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (is_window_enabled())
       {
@@ -676,7 +676,7 @@ namespace user
    void combo_box::_001OnKillFocus(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
+      __pointer(::message::kill_focus) pkillfocus(pmessage);
 
       if (m_plist != nullptr)
       {

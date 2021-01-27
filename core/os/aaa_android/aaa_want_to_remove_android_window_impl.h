@@ -34,7 +34,7 @@ struct CLASS_DECL_CORE oswindow_data
    hthread_t                       m_hthread;
    color32_t *                    m_pcolorref;
    RECT32                          m_rect;
-   int_map < ::i32 > *            m_plongmap;
+   i32_map < ::i32 > *            m_plongmap;
    bool                          m_bDestroying;
 
 
@@ -90,7 +90,7 @@ struct CLASS_DECL_CORE oswindow_data
 
 
    bool is_child(oswindow oswindowCandidateChildOrDescendant); // or descendant
-   oswindow GetParent();
+   oswindow get_parent();
    oswindow SetParent(oswindow oswindowNewParent);
    long get_state();
    bool is_iconic();

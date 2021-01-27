@@ -41,7 +41,7 @@ namespace imaging_wic
       node_save_image(pstream, pimage, psaveimage);
 
       STATSTG stg;
-      xxf_zero(stg);
+      __zero(stg);
       pstream->Stat(&stg, STATFLAG_NONAME);
       LARGE_INTEGER l;
       l.QuadPart = 0;
@@ -212,7 +212,7 @@ namespace imaging_wic
          {
 
             PROPBAG2 option = { 0 };
-            option.pstrName = L"ImageQuality";
+            option.pstrName = (LPOLESTR) L"ImageQuality";
             VARIANT varValue;
             VariantInit(&varValue);
             varValue.vt = VT_R4;

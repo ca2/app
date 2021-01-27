@@ -85,49 +85,49 @@ namespace user
    }
 
 
-   bool toolbar::create_window(::user::interaction * puiParent,u32 uStyle, ::id id)
-   {
+   //bool toolbar::create_interaction(::user::interaction * puiParent,u32 uStyle, ::id id)
+   //{
 
-      return create_toolbar(puiParent, 0, uStyle, id);
+   //   return create_toolbar(puiParent, 0, uStyle, id);
 
-   }
-
-
-   bool toolbar::create_toolbar(::user::interaction * puiParent,u32 dwCtrlStyle,u32 uStyle, id nID)
-   {
-
-      ASSERT_VALID(puiParent);   // must have a parent
-      ASSERT (!((uStyle & CBRS_SIZE_FIXED) && (uStyle & CBRS_SIZE_DYNAMIC)));
-
-      //SetBorders(rectBorders);
-
-      // save the style
-      m_dwStyle = (uStyle & CBRS_ALL);
-      if (nID == __IDW_TOOLBAR)
-         m_dwStyle |= CBRS_HIDE_INPLACE;
-
-      uStyle &= ~CBRS_ALL;
-      uStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
-
-      m_dwCtrlStyle = dwCtrlStyle & (0xffff0000 | TBSTYLE_FLAT);
+   //}
 
 
+//   bool toolbar::create_toolbar(::user::interaction * puiParent,u32 dwCtrlStyle,u32 uStyle, id nID)
+//   {
+//
+//      ASSERT_VALID(puiParent);   // must have a parent
+//      ASSERT (!((uStyle & CBRS_SIZE_FIXED) && (uStyle & CBRS_SIZE_DYNAMIC)));
+//
+//      //SetBorders(rectBorders);
+//
+//      // save the style
+//      m_dwStyle = (uStyle & CBRS_ALL);
+//      if (nID == __IDW_TOOLBAR)
+//         m_dwStyle |= CBRS_HIDE_INPLACE;
+//
+//      uStyle &= ~CBRS_ALL;
+//      uStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
+//
+//      m_dwCtrlStyle = dwCtrlStyle & (0xffff0000 | TBSTYLE_FLAT);
+//
+//
+//
+////         if(!::user::control_bar::create_interaction(TOOLBARCLASSNAMEA,nullptr,uStyle,nullptr,puiParent,nID))
+//      //          return FALSE;
+//      if(!::user::control_bar::create_interaction("ToolbarWindow32",nullptr,uStyle, puiParent,nID))
+//         return FALSE;
+//
+//      // sync up the sizes
+//      SetSizes(m_sizeButton, m_sizeImage);
+//
+//      // Note: Parent must resize itself for control bar to be resized
+//
+//      return TRUE;
+//   }
 
-//         if(!::user::control_bar::create_window(TOOLBARCLASSNAMEA,nullptr,uStyle,nullptr,puiParent,nID))
-      //          return FALSE;
-      if(!::user::control_bar::create_window("ToolbarWindow32",nullptr,uStyle, puiParent,nID))
-         return FALSE;
 
-      // sync up the sizes
-      SetSizes(m_sizeButton, m_sizeImage);
-
-      // Note: Parent must resize itself for control bar to be resized
-
-      return TRUE;
-   }
-
-
-   __pointer(::user::interaction) toolbar::SetOwner(__pointer(::user::interaction) pOwnerWnd)
+   __pointer(::user::interaction) toolbar::set_owner(__pointer(::user::interaction) pOwnerWnd)
    {
 //#ifdef WINDOWS_DESKTOP
 //      ASSERT_VALID(this);
@@ -137,7 +137,7 @@ namespace user
 //      __throw(todo());
 //
 //#endif
-      return ::user::control_bar::SetOwner(pOwnerWnd);
+      return ::user::control_bar::set_owner(pOwnerWnd);
 
    }
 
@@ -515,10 +515,10 @@ namespace user
          }
 
          // item is enabled
-         if (m_iButtonPressItem >= 0)
+         if (m_itemPressed)
          {
 
-            if (iItem == m_iButtonPressItem)
+            if (m_itemPressed == iItem)
             {
 
                estate |= e_toolbar_item_state_pressed;
@@ -564,6 +564,13 @@ namespace user
       {
 
          estate += ::user::e_state_pressed;
+
+      }
+
+      if (eitemstate & e_toolbar_item_state_hover)
+      {
+
+         estate += ::user::e_state_hover;
 
       }
 
@@ -1246,7 +1253,7 @@ return { 0,0 };
    void toolbar::_001OnNcHitTest(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       pbase->m_lresult = HTCLIENT;
 
@@ -1260,7 +1267,7 @@ return { 0,0 };
 
 #ifdef WINDOWS_DESKTOP
 
-      SCAST_PTR(::message::nc_calc_size, pnccalcsize, pmessage);
+      __pointer(::message::nc_calc_size) pnccalcsize(pmessage);
 
       // calculate border space (will add to top/bottom, subtract from right/bottom)
 
@@ -1316,7 +1323,7 @@ return { 0,0 };
    void toolbar::_001OnWindowPosChanging(::message::message * pmessage)
    {
 #ifdef WINDOWS_DESKTOP
-      SCAST_PTR(::message::window_pos, pwindowpos, pmessage);
+      __pointer(::message::window_pos) pwindowpos(pmessage);
       // not necessary to invalidate the borders
       u32 uStyle = m_dwStyle;
       m_dwStyle &= ~(CBRS_BORDER_ANY);
@@ -1370,7 +1377,7 @@ return { 0,0 };
    void toolbar::_001OnSetButtonSize(::message::message * pmessage)
    {
 
-      //SCAST_PTR(::message::base, pbase, pmessage);
+      //__pointer(::message::base) pbase(pmessage);
 
       //pbase->m_lresult = OnSetSizeHelper(m_sizeButton, pbase.m_lparam);
 
@@ -1380,7 +1387,7 @@ return { 0,0 };
    void toolbar::_001OnSetBitmapSize(::message::message * pmessage)
    {
 
-      //SCAST_PTR(::message::base, pbase, pmessage);
+      //__pointer(::message::base) pbase(pmessage);
 
       //pbase->m_lresult = OnSetSizeHelper(m_sizeImage, pbase.m_lparam);
 
@@ -1424,7 +1431,7 @@ return { 0,0 };
 //
 //      LRESULT lResult = 0;
 //
-//      SCAST_PTR(::message::base, pbase, pmessage);
+//      __pointer(::message::base) pbase(pmessage);
 //
 //#ifdef LRESULT
 //

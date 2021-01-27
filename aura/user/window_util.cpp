@@ -535,7 +535,7 @@ namespace user
    {
       //#if !defined(_UWP) && !defined(APPLE_IOS)
       //      ::rect rectMajor;
-      //      ::oswindow oswindowParent = ::GetParent(oswindow);
+      //      ::oswindow oswindowParent = ::get_parent(oswindow);
       //      if(oswindowParent == nullptr)
       //      {
       //
@@ -768,7 +768,11 @@ namespace user
 #ifdef WINDOWS_DESKTOP
 
       if (::GetParent(oswindow) == MESSAGE_WINDOW_PARENT)
+      {
+
          return 0x7fffffff;
+
+      }
       
 #endif
 
@@ -937,11 +941,23 @@ namespace user
 #ifdef WINDOWS_DESKTOP
       while (true)
       {
+
          oswindowDescendant = ::GetParent(oswindowDescendant);
+
          if (oswindowDescendant == nullptr)
+         {
+
             return false;
+
+         }
+
          if (oswindowDescendant == oswindowAscendant)
+         {
+
             return true;
+
+         }
+
       }
 #else
       return false;

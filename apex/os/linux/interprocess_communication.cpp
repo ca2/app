@@ -107,7 +107,7 @@ namespace interprocess_communication
 
          msqid_ds b;
 
-         xxf_zero(b);
+         __zero(b);
 
          if((result = msgsnd(m_iQueue, pdata, m.get_size() - sizeof(long), 0)) == -1)
          {

@@ -31,7 +31,7 @@ namespace dynamic_source
 
       i32                                 m_iDebug;
 
-      payload                                 m_varRet;
+      ::payload                                 m_varRet;
 
       string                              m_strDebugRequestUri;
       string                              m_strDebugThisScript;
@@ -53,7 +53,7 @@ namespace dynamic_source
 
       virtual void dinit();
       virtual void dprint(const char *) override;
-      inline void dprint_r(payload payload);
+      inline void dprint_r(::payload payload);
 
 
       property_set& inattra();
@@ -76,12 +76,12 @@ namespace dynamic_source
       script_manager* manager();
 
 
-      virtual void set_session_value(id id, payload value);
-      virtual payload get_session_value(id id);
+      virtual void set_session_value(id id, ::payload value);
+      virtual ::payload get_session_value(id id);
       virtual string session_id(const char * pszId = nullptr);
 
       
-      payload call_run();
+      ::payload call_run();
 
 
       virtual bool rerun();
@@ -91,7 +91,7 @@ namespace dynamic_source
 
 
 
-      virtual void print_r(payload payload);
+      virtual void print_r(::payload payload);
       property& request(id idKey);
       property_set& geta();
       property_set& posta();
@@ -112,10 +112,10 @@ namespace dynamic_source
       inline http::cookie& get_cookie(id idKey);
       inline http::cookie& set_cookie(id idKey);
 
-      void uri_set_var(string& strUrl, const char* pszUrl, const char* pszKey, payload payload);
+      void uri_set_var(string& strUrl, const char* pszUrl, const char* pszKey, ::payload payload);
       void uri_set_param(string& strUrl, const char* pszUrl, const char* pszKey, const string& strParam);
       string query_get_param(const char* pszUrl, const char* pszKey);
-      payload query_get_var(const char* pszUrl, const char* pszKey);
+      ::payload query_get_var(const char* pszUrl, const char* pszKey);
 
 
 

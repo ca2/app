@@ -86,7 +86,7 @@ CLASS_DECL_ACME ::Windows::Storage::StorageFolder ^ winrt_folder(string & strPat
    for (auto & pathFolder : patha)
    {
 
-      ::Windows::Storage::StorageFolder ^ folder = ::wait(::Windows::Storage::StorageFolder::GetFolderFromPathAsync(pathFolder));
+      ::Windows::Storage::StorageFolder ^ folder = ::Windows::Storage::StorageFolder::GetFolderFromPathAsync(pathFolder).get();
 
       if (folder != nullptr)
       {
@@ -407,13 +407,13 @@ namespace uwp
          if (eopen & ::file::e_open_no_truncate)
          {
 
-            m_file = ::wait(folder->CreateFileAsync(strName, Windows::Storage::CreationCollisionOption::OpenIfExists));
+            m_file = folder->CreateFileAsync(strName, Windows::Storage::CreationCollisionOption::OpenIfExists).get();
 
          }
          else
          {
 
-            m_file = ::wait(folder->CreateFileAsync(strName, Windows::Storage::CreationCollisionOption::ReplaceExisting));
+            m_file = folder->CreateFileAsync(strName, Windows::Storage::CreationCollisionOption::ReplaceExisting).get();
 
          }
 
@@ -424,7 +424,7 @@ namespace uwp
          try
          {
 
-            m_file = ::wait(folder->GetFileAsync(strName));
+            m_file = folder->GetFileAsync(strName).get();
 
          }
          catch (...)
@@ -450,16 +450,16 @@ namespace uwp
       switch (eopen & 3)
       {
       case ::file::e_open_read:
-         m_stream = ::wait(m_file->OpenAsync(::Windows::Storage::FileAccessMode::Read));
+         m_stream = m_file->OpenAsync(::Windows::Storage::FileAccessMode::Read).get();
          break;
       case ::file::e_open_write:
-         m_stream = ::wait(m_file->OpenAsync(::Windows::Storage::FileAccessMode::ReadWrite));
+         m_stream = m_file->OpenAsync(::Windows::Storage::FileAccessMode::ReadWrite).get();
          break;
       case ::file::e_open_read_write:
-         m_stream = ::wait(m_file->OpenAsync(::Windows::Storage::FileAccessMode::ReadWrite));
+         m_stream = m_file->OpenAsync(::Windows::Storage::FileAccessMode::ReadWrite).get();
          break;
       default:
-         m_stream = ::wait(m_file->OpenAsync(::Windows::Storage::FileAccessMode::Read));
+         m_stream = m_file->OpenAsync(::Windows::Storage::FileAccessMode::Read).get();
          break;
       }
 
@@ -545,7 +545,12 @@ namespace uwp
    void native_buffer::flush()
    {
 
-      ::wait(m_stream->FlushAsync());
+      if (m_stream)
+      {
+
+         ::wait(m_stream->FlushAsync());
+
+      }
 
    }
 

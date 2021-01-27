@@ -491,6 +491,22 @@ string text_stream::get_location() const
 }
 
 
+::filesize text_stream::get_position() const
+{
+
+   return m_p->get_position();
+
+}
+
+
+void text_stream::write(const void * psz, strsize s)
+{
+
+   m_p->write(psz, s);
+
+}
+
+
 //void text_stream::json_write(const ::matter & matter)
 //{
 //

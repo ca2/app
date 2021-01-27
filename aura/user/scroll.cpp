@@ -9,59 +9,57 @@ namespace user
 {
 
 
-   scroll_x_base::scroll_x_base()
+   horizontal_scroll_base::horizontal_scroll_base()
    {
 
-      m_scrolldataHorz.m_bScroll = false;
-      m_scrolldataHorz.m_iPage = 0;
-      m_scrolldataHorz.m_iLine = 0;
-      m_scrolldataHorz.m_bScrollEnable = true;
-      //m_scrolldataHorz.m_iWidth = GetSystemMetrics(SM_CXHSCROLL);
+      m_scrolldataHorizontal.m_bScroll = false;
+      m_scrolldataHorizontal.m_iPage = 0;
+      m_scrolldataHorizontal.m_iLine = 0;
+      m_scrolldataHorizontal.m_bScrollEnable = true;
+      //m_scrolldataHorizontal.m_iWidth = GetSystemMetrics(SM_CXHSCROLL);
 
    }
 
 
-   scroll_x_base::~scroll_x_base()
+   horizontal_scroll_base::~horizontal_scroll_base()
    {
 
 
    }
 
 
-   scroll_bar* scroll_x_base::get_horizontal_scroll_bar()
+   scroll_bar* horizontal_scroll_base::get_horizontal_scroll_bar()
    {
 
-      return m_pscrollbarHorz;
+      return m_pscrollbarHorizontal;
 
    }
 
 
-   scroll_data* scroll_x_base::get_horizontal_scroll_data()
+   scroll_data* horizontal_scroll_base::get_horizontal_scroll_data()
    {
 
-      return &m_scrolldataHorz;
+      return &m_scrolldataHorizontal;
 
    }
 
 
-   void scroll_x_base::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
+   void horizontal_scroll_base::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::rect rectClient;
 
       ::user::interaction::get_client_rect(rectClient);
 
-      //i32 ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
+      defer_create_horizontal_scroll_bar();
 
-      _001DeferCreateXScrollBar();
-
-      if (m_pscrollbarHorz != nullptr)
+      if (m_pscrollbarHorizontal)
       {
 
-         if ( m_scrolldataHorz.m_bScroll)
+         if (m_scrolldataHorizontal.m_bScroll)
          {
 
-            _001GetXScrollInfo(m_pscrollbarHorz->m_scrollinfo);
+            get_horizontal_scroll_info(m_pscrollbarHorizontal->m_scrollinfo);
 
             ::rect rectNewPos;
 
@@ -72,21 +70,21 @@ namespace user
             rectNewPos.right = rectNewPos.left + rectClient.width() - get_final_y_scroll_bar_width();
             rectNewPos.bottom = rectClient.bottom;
 
-            m_pscrollbarHorz->order(zorder_top);
+            m_pscrollbarHorizontal->order(zorder_top);
 
-            m_pscrollbarHorz->place(rectNewPos);
+            m_pscrollbarHorizontal->place(rectNewPos);
 
-            m_pscrollbarHorz->display();
+            m_pscrollbarHorizontal->display();
 
-            //m_pscrollbarHorz->set_need_redraw();
+            //m_pscrollbarHorizontal->set_need_redraw();
 
-            //m_pscrollbarHorz->set_need_layout();
+            //m_pscrollbarHorizontal->set_need_layout();
 
          }
          else
          {
 
-            m_pscrollbarHorz->display(e_display_none);
+            m_pscrollbarHorizontal->display(e_display_none);
 
          }
 
@@ -97,33 +95,33 @@ namespace user
    }
 
 
-   void scroll_x_base::_001OnDeferCreateXScrollBar()
-   {
+   //bool horizontal_scroll_base::create_horizontal_scroll_bar()
+   //{
 
-      if (m_scrolldataHorz.m_bScrollEnable)
-      {
+   //   if (m_scrolldataHorizontal.m_bScrollEnable)
+   //   {
 
-         if (m_pscrollbarHorz == nullptr)
-         {
+   //      if (!m_pscrollbarHorizontal)
+   //      {
 
-            create_x_scroll_bar(nullptr);
+   //         create_horizontal_scroll_bar();
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   void scroll_x_base::_001DeferCreateXScrollBar()
+   void horizontal_scroll_base::defer_create_horizontal_scroll_bar()
    {
 
       bool bCreate = false;
 
-      if (m_scrolldataHorz.m_bScrollEnable)
+      if (m_scrolldataHorizontal.m_bScrollEnable)
       {
 
-         if (m_pscrollbarHorz == nullptr)
+         if (m_pscrollbarHorizontal == nullptr)
          {
 
             bCreate = true;
@@ -135,80 +133,79 @@ namespace user
       if (bCreate)
       {
 
-         _001OnDeferCreateXScrollBar();
+         create_horizontal_scroll_bar();
 
       }
 
    }
 
 
-   void scroll_x_base::_001OnHScroll(::message::message * pmessage)
+   void horizontal_scroll_base::_001OnHScroll(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::scroll, pscroll, pmessage);
+      __pointer(::message::scroll) pscroll(pmessage);
 
-      {
-
-         sync_lock slUser(mutex());
-
-         if (pscroll->m_nSBCode == SB_LINELEFT)
+      queue_graphics_call([this, pscroll](::draw2d::graphics_pointer & pgraphics)
          {
 
-            set_viewport_offset_x((::i32) (get_viewport_offset().x - m_scrolldataHorz.m_iLine));
+            if (pscroll->m_nSBCode == SB_LINELEFT)
+            {
 
-         }
-         else if (pscroll->m_nSBCode == SB_PAGELEFT)
-         {
+               set_viewport_offset_x(pgraphics, (::i32)(get_viewport_offset().x - m_scrolldataHorizontal.m_iLine));
 
-            set_viewport_offset_x((::i32) (get_viewport_offset().x - m_scrolldataHorz.m_iPage));
+            }
+            else if (pscroll->m_nSBCode == SB_PAGELEFT)
+            {
 
-         }
-         else if (pscroll->m_nSBCode == SB_PAGERIGHT)
-         {
+               set_viewport_offset_x(pgraphics, (::i32)(get_viewport_offset().x - m_scrolldataHorizontal.m_iPage));
 
-            set_viewport_offset_x((::i32) (get_viewport_offset().x + m_scrolldataHorz.m_iPage));
+            }
+            else if (pscroll->m_nSBCode == SB_PAGERIGHT)
+            {
 
-         }
-         else if (pscroll->m_nSBCode == SB_LINERIGHT)
-         {
+               set_viewport_offset_x(pgraphics, (::i32)(get_viewport_offset().x + m_scrolldataHorizontal.m_iPage));
 
-            set_viewport_offset_x((::i32) (get_viewport_offset().x + m_scrolldataHorz.m_iLine));
+            }
+            else if (pscroll->m_nSBCode == SB_LINERIGHT)
+            {
 
-         }
-         else if (pscroll->m_nSBCode == SB_THUMBTRACK)
-         {
+               set_viewport_offset_x(pgraphics, (::i32)(get_viewport_offset().x + m_scrolldataHorizontal.m_iLine));
 
-            set_viewport_offset_x(pscroll->m_nPos);
+            }
+            else if (pscroll->m_nSBCode == SB_THUMBTRACK)
+            {
 
-         }
-         else if (pscroll->m_nSBCode == SB_THUMBPOSITION)
-         {
+               set_viewport_offset_x(pgraphics, pscroll->m_nPos);
 
-            set_viewport_offset_x(pscroll->m_nPos);
+            }
+            else if (pscroll->m_nSBCode == SB_THUMBPOSITION)
+            {
 
-         }
+               set_viewport_offset_x(pgraphics, pscroll->m_nPos);
 
-      }
+            }
+
+         });
 
    }
 
 
-   void scroll_x_base::on_change_viewport_offset()
+   void horizontal_scroll_base::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
       sync_lock sl(mutex());
 
-      if (m_pscrollbarHorz.is_set())
+      if (m_pscrollbarHorizontal.is_set())
       {
 
-         m_pscrollbarHorz->m_scrollinfo.nPos = m_pointScroll.x;
+         m_pscrollbarHorizontal->m_scrollinfo.nPos = m_pointScroll.x;
 
       }
 
    }
 
 
-   bool scroll_x_base::validate_viewport_offset(point & point)
+   bool horizontal_scroll_base::validate_viewport_offset(point & point)
    {
 
       if (point.x < 0)
@@ -238,22 +235,22 @@ namespace user
    }
 
 
-   void scroll_x_base::install_message_routing(::channel * pchannel)
+   void horizontal_scroll_base::install_message_routing(::channel * pchannel)
    {
 
-      MESSAGE_LINK(e_message_hscroll, pchannel, this, &scroll_x_base::_001OnHScroll);
+      MESSAGE_LINK(e_message_hscroll, pchannel, this, &horizontal_scroll_base::_001OnHScroll);
 
    }
 
 
-   void scroll_x_base::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
+   void horizontal_scroll_base::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto sizeTotal = get_total_size();
 
       auto pstyle = get_style(pgraphics);
 
-      m_scrolldataHorz.m_iWidth = get_int(pstyle, e_int_scroll_bar_width);
+      m_scrolldataHorizontal.m_iWidth = get_int(pstyle, e_int_scroll_bar_width);
 
       ::rect rectClient;
 
@@ -271,12 +268,12 @@ namespace user
 
       ::i32 iScrollWidth = iClientWidth - get_int(pstyle, e_int_scroll_bar_width);;
 
-      m_scrolldataHorz.m_bScroll = false;
+      m_scrolldataHorizontal.m_bScroll = false;
 
       if (iTotalWidth > iClientWidth)
       {
 
-         m_scrolldataHorz.m_bScroll = true;
+         m_scrolldataHorizontal.m_bScroll = true;
 
       }
       else if (iTotalHeight > iClientHeight)
@@ -285,36 +282,36 @@ namespace user
          if (iTotalWidth > iScrollWidth)
          {
 
-            m_scrolldataHorz.m_bScroll = true;
+            m_scrolldataHorizontal.m_bScroll = true;
 
          }
 
       }
 
-      m_scrolldataHorz.m_bScroll = m_scrolldataHorz.m_bScrollEnable && m_scrolldataHorz.m_bScroll;
+      m_scrolldataHorizontal.m_bScroll = m_scrolldataHorizontal.m_bScrollEnable && m_scrolldataHorizontal.m_bScroll;
 
       ::rect rectScroll;
 
       get_client_rect(rectScroll);
 
-      m_scrolldataHorz.m_iPage = rectScroll.width();
+      m_scrolldataHorizontal.m_iPage = rectScroll.width();
 
       if (validate_viewport_offset(m_pointScroll))
       {
 
          layout_scroll_bar(pgraphics);
 
-         on_change_viewport_offset();
+         on_change_viewport_offset(pgraphics);
 
       }
 
    }
 
 
-   int scroll_x_base::get_final_x_scroll_bar_width()
+   int horizontal_scroll_base::get_final_x_scroll_bar_width()
    {
 
-      return m_scrolldataHorz.m_bScroll && m_scrolldataHorz.m_bScrollEnable ? m_scrolldataHorz.m_iWidth : 0;
+      return m_scrolldataHorizontal.m_bScroll && m_scrolldataHorizontal.m_bScrollEnable ? m_scrolldataHorizontal.m_iWidth : 0;
 
    }
 
@@ -328,41 +325,41 @@ namespace user
 
 
 
-   scroll_y_base::scroll_y_base()
+   vertical_scroll_base::vertical_scroll_base()
    {
 
       m_iWheelDeltaScroll = 3;
-      m_scrolldataVert.m_bScroll = false;
-      m_scrolldataVert.m_iPage = 0;
-      m_scrolldataVert.m_iLine = 0;
-      m_scrolldataVert.m_bScrollEnable = true;
-//      m_scrolldataVert.m_iWidth = GetSystemMetrics(SM_CYVSCROLL);
+      m_scrolldataVertical.m_bScroll = false;
+      m_scrolldataVertical.m_iPage = 0;
+      m_scrolldataVertical.m_iLine = 0;
+      m_scrolldataVertical.m_bScrollEnable = true;
+//      m_scrolldataVertical.m_iWidth = GetSystemMetrics(SM_CYVSCROLL);
 
    }
 
-   scroll_y_base::~scroll_y_base()
+   vertical_scroll_base::~vertical_scroll_base()
    {
 
    }
 
 
-   scroll_bar* scroll_y_base::get_vertical_scroll_bar()
+   scroll_bar* vertical_scroll_base::get_vertical_scroll_bar()
    {
 
-      return m_pscrollbarVert;
+      return m_pscrollbarVertical;
 
    }
 
 
-   scroll_data* scroll_y_base::get_vertical_scroll_data()
+   scroll_data* vertical_scroll_base::get_vertical_scroll_data()
    {
 
-      return &m_scrolldataVert;
+      return &m_scrolldataVertical;
 
    }
 
 
-   void scroll_y_base::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
+   void vertical_scroll_base::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
    {
 
       ::rect rectClient = get_client_rect();
@@ -371,15 +368,15 @@ namespace user
 
 //      i32 ifswp = SWP_SHOWWINDOW | SWP_NOCOPYBITS;
 
-      _001DeferCreateYScrollBar();
+      defer_create_vertical_scroll_bar();
 
-      if (m_pscrollbarVert != nullptr)
+      if (m_pscrollbarVertical != nullptr)
       {
 
-         if (m_scrolldataVert.m_bScroll)
+         if (m_scrolldataVertical.m_bScroll)
          {
 
-            _001GetYScrollInfo(m_pscrollbarVert->m_scrollinfo);
+            get_vertical_scroll_info(m_pscrollbarVertical->m_scrollinfo);
 
             ::rect rectNewPos;
 
@@ -392,17 +389,17 @@ namespace user
             rectNewPos.right = rectClient.right;
             rectNewPos.bottom = rectNewPos.top+ rectClient.height() - get_final_x_scroll_bar_width();
 
-            m_pscrollbarVert->order(zorder_top);
+            m_pscrollbarVertical->order(zorder_top);
 
-            m_pscrollbarVert->place(rectNewPos);
+            m_pscrollbarVertical->place(rectNewPos);
 
-            m_pscrollbarVert->display();
+            m_pscrollbarVertical->display();
 
          }
          else
          {
 
-            m_pscrollbarVert->display(e_display_none);
+            m_pscrollbarVertical->display(e_display_none);
 
          }
 
@@ -413,33 +410,33 @@ namespace user
    }
 
 
-   void scroll_y_base::_001OnDeferCreateYScrollBar()
-   {
+   //void vertical_scroll_base::_001OnDeferCreateYScrollBar()
+   //{
 
-      if (m_scrolldataVert.m_bScrollEnable)
-      {
+   //   if (m_scrolldataVertical.m_bScrollEnable)
+   //   {
 
-         if (m_pscrollbarVert == nullptr)
-         {
+   //      if (m_pscrollbarVertical == nullptr)
+   //      {
 
-            create_y_scroll_bar(nullptr);
+   //         create_y_scroll_bar(nullptr);
 
-         }
+   //      }
 
-      }
+   //   }
 
-   }
+   //}
 
 
-   void scroll_y_base::_001DeferCreateYScrollBar()
+   void vertical_scroll_base::defer_create_vertical_scroll_bar()
    {
 
       bool bCreate = false;
 
-      if (m_scrolldataVert.m_bScrollEnable)
+      if (m_scrolldataVertical.m_bScrollEnable)
       {
 
-         if (m_pscrollbarVert == nullptr)
+         if (m_pscrollbarVertical == nullptr)
          {
 
             bCreate = true;
@@ -451,61 +448,65 @@ namespace user
       if (bCreate)
       {
 
-         _001OnDeferCreateYScrollBar();
+         create_vertical_scroll_bar();
 
       }
 
    }
 
 
-   void scroll_y_base::_001OnVScroll(::message::message * pmessage)
+   void vertical_scroll_base::_001OnVScroll(::message::message * pmessage)
    {
 
+      __pointer(::message::scroll) pscroll(pmessage);
 
-      SCAST_PTR(::message::scroll, pscroll, pmessage);
+      queue_graphics_call([this, pscroll](::draw2d::graphics_pointer & pgraphics)
+         {
 
+            if (pscroll->m_nSBCode == SB_LINEUP)
+            {
 
-      if (pscroll->m_nSBCode == SB_LINEUP)
-      {
+               set_viewport_offset_y(pgraphics, (::i32)(get_viewport_offset().y - m_scrolldataVertical.m_iLine));
 
-         set_viewport_offset_y((::i32) (get_viewport_offset().y - m_scrolldataVert.m_iLine));
+            }
+            else if (pscroll->m_nSBCode == SB_PAGEUP)
+            {
 
-      }
-      else if (pscroll->m_nSBCode == SB_PAGEUP)
-      {
+               set_viewport_offset_y(pgraphics, (::i32)(get_viewport_offset().y - m_scrolldataVertical.m_iPage));
 
-         set_viewport_offset_y((::i32) (get_viewport_offset().y - m_scrolldataVert.m_iPage));
+            }
+            else if (pscroll->m_nSBCode == SB_PAGEDOWN)
+            {
 
-      }
-      else if (pscroll->m_nSBCode == SB_PAGEDOWN)
-      {
+               set_viewport_offset_y(pgraphics, (::i32)(get_viewport_offset().y + m_scrolldataVertical.m_iPage));
 
-         set_viewport_offset_y((::i32) (get_viewport_offset().y + m_scrolldataVert.m_iPage));
+            }
+            else if (pscroll->m_nSBCode == SB_LINEDOWN)
+            {
 
-      }
-      else if (pscroll->m_nSBCode == SB_LINEDOWN)
-      {
+               set_viewport_offset_y(pgraphics, (::i32)(get_viewport_offset().y + m_scrolldataVertical.m_iLine));
 
-         set_viewport_offset_y((::i32) (get_viewport_offset().y + m_scrolldataVert.m_iLine));
+            }
+            else if (pscroll->m_nSBCode == SB_THUMBTRACK)
+            {
 
-      }
-      else if (pscroll->m_nSBCode == SB_THUMBTRACK)
-      {
+               set_viewport_offset_y(pgraphics, pscroll->m_nPos);
 
-         set_viewport_offset_y(pscroll->m_nPos);
+            }
+            else if (pscroll->m_nSBCode == SB_THUMBPOSITION)
+            {
 
-      }
-      else if (pscroll->m_nSBCode == SB_THUMBPOSITION)
-      {
+               set_viewport_offset_y(pgraphics, pscroll->m_nPos);
 
-         set_viewport_offset_y(pscroll->m_nPos);
+            }
 
-      }
+         });
+
    }
 
 
 
-   i32 scroll_y_base::get_wheel_scroll_delta()
+   i32 vertical_scroll_base::get_wheel_scroll_delta()
    {
 
       return m_iWheelDeltaScroll;
@@ -513,33 +514,32 @@ namespace user
    }
 
 
-
-   void scroll_y_base::on_change_viewport_offset()
+   void vertical_scroll_base::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
       sync_lock sl(mutex());
 
-      if (m_pscrollbarVert.is_set())
+      if (m_pscrollbarVertical.is_set())
       {
 
-         m_pscrollbarVert->m_scrollinfo.nPos = m_pointScroll.y;
+         m_pscrollbarVertical->m_scrollinfo.nPos = m_pointScroll.y;
 
       }
 
    }
 
 
-   void scroll_y_base::_001OnMouseWheel(::message::message * pmessage)
+   void vertical_scroll_base::_001OnMouseWheel(::message::message * pmessage)
    {
 
-      if (!m_scrolldataVert.m_bScroll || !m_scrolldataVert.m_bScrollEnable)
+      if (!m_scrolldataVertical.m_bScroll || !m_scrolldataVertical.m_bScrollEnable)
       {
 
          return;
 
       }
 
-      SCAST_PTR(::message::mouse_wheel, pmousewheel, pmessage);
+      __pointer(::message::mouse_wheel) pmousewheel(pmessage);
 
       if (pmousewheel->GetDelta() > 0)
       {
@@ -568,16 +568,16 @@ namespace user
 
       m_iWheelDelta -= (i16)(WHEEL_DELTA * iDelta);
 
-      index nPos = m_pscrollbarVert->m_scrollinfo.nPos - iDelta * get_wheel_scroll_delta();
+      index nPos = m_pscrollbarVertical->m_scrollinfo.nPos - iDelta * get_wheel_scroll_delta();
 
-      if (nPos < m_pscrollbarVert->m_scrollinfo.nMin)
-         nPos = m_pscrollbarVert->m_scrollinfo.nMin;
-      else if (nPos > m_pscrollbarVert->m_scrollinfo.nMax - m_pscrollbarVert->m_scrollinfo.nPage)
-         nPos = m_pscrollbarVert->m_scrollinfo.nMax - m_pscrollbarVert->m_scrollinfo.nPage;
+      if (nPos < m_pscrollbarVertical->m_scrollinfo.nMin)
+         nPos = m_pscrollbarVertical->m_scrollinfo.nMin;
+      else if (nPos > m_pscrollbarVertical->m_scrollinfo.nMax - m_pscrollbarVertical->m_scrollinfo.nPage)
+         nPos = m_pscrollbarVertical->m_scrollinfo.nMax - m_pscrollbarVertical->m_scrollinfo.nPage;
 
-      m_pscrollbarVert->m_scrollinfo.nPos =  (i32) nPos;
+      m_pscrollbarVertical->m_scrollinfo.nPos =  (i32) nPos;
 
-      m_pscrollbarVert->send_scroll_message(SB_THUMBPOSITION);
+      m_pscrollbarVertical->post_scroll_message(SB_THUMBPOSITION);
 
       pmousewheel->m_lresult = 0;
 
@@ -586,7 +586,7 @@ namespace user
    }
 
 
-   bool scroll_y_base::validate_viewport_offset(point & point)
+   bool vertical_scroll_base::validate_viewport_offset(point & point)
    {
 
       if (point.y < 0)
@@ -618,25 +618,25 @@ namespace user
 
 
 
-   void scroll_y_base::install_message_routing(::channel * pchannel)
+   void vertical_scroll_base::install_message_routing(::channel * pchannel)
    {
 
       interaction::install_message_routing(pchannel);
 
-      MESSAGE_LINK(e_message_vscroll, pchannel, this, &scroll_y_base::_001OnVScroll);
-      MESSAGE_LINK(e_message_mouse_wheel, pchannel, this, &scroll_y_base::_001OnMouseWheel);
+      MESSAGE_LINK(e_message_vscroll, pchannel, this, &vertical_scroll_base::_001OnVScroll);
+      MESSAGE_LINK(e_message_mouse_wheel, pchannel, this, &vertical_scroll_base::_001OnMouseWheel);
 
    }
 
 
-   void scroll_y_base::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
+   void vertical_scroll_base::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto sizeTotal = get_total_size();
 
       auto pstyle = get_style(pgraphics);
 
-      m_scrolldataVert.m_iWidth = get_int(pstyle, e_int_scroll_bar_width);
+      m_scrolldataVertical.m_iWidth = get_int(pstyle, e_int_scroll_bar_width);
 
       ::rect rectClient;
 
@@ -654,7 +654,7 @@ namespace user
 
       //::i32 iscrollWidth = iClientWidth - GetSystemMetrics(SM_CXVSCROLL);
 
-      m_scrolldataVert.m_bScroll = false;
+      m_scrolldataVertical.m_bScroll = false;
 
       if (iTotalWidth > iClientWidth)
       {
@@ -662,7 +662,7 @@ namespace user
          if (iTotalHeight > iScrollHeight)
          {
 
-            m_scrolldataVert.m_bScroll = true;
+            m_scrolldataVertical.m_bScroll = true;
 
          }
 
@@ -670,24 +670,24 @@ namespace user
       else if (iTotalHeight > iClientHeight)
       {
 
-         m_scrolldataVert.m_bScroll = true;
+         m_scrolldataVertical.m_bScroll = true;
 
       }
 
-      m_scrolldataVert.m_bScroll = m_scrolldataVert.m_bScrollEnable && m_scrolldataVert.m_bScroll;
+      m_scrolldataVertical.m_bScroll = m_scrolldataVertical.m_bScrollEnable && m_scrolldataVertical.m_bScroll;
 
       ::rect rectScroll;
 
       get_client_rect(rectScroll);
 
-      m_scrolldataVert.m_iPage = rectScroll.height();
+      m_scrolldataVertical.m_iPage = rectScroll.height();
 
       if (validate_viewport_offset(m_pointScroll))
       {
 
          layout_scroll_bar(pgraphics);
 
-         on_change_viewport_offset();
+         on_change_viewport_offset(pgraphics);
 
       }
 
@@ -695,15 +695,15 @@ namespace user
 
 
 
-   int scroll_y_base::get_final_y_scroll_bar_width()
+   int vertical_scroll_base::get_final_y_scroll_bar_width()
    {
 
-      return m_scrolldataVert.m_bScroll && m_scrolldataVert.m_bScrollEnable ? m_scrolldataVert.m_iWidth : 0;
+      return m_scrolldataVertical.m_bScroll && m_scrolldataVertical.m_bScrollEnable ? m_scrolldataVertical.m_iWidth : 0;
 
    }
 
    //
-   //void scroll_y_base::on_layout(::draw2d::graphics_pointer & pgraphics)
+   //void vertical_scroll_base::on_layout(::draw2d::graphics_pointer & pgraphics)
    //{
 
    //   BASE::on_layout(pgraphics);
@@ -727,24 +727,29 @@ namespace user
 
    void scroll_base::install_message_routing(::channel * pchannel)
    {
-      scroll_x_base::install_message_routing(pchannel);
-      scroll_y_base::install_message_routing(pchannel);
+      horizontal_scroll_base::install_message_routing(pchannel);
+      vertical_scroll_base::install_message_routing(pchannel);
    }
 
-   void scroll_base::on_change_viewport_offset()
+
+   void scroll_base::on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics)
    {
-      scroll_x_base::on_change_viewport_offset();
-      scroll_y_base::on_change_viewport_offset();
-      ::user::interaction::on_change_viewport_offset();
+
+      horizontal_scroll_base::on_change_viewport_offset(pgraphics);
+
+      vertical_scroll_base::on_change_viewport_offset(pgraphics);
+
+      ::user::interaction::on_change_viewport_offset(pgraphics);
+
    }
 
 
    bool scroll_base::validate_viewport_offset(point & point)
    {
 
-      bool xValidated = scroll_x_base::validate_viewport_offset(point);
+      bool xValidated = horizontal_scroll_base::validate_viewport_offset(point);
 
-      bool yValidated = scroll_y_base::validate_viewport_offset(point);
+      bool yValidated = vertical_scroll_base::validate_viewport_offset(point);
 
       bool iValidated = ::user::interaction::validate_viewport_offset(point);
 
@@ -756,9 +761,9 @@ namespace user
    void scroll_base::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
    {
 
-      scroll_x_base::layout_scroll_bar(pgraphics);
+      horizontal_scroll_base::layout_scroll_bar(pgraphics);
 
-      scroll_y_base::layout_scroll_bar(pgraphics);
+      vertical_scroll_base::layout_scroll_bar(pgraphics);
 
    }
 
@@ -766,9 +771,9 @@ namespace user
    void scroll_base::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
    {
 
-      m_scrolldataHorz.m_bScroll = false;
+      m_scrolldataHorizontal.m_bScroll = false;
 
-      m_scrolldataVert.m_bScroll = false;
+      m_scrolldataVertical.m_bScroll = false;
 
       auto sizeTotal = get_total_size();
 
@@ -800,12 +805,12 @@ namespace user
       if (iTotalWidth > iClientWidth)
       {
 
-         m_scrolldataHorz.m_bScroll = true;
+         m_scrolldataHorizontal.m_bScroll = true;
 
          if (iTotalHeight > iScrollHeight)
          {
 
-            m_scrolldataVert.m_bScroll = true;
+            m_scrolldataVertical.m_bScroll = true;
 
          }
 
@@ -813,22 +818,22 @@ namespace user
       else if (iTotalHeight > iClientHeight)
       {
 
-         m_scrolldataVert.m_bScroll = true;
+         m_scrolldataVertical.m_bScroll = true;
 
          if (iTotalWidth > iscrollWidth)
          {
 
-            m_scrolldataHorz.m_bScroll = true;
+            m_scrolldataHorizontal.m_bScroll = true;
 
          }
 
       }
 
-      m_scrolldataHorz.m_bScroll = m_scrolldataHorz.m_bScrollEnable && m_scrolldataHorz.m_bScroll;
+      m_scrolldataHorizontal.m_bScroll = m_scrolldataHorizontal.m_bScrollEnable && m_scrolldataHorizontal.m_bScroll;
 
-      m_scrolldataVert.m_bScroll = m_scrolldataVert.m_bScrollEnable && m_scrolldataVert.m_bScroll;
+      m_scrolldataVertical.m_bScroll = m_scrolldataVertical.m_bScrollEnable && m_scrolldataVertical.m_bScroll;
 
-      if (!m_scrolldataHorz.m_bScroll)
+      if (!m_scrolldataHorizontal.m_bScroll)
       {
 
          m_pointScroll.x = 0;
@@ -836,7 +841,7 @@ namespace user
       }
 
 
-      if (!m_scrolldataVert.m_bScroll)
+      if (!m_scrolldataVertical.m_bScroll)
       {
 
          m_pointScroll.y = 0;
@@ -848,16 +853,16 @@ namespace user
 
       get_client_rect(rectScroll);
 
-      m_scrolldataHorz.m_iPage = rectScroll.width();
+      m_scrolldataHorizontal.m_iPage = rectScroll.width();
 
-      m_scrolldataVert.m_iPage = rectScroll.height();
+      m_scrolldataVertical.m_iPage = rectScroll.height();
 
       if (validate_viewport_offset(m_pointScroll))
       {
 
          layout_scroll_bar(pgraphics);
 
-         on_change_viewport_offset();
+         on_change_viewport_offset(pgraphics);
 
       }
       else
@@ -870,17 +875,17 @@ namespace user
    }
 
 
-   void scroll_x_base::send_xscroll_message(int nSBCode)
+   void horizontal_scroll_base::send_xscroll_message(int nSBCode)
    {
 
       auto pscroll = __new(::message::scroll);
 
       pscroll->m_nSBCode = nSBCode;
 
-      if (m_pscrollbarHorz.is_set())
+      if (m_pscrollbarHorizontal.is_set())
       {
 
-         pscroll->m_nPos = m_pscrollbarHorz->m_scrollinfo.nPos;
+         pscroll->m_nPos = m_pscrollbarHorizontal->m_scrollinfo.nPos;
 
       }
       else
@@ -897,26 +902,35 @@ namespace user
    }
 
 
-   void scroll_x_base::create_x_scroll_bar(const ::rect & rect)
+   bool horizontal_scroll_base::create_horizontal_scroll_bar()
    {
 
-      if (m_pscrollbarHorz != nullptr)
-         return;
-
-      auto pbar = __create<scroll_bar>();
-
-      if (!pbar->create_window(::orientation_horizontal, WS_CHILD | WS_VISIBLE, this, 7000 + 1))
+      if (m_pscrollbarHorizontal)
       {
-         delete pbar;
-         return;
+
+         return true;
+
       }
 
-      m_pscrollbarHorz = pbar;
+      auto pbar = __create < scroll_bar > ();
+
+      pbar->m_eorientation = ::orientation_horizontal;
+
+      if (!pbar->create_child(this))
+      {
+
+         return false;
+
+      }
+
+      m_pscrollbarHorizontal = pbar;
+
+      return true;
 
    }
 
 
-   void scroll_x_base::scroll_left_line()
+   void horizontal_scroll_base::scroll_left_line()
    {
 
       send_xscroll_message(SB_LINELEFT);
@@ -924,7 +938,7 @@ namespace user
    }
 
 
-   void scroll_x_base::scroll_right_line()
+   void horizontal_scroll_base::scroll_right_line()
    {
 
       send_xscroll_message(SB_LINERIGHT);
@@ -932,7 +946,7 @@ namespace user
    }
 
 
-   void scroll_x_base::scroll_left_page()
+   void horizontal_scroll_base::scroll_left_page()
    {
 
       send_xscroll_message(SB_PAGELEFT);
@@ -940,7 +954,7 @@ namespace user
    }
 
 
-   void scroll_x_base::scroll_right_page()
+   void horizontal_scroll_base::scroll_right_page()
    {
 
       send_xscroll_message(SB_PAGERIGHT);
@@ -948,25 +962,30 @@ namespace user
    }
 
 
-   void scroll_x_base::scroll_horz(int nPos)
+   void horizontal_scroll_base::scroll_horz(int nPos)
    {
 
-      set_viewport_offset_x(nPos);
+      queue_graphics_call([this, nPos](::draw2d::graphics_pointer & pgraphics)
+         {
+
+            set_viewport_offset_x(pgraphics, nPos);
+
+         });
 
    }
 
 
-   void scroll_y_base::send_yscroll_message(int nSBCode)
+   void vertical_scroll_base::send_yscroll_message(int nSBCode)
    {
 
       auto pscroll = __new(::message::scroll);
 
       pscroll->m_nSBCode = nSBCode;
 
-      if (m_pscrollbarVert.is_set())
+      if (m_pscrollbarVertical.is_set())
       {
 
-         pscroll->m_nPos = m_pscrollbarVert->m_scrollinfo.nPos;
+         pscroll->m_nPos = m_pscrollbarVertical->m_scrollinfo.nPos;
 
       }
       else
@@ -983,26 +1002,35 @@ namespace user
    }
 
 
-   void scroll_y_base::create_y_scroll_bar(const ::rect & rect)
+   bool vertical_scroll_base::create_vertical_scroll_bar()
    {
 
-      if (m_pscrollbarVert != nullptr)
-         return;
-
-      auto pbar = __create< scroll_bar >();
-
-      if (!pbar->create_window(::orientation_vertical, WS_CHILD | WS_VISIBLE, this, 7002))
+      if (m_pscrollbarVertical != nullptr)
       {
-         delete pbar;
-         return;
+
+         return false;
+
       }
 
-      m_pscrollbarVert = pbar;
+      auto pbar = __create < scroll_bar > ();
+
+      pbar->m_eorientation = ::orientation_vertical;
+
+      if (!pbar->create_child(this))
+      {
+         
+         return false;
+
+      }
+
+      m_pscrollbarVertical = pbar;
+
+      return true;
 
    }
 
 
-   void scroll_y_base::scroll_down_line()
+   void vertical_scroll_base::scroll_down_line()
    {
 
       send_yscroll_message(SB_LINEDOWN);
@@ -1010,7 +1038,7 @@ namespace user
    }
 
 
-   void scroll_y_base::scroll_up_line()
+   void vertical_scroll_base::scroll_up_line()
    {
 
       send_yscroll_message(SB_LINEUP);
@@ -1018,7 +1046,7 @@ namespace user
    }
 
 
-   void scroll_y_base::scroll_up_page()
+   void vertical_scroll_base::scroll_up_page()
    {
 
       send_yscroll_message(SB_PAGEUP);
@@ -1026,7 +1054,7 @@ namespace user
    }
 
 
-   void scroll_y_base::scroll_down_page()
+   void vertical_scroll_base::scroll_down_page()
    {
 
       send_yscroll_message(SB_PAGEDOWN);
@@ -1034,12 +1062,18 @@ namespace user
    }
 
 
-   void scroll_y_base::scroll_vert(int nPos)
+   void vertical_scroll_base::scroll_vert(int nPos)
    {
 
-      set_viewport_offset_y(nPos);
+      queue_graphics_call([this, nPos](::draw2d::graphics_pointer & pgraphics)
+         {
+
+            set_viewport_offset_y(pgraphics, nPos);
+
+         });
 
    }
+
 
    bool scroll_base::GetActiveClientRect(RECT32 * prect)
    {
@@ -1050,9 +1084,9 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      prect->right = (::i32) (prect->left + min(::width(prect), sizeTotal.cx - m_scrolldataHorz.m_iPage - pointOffset.x));
+      prect->right = (::i32) (prect->left + min(::width(prect), sizeTotal.cx - m_scrolldataHorizontal.m_iPage - pointOffset.x));
 
-      prect->bottom = (::i32) (prect->top + min(::height(prect), sizeTotal.cy - m_scrolldataVert.m_iPage - pointOffset.y));
+      prect->bottom = (::i32) (prect->top + min(::height(prect), sizeTotal.cy - m_scrolldataVertical.m_iPage - pointOffset.y));
 
       return true;
 
@@ -1118,10 +1152,10 @@ namespace user
    void scroll_base::defer_draw_scroll_gap(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_scrolldataHorz.m_bScrollEnable && m_scrolldataHorz.m_bScroll
-            && m_pscrollbarHorz.is_set() && m_pscrollbarHorz->m_pimpl.is_set()
-            && m_scrolldataVert.m_bScrollEnable && m_scrolldataVert.m_bScroll
-            && m_pscrollbarVert.is_set() && m_pscrollbarVert->m_pimpl.is_set())
+      if (m_scrolldataHorizontal.m_bScrollEnable && m_scrolldataHorizontal.m_bScroll
+            && m_pscrollbarHorizontal.is_set() && m_pscrollbarHorizontal->m_pimpl.is_set()
+            && m_scrolldataVertical.m_bScrollEnable && m_scrolldataVertical.m_bScroll
+            && m_pscrollbarVertical.is_set() && m_pscrollbarVertical->m_pimpl.is_set())
       {
 
          ::rect rectClient;
@@ -1132,8 +1166,8 @@ namespace user
 
          rect.top = rectClient.bottom;
          rect.left = rectClient.right;
-         rect.right = (::i32) (rect.left + m_pscrollbarVert->layout().design().size().cx);
-         rect.bottom = (::i32) (rect.top + m_pscrollbarHorz->layout().design().size().cy);
+         rect.right = (::i32) (rect.left + m_pscrollbarVertical->layout().design().size().cx);
+         rect.bottom = (::i32) (rect.top + m_pscrollbarHorizontal->layout().design().size().cy);
 
          pgraphics->fill_rect(rect, ARGB(127, 127, 127, 127));
 

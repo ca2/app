@@ -1,7 +1,7 @@
 #pragma once
 
 
-template < class VALUE, class ARG_VALUE = const VALUE &  >
+template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type  >
 using strid_map = id_map < VALUE,ARG_VALUE > ;
 
 template < class T >

@@ -13,7 +13,7 @@ namespace app_shader
 
       m_iShader = 0;
 
-      value(FONTSEL_IMPACT) = true;
+      payload(FONTSEL_IMPACT) = true;
 
       m_flagNonClient.remove(non_client_background);
 
@@ -54,7 +54,7 @@ namespace app_shader
    void window::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create,pcreate,pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
 
@@ -71,7 +71,7 @@ namespace app_shader
 
       ModifyStyleEx(0, WS_EX_LAYERED);
 
-      GetTopLevel()->set_prodevian();
+      get_top_level()->set_prodevian();
 
       update_shader();
 
@@ -87,7 +87,7 @@ namespace app_shader
    void window::_001OnKeyDown(::message::message* pmessage)
    {
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       if (pkey->m_ekey == ::user::key_s)
       {

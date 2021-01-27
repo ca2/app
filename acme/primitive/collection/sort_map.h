@@ -1479,7 +1479,7 @@
 //}
 //
 //
-//template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ::comparison::less < string > >
+//template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type, class COMPARE = ::comparison::less < string > >
 //class sort_string_map :
 //   virtual public sort_attrib_map < sort_map < string, const string &, VALUE, ARG_VALUE, COMPARE > >
 //{
@@ -1522,7 +1522,7 @@
 //
 //}
 //
-//template < class VALUE, class ARG_VALUE = const VALUE & >
+//template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type >
 //class sort_strid_map :
 //   virtual public sort_attrib_map < sort_map < id, const id &, VALUE, ARG_VALUE > >
 //{
@@ -1564,7 +1564,7 @@
 //
 //}
 //
-//template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ::comparison::binary < i32 > >
+//template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type, class COMPARE = ::comparison::binary < i32 > >
 //class sort_int_map :
 //   virtual public sort_attrib_map < sort_map < i32, i32, VALUE, ARG_VALUE, COMPARE > >
 //{

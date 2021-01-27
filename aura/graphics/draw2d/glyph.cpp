@@ -342,7 +342,7 @@ namespace draw2d
    *  FUNCTION   : DrawT2Outline
    *
    *  PURPOSE    : Decode the GGO_NATIVE outline, create a sequence of Beziers
-   *               for each contour, draw with PolyBezier.  color and relative
+   *               for each contour, draw with poly_bezier.  color and relative
    *               positioning provided by caller. The coordinates of hDC are
    *               assumed to have MM_TEXT orientation.
    *
@@ -400,7 +400,7 @@ namespace draw2d
             // All other points are continuous from the "last"
             // point of the contour. Thus the start point the next
             // bezier is always point[cTotal-1] - the last point of the
-            // previous bezier. See PolyBezier.
+            // previous bezier. See poly_bezier.
             pointset.add(
             IntFromFixed(pHeader->pfxStart.x),
 
@@ -493,7 +493,7 @@ namespace draw2d
 
             // draw the contour
 
-            //PolyBezier( hDC, point, cTotal );
+            //poly_bezier( hDC, point, cTotal );
             //pPoints->m_dwCount = cTotal;
             m_pointsets.add(pointset);
          }
@@ -569,7 +569,7 @@ namespace draw2d
       UNREFERENCED_PARAMETER(ppointOffset);
 
 
-      //System.draw2d().api().DrawAndFillBeziers(pgraphics, &m_pointsets, dRateX, ppointOffset);
+      //System.draw2d().api().draw_and_fill_beziers(pgraphics, &m_pointsets, dRateX, ppointOffset);
 
 
    }

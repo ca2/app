@@ -134,14 +134,14 @@ namespace filemanager
       }
       else if (psubject->id() == FILTER_ID)
       {
-         /*if(psubject->value(id_filter).is_empty())
+         /*if(psubject->payload(id_filter).is_empty())
          {
          FilterClose();
          }
          else
          {
          FilterBegin();
-         Filter1(psubject->value(id_filter));
+         Filter1(psubject->payload(id_filter));
          FilterApply();
          }*/
       }
@@ -225,7 +225,7 @@ namespace filemanager
             if (filemanager_document()->fs_data()->file_exists(strPath))
             {
 
-               auto pfuture = __process([this, strPath](const ::payload& payload)
+               auto pfuture = __process([this, strPath](const ::payload & payload)
                   {
 
                      if (payload == "yes")
@@ -273,7 +273,9 @@ namespace filemanager
 
       //auto pupdate = new_update();
 
-      if (filemanager_data()->m_pdocumentTopic->on_filemanager_save(filemanager_document(), path))
+      auto pdocumentTopic = filemanager_data()->m_pdocumentTopic;
+
+      if (pdocumentTopic->on_filemanager_save(filemanager_document(), path))
       {
 
          //psubject->id() = id_topic_saved;
@@ -333,10 +335,10 @@ namespace filemanager
          if (psubject->id() == id_topic_saved)
          {
 
-            if (GetTopLevelFrame()->m_bModal)
+            if (top_level_frame()->m_bModal)
             {
 
-               GetTopLevelFrame()->EndModalLoop("yes");
+               top_level_frame()->EndModalLoop("yes");
 
             }
 
@@ -344,10 +346,10 @@ namespace filemanager
          else if (psubject->id() == id_topic_save_failed)
          {
 
-            if (GetTopLevelFrame()->m_bModal)
+            if (top_level_frame()->m_bModal)
             {
 
-               GetTopLevelFrame()->EndModalLoop("no");
+               top_level_frame()->EndModalLoop("no");
 
             }
 
@@ -370,14 +372,14 @@ namespace filemanager
          }
          else if (psubject->id() == id_filter)
          {
-            /*if(psubject->value(id_filter).is_empty())
+            /*if(psubject->payload(id_filter).is_empty())
             {
             FilterClose();
             }
             else
             {
             FilterBegin();
-            Filter1(psubject->value(id_filter));
+            Filter1(psubject->payload(id_filter));
             FilterApply();
             }*/
          }

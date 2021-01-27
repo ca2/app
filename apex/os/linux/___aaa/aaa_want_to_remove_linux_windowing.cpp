@@ -895,7 +895,7 @@ oswindow get_window(oswindow windowParam, int iParentHood)
    if(iParentHood == GW_HWNDFIRST || iParentHood == GW_HWNDLAST || iParentHood == GW_HWNDNEXT || iParentHood == GW_HWNDPREV)
    {
 
-      window = ::GetParent(window);
+      window = ::get_parent(window);
 
       if(window == nullptr)
       {
@@ -3260,7 +3260,7 @@ namespace user
 
          sp(::user::interaction) pinteraction = m_puserinteraction;
 
-         while(pinteraction != nullptr && pinteraction->GetParent() != nullptr)
+         while(pinteraction != nullptr && pinteraction->get_parent() != nullptr)
          {
 
             try
@@ -3286,7 +3286,7 @@ namespace user
             try
             {
 
-               pinteraction = pinteraction->GetParent();
+               pinteraction = pinteraction->get_parent();
 
             }
             catch(...)

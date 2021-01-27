@@ -24,8 +24,7 @@ public:
    {
    public:
 
-      u32          m_uiTimeout;
-      u32          m_uiLsTimeout;
+      ::millis          m_millisLast;
 
    };
 
@@ -40,7 +39,7 @@ public:
 
 
 
-   filepathmap(dir_listing)     m_map;
+   file_path_map < dir_listing > m_map;
 
 
    //file_path_map < u32 >    m_mapdirTimeout;
@@ -79,7 +78,7 @@ public:
    virtual file_result get_file(const ::file::path & path, const ::file::e_open & eopen) override;
 
    virtual bool file_exists(const ::file::path & pszPath) override;
-   virtual payload file_length(const ::file::path & pszPath) override;
+   virtual ::payload file_length(const ::file::path & pszPath) override;
 
    virtual bool is_zero_latency(const ::file::path & psz) override;
 

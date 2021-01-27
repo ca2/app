@@ -176,7 +176,7 @@ property_set * html_document::form_document_get_property_set()
 //}
 
 
-bool html_document::on_open_document(const payload & varFile)
+bool html_document::on_open_document(const ::payload & varFile)
 {
 
    auto phtmlform = get_typed_view < ::html_form >();
@@ -244,7 +244,7 @@ bool html_document::on_open_document(const payload & varFile)
 
    auto psubject = fork_subject(id_document_complete);
 
-   psubject->value(id_url) = varFile;
+   psubject->payload(id_url) = varFile;
 
    update_all_views(psubject);
 
@@ -284,7 +284,7 @@ void html_document::soft_reload()
 //
 //   psubject->id() = id_document_complete;
 //
-//   psubject->value(id_url) = get_file_path();
+//   psubject->payload(id_url) = get_file_path();
 //
 //   update_all_views(pupdate);
 
@@ -361,7 +361,7 @@ void html_document::on_command(::user::command * pcommand)
 }
 
 
-bool html_document::open_document(const payload & varFile)
+bool html_document::open_document(const ::payload & varFile)
 {
 
    return on_open_document(varFile) != FALSE;

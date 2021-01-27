@@ -50,6 +50,8 @@ public: // re-implementations only
 simple_toolbar::simple_toolbar()
 {
 
+   m_econtroltype = ::user::e_control_type_toolbar;
+
    m_iImageSpacing = -1;
 
    m_sizePress.set(0);
@@ -112,44 +114,44 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
 }
 
 
-bool simple_toolbar::create(::user::interaction * puiParent, u32 uStyle, id nID)
-{
+//bool simple_toolbar::create(::user::interaction * puiParent, u32 uStyle, id nID)
+//{
+//
+//   return create_toolbar(puiParent, 0, uStyle, nID);
+//
+//}
 
-   return create_toolbar(puiParent, 0, uStyle, nID);
 
-}
-
-
-bool simple_toolbar::create_toolbar(::user::interaction * puiParent, u32 dwCtrlStyle, u32 uStyle, id nID)
-{
-
-   ASSERT_VALID(puiParent);   // must have a parent
-   ASSERT(!((uStyle & CBRS_SIZE_FIXED) && (uStyle & CBRS_SIZE_DYNAMIC)));
-
-   //SetBorders(rectBorders);
-
-   // save the style
-   m_dwStyle = (uStyle & CBRS_ALL);
-   if (nID == __IDW_TOOLBAR)
-      m_dwStyle |= CBRS_HIDE_INPLACE;
-
-   uStyle &= ~CBRS_ALL;
-   uStyle |= CCS_NOPARENTALIGN | CCS_NOMOVEY | CCS_NODIVIDER | CCS_NORESIZE;
-   uStyle |= dwCtrlStyle & 0xffff;
-   m_dwCtrlStyle = dwCtrlStyle & (0xffff0000 | TBSTYLE_FLAT);
-
-   if (!::user::interaction::create_window(nullptr, nullptr, uStyle, puiParent, nID))
-   {
-
-      return FALSE;
-
-   }
-
-   SetSizes(m_sizeButton, m_sizeImage);
-
-   return true;
-
-}
+//bool simple_toolbar::create_toolbar(::user::interaction * puiParent, u32 dwCtrlStyle, u32 uStyle, id nID)
+//{
+//
+//   ASSERT_VALID(puiParent);   // must have a parent
+//   ASSERT(!((uStyle & CBRS_SIZE_FIXED) && (uStyle & CBRS_SIZE_DYNAMIC)));
+//
+//   //SetBorders(rectBorders);
+//
+//   // save the style
+//   m_dwStyle = (uStyle & CBRS_ALL);
+//   if (nID == __IDW_TOOLBAR)
+//      m_dwStyle |= CBRS_HIDE_INPLACE;
+//
+//   uStyle &= ~CBRS_ALL;
+//   uStyle |= CCS_NOPARENTALIGN | CCS_NOMOVEY | CCS_NODIVIDER | CCS_NORESIZE;
+//   uStyle |= dwCtrlStyle & 0xffff;
+//   m_dwCtrlStyle = dwCtrlStyle & (0xffff0000 | TBSTYLE_FLAT);
+//
+//   if (!::user::interaction::create_window(nullptr, nullptr, uStyle, puiParent, nID))
+//   {
+//
+//      return FALSE;
+//
+//   }
+//
+//   SetSizes(m_sizeButton, m_sizeImage);
+//
+//   return true;
+//
+//}
 
 
 size simple_toolbar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz)
@@ -390,9 +392,13 @@ void simple_toolbar::_001OnCreate(::message::message * pmessage)
 {
 
    if (pmessage->previous())
+   {
+
       return;
+
+   }
    
-   descriptor().m_econtroltype = ::user::e_control_type_toolbar;
+   //descriptor().m_econtroltype = ::user::e_control_type_toolbar;
 
    m_pimageDraft = create_image({20,  20 });
 
@@ -1224,7 +1230,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //void simple_toolbar::_001OnMouseMove(::message::message * pmessage)
 //{
 //
-//   SCAST_PTR(::message::mouse, pmouse, pmessage);
+//   __pointer(::message::mouse) pmouse(pmessage);
 //
 //   ::point point = pmouse->m_point;
 //
@@ -1260,7 +1266,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //void simple_toolbar::_001OnLButtonDown(::message::message * pmessage)
 //{
 //
-//   SCAST_PTR(::message::mouse, pmouse, pmessage);
+//   __pointer(::message::mouse) pmouse(pmessage);
 //
 //   auto point = screen_to_client(pmouse->m_point);
 //
@@ -1285,7 +1291,7 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //void simple_toolbar::_001OnLButtonUp(::message::message * pmessage)
 //{
 //
-//   SCAST_PTR(::message::mouse, pmouse, pmessage);
+//   __pointer(::message::mouse) pmouse(pmessage);
 //
 //   auto point = pmouse->m_point;
 //
@@ -1315,12 +1321,12 @@ void simple_toolbar::on_layout(::draw2d::graphics_pointer & pgraphics)
 //
 //      }
 //
-//      __pointer(::user::frame_window) pTarget = GetOwner();
+//      __pointer(::user::frame_window) pTarget = get_owner();
 //
 //      if (pTarget == nullptr)
 //      {
 //
-//         pTarget = GetParentFrame();
+//         pTarget = get_parent_frame();
 //
 //      }
 //
@@ -1470,7 +1476,7 @@ void simple_toolbar::_001OnTimer(::timer * ptimer)
 bool simple_toolbar::on_click(const ::user::item & item)
 {
 
-   __pointer(::user::interaction) pwnd = GetOwner();
+   __pointer(::user::interaction) pwnd = get_owner();
 
    if (!item.is_set())
    {
@@ -1756,7 +1762,7 @@ void simple_toolbar::_001OnNcCalcSize(::message::message * pmessage)
 
 #if defined(WINDOWS_DESKTOP) //|| defined(LINUX)
 
-   SCAST_PTR(::message::nc_calc_size, pnccalcsize, pmessage);
+   __pointer(::message::nc_calc_size) pnccalcsize(pmessage);
 
    // calculate border space (will add to top/bottom, subtract from right/bottom)
    ::rect rect;
@@ -1788,7 +1794,7 @@ void simple_toolbar::_001OnNcCalcSize(::message::message * pmessage)
 //void simple_toolbar::_001OnNcHitTest(::message::message * pmessage)
 //{
 //
-//   SCAST_PTR(::message::nchittest, pnchittest, pmessage);
+//   __pointer(::message::nchittest) pnchittest(pmessage);
 //
 //   pnchittest->set_lresult(HTCLIENT);
 //
@@ -2469,7 +2475,7 @@ size simple_toolbar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, in
 //void simple_toolbar::_001OnMouseLeave(::message::message * pmessage)
 //{
 //
-//   SCAST_PTR(::message::base, pbase, pmessage);
+//   __pointer(::message::base) pbase(pmessage);
 //
 //   m_itemHover = ::user::e_element_none;
 //

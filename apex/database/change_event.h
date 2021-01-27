@@ -19,20 +19,20 @@ namespace database
       key                     m_datakey;
       ::promise::subject *    m_pupdate;
       bool                    m_bOk;
-      payload *               m_pvar;
+      ::payload *               m_pvar;
 
 
       change_event();
-      change_event(payload & payload);
+      change_event(::payload & payload);
 
 
-      bool _data_get(payload & payload);
+      bool _data_get(::payload & payload);
 
 
-      inline payload data_get()
+      inline ::payload data_get()
       {
 
-         payload payload;
+         ::payload payload;
 
          if (!_data_get(payload))
          {

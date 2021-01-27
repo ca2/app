@@ -966,7 +966,7 @@ bool color::parse_color(const char * psz)
          if (::str::ends_eat_ci(str, ")"))
          {
             str.trim();
-            payload a;
+            ::payload a;
             a.stra().explode(",", str);
             int_array & ia = a.inta();
             if (ia.get_count() == 3)

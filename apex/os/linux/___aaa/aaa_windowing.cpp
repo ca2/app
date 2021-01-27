@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_linux.h"
-#include "apex/const/id.h"
+#include "acme/id.h"
 #include "apex/const/message.h"
 #include "third/sn/sn.h"
 #include <fcntl.h> // library for fcntl function
@@ -393,7 +393,7 @@ void mapped_net_state_raw(bool add, Display * d, Window w, int iScreen, Atom sta
 #define _NET_WM_STATE_ADD           1    /* add/set property */
 #define _NET_WM_STATE_TOGGLE        2    /* toggle property  */
 
-   xxf_zero(xclient);
+   __zero(xclient);
    xclient.type = ClientMessage;
    xclient.window = w;
    xclient.message_type = XInternAtom(d, "_NET_WM_STATE", False);
@@ -422,7 +422,7 @@ void unmapped_net_state_raw(Display * d, Window w, ...)
 
    va_start(argp, w);
 
-   xxf_zero(xevent);
+   __zero(xevent);
 
    array < Atom > atoms;
 
@@ -1233,7 +1233,7 @@ oswindow set_active_window(oswindow window)
 
       XEvent xev;
 
-      xxf_zero(xev);
+      __zero(xev);
 
       Window windowRoot = window->root_window_raw();
 
@@ -1365,7 +1365,7 @@ oswindow get_window(oswindow windowParam, int iParentHood)
    if(iParentHood == GW_HWNDFIRST || iParentHood == GW_HWNDLAST || iParentHood == GW_HWNDNEXT || iParentHood == GW_HWNDPREV)
    {
 
-      window = ::GetParent(window);
+      window = ::get_parent(window);
 
       if(window == nullptr)
       {
@@ -1873,7 +1873,7 @@ void wm_add_remove_state_mapped_raw(oswindow w, e_net_wm_state estate, bool bSet
 
    XClientMessageEvent xclient;
 
-   xxf_zero(xclient);
+   __zero(xclient);
 
    xclient.type            = ClientMessage;
    xclient.window          = window;
@@ -2856,25 +2856,25 @@ void x11_thread(osdisplay_data * pdisplaydata)
 
    g_pdisplayX11 = pdisplay;
 
-   {
-
-      sync_lock sl(x11_mutex());
-
-      xdisplay d(pdisplay);
-
-      g_atomKickIdle = XInternAtom(pdisplay, "__WM_KICKIDLE", False);
-
-      g_windowX11Client = XCreateSimpleWindow(pdisplay, DefaultRootWindow(pdisplay), 10, 10, 10, 10, 0, 0, 0);
-
-      XSelectInput(pdisplay, g_windowX11Client, StructureNotifyMask);
-
-      g_oswindowDesktop = oswindow_get(pdisplay, DefaultRootWindow(pdisplay));
-
-      g_oswindowDesktop->m_pimpl = nullptr;
-
-      XSelectInput(pdisplay, g_oswindowDesktop->window(), StructureNotifyMask | PropertyChangeMask);
-
-   }
+//   {
+//
+//      sync_lock sl(x11_mutex());
+//
+//      xdisplay d(pdisplay);
+//
+//      g_atomKickIdle = XInternAtom(pdisplay, "__WM_KICKIDLE", False);
+//
+//      g_windowX11Client = XCreateSimpleWindow(pdisplay, DefaultRootWindow(pdisplay), 10, 10, 10, 10, 0, 0, 0);
+//
+//      XSelectInput(pdisplay, g_windowX11Client, StructureNotifyMask);
+//
+//      g_oswindowDesktop = oswindow_get(pdisplay, DefaultRootWindow(pdisplay));
+//
+//      g_oswindowDesktop->m_pimpl = nullptr;
+//
+//      XSelectInput(pdisplay, g_oswindowDesktop->window(), StructureNotifyMask | PropertyChangeMask);
+//
+//   }
 
    XEvent e = {};
 
@@ -3099,11 +3099,13 @@ extern bool b_prevent_xdisplay_lock_log;
 //    x11_
 
 #if !defined(RASPBIAN)
-bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e, XGenericEventCookie *cookie)
+bool x11_process_event(osdisplay_data * pdisplaydata, XEvent * pevent, XGenericEventCookie *cookie)
 #else
 bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 #endif
 {
+
+   XEvent & e = *pevent;
 
    //sync_lock sl(x11_mutex());
 
@@ -3111,7 +3113,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
    MESSAGE msg;
 
-   xxf_zero(msg);
+   __zero(msg);
 
    bool bRet = false;
 
@@ -3158,9 +3160,9 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
             psubject->id() = eid;
 
-            pupdate->value("return") = is_return_key((XIRawEvent*)cookie->data);
+            pupdate->payload("return") = is_return_key((XIRawEvent*)cookie->data);
 
-            pupdate->value("space") = is_space_key((XIRawEvent*)cookie->data);
+            pupdate->payload("space") = is_space_key((XIRawEvent*)cookie->data);
 
             for(auto & p : *g_pobjectaExtendedEventListener)
             {
@@ -3764,11 +3766,11 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                if(xim)
                {
 
-                  ::get_task()->value("xim") = (iptr) xim;
+                  ::get_task()->payload("xim") = (iptr) xim;
 
                   XIMStyles * pximstyles = nullptr;
 
-                  xxf_zero_pointer(pximstyles);
+                  __zero(pximstyles);
 
                   XGetIMValues (xim, XNQueryInputStyle, &pximstyles, NULL, NULL);
 
@@ -3800,7 +3802,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                      if(best_style != 0)
                      {
 
-                        ::get_task()->set("xim_flag", ::get_task()->value("xim_flag").i32() | 2);
+                        ::get_task()->set("xim_flag", ::get_task()->payload("xim_flag").i32() | 2);
 
                      }
 
@@ -4112,7 +4114,7 @@ namespace user
 
          __pointer(::user::interaction) pinteraction = m_puserinteraction;
 
-         while(pinteraction != nullptr && pinteraction->GetParent() != nullptr)
+         while(pinteraction != nullptr && pinteraction->get_parent() != nullptr)
          {
 
             try
@@ -4138,7 +4140,7 @@ namespace user
             try
             {
 
-               pinteraction = pinteraction->GetParent();
+               pinteraction = pinteraction->get_parent();
 
             }
             catch(...)
@@ -5071,10 +5073,10 @@ void x11_store_name(oswindow oswindow, const char * pszName)
 //
 //   auto point = rect.top_left();
 //
-//   millis tickLastMoveDiff = pinteraction->value("tickLastMoveDiff").i64();
-//   millis tickLastSizeDiff = pinteraction->value("tickLastSizeDiff").i64();
-//   bool bMoveDiff = pinteraction->value("bMoveDiff").get_bool();
-//   bool bSizeDiff = pinteraction->value("bsizeDiff").get_bool();
+//   millis tickLastMoveDiff = pinteraction->payload("tickLastMoveDiff").i64();
+//   millis tickLastSizeDiff = pinteraction->payload("tickLastSizeDiff").i64();
+//   bool bMoveDiff = pinteraction->payload("bMoveDiff").get_bool();
+//   bool bSizeDiff = pinteraction->payload("bsizeDiff").get_bool();
 //
 //   if(!bMoveDiff)
 //   {
@@ -5159,10 +5161,10 @@ void x11_store_name(oswindow oswindow, const char * pszName)
 //
 //   }
 //
-//   pinteraction->value("bMoveDiff") = bMoveDiff;
-//   pinteraction->value("bsizeDiff") = bSizeDiff;
-//   pinteraction->value("tickLastMoveDiff") = __i64(tickLastMoveDiff);
-//   pinteraction->value("tickLastSizeDiff") = __i64(tickLastSizeDiff);
+//   pinteraction->payload("bMoveDiff") = bMoveDiff;
+//   pinteraction->payload("bsizeDiff") = bSizeDiff;
+//   pinteraction->payload("tickLastMoveDiff") = __i64(tickLastMoveDiff);
+//   pinteraction->payload("tickLastSizeDiff") = __i64(tickLastSizeDiff);
 //
 //}
 

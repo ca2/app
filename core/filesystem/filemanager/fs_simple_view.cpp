@@ -125,11 +125,11 @@ namespace filemanager
          void view::on_request_response(::message::message * pmessage)
          {
 
-            SCAST_PTR(::http::message, psignal, pmessage);
+            __pointer(::http::message) psignal(pmessage);
 
             string strResponse;
 
-            strResponse = psignal->value("get_memory");
+            strResponse = psignal->payload("get_memory");
 
             m_ptree->parse(strResponse);
 
@@ -150,7 +150,7 @@ namespace filemanager
 
                auto phttpmessage = __new(::http::message);
 
-               phttpmessage->value("request") = "";
+               phttpmessage->payload("request") = "";
 
                phttpmessage->m_strUrl.Format("http://file.ca2.cc/ifs/ls?id=%I64d", iFolder);
 

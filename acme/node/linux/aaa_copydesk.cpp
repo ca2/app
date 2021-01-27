@@ -209,7 +209,7 @@ void clipboard_get_func(GtkClipboard * clipboard, GtkSelectionData * selection_d
 
    clipboard_data * pdata = (clipboard_data *) user_data;
 
-   //payload temp = _action + "\n" + _source; _action "cut"/"copy"
+   //::payload temp = _action + "\n" + _source; _action "cut"/"copy"
 
    string strAction;
 
@@ -560,20 +560,20 @@ namespace linux
    bool copydesk::_has_plain_text()
    {
 
-      __pointer(ovar) payload(__new(ovar));
+      __pointer(ovar) ::payload(__new(ovar));
 
-      payload->m_var = false;
+      ::payload->m_var = false;
 
       gdk_sync(seconds(5), [=]()
       {
 
          GtkClipboard* clipboard = gtk_clipboard_get(GDK_SELECTION_CLIPBOARD);
 
-         payload->m_var = gtk_clipboard_wait_is_text_available (clipboard);
+         ::payload->m_var = gtk_clipboard_wait_is_text_available (clipboard);
 
       });
 
-      return payload->m_var.operator bool();
+      return ::payload->m_var.operator bool();
 
    }
 

@@ -57,12 +57,12 @@ namespace calculator
    // view
 
 
-   bool view::pre_create_window(::user::create_struct * pcreatestruct)
+   bool view::pre_create_window(::user::system * pusersystem)
    {
 
 
 
-      return ::user::impact::pre_create_window(pcreatestruct);
+      return ::user::impact::pre_create_window(pusersystem);
 
    }
 
@@ -151,18 +151,18 @@ namespace calculator
    void view::_001OnWavePlayerEvent(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //SCAST_PTR(::message::base, pbase, pmessage);
+      //__pointer(::message::base) pbase(pmessage);
    }
 
    void view::_001OnUpdateViewEncoding(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //SCAST_PTR(::user::command, pcommand, pmessage);
+      //__pointer(::user::command) pcommand(pmessage);
    }
    void view::_001OnViewEncoding(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //SCAST_PTR(::message::command, pcommand, pmessage);
+      //__pointer(::message::command) pcommand(pmessage);
    }
 
 
@@ -170,7 +170,7 @@ namespace calculator
    void view::_001OnSetCursor(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmouse->m_ecursor = cursor_arrow;
 

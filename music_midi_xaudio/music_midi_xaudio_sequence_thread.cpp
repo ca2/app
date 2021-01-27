@@ -73,7 +73,7 @@ namespace music
          void sequence_thread::OnMidiSequenceEvent(::message::message * pmessage)
          {
 
-            SCAST_PTR(::message::base, pbase, pmessage);
+            __pointer(::message::base) pbase(pmessage);
 
             ::music::midi::sequence::event * pevent = (::music::midi::sequence::event *) pbase->m_lparam.m_lparam;
             ::music::midi::sequence * pseq = (::music::midi::sequence *) pevent->m_psequence;
@@ -307,7 +307,7 @@ namespace music
 
          void sequence_thread::OnCommand(::message::message * pmessage)
          {
-            SCAST_PTR(::message::base, pbase, pmessage);
+            __pointer(::message::base) pbase(pmessage);
             pointer < ::music::midi::player::command > spcommand;
             spcommand = (::music::midi::player::command *) pbase->m_lparam.m_lparam;
             try

@@ -24,14 +24,14 @@ simple_scroll_bar::simple_scroll_bar() :
 
 
    //m_cr = ARGB(127,180,80,120);
-   //m_crStrong = ARGB(150, 150, 150, 150);
-   //m_crBorder = ARGB(190, 180, 180, 180);
-   //m_crLiteBorder = ARGB(184,84 + 23,84 + 23,77 + 23);
+   //m_colorStrong = ARGB(150, 150, 150, 150);
+   //m_colorBorder = ARGB(190, 180, 180, 180);
+   //m_colorLiteBorder = ARGB(184,84 + 23,84 + 23,77 + 23);
 
-   //m_crHover = ARGB(100,190,180,250);
-   //m_crHoverStrong = ARGB(130, 190, 180, 250);
-   //m_crHoverBorder = ARGB(190, 160, 150, 180);
-   //m_crHoverLiteBorder = ARGB(184,84 + 23 - 23,84 + 23,77 + 23 + 84);
+   //m_colorHover = ARGB(100,190,180,250);
+   //m_colorHoverStrong = ARGB(130, 190, 180, 250);
+   //m_colorHoverBorder = ARGB(190, 160, 150, 180);
+   //m_colorHoverLiteBorder = ARGB(184,84 + 23 - 23,84 + 23,77 + 23 + 84);
 
 }
 
@@ -54,40 +54,40 @@ void simple_scroll_bar::install_message_routing(::channel * pchannel)
 }
 
 
-bool simple_scroll_bar::create_window(const char * pszClassName, const char * pszWindowName, u32 uStyle, ::user::interaction * puiParent, const ::id & id, ::create * pcreate)
-{
+//bool simple_scroll_bar::create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle, ::user::interaction * puiParent, const ::id & id, ::create * pcreate)
+//{
+//
+//   if(!::user::interaction::create_interaction(pszClassName, pszWindowName, uStyle, puiParent, id, pcreate))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
 
-   if(!::user::interaction::create_window(pszClassName, pszWindowName, uStyle, puiParent, id, pcreate))
-   {
 
-      return false;
-
-   }
-
-   return true;
-
-}
-
-
-bool simple_scroll_bar::create_window(e_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::id id)
-{
-
-   if(!::user::scroll_bar::create_window(eorientation, uStyle, puiParent, id))
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
+//bool simple_scroll_bar::create_interaction(e_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::id id)
+//{
+//
+//   if(!::user::scroll_bar::create_interaction(eorientation, uStyle, puiParent, id))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
 
 
 void simple_scroll_bar::_001OnMouseMove(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   __pointer(::message::mouse) pmouse(pmessage);
 
    ::point point = screen_to_client(pmouse->m_point);
 
@@ -96,11 +96,18 @@ void simple_scroll_bar::_001OnMouseMove(::message::message * pmessage)
 
       point -= m_sizeTrackOffset;
 
-      auto pgraphics = create_memory_graphics();
+      queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+         {
 
-      SetTrackingPos(point, pgraphics);
+            SetTrackingPos(point, pgraphics);
 
-      send_scroll_message(SB_THUMBTRACK);
+            post_scroll_message(SB_THUMBTRACK);
+
+         });
+
+      set_need_redraw();
+
+      post_redraw();
 
       pmouse->m_lresult = 1;
 
@@ -149,7 +156,7 @@ bool simple_scroll_bar::scrollbar_action(const ::user::item & item, ::draw2d::gr
 void simple_scroll_bar::_001OnLButtonDown(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   __pointer(::message::mouse) pmouse(pmessage);
 
    m_itemCurrent = hit_test(pmouse);
 
@@ -201,7 +208,7 @@ void simple_scroll_bar::_001OnLButtonDown(::message::message * pmessage)
 void simple_scroll_bar::_001OnLButtonUp(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   __pointer(::message::mouse) pmouse(pmessage);
 
    m_itemCurrent = ::user::e_element_none;
 
@@ -239,7 +246,7 @@ void simple_scroll_bar::_001OnLButtonUp(::message::message * pmessage)
 
       }
 
-      send_scroll_message(SB_THUMBPOSITION);
+      post_scroll_message(SB_THUMBPOSITION);
 
       set_need_redraw();
 
@@ -643,7 +650,7 @@ i32 simple_scroll_bar::SetTrackingPos(const ::point & point, ::draw2d::graphics_
 
 void simple_scroll_bar::_001OnHScroll(::message::message * pmessage)
 {
-   SCAST_PTR(::message::scroll, pscroll, pmessage);
+   __pointer(::message::scroll) pscroll(pmessage);
    pscroll->m_bRet = false;
 }
 
@@ -838,11 +845,15 @@ bool simple_scroll_bar::scrollbar_lineA(::draw2d::graphics_pointer & pgraphics)
 
    if(m_eorientation == orientation_horizontal)
    {
-      send_scroll_message(SB_LINELEFT);
+      
+      post_scroll_message(SB_LINELEFT);
+
    }
    else
    {
-      send_scroll_message(SB_LINEUP);
+      
+      post_scroll_message(SB_LINEUP);
+
    }
 
    if(m_scrollinfo.nPos == m_scrollinfo.nMin)
@@ -860,22 +871,34 @@ bool simple_scroll_bar::scrollbar_lineB(::draw2d::graphics_pointer & pgraphics)
 
    nPos+=3;
 
-   if(nPos > m_scrollinfo.nMax - m_scrollinfo.nPage)
+   if (nPos > m_scrollinfo.nMax - m_scrollinfo.nPage)
+   {
+
       nPos = m_scrollinfo.nMax - m_scrollinfo.nPage;
+
+   }
 
    m_scrollinfo.nPos = nPos;
 
    if(m_eorientation == orientation_horizontal)
    {
-      send_scroll_message(SB_LINERIGHT);
+      
+      post_scroll_message(SB_LINERIGHT);
+
    }
    else
    {
-      send_scroll_message(SB_LINEDOWN);
+      
+      post_scroll_message(SB_LINEDOWN);
+
    }
 
-   if(m_scrollinfo.nPos == m_scrollinfo.nMax - m_scrollinfo.nPage)
+   if (m_scrollinfo.nPos == m_scrollinfo.nMax - m_scrollinfo.nPage)
+   {
+
       return false;
+
+   }
 
    return true;
 
@@ -896,11 +919,15 @@ bool simple_scroll_bar::scrollbar_pageA(const ::point & point, ::draw2d::graphic
 
    if(m_eorientation == orientation_horizontal)
    {
-      send_scroll_message(SB_PAGELEFT);
+      
+      post_scroll_message(SB_PAGELEFT);
+
    }
    else
    {
-      send_scroll_message(SB_PAGEUP);
+
+      post_scroll_message(SB_PAGEUP);
+
    }
 
    ::rect rectClient;
@@ -940,11 +967,15 @@ bool simple_scroll_bar::scrollbar_pageB(const ::point & point, ::draw2d::graphic
 
    if(m_eorientation == orientation_horizontal)
    {
-      send_scroll_message(SB_PAGERIGHT);
+
+      post_scroll_message(SB_PAGERIGHT);
+
    }
    else
    {
-      send_scroll_message(SB_PAGEDOWN);
+
+      post_scroll_message(SB_PAGEDOWN);
+
    }
 
    ::rect rectClient;
@@ -977,7 +1008,7 @@ bool simple_scroll_bar::scrollbar_pageB(const ::point & point, ::draw2d::graphic
 return;
 }
 
-__pointer(::user::interaction) puiParent = GetParent();
+__pointer(::user::interaction) puiParent = get_parent();
 i32 nPos = m_scrollinfo.nPos;
 nPos+=m_scrollinfo.nPage;
 if(nPos > m_scrollinfo.nMax - m_scrollinfo.nPage)
@@ -1000,13 +1031,13 @@ void simple_scroll_bar::_001OnCreate(::message::message * pmessage)
 {
 
 
-   SCAST_PTR(::message::create, pcreate, pmessage);
+   __pointer(::message::create) pcreate(pmessage);
 
 
    //if (m_puserstyle == nullptr)
    //{
 
-   //   m_puserstyle = GetTopLevel();
+   //   m_puserstyle = get_top_level();
 
    //}
 
@@ -1029,7 +1060,7 @@ void simple_scroll_bar::_001OnCreate(::message::message * pmessage)
 void simple_scroll_bar::pre_translate_message(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::base, pbase, pmessage);
+   __pointer(::message::base) pbase(pmessage);
 
    return ::user::interaction::pre_translate_message(pbase);
 
@@ -1159,9 +1190,10 @@ public:
    trw()
    {
 
-      auto pcreatestruct = __new(::user::create_struct (WS_EX_LAYERED, nullptr, "", WS_VISIBLE));
+      //auto pusersystem = __new(::user::system (WS_EX_LAYERED, nullptr, "", WS_VISIBLE));
 
-      if(create_window_ex(pcreatestruct))
+      //if(create_window_ex(pusersystem))
+      if(create_host())
       {
 
          TRACE("created trw");
@@ -1254,13 +1286,13 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 
             _001ScreenToClient(rectFocus);
             
-            m_pshapeaClip->add_item(__new(rect_shape(rectFocus)));
+            m_pshapeaClip->add_item(__new(rectd_shape(rectFocus)));
 
             m_pshapeaClip->add_item(__new(intersect_clip_shape()));
 
             i++;
 
-            pinteraction = pinteraction->GetParent();
+            pinteraction = pinteraction->get_parent();
 
          }
          
@@ -1596,7 +1628,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    pgraphics->set(penArrow);
 
-   pgraphics->Polyline(m_ptaA, 3);
+   pgraphics->polyline(m_ptaA, 3);
 
    cr = scrollbar_draw_color(pstyle, ::user::e_element_scrollbar_rectB);
 
@@ -1604,14 +1636,14 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    pgraphics->set(penArrow);
 
-   pgraphics->Polyline(m_ptaB, 3);
+   pgraphics->polyline(m_ptaB, 3);
 
 }
 
 
 void simple_scroll_bar::_001OnShowWindow(::message::message * pmessage)
 {
-   SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+   __pointer(::message::show_window) pshowwindow(pmessage);
    pshowwindow->m_bRet = false;
 
    // xxx   TwiOnShowWindow(bShow, nStatus);
@@ -1661,7 +1693,7 @@ void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgrap
 void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphics, const ::rect & rectDrawParam, const ::rect & lpcrectClip,byte uchAlpha)
 {
 
-   ::rect rectDraw(rectDrawParam);
+   ::rectd rectDraw(rectDrawParam);
 
    rectDraw.bottom--;
 
@@ -1741,7 +1773,21 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
    pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-   pgraphics->alpha_blend(rectDraw.top_left(), rectDraw.size(), m_pimageDots->g(), point((::i32)iDiv, (::i32)iDiv), m_pimageDots->get_size() - ::size((::i32)(iDiv * 2), (::i32)(iDiv * 2)), uchAlpha / 255.0);
+   auto rectDst = rectDraw;
+
+   auto pointSrc = ::pointd(iDiv, iDiv);
+
+   auto sizeSrc = m_pimageDots->get_size() - ::sized(iDiv * 2, iDiv * 2);
+
+   auto rectSrc = ::rectd(pointSrc, sizeSrc);
+
+   image_drawing imagedrawing;
+   
+   imagedrawing.set(rectDst, m_pimageDots, rectSrc);
+
+   imagedrawing.opacity(uchAlpha);
+
+   pgraphics->draw(imagedrawing);
 
 }
 

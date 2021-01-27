@@ -43,6 +43,7 @@ public:
    bool                                               m_bLastingThread;
    bool                                               m_bMessageThread;
    bool                                               m_bDedicated;
+   bool                                               m_bPreferLessGraphicsParallelization;
    bool                                               m_bThreadToolsForIncreasedFps;
    ::e_status                                          m_estatus;
    user_interaction_ptr_array *                       m_puiptraThread;
@@ -227,7 +228,7 @@ public:
    virtual ::task_pool* taskpool() override;
 
    //inline bool has_property(const ::id& id) const;
-   //inline payload command_value(const ::id& id) const;
+   //inline ::payload command_value(const ::id& id) const;
    //inline bool command_value_is_true(const ::id& id) const;
 
 

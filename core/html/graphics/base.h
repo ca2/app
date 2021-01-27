@@ -33,7 +33,7 @@ namespace html
 
       virtual type get_type() = 0;
 
-      class tag * GetParent();
+      class tag * get_parent();
 
       class tag * get_tag();
 

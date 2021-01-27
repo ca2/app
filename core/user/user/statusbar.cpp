@@ -51,43 +51,43 @@ namespace user
    }
 
 
-   bool status_bar::create_window(::user::interaction * puiParent, u32 uStyle, id strId)
-   {
+   //bool status_bar::create_window(::user::interaction * puiParent, u32 uStyle, id strId)
+   //{
 
-      return create_window_ex(puiParent, 0, uStyle, strId);
+   //   return create_window_ex(puiParent, 0, uStyle, strId);
 
-   }
+   //}
 
-   bool status_bar::create_window_ex(::user::interaction * puiParent,u32 dwCtrlStyle,u32 uStyle, id strId)
-   {
+//   bool status_bar::create_window_ex(::user::interaction * puiParent,u32 dwCtrlStyle,u32 uStyle, id strId)
+//   {
+//
+//      ASSERT_VALID(puiParent);   // must have a parent
+//
+//
+//      // save the style (some of these style bits are aura API specific)
+//      m_dwStyle = (uStyle & CBRS_ALL);
+//
+//      // translate aura API style bits to windows style bits
+//      uStyle &= ~CBRS_ALL;
+//      uStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
+//#ifdef WINDOWS_DESKTOP
+//      if (puiParent->GetStyle() & WS_THICKFRAME)
+//         uStyle |= SBARS_SIZEGRIP;
+//#endif
+//
+//      //return ::user::interaction::create_window(STATUSCLASSNAMEA, nullptr, uStyle, rect, puiParent, strId);
+//      return ::user::interaction::create_window("msctls_statusbar32",nullptr,uStyle,puiParent,strId);
+//
+//   }
 
-      ASSERT_VALID(puiParent);   // must have a parent
-
-
-      // save the style (some of these style bits are aura API specific)
-      m_dwStyle = (uStyle & CBRS_ALL);
-
-      // translate aura API style bits to windows style bits
-      uStyle &= ~CBRS_ALL;
-      uStyle |= CCS_NOPARENTALIGN|CCS_NOMOVEY|CCS_NODIVIDER|CCS_NORESIZE;
-#ifdef WINDOWS_DESKTOP
-      if (puiParent->GetStyle() & WS_THICKFRAME)
-         uStyle |= SBARS_SIZEGRIP;
-#endif
-
-      //return ::user::interaction::create_window(STATUSCLASSNAMEA, nullptr, uStyle, rect, puiParent, strId);
-      return ::user::interaction::create_window("msctls_statusbar32",nullptr,uStyle,puiParent,strId);
-
-   }
-
-   bool status_bar::pre_create_window(::user::create_struct * pcreatestruct)
+   bool status_bar::pre_create_window(::user::system * pusersystem)
    {
       // in Win4, status bars do not have a border at all, since it is
       //  provided by the client area.
       if ((m_dwStyle & (CBRS_ALIGN_ANY|CBRS_BORDER_ANY)) == CBRS_BOTTOM)
          m_dwStyle &= ~(CBRS_BORDER_ANY|CBRS_BORDER_3D);
 
-      return ::user::control_bar::pre_create_window(pcreatestruct);
+      return ::user::control_bar::pre_create_window(pusersystem);
    }
 
    bool status_bar::SetIndicators(string_array & stra)
@@ -204,7 +204,7 @@ namespace user
 //      ::user::control_bar::CalcInsideRect(rect, bHorz);
 //#ifdef WINDOWS_DESKTOP
 //      // subtract size grip if present
-//      if ((GetStyle() & SBARS_SIZEGRIP) && !GetParent()->layout().is_zoomed())
+//      if ((GetStyle() & SBARS_SIZEGRIP) && !get_parent()->layout().is_zoomed())
 //      {
 //         // get border metrics from common control
 //         i32 rgBorders[3];
@@ -533,7 +533,7 @@ namespace user
 
    void status_bar::_001OnNcHitTest(::message::message * pmessage)
    {
-      //SCAST_PTR(::message::nchittest, pnchittest, pmessage);
+      //__pointer(::message::nchittest) pnchittest(pmessage);
       //::u32 nResult = (::u32)default_window_procedure();
       //if (nResult == HTBOTTOMRIGHT)
       //{
@@ -554,7 +554,7 @@ namespace user
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      SCAST_PTR(::message::nc_calc_size, pnccalcsize, pmessage);
+//      __pointer(::message::nc_calc_size) pnccalcsize(pmessage);
 //
 //      // calculate border space (will add to top/bottom, subtract from right/bottom)
 //
@@ -659,7 +659,7 @@ namespace user
    void status_bar::_001OnWindowPosChanging(::message::message * pmessage)
    {
 #ifdef WINDOWS_DESKTOP
-      SCAST_PTR(::message::window_pos, pwindowpos, pmessage);
+      __pointer(::message::window_pos) pwindowpos(pmessage);
       // not necessary to invalidate the borders
       u32 uStyle = m_dwStyle;
       m_dwStyle &= ~(CBRS_BORDER_ANY);
@@ -673,7 +673,7 @@ namespace user
 
    void status_bar::_001OnSetText(::message::message * pmessage)
    {
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
       ASSERT_VALID(this);
       ASSERT(is_window());
 
@@ -692,7 +692,7 @@ namespace user
    void status_bar::_001OnGetText(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       ASSERT_VALID(this);
 
@@ -748,7 +748,7 @@ namespace user
 
    void status_bar::_001OnGetTextLength(::message::message * pmessage)
    {
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       ASSERT_VALID(this);
       ASSERT(is_window());
@@ -776,7 +776,7 @@ namespace user
    void status_bar::_001OnSetMinHeight(::message::message * pmessage)
    {
 
-      //SCAST_PTR(::message::base, pbase, pmessage);
+      //__pointer(::message::base) pbase(pmessage);
 
       //LRESULT lResult = default_window_procedure();
 

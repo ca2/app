@@ -16,7 +16,7 @@ namespace database
 
 
       key();
-      key(const std::initializer_list < payload > & list);
+      key(const std::initializer_list < ::payload > & list);
 
       key(string strDataKey, bool bLocalData = false)
       {

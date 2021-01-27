@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(apex CXX)
 
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
@@ -41,17 +41,17 @@ list(APPEND apex_source
    compress/zip/_.h
    compress/zip/context.cpp
    compress/zip/context.h
-   const/_const.h
-   const/charset.h
-   const/id.h
+   #const/_const.h
+   #const/charset.h
+   #const/id.h
    const/idpool.cpp
    const/idpool.h
-   const/impact.h
+   #const/impact.h
    const/method.h
-   const/status.h
-   const/status_range_authentication.h
-   const/thread.h
-   const/timer.h
+   #const/status.h
+   #const/status_range_authentication.h
+   #const/thread.h
+   #const/timer.h
    crypto/openssl/_.cpp
    crypto/openssl/_openssl.h
    crypto/openssl/crypto.cpp
@@ -485,6 +485,8 @@ list(APPEND apex_source
    platform/message_box.h
    platform/net.cpp
    platform/net.h
+   platform/node.cpp
+   platform/node.h
    platform/os_context.cpp
    platform/os_context.h
    platform/os_history.cpp
@@ -512,7 +514,6 @@ list(APPEND apex_source
    platform/str_context.h
    platform/system.cpp
    platform/system.h
-   platform/system_trace.cpp
    platform/text.cpp
    platform/thread_set.h
    ../acme/platform/trace.cpp
@@ -581,6 +582,7 @@ list(APPEND apex_source
    user/menu_shared.h
    user/menu_shared_command.h
    user/menu_shared_commnand.cpp
+   user/notify_icon_bridge.h
    user/text.cpp
    user/text.h
    version/version.config.h
@@ -602,7 +604,7 @@ list(APPEND apex_source
    library.h
    message.h
    procedure.h
-   update.h
+   #update.h
    user.h)
 
 
@@ -898,15 +900,6 @@ if (LINUX)
       os/linux/exception_engine.h
       os/linux/file.cpp
       os/linux/file.h
-      os/linux/gnome.cpp
-      os/linux/gnome.h
-      os/linux/gnome_apex_application.cpp
-      os/linux/gnome_apex_application.h
-      os/linux/gnome_direct.cpp
-      os/linux/gnome_gnome.h
-      os/linux/gnome_internal_glue.h
-      os/linux/gnome_shared.h
-      os/linux/gnu_source.cpp
       os/linux/graphics.cpp
       os/linux/graphics.h
       os/linux/graphics2.h
@@ -1342,7 +1335,7 @@ else ()
 endif ()
 
 
-add_library(apex SHARED ${apex_source})
+add_library(apex SHARED ${apex_source} )
 
 target_precompile_headers(apex PRIVATE framework.h)
 
@@ -1359,7 +1352,8 @@ elseif (LINUX)
 
    # Ubuntu libappindicator3-dev
 
-   pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 libcrypto libssl appindicator3-0.1)
+   #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 libcrypto libssl appindicator3-0.1)
+   pkg_check_modules(PKGCONFIG libcrypto libssl)
    #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
    target_compile_options(apex PRIVATE -fpermissive)
    target_compile_options(apex PRIVATE ${PKGCONFIG_CFLAGS})

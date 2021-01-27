@@ -76,7 +76,7 @@ namespace apex
       virtual void get_app_list(string_array & stra);
 
 
-      virtual ::matter* new_object(::layered * pobjectContext, const char* pszClass);
+      virtual ::matter* new_object(const char* pszClass);
 
 
       virtual __pointer(::matter) create_object(::layered * pobjectContext, const char* pszClass);
@@ -91,7 +91,7 @@ namespace apex
       virtual void get_extension_list(string_array & stra);
 
 
-      virtual ::matter * factory_new(::layered * pobjectContext, const char * lpszClass);
+      // virtual ::matter * factory_new(::layered * pobjectContext, const char * lpszClass);
 
 
       virtual __pointer(::matter) factory_create(::layered * pobjectContext, const char * lpszClass);

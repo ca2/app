@@ -13,6 +13,7 @@ namespace user
       ::user::menu_interaction(pitem)
    {
 
+      m_econtroltype = e_control_type_menu_button;
       //m_erectMargin = rect_menu_item_margin;
       //m_erectBorder = rect_menu_item_border;
       //m_erectPadding = rect_menu_item_padding;
@@ -40,19 +41,19 @@ namespace user
    }
 
 
-   bool menu_button::create_window(::user::interaction *pparent, const ::id & id)
-   {
+   //bool menu_button::create_interaction(::user::interaction *pparent, const ::id & id)
+   //{
 
-      if (!button::create_window(pparent, id))
-      {
+   //   if (!button::create_interaction(pparent, id))
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    void menu_button::_001OnDrawDefault(::draw2d::graphics_pointer & pgraphics)
@@ -104,7 +105,7 @@ namespace user
          rectPopupArrow.right = rectClient.right - 4;
          rectPopupArrow.top = ((rectClient.top + rectClient.bottom) / 2) - 4;
          rectPopupArrow.bottom = ((rectClient.top + rectClient.bottom) / 2) + 4;
-         point_array pointa;
+         pointd_array pointa;
          pointa.add(point(rectPopupArrow.left, rectPopupArrow.bottom));
          pointa.add(point(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
          pointa.add(point(rectPopupArrow.left, rectPopupArrow.top));
@@ -314,7 +315,7 @@ namespace user
    void menu_button::_001OnCreate(::message::message * pmessage)
    {
 
-      descriptor().set_control_type(e_control_type_menu_button);
+      //descriptor().set_control_type(e_control_type_menu_button);
 
       pmessage->previous();
 
@@ -324,7 +325,7 @@ namespace user
    void menu_button::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmouse->previous();
 

@@ -64,7 +64,7 @@ imaging::~imaging()
 }
 
 
-void imaging::EmbossedTextOut(
+void imaging::embossed_text_out(
 ::draw2d::graphics *        pgraphics,
 i32                 x,
 i32                 y,
@@ -1607,48 +1607,52 @@ bool imaging::BitmapDivBlend(
 
    }
 
-   pimage->g()->draw({ ::point(), size }, pdcSrc);
+   pimage->stretch(size, pdcSrc);
 
    pimage->DivideRGB(bAlpha);
 
-   return pdcDst->draw({pointDst, size}, pimage->g(),pointSrc);
+   return pdcDst->draw(::rectd(pointDst, size), pimage->g(),pointSrc);
 
 }
 
 
-bool imaging::bitmap_blend(
-::draw2d::graphics * pdcDst, // destination device
-const ::point & pointDst,
-const ::size & size,
-::draw2d::graphics * pdcSrc, // source device
-const ::point & pointSrc,
-byte bAlpha)
-{
-
-   return pdcDst->alpha_blend(pointDst,size,pdcSrc,pointSrc,bAlpha / 255.0);
-
-}
-
-
-bool imaging::bitmap_blend(::draw2d::graphics * pdcDst,
-                           const ::point & pointDst,
-                           const ::size & size,
-                           ::image * pimage,
-                           const ::point & pointSrc,
-                           byte bAlpha)
-{
-
-   return pdcDst->alpha_blend(pointDst, size, pimage, pointSrc, bAlpha / 255.0);
-
-}
-
+//bool imaging::bitmap_blend(
+//::draw2d::graphics * pdcDst, // destination device
+//const ::point & pointDst,
+//const ::size & size,
+//::draw2d::graphics * pdcSrc, // source device
+//const ::point & pointSrc,
+//byte bAlpha)
+//{
+//
+//   return pdcDst->alpha_blend(rectd(pointDst,size), pdcSrc, pointSrc, bAlpha / 255.0);
+//
+//}
+//
+//
+//bool imaging::bitmap_blend(::draw2d::graphics * pdcDst,
+//                           const ::point & pointDst,
+//                           const ::size & size,
+//                           ::image * pimage,
+//                           const ::point & pointSrc,
+//                           byte bAlpha)
+//{
+//
+//   return pdcDst->alpha_blend(::rectd(pointDst, size), pimage, pointSrc, bAlpha / 255.0);
+//
+//}
+//
 
 bool imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 cy)
 {
 
 
-   if(cx <= 0 || cy <= 0)
+   if (cx <= 0 || cy <= 0)
+   {
+
       return true;
+
+   }
 
    return false;
 
@@ -2946,8 +2950,12 @@ void imaging::blur_32CC_r2(::image * pimageDst, ::image * pimageSrc)
 bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point & pointDst,const ::size & size,::draw2d::graphics * pdcSrc,const ::point & pointSrc,i32 iChannel,i32 iRadius)
 {
 
-   if(size.cx <= 0 || size.cy <= 0)
+   if (size.cx <= 0 || size.cy <= 0)
+   {
+
       return true;
+
+   }
 
    ::image_pointer pimageDst = create_image(size);
 
@@ -2969,7 +2977,7 @@ bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point & point
 
    pimageSrc->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   if (!pdcSrc->draw(size, pdcSrc, pointSrc))
+   if (!pdcSrc->stretch(::rectd(size), pdcSrc, ::rectd(pointSrc, size)))
    {
 
       return false;
@@ -2983,7 +2991,7 @@ bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point & point
          iRadius))
       return false;
 
-   if (!pdcDst->draw({ pointDst, size }, pimageDst))
+   if (!pdcDst->draw(::rectd(pointDst, size), pimageDst))
    {
 
       return false;
@@ -3025,7 +3033,7 @@ bool imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
 
    pimageSrc->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   if (!pimageSrc->g()->draw(size, pdcSrc, pointSrc))
+   if (!pimageSrc->g()->stretch(::rectd(size), pdcSrc, ::rectd(pointSrc, size)))
    {
 
       return false;
@@ -3039,7 +3047,7 @@ bool imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
       iRadius))
       return false;
 
-   if (!pdcDst->draw({ pointDst, size }, pimageDst))
+   if (!pdcDst->draw(::rectd(pointDst, size), pimageDst))
    {
 
       return false;
@@ -3654,11 +3662,14 @@ const ::point & pointSrc,
 i32 iChannel,
 const ::size & sizeFilter,
 byte * pFilter)
-
-
 {
-   if(size.cx <= 0 || size.cy <= 0)
+
+   if (size.cx <= 0 || size.cy <= 0)
+   {
+
       return true;
+
+   }
 
    ::image_pointer pimageDst = create_image(size);
 
@@ -3678,7 +3689,7 @@ byte * pFilter)
 
    }
 
-   if (!pdcSrc->draw(size, pimageSrc, pointSrc))
+   if (!pdcSrc->stretch(::rectd(size), pimageSrc, ::rectd(pointSrc, size)))
    {
 
       return false;
@@ -3692,15 +3703,13 @@ byte * pFilter)
          sizeFilter.cx,
          sizeFilter.cy,
          pFilter))
-
-
    {
 
       return false;
 
    }
 
-   if (!pdcDst->draw(size, pimageDst, pointDst))
+   if (!pdcDst->stretch(::rectd(size), pimageDst, ::rectd(pointDst, size)))
    {
 
       return false;
@@ -4083,7 +4092,7 @@ bool imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
 bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::rect & rect,::draw2d::graphics * pdcColorAlpha,const ::point & pointAlpha, ::image * pimageWork)
 {
 
-   return pgraphics->draw(rect, pdcColorAlpha, pointAlpha);
+   return pgraphics->stretch(rect, pdcColorAlpha, ::rectd(pointAlpha, rect.size()));
 
 }
 
@@ -4133,7 +4142,7 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point & pointPa
    if (dBlend >= 1.0)
    {
 
-      return pgraphics->draw({point, size }, pdcColorAlpha, pointAlpha) != FALSE;
+      return pgraphics->draw(::rectd(point, size), pdcColorAlpha, pointAlpha) != FALSE;
 
    }
    else
@@ -4150,11 +4159,11 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point & pointPa
 
       pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      pimage->g()->draw(size, pdcColorAlpha, pointAlpha);
+      pimage->g()->stretch(::rectd(size), pdcColorAlpha, ::rectd(pointAlpha, size));
 
       pimage->channel_multiply(dBlend, ::color::channel_alpha);
 
-      return pgraphics->draw({point, size } , pimage) != FALSE;
+      return pgraphics->draw(::rectd(point, size), pimage) != FALSE;
 
    }
 
@@ -4856,7 +4865,7 @@ color32_t cr)
 
    pimageSrc->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   if (!pimageSrc->g()->draw(size, pdcSrc, pointSrc))
+   if (!pimageSrc->g()->stretch(::rectd(size), pdcSrc, ::rectd(pointSrc, size)))
    {
 
       return false;
@@ -4874,7 +4883,7 @@ color32_t cr)
 
    }
 
-   if (!pdcDst->draw(size, pimageDst, pointDst))
+   if (!pdcDst->stretch(::rectd(size), pimageDst, ::rect(pointDst, size)))
    {
 
       return false;
@@ -4940,7 +4949,7 @@ color32_t cr)
 
    pimageSrc->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   if (!pimageSrc->g()->draw(size, pdcSrc, pointSrc))
+   if (!pimageSrc->g()->stretch(::rectd(size), pdcSrc, ::rect(pointSrc, size)))
    {
 
       return false;
@@ -4957,7 +4966,7 @@ color32_t cr)
 
    }
 
-   if (!pdcDst->draw(size, pimageDst, pointDst))
+   if (!pdcDst->stretch(::rectd(size), pimageDst, ::rect(pointDst, size)))
    {
 
       return false;
@@ -6837,7 +6846,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const 
 
 //#ifndef __APPLE__
 //
-// ::e_status imaging::_load_image(::context_image * pobjectContext, ::image * pimageParam, const payload & varFile, bool bSync, bool bCreateHelperMaps)
+// ::e_status imaging::_load_image(::context_image * pobjectContext, ::image * pimageParam, const ::payload & varFile, bool bSync, bool bCreateHelperMaps)
 // {
 //
 //   return ::error_failed;

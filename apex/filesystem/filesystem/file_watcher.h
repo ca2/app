@@ -152,7 +152,8 @@ namespace file
 
       virtual void handle_action(action * psubject);
 
-      virtual bool step();
+      virtual ::e_status step();
+
 
    };
 
@@ -163,7 +164,7 @@ namespace file
    public:
 
 
-      typedef isomap < watch_id, __pointer(watch)> watch_map;
+      typedef ::map < watch_id, __pointer(watch) > watch_map;
 
       watch_map            m_watchmap;
 
@@ -194,9 +195,9 @@ namespace file
 
       virtual void remove_watch(watch_id watch_id);
 
-      virtual ::e_status     run() override;
+      virtual ::e_status run() override;
 
-      virtual bool step();
+      virtual ::e_status step();
 
 
    };//end file_watcher

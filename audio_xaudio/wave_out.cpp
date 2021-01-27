@@ -296,7 +296,7 @@ namespace multimedia
 
          XAUDIO2_BUFFER b;
 
-         xxf_zero(b);
+         __zero(b);
 
          b.pContext = pbuffer;
          b.AudioBytes = (::u32) (pwbuffer->m_uiBufferSize);
@@ -309,7 +309,7 @@ namespace multimedia
 
          char sz[256];
 
-         xxf_zero(sz);
+         __zero(sz);
 
          if(memmem(b.pAudioData,pwbuffer->m_uiBufferSize,sz,sizeof(sz)))
          {

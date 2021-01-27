@@ -122,7 +122,7 @@ namespace apex
    void department::on_application_message(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::application,papplicationsignal,pmessage);
+      __pointer(::message::application) papplicationsignal(pmessage);
 
       try
       {

@@ -21,7 +21,7 @@ CLASS_DECL_ACME void * reverse_memcpy(void * p, const void * point1, memsize iSi
 inline void * zero(void * p, memsize size) { __memset(p, 0, size); return p; }
 
 
-inline bool is_zero(void * p, memsize iSize)
+inline bool is_zero(const void * p, memsize iSize)
 {
 
    u8 * pb = (u8 *) p;

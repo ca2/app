@@ -5,7 +5,7 @@ namespace promise
 {
 
 
-   payload __realize(::matter *pmatter, ::promise::process process = ::promise::process());
+   ::payload __realize(::matter *pmatter, ::promise::process process = ::promise::process());
 
 
    promise::promise(::matter *pmatter, const ::promise::process &process) :
@@ -34,7 +34,7 @@ namespace promise
    }
 
 
-   payload __realize(::matter *pmatter, ::promise::process process)
+   ::payload __realize(::matter *pmatter, ::promise::process process)
    {
 
       if (process)

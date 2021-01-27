@@ -25,7 +25,7 @@ inline duration & duration::operator = (const ::datetime::time_span & span)
 inline duration & duration::operator += (const ::datetime::time_span & span)
 {
 
-   set(m_secs.m_iSeconds + span.GetTotalSeconds(), m_nanos.m_iNanoseconds);
+   set(m_secs.m_i + span.GetTotalSeconds(), m_nanos.m_i);
 
    return *this;
 
@@ -35,7 +35,7 @@ inline duration & duration::operator += (const ::datetime::time_span & span)
 inline duration & duration::operator -= (const ::datetime::time_span & span)
 {
 
-   set(m_secs.m_iSeconds - span.GetTotalSeconds(), m_nanos.m_iNanoseconds);
+   set(m_secs.m_i - span.GetTotalSeconds(), m_nanos.m_i);
 
    return *this;
 
@@ -61,7 +61,7 @@ namespace promise
    inline bool routine::should_run_async() const { return m_p->should_run_async(); }
 
 
-   inline void process::operator()(const payload & payload) const { if (m_p) (*m_p)(payload); }
+   inline void process::operator()(const ::payload & payload) const { if (m_p) (*m_p)(payload); }
 
 
    inline bool process::should_run_async() const { return m_p->should_run_async(); }
@@ -144,7 +144,7 @@ inline bool get_memory::get_base64(const string & str)
 
 
 //template < typename PRED >
-//inline ::image_result matter::get_image(const payload & varFile, ::u64 uTrait, PRED pred)
+//inline ::image_result matter::get_image(const ::payload & varFile, ::u64 uTrait, PRED pred)
 //{
 //
 //   return System.get_image(this, varFile, uTrait, pred);
@@ -155,7 +155,7 @@ inline bool get_memory::get_base64(const string & str)
 #include "acme/primitive/primitive/trait_pred.h"
 
 
-//inline payload matter::topic(const ::id & id)
+//inline ::payload matter::topic(const ::id & id)
 //{
 //
 //   auto pproperty = fetch_property(id);
@@ -228,7 +228,7 @@ inline ::property * property_set::find(const ::id & id) const
 }
 
 
-inline payload property_set::operator()(const ::id & id, const payload & varDefault) const
+inline ::payload property_set::operator()(const ::id & id, const ::payload & varDefault) const
 {
 
    auto pproperty = find(id);
@@ -245,7 +245,7 @@ inline payload property_set::operator()(const ::id & id, const payload & varDefa
 }
 
 
-inline payload property_set::topic(const id & id)
+inline ::payload property_set::topic(const id & id)
 {
 
    return &set(id);
@@ -253,7 +253,7 @@ inline payload property_set::topic(const id & id)
 }
 
 
-inline payload & property_set::set(const ::id & id)
+inline ::payload & property_set::set(const ::id & id)
 {
 
    auto pproperty = find(id);
@@ -421,7 +421,7 @@ inline bool property_set::is_true(id idName, bool bDefault) const
 }
 
 
-inline payload property_set::value(id idName) const
+inline ::payload property_set::value(id idName) const
 {
 
    property * pproperty = find(idName);
@@ -438,7 +438,7 @@ inline payload property_set::value(id idName) const
 }
 
 
-inline payload property_set::value(id idName, payload varDefault) const
+inline ::payload property_set::value(id idName, ::payload varDefault) const
 {
 
    property * pproperty = find(idName);
@@ -455,7 +455,7 @@ inline payload property_set::value(id idName, payload varDefault) const
 }
 
 
-inline payload payload::first() const
+inline ::payload payload::first() const
 {
 
    return at(0);
@@ -463,7 +463,7 @@ inline payload payload::first() const
 }
 
 
-inline payload payload::last() const
+inline ::payload payload::last() const
 {
 
    if (array_get_count() == 0)
@@ -482,7 +482,7 @@ inline payload payload::last() const
 }
 
 
-inline payload payload::first()
+inline ::payload payload::first()
 {
 
    return at(0);
@@ -490,7 +490,7 @@ inline payload payload::first()
 }
 
 
-inline payload payload::last()
+inline ::payload payload::last()
 {
 
    if (array_get_count() == 0)
@@ -536,7 +536,7 @@ inline __pointer(::handle::ini) operator ""_pini(const char * psz, size_t s)
 }
 
 
-inline string CLASS_DECL_ACME operator + (const char * psz, const payload & payload)
+inline string CLASS_DECL_ACME operator + (const char * psz, const ::payload & payload)
 {
 
    return __str(psz) + payload.get_string();
@@ -544,10 +544,10 @@ inline string CLASS_DECL_ACME operator + (const char * psz, const payload & payl
 }
 
 
-//inline class payload & payload::operator -= (const class property & property) { operator -=(property);  return *this; }
-//inline class payload & payload::operator += (const class property & property) { operator +=(property);  return *this; }
-//inline class payload & payload::operator /= (const class property & property) { operator /=(property);  return *this; }
-//inline class payload & payload::operator *= (const class property & property) { operator *=(property);  return *this; }
+//inline class ::payload & payload::operator -= (const class property & property) { operator -=(property);  return *this; }
+//inline class ::payload & payload::operator += (const class property & property) { operator +=(property);  return *this; }
+//inline class ::payload & payload::operator /= (const class property & property) { operator /=(property);  return *this; }
+//inline class ::payload & payload::operator *= (const class property & property) { operator *=(property);  return *this; }
 
 
 inline ::property * payload::find_property(const ::id & id) const
@@ -1607,7 +1607,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 }
 
 
-//inline ::e_status context::load_from_file(::matter* pobject, const ::payload& varFile, const payload* pvarOptions)
+//inline ::e_status context::load_from_file(::matter* pobject, const ::payload& varFile, const ::payload* pvarOptions)
 //{
 //
 //   if (pvarOptions)
@@ -1634,7 +1634,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //}
 //
 //
-//inline ::e_status context::save_to_file(const ::payload& varFile, const payload* pvarOptions, const ::matter * pobject)
+//inline ::e_status context::save_to_file(const ::payload& varFile, const ::payload* pvarOptions, const ::matter * pobject)
 //{
 //
 //   if (pvarOptions)
@@ -1663,7 +1663,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //
 
 //
-//inline ::file_result matter::get_reader(const payload & varFile, const ::file::e_open & eopen)
+//inline ::file_result matter::get_reader(const ::payload & varFile, const ::file::e_open & eopen)
 //{
 //
 //   return get_file(varFile, eopen | ::file::e_open_read) ;
@@ -1671,7 +1671,7 @@ inline stream & operator >> (stream & is, ___pointer < T > & sp)
 //}
 //
 //
-//inline ::file_result matter::get_writer(const payload & varFile, const ::file::e_open & eopen)
+//inline ::file_result matter::get_writer(const ::payload & varFile, const ::file::e_open & eopen)
 //{
 //
 //   return get_file(varFile, eopen | ::file::e_open_write);
@@ -1888,7 +1888,7 @@ IMPL_VAR_REF3(double, d);
 //}
 
 //
-//inline payload & payload::operator = (::memory * pmemory)
+//inline ::payload & payload::operator = (::memory * pmemory)
 //{
 //
 //   set_element(pmemory);
@@ -2002,36 +2002,58 @@ inline bool type::operator == (const ::id& id) const
 }
 
 
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR >::string_base(const ::payload & payload) :
+//   string_base(payload.to_string())
+//{
+//
+//
+//}
 
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR >::string_base(const property& property) :
+//   string_base(property.to_string())
+//{
+//
+//
+//}
 
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(const payload& payload) :
-   string_base(payload.to_string())
-{
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR >::string_base(const id& id) :
+//   string_base(id.to_string())
+//{
+//
+//
+//}
 
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR >::string_base(::payload & payload) :
+//   string_base(payload.to_string())
+//{
+//
+//
+//}
 
-}
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR >::string_base(property & property) :
+//   string_base(property.to_string())
+//{
+//
+//
+//}
 
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(const property& property) :
-   string_base(property.to_string())
-{
-
-
-}
-
-
-
-template < typename TYPE_CHAR >
-inline string_base < TYPE_CHAR >::string_base(const id& id) :
-   string_base(id.to_string())
-{
-
-
-}
-
-
+//
+//template < typename TYPE_CHAR >
+//inline string_base < TYPE_CHAR >::string_base(id & id) :
+//   string_base(id.to_string())
+//{
+//
+//
+//}
 
 
 
@@ -2108,18 +2130,26 @@ inline string_base < TYPE_CHAR >::string_base(const id& id) :
    }
 
 
-
-      template < class T >
+   template < class T >
    inline __pointer(T) payload::cast()
    {
 
-      if(m_etype == type_pvar && m_pvar != nullptr)
+      if (m_etype == type_pvar && m_pvar != nullptr)
+      {
+
          return m_pvar->cast < T >();
+
+      }
+
       if (m_etype == type_prop && m_pprop != nullptr)
+      {
+
          return m_pprop->cast < T >();
 
+      }
+
 #define CAST_ELEMENT(P, ENUM_TYPE) \
-if(m_etype == ENUM_TYPE) { return dynamic_cast < T * >(P); }
+      if(m_etype == ENUM_TYPE) { return dynamic_cast < T * >(P); }
       CAST_ELEMENT(m_p, e_type_element);
       CAST_ELEMENT(m_pstra, e_type_stra);
       CAST_ELEMENT(m_pia, e_type_inta);
@@ -2189,7 +2219,7 @@ inline __pointer(T) payload::pointer() const
 }
 
 
-inline payload __visible(payload varOptions, bool bVisible)
+inline ::payload __visible(::payload varOptions, bool bVisible)
 {
 
    varOptions["visible"] = bVisible;
@@ -2268,7 +2298,7 @@ inline payload __visible(payload varOptions, bool bVisible)
 //}
 //
 
-//inline void future::operator()(const payload & payload) const
+//inline void future::operator()(const ::payload & payload) const
 //{
 //
 //   if (!m_pmatter)
@@ -2341,7 +2371,7 @@ inline ::payload operator + (::payload payload, const ::promise::routine & routi
 
 
 
-inline payload operator + (payload payload, const ::promise::process & process)
+inline ::payload operator + (::payload payload, const ::promise::process & process)
 {
 
    if (payload.get_type() != e_type_propset)
@@ -2403,3 +2433,48 @@ inline bool millis::done() const { return elapsed() >= 0; }
 
 
 
+
+
+template < >
+inline uptr uptr_hash < block >(block b)
+{
+
+   if (::is_null(b.get_data()) || b.is_empty())
+   {
+
+      return 0;
+
+   }
+
+   auto psz = (const char *)b.get_data();
+
+   u32 uHash = 0;
+
+   strsize i = 1;
+
+   for (; i < b.get_size(); i++)
+   {
+
+      if (i % 4 == 3)
+      {
+
+         uHash = (uHash << 5) + ((u32 *)psz)[i >> 2];
+
+      }
+
+   }
+
+   psz += i;
+
+   i %= 4;
+
+   if (i > 0)
+   {
+
+      while (i-- >= 0) uHash = (uHash << 5) + *(--psz);
+
+   }
+
+   return uHash;
+
+}

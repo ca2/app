@@ -204,15 +204,14 @@ namespace fs
          return 1;
       }
 
-
       defer_initialize();
 
+      millis millisLast;
 
-      millis tickTimeout;
-
-      if(m_mapfileTimeout.lookup(path,tickTimeout))
+      if(m_mapfileLast.lookup(path, millisLast))
       {
-         if(::get_tick() > tickTimeout)
+
+         if(millisLast.elapsed() > ::get_context_system()->m_millisFileListingCache)
          {
             
             ::file::listing l;
@@ -229,10 +228,10 @@ namespace fs
          
       }
 
-      if(m_mapdirTimeout.lookup(path,tickTimeout))
+      if(m_mapdirLast.lookup(path, millisLast))
       {
          
-         if(::get_tick() > tickTimeout)
+         if(millisLast.elapsed() > ::get_context_system()->m_millisFileListingCache)
          {
             
             ::file::listing l;
@@ -245,9 +244,9 @@ namespace fs
          }
       }
 
-      if(m_mapfileTimeout.lookup(path, tickTimeout))
+      if(m_mapfileLast.lookup(path, millisLast))
       {
-         if(::get_tick() > tickTimeout)
+         if(millisLast.elapsed() > ::get_context_system()->m_millisFileListingCache)
          {
             return 0;
          }

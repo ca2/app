@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "aura/graphics/snippet/close_button.h"
 
-#define STEPPY_DEBUG 1
+#define STEPPY_DEBUG 0
 
 namespace app_app
 {
@@ -17,6 +17,13 @@ namespace app_app
       m_dStartTime = ::get_secs();
 
       m_dPhaseShift = 0.0;
+
+   }
+
+
+   window::~window()
+   {
+
 
    }
 
@@ -51,6 +58,7 @@ namespace app_app
 
    void window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
+      //return;
 
       m_iCloseButtonDraw = 0;
 
@@ -71,17 +79,19 @@ namespace app_app
 
       pgraphics->fill_rect(rectClient, ARGB(127, 255, 255, 255));
 
+      //return;
+
       double dBase = (double) rectClient.minimum_signed_absolute_dimension() / 17.0;
 
       double x = dBase * 3;
 
       double y = dBase * 3;
 
-      pgraphics->fill_solid_rect_dim(x, y, dBase * 5.0, dBase * 5.0, ARGB(127, 40, 150, 235));
+      pgraphics->fill_rect(::rectd_dim(x, y, dBase * 5.0, dBase * 5.0), ARGB(127, 40, 150, 235));
 
-      pgraphics->fill_solid_rect_dim(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0, ARGB(127, 40, 150, 235));
+      pgraphics->fill_rect(::rectd_dim(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), ARGB(127, 40, 150, 235));
 
-      pgraphics->fill_solid_rect_dim(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0, ARGB(127, 255, 110, 150));
+      pgraphics->fill_rect(::rectd_dim(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), ARGB(127, 255, 110, 150));
 
       rectClient.deflate((::i32) dBase);
 

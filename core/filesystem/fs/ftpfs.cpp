@@ -61,7 +61,7 @@ bool ftpfs::fast_has_subdir(const ::file::path & path)
 
    dir_listing & dir = m_map[path];
 
-   if (::get_tick() < dir.m_uiLsTimeout)
+   if (dir.m_millisLast.elapsed() < ::get_context_system()->m_millisFileListingCache)
    {
 
       return dir.get_count() > 0;
@@ -72,19 +72,22 @@ bool ftpfs::fast_has_subdir(const ::file::path & path)
 
 }
 
+
 bool ftpfs::has_subdir(const ::file::path & path)
 {
 
-   sync_lock sl(mutex());
-
-   //   millis tickTimeout;
-
-   dir_listing & dir = m_map[path];
-
-   if (::get_tick() < dir.m_uiLsTimeout)
    {
 
-      return dir.get_count() > 0;
+      sync_lock sl(mutex());
+
+      dir_listing & dir = m_map[path];
+
+      if (dir.m_millisLast.timeout(::get_context_system()->m_millisFileListingCache))
+      {
+
+         return dir.get_count() > 0;
+
+      }
 
    }
 
@@ -94,14 +97,7 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    ls(listing);
 
-   if (::get_tick() < dir.m_uiLsTimeout)
-   {
-
-      return dir.get_count() > 0;
-
-   }
-
-   return false;
+   return listing.get_count() > 0;
 
 }
 
@@ -124,8 +120,6 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
 ::file::listing & ftpfs::ls(::file::listing & listing)
 {
-
-   sync_lock sl(mutex());
 
    if (listing.m_pathUser == "ftp://")
    {
@@ -153,20 +147,22 @@ bool ftpfs::has_subdir(const ::file::path & path)
 
    }
 
-   //   millis tickTimeout;
-
-   dir_listing & dir = m_map[listing.m_pathUser];
-
-   if (::get_tick() < dir.m_uiLsTimeout)
    {
 
-      listing = dir;
+      sync_lock sl(mutex());
 
-      return listing;
+      dir_listing & dir = m_map[listing.m_pathUser];
+
+      if (dir.m_millisLast.timeout(::get_context_system()->m_millisFileListingCache))
+      {
+
+         listing = dir;
+
+         return listing;
+
+      }
 
    }
-
-   dir.clear_results();
 
    listing.clear_results();
 
@@ -258,7 +254,7 @@ retry:
       if (pchild->m_strAttributes.find_ci("d") < 0)
          continue;
 
-      auto & path = dir.add_get(::file::path(listing.m_pathUser / pchild->m_strName, ::file::path_url));
+      auto & path = listing.add_get(::file::path(listing.m_pathUser / pchild->m_strName, ::file::path_url));
 
       path.m_iDir = 1;
 
@@ -270,7 +266,7 @@ retry:
       if (pchild->m_strAttributes.find_ci("d") >= 0)
          continue;
 
-      auto & path = dir.add_get(::file::path(listing.m_pathUser / pchild->m_strName, ::file::path_url));
+      auto & path = listing.add_get(::file::path(listing.m_pathUser / pchild->m_strName, ::file::path_url));
 
       path.m_iSize = pchild->m_filesize;
 
@@ -278,11 +274,17 @@ retry:
 
    }
 
-   dir.m_uiTimeout = (u32) (::get_tick() + ((1000) * 4));
+   {
 
-   listing = dir;
+      sync_lock sl(mutex());
 
-   dir.m_uiLsTimeout = (u32) (::get_tick() + ((1000) * 30));
+      dir_listing & dir = m_map[listing.m_pathUser];
+
+      ((::file::listing &)dir) = listing;
+
+      dir.m_millisLast.Now();
+
+   }
 
    return listing;
 
@@ -346,7 +348,7 @@ int ftpfs::is_dir(const ::file::path & path)
 
    dir_listing & dir = m_map[path.folder()];
 
-   if (::get_tick() > dir.m_uiTimeout)
+   if (dir.m_millisLast.elapsed() > ::get_context_system()->m_millisFileListingCache)
    {
 
       ::file::listing listing;
@@ -477,7 +479,7 @@ bool ftpfs::file_exists(const ::file::path & pszPath)
 }
 
 
-payload ftpfs::file_length(const ::file::path & pszPath)
+::payload ftpfs::file_length(const ::file::path & pszPath)
 {
 
    return ::fs::data::file_length(pszPath);

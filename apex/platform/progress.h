@@ -67,7 +67,7 @@ public:
    virtual void format_status(const char* pszFormat);
 
    virtual void redraw();
-   virtual void step();
+   virtual ::e_status step() override;
 
    virtual void close_progress();
 
@@ -80,8 +80,8 @@ class CLASS_DECL_APEX progress :
 {
 public:
 
-   progress(::user::primitive * puiParent, const char* pszTitle, int iStepCount);
 
+   progress(::user::interaction * puserinteractionParent, const char* pszTitle, int iStepCount);
    ~progress()
    {
 
@@ -91,4 +91,8 @@ public:
 
    }
 
+
 };
+
+
+

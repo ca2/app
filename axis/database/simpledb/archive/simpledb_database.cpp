@@ -72,7 +72,7 @@ namespace simpledb
    }
 
 
-   payload database::query_item(const char * pszSql,payload varDefault)
+   ::payload database::query_item(const char * pszSql,::payload varDefault)
    {
 
       return ::payload(::e_type_null);
@@ -88,7 +88,7 @@ namespace simpledb
    }
 
 
-   payload database::query_items(const char * pszSql)
+   ::payload database::query_items(const char * pszSql)
    {
 
       return ::payload(::e_type_null);
@@ -96,7 +96,7 @@ namespace simpledb
    }
 
 
-   payload database::query_row(const char * pszSql)
+   ::payload database::query_row(const char * pszSql)
    {
 
       return ::payload(::e_type_null);
@@ -104,7 +104,7 @@ namespace simpledb
    }
 
 
-   payload database::query_rows(const char * pszSql)
+   ::payload database::query_rows(const char * pszSql)
    {
 
       return ::payload(::e_type_null);
@@ -112,7 +112,7 @@ namespace simpledb
    }
 
 
-   payload database::query_table_item(const char * table,const char * item,const char *where,payload notfound)
+   ::payload database::query_table_item(const char * table,const char * item,const char *where,::payload notfound)
    {
 
       return ::payload(::e_type_null);
@@ -120,7 +120,7 @@ namespace simpledb
    }
 
 
-   payload database::get_agent(const char * pszTable,const char * psz,const char * pszUser)
+   ::payload database::get_agent(const char * pszTable,const char * psz,const char * pszUser)
    {
 
       return ::payload(::e_type_null);
@@ -144,7 +144,7 @@ namespace simpledb
    }
 
 
-   payload database::get_insert_id()
+   ::payload database::get_insert_id()
    {
 
       return -1;

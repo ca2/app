@@ -35,9 +35,9 @@ namespace experience
             frame_002::frame_002()
             {
 
-               m_strStyle = "LightGreen";
+               //m_strStyle = "LightGreen";
 
-               m_rectControlBoxMarginNormal.top = 0;
+               //m_rectControlBoxMarginNormal.top = 0;
 
 
             }
@@ -45,6 +45,14 @@ namespace experience
 
             frame_002::~frame_002()
             {
+
+            }
+
+
+            string frame_002::get_default_user_style() const
+            {
+
+               return "LightGreen";
 
             }
 
@@ -210,9 +218,9 @@ SizingNone:;
 
                if(pframewindow->is_active())
                {
-                  crMoveableBorder = m_crMoveableBorder;
-                  crMoveableBorderHilight = m_crMoveableBorderHilight;
-                  crMoveableBorderShadow = m_crMoveableBorderShadow;
+                  crMoveableBorder = m_colorMoveableBorder;
+                  crMoveableBorderHilight = m_colorMoveableBorderHilight;
+                  crMoveableBorderShadow = m_colorMoveableBorderShadow;
                }
                else
                {
@@ -230,9 +238,9 @@ SizingNone:;
                enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
                ::rect rectA(rectClient);
 
-               if(m_estyle == StyleTranslucidWarmGray
-                     || m_estyle == StyleTranslucidLightBlue
-                     || m_estyle == StyleTranslucidLightGreen)
+               if(m_pframewindow->m_estyle == ::user::StyleTranslucidWarmGray
+                     || m_pframewindow->m_estyle == ::user::StyleTranslucidLightBlue
+                     || m_pframewindow->m_estyle == ::user::StyleTranslucidLightGreen)
                {
                   ::rect rect;
                   GetBorderRect(rectClient, rect, eside);
@@ -242,10 +250,10 @@ SizingNone:;
                                       crMoveableBorder,
                                       127);
                }
-               else if(m_estyle == StyleLightBlue)
+               else if(m_pframewindow->m_estyle == ::user::StyleLightBlue)
                {
                   rectA.deflate(1, 1, 1, 1);
-                  Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorder, 0);//m_crMoveableBorderDkShadow);
+                  Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorder, 0);//m_colorMoveableBorderDkShadow);
 
                   rectA.deflate(1, 1, 1, 1);
                   Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorderHilight, crMoveableBorderShadow);
@@ -293,14 +301,14 @@ SizingNone:;
                   rectA.right--;
                   if(edock == e_dock_none)
                   {
-                     Draw3dRectSide(pgraphics, rectA, eside, SetAValue(255, m_crDkShadow), SetAValue(255, m_crDkShadow));
+                     Draw3dRectSide(pgraphics, rectA, eside, SetAValue(255, m_colorDkShadow), SetAValue(255, m_colorDkShadow));
                   }
 
                   rectA.top++;
                   rectA.bottom--;
                   rectA.left++;
                   rectA.right--;
-                  Draw3dRectSide(pgraphics, rectA, eside, SetAValue(255, m_crDkShadow), SetAValue(255, m_crDkShadow));
+                  Draw3dRectSide(pgraphics, rectA, eside, SetAValue(255, m_colorDkShadow), SetAValue(255, m_colorDkShadow));
 
                   rectA.top++;
                   rectA.bottom--;
@@ -308,7 +316,7 @@ SizingNone:;
                   rectA.right--;
                   if(edock == e_dock_none)
                   {
-                     Draw3dRectSide(pgraphics, rectA, eside, SetAValue(255, m_crDkShadow), SetAValue(255, m_crDkShadow));
+                     Draw3dRectSide(pgraphics, rectA, eside, SetAValue(255, m_colorDkShadow), SetAValue(255, m_colorDkShadow));
                   }
 
                }
@@ -1039,7 +1047,7 @@ SizingNone:;
             color32_t frame_002::get_border_main_body_color()
             {
 
-               return m_crMoveableBorder;
+               return m_colorMoveableBorder;
 
             }
 

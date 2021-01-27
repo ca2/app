@@ -29,7 +29,7 @@ namespace user
    public:
 
 
-      map < oswindow, oswindow, ::user::primitive *, ::user::primitive * > m_map;
+      map < oswindow, ::user::primitive * > m_map;
 
 
       window_map();

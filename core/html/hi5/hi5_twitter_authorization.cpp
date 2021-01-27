@@ -165,7 +165,7 @@ namespace hi5
 
          ::rect rectOpen;
 
-         m_ptabview->GetParentFrame()->best_top_level_parent(rectOpen);
+         m_ptabview->get_parent_frame()->best_top_level_parent(rectOpen);
 
          i32 iWidth = rectOpen.width();
 
@@ -175,7 +175,7 @@ namespace hi5
 
          rectOpen.top = iHeight * 2 / 3;
 
-         //__pointer(::user::frame_window) pframe = m_pviewAuth->GetParentFrame();
+         //__pointer(::user::frame_window) pframe = m_pviewAuth->get_parent_frame();
 
          //if(pframe != nullptr)
          //{
@@ -184,13 +184,13 @@ namespace hi5
 
          //}
 
-         m_ptabview->GetParentFrame()->order_front();
+         m_ptabview->get_parent_frame()->order_front();
 
-         m_ptabview->GetParentFrame()->place(rectOpen);
+         m_ptabview->get_parent_frame()->place(rectOpen);
 
-         m_pviewAuth->GetParentFrame()->SetForegroundWindow();
+         m_pviewAuth->get_parent_frame()->SetForegroundWindow();
 
-         m_ptabview->GetTopLevelFrame()->display(e_display_normal, e_activation_set_foreground);
+         m_ptabview->top_level_frame()->display(e_display_normal, e_activation_set_foreground);
 
       }
 
@@ -228,7 +228,7 @@ namespace hi5
                m_pviewAuth = m_pdocAuth->get_typed_view < ::user::form >();
                m_pviewAuth->set_form_callback(this);
                pimpactdata->m_pdocument = m_pdocAuth;
-               pimpactdata->m_puserinteraction = m_pviewAuth->GetParentFrame();
+               pimpactdata->m_puserinteraction = m_pviewAuth->get_parent_frame();
 
             }
 
@@ -268,7 +268,7 @@ namespace hi5
 
                m_ptabview->get_wnd()->EndModalLoop(e_dialog_result_ok);
 
-               m_ptabview->GetParentFrame()->display(e_display_none);
+               m_ptabview->get_parent_frame()->display(e_display_none);
 
             }
 

@@ -72,7 +72,7 @@ namespace filemanager
 
    void operation_view::_001OnMainPostMessage(::message::message * pmessage)
    {
-      SCAST_PTR(::message::base,pbase,pmessage);
+      __pointer(::message::base) pbase(pmessage);
       if(pbase->m_wparam == MessageMainPostFileOperation)
       {
          m_pinfoview->OnFileOperationStep((i32)pbase->m_lparam,false);

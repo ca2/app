@@ -136,7 +136,6 @@ public:
    {
 
       m_size = 0;
-      m_p = nullptr;
 
    }
 
@@ -148,7 +147,8 @@ public:
 
    }
 
-   using cotaskptr::alloc;
+   using cotaskptr < POINTER_TYPE > ::alloc;
+
    void alloc()
    {
 
@@ -159,13 +159,13 @@ public:
    virtual void free() override
    {
 
-      if (m_p != nullptr)
+      if (this->m_p != nullptr)
       {
 
          if (m_size > 0)
          {
 
-            SecureZeroMemory(m_p, m_size);
+            SecureZeroMemory(this->m_p, m_size);
 
             m_size = 0;
 

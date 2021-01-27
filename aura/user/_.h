@@ -29,6 +29,21 @@ namespace graphics
 #include "aura/user/callback.h"
 #include "aura/user/primitive.h"
 
+
+namespace user
+{
+
+   
+   class plain_edit;
+
+
+} // namespace user
+
+
+#include "aura/user/style_control.h"
+//#include "aura/user/plain_edit_style.h"
+
+
 #include "aura/user/style_base.h"
 #include "aura/user/style.h"
 
@@ -74,7 +89,7 @@ CLASS_DECL_AURA ::user::primitive* __user_primitive(oswindow oswindow);
 //#include "language_map.h"
 
 
-#include "create_struct.h"
+#include "system.h"
 
 
 #include "windowing.h"

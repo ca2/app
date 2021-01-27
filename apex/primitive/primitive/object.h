@@ -75,7 +75,7 @@ public:
 
 
    template < typename BASE_TYPE >
-   __pointer(BASE_TYPE) file_as(const payload & varFile);
+   __pointer(BASE_TYPE) file_as(const ::payload & varFile);
 
 
    virtual void add_routine(const ::id & idRoutine, const ::promise::routine & routine);
@@ -151,7 +151,7 @@ public:
 
    //}
 
-   inline payload context_value(const payload& payload);
+   inline ::payload context_value(const ::payload & payload);
 
 
    //virtual ::index task_add(::task* ptask) override;
@@ -183,16 +183,16 @@ public:
 
 
    template < typename BASE_TYPE >
-   void save_to(const payload & varFile, BASE_TYPE * pobject);
+   void save_to(const ::payload & varFile, BASE_TYPE * pobject);
 
    virtual ::e_status initialize(::layered * pobjectContext) override;
    virtual void finalize() override;
 
    inline const char * topic_text();
 
-   context& __context(const payload& payload);
+   context& __context(const ::payload & payload);
 
-   payload __context_value(const payload& payload);
+   ::payload __context_value(const ::payload & payload);
 
    virtual void set_topic_text(const string & str);
 
@@ -216,7 +216,7 @@ public:
 
    ::apex::application * get_app() const { return get_context_application(); }
 
-   virtual string get_text(const payload& payload, const ::id& id) override;
+   virtual string get_text(const ::payload & payload, const ::id& id) override;
 
 #ifdef DEBUG
    virtual void set_context(::context* pcontext OBJ_REF_DBG_COMMA_PARAMS);
@@ -257,7 +257,7 @@ public:
 
    virtual void dev_log(string str) const;
 
-   ::object & operator = (const payload & payload);
+   ::object & operator = (const ::payload & payload);
 
    
 
@@ -270,7 +270,7 @@ public:
    //::image_result create_image();
    //::image_result create_image(const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
-   //::image_result get_image(const payload & varFile, bool bCache = true, bool bSync = true);
+   //::image_result get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
    //::image_result matter_image(const string & strMatter, bool bCache = true, bool bSync = true);
 
    template < typename BASE_TYPE >
@@ -426,9 +426,9 @@ public:
 
    void _001OnUpdate(::message::message * pmessage);
 
-   virtual ::e_status request_file(const payload& varFile);
+   virtual ::e_status request_file(const ::payload& varFile);
 
-   virtual ::e_status request_file(const payload& varFile, payload varQuery);
+   virtual ::e_status request_file(const ::payload& varFile, ::payload varQuery);
 
    virtual ::e_status request(arguments arguments);
 
@@ -470,8 +470,8 @@ public:
    //virtual ::user::document* open_new_document(::apex::application* pappOnBehalfOf);
    virtual void on_request(::create* pcreate);
    //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf);
-   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const payload& varFile, const payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
-   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const payload& varFile);
+   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const ::payload& varFile, const ::payload & varOptions, ::user::interaction* puiParent = nullptr, ewindowflag eflag = e_window_flag_none, ::id id = ::id());
+   //virtual ::user::document* open_document_file(::apex::application* pappOnBehalfOf, const ::payload& varFile);
    //virtual ::user::document* create_subdocument(::user::impact_data* pimpactdata);
 
 
@@ -482,12 +482,12 @@ public:
    virtual string __get_text(string str);
 
    //template < typename PRED >
-   //::image_result get_image(const payload & varFile, ::u64 uTrait, PRED pred);
+   //::image_result get_image(const ::payload & varFile, ::u64 uTrait, PRED pred);
 
-   //virtual ::image_result load_image(const payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
+   //virtual ::image_result load_image(const ::payload & varFile, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image_result load_matter_image(const char * pszMatter, bool bSync = true, bool bCache = true, bool bCreateHelperMaps = false);
    //virtual ::image_result load_matter_icon(string_array & straMatter, string strIcon);
-   //virtual ::image_result load_thumbnail(const payload & varFile, int w, int h);
+   //virtual ::image_result load_thumbnail(const ::payload & varFile, int w, int h);
    //virtual ::image_result load_thumbnail(const char * pszPath);
    //virtual ::image_result load_dib(const ::file::path & pathDib);
 
@@ -626,9 +626,9 @@ public:
    //virtual void to_string(string & str) const override;
 
 
-   virtual ::file_result get_file(const payload& varFile, const ::file::e_open & eopen);
-   inline ::file_result get_reader(const payload& varFile, const ::file::e_open & eopen = ::file::e_open_binary);
-   inline ::file_result get_writer(const payload& varFile, const ::file::e_open & eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
+   virtual ::file_result get_file(const ::payload& varFile, const ::file::e_open & eopen);
+   inline ::file_result get_reader(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open_binary);
+   inline ::file_result get_writer(const ::payload& varFile, const ::file::e_open & eopen = ::file::e_open_binary | ::file::e_open_defer_create_directory | ::file::e_open_create);
 
 
 

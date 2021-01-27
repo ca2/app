@@ -25,7 +25,9 @@ namespace experience
 
       string strId(pszExperienceLibrary);
 
-      string strBuild = System.value("build");
+      string strBuild;
+      
+      strBuild = System.payload("build");
 
       if(strBuild.is_empty())
       {
@@ -130,12 +132,12 @@ namespace experience
    }
 
 
-   ::experience::frame * department::experience_get_frame2(::layered * pobjectContext, const char * pszLibrary, const char * pszFrame, const char * pszStyle)
+   ::experience::frame * department::experience_get_frame2(::layered * pobjectContext, const char * pszLibrary, const char * pszFrame)
    {
 
       string_array straLibrary;
 
-      auto strExperience = System.value("experience").get_string();
+      auto strExperience = System.payload("experience").get_string();
 
       if (strExperience.has_char())
       {
@@ -189,7 +191,9 @@ namespace experience
 
       {
 
-         string strConfig = App(pobjectContext).value("experience");
+         string strConfig;
+         
+         strConfig = App(pobjectContext).payload("experience");
 
          if (strConfig.has_char())
          {
@@ -271,7 +275,7 @@ namespace experience
 
       }
 
-      straLibrary.add("experience_lite");
+      straLibrary.add("experience_core");
       straLibrary.add("experience_metro");
       straLibrary.add("experience_rootkiller");
       straLibrary.add("experience_hyper");
@@ -324,13 +328,6 @@ namespace experience
       pframe->m_strLibrary = strLib;
 
       pframe->m_strName = pszFrame;
-
-      if (::is_set(pszStyle) && ::strlen(pszStyle) > 0)
-      {
-
-         pframe->set_style(pszStyle);
-
-      }
 
       return pframe;
 

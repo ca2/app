@@ -28,7 +28,7 @@ namespace dynamic_source
 
 
    class CLASS_DECL_APP_PROGRAMMING session_map :
-      virtual public strsp(session)
+      virtual public string_map < __pointer(session) >
    {
    public:
 

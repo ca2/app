@@ -18,7 +18,7 @@ namespace user
       m_pen(e_create)
    {
 
-      value(FONTSEL_IMPACT) = true;
+      payload(FONTSEL_IMPACT) = true;
 
       m_flagNonClient.remove(non_client_background);
 
@@ -149,7 +149,7 @@ namespace user
    void menu_view::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
 
@@ -414,7 +414,9 @@ namespace user
 
          xml::node * pnode = pnodeMain->get_child_at("menubar", i, 1);
 
-         string strTitle = pnode->attribute("title");
+         string strTitle;
+         
+         strTitle = pnode->attribute("title");
 
          pgraphics->set(m_fontTitle);
 
@@ -629,7 +631,7 @@ namespace user
    }
 
 
-   bool menu_view::load_xml(payload varFile)
+   bool menu_view::load_xml(::payload varFile)
    {
 
       string str = Context.file().as_string(varFile);
@@ -797,7 +799,7 @@ namespace user
 
       int h = ::height(rect);
 
-      point_array pta;
+      pointd_array pta;
       pta.add(rect.right, rect.bottom - h / 3 - 2);
 
       pta.add(rect.right + h * 3 / 16, rect.bottom - h / 2 - 2);
@@ -828,7 +830,7 @@ namespace user
 
       int h = ::height(rect);
 
-      point_array pta;
+      pointd_array pta;
       pta.add(rect.right, rect.bottom - h / 3 - 2);
 
       pta.add(rect.right + h * 3 / 16, rect.bottom - h / 2 - 2);

@@ -10,7 +10,7 @@ inline ::count __iterable_count(const ITERABLE & iterable);
 
 
 template < typename T >
-inline ::count __iterable_count(Windows::Foundation::Collections::IVectorView < T > ^ a)
+inline ::count __iterable_count(::Windows::Foundation::Collections::IVectorView < T > ^ a)
 {
 
    return a.Size;
@@ -219,52 +219,17 @@ class object_list;              // list of matter*
 #include "string_list.h"
 
 
-class CLASS_DECL_ACME map_u16_to_ptr :
-   virtual public map < ::u16, ::u16, void *, void * >
-{
-public:
-   map_u16_to_ptr();
-};
+using map_u16_to_ptr = map < ::u16, ::u16, void *, void * >;
 
-class CLASS_DECL_ACME map_ptr_to_u16 :
-   virtual public map < void *, void *, ::u16, ::u16 >
-{
-public:
-   map_ptr_to_u16();
-};
+using map_ptr_to_u16 = map < void *, void *, ::u16, ::u16 >;
 
+using map_ptr_to_ptr = map < void *, void *, void *, void * >;
 
-class CLASS_DECL_ACME map_ptr_to_ptr :
-   virtual public map < void *, void *, void *, void * >
-{
-public:
-   map_ptr_to_ptr();
-};
+using map_word_to_ob = map < ::u16, ::u16, matter *, matter * >;
 
-class CLASS_DECL_ACME map_word_to_ob :
-   virtual public map < ::u16, ::u16, matter *, matter * >
-{
-public:
-   map_word_to_ob();
-};
+using map_string_to_ptr = map < string, const string &, void *, void * >;
 
-
-class CLASS_DECL_ACME map_string_to_ptr :
-   virtual public map < string, const string &, void *, void * >
-{
-public:
-   map_string_to_ptr();
-};
-
-class CLASS_DECL_ACME map_string_to_ob :
-   virtual public map < string, const string &, matter *, matter * >
-{
-public:
-   map_string_to_ob();
-};
-
-
-
+using map_string_to_ob = map < string, const string &, matter *, matter * >;
 
 
 #include "string_to_string_map.h"

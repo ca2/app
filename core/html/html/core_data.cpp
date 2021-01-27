@@ -284,6 +284,21 @@ namespace html
 
       m_element.implement(this);
 
+      for (auto & pinteraction : m_pform->m_puiptraChild->interactiona())
+      {
+
+         ::user::control_event event;
+
+         event.m_eevent = ::user::e_event_initialize_control;
+
+         event.m_puie = pinteraction;
+
+         event.m_id = pinteraction->m_id;
+
+         m_pform->route_control_event(&event);
+
+      }
+
       MESSAGE_LINK(e_message_key_down, m_puserinteraction, this, &core_data::_001OnKeyDown);
 
       m_bImplemented = true;
@@ -294,7 +309,7 @@ namespace html
    void core_data::_001OnKeyDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       if (pkey->m_ekey == ::user::key_tab)
       {
@@ -636,7 +651,7 @@ namespace html
    }
 
 
-   bool core_data::open_document(const payload & varFile)
+   bool core_data::open_document(const ::payload & varFile)
    {
 
       //i32 iRetry = 0;
@@ -646,7 +661,7 @@ namespace html
    //restart:
 
 
-      //payload payload;
+      //::payload payload;
 
       //payload = 1;
 
@@ -812,7 +827,7 @@ namespace html
    }
 
 
-   //void core_data::on_before_navigate(payload& varFile, u32 nFlags, const char* pszTargetFrameName, byte_array& baPostedData, const char* pszHeaders, bool* pbCancel)
+   //void core_data::on_before_navigate(::payload& varFile, u32 nFlags, const char* pszTargetFrameName, byte_array& baPostedData, const char* pszHeaders, bool* pbCancel)
 
    //{
    //   if (m_pcallback != nullptr)
@@ -839,7 +854,7 @@ namespace html
    __pointer(::user::interaction) core_data::get_frame()
    {
       
-      return  (get_form()->GetParentFrame());
+      return  (get_form()->get_parent_frame());
 
    }
 

@@ -20,6 +20,7 @@
                virtual ~frame_011();
 
 
+               virtual string get_default_user_style() const;
                virtual void on_style_change();
 
 

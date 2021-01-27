@@ -7,7 +7,7 @@ namespace simpledb
 
 //      table *     m_ptable;
    //    string_array     m_straFields;
-   //  payload         m_var;
+   //  ::payload         m_var;
 
    void record_row::io(stream & stream)
    {
@@ -26,7 +26,7 @@ namespace simpledb
                for (i32 i = 0; i < m_ptable->m_fielddefinition.get_count(); i++)
                {
                   ::database::field_definition_item & item = m_ptable->m_fielddefinition[i];
-                  payload payload = vara[i];
+                  ::payload payload = vara[i];
                   if (item.m_etype == ::database::field_definition_item::type_text)
                   {
                      if (item.m_iSize > 0)
@@ -53,7 +53,7 @@ namespace simpledb
             for (i32 i = 0; i < m_ptable->m_fielddefinition.get_count(); i++)
             {
                ::database::field_definition_item & item = m_ptable->m_fielddefinition[i];
-               payload payload;
+               ::payload payload;
                if (item.m_etype == ::database::field_definition_item::type_text)
                {
                   if (item.m_iSize > 0)

@@ -35,7 +35,7 @@
 //   }
 //
 //
-//   void receive_response(const ::payload& payload) override
+//   void receive_response(const ::payload & payload) override
 //   {
 //
 //      m_pred(payload);
@@ -61,7 +61,7 @@ public:
    pred_process(PRED pred) : m_pred(pred) { }
 
 
-   virtual void operator()(const payload & payload)  override
+   virtual void operator()(const ::payload & payload)  override
    {
 
       m_pred(payload);
@@ -74,7 +74,7 @@ public:
 
 
    //inline future& operator = (const ::future& future) { m_pmatter = future.m_pmatter; return *this; }
-   //future& operator = (const ::payload& payload);
+   //future& operator = (const ::payload & payload);
 
 };
 

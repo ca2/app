@@ -106,7 +106,7 @@ namespace user
       for (auto & pview : m_viewa)
       {
 
-         uia.add_unique_interaction(pview->GetTopLevel());
+         uia.add_unique_interaction(pview->get_top_level());
 
       }
 
@@ -266,7 +266,7 @@ namespace user
    //   //for (auto& pinteraction : m_interactionaCommandHandlers)
    //   //{
 
-   //   //   if (pinteraction && pinteraction != GetActiveView())
+   //   //   if (pinteraction && pinteraction != get_active_view())
    //   //   {
 
    //   //      pinteraction->on_command_message(pcommand);
@@ -283,7 +283,7 @@ namespace user
    //   //}
 
    //   // then pump through parent
-   //   __pointer(::user::interaction) puiParent = GetParent();
+   //   __pointer(::user::interaction) puiParent = get_parent();
    //   while (puiParent)
    //   {
 
@@ -317,7 +317,7 @@ namespace user
 
    //   __pointer(channel) ptarget = psession->get_keyboard_focus();
 
-   //   if (ptarget != nullptr && ptarget != this && ptarget != GetActiveView()
+   //   if (ptarget != nullptr && ptarget != this && ptarget != get_active_view()
    //      && !m_interactionaCommandHandlers.contains(ptarget))
    //   {
 
@@ -362,7 +362,7 @@ namespace user
 
       update_all_views(psubject);
 
-      return psubject->value(id_id);
+      return psubject->payload(id_id);
 
    }
 
@@ -372,7 +372,7 @@ namespace user
 
       auto psubject = subject(id_get_topic_view_id);
 
-      psubject->value(id_id) = id;
+      psubject->payload(id_id) = id;
 
       update_all_views(psubject);
 
@@ -400,14 +400,14 @@ namespace user
       if (pview)
       {
 
-         __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+         __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
          while (pframe.is_set())
          {
 
             pframe->set_window_text(str);
 
-            pframe = pframe->GetParentFrame();
+            pframe = pframe->get_parent_frame();
 
          }
 
@@ -600,7 +600,7 @@ namespace user
 
          auto edisplay = windows_show_window_to_edisplay(nCmdShow, eactivation);
 
-         pview->GetParentFrame()->display(edisplay, eactivation);
+         pview->get_parent_frame()->display(edisplay, eactivation);
 
       }
    }
@@ -673,7 +673,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // File/Path commands
 
-   void document::set_path_name(payload varFile, bool bAddToMRU)
+   void document::set_path_name(::payload varFile, bool bAddToMRU)
    {
       UNREFERENCED_PARAMETER(bAddToMRU);
       string strPathName;
@@ -807,7 +807,7 @@ namespace user
    }
 
 
-   bool document::open_document(const payload & varFile)
+   bool document::open_document(const ::payload & varFile)
    {
 
       delete_contents();
@@ -915,7 +915,7 @@ namespace user
    }
 
 
-   bool document::on_open_document(const payload & varFile)
+   bool document::on_open_document(const ::payload & varFile)
    {
 
       auto preader = Context.file().get_reader(varFile, ::file::e_open_read | ::file::e_open_share_deny_write | ::file::e_open_binary);
@@ -966,7 +966,7 @@ namespace user
    }
 
 
-   bool document::on_save_document(const payload & varFile)
+   bool document::on_save_document(const ::payload & varFile)
    {
 
       auto pwriter = Context.file().get_writer(varFile, ::file::e_open_defer_create_directory | ::file::e_open_create | ::file::e_open_read | ::file::e_open_write | ::file::e_open_share_exclusive);
@@ -1037,12 +1037,12 @@ namespace user
          for (auto & pview : m_viewa.ptra())
          {
 
-            __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+            __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
             if (pframe.is_set())
             {
 
-               pframe->value("hold_impact_system") = m_pimpactsystem;
+               pframe->payload("hold_impact_system") = m_pimpactsystem;
 
                frameptra.add_unique(pframe);
 
@@ -1088,7 +1088,7 @@ namespace user
       for(auto & pview : viewptra.ptra())
       {
 
-         __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+         __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
          if (pframe.is_set())
          {
@@ -1104,7 +1104,7 @@ namespace user
       for(auto & pview : viewptra.ptra())
       {
 
-         __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+         __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
          if (pframe.is_set())
          {
@@ -1148,7 +1148,7 @@ namespace user
    }
 
 
-   void document::report_load_exception(const payload & varFile, file_result presult, const char * pszDefault)
+   void document::report_load_exception(const ::payload & varFile, file_result presult, const char * pszDefault)
    {
 
       report_save_load_exception(varFile, presult, false, pszDefault);
@@ -1156,7 +1156,7 @@ namespace user
    }
 
 
-   void document::report_save_exception(const payload & varFile, file_result presult, const char * pszDefault)
+   void document::report_save_exception(const ::payload & varFile, file_result presult, const char * pszDefault)
    {
 
       report_save_load_exception(varFile, presult, true, pszDefault);
@@ -1164,7 +1164,7 @@ namespace user
    }
 
 
-   void document::report_save_load_exception(const payload & varFile, file_result presult, bool bSave, const char * pszDefault)
+   void document::report_save_load_exception(const ::payload & varFile, file_result presult, bool bSave, const char * pszDefault)
    {
 
       try
@@ -1283,7 +1283,7 @@ namespace user
 
          ASSERT_VALID(pview);
 
-         __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+         __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
          // assume frameless views are ok to close
          if (pframe != nullptr)
@@ -1410,7 +1410,7 @@ namespace user
    }
 
 
-   bool document::on_filemanager_open(::filemanager::document * pmanager, payload varFile)
+   bool document::on_filemanager_open(::filemanager::document * pmanager, ::payload varFile)
    {
 
       return on_open_document(varFile);
@@ -1418,7 +1418,7 @@ namespace user
    }
 
 
-   bool document::on_filemanager_save(::filemanager::document * pmanager, payload varFile, bool bReplace)
+   bool document::on_filemanager_save(::filemanager::document * pmanager, ::payload varFile, bool bReplace)
    {
 
       return do_save(varFile, bReplace);
@@ -1426,7 +1426,7 @@ namespace user
    }
 
 
-   bool document::do_save(payload varFile, bool bReplace)
+   bool document::do_save(::payload varFile, bool bReplace)
    // Save the document_interface data to a file
    // pszPathName = path name where to save document_interface file
 
@@ -1438,7 +1438,7 @@ namespace user
    // if 'bReplace' is FALSE will not machine path name (SaveCopyAs)
    {
 
-      payload newName = varFile;
+      ::payload newName = varFile;
 
       if (newName.is_empty())
       {
@@ -1518,7 +1518,7 @@ namespace user
 
          // we do not have read-write access or the file does not (now) exist
 
-         if (!do_save(payload(::e_type_empty)))
+         if (!do_save(::payload(::e_type_empty)))
          {
 
             TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: File save with new name failed.\n");
@@ -1566,7 +1566,7 @@ namespace user
          if (pview->is_window_visible())
          {
 
-            __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+            __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
             if (pframe != nullptr)
             {
@@ -1594,7 +1594,7 @@ namespace user
          if (pview->is_window_visible())
          {
 
-            __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+            __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
             if (pframe != nullptr && pframe->m_nWindow == -1)
             {
@@ -1626,7 +1626,7 @@ namespace user
          if (pview->is_window_visible())   // Do not ::count invisible windows.
          {
 
-            __pointer(::user::frame_window) pframe = pview->GetParentFrame();
+            __pointer(::user::frame_window) pframe = pview->get_parent_frame();
 
             if (pframe != nullptr && pframe->m_nWindow == iFrame)
             {
@@ -1759,7 +1759,7 @@ namespace user
    }
 
 
-   //void document::on_before_navigate(::form_data * pdata,payload & varFile,u32 nFlags,const char * pszTargetFrameName,byte_array& baPostedData,const char * pszHeaders,bool* pbCancel)
+   //void document::on_before_navigate(::form_data * pdata,::payload & varFile,u32 nFlags,const char * pszTargetFrameName,byte_array& baPostedData,const char * pszHeaders,bool* pbCancel)
    //{
 
    //   UNREFERENCED_PARAMETER(pdata);

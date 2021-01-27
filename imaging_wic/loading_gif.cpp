@@ -151,7 +151,7 @@ namespace imaging_wic
 
          }
 
-         pframea->m_crBack = windows_image_metadata_get_background_color(pimetadataqueryreader, pbitmapdecoder, pimagingfactory);
+         pframea->m_colorBack = windows_image_metadata_get_background_color(pimetadataqueryreader, pbitmapdecoder, pimagingfactory);
 
          pframea->set_size(cFrame);
 
@@ -470,7 +470,7 @@ namespace imaging_wic
          HRESULT hr = pbitmapdecoder->GetFrame(iFrame, &pframe);
 
          WICPixelFormatGUID px;
-         xxf_zero(px);
+         __zero(px);
          if (!pframe)
          {
             return false;
@@ -917,13 +917,13 @@ namespace imaging_wic
       if (SUCCEEDED(hr))
       {
 
-         pframe->m_crTransparent = pframea->m_colorrefa[transparentIndex];
+         pframe->m_colorTransparent = pframea->m_colorrefa[transparentIndex];
 
       }
       else
       {
 
-         pframe->m_crTransparent = ARGB(255, 255, 255, 255);
+         pframe->m_colorTransparent = ARGB(255, 255, 255, 255);
 
       }
 
@@ -943,7 +943,7 @@ namespace imaging_wic
          else
          {
 
-            pimageCompose->fill(pframea->m_crBack);
+            pimageCompose->fill(pframea->m_colorBack);
 
 
          }

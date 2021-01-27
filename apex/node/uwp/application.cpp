@@ -34,7 +34,7 @@ namespace apex
    //   m_pimpl->_001OnFileNew(nullptr);
    //}
 
-   //::user::document * application::_001OpenDocumentFile(payload varFile)
+   //::user::document * application::_001OpenDocumentFile(::payload varFile)
    //{
    //   return m_pimpl->_001OpenDocumentFile(varFile);
    //}
@@ -285,11 +285,11 @@ namespace apex
 //         static std::map<string, char *> vmap;
 //         if (vmap.find(payload) != vmap.end())
 //         {
-//            delete[] vmap[payload];
+//            delete[] vmap[::payload];
 //         }
-//         vmap[payload] = new char[payload.get_length() + 1 + value.get_length() + 1];
-//         sprintf(vmap[payload], "%s=%s", payload, value);
-//         putenv( vmap[payload] );
+//         vmap[::payload] = new char[payload.get_length() + 1 + value.get_length() + 1];
+//         sprintf(vmap[::payload], "%s=%s", payload, value);
+//         putenv( vmap[::payload] );
 //      }
 //#elif defined WINDOWS_DESKTOP
 //      {

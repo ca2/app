@@ -12,7 +12,7 @@ namespace sockets
    public:
 
 
-      string_map < isomap < const SSL_METHOD *, __pointer(ssl_client_context) > > m_map;
+      string_map < map < const SSL_METHOD *, __pointer(ssl_client_context) > > m_map;
 
 
       ssl_client_context_map();

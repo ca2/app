@@ -112,6 +112,8 @@ void chain(::Windows::Foundation::IAsyncOperation < T > ^ operation, PRED pred, 
       else
       {
 
+         auto ErrorCode = operation->ErrorCode;
+
          pred(nullptr);
 
       }
@@ -147,26 +149,30 @@ using namespace Windows::UI::Xaml::Controls;
 using namespace Windows::UI::Xaml::Navigation;
 
 
+class message_box_w;
 
-ref class message_box_w
+ref class message_box_callback
 {
 private:
 
 
+   ::message_box_w * m_pmessageboxw;
+   Platform::Agile<Windows::UI::Popups::MessageDialog> m_messagedialog;
 
-   ~message_box_w()
+   ~message_box_callback()
    {
-
       output_debug_string("~message_box_w");
 
    }
 
 internal:
 
+   
    int                     m_iMessageBox;
    ::promise::process      m_process;
 
-   message_box_w();
+
+   message_box_callback(::message_box_w * pmessageboxw);
 
 
    ::e_status show(String ^ text, String ^ caption, const ::e_message_box & emessagebox, const ::promise::process & process);
@@ -177,20 +183,39 @@ internal:
 };
 
 
-comparable_array < message_box_w ^ > g_messageboxa;
-
-
-message_box_w::message_box_w()
+class message_box_w :
+   virtual public ::matter
 {
+public:
+
+   message_box_callback ^ m_pcallback;
+
+   message_box_w();
+   virtual ~message_box_w();
+
+
+   ::e_status show(const ::string & strText, const string & strCaption, const ::e_message_box & emessagebox, const ::promise::process & process);
+
+
+};
+
+
+//comparable_array < message_box_callback ^ > g_messageboxa;
+
+
+message_box_callback::message_box_callback(::message_box_w * pmessageboxw)
+{
+
+   m_pmessageboxw = pmessageboxw;
 
 }
 
 
 #define create_a_button(id,text) \
-   msg->Commands->Append(ref new UICommand(text,ref new UICommandInvokedHandler(this, &::message_box_w::CommandInvokedHandler),id));
+   messagedialog->Commands->Append(ref new UICommand(text,ref new UICommandInvokedHandler(this, &::message_box_callback::CommandInvokedHandler),id));
 
 
-::e_status message_box_w::show(String ^ text,String ^ caption, const ::e_message_box & emessagebox, const ::promise::process & process)
+::e_status message_box_callback::show(String ^ text,String ^ caption, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
    if (!is_core_window_once_visible())
@@ -202,7 +227,7 @@ message_box_w::message_box_w()
 
    }
 
-   MessageDialog ^ msg = ref new MessageDialog(text, caption);
+   MessageDialog ^ messagedialog = ref new MessageDialog(text, caption);
 
    u32 uiType = emessagebox & MB_TYPEMASK;
 
@@ -246,25 +271,53 @@ message_box_w::message_box_w()
    break;
    }
 
-   msg->DefaultCommandIndex = 0;
+   messagedialog->DefaultCommandIndex = 0;
 
    if (iCancel >= 0)
    {
 
-      msg->CancelCommandIndex = iCancel;
+      messagedialog->CancelCommandIndex = iCancel;
 
    }
 
    m_process = process;
 
-   chain(msg->ShowAsync(), [this](IUICommand ^ i)
+   m_messagedialog = messagedialog;
+
+   auto phandler = [this]()
    {
 
-      CommandInvokedHandler(i);
+      m_messagedialog->ShowAsync();
 
-   });
+   };
+
+   auto pdispatchedhandler = ref new Windows::UI::Core::DispatchedHandler(phandler);
+
+   auto pdispatcher = Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher;
+
+   pdispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, pdispatchedhandler);
 
    return ::success;
+
+}
+
+
+//message_box_w();
+//virtual ~message_box_w();
+
+
+::e_status message_box_w::show(const ::string & strText, const string & strCaption, const ::e_message_box & emessagebox, const ::promise::process & process)
+{
+
+   wstring wstrMessage(strText);
+
+   wstring wstrTitle(strCaption);
+
+   m_pcallback = ref new message_box_callback(this);
+
+   auto estatus = m_pcallback->show(wstrMessage, wstrTitle, emessagebox, process);
+
+   return estatus;
 
 }
 
@@ -272,22 +325,31 @@ message_box_w::message_box_w()
 ::e_status _os_message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
-   wstring wstrMessage(pszMessage);
-
-   wstring wstrTitle(pszTitle);
+   auto pmessagebox = __new(message_box_w);
 
    auto psystem = ::get_context_system();
 
-   message_box_w ^ pmessageboxw = ref new message_box_w;
+   auto pobjectarray = psystem->payload("message_box_array").cast < ::object_array >();
+   
+   if (!pobjectarray)
+   {
 
-   pmessageboxw->show(wstrMessage, wstrTitle, emessagebox, process);
+      psystem->payload("message_box_array") = __new(object_array);
 
+      pobjectarray = psystem->payload("message_box_array").cast < ::object_array >();
+
+   }
+
+   pobjectarray->add_item(pmessagebox);
+
+   pmessagebox->show(pszMessage, pszTitle, emessagebox, process);
+   
    return ::success;
 
 }
 
 
-void message_box_w::CommandInvokedHandler(IUICommand^ cmd)
+void message_box_callback::CommandInvokedHandler(IUICommand^ cmd)
 {
 
    if (cmd == nullptr)
@@ -307,7 +369,30 @@ void message_box_w::CommandInvokedHandler(IUICommand^ cmd)
 
    }
 
+   auto psystem = ::get_context_system();
+
+   auto pobjectarray = psystem->payload("message_box_array").cast < ::object_array >();
+
+   pobjectarray->remove(m_pmessageboxw);
+
+
 }
 
 
 
+
+
+
+
+message_box_w::message_box_w()
+{
+
+}
+
+
+
+message_box_w::~message_box_w()
+{
+
+
+}

@@ -6,7 +6,7 @@ namespace file
   
 
    inline path::path(const path & path) :
-      string(path),
+      string((const string &) path),
       path_meta(path),
       path_os(path)
    {

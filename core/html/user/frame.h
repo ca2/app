@@ -18,7 +18,7 @@
 //   __pointer(image_list)                m_pimagelist;
 //   bool m_bTimerOn;
 //
-//   virtual bool pre_create_window(::user::create_struct * pcreatestruct);
+//   virtual bool pre_create_window(::user::system * pusersystem);
 //   virtual void route_command_message(::user::command * pcommand); 
 //   void ShowControlBars(bool bShow);
 

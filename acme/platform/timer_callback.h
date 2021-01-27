@@ -7,18 +7,15 @@ class CLASS_DECL_ACME timer_callback :
 public:
 
 
-   __pointer(::layered)       m_puserinteraction;
-
-
    virtual bool on_timer(timer * ptimer);
    virtual bool e_timer_is_ok();
 
 
    virtual bool remove_timer(::timer* ptimer);
 
+   virtual ::user::interaction * get_user_interaction();
 
-   inline ::user::interaction* user_interaction() { return __user_interaction(m_puserinteraction); }
-
+   
 };
 
 

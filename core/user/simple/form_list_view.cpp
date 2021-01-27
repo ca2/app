@@ -39,7 +39,7 @@ void simple_form_list_view::dump(dump_context & dumpcontext) const
 }
 
 
-bool simple_form_list_view::pre_create_window(::user::create_struct * pcreatestruct) 
+bool simple_form_list_view::pre_create_window(::user::system * pusersystem) 
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -48,7 +48,7 @@ bool simple_form_list_view::pre_create_window(::user::create_struct * pcreatestr
 
 #endif
    
-   return ::user::impact::pre_create_window(pcreatestruct);
+   return ::user::impact::pre_create_window(pusersystem);
 
 }
 

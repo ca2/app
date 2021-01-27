@@ -525,6 +525,15 @@
     <ClInclude Include="const\idpool.h">
       <Filter>Header Files\const</Filter>
     </ClInclude>
+    <ClInclude Include="user\user\tab_data.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\tab_pane.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\tab_pane_array.h">
+      <Filter>Header Files\user\user</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="user\user\_impl.h">
@@ -777,6 +786,15 @@
     </ClCompile>
     <ClCompile Include="const\idpool.cpp">
       <Filter>Source Files\const</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\tab_data.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\tab_pane.cpp">
+      <Filter>Source Files\user\user</Filter>
+    </ClCompile>
+    <ClCompile Include="user\user\tab_pane_array.cpp">
+      <Filter>Source Files\user\user</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

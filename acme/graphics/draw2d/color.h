@@ -47,7 +47,7 @@ public:
 auto inline red(color32_t rgba) { return ((byte)(rgba & 0xff)); }
 auto inline green(color32_t rgba) { return ((byte)((rgba >> 8) & 0xff)); }
 auto inline blue(color32_t rgba) { return ((byte)((rgba >> 16) & 0xff)); }
-auto inline opacity(color32_t rgba) { return ((byte)((rgba >> 24) & 0xff)); }
+auto inline alpha(color32_t rgba) { return ((byte)((rgba >> 24) & 0xff)); }
 
 class rgba :
    public rgb
@@ -74,8 +74,8 @@ public:
 inline auto red(const rgb & rgb) { return rgb.m_iR; }
 inline auto green(const rgb & rgb) { return rgb.m_iG; }
 inline auto blue(const rgb & rgb) { return rgb.m_iB; }
-inline auto opacity(const rgb & rgba) { return 255; }
-inline auto opacity(const rgba & rgba) { return rgba.m_iA; }
+inline auto alpha(const rgb & rgba) { return 255; }
+inline auto alpha(const rgba & rgba) { return rgba.m_iA; }
 
 #define A_RGB(a, rgb) ARGB(a, ::red(rgb), ::green(rgb), ::blue(rgb))
 
@@ -98,7 +98,7 @@ public:
 
 };
 
-inline payload & assign(payload & payload, const ::hls & hls);
+inline ::payload & assign(::payload & payload, const ::hls & hls);
 
 class CLASS_DECL_ACME color :
    public rgba
@@ -140,6 +140,9 @@ public:
 
    void hls_mult(double dRateH, double dRateL, double dRateS);
    void hls_rate(double dRateH, double dRateL, double dRateS);
+   void hue_rate(double dRateL);
+   void lightness_rate(double dRateL);
+   void saturation_rate(double dRateL);
    void set_rgb(color32_t cr);
    void set_argb(color32_t cr);
    void set_bgr(u32 dw);
@@ -150,6 +153,8 @@ public:
    void hls_rate(hls & hls);
    void get_hls(hls & hls) const;
    void set_hls(const hls & hls);
+
+
 
    ::hls get_hls() const { hls hls; get_hls(hls); return hls; }
 
@@ -166,6 +171,8 @@ public:
    void set(int R, int G, int B);
    void set(int R, int G, int B, int A);
    void set(double R, double G, double B, double A);
+
+   void make_black_and_white();
 
    operator color32_t() const;
 

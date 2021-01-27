@@ -16,7 +16,7 @@ namespace http
 
       string         m_strName;
       string         m_strNameLow;
-      payload            m_varValue;
+      ::payload      m_varValue;
       string         m_strExpire;
       string         m_strPath;
       string         m_strDomain;
@@ -30,7 +30,7 @@ namespace http
 
       string get_cookie_string();
 
-      cookie & operator = (payload payload)
+      cookie & operator = (::payload payload)
       {
          m_varValue = payload;
          return *this;

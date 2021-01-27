@@ -89,7 +89,7 @@ namespace user
 
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
-      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
+      virtual bool pre_create_window(::user::system * pusersystem) override;
 
       virtual void OnActivateView(bool bActivate, __pointer(impact) pActivateView, __pointer(impact) pDeactiveView) override;
 

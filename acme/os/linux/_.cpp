@@ -151,13 +151,20 @@ int get_proc_cpuinfo_core_count()
    if(id == id_os_dark_mode)
    {
 
-      return 300_ms;
+      // On Gnome you can?
+      // ... hook to the gtk-theme-name property change event of GTK Settings default object
+      //return 300_ms;
+      return 0;
 
    }
    else if(id == id_os_user_theme)
    {
+      // On Gnome you can?
+      // ... hook to the gtk-theme-name property change event of GTK Settings default object
+      //return 300_ms;
 
-      return 300_ms;
+      //return 300_ms;
+      return 0;
 
    }
 

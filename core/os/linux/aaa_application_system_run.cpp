@@ -12,7 +12,7 @@ Display * x11_get_display();
 
 CLASS_DECL_CORE i32 ca2_main();
 
-
+void x11_main();
 
 gboolean linux_start_system(gpointer data);
 
@@ -125,7 +125,7 @@ void sn_start_context()
 //
 //   }
 //
-   if(!psystem->begin_synch())
+   if (!psystem->begin_synch())
    {
 
       output_debug_string("Failed to begin_synch the system (::aura::system or ::aura::system derived)");
@@ -134,9 +134,14 @@ void sn_start_context()
 
    }
 
-   if(!psystem->m_bGtkApp)
+   if(psystem->m_bGtkApp)
    {
 
+
+
+   }
+   else
+   {
       //g_thread_init(nullptr);
 
       g_set_application_name(psystem->m_strAppId);
@@ -170,7 +175,11 @@ void sn_start_context()
    else
    {
 
-      gtk_main();
+      //gtk_main();
+
+      x11_main();
+
+      //main();
 
    }
 

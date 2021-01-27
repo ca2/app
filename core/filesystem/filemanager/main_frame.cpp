@@ -44,7 +44,7 @@ namespace filemanager
    {
 
 
-      return dynamic_cast <document *> (GetActiveDocument());
+      return dynamic_cast <document *> (get_active_document());
 
    }
 

@@ -34,9 +34,9 @@ namespace experience
    void button::_001OnLButtonDown(::message::message* pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
-      if (m_ebutton == button_dock)
+      if (m_ebutton == e_button_dock)
       {
 
          auto item = hit_test(pmouse);
@@ -68,6 +68,8 @@ namespace experience
       //return;
 
 #endif
+
+      //return;
 
       try
       {
@@ -117,19 +119,19 @@ namespace experience
             while (pinteraction != nullptr)
             {
 
-               pinteraction->get_window_rect(rectFocus);
+               pinteraction->get_client_rect(rectFocus);
 
-               rectFocus.offset(rectClient.top_left());
+               pinteraction->_001ClientToHost(rectFocus);
 
-               _001ScreenToClient(rectFocus);
+               _001HostToClient(rectFocus);
 
-               m_pshapeaClip->add_item(__new(rect_shape(rectFocus)));
+               m_pshapeaClip->add_item(__new(rectd_shape(rectFocus)));
                
                m_pshapeaClip->add_item(__new(intersect_clip_shape));
 
                i++;
 
-               pinteraction = pinteraction->GetParent();
+               pinteraction = pinteraction->get_parent();
 
             }
             

@@ -1,5 +1,7 @@
 #include "framework.h"
 #include "_uwp.h"
+#include "aura/os/windows_common/draw2d_direct2d_global.h"
+
 
 //
 //namespace uwp

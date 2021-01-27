@@ -1,6 +1,6 @@
 #include "framework.h"
 #include "_linux.h"
-#include "gnome_gnome.h"
+//#include "gnome_gnome.h"
 
 
 namespace process
@@ -203,7 +203,9 @@ CLASS_DECL_AURA void main_sync_runnable(::context_object * pobjectRunnable, ::du
 
    auto pevent = __new(manual_reset_event);
 
-   gdk_fork([prunnable, pevent]()
+   auto pnode = Node;
+
+   pnode->node_fork([prunnable, pevent]()
    {
 
       try
@@ -231,7 +233,9 @@ CLASS_DECL_AURA void main_async_runnable(::context_object * prunnableParam)
 
    __pointer(context_object) prunnable = prunnableParam;
 
-   gdk_fork([prunnable]()
+   auto pnode = Node;
+
+   pnode->node_fork([prunnable]()
    {
 
       prunnable->operator()();

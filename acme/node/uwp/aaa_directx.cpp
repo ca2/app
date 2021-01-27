@@ -463,7 +463,7 @@ namespace uwp
 
          ComPtr<IDXGIFactory2> dxgiFactory;
          ::uwp::throw_if_failed(
-         dxgiAdapter->GetParent(IID_PPV_ARGS(&dxgiFactory))
+         dxgiAdapter->get_parent(IID_PPV_ARGS(&dxgiFactory))
          );
 
          CoreWindow ^ window = m_window.Get();

@@ -5,9 +5,6 @@ namespace user
 {
 
 
-   class control_descriptor;
-
-
    class CLASS_DECL_AURA form :
       virtual public ::user::interaction
    {
@@ -44,16 +41,16 @@ namespace user
 
       //virtual enum_control_type get_control_type() const override;
 
+      virtual bool _001AddControl(::user::interaction * pinteraction);
+      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id);
 
-      virtual bool create_control(class control_descriptor * pdescriptor, index iItem);
 
-
-      virtual __pointer(control_descriptor) new_form_control();
+      //virtual __pointer(control_descriptor) new_form_control();
 
 
       virtual ::e_status open_html(const ::string& str);
 
-      virtual ::e_status open_document(const payload& varFile);
+      virtual ::e_status open_document(const ::payload& varFile);
 
       virtual void soft_reload();
 

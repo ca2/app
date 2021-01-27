@@ -30,7 +30,7 @@ namespace dynamic_source
       virtual ~script();
 
 
-      virtual __pointer(script_instance) create_instance() = 0;
+      virtual __pointer(::dynamic_source::script_instance) create_instance() = 0;
 
       virtual void run(script_instance * pinstance);
 

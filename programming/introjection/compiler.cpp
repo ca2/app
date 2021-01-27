@@ -29,7 +29,7 @@ string vs_build()
 #endif
 
 
-::u32 RunSilent(const char* strFunct, char* strstrParams);
+::u32 RunSilent(const char* strFunct, const char* strstrParams);
 
 
 namespace introjection
@@ -43,7 +43,7 @@ namespace introjection
 
       defer_create_mutex();
 
-      xxf_zero(m_filetimeset);
+      __zero(m_filetimeset);
 
    }
 
@@ -362,7 +362,7 @@ namespace introjection
 
       string strCommandLine = "\"" + m_strEnv + "\" " + m_strPlat2 + " " + vs_build();
 
-      payload payload = System.process().get_output(strCommandLine);
+      ::payload payload = System.process().get_output(strCommandLine);
 
       TRACE("%s", payload.get_string().c_str());
 
@@ -653,7 +653,7 @@ namespace introjection
 
       }
 
-      ::dir::mk("/payload/tmp/ca2/intermediate");
+      ::dir::mk("/::payload/tmp/ca2/intermediate");
 
 #else
 
@@ -1422,7 +1422,7 @@ auto tickStart = ::millis::now();
 }
 
 
-::u32 RunSilent(const char* strFunct, char* strstrParams)
+::u32 RunSilent(const char* strFunct, const char* strstrParams)
 {
 
 #if defined(_UWP)
@@ -1439,7 +1439,7 @@ auto tickStart = ::millis::now();
 
    char *pEnvCMD = nullptr;
 
-   char *pDefaultCMD = "CMD.EXE";
+   const char *pDefaultCMD = "CMD.EXE";
 
    ULONG rc;
 

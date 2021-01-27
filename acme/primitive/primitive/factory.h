@@ -60,7 +60,7 @@ namespace factory
       virtual __pointer(BASE_TYPE) _call_new()
       {
 
-         return ::move_transfer(new TYPE());
+         return __new(TYPE);
 
       }
 

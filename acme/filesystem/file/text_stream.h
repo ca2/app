@@ -8,7 +8,7 @@ template < typename TYPE >
 inline void __string_exchange(text_stream & s, TYPE & t);
 
 
-inline void __string_exchange(stream & s, payload & payload);
+inline void __string_exchange(stream & s, ::payload & payload);
 
 inline void __string_exchange(text_stream & s, ansichar & ansich);
 inline void __string_exchange(text_stream & s, widechar & widech);
@@ -203,8 +203,8 @@ public:
 
    virtual ::string get_location() const;
 
-   virtual ::filesize get_position() const override { return m_p->get_position(); }
-   virtual void write(const void * psz, strsize s) override { m_p->write(psz, s); }
+   virtual ::filesize get_position() const override;
+   virtual void write(const void * psz, strsize s) override;
 
    operator void * () { return this; }
 

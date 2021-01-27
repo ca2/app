@@ -84,7 +84,7 @@ namespace hellobase
    void view::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create,pcreate,pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
 
@@ -283,7 +283,7 @@ namespace hellobase
 
 
                get_document()->on_open_document(m_strImage);
-               //   payload varFile;
+               //   ::payload varFile;
                //
                //   varFile["url"] = strImage;
                //

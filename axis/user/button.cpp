@@ -37,6 +37,9 @@ namespace user
    void button::user_button_construct()
    {
 
+      m_econtroltype = e_control_type_button;
+
+
       //m_erectMargin = rect_button_margin;
       //m_erectBorder = rect_button_border;
       //m_erectPadding = rect_button_padding;
@@ -172,9 +175,9 @@ namespace user
 
       ::size sizeTotal;
 
-      sizeTotal.cx = size.cx;
+      sizeTotal.cx = (::i32) size.cx;
 
-      sizeTotal.cy = tm.get_line_spacing();
+      sizeTotal.cy = (::i32)tm.get_line_spacing();
 
       return sizeTotal;
 
@@ -234,8 +237,6 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      descriptor().set_control_type(e_control_type_button);
-
       if (m_estyle == style_none)
       {
 
@@ -266,25 +267,25 @@ namespace user
 
       ::rect rect;
 
-      rect.left = rectClient.left + (rectClient.width() - sizeText.cx) / 2;
+      rect.left = (::i32)(rectClient.left + (rectClient.width() - sizeText.cx) / 2);
 
-      rect.top = rectClient.top + (rectClient.height() - sizeText.cy) / 2;
+      rect.top = (::i32)(rectClient.top + (rectClient.height() - sizeText.cy) / 2);
 
-      rect.right = rect.left + sizeText.cx;
+      rect.right = (::i32)(rect.left + sizeText.cx);
 
-      rect.bottom = rect.top + sizeText.cy;
+      rect.bottom = (::i32)(rect.top + sizeText.cy);
 
       m_rectText = rect;
 
    }
 
 
-   bool button::create_control(class control_descriptor * pdescriptor)
-   {
+   //bool button::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
+   //{
 
-      return interaction::create_control(pdescriptor);
+   //   return interaction::create_interaction(pinteractionParent, id);
 
-   }
+   //}
 
 
    void button::_002OnDraw(::draw2d::graphics_pointer & pgraphics)
@@ -424,7 +425,7 @@ namespace user
    void button::_001OnKeyDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       ::user::e_key iKey = pkey->m_ekey;
 

@@ -15,7 +15,7 @@ public:
 
 
    size_type() noexcept { this->cx = 0; this->cy = 0; }
-   size_type(e_no_init) noexcept {}
+   size_type(enum_no_init) noexcept {}
    size_type(::std::nullptr_t) noexcept { this->cx = 0; this->cy = 0; }
    size_type(UNIT_TYPE cx, UNIT_TYPE cy) noexcept { this->cx = cx; this->cy = cy; }
    size_type(::i32 i) noexcept { this->cx = (UNIT_TYPE) i; this->cy = (UNIT_TYPE) i; }
@@ -25,8 +25,10 @@ public:
    size_type(float f) noexcept { this->cx = (UNIT_TYPE) f; this->cy = (UNIT_TYPE) f; }
    size_type(double d) noexcept { this->cx = (UNIT_TYPE) d; this->cy = (UNIT_TYPE) d; }
    size_type(const lparam & lparam) noexcept : size_type(lparam.x(), lparam.y()) {}
-   size_type(const POINT_TYPE& point) noexcept;
-   size_type(const RECT_TYPE& rect) noexcept;
+   template < primitive_point POINT >
+   size_type(const POINT & point) noexcept { this->cx = (UNIT_TYPE)point.x; this->cy = (UNIT_TYPE)point.y; }
+   template < primitive_rectangle RECTANGLE >
+   size_type(const RECTANGLE & rect) noexcept { this->cx = (UNIT_TYPE)::width(rect); this->cy = (UNIT_TYPE)::height(rect); }
    size_type(const SIZE32& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
    size_type(const SIZE64& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
    size_type(const SIZEF& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
@@ -49,7 +51,8 @@ public:
    size_type& Null() { this->cx = (UNIT_TYPE)0; this->cy = (UNIT_TYPE)0; return *this; }
 
    POINT_TYPE operator+(const POINT_TYPE& point1) const noexcept { POINT_TYPE point(point1); ::offset_point(&point, this->cx, this->cy); return point; }
-   POINT_TYPE operator-(const POINT_TYPE& point1) const noexcept { POINT_TYPE point(this->cx, this->cy); ::offset_point(&point, -point1.x, -point1.y); return point;   }
+   template < primitive_point POINT >
+   POINT_TYPE operator-(const POINT & point1) const noexcept { POINT_TYPE point(this->cx, this->cy); ::offset_point(&point, -point1.x, -point1.y); return point;   }
 
    RECT_TYPE operator+(const RECT_TYPE& rect1) const noexcept { RECT_TYPE rect(rect1); ::offset_rect(&rect, this->cx, this->cy); return rect; }
    RECT_TYPE operator-(const RECT_TYPE& rect1) const noexcept { RECT_TYPE rect(rect1); ::offset_rect(&rect, -this->cx, -this->cy); return rect; }
@@ -107,17 +110,25 @@ public:
 
    inline size_type & operator=(const size_type & size) noexcept { this->cx = size.cx; this->cy = size.cy; return *this; }
 
-   inline size_type & operator+=(const size_type & size) noexcept { this->cx += size.cx; this->cy += size.cy; return *this; }
-   inline size_type & operator-=(const size_type & size) noexcept { this->cx -= size.cx; this->cy -= size.cy; return *this; }
+   template < primitive_size SIZE > 
+   inline size_type & operator+=(const SIZE & size) noexcept { this->cx += size.cx; this->cy += size.cy; return *this; }
 
-   inline size_type & operator+=(const POINT_TYPE & point) noexcept { this->cx += point.x; this->cy += point.y; return *this; }
-   inline size_type & operator-=(const POINT_TYPE & point) noexcept { this->cx -= point.x; this->cy -= point.y; return *this; }
+   template < primitive_size SIZE >
+   inline size_type & operator-=(const SIZE & size) noexcept { this->cx -= size.cx; this->cy -= size.cy; return *this; }
+
+   template < primitive_point POINT >
+   inline size_type & operator+=(const POINT & point) noexcept { this->cx += point.x; this->cy += point.y; return *this; }
+
+   template < primitive_point POINT >
+   inline size_type & operator-=(const POINT & point) noexcept { this->cx -= point.x; this->cy -= point.y; return *this; }
 
    inline void set_size(UNIT_TYPE cx, UNIT_TYPE cy) noexcept {this->cx = cx; this->cy = cy; }
    inline void set_size(const size_type & size_type) noexcept { set_size(size_type.cx, size_type.cy); }
 
-   inline size_type operator+(const size_type & size) const noexcept { return size_type(this->cx + size.cx, this->cy + size.cy); }
-   inline size_type operator-(const size_type & size) const noexcept { return size_type(this->cx - size.cx, this->cy - size.cy); }
+   template < primitive_size SIZE >
+   inline size_type operator+(const SIZE & size) const noexcept { return size_type((UNIT_TYPE) (this->cx + size.cx), (UNIT_TYPE) (this->cy + size.cy)); }
+   template < primitive_size SIZE >
+   inline size_type operator-(const SIZE & size) const noexcept { return size_type((UNIT_TYPE) (this->cx - size.cx), (UNIT_TYPE) (this->cy - size.cy)); }
 
    inline size_type operator-() const noexcept { return size_type(-this->cx, -this->cy); }
 

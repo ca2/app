@@ -44,14 +44,14 @@ namespace console
    void department::pre_translate_message(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base,pbase,pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       if(pbase != nullptr)
       {
          if(pbase->m_id == e_message_key_down)
          {
 
-            SCAST_PTR(::message::key,pkey,pmessage);
+            __pointer(::message::key) pkey(pmessage);
 
             if(pkey->m_ekey == ::user::key_semicolon2 && psession->is_key_pressed(::user::key_shift))
             {
@@ -77,7 +77,7 @@ namespace console
    void department::_001OnImpact(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base,pbase,pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
 
       bool bShow = pmessage->m_wparam & 1;
@@ -107,7 +107,7 @@ namespace console
          }
          else
          {
-            i.GetTopLevel()->display(e_display_normal);
+            i.get_top_level()->display(e_display_normal);
 
          }
 

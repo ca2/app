@@ -3084,7 +3084,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //#endif
 //
-//// set the string to the value of environment payload 'pszVar'
+//// set the string to the value of environment ::payload 'pszVar'
 //bool string::get_environment_variable(const char * pszVar)
 //{
 //

@@ -19,7 +19,7 @@ namespace multimedia
       toolbox::toolbox()
       {
 
-         xxf_zero(m_dataformat);
+         __zero(m_dataformat);
 
          m_Queue           = nullptr;
          m_runloop         = nullptr;

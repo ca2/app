@@ -84,7 +84,7 @@ namespace userex
          for(; i > 0; i--)
          {
 
-            puiNext = pinteraction->GetParent();
+            puiNext = pinteraction->get_parent();
 
             if (puiNext == nullptr || !puiNext->is_window())
             {
@@ -118,7 +118,7 @@ namespace userex
 
             uia.add_interaction(pinteraction);
 
-            puiNext = pinteraction->GetParent();
+            puiNext = pinteraction->get_parent();
 
             if (puiNext == nullptr || (pinteraction->m_pimpl) != nullptr)
             {
@@ -158,9 +158,9 @@ namespace userex
    void pane_tab_view::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
-      m_pcreate = (::create *) pcreate->get_create();
+      //m_pusersystem->m_pcreate = (::create *) pcreate->get_create();
 
       //if (Application.m_pmainpane == nullptr)
       //{
@@ -184,17 +184,17 @@ namespace userex
       }
 
 
-      __pointer(simple_frame_window) pframe = GetParent();
+      __pointer(simple_frame_window) pframe = get_parent();
 
       if (pframe.is_set())
       {
 
-         string strAppOptions = pframe->m_varFrame["app_options"]["resource"];
+         string strAppOptions(pframe->m_varFrame["app_options"]["resource"]);
 
          if (strAppOptions.has_char())
          {
 
-            string strTitle = pframe->m_varFrame["app_options"]["title"];
+            string strTitle(pframe->m_varFrame["app_options"]["title"]);
 
             add_tab(strTitle, "app_options");
 
@@ -224,7 +224,7 @@ namespace userex
    void pane_tab_view::_001OnUpdateFileSaveAs(::message::message * pmessage)
    {
 
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
 
       auto pdocument = m_pimpactdata->m_pdocument;
 
@@ -241,14 +241,14 @@ namespace userex
       if(m_pimpactdataOld != nullptr && is_filemanager(m_pimpactdataOld->m_id))
       {
 
-         if(GetParentFrame()->ContinueModal())
+         if(get_parent_frame()->ContinueModal())
          {
 
-            GetParentFrame()->EndModalLoop("yes");
+            get_parent_frame()->EndModalLoop("yes");
 
          }
 
-         if(is_set_ref(filemanager_document()))
+         if(::is_set(filemanager_document()))
          {
 
             filemanager_document()->filemanager_data()->m_pdocumentTopic = nullptr;
@@ -444,13 +444,13 @@ namespace userex
 
          //auto pcreate = __new(create(this));
 
-         //pcreate->m_pusercreate = __new(user::create);
+         //pcreate->m_pusersystem = __new(user::create);
 
          //pcreate->m_puserinteractionParent = pimpactdata->m_pplaceholder;
 
          //pcreate->m_bMakeVisible = false;
 
-         //pcreate->m_pusercreate
+         //pcreate->m_pusersystem
 
 //         auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->do_request(get_context_application(), ::e_type_null, false, pimpactdata->m_pplaceholder);
          auto pdocument = puser->m_mapimpactsystem[FONTSEL_IMPACT]->open_document_file(get_context_application(), ::e_type_null, __visible(true), pimpactdata->m_pplaceholder);
@@ -512,10 +512,10 @@ namespace userex
          //pfilemanagerdata->m_id = pimpactdata->m_id;
 
          if (has_property("filemanager_toolbar")
-               && value("filemanager_toolbar").m_etype == ::e_type_propset)
+               && payload("filemanager_toolbar").m_etype == ::e_type_propset)
          {
 
-            auto & set = value("filemanager_toolbar").propset();
+            auto & set = payload("filemanager_toolbar").propset();
 
             if (set[::userfs::mode_normal].is_set())
                pfilemanagerdata->m_setToolbar[::userfs::mode_normal] = set[::userfs::mode_normal];
@@ -573,7 +573,7 @@ namespace userex
             if(pview != nullptr)
             {
 
-               __pointer(::user::frame_window) pframe = (__pointer(::user::frame_window)) pview->GetParentFrame();
+               __pointer(::user::frame_window) pframe = (__pointer(::user::frame_window)) pview->get_parent_frame();
 
                if(pframe != nullptr)
                {
@@ -607,7 +607,7 @@ namespace userex
       //      if(pview != nullptr)
       //      {
 
-      //         __pointer(::user::frame_window) pframe = (__pointer(::user::frame_window)) pview->GetParentFrame();
+      //         __pointer(::user::frame_window) pframe = (__pointer(::user::frame_window)) pview->get_parent_frame();
 
       //         if(pframe != nullptr)
       //         {
@@ -648,7 +648,7 @@ namespace userex
 
                ::user::impact * pview = pdocument->get_view(0);
 
-               pimpactdata->m_puserinteraction = pview->GetParentFrame();
+               pimpactdata->m_puserinteraction = pview->get_parent_frame();
 
                prepare_form(pimpactdata->m_id, pdocument);
 
@@ -702,11 +702,11 @@ namespace userex
 
       ::user::tab::_001OnTabClose(iTab);
 
-      if(GetParentFrame()->ContinueModal() && is_set_ref(filemanager_document())
+      if(get_parent_frame()->ContinueModal() && ::is_set(filemanager_document())
             && filemanager_document()->filemanager_data()->m_pdocumentTopic!= nullptr)
       {
 
-         GetParentFrame()->EndModalLoop("yes");
+         get_parent_frame()->EndModalLoop("yes");
 
       }
 
@@ -780,7 +780,7 @@ namespace userex
 
       string strAppOptions = "matter://options.html";
 
-      __pointer(simple_frame_window) pframe = GetParent();
+      __pointer(simple_frame_window) pframe = get_parent();
 
       if (pframe.is_set())
       {
@@ -789,7 +789,7 @@ namespace userex
 
       }
 
-      value("app_options_title") = get_pane_by_id(pimpactdata->m_id)->get_title();
+      payload("app_options_title") = get_pane_by_id(pimpactdata->m_id)->get_title();
 
       auto puser = User;
 

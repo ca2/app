@@ -37,7 +37,7 @@ public:
    }
 
 
-   void receive_response(const ::payload& payload) override
+   void receive_response(const ::payload & payload) override
    {
 
       m_pred(payload);

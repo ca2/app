@@ -14,7 +14,7 @@ namespace dynamic_source
    //script_instance * get_seed_instance()
    //{
    //   
-   //   return thread_value(id_thread_dynamic_source_script_instance).cast < script_instance >();
+   //   return thread_property(id_thread_dynamic_source_script_instance).cast < script_instance >();
 
    //}
 
@@ -22,7 +22,7 @@ namespace dynamic_source
    //void set_seed_instance(script_instance * pinstance)
    //{
 
-   //   thread_value(id_thread_dynamic_source_script_instance) = pinstance;
+   //   thread_property(id_thread_dynamic_source_script_instance) = pinstance;
 
    //}
 
@@ -471,7 +471,7 @@ namespace dynamic_source
    }
 
 
-   payload script_manager::get_output_internal(::dynamic_source::script_interface * pinstanceParent, const string & strNameParam)
+   ::payload script_manager::get_output_internal(::dynamic_source::script_interface * pinstanceParent, const string & strNameParam)
    {
 
       string strName = ::str::get_word(strNameParam, "?");
@@ -500,7 +500,7 @@ namespace dynamic_source
 
       }
 
-      payload payload;
+      ::payload payload;
 
       __pointer(script_interface) pimpl;
 
@@ -643,7 +643,7 @@ namespace dynamic_source
 
       }
 
-      return payload;
+      return ::payload;
 
    }
 
@@ -1051,7 +1051,7 @@ namespace dynamic_source
 
       single_lock sl(&m_mutexSession, TRUE);
 
-      strsp(::dynamic_source::session)::pair * ppair = m_mapSession.plookup(pszId);
+      auto ppair = m_mapSession.plookup(pszId);
 
       if (ppair != nullptr)
       {
@@ -1096,9 +1096,9 @@ namespace dynamic_source
       
       time = ::datetime::time::get_current_time();
       
-      strsp(::dynamic_source::session)::assoc * passoc = m_mapSession.get_start();
+      auto passoc = m_mapSession.get_start();
       
-      strsp(::dynamic_source::session)::assoc * passocNext;
+      decltype(passoc) passocNext;
 
       while(passoc != nullptr)
       {
@@ -1234,11 +1234,9 @@ namespace dynamic_source
    bool script_manager::has_link_out_link(const char * pszServer, ::sockets::link_in_socket * pinsocket, ::sockets::httpd_socket * phttpdsocket)
    {
 
-      strsp(::sockets::link_out_socket)::pair * ppair;
-
       single_lock sl(&m_mutexOutLink, TRUE);
 
-      ppair = m_mapOutLink.plookup(pszServer);
+      auto ppair = m_mapOutLink.plookup(pszServer);
 
       ::sockets::link_out_socket * psocket = nullptr;
 
@@ -1287,8 +1285,7 @@ namespace dynamic_source
 
       single_lock sl2(&m_mutexInLink, TRUE);
 
-      map < ::sockets::link_out_socket *, ::sockets::link_out_socket *, ::sockets::link_in_socket *, ::sockets::link_in_socket * >::pair * ppair =
-      m_mapInLink.plookup(poutsocket);
+      auto ppair = m_mapInLink.plookup(poutsocket);
 
       {
 

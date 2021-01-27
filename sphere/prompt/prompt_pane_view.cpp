@@ -98,11 +98,11 @@ namespace prompt
    }
 
 
-   bool pane_view::pre_create_window(::user::create_struct * pcreatestruct)
+   bool pane_view::pre_create_window(::user::system * pusersystem)
    {
 
 
-      return ::user::impact::pre_create_window(pcreatestruct);
+      return ::user::impact::pre_create_window(pusersystem);
    }
 
 
@@ -137,7 +137,7 @@ namespace prompt
 
             if(pview != nullptr)
             {
-               __pointer(::user::frame_window) pframe =  (pview->GetParentFrame());
+               __pointer(::user::frame_window) pframe =  (pview->get_parent_frame());
                if(pframe != nullptr)
                {
 #ifdef WINDOWS_DESKTOP
@@ -174,7 +174,7 @@ namespace prompt
 //            __pointer(::user::impact) pview = pdocument->get_view();
 //            if(pview != nullptr)
 //            {
-//               __pointer(::user::frame_window) pframe =  (pview->GetParentFrame());
+//               __pointer(::user::frame_window) pframe =  (pview->get_parent_frame());
 //               if(pframe != nullptr)
 //               {
 //#ifdef WINDOWS_DESKTOP
@@ -222,7 +222,7 @@ namespace prompt
 
             if(pview != nullptr)
             {
-               __pointer(::user::frame_window) pframe =  (pview->GetParentFrame());
+               __pointer(::user::frame_window) pframe =  (pview->get_parent_frame());
                if(pframe != nullptr)
                {
 #ifdef WINDOWS_DESKTOP
@@ -248,7 +248,7 @@ namespace prompt
          auto pupdate = new_update();
          pupdate->m_actioncontext = ::e_source_system;
          psubject->id() = id_browse;
-         psubject->value(id_form) = "filemanager\\replace_name_in_file_system.xhtml";
+         psubject->payload(id_form) = "filemanager\\replace_name_in_file_system.xhtml";
          pdocument->update_all_views(pupdate);
 
          psubject->id() = id_get_form_view;
@@ -258,7 +258,7 @@ namespace prompt
          pdocument->update_all_views(pupdate);
 
 
-         pimpactdata->m_puserinteraction = (pview->GetParentFrame());
+         pimpactdata->m_puserinteraction = (pview->get_parent_frame());
 //         __pointer(form_child_frame) pframe = (pimpactdata->m_puserinteraction);
          //pframe->m_iTabId = iId;
          pimpactdata->m_pdocument = pdocument;
@@ -371,9 +371,9 @@ namespace prompt
 
       }
 
-      //GetParentFrame()->hide();
+      //get_parent_frame()->hide();
       
-      GetParentFrame()->display();
+      get_parent_frame()->display();
 
    }
 

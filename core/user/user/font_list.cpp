@@ -21,16 +21,14 @@ namespace user
    void font_list::user_font_list_common_construct()
    {
 
+      m_econtroltype = ::user::e_control_type_list;
+
       m_flagNonClient.add(non_client_hover_rect);
 
       m_bFirstShown = false;
       m_idView = FONTSEL_IMPACT;
-      //m_puserstyle = this;
-      //m_econtroltype = e_control_type_list;
-      m_scrolldataVert.m_bScrollEnable = true;
+      m_scrolldataVertical.m_bScrollEnable = true;
       m_bEnsureVisible = false;
-
-      //m_bNeedLayoutAfterExtentUpdate = false;
 
    }
 
@@ -58,9 +56,7 @@ namespace user
    void font_list::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
-
-      descriptor().set_control_type(::user::e_control_type_list);
+      __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
 
@@ -71,30 +67,7 @@ namespace user
 
       }
 
-      //psession->add(method(e_routine_font_change, [this]() { on_font_change(); }));
-
    }
-
-
-   // void font_list::on_font_change()
-   // {
-
-   //    ::rect rectClient;
-
-   //    get_client_rect(rectClient);
-
-   //    if (rectClient.area() > 0)
-   //    {
-
-   //       m_pfontlist->m_rectClient = rectClient;
-
-   //       m_pfontlist->update();
-
-   //    }
-
-   //    TRACE("pane_tab_view::on_change_cur_sel font_check_need_update thread finished!!");
-
-   // }
 
 
    void font_list::set_font_list_type(::draw2d::font_list::enum_type etype)
@@ -168,7 +141,7 @@ namespace user
    void font_list::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       auto item = hit_test(pmouse);
 
@@ -218,7 +191,7 @@ namespace user
    void font_list::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       auto item = hit_test(pmouse);
 
@@ -584,7 +557,7 @@ namespace user
    void font_list::_001OnShowWindow(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
 
       if (pshowwindow->m_bShow)
       {

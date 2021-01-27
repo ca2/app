@@ -21,7 +21,7 @@ void prop_id_debug(::matter * pobject);
 //}
 
 
-//void property::get_value(payload & value)
+//void property::get_value(::payload & value)
 //{
 //
 //   value = get_value();
@@ -29,19 +29,19 @@ void prop_id_debug(::matter * pobject);
 //}
 
 
-//void property::get(payload & value)
+//void property::get(::payload & value)
 //{
 //
 //   value = get_value();
 //
 //}
 
-//payload & property::get()
+//::payload & property::get()
 //{
 //   return get_value();
 //}
 //
-//void property::set(const payload & payload)
+//void property::set(const ::payload & payload)
 //{
 //   set_value(payload);
 //}
@@ -52,7 +52,7 @@ void prop_id_debug(::matter * pobject);
 //}
 
 //
-//payload property::operator + (const char * psz) const
+//::payload property::operator + (const char * psz) const
 //{
 //
 //   return get_value() + payload(psz);
@@ -60,7 +60,7 @@ void prop_id_debug(::matter * pobject);
 //}
 //
 //
-//payload property::operator + (const string & str) const
+//::payload property::operator + (const string & str) const
 //{
 //
 //   return get_value() + payload(str);
@@ -128,7 +128,7 @@ void prop_id_debug(::matter * pobject);
 ////}
 //
 //
-////property::property(property_set * pset, const id & id, const payload &  payload, ::matter * pobject) :
+////property::property(property_set * pset, const id & id, const ::payload &  ::payload, ::matter * pobject) :
 ////   m_ppropertyset(pset),
 ////   m_var(payload)
 ////{
@@ -347,7 +347,7 @@ string & property::get_http_post(string & str) const
 //   get_string(psz);
 //}
 //
-//payload property::element_at(index iIndex) const
+//::payload property::element_at(index iIndex) const
 //{
 //   switch(m_etype)
 //   {
@@ -366,7 +366,7 @@ string & property::get_http_post(string & str) const
 //   }
 //}
 //
-//payload property::at(index iIndex) const
+//::payload property::at(index iIndex) const
 //{
 //   return this->element_at(iIndex);
 //}
@@ -402,7 +402,7 @@ string & property::get_http_post(string & str) const
 //}
 //
 //
-//payload property::equals_ci_get(const char * pszCompare, payload varOnEqual, payload varOnDifferent) const
+//::payload property::equals_ci_get(const char * pszCompare, ::payload varOnEqual, ::payload varOnDifferent) const
 //{
 //   if(compare_value_ci(pszCompare) == 0)
 //   {
@@ -414,7 +414,7 @@ string & property::get_http_post(string & str) const
 //   }
 //}
 //
-//payload property::equals_ci_get(const char * pszCompare, payload varOnEqual) const
+//::payload property::equals_ci_get(const char * pszCompare, ::payload varOnEqual) const
 //{
 //   if(compare_value_ci(pszCompare) == 0)
 //   {
@@ -449,7 +449,7 @@ string & property::get_http_post(string & str) const
 //
 //::comparison::var_strict property::strict_compare() const
 //{
-//   return ((const payload &)((property *) (this))->get_value());
+//   return ((const ::payload &)((property *) (this))->get_value());
 //}
 //
 
@@ -464,7 +464,7 @@ string & property::get_http_post(string & str) const
 //   return strict_equal(prop);
 //}
 //
-//bool property::strict_equal(const payload & payload) const
+//bool property::strict_equal(const ::payload & payload) const
 //{
 //   return strict_equal(payload);
 //}
@@ -500,7 +500,7 @@ string & property::get_http_post(string & str) const
 //   return strict_different(const_cast < property & > (prop));
 //}
 //
-//bool property::strict_different(const payload & payload) const
+//bool property::strict_different(const ::payload & payload) const
 //{
 //   return strict_different(payload);
 //}
@@ -536,7 +536,7 @@ string & property::get_http_post(string & str) const
 //   return get_value() == prop;
 //}
 //
-//bool property::operator == (const payload & payload) const
+//bool property::operator == (const ::payload & payload) const
 //{
 //   return get_value() == payload;
 //}
@@ -567,7 +567,7 @@ string & property::get_http_post(string & str) const
 //   return get_value() != prop;
 //}
 //
-//bool property::operator != (const payload & payload) const
+//bool property::operator != (const ::payload & payload) const
 //{
 //   return get_value() != payload;
 //}
@@ -592,7 +592,7 @@ string & property::get_http_post(string & str) const
 //   return get_value() != b;
 //}
 //
-//payload property::explode(const char * pszSeparator, bool bAddEmpty) const
+//::payload property::explode(const char * pszSeparator, bool bAddEmpty) const
 //{
 //   return explode(pszSeparator, bAddEmpty);
 //}
@@ -620,9 +620,9 @@ string & property::get_http_post(string & str) const
 //   return get_value() < prop;
 //}
 //
-//bool property::operator < (const payload & payload) const
+//bool property::operator < (const ::payload & payload) const
 //{
-//   return get_value() < payload;
+//   return get_value() < ::payload;
 //}
 //
 //bool property::operator < (const char * psz) const
@@ -674,7 +674,7 @@ string & property::get_http_post(string & str) const
 //   return get_value() <= prop;
 //}
 //
-//bool property::operator <= (const payload & payload) const
+//bool property::operator <= (const ::payload & payload) const
 //{
 //   return get_value() <= payload;
 //}
@@ -727,7 +727,7 @@ string & property::get_http_post(string & str) const
 //   return get_value() >= prop;
 //}
 //
-//bool property::operator >= (const payload & payload) const
+//bool property::operator >= (const ::payload & payload) const
 //{
 //   return get_value() >= payload;
 //}
@@ -780,9 +780,9 @@ string & property::get_http_post(string & str) const
 //   return get_value() > prop;
 //}
 //
-//bool property::operator > (const payload & payload) const
+//bool property::operator > (const ::payload & payload) const
 //{
-//   return get_value() > payload;
+//   return get_value() > ::payload;
 //}
 //
 //bool property::operator > (const char * psz) const
@@ -859,32 +859,32 @@ string & property::get_http_post(string & str) const
 //
 //
 //
-//payload property::operator - (::i32 i) const
+//::payload property::operator - (::i32 i) const
 //{
 //   return get_value() - i;
 //}
 //
-//payload property::operator - (::u32 user) const
+//::payload property::operator - (::u32 user) const
 //{
 //   return get_value() - user;
 //}
 //
-//payload property::operator - (::i64 i) const
+//::payload property::operator - (::i64 i) const
 //{
 //   return get_value() - i;
 //}
 //
-//payload property::operator - (::u64 user) const
+//::payload property::operator - (::u64 user) const
 //{
 //   return get_value() - user;
 //}
 //
-//payload property::operator - (double d) const
+//::payload property::operator - (double d) const
 //{
 //   return get_value() - d;
 //}
 //
-//payload property::operator - (const payload & payload) const
+//::payload property::operator - (const ::payload & payload) const
 //{
 //   return get_value() - payload;
 //}
@@ -892,32 +892,32 @@ string & property::get_http_post(string & str) const
 //
 //
 //
-//payload property::operator + (::i32 i) const
+//::payload property::operator + (::i32 i) const
 //{
 //   return get_value() + i;
 //}
 //
-//payload property::operator + (::u32 user) const
+//::payload property::operator + (::u32 user) const
 //{
 //   return get_value() + user;
 //}
 //
-//payload property::operator + (::i64 i) const
+//::payload property::operator + (::i64 i) const
 //{
 //   return get_value() + i;
 //}
 //
-//payload property::operator + (::u64 user) const
+//::payload property::operator + (::u64 user) const
 //{
 //   return get_value() + user;
 //}
 //
-//payload property::operator + (double d) const
+//::payload property::operator + (double d) const
 //{
 //   return get_value() + d;
 //}
 //
-//payload property::operator + (const payload & payload) const
+//::payload property::operator + (const ::payload & payload) const
 //{
 //   return get_value() + payload;
 //}
@@ -968,32 +968,32 @@ string & property::get_http_post(string & str) const
 //
 //
 //
-//payload property::operator / (::i32 i) const
+//::payload property::operator / (::i32 i) const
 //{
 //   return get_value() / i;
 //}
 //
-//payload property::operator / (::u32 user) const
+//::payload property::operator / (::u32 user) const
 //{
 //   return get_value() / user;
 //}
 //
-//payload property::operator / (::i64 i) const
+//::payload property::operator / (::i64 i) const
 //{
 //   return get_value() / i;
 //}
 //
-//payload property::operator / (::u64 user) const
+//::payload property::operator / (::u64 user) const
 //{
 //   return get_value() / user;
 //}
 //
-//payload property::operator / (double d) const
+//::payload property::operator / (double d) const
 //{
 //   return get_value() / d;
 //}
 //
-//payload property::operator / (const payload & payload) const
+//::payload property::operator / (const ::payload & payload) const
 //{
 //   return get_value() / payload;
 //}
@@ -1001,32 +1001,32 @@ string & property::get_http_post(string & str) const
 //
 //
 //
-//payload property::operator * (::i32 i) const
+//::payload property::operator * (::i32 i) const
 //{
 //   return get_value() * i;
 //}
 //
-//payload property::operator * (::u32 user) const
+//::payload property::operator * (::u32 user) const
 //{
 //   return get_value() * user;
 //}
 //
-//payload property::operator * (::i64 i) const
+//::payload property::operator * (::i64 i) const
 //{
 //   return get_value() * i;
 //}
 //
-//payload property::operator * (::u64 user) const
+//::payload property::operator * (::u64 user) const
 //{
 //   return get_value() * user;
 //}
 //
-//payload property::operator * (double d) const
+//::payload property::operator * (double d) const
 //{
 //   return get_value() * d;
 //}
 //
-//payload property::operator * (const payload & payload) const
+//::payload property::operator * (const ::payload & payload) const
 //{
 //   return get_value() * payload;
 //}
@@ -1109,7 +1109,7 @@ string & property::get_http_post(string & str) const
 //   return *this;
 //}
 //
-//property & property::operator -= (const payload & payload)
+//property & property::operator -= (const ::payload & payload)
 //{
 //   operator=(*this - payload);
 //   return *this;
@@ -1205,7 +1205,7 @@ string & property::get_http_post(string & str) const
 //   return *this;
 //}
 //
-//property & property::operator += (const payload & payload)
+//property & property::operator += (const ::payload & payload)
 //{
 //   operator=(*this + payload);
 //   return *this;
@@ -1283,7 +1283,7 @@ string & property::get_http_post(string & str) const
 //   return *this;
 //}
 //
-//property & property::operator /= (const payload & payload)
+//property & property::operator /= (const ::payload & payload)
 //{
 //   operator=(*this / payload);
 //   return *this;
@@ -1349,7 +1349,7 @@ string & property::get_http_post(string & str) const
 //   return *this;
 //}
 //
-//property & property::operator *= (const payload & payload)
+//property & property::operator *= (const ::payload & payload)
 //{
 //   operator=(*this * payload);
 //   return *this;
@@ -1500,7 +1500,7 @@ string & property::get_http_post(string & str) const
 //string  operator + (const string & str, const property & prop)
 //{
 //
-//   return str +  (const payload &) prop;
+//   return str +  (const ::payload &) prop;
 //
 //}
 //
@@ -1508,7 +1508,7 @@ string & property::get_http_post(string & str) const
 string operator + (const char * psz, const property & prop)
 {
 
-   return string(psz) + (const payload &)prop;
+   return string(psz) + (const ::payload &)prop;
 
 }
 
@@ -1528,43 +1528,43 @@ string operator + (const char * psz, const property & prop)
 
 //
 //
-//payload  operator - (::i32 i, const property & prop)
+//::payload  operator - (::i32 i, const property & prop)
 //{
-//   return i - (const payload &)prop;
+//   return i - (const ::payload &)prop;
 //}
 //
 //
-//payload  operator - (::u32 user, const property & prop)
+//::payload  operator - (::u32 user, const property & prop)
 //{
-//   return user - (const payload &) prop;
+//   return user - (const ::payload &) prop;
 //}
 //
 //
-//payload  operator - (::i64 l, const property & prop)
+//::payload  operator - (::i64 l, const property & prop)
 //{
 //   return l - (const & payload) prop;
 //}
 //
 //
-//payload  operator - (::u64 ul, const property & prop)
+//::payload  operator - (::u64 ul, const property & prop)
 //{
 //   return ul - (const & payload) prop;
 //}
 //
 //
-//payload  operator - (double d, const property & prop)
+//::payload  operator - (double d, const property & prop)
 //{
 //   return d - (const & payload) prop;
 //}
 //
 //
-//payload  operator - (const payload & payload, const property & prop)
+//::payload  operator - (const ::payload & payload, const property & prop)
 //{
 //   return payload - (const & payload) prop;
 //}
 
 
-property operator - (const property & prop, const payload & payload)
+property operator - (const property & prop, const ::payload & payload)
 {
 
    auto property = prop;
@@ -1582,7 +1582,7 @@ property operator - (const property & prop1, const property & prop2)
 
    auto property = prop1;
 
-   property -= (const payload &)prop2;
+   property -= (const ::payload &)prop2;
 
    return property;
 
@@ -1603,43 +1603,43 @@ property operator - (const property & prop1, const property & prop2)
 //
 //
 //
-//payload  operator + (::i32 i, const property & prop)
+//::payload  operator + (::i32 i, const property & prop)
 //{
 //   return i + prop;
 //}
 //
 //
-//payload  operator + (::u32 user, const property & prop)
+//::payload  operator + (::u32 user, const property & prop)
 //{
 //   return user + prop;
 //}
 //
 //
-//payload  operator + (::i64 l, const property & prop)
+//::payload  operator + (::i64 l, const property & prop)
 //{
 //   return l + prop;
 //}
 //
 //
-//payload  operator + (::u64 ul, const property & prop)
+//::payload  operator + (::u64 ul, const property & prop)
 //{
 //   return ul + prop;
 //}
 //
 //
-//payload  operator + (double d, const property & prop)
+//::payload  operator + (double d, const property & prop)
 //{
 //   return d + prop;
 //}
 //
 //
-//payload  operator + (const payload & payload, const property & prop)
+//::payload  operator + (const ::payload & payload, const property & prop)
 //{
 //   return payload + prop;
 //}
 
 
-property operator + (const property & prop, const payload & payload)
+property operator + (const property & prop, const ::payload & payload)
 {
 
    auto property = prop;
@@ -1656,7 +1656,7 @@ property operator + (const property & prop1, const property & prop2)
 
    auto property = prop1;
 
-   property += (const payload &)prop2;
+   property += (const ::payload &)prop2;
 
    return property;
 
@@ -1678,43 +1678,43 @@ property operator + (const property & prop1, const property & prop2)
 //
 //
 //
-//payload  operator / (::i32 i, const property & prop)
+//::payload  operator / (::i32 i, const property & prop)
 //{
 //   return i / prop;
 //}
 //
 //
-//payload  operator / (::u32 user, const property & prop)
+//::payload  operator / (::u32 user, const property & prop)
 //{
 //   return user / prop;
 //}
 //
 //
-//payload  operator / (::i64 l, const property & prop)
+//::payload  operator / (::i64 l, const property & prop)
 //{
 //   return l / prop;
 //}
 //
 //
-//payload  operator / (::u64 ul, const property & prop)
+//::payload  operator / (::u64 ul, const property & prop)
 //{
 //   return ul / prop;
 //}
 //
 //
-//payload  operator / (double d, const property & prop)
+//::payload  operator / (double d, const property & prop)
 //{
 //   return d / prop;
 //}
 //
 //
-//payload  operator / (const payload & payload, const property & prop)
+//::payload  operator / (const ::payload & payload, const property & prop)
 //{
 //   return payload / prop;
 //}
 
 
-property operator / (const property & prop, const payload & payload)
+property operator / (const property & prop, const ::payload & payload)
 {
 
    auto property = prop;
@@ -1731,7 +1731,7 @@ property operator / (const property & prop1, const property & prop2)
 
    auto property = prop1;
 
-   property /= (const payload &) prop2;
+   property /= (const ::payload &) prop2;
 
    return property;
 
@@ -1749,44 +1749,44 @@ property operator / (const property & prop1, const property & prop2)
 //
 //
 //
-//payload  operator * (::i32 i, const property & prop)
+//::payload  operator * (::i32 i, const property & prop)
 //{
 //   return i * prop;
 //}
 //
 //
-//payload  operator * (::u32 user, const property & prop)
+//::payload  operator * (::u32 user, const property & prop)
 //{
 //   return user * prop;
 //}
 //
 //
-//payload  operator * (::i64 l, const property & prop)
+//::payload  operator * (::i64 l, const property & prop)
 //{
 //   return l * prop;
 //}
 //
 //
-//payload  operator * (::u64 ul, const property & prop)
+//::payload  operator * (::u64 ul, const property & prop)
 //{
 //   return ul * prop;
 //}
 //
 //
-//payload  operator * (double d, const property & prop)
+//::payload  operator * (double d, const property & prop)
 //{
 //   return d * prop;
 //}
 //
 //
-//payload  operator * (const payload & payload, const property & prop)
+//::payload  operator * (const ::payload & payload, const property & prop)
 //{
 //   return payload * prop;
 //}
 //
 
 
-property operator * (const property & prop, const payload & payload)
+property operator * (const property & prop, const ::payload & payload)
 {
 
    auto property = prop;
@@ -1804,7 +1804,7 @@ property operator * (const property & prop1, const property & prop2)
 
    auto property = prop1;
 
-   property *= (const payload &) prop2;
+   property *= (const ::payload &) prop2;
 
    return property;
 

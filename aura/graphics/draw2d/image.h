@@ -1,9 +1,13 @@
 #pragma once
 
 
+/// <summary>
+/// image * -> image_source_pointer concept
+/// </summary>
 class CLASS_DECL_AURA image :
    virtual public ::image_meta,
-   virtual public ::context_object
+   virtual public ::context_object,
+   virtual public ::image_drawer
 {
 public:
 
@@ -55,8 +59,16 @@ public:
    virtual void fast_copy(color32_t * pcolor32FullImage);
 
    inline ::size get_size() const;
-   //inline ::size size() const;
 
+   virtual ::size get_image_drawer_size() const;
+
+
+   inline ::image * get_image(const concrete < ::size > &) { return this; }
+
+
+   // inline concrete < ::size > size(const ::sized &, const ::sized &, enum_image_selection) const { return get_size(); }
+   inline concrete < ::size > size(const ::sized &, enum_image_selection ) const { return get_size(); }
+   using image_meta::size;
    
    inline ::rect rect(const ::point & point = nullptr);
    inline ::rect rect(const ::point & point = nullptr) const;
@@ -102,7 +114,7 @@ public:
    virtual bool unmap() const; // some implementations may require to unmap from m_pcolorref to update *os* bitmap
 
 
-   virtual bool _map(bool bApplyAlphaTransform = true);
+   virtual bool map(bool bApplyAlphaTransform = true);
    virtual bool _unmap();
 
    virtual bool set_mapped();
@@ -222,19 +234,21 @@ public:
    virtual bool DivideARGB(i32 iDivide);
    virtual bool DivideA(i32 iDivide);
 
+   
+   using image_drawer::stretch;
+   virtual bool stretch(::image * pimage);
 
-   //virtual bool stretch_image(::image * pimpl);
 
-
-   virtual bool stretch(::draw2d::graphics * pgraphics);
+   //virtual bool stretch(::draw2d::graphics * pgraphics);
    //virtual bool to(::image * piml) const;
    virtual bool copy(const ::image * pimage, eobject eobjectCreate = e_object_success);
-   virtual bool stretch(const ::image * pimage);
+   //virtual bool stretch(const ::image * pimage);
    //virtual bool draw_image(::draw2d::graphics* pgraphics);
    //virtual bool draw_image(::draw2d::graphics* pgraphics, const ::size & size);
    //virtual bool from(const ::point & pointDst, ::draw2d::graphics* pgraphics, const ::point & pointSrc, const ::size & size);
-   virtual bool draw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc = ::point());
-   virtual bool draw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc, byte bA);
+   //using image_drawer::draw;
+   virtual bool _draw_raw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc = ::point());
+   virtual bool blend(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc, byte bA);
    //virtual bool blend(const ::point & pointDst, ::image * piml, const ::point & pointSrc, const ::size & size);
    virtual bool draw_ignore_alpha(const ::point & pointDst, ::image * pimage, const ::rect & rectSrc);
 
@@ -364,7 +378,8 @@ public:
 
    
    virtual ::draw2d::graphics * g() const; // { return get_graphics(); }
-
+   inline ::draw2d::graphics * g(const ::sized & sizeHint) { return g(); }
+   inline ::sized origin() const { return ::sized(); }
    
    inline color32_t pixel(int x, int y) const;
 
@@ -426,6 +441,10 @@ public:
    inline ::image & operator = (const ::image & image);
    inline bool operator == (const ::image & image) const;
    inline bool operator != (const ::image & image) const;
+
+
+   virtual bool _draw_blend(const image_drawing & imagedrawing) override;
+   virtual bool _draw_raw(const image_drawing & imagedrawing) override;
 
 
 };

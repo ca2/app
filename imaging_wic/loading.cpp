@@ -10,7 +10,7 @@ namespace imaging_wic
    bool windows_image_from_bitmap_source(::image * pimageFrame, IWICBitmapSource * pbitmapsource, IWICImagingFactory * pimagingfactory);
 
 
-   ::e_status context_image::_load_image(::image * pimageParam, const payload & varFile, bool bSync, bool bCreateHelperMaps)
+   ::e_status context_image::_load_image(::image * pimageParam, const ::payload & varFile, bool bSync, bool bCreateHelperMaps)
    {
 
       auto ploadimage = __new(load_image(this));
@@ -554,7 +554,7 @@ namespace imaging_wic
       }
 
       STATSTG stg;
-      xxf_zero(stg);
+      __zero(stg);
       pstream->Stat(&stg, STATFLAG_NONAME);
       LARGE_INTEGER l;
       l.QuadPart = 0;
@@ -721,7 +721,7 @@ namespace imaging_wic
          {
 
             PROPBAG2 option = { 0 };
-            option.pstrName = L"ImageQuality";
+            option.pstrName = (LPOLESTR) L"ImageQuality";
             VARIANT varValue;
             VariantInit(&varValue);
             varValue.vt = VT_R4;

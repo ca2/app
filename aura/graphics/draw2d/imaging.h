@@ -241,9 +241,9 @@ public:
 
    bool BitmapDivBlend(::draw2d::graphics * pdcDst, const ::point & point, const ::size & size, ::draw2d::graphics * pdcSrc, const ::point & pointSrc, byte bAlpha);
 
-   bool bitmap_blend(::draw2d::graphics * pdcDst, const ::point & point, const ::size & size, ::draw2d::graphics * pdcSrc, const ::point & pointSrc, byte bAlpha);
+   //bool bitmap_blend(::draw2d::graphics * pdcDst, const ::point & point, const ::size & size, ::draw2d::graphics * pdcSrc, const ::point & pointSrc, byte bAlpha);
 
-   bool bitmap_blend(::draw2d::graphics * pdcDst, const ::point & point, const ::size & size, ::image * pimage, const ::point & pointSrc, byte bAlpha);
+//   bool bitmap_blend(::draw2d::graphics * pdcDst, const ::point & point, const ::size & size, ::image * pimage, const ::point & pointSrc, byte bAlpha);
 
    void BitmapBlend24CC(
    byte * pbA,
@@ -317,7 +317,7 @@ public:
 
    
 
-   void EmbossedTextOut(
+   void embossed_text_out(
    ::draw2d::graphics *        pdc,
    i32                 x,
    i32                 y,

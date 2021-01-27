@@ -1,62 +1,38 @@
 #pragma once
 
 
+namespace experience
+{
 
 
-
-   namespace experience
+   namespace tranquillum
    {
 
-
-      
-
-
-         namespace tranquillum
-
-         {
-
-
-            class CLASS_DECL_APP_EXPERIENCE_TRANQUILLUM frame :
-               public ::experience::frame
-            {
+      class CLASS_DECL_APP_EXPERIENCE_TRANQUILLUM frame :
+         public ::experience::frame
+      {
             public:
 
 
-               enum e_style
-               {
-                  StyleLightBlue,
-                  StyleBlackBorder,
-                  StyleLightGreen,
-                  StyleRedOrange,
-                  StyleDarkRed,
-                  StyleBlueRedPurple,
-                  StyleEveningSun,
-                  StyleTranslucidLightBlue,
-                  StyleTranslucidLightGreen,
-                  StyleTranslucidWarmGray,
-                  StyleTranslucidWarmLiteGray,
-                  StyleDarkWarmBlue,
-               };
 
-
-
-
+               ::rect m_rectCaptionTextBk;
+               ::point m_pointMoveGripMinimal;
                //::draw2d::font_pointer                m_fontButton;
                //::draw2d::font_pointer                m_fontCaption;
-               e_style                          m_estyle;
+               //e_style                          m_estyle;
                //::user::front_end_schema         m_schema;
-               color32_t                         m_crFrameBorder;
-               color32_t                         m_crMoveableBorderHilight;
-               color32_t                         m_crMoveableBorderDkShadow;
-               color32_t                         m_crCaptionTextBk;
-               color32_t                         m_crActiveCaptionTextBk;
-               color32_t                         m_crCaptionText;
+               color32_t                         m_colorFrameBorder;
+               color32_t                         m_colorMoveableBorderHilight;
+               color32_t                         m_colorMoveableBorderDkShadow;
+               color32_t                         m_colorCaptionTextBk;
+               color32_t                         m_colorActiveCaptionTextBk;
+               color32_t                         m_colorCaptionText;
                ::draw2d::pen_pointer                 m_penText1;
                ::draw2d::pen_pointer                 m_penFace1;
                ::draw2d::pen_pointer                 m_penHilight1;
                ::draw2d::pen_pointer                 m_penShadow1;
                ::draw2d::pen_pointer                 m_penDkShadow1;
-               color32_t                         m_crDkShadow;
+               color32_t                         m_colorDkShadow;
                size                             m_minSize;
 
                ::draw2d::pen_pointer                 m_penHollow1;
@@ -73,7 +49,7 @@
 
                virtual color32_t get_border_main_body_color() override;
 
-               virtual bool is_translucid_style(e_style estyle);
+               virtual bool is_translucid_style(::user::enum_style estyle);
 
                virtual void set_moveable_border_color(color32_t cr);
 
@@ -83,15 +59,12 @@
 
                virtual void on_style_change_001_and_002();
 
-               virtual color32_t get_style_moveable_border_color(e_style estyle);
+               //virtual color32_t get_style_moveable_border_color(e_style estyle);
 
                virtual void OnMove(__pointer(::user::interaction) pframewindow) override;
 
-               virtual void set_style(e_style estyle);
 
-               virtual void set_style(const char * pszStyle) override;
-
-               virtual void on_style_change() override;
+               virtual void title_bar_layout(::draw2d::graphics_pointer & pgraphics) override;
 
                virtual void _001OnBeforeMove(const ::rect & rectWindow);
 

@@ -21,7 +21,7 @@ XfplayerViewLineSelection::~XfplayerViewLineSelection()
 
 void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::message::message * pmessage)
 {
-   SCAST_PTR(::message::base, pbase, pmessage);
+   __pointer(::message::base) pbase(pmessage);
 
    ::u32 message;
 

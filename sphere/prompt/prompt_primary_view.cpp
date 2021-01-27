@@ -223,7 +223,7 @@ namespace prompt
 
    void primary_view::_001OnUpdateEditCopy(::message::message * pmessage)
    {
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
       pcommand->enable(TRUE);
    }
 
@@ -235,7 +235,7 @@ namespace prompt
 
    void primary_view::_001OnUpdateEditPaste(::message::message * pmessage)
    {
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
       pcommand->enable(TRUE);
    }
 
@@ -250,7 +250,7 @@ namespace prompt
    void primary_view::_001OnContextMenu(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::context_menu, pcontextmenu, pmessage);
+      __pointer(::message::context_menu) pcontextmenu(pmessage);
 
       track_popup_xml_menu("matter://command/popup_primary_verbing.xml", 0, pcontextmenu->GetPoint());
 

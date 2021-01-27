@@ -180,7 +180,7 @@ namespace base
       //string strLicense = Application.get_license_id();
 
 
-      //payload & varTopicQuey = System.commnam_varTopicQuery;
+      //::payload & varTopicQuey = System.commnam_varTopicQuery;
 
       bool bHasInstall = System.is_true("install");
 
@@ -399,7 +399,7 @@ namespace base
 
          pinteraction->set_button_style(::user::button::style_image_and_text);
 
-         enum_image eimage = (enum_image)pitem->m_pmenu->value("image_transform").i32();
+         enum_image eimage = (enum_image)pitem->m_pmenu->payload("image_transform").i32();
 
          ::image_pointer pimage = pitem->m_pimage + eimage;
 
@@ -434,7 +434,7 @@ namespace base
    CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * lpWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam);
 
 
-   CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * pWindowName, u32 uStyle, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam)
+   CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * pWindowName, u32 uStyle, ::user::interaction * puiParent, HINSTANCE hInstance, LPVOID pParam)
    {
 
       UNREFERENCED_PARAMETER(dwExStyle);
@@ -446,7 +446,7 @@ namespace base
 
       auto pinteraction = __new(::user::interaction);
 
-      if(pinteraction->create_window(puiParent, id))
+      if(pinteraction->create_child(puiParent))
       {
 
          return pinteraction;
@@ -666,7 +666,7 @@ namespace base
 //         //{
 //         //   pframeApp->display(e_display_full_screen);
 //         //}
-//         //__pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::pane_view >()->GetParentFrame();
+//         //__pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::pane_view >()->get_parent_frame();
 //         //if(pframe != nullptr)
 //         //{
 //         //   pframe->display(e_display_normal);
@@ -676,7 +676,7 @@ namespace base
 //      {
 //         //if(get_document() != nullptr && get_document()->get_typed_view < ::bergedge::view >() != nullptr)
 //         //{
-//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::view >()->GetParentFrame();
+//         //   __pointer(::simple_frame_window) pframe = get_document()->get_typed_view < ::bergedge::view >()->get_parent_frame();
 //         //   if(pframe != nullptr)
 //         //   {
 //         //      pframe->display(e_display_normal);
@@ -696,7 +696,7 @@ namespace base
 ////      {
 ////         try
 ////         {
-////            get_view()->GetParentFrame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
+////            get_view()->get_parent_frame()->set_window_text(psession->m_pappCurrent->m_psession->m_paccount->m_puser->m_strLogin);
 ////         }
 ////         catch (...)
 ////         {
@@ -915,7 +915,7 @@ namespace base
    //   do
    //   {
 
-   //      puiAscendant = puiAscendant->GetOwner();
+   //      puiAscendant = puiAscendant->get_owner();
 
 
    //      if (puiParent == puiAscendant)
@@ -929,7 +929,7 @@ namespace base
    //   do
    //   {
 
-   //      puiAscendant = puiAscendant->GetParent();
+   //      puiAscendant = puiAscendant->get_parent();
 
 
    //      if (puiParent == puiAscendant)
@@ -984,7 +984,7 @@ namespace base
    bool user::track_popup_menu(::user::interaction* pinteraction, ::user::menu_item * pitem, i32 iFlags, ::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       ::point point = pmouse->m_point;
 
@@ -998,7 +998,7 @@ namespace base
    __pointer(::user::menu) user::track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags, ::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       auto point = pmouse->m_point;
 
@@ -1013,7 +1013,7 @@ namespace base
    __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const char * pszMatter, i32 iFlags, ::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       ::point point = pmouse->m_point;
 
@@ -1043,7 +1043,7 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_menu(::user::interaction* pinteraction, const payload & varXml, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
+   __pointer(::user::menu) user::track_popup_xml_menu(::user::interaction* pinteraction, const ::payload & varXml, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
    {
 
       __pointer(::user::menu) pmenu = __create <  ::user::menu  > ();
@@ -1082,10 +1082,10 @@ namespace base
 
       ::point point(pointParam);
 
-      fork([=]()
+      fork([this, strMatterSource, iFlags, point, pinteraction]()
       {
 
-         __pointer(::user::menu) pmenu = __create <  ::user::menu  >();
+         auto pmenu = __create <  ::user::menu  >();
 
          string strMatter(strMatterSource);
 
@@ -1125,7 +1125,7 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_menu_file(::user::interaction * pinteraction, payload varXmlFile, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
+   __pointer(::user::menu) user::track_popup_xml_menu_file(::user::interaction * pinteraction, ::payload varXmlFile, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
    {
 
       string strXml = Context.file().as_string(varXmlFile);
@@ -1238,7 +1238,7 @@ namespace base
          if (has_property("experience"))
          {
 
-            strConfig = value("experience");
+            strConfig = payload("experience");
 
          }
 

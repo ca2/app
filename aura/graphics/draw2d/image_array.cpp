@@ -14,7 +14,7 @@ image_array::~image_array()
 }
 
 
-bool image_array::explode(::object * pobject, payload varFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
+bool image_array::explode(::object * pobject, ::payload varFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
 {
 
    return explode(pobject, ::size(-1, -1), varFile, cols, rows, bCache, bCreateHelperMaps);
@@ -22,7 +22,7 @@ bool image_array::explode(::object * pobject, payload varFile, int cols, int row
 }
 
 
-bool image_array::explode(::object * pobject, const ::size & sizeParam, payload varFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
+bool image_array::explode(::object * pobject, const ::size & sizeParam, ::payload varFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
 {
 
    ::size size(sizeParam);
@@ -67,7 +67,11 @@ bool image_array::explode(::object * pobject, const ::size & sizeParam, payload 
 
          auto pimage = create_image(size);
 
-         pimage->g()->stretch(pimage->rect(), pimageSource->g(), ::rect_dim(sizeSource.cx * col, sizeSource.cy * row, sizeSource.cx, sizeSource.cy));
+         auto rectDst = pimage->rect();
+
+         auto rectSrc = ::rect_dim(sizeSource.cx * col, sizeSource.cy * row, sizeSource.cx, sizeSource.cy);
+
+         pimage->stretch(rectDst, pimageSource, rectSrc);
 
          add(pimage);
 

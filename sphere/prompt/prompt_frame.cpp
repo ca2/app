@@ -184,9 +184,9 @@ namespace prompt
       {
          if(bShowWinActionArea)
          {
-            if(GetActiveDocument() != nullptr)
+            if(get_active_document() != nullptr)
             {
-               GetActiveDocument()->update_all_views(id_select_main_tab);
+               get_active_document()->update_all_views(id_select_main_tab);
             }
          }
          ToFront();
@@ -220,7 +220,7 @@ namespace prompt
    void frame::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       pmessage->previous();
 
@@ -322,12 +322,12 @@ namespace prompt
 
    void frame::_001OnShowWindow(::message::message * pmessage)
    {
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
 
       if(!pshowwindow->m_bShow)
       {
-         if(GetActiveDocument() != nullptr)
-            GetActiveDocument()->update_all_views(id_update_current_area);
+         if(get_active_document() != nullptr)
+            get_active_document()->update_all_views(id_update_current_area);
       }
    }
 
@@ -357,7 +357,7 @@ namespace prompt
 
    void frame::message_queue_message_handler(::message::message * pmessage)
    {
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
       if(pbase->m_id == (WM_APP + 2000))
       {
          _001OnApp2000(pbase);
@@ -367,7 +367,7 @@ namespace prompt
 
    void frame::_001OnApp2000(::message::message * pmessage)
    {
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
 
       if(pbase->m_wparam == 0)
@@ -396,9 +396,9 @@ namespace prompt
       {
          if(pbase->m_lparam == 6)
          {
-            //GetTopLevelFrame()->hide();
+            //top_level_frame()->hide();
             
-            GetTopLevelFrame()->hide();
+            top_level_frame()->hide();
             
             __post_quit_message(36);
          }

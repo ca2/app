@@ -90,12 +90,12 @@ inline ::count payload::array_get_count() const
       || m_etype == e_type_empty
       || m_etype == e_type_empty_argument)
    {
-      return -1; // indicates that this payload is not an array
+      return -1; // indicates that this ::payload is not an array
    }
    else if (is_array())
       return this->get_count();
    else
-      return 1; // this payload is an scalar or object that can be retrieved through "array_" methods
+      return 1; // this ::payload is an scalar or object that can be retrieved through "array_" methods
 }
 
 
@@ -107,12 +107,12 @@ inline index payload::array_get_upper_bound() const
       || m_etype == e_type_empty
       || m_etype == e_type_empty_argument)
    {
-      return -1; // indicates that this payload is not an array
+      return -1; // indicates that this ::payload is not an array
    }
    else if (is_array())
       return this->get_count() - 1;
    else
-      return 0; // this payload is an scalar or object that can be retrieved through "array_" methods
+      return 0; // this ::payload is an scalar or object that can be retrieved through "array_" methods
 }
 
 
@@ -142,7 +142,7 @@ inline bool payload::is_array() const
 
 
 
-inline bool operator == (const string& str, const payload& payload)
+inline bool operator == (const string& str, const ::payload & payload)
 {
 
    return str == payload.get_string();
@@ -151,7 +151,7 @@ inline bool operator == (const string& str, const payload& payload)
 
 
 
-inline id& id::operator = (const payload& payload)
+inline id& id::operator = (const ::payload & payload)
 {
 
    if (payload.is_null())
@@ -177,13 +177,13 @@ inline id& id::operator = (const payload& payload)
 inline id& id::operator = (const property& prop)
 {
 
-   return operator = ((const payload&)prop);
+   return operator = ((const ::payload&)prop);
 
 }
 
 
 
-inline id::id(const payload& payload)
+inline id::id(const ::payload & payload)
 {
    m_all = {};
    operator = (payload);

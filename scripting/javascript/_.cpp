@@ -37,7 +37,7 @@
                    Improved example app
    Version 0.13 :  Added tokenEnd/tokenLastEnd to lexer to avoid parsing whitespace
                    Ability to define functions without names
-                   Can now do "payload mine = function(a,b) { ... };"
+                   Can now do "::payload mine = function(a,b) { ... };"
                    Slightly better 'trace' function
                    Added findChildOrCreateByPath function
                    Added simple test suite
@@ -213,8 +213,8 @@ void show_allocated()
    }
    for (size_t i=0; i<allocatedLinks.size(); i++)
    {
-      debug_print("ALLOCATED LINK %s, allocated[%d] to \n", allocatedLinks[i]->name.c_str(), allocatedLinks[i]->payload->getRefs());
-      allocatedLinks[i]->payload->trace("  ");
+      debug_print("ALLOCATED LINK %s, allocated[%d] to \n", allocatedLinks[i]->name.c_str(), allocatedLinks[i]->::payload->getRefs());
+      allocatedLinks[i]->::payload->trace("  ");
    }
    allocatedVars.clear();
    allocatedLinks.clear();
@@ -423,7 +423,7 @@ string CScriptLex::getTokenStr(i32 token)
    case LEX_R_CONTINUE : return "continue";
    case LEX_R_FUNCTION : return "function";
    case LEX_R_RETURN : return "return";
-   case LEX_R_VAR : return "payload";
+   case LEX_R_VAR : return "::payload";
    case LEX_R_TRUE : return "true";
    case LEX_R_FALSE : return "false";
    case LEX_R_NULL : return "null";
@@ -488,7 +488,7 @@ void CScriptLex::getNextToken()
       else if (tkStr=="continue") tk = LEX_R_CONTINUE;
       else if (tkStr=="function") tk = LEX_R_FUNCTION;
       else if (tkStr=="return") tk = LEX_R_RETURN;
-      else if (tkStr=="payload") tk = LEX_R_VAR;
+      else if (tkStr=="::payload") tk = LEX_R_VAR;
       else if (tkStr=="true") tk = LEX_R_TRUE;
       else if (tkStr=="false") tk = LEX_R_FALSE;
       else if (tkStr=="null") tk = LEX_R_NULL;
@@ -770,7 +770,7 @@ string CScriptLex::getPosition(i32 pos)
 
 // ----------------------------------------------------------------------------------- CSCRIPTVARLINK
 
-CScriptVarLink::CScriptVarLink(CScriptVar *payload, const string &name)
+CScriptVarLink::CScriptVarLink(CScriptVar *::payload, const string &name)
 {
 #if DEBUG_MEMORY
    mark_allocated(this);
@@ -791,13 +791,13 @@ CScriptVarLink::CScriptVarLink(const CScriptVarLink &link)
    this->name = link.name;
    this->nextSibling = 0;
    this->prevSibling = 0;
-   this->payload = link.payload->ref();
+   this->payload = link.::payload->ref();
    this->owned = false;
 }
 
 CScriptVarLink::~CScriptVarLink()
 {
-   payload->unref();
+   ::payload->unref();
 #if DEBUG_MEMORY
    mark_deallocated(this);
 #endif
@@ -813,7 +813,7 @@ void CScriptVarLink::replaceWith(CScriptVar *newVar)
 void CScriptVarLink::replaceWith(CScriptVarLink *newVar)
 {
    if (newVar)
-      replaceWith(newVar->payload);
+      replaceWith(newVar->::payload);
    else
       replaceWith(new CScriptVar());
 }
@@ -918,7 +918,7 @@ CScriptVar *CScriptVar::getReturnVar()
    return getParameter(TINYJS_RETURN_VAR);
 }
 
-void CScriptVar::setReturnVar(CScriptVar *payload)
+void CScriptVar::setReturnVar(CScriptVar *::payload)
 {
    findChildOrCreate(TINYJS_RETURN_VAR)->replaceWith(payload);
 }
@@ -926,7 +926,7 @@ void CScriptVar::setReturnVar(CScriptVar *payload)
 
 CScriptVar *CScriptVar::getParameter(const string &name)
 {
-   return findChildOrCreate(name)->payload;
+   return findChildOrCreate(name)->::payload;
 }
 
 CScriptVarLink *CScriptVar::findChild(const string &childName)
@@ -955,7 +955,7 @@ CScriptVarLink *CScriptVar::findChildOrCreateByPath(const string &path)
    if (point < 0)
       return findChildOrCreate(path);
 
-   return findChildOrCreate(path.substr(0,point), SCRIPTVAR_OBJECT)->payload->
+   return findChildOrCreate(path.substr(0,point), SCRIPTVAR_OBJECT)->::payload->
           findChildOrCreateByPath(path.substr(point+1));
 }
 
@@ -1049,7 +1049,7 @@ CScriptVar *CScriptVar::getArrayIndex(i32 idx)
    char sIdx[64];
    sprintf_s(sIdx, sizeof(sIdx), "%d", idx);
    CScriptVarLink *link = findChild(sIdx);
-   if (link) return link->payload;
+   if (link) return link->::payload;
    else return new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_NULL); // undefined
 }
 
@@ -1334,9 +1334,9 @@ void CScriptVar::copyValue(CScriptVar *val)
          CScriptVar *copied;
          // don't copy the 'parent' object...
          if (child->name != TINYJS_PROTOTYPE_CLASS)
-            copied = child->payload->deepCopy();
+            copied = child->::payload->deepCopy();
          else
-            copied = child->payload;
+            copied = child->::payload;
 
          addChild(child->name, copied);
 
@@ -1360,9 +1360,9 @@ CScriptVar *CScriptVar::deepCopy()
       CScriptVar *copied;
       // don't copy the 'parent' object...
       if (child->name != TINYJS_PROTOTYPE_CLASS)
-         copied = child->payload->deepCopy();
+         copied = child->::payload->deepCopy();
       else
-         copied = child->payload;
+         copied = child->::payload;
 
       newVar->addChild(child->name, copied);
       child = child->nextSibling;
@@ -1391,7 +1391,7 @@ void CScriptVar::trace(string indentStr, const string &name)
    while (link)
    {
 
-      link->payload->trace(indent, link->name);
+      link->::payload->trace(indent, link->name);
 
       link = link->nextSibling;
 
@@ -1454,7 +1454,7 @@ void CScriptVar::getJSON(string &destination, const string linePrefix)
          destination += indentedLinePrefix;
          destination  += getJSString(link->name);
          destination  += " : ";
-         link->payload->getJSON(destination, indentedLinePrefix);
+         link->::payload->getJSON(destination, indentedLinePrefix);
          link = link->nextSibling;
          if (link)
          {
@@ -1634,7 +1634,7 @@ CScriptVarLink tinyjs::evaluateComplex(const string &code)
 
 string tinyjs::evaluate(const string &code)
 {
-   return evaluateComplex(code).payload->getString();
+   return evaluateComplex(code).::payload->getString();
 }
 
 void tinyjs::parseFunctionArguments(CScriptVar *funcVar)
@@ -1666,7 +1666,7 @@ void tinyjs::addNative(const string &funcDesc, JSCallback ptr, void *userdata)
       CScriptVarLink *link = axis->findChild(funcName);
       // if it doesn't exist, make an object class
       if (!link) link = axis->addChild(funcName, new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT));
-      axis = link->payload;
+      axis = link->::payload;
       funcName = l->tkStr;
       l->match(LEX_ID);
    }
@@ -1692,11 +1692,11 @@ CScriptVarLink *tinyjs::parseFunctionDefinition()
       l->match(LEX_ID);
    }
    CScriptVarLink *funcVar = new CScriptVarLink(new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_FUNCTION), funcName);
-   parseFunctionArguments(funcVar->payload);
+   parseFunctionArguments(funcVar->::payload);
    i32 funcBegin = l->tokenStart;
    bool noexecute = false;
    block(noexecute);
-   funcVar->payload->data = l->getSubString(funcBegin);
+   funcVar->::payload->data = l->getSubString(funcBegin);
    return funcVar;
 }
 
@@ -1708,7 +1708,7 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
 {
    if (execute)
    {
-      if (!function->payload->isFunction())
+      if (!function->::payload->isFunction())
       {
          string errorMsg = "Expecting '";
          errorMsg = errorMsg + function->name + "' to be a function";
@@ -1720,21 +1720,21 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
       if (parent)
          functionRoot->addChildNoDup("this", parent);
       // grab in all parameters
-      CScriptVarLink *v = function->payload->firstChild;
+      CScriptVarLink *v = function->::payload->firstChild;
       while (v)
       {
          CScriptVarLink *value = axis(execute);
          if (execute)
          {
-            if (value->payload->isBasic())
+            if (value->::payload->isBasic())
             {
                // pass by value
-               functionRoot->addChild(v->name, value->payload->deepCopy());
+               functionRoot->addChild(v->name, value->::payload->deepCopy());
             }
             else
             {
                // pass by context_object
-               functionRoot->addChild(v->name, value->payload);
+               functionRoot->addChild(v->name, value->::payload);
             }
          }
          CLEAN(value);
@@ -1753,10 +1753,10 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
       callstack.push_back(function->name + " from " + l->getPosition());
 #endif
 
-      if (function->payload->isNative())
+      if (function->::payload->isNative())
       {
-         ASSERT(function->payload->jsCallback);
-         function->payload->jsCallback(functionRoot, function->payload->jsCallbackUserData);
+         ASSERT(function->::payload->jsCallback);
+         function->::payload->jsCallback(functionRoot, function->::payload->jsCallbackUserData);
       }
       else
       {
@@ -1767,7 +1767,7 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
          ::exception_pointer exception;
 
          CScriptLex *oldLex = l;
-         CScriptLex *newLex = new CScriptLex(function->payload->getString());
+         CScriptLex *newLex = new CScriptLex(function->::payload->getString());
          l = newLex;
          try
          {
@@ -1789,8 +1789,8 @@ CScriptVarLink *tinyjs::functionCall(bool &execute, CScriptVarLink *function, CS
       if (!callstack.is_empty()) callstack.pop();
 #endif
       scopes.pop_back();
-      /* get the real return payload before we remove it from our function */
-      returnVar = new CScriptVarLink(returnVarLink->payload);
+      /* get the real return ::payload before we remove it from our function */
+      returnVar = new CScriptVarLink(returnVarLink->::payload);
       functionRoot->removeLink(returnVarLink);
       delete functionRoot;
       if (returnVar)
@@ -1874,28 +1874,28 @@ CScriptVarLink *tinyjs::factor(bool &execute)
             if (execute)
             {
                const string &name = l->tkStr;
-               CScriptVarLink *child = a->payload->findChild(name);
-               if (!child) child = findInParentClasses(a->payload, name);
+               CScriptVarLink *child = a->::payload->findChild(name);
+               if (!child) child = findInParentClasses(a->::payload, name);
                if (!child)
                {
                   /* if we haven't found this defined yet, use the built-in
                      'length' properly */
-                  if (a->payload->isArray() && name == "length")
+                  if (a->::payload->isArray() && name == "length")
                   {
-                     i32 l = a->payload->getArrayLength();
+                     i32 l = a->::payload->getArrayLength();
                      child = new CScriptVarLink(new CScriptVar(l));
                   }
-                  else if (a->payload->isString() && name == "length")
+                  else if (a->::payload->isString() && name == "length")
                   {
-                     i32 l = (i32) a->payload->getString().size();
+                     i32 l = (i32) a->::payload->getString().size();
                      child = new CScriptVarLink(new CScriptVar(l));
                   }
                   else
                   {
-                     child = a->payload->addChild(name);
+                     child = a->::payload->addChild(name);
                   }
                }
-               parent = a->payload;
+               parent = a->::payload;
                a = child;
             }
             l->match(LEX_ID);
@@ -1907,8 +1907,8 @@ CScriptVarLink *tinyjs::factor(bool &execute)
             l->match(']');
             if (execute)
             {
-               CScriptVarLink *child = a->payload->findChildOrCreate(index->payload->getString());
-               parent = a->payload;
+               CScriptVarLink *child = a->::payload->findChildOrCreate(index->::payload->getString());
+               parent = a->::payload;
                a = child;
             }
             CLEAN(index);
@@ -1945,7 +1945,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
          if (execute)
          {
             CScriptVarLink *a = axis(execute);
-            contents->addChild(id, a->payload);
+            contents->addChild(id, a->::payload);
             CLEAN(a);
          }
          // no need to clean here, as it will definitely be used
@@ -1969,7 +1969,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
             sprintf_s(idx_str, sizeof(idx_str), "%d",idx);
 
             CScriptVarLink *a = axis(execute);
-            contents->addChild(idx_str, a->payload);
+            contents->addChild(idx_str, a->::payload);
             CLEAN(a);
          }
          // no need to clean here, as it will definitely be used
@@ -2008,7 +2008,7 @@ CScriptVarLink *tinyjs::factor(bool &execute)
             if (execute)
             {
                CScriptVarLink *a = axis(execute);
-               contents->addChild(__str(idx), a->payload);
+               contents->addChild(__str(idx), a->::payload);
                CLEAN(a);
             }
             idx++;
@@ -2033,13 +2033,13 @@ CScriptVarLink *tinyjs::factor(bool &execute)
             l->match(LEX_ID);
             CScriptVar *obj = new CScriptVar(TINYJS_BLANK_DATA, SCRIPTVAR_OBJECT);
             CScriptVarLink *objLink = new CScriptVarLink(obj);
-            if (objClassOrFunc->payload->isFunction())
+            if (objClassOrFunc->::payload->isFunction())
             {
                CLEAN(functionCall(execute, objClassOrFunc, obj));
             }
             else
             {
-               obj->addChild(TINYJS_PROTOTYPE_CLASS, objClassOrFunc->payload);
+               obj->addChild(TINYJS_PROTOTYPE_CLASS, objClassOrFunc->::payload);
                if (l->tk == '(')
                {
                   l->match('(');
@@ -2074,7 +2074,7 @@ CScriptVarLink *tinyjs::unary(bool &execute)
       if (execute)
       {
          CScriptVar zero(0);
-         CScriptVar *res = a->payload->mathsOp(&zero, LEX_EQUAL);
+         CScriptVar *res = a->::payload->mathsOp(&zero, LEX_EQUAL);
          CREATE_LINK(a, res);
       }
    }
@@ -2093,7 +2093,7 @@ CScriptVarLink *tinyjs::term(bool &execute)
       CScriptVarLink *b = unary(execute);
       if (execute)
       {
-         CScriptVar *res = a->payload->mathsOp(b->payload, op);
+         CScriptVar *res = a->::payload->mathsOp(b->::payload, op);
          CREATE_LINK(a, res);
       }
       CLEAN(b);
@@ -2113,7 +2113,7 @@ CScriptVarLink *tinyjs::expression(bool &execute)
    if (negate)
    {
       CScriptVar zero(0);
-      CScriptVar *res = zero.mathsOp(a->payload, '-');
+      CScriptVar *res = zero.mathsOp(a->::payload, '-');
       CREATE_LINK(a, res);
    }
 
@@ -2127,8 +2127,8 @@ CScriptVarLink *tinyjs::expression(bool &execute)
          if (execute)
          {
             CScriptVar one(1);
-            CScriptVar *res = a->payload->mathsOp(&one, op==LEX_PLUSPLUS ? '+' : '-');
-            CScriptVarLink *oldValue = new CScriptVarLink(a->payload);
+            CScriptVar *res = a->::payload->mathsOp(&one, op==LEX_PLUSPLUS ? '+' : '-');
+            CScriptVarLink *oldValue = new CScriptVarLink(a->::payload);
             // in-place add/subtract
             a->replaceWith(res);
             CLEAN(a);
@@ -2141,7 +2141,7 @@ CScriptVarLink *tinyjs::expression(bool &execute)
          if (execute)
          {
             // not in-place, so just replace
-            CScriptVar *res = a->payload->mathsOp(b->payload, op);
+            CScriptVar *res = a->::payload->mathsOp(b->::payload, op);
             CREATE_LINK(a, res);
          }
          CLEAN(b);
@@ -2158,13 +2158,13 @@ CScriptVarLink *tinyjs::shift(bool &execute)
       i32 op = l->tk;
       l->match(op);
       CScriptVarLink *b = axis(execute);
-      i32 shift = execute ? b->payload->getInt() : 0;
+      i32 shift = execute ? b->::payload->getInt() : 0;
       CLEAN(b);
       if (execute)
       {
-         if (op==LEX_LSHIFT) a->payload->setInt(a->payload->getInt() << shift);
-         if (op==LEX_RSHIFT) a->payload->setInt(a->payload->getInt() >> shift);
-         if (op==LEX_RSHIFTUNSIGNED) a->payload->setInt(((u32)a->payload->getInt()) >> shift);
+         if (op==LEX_LSHIFT) a->::payload->setInt(a->::payload->getInt() << shift);
+         if (op==LEX_RSHIFT) a->::payload->setInt(a->::payload->getInt() >> shift);
+         if (op==LEX_RSHIFTUNSIGNED) a->::payload->setInt(((u32)a->::payload->getInt()) >> shift);
       }
    }
    return a;
@@ -2184,7 +2184,7 @@ CScriptVarLink *tinyjs::condition(bool &execute)
       b = shift(execute);
       if (execute)
       {
-         CScriptVar *res = a->payload->mathsOp(b->payload, op);
+         CScriptVar *res = a->::payload->mathsOp(b->::payload, op);
          CREATE_LINK(a,res);
       }
       CLEAN(b);
@@ -2209,13 +2209,13 @@ CScriptVarLink *tinyjs::logic(bool &execute)
       if (op==LEX_ANDAND)
       {
          op = '&';
-         shortCircuit = !a->payload->getBool();
+         shortCircuit = !a->::payload->getBool();
          boolean = true;
       }
       else if (op==LEX_OROR)
       {
          op = '|';
-         shortCircuit = a->payload->getBool();
+         shortCircuit = a->::payload->getBool();
          boolean = true;
       }
       b = condition(shortCircuit ? noexecute : execute);
@@ -2223,12 +2223,12 @@ CScriptVarLink *tinyjs::logic(bool &execute)
       {
          if (boolean)
          {
-            CScriptVar *newa = new CScriptVar(a->payload->getBool());
-            CScriptVar *newb = new CScriptVar(b->payload->getBool());
+            CScriptVar *newa = new CScriptVar(a->::payload->getBool());
+            CScriptVar *newb = new CScriptVar(b->::payload->getBool());
             CREATE_LINK(a, newa);
             CREATE_LINK(b, newb);
          }
-         CScriptVar *res = a->payload->mathsOp(b->payload, op);
+         CScriptVar *res = a->::payload->mathsOp(b->::payload, op);
          CREATE_LINK(a, res);
       }
       CLEAN(b);
@@ -2252,7 +2252,7 @@ CScriptVarLink *tinyjs::ternary(bool &execute)
       }
       else
       {
-         bool first = lhs->payload->getBool();
+         bool first = lhs->::payload->getBool();
          CLEAN(lhs);
          if (first)
          {
@@ -2283,7 +2283,7 @@ CScriptVarLink *tinyjs::axis(bool &execute)
       {
          if (lhs->name.length()>0)
          {
-            CScriptVarLink *realLhs = root->addChildNoDup(lhs->name, lhs->payload);
+            CScriptVarLink *realLhs = root->addChildNoDup(lhs->name, lhs->::payload);
             CLEAN(lhs);
             lhs = realLhs;
          }
@@ -2302,12 +2302,12 @@ CScriptVarLink *tinyjs::axis(bool &execute)
          }
          else if (op==LEX_PLUSEQUAL)
          {
-            CScriptVar *res = lhs->payload->mathsOp(rhs->payload, '+');
+            CScriptVar *res = lhs->::payload->mathsOp(rhs->::payload, '+');
             lhs->replaceWith(res);
          }
          else if (op==LEX_MINUSEQUAL)
          {
-            CScriptVar *res = lhs->payload->mathsOp(rhs->payload, '-');
+            CScriptVar *res = lhs->::payload->mathsOp(rhs->::payload, '-');
             lhs->replaceWith(res);
          }
          else ASSERT(0);
@@ -2381,7 +2381,7 @@ void tinyjs::statement(bool &execute)
             if (execute)
             {
                CScriptVarLink *lastA = a;
-               a = lastA->payload->findChildOrCreate(l->tkStr);
+               a = lastA->::payload->findChildOrCreate(l->tkStr);
             }
             l->match(LEX_ID);
          }
@@ -2405,7 +2405,7 @@ void tinyjs::statement(bool &execute)
       l->match('(');
       CScriptVarLink *payload = axis(execute);
       l->match(')');
-      bool cond = execute && payload->payload->getBool();
+      bool cond = execute && payload->::payload->getBool();
       CLEAN(payload);
       bool noexecute = false; // because we need to be abl;e to write to it
       statement(cond ? execute : noexecute);
@@ -2424,7 +2424,7 @@ void tinyjs::statement(bool &execute)
       i32 whileCondStart = l->tokenStart;
       bool noexecute = false;
       CScriptVarLink *cond = axis(execute);
-      bool loopCond = execute && cond->payload->getBool();
+      bool loopCond = execute && cond->::payload->getBool();
       CLEAN(cond);
       CScriptLex *whileCond = l->getSubLex(whileCondStart);
       l->match(')');
@@ -2438,7 +2438,7 @@ void tinyjs::statement(bool &execute)
          whileCond->reset();
          l = whileCond;
          cond = axis(execute);
-         loopCond = execute && cond->payload->getBool();
+         loopCond = execute && cond->::payload->getBool();
          CLEAN(cond);
          if (loopCond)
          {
@@ -2467,7 +2467,7 @@ void tinyjs::statement(bool &execute)
       i32 forCondStart = l->tokenStart;
       bool noexecute = false;
       CScriptVarLink *cond = axis(execute); // condition
-      bool loopCond = execute && cond->payload->getBool();
+      bool loopCond = execute && cond->::payload->getBool();
       CLEAN(cond);
       CScriptLex *forCond = l->getSubLex(forCondStart);
       l->match(';');
@@ -2491,7 +2491,7 @@ void tinyjs::statement(bool &execute)
          forCond->reset();
          l = forCond;
          cond = axis(execute);
-         loopCond = cond->payload->getBool();
+         loopCond = cond->::payload->getBool();
          CLEAN(cond);
          if (execute && loopCond)
          {
@@ -2543,7 +2543,7 @@ void tinyjs::statement(bool &execute)
          if (funcVar->name == TINYJS_TEMP_NAME)
             TRACE("Functions defined at statement-level are meant to have a name\n");
          else
-            scopes.last()->addChildNoDup(funcVar->name, funcVar->payload);
+            scopes.last()->addChildNoDup(funcVar->name, funcVar->::payload);
       }
       CLEAN(funcVar);
    }
@@ -2558,16 +2558,16 @@ CScriptVar *tinyjs::getScriptVariable(const string &path)
    strsize thisIdx = path.find('.');
    if (thisIdx < 0) thisIdx = path.length();
    CScriptVar *payload = root;
-   while (payload && prevIdx<path.length())
+   while (::payload && prevIdx<path.length())
    {
       string el = path.substr(prevIdx, thisIdx-prevIdx);
       CScriptVarLink *varl = payload->findChild(el);
-      payload = varl?varl->payload:0;
+      payload = varl?varl->::payload:0;
       prevIdx = thisIdx+1;
       thisIdx = path.find('.', prevIdx);
       if (thisIdx < 0) thisIdx = path.length();
    }
-   return payload;
+   return ::payload;
 }
 
 /// Get the value of the given variable, or return 0
@@ -2588,12 +2588,12 @@ bool tinyjs::setVariable(const string &path, const string &varData)
    // return result
    if (payload)
    {
-      if (payload->isInt())
-         payload->setInt((i32)strtol(varData.c_str(),0,0));
-      else if (payload->isDouble())
-         payload->setDouble(strtod(varData.c_str(),0));
+      if (::payload->isInt())
+         ::payload->setInt((i32)strtol(varData.c_str(),0,0));
+      else if (::payload->isDouble())
+         ::payload->setDouble(strtod(varData.c_str(),0));
       else
-         payload->setString(varData.c_str());
+         ::payload->setString(varData.c_str());
       return true;
    }
    else
@@ -2619,9 +2619,9 @@ CScriptVarLink *tinyjs::findInParentClasses(CScriptVar *object, const string &na
    CScriptVarLink *parentClass = object->findChild(TINYJS_PROTOTYPE_CLASS);
    while (parentClass)
    {
-      CScriptVarLink *implementation = parentClass->payload->findChild(name);
+      CScriptVarLink *implementation = parentClass->::payload->findChild(name);
       if (implementation) return implementation;
-      parentClass = parentClass->payload->findChild(TINYJS_PROTOTYPE_CLASS);
+      parentClass = parentClass->::payload->findChild(TINYJS_PROTOTYPE_CLASS);
    }
    // else fake it for strings and finally objects
    if (object->isString())

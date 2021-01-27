@@ -76,21 +76,20 @@ namespace user
    //
    // ::user::impact second phase construction - bind to ::user::document
 
-   bool impact::pre_create_window(::user::create_struct * pcreatestruct)
+   bool impact::pre_create_window(::user::system * pusersystem)
    {
 
-      ASSERT(pcreatestruct->m_createstruct.style & WS_CHILD);
+      ASSERT(pusersystem->m_createstruct.style & WS_CHILD);
 
 
 #ifdef WINDOWS_DESKTOP
 
-
-      if (pcreatestruct->m_createstruct.style & WS_BORDER)
+      if (pusersystem->m_createstruct.style & WS_BORDER)
       {
 
-         pcreatestruct->m_createstruct.dwExStyle |= WS_EX_CLIENTEDGE;
+         pusersystem->m_createstruct.dwExStyle |= WS_EX_CLIENTEDGE;
 
-         pcreatestruct->m_createstruct.style &= ~WS_BORDER;
+         pusersystem->m_createstruct.style &= ~WS_BORDER;
 
       }
 
@@ -106,28 +105,21 @@ namespace user
    void impact::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pmessagecreate, pmessage);
+      __pointer(::message::create) pmessagecreate(pmessage);
 
       if (!(m_ewindowflag & e_window_flag_window_created))
       {
 
          ASSERT(::user::impact::get_document() == nullptr);
 
-         __pointer(class ::create) pcreate(pmessagecreate->get_create());
+         auto pusersystem = m_pusersystem;
 
-         if (pcreate != nullptr)
+         if (pusersystem && pusersystem->m_pdocumentCurrent != nullptr)
          {
 
-            auto pusercreate = __user_create(pcreate->m_pusercreate);
+            __pointer(::user::document) pdocument = pusersystem->m_pdocumentCurrent;
 
-            if (pusercreate && pusercreate->m_pdocumentCurrent != nullptr)
-            {
-
-               __pointer(::user::document) pdocument = pusercreate->m_pdocumentCurrent;
-
-               pdocument->add_view(this);
-
-            }
+            pdocument->add_view(this);
 
          }
 
@@ -166,10 +158,10 @@ namespace user
 
       }
 
-      //if (GetParentFrame() != nullptr)
+      //if (get_parent_frame() != nullptr)
       //{
 
-      //   GetParentFrame()->m_interactionaCommandHandlers.add(this);
+      //   get_parent_frame()->m_interactionaCommandHandlers.add(this);
 
       //}
 
@@ -183,19 +175,19 @@ namespace user
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      __pointer(::user::frame_window) pFrame = GetParentFrame();
+      __pointer(::user::frame_window) pFrame = get_parent_frame();
 
-      if (pFrame != nullptr && pFrame->GetActiveView() == this)
+      if (pFrame != nullptr && pFrame->get_active_view() == this)
       {
 
-         pFrame->SetActiveView(nullptr, false);    // deactivate during death
+         pFrame->set_active_view(nullptr, false);    // deactivate during death
 
       }
 
-      //if (GetParentFrame() != nullptr)
+      //if (get_parent_frame() != nullptr)
       //{
 
-      //   GetParentFrame()->m_interactionaCommandHandlers.remove(this);
+      //   get_parent_frame()->m_interactionaCommandHandlers.remove(this);
 
       //}
 
@@ -316,7 +308,7 @@ namespace user
       //for (auto& pinteraction : m_interactionaCommandHandlers)
       //{
 
-      //   if (pinteraction && pinteraction != GetActiveView())
+      //   if (pinteraction && pinteraction != get_active_view())
       //   {
 
       //      pinteraction->on_command_message(pcommand);
@@ -333,7 +325,7 @@ namespace user
       //}
 
       // then pump through parent
-      __pointer(::user::interaction) puiParent = GetParent();
+      __pointer(::user::interaction) puiParent = get_parent();
 
       while (puiParent)
       {
@@ -347,7 +339,7 @@ namespace user
 
          }
 
-         puiParent = puiParent->GetParent();
+         puiParent = puiParent->get_parent();
 
       }
 
@@ -491,14 +483,14 @@ namespace user
    if (nResult == MA_NOACTIVATE || nResult == MA_NOACTIVATEANDEAT)
    return nResult;   // frame does not want to activate
 
-   __pointer(::user::frame_window) pParentFrame = GetParentFrame();
+   __pointer(::user::frame_window) pParentFrame = get_parent_frame();
    if (pParentFrame != nullptr)
    {
    // eat it if this will cause activation
    ASSERT(pParentFrame == pDesktopWnd || pDesktopWnd->IsChild(pParentFrame));
 
    // either re-activate the current ::user::impact, or set this ::user::impact to be active
-   __pointer(::user::impact) pview = pParentFrame->GetActiveView();
+   __pointer(::user::impact) pview = pParentFrame->get_active_view();
    oswindow oswindow_Focus = ::GetFocus();
    if (pview == this &&
    get_handle() != oswindow_Focus && !::IsChild(get_handle(), oswindow_Focus))
@@ -509,7 +501,7 @@ namespace user
    else
    {
    // activate this ::user::impact
-   pParentFrame->SetActiveView(this);
+   pParentFrame->set_active_view(this);
    }
    }
    return nResult;
@@ -698,7 +690,7 @@ namespace user
    //void impact::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    //{
 
-   //   SCAST_PTR(::message::base, pbase, pmessage);
+   //   __pointer(::message::base) pbase(pmessage);
 
    //   //if (pbase->m_wparam == ::user::impact_message_update)
    //   //{
@@ -723,51 +715,51 @@ namespace user
 
       __pointer(::create) pcreate(e_create);
 
-      auto pusercreate = __new(::user::create);
+      auto pusersystem = __new(::user::system);
 
-      pusercreate = pusercreate;
+      pusersystem = pusersystem;
 
-      pusercreate->m_puiNew = pimpactAlloc;
+      pusersystem->m_puiNew = pimpactAlloc;
 
-      pusercreate->m_puiLastView = pviewLast;
+      pusersystem->m_puiLastView = pviewLast;
 
-      pusercreate->m_pdocumentCurrent = get_document();
+      pusersystem->m_pdocumentCurrent = get_document();
 
-      return ::user::create_view(pcreate, pimpactdata->m_pplaceholder, pimpactdata->m_id);
+      return ::user::create_view(pusersystem, pimpactdata->m_pplaceholder, pimpactdata->m_id);
 
    }
 
 
-   __pointer(::user::interaction) impact::create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
+   __pointer(::user::interaction) impact::create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * pwndParent, const ::id & id, ::user::interaction * pviewLast, ::user::impact_data * pimpactdata)
    {
 
       __pointer(::create) pcreate(e_create);
 
-      auto pusercreate = __new(::user::create);
+      auto pusersystem = __new(::user::system);
 
-      pcreate->m_pusercreate = pusercreate;
+      pcreate->m_pusersystem = pusersystem;
 
       if (::is_set(pimpactdata))
       {
 
-         pusercreate->m_pimpactdata = pimpactdata;
+         pusersystem->m_pimpactdata = pimpactdata;
 
       }
 
-      pusercreate->m_typeNewView = type;
+      pusersystem->m_typeNewView = type;
 
-      pusercreate->m_puiLastView = pviewLast;
+      pusersystem->m_puiLastView = pviewLast;
 
       if (pdocument == nullptr)
       {
 
-         pusercreate->m_pdocumentCurrent = get_document();
+         pusersystem->m_pdocumentCurrent = get_document();
 
       }
       else
       {
 
-         pusercreate->m_pdocumentCurrent = pdocument;
+         pusersystem->m_pdocumentCurrent = pdocument;
 
       }
 
@@ -778,48 +770,46 @@ namespace user
 
       }
 
-      if (id.is_empty())
+      ::id idCreate(id);
+
+      if (idCreate.is_empty())
       {
 
-         id = (const ::id &) pusercreate->m_typeNewView.name();
+         idCreate = (const ::id &) pusersystem->m_typeNewView.name();
 
       }
 
-      return ::user::create_view(pcreate, pwndParent, id);
+      return ::user::create_view(pusersystem, pwndParent, idCreate);
 
    }
 
 
-   __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast)
+   __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * pwndParent, const ::id & id, ::user::interaction * pviewLast)
    {
 
       __pointer(::create) pcreate(e_create_new, pdocument);
 
-      auto pusercreate= __new(::user::create);
+      auto pusersystem= __new(::user::system);
 
-      pusercreate = pusercreate;
+      pusersystem = pusersystem;
 
-      pusercreate->m_typeNewView = type;
+      pusersystem->m_typeNewView = type;
 
-      pusercreate->m_puiLastView = pviewLast;
+      pusersystem->m_puiLastView = pviewLast;
 
-      pusercreate->m_pdocumentCurrent = pdocument;
+      pusersystem->m_pdocumentCurrent = pdocument;
 
-      return ::user::create_view(pcreate, pwndParent, id);
+      return ::user::create_view(pusersystem, pwndParent, id);
 
    }
 
 
-   __pointer(::user::interaction) create_view(::create * pcreate, ::user::interaction * pwndParent, id id)
+   __pointer(::user::interaction) create_view(::user::system * pusersystem, ::user::interaction * pwndParent, const ::id & id)
    {
 
-      ASSERT(pcreate != nullptr);
+      ASSERT(pusersystem != nullptr);
 
-      auto pusercreate = __user_create(pcreate->m_pusercreate);
-
-      ASSERT(pusercreate != nullptr);
-
-      ASSERT(pusercreate->m_typeNewView || pusercreate->m_puiNew != nullptr);
+      ASSERT(pusersystem->m_typeNewView || pusersystem->m_puiNew != nullptr);
 
       ::apex::application * papp = pwndParent->get_context_application();
 
@@ -827,16 +817,16 @@ namespace user
 
       ::e_status estatus = ::success;
 
-      if (pusercreate->m_puiNew != nullptr)
+      if (pusersystem->m_puiNew != nullptr)
       {
 
-         pinteraction = pusercreate->m_puiNew;
+         pinteraction = pusersystem->m_puiNew;
 
       }
       else
       {
 
-         __pointer(::object) pobject = pusercreate->m_pdocumentCurrent;
+         __pointer(::object) pobject = pusersystem->m_pdocumentCurrent;
 
          if(pobject.is_null())
          {
@@ -854,7 +844,7 @@ namespace user
 
          }
 
-         estatus = pobject->__id_construct(pinteraction, pusercreate->m_typeNewView);
+         estatus = pobject->__id_construct(pinteraction, pusersystem->m_typeNewView);
 
       }
 
@@ -865,7 +855,14 @@ namespace user
 
       }
 
-      if (!pinteraction->create_window(nullptr, nullptr, WS_VISIBLE | WS_CHILD, pwndParent, id, pcreate))
+      pinteraction->m_pusersystem = pusersystem;
+
+      pinteraction->display(e_display_normal);
+
+      pinteraction->m_id = id;
+
+      //if (!pinteraction->create_interaction(nullptr, nullptr, WS_VISIBLE | WS_CHILD, pwndParent, id, pcreate))
+      if (!pinteraction->create_child(pwndParent))
       {
 
          return nullptr;
@@ -888,13 +885,13 @@ namespace user
       //if (pinteraction.is_set())
       //{
 
-      //   if (pinteraction->GetParent() != nullptr)
+      //   if (pinteraction->get_parent() != nullptr)
       //   {
 
-      //      if (pinteraction->GetParent()->is_place_holder())
+      //      if (pinteraction->get_parent()->is_place_holder())
       //      {
 
-      //         pinteraction->GetParent()->place_hold(pinteraction);
+      //         pinteraction->get_parent()->place_hold(pinteraction);
 
       //      }
 
@@ -914,10 +911,10 @@ namespace user
 
       pmessage->previous();
 
-      if (GetParentFrame() != nullptr)
+      if (get_parent_frame() != nullptr)
       {
 
-         GetParentFrame()->SetActiveView(this);
+         get_parent_frame()->set_active_view(this);
 
       }
 
@@ -926,13 +923,13 @@ namespace user
    void impact::_001OnLButtonUp(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //SCAST_PTR(::message::mouse, pmouse, pmessage);
+      //__pointer(::message::mouse) pmouse(pmessage);
    }
 
    void impact::_001OnMouseMove(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //   SCAST_PTR(::message::mouse, pmouse, pmessage);
+      //   __pointer(::message::mouse) pmouse(pmessage);
    }
 
 
@@ -1082,7 +1079,7 @@ namespace user
 
    void impact::_001OnMouseActivate(::message::message * pmessage)
    {
-      SCAST_PTR(::message::mouse_activate, pmouseactivate, pmessage);
+      __pointer(::message::mouse_activate) pmouseactivate(pmessage);
       pmessage->previous();
       //i32 nResult = pmouseactivate->get_lresult();
 
@@ -1096,7 +1093,7 @@ namespace user
 
       }
 
-      __pointer(::user::frame_window) pParentFrame = (GetParentFrame());
+      __pointer(::user::frame_window) pParentFrame = (get_parent_frame());
       if (pParentFrame != nullptr)
       {
          // eat it if this will cause activation
@@ -1104,7 +1101,7 @@ namespace user
                 || pmouseactivate->get_desktop_window()->is_child(pParentFrame));
 
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
-         __pointer(::user::impact) pview = pParentFrame->GetActiveView();
+         __pointer(::user::impact) pview = pParentFrame->get_active_view();
 
          auto psession = Session;
 
@@ -1119,7 +1116,7 @@ namespace user
          else
          {
             // activate this ::user::impact
-            pParentFrame->SetActiveView(this);
+            pParentFrame->set_active_view(this);
          }
       }
 
@@ -1153,7 +1150,7 @@ namespace user
 
    void impact::on_select()
    {
-      __pointer(::user::frame_window) pParentFrame = (GetParentFrame());
+      __pointer(::user::frame_window) pParentFrame = (get_parent_frame());
       if (pParentFrame != nullptr)
       {
          // eat it if this will cause activation
@@ -1161,7 +1158,7 @@ namespace user
          || pmouseactivate->get_desktop_window()->IsChild(pParentFrame));*/
 
          // either re-activate the current ::user::impact, or set this ::user::impact to be active
-         __pointer(::user::impact) pview = pParentFrame->GetActiveView();
+         __pointer(::user::impact) pview = pParentFrame->get_active_view();
 
          auto psession = Session;
 
@@ -1176,7 +1173,7 @@ namespace user
          else
          {
             // activate this ::user::impact
-            pParentFrame->SetActiveView(this);
+            pParentFrame->set_active_view(this);
          }
       }
    }
@@ -1352,17 +1349,17 @@ namespace user
    void impact::_001OnRButtonDown(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //SCAST_PTR(::message::mouse, pmouse, pmessage);
+      //__pointer(::message::mouse) pmouse(pmessage);
 
-      GetParentFrame()->SetActiveView((this));
+      get_parent_frame()->set_active_view((this));
    }
 
    void impact::_001OnMButtonDown(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      //      __pointer(::message::mouse) pmouse(pmessage);
 
-      GetParentFrame()->SetActiveView((this));
+      get_parent_frame()->set_active_view((this));
    }
 
 
@@ -1412,7 +1409,7 @@ namespace user
       try
       {
 
-         GetParentFrame()->pre_translate_message(pmessage);
+         get_parent_frame()->pre_translate_message(pmessage);
 
       }
       catch(...)

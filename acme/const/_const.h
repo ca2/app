@@ -632,6 +632,8 @@ enum enum_window_flag
    e_window_flag_main_frame = 1 << 25,
    e_window_flag_destroying = 1 << 26,
    e_window_flag_not_visible = 1 << 27,
+   e_window_flag_satellite_window_if_child = 1 << 28,
+   e_window_flag_embedded_prodevian_if_child = 1 << 29,
 
 };
 

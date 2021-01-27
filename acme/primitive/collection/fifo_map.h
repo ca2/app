@@ -825,7 +825,7 @@
 //}
 //
 //
-//template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ::comparison::binary < string > >
+//template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type, class COMPARE = ::comparison::binary < string > >
 //class fifo_string_map :
 //   virtual public fifo_attrib_map < fifo_map < string, const string &, VALUE, ARG_VALUE, COMPARE > >
 //{
@@ -868,7 +868,7 @@
 //
 //}
 //
-//template < class VALUE, class ARG_VALUE = const VALUE &   >
+//template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type   >
 //class fifo_strid_map :
 //   virtual public fifo_attrib_map < fifo_map < id, const id &, VALUE, ARG_VALUE > >
 //{
@@ -910,7 +910,7 @@
 //
 //}
 //
-//template < class VALUE, class ARG_VALUE = const VALUE &, class COMPARE = ::comparison::binary < i32 > >
+//template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type, class COMPARE = ::comparison::binary < i32 > >
 //class fifo_int_map :
 //   virtual public fifo_attrib_map < fifo_map < i32, i32, VALUE, ARG_VALUE, COMPARE > >
 //{

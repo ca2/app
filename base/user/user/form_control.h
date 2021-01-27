@@ -15,7 +15,7 @@ namespace user
       bool                       m_bOnEditUpdate;
       bool                       m_bOnLanguageChange;
       ::u32                       m_uiId;
-      control_descriptor_set     m_controldescriptorset;
+      //control_descriptor_set     m_controldescriptorset;
       bool                       m_bInitialized;
       ::file::path               m_pathDefaultDocument;
 
@@ -31,7 +31,7 @@ namespace user
 
 
       virtual string get_path();
-      virtual ::e_status open_document(const payload & varFile) override;
+      virtual ::e_status open_document(const ::payload & varFile) override;
       //::type controltype_to_typeinfo(::user::enum_control_type econtroltype);
 
       virtual ::e_status open_html(const ::string & str) override;
@@ -55,8 +55,8 @@ namespace user
       virtual void _001OnInitializeForm(::user::interaction * pinteraction);
       void _001UpdateFunctionStatic();
       virtual bool _001OnBeforeSave(::user::interaction * pinteraction);
-      virtual void _001RemoveControls();
-      bool _001Validate(::user::interaction * pinteraction,payload & payload);
+      //virtual void _001RemoveControls();
+      bool _001Validate(::user::interaction * pinteraction,::payload & payload);
       bool _001SaveEdit(::user::interaction * pinteraction);
       virtual void on_command(::user::command * pcommand) override;
       DECL_GEN_SIGNAL(_001OnNotify);
@@ -65,8 +65,8 @@ namespace user
       void Update(bool bSave);
       bool _001SetData(id uId,bool bData);
       bool _001GetData(id uId,bool & bData);
-//      index _001AddControl(class control_descriptor  * pdescriptor) override;
-      __pointer(class control_descriptor) new_form_control() override;
+      bool _001AddControl(::user::interaction * pinteraction) override;
+      //__pointer(class control_descriptor) new_form_control() override;
       void _001FillCombo(::user::interaction * pinteraction);
 
       virtual void WfiOnClose() override;
@@ -101,11 +101,11 @@ namespace user
 
 
 
-      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::promise::subject * psubject = nullptr);
+      virtual void data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::promise::subject * psubject = nullptr);
 
 
-      virtual bool create_control(class control_descriptor * pdescriptor, index iItem) override;
-      virtual bool normalize_control_descriptor_typeinfo(class ::user::control_descriptor * pdescriptor);
+      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
+      //virtual bool normalize_control_descriptor_typeinfo(class ::user::control_descriptor * pdescriptor);
 
       void on_control_event(::user::control_event * pevent) override;
       void _001SetControlFactory();
@@ -145,7 +145,7 @@ namespace user
 
 
 
-      //virtual bool open_document(const payload & varFile) override;
+      //virtual bool open_document(const ::payload & varFile) override;
 
 
    };

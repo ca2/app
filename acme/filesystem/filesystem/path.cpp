@@ -130,7 +130,7 @@ namespace file
 //   }
 
 
-//   path::path(const payload & payload, e_path epath, int iDir) :
+//   path::path(const ::payload & payload, e_path epath, int iDir) :
 //      path(payload.get_string(), epath, iDir)
 //   {
 //
@@ -679,7 +679,7 @@ namespace file
    path path::operator + (const string & str) const
    {
 
-      return ::file::path((const string &)*this + (m_iDir > 0 ? string(sep()) : "" ) + string((const string &)str),m_epath);
+      return ::file::path((const string &)*this + (m_iDir > 0 ? sepsz() : "" ) + string((const string &)str),m_epath);
 
    }
 

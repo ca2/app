@@ -51,19 +51,19 @@ bool os_usleep::sleep(unsigned long usec)
 CLASS_DECL_ACME void sleep(const duration & duration)
 {
 
-   if(duration.secs().m_iSeconds >= 20)
+   if(duration.secs().m_i >= 20)
    {
 
       sleep(duration.secs());
 
    }
-   else if(duration.millis().m_iMilliseconds >= 20)
+   else if(duration.millis().m_i >= 20)
    {
 
       sleep(duration.millis());
 
    }
-   else if(duration.micros().m_iMicroseconds >= 20)
+   else if(duration.micros().m_i >= 20)
    {
 
       sleep(duration.micros());

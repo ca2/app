@@ -77,6 +77,7 @@ enum enum_status
    error_invalid_flags,
    error_insufficient_buffer,
    error_not_initialized,
+   e_status_no_work,
 
    error_time_bag = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),
    error_open_failed,
@@ -151,6 +152,8 @@ enum enum_status
    error_file_lock_violation,
    error_disk_full,
    error_end_of_file,
+   error_end_of_coding,
+   error_end_of_decoding,
 
 
    error_network = INT_FAILURE_STATUS(STATUS_RANGE_NETWORK),

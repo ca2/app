@@ -10,20 +10,20 @@ namespace experience
    {
 
 
-         class CLASS_DECL_APP_EXPERIENCE_ANTHILL library:
-            virtual public ::apex::library
-         {
-         public:
+      class CLASS_DECL_APP_EXPERIENCE_ANTHILL library:
+         virtual public ::apex::library
+      {
+      public:
 
 
-            library();
-            virtual ~library();
+         library();
+         virtual ~library();
 
 
-            virtual ::context_object * new_object(::layered * pobjectContext, const char * pszClass) override;
+         virtual ::matter * new_object(const char * pszClass) override;
 
 
-         };
+      };
 
 
    } // namespace anthill

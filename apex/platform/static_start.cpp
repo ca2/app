@@ -37,9 +37,9 @@ extern ::array < __pointer(thread) >* g_pthreadaDeferredCreate;
 #include <locale.h>
 #endif
 
-#ifdef LINUX
-#include <glib.h> // sudo apt-get install libglib2.0-dev
-#endif
+//#ifdef LINUX
+//#include <glib.h> // sudo apt-get install libglib2.0-dev
+//#endif
 
 
 
@@ -52,20 +52,6 @@ extern ::array < __pointer(thread) >* g_pthreadaDeferredCreate;
 #undef new
 
 
-#ifdef LINUX
-static void
-log_handler (const gchar   *log_domain,
-             GLogLevelFlags log_level,
-             const gchar   *message,
-             gpointer       user_data)
-{
-   g_log_default_handler (log_domain, log_level, message, user_data);
-
-   g_on_error_query (nullptr);
-}
-
-
-#endif
 
 
 namespace apex
@@ -153,7 +139,7 @@ namespace apex
    array < matter* >* g_paAura;
 
 
-   ::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
+   //::map < ::id, const ::id&, ::id, const ::id& >* g_pmapRTL;
 
 //   plex_heap_alloc_array* g_pheap;
 
@@ -298,7 +284,7 @@ namespace apex
 
       g_paAura = nullptr;
 
-      g_pmapRTL = nullptr;
+      //g_pmapRTL = nullptr;
 
       //::map < void *, void *,::apex::application *, ::apex::application * > * g_pmapAura;
 
@@ -535,7 +521,7 @@ namespace apex
 
 #endif // defined(LINUX) || defined(__APPLE__)
 
-      g_pmapRTL = nullptr;
+      //g_pmapRTL = nullptr;
 
       //&System.g_mutexLibrary = new ::mutex;
 
@@ -572,11 +558,11 @@ namespace apex
 
       __construct_new(::channel::s_pmutexChannel);
 
-#ifdef LINUX
-
-      ::user::initialize_edesktop();
-
-#endif
+//#ifdef LINUX
+//
+//      ::user::initialize_edesktop();
+//
+//#endif
 
       //g_papexstrpool = new apex_str_pool();
 
@@ -672,37 +658,37 @@ namespace apex
 
       //}
 
-      if(g_pmapRTL)
-      {
+      //if(g_pmapRTL)
+      //{
 
-         try
-         {
+      //   try
+      //   {
 
-            g_pmapRTL->remove_all();
+      //      g_pmapRTL->remove_all();
 
-         }
-         catch(...)
-         {
+      //   }
+      //   catch(...)
+      //   {
 
-         }
+      //   }
 
-      }
+      //}
 
-      if(g_pmapRTL)
-      {
+      //if(g_pmapRTL)
+      //{
 
-         try
-         {
+      //   try
+      //   {
 
-            g_pmapRTL->remove_all();
+      //      g_pmapRTL->remove_all();
 
-         }
-         catch(...)
-         {
+      //   }
+      //   catch(...)
+      //   {
 
-         }
+      //   }
 
-      }
+      //}
 
       //::acme::del(::thread::g_pmutex);
 
@@ -716,7 +702,7 @@ namespace apex
 
       ::channel::s_pmutexChannel.release();
 
-      ::acme::del(g_pmapRTL);
+      //::acme::del(g_pmapRTL);
 
 #if defined(LINUX) || defined(__APPLE__)
 

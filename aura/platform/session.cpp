@@ -64,7 +64,7 @@ void enum_display_monitors(::aura::session * psession);
 
 
 
-CLASS_DECL_AURA ::user::interaction * create_system_message_window(::layered * pobject);
+CLASS_DECL_AURA __pointer(::user::interaction) create_system_message_window(::layered * pobject);
 
 
 #if defined(APPLE_IOS)
@@ -418,7 +418,7 @@ namespace aura
 
       }
 
-      ::e_status estatus = __compose(m_puiSession, move_transfer(create_system_message_window(this)));
+      ::e_status estatus = __compose(m_puiSession, create_system_message_window(this));
 
       if (!estatus)
       {
@@ -830,7 +830,7 @@ namespace aura
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//         oswindow = ::GetParent(oswindow);
+//         oswindow = ::get_parent(oswindow);
 //
 //         if (oswindow != nullptr)
 //         {
@@ -1449,7 +1449,7 @@ namespace aura
 
          }
 
-         if (puiFocus->GetFocus() != puiFocus->get_wnd())
+         if (puiFocus->get_keyboard_focus() != puiFocus->get_wnd())
          {
 
             if (puiFocus->get_wnd() != nullptr)
@@ -1807,7 +1807,7 @@ namespace aura
 
       m_monitorinfoa.allocate(m_monitorinfoa.get_size() + 1);
 
-      xxf_zero(m_monitorinfoa.last());
+      __zero(m_monitorinfoa.last());
 
       m_hmonitora.add(hmonitor);
 
@@ -3313,7 +3313,7 @@ namespace aura
       if (m_pmapKeyPressed == nullptr)
       {
 
-         m_pmapKeyPressed = new ::map < ::user::e_key, ::user::e_key, bool, bool >;
+         m_pmapKeyPressed = new ::map < ::user::e_key, bool >;
 
       }
 
@@ -3386,7 +3386,7 @@ ret:
       if (m_pmapKeyPressed == nullptr)
       {
 
-         m_pmapKeyPressed = new ::map < ::user::e_key, ::user::e_key, bool, bool >;
+         m_pmapKeyPressed = new ::map < ::user::e_key, bool >;
 
       }
 
@@ -3664,7 +3664,7 @@ ret:
 //
 //      }
 
-      auto pcs = __new(::user::create_struct(0, nullptr, nullptr, WS_VISIBLE, rectScreen));
+      auto pcs = __new(::user::system(0, nullptr, nullptr, WS_VISIBLE, rectScreen));
 
       auto puiHost = __user_interaction(m_puiHost);
 
@@ -3957,7 +3957,7 @@ namespace aura
 
 
 
-   void session::request_topic_file(payload& varQuery)
+   void session::request_topic_file(::payload& varQuery)
    {
 
       auto psession = Session;

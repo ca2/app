@@ -12,7 +12,7 @@
 
 #ifndef LIBRARY_MAIN_DEBUG_BOX
 
-#define LIBRARY_MAIN_DEBUG_BOX lib_main_none
+#define LIBRARY_MAIN_DEBUG_BOX e_library_main_none
 
 #endif
 

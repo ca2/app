@@ -146,7 +146,7 @@ bool __os_term_thread()
 
    //thread_shutdown();
 
-   if(SUCCEEDED(thread_value("hresult_co_initialize").i64()))
+   if(SUCCEEDED(thread_property("hresult_co_initialize").i64()))
    {
 
       CoUninitialize();
@@ -258,4 +258,17 @@ hthread_t get_main_hthread()
 }
 
 
+
+
+
+void __node_init_cross_windows_threading()
+{
+
+}
+
+
+void __node_term_cross_windows_threading()
+{
+
+}
 

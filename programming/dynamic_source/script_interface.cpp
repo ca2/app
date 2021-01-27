@@ -184,10 +184,10 @@ namespace dynamic_source
    }
 
 
-   payload script_interface::get_session_value(id)
+   ::payload script_interface::get_session_value(id)
    {
 
-      return payload(::e_type_new);
+      return ::payload(::e_type_new);
 
    }
 
@@ -206,7 +206,7 @@ namespace dynamic_source
 
    }
 
-   void script_interface::print_r(payload payload)
+   void script_interface::print_r(::payload payload)
    {
 
       print(payload.to_r_string());
@@ -221,7 +221,7 @@ namespace dynamic_source
 
    }
 
-   payload script_interface::call_run()
+   ::payload script_interface::call_run()
    {
 
       bool bRerun = rerun();
@@ -250,7 +250,7 @@ namespace dynamic_source
 
       }
 
-      payload payload = m_varRet;
+      ::payload payload = m_varRet;
 
       if (bRerun)
       {
@@ -266,7 +266,7 @@ namespace dynamic_source
 
       }
 
-      return payload;
+      return ::payload;
 
    }
 
@@ -281,7 +281,7 @@ namespace dynamic_source
    }
 
 
-   void script_interface::dprint_r(payload payload)
+   void script_interface::dprint_r(::payload payload)
    {
 
 
@@ -457,7 +457,7 @@ namespace dynamic_source
 
 
 
-      void script_interface::uri_set_var(string& strUrl, const char* pszUrl, const char* pszKey, payload payload)
+      void script_interface::uri_set_var(string& strUrl, const char* pszUrl, const char* pszKey, ::payload payload)
       {
 
 
@@ -479,7 +479,7 @@ namespace dynamic_source
       }
 
 
-      payload script_interface::query_get_var(const char* pszUrl, const char* pszKey)
+      ::payload script_interface::query_get_var(const char* pszUrl, const char* pszKey)
       {
 
       return false;

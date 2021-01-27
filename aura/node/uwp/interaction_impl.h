@@ -82,7 +82,7 @@ namespace uwp
       bool ModifyStyle(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0);
       bool ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0);
 
-      //virtual ::user::interaction * GetOwner();
+      //virtual ::user::interaction * get_owner();
       //virtual ::user::interaction * SetOwner(::user::interaction * pOwnerWnd);
 
       virtual oswindow _get_handle();
@@ -144,7 +144,7 @@ namespace uwp
       // for child windows, views, panes etc
       //virtual bool create_window(::user::interaction * pinteraction, const char * lpszClassName,const char * lpszWindowName,u32 dwStyle,const RECT32 & rect,::user::interaction * pParentWnd,id id, ::create * pcreate = nullptr) override;
 
-      virtual bool _native_create_window_ex(__pointer(::user::create_struct) pcs);
+      virtual bool _native_create_window_ex(__pointer(::user::system) pcs);
 
 
       virtual ::point get_cursor_pos() const;
@@ -164,7 +164,7 @@ namespace uwp
       virtual bool DestroyWindow();
 
       // special pre-creation and ::user::interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(::user::create_struct * pcreatestruct);
+      virtual bool pre_create_window(::user::system * pusersystem);
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
@@ -383,8 +383,8 @@ namespace uwp
       virtual ::user::interaction *  GetLastActivePopup();
 
       virtual bool IsChild(::user::interaction *   pWnd);
-      virtual ::user::interaction *  GetParent();
-      using ::user::interaction_impl::SetParent;
+      virtual ::user::interaction *  get_parent() const override;
+      using ::user::interaction_impl::set_parent;
 //      ::user::interaction *  SetParent(::user::interaction *  pWndNewParent);
       static __pointer(::user::interaction_impl) WindowFromPoint(POINT32 point);
 
@@ -696,7 +696,9 @@ namespace uwp
 
       virtual bool _is_window() const override;
 
-      virtual void show_software_keyboard(bool bShow, string str, strsize iBeg, strsize iEnd) override;
+      virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;
+
+      virtual ::e_status hide_software_keyboard(::user::primitive * pprimitive) override;
 
       virtual void edit_on_set_focus(::user::interaction* pinteraction) override;
 

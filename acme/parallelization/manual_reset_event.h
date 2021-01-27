@@ -17,7 +17,7 @@ TYPE * m_pnext; \
 virtual void delete_this() { if(m_pfactory) m_pfactory->return_back(this); else delete this;}
 
 class CLASS_DECL_ACME manual_reset_event :
-   public event
+   public ::event
 {
 public:
 

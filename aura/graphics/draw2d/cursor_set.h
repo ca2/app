@@ -14,7 +14,7 @@ namespace draw2d
 
 
 
-      isomap < e_cursor, __pointer(cursor) >   m_cursormap;
+      map < e_cursor, __pointer(cursor) >   m_cursormap;
 
 
       cursor_set();

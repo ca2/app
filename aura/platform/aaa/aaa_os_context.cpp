@@ -92,7 +92,7 @@
 #endif
 
 
-   payload os_context::connection_settings_get_auto_detect()
+   ::payload os_context::connection_settings_get_auto_detect()
    {
 
       return success;
@@ -100,7 +100,7 @@
    }
 
 
-   payload os_context::connection_settings_get_auto_config_url()
+   ::payload os_context::connection_settings_get_auto_config_url()
    {
 
       return error_failed;

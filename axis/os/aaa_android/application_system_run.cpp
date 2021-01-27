@@ -102,7 +102,7 @@ string ca2_command_line()
 
    //   psystem->get_context_session()->defer_initialize_host_window(&initialize.m_rect);
 
-   //   //::user::create_struct createstruct;
+   //   //::user::system createstruct;
 
    //   //if (!psystem->get_context_session()->m_puiHost->create_window_ex(createstruct))
    //   //{

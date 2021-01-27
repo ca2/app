@@ -166,7 +166,7 @@ namespace str
 
 
    template < typename PREFIX >
-   inline bool begins_eat(payload & payload, const PREFIX& strPrefix)
+   inline bool begins_eat(::payload & payload, const PREFIX& strPrefix)
    {
 
       string str = payload.get_string();
@@ -186,7 +186,7 @@ namespace str
 
 
    template < typename PREFIX >
-   inline bool begins_eat_ci(payload & payload, const PREFIX& strPrefix)
+   inline bool begins_eat_ci(::payload & payload, const PREFIX& strPrefix)
    {
 
       string str = payload.get_string();

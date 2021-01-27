@@ -187,13 +187,13 @@ namespace draw2d_opengl
       point GetWindowOrg() const;
       point SetWindowOrg(i32 x, i32 y);
       point SetWindowOrg(const ::point & point);
-      point OffsetWindowOrg(i32 nWidth, i32 nHeight);
+      point offset_window_org(i32 nWidth, i32 nHeight);
 
       // Window extent
       size GetWindowExt() const;
-      virtual size SetWindowExt(i32 cx, i32 cy);
-      size SetWindowExt(const ::size & size);
-      virtual size ScaleWindowExt(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom);
+      virtual size set_window_ext(i32 cx, i32 cy);
+      size set_window_ext(const ::size & size);
+      virtual size scale_window_ext(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom);
 
       // Coordinate Functions
       void DPtoLP(POINT32 * lpPoints,count nCount = 1) const;
@@ -216,7 +216,7 @@ namespace draw2d_opengl
       bool PaintRgn(::draw2d::region* pRgn);
 
       // Clipping Functions
-      virtual i32 GetClipBox(RECT32 * prect) const;
+      virtual i32 get_clip_box(RECT32 * prect) const;
       virtual bool PtVisible(i32 x, i32 y) const;
       bool PtVisible(const ::point & point) const;
       virtual bool RectVisible(const RECT32 &  rect) const;
@@ -237,7 +237,7 @@ namespace draw2d_opengl
       virtual bool line_to(const ::pointd & point) override;
       //bool LineTo(int x,int y);
       //  bool LineTo(const ::point & point);
-      bool Polyline(const POINT32* lpPoints,count nCount);
+      bool polyline(const POINT32* lpPoints,count nCount);
 
       virtual bool _set(const ::draw2d::matrix & matrix) override;
 
@@ -255,11 +255,11 @@ namespace draw2d_opengl
       i32 SetArcDirection(i32 nArcDirection);
 
       bool PolyDraw(const POINT32* lpPoints, const byte* lpTypes,count nCount);
-      bool PolylineTo(const POINT32* lpPoints,count nCount);
-      bool PolyPolyline(const POINT32* lpPoints, const ::i32 * lpPolyPoints,count nCount);
+      bool polyline_to(const POINT32* lpPoints,count nCount);
+      bool poly_polyline(const POINT32* lpPoints, const ::i32 * lpPolyPoints,count nCount);
 
-      bool PolyBezier(const POINT32* lpPoints,count nCount);
-      bool PolyBezierTo(const POINT32* lpPoints,count nCount);
+      bool poly_bezier(const POINT32* lpPoints,count nCount);
+      bool poly_bezier_to(const POINT32* lpPoints,count nCount);
 
       // Simple Drawing Functions
       virtual bool fill_rect(const ::rect &  rect, ::draw2d::brush* pBrush) override;

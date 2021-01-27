@@ -171,7 +171,7 @@ namespace html
             if (!m_pelemental->m_propertyset.is_new_or_null("width"))
             {
 
-               string strWidth = m_pelemental->m_propertyset["width"];
+               string strWidth(m_pelemental->m_propertyset["width"]);
 
                if (strWidth.find("%") > 0)
                {

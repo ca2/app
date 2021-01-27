@@ -14,7 +14,7 @@ image_pointer & size_image::operator[](const ::size & size)
 image_pointer & size_image::get(const ::size & size, bool & bExists)
 {
 
-   auto & pimage = ::keymap < ::size, ::image_pointer >::operator [](size);
+   auto & pimage = ::map < ::size, ::image_pointer >::operator [](size);
 
    if (pimage->is_null())
    {

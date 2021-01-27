@@ -45,6 +45,13 @@ namespace user
 
       auto puiptraChild = m_puiptraChild;
 
+      if (!puiptraChild)
+      {
+
+         return false;
+
+      }
+
       if (puiptraChild->contains_interaction(pinteraction))
       {
 
@@ -52,13 +59,6 @@ namespace user
 
       }
 
-      //auto puiptraChild = m_puiptraChild;
-      if (puiptraChild->has_no_interaction())
-      {
-
-         return false;
-
-      }
 
       return puiptraChild->first_interaction()->can_merge(pinteraction);
 
@@ -103,10 +103,10 @@ namespace user
    void place_holder::on_remove_child(::user::interaction * pinteraction)
    {
 
-      if (GetParent() != nullptr)
+      if (get_parent() != nullptr)
       {
 
-         GetParent()->on_remove_place_holder_child(pinteraction);
+         get_parent()->on_remove_place_holder_child(pinteraction);
 
       }
 
@@ -116,10 +116,10 @@ namespace user
    void place_holder::on_hide_child(::user::interaction * pinteraction)
    {
 
-      if (GetParent() != nullptr)
+      if (get_parent() != nullptr)
       {
 
-         GetParent()->on_hide_place_holder_child(pinteraction);
+         get_parent()->on_hide_place_holder_child(pinteraction);
 
       }
 
@@ -129,18 +129,17 @@ namespace user
    __pointer(place_holder) place_holder::place_hold(::user::interaction * puiChild)
    {
 
+      if (::is_null(puiChild))
       {
 
-         //sync_lock sl(mutex_children());
+         return this;
 
-         auto puiptraChild = m_puiptraChild;
+      }
 
-         if (!puiptraChild)
-         {
+      auto puiptraChild = m_puiptraChild;
 
-            return nullptr;
-
-         }
+      if (puiptraChild)
+      {
 
          if (puiptraChild->contains_interaction(puiChild))
          {
@@ -148,8 +147,6 @@ namespace user
             return this;
 
          }
-
-         //auto puiptraChild = m_puiptraChild;
 
          for (auto & puiChildOld : puiptraChild->interactiona())
          {
@@ -160,16 +157,10 @@ namespace user
 
          m_puiptraChild.release();
 
-      }
-
-      if (puiChild == nullptr)
-      {
-
-         return this;
 
       }
 
-      puiChild->SetParent(this);
+      puiChild->set_parent(this);
 
       return this;
 
@@ -226,12 +217,12 @@ namespace user
    }
 
 
-   bool place_holder::create_window(::user::place_holder_container * pcontainer,id id)
-   {
+   //bool place_holder::create_interaction(::user::place_holder_container * pcontainer,id id)
+   //{
 
-      return ::user::interaction::create_window(pcontainer, id) != FALSE;
+   //   return ::user::interaction::create_interaction(pcontainer, id) != FALSE;
 
-   }
+   //}
 
 
    __pointer(place_holder) place_holder::create_shadow_clone()
@@ -246,7 +237,7 @@ namespace user
 
       }
 
-      if(!pholder->::user::interaction::create_window(GetParent(),m_id))
+      if(!pholder->::user::interaction::create_child(get_parent()))
       {
 
          return nullptr;
@@ -407,7 +398,7 @@ namespace user
          return;
 
       // then pump through parent
-      __pointer(::user::interaction) puiParent = GetParent();
+      __pointer(::user::interaction) puiParent = get_parent();
 
       if (puiParent != nullptr)
       {
@@ -429,7 +420,7 @@ namespace user
    void place_holder::get_child_rect(RECT32* prect)
    {
 
-      GetParent()->get_child_rect(prect);
+      get_parent()->get_child_rect(prect);
 
       offset(prect, -prect->left, -prect->top);
 

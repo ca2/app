@@ -50,7 +50,7 @@ namespace simpledb
          return false;
       }
       psocket->response().file().write(memory.get_data(), memory.get_size());
-      psocket->outheader(__id(content_type)) = "application/x-aura-payload";
+      psocket->outheader(__id(content_type)) = "application/x-aura-::payload";
       return true;
    }
 
@@ -65,7 +65,7 @@ namespace simpledb
 
    void manager::message_queue_message_handler(::message::message * pmessage)
    {
-      SCAST_PTR(::message::database, pbase, pmessage);
+      __pointer(::message::database) pbase(pmessage);
       if(pbase->m_id == WM_APP + 13)
       {
          //if(wparam == 0)

@@ -241,7 +241,7 @@ namespace sockets
 
       /** Called by listen_socket after accept but before base_socket is added to handler.
       * CTcpSocket uses this to create its ICrypt member payload.
-      * The ICrypt member payload is created by a virtual method, therefore
+      * The ICrypt member ::payload is created by a virtual method, therefore
       * it can't be called directly from the CTcpSocket constructor.
       * Also used to determine if incoming HTTP connection is normal (port 80)
       * or ssl (port 443).
@@ -757,8 +757,8 @@ namespace sockets
       //@}
 
 
-      virtual ::e_status     run() override;
-      virtual void step();
+      virtual ::e_status run() override;
+      virtual ::e_status step() override;
 
       //virtual void __tracef(context_object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, const char * pszFormat, ...);
       //virtual void __tracef(context_object * pobject, enum_trace_level elevel, const char * pszFunction, const char * pszFile, int iLine, e_log elog, const string & strContext, i32 err, const string & strMessage);
@@ -774,9 +774,9 @@ namespace sockets
    };
 
 
-   __declare_map_key_value_ns(socket_flag_map, socket_flag, base_socket *, m_pbasesocket, bool, m_bFlag);
-   __declare_map_key_value_ns(socket_socket_flag_map, socket_socket_flag, SOCKET, m_socket, socket_flag_map, m_pmap);
-   __declare_map_key_value_ns(socket_map, socket_pointer_pair, SOCKET, m_socket, socket_pointer, m_psocket);
+   __declare_map(socket_flag_map, socket_flag, base_socket *, m_pbasesocket, bool, m_bFlag);
+   __declare_map(socket_socket_flag_map, socket_socket_flag, SOCKET, m_socket, socket_flag_map, m_pmap);
+   __declare_map(socket_map, socket_pointer_pair, SOCKET, m_socket, socket_pointer, m_psocket);
 
 
    typedef comparable_list < socket_pointer > socket_pointer_list;

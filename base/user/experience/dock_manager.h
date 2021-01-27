@@ -22,7 +22,7 @@ namespace experience
       edisplay                         m_edisplayOrigin;
       ::size                           m_sizeOrigin;
       ::point                          m_pointMove;
-      ::int_map < rect >               m_mapWorkspaceRect;
+      ::i32_map < rect >               m_mapWorkspaceRect;
       bool                             m_bPendingCursorPos;
       int                              m_iDockMove;
       int                              m_iConsiderDockMove;
@@ -49,7 +49,7 @@ namespace experience
 
       bool set_frame_window(frame_window * pframewindow);
 
-      void defer_cursor_pos();
+      //void defer_cursor_pos();
 
       ::user::button * dock_button();
       ::point dock_origin();

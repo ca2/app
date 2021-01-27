@@ -516,7 +516,7 @@ bool set_thread_name(const char * psz)
 
    bool bOk = !pthread_setname_np(pthread_self(), strName);
 
-   thread_value("name") = psz;
+   thread_property("name") = psz;
 
    return bOk;
 
@@ -525,7 +525,7 @@ bool set_thread_name(const char * psz)
 string thread_get_name()
 {
 
-   return thread_value("name").to_string();
+   return thread_property("name").to_string();
 
 }
 

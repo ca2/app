@@ -40,7 +40,7 @@ namespace sockets
       , m_slave(false)
    {
       defer_create_mutex();
-      xxf_zero(m_socks4_host);
+      __zero(m_socks4_host);
       //m_prfds = new fd_set;
       //m_pwfds = new fd_set;
       //m_pefds = new fd_set;

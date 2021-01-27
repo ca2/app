@@ -707,7 +707,7 @@ inline __pointer(T) & pointer < T >::clone(::layered * pobjectContext)
 
 
 template < typename PRED >
-::image_pointer get_image(::object * pobject, const payload & varFile, bool bAsync = false)
+::image_pointer get_image(::object * pobject, const ::payload & varFile, bool bAsync = false)
 {
 
    ::file::path path = varFile.get_file_path();
@@ -755,7 +755,7 @@ namespace str
    inline void from(string & str, const millis & millis)
    {
 
-      str.Format(__prtick, millis.m_iMilliseconds);
+      str.Format(__prtick, millis.m_i);
 
    }
 
@@ -808,49 +808,49 @@ namespace papaya
 } // namespace papaya
 
 
-inline float i32muldiv(float f, i32 iNum, i32 iDen)
-{
-
-   return (float) (f * iNum / iDen);
-
-}
-
-
-inline double i32muldiv(double d, i32 iNum, i32 iDen)
-{
-
-   return (double) (d * iNum / iDen);
-
-}
-
-
-inline i32 i32muldiv(i32 i, i32 iNum, i32 iDen)
-{
-
-   return (i32) ::MulDiv(i, iNum, iDen);
-
-}
-
-
-#ifndef WINDOWS
-
-
-inline i64 MulDiv(i64 nNumber, i32 iNum, i32 iDen)
-{
-
-   return nNumber * iNum / iDen;
-
-}
-
-#endif
-
-
-inline ::i64 i32muldiv(::i64 i, i32 iNum, i32 iDen)
-{
-
-   return i * iNum / iDen;
-
-}
+//inline float i32muldiv(float f, i32 iNum, i32 iDen)
+//{
+//
+//   return (float) (f * iNum / iDen);
+//
+//}
+//
+//
+//inline double i32muldiv(double d, i32 iNum, i32 iDen)
+//{
+//
+//   return (double) (d * iNum / iDen);
+//
+//}
+//
+//
+//inline i32 i32muldiv(i32 i, i32 iNum, i32 iDen)
+//{
+//
+//   return (i32) ::MulDiv(i, iNum, iDen);
+//
+//}
+//
+//
+//#ifndef WINDOWS
+//
+//
+//inline i64 MulDiv(i64 nNumber, i32 iNum, i32 iDen)
+//{
+//
+//   return nNumber * iNum / iDen;
+//
+//}
+//
+//#endif
+//
+//
+//inline ::i64 i32muldiv(::i64 i, i32 iNum, i32 iDen)
+//{
+//
+//   return i * iNum / iDen;
+//
+//}
 
 
 inline string __str(const ::e_display & edisplay) { return __str((::enum_display) edisplay); }
@@ -1195,7 +1195,7 @@ namespace aura
 
 
    //template < typename VIEW >
-   //__pointer(::user::document) session::create_form(__pointer(::user::interaction) pwndParent, payload payload, ::payload varArgs)
+   //__pointer(::user::document) session::create_form(__pointer(::user::interaction) pwndParent, ::payload payload, ::payload varArgs)
    //{
 
    //   return create_form(__type(VIEW), pwndParent, payload);
@@ -1204,7 +1204,7 @@ namespace aura
 
 
    //template < typename VIEW >
-   //__pointer(::user::document) session::create_child_form(__pointer(::user::interaction) pwndParent, payload payload)
+   //__pointer(::user::document) session::create_child_form(__pointer(::user::interaction) pwndParent, ::payload payload)
    //{
 
    //   return create_child_form(__type(VIEW), pwndParent, payload);

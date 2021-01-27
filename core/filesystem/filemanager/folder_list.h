@@ -50,8 +50,8 @@ namespace filemanager
 
       };
 
-      FolderArray         m_foldera;
-      map < ::draw2d::icon *, ::draw2d::icon *, i32, i32 > m_iconmap;
+      FolderArray                      m_foldera;
+      map < ::draw2d::icon *, i32 >    m_iconmap;
 
 
       folder_list ();
@@ -59,7 +59,7 @@ namespace filemanager
 
       virtual void install_message_routing(::channel * pchannel) override;
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
-      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
+      virtual bool pre_create_window(::user::system * pusersystem) override;
 
 
 

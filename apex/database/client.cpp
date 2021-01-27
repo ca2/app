@@ -20,7 +20,7 @@ namespace database
 
       auto pproperty = fetch_property(id);
 
-      payload payload;
+      ::payload payload;
 
       if(data_get(id, payload))
       {
@@ -125,7 +125,7 @@ namespace database
    //}
 
 
-   bool client::_data_set(const key & key, const payload & payload, ::promise::subject * psubject)
+   bool client::_data_set(const key & key, const ::payload & payload, ::promise::subject * psubject)
    {
 
       if(::is_null(m_pdataserver))
@@ -144,7 +144,7 @@ namespace database
    }
 
 
-   bool client::_data_set(const selection & selection, const payload & payload, ::promise::subject * psubject)
+   bool client::_data_set(const selection & selection, const ::payload & payload, ::promise::subject * psubject)
    {
 
       if (::is_null(m_pdataserver))
@@ -181,7 +181,7 @@ namespace database
    }
 
 
-   bool client::_data_get(const key & key, payload & payload)
+   bool client::_data_get(const key & key, ::payload & payload)
    {
 
       if (m_pdataserver != nullptr)
@@ -399,14 +399,14 @@ namespace database
    }
 
 
-   bool client::data_on_before_change(client* pclient, const key& id, payload& payload, ::promise::subject * psubject)
+   bool client::data_on_before_change(client* pclient, const key& id, ::payload& payload, ::promise::subject * psubject)
    {
 
       return true;
 
    }
 
-   void client::data_on_after_change(client* pclient, const key& id, const payload& payload, ::promise::subject * psubject)
+   void client::data_on_after_change(client* pclient, const key& id, const ::payload & payload, ::promise::subject * psubject)
    {
 
    }

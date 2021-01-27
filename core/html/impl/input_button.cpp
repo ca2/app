@@ -70,7 +70,7 @@ namespace html
          if(!m_pbutton->is_window())
          {
 
-            m_pbutton->create_window(pdata->m_pcoredata->m_puserinteraction, m_pbutton->m_id);
+            m_pbutton->create_child(pdata->m_pcoredata->m_puserinteraction);
 
             pdata->on_create_interaction(m_pbutton);
 

@@ -17,7 +17,7 @@ namespace datetime
 {
 
 
-   value span_strtotime(::layered * pobjectContext, const ::apex::str_context * pcontext, const char * pszSpanExpression)
+   result span_strtotime(::layered * pobjectContext, const ::apex::str_context * pcontext, const char * pszSpanExpression)
    {
 
       static id idCalendarDay("calendar:day");
@@ -30,7 +30,7 @@ namespace datetime
       static id idCalendarHours("calendar:hours");
       static id idCalendarNow("calendar:now");
       UNREFERENCED_PARAMETER(pobjectContext);
-      value time;
+      result time;
       time.m_bSpan = true;
       string str(pszSpanExpression);
       str.trim();
@@ -52,7 +52,7 @@ namespace datetime
             //}
             if((bAdd || bMinus) && strNumber.has_char() && strText1.has_char())
             {
-               value span;
+               result span;
                span.m_bSpan = true;
                if(strText1 == "day" || strText1 == "days" || strText1 == "dia" || strText1 == "dias"
                      || (pcontext != nullptr && pcontext->matches(idCalendarDay,strText1))
@@ -225,7 +225,7 @@ namespace datetime
    }
 
 
-   value strtotime(::layered * pobjectContext, const ::apex::str_context * pcontext,const char * psz,i32 & iPath,i32 & iPathCount,bool bUTC)
+   result strtotime(::layered * pobjectContext, const ::apex::str_context * pcontext,const char * psz,i32 & iPath,i32 & iPathCount,bool bUTC)
    {
       ::datetime::time time;
       string str(psz);
@@ -411,11 +411,11 @@ namespace datetime
          if (str.Mid(iStart).trimmed().get_length() == 0)
          {
 
-            return value(time);
+            return result(time);
 
          }
 
-         return value(time) + span_strtotime(pobjectContext,pcontext,str.Mid(iStart));
+         return result(time) + span_strtotime(pobjectContext,pcontext,str.Mid(iStart));
 
       }
       else
@@ -428,82 +428,82 @@ namespace datetime
    }
 
 
-   string to_string(::layered * pobjectContext, const ::apex::str_context * pcontext,const ::datetime::value & value)
+   string to_string(::layered * pobjectContext, const ::apex::str_context * pcontext,const ::datetime::result & result)
    {
       string str;
-      if(value.m_bSpan)
+      if(result.m_bSpan)
       {
          string_array stra;
          string strItem;
-         if(value.m_iYear != 0)
+         if(result.m_iYear != 0)
          {
-            if(abs(value.m_iYear) == 1)
+            if(abs(result.m_iYear) == 1)
             {
-               strItem.Format("%d year",value.m_iYear);
+               strItem.Format("%d year",result.m_iYear);
             }
             else
             {
-               strItem.Format("%d years",value.m_iYear);
+               strItem.Format("%d years",result.m_iYear);
             }
             stra.add(strItem);
          }
-         if(value.m_iMonth != 0)
+         if(result.m_iMonth != 0)
          {
-            if(abs(value.m_iMonth) == 1)
+            if(abs(result.m_iMonth) == 1)
             {
-               strItem.Format("%d month",value.m_iMonth);
+               strItem.Format("%d month",result.m_iMonth);
             }
             else
             {
-               strItem.Format("%d months",value.m_iMonth);
+               strItem.Format("%d months",result.m_iMonth);
             }
             stra.add(strItem);
          }
-         if(value.m_iDay != 0)
+         if(result.m_iDay != 0)
          {
-            if(abs(value.m_iDay) == 1)
+            if(abs(result.m_iDay) == 1)
             {
-               strItem.Format("%d day",value.m_iDay);
+               strItem.Format("%d day",result.m_iDay);
             }
             else
             {
-               strItem.Format("%d days",value.m_iDay);
+               strItem.Format("%d days",result.m_iDay);
             }
             stra.add(strItem);
          }
-         if(value.m_iHour != 0)
+         if(result.m_iHour != 0)
          {
-            if(abs(value.m_iHour) == 1)
+            if(abs(result.m_iHour) == 1)
             {
-               strItem.Format("%d hour",value.m_iHour);
+               strItem.Format("%d hour",result.m_iHour);
             }
             else
             {
-               strItem.Format("%d hours",value.m_iHour);
+               strItem.Format("%d hours",result.m_iHour);
             }
             stra.add(strItem);
          }
-         if(value.m_iMinute != 0)
+         if(result.m_iMinute != 0)
          {
-            if(abs(value.m_iMinute) == 1)
+            if(abs(result.m_iMinute) == 1)
             {
-               strItem.Format("%d minute",value.m_iMinute);
+               strItem.Format("%d minute",result.m_iMinute);
             }
             else
             {
-               strItem.Format("%d minutes",value.m_iMinute);
+               strItem.Format("%d minutes",result.m_iMinute);
             }
             stra.add(strItem);
          }
-         if(value.m_iSecond != 0)
+         if(result.m_iSecond != 0)
          {
-            if(abs(value.m_iSecond) == 1)
+            if(abs(result.m_iSecond) == 1)
             {
-               strItem.Format("%d second",value.m_iSecond);
+               strItem.Format("%d second",result.m_iSecond);
             }
             else
             {
-               strItem.Format("%d seconds",value.m_iSecond);
+               strItem.Format("%d seconds",result.m_iSecond);
             }
             stra.add(strItem);
          }
@@ -518,7 +518,7 @@ namespace datetime
       }
       else
       {
-         ::datetime::time time = value.get_time();
+         ::datetime::time time = result.get_time();
          if(time.GetSecond() == 0)
          {
             if(time.GetHour() == 0 && time.GetMinute() == 0)

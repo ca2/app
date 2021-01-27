@@ -84,12 +84,12 @@ namespace prompt
    // view
 
 
-   bool view::pre_create_window(::user::create_struct * pcreatestruct)
+   bool view::pre_create_window(::user::system * pusersystem)
    {
 
 
 
-      return ::user::impact::pre_create_window(pcreatestruct);
+      return ::user::impact::pre_create_window(pusersystem);
 
    }
 
@@ -171,7 +171,7 @@ namespace prompt
 
    void view::_001OnContextMenu(::message::message * pmessage)
    {
-//      SCAST_PTR(::message::context_menu, pcontextmenu, pmessage);
+//      __pointer(::message::context_menu) pcontextmenu(pmessage);
 //      ::point point = pcontextmenu->GetPoint();
 
 
@@ -189,7 +189,7 @@ namespace prompt
    void view::_001OnSetCursor(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmouse->m_ecursor = cursor_arrow;
 
@@ -208,14 +208,14 @@ namespace prompt
 
    void view::_001OnLButtonDown(::message::message * pmessage)
    {
-      //   SCAST_PTR(::message::mouse, pmouse, pmessage);
+      //   __pointer(::message::mouse) pmouse(pmessage);
       UNREFERENCED_PARAMETER(pmessage);
 
    }
 
    void view::_001OnLButtonUp(::message::message * pmessage)
    {
-      //SCAST_PTR(::message::mouse, pmouse, pmessage);
+      //__pointer(::message::mouse) pmouse(pmessage);
       UNREFERENCED_PARAMETER(pmessage);
       KillTimer(5432180);
 
@@ -224,14 +224,14 @@ namespace prompt
 
    void view::_001OnRButtonUp(::message::message * pmessage)
    {
-      //SCAST_PTR(::message::mouse, pmouse, pmessage);
+      //__pointer(::message::mouse) pmouse(pmessage);
       UNREFERENCED_PARAMETER(pmessage);
 
    }
 
    void view::_001OnOp(::message::message * pmessage)
    {
-      //SCAST_PTR(::message::base, pbase, pmessage);
+      //__pointer(::message::base) pbase(pmessage);
       UNREFERENCED_PARAMETER(pmessage);
    }
 
@@ -288,7 +288,7 @@ namespace prompt
 
    void view::_001OnShowWindow(::message::message * pmessage)
    {
-      //   SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      //   __pointer(::message::show_window) pshowwindow(pmessage);
       UNREFERENCED_PARAMETER(pmessage);
    }
 

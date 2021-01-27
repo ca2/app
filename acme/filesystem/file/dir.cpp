@@ -1,4 +1,5 @@
 #include "framework.h"
+
 //#include <Shlobj.h>
 #include "acme/os/_c.h"
 #if defined(__APPLE__)
@@ -991,7 +992,7 @@ namespace dir
                try
                {
 
-                  auto folder = ::wait(folderBase->GetFolderAsync(strRelative));
+                  auto folder = folderBase->GetFolderAsync(strRelative);
 
                   if (folder != nullptr)
                   {
@@ -1397,7 +1398,7 @@ namespace dir
             else
             {
 
-               folder = wait(Windows::Storage::StorageFolder::GetFolderFromPathAsync(str));
+               folder = ::Windows::Storage::StorageFolder::GetFolderFromPathAsync(str).get();
 
                strPrefix = str + "/";
 
@@ -1422,7 +1423,7 @@ namespace dir
 
       string strPath = string(begin(folder->Path));
 
-      auto a = ::wait(folder->GetItemsAsync());
+      auto a = folder->GetItemsAsync().get();
 
       for(u32 u = 0; u < a->Size; u++)
       {

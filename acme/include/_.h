@@ -75,6 +75,9 @@
 #define System (*::get_context_system())
 
 
+#define Node (::get_context_system()->node())
+
+
 #include "acme/primitive/primitive/estatus.h"
 
 
@@ -127,12 +130,6 @@ class layered;
 
 CLASS_DECL_ACME ::acme::system *get_context_system();
 
-
-template<typename TYPE>
-inline TYPE & xxf_zero_pointer(TYPE * p);
-
-template<typename TYPE>
-inline TYPE & xxf_zero(TYPE & t);
 
 #define ___STR(s) #s
 #define __STR(s) ___STR(s)
@@ -230,11 +227,122 @@ struct INT_STRING
 };
 
 
+template < typename CONCRETE >
+class concrete :
+   public CONCRETE
+{
+public:
+
+
+   using CONCRETE::CONCRETE;
+
+
+};
+
+
+template < typename T >
+concept a_pointer = std::is_pointer < T >::value;
+
+template < typename T >
+concept non_pointer = !std::is_pointer < T >::value;
+
+
+template < typename T >
+concept primitive_integral = std::is_integral < T >::value || std::is_enum < T >::value;
+
+template < typename T >
+concept primitive_integer = (std::is_integral < T >::value || std::is_enum < T >::value) && std::is_signed < T >::value;
+
+template < typename T >
+concept primitive_natural = (std::is_integral < T >::value || std::is_enum < T >::value ) && !std::is_signed < T >::value;
+
+template < typename T >
+concept primitive_floating = std::is_floating_point < T >::value;
+
+template < typename FROM, typename TO_POINTER >
+concept pointer_castable =
+::std::is_convertible < FROM, TO_POINTER * >::value ||
+::std::is_convertible < FROM, const TO_POINTER * >::value;
+
+template < typename DERIVED, typename BASE >
+concept derived_from =
+::std::is_base_of < BASE, DERIVED >::value;
+
+
+template < bool, typename T1, typename T2 >
+struct boolean_type_selection { using type = T1; };
+
+template < typename T1, typename T2 >
+struct boolean_type_selection<false, T1, T2> { using type = T2; };
+
+
+template < typename T1, typename T2 >
+struct largest_type {
+   using type = typename ::boolean_type_selection< (sizeof(T1) > sizeof(T2)), T1, T2>::type;
+};
+
+
+template < typename T1, typename T2 >
+struct smaller_type {
+   using type = typename ::boolean_type_selection< (sizeof(T1) < sizeof(T2)), T1, T2>::type;
+};
+
+
+template < typename T1, typename T2, typename T3 >
+struct largest_type_of_3 {
+   using largest_type_of_1_and_2 = typename largest_type < T1, T2 >::type;
+   using type = typename ::boolean_type_selection < (sizeof(largest_type_of_1_and_2) > sizeof(T3)), largest_type_of_1_and_2, T3>::type;
+};
+
+
+template < typename TYPE, std::size_t SIZE >
+using array_reference = TYPE ( & ) [ SIZE ];
+
+
+
+
+
+template < typename TYPE, std::size_t SIZE >
+inline std::size_t item_count(const array_reference < TYPE, SIZE > &) { return SIZE; }
+
+
+template < typename T >
+inline byte byte_clip(const T & t) { return ((byte)(((t) < (byte)0) ? (byte)0 : (((t) > (byte)255) ? (byte)255 : (byte)t))); }
+
+
+
+
+
+template < typename TYPE, std::size_t SIZE >
+inline array_reference < TYPE, SIZE > & __zero(TYPE(&)[SIZE]);
+
+template < a_pointer POINTER>
+inline typename std::remove_pointer<POINTER>::type & __zero(POINTER p);
+
+template < non_pointer NON_POINTER>
+inline NON_POINTER & __zero(NON_POINTER & t);
+
+
+
+
+
+template < typename TYPE, std::size_t Size >
+inline bool __is_zero(TYPE(&array)[Size]);
+
+template < a_pointer POINTER >
+inline bool __is_zero(const POINTER p);
+
+template < non_pointer NON_POINTER >
+inline bool __is_zero(const NON_POINTER & t);
+
+
+
+
+
+
 CLASS_DECL_ACME void throw_todo(void);
 
-
 CLASS_DECL_ACME void set_last_status(const ::e_status &estatus);
-
 
 CLASS_DECL_ACME void windowing_output_debug_string(const char *pszDebugString);
 
@@ -630,7 +738,6 @@ CLASS_DECL_ACME extern u32 g_tickStartTime;
 
 
 
-
 #define ALOG_CONTEXT context_trace_object()
 
 #define _S_ALOG_CONTEXT ::context_trace_object()
@@ -697,6 +804,9 @@ namespace apex
    class session;
 
 
+   class node;
+
+
    class system;
 
 
@@ -731,6 +841,9 @@ namespace aura
 
 
    class session;
+
+
+   class node;
 
 
    class system;
@@ -935,6 +1048,8 @@ template<typename LEFT, typename RIGHT>
 inline void assign(LEFT &l, const RIGHT &r) { l = r; }
 
 
+
+
 //template < typename, typename >
 //inline constexpr auto is_strictly_same_type = false_type();
 //template < typename TYPE >
@@ -990,6 +1105,9 @@ inline bool returns_false(PRED pred, bool bOnVoid, Args... args)
 #endif
 
 
+struct block;
+
+
 template<typename CHAR_TYPE>
 class string_base;
 
@@ -1006,11 +1124,20 @@ using wd32string = string_base<wd32char>;
 using widestring = string_base<widechar>;
 
 
-using string = string_base<ansichar>;
-using wstring = string_base<widechar>;
+using string = string_base < ansichar >;
+using wstring = string_base < widechar >;
 
 
 inline const ansichar *__c_str(const string &str);
+
+
+template < typename T >
+concept has_to_string = requires(T t)
+{
+
+   { t.to_string() } -> std::same_as < ::string >;
+
+};
 
 
 class machine_event_central;
@@ -1362,7 +1489,13 @@ inline auto &__typed_defer_create(__pointer(T) &p)
 template<typename T>
 inline __pointer(T) move_transfer(T *p);
 
-#define __new(...) move_transfer( new __VA_ARGS__ )
+
+template < typename T >
+inline T * set_heap_allocated(T * p) { p->m_bHeapAllocated = true;  return p; }
+
+#define ___new(...) set_heap_allocated( new __VA_ARGS__ )
+
+#define __new(...) move_transfer( ___new(__VA_ARGS__ ) )
 
 
 template<typename TYPE1, typename TYPE2>
@@ -1433,16 +1566,18 @@ inline TYPE &__random(TYPE &t);
 template<typename TYPE>
 inline TYPE __random();
 
-inline float __random(float f1, float f2);
 
-inline double __random(double d1, double d2);
+template < primitive_floating FLOATING1, primitive_floating FLOATING2, primitive_floating FLOATING_RESULT = typename ::largest_type < FLOATING1, FLOATING2 >::type >
+inline FLOATING_RESULT __random(FLOATING1 i1, FLOATING2 i2);
 
-template<typename ::i32>
-inline ::i32 __random_int(::i32 i1, ::i32 i2);
 
-inline i64 __random(i64 i1, i64 i2);
+template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2, primitive_integral INTEGRAL_RESULT = typename ::largest_type < INTEGRAL1, INTEGRAL2 >::type >
+inline INTEGRAL_RESULT __random(INTEGRAL1 i1, INTEGRAL2 i2);
 
-inline i32 __random(i32 i1, i32 i2);
+
+//inline i64 __random(i64 i1, i64 i2);
+
+//inline i32 __random(i32 i1, i32 i2);
 
 
 template<typename TYPE>
@@ -1455,7 +1590,7 @@ inline void swap(TYPE &a, TYPE &b)
 }
 
 
-inline bool is_null(const void *p, size_t s)
+inline bool is_null(const void * p, size_t s)
 {
 
    const auto MAX = (size_t) (-1);
@@ -1465,8 +1600,8 @@ inline bool is_null(const void *p, size_t s)
 }
 
 
-template<typename TYPE>
-inline bool is_null(const TYPE *p)
+template < a_pointer POINTER >
+inline bool is_null(POINTER p)
 {
 
    const auto MAX = (size_t) (-1) - 65536;
@@ -1476,17 +1611,10 @@ inline bool is_null(const TYPE *p)
 }
 
 
-template<>
-inline bool is_null(const void *p)
-{
-
-   return is_null(p, 65536);
-
-}
 
 
-template<typename TYPE>
-inline bool is_set(const TYPE *p)
+template < a_pointer POINTER >
+inline bool is_set(POINTER p)
 {
 
    return !is_null(p);
@@ -1627,13 +1755,32 @@ namespace draw2d
 } // namespace draw2d
 
 
+template < typename ARGUMENT >
+class argument_of
+{
+public:
+
+   using type = typename smaller_type < ARGUMENT, const ARGUMENT & >::type;
+
+};
 
 
-template<typename T1, typename T2, typename ARG_T1 = const T1 &, typename ARG_T2 = const T2 &>
+template < >
+class argument_of < ::string >
+{
+public:
+
+   using type = ::block;
+
+};
+
+
+
+template < typename T1, typename T2, typename ARG_T1 = typename argument_of < T1 >::type, typename ARG_T2 = typename argument_of < T2 >::type >
 class pair;
 
 
-template<class KEY, class ARG_KEY, class VALUE, class ARG_VALUE = const VALUE &, class PAIR = pair<KEY, VALUE, ARG_KEY, ARG_VALUE> >
+template < class KEY, class VALUE, class ARG_KEY = typename argument_of < KEY >::type, class ARG_VALUE = typename argument_of < VALUE >::type, class PAIR = pair < KEY, VALUE, ARG_KEY, ARG_VALUE > >
 class map;
 
 
@@ -1857,18 +2004,18 @@ namespace audio
 #include "acme/primitive/collection/forward.h"
 
 
-enum e_optional
+enum enum_optional
 {
 
-   optional,
+   e_optional,
 
 };
 
 
-enum e_no_init
+enum enum_no_init
 {
 
-   no_init,
+   e_no_init,
 
 };
 
@@ -1884,18 +2031,25 @@ enum e_no_init
 template<class t>
 inline void delptr(t *&p)
 {
+
    if (p != nullptr)
    {
+
       delete p;
+
       p = nullptr;
+
    }
+
 }
 
 
 template<typename T>
 inline int type_is_null(const T *p)
 {
+
    return (((uptr) (void *) p) < MAX(4096, sizeof(T)));
+
 }
 
 
@@ -2238,7 +2392,7 @@ CLASS_DECL_ACME HRESULT defer_co_initialize_ex(bool bMultiThread, bool bDisableO
 class matter;
 
 
-class payload;
+class ::payload;
 
 
 using argument = payload;
@@ -2265,7 +2419,7 @@ CLASS_DECL_ACME bool __node_acme_pos_term();
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 
 
-class payload;
+class ::payload;
 
 
 class id;
@@ -2323,8 +2477,10 @@ class type;
 
 CLASS_DECL_ACME ::e_status __realize(::matter * pmatter, const ::promise::process & process);
 
+
 // C-includes
 //#include "acme/os/os.h"
+
 
 class thread_parameter;
 
@@ -2355,13 +2511,18 @@ namespace primitive
 } // namespace primitive
 
 
+
 #define __member(TYPE) ::primitive::member < TYPE >
 #define __composite(TYPE) ::primitive::composite < TYPE >
 #define __reference(TYPE) ::primitive::reference < TYPE >
 
 
+template < typename T >
+concept not_pointer = !std::is_pointer < T >::value;
+
+
 template<typename TYPE>
-inline bool is_null(const __pointer(TYPE) &p)
+inline bool is_null(const __pointer(TYPE) & p)
 {
 
    return ::is_null(p.m_p);
@@ -2370,7 +2531,7 @@ inline bool is_null(const __pointer(TYPE) &p)
 
 
 template<typename TYPE>
-inline bool is_null(const __composite(TYPE) &p)
+inline bool is_null(const __composite(TYPE) & p)
 {
 
    return p.is_null();
@@ -2379,7 +2540,7 @@ inline bool is_null(const __composite(TYPE) &p)
 
 
 template<typename TYPE>
-inline bool is_null(const __reference(TYPE) &p)
+inline bool is_null(const __reference(TYPE) & p)
 {
 
    return p.is_null();
@@ -2387,8 +2548,8 @@ inline bool is_null(const __reference(TYPE) &p)
 }
 
 
-template<typename TYPE>
-inline bool is_set(const __pointer(TYPE) &p)
+template < typename TYPE >
+inline bool is_set(const __pointer(TYPE) & p)
 {
 
    return p.is_set();
@@ -2414,8 +2575,9 @@ inline bool is_set(const __reference(TYPE) &p)
 }
 
 
-template<typename TYPE>
-inline bool is_null_ref(const TYPE &t)
+
+template < non_pointer NOT_A_POINTER >
+inline bool is_null(const NOT_A_POINTER & t)
 {
 
    return is_null(&t);
@@ -2423,11 +2585,11 @@ inline bool is_null_ref(const TYPE &t)
 }
 
 
-template<typename TYPE>
-inline bool is_set_ref(const TYPE &t)
+template < not_pointer TYPE >
+inline bool is_set(const TYPE & t)
 {
 
-   return !is_null_ref(t);
+   return is_set(&t);
 
 }
 
@@ -2506,6 +2668,8 @@ using wparam = c_number<WPARAM>;
 
 
 #include "acme/primitive/datetime/nanos.h"
+
+
 
 
 #include "acme/primitive/datetime/duration.h"
@@ -2601,7 +2765,7 @@ namespace user
 
    class primitive;
 
-   class create;
+   //class create;
 
 
 } // namespace user
@@ -2678,12 +2842,12 @@ using echeck = ::enumeration<enum_check>;
 typedef ::e_status THREAD_ROUTINE(thread_parameter parameter);
 
 
-inline bool succeeded(const ::payload &payload);
+inline bool succeeded(const ::payload & payload);
 
 inline bool succeeded(const ::property &set);
 
 
-inline bool failed(const ::payload &payload) { return !::succeeded(payload); }
+inline bool failed(const ::payload & payload) { return !::succeeded(payload); }
 
 
 inline bool failed(const ::property &set) { return !::succeeded(set); }
@@ -2965,7 +3129,7 @@ inline bool is_font_sel(::id id) { return is_impact_group(id.i64(), FONTSEL_IMPA
 namespace acme
 {
 
-   inline ::id id(const class payload &payload);
+   inline ::id id(const class ::payload & payload);
 
    inline ::id id(const property &prop);
 
@@ -3391,9 +3555,18 @@ public:
 
 };
 
+//
+//template < typename KEY, typename VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type, class PAIR = pair<__pointer(KEY), VALUE, __pointer(KEY), ARG_VALUE> >
+//using pointer_map = map < __pointer(KEY), __pointer(KEY), VALUE, ARG_VALUE, PAIR >;
+//
+//template < typename KEY, typename VALUE, class PAIR = pair<__pointer(KEY), __pointer(VALUE), __pointer(KEY), __pointer(VALUE)> >
+//using pointer_to_pointer = pointer_map < KEY, __pointer(VALUE), __pointer(VALUE), PAIR >;
+//
+//template < typename KEY, typename VALUE, class PAIR = pair< KEY, __pointer(VALUE), KEY, __pointer(VALUE)> >
+//using map_to_pointer = map < KEY, KEY, __pointer(VALUE), __pointer(VALUE), PAIR >;
 
-typedef ::map<__pointer(matter), __pointer(matter), __pointer(matter), __pointer(matter) > element_map;
-typedef ::map<__pointer(matter), __pointer(matter), ptra, ptra> map_many;
+using matter_to_matter = map < __pointer(matter), __pointer(matter) >;
+using matter_to_ptra = map < __pointer(matter), ptra > ;
 
 
 namespace zip
@@ -3540,7 +3713,7 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 #include "acme/platform/simple_app.h"
 
 
-//typedef void CALL_UPDATE(const ::id & id, const payload & payload);
+//typedef void CALL_UPDATE(const ::id & id, const ::payload & payload);
 //using PFN_CALL_UPDATE = CALL_UPDATE *;
 
 //typedef void SET_MODIFIED(const ::id& id);
@@ -3548,7 +3721,7 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError);
 
 
 //CLASS_DECL_ACME void set_system_update(PFN_CALL_UPDATE pfnCallUpdate);
-//CLASS_DECL_ACME void system_update(const ::id & id, const payload & payload = ::e_type_new);
+//CLASS_DECL_ACME void system_update(const ::id & id, const ::payload & payload = ::e_type_new);
 
 
 
@@ -3847,6 +4020,9 @@ namespace draw2d
 #include "acme/user/_.h"
 
 
+#include "acme/platform/node.h"
+
+
 #include "acme/platform/system.h"
 
 
@@ -3999,4 +4175,5 @@ namespace draw2d
 #include "acme/primitive/primitive/_context_object_impl.h"
 
 
+#include "acme/memory/_impl.h"
 

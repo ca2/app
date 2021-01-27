@@ -585,7 +585,7 @@ namespace filemanager
    }
 
 
-   document * component::find_filemanager(payload varFile)
+   document * component::find_filemanager(::payload varFile)
    {
 
       __pointer(document) pdocument;
@@ -626,7 +626,7 @@ namespace filemanager
    }
 
 
-   document * component::open_filemanager(payload varFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
+   document * component::open_filemanager(::payload varFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
    {
 
       //document * pdocument;
@@ -681,7 +681,7 @@ namespace filemanager
    }
 
 
-   document * component::restore_filemanager(payload varFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
+   document * component::restore_filemanager(::payload varFile, ::create * pcreate, ::fs::data * pfsdata, callback * pcallback)
    {
 
       filemanager()->m_filepath = varFile.get_file_path();
@@ -721,7 +721,7 @@ namespace filemanager
    }
 
 
-   bool component::remove_filemanager(payload varFile)
+   bool component::remove_filemanager(::payload varFile)
    {
 
       //document * pdocument = find_manager(varFile);
@@ -879,7 +879,7 @@ namespace filemanager
 
 //               __pointer(::user::frame_window) pframe = ptabview->get_pane(0)->m_pholder->get_hold();
 
-//               document * pdocument = pframe->GetActiveDocument();
+//               document * pdocument = pframe->get_active_document();
 
 //               pdocument->FileManagerBrowse(pathFolder, action::e_source_user);
 

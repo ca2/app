@@ -31,6 +31,7 @@ public:
 #define LAYERED_USER_PRIMITIVE 2
 #define LAYERED_THREAD 2
 #define LAYERED_USER_INTERACTION 3
+#define LAYERED_USER_FRAME 4
 #define LAYERED_USER_CONTROL_EVENT 7
 #define LAYERED_TASK_POOL 5
 #define LAYERED_OS_USER_INTERACTION_IMPL 6
@@ -73,18 +74,27 @@ inline ::thread* ___thread(::layered* playered)
 namespace user
 {
 
-   class create;
+   class system;
    class interaction;
+   class frame;
    class primitive;
    class control_event;
 
 } // namespace user
 
 
-inline ::user::create* __user_create(::layered* playered)
+inline ::user::system* __user_system(::layered* playered)
 {
 
-   return (::user::create *) playered->layer(LAYERED_USER_CREATE);
+   return (::user::system *) playered->layer(LAYERED_USER_CREATE);
+
+}
+
+
+inline ::user::frame * __user_frame(::layered* playered)
+{
+
+   return (::user::frame *) playered->layer(LAYERED_USER_FRAME);
 
 }
 

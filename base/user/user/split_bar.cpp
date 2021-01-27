@@ -27,31 +27,31 @@ namespace user
    }
 
 
-   bool split_bar::create_window(split_layout * pparent)
-   {
-
-      m_pparent = pparent;
-//      i32 nClassStyle = 0;
-//      const char * pClassName = System.RegisterWndClass(
-
-      //nClassStyle,
-      //0,
-      //0,
-      //0);
-      //   ::rect rect(0, 0, 0, 0);
-
-      if(!::user::interaction::create_window(pparent, 1))
-      {
-
-         System.message_box("Could not create Split Bar");
-
-         return FALSE;
-
-      }
-
-      return TRUE;
-
-   }
+//   bool split_bar::create_child(split_layout * pparent)
+//   {
+//
+//      m_pparent = pparent;
+////      i32 nClassStyle = 0;
+////      const char * pClassName = System.RegisterWndClass(
+//
+//      //nClassStyle,
+//      //0,
+//      //0,
+//      //0);
+//      //   ::rect rect(0, 0, 0, 0);
+//
+//      if(!::user::interaction::create_child(pparent))
+//      {
+//
+//         System.message_box("Could not create Split Bar");
+//
+//         return FALSE;
+//
+//      }
+//
+//      return TRUE;
+//
+//   }
 
 
    void split_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
@@ -73,16 +73,16 @@ namespace user
    }
 
 
-   bool split_bar::pre_create_window(::user::create_struct * pcreatestruct)
+   bool split_bar::pre_create_window(::user::system * pusersystem)
    {
 
 #ifdef WINDOWS_DESKTOP
 
-      pcreatestruct->m_createstruct.style &= ~WS_BORDER;
+      pusersystem->m_createstruct.style &= ~WS_BORDER;
 
 #endif
 
-      return ::user::interaction::pre_create_window(pcreatestruct);
+      return ::user::interaction::pre_create_window(pusersystem);
 
    }
 
@@ -104,7 +104,7 @@ namespace user
    void split_bar::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       sync_lock sl(mutex());
 
@@ -130,7 +130,7 @@ namespace user
    void split_bar::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       sync_lock sl(mutex());
 
@@ -155,7 +155,7 @@ namespace user
    void split_bar::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       sync_lock sl(mutex());
 

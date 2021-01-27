@@ -3,7 +3,7 @@
 
 namespace promise
 {
-   using matter_context = isomap<__pointer(::matter), __pointer(::promise::context)>;
+
 
    class CLASS_DECL_ACME subject :
       virtual public context_object
@@ -47,6 +47,7 @@ namespace promise
       virtual i64 release(OBJ_REF_DBG_PARAMS) override;
 #endif
 
+      virtual ::e_status step() override;
       virtual ::e_status run() override;
 
       //virtual void process(const ::payload & payload);

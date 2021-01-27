@@ -1,17 +1,6 @@
 #pragma once
 
 
-#ifdef __cplusplus
-
-#define mutant_size ::size
-
-#else
-
-#define mutant_size  SIZE32
-
-#endif
-
-
 #pragma pack(push, image_header, 1)
 
 
@@ -22,9 +11,9 @@ struct image_header
 #endif
 {
 
-   e_image_type         m_etype;
-   color32_t             m_cr;
-   mutant_size          m_size;
+   e_image_type               m_etype;
+   color32_t                  m_cr;
+   ::size                     m_size;
 
 
 #ifdef __cplusplus

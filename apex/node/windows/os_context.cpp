@@ -6,9 +6,30 @@
 #include <wincred.h>
 #include <wtsapi32.h>
 #include <shobjidl.h>
-#include "apex/const/id.h"
+#include "acme/id.h"
 #include "_node_windows_private.h"
 #include "acme/os/windows/_windows.h"
+
+
+
+::e_status hresult_to_estatus(HRESULT hresult)
+{
+
+   if (SUCCEEDED(hresult))
+   {
+
+      return ::success;
+
+   }
+   else
+   {
+
+      return ::error_failed;
+
+   }
+
+}
+
 
 
 CREDUIAPI
@@ -289,7 +310,7 @@ namespace windows
    }
 
 
-   payload os_context::connection_settings_get_auto_detect()
+   ::payload os_context::connection_settings_get_auto_detect()
    {
 
       try
@@ -323,7 +344,7 @@ namespace windows
    }
 
 
-   payload os_context::connection_settings_get_auto_config_url()
+   ::payload os_context::connection_settings_get_auto_config_url()
    {
 
       string strUrl;
@@ -995,7 +1016,7 @@ namespace windows
 
 
       // Display a dialog box to request credentials.
-      xxf_zero(u);
+      __zero(u);
       u.cbSize = sizeof(u);
       u.hwndParent = nullptr;
 
@@ -1727,7 +1748,7 @@ retry:
 
       SHFILEINFOW info;
 
-      xxf_zero(info);
+      __zero(info);
 
       defer_co_initialize_ex(false);
 
@@ -2028,7 +2049,7 @@ retry:
 
          SHELLEXECUTEINFOW si;
 
-         xxf_zero(si);
+         __zero(si);
 
          PeekMessage(nullptr, nullptr, 0, 0, 0);
 
@@ -3701,6 +3722,6 @@ CLASS_DECL_APEX ::e_status os_create_link(::file::path pathObj, ::file::path pat
    wstring wstrDsc(strDesc);
    wstring wstrIco(pathIco);
 
-   return win_create_link(wstrObj, wstrLnk, wstrDsc, wstrIco, iIcon);
+   return hresult_to_estatus(win_create_link(wstrObj, wstrLnk, wstrDsc, wstrIco, iIcon));
 
 }

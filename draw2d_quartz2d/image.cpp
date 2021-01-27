@@ -331,7 +331,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool image::_map(bool bApplyTransform)
+   bool image::map(bool bApplyTransform)
    {
 
       m_bMapped = true;

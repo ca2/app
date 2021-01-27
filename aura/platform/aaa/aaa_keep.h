@@ -1,9 +1,9 @@
 #pragma once
 
 
-inline payload & thread_value(const ::id & id);
-inline void thread_set(const ::id & id) { thread_value(id) = true; }
-inline void thread_unset(const ::id & id) { thread_value(id) = false; }
+inline ::payload & thread_property(const ::id & id);
+inline void thread_set(const ::id & id) { thread_property(id) = true; }
+inline void thread_unset(const ::id & id) { thread_property(id) = false; }
 inline bool thread_is_set(const ::id & id);
 
 
@@ -477,7 +477,7 @@ public:
 
 
    ___keep_thread_flag(const ::id & id) :
-      m_varThread(thread_value(id))
+      m_varThread(thread_property(id))
    {
 
       if ((bool) m_varThread)

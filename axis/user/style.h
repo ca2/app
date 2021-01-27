@@ -30,7 +30,7 @@ namespace axis
       //__pointer(translucency_map)          m_mapTranslucency;
       //__pointer(flag_map)                  m_mapFlag;
       //__pointer(rect_map)                  m_mapRect;
-      //__pointer(::user::int_map)           m_mapInt;
+      //__pointer(::user::i32_map)           m_mapInt;
       //__pointer(::user::double_map)        m_mapDouble;
 
       //__pointer(::user::style)               m_puserstyle;

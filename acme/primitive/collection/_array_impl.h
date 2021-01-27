@@ -615,6 +615,28 @@ inline TYPE array_base < TYPE, ARG_TYPE, ALLOCATOR >::takeLast(::index n)
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+array_base < TYPE, ARG_TYPE, ALLOCATOR >::array_base(TYPE * p, ::count c)
+{
+
+   m_nGrowBy = 0;
+   m_pData = nullptr;
+   m_nSize = 0;
+   m_nMaxSize = 0;
+
+   set_size(c);
+
+   for (::index i = 0; i < c; i++)
+   {
+
+      element_at(i) = p[i];
+
+   }
+
+}
+
+
+
+template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 array_base < TYPE, ARG_TYPE, ALLOCATOR >::array_base(const array_base & array)
 {
 

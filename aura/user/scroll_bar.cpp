@@ -27,7 +27,7 @@ namespace user
    }
 
 
-   void scroll_bar::send_scroll_message(::u32 nSBCode)
+   void scroll_bar::post_scroll_message(::u32 nSBCode)
    {
 
       auto pscroll = __new(::message::scroll);
@@ -60,34 +60,34 @@ namespace user
 
       }
 
-      __pointer(::user::interaction) puiParent = GetParent();
+      __pointer(::user::interaction) puiParent = get_parent();
 
-      puiParent->send(pscroll);
-
-   }
-
-
-   bool scroll_bar::create_window(e_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::id id)
-   {
-
-      m_eorientation = eorientation;
-
-      return ::user::interaction::create_window(nullptr, nullptr, uStyle, puiParent, id);
+      puiParent->post(pscroll);
 
    }
+
+
+   //bool scroll_bar::create_interaction(e_orientation eorientation, ::user::interaction * puiParent)
+   //{
+
+   //   m_eorientation = eorientation;
+
+   //   return create_interaction(puiParent);
+
+   //}
 
 
    point scroll_bar::get_ascendant_viewport_offset() const
    {
 
-      if (GetParent() == nullptr)
+      if (get_parent() == nullptr)
       {
 
          return nullptr;
 
       }
 
-      return GetParent()->get_ascendant_viewport_offset();
+      return get_parent()->get_ascendant_viewport_offset();
 
    }
 
@@ -262,7 +262,7 @@ namespace user
 
             i++;
 
-            pinteraction = pinteraction->GetParent();
+            pinteraction = pinteraction->get_parent();
 
          }
 

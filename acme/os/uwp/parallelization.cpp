@@ -143,7 +143,7 @@ void _on_aura_thread_detach()
 //
 //   //thread_shutdown();
 //
-//   if(SUCCEEDED(thread_value("hresult_co_initialize").i64()))
+//   if(SUCCEEDED(thread_property("hresult_co_initialize").i64()))
 //   {
 //
 //      CoUninitialize();

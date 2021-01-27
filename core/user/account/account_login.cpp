@@ -346,7 +346,7 @@ namespace account
 
          m_bSubmitted = true;
 
-         auto puiParent = GetParent();
+         auto puiParent = get_parent();
          
          if(puiParent)
          {
@@ -392,7 +392,7 @@ namespace account
 
          m_bSubmitted = true;
 
-         auto puiParent = GetParent();
+         auto puiParent = get_parent();
 
          if (puiParent)
          {
@@ -416,11 +416,11 @@ namespace account
 
          m_bSubmitted = true;
 
-         GetParent()->display(e_display_none);
+         get_parent()->display(e_display_none);
 
          m_ppassword->_001SetText("",::e_source_database);
 
-         GetParent()->EndModalLoop("cancel");
+         get_parent()->EndModalLoop("cancel");
 
          return true;
 
@@ -434,7 +434,7 @@ namespace account
    void login::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create,pcreate,pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       if(pcreate->previous())
       {
@@ -443,12 +443,12 @@ namespace account
 
       }
 
-      if(!m_plabelUser->create_window(this,"label_user")
-            || !m_peditUser->create_window(this,"edit_user")
-            || !m_plabelPassword->create_window(this,"label_password")
-            || !m_ppassword->create_window(this,"password")
-            || !m_ptap->create_window(this,"submit")
-            || !m_ptapClose->create_window(this,"escape"))
+      if(!m_plabelUser->create_control(this,"label_user")
+            || !m_peditUser->create_control(this,"edit_user")
+            || !m_plabelPassword->create_control(this,"label_password")
+            || !m_ppassword->create_control(this,"password")
+            || !m_ptap->create_control(this,"submit")
+            || !m_ptapClose->create_control(this,"escape"))
       {
 
          pcreate->m_lresult = -1;

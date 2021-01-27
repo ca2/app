@@ -32,6 +32,7 @@
 
 #include "aura/os/ansios/_ansios.h"
 #include "aura/os/uwp/_uwp.h"
+#include "aura/os/windows_common/_windows_common.h"
 
 #elif defined(WINDOWS_DESKTOP)
 

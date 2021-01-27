@@ -16,33 +16,17 @@ namespace experience
          m_penShadow1(e_create),
          m_penDkShadow1(e_create)
       {
-         m_crActiveCaptionTextBk = 0;
-         m_rectControlBoxMarginNormal = nullptr;
 
-         m_rectMarginNormal.set(5, 5, 5, 5);
+         m_colorActiveCaptionTextBk = 0;
 
-         m_crCaptionText = ARGB(255, 255, 255, 255);
+         m_rectMarginNormal.set(1, 1, 1, 1);
+
+         m_colorCaptionText = ARGB(255, 255, 255, 255);
 
          m_rectClient = nullptr;
 
-         //               m_iMargin = 7;
-
-         //class font_department & fonts = System.draw2d().fonts();
-
-         //
-         //fonts.GetCaptionFont()->create_point_font("MS Sans Serif", 9.0);
-
-         
-
-         //create_point_font(::user::font_button, "MS Sans Serif", 9.0);
-         //create_point_font(::user::font_window_title, "MS Sans Serif", 12.0);
-
-         //m_fontEdit->m_etextrenderinghint = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
-         //m_fontList->m_etextrenderinghint = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
-         //m_fontButton->m_etextrenderinghint = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
-         //m_fontCaption->m_etextrenderinghint = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
-
       }
+
 
       frame::~frame()
       {
@@ -140,10 +124,15 @@ namespace experience
 
       }
 
+      
       color32_t frame::get_border_main_body_color()
       {
-         return ARGB(255, 63, 150, 106);
+         //return ARGB(255, 63, 150, 106);
+
+         return m_pframewindow->get_border_main_body_color();
+
       }
+
 
       //::user::front_end_schema * frame::get_user_front_end_schema()
       //{
@@ -171,61 +160,20 @@ namespace experience
 
 
 
-      void frame::set_style(e_style estyle)
-      {
+      //void frame::set_style(e_style estyle)
+      //{
 
-         m_estyle = estyle;
+      //   m_estyle = estyle;
 
-         if (get_control_box().is_null())
-            return;
+      //   if (get_control_box().is_null())
+      //      return;
 
-         on_style_change();
+      //   on_style_change();
 
-      }
-
-
-      void frame::set_style(const char * pszStyle)
-      {
-
-         ::experience::frame::set_style(pszStyle);
-
-         string strStyle(pszStyle);
-
-         if (strStyle == "TranslucidWarmGray")
-         {
-            set_style(StyleTranslucidWarmGray);
-         }
-         else if (strStyle == "DarkWarmBlue")
-         {
-            set_style(StyleDarkWarmBlue);
-         }
-         else if (strStyle == "WarmGray")
-         {
-            set_style(StyleTranslucidWarmGray);
-         }
-         else if (strStyle == "BlueRedPurple")
-         {
-            set_style(StyleBlueRedPurple);
-         }
-         else if (strStyle == "RedOrange")
-         {
-            set_style(StyleRedOrange);
-         }
-         else if (strStyle == "DarkRed")
-         {
-            set_style(StyleDarkRed);
-         }
-         else if (strStyle == "LightBlue")
-         {
-            set_style(StyleLightBlue);
-         }
-         else if (strStyle == "LightGreen")
-         {
-            set_style(StyleLightGreen);
-         }
+      //}
 
 
-      }
+      //}
 
 
       frame::enum_element operator++(frame::enum_element & eelement, i32 i)
@@ -242,19 +190,19 @@ namespace experience
          case ElementTopLeftIcon:
 
             if (m_pframewindow == nullptr || m_pframewindow->m_picon == nullptr)
+            {
+
                return false;
 
-            prect->left = m_pointWindowIcon.x;
+            }
 
-            prect->top = m_pointWindowIcon.y;
+            prect->left = m_rectCaption.left;
 
-            //prect->right = prect->left + m_pframewindow->m_picon->get_size().cx;
+            prect->top = m_rectCaption.top;
 
-            //prect->bottom = prect->top + m_pframewindow->m_picon->get_size().cy;
+            prect->right = prect->left + m_iCaptionHeight;
 
-            prect->right = prect->left + 24;
-
-            prect->bottom = prect->top + 24;
+            prect->bottom = prect->top + m_iCaptionHeight;
 
 
             return true;
@@ -268,9 +216,9 @@ namespace experience
 
             prect->top = m_pointMoveGripMinimal.y + 2;
 
-            prect->right = prect->left + get_control_box_rect()->height() - 4;
+            prect->right = prect->left + m_iCaptionHeight - 4;
 
-            prect->bottom = prect->top + get_control_box_rect()->height() - 4;
+            prect->bottom = prect->top + m_iCaptionHeight - 4;
 
 
             return true;
@@ -302,24 +250,24 @@ namespace experience
 
       void frame::set_moveable_border_color(color32_t cr)
       {
-         m_crMoveableBorder = cr;
+         m_colorMoveableBorder = cr;
 
          color color;
 
          color.set_rgb(cr);
          color.hls_rate(0.0, 0.5, 0.0);
-         m_crMoveableBorderHilight = color.get_rgb() | (0xff << 24);
+         m_colorMoveableBorderHilight = color.get_rgb() | (0xff << 24);
 
          color.set_rgb(cr);
          color.hls_rate(0.0, -0.3, 0.0);
-         m_crMoveableBorderShadow = color.get_rgb() | (0xff << 24);
+         m_colorMoveableBorderShadow = color.get_rgb() | (0xff << 24);
 
          color.set_rgb(cr);
          color.hls_rate(8.0, -0.8, 0.0);
-         m_crMoveableBorderDkShadow = color.get_rgb() | (0xff << 24);
+         m_colorMoveableBorderDkShadow = color.get_rgb() | (0xff << 24);
 
 
-         m_crCaptionTextBk = m_crMoveableBorderShadow;
+         m_colorCaptionTextBk = m_colorMoveableBorderShadow;
 
       }
 
@@ -388,8 +336,8 @@ namespace experience
          m_penHilight1->create_solid(1, crButtonHilite | 0xff000000);
          m_penShadow1->create_solid(1, crButtonShadow | 0xff000000);
          m_penDkShadow1->create_solid(1, crButtonDarkShadow | 0xff000000);
-         m_crDkShadow = crButtonDarkShadow;
-         m_crFrameBorder = RGB(0, 0, 0) | 0xff000000;
+         m_colorDkShadow = crButtonDarkShadow;
+         m_colorFrameBorder = RGB(0, 0, 0) | 0xff000000;
 
 
       }
@@ -404,67 +352,72 @@ namespace experience
 
          m_minSize = size(144, 48);
          m_minSize.cy = 48;
-         pcontrolbox->set_button_color_system_default_001();
+         if (pcontrolbox)
+         {
+            pcontrolbox->set_button_color_system_default_001();
+
+         }
          set_frame_color_system_default_001();
-         set_moveable_border_color(get_style_moveable_border_color(m_estyle));
+         set_moveable_border_color(m_pframewindow->get_moveable_border_color());
 
-         set_button_color_schema_001(m_crMoveableBorder);
+         auto estyle = m_pframewindow->m_estyle;
 
-         if (m_estyle == StyleTranslucidWarmGray || m_estyle == StyleDarkWarmBlue)
+         set_button_color_schema_001(m_colorMoveableBorder);
+
+         if (estyle == ::user::StyleTranslucidWarmGray || estyle == ::user::StyleDarkWarmBlue)
          {
-            pcontrolbox->m_crBackground = m_crCaptionTextBk;
+
+            pcontrolbox->m_colorBackground = m_colorCaptionTextBk;
+
          }
-
-
-
-      }
-
-      color32_t frame::get_style_moveable_border_color(e_style estyle)
-      {
-         switch (m_estyle)
-         {
-         case StyleLightBlue:
-         case StyleTranslucidLightBlue:
-            return ARGB(255, 116, 160, 220);
-         case StyleTranslucidWarmGray:
-            return ARGB(255, 184, 184, 177);
-            break;
-         case StyleDarkWarmBlue:
-            return ARGB(255, 34, 54, 75);
-            break;
-         case StyleBlackBorder:
-            return RGB(116, 160, 220) | 0xff000000;
-         case StyleLightGreen:
-         case StyleTranslucidLightGreen:
-            return RGB(116, 220, 160) | 0xff000000;
-         case StyleRedOrange:
-            return RGB(255, 170, 136) | 0xff000000;
-         case StyleBlueRedPurple:
-            return RGB(200, 100, 220) | 0xff000000;
-         case StyleEveningSun:
-            return RGB(255, 210, 100) | 0xff000000;
-         case StyleTranslucidWarmLiteGray:
-            return RGB(239, 230, 219) | 0xff000000;
-         default:
-            return RGB(200, 100, 220) | 0xff000000;
-         }
-
-
-         // Light Green/Translucid Light Green
-         return RGB(116, 220, 160) | 0xff000000;
 
       }
 
 
-      bool frame::is_translucid_style(e_style estyle)
+      //color32_t frame::get_style_moveable_border_color(e_style estyle)
+      //{
+      //   switch (m_estyle)
+      //   {
+      //   case StyleLightBlue:
+      //   case StyleTranslucidLightBlue:
+      //      return ARGB(255, 116, 160, 220);
+      //   case StyleTranslucidWarmGray:
+      //      return ARGB(255, 184, 184, 177);
+      //      break;
+      //   case StyleDarkWarmBlue:
+      //      return ARGB(255, 34, 54, 75);
+      //      break;
+      //   case StyleBlackBorder:
+      //      return RGB(116, 160, 220) | 0xff000000;
+      //   case StyleLightGreen:
+      //   case StyleTranslucidLightGreen:
+      //      return RGB(116, 220, 160) | 0xff000000;
+      //   case StyleRedOrange:
+      //      return RGB(255, 170, 136) | 0xff000000;
+      //   case StyleBlueRedPurple:
+      //      return RGB(200, 100, 220) | 0xff000000;
+      //   case StyleEveningSun:
+      //      return RGB(255, 210, 100) | 0xff000000;
+      //   case StyleTranslucidWarmLiteGray:
+      //      return RGB(239, 230, 219) | 0xff000000;
+      //   default:
+      //      return RGB(200, 100, 220) | 0xff000000;
+      //   }
+
+
+      //   // Light Green/Translucid Light Green
+      //   return RGB(116, 220, 160) | 0xff000000;
+
+      //}
+
+
+      bool frame::is_translucid_style(::user::enum_style estyle)
       {
 
-         return
-         estyle == StyleTranslucidWarmGray
-         || estyle == StyleTranslucidLightBlue
-         || estyle == StyleTranslucidLightGreen
-         || estyle == StyleTranslucidWarmLiteGray;
-
+         return estyle == ::user::StyleTranslucidWarmGray
+            || estyle == ::user::StyleTranslucidLightBlue
+            || estyle == ::user::StyleTranslucidLightGreen
+            || estyle == ::user::StyleTranslucidWarmLiteGray;
 
       }
 
@@ -475,8 +428,8 @@ namespace experience
          ::rect rect(rectParam);
          i32 x = rect.left;
          i32 y = rect.top;
-         i32 cx = rect.width();
-         i32 cy = rect.height();
+         i32 cx = rect.width() - 1;
+         i32 cy = rect.height() - 1;
 
 
 
@@ -545,12 +498,35 @@ namespace experience
       }
 
 
+      //void frame::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
+      //{
 
-      void frame::on_style_change()
+      //   if(psubject->m_id == id_user_style_change)
+      //   {
+
+      //      on_style_change();
+
+      //   }
+
+      //}
+
+
+      //void frame::on_style_change()
+      //{
+
+
+      //}
+
+
+      void frame::title_bar_layout(::draw2d::graphics_pointer & pgraphics)
       {
 
+         ::experience::frame::title_bar_layout(pgraphics);
+
+         m_rectCaptionTextBk = m_rectCaption;
 
       }
+
 
 
       void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
@@ -603,7 +579,11 @@ namespace experience
                if (picon != nullptr)
                {
 
-                  pgraphics->draw(rectIcon, picon);
+                  ::rectd rectDst(picon->get_smaller_size(rectIcon.size()));
+
+                  rectDst.CenterOf(rectIcon);
+
+                  pgraphics->draw(rectDst, picon);
 
                }
 
@@ -625,7 +605,9 @@ namespace experience
                while (i < rectGrip.width() - 5 + 1)
                {
 
-                  pgraphics->draw_3drect_dim(rectGrip.left + i, rectGrip.top, 3, rectGrip.height(), ARGB(110, 230, 230, 230), ARGB(110, 130, 130, 130));
+                  auto rect3d = ::rectd_dim(rectGrip.left + i, rectGrip.top, 3, rectGrip.height());
+
+                  pgraphics->draw_3drect(rect3d, ARGB(110, 230, 230, 230), ARGB(110, 130, 130, 130));
 
                   i += 5;
 
@@ -651,7 +633,7 @@ namespace experience
 
             //oswindow hwndActiveWindowOwner = ::GetWindow(hwndActiveWindow, GW_OWNER);
 
-            //oswindow hwndActiveWindowParent = ::GetParent(hwndActiveWindow);
+            //oswindow hwndActiveWindowParent = ::get_parent(hwndActiveWindow);
 
             //::user::interaction * puiInactive = m_pframewindow;
 
@@ -702,18 +684,20 @@ namespace experience
                   || hwndDraw == hwndActiveWindowOwner
                   || hwndDraw == hwndActiveWindowParent
                   || puiInactiveTopLevel == puiActiveTopLevel)
-                  && m_crActiveCaptionTextBk != 0)*/
+                  && m_colorActiveCaptionTextBk != 0)*/
             if(m_pframewindow->is_active())
             {
 
-               pgraphics->fill_rect(m_rectCaptionTextBk, m_crActiveCaptionTextBk);
+               pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
+
+               pgraphics->fill_rect(m_rectCaptionTextBk, m_colorActiveCaptionTextBk);
 
             }
             else
             {
 
 
-               pgraphics->fill_rect(m_rectCaptionTextBk, m_crCaptionTextBk);
+               pgraphics->fill_rect(m_rectCaptionTextBk, m_colorCaptionTextBk);
 
             }
 
@@ -740,11 +724,11 @@ namespace experience
             if (pframewindow->is_active())
             {
 
-               crMoveableBorder = m_crMoveableBorder;
+               crMoveableBorder = m_colorMoveableBorder;
 
-               crMoveableBorderHilight = m_crMoveableBorderHilight;
+               crMoveableBorderHilight = m_colorMoveableBorderHilight;
 
-               crMoveableBorderShadow = m_crMoveableBorderShadow;
+               crMoveableBorderShadow = m_colorMoveableBorderShadow;
 
             }
             else
@@ -781,6 +765,10 @@ namespace experience
                if (picon != nullptr)
                {
 
+                  ::rectd rectDst(picon->get_smaller_size(rectIcon.size()));
+
+                  rectDst.CenterOf(rectIcon);
+
                   pgraphics->draw(rectIcon, picon);
 
                }
@@ -801,7 +789,7 @@ namespace experience
 
             ::draw2d::brush_pointer brushText(e_create);
 
-            brushText->create_solid(m_crCaptionText);
+            brushText->create_solid(m_colorCaptionText);
 
             pgraphics->set(brushText);
 
@@ -832,8 +820,6 @@ namespace experience
       }
 
 
-
-
       void frame::GetFrameRect(rect * prect)
       {
 
@@ -841,7 +827,7 @@ namespace experience
 
          prect->offset(-prect->top_left());
 
-         prect->deflate(*get_margin_rect());
+         prect->deflate(get_margin_rect());
 
       }
 

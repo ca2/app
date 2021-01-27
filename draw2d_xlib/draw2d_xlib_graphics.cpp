@@ -489,9 +489,9 @@ namespace draw2d_xlib
       return ::point();
    }
 
-   size graphics::SetWindowExt(const ::size & size)
+   size graphics::set_window_ext(const ::size & size)
    {
-      //return SetWindowExt(size.cx, size.cy);
+      //return set_window_ext(size.cx, size.cy);
       return ::size(0, 0);
    }
 
@@ -645,12 +645,12 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::Polyline(const POINT32* lpPoints, i32 nCount)
+   bool graphics::polyline(const POINT32* lpPoints, i32 nCount)
    {
 
       /*ASSERT(get_handle1() != nullptr);
 
-      return ::Polyline(get_handle1(), lpPoints, nCount) != FALSE;*/
+      return ::polyline(get_handle1(), lpPoints, nCount) != FALSE;*/
 
       __throw(not_implemented());
       return false;
@@ -1681,7 +1681,7 @@ namespace draw2d_xlib
          /* p::image_pointer pimage1(get_object());
                       pimage1 = create_image(rectText.size());
                       pimage1->Fill(0, 0, 0, 0);
-         //               pimage1->get_graphics()->set_color(m_crColor);
+         //               pimage1->get_graphics()->set_color(m_colorColor);
                       pimage1->get_graphics()->SelectObject(&get_current_font());
                       pimage1->get_graphics()->SetBkMode(TRANSPARENT);
                       pimage1->get_graphics()->text_out(0, 0, str);
@@ -2330,14 +2330,14 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::PolyPolyline(const POINT32* lpPoints, const u32* lpPolyPoints, i32 nCount)
+   bool graphics::poly_polyline(const POINT32* lpPoints, const u32* lpPolyPoints, i32 nCount)
    {
 
       __throw(not_implemented());
       return false;
 
 //      ASSERT(get_handle1() != nullptr);
-//      return ::PolyPolyline(get_handle1(), lpPoints, lpPolyPoints, nCount) != FALSE;
+//      return ::poly_polyline(get_handle1(), lpPoints, lpPolyPoints, nCount) != FALSE;
 
    }
 
@@ -2392,14 +2392,14 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::PolyBezier(const POINT32* lpPoints, i32 nCount)
+   bool graphics::poly_bezier(const POINT32* lpPoints, i32 nCount)
    {
 
       __throw(not_implemented());
       return false;
 
 //      ASSERT(get_handle1() != nullptr);
-//      return ::PolyBezier(get_handle1(), lpPoints, nCount) != FALSE;
+//      return ::poly_bezier(get_handle1(), lpPoints, nCount) != FALSE;
 
    }
 
@@ -3244,7 +3244,7 @@ namespace draw2d_xlib
             {
                // brushes are different -- erase old region first
                SelectClipRgn(&rgnLast);
-               GetClipBox(&rect);
+               get_clip_box(&rect);
                pBrushOld = SelectObject(pBrushLast);
                PatBlt(rect.left, rect.top, rect.width(), rect.height(), PATINVERT);
                SelectObject(pBrushOld);
@@ -3253,7 +3253,7 @@ namespace draw2d_xlib
 
             // draw into the update/new region
             SelectClipRgn(rgnUpdate.get_os_data() != nullptr ? &rgnUpdate : &rgnNew);
-            GetClipBox(&rect);
+            get_clip_box(&rect);
             pBrushOld = SelectObject(pBrush);
             PatBlt(rect.left, rect.top, rect.width(), rect.height(), PATINVERT);
 
@@ -3812,7 +3812,7 @@ namespace draw2d_xlib
       */
    }
 
-   point graphics::OffsetWindowOrg(i32 nWidth, i32 nHeight)
+   point graphics::offset_window_org(i32 nWidth, i32 nHeight)
    {
 
       __throw(not_implemented());
@@ -3829,7 +3829,7 @@ namespace draw2d_xlib
 
    }
 
-   size graphics::SetWindowExt(i32 x, i32 y)
+   size graphics::set_window_ext(i32 x, i32 y)
    {
 
       __throw(not_implemented());
@@ -3846,7 +3846,7 @@ namespace draw2d_xlib
 
    }
 
-   size graphics::ScaleWindowExt(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom)
+   size graphics::scale_window_ext(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom)
    {
 
       __throw(not_implemented());
@@ -3863,13 +3863,13 @@ namespace draw2d_xlib
 
    }
 
-   i32 graphics::GetClipBox(RECT32 * prect) const
+   i32 graphics::get_clip_box(RECT32 * prect) const
    {
 
       //__throw(not_implemented());
       return 0;
 
-      /*      return ::GetClipBox(get_handle1(), rect);*/
+      /*      return ::get_clip_box(get_handle1(), rect);*/
    }
 
    i32 graphics::SelectClipRgn(::draw2d::region * pregion)
@@ -4239,7 +4239,7 @@ namespace draw2d_xlib
 
    }
 
-   bool graphics::PolylineTo(const POINT32* lpPoints, i32 nCount)
+   bool graphics::polyline_to(const POINT32* lpPoints, i32 nCount)
    {
 
       __throw(not_implemented());
@@ -4247,7 +4247,7 @@ namespace draw2d_xlib
 
       /*
             ASSERT(get_handle1() != nullptr);
-            bool bResult = ::PolylineTo(get_handle1(), lpPoints, nCount) != FALSE;
+            bool bResult = ::polyline_to(get_handle1(), lpPoints, nCount) != FALSE;
             if (get_handle1() != get_handle2())
             {
                ::point point;
@@ -4278,7 +4278,7 @@ namespace draw2d_xlib
 
 //   }
 
-   bool graphics::PolyBezierTo(const POINT32* lpPoints, i32 nCount)
+   bool graphics::poly_bezier_to(const POINT32* lpPoints, i32 nCount)
    {
 
       __throw(not_implemented());
@@ -4286,7 +4286,7 @@ namespace draw2d_xlib
 
       /*
             ASSERT(get_handle1() != nullptr);
-            bool bResult = ::PolyBezierTo(get_handle1(), lpPoints, nCount) != FALSE;
+            bool bResult = ::poly_bezier_to(get_handle1(), lpPoints, nCount) != FALSE;
             if (get_handle1() != get_handle2())
             {
                ::point point;
@@ -4361,7 +4361,7 @@ namespace draw2d_xlib
             (dynamic_cast<::win::graphics * >(pgraphics))->SetMapMode((i32)(short)pMetaRec->rdParm[0]);
             break;
          case META_SETWINDOWEXT:
-            (dynamic_cast<::win::graphics * >(pgraphics))->SetWindowExt(
+            (dynamic_cast<::win::graphics * >(pgraphics))->set_window_ext(
                (i32)(short)pMetaRec->rdParm[1], (i32)(short)pMetaRec->rdParm[0]);
             break;
          case META_SETWINDOWORG:
@@ -4377,7 +4377,7 @@ namespace draw2d_xlib
                (i32)(short)pMetaRec->rdParm[1], (i32)(short)pMetaRec->rdParm[0]);
             break;
          case META_ScaLEWINDOWEXT:
-            (dynamic_cast<::win::graphics * >(pgraphics))->ScaleWindowExt(
+            (dynamic_cast<::win::graphics * >(pgraphics))->scale_window_ext(
                (i32)(short)pMetaRec->rdParm[3], (i32)(short)pMetaRec->rdParm[2],
                (i32)(short)pMetaRec->rdParm[1], (i32)(short)pMetaRec->rdParm[0]);
             break;
@@ -4677,7 +4677,7 @@ namespace draw2d_xlib
 
       XGlyphInfo extents;
 
-      xxf_zero(extents);
+      __zero(extents);
 
 //      wstring wstr(lpszString, nCount);
 

@@ -98,7 +98,7 @@ namespace multimedia
          m_pwaveformat->nAvgBytesPerSec   = m_pwaveformat->nSamplesPerSec * m_pwaveformat->nBlockAlign;
          m_pwaveformat->cbSize            = 0;
 
-         xxf_zero_pointer(&m_dataformat);
+         __zero(&m_dataformat);
 
          translate(m_dataformat, m_pwaveformat);
 

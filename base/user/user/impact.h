@@ -75,15 +75,15 @@ namespace user
       virtual void set_impact_title(const string & strImpactTitle);
       virtual string get_impact_title() const;
 
-      __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument = nullptr, ::user::interaction * pwndParent = nullptr, ::id id = ::id(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);
+      __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument = nullptr, ::user::interaction * pwndParent = nullptr, const ::id & id = ::id(), ::user::interaction * pviewLast = nullptr, ::user::impact_data * pdata = nullptr);
 
       virtual ::e_status initialize_view(::user::document * pdocument);
 
       template < class VIEW >
-      __pointer(VIEW) create_view(::user::document * pdocument = nullptr, ::user::interaction * pwndParent = nullptr,::id id = ::id(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
+      __pointer(VIEW) create_view(::user::document * pdocument = nullptr, ::user::interaction * pwndParent = nullptr, const ::id & id = ::id(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
 
       template < class VIEW >
-      __pointer(VIEW) create_view(::user::interaction * pwndParent,::id id = ::id(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
+      __pointer(VIEW) create_view(::user::interaction * pwndParent, const ::id & id = ::id(),::user::interaction * pviewLast = nullptr, ::user::impact_data * pimpactdata = nullptr);
 
       template < class VIEW >
       __pointer(VIEW) create_view(::user::impact_data * pimpactdata, ::user::interaction * pviewLast = nullptr);
@@ -100,7 +100,7 @@ namespace user
 
       virtual void route_command_message(::user::command * pcommand) override;
 
-      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
+      virtual bool pre_create_window(::user::system * pusersystem) override;
       virtual void PostNcDestroy() override;
 
 
@@ -183,7 +183,7 @@ namespace user
 
       //      virtual void route_command_message(::user::command * pcommand);
 
-      //      virtual bool pre_create_window(::user::create_struct * pcreatestruct);
+      //      virtual bool pre_create_window(::user::system * pusersystem);
 
 
       //         virtual void install_message_routing(::channel * pchannel);
@@ -311,17 +311,17 @@ namespace user
       }
 
 
-      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override
+      virtual bool pre_create_window(::user::system * pusersystem) override
       {
 
-         if (!::user::impact::pre_create_window(pcreatestruct))
+         if (!::user::impact::pre_create_window(pusersystem))
          {
 
             return false;
 
          }
 
-         if (!VIEW::pre_create_window(pcreatestruct))
+         if (!VIEW::pre_create_window(pusersystem))
          {
 
             return false;
@@ -360,7 +360,7 @@ namespace user
 
          }
 
-         ::user::interaction * puiParent = GetParent();
+         ::user::interaction * puiParent = get_parent();
 
          if (puiParent != nullptr)
          {
@@ -383,8 +383,8 @@ namespace user
    };
 
 
-   CLASS_DECL_BASE __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * pwndParent, id id, ::user::interaction * pviewLast = nullptr);
-   CLASS_DECL_BASE __pointer(::user::interaction) create_view(::create * pContext, ::user::interaction * pwndParent, id id);
+   CLASS_DECL_BASE __pointer(::user::interaction) create_view(const ::type & type, ::user::document * pdocument, ::user::interaction * pwndParent, const ::id & id, ::user::interaction * pviewLast = nullptr);
+   CLASS_DECL_BASE __pointer(::user::interaction) create_view(::user::system * pusersystem, ::user::interaction * pwndParent, const ::id & id);
    CLASS_DECL_BASE ::user::document * get_document(::user::interaction * pinteraction);
 
 

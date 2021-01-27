@@ -53,7 +53,7 @@ namespace VistaTools
    Parameters:
 
    ptet
-      [out] Pointer to a payload that receives the elevation type of the current process.
+      [out] Pointer to a ::payload that receives the elevation type of the current process.
 
       The possible values are:
 
@@ -83,7 +83,7 @@ namespace VistaTools
    Parameters:
 
    pbElevated
-      [out] [optional] Pointer to a bool payload that, if non-nullptr, receives the result.
+      [out] [optional] Pointer to a bool ::payload that, if non-nullptr, receives the result.
 
       The possible values are:
 

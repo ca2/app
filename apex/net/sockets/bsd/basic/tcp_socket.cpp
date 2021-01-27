@@ -356,7 +356,7 @@ namespace sockets
          bind(s,bind_ad.sa(),bind_ad.sa_len());
       }
       in_addr addrSocks4 = GetSocks4Host();
-      if(!skip_socks && !xxf_is_zero(addrSocks4) && GetSocks4Port())
+      if(!skip_socks && !__is_zero(addrSocks4) && GetSocks4Port())
       {
          ::net::address sa(GetSocks4Host(),GetSocks4Port());
          {
@@ -2051,7 +2051,7 @@ namespace sockets
       UNREFERENCED_PARAMETER(rwflag);
       socket *p0 = static_cast<socket *>(userdata);
       tcp_socket *point = dynamic_cast<tcp_socket *>(p0);
-      string pw = point ? point -> GetPassword() : "";
+      string pw = point ? point -> GetPassword().c_str() : "";
       if(num < pw.get_length() + 1)
       {
          return 0;

@@ -21,7 +21,7 @@ namespace simpledb
       virtual bool close();
 
 
-      virtual bool sql(const char * pszQuery, payload & payload);
+      virtual bool sql(const char * pszQuery, ::payload & payload);
       
 
    };

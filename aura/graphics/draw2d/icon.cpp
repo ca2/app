@@ -72,14 +72,14 @@ namespace draw2d
 
 #ifdef WINDOWS_DESKTOP
 
-            for (auto point : m_iconmap)
-            {
+            //for (auto point : m_iconmap)
+            //{
 
-               ::DestroyIcon((HICON)point.element2());
+            //   ::DestroyIcon((HICON)point.element2());
 
-            }
+            //}
 
-            //::DestroyIcon((HICON)m_picon);
+            ::DestroyIcon((HICON)m_picon);
 
 #else
 
@@ -95,10 +95,10 @@ namespace draw2d
    }
 
 
-   ::e_status     icon::initialize(::layered * pobjectContext)
+   ::e_status icon::initialize(::layered * pobjectContext)
    {
 
-      auto estatus = ::object::initialize(pobjectContext);
+      auto estatus = ::matter::initialize(pobjectContext);
 
       if (!estatus)
       {
@@ -147,6 +147,13 @@ namespace draw2d
 
 #endif
 
+   string icon::get_tray_icon_name()
+   {
+
+      return m_strAppTrayIcon;
+
+   }
+
 
    bool icon::load_file(string strPath)
    {
@@ -173,7 +180,7 @@ namespace draw2d
          if (hIcon != nullptr)
          {
 
-            m_iconmap[size(i, i)] = hIcon;
+            m_iconmap[::size(i, i)] = hIcon;
 
             m_picon = hIcon;
 
@@ -207,6 +214,9 @@ namespace draw2d
 
       }
 
+
+      on_update_icon();
+
       return true;
 
    }
@@ -235,7 +245,9 @@ namespace draw2d
 
 #endif
 
+
    }
+
 
    void icon::on_update_icon()
    {
@@ -272,6 +284,20 @@ namespace draw2d
 
 #endif
 
+      for (auto & size : m_pimagemap->keys())
+      {
+
+         m_sizea.add(size);
+
+      }
+
+      m_sizea.pred_sort([](auto & size1, auto & size2)
+         {
+
+            return size1.cx < size2.cx;
+
+         });
+
    }
 
 
@@ -283,7 +309,7 @@ namespace draw2d
    }
 
 
-   image_pointer icon::get_image(const ::size & size)
+   image * icon::get_image(const concrete < ::size > & size)
    {
 
       bool bExists;
@@ -342,6 +368,7 @@ namespace draw2d
          {
 
             output_debug_string("nok");
+
          }
          else
          {
@@ -429,6 +456,49 @@ namespace draw2d
 
       return pimage;
 
+
+   }
+
+
+   ::size icon::get_smaller_size(const ::size & size)
+   {
+
+      if (m_sizea.isEmpty())
+      {
+
+         return nullptr;
+
+      }
+
+
+      ::index iFound = -1;
+
+      for (::index i = 0; i < m_sizea.get_size(); i++)
+      {
+
+         if (size.cx < m_sizea[i].cx)
+         {
+
+            iFound = i;
+
+         }
+         else
+         {
+
+            break;
+
+         }
+
+      }
+
+      if (iFound < 0)
+      {
+
+         return nullptr;
+
+      }
+
+      return m_sizea[iFound];
 
    }
 

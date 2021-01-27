@@ -521,7 +521,7 @@ namespace sockets
    }
 
 
-   void websocket_client::step()
+   ::e_status websocket_client::step()
    {
 
       if (!m_bWebSocket)
@@ -604,9 +604,12 @@ namespace sockets
 
          //}
 
-
       }
+
+      return ::success;
+
    }
+
 
    void websocket_client::OnLine(const string & line)
    {
@@ -621,24 +624,32 @@ namespace sockets
 
       int iHttpStatusCode = outattr(__id(http_status_code));
 
-      string strStatus = outattr(__id(http_status));
+      string strStatus;
+      
+      strStatus = outattr(__id(http_status));
 
       if (iHttpStatusCode == 101 &&  strStatus == "Switching Protocols")
       {
 
-         string strUpgrade = outheader("upgrade");
+         string strUpgrade;
+         
+         strUpgrade = outheader("upgrade");
 
          if (strUpgrade.compare_ci("websocket") == 0)
          {
 
-            string strConnection = outheader("connection");
+            string strConnection;
+            
+            strConnection = outheader("connection");
 
             if (strConnection.compare_ci("Upgrade") == 0)
             {
 
                m_millisLastPing.Now();
 
-               string strAccept = outheader("sec-websocket-accept");
+               string strAccept;
+               
+               strAccept = outheader("sec-websocket-accept");
 
                string strKey = m_strBase64;
 
@@ -736,7 +747,7 @@ namespace sockets
    }
 
 
-   bool websocket_client::send_json(payload varJson)
+   bool websocket_client::send_json(::payload varJson)
    {
 
       string strJson;
@@ -874,7 +885,7 @@ namespace sockets
 
             }
 
-            xxf_zero(m_maskingkey);
+            __zero(m_maskingkey);
 
             if (m_memResponse.get_size() < m_header_size)
             {

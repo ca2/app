@@ -29,8 +29,8 @@ namespace user
    public:
 
 
-      __pointer(scroll_bar)    m_pscrollbarHorz;
-      scroll_data       m_scrolldataHorz;
+      __pointer(scroll_bar)    m_pscrollbarHorizontal;
+      scroll_data       m_scrolldataHorizontal;
 
 
       scroll_x();
@@ -91,8 +91,8 @@ namespace user
    public:
 
       //int                  m_iVScrollOffset;
-      __pointer(scroll_bar)       m_pscrollbarVert;
-      scroll_data          m_scrolldataVert;
+      __pointer(scroll_bar)       m_pscrollbarVertical;
+      scroll_data          m_scrolldataVertical;
       i16              m_iWheelDelta;
       i16              m_iWheelDeltaScroll;
 

@@ -35,7 +35,7 @@ namespace userstack
    void frame::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       m_bWindowFrame = true;
 
@@ -67,13 +67,13 @@ namespace userstack
    }
 
 
-   bool frame::pre_create_window(::user::create_struct * pcreatestruct)
+   bool frame::pre_create_window(::user::system * pusersystem)
    {
 
-      if( !simple_frame_window::pre_create_window(pcreatestruct) )
+      if( !simple_frame_window::pre_create_window(pusersystem) )
          return FALSE;
 
-      pcreatestruct->m_createstruct.dwExStyle &= ~WS_EX_WINDOWEDGE;
+      pusersystem->m_createstruct.dwExStyle &= ~WS_EX_WINDOWEDGE;
 
       return TRUE;
 
@@ -196,14 +196,14 @@ namespace userstack
 
       UNREFERENCED_PARAMETER(pmessage);
 
-//      SCAST_PTR(::message::mouse, pmouse, pmessage);
+//      __pointer(::message::mouse) pmouse(pmessage);
 //      m_bMouseOver = false;
 //      bergedgesp(::aura::application) papp = dynamic_cast < bergedgesp(::aura::application) > (get_object());
    }
 
    void frame::pre_translate_message(::message::message * pmessage)
    {
-//      SCAST_PTR(::message::base, pbase, pmessage);
+//      __pointer(::message::base) pbase(pmessage);
       simple_frame_window::pre_translate_message(pmessage);
    }
 
@@ -231,7 +231,7 @@ namespace userstack
 
    void frame::message_queue_message_handler(::message::message * pmessage)
    {
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
       if(pbase->m_id == (WM_APP + 2000))
       {
          _001OnApp2000(pbase);
@@ -259,7 +259,7 @@ namespace userstack
 
    void frame::_001OnApp2000(::message::message * pmessage)
    {
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
 
       if(pbase->m_wparam == 0)
@@ -325,7 +325,7 @@ namespace userstack
       else if(pbase->m_wparam == 25)
       {
 #ifdef WINDOWS_DESKTOP
-         pbase->m_lresult = (LRESULT) GetTopLevelFrame()->get_safe_handle();
+         pbase->m_lresult = (LRESULT) top_level_frame()->get_safe_handle();
 #else
          __throw(todo());
 #endif
@@ -345,7 +345,7 @@ namespace userstack
    {
       if(pbase->m_lparam == 6)
       {
-         GetTopLevelFrame()->hide();
+         top_level_frame()->hide();
          __post_quit_message(36);
       }
    }
@@ -382,7 +382,7 @@ namespace userstack
 
 #ifdef WINDOWS_DESKTOP
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       MESSAGE * pmsg = (MESSAGE *) pbase->m_lparam.m_lparam;
 

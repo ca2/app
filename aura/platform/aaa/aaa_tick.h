@@ -27,7 +27,7 @@ public:
 
    millis() { m_i = 0; }
    millis(enum e_tick_now) { m_i = get_tick(); }
-   millis(enum e_no_init) {}
+   millis(enum enum_no_init) {}
    millis(i64 i) { m_i = i; }
    millis(const millis & count) { m_i = count.m_i; }
 

@@ -41,7 +41,7 @@ inline void __object_string_exchange(::stream & s, TYPE & t)
 }
 
 
-inline void __string_exchange(stream & s, payload & payload) { s.default_exchange(payload.get_ref_string()); }
+inline void __string_exchange(stream & s, ::payload & payload) { s.default_exchange(payload.get_ref_string()); }
 
 template < typename BLOCK_TYPE >
 inline void __exchange(stream & s, memory_template < BLOCK_TYPE > & memorytemplate)
@@ -78,7 +78,7 @@ inline void __exchange(stream & s, memory_base & memory)
 inline stream & operator <<(stream & s, const ::millis & millis)
 {
 
-   s << millis.m_iMilliseconds;
+   s << millis.m_i;
 
    return s;
 
@@ -89,7 +89,7 @@ inline stream & operator <<(stream & s, const ::millis & millis)
 inline stream & operator >>(stream & s, ::millis & millis)
 {
 
-   s >> millis.m_iMilliseconds;
+   s >> millis.m_i;
 
    return s;
 
@@ -593,7 +593,7 @@ inline stream & __save_object(stream & stream, BASE_TYPE * p)
 
 
 //template < typename BASE_TYPE >
-//void matter::save_to(const payload & varFile, BASE_TYPE * pobject)
+//void matter::save_to(const ::payload & varFile, BASE_TYPE * pobject)
 //{
 //
 //   auto writer = Context.file().get_writer(varFile, ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_truncate | ::file::e_open_defer_create_directory | ::file::e_open_share_exclusive);
@@ -794,8 +794,8 @@ inline void __exchange_array(::stream & stream, ARRAY & array)
 inline var_stream::var_stream() : m_pvar(new ::payload) {}
 inline var_stream::var_stream(::payload * pvar) : m_pvar(pvar) {}
 
-inline payload & var_stream::payload() { return *m_pvar; }
-inline const payload & var_stream::payload() const { return *m_pvar; }
+inline ::payload & var_stream::payload() { return *m_pvar; }
+inline const ::payload & var_stream::payload() const { return *m_pvar; }
 
 //void var_stream::write_object(const ::id & id, ::id & idFactory, ::matter * pobject)
 //{
@@ -1072,7 +1072,7 @@ template < typename TYPE >
 inline ::file::file & operator >> (::file::file & file, TYPE & t)
 {
 
-   if (::is_null_ref(file))
+   if (::is_null(file))
    {
 
       __throw(io_exception());
@@ -1158,7 +1158,7 @@ void var_stream::write_only(TYPE & t)
   else
   {
 
-     payload() = t;
+     ::payload() = t;
 
   }
 

@@ -15,7 +15,7 @@ namespace draw2d
       bool                    m_bDefaultCursor;
       ::image_pointer         m_pimage;
       ::image_pointer         m_pimageCursor;
-      size                    m_szHotspotOffset;
+      ::size                  m_szHotspotOffset;
 
 
       HCURSOR                 m_hcursor;
@@ -24,8 +24,6 @@ namespace draw2d
       cursor();
       virtual ~cursor();
 
-
-      //bool to(::draw2d::graphics_pointer & pgraphics, const ::point & point);
 
       bool initialize_system_default();
 
@@ -36,6 +34,16 @@ namespace draw2d
       bool set_current(::user::interaction * pinteraction, ::aura::session * psession);
 
       static bool reset(::user::interaction * pinteraction, ::aura::session * psession);
+
+      inline ::draw2d::graphics * g() const { return m_pimage->g(); }
+      inline ::draw2d::graphics * g(const ::sized & sizeHint) { return m_pimage->g(sizeHint); }
+
+      
+      inline ::image * get_image(const concrete < ::size > & concreteSize) { return m_pimage->get_image(concreteSize); }
+
+
+      inline concrete < ::size > size(const ::sized & sizeDst, enum_image_selection eimageselection) const { return m_pimage->size(sizeDst, eimageselection); }
+      inline concrete < ::size > size() const { return m_pimage->size(); }
 
 
    };

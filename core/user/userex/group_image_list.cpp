@@ -97,13 +97,13 @@ namespace userex
    void group_image_list_view::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
 
       m_idaHandledCommands.add(m_id);
 
-      m_buttonMenu.create_window(this, m_id);
+      m_buttonMenu.create_control(this, m_id);
 
       m_buttonMenu.set_button_style(::user::button::style_image_and_text);
 

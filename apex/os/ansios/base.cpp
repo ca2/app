@@ -6,9 +6,9 @@
 //
 //   timespec t;
 //
-//   t.tv_sec = duration.m_iSeconds;
+//   t.tv_sec = duration.m_i;
 //
-//   t.tv_nsec = duration.m_iNanoseconds;
+//   t.tv_nsec = duration.m_i;
 //
 //   ::nanosleep(&t, nullptr);
 //

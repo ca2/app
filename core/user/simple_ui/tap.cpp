@@ -74,7 +74,7 @@ namespace simple_ui
    void tap::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmouse->m_bRet = true;
 
@@ -99,7 +99,7 @@ namespace simple_ui
    void tap::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmouse->m_bRet = true;
 
@@ -118,7 +118,7 @@ namespace simple_ui
    void tap::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       INFO("simple_ui::tap::_001OnMouseMove");
 
@@ -486,7 +486,7 @@ namespace simple_ui
    void tap::_001OnKeyDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key,pkey,pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       ::user::e_key iKey = pkey->m_ekey;
 

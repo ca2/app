@@ -101,7 +101,7 @@ namespace filemanager
 //
 //            //   str.Format("frame(%s)", filemanager_data()->m_id.str().c_str());
 //
-//            //   __pointer(::user::frame_window) pframe = GetParentFrame();
+//            //   __pointer(::user::frame_window) pframe = get_parent_frame();
 //
 //            //   if (pframe != nullptr)
 //            //   {

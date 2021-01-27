@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "acme/os/windows/windowing.h"
 #include "aura/node/windows/_windows.h"
-#include "system_interaction_impl.h"
+#include "system_interaction.h"
 #include "aura/message.h"
 #include "aura/user/interaction_thread.h"
 #include "aura/os/windows/windowing.h"
@@ -331,8 +331,8 @@ namespace windows
 
       set_handle(nullptr);
 
-      xxf_zero(m_size);
-      xxf_zero(m_point);
+      __zero(m_size);
+      __zero(m_point);
 
    }
 
@@ -426,7 +426,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::_native_create_window_ex(__pointer(::user::create_struct) pcreatestruct)
+   bool interaction_impl::native_create_host()
    {
 
       //__refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task() OBJ_REF_DBG_COMMA_THIS_FUNCTION_LINE);
@@ -437,22 +437,26 @@ namespace windows
 
       m_strDebug += ::str::demangle(m_puserinteraction->type_name()) +  ";";
 
-      ASSERT(pcreatestruct->m_createstruct.lpszClass == nullptr || __is_valid_string(pcreatestruct->m_createstruct.lpszClass) || __is_valid_atom(pcreatestruct->m_createstruct.lpszClass));
+      //ASSERT(pusersystem->m_createstruct.lpszClass == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszClass) || __is_valid_atom(pusersystem->m_createstruct.lpszClass));
 
-      ENSURE_ARG(pcreatestruct->m_createstruct.lpszName == nullptr || __is_valid_string(pcreatestruct->m_createstruct.lpszName));
+      //ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
 
-      wstring wstrClassName(pcreatestruct->m_createstruct.lpszClass);
+      //wstring wstrClassName(pusersystem->m_createstruct.lpszClass);
+      wstring wstrClassName;
 
-      if (wstrClassName.is_empty())
-      {
+      //if (wstrClassName.is_empty())
+      //{
 
          wstrClassName = m_puserinteraction->calc_window_class();
 
-      }
+      //}
 
-      pcreatestruct->m_createstruct.lpszClass = wstrClassName;
+      //pusersystem->m_createstruct.lpszClass = wstrClassName;
 
-      if (!m_puserinteraction->pre_create_window(pcreatestruct))
+         if (!m_puserinteraction->m_pusersystem)
+            m_puserinteraction->m_pusersystem = __new(::user::system);
+
+      if (!m_puserinteraction->pre_create_window(m_puserinteraction->m_pusersystem))
       {
 
          return false;
@@ -470,13 +474,14 @@ namespace windows
 
       //}
 
-      // if window is not created, it may destroy this object, so keep the app as local payload
+      // if window is not created, it may destroy this object, so keep the app as local ::payload
 
-      thread_value("wnd_init") = this;
+      thread_property("wnd_init") = this;
 
       //::aura::application * papp = &Application;
 
-      wstring wstrWindowName(pcreatestruct->m_createstruct.lpszName);
+      //wstring wstrWindowName(pusersystem->m_createstruct.lpszName);
+      wstring wstrWindowName;
 
       //string char
 
@@ -497,10 +502,10 @@ namespace windows
       wcscpy(szTitle, L"123");
       wcscpy(szWindowClass, L"WindowsDestkop1");
 
-      //oswindow oswindow = CreateWindowExW(pcreatestruct->m_createstruct.dwExStyle, szWindowClass, wstrWindowName, pcreatestruct->m_createstruct.style,
-        // pcreatestruct->m_createstruct.x, pcreatestruct->m_createstruct.y, pcreatestruct->m_createstruct.cx, pcreatestruct->m_createstruct.cy, pcreatestruct->m_createstruct.hwndParent, pcreatestruct->m_createstruct.hMenu, pcreatestruct->m_createstruct.hInstance, pcreatestruct->m_createstruct.lpCreateParams);
+      //oswindow oswindow = CreateWindowExW(pusersystem->m_createstruct.dwExStyle, szWindowClass, wstrWindowName, pusersystem->m_createstruct.style,
+        // pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, pusersystem->m_createstruct.hwndParent, pusersystem->m_createstruct.hMenu, pusersystem->m_createstruct.hInstance, pusersystem->m_createstruct.lpCreateParams);
       oswindow oswindow = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPED,
-         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, pcreatestruct->m_createstruct.hInstance, nullptr);
+         CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, pusersystem->m_createstruct.hInstance, nullptr);
       //if (!oswindow)
       //{
          //return false;
@@ -533,24 +538,66 @@ namespace windows
 
 #else
 
+      DWORD dwExStyle = m_puserinteraction->GetExStyle();
+      DWORD dwStyle = m_puserinteraction->GetStyle();
+
+      auto psystem = m_puserinteraction->m_pusersystem;
+
+      if (psystem)
+      {
+
+         auto & createstruct = psystem->m_createstruct;
+
+         dwExStyle = createstruct.dwExStyle;
+         dwStyle = createstruct.style;
+
+      }
+
+      int x = m_puserinteraction->layout().sketch().screen_origin().x;
+      int y = m_puserinteraction->layout().sketch().screen_origin().y;
+      int cx = m_puserinteraction->layout().sketch().size().cx;
+      int cy = m_puserinteraction->layout().sketch().size().cy;
+
+      HWND hwndParent = nullptr;
+
+      if (m_puserinteraction->m_bMessageWindow)
+      {
+
+         hwndParent = HWND_MESSAGE;
+
+      }
+
+      HMENU hmenu = nullptr;
+
+      HINSTANCE hinstance = System.m_hinstance;
+
+      void * lpCreateParams = nullptr;
+      
+      if (m_puserinteraction->m_pusersystem)
+      {
+
+         lpCreateParams  = &m_puserinteraction->m_pusersystem->m_createstruct;
+
+      }
+
       oswindow oswindow = ::CreateWindowExW(
-         pcreatestruct->m_createstruct.dwExStyle,
+         dwExStyle,
          wstrClassName,
          wstrWindowName,
-         pcreatestruct->m_createstruct.style,
-         pcreatestruct->m_createstruct.x, 
-         pcreatestruct->m_createstruct.y, 
-         pcreatestruct->m_createstruct.cx,
-         pcreatestruct->m_createstruct.cy,
-         pcreatestruct->m_createstruct.hwndParent, 
-         pcreatestruct->m_createstruct.hMenu, 
-         pcreatestruct->m_createstruct.hInstance,
-         pcreatestruct->m_createstruct.lpCreateParams);
+         dwStyle,
+         x, 
+         y, 
+         cx,
+         cy,
+         hwndParent, 
+         hmenu, 
+         hinstance,
+         lpCreateParams);
 
 #endif
 
       //HWND oswindow = CreateWindowW(wstrClassName, wstrWindowName, WS_OVERLAPPED,
-      //   CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, pcreatestruct->m_createstruct.hInstance, nullptr);
+      //   CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, pusersystem->m_createstruct.hInstance, nullptr);
 
       //::ShowWindow(oswindow,SW_SHOWNORMAL);
       //::UpdateWindow(oswindow);
@@ -566,7 +613,7 @@ namespace windows
 
       //}
 
-      if (pcreatestruct->m_createstruct.hwndParent == HWND_MESSAGE)
+      if (m_puserinteraction->m_bMessageWindow)
       {
 
          m_puserinteraction->m_ewindowflag -= e_window_flag_graphical;
@@ -624,11 +671,11 @@ namespace windows
 
       }
 
-      m_puserinteraction->layout().sketch() = ::point(pcreatestruct->m_createstruct.x, pcreatestruct->m_createstruct.y);
-      m_puserinteraction->layout().sketch() = ::size(pcreatestruct->m_createstruct.cx, pcreatestruct->m_createstruct.cy);
+      //m_puserinteraction->layout().sketch() = ::point(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
+      //m_puserinteraction->layout().sketch() = ::size(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
 
-      m_puserinteraction->layout().window() = ::point(pcreatestruct->m_createstruct.x, pcreatestruct->m_createstruct.y);
-      m_puserinteraction->layout().window() = ::size(pcreatestruct->m_createstruct.cx, pcreatestruct->m_createstruct.cy);
+      //m_puserinteraction->layout().window() = ::point(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
+      //m_puserinteraction->layout().window() = ::size(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
 
       bool bUnicode = ::IsWindowUnicode(oswindow) != FALSE;
 
@@ -675,7 +722,7 @@ namespace windows
    }
 
 
-   bool interaction_impl::pre_create_window(::user::create_struct * pcreatestruct)
+   bool interaction_impl::pre_create_window(::user::system * pusersystem)
    {
 
       return true;
@@ -693,9 +740,9 @@ namespace windows
 
    //    }
 
-   //    ::user::create_struct createstruct(0, nullptr, lpszName, WS_CHILD, nullptr);
+   //    ::user::system createstruct(0, nullptr, lpszName, WS_CHILD, nullptr);
 
-   //    pcreatestruct->m_createstruct.hwndParent = HWND_MESSAGE;
+   //    pusersystem->m_createstruct.hwndParent = HWND_MESSAGE;
 
    //    if (!native_create_window_ex(pinteraction, createstruct, HWND_MESSAGE))
    //    {
@@ -755,7 +802,7 @@ namespace windows
    void interaction_impl::_001OnShowWindow(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
 
       if (pshowwindow->m_bShow)
       {
@@ -828,7 +875,7 @@ namespace windows
 
       }
 
-      SCAST_PTR(::message::move, pmove, pmessage);
+      __pointer(::message::move) pmove(pmessage);
 
       if (m_puserinteraction->layout().sketch().origin() != pmove->m_point)
       {
@@ -875,7 +922,7 @@ namespace windows
 
       }
 
-      SCAST_PTR(::message::size, psize, pmessage);
+      __pointer(::message::size) psize(pmessage);
 
       if (m_puserinteraction->layout().sketch().size() != psize->m_size)
       {
@@ -901,7 +948,7 @@ namespace windows
    void interaction_impl::_001OnEnable(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::enable, penable, pmessage);
+      __pointer(::message::enable) penable(pmessage);
 
       if (penable != nullptr)
       {
@@ -1035,7 +1082,7 @@ namespace windows
       ::rect rect;
       ((::windows::interaction_impl *) this)->m_puserinteraction->layout().window().screen_rect(&rect);
       dumpcontext << "\nrect = " << rect;
-      dumpcontext << "\nparent ::user::interaction_impl * = " << ::hex::lower_from((::iptr)((::windows::interaction_impl *)this)->GetParent());
+      dumpcontext << "\nparent ::user::interaction_impl * = " << ::hex::lower_from((::iptr)((::windows::interaction_impl *)this)->get_parent());
 
       dumpcontext << "\nstyle = " << (uptr)::GetWindowLong(((::windows::interaction_impl *)this)->get_handle(), GWL_STYLE);
       if (::GetWindowLong(((::windows::interaction_impl *)this)->get_handle(), GWL_STYLE) & WS_CHILD)
@@ -1094,7 +1141,7 @@ namespace windows
    void interaction_impl::pre_translate_message(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
    }
 
@@ -1473,17 +1520,26 @@ namespace windows
    }
 
 
-
-
    bool interaction_impl::IsTopParentActive()
    {
+      
       ASSERT(get_handle() != nullptr);
+      
       ASSERT_VALID(this);
 
-      __pointer(::user::interaction)pWndTopLevel = EnsureTopLevel();
+      auto puserinteractionTopLevel = get_top_level();
 
-      return interaction_impl::GetForegroundWindow() == pWndTopLevel->GetLastActivePopup();
+      if (!puserinteractionTopLevel)
+      {
+
+         return false;
+
+      }
+
+      return interaction_impl::GetForegroundWindow() == puserinteractionTopLevel->GetLastActivePopup();
+
    }
+
 
    void interaction_impl::ActivateTopParent()
    {
@@ -1493,7 +1549,16 @@ namespace windows
       {
          // clicking on floating frame when it does not have
          // focus itself -- activate the toplevel frame instead.
-         EnsureTopLevel()->SetForegroundWindow();
+
+         auto puserinteractionTopLevel = get_top_level();
+
+         if (puserinteractionTopLevel)
+         {
+
+            puserinteractionTopLevel->SetForegroundWindow();
+
+         }
+
       }
 
    }
@@ -1636,7 +1701,7 @@ namespace windows
    bool interaction_impl::HandleFloatingSysCommand(::u32 nID, LPARAM lParam)
    {
 
-      __pointer(::user::interaction) pParent = GetTopLevel();
+      __pointer(::user::interaction) pParent = get_top_level();
 
       switch (nID & 0xfff0)
       {
@@ -1936,7 +2001,7 @@ namespace windows
    void interaction_impl::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
 
       {
@@ -1957,7 +2022,7 @@ namespace windows
       if (m_puserinteraction)
       {
 
-         if (m_puserinteraction->is_message_only_window() || m_puserinteraction.cast <::user::system_interaction_impl >())
+         if (m_puserinteraction->is_message_only_window() || m_puserinteraction.cast <::user::system_interaction >())
          {
 
             TRACE("good : opt out!");
@@ -2083,7 +2148,7 @@ namespace windows
 
       }
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       ::rect rectWindow;
 
@@ -2395,7 +2460,7 @@ namespace windows
 
       ////::ScreenToClient(m_oswindow, m_puserinteraction->m_pointScreenClient);
 
-      ////HWND hwndParent = ::GetParent(m_oswindow);
+      ////HWND hwndParent = ::get_parent(m_oswindow);
 
       ////if (hwndParent != NULL)
       ////{
@@ -2466,10 +2531,10 @@ namespace windows
 
       //*prect = rectWindow;
 
-      //if (GetParent() != nullptr)
+      //if (get_parent() != nullptr)
       //{
 
-      //   GetParent()->_001ClientToScreen(prect);
+      //   get_parent()->_001ClientToScreen(prect);
 
       //}
 
@@ -2502,10 +2567,10 @@ namespace windows
 
       //   }
 
-      //   if (GetParent() != nullptr)
+      //   if (get_parent() != nullptr)
       //   {
 
-      //      GetParent()->_001ScreenToClient(rect32);
+      //      get_parent()->_001ScreenToClient(rect32);
 
       //   }
 
@@ -2605,7 +2670,7 @@ namespace windows
    }
 
 
-   ::user::interaction * interaction_impl::GetParent() const
+   ::user::interaction * interaction_impl::get_parent() const
    {
 
       if (!::is_window(get_handle()))
@@ -2617,14 +2682,18 @@ namespace windows
       HWND hwndParent = ::GetParent(get_handle());
 
       if (hwndParent == nullptr)
+      {
+
          return nullptr;
+
+      }
 
       return System.ui_from_handle(hwndParent);
 
    }
 
 
-   ::user::interaction * interaction_impl::SetParent(::user::interaction * pWndNewParent)
+   ::user::interaction * interaction_impl::set_parent(::user::interaction * pWndNewParent)
    {
 
       ASSERT(::is_window(get_handle()));
@@ -2633,7 +2702,8 @@ namespace windows
 
    }
 
-   ::user::interaction * interaction_impl::GetOwner() const
+
+   ::user::interaction * interaction_impl::get_owner() const
    {
 
       if (!::is_window(get_handle()))
@@ -2645,12 +2715,12 @@ namespace windows
       HWND hwndParent = ::GetWindow(get_handle(), GW_OWNER);
 
       if (hwndParent == nullptr)
-         return GetParent();
+         return get_parent();
 
       return System.ui_from_handle(hwndParent);
    }
 
-   ::user::interaction * interaction_impl::SetOwner(::user::interaction * pWndNewParent)
+   ::user::interaction * interaction_impl::set_owner(::user::interaction * pWndNewParent)
    {
 
       return nullptr;
@@ -2886,7 +2956,7 @@ namespace windows
    //void interaction_impl::bring_to_top(::e_display edisplay)
    //{
 
-   //   if (GetParent() == nullptr)
+   //   if (get_parent() == nullptr)
    //   {
 
    //      // place the interaction_impl on top except for certain nCmdShow
@@ -3705,14 +3775,55 @@ namespace windows
 
    }
 
-   bool interaction_impl::OpenClipboard()
+   
+   bool interaction_impl::open_clipboard()
    {
 
-      ASSERT(::is_window(get_handle()));
+      if (m_bClipboardOpened)
+      {
 
-      return ::OpenClipboard(get_handle()) != FALSE;
+         return true;
+
+      }
+
+      if (!::OpenClipboard(get_handle()))
+      {
+
+         return false;
+
+      }
+
+      m_bClipboardOpened = true;
+
+      return true;
 
    }
+
+
+
+   bool interaction_impl::close_clipboard()
+   {
+
+      if (!m_bClipboardOpened)
+      {
+
+         return false;
+
+      }
+
+      if (!::CloseClipboard())
+      {
+
+         return false;
+
+      }
+
+      m_bClipboardOpened = false;
+
+      return true;
+
+   }
+
 
    ::user::interaction * interaction_impl::GetOpenClipboardWindow()
    {
@@ -3996,7 +4107,7 @@ namespace windows
    void interaction_impl::_001OnSetCursor(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       auto psession = Session;
 
@@ -4159,7 +4270,7 @@ namespace windows
    void interaction_impl::_001OnGetMinMaxInfo(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
    }
 
@@ -4184,7 +4295,7 @@ namespace windows
 //      Default();
 //   }
 //
-//   bool interaction_impl::OnNcCreate(::user::create_struct *)
+//   bool interaction_impl::OnNcCreate(::user::system *)
 //   {
 //
 //      return Default() != FALSE;
@@ -4541,7 +4652,11 @@ namespace windows
 
       // a popup interaction_impl cannot be owned by a child interaction_impl
       while (oswindow != nullptr && (::GetWindowLong(oswindow, GWL_STYLE) & WS_CHILD))
+      {
+
          oswindow = ::GetParent(oswindow);
+
+      }
 
       // determine toplevel interaction_impl to disable as well
       ::oswindow oswindow_Top = oswindow;
@@ -4587,7 +4702,7 @@ namespace windows
 
    //   ASSERT(lParam != 0);
 
-   //   ::user::create_struct * pcs = (::user::create_struct *) ((LPCBT_CREATEWND)lParam)->lpcs;
+   //   ::user::system * pcs = (::user::system *) ((LPCBT_CREATEWND)lParam)->lpcs;
 
    //   ASSERT(pcs != nullptr);
 
@@ -4683,7 +4798,7 @@ namespace windows
 
    void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
    {
-      SCAST_PTR(::message::erase_bkgnd, perasebkgnd, pmessage);
+      __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
       perasebkgnd->m_bRet = true;
       perasebkgnd->set_result(TRUE);
    }
@@ -4732,7 +4847,7 @@ namespace windows
 
       WINDOWPLACEMENT wp;
 
-      xxf_zero(wp);
+      __zero(wp);
 
       if (!GetWindowPlacement(&wp))
          return false;
@@ -4912,7 +5027,7 @@ namespace windows
 
 //#ifdef WINDOWS_DESKTOP
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       WPARAM wparam;
 
@@ -4941,7 +5056,9 @@ namespace windows
 
          DwmExtendFrameIntoClientArea(get_safe_handle(), &m);
 
-         DwmSetWindowAttribute(get_safe_handle(), DWMWA_NCRENDERING_POLICY, &dw, sizeof(::u32));
+         HWND hwnd = get_safe_handle();
+
+         DwmSetWindowAttribute(hwnd, DWMWA_NCRENDERING_POLICY, &dw, sizeof(::u32));
 
       }
       else
@@ -4970,7 +5087,7 @@ namespace windows
 
 //#ifdef WINDOWS_DESKTOP
 
-      SCAST_PTR(::message::nc_calc_size, pcalcsize, pmessage);
+      __pointer(::message::nc_calc_size) pcalcsize(pmessage);
 
       BOOL bCalcValidRects = pcalcsize->GetCalcValidRects();
       NCCALCSIZE_PARAMS* pncsp = pcalcsize->m_pparams;
@@ -5064,7 +5181,7 @@ namespace windows
       }
 
 
-      //SCAST_PTR(::message::base, pbase, pmessage);
+      //__pointer(::message::base) pbase(pmessage);
 
       pcalcsize->m_lresult = 0;
 
@@ -5394,8 +5511,10 @@ void CLASS_DECL_AURA _handle_activate(::user::interaction_impl * pwindow, WPARAM
    // send WM_ACTIVATETOPLEVEL when top-level parents change
    if (!((pwindow)->GetStyle() & WS_CHILD))
    {
-      __pointer(::user::interaction) pTopLevel = (pwindow)->GetTopLevel();
-      if (pTopLevel && (!pWndOther || !::is_window((pWndOther)->get_handle()) || pTopLevel != (pWndOther)->GetTopLevel()))
+      
+      __pointer(::user::interaction) pTopLevel = pwindow->get_top_level();
+
+      if (pTopLevel && (!pWndOther || !::is_window((pWndOther)->get_handle()) || pTopLevel != (pWndOther)->get_top_level()))
       {
          // lParam points to interaction_impl getting the e_message_activate message and
          //  oswindow_Other from the e_message_activate.
@@ -5580,7 +5699,7 @@ namespace windows
          message == WM_IME_ENDCOMPOSITION)
       {
 
-         SCAST_PTR(::message::key, pkey, pbase);
+         __pointer(::message::key) pkey(pbase);
 
          if (message == e_message_key_down)
          {
@@ -5638,7 +5757,7 @@ namespace windows
          }
          ::DeleteObject(hrgn); /* finished with region */
          WINDOWPLACEMENT wp;
-         xxf_zero(wp);
+         __zero(wp);
          wp.length = sizeof(WINDOWPLACEMENT);
          ::GetWindowPlacement(get_handle(), &wp);
          bool bZoomed = ::IsZoomed(get_handle()) != FALSE;

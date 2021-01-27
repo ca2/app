@@ -4,7 +4,7 @@
 #include "aura/os/linux/_linux.h"
 #include <X11/Xatom.h>
 #include "third/sn/sn.h"
-#include <gdk/gdkx.h>
+//#include <gdk/gdkx.h>
 
 #define TEST 0
 
@@ -118,7 +118,8 @@ namespace linux
 
       XWindowAttributes             m_attr;
       XVisualInfo                   m_visualinfo;
-      GdkWindow *                   m_pgdkwindow;
+      // GdkWindow *                   m_pgdkwindow;
+      void *                        m_pgdkwindow;
 
    };
 
@@ -273,12 +274,27 @@ namespace linux
    }
 
 
-   bool interaction_impl::_native_create_window_ex(__pointer(::user::create_struct) pusercreatestruct)
+   bool interaction_impl::native_create_host()
    {
 
-      ENSURE_ARG(pusercreatestruct->m_createstruct.lpszName == nullptr || __is_valid_string(pusercreatestruct->m_createstruct.lpszName));
+      __pointer(::user::system) pusersystem;
 
-      if (!m_puserinteraction->pre_create_window(pusercreatestruct))
+      if(m_puserinteraction->m_pusersystem)
+      {
+
+         pusersystem = m_puserinteraction->m_pusersystem;
+
+      }
+      else
+      {
+
+         pusersystem = __new(::user::system);
+
+      }
+
+      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
+
+      if (!m_puserinteraction->pre_create_window(pusersystem))
       {
 
          return false;
@@ -293,7 +309,7 @@ namespace linux
 
       bool bOk = true;
 
-      if(pusercreatestruct->m_createstruct.hwndParent == (oswindow) MESSAGE_WINDOW_PARENT)
+      if(pusersystem->m_createstruct.hwndParent == (oswindow) MESSAGE_WINDOW_PARENT)
       {
 
          m_oswindow = oswindow_get_message_only_window(this);
@@ -311,7 +327,7 @@ namespace linux
          x11_sync([&]()
          {
 
-            Display * display    = x11_get_display();
+            Display * display = x11_get_display();
 
             if(display == nullptr)
             {
@@ -326,17 +342,17 @@ namespace linux
 
             xdisplay d(display);
 
-            if(pusercreatestruct->m_createstruct.cx <= 0)
+            if(pusersystem->m_createstruct.cx <= 0)
             {
 
-               pusercreatestruct->m_createstruct.cx = 1;
+               pusersystem->m_createstruct.cx = 1;
 
             }
 
-            if(pusercreatestruct->m_createstruct.cy <= 0)
+            if(pusersystem->m_createstruct.cy <= 0)
             {
 
-               pusercreatestruct->m_createstruct.cy = 1;
+               pusersystem->m_createstruct.cy = 1;
 
             }
 
@@ -368,7 +384,7 @@ namespace linux
             else
             {
 
-               xxf_zero(m_px11data->m_visualinfo);
+               __zero(m_px11data->m_visualinfo);
 
             }
 
@@ -376,7 +392,7 @@ namespace linux
 
             XSetWindowAttributes attr;
 
-            xxf_zero(attr);
+            __zero(attr);
 
             attr.colormap = XCreateColormap( display, rootwin, vis, AllocNone);
 
@@ -394,9 +410,9 @@ namespace linux
 
             //attr.override_redirect = True;
 
-            INFO("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusercreatestruct->m_createstruct.x, pusercreatestruct->m_createstruct.y, pusercreatestruct->m_createstruct.cx, pusercreatestruct->m_createstruct.cy);
+            INFO("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
 
-            Window window = XCreateWindow(display, DefaultRootWindow(display), pusercreatestruct->m_createstruct.x, pusercreatestruct->m_createstruct.y, pusercreatestruct->m_createstruct.cx, pusercreatestruct->m_createstruct.cy,
+            Window window = XCreateWindow(display, DefaultRootWindow(display), pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy,
             0,
             m_iDepth,
             InputOutput,
@@ -415,9 +431,9 @@ namespace linux
    //
    //            auto & uistate = m_puserinteraction->ui_state();
    //
-   //            uistate.m_point.set(pusercreatestruct->m_createstruct.x, pusercreatestruct->m_createstruct.y);
+   //            uistate.m_point.set(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
    //
-   //            uistate.m_size.set(pusercreatestruct->m_createstruct.cx, pusercreatestruct->m_createstruct.cy);
+   //            uistate.m_size.set(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
    //
    //            uistate.m_pointScreen = uistate.m_point;
    //
@@ -425,11 +441,11 @@ namespace linux
    //
             {
 
-               m_puserinteraction->layout().sketch() = ::point(pusercreatestruct->m_createstruct.x, pusercreatestruct->m_createstruct.y);
+               m_puserinteraction->layout().sketch() = ::point(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
 
-               m_puserinteraction->layout().sketch() = ::size(pusercreatestruct->m_createstruct.cx, pusercreatestruct->m_createstruct.cy);
+               m_puserinteraction->layout().sketch() = ::size(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
 
-               m_puserinteraction->layout().sketch().screen_origin() = ::point(pusercreatestruct->m_createstruct.x, pusercreatestruct->m_createstruct.y);
+               m_puserinteraction->layout().sketch().screen_origin() = ::point(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
 
             }
 
@@ -493,6 +509,10 @@ namespace linux
             m_oswindow->set_user_interaction(this);
 
             m_puserinteraction->m_pimpl = this;
+
+//            auto pnode = Node;
+
+//            pnode->node_wrap_window(display, window);
 
             m_puserinteraction->add_ref(OBJ_REF_DBG_P_NOTE(this, "native_create_window"));
 
@@ -600,15 +620,15 @@ namespace linux
 
             m_bComposite = XGetSelectionOwner(m_oswindow->display(), XInternAtom(m_oswindow->display(), "_NET_WM_CM_S0", True));
 
-            if(pusercreatestruct->m_createstruct.lpszName != nullptr && strlen(pusercreatestruct->m_createstruct.lpszName) > 0)
+            if(pusersystem->m_createstruct.lpszName != nullptr && strlen(pusersystem->m_createstruct.lpszName) > 0)
             {
 
-               XStoreName(m_oswindow->display(), m_oswindow->window(), pusercreatestruct->m_createstruct.lpszName);
+               XStoreName(m_oswindow->display(), m_oswindow->window(), pusersystem->m_createstruct.lpszName);
 
             }
 
 
-//            if(pusercreatestruct->m_createstruct.dwExStyle & WS_EX_TOOLWINDOW)
+//            if(pusersystem->m_createstruct.dwExStyle & WS_EX_TOOLWINDOW)
 //            {
 //
 //               m_oswindow->set_window_long_ptr(GWL_EXSTYLE, m_oswindow->get_window_long_ptr(GWL_EXSTYLE) |  WS_EX_TOOLWINDOW);
@@ -617,7 +637,7 @@ namespace linux
 
             _wm_nodecorations(m_oswindow, 0);
 
-            if(pusercreatestruct->m_createstruct.style & WS_VISIBLE)
+            if(pusersystem->m_createstruct.style & WS_VISIBLE)
             {
 
                m_oswindow->map_window();
@@ -644,8 +664,8 @@ namespace linux
                      // initial (XCreateWindow) size and position maybe not be honored.
                      // so requesting the same machine again in a effort to set the "docked/snapped" size and position.
 
-                     //m_oswindow->set_window_pos(zorder_top, pusercreatestruct->m_createstruct.x, pusercreatestruct->m_createstruct.y, pusercreatestruct->m_createstruct.cx, pusercreatestruct->m_createstruct.cy, SWP_SHOWWINDOW);
-                     m_oswindow->set_window_pos(zorder_top, pusercreatestruct->m_createstruct.x, pusercreatestruct->m_createstruct.y, pusercreatestruct->m_createstruct.cx, pusercreatestruct->m_createstruct.cy, 0);
+                     //m_oswindow->set_window_pos(zorder_top, pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, SWP_SHOWWINDOW);
+                     m_oswindow->set_window_pos(zorder_top, pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, 0);
 
                   }
 
@@ -694,7 +714,7 @@ namespace linux
       if(bOk)
       {
 
-         m_puserinteraction->send_message(e_message_create, 0, (LPARAM) &pusercreatestruct->m_createstruct);
+         m_puserinteraction->send_message(e_message_create, 0, (LPARAM) &pusersystem->m_createstruct);
 
          m_puserinteraction->m_ewindowflag |= e_window_flag_window_created;
 
@@ -705,7 +725,7 @@ namespace linux
    }
 
 
-   bool interaction_impl::pre_create_window(::user::create_struct * pusercreatestruct)
+   bool interaction_impl::pre_create_window(::user::system * pusersystem)
    {
 
       return true;
@@ -715,24 +735,28 @@ namespace linux
 
    void interaction_impl::install_message_routing(::channel * pchannel)
    {
+
       //m_pbuffer->InstallMessageHandling(pinterface);
 
       ::user::interaction_impl::last_install_message_routing(pchannel);
+
       ::user::interaction_impl::install_message_routing(pchannel);
 
       if(!m_puserinteraction->m_bMessageWindow)
       {
+
          MESSAGE_LINK(e_message_paint, pchannel, this,&interaction_impl::_001OnPaint);
 //         MESSAGE_LINK(WM_PRINT, pchannel, this,&interaction_impl::_001OnPrint);
+
       }
 
       m_puserinteraction->install_message_routing(pchannel);
+
       MESSAGE_LINK(e_message_create, pchannel, this,&interaction_impl::_001OnCreate);
-
-
 
       if(!m_puserinteraction->m_bMessageWindow)
       {
+
          MESSAGE_LINK(e_message_set_cursor, pchannel, this,&interaction_impl::_001OnSetCursor);
          //MESSAGE_LINK(e_message_erase_background, pchannel, this,&interaction_impl::_001OnEraseBkgnd);
          //MESSAGE_LINK(e_message_size, pchannel, this,&interaction_impl::_001OnSize);
@@ -850,7 +874,7 @@ namespace linux
    void interaction_impl::_001OnMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::size, psize, pmessage);
+      __pointer(::message::size) psize(pmessage);
 
       if (m_bDestroyImplOnly)
       {
@@ -868,7 +892,7 @@ namespace linux
 
       }
 
-      SCAST_PTR(::message::move, pmove, pmessage);
+      __pointer(::message::move) pmove(pmessage);
 
       m_puserinteraction->layout().window() = pmove->m_point;
 
@@ -905,7 +929,7 @@ namespace linux
 
       }
 
-      SCAST_PTR(::message::size, psize, pmessage);
+      __pointer(::message::size) psize(pmessage);
 
 //      m_puserinteraction->window_state3().m_size = psize->m_size;
 //
@@ -926,7 +950,7 @@ namespace linux
    void interaction_impl::_001OnShowWindow(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
 
       if(!m_puserinteraction)
       {
@@ -1144,7 +1168,7 @@ namespace linux
       ::rect rect;
       ((::user::interaction_impl *) this)->m_puserinteraction->get_window_rect(&rect);
       dumpcontext << "\nrect = " << rect;
-      dumpcontext << "\nparent __pointer(::interaction_impl) = " << (void *)((::user::interaction_impl *) this)->GetParent();
+      dumpcontext << "\nparent __pointer(::interaction_impl) = " << (void *)((::user::interaction_impl *) this)->get_parent();
 
 //      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
       //    if (::GetWindowLong(get_handle(), GWL_STYLE) & WS_CHILD)
@@ -1633,7 +1657,7 @@ namespace linux
 
          if(puiFocus != nullptr
                && puiFocus->is_window()
-               && puiFocus->GetTopLevel() != nullptr
+               && puiFocus->get_top_level() != nullptr
                && puiFocus != m_puserinteraction)
          {
 
@@ -1736,7 +1760,7 @@ namespace linux
 //   }
 
 
-//   ::user::interaction * interaction_impl::GetParent()
+//   ::user::interaction * interaction_impl::get_parent()
 //   {
 //
 //      if(!::is_window((oswindow) get_handle()))
@@ -1753,14 +1777,14 @@ namespace linux
 //
 //      }
 //
-//      //return ::linux::interaction_impl::from_handle(::GetParent(get_handle()));
+//      //return ::linux::interaction_impl::from_handle(::get_parent(get_handle()));
 //
 //      return nullptr;
 //
 //   }
 
 
-//   ::user::interaction * interaction_impl::GetTopLevel()
+//   ::user::interaction * interaction_impl::get_top_level()
 //   {
 //
 //      if(!::is_window((oswindow) get_handle()))
@@ -1801,7 +1825,7 @@ namespace linux
    //         oswindow hWndParent = get_handle();
    //         oswindow hWndT;
    //         while ((::GetWindowLong(hWndParent, GWL_STYLE) & WS_CHILD) &&
-   //            (hWndT = ::GetParent(hWndParent)) != nullptr)
+   //            (hWndT = ::get_parent(hWndParent)) != nullptr)
    //         {
    //            hWndParent = hWndT;
    //         }
@@ -1836,7 +1860,7 @@ namespace linux
 //   }
 
    /*
-      __pointer(::user::frame_window) interaction_impl::GetTopLevelFrame()
+      __pointer(::user::frame_window) interaction_impl::top_level_frame()
       {
          if (get_handle() == nullptr) // no oswindow attached
             return nullptr;
@@ -1849,12 +1873,12 @@ namespace linux
          else
             pFrameWnd =  (this);
          if (pFrameWnd == nullptr || !pFrameWnd->is_frame_window())
-            pFrameWnd = GetParentFrame();
+            pFrameWnd = get_parent_frame();
 
          if (pFrameWnd != nullptr)
          {
             __pointer(::user::frame_window) pTemp;
-            while ((pTemp = pFrameWnd->GetParentFrame()) != nullptr)
+            while ((pTemp = pFrameWnd->get_parent_frame()) != nullptr)
                pFrameWnd = pTemp;
          }
          return pFrameWnd;
@@ -2079,11 +2103,11 @@ namespace linux
 //      ASSERT(puiStop == nullptr || puiStop->is_window());
 //      ASSERT(pmessage != nullptr);
 //
-//      SCAST_PTR(::message::base, pbase, pmessage);
+//      __pointer(::message::base) pbase(pmessage);
 //      // walk from the target interaction_impl up to the hWndStop interaction_impl checking
 //      //  if any interaction_impl wants to translate this message
 //
-//      for (__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction; pinteraction != nullptr; pinteraction->GetParent())
+//      for (__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
 //      {
 //
 //         pinteraction->pre_translate_message(pmessage);
@@ -2586,7 +2610,19 @@ namespace linux
 
       }
 
-      m_oswindow->exit_iconify();
+      auto pnode = Node;
+
+      if(pnode)
+      {
+
+         pnode->user_fork([this]()
+                          {
+
+                             m_oswindow->exit_iconify();
+
+                          });
+
+      }
 
    }
 
@@ -2616,7 +2652,9 @@ namespace linux
 
       }
 
-      x11_sync([this]()
+      auto pnode = Node;
+
+      pnode->user_fork([this]()
       {
 
          m_oswindow->exit_zoomed();
@@ -3204,10 +3242,29 @@ namespace linux
    }
 
 
-   void interaction_impl::set_owner(::user::interaction * pOwnerWnd)
+   ::user::primitive * interaction_impl::set_owner(::user::primitive * pprimitiveOwner)
    {
-//      m_puiOwner = pOwnerWnd;
-      m_puserinteraction->SetOwner((pOwnerWnd));
+
+      auto puserinteraction = m_puserinteraction;
+
+      if(::is_null(puserinteraction))
+      {
+
+         return nullptr;
+
+      }
+
+      auto puserinteractionOwner = puserinteraction->m_puserinteractionOwner;
+
+      if(::is_null(puserinteractionOwner))
+      {
+
+         return nullptr;
+
+      }
+
+      return puserinteractionOwner;
+
    }
 
 
@@ -3323,7 +3380,7 @@ namespace linux
 //      __pointer(::user::frame_window) interaction_impl::EnsureParentFrame()
 //      {
 //
-//         __pointer(::user::frame_window) pFrameWnd=GetParentFrame();
+//         __pointer(::user::frame_window) pFrameWnd=get_parent_frame();
 //
 //         ENSURE_VALID(pFrameWnd);
 //
@@ -3590,10 +3647,10 @@ namespace linux
 //
 //      }
 //
-//      if(m_puserinteraction->m_pdescriptor->m_puserinteractionParent != nullptr)
+//      if(m_puserinteraction->m_puserinteractionParent != nullptr)
 //      {
 //
-//         if(!m_puserinteraction->m_pdescriptor->m_puserinteractionParent->is_window_visible())
+//         if(!m_puserinteraction->m_puserinteractionParent->is_window_visible())
 //         {
 //
 //            return false;
@@ -3854,24 +3911,15 @@ namespace linux
    }
 
 
-   ::user::interaction * interaction_impl::GetFocus()
+   ::user::interaction * interaction_impl::get_keyboard_focus()
    {
 
-      oswindow w = ::get_focus();
-
-      if(w == nullptr)
-      {
-
-         return nullptr;
-
-      }
-
-      return w->m_pimpl->m_puserinteraction;
+      return __user_interaction(m_pprimitiveFocus);
 
    }
 
 
-   bool interaction_impl::SetFocus()
+   ::e_status interaction_impl::set_keyboard_focus()
    {
 
       oswindow w = ::set_focus(get_handle());
@@ -4425,7 +4473,7 @@ namespace linux
    void interaction_impl::_001OnSetCursor(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       auto psession = Session;
 
@@ -4484,7 +4532,7 @@ namespace linux
 //   //Default();
 //   }
 //
-//   bool interaction_impl::OnNcCreate(::user::create_struct *)
+//   bool interaction_impl::OnNcCreate(::user::system *)
 //   {
 //
 ////      return Default() != FALSE;
@@ -4728,7 +4776,7 @@ namespace linux
 //
 //      // a popup ::user::interaction_impl cannot be owned by a child ::user::interaction_impl
 //      while (hWnd != nullptr && (::GetWindowLong(hWnd, GWL_STYLE) & WS_CHILD))
-//         hWnd = ::GetParent(hWnd);
+//         hWnd = ::get_parent(hWnd);
 //
 //      // determine toplevel ::user::interaction_impl to disable as well
 //      oswindow hWndTop = hWnd, hWndTemp = hWnd;
@@ -4738,7 +4786,7 @@ namespace linux
 //            break;
 //         else
 //            hWndTop = hWndTemp;
-//         hWndTemp = ::GetParent(hWndTop);
+//         hWndTemp = ::get_parent(hWndTop);
 //      }
 //
 //      __s_throw(todo());
@@ -4771,7 +4819,7 @@ namespace linux
 //
 ////   void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
 ////   {
-////      SCAST_PTR(::message::erase_bkgnd, perasebkgnd, pmessage);
+////      __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
 ////      perasebkgnd->m_bRet = true;
 ////      perasebkgnd->set_result(TRUE);
 ////   }

@@ -1,6 +1,5 @@
 #pragma once
 
-
 template < >
 inline uptr uptr_hash < const char * >(const char * psz)
 {
@@ -43,6 +42,8 @@ inline uptr uptr_hash < const char * >(const char * psz)
 
 }
 
+template < >
+inline uptr uptr_hash < block >(block b);
 
 template < >
 inline uptr uptr_hash < const u16 * >(const u16 * psz)

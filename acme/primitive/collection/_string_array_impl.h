@@ -88,7 +88,7 @@ const Type & string_array_base < Type, RawType >::element_at(::index nIndex) con
 
 
 template < class Type, class RawType >
-string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::operator = (payload varSrc)
+string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::operator = (::payload varSrc)
 {
    this->remove_all();
    if (varSrc.get_type() == ::e_type_stra)

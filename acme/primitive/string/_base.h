@@ -10,9 +10,9 @@ public:
    string_iterator(const CHAR_TYPE * psz) : m_psz(psz) { }
    string_iterator(const CHAR_TYPE * psz, strsize size) : m_psz(psz + size) { }
 
-   ::index operator *(){return ::str::ch::uni_index(m_psz); }
+   ::i32 operator *(){return ::str::ch::uni_index(m_psz); }
 
-   string_iterator &  operator ++()
+   string_iterator & operator ++()
    {
 
       m_psz = ::str::char_next(m_psz);
@@ -47,30 +47,37 @@ class string_base :
 public:
 
 
-   typedef TYPE_CHAR                                              CHAR_TYPE;
+   using CHAR_TYPE = TYPE_CHAR;
    typedef natural_pointer < string_meta_data < TYPE_CHAR > >     POINTER;
    typedef string_array_base < string_base >                           STRINGA;
 
 
    string_base() { }
-   string_base(e_no_init) : POINTER(no_init) { }
+   string_base(enum_no_init) : POINTER(e_no_init) { }
    string_base(nullptr_t) { }
    string_base(for_moving) { }
    string_base(e_get_buffer, strsize len) { get_string_buffer(len); }
-   string_base(string_base && s) : string_base(no_init) { this->m_pdata = s.m_pdata; s.m_pdata = nullptr; }
-   string_base(const ansichar * pszSrc);
-   string_base(const ansichar * pchSrc, strsize len);
-   string_base(const ansichar * pchSrc, strsize len, strsize pos) : string_base(pchSrc + pos, len) { }
-   string_base(const wd16char * pszSrc);
-   string_base(const wd16char * pchSrc, strsize len);
-   string_base(const wd16char * pchSrc, strsize len, strsize pos) : string_base(pchSrc + pos, len) { }
-   string_base(const wd32char * pszSrc);
-   string_base(const wd32char * pchSrc, strsize len);
-   string_base(const wd32char * pchSrc, strsize len, strsize pos) : string_base(pchSrc + pos, len) { }
+   string_base(string_base && s) : string_base(e_no_init) { this->m_pdata = s.m_pdata; s.m_pdata = nullptr; }
+
+   template < has_to_string HAS_TO_STRING >
+   string_base(const HAS_TO_STRING & has_to_string) : string_base(has_to_string.to_string()) { }
+   //template < has_to_string HAS_TO_STRING >
+   //string_base(HAS_TO_STRING& has_to_string) : string_base(has_to_string.to_string()) { }
+
+   string_base(const ansichar * pansichar);
+   string_base(const ansichar * pansichar, strsize len);
+   string_base(const ansichar * pansichar, strsize len, strsize pos) : string_base(pansichar + pos, len) { }
+   string_base(const block & block);
+   string_base(const wd16char * pwd16char);
+   string_base(const wd16char * pwd16char, strsize len);
+   string_base(const wd16char * pwd16char, strsize len, strsize pos) : string_base(pwd16char + pos, len) { }
+   string_base(const wd32char * pwd32char);
+   string_base(const wd32char * pwd32char, strsize len);
+   string_base(const wd32char * pwd32char, strsize len, strsize pos) : string_base(pwd32char + pos, len) { }
 #ifdef WINDOWS
-   string_base(const USHORT * pszSrc) : string_base((const wd16char * )pszSrc) {}
+   explicit string_base(const USHORT * pszSrc) : string_base((const wd16char * )pszSrc) {}
 #endif
-   string_base(const ansistring & ansistr);
+   string_base(const ansistring & wd32str);
    string_base(const wd16string & wd16str);
    string_base(const wd32string & wd32str);
    string_base(const natural_ansistring& ansistr);
@@ -85,9 +92,12 @@ public:
    string_base(Object ^ o);
 #endif
 
-   string_base(const payload& payload);
-   string_base(const property& property);
-   string_base(const id& id);
+   //string_base(const ::payload & payload);
+   //string_base(const property & property);
+   //string_base(const id & id);
+   //string_base(::payload & payload);
+   //string_base(property & property);
+   //string_base(id & id);
 
 
    inline const string_base & to_string() const { return *this; }
@@ -125,10 +135,9 @@ public:
    auto to_string_base() const { return *this; }
    const auto & to_string_base() { return *this; }
 
-   //string_base & operator = (const natural_pointer < string_meta_data < TYPE_CHAR > > & p) { POINTER::assign_natural_pointer(p); return *this; }
-   string_base & operator = (const ansichar * pszSrc);
-   string_base & operator = (const wd16char * pszSrc);
-   string_base & operator = (const wd32char * pszSrc);
+   string_base & operator = (const ansichar * pansichar);
+   string_base & operator = (const wd16char * pwd16char);
+   string_base & operator = (const wd32char * pwd32char);
    string_base & operator = (const natural_ansistring & ansistr);
    string_base & operator = (const natural_wd16string & wd16str);
    string_base & operator = (const natural_wd32string & wd32str);
@@ -566,14 +575,18 @@ public:
    strsize replace(CHAR_TYPE chOld, CHAR_TYPE chNew, strsize iStart = 0);
 
    // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   strsize replace(const CHAR_TYPE* pszOld, const CHAR_TYPE* pszNew, strsize iStart = 0);
+   template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+   strsize replace(PCHAR1 pchar1, PCHAR2 pchar2, strsize iStart = 0);
 
-   strsize replace_ci(const CHAR_TYPE* pszOld, const CHAR_TYPE* pszNew, strsize iStart = 0);
+   template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+   strsize replace_ci(PCHAR1 pchar1, PCHAR2 pchar2, strsize iStart = 0);
 
    // replace all occurrences of string_base 'pszOld' with string_base 'pszNew'
-   ::count replace_count(const CHAR_TYPE* pszOld, const CHAR_TYPE* pszNew, strsize iStart = 0);
+   template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+   ::count replace_count(PCHAR1 pchar1, PCHAR2 pchar2, strsize iStart = 0);
 
-   ::count replace_ci_count(const CHAR_TYPE* pszOld, const CHAR_TYPE* pszNew, strsize iStart = 0);
+   template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR > PCHAR2 >
+   ::count replace_ci_count(PCHAR1 pchar1, PCHAR2 pchar2, strsize iStart = 0);
 
    //::count utf8_replace(const CHAR_TYPE* pszOld, const CHAR_TYPE* pszNew, strsize iStart = 0);
 
@@ -583,7 +596,8 @@ public:
    // remove all occurrences of character 'chRemove'
    strsize remove(CHAR_TYPE chRemove);
 
-   string_base Tokenize(const CHAR_TYPE* pszTokens, strsize& iStart) const;
+   template < pointer_castable < TYPE_CHAR > PCHAR >
+   string_base Tokenize(PCHAR pszTokens, strsize& iStart) const;
    // find routines
 
    // find the first occurrence of character 'ch', starting at index 'iStart'
@@ -782,7 +796,8 @@ public:
    string_base& trim(CHAR_TYPE chTarget);
 
    // remove all leading and trailing occurrences of any of the characters in the string_base 'pszTargets'
-   string_base& trim(const CHAR_TYPE* pszTargets);
+   template < pointer_castable < TYPE_CHAR > PCHAR >
+   string_base & trim(PCHAR pcharTargets);
 
    // trimming anything (either side)
 
@@ -790,13 +805,15 @@ public:
    string_base& trim_right(CHAR_TYPE chTarget);
 
    // remove all trailing occurrences of any of the characters in string_base 'pszTargets'
-   string_base& trim_right(const CHAR_TYPE* pszTargets);
+   template < pointer_castable < TYPE_CHAR > PCHAR >
+   string_base & trim_right(PCHAR pcharTargets);
 
    // remove all leading occurrences of character 'chTarget'
    string_base& trim_left(CHAR_TYPE chTarget);
 
    // remove all leading occurrences of any of the characters in string_base 'pszTargets'
-   string_base& trim_left(const CHAR_TYPE* pszTargets);
+   template < pointer_castable < TYPE_CHAR > PCHAR >
+   string_base& trim_left(PCHAR pchTargets);
 
 
    // remove all trailing whitespace
@@ -891,10 +908,10 @@ public:
 
 #endif
 
-   // set the string_base to the value of environment payload 'pszVar'
+   // set the string_base to the value of environment ::payload 'pszVar'
    bool get_environment_variable(const CHAR_TYPE* pszVar);
 
-   // set the string_base to the value of environment payload 'pszVar'
+   // set the string_base to the value of environment ::payload 'pszVar'
    bool getenv(const CHAR_TYPE* pszVar);
 
    // Load the string_base from resource 'nID'

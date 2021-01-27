@@ -12,6 +12,7 @@
 #include "aura/const/idpool.h"
 #ifdef _UWP
 #include "aura/node/uwp/directx_application.h"
+#include "aura/os/windows_common/draw2d_direct2d_global.h"
 #endif
 
 int GetMainScreenRect(LPRECT32 lprect);
@@ -39,7 +40,7 @@ extern "C"
 //void enum_display_monitors(::aura::system * psystem);
 
 #ifdef WINDOWS_DESKTOP
-CLASS_DECL_AURA ::user::interaction * create_system_message_window(::layered * pobjectContext);
+CLASS_DECL_AURA __pointer(::user::interaction) create_system_message_window(::layered * pobjectContext);
 #endif
 
 
@@ -109,6 +110,7 @@ namespace aura
    system::system()
    {
 
+
       m_paurasystem = this;
 
       m_bAvoidFirstResponder = false;
@@ -177,8 +179,6 @@ namespace aura
 
       g_pmutexImage = new ::mutex();
 
-      m_bThreadToolsForIncreasedFps = false;
-
 #ifndef WINDOWS
 
       exception::translator::attach();
@@ -244,7 +244,7 @@ namespace aura
   
       m_pDraw2dFactoryExchange = nullptr;
 
-      create_factory < ::user::control_descriptor >();
+      //create_factory < ::user::control_descriptor >();
 
       create_factory < ::draw2d::icon >();
 
@@ -274,6 +274,23 @@ namespace aura
    {
 
       return "_std/_std";
+
+   }
+
+
+   ::e_status system::run_system()
+   {
+
+      auto estatus = ::apex::system::run_system();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -382,7 +399,12 @@ namespace aura
 
       ::acme::del(g_pmutexImage);
 
-      os_post_quit();
+      if(m_pnode)
+      {
+
+         m_pnode->os_post_quit();
+
+      }
 
    }
 
@@ -970,11 +992,11 @@ namespace aura
 
       ::acme::profiler::initialize();
 
-#ifdef LINUX
-
-      ::user::g_defer_init();
-
-#endif // LINUX
+//#ifdef LINUX
+//
+//      ::user::g_defer_init();
+//
+//#endif // LINUX
 
       INFO("success");
 
@@ -1154,7 +1176,7 @@ namespace aura
       if (has_property("draw2d"))
       {
 
-         strLibrary = value("draw2d");
+         strLibrary = payload("draw2d");
 
          //strDraw2d.trim();
 
@@ -1296,7 +1318,9 @@ namespace aura
       if (has_property("imaging"))
       {
 
-         string strImaging = value("imaging");
+         string strImaging;
+         
+         strImaging = payload("imaging");
 
          strImaging.trim();
 
@@ -3147,7 +3171,7 @@ namespace aura
    }
 
 
-   bool system::on_open_file(payload varFile, string strExtra)
+   bool system::on_open_file(::payload varFile, string strExtra)
    {
 
       auto psession = Session;
@@ -4750,7 +4774,7 @@ namespace aura
    void system::open_profile_link(string strUrl, string strProfile, string strTarget)
    {
 
-      fork([=]()
+      fork([this, strUrl, strProfile, strTarget]()
       {
 
          browser(strUrl, "", strProfile, strTarget);
@@ -4763,7 +4787,7 @@ namespace aura
    void system::open_url(string strUrl, string strProfile, string strTarget)
    {
 
-      fork([=]()
+      fork([this, strUrl, strProfile, strTarget]()
          {
 
             browser(strUrl, "", strProfile, strTarget);
@@ -4777,7 +4801,7 @@ namespace aura
    void system::open_link(string strUrl, string strProfile, string strTarget)
    {
 
-      fork([=]()
+      fork([this, strUrl, strProfile, strTarget]()
          {
 
             browser(strUrl, "", strProfile, strTarget);
@@ -5981,7 +6005,9 @@ namespace aura
 
       }
 
-      string strLocation = set["get_headers"]["Location"];
+      string strLocation;
+      
+      strLocation = set["get_headers"]["Location"];
 
       if (strLocation.has_char())
       {

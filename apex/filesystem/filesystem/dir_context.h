@@ -181,7 +181,7 @@
       //virtual bool  is(const ::file::path & pcsz);
 
       //virtual bool  is(const string & str);
-      //virtual bool  is(const payload & payload);
+      //virtual bool  is(const ::payload & payload);
       //virtual bool  is_inside(const ::file::path & pcszDir, const ::file::path & lpcszPath);
 
       //virtual bool  is_inside_time(const ::file::path & pcsz);

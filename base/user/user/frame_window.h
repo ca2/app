@@ -137,18 +137,18 @@ namespace user
 
       bool LoadAccelTable(const char * pszResourceName);
 
-      virtual bool create_window(const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect = nullptr, ::user::interaction * puiParent = nullptr, const char * pszMenuName = nullptr, u32 dwExStyle = 0, ::create * pcreate = nullptr);
+      //virtual bool create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect = nullptr, ::user::interaction * puiParent = nullptr, const char * pszMenuName = nullptr, u32 dwExStyle = 0, ::create * pcreate = nullptr);
 
 
       virtual bool LoadFrame(const char * pszMatter,
                              u32 dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE,
                              ::user::interaction * puiParent = nullptr,
-                             ::create * pcreate = nullptr);
+                             ::user::system * pcreate = nullptr);
 
-      virtual ::user::document * GetActiveDocument();
+      virtual ::user::document * get_active_document();
 
-      virtual ::user::impact * GetActiveView() const override;           // active ::user::impact or nullptr
-      virtual void SetActiveView(::user::impact * pViewNew, bool bNotify = TRUE);
+      virtual ::user::impact * get_active_view() const override;           // active ::user::impact or nullptr
+      virtual void set_active_view(::user::impact * pViewNew, bool bNotify = TRUE) override;
       // active ::user::impact or nullptr, bNotify == FALSE if focus should not be set
 
       // Active frame (for frames within frames -- MDI)
@@ -188,7 +188,7 @@ namespace user
       enum BorderCmd { borderGet = 1, borderRequest = 2, borderSet = 3 };
       virtual bool NegotiateBorderSpace(::u32 nBorderCmd, RECT32 * pRectBorder);
 
-      virtual bool on_create_client(::user::create_struct * pcs, ::create * pcreate);
+      virtual bool on_create_client(::user::system * pusersystem);
 
       void OnContextHelp();   // for Shift+F1 help
       void OnUpdateControlBarMenu(::user::command* pCmdUI);
@@ -221,10 +221,10 @@ namespace user
 
       void UpdateFrameTitleForDocument(const char * pszDocName);
 
-      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
+      virtual bool pre_create_window(::user::system * pusersystem) override;
       //virtual bool OnCommand(WPARAM wParam, LPARAM lParam);
       virtual void PostNcDestroy() override;   // default to delete this.
-      i32 OnCreateHelper(::user::create_struct * pcs, ::create * pcreate);
+      i32 OnCreateHelper(::user::system * pusersystem);
 
       //void BringToTop(::e_display edisplay) override;
       // bring interaction_impl to top for SW_ commands which affect z-order

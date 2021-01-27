@@ -1,5 +1,6 @@
 ﻿#include "framework.h"
 #include "aura/graphics/draw2d/common.h"
+#include "aura/os/windows_common/draw2d_direct2d_global.h"
 #include "_uwp.h"
 #include <shlobj.h>
 

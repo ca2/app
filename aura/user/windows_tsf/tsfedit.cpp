@@ -1053,7 +1053,7 @@ void edit_window::_GetDisplayAttributes(void)
                 while((hr = pEnumRanges->Next(1, &pPropRange, &uFetched)) == S_OK && uFetched) 
                 {
                     //get the attribute property for the property range
-                    VARIANT payload;
+                    VARIANT ::payload;
 
                     VariantInit(&payload);
 
@@ -1186,7 +1186,7 @@ void edit_window::_GetTextOwner(void)
                 while((hr = pEnumRanges->Next(1, &pPropRange, &uFetched)) == S_OK && uFetched) 
                 {
                     //get the attribute property for the property range
-                    VARIANT payload;
+                    VARIANT ::payload;
 
                     VariantInit(&payload);
 
@@ -1297,7 +1297,7 @@ void edit_window::_GetReadingText(void)
                 while((hr = pEnumRanges->Next(1, &pPropRange, &uFetched)) == S_OK && uFetched) 
                 {
                     //get the attribute property for the property range
-                    VARIANT payload;
+                    VARIANT ::payload;
 
                     VariantInit(&payload);
 
@@ -1406,7 +1406,7 @@ void edit_window::_GetComposing(void)
                 while((hr = pEnumRanges->Next(1, &pPropRange, &uFetched)) == S_OK && uFetched) 
                 {
                     //get the attribute property for the property range
-                    VARIANT payload;
+                    VARIANT ::payload;
 
                     VariantInit(&payload);
 

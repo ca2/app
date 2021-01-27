@@ -31,13 +31,13 @@ namespace user
    {
       if(is_window())
          return;
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
       switch(pbase->m_id)
       {
       case e_message_mouse_move:
       {
          
-         if(ptool->BaseToolTipGetWnd()->GetTopLevel() == pbase->userinteraction())
+         if(ptool->BaseToolTipGetWnd()->get_top_level() == pbase->userinteraction())
          {
             
             auto psession = Session;
@@ -333,18 +333,18 @@ namespace user
    }
 
 
-   bool tool_tip_window::create(::user::interaction * puserinteraction, const id & id)
-   {
-      
-      m_puserinteraction = puserinteraction;
+   //bool tool_tip_window::create(::user::interaction * puserinteraction, const id & id)
+   //{
+   //   
+   //   m_puserinteraction = puserinteraction;
 
-      m_font->create_point_font(os_font_name(e_font_sans), 10.0);
+   //   m_font->create_point_font(os_font_name(e_font_sans), 10.0);
 
-      auto pcreatestruct = __new(::user::create_struct);
+   //   auto pusersystem = __new(::user::system);
 
-      return create_window_ex(pcreatestruct, nullptr, id) != 0;
+   //   return create_window_ex(pusersystem, nullptr, id) != 0;
 
-   }
+   //}
 
    ///////////////////////////////////////////////////////////
    //

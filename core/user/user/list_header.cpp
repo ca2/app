@@ -426,7 +426,7 @@ namespace user
 
    void list_header::_001OnLButtonDown(::message::message * pmessage)
    {
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
       auto pointCursor = pmouse->m_point;
       _001ScreenToClient(&pointCursor);
       if(hit_test(pointCursor, m_eelementLButtonDown, m_iItemLButtonDown))
@@ -439,7 +439,7 @@ namespace user
 
    void list_header::_001OnLButtonUp(::message::message * pmessage)
    {
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
       list * plist = m_plistctrlinterface;
       auto pointCursor = pmouse->m_point;
       _001ScreenToClient(&pointCursor);
@@ -495,7 +495,7 @@ namespace user
 
    void list_header::_001OnMouseMove(::message::message * pmessage)
    {
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
       auto pointCursor = pmouse->m_point;
       _001ScreenToClient(&pointCursor);
       list * plist = m_plistctrlinterface;
@@ -558,7 +558,7 @@ namespace user
 
    void list_header::_001OnLButtonDblClk(::message::message * pmessage)
    {
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
       auto pointCursor = pmouse->m_point;
       _001ScreenToClient(&pointCursor);
       list * plist = m_plistctrlinterface;
@@ -644,15 +644,16 @@ namespace user
                _001ScreenToClient(rectFocus);
 
                rectFocus.bottom++;
+
                rectFocus.right++;
 
-               m_pshapeaClip->add_item(__new(rect_shape(rectIntersect)));
+               m_pshapeaClip->add_item(__new(rectd_shape(rectIntersect)));
 
                m_pshapeaClip->add_item(__new(intersect_clip_shape));
 
                i++;
 
-               pinteraction = pinteraction->GetParent();
+               pinteraction = pinteraction->get_parent();
 
             }
             
@@ -683,9 +684,9 @@ namespace user
 
       ::rect rectUpdate(rectClient);
 
-      ::rect rectClipBox;
+      ::rectd rectClipBox;
 
-      pgraphics->GetClipBox(rectClipBox);
+      pgraphics->get_clip_box(&rectClipBox);
 
       rectClipBox.right--;
 
@@ -747,12 +748,12 @@ namespace user
    ::point list_header::get_parent_viewport_offset() const
    {
 
-      __pointer(::user::interaction) puser = GetParent();
+      __pointer(::user::interaction) puser = get_parent();
 
       if(puser.is_null())
          return point(0,0);
 
-      puser = puser->GetParent();
+      puser = puser->get_parent();
 
       if(puser.is_null())
          return point(0,0);

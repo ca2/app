@@ -24,13 +24,18 @@ namespace user
 
       m_bRedraw = false;
       m_bUpdateBuffer = false;
+      m_bUpdateScreen = false;
       m_bUpdateWindow = false;
 
       m_bAuraMessageQueue = true;
 
       m_bUpdatingScreen = false;
 
+#ifdef _UWP
+      m_bExclusiveMode = true;
+#else
       m_bExclusiveMode = false;
+#endif
 
       m_bVisualUpdated = true;
 
@@ -90,7 +95,7 @@ namespace user
       m_routineUpdateScreen = __routine([this]()
          {
 
-            if (!m_bitFinishing && !m_bitSetFinish)
+            if (!m_bFinishing && !m_bSetFinish)
             {
 
                update_screen();
@@ -134,7 +139,13 @@ namespace user
 
    }
 
+   
+   ::e_status prodevian::do_task()
+   {
 
+      return ::thread::do_task();
+
+   }
 
 
    ::e_status prodevian::run()
@@ -524,7 +535,7 @@ bool prodevian::prodevian_iteration()
 
    }
 
-   bool bWait = (m_bUpdateWindow && !bStartWindowVisual) || bRedraw;
+   bool bWait = ((m_bUpdateWindow || m_bUpdateScreen) && !bStartWindowVisual) || bRedraw;
 
    if (bHasProdevian || (bWait && ((m_nanosNow - m_nanosLastFrame) < m_nanosPostRedraw / 2)))
    {
@@ -709,7 +720,7 @@ bool prodevian::prodevian_iteration()
 
    bool bWindowsApplyVisual = true;
 
-   if (m_bUpdateWindow && (bWindowsApplyVisual || !bStartWindowVisual))
+   if (m_bUpdateScreen && (bWindowsApplyVisual || !bStartWindowVisual))
    {
 
       prodevian_update_screen();
@@ -780,9 +791,11 @@ bool prodevian::prodevian_iteration()
 
       m_bUpdateBuffer = false;
 
+      m_bUpdateScreen = false;
+
       m_bUpdateWindow = false;
 
-      update_buffer(m_bUpdateBuffer, m_bUpdateWindow, bRedraw);
+      update_buffer(m_bUpdateBuffer, m_bUpdateScreen, m_bUpdateWindow, bRedraw);
 
       m_bUpdateBufferUpdateWindowPending = m_bUpdateWindow;
 
@@ -826,7 +839,7 @@ bool prodevian::prodevian_iteration()
    }
 
 
-   void prodevian::update_buffer(bool & bUpdateBuffer, bool & bUpdateWindow, bool bForce)
+   void prodevian::update_buffer(bool & bUpdateBuffer, bool & bUpdateScreen, bool & bUpdateWindow, bool bForce)
    {
 
       try
@@ -900,9 +913,9 @@ bool prodevian::prodevian_iteration()
 
             sl.unlock();
 
-            ::draw2d::graphics_pointer pgraphicsNull;
+            ::draw2d::graphics_pointer pgraphicsNull(e_create);
 
-            //m_puserinteraction->update_modified();
+            pgraphicsNull->CreateCompatibleDC(nullptr);
 
             m_puserinteraction->sketch_to_design(pgraphicsNull, bUpdateBuffer, bUpdateWindow);
 
@@ -998,10 +1011,10 @@ bool prodevian::prodevian_iteration()
 
          }
 
-         if (m_puserinteraction->m_bitFinishing
-            || m_puserinteraction->m_bitSetFinish
-            || m_pimpl->m_bitFinishing
-            || m_pimpl->m_bitSetFinish)
+         if (m_puserinteraction->m_bFinishing
+            || m_puserinteraction->m_bSetFinish
+            || m_pimpl->m_bFinishing
+            || m_pimpl->m_bSetFinish)
          {
 
             bDraw = false;
@@ -1022,6 +1035,8 @@ bool prodevian::prodevian_iteration()
             m_pimpl->_001UpdateBuffer();
 
             bUpdateBuffer = true;
+
+            bUpdateScreen = true;
 
             m_millisAfterDrawing.Now();
 

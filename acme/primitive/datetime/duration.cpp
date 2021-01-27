@@ -9,20 +9,20 @@
 void duration::normalize()
 {
 
-   m_secs.m_iSeconds += m_nanos.m_iNanoseconds / SECOND_NANOS;
+   m_secs.m_i += m_nanos.m_i / SECOND_NANOS;
 
-   m_nanos.m_iNanoseconds %= SECOND_NANOS;
+   m_nanos.m_i %= SECOND_NANOS;
 
-   int iSecondSign = ::papaya::sgn(m_secs.m_iSeconds);
+   int iSecondSign = ::papaya::sgn(m_secs.m_i);
 
-   int iNanosecondsSign = ::papaya::sgn(m_nanos.m_iNanoseconds);
+   int iNanosecondsSign = ::papaya::sgn(m_nanos.m_i);
 
    if (iSecondSign == -iNanosecondsSign && iSecondSign != 0)
    {
 
-      m_secs.m_iSeconds -= iSecondSign;
+      m_secs.m_i -= iSecondSign;
 
-      m_nanos.m_iNanoseconds += iSecondSign * SECOND_NANOS;
+      m_nanos.m_i += iSecondSign * SECOND_NANOS;
 
    }
 
@@ -35,7 +35,7 @@ void duration::normalize()
 //duration duration::operator - (const duration & duration) const
 //{
 //
-//   return ::duration(m_iSeconds - duration.m_iSeconds, m_iNanoseconds - duration.m_iNanoseconds);
+//   return ::duration(m_i - duration.m_i, m_i - duration.m_i);
 //
 //}
 //
@@ -43,30 +43,10 @@ void duration::normalize()
 //duration duration::operator + (const duration & duration) const
 //{
 //
-//   return ::duration(m_iSeconds + duration.m_iSeconds, m_iNanoseconds + duration.m_iNanoseconds);
+//   return ::duration(m_i + duration.m_i, m_i + duration.m_i);
 //
 //}
 
-
-nanosecond::nanosecond(long double d) :
-   duration((i64)(d / (1000.0 * 1000.0 * 1000.0)), (i64)fmod(d, 1000.0 * 1000.0 * 1000.0))
-{
-
-}
-
-
-microsecond::microsecond(long double d) :
-   duration(((i64)(d / (1000.0 * 1000.0)), (i64)fmod(d * 1000.0, 1000.0 * 1000.0 * 1000.0)))
-{
-
-}
-
-
-millisecond::millisecond(long double d) :
-   duration((i64)(d / 1000.0), (i64)fmod(d * 1000 * 1000.0, 1000.0 * 1000.0 * 1000.0))
-{
-
-}
 
 
 
@@ -177,19 +157,19 @@ void duration::fset(long double d)
 void duration::sleep() const
 {
 
-   if (m_secs.m_iSeconds >= 20)
+   if (m_secs.m_i >= 20)
    {
 
       ::sleep(m_secs);
 
    }
-   else if (m_secs.m_iSeconds > 0 || m_nanos.m_iNanoseconds > 20'000'000)
+   else if (m_secs.m_i > 0 || m_nanos.m_i > 20'000'000)
    {
 
       ::sleep(millis());
 
    }
-   else if (m_nanos.m_iNanoseconds > 20'000)
+   else if (m_nanos.m_i > 20'000)
    {
 
       ::sleep(micros());

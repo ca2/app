@@ -234,7 +234,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName, LPSECUR
 
 #ifdef ANDROID
 
-         path = ::dir::system() / "payload/tmp/ca2/lock/mutex" / string(pstrName);
+         path = ::dir::system() / "::payload/tmp/ca2/lock/mutex" / string(pstrName);
 
 #else
 
@@ -313,7 +313,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName, LPSECUR
       if(str::begins_ci(pstrName, "Global"))
       {
 
-         path = "/payload/lock/ca2/mutex/named";
+         path = "/::payload/lock/ca2/mutex/named";
 
       }
       else
@@ -655,9 +655,9 @@ sync_result mutex::wait(const duration & duration)
 
       timespec delay;
 
-      delay.tv_sec = duration.m_iSeconds;
+      delay.tv_sec = duration.m_i;
 
-      delay.tv_nsec = duration.m_iNanoseconds;
+      delay.tv_nsec = duration.m_i;
 
       i32 ret = sem_timedwait(m_psem, &delay);
 
@@ -811,9 +811,9 @@ sync_result mutex::wait(const duration & duration)
 
       timespec timeout;
 
-      timeout.tv_sec = duration.m_iSeconds;
+      timeout.tv_sec = duration.m_i;
 
-      timeout.tv_nsec = duration.m_iNanoseconds;
+      timeout.tv_nsec = duration.m_i;
 
       struct sembuf operation[1] ;
 
@@ -915,15 +915,15 @@ sync_result mutex::wait(const duration & duration)
 
             ::duration d;
 
-            d.m_secs = abs_time.tv_sec + duration.m_secs.m_iSeconds;
+            d.m_secs = abs_time.tv_sec + duration.m_secs.m_i;
 
-            d.m_nanos = abs_time.tv_nsec + duration.m_nanos.m_iNanoseconds;
+            d.m_nanos = abs_time.tv_nsec + duration.m_nanos.m_i;
 
             d.normalize();
 
-            abs_time.tv_sec = d.m_secs.m_iSeconds;
+            abs_time.tv_sec = d.m_secs.m_i;
 
-            abs_time.tv_nsec = d.m_nanos.m_iNanoseconds;
+            abs_time.tv_nsec = d.m_nanos.m_i;
 
             bFirst = false;
 
@@ -989,15 +989,15 @@ sync_result mutex::wait(const duration & duration)
 
       ::duration d;
 
-      d.m_iSeconds = abs_time.tv_sec + duration.m_iSeconds;
+      d.m_i = abs_time.tv_sec + duration.m_i;
 
-      d.m_iNanoseconds = abs_time.tv_nsec + duration.m_iNanoseconds;
+      d.m_i = abs_time.tv_nsec + duration.m_i;
 
       d.normalize();
 
-      abs_time.tv_sec = d.m_iSeconds;
+      abs_time.tv_sec = d.m_i;
 
-      abs_time.tv_nsec = d.m_iNanoseconds;
+      abs_time.tv_nsec = d.m_i;
 
       int rc = pthread_mutex_timedlock (&m_mutex, &abs_time);
 
@@ -1543,7 +1543,7 @@ __pointer(mutex) open_mutex(const char * lpszName)
    if (str::begins_ci(lpszName, "Global"))
    {
 
-      path = "/payload/tmp/ca2/lock/mutex/named";
+      path = "/::payload/tmp/ca2/lock/mutex/named";
 
    }
    else
@@ -1661,14 +1661,14 @@ CLASS_DECL_ACME mutex * get_ui_destroyed_mutex()
 null_dacl_security_attributes::null_dacl_security_attributes()
 {
 
-   xxf_zero(m_securityattributes);
+   __zero(m_securityattributes);
 
    m_securityattributes.nLength = sizeof(m_securityattributes);
 
    m_securityattributes.bInheritHandle = FALSE; // matter uninheritable
 
    // declare and initialize a security descriptor
-   xxf_zero(m_securitydescriptor);
+   __zero(m_securitydescriptor);
 
    bool bInitOk = InitializeSecurityDescriptor(&m_securitydescriptor,SECURITY_DESCRIPTOR_REVISION) != FALSE;
 

@@ -86,7 +86,7 @@ namespace simpledb
 
    void socket_thread::OnApp(::message::message * pmessage)
    {
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
       if(pbase->m_wparam == 0)
       {
 

@@ -37,7 +37,7 @@ namespace fs
 
 
       virtual bool file_exists(const ::file::path & pszPath);
-      virtual payload file_length(const ::file::path & pszPath);
+      virtual ::payload file_length(const ::file::path & pszPath);
 
 
       virtual bool file_move(const ::file::path & pszDst,const ::file::path & pszSrc);

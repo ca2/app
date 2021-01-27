@@ -24,8 +24,6 @@ public:
    ::draw2d::enum_alpha_mode        m_ealphamode;
    bool                             m_bOwn;
    ::draw2d::e_mipmap               m_emipmap;
-   bool                             m_bColorMatrix;
-   ::draw2d::color_matrix           m_colormatrix;
    index                            m_iFrame;
    int                              m_iExifOrientation;
    bool                             m_bCreateHelperMaps;
@@ -40,7 +38,6 @@ public:
 
       //m_uImageFlags = DEFAULT_CREATE_IMAGE_FLAGS;
       m_dSpeed = 1.0;
-      m_bColorMatrix = false;
       m_dIsotropicRate = 1.0;
       m_bMapped = false;
       m_bReduced = false;

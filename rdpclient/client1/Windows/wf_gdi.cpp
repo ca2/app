@@ -645,7 +645,7 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //		}
 //		if (wfc->drawing == wfc->primary)
 //			wf_invalidate_region(wfc, wfc->client_x, wfc->client_y, wfc->client_width, wfc->client_height);
-//		Polyline(wfc->drawing->hdc, pts, numPoints);
+//		polyline(wfc->drawing->hdc, pts, numPoints);
 //		free(pts);
 //	}
 //
@@ -793,7 +793,7 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //	primary->MultiOpaqueRect = (pMultiOpaqueRect) wf_gdi_multi_opaque_rect;
 //	primary->MultiDrawNineGrid = nullptr;
 //	primary->LineTo = (pLineTo) wf_gdi_line_to;
-//	primary->Polyline = (pPolyline) wf_gdi_polyline;
+//	primary->polyline = (pPolyline) wf_gdi_polyline;
 //	primary->MemBlt = (pMemBlt) wf_gdi_memblt;
 //	primary->Mem3Blt = nullptr;
 //	primary->SaveBitmap = nullptr;

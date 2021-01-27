@@ -127,7 +127,7 @@ namespace userex
 
       }
 
-      __pointer(::simple_frame_window) pframewindow = pimpact->GetParentFrame();
+      __pointer(::simple_frame_window) pframewindow = pimpact->get_parent_frame();
 
       if (pframewindow.is_null())
       {
@@ -242,7 +242,7 @@ namespace userex
 
             __keep(pframewindow->m_bLockWindowUpdate);
 
-            __keep(ptabview->GetParentFrame()->m_bLockWindowUpdate);
+            __keep(ptabview->get_parent_frame()->m_bLockWindowUpdate);
 
             pframewindow->m_bSizeEnable = false;
 
@@ -262,8 +262,8 @@ namespace userex
             INFO("");
             INFO("");
 
-            //::user::impact_data* pimpactdata = ptabview->host_impact(id, strTitle, pframewindow, pframewindow->GetActiveDocument());
-            ptabview->host_impact(id, strTitle, pframewindow, pframewindow->GetActiveDocument());
+            //::user::impact_data* pimpactdata = ptabview->host_impact(id, strTitle, pframewindow, pframewindow->get_active_document());
+            ptabview->host_impact(id, strTitle, pframewindow, pframewindow->get_active_document());
 
 
             INFO("-------------------------------------------------------------------");
@@ -315,7 +315,7 @@ namespace userex
             INFO("");
             INFO("");
 
-            ptabview->GetParentFrame()->display();
+            ptabview->get_parent_frame()->display();
 
             set_need_layout();
 
@@ -350,7 +350,7 @@ namespace userex
          if (!(pframewindow->m_ewindowflag & e_window_flag_window_created))
          {
 
-            pframewindow->m_pdescriptor->m_puserinteractionParent = nullptr;
+            pframewindow->m_puserinteractionParent = nullptr;
 
             return true;
 
@@ -379,7 +379,7 @@ namespace userex
 
                   __pointer(::userex::pane_tab_view) ptabview = pdocument->get_typed_view < ::userex::pane_tab_view >();
 
-                  pframewindowTab = ptabview->GetParentFrame();
+                  pframewindowTab = ptabview->get_parent_frame();
 
                   if (pframewindowTab)
                   {
@@ -400,7 +400,7 @@ namespace userex
 
                __keep_on(&pframewindow->m_uiUserInteractionFlags, ::user::interaction_wfi_up_down_loading);
 
-               pframewindow->SetParent(nullptr);
+               pframewindow->set_parent(nullptr);
 
                pframewindow->on_frame_position();
 
@@ -421,9 +421,9 @@ namespace userex
                      if (ptabview.is_set() && ptabview->get_tab_count() <= 0)
                      {
 
-                        ptabview->GetParentFrame()->hide();
+                        ptabview->get_parent_frame()->hide();
 
-                        ptabview->GetParentFrame()->set_need_redraw();
+                        ptabview->get_parent_frame()->set_need_redraw();
 
                      }
 
@@ -575,7 +575,7 @@ namespace userex
 
       }
 
-      m_mapframe[idView] = dynamic_cast < simple_frame_window * > (pview->GetParentFrame());
+      m_mapframe[idView] = dynamic_cast < simple_frame_window * > (pview->get_parent_frame());
 
       m_mapframe[idView]->display(e_display_none);
 

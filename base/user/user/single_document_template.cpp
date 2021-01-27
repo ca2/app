@@ -124,7 +124,7 @@ namespace user
 
          ::user::impact * pimpact = pdocument->get_view();
 
-         pFrame = pimpact->GetParentFrame();
+         pFrame = pimpact->get_parent_frame();
 
          ASSERT(pFrame != nullptr);
 
@@ -272,7 +272,7 @@ namespace user
       if(!pcreate->m_bHold)
       {
 
-         pFrame->value("should_not_be_automatically_holded_on_initial_update_frame") = true;
+         pFrame->payload("should_not_be_automatically_holded_on_initial_update_frame") = true;
 
       }
 

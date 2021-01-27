@@ -25,13 +25,12 @@ public:
    draw2d::fastblur                                m_blur;
    ::image_pointer                                 m_pimageBlur;
    ::user::enum_translucency                       m_etranslucencyFrame;
-   map < ::id, const ::id &, __composite(::user::toolbar) >
-                                                   m_toolbarmap;
+   id_map < __composite(::user::toolbar) >         m_toolbarmap;
    ::image_pointer                                 m_pimageAlpha;
    ::database::key                                 m_datakeyFrame;
    __pointer(::draw2d::icon)                       m_piconNotify;
    __pointer(::user::notify_icon)                  m_pnotifyicon;
-   payload                                         m_varFrame;
+   ::payload                                         m_varFrame;
 
 
    simple_frame_window();
@@ -57,8 +56,8 @@ public:
    virtual bool would_display_notify_icon();
 
 
-   using ::experience::frame_window::create_window;
-   virtual bool create_window(const char * pszClassName, const char * pszWindowName, u32 uStyle = WS_OVERLAPPEDWINDOW,const ::rect & rect = nullptr, ::user::interaction * puiParent = nullptr, const char * pszMenuName = nullptr, u32 dwExStyle = 0, ::create * pcreate = nullptr) override;
+   //using ::experience::frame_window::create_interaction;
+   //virtual bool create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle = WS_OVERLAPPEDWINDOW,const ::rect & rect = nullptr, ::user::interaction * puiParent = nullptr, const char * pszMenuName = nullptr, u32 dwExStyle = 0, ::create * pcreate = nullptr) override;
 
 
    virtual bool keyboard_focus_is_focusable() const override;
@@ -110,7 +109,7 @@ public:
 
    virtual ::experience::frame * experience_get_frame();
 
-   virtual bool LoadFrame(const char * pszMatter, u32 dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::create * pcreate = nullptr) override;
+   virtual bool LoadFrame(const char * pszMatter, u32 dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::user::system * pusersystem = nullptr) override;
 
    void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics) override;
 
@@ -132,9 +131,9 @@ public:
    virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
    virtual void on_reposition() override;
    virtual void ActivateFrame(::e_display edisplay = e_display_undefined) override;
-   virtual bool on_create_client(::user::create_struct * pcs, ::create * pcreate) override;
+   virtual bool on_create_client(::user::system * pusersystem) override;
 
-   virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
+   virtual bool pre_create_window(::user::system * pusersystem) override;
    virtual void pre_translate_message(::message::message * pmessage) override;
 
    virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;

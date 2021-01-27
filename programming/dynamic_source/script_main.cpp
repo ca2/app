@@ -11,7 +11,7 @@ namespace dynamic_source
 
       m_posdataNetnodeScriptMain = nullptr;
 
-      __note_assign(m_pmain, this OBJ_REF_DBG_COMMA_THIS_NOTE("this is annotation"));
+      __note_assign(m_pmain, this, OBJ_REF_DBG_COMMA_THIS_NOTE("this is annotation"));
 
    }
 

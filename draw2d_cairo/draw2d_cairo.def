@@ -1,5 +1,5 @@
-LIBRARY "draw2d_direct2d"
+LIBRARY "draw2d_cairo"
 
 EXPORTS
-draw2d_factory_exchange
+draw2d_cairo_factory_exchange
 

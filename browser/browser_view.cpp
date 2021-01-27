@@ -90,7 +90,7 @@ namespace browser
    void view::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create,pcreate,pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
 
@@ -302,7 +302,7 @@ namespace browser
    void view::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmessage->previous();
 
@@ -313,7 +313,7 @@ namespace browser
    void view::_001OnMouse(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmessage->previous();
 
@@ -374,7 +374,7 @@ namespace browser
 
       client_to_screen(rect);
 
-      GetTopLevel()->screen_to_client(rect);
+      get_top_level()->screen_to_client(rect);
 
       if (rect.size() != m_pimageBrowser->size())
       {
@@ -861,7 +861,7 @@ namespace browser
    bool view::GetRootScreenRect(CefRefPtr<CefBrowser> browser, CefRect & rect) 
    {
 
-      auto rectWindow = GetTopLevel()->get_window_rect();
+      auto rectWindow = get_top_level()->get_window_rect();
 
       rect.Set(rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height());
 

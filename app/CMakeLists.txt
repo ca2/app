@@ -1,7 +1,7 @@
 cmake_minimum_required(VERSION 3.17)
 project(app_app CXX)
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
@@ -53,6 +53,13 @@ if (MSVC)
     target_link_libraries(app_app PRIVATE acme apex aqua aura)
     add_dependencies(app_app draw2d_gdiplus)
 elseif(LINUX)
+
+    if(EXISTS $ENV{HOME}/__config/gnome.txt)
+        add_dependencies(app_app node_gnome)
+    endif()
+    if(EXISTS $ENV{HOME}/__config/kde.txt)
+        add_dependencies(app_app node_kde)
+    endif()
     #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
     #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
     #target_compile_options(app_app PRIVATE ${PKGCONFIG_CFLAGS})
@@ -64,6 +71,7 @@ elseif(LINUX)
     target_link_options(app_app PRIVATE -Wl,-z,defs)
     message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
     add_dependencies(app_app draw2d_cairo)
+
 endif()
 
 

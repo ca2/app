@@ -19,11 +19,13 @@ namespace user
    void combo_box::user_combo_box_common_construct()
    {
 
+      m_econtroltype          = e_control_type_combo_box;
       m_bCaseSensitiveMatch   = false;
       m_typeComboList         = __type(::user::combo_list);
       m_estyle                = style_simply;
       m_bEdit                 = true;
       m_edatamode             = data_mode_opaque;
+      m_bMultiLine            = false;
 
    }
 
@@ -181,7 +183,7 @@ namespace user
    }
 
 
-   void combo_box::get_simple_drop_down_open_arrow_polygon(point_array& pointa)
+   void combo_box::get_simple_drop_down_open_arrow_polygon(pointd_array& pointa)
    {
 
       ::rect rectDropDown;
@@ -331,7 +333,7 @@ namespace user
 
       ::draw2d::path_pointer path(e_create);
 
-      point_array pointa;
+      pointd_array pointa;
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 
@@ -515,7 +517,7 @@ namespace user
    void combo_box::_001OnShowWindow(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
 
       if (!pshowwindow->m_bShow)
       {
@@ -552,7 +554,7 @@ namespace user
    void combo_box::_001OnKeyDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key,pkey,pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       if(pkey->m_ekey == ::user::key_down)
       {
@@ -588,7 +590,7 @@ namespace user
    void combo_box::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmouse->previous();
 
@@ -624,7 +626,7 @@ namespace user
    void combo_box::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (is_window_enabled())
       {
@@ -670,7 +672,7 @@ namespace user
    void combo_box::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (is_window_enabled())
       {
@@ -700,7 +702,7 @@ namespace user
    void combo_box::_001OnKillFocus(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
+      __pointer(::message::kill_focus) pkillfocus(pmessage);
 
       if (m_plist != nullptr)
       {
@@ -970,19 +972,19 @@ namespace user
    }
 
 
-   bool combo_box::create_window(::user::interaction * puiParent, const ::id & id)
-   {
+   //bool combo_box::create_interaction(::user::interaction * puiParent, const ::id & id)
+   //{
 
-      if (!::user::plain_edit::create_window(puiParent, id))
-      {
+   //   if (!::user::plain_edit::create_interaction(puiParent, id))
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
 #ifdef WINDOWS_DESKTOP
@@ -1664,27 +1666,25 @@ namespace user
    }
 
 
-   bool combo_box::create_control(class control_descriptor * pdescriptor)
-   {
+   //bool combo_box::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
+   //{
 
-      ASSERT(pdescriptor->get_control_type() == e_control_type_combo_box);
+   //   if (!::user::interaction::create_interaction(pinteractionParent, id))
+   //   {
 
-      if (!::user::interaction::create_control(pdescriptor))
-      {
+   //      TRACE("Failed to create control");
 
-         TRACE("Failed to create control");
+   //      return false;
 
-         return false;
+   //   }
 
-      }
+   //   display(e_display_none);
 
-      display(e_display_none);
+   //   m_bMultiLine = false;
 
-      m_bMultiLine = false;
+   //   return true;
 
-      return true;
-
-   }
+   //}
 
 
    void combo_box::_001OnLButtonDblClk(::message::message * pmessage)

@@ -11,7 +11,8 @@ namespace user
 {
 
 
-   int_ptr_map < string > * g_p = nullptr;
+   iptr_map < string > * g_p = nullptr;
+
 
    primitive_impl::primitive_impl()
    {
@@ -46,36 +47,45 @@ namespace user
    }
 
 
-   bool primitive_impl::create_window(::user::interaction * pinteraction, const ::rect & rect, ::user::primitive * pparent, id id)
-   {
+   //bool primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * pparent)
+   //{
 
-      ::exception::throw_interface_only();
+   //   ::exception::throw_interface_only();
 
-      return true;
+   //   return true;
 
-   }
-
-
-   bool primitive_impl::create_window(::user::interaction * pinteraction, const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::primitive * puiParent, id id, ::create * pcreate)
-
-   {
-
-      ::exception::throw_interface_only();
-
-      return false;
-
-   }
+   //}
 
 
-   bool primitive_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcs, ::user::primitive * puiParent, id id)
-   {
+   //bool primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * puiParent)
 
-      ::exception::throw_interface_only();
+   //{
 
-      return true;
+   //   ::exception::throw_interface_only();
 
-   }
+   //   return false;
 
+   //}
+
+
+   //bool primitive_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, id id)
+   //{
+
+   //   ::exception::throw_interface_only();
+
+   //   return true;
+
+   //}
+
+
+   //bool primitive_impl::create_interaction(::user::interaction * pinteraction, ::user::primitive * pparent)
+   //{
+
+   //   ::exception::throw_interface_only();
+
+   //   return true;
+
+   //}
 
    ::user::interaction_impl * primitive_impl::get_user_interaction_impl()
    {
@@ -99,10 +109,10 @@ namespace user
 
       m_puserinteraction->set_need_layout();
 
-      if (m_puserinteraction->m_pdescriptor->m_puserinteractionParent != nullptr)
+      if (m_puserinteraction->m_puserinteractionParent != nullptr)
       {
 
-         m_puserinteraction->m_pdescriptor->m_puserinteractionParent->set_need_layout();
+         m_puserinteraction->m_puserinteractionParent->set_need_layout();
 
       }
 
@@ -757,7 +767,7 @@ namespace user
 
       }
 
-      ::user::interaction * puiProbe = puiIsChild->GetParent();
+      ::user::interaction * puiProbe = puiIsChild->get_parent();
 
       return puiProbe == m_puserinteraction;
 
@@ -778,7 +788,7 @@ namespace user
       else
       {
 
-         puiProbe = puiIsDescendant->GetParent();
+         puiProbe = puiIsDescendant->get_parent();
 
       }
 
@@ -799,7 +809,7 @@ namespace user
 
          }
 
-         puiProbe = puiProbe->GetParent();
+         puiProbe = puiProbe->get_parent();
 
       } while (puiProbe != nullptr);
 
@@ -838,39 +848,24 @@ namespace user
    }
 
 
-   ::user::interaction * primitive_impl::GetTopWindow() const
-   {
+   //::user::interaction * primitive_impl::GetTopWindow() const
+   //{
 
-      auto pinteraction = get_wnd();
+   //   auto pinteraction = get_wnd();
 
-      if (!pinteraction)
-      {
+   //   if (!pinteraction)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      return pinteraction->GetTopWindow();
+   //   return pinteraction->GetTopWindow();
 
-   }
-
-
-   ::user::interaction * primitive_impl::GetParent() const
-   {
-
-      if (!m_puserinteraction)
-      {
-
-         return nullptr;
-
-      }
-
-      return m_puserinteraction->GetParent();
-
-   }
+   //}
 
 
-   ::user::interaction * primitive_impl::GetOwner() const
+   ::user::interaction * primitive_impl::get_parent() const
    {
 
       if (!m_puserinteraction)
@@ -880,12 +875,12 @@ namespace user
 
       }
 
-      return m_puserinteraction->m_puiOwner;
+      return m_puserinteraction->get_parent();
 
    }
 
 
-   ::user::frame * primitive_impl::GetFrame() const
+   ::user::interaction * primitive_impl::get_owner() const
    {
 
       if (!m_puserinteraction)
@@ -895,12 +890,12 @@ namespace user
 
       }
 
-      return m_puserinteraction->GetFrame();
+      return m_puserinteraction->m_puserinteractionOwner;
 
    }
 
 
-   ::user::frame * primitive_impl::GetParentFrame() const
+   ::user::frame * primitive_impl::frame() const
    {
 
       if (!m_puserinteraction)
@@ -910,12 +905,12 @@ namespace user
 
       }
 
-      return m_puserinteraction->GetParentFrame();
+      return m_puserinteraction->frame();
 
    }
 
 
-   ::user::interaction * primitive_impl::GetParentOwner() const
+   ::user::frame * primitive_impl::get_parent_frame() const
    {
 
       if (!m_puserinteraction)
@@ -925,12 +920,12 @@ namespace user
 
       }
 
-      return m_puserinteraction->GetParentOwner();
+      return m_puserinteraction->get_parent_frame();
 
    }
 
 
-   ::user::interaction * primitive_impl::GetParentOrOwner() const
+   ::user::interaction * primitive_impl::get_parent_owner() const
    {
 
       if (!m_puserinteraction)
@@ -940,12 +935,12 @@ namespace user
 
       }
 
-      return m_puserinteraction->GetParentOrOwner();
+      return m_puserinteraction->get_parent_owner();
 
    }
 
 
-   ::user::interaction * primitive_impl::GetTopLevelOwner() const
+   ::user::interaction * primitive_impl::get_parent_or_owner() const
    {
 
       if (!m_puserinteraction)
@@ -955,12 +950,12 @@ namespace user
 
       }
 
-      return m_puserinteraction->GetTopLevelOwner();
+      return m_puserinteraction->get_parent_or_owner();
 
    }
 
 
-   ::user::frame * primitive_impl::GetTopLevelFrame() const
+   ::user::interaction * primitive_impl::get_top_level_owner() const
    {
 
       if (!m_puserinteraction)
@@ -970,20 +965,12 @@ namespace user
 
       }
 
-      return m_puserinteraction->GetTopLevelFrame();
+      return m_puserinteraction->get_top_level_owner();
 
    }
 
 
-   ::user::frame * primitive_impl::EnsureParentFrame()
-   {
-
-      return m_puserinteraction->EnsureParentFrame();
-
-   }
-
-
-   ::user::interaction * primitive_impl::GetTopLevel() const
+   ::user::frame * primitive_impl::top_level_frame() const
    {
 
       if (!m_puserinteraction)
@@ -993,12 +980,12 @@ namespace user
 
       }
 
-      return m_puserinteraction->GetTopLevel();
+      return m_puserinteraction->top_level_frame();
 
    }
 
 
-   ::user::interaction * primitive_impl::GetParentTopLevel() const
+   ::user::interaction * primitive_impl::get_top_level() const
    {
 
       if (!m_puserinteraction)
@@ -1008,38 +995,7 @@ namespace user
 
       }
 
-      return m_puserinteraction->GetParentTopLevel();
-
-   }
-
-
-   ::user::frame * primitive_impl::GetParentTopLevelFrame() const
-   {
-
-      if (!m_puserinteraction)
-      {
-
-         return nullptr;
-
-      }
-
-      return m_puserinteraction->GetParentTopLevelFrame();
-
-   }
-
-
-   ::user::interaction * primitive_impl::EnsureTopLevel()
-   {
-
-      return m_puserinteraction->EnsureTopLevel();
-
-   }
-
-
-   ::user::interaction * primitive_impl::EnsureParentTopLevel()
-   {
-
-      return m_puserinteraction->EnsureParentTopLevel();
+      return m_puserinteraction->get_top_level();
 
    }
 
@@ -1278,7 +1234,7 @@ namespace user
 
          }
 
-         m_puserinteraction->m_pdescriptor->m_puserinteractionParent = nullptr;
+         m_puserinteraction->m_puserinteractionParent = nullptr;
 
       }
 
@@ -1526,7 +1482,7 @@ namespace user
    void primitive_impl::_001OnShowWindow(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
 
       m_puserinteraction->set_need_redraw();
 
@@ -1596,7 +1552,7 @@ namespace user
       if (g_p == nullptr)
       {
 
-         g_p = new int_ptr_map < string >;
+         g_p = new iptr_map < string >;
 
       }
 
@@ -1717,6 +1673,22 @@ namespace user
       }
 
       return m_puserinteraction == m_puserinteraction->GetActiveWindow();
+
+   }
+
+
+   bool primitive_impl::create_host(::user::interaction * puserinteraction)
+   {
+
+      return false;
+
+   }
+
+
+   bool primitive_impl::create_child(::user::interaction * puserinteraction, ::user::primitive * puserprimitiveParent)
+   {
+
+      return false;
 
    }
 

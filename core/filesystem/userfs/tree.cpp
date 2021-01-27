@@ -110,7 +110,7 @@ namespace userfs
    {
 
       UNREFERENCED_PARAMETER(pmessage);
-//      SCAST_PTR(::message::context_menu, pcontextmenu, pmessage);
+//      __pointer(::message::context_menu) pcontextmenu(pmessage);
       //   i32 iItem;
       //   HRESULT hr;
 //         auto point = pcontextmenu->GetPoint();
@@ -122,9 +122,9 @@ namespace userfs
          {
          CSimpleMenu* pPopup = (CSimpleMenu *) menu.GetSubMenu(0);
          ASSERT(pPopup != nullptr);
-         __pointer(::user::frame_window) pframe = GetTopLevelFrame();
+         __pointer(::user::frame_window) pframe = top_level_frame();
 
-         pframe->SetActiveView(this);
+         pframe->set_active_view(this);
 
          //IContextMenu * pcontextmenu;
 
@@ -161,7 +161,7 @@ namespace userfs
          {
          ::user::menu* pPopup = menu.GetSubMenu(0);
          ASSERT(pPopup != nullptr);
-         __pointer(::user::frame_window) pframe = GetTopLevelFrame();
+         __pointer(::user::frame_window) pframe = top_level_frame();
          pPopup->track_popup_menu(
          point.x, point.y,
          (::user::interaction_impl *) pframe);
@@ -170,28 +170,39 @@ namespace userfs
    }
 
 
-
    void tree::_001OnTimer(::timer * ptimer)
    {
 
       if (ptimer->m_uEvent == 1234567)
       {
+         
          m_iAnimate += 2;
+         
          if (m_iAnimate >= 11)
          {
+            
             m_iAnimate = 0;
+
             ptimer->m_ptimercallback->remove_timer(ptimer);
 
          }
-         ptimer->m_ptimercallback->user_interaction()->set_need_redraw();
+         
+         ptimer->m_ptimercallback->get_user_interaction()->set_need_redraw();
+
       }
       else if (ptimer->m_uEvent == 123)
       {
-         ptimer->m_ptimercallback->user_interaction()->set_need_redraw();
+         
+         ptimer->m_ptimercallback->get_user_interaction()->set_need_redraw();
+         
          m_bTimer123 = false;
+         
          ptimer->m_ptimercallback->remove_timer(ptimer);
+
       }
+
    }
+
 
    void tree::StartAnimation(::user::interaction * pinteraction)
    {
@@ -259,7 +270,7 @@ namespace userfs
 
       control.set_type(::user::form_control_type_edit);
       control.m_iKey = FILE_MANAGER_ID_FILE_NAME;
-      pinteraction->descriptor().m_id = FILE_MANAGER_ID_FILE_NAME;
+      pinteraction->m_id = FILE_MANAGER_ID_FILE_NAME;
       control.set_data_type(::user::form_control_data_type_string);
 
       i32 iControl =  _001AddControl(control);
@@ -583,14 +594,14 @@ namespace userfs
          if (psubject->id() == id_filter)
          {
 
-            if (psubject->value(id_filter).is_empty())
+            if (psubject->payload(id_filter).is_empty())
             {
                //               FilterClose();
             }
             else
             {
                //             FilterBegin();
-               //           Filter1(psubject->value(id_filter));
+               //           Filter1(psubject->payload(id_filter));
                //         FilterApply();
             }
 

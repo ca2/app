@@ -63,7 +63,7 @@ namespace linux
       bool ModifyStyle(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags = 0) override;
       bool ModifyStyleEx(::u32 dwRemove, ::u32 dwAdd, ::u32 nFlags = 0) override;
 
-      //virtual ::user::interaction * GetOwner();
+      //virtual ::user::interaction * get_owner();
       virtual void set_owner(::user::interaction * pOwnerWnd) override;
 
       virtual oswindow get_handle() const override;
@@ -132,23 +132,23 @@ namespace linux
 //      // advanced creation (allows access to extended styles)
 //      virtual bool create_window_ex(
 //      ::user::interaction * pinteraction,
-//      __pointer(::user::create_struct) pcreatestruct,
+//      __pointer(::user::system) pusersystem,
 //      ::user::interaction * pParentWnd = nullptr,
 //      id id = ::id()) override;
 
-    virtual bool _native_create_window_ex(__pointer(::user::create_struct) pcreatestruct) override;
+    virtual bool _native_create_window_ex(__pointer(::user::system) pusersystem) override;
 
 
 //      virtual bool native_create_window_ex(
 //      ::user::interaction * pinteraction,
-//      __pointer(::user::create_struct) pcreatestruct,
+//      __pointer(::user::system) pusersystem,
 //      ::user::interaction * pParentWnd = nullptr,
 //      id id = ::id());
 
       virtual bool DestroyWindow() override;
 
       // special pre-creation and ::user::interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
+      virtual bool pre_create_window(::user::system * pusersystem) override;
 
       // Advanced: virtual AdjustWindowRect
 //      enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
@@ -454,7 +454,7 @@ namespace linux
 //      virtual ::user::interaction * GetWindow(::u32 nCmd);
 //
 //      virtual bool IsChild(::user::interaction *  pWnd);
-//      virtual ::user::interaction * GetParent();
+//      virtual ::user::interaction * get_parent();
 //      using ::user::interaction_impl::SetParent;
 //      ::user::interaction * SetParent(::user::interaction * pWndNewParent);
 //      static::user::interaction * PASCAL oswindowFromPoint(const ::point & point);

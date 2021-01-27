@@ -166,7 +166,8 @@ inline TYPE __random()
 
 
 
-inline float __random(float f1, float f2)
+template < primitive_floating FLOATING1, primitive_floating FLOATING2, primitive_floating FLOATING_RESULT >
+inline FLOATING_RESULT __random(FLOATING1 f1, FLOATING2 f2)
 {
 
    if (f1 == f2) return f1;
@@ -175,39 +176,39 @@ inline float __random(float f1, float f2)
 
    auto fMax = max(f1, f2);
 
-   double dRange = fMax - fMin;
+   FLOATING_RESULT dRange = fMax - fMin;
 
    u64 u;
 
    __random(u);
 
-   return (float)(((double)u * dRange) / (double)MAXU64) + fMin;
+   return (FLOATING_RESULT)(((FLOATING_RESULT)u * dRange) / (FLOATING_RESULT)MAXU64) + fMin;
 
 }
 
 
-inline double __random(double d1, double d2)
-{
+//inline double __random(double d1, double d2)
+//{
+//
+//   if (d1 == d2) return d1;
+//
+//   auto dMin = min(d1, d2);
+//
+//   auto dMax = max(d1, d2);
+//
+//   auto dRange = dMax - dMin;
+//
+//   u64 u;
+//
+//   __random(u);
+//
+//   return (((double)u * dRange) / (double)MAXU64) + dMin;
+//
+//}
 
-   if (d1 == d2) return d1;
 
-   auto dMin = min(d1, d2);
-
-   auto dMax = max(d1, d2);
-
-   auto dRange = dMax - dMin;
-
-   u64 u;
-
-   __random(u);
-
-   return (((double)u * dRange) / (double)MAXU64) + dMin;
-
-}
-
-
-template < typename INTEGER >
-INTEGER __random_int(INTEGER i1, INTEGER i2)
+template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2, primitive_integral INTEGRAL3 >
+INTEGRAL3 __random(INTEGRAL1 i1, INTEGRAL2 i2)
 {
 
    if (i1 == i2) return i1;
@@ -222,34 +223,34 @@ INTEGER __random_int(INTEGER i1, INTEGER i2)
 
    __random(u);
 
-   return (INTEGER)((u % ((u64)iRange + 1)) + (i64)iMin);
+   return (INTEGRAL3)((u % ((INTEGRAL3)iRange + 1)) + (INTEGRAL3)iMin);
 
 }
 
 
-inline i64 __random(i64 i1, i64 i2)
-{
-   return __random_int(i1, i2);
-}
+//inline i64 __random(i64 i1, i64 i2)
+//{
+//   return __random_int(i1, i2);
+//}
 
 
-inline i32 __random(i32 i1, i32 i2)
-{
-   return __random_int(i1, i2);
-}
+//inline i32 __random(i32 i1, i32 i2)
+//{
+//   return __random_int(i1, i2);
+//}
 
 
 
-inline i64 __random(i32 i1, i64 i2)
-{
-   return __random_int((i64) i1, i2);
-}
+//inline i64 __random(i32 i1, i64 i2)
+//{
+//   return __random_int((i64) i1, i2);
+//}
 
 
-inline i64 __random(i64 i1, i32 i2)
-{
-   return __random_int(i1, (i64)i2);
-}
+//inline i64 __random(i64 i1, i32 i2)
+//{
+//   return __random_int(i1, (i64)i2);
+//}
 
 
 

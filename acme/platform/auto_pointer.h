@@ -36,15 +36,20 @@ public:
 
    }
 
+
    template < typename TYPE >
    auto_pointer(TYPE * p, ::count c)
    {
+      
       m_bArray = true;
+
       m_p = new T[(size_t)c];
 
       for (index i = 0; i < c; i++)
       {
+         
          ::copy(&m_p[(size_t)i], &p[(size_t) i]);
+
       }
 
    }
@@ -53,12 +58,16 @@ public:
    template < typename TYPE, typename COPY >
    auto_pointer(TYPE* p, ::count c, COPY copy)
    {
+
       m_bArray = true;
+
       m_p = new T[(size_t)c];
 
       for (index i = 0; i < c; i++)
       {
+
          copy(&m_p[(size_t)i], &p[(size_t)i]);
+
       }
 
    }

@@ -154,7 +154,7 @@ var_stream::~var_stream()
 //   {
 //      m_var = id;
 //   }
-//   void var_stream::write(payload & payload)
+//   void var_stream::write(::payload & payload)
 //   {
 //      m_var = payload;
 //   }
@@ -196,7 +196,7 @@ var_stream::~var_stream()
 
 //   void var_stream::read(const size & & size);
 //   void var_stream::read(id & id);
-//   void var_stream::read(payload & payload);
+//   void var_stream::read(::payload & payload);
 //   void var_stream::read(property & property);
 //   void var_stream::read(string & str);
 //   void var_stream::read(matter * pobject);

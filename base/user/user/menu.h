@@ -105,7 +105,7 @@ namespace user
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
-      bool pre_create_window(::user::create_struct * pcreatestruct) override;
+      bool pre_create_window(::user::system * pusersystem) override;
 
       virtual void install_message_routing(::channel * pchannel) override;
 
@@ -121,9 +121,9 @@ namespace user
 
       virtual bool add_menu(::xml::node * pnode);
 
-      virtual bool load_xml_menu(const payload & varXml);
+      virtual bool load_xml_menu(const ::payload & varXml);
 
-      //virtual bool add_xml_menu(const payload & varXml);
+      //virtual bool add_xml_menu(const ::payload & varXml);
 
       virtual void update_command(menu_item * pitemParent);
 

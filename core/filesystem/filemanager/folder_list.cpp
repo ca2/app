@@ -55,7 +55,7 @@ namespace filemanager
    void folder_list::_001OnLButtonDblClk(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       index iItem;
 
@@ -79,14 +79,14 @@ namespace filemanager
 
    }
 
-   bool folder_list::pre_create_window(::user::create_struct * pcreatestruct)
+   bool folder_list::pre_create_window(::user::system * pusersystem)
    {
 
 #ifdef WINDOWS_DESKTOP
 
 #endif
 
-      return ::user::impact::pre_create_window(pcreatestruct);
+      return ::user::impact::pre_create_window(pusersystem);
 
    }
 

@@ -8,6 +8,21 @@ namespace user
 {
 
 
+   style_base::style_base()
+   {
+
+
+   }
+
+
+   style_base::~style_base()
+   {
+
+
+   }
+
+
+
    bool style_base::_001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout)
    {
 

@@ -17,7 +17,7 @@ namespace uwp
       ID2D1ImageBrush *    m_pimagebrush;
 
       bool                 m_bMetroColor;
-      color32_t             m_crMetro;
+      color32_t             m_colorMetro;
 
       pen(::ca2::application * papp);
       /*virtual void construct(int nPenStyle, double nWidth, color32_t crColor);

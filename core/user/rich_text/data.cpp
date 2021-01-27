@@ -1724,10 +1724,11 @@ namespace user
                                  r = pboxEnd->get_pos_left(iBoxPosEnd);
                               }
 
-                              pgraphics->fill_solid_rect_coord(l,
+                              pgraphics->fill_rect(
+                                 ::rectd_dim(l,
                                  pboxBeg->m_rectBox.top,
                                  r,
-                                 pboxEnd->m_rectBox.bottom,
+                                 pboxEnd->m_rectBox.bottom),
                                  crBkSel);
 
                            }
@@ -1819,10 +1820,12 @@ namespace user
 
                   }
 
-                  pgraphics->fill_solid_rect_coord(r,
+                  auto dDescent = pbox->m_pspan->m_pformat->m_font->get_descent(pgraphics);
+
+                  pgraphics->fill_rect(::rectd(r,
                      pbox->m_rectBox.top + 1,
                      r + 0.5,
-                     pbox->m_rectBox.bottom - pbox->m_pspan->m_pformat->m_font->get_descent(pgraphics),
+                     pbox->m_rectBox.bottom - dDescent),
                      ARGB(255, 0, 0, 0));
 
                }
@@ -2175,7 +2178,7 @@ namespace user
 
                   ::draw2d::path_pointer path(e_create);
 
-                  //path->add_draw_text(pbox->get_text(), rect, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_crForeground);
+                  //path->add_draw_text(pbox->get_text(), rect, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_colorForeground);
                   path->add_draw_text(pbox->get_text(), rect, e_align_bottom_left, e_draw_text_single_line, pformat->get_font(pgraphics));
 
                   ::draw2d::pen_pointer pen(e_create);
@@ -2184,7 +2187,7 @@ namespace user
 
                   pen->create_solid(m_pedit->m_ppictureimpl->m_iOutlineWidth, color(m_pedit->m_ppictureimpl->m_hlsOutline));
 
-                  brush->create_solid(pformat->m_crForeground);
+                  brush->create_solid(pformat->m_colorForeground);
 
                   pgraphics->set(pen);
 
@@ -2198,7 +2201,7 @@ namespace user
 
                   pgraphics->set(pformat->get_font(pgraphics));
 
-                  pgraphics->set_text_color(pformat->m_crForeground);
+                  pgraphics->set_text_color(pformat->m_colorForeground);
 
                   string strText = pbox->get_text();
 

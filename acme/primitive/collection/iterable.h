@@ -61,7 +61,7 @@ namespace iter
    bool move_ci(ITERABLE & iterable, const ITYPE & pcsz, typename ITERABLE::iterator iIndex);
 
    template < typename ITERABLE >
-   ITERABLE & copy(ITERABLE & iterable, const payload payload);
+   ITERABLE & copy(ITERABLE & iterable, const ::payload payload);
 
    template < typename ITERABLE, typename ITYPE, typename ITERABLE2 >
    ITERABLE & add_shortest_tokens(ITERABLE & iterable, const ITYPE & pcsz, const ITERABLE2 & iterableSeparator, bool bAddEmpty = true, bool bWithSeparator = FALSE);
@@ -3927,7 +3927,7 @@ end:
 
 
    template < typename ITERABLE >
-   ITERABLE  & copy(ITERABLE & iterable, payload varSrc)
+   ITERABLE  & copy(ITERABLE & iterable, ::payload varSrc)
    {
 
       iterable.remove_all();

@@ -392,7 +392,7 @@ void stream::write(const id & id)
 }
 
 
-void stream::write(const payload & payload)
+void stream::write(const ::payload & payload)
 {
 
    enum_type etype = payload.get_type();
@@ -499,7 +499,7 @@ void stream::write(const payload & payload)
    }
    break;
    default:
-      __throw(::exception::exception("payload::write payload type not recognized"));
+      __throw(::exception::exception("payload::write ::payload type not recognized"));
    }
 
 }
@@ -509,7 +509,7 @@ void stream::write(const property & property)
 {
 
    write(property.m_id);
-   write((const payload &) property);
+   write((const ::payload &) property);
 
 }
 
@@ -852,7 +852,7 @@ void stream::read(id & id)
 }
 
 
-void stream::read(payload & payload)
+void stream::read(::payload & payload)
 {
 
    set_fail_bit();
@@ -868,7 +868,7 @@ void stream::read_var_type(enum_type & etype)
 }
 
 
-void stream::read_var_body(payload & payload, enum_type etype)
+void stream::read_var_body(::payload & payload, enum_type etype)
 {
 
    set_fail_bit();
@@ -931,13 +931,13 @@ void stream::save_var_type(enum_type etype)
 }
 
 
-payload & stream::options()
+::payload & stream::options()
 {
 
    if (!m_pvarOptions)
    {
 
-      m_pvarOptions = new payload();
+      m_pvarOptions = new ::payload();
 
    }
 
@@ -1015,7 +1015,7 @@ void stream::exchange(const ::id & id, ::id & idExchange)
 }
 
 
-void stream::exchange(const ::id & id, payload & payload)
+void stream::exchange(const ::id & id, ::payload & payload)
 {
 
    stream_exchange(id, payload);

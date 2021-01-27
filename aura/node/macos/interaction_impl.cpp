@@ -273,7 +273,7 @@ namespace macos
    }
 
 
-   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::interaction *  puiParent, id id)
+   bool interaction_impl::create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pusersystem, ::user::interaction *  puiParent, id id)
    {
 
       if (!native_create_window_ex(pinteraction, cs,
@@ -324,7 +324,7 @@ namespace macos
    }
 
 
-   bool interaction_impl::_native_create_window_ex(__pointer(::user::create_struct) pcreatestruct)
+   bool interaction_impl::_native_create_window_ex(__pointer(::user::system) pusersystem)
    {
 
       //if (::is_window(get_handle()))
@@ -336,17 +336,17 @@ namespace macos
 
       //      ASSERT(lpszClassName == nullptr || __is_valid_string(lpszClassName) ||
       //       __is_valid_atom(lpszClassName));
-      ENSURE_ARG(pcreatestruct->m_createstruct.lpszName == nullptr || __is_valid_string(pcreatestruct->m_createstruct.lpszName));
+      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
 
       // allow modification of several common create parameters
-      //::user::create_struct createstruct;
-      //      pcreatestruct->m_createstruct.hwndParent = hWndParent;
-      //   pcreatestruct->m_createstruct.hMenu = hWndParent == nullptr ? nullptr : nIDorHMenu;
-      pcreatestruct->m_createstruct.hMenu = nullptr;
-      //      pcreatestruct->m_createstruct.hInstance = System.m_hInstance;
-      //pcreatestruct->m_createstruct.lpCreateParams = lpParam;
+      //::user::system createstruct;
+      //      pusersystem->m_createstruct.hwndParent = hWndParent;
+      //   pusersystem->m_createstruct.hMenu = hWndParent == nullptr ? nullptr : nIDorHMenu;
+      pusersystem->m_createstruct.hMenu = nullptr;
+      //      pusersystem->m_createstruct.hInstance = System.m_hInstance;
+      //pusersystem->m_createstruct.lpCreateParams = lpParam;
 
-      if (!m_puserinteraction->pre_create_window(pcreatestruct))
+      if (!m_puserinteraction->pre_create_window(pusersystem))
       {
 
          return false;
@@ -361,14 +361,14 @@ namespace macos
 
       RECT32 rectParam;
 
-      rectParam.left = pcreatestruct->m_createstruct.x;
-      rectParam.top = pcreatestruct->m_createstruct.y;
-      rectParam.right = pcreatestruct->m_createstruct.x + pcreatestruct->m_createstruct.cx;
-      rectParam.bottom = pcreatestruct->m_createstruct.y + pcreatestruct->m_createstruct.cy;
+      rectParam.left = pusersystem->m_createstruct.x;
+      rectParam.top = pusersystem->m_createstruct.y;
+      rectParam.right = pusersystem->m_createstruct.x + pusersystem->m_createstruct.cx;
+      rectParam.bottom = pusersystem->m_createstruct.y + pusersystem->m_createstruct.cy;
 
       __copy(rect, rectParam);
 
-      if (pcreatestruct->m_createstruct.hwndParent == MESSAGE_WINDOW_PARENT)
+      if (pusersystem->m_createstruct.hwndParent == MESSAGE_WINDOW_PARENT)
       {
 
          return true;
@@ -427,7 +427,7 @@ namespace macos
 
       }
 
-      if(pcreatestruct->m_createstruct.style & WS_VISIBLE)
+      if(pusersystem->m_createstruct.style & WS_VISIBLE)
       {
 
          m_puserinteraction->display();
@@ -452,15 +452,15 @@ namespace macos
 
 
    // for child windows
-   bool interaction_impl::pre_create_window(::user::create_struct * pcreatestruct)
+   bool interaction_impl::pre_create_window(::user::system * pusersystem)
    {
-      /*      if (pcreatestruct->m_createstruct.lpszClass == nullptr)
+      /*      if (pusersystem->m_createstruct.lpszClass == nullptr)
        {
 /xcore/app/aura/node/macos/macos_interaction_impl.cpp:712:44: No member named 'get_window_rect' in 'user::interaction_impl'       // make sure the default user::interaction class is registered
-       VERIFY(__end_defer_register_class(__WND_REG, &pcreatestruct->m_createstruct.lpszClass));
+       VERIFY(__end_defer_register_class(__WND_REG, &pusersystem->m_createstruct.lpszClass));
 
        // no WNDCLASS provided - use child user::interaction default
-       ASSERT(pcreatestruct->m_createstruct.style & WS_CHILD);
+       ASSERT(pusersystem->m_createstruct.style & WS_CHILD);
        }*/
       return true;
    }
@@ -473,11 +473,11 @@ namespace macos
 
       ASSERT(puiParent != nullptr);
       
-      ::user::create_struct createstruct(0, lpszClassName, lpszWindowName, uStyle, rect, pcreate);
+      ::user::system createstruct(0, lpszClassName, lpszWindowName, uStyle, rect, pcreate);
 
-      pcreatestruct->m_createstruct.hwndParent = puiParent->get_safe_handle();
+      pusersystem->m_createstruct.hwndParent = puiParent->get_safe_handle();
 
-      ASSERT((pcreatestruct->m_createstruct.style & WS_POPUP) == 0);
+      ASSERT((pusersystem->m_createstruct.style & WS_POPUP) == 0);
 
       return create_window_ex(pinteraction, createstruct, puiParent, id);
 
@@ -496,7 +496,7 @@ namespace macos
    //    else
    //    {
 
-   //       ::user::create_struct createstruct(0, nullptr, pszName, WS_CHILD, nullptr);
+   //       ::user::system createstruct(0, nullptr, pszName, WS_CHILD, nullptr);
 
    //       if (!native_create_window_ex(pinteraction, createstruct, MESSAGE_WINDOW_PARENT, "message_queue"))
    //       {
@@ -597,7 +597,7 @@ namespace macos
 //
 //      }
 //
-//      SCAST_PTR(::message::move, pmove, pmessage);
+//      __pointer(::message::move) pmove(pmessage);
 //
 //      m_puserinteraction->window_state().m_point = pmove->m_point;
 //
@@ -646,7 +646,7 @@ namespace macos
 //
 //      }
 //
-//      SCAST_PTR(::message::size, psize, pmessage);
+//      __pointer(::message::size) psize(pmessage);
 //
 //      m_puserinteraction->window_state().m_size = psize->m_size;
 //
@@ -809,7 +809,7 @@ namespace macos
       ((::user::interaction_impl *) this)->m_puserinteraction->get_window_rect(rect);
       
       dumpcontext << "\nrect = " << rect;
-      dumpcontext << "\nparent ::user::interaction * = " << (void *)((::user::interaction_impl *) this)->GetParent();
+      dumpcontext << "\nparent ::user::interaction * = " << (void *)((::user::interaction_impl *) this)->get_parent();
 
       //      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
       //    if (::GetWindowLong(get_handle(), GWL_STYLE) & WS_CHILD)
@@ -864,7 +864,7 @@ namespace macos
 
       char sz[2048];
 
-      xxf_zero(sz);
+      __zero(sz);
 
       round_window_get_title(sz, sizeof(sz));
 
@@ -1091,7 +1091,7 @@ namespace macos
             pbase->m_id == e_message_char)
       {
 
-         SCAST_PTR(::message::key, pkey, pbase);
+         __pointer(::message::key) pkey(pbase);
 
          psession->translate_os_key_message(pkey);
 
@@ -1314,7 +1314,7 @@ namespace macos
 
          if (puiFocus != nullptr
                && puiFocus->is_window()
-               && puiFocus->GetTopLevel() != nullptr
+               && puiFocus->get_top_level() != nullptr
                && puiFocus != m_puserinteraction)
          {
 
@@ -1418,7 +1418,7 @@ namespace macos
 
    /*
 
-   __pointer(::user::frame_window) interaction_impl::GetTopLevelFrame()
+   __pointer(::user::frame_window) interaction_impl::top_level_frame()
    {
       if (get_handle() == nullptr) // no oswindow attached
          return nullptr;
@@ -1429,12 +1429,12 @@ namespace macos
       if(m_puserinteraction != nullptr)
          pFrameWnd = dynamic_cast < ::user::frame_window * > (m_puserinteraction);
       if (pFrameWnd == nullptr || !pFrameWnd->is_frame_window())
-         pFrameWnd = GetParentFrame();
+         pFrameWnd = get_parent_frame();
 
       if (pFrameWnd != nullptr)
       {
          ::user::frame_window* pTemp;
-         while ((pTemp = pFrameWnd->GetParentFrame()) != nullptr)
+         while ((pTemp = pFrameWnd->get_parent_frame()) != nullptr)
             pFrameWnd = pTemp;
       }
       return pFrameWnd;
@@ -1594,11 +1594,11 @@ namespace macos
 //      ASSERT(puiStop == nullptr || puiStop->is_window());
 //      ASSERT(pmessage != nullptr);
 //
-//      SCAST_PTR(::message::base, pbase, pmessage);
+//      __pointer(::message::base) pbase(pmessage);
 //      // walk from the target user::interaction up to the hWndStop user::interaction checking
 //      //  if any user::interaction wants to translate this message
 //
-//      for (__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction; pinteraction != nullptr; pinteraction->GetParent())
+//      for (__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
 //      {
 //
 //         pinteraction->pre_translate_message(pmessage);
@@ -1989,7 +1989,7 @@ namespace macos
       if(::is_null(g_pappPreTranslateMouseMessage))
       {
 
-         g_pappPreTranslateMouseMessage = System.value("pre_translate_mouse_message").cast < ::aura::application >();
+         g_pappPreTranslateMouseMessage = System.payload("pre_translate_mouse_message").cast < ::aura::application >();
 
       }
       
@@ -2133,7 +2133,7 @@ namespace macos
    void interaction_impl::_001OnPrint(::message::message * pmessage)
    {
       __throw(not_implemented());
-      //      SCAST_PTR(::message::base, pbase, pmessage);
+      //      __pointer(::message::base) pbase(pmessage);
       //
       //      if(pbase->m_wparam == nullptr)
       //         return;
@@ -2623,7 +2623,7 @@ namespace macos
    }
 
 
-   ::user::interaction * interaction_impl::GetParent() const
+   ::user::interaction * interaction_impl::get_parent() const
    {
 
       return nullptr;
@@ -2950,7 +2950,7 @@ namespace macos
 ////
 ////         }
 ////
-////         if (m_puserinteraction->GetParent() != nullptr && !m_puserinteraction->GetParent()->is_window_visible())
+////         if (m_puserinteraction->get_parent() != nullptr && !m_puserinteraction->get_parent()->is_window_visible())
 ////         {
 ////
 ////            return false;
@@ -3808,7 +3808,7 @@ namespace macos
 //
 //   void interaction_impl::_001OnSetCursor(::message::message * pmessage)
 //   {
-//      SCAST_PTR(::message::base, pbase, pmessage);
+//      __pointer(::message::base) pbase(pmessage);
 //      if (psession->get_cursor() != nullptr
 //            && psession->get_cursor()->m_ecursor != cursor_system)
 //      {
@@ -3861,7 +3861,7 @@ namespace macos
 //      Default();
 //   }
 //
-//   bool interaction_impl::OnNcCreate(::user::create_struct *)
+//   bool interaction_impl::OnNcCreate(::user::system *)
 //   {
 //
 //      return Default() != FALSE;
@@ -4224,7 +4224,7 @@ namespace macos
 //   void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
 //   {
 //
-//      SCAST_PTR(::message::erase_bkgnd, perasebkgnd, pmessage);
+//      __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
 //
 //      perasebkgnd->m_bRet = true;
 //
@@ -5084,7 +5084,7 @@ namespace macos
 //
 //      }
 //
-//      ///SCAST_PTR(::message::move, pmove, pmessage);
+//      ///__pointer(::message::move) pmove(pmessage);
 //
 //      if (m_puserinteraction->layout().sketch().m_point != pointMove)
 //      {

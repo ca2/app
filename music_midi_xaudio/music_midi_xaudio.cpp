@@ -367,7 +367,7 @@ namespace music
          return grbChanMsgLen[(bEvent >> 4) & 0x0F];
       }
 
-      // returns the midi stream payload dword
+      // returns the midi stream ::payload dword
       u32 GetVDWord(byte * &hpbMidiStream, u32 dwLeft, u32 &dwValueParam)
       {
 

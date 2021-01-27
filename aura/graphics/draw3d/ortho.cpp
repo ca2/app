@@ -128,11 +128,11 @@ namespace draw3d
             if(iHint == 0)
             {
 
-               ca.set_hls(fmod(__double(::get_tick()),dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
+               ca.set_hls(fmod(__double(::get_millis()),dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
             }
             else
             {
-               ca.set_hls(fmod(__double(::get_tick()) + dPeriod / 2,dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
+               ca.set_hls(fmod(__double(::get_millis()) + dPeriod / 2,dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
             }
 
             color32_t clr = ca.get_rgb();
@@ -150,9 +150,10 @@ namespace draw3d
 
             m_pdc->set(pen);
 
-            m_pdc->draw_line(__point(point[point1[iMax]]),__point(point[point2[iMax]]));
+            m_pdc->draw_line(__pointd(point[point1[iMax]]), __pointd(point[point2[iMax]]));
 
          }
+
          point1.remove_at(iMax);
          point2.remove_at(iMax);
 
@@ -288,11 +289,11 @@ namespace draw3d
             if(iHint == 0)
             {
 
-               ca.set_hls(fmod(__double(::get_tick()),dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
+               ca.set_hls(fmod(__double(::get_millis()),dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
             }
             else
             {
-               ca.set_hls(fmod(__double(::get_tick()) + dPeriod / 2,dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
+               ca.set_hls(fmod(__double(::get_millis()) + dPeriod / 2,dPeriod) / dPeriod,0.84 - r / 2.0,1.0 - r);
             }
 
             color32_t clr = ca.get_rgb();

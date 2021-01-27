@@ -135,7 +135,7 @@ __pointer(::message::base) channel::get_message_base(oswindow oswindow, const ::
 
    MESSAGE msg;
 
-   xxf_zero(msg);
+   __zero(msg);
 
    msg.message = (::u32) id.m_emessage;
    msg.wParam = wparam;
@@ -368,7 +368,7 @@ void channel::default_toggle_check_handling(const ::id & id)
    connect_command_pred(id, [this, id, pproperty](::message::message* pmessage)
       {
 
-         SCAST_PTR(::user::command, pcommand, pmessage);
+         __pointer(::user::command) pcommand(pmessage);
 
          if (pproperty->get_bool())
          {

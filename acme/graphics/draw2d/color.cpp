@@ -667,6 +667,80 @@ void color::hls_rate(double dRateH, double dRateL, double dRateS)
    set_hls(dH, dL, dS);
 }
 
+
+void color::hue_rate(double dRateH)
+{
+
+   double dH, dL, dS;
+
+   get_hls(dH, dL, dS);
+
+   dH = dRateH >= 0 ?
+      (1.0 - dH) * dRateH + dH :
+      (1.0 + dRateH) * dH;
+
+   if (dH > 1.0)
+      dH = 1.0;
+   else if (dH < 0.0)
+      dH = 0.0;
+
+   set_hls(dH, dL, dS);
+
+}
+
+
+void color::lightness_rate(double dRateL)
+{
+
+   double dH, dL, dS;
+
+   get_hls(dH, dL, dS);
+
+   dL = dRateL >= 0 ?
+      (1.0 - dL) * dRateL + dL :
+      (1.0 + dRateL) * dL;
+
+   if (dL > 1.0)
+      dL = 1.0;
+   else if (dL < 0.0)
+      dL = 0.0;
+
+   set_hls(dH, dL, dS);
+
+}
+
+
+void color::saturation_rate(double dRateS)
+{
+   
+   double dH, dL, dS;
+
+   get_hls(dH, dL, dS);
+
+   dS = dRateS >= 0 ?
+      (1.0 - dS) * dRateS + dS :
+      (1.0 + dRateS) * dS;
+
+   if (dH > 1.0)
+      dH = 1.0;
+   else if (dH < 0.0)
+      dH = 0.0;
+
+   if (dL > 1.0)
+      dL = 1.0;
+   else if (dL < 0.0)
+      dL = 0.0;
+
+   if (dS > 1.0)
+      dS = 1.0;
+   else if (dS < 0.0)
+      dS = 0.0;
+
+   set_hls(dH, dL, dS);
+
+}
+
+
 void color::hls_mult(double dMultH, double dMultL, double dMultS)
 {
    double dH, dL, dS;
@@ -968,7 +1042,7 @@ bool color::parse_color(const char * psz)
          if (::str::ends_eat_ci(str, ")"))
          {
             str.trim();
-            payload a;
+            ::payload a;
             a.stra().explode(",", str);
             int_array & ia = a.inta();
             if (ia.get_count() == 3)
@@ -1071,6 +1145,18 @@ void color::set(int R, int G, int B, int A)
    m_iA = A;
 
 }
+
+
+void color::make_black_and_white()
+{
+
+   //hls_rate(0.0, 0.0, -1.0);
+   //saturation_rate(-1.0);
+
+   m_iR = m_iG = m_iB = (m_iR + m_iG + m_iB) / 3;
+
+}
+
 
 void color::set(double R, double G, double B, double A)
 {

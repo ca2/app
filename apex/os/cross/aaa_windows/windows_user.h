@@ -32,7 +32,7 @@ CLASS_DECL_APEX int_bool GetCursorPos(POINT32 * lppointCursor);
 
 int_bool is_window(oswindow oswindow);
 int_bool IsChild(oswindow oswindowParent, oswindow oswindowcandidateChildOrDescendant);
-// oswindow GetParent(oswindow oswindow);
+// oswindow get_parent(oswindow oswindow);
 // oswindow SetParent(oswindow oswindowChild, oswindow oswindowNewParent);
 int_bool show_window(oswindow oswindow, const ::e_display & edisplay);
 ::i32 GetWindowLongA(oswindow oswindow, int nIndex);
@@ -664,7 +664,7 @@ oswindow hWnd);
 //
 //oswindow
 //WINAPI
-//GetParent(
+//get_parent(
 //oswindow hWnd);
 //
 //

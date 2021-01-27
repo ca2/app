@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(acme CXX)
 
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
@@ -195,11 +195,14 @@ list(APPEND acme_source
    platform/nano_timer.cpp
    platform/nano_timer.h
    platform/net.cpp
+   platform/node.cpp
+   platform/node.h
    platform/obj_ref_dbg.cpp
    platform/obj_typ_ctr.cpp
    platform/printf.cpp
    platform/profiler.cpp
    platform/regex.cpp
+   platform/simple_trace.cpp
    platform/sprintf.cpp
    platform/static_start.cpp
    platform/static_start_aura.cpp
@@ -249,7 +252,8 @@ list(APPEND acme_source
    primitive/datetime/secs.h
    primitive/datetime/time.cpp
    primitive/datetime/time_span.cpp
-   primitive/datetime/value.cpp
+   primitive/datetime/result.cpp
+   primitive/datetime/result.h
    primitive/datetime/zonetime.cpp
    primitive/geometry2d/_.cpp
    primitive/geometry2d/geometry.cpp
@@ -941,7 +945,6 @@ list(APPEND acme_source
    primitive/datetime/filetime_span.h
    primitive/datetime/time.h
    primitive/datetime/time_span.h
-   primitive/datetime/value.h
    primitive/datetime/zonetime.h
    primitive/datetime/_.h
    primitive/datetime/_c.h
@@ -1012,7 +1015,7 @@ list(APPEND acme_source
    primitive/primitive/atomic.h
    primitive/primitive/bit.h
    primitive/primitive/block.h
-   primitive/primitive/cflag.h
+   primitive/primitive/enumeration.h
    primitive/promise/context.h
    primitive/primitive/collection.h
    primitive/primitive/collection_file.h
@@ -1390,7 +1393,7 @@ if (LINUX)
       os/linux/debug.cpp
       os/linux/exception_engine.cpp
       os/linux/file.cpp
-      os/linux/gdk.cpp
+      #os/linux/gdk.cpp
       os/linux/graphics.cpp
       os/linux/linux.inl
       os/linux/list_serial_ports.cpp
@@ -1421,7 +1424,7 @@ if (LINUX)
       os/linux/debug.h
       os/linux/exception_engine.h
       os/linux/file.h
-      os/linux/gdk.h
+      #os/linux/gdk.h
       os/linux/linux_linux.h
       os/linux/process.h
       os/linux/user.h
@@ -1718,7 +1721,7 @@ else ()
 endif ()
 
 
-add_library(acme SHARED ${acme_source} const/code_page.h const/_.h os/posix/time.h graphics/draw2d/os_font_name.cpp os/x11/_.h)
+add_library(acme SHARED ${acme_source} const/code_page.h const/_.h os/posix/time.h graphics/draw2d/os_font_name.cpp os/x11/_.h node/linux/node.cpp node/linux/node.h platform/node.cpp platform/node.h os/linux/node.cpp)
 
 target_precompile_headers(acme PRIVATE framework.h)
 
@@ -1733,7 +1736,8 @@ if (MSVC)
 elseif (LINUX)
    #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
    # sudo apt install libgtk-3-dev
-   pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
+   #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
+   pkg_check_modules(PKGCONFIG freetype2)
    target_compile_options(acme PRIVATE -fpermissive)
    target_compile_options(acme PRIVATE ${PKGCONFIG_CFLAGS})
    #target_compile_options(acme PRIVATE -std=c++14)

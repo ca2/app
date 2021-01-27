@@ -89,12 +89,16 @@ namespace dynamic_source
    bool ds_script::DoesMatchVersion()
    {
 
-      if(m_millisLastVersionCheck.elapsed() < (5000))
+      auto elapsed = m_millisLastVersionCheck.elapsed();
+
+      if(elapsed < 5_s)
       {
+
          return m_bLastVersionCheck;
+
       }
 
-      m_millisLastVersionCheck= ::millis::now();
+      m_millisLastVersionCheck.Now();
 
       sync_lock sl(mutex());
 
@@ -102,7 +106,7 @@ namespace dynamic_source
 
       auto ft = get_filetime_set(m_strSourcePath);
 
-      bMatches = m_ft == ft;
+      bMatches = m_ftDs == ft;
 
       m_bLastVersionCheck = bMatches;
       return bMatches;
@@ -129,7 +133,13 @@ namespace dynamic_source
 
       }
 
-      return m_bShouldBuild || HasDelayedTempError() || !DoesMatchVersion();
+      bool bShouldBuild = m_bShouldBuild;
+
+      bool bHasDelayedTempError = HasDelayedTempError();
+
+      bool bDoesntMatchVersion = !DoesMatchVersion();
+
+      return bShouldBuild || bHasDelayedTempError || bDoesntMatchVersion;
 
    }
 
@@ -176,10 +186,15 @@ namespace dynamic_source
       return false;
    }
 
+
    bool ds_script::HasDelayedTempError()
    {
 
-      return HasTempError() && HasTimedOutLastBuild();
+      bool bHasTempError = HasTempError();
+
+      bool bHasTimedOutLastBuild = HasTimedOutLastBuild();
+
+      return bHasTempError && bHasTimedOutLastBuild;
 
    }
 
@@ -532,7 +547,7 @@ namespace dynamic_source
 
       m_millisLastBuildTime= ::millis::now();
 
-      m_ft = get_filetime_set(m_strSourcePath);
+      //m_ft = get_filetime_set(m_strSourcePath);
 
       Load();
 

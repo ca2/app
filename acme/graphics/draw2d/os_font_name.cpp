@@ -6,26 +6,36 @@
 string windows_font_name(enum_font efont)
 {
 
+
+//#define FONT_SANS "Lucida Sans Unicode"
+//#define FONT_SERIF "Times New Roman"
+//#define FONT_MONO "Courier New"
+//#define FONT_SANS_EX "Geneva"
+//#define FONT_SERIF_EX "Palatino Linotype"
+//#define FONT_SANS_FX "Tahoma"
+//#define FONT_SERIF_FX "Georgia"
+
    switch (efont)
    {
       case e_font_sans:
-         return "FreeSans";
+         return "Lucida Sans Unicode";
       case e_font_serif:
-         return "FreeSerif";
+         return "Times New Roman";
       case e_font_sans_ui:
-         return "FreeSans";
+         return "Segoe UI";
+         //return "Times New Roman";
       case e_font_serif_ui:
-         return "FreeSerif";
+         return "Georgia";
       case e_font_sans_ex:
-         return "Liberation Sans";
+         return "Geneva";
       case e_font_serif_ex:
-         return "Liberation Serif";
+         return "Palatino Linotype";
       case e_font_sans_fx:
-         return "Ubuntu";
+         return "Tahoma";
       case e_font_serif_fx:
-         return "Bitstream Charter";
+         return "Georgia";
       case e_font_monospace:
-         return "Ubuntu Mono";
+         return "Courier New";
       default:
          return "sans-serif";
    }
@@ -90,7 +100,7 @@ string linux_font_name(enum_linux_distribution elinuxdistribution, enum_font efo
 string os_font_name(enum_font efont)
 {
 
-#ifdef WINDOWS_DESKTOP
+#ifdef WINDOWS
 
    return windows_font_name(efont);
 

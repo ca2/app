@@ -7,7 +7,7 @@ namespace fs
 {
 
 
-   remote_native_file::remote_native_file(payload varFile) :
+   remote_native_file::remote_native_file(::payload varFile) :
       m_varFile(varFile)
    {
 
@@ -119,7 +119,9 @@ namespace fs
 
          strMd5Here = Context.file().md5(m_varFile["xml"].cast < ::memory_file >());
 
-         string strMd5There = set["md5"];
+         string strMd5There;
+         
+         strMd5There = set["md5"];
 
          if(strMd5Here == strMd5There)
             return;

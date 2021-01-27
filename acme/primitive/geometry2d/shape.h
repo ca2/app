@@ -18,15 +18,15 @@ enum enum_shape
    e_shape_close_figure,
    e_shape_end_figure,
    e_shape_arc,
-   e_shape_line,
+   //e_shape_line,
    e_shape_lined,
-   e_shape_lines,
+   //e_shape_lines,
    e_shape_linesd,
-   e_shape_rect,
+   //e_shape_rect,
    e_shape_rectd,
-   e_shape_oval,
+   //e_shape_oval,
    e_shape_ovald,
-   e_shape_polygon,
+   //e_shape_polygon,
    e_shape_polygond,
    e_shape_text_out,
    e_shape_draw_text,
@@ -163,11 +163,11 @@ public:
 
 
 using arc_shape = _shape < ::arc, e_shape_arc>;
-using line_shape = _shape < ::line, e_shape_line >;
+//using line_shape = _shape < ::line, e_shape_line >;
 using lined_shape = _shape < ::lined, e_shape_lined >;
-using rect_shape = _shape < ::rect, e_shape_rect >;
+//using rect_shape = _shape < ::rect, e_shape_rect >;
 using rectd_shape = _shape < ::rectd, e_shape_rectd >;
-using oval_shape = _shape < ::oval, e_shape_oval >;
+//using oval_shape = _shape < ::oval, e_shape_oval >;
 using ovald_shape = _shape < ::ovald, e_shape_ovald >;
 
 
@@ -179,13 +179,13 @@ template < >
 inline ___shape* __new_shape(const enum_shape& eshape);
 
 
-template < >
-inline ___shape* __new_shape(const ::line & line)
-{
-
-   return new line_shape(line);
-
-}
+//template < >
+//inline ___shape* __new_shape(const ::line & line)
+//{
+//
+//   return new line_shape(line);
+//
+//}
 
 
 template < >
@@ -197,21 +197,21 @@ inline ___shape* __new_shape(const ::lined& line)
 }
 
 
-template < >
-inline ___shape* __new_shape(const ::lines& lines);
+//template < >
+//inline ___shape* __new_shape(const ::lines& lines);
 
 
 template < >
 inline ___shape* __new_shape(const ::linesd& lines);
 
 
-template < >
-inline ___shape* __new_shape(const ::rect& rect)
-{
-
-   return new rect_shape(rect);
-
-}
+//template < >
+//inline ___shape* __new_shape(const ::rect& rect)
+//{
+//
+//   return new rect_shape(rect);
+//
+//}
 
 template < >
 inline ___shape* __new_shape(const ::rectd& rect)

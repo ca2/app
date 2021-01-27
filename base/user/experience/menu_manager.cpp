@@ -27,7 +27,7 @@ namespace experience
    void menu_manager::relay_event(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       if (m_pframewindow == nullptr || pbase->userinteraction() != m_pframewindow)
       {
@@ -127,15 +127,7 @@ namespace experience
          return false;
 
       }
-      /*xxx client::enum_element eelement;
-      if(m_pframewindow->m_pappearance->_001HitTest(point, eelement))
-      {
-      if(eelement == client::ElementTopLeftIcon)
-      {
-      m_pframewindow->WindowClose();
-      return true;
-      }
-      }*/
+
       return false;
 
    }

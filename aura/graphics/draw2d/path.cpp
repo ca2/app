@@ -347,8 +347,7 @@ namespace draw2d
    }
 
 
-
-   bool path::get_bounding_rect(RECTD* prect) const
+   bool path::get_bounding_rect(::rectd * prect) const
    {
 
       rectd r;
@@ -381,37 +380,37 @@ namespace draw2d
    }
 
 
-   bool path::get_bounding_rect(RECT32* prect) const
-   {
+   //bool path::get_bounding_rect(RECT32* prect) const
+   //{
 
-      ::rect r;
+   //   ::rect r;
 
-      bool bGotAny = false;
+   //   bool bGotAny = false;
 
-      for (auto& pmatter : m_shapea)
-      {
+   //   for (auto& pmatter : m_shapea)
+   //   {
 
-         if (pmatter->expand_bounding_rect(r))
-         {
+   //      if (pmatter->expand_bounding_rect(r))
+   //      {
 
-            bGotAny = true;
+   //         bGotAny = true;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      if (!bGotAny)
-      {
+   //   if (!bGotAny)
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      __copy(prect, r);
+   //   __copy(prect, r);
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    bool path::has_current_point()
@@ -884,26 +883,26 @@ namespace draw2d
    }
 
 
-   bool path::add_polygon(const POINT32* ppoint, ::count nCount)
-   {
+   //bool path::add_polygon(const POINT32* ppoint, ::count nCount)
+   //{
 
-      auto ppolygon = __new(polygon_shape);
+   //   auto ppolygon = __new(polygon_shape);
 
-      for (i32 i = 0; i < nCount; i++)
-      {
+   //   for (i32 i = 0; i < nCount; i++)
+   //   {
 
-         ppolygon->m_shape.add(pointd(ppoint[i].x, ppoint[i].y));
+   //      ppolygon->m_shape.add(pointd(ppoint[i].x, ppoint[i].y));
 
-      }
+   //   }
 
-      m_shapea.add_item(ppolygon);
+   //   m_shapea.add_item(ppolygon);
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
-   bool path::add_polygon(const POINTD* ppoint, ::count nCount)
+   bool path::add_polygon(const ::pointd * ppoint, ::count nCount)
    {
 
       auto ppolygon = __new(polygond_shape);
@@ -920,23 +919,23 @@ namespace draw2d
 
 
 
-   bool path::add_lines(const POINT32 * ppoint, ::count nCount)
-   {
+   //bool path::add_lines(const POINT32 * ppoint, ::count nCount)
+   //{
 
-      auto plines = __new(lines_shape);
+   //   auto plines = __new(lines_shape);
 
-      plines->m_shape.set_size(nCount);
+   //   plines->m_shape.set_size(nCount);
 
-      memcpy(plines->m_shape.get_data(), ppoint, plines->m_shape.get_size_in_bytes());
+   //   memcpy(plines->m_shape.get_data(), ppoint, plines->m_shape.get_size_in_bytes());
 
-      m_shapea.add(plines);
+   //   m_shapea.add(plines);
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
-   bool path::add_lines(const POINTD * ppoint, ::count nCount)
+   bool path::add_lines(const ::pointd * ppoint, ::count nCount)
    {
 
       auto plines = __new(linesd_shape);
@@ -1004,183 +1003,185 @@ namespace draw2d
    //
    // Returns:     None
    //
-   bool path::do_round_rect_corner(const ::rect& rectCorner, const ::rect& rectRect, i32 iDiameter, const ::e_border & eborder, int iCorner, bool& bOn)
-   {
+   
+   
+   //bool path::do_round_rect_corner(const ::rectd& rectCorner, const ::rectd& rectRect, i32 iDiameter, const ::e_border & eborder, int iCorner, bool& bOn)
+   //{
 
-      switch (iCorner % 4)
-      {
-      case 0:
-      {
-         if ((eborder & e_border_top_left))
-         {
+   //   switch (iCorner % 4)
+   //   {
+   //   case 0:
+   //   {
+   //      if ((eborder & e_border_top_left))
+   //      {
 
-            if ((eborder & e_border_top_left) == e_border_top_left)
-            {
+   //         if ((eborder & e_border_top_left) == e_border_top_left)
+   //         {
 
-               add_arc(::rect(rectCorner.top_left(), ::size(iDiameter, iDiameter)), 180_degrees, 90_degrees);
+   //            add_arc(::rect(rectCorner.top_left(), ::size(iDiameter, iDiameter)), 180_degrees, 90_degrees);
 
-               bOn = true;
+   //            bOn = true;
 
-            }
-            else if(bOn)
-            {
+   //         }
+   //         else if(bOn)
+   //         {
 
-               add_line(rectRect.top_left());
+   //            add_line(rectRect.top_left());
 
-               bOn = false;
+   //            bOn = false;
 
-            }
-            else
-            {
+   //         }
+   //         else
+   //         {
 
-               set_current_point(rectRect.top_left());
+   //            set_current_point(rectRect.top_left());
 
-               bOn = true;
+   //            bOn = true;
 
-            }
+   //         }
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            bOn = false;
+   //         bOn = false;
 
-         }
+   //      }
 
-      }
-      break;
-      case 1:
-      {
-         if ((eborder & e_border_top_right))
-         {
+   //   }
+   //   break;
+   //   case 1:
+   //   {
+   //      if ((eborder & e_border_top_right))
+   //      {
 
-            if ((eborder & e_border_top_right) == e_border_top_right)
-            {
+   //         if ((eborder & e_border_top_right) == e_border_top_right)
+   //         {
 
-               add_arc(::rect(rectCorner.top_right(), ::size(iDiameter, iDiameter)), 270_degrees, 90_degrees);
+   //            add_arc(::rect(rectCorner.top_right(), ::size(iDiameter, iDiameter)), 270_degrees, 90_degrees);
 
-               bOn = true;
+   //            bOn = true;
 
-            }
-            else if(bOn)
-            {
+   //         }
+   //         else if(bOn)
+   //         {
 
-               add_line(rectRect.top_right());
+   //            add_line(rectRect.top_right());
 
-               bOn = false;
+   //            bOn = false;
 
-            }
-            else
-            {
+   //         }
+   //         else
+   //         {
 
-               set_current_point(rectRect.top_right());
+   //            set_current_point(rectRect.top_right());
 
-               bOn = true;
+   //            bOn = true;
 
-            }
+   //         }
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            bOn = false;
+   //         bOn = false;
 
-         }
+   //      }
 
-      }
-      break;
-      case 2:
-      {
+   //   }
+   //   break;
+   //   case 2:
+   //   {
 
-         if ((eborder & e_border_bottom_right))
-         {
+   //      if ((eborder & e_border_bottom_right))
+   //      {
 
-            if ((eborder & e_border_bottom_right) == e_border_bottom_right)
-            {
+   //         if ((eborder & e_border_bottom_right) == e_border_bottom_right)
+   //         {
 
-               add_arc(::rect(rectCorner.bottom_right(), ::size(iDiameter, iDiameter)), 0_degrees, 90_degrees);
+   //            add_arc(::rect(rectCorner.bottom_right(), ::size(iDiameter, iDiameter)), 0_degrees, 90_degrees);
 
-               bOn = true;
+   //            bOn = true;
 
-            }
-            else if (bOn)
-            {
+   //         }
+   //         else if (bOn)
+   //         {
 
-               add_line(rectRect.bottom_right());
+   //            add_line(rectRect.bottom_right());
 
-               bOn = false;
+   //            bOn = false;
 
-            }
-            else
-            {
+   //         }
+   //         else
+   //         {
 
-               set_current_point(rectRect.bottom_right());
+   //            set_current_point(rectRect.bottom_right());
 
-               bOn = true;
+   //            bOn = true;
 
-            }
+   //         }
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            bOn = false;
+   //         bOn = false;
 
-         }
-      }
-      break;
-      case 3:
-      {
-         if ((eborder & e_border_bottom_left))
-         {
+   //      }
+   //   }
+   //   break;
+   //   case 3:
+   //   {
+   //      if ((eborder & e_border_bottom_left))
+   //      {
 
-            if ((eborder & e_border_bottom_left) == e_border_bottom_left)
-            {
+   //         if ((eborder & e_border_bottom_left) == e_border_bottom_left)
+   //         {
 
-               add_arc(::rect(rectCorner.bottom_left(), ::size(iDiameter, iDiameter)), 90_degrees, 90_degrees);
+   //            add_arc(::rect(rectCorner.bottom_left(), ::size(iDiameter, iDiameter)), 90_degrees, 90_degrees);
 
-               bOn = true;
+   //            bOn = true;
 
-            }
-            else if(bOn)
-            {
+   //         }
+   //         else if(bOn)
+   //         {
 
-               add_line(rectRect.bottom_left());
+   //            add_line(rectRect.bottom_left());
 
-               bOn = false;
+   //            bOn = false;
 
-            }
-            else
-            {
+   //         }
+   //         else
+   //         {
 
-               set_current_point(rectRect.bottom_left());
+   //            set_current_point(rectRect.bottom_left());
 
-               bOn = true;
+   //            bOn = true;
 
-            }
+   //         }
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            bOn = false;
+   //         bOn = false;
 
-         }
+   //      }
 
-      }
-      break;
+   //   }
+   //   break;
 
-      default:
-      {
-         ASSERT(FALSE);
-         return false;
-      }
+   //   default:
+   //   {
+   //      ASSERT(FALSE);
+   //      return false;
+   //   }
 
-      };
+   //   };
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    bool path::do_round_rect_corner(const ::rectd& rectCorner, const ::rectd& rectRect, double dDiameter, const ::e_border & eborder, int iCorner, bool& bOn)
@@ -1362,70 +1363,70 @@ namespace draw2d
    }
 
 
-   bool path::clock_corner(const ::rect& rectCorner, i32 iRadius, const ::e_border & eborder)
-   {
+   //bool path::clock_corner(const ::rect& rectCorner, i32 iRadius, const ::e_border & eborder)
+   //{
 
-      int iDiameter = iRadius * 2;
+   //   int iDiameter = iRadius * 2;
 
-      if (iDiameter == 0)
-      {
+   //   if (iDiameter == 0)
+   //   {
 
-         iDiameter = 1;
+   //      iDiameter = 1;
 
-      }
+   //   }
 
-      switch (eborder)
-      {
-      case e_border_top_left:
-         add_arc(::rect(rectCorner.top_left(), ::size(iDiameter, iDiameter)), 180_degree, 90_degree);
-         return true;
-      case e_border_top_right:
-         add_arc(::rect(rectCorner.top_right() - ::size(iDiameter, 0), ::size(iDiameter, iDiameter)), 270_degree, 90_degree);
-         return true;
-      case e_border_bottom_right:
-         add_arc(::rect(rectCorner.bottom_right() - ::size(iDiameter, iDiameter), ::size(iDiameter, iDiameter)), 0_degree, 90_degree);
-         return true;
-      case e_border_bottom_left:
-         add_arc(::rect(rectCorner.bottom_left() - ::size(0, iDiameter), ::size(iDiameter, iDiameter)), 90_degree, 90_degree);
-         return true;
-      default:
-         return false;
-      }
+   //   switch (eborder)
+   //   {
+   //   case e_border_top_left:
+   //      add_arc(::rect(rectCorner.top_left(), ::size(iDiameter, iDiameter)), 180_degree, 90_degree);
+   //      return true;
+   //   case e_border_top_right:
+   //      add_arc(::rect(rectCorner.top_right() - ::size(iDiameter, 0), ::size(iDiameter, iDiameter)), 270_degree, 90_degree);
+   //      return true;
+   //   case e_border_bottom_right:
+   //      add_arc(::rect(rectCorner.bottom_right() - ::size(iDiameter, iDiameter), ::size(iDiameter, iDiameter)), 0_degree, 90_degree);
+   //      return true;
+   //   case e_border_bottom_left:
+   //      add_arc(::rect(rectCorner.bottom_left() - ::size(0, iDiameter), ::size(iDiameter, iDiameter)), 90_degree, 90_degree);
+   //      return true;
+   //   default:
+   //      return false;
+   //   }
 
-   }
+   //}
 
 
-   bool path::counter_corner(const ::rect& rectCorner, i32 iRadius, const ::e_border & eborder)
-   {
+   //bool path::counter_corner(const ::rect& rectCorner, i32 iRadius, const ::e_border & eborder)
+   //{
 
-      int iDiameter = iRadius * 2;
+   //   int iDiameter = iRadius * 2;
 
-      if (iDiameter == 0)
-      {
+   //   if (iDiameter == 0)
+   //   {
 
-         iDiameter = 1;
+   //      iDiameter = 1;
 
-      }
+   //   }
 
-      switch (eborder)
-      {
-      case e_border_top_left:
-         add_arc(::rect(rectCorner.top_left(), ::size(iDiameter, iDiameter)), 270_degree, -90_degree);
-         return true;
-      case e_border_top_right:
-         add_arc(::rect(rectCorner.top_right() - ::size(iDiameter, 0), ::size(iDiameter, iDiameter)), 0_degree, -90_degree);
-         return true;
-      case e_border_bottom_right:
-         add_arc(::rect(rectCorner.bottom_right() - ::size(iDiameter, iDiameter), ::size(iDiameter, iDiameter)), 90_degree, -90_degree);
-         return true;
-      case e_border_bottom_left:
-         add_arc(::rect(rectCorner.bottom_left() - ::size(0, iDiameter), ::size(iDiameter, iDiameter)), 180_degree, -90_degree);
-         return true;
-      default:
-         return false;
-      }
+   //   switch (eborder)
+   //   {
+   //   case e_border_top_left:
+   //      add_arc(::rect(rectCorner.top_left(), ::size(iDiameter, iDiameter)), 270_degree, -90_degree);
+   //      return true;
+   //   case e_border_top_right:
+   //      add_arc(::rect(rectCorner.top_right() - ::size(iDiameter, 0), ::size(iDiameter, iDiameter)), 0_degree, -90_degree);
+   //      return true;
+   //   case e_border_bottom_right:
+   //      add_arc(::rect(rectCorner.bottom_right() - ::size(iDiameter, iDiameter), ::size(iDiameter, iDiameter)), 90_degree, -90_degree);
+   //      return true;
+   //   case e_border_bottom_left:
+   //      add_arc(::rect(rectCorner.bottom_left() - ::size(0, iDiameter), ::size(iDiameter, iDiameter)), 180_degree, -90_degree);
+   //      return true;
+   //   default:
+   //      return false;
+   //   }
 
-   }
+   //}
 
 
    bool path::_set_create(::draw2d::graphics* pgraphics)
@@ -1463,20 +1464,20 @@ namespace draw2d
          return _set(pgraphics, e_shape_end_figure);
       case e_shape_arc:
          return _set(pgraphics, pshape->shape < ::arc>());
-      case e_shape_line:
-         return  _set(pgraphics, pshape->shape < ::line>());
+      //case e_shape_line:
+      //   return  _set(pgraphics, pshape->shape < ::line>());
       case e_shape_lined:
          return  _set(pgraphics, pshape->shape < ::lined>());
-      case e_shape_lines:
-         return _set(pgraphics, pshape->shape < ::lines>());
+      //case e_shape_lines:
+      //   return _set(pgraphics, pshape->shape < ::lines>());
       case e_shape_linesd:
          return _set(pgraphics, pshape->shape < ::linesd>());
-      case e_shape_rect:
-         return _set(pgraphics, pshape->shape < ::rect>());
+      //case e_shape_rect:
+      //   return _set(pgraphics, pshape->shape < ::rect>());
       case e_shape_rectd:
          return _set(pgraphics, pshape->shape < ::rectd>());
-      case e_shape_polygon:
-         return _set(pgraphics, pshape->shape < ::polygon>());
+      //case e_shape_polygon:
+      //   return _set(pgraphics, pshape->shape < ::polygon>());
       case e_shape_polygond:
          return _set(pgraphics, pshape->shape < ::polygond>());
       case e_shape_draw_text:
@@ -1510,14 +1511,14 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const::line& line)
-   {
+   //bool path::_set(::draw2d::graphics* pgraphics, const ::line & line)
+   //{
 
-      __throw(interface_only_exception);
+   //   __throw(interface_only_exception);
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    bool path::_set(::draw2d::graphics* pgraphics, const::lined& line)
@@ -1530,14 +1531,14 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const::lines& lines)
-   {
+   //bool path::_set(::draw2d::graphics* pgraphics, const::lines& lines)
+   //{
 
-      __throw(interface_only_exception);
+   //   __throw(interface_only_exception);
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    bool path::_set(::draw2d::graphics* pgraphics, const::linesd& lines)
@@ -1550,14 +1551,14 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::rect & rect)
-   {
+   //bool path::_set(::draw2d::graphics* pgraphics, const ::rect & rect)
+   //{
 
-      __throw(interface_only_exception);
+   //   __throw(interface_only_exception);
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    bool path::_set(::draw2d::graphics* pgraphics, const ::rectd & rect)
@@ -1570,14 +1571,14 @@ namespace draw2d
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::polygon& polygon)
-   {
+   //bool path::_set(::draw2d::graphics* pgraphics, const ::polygon& polygon)
+   //{
 
-      __throw(interface_only_exception);
+   //   __throw(interface_only_exception);
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
    bool path::_set(::draw2d::graphics* pgraphics, const ::polygond& polygond)
@@ -1662,84 +1663,84 @@ namespace draw2d
    }
 
 
-   bool path::add_round_rect(const ::rect & rect, i32 iRadius, const ::e_border & eborder)
-   {
+   //bool path::add_round_rect(const ::rect & rect, i32 iRadius, const ::e_border & eborder)
+   //{
 
-      int iDiameter = iRadius * 2;
+   //   int iDiameter = iRadius * 2;
 
-      // diameter can't exceed width or height
-      if (iDiameter > rect.width())	iDiameter = (i32)rect.width();
-      if (iDiameter > rect.height())	iDiameter = (i32)rect.height();
+   //   // diameter can't exceed width or height
+   //   if (iDiameter > rect.width())	iDiameter = (i32)rect.width();
+   //   if (iDiameter > rect.height())	iDiameter = (i32)rect.height();
 
-      ::rect rectRect(rect);
+   //   ::rect rectRect(rect);
 
-      rectRect.deflate(0, 0, 1, 1);
+   //   rectRect.deflate(0, 0, 1, 1);
 
-      ::size size(iDiameter, iDiameter);
+   //   ::size size(iDiameter, iDiameter);
 
-      ::rect rectCorner(rectRect);
+   //   ::rect rectCorner(rectRect);
 
-      rectCorner.deflate(0, 0, iDiameter, iDiameter);
+   //   rectCorner.deflate(0, 0, iDiameter, iDiameter);
 
-      bool bOn = false;
+   //   bool bOn = false;
 
-      int iCount = 0;
+   //   int iCount = 0;
 
-      if (eborder & e_border_all)
-      {
+   //   if (eborder & e_border_all)
+   //   {
 
-         //begin_figure(true, ::draw2d::fill_mode_winding);
+   //      //begin_figure(true, ::draw2d::fill_mode_winding);
 
-         //begin_figure();
+   //      //begin_figure();
 
-         int iEmptyBorder;
+   //      int iEmptyBorder;
 
-         if (!(eborder & e_border_right))
-         {
+   //      if (!(eborder & e_border_right))
+   //      {
 
-            iEmptyBorder = 1;
+   //         iEmptyBorder = 1;
 
-         }
-         else if(!(eborder & e_border_bottom))
-         {
+   //      }
+   //      else if(!(eborder & e_border_bottom))
+   //      {
 
-            iEmptyBorder = 2;
+   //         iEmptyBorder = 2;
 
-         }
-         else if(!(eborder & e_border_left))
-         {
+   //      }
+   //      else if(!(eborder & e_border_left))
+   //      {
 
-            iEmptyBorder = 3;
+   //         iEmptyBorder = 3;
 
-         }
-         else
-         {
+   //      }
+   //      else
+   //      {
 
-            iEmptyBorder = 0;
+   //         iEmptyBorder = 0;
 
-         }
+   //      }
 
-         for(int iShift = 0; iShift < 4; iShift++)
-         {
+   //      for(int iShift = 0; iShift < 4; iShift++)
+   //      {
 
-            int iCorner = iEmptyBorder + iShift + 1;
+   //         int iCorner = iEmptyBorder + iShift + 1;
 
-            do_round_rect_corner(rectCorner, rectRect, iDiameter, eborder, iCorner, bOn);
+   //         do_round_rect_corner(rectCorner, rectRect, iDiameter, eborder, iCorner, bOn);
 
-         }
+   //      }
 
-         //end_figure(bOn);
+   //      //end_figure(bOn);
 
-         close_figure();
+   //      close_figure();
 
-         return true;
+   //      return true;
 
-      }
+   //   }
 
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
    bool path::add_round_rect(const ::rectd& rect, double dRadius, const ::e_border & eborder)
    {
@@ -1819,7 +1820,7 @@ namespace draw2d
    }
 
 
-   bool path::add_round_top_left(const ::rect & rectParam, i32 iDiameter, const ::e_border & eborder)
+   bool path::add_round_top_left(const ::rectd & rectParam, double iDiameter, const ::e_border & eborder)
    {
 
       ::rect rect(rectParam);
@@ -1829,7 +1830,7 @@ namespace draw2d
       if (iDiameter > rect.height())	iDiameter = rect.height();
 
       // define a corner
-      ::rect Corner(rect_dim(rect.left, rect.top, iDiameter, iDiameter));
+      auto Corner = rectd_dim(rect.left, rect.top, iDiameter, iDiameter);
 
       // begin path
       //path.m_ppath->Reset();
@@ -1839,13 +1840,14 @@ namespace draw2d
       //   path.m_ppath->AddArc(Corner, 180, 90);
 
       // tweak needed for radius of 10 (iDiameter of 20)
-      i32 iDiameter2 = iDiameter;
-      if (iDiameter % 2 == 0)
-      {
-         iDiameter2++;
-         //Corner.Height += 1;
-         //rect.height() -=1; //rect.height() -= 1;
-      }
+      double iDiameter2 = iDiameter;
+      
+      //if (iDiameter % 2 == 0)
+      //{
+      //   iDiameter2++;
+      //   //Corner.Height += 1;
+      //   //rect.height() -=1; //rect.height() -= 1;
+      //}
 
       // top right
       Corner.left += (rect.width() - iDiameter - 1);
@@ -1883,14 +1885,14 @@ namespace draw2d
 
 
 
-   bool path::add_round_bottom_right(const ::rect & rect, i32 iDiameter, const ::e_border & eborder)
+   bool path::add_round_bottom_right(const ::rectd & rect, double iDiameter, const ::e_border & eborder)
    {
       // diameter can't exceed width or height
       if (iDiameter > rect.width())	iDiameter = rect.width();
       if (iDiameter > rect.height())	iDiameter = rect.height();
 
       // define a corner
-      ::rect Corner(rect_dim(rect.left, rect.top, iDiameter, iDiameter));
+      auto Corner = rectd_dim(rect.left, rect.top, iDiameter, iDiameter);
 
       // begin path
       //path.m_ppath->Reset();
@@ -1900,13 +1902,13 @@ namespace draw2d
       //   path.m_ppath->AddArc(Corner, 180, 90);
 
       // tweak needed for radius of 10 (iDiameter of 20)
-      i32 iDiameter2 = iDiameter;
-      if (iDiameter % 2 == 0)
-      {
-         iDiameter2++;
-         //Corner.Height += 1;
-         //rect.height() -=1; //rect.height() -= 1;
-      }
+      double iDiameter2 = iDiameter;
+      //if (iDiameter % 2 == 0)
+      //{
+      //   iDiameter2++;
+      //   //Corner.Height += 1;
+      //   //rect.height() -=1; //rect.height() -= 1;
+      //}
 
       // top right
       Corner.left += (rect.width() - iDiameter - 1);

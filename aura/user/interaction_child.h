@@ -73,10 +73,19 @@ namespace user
       virtual void _002InstallMessageHandling(::channel * pchannel);
 
 
-      virtual bool create_window(::user::interaction * pinteraction, const ::rect & rect, ::user::primitive * pparent, id id) override;
-      virtual bool create_window(::user::interaction * pinteraction, const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::primitive * puiParent, id id, ::create * pContext = nullptr) override;
+      virtual void __synthesizes_creates_styles(::user::interaction * pinteraction, ::u32 & nExStyle, ::u32 & nStyle);
 
-      virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcs, ::user::primitive * puiParent, id id) override;
+      //virtual bool create_interaction(::user::interaction * pinteraction, const ::rect & rect, ::user::primitive * pparent, id id) override;
+      //virtual bool create_interaction(::user::interaction * pinteraction, ::u32 uExStyle, u32 uStyle, const ::rect & rect, ::user::primitive * puiParent, ::create * pcreate = nullptr) override;
+
+      
+      virtual bool create_child(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent);
+
+
+      //virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pcs, ::user::primitive * puiParent, id id) override;
+
+      //virtual bool create_interaction() override;
+
 
       virtual iptr get_window_long_ptr(i32 nIndex) const override;
       virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue) override;
@@ -102,8 +111,8 @@ namespace user
 
       virtual bool RedrawWindow(const ::rect& rectUpdate,::draw2d::region* prgnUpdate,::u32 flags) override;
 
-      virtual ::user::interaction * SetOwner(::user::primitive * pinteraction) override;
-      virtual ::user::interaction * GetOwner() const override;
+      virtual ::user::interaction * set_owner(::user::primitive * pinteraction) override;
+      virtual ::user::interaction * get_owner() const override;
 
       //bool _get_client_rect(RECT64 * prect) override;
       //bool _get_window_rect(RECT64 * prect) override;

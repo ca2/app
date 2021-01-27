@@ -262,7 +262,7 @@
       <UseFullPaths>true</UseFullPaths>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <Optimization>Disabled</Optimization>
       <OpenMPSupport>false</OpenMPSupport>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -341,7 +341,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <UseFullPaths>true</UseFullPaths>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <Optimization>Disabled</Optimization>
       <OpenMPSupport>false</OpenMPSupport>
       <InlineFunctionExpansion>AnySuitable</InlineFunctionExpansion>
@@ -425,7 +425,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <UseFullPaths>true</UseFullPaths>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -512,7 +512,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <UseFullPaths>true</UseFullPaths>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -601,7 +601,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <UseFullPaths>true</UseFullPaths>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -688,7 +688,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <OmitFramePointers>false</OmitFramePointers>
       <Optimization>Disabled</Optimization>
       <OpenMPSupport>false</OpenMPSupport>
@@ -767,7 +767,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <OmitFramePointers>false</OmitFramePointers>
       <Optimization>Disabled</Optimization>
       <OpenMPSupport>false</OpenMPSupport>
@@ -853,7 +853,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <UseFullPaths>true</UseFullPaths>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -937,7 +937,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <UseFullPaths>true</UseFullPaths>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -1021,7 +1021,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
       <UseFullPaths>true</UseFullPaths>
       <CompileAsManaged>false</CompileAsManaged>
       <CompileAsWinRT>false</CompileAsWinRT>
-      <LanguageStandard>stdcpp14</LanguageStandard>
+      <LanguageStandard>stdcpplatest</LanguageStandard>
       <OpenMPSupport>false</OpenMPSupport>
       <AssemblerListingLocation>$(IntDir)%(RelativeDir)</AssemblerListingLocation>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
@@ -1153,6 +1153,9 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="user\user\static_control.cpp" />
     <ClCompile Include="user\user\tab.cpp" />
     <ClCompile Include="user\user\tab_callback.cpp" />
+    <ClCompile Include="user\user\tab_data.cpp" />
+    <ClCompile Include="user\user\tab_pane.cpp" />
+    <ClCompile Include="user\user\tab_pane_array.cpp" />
     <ClCompile Include="user\user\tab_view.cpp" />
     <ClCompile Include="user\user\image_list.cpp" />
     <ClCompile Include="user\user\toolbar.cpp" />

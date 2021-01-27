@@ -664,7 +664,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECT32 * prect)
 //}
 //
 //
-//oswindow WINAPI GetParent(::oswindow oswindow)
+//oswindow WINAPI get_parent(::oswindow oswindow)
 //{
 //
 //   if(::is_null(oswindow))

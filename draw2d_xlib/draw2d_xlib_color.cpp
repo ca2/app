@@ -45,7 +45,7 @@ namespace draw2d_xlib
 
       m_pdisplay = nullptr;
       m_colormap = None;
-      xxf_zero(m_color);
+      __zero(m_color);
 
    }
 
@@ -132,7 +132,7 @@ namespace draw2d_xlib
 
       m_colormap = None;
 
-      xxf_zero(m_color);
+      __zero(m_color);
 
       return true;
 

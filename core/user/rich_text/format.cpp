@@ -23,8 +23,8 @@ namespace user
          m_bUnderline = false;
          m_strFontFamily = os_font_name(e_font_sans);
          m_dFontSize = 12.0;
-         m_crForeground = ARGB(255, 0, 0, 0);
-         m_crBackground = 0;
+         m_colorForeground = ARGB(255, 0, 0, 0);
+         m_colorBackground = 0;
          m_escript = script_normal;
          m_elineheight = line_height_single;
          m_bUpdated = false;
@@ -58,8 +58,8 @@ namespace user
                 && is_equal_bool(m_bItalic, format.m_bItalic)
                 && is_equal_bool(m_bUnderline, format.m_bUnderline)
                 && is_similar_font_size(m_dFontSize, format.m_dFontSize)
-                && m_crForeground == format.m_crForeground
-                && m_crBackground == format.m_crBackground
+                && m_colorForeground == format.m_colorForeground
+                && m_colorBackground == format.m_colorBackground
                 && m_escript == format.m_escript
                 && m_elineheight == format.m_elineheight;
 
@@ -156,10 +156,10 @@ namespace user
          if (eattribute & attribute_foreground)
          {
 
-            if(m_crForeground != pformat->m_crForeground)
+            if(m_colorForeground != pformat->m_colorForeground)
             {
 
-               m_crForeground = pformat->m_crForeground;
+               m_colorForeground = pformat->m_colorForeground;
 
                m_bUpdated = false;
 
@@ -266,8 +266,8 @@ namespace user
             m_bUnderline = format.m_bUnderline;
             m_strFontFamily = format.m_strFontFamily;
             m_dFontSize = format.m_dFontSize;
-            m_crForeground = format.m_crForeground;
-            m_crBackground = format.m_crBackground;
+            m_colorForeground = format.m_colorForeground;
+            m_colorBackground = format.m_colorBackground;
             m_escript = format.m_escript;
             m_elineheight = format.m_elineheight;
             m_ealign = format.m_ealign;
@@ -289,8 +289,8 @@ namespace user
          stream.exchange("underline", m_bUnderline);
          stream.exchange("family", m_strFontFamily);
          stream.exchange("size", m_dFontSize);
-         stream.exchange("foreground", (u32 &)m_crForeground);
-         stream.exchange("background", (u32 &)m_crBackground);
+         stream.exchange("foreground", (u32 &)m_colorForeground);
+         stream.exchange("background", (u32 &)m_colorBackground);
          stream.exchange("script", (i32 &)m_escript);
          stream.exchange("lineheight", (i32 &)m_elineheight);
 

@@ -85,7 +85,7 @@ namespace html
 
             m_pcheckbox->m_pform = pdata->m_pcoredata->m_pform;
 
-            m_pcheckbox->create_window(pdata->m_pcoredata->m_puserinteraction, id);
+            m_pcheckbox->create_control(pdata->m_pcoredata->m_puserinteraction, id);
 
             pdata->on_create_interaction(m_pcheckbox);
 

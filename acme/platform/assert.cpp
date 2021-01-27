@@ -64,13 +64,13 @@ namespace acme
       }
 
 
-      virtual payload realize() override;
+      virtual ::payload realize() override;
 
 
    };
 
 
-   payload os_message_box::realize()
+   ::payload os_message_box::realize()
    {
 
       int iResult = ::_os_message_box(m_strText, m_strTitle, m_emessagebox);

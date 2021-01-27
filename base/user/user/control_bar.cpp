@@ -29,7 +29,6 @@ namespace user
       m_cxDefaultGap = 2;
       //m_rectBorder.top = m_rectBorder.bottom = 1;
       m_bAutoDelete = FALSE;
-      m_puiOwner = nullptr;
       m_nStateFlags = 0;
       m_pDockSite = nullptr;
       m_pDockBar = nullptr;
@@ -74,10 +73,10 @@ namespace user
    }
 
 
-   bool control_bar::pre_create_window(::user::create_struct * pcreatestruct)
+   bool control_bar::pre_create_window(::user::system * pusersystem)
    {
 
-      if (!::user::interaction::pre_create_window(pcreatestruct))
+      if (!::user::interaction::pre_create_window(pusersystem))
       {
 
          return FALSE;
@@ -88,7 +87,7 @@ namespace user
 #ifdef WINDOWS_DESKTOP
 
       // force clipsliblings (otherwise will cause repaint problems)
-      pcreatestruct->m_createstruct.style |= WS_CLIPSIBLINGS;
+      pusersystem->m_createstruct.style |= WS_CLIPSIBLINGS;
 
 #endif
 
@@ -256,7 +255,7 @@ namespace user
    bool control_bar::SetStatusText(i32 nHit)
    {
 
-      __pointer(::user::interaction) pOwner = GetOwner();
+      __pointer(::user::interaction) pOwner = get_owner();
 
       //if (nHit == -1)
       //{
@@ -294,11 +293,11 @@ namespace user
       if(pmessage->m_bRet)
          return;
 
-      __pointer(::user::interaction) pOwner = GetOwner();
+      __pointer(::user::interaction) pOwner = get_owner();
 
 #ifdef WINDOWS_DESKTOP
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       ::u32 message;
 
@@ -316,7 +315,7 @@ namespace user
 #endif
 
       // don't translate dialog messages when in Shift+F1 help mode
-      __pointer(::user::frame_window) pFrameWnd = (GetTopLevelFrame());
+      __pointer(::user::frame_window) pFrameWnd = top_level_frame();
       if (pFrameWnd != nullptr && pFrameWnd->m_bHelpMode)
          return;
 
@@ -330,7 +329,7 @@ namespace user
             return;
 
          // try parent frames until there are no parent frames
-         pOwner = pOwner->GetParentFrame();
+         pOwner = pOwner->get_parent_frame();
       }
 
       // filter both messages to dialog and from children
@@ -377,7 +376,7 @@ namespace user
          //      else
       {
          // try owner next
-         lResult = GetOwner()->send_message((enum_message) message, pbase->m_wparam, pbase->m_lparam);
+         lResult = get_owner()->send_message((enum_message) message, pbase->m_wparam, pbase->m_lparam);
 
          // special case for TTN_NEEDTEXTA and TTN_NEEDTEXTW
 //#ifdef WINDOWS_DESKTOP
@@ -416,7 +415,7 @@ namespace user
    void control_bar::_001OnHelpHitTest(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-//      SCAST_PTR(::message::base, pbase, pmessage);
+//      __pointer(::message::base) pbase(pmessage);
       ASSERT_VALID(this);
 
    }
@@ -438,7 +437,7 @@ namespace user
       if(pmessage->previous())
          return;
 
-      __pointer(::user::frame_window) pframe = GetParent();
+      __pointer(::user::frame_window) pframe = get_parent();
 
       if (pframe.is_set())
       {
@@ -478,7 +477,7 @@ namespace user
 
    void control_bar::_001OnMouseActivate(::message::message * pmessage)
    {
-      SCAST_PTR(::message::mouse_activate, pmouseactivate, pmessage);
+      __pointer(::message::mouse_activate) pmouseactivate(pmessage);
       // call default when toolbar is not floating
       if (!IsFloating())
       {
@@ -554,13 +553,10 @@ namespace user
       //pgraphics->IntersectClipRect(rectWindow);
       //SendMessage(e_message_erase_background, (WPARAM)spgraphics->get_handle1());
       pgraphics->reset_clip();
-      pgraphics->fill_solid_rect_dim(
-      0,
-      0,
-      rectWindow.width(),
-      rectWindow.height(),
-      ARGB(128, 192, 192, 187));
 
+      auto rect = ::rectd_dim(0, 0, rectWindow.width(), rectWindow.height());
+
+      pgraphics->fill_rect(rect, ARGB(128, 192, 192, 187));
 
       // draw gripper in non-client area
       DrawGripper(pgraphics, rectWindow);
@@ -571,7 +567,7 @@ namespace user
    void control_bar::_001OnCtlColor(::message::message * pmessage)
    {
       
-      SCAST_PTR(::message::ctl_color,pctlcolor,pmessage);
+      __pointer(::message::ctl_color) pctlcolor(pmessage);
 
       auto pinteraction =pctlcolor->userinteraction();
       
@@ -598,7 +594,7 @@ namespace user
 
    void control_bar::_001OnLButtonDown(::message::message * pmessage)
    {
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
       // only start dragging if clicked in "void" space
       if (m_pDockBar != nullptr )
          //!m_pDockContext->m_bTracking  && OnToolHitTest(pmouse->m_point, nullptr) == -1)
@@ -616,7 +612,7 @@ namespace user
 
    void control_bar::_001OnLButtonUp(::message::message * pmessage)
    {
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
       if(m_bDockTrack)
       {
          //      m_pDockContext->OnBarLButtonUp(pmouse->m_nFlags, pmouse->m_point);
@@ -626,7 +622,7 @@ namespace user
 
    void control_bar::_001OnMouseMove(::message::message * pmessage)
    {
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
       if(m_bDockTrack)
       {
          //      m_pDockContext->OnBarMouseMove(pmouse->m_nFlags, pmouse->m_point);
@@ -636,13 +632,13 @@ namespace user
 
    void control_bar::_001OnLButtonDblClk(::message::message * pmessage)
    {
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
       pmouse->previous();
    }
 
 //    void control_bar::_001OnIdleUpdateCmdUI(::message::message * pmessage)
 //    {
-//       SCAST_PTR(::message::base, pbase, pmessage);
+//       __pointer(::message::base) pbase(pmessage);
 //       // handle delay hide/show
 //       bool bVis = (GetStyle() & WS_VISIBLE) != 0;
 //       ::u32 swpFlags = 0;
@@ -660,9 +656,9 @@ namespace user
 //       // the dockbar style must also be visible
 //       if ((GetStyle() & WS_VISIBLE))
 //       {
-//          __pointer(::user::frame_window) pTarget = (GetOwner());
+//          __pointer(::user::frame_window) pTarget = (get_owner());
 //          if (pTarget == nullptr)
-//             pTarget = (GetParentFrame());
+//             pTarget = (get_parent_frame());
 //          if (pTarget != nullptr)
 //             OnUpdateCmdUI(pTarget, pbase->m_wparam != FALSE);
 //       }
@@ -763,21 +759,23 @@ namespace user
 //      return uStyle; // return new style
    }
 
+
    void control_bar::_001OnSizeParent(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
+
       SIZEPARENTPARAMS * playout = (SIZEPARENTPARAMS *) pbase->m_lparam.m_lparam;
 
       u32 uStyle = RecalcDelayShow(playout);
 
-
       if ((uStyle & WS_VISIBLE) && (uStyle & CBRS_ALIGN_ANY) != 0)
       {
+         
          // align the control bar
          ::rect rect;
-         rect.copy(&playout->rect);
 
+         rect.copy(&playout->rect);
 
          ::size sizeAvail = rect.size();  // maximum size available
 
@@ -939,31 +937,31 @@ namespace user
       {
          if(uStyle & CBRS_GRIPPER)
          {
-            pgraphics->fill_solid_rect_dim(0, rect.top + 7, CX_BORDER, rect.height() - 7, clr);
+            pgraphics->fill_rect(::rectd_dim(0, rect.top + 7, CX_BORDER, rect.height() - 7), clr);
          }
          else
          {
-            pgraphics->fill_solid_rect_dim(0, rect2.top, CX_BORDER, rect2.height(), clr);
+            pgraphics->fill_rect(::rectd_dim(0, rect2.top, CX_BORDER, rect2.height()), clr);
          }
       }
       if (uStyle & CBRS_BORDER_TOP)
       {
          if(uStyle & CBRS_GRIPPER)
          {
-            pgraphics->fill_solid_rect_dim(
-            rect.left + 7,
+            pgraphics->fill_rect(
+            ::rectd(rect.left + 7,
             rect.top,
             rect.right - 7,
-            1,
+            1),
             RGB(128, 128, 123));
          }
          else
          {
-            pgraphics->fill_solid_rect_dim(
-            rect.left,
+            pgraphics->fill_rect(
+            ::rectd(rect.left,
             rect.top,
             rect.right,
-            1,
+            1),
             RGB(128, 128, 123));
          }
          //      pgraphics->fill_rect(0, 0, rect.right, CY_BORDER, clr);
@@ -987,9 +985,9 @@ namespace user
 
       // draw right and bottom
       if (uStyle & CBRS_BORDER_RIGHT)
-         pgraphics->fill_solid_rect_dim(rect1.right, rect2.top, -CX_BORDER, rect2.height(), clr);
+         pgraphics->fill_rect(::rectd(rect1.right, rect2.top, -CX_BORDER, rect2.height()), clr);
       if (uStyle & CBRS_BORDER_BOTTOM)
-         pgraphics->fill_solid_rect_dim(0, rect1.bottom, rect.right, -CY_BORDER, clr);
+         pgraphics->fill_rect(::rectd(0, rect1.bottom, rect.right, -CY_BORDER), clr);
 
       if (uStyle & CBRS_BORDER_3D)
       {
@@ -999,21 +997,21 @@ namespace user
 
          // draw left and top
          if (uStyle & CBRS_BORDER_LEFT)
-            pgraphics->fill_solid_rect_dim(1, rect2.top, CX_BORDER, rect2.height(), clr);
+            pgraphics->fill_rect(::rectd(1, rect2.top, CX_BORDER, rect2.height()), clr);
          if (uStyle & CBRS_BORDER_TOP)
          {
             if(uStyle & CBRS_GRIPPER)
-               pgraphics->fill_solid_rect_dim(rect.left + 7, rect.top + 1, rect.width() - 7, 1, clr);
+               pgraphics->fill_rect(::rectd(rect.left + 7, rect.top + 1, rect.width() - 7, 1), clr);
             else
-               pgraphics->fill_solid_rect_dim(rect.left, rect.top + 1, rect.width(), 1, clr);
+               pgraphics->fill_rect(::rectd(rect.left, rect.top + 1, rect.width(), 1), clr);
             //pgraphics->fill_rect(0, 1, rect.right, CY_BORDER, clr);
          }
 
          // draw right and bottom
          if (uStyle & CBRS_BORDER_RIGHT)
-            pgraphics->fill_solid_rect_dim(rect.right, rect2.top, -CX_BORDER, rect2.height(), clr);
+            pgraphics->fill_rect(::rectd(rect.right, rect2.top, -CX_BORDER, rect2.height()), clr);
          if (uStyle & CBRS_BORDER_BOTTOM)
-            pgraphics->fill_solid_rect_dim(0, rect.bottom, rect.right, -CY_BORDER, clr);
+            pgraphics->fill_rect(::rectd(0, rect.bottom, rect.right, -CY_BORDER), clr);
       }
 
       if (uStyle & CBRS_BORDER_LEFT)
@@ -1177,7 +1175,7 @@ namespace user
    __pointer(::user::frame_window) control_bar::GetDockingFrame()
    {
 
-      __pointer(::user::frame_window) pFrameWnd = (GetParentFrame());
+      __pointer(::user::frame_window) pFrameWnd = (get_parent_frame());
 
       if (pFrameWnd == nullptr)
          pFrameWnd = m_pDockSite;

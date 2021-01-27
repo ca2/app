@@ -52,10 +52,10 @@ namespace user
 } // namespace user
 
 
-inline ::user::impact_data* __impact_data(::user::create* pusercreate)
+inline ::user::impact_data* __impact_data(::user::system* pusersystem)
 {
 
-   return ::is_set(pusercreate) ? pusercreate->m_pimpactdata.cast < ::user::impact_data > () : nullptr;
+   return ::is_set(pusersystem) ? pusersystem->m_pimpactdata.cast < ::user::impact_data > () : nullptr;
 
 }
 

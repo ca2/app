@@ -12,7 +12,7 @@ namespace draw2d_opengl
       m_sizeWnd.cy         = 0;
       m_hbitmap            = nullptr;
       m_phost = nullptr;
-      xxf_zero(m_bitmapinfo);
+      __zero(m_bitmapinfo);
 
    }
 
@@ -2586,7 +2586,7 @@ namespace draw2d_opengl
 //   bool image::print_window(::aura::draw_interface * pwnd,::message::message * pmessage)
 //   {
 //
-//      SCAST_PTR(::message::base, pbase, pmessage);
+//      __pointer(::message::base) pbase(pmessage);
 //
 //      if(pbase->m_wparam == nullptr)
 //         return false;
@@ -2662,7 +2662,7 @@ namespace draw2d_opengl
 #define new ACME_NEW
 
 
-   bool image::_map(bool bApplyTransform)
+   bool image::map(bool bApplyTransform)
    {
 
       if (m_bMapped)

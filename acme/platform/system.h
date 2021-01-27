@@ -20,7 +20,7 @@ namespace acme
       task_map                                           m_taskmap;
       task_id_map                                        m_taskidmap;
       ::mutex                                            m_mutexTaskOn;
-      isomap < ithread_t, ithread_t >                    m_mapTaskOn;
+      map < ithread_t, ithread_t >                       m_mapTaskOn;
 
 
       ::apex::system *                                   m_papexsystem;
@@ -32,8 +32,10 @@ namespace acme
       ::core::system *                                   m_pcoresystem;
 
       string                                             m_strOsUserTheme;
+      __pointer(::acme::node)                            m_pnode;
 
-
+      
+      ::millis                                           m_millisFileListingCache;
 
 
       system();
@@ -43,7 +45,10 @@ namespace acme
       void os_construct();
 
 
+      ::acme::node * node();
 
+
+      virtual ::e_status create_os_node();
 
       virtual string os_get_user_theme();
 
@@ -55,6 +60,7 @@ namespace acme
 
 
       virtual ::e_status os_application_system_run();
+      virtual ::e_status run_system();
 
       enum_operating_system get_operating_system() const;
 

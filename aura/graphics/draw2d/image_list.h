@@ -43,12 +43,12 @@ public:
    i32 reserve_image(int iItem = -1);
 
    i32 add(::draw2d::icon * picon, int iItem = -1);
-   i32 add_icon(payload varFile, int iItem = -1);
+   i32 add_icon(::payload varFile, int iItem = -1);
    i32 add_image(::image * pimage, int x = 0, int y = 0, int iItem = -1);
    i32 add_icon_os_data(void * p, int iItem = -1);
    i32 add_matter_icon(const char * pcszMatter, int iItem = -1);
 
-   i32 add_file(payload varFile, int iItem = -1);
+   i32 add_file(::payload varFile, int iItem = -1);
    ///i32 add_matter(const char * pcsz, ::layered * pobjectContext = nullptr, int iItem = -1);
 
    i32 add_std_matter(const char * pcsz, int iItem = -1);
@@ -71,9 +71,9 @@ public:
    ::image_pointer get_image(int iImage);
 
 
-   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point & point, i32 iFlag);
-   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point & point, i32 iFlag, byte alpha);
-   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point & point, size sz, const ::point & pointOffset, i32 iFlag);
+   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::pointd & point, i32 iFlag);
+   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::pointd & point, i32 iFlag, byte alpha);
+   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::pointd & point, ::sized sz, const ::pointd & pointOffset, i32 iFlag);
    i32 get_image_count() const;
 
    void copy_from(const image_list * plist);

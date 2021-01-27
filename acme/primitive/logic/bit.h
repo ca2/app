@@ -13,7 +13,7 @@ namespace logic
       enum_bit m_ebit;
 
 
-      inline bit(e_optional) { m_ebit = e_bit_none; }
+      inline bit(enum_optional) { m_ebit = e_bit_none; }
 
 
       inline bit() { m_ebit = e_bit_none; }
@@ -38,6 +38,8 @@ namespace logic
 
 
       inline bool is_empty() const { return m_ebit == e_bit_empty; }
+
+      inline bool notTrue() const { return m_ebit < e_bit_yes; }
 
 
       inline bool is_none() const { return is_empty(); }

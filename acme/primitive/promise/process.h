@@ -13,7 +13,7 @@ namespace promise
 
       using ::matter_pointer::matter_pointer;
 
-      inline void operator()(const payload &payload) const;
+      inline void operator()(const ::payload & payload) const;
 
       inline bool should_run_async() const;
 

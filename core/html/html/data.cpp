@@ -109,7 +109,7 @@ void html_data::implement(::draw2d::graphics_pointer & pgraphics)
 void html_data::_001OnKeyDown(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::key, pkey, pmessage);
+   __pointer(::message::key) pkey(pmessage);
 
    if(pkey->m_ekey == ::user::key_tab)
    {
@@ -203,7 +203,7 @@ bool html_data::open_link(const char * pszPath)
 }
 
 
-bool html_data::open_document(const payload & varFile)
+bool html_data::open_document(const ::payload & varFile)
 {
 
  return m_pcoredata->open_document(varFile);
@@ -219,7 +219,7 @@ bool html_data::open_document(const payload & varFile)
 }
 
 
-//void html_data::on_before_navigate(payload & varFile, u32 nFlags, const char * pszTargetFrameName, byte_array& baPostedData, const char * pszHeaders, bool* pbCancel)
+//void html_data::on_before_navigate(::payload & varFile, u32 nFlags, const char * pszTargetFrameName, byte_array& baPostedData, const char * pszHeaders, bool* pbCancel)
 //{
 //
 //   m_pcoredata->on_before_navigate(varFile, nFlags, pszTargetFrameName, baPostedData, pszHeaders, pbCancel);
@@ -233,7 +233,7 @@ bool html_data::open_document(const payload & varFile)
 
 __pointer(::user::interaction) html_data::get_frame()
 {
-   return  (get_form()->GetParentFrame());
+   return  (get_form()->get_parent_frame());
 }
 
 

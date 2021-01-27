@@ -1190,7 +1190,7 @@ namespace file
       ::exception::throw_interface_only();
    }
 
-   void file::write (const payload & payload)
+   void file::write (const ::payload & payload)
    {
       UNREFERENCED_PARAMETER(payload);
       ::exception::throw_interface_only();
@@ -1261,7 +1261,7 @@ namespace file
    
    }
 
-   CLASS_DECL_ACME void set_no_cache(payload& payload)
+   CLASS_DECL_ACME void set_no_cache(::payload& payload)
    {
 
       if (payload.get_type() == e_type_propset)

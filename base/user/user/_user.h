@@ -223,6 +223,9 @@ namespace user
 
 
 #include "tab_callback.h"
+#include "tab_pane.h"
+#include "tab_pane_array.h"
+#include "tab_data.h"
 #include "tab.h"
 
 
@@ -289,7 +292,7 @@ public:
    void OnGetMinMaxInfo(MINMAXINFO* pMMI);
    LRESULT OnFloatStatus(WPARAM wParam, LPARAM lParam);
    LRESULT OnQueryCenterWnd(WPARAM wParam, LPARAM lParam);
-   bool OnNcCreate(::user::create_struct * pcs);
+   bool OnNcCreate(::user::system * pcs);
 
 
 public:
@@ -297,7 +300,7 @@ public:
 
 
 protected:
-   virtual bool pre_create_window(::user::create_struct * pcreatestruct);
+   virtual bool pre_create_window(::user::system * pusersystem);
 
 protected:
    bool m_bSysTracking;

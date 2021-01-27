@@ -1,4 +1,7 @@
 #include "framework.h"
+#ifdef WINDOWS
+#include "aura/os/windows_common/draw2d_direct2d_global.h"
+#endif
 
 
 namespace aura
@@ -74,6 +77,28 @@ namespace draw2d
       return *m_papi;
 
    }
+
+
+#ifdef WINDOWS
+
+   ::draw2d_direct2d::plugin * draw2d::direct2d()
+   {
+
+      if (!m_pplugin)
+      {
+
+         __compose_new(m_pplugin);
+
+         //m_pplugin->initialize();
+
+      }
+
+      return m_pplugin;
+
+   }
+
+
+#endif
 
 
    ::e_status draw2d::init1()
@@ -382,7 +407,7 @@ namespace draw2d
    int iBlurRadius,
    int iBlur,
    bool bUpdate,
-   double dAlpha)
+   const ::color_filter & colorfilter)
    {
 
       if (strText.is_empty())
@@ -411,9 +436,10 @@ namespace draw2d
       iBlurRadius,
       iBlur,
       bUpdate,
-      dAlpha);
+      colorfilter);
 
-      byte bA = (byte)(dAlpha * 255.0);
+      auto bA = colorfilter.opacity().get_alpha();
+
       ::draw2d::brush_pointer pbrushText(e_create);
       pbrushText->create_solid((crText & 0x00ffffffu) | (bA << 24));
       pgraphics->set(pbrushText);

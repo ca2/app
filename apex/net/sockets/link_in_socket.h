@@ -35,7 +35,7 @@ namespace sockets
    };
 
    
-   typedef ptrptr(link_out_socket, link_in_socket) in_link_map; 
+   using in_link_map = map < link_out_socket *, link_in_socket * >;
 
 
 } // namespace sockets

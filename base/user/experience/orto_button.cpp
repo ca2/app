@@ -24,10 +24,10 @@ namespace experience
    }
 
 
-   bool orto_button::pre_create_window(::user::create_struct * pcreatestruct)
+   bool orto_button::pre_create_window(::user::system * pusersystem)
    {
 
-      return ::user::button::pre_create_window(pcreatestruct);
+      return ::user::button::pre_create_window(pusersystem);
 
    }
 
@@ -208,7 +208,7 @@ namespace experience
       else
       {
 
-         //      __pointer(::user::interaction) pwnd = ::user::interaction::GetParent();
+         //      __pointer(::user::interaction) pwnd = ::user::interaction::get_parent();
 
 
          ::rect rect;

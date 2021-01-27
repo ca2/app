@@ -117,7 +117,7 @@ namespace database
    }
 
 
-   payload & parameter_list::get_value(index i)
+   ::payload & parameter_list::get_value(index i)
    {
 
       return m_row[i];

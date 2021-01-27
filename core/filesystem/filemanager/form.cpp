@@ -44,7 +44,7 @@ namespace filemanager
 
             auto psubject = subject(BROWSE_ID);
 
-            psubject->value(id_form) = "filemanager_add_location_lfs.xhtml";
+            psubject->payload(id_form) = "filemanager_add_location_lfs.xhtml";
 
             get_document()->update_all_views(psubject);
 
@@ -58,7 +58,7 @@ namespace filemanager
 
             auto psubject = subject(id_browse);
 
-            psubject->value(id_form) = "filemanager_add_location_ftp.xhtml";
+            psubject->payload(id_form) = "filemanager_add_location_ftp.xhtml";
 
             get_document()->update_all_views(psubject);
 
@@ -90,11 +90,11 @@ namespace filemanager
 
                auto pinteraction = get_child_by_name("find");
 
-               pinteraction->_001GetText(psubject->value(id_find));
+               pinteraction->_001GetText(psubject->payload(id_find));
 
                pinteraction = get_child_by_name("replace");
 
-               pinteraction->_001GetText(psubject->value(id_replace));
+               pinteraction->_001GetText(psubject->payload(id_replace));
 
                auto pdocument =  filemanager_document();
 
@@ -108,7 +108,7 @@ namespace filemanager
 
                auto pinteraction = get_child_by_name("name");
 
-               pinteraction->_001GetText(psubject->value(id_text));
+               pinteraction->_001GetText(psubject->payload(id_text));
 
                auto pdocument = filemanager_document();
 

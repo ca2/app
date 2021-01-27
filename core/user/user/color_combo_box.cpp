@@ -12,7 +12,6 @@ namespace user
    {
 
       m_pview = nullptr;
-      m_pframe = nullptr;
       m_pdocument = nullptr;
       m_bMouseDown = false;
 
@@ -43,7 +42,7 @@ namespace user
    void color_combo_box::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       pcreate->previous();
 
@@ -60,7 +59,7 @@ namespace user
    void color_combo_box::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       m_bMouseDown = true;
 
@@ -74,7 +73,7 @@ namespace user
    void color_combo_box::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       ReleaseCapture();
 
@@ -83,10 +82,10 @@ namespace user
 
          m_bMouseDown = false;
 
-         if(m_pframe != nullptr && m_pframe->is_window_visible())
+         if(frame() != nullptr && frame()->is_window_visible())
          {
 
-            m_pframe->display(e_display_none);
+            frame()->display(e_display_none);
 
          }
          else
@@ -112,18 +111,20 @@ namespace user
 
                psession->set_bound_ui(COLORSEL_IMPACT, this);
 
-               m_pframewindow = m_pview->GetTopLevelFrame()->cast < ::simple_frame_window >();
+               m_pframewindow = m_pview->top_level_frame()->cast < ::simple_frame_window >();
 
-               m_pframewindow->SetOwner(this);
+               m_pframewindow->set_owner(this);
 
-               m_pframewindow->m_ebuttonaHide.add(::experience::button_dock);
-               m_pframewindow->m_ebuttonaHide.add(::experience::button_down);
-               m_pframewindow->m_ebuttonaHide.add(::experience::button_up);
-               m_pframewindow->m_ebuttonaHide.add(::experience::button_minimize);
+               m_pframewindow->m_ebuttonaHide.add(::experience::e_button_dock);
+               m_pframewindow->m_ebuttonaHide.add(::experience::e_button_down);
+               m_pframewindow->m_ebuttonaHide.add(::experience::e_button_up);
+               m_pframewindow->m_ebuttonaHide.add(::experience::e_button_minimize);
 
             }
 
             m_pview->m_hls = m_hls;
+
+            auto pframe = frame();
 
             if(bNew)
             {
@@ -132,23 +133,23 @@ namespace user
 
                get_window_rect(rectWindow);
 
-               m_pframe->m_sizeMinimum.cx = 300;
+               pframe->m_sizeMinimum.cx = 300;
 
-               m_pframe->m_sizeMinimum.cy = 150;
+               pframe->m_sizeMinimum.cy = 150;
 
-               m_pframe->order(zorder_top_most);
+               pframe->order(zorder_top_most);
                
-               m_pframe->set_dim(rectWindow.left, rectWindow.bottom, 400, 200);
+               pframe->set_dim(rectWindow.left, rectWindow.bottom, 400, 200);
                
-               m_pframe->display();
+               pframe->display();
 
             }
             else
             {
 
-               m_pframe->order(zorder_top_most);
+               pframe->order(zorder_top_most);
 
-               m_pframe->display();
+               pframe->display();
 
             }
 
@@ -184,7 +185,7 @@ namespace user
    void color_combo_box::_001OnMouseMove(::message::message * pmessage)
    {
 
-      //SCAST_PTR(::message::mouse, pmouse, pmessage);
+      //__pointer(::message::mouse) pmouse(pmessage);
 
       UNREFERENCED_PARAMETER(pmessage);
 
@@ -205,7 +206,7 @@ namespace user
    void color_combo_box::_001OnMouseLeave(::message::message * pmessage)
    {
 
-      //SCAST_PTR(::message::mouse, pmouse, pmessage);
+      //__pointer(::message::mouse) pmouse(pmessage);
 
       UNREFERENCED_PARAMETER(pmessage);
 
@@ -219,24 +220,23 @@ namespace user
    void color_combo_box::_001OnShowWindow(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
 
       if(!pshowwindow->m_bShow)
       {
 
-         if(m_pframe && m_pframe->is_window_visible())
+         auto pframe = frame();
+
+         if(pframe && pframe->is_window_visible())
          {
 
-            m_pframe->display(e_display_none);
+            pframe->display(e_display_none);
 
          }
 
       }
 
-
    }
-
-
 
 
    void color_combo_box::on_layout(::draw2d::graphics_pointer & pgraphics)
@@ -431,7 +431,7 @@ namespace user
 
       ::draw2d::path_pointer path(e_create);
 
-      point_array pointa;
+      pointd_array pointa;
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 

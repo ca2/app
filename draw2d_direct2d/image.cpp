@@ -45,6 +45,8 @@ namespace draw2d_direct2d
    image::~image()
    {
 
+      destroy();
+
    }
 
 
@@ -67,7 +69,7 @@ namespace draw2d_direct2d
 
       }
 
-      xxf_zero(m_info);
+      __zero(m_info);
 
       int iStride = size.cx * 4;
 
@@ -298,9 +300,7 @@ namespace draw2d_direct2d
 
 #ifdef WINDOWS_DESKTOP
 
-      pimage1->g()->draw(
-      ::size(cx, cy),
-      picon);
+      pimage1->g()->stretch(::sized(cx, cy), picon);
 
 #else
 
@@ -314,7 +314,7 @@ namespace draw2d_direct2d
       pimage2->fill(0, 0, 0, 0);
 
 //#ifdef WINDOWS_DESKTOP
-      pimage2->get_graphics()->draw(::size(cx, cy),picon);
+      pimage2->get_graphics()->stretch(::sized(cx, cy),picon);
 //#else
 //      pimage2->get_graphics()->DrawIcon(
 //      0, 0,
@@ -328,7 +328,7 @@ namespace draw2d_direct2d
       // Mask image
       auto pimageM = create_image({cx,  cy});
 
-      pimageM->g()->draw(::size(cx, cy), picon);
+      pimageM->g()->stretch(::sized(cx, cy), picon);
 
       byte * r1 = (byte*) pimage1->colorref();
       byte * r2 = (byte*) pimage2->colorref();
@@ -949,55 +949,55 @@ namespace draw2d_direct2d
    //   }
    //}
 
-  bool image::draw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc)
+  bool image::_draw_raw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc)
    {
 
       return ::image::draw(rectDst, pimage, pointSrc);
 
    }
 
-   bool image::stretch(const ::image * pimage)
-   {
+   //bool image::stretch(const ::image * pimage)
+   //{
 
-      pimage->unmap();
+   //   pimage->unmap();
 
-      unmap();
+   //   unmap();
 
-      if (pimage->get_bitmap() == nullptr)
-      {
+   //   if (pimage->get_bitmap() == nullptr)
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      if (pimage->get_bitmap()->m_osdata[0] == nullptr)
-      {
+   //   if (pimage->get_bitmap()->m_osdata[0] == nullptr)
+   //   {
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      D2D1_RECT_F rectDest = D2D1::RectF(0, 0, (FLOAT)this->width(), (FLOAT)this->height());
+   //   D2D1_RECT_F rectDest = D2D1::RectF(0, 0, (FLOAT)this->width(), (FLOAT)this->height());
 
-      D2D1_RECT_F rectSource = D2D1::RectF(0, 0, (FLOAT) pimage->width(), (FLOAT) pimage->height());
+   //   D2D1_RECT_F rectSource = D2D1::RectF(0, 0, (FLOAT) pimage->width(), (FLOAT) pimage->height());
 
-      ((ID2D1RenderTarget *)m_pgraphics->get_os_data())->DrawBitmap(((ID2D1Bitmap1 *) pimage->get_bitmap()->m_osdata[0]), rectDest, 1.0, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, rectSource);
+   //   ((ID2D1RenderTarget *)m_pgraphics->get_os_data())->DrawBitmap(((ID2D1Bitmap1 *) pimage->get_bitmap()->m_osdata[0]), rectDest, 1.0, D2D1_BITMAP_INTERPOLATION_MODE_LINEAR, rectSource);
 
-      /*
-      ::StretchDIBits(
-      SP_HDC(m_pgraphics),
-      0, 0,
-      cx, cy,
-      0, 0,
-      pimage->cx, pimage->cy,
-      pimage->get_data(),
-      &pimage->m_info,
-      DIB_RGB_COLORS,
-      SRCCOPY);*/
+   //   /*
+   //   ::StretchDIBits(
+   //   SP_HDC(m_pgraphics),
+   //   0, 0,
+   //   cx, cy,
+   //   0, 0,
+   //   pimage->cx, pimage->cy,
+   //   pimage->get_data(),
+   //   &pimage->m_info,
+   //   DIB_RGB_COLORS,
+   //   SRCCOPY);*/
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    ::draw2d::graphics * image::_get_graphics() const
@@ -1087,7 +1087,7 @@ namespace draw2d_direct2d
    //}
 
 
-   bool image::_map(bool bApplyAlphaTransform)
+   bool image::map(bool bApplyAlphaTransform)
    {
 
       ::draw2d::lock draw2dlock;
@@ -1118,7 +1118,7 @@ namespace draw2d_direct2d
 
       __pointer(::draw2d_direct2d::bitmap) pbitmap = m_pbitmap;
 
-      xxf_zero(pbitmap->m_map);
+      __zero(pbitmap->m_map);
 
       hr = pbitmap1Map->Map(D2D1_MAP_OPTIONS_READ, &pbitmap->m_map);
 
@@ -1164,6 +1164,8 @@ namespace draw2d_direct2d
       }
 
       m_bMapped = true;
+
+      ::image::map(bApplyAlphaTransform);
 
       return true;
 
@@ -1394,6 +1396,8 @@ namespace draw2d_direct2d
          return false;
 
       }
+
+      //pgraphics->m_pplugin = pgraphicsMap->m_pplugin;
 
       pgraphics->m_pbitmap = pbitmap;
 

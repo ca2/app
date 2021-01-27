@@ -97,7 +97,7 @@ namespace xml
 
       
       node *                  get_child( const char * name);
-      node *                  get_child_with_attribute(const char * pcszName, const ::id & idAttribute, const payload & varAttribute, index iStart = 0);
+      node *                  get_child_with_attribute(const char * pcszName, const ::id & idAttribute, const ::payload & varAttribute, index iStart = 0);
 
       string                  get_simple_path() const;
       index_array             get_indexed_path() const;
@@ -160,7 +160,7 @@ namespace xml
       ::property              attribute(const ::id & id) { return m_set[id]; }
       ::property *            attribute_at(index i) { return m_set.element_at(i); }
       ::property *            set_attribute(const property & property) { return set_attribute(property.m_id, property); }
-      ::property *            set_attribute(const ::id & id, const payload & payload = ::e_type_new);
+      ::property *            set_attribute(const ::id & id, const ::payload & payload = ::e_type_new);
       bool                    remove_attribute(::property * pproperty) { return remove_attribute(pproperty->m_id); }
       bool                    remove_attribute(const ::id & id) { return m_set.remove_by_name(id) > 0; }
 

@@ -45,10 +45,10 @@ namespace str
    inline bool begins_eat_ci(TYPE & str, const PREFIX & strPrefix);
 
    template < typename PREFIX >
-   inline bool begins_eat(payload & payload, const PREFIX& strPrefix);
+   inline bool begins_eat(::payload & payload, const PREFIX& strPrefix);
 
    template < typename PREFIX >
-   inline bool begins_eat_ci(payload & payload, const PREFIX& strPrefix);
+   inline bool begins_eat_ci(::payload & payload, const PREFIX& strPrefix);
 
    template < typename PREFIX >
    inline bool begins_eat(property & property, const PREFIX& strPrefix);

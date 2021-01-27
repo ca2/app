@@ -24,14 +24,14 @@ protected:
 public:
 
 
-   payload                                    m_var;
+   ::payload                                    m_var;
    __pointer(manual_reset_event)          m_peventCompletion;
 
 
    virtual ~sync_future() {}
 
 
-   inline virtual void operator()(const payload & payload) override
+   inline virtual void operator()(const ::payload & payload) override
    {
 
       m_var = payload;

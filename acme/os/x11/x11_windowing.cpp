@@ -92,18 +92,18 @@ bool g_bX11Idle = false;
 void x11_kick_idle()
 {
 
-   if(g_bX11Idle)
-   {
+   //if(g_bX11Idle)
+   //{
 
-      return;
+//      return;
 
-   }
+   //}
 
-   g_bX11Idle = true;
+   //g_bX11Idle = true;
 
-   char ch = 1;
+   //char ch = 1;
 
-   ::write(g_fdX11[1], &ch, 1);
+   //::write(g_fdX11[1], &ch, 1);
 
 }
 
@@ -240,7 +240,7 @@ void x11_handle_just_hooks()
 
                XNextEvent(pdisplay, &e);
 
-               __x11_hook_process_event(pdisplay, e, nullptr);
+               __x11_hook_process_event(pdisplay, &e, nullptr);
 
                if(__x11_hook_list_is_empty())
                {
@@ -267,7 +267,7 @@ void x11_handle_just_hooks()
 
       }
 
-      x11_wait_timer_or_event(pdisplay);
+//      x11_wait_timer_or_event(pdisplay);
 
       if(__x11_hook_list_is_empty())
       {

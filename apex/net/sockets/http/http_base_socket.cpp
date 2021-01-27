@@ -67,7 +67,9 @@ namespace sockets
 
       string strProtocol = m_request.attr("http_protocol").get_string().c_str();
 
-      string strHost = m_request.header("host");
+      string strHost;
+      
+      strHost = m_request.header("host");
 
       if (::str::ends_eat_ci(strHost, ".test.ca2.cc"))
       {
@@ -293,7 +295,7 @@ namespace sockets
 
    //string http_base_socket::set_cookie(
    //const char * name,
-   //payload payload,
+   //::payload payload,
    //i32 iExpire,
    //const char * path,
    //const char * domain,
@@ -301,14 +303,14 @@ namespace sockets
    //{
    //   m_request.cookies().set_cookie(
    //   name,
-   //   payload,
+   //   ::payload,
    //   iExpire,
    //   path,
    //   domain,
    //   bSecure);
    //   return m_response.cookies().set_cookie(
    //          name,
-   //          payload,
+   //          ::payload,
    //          iExpire,
    //          path,
    //          domain,
@@ -398,7 +400,9 @@ namespace sockets
 
       }
 
-      string strOrigin = inheader("origin");
+      string strOrigin;
+      
+      strOrigin = inheader("origin");
 
       if (strOrigin.ends_ci("/ca2.cc") && strOrigin.ends_ci(".ca2.cc"))
       {

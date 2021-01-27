@@ -16,12 +16,12 @@ namespace user
    }
 
 
-   bool toolbar_control::create_window(u32 uStyle,const ::rect & rect, ::user::interaction * puiParent, ::id id)
-   {
-      
-      return create_window("ToolbarWindow32", nullptr, uStyle, puiParent, id);
-      
-   }
+   //bool toolbar_control::create_window(u32 uStyle,const ::rect & rect, ::user::interaction * puiParent, ::id id)
+   //{
+   //   
+   //   return create_window("ToolbarWindow32", nullptr, uStyle, puiParent, id);
+   //   
+   //}
 
 
    i32 toolbar_control::AddBitmap(i32 nNumButtons, ::draw2d::bitmap* pBitmap)
@@ -570,7 +570,7 @@ namespace user
    }
 
 
-   __pointer(::user::interaction)  toolbar_control::SetOwner(__pointer(::user::interaction) pwindow)
+   __pointer(::user::interaction)  toolbar_control::set_owner(__pointer(::user::interaction) pwindow)
    {
 
 #ifdef WINDOWS_DESKTOP

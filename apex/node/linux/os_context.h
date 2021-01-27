@@ -33,8 +33,8 @@ namespace linux
       virtual ::file::path get_process_path(::u32 dwPid) override;
       virtual int get_pid() override;
 
-      virtual payload connection_settings_get_auto_detect() override;
-      virtual payload connection_settings_get_auto_config_url() override;
+      virtual ::payload connection_settings_get_auto_detect() override;
+      virtual ::payload connection_settings_get_auto_config_url() override;
 
 
       virtual bool local_machine_set_run(const char * pszKey, const char * pszCommand);
@@ -83,9 +83,9 @@ namespace linux
 
 
 
-typedef string GET_FILE_CONTENT_TYPE(string strPath);
+//typedef string GET_FILE_CONTENT_TYPE(string strPath);
 
-typedef GET_FILE_CONTENT_TYPE * PFN_GET_FILE_CONTENT_TYPE;
+//typedef GET_FILE_CONTENT_TYPE * PFN_GET_FILE_CONTENT_TYPE;
 
-void set_get_file_content_type_function(PFN_GET_FILE_CONTENT_TYPE pfnGetFileContentType);
+//void set_get_file_content_type_function(PFN_GET_FILE_CONTENT_TYPE pfnGetFileContentType);
 

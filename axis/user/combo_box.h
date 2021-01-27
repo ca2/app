@@ -68,7 +68,7 @@ namespace user
 
       virtual enum_input_type preferred_input_type() const override;
 
-      virtual void get_simple_drop_down_open_arrow_polygon(point_array& pointa) override;
+      virtual void get_simple_drop_down_open_arrow_polygon(pointd_array& pointa) override;
 
       virtual void set_current_item(const ::user::item & item, const ::action_context & action_context) override;
 
@@ -90,7 +90,7 @@ namespace user
       virtual index _001FindListText(const string & str) const;
       virtual count _001GetListCount() const;
 
-      virtual bool create_control(class control_descriptor * pdescriptor) override;
+      //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
 
       virtual bool get_element_rect(RECT32 * prect, enum_element eelement) override;
 
@@ -129,7 +129,7 @@ namespace user
 
 
 
-      virtual bool create_window(::user::interaction * puiParent, const ::id & id) override;
+      //virtual bool create_interaction(::user::interaction * puiParent, const ::id & id) override;
 
       //::count get_count();
       //index current_item();

@@ -240,7 +240,7 @@ public:
 
    }
 
-   bool convert(const payload& payload);
+   bool convert(const payload & payload);
 
 
    bool                             get_bool(bool bDefault = false)     const;
@@ -253,7 +253,7 @@ public:
 inline payload(::enum_ ## ENUMTYPE e ## ENUMTYPE) { m_etype = ::type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; } \
 inline ::enum_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE e ## ENUMTYPE ## Default = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(e ## ENUMTYPE ## Default); } \
 ::enum_ ## ENUMTYPE & e ## ENUMTYPE ();         \
-inline ::payload & operator = (::enum_ ## ENUMTYPE e ## ENUMTYPE) { release(); if(m_etype != ::type_enum_ ## ENUMTYPE) m_etype = ::type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; return *this; } \
+inline payload & operator = (::enum_ ## ENUMTYPE e ## ENUMTYPE) { release(); if(m_etype != ::type_enum_ ## ENUMTYPE) m_etype = ::type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; return *this; } \
 inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_etype == ::type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e ## ENUMTYPE; } \
 inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !operator ==(e ## ENUMTYPE); } \
 inline operator ::enum_ ## ENUMTYPE() const { return e ## ENUMTYPE(); } \
@@ -267,7 +267,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    inline payload(::enum_ ## ENUMTYPE e ## ENUMTYPE) { m_etype = ::type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; } \
    inline ::enum_ ## ENUMTYPE e ## ENUMTYPE(::enum_ ## ENUMTYPE e ## ENUMTYPE ## Default = enum_default < ::enum_ ## ENUMTYPE >()) const { return e < ::enum_ ## ENUMTYPE >(e ## ENUMTYPE ## Default); } \
    ::enum_ ## ENUMTYPE & e ## ENUMTYPE ();         \
-   inline ::payload & operator = (::enum_ ## ENUMTYPE e ## ENUMTYPE) { release(); if(m_etype != ::type_enum_ ## ENUMTYPE) m_etype = ::type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; return *this; } \
+   inline payload & operator = (::enum_ ## ENUMTYPE e ## ENUMTYPE) { release(); if(m_etype != ::type_enum_ ## ENUMTYPE) m_etype = ::type_enum_ ## ENUMTYPE; m_e ## ENUMTYPE = e ## ENUMTYPE; return *this; } \
    inline bool operator == (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return m_etype == ::type_enum_ ## ENUMTYPE && m_e ## ENUMTYPE == e ## ENUMTYPE; } \
    inline bool operator != (::enum_ ## ENUMTYPE e ## ENUMTYPE) const { return !operator ==(e ## ENUMTYPE); } \
    inline operator ::enum_ ## ENUMTYPE() const { return e ## ENUMTYPE(); } \
@@ -358,7 +358,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    bool is_false() const;
    bool is_bool_false() const;
    bool is_set_false() const;
-   bool is_true(const ::payload & payload = false, bool bDefault = false) const;
+   bool is_true(const payload & payload = false, bool bDefault = false) const;
 
 
    bool casts_to(::enum_type etype) const;
@@ -897,7 +897,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    ::status::result run();
 
 
-   void receive_response(const ::payload & payload);
+   void receive_response(const payload & payload);
 
 
 };
@@ -1246,16 +1246,16 @@ public:
 //
 //
 //   class CLASS_DECL_ACME topic :
-//      public ::payload
+//      public payload
 //   {
 //   public:
 //
-//      using payload::payload;
+//      using payloadpayload;
 //
 //      operator string & ()
 //      {
 //
-//         auto & str = ::payload::operator string & ();
+//         auto & str = payload::operator string & ();
 //
 //         set_type(e_type_string, false);
 //
@@ -1275,7 +1275,11 @@ class CLASS_DECL_ACME pack :
    public payload
 {
 public:
+
+
    using payload::payload;
+
+
    template < typename TYPE >
    pack(const __pointer(TYPE)& p) { set_pointer(p); }
    pack(const ::std::initializer_list < pack >& list);

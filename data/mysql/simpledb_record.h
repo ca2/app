@@ -11,7 +11,7 @@ namespace simpledb
 
       table *     m_ptable;
       string_array     m_straFields;
-      payload         m_var;
+      ::payload         m_var;
 
       virtual void write(::file::output_stream & ostream) const;
       virtual void read(::file::input_stream & ostream);

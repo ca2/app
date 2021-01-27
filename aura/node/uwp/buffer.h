@@ -33,7 +33,7 @@ namespace uwp
 
       //};
 
-
+      Microsoft::WRL::ComPtr<ID2D1DeviceContext>      m_pd2d1devicecontext;
       directx_framework_view  ^        m_pframeworkview;
 
       ::draw2d::graphics_pointer       m_pdraw2dgraphics;
@@ -63,7 +63,7 @@ namespace uwp
       void destroy_os_buffer();
 
 
-      virtual bool round_swap_key_buffers() override;
+      virtual bool buffer_lock_round_swap_key_buffers() override;
 
 
    };

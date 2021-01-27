@@ -320,9 +320,17 @@ namespace experience
                   else
                   {
 
-                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,175,175,170),ARGB(250,195,195,190));
+                     ::draw2d::brush_pointer brushFill(e_create);
 
-                     pgraphics->set(pane.m_brushFill);
+                     brushFill->CreateLinearGradientBrush(
+                        rectBorder.top_left(),
+                        rectBorder.bottom_left(),
+                        ARGB(230, 175, 175, 170),
+                        ARGB(250, 195, 195, 190)); //*/
+
+                        // brushFill->create_solid(::color::white);
+
+                     pgraphics->set(brushFill);
 
                      pgraphics->fill_path(path);
 
@@ -334,7 +342,9 @@ namespace experience
 
                      pgraphics->set_font(ptab, ::user::e_element_none);
 
-                     brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text));
+                     auto colorText = ptab->get_color(pstyle, ::user::e_element_item_text);
+
+                     brushText->create_solid(colorText);
 
                   }
 
@@ -414,6 +424,8 @@ namespace experience
          if(straTitle.get_count() <= 1)
          {
 
+            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
+
             pgraphics->_DrawText(pane.get_title(), rect, e_align_bottom_left, e_draw_text_no_prefix);
 
          }
@@ -423,22 +435,37 @@ namespace experience
             ::rect rectText(rect);
 
             ::draw2d::font_pointer font;
+
             font = pgraphics->get_current_font();
+
             size sSep = ptab->get_data()->m_sizeSep;
+
             ::rect rectEmp;
+
             for(index i = 0; i < straTitle.get_size(); i++)
             {
+
                string str = straTitle[i];
+
                size s = pane.m_sizeaText[i];
+
                rectText.right =rectText.left + s.cx;
+
                pgraphics->_DrawText(str,rectText, e_align_bottom_left, e_draw_text_no_prefix);
+
                rectText.left += s.cx;
+
                if(i < straTitle.get_upper_bound())
                {
+
                   rectText.right = rectText.left + sSep.cx;
+
                   rectEmp = rectText;
-                  rectEmp.deflate(1,1);
+
+                  rectEmp.deflate(1, 1);
+
                   ::draw2d::enum_alpha_mode emode = pgraphics->m_ealphamode;
+
                   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
                   ::color colorText;
@@ -446,7 +473,7 @@ namespace experience
                   if(ptab->m_itemHover == (::index) ::user::e_element_split + i)
                   {
 
-                     pgraphics->fill_rect(rectEmp,ARGB(128, 150, 184, 255));
+                     pgraphics->fill_rect(rectEmp,ARGB(128, 150, 190, 255));
 
                      colorText = ptab->get_color(this, ::user::e_element_item_text, ::user::e_state_hover);
 
@@ -465,8 +492,11 @@ namespace experience
                   pgraphics->set(brush);
 
                   pgraphics->set_font(ptab, ::user::e_element_close_tab_button);
+
                   pgraphics->set_alpha_mode(emode);
+
                   pgraphics->_DrawText(MAGIC_PALACE_TAB_TEXT,rectText, e_align_center, e_draw_text_no_prefix);
+
                   rectText.left += sSep.cx;
 
                }
@@ -478,7 +508,7 @@ namespace experience
       }
 
 
-      bool style::_001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab)
+      bool style::_001OnTabLayout(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab)
       {
 
          if (!ptab->get_data()->m_bCreated)
@@ -731,7 +761,7 @@ namespace experience
 
             rect & rectTabClient = ptab->get_data()->m_rectTabClient;
 
-            //bool bTabbedClient = ptab->m_bShowTabs && !ptab->GetTopLevelFrame()->layout().is_full_screen();
+            //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
             bool bTabbedClient = ptab->m_bShowTabs;
 
             rectTabClient.left = ptab->get_data()->m_rectTab.left;
@@ -907,7 +937,8 @@ namespace experience
                }
 
             }
-            else if (econtroltype == ::user::e_control_type_list)
+            else if (econtroltype == ::user::e_control_type_list
+            || econtroltype == ::user::e_control_type_tree)
             {
 
                if (eelement == ::user::e_element_background)
@@ -929,7 +960,18 @@ namespace experience
                else if (eelement == ::user::e_element_item_background)
                {
 
-                  return ::color(0, 0, 0, 0);
+                  if (estate & ::user::e_state_selected)
+                  {
+
+                     return __acolor(127, 0, 0, 0);
+
+                  }
+                  else
+                  {
+
+                     return ::color(0, 0, 0, 0);
+
+                  }
 
                }
                else if (eelement == ::user::e_element_item_text)
@@ -1012,7 +1054,6 @@ namespace experience
 
                }
 
-
             }
 
          }
@@ -1034,7 +1075,6 @@ namespace experience
                   return __acolor(255, 0, 0, 0);
 
                }
-
 
             }
             else if (estate & ::user::e_state_selected)
@@ -1121,7 +1161,6 @@ namespace experience
 
                }
 
-
             }
 
          }
@@ -1145,8 +1184,27 @@ namespace experience
                }
 
             }
-            else if (eelement == ::user::e_element_background)
+            else
             {
+
+               if (::user::is_app_dark_mode())
+               {
+
+                  return __acolor(255, 230, 230, 230);
+
+               }
+               else
+               {
+
+                  return __acolor(255, 40, 40, 40);
+
+               }
+
+            }
+
+        }
+        else if (eelement == ::user::e_element_background)
+        {
 
                if (::user::is_app_dark_mode())
                {
@@ -1179,8 +1237,6 @@ namespace experience
                }
 
             }
-
-         }
 
          return ::color();
 
@@ -1255,11 +1311,11 @@ namespace experience
                if (!pbar->is_true("tracking_on"))
                {
 
-                  pbar->value("tracking_on") = true;
-                  pbar->value("tracking_start") = (u32)(::get_tick() + uchAlpha * tickFadeIn / 255);
-                  pbar->value("tracking_fade_in") = true;
-                  pbar->value("tracking_fade_out") = false;
-                  pbar->value("tracking_simple") = __random(1, 2) == 1;
+                  pbar->payload("tracking_on") = true;
+                  pbar->payload("tracking_start") = (u32)(::get_millis() + uchAlpha * tickFadeIn / 255);
+                  pbar->payload("tracking_fade_in") = true;
+                  pbar->payload("tracking_fade_out") = false;
+                  pbar->payload("tracking_simple") = __random(1, 2) == 1;
 
                }
 
@@ -1267,12 +1323,12 @@ namespace experience
             else
             {
 
-               if (!pbar->value("tracking_fade_out"))
+               if (!pbar->payload("tracking_fade_out"))
                {
 
-                  pbar->value("tracking_fade_in") = false;
-                  pbar->value("tracking_fade_out") = true;
-                  pbar->value("tracking_start") = (u32)(::get_tick() + (255 - uchAlpha) * tickFadeOut / 255);
+                  pbar->payload("tracking_fade_in") = false;
+                  pbar->payload("tracking_fade_out") = true;
+                  pbar->payload("tracking_start") = (u32)(::get_millis() + (255 - uchAlpha) * tickFadeOut / 255);
 
                }
 
@@ -1297,7 +1353,7 @@ namespace experience
             if (pbar->is_true("tracking_fade_in"))
             {
 
-               auto tickFade = pbar->value("tracking_start").millis().elapsed();
+               auto tickFade = pbar->payload("tracking_start").millis().elapsed();
 
                if (tickFade < tickFadeIn)
                {
@@ -1310,7 +1366,7 @@ namespace experience
 
                   uchAlpha = 255;
 
-                  pbar->value("tracking_fade_in") = false;
+                  pbar->payload("tracking_fade_in") = false;
 
                }
 
@@ -1318,7 +1374,7 @@ namespace experience
             else if (pbar->is_true("tracking_fade_out"))
             {
 
-               auto dwFade = pbar->value("tracking_start").millis().elapsed();
+               auto dwFade = pbar->payload("tracking_start").millis().elapsed();
 
                if (dwFade < tickFadeOut)
                {
@@ -1331,9 +1387,9 @@ namespace experience
 
                   uchAlpha = 0;
 
-                  pbar->value("tracking_on") = false;
+                  pbar->payload("tracking_on") = false;
 
-                  pbar->value("tracking_fade_out") = false;
+                  pbar->payload("tracking_fade_out") = false;
 
                }
 
@@ -1386,7 +1442,7 @@ namespace experience
 
             }
 
-            pbar->value("tracking_alpha") = uchAlpha;
+            pbar->payload("tracking_alpha") = uchAlpha;
 
          }
 
@@ -1478,13 +1534,13 @@ namespace experience
 
          pgraphics->set(penArrow);
 
-         pgraphics->Polyline(pbar->m_ptaA, 3);
+         pgraphics->polyline(pbar->m_ptaA, 3);
 
          penArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::user::e_element_scrollbar_rectB));
 
          pgraphics->set(penArrow);
 
-         pgraphics->Polyline(pbar->m_ptaB, 3);
+         pgraphics->polyline(pbar->m_ptaB, 3);
 
          return true;
 

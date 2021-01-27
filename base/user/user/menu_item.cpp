@@ -157,7 +157,7 @@ namespace user
 
          m_strTitle = strText;
 
-         string strImage = pnode->attribute("image");
+         string strImage (pnode->attribute("image"));
 
          if (strImage.has_char())
          {
@@ -278,7 +278,7 @@ namespace user
 
          }
 
-         if (!pinteraction->create_window(pmenu, pitem->m_id))
+         if (!pinteraction->create_child(pmenu))
          {
 
             return false;

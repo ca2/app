@@ -87,7 +87,7 @@ namespace music
          void sequence_thread::OnMidiSequenceEvent(::message::message * pmessage)
          {
 
-            SCAST_PTR(::message::base, pbase, pmessage);
+            __pointer(::message::base) pbase(pmessage);
 
             __pointer(sequence::event) pevent(pbase->m_lparam);
 

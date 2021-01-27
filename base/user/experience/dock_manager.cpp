@@ -84,7 +84,7 @@ namespace experience
 
       ::rect rectDockButtonWindow;
 
-      m_pframewindow->m_pframe->get_control_box()->get_button(::experience::button_dock)->get_window_rect(rectDockButtonWindow);
+      m_pframewindow->m_pframe->get_control_box()->get_button(e_button_dock)->get_window_rect(rectDockButtonWindow);
 
       ::point pointDock = rectDockButtonWindow.center();
 
@@ -216,6 +216,10 @@ namespace experience
 
       enum_display edisplayDock = e_display_none;
 
+      enum_display edisplayOld = m_pframewindow->layout().sketch().display();
+
+      ::rect rectScreenOld = m_pframewindow->layout().sketch().screen_rect();
+
       if (rectCenter.contains_x(pointCursor.x))
       {
 
@@ -310,46 +314,53 @@ namespace experience
       if (edisplayDock == ::e_display_normal)
       {
 
-         if (m_pframewindow->layout().sketch().display() != e_display_normal)
+         bool bChange = false;
+
+         if (edisplayOld != e_display_normal)
          {
 
             m_pframewindow->set_size(m_pframewindow->m_windowrect.m_rectRestored.size());
 
+            bChange = true;
+
+         }
+         else
+         {
+
+            ::rect rectNew(pointMove, m_pframewindow->m_windowrect.m_rectRestored.size());
+
+            rectNew._001Constraint(rectWork);
+
+            if(rectNew != rectScreenOld)
+            {
+
+               m_pframewindow->move_to(pointMove);
+
+               bChange = true;
+
+            }
+
          }
 
-         m_pframewindow->move_to(pointMove);
+         if(bChange)
+         {
 
-         m_pframewindow->display(e_display_normal);
+            m_pframewindow->display(e_display_normal);
 
-         m_pframewindow->set_need_redraw();
+            m_pframewindow->set_need_redraw();
 
-         //auto pointMove = point;
+            m_pframewindow->post_redraw();
 
-         //if (m_pframewindow->GetParent() != nullptr)
-         //{
-
-         //   m_pframewindow->GetParent()->_001ScreenToClient(pointMove);
-
-         //}
-
-         //m_pframewindow->order(zorder_top);
-
-         //m_pframewindow->move_to(pointMove);
-
-         //m_pframewindow->set_size(m_pframewindow->m_windowrect.m_rectRestored.size());
-
-         //m_pframewindow->display(e_display_normal);
-
-         //m_pframewindow->set_need_redraw();
+         }
 
       }
       else if (is_docking_appearance(edisplayDock))
       {
 
-         if (m_iDockMove <= 0 || m_iDockMove >= m_iConsiderDockMove)
+         //if (m_iDockMove <= 0 || m_iDockMove >= m_iConsiderDockMove)
          {
 
-            if (m_pframewindow->layout().sketch().display() != edisplayDock || rectDock != rectWindow)
+            if (edisplayDock == edisplayOld || rectDock != rectWindow)
             {
 
                m_pframewindow->order(zorder_top);
@@ -360,7 +371,9 @@ namespace experience
 
                m_pframewindow->set_need_redraw();
 
-               if (m_iDockMove <= 0)
+               m_pframewindow->post_redraw();
+
+               //if (m_iDockMove <= 0)
                {
 
                   m_bPendingCursorPos = true;
@@ -377,28 +390,29 @@ namespace experience
 
    }
 
-   void dock_manager::defer_cursor_pos()
-   {
 
-      if (m_bPendingCursorPos)
-      {
+   //void dock_manager::defer_cursor_pos()
+   //{
 
-         m_bPendingCursorPos = false;
+   //   if (m_bPendingCursorPos)
+   //   {
 
-         if (window_is_docking())
-         {
+   //      m_bPendingCursorPos = false;
 
-            auto pointCursor = m_pframewindow->layout().sketch().origin() + (dock_button()->layout().parent_client_rect().origin() + m_pointCursorDockOrigin);
+   //      //if (window_is_docking())
+   //      //{
 
-            auto psession = Session;
+   //      //   auto pointCursor = m_pframewindow->layout().sketch().origin() + (dock_button()->layout().parent_client_rect().origin() + m_pointCursorDockOrigin);
 
-            psession->set_cursor_pos(pointCursor);
+   //      //   auto psession = Session;
 
-         }
+   //      //   psession->set_cursor_pos(pointCursor);
 
-      }
+   //      //}
 
-   }
+   //   }
+
+   //}
 
 
    bool dock_manager::_001OnMouseMove(::message::mouse * pmouse)
@@ -542,7 +556,7 @@ namespace experience
    ::user::button * dock_manager::dock_button()
    {
 
-      return m_pframewindow->m_pframe->m_pcontrolbox->get_button(button_dock);
+      return m_pframewindow->m_pframe->m_pcontrolbox->get_button(e_button_dock);
 
    }
 
@@ -559,7 +573,7 @@ namespace experience
 
          pointOrigin += pinteraction->layout().origin();
 
-         pinteraction = pinteraction->GetParent();
+         pinteraction = pinteraction->get_parent();
 
       }
 

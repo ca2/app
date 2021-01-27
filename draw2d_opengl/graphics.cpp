@@ -44,14 +44,14 @@ namespace draw2d_opengl
    graphics * thread_graphics()
    {
 
-      return ::get_task()->value("draw2d_opengl::graphics").cast < graphics >();
+      return ::get_task()->payload("draw2d_opengl::graphics").cast < graphics >();
 
    }
 
    void thread_graphics(graphics * pgraphics)
    {
 
-      ::get_task()->value("draw2d_opengl::graphics") = pgraphics;
+      ::get_task()->payload("draw2d_opengl::graphics") = pgraphics;
 
    }
 
@@ -516,9 +516,9 @@ namespace draw2d_opengl
       return SetWindowOrg(point.x, point.y);
    }
 
-   size graphics::SetWindowExt(const ::size & size)
+   size graphics::set_window_ext(const ::size & size)
    {
-      return SetWindowExt(size.cx, size.cy);
+      return set_window_ext(size.cx, size.cy);
    }
 
    void graphics::DPtoLP(POINT32 * lpPoints, count nCount) const
@@ -621,7 +621,7 @@ namespace draw2d_opengl
    //   return ::draw2d::graphics::G;
    //}
 
-   bool graphics::Polyline(const POINT32* lpPoints,count nCount)
+   bool graphics::polyline(const POINT32* lpPoints,count nCount)
    {
 
       if(nCount <= 0)
@@ -827,8 +827,8 @@ namespace draw2d_opengl
       //   BITMAPINFO biC;
       //   BITMAPINFO biM;
 
-      //   xxf_zero(biC);
-      //   xxf_zero(biM);
+      //   __zero(biC);
+      //   __zero(biM);
 
 
 
@@ -2263,12 +2263,12 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::PolyPolyline(const POINT32* lpPoints, const ::i32 * lpPolyPoints, count nCount)
+   bool graphics::poly_polyline(const POINT32* lpPoints, const ::i32 * lpPolyPoints, count nCount)
    {
 
       // ASSERT(m_hdc != nullptr);
 
-      //return ::PolyPolyline(m_hdc, lpPoints, (LPDWORD) lpPolyPoints, (::u32) nCount) != FALSE;
+      //return ::poly_polyline(m_hdc, lpPoints, (LPDWORD) lpPolyPoints, (::u32) nCount) != FALSE;
       return false;
 
    }
@@ -2319,12 +2319,12 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::PolyBezier(const POINT32* lpPoints, count nCount)
+   bool graphics::poly_bezier(const POINT32* lpPoints, count nCount)
    {
 
       // ASSERT(m_hdc != nullptr);
 
-      //return ::PolyBezier(m_hdc, lpPoints, (::u32) nCount) != FALSE;
+      //return ::poly_bezier(m_hdc, lpPoints, (::u32) nCount) != FALSE;
       return false;
 
    }
@@ -3115,7 +3115,7 @@ namespace draw2d_opengl
             {
                // brushes are different -- erase old region first
                SelectClipRgn(&rgnLast);
-               GetClipBox(&rect);
+               get_clip_box(&rect);
                pBrushOld = SelectObject(pBrushLast);
                PatBlt(rect.left, rect.top, rect.width(), rect.height(), PATINVERT);
                SelectObject(pBrushOld);
@@ -3124,7 +3124,7 @@ namespace draw2d_opengl
 
             // draw into the update/new region
             SelectClipRgn(rgnUpdate.get_os_data() != nullptr ? &rgnUpdate : &rgnNew);
-            GetClipBox(&rect);
+            get_clip_box(&rect);
             pBrushOld = SelectObject(pBrush);
             PatBlt(rect.left, rect.top, rect.width(), rect.height(), PATINVERT);
 
@@ -3838,7 +3838,7 @@ namespace draw2d_opengl
    }
 
    
-   point graphics::OffsetWindowOrg(i32 nWidth, i32 nHeight)
+   point graphics::offset_window_org(i32 nWidth, i32 nHeight)
    {
       
       ::point point;
@@ -3851,7 +3851,7 @@ namespace draw2d_opengl
    }
 
    
-   size graphics::SetWindowExt(i32 x, i32 y)
+   size graphics::set_window_ext(i32 x, i32 y)
    {
    
       size size(0, 0);
@@ -3864,7 +3864,7 @@ namespace draw2d_opengl
    }
 
 
-   size graphics::ScaleWindowExt(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom)
+   size graphics::scale_window_ext(i32 xNum, i32 xDenom, i32 yNum, i32 yDenom)
    {
    
       size size(0, 0);
@@ -3877,7 +3877,7 @@ namespace draw2d_opengl
    }
 
 
-   i32 graphics::GetClipBox(RECT32 * prect) const
+   i32 graphics::get_clip_box(RECT32 * prect) const
    {
 
       //plusplus::Rect rect;
@@ -4188,11 +4188,11 @@ namespace draw2d_opengl
       return bResult;
    }
 
-   bool graphics::PolylineTo(const POINT32* lpPoints, count nCount)
+   bool graphics::polyline_to(const POINT32* lpPoints, count nCount)
    {
       // ASSERT(m_hdc != nullptr);
       bool bResult = false;
-      //bool bResult = ::PolylineTo(m_hdc, lpPoints, (::u32) nCount) != FALSE;
+      //bool bResult = ::polyline_to(m_hdc, lpPoints, (::u32) nCount) != FALSE;
       //if (m_hdc != m_hdc)
       //{
       //   ::point point;
@@ -4213,10 +4213,10 @@ namespace draw2d_opengl
       return bResult;
    }
 
-   bool graphics::PolyBezierTo(const POINT32* lpPoints, count nCount)
+   bool graphics::poly_bezier_to(const POINT32* lpPoints, count nCount)
    {
       // ASSERT(m_hdc != nullptr);
-      bool bResult = false;      //bool bResult = ::PolyBezierTo(m_hdc, lpPoints, (::u32) nCount) != FALSE;
+      bool bResult = false;      //bool bResult = ::poly_bezier_to(m_hdc, lpPoints, (::u32) nCount) != FALSE;
       //if (m_hdc != m_hdc)
       //{
       //   ::point point;
@@ -4319,7 +4319,7 @@ namespace draw2d_opengl
 //         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SetMapMode((i32)(i16)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SETWINDOWEXT:
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SetWindowExt(
+//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->set_window_ext(
 //         (i32)(i16)pMetaRec->rdParm[1], (i32)(i16)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SETWINDOWORG:
@@ -4335,7 +4335,7 @@ namespace draw2d_opengl
 //         (i32)(i16)pMetaRec->rdParm[1], (i32)(i16)pMetaRec->rdParm[0]);
 //         break;
 //      case META_SCALEWINDOWEXT:
-//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->ScaleWindowExt(
+//         (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->scale_window_ext(
 //         (i32)(i16)pMetaRec->rdParm[3], (i32)(i16)pMetaRec->rdParm[2],
 //         (i32)(i16)pMetaRec->rdParm[1], (i32)(i16)pMetaRec->rdParm[0]);
 //         break;

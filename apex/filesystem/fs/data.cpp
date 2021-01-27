@@ -217,7 +217,7 @@ namespace fs
    }
 
 
-   payload data::file_length(const ::file::path & path)
+   ::payload data::file_length(const ::file::path & path)
    {
 
       ::file::listing listing;

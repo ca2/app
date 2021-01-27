@@ -54,7 +54,7 @@ namespace console
 
    void prompt_impact::_001OnShowWindow(::message::message * pmessage)
    {
-      SCAST_PTR(::message::show_window,pshowwindow,pmessage);
+      __pointer(::message::show_window) pshowwindow(pmessage);
       if(pshowwindow->m_bShow)
       {
          m_millisLastError= ::millis::now();
@@ -66,7 +66,7 @@ namespace console
    void prompt_impact::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create,pcreate,pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       if (pcreate->previous())
       {
@@ -113,7 +113,7 @@ namespace console
    void prompt_impact::_001OnKeyDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key,pkey,pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       m_millisCaretStart.Now();
 

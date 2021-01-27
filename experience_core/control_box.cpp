@@ -31,7 +31,7 @@ namespace experience
       void control_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       {
 
-         if((GetTopLevel()->frame_is_transparent() && !GetTopLevel()->is_active()) || !GetTopLevelFrame()->m_bShowControlBox)
+         if((get_top_level()->frame_is_transparent() && !get_top_level()->is_active()) || !top_level_frame()->m_bShowControlBox)
          {
 
             return;
@@ -51,20 +51,18 @@ namespace experience
 
          color32_t crBackground;
 
-         if(GetTopLevel()->frame_is_transparent())
+         if(get_top_level()->frame_is_transparent())
          {
 
-            crBackground = ARGB(90,colorref_get_r_value(m_crBackground),colorref_get_g_value(m_crBackground),colorref_get_b_value(m_crBackground));
+            crBackground = ARGB(90,colorref_get_r_value(m_colorBackground),colorref_get_g_value(m_colorBackground),colorref_get_b_value(m_colorBackground));
 
          }
          else
          {
 
-            crBackground = m_crBackground;
+            crBackground = m_colorBackground;
 
          }
-
-         //crBackground = ARGB(80, 255, 200, 160);
 
          pgraphics->fill_rect(rectClient, crBackground);
 
@@ -78,6 +76,7 @@ namespace experience
 
       }
 
+
       void control_box::_001OnLButtonDown(::message::message * pmessage)
       {
 
@@ -85,13 +84,13 @@ namespace experience
 
       }
 
+
       void control_box::_001OnLButtonUp(::message::message * pmessage)
       {
 
          UNREFERENCED_PARAMETER(pmessage);
 
       }
-
 
 
       void control_box::_001OnTimer(::timer * ptimer)
@@ -110,8 +109,29 @@ namespace experience
          MESSAGE_LINK(e_message_show_window, pframewindow, this, &control_box::_001OnShowWindow);
          MESSAGE_LINK(e_message_left_button_down, pframewindow, this, &control_box::_001OnLButtonDown);
          MESSAGE_LINK(e_message_left_button_up, pframewindow, this, &control_box::_001OnLButtonUp);
-         //MESSAGE_LINK(e_message_size, pframewindow, this, &control_box::_001OnSize);
-      //   //MESSAGE_LINK(e_message_timer, pframewindow, this, &control_box::_001OnTimer);
+
+      }
+
+
+      i32 control_box::calc_button_size(::draw2d::graphics_pointer & pgraphics)
+      {
+
+         return 26;
+
+      }
+
+
+      ::rect control_box::get_button_margin(enum_button ebutton)
+      {
+
+         if (e_button_close == ebutton)
+         {
+
+            return ::rect(1, 4, 4, 4);
+
+         }
+
+         return ::rect(1, 4, 2, 4);
 
       }
 

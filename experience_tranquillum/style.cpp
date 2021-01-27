@@ -439,7 +439,7 @@ namespace tranquillum
 
          rect & rectTabClient = ptab->get_data()->m_rectTabClient;
 
-         //bool bTabbedClient = ptab->m_bShowTabs && !ptab->GetTopLevelFrame()->layout().is_full_screen();
+         //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
          bool bTabbedClient = ptab->m_bShowTabs;
 
          rectTabClient.left = ptab->get_data()->m_rectTab.left;

@@ -17,7 +17,7 @@ namespace multimedia
    }
 
 
-   file_pointer file_application::get_file(payload varFile, const ::file::e_open & eopen)
+   file_pointer file_application::get_file(::payload varFile, const ::file::e_open & eopen)
    {
 
       file_pointer spfile;

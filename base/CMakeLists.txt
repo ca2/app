@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(base CXX)
 
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
@@ -221,7 +221,13 @@ list(APPEND base_source
         user/user/tab.h
         user/user/tab_callback.cpp
         user/user/tab_callback.h
+        user/user/tab_data.cpp
+        user/user/tab_data.h
         user/user/tab_drop_target_window.h
+        user/user/tab_pane.cpp
+        user/user/tab_pane.h
+        user/user/tab_pane_array.cpp
+        user/user/tab_pane_array.cpp
         user/user/tab_view.cpp
         user/user/tab_view.h
         user/user/toolbar.cpp
@@ -307,10 +313,10 @@ if (MSVC)
     target_link_options(base PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/base.def")
     target_link_libraries(base PRIVATE acme apex aqua aura axis)
 elseif(LINUX)
-    pkg_check_modules(PKGCONFIG glib-2.0 gdk-3.0 gtk+-3.0 appindicator3-0.1)
+    #pkg_check_modules(PKGCONFIG glib-2.0 gdk-3.0 gtk+-3.0 appindicator3-0.1)
     #pkg_check_modules(PKGCONFIG freetype2  )
     target_compile_options(base PRIVATE -fpermissive)
-    target_compile_options(base PRIVATE ${PKGCONFIG_CFLAGS})
+    #target_compile_options(base PRIVATE ${PKGCONFIG_CFLAGS})
 
     #target_compile_options(base PRIVATE -std=c++14)
     #target_link_options(base PRIVATE ${GTK_LDFLAGS})

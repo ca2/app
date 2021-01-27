@@ -110,7 +110,7 @@ namespace experience
 
          auto pointMove = m_pointWindowOrigin + (pmouse->m_point - m_pointCursorOrigin);
 
-         if (pframewindow->GetParent() != nullptr)
+         if (pframewindow->get_parent() != nullptr)
          {
 
             pframewindow->_001ScreenToClient(&pointMove);
@@ -298,12 +298,12 @@ namespace experience
          //}
          /*i32 iStyle = pframewindow->GetStyle();
          i32 iStyleEx = pframewindow->GetExStyle();
-         if(pframewindow->GetSafeoswindow_() != pview->GetParentFrame()->GetSafeoswindow_()
+         if(pframewindow->GetSafeoswindow_() != pview->get_parent_frame()->GetSafeoswindow_()
          && (iStyle & WS_VISIBLE)
          && !(iStyleEx & WS_EX_TOOLWINDOW)
          &&((iStyleEx & WS_EX_APPWINDOW)
          || (!(iStyle & WS_CHILD)
-         && pframewindow->GetOwner() == nullptr)))
+         && pframewindow->get_owner() == nullptr)))
          {
          if(!pview->m_areaa.Contains(pframewindow->GetSafeoswindow_(), pview->m_iArea))
          pview->m_areaa[pview->m_iArea].m_oswindowa.add(pframewindow->GetSafeoswindow_());

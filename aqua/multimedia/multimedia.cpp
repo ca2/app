@@ -1,6 +1,6 @@
 #include "framework.h"
 #ifdef WINDOWS
-#include "aqua/node/windows/_windows.h"
+#include "aqua/node/windows_common/media_foundation.h"
 #endif
 
 
@@ -39,7 +39,7 @@ namespace aqua
 
 #ifdef WINDOWS
 
-      estatus = __compose(m_pmediafoundation);
+      estatus = __compose_new(m_pmediafoundation);
 
       if (!estatus)
       {

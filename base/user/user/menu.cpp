@@ -15,6 +15,8 @@ namespace user
    menu::menu()
    {
 
+      m_econtroltype = e_control_type_menu;
+
       m_ewindowflag += e_window_flag_arbitrary_positioning;
 
       m_bCloseButton = true;
@@ -228,7 +230,7 @@ namespace user
    }
 
 
-   bool menu::load_xml_menu(const payload & varXml)
+   bool menu::load_xml_menu(const ::payload & varXml)
    {
 
       auto strXml = Application.as_string(varXml.get_string());
@@ -264,7 +266,7 @@ namespace user
    void menu::_001OnShowWindow(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::show_window, pshow, pmessage);
+      __pointer(::message::show_window) pshow(pmessage);
 
       if (pshow->m_bShow)
       {
@@ -409,7 +411,7 @@ namespace user
 
       //      }
 
-      //      pinteraction = pinteraction->GetParent();
+      //      pinteraction = pinteraction->get_parent();
 
       //   }
 
@@ -430,7 +432,7 @@ namespace user
 
       //         }
 
-      //         pinteraction = pinteraction->GetParent();
+      //         pinteraction = pinteraction->get_parent();
 
       //      }
 
@@ -454,9 +456,10 @@ namespace user
 
          }
 
-         auto pcreatestruct = __new(::user::create_struct (iStyleEx, nullptr, nullptr, 0, nullptr, pcreate));
+         //auto pusersystem = __new(::user::system (iStyleEx, nullptr, nullptr, 0, nullptr, pcreate));
 
-         if (!create_window_ex(pcreatestruct, puiParent))
+         //if (!create_window_ex(pusersystem, puiParent))
+         if (!create_host())
          {
 
             return false;
@@ -466,7 +469,7 @@ namespace user
          if (puiNotify != nullptr)
          {
 
-            //SetOwner(puiNotify);
+            //set_owner(puiNotify);
 
 
          }
@@ -493,7 +496,8 @@ namespace user
 
             m_pitemClose->m_puserinteraction = pinteraction;
 
-            if (!m_pitemClose->m_puserinteraction->create_window(this, "close_menu"))
+            //if (!m_pitemClose->m_puserinteraction->create_interaction(this, "close_menu"))
+            if (!m_pitemClose->m_puserinteraction->create_child(this))
             {
 
                return false;
@@ -610,10 +614,10 @@ namespace user
 
       m_pointTrack = point;
 
-      if (GetParent() != nullptr)
+      if (get_parent() != nullptr)
       {
 
-         GetParent()->_001ScreenToClient(m_pointTrack);
+         get_parent()->_001ScreenToClient(m_pointTrack);
 
       }
 
@@ -1152,7 +1156,7 @@ namespace user
    void menu::_001OnCreate(::message::message * pmessage)
    {
 
-      descriptor().set_control_type(e_control_type_menu);
+      /// descriptor().set_control_type(e_control_type_menu);
 
       pmessage->previous();
 
@@ -1170,7 +1174,7 @@ namespace user
    //    void menu::_001OnIdleUpdateCmdUI(::message::message * pmessage)
    //    {
    //       UNREFERENCED_PARAMETER(pmessage);
-   //       //      SCAST_PTR(::message::base, pbase, pmessage);
+   //       //      __pointer(::message::base) pbase(pmessage);
 
    //       __pointer(::user::menu_item) pitemThis = get_item();
 
@@ -1215,7 +1219,7 @@ namespace user
    void menu::_001OnNcCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       pbase->m_bRet = true;
 
@@ -1227,7 +1231,7 @@ namespace user
    void menu::_001OnNcActivate(::message::message * /*pmessage */)
    {
 
-      //SCAST_PTR(::message::nc_activate, pncactivate, pmessage);
+      //__pointer(::message::nc_activate) pncactivate(pmessage);
 
 //#ifdef WINDOWS_DESKTOP
 //
@@ -1261,7 +1265,7 @@ namespace user
    void menu::_001OnActivate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::activate, pactivate, pmessage);
+      __pointer(::message::activate) pactivate(pmessage);
 
       pactivate->m_lresult = 0;
 
@@ -1273,7 +1277,7 @@ namespace user
    void menu::_001OnMouseActivate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse_activate, pmouseactivate, pmessage);
+      __pointer(::message::mouse_activate) pmouseactivate(pmessage);
 
       pmouseactivate->m_lresult = MA_NOACTIVATE;
 
@@ -1293,7 +1297,7 @@ namespace user
    void menu::_001OnNcCalcSize(::message::message * pmessage)
    {
 
-      ///SCAST_PTR(::message::base, pbase, pmessage);
+      ///__pointer(::message::base) pbase(pmessage);
 
       pmessage->previous();
 
@@ -1341,7 +1345,7 @@ namespace user
          }
 
          //DestroyWindow();
-         finish(get_context());
+         set_finish(this);
 
       }
 
@@ -1350,14 +1354,14 @@ namespace user
    }
 
 
-   bool menu::pre_create_window(::user::create_struct * pcreatestruct)
+   bool menu::pre_create_window(::user::system * pusersystem)
    {
 
 #ifdef WINDOWS_DESKTOP
 
-      pcreatestruct->m_createstruct.dwExStyle = WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW;
+      pusersystem->m_createstruct.dwExStyle = WS_EX_LAYERED | WS_EX_TOPMOST | WS_EX_TOOLWINDOW;
 
-      pcreatestruct->m_createstruct.style &= ~WS_VISIBLE;
+      pusersystem->m_createstruct.style &= ~WS_VISIBLE;
 
 #endif
 
@@ -1406,7 +1410,7 @@ namespace user
       if (dynamic_cast <::user::frame *> (puiTarget) == nullptr)
       {
 
-         puiTarget = puiTarget->GetParentFrame();
+         puiTarget = puiTarget->get_parent_frame();
 
       }
 

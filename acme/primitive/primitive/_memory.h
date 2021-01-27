@@ -1,19 +1,6 @@
 #pragma once
 
 
-template < typename TYPE >
-inline TYPE & xxf_zero_pointer(TYPE * p) { ::zero(p, sizeof(TYPE)); return *p; }
-
-template < typename TYPE >
-inline TYPE & xxf_zero(TYPE & t) { ::zero(&t, sizeof(TYPE)); return t; }
-
-template < typename TYPE >
-inline bool xxf_is_zero_pointer(TYPE * p) { return ::is_zero(p, sizeof(TYPE)); }
-
-template < typename TYPE >
-inline bool xxf_is_zero(TYPE & t) { return ::is_zero(&t, sizeof(TYPE)); }
-
-
 // xxf_is_zero
 
 

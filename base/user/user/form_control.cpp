@@ -50,43 +50,43 @@ namespace user
    //}
 
 
-   __pointer(class control_descriptor) form_control::new_form_control()
-   {
+   //__pointer(class control_descriptor) form_control::new_form_control()
+   //{
 
-      auto pdescriptor = __new(::user::control_descriptor());
+   //   auto pdescriptor = __new(::user::control_descriptor());
 
-      m_controldescriptorset.add(pdescriptor);
+   //   m_controldescriptorset.add(pdescriptor);
 
-      pdescriptor->m_iControl = m_controldescriptorset.find_first(pdescriptor);
+   //   pdescriptor->m_iControl = m_controldescriptorset.find_first(pdescriptor);
 
-      pdescriptor->m_puserinteractionParent = this;
+   //   pdescriptor->m_puserinteractionParent = this;
 
-      if(pdescriptor->m_bTransparent)
-      {
+   //   if(pdescriptor->m_bTransparent)
+   //   {
 
-         switch(pdescriptor->m_econtroltype)
-         {
-         case e_control_type_static:
-         {
-            /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) window::FromHandlePermanent(pform->get_child_by_id(pinteraction->m_id)->GetSafeoswindow_());
-            if(pstatic == nullptr || !base_class < CTransparentStatic >::bases(pstatic))
-            {
-            pstatic = new CTransparentStatic;
-            VERIFY(pstatic->subclass_window(pform->get_child_by_id(pinteraction->m_id)->GetSafeoswindow_()));
-            }
-            pinteraction->m_unionwndptr.m_pstatic = pstatic;*/
-         }
-         break;
-         default:
-            break;
+   //      switch(pdescriptor->m_econtroltype)
+   //      {
+   //      case e_control_type_static:
+   //      {
+   //         /*xxx            CTransparentStatic * pstatic = (CTransparentStatic *) window::FromHandlePermanent(pform->get_child_by_id(pinteraction->m_id)->GetSafeoswindow_());
+   //         if(pstatic == nullptr || !base_class < CTransparentStatic >::bases(pstatic))
+   //         {
+   //         pstatic = new CTransparentStatic;
+   //         VERIFY(pstatic->subclass_window(pform->get_child_by_id(pinteraction->m_id)->GetSafeoswindow_()));
+   //         }
+   //         pinteraction->m_unionwndptr.m_pstatic = pstatic;*/
+   //      }
+   //      break;
+   //      default:
+   //         break;
 
-         }
+   //      }
 
-      }
+   //   }
 
-      return pdescriptor;
+   //   return pdescriptor;
 
-   }
+   //}
 
 
    bool form_control::OnCommand(WPARAM wparam,LPARAM lparam)
@@ -96,7 +96,7 @@ namespace user
 
       ::id id(LOWORD(wparam));
 
-      __pointer(::user::interaction) pinteraction = m_controldescriptorset.get_control(this, id);
+      __pointer(::user::interaction) pinteraction = get_child_by_id(id);
 
       if (!pinteraction)
       {
@@ -105,7 +105,7 @@ namespace user
 
       }
 
-      switch(pinteraction->descriptor().get_control_type())
+      switch(pinteraction->get_control_type())
       {
       case e_control_type_button:
          OnCommandButton(pinteraction,uNotificationCode,lparam);
@@ -144,7 +144,7 @@ namespace user
       if(pinteraction == nullptr)
          return false;
 
-      ASSERT(pinteraction->descriptor().get_control_type() == e_control_type_button);
+      ASSERT(pinteraction->get_control_type() == e_control_type_button);
 
 #ifdef WINDOWS
 
@@ -152,7 +152,7 @@ namespace user
       {
       case BN_CLICKED:
       {
-         if(pinteraction->descriptor().has_function(e_control_function_action))
+         if(pinteraction->has_function(e_control_function_action))
          {
             _001OnButtonAction(pinteraction);
             return true;
@@ -181,7 +181,7 @@ namespace user
       if(pinteraction == nullptr)
          return false;
 
-      ASSERT(pinteraction->descriptor().get_control_type() == e_control_type_check_box);
+      ASSERT(pinteraction->get_control_type() == e_control_type_check_box);
 
 #ifdef WINDOWS
 
@@ -191,7 +191,7 @@ namespace user
       {
          /*      linux   ::user::button * pbutton = (::user::button *) get_child_by_id(pinteraction->m_id);
          i32 i = pbutton->get_check() != 0;
-         VmsDataSet(pinteraction->descriptor().m_dataid, 0, 0, i);*/
+         VmsDataSet(pinteraction->m_dataid, 0, 0, i);*/
       }
       break;
       default:
@@ -217,7 +217,7 @@ namespace user
       if(pinteraction == nullptr)
          return false;
 
-      ASSERT(pinteraction->descriptor().get_control_type() == e_control_type_combo_box);
+      ASSERT(pinteraction->get_control_type() == e_control_type_combo_box);
 
 #ifdef WINDOWS
 
@@ -230,7 +230,7 @@ namespace user
          if(iSel != CB_ERR)
          {
          u32 dwData = pinteraction->GetComboBox()->m_dwaData[iSel];
-         VmsDataSet(pinteraction->descriptor().m_dataid, 0, 0, (i32) dwData);
+         VmsDataSet(pinteraction->m_dataid, 0, 0, (i32) dwData);
          }*/
       }
       break;
@@ -261,7 +261,7 @@ namespace user
       if(pinteraction == nullptr)
          return false;
 
-      ASSERT(pinteraction->descriptor().get_control_type() == e_control_type_edit);
+      ASSERT(pinteraction->get_control_type() == e_control_type_edit);
 
 #ifdef WINDOWS
 
@@ -269,7 +269,7 @@ namespace user
       {
       case EN_CHANGE:
       {
-         if(pinteraction->descriptor().has_function(e_control_function_save_on_change))
+         if(pinteraction->has_function(e_control_function_save_on_change))
          {
             _001SaveEdit(pinteraction);
          }
@@ -300,7 +300,7 @@ namespace user
 
       }
 
-      ASSERT(pinteraction->descriptor().get_control_type() == e_control_type_edit || pinteraction->descriptor().get_control_type() == e_control_type_edit_plain_text);
+      ASSERT(pinteraction->get_control_type() == e_control_type_edit || pinteraction->get_control_type() == e_control_type_edit_plain_text);
 
       string str;
 
@@ -308,32 +308,32 @@ namespace user
 
       ::user::validate validate;
 
-      if(!validate.Validate(str, &pinteraction->descriptor()))
+      if(!validate.Validate(str, pinteraction))
       {
          // que tal um balão para indicar o erro
          return false;
       }
 
-      payload payload;
+      ::payload payload;
 
-      if(!pinteraction->get_data(pinteraction,payload))
+      if(!pinteraction->get_data(pinteraction, payload))
       {
 
          return false;
 
       }
 
-      if(!_001Validate(pinteraction,payload))
+      if(!_001Validate(pinteraction, payload))
       {
          return false;
       }
 
-      if(pinteraction->descriptor().has_function(e_control_function_vms_data_edit))
+      if(pinteraction->has_function(e_control_function_vms_data_edit))
       {
 
          ::database::selection selection;
 
-         _001GetSelection(pinteraction->descriptor().m_datakey, selection);
+         _001GetSelection(pinteraction->m_datakey, selection);
 
          throw_todo();
 
@@ -349,17 +349,8 @@ namespace user
    void form_control::on_subject(::promise::subject * psubject, ::promise::context * pcontext)
    {
 
-      for(auto & pdescriptor : m_controldescriptorset.ptra())
+      for(auto pinteraction : proper_children())
       {
-
-         auto pinteraction = pdescriptor->m_pinteraction;
-
-         if (!pinteraction)
-         {
-
-            continue;
-
-         }
 
          _001Update(pinteraction);
 
@@ -373,7 +364,7 @@ namespace user
       ASSERT(pinteraction != nullptr);
       if(pinteraction == nullptr)
          return;
-      switch(pinteraction->descriptor().get_control_type())
+      switch(pinteraction->get_control_type())
       {
       case e_control_type_check_box:
          _001UpdateCheckBox(pinteraction);
@@ -398,7 +389,7 @@ namespace user
       ASSERT(pinteraction != nullptr);
       if(pinteraction == nullptr)
          return;
-      switch(pinteraction->descriptor().get_control_type())
+      switch(pinteraction->get_control_type())
       {
       case e_control_type_check_box:
          //_001UpdateDbFlagsCheckBox(pinteraction);
@@ -430,9 +421,9 @@ namespace user
 
       }
 
-      ASSERT(pinteraction->descriptor().get_control_type() == e_control_type_check_box);
+      ASSERT(pinteraction->get_control_type() == e_control_type_check_box);
 
-      ASSERT(pinteraction->descriptor().m_eddx == e_control_ddx_dbflags);
+      ASSERT(pinteraction->m_eddx == e_control_ddx_dbflags);
 
       int_array ia;
 
@@ -441,7 +432,7 @@ namespace user
 
          throw_todo();
 
-         //pinteraction->data_get(pinteraction->descriptor().m_datakey,ia);
+         //pinteraction->data_get(pinteraction->m_datakey,ia);
 
       }
       catch(...)
@@ -457,11 +448,11 @@ namespace user
       ASSERT(pinteraction != nullptr);
       if(pinteraction == nullptr)
          return;
-      ASSERT(pinteraction->descriptor().get_control_type() == e_control_type_check_box);
+      ASSERT(pinteraction->get_control_type() == e_control_type_check_box);
 
-      payload payload;
+      ::payload payload;
 
-      //if(data_get(pinteraction->descriptor().m_datakey, payload))
+      //if(data_get(pinteraction->m_datakey, payload))
       //{
          /* linux      ::user::button * pbutton = (::user::button *) get_child_by_id(pinteraction->m_id);
          pbutton->SetCheck((i != 0) ? 1 : 0); */
@@ -475,9 +466,9 @@ namespace user
       ASSERT(pinteraction != nullptr);
       if(pinteraction == nullptr)
          return;
-      /* linux   ASSERT(pinteraction->descriptor().get_type() == e_control_type_combo_box);
+      /* linux   ASSERT(pinteraction->get_type() == e_control_type_combo_box);
       i32 i;
-      if(VmsDataGet(pinteraction->descriptor().m_dataid, 0, 0, i))
+      if(VmsDataGet(pinteraction->m_dataid, 0, 0, i))
       {
       iptr iSel = pinteraction->GetComboBox()->m_dwaData.find_first((u32) i);
       if(iSel >= 0)
@@ -499,14 +490,14 @@ namespace user
 
       __keep(m_bOnEditUpdate);
 
-      ASSERT(pinteraction->descriptor().get_control_type() == e_control_type_edit
-             || pinteraction->descriptor().get_control_type() == e_control_type_edit_plain_text);
+      ASSERT(pinteraction->get_control_type() == e_control_type_edit
+             || pinteraction->get_control_type() == e_control_type_edit_plain_text);
 
-      if(pinteraction->descriptor().has_function(e_control_function_vms_data_edit))
+      if(pinteraction->has_function(e_control_function_vms_data_edit))
       {
-         payload payload;
+         ::payload payload;
          ::database::selection selection;
-         _001GetSelection(pinteraction->descriptor().m_datakey,selection);
+         _001GetSelection(pinteraction->m_datakey,selection);
          if(selection.get_item_count() > 0)
          {
 
@@ -519,7 +510,7 @@ namespace user
 
             }
 
-            //if(data_get(pinteraction->descriptor().m_datakey.m_strDataKey + "." + item.m_datakey.m_strDataKey,payload))
+            //if(data_get(pinteraction->m_datakey.m_strDataKey + "." + item.m_datakey.m_strDataKey,::payload))
             //{
             //   switch(payload.get_type())
             //   {
@@ -560,7 +551,7 @@ namespace user
       if(pinteraction == nullptr)
          return;
 
-      ASSERT(pinteraction->descriptor().get_control_type() == e_control_type_simple_list);
+      ASSERT(pinteraction->get_control_type() == e_control_type_simple_list);
 
       /*      ::user::list * plist = dynamic_cast<::user::list *>(get_child_by_id(pinteraction->m_id));
 
@@ -568,7 +559,7 @@ namespace user
       {
       ::user::simple_mesh_data * pdata = dynamic_cast < ::user::simple_mesh_data * > (plist->GetDataInterface());
       string_array stra;
-      data_get(pinteraction->descriptor().m_dataid, stra);
+      data_get(pinteraction->m_dataid, stra);
       ASSERT(plist != nullptr);
       pdata->set_data(plist, stra);
       }*/
@@ -577,7 +568,7 @@ namespace user
    void form_control::_000OnPosCreate(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //      SCAST_PTR(::message::base, pbase, pmessage);
+      //      __pointer(::message::base) pbase(pmessage);
    }
 
    void form_control::_001InitializeFormPreData()
@@ -588,9 +579,9 @@ namespace user
       }
 
       /*
-      if(GetOwner() != nullptr)
+      if(get_owner() != nullptr)
       {
-      GetOwner()->SendMessage(
+      get_owner()->SendMessage(
       WM_USER + 723,
       GetDlgCtrlId(),
       (LPARAM) this);
@@ -603,7 +594,7 @@ namespace user
    bool form_control::_001GetData(id uId,bool &bData)
    {
 
-      __pointer(::user::interaction) pinteraction = m_controldescriptorset.get_control(this, uId);
+      __pointer(::user::interaction) pinteraction = get_child_by_id(uId);
 
       if(pinteraction == nullptr)
       {
@@ -612,9 +603,9 @@ namespace user
 
       }
 
-      payload payload;
+      ::payload payload;
 
-      //if(!data_get(pinteraction->descriptor().m_datakey, payload))
+      //if(!data_get(pinteraction->m_datakey, payload))
       //{
 
       //   return false;
@@ -631,7 +622,7 @@ namespace user
    bool form_control::_001SetData(id uId,bool bData)
    {
 
-      __pointer(::user::interaction) pinteraction = m_controldescriptorset.get_control(this, uId);
+      __pointer(::user::interaction) pinteraction = get_child_by_id(uId);
 
       if(pinteraction == nullptr)
       {
@@ -642,7 +633,7 @@ namespace user
 
       //i32 i = bData ? 1 : 0;
 
-      //data_set(pinteraction->descriptor().m_datakey,i);
+      //data_set(pinteraction->m_datakey,i);
 
       return true;
 
@@ -658,17 +649,8 @@ namespace user
       else
       {
 
-         for(auto & pdescriptor : m_controldescriptorset.ptra())
+         for(auto pinteraction : proper_children())
          {
-
-            auto pinteraction = pdescriptor->m_pinteraction;
-
-            if (!pinteraction)
-            {
-
-               continue;
-
-            }
 
             _001Update(pinteraction);
 
@@ -717,7 +699,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-      SCAST_PTR(::message::notify,pnotify,pmessage);
+      __pointer(::message::notify) pnotify(pmessage);
 
       pnotify->m_bRet = false;
 
@@ -733,7 +715,7 @@ namespace user
    void form_control::_001OnMessageNotify(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base,pbase,pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       // revamp pbase->set_lresult(user::NotifyRetContinue);
 
@@ -742,7 +724,7 @@ namespace user
    }
 
 
-   bool form_control::_001Validate(::user::interaction * pinteraction,payload & payload)
+   bool form_control::_001Validate(::user::interaction * pinteraction,::payload & payload)
    {
 
       UNREFERENCED_PARAMETER(pinteraction);
@@ -753,12 +735,12 @@ namespace user
    }
 
 
-   void form_control::_001RemoveControls()
-   {
+   //void form_control::_001RemoveControls()
+   //{
 
-      m_controldescriptorset.remove_all();
+   //   m_controldescriptorset.remove_all();
 
-   }
+   //}
 
 
    bool form_control::_001OnBeforeSave(::user::interaction * pinteraction)
@@ -806,28 +788,19 @@ namespace user
    }
 
 
-   void form_control::data_on_after_change(::database::client* pclient, const ::database::key& key, const payload& payload, ::promise::subject * psubject)
+   void form_control::data_on_after_change(::database::client* pclient, const ::database::key& key, const ::payload & payload, ::promise::subject * psubject)
    {
 
-      for(auto & pdescriptor : m_controldescriptorset.ptra())
+      for(auto pinteraction : proper_children())
       {
 
-         auto pinteraction = pdescriptor->m_pinteraction;
-
-         if (!pinteraction)
-         {
-
-            continue;
-
-         }
-
-         if(pdescriptor->m_eddx == e_control_ddx_dbflags)
+         if(pinteraction->m_eddx == e_control_ddx_dbflags)
          {
 
             _001UpdateDbFlags(pinteraction);
 
          }
-         else if(pdescriptor->m_datakey == key)
+         else if(pinteraction->m_datakey == key)
          {
 
             _001Update(pinteraction);
@@ -842,27 +815,27 @@ namespace user
    void form_control::_001UpdateFunctionStatic()
    {
 
-      for(auto & pdescriptor : m_controldescriptorset.ptra())
+      for(auto pinteraction : proper_children())
       {
 
-         if(pdescriptor->has_function(e_control_function_static))
+         if(pinteraction->has_function(e_control_function_static))
          {
 
             string str;
 
-            str = Application.load_string(pdescriptor->m_id);
+            str = Application.load_string(pinteraction->m_id);
 
-            pdescriptor->m_pinteraction->set_window_text(str);
+            pinteraction->set_window_text(str);
 
          }
-         else if(pdescriptor->has_function(e_control_function_static2))
+         else if(pinteraction->has_function(e_control_function_static2))
          {
 
             string str;
 
-            str = Application.load_string(pdescriptor->m_uiText);
+            str = Application.load_string(pinteraction->m_uiText);
 
-            pdescriptor->m_pinteraction->set_window_text(str);
+            pinteraction->set_window_text(str);
 
          }
 
@@ -907,7 +880,7 @@ namespace user
    void form_control::_001OnAppLanguage(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::base,pbase,pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
       __keep(m_bOnLanguageChange);
 
@@ -921,7 +894,7 @@ namespace user
    void form_control::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pmessagecreate, pmessage);
+      __pointer(::message::create) pmessagecreate(pmessage);
 
       auto pcreate = (::create *) pmessagecreate->get_create();
 
@@ -942,6 +915,14 @@ namespace user
    }
 
 
+   bool form_control::_001AddControl(::user::interaction * pinteraction)
+   {
+
+      return ::user::form::_001AddControl(pinteraction);
+
+   }
+
+
    void form_control::_001FillCombo(::user::interaction * pinteraction)
    {
 
@@ -954,13 +935,13 @@ namespace user
       {
       pinteraction->GetComboBox()->m_wstra.remove_all();
       pinteraction->GetComboBox()->m_dwaData.remove_all();
-      payload payload;
+      ::payload payload;
       payload.m_etype = ::e_type_element;
       payload.m_pca2 = pinteraction->GetComboBox();
       VmsDataGet(
       pinteraction->GetComboBox()->m_datakeyFill,
       0, 0,
-      payload);
+      ::payload);
       __pointer(::user::combo_box) pcombo = (__pointer(::user::combo_box)) pinteraction->m_puserinteraction;
       pcombo->ResetContent();
       string str;
@@ -1027,55 +1008,53 @@ namespace user
    }
 
 
-   bool form_control::create_control(class control_descriptor * pdescriptor, index iIndex)
-   {
+   //bool form_control::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
+   //{
 
-      if(!normalize_control_descriptor_typeinfo(pdescriptor))
-      {
-         TRACE("form_control::create_control: failed to create control, could not find proper type for allocation");
-         return false;
-      }
+   //   //if(!normalize_control_descriptor_typeinfo(pdescriptor))
+   //   //{
+   //   //   TRACE("form_control::create_interaction: failed to create control, could not find proper type for allocation");
+   //   //   return false;
+   //   //}
 
-      __pointer(object) pobject;
+   ///*   __pointer(object) pobject;
 
-      __id_construct(pobject, pdescriptor->m_type);
+   //   __id_construct(pobject, pdescriptor->m_type);
 
-      if(!pobject)
-      {
+   //   if(!pobject)
+   //   {
 
-         TRACE("form_control::create_control: failed to create control, allocation error");
+   //      TRACE("form_control::create_interaction: failed to create control, allocation error");
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      __pointer(interaction) pinteraction = pobject;
+   //   __pointer(interaction) pinteraction = pobject;
 
-      if(!pinteraction)
-      {
+   //   if(!pinteraction)
+   //   {
 
-         pobject.release();
+   //      pobject.release();
 
-         TRACE("form_control::create_control: failed to create control, object is not derived from user::control_descriptor");
+   //      TRACE("form_control::create_interaction: failed to create control, object is not derived from user::control_descriptor");
 
-         return false;
+   //      return false;
 
-      }
+   //   }
 
-      pdescriptor->m_iItem = iIndex;
+   //   pdescriptor->m_iItem = iIndex;*/
 
-      if(!pinteraction->create_control(pdescriptor))
-      {
+   //   if(!create_interaction(pinteractionParent, id))
+   //   {
 
-         pinteraction.release();
+   //      return false;
 
-         return false;
+   //   }
 
-      }
+   //   return true;
 
-      return true;
-
-   }
+//   }
 
 
    void form_control::_001SetControlFactory()
@@ -1098,7 +1077,7 @@ namespace user
    }
 
 
-   ::e_status form_control::open_document(const payload & varFile)
+   ::e_status form_control::open_document(const ::payload & varFile)
    {
 
       return true;
@@ -1202,16 +1181,7 @@ namespace user
 
          }
 
-         class control_descriptor * pdescriptor = pinteraction->m_pdescriptor;
-
-         if (::is_null(pdescriptor))
-         {
-
-            return;
-
-         }
-
-         if(pdescriptor->has_function(e_control_function_action))
+         if(pinteraction->has_function(e_control_function_action))
          {
 
             if(pinteraction != nullptr)
@@ -1246,21 +1216,12 @@ namespace user
 
          }
 
-         auto pdescriptor = pinteraction->m_pdescriptor;
-
-         if (!pdescriptor)
-         {
-
-            return;
-
-         }
-
-         if(pdescriptor->m_eddx == e_control_ddx_dbflags)
+         if(pinteraction->m_eddx == e_control_ddx_dbflags)
          {
 
             int_array ia;
 
-            __pointer(::database::client) pclient = pdescriptor->m_pinteraction;
+            __pointer(::database::client) pclient = pinteraction;
 
             if (pclient.is_null())
             {
@@ -1271,24 +1232,24 @@ namespace user
 
             }
 
-            pclient->data_get(pdescriptor->m_datakey, ia);
+            pclient->data_get(pinteraction->m_datakey, ia);
 
             __pointer(check) pcheck = pevent->m_puie;
 
             if(pcheck->echeck() == ::check_checked)
             {
 
-               ia.add_unique(pdescriptor->m_iDataValue);
+               ia.add_unique(pinteraction->m_iDataValue);
 
             }
             else
             {
 
-               ia.remove(pdescriptor->m_iDataValue);
+               ia.remove(pinteraction->m_iDataValue);
 
             }
 
-            pclient->data_set(pdescriptor->m_datakey, ia);
+            pclient->data_set(pinteraction->m_datakey, ia);
 
          }
 
@@ -1341,17 +1302,8 @@ namespace user
 
       _001UpdateFunctionStatic();
 
-      for(auto & pdescriptor : m_controldescriptorset.ptra())
+      for(auto pinteraction : proper_children())
       {
-
-         __pointer(interaction) pinteraction = pdescriptor->m_pinteraction;
-
-         if (!pinteraction)
-         {
-
-            continue;
-
-         }
 
          _001Update(pinteraction);
 
@@ -1376,31 +1328,31 @@ namespace user
 
 
 
-   bool form_control::normalize_control_descriptor_typeinfo(class ::user::control_descriptor * pdescriptor)
-   {
+   //bool form_control::normalize_control_descriptor_typeinfo(class ::user::control_descriptor * pdescriptor)
+   //{
 
-      if(pdescriptor->m_type)
-      {
+   //   if(pdescriptor->m_type)
+   //   {
 
-         return true;
+   //      return true;
 
-      }
+   //   }
 
-      //pdescriptor->m_type = controltype_to_typeinfo(pdescriptor->get_control_type());
+   //   //pdescriptor->m_type = controltype_to_typeinfo(pdescriptor->get_control_type());
 
-      //if(pdescriptor->m_type)
-      //{
+   //   //if(pdescriptor->m_type)
+   //   //{
 
-      //   return true;
+   //   //   return true;
 
-      //}
+   //   //}
 
-      return false;
+   //   return false;
 
-   }
+   //}
 
 
-   //void form_control::on_before_navigate(payload & varFile,u32 nFlags,const char * pszTargetFrameName,byte_array& baPostedData,const char * pszHeaders,bool* pbCancel)
+   //void form_control::on_before_navigate(::payload & varFile,u32 nFlags,const char * pszTargetFrameName,byte_array& baPostedData,const char * pszHeaders,bool* pbCancel)
 
    //{
 
@@ -1517,7 +1469,7 @@ namespace user
 //
 //         KillTimer(24);
 //
-//         GetTopLevelFrame()->EndModalLoop(e_dialog_result_ok);
+//         top_level_frame()->EndModalLoop(e_dialog_result_ok);
 //
 //      }
 
@@ -1526,15 +1478,15 @@ namespace user
 
    void form_control::_001OnUser123(::message::message * pmessage)
    {
-      SCAST_PTR(::message::base,pbase,pmessage);
+      __pointer(::message::base) pbase(pmessage);
 
 #ifdef WINDOWS_DESKTOP
 
       if(pbase->m_wparam == 0x80000001)
       {
-         if(GetTopLevel() != nullptr)
+         if(get_top_level() != nullptr)
          {
-            GetTopLevel()->EndModalLoop(e_dialog_result_ok);
+            get_top_level()->EndModalLoop(e_dialog_result_ok);
          }
          return;
       }

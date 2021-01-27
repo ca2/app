@@ -18,6 +18,14 @@ single_lock::single_lock(sync * psync, bool bInitialLock)
 }
 
 
+single_lock::~single_lock()
+{
+
+   unlock();
+
+}
+
+
 sync_result single_lock::wait()
 {
 
@@ -151,22 +159,6 @@ bool single_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* = nullptr */)
 }
 
 
-single_lock::~single_lock()
-{
-
-   unlock();
-
-   /*if(::get_task() != nullptr)
-   {
-
-      if(::get_task()->m_pslUser == this)
-      {
-         ::get_task()->m_pslUser = nullptr;
-      }
-
-   }*/
-
-}
 
 
 bool single_lock::IsLocked()

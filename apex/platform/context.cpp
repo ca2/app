@@ -1,9 +1,7 @@
 #include "framework.h"
-#include "apex/const/id.h"
+#include "acme/id.h"
 #include "apex/platform/app_core.h"
 
-
-//extern const char* g_pszServerCa2Cc;
 
 CLASS_DECL_ACME const char* get_server_ca2_cc();
 
@@ -643,50 +641,37 @@ string context::defer_get_file_title(string strParam)
 
          }
 
+         string strFsType;
+            
+         strFsType = set["get_headers"]["x-fstype"];
 
-            string strFsType = set["get_headers"]["x-fstype"];
-
-            if (strFsType.has_char())
+         if (strFsType.has_char())
+         {
+            if (strFsType == "directory")
             {
-               if (strFsType == "directory")
-               {
-
-                  if (!retry([&]()
-                     {
-
-                        return dir().mk(pathCache);
-
-                     }))
-                  {
-
-                     return "";
-
-                  }
-
-
-               }
-               else
-               {
-                  pfile->seek_to_begin();
-
-                  if (!retry([&]()
-                     {
-
-                        return file().copy(pathCache, pfile, false);
-
-                     }))
-                  {
-
-                     return "";
-
-                  }
-
-               }
 
                if (!retry([&]()
                   {
 
-                     return file_set_line_dup(pathMeta, 0, strFsType);
+                     return dir().mk(pathCache);
+
+                  }))
+               {
+
+                  return "";
+
+               }
+
+
+            }
+            else
+            {
+               pfile->seek_to_begin();
+
+               if (!retry([&]()
+                  {
+
+                     return file().copy(pathCache, pfile, false);
 
                   }))
                {
@@ -696,16 +681,30 @@ string context::defer_get_file_title(string strParam)
                }
 
             }
-            else
+
+            if (!retry([&]()
+               {
+
+                  return file_set_line_dup(pathMeta, 0, strFsType);
+
+               }))
             {
-               retry([&]()
-                  {
 
-                     return file_set_line_dup(pathMeta, 0, "itdoesntexist");
-
-                  });
                return "";
+
             }
+
+         }
+         else
+         {
+            retry([&]()
+               {
+
+                  return file_set_line_dup(pathMeta, 0, "itdoesntexist");
+
+               });
+            return "";
+         }
 
 
 
@@ -744,7 +743,7 @@ string context::defer_get_file_title(string strParam)
 
 
 
-file_pointer context::friendly_get_file(payload varFile, const ::file::e_open & eopen)
+file_pointer context::friendly_get_file(::payload varFile, const ::file::e_open & eopen)
 {
 
    try
@@ -1076,7 +1075,7 @@ void context::add_matter_locator(::apex::application * papp)
 
 
 
-::e_status context::_load_from_file(::matter* pobject, const ::payload& varFile, const payload& varOptions)
+::e_status context::_load_from_file(::matter* pobject, const ::payload& varFile, const ::payload& varOptions)
 {
 
    binary_stream reader(Context.file().get_reader(varFile));
@@ -1088,7 +1087,7 @@ void context::add_matter_locator(::apex::application * papp)
 }
 
 
-::e_status context::_save_to_file(const ::payload& varFile, const payload& varOptions, const ::matter * pobject)
+::e_status context::_save_to_file(const ::payload& varFile, const ::payload& varOptions, const ::matter * pobject)
 {
 
    binary_stream writer(Context.file().get_writer(varFile));

@@ -98,6 +98,14 @@ image::~image()
 //}
 
 
+::size image::get_image_drawer_size() const
+{
+
+   return get_size();
+
+}
+
+
 ::draw2d::graphics * image::get_graphics() const
 {
 
@@ -213,12 +221,12 @@ bool image::dc_select(bool bSelect)
 }
 
 
-::e_status     image::create(::draw2d::graphics * pgraphics)
+::e_status image::create(::draw2d::graphics * pgraphics)
 {
 
    ::draw2d::bitmap & bitmap = *pgraphics->get_current_bitmap();
 
-   if (is_null_ref(bitmap))
+   if (::is_null(bitmap))
    {
 
       return ::error_failed;
@@ -466,15 +474,15 @@ bool image::destroy()
 //}
 
 
-bool image::stretch(::draw2d::graphics * pgraphics)
-{
+//bool image::stretch(::draw2d::graphics * pgraphics)
+//{
+//
+//   return stretch(pgraphics->m_pimage);
+//
+//}
 
-   return stretch(pgraphics->m_pimage);
 
-}
-
-
-bool image::stretch(const ::image * pimage)
+bool image::stretch(::image * pimage)
 {
 
    auto pgraphics = get_graphics();
@@ -493,12 +501,12 @@ bool image::stretch(const ::image * pimage)
 
    }
 
-   return pgraphics->stretch(this->size(), pimage->g(), pimage->size());
+   return pgraphics->stretch(::rectd(this->size()), pimage->g(), ::rectd(pimage->size()));
 
 }
 
 
-bool image::draw(const ::rect & rectDstParam, ::image * pimageSrc, const ::point & pointSrcParam)
+bool image::_draw_raw(const ::rect & rectDstParam, ::image * pimageSrc, const ::point & pointSrcParam)
 {
 
    ::image * pimageDst = this;
@@ -642,7 +650,7 @@ bool image::draw(const ::rect & rectDstParam, ::image * pimageSrc, const ::point
 }
 
 
-bool image::draw(const ::rect & rectDstParam, ::image * pimageSrc, const ::point & pointSrcParam, byte bA)
+bool image::blend(const ::rect & rectDstParam, ::image * pimageSrc, const ::point & pointSrcParam, byte bA)
 {
 
    ::image * pimageDst = this;
@@ -2698,7 +2706,8 @@ bool image::BitBlt(::image * pimage, i32 op)
    if (op == 123) // zero dest RGB, invert alpha, and OR src RGB
    {
 
-      stretch(pimage);
+      __throw(todo());
+      //stretch(pimage);
 
    }
 
@@ -3865,7 +3874,7 @@ bool image::copy_from(::image * pimage, i32 x, i32 y)
    if (s.area() > 0)
    {
 
-      if (!g()->draw(s, pimage, { x, y }))
+      if (!g()->draw(::rectd(s), pimage, ::pointd(x, y)))
       {
 
          return false;
@@ -5715,7 +5724,7 @@ bool image::fill_byte(uchar uch)
          
       }
       
-      g()->fill_solid_rect_dim(0, 0, m_size.cx, m_size.cy, color);
+      g()->fill_rect(::rectd(m_size), color);
       
       if(ealphamode != ::draw2d::alpha_mode_set)
       {
@@ -6339,7 +6348,7 @@ bool image::_set_mipmap(::draw2d::e_mipmap emipmap)
 
       int y = 0;
 
-      get_graphics()->draw(::size(cxSource, cySource), pimage->g());
+      get_graphics()->stretch(::sized(cxSource, cySource), pimage->g());
 
       while (cx >= 1.0 && cy >= 1.0)
       {
@@ -7945,7 +7954,7 @@ bool image::map(bool bApplyAlphaTransform) const
    if (!m_bMapped)
    {
 
-      ((::image *)this)->_map(bApplyAlphaTransform);
+      ((::image *)this)->map(bApplyAlphaTransform);
 
       pixmap::map();
 
@@ -8533,6 +8542,7 @@ bool image::hue_offset(double dRadians)
 }
 
 
+
 void image::fast_copy(color32_t * p)
 {
 
@@ -8641,7 +8651,7 @@ bool image::on_exif_orientation()
 //}
 
 
-//bool image::save_to_file(payload varFile, save_image * psaveimage)
+//bool image::save_to_file(::payload varFile, save_image * psaveimage)
 //{
 //
 //   return write_to_file(varFile, psaveimage);
@@ -9258,13 +9268,13 @@ stream & image::read(::stream & stream)
 
 /*
 http://www.sparkhound.com/blog/detect-image-file-types-through-byte-arrays
-payload bmp = Encoding.ASCII.GetBytes("BM"); // BMP
-payload gif = Encoding.ASCII.GetBytes("GIF"); // GIF
-payload png = new byte[]{ 137, 80, 78, 71 }; // PNG
-payload tiff = new byte[]{ 73, 73, 42 }; // TIFF
-payload tiff2 = new byte[]{ 77, 80, 42 }; // TIFF
-payload jpeg = new byte[]{ 255, 216, 255, 224 }; // jpeg
-payload jpeg2 = new byte[]{ 255, 216, 255, 225 }; // jpeg canon
+::payload bmp = Encoding.ASCII.GetBytes("BM"); // BMP
+::payload gif = Encoding.ASCII.GetBytes("GIF"); // GIF
+::payload png = new byte[]{ 137, 80, 78, 71 }; // PNG
+::payload tiff = new byte[]{ 73, 73, 42 }; // TIFF
+::payload tiff2 = new byte[]{ 77, 80, 42 }; // TIFF
+::payload jpeg = new byte[]{ 255, 216, 255, 224 }; // jpeg
+::payload jpeg2 = new byte[]{ 255, 216, 255, 225 }; // jpeg canon
 */
 
 
@@ -9278,14 +9288,14 @@ payload jpeg2 = new byte[]{ 255, 216, 255, 225 }; // jpeg canon
 ::e_status image::transform(enum_image eimage)
 {
 
-   if (eimage == image_grayscale)
-   {
+if (eimage == image_grayscale)
+{
 
-      return saturation(0.0);
+   return saturation(0.0);
 
-   }
+}
 
-   return ::error_not_found;
+return ::error_not_found;
 
 }
 
@@ -9301,8 +9311,10 @@ payload jpeg2 = new byte[]{ 255, 216, 255, 225 }; // jpeg canon
 
 
 
-bool image::_map(bool bApplyAlphaTransform)
+bool image::map(bool bApplyAlphaTransform)
 {
+
+   pixmap::map(bApplyAlphaTransform);
 
    return true;
 
@@ -9362,5 +9374,52 @@ bool image::_unmap()
 
 }
 
+
+bool image::_draw_blend(const image_drawing & imagedrawing)
+{
+
+   auto pgraphics = get_graphics();
+
+   if (::is_null(pgraphics))
+   {
+
+      return false;
+
+   }
+
+   if(!pgraphics->_draw_blend(imagedrawing))
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+bool image::_draw_raw(const image_drawing & imagedrawing)
+{
+
+   auto pgraphics = get_graphics();
+
+   if (::is_null(pgraphics))
+   {
+
+      return false;
+
+   }
+
+   if(!pgraphics->_draw_raw(imagedrawing))
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
 
 

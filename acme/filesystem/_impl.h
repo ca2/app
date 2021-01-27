@@ -4,16 +4,16 @@
 namespace file
 {
 
-   //   inline path::path(const payload & payload,e_path epath): path(payload.get_file_path(),epath){}
+   //   inline path::path(const ::payload & payload,e_path epath): path(payload.get_file_path(),epath){}
    //   inline path::path(const property & property,e_path epath, int iDir): path(property.get_file_path(),epath, iDir) {}
-   inline path & path::operator = (const payload & payload) { return operator = (payload.get_string()); }
-   inline path & path::operator += (const payload & payload) { return operator += (payload.get_string()); }
-   inline path & path::operator = (const property & property) { return operator = ((const payload &)property); }
-   inline path & path::operator += (const property & property) { return operator += ((const payload &) property); }
-   inline path path::operator + (const payload & payload) const { return operator + (payload.get_string()); }
+   inline path & path::operator = (const ::payload & payload) { return operator = (payload.get_string()); }
+   inline path & path::operator += (const ::payload & payload) { return operator += (payload.get_string()); }
+   inline path & path::operator = (const property & property) { return operator = ((const ::payload &)property); }
+   inline path & path::operator += (const property & property) { return operator += ((const ::payload &) property); }
+   inline path path::operator + (const ::payload & payload) const { return operator + (payload.get_string()); }
    inline path path::operator + (const property & property) const { return operator + (property.get_string()); }
    inline path path::operator + (const id & id) const { return operator + (id.str()); }
-   inline path path::operator / (const payload & payload) const { return operator /(::file::path(payload)); }
+   inline path path::operator / (const ::payload & payload) const { return operator /(::file::path(payload)); }
    inline path path::operator / (const property & property) const { return operator /(::file::path(property)); }
    inline path path::operator * (const property & property) const { return operator *(::file::path(property)); }
    inline path & path::operator *= (const property & property) { return operator *=(::file::path(property)); }
@@ -26,8 +26,8 @@ namespace file
    inline patha path::ascendants_path() const { patha patha; return ascendants_path(patha); }
    inline string_array path::ascendants_name() const { string_array patha; return ascendants_name(patha); }
    //   inline path path::folder() const { return ::dir::name(*this); }
-   inline bool path::operator == (const payload & payload) const { return operator == (string(payload)); }
-   inline bool path::operator != (const payload & payload) const { return operator != (string(payload)); }
+   inline bool path::operator == (const ::payload & payload) const { return operator == (payload.get_file_path()); }
+   inline bool path::operator != (const ::payload & payload) const { return operator != (payload.get_file_path()); }
 
 } // namespace file
 
@@ -575,10 +575,10 @@ namespace file
 
 //inline ::file::path operator + (const string & str,const ::file::path & path) { return ::file::path(str + string(path)); }
 //inline ::file::path operator + (const char * psz,const ::file::path & path) {  return ::file::path(psz + string(path)); }
-// xxxabc inline ::file::path operator + (const payload & payload,const ::file::path & path) { return ::file::path(payload.get_string() + string(path)); }
+// xxxabc inline ::file::path operator + (const ::payload & payload,const ::file::path & path) { return ::file::path(payload.get_string() + string(path)); }
 //inline ::file::path operator / (const string & str,const ::file::path & path) { ::file::path point(str);  return point / path; }
 //inline ::file::path operator / (const char * psz,const ::file::path & path) { ::file::path point(psz);  return point / path; }
-// xxxabc inline ::file::path operator / (const payload & payload,const ::file::path & path) { ::file::path point(payload.get_file_path());  return point / path; }
+// xxxabc inline ::file::path operator / (const ::payload & payload,const ::file::path & path) { ::file::path point(payload.get_file_path());  return point / path; }
 
 
 
@@ -818,6 +818,78 @@ inline filesize stream_meta::precision() const
    return m_precision;
 
 }
+
+
+
+
+namespace file
+{
+
+
+   inline string listing::title(index i)
+   {
+
+      if (i >= 0 && i < m_straTitle.get_count())
+      {
+
+         return m_straTitle[i];
+
+      }
+
+      return operator[](i).title();
+
+   }
+
+
+   inline string listing::name(index i)
+   {
+
+      if (i >= 0 && i < m_straTitle.get_count())
+      {
+
+         return m_straTitle[i];
+
+      }
+
+      return operator[](i).name();
+
+   }
+
+
+   inline void listing::to_name()
+   {
+
+      for (index i = 0; i < get_size(); i++)
+      {
+
+         element_at(i) = element_at(i).name();
+
+      }
+
+   }
+
+
+   inline listing & listing::operator = (const listing & listing)
+   {
+
+      if (this == &listing)
+         return *this;
+
+      patha::operator         = (listing);
+      *((listing_meta *)this) = (const listing_meta &)listing;
+      m_pathUser = listing.m_pathUser;
+      m_pathFinal = listing.m_pathFinal;
+      m_straPattern = listing.m_straPattern;
+      m_straIgnoreName = listing.m_straIgnoreName;
+      m_statusresult = listing.m_statusresult;
+      m_straTitle = listing.m_straTitle;
+
+      return *this;
+
+   }
+
+
+} // namespace file
 
 
 

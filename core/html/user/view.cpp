@@ -47,7 +47,7 @@ void html_view::dump(dump_context & dumpcontext) const
 }
 
 
-bool html_view::pre_create_window(::user::create_struct * pcreatestruct)
+bool html_view::pre_create_window(::user::system * pusersystem)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -56,7 +56,7 @@ bool html_view::pre_create_window(::user::create_struct * pcreatestruct)
 
 #endif
 
-   return ::user::impact::pre_create_window(pcreatestruct);
+   return ::user::impact::pre_create_window(pusersystem);
 
 }
 
@@ -95,7 +95,7 @@ void html_view::_001OnContextMenu(::message::message * pmessage)
 void html_view::_001OnSetCursor(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   __pointer(::message::mouse) pmouse(pmessage);
 
    pmouse->m_ecursor = cursor_arrow;
 

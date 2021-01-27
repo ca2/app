@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(draw2d_cairo CXX)
 
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
@@ -39,8 +39,8 @@ list(APPEND draw2d_cairo_source
         framework.h
         graphics.cpp
         graphics.h
-        image_impl.cpp
-        image_impl.h
+        image.cpp
+        image.h
         keep.cpp
         keep.h
         object.cpp

@@ -57,7 +57,7 @@ namespace multimedia
 
       void in::pre_translate_message(::message::message * pmessage)
       {
-         SCAST_PTR(::message::base, pbase, pmessage);
+         __pointer(::message::base) pbase(pmessage);
          //ASSERT(GetMainWnd() == nullptr);
          /*         if(pbase->m_id == MM_WIM_OPEN ||
                      pbase->m_id == MM_WIM_CLOSE ||

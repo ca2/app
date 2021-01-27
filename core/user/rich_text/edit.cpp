@@ -101,7 +101,7 @@ namespace user
       void edit::_001OnCreate(::message::message * pmessage)
       {
 
-         SCAST_PTR(::message::create, pcreate, pmessage);
+         __pointer(::message::create) pcreate(pmessage);
 
          pcreate->previous();
 
@@ -137,7 +137,7 @@ namespace user
       {
 
          UNREFERENCED_PARAMETER(pmessage);
-         //SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+         //__pointer(::message::show_window) pshowwindow(pmessage);
 
       }
 
@@ -147,7 +147,7 @@ namespace user
          
          UNREFERENCED_PARAMETER(pmessage);
 
-         //SCAST_PTR(::message::set_focus, psetfocus, pmessage);
+         //__pointer(::message::set_focus) psetfocus(pmessage);
 
          if (!is_text_editable())
          {
@@ -166,7 +166,7 @@ namespace user
       void edit::_001OnKillFocus(::message::message * pmessage)
       {
 
-         SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
+         __pointer(::message::kill_focus) pkillfocus(pmessage);
 
          auto pformattool = get_format_tool(false);
 
@@ -212,7 +212,7 @@ namespace user
 
          UNREFERENCED_PARAMETER(pmessage);
          
-         //SCAST_PTR(::message::mouse, pmouse, pmessage);
+         //__pointer(::message::mouse) pmouse(pmessage);
 
       }
 
@@ -222,7 +222,7 @@ namespace user
 
          UNREFERENCED_PARAMETER(pmessage);
          
-         //SCAST_PTR(::message::mouse, pmouse, pmessage);
+         //__pointer(::message::mouse) pmouse(pmessage);
 
       }
 
@@ -232,7 +232,7 @@ namespace user
 
          UNREFERENCED_PARAMETER(pmessage);
          
-         //SCAST_PTR(::message::mouse, pmouse, pmessage);
+         //__pointer(::message::mouse) pmouse(pmessage);
 
       }
 
@@ -413,7 +413,7 @@ namespace user
 
             __copy(rectWindow, rWindow);
             
-            GetParent()->_001ScreenToClient(rectWindow);
+            get_parent()->_001ScreenToClient(rectWindow);
 
             copy(rectWindow, rectWindow);
 
@@ -468,7 +468,7 @@ namespace user
       __pointer(format_tool) edit::get_format_tool(bool bCreate)
       {
 
-         auto pformattool = GetTopLevelFrame()->tool_window(e_tool_font, bCreate);
+         auto pformattool = top_level_frame()->tool_window(e_tool_font, bCreate);
 
          return pformattool;
 
@@ -524,7 +524,7 @@ namespace user
 
          }
 
-         SCAST_PTR(::message::key, pkey, pmessage);
+         __pointer(::message::key) pkey(pmessage);
 
          auto psession = Session;
 
@@ -666,7 +666,7 @@ namespace user
       void edit::_001OnKeyUp(::message::message * pmessage)
       {
 
-         SCAST_PTR(::message::key, pkey, pmessage);
+         __pointer(::message::key) pkey(pmessage);
 
          auto psession = Session;
 

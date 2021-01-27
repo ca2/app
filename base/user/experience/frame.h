@@ -22,21 +22,27 @@ namespace experience
       };
 
 
+      ::color                                m_colorFrameBorder;
+      ::color                                m_colorMoveableBorderHilight;
+      ::color                                m_colorMoveableBorderDkShadow;
+      ::color                                m_colorCaptionTextBk;
+      ::color                                m_colorActiveCaptionTextBk;
+      ::color                                m_colorCaptionText;
+
       bool                                 m_bHollow;
       string                               m_strLibrary;
       string                               m_strName;
-      string                               m_strStyle;
       ::rect                               m_rectCaption;
-      ::rect                               m_rectCaptionTextBk;
       ::rect                               m_rectWindowText;
-      ::rect                               m_rectControlBoxFullScreen;
-      ::rect                               m_rectControlBoxZoomed;
-      ::rect                               m_rectControlBoxNormal;
+      int                                 m_iControlBoxPosition;
+      //::rect                               m_rectControlBoxFullScreen;
+      //::rect                               m_rectControlBoxZoomed;
+      //::rect                               m_rectControlBoxNormal;
       point                                m_pointWindowIcon;
-      point                                m_pointMoveGripMinimal;
+      ///point                                m_pointMoveGripMinimal;
 
-      color32_t                             m_crMoveableBorder;
-      color32_t                             m_crMoveableBorderShadow;
+      ::color                             m_colorMoveableBorder;
+      ::color                             m_colorMoveableBorderShadow;
 
 
       ::experience::experience *           m_pexperience;
@@ -46,21 +52,16 @@ namespace experience
 
       i32                                  m_iCaptionHeight;
 
-      ::rect                               m_rectControlBoxMarginFullScreen;
-      ::rect                               m_rectControlBoxMarginZoomed;
-      ::rect                               m_rectControlBoxMarginNormal;
-      ::rect                               m_rectControlBoxMarginDock;
-
-
       ::rect                               m_rectMarginFullScreen;
       ::rect                               m_rectMarginZoomed;
       ::rect                               m_rectMarginNormal;
       ::rect                               m_rectMarginDock;
 
+      ::rect                               m_rectCaptionTextPadding;
+
 
       ::rect                               m_rectClient;
       ::rect                               m_rectWindow;
-      int                                  m_iControlBoxRight;
       bool                                 m_bFirstLayoutDone;
       bool                                 m_bControlBoxAlignRight;
       bool                                 m_bInitialControlBoxPosition;
@@ -71,10 +72,14 @@ namespace experience
       virtual ~frame();
 
 
+
+
+
+
       virtual int adjust_client_height(int iHeight);
       virtual int adjust_client_width(int iWidth);
 
-      virtual void set_style(const char * pszStyle);
+      //virtual void set_style(const char * pszStyle);
       virtual void on_initialize_experience_frame();
       virtual void on_initialize_appearance();
 
@@ -93,6 +98,12 @@ namespace experience
       virtual void defer_frame_placement_snapping();
 
 
+      virtual string get_default_user_style() const;
+
+
+      virtual void set_moveable_border_color(const ::color & color);
+
+
 
 
       virtual bool get_window_client_rect(RECT32 * prect);
@@ -100,7 +111,7 @@ namespace experience
       virtual bool get_draw_client_rect(RECT32 * prect);
 
 
-      virtual void calc_window_client_rect(RECT32 * prect, const rect & lprectWindow);
+      //virtual void calc_window_client_rect(RECT32 * prect, const rect & lprectWindow);
 
 
       virtual bool get_element_rect(RECT32 * prect, enum_element eelement);
@@ -108,26 +119,23 @@ namespace experience
 
       virtual void get_parent_rect(RECT32 * prect);
 
-      virtual rect * get_control_box_rect();
-      virtual rect * get_control_box_margin_rect();
-      virtual rect * get_margin_rect();
+      virtual rect get_margin_rect();
+      virtual rect get_caption_text_padding();
       virtual i32 get_caption_height();
-      virtual i32 calc_caption_height();
-      virtual i32 calc_caption_height(edisplay edisplay);
+      virtual i32 calc_caption_height(::draw2d::graphics_pointer & pgraphics);
 
-      //virtual i32 title_bar_layout(bool bInitialControlBoxPosition);
-      virtual void title_bar_layout();
+      virtual void title_bar_layout(::draw2d::graphics_pointer & pgraphics);
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
       virtual void on_reposition();
-
-      virtual i32 calc_control_box_left(bool bLayout);
 
       virtual __pointer(control_box) get_control_box();
 
 
       virtual void OnMove(__pointer(::user::interaction) pframewindow);
 
+
+      virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
       virtual void on_style_change();
 

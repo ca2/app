@@ -29,7 +29,7 @@
 
 int_bool is_window(oswindow oswindow);
 int_bool IsChild(oswindow oswindowParent, oswindow oswindowcandidateChildOrDescendant);
-// oswindow GetParent(oswindow oswindow);
+// oswindow get_parent(oswindow oswindow);
 // oswindow SetParent(oswindow oswindowChild, oswindow oswindowNewParent);
 //int_bool show_window(oswindow oswindow, const ::e_display & edisplay, const ::e_activation & eactivation = e_activation_default);
 //::i32 GetWindowLongA(oswindow oswindow, int nIndex);

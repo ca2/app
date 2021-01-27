@@ -2,7 +2,7 @@ cmake_minimum_required(VERSION 3.17)
 project(core CXX)
 
 
-set(CMAKE_CXX_STANDARD 14)
+set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_EXTENSIONS OFF)
 add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
@@ -34,21 +34,21 @@ list(APPEND core_source
    axispolicy/policy_objc.h
    axispolicy/policy_objcpp.h
    axispolicy/policy_winrt.h
-   const/_const.h
-   const/charset.h
-   const/check.h
-   const/context.h
-   const/id.h
+   #const/_const.h
+   #const/charset.h
+   #const/check.h
+   #const/context.h
+   #const/id.h
    const/idpool.cpp
    const/idpool.h
-   const/impact.h
-   const/procedure.h
-   const/simple_command.h
-   const/source.h
-   const/status.h
-   const/status_range_authentication.h
-   const/thread.h
-   const/timer.h
+   #const/impact.h
+   #const/procedure.h
+   #const/simple_command.h
+   #const/source.h
+   #const/status.h
+   #const/status_range_authentication.h
+   #const/thread.h
+   #const/timer.h
    filesystem/filehandler/_.h
    filesystem/filehandler/_data.h
    filesystem/filehandler/_filehandler.h
@@ -489,6 +489,7 @@ list(APPEND core_source
    user/user/list.h
    user/user/list_cache.cpp
    user/user/list_cache.h
+   user/user/list_column.cpp
    user/user/list_column.h
    user/user/list_column_array.h
    user/user/list_data.cpp
@@ -1113,10 +1114,10 @@ if (MSVC)
    target_link_options(core PRIVATE "/DEF:${CMAKE_CURRENT_SOURCE_DIR}/core.def")
    target_link_libraries(core PRIVATE ${library_references})
 elseif (LINUX)
-   pkg_check_modules(PKGCONFIG glib-2.0 gdk-3.0 gtk+-3.0 appindicator3-0.1)
+   #pkg_check_modules(PKGCONFIG glib-2.0 gdk-3.0 gtk+-3.0 appindicator3-0.1)
    #pkg_check_modules(PKGCONFIG freetype2  )
    target_compile_options(core PRIVATE -fpermissive)
-   target_compile_options(core PRIVATE ${PKGCONFIG_CFLAGS})
+   #target_compile_options(core PRIVATE ${PKGCONFIG_CFLAGS})
 
    #target_compile_options(core PRIVATE -std=c++14)
    #target_link_options(core PRIVATE ${GTK_LDFLAGS})

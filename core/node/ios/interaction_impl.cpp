@@ -400,7 +400,7 @@ namespace ios
 
    bool interaction_impl::create_window_ex(
    ::user::interaction * pinteraction,
-   __pointer(::user::create_struct) pcreatestruct,
+   __pointer(::user::system) pusersystem,
    ::user::interaction * puiParent,
    id id)
    {
@@ -419,7 +419,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::_native_create_window_ex(__pointer(::user::create_struct) pcreatestruct)
+   bool interaction_impl::_native_create_window_ex(__pointer(::user::system) pusersystem)
    {
 
       if(::is_window(get_handle()))
@@ -431,12 +431,12 @@ namespace ios
 
       //m_puserinteraction = pinteraction;
 
-      ENSURE_ARG(pcreatestruct->m_createstruct.lpszName == nullptr || __is_valid_string(pcreatestruct->m_createstruct.lpszName));
+      ENSURE_ARG(pusersystem->m_createstruct.lpszName == nullptr || __is_valid_string(pusersystem->m_createstruct.lpszName));
 
       if(m_puserinteraction != nullptr)
       {
 
-         if(!m_puserinteraction->pre_create_window(pcreatestruct))
+         if(!m_puserinteraction->pre_create_window(pusersystem))
          {
 
             PostNcDestroy();
@@ -449,7 +449,7 @@ namespace ios
       else
       {
 
-         if (!pre_create_window(pcreatestruct))
+         if (!pre_create_window(pusersystem))
          {
 
             PostNcDestroy();
@@ -460,16 +460,16 @@ namespace ios
 
       }
 
-      if(pcreatestruct->m_createstruct.hwndParent == nullptr)
+      if(pusersystem->m_createstruct.hwndParent == nullptr)
       {
 
-         pcreatestruct->m_createstruct.style &= ~WS_CHILD;
+         pusersystem->m_createstruct.style &= ~WS_CHILD;
 
       }
 
       ::rect rectCreate;
 
-      pcreatestruct->m_createstruct.get_rect(rectCreate);
+      pusersystem->m_createstruct.get_rect(rectCreate);
 
       CGRect rect;
 
@@ -477,7 +477,7 @@ namespace ios
       
       install_message_routing(m_puserinteraction);
 
-      if(pcreatestruct->m_createstruct.hwndParent != HWND_MESSAGE)
+      if(pusersystem->m_createstruct.hwndParent != HWND_MESSAGE)
       {
 
          m_oswindow = oswindow_get(new_round_window(this, rect));
@@ -504,15 +504,15 @@ namespace ios
 
 
    // for child windows
-   bool interaction_impl::pre_create_window(::user::create_struct * pcreatestruct)
+   bool interaction_impl::pre_create_window(::user::system * pusersystem)
    {
-      /*      if (pcreatestruct->m_createstruct.lpszClass == nullptr)
+      /*      if (pusersystem->m_createstruct.lpszClass == nullptr)
        {
        // make sure the default user::interaction class is registered
-       VERIFY(__end_defer_register_class(__WND_REG, &pcreatestruct->m_createstruct.lpszClass));
+       VERIFY(__end_defer_register_class(__WND_REG, &pusersystem->m_createstruct.lpszClass));
 
        // no WNDCLASS provided - use child user::interaction default
-       ASSERT(pcreatestruct->m_createstruct.style & WS_CHILD);
+       ASSERT(pusersystem->m_createstruct.style & WS_CHILD);
        }*/
       return true;
    }
@@ -526,7 +526,7 @@ namespace ios
       
       ASSERT((uStyle & WS_POPUP) == 0);
 
-      ::user::create_struct createstruct(0, pszClassName, pszWindowName, uStyle | WS_CHILD,
+      ::user::system createstruct(0, pszClassName, pszWindowName, uStyle | WS_CHILD,
                                rect);
 
       return create_window_ex(pinteraction, createstruct, puiParent, id);
@@ -544,7 +544,7 @@ namespace ios
    }
 
 
-//   bool interaction_impl::native_create_window_ex(::user::create_struct & createstruct)
+//   bool interaction_impl::native_create_window_ex(::user::system & createstruct)
 //   {
 //
 //      CGRect rect;
@@ -593,7 +593,7 @@ namespace ios
    //    else
    //    {
 
-   //       ::user::create_struct createstruct(0, nullptr, pszName, WS_CHILD);
+   //       ::user::system createstruct(0, nullptr, pszName, WS_CHILD);
 
    //       if(!native_create_window_ex(pinteraction, cs, HWND_MESSAGE, pszName))
    //       {
@@ -880,7 +880,7 @@ namespace ios
       ::rect rect;
       m_puserinteraction->get_window_rect(&rect);
       dumpcontext << "\nrect = " << rect;
-      dumpcontext << "\nparent ::user::interaction * = " << (void *)((::user::interaction_impl *) this)->GetParent();
+      dumpcontext << "\nparent ::user::interaction * = " << (void *)((::user::interaction_impl *) this)->get_parent();
 
       //      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
       //    if (::GetWindowLong(get_handle(), GWL_STYLE) & WS_CHILD)
@@ -1100,7 +1100,7 @@ namespace ios
       if(pbase->m_id == e_message_key_down || pbase->m_id == e_message_key_up || pbase->m_id == e_message_char)
       {
 
-         SCAST_PTR(::message::key, pkey, pbase);
+         __pointer(::message::key) pkey(pbase);
 
          psession->translate_os_key_message(pkey);
 
@@ -1297,7 +1297,7 @@ namespace ios
          ::user::interaction * puiFocus = dynamic_cast < ::user::interaction * > (psession->get_keyboard_focus());
          if(puiFocus != nullptr
                && puiFocus->is_window()
-               && puiFocus->GetTopLevel() != nullptr)
+               && puiFocus->get_top_level() != nullptr)
          {
             puiFocus->send(pkey);
             if(pbase->m_bRet)
@@ -1391,7 +1391,7 @@ namespace ios
 
    /*
 
-    __pointer(::user::frame_window) interaction_impl::GetParentFrame()
+    __pointer(::user::frame_window) interaction_impl::get_parent_frame()
     {
     if (get_handle() == nullptr) // no oswindow attached
     {
@@ -1419,17 +1419,17 @@ namespace ios
     // check for permanent-owned user::interaction first
     ::user::interaction * pWnd = ::macos::interaction_impl::FromHandlePermanent(hWnd);
     if (pWnd != nullptr)
-    return IOS_WINDOW(pWnd)->GetOwner();
+    return IOS_WINDOW(pWnd)->get_owner();
 
     // otherwise, return parent in the oswindows sense
     return (::GetWindowLong(hWnd, GWL_STYLE) & WS_CHILD) ?
-    ::GetParent(hWnd) : ::GetWindow(hWnd, GW_OWNER);
+    ::get_parent(hWnd) : ::GetWindow(hWnd, GW_OWNER);
     }*/
 
 
    /*
 
-    ::user::interaction *  interaction_impl::GetTopLevel() const
+    ::user::interaction *  interaction_impl::get_top_level() const
     {
     if (get_handle() == nullptr) // no oswindow attached
     return nullptr;
@@ -1473,7 +1473,7 @@ namespace ios
          oswindow hWndParent = get_handle();
     oswindow hWndT;
     while ((::GetWindowLong(hWndParent, GWL_STYLE) & WS_CHILD) &&
-    (hWndT = ::GetParent(hWndParent)) != nullptr)
+    (hWndT = ::get_parent(hWndParent)) != nullptr)
     {
     hWndParent = hWndT;
     }
@@ -1508,7 +1508,7 @@ namespace ios
 
    /*
 
-    __pointer(::user::frame_window) interaction_impl::GetTopLevelFrame()
+    __pointer(::user::frame_window) interaction_impl::top_level_frame()
     {
     if (get_handle() == nullptr) // no oswindow attached
     return nullptr;
@@ -1519,12 +1519,12 @@ namespace ios
     if(m_puserinteraction != nullptr)
     pFrameWnd = dynamic_cast < ::user::frame_window * > (m_puserinteraction);
     if (pFrameWnd == nullptr || !pFrameWnd->is_frame_window())
-    pFrameWnd = GetParentFrame();
+    pFrameWnd = get_parent_frame();
 
     if (pFrameWnd != nullptr)
     {
     ::user::frame_window* pTemp;
-    while ((pTemp = pFrameWnd->GetParentFrame()) != nullptr)
+    while ((pTemp = pFrameWnd->get_parent_frame()) != nullptr)
     pFrameWnd = pTemp;
     }
     return pFrameWnd;
@@ -1722,11 +1722,11 @@ namespace ios
       ASSERT(puiStop == nullptr || puiStop->is_window());
       ASSERT(pmessage != nullptr);
 
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
       // walk from the target user::interaction up to the hWndStop user::interaction checking
       //  if any user::interaction wants to translate this message
 
-      for (__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction; pinteraction != nullptr; pinteraction->GetParent())
+      for (__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
       {
 
          pinteraction->pre_translate_message(pmessage);
@@ -2360,7 +2360,7 @@ namespace ios
    void interaction_impl::_001OnPrint(::message::message * pmessage)
    {
       __throw(not_implemented());
-      //      SCAST_PTR(::message::base, pbase, pmessage);
+      //      __pointer(::message::base) pbase(pmessage);
       //
       //      if(pbase->m_wparam == nullptr)
       //         return;
@@ -2958,14 +2958,14 @@ namespace ios
 //   }
 
    
-   ::user::interaction * interaction_impl::GetParent() const
+   ::user::interaction * interaction_impl::get_parent() const
    {
       return nullptr;
       //      if(!::is_window(get_handle()))
       //       return nullptr;
       //  if(get_handle() == nullptr)
       //   return nullptr;
-      // return ::macos::interaction_impl::from_handle(::GetParent(get_handle()));
+      // return ::macos::interaction_impl::from_handle(::get_parent(get_handle()));
    }
 
 
@@ -3146,7 +3146,7 @@ namespace ios
 
     __pointer(::user::frame_window) interaction_impl::EnsureParentFrame()
     {
-    ::user::frame_window * pFrameWnd=GetParentFrame();
+    ::user::frame_window * pFrameWnd=get_parent_frame();
     ENSURE_VALID(pFrameWnd);
     return pFrameWnd;
 
@@ -3366,7 +3366,7 @@ namespace ios
 //         if(!m_puserinteraction->is_this_visible())
 //            return false;
 //
-//         if(m_puserinteraction->GetParent() != nullptr && !m_puserinteraction->GetParent()->is_window_visible())
+//         if(m_puserinteraction->get_parent() != nullptr && !m_puserinteraction->get_parent()->is_window_visible())
 //            return false;
 //
 //      }
@@ -4276,7 +4276,7 @@ namespace ios
 
    void interaction_impl::_001OnSetCursor(::message::message * pmessage)
    {
-      SCAST_PTR(::message::base, pbase, pmessage);
+      __pointer(::message::base) pbase(pmessage);
       if(psession->get_cursor() != nullptr
             && psession->get_cursor()->m_ecursor != cursor_system)
       {
@@ -4342,7 +4342,7 @@ namespace ios
       
       
    }
-   bool interaction_impl::OnNcCreate(::user::create_struct *)
+   bool interaction_impl::OnNcCreate(::user::system *)
    {
 
       return true;
@@ -4815,7 +4815,7 @@ namespace ios
 
       // a popup ::user::interaction cannot be owned by a child ::user::interaction
       while (hWnd != nullptr && (::GetWindowLong(hWnd, GWL_STYLE) & WS_CHILD))
-         hWnd = ::GetParent(hWnd);
+         hWnd = ::get_parent(hWnd);
 
       // determine toplevel ::user::interaction to disable as well
       oswindow hWndTop = hWnd, hWndTemp = hWnd;
@@ -4825,7 +4825,7 @@ namespace ios
             break;
          else
             hWndTop = hWndTemp;
-         hWndTemp = ::GetParent(hWndTop);
+         hWndTemp = ::get_parent(hWndTop);
       }
 
       __throw(todo());
@@ -4854,7 +4854,7 @@ namespace ios
 
    void interaction_impl::_001OnEraseBkgnd(::message::message * pmessage)
    {
-      SCAST_PTR(::message::erase_bkgnd, perasebkgnd, pmessage);
+      __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
       perasebkgnd->m_bRet = true;
       perasebkgnd->set_result(TRUE);
    }
@@ -4908,7 +4908,7 @@ namespace ios
    void interaction_impl::edit_on_set_focus(::user::interaction* pinteraction)
    {
       
-      auto puserinteraction = pinteraction->GetParentFrame();
+      auto puserinteraction = pinteraction->get_parent_frame();
       
       ::rect rWindowFrame;
       
@@ -4957,7 +4957,7 @@ namespace ios
    void interaction_impl::edit_on_kill_focus(::user::interaction* pinteraction)
    {
    
-      auto puserinteraction = pinteraction->GetParentFrame();
+      auto puserinteraction = pinteraction->get_parent_frame();
       
       ::rect rWindowFrame;
       

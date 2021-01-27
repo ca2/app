@@ -10,12 +10,12 @@ namespace str
    namespace international
    {
 
-      ::map < ::id, const ::id &, ::id, const ::id & > * g_pmapRTL;
+      id_to_id * g_pmapRTL;
 
       void create_rtl_map()
       {
 
-         g_pmapRTL = new ::map < ::id,const ::id &,::id,const ::id & >();
+         g_pmapRTL = new id_to_id;
 
       }
 
@@ -571,11 +571,14 @@ namespace str
       inline id rl_id(const ::id & id)
       {
 
+         auto ppair = g_pmapRTL->plookup(id);
 
-         ::map < ::id, const ::id &, ::id, const ::id & >::pair * ppair = g_pmapRTL->plookup(id);
+         if (ppair != nullptr)
+         {
 
-         if(ppair != nullptr)
             return ppair->element2();
+
+         }
 
          string str;
 

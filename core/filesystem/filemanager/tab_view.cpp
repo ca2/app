@@ -83,19 +83,19 @@ namespace filemanager
          if (pimpactdata->m_id == "new_folder")
          {
 
-            psubject->value(FORM_ID) = "matter://filemanager/new_folder.html";
+            psubject->payload(FORM_ID) = "matter://filemanager/new_folder.html";
 
          }
          if (pimpactdata->m_id == "replace_name")
          {
 
-            psubject->value(FORM_ID) = "matter://filemanager/replace_name_in_file_system.html";
+            psubject->payload(FORM_ID) = "matter://filemanager/replace_name_in_file_system.html";
 
          }
          else if (pimpactdata->m_id == "add_location")
          {
 
-            psubject->value(FORM_ID) = "matter://filemanager/add_location_1.html";
+            psubject->payload(FORM_ID) = "matter://filemanager/add_location_1.html";
 
          }
 
@@ -134,7 +134,7 @@ namespace filemanager
 
          __pointer(::user::impact) pview = pdocument->get_view(0);
 
-         pimpactdata->m_puserinteraction = pview->GetParentFrame();
+         pimpactdata->m_puserinteraction = pview->get_parent_frame();
 
          pimpactdata->m_pdocument = pdocument;
 
@@ -158,7 +158,7 @@ namespace filemanager
 
          pcreate->m_puserinteractionParent = pimpactdata->m_pplaceholder;
 
-         pcreate->value("filemanager::data") = pfilemanagerdata;
+         pcreate->payload("filemanager::data") = pfilemanagerdata;
 
          string str = pimpactdata->m_id;
 
@@ -199,7 +199,7 @@ namespace filemanager
 
             __pointer(::user::impact) pview = pdocument->get_view(0);
 
-            __pointer(simple_frame_window) pwnd = (pview->GetParentFrame());
+            __pointer(simple_frame_window) pwnd = (pview->get_parent_frame());
 
             bool bPathIsDir = false;
 
@@ -298,7 +298,7 @@ namespace filemanager
             //
             //               str.Format("(%d,%d)",filemanager_document().filemanager_data()->m_iTemplate,filemanager_document().filemanager_data()->m_iDocument);
             //
-            //               __pointer(::database::client) pclient = GetParentFrame();
+            //               __pointer(::database::client) pclient = get_parent_frame();
             //
             //               if (pclient.is_set())
             //               {
@@ -311,7 +311,7 @@ namespace filemanager
          else if (psubject->id() == id_pop)
          {
 
-            __pointer(::user::frame_window) pframe = GetParentFrame();
+            __pointer(::user::frame_window) pframe = get_parent_frame();
 
             if (pframe.is_set())
             {

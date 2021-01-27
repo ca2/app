@@ -27,6 +27,7 @@
                virtual void on_initialize_experience_frame() override;
 
 
+               virtual string get_default_user_style() const;
                virtual void on_style_change() override;
 
 

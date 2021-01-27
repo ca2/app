@@ -91,7 +91,7 @@ namespace account
    void dialog::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create,pcreate,pmessage);
+      __pointer(::message::create) pcreate(pmessage);
 
       if(pcreate->previous())
       {
@@ -100,7 +100,7 @@ namespace account
 
       }
 
-      if(!m_plogin->create_window(this,"pane_first"))
+      if(!m_plogin->create_child(this))
       {
 
          pcreate->m_lresult = -1;
@@ -131,7 +131,7 @@ namespace account
    void dialog::_001OnChar(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       if(pkey->m_ekey == ::user::key_return)
       {
@@ -366,9 +366,9 @@ namespace account
 
 #endif
 
-      auto pcreatestruct = __new(::user::create_struct (rectFontopus));
+      // auto pusersystem = __new(::user::system(rectFontopus));
 
-      if(!create_window_ex(pcreatestruct, puiParent))
+      if(!create_child(puiParent))
       {
 
          return;
@@ -503,7 +503,7 @@ namespace account
    void dialog::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse,pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (pmessage->previous())
       {
@@ -536,7 +536,7 @@ namespace account
 
       m_bLButtonDown = false;
 
-      SCAST_PTR(::message::mouse,pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       ReleaseCapture();
 
@@ -557,7 +557,7 @@ namespace account
    void dialog::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse,pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       if (m_bLButtonDown)
       {

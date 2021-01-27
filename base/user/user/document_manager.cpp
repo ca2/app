@@ -372,13 +372,17 @@ namespace user
 
    void document_manager::add_document_template(::user::impact_system * ptemplate)
    {
+      
       ASSERT_VALID(ptemplate);
+      
       if(m_templateptra.add_unique(ptemplate))
       {
+
          ptemplate->load_template();
+
       }
       
-      add_composite(ptemplate);
+      //add_composite(ptemplate);
 
    }
 
@@ -479,7 +483,7 @@ namespace user
    }
 
 
-   bool document_manager::do_prompt_file_name(payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
+   bool document_manager::do_prompt_file_name(::payload & varFile, string nIDSTitle, u32 lFlags, bool bOpenFileDialog, ::user::impact_system * ptemplate, ::user::document * pdocument)
    {
 
       throw_todo();
@@ -816,7 +820,7 @@ namespace user
          if(pview != nullptr)
          {
             ASSERT_VALID(pview);
-            __pointer(::user::frame_window) pFrame = pview->GetParentFrame();
+            __pointer(::user::frame_window) pFrame = pview->get_parent_frame();
 
             if (pFrame == nullptr)
                TRACE(trace_category_appmsg, e_trace_level_error, "Error: Can not find a frame for document to activate.\n");
@@ -824,7 +828,7 @@ namespace user
             {
                pFrame->ActivateFrame();
 
-               if (pFrame->GetParent() != nullptr)
+               if (pFrame->get_parent() != nullptr)
                {
                   __pointer(::user::frame_window) pAppFrame;
                   ASSERT_KINDOF(frame_window, pAppFrame);

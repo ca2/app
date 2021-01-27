@@ -57,7 +57,7 @@ bool compress_gz::transfer(::file::file* pfileOut, ::file::file* pfileIn)
    i64 uRead = pfileIn->read(memIn.get_data(), memIn.get_size());
 
    z_stream zstream;
-   xxf_zero(zstream);
+   __zero(zstream);
    zstream.next_in = (u8 *)memIn.get_data();
    zstream.avail_in = (u32)uRead;
    zstream.total_out = 0;
@@ -172,7 +172,7 @@ bool uncompress_gz::transfer(::file::file * pfileUncompressed, ::file::file * pf
 
    z_stream zstream;
 
-   xxf_zero(zstream);
+   __zero(zstream);
    zstream.next_in = (u8 *)memIn.get_data();
    zstream.avail_in = (u32)uRead;
    zstream.total_out = 0;

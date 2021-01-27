@@ -112,9 +112,9 @@ void simple_menu_bar::SetMenuID(::u32 uResourceId)
    m_uResourceId = uResourceId;
 }
 
-bool simple_menu_bar::pre_create_window(::user::create_struct * pcreatestruct)
+bool simple_menu_bar::pre_create_window(::user::system * pusersystem)
 {
-   return simple_toolbar::pre_create_window(pcreatestruct);
+   return simple_toolbar::pre_create_window(pusersystem);
 }
 
 
@@ -153,7 +153,7 @@ void simple_menu_bar::route_command_message(::user::command * pcommand)
 
 //void simple_menu_bar::_001OnMouseMove(::message::message * pmessage)
 //{
-//   SCAST_PTR(::message::mouse, pmouse, pmessage);
+//   __pointer(::message::mouse) pmouse(pmessage);
 //   _001Hover(pmouse->m_point);
 //   pmessage->previous();
 //}
@@ -164,7 +164,7 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
 
    TRACE("simple_menu_bar::_track_popup_menu % d\n", iItem);
    m_iTracking = iItem;
-   m_iButtonPressItem = iItem;
+   m_itemPressed = iItem;
    set_need_redraw();
    ::rect rect;
    _001GetElementRect(iItem, rect, ::user::e_element_item, ::user::e_state_none);
@@ -187,7 +187,7 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
 //void simple_menu_bar::_001OnNcMouseMove(::message::message * pmessage)
 //{
 //
-//   SCAST_PTR(::message::mouse, pmouse, pmessage);
+//   __pointer(::message::mouse) pmouse(pmessage);
 //
 //   _001Hover(pmouse->m_point);
 //
@@ -199,7 +199,7 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
 void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::base, pbase, pmessage);
+   __pointer(::message::base) pbase(pmessage);
 
    if (pbase->m_id == WM_USER && pbase->userinteraction() == this)
    {
@@ -223,7 +223,7 @@ void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 void simple_menu_bar::_001OnCreate(::message::message * pmessage)
 {
 
-   //   SCAST_PTR(::message::create, pcreate, pmessage);
+   //   __pointer(::message::create) pcreate(pmessage);
 
    if (pmessage->previous())
    {
@@ -638,58 +638,58 @@ index simple_menu_bar::_001HitTest(const POINT32 *ppoint)
 }*/
 
 
-bool simple_menu_bar::create_window(::user::interaction * puiParent, u32 uStyle, ::id id)
-{
+//bool simple_menu_bar::create_window(::user::interaction * puiParent, u32 uStyle, ::id id)
+//{
+//
+//   return create_window_ex(puiParent, 0, uStyle, id);
+//
+//}
 
-   return create_window_ex(puiParent, 0, uStyle, id);
 
-}
-
-
-bool simple_menu_bar::create_window_ex(::user::interaction * puiParent, u32 dwCtrlStyle, u32 uStyle, ::id id)
-{
-
-   ASSERT_VALID(puiParent);   // must have a parent
-   ASSERT(!((uStyle & CBRS_SIZE_FIXED) && (uStyle & CBRS_SIZE_DYNAMIC)));
-
-   //SetBorders(rect);
-
-   // save the style
-   m_dwStyle = (uStyle & CBRS_ALL);
-   if (id == __IDW_TOOLBAR)
-      m_dwStyle |= CBRS_HIDE_INPLACE;
-
-   uStyle &= ~CBRS_ALL;
-#ifdef WINDOWS_DESKTOP
-   uStyle |= CCS_NOPARENTALIGN | CCS_NOMOVEY | CCS_NODIVIDER | CCS_NORESIZE;
-#endif
-   uStyle |= dwCtrlStyle;
-
-   //   ASSERT(gen_ComCtlVersion != -1);
-   //   _::aura::GetDropDownWidth();
-   //   ASSERT(gen_DropDownWidth != -1);
-
-   // create the oswindow
-   if (!::user::interaction::create_window(nullptr, nullptr, uStyle, puiParent, id))
-   {
-
-      return false;
-
-   }
-
-   // sync up the sizes
-//   SetSizes(m_sizeButton, m_sizeImage);
-
-   // Note: Parent must resize itself for control bar to be resized
-
-   return true;
-
-}
+//bool simple_menu_bar::create_window_ex(::user::interaction * puiParent, u32 dwCtrlStyle, u32 uStyle, ::id id)
+//{
+//
+//   ASSERT_VALID(puiParent);   // must have a parent
+//   ASSERT(!((uStyle & CBRS_SIZE_FIXED) && (uStyle & CBRS_SIZE_DYNAMIC)));
+//
+//   //SetBorders(rect);
+//
+//   // save the style
+//   m_dwStyle = (uStyle & CBRS_ALL);
+//   if (id == __IDW_TOOLBAR)
+//      m_dwStyle |= CBRS_HIDE_INPLACE;
+//
+//   uStyle &= ~CBRS_ALL;
+//#ifdef WINDOWS_DESKTOP
+//   uStyle |= CCS_NOPARENTALIGN | CCS_NOMOVEY | CCS_NODIVIDER | CCS_NORESIZE;
+//#endif
+//   uStyle |= dwCtrlStyle;
+//
+//   //   ASSERT(gen_ComCtlVersion != -1);
+//   //   _::aura::GetDropDownWidth();
+//   //   ASSERT(gen_DropDownWidth != -1);
+//
+//   // create the oswindow
+//   if (!::user::interaction::create_window(nullptr, nullptr, uStyle, puiParent, id))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   // sync up the sizes
+////   SetSizes(m_sizeButton, m_sizeImage);
+//
+//   // Note: Parent must resize itself for control bar to be resized
+//
+//   return true;
+//
+//}
 
 
 //void simple_menu_bar::_001OnLButtonDown(::message::message * pmessage)
 //{
-//   SCAST_PTR(::message::mouse, pmouse, pmessage);
+//   __pointer(::message::mouse) pmouse(pmessage);
 //
 //   auto item = hit_test(pmouse->m_point);
 //
@@ -920,7 +920,7 @@ bool simple_menu_bar::on_click(const ::user::item & item)
 
 //void simple_menu_bar::_001OnAppLanguage(::message::message * pmessage)
 //{
-//   SCAST_PTR(::message::base, pbase, pmessage);
+//   __pointer(::message::base) pbase(pmessage);
 //   send_message(WM_CANCELMODE);
 //   LoadMenuBar(m_uResourceId);
 //   set_need_redraw();

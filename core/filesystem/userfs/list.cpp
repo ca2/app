@@ -58,7 +58,7 @@ namespace userfs
 
       set_impact_title("File Manager");
       
-      auto pframe = GetParentFrame();
+      auto pframe = get_parent_frame();
 
       pframe->set_frame_title("File Manager");
 
@@ -104,8 +104,8 @@ namespace userfs
             return false;
          if(iUItem >= pdata->m_itema.get_size())
             iUItem = pdata->m_itema.get_upper_bound();
-         payload varFile;
-         payload varQuery;
+         ::payload varFile;
+         ::payload varQuery;
          if(iUItem == iLItem)
          {
 
@@ -162,7 +162,7 @@ namespace userfs
    void list::_001OnLButtonDblClk(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-//      SCAST_PTR(::message::mouse, pmouse, pmessage);
+//      __pointer(::message::mouse) pmouse(pmessage);
       /*         index iItem;
             list_data * pdata = fslist();
             if(_001HitTest_(pmouse->m_point, iItem))
@@ -183,7 +183,7 @@ namespace userfs
    }
 
    
-   bool list::pre_create_window(::user::create_struct * pcreatestruct)
+   bool list::pre_create_window(::user::system * pusersystem)
    {
 
 
@@ -191,7 +191,7 @@ namespace userfs
 
 #endif
 
-      return ::user::form_list_view::pre_create_window(pcreatestruct);
+      return ::user::form_list_view::pre_create_window(pusersystem);
 
    }
 
@@ -420,7 +420,7 @@ namespace userfs
 
       }
 
-      _001ClearSelection();
+      //_001ClearSelection();
 
       return true;
 
@@ -555,7 +555,7 @@ namespace userfs
       __pointer(::user::button) pbutton =  (pinteraction);
       if(pcallback != nullptr && pbutton != nullptr)
       {
-      pcallback->InitializeActionButton(((i32) pinteraction->descriptor().m_id) - 1000, pbutton);
+      pcallback->InitializeActionButton(((i32) pinteraction->m_id) - 1000, pbutton);
       } */
    }
 
@@ -581,7 +581,7 @@ namespace userfs
       }
       item.m_strPath         = pdata->item(iStrict).m_strPath;
       item.m_strExtra        = pdata->item(iStrict).m_strExtra;
-      pcallback->OnButtonAction((i32) pinteraction->descriptor().m_id - 1000, item);
+      pcallback->OnButtonAction((i32) pinteraction->m_id - 1000, item);
       } */
    }
 
@@ -624,7 +624,7 @@ namespace userfs
 
    void list::_001OnVScroll(::message::message * pmessage)
    {
-      //      SCAST_PTR(::message::scroll, pscroll, pmessage);
+      //      __pointer(::message::scroll) pscroll(pmessage);
       //m_iCreateImageListStep = pscroll->m_nPos;
       //m_bRestartCreateImageList = true;
       pmessage->m_bRet = false;
@@ -711,7 +711,7 @@ namespace userfs
 
    void list::_001OnUpdateFileRename(::message::message * pmessage)
    {
-      SCAST_PTR(::user::command, pcommand, pmessage);
+      __pointer(::user::command) pcommand(pmessage);
       ::user::range range;
       _001GetSelection(range);
       pcommand->enable(
@@ -723,7 +723,7 @@ namespace userfs
    void list::_001OnShowWindow(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //      SCAST_PTR(::message::show_window, pshow, pmessage);
+      //      __pointer(::message::show_window) pshow(pmessage);
 
       //db_server * pcentral = dynamic_cast < db_server * > (&System.m_psimpledb->db());
       //if (pcentral == nullptr)

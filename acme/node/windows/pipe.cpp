@@ -43,7 +43,7 @@ namespace windows
 
       }
 
-      xxf_zero(m_sa);
+      __zero(m_sa);
       m_sa.nLength = sizeof(SECURITY_ATTRIBUTES);
       m_sa.bInheritHandle = bInherit ? TRUE : FALSE;
       m_sa.lpSecurityDescriptor = nullptr;

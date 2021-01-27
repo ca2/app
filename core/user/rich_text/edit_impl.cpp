@@ -130,7 +130,7 @@ namespace user
       void edit_impl::_001OnCreate(::message::message * pmessage)
       {
 
-         SCAST_PTR(::message::create, pcreate, pmessage);
+         __pointer(::message::create) pcreate(pmessage);
 
          pcreate->previous();
 
@@ -150,7 +150,7 @@ namespace user
          fork([this]()
             {
 
-               GetTopLevelFrame()->tool_window(::user::e_tool_font, true);
+               top_level_frame()->tool_window(::user::e_tool_font, true);
 
             });
 
@@ -175,7 +175,7 @@ namespace user
       void edit_impl::_001OnShowWindow(::message::message * pmessage)
       {
 
-         SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+         __pointer(::message::show_window) pshowwindow(pmessage);
 
          if (pshowwindow->m_bShow)
          {
@@ -211,7 +211,7 @@ namespace user
 
          UNREFERENCED_PARAMETER(pmessage);
 
-         //SCAST_PTR(::message::set_focus, psetfocus, pmessage);
+         //__pointer(::message::set_focus) psetfocus(pmessage);
 
          if (!is_text_editable())
          {
@@ -230,7 +230,7 @@ namespace user
       void edit_impl::_001OnKillFocus(::message::message * pmessage)
       {
 
-         SCAST_PTR(::message::kill_focus, pkillfocus, pmessage);
+         __pointer(::message::kill_focus) pkillfocus(pmessage);
 
          auto pformattool = get_format_tool(false);
 
@@ -265,7 +265,7 @@ namespace user
       }
 
 
-      void edit_impl::insert_text(string str, bool bForceNewStep)
+      void edit_impl::insert_text(string str, bool bForceNewStep, const ::action_context & context)
       {
 
          m_pdata->_001InsertText(str);
@@ -293,7 +293,7 @@ namespace user
       void edit_impl::_001OnLButtonDown(::message::message * pmessage)
       {
 
-         SCAST_PTR(::message::mouse, pmouse, pmessage);
+         __pointer(::message::mouse) pmouse(pmessage);
 
          if (!is_text_editable())
          {
@@ -384,7 +384,7 @@ namespace user
       void edit_impl::_001OnLButtonUp(::message::message* pmessage)
       {
 
-         SCAST_PTR(::message::mouse, pmouse, pmessage);
+         __pointer(::message::mouse) pmouse(pmessage);
 
          ReleaseCapture();
 
@@ -432,7 +432,7 @@ namespace user
       void edit_impl::_001OnMouseMove(::message::message* pmessage)
       {
 
-         SCAST_PTR(::message::mouse, pmouse, pmessage);
+         __pointer(::message::mouse) pmouse(pmessage);
 
          if (!is_text_editable())
          {
@@ -839,7 +839,7 @@ namespace user
 
             __copy(rectWindow, rWindow);
 
-            GetParent()->_001ScreenToClient(rectWindow);
+            get_parent()->_001ScreenToClient(rectWindow);
 
             copy(rectWindow, rectWindow);
 
@@ -926,7 +926,7 @@ namespace user
       __pointer(format_tool) edit_impl::get_format_tool(bool bCreate)
       {
 
-         auto pframe = GetTopLevelFrame();
+         auto pframe = top_level_frame();
 
          if (is_null(pframe))
          {
@@ -993,7 +993,7 @@ namespace user
 
          }
 
-         SCAST_PTR(::message::key, pkey, pmessage);
+         __pointer(::message::key) pkey(pmessage);
 
          auto psession = Session;
 
@@ -1147,7 +1147,7 @@ namespace user
       void edit_impl::_001OnKeyUp(::message::message * pmessage)
       {
 
-         SCAST_PTR(::message::key, pkey, pmessage);
+         __pointer(::message::key) pkey(pmessage);
 
          auto psession = Session;
 
@@ -1319,7 +1319,7 @@ namespace user
       void edit_impl::_001OnChar(::message::message * pmessage)
       {
 
-            SCAST_PTR(::message::key, pkey, pmessage);
+            __pointer(::message::key) pkey(pmessage);
 
             string strChar;
 
@@ -1808,7 +1808,7 @@ namespace user
 //                if(m_bMultiLine)
                   {
 
-                     insert_text("\n", true);
+                     insert_text("\n", true, e_source_user);
 
                   }
 
@@ -1993,10 +1993,10 @@ namespace user
 
          ((edit_impl *)this)->get_window_rect(rectWindow);
 
-         if (GetParent() != nullptr)
+         if (get_parent() != nullptr)
          {
 
-            GetParent()->_001ScreenToClient(rectWindow);
+            get_parent()->_001ScreenToClient(rectWindow);
 
          }
 

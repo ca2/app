@@ -19,7 +19,7 @@ namespace aqua
    }
 
 
-   void audio::play_audio(const payload & varFile, bool bSynch)
+   void audio::play_audio(const ::payload & varFile, bool bSynch)
    {
 
       __throw(interface_only_exception());

@@ -16,7 +16,7 @@ namespace user
       
       __pointer(T) point;
       
-      ::user::interaction * puiParent = GetParent();  // start with one parent up
+      ::user::interaction * puiParent = get_parent();  // start with one parent up
       
       while (puiParent != nullptr)
       {
@@ -30,7 +30,7 @@ namespace user
             
          }
          
-         puiParent = puiParent->GetParent();
+         puiParent = puiParent->get_parent();
     
       }
       
@@ -123,17 +123,11 @@ namespace user
 
    }
 
+
    inline bool interaction::is_window_visible(enum_layout elayout) const
    {
 
-      if (!m_pdescriptor)
-      {
-
-         return false;
-
-      }
-
-      return m_pdescriptor->m_puserinteractionParent && !m_pdescriptor->m_puserinteractionParent->is_window_visible(elayout) ? false : layout().state(elayout).is_visible();
+      return m_puserinteractionParent && !m_puserinteractionParent->is_window_visible(elayout) ? false : layout().state(elayout).is_visible();
 
    }
 
@@ -141,14 +135,7 @@ namespace user
    inline bool interaction::is_window_screen_visible(enum_layout elayout) const
    {
 
-      if (::is_null(m_pdescriptor))
-      {
-
-         return false;
-
-      }
-
-      return m_pdescriptor->m_puserinteractionParent && !m_pdescriptor->m_puserinteractionParent->is_window_screen_visible(elayout) ? false : is_screen_visible(layout().state(elayout).display());
+      return m_puserinteractionParent && !m_puserinteractionParent->is_window_screen_visible(elayout) ? false : is_screen_visible(layout().state(elayout).display());
 
    }
 
@@ -261,7 +248,7 @@ inline prodevian::prodevian(::user::interaction* pinteraction) :
 
 
 //inline bool thread::has_property(const ::id& id) const { return command() && has_property(id); }
-//inline payload thread::command_value(const ::id& id) const { return has_property(id) ? (const payload&)&command()->m_varQuery[id] : (const payload&)e_type_new; }
+//inline ::payload thread::command_value(const ::id& id) const { return has_property(id) ? (const ::payload&)&command()->m_varQuery[id] : (const ::payload&)e_type_new; }
 //inline bool thread::command_value_is_true(const ::id& id) const { return has_property(id) ? command()->m_varQuery.is_true(id) : false; }
 
 

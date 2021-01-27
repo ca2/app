@@ -91,7 +91,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 ////   ENSURE_ARG(AfxIsValidString(pszPrefix));
 
 //   ENSURE_ARG(pmessage != nullptr);
-//   SCAST_PTR(::message::base, pbase, pmessage);
+//   __pointer(::message::base) pbase(pmessage);
 //
 //   if (pbase->m_id == e_message_mouse_move || pbase->m_id == e_message_non_client_mouse_move ||
 //      pbase->m_id == e_message_nchittest || pbase->m_id == e_message_set_cursor ||

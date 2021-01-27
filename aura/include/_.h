@@ -21,11 +21,13 @@
 
 
 #undef System
+#undef Node
 #undef Sess
 #undef App
 
 
 #define System (*::get_context_system()->m_paurasystem)
+#define Node (::get_context_system()->m_pnode ? ::get_context_system()->m_pnode->m_pauranode : nullptr)
 #define Sess(pcontextsession) (pcontextsession->m_paurasession)
 #define App(playered) (*::get_context_application(playered)->m_pauraapplication)
 
@@ -1229,7 +1231,7 @@ using image_pointer_array = __pointer_array(::image);
 //
 //
 //class istring;
-//class payload;
+//class ::payload;
 //class property_set;
 //class object;
 ////class base_edit;
@@ -1315,7 +1317,7 @@ namespace draw2d
 //template < typename T1, typename T2, typename ARG_T1 = const T1 &, typename ARG_T2 = const T2 & >
 //class pair;
 //
-//template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE = const VALUE &, class PAIR = pair < KEY, VALUE, ARG_KEY, ARG_VALUE > >
+//template < class KEY, class ARG_KEY, class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type, class PAIR = pair < KEY, VALUE, ARG_KEY, ARG_VALUE > >
 //class map;
 //
 //template < class ENUM >
@@ -1371,7 +1373,7 @@ namespace draw2d
 ////   using eflag = flags < enum_flag >;
 ////   //using flag_map = map < enum_flag, enum_flag, bool, bool >;
 ////   //using rect_map = ::map < e_rect, e_rect, style_rect >;
-////   //using int_map = ::map < e_int, e_int, int, int >;
+////   //using i32_map = ::map < e_int, e_int, int, int >;
 ////   //using double_map = ::map < e_double, e_double, double, double >;
 ////   //using color_map = map < e_color, e_color, color32_t, color32_t >;
 ////   //using eelement = base_enum < enum_element >;
@@ -1392,11 +1394,11 @@ namespace user
 {
 
 
-   class create;
+   //class create;
    class control_event;
    class item;
    class check;
-   class create_struct;
+   class system;
    class command;
    class interaction_impl;
    class primitive;
@@ -1404,6 +1406,7 @@ namespace user
    class printer;
    class primitive;
    class interaction;
+   class impact;
    class interaction_layout;
    class scroll_base;
    class form;
@@ -1613,17 +1616,17 @@ class form_document;
 //
 ////#include "aura/primitive/collection/forward.h"
 //
-//enum e_optional
+//enum enum_optional
 //{
 //
 //   optional,
 //
 //};
 //
-//enum e_no_init
+//enum enum_no_init
 //{
 //
-//   no_init,
+//   e_no_init,
 //
 //};
 //
@@ -1633,7 +1636,7 @@ class form_document;
 //
 //   e_set    m_eset;
 //
-//   inline set(e_optional) { m_eset = set_none; }
+//   inline set(enum_optional) { m_eset = set_none; }
 //   inline set() { m_eset = set_none; }
 //   inline set(int i) { operator = (i); }
 //   inline set(bool b) { operator = (b); }
@@ -2172,7 +2175,7 @@ namespace draw2d
 //
 //class matter;
 //
-//class payload;
+//class ::payload;
 //
 //using argument = payload;
 //
@@ -2232,7 +2235,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //#define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
 //
 //
-//class payload;
+//class ::payload;
 //class id;
 //
 //
@@ -2371,7 +2374,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //}
 //
 //template < typename TYPE >
-//inline bool is_null_ref(const TYPE & t)
+//inline bool is_null(const TYPE & t)
 //{
 //
 //   return is_null(&t);
@@ -2380,9 +2383,9 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 //
 //template < typename TYPE >
-//inline bool is_set_ref(const TYPE & t)
+//inline bool is_set(const TYPE & t)
 //{
-//   return !is_null_ref(t);
+//   return !is_null(t);
 //}
 //
 //
@@ -2722,6 +2725,8 @@ namespace draw2d
 #include "aura/filesystem/filemanager/item_action.h"
 
 #include "aura/platform/session.h"
+
+#include "aura/platform/node.h"
 
 #include "aura/platform/system.h"
 

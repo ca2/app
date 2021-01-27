@@ -13,6 +13,8 @@ namespace user
       ::object(pitem)
    {
 
+      m_econtroltype = e_control_type_menu_button;
+
    }
 
 
@@ -75,12 +77,19 @@ namespace user
          rectPopupArrow.right = rectClient.right - 4;
          rectPopupArrow.top = ((rectClient.top + rectClient.bottom) / 2) - 4;
          rectPopupArrow.bottom = ((rectClient.top + rectClient.bottom) / 2) + 4;
-         point_array pointa;
+         pointd_array pointa;
+
          pointa.add(point(rectPopupArrow.left, rectPopupArrow.bottom));
+
          pointa.add(point(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
+
          pointa.add(point(rectPopupArrow.left, rectPopupArrow.top));
+
+
+
          pointa.add(point(rectPopupArrow.left, rectPopupArrow.bottom));
          pgraphics->polygon(pointa);
+
       }
 
       _001DrawCheck(pgraphics);
@@ -133,7 +142,7 @@ namespace user
    void menu_interaction::_001OnCreate(::message::message * pmessage)
    {
 
-      descriptor().set_control_type(e_control_type_menu_button);
+      //descriptor().set_control_type(e_control_type_menu_button);
 
       pmessage->previous();
 
@@ -143,7 +152,7 @@ namespace user
    void menu_interaction::_001OnMouseMove(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       pmouse->previous();
 

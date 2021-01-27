@@ -321,7 +321,7 @@ Opened:
          m_pwaveformat->nAvgBytesPerSec   = m_pwaveformat->nSamplesPerSec * m_pwaveformat->nBlockAlign;
          m_pwaveformat->cbSize            = 0;
 
-         xxf_zero_pointer(&m_dataformat);
+         __zero(&m_dataformat);
 
          translate(*&m_dataformat, m_pwaveformat);
 
@@ -478,7 +478,7 @@ Opened:
        void out::OnMultimediaDone(::message::message * pmessage)
        {
 
-       SCAST_PTR(::message::base, pbase, pmessage);
+       __pointer(::message::base) pbase(pmessage);
 
        LPWAVEHDR lpwavehdr = (LPWAVEHDR) pbase->m_lparam.m_lparam;
 

@@ -57,6 +57,10 @@ namespace file
 
       }
 
+
+      using enumeration < ::file::enum_flag >::operator -=;
+
+
    };
 
 
@@ -98,6 +102,8 @@ namespace file
 
    inline char path_sep(e_path epath);
 
+   inline const char * path_sepsz(e_path epath);
+
    inline char path_osep(e_path epath);
 
    // not rigorous at all file::path ... more "ryg"orous with performance and like you should know what are you doing
@@ -134,6 +140,13 @@ namespace file
       {
 
          return path_sep(m_epath);
+
+      }
+
+      inline const char* sepsz() const
+      {
+
+         return path_sepsz(m_epath);
 
       }
 
@@ -237,13 +250,13 @@ namespace file
 
       //      bool operator == (const string & str) const;
       //      bool operator == (const char * psz) const;
-      bool operator == (const payload & payload) const;
+      bool operator == (const ::payload & payload) const;
 
       //      bool operator != (const path & path) const;
 
       //      bool operator != (const string & str) const;
       //      bool operator != (const char * psz) const;
-      bool operator != (const payload & payload) const;
+      bool operator != (const ::payload & payload) const;
 
       path operator + (const path & path) const;
 
@@ -251,7 +264,7 @@ namespace file
       path operator + (const string & str) const;
 
       path operator + (const char * psz) const;
-      path operator + (const payload & payload) const;
+      path operator + (const ::payload & payload) const;
       path operator + (const property & property) const;
       path operator + (const id & id) const;
 
@@ -260,7 +273,7 @@ namespace file
       path operator / (const path & path) const;
       path operator / (const string & str) const;
       path operator / (const char * psz) const;
-      path operator / (const payload & payload) const;
+      path operator / (const ::payload & payload) const;
       path operator / (const property & property) const;
       patha operator / (const string_array & path) const;
 
@@ -286,8 +299,8 @@ namespace file
       path & operator = (const char * psz);
       path & operator += (const char * psz);
 
-      path & operator = (const payload & payload);
-      path & operator += (const payload & payload);
+      path & operator = (const ::payload & payload);
+      path & operator += (const ::payload & payload);
 
       path & operator = (const property & property);
       path & operator += (const property & property);
@@ -356,6 +369,7 @@ namespace file
       path & go_up();
       path & go_up(int i);
       path & operator -= (int i);
+      using path_meta::operator -=;
 
       inline path operator | (enum_flag e) const { path path(*this); path |= e; return path; }
 
@@ -380,6 +394,24 @@ namespace file
 #endif
 
       return '/';
+
+   }
+
+   inline const char * path_sepsz(e_path epath)
+   {
+
+#ifdef WINDOWS
+
+      if (epath == path_file)
+      {
+
+         return "\\";
+
+      }
+
+#endif
+
+      return "/";
 
    }
 

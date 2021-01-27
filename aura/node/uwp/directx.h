@@ -8,6 +8,16 @@
 #include <wincodec.h>
 
 
+namespace draw2d_direct2d
+{
+
+
+   class plugin;
+
+
+} // namespace draw2d_direct2d
+
+
 namespace uwp
 {
 
@@ -25,7 +35,13 @@ namespace uwp
    }
 
 
+   enum enum_phase
+   {
 
+      e_phase_draw,
+      e_phase_present,
+
+   };
 
    // Helper class that initializes DirectX APIs for both 2D and 3D rendering.
    // Some of the code in this class may be omitted if only 2D or only 3D rendering is being used.
@@ -33,6 +49,12 @@ namespace uwp
    {
    internal:
 
+
+      enum_phase                                      m_ephase;
+
+      ///__pointer(::draw2d_direct2d::plugin)            m_pplugin;
+      
+      ::logic::bit                                    m_bCoreWindowVisible;
 
       bool                             m_b3D;
       ::aura::system *                 m_psystem;
@@ -68,6 +90,7 @@ namespace uwp
       virtual void OnChangeDpi(float dpi);
       virtual void UpdateForWindowSizeChange();
       virtual void CreateWindowSizeDependentResources();
+      virtual void DestroyWindowSizeDependentResources();
       //virtual HRESULT Render();
       virtual void Present();
       void ValidateDevice();
@@ -86,19 +109,18 @@ namespace uwp
       Microsoft::WRL::ComPtr<IWICImagingFactory2>     m_wicFactory;
 
       // DirectX Core Objects. Required for 2D and 3D.
-      Microsoft::WRL::ComPtr<ID3D11Device1>           m_d3dDevice;
-      Microsoft::WRL::ComPtr<ID3D11DeviceContext1>    m_d3dContext;
+      //Microsoft::WRL::ComPtr<ID3D11Device1>           m_d3dDevice;
+      //Microsoft::WRL::ComPtr<ID3D11DeviceContext1>    m_d3dContext;
       Microsoft::WRL::ComPtr<IDXGISwapChain1>         m_swapChain;
       Microsoft::WRL::ComPtr<ID3D11RenderTargetView>  m_d3dRenderTargetView;
 
       // Direct2D Rendering Objects. Required for 2D.
-      Microsoft::WRL::ComPtr<ID2D1Device>             m_d2dDevice;
+      //Microsoft::WRL::ComPtr<ID2D1Device>             m_d2dDevice;
       Microsoft::WRL::ComPtr<ID2D1DeviceContext>      m_pd2d1devicecontext;
       Microsoft::WRL::ComPtr<ID2D1Bitmap1>            m_d2dTargetBitmap;
 
       // Direct3D Rendering Objects. Required for 3D.
       Microsoft::WRL::ComPtr<ID3D11DepthStencilView>  m_d3dDepthStencilView;
-
       // Cached renderer properties.
       D3D_FEATURE_LEVEL                               m_featureLevel;
       Windows::Foundation::Size                       m_renderTargetSize;

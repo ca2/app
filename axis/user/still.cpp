@@ -158,7 +158,7 @@ namespace user
    //void still::_001OnLButtonDown(::message::message * pmessage)
    //{
 
-   //   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   //   __pointer(::message::mouse) pmouse(pmessage);
 
    //   pmessage->previous();
 
@@ -184,7 +184,7 @@ namespace user
    //void still::_001OnMButtonDown(::message::message * pmessage)
    //{
 
-   //   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   //   __pointer(::message::mouse) pmouse(pmessage);
 
    //   pmessage->previous();
 
@@ -214,7 +214,7 @@ namespace user
    //void still::_001OnMButtonUp(::message::message * pmessage)
    //{
 
-   //   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   //   __pointer(::message::mouse) pmouse(pmessage);
 
    //   pmessage->previous();
 
@@ -250,7 +250,7 @@ namespace user
    //void still::_001OnLButtonUp(::message::message * pmessage)
    //{
 
-   //   //SCAST_PTR(::message::mouse, pmouse, pmessage);
+   //   //__pointer(::message::mouse) pmouse(pmessage);
 
    //   //enum_element eelement;
 
@@ -316,7 +316,7 @@ namespace user
    //void still::_001OnMouseMove(::message::message * pmessage)
    //{
 
-   //   //SCAST_PTR(::message::mouse, pmouse, pmessage);
+   //   //__pointer(::message::mouse) pmouse(pmessage);
 
    //   //enum_element eelement;
 
@@ -340,7 +340,7 @@ namespace user
    //   //      ::user::control_event ev;
    //   //      ev.m_puie = this;
    //   //      ev.m_eevent = ::user::e_event_mouse_enter;
-   //   //      GetParent()->send_message(
+   //   //      get_parent()->send_message(
    //   //      e_message_event, 0, (LPARAM)&ev);
    //   //      //               m_bActionHover = true;
    //   //   }
@@ -349,7 +349,7 @@ namespace user
    //   //      ::user::control_event ev;
    //   //      ev.m_puie = this;
    //   //      ev.m_eevent = ::user::e_event_mouse_leave;
-   //   //      GetParent()->send_message(
+   //   //      get_parent()->send_message(
    //   //      e_message_event, 0, (LPARAM)&ev);
    //   //      //             m_bActionHover = false;
    //   //   }
@@ -362,7 +362,7 @@ namespace user
    //void still::_001OnMouseLeave(::message::message * pmessage)
    //{
 
-   //   //SCAST_PTR(::message::base, pbase, pmessage);
+   //   //__pointer(::message::base) pbase(pmessage);
    //   //index iOldHover = m_iHover;
    //   //m_iHover = -1;
    //   //if (iOldHover >= 0)
@@ -371,9 +371,9 @@ namespace user
    //   //   ::user::control_event ev;
    //   //   ev.m_puie = this;
    //   //   ev.m_eevent = ::user::e_event_mouse_leave;
-   //   //   if (GetParent() != nullptr)
+   //   //   if (get_parent() != nullptr)
    //   //   {
-   //   //      GetParent()->send_message(e_message_event, 0, (LPARAM)&ev);
+   //   //      get_parent()->send_message(e_message_event, 0, (LPARAM)&ev);
    //   //   }
    //   //}
 
@@ -499,11 +499,11 @@ namespace user
 
       sync_style();
 
-      if (m_pdescriptor->m_setStyle["vertical-align"] == "center")
-      {
+      //if (m_pdescriptor->m_setStyle["vertical-align"] == "center")
+      //{
 
 
-      }
+      //}
 
 
       if (m_id.has_char())
@@ -537,25 +537,25 @@ namespace user
 
       ::rect rect;
 
-      rect.left = rectClient.left + (rectClient.width() - sizeText.cx) / 2;
+      rect.left = (::i32) (rectClient.left + (rectClient.width() - sizeText.cx) / 2);
 
-      rect.top = rectClient.top + (rectClient.height() - sizeText.cy) / 2;
+      rect.top = (::i32) (rectClient.top + (rectClient.height() - sizeText.cy) / 2);
 
-      rect.right = rect.left + sizeText.cx;
+      rect.right = (::i32) (rect.left + sizeText.cx);
 
-      rect.bottom = rect.top + sizeText.cy;
+      rect.bottom = (::i32) (rect.top + sizeText.cy);
 
       m_rectText = rect;
 
    }
 
 
-   bool still::create_control(class control_descriptor * pdescriptor)
-   {
+   //bool still::create_interaction(::user::interaction * pinteractionParent, const ::id & id)
+   //{
 
-      return interaction::create_control(pdescriptor);
+   //   return interaction::create_interaction(pinteractionParent, id);
 
-   }
+   //}
 
 
    ::draw2d::font_pointer still::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
@@ -678,23 +678,23 @@ namespace user
       if (!is_window_enabled())
       {
 
-         //         pgraphics->set_text_color(pstyle->m_crTextDisabled);
+         //         pgraphics->set_text_color(pstyle->m_colorTextDisabled);
          brushText->create_solid(get_color(pstyle, e_element_text, e_state_disabled));
 
       }
       else if (is_left_button_pressed())
       {
-         //         pgraphics->set_text_color(pstyle->m_crTextPress);
+         //         pgraphics->set_text_color(pstyle->m_colorTextPress);
          brushText->create_solid(get_color(pstyle, e_element_text, e_state_pressed));
       }
       else if (m_itemHover.is_set())
       {
-         //         pgraphics->set_text_color(pstyle->m_crTextHover);
+         //         pgraphics->set_text_color(pstyle->m_colorTextHover);
          brushText->create_solid(get_color(pstyle, e_element_text, e_state_hover));
       }
       else
       {
-         //         pgraphics->set_text_color(pstyle->m_crTextNormal);
+         //         pgraphics->set_text_color(pstyle->m_colorTextNormal);
          brushText->create_solid(get_color(pstyle, e_element_text));
       }
 
@@ -721,7 +721,7 @@ namespace user
    void still::_001OnKeyDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::key, pkey, pmessage);
+      __pointer(::message::key) pkey(pmessage);
 
       ::user::e_key iKey = pkey->m_ekey;
 

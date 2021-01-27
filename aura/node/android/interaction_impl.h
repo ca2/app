@@ -83,15 +83,15 @@ namespace android
       virtual bool create_window(::user::interaction * pinteraction, const char * lpszClassName, const char * lpszWindowName, u32 dwStyle, const ::rect & rect, ::user::primitive * pParentWnd, id id, ::create * pcreate = nullptr) override;
 
       // for top level windows and/or special features
-      virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::create_struct) pcreatestruct, ::user::primitive * puiParent = nullptr, ::id id = ::id()) override;
+      virtual bool create_window_ex(::user::interaction * pinteraction, __pointer(::user::system) pusersystem, ::user::primitive * puiParent = nullptr, ::id id = ::id()) override;
 
       // for top level windows and/or special features
-      virtual bool _native_create_window_ex(__pointer(::user::create_struct) pcreatestruct) override;
+      virtual bool _native_create_window_ex(__pointer(::user::system) pusersystem) override;
 
       virtual bool DestroyWindow() override;
 
       // special pre-creation and interaction_impl rect adjustment hooks
-      virtual bool pre_create_window(::user::create_struct * pcreatestruct) override;
+      virtual bool pre_create_window(::user::system * pusersystem) override;
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
@@ -290,14 +290,14 @@ namespace android
       virtual ::user::interaction * GetLastActivePopup() override;
 
       //virtual bool IsChild(::user::interaction *  pWnd);
-      //virtual ::user::interaction * GetParent();
+      //virtual ::user::interaction * get_parent();
       //using ::user::interaction_impl::SetParent;
       //::user::interaction * SetParent(::user::interaction * pWndNewParent);
       //static::user::interaction * PASCAL oswindowFromPoint(POINT32 point);
 
 
       //virtual ::user::interaction * SetOwner(::user::interaction * pWndNewParent);
-      //virtual ::user::interaction * GetOwner() const;
+      //virtual ::user::interaction * get_owner() const;
 
       //virtual bool FlashWindow(bool bInvert);
 
@@ -391,7 +391,7 @@ namespace android
       // Nonclient-Area message handler member functions
       bool OnNcActivate(bool bActive);
       //void OnNcCalcSize(bool bCalcValidRects,NCCALCSIZE_PARAMS* lpncsp);
-      bool OnNcCreate(::user::create_struct * lpCreateStruct);
+      bool OnNcCreate(::user::system * lpCreateStruct);
 
       DECL_GEN_SIGNAL(_001OnNcCalcSize);
       LRESULT OnNcHitTest(::point point);

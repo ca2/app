@@ -32,7 +32,7 @@ namespace userex
    void progress_control::set_progress_title(const char * pszTitle)
    {
 
-      m_pview->GetParentFrame()->set_window_text(pszTitle);
+      m_pview->get_parent_frame()->set_window_text(pszTitle);
 
    }
 
@@ -230,11 +230,11 @@ namespace userex
    void progress_view::_001OnCreate(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::create, pcreate, pmessage);
+      __pointer(::message::create) pcreate(pmessage);
       
       pmessage->previous();
 
-      if (!m_pprogress->create_window(this, "progress_control"))
+      if (!m_pprogress->create_control(this, "progress_control"))
       {
 
 
@@ -268,7 +268,7 @@ namespace userex
 
          rect.deflate(rect.width() / 6, rect.height() / 3, rect.width() / 6, rect.height() / 2);
 
-         auto pframe = GetParentFrame();
+         auto pframe = get_parent_frame();
 
          if (::is_set(pframe))
          {

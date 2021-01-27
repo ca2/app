@@ -110,7 +110,7 @@ namespace draw2d
 
       m_nCount = nCount;
       ::acme::del(m_lppoints);
-      m_lppoints = new POINTD[m_nCount];
+      m_lppoints = new ::pointd[m_nCount];
       ::memcpy_dup(m_lppoints, ppoints, sizeof(POINTD) * m_nCount);
 
       m_efillmode = efillmode;
@@ -133,7 +133,7 @@ namespace draw2d
 
       m_nCount = nCount;
 
-      m_lppoints = new POINTD[m_nCount];
+      m_lppoints = new ::pointd[m_nCount];
 
       for(index i = 0; i < m_nCount; i++)
       {
@@ -178,7 +178,7 @@ namespace draw2d
 
       }
 
-      m_lppoints = new POINTD[iTotalCount];
+      m_lppoints = new ::pointd[iTotalCount];
 
       ::memcpy_dup(m_lppoints, ppoints, sizeof(POINTD) * iTotalCount);
 
@@ -216,7 +216,7 @@ namespace draw2d
 
       }
 
-      m_lppoints = new POINTD[iTotalCount];
+      m_lppoints = new ::pointd[iTotalCount];
 
       for(i32 i = 0; i < iTotalCount; i++)
       {
@@ -288,7 +288,7 @@ namespace draw2d
          return *this;
       case e_region_polygon:
          m_nCount = regionSrc.m_nCount;
-         m_lppoints = new POINTD[m_nCount];
+         m_lppoints = new ::pointd[m_nCount];
          ::memcpy_dup(m_lppoints, regionSrc.m_lppoints, sizeof(POINTD) * m_nCount);
          m_efillmode = regionSrc.m_efillmode;
          return *this;
@@ -302,7 +302,7 @@ namespace draw2d
          {
             iTotalCount += m_lppolycounts[i];
          }
-         m_lppoints = new POINTD[iTotalCount];
+         m_lppoints = new ::pointd[iTotalCount];
          ::memcpy_dup(m_lppoints, regionSrc.m_lppoints, sizeof(POINTD) * iTotalCount);
          m_efillmode = regionSrc.m_efillmode;
       }
@@ -613,7 +613,7 @@ namespace draw2d
       case e_region_none:
          return false;
       case e_region_rect:
-         return internal_rect_contains(point);
+         return internal_rectangle_contains(point);
 
       case e_region_oval:
          return internal_oval_contains(point);
@@ -636,7 +636,7 @@ namespace draw2d
    }
 
 
-   bool region::internal_rect_contains(const POINTD & point)
+   bool region::internal_rectangle_contains(const POINTD & point)
    {
 
       return point.x >= m_x1 && point.y >= m_y1 && point.x <= m_x2 && point.y <= m_y2;
@@ -853,10 +853,10 @@ namespace draw2d
    }
 
 
-   bool region::internal_rect_contains(const POINT32 & point)
+   bool region::internal_rectangle_contains(const POINT32 & point)
    {
 
-      return internal_rect_contains(pointd(point));
+      return internal_rectangle_contains(pointd(point));
 
    }
 

@@ -83,7 +83,7 @@ namespace simple_ui
 
       auto ptap = __new(::simple_ui::tap);
 
-      ptap->create_window(this, id);
+      ptap->create_child(this);
 
       ptap->set_window_text(pszText);
 
@@ -162,9 +162,9 @@ namespace simple_ui
 
       rectFontopus.bottom = rectFontopus.top + h;
 
-      auto pcreatestruct = __new(::user::create_struct (WS_EX_LAYERED, nullptr, nullptr, 0, rectFontopus));
+      //auto pusersystem = __new(::user::system (WS_EX_LAYERED, nullptr, nullptr, 0, rectFontopus));
 
-      if(!create_window_ex(pcreatestruct, puiParent))
+      if(!create_interaction(puiParent))
       {
 
          __throw(::exception::exception("not excepted! Failing Message box!!"));

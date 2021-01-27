@@ -154,7 +154,7 @@ enum e_id : u64
    id_main_title,
    id_result,
    id_open_hyperlink,
-
+   id_user_style_change,
 
    //id_title,
    id_author,

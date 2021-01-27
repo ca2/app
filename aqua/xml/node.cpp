@@ -77,7 +77,7 @@ namespace xml
    }
 
 
-   //payload node::attr(const char * pcszName)
+   //::payload node::attr(const char * pcszName)
    //{
 
    //   return set(pcszName);
@@ -127,7 +127,7 @@ namespace xml
    //}
 
 
-   property * node::set_attribute(const ::id & id, const payload & payload)
+   property * node::set_attribute(const ::id & id, const ::payload & payload)
    {
 
       auto & property = m_set.get(id);
@@ -1720,10 +1720,14 @@ namespace xml
       return (node != nullptr)? (const char *)node->m_strValue : nullptr;
    }
 
-   string   node::get_child_text( const char * lpszName, disp_option * opt /*= &optDefault*/ )
+   
+   string node::get_child_text( const char * lpszName, disp_option * opt /*= &optDefault*/ )
    {
+      
       node * node = get_child( lpszName );
-      return (node != nullptr)? node->get_text(opt) : "";
+
+      return node != nullptr ? node->get_text(opt).c_str() : "";
+
    }
 
    

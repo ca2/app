@@ -70,6 +70,12 @@
 
             m_psystem = ::move_transfer(platform_create_system(strAppId));
 
+            auto papplicationStartup = m_psystem->new_application(strAppId);
+
+            __bind(m_psystem, m_papplicationStartup, papplicationStartup);
+
+            m_psystem->set_main_struct(*m_psystem->m_papplicationStartup);
+
             m_psystem->m_bConsole = true;
 
          }

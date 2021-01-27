@@ -102,7 +102,7 @@ namespace userex
 
 
 
-      //GetParentFrame()->m_id += ".color_sel";
+      //get_parent_frame()->m_id += ".color_sel";
 
       pmessage->previous();
 
@@ -115,7 +115,7 @@ namespace userex
 
       set_impact_title("__CoLoR_");
 
-      GetParentFrame()->set_frame_title("__CoLoR_");
+      get_parent_frame()->set_frame_title("__CoLoR_");
 
    }
 
@@ -124,7 +124,7 @@ namespace userex
    {
 
       UNREFERENCED_PARAMETER(pmessage);
-      //SCAST_PTR(::message::show_window, pshowwindow, pmessage);
+      //__pointer(::message::show_window) pshowwindow(pmessage);
 
    }
 
@@ -179,7 +179,7 @@ namespace userex
    void home_view::_001OnLButtonDown(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       ::point point = pmouse->m_point;
 
@@ -197,7 +197,7 @@ namespace userex
    void home_view::_001OnLButtonUp(::message::message * pmessage)
    {
 
-      SCAST_PTR(::message::mouse, pmouse, pmessage);
+      __pointer(::message::mouse) pmouse(pmessage);
 
       ::point point = pmouse->m_point;
 
@@ -227,7 +227,7 @@ namespace userex
    void home_view::_001OnMouseMove(::message::message * pmessage)
    {
 
-      //SCAST_PTR(::message::mouse, pmouse, pmessage);
+      //__pointer(::message::mouse) pmouse(pmessage);
 
    }
 

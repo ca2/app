@@ -20,7 +20,7 @@ namespace user
 
       m_bHiddenOnNotifyIcon = false;
 
-      m_puiOwner = nullptr;
+      m_puserinteractionOwner = nullptr;
 
       m_strMatter = pszMatter;
       m_typeDocument = pDocClass;
@@ -171,33 +171,35 @@ namespace user
 
       ASSERT(m_strMatter.has_char());
 
-      if (pcreate->m_pusercreate.is_null())
+      if (pcreate->m_pusersystem.is_null())
       {
 
-         pcreate->m_pusercreate = __new(::user::create);
+         pcreate->m_pusersystem = __new(::user::system);
+
+         __user_system(pcreate->m_pusersystem)->m_pcreate = pcreate;
 
       }
 
-      ::user::create & usercreate = *__user_create(pcreate->m_pusercreate);
+      __pointer(::user::system) pusersystem = __user_system(pcreate->m_pusersystem);
 
-      usercreate.m_puiCurrentFrame = pOther;
+      pusersystem->m_puiCurrentFrame = pOther;
 
-      usercreate.m_pdocumentCurrent = pdocument;
+      pusersystem->m_pdocumentCurrent = pdocument;
 
       if (pcreate->m_puiAlloc != nullptr)
       {
 
-         usercreate.m_puiNew = pcreate->m_puiAlloc;
+         pusersystem->m_puiNew = pcreate->m_puiAlloc;
 
       }
       else
       {
 
-         usercreate.m_typeNewView = m_typeView;
+         pusersystem->m_typeNewView = m_typeView;
 
       }
 
-      usercreate.m_ptemplateNewDocument = this;
+      pusersystem->m_ptemplateNewDocument = this;
 
       if (!m_typeFrame)
       {
@@ -235,7 +237,7 @@ namespace user
 
       pframe->m_pdocumenttemplate = this;
 
-      if (!usercreate.m_typeNewView)
+      if (!pusersystem->m_typeNewView)
       {
 
          TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: creating frame with no default ::user::impact.\n");
@@ -249,10 +251,10 @@ namespace user
 
       }
 
-      if (m_puiOwner != nullptr)
+      if (m_puserinteractionOwner != nullptr)
       {
 
-         pframe->m_puiOwner = m_puiOwner;
+         pframe->m_puserinteractionOwner = m_puserinteractionOwner;
 
       }
 
@@ -260,7 +262,8 @@ namespace user
       if (!pframe->LoadFrame(m_strMatter,
                              WS_OVERLAPPEDWINDOW |
                              (bAddToTitle ? FWS_ADDTOTITLE : 0),   // default frame styles
-                             dynamic_cast < ::user::interaction * > (pcreate->m_puserinteractionParent), pcreate))
+                             __user_interaction(pcreate->m_puserinteractionParent), 
+                              pusersystem))
       {
 
          TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: impact_system couldn't create a frame.\n");

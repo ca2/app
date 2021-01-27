@@ -21086,7 +21086,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Don't know how to process critiCAl payload
+// Don't know how to process critiCAl ::payload
 //
 #define ERROR_IPSEC_IKE_CRITICAL_PAYLOAD_NOT_RECOGNIZED 13823L
 
@@ -21141,7 +21141,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Error processing error payload
+// Error processing error ::payload
 //
 #define ERROR_IPSEC_IKE_PROCESS_ERR      13829L
 
@@ -21150,7 +21150,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Error processing SA payload
+// Error processing SA ::payload
 //
 #define ERROR_IPSEC_IKE_PROCESS_ERR_SA   13830L
 
@@ -21159,7 +21159,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Error processing Proposal payload
+// Error processing Proposal ::payload
 //
 #define ERROR_IPSEC_IKE_PROCESS_ERR_PROP 13831L
 
@@ -21168,7 +21168,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Error processing Transform payload
+// Error processing Transform ::payload
 //
 #define ERROR_IPSEC_IKE_PROCESS_ERR_TRANS 13832L
 
@@ -21177,7 +21177,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Error processing KE payload
+// Error processing KE ::payload
 //
 #define ERROR_IPSEC_IKE_PROCESS_ERR_KE   13833L
 
@@ -21186,7 +21186,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Error processing ID payload
+// Error processing ID ::payload
 //
 #define ERROR_IPSEC_IKE_PROCESS_ERR_ID   13834L
 
@@ -21195,7 +21195,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Error processing Cert payload
+// Error processing Cert ::payload
 //
 #define ERROR_IPSEC_IKE_PROCESS_ERR_CERT 13835L
 
@@ -21204,7 +21204,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Error processing CertifiCAte Request payload
+// Error processing CertifiCAte Request ::payload
 //
 #define ERROR_IPSEC_IKE_PROCESS_ERR_CERT_REQ 13836L
 
@@ -21213,7 +21213,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Error processing Hash payload
+// Error processing Hash ::payload
 //
 #define ERROR_IPSEC_IKE_PROCESS_ERR_HASH 13837L
 
@@ -21222,7 +21222,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Error processing Signature payload
+// Error processing Signature ::payload
 //
 #define ERROR_IPSEC_IKE_PROCESS_ERR_SIG  13838L
 
@@ -21231,7 +21231,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Error processing Nonce payload
+// Error processing Nonce ::payload
 //
 #define ERROR_IPSEC_IKE_PROCESS_ERR_NONCE 13839L
 
@@ -21240,7 +21240,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Error processing Notify payload
+// Error processing Notify ::payload
 //
 #define ERROR_IPSEC_IKE_PROCESS_ERR_NOTIFY 13840L
 
@@ -21258,7 +21258,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Error processing VendorId payload
+// Error processing VendorId ::payload
 //
 #define ERROR_IPSEC_IKE_PROCESS_ERR_VENDOR 13842L
 
@@ -21267,7 +21267,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Invalid payload received
+// Invalid ::payload received
 //
 #define ERROR_IPSEC_IKE_INVALID_PAYLOAD  13843L
 
@@ -21474,7 +21474,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Error encrypting payload
+// Error encrypting ::payload
 //
 #define ERROR_IPSEC_IKE_ENCRYPT          13866L
 
@@ -21483,7 +21483,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Error decrypting payload
+// Error decrypting ::payload
 //
 #define ERROR_IPSEC_IKE_DECRYPT          13867L
 
@@ -21781,7 +21781,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Require configuration payload missing.
+// Require configuration ::payload missing.
 //
 #define ERROR_IPSEC_IKE_REQUIRE_CP_PAYLOAD_MISSING 13900L
 

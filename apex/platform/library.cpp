@@ -720,7 +720,7 @@ namespace apex
    }
 
 
-   ::matter* library::new_object(::layered * pobjectContext, const char * pszClassId)
+   ::matter* library::new_object(const char * pszClassId)
    {
 
       if (!m_pca2library)
@@ -730,7 +730,7 @@ namespace apex
 
       }
 
-      return m_pca2library->new_object(pobjectContext, pszClassId);
+      return m_pca2library->new_object(pszClassId);
 
    }
 
@@ -752,13 +752,13 @@ namespace apex
       if(get_ca2_library() != nullptr)
       {
 
-         p = get_ca2_library()->new_object(pobjectContext, pszClass);
+         p = get_ca2_library()->new_object(pszClass);
 
       }
       else
       {
          
-         p = new_object(pobjectContext, pszClass);
+         p = new_object(pszClass);
 
       }
 
@@ -871,12 +871,12 @@ namespace apex
    }
 
    
-   ::matter* library::factory_new(::layered * pobjectContext, const char* lpszClass)
-   {
+   //::matter* library::factory_new(::layered * pobjectContext, const char* lpszClass)
+   //{
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
    __pointer(::matter) library::factory_create(::layered * pobjectContext, const char * lpszClass)

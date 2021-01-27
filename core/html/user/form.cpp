@@ -217,7 +217,7 @@ void html_form::on_layout(::draw2d::graphics_pointer & pgraphics)
 void html_form::_001OnCreate(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::create, pcreate, pmessage);
+   __pointer(::message::create) pcreate(pmessage);
 
    System.defer_create_html();
 
@@ -234,7 +234,7 @@ void html_form::_001OnCreate(::message::message * pmessage)
 void html_form::_001OnLButtonDown(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   __pointer(::message::mouse) pmouse(pmessage);
 
    ::point point;
 
@@ -281,7 +281,7 @@ void html_form::_001OnLButtonDown(::message::message * pmessage)
 void html_form::_001OnMouseMove(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   __pointer(::message::mouse) pmouse(pmessage);
 
    track_mouse_hover();
 
@@ -362,7 +362,7 @@ void html_form::_001OnMouseLeave(::message::message * pmessage)
 void html_form::_001OnLButtonUp(::message::message * pmessage)
 {
 
-   SCAST_PTR(::message::mouse, pmouse, pmessage);
+   __pointer(::message::mouse) pmouse(pmessage);
 
    ::point point(pmouse->m_point);
 
@@ -478,7 +478,7 @@ void html_form::set_need_load_form_data()
 }
 
 
-::e_status html_form::open_document(const payload & varFile)
+::e_status html_form::open_document(const ::payload & varFile)
 {
 
    auto path = varFile.get_file_path();
@@ -639,7 +639,7 @@ html_document * html_form::get_document()
 
 void html_form::_001OnKeyDown(::message::message * pmessage)
 {
-   SCAST_PTR(::message::key, pkey, pmessage);
+   __pointer(::message::key) pkey(pmessage);
    if(pkey->m_ekey == ::user::key_tab)
    {
       pkey->m_bRet = true;
@@ -781,25 +781,18 @@ void html_form_view::on_subject(::promise::subject * psubject, ::promise::contex
 
          _001UpdateFunctionStatic();
 
-         for (auto & pdescriptor : m_controldescriptorset.ptra())
+         for (auto pinteraction : proper_children())
          {
 
-            auto pinteraction = pdescriptor->m_pinteraction;
-
-            if (pinteraction)
-            {
-
-               _001Update(pinteraction);
-
-            }
+            _001Update(pinteraction);
 
          }
 
          defer_html_layout();
 
-         on_document_complete(psubject->value(id_url));
+         on_document_complete(psubject->payload(id_url));
 
-         GetParentFrame()->SetActiveView(this);
+         get_parent_frame()->set_active_view(this);
 
          SetFocus();
 
@@ -813,17 +806,17 @@ void html_form_view::on_subject(::promise::subject * psubject, ::promise::contex
       if (psubject->id() == id_browse)
       {
 
-         if (!psubject->value(id_form).is_empty())
+         if (!psubject->payload(id_form).is_empty())
          {
 
             ::file::path matter;
 
-            matter = Context.dir().matter(psubject->value(id_form));
+            matter = Context.dir().matter(psubject->payload(id_form));
 
             if (get_document()->on_open_document(matter))
             {
 
-               m_strPath = psubject->value(id_form);
+               m_strPath = psubject->payload(id_form);
 
             }
 
@@ -831,7 +824,7 @@ void html_form_view::on_subject(::promise::subject * psubject, ::promise::contex
          else if (psubject->id() == id_get_form_view)
          {
 
-            psubject->value(id_form) = this;
+            psubject->payload(id_form) = this;
 
          }
 
@@ -840,7 +833,7 @@ void html_form_view::on_subject(::promise::subject * psubject, ::promise::contex
       if (m_pcallback != nullptr)
       {
 
-         psubject->value(id_form) = this;
+         psubject->payload(id_form) = this;
 
          m_pcallback->process(psubject);
 
@@ -878,7 +871,7 @@ void html_view::on_subject(::promise::subject * psubject, ::promise::context * p
 
          }
 
-         on_document_complete(psubject->value(id_url));
+         on_document_complete(psubject->payload(id_url));
 
          set_need_layout();
 

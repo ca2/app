@@ -2311,7 +2311,7 @@ retry_license:
 
             TRACE("context_image required but missing");
 
-            ::os_message_box("context_image required but missing", "context_image missing", ::e_message_box_ok);
+            message_box("context_image required but missing.\n\nIs it a image library missing?", Application.get_app_user_friendly_task_bar_name(), ::e_message_box_icon_information);
 
             return estatus;
 

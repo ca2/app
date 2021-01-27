@@ -574,7 +574,7 @@ Serial::SerialImpl::read(u8 * buf, size_t size)
 
    // Calculate total timeout in milliseconds t_c + (t_m * N)
    auto total_timeout_ms = m_timeout.m_millisReadTimeoutConstant;
-   total_timeout_ms.m_iMilliseconds += m_timeout.m_uReadTimeoutMultiplier * static_cast<long> (size);
+   total_timeout_ms.m_i += m_timeout.m_uReadTimeoutMultiplier * static_cast<long> (size);
    auto millisStart = ::millis::now();
 
    // Pre-fill buffer with available bytes

@@ -39,8 +39,8 @@ list(APPEND draw2d_cairo_source
         framework.h
         graphics.cpp
         graphics.h
-        image_impl.cpp
-        image_impl.h
+        image.cpp
+        image.h
         keep.cpp
         keep.h
         object.cpp

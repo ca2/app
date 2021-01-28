@@ -9,8 +9,8 @@
 
 
 
-#include "x11_exception.h"
-#include "x11_keyboard.h"
+//#include "x11_exception.h"
+//#include "x11_keyboard.h"
 //#include "x11_message_box.h"
 //
 //class x11_hook :

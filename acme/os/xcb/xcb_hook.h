@@ -1,17 +1,16 @@
 #pragma once
 
 
-class x11_hook :
+class xcb_hook :
 virtual public ::matter
 {
 public:
 
 
+   xcb_hook();
 
-   x11_hook();
 
-
-   virtual bool process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie);
+   virtual bool process_event(Display * pdisplay, xcb_generic_event_t * pevent, XGenericEventCookie * cookie);
 
    ::e_status hook();
    ::e_status unhook();

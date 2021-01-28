@@ -178,18 +178,18 @@ protected:
 
 class CScriptVar;
 
-typedef void (*JSCallback)(CScriptVar *::payload, void *userdata);
+typedef void (*JSCallback)(CScriptVar * payload, void * userdata);
 
 class CLASS_DECL_APP_SCRIPTING CScriptVarLink
 {
 public:
    string name;
-   CScriptVarLink *nextSibling;
-   CScriptVarLink *prevSibling;
-   CScriptVar *::payload;
+   CScriptVarLink * nextSibling;
+   CScriptVarLink * prevSibling;
+   CScriptVar * payload;
    bool owned;
 
-   CScriptVarLink(CScriptVar *::payload, const string &name = TINYJS_TEMP_NAME);
+   CScriptVarLink(CScriptVar * payload, const string &name = TINYJS_TEMP_NAME);
    CScriptVarLink(const CScriptVarLink &link); ///< Copy constructor
    ~CScriptVarLink();
    void replaceWith(CScriptVar *newVar); ///< Replace the Variable pointed to
@@ -210,7 +210,7 @@ public:
    ~CScriptVar(void);
 
    CScriptVar *getReturnVar(); ///< If this is a function, get the result value (for use by native functions)
-   void setReturnVar(CScriptVar *::payload); ///< set the result value. Use this when setting complex return data as it avoids a deepCopy()
+   void setReturnVar(CScriptVar * payload); ///< set the result value. Use this when setting complex return data as it avoids a deepCopy()
    CScriptVar *getParameter(const string &name); ///< If this is a function, get the parameter with the given name (for use by native functions)
 
    CScriptVarLink *findChild(const string &childName); ///< Tries to find a child with the given name, may return 0

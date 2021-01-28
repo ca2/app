@@ -53,7 +53,7 @@ namespace dynamic_source
          if (!m_pmain)
          {
 
-            __note_assign(m_pmain, pinterface->m_pmain.get() OBJ_REF_DBG_COMMA_THIS_NOTE("scptiface:init:referer://"+ m_strNote));
+            __note_assign(m_pmain, pinterface->m_pmain.get(), OBJ_REF_DBG_COMMA_THIS_NOTE("scptiface:init:referer://"+ m_strNote));
 
          }
 
@@ -178,7 +178,7 @@ namespace dynamic_source
    //}
 
 
-   void script_interface::set_session_value(id, payload)
+   void script_interface::set_session_value(id, ::payload)
    {
 
    }
@@ -266,7 +266,7 @@ namespace dynamic_source
 
       }
 
-      return ::payload;
+      return payload;
 
    }
 

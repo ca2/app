@@ -30,13 +30,11 @@ public:
    ::database::key                                 m_datakeyFrame;
    __pointer(::draw2d::icon)                       m_piconNotify;
    __pointer(::user::notify_icon)                  m_pnotifyicon;
-   ::payload                                         m_varFrame;
+   ::payload                                       m_varFrame;
 
 
    simple_frame_window();
    virtual ~simple_frame_window();
-
-
 
 
    virtual ::e_status initialize(::layered * pobjectContext) override;
@@ -54,10 +52,6 @@ public:
 
    virtual void default_notify_icon_topic();
    virtual bool would_display_notify_icon();
-
-
-   //using ::experience::frame_window::create_interaction;
-   //virtual bool create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle = WS_OVERLAPPEDWINDOW,const ::rect & rect = nullptr, ::user::interaction * puiParent = nullptr, const char * pszMenuName = nullptr, u32 dwExStyle = 0, ::create * pcreate = nullptr) override;
 
 
    virtual bool keyboard_focus_is_focusable() const override;

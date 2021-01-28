@@ -15,7 +15,7 @@ public:
 
    color_filter() { m_pcolormatrix = nullptr; }
    color_filter(::nullptr_t) { m_pcolormatrix = nullptr; }
-   color_filter(const class ::opacity & opacity) : m_opacity(opacity) {}
+   color_filter(const class ::opacity & opacity) : m_opacity(opacity), m_pcolormatrix(nullptr){}
    ~color_filter() { ::acme::del(m_pcolormatrix); }
 
    inline bool is_identity() const { return !m_pcolormatrix ? true : m_pcolormatrix->is_identity(); }

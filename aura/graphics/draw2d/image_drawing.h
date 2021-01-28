@@ -41,7 +41,7 @@ public:
 
       auto concreteSize = pimagesource->size();
 
-      m_pimage = pimagesource->get_image(m_rectSrc.size());
+      m_pimage = pimagesource->get_image(concreteSize);
 
       m_rectDst.set(pointDst, concreteSize);
 

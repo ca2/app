@@ -22,6 +22,10 @@ ENUM enum_default()
 }
 
 
+template < typename PAYLOAD_TYPE >
+concept payload_class = (::std::derived_from < PAYLOAD_TYPE, ::payload > || ::std::same_as < PAYLOAD_TYPE, ::payload >::value);
+
+
 class CLASS_DECL_ACME payload :
    public payload_type < payload >
 {
@@ -339,7 +343,7 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
 
 
-   ::comparison::var_strict strict_compare() const;
+   ::comparison::var_strict strictly_compare() const;
 
    void           set_string(const char * psz);
    void           set_string(const string & str);
@@ -373,6 +377,24 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    //payload defer_get(const ::id & id) const;
 
    payload & operator ++(::i32);
+
+   template < payload_class PAYLOAD >
+   payload operator +(const PAYLOAD & payload) const;
+   template < payload_class PAYLOAD >
+   payload operator -(const PAYLOAD & payload) const;
+   template < payload_class PAYLOAD >
+   payload operator *(const PAYLOAD & payload) const;
+   template < payload_class PAYLOAD >
+   payload operator /(const PAYLOAD & payload) const;
+
+   template < payload_class PAYLOAD >
+   payload & operator +=(const PAYLOAD & payload);
+   template < payload_class PAYLOAD >
+   payload & operator -=(const PAYLOAD & payload);
+   template < payload_class PAYLOAD >
+   payload & operator *=(const PAYLOAD & payload);
+   template < payload_class PAYLOAD >
+   payload & operator /=(const PAYLOAD & payload);
 
    bool operator !() const
    {
@@ -642,31 +664,31 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    }
 
 
-   bool strict_equal(const payload & payload) const;
-   bool strict_equal(const char * psz) const;
-   bool strict_equal(const string & str) const;
-   bool strict_equal(double d) const;
-   bool strict_equal(::i32 i) const;
-   bool strict_equal(bool b) const;
+   bool strictly_equal(const payload & payload) const;
+   bool strictly_equal(const char * psz) const;
+   bool strictly_equal(const string & str) const;
+   bool strictly_equal(double d) const;
+   bool strictly_equal(::i32 i) const;
+   bool strictly_equal(bool b) const;
 
-   bool strict_different(const payload & payload) const;
-   bool strict_different(const char * psz) const;
-   bool strict_different(const string & str) const;
-   bool strict_different(double d) const;
-   bool strict_different(::i32 i) const;
-   bool strict_different(bool b) const;
+   bool strictly_different(const payload & payload) const;
+   bool strictly_different(const char * psz) const;
+   bool strictly_different(const string & str) const;
+   bool strictly_different(double d) const;
+   bool strictly_different(::i32 i) const;
+   bool strictly_different(bool b) const;
 
-   friend bool CLASS_DECL_ACME strict_equal(const char * psz,const payload & payload);
-   friend bool CLASS_DECL_ACME strict_equal(const string & str,const payload & payload);
-   friend bool CLASS_DECL_ACME strict_equal(double d,const payload & payload);
-   friend bool CLASS_DECL_ACME strict_equal(::i32 i,const payload & payload);
-   friend bool CLASS_DECL_ACME strict_equal(bool b,const payload & payload);
+   //friend bool CLASS_DECL_ACME strict_equal(const char * psz,const payload & payload);
+   //friend bool CLASS_DECL_ACME strict_equal(const string & str,const payload & payload);
+   //friend bool CLASS_DECL_ACME strict_equal(double d,const payload & payload);
+   //friend bool CLASS_DECL_ACME strict_equal(::i32 i,const payload & payload);
+   //friend bool CLASS_DECL_ACME strict_equal(bool b,const payload & payload);
 
-   friend bool CLASS_DECL_ACME strict_different(const char * psz,const payload & payload);
-   friend bool CLASS_DECL_ACME strict_different(const string & str,const payload & payload);
-   friend bool CLASS_DECL_ACME strict_different(double d,const payload & payload);
-   friend bool CLASS_DECL_ACME strict_different(::i32 i,const payload & payload);
-   friend bool CLASS_DECL_ACME strict_different(bool b,const payload & payload);
+   //friend bool CLASS_DECL_ACME strict_different(const char * psz,const payload & payload);
+   //friend bool CLASS_DECL_ACME strict_different(const string & str,const payload & payload);
+   //friend bool CLASS_DECL_ACME strict_different(double d,const payload & payload);
+   //friend bool CLASS_DECL_ACME strict_different(::i32 i,const payload & payload);
+   //friend bool CLASS_DECL_ACME strict_different(bool b,const payload & payload);
 
    ::i32 compare(const payload & payload) const;
    ::i32 compare(const char * psz) const;
@@ -776,95 +798,58 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    payload equals_ci_get(const char * pszCompare,payload varOnEqual,payload varOnDifferent) const;
    payload equals_ci_get(const char * pszCompare,payload varOnEqual) const;
 
+   template < primitive_integral INTEGRAL >
+   payload operator - (INTEGRAL i) const;
+   template < primitive_floating FLOATING >
+   payload operator - (FLOATING f) const;
 
-   payload operator - (::i32 i) const;
-   payload operator - (::u32 u) const;
-   payload operator - (::i64 i) const;
-   payload operator - (::u64 u) const;
-   payload operator - (double d) const;
 
-   friend payload CLASS_DECL_ACME operator - (::i32 i,const payload & payload);
-   friend payload CLASS_DECL_ACME operator - (::u32 u,const payload & payload);
-   friend payload CLASS_DECL_ACME operator - (::i64 l,const payload & payload);
-   friend payload CLASS_DECL_ACME operator - (::u64 ul,const payload & payload);
-   friend payload CLASS_DECL_ACME operator - (double d,const payload & payload);
-   friend payload CLASS_DECL_ACME operator - (const payload & var1,const payload & var2);
-
-   payload operator + (::i32 i) const;
-   payload operator + (::u32 u) const;
-   payload operator + (::i64 i) const;
-   payload operator + (::u64 u) const;
-   payload operator + (double d) const;
+   template < primitive_integral INTEGRAL >
+   payload operator + (INTEGRAL i) const;
+   template < primitive_floating FLOATING >
+   payload operator + (FLOATING f) const;
 
    payload operator + (const string & str) const;
    inline payload operator + (const char * psz) const { return *this + string(psz); }
 
-   friend payload CLASS_DECL_ACME operator + (::i32 i,const payload & payload);
-   friend payload CLASS_DECL_ACME operator + (::u32 u,const payload & payload);
-   friend payload CLASS_DECL_ACME operator + (::i64 l,const payload & payload);
-   friend payload CLASS_DECL_ACME operator + (::u64 ul,const payload & payload);
-   friend payload CLASS_DECL_ACME operator + (double d,const payload & payload);
-   friend payload CLASS_DECL_ACME operator + (const payload & var1,const payload & var2);
+   template < primitive_integral INTEGRAL >
+   payload operator / (INTEGRAL i) const;
+   template < primitive_floating FLOATING >
+   payload operator / (FLOATING f) const;
 
-   payload operator / (::i32 i) const;
-   payload operator / (::u32 u) const;
-   payload operator / (::i64 i) const;
-   payload operator / (::u64 u) const;
-   payload operator / (double d) const;
-
-   friend payload CLASS_DECL_ACME operator / (::i32 i,const payload & payload);
-   friend payload CLASS_DECL_ACME operator / (::u32 u,const payload & payload);
-   friend payload CLASS_DECL_ACME operator / (::i64 l,const payload & payload);
-   friend payload CLASS_DECL_ACME operator / (::u64 ul,const payload & payload);
-   friend payload CLASS_DECL_ACME operator / (double d,const payload & payload);
-   friend payload CLASS_DECL_ACME operator / (const payload & var1,const payload & var2);
-
-   payload operator * (::i32 i) const;
-   payload operator * (::u32 u) const;
-   payload operator * (::i64 i) const;
-   payload operator * (::u64 u) const;
-   payload operator * (double d) const;
+   template < primitive_integral INTEGRAL >
+   payload operator * (INTEGRAL i) const;
+   template < primitive_floating FLOATING >
+   payload operator * (FLOATING d) const;
 
    ::i32 str_compare(const property & prop) const;
 
-   friend payload CLASS_DECL_ACME operator * (::i32 i,const payload & payload);
-   friend payload CLASS_DECL_ACME operator * (::u32 u,const payload & payload);
-   friend payload CLASS_DECL_ACME operator * (::i64 l,const payload & payload);
-   friend payload CLASS_DECL_ACME operator * (::u64 ul,const payload & payload);
-   friend payload CLASS_DECL_ACME operator * (double d,const payload & payload);
-   friend payload CLASS_DECL_ACME operator * (const payload & var1,const payload & var2);
 
-   payload & operator -= (::i32 i);
-   payload & operator -= (::u32 u);
-   payload & operator -= (::i64 i);
-   payload & operator -= (::u64 u);
-   payload & operator -= (double d);
-   payload & operator -= (const payload & payload);
-   //payload & operator -= (const property & property);
 
-   payload & operator += (::i32 i);
-   payload & operator += (::u32 u);
-   payload & operator += (::i64 i);
-   payload & operator += (::u64 u);
-   payload & operator += (double d);
-   payload & operator += (const payload & payload);
-   //payload & operator += (const property & property);
+   template < primitive_integral INTEGRAL >
+   payload & operator -= (INTEGRAL i);
+   template < primitive_floating FLOATING >
+   payload & operator -= (FLOATING f);
 
-   payload & operator /= (::i32 i);
-   payload & operator /= (::u32 u);
-   payload & operator /= (::i64 i);
-   payload & operator /= (::u64 u);
-   payload & operator /= (double d);
-   payload & operator /= (const payload & payload);
-   //payload & operator /= (const property & property);
 
-   payload & operator *= (::i32 i);
-   payload & operator *= (::u32 u);
-   payload & operator *= (::i64 i);
-   payload & operator *= (::u64 u);
-   payload & operator *= (double d);
-   payload & operator *= (const payload & payload);
-   //payload & operator *= (const property & property);
+   template < primitive_integral INTEGRAL >
+   payload & operator += (INTEGRAL i);
+   template < primitive_floating FLOATING >
+   payload & operator += (FLOATING f);
+
+   payload & operator += (const string & str);
+   inline payload & operator += (const char * psz) { return *this += string(psz); }
+
+   template < primitive_integral INTEGRAL >
+   payload & operator /= (INTEGRAL i);
+   template < primitive_floating FLOATING >
+   payload & operator /= (FLOATING f);
+
+   template < primitive_integral INTEGRAL >
+   payload & operator *= (INTEGRAL i);
+   template < primitive_floating FLOATING >
+   payload & operator *= (FLOATING d);
+
 
    void consume_number(const char * & psz);
    void consume_number(const char * & psz,const char * pszEnd);
@@ -1291,5 +1276,211 @@ inline payload __visible(payload varOptions, bool bVisible = true);
 
 inline payload __visible(bool bVisible = true) { return __visible(::e_type_new, bVisible); }
 
+
+
+
+
+template < primitive_integral INTEGRAL >
+inline ::payload payload::operator - (INTEGRAL i) const
+{
+   return ((INTEGRAL)*this) - i;
+}
+
+
+template < primitive_floating FLOATING >
+inline ::payload payload::operator - (FLOATING f) const
+{
+   return ((FLOATING)*this) - f;
+}
+
+
+template < primitive_integral INTEGRAL >
+inline ::payload payload::operator + (INTEGRAL i) const
+{
+   return ((INTEGRAL)*this) + i;
+}
+
+
+template < primitive_floating FLOATING >
+inline ::payload payload::operator + (FLOATING f) const
+{
+   return ((FLOATING)*this) + f;
+}
+
+
+template < primitive_integral INTEGRAL >
+inline ::payload payload::operator / (INTEGRAL i) const
+{
+   return ((INTEGRAL)*this) / i;
+}
+
+
+template < primitive_floating FLOATING >
+inline ::payload payload::operator / (FLOATING f) const
+{
+   return ((FLOATING)*this) / f;
+}
+
+
+template < primitive_integral INTEGRAL >
+inline ::payload payload::operator * (INTEGRAL i) const
+{
+   return ((INTEGRAL)*this) * i;
+}
+
+
+template < primitive_floating FLOATING >
+inline ::payload payload::operator * (FLOATING f) const
+{
+   return ((FLOATING)*this) * f;
+}
+
+
+
+
+
+
+
+
+template < primitive_integral INTEGRAL, payload_class PAYLOAD >
+inline ::payload operator - (INTEGRAL i, const PAYLOAD & payload)
+{
+   return i - ((INTEGRAL)payload);
+}
+
+
+template < primitive_floating FLOATING, payload_class PAYLOAD >
+inline ::payload operator - (FLOATING i, const PAYLOAD & payload)
+{
+   return i - ((FLOATING)payload);
+}
+
+
+template < primitive_integral INTEGRAL, payload_class PAYLOAD >
+inline ::payload operator + (INTEGRAL i, const PAYLOAD & payload)
+{
+   return i +((INTEGRAL)payload);
+}
+
+
+template < primitive_floating FLOATING, payload_class PAYLOAD >
+inline ::payload operator + (FLOATING i, const PAYLOAD & payload)
+{
+   return i + ((FLOATING)payload);
+}
+
+
+template < primitive_integral INTEGRAL, payload_class PAYLOAD >
+inline ::payload operator / (INTEGRAL i, const PAYLOAD & payload)
+{
+   return i / ((INTEGRAL)payload);
+}
+
+
+template < primitive_floating FLOATING, payload_class PAYLOAD >
+inline ::payload operator / (FLOATING i, const PAYLOAD & payload)
+{
+   return i / ((FLOATING)payload);
+}
+
+
+template < primitive_integral INTEGRAL, payload_class PAYLOAD >
+inline ::payload operator * (INTEGRAL i, const PAYLOAD & payload)
+{
+   return i * ((INTEGRAL)payload);
+}
+
+
+template < primitive_floating FLOATING, payload_class PAYLOAD >
+inline ::payload operator * (FLOATING i, const PAYLOAD & payload)
+{
+   return i * ((FLOATING)payload);
+}
+
+
+
+template < primitive_integral INTEGRAL >
+inline ::payload & payload::operator -= (INTEGRAL i) 
+{
+   return *this = ((INTEGRAL)*this) - i;
+}
+
+
+template < primitive_floating FLOATING >
+inline ::payload & payload::operator -= (FLOATING f)
+{
+   return *this = ((FLOATING)*this) - f;
+}
+
+
+template < primitive_integral INTEGRAL >
+inline ::payload & payload::operator += (INTEGRAL i)
+{
+   return *this = ((INTEGRAL)*this) + i;
+}
+
+
+template < primitive_floating FLOATING >
+inline ::payload & payload::operator += (FLOATING f)
+{
+   return *this = ((FLOATING)*this) + f;
+}
+
+
+template < primitive_integral INTEGRAL >
+inline ::payload & payload::operator /= (INTEGRAL i)
+{
+   return *this = ((INTEGRAL)*this) / i;
+}
+
+
+template < primitive_floating FLOATING >
+inline ::payload & payload::operator /= (FLOATING f)
+{
+   return *this = ((FLOATING)*this) / f;
+}
+
+
+template < primitive_integral INTEGRAL >
+inline ::payload & payload::operator *= (INTEGRAL i)
+{
+   return *this = ((INTEGRAL)*this) * i;
+}
+
+
+template < primitive_floating FLOATING >
+inline ::payload & payload::operator *= (FLOATING f)
+{
+   return *this = ((FLOATING)*this) * f;
+}
+
+
+
+
+
+
+
+template < payload_class PAYLOAD >
+inline bool strictly_equal(const char * psz, const PAYLOAD & payload);
+template < payload_class PAYLOAD >
+inline bool strictly_equal(const string & str, const PAYLOAD & payload);
+template < payload_class PAYLOAD >
+inline bool strictly_equal(double d, const PAYLOAD & payload);
+template < payload_class PAYLOAD >
+inline bool strictly_equal(::i32 i, const PAYLOAD & payload);
+template < payload_class PAYLOAD >
+inline bool strictly_equal(bool b, const PAYLOAD & payload);
+
+
+template < payload_class PAYLOAD >
+inline bool strictly_different(const char * psz, const PAYLOAD & payload);
+template < payload_class PAYLOAD >
+inline bool strictly_different(const string & str, const PAYLOAD & payload);
+template < payload_class PAYLOAD >
+inline bool strictly_different(double d, const PAYLOAD & payload);
+template < payload_class PAYLOAD >
+inline bool strictly_different(::i32 i, const PAYLOAD & payload);
+template < payload_class PAYLOAD >
+inline bool strictly_different(bool b, const PAYLOAD & payload);
 
 

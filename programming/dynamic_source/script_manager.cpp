@@ -643,7 +643,7 @@ namespace dynamic_source
 
       }
 
-      return ::payload;
+      return payload;
 
    }
 

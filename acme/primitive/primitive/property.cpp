@@ -1563,31 +1563,31 @@ string operator + (const char * psz, const property & prop)
 //   return payload - (const & payload) prop;
 //}
 
+//
+//property operator - (const property & prop, const ::payload & payload)
+//{
+//
+//   auto property = prop;
+//
+//   property -= payload;
+//
+//   return property;
+//
+//}
 
-property operator - (const property & prop, const ::payload & payload)
-{
-
-   auto property = prop;
-
-   property -= payload;
-
-   return property;
-
-}
-
-
-
-property operator - (const property & prop1, const property & prop2)
-{
-
-   auto property = prop1;
-
-   property -= (const ::payload &)prop2;
-
-   return property;
-
-}
-
+//
+//
+//property operator - (const property & prop1, const property & prop2)
+//{
+//
+//   auto property = prop1;
+//
+//   property -= (const ::payload &)prop2;
+//
+//   return property;
+//
+//}
+//
 
 
 
@@ -1639,28 +1639,28 @@ property operator - (const property & prop1, const property & prop2)
 //}
 
 
-property operator + (const property & prop, const ::payload & payload)
-{
-
-   auto property = prop;
-
-   property += payload;
-
-   return property;
-
-}
-
-
-property operator + (const property & prop1, const property & prop2)
-{
-
-   auto property = prop1;
-
-   property += (const ::payload &)prop2;
-
-   return property;
-
-}
+//property operator + (const property & prop, const ::payload & payload)
+//{
+//
+//   auto property = prop;
+//
+//   property += payload;
+//
+//   return property;
+//
+//}
+//
+//
+//property operator + (const property & prop1, const property & prop2)
+//{
+//
+//   auto property = prop1;
+//
+//   property += (const ::payload &)prop2;
+//
+//   return property;
+//
+//}
 
 
 
@@ -1712,30 +1712,30 @@ property operator + (const property & prop1, const property & prop2)
 //{
 //   return payload / prop;
 //}
-
-
-property operator / (const property & prop, const ::payload & payload)
-{
-
-   auto property = prop;
-
-   property /= payload;
-
-   return property;
-
-}
-
-
-property operator / (const property & prop1, const property & prop2)
-{
-
-   auto property = prop1;
-
-   property /= (const ::payload &) prop2;
-
-   return property;
-
-}
+//
+//
+//property operator / (const property & prop, const ::payload & payload)
+//{
+//
+//   auto property = prop;
+//
+//   property /= payload;
+//
+//   return property;
+//
+//}
+//
+//
+//property operator / (const property & prop1, const property & prop2)
+//{
+//
+//   auto property = prop1;
+//
+//   property /= (const ::payload &) prop2;
+//
+//   return property;
+//
+//}
 
 
 //
@@ -1784,29 +1784,43 @@ property operator / (const property & prop1, const property & prop2)
 //   return payload * prop;
 //}
 //
+//
+//
+//property operator * (const property & prop, const ::payload & payload)
+//{
+//
+//   auto property = prop;
+//
+//   property *= payload;
+//
+//   return property;
+//
+//}
+//
+//
+//
+//property operator * (const property & prop1, const property & prop2)
+//{
+//
+//   auto property = prop1;
+//
+//   property *= (const ::payload &) prop2;
+//
+//   return property;
+//
+//}
+//
+//
+//
 
 
-property operator * (const property & prop, const ::payload & payload)
+
+payload & payload::operator += (const ::string & str)
 {
+   
+   operator=(*this + str);
 
-   auto property = prop;
-
-   property *= payload;
-
-   return property;
-
-}
-
-
-
-property operator * (const property & prop1, const property & prop2)
-{
-
-   auto property = prop1;
-
-   property *= (const ::payload &) prop2;
-
-   return property;
+   return *this;
 
 }
 

@@ -1613,36 +1613,36 @@ bool payload::is_new_or_null() const
    {
       if(payload.m_etype == ::e_type_inta)
       {
-         //payload = var1.inta() - var2.inta();
+         //payload = var1.inta() - payload2.inta();
       }
       else
       {
          //payload = var1;
-         //payload.inta().remove(var2.i32());
+         //payload.inta().remove(payload2.i32());
       }
    }
    else if(m_etype == ::e_type_stra)
    {
       if(payload.m_etype == ::e_type_stra)
       {
-         //payload = var1.stra() - var2.stra();
+         //payload = var1.stra() - payload2.stra();
       }
       else
       {
          //payload = var1;
-         //payload.stra().remove(var2.get_string());
+         //payload.stra().remove(payload2.get_string());
       }
    }
    else if(m_etype == ::type_vara)
    {
       if(payload.m_etype == ::type_vara)
       {
-         //   payload = var1.vara() - var2.vara();
+         //   payload = var1.vara() - payload2.vara();
       }
       else
       {
          // payload = var1;
-         //payload.vara().remove(var2);
+         //payload.vara().remove(payload2);
       }
    }
    else if(is_double() || payload.is_double())
@@ -1683,36 +1683,36 @@ bool payload::is_new_or_null() const
    {
       if(payload.m_etype == ::e_type_inta)
       {
-         //payload = var1.inta() - var2.inta();
+         //payload = var1.inta() - payload2.inta();
       }
       else
       {
          //payload = var1;
-         //payload.inta().remove(var2.i32());
+         //payload.inta().remove(payload2.i32());
       }
    }
    else if(m_etype == ::e_type_stra)
    {
       if(payload.m_etype == ::e_type_stra)
       {
-         //payload = var1.stra() - var2.stra();
+         //payload = var1.stra() - payload2.stra();
       }
       else
       {
          //payload = var1;
-         //payload.stra().remove(var2.get_string());
+         //payload.stra().remove(payload2.get_string());
       }
    }
    else if(m_etype == ::type_vara)
    {
       if(payload.m_etype == ::type_vara)
       {
-         //   payload = var1.vara() - var2.vara();
+         //   payload = var1.vara() - payload2.vara();
       }
       else
       {
          // payload = var1;
-         //payload.vara().remove(var2);
+         //payload.vara().remove(payload2);
       }
    }
    else if(is_double() || payload.is_double())
@@ -1963,115 +1963,66 @@ bool payload::operator > (bool b) const
    return is_greater(get_bool(), b);
 }
 
-bool payload::strict_equal(const class ::payload & payload) const
+bool payload::strictly_equal(const class ::payload & payload) const
 {
    return m_etype == payload.m_etype && operator == (payload);
 }
 
-bool payload::strict_equal(const char * psz) const
+bool payload::strictly_equal(const char * psz) const
 {
    return m_etype == e_type_string && m_str == psz;
 }
 
-bool payload::strict_equal(const string & str) const
+bool payload::strictly_equal(const string & str) const
 {
    return m_etype == e_type_string && m_str == str;
 }
 
-bool payload::strict_equal(double d) const
+bool payload::strictly_equal(double d) const
 {
    return m_etype == e_type_double && m_d == d;
 }
 
-bool payload::strict_equal(::i32 i) const
+bool payload::strictly_equal(::i32 i) const
 {
    return m_etype == e_type_i32 && m_i32 == i;
 }
 
-bool payload::strict_equal(bool b) const
+bool payload::strictly_equal(bool b) const
 {
    return m_etype == e_type_bool && is_equivalent(m_b, b);
 }
 
-bool payload::strict_different(const class ::payload & payload) const
+bool payload::strictly_different(const class ::payload & payload) const
 {
    return m_etype != payload.m_etype || operator != (payload);
 }
 
-bool payload::strict_different(const char * psz) const
+bool payload::strictly_different(const char * psz) const
 {
    return m_etype != e_type_string || m_str != psz;
 }
 
-bool payload::strict_different(const string & str) const
+bool payload::strictly_different(const string & str) const
 {
    return m_etype != e_type_string || m_str != str;
 }
 
-bool payload::strict_different(double d) const
+bool payload::strictly_different(double d) const
 {
    return m_etype != e_type_double || m_d != d;
 }
 
-bool payload::strict_different(::i32 i) const
+bool payload::strictly_different(::i32 i) const
 {
    return m_etype != e_type_i32 || m_i32 != i;
 }
 
-bool payload::strict_different(bool b) const
+bool payload::strictly_different(bool b) const
 {
    return m_etype != e_type_bool || is_different(m_b, b);
 }
 
-bool strict_equal(const char * psz, const class ::payload & payload)
-{
-   return payload.m_etype == ::e_type_string && psz == payload.m_str;
-}
-
-bool strict_equal(const string & str, const class ::payload & payload)
-{
-   return payload.m_etype == ::e_type_string && str == payload.m_str;
-}
-
-bool strict_equal(double d, const class ::payload & payload)
-{
-   return payload.m_etype == ::e_type_double && d == payload.m_d;
-}
-
-bool strict_equal(::i32 i, const class ::payload & payload)
-{
-   return payload.m_etype == ::e_type_i32 && i == payload.m_i32;
-}
-
-bool strict_equal(bool b, const class ::payload & payload)
-{
-   return payload.m_etype == ::e_type_bool && is_equivalent(b, payload.m_b);
-}
-
-bool strict_different(const char * psz, const class ::payload & payload)
-{
-   return payload.m_etype != ::e_type_string || psz != payload.m_str;
-}
-
-bool strict_different(const string & str, const class ::payload & payload)
-{
-   return payload.m_etype != ::e_type_string || str != payload.m_str;
-}
-
-bool strict_different(double d, const class ::payload & payload)
-{
-   return payload.m_etype != ::e_type_double || d != payload.m_d;
-}
-
-bool strict_different(::i32 i, const class ::payload & payload)
-{
-   return payload.m_etype != ::e_type_i32 || i != payload.m_i32;
-}
-
-bool strict_different(bool b, const class ::payload & payload)
-{
-   return payload.m_etype != ::e_type_bool || is_different(b, payload.m_b);
-}
 
 string payload::to_r_string() const
 {
@@ -3112,7 +3063,7 @@ string payload::implode(const char * pszGlue) const
 
 
 
-::comparison::var_strict payload::strict_compare() const
+::comparison::var_strict payload::strictly_compare() const
 {
 
    return *this;
@@ -3275,138 +3226,6 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 }
 
 
-::payload payload::operator - (::i32 i) const
-{
-   return i32() - i;
-}
-
-::payload payload::operator - (::u32 user) const
-{
-   return u32() - user;
-}
-
-::payload payload::operator - (::i64 l) const
-{
-   return i64() - l;
-}
-
-::payload payload::operator - (::u64 ul) const
-{
-   return (::i64) (u64() - ul);
-}
-
-::payload payload::operator - (double d) const
-{
-   return get_double() - d;
-}
-
-::payload operator - (::i32 i, const class ::payload & payload)
-{
-   return i - payload.i32();
-}
-
-::payload operator - (::u32 user, const class ::payload & payload)
-{
-   return user - payload.u32();
-}
-
-::payload operator - (::i64 l, const class ::payload & payload)
-{
-   return l - payload.i64();
-}
-
-::payload operator - (::u64 ul, const class ::payload & payload)
-{
-   return (::i64) (ul - payload.u64());
-}
-
-::payload operator - (double d, const class ::payload & payload)
-{
-   return d - payload.get_double();
-}
-
-::payload operator - (const class ::payload & var1, const class ::payload & var2)
-{
-   ::payload payload;
-   if(var1.m_etype == ::e_type_inta)
-   {
-      if(var2.m_etype == ::e_type_inta)
-      {
-         payload = var1.inta() - var2.inta();
-      }
-      else
-      {
-         payload = var1;
-         payload.inta().remove(var2.i32());
-      }
-   }
-   else if(var1.m_etype == ::e_type_stra)
-   {
-      if(var2.m_etype == ::e_type_stra)
-      {
-         payload = var1.stra() - var2.stra();
-      }
-      else if(var2.is_array())
-      {
-         payload = var1.stra() - const_cast < class ::payload & > (var2).stra();
-      }
-      else
-      {
-         payload = var1;
-         payload.stra().remove(var2.get_string());
-      }
-   }
-   else if(var1.m_etype == ::type_vara)
-   {
-      if(var2.m_etype == ::type_vara)
-      {
-         payload = var1.vara() - var2.vara();
-      }
-      else
-      {
-         payload = var1;
-         payload.vara().remove(var2);
-      }
-   }
-   else if(var1.is_double() || var2.is_double())
-   {
-      payload = var1.get_double() - var2.get_double();
-   }
-   else if(var1.is_integer() || var2.is_integer())
-   {
-      payload = var1.i32() - var2.i32();
-   }
-   else if(var1.is_natural() || var2.is_natural())
-   {
-      payload = var1.u32() - var2.u32();
-   }
-   else
-   {
-      payload = atoi(var1.get_string()) - atoi(var2.get_string());
-   }
-   return payload;
-}
-
-
-::payload payload::operator + (::i32 i) const
-{
-   return i32() + i;
-}
-
-::payload payload::operator + (::u32 user) const
-{
-   return u32() + user;
-}
-
-::payload payload::operator + (::i64 l) const
-{
-   return i64() + l;
-}
-
-::payload payload::operator + (::u64 ul) const
-{
-   return (::u32) (u64() + ul);
-}
 
 ::payload payload::operator + (const string & str) const
 {
@@ -3458,120 +3277,6 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 
 }
 
-::payload payload::operator + (double d) const
-{
-   return get_double() + d;
-}
-
-::payload operator + (::i32 i, const class ::payload & payload)
-{
-   return i + payload.i32();
-}
-
-::payload operator + (::u32 user, const class ::payload & payload)
-{
-   return user + payload.u32();
-}
-
-::payload operator + (::i64 l, const class ::payload & payload)
-{
-   return l + payload.i64();
-}
-
-::payload operator + (::u64 ul, const class ::payload & payload)
-{
-   return (::u32) (ul + payload.u64());
-}
-
-::payload operator + (double d, const class ::payload & payload)
-{
-   return d + payload.get_double();
-}
-
-::payload operator + (const class ::payload & var1, const class ::payload & var2)
-{
-   ::payload payload;
-   if(var1.m_etype == ::e_type_inta
-         || var1.m_etype == ::e_type_inta)
-   {
-      if(var1.m_etype == ::e_type_inta)
-      {
-         if(var2.m_etype == ::e_type_inta)
-         {
-            payload = var1.inta() + var2.inta();
-         }
-         else
-         {
-            payload = var1;
-            payload.inta().add(var2.i32());
-         }
-      }
-      else
-      {
-         payload = var2;
-         payload.inta().add(var1.i32());
-      }
-   }
-   else if(var1.m_etype == ::e_type_stra
-           || var2.m_etype == ::e_type_stra)
-   {
-      if(var1.m_etype == ::e_type_stra)
-      {
-         if(var2.m_etype == ::e_type_stra)
-         {
-            payload = var1.stra() + var2.stra();
-         }
-         else
-         {
-            payload = var1;
-            payload.stra().add(var2.get_string());
-         }
-      }
-      else
-      {
-         payload = var2;
-         payload.stra().add(var1.get_string());
-      }
-   }
-   else if(var1.m_etype == ::type_vara
-           || var2.m_etype == ::type_vara)
-   {
-      if(var2.m_etype == ::type_vara)
-      {
-         if(var2.m_etype == ::type_vara)
-         {
-            payload = var1.vara() + var2.vara();
-         }
-         else
-         {
-            payload = var1;
-            payload.vara().add(var2);
-         }
-      }
-      else
-      {
-         payload = var2;
-         payload.vara().add(var1);
-      }
-   }
-   else if(var1.is_double() && var2.is_double())
-   {
-      payload = var1.get_double() + var2.get_double();
-   }
-   else if(var1.is_integer() && var2.is_integer())
-   {
-      payload = var1.i32() + var2.i32();
-   }
-   else if(var1.is_natural() && var2.is_natural())
-   {
-      payload = var1.u32() + var2.u32();
-   }
-   else
-   {
-      payload = var1.get_string() + var2.get_string();
-   }
-   return payload;
-}
 
 
 
@@ -3586,598 +3291,466 @@ bool payload::array_contains_ci(const char * psz, index find, index last) const
 
 
 
-
-
-
-
-
-
-
-
-::payload payload::operator / (::i32 i) const
-{
-   return i32() / i;
-}
-
-::payload payload::operator / (::u32 user) const
-{
-   return u32() / user;
-}
-
-::payload payload::operator / (::i64 l) const
-{
-   return i64() / l;
-}
-
-::payload payload::operator / (::u64 ul) const
-{
-
-   switch(m_etype)
-   {
-   case ::e_type_null:
-      return payload(e_type_null);
-   case ::e_type_empty:
-      return 0.0 / ul; // throws division by zero exception if ul stream zero
-   case ::e_type_i32:
-      return m_i32 / (::index) ul;
-   case ::e_type_u32:
-      return m_u32 / (::uptr) ul;
-   case ::e_type_i64:
-      return m_i64 / (::i64) ul;
-   case ::e_type_u64:
-      return m_u64 / (::u64) ul;
-   case ::e_type_float:
-      return m_f / (float) ul;
-   case ::e_type_double:
-      return m_d / (double) ul;
-   case ::e_type_string:
-#if defined(LINUX) || defined(ANDROID)
-      return atof(m_str) / (double) ul;
-#else
-      return _atof_l(m_str, ::acme::g_localeC) / (double) ul;
-#endif
-   case ::type_pvar:
-      return m_pvar->operator / (ul);
-   case ::type_prop:
-      return m_pprop->operator / (ul);
-   default:
-      return 0.0 / ul; // throws division by zero exception if ul stream zero
-   }
-
-}
-
-::payload payload::operator / (double d) const
-{
-   return get_double() / d;
-}
-
-::payload operator / (::i32 i, const class ::payload & payload)
-{
-   return i / payload.i32();
-}
-
-::payload operator / (::u32 user, const class ::payload & payload)
-{
-   return user / payload.u32();
-}
-
-::payload operator / (::i64 l, const class ::payload & payload)
-{
-   return l / payload.i64();
-}
-
-
-::payload operator / (::u64 ul, const class ::payload & payload)
-{
-   switch(payload.m_etype)
-   {
-   case ::e_type_null:
-      __throw(::exception::exception("division by zero"));
-   case ::e_type_empty:
-      __throw(::exception::exception("division by zero"));
-   case ::e_type_i32:
-      return (iptr) ul / payload.m_i32;
-   case ::e_type_u32:
-      return (uptr) ul / payload.m_u32;
-   case ::e_type_i64:
-      return (::i64) ul / payload.m_i64;
-   case ::e_type_u64:
-      return (::u64) ul / payload.m_u64;
-   case ::e_type_float:
-      return (float) ul / payload.m_f;
-   case ::e_type_double:
-      return (double) ul / payload.m_d;
-   case ::e_type_string:
-#if defined(LINUX) || defined(ANDROID)
-      return (double) ul / atof(payload.m_str);
-#else
-      return (double) ul / _atof_l(payload.m_str, ::acme::g_localeC);
-#endif
-   case ::type_pvar:
-      return operator / (ul, *payload.m_pvar);
-   case ::type_prop:
-      return operator / (ul, *payload.m_pprop);
-   default:
-      __throw(::exception::exception("division by zero"));
-   }
-
-}
-
-
-
-
-::payload operator / (double d, const class ::payload & payload)
-{
-   return d / payload.get_double();
-}
-
-::payload operator / (const class ::payload & var1, const class ::payload & var2)
-{
-   ::payload payload;
-   if(var1.m_etype == ::e_type_inta)
-   {
-      if(var2.m_etype == ::e_type_inta)
-      {
-         payload = var1;
-         payload.inta().intersect(var2.inta());
-      }
-      else
-      {
-         payload = var1;
-         payload.inta().divide(var2.i32());
-      }
-   }
-   else if(var1.m_etype == ::e_type_stra)
-   {
-      if(var2.m_etype == ::e_type_stra)
-      {
-         //payload = var1.stra().intersect(var2.stra());
-      }
-      else
-      {
-         payload = var1;
-         payload.stra().remove(var2.get_string());
-      }
-   }
-   else if(var1.m_etype == ::type_vara)
-   {
-      if(var2.m_etype == ::type_vara)
-      {
-         //payload = var1.vara() / var2.vara();
-      }
-      else
-      {
-         payload = var1;
-         payload.vara().remove(var2);
-      }
-   }
-   else if(var1.is_double() || var2.is_double())
-   {
-      payload = var1.get_double() / var2.get_double();
-   }
-   else if(var1.is_integer() || var2.is_integer())
-   {
-      payload = var1.i32() / var2.i32();
-   }
-   else if(var1.is_natural() || var2.is_natural())
-   {
-      payload = var1.u32() / var2.u32();
-   }
-   else
-   {
-      payload = atoi(var1.get_string()) / atoi(var2.get_string());
-   }
-   return payload;
-}
-
-
-::payload payload::operator * (::i32 i) const
-{
-   return i32() * i;
-}
-
-::payload payload::operator * (::u32 user) const
-{
-   return u32() * user;
-}
-
-::payload payload::operator * (::i64 l) const
-{
-   return i64() * l;
-}
-
-::payload payload::operator * (::u64 ul) const
-{
-   switch(m_etype)
-   {
-   case ::e_type_null:
-      return payload(e_type_null);
-   case ::e_type_empty:
-      return 0.0;
-   case ::e_type_i32:
-      return m_i32 * (::index) ul;
-   case ::e_type_u32:
-      return m_u32 * (::uptr) ul;
-   case ::e_type_i64:
-      return m_i64 * (::i64) ul;
-   case ::e_type_u64:
-      return m_u64 * (::u64) ul;
-   case ::e_type_float:
-      return m_f * (float) ul;
-   case ::e_type_double:
-      return m_d * (double) ul;
-   case ::e_type_string:
-#if defined(LINUX) || defined(ANDROID)
-
-      return atof(m_str) * (double) ul;
-#else
-      return _atof_l(m_str, ::acme::g_localeC) * (double) ul;
-#endif
-   case ::type_pvar:
-      return m_pvar->operator * (ul);
-   case ::type_prop:
-      return m_pprop->operator * (ul);
-   default:
-      return 0.0;
-   }
-
-}
-
-::payload payload::operator * (double d) const
-{
-   return get_double() * d;
-}
-
-::payload operator * (::i32 i, const class ::payload & payload)
-{
-   return i * payload.i32();
-}
-
-::payload operator * (::u32 user, const class ::payload & payload)
-{
-   return user * payload.u32();
-}
-
-::payload operator * (::i64 l, const class ::payload & payload)
-{
-   return l * payload.i64();
-}
-
-::payload operator * (::u64 ul, const class ::payload & payload)
-{
-
-   switch(payload.m_etype)
-   {
-   case ::e_type_null:
-      return ::e_type_null;
-   case ::e_type_empty:
-      return 0;
-   case ::e_type_i32:
-      return (iptr) ul * payload.m_i32;
-   case ::e_type_u32:
-      return (uptr) ul * payload.m_u32;
-   case ::e_type_i64:
-      return (::i64) ul * payload.m_i64;
-   case ::e_type_u64:
-      return (::u64) ul * payload.m_u64;
-   case ::e_type_float:
-      return (float) ul * payload.m_f;
-   case ::e_type_double:
-      return (double) ul * payload.m_d;
-   case ::e_type_string:
-#if defined(LINUX) || defined(ANDROID)
-      return (double) ul * atof(payload.m_str);
-#else
-      return (double) ul * _atof_l(payload.m_str, ::acme::g_localeC);
-#endif
-   case ::type_pvar:
-      return operator * (ul, *payload.m_pvar);
-   case ::type_prop:
-      return operator * (ul, *payload.m_pprop);
-   default:
-      return 0;
-   }
-
-}
-
-
-::payload operator * (double d, const class ::payload & payload)
-{
-   return d * payload.get_double();
-}
-
-::payload operator * (const class ::payload & var1, const class ::payload & var2)
-{
-
-   ::payload payload;
-
-   if(var1.m_etype == ::e_type_inta || var1.m_etype == ::e_type_inta)
-   {
-
-      ::papaya::array::intersection(payload.inta(), var1.inta(), var2.inta());
-
-   }
-   else if(var1.m_etype == ::e_type_stra || var2.m_etype == ::e_type_stra)
-   {
-
-      ::papaya::array::intersection(payload.stra(), var1.stra(), var2.stra());
-
-   }
-   else if(var1.m_etype == ::type_vara || var2.m_etype == ::type_vara)
-   {
-
-      ::papaya::array::intersection(payload.vara(), var1.vara(), var2.vara());
-
-   }
-   else if(var1.is_double() || var2.is_double())
-   {
-
-      payload = var1.get_double() * var2.get_double();
-
-   }
-   else if(var1.is_integer() || var2.is_integer())
-   {
-
-      payload = var1.i32() * var2.i32();
-
-   }
-   else if(var1.is_natural() || var2.is_natural())
-   {
-
-      payload = var1.u32() * var2.u32();
-
-   }
-   else
-   {
-
-      payload = var1.to_string().intersection(var2.to_string());
-
-   }
-
-   return payload;
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class ::payload & payload::operator -= (::i32 i)
-{
-   operator =(*this - i);
-   return *this;
-}
-
-class ::payload & payload::operator -= (::u32 user)
-{
-   operator =(*this - user);
-   return *this;
-}
-
-class ::payload & payload::operator -= (::i64 i)
-{
-   operator =(*this - i);
-   return *this;
-}
-
-class ::payload & payload::operator -= (::u64 user)
-{
-   operator =(*this - user);
-   return *this;
-}
-
-class ::payload & payload::operator -= (double d)
-{
-   operator =(*this - d);
-   return *this;
-}
-
-class ::payload & payload::operator -= (const class ::payload & payload)
-{
-   operator =(*this - payload);
-   return *this;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class ::payload & payload::operator += (::i32 i)
-{
-   operator =(*this + i);
-   return *this;
-}
-
-class ::payload & payload::operator += (::u32 user)
-{
-   operator =(*this + user);
-   return *this;
-}
-
-class ::payload & payload::operator += (::i64 i)
-{
-   operator =(*this + i);
-   return *this;
-}
-
-class ::payload & payload::operator += (::u64 user)
-{
-   operator =(*this + user);
-   return *this;
-}
-
-class ::payload & payload::operator += (double d)
-{
-   operator =(*this + d);
-   return *this;
-}
-
-class ::payload & payload::operator += (const class ::payload & payload)
-{
-   operator =(*this + payload);
-   return *this;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class ::payload & payload::operator /= (::i32 i)
-{
-   operator =(*this / i);
-   return *this;
-}
-
-class ::payload & payload::operator /= (::u32 user)
-{
-   operator =(*this / user);
-   return *this;
-}
-
-class ::payload & payload::operator /= (::i64 i)
-{
-   operator =(*this / i);
-   return *this;
-}
-
-class ::payload & payload::operator /= (::u64 user)
-{
-   operator =(*this / user);
-   return *this;
-}
-
-class ::payload & payload::operator /= (double d)
-{
-   operator =(*this / d);
-   return *this;
-}
-
-class ::payload & payload::operator /= (const class ::payload & payload)
-{
-   operator =(*this / payload);
-   return *this;
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-class ::payload & payload::operator *= (::i32 i)
-{
-   operator =(*this * i);
-   return *this;
-}
-
-class ::payload & payload::operator *= (::u32 user)
-{
-   operator =(*this * user);
-   return *this;
-}
-
-class ::payload & payload::operator *= (::i64 i)
-{
-   operator =(*this * i);
-   return *this;
-}
-
-class ::payload & payload::operator *= (::u64 user)
-{
-   operator =(*this * user);
-   return *this;
-}
-
-class ::payload & payload::operator *= (double d)
-{
-   operator =(*this * d);
-   return *this;
-}
-
-
-class ::payload & payload::operator *= (const class ::payload & payload)
-{
-
-   operator =(*this * payload);
-
-   return *this;
-
-}
+//
+//
+//
+//
+//::payload payload::operator / (::i32 i) const
+//{
+//   return i32() / i;
+//}
+//
+//::payload payload::operator / (::u32 user) const
+//{
+//   return u32() / user;
+//}
+//
+//::payload payload::operator / (::i64 l) const
+//{
+//   return i64() / l;
+//}
+//
+//::payload payload::operator / (::u64 ul) const
+//{
+//
+//   switch(m_etype)
+//   {
+//   case ::e_type_null:
+//      return payload(e_type_null);
+//   case ::e_type_empty:
+//      return 0.0 / ul; // throws division by zero exception if ul stream zero
+//   case ::e_type_i32:
+//      return m_i32 / (::index) ul;
+//   case ::e_type_u32:
+//      return m_u32 / (::uptr) ul;
+//   case ::e_type_i64:
+//      return m_i64 / (::i64) ul;
+//   case ::e_type_u64:
+//      return m_u64 / (::u64) ul;
+//   case ::e_type_float:
+//      return m_f / (float) ul;
+//   case ::e_type_double:
+//      return m_d / (double) ul;
+//   case ::e_type_string:
+//#if defined(LINUX) || defined(ANDROID)
+//      return atof(m_str) / (double) ul;
+//#else
+//      return _atof_l(m_str, ::acme::g_localeC) / (double) ul;
+//#endif
+//   case ::type_pvar:
+//      return m_pvar->operator / (ul);
+//   case ::type_prop:
+//      return m_pprop->operator / (ul);
+//   default:
+//      return 0.0 / ul; // throws division by zero exception if ul stream zero
+//   }
+//
+//}
+//
+//::payload payload::operator / (double d) const
+//{
+//   return get_double() / d;
+//}
+//
+//::payload operator / (::i32 i, const class ::payload & payload)
+//{
+//   return i / payload.i32();
+//}
+//
+//::payload operator / (::u32 user, const class ::payload & payload)
+//{
+//   return user / payload.u32();
+//}
+//
+//::payload operator / (::i64 l, const class ::payload & payload)
+//{
+//   return l / payload.i64();
+//}
+//
+//
+//::payload operator / (::u64 ul, const class ::payload & payload)
+//{
+//   switch(payload.m_etype)
+//   {
+//   case ::e_type_null:
+//      __throw(::exception::exception("division by zero"));
+//   case ::e_type_empty:
+//      __throw(::exception::exception("division by zero"));
+//   case ::e_type_i32:
+//      return (iptr) ul / payload.m_i32;
+//   case ::e_type_u32:
+//      return (uptr) ul / payload.m_u32;
+//   case ::e_type_i64:
+//      return (::i64) ul / payload.m_i64;
+//   case ::e_type_u64:
+//      return (::u64) ul / payload.m_u64;
+//   case ::e_type_float:
+//      return (float) ul / payload.m_f;
+//   case ::e_type_double:
+//      return (double) ul / payload.m_d;
+//   case ::e_type_string:
+//#if defined(LINUX) || defined(ANDROID)
+//      return (double) ul / atof(payload.m_str);
+//#else
+//      return (double) ul / _atof_l(payload.m_str, ::acme::g_localeC);
+//#endif
+//   case ::type_pvar:
+//      return operator / (ul, *payload.m_pvar);
+//   case ::type_prop:
+//      return operator / (ul, *payload.m_pprop);
+//   default:
+//      __throw(::exception::exception("division by zero"));
+//   }
+//
+//}
+//
+//
+//
+//
+//::payload operator / (double d, const class ::payload & payload)
+//{
+//   return d / payload.get_double();
+//}
+//
+//
+//::payload payload::operator * (::i32 i) const
+//{
+//   return i32() * i;
+//}
+//
+//::payload payload::operator * (::u32 user) const
+//{
+//   return u32() * user;
+//}
+//
+//::payload payload::operator * (::i64 l) const
+//{
+//   return i64() * l;
+//}
+//
+//::payload payload::operator * (::u64 ul) const
+//{
+//   switch(m_etype)
+//   {
+//   case ::e_type_null:
+//      return payload(e_type_null);
+//   case ::e_type_empty:
+//      return 0.0;
+//   case ::e_type_i32:
+//      return m_i32 * (::index) ul;
+//   case ::e_type_u32:
+//      return m_u32 * (::uptr) ul;
+//   case ::e_type_i64:
+//      return m_i64 * (::i64) ul;
+//   case ::e_type_u64:
+//      return m_u64 * (::u64) ul;
+//   case ::e_type_float:
+//      return m_f * (float) ul;
+//   case ::e_type_double:
+//      return m_d * (double) ul;
+//   case ::e_type_string:
+//#if defined(LINUX) || defined(ANDROID)
+//
+//      return atof(m_str) * (double) ul;
+//#else
+//      return _atof_l(m_str, ::acme::g_localeC) * (double) ul;
+//#endif
+//   case ::type_pvar:
+//      return m_pvar->operator * (ul);
+//   case ::type_prop:
+//      return m_pprop->operator * (ul);
+//   default:
+//      return 0.0;
+//   }
+//
+//}
+//
+//::payload payload::operator * (double d) const
+//{
+//   return get_double() * d;
+//}
+//
+//::payload operator * (::i32 i, const class ::payload & payload)
+//{
+//   return i * payload.i32();
+//}
+//
+//::payload operator * (::u32 user, const class ::payload & payload)
+//{
+//   return user * payload.u32();
+//}
+//
+//::payload operator * (::i64 l, const class ::payload & payload)
+//{
+//   return l * payload.i64();
+//}
+//
+//::payload operator * (::u64 ul, const class ::payload & payload)
+//{
+//
+//   switch(payload.m_etype)
+//   {
+//   case ::e_type_null:
+//      return ::e_type_null;
+//   case ::e_type_empty:
+//      return 0;
+//   case ::e_type_i32:
+//      return (iptr) ul * payload.m_i32;
+//   case ::e_type_u32:
+//      return (uptr) ul * payload.m_u32;
+//   case ::e_type_i64:
+//      return (::i64) ul * payload.m_i64;
+//   case ::e_type_u64:
+//      return (::u64) ul * payload.m_u64;
+//   case ::e_type_float:
+//      return (float) ul * payload.m_f;
+//   case ::e_type_double:
+//      return (double) ul * payload.m_d;
+//   case ::e_type_string:
+//#if defined(LINUX) || defined(ANDROID)
+//      return (double) ul * atof(payload.m_str);
+//#else
+//      return (double) ul * _atof_l(payload.m_str, ::acme::g_localeC);
+//#endif
+//   case ::type_pvar:
+//      return operator * (ul, *payload.m_pvar);
+//   case ::type_prop:
+//      return operator * (ul, *payload.m_pprop);
+//   default:
+//      return 0;
+//   }
+//
+//}
+//
+//
+//::payload operator * (double d, const class ::payload & payload)
+//{
+//   return d * payload.get_double();
+//}
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//class ::payload & payload::operator -= (::i32 i)
+//{
+//   operator =(*this - i);
+//   return *this;
+//}
+//
+//class ::payload & payload::operator -= (::u32 user)
+//{
+//   operator =(*this - user);
+//   return *this;
+//}
+//
+//class ::payload & payload::operator -= (::i64 i)
+//{
+//   operator =(*this - i);
+//   return *this;
+//}
+//
+//class ::payload & payload::operator -= (::u64 user)
+//{
+//   operator =(*this - user);
+//   return *this;
+//}
+//
+//class ::payload & payload::operator -= (double d)
+//{
+//   operator =(*this - d);
+//   return *this;
+//}
+//
+//class ::payload & payload::operator -= (const class ::payload & payload)
+//{
+//   operator =(*this - payload);
+//
+//   return *this;
+//
+//}
+//
+//
+//
+//
+
+//
+//
+//
+//class ::payload & payload::operator += (::i32 i)
+//{
+//   operator =(*this + i);
+//   return *this;
+//}
+//
+//class ::payload & payload::operator += (::u32 user)
+//{
+//   operator =(*this + user);
+//   return *this;
+//}
+//
+//class ::payload & payload::operator += (::i64 i)
+//{
+//   operator =(*this + i);
+//   return *this;
+//}
+//
+//class ::payload & payload::operator += (::u64 user)
+//{
+//   operator =(*this + user);
+//   return *this;
+//}
+//
+//class ::payload & payload::operator += (double d)
+//{
+//   operator =(*this + d);
+//   return *this;
+//}
+//
+//class ::payload & payload::operator += (const class ::payload & payload)
+//{
+//   operator =(*this + payload);
+//   return *this;
+//}
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//class ::payload & payload::operator /= (::i32 i)
+//{
+//   operator =(*this / i);
+//   return *this;
+//}
+//
+//class ::payload & payload::operator /= (::u32 user)
+//{
+//   operator =(*this / user);
+//   return *this;
+//}
+//
+//class ::payload & payload::operator /= (::i64 i)
+//{
+//   operator =(*this / i);
+//   return *this;
+//}
+//
+//class ::payload & payload::operator /= (::u64 user)
+//{
+//   operator =(*this / user);
+//   return *this;
+//}
+//
+//class ::payload & payload::operator /= (double d)
+//{
+//   operator =(*this / d);
+//   return *this;
+//}
+//
+//class ::payload & payload::operator /= (const class ::payload & payload)
+//{
+//   operator =(*this / payload);
+//   return *this;
+//}
+//
+//
+//
+//
+//
+//
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//
+//
+//
+//class ::payload & payload::operator *= (::i32 i)
+//{
+//   operator =(*this * i);
+//   return *this;
+//}
+//
+//class ::payload & payload::operator *= (::u32 user)
+//{
+//   operator =(*this * user);
+//   return *this;
+//}
+//
+//class ::payload & payload::operator *= (::i64 i)
+//{
+//   operator =(*this * i);
+//   return *this;
+//}
+//
+//class ::payload & payload::operator *= (::u64 user)
+//{
+//   operator =(*this * user);
+//   return *this;
+//}
+//
+//class ::payload & payload::operator *= (double d)
+//{
+//   operator =(*this * d);
+//   return *this;
+//}
+//
+//
+//class ::payload & payload::operator *= (const class ::payload & payload)
+//{
+//
+//   operator =(*this * payload);
+//
+//   return *this;
+//
+//}
 
 
 
@@ -6249,9 +5822,9 @@ void unit_test_primitive_var_acme_block()
 
    ::payload var1(r2);
 
-   ::payload var2;
+   ::payload payload2;
 
-   var2 = r2;
+   payload2 = r2;
 
    debug_primitive_var_acme_block_arg(r2);
 
@@ -6461,3 +6034,19 @@ void payload::receive_response(const ::payload & payload)
 
 
 
+#ifdef DEBUG
+
+void number_operator_payload_test()
+{
+
+   int l = 9457;
+
+   payload payload("2948572345");
+
+
+   auto x = l + payload;
+
+}
+
+
+#endif

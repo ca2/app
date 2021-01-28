@@ -27,11 +27,27 @@ namespace papaya
       }
 
 
-      template <  >
-      inline bool contains(const string & a, const string & b)
+      template < typename CHAR1, typename CHAR2 >
+      inline bool contains(const string_base < CHAR1 > & a, const string_base < CHAR2 > & b)
       {
 
          return a.contains_ci(b);
+
+      }
+
+      template <  >
+      inline bool contains(const string & a, const block & b)
+      {
+
+         return ansi_count_compare_ci(a, (const char *) b.get_data(), b.get_size());
+
+      }
+
+      template <  >
+      inline bool contains(const block & a, const string & b)
+      {
+
+         return ansi_count_compare_ci((const char *)a.get_data(), b, a.get_size());
 
       }
 

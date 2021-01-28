@@ -2752,6 +2752,12 @@ bool simple_frame_window::LoadToolBar(::type type, id idToolBar, const char * ps
 
       }
 
+      ptoolbar->display();
+
+      ptoolbar->m_dwStyle = uStyle;
+
+      ptoolbar->m_dwCtrlStyle = dwCtrlStyle;
+
       if (!ptoolbar->create_child(this))
       {
 

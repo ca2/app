@@ -1817,7 +1817,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\datetime\micros.h" />
     <ClInclude Include="primitive\datetime\millis.h" />
     <ClInclude Include="primitive\datetime\nanos.h" />
-    <ClInclude Include="primitive\datetime\payload.h" />
     <ClInclude Include="primitive\datetime\result.h" />
     <ClInclude Include="primitive\datetime\secs.h" />
     <ClInclude Include="primitive\geometry2d\angle.h" />
@@ -1850,6 +1849,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\primitive\estatus.h" />
     <ClInclude Include="primitive\primitive\layered.h" />
     <ClInclude Include="primitive\primitive\match.h" />
+    <ClInclude Include="primitive\primitive\payload.h" />
     <ClInclude Include="primitive\primitive\pred_method.h" />
     <ClInclude Include="primitive\primitive\pred_future.h" />
     <ClInclude Include="primitive\primitive\procedure.h" />
@@ -1865,7 +1865,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\primitive\update.h" />
     <ClInclude Include="primitive\primitive\_context_object_impl.h" />
     <ClInclude Include="primitive\primitive\_id_impl.h" />
-    <ClInclude Include="primitive\primitive\_var_impl.h" />
+    <ClInclude Include="primitive\primitive\_payload_impl.h" />
     <ClInclude Include="primitive\promise\handler.h" />
     <ClInclude Include="primitive\promise\context.h" />
     <ClInclude Include="primitive\promise\process.h" />
@@ -2203,7 +2203,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="primitive\primitive\natural.h" />
     <ClInclude Include="primitive\primitive\number.h" />
     <ClInclude Include="primitive\primitive\pointer.h" />
-    <ClInclude Include="primitive\primitive\pointer1.h" />
     <ClInclude Include="primitive\primitive\pointer2.h" />
     <ClInclude Include="primitive\primitive\simple_object.h" />
     <ClInclude Include="primitive\primitive\smillis.h" />
@@ -2346,7 +2345,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <None Include="primitive\math\_impl.h" />
     <None Include="primitive\primitive\block.inl" />
     <None Include="primitive\primitive\_factory_impl.h" />
-    <None Include="primitive\primitive\papaya.inl" />
     <None Include="primitive\primitive\_impl.h" />
     <None Include="primitive\string\aaa_want_to_remove_str.inl" />
     <None Include="primitive\string\x\x_encodings.pl" />

@@ -772,54 +772,31 @@ bool file_context::put_contents(const ::payload &varFile, const void *pvoidConte
 
    int iTry = 0;
 
-   while (true)
+   try
    {
 
-      try
-      {
+      pfile = get_file(varFile,
+                        ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_write |
+                        ::file::e_open_defer_create_directory);
 
-         pfile = get_file(varFile,
-                          ::file::e_open_binary | ::file::e_open_write | ::file::e_open_create | ::file::e_open_share_deny_write |
-                          ::file::e_open_defer_create_directory);
+   }
+   catch (::exception_pointer e)
+   {
 
-      }
-      catch (::exception_pointer e)
-      {
+      return false;
 
-         pfile.add(e);
+   }
+   catch (...)
+   {
 
-      }
-      catch (...)
-      {
+      return false;
 
-         return false;
+   }
 
-      }
+   if (!pfile)
+   {
 
-      if (pfile)
-      {
-
-         break;
-
-      }
-
-      auto estatus = pfile.status();
-
-      if (estatus == error_file_sharing_violation)
-      {
-
-         sleep(300_ms);
-
-         iTry++;
-
-         if (iTry > 8)
-         {
-
-            return false;
-
-         }
-
-      }
+      return false;
 
    }
 

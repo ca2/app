@@ -177,6 +177,13 @@ namespace user
    ::color frame::get_moveable_border_color()
    {
 
+      if (!m_puserstyle)
+      {
+
+         return ::color();
+
+      }
+
       return m_puserstyle->get_style_moveable_border_color(m_estyle);
 
    }

@@ -395,7 +395,7 @@ namespace dynamic_source
 
       string strMillis;
 
-      strMillis = __str(::get_tick() % 1000);
+      strMillis = __str(::get_millis() % 1000);
 
       ::ansi_zero_pad(strMillis, 3);
 

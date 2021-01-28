@@ -265,7 +265,7 @@ concept pointer_castable =
 ::std::is_convertible < FROM, const TO_POINTER * >::value;
 
 template < typename DERIVED, typename BASE >
-concept derived_from =
+concept is_derived_from =
 ::std::is_base_of < BASE, DERIVED >::value;
 
 
@@ -4169,7 +4169,7 @@ namespace draw2d
 #include "acme/primitive/primitive/_id_impl.h"
 
 
-#include "acme/primitive/primitive/_var_impl.h"
+#include "acme/primitive/primitive/_payload_impl.h"
 
 
 #include "acme/primitive/primitive/_context_object_impl.h"

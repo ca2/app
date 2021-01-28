@@ -7,7 +7,7 @@ class comparable_eq_array:
 public:
 
 
-   typedef ARRAY_TYPE BASE_ARRAY;
+   using BASE_ARRAY = ARRAY_TYPE;
 
    explicit comparable_eq_array(::matter * pobject = nullptr) : BASE_ARRAY(pobject) { }
    comparable_eq_array(::std::initializer_list < TYPE > l) : BASE_ARRAY(l) {   }
@@ -125,6 +125,8 @@ public:
       return *this;
    }
 
+   
+   using BASE_ARRAY::operator +=;
 
 
 };

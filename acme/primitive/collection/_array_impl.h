@@ -293,7 +293,8 @@ inline ::index array < TYPE, ARG_TYPE, ALLOCATOR > ::add(ARG_TYPE newElement)
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline ::index array < TYPE, ARG_TYPE, ALLOCATOR > ::add(const array & src)
+template < container_type CONTAINER >
+inline ::index array < TYPE, ARG_TYPE, ALLOCATOR > ::add(const CONTAINER & src)
 {
    return append(src);
 }
@@ -473,13 +474,14 @@ inline ::count array_base < TYPE, ARG_TYPE, ALLOCATOR > ::erase(const TYPE * beg
 
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline array < TYPE, ARG_TYPE, ALLOCATOR >  & array < TYPE, ARG_TYPE, ALLOCATOR > ::operator += (const array & a)
+template < container_type CONTAINER >
+inline array < TYPE, ARG_TYPE, ALLOCATOR > & array < TYPE, ARG_TYPE, ALLOCATOR > ::operator += (const CONTAINER & container)
 {
 
-   if(&a == this)
+   if(&container == this)
    {
 
-      array < TYPE, ARG_TYPE, ALLOCATOR >  aCopy(a);
+      array < TYPE, ARG_TYPE, ALLOCATOR > aCopy(container);
 
       add(aCopy);
 
@@ -487,7 +489,7 @@ inline array < TYPE, ARG_TYPE, ALLOCATOR >  & array < TYPE, ARG_TYPE, ALLOCATOR 
    else
    {
 
-      add(a);
+      add(container);
 
    }
 
@@ -496,18 +498,19 @@ inline array < TYPE, ARG_TYPE, ALLOCATOR >  & array < TYPE, ARG_TYPE, ALLOCATOR 
 }
 
 
-template < class TYPE, class ARG_TYPE, class ALLOCATOR >
-inline array < TYPE, ARG_TYPE, ALLOCATOR >  array < TYPE, ARG_TYPE, ALLOCATOR > ::operator + (const array & a) const
-{
-
-   array < TYPE, ARG_TYPE, ALLOCATOR >  aNew(*this);
-
-   aNew += a;
-
-   return a;
-
-}
-
+//template < class TYPE, class ARG_TYPE, class ALLOCATOR >
+//template < container CONTAINER >
+//inline array < TYPE, ARG_TYPE, ALLOCATOR >  array < TYPE, ARG_TYPE, ALLOCATOR > ::operator + (const CONTAINER & container) const
+//{
+//
+//   array < TYPE, ARG_TYPE, ALLOCATOR >  aNew(*this);
+//
+//   aNew.add(container);
+//
+//   return aNew;
+//
+//}
+//
 
 template < class TYPE, class ARG_TYPE, class ALLOCATOR >
 inline TYPE & array < TYPE, ARG_TYPE, ALLOCATOR > ::add_new()

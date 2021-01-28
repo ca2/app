@@ -46,6 +46,25 @@ DECLARE_TYPED_ARRAY_OF(ITEM, CONTAINER, TYPE, __pointer_array(TYPE))
 _DECLARE_ARRAY_OF(ARRAY, ITEM, m_ ## ITEM ## a, TYPE)
 
 
+template < typename CONTAINER >
+concept container_type = requires(CONTAINER container)
+{
+
+   {container.this_is_a_container()} -> std::same_as<void>;
+
+};
+
+
+template < container_type CONTAINERX, container_type CONTAINERY >
+inline CONTAINERX operator +(CONTAINERX x, const CONTAINERY & y)
+{
+
+   x += y;
+
+   return x;
+
+}
+
 
 
 // raw_array is an array that does not call constructors or destructor in elements
@@ -375,6 +394,7 @@ public:
    __declare_iterator(iterator, this->m_pelement);
    __declare_iterator(ref_iterator, *this->m_pelement);
 
+   void this_is_a_container() {}
 
    inline auto values(index iStart = 0, index iEnd = -1) const { return iterator(iStart, iEnd, this); }
 

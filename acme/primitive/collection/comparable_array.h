@@ -18,6 +18,7 @@ public:
    using BASE_ARRAY::operator ==;
    using BASE_ARRAY::operator !=;
 
+   using BASE_ARRAY::operator +=;
 
    comparable_array() { }
    explicit comparable_array(::matter * pobject) : BASE_ARRAY(pobject) { }

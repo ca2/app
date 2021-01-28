@@ -274,10 +274,10 @@ namespace experience
 
                   }
 
-
                }
 
             }
+
          }
          else if (m_bShowAttempt)
          {

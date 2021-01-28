@@ -769,7 +769,7 @@ namespace user
 
       u32 uStyle = RecalcDelayShow(playout);
 
-      if ((uStyle & WS_VISIBLE) && (uStyle & CBRS_ALIGN_ANY) != 0)
+      if (is_this_visible() && (uStyle & CBRS_ALIGN_ANY) != 0)
       {
          
          // align the control bar

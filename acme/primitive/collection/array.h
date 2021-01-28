@@ -1,6 +1,7 @@
 #pragma once
 
 
+
 template < class TYPE, class ARG_TYPE = const TYPE &, class ALLOCATOR = ::allocator::def < TYPE > >
 class array :
    public ::array_base < TYPE, ARG_TYPE, ALLOCATOR >
@@ -65,7 +66,8 @@ public:
 
 
    inline ::index add(ARG_TYPE newElement);
-   inline ::index add(const array& src);
+   template < container_type CONTAINER >
+   inline ::index add(const CONTAINER & container);
    inline ::index append(ARG_TYPE newElement);
    inline ::index append(const array& src);
    inline void copy(const array& src);
@@ -142,8 +144,8 @@ public:
    operator TYPE *() {return this->m_pData;}
    operator const TYPE *() const {return this->m_pData;}
 
-   inline array & operator += (const array & a);
-   inline array operator + (const array & a) const;
+   template < container_type CONTAINER >
+   inline array & operator += (const CONTAINER & container);
 
    template < typename... T >
    void fadd(T... a)

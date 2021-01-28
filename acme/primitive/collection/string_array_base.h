@@ -29,11 +29,12 @@ namespace str
 
 template < typename Type, typename RawType >
 class string_array_base :
-   public array < Type >
+   public comparable_array < Type >
 {
 public:
 
 
+   using BASE_ARRAY = comparable_array < Type >;
    typedef Type                           String;
    typedef RawType                        RawString;
    typedef string_array_base < RawType >       RawStringArray;
@@ -423,11 +424,15 @@ public:
 //   string_array_base & operator =(const string_array_base & stra);
    string_array_base & operator =(const i64_array & ia);
 //   string_array_base & operator =(const string_array_base & stra);
-   string_array_base & operator -=(const string_array_base & stra);
-   string_array_base & operator +=(const string_array_base & stra);
+   //string_array_base & operator -=(const string_array_base & stra);
+   //string_array_base & operator +=(const string_array_base & stra);
 
-   string_array_base operator -(const string_array_base & stra) const;
-   string_array_base operator +(const string_array_base & stra) const;
+   using BASE_ARRAY::operator +=;
+   using BASE_ARRAY::operator -=;
+   
+   
+   //string_array_base operator -(const string_array_base & stra) const;
+   //string_array_base operator +(const string_array_base & stra) const;
 //   string_array_base operator -(const string_array_base & stra) const;
 //   string_array_base operator +(const string_array_base & stra) const;
 
@@ -1491,7 +1496,7 @@ public:
 
 template < class Type, class RawType >
 string_array_base < Type, RawType > ::string_array_base(const string_array_base < Type, RawType > & array) :
-   ::array < Type >((const ::array < Type > &) array)
+   ::comparable_array < Type >((const ::comparable_array < Type > &) array)
 {
 }
 
@@ -3493,41 +3498,44 @@ Type string_array_base < Type, RawType > ::surround_and_implode(const Type& pszS
 }
 
 
-template < class Type, class RawType >
-string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::operator -=(const string_array_base & stra)
-{
-
-   remove(stra);
-
-   return *this;
-
-}
-
-
-template < class Type, class RawType >
-string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::operator +=(const string_array_base & stra)
-{
-   add(stra);
-   return *this;
-}
+//template < class Type, class RawType >
+//string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::operator -=(const string_array_base & stra)
+//{
+//
+//   remove(stra);
+//
+//   return *this;
+//
+//}
 
 
-template < class Type, class RawType >
-string_array_base < Type, RawType >  string_array_base < Type, RawType > ::operator -(const string_array_base & straParam) const
-{
-   string_array_base < Type, RawType >  stra(*this);
-   stra -= straParam;
-   return stra;
-}
+//template < class Type, class RawType >
+//string_array_base < Type, RawType >  & string_array_base < Type, RawType > ::operator +=(const string_array_base & stra)
+//{
+//   
+//   add(stra);
+//
+//   return *this;
+//
+//}
 
 
-template < class Type, class RawType >
-string_array_base < Type, RawType >  string_array_base < Type, RawType > ::operator +(const string_array_base & straParam) const
-{
-   string_array_base < Type, RawType >  stra(*this);
-   stra += straParam;
-   return stra;
-}
+//template < class Type, class RawType >
+//string_array_base < Type, RawType >  string_array_base < Type, RawType > ::operator -(const string_array_base & straParam) const
+//{
+//   string_array_base < Type, RawType >  stra(*this);
+//   stra -= straParam;
+//   return stra;
+//}
+
+
+//template < class Type, class RawType >
+//string_array_base < Type, RawType >  string_array_base < Type, RawType > ::operator +(const string_array_base & straParam) const
+//{
+//   string_array_base < Type, RawType >  stra(*this);
+//   stra += straParam;
+//   return stra;
+//}
 
 
 
@@ -5123,6 +5131,8 @@ namespace stra
 
 
 } // namespace stra
+
+
 
 
 

@@ -368,9 +368,6 @@
     <ClInclude Include="primitive\primitive\pointer2.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\pointer1.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\primitive\pointer.h">
       <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
@@ -1928,9 +1925,6 @@
     <ClInclude Include="exception\void_implementation.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\primitive\_var_impl.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="os\windows_common\_.h">
       <Filter>Header Files\os\windows_common</Filter>
     </ClInclude>
@@ -2396,9 +2390,6 @@
     <ClInclude Include="primitive\promise\_.h">
       <Filter>Header Files\primitive\promise</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\datetime\payload.h">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\draw2d\_const.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
@@ -2428,6 +2419,12 @@
     </ClInclude>
     <ClInclude Include="primitive\datetime\secs.h">
       <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\_payload_impl.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\payload.h">
+      <Filter>Header Files\primitive\primitive</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -3564,9 +3561,6 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <None Include="primitive\primitive\papaya.inl">
-      <Filter>Header Files\primitive\primitive</Filter>
-    </None>
     <None Include="primitive\math\cast.inl">
       <Filter>Header Files\primitive\math</Filter>
     </None>

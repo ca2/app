@@ -165,11 +165,11 @@ public:
 
    }
 
-
-   ::index add(const comparable_array < ___pointer < T >, const T* > & a)
+   template < container_type CONTAINER >
+   ::index add(const CONTAINER & a)
    {
 
-      return comparable_array < ___pointer < T >, const T* >::add(a);
+      return BASE_ARRAY::add(a);
 
    }
 

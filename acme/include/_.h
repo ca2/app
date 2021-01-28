@@ -2392,9 +2392,6 @@ CLASS_DECL_ACME HRESULT defer_co_initialize_ex(bool bMultiThread, bool bDisableO
 class matter;
 
 
-class ::payload;
-
-
 using argument = payload;
 
 
@@ -2417,9 +2414,6 @@ CLASS_DECL_ACME bool __node_acme_pos_term();
 
 
 #define ARRAY_SIZE(a) (sizeof(a)/sizeof(*(a)))
-
-
-class ::payload;
 
 
 class id;

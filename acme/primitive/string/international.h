@@ -1,9 +1,6 @@
 #pragma once
 
 
-class ::payload;
-
-
 namespace str
 {
 

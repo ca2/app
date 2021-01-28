@@ -4,7 +4,6 @@
 class context_object;
 class task;
 class action_context;
-class ::payload;
 class layered;
 class object;
 class dump_context;

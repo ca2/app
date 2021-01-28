@@ -11,6 +11,15 @@
 #include <string.h>
 
 
+bool __x11_hook_process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie);
+
+
+#define SIMPLE_UI_MAX_BUTTON_COUNT 8
+
+
+bool __x11_hook_list_is_empty();
+
+
 extern ::mutex * x11_mutex();
 
 
@@ -35,13 +44,6 @@ Display * x11_get_display()
 }
 
 
-bool __x11_hook_process_event(Display * pdisplay, XEvent & e, XGenericEventCookie * cookie);
-
-
-#define SIMPLE_UI_MAX_BUTTON_COUNT 8
-
-
-bool __x11_hook_list_is_empty();
 
 
 

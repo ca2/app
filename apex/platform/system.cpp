@@ -2251,7 +2251,35 @@ namespace apex
 
 #ifdef LINUX
 
-      estatus = do_factory_exchange("node", "gnome");
+      auto edesktop = get_edesktop();
+
+      if(edesktop & ::user::e_desktop_kde)
+      {
+
+         estatus = do_factory_exchange("node", "kde");
+
+      }
+      else if(edesktop & ::user::e_desktop_gnome)
+      {
+
+         estatus = do_factory_exchange("node", "gnome");
+
+      }
+      else
+      {
+
+         estatus = do_factory_exchange("node", "kde");
+
+         if(!estatus)
+         {
+
+            estatus = do_factory_exchange("node", "gnome");
+
+         }
+
+      }
+
+
 
 #elif defined(WINDOWS_DESKTOP)
 

@@ -356,6 +356,7 @@ list(APPEND acme_source
    primitive/string/x.cpp
    user/os_colors.cpp
    user/os_theme_colors.h
+   user/theme_colors.h
    user/os_theme_colors.cpp
    _.cpp
    __matter_ca2.cpp
@@ -766,6 +767,8 @@ list(APPEND acme_source
    os/x11/x11_message_box.h
    os/x11/x11_simple_ui_display.h
    os/x11/_x11.h
+   os/xcb/xcb_hook.h
+   os/xcb/_xcb.h
    os/_.h
    os/_application.h
    os/_c.h
@@ -1710,6 +1713,8 @@ if (LINUX)
       os/x11/x11_simple_ui_display.cpp
       os/x11/x11_windowing.cpp
       os/x11/x11_xrender.cpp
+      os/xcb/xcb_hook.cpp
+      os/xcb/xcb_windowing.cpp
       os/ansios/binreloc.cpp)
 endif ()
 
@@ -1721,7 +1726,7 @@ else ()
 endif ()
 
 
-add_library(acme SHARED ${acme_source} const/code_page.h const/_.h os/posix/time.h graphics/draw2d/os_font_name.cpp os/x11/_.h node/linux/node.cpp node/linux/node.h platform/node.cpp platform/node.h os/linux/node.cpp)
+add_library(acme SHARED ${acme_source} const/code_page.h const/_.h os/posix/time.h graphics/draw2d/os_font_name.cpp os/x11/_.h node/linux/node.cpp node/linux/node.h platform/node.cpp platform/node.h os/linux/node.cpp user/theme_colors.h graphics/draw2d/color32.h)
 
 target_precompile_headers(acme PRIVATE framework.h)
 
@@ -1737,7 +1742,7 @@ elseif (LINUX)
    #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
    # sudo apt install libgtk-3-dev
    #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
-   pkg_check_modules(PKGCONFIG freetype2)
+   pkg_check_modules(PKGCONFIG freetype2 xcb)
    target_compile_options(acme PRIVATE -fpermissive)
    target_compile_options(acme PRIVATE ${PKGCONFIG_CFLAGS})
    #target_compile_options(acme PRIVATE -std=c++14)

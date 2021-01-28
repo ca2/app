@@ -4618,23 +4618,23 @@ bool graphics::_set(::draw2d::brush * pbrush, double x, double y)
 
       double dA;
 
-      dR = (double)pbrush->m_color1.m_iR / 255.0;
+      dR = (double)pbrush->m_color1.dr();
 
-      dG = (double)pbrush->m_color1.m_iG / 255.0;
+      dG = (double)pbrush->m_color1.dg();
 
-      dB = (double)pbrush->m_color1.m_iB / 255.0;
+      dB = (double)pbrush->m_color1.db();
 
-      dA = (double)pbrush->m_color1.m_iA / 255.0;
+      dA = (double)pbrush->m_color1.da();
 
       cairo_pattern_add_color_stop_rgba(ppattern, 0., dR, dG, dB, dA);
 
-      dR = (double)pbrush->m_color2.m_iR / 255.0;
+      dR = (double)pbrush->m_color2.dr();
 
-      dG = (double)pbrush->m_color2.m_iG / 255.0;
+      dG = (double)pbrush->m_color2.dg();
 
-      dB = (double)pbrush->m_color2.m_iB / 255.0;
+      dB = (double)pbrush->m_color2.db();
 
-      dA = (double)pbrush->m_color2.m_iA / 255.0;
+      dA = (double)pbrush->m_color2.da();
 
       cairo_pattern_add_color_stop_rgba(ppattern, 1., dR, dG, dB, dA);
 

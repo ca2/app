@@ -1378,7 +1378,7 @@ namespace user
 
       auto colorBackground = get_color(pstyle, e_element_background);
 
-      if (colorBackground.m_iA > 0)
+      if (colorBackground.alpha > 0)
       {
 
          ::rect rectClient;

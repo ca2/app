@@ -3,6 +3,7 @@
 //
 #include "framework.h"
 #include "node.h"
+#include "acme/id.h"
 
 
 namespace acme
@@ -13,6 +14,7 @@ namespace acme
 
       m_papexnode = nullptr;
       m_pauranode = nullptr;
+      m_edesktop = ::user::e_desktop_none;
 
    }
 
@@ -39,7 +41,37 @@ namespace acme
    }
 
 
+   bool node::_calc_dark_mode()
+   {
+
+      return false;
+
+   }
+
+
    void node::os_calc_user_dark_mode()
+   {
+
+      bool bDarkMode = _calc_dark_mode();
+
+      if(is_different(::user::is_app_dark_mode(), bDarkMode)
+      || is_different(::user::is_system_dark_mode(), bDarkMode))
+      {
+
+         ::user::set_app_dark_mode(bDarkMode);
+
+         ::user::set_system_dark_mode(bDarkMode);
+
+         System.deliver(id_os_dark_mode);
+
+         on_os_dark_mode_change();
+
+      }
+
+   }
+
+
+   void node::on_os_dark_mode_change()
    {
 
 
@@ -166,14 +198,6 @@ namespace acme
    void node::node_post_quit()
    {
 
-
-   }
-
-
-   ::user::enum_desktop node::get_edesktop()
-   {
-
-      return ::user::e_desktop_none;
 
    }
 

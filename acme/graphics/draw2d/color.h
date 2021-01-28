@@ -1,6 +1,7 @@
 #pragma once
 
 
+#include "color32.h"
 
 
 //#define  HLSMAX   100.0 /* H,L, and S vary over 0-HLSMAX */
@@ -12,36 +13,25 @@
 /* initially set for achromatic colors */
 #define UNDEFINED_HUE (HLSMAX*2.0/3.0)
 
-class rgb
+
+inline string hex_color(const COLOR32 & c)
 {
-public:
+
+   string str;
+
+   str.Format("%02x%02x%02x", c.red, c.green, c.blue);
+
+   return str;
+
+}
 
 
-   int         m_iR;
-   int         m_iG;
-   int         m_iB;
+inline string _hex_color(const COLOR32 & c)
+{
 
+   return "#" + hex_color(c);
 
-   rgb() {}
-
-   rgb(e_zero_init) : m_iR(0), m_iG(0), m_iB(0) {}
-
-   rgb(color32_t cr) : m_iR(colorref_get_r_value(cr)), m_iG(colorref_get_r_value(cr)), m_iB(colorref_get_r_value(cr)) {}
-
-   rgb(int iR, int iG, int iB) : m_iR(iR), m_iG(iG), m_iB(iB) {}
-
-   rgb(const rgb & rgb) : m_iR(rgb.m_iR), m_iG(rgb.m_iG), m_iB(rgb.m_iB) { }
-
-   rgb & operator =(const ::payload & payload);
-
-   float fr() const {return m_iR / 255.f;}
-   float fg() const {return m_iG / 255.f;}
-   float fb() const {return m_iB / 255.f;}
-   double dr() const {return m_iR / 255.;}
-   double dg() const {return m_iG / 255.;}
-   double db() const {return m_iB / 255.;}
-
-};
+}
 
 
 auto inline red(color32_t rgba) { return ((byte)(rgba & 0xff)); }
@@ -49,33 +39,41 @@ auto inline green(color32_t rgba) { return ((byte)((rgba >> 8) & 0xff)); }
 auto inline blue(color32_t rgba) { return ((byte)((rgba >> 16) & 0xff)); }
 auto inline alpha(color32_t rgba) { return ((byte)((rgba >> 24) & 0xff)); }
 
+
 class rgba :
-   public rgb
+   public COLOR32
 {
 public:
 
-   int      m_iA;
 
    rgba() {}
-   rgba(e_zero_init) : rgb(zero_init), m_iA(0) {}
-   rgba(int iR, int iG, int iB, int iA) : rgb(iR, iG, iB), m_iA(iA) {}
-   rgba(color32_t cr) : rgb(cr), m_iA(colorref_get_a_value(cr)) {}
-   rgba(const ::rgb & rgb) : ::rgb(rgb), m_iA(255) { }
-   rgba(const ::rgba & rgba) : ::rgb(rgba), m_iA(rgba.m_iA) { }
+   rgba(e_zero_init) {red =green=blue=alpha=0;}
+   rgba(byte r, byte g, byte b, byte a) {red=r;green=g;blue=b;alpha=a;}
+   rgba(color32_t cr) {color32 = cr;}
+   rgba(const ::rgba & rgba) { color32 = rgba.color32;}
+
+
+   float fr() const {return red / 255.f;}
+   float fg() const {return green / 255.f;}
+   float fb() const {return blue / 255.f;}
+   float fa() const {return alpha / 255.f;}
+   double dr() const {return red / 255.;}
+   double dg() const {return green / 255.;}
+   double db() const {return blue / 255.;}
+   double da() const {return alpha / 255.;}
+
+
 
    rgba & operator =(const ::payload & payload);
 
-   float fa() const {return m_iA / 255.f;}
-   double da() const {return m_iA / 255.;}
 
 };
 
 
-inline auto red(const rgb & rgb) { return rgb.m_iR; }
-inline auto green(const rgb & rgb) { return rgb.m_iG; }
-inline auto blue(const rgb & rgb) { return rgb.m_iB; }
-inline auto alpha(const rgb & rgba) { return 255; }
-inline auto alpha(const rgba & rgba) { return rgba.m_iA; }
+inline auto red(const rgba & rgba) { return rgba.red; }
+inline auto green(const rgba & rgba) { return rgba.green; }
+inline auto blue(const rgba & rgba) { return rgba.blue; }
+inline auto alpha(const rgba & rgba) { return rgba.alpha; }
 
 #define A_RGB(a, rgb) ARGB(a, ::red(rgb), ::green(rgb), ::blue(rgb))
 
@@ -98,12 +96,15 @@ public:
 
 };
 
+
 inline ::payload & assign(::payload & payload, const ::hls & hls);
+
 
 class CLASS_DECL_ACME color :
    public rgba
 {
 public:
+
 
    static ::color transparent;
    static ::color black;
@@ -115,6 +116,7 @@ public:
    static ::color magenta;
    static ::color white;
 
+
    enum e_channel
    {
 
@@ -125,17 +127,25 @@ public:
 
    };
 
+   int  m_flags;
+
 
    color();
    color(const color & color);
-   color(enum_color ecolor, int A = 255);
-   color(const hls & hls, int A = 255);
+   color(enum_color ecolor, byte A = 255);
+   color(const hls & hls, byte A = 255);
+   color(const COLOR32 & color32, int flags = 0);
    color(color32_t cr);
-   color(int R, int G, int B, int A = 255);
-   ~color();
+   color(byte R, byte G, byte B, byte A = 255);
 
 
-   bool is_set() const { return m_iA >= 0; }
+   bool is_set() const { return m_flags >= 0; }
+
+
+   bool is_opaque() const { return m_flags >= 0 && alpha == 255; }
+   bool is_translucent() const { return m_flags < 0 || alpha < 255; }
+   bool is_transparent() const { return m_flags < 0 || alpha == 0; }
+   bool non_transparent() const { return m_flags >= 0 && alpha > 0; }
 
 
    void hls_mult(double dRateH, double dRateL, double dRateS);
@@ -168,8 +178,8 @@ public:
 //   operator rgba & () {return m_rgba;}
 //   operator const rgba & () const {return m_rgba;}
 
-   void set(int R, int G, int B);
-   void set(int R, int G, int B, int A);
+   void set(byte R, byte G, byte B);
+   void set(byte R, byte G, byte B, byte A);
    void set(double R, double G, double B, double A);
 
    void make_black_and_white();
@@ -211,7 +221,7 @@ public:
    string _hex_color()
    {
 
-      return "#" + hex_color();
+      ::_hex_color(*this);
 
    }
 
@@ -219,11 +229,7 @@ public:
    string hex_color()
    {
 
-      string str;
-
-      str.Format("%02x%02x%02x", m_iR, m_iG, m_iB);
-
-      return str;
+      ::hex_color(*this);
 
    }
 
@@ -232,17 +238,17 @@ public:
 
       double dComplement = 1.0 - dRate;
 
-      m_iR = (int) (m_iR * dComplement + color.m_iR * dRate);
-      m_iG = (int) (m_iG * dComplement + color.m_iG * dRate);
-      m_iB = (int) (m_iB * dComplement + color.m_iB * dRate);
-      m_iA = (int) (m_iA * dComplement + color.m_iA * dRate);
+      red   = (byte) (red     * dComplement + color.red  * dRate);
+      green = (byte) (green   * dComplement + color.green   * dRate);
+      blue  = (byte) (blue    * dComplement + color.blue    * dRate);
+      alpha = (byte) (alpha   * dComplement + color.alpha   * dRate);
 
    }
 
-   double get_a_rate() const { return m_iA / 255.0; }
-   double get_r_rate() const { return m_iR / 255.0; }
-   double get_g_rate() const { return m_iG / 255.0; }
-   double get_b_rate() const { return m_iB / 255.0; }
+   double get_a_rate() const { return da(); }
+   double get_r_rate() const { return dr(); }
+   double get_g_rate() const { return dg(); }
+   double get_b_rate() const { return db(); }
 
    double get_luminance() const { return get_hls().m_dL;}
    double get_saturation() const { return get_hls().m_dS;}
@@ -270,15 +276,13 @@ CLASS_DECL_ACME color32_t opaque_color(enum_color ecolor);
 
 
 
-inline void __exchange(::stream & s, ::rgb & rgb);
-
-
-
 inline void __exchange(::stream & s, ::rgba & rgba);
 
 
 
 inline void __exchange(::stream & s, ::hls & hls);
+
+
 
 
 

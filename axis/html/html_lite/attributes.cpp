@@ -406,7 +406,7 @@ bool LiteHTMLElemAttr::isSysColorValue(::lite_html_reader * preader) const
       strKey.make_lower();
 
       if(System.m_phtml->m_namedColors.lookup(strKey, color))
-         return color.m_iA == -2;
+         return color.m_flags == -2;
 
    }
 
@@ -463,9 +463,9 @@ color32_t LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
       {
 
          // is this a system named color value?
-         if (color.m_iA == -2)
+         if (color.m_flags == -2)
          {
-            color = Sess(preader->get_context_session())->get_default_color(color.m_iR);
+            color = Sess(preader->get_context_session())->get_default_color(color.red);
 
          }
       }

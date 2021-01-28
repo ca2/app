@@ -558,12 +558,6 @@ namespace apex
 
       __construct_new(::channel::s_pmutexChannel);
 
-//#ifdef LINUX
-//
-//      ::user::initialize_edesktop();
-//
-//#endif
-
       //g_papexstrpool = new apex_str_pool();
 
       //::user::init_windowing();
@@ -1197,14 +1191,6 @@ namespace apex
 ////         //         g_poswindowdataptra->defer_create_mutex();
 ////         //
 ////         //#endif // defined(APPLEOS)
-////
-////#ifdef LINUX
-////
-////
-////         ::user::initialize_edesktop();
-////
-////
-////#endif
 ////
 ////
 ////      }

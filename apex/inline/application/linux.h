@@ -15,7 +15,7 @@ int main(int argc, char * argv[])
 
    ::e_status estatus = ::success;
 
-   if(psystem->m_bUser)
+   if(psystem->m_bUser || psystem->m_bUser.undefined())
    {
 
       estatus = psystem->defer_initialize_x11();

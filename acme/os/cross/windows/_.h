@@ -8,7 +8,7 @@
 // of 100-nanosecond intervals since January 1, 1601 (UTC).
 using filetime_t = ::u64;
 
-using color32_t = ::u32;
+#include "acme/graphics/draw2d/color32.h"
 
 using dummy_pointer = void *;
 

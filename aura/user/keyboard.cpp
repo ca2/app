@@ -741,7 +741,7 @@ namespace user
 
       m_pprimitiveSoftwareKeyboard = pprimitive;
 
-      fork([=]
+      fork([=,this]
          {
 
             sleep(400_ms);
@@ -784,7 +784,7 @@ namespace user
 
       m_pprimitiveSoftwareKeyboard = nullptr;
 
-      fork([=]
+      fork([this,iEventId,pprimitive]
          {
 
             sleep(400_ms);

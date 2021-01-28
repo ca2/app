@@ -4,6 +4,9 @@
 #pragma once
 
 
+using color32_t = unsigned int;
+
+
 #pragma pack( push , color32, 1 )
 
 
@@ -12,13 +15,27 @@ class COLOR32
 public:
 
 
-   byte        m_r;
-   byte        m_g;
-   byte        m_b;
-   byte        m_a;
-   byte        m_flags;
+   union
+   {
+
+      color32_t      color32;
+
+      struct
+      {
+
+         unsigned char        red;
+         unsigned char        green;
+         unsigned char        blue;
+         unsigned char        alpha;
+
+      };
+
+   };
 
 };
 
 
 #pragma pack( pop , color32 )
+
+
+

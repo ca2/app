@@ -402,7 +402,7 @@ namespace user
 
       colorComposeBk = crBk;
       colorComposeBk.blend(crBkSel, 0.5);
-      colorComposeBk.m_iA = 127;
+      colorComposeBk.alpha = 127;
 
       pstyle->get(m_pcontrolstyle, pgraphics, this);
 

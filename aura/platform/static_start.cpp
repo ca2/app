@@ -603,12 +603,6 @@ namespace aura
 
       __construct_new(::channel::s_pmutexChannel);
 
-//#ifdef LINUX
-//
-//      ::user::initialize_edesktop();
-//
-//#endif
-
       //g_paurastrpool = new aura_str_pool();
 
       ::user::init_windowing();
@@ -1258,13 +1252,6 @@ namespace aura
 ////         //
 ////         //#endif // defined(APPLEOS)
 ////
-////#ifdef LINUX
-////
-////
-////         ::user::initialize_edesktop();
-////
-////
-////#endif
 ////
 ////
 ////      }

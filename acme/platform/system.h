@@ -15,6 +15,7 @@ namespace acme
 #ifdef LINUX
       enum_linux_distribution                            m_elinuxdistribution;
 #endif
+      ::user::enum_desktop                               m_edesktop;
 
       ::mutex                                            m_mutexTask;
       task_map                                           m_taskmap;
@@ -32,7 +33,7 @@ namespace acme
       ::core::system *                                   m_pcoresystem;
 
       string                                             m_strOsUserTheme;
-      __pointer(::acme::node)                            m_pnode;
+      __pointer(::acme::node)                      m_pnode;
 
       
       ::millis                                           m_millisFileListingCache;
@@ -54,6 +55,11 @@ namespace acme
 
 
       virtual void defer_calc_os_dark_mode();
+
+
+      virtual ::user::enum_desktop get_edesktop();
+
+      virtual ::user::enum_desktop calc_edesktop();
 
 
       //virtual void defer_calc_os_user_theme();

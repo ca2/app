@@ -165,7 +165,7 @@ public:
 
    virtual bool set_rgb(color32_t cr);
    virtual bool set_rgb(i32 R, i32 G, i32 B);
-   virtual bool tint(::image * pimage, const rgb & rgb);
+   virtual bool tint(::image * pimage, const rgba & rgba);
    virtual bool set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A);
    virtual bool rgb_from(::image * pimage);
    virtual bool paint_rgb(color c);

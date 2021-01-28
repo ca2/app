@@ -692,6 +692,8 @@ if (LINUX)
       os/linux/window_xlib.cpp
       os/linux/window_xlib.h
       os/linux/windowing.cpp
+      os/linux/windowing_x11.cpp
+      os/linux/windowing_xcb.cpp
       os/linux/windowing.h
       os/linux/x11.h
       os/linux/xdisplay.cpp
@@ -1106,7 +1108,7 @@ if (MSVC)
    target_link_libraries(aura PRIVATE acme apex aqua zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
 elseif (LINUX)
    #pkg_check_modules(PKGCONFIG glib-2.0 gdk-3.0 gtk+-3.0 appindicator3-0.1)
-   pkg_check_modules(PKGCONFIG freetype2  )
+   pkg_check_modules(PKGCONFIG xft xcb)
    target_compile_options(aura PRIVATE -fpermissive)
    target_compile_options(aura PRIVATE ${PKGCONFIG_CFLAGS})
 
@@ -1118,7 +1120,8 @@ elseif (LINUX)
    target_link_libraries(aura PRIVATE ${PKGCONFIG_LIBRARIES})
    target_link_libraries(aura PRIVATE acme apex aqua)
    target_link_options(aura PRIVATE -Wl,-z,defs)
-   ##message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
+   message("PKGCONFIG_CFLAGS is " ${PKGCONFIG_CFLAGS})
+   message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif ()
 
 

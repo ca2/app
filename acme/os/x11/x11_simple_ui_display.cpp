@@ -2,6 +2,7 @@
 #include "os/cross/windows/_windows.h"
 #include "acme/id.h"
 #include "_x11.h"
+#include <X11/extensions/Xinerama.h>
 
 
 void acme_defer_os_init_windowing();
@@ -131,24 +132,24 @@ void simple_ui_display::on_alloc_colors(Display * pdisplay)
 
    auto pthemecolors = ::user::os_get_theme_colors();
 
-   if(pthemecolors && pthemecolors->is_ok())
+   if(pthemecolors && ::user::is_ok(*pthemecolors))
    {
 
-      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorBack._hex_color(), &m_colorBack);
-      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorFace._hex_color(), &m_colorFace);
-      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorFore._hex_color(), &m_colorFore);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, _hex_color(pthemecolors->m_colorBack), &m_colorBack);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, _hex_color(pthemecolors->m_colorFace), &m_colorFace);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, _hex_color(pthemecolors->m_colorFore), &m_colorFore);
 
-      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorFaceHover._hex_color(), &m_colorFaceHover);
-      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorFacePress._hex_color(), &m_colorFacePress);
-      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorButton._hex_color(), &m_colorButton);
-      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorButtonHover._hex_color(), &m_colorButtonHover);
-      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorButtonPress._hex_color(), &m_colorButtonPress);
-      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorBorder._hex_color(), &m_colorBorder);
-      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorBorderHover._hex_color(), &m_colorBorderHover);
-      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorBorderHover1._hex_color(), &m_colorBorderHover1);
-      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorBorderHover2._hex_color(), &m_colorBorderHover2);
-      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorBorderHover3._hex_color(), &m_colorBorderHover3);
-      XftColorAllocName(pdisplay, m_pvisual, m_colormap, pthemecolors->m_colorBorderPress._hex_color(), &m_colorBorderPress);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, _hex_color(pthemecolors->m_colorFaceHover), &m_colorFaceHover);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, _hex_color(pthemecolors->m_colorFacePress), &m_colorFacePress);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, _hex_color(pthemecolors->m_colorButton), &m_colorButton);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, _hex_color(pthemecolors->m_colorButtonHover), &m_colorButtonHover);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, _hex_color(pthemecolors->m_colorButtonPress), &m_colorButtonPress);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, _hex_color(pthemecolors->m_colorBorder), &m_colorBorder);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, _hex_color(pthemecolors->m_colorBorderHover), &m_colorBorderHover);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, _hex_color(pthemecolors->m_colorBorderHover1), &m_colorBorderHover1);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, _hex_color(pthemecolors->m_colorBorderHover2), &m_colorBorderHover2);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, _hex_color(pthemecolors->m_colorBorderHover3), &m_colorBorderHover3);
+      XftColorAllocName(pdisplay, m_pvisual, m_colormap, _hex_color(pthemecolors->m_colorBorderPress), &m_colorBorderPress);
 
    }
    else if(::user::is_app_dark_mode())

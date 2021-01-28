@@ -638,7 +638,7 @@ inline __pointer(TYPE) & __fork(__pointer(TYPE) & p)
 
 
 template < typename TYPE >
-inline __pointer(TYPE) & __defer_fork(__pointer(TYPE) & p)
+inline __pointer(TYPE) & defer_fork(__pointer(TYPE) & p)
 {
 
    if (!p || !p->is_shared())

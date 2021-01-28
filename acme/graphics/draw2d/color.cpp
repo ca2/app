@@ -18,7 +18,7 @@ color color::white(255, 255, 255, 255);
 color::color()
 {
 
-   m_iA = -1;
+   m_flags = -1;
 
 }
 
@@ -39,37 +39,43 @@ color::color(color32_t cr)
 }
 
 
-color::color(enum_color ecolor, int A)
+color::color(enum_color ecolor, byte a)
 {
 
    set_rgb(pure_color(ecolor));
 
-   m_iA = A;
+   alpha = a;
 
 }
 
 
-color::color(int R, int G, int B, int A)
+color::color(byte r, byte g, byte b, byte a)
 {
 
-   set(R, G, B, A);
+   set(r, g, b, a);
 
 }
 
-color::color(const hls & hls, int A)
+
+color::color(const hls & hls, byte a)
 {
 
    operator = (hls);
 
-   m_iA = A;
+   alpha = a;
 
 }
 
 
-color::~color()
+color::color(const COLOR32 & color32, int flags)
 {
 
+   this->color32 = color32.color32;
+
+   m_flags = flags;
+
 }
+
 
 /*
 
@@ -99,49 +105,38 @@ proc hls2rgb {h l s} {
     return [list $rect $g $b]
 }
 
-  */
+
+*/
+
 
 void color::get_hls(double & h, double & l, double & s) const
 {
 
-   double rect = m_iR / 255.0;
-   double g = m_iG / 255.0;
-   double b = m_iB / 255.0;
-
-   //double rect = rgb.R / 255.0;
-
-   //double g = rgb.G / 255.0;
-
-   //double b = rgb.B / 255.0;
+   double r = red / 255.0;
+   double g = green / 255.0;
+   double b = blue / 255.0;
 
    double v;
-
    double m;
-
    double vm;
 
    double r2, g2, b2;
 
-
-
    h = 0; // default to black
-
    s = 0;
-
    l = 0;
 
-   v = max(rect, g);
+   v = max(r, g);
 
    v = max(v, b);
 
-   m = min(rect, g);
+   m = min(r, g);
 
    m = min(m, b);
 
    l = (m + v) / 2.0;
 
    if (l <= 0.0)
-
    {
 
       return;
@@ -153,48 +148,40 @@ void color::get_hls(double & h, double & l, double & s) const
    s = vm;
 
    if (s > 0.0)
-
    {
 
       s /= (l <= 0.5) ? (v + m) : (2.0 - v - m);
 
    }
-
    else
-
    {
 
       return;
 
    }
 
-   r2 = (v - rect) / vm;
+   r2 = (v - r) / vm;
 
    g2 = (v - g) / vm;
 
    b2 = (v - b) / vm;
 
-   if (rect == v)
-
+   if (r == v)
    {
 
       h = (g == m ? 5.0 + b2 : 1.0 - g2);
 
    }
-
    else if (g == v)
-
    {
 
       h = (b == m ? 1.0 + r2 : 3.0 - b2);
 
    }
-
    else
-
    {
 
-      h = (rect == m ? 3.0 + g2 : 5.0 - r2);
+      h = (r == m ? 3.0 + g2 : 5.0 - r2);
 
    }
 
@@ -349,29 +336,47 @@ void color::get_hls(double & h, double & l, double & s) const
       ::output_debug_string("dSParam > 1.0");
    }
    */
+
 }
 
 
 double primitive_color_round(double d)
 {
+
    double n;
+
    double f;
+
    f = modf(d, &n);
+
    if (f > 0.5)
+   {
+
       return n + 1.0;
+
+   }
    else if (f < -0.5)
+   {
+
       return n - 1.0;
+
+   }
    else
+   {
+
       return n;
+
+   }
+
 }
+
 
 #define dsin(x) (sin(((x) *2.0 * 3.1415) / 360.0))
 
-void color::set_hls(
-double dH,
-double dL,
-double dS)
+
+void color::set_hls(double dH, double dL, double dS)
 {
+
    //ASSERT(dH >= 0.0);
    //ASSERT(dH <= 1.0);
    //ASSERT(dL >= 0.0);
@@ -379,9 +384,7 @@ double dS)
    //ASSERT(dS >= 0.0);
    //ASSERT(dS <= 1.0);
 
-
    double dR, dG, dB;
-
 
    if (dH >= 1.0)
       dH = 0.0;
@@ -397,7 +400,6 @@ double dS)
       dS = 1.0;
    else if (dS < 0.0)
       dS = 0.0;
-
 
    dH *= 6.0;
 
@@ -483,9 +485,9 @@ double dS)
    double dFinalG = (dCMin + dG * dCAdd);
    double dFinalB = (dCMin + dB * dCAdd);
 
-   m_iR = (byte)primitive_color_round(dFinalR * 255.0);
-   m_iG = (byte)primitive_color_round(dFinalG * 255.0);
-   m_iB = (byte)primitive_color_round(dFinalB * 255.0);
+   red   = (byte)primitive_color_round(dFinalR * 255.0);
+   green = (byte)primitive_color_round(dFinalG * 255.0);
+   blue  = (byte)primitive_color_round(dFinalB * 255.0);
 
    /*   double H = dH * 360.0;
 
@@ -508,25 +510,38 @@ double dS)
 
 }
 
+
 u32 color::get_rgb() const
 {
-   return m_iR | (m_iG << 8) | (m_iB << 16);
+
+   return red | (green << 8) | (blue << 16);
+
 }
+
 
 u32 color::get_bgr() const
 {
-   return m_iB | (m_iG << 8) | (m_iR << 16);
+
+   return blue | (green << 8) | (red << 16);
+
 }
+
 
 u32 color::get_rgba() const
 {
-   return m_iA >= 0 ? m_iR | (m_iG << 8) | (m_iB << 16) | (m_iA << 24) : 0;
+
+   return m_flags >= 0 ? color32 : 0;
+
 }
+
 
 u32 color::get_bgra() const
 {
-   return m_iB | (m_iG << 8) | (m_iR << 16) | (m_iA << 24);
+
+   return blue | (green << 8) | (red << 16) | (alpha << 24);
+
 }
+
 
 //RGBQUAD color::get_rgbquad() const
 //{
@@ -538,18 +553,21 @@ u32 color::get_bgra() const
 //   return quad;
 //}
 
+
 color::operator color32_t() const
 {
+
    return get_rgba();
+
 }
 
 
 void color::set_rgb(color32_t cr)
 {
 
-   m_iR = colorref_get_r_value(cr);
-   m_iG = colorref_get_g_value(cr);
-   m_iB = colorref_get_b_value(cr);
+   red      = colorref_get_r_value(cr);
+   green    = colorref_get_g_value(cr);
+   blue     = colorref_get_b_value(cr);
 
 }
 
@@ -557,10 +575,10 @@ void color::set_rgb(color32_t cr)
 void color::set_argb(color32_t cr)
 {
 
-   m_iR = colorref_get_r_value(cr);
-   m_iG = colorref_get_g_value(cr);
-   m_iB = colorref_get_b_value(cr);
-   m_iA = colorref_get_a_value(cr);
+   red      = colorref_get_r_value(cr);
+   green    = colorref_get_g_value(cr);
+   blue     = colorref_get_b_value(cr);
+   alpha    = colorref_get_a_value(cr);
 
 }
 
@@ -594,16 +612,16 @@ void color::hue_offset(double dRadians)
    double U = ::cos(dRadians);
    double W = ::sin(dRadians);
 
-   double oldr = m_iR;
-   double oldg = m_iG;
-   double oldb = m_iB;
-   m_iR = clampAndConvert((.299 + .701*U + .168*W)*oldr
+   double oldr = red;
+   double oldg = green;
+   double oldb = blue;
+   red   = clampAndConvert((.299 + .701*U + .168*W)*oldr
                           + (.587 - .587*U + .330*W)*oldg
                           + (.114 - .114*U - .497*W)*oldb);
-   m_iG = clampAndConvert((.299 - .299*U - .328*W)*oldr
+   green = clampAndConvert((.299 - .299*U - .328*W)*oldr
                           + (.587 + .413*U + .035*W)*oldg
                           + (.114 - .114*U + .292*W)*oldb);
-   m_iB = clampAndConvert((.299 - .3*U + 1.25*W)*oldr
+   blue  = clampAndConvert((.299 - .3*U + 1.25*W)*oldr
                           + (.587 - .588*U - 1.05*W)*oldg
                           + (.114 + .886*U - .203*W)*oldb);
 
@@ -613,10 +631,10 @@ void color::hue_offset(double dRadians)
 void color::set_bgr(u32 bgr)
 {
 
-   m_iR = bgr_get_r_value(bgr);
-   m_iG = bgr_get_g_value(bgr);
-   m_iB = bgr_get_b_value(bgr);
-   m_iA = bgr_get_a_value(bgr);
+   red   = bgr_get_r_value(bgr);
+   green = bgr_get_g_value(bgr);
+   blue  = bgr_get_b_value(bgr);
+   alpha = bgr_get_a_value(bgr);
 
 }
 
@@ -665,6 +683,7 @@ void color::hls_rate(double dRateH, double dRateL, double dRateS)
       dS = 0.0;
 
    set_hls(dH, dL, dS);
+
 }
 
 
@@ -743,6 +762,7 @@ void color::saturation_rate(double dRateS)
 
 void color::hls_mult(double dMultH, double dMultL, double dMultS)
 {
+
    double dH, dL, dS;
 
    get_hls(dH, dL, dS);
@@ -767,38 +787,40 @@ void color::hls_mult(double dMultH, double dMultL, double dMultS)
       dS = 0.0;
 
    set_hls(dH, dL, dS);
+
 }
+
 
 void color::hls_mult(hls & hls)
 {
+
    hls_mult(hls.m_dH, hls.m_dL, hls.m_dS);
+
 }
+
+
 void color::hls_rate(hls & hls)
 {
+
    hls_rate(hls.m_dH, hls.m_dL, hls.m_dS);
+
 }
-void color::get_hls(
-hls & hls) const
+
+
+void color::get_hls(hls & hls) const
 {
+
    get_hls(hls.m_dH, hls.m_dL, hls.m_dS);
+
 }
-void color::set_hls(
-const hls & hls)
+
+
+void color::set_hls(const hls & hls)
 {
+
    set_hls(hls.m_dH, hls.m_dL, hls.m_dS);
+
 }
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 /*
@@ -928,21 +950,26 @@ u32 CColor::get_rgb()
 
 color & color::operator = (const color & color)
 {
+
    if (&color != this)
    {
-      m_iR = color.m_iR;
-      m_iG = color.m_iG;
-      m_iB = color.m_iB;
-      m_iA = color.m_iA;
+
+      red      = color.red;
+      green    = color.green;
+      blue     = color.blue;
+      alpha    = color.alpha;
+
    }
+
    return *this;
+
 }
 
 
 color & color::operator = (color32_t cr)
 {
 
-   set_argb(cr);
+   color32 = cr;
 
    return *this;
 
@@ -954,10 +981,10 @@ color & color::operator = (enum_color ecolor)
 
    set_rgb(pure_color(ecolor));
 
-   if(m_iA < 0)
+   if(alpha < 0)
    {
 
-      m_iA = 255;
+      alpha = 255;
 
    }
 
@@ -984,6 +1011,7 @@ color & color::operator = (const hls & hls)
 
 
 #define duplicate_color_nible(nible) ((nible << 4) | (nible))
+
 
 bool color::parse_color(const char * psz)
 {
@@ -1078,6 +1106,7 @@ CLASS_DECL_ACME color32_t alpha_color(byte bAlpha, enum_color ecolor)
 
 }
 
+
 CLASS_DECL_ACME color32_t pure_color(enum_color ecolor)
 {
 
@@ -1118,8 +1147,8 @@ CLASS_DECL_ACME color32_t pure_color(enum_color ecolor)
 
    return cr;
 
-
 }
+
 
 CLASS_DECL_ACME color32_t opaque_color(color32_t cr)
 {
@@ -1127,6 +1156,7 @@ CLASS_DECL_ACME color32_t opaque_color(color32_t cr)
    return alpha_color(255, cr);
 
 }
+
 
 CLASS_DECL_ACME color32_t opaque_color(enum_color ecolor)
 {
@@ -1136,13 +1166,13 @@ CLASS_DECL_ACME color32_t opaque_color(enum_color ecolor)
 }
 
 
-void color::set(int R, int G, int B, int A)
+void color::set(byte r, byte g, byte b, byte a)
 {
 
-   m_iR = R;
-   m_iG = G;
-   m_iB = B;
-   m_iA = A;
+   red      = r;
+   green    = g;
+   blue     = b;
+   alpha    = a;
 
 }
 
@@ -1153,30 +1183,21 @@ void color::make_black_and_white()
    //hls_rate(0.0, 0.0, -1.0);
    //saturation_rate(-1.0);
 
-   m_iR = m_iG = m_iB = (m_iR + m_iG + m_iB) / 3;
+   red = green = blue = (red + green + blue) / 3;
 
 }
 
 
-void color::set(double R, double G, double B, double A)
+void color::set(double r, double g, double b, double a)
 {
 
-   m_iR = (int)(R * 255.);
-   m_iG = (int)(G * 255.);
-   m_iB = (int)(B * 255.);
-   m_iA = (int)(A * 255.);
+   red      = (int)(r * 255.);
+   green    = (int)(g * 255.);
+   blue     = (int)(b * 255.);
+   alpha    = (int)(a * 255.);
 
 }
 
-
-void color::set(int R, int G, int B)
-{
-
-   m_iR = R;
-   m_iG = G;
-   m_iB = B;
-
-}
 
 
 

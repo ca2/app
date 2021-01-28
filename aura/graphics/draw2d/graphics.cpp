@@ -4673,10 +4673,10 @@ namespace draw2d
    bool graphics::draw_error_line(double x1, double h, double x2, i32 iStyle)
    {
 
-      int iR = m_ppen->m_color.m_iR;
-      int iG = m_ppen->m_color.m_iG;
-      int iB = m_ppen->m_color.m_iB;
-      int iA = m_ppen->m_color.m_iA;
+      int iR = m_ppen->m_color.red;
+      int iG = m_ppen->m_color.green;
+      int iB = m_ppen->m_color.blue;
+      int iA = m_ppen->m_color.alpha;
 
       if(iStyle == 0)
       {

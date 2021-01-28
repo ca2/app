@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include <X11/Xft/Xft.h>
+
+
 class x11_button :
    virtual public matter
 {

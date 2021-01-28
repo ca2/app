@@ -8,10 +8,10 @@ namespace user
 {
 
 
-   os_theme_colors * g_pthemecolors;
+   ::os_theme_colors * g_pthemecolors;
 
 
-   ::user::os_theme_colors * os_get_theme_colors()
+   ::os_theme_colors * os_get_theme_colors()
    {
 
       return g_pthemecolors;
@@ -19,10 +19,24 @@ namespace user
    }
 
 
-   bool os_theme_colors::is_ok() const
+   bool is_ok(const os_theme_colors & themecolors)
    {
 
-      return m_colorBack != m_colorFore && m_colorFore != m_colorFace;
+      if(themecolors.m_colorBack.color32 == themecolors.m_colorFore.color32)
+      {
+
+         return false;
+
+      }
+
+      if(themecolors.m_colorFore.color32 == themecolors.m_colorFace.color32)
+      {
+
+         return false;
+
+      }
+
+      return true;
 
    }
 
@@ -38,7 +52,14 @@ namespace user
    void os_term_theme_colors()
    {
 
-      ::acme::del(g_pthemecolors);
+      if(g_pthemecolors)
+      {
+
+         del_os_theme_colors(g_pthemecolors);
+
+         g_pthemecolors = nullptr;
+
+      }
 
    }
 
@@ -89,3 +110,22 @@ namespace os
 
 
 } // namespace os
+
+
+os_theme_colors * new_os_theme_colors()
+{
+
+   return new os_theme_colors;
+
+}
+
+
+void del_os_theme_colors(os_theme_colors * pthemecolors)
+{
+
+   delete pthemecolors;
+
+}
+
+
+

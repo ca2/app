@@ -1250,7 +1250,7 @@ namespace experience
 
          ::rect rectClient = pscrollbar->get_client_rect();
 
-         if (colorBackground.m_iA != 0)
+         if (colorBackground.alpha != 0)
          {
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -1260,7 +1260,7 @@ namespace experience
             if (psession->savings().is_trying_to_save(::e_resource_processing))
             {
 
-               colorBackground.m_iA = 255;
+               colorBackground.alpha = 255;
 
             }
 

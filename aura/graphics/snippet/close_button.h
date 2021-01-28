@@ -29,13 +29,13 @@ namespace user
       if (puserinteraction->m_itemHover == ::user::e_element_close_button)
       {
 
-         color.m_iA = 180;
+         color.alpha = 180;
 
       }
       else
       {
 
-         color.m_iA = 127;
+         color.alpha = 127;
 
       }
 
@@ -54,7 +54,7 @@ namespace user
 
          colorLighter.hls_rate(0.0, 0.312569, 0.0);
 
-         colorLighter.m_iA = 127;
+         colorLighter.alpha = 127;
 
          pgraphics->blend_pixel(pitem->m_rect.top_right() - ::size(1, 0), colorLighter);
 

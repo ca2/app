@@ -4,52 +4,35 @@
 #pragma once
 
 
-namespace user
+#include "acme/graphics/draw2d/color32.h"
+
+
+struct os_theme_colors
 {
 
 
-   struct CLASS_DECL_ACME os_theme_colors
-   {
+   COLOR32     m_colorBack;
+   COLOR32     m_colorFace;
+   COLOR32     m_colorFore;
 
-      ::color     m_colorBack;
-      ::color     m_colorFace;
-      ::color     m_colorFore;
-
-      ::color     m_colorFaceHover;
-      ::color     m_colorFacePress;
-      ::color     m_colorButton;
-      ::color     m_colorButtonHover;
-      ::color     m_colorButtonPress;
-      ::color     m_colorBorder;
-      ::color     m_colorBorderHover;
-      ::color     m_colorBorderHover1;
-      ::color     m_colorBorderHover2;
-      ::color     m_colorBorderHover3;
-      ::color     m_colorBorderPress;
+   COLOR32     m_colorFaceHover;
+   COLOR32     m_colorFacePress;
+   COLOR32     m_colorButton;
+   COLOR32     m_colorButtonHover;
+   COLOR32     m_colorButtonPress;
+   COLOR32     m_colorBorder;
+   COLOR32     m_colorBorderHover;
+   COLOR32     m_colorBorderHover1;
+   COLOR32     m_colorBorderHover2;
+   COLOR32     m_colorBorderHover3;
+   COLOR32     m_colorBorderPress;
 
 
-      bool is_ok() const;
+};
 
 
-   };
-
-
-   CLASS_DECL_ACME void os_term_theme_colors();
-
-   os_theme_colors * os_get_theme_colors();
-
-   void os_set_theme_colors(os_theme_colors * pthemecolors);
-
-   CLASS_DECL_ACME string _os_get_user_theme();
-
-   CLASS_DECL_ACME void _os_process_user_theme(string strTheme);
-
-   CLASS_DECL_ACME void _os_process_user_theme_color(string strTheme);
-
-   CLASS_DECL_ACME string os_get_user_theme();
-
-
-} // namespace user
+os_theme_colors * new_os_theme_colors();
+void del_os_theme_colors(os_theme_colors * pthemecolors);
 
 
 

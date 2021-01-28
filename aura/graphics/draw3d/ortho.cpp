@@ -138,7 +138,7 @@ namespace draw3d
             color32_t clr = ca.get_rgb();
 
 
-            pen->create_solid((1.05 - r) * 10.0,ARGB((int)(dA * (255.0 - r * 200.0)),ca.m_iR,ca.m_iG,ca.m_iB));
+            pen->create_solid((1.05 - r) * 10.0,ARGB((int)(dA * (255.0 - r * 200.0)),ca.red,ca.green,ca.blue));
             if(i < 6)
             {
                pen->m_epen = ::draw2d::e_pen_dot;
@@ -310,7 +310,7 @@ namespace draw3d
             }
             m_pdc->set(pen);*/
 
-            pimage->fill((int)(dA * (184.0 - r * 128.0)),ca.m_iR,ca.m_iG,ca.m_iB);
+            pimage->fill((int)(dA * (184.0 - r * 128.0)),ca.red,ca.green,ca.blue);
 
             point2da[0]=::point((::i32)locationa[f[iMax][0]].x,(::i32)locationa[f[iMax][0]].y);
             point2da[1]= ::point((::i32)locationa[f[iMax][1]].x,(::i32)locationa[f[iMax][1]].y);

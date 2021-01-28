@@ -340,57 +340,26 @@ inline image::operator const image_extension* () const
 inline __pointer(image_frame_array) image_meta::frames() { return m_pextension ? m_pextension->m_pframea : nullptr; }
 
 
-inline ::rgb& rgb::operator =(const ::payload & payload)
-{
-
-   m_iR = payload["red"];
-   m_iG = payload["green"];
-   m_iB = payload["blue"];
-
-   return *this;
-
-}
-
-
-inline ::payload& assign(::payload& payload, const rgb& rgb)
-{
-
-   payload["red"] = rgb.m_iR;
-   payload["green"] = rgb.m_iG;
-   payload["blue"] = rgb.m_iB;
-
-   return payload;
-
-}
-
-
-
-inline void __exchange(::stream& s, ::rgb& rgb)
-{
-
-   s.exchange("red", rgb.m_iR); s.exchange("green", rgb.m_iG); s.exchange("blue", rgb.m_iB);
-
-}
-
-
 inline ::rgba& rgba::operator =(const ::payload & payload)
 {
 
-   rgb::operator=(payload);
-
-   m_iA = payload["opacity"];
+   red = payload["red"];
+   green = payload["green"];
+   blue = payload["blue"];
+   alpha = payload["alpha"];
 
    return *this;
 
 }
 
 
-inline ::payload& assign(::payload& payload, const ::rgba& rgba)
+inline ::payload& assign(::payload& payload, const rgba& rgba)
 {
 
-   assign(payload, (const ::rgb&) rgba);
-
-   payload["opacity"] = rgba.m_iA;
+   payload["rec"] = rgba.red;
+   payload["green"] = rgba.green;
+   payload["blue"] = rgba.blue;
+   payload["alpha"] = rgba.alpha;
 
    return payload;
 
@@ -401,9 +370,14 @@ inline ::payload& assign(::payload& payload, const ::rgba& rgba)
 inline void __exchange(::stream& s, ::rgba& rgba)
 {
 
-   __exchange(s, (::rgb&) rgba); s.exchange("opacity", rgba.m_iA);
+   s.exchange("red", rgba.red);
+   s.exchange("green", rgba.green);
+   s.exchange("blue", rgba.blue);
+   s.exchange("alpha", rgba.alpha);
 
 }
+
+
 
 
 inline ::hls& hls::operator =(const ::payload & payload)

@@ -7004,7 +7004,7 @@ bool image::channel_copy(color::e_channel echannelDst, color::e_channel echannel
 }
 
 
-bool image::tint(::image * pimage, const rgb & rgb)
+bool image::tint(::image * pimage, const rgba & rgba)
 {
 
    if (!create(pimage->size()))
@@ -7020,9 +7020,9 @@ bool image::tint(::image * pimage, const rgb & rgb)
    u8 *dst = (u8 *)colorref();
    i64 size = scan_area();
 
-   byte uchR = (byte)rgb.m_iR;
-   byte uchG = (byte)rgb.m_iG;
-   byte uchB = (byte)rgb.m_iB;
+   byte uchR = (byte)rgba.red;
+   byte uchG = (byte)rgba.green;
+   byte uchB = (byte)rgba.blue;
 
    //      i32 i = 0;;
 
@@ -7388,7 +7388,7 @@ bool image::set_rgb(color32_t cr)
 
    ::i64 areaRgba = 0;
 
-   color32_t cr = IMAGE_ARGB(rgba.m_iA, rgba.m_iR, rgba.m_iG, rgba.m_iB);
+   color32_t cr = IMAGE_ARGB(rgba.alpha, rgba.red, rgba.green, rgba.blue);
 
    const color32_t* p = this->get_data();
 
@@ -7431,7 +7431,7 @@ bool image::set_rgb(color32_t cr)
 
    ::count areaRgba = 0;
 
-   color32_t cr = IMAGE_ARGB(rgba.m_iA, rgba.m_iR, rgba.m_iG, rgba.m_iB);
+   color32_t cr = IMAGE_ARGB(rgba.alpha, rgba.red, rgba.green, rgba.blue);
 
    int wscan = m_iScan / sizeof(color32_t);
 
@@ -7555,9 +7555,9 @@ bool image::set_rgb(color32_t cr)
 bool image::paint_rgb(color c)
 {
 
-   int R = c.m_iR;
-   int G = c.m_iG;
-   int B = c.m_iB;
+   int R = c.red;
+   int G = c.green;
+   int B = c.blue;
    int A;
 
    u8 * puch = (u8 *)get_data();

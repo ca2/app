@@ -1628,7 +1628,7 @@ void simple_frame_window::_001OnClose(::message::message * pmessage)
 
       auto pnode = Node;
 
-      auto edesktop = pnode->get_edesktop();
+      auto edesktop = System.get_edesktop();
 
       if(edesktop == ::user::e_desktop_unity_gnome
             || edesktop == ::user::e_desktop_ubuntu_gnome)

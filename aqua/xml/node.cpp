@@ -312,12 +312,12 @@ namespace xml
                }
                if(entity_value.has_char())
                {
-                  __defer_fork(m_pdocument->m_pentitiesHash);
+                  defer_fork(m_pdocument->m_pentitiesHash);
                   m_pdocument->m_pentitiesHash->set_at(entity_name, entity_value);
                }
                if(ext_entity_value.has_char())
                {
-                  __defer_fork(m_pdocument->m_pentitiesExtHash);
+                  defer_fork(m_pdocument->m_pentitiesExtHash);
                   m_pdocument->m_pentitiesExtHash->set_at(entity_name, ext_entity_value);
                }
             }

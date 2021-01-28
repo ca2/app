@@ -17,8 +17,9 @@ namespace acme
 
 #endif
 
-      os_construct();
+      m_edesktop = ::user::e_desktop_none;
 
+      os_construct();
 
       if (g_psystem == nullptr)
       {

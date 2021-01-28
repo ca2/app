@@ -263,6 +263,11 @@ void enum_display_monitors(::aura::session * psession)
 
    auto pnode = Node;
 
-   pnode->enum_display_monitors(psession);
+   if(pnode)
+   {
+
+      pnode->enum_display_monitors(psession);
+
+   }
 
 }

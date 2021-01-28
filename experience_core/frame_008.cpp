@@ -546,22 +546,22 @@ SizingNone:;
 
                ::color color = m_colorMoveableBorderDkShadow;
 
-               color.m_iA = 8;
+               color.alpha = 8;
                m_penHollow0->create_solid(1.0,color);
 
-               color.m_iA = 11;
+               color.alpha = 11;
                m_penHollow1->create_solid(1.0,color);
 
-               color.m_iA = 23;
+               color.alpha = 23;
                m_penHollow2->create_solid(1.0,color);
 
-               color.m_iA = 49;
+               color.alpha = 49;
                m_penHollow3->create_solid(1.0,color);
 
-               color.m_iA = 72;
+               color.alpha = 72;
                m_penHollow4->create_solid(1.0, color);
 
-               color.m_iA = 255;
+               color.alpha = 255;
                m_penHollow5->create_solid(1.0,color);
 
 

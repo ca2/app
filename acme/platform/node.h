@@ -18,8 +18,9 @@ namespace acme
    public:
 
 
-      ::apex::node *       m_papexnode;
-      ::aura::node *       m_pauranode;
+      ::apex::node *          m_papexnode;
+      ::aura::node *          m_pauranode;
+      ::user::enum_desktop    m_edesktop;
 
 
       node();
@@ -30,7 +31,11 @@ namespace acme
 
       virtual void os_application_system_run();
 
+      virtual bool _calc_dark_mode();
+
       virtual void os_calc_user_dark_mode();
+
+      virtual void on_os_dark_mode_change();
 
       virtual string os_get_user_theme();
 
@@ -92,8 +97,6 @@ namespace acme
 
 
       virtual void node_post_quit();
-
-      virtual ::user::enum_desktop get_edesktop();
 
       virtual void enum_display_monitors(::aura::session * psession);
 

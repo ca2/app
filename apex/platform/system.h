@@ -856,8 +856,8 @@ namespace apex
 
 #ifdef LINUX
 
-      virtual ::e_status defer_initialize_x11();
-      virtual bool sn_start_context();
+      //virtual ::e_status defer_initialize_x11();
+      //virtual bool sn_start_context();
 
 #endif
 
@@ -973,6 +973,10 @@ namespace apex
       //virtual ::apex::library* load_library(const char* pszLibrary);
 
       virtual void application_main(int argc, char *argv[], const char * pszCommandLine);
+
+
+      virtual ::e_status message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+
 
    };
 

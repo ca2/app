@@ -250,9 +250,12 @@ namespace aura
       //bool                                         m_bProcessInitialize;
       //bool                                         m_bProcessInitializeResult;
 
-      strid_map < ::apex::library* >              m_idmapCreateViewLibrary;
+      strid_map < ::apex::library* >                  m_idmapCreateViewLibrary;
 
-      __pointer_array(::apex::library)                         m_libraryspa;
+      __pointer_array(::apex::library)          m_libraryspa;
+
+      __pointer(::windowing::windowing)            m_pwindowing;
+
 
 #ifdef _UWP
 
@@ -277,6 +280,14 @@ namespace aura
       virtual ::e_status inline_init() override;
       virtual ::e_status inline_term() override;
 
+
+#ifdef LINUX
+
+      virtual ::e_status os_application_system_run() override;
+
+#endif
+
+
 //      virtual ::e_status init_system() override;
 //      virtual void term_system() override;
 
@@ -294,6 +305,7 @@ namespace aura
       //void set_thread(ithread_t ithread, ::thread * pthread);
       //void unset_thread(ithread_t ithread, ::thread * pthread);
 
+      inline ::windowing::windowing * windowing() { return m_pwindowing; }
 
       ::aura::estamira& estamira();
 
@@ -859,20 +871,13 @@ namespace aura
 
 #ifdef LINUX
 
-      virtual ::e_status defer_initialize_x11() override;
+      virtual ::e_status defer_initialize_x11() ;
       virtual bool sn_start_context();
-
 
 #endif
 
-
-
-
-
       //bool sync_load_url(string& str, const char* pszUrl, ::account::user* puser = nullptr, ::http::cookies* pcookies = nullptr);
       bool sync_load_url(string& str, const char* pszUrl,  ::http::cookies* pcookies = nullptr);
-
-
 
 
 
@@ -984,7 +989,6 @@ namespace aura
 
       virtual ::e_status initialize_estamira();
 
-      virtual ::e_status os_application_system_run() override;
 
    };
 

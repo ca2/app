@@ -89,74 +89,74 @@ CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
 
 
 
-::user::interaction_impl * oswindow_interaction_impl(oswindow oswindow)
-{
-
-   if (::is_null(oswindow))
-   {
-
-      return nullptr;
-
-   }
-
-#ifndef WINDOWS_DESKTOP
-
-   if (::is_set(oswindow->m_pimpl))
-   {
-
-      return oswindow->m_pimpl;
-
-   }
-
-#endif
-
-   auto & system = System;
-
-   sync_lock slSystem(system.mutex());
-
-   auto pmap = system.m_pwindowmap;
-
-   if (!pmap)
-   {
-
-      return nullptr;
-
-   }
-
-   //sync_lock slMap(pmap->mutex());
-
-   ::user::primitive * pbase;
-
-   if (!pmap->m_map.lookup(oswindow, pbase))
-   {
-
-      auto ptask = ::get_task();
-
-      if(::is_set(ptask))
-      {
-
-         auto pimpl = ptask->payload("wnd_init").cast<::user::interaction_impl>();
-
-         if (::is_set(pimpl))
-         {
-
-            thread_property("wnd_init") = nullptr;
-
-            pimpl->attach(oswindow);
-
-            return oswindow_interaction_impl(oswindow);
-
-         }
-
-      }
-
-      return nullptr;
-
-   }
-
-   return dynamic_cast <::user::interaction_impl *>(pbase);
-
-}
+//::user::interaction_impl * oswindow_interaction_impl(:: oswindow)
+//{
+//
+//   if (::is_null(oswindow))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//#ifndef WINDOWS_DESKTOP
+//
+//   if (::is_set(oswindow->m_pimpl))
+//   {
+//
+//      return oswindow->m_pimpl;
+//
+//   }
+//
+//#endif
+//
+//   auto & system = System;
+//
+//   sync_lock slSystem(system.mutex());
+//
+//   auto pmap = system.m_pwindowmap;
+//
+//   if (!pmap)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   //sync_lock slMap(pmap->mutex());
+//
+//   ::user::primitive * pbase;
+//
+//   if (!pmap->m_map.lookup(oswindow, pbase))
+//   {
+//
+//      auto ptask = ::get_task();
+//
+//      if(::is_set(ptask))
+//      {
+//
+//         auto pimpl = ptask->payload("wnd_init").cast<::user::interaction_impl>();
+//
+//         if (::is_set(pimpl))
+//         {
+//
+//            thread_property("wnd_init") = nullptr;
+//
+//            pimpl->attach(oswindow);
+//
+//            return oswindow_interaction_impl(oswindow);
+//
+//         }
+//
+//      }
+//
+//      return nullptr;
+//
+//   }
+//
+//   return dynamic_cast <::user::interaction_impl *>(pbase);
+//
+//}
 
 
 //CLASS_DECL_AURA string message_box_result_to_string(int iResult)

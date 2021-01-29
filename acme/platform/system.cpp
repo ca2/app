@@ -312,6 +312,20 @@ namespace acme
    }
 
 
+   ::e_status system::message_box(const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox , const ::promise::process & process)
+   {
+
+      printf("\n%s\n%s", pszTitle, pszText);
+
+      getchar();
+
+      getchar();
+
+      return ::success;
+
+   }
+
+
 } // namespace acme
 
 

@@ -11,8 +11,8 @@
 #include "framework.h"
 #include "x11_keyboard.h"
 #include "x11_exception.h"
-#include <X11/XKBlib.h>
-#include <X11/keysym.h>
+//!!!#include <X11/XKBlib.h>
+//!!!#include <X11/keysym.h>
 
 // XKeyboard -----------------------------------------------------------
 

@@ -2712,6 +2712,10 @@ namespace draw2d
 
 #include "aura/game/_.h"
 
+
+#include "aura/windowing/_windowing.h"
+
+
 #include "aura/platform/theme.h"
 
 #include "aura/user/callback.h"

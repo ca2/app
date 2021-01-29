@@ -1417,7 +1417,6 @@ namespace aura
 
       virtual int_bool window_set_mouse_cursor(oswindow window, HCURSOR hcursor);
       virtual icon_result load_icon(const ::payload& varFile);
-      virtual HCURSOR load_default_cursor(e_cursor ecursor);
 
 #ifdef WINDOWS_DESKTOP
       virtual TCHAR * windows_get_system_cursor(e_cursor ecursor);

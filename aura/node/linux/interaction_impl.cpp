@@ -2,7 +2,7 @@
 #include "_linux.h"
 #include "apex/platform/app_core.h"
 #include "aura/os/linux/_linux.h"
-#include <X11/Xatom.h>
+//!!!#include <X11/Xatom.h>
 #include "third/sn/sn.h"
 //#include <gdk/gdkx.h>
 
@@ -111,17 +111,17 @@ namespace linux
 
    i64 g_iMouseMove = 0;
 
-   class x11data :
-      virtual public object
-   {
-   public:
-
-      XWindowAttributes             m_attr;
-      XVisualInfo                   m_visualinfo;
-      // GdkWindow *                   m_pgdkwindow;
-      void *                        m_pgdkwindow;
-
-   };
+//   class x11data :
+//      virtual public object
+//   {
+//   public:
+//
+//      XWindowAttributes             m_attr;
+//      XVisualInfo                   m_visualinfo;
+//      // GdkWindow *                   m_pgdkwindow;
+//      void *                        m_pgdkwindow;
+//
+//   };
 
 
    interaction_impl::interaction_impl()
@@ -312,7 +312,9 @@ namespace linux
       if(pusersystem->m_createstruct.hwndParent == (oswindow) MESSAGE_WINDOW_PARENT)
       {
 
-         m_oswindow = oswindow_get_message_only_window(this);
+         auto pwindowing = System.windowing();
+
+         m_oswindow = pwindowing->new_message_window(this);
 
          m_puserinteraction->m_bMessageWindow = true;
 
@@ -327,385 +329,9 @@ namespace linux
          x11_sync([&]()
          {
 
-            Display * display = x11_get_display();
+            auto pwindowing = System.windowing();
 
-            if(display == nullptr)
-            {
-
-               fprintf(stderr, "ERROR: Could not open display\n");
-
-               bOk = false;
-
-               return;
-
-            }
-
-            xdisplay d(display);
-
-            if(pusersystem->m_createstruct.cx <= 0)
-            {
-
-               pusersystem->m_createstruct.cx = 1;
-
-            }
-
-            if(pusersystem->m_createstruct.cy <= 0)
-            {
-
-               pusersystem->m_createstruct.cy = 1;
-
-            }
-
-            m_iScreen            =  DefaultScreen(display);
-
-            Window rootwin       =  RootWindow(display, m_iScreen);
-
-            XEvent e;
-
-            // query Visual for "TrueColor" and 32 bits depth (RGBA)
-
-            Visual * vis = DefaultVisual(display, DefaultScreen(display));
-
-            m_iDepth = 0;
-
-            if(m_px11data.is_null())
-            {
-
-               m_px11data = __new(x11data);
-
-            }
-
-            if(XMatchVisualInfo(display, DefaultScreen(display), 32, TrueColor, &m_px11data->m_visualinfo))
-            {
-
-               vis = m_px11data->m_visualinfo.visual;
-
-            }
-            else
-            {
-
-               __zero(m_px11data->m_visualinfo);
-
-            }
-
-            m_iDepth = m_px11data->m_visualinfo.depth;
-
-            XSetWindowAttributes attr;
-
-            __zero(attr);
-
-            attr.colormap = XCreateColormap( display, rootwin, vis, AllocNone);
-
-            attr.event_mask = PropertyChangeMask | ExposureMask | ButtonPressMask | ButtonReleaseMask | KeyPressMask | KeyReleaseMask | PointerMotionMask | StructureNotifyMask | FocusChangeMask;
-
-            attr.background_pixmap = None;
-
-            attr.border_pixmap = None;
-
-            attr.border_pixel = 0;
-
-            attr.override_redirect = m_puserinteraction->m_ewindowflag & e_window_flag_arbitrary_positioning ? True : False;
-
-            //attr.override_redirect = False;
-
-            //attr.override_redirect = True;
-
-            INFO("XCreateWindow (l=%d, t=%d) (w=%d, h=%d)", pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
-
-            Window window = XCreateWindow(display, DefaultRootWindow(display), pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy,
-            0,
-            m_iDepth,
-            InputOutput,
-            vis,
-            CWColormap|CWEventMask|CWBackPixmap|CWBorderPixel
-                          | CWOverrideRedirect
-                                          , &attr);
-
-            m_puserinteraction->layout().window() = ::point(INT_MIN, INT_MIN);
-
-            m_puserinteraction->layout().window() = ::size(INT_MIN, INT_MIN);
-
-            m_puserinteraction->layout().window().screen_origin() = ::point(INT_MIN, INT_MIN);
-
-   //         {
-   //
-   //            auto & uistate = m_puserinteraction->ui_state();
-   //
-   //            uistate.m_point.set(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
-   //
-   //            uistate.m_size.set(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
-   //
-   //            uistate.m_pointScreen = uistate.m_point;
-   //
-   //         }
-   //
-            {
-
-               m_puserinteraction->layout().sketch() = ::point(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
-
-               m_puserinteraction->layout().sketch() = ::size(pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
-
-               m_puserinteraction->layout().sketch().screen_origin() = ::point(pusersystem->m_createstruct.x, pusersystem->m_createstruct.y);
-
-            }
-
-   //         {
-   //
-   //            auto & state = m_puserinteraction->process_state();
-   //
-   //            state.m_point = windowstate.m_point;
-   //
-   //            state.m_size = windowstate.m_size;
-   //
-   //            state.m_pointScreen = windowstate.m_pointScreen;
-   //
-   //         }
-
-            if (window == 0)
-            {
-
-               ::e_status estatus = get_last_status();
-
-               string strLastError = FormatMessageFromSystem(estatus);
-
-               string strMessage;
-
-               strMessage.Format("%s\n\nSystem Error Code: %d", strLastError.c_str(), estatus);
-
-               TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: oswindow creation failed: get_last_error returned:\n");
-
-               TRACE(trace_category_appmsg, e_trace_level_warning, "%s\n", strMessage.c_str());
-
-               try
-               {
-
-                  if(estatus == 0x0000057e)
-                  {
-
-                     System.message_box("cannot create a top-level child interaction_impl.");
-
-                  }
-                  else
-                  {
-
-                     System.message_box(strMessage);
-
-                  }
-
-               }
-               catch(...)
-               {
-
-               }
-
-               bOk = false;
-
-               return;
-
-            }
-
-            m_oswindow = oswindow_get(display, window, vis, m_iDepth, m_iScreen, attr.colormap);
-
-            m_oswindow->set_user_interaction(this);
-
-            m_puserinteraction->m_pimpl = this;
-
-//            auto pnode = Node;
-
-//            pnode->node_wrap_window(display, window);
-
-            m_puserinteraction->add_ref(OBJ_REF_DBG_P_NOTE(this, "native_create_window"));
-
-            auto papp = get_context_application();
-
-            if(!(m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window))
-            {
-
-               XClassHint * pupdate = XAllocClassHint();
-
-               string strPrgName = papp->m_strAppId;
-
-               strPrgName.replace("/", ".");
-
-               strPrgName.replace("_", "-");
-
-               strPrgName = "com." + strPrgName;
-
-               pupdate->res_class = (char *) (const char *) strPrgName;
-
-               pupdate->res_name = (char *) (const char *) strPrgName;
-
-               XSetClassHint(display, window, pupdate);
-
-               XFree(pupdate);
-
-            }
-
-   #ifndef RASPBIAN
-
-            if(g_psncontext != nullptr && !papp->m_bSnLauncheeSetup)
-            {
-
-               sn_launchee_context_setup_window(g_psncontext, window);
-
-               papp->m_bSnLauncheeSetup = true;
-
-            }
-
-   #endif
-
-//            if(m_puserinteraction->m_ewindowflag & e_window_flag_arbitrary_positioning)
-//            {
-//
-//               wm_arbitrarypositionwindow(m_oswindow, true);
-//
-//            }
-//            else
-            if(m_puserinteraction->m_ewindowflag & e_window_flag_dock_window)
-            {
-
-               wm_dockwindow(m_oswindow, true);
-
-            }
-            else if(m_puserinteraction->m_ewindowflag & e_window_flag_desktop_window)
-            {
-
-               wm_desktopwindow(m_oswindow, true);
-
-            }
-            else if(m_puserinteraction->layout().sketch().activation() & e_activation_on_center_of_screen)
-            {
-
-               wm_centerwindow(m_oswindow, true);
-
-            }
-
-            if(m_puserinteraction->m_ewindowflag & e_window_flag_satellite_window)
-            {
-
-               wm_toolwindow(m_oswindow, true);
-
-            }
-
-            //m_px11data->m_pgdkwindow = gdk_x11_window_foreign_new_for_display(gdk_display_get_default(), window);
-
-            Window root = 0;
-
-            Window * pchildren = nullptr;
-
-            u32 ncount = 0;
-
-            XQueryTree(display, window, &root, &m_oswindow->m_parent, &pchildren, &ncount);
-
-            if(pchildren != nullptr)
-            {
-
-               XFree(pchildren);
-
-            }
-
-            hthread_t hthread = ::get_current_hthread();
-
-            m_oswindow->m_hthread = hthread;
-
-
-            if(!XGetWindowAttributes(m_oswindow->display(), m_oswindow->window(), &m_px11data->m_attr))
-            {
-
-               INFO("linux::interaction_impl::_native_create_window_ex XGetWindowAttributes failed.");
-
-            }
-
-            int event_base, error_base, major_version, minor_version;
-
-            m_bComposite = XGetSelectionOwner(m_oswindow->display(), XInternAtom(m_oswindow->display(), "_NET_WM_CM_S0", True));
-
-            if(pusersystem->m_createstruct.lpszName != nullptr && strlen(pusersystem->m_createstruct.lpszName) > 0)
-            {
-
-               XStoreName(m_oswindow->display(), m_oswindow->window(), pusersystem->m_createstruct.lpszName);
-
-            }
-
-
-//            if(pusersystem->m_createstruct.dwExStyle & WS_EX_TOOLWINDOW)
-//            {
-//
-//               m_oswindow->set_window_long_ptr(GWL_EXSTYLE, m_oswindow->get_window_long_ptr(GWL_EXSTYLE) |  WS_EX_TOOLWINDOW);
-//
-//            }
-
-            _wm_nodecorations(m_oswindow, 0);
-
-            if(pusersystem->m_createstruct.style & WS_VISIBLE)
-            {
-
-               m_oswindow->map_window();
-
-            }
-            else
-            {
-
-               m_puserinteraction->layout().window() = e_display_none;
-
-            }
-
-            //if(m_px11data->m_attr.map_state != IsUnmapped)
-            {
-
-               if(!attr.override_redirect)
-               {
-
-                  if(is_docking_appearance(m_puserinteraction->layout().sketch().display()))
-                  {
-
-                     // Context: Linux 201*
-                     // window managers generally "don't like" windows that starts "docked/snapped".
-                     // initial (XCreateWindow) size and position maybe not be honored.
-                     // so requesting the same machine again in a effort to set the "docked/snapped" size and position.
-
-                     //m_oswindow->set_window_pos(zorder_top, pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, SWP_SHOWWINDOW);
-                     m_oswindow->set_window_pos(zorder_top, pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, 0);
-
-                  }
-
-               }
-
-            }
-
-            d.unlock();
-
-            //if(pshowwindow->m_bShow)
-            {
-
-               //::rect rect32;
-
-               //(::get_window_rect((oswindow) get_handle(), rect32))
-               {
-
-
-                  if(get_context_session() != nullptr)
-                  {
-
-                     // Initial position of window below the cursor position
-                     // with invalid (empty) size.
-                     // (Hinting for monitor placement, if no stored information
-                     // available).
-
-                     if(m_puserinteraction->layout().sketch().display() == e_display_undefined)
-                     {
-
-                        m_puserinteraction->move_to(get_context_session()->get_cursor_pos());
-
-                        m_puserinteraction->set_size(0, 0);
-
-                     }
-
-                  }
-
-               }
-
-            }
+            m_oswindow = pwindowing->new_window(this);
 
          });
 
@@ -1196,7 +822,9 @@ namespace linux
 
          send_message(e_message_ncdestroy, 0, 0);
 
-         ::oswindow_remove_message_only_window(this);
+         auto pwindowing = System.windowing();
+
+         pwindowing->remove_window(this);
 
          return true;
 

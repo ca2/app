@@ -1,6 +1,6 @@
 #include "framework.h"
 
-#include <X11/Xatom.h>
+//!!!#include <X11/Xatom.h>
 
 /* MWM decorations values */
 #define MWM_DECOR_NONE          0

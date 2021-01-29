@@ -5,16 +5,16 @@
 #include "third/sn/sn.h"
 #include <fcntl.h> // library for fcntl function
 #include <sys/stat.h>
-#include <X11/extensions/xf86vmode.h>
-#define pointer x11_pointer
-#include <X11/extensions/Xrender.h>
-#undef pointer
+//!!!#include <X11/extensions/xf86vmode.h>
+//!!!#define pointer x11_pointer
+//!!!#include <X11/extensions/Xrender.h>
+//!!!#undef pointer
 #include <unistd.h>
 //#include <X11/XKBlib.h>
-#include <X11/cursorfont.h>
-#include <X11/extensions/XInput.h>
-#include <X11/extensions/XInput2.h>
-#include <X11/XKBlib.h>
+//!!!#include <X11/cursorfont.h>
+//!!!#include <X11/extensions/XInput.h>
+//!!!#include <X11/extensions/XInput2.h>
+//!!!#include <X11/XKBlib.h>
 
 #define new ACME_NEW
 

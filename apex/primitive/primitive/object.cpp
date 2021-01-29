@@ -2292,7 +2292,7 @@ string object::get_text(const ::payload & payload, const ::id& id)
    if (!estatus)
    {
 
-      estatus = ::os_message_box(pszMessage, pszTitle, emessagebox, process);
+//      estatus = ::os_message_box(pszMessage, pszTitle, emessagebox, process);
 
    }
 

@@ -4,10 +4,10 @@
 // Ubuntu apt-get install libx11-dev
 // // Ubuntu apt-get install libx11-dev
 // // CentOS yum install libX11-devel
-#include <X11/X.h>
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
-#include <X11/Xatom.h>
+//!!!#include <X11/X.h>
+//!!!#include <X11/Xlib.h>
+//!!!#include <X11/Xutil.h>
+//!!!#include <X11/Xatom.h>
 //#include <X11/Xatom.h>
 // // Ubuntu apt-get install libcairo2-dev
 
@@ -45,8 +45,8 @@ int best_xinerama_monitor(::user::interaction * pinteraction, const ::rect & rec
 
 
 
-void mapped_net_state_raw(bool add, Display * d, Window w, int iScreen, Atom state1, Atom state2);
-void unmapped_net_state_raw(Display * d, Window w, ...);
+//!!!void mapped_net_state_raw(bool add, Display * d, Window w, int iScreen, Atom state1, Atom state2);
+//!!!void unmapped_net_state_raw(Display * d, Window w, ...);
 
 #include "cross_win_gdi.h"
 
@@ -65,7 +65,7 @@ void unmapped_net_state_raw(Display * d, Window w, ...);
 
 #ifdef __cplusplus
 
-void set_xcolor(XColor & color, color32_t cr);
+//!!!void set_xcolor(XColor & color, color32_t cr);
 
 #endif
 
@@ -96,33 +96,33 @@ void set_xcolor(XColor & color, color32_t cr);
 
 
 
-
-class CLASS_DECL_APEX device_context
-{
-public:
-
-
-   ::Display *             m_pdisplay;
-   ::Drawable              m_drawable;
-   ::GC                    m_gc;
-   ::Pixmap                m_pixmap;
-   ::Window                m_window;
-   int                     m_iDepth;
-   int                     m_iScreen;
-
-   point                   m_point;
-   point                   m_pointOffset;
-
-   XFontSet                m_fontset;
-
-   device_context();
-
-
-};
-
-
-
-//extern GMainContext * gtk_main_context;
+//
+//!!!//class CLASS_DECL_APEX device_context
+//{
+//public:
+//
+//
+//   ::Display *             m_pdisplay;
+//   ::Drawable              m_drawable;
+//   ::GC                    m_gc;
+//   ::Pixmap                m_pixmap;
+//   ::Window                m_window;
+//   int                     m_iDepth;
+//   int                     m_iScreen;
+//
+//   point                   m_point;
+//   point                   m_pointOffset;
+//
+//   XFontSet                m_fontset;
+//
+//   device_context();
+//
+//
+//};
+//
+//
+//
+////extern GMainContext * gtk_main_context;
 
 
 
@@ -136,5 +136,5 @@ public:
 
 #include <string.h>
 
-Display * x11_get_display();
+//!!!Display * x11_get_display();
 

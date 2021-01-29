@@ -2,9 +2,9 @@
 #include "linux_user_impl.h"
 #include <X11/Xatom.h>
 #include <sys/stat.h>
-#include <X11/extensions/xf86vmode.h> // libxxf86vm-dev
-#include <X11/extensions/Xrender.h>
-#include <X11/XKBlib.h>
+//!!!#include <X11/extensions/xf86vmode.h> // libxxf86vm-dev
+//!!!#include <X11/extensions/Xrender.h>
+//!!!#include <X11/XKBlib.h>
 
 
 ::point g_pointX11Cursor;

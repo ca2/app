@@ -3,10 +3,10 @@
 #include "aura/user/_user.h"
 #endif
 #include "aura/os/linux/_user.h"
-#define pointer x11_pointer
-#include <X11/extensions/Xrandr.h>
-#include <X11/extensions/Xinerama.h>
-#undef pointer
+//!!!#define pointer x11_pointer
+//!!!#include <X11/extensions/Xrandr.h>
+//!!!#include <X11/extensions/Xinerama.h>
+//!!!#undef pointer
 
 
 CLASS_DECL_AURA int xinerama_get_monitor_count();

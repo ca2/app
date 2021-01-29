@@ -94,6 +94,9 @@ const char * net_wm_state_text(e_net_wm_state estate)
 Display * x11_get_display();
 
 
+namespace
+
+
 oswindow_data::oswindow_data()
 {
 

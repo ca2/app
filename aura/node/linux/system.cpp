@@ -7,6 +7,8 @@
 #include "third/sn/sn.h"
 #include "apex/platform/app_core.h"
 //#include "apex/os/linux/gnome_apex_application.h"
+#include "aura/user/message_box.h"
+
 
 extern ::app_core * g_pappcore;
 void x11_main();
@@ -60,27 +62,30 @@ SnLauncheeContext* g_psncontext = nullptr;
 void x_display_error_trap_push(SnDisplay * sndisplay, Display * display);
 
 void x_display_error_trap_pop(SnDisplay * sndisplay, Display * display);
+//
+//namespace aura
+//{
+//
 
-namespace aura{
+//   ::e_status system::os_application_system_run()
+//   {
+//
+//
+//
+//      auto estatus = ::apex::system::os_application_system_run();
+//
+//      if(!estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return estatus;
+//
+//   }
 
-   bool system::sn_start_context()
-   {
 
-
-      Display * dpy = x11_get_display();
-
-      SnDisplay * pd = sn_display_new(dpy, &x_display_error_trap_push, &x_display_error_trap_pop);
-
-      int iScreen = DefaultScreen(dpy);
-
-      g_psncontext = sn_launchee_context_new(pd, iScreen, ::g_pappcore->m_strProgName);
-
-      return true;
-
-   }
-
-
-} // namespace aura
 
 #endif // !RASPBIAN
 
@@ -126,7 +131,9 @@ namespace aura{
 i32 _c_XErrorHandler(Display * display, XErrorEvent * perrorevent);
 #endif
 
+
 void x11_add_gdk_filter();
+
 
 namespace aura
 {
@@ -134,6 +141,33 @@ namespace aura
 
    ::e_status system::os_application_system_run()
    {
+
+      auto estatus = do_factory_exchange("windowing", "x11");
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = __construct(m_pwindowing);
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_pwindowing->process_init();
+
+      if(!estatus)
+      {
+
+         return estatus;
+
+      }
 
 //      auto estatus = create_os_node();
 //
@@ -267,17 +301,64 @@ namespace aura
 
    }
 
+
    ::e_status system::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const promise::process & process)
    {
 
-      return os_message_box(pszMessage, pszTitle, emessagebox, process);
+
+      auto pwindowing = System.windowing();
+
+      if(!pwindowing)
+      {
+
+         return ::error_no_windowing;
+
+      }
+
+      string strMessage(pszMessage);
+
+      string strTitle(pszTitle);
+
+      fork([strMessage, strTitle, emessagebox, process, pwindowing]()
+      {
+
+         auto result = pwindowing->message_box(strMessage, strTitle, emessagebox);
+
+         process(result);
+
+      });
+
+      return ::success;
 
    }
+
 
    ::e_status system::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const promise::process & process)
    {
 
-      return os_message_box(pszMessage, pszTitle, emessagebox, process);
+      auto pwindowing = System.windowing();
+
+      if(!pwindowing)
+      {
+
+         return ::error_no_windowing;
+
+      }
+
+      string strMessage(pszMessage);
+
+      string strTitle(pszTitle);
+
+      fork([strMessage, strTitle, durationTimeout,  emessagebox, process, pwindowing]()
+           {
+
+              auto result = pwindowing->message_box_timeout(strMessage, strTitle, durationTimeout, emessagebox);
+
+              process(result);
+
+           });
+
+      return ::success;
 
    }
 
@@ -301,19 +382,19 @@ bool os_init_application()
 
 }
 
-
-void os_term_application()
-{
-
-//   if(g_papexapplication != nullptr)
-//   {
 //
-//      g_application_quit(G_APPLICATION(g_papexapplication));
+//void os_term_application()
+//{
 //
-//   }
-
-}
-
+////   if(g_papexapplication != nullptr)
+////   {
+////
+////      g_application_quit(G_APPLICATION(g_papexapplication));
+////
+////   }
+//
+//}
+//
 
 //gboolean gtk_quit_callback(gpointer data)
 //{
@@ -373,18 +454,19 @@ void os_term_application()
 //   gdk_branch(prunnable, epriority);
 //
 //}
-
-void init_x11();
-namespace aura
-{
-
-   ::e_status system::defer_initialize_x11()
-   {
-
-      return ::apex::system::defer_initialize_x11();
-
-   }
-
-
-} // namespace aura
-
+//
+//void init_x11();
+//namespace aura
+//{
+//
+//   ::e_status system::defer_initialize_x11()
+//   {
+//
+//      return ::apex::system::defer_initialize_x11();
+//
+//   }
+//
+//
+//
+//} // namespace aura
+//

@@ -420,29 +420,17 @@ namespace linux
 
       fflush(stdout);
 
-      xdisplay d(oswindow->display());
+      auto pwindowing = System.windowing();
 
-      Atom net_wm_icon = XInternAtom(oswindow->display(), "_BAMF_DESKTOP_FILE", False);
+      if(!pwindowing)
+      {
 
-      Atom cardinal = XInternAtom(oswindow->display(), "STRING", False);
+         return false;
 
-      int ixa = XA_STRING;
+      }
 
-      int status = XChangeProperty(
-                     oswindow->display(),
-                     oswindow->window(),
-                     net_wm_icon,
-                     ixa,
-                     8,
-                     PropModeReplace,
-                     (const unsigned char*) (const char *) path,
-                     path.get_length());
 
-      output_debug_string("\nlinux::interaction_impl::bamf_set_icon END");
-
-      fflush(stdout);
-
-      if(status != 0)
+      if(!pwindowing->set_window_icon(oswindow, path))
       {
 
          return false;

@@ -12,7 +12,7 @@
 #ifndef XKEYBOARD_H_1C79861A_49B3_4A95_88D6_455C22FEB222
 #define XKEYBOARD_H_1C79861A_49B3_4A95_88D6_455C22FEB222
 
-#include <X11/Xlib.h>
+//!!!#include <X11/Xlib.h>
 
 
 void x11_keyboard_get_current_group_info(string & strGroupName, string & strGroupSymbol);
@@ -42,14 +42,14 @@ public:
     //friend std::ostream& operator<<(std::ostream& os, const XKeyboard& xkb);
 
 private:
-    Bool initializeXkb();
+    bool initializeXkb();
     string getSymbolNameByResNum(int groupResNum);
     int groupNumResToXkb(int groupNumRes);
     string getGroupNameByResNum(int groupResNum);
     int groupLookup(int srcValue, StringVector fromText, StringVector toText, int count);
     void accomodateGroupXkb();
 
-    Display* _display;
+    //Display* _display;
     int _groupCount;
     StringVector _groupNames;
     StringVector _symbolNames;

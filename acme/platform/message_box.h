@@ -63,7 +63,7 @@ inline ::payload operator + (const char* psz, const ::enum_message_box& emessage
 }
 
 
-CLASS_DECL_ACME ::e_status os_message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
+//CLASS_DECL_ACME ::e_status os_message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
 
 
 

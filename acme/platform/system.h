@@ -100,10 +100,11 @@ namespace acme
 
 #ifdef LINUX
 
-      virtual ::e_status defer_initialize_x11();
+//!!!      virtual ::e_status defer_initialize_x11();
 
 #endif
 
+      virtual ::e_status message_box(const char* pszText, const char* pszTitle = nullptr, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = ::promise::process());
 
 
    };

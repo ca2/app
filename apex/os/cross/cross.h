@@ -10,9 +10,9 @@ class event;
 
 #endif
 
-struct oswindow_data;
-
-typedef struct oswindow_data * oswindow;
+//struct oswindow_data;
+//
+//typedef struct oswindow_data * oswindow;
 
 #endif
 

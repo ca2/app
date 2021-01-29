@@ -1,9 +1,9 @@
 #include "framework.h"
 #include "apex/os/linux/_user.h"
-#define pointer x11_pointer
-#include <X11/extensions/Xrandr.h>
-#include <X11/extensions/Xinerama.h>
-#undef pointer
+//!!!#define pointer x11_pointer
+//!!!#include <X11/extensions/Xrandr.h>
+//!!!#include <X11/extensions/Xinerama.h>
+//!!!#undef pointer
 
 
 CLASS_DECL_APEX int xinerama_get_monitor_count();

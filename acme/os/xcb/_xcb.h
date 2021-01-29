@@ -1,8 +1,8 @@
 #pragma once
 
 
-#include <X11/Xlib.h>
-#include <xcb/xcb.h>
+//!!!#include <X11/Xlib.h>
+//!!!#include <xcb/xcb.h>
 
 
 Display * x11_get_display();

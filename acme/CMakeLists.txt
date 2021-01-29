@@ -21,6 +21,8 @@ set(LIBRARY_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAM
 set(EXECUTABLE_OUTPUT_PATH ${CMAKE_CURRENT_SOURCE_DIR}/../../../time-${PLATFORM_NAME}/cmake)
 
 
+
+
 list(APPEND acme_source
    compress/zip/api.cpp
    compress/zip/file.cpp
@@ -30,6 +32,8 @@ list(APPEND acme_source
    compress/zip/unzip.cpp
    compress/zip/zip.cpp
    compress/gz.cpp
+   const/_.h
+   const/code_page.h
    const/idpool.cpp
    exception/-ehrror.cpp
    exception/-last_ehrror.cpp
@@ -106,7 +110,9 @@ list(APPEND acme_source
    filesystem/filesystem/path_object.cpp
    graphics/draw2d/_.cpp
    graphics/draw2d/color.cpp
+   graphics/draw2d/color32.h
    graphics/draw2d/colorref_array.cpp
+   graphics/draw2d/os_font_name.cpp
    include/_.cpp
    memory/alloc.cpp
    memory/allocate_mid_big.cpp
@@ -682,6 +688,7 @@ list(APPEND acme_source
    os/ios/_mm.h
    os/os_windowing2.h
    os/posix/mq_base.h
+   os/posix/time.h
    os/solaris/linux_internal.h
    os/solaris/solaris.h
    os/solaris/solaris_cairo_keep.h
@@ -760,15 +767,15 @@ list(APPEND acme_source
    os/windows_common/_file_c.h
    os/windows_common/_unicode_c.h
    os/winpr_input.h
-   os/x11/x11_button.h
-   os/x11/x11_exception.h
-   os/x11/x11_hook.h
-   os/x11/x11_keyboard.h
-   os/x11/x11_message_box.h
-   os/x11/x11_simple_ui_display.h
-   os/x11/_x11.h
-   os/xcb/xcb_hook.h
-   os/xcb/_xcb.h
+   #os/x11/_.h
+   #os/x11/x11_button.h
+   #os/x11/x11_exception.h
+   #os/x11/x11_hook.h
+   #os/x11/x11_keyboard.h
+   #os/x11/x11_message_box.h
+   #os/x11/x11_simple_ui_display.h
+   #os/xcb/xcb_hook.h
+   #os/xcb/_xcb.h
    os/_.h
    os/_application.h
    os/_c.h
@@ -1371,6 +1378,8 @@ if (WIN32 OR UWP)
 
 endif ()
 
+
+
 if (LINUX)
    list(APPEND acme_source
       node/linux/console.cpp
@@ -1380,6 +1389,8 @@ if (LINUX)
       node/linux/factory_exchange.cpp
       node/linux/file.cpp
       node/linux/linux.cpp
+      node/linux/node.cpp
+      node/linux/node.h
       node/linux/root_tools.cpp
       #        node/linux/shell.cpp
       #        node/linux/shell_linux.cpp
@@ -1402,6 +1413,7 @@ if (LINUX)
       os/linux/list_serial_ports.cpp
       os/linux/lock.cpp
       os/linux/parallelization.cpp
+      os/linux/node.cpp
       os/linux/os.cpp
       os/linux/process.cpp
       os/linux/process_pid.cpp
@@ -1608,6 +1620,7 @@ if (APPLE)
       os/apple/UncaughtExceptionHandler.mm)
 endif ()
 
+
 if (ANDROID)
    list(APPEND acme_source
       os/cross/uwp/cross_metrowin_user.cpp
@@ -1647,7 +1660,6 @@ if (ANDROID)
       os/android/process_pid.cpp
       os/android/win_base.cpp
       )
-
 endif ()
 
 
@@ -1705,16 +1717,6 @@ endif ()
 
 if (LINUX)
    list(APPEND acme_source
-      os/x11/debug.cpp
-      os/x11/x11_button.cpp
-      os/x11/x11_hook.cpp
-      os/x11/x11_keyboard.cpp
-      os/x11/x11_message_box.cpp
-      os/x11/x11_simple_ui_display.cpp
-      os/x11/x11_windowing.cpp
-      os/x11/x11_xrender.cpp
-      os/xcb/xcb_hook.cpp
-      os/xcb/xcb_windowing.cpp
       os/ansios/binreloc.cpp)
 endif ()
 
@@ -1726,7 +1728,7 @@ else ()
 endif ()
 
 
-add_library(acme SHARED ${acme_source} const/code_page.h const/_.h os/posix/time.h graphics/draw2d/os_font_name.cpp os/x11/_.h node/linux/node.cpp node/linux/node.h platform/node.cpp platform/node.h os/linux/node.cpp user/theme_colors.h graphics/draw2d/color32.h)
+add_library(acme SHARED ${acme_source})
 
 target_precompile_headers(acme PRIVATE framework.h)
 
@@ -1742,13 +1744,15 @@ elseif (LINUX)
    #pkg_check_modules(PKGCONFIG glib-2.0 gtk+-3.0 gdk-3.0 appindicator-0.1)
    # sudo apt install libgtk-3-dev
    #pkg_check_modules(PKGCONFIG glib-2.0 freetype2 gtk+-3.0 gdk-3.0)
-   pkg_check_modules(PKGCONFIG freetype2 xcb)
+   #pkg_check_modules(PKGCONFIG freetype2 xcb)
+   pkg_check_modules(PKGCONFIG freetype2)
    target_compile_options(acme PRIVATE -fpermissive)
    target_compile_options(acme PRIVATE ${PKGCONFIG_CFLAGS})
    #target_compile_options(acme PRIVATE -std=c++14)
    #target_link_options(acme PRIVATE ${GTK_LDFLAGS})
    target_link_options(acme PRIVATE -Wl,-rpath=\$ORIGIN)
-   target_link_libraries(acme PRIVATE z dl pthread ncurses X11 Xrender Xinerama Xft ${PKGCONFIG_LIBRARIES})
+   #target_link_libraries(acme PRIVATE z dl pthread ncurses X11 Xrender Xinerama Xft ${PKGCONFIG_LIBRARIES})
+   target_link_libraries(acme PRIVATE z dl pthread ncurses ${PKGCONFIG_LIBRARIES})
    target_link_options(acme PRIVATE -Wl,-z,defs)
    message("PKGCONFIG_LIBRARIES is " ${PKGCONFIG_LIBRARIES})
 endif ()

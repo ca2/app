@@ -26,6 +26,15 @@
 
 
 
+#ifdef LINUX
+//#include <glib.h> // sudo apt-get install libglib2.0-dev
+
+
+void x11_hook_init();
+void x11_hook_term();
+
+
+#endif
 
 void trace_category_static_init();
 void trace_category_static_term();
@@ -622,6 +631,13 @@ namespace aura
       g_iObjTypCtrInit = 1;
 #endif
 
+
+#ifdef LINUX
+
+     x11_hook_init();
+
+#endif
+
       g_pcsFont = new critical_section();
 
       g_pmapFontFaceName = new string_map < i32_map < string > >();
@@ -635,6 +651,13 @@ namespace aura
 
    aura::~aura()
    {
+
+#ifdef LINUX
+
+     x11_hook_term();
+
+#endif
+
 
       term();
 

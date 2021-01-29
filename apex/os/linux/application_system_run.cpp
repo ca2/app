@@ -61,12 +61,12 @@ string ca2_command_line()
 //
 //
 //
-void sn_start_context()
-{
-
-   System.sn_start_context();
-
-}
+///*void sn_start_context()
+//{
+//
+//   System.sn_start_context();
+//
+//}*/
 
 //   Display * dpy = x11_get_display();
 //
@@ -174,19 +174,19 @@ namespace apex
 
       ::e_status estatus = ::success;
 
-      if (m_bUser)
-      {
-
-         estatus = defer_initialize_x11();
-
-         if(!estatus)
-         {
-
-            return estatus;
-
-         }
-
-      }
+//      if (m_bUser)
+//      {
+//
+//         estatus = defer_initialize_x11();
+//
+//         if(!estatus)
+//         {
+//
+//            return estatus;
+//
+//         }
+//
+//      }
 
       if (!begin_synch())
       {
@@ -215,11 +215,11 @@ void sn_start_context();
  bool os_init_application()
  {
 
-    #ifndef RASPBIAN
-
-     sn_start_context();
-
-    #endif
+//    #ifndef RASPBIAN
+//
+//     sn_start_context();
+//
+//    #endif
 
     return true;
 

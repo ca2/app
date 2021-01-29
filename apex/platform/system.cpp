@@ -5170,20 +5170,20 @@ namespace apex
 #ifdef LINUX
 
 
-   ::e_status system::defer_initialize_x11()
-   {
+//   ::e_status system::defer_initialize_x11()
+//   {
+//
+//      return ::acme::system::defer_initialize_x11();
+//
+//   }
 
-      return ::acme::system::defer_initialize_x11();
 
-   }
-
-
-   bool system::sn_start_context()
-   {
-
-      return false;
-
-   }
+//   bool system::sn_start_context()
+//   {
+//
+//      return false;
+//
+//   }
 
 
 #endif
@@ -5716,7 +5716,7 @@ string get_bundle_app_library_name();
 
             auto pfuture = __sync_future();
 
-            os_message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | e_message_box_yes_no_cancel, pfuture);
+            //message_box(strMessage, "Could not open required library. Want to give an yes/no answer insted of pression cancel?", e_message_box_icon_exclamation | e_message_box_yes_no_cancel, pfuture);
 
             pfuture->wait(10_s);
 
@@ -5808,6 +5808,16 @@ namespace apex
       apex_application_main(argc, argv, pszCommandLine);
 
    }
+
+
+   ::e_status system::message_box(const char* pszText, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+   {
+
+      return ::acme::system::message_box(pszText, pszTitle, emessagebox, process);
+
+
+   }
+
 
 } // namespace apex
 

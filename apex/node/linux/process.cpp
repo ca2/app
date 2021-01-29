@@ -381,7 +381,7 @@ namespace ansios
 
          m_exitstatus.m_iExitCode = -1;
 
-         ::os_message_box("gksu is not installed, please install gksu.","Please, install gksu.",e_message_box_icon_information);
+         message_box("gksu is not installed, please install gksu.","Please, install gksu.",e_message_box_icon_information);
 
          return false;
 

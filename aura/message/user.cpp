@@ -6,8 +6,8 @@
 
 #if defined(LINUX)
 // Ubuntu apt-get install libx11-dev
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
+//!!!#include <X11/Xlib.h>
+//!!!#include <X11/Xutil.h>
 
 #endif
 

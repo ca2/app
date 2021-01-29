@@ -3,12 +3,12 @@
 #include "aura/user/_user.h"
 #endif
 #include "aura/os/linux/_user.h"
-#include <X11/extensions/Xinerama.h>
+//!!!#include <X11/extensions/Xinerama.h>
 
 
 //http://rosettacode.org/wiki/Window_creation/X11
 
-#include <X11/Xlib.h>
+//!!!#include <X11/Xlib.h>
 #include <stdio.h>
 
 #include <string.h>

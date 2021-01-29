@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 
-#include <X11/Xatom.h>
+//!!!#include <X11/Xatom.h>
 
 
 //extern cairo_surface_t *  g_cairosurface;

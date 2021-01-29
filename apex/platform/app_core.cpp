@@ -365,12 +365,12 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
       uid_t uid = atoi(strUid);
 
-      os_message_box("going to seteuid to: " + __str(uid), "going to seteuid", e_message_box_ok);
+      System.message_box("going to seteuid to: " + __str(uid), "going to seteuid", e_message_box_ok);
 
       if (seteuid(uid) == 0)
       {
 
-         os_message_box("uid=" + __str(uid), "seteuid success", e_message_box_ok);
+         System.message_box("uid=" + __str(uid), "seteuid success", e_message_box_ok);
 
       }
       else
@@ -382,7 +382,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
          strError.Format("errno=%d uid=%d", iErr);
 
-         os_message_box(strError, "seteuid failed", e_message_box_icon_exclamation);
+         System.message_box(strError, "seteuid failed", e_message_box_icon_exclamation);
 
       }
 

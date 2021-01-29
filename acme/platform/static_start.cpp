@@ -70,8 +70,8 @@ void term_global_mq();
 //#include <glib.h> // sudo apt-get install libglib2.0-dev
 
 
-void x11_hook_init();
-void x11_hook_term();
+//!!!void x11_hook_init();
+//!!!void x11_hook_term();
 
 
 #endif
@@ -696,7 +696,7 @@ namespace acme
 
 #ifdef LINUX
 
-      x11_hook_init();
+//!!!      x11_hook_init();
 
 #endif
 
@@ -710,7 +710,7 @@ namespace acme
 
 #ifdef LINUX
 
-      x11_hook_term();
+//!!!      x11_hook_term();
 
 #endif
 

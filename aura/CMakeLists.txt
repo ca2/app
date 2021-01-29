@@ -8,7 +8,6 @@ add_compile_options("$<$<CONFIG:DEBUG>:-DDEBUG>")
 message(STATUS "CMAKE_SYSTEM_NAME is ${CMAKE_SYSTEM_NAME}")
 
 
-
 if (${CMAKE_SYSTEM_NAME} STREQUAL "Linux")
    set(LINUX TRUE)
    set(PLATFORM_NAME "linux")
@@ -619,6 +618,32 @@ if (UWP OR WIN32)
 
 endif ()
 
+list(APPEND windowing_source
+   windowing/_.h
+   windowing/_windowing.h
+   windowing/buffer.cpp
+   windowing/buffer.h
+   #windowing/button.cpp
+   #windowing/button.h
+   windowing/debug.cpp
+   windowing/display.cpp
+   windowing/display.h
+   windowing/exception.h
+   #windowing/hook.cpp
+   #windowing/hook.h
+   windowing/keyboard.cpp
+   windowing/keyboard.h
+   #windowing/message_box.cpp
+   #windowing/message_box.h
+   #windowing/simple_ui_display.cpp
+   #windowing/simple_ui_display.h
+   windowing/windowing.cpp
+   windowing/windowing.h
+   #windowing/windowing___.cpp
+   windowing/window.cpp
+   windowing/window.h
+   #windowing/xrender.cpp
+   )
 
 if (LINUX)
 
@@ -675,10 +700,10 @@ if (LINUX)
       os/linux/monitor.cpp
       os/linux/multithreading.cpp
       os/linux/os.cpp
-      os/linux/osdisplay.cpp
-      os/linux/osdisplay.h
-      os/linux/oswindow.cpp
-      os/linux/oswindow.h
+      #os/linux/osdisplay.cpp
+      #os/linux/osdisplay.h
+      #os/linux/oswindow.cpp
+      #os/linux/oswindow.h
       #os/linux/process.cpp
       #os/linux/process.h
       #os/linux/process_pid.cpp
@@ -689,23 +714,25 @@ if (LINUX)
       os/linux/user_private.h
       os/linux/win_base.cpp
       os/linux/window_cairo.h
-      os/linux/window_xlib.cpp
-      os/linux/window_xlib.h
+      #os/linux/window_xlib.cpp
+      #os/linux/window_xlib.h
       os/linux/windowing.cpp
-      os/linux/windowing_x11.cpp
-      os/linux/windowing_xcb.cpp
+      #os/linux/windowing_x11.cpp
+      #os/linux/windowing_xcb.cpp
       os/linux/windowing.h
       os/linux/x11.h
-      os/linux/xdisplay.cpp
-      os/linux/xdisplay.h
-      os/linux/xinerama.cpp
-      os/x11/_x11.h
-      os/x11/debug.cpp
-      os/x11/x11_exception.h
-      os/x11/x11_keyboard.cpp
-      os/x11/x11_keyboard.h
-      os/x11/x11_windowing.cpp
-      os/x11/x11_xrender.cpp
+      #os/linux/xdisplay.cpp
+      #os/linux/xdisplay.h
+      #os/linux/xinerama.cpp
+      #os/x11/_x11.h
+      #os/x11/debug.cpp
+      #os/x11/x11_exception.h
+      #os/x11/x11_keyboard.cpp
+      #os/x11/x11_keyboard.h
+      #os/x11/x11_windowing.cpp
+      #os/x11/x11_xrender.cpp
+      ${windowing_source}
+
       )
 
 endif ()
@@ -1108,7 +1135,8 @@ if (MSVC)
    target_link_libraries(aura PRIVATE acme apex aqua zlib libcrypto libssl dwrite d2d1 d3d11 dxgi Dxva2 dbghelp imagehlp dwmapi Setupapi Windowscodecs Winmm ws2_32 Crypt32 Normaliz version Secur32 gdiplus Shlwapi Imm32)
 elseif (LINUX)
    #pkg_check_modules(PKGCONFIG glib-2.0 gdk-3.0 gtk+-3.0 appindicator3-0.1)
-   pkg_check_modules(PKGCONFIG xft xcb)
+   #pkg_check_modules(PKGCONFIG xft xcb)
+   #pkg_check_modules(PKGCONFIG xft xcb)
    target_compile_options(aura PRIVATE -fpermissive)
    target_compile_options(aura PRIVATE ${PKGCONFIG_CFLAGS})
 
@@ -1116,7 +1144,8 @@ elseif (LINUX)
    #target_link_options(aura PRIVATE ${GTK_LDFLAGS})
    target_link_options(aura PRIVATE -Wl,-rpath=\$ORIGIN)
    #target_link_libraries(aura PRIVATE z  dl  rt  bfd  X11  X11-xcb  xcb  xcb-util  Xinerama  Xmu  Xrandr  Xext  Xxf86vm  Xrender  Xi  ncurses  idn  pthread  sn)
-   target_link_libraries(aura PRIVATE dl pthread X11 Xrandr Xrender Xinerama Xi ncurses sn)
+   #target_link_libraries(aura PRIVATE dl pthread X11 Xrandr Xrender Xinerama Xi ncurses sn)
+   target_link_libraries(aura PRIVATE dl pthread ncurses sn)
    target_link_libraries(aura PRIVATE ${PKGCONFIG_LIBRARIES})
    target_link_libraries(aura PRIVATE acme apex aqua)
    target_link_options(aura PRIVATE -Wl,-z,defs)

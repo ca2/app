@@ -1,7 +1,7 @@
 #include <X11/Xlib.h>
 #include <X11/extensions/Xinerama.h>
 #define pointer x11pointer
-#include <X11/extensions/Xrender.h>
+//!!!#include <X11/extensions/Xrender.h>
 
 //http://rosettacode.org/wiki/Window_creation/X11
 

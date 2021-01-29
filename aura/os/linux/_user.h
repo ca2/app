@@ -4,10 +4,10 @@
 // Ubuntu apt-get install libx11-dev
 // // Ubuntu apt-get install libx11-dev
 // // CentOS yum install libX11-devel
-#include <X11/X.h>
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
-#include <X11/Xatom.h>
+//!!!#include <X11/X.h>
+//!!!#include <X11/Xlib.h>
+//!!!#include <X11/Xutil.h>
+//!!!#include <X11/Xatom.h>
 //#include <X11/Xatom.h>
 // // Ubuntu apt-get install libcairo2-dev
 
@@ -45,8 +45,8 @@ int best_xinerama_monitor(::user::interaction * pinteraction, const ::rect & rec
 
 
 
-void mapped_net_state_raw(bool add, Display * d, Window w, int iScreen, Atom state1, Atom state2);
-void unmapped_net_state_raw(Display * d, Window w, ...);
+//void mapped_net_state_raw(bool add, Display * d, Window w, int iScreen, Atom state1, Atom state2);
+//void unmapped_net_state_raw(Display * d, Window w, ...);
 
 #include "cross_win_gdi.h"
 
@@ -59,29 +59,29 @@ void unmapped_net_state_raw(Display * d, Window w, ...);
 
 #include "window_cairo.h"
 
-#include "window_xlib.h"
+//#include "window_xlib.h"
 
 #include "windowing.h"
 
 #ifdef __cplusplus
 
-void set_xcolor(XColor & color, color32_t cr);
+//void set_xcolor(XColor & color, color32_t cr);
 
 #endif
 
 
 
 
-CLASS_DECL_AURA i32 oswindow_find_message_only_window(::user::interaction_impl * puibaseMessageWindow);
-CLASS_DECL_AURA i32 oswindow_find(Display * pdisplay, Window window);
-CLASS_DECL_AURA i32 oswindow_find(Window window);
-CLASS_DECL_AURA oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * puibaseMessageWindow);
-//CLASS_DECL_AURA oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = nullptr);
-CLASS_DECL_AURA oswindow_data * oswindow_get(Window window);
-CLASS_DECL_AURA oswindow oswindow_defer_get(Window w);
-CLASS_DECL_AURA bool oswindow_remove(Display * pdisplay, Window window);
-CLASS_DECL_AURA bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
-
+//CLASS_DECL_AURA i32 oswindow_find_message_only_window(::user::interaction_impl * puibaseMessageWindow);
+//CLASS_DECL_AURA i32 oswindow_find(Display * pdisplay, Window window);
+//CLASS_DECL_AURA i32 oswindow_find(Window window);
+//CLASS_DECL_AURA oswindow_data * oswindow_get_message_only_window(::user::interaction_impl * puibaseMessageWindow);
+////CLASS_DECL_AURA oswindow_data * oswindow_get(Display * pdisplay, Window window, Visual * pvisual = nullptr);
+//CLASS_DECL_AURA oswindow_data * oswindow_get(Window window);
+//CLASS_DECL_AURA oswindow oswindow_defer_get(Window w);
+//CLASS_DECL_AURA bool oswindow_remove(Display * pdisplay, Window window);
+//CLASS_DECL_AURA bool oswindow_remove_message_only_window(::user::interaction_impl * puibaseMessageOnlyWindow);
+//
 
 
 //#ifndef HWND_MESSAGE
@@ -89,49 +89,49 @@ CLASS_DECL_AURA bool oswindow_remove_message_only_window(::user::interaction_imp
 //#
 
 
-
-
-
-
-
-
-
-
-class CLASS_DECL_AURA device_context
-{
-public:
-
-
-   ::Display *             m_pdisplay;
-   ::Drawable              m_drawable;
-   ::GC                    m_gc;
-   ::Pixmap                m_pixmap;
-   ::Window                m_window;
-   int                     m_iDepth;
-   int                     m_iScreen;
-
-   point                   m_point;
-   point                   m_pointOffset;
-
-   XFontSet                m_fontset;
-
-   device_context();
-
-
-};
-
-
-
-//extern GMainContext * gtk_main_context;
-
-
-
-
-
-
-#include <stdio.h>
-
-#include <string.h>
-
-Display * x11_get_display();
-
+//
+//
+//
+//
+//
+//
+//
+//
+//class CLASS_DECL_AURA device_context
+//{
+//public:
+//
+//
+//   ::Display *             m_pdisplay;
+//   ::Drawable              m_drawable;
+//   ::GC                    m_gc;
+//   ::Pixmap                m_pixmap;
+//   ::Window                m_window;
+//   int                     m_iDepth;
+//   int                     m_iScreen;
+//
+//   point                   m_point;
+//   point                   m_pointOffset;
+//
+//   XFontSet                m_fontset;
+//
+//   device_context();
+//
+//
+//};
+//
+//
+//
+////extern GMainContext * gtk_main_context;
+//
+//
+//
+//
+//
+//
+//#include <stdio.h>
+//
+//#include <string.h>
+//
+//Display * x11_get_display();
+//

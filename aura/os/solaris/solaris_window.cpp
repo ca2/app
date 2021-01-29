@@ -1,6 +1,6 @@
 ﻿#include "framework.h"
 
-#include <X11/Xatom.h>
+//#include <X11/Xatom.h>
 
 
 //extern cairo_surface_t *  g_cairosurface;
@@ -693,7 +693,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 
 #include <cairo/cairo.h>
 #include <cairo/cairo-xlib.h>
-#include <X11/Xlib.h>
+//#include <X11/Xlib.h>
 
 
 #define SIZEX 100

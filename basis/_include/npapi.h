@@ -68,8 +68,8 @@
 #if defined(XP_UNIX)
 # include <stdio.h>
 # if defined(MOZ_X11)
-#  include <X11/Xlib.h>
-#  include <X11/Xutil.h>
+//!!!#  include <X11/Xlib.h>
+//!!!#  include <X11/Xutil.h>
 # endif
 #endif
 

@@ -79,6 +79,12 @@ enum enum_status
    error_not_initialized,
    e_status_no_work,
    error_not_running,
+   error_no_windowing,
+   error_no_draw2d,
+   error_no_audio,
+   error_no_session,
+   error_no_system,
+   error_no_application,
 
    error_time_bag = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),
    error_open_failed,

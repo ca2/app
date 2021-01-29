@@ -2,7 +2,7 @@
 #include "_linux.h"
 #include "aura/platform/app_core.h"
 #include "aura/os/linux/_linux.h"
-#include <X11/Xatom.h>
+//!!!#include <X11/Xatom.h>
 #include "third/sn/sn.h"
 #include <gdk/gdkx.h>
 

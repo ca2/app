@@ -1,8 +1,8 @@
 #include "platform/config.h"
-#include <X11/Xlib.h>
-#include <X11/extensions/Xinerama.h>
+//!!!#include <X11/Xlib.h>
+//!!!#include <X11/extensions/Xinerama.h>
 #define pointer x11pointer
-#include <X11/extensions/Xrender.h>
+//!!!#include <X11/extensions/Xrender.h>
 
 
 #if defined(RASPBIAN)

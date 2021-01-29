@@ -24,7 +24,7 @@
 #include "xfreerdp.h"
 
 #ifdef WITH_XI
-#include <X11/extensions/XInput2.h>
+//!!!#include <X11/extensions/XInput2.h>
 #endif
 
 int xf_input_init(xfContext* xfc, Window window);

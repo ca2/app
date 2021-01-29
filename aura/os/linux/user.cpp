@@ -15,3 +15,21 @@ namespace user
 
 
 } // namespace user
+
+
+int _os_message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox)
+{
+
+
+   auto pwindowing = System.windowing();
+
+   if(!pwindowing)
+   {
+
+      return -1;
+
+   }
+
+   return pwindowing->message_box(pszMessage, pszTitle, emessagebox);
+
+}

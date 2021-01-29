@@ -250,7 +250,9 @@ namespace draw2d
             if (!hcursor)
             {
 
-               hcursor = App(pinteraction).load_default_cursor(m_ecursor);
+               auto pwindowing = System.windowing();
+
+               hcursor = pwindowing->load_default_cursor(m_ecursor);
 
             }
 
@@ -274,8 +276,10 @@ namespace draw2d
          }
          else if(!m_bDefaultCursor)
          {
+
+            auto pwindowing = System.windowing();
             
-            m_hcursor = App(pinteraction).load_default_cursor(m_ecursor);
+            m_hcursor = pwindowing->load_default_cursor(m_ecursor);
 
          }
 

@@ -59,8 +59,8 @@ namespace uwp
       bool                             m_b3D;
       ::aura::system *                 m_psystem;
       ::mutex                          m_mutexDc;
-      size                             m_size;
-      ::size                           m_sizeBuffer;
+      size_i32                             m_size;
+      ::size_i32                           m_sizeBuffer;
       ::uwp::interaction_impl *        m_pimpl;
       bool                             m_bInitialized;
       bool                             m_bInit;

@@ -34,9 +34,9 @@ typedef struct tagRECT
    ::i32    top;
    ::i32    right;
    ::i32    bottom;
-} RECT32, *PRECT, *NPRECT, *LPRECT32;
+} RECTANGLE_I32, *PRECT, *NPRECT, *LPRECT32;
 
-typedef const RECT32 * LPCRECT32;
+typedef const RECTANGLE_I32 * const RECTANGLE_I32 *;
 
 
 
@@ -52,6 +52,6 @@ int_bool get_uiwindow_rect(oswindow hwnd, LPRECT32 lprect);
 
 
 
-int_bool set_nswindow_frame(oswindow hwnd, LPCRECT32 prect, int iDisplay);
+int_bool set_nswindow_frame(oswindow hwnd, const RECTANGLE_I32 * prectangle, int iDisplay);
 int_bool size_nswindow(oswindow hwnd, int cx, int cy);
 int_bool move_nswindow(oswindow hwnd, int x, int y);

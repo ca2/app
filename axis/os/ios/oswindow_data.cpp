@@ -36,32 +36,32 @@ bool oswindow_data::show_window(int iShow)
 }
 
 
-bool oswindow_data::_001ClientToScreen(POINT32 *lppoint)
+bool oswindow_data::_001ClientToScreen(POINT_I32 *lppoint)
 {
 
-   RECT32 rect;
+   RECTANGLE_I32 rectangle_i32;
    
-   get_uiwindow_rect(this, &rect);
+   get_uiwindow_rect(this, &rectangle);
    
-   lppoint->x += rect.left;
+   lppoint->x += rectangle.left;
    
-   lppoint->y += rect.top;
+   lppoint->y += rectangle.top;
    
    return true;
    
 }
 
 
-bool oswindow_data::_001ScreenToClient(POINT32 *lppoint)
+bool oswindow_data::_001ScreenToClient(POINT_I32 *lppoint)
 {
    
-   RECT32 rect;
+   RECTANGLE_I32 rectangle_i32;
    
-   get_uiwindow_rect(this, &rect);
+   get_uiwindow_rect(this, &rectangle);
    
-   lppoint->x -= rect.left;
+   lppoint->x -= rectangle.left;
    
-   lppoint->y -= rect.top;
+   lppoint->y -= rectangle.top;
    
    return true;
    

@@ -70,7 +70,7 @@ namespace windows
       int m_iSkip;
       int m_iCount;
 
-      static critical_section g_cs;
+      static critical_section s_criticalsection;
 
       callstack(const char * pszFormat = default_format(), i32 iSkip = callstack_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr, int iCount = -1);
       virtual ~callstack();

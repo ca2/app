@@ -153,7 +153,7 @@ namespace html
 
          //::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         //::rect rectWindow;
+         //::rectangle_i32 rectWindow;
 
          //m_pedit->get_window_rect(rectWindow);
 

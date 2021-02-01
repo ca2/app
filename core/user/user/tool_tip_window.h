@@ -60,11 +60,11 @@ namespace user
       i32                        m_iEventTool;     // item selected
       i32                        m_iTool;          // item where the tip will be showed
       ::draw2d::font_pointer          m_font;           // tip string font
-      point                      m_pointOffset;       // tip point offset
-      ::size                     m_sizeArrow;      // arrow size
+      point_i32                      m_pointOffset;       // tip point_i32 offset
+      ::size_i32                     m_sizeArrow;      // arrow size_i32
       bool                       m_bTipEnable;     // set if the tip is enabled
 
-      point                      m_point;             // coordinates fo the cursor position used to track changes in cursor position
+      point_i32                      m_point;             // coordinates fo the cursor position used to track changes in cursor position
       CToolMap                   m_toolmap;        // map of tool index to tool pointers
 
       tool_tip_window();
@@ -78,7 +78,7 @@ namespace user
       tool_tip_tool * GetTool(i32 iTool);
       bool GetToolText(i32 iTool, string & str);
       void AddTool(tool_tip_tool * ptool);
-      bool GetToolRect(i32 iTool, RECT32 * prect);
+      bool GetToolRect(i32 iTool, RECTANGLE_I32 * prectangle);
 
       void update_drawing_objects();
       bool ShowTip();
@@ -86,7 +86,7 @@ namespace user
       void EnableTip(bool bEnable = true);
       bool HideTip();
       //virtual bool create(::user::interaction * puserinteraction, const id & id);
-      bool CalcRect(::draw2d::graphics_pointer & pgraphics, RECT32 * prect, const ::rect & lprectToolScreen, const char * pcsz);
+      bool CalcRect(::draw2d::graphics_pointer & pgraphics, RECTANGLE_I32 * prectangle, const ::rectangle_i32 & lprectToolScreen, const char * pcsz);
 
       void ShowTip(i32 iTool, bool bForce = false);
       void SetPositionHint(::user::interaction * puserinteraction, enum_position eposition);

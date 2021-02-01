@@ -113,7 +113,7 @@ namespace sockets
    //{
    //public:
 
-   //   enum { nSizeRecv = 1000 }; // max receive buffer size (> hdr line length)
+   //   enum { nSizeRecv = 1000 }; // max receive buffer size_i32 (> hdr line length)
 
 
    //   char*  m_pReadBuf; // read buffer

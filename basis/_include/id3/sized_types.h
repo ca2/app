@@ -27,7 +27,7 @@
  */
 
 /**
- ** This file defines size-specific typedefs based on the macros defined in
+ ** This file defines size_i32-specific typedefs based on the macros defined in
  ** limits.h
  **/
 

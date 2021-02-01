@@ -52,8 +52,8 @@ public:
    virtual bool round_window_key_down(unsigned int uiKeyCode) = 0;
    virtual bool round_window_key_up(unsigned int uiKeyCode) = 0;
    
-   virtual void round_window_resized(CGRect rect) = 0;
-   virtual void round_window_moved(CGPoint point) = 0;
+   virtual void round_window_resized(CGRect rectangle_i32) = 0;
+   virtual void round_window_moved(CGPoint point_i32) = 0;
    
    virtual void round_window_iconified() = 0;
    virtual void round_window_deiconified() = 0;
@@ -67,7 +67,7 @@ public:
    virtual void round_window_activate() = 0;
    virtual void round_window_deactivate() = 0;
    
-   virtual void round_window_set_frame(CGRect rect);
+   virtual void round_window_set_frame(CGRect rectangle_i32);
    virtual void round_window_invalidate();
    virtual void round_window_show();
    virtual void round_window_hide();
@@ -90,7 +90,7 @@ public:
 };
 
 
-NSWindow * new_apex_window(apex_window * papexwindow, CGRect rect, unsigned int uStyel);
+NSWindow * new_apex_window(apex_window * papexwindow, CGRect rectangle_i32, unsigned int uStyel);
 void ns_app_close();
 
 

@@ -119,11 +119,11 @@ namespace prompt
 
       UNREFERENCED_PARAMETER(pmessage);
 
-      ::rect rectDesktop;
+      ::rectangle_i32 rectDesktop;
 
       best_monitor(rectDesktop);
 
-      ::rect rectClient = get_client_rect();
+      ::rectangle_i32 rectClient = get_client_rect();
       
       //get_client_rect(rectClient);
       
@@ -172,7 +172,7 @@ namespace prompt
    void view::_001OnContextMenu(::message::message * pmessage)
    {
 //      __pointer(::message::context_menu) pcontextmenu(pmessage);
-//      ::point point = pcontextmenu->GetPoint();
+//      ::point_i32 point = pcontextmenu->GetPoint();
 
 
    }

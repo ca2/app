@@ -91,10 +91,10 @@ namespace base
 //      ::payload                                                m_varFile;
 ////      ::payload                                                m_
 //
-//      __pointer(::mutex)                                 m_spmutexUserAppData;
-//      __pointer(::mutex)                                 m_spmutexSystemAppData;
+//      ::mutex                                 m_spmutexUserAppData;
+//      ::mutex                                 m_spmutexSystemAppData;
 //
-//      __pointer(::mutex)                                 m_spmutexMatter;
+//      ::mutex                                 m_spmutexMatter;
 //
 //      bool                                               m_bGudoNetCache;
 //
@@ -102,7 +102,7 @@ namespace base
 //
 //      __composite(::parallelization::threading)           m_pthreading;
 //      ::e_display                                         m_edisplay;
-//      size_t                                             m_nSafetyPoolSize; // ideal size
+//      size_t                                             m_nSafetyPoolSize; // ideal size_i32
 //
 //      bool                                               m_bFinalizeIfNoSessionSetting;
 //      bool                                               m_bFinalizeIfNoSession;
@@ -120,7 +120,7 @@ namespace base
 //      millis                                               m_millisMainStart;
 //      millis                                               m_millisAfterApplicationFirstRequest;
 //
-//      __pointer(::mutex)                                 m_spmutexOpenweatherCity;
+//      ::mutex                                 m_spmutexOpenweatherCity;
 //
 //      string_array                                       m_straCityLo;
 //      string_array                                       m_straCity;
@@ -292,7 +292,7 @@ namespace base
 //      //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 //
 //      //virtual ::install::canvas * install_create_canvas();
-//      //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rect & rect);
+//      //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
 //      //virtual int install_canvas_increment_mode();
 //
 //      //virtual string install_get_platform() override;
@@ -477,7 +477,7 @@ namespace base
 //
 //
 //      template < typename T >
-//      inline T * cast_clone(T * point)
+//      inline T * cast_clone(T * point_i32)
 //      {
 //
 //         return ::clone(point);
@@ -541,7 +541,7 @@ namespace base
 //      virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
 //
 //
-//      virtual ::u32 os_post_to_all_threads(const ::id & id,WPARAM wparam = 0,lparam lparam = 0);
+//      virtual ::u32 os_post_to_all_threads(const ::id & id,wparam wparam = 0,lparam lparam = 0);
 //
 //
 //      virtual void session_add(index iEdge, ::aura::session * psession);
@@ -674,7 +674,7 @@ namespace base
 //
 //      //#ifndef _UWP
 //
-//      virtual void get_time(timeval * point);
+//      virtual void get_time(timeval * point_i32);
 //
 //      //#endif
 //
@@ -715,7 +715,7 @@ namespace base
 //
 //      //virtual bool initialize_native_window1();
 //
-//      //virtual void * initialize_native_window2(const ::rect & rect);
+//      //virtual void * initialize_native_window2(const ::rectangle_i32 & rectangle);
 //
 //
 //      virtual void on_os_text(e_os_text etext, string strText);
@@ -727,28 +727,28 @@ namespace base
 //
 //#if defined(WINDOWS)
 //      //#pragma message("at macos??")
-//      static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECT32 * prcMonitor, LPARAM dwData);
+//      static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECTANGLE_I32 * prcMonitor, LPARAM dwData);
 //
-//      void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECT32 * prcMonitor);
+//      void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECTANGLE_I32 * prcMonitor);
 //
 //#endif
 //
-//      virtual index get_main_monitor(RECT32 * prect = nullptr);
+//      virtual index get_main_monitor(RECTANGLE_I32 * prectangle = nullptr);
 //
 //      virtual ::count get_monitor_count();
-//      virtual bool  get_monitor_rect(index iMonitor, RECT32 * prect);
+//      virtual bool  get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle);
 //
 //      virtual ::count get_desk_monitor_count();
-//      virtual bool  get_desk_monitor_rect(index iMonitor, RECT32 * prect);
+//      virtual bool  get_desk_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle);
 //
 //
-//      virtual index get_main_wkspace(RECT32 * prect = nullptr);
+//      virtual index get_main_wkspace(RECTANGLE_I32 * prectangle = nullptr);
 //
 //      virtual ::count get_wkspace_count();
-//      virtual bool  get_wkspace_rect(index iWkspace, RECT32 * prect);
+//      virtual bool  get_wkspace_rect(index iWkspace, RECTANGLE_I32 * prectangle);
 //
 //      virtual ::count get_desk_wkspace_count();
-//      virtual bool  get_desk_wkspace_rect(index iWkspace, RECT32 * prect);
+//      virtual bool  get_desk_wkspace_rect(index iWkspace, RECTANGLE_I32 * prectangle);
 //
 //      virtual index get_ui_wkspace(::user::interaction * pinteraction);
 //
@@ -879,7 +879,7 @@ namespace base
 //
 //#ifdef _UWP
 //
-//      virtual bool get_window_rect(RECT32* prect);
+//      virtual bool get_window_rect(RECTANGLE_I32* prectangle);
 //
 //
 //#endif
@@ -901,7 +901,7 @@ namespace base
 //
 //      virtual ::e_status add_view_library(::apex::library* plibrary);
 //
-//      //virtual void get_cursor_pos(POINT32 * ppoint);
+//      //virtual void get_cursor_pos(POINT_I32 * ppoint);
 //
 //
 //
@@ -960,18 +960,18 @@ namespace base
 //
 //
 //      //virtual ::install::canvas * install_create_canvas() override;
-//      //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rect & rect);
+//      //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
 //      //virtual int install_canvas_increment_mode() override;
 //
 //
 //
 //      virtual ::u32 get_monitor_color_temperature(index iMonitor);
 //      virtual bool adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
-//      //virtual bool get_monitor_rect(index iMonitor, RECT32* prect) override;
+//      //virtual bool get_monitor_rect(index iMonitor, RECTANGLE_I32* prectangle) override;
 //
 //      //virtual ::count get_monitor_count() override;
 //
-//      //bool get_wkspace_rect(index iWkspace, RECT32* prect) override;
+//      //bool get_wkspace_rect(index iWkspace, RECTANGLE_I32* prectangle) override;
 //
 //
 //      //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
@@ -1010,7 +1010,7 @@ namespace base
 //
 //   auto psystem = ::get_context_system();
 //
-//   cslock sl(&psystem->m_csEnumText);
+//   critical_section_lock sl(&psystem->m_csEnumText);
 //
 //   psystem->m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
 //
@@ -1025,7 +1025,7 @@ namespace base
 //
 //   auto psystem = ::get_context_system();
 //
-//   cslock sl(&psystem->m_csEnumText);
+//   critical_section_lock sl(&psystem->m_csEnumText);
 //
 //   return psystem->m_mapEnumToText[typeid(e).name()][(i64)e];
 //
@@ -1038,7 +1038,7 @@ namespace base
 //
 //   auto psystem = ::get_context_system();
 //
-//   cslock sl(&psystem->m_csEnumText);
+//   critical_section_lock sl(&psystem->m_csEnumText);
 //
 //   i64 iValue;
 //

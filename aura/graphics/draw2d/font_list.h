@@ -35,7 +35,7 @@ namespace draw2d
       index          m_iUpdateId;
       int            m_iBaseSize;
       int_array      m_iaSize;
-      ::rect         m_rectClient;
+      ::rectangle_i32         m_rectClient;
       int            m_iUpdatedCount;
       bool           m_bLayoutStillIntersect;
 
@@ -62,7 +62,7 @@ namespace draw2d
    protected:
 
 
-      ::rect                                          m_rectClient;
+      ::rectangle_i32                                          m_rectClient;
       enum_type                                          m_etype;
 
 
@@ -81,12 +81,12 @@ namespace draw2d
       u32_array                                       m_dwaFg;
       ::user::interaction *                           m_puserinteraction;
 
-      point                                           m_point;
-      ::size                                          m_size;
+      point_i32                                           m_point;
+      ::size_i32                                          m_size;
       string                                          m_strText;
       string                                          m_strTextLayout;
 
-      ::rect                                          m_rectMargin;
+      ::rectangle_i32                                          m_rectMargin;
       int                                             m_iBaseSizeLayout;
       millis                                            m_millisLastLayout;
       __pointer(::thread)                             m_pthreadLayout;
@@ -127,8 +127,8 @@ namespace draw2d
       virtual void set_need_redraw();
 
       virtual void layout();
-      virtual ::size layout_wide();
-      virtual ::size layout_single_column();
+      virtual ::size_i32 layout_wide();
+      virtual ::size_i32 layout_single_column();
 
       virtual bool is_updating() const;
 
@@ -143,16 +143,16 @@ namespace draw2d
       //virtual void ensure_sel_visible();
 
 
-      virtual ::user::item hit_test(const ::point& point);
-      virtual ::user::item hit_test_wide(const ::point& point);
-      virtual ::user::item hit_test_single_column(const ::point& point);
+      virtual ::user::item hit_test(const ::point_i32& point);
+      virtual ::user::item hit_test_wide(const ::point_i32& point);
+      virtual ::user::item hit_test_single_column(const ::point_i32& point);
       
-      virtual bool get_box_rect(LPRECT32 lprect, ::index i);
-      virtual bool get_box_rect_wide(LPRECT32 lprect, ::index i);
-      virtual bool get_box_rect_single_column(LPRECT32 lprect, ::index i);
+      virtual bool get_box_rect(RECTANGLE_I32 * lprect, ::index i);
+      virtual bool get_box_rect_wide(RECTANGLE_I32 * lprect, ::index i);
+      virtual bool get_box_rect_single_column(RECTANGLE_I32 * lprect, ::index i);
 
 
-      virtual void set_client_rect(LPCRECT32 lpcrect);
+      virtual void set_client_rect(const RECTANGLE_I32 * lpcrect);
 
       virtual void set_font_list_type(enum_type etype);
       virtual enum_type get_font_list_type() const;

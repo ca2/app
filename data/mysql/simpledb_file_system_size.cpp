@@ -53,7 +53,7 @@ file_size_table::file_size_table(::layered * pobjectContext) :
                                                FALSE );
          if ( bSetOk )
          {
-            // Make the security attributes point
+            // Make the security attributes point_i32
             // to the security descriptor
             MutexAttributes.lpSecurityDescriptor = &SD;*/
    //mutex() = new ::mutex(FALSE, "Global\\::draw2d::account::file_system_size::7807e510-5579-11dd-ae16-0800200c7784", &MutexAttributes);
@@ -350,7 +350,7 @@ bool FileSystemSizeWnd::CreateClient()
    return m_p->create_message_queue("::draw2d::account::FileSystemSizeWnd::Client");
    /*  __pointer(::user::interaction) puiMessage = nullptr;
       puiMessage = System.ui_from_handle(HWND_MESSAGE);
-      return m_p->create(nullptr, "::draw2d::account::FileSystemSizeWnd::Client", 0, rect(0, 0, 0, 0), puiMessage, id()) != FALSE;*/
+      return m_p->create(nullptr, "::draw2d::account::FileSystemSizeWnd::Client", 0, rectangle_i32(0, 0, 0, 0), puiMessage, id()) != FALSE;*/
 
 //#else
 
@@ -366,7 +366,7 @@ bool FileSystemSizeWnd::CreateServer()
 #ifdef WINDOWS
 
    m_bServer = true;
-   if(!m_p->create_window("Local\\::draw2d::account::FileSystemSizeWnd::Server",0,::rect(),System.ui_from_handle(HWND_MESSAGE),id()))
+   if(!m_p->create_window("Local\\::draw2d::account::FileSystemSizeWnd::Server",0,::rectangle_i32(),System.ui_from_handle(HWND_MESSAGE),id()))
       return false;
    m_p->SetTimer(100, 100, nullptr);
    return true;
@@ -407,7 +407,7 @@ bool FileSystemSizeWnd::get_fs_size(i64 & i64Size, const char * pszPath, bool & 
    data.cbData = (u32) file.get_length();
    data.lpData = file.get_data();
    ::oswindow oswindowWparam = (::oswindow) m_p->get_os_data();
-   WPARAM wparam = (WPARAM) oswindowWparam;
+   wparam wparam = (WPARAM) oswindowWparam;
    if(::SendMessage(oswindow, WM_COPYDATA, wparam, (LPARAM) &data))
    {
       i64Size = m_size.m_iSize;
@@ -445,7 +445,7 @@ void FileSystemSizeWnd::_001OnCopyData(::message::message * pmessage)
       ::file::byte_stream_memory_file file(get_context_application(), pstruct->lpData, pstruct->cbData);
       size.read(file);
 
-      single_lock sl(&m_cs, TRUE);
+      single_lock sl(m_criticalsection, TRUE);
       size.m_oswindow = (oswindow) pbase->m_wparam;
       size.m_bRet =  pcentral->m_pfilesystemsizeset->get_fs_size(
                      size.m_iSize,
@@ -492,7 +492,7 @@ void FileSystemSizeWnd::_001OnTimer(::timer * ptimer)
 
          while(m_sizea.get_size() > 0)
          {
-            single_lock sl(&m_cs, TRUE);
+            single_lock sl(m_criticalsection, TRUE);
             file_size_table::get_fs_size & size = m_sizea[0];
             file.m_spmemorybuffer->Truncate(0);
             size.write(file);

@@ -141,7 +141,7 @@ STDMETHODIMP CTSFPersistentPropertyLoader::LoadProperty(const TF_PERSISTENT_PROP
         return E_FAIL; // failed initial mem alloc
 
     //create a stream to return
-    hr = CreateStreamOnHGlobal(NULL, TRUE, &pStream);
+    hr = CreateStreamOnHGlobal(NULL, true, &pStream);
     if(SUCCEEDED(hr))
     {
         //write the property data into the stream

@@ -174,7 +174,7 @@ namespace app_shader
 
       }
 
-      m_rendera[m_iShader]->m_rect = rectClient;
+      m_rendera[m_iShader]->m_rectangle = rectClient;
 
       m_rendera[m_iShader]->on_layout(pgraphics);
 

@@ -8,7 +8,7 @@
 
 #else
 
-#define pixel(x, y) (ba[(pframe->m_rect.height() - (y) - 1) * iScan + (x)])
+#define pixel(x, y) (ba[(pframe->m_rectangle.height() - (y) - 1) * iScan + (x)])
 
 
 #endif
@@ -81,21 +81,21 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //      }
 //
-//   //      ::rect rect = pframea->element_at(uFrameIndex - 1)->m_rect;
+//   //      ::rectangle_i32 rectangle = pframea->element_at(uFrameIndex - 1)->m_rectangle;
 //
-//   //      rect.offset(5, 5);
+//   //      rectangle.offset(5, 5);
 //
-//   //      pimageCanvas.get_graphics()->fill_rect(rect, crBack);
+//   //      pimageCanvas.get_graphics()->fill_rect(rectangle, crBack);
 //
 //   //   }
 //
 //   //   pimageCanvas.get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 //
-//   //   ::const ::point & point = pframe->m_rect.top_left();
+//   //   ::const ::point_i32 & point = pframe->m_rectangle.top_left();
 //
-//   //   ::size sz = pframe->m_rect.size();
+//   //   ::size_i32 sz = pframe->m_rectangle.size();
 //
-//   //   pimageCanvas.get_graphics()->BitBlt(point + point(5, 5), sz, pframe->m_pimage->get_graphics());
+//   //   pimageCanvas.get_graphics()->BitBlt(point_i32 + point_i32(5, 5), sz, pframe->m_pimage->get_graphics());
 //
 //   //   pframe->m_pimage->from(pimageCanvas);
 //
@@ -114,16 +114,16 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //      crBack = pframe->m_colorTransparent;
 //
-//   //      size s = pframe->m_pimage->get_size();
+//   //      size_i32 s = pframe->m_pimage->get_size();
 //
 //   //      int cx = s.cx;
 //
 //   //      int cy = s.cy;
 //
-//   //      if (pframe->m_rect.size() == pframea.m_size)
+//   //      if (pframe->m_rectangle.size() == pframea.m_size)
 //   //      {
 //
-//   //         if (pixel(0, 0) == pixel(cx - 1, 0)) // && pframe->m_rect.left == 0 && pframe->m_rect.top == 0 && pframe->m_rect.right == pframea.width())
+//   //         if (pixel(0, 0) == pixel(cx - 1, 0)) // && pframe->m_rectangle.left == 0 && pframe->m_rectangle.top == 0 && pframe->m_rectangle.right == pframea.width())
 //   //         {
 //
 //   //            transparentIndex = pixel(0, 0);
@@ -131,7 +131,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //   //            pframea->m_iTransparentIndex = transparentIndex;
 //
 //   //         }
-//   //         else if (pixel(0, cy - 1) == pixel(cx - 1, cy - 1))// && pframe->m_rect.left == 0 && pframe->m_rect.bottom == pframea->height() && pframe->m_rect.right == pframea.width())
+//   //         else if (pixel(0, cy - 1) == pixel(cx - 1, cy - 1))// && pframe->m_rectangle.left == 0 && pframe->m_rectangle.bottom == pframea->height() && pframe->m_rectangle.right == pframea.width())
 //   //         {
 //
 //   //            transparentIndex = pixel(0, cy - 1);
@@ -165,7 +165,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //   pframe->m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 //
-//   //   pframe->m_pimage->get_graphics()->BitBlt(nullptr, pframea->m_size, pimageCanvas.get_graphics(), point(5, 5));
+//   //   pframe->m_pimage->get_graphics()->BitBlt(nullptr, pframea->m_size, pimageCanvas.get_graphics(), point_i32(5, 5));
 //
 //
 //
@@ -208,7 +208,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //   //   d->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 //
-//   //   //   d->get_graphics()->BitBlt(nullptr, pframea->m_size, f.get_graphics(), point(5, 5));
+//   //   //   d->get_graphics()->BitBlt(nullptr, pframea->m_size, f.get_graphics(), point_i32(5, 5));
 //
 //   //   //   pframe->m_pimage->div_alpha();
 //
@@ -247,17 +247,17 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //         }
 //
-//         ::rect rect = pframea->element_at(uFrameIndex - 1)->m_rect;
+//         ::rectangle_i32 rectangle = pframea->element_at(uFrameIndex - 1)->m_rectangle;
 //
-//         pimageCanvas->g()->fill_rect(rect, crBack);
+//         pimageCanvas->g()->fill_rect(rectangle, crBack);
 //
 //      }
 //
 //      //pimageCanvas.get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 //
-//      ::point point = pframe->m_rect.top_left();
+//      ::point_i32 point = pframe->m_rectangle.top_left();
 //
-//      ::size size = pframe->m_rect.size();
+//      ::size_i32 size = pframe->m_rectangle.size();
 //
 //
 //
@@ -288,10 +288,10 @@ bool draw2d_gif_draw_frame(image * pimageCanvas, image_frame_array * pframea, im
 
    int w = pframe->m_pimage->scan_size() / sizeof(color32_t);
 
-   for (index y = 0; y < pframe->m_rect.height(); y++)
+   for (index y = 0; y < pframe->m_rectangle.height(); y++)
    {
 
-      for (index x = 0; x < pframe->m_rect.width(); x++)
+      for (index x = 0; x < pframe->m_rectangle.width(); x++)
       {
 
          index iIndex = pixel(x, y);

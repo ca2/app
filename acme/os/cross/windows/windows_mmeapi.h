@@ -14,9 +14,9 @@ typedef struct tWAVEFORMATEX
     ::u16        nChannels;          /* number of channels (i.e. mono, stereo...) */
     ::u32       nSamplesPerSec;     /* sample rate */
     ::u32       nAvgBytesPerSec;    /* for buffer estimation */
-    ::u16        nBlockAlign;        /* block size of data */
+    ::u16        nBlockAlign;        /* block size_i32 of data */
     ::u16        wBitsPerSample;     /* number of bits per sample of mono data */
-    ::u16        cbSize;             /* the count in bytes of the size of */
+    ::u16        cbSize;             /* the count in bytes of the size_i32 of */
                                     /* extra information (after cbSize) */
 } WAVEFORMATEX, *PWAVEFORMATEX, *NPWAVEFORMATEX, *LPWAVEFORMATEX;
 

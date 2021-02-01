@@ -39,14 +39,14 @@ namespace d2d1
 {
 
 
-   inline D2D1_RECT_F rectf(const ::rect & rect)
+   inline D2D1_RECT_F rectangle_f32(const ::rectangle_i32 & rectangle)
    {
 
       return D2D1::Rect<FLOAT>(
-             (FLOAT)(rect.left),
-             (FLOAT)(rect.top),
-             (FLOAT)(rect.right),
-             (FLOAT)(rect.bottom)
+             (FLOAT)(rectangle.left),
+             (FLOAT)(rectangle.top),
+             (FLOAT)(rectangle.right),
+             (FLOAT)(rectangle.bottom)
              );
 
    }
@@ -65,7 +65,7 @@ namespace d2d1
 
 } // namespace d2d1
 
-inline void copy(D2D1_POINT_2F* ppointDst, const POINTD* ppointSrc) 
+inline void copy(D2D1_POINT_2F* ppointDst, const POINT_F64* ppointSrc) 
 {
    ppointDst->x = (FLOAT) ppointSrc->x;
    ppointDst->y = (FLOAT) ppointSrc->y;

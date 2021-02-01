@@ -617,7 +617,7 @@ namespace html
       /*      if(m_pimpl->m_cxMin > m_pimpl->get_bound_size().cx)
             {
 
-            m_pimpl->set_bound_size(pdata, ::sizef(m_pimpl->m_cxMin, m_pimpl->get_bound_size().cx));
+            m_pimpl->set_bound_size(pdata, ::size_f32(m_pimpl->m_cxMin, m_pimpl->get_bound_size().cx));
 
             }
 
@@ -1245,13 +1245,13 @@ namespace html
    }
 
 
-   element * element::hit_test(html_data * pdata, const ::pointf & point)
+   element * element::hit_test(html_data * pdata, const ::point_f32 & point)
    {
 
       if (m_pimpl != nullptr)
       {
 
-         if (m_pimpl->hit_test(pdata, point))
+         if (m_pimpl->hit_test(pdata, point_i32))
          {
 
             element * pelemental;
@@ -1309,17 +1309,17 @@ namespace html
    }
 
 
-   element * element::bound_hit_test(html_data * pdata, const ::pointf & point)
+   element * element::bound_hit_test(html_data * pdata, const ::point_f32 & point)
    {
 
       double dMin = -1.0;
 
-      return bound_hit_test(pdata, point, dMin);
+      return bound_hit_test(pdata, point_i32, dMin);
 
    }
 
 
-   element * element::bound_hit_test(html_data * pdata, const ::pointf & point, double & dMin)
+   element * element::bound_hit_test(html_data * pdata, const ::point_f32 & point, double & dMin)
    {
 
       if (m_pimpl != nullptr)
@@ -1335,7 +1335,7 @@ namespace html
             for (i32 i = 0; i < m_elementalptra.get_size(); i++)
             {
 
-               element * pelemental = m_elementalptra[i]->bound_hit_test(pdata, point, dMin);
+               element * pelemental = m_elementalptra[i]->bound_hit_test(pdata, point_i32, dMin);
 
                if (pelemental != nullptr)
                {

@@ -120,13 +120,13 @@ var_stream::~var_stream()
 //      m_var = d;
 //
 //   }
-//   void var_stream::write(const rect & & rect)
+//   void var_stream::write(const rectangle_i32 & & rectangle)
 //   {
 //
-//      oblt(rect);
+//      oblt(rectangle);
 //
 //   }
-//   void var_stream::write(RECT32 * pcrect)
+//   void var_stream::write(RECTANGLE_I32 * pcrect)
 
 //   {
 //
@@ -134,7 +134,7 @@ var_stream::~var_stream()
 
 //
 //   }
-//   void var_stream::write(const size & & size)
+//   void var_stream::write(const size_i32 & & size)
 //   {
 //      oblt(size);
 //
@@ -192,9 +192,9 @@ var_stream::~var_stream()
 //#endif
 //   void var_stream::read(float & f);
 //   void var_stream::read(double & d);
-//   void var_stream::read(RECT32 * prect);
+//   void var_stream::read(RECTANGLE_I32 * prectangle);
 
-//   void var_stream::read(const size & & size);
+//   void var_stream::read(const size_i32 & & size);
 //   void var_stream::read(id & id);
 //   void var_stream::read(::payload & payload);
 //   void var_stream::read(property & property);

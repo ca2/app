@@ -187,7 +187,7 @@ namespace http
       __pointer(class cookie) cookie(__new(class cookie));
       cookie->m_bSecure = false;
       //string_array stra;
-      //stra.add_tokens(psz, ";", TRUE);
+      //stra.add_tokens(psz, ";", true);
       bool bRun = true;
       i32 i = 0;
       while(bRun)

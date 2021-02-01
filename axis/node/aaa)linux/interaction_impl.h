@@ -27,12 +27,12 @@ namespace linux
       bool                          m_bEnabled;
 
       //__pointer(::thread)                  m_pthreadDraw;
-      ::rect64                      m_rectLastPos;
+      ::rectangle_i64                      m_rectLastPos;
       millis m_millisLastPos;
 
-      ::point                       m_pointLastMove;
+      ::point_i32                       m_pointLastMove;
       bool                          m_bMoveEvent;
-      ::size                        m_sizeLastSize;
+      ::size_i32                        m_sizeLastSize;
       bool                          m_bSizeEvent;
       ::millis                        m_millisLastPlacementEvent;
 
@@ -124,7 +124,7 @@ namespace linux
 //      const char * pszWindowName,
 
 //      ::u32 dwStyle,
-//      const ::rect & rect,
+//      const ::rectangle_i32 & rectangle,
 //      ::user::interaction * pParentWnd,
 //      id id,
 //      ::create * pContext = nullptr) override;
@@ -147,12 +147,12 @@ namespace linux
 
       virtual bool DestroyWindow() override;
 
-      // special pre-creation and ::user::interaction_impl rect adjustment hooks
+      // special pre-creation and ::user::interaction_impl rectangle_i32 adjustment hooks
       virtual bool pre_create_window(::user::system * pusersystem) override;
 
       // Advanced: virtual AdjustWindowRect
 //      enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
-//      virtual void CalcWindowRect(RECT32 * pClientRect, ::u32 nAdjustType = adjustBorder);
+//      virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect, ::u32 nAdjustType = adjustBorder);
 
 
 
@@ -188,7 +188,7 @@ namespace linux
 //
 //      bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 //
-//      bool DragDetect(const ::point & point) const;
+//      bool DragDetect(const ::point_i32 & point) const;
 
 
 
@@ -205,13 +205,13 @@ namespace linux
       ::draw2d::font* GetFont();
 
 
-      // oswindow size and position Functions
+      // oswindow size_i32 and position Functions
       virtual bool layout().is_iconic();
       //virtual bool layout().is_zoomed();
       //virtual bool layout().is_full_screen();
       //void MoveWindow(i32 x, i32 y, i32 nWidth, i32 nHeight,
         //              bool bRepaint = TRUE);
-      //void MoveWindow(const ::rect & rect, bool bRepaint = TRUE);
+      //void MoveWindow(const ::rectangle_i32 & rectangle, bool bRepaint = TRUE);
 
 //      i32 SetWindowRgn(HRGN hRgn, bool bRedraw);
 //      i32 GetWindowRgn(HRGN hRgn);
@@ -225,34 +225,34 @@ namespace linux
       //virtual bool set_window_pos(iptr z, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags);
 //      virtual ::u32 ArrangeIconicWindows();
       //virtual bool BringWindowToTop();
-//      virtual bool get_window_rect(RECT64 * prect);
+//      virtual bool get_window_rect(RECTANGLE_I64 * prectangle);
 
-  //    virtual bool _001GetWindowRect(RECT64 * prect);
+  //    virtual bool _001GetWindowRect(RECTANGLE_I64 * prectangle);
 
       //using ::user::interaction_impl::get_client_rect;
-      //virtual bool get_client_rect(RECT64 * prect);
+      //virtual bool get_client_rect(RECTANGLE_I64 * prectangle);
 
 
       virtual bool has_focus() override;
       virtual bool is_active() override;
 
-      //virtual ::point client_screen_top_left() override;
+      //virtual ::point_i32 client_screen_top_left() override;
 
-//      virtual bool _001ClientToScreen(RECT32 * prect);
+//      virtual bool _001ClientToScreen(RECTANGLE_I32 * prectangle);
 
-//      virtual bool _001ClientToScreen(POINT32 * ppoint);
+//      virtual bool _001ClientToScreen(POINT_I32 * ppoint);
 
-//      virtual bool _001ClientToScreen(RECT64 * prect);
+//      virtual bool _001ClientToScreen(RECTANGLE_I64 * prectangle);
 
-//      virtual bool _001ClientToScreen(POINT64 * ppoint);
+//      virtual bool _001ClientToScreen(POINT_I64 * ppoint);
 
-//      virtual bool _001ScreenToClient(RECT32 * prect);
+//      virtual bool _001ScreenToClient(RECTANGLE_I32 * prectangle);
 
-//      virtual bool _001ScreenToClient(POINT32 * ppoint);
+//      virtual bool _001ScreenToClient(POINT_I32 * ppoint);
 
-//      virtual bool _001ScreenToClient(RECT64 * prect);
+//      virtual bool _001ScreenToClient(RECTANGLE_I64 * prectangle);
 
-//      virtual bool _001ScreenToClient(POINT64 * ppoint);
+//      virtual bool _001ScreenToClient(POINT_I64 * ppoint);
 
 
       virtual bool GetWindowPlacement(WINDOWPLACEMENT* pwndpl);
@@ -261,9 +261,9 @@ namespace linux
 
 
       // Coordinate Mapping Fufnctions
-//      virtual void MapWindowPoints(::user::interaction * pwndTo, POINT32 * pPoint, ::u32 nCount);
+//      virtual void MapWindowPoints(::user::interaction * pwndTo, POINT_I32 * pPoint, ::u32 nCount);
 //
-//      virtual void MapWindowPoints(::user::interaction * pwndTo, RECT32 * prect);
+//      virtual void MapWindowPoints(::user::interaction * pwndTo, RECTANGLE_I32 * prectangle);
 
 
       // Update/Painting Functions
@@ -275,14 +275,14 @@ namespace linux
 
 //      virtual void UpdateWindow();
 //      virtual void SetRedraw(bool bRedraw = TRUE);
-//      virtual bool GetUpdateRect(RECT32 * prect, bool bErase = FALSE);
+//      virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle, bool bErase = FALSE);
 //
 //      virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = FALSE);
 //      virtual void Invalidate(bool bErase = TRUE);
-//      virtual void InvalidateRect(const ::rect & rect, bool bErase = TRUE);
+//      virtual void InvalidateRect(const ::rectangle_i32 & rectangle, bool bErase = TRUE);
 //
 //      virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = TRUE);
-//      virtual void ValidateRect(const ::rect & rect);
+//      virtual void ValidateRect(const ::rectangle_i32 & rectangle);
 //
 //      virtual void ValidateRgn(::draw2d::region* pRgn);
       //virtual bool display(::e_display edisplay) override;
@@ -306,7 +306,7 @@ namespace linux
       //virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, ::u32 flags);
       //virtual bool LockWindowUpdate();
       //virtual void UnlockWindowUpdate();
-//      virtual bool RedrawWindow(const ::rect& rectUpdate = nullptr,
+//      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,
 //                                ::draw2d::region* prgnUpdate = nullptr,
 //                                ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
       // xxx      virtual bool EnableScrollBar(i32 nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
@@ -316,7 +316,7 @@ namespace linux
 //
 //      //virtual bool DrawAnimatedRects(i32 idAni, const LPRECTprcFrom, const LPRECTlprcTo);
 //
-//      virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const rect & prc, ::u32 uFlags);
+//      virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & prc, ::u32 uFlags);
 //
 //
 //#if(WINVER >= 0x0500)
@@ -336,8 +336,8 @@ namespace linux
 //#if(_WIN32_WINNT >= 0x0500)
 //
 //      virtual bool SetLayeredWindowAttributes(color32_t crKey, byte bAlpha, ::u32 dwFlags);
-//      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst, POINT32 *pptDst, SIZE32 *psize,
-//                                       ::draw2d::graphics * pDCSrc, POINT32 *pptSrc, color32_t crKey, BLENDFUNCTION *pblend, ::u32 dwFlags);
+//      virtual bool UpdateLayeredWindow(::draw2d::graphics * pDCDst, POINT_I32 *pptDst, SIZE_I32 *psize,
+//                                       ::draw2d::graphics * pDCSrc, POINT_I32 *pptSrc, color32_t crKey, BLENDFUNCTION *pblend, ::u32 dwFlags);
 //
 //#endif   // _WIN32_WINNT >= 0x0500
 //
@@ -418,8 +418,8 @@ namespace linux
 //      virtual void GetScrollRange(i32 nBar, LPINT pMinPos, LPINT lpMaxPos) const;
 //
 //      virtual void ScrollWindow(i32 xAmount, i32 yAmount,
-//                                const ::rect & rectClient = nullptr,
-//                                const ::rect & rectClip = nullptr);
+//                                const ::rectangle_i32 & rectClient = nullptr,
+//                                const ::rectangle_i32 & rectClip = nullptr);
 //
 //      virtual i32 SetScrollPos(i32 nBar, i32 nPos, bool bRedraw = TRUE);
 //      virtual void SetScrollRange(i32 nBar, i32 nMinPos, i32 nMaxPos,
@@ -430,9 +430,9 @@ namespace linux
 //      // return sibling scrollbar control (or nullptr if none)
 //
 //      virtual i32 ScrollWindowEx(i32 dx, i32 dy,
-//                                 const rect & pRectScroll, const rect & lpRectClip,
+//                                 const rectangle_i32 & pRectScroll, const rectangle_i32 & lpRectClip,
 //
-//                                 ::draw2d::region* prgnUpdate, RECT32 * pRectUpdate, ::u32 flags);
+//                                 ::draw2d::region* prgnUpdate, RECTANGLE_I32 * pRectUpdate, ::u32 flags);
 
       //xxx      virtual bool SetScrollInfo(i32 nBar, LPSCROLLINFO pScrollInfo,
 
@@ -441,8 +441,8 @@ namespace linux
 
 //      virtual i32 GetScrollLimit(i32 nBar);
 //
-//      virtual ::user::interaction * ChildWindowFromPoint(const ::point & point);
-//      virtual ::user::interaction * ChildWindowFromPoint(const ::point & point, ::u32 nFlags);
+//      virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point);
+//      virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point, ::u32 nFlags);
 //      static::user::interaction * PASCAL FindWindow(const char * pszClassName, const char * pszWindowName);
 //
 //      static::user::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * pszWindow);
@@ -457,7 +457,7 @@ namespace linux
 //      virtual ::user::interaction * get_parent();
 //      using ::user::interaction_impl::SetParent;
 //      ::user::interaction * SetParent(::user::interaction * pWndNewParent);
-//      static::user::interaction * PASCAL oswindowFromPoint(const ::point & point);
+//      static::user::interaction * PASCAL oswindowFromPoint(const ::point_i32 & point);
 
 
       //virtual i32 message_box(const char * pszText, const char * pszcaption = nullptr, ::u32 nType = e_message_box_ok) override;

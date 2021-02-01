@@ -15,7 +15,7 @@
 //
 //   plane_system(const char * pszId);
 //
-//   UIWindow * init_part_2ex(CGRect rect);
+//   UIWindow * init_part_2ex(CGRect rectangle_i32);
 //
 //   void begin();
 //
@@ -33,7 +33,7 @@ string get_error_message(::u32 dwError);
 
 
 //CLASS_DECL_ACME void __trace_message(const char * lpszPrefix, ::message::message * pmessage);
-//CLASS_DECL_ACME void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
+//CLASS_DECL_ACME void __trace_message(const char * lpszPrefix, MESSAGE * lpmsg);
 
 #include "implementation.h"
 #include "dir_system.h"
@@ -63,14 +63,14 @@ string get_error_message(::u32 dwError);
 
 
 // int_bool PeekMessage(
-// LPMESSAGE lpMsg,
+// MESSAGE * lpMsg,
 // oswindow hWnd,
 // ::u32 wMsgFilterMin,
 // ::u32 wMsgFilterMax,
 // ::u32 wRemoveMsg);
 
 // int_bool GetMessage(
-// LPMESSAGE lpMsg,
+// MESSAGE * lpMsg,
 // oswindow hWnd,
 // ::u32 wMsgFilterMin,
 // ::u32 wMsgFilterMax);

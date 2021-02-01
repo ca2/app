@@ -2,7 +2,7 @@
 #include "base/user/simple/scroll_bar.h"
 
 
-// pgraphics->GetTextExtent("->:<-"); // oh no!! omg!! The size is the size of the alien!!
+// pgraphics->GetTextExtent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
@@ -34,12 +34,12 @@ namespace experience
       bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics,::user::tab * ptab)
       {
 
-         ::rect rect;
-         ::rect rectBorder;
-         ::rect rectText;
-         ::rect rectClient;
-         ::rect rectIcon;
-         ::rect rectClose;
+         ::rectangle_i32 rectangle;
+         ::rectangle_i32 rectBorder;
+         ::rectangle_i32 rectText;
+         ::rectangle_i32 rectClient;
+         ::rectangle_i32 rectIcon;
+         ::rectangle_i32 rectClose;
 
          ptab->get_data()->m_pen->create_solid(1,RGB(32,32,32));
 
@@ -49,7 +49,7 @@ namespace experience
 
          index iTab = -1;
 
-         ::rect rcClient;
+         ::rectangle_i32 rcClient;
 
          ptab->get_client_rect(rcClient);
 
@@ -75,7 +75,7 @@ namespace experience
 
             iTab++;
 
-            if(!ptab->get_element_rect(iTab,rect, ::user::e_element_tab))
+            if(!ptab->get_element_rect(iTab,rectangle_i32, ::user::e_element_tab))
                continue;
 
             if(!ptab->get_element_rect(iTab,rectBorder, ::user::e_element_border))
@@ -386,7 +386,7 @@ namespace experience
 
          }
 
-         ::rect rectScroll;
+         ::rectangle_i32 rectScroll;
 
          bool bScroll = ptab->has_tab_scrolling();
 
@@ -414,7 +414,7 @@ namespace experience
       }
 
 
-      void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics, const ::rect & rect,::draw2d::brush_pointer & brushText)
+      void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle,::draw2d::brush_pointer & brushText)
       {
 
          string_array & straTitle = pane.m_straTitle;
@@ -426,28 +426,28 @@ namespace experience
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pgraphics->_DrawText(pane.get_title(), rect, e_align_bottom_left, e_draw_text_no_prefix);
+            pgraphics->_DrawText(pane.get_title(), rectangle_i32, e_align_bottom_left, e_draw_text_no_prefix);
 
          }
          else
          {
 
-            ::rect rectText(rect);
+            ::rectangle_i32 rectText(rectangle);
 
             ::draw2d::font_pointer font;
 
             font = pgraphics->get_current_font();
 
-            size sSep = ptab->get_data()->m_sizeSep;
+            size_i32 sSep = ptab->get_data()->m_sizeSep;
 
-            ::rect rectEmp;
+            ::rectangle_i32 rectEmp;
 
             for(index i = 0; i < straTitle.get_size(); i++)
             {
 
                string str = straTitle[i];
 
-               size s = pane.m_sizeaText[i];
+               size_i32 s = pane.m_sizeaText[i];
 
                rectText.right =rectText.left + s.cx;
 
@@ -577,9 +577,9 @@ namespace experience
 
                tab_pane.do_split_layout(ptab->m_dcextension, pgraphics);
 
-               ::size size;
+               ::size_i32 size;
 
-               ptab->m_dcextension.GetTextExtent(pgraphics,str,size);
+               ptab->m_dcextension.GetTextExtent(pgraphics,str, size);
 
 
 
@@ -625,7 +625,7 @@ namespace experience
 
             ptab->get_data()->m_iTabHeight = iTabHeight;
 
-            ::rect rectClient = ptab->get_client_rect();
+            ::rectangle_i32 rectClient = ptab->get_client_rect();
 
             ptab->get_data()->m_rectTab.left       = rectClient.left;
             ptab->get_data()->m_rectTab.top        = rectClient.top;
@@ -655,7 +655,7 @@ namespace experience
 
             pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_selected);
 
-            ::rect rectClient = ptab->get_client_rect();
+            ::rectangle_i32 rectClient = ptab->get_client_rect();
             //ptab->get_client_rect(rectClient);
             int x = rectClient.left;
 
@@ -672,7 +672,7 @@ namespace experience
 
                tab_pane.do_split_layout(ptab->m_dcextension, pgraphics);
 
-               size size;
+               size_i32 size;
 
                ptab->m_dcextension.GetTextExtent(pgraphics, str, size);
 
@@ -696,7 +696,7 @@ namespace experience
 
                //            string str = tab_pane.get_title();
 
-               //            size size;
+               //            size_i32 size;
 
                ixAdd = 5;
 
@@ -759,7 +759,7 @@ namespace experience
             m_rectTab.height(),
             0);*/
 
-            rect & rectTabClient = ptab->get_data()->m_rectTabClient;
+            rectangle_i32 & rectTabClient = ptab->get_data()->m_rectTabClient;
 
             //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
             bool bTabbedClient = ptab->m_bShowTabs;
@@ -787,7 +787,7 @@ namespace experience
 
          ptab->layout_pane(ptab->_001GetSel(), ptab->is_this_visible());
 
-         ::rect rcClient;
+         ::rectangle_i32 rcClient;
 
          ptab->get_client_rect(rcClient);
 
@@ -1248,7 +1248,7 @@ namespace experience
 
          ::color colorBackground = pscrollbar->get_color(this, ::user::e_element_scrollbar);
 
-         ::rect rectClient = pscrollbar->get_client_rect();
+         ::rectangle_i32 rectClient = pscrollbar->get_client_rect();
 
          if (colorBackground.alpha != 0)
          {
@@ -1268,11 +1268,11 @@ namespace experience
 
          }
 
-         ::rect rectTrack;
+         ::rectangle_i32 rectTrack;
 
          pscrollbar->GetTrackRect(rectTrack, pgraphics);
 
-         ::rect rectWindow;
+         ::rectangle_i32 rectWindow;
 
          pscrollbar->get_window_rect(rectWindow);
 
@@ -1294,7 +1294,7 @@ namespace experience
 
          pgraphics->set(brushDraw);
 
-         pgraphics->rectangle(rectTrack);
+         pgraphics->rectangle_i32(rectTrack);
 
          if (pbar->m_bTracking || pbar->is_true("tracking_on"))
          {
@@ -1334,11 +1334,11 @@ namespace experience
 
             }
 
-            ::point point1 = rectTrack.top_left() + pbar->m_sizeTrackOffset;
+            ::point_i32 point1 = rectTrack.top_left() + pbar->m_sizeTrackOffset;
 
             pbar->_001ClientToScreen(point1);
 
-            ::point point2;
+            ::point_i32 point2;
 
             auto psession = Session;
 
@@ -1399,7 +1399,7 @@ namespace experience
                uchAlpha = 255;
             }
 
-            ::rect rectMachineThumb;
+            ::rectangle_i32 rectMachineThumb;
 
             bool bSimple = pbar->is_true("tracking_simple");
 
@@ -1408,11 +1408,11 @@ namespace experience
 
                int iSize = rectTrack.size().get_normal(pbar->m_eorientation) * 6 / 8;
 
-               rectMachineThumb.top_left() = rectTrack.top_left() + pbar->m_sizeTrackOffset - size(iSize / 2, iSize / 2);
+               rectMachineThumb.top_left() = rectTrack.top_left() + pbar->m_sizeTrackOffset - size_i32(iSize / 2, iSize / 2);
 
                rectMachineThumb.bottom_right() = rectMachineThumb.top_left() + size(iSize, iSize);
 
-               ::rect rectIntersect;
+               ::rectangle_i32 rectIntersect;
 
                rectIntersect.intersect(rectMachineThumb, rectTrack);
 
@@ -1428,7 +1428,7 @@ namespace experience
 
                int iSize = rectTrack.size().get_normal(pbar->m_eorientation);
 
-               rectMachineThumb.top_left() = rectTrack.top_left() + pbar->m_sizeTrackOffset - size(iSize / 2, iSize / 2);
+               rectMachineThumb.top_left() = rectTrack.top_left() + pbar->m_sizeTrackOffset - size_i32(iSize / 2, iSize / 2);
 
                rectMachineThumb.bottom_right() = rectMachineThumb.top_left() + size(iSize, iSize);
 
@@ -1452,7 +1452,7 @@ namespace experience
 
          pgraphics->set(penGrip);
 
-         ::point pointCenter = rectTrack.center();
+         ::point_i32 pointCenter = rectTrack.center();
 
          if (pbar->m_eorientation == orientation_horizontal)
          {
@@ -1487,7 +1487,7 @@ namespace experience
 
          pgraphics->set(pbar->m_brushDraw);
 
-         pgraphics->rectangle(pbar->m_rectA);
+         pgraphics->rectangle_i32(pbar->m_rectA);
 
          penArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::user::e_element_scrollbar_rectB));
 
@@ -1497,32 +1497,32 @@ namespace experience
 
          pgraphics->set(pbar->m_brushDraw);
 
-         pgraphics->rectangle(pbar->m_rectB);
+         pgraphics->rectangle_i32(pbar->m_rectB);
 
-         ::rect rect;
+         ::rectangle_i32 rectangle;
 
          if (pbar->m_itemCurrent == ::user::e_element_scrollbar_pageA || pbar->m_itemHover == ::user::e_element_scrollbar_pageA)
          {
 
-            pbar->GetPageARect(rectClient, rectTrack, rect, pgraphics);
+            pbar->GetPageARect(rectClient, rectTrack, rectangle_i32, pgraphics);
 
             pbar->m_brushDraw->create_solid(pbar->scrollbar_color(this, ::user::e_element_scrollbar_pageA));
 
             pgraphics->set(pbar->m_brushDraw);
 
-            pgraphics->fill_rect(rect);
+            pgraphics->fill_rect(rectangle);
 
          }
          else if (pbar->m_itemCurrent == ::user::e_element_scrollbar_pageB || pbar->m_itemHover == ::user::e_element_scrollbar_pageB)
          {
 
-            pbar->GetPageBRect(rectClient, rectTrack, rect, pgraphics);
+            pbar->GetPageBRect(rectClient, rectTrack, rectangle_i32, pgraphics);
 
             pbar->m_brushDraw->create_solid(pbar->scrollbar_color(this, ::user::e_element_scrollbar_pageB));
 
             pgraphics->set(pbar->m_brushDraw);
 
-            pgraphics->fill_rect(rect);
+            pgraphics->fill_rect(rectangle);
 
          }
 

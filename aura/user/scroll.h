@@ -45,7 +45,7 @@ namespace user
 
       virtual void send_xscroll_message(int nSBCode);
 
-      //virtual void GetScrollRect(RECT32 * prect);
+      //virtual void GetScrollRect(RECTANGLE_I32 * prectangle);
 
       virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics) override;
       virtual void on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
@@ -53,7 +53,7 @@ namespace user
       virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics) override;
       virtual void defer_create_horizontal_scroll_bar();
       //virtual void on_create_horizontal_scroll_bar();
-      virtual bool validate_viewport_offset(point & point) override;
+      virtual bool validate_viewport_offset(point_i32 & point) override;
       virtual void scroll_left_line();
       virtual void scroll_right_line();
       virtual void scroll_left_page();
@@ -100,7 +100,7 @@ namespace user
       virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics) override;
       virtual void defer_create_vertical_scroll_bar();
       //virtual void on_create_vertical_scroll_bar();
-      virtual bool validate_viewport_offset(point & point) override;
+      virtual bool validate_viewport_offset(point_i32 & point) override;
 
 
       DECL_GEN_SIGNAL(_001OnVScroll);
@@ -126,7 +126,7 @@ namespace user
    public:
 
 
-      ::sized            m_sizeTotal;
+      ::size_f64            m_sizeTotal;
 
 
       scroll_base();
@@ -135,24 +135,24 @@ namespace user
 
       virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics) override;
       virtual void on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
-      virtual bool validate_viewport_offset(point & point) override;
+      virtual bool validate_viewport_offset(point_i32 & point) override;
       virtual void layout_scroll_bar(::draw2d::graphics_pointer & pgraphics) override;
 
 
       virtual void install_message_routing(::channel * pchannel) override;
 
 
-      virtual bool GetActiveClientRect(RECT32 * prect);
+      virtual bool GetActiveClientRect(RECTANGLE_I32 * prectangle);
 
 
-      virtual bool GetFocusRect(RECT32 * prect) override;
+      virtual bool GetFocusRect(RECTANGLE_I32 * prectangle) override;
 
 
-      virtual ::sized get_total_size() override;
+      virtual ::size_f64 get_total_size() override;
 
 
-      virtual ::e_status set_total_size(const ::sized& size) override;
-      virtual ::e_status set_page_size(const ::sized& size) override;
+      virtual ::e_status set_total_size(const ::size_f64& size) override;
+      virtual ::e_status set_page_size(const ::size_f64& size) override;
 
 
       virtual void defer_draw_scroll_gap(::draw2d::graphics_pointer & pgraphics);

@@ -163,6 +163,8 @@ public:
 
    virtual bool is_read_only(const ::file::path & psz);
 
+   virtual rp(::file::file) resource_get_file(const ::file::path & path);
+
    virtual ::file::path sys_temp(const ::file::path & lpszName, const char * pszExtension);
    virtual ::file::path sys_temp_unique(const ::file::path & lpszName);
 

@@ -14,7 +14,7 @@ typedef struct
 typedef struct
 {
    ContributionType *ContribRow; // Row (or column) of contribution weights
-   ::u32 WindowSize,              // Filter window size (of affecting source pixels)
+   ::u32 WindowSize,              // Filter window size_i32 (of affecting source pixels)
         LineLength;              // Length of line (no. or rows / cols)
    double * matrix;
 } LineContribType;               // Contribution information for an entire line (row or column)
@@ -65,7 +65,7 @@ private:
    LineContribType *AllocContributions (   ::u32 uLineLength,
                                            ::u32 uWindowSize);
 
-   void FreeContributions (LineContribType * point);
+   void FreeContributions (LineContribType * point_i32);
 
    LineContribType *CalcContributions (    ::u32    uLineSize,
                                            ::u32    uSrcSize,
@@ -124,16 +124,16 @@ AllocContributions (::u32 uLineLength, ::u32 uWindowSize)
 template <class FilterClass>
 void
 C2PassScale<FilterClass>::
-FreeContributions (LineContribType * point)
+FreeContributions (LineContribType * point_i32)
 {
-   //for (::u32 u = 0; u < point->LineLength; u++)
+   //for (::u32 u = 0; u < point_i32->LineLength; u++)
    //{
    //   // Free contribs for every pixel
-   //   delete [] point->ContribRow[u].Weights;
+   //   delete [] point_i32->ContribRow[u].Weights;
    //}
-   delete point->matrix;
-   delete [] point->ContribRow;    // Free list of pixels contribs
-   delete point;                   // Free contribs header
+   delete point_i32->matrix;
+   delete [] point_i32->ContribRow;    // Free list of pixels contribs
+   delete point_i32;                   // Free contribs header
 }
 
 template <class FilterClass>
@@ -173,7 +173,7 @@ CalcContributions (::u32 uLineSize, ::u32 uSrcSize, double dScale)
       dWidth= dFilterWidth;
    }
 
-   // Window size is the number of sampled pixels
+   // Window size_i32 is the number of sampled pixels
    int iWindowSize = 2 * (int)ceil(dWidth) + 1;
 
    // Allocate a new line contributions strucutre
@@ -214,7 +214,7 @@ CalcContributions (::u32 uLineSize, ::u32 uSrcSize, double dScale)
          // Normalize weight of neighbouring points
          for (int iSrc = iLeft; iSrc <= iRight; iSrc++)
          {
-            // Normalize point
+            // Normalize point_i32
             res->ContribRow[u].Weights[iSrc-iLeft] /= dTotalWeight;
          }
       }
@@ -286,7 +286,7 @@ HorizScale (    color32_t           *pSrc,
             //
             // User wished to abort now
             //
-            m_bCanceled = TRUE;
+            m_bCanceled = true;
             FreeContributions (Contrib);  // Free contributions structure
             return;
          }
@@ -367,7 +367,7 @@ VertScale ( color32_t           *pSrc,
             //
             // User wished to abort now
             //
-            m_bCanceled = TRUE;
+            m_bCanceled = true;
             FreeContributions (Contrib);  // Free contributions structure
             return;
          }

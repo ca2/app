@@ -1,5 +1,5 @@
 #include "framework.h"
-
+#include "acme/operating_system.h"
 
 
 #define STR_BOM "\xEF\xBB\xBF"

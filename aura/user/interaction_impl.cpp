@@ -13,7 +13,7 @@
 #include "aura/os/windows_common/draw2d_direct2d_global.h"
 #endif
 
-point g_pointLastBottomRight;
+point_i32 g_pointLastBottomRight;
 
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT (::trace_object(::trace_category_windowing))
@@ -113,7 +113,7 @@ namespace user
          //get_wnd()->pred([this]()
          //   {
 
-         //      //ImmSetOpenStatus(m_puserthread->m_himc, TRUE);
+         //      //ImmSetOpenStatus(m_puserthread->m_himc, true);
 
 
 
@@ -165,7 +165,7 @@ namespace user
       if (m_bCursorRedraw)
       {
 
-         ::point pointCursor;
+         ::point_i32 pointCursor;
 
          auto psession = Session;
 
@@ -416,8 +416,8 @@ namespace user
       return false;
    }
 
-   bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT32 * pptDst,SIZE32 * psize,
-         ::draw2d::graphics * pDCSrc,POINT32 * pptSrc,color32_t crKey,BLENDFUNCTION * pblend,u32 dwFlags)
+   bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT_I32 * pptDst,SIZE_I32 * psize,
+         ::draw2d::graphics * pDCSrc,POINT_I32 * pptSrc,color32_t crKey,BLENDFUNCTION * pblend,u32 dwFlags)
    {
       UNREFERENCED_PARAMETER(pDCDst);
       UNREFERENCED_PARAMETER(pptDst);
@@ -454,7 +454,7 @@ namespace user
 #endif
 
 
-   //LRESULT interaction_impl::default_window_procedure()
+   //lresult interaction_impl::default_window_procedure()
    //{
    //
    //   return default_window_procedure(m_uiMessage, m_wparam, m_lparam);
@@ -807,7 +807,7 @@ namespace user
       //if (m_puserthread && !m_puserthread->m_bCreateNativeWindowOnInteractionThread)
       //{
 
-      //   send_message(e_message_create, 0, (LPARAM)&pusersystem);
+      //   send_message(e_message_create, 0, (lparam)&pusersystem);
 
       //   //m_puserinteraction->set_dim(pusersystem->m_createstruct.x, pusersystem->m_createstruct.cy, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy);
 
@@ -861,10 +861,10 @@ namespace user
 ////#endif
 //
 //      //pusersystem->m_createstruct.style = uStyle | WS_CHILD;
-//      //pusersystem->m_createstruct.x = rect.left;
-//      //pusersystem->m_createstruct.y = rect.top;
-//      //pusersystem->m_createstruct.cx = rect.width();
-//      //pusersystem->m_createstruct.cy = rect.height();
+//      //pusersystem->m_createstruct.x = rectangle.left;
+//      //pusersystem->m_createstruct.y = rectangle.top;
+//      //pusersystem->m_createstruct.cx = rectangle.width();
+//      //pusersystem->m_createstruct.cy = rectangle.height();
 //      //pusersystem->m_createstruct.hwndParent = puiParent->get_safe_handle();
 //      //pusersystem->m_createstruct.CREATE_STRUCT_P_CREATE_PARAMS = (LPVOID)pcreate;
 //
@@ -934,9 +934,9 @@ namespace user
 
          __pointer(::user::interaction) pinteraction;
 
-         ::rect rectUi;
+         ::rectangle_i32 rectUi;
 
-         ::point pointCursor;
+         ::point_i32 pointCursor;
 
          auto psession = Session;
 
@@ -1299,7 +1299,7 @@ namespace user
    }
 
 
-   bool interaction_impl::__windows_message_bypass(oswindow oswindow, ::u32 message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   bool interaction_impl::__windows_message_bypass(oswindow oswindow, ::u32 message, wparam wparam, lparam lparam, lresult & lresult)
    {
 
       return false;
@@ -1782,7 +1782,7 @@ namespace user
    }
 
 
-   void interaction_impl::ScrollWindow(i32 xAmount,i32 yAmount, LPCRECT32 pcrect, LPCRECT32 pcrectClip)
+   void interaction_impl::ScrollWindow(i32 xAmount,i32 yAmount, const RECTANGLE_I32 * pcrect, const RECTANGLE_I32 * pcrectClip)
    {
 
       UNREFERENCED_PARAMETER(xAmount);
@@ -1795,7 +1795,7 @@ namespace user
    }
 
 
-   void interaction_impl::CalcWindowRect(RECT32 * pClientRect,::u32 nAdjustType)
+   void interaction_impl::CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType)
    {
 
       UNREFERENCED_PARAMETER(pClientRect);
@@ -1809,7 +1809,7 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Special keyboard/system command processing
 
-   bool interaction_impl::HandleFloatingSysCommand(::u32 nID,LPARAM lParam)
+   bool interaction_impl::HandleFloatingSysCommand(::u32 nID,lparam lParam)
    {
       UNREFERENCED_PARAMETER(nID);
       UNREFERENCED_PARAMETER(lParam);
@@ -1843,7 +1843,7 @@ namespace user
    }
 
 
-//   void interaction_impl::OnParentNotify(const ::id & id,LPARAM lParam)
+//   void interaction_impl::OnParentNotify(const ::id & id,lparam lParam)
 //   {
 //      UNREFERENCED_PARAMETER(message);
 //      UNREFERENCED_PARAMETER(lParam);
@@ -1855,7 +1855,7 @@ namespace user
 //      ::exception::throw_interface_only();
 //   }
 //
-//   LRESULT interaction_impl::OnActivateTopLevel(WPARAM wParam,LPARAM)
+//   lresult interaction_impl::OnActivateTopLevel(wparam wParam,lparam)
 //   {
 //      UNREFERENCED_PARAMETER(wParam);
 //      ::exception::throw_interface_only();
@@ -1892,7 +1892,7 @@ namespace user
 //#endif
 //#endif
 //
-//   LRESULT interaction_impl::OnDisplayChange(WPARAM,LPARAM)
+//   lresult interaction_impl::OnDisplayChange(wparam,lparam)
 //   {
 //      //   ::exception::throw_interface_only();
 //
@@ -1900,7 +1900,7 @@ namespace user
 //
 //   }
 //
-//   LRESULT interaction_impl::OnDragList(WPARAM,LPARAM lParam)
+//   lresult interaction_impl::OnDragList(wparam,lparam lParam)
 //   {
 //      UNREFERENCED_PARAMETER(lParam);
 //      ::exception::throw_interface_only();
@@ -2384,7 +2384,7 @@ namespace user
    }
 
 
-   LRESULT interaction_impl::send_message(const ::id & id, WPARAM wparam, lparam lparam)
+   lresult interaction_impl::send_message(const ::id & id, wparam wparam, lparam lparam)
    {
 
       ::___pointer < ::message::base > pbase;
@@ -2426,7 +2426,7 @@ namespace user
 
 #ifdef LINUX
 
-   LRESULT interaction_impl::send_x11_event(void * pevent)
+   lresult interaction_impl::send_x11_event(void * pevent)
    {
       UNREFERENCED_PARAMETER(pevent);
       ::exception::throw_interface_only();
@@ -2438,7 +2438,7 @@ namespace user
 #endif
 
 
-   bool interaction_impl::post_message(const ::id & id,WPARAM wParam,lparam lParam)
+   bool interaction_impl::post_message(const ::id & id,wparam wParam,lparam lParam)
    {
 
       if(!m_puserinteraction)
@@ -2460,7 +2460,7 @@ namespace user
    }
 
 
-   bool interaction_impl::DragDetect(const ::point & point) const
+   bool interaction_impl::DragDetect(const ::point_i32 & point) const
    {
       UNREFERENCED_PARAMETER(point);
       ::exception::throw_interface_only();
@@ -2550,7 +2550,7 @@ namespace user
    }
 
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,POINT32 * pPoint,::u32 nCount)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,POINT_I32 * pPoint,::u32 nCount)
    {
 
       UNREFERENCED_PARAMETER(pwndTo);
@@ -2562,10 +2562,10 @@ namespace user
    }
 
 
-   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,RECT32 * prect)
+   void interaction_impl::MapWindowPoints(::user::interaction_impl * pwndTo,RECTANGLE_I32 * prectangle)
    {
       UNREFERENCED_PARAMETER(pwndTo);
-      UNREFERENCED_PARAMETER(prect);
+      UNREFERENCED_PARAMETER(prectangle);
 
       ::exception::throw_interface_only();
    }
@@ -2581,10 +2581,10 @@ namespace user
       ::exception::throw_interface_only();
    }
 
-   bool interaction_impl::GetUpdateRect(RECT32 * prect,bool bErase)
+   bool interaction_impl::GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase)
 
    {
-      UNREFERENCED_PARAMETER(prect);
+      UNREFERENCED_PARAMETER(prectangle);
 
       UNREFERENCED_PARAMETER(bErase);
       ::exception::throw_interface_only();
@@ -2612,10 +2612,10 @@ namespace user
    }
 
 
-   void interaction_impl::InvalidateRect(const ::rect & rect,bool bErase)
+   void interaction_impl::InvalidateRect(const ::rectangle_i32 & rectangle,bool bErase)
    {
 
-      UNREFERENCED_PARAMETER(rect);
+      UNREFERENCED_PARAMETER(rectangle);
       UNREFERENCED_PARAMETER(bErase);
 
       ::exception::throw_interface_only();
@@ -2631,10 +2631,10 @@ namespace user
    }
 
 
-   void interaction_impl::ValidateRect(const ::rect & rect)
+   void interaction_impl::ValidateRect(const ::rectangle_i32 & rectangle)
    {
 
-      UNREFERENCED_PARAMETER(rect);
+      UNREFERENCED_PARAMETER(rectangle);
 
       ::exception::throw_interface_only();
 
@@ -2717,7 +2717,7 @@ namespace user
    }
 
 
-   bool interaction_impl::RedrawWindow(const ::rect & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   bool interaction_impl::RedrawWindow(const ::rectangle_i32 & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       m_puserinteraction->set_need_redraw();
@@ -2741,7 +2741,7 @@ namespace user
    }
 
 
-   ::point interaction_impl::get_cursor_pos() const
+   ::point_i32 interaction_impl::get_cursor_pos() const
    {
 
       auto psession = Session;
@@ -2749,7 +2749,7 @@ namespace user
       if (!psession)
       {
 
-         return ::point();
+         return ::point_i32();
 
       }
 
@@ -2758,7 +2758,7 @@ namespace user
    }
 
 
-   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics,const rect & prc,::u32 uFlags)
+   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & prc,::u32 uFlags)
    {
 
       UNREFERENCED_PARAMETER(pgraphics);
@@ -2942,7 +2942,7 @@ namespace user
    }
 
 
-   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, ::u32 message, WPARAM wParam,LPARAM lParam)
+   lparam interaction_impl::SendDlgItemMessage(i32 nID, ::u32 message, wparam wParam,lparam lParam)
    {
 
       UNREFERENCED_PARAMETER(nID);
@@ -2975,9 +2975,9 @@ namespace user
 
 
    i32 interaction_impl::ScrollWindowEx(i32 dx,i32 dy,
-                                        LPCRECT32 prectScroll,
-                                          LPCRECT32 prectClip,
-                                        ::draw2d::region* prgnUpdate,RECT32 * pRectUpdate,::u32 flags)
+                                        const RECTANGLE_I32 * prectScroll,
+                                          const RECTANGLE_I32 * prectClip,
+                                        ::draw2d::region* prgnUpdate,RECTANGLE_I32 * pRectUpdate,::u32 flags)
    {
 
       UNREFERENCED_PARAMETER(dx);
@@ -3006,7 +3006,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point & point)
+   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point_i32 & point)
    {
       UNREFERENCED_PARAMETER(point);
       ::exception::throw_interface_only();
@@ -3015,7 +3015,7 @@ namespace user
 
    }
 
-   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point & point,::u32 nFlags)
+   ::user::interaction * interaction_impl::ChildWindowFromPoint(const ::point_i32 & point,::u32 nFlags)
    {
       UNREFERENCED_PARAMETER(point);
       UNREFERENCED_PARAMETER(nFlags);
@@ -3155,7 +3155,7 @@ namespace user
    }
 
 
-   bool interaction_impl::SendNotifyMessage(::u32 message,WPARAM wParam,lparam lParam)
+   bool interaction_impl::SendNotifyMessage(::u32 message,wparam wParam,lparam lParam)
    {
 
       UNREFERENCED_PARAMETER(message);
@@ -3497,7 +3497,7 @@ namespace user
 
       }
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       m_puserinteraction->get_window_rect(rectWindow);
 
@@ -3514,7 +3514,7 @@ namespace user
 
       {
 
-         ::size sizeDrawn;
+         ::size_i32 sizeDrawn;
 
          sync_lock slGraphics(m_pgraphics->mutex());
 
@@ -3805,7 +3805,7 @@ namespace user
    }
 
 
-   void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction,const ::rect & rect)
+   void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction,const ::rectangle_i32 & rectangle)
    {
 
       ASSERT(::is_set(pinteraction));
@@ -3814,13 +3814,13 @@ namespace user
 
       ASSERT(puiParent != nullptr);
 
-      ::rect rectOld;
+      ::rectangle_i32 rectOld;
 
       pinteraction->get_window_rect(rectOld);
 
       puiParent->_001ScreenToClient(rectOld);
 
-      pinteraction->place(rect);
+      pinteraction->place(rectangle);
 
       pinteraction->display(e_display_normal, e_activation_no_activate);
 
@@ -4788,7 +4788,7 @@ namespace user
          //}
          // END Commented on Windows
 
-         ::point pointBottomRight = pointOutput + sizeOutput;
+         ::point_i32 pointBottomRight = pointOutput + sizeOutput;
 
          output_debug_string("SetWindowPos bottom_right " + __str(pointBottomRight.x) + ", " + __str(pointBottomRight.y) + "\n");
 
@@ -5190,7 +5190,7 @@ namespace user
 
       }
 
-      __pointer(::message::size) psize(pmessage);
+      __pointer(::message::size_i32) psize(pmessage);
 
       bool bLayered = m_puserinteraction->GetExStyle() & WS_EX_LAYERED;
 
@@ -5298,16 +5298,16 @@ namespace user
 
       non_top_most_upper_window_rects(recta);
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      m_puserinteraction->get_window_rect(rect);
+      m_puserinteraction->get_window_rect(rectangle);
 
-      ::rect rTest;
+      ::rectangle_i32 rTest;
 
       for (auto & rHigher : recta)
       {
 
-         if (rTest.intersect(rHigher, rect))
+         if (rTest.intersect(rHigher, rectangle))
          {
 
             return true;
@@ -5337,16 +5337,16 @@ namespace user
 
       }
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      m_puserinteraction->get_window_rect(rect);
+      m_puserinteraction->get_window_rect(rectangle);
 
       for (auto & rHigher : ra)
       {
 
-         ::rect rTest;
+         ::rectangle_i32 rTest;
 
-         if (rTest.intersect(rHigher, rect))
+         if (rTest.intersect(rHigher, rectangle))
          {
 
             raTest.add(rTest);
@@ -5396,7 +5396,7 @@ namespace user
       }
 
       // Second Remove Partial Intersections which:
-      // Intersection area is less than third the area of the rectangle with bigger area.
+      // Intersection area is less than third the area of the rectangle_i32 with bigger area.
 
    restartPartialIntersectionExclusionEx:
 
@@ -5451,30 +5451,30 @@ namespace user
    }
 
 
-   i64 interaction_impl::opaque_area(LPCRECT32 lpcrect)
+   i64 interaction_impl::opaque_area(const RECTANGLE_I32 * lpcrect)
    {
 
       sync_lock sl(m_pgraphics->get_screen_sync());
 
       color colorTransparent(0);
 
-      ::rect rect(lpcrect);
+      ::rectangle_i32 rectangle(lpcrect);
 
-      m_puserinteraction->ScreenToClient(rect);
+      m_puserinteraction->ScreenToClient(rectangle);
 
-      return rect.area() - m_pgraphics->get_screen_image()->get_rgba_area(colorTransparent, rect);
+      return rectangle.area() - m_pgraphics->get_screen_image()->get_rgba_area(colorTransparent, rectangle);
 
    }
 
 
-   i64 interaction_impl::_001GetRectTopLeftWeightedArea(LPCRECT32 lpcrect)
+   i64 interaction_impl::_001GetRectTopLeftWeightedArea(const RECTANGLE_I32 * lpcrect)
    {
 
-      ::rect rect(lpcrect);
+      ::rectangle_i32 rectangle(lpcrect);
 
-      m_puserinteraction->ScreenToClient(rect);
+      m_puserinteraction->ScreenToClient(rectangle);
 
-      return m_pgraphics->_001GetTopLeftWeightedOpaqueArea(rect);
+      return m_pgraphics->_001GetTopLeftWeightedOpaqueArea(rectangle);
 
    }
 
@@ -5484,11 +5484,11 @@ namespace user
 
       color colorTransparent(0);
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      m_puserinteraction->get_window_rect(rect);
+      m_puserinteraction->get_window_rect(rectangle);
 
-      return rect.area() - m_pgraphics->get_screen_image()->get_rgba_area(colorTransparent);
+      return rectangle.area() - m_pgraphics->get_screen_image()->get_rgba_area(colorTransparent);
 
    }
 
@@ -5498,9 +5498,9 @@ namespace user
 
       color colorTransparent(0);
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      m_puserinteraction->get_window_rect(rect);
+      m_puserinteraction->get_window_rect(rectangle);
 
       return m_pgraphics->get_screen_image()->_001GetTopLeftWeightedOpaqueArea(colorTransparent);
 

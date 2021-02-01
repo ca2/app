@@ -97,7 +97,7 @@ namespace user
    {
    public:
 
-      RECT32   m_rect;
+      RECTANGLE_I32   m_rectangle;
 
    };
 
@@ -134,7 +134,7 @@ namespace user
 
 
       ::draw2d::graphics_pointer    m_pgraphics;
-      size                          m_size;
+      size_i32                          m_size;
 
 
    };
@@ -153,7 +153,7 @@ namespace user
    };
 
 
-   //CLASS_DECL_AURA::mutex* mutex_children2();
+   //CLASS_DECL_AURA::mutex * mutex_children2();
 
 
 
@@ -278,25 +278,25 @@ namespace user
 
 
 
-#ifdef WINDOWS_DESKTOP
-
-#include "aura/node/windows/user.h"
-
-#elif defined(MACOS)
-
-#include "aura/os/macos/user.h"
-#include "aura/node/macos/user.h"
-
-#elif defined(LINUX)
-
-#include "aura/os/linux/user.h"
-
-
-#endif
-
-
-#include "aura/os/_user.h"
-
+//#ifdef WINDOWS_DESKTOP
+//
+//#include "aura/node/windows/user.h"
+//
+//#elif defined(MACOS)
+//
+//#include "aura/os/macos/user.h"
+//#include "aura/node/macos/user.h"
+//
+//#elif defined(LINUX)
+//
+//#include "aura/os/linux/user.h"
+//
+//
+//#endif
+//
+//
+//#include "aura/os/_user.h"
+//
 
 //#include "keyboard_layout.h"
 #include "keyboard.h"
@@ -645,25 +645,25 @@ public:
 
    virtual bool create(const char * pClassName, const char * lpWindowName,
 
-      u32 dwStyle, const ::rect & rect,
+      u32 dwStyle, const ::rectangle_i32 & rectangle,
       ::user::interaction_child* pParentWnd = nullptr, ::u32 nID = 0);
    virtual bool create_window_ex(u32 dwExStyle, const char * pClassName, const char * lpWindowName,
 
-      u32 dwStyle, const ::rect & rect,
+      u32 dwStyle, const ::rectangle_i32 & rectangle,
       ::user::interaction_child* pParentWnd = nullptr, ::u32 nID = 0);
 
 
    bool OnNcActivate(bool bActive);
-   LRESULT OnNcHitTest(const ::point & point);
-   void OnSysCommand(::u32 nID, LPARAM lParam);
+   lresult OnNcHitTest(const ::point_i32 & point);
+   void OnSysCommand(::u32 nID, lparam lParam);
    void OnGetMinMaxInfo(MINMAXINFO* pMMI);
-   LRESULT OnFloatStatus(WPARAM wParam, LPARAM lParam);
-   LRESULT OnQueryCenterWnd(WPARAM wParam, LPARAM lParam);
+   lresult OnFloatStatus(wparam wParam, lparam lParam);
+   lresult OnQueryCenterWnd(wparam wParam, lparam lParam);
    bool OnNcCreate(::user::system * pcs);
 
 
 public:
-   static void CalcBorders(RECT32 * pClientRect, u32 dwStyle = 0, u32 dwExStyle = 0);
+   static void CalcBorders(RECTANGLE_I32 * pClientRect, u32 dwStyle = 0, u32 dwExStyle = 0);
 
 
 protected:

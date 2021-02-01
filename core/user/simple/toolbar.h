@@ -20,17 +20,17 @@ public:
 
    
    int                     m_iImageSpacing;
-   ::size                  m_sizePress;
-   ::size                  m_sizeSpacing;
-   ::size                  m_sizeSeparator;
-   ::rect                m_rectBorder;
-   ::rect                m_rectItemPad;
+   ::size_i32                  m_sizePress;
+   ::size_i32                  m_sizeSpacing;
+   ::size_i32                  m_sizeSeparator;
+   ::rectangle_i32                m_rectBorder;
+   ::rectangle_i32                m_rectItemPad;
    //bool                       m_bTransparentBackground;
    bool                    m_bSimpleLayout;
    double                  m_dFontSize;
 
-   ::size                  m_sizeButton;
-   ::size                  m_sizeImage;
+   ::size_i32                  m_sizeButton;
+   ::size_i32                  m_sizeImage;
 //#ifdef WINDOWS
   // HRSRC           m_hRsrcImageWell; // handle to loaded resource for image well
 //#endif
@@ -49,11 +49,11 @@ public:
    virtual ~simple_toolbar();
 
    virtual int  get_image_spacing();
-   virtual ::size get_press_shift();
-   virtual ::size get_item_spacing();
-   virtual ::size get_separator_size();
-   virtual ::rect get_bar_border();
-   virtual ::rect get_item_pad();
+   virtual ::size_i32 get_press_shift();
+   virtual ::size_i32 get_item_spacing();
+   virtual ::size_i32 get_separator_size();
+   virtual ::rectangle_i32 get_bar_border();
+   virtual ::rectangle_i32 get_item_pad();
 
    //bool create(::user::interaction * puiParent, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_TOP, id nID = "__IDW_TOOLBAR");
    //using ::user::interaction::create_window_ex;
@@ -63,12 +63,12 @@ public:
    virtual index WrapToolBar(::draw2d::graphics_pointer& pgraphics, index nCount, index nWidth);
    virtual void SizeToolBar(::draw2d::graphics_pointer& pgraphics, index nCount, index nLength, bool bVert = FALSE);
 
-   virtual ::size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, index nLength, u32 dwMode) override;
-   virtual ::size CalcLayout(::draw2d::graphics_pointer& pgraphics, u32 dwMode, index nLength = -1) override;
+   virtual ::size_i32 CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, index nLength, u32 dwMode) override;
+   virtual ::size_i32 CalcLayout(::draw2d::graphics_pointer& pgraphics, u32 dwMode, index nLength = -1) override;
    //bool CalcSize(size & size, bool bHorz);
-   virtual ::size CalcSize(::draw2d::graphics_pointer & pgraphics, index nCount);
+   virtual ::size_i32 CalcSize(::draw2d::graphics_pointer & pgraphics, index nCount);
    virtual void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle) override;
-   virtual ::size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
+   virtual ::size_i32 CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
 
 
    void RemoveAllTools();
@@ -84,7 +84,7 @@ public:
    void _001DiscardImageList();
    virtual bool on_click(const ::user::item & item) override;
    virtual void on_hit_test(::user::item & item) override;
-   //void _001Hover(const ::point & point, bool bRedraw = true);
+   //void _001Hover(const ::point_i32 & point, bool bRedraw = true);
    //void _001Hover(bool bRedraw = true);
 
 
@@ -103,9 +103,9 @@ public:
       bool LoadBitmap(::u32 nIDResource);
    */
 
-//  virtual bool _001GetItemRect(index iItem,RECT32 * prect)
+//  virtual bool _001GetItemRect(index iItem,RECTANGLE_I32 * prectangle)
 
-   virtual bool _001GetElementRect(index iItem,RECT32 * prect, ::user::enum_element eelement,
+   virtual bool _001GetElementRect(index iItem,RECTANGLE_I32 * prectangle, ::user::enum_element eelement,
                                    ::user::enum_state estate) override;
 
 
@@ -113,7 +113,7 @@ public:
 
 //   bool SetButtons(const ::u32* pIDArray, index nIDCount);
 
-   void SetSizes(const ::size & sizeButton, const ::size & sizeImage);
+   void SetSizes(const ::size_i32 & sizeButton, const ::size_i32 & sizeImage);
 
    void on_command_probe(::user::frame_window * ptarget, bool bDisableIfNoHndler) override;
 
@@ -121,7 +121,7 @@ public:
    //void TransparentEraseNonClient(::draw2d::graphics_pointer & pgraphics);
    //void SetTransparentBackground(bool bSet);
    virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-   virtual ::size CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics) override;
+   virtual ::size_i32 CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics) override;
 
    void _001OnImageListAttrib();
    DECL_GEN_SIGNAL(_001OnCreate);

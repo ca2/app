@@ -105,7 +105,7 @@ namespace user
       if(m_scalar.is_null())
          return;
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
       get_client_rect(rectClient);
       class imaging & imaging = System.imaging();
 
@@ -121,17 +121,17 @@ namespace user
       i64 iMax = m_scalar.maximum();
       i64 iVal = m_scalar;
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
       for(i64 i = iMin; i <= iMax; i++)
       {
-         GetStepRect(rect, i, iMin, iMax, rectClient);
+         GetStepRect(rectangle, i, iMin, iMax, rectClient);
          if(i == iVal)
          {
             if(m_itemHover.item_index() == i)
             {
                imaging.color_blend(
                   pgraphics,
-                  rect,
+                  rectangle_i32,
                   RGB(255, 255, 240),
                   bAlpha);
             }
@@ -139,7 +139,7 @@ namespace user
             {
                imaging.color_blend(
                   pgraphics,
-                  rect,
+                  rectangle_i32,
                   RGB(255, 255, 150),
                   bAlpha);
             }
@@ -150,7 +150,7 @@ namespace user
             {
                imaging.color_blend(
                   pgraphics,
-                  rect,
+                  rectangle_i32,
                   RGB(255, 180, 180),
                   bAlpha);
             }
@@ -158,7 +158,7 @@ namespace user
             {
                imaging.color_blend(
                   pgraphics,
-                  rect,
+                  rectangle_i32,
                   RGB(100, 100, 255),
                   bAlpha);
             }
@@ -167,40 +167,40 @@ namespace user
    }
 
 
-   void step_slider::GetStepHoverRect(RECT32 * prect, i64 iStep, i64 iMin, i64 iMax, const ::rect & rectClient)
+   void step_slider::GetStepHoverRect(RECTANGLE_I32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectClient)
    {
 
       if((iMax - iMin) == 0)
          return;
 
-      prect->top = rectClient.top;
+      prectangle->top = rectClient.top;
 
-      prect->bottom = rectClient.bottom;
+      prectangle->bottom = rectClient.bottom;
 
       double dWidth = ((double)rectClient.width()) / (iMax - iMin);
 
-      prect->left = (::i32) (dWidth * (iStep - iMin));
+      prectangle->left = (::i32) (dWidth * (iStep - iMin));
 
-      prect->right = (::i32) (dWidth * (iStep - iMin + 1));
+      prectangle->right = (::i32) (dWidth * (iStep - iMin + 1));
 
 
 
    }
 
 
-   void step_slider::GetStepRect(RECT32 * prect, i64 iStep, i64 iMin, i64 iMax, const ::rect & rectClient)
+   void step_slider::GetStepRect(RECTANGLE_I32 * prectangle, i64 iStep, i64 iMin, i64 iMax, const ::rectangle_i32 & rectClient)
    {
 
       if((iMax - iMin) == 0)
          return;
 
-      GetStepHoverRect(prect, iStep, iMin, iMax, rectClient);
+      GetStepHoverRect(prectangle, iStep, iMin, iMax, rectClient);
 
-      i32 halfm = (prect->right - prect->left - 2) / 2;
+      i32 halfm = (prectangle->right - prectangle->left - 2) / 2;
 
-      prect->left +=  halfm;
+      prectangle->left +=  halfm;
 
-      prect->right -=  halfm;
+      prectangle->right -=  halfm;
 
 
    }
@@ -209,7 +209,7 @@ namespace user
    void step_slider::on_hit_test(::user::item & item)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -244,7 +244,7 @@ namespace user
 
       set_need_redraw();
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 

@@ -541,9 +541,9 @@ inline i32 wd32_count_collate_case_insensitive(const wd32char * psz, const wd32c
 inline const wd32char * wd32_scan(const wd32char * psz, const wd32char * find)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return nullptr;
 
-   if (c_is_null(find)) return FALSE;
+   if (c_is_null(find)) return nullptr;
 
    return wd32_pbrk((wd32char* )psz, find);
 
@@ -571,16 +571,16 @@ inline wd32char * wd32_next_token(const wd32char * delimiters, wd32char ** actio
 inline i32 wd32_begins(const wd32char * psz, const wd32char * prefix)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return false;
 
-   if (c_is_null(prefix)) return FALSE;
+   if (c_is_null(prefix)) return false;
 
    auto len = wd32_len(prefix);
 
    if (len > wd32_len(psz))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -592,9 +592,9 @@ inline i32 wd32_begins(const wd32char * psz, const wd32char * prefix)
 inline i32 wd32_begins_case_insensitive(const wd32char * psz, const wd32char * prefix)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return false;
 
-   if (c_is_null(prefix)) return FALSE;
+   if (c_is_null(prefix)) return false;
 
    return !wd32_nicmp(psz, prefix, wd32_len(prefix));
 
@@ -646,9 +646,9 @@ inline const wd32char * wd32_begins_eat_case_insensitive(const wd32char * psz, c
 inline i32 wd32_ends(const wd32char * psz, const wd32char * suffix)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return false;
 
-   if (c_is_null(suffix)) return FALSE;
+   if (c_is_null(suffix)) return false;
 
    auto len = wd32_len(suffix);
 
@@ -657,7 +657,7 @@ inline i32 wd32_ends(const wd32char * psz, const wd32char * suffix)
    if (end < 0)
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -669,9 +669,9 @@ inline i32 wd32_ends(const wd32char * psz, const wd32char * suffix)
 inline i32 wd32_ends_case_insensitive(const wd32char * psz, const wd32char * suffix)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return false;
 
-   if (c_is_null(suffix)) return FALSE;
+   if (c_is_null(suffix)) return false;
 
    auto len = wd32_len(suffix);
 
@@ -680,7 +680,7 @@ inline i32 wd32_ends_case_insensitive(const wd32char * psz, const wd32char * suf
    if (end < 0)
    {
 
-      return FALSE;
+      return false;
 
    }
 

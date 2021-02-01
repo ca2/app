@@ -17,9 +17,9 @@ struct __CTLCOLOR
 };
 
 
-// int_bool PeekMessage(LPMESSAGE lpMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
+// int_bool PeekMessage(MESSAGE * lpMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
 
-// int_bool GetMessage(LPMESSAGE lpMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+// int_bool GetMessage(MESSAGE * lpMsg, oswindow hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
 
 namespace macos
@@ -112,9 +112,9 @@ namespace macos
 
    void CLASS_DECL_AURA __pre_init_dialog(::user::interaction * pWnd, LPRECT32 lpRectOld, ::u32* pdwStyleOld);
 
-   void CLASS_DECL_AURA __post_init_dialog(::user::interaction * pWnd, const RECT32& rectOld, ::u32 dwStyleOld);
+   void CLASS_DECL_AURA __post_init_dialog(::user::interaction * pWnd, const RECTANGLE_I32& rectOld, ::u32 dwStyleOld);
 
-   LRESULT CALLBACK __activation_window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wparam, LPARAM lparam);
+   LRESULT CALLBACK __activation_window_procedure(oswindow hWnd, ::u32 nMsg, wparam wparam, lparam lparam);
 
 
    ::user::interaction_impl * interaction_impl::from_os_data(void * pdata)
@@ -357,16 +357,16 @@ namespace macos
 
       hook_window_create(m_puserinteraction);
 
-      CGRect rect;
+      CGRect rectangle_i32;
 
-      RECT32 rectParam;
+      RECTANGLE_I32 rectParam;
 
       rectParam.left = pusersystem->m_createstruct.x;
       rectParam.top = pusersystem->m_createstruct.y;
       rectParam.right = pusersystem->m_createstruct.x + pusersystem->m_createstruct.cx;
       rectParam.bottom = pusersystem->m_createstruct.y + pusersystem->m_createstruct.cy;
 
-      __copy(rect, rectParam);
+      __copy(rectangle, rectParam);
 
       if (pusersystem->m_createstruct.hwndParent == MESSAGE_WINDOW_PARENT)
       {
@@ -388,11 +388,11 @@ namespace macos
 
          }
 
-         m_oswindow = oswindow_get(new_apex_window(this, rect, uStyle));
+         m_oswindow = oswindow_get(new_apex_window(this, rectangle_i32, uStyle));
 
          m_puserinteraction->layout().window() = ::top_left(rectParam);
 
-         m_puserinteraction->layout().window() = ::size(rectParam);
+         m_puserinteraction->layout().window() = ::size_i32(rectParam);
 
          __refer(m_puserinteraction->m_pthreadUserInteraction, ::get_task());
 
@@ -466,14 +466,14 @@ namespace macos
    }
 
 
-   bool interaction_impl::create_window(::user::interaction * pinteraction, const char * lpszClassName,const char * lpszWindowName,u32 uStyle, const ::rect & rect,::user::interaction * puiParent,id id, ::create * pcreate)
+   bool interaction_impl::create_window(::user::interaction * pinteraction, const char * lpszClassName,const char * lpszWindowName,u32 uStyle, const ::rectangle_i32 & rectangle,::user::interaction * puiParent,id id, ::create * pcreate)
    {
 
       // can't use for desktop or pop-up windows (use CreateEx instead)
 
       ASSERT(puiParent != nullptr);
       
-      ::user::system createstruct(0, lpszClassName, lpszWindowName, uStyle, rect, pcreate);
+      ::user::system createstruct(0, lpszClassName, lpszWindowName, uStyle, rectangle_i32, pcreate);
 
       pusersystem->m_createstruct.hwndParent = puiParent->get_safe_handle();
 
@@ -646,7 +646,7 @@ namespace macos
 //
 //      }
 //
-//      __pointer(::message::size) psize(pmessage);
+//      __pointer(::message::size_i32) psize(pmessage);
 //
 //      m_puserinteraction->window_state().m_size = psize->m_size;
 //
@@ -804,11 +804,11 @@ namespace macos
       //      ::GetClassName(get_handle(), szBuf, _countof(szBuf));
       //    dumpcontext << "\nclass name = \"" << szBuf << "\"";
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
       
-      ((::user::interaction_impl *) this)->m_puserinteraction->get_window_rect(rect);
+      ((::user::interaction_impl *) this)->m_puserinteraction->get_window_rect(rectangle);
       
-      dumpcontext << "\nrect = " << rect;
+      dumpcontext << "\nrect = " << rectangle_i32;
       dumpcontext << "\nparent ::user::interaction * = " << (void *)((::user::interaction_impl *) this)->get_parent();
 
       //      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
@@ -827,7 +827,7 @@ namespace macos
    }
 
 
-//   LRESULT interaction_impl::DefWindowProc(::u32 nMsg, WPARAM wparam, LPARAM lparam)
+//   LRESULT interaction_impl::DefWindowProc(::u32 nMsg, wparam wparam, lparam lparam)
 //   {
 //      /*  if (m_pfnSuper != nullptr)
 //       return ::CallWindowProc(m_pfnSuper, get_handle(), nMsg, wparam, lparam);
@@ -951,7 +951,7 @@ namespace macos
 //   }
 //
 //
-//   LRESULT interaction_impl::OnNTCtlColor(WPARAM wparam, LPARAM lparam)
+//   LRESULT interaction_impl::OnNTCtlColor(wparam wparam, lparam lparam)
 //   {
 //      return 0;
 //   }
@@ -1234,7 +1234,7 @@ namespace macos
          if (m_bTranslateMouseMessageCursor)
          {
 
-            ::rect rect;
+            ::rectangle_i32 rectangle;
 
             if(!pmouse->m_bTranslated)
             {
@@ -1244,7 +1244,7 @@ namespace macos
                if (psession->get_monitor_count() > 0)
                {
 
-                  psession->get_monitor_rect(0, &rect);
+                  psession->get_monitor_rect(0, &rectangle);
 
                }
                else
@@ -1255,7 +1255,7 @@ namespace macos
                      
 #ifndef __APPLE__
 
-                     ::get_window_rect(get_handle(), &rect);
+                     ::get_window_rect(get_handle(), &rectangle);
                      
 #endif
 
@@ -1263,23 +1263,23 @@ namespace macos
                   else
                   {
 
-                     m_puserinteraction->get_window_rect(rect);
+                     m_puserinteraction->get_window_rect(rectangle);
 
                   }
 
                }
 
-               if (rect.left >= 0)
+               if (rectangle.left >= 0)
                {
 
-                  pmouse->m_point.x += (::i32)rect.left;
+                  pmouse->m_point.x += (::i32)rectangle.left;
 
                }
 
-               if (rect.top >= 0)
+               if (rectangle.top >= 0)
                {
 
-                  pmouse->m_point.y += (::i32)rect.top;
+                  pmouse->m_point.y += (::i32)rectangle.top;
 
                }
 
@@ -1531,7 +1531,7 @@ namespace macos
 
 
    void interaction_impl::ScrollWindow(i32 xAmount, i32 yAmount,
-                                       LPCRECT32 lpRect, LPCRECT32 lpClipRect)
+                                       const RECTANGLE_I32 * lpRect, const RECTANGLE_I32 * lpClipRect)
    {
 
    }
@@ -1543,7 +1543,7 @@ namespace macos
    }
 
 
-//   bool interaction_impl::HandleFloatingSysCommand(::u32 nID, LPARAM lparam)
+//   bool interaction_impl::HandleFloatingSysCommand(::u32 nID, lparam lparam)
 //   {
 //      /*      ::user::interaction* pParent = GetTopLevelParent();
 //       switch (nID & 0xfff0)
@@ -1647,13 +1647,13 @@ namespace macos
 //      return FALSE;
 //   }
 
-//   bool interaction_impl::OnChildNotify(::u32 uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
+//   bool interaction_impl::OnChildNotify(::u32 uMsg, wparam wparam, lparam lparam, LRESULT* pResult)
 //   {
 //
 //      return ReflectChildNotify(uMsg, wparam, lparam, pResult);
 //   }
 
-//   bool interaction_impl::ReflectChildNotify(::u32 uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
+//   bool interaction_impl::ReflectChildNotify(::u32 uMsg, wparam wparam, lparam lparam, LRESULT* pResult)
 //   {
 //      UNREFERENCED_PARAMETER(wparam);
 //      // Note: reflected messages are m_puserinteraction->send directly to interaction_impl::OnWndMsg
@@ -1726,7 +1726,7 @@ namespace macos
 //      return false;   // let the parent handle it
 //   }
 
-//   void interaction_impl::OnParentNotify(const ::id & id, LPARAM lparam)
+//   void interaction_impl::OnParentNotify(const ::id & id, lparam lparam)
 //   {
 //      if ((LOWORD(message) == e_message_create || LOWORD(message) == e_message_destroy))
 //      {
@@ -1749,7 +1749,7 @@ namespace macos
 //   }
 //
 //
-//   LRESULT interaction_impl::OnActivateTopLevel(WPARAM wparam, LPARAM)
+//   LRESULT interaction_impl::OnActivateTopLevel(wparam wparam, LPARAM)
 //   {
 //
 //      return 0;
@@ -1835,7 +1835,7 @@ namespace macos
 //      return Default();
 //   }
 
-//   LRESULT interaction_impl::OnDragList(WPARAM, LPARAM lparam)
+//   LRESULT interaction_impl::OnDragList(WPARAM, lparam lparam)
 //   {
 //
 //      __throw(not_implemented());
@@ -2037,7 +2037,7 @@ namespace macos
          Default();
       }
       */
-   bool CALLBACK interaction_impl::GetAppsEnumWindowsProc(oswindow hwnd, LPARAM lparam)
+   bool CALLBACK interaction_impl::GetAppsEnumWindowsProc(oswindow hwnd, lparam lparam)
    {
       user::oswindow_array * phwnda = (user::oswindow_array *) lparam;
       phwnda->add(hwnd);
@@ -2087,7 +2087,7 @@ namespace macos
 //   void interaction_impl::_001DeferPaintLayeredWindowBackground(HDC hdc)
 //   {
 //
-//      //::rect rectClient;
+//      //::rectangle_i32 rectClient;
 //
 //      //get_client_rect(rectClient);
 //
@@ -2100,7 +2100,7 @@ namespace macos
 //
 //      //      SetViewportOrgEx(hdc, 0, 0, nullptr);
 //
-//      //::rect rectPaint;
+//      //::rectangle_i32 rectPaint;
 //
 //      //rectPaint = rectUpdate;
 //
@@ -2140,18 +2140,18 @@ namespace macos
       //
       //      ::draw2d::graphics_pointer graphics(get_object());
       //      WIN_DC(graphics.m_p)->Attach((HDC) pbase->m_wparam);
-      //      ::rect rectx;
+      //      ::rectangle_i32 rectx;
       //      ::draw2d::bitmap * pbitmap = &pgraphics->GetCurrentBitmap();
       //      ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
       //      //      ::u32 dw = ::get_last_error();
-      //      ::size size = pbitmap->get_size();
+      //      ::size_i32 size = pbitmap->get_size();
       //      rectx.left = 0;
       //      rectx.top = 0;
       //      rectx.right = size.cx;
       //      rectx.bottom = size.cy;
       //      try
       //      {
-      //         ::rect rectWindow;
+      //         ::rectangle_i32 rectWindow;
       //         get_window_rect(rectWindow);
       //
       //         ::image_pointer pimage(get_object());
@@ -2163,8 +2163,8 @@ namespace macos
       //         if(pgraphics->get_handle() == nullptr)
       //            return;
       //
-      //         ::rect rectPaint;
-      //         ::rect rectUpdate;
+      //         ::rectangle_i32 rectPaint;
+      //         ::rectangle_i32 rectUpdate;
       //         rectUpdate = rectWindow;
       //         rectPaint = rectWindow;
       //         rectPaint.offset(-rectPaint.top_left());
@@ -2178,12 +2178,12 @@ namespace macos
       //            _001OnDeferPaintLayeredWindowBackground(pgraphics);
       //         }
       //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SelectClipRgn(nullptr);
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(::point());
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
       //         _000OnDraw(pgraphics);
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(::point());
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
       //         //(dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
       //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SelectClipRgn(nullptr);
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(::point());
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
       //
       //         pgraphics->SelectClipRgn( nullptr);
       //         pgraphics->BitBlt(rectPaint.left, rectPaint.top,
@@ -2462,10 +2462,10 @@ namespace macos
 //   }
 
 
-//   pointd interaction_impl::client_screen_top_left()
+//   point_f64 interaction_impl::client_screen_top_left()
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rectangle_i64 rectWindow;
 //
 //      if (!m_puserinteraction->get_window_rect(rectWindow))
 //      {
@@ -2479,7 +2479,7 @@ namespace macos
 //   }
 
 
-//   bool interaction_impl::get_window_rect(RECT64 * lprect)
+//   bool interaction_impl::get_window_rect(RECTANGLE_I64 * lprect)
 //   {
 //
 //      return ::user::interaction_impl::get_window_rect(lprect);
@@ -2487,7 +2487,7 @@ namespace macos
 //   }
 //
 //
-//   bool interaction_impl::get_client_rect(RECT64 * lprect)
+//   bool interaction_impl::get_client_rect(RECTANGLE_I64 * lprect)
 //   {
 //
 //      if (!::is_window(get_handle()))
@@ -2497,7 +2497,7 @@ namespace macos
 //
 //      }
 //
-//      ::rect rect32;
+//      ::rectangle_i32 rect32;
 //
 //      if (!::get_client_rect(get_handle(), rect32))
 //      {
@@ -2695,7 +2695,7 @@ namespace macos
    }
 
 
-   LRESULT interaction_impl::send_message(const ::id & id, WPARAM wparam, lparam lparam)
+   LRESULT interaction_impl::send_message(const ::id & id, wparam wparam, lparam lparam)
    {
 
       return ::user::interaction_impl::send_message(message, wparam, lparam);
@@ -2703,7 +2703,7 @@ namespace macos
    }
 
 
-   bool interaction_impl::post_message(const ::id & id, WPARAM wparam, lparam lparam)
+   bool interaction_impl::post_message(const ::id & id, wparam wparam, lparam lparam)
    {
 
       if (m_puserinteraction->m_pthreadUserInteraction == nullptr)
@@ -2722,7 +2722,7 @@ namespace macos
    }
 
 
-//   bool interaction_impl::DragDetect(const ::point & point) const
+//   bool interaction_impl::DragDetect(const ::point_i32 & point) const
 //   {
 //
 //      __throw(not_implemented());
@@ -2750,7 +2750,7 @@ namespace macos
    }
 
 
-//   void interaction_impl::MoveWindow(LPCRECT32 lpRect, bool bRepaint)
+//   void interaction_impl::MoveWindow(const RECTANGLE_I32 * lpRect, bool bRepaint)
 //   {
 //
 //      MoveWindow(lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top, bRepaint);
@@ -2811,7 +2811,7 @@ namespace macos
 //   }
 
 
-//   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, POINT32 * lpPoint, ::u32 nCount)
+//   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, POINT_I32 * lpPoint, ::u32 nCount)
 //   {
 //
 //      __throw(not_implemented());
@@ -2898,7 +2898,7 @@ namespace macos
    }
 
 
-   void interaction_impl::InvalidateRect(const ::rect & rect, bool bErase)
+   void interaction_impl::InvalidateRect(const ::rectangle_i32 & rectangle, bool bErase)
    {
 
       __throw(not_implemented());
@@ -2914,7 +2914,7 @@ namespace macos
    }
 
 
-   void interaction_impl::ValidateRect(const ::rect & rect)
+   void interaction_impl::ValidateRect(const ::rectangle_i32 & rectangle)
    {
 
       __throw(not_implemented());
@@ -2979,7 +2979,7 @@ namespace macos
    }
 
 
-//   void interaction_impl::send_message_to_descendants(const ::id & id, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
+//   void interaction_impl::send_message_to_descendants(const ::id & id, wparam wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
 //   {
 //
 //      ASSERT(::is_window(get_handle()));
@@ -3188,7 +3188,7 @@ namespace macos
    }
 
 
-//   bool interaction_impl::DrawAnimatedRects(i32 idAni, const RECT32 *lprcFrom, const RECT32 * lprcTo)
+//   bool interaction_impl::DrawAnimatedRects(i32 idAni, const RECTANGLE_I32 *lprcFrom, const RECTANGLE_I32 * lprcTo)
 //   {
 //
 //      __throw(not_implemented());
@@ -3196,7 +3196,7 @@ namespace macos
 //   }
 
 
-   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::u32 uFlags)
+   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::u32 uFlags)
    {
 
       __throw(not_implemented());
@@ -3420,7 +3420,7 @@ namespace macos
    }
 
 
-   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wparam, LPARAM lparam)
+   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, const ::id & id, wparam wparam, lparam lparam)
    {
 
       __throw(not_implemented());
@@ -3444,7 +3444,7 @@ namespace macos
    }
 
 
-   i32 interaction_impl::ScrollWindowEx(i32 dx, i32 dy, LPCRECT32 lpRectScroll, LPCRECT32 lpRectClip, ::draw2d::region* prgnUpdate, LPRECT32 lpRectUpdate, ::u32 flags)
+   i32 interaction_impl::ScrollWindowEx(i32 dx, i32 dy, const RECTANGLE_I32 * lpRectScroll, const RECTANGLE_I32 * lpRectClip, ::draw2d::region* prgnUpdate, LPRECT32 lpRectUpdate, ::u32 flags)
    {
 
       __throw(not_implemented());
@@ -3460,7 +3460,7 @@ namespace macos
    }
 
 
-   ::user::interaction *  interaction_impl::ChildWindowFromPoint(const ::point & point)
+   ::user::interaction *  interaction_impl::ChildWindowFromPoint(const ::point_i32 & point)
    {
 
       __throw(not_implemented());
@@ -3468,7 +3468,7 @@ namespace macos
    }
 
 
-   ::user::interaction *  interaction_impl::ChildWindowFromPoint(const ::point & point, ::u32 nFlags)
+   ::user::interaction *  interaction_impl::ChildWindowFromPoint(const ::point_i32 & point, ::u32 nFlags)
    {
 
       __throw(not_implemented());
@@ -3539,7 +3539,7 @@ namespace macos
    }
 
 
-   ::user::interaction * PASCAL interaction_impl::oswindowFromPoint(POINT32 point)
+   ::user::interaction * PASCAL interaction_impl::oswindowFromPoint(POINT_I32 point_i32)
    {
 
       __throw(not_implemented());
@@ -3609,16 +3609,16 @@ namespace macos
 
 
 
-   point PASCAL interaction_impl::GetCaretPos()
+   point_i32 PASCAL interaction_impl::GetCaretPos()
    {
 
       __throw(not_implemented());
-      //      ::point point;
-      //      ::GetCaretPos((POINT32 *)&point); return point;
+      //      ::point_i32 point;
+      //      ::GetCaretPos((POINT_I32 *)&point); return point;
 
    }
 
-   void PASCAL interaction_impl::SetCaretPos(POINT32 point)
+   void PASCAL interaction_impl::SetCaretPos(POINT_I32 point_i32)
    {
 
       __throw(not_implemented());
@@ -3661,7 +3661,7 @@ namespace macos
 
    }
 
-//   bool interaction_impl::SendNotifyMessage(const ::id & id, WPARAM wparam, LPARAM lparam)
+//   bool interaction_impl::SendNotifyMessage(const ::id & id, wparam wparam, lparam lparam)
 //   {
 //
 //      __throw(not_implemented());
@@ -3728,7 +3728,7 @@ namespace macos
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnContextMenu(::user::interaction *, point)
+//   void interaction_impl::OnContextMenu(::user::interaction *, point_i32)
 //   {
 //      Default();
 //   }
@@ -3872,31 +3872,31 @@ namespace macos
 //   {
 //      return Default();
 //   }
-//   void interaction_impl::OnNcLButtonDblClk(::u32, point)
+//   void interaction_impl::OnNcLButtonDblClk(::u32, point_i32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnNcLButtonDown(::u32, point)
+//   void interaction_impl::OnNcLButtonDown(::u32, point_i32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnNcLButtonUp(::u32, point)
+//   void interaction_impl::OnNcLButtonUp(::u32, point_i32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnNcMButtonDblClk(::u32, point)
+//   void interaction_impl::OnNcMButtonDblClk(::u32, point_i32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnNcMButtonDown(::u32, point)
+//   void interaction_impl::OnNcMButtonDown(::u32, point_i32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnNcMButtonUp(::u32, point)
+//   void interaction_impl::OnNcMButtonUp(::u32, point_i32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnNcMouseMove(::u32, point)
+//   void interaction_impl::OnNcMouseMove(::u32, point_i32)
 //   {
 //      Default();
 //   }
@@ -3904,15 +3904,15 @@ namespace macos
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnNcRButtonDblClk(::u32, point)
+//   void interaction_impl::OnNcRButtonDblClk(::u32, point_i32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnNcRButtonDown(::u32, point)
+//   void interaction_impl::OnNcRButtonDown(::u32, point_i32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnNcRButtonUp(::u32, point)
+//   void interaction_impl::OnNcRButtonUp(::u32, point_i32)
 //   {
 //      Default();
 //   }
@@ -3972,27 +3972,27 @@ namespace macos
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnLButtonDblClk(::u32, point)
+//   void interaction_impl::OnLButtonDblClk(::u32, point_i32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnLButtonDown(::u32, point)
+//   void interaction_impl::OnLButtonDown(::u32, point_i32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnLButtonUp(::u32, point)
+//   void interaction_impl::OnLButtonUp(::u32, point_i32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnMButtonDblClk(::u32, point)
+//   void interaction_impl::OnMButtonDblClk(::u32, point_i32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnMButtonDown(::u32, point)
+//   void interaction_impl::OnMButtonDown(::u32, point_i32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnMButtonUp(::u32, point)
+//   void interaction_impl::OnMButtonUp(::u32, point_i32)
 //   {
 //      Default();
 //   }
@@ -4000,12 +4000,12 @@ namespace macos
 //   {
 //      return (i32)Default();
 //   }
-//   void interaction_impl::OnMouseMove(::u32, point)
+//   void interaction_impl::OnMouseMove(::u32, point_i32)
 //   {
 //      Default();
 //   }
 //
-//   bool interaction_impl::OnMouseWheel(::u32, short, point)
+//   bool interaction_impl::OnMouseWheel(::u32, short, point_i32)
 //   {
 //
 //      return Default() != FALSE;
@@ -4016,15 +4016,15 @@ namespace macos
 //   {
 //      return Default();
 //   }
-//   void interaction_impl::OnRButtonDblClk(::u32, point)
+//   void interaction_impl::OnRButtonDblClk(::u32, point_i32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnRButtonDown(::u32, point)
+//   void interaction_impl::OnRButtonDown(::u32, point_i32)
 //   {
 //      Default();
 //   }
-//   void interaction_impl::OnRButtonUp(::u32, point)
+//   void interaction_impl::OnRButtonUp(::u32, point_i32)
 //   {
 //      Default();
 //   }
@@ -4213,7 +4213,7 @@ namespace macos
 //   }
 //
 //
-//   LRESULT CALLBACK __cbt_filter_hook(i32 code, WPARAM wparam, LPARAM lparam)
+//   LRESULT CALLBACK __cbt_filter_hook(i32 code, wparam wparam, lparam lparam)
 //   {
 //
 //      __throw(not_implemented());
@@ -4255,16 +4255,16 @@ namespace macos
 
 #ifdef EXTRALOG
 
-   ::rect rectLast;
+   ::rectangle_i32 rectLast;
 
-   ::size sizeLast;
+   ::size_i32 sizeLast;
 
 #endif
 
    void interaction_impl::round_window_draw(CGContextRef cgc, CGSize sizeWindowParam)
    {
 
-      ::size sizeWindow(sizeWindowParam.width, sizeWindowParam.height);
+      ::size_i32 sizeWindow(sizeWindowParam.width, sizeWindowParam.height);
 
       #ifdef EXTRALOG
 
@@ -4274,7 +4274,7 @@ namespace macos
 
       string strFormat;
 
-      strFormat.Format("|-> window size %d, %d", sizeWindow.cx, sizeWindow.cy);
+      strFormat.Format("|-> window size_i32 %d, %d", sizeWindow.cx, sizeWindow.cy);
 
       string strSize;
 
@@ -4289,14 +4289,14 @@ namespace macos
 
       str += strFormat;
 
-      rect rect1 = m_puserinteraction->get_window_rect();
+      rectangle_i32 rect1 = m_puserinteraction->get_window_rect();
 
       if(rect1.size() != rectLast.size())
       {
 
          rectLast = rect1;
 
-         // xxxlog output_debug_string("different window rect size (1)");
+         // xxxlog output_debug_string("different window rectangle_i32 size_i32 (1)");
 
       }
 
@@ -4318,7 +4318,7 @@ namespace macos
 
       round_window_draw_life_time roundwindowdrawlifetime(this);
 
-      cslock slDisplay(cs_display());
+      critical_section_lock slDisplay(cs_display());
 
       __pointer(::graphics::graphics) pbuffer = m_pgraphics;
 
@@ -4403,9 +4403,9 @@ namespace macos
       
 #endif
 
-      ::size sizeMin = imageBuffer2->size().min(sizeWindow);
+      ::size_i32 sizeMin = imageBuffer2->size().min(sizeWindow);
 
-      g->draw(::rect(sizeMin), imageBuffer2->g(), sizeMin);
+      g->draw(::rectangle_i32(sizeMin), imageBuffer2->g(), sizeMin);
       
       m_bPendingRedraw = false;
       
@@ -4595,7 +4595,7 @@ namespace macos
 
          }
 
-         LPARAM lparam = MAKELPARAM(x, y);
+         lparam lparam = MAKELPARAM(x, y);
          
          if(m_puserinteraction)
          {
@@ -4627,7 +4627,7 @@ namespace macos
 
       }
 
-      LPARAM lparam = MAKELPARAM(x, y);
+      lparam lparam = MAKELPARAM(x, y);
       
       if(!m_puserinteraction)
       {
@@ -4660,7 +4660,7 @@ namespace macos
 
       }
 
-      LPARAM lparam = MAKELPARAM(x, y);
+      lparam lparam = MAKELPARAM(x, y);
       
       if(!m_puserinteraction)
       {
@@ -4724,7 +4724,7 @@ namespace macos
 //               if(pinteraction->m_millisMouseMovePeriod > 0)
 //               {
 //
-//                  ::size sizeDistance((pinteraction->m_pointMouseMoveSkip.x - pinteraction->m_pointMouseMove.x),
+//                  ::size_i32 sizeDistance((pinteraction->m_pointMouseMoveSkip.x - pinteraction->m_pointMouseMove.x),
 //                     (pinteraction->m_pointMouseMoveSkip.y - pinteraction->m_pointMouseMove.y));
 //
 //                  if(!pinteraction->m_millisMouseMoveSkip.timeout(pinteraction->m_millisMouseMovePeriod)
@@ -4784,9 +4784,9 @@ namespace macos
 
       }
 
-      LPARAM lparam = MAKELPARAM(x, y);
+      lparam lparam = MAKELPARAM(x, y);
 
-      WPARAM wparam = 0;
+      wparam wparam = 0;
 
       if(ulAppleMouseButton & 1)
       {
@@ -4826,9 +4826,9 @@ namespace macos
 
       }
 
-      LPARAM lparam = MAKELPARAM(x, y);
+      lparam lparam = MAKELPARAM(x, y);
 
-      WPARAM wparam = 0;
+      wparam wparam = 0;
 
       if(ulAppleMouseButton & 1)
       {
@@ -4898,7 +4898,7 @@ namespace macos
    }
 
 
-   void interaction_impl::round_window_resized(CGRect rect)
+   void interaction_impl::round_window_resized(CGRect rectangle_i32)
    {
       
       if(is_destroying())
@@ -4915,9 +4915,9 @@ namespace macos
          
       }
 
-      m_puserinteraction->post_message(e_message_move,0, MAKELPARAM(rect.origin.x, rect.origin.y));
+      m_puserinteraction->post_message(e_message_move,0, MAKELPARAM(rectangle.origin.x, rectangle.origin.y));
 
-      m_puserinteraction->post_message(e_message_size,0, MAKELPARAM(rect.size.width, rect.size.height));
+      m_puserinteraction->post_message(e_message_size,0, MAKELPARAM(rectangle.size.width, rectangle.size.height));
 
       return;
 
@@ -4929,10 +4929,10 @@ namespace macos
 //      }
 //
 //      //
-//      if(m_puserinteraction->window_state().m_point != rect.origin)
+//      if(m_puserinteraction->window_state().m_point != rectangle.origin)
 //      {
 //
-//         m_puserinteraction->window_state().m_point = rect.origin;
+//         m_puserinteraction->window_state().m_point = rectangle.origin;
 //
 //         TRACE("interaction_impl::round_window_resized effective position is different from requested position");
 //
@@ -4940,10 +4940,10 @@ namespace macos
 //
 //      }
 //
-//      if(m_puserinteraction->m_sizeRequest != rect.size)
+//      if(m_puserinteraction->m_sizeRequest != rectangle.size_i32)
 //      {
 //
-//         m_puserinteraction->m_sizeRequest = rect.size;
+//         m_puserinteraction->m_sizeRequest = rectangle.size_i32;
 //
 //         TRACE("interaction_impl::round_window_resized effective position is different from requested position");
 //
@@ -4951,13 +4951,13 @@ namespace macos
 //
 //      }
 //
-//      m_puserinteraction->m_point = rect.origin;
+//      m_puserinteraction->m_point = rectangle.origin;
 //
-//      m_puserinteraction->m_size = rect.size;
+//      m_puserinteraction->m_size = rectangle.size_i32;
 //
-////      ::size sz;
+////      ::size_i32 sz;
 ////
-////      point64 pt(rect.origin.x, rect.origin.y);
+////      point_i64 pt(rectangle.origin.x, rectangle.origin.y);
 ////
 ////      bool bMove = false;
 ////
@@ -4974,7 +4974,7 @@ namespace macos
 ////
 ////         m_puserinteraction->m_rectParentClient.move_to(point);
 ////
-////         m_puserinteraction->set_size(rect.size);
+////         m_puserinteraction->set_size(rectangle.size_i32);
 ////
 ////         sz = m_puserinteraction->m_rectParentClient.size();
 ////
@@ -5005,11 +5005,11 @@ namespace macos
 //
 //      }
 //
-//      ::rect rectSize;
+//      ::rectangle_i32 rectSize;
 //
-//      __copy(rectSize, rect);
+//      __copy(rectSize, rectangle);
 //
-//      if(m_puserinteraction->window_state().rect() != rectSize)
+//      if(m_puserinteraction->window_state().rectangle_i32() != rectSize)
 //      {
 //
 //         m_puserinteraction->window_state().m_point = rectSize.origin();
@@ -5019,7 +5019,7 @@ namespace macos
 //      }
 //
 //
-//      if (m_puserinteraction->layout().sketch().rect() != rectSize)
+//      if (m_puserinteraction->layout().sketch().rectangle_i32() != rectSize)
 //      {
 //
 //         m_puserinteraction->place(rectSize);
@@ -5040,7 +5040,7 @@ namespace macos
    }
 
 
-   void interaction_impl::round_window_moved(CGPoint point)
+   void interaction_impl::round_window_moved(CGPoint point_i32)
    {
       
       if(is_destroying())
@@ -5071,7 +5071,7 @@ namespace macos
 //      }
 //
 //
-//      ::point pointMove;
+//      ::point_i32 pointMove;
 //
 //      __copy(pointMove, point);
 //
@@ -5105,16 +5105,16 @@ namespace macos
 //      }
 //
 //
-////      if(m_puserinteraction->m_pointRequest != point)
+////      if(m_puserinteraction->m_pointRequest != point_i32)
 ////      {
 ////
-////         m_puserinteraction->m_pointRequest = point;
+////         m_puserinteraction->m_pointRequest = point_i32;
 ////
 ////         TRACE("interaction_impl::round_window_resized effective position is different from requested position");
 ////
 ////      }
 ////
-////      m_puserinteraction->m_point = point;
+////      m_puserinteraction->m_point = point_i32;
 
    }
 
@@ -5366,7 +5366,7 @@ namespace macos
    }
 
 //   __STATIC void CLASS_DECL_AURA __post_init_dialog(
-//      ::user::interaction * p, const RECT32& rectOld, ::u32 dwStyleOld)
+//      ::user::interaction * p, const RECTANGLE_I32& rectOld, ::u32 dwStyleOld)
 //   {
 //      // must be hidden to start with
 //      if (dwStyleOld & WS_VISIBLE)
@@ -5377,9 +5377,9 @@ namespace macos
 //         return;
 //
 //      // must not move during WM_INITDIALOG
-//      ::rect rect;
-//      pWnd->get_window_rect(rect);
-//      if (rectOld.left != rect.left || rectOld.top != rect.top)
+//      ::rectangle_i32 rectangle;
+//      pWnd->get_window_rect(rectangle);
+//      if (rectOld.left != rectangle.left || rectOld.top != rectangle.top)
 //         return;
 //
 //      // must be unowned or owner disabled
@@ -5472,7 +5472,7 @@ namespace macos
 
 
    LRESULT CALLBACK
-   __activation_window_procedure(oswindow hWnd, ::u32 nMsg, WPARAM wparam, LPARAM lparam)
+   __activation_window_procedure(oswindow hWnd, ::u32 nMsg, wparam wparam, lparam lparam)
    {
 
       __throw(not_implemented());
@@ -5488,7 +5488,7 @@ namespace macos
       //      case WM_INITDIALOG:
       //         {
       //            ::u32 uStyle;
-      //            ::rect rectOld;
+      //            ::rectangle_i32 rectOld;
       //            ::user::interaction * pWnd = ::macos::interaction_impl::from_handle(hWnd);
       //            __pre_init_dialog(pWnd, &rectOld, &uStyle);
       //            bCallDefault = FALSE;
@@ -5549,7 +5549,7 @@ namespace macos
 
       // graphics will be already set its view port to the user::interaction for linux - cairo with xlib
 
-      pgraphics->SetViewportOrg(::point());
+      pgraphics->SetViewportOrg(::point_i32());
 
    }
 

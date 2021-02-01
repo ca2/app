@@ -19,6 +19,13 @@
 #include "include/_setup.h"
 
 
+#ifdef WINDOWS
+#define WINDOWS_API __stdcall
+#else
+#define WINDOWS_API
+#endif
+
+
 #if defined(_ACME_LIBRARY)
 #define CLASS_DECL_ACME  CLASS_DECL_EXPORT
 #define LIBIDN_BUILDING

@@ -295,7 +295,7 @@ namespace base
    }
 
 
-   void user::SendMessageToWindows(const ::id & id,WPARAM wparam,LPARAM lparam)
+   void user::SendMessageToWindows(const ::id & id,wparam wparam,lparam lparam)
    {
 
       auto psession = Session;
@@ -431,7 +431,7 @@ namespace base
 #ifdef WINDOWS_DESKTOP
 
 
-   CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * lpWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam);
+   CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam);
 
 
    CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * pWindowName, u32 uStyle, ::user::interaction * puiParent, HINSTANCE hInstance, LPVOID pParam)
@@ -742,14 +742,14 @@ namespace base
    //   return nullptr;
    //}
 
-   //bool session::get_monitor_rect(index iMonitor, RECT32 * prect)
+   //bool session::get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle)
 
    //{
 
    //   if (get_document() != nullptr && get_view() != nullptr)
    //   {
 
-   //      get_view()->get_window_rect(prect);
+   //      get_view()->get_window_rect(prectangle);
 
 
    //      return true;
@@ -758,7 +758,7 @@ namespace base
    //   else
    //   {
 
-   //      return ::aura::session::get_monitor_rect(iMonitor, prect);
+   //      return ::aura::session::get_monitor_rect(iMonitor, prectangle);
 
 
    //   }
@@ -945,7 +945,7 @@ namespace base
    bool user::track_popup_menu(::user::interaction* pinteraction, ::user::menu_item * pitem, i32 iFlags)
    {
 
-      ::point point;
+      ::point_i32 point;
 
       auto psession = Session;
 
@@ -986,7 +986,7 @@ namespace base
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      ::point point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_point;
 
       pinteraction->_001ScreenToClient(point);
 
@@ -1015,14 +1015,14 @@ namespace base
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      ::point point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_point;
 
       return track_popup_xml_matter_menu(pinteraction, pszMatter, iFlags, point);
 
    }
 
 
-   bool user::track_popup_menu(::user::interaction* pinteraction, ::user::menu_item * pitem, i32 iFlags, const ::point & point)
+   bool user::track_popup_menu(::user::interaction* pinteraction, ::user::menu_item * pitem, i32 iFlags, const ::point_i32 & point)
    {
 
       __pointer(::user::menu) pmenu = __create <  ::user::menu  > ();
@@ -1043,7 +1043,7 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_menu(::user::interaction* pinteraction, const ::payload & varXml, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
+   __pointer(::user::menu) user::track_popup_xml_menu(::user::interaction* pinteraction, const ::payload & varXml, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
    {
 
       __pointer(::user::menu) pmenu = __create <  ::user::menu  > ();
@@ -1075,14 +1075,14 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const char * pszMatter, i32 iFlags, const ::point & pointParam)
+   __pointer(::user::menu) user::track_popup_xml_matter_menu(::user::interaction* pinteraction, const char * pszMatter, i32 iFlags, const ::point_i32 & pointParam)
    {
 
       string strMatterSource(pszMatter);
 
-      ::point point(pointParam);
+      ::point_i32 point(pointParam);
 
-      fork([this, strMatterSource, iFlags, point, pinteraction]()
+      fork([this, strMatterSource, iFlags, point_i32, pinteraction]()
       {
 
          auto pmenu = __create <  ::user::menu  >();
@@ -1125,12 +1125,12 @@ namespace base
    }
 
 
-   __pointer(::user::menu) user::track_popup_xml_menu_file(::user::interaction * pinteraction, ::payload varXmlFile, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
+   __pointer(::user::menu) user::track_popup_xml_menu_file(::user::interaction * pinteraction, ::payload varXmlFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
    {
 
       string strXml = Context.file().as_string(varXmlFile);
 
-      return track_popup_xml_menu(pinteraction, strXml, iFlags, point, sizeMinimum);
+      return track_popup_xml_menu(pinteraction, strXml, iFlags, point_i32, sizeMinimum);
 
       //__pointer(::user::menu) pmenu = alloc <  ::user::menu  > ();
 

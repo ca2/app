@@ -97,7 +97,7 @@ void scStringIndexOf(CScriptVar *ca, void *) {
     string str = ca->getParameter("this")->getString();
     string search = ca->getParameter("search")->getString();
     strsize point = str.find(search);
-    i32 val = (i32) ((point < 0) ? -1 : point);
+    i32 val = (i32) ((point_i32 < 0) ? -1 : point_i32);
     ca->getReturnVar()->setInt(val);
 }
 
@@ -133,7 +133,7 @@ void scStringToUpperCase(CScriptVar *ca,void *) {
 void scStringCharAt(CScriptVar *ca, void *) {
     string str = ca->getParameter("this")->getString();
     i32 point = ca->getParameter("pos")->getInt();
-    if (point>=0 && point<(i32)str.length())
+    if (point_i32>=0 && point<(i32)str.length())
       ca->getReturnVar()->setString(str.substr(point, 1));
     else
       ca->getReturnVar()->setString("");
@@ -142,8 +142,8 @@ void scStringCharAt(CScriptVar *ca, void *) {
 void scStringCharCodeAt(CScriptVar *ca, void *) {
     string str = ca->getParameter("this")->getString();
     i32 point = ca->getParameter("pos")->getInt();
-    if (point>=0 && point<(i32)str.length())
-      ca->getReturnVar()->setInt(str[point]);
+    if (point_i32>=0 && point<(i32)str.length())
+      ca->getReturnVar()->setInt(str[point_i32]);
     else
       ca->getReturnVar()->setInt(0);
 }

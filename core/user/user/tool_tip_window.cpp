@@ -47,7 +47,7 @@ namespace user
             if(m_iEventTool != ptool->BaseToolTipGetIndex()
                   || point != m_point)
             {
-               m_point = point;
+               m_point = point_i32;
                m_iEventTool = ptool->BaseToolTipGetIndex();
                //ptool->BaseToolTipGetWnd()->_001ScreenToClient(&m_point);
                KillTimer(e_timer_show_delayed);
@@ -93,11 +93,11 @@ namespace user
 
       SetTimer(1, 5000, nullptr);
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
       auto pgraphics = ::draw2d::create_memory_graphics();
 
-      GetToolRect(iTool, rect);
+      GetToolRect(iTool, rectangle);
 
 
       m_ealign = m_ealignDefault;
@@ -116,31 +116,31 @@ namespace user
          if(((m_ealign & AlignLeft) == AlignLeft) &&
                ((m_ealign & AlignTop) == AlignTop))
          {
-            m_pointOffset.x = + (rect.width() == 0 ? 0 : rect.width() * 3 / 5);
-            m_pointOffset.y = + (rect.height() == 0 ? 0 : rect.height() * 3 / 5);
+            m_pointOffset.x = + (rectangle.width() == 0 ? 0 : rectangle.width() * 3 / 5);
+            m_pointOffset.y = + (rectangle.height() == 0 ? 0 : rectangle.height() * 3 / 5);
          }
          else if(((m_ealign & AlignRight) == AlignRight) &&
                  ((m_ealign & AlignTop) == AlignTop))
          {
-            m_pointOffset.x = - (rect.width() == 0 ? 0 : rect.width() * 3 / 5);
-            m_pointOffset.y = + (rect.height() == 0 ? 0 : rect.height() * 3 / 5);
+            m_pointOffset.x = - (rectangle.width() == 0 ? 0 : rectangle.width() * 3 / 5);
+            m_pointOffset.y = + (rectangle.height() == 0 ? 0 : rectangle.height() * 3 / 5);
          }
          else
          {
-            m_pointOffset.x = - (rect.width() == 0 ? 0 : rect.width() * 3 / 5);
-            m_pointOffset.y = - (rect.height() == 0 ? 0 : rect.height() * 3 / 5);
+            m_pointOffset.x = - (rectangle.width() == 0 ? 0 : rectangle.width() * 3 / 5);
+            m_pointOffset.y = - (rectangle.height() == 0 ? 0 : rectangle.height() * 3 / 5);
          }
-         ::rect rectToolScreen;
+         ::rectangle_i32 rectToolScreen;
          ptool->BaseToolTipGetRect(rectToolScreen);
          ptool->BaseToolTipGetWnd()->_001ClientToScreen(rectToolScreen);
-         CalcRect(pgraphics, rect, rectToolScreen, m_strTip);
+         CalcRect(pgraphics, rectangle_i32, rectToolScreen, m_strTip);
 
-         ::rect rectScreen;
-         Session->get_main_monitor(rect);
-         ::size sizeScreen;
+         ::rectangle_i32 rectScreen;
+         Session->get_main_monitor(rectangle);
+         ::size_i32 sizeScreen;
          sizeScreen = rectScreen.size();
 
-         if(rect.right > sizeScreen.cx && !bHRetry)
+         if(rectangle.right > sizeScreen.cx && !bHRetry)
          {
             bHRetry = true;
             if(m_ealign & AlignRight)
@@ -150,7 +150,7 @@ namespace user
                continue;
             }
          }
-         if(rect.bottom > sizeScreen.cy && !bVRetry)
+         if(rectangle.bottom > sizeScreen.cy && !bVRetry)
          {
             bVRetry = true;
             if(m_ealign & AlignBottom)
@@ -166,7 +166,7 @@ namespace user
 
       order(zorder_top_most);
       
-      place(rect);
+      place(rectangle);
       
       activation(e_activation_no_activate);
 
@@ -180,14 +180,14 @@ namespace user
    // Function Name: CalcRect
    //
    // Purpose:
-   // Calculate the rectangle of the tip string.
+   // Calculate the rectangle_i32 of the tip string.
    //
    // Output:
    // True if successfull.
    //
    //
    ///////////////////////////////////////////////////////////
-   bool tool_tip_window::CalcRect(::draw2d::graphics_pointer & pgraphics, RECT32 * prect, const ::rect & rectTool, const char * pcsz)
+   bool tool_tip_window::CalcRect(::draw2d::graphics_pointer & pgraphics, RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectTool, const char * pcsz)
    {
       
       pgraphics->set(m_font);
@@ -197,36 +197,36 @@ namespace user
       if(((m_ealign & AlignLeft) == AlignLeft) &&
             ((m_ealign & AlignTop) == AlignTop))
       {
-         prect->right = m_point.x - (m_point.x - rectTool.left) / 2;
+         prectangle->right = m_point.x - (m_point.x - rectTool.left) / 2;
 
-         prect->left = (::i32) (prect->right - size.cx - m_sizeArrow.cx - 4);
+         prectangle->left = (::i32) (prectangle->right - size.cx - m_sizeArrow.cx - 4);
 
-         prect->bottom = m_point.y - (m_point.y - rectTool.top) / 2;
+         prectangle->bottom = m_point.y - (m_point.y - rectTool.top) / 2;
 
-         prect->top = (::i32) (prect->bottom - size.cy - m_sizeArrow.cy - 4);
+         prectangle->top = (::i32) (prectangle->bottom - size.cy - m_sizeArrow.cy - 4);
 
       }
       else if(((m_ealign & AlignRight) == AlignRight) &&
               ((m_ealign & AlignTop) == AlignTop))
       {
-         prect->left = m_point.x + (rectTool.right - m_point.x) / 2;
+         prectangle->left = m_point.x + (rectTool.right - m_point.x) / 2;
 
-         prect->bottom = m_point.y - (m_point.y - rectTool.top) / 2;
+         prectangle->bottom = m_point.y - (m_point.y - rectTool.top) / 2;
 
-         prect->right = (::i32) (prect->left + size.cx + m_sizeArrow.cx + 4);
+         prectangle->right = (::i32) (prectangle->left + size.cx + m_sizeArrow.cx + 4);
 
-         prect->top = (::i32) (prect->bottom - size.cy - m_sizeArrow.cy - 4);
+         prectangle->top = (::i32) (prectangle->bottom - size.cy - m_sizeArrow.cy - 4);
 
       }
       else
       {
-         prect->left = prect->right + m_pointOffset.x;
+         prectangle->left = prectangle->right + m_pointOffset.x;
 
-         prect->top = prect->bottom + m_pointOffset.y;
+         prectangle->top = prectangle->bottom + m_pointOffset.y;
 
-         prect->right = (::i32)(prect->left + size.cx + m_sizeArrow.cx + 4);
+         prectangle->right = (::i32)(prectangle->left + size.cx + m_sizeArrow.cx + 4);
 
-         prect->bottom = (::i32) (prect->top + size.cy + m_sizeArrow.cy + 4);
+         prectangle->bottom = (::i32) (prectangle->top + size.cy + m_sizeArrow.cy + 4);
 
       }
       return true;
@@ -250,14 +250,14 @@ namespace user
       /*CPaintDC spgraphics(this);
       ::draw2d::graphics_pointer & pgraphics = &spgraphics;
       pgraphics->set(m_font);
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
       get_client_rect(rectClient);
-      ::rect rectText;
+      ::rectangle_i32 rectText;
       pgraphics->SetBkMode(TRANSPARENT);
       if(((m_ealign & AlignLeft) == AlignLeft) &&
         ((m_ealign & AlignTop) == AlignTop))
       {
-        ::rect rectArrow(rectClient.right - m_sizeArrow.cx * 2, rectClient.bottom - m_sizeArrow.cy * 2, rectClient.right, rectClient.bottom);
+        ::rectangle_i32 rectArrow(rectClient.right - m_sizeArrow.cx * 2, rectClient.bottom - m_sizeArrow.cy * 2, rectClient.right, rectClient.bottom);
         rectClient.right -= m_sizeArrow.cx;
         rectClient.bottom -= m_sizeArrow.cy;
         pgraphics->fill_rect(rectArrow, RGB(0, 120, 180));
@@ -271,7 +271,7 @@ namespace user
       else if(((m_ealign & AlignRight) == AlignRight) &&
         ((m_ealign & AlignTop) == AlignTop))
       {
-        ::rect rectArrow(0, rectClient.bottom - m_sizeArrow.cy * 2, m_sizeArrow.cx * 2, rectClient.bottom);
+        ::rectangle_i32 rectArrow(0, rectClient.bottom - m_sizeArrow.cy * 2, m_sizeArrow.cx * 2, rectClient.bottom);
         rectClient.left = m_sizeArrow.cx;
         rectClient.bottom -= m_sizeArrow.cy;
         pgraphics->fill_rect(rectArrow, RGB(0, 120, 180));
@@ -284,7 +284,7 @@ namespace user
       }
       else
       {
-        ::rect rectArrow(0, 0, m_sizeArrow.cx * 2, m_sizeArrow.cy * 2);
+        ::rectangle_i32 rectArrow(0, 0, m_sizeArrow.cx * 2, m_sizeArrow.cy * 2);
         rectClient.left = m_sizeArrow.cx;
         rectClient.top = m_sizeArrow.cy;
         pgraphics->fill_rect(rectArrow, RGB(0, 120, 180));
@@ -473,13 +473,13 @@ namespace user
    void tool_tip_window::update_drawing_objects()
    {
       /*::draw2d::region rgn;
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
       get_client_rect(rectClient);
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
       get_window_rect(rectWindow);
       _001ScreenToClient(rectWindow);
       rectClient.offset(-rectWindow.top_left());
-      const ::point & pointa[6];
+      const ::point_i32 & pointa[6];
 
       if(((m_ealign & AlignLeft) == AlignLeft) &&
          ((m_ealign & AlignTop) == AlignTop))
@@ -537,10 +537,10 @@ namespace user
 
 
 
-   bool tool_tip_window::GetToolRect(i32 iTool, RECT32 * prect)
+   bool tool_tip_window::GetToolRect(i32 iTool, RECTANGLE_I32 * prectangle)
 
    {
-      GetTool(iTool)->BaseToolTipGetRect(prect);
+      GetTool(iTool)->BaseToolTipGetRect(prectangle);
 
       return true;
    }
@@ -599,21 +599,21 @@ namespace user
    void tool_tip_window::SetPositionHint(::user::interaction * puserinteraction, enum_position eposition)
    {
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      puserinteraction->get_window_rect(rect);
+      puserinteraction->get_window_rect(rectangle);
 
-      ::point point;
+      ::point_i32 point;
 
       switch(eposition)
       {
       case PositionCenter:
-         m_point.x = (rect.left + rect.right) / 2;
-         m_point.y = (rect.top + rect.bottom) / 2;
+         m_point.x = (rectangle.left + rectangle.right) / 2;
+         m_point.y = (rectangle.top + rectangle.bottom) / 2;
          break;
       case PositionRandomTopRight:
-         System.geometry().deflate(rect, 0.5, 0.0, 0.0, 0.5);
-         point =  rect.random_point();
+         System.geometry().deflate(rectangle, 0.5, 0.0, 0.0, 0.5);
+         point =  rectangle.random_point();
          break;
       default:
          ASSERT(FALSE);
@@ -621,7 +621,7 @@ namespace user
       }
 
 
-      m_point = point;
+      m_point = point_i32;
    }
 
 } // namespace user

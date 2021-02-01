@@ -46,7 +46,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
       
       auto pointCursor = __point(pbase->m_lparam);
 
-      ::rect rectPlacement;
+      ::rectangle_i32 rectPlacement;
       
       viewline.GetPlacement(rectPlacement);
       
@@ -141,7 +141,7 @@ void XfplayerViewLineSelection::relay_event(xfplayer_view_line & viewline, ::mes
                   auto psession = Session;
 
                   auto point =                  psession->get_cursor_pos();
-                  if(viewline.get_link(str, point))
+                  if(viewline.get_link(str, point_i32))
                   {
                      //usersp(::user::impact) pview = viewline.get_interaction();
                      //pview->on_link_click(str);
@@ -439,7 +439,7 @@ bool    bMerge)
 }
 
 
-bool XfplayerViewLineSelection::OnLButtonDown(xfplayer_view_line & viewline, ::u32 user, const ::point & point)
+bool XfplayerViewLineSelection::OnLButtonDown(xfplayer_view_line & viewline, ::u32 user, const ::point_i32 & point)
 {
    
    UNREFERENCED_PARAMETER(user);
@@ -450,7 +450,7 @@ bool XfplayerViewLineSelection::OnLButtonDown(xfplayer_view_line & viewline, ::u
 
    index iLine;
    strsize iChar;
-   ::rect rectPlacement;
+   ::rectangle_i32 rectPlacement;
    viewline.GetPlacement(rectPlacement);
    bInside = rectPlacement.contains(point1) != 0;
    if(!bInside && GetState() == StateTracking)
@@ -486,7 +486,7 @@ bool XfplayerViewLineSelection::OnLButtonDown(xfplayer_view_line & viewline, ::u
 }
 
 
-bool XfplayerViewLineSelection::OnMouseMove(xfplayer_view_line & viewline, ::u32 user, const ::point & point)
+bool XfplayerViewLineSelection::OnMouseMove(xfplayer_view_line & viewline, ::u32 user, const ::point_i32 & point)
 {
    
    if (!viewline.IsVisible())
@@ -504,7 +504,7 @@ bool XfplayerViewLineSelection::OnMouseMove(xfplayer_view_line & viewline, ::u32
 
    strsize iChar;
 
-   ::rect rectPlacement;
+   ::rectangle_i32 rectPlacement;
 
    viewline.GetPlacement(rectPlacement);
 
@@ -562,7 +562,7 @@ bool XfplayerViewLineSelection::OnMouseMove(xfplayer_view_line & viewline, ::u32
                && m_iCharEndSource == m_item.GetCharEnd())
          {
             string str;
-            if(viewline.get_link(str, point) == ::user::e_line_hit_link)
+            if(viewline.get_link(str, point_i32) == ::user::e_line_hit_link)
             {
                //                   usersp(::user::impact) pview = viewline.get_interaction();
                //                 pview->on_link_click(str);
@@ -575,7 +575,7 @@ bool XfplayerViewLineSelection::OnMouseMove(xfplayer_view_line & viewline, ::u32
    return false;
 }
 
-bool XfplayerViewLineSelection::OnLButtonUp(xfplayer_view_line & viewline, ::u32 user, const ::point & point)
+bool XfplayerViewLineSelection::OnLButtonUp(xfplayer_view_line & viewline, ::u32 user, const ::point_i32 & point)
 {
    UNREFERENCED_PARAMETER(user);
    if(!viewline.IsVisible())
@@ -583,12 +583,12 @@ bool XfplayerViewLineSelection::OnLButtonUp(xfplayer_view_line & viewline, ::u32
 
    bool bInside;
 
-   ::point point1(point);
+   ::point_i32 point1(point);
    viewline.get_interaction()->_001ScreenToClient(&point1);
    index iLine;
    strsize iChar;
 
-   ::rect rectPlacement;
+   ::rectangle_i32 rectPlacement;
    viewline.GetPlacement(rectPlacement);
    bInside = rectPlacement.contains(point1) != 0;
    if(!bInside && GetState() == StateTracking)
@@ -643,7 +643,7 @@ bool XfplayerViewLineSelection::OnLButtonUp(xfplayer_view_line & viewline, ::u32
                && m_iCharEndSource == m_item.GetCharEnd())
          {
             string str;
-            if(viewline.get_link(str, point) == ::user::e_line_hit_link)
+            if(viewline.get_link(str, point_i32) == ::user::e_line_hit_link)
             {
                //                   usersp(::user::impact) pview = viewline.get_interaction();
                //                 pview->on_link_click(str);
@@ -667,13 +667,13 @@ bool XfplayerViewLineSelection::OnTimer(xfplayer_view_line & viewline, ::u32 use
          
          auto psession = Session;
 
-         ::point point = psession->get_cursor_pos();
+         ::point_i32 point = psession->get_cursor_pos();
          
          viewline.get_interaction()->_001ScreenToClient(point);
          viewline.update_hover(point);
          if(!viewline.is_hover())
          {
-            ::rect rectPlacement;
+            ::rectangle_i32 rectPlacement;
             viewline.GetPlacement(rectPlacement);
             viewline.get_interaction()->set_need_redraw();
          }

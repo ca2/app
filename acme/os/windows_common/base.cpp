@@ -1,4 +1,8 @@
 ﻿#include "framework.h"
+#include "acme/operating_system.h"
+
+
+
 #include "acme/platform/static_start.h"
 
 
@@ -145,6 +149,11 @@ CLASS_DECL_ACME ::u32 get_current_process_id()
 }
 
 
+#ifdef WINDOWS
+
+extern LARGE_INTEGER g_largeintegerFrequency;
+
+#endif
 
 //LARGE_INTEGER g_largeintegerFrequency;
 
@@ -156,7 +165,7 @@ CLASS_DECL_ACME i64 get_nanos()
 
    QueryPerformanceCounter(&largeinteger);
 
-   return muldiv64(largeinteger.QuadPart, 1'000'000'000, ::acme::g_largeintegerFrequency.QuadPart);
+   return muldiv64(largeinteger.QuadPart, 1'000'000'000, ::g_largeintegerFrequency.QuadPart);
 
 }
 

@@ -962,7 +962,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //
 //         }
 //
-//         cslock sl(&m_cs);
+//         critical_section_lock sl(m_criticalsection);
 //
 //         if (path.length() + 1 < 2048)
 //         {
@@ -1220,7 +1220,7 @@ bool dir_context::name_is(const ::file::path & strPath)
 //      void dir_context::is_dir_map::set(const ::file::path & path,bool bIsDir,u32 dwLastError)
 //      {
 //
-//         cslock sl(&m_cs);
+//         critical_section_lock sl(m_criticalsection);
 //
 //         string strPath(path);
 //
@@ -1466,7 +1466,7 @@ bool dir_context::rm(const ::file::path & path, bool bRecursive)
 void dir_context::matter_ls(const ::file::path & path, ::file::listing & stra)
 {
 
-   sync_lock sl(System.m_spmutexMatter);
+   sync_lock sl(System.m_pmutexMatter);
 
    string strDir = matter(path, true);
 

@@ -1,10 +1,11 @@
 ﻿#pragma once
 
 
+
 #include "interaction_impl.h"
 
 
-CLASS_DECL_AURA const unichar * __register_window_class(::object * pobject, ::u32 nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);
+CLASS_DECL_AURA const unichar * __register_window_class(::object * pobject, ::u32 nClassStyle, hcursor hCursor = 0, HBRUSH hbrBackground = 0, hicon hIcon = 0);
 
 CLASS_DECL_AURA bool windows_register_class(WNDCLASSW * pwndclass);
 
@@ -22,7 +23,7 @@ CLASS_DECL_AURA bool __check_center_dialog(const char * pszResource);
 
 CLASS_DECL_AURA bool __compare_class_name(oswindow oswindow, const char * pszClassName);
 
-CLASS_DECL_AURA oswindow __child_window_from_point(oswindow, const point &);
+CLASS_DECL_AURA oswindow __child_window_from_point(oswindow, const point_i32 &);
 CLASS_DECL_AURA bool hook_window_create(::windows::interaction_impl * pwindow);
 CLASS_DECL_AURA bool unhook_window_create();
 CLASS_DECL_AURA void reset_message_cache();

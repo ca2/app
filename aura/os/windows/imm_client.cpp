@@ -147,7 +147,7 @@ void imm_client::_001OnIme(::message::message * pmessage)
       //      if (!ImmGetOpenStatus(imm))
       //      {
 
-      //         ImmSetOpenStatus(imm, TRUE);
+      //         ImmSetOpenStatus(imm, true);
 
       //      }
       //
@@ -536,17 +536,17 @@ int imm_client::on_text_composition_message(int iMessage)
 
       //int y = (iLine)* m_iLineHeight - get_viewport_offset().y;
       //int y2 = y + m_iLineHeight;
-      // ::point point(x, y);
-      //::rect r;
-      //get_client_rect(rect);
-      //rect.left = x;
-      //rect.top = y;
-      //rect.bottom = y2;
-      //_001ClientToScreen(rect);
-      //get_wnd()->_001ScreenToClient(rect);
+      // ::point_i32 point(x, y);
+      //::rectangle_i32 r;
+      //get_client_rect(rectangle);
+      //rectangle.left = x;
+      //rectangle.top = y;
+      //rectangle.bottom = y2;
+      //_001ClientToScreen(rectangle);
+      //get_wnd()->_001ScreenToClient(rectangle);
 
 
-      //SetCaretPos(rect.left, rect.top);
+      //SetCaretPos(rectangle.left, rectangle.top);
       //ShowCaret(get_handle());
    }
    else if (iMessage == TEXT_COMPOSITION_MESSAGE_UPDATE_CANDIDATE_WINDOW_POSITION)
@@ -561,16 +561,16 @@ int imm_client::on_text_composition_message(int iMessage)
 
       }
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      get_text_composition_area(rect);
+      get_text_composition_area(rectangle);
 
       COMPOSITIONFORM com = {};
 
       com.dwStyle = CFS_FORCE_POSITION;
-      com.ptCurrentPos = rect.top_left();
+      com.ptCurrentPos = rectangle.top_left();
       com.ptCurrentPos.y -= 100;
-      ::rect rect2(rect);
+      ::rectangle_i32 rect2(rectangle);
       rect2.offset_y(-100);
       com.dwStyle = CFS_RECT;
       com.rcArea = rect2;
@@ -611,7 +611,7 @@ int imm_client::on_text_composition_message(int iMessage)
 
       can.dwStyle = CFS_CANDIDATEPOS;
 
-      can.ptCurrentPos = rect.bottom_left();
+      can.ptCurrentPos = rectangle.bottom_left();
 
       if (::ImmSetCandidateWindow(imm, &can))
       {

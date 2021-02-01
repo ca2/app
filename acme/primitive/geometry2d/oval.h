@@ -2,19 +2,19 @@
 
 
 class CLASS_DECL_ACME oval :
-   public ::rect
+   public ::rectangle_i32
 {
 public:
-   oval() : rect() {}
-   oval(const ::rect& r) : rect(r) {}
+   oval() : rectangle_i32() {}
+   oval(const ::rectangle_i32& r) : rectangle_i32(r) {}
 };
 
 
 class CLASS_DECL_ACME ovald :
-   public ::rectd
+   public ::rectangle_f64
 {
 public:
-   ovald() : rectd() {}
-   ovald(const ::rectd& r) : rectd(r) {}
+   ovald() : rectangle_f64() {}
+   ovald(const ::rectangle_f64& r) : rectangle_f64(r) {}
 
 };

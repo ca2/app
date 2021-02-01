@@ -86,9 +86,9 @@ union semun
 // class mq;
 
 
-// CLASS_DECL_ACME int_bool WINAPI GetMessage(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+// CLASS_DECL_ACME int_bool WINAPI GetMessage(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
-// CLASS_DECL_ACME int_bool WINAPI PeekMessage(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
+// CLASS_DECL_ACME int_bool WINAPI PeekMessage(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
 
 // CLASS_DECL_ACME int_bool WINAPI PostThreadMessage(ithread_t idthread, ::u32 Msg, WPARAM wParam, LPARAM lParam);
 

@@ -38,7 +38,7 @@ public:
 
    void rotate(double dAngle, POINT_TYPE pointCenter);
 
-   void get_bounding_rect(RECT_BASE_TYPE * prect) const;
+   void get_bounding_rect(RECT_BASE_TYPE * prectangle) const;
 
    bool polygon_contains(const POINT_TYPE & point) const;
 
@@ -55,7 +55,7 @@ public:
          if (tolerance_is_equal(tolerance, point.x, pointAdd.x) && tolerance_is_equal(tolerance, point.y, pointAdd.y))
          {
 
-            /// 'p' is "tolerance"-equal to an existing point 'p' in '*this' array,
+            /// 'p' is "tolerance"-equal to an existing point_i32 'p' in '*this' array,
             /// so don't add it.
 
             return -1;
@@ -73,7 +73,7 @@ public:
 
 
    ::count add_unique_range(const POINT_TYPE & pBeg, const POINT_TYPE & pointEnd, const SIZE_TYPE & s = unit_size);
-   //https://www.geeksforgeeks.org/area-of-a-polygon-with-given-n-ordered-vertices/
+   //https://www.geeksforgeeks.org/area-of-a-polygon_i32-with-given-n-ordered-vertices/
       // (X[i], Y[i]) are coordinates of i'th point.
 
    UNIT_TYPE polygon_area()
@@ -175,10 +175,10 @@ void get_bounding_rect(RECT_BASE_TYPE * lprect, const POINT_BASE_TYPE * lppoint,
 
 
 template < typename POINT_TYPE >
-void point_array_base < POINT_TYPE >::get_bounding_rect(RECT_BASE_TYPE * prect) const
+void point_array_base < POINT_TYPE >::get_bounding_rect(RECT_BASE_TYPE * prectangle) const
 {
 
-   ::get_bounding_rect(prect, this->get_data(), this->get_count());
+   ::get_bounding_rect(prectangle, this->get_data(), this->get_count());
 
 }
 
@@ -214,7 +214,7 @@ void point_array_base < POINT_TYPE >::rotate(double dAngle, POINT_TYPE pointCent
 
 /*
 http://www.ecse.rpi.edu/Homepages/wrf/Research/Short_Notes/pnpoly.html
-https://stackoverflow.com/questions/217578/how-can-i-determine-whether-a-2d-point-is-within-a-polygon
+https://stackoverflow.com/questions/217578/how-can-i-determine-whether-a-2d-point_i32-is-within-a-polygon_i32
 int pnpoly(int nvert, float * vertx, float * verty, float testx, float testy)
 {
    int i, j, c = 0;
@@ -297,9 +297,9 @@ template < typename POINT_TYPE >
 
 
 
-using point_array = point_array_base < point >;
-using point64_array = point_array_base < point64 >;
-using pointd_array = point_array_base < pointd >;
+using point_i32_array = point_array_base < point_i32 >;
+using point_i64_array = point_array_base < point_i64 >;
+using point_f64_array = point_array_base < point_f64 >;
 
 
 

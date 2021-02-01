@@ -1,11 +1,20 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 #include "static_start.h"
 #include "acme/memory/plex_heap1.h"
 #include "acme/memory/plex_heap_impl1.h"
 #include "acme/primitive/primitive/malloc.h"
 #include "acme/astr.h"
-#include "acme/os/_os.h"
 #include "acme/platform/simple_trace.h"
+
+
+#ifdef WINDOWS
+
+
+LARGE_INTEGER g_largeintegerFrequency;
+
+
+#endif
 
 
 ::array < ::promise::routine > * g_proutineaOsTerm;
@@ -111,8 +120,8 @@ namespace acme
 
    //CLASS_DECL_ACME string_map < int_to_string > * g_pmapFontFaceName = nullptr;
 
-   ::mutex* g_pmutexChildren;
-   ::mutex* g_pmutexThreadWaitClose;
+   ::mutex * g_pmutexChildren;
+   ::mutex * g_pmutexThreadWaitClose;
 
 
 #if !defined(WINDOWS)
@@ -143,9 +152,9 @@ namespace acme
 
    //::mutex * &System.g_mutexLibrary;
 
-   __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
+   //__LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
-   ::mutex* g_pmutexGlobals;
+   ::mutex * g_pmutexGlobals;
 
    critical_section* g_pcsGlobal;
 
@@ -181,12 +190,12 @@ namespace acme
 #endif
 
 
-   //::mutex* g_pmutexCred;
+   //::mutex * g_pmutexCred;
 
 
    class ::exception_engine* g_pexceptionengine;
 
-   ::mutex* g_pmutexMessageDispatch;
+   ::mutex * g_pmutexMessageDispatch;
 
 
    array < matter* >* g_paAura;
@@ -210,25 +219,21 @@ namespace acme
 
    //map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
 
-#ifdef WINDOWS
 
-   LARGE_INTEGER g_largeintegerFrequency;
-
-#endif
 
    i64 g_iFirstNano;
 
    //plex_heap_alloc_array * g_pplexheapallocarray;
 
    int g_iMemoryCountersStartable;
-   //mutex * g_pmutexTrait;
+   //::mutex * g_pmutexTrait;
    //::mutex * g_pmutexFactory;
 
-   ::mutex* g_pmutexUiDestroyed;
+   ::mutex * g_pmutexUiDestroyed;
 
 #ifdef ANDROID
 
-   ::mutex* g_pmutexOutputDebugStringA;
+   ::mutex * g_pmutexOutputDebugStringA;
 
 #endif
 
@@ -260,9 +265,9 @@ namespace acme
 #if defined(LINUX) || defined(__APPLE__)
 
 
-   ::mutex* g_pmutexTz;
+   ::mutex * g_pmutexTz;
 
-   ::mutex* g_pmutexThreadHandleLock;
+   ::mutex * g_pmutexThreadHandleLock;
 
 
 #endif // defined(LINUX) || defined(__APPLE__)
@@ -271,7 +276,7 @@ namespace acme
 #ifdef __APPLE__
 
 
-   ::mutex* g_pmutexCvt;
+   ::mutex * g_pmutexCvt;
 
 
 #endif
@@ -316,7 +321,7 @@ namespace acme
 
 #endif
 
-      g_main_deferred_run = nullptr;
+      //g_main_deferred_run = nullptr;
 
       g_pmutexGlobals = nullptr;
 
@@ -395,7 +400,7 @@ namespace acme
       //plex_heap_alloc_array * g_pplexheapallocarray = nullptr;
 
       g_iMemoryCountersStartable = 0;
-      //mutex * g_pmutexTrait;
+      //::mutex * g_pmutexTrait;
       //::mutex * g_pmutexFactory;
 
       g_pmutexUiDestroyed = 0;
@@ -1331,7 +1336,7 @@ void acme_ref()
 }
 
 
-CLASS_DECL_ACME ::mutex* get_globals_mutex()
+CLASS_DECL_ACME ::mutex * get_globals_mutex()
 {
 
    return ::acme::g_pmutexGlobals;
@@ -1341,7 +1346,7 @@ CLASS_DECL_ACME ::mutex* get_globals_mutex()
 
 
 
-CLASS_DECL_ACME mutex* get_children_mutex()
+CLASS_DECL_ACME ::mutex* get_children_mutex()
 {
 
    return ::acme::g_pmutexChildren;
@@ -1352,7 +1357,7 @@ CLASS_DECL_ACME mutex* get_children_mutex()
 CLASS_DECL_ACME void release_on_end(::matter* pmatter)
 {
 
-   cslock l(::acme::g_pcsGlobal);
+   critical_section_lock l(::acme::g_pcsGlobal);
 
    __defer_new(::acme::g_pelementaddraReleaseOnEnd);
 
@@ -1364,7 +1369,7 @@ CLASS_DECL_ACME void release_on_end(::matter* pmatter)
 void delete_all_release_on_end()
 {
 
-   cslock l(::acme::g_pcsGlobal);
+   critical_section_lock l(::acme::g_pcsGlobal);
 
    if (is_set(::acme::g_pelementaddraReleaseOnEnd))
    {
@@ -1386,7 +1391,7 @@ void delete_all_release_on_end()
 void add_release_on_end(::matter * pmatter)
 {
 
-   cslock l(::acme::g_pcsGlobal);
+   critical_section_lock l(::acme::g_pcsGlobal);
 
    if (::is_null(::acme::g_pelementaddraReleaseOnEnd))
    {

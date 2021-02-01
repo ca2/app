@@ -33,7 +33,7 @@ void android_on_text(e_os_text etext, const wchar_t* pwch, size_t len);
 #define  LOGI(...)  __android_log_print(ANDROID_LOG_INFO,LOG_TAG,__VA_ARGS__)
 #define  LOGE(...)  __android_log_print(ANDROID_LOG_ERROR,LOG_TAG,__VA_ARGS__)
 
-int SetMainScreenRect(LPCRECT32 lpcrect);
+int SetMainScreenRect(const RECTANGLE_I32 * lpcrect);
 
 void android_aura_main();
 

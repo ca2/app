@@ -129,7 +129,7 @@ outtextxy (int x, int y, char * textstring)
 	//    // Here's the basic idea.  For each character, we set up the
 	//    // Points array to contain all of the visible pixels in the char.
 	//    // This entire set of pixels is drawn at once with XDrawPoints.
-	//    // If the chracter size has been magnified, so that each 
+	//    // If the chracter size_i32 has been magnified, so that each 
 	//    // "pixel" is really an NxN block of pixels, we modify the
 	//    // coordinates in Points NxN times and use XDrawPoints NxN times.
 	//    // First, though, there is the initial setup of Points.

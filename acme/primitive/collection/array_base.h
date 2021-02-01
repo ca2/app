@@ -559,7 +559,7 @@ public:
    inline TYPE takeFirst(::index i = 0);
    inline TYPE takeLast(::index i = -1);
 
-   virtual ::count append(const array_base & src); // return old size
+   virtual ::count append(const array_base & src); // return old size_i32
    virtual void copy(const array_base & src);
 
    virtual void on_after_read();

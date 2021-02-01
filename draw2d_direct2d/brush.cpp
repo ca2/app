@@ -78,7 +78,7 @@ namespace draw2d_direct2d
             D2D1_LINEAR_GRADIENT_BRUSH_PROPERTIES prop{};
 
             //auto pointViewport = pgraphics->GetViewportOrg();
-            ::point pointViewport(0, 0);
+            ::point_i32 pointViewport(0, 0);
 
             prop.startPoint.x    = (FLOAT) m_point1.x + pointViewport.x;
             prop.startPoint.y    = (FLOAT) m_point1.y + pointViewport.y;

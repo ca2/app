@@ -95,7 +95,7 @@
 //		const unsigned char *   
 //                        digest();
 //		string			   to_string();
-//		const void *		body(const void *data, u32 size);
+//		const void *		body(const void *data, u32 size_i32);
 //      void              get(memory & mem);
 //
 //

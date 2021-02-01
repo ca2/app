@@ -368,13 +368,13 @@ namespace userex
 
       ::user::interaction * pinteraction = &m_buttonMenu;
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       pinteraction->get_window_rect(rectWindow);
 
       auto puser = User;
 
-      m_pmenu = puser->track_popup_xml_menu(this, strXml, 0, rectWindow.bottom_left(), ::size(width(), 0));
+      m_pmenu = puser->track_popup_xml_menu(this, strXml, 0, rectWindow.bottom_left(), ::size_i32(width(), 0));
       //m_pmenu->create_color(::user::color_button_background, ARGB(255, 255, 255, 255));
       //m_pmenu->create_color(::user::color_button_text, ARGB(255, 80, 80, 80));
 
@@ -459,13 +459,13 @@ namespace userex
 
       }
 
-      ::rect rectMenu(rectClient);
+      ::rectangle_i32 rectMenu(rectClient);
 
       rectMenu.bottom = rectClient.top + 32;
 
       m_buttonMenu.display_child(rectMenu);
 
-      ::rect rectList(rectClient);
+      ::rectangle_i32 rectList(rectClient);
 
       rectList.top = rectClient.top + 32;
 

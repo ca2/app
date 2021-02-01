@@ -27,7 +27,7 @@
 //            IStream *pStream;
 //            
 //            //create a stream on global memory
-//            if(SUCCEEDED(CreateStreamOnHGlobal(NULL, TRUE, &pStream)))
+//            if(SUCCEEDED(CreateStreamOnHGlobal(NULL, true, &pStream)))
 //            {
 //                LARGE_INTEGER   li;
 //
@@ -122,7 +122,7 @@
 //                        IStream *pTempStream;
 //
 //                        //create a temporary stream to write the property data to
-//                        hr = CreateStreamOnHGlobal(NULL, TRUE, &pTempStream);
+//                        hr = CreateStreamOnHGlobal(NULL, true, &pTempStream);
 //                        if(SUCCEEDED(hr))
 //                        {
 //                            ITfRange    *pRange;
@@ -138,7 +138,7 @@
 //
 //                                /*
 //                                Write the property header into the primary stream. 
-//                                The header also contains the size of the property 
+//                                The header also contains the size_i32 of the property 
 //                                data.
 //                                */
 //                                hr = pStream->Write(&PropHeader, sizeof(TF_PERSISTENT_PROPERTY_HEADER_ACP), &uWritten);
@@ -168,7 +168,7 @@
 //                pEnumProps->Release();
 //            }
 //
-//            //write a property header with zero size and guid into the stream as a terminator
+//            //write a property header with zero size_i32 and guid into the stream as a terminator
 //            ZeroMemory(&PropHeader, sizeof(TF_PERSISTENT_PROPERTY_HEADER_ACP));
 //            hr = pStream->Write(&PropHeader, sizeof(TF_PERSISTENT_PROPERTY_HEADER_ACP), &uWritten);
 //        }
@@ -200,7 +200,7 @@
 //            IStream *pStream;
 //            
 //            //create a stream on global memory
-//            if(SUCCEEDED(CreateStreamOnHGlobal(NULL, TRUE, &pStream)))
+//            if(SUCCEEDED(CreateStreamOnHGlobal(NULL, true, &pStream)))
 //            {
 //                //read the contents of the file into the stream
 //                LARGE_INTEGER   li;
@@ -266,7 +266,7 @@
 //    li.QuadPart = 0;
 //    pStream->Seek(li, STREAM_SEEK_SET, NULL);
 //
-//    //get the size of the text, in BYTES. This is the first ULONG in the stream
+//    //get the size_i32 of the text, in BYTES. This is the first ULONG in the stream
 //    hr = pStream->Read(&uSize, sizeof(ULONG), &uRead);
 //    if(SUCCEEDED(hr) && (sizeof(ULONG) == uRead))
 //    {

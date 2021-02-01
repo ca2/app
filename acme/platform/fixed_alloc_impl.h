@@ -44,7 +44,7 @@ inline void fixed_alloc_sync::Free(void * p)
 
    i32 i = ((i32 *)p)[-1];
 
-   cslock l(m_protectptra.get_data()[i]);
+   critical_section_lock l(m_protectptra.get_data()[i]);
 
    m_allocptra.get_data()[i]->Free(&((i32 *)p)[-1]);
 

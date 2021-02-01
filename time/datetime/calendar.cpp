@@ -108,7 +108,7 @@ namespace datetime
       }
 
 
-      void calendar::set_pos(point point, size sz)
+      void calendar::set_pos(point_i32 point_i32, size_i32 sz)
       {
 
          UNREFERENCED_PARAMETER(point);
@@ -219,13 +219,13 @@ namespace datetime
       }
 
 
-      enum_element calendar::hit_test(const point & point)
+      enum_element calendar::hit_test(const point_i32 & point)
       {
 
          for (int iElement = e_element_none + 1; iElement < e_element_count; iElement++)
          {
 
-            if (hit_test((enum_element)iElement, point))
+            if (hit_test((enum_element)iElement, point_i32))
             {
 
                return (enum_element)iElement;
@@ -239,13 +239,13 @@ namespace datetime
       }
 
 
-      bool calendar::time_hit_test(::datetime::time& timeRet, const point & point)
+      bool calendar::time_hit_test(::datetime::time& timeRet, const point_i32 & point)
       {
          int32_t iMonth = m_iMonth;
          int32_t iYear = m_iYear;
          ::datetime::time time(iYear, iMonth, 1, 0, 0, 0);
          ::datetime::time_span timespan(1, 0, 0, 0);
-         rect rectDay;
+         rectangle_i32 rectDay;
          int32_t iDay;
          for (iDay = 1; iDay <= 33; iDay++)
          {
@@ -263,14 +263,14 @@ namespace datetime
       }
 
 
-      bool calendar::hit_test(enum_element eelement, const point & point)
+      bool calendar::hit_test(enum_element eelement, const point_i32 & point)
       {
 
-         ::rect rect;
+         ::rectangle_i32 rectangle;
 
-         GetRect(rect, eelement);
+         GetRect(rectangle, eelement);
 
-         return rect.contains(point) != FALSE;
+         return rectangle.contains(point) != FALSE;
 
       }
 

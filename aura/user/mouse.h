@@ -18,8 +18,8 @@ namespace user
 
 
       uptr                    m_nFlags;
-      point                   m_point;
-      point                   m_pointDesired;
+      point_i32                   m_point;
+      point_i32                   m_pointDesired;
       bool                    m_bTranslated;
       e_cursor                m_ecursor;
       ::draw2d::cursor *      m_pcursor;

@@ -13,9 +13,9 @@ namespace experience
 
       ::experience::frame_window *     m_pframewindow;
       e_border                         m_eborderMask;
-      point                            m_pointCursorOrigin;
-      point                            m_pointWindowOrigin;
-      point                            m_pointMove;
+      point_i32                            m_pointCursorOrigin;
+      point_i32                            m_pointWindowOrigin;
+      point_i32                            m_pointMove;
       bool                             m_bMoving;
       ::u32                             m_uiSWPFlags;
       ::user::window_state             m_stateBefore;
@@ -36,7 +36,7 @@ namespace experience
       e_border GetBorderMask();
 
       bool window_is_moving();
-      void MoveWindow(void * oswindow, const ::point & point);
+      void MoveWindow(void * oswindow, const ::point_i32 & point);
       void SetSWPFlags(::u32 uFlags);
 
 

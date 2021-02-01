@@ -85,16 +85,16 @@ namespace uwp
       // content of the custom text edit control.
       //String^ _text;
 
-      // If the _selection starts and ends at the same point,
-      // then it represents the location of the caret (insertion point).
+      // If the _selection starts and ends at the same point_i32,
+      // then it represents the location of the caret (insertion point_i32).
       Windows::UI::Text::Core::CoreTextRange                   m_selection;
 
       // _internalFocus keeps track of whether our control acts like it has focus.
       bool                                                     m_bInternalFocus;
 
       // If there is a nonempty selection, then _extendingLeft is true if the user
-      // is using shift+arrow to adjust the starting point of the selection,
-      // or false if the user is adjusting the ending point of the selection.
+      // is using shift+arrow to adjust the starting point_i32 of the selection,
+      // or false if the user is adjusting the ending point_i32 of the selection.
       bool                                                     m_bExtendingLeft;
 
       // The input pane object indicates the visibility of the on screen keyboard.

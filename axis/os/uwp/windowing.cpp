@@ -193,7 +193,7 @@ LONG_PTR oswindow_data::set_window_long_ptr(int nIndex, LONG_PTR l)
 }
 
 
-bool oswindow_data::_001ClientToScreen(POINT32 * lppoint)
+bool oswindow_data::_001ClientToScreen(POINT_I32 * lppoint)
 {
    if (m_pimpl == nullptr || m_pimpl->m_puserinteraction == nullptr)
    {
@@ -206,7 +206,7 @@ bool oswindow_data::_001ClientToScreen(POINT32 * lppoint)
    return true;
 }
 
-bool oswindow_data::_001ScreenToClient(POINT32 * lppoint)
+bool oswindow_data::_001ScreenToClient(POINT_I32 * lppoint)
 {
    if (m_pimpl == nullptr || m_pimpl->m_puserinteraction == nullptr)
    {
@@ -420,7 +420,7 @@ int destroy_window(oswindow oswindow)
 //}
 
 
-int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int iMargin)
+int_bool point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, int iMargin)
 {
 
    return abs(ptHitTest.x) < iMargin && abs(ptHitTest.y) < iMargin;

@@ -439,7 +439,7 @@ namespace userfs
             if (point != nullptr)
             {
 
-               ::file::path & pathTreeItem = point->m_filepathFinal;
+               ::file::path & pathTreeItem = point_i32->m_filepathFinal;
 
                if (bPointerFromPathFromItemFromOwnTree)
                {
@@ -516,7 +516,7 @@ namespace userfs
             if (point != nullptr)
             {
 
-               ::file::path & pathTreeItem = point->m_filepathUser;
+               ::file::path & pathTreeItem = point_i32->m_filepathUser;
 
                if (bPointerFromPathFromItemFromOwnTree)
                {

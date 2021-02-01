@@ -1,6 +1,9 @@
 #pragma once
 
 
+#define MAKELONG(a, b)      ((::i32)(((::u16)(((dword_ptr)(a)) & 0xffff)) | ((::u32)((::u16)(((dword_ptr)(b)) & 0xffff))) << 16))
+
+
 enum enum_position
 {
    e_position_none = 0,
@@ -518,6 +521,7 @@ namespace user
       e_desktop_lxde = 1 << 5,
       e_desktop_mate = 1 << 6,
       e_desktop_ubuntu = 1 << 7,
+      e_desktop_windows = 1 << 8,
       e_desktop_unity_gnome = e_desktop_unity | e_desktop_gnome,
       e_desktop_ubuntu_gnome = e_desktop_ubuntu | e_desktop_gnome,
 

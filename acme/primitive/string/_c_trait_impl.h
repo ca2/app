@@ -399,7 +399,7 @@ inline strsize wide_cspn(const widechar * psz1, const widechar * psz2) { return 
 
 #else
 
-#error "Not supported widechar size"
+#error "Not supported widechar size_i32"
 
 #endif
 

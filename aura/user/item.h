@@ -63,11 +63,11 @@ namespace user
       public ITEM
    {
 
-      ::point                       m_pointScreen;
-      ::point                       m_pointHost;
-      ::point                       m_pointClient;
-      ::point                       m_pointHitTest;
-      ::rect                        m_rect;
+      ::point_i32                       m_pointScreen;
+      ::point_i32                       m_pointHost;
+      ::point_i32                       m_pointClient;
+      ::point_i32                       m_pointHitTest;
+      ::rectangle_i32                        m_rectangle;
       ::user::enum_event            m_eevent;
       u64                           m_uFlags;
 

@@ -1,5 +1,6 @@
 #include "framework.h"
 #include "acme/platform/static_start.h"
+#include "acme/operating_system.h"
 
 
 #if defined(WINDOWS)
@@ -400,26 +401,26 @@ payload::payload(const ::datetime::time & time)
 }
 
 
-#ifdef WINDOWS
 
-
-payload::payload(const FILETIME & filetime)
+void __copy(payload * ppayload, const FILETIME * pfiletime)
 {
 
-   m_etype = type_filetime;
-   m_u64 = make64_from32(filetime.dwLowDateTime, filetime.dwHighDateTime);
+   ppayload->set_type(type_filetime, false);
+
+   ppayload->m_filetime = make64_from32(pfiletime->dwLowDateTime, pfiletime->dwHighDateTime);
 
 }
 
 
-payload::payload(const SYSTEMTIME & systemtime)
+void __copy(payload * ppayload, const SYSTEMTIME * psystemtime)
 {
-   m_etype = type_time;
-   m_time = ::datetime::time(systemtime).m_time;
+
+   ppayload->set_type(type_time, false);
+   
+   ppayload->m_time = __time(*psystemtime);
+
 }
 
-
-#endif
 
 
 payload::~payload()
@@ -817,22 +818,22 @@ class ::payload & payload::operator = (const ::datetime::time & time)
 }
 
 
-#ifdef WINDOWS
-
-
-class ::payload & payload::operator = (const FILETIME & filetime)
-{
-
-   set_type(type_filetime, false);
-
-   m_u64 = make64_from32(filetime.dwLowDateTime, filetime.dwHighDateTime);
-
-   return *this;
-
-}
-
-
-#endif
+//#ifdef WINDOWS
+//
+//
+//class ::payload & payload::operator = (const FILETIME & filetime)
+//{
+//
+//   set_type(type_filetime, false);
+//
+//   m_u64 = make64_from32(filetime.dwLowDateTime, filetime.dwHighDateTime);
+//
+//   return *this;
+//
+//}
+//
+//
+//#endif
 
 
 class ::payload & payload::operator = (::i64 i)
@@ -902,17 +903,6 @@ class ::payload & payload::operator = (long l)
 
 }
 
-
-class ::payload & payload::operator = (DWORD dw)
-{
-
-   set_type(e_type_u32,false);
-
-   m_u32 = dw;
-
-   return *this;
-
-}
 
 #endif
 
@@ -2315,14 +2305,14 @@ id & payload::get_ref_id(const char * pszOnNull)
       return atoi(*m_pstr);
    case e_type_id:
    {
-      if(!is_i32(m_id))
-         __throw(overflow_error("::payload contains id that does not fit 32 bit integer"));
+      if(!fits_i32(m_id.i64()))
+         __throw(overflow_exception("::payload contains id that does not fit 32 bit integer"));
       return (::i32) (::i64) m_id;
    }
    case type_pid:
    {
-      if(!is_i32((::i64) *m_pid))
-         __throw(overflow_error("::payload contains id that does not fit 32 bit integer"));
+      if(!fits_i32(m_pid->i64()))
+         __throw(overflow_exception("::payload contains id that does not fit 32 bit integer"));
       return (::i32) (::i64) *m_pid;
    }
    default:
@@ -5479,7 +5469,7 @@ bool payload::is_false() const
    case e_type_pu64:
       return !m_pu64 || !*m_pu64;
 
-   // floating point
+   // floating point_i32
    case e_type_pfloat:
       return !*m_pf;
    case e_type_float:
@@ -5621,7 +5611,7 @@ bool payload::is_set_false() const
       return !m_u64;
    case e_type_pu64:
       return !m_pu64 || !*m_pu64;
-   // floating point
+   // floating point_i32
    case e_type_pfloat:
       return !*m_pf;
    case e_type_float:
@@ -5795,8 +5785,8 @@ namespace user
       bool                       m_bZoomed = false;
       bool                       m_bFullScreen = false;
       bool                       m_bIconic = false;
-      rect                       m_rectRestored = nullptr;
-      rect                       m_rectWindow = nullptr;
+      rectangle_i32                       m_rectRestored = nullptr;
+      rectangle_i32                       m_rectWindow = nullptr;
       int                        m_iControlBoxRightToLeft = 0;
       edisplay                   m_edisplay = e_display_default;
       edisplay                   m_edisplayPrevious = e_display_none;

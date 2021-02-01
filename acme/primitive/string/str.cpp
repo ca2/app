@@ -1293,7 +1293,7 @@ namespace str
       if(pszFind == nullptr || pszFind[0] == '\0') // do not search for empty Extensions
          return -1;
 
-      // for dir::name_is (check if base name of a file is a directory, checking if there is a simple ansi '.', may be very good start point definitive false).
+      // for dir::name_is (check if base name of a file is a directory, checking if there is a simple ansi '.', may be very good start point_i32 definitive false).
       // if there is a dot, it may still does not have a Latin dot, if the dot is inside a Multibyte UTF8 char, anyway, algo following should check it properly.
 
       index iLen = str.get_length() - iStart;
@@ -1786,54 +1786,6 @@ namespace str
          return pszIfNull;
       else
          return psz;
-
-   }
-
-   string get_window_text_timeout(oswindow oswindow, millis tickTimeout)
-   {
-
-      string str;
-
-      if (oswindow != nullptr)
-      {
-
-#ifdef WINDOWS_DESKTOP
-
-         DWORD_PTR lresult = 0;
-
-         auto tickStart = ::millis::now();
-
-         tickTimeout = max(tickTimeout, 10);
-
-         if(!::SendMessageTimeoutW(oswindow,WM_GETTEXTLENGTH,0,0,SMTO_ABORTIFHUNG,__os(tickTimeout),&lresult))
-            return "";
-
-         tickTimeout -= tickStart.elapsed();
-
-         wstring wstr;
-
-         tickTimeout = min(tickTimeout, 10);
-
-         if(!::SendMessageTimeoutW(oswindow,WM_GETTEXT,(LPARAM)wstr.get_string_buffer(lresult + 1),lresult + 1,SMTO_ABORTIFHUNG,__os(tickTimeout),&lresult))
-            return "";
-
-         str = wstr;
-
-         //i32 nLen = ::GetWindowTextLength(oswindow);
-
-         //::GetWindowText(oswindow, str.get_string_buffer(nLen), nLen+1);
-
-         //str.ReleaseBuffer();
-
-#else
-
-         __throw(todo());
-
-#endif
-
-      }
-
-      return str;
 
    }
 
@@ -4339,7 +4291,7 @@ skip:
 //
 //   /// \lparam[in] pcszPrefix Candidate prefix string.
 //
-//   /// \return True if \point pcsz is prefixed with \point pcszPrefix.
+//   /// \return True if \point_i32 pcsz is prefixed with \point_i32 pcszPrefix.
 //
 //   /// \note Case insensitive.
 //   ///

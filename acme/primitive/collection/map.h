@@ -33,7 +33,7 @@ public:
    }
 
 
-   void InitHashTable(::u32 nHashSize, bool bAllocNow = TRUE)
+   void InitHashTable(::u32 nHashSize, bool bAllocNow = true)
    {
 
       if(m_ppassocHash != nullptr && m_ppassocHash != m_assocHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
@@ -110,7 +110,7 @@ public:
    {
       return m_nHashTableSize;
    }
-   void InitHashTable(::u32 hashSize,bool bAllocNow = TRUE) {  }
+   void InitHashTable(::u32 hashSize,bool bAllocNow = true) {  }
 
    void remove_all()
    {
@@ -422,7 +422,7 @@ public:
    {
       return m_hashtable.GetHashTableSize();
    }
-   void InitHashTable(::u32 hashSize,bool bAllocNow = TRUE);
+   void InitHashTable(::u32 hashSize,bool bAllocNow = true);
 
 
    VALUE get(ARG_KEY argkey, ARG_VALUE valueDefault);
@@ -703,7 +703,7 @@ void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::construct()
 {
 
    //m_ppassocHash     = nullptr;
-   //m_nHashTableSize  = 17;  // default size
+   //m_nHashTableSize  = 17;  // default size_i32
    m_nCount          = 0;
 //   this->m_passocFree      = nullptr;
 //   m_pplex           = nullptr;
@@ -966,11 +966,11 @@ bool map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::lookup(ARG_KEY key, VALUE& rV
    assoc* passoc = get_assoc_at(key, nHashBucket, nHashValue);
 
    if (passoc == nullptr)
-      return FALSE;  // not in map
+      return false;  // not in map
 
    rValue = passoc->element2();
 
-   return TRUE;
+   return true;
 
 }
 
@@ -1089,7 +1089,7 @@ const VALUE & map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::operator[](ARG_KEY k
 
 template < typename KEY, typename VALUE, typename ARG_KEY, typename ARG_VALUE, typename PAIR >
 inline bool map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::remove_item(assoc * passoc)
-// erase - return TRUE if removed
+// erase - return true if removed
 {
 
    if(passoc->m_pnextHash != nullptr)
@@ -1194,9 +1194,6 @@ void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::assert_valid() const
 
 }
 
-
-template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type >
-using colorrefmap = map < color32_t, VALUE, typename argument_of < color32_t >::type, ARG_VALUE >;
 
 template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type >
 using double_map = map < double, VALUE, typename argument_of < double >::type, ARG_VALUE >;

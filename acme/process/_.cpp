@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 #include "acme/platform/version.h"
 
 
@@ -368,7 +369,7 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
 
    char * pPtr = nullptr;
 
-   char * point;
+   char * p;
 
    char * psz = cmd_line;
 
@@ -449,11 +450,11 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          else if(*psz == quote)
          {
 
-            point = (char *) ::str::utf8_inc(psz);
+            p = (char *) ::str::utf8_inc(psz);
 
             *psz = '\0';
 
-            psz = point;
+            psz = p;
 
             e = e_state_initial;
 
@@ -472,11 +473,11 @@ void prepare_argc_argv(int & argc, char ** argv, char * cmd_line)
          if(*psz == ' ')
          {
 
-            point = (char *) ::str::utf8_inc(psz);
+            p = (char *) ::str::utf8_inc(psz);
 
             *psz = '\0';
 
-            psz = point;
+            psz = p;
 
             e = e_state_initial;
 

@@ -21,9 +21,9 @@
 template <typename T>
 inline void SafeRelease(T *&point)
 {
-   if(nullptr != point)
+   if(nullptr != point_i32)
    {
-      point->Release();
+      point_i32->Release();
       point = nullptr;
    }
 }
@@ -91,8 +91,8 @@ i32                 cy)
 
    //   color32_t                crOld;
    //   ::u32                    uMode;
-   SIZED                   sizeText;
-   ::rect                  rectText;
+   SIZE_F64                   sizeText;
+   ::rectangle_i32                  rectText;
 
    auto psession = Session;
 
@@ -165,7 +165,7 @@ void imaging::GetMultiLineTextExtent(HDC hDC,string_array * pArray,LPSIZE32 pSiz
    nSize = pArray->get_size();
    pSize->cx = 0;
 
-   ::size size;
+   ::size_i32 size;
    for(nIndex = 0; nIndex < nSize; nIndex++)
    {
       const string &str = pArray->get_at(nIndex);
@@ -259,7 +259,7 @@ void imaging::DrawMultiLineText(HDC hDC,string_array * pArray)
 
 //   ::draw2d::bitmap * pitmapMask,
 
-//   const ::rect & rect,
+//   const ::rectangle_i32 & rectangle,
 //   color32_t crTransparent)
 //{
 //
@@ -269,10 +269,10 @@ void imaging::DrawMultiLineText(HDC hDC,string_array * pArray)
 
 //             pitmapMask,
 
-//             rect.left,
-//             rect.top,
-//             rect.right - rect.left,
-//             rect.bottom - rect.top,
+//             rectangle.left,
+//             rectangle.top,
+//             rectangle.right - rectangle.left,
+//             rectangle.bottom - rectangle.top,
 //             crTransparent);
 //}
 
@@ -294,8 +294,8 @@ spgraphics->CreateCompatibleDC(pgraphics);
 for(i32 i = 0; i < pil->get_image_count(); i++)
 {
 VERIFY(pil->get_image_info(i, &ii));
-const ::rect & rect = ii.m_rect;
-GrayVRCP(spgraphics->get_os_data(), ii.hbmImage, ii.hbmMask, rect.left, rect.top, rect.width(), rect.height(), RGB(192, 192, 192));
+const ::rectangle_i32 & rectangle = ii.m_rectangle;
+GrayVRCP(spgraphics->get_os_data(), ii.hbmImage, ii.hbmMask, rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), RGB(192, 192, 192));
 }
 return pil;
 
@@ -323,14 +323,14 @@ spgraphics->CreateCompatibleDC(pgraphics);
 for(i32 i = 0; i < pil->get_image_count(); i++)
 {
 VERIFY(pil->get_image_info(i, &ii));
-const ::rect & rect = ii.m_rect;
+const ::rectangle_i32 & rectangle = ii.m_rectangle;
 HueVRCP(
 spgraphics->get_os_data(),
 ii.hbmImage,
-rect.left,
-rect.top,
-rect.width(),
-rect.height(),
+rectangle.left,
+rectangle.top,
+rectangle.width(),
+rectangle.height(),
 crHue,
 dCompress);
 }
@@ -461,8 +461,8 @@ spgraphics->CreateCompatibleDC(pgraphics);
 for(i32 i = 0; i < pil->get_image_count(); i++)
 {
 VERIFY(pil->get_image_info(i, &ii));
-const ::rect & rect = ii.m_rect;
-GrayVRCP(spgraphics->get_os_data(), ii.hbmImage, ii.hbmMask, rect.left, rect.top, rect.width(), rect.height(), RGB(192, 192, 192));
+const ::rectangle_i32 & rectangle = ii.m_rectangle;
+GrayVRCP(spgraphics->get_os_data(), ii.hbmImage, ii.hbmMask, rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), RGB(192, 192, 192));
 }
 return pil;
 
@@ -522,7 +522,7 @@ return pil;
 ////   byte uch3dhighlightG = ::green(cr3dhighlight);
 ////   byte uch3dhighlightB = ::blue(cr3dhighlight);
 ////
-////   const ::size & size = pitmap->get_size();
+////   const ::size_i32 & size = pitmap->get_size();
 
 ////
 ////   ::u32 cbLine = ((size.cx * 3 + 3) & ~3);
@@ -586,7 +586,7 @@ return pil;
 ////
 ////#endif
 ////
-////   const ::size & sizeMask = pitmapMask->get_size();
+////   const ::size_i32 & sizeMask = pitmapMask->get_size();
 
 ////
 ////   BITMAPINFO * pmiMask = (BITMAPINFO *)malloc(sizeof(BITMAPINFOHEADER) + 256 * sizeof(RGBQUAD));
@@ -972,7 +972,7 @@ return pil;
 //   memory & memorystorage,
 //   ::draw2d::bitmap * pitmap,
 
-//   const rect & rectParam,
+//   const rectangle_i32 & rectParam,
 //   i32 &iWidthParam,
 //   ::u32 & uiStartScanLineParam,
 //   ::u32 & uiScanLineCountParam,
@@ -980,12 +980,12 @@ return pil;
 //{
 //   UNREFERENCED_PARAMETER(pitmap);
 
-//   ::rect rect(rectParam);
+//   ::rectangle_i32 rectangle(rectParam);
 //
-//   //   i32 x = rect.left;
-//   i32 y = rect.top;
-//   //   i32 cx = rect.width();
-//   i32 cy = rect.height();
+//   //   i32 x = rectangle.left;
+//   i32 y = rectangle.top;
+//   //   i32 cx = rectangle.width();
+//   i32 cy = rectangle.height();
 //
 //   ::draw2d::bitmap_pointer spbmpTemp(get_object());
 //   if(!spbmpTemp->CreateCompatibleBitmap(pgraphics,1,1))
@@ -1043,7 +1043,7 @@ return pil;
 //         LPVOID pv = memorystorage.get_data();
 
 //#endif
-//         //       ::point pointViewport = pgraphics->GetViewportOrg();
+//         //       ::point_i32 pointViewport = pgraphics->GetViewportOrg();
 //
 //         ::u32 uStartScanLine = max(0,bm.bmHeight - y - cy);
 //         ::u32 uScanLines = cy + min(0,bm.bmHeight - y - cy);
@@ -1104,7 +1104,7 @@ BITMAP & bm,
 BITMAPINFO & bmi,
 memory & memorystorage,
 ::draw2d::bitmap   ** ppbitmap,
-RECT32 * prect,
+RECTANGLE_I32 * prectangle,
 
 i32 &iWidthParam,
 ::u32 & uiStartScanLineParam,
@@ -1175,7 +1175,7 @@ __throw(::exception::exception("integer_exception" + __str($1)));
 }
 LPVOID pv = memorystorage.get_data();
 
-::point pointViewport = pgraphics->GetViewportOrg();
+::point_i32 pointViewport = pgraphics->GetViewportOrg();
 
 ::u32 uStartScanLine = 0;
 ::u32 uScanLines = cy;
@@ -1279,7 +1279,7 @@ __throw(::exception::exception("integer_exception" + __str($1)));
 LPVOID pv = memorystorage.get_data();
 
 
-::point pointViewport;
+::point_i32 pointViewport;
 pointViewport = pgraphics->GetViewportOrg();
 ::u32 uStartScanLine = bm.bmHeight;
 
@@ -1580,10 +1580,10 @@ byte bAlpha)
 
 bool imaging::BitmapDivBlend(
    ::draw2d::graphics * pdcDst, // destination device
-   const ::point & pointDst,
-   const ::size & size,
+   const ::point_i32 & pointDst,
+   const ::size_i32 & size,
    ::draw2d::graphics * pdcSrc, // source device
-   const ::point & pointSrc,
+   const ::point_i32 & pointSrc,
    byte bAlpha)
 {
 
@@ -1611,34 +1611,34 @@ bool imaging::BitmapDivBlend(
 
    pimage->DivideRGB(bAlpha);
 
-   return pdcDst->draw(::rectd(pointDst, size), pimage->g(),pointSrc);
+   return pdcDst->draw(::rectangle_f64(pointDst, size), pimage->g(),pointSrc);
 
 }
 
 
 //bool imaging::bitmap_blend(
 //::draw2d::graphics * pdcDst, // destination device
-//const ::point & pointDst,
-//const ::size & size,
+//const ::point_i32 & pointDst,
+//const ::size_i32 & size,
 //::draw2d::graphics * pdcSrc, // source device
-//const ::point & pointSrc,
+//const ::point_i32 & pointSrc,
 //byte bAlpha)
 //{
 //
-//   return pdcDst->alpha_blend(rectd(pointDst,size), pdcSrc, pointSrc, bAlpha / 255.0);
+//   return pdcDst->alpha_blend(rectangle_f64(pointDst, size), pdcSrc, pointSrc, bAlpha / 255.0);
 //
 //}
 //
 //
 //bool imaging::bitmap_blend(::draw2d::graphics * pdcDst,
-//                           const ::point & pointDst,
-//                           const ::size & size,
+//                           const ::point_i32 & pointDst,
+//                           const ::size_i32 & size,
 //                           ::image * pimage,
-//                           const ::point & pointSrc,
+//                           const ::point_i32 & pointSrc,
 //                           byte bAlpha)
 //{
 //
-//   return pdcDst->alpha_blend(::rectd(pointDst, size), pimage, pointSrc, bAlpha / 255.0);
+//   return pdcDst->alpha_blend(::rectangle_f64(pointDst, size), pimage, pointSrc, bAlpha / 255.0);
 //
 //}
 //
@@ -1656,7 +1656,7 @@ bool imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
 
    return false;
 
-   //    single_lock sl(&m_csMem, TRUE);
+   //    single_lock sl(&m_csMem, true);
 
    /*i32 iOriginalMapMode ;
 
@@ -1737,7 +1737,7 @@ bool imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    LPVOID pv = memstorageA.get_data();
 
 
-   ::point pointViewport;
+   ::point_i32 pointViewport;
    pointViewport = pgraphics->GetViewportOrg();
    ::u32 uStartScanLine = bm.bmHeight - y - cy - pointViewport.y;
    //::u32 uStartScanLine = bm.bmHeight - y - cy;
@@ -1853,7 +1853,7 @@ bool imaging::ColorInvert(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 
    }
    LPVOID pv = memstorageA.get_data();
 
-   ::point pointViewport = pgraphics->GetViewportOrg();
+   ::point_i32 pointViewport = pgraphics->GetViewportOrg();
    ::u32 uStartScanLine = bm.bmHeight - y - cy - pointViewport.y;
    //::u32 uStartScanLine = bm.bmHeight - y - cy;
    ::u32 uScanLines = cy;
@@ -2015,43 +2015,43 @@ return true;
 //   }
 
 
-bool imaging::color_blend_3dRect(::draw2d::graphics *pgraphics,const rect & rectParam,color32_t crTopLeft,byte bAlphaTopLeft,color32_t crBottomRight,byte bAlphaBottomRight)
+bool imaging::color_blend_3dRect(::draw2d::graphics *pgraphics,const rectangle_i32 & rectParam,color32_t crTopLeft,byte bAlphaTopLeft,color32_t crBottomRight,byte bAlphaBottomRight)
 {
 
-   ::rect rect(rectParam);
+   ::rectangle_i32 rectangle(rectParam);
 
-   i32 x = rect.left;
-   i32 y = rect.top;
-   i32 cx = rect.width();
-   i32 cy = rect.height();
-   color_blend(pgraphics,point(x,y),size(cx - 1,1),crTopLeft,bAlphaTopLeft);
-   color_blend(pgraphics,point(x,y),size(1,cy - 1),crTopLeft,bAlphaTopLeft);
-   color_blend(pgraphics,point(x + cx - 1,y + 1),size(1,cy - 1),crBottomRight,bAlphaBottomRight);
-   color_blend(pgraphics,point(x + 1,y + cy - 1),size(cx - 1,1),crBottomRight,bAlphaBottomRight);
+   i32 x = rectangle.left;
+   i32 y = rectangle.top;
+   i32 cx = rectangle.width();
+   i32 cy = rectangle.height();
+   color_blend(pgraphics,point_i32(x,y),size_i32(cx - 1,1),crTopLeft,bAlphaTopLeft);
+   color_blend(pgraphics,point_i32(x,y),size_i32(1,cy - 1),crTopLeft,bAlphaTopLeft);
+   color_blend(pgraphics,point_i32(x + cx - 1,y + 1),size_i32(1,cy - 1),crBottomRight,bAlphaBottomRight);
+   color_blend(pgraphics,point_i32(x + 1,y + cy - 1),size_i32(cx - 1,1),crBottomRight,bAlphaBottomRight);
 
    return true;
 
 }
 
 
-bool imaging::clip_color_blend(::draw2d::graphics * pgraphics, const rect & rectParam, color32_t cr, byte alpha)
+bool imaging::clip_color_blend(::draw2d::graphics * pgraphics, const rectangle_i32 & rectParam, color32_t cr, byte alpha)
 {
 
-   ::rect rect(rectParam);
+   ::rectangle_i32 rectangle(rectParam);
 
    return clip_color_blend(
           pgraphics,
-          rect.origin(),
-          rect.size(),
+          rectangle.origin(),
+          rectangle.size(),
           cr,
           alpha);
 }
 
 
-bool imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point & point,const ::size & size,color32_t cr,byte bA)
+bool imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & point,const ::size_i32 & size,color32_t cr,byte bA)
 {
 
-   pgraphics->fill_rect(rect(size), ARGB(bA,colorref_get_r_value(cr),colorref_get_g_value(cr),colorref_get_b_value(cr)));
+   pgraphics->fill_rect(rectangle_i32(size), ARGB(bA,colorref_get_r_value(cr),colorref_get_g_value(cr),colorref_get_b_value(cr)));
 
    return true;
 
@@ -2066,18 +2066,18 @@ bool imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point & po
 }
 
 
-bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::rect64 & rect, color32_t cr, byte alpha)
+bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i64 & rectangle, color32_t cr, byte alpha)
 {
 
-   return color_blend(pgraphics,(const ::rect &) rect,cr,alpha);
+   return color_blend(pgraphics,(const ::rectangle_i32 &) rectangle_i32,cr,alpha);
 
 }
 
 
-bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::rect & rect, color32_t cr, byte alpha)
+bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, color32_t cr, byte alpha)
 {
 
-   return color_blend(pgraphics, rect.origin(), rect.size(), cr, alpha);
+   return color_blend(pgraphics, rectangle.origin(), rectangle.size(), cr, alpha);
 
 }
 
@@ -2085,16 +2085,16 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::rect & rect, c
 bool imaging::color_blend(::draw2d::graphics * pgraphics,i32 x,i32 y,i32 cx,i32 cy,color32_t cr,byte bA)
 {
 
-   return color_blend(pgraphics,point(x,y),size(cx,cy),cr,bA);
+   return color_blend(pgraphics,point_i32(x,y),size_i32(cx,cy),cr,bA);
 
 }
 
-bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point & point,const ::size & size,color32_t cr,byte bA)
+bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & point,const ::size_i32 & size,color32_t cr,byte bA)
 {
 
    pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-   pgraphics->fill_rect(rect(point, size), (cr & 0x00ffffff) | (bA << 24));
+   pgraphics->fill_rect(rectangle_i32(point, size), (cr & 0x00ffffff) | (bA << 24));
 
    return true;
 
@@ -2115,7 +2115,7 @@ bool imaging::CreateBitmap(::draw2d::graphics * pgraphics, ::draw2d::graphics * 
    if(pbitmap->get_os_data() != nullptr)
    {
 
-      const ::size & size = pbitmap->get_size();
+      const ::size_i32 & size = pbitmap->get_size();
 
       if(size.cx >= cx && size.cy >= cy)
       {
@@ -2160,7 +2160,7 @@ bool imaging::CreateBitmap(::draw2d::graphics * pgraphics, ::draw2d::graphics * 
    if(bCreate)
    {
 
-      pgraphics->fill_rect(rect(0,0,cxout,cyout),RGB(0,0,0));
+      pgraphics->fill_rect(rectangle_i32(0,0,cxout,cyout),RGB(0,0,0));
 
    }
 
@@ -2183,7 +2183,7 @@ bool imaging::CreateBitmap(::draw2d::graphics *pgraphics,::draw2d::bitmap * pitm
    if(pitmap->get_os_data())
    {
 
-      const ::size & size = pitmap->get_size();
+      const ::size_i32 & size = pitmap->get_size();
 
       if(size.cx >= cx && size.cy >= cy)
       {
@@ -2215,7 +2215,7 @@ bool imaging::CreateBitmap(::draw2d::graphics *pgraphics,::draw2d::bitmap * pitm
    }
    if(bCreate)
    {
-      pgraphics->fill_rect(rect(0,0,cxout,cyout),RGB(255,196,255));
+      pgraphics->fill_rect(rectangle_i32(0,0,cxout,cyout),RGB(255,196,255));
    }
    return true;
 }
@@ -2240,7 +2240,7 @@ bool imaging::blur(::image * pimage, i32 iRadius)
 }
 
 
-bool imaging::blur(::image * pimage, rect rect, i32 iRadius)
+bool imaging::blur(::image * pimage, rectangle_i32 rectangle, i32 iRadius)
 {
 
    if (!pimage->is_ok())
@@ -2252,12 +2252,12 @@ bool imaging::blur(::image * pimage, rect rect, i32 iRadius)
 
    ::draw2d::fastblur fastblur;
 
-   if (!fastblur.initialize(rect.size(), abs(iRadius)))
+   if (!fastblur.initialize(rectangle.size(), abs(iRadius)))
       return false;
 
    {
 
-      pixmap_lock lock(pimage, rect);
+      pixmap_lock lock(pimage, rectangle);
 
       fastblur.blur(pimage, iRadius);
 
@@ -2947,7 +2947,7 @@ void imaging::blur_32CC_r2(::image * pimageDst, ::image * pimageSrc)
 }
 
 
-bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point & pointDst,const ::size & size,::draw2d::graphics * pdcSrc,const ::point & pointSrc,i32 iChannel,i32 iRadius)
+bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point_i32 & pointDst,const ::size_i32 & size,::draw2d::graphics * pdcSrc,const ::point_i32 & pointSrc,i32 iChannel,i32 iRadius)
 {
 
    if (size.cx <= 0 || size.cy <= 0)
@@ -2977,7 +2977,7 @@ bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point & point
 
    pimageSrc->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   if (!pdcSrc->stretch(::rectd(size), pdcSrc, ::rectd(pointSrc, size)))
+   if (!pdcSrc->stretch(::rectangle_f64(size), pdcSrc, ::rectangle_f64(pointSrc, size)))
    {
 
       return false;
@@ -2991,7 +2991,7 @@ bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point & point
          iRadius))
       return false;
 
-   if (!pdcDst->draw(::rectd(pointDst, size), pimageDst))
+   if (!pdcDst->draw(::rectangle_f64(pointDst, size), pimageDst))
    {
 
       return false;
@@ -3003,7 +3003,7 @@ bool imaging::channel_gray_blur(::draw2d::graphics *pdcDst,const ::point & point
 }
 
 
-bool imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point & pointDst, const ::size & size, ::draw2d::graphics * pdcSrc, const ::point & pointSrc, i32 iChannel, i32 iRadius)
+bool imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, i32 iChannel, i32 iRadius)
 {
 
    if (size.area() <= 0)
@@ -3033,7 +3033,7 @@ bool imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
 
    pimageSrc->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   if (!pimageSrc->g()->stretch(::rectd(size), pdcSrc, ::rectd(pointSrc, size)))
+   if (!pimageSrc->g()->stretch(::rectangle_f64(size), pdcSrc, ::rectangle_f64(pointSrc, size)))
    {
 
       return false;
@@ -3047,7 +3047,7 @@ bool imaging::channel_alpha_gray_blur(::draw2d::graphics * pdcDst, const ::point
       iRadius))
       return false;
 
-   if (!pdcDst->draw(::rectd(pointDst, size), pimageDst))
+   if (!pdcDst->draw(::rectangle_f64(pointDst, size), pimageDst))
    {
 
       return false;
@@ -3655,12 +3655,12 @@ bool imaging::channel_alpha_gray_blur_32CC(::image * pimageDst, ::image * pimage
 
 bool imaging::channel_gray_blur(
 ::draw2d::graphics * pdcDst,
-const ::point & pointDst,
-const ::size & size,
+const ::point_i32 & pointDst,
+const ::size_i32 & size,
 ::draw2d::graphics * pdcSrc,
-const ::point & pointSrc,
+const ::point_i32 & pointSrc,
 i32 iChannel,
-const ::size & sizeFilter,
+const ::size_i32 & sizeFilter,
 byte * pFilter)
 {
 
@@ -3689,7 +3689,7 @@ byte * pFilter)
 
    }
 
-   if (!pdcSrc->stretch(::rectd(size), pimageSrc, ::rectd(pointSrc, size)))
+   if (!pdcSrc->stretch(::rectangle_f64(size), pimageSrc, ::rectangle_f64(pointSrc, size)))
    {
 
       return false;
@@ -3709,7 +3709,7 @@ byte * pFilter)
 
    }
 
-   if (!pdcDst->stretch(::rectd(size), pimageDst, ::rectd(pointDst, size)))
+   if (!pdcDst->stretch(::rectangle_f64(size), pimageDst, ::rectangle_f64(pointDst, size)))
    {
 
       return false;
@@ -4089,25 +4089,25 @@ bool imaging::channel_gray_blur_32CC(::image * pimageDst, ::image * pimageSrc,
 
 
 
-bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::rect & rect,::draw2d::graphics * pdcColorAlpha,const ::point & pointAlpha, ::image * pimageWork)
+bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::rectangle_i32 & rectangle,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlpha, ::image * pimageWork)
 {
 
-   return pgraphics->stretch(rect, pdcColorAlpha, ::rectd(pointAlpha, rect.size()));
+   return pgraphics->stretch(rectangle, pdcColorAlpha, ::rectangle_f64(pointAlpha, rectangle.size()));
 
 }
 
 
-bool imaging::true_blend(::draw2d::graphics * pgraphics,const ::rect & rect,::draw2d::graphics * pdcColorAlpha,const ::point & pointAlpha, ::image * pimageWork, ::image * pimageWork2, ::image * pimageWork3)
+bool imaging::true_blend(::draw2d::graphics * pgraphics,const ::rectangle_i32 & rectangle,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlpha, ::image * pimageWork, ::image * pimageWork2, ::image * pimageWork3)
 {
 
-   return pgraphics->draw(rect, pdcColorAlpha, pointAlpha);
+   return pgraphics->draw(rectangle, pdcColorAlpha, pointAlpha);
 
 }
 
 // COLOR_DEST = SRC_ALPHA * COLOR_SRC  + (1 - SRC_ALPHA) * COLOR_DST
 
 /*
-bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, ::draw2d::graphics * pdcColorAlpha, const ::point & pointAlpha, ::image * pimageWork, ::image * pimageWork2)
+bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcColorAlpha, const ::point_i32 & pointAlpha, ::image * pimageWork, ::image * pimageWork2)
 {
 
 
@@ -4119,12 +4119,12 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::point & point,
 */
 
 
-bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point & pointParam,const ::size & size,::draw2d::graphics * pdcColorAlpha,const ::point & pointAlphaParam,double dBlend)
+bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & pointParam,const ::size_i32 & size,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlphaParam,double dBlend)
 {
 
-   ::point point(pointParam);
+   ::point_i32 point(pointParam);
 
-   ::point pointAlpha(pointAlphaParam);
+   ::point_i32 pointAlpha(pointAlphaParam);
 
    if(point.x < 0)
    {
@@ -4142,7 +4142,7 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point & pointPa
    if (dBlend >= 1.0)
    {
 
-      return pgraphics->draw(::rectd(point, size), pdcColorAlpha, pointAlpha) != FALSE;
+      return pgraphics->draw(::rectangle_f64(point, size), pdcColorAlpha, pointAlpha) != FALSE;
 
    }
    else
@@ -4159,23 +4159,23 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point & pointPa
 
       pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      pimage->g()->stretch(::rectd(size), pdcColorAlpha, ::rectd(pointAlpha, size));
+      pimage->g()->stretch(::rectangle_f64(size), pdcColorAlpha, ::rectangle_f64(pointAlpha, size));
 
       pimage->channel_multiply(dBlend, ::color::channel_alpha);
 
-      return pgraphics->draw(::rectd(point, size), pimage) != FALSE;
+      return pgraphics->draw(::rectangle_f64(point, size), pimage) != FALSE;
 
    }
 
 }
 
 
-bool imaging::color_blend(::draw2d::graphics * pgraphics,const rect & rectParam,::draw2d::graphics * pdcColorAlpha,const ::point & pointAlpha,double dBlend)
+bool imaging::color_blend(::draw2d::graphics * pgraphics,const rectangle_i32 & rectParam,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlpha,double dBlend)
 {
 
-   ::rect rect(rectParam);
+   ::rectangle_i32 rectangle(rectParam);
 
-   return color_blend(pgraphics,rect.top_left(),rect.size(),pdcColorAlpha,pointAlpha,dBlend);
+   return color_blend(pgraphics,rectangle.top_left(),rectangle.size(),pdcColorAlpha,pointAlpha,dBlend);
 
 }
 
@@ -4272,7 +4272,7 @@ i32 w3)
 
 
 
-//bool imaging::alpha_spread_R2(::draw2d::graphics *pdcDst,const ::point & pointDst,const ::size & size,::draw2d::graphics * pdcSrc,const ::point & pointSrc,byte bMin)
+//bool imaging::alpha_spread_R2(::draw2d::graphics *pdcDst,const ::point_i32 & pointDst,const ::size_i32 & size,::draw2d::graphics * pdcSrc,const ::point_i32 & pointSrc,byte bMin)
 //{
 //   if(size.cx <= 0 || size.cy <= 0)
 //      return true;
@@ -4282,8 +4282,8 @@ i32 w3)
 //   ::u32 uScanLineCount;
 //
 //
-//   ::rect rectDst(pointDst,size);
-//   ::rect rectSrc(pointSrc,size);
+//   ::rectangle_i32 rectDst(pointDst, size);
+//   ::rectangle_i32 rectSrc(pointSrc, size);
 //
 //   i32 iwDest;
 //
@@ -4342,8 +4342,8 @@ i32 w3)
 
 //
 //
-//   const ::point & pointViewportDst = pdcDst->GetViewportOrg();
-//   const ::point & pointViewportSrc = pdcSrc->GetViewportOrg();
+//   const ::point_i32 & pointViewportDst = pdcDst->GetViewportOrg();
+//   const ::point_i32 & pointViewportSrc = pdcSrc->GetViewportOrg();
 //
 //   i32 xvpDst = pointDst.x + pointViewportDst.x;
 //   i32 xvpSrc = pointSrc.x + pointViewportSrc.x;
@@ -4446,13 +4446,13 @@ i32 w3)
 //}
 
 
-//bool imaging::alpha_spread(::draw2d::graphics *pdcDst,const ::point & pointDst,const ::size & size,::draw2d::graphics * pdcSrc,const ::point & pointSrc,byte bMin,i32 iRadius)
+//bool imaging::alpha_spread(::draw2d::graphics *pdcDst,const ::point_i32 & pointDst,const ::size_i32 & size,::draw2d::graphics * pdcSrc,const ::point_i32 & pointSrc,byte bMin,i32 iRadius)
 //{
 //
 //   if(size.cx <= 0 || size.cy <= 0)
 //      return true;
 //
-//   //   single_lock sl(&m_csMem, TRUE);
+//   //   single_lock sl(&m_csMem, true);
 //
 //
 //   ::u32 user;
@@ -4460,8 +4460,8 @@ i32 w3)
 //   ::u32 uScanLineCount;
 //
 //
-//   ::rect rectDest(pointDst,size);
-//   ::rect rectSrc(pointSrc,size);
+//   ::rectangle_i32 rectDest(pointDst, size);
+//   ::rectangle_i32 rectSrc(pointSrc, size);
 //
 //   i32 iwDest;
 //
@@ -4521,8 +4521,8 @@ i32 w3)
 
 //
 //
-//   const ::point & pointViewportDest = pdcDst->GetViewportOrg();
-//   const ::point & pointViewportSrc = pdcSrc->GetViewportOrg();
+//   const ::point_i32 & pointViewportDest = pdcDst->GetViewportOrg();
+//   const ::point_i32 & pointViewportSrc = pdcSrc->GetViewportOrg();
 //
 //   i32 xvpDest = pointDst.x + pointViewportDest.x;
 //   i32 xvpSrc = pointDst.y + pointViewportSrc.x;
@@ -4812,10 +4812,10 @@ void imaging::alpha_spread_R2_24CC(byte * pDst,i32 xDest,i32 yDest,i32 wDest,i32
 
 bool imaging::channel_spread(
 ::draw2d::graphics *pdcDst,
-const ::point & pointDst,
-const ::size & size,
+const ::point_i32 & pointDst,
+const ::size_i32 & size,
 ::draw2d::graphics * pdcSrc,
-const ::point & pointSrc,
+const ::point_i32 & pointSrc,
 i32 iChannel,i32 iRadius)
 {
 
@@ -4834,10 +4834,10 @@ i32 iChannel,i32 iRadius)
 
 bool imaging::channel_spread_set_color(
 ::draw2d::graphics *pdcDst,
-const ::point & pointDst,
-const ::size & size,
+const ::point_i32 & pointDst,
+const ::size_i32 & size,
 ::draw2d::graphics * pdcSrc,
-const ::point & pointSrc,
+const ::point_i32 & pointSrc,
 i32 iChannel,i32 iRadius,
 color32_t cr)
 {
@@ -4865,7 +4865,7 @@ color32_t cr)
 
    pimageSrc->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   if (!pimageSrc->g()->stretch(::rectd(size), pdcSrc, ::rectd(pointSrc, size)))
+   if (!pimageSrc->g()->stretch(::rectangle_f64(size), pdcSrc, ::rectangle_f64(pointSrc, size)))
    {
 
       return false;
@@ -4883,7 +4883,7 @@ color32_t cr)
 
    }
 
-   if (!pdcDst->stretch(::rectd(size), pimageDst, ::rect(pointDst, size)))
+   if (!pdcDst->stretch(::rectangle_f64(size), pimageDst, ::rectangle_i32(pointDst, size)))
    {
 
       return false;
@@ -4897,10 +4897,10 @@ color32_t cr)
 
 bool imaging::spread(
 ::draw2d::graphics *pdcDst,
-const ::point & pointDst,
-const ::size & size,
+const ::point_i32 & pointDst,
+const ::size_i32 & size,
 ::draw2d::graphics * pdcSrc,
-const ::point & pointSrc,
+const ::point_i32 & pointSrc,
 i32 iRadius)
 {
 
@@ -4918,10 +4918,10 @@ i32 iRadius)
 
 bool imaging::spread_set_color(
 ::draw2d::graphics *pdcDst,
-const ::point & pointDst,
-const ::size & size,
+const ::point_i32 & pointDst,
+const ::size_i32 & size,
 ::draw2d::graphics * pdcSrc,
-const ::point & pointSrc,
+const ::point_i32 & pointSrc,
 i32 iRadius,
 color32_t cr)
 {
@@ -4949,7 +4949,7 @@ color32_t cr)
 
    pimageSrc->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   if (!pimageSrc->g()->stretch(::rectd(size), pdcSrc, ::rect(pointSrc, size)))
+   if (!pimageSrc->g()->stretch(::rectangle_f64(size), pdcSrc, ::rectangle_i32(pointSrc, size)))
    {
 
       return false;
@@ -4966,7 +4966,7 @@ color32_t cr)
 
    }
 
-   if (!pdcDst->stretch(::rectd(size), pimageDst, ::rect(pointDst, size)))
+   if (!pdcDst->stretch(::rectangle_f64(size), pimageDst, ::rectangle_i32(pointDst, size)))
    {
 
       return false;
@@ -5534,13 +5534,13 @@ breakFilter2:
 //   memory memstorageB;
 //   memory memstorageC;
 //
-//   ::rect rectDest;
+//   ::rectangle_i32 rectDest;
 //   rectDest.left = xDest;
 //   rectDest.right = xDest + cx;
 //   rectDest.top = yDest;
 //   rectDest.bottom = yDest + cy;
 //
-//   ::rect rectSrc;
+//   ::rectangle_i32 rectSrc;
 //   rectSrc.left = xSrc;
 //   rectSrc.right = xSrc + cx;
 //   rectSrc.top = ySrc;
@@ -5604,8 +5604,8 @@ breakFilter2:
 
 //
 //
-//   const ::point & pointViewportDest = pdcDst->GetViewportOrg();
-//   const ::point & pointViewportSrc = pdcSrc->GetViewportOrg();
+//   const ::point_i32 & pointViewportDest = pdcDst->GetViewportOrg();
+//   const ::point_i32 & pointViewportSrc = pdcSrc->GetViewportOrg();
 //
 //   i32 xvpDest = xDest + pointViewportDest.x;
 //   i32 xvpSrc = xSrc + pointViewportSrc.x;
@@ -6075,19 +6075,19 @@ i32      iSize)
 //   ::u32 uScanLineCount;
 //
 //
-//   ::rect rectDest;
+//   ::rectangle_i32 rectDest;
 //   rectDest.left = xDest;
 //   rectDest.right = xDest + cx;
 //   rectDest.top = yDest;
 //   rectDest.bottom = yDest + cy;
 //
-//   ::rect rectSrc1;
+//   ::rectangle_i32 rectSrc1;
 //   rectSrc1.left = xSrc1;
 //   rectSrc1.right = xSrc1 + cx;
 //   rectSrc1.top = ySrc1;
 //   rectSrc1.bottom = ySrc1 + cy;
 //
-//   ::rect rectSrc2;
+//   ::rectangle_i32 rectSrc2;
 //   rectSrc2.left = xSrc2;
 //   rectSrc2.right = xSrc2 + cx;
 //   rectSrc2.top = ySrc2;
@@ -6170,9 +6170,9 @@ i32      iSize)
 
 
 //
-//   const ::point & pointViewportDest = pdcDst->GetViewportOrg();
-//   const ::point & pointViewportSrc1 = pdcSrc1->GetViewportOrg();
-//   const ::point & pointViewportSrc2 = pdcSrc2->GetViewportOrg();
+//   const ::point_i32 & pointViewportDest = pdcDst->GetViewportOrg();
+//   const ::point_i32 & pointViewportSrc1 = pdcSrc1->GetViewportOrg();
+//   const ::point_i32 & pointViewportSrc2 = pdcSrc2->GetViewportOrg();
 //
 //   i32 xvpDest = xDest + pointViewportDest.x;
 //   i32 xvpSrc1 = xSrc1 + pointViewportSrc1.x;
@@ -6878,7 +6878,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const 
 #if !defined(WINDOWS_DESKTOP) && !defined(LINUX)
 
 
-HCURSOR context_image::CreateAlphaCursor(oswindow oswindow, const image * pimage, int xHotSpot, int yHotSpot)
+hcursor context_image::CreateAlphaCursor(oswindow oswindow, const image * pimage, int xHotSpot, int yHotSpot)
 {
 
    return 0;
@@ -6886,7 +6886,7 @@ HCURSOR context_image::CreateAlphaCursor(oswindow oswindow, const image * pimage
 }
 
 
-//HCURSOR context_image::load_default_cursor(e_cursor ecursor)
+//hcursor context_image::load_default_cursor(e_cursor ecursor)
 //{
 //
 //   return NULL;

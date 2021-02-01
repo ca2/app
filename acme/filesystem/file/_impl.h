@@ -132,7 +132,7 @@ inline stream & operator >>(stream & s, ::millis & millis)
 //   if (!s.fail())
 //   {
 //      memsize size = c * sizeof(a.get_data()[0]);
-//      if (read(a.get_data(), size) != size)
+//      if (read(a.get_data(), size) != size_i32)
 //      {
 //         __throw(io_exception());
 //      }
@@ -945,39 +945,39 @@ inline text_stream & operator << (text_stream & stream, const file_result & pfil
 }
 
 
-inline void __exchange(::stream & s, RECT32 & rect)
+inline void __exchange(::stream & s, RECTANGLE_I32 & rectangle)
 {
 
-   s.exchange("left", rect.left); s.exchange("top", rect.top); s.exchange("right", rect.right); s.exchange("bottom", rect.bottom);
+   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
 
 }
 
-inline void __exchange(::stream & s, RECT64 & rect)
+inline void __exchange(::stream & s, RECTANGLE_I64 & rectangle)
 {
 
-   s.exchange("left", rect.left); s.exchange("top", rect.top); s.exchange("right", rect.right); s.exchange("bottom", rect.bottom);
+   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
 
-}
-
-
-
-inline void __exchange(::stream & s, RECTF & rect)
-{
-   s.exchange("left", rect.left); s.exchange("top", rect.top); s.exchange("right", rect.right); s.exchange("bottom", rect.bottom);
 }
 
 
 
-inline void __exchange(::stream & s, RECTD & rect)
+inline void __exchange(::stream & s, RECTANGLE_F32 & rectangle)
 {
-   s.exchange("left", rect.left); s.exchange("top", rect.top); s.exchange("right", rect.right); s.exchange("bottom", rect.bottom);
+   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
+}
+
+
+
+inline void __exchange(::stream & s, RECTANGLE_F64 & rectangle)
+{
+   s.exchange("left", rectangle.left); s.exchange("top", rectangle.top); s.exchange("right", rectangle.right); s.exchange("bottom", rectangle.bottom);
 }
 
 
 
 
 
-inline void __exchange(::stream & s, SIZE32 & size)
+inline void __exchange(::stream & s, SIZE_I32 & size)
 {
    s.exchange("cx", size.cx); s.exchange("cy", size.cy);
 }
@@ -993,7 +993,7 @@ inline void __exchange(::stream & s, SIZE32 & size)
 
 
 
-inline void __exchange(::stream & s, SIZEF & size)
+inline void __exchange(::stream & s, SIZE_F32 & size)
 {
 
    s.exchange("cx", size.cx); s.exchange("cy", size.cy);
@@ -1002,7 +1002,7 @@ inline void __exchange(::stream & s, SIZEF & size)
 
 
 
-inline void __exchange(::stream & s, SIZED & size)
+inline void __exchange(::stream & s, SIZE_F64 & size)
 {
    s.exchange("cx", size.cx); s.exchange("cy", size.cy);
 }
@@ -1011,28 +1011,28 @@ inline void __exchange(::stream & s, SIZED & size)
 
 
 
-inline void __exchange(::stream & s, POINT32 & point)
+inline void __exchange(::stream & s, POINT_I32 & point)
 {
    s.exchange("x", point.x); s.exchange("y", point.y);
 }
 
 
 
-inline void __exchange(::stream & s, POINT64 & point)
+inline void __exchange(::stream & s, POINT_I64 & point)
 {
    s.exchange("x", point.x); s.exchange("y", point.y);
 }
 
 
 
-inline void __exchange(::stream & s, POINTF & point)
+inline void __exchange(::stream & s, POINT_F32 & point)
 {
    s.exchange("x", point.x); s.exchange("y", point.y);
 }
 
 
 
-inline void __exchange(::stream & s, POINTD & point)
+inline void __exchange(::stream & s, POINT_F64 & point)
 {
    s.exchange("x", point.x); s.exchange("y", point.y);
 }

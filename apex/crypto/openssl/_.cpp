@@ -51,7 +51,7 @@ i32 crypto_encrypt(memory & storageEncrypt, const memory & storageDecrypt, memor
    unsigned char iv[8] = { 1,2,3,4,5,6,7,8 };
    EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
    EVP_EncryptInit(pctx, EVP_bf_cbc(), (unsigned char*)key.get_data(), iv);
-   cipherlen = (i32)(storageDecrypt.get_size() + 16 - 1); //; 16 = key size
+   cipherlen = (i32)(storageDecrypt.get_size() + 16 - 1); //; 16 = key size_i32
    storageEncrypt.set_size(cipherlen);
    if (!EVP_EncryptUpdate(pctx, (unsigned char*)storageEncrypt.get_data(), &cipherlen, (const unsigned char*)storageDecrypt.get_data(), plainlen))
    {
@@ -138,15 +138,15 @@ static void php_openssl_load_cipher_mode(struct php_openssl_cipher_mode* mode, c
 //
 //   /* Best case scenario, user behaved */
 //   if (*piv_len == iv_required_len) {
-//      return TRUE;
+//      return true;
 //   }
 //
 //   if (mode->is_aead) {
 //      if (EVP_CIPHER_CTX_ctrl(cipher_ctx, mode->aead_ivlen_flag, *piv_len, NULL) != 1) {
 //         //php_error_docref(NULL, E_WARNING, "Setting of IV length for AEAD mode failed");
-//         return FALSE;
+//         return false;
 //      }
-//      return TRUE;
+//      return true;
   // }
 
    //iv_new = ecalloc(1, iv_required_len + 1);
@@ -264,7 +264,7 @@ static void php_openssl_load_cipher_mode(struct php_openssl_cipher_mode* mode, c
 //   const char* iv = "skdfjghsdlkfjghs";
 //   EVP_CIPHER_CTX* pctx = EVP_CIPHER_CTX_new();
 //   EVP_EncryptInit(pctx, EVP_bf_cbc(), (unsigned char*)key.get_data(), iv);
-//   cipherlen = (i32)(storageDecrypt.get_size() + 16 - 1); //; 16 = key size
+//   cipherlen = (i32)(storageDecrypt.get_size() + 16 - 1); //; 16 = key size_i32
 //   storageEncrypt.allocate(cipherlen);
 //   if (!EVP_EncryptUpdate(pctx, (unsigned char*)storageEncrypt.get_data(), &cipherlen, (const unsigned char*)storageDecrypt.get_data(), plainlen))
 //   {

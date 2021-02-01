@@ -14,18 +14,18 @@ namespace account
 
 
       index                               m_iDelay;
-      ::rect                              m_rectFontopus;
+      ::rectangle_i32                              m_rectFontopus;
 
       __reference(::account::credentials) m_pcredentials;
 
       __composite(login)                  m_plogin;
       bool                                m_bLButtonDown;
-      point                               m_pointLButtonDown;
-      point                               m_pointLButtonDownPos;
+      point_i32                               m_pointLButtonDown;
+      point_i32                               m_pointLButtonDownPos;
 
       bool                                m_bDrag;
       bool                                m_bFontopusSimpleUiLayout;
-      ::rect                              m_rectParent;
+      ::rectangle_i32                              m_rectParent;
 
       dialog **                           m_psimpleuiDeferTranslate;
 
@@ -41,7 +41,7 @@ namespace account
 
 
 
-      virtual void do_modal(::rect rect);
+      virtual void do_modal(::rectangle_i32 rectangle);
 
       void install_message_routing(::channel * pchannel) override;
 

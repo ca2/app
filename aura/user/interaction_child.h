@@ -11,11 +11,11 @@ namespace user
    public:
 
 
-      // interaction_impl rectangle relative to the parent
-      // this rectangle comes before in importance compared to m_rectWindow
+      // interaction_impl rectangle_i32 relative to the parent
+      // this rectangle_i32 comes before in importance compared to m_rectWindow
       // m_rectWindow should be sychronized and recalculated based
       // on m_rectParentClient values of the interaction_impl and its ascendants.
-      size                                m_size;
+      size_i32                                m_size;
       bool                                m_bCreate;
       __pointer(::user::interaction)      m_puiMessage;
       __pointer(primitive)                m_puiOwner;
@@ -38,7 +38,7 @@ namespace user
 
       // Advanced: virtual AdjustWindowRect
       enum AdjustType { adjustBorder = 0,adjustOutside = 1 };
-      virtual void CalcWindowRect(RECT32 * pClientRect,::u32 nAdjustType = adjustBorder) override;
+      virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder) override;
 
       virtual bool start_window_visual() override;
 
@@ -54,12 +54,12 @@ namespace user
       virtual u32 GetExStyle() const override;
 
 
-      //virtual LRESULT default_window_procedure() override;
+      //virtual lresult default_window_procedure() override;
 
 
 #ifdef LINUX
 
-      virtual LRESULT send_x11_event(void * pevent) override; // XEvent *
+      virtual lresult send_x11_event(void * pevent) override; // XEvent *
 
 #endif
 
@@ -75,8 +75,8 @@ namespace user
 
       virtual void __synthesizes_creates_styles(::user::interaction * pinteraction, ::u32 & nExStyle, ::u32 & nStyle);
 
-      //virtual bool create_interaction(::user::interaction * pinteraction, const ::rect & rect, ::user::primitive * pparent, id id) override;
-      //virtual bool create_interaction(::user::interaction * pinteraction, ::u32 uExStyle, u32 uStyle, const ::rect & rect, ::user::primitive * puiParent, ::create * pcreate = nullptr) override;
+      //virtual bool create_interaction(::user::interaction * pinteraction, const ::rectangle_i32 & rectangle, ::user::primitive * pparent, id id) override;
+      //virtual bool create_interaction(::user::interaction * pinteraction, ::u32 uExStyle, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::primitive * puiParent, ::create * pcreate = nullptr) override;
 
       
       virtual bool create_child(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent);
@@ -103,45 +103,45 @@ namespace user
       DECL_GEN_SIGNAL(_001OnDestroy);
       DECL_GEN_SIGNAL(_001OnShowWindow);
 
-      void send_message_to_descendants(const ::id & id,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = 0) override;
+      void send_message_to_descendants(const ::id & id,wparam wParam = 0,lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = 0) override;
 
-      //virtual bool post_message(const ::id & id,WPARAM wparam,lparam lparam) override;
+      //virtual bool post_message(const ::id & id,wparam wparam,lparam lparam) override;
 
       virtual void set_viewport_org(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual bool RedrawWindow(const ::rect& rectUpdate,::draw2d::region* prgnUpdate,::u32 flags) override;
+      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate,::draw2d::region* prgnUpdate,::u32 flags) override;
 
       virtual ::user::interaction * set_owner(::user::primitive * pinteraction) override;
       virtual ::user::interaction * get_owner() const override;
 
-      //bool _get_client_rect(RECT64 * prect) override;
-      //bool _get_window_rect(RECT64 * prect) override;
+      //bool _get_client_rect(RECTANGLE_I64 * prectangle) override;
+      //bool _get_window_rect(RECTANGLE_I64 * prectangle) override;
 
-      //virtual point client_screen_top_left() override;
+      //virtual point_i32 client_screen_top_left() override;
 
-      //virtual bool _001ClientToScreen(RECTD * prect) override;
+      //virtual bool _001ClientToScreen(RECTANGLE_F64 * prectangle) override;
 
-      //virtual bool _001ClientToScreen(RECT32 * prect) override;
+      //virtual bool _001ClientToScreen(RECTANGLE_I32 * prectangle) override;
 
-      //virtual bool _001ClientToScreen(RECT64 * prect) override;
+      //virtual bool _001ClientToScreen(RECTANGLE_I64 * prectangle) override;
 
-      //virtual bool _001ClientToScreen(POINTD * ppoint) override;
+      //virtual bool _001ClientToScreen(POINT_F64 * ppoint) override;
 
-      //virtual bool _001ClientToScreen(POINT32 * ppoint) override;
+      //virtual bool _001ClientToScreen(POINT_I32 * ppoint) override;
 
-      //virtual bool _001ClientToScreen(POINT64 * ppoint) override;
+      //virtual bool _001ClientToScreen(POINT_I64 * ppoint) override;
 
-      //virtual bool _001ScreenToClient(RECTD * prect) override;
+      //virtual bool _001ScreenToClient(RECTANGLE_F64 * prectangle) override;
 
-      //virtual bool _001ScreenToClient(RECT32 * prect) override;
+      //virtual bool _001ScreenToClient(RECTANGLE_I32 * prectangle) override;
 
-      //virtual bool _001ScreenToClient(RECT64 * prect) override;
+      //virtual bool _001ScreenToClient(RECTANGLE_I64 * prectangle) override;
 
-      //virtual bool _001ScreenToClient(POINTD * ppoint) override;
+      //virtual bool _001ScreenToClient(POINT_F64 * ppoint) override;
 
-      //virtual bool _001ScreenToClient(POINT32 * ppoint) override;
+      //virtual bool _001ScreenToClient(POINT_I32 * ppoint) override;
 
-      //virtual bool _001ScreenToClient(POINT64 * ppoint) override;
+      //virtual bool _001ScreenToClient(POINT_I64 * ppoint) override;
 
 
       virtual bool keyboard_focus_OnKillFocus(oswindow oswindowNew) override;

@@ -11,7 +11,6 @@ namespace path
    CLASS_DECL_ACME ::file::path app_app_nest(string strPlatform, string strConfiguration);
    CLASS_DECL_ACME ::file::path vcredist(string strPlatform, string strConfiguration);
 #ifdef WINDOWS
-   CLASS_DECL_ACME ::file::path module(HMODULE pmoduleosdata = nullptr);
 #else
    CLASS_DECL_ACME ::file::path module();
 #endif

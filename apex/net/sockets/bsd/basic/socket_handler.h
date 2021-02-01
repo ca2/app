@@ -95,8 +95,8 @@ namespace sockets
       ::count get_count() override;
 
       /** Override and return false to deny all incoming connections.
-      \lparam point listen_socket class pointer (use GetPort to identify which one) */
-      bool OkToAccept(base_socket *point) override;
+      \lparam point_i32 listen_socket class pointer (use GetPort to identify which one) */
+      bool OkToAccept(base_socket *point_i32) override;
 
       /** Called by base_socket when a base_socket changes state. */
       void AddList(SOCKET s,list_t which_one,bool add) override;

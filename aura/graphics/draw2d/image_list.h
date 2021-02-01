@@ -12,13 +12,13 @@ public:
    public:
 
 
-      ::rect               m_rect;
+      ::rectangle_i32               m_rectangle;
       ::image_pointer      m_pimage;
 
    };
 
 
-   size                          m_size;
+   size_i32                          m_size;
    i32                           m_iSize;
    i32                           m_iGrow;
    __composite(::image)             m_pimage;
@@ -71,9 +71,9 @@ public:
    ::image_pointer get_image(int iImage);
 
 
-   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::pointd & point, i32 iFlag);
-   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::pointd & point, i32 iFlag, byte alpha);
-   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::pointd & point, ::sized sz, const ::pointd & pointOffset, i32 iFlag);
+   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag);
+   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, i32 iFlag, byte alpha);
+   bool draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_f64 & point, ::size_f64 sz, const ::point_f64 & pointOffset, i32 iFlag);
    i32 get_image_count() const;
 
    void copy_from(const image_list * plist);

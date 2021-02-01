@@ -10,7 +10,7 @@
 //}
 //
 //
-//bool null(RECT32 * prectDest)
+//bool null(RECTANGLE_I32 * prectDest)
 //{
 //
 //   prectDest->left      = 0;
@@ -22,14 +22,14 @@
 //}
 //
 //
-//bool x_intersect_rect(RECT32 * prect, const rect & prect1, const rect & prect2)
+//bool x_intersect_rect(RECTANGLE_I32 * prectangle, const rectangle_i32 & prect1, const rectangle_i32 & prect2)
 //{
 //
-//   prect->left   = max(prect1->left, prect2->left);
+//   prectangle->left   = max(prect1->left, prect2->left);
 //
-//   prect->right  = min(prect1->right, prect2->right);
+//   prectangle->right  = min(prect1->right, prect2->right);
 //
-//   if(prect->right > prect->left)
+//   if(prectangle->right > prectangle->left)
 //   {
 //      
 //      return true;
@@ -45,14 +45,14 @@
 //}
 //
 //
-//bool y_intersect_rect(RECT32 * prect,const rect & prect1,const rect & prect2)
+//bool y_intersect_rect(RECTANGLE_I32 * prectangle,const rectangle_i32 & prect1,const rectangle_i32 & prect2)
 //{
 //
-//   prect->top     = max(prect1->top,prect2->top);
+//   prectangle->top     = max(prect1->top,prect2->top);
 //
-//   prect->bottom  = min(prect1->bottom,prect2->bottom);
+//   prectangle->bottom  = min(prect1->bottom,prect2->bottom);
 //
-//   if(prect->top < prect->bottom)
+//   if(prectangle->top < prectangle->bottom)
 //   {
 //
 //      return true;
@@ -61,7 +61,7 @@
 //   else
 //   {
 //
-//      null(prect);
+//      null(prectangle);
 //
 //      return false;
 //
@@ -70,14 +70,14 @@
 //}
 //
 //
-//bool x_null_intersect_rect(RECT32 * prect,const rect & rect1,const rect & rect2)
+//bool x_null_intersect_rect(RECTANGLE_I32 * prectangle,const rectangle_i32 & rect1,const rectangle_i32 & rect2)
 //{
 //
-//   prect->left    = max(rect1.left,rect2.left);
+//   prectangle->left    = max(rect1.left,rect2.left);
 //
-//   prect->right   = min(rect1.right,rect2.right);
+//   prectangle->right   = min(rect1.right,rect2.right);
 //
-//   if(prect->right >= prect->left)
+//   if(prectangle->right >= prectangle->left)
 //   {
 //
 //      return true;
@@ -86,9 +86,9 @@
 //   else
 //   {
 //
-//      prect->left = 0;
+//      prectangle->left = 0;
 //
-//      prect->right = 0;
+//      prectangle->right = 0;
 //
 //      return false;
 //
@@ -97,14 +97,14 @@
 //}
 //
 //
-//bool y_null_intersect_rect(RECT32 * prect,const rect & rect1,const rect & rect2)
+//bool y_null_intersect_rect(RECTANGLE_I32 * prectangle,const rectangle_i32 & rect1,const rectangle_i32 & rect2)
 //{
 //
-//   prect->top     = max(rect1.top,rect2.top);
+//   prectangle->top     = max(rect1.top,rect2.top);
 //
-//   prect->bottom  = min(rect1.bottom,rect2.bottom);
+//   prectangle->bottom  = min(rect1.bottom,rect2.bottom);
 //
-//   if(prect->top <= prect->bottom)
+//   if(prectangle->top <= prectangle->bottom)
 //   {
 //
 //      return true;
@@ -113,9 +113,9 @@
 //   else
 //   {
 //      
-//      prect->top = 0;
+//      prectangle->top = 0;
 //
-//      prect->bottom= 0;
+//      prectangle->bottom= 0;
 //
 //      return false;
 //
@@ -124,10 +124,10 @@
 //}
 //
 //
-//CLASS_DECL_ACME bool null_intersect_rect(RECT32 * prect,const rect & rect1,const rect & rect2)
+//CLASS_DECL_ACME bool null_intersect_rect(RECTANGLE_I32 * prectangle,const rectangle_i32 & rect1,const rectangle_i32 & rect2)
 //{
 //
-//   if(x_null_intersect_rect(prect,rect1,rect2) && y_null_intersect_rect(prect,rect1,rect2))
+//   if(x_null_intersect_rect(prectangle,rect1,rect2) && y_null_intersect_rect(prectangle,rect1,rect2))
 //   {
 //
 //      return true;
@@ -136,7 +136,7 @@
 //   else
 //   {
 //
-//      null(prect);
+//      null(prectangle);
 //
 //      return false;
 //
@@ -145,14 +145,14 @@
 //}
 //
 //
-//bool x_left_null_intersect_rect(RECT32 * prect,const rect & rect1,const rect & rect2)
+//bool x_left_null_intersect_rect(RECTANGLE_I32 * prectangle,const rectangle_i32 & rect1,const rectangle_i32 & rect2)
 //{
 //
-//   prect->left    = max(rect1.left,rect2.left);
+//   prectangle->left    = max(rect1.left,rect2.left);
 //
-//   prect->right   = min(rect1.right,rect2.right);
+//   prectangle->right   = min(rect1.right,rect2.right);
 //
-//   if(prect->right > prect->left || (prect->right == prect->left && rect1.left == rect2.left))
+//   if(prectangle->right > prectangle->left || (prectangle->right == prectangle->left && rect1.left == rect2.left))
 //   {
 //
 //      return true;
@@ -161,9 +161,9 @@
 //   else
 //   {
 //
-//      prect->left = 0;
+//      prectangle->left = 0;
 //
-//      prect->right = 0;
+//      prectangle->right = 0;
 //
 //      return false;
 //
@@ -172,14 +172,14 @@
 //}
 //
 //
-//bool y_top_null_intersect_rect(RECT32 * prect,const rect & rect1, const rect & rect2)
+//bool y_top_null_intersect_rect(RECTANGLE_I32 * prectangle,const rectangle_i32 & rect1, const rectangle_i32 & rect2)
 //{
 //
-//   prect->top     = max(rect1.top, rect2.top);
+//   prectangle->top     = max(rect1.top, rect2.top);
 //
-//   prect->bottom  = min(rect1.bottom, rect2.bottom);
+//   prectangle->bottom  = min(rect1.bottom, rect2.bottom);
 //
-//   if(prect->top < prect->bottom || (prect->top == prect->bottom && rect1.top == rect2.top))
+//   if(prectangle->top < prectangle->bottom || (prectangle->top == prectangle->bottom && rect1.top == rect2.top))
 //   {
 //
 //      return true;
@@ -187,9 +187,9 @@
 //   }
 //   else
 //   {
-//      prect->top = 0;
+//      prectangle->top = 0;
 //
-//      prect->bottom= 0;
+//      prectangle->bottom= 0;
 //
 //      return false;
 //   }
@@ -197,91 +197,91 @@
 //}
 //
 //
-//CLASS_DECL_ACME bool top_left_null_intersect_rect(RECT32 * prect,const rect & rect1,const rect & rect2)
+//CLASS_DECL_ACME bool top_left_null_intersect_rect(RECTANGLE_I32 * prectangle,const rectangle_i32 & rect1,const rectangle_i32 & rect2)
 //
 //{
-//   if(x_left_null_intersect_rect(prect,rect1,rect2)
+//   if(x_left_null_intersect_rect(prectangle,rect1,rect2)
 //
-//         && y_top_null_intersect_rect(prect,rect1,rect2))
+//         && y_top_null_intersect_rect(prectangle,rect1,rect2))
 //
 //   {
 //      return true;
 //   }
 //   else
 //   {
-//      null(prect);
+//      null(prectangle);
 //
 //      return false;
 //   }
 //}
 //
-//bool copy(RECTD * prectDest, const RECTD * prectSrc)
+//bool copy(RECTANGLE_F64 * prectDest, const RECTANGLE_F64 * prectSrc)
 //{
 //   *prectDest = *prectSrc;
-//   return TRUE;
+//   return true;
 //}
 //
-//bool copy(RECTD * prectDest, const ::rect & prectSrc)
+//bool copy(RECTANGLE_F64 * prectDest, const ::rectangle_i32 & prectSrc)
 //{
 //   prectDest->left      = prectSrc->left;
 //   prectDest->top       = prectSrc->top;
 //   prectDest->right     = prectSrc->right;
 //   prectDest->bottom    = prectSrc->bottom;
-//   return TRUE;
+//   return true;
 //}
 //
-//bool copy(RECT32 * prectDest, const RECTD * prectSrc)
+//bool copy(RECTANGLE_I32 * prectDest, const RECTANGLE_F64 * prectSrc)
 //{
 //   if(!is32integer(prectSrc->left) || !is32integer(prectSrc->top) || !is32integer(prectSrc->right) || !is32integer(prectSrc->bottom))
-//      return FALSE;
+//      return false;
 //   prectDest->left      = (::i32) prectSrc->left;
 //   prectDest->top       = (::i32) prectSrc->top;
 //   prectDest->right     = (::i32) prectSrc->right;
 //   prectDest->bottom    = (::i32) prectSrc->bottom;
-//   return TRUE;
+//   return true;
 //}
 //
-//bool copy(RECTD * prectDest, const RECT64 * prectSrc)
+//bool copy(RECTANGLE_F64 * prectDest, const RECTANGLE_I64 * prectSrc)
 //{
 //   if(!is_double(prectSrc->left) || !is_double(prectSrc->top) || !is_double(prectSrc->right) || !is_double(prectSrc->bottom))
-//      return FALSE;
+//      return false;
 //   prectDest->left      = (double) prectSrc->left;
 //   prectDest->top       = (double) prectSrc->top;
 //   prectDest->right     = (double) prectSrc->right;
 //   prectDest->bottom    = (double) prectSrc->bottom;
-//   return TRUE;
+//   return true;
 //}
 //
-//bool copy(RECT64 * prectDest, const RECTD * prectSrc)
+//bool copy(RECTANGLE_I64 * prectDest, const RECTANGLE_F64 * prectSrc)
 //{
 //   prectDest->left      = (::i32) prectSrc->left;
 //   prectDest->top       = (::i32) prectSrc->top;
 //   prectDest->right     = (::i32) prectSrc->right;
 //   prectDest->bottom    = (::i32) prectSrc->bottom;
-//   return TRUE;
+//   return true;
 //}
-//bool is_empty(const RECTD * prect)
+//bool is_empty(const RECTANGLE_F64 * prectangle)
 //{
 //   return
-//   prect->left   >= prect->right
-//   && prect->top >= prect->bottom;
+//   prectangle->left   >= prectangle->right
+//   && prectangle->top >= prectangle->bottom;
 //}
 //
-//bool contains(const RECTD * prect, POINTD point)
+//bool contains(const RECTANGLE_F64 * prectangle, POINT_F64 point_i32)
 //{
 //   return
-//   point.x >= prect->left && point.x <= prect->right
-//   && point.y >= prect->top && point.y <= prect->bottom;
+//   point.x >= prectangle->left && point.x <= prectangle->right
+//   && point.y >= prectangle->top && point.y <= prectangle->bottom;
 //}
-//bool set_rect(RECTD * prectDest, double x1, double y1, double x2, double y2)
+//bool set_rect(RECTANGLE_F64 * prectDest, double x1, double y1, double x2, double y2)
 //{
 //   prectDest->left      = x1;
 //   prectDest->top       = y1;
 //   prectDest->right     = x2;
 //   prectDest->bottom    = y2;
-//   return TRUE;
+//   return true;
 //}
-//bool null(RECTD * prectDest)
+//bool null(RECTANGLE_F64 * prectDest)
 //{
 //   prectDest->left      = 0;
 //   prectDest->top       = 0;
@@ -289,7 +289,7 @@
 //   prectDest->bottom    = 0;
 //   return true;
 //}
-//bool is_equal(const RECTD * prect1, const RECTD * prect2)
+//bool is_equal(const RECTANGLE_F64 * prect1, const RECTANGLE_F64 * prect2)
 //{
 //
 //   return
@@ -301,47 +301,47 @@
 //}
 //
 //
-//bool inflate(RECTD * prect, double x, double y)
+//bool inflate(RECTANGLE_F64 * prectangle, double x, double y)
 //{
 //
-//   prect->left      -= x;
-//   prect->top       -= y;
-//   prect->right     += x;
-//   prect->bottom    += y;
+//   prectangle->left      -= x;
+//   prectangle->top       -= y;
+//   prectangle->right     += x;
+//   prectangle->bottom    += y;
 //   return true;
 //
 //}
 //
 //
-//bool deflate(RECTD * prect, double x, double y)
+//bool deflate(RECTANGLE_F64 * prectangle, double x, double y)
 //{
 //
-//   prect->left      += x;
-//   prect->top       += y;
-//   prect->right     -= x;
-//   prect->bottom    -= y;
+//   prectangle->left      += x;
+//   prectangle->top       += y;
+//   prectangle->right     -= x;
+//   prectangle->bottom    -= y;
 //   return true;
 //
 //}
 //
 //
-//bool offset(RECTD * prect, double x, double y)
+//bool offset(RECTANGLE_F64 * prectangle, double x, double y)
 //{
 //
-//   prect->left      += x;
-//   prect->top       += y;
-//   prect->right     += x;
-//   prect->bottom    += y;
+//   prectangle->left      += x;
+//   prectangle->top       += y;
+//   prectangle->right     += x;
+//   prectangle->bottom    += y;
 //   return true;
 //
 //}
 //
 //
-//bool x_intersect_rect(RECTD * prect, const RECTD * prect1, const RECTD * prect2)
+//bool x_intersect_rect(RECTANGLE_F64 * prectangle, const RECTANGLE_F64 * prect1, const RECTANGLE_F64 * prect2)
 //{
-//   prect->left    = max(prect1->left, prect2->left);
-//   prect->right   = min(prect1->right, prect2->right);
-//   if(prect->right > prect->left)
+//   prectangle->left    = max(prect1->left, prect2->left);
+//   prectangle->right   = min(prect1->right, prect2->right);
+//   if(prectangle->right > prectangle->left)
 //   {
 //      return true;
 //   }
@@ -352,17 +352,17 @@
 //}
 //
 //
-//bool y_intersect_rect(RECTD * prect, const RECTD * prect1, const RECTD * prect2)
+//bool y_intersect_rect(RECTANGLE_F64 * prectangle, const RECTANGLE_F64 * prect1, const RECTANGLE_F64 * prect2)
 //{
-//   prect->top     = max(prect1->top, prect2->top);
-//   prect->bottom  = min(prect1->bottom, prect2->bottom);
-//   if(prect->top < prect->bottom)
+//   prectangle->top     = max(prect1->top, prect2->top);
+//   prectangle->bottom  = min(prect1->bottom, prect2->bottom);
+//   if(prectangle->top < prectangle->bottom)
 //   {
 //      return true;
 //   }
 //   else
 //   {
-//      null(prect);
+//      null(prectangle);
 //      return false;
 //   }
 //}
@@ -370,11 +370,11 @@
 //
 //
 //
-//bool x_null_intersect_rect(RECTD * prect,const RECTD * prect1,const RECTD * prect2)
+//bool x_null_intersect_rect(RECTANGLE_F64 * prectangle,const RECTANGLE_F64 * prect1,const RECTANGLE_F64 * prect2)
 //{
-//   prect->left    = max(prect1->left,prect2->left);
-//   prect->right   = min(prect1->right,prect2->right);
-//   if(prect->right >= prect->left)
+//   prectangle->left    = max(prect1->left,prect2->left);
+//   prectangle->right   = min(prect1->right,prect2->right);
+//   if(prectangle->right >= prectangle->left)
 //   {
 //      return true;
 //   }
@@ -385,63 +385,63 @@
 //}
 //
 //
-//bool y_null_intersect_rect(RECTD * prect,const RECTD * prect1,const RECTD * prect2)
+//bool y_null_intersect_rect(RECTANGLE_F64 * prectangle,const RECTANGLE_F64 * prect1,const RECTANGLE_F64 * prect2)
 //{
-//   prect->top     = max(prect1->top,prect2->top);
-//   prect->bottom  = min(prect1->bottom,prect2->bottom);
-//   if(prect->top <= prect->bottom)
+//   prectangle->top     = max(prect1->top,prect2->top);
+//   prectangle->bottom  = min(prect1->bottom,prect2->bottom);
+//   if(prectangle->top <= prectangle->bottom)
 //   {
 //      return true;
 //   }
 //   else
 //   {
-//      null(prect);
+//      null(prectangle);
 //      return false;
 //   }
 //}
 //
 //
-//bool intersect(RECTD * prect, const RECTD * prect1, const RECTD * prect2)
+//bool intersect(RECTANGLE_F64 * prectangle, const RECTANGLE_F64 * prect1, const RECTANGLE_F64 * prect2)
 //{
-//   if(x_intersect_rect(prect, prect1, prect2)
-//         && y_intersect_rect(prect, prect1, prect2))
+//   if(x_intersect_rect(prectangle, prect1, prect2)
+//         && y_intersect_rect(prectangle, prect1, prect2))
 //   {
 //      return true;
 //   }
 //   else
 //   {
-//      null(prect);
+//      null(prectangle);
 //      return false;
 //   }
 //}
 //
 //
-//bool unite(RECTD * prect, const RECTD * prect1, const RECTD * prect2)
+//bool unite(RECTANGLE_F64 * prectangle, const RECTANGLE_F64 * prect1, const RECTANGLE_F64 * prect2)
 //{
 //   if(is_empty(prect1))
 //   {
 //      if(is_empty(prect2))
 //      {
-//         null(prect);
+//         null(prectangle);
 //         return false;
 //      }
 //      else
 //      {
-//         *prect =* prect2;
+//         *prectangle =* prect2;
 //         return true;
 //      }
 //   }
 //   else if(is_empty(prect2))
 //   {
-//      *prect = *prect1;
+//      *prectangle = *prect1;
 //      return true;
 //   }
-//   prect->left    = min(prect1->left, prect2->left);
-//   prect->right   = max(prect1->right, prect2->right);
-//   prect->top     = min(prect1->top, prect2->top);
-//   prect->bottom  = max(prect1->bottom, prect2->bottom);
-//   if(prect->right > prect->left &&
-//         prect->bottom > prect->top)
+//   prectangle->left    = min(prect1->left, prect2->left);
+//   prectangle->right   = max(prect1->right, prect2->right);
+//   prectangle->top     = min(prect1->top, prect2->top);
+//   prectangle->bottom  = max(prect1->bottom, prect2->bottom);
+//   if(prectangle->right > prectangle->left &&
+//         prectangle->bottom > prectangle->top)
 //   {
 //      return true;
 //   }
@@ -453,28 +453,28 @@
 //
 //
 //
-//CLASS_DECL_ACME double width(const ::rectd & rect)
+//CLASS_DECL_ACME double width(const ::rectangle_f64 & rectangle)
 //
 //{
 //   return pcrect->right - pcrect->left;
 //
 //}
 //
-//CLASS_DECL_ACME double height(const ::rectd & rect)
+//CLASS_DECL_ACME double height(const ::rectangle_f64 & rectangle)
 //
 //{
 //   return pcrect->bottom - pcrect->top;
 //
 //}
 //
-//CLASS_DECL_ACME double width(const ::rectd & rect)
+//CLASS_DECL_ACME double width(const ::rectangle_f64 & rectangle)
 //{
-//   return ::width(&rect);
+//   return ::width(&rectangle);
 //}
 //
-//CLASS_DECL_ACME double height(const ::rectd & rect)
+//CLASS_DECL_ACME double height(const ::rectangle_f64 & rectangle)
 //{
-//   return ::height(&rect);
+//   return ::height(&rectangle);
 //}
 //
 //
@@ -491,49 +491,49 @@
 //
 //
 //
-//bool copy(RECT64 * prectDest, const RECT64 * prectSrc)
+//bool copy(RECTANGLE_I64 * prectDest, const RECTANGLE_I64 * prectSrc)
 //{
 //   *prectDest = *prectSrc;
-//   return TRUE;
+//   return true;
 //}
 //
-//bool copy(RECT64 * prectDest, const ::rect & prectSrc)
+//bool copy(RECTANGLE_I64 * prectDest, const ::rectangle_i32 & prectSrc)
 //{
 //   prectDest->left      = prectSrc->left;
 //   prectDest->top       = prectSrc->top;
 //   prectDest->right     = prectSrc->right;
 //   prectDest->bottom    = prectSrc->bottom;
-//   return TRUE;
+//   return true;
 //}
 //
-//bool copy(RECT32 * prectDest, const RECT64 * prectSrc)
+//bool copy(RECTANGLE_I32 * prectDest, const RECTANGLE_I64 * prectSrc)
 //{
 //   if(!is32integer(prectSrc->left) || !is32integer(prectSrc->top) || !is32integer(prectSrc->right) || !is32integer(prectSrc->bottom))
-//      return FALSE;
+//      return false;
 //   prectDest->left      = (::i32) prectSrc->left;
 //   prectDest->top       = (::i32) prectSrc->top;
 //   prectDest->right     = (::i32) prectSrc->right;
 //   prectDest->bottom    = (::i32) prectSrc->bottom;
-//   return TRUE;
+//   return true;
 //}
-//bool is_empty(const RECT64 * prect)
+//bool is_empty(const RECTANGLE_I64 * prectangle)
 //{
 //   return
-//   prect->left   >= prect->right
-//   && prect->top >= prect->bottom;
+//   prectangle->left   >= prectangle->right
+//   && prectangle->top >= prectangle->bottom;
 //}
 //
 //
-//bool contains(const RECT64 * prect, point64 point)
+//bool contains(const RECTANGLE_I64 * prectangle, point_i64 point_i32)
 //{
 //
 //   return
-//   point.x >= prect->left && point.x <= prect->right
-//   && point.y >= prect->top && point.y <= prect->bottom;
+//   point.x >= prectangle->left && point.x <= prectangle->right
+//   && point.y >= prectangle->top && point.y <= prectangle->bottom;
 //
 //}
 //
-//bool set_rect(RECT64 * prectDest, i64 x1, i64 y1, i64 x2, i64 y2)
+//bool set_rect(RECTANGLE_I64 * prectDest, i64 x1, i64 y1, i64 x2, i64 y2)
 //{
 //
 //   prectDest->left      = x1;
@@ -545,7 +545,7 @@
 //}
 //
 //
-//bool null(RECT64 * prectDest)
+//bool null(RECTANGLE_I64 * prectDest)
 //{
 //
 //   prectDest->left      = 0;
@@ -556,7 +556,7 @@
 //
 //}
 //
-//bool is_equal(const RECT64 * prect1, const RECT64 * prect2)
+//bool is_equal(const RECTANGLE_I64 * prect1, const RECTANGLE_I64 * prect2)
 //{
 //   return
 //   prect1->left      == prect2->left &&
@@ -565,66 +565,66 @@
 //   prect1->bottom    == prect2->bottom;
 //}
 //
-//bool inflate(RECT64 * prect, i64 x, i64 y)
+//bool inflate(RECTANGLE_I64 * prectangle, i64 x, i64 y)
 //{
 //
-//   prect->left      -= x;
-//   prect->top       -= y;
-//   prect->right     += x;
-//   prect->bottom    += y;
+//   prectangle->left      -= x;
+//   prectangle->top       -= y;
+//   prectangle->right     += x;
+//   prectangle->bottom    += y;
 //   return true;
 //
 //}
 //
-//bool deflate(RECT64 * prect, i64 x, i64 y)
+//bool deflate(RECTANGLE_I64 * prectangle, i64 x, i64 y)
 //{
 //
-//   prect->left      += x;
-//   prect->top       += y;
-//   prect->right     -= x;
-//   prect->bottom    -= y;
-//   return true;
-//
-//}
-//
-//
-//bool offset(RECT64 * prect, i64 x, i64 y)
-//{
-//
-//   prect->left      += x;
-//   prect->top       += y;
-//   prect->right     += x;
-//   prect->bottom    += y;
+//   prectangle->left      += x;
+//   prectangle->top       += y;
+//   prectangle->right     -= x;
+//   prectangle->bottom    -= y;
 //   return true;
 //
 //}
 //
 //
-//bool resize(RECT64 * prect,i64 cx,i64 cy)
+//bool offset(RECTANGLE_I64 * prectangle, i64 x, i64 y)
 //{
-//   prect->right     = prect->left + cx;
-//   prect->bottom    = prect->top + cy;
+//
+//   prectangle->left      += x;
+//   prectangle->top       += y;
+//   prectangle->right     += x;
+//   prectangle->bottom    += y;
 //   return true;
 //
 //}
 //
 //
-//bool reverse_size(RECT64 * prect,i64 cx,i64 cy)
+//bool resize(RECTANGLE_I64 * prectangle,i64 cx,i64 cy)
 //{
-//
-//   prect->left      = prect->right  - cx;
-//   prect->top       = prect->bottom - cy;
+//   prectangle->right     = prectangle->left + cx;
+//   prectangle->bottom    = prectangle->top + cy;
 //   return true;
 //
 //}
 //
-//bool x_intersect_rect(RECT64 * prect, const RECT64 * prect1, const RECT64 * prect2)
+//
+//bool reverse_size(RECTANGLE_I64 * prectangle,i64 cx,i64 cy)
 //{
 //
-//   prect->left    = max(prect1->left, prect2->left);
-//   prect->right   = min(prect1->right, prect2->right);
+//   prectangle->left      = prectangle->right  - cx;
+//   prectangle->top       = prectangle->bottom - cy;
+//   return true;
 //
-//   if(prect->right > prect->left)
+//}
+//
+//bool x_intersect_rect(RECTANGLE_I64 * prectangle, const RECTANGLE_I64 * prect1, const RECTANGLE_I64 * prect2)
+//{
+//
+//   prectangle->left    = max(prect1->left, prect2->left);
+//   prectangle->right   = min(prect1->right, prect2->right);
+//
+//   if(prectangle->right > prectangle->left)
 //   {
 //      return true;
 //   }
@@ -636,65 +636,65 @@
 //}
 //
 //
-//bool y_intersect_rect(RECT64 * prect, const RECT64 * prect1, const RECT64 * prect2)
+//bool y_intersect_rect(RECTANGLE_I64 * prectangle, const RECTANGLE_I64 * prect1, const RECTANGLE_I64 * prect2)
 //{
-//   prect->top     = max(prect1->top, prect2->top);
-//   prect->bottom  = min(prect1->bottom, prect2->bottom);
-//   if(prect->top < prect->bottom)
+//   prectangle->top     = max(prect1->top, prect2->top);
+//   prectangle->bottom  = min(prect1->bottom, prect2->bottom);
+//   if(prectangle->top < prectangle->bottom)
 //   {
 //      return true;
 //   }
 //   else
 //   {
-//      null(prect);
+//      null(prectangle);
 //      return false;
 //   }
 //
 //}
 //
 //
-//bool intersect(RECT64 * prect, const RECT64 * prect1, const RECT64 * prect2)
+//bool intersect(RECTANGLE_I64 * prectangle, const RECTANGLE_I64 * prect1, const RECTANGLE_I64 * prect2)
 //{
-//   if(x_intersect_rect(prect, prect1, prect2)
-//         && y_intersect_rect(prect, prect1, prect2))
+//   if(x_intersect_rect(prectangle, prect1, prect2)
+//         && y_intersect_rect(prectangle, prect1, prect2))
 //   {
 //      return true;
 //   }
 //   else
 //   {
-//      null(prect);
+//      null(prectangle);
 //      return false;
 //   }
 //
 //}
 //
 //
-//bool unite(RECT64 * prect, const RECT64 * prect1, const RECT64 * prect2)
+//bool unite(RECTANGLE_I64 * prectangle, const RECTANGLE_I64 * prect1, const RECTANGLE_I64 * prect2)
 //{
 //   if(is_empty(prect1))
 //   {
 //      if(is_empty(prect2))
 //      {
-//         null(prect);
+//         null(prectangle);
 //         return false;
 //      }
 //      else
 //      {
-//         *prect =* prect2;
-//         return TRUE;
+//         *prectangle =* prect2;
+//         return true;
 //      }
 //   }
 //   else if(is_empty(prect2))
 //   {
-//      *prect = *prect1;
+//      *prectangle = *prect1;
 //      return true;
 //   }
-//   prect->left    = min(prect1->left, prect2->left);
-//   prect->right   = max(prect1->right, prect2->right);
-//   prect->top     = min(prect1->top, prect2->top);
-//   prect->bottom  = max(prect1->bottom, prect2->bottom);
-//   if(prect->right > prect->left &&
-//         prect->bottom > prect->top)
+//   prectangle->left    = min(prect1->left, prect2->left);
+//   prectangle->right   = max(prect1->right, prect2->right);
+//   prectangle->top     = min(prect1->top, prect2->top);
+//   prectangle->bottom  = max(prect1->bottom, prect2->bottom);
+//   if(prectangle->right > prectangle->left &&
+//         prectangle->bottom > prectangle->top)
 //   {
 //      return true;
 //   }
@@ -710,28 +710,28 @@
 //
 //
 //
-//CLASS_DECL_ACME bool deflate(RECT32 * prect, const ::rect & rect)
+//CLASS_DECL_ACME bool deflate(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle)
 //
 //{
-//   prect->left    += pcrect->left;
+//   prectangle->left    += pcrect->left;
 //
-//   prect->right   -= pcrect->right;
+//   prectangle->right   -= pcrect->right;
 //
-//   prect->top     += pcrect->top;
+//   prectangle->top     += pcrect->top;
 //
-//   prect->bottom  -= pcrect->bottom;
+//   prectangle->bottom  -= pcrect->bottom;
 //
 //   return true;
 //}
 //
-//CLASS_DECL_ACME bool deflate(RECT32 * prect,const ::rect & rect)
+//CLASS_DECL_ACME bool deflate(RECTANGLE_I32 * prectangle,const ::rectangle_i32 & rectangle)
 //{
-//   return deflate(prect, &rect);
+//   return deflate(prectangle, &rectangle);
 //}
 //
 //
 //
-//CLASS_DECL_ACME bool copy(POINT64 * pptDst,const point & pointSrc)
+//CLASS_DECL_ACME bool copy(POINT_I64 * pptDst,const point_i32 & pointSrc)
 //
 //{
 //
@@ -746,7 +746,7 @@
 //}
 //
 //
-//CLASS_DECL_ACME bool copy(POINT32 * pptDst,const POINT64 * lpptSrc)
+//CLASS_DECL_ACME bool copy(POINT_I32 * pptDst,const POINT_I64 * lpptSrc)
 //
 //{
 //
@@ -768,7 +768,7 @@
 //
 //
 //
-//void copy(CGRect & rectDst, const rect & rectSrc)
+//void copy(CGRect & rectDst, const rectangle_i32 & rectSrc)
 //{
 //   rectDst.origin.x = rectSrc.left;
 //   rectDst.origin.y = rectSrc.top;
@@ -778,7 +778,7 @@
 //}
 //
 //
-//void copy(RECT32 * prectDst, const CGRect & rectSrc)
+//void copy(RECTANGLE_I32 * prectDst, const CGRect & rectSrc)
 //
 //{
 //   prectDst->left = rectSrc.origin.x;
@@ -791,17 +791,17 @@
 //
 //}
 //
-//void copy(CGRect & rect, const ::rect & rect)
+//void copy(CGRect & rectangle, const ::rectangle_i32 & rectangle)
 //
 //{
 //
-//   rect.origin.x = pcrect->left;
+//   rectangle.origin.x = pcrect->left;
 //
-//   rect.origin.y = pcrect->top;
+//   rectangle.origin.y = pcrect->top;
 //
-//   rect.size.width = width(pcrect);
+//   rectangle.size.width = width(pcrect);
 //
-//   rect.size.height = height(pcrect);
+//   rectangle.size.height = height(pcrect);
 //
 //
 //
@@ -810,10 +810,10 @@
 //#endif
 //
 //
-//CLASS_DECL_ACME int_bool IsRectEmpty(const ::rect & rect)
+//CLASS_DECL_ACME int_bool IsRectEmpty(const ::rectangle_i32 & rectangle)
 //{
 //
-//   return IsRectEmpty((const rect &)&rect);
+//   return IsRectEmpty((const rectangle_i32 &)&rectangle);
 //
 //}
 

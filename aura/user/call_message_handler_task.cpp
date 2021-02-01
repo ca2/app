@@ -11,7 +11,7 @@ namespace user
 {
 
 
-   call_message_handler_task::call_message_handler_task(interaction * pinteraction, const ::id & id, WPARAM wparam, LPARAM lparam) :
+   call_message_handler_task::call_message_handler_task(interaction * pinteraction, const ::id & id, wparam wparam, lparam lparam) :
       m_id(id),
       m_pinteraction(pinteraction),
       m_wparam(wparam),

@@ -55,7 +55,7 @@ namespace tsf
        //m_pCategoryMgr = NULL;
        //m_pDisplayAttrMgr = NULL;
        m_fLayoutChanged = FALSE;
-       m_fNotify = TRUE;
+       m_fNotify = true;
        m_cchOldLength = 0;
 
        ZeroMemory(&m_AdviseSink, sizeof(m_AdviseSink));
@@ -283,7 +283,7 @@ namespace tsf
 
            //UpdateWindow(m_hWnd);
 
-           return TRUE;
+           return true;
        //}
 
        //return FALSE;
@@ -421,10 +421,10 @@ namespace tsf
    
    **************************************************************************/
 
-   //LRESULT CALLBACK edit_window::_WndProc( HWND hWnd, 
+   //lresult CALLBACK edit_window::_WndProc( HWND hWnd, 
    //                                        ::u32 uMessage,
-   //                                        WPARAM wParam, 
-   //                                        LPARAM lParam)
+   //                                        wparam wParam, 
+   //                                        lparam lParam)
    //{
    //    edit_window *pThis = (edit_window*)GetWindowLongPtr(hWnd, THIS_POINTER_OFFSET);
    //
@@ -493,7 +493,7 @@ namespace tsf
 
    **************************************************************************/
 
-   LRESULT edit_window::_OnCreate(VOID)
+   lresult edit_window::_OnCreate(VOID)
    {
 
       m_hInst = System.m_hinstance;
@@ -515,7 +515,7 @@ namespace tsf
 
    **************************************************************************/
 
-   LRESULT edit_window::_OnDestroy(VOID)
+   lresult edit_window::_OnDestroy(VOID)
    {
        _Uninitialize();
     
@@ -530,7 +530,7 @@ namespace tsf
 
    **************************************************************************/
 
-   //LRESULT edit_window::_OnCommand(::u16 wID, ::u16 wCmd, HWND hWnd)
+   //lresult edit_window::_OnCommand(::u16 wID, ::u16 wCmd, HWND hWnd)
    //{
    //    switch(wID)
    //    {
@@ -562,7 +562,7 @@ namespace tsf
 
    **************************************************************************/
 
-   //LRESULT edit_window::_OnSetFocus(VOID)
+   //lresult edit_window::_OnSetFocus(VOID)
    //{
    //    OutputDebugString(TEXT("edit_window::_OnSetFocus\n"));
    //    
@@ -577,7 +577,7 @@ namespace tsf
 
    **************************************************************************/
 
-   LRESULT edit_window::_OnSetFocus()
+   lresult edit_window::_OnSetFocus()
    {
 
        OutputDebugString(TEXT("edit_window::_OnEditSetFocus\n"));
@@ -596,7 +596,7 @@ namespace tsf
 
    **************************************************************************/
 
-   LRESULT edit_window::_OnEditChange(void)
+   lresult edit_window::_OnEditChange(void)
    {
        if(m_fNotify && m_AdviseSink.pTextStoreACPSink && (m_AdviseSink.dwMask & TS_AS_TEXT_CHANGE))
        {
@@ -630,7 +630,7 @@ namespace tsf
 
    **************************************************************************/
 
-   //LRESULT edit_window::_OnKillFocus(VOID)
+   //lresult edit_window::_OnKillFocus(VOID)
    //{
    //    OutputDebugString(TEXT("edit_window::_OnKillFocus\n"));
    //    
@@ -643,7 +643,7 @@ namespace tsf
 
    **************************************************************************/
 
-   LRESULT edit_window::_OnKillFocus(VOID)
+   lresult edit_window::_OnKillFocus(VOID)
    {
        OutputDebugString(TEXT("edit_window::_OnEditKillFocus\n"));
     
@@ -657,7 +657,7 @@ namespace tsf
 
    **************************************************************************/
 
-   //LRESULT edit_window::_OnNotify(::u32, LPNMHDR)
+   //lresult edit_window::_OnNotify(::u32, LPNMHDR)
    //{
    //    return 0;
    //}
@@ -668,12 +668,12 @@ namespace tsf
 
    **************************************************************************/
 
-   //LRESULT edit_window::_OnSize(WPARAM wParam, LPARAM lParam)
+   //lresult edit_window::_OnSize(wparam wParam, lparam lParam)
    //{
-   //    //adjust the size and location of the status bar
+   //    //adjust the size_i32 and location of the status bar
    //    //SendMessage(m_hwndStatus, e_message_size, wParam, lParam);
    //
-   //    RECT32    rc;
+   //    RECTANGLE_I32    rc;
    //
    //    //GetWindowRect(m_hwndStatus, &rc);
    //    
@@ -682,7 +682,7 @@ namespace tsf
    //                0, 
    //                LOWORD(lParam), 
    //                HIWORD(lParam) - (rc.bottom - rc.top), 
-   //                TRUE);
+   //                true);
    //*/
    //    m_AdviseSink.pTextStoreACPSink->OnLayoutChange(TS_LC_CHANGE, EDIT_VIEW_COOKIE);
    //
@@ -699,7 +699,7 @@ namespace tsf
    { 
        if(m_dwInternalLockType)
        {
-           return TRUE;
+           return true;
        }
 
        return m_fLocked && (m_dwLockType & dwLockType); 
@@ -743,10 +743,10 @@ namespace tsf
            return FALSE;
        }
     
-       m_fLocked = TRUE;
+       m_fLocked = true;
        m_dwLockType = dwLockFlags;
     
-       return TRUE;
+       return true;
    }
 
    /**************************************************************************
@@ -759,7 +759,7 @@ namespace tsf
    {
        m_dwInternalLockType = dwLockFlags;
     
-       return TRUE;
+       return true;
    }
 
    /**************************************************************************
@@ -813,7 +813,7 @@ namespace tsf
 
       //get the selection from the edit control
    
-      ///::SendMessage(m_hwndEdit, EM_GETSEL, (WPARAM)&m_acpStart, (LPARAM)&m_acpEnd);
+      ///::SendMessage(m_hwndEdit, EM_GETSEL, (wparam)&m_acpStart, (lparam)&m_acpEnd);
 
       strsize iSelStart = 0;
 
@@ -825,7 +825,7 @@ namespace tsf
 
       m_acpEnd = (LONG_cast)iSelEnd;
 
-      return TRUE;
+      return true;
 
    }
 
@@ -854,7 +854,7 @@ namespace tsf
        //int     nParts[2];
        //HDC     hdc;
        //HFONT   hFont;
-       //SIZE32    size;
+       //SIZE_I32    size;
        //TCHAR   szComposition[MAX_PATH];
 
        //hdc = GetDC(m_hwndStatus);
@@ -876,10 +876,10 @@ namespace tsf
        //nParts[1] = -1;
     
        //SendMessage(m_hwndStatus, SB_SIMPLE, FALSE, 0);
-       //SendMessage(m_hwndStatus, SB_SETPARTS, ARRAYSIZE(nParts), (LPARAM)nParts);
+       //SendMessage(m_hwndStatus, SB_SETPARTS, ARRAYSIZE(nParts), (lparam)nParts);
 
-       //SendMessage(m_hwndStatus, SB_SETTEXT, 0, (LPARAM)szComposition);
-       //SendMessage(m_hwndStatus, SB_SETTEXT, 1, (LPARAM)TEXT(""));
+       //SendMessage(m_hwndStatus, SB_SETTEXT, 0, (lparam)szComposition);
+       //SendMessage(m_hwndStatus, SB_SETTEXT, 1, (lparam)TEXT(""));
 
        //reset the DC
        //set(hdc, hFont);
@@ -894,7 +894,7 @@ namespace tsf
    }
 
 
-   //LRESULT edit_window::_OnInitMenuPopup(WPARAM wParam, LPARAM lParam)
+   //lresult edit_window::_OnInitMenuPopup(wparam wParam, lparam lParam)
    //{
    //    HMENU hMenu = (HMENU)wParam;
    // 
@@ -1432,7 +1432,7 @@ namespace tsf
                                        if(tfPropVal.varValue.lVal)
                                        {
                                            //The text is part of a composition
-                                           //fComposing = TRUE;
+                                           //fComposing = true;
                                           return true;
                                        }
                                    }

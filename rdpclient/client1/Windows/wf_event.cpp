@@ -157,8 +157,8 @@ void wf_event_focus_in(wfContext* wfc)
 {
 	::u3216 syncFlags;
 	rdpInput* input;
-	POINT32 pt;
-	RECT32 rc;
+	POINT_I32 pt;
+	RECTANGLE_I32 rc;
 
 	input = wfc->instance->input;
 
@@ -214,11 +214,11 @@ static int wf_event_process_WM_MOUSEWHEEL(wfContext* wfc, HWND hWnd, ::u32 Msg, 
 void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 {
 	// Holding the CTRL key down while resizing the window will force the desktop aspect ratio.
-	LPRECT32 rect;
+	LPRECT32 rectangle_i32;
 
 	if (wfc->instance->settings->SmartSizing && (GetAsyncKeyState(VK_CONTROL) & 0x8000))
 	{
-		rect = (LPRECT32) wParam;
+		rectangle_i32 = (LPRECT32) wParam;
 
 		switch(lParam)
 		{
@@ -226,20 +226,20 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 			case WMSZ_RIGHT:
 			case WMSZ_BOTTOMRIGHT:
 				// Adjust height
-				rect->bottom = rect->top + wfc->height * (rect->right - rect->left) / wfc->instance->settings->DesktopWidth;
+				rectangle_i32->bottom = rectangle_i32->top + wfc->height * (rectangle_i32->right - rectangle_i32->left) / wfc->instance->settings->DesktopWidth;
 				break;
 
 			case WMSZ_TOP:
 			case WMSZ_BOTTOM:
 			case WMSZ_TOPRIGHT:			
 				// Adjust width
-				rect->right = rect->left + wfc->width * (rect->bottom - rect->top) / wfc->instance->settings->DesktopHeight;
+				rectangle_i32->right = rectangle_i32->left + wfc->width * (rectangle_i32->bottom - rectangle_i32->top) / wfc->instance->settings->DesktopHeight;
 				break;
 
 			case WMSZ_BOTTOMLEFT:
 			case WMSZ_TOPLEFT:
 				// adjust width
-				rect->left = rect->right - (wfc->width * (rect->bottom - rect->top) / wfc->instance->settings->DesktopHeight);
+				rectangle_i32->left = rectangle_i32->right - (wfc->width * (rectangle_i32->bottom - rectangle_i32->top) / wfc->instance->settings->DesktopHeight);
 
 				break;
 		}
@@ -256,7 +256,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //	PAINTSTRUCT ps;
 //	rdpInput* input;
 //	BOOL processed;
-//	RECT32 windowRect;
+//	RECTANGLE_I32 windowRect;
 //	MINMAXINFO* minmax;
 //	SCROLLINFO si;
 //
@@ -288,7 +288,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //				}
 //				else
 //				{
-//					// Set maximum window size for resizing
+//					// Set maximum window size_i32 for resizing
 //
 //					minmax = (MINMAXINFO*) lParam;
 //
@@ -441,9 +441,9 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //					// Scroll the window. (The system repaints most of the 
 //					// client area when ScrollWindowEx is called; however, it is 
 //					// necessary to call UpdateWindow in order to repaint the 
-//					// rectangle of pixels that were invalidated.) 
-//					ScrollWindowEx(wfc->hwnd, -xDelta, -yDelta, (const RECT32 *) nullptr,
-//						(const RECT32 *) nullptr, (HRGN) nullptr, (PRECT) nullptr,
+//					// rectangle_i32 of pixels that were invalidated.) 
+//					ScrollWindowEx(wfc->hwnd, -xDelta, -yDelta, (const RECTANGLE_I32 *) nullptr,
+//						(const RECTANGLE_I32 *) nullptr, (HRGN) nullptr, (PRECT) nullptr,
 //						SW_INVALIDATE); 
 //					UpdateWindow(wfc->hwnd);
 // 
@@ -514,9 +514,9 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //					// Scroll the window. (The system repaints most of the 
 //					// client area when ScrollWindowEx is called; however, it is 
 //					// necessary to call UpdateWindow in order to repaint the 
-//					// rectangle of pixels that were invalidated.) 
-//					ScrollWindowEx(wfc->hwnd, -xDelta, -yDelta, (const RECT32 *) nullptr,
-//						(const RECT32 *) nullptr, (HRGN) nullptr, (PRECT) nullptr,
+//					// rectangle_i32 of pixels that were invalidated.) 
+//					ScrollWindowEx(wfc->hwnd, -xDelta, -yDelta, (const RECTANGLE_I32 *) nullptr,
+//						(const RECTANGLE_I32 *) nullptr, (HRGN) nullptr, (PRECT) nullptr,
 //						SW_INVALIDATE); 
 //					UpdateWindow(wfc->hwnd);
 // 

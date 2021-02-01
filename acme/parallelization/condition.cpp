@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "acme/operating_system.h"
+
 
 #if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 
@@ -10,13 +12,9 @@
 
 condition::condition()
 {
+
 #ifdef WINDOWS
 
-   //    ::InitializeCriticalSection(&m_sect);
-
-   ::InitializeCriticalSectionEx(&m_sect, 4000, 0);
-
-   ::InitializeConditionVariable(&m_var);
 #elif defined(ANDROID)
 
    pthread_mutex_init(&m_mutex, nullptr);
@@ -62,20 +60,18 @@ condition::condition()
 #endif
 }
 
+
 condition::~condition()
 {
-#ifdef WINDOWS
 
-   ::DeleteCriticalSection(&m_sect);
-
-#endif
 }
+
 
 bool condition::SetEvent()
 {
 #ifdef WINDOWS
 
-   WakeAllConditionVariable(&m_var);
+   WakeAllConditionVariable(&(CONDITION_VARIABLE&)m_conditionvariable);
 
    return true;
 
@@ -115,7 +111,7 @@ bool condition::pulse()
 {
 #ifdef WINDOWS
 
-   WakeAllConditionVariable(&m_var);
+   WakeAllConditionVariable(&(CONDITION_VARIABLE &)m_conditionvariable);
 
    return true;
 
@@ -166,7 +162,10 @@ sync_result condition::wait()
 {
 #ifdef WINDOWS
 
-   SleepConditionVariableCS(&m_var, &m_sect, U32_INFINITE_TIMEOUT);
+   SleepConditionVariableCS(
+      &(CONDITION_VARIABLE &)m_conditionvariable,
+      &(CRITICAL_SECTION&)m_criticalsection, 
+      U32_INFINITE_TIMEOUT);
 
 #elif defined(ANDROID)
 
@@ -212,7 +211,12 @@ sync_result condition::wait(const duration& duration)
 
    u32 timeout = duration.u32_millis();
 
-   return sync_result(SleepConditionVariableCS(&m_var, &m_sect, timeout));
+   auto result = SleepConditionVariableCS(
+      &(CONDITION_VARIABLE &)m_conditionvariable,
+      &(CRITICAL_SECTION &)m_criticalsection,
+      timeout);
+
+   return sync_result(result);
 
 #elif defined(ANDROID)
 
@@ -342,10 +346,21 @@ bool condition::lock(const duration& durationTimeout)
 {
 #ifdef WINDOWS
 
-   if (SleepConditionVariableCS(&m_var, &m_sect, durationTimeout.u32_millis()) != FALSE)
+   if (SleepConditionVariableCS(
+      &(CONDITION_VARIABLE &)m_conditionvariable,
+      &(CRITICAL_SECTION &)m_criticalsection,
+      durationTimeout.u32_millis()) != FALSE)
+   {
+
       return true;
+
+   }
    else
+   {
+
       return false;
+
+   }
 
 #elif defined(ANDROID)
 

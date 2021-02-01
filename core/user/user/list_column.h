@@ -32,7 +32,7 @@ namespace user
       __pointer(::image_list)               m_pil;
       __pointer(::image_list)               m_pilHover;
       ::draw2d::icon_int_map              m_mapIcon;
-      ::size                              m_sizeIcon;
+      ::size_i32                              m_sizeIcon;
       bool                                m_bIcon;
       i32                                 m_iWidth;
       bool                                m_bCustomDraw;

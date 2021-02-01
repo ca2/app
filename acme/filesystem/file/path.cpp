@@ -72,66 +72,7 @@ namespace path
    }
 
 
-#ifdef WINDOWS
 
-   
-   ::file::path module(HMODULE hmodule)
-   {
-
-
-#if defined(_UWP)
-
-   return "m_app.exe";
-
-#else
-
-      wstring wstr(get_buffer, MAX_PATH * 8);
-
-      ::GetModuleFileNameW(hmodule, wstr, (::u32)wstr.length());
-
-      return solve_relative(string(wstr.release_string_buffer()));
-
-#endif
-
-
-   }
-
-
-#else
-
-
-   ::file::path module()
-   {
-
-      char * pszModuleFilePath = nullptr;
-
-#if defined(__APPLE__)
-
-      pszModuleFilePath = ns_get_executable_path();
-
-#else
-
-      pszModuleFilePath = br_find_exe("app");
-
-#endif
-
-      if(pszModuleFilePath == nullptr)
-      {
-
-         return "";
-
-      }
-
-      string strModuleFileName(pszModuleFilePath);
-
-      free(pszModuleFilePath);
-
-      return strModuleFileName;
-
-   }
-
-
-#endif
 
 
    ::file::path install_log(string strPlatform, string strConfiguration)

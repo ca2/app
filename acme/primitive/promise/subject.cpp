@@ -131,7 +131,7 @@ namespace promise
 
       auto ptask = ::get_task();
 
-      if(::promise::handler::g_bDestroyAll || !ptask->thread_get_run())
+      if(::promise::handler::s_bDestroyAll || !ptask->thread_get_run())
       {
 
          return ::error_failed;

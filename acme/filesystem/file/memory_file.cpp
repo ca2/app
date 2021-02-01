@@ -166,7 +166,7 @@ void memory_file::write_from_hex(const void * pdata, memsize nCount)
    byte * pb = get_data();
 
 
-   ASSERT(__is_valid_address(&(pb)[m_position], (uptr)nCount, TRUE));
+   ASSERT(__is_valid_address(&(pb)[m_position], (uptr)nCount, true));
 
 
    char * pch = (char *)&(pb)[m_position];
@@ -223,13 +223,13 @@ void memory_file::write_from_hex(const void * pdata, memsize nCount)
 }
 
 
-//void memory_file::Truncate(filesize size)
+//void memory_file::Truncate(filesize size_i32)
 //{
 //
-//   allocate((memsize)size);
+//   allocate((memsize)size_i32);
 //
-//   if (m_position > (memsize)size)
-//      m_position = (memsize)size;
+//   if (m_position > (memsize)size_i32)
+//      m_position = (memsize)size_i32;
 //
 //
 //}
@@ -246,10 +246,10 @@ void memory_file::clear()
 }
 
 
-void memory_file::set_size(filesize size)
+void memory_file::set_size(filesize size_i32)
 {
 
-   ::memory_container::set_size((memsize) size);
+   ::memory_container::set_size((memsize) size_i32);
 
    if (m_position > get_size())
    {

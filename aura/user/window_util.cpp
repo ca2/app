@@ -125,7 +125,7 @@ namespace user
    CTransparentWndInterface * ptwi = nullptr;
    CTransparentWndInterface::CGetProperty getp;
    getp.m_eproperty = CTransparentWndInterface::PropertyInterface;
-   pwndChild->SendMessage(CTransparentWndInterface::MessageGetProperty, 0, (LPARAM) &getp);
+   pwndChild->SendMessage(CTransparentWndInterface::MessageGetProperty, 0, (lparam) &getp);
    ptwi = getp.m_pinterface;
    if(ptwi != nullptr)
    {
@@ -229,7 +229,7 @@ namespace user
    }
    }
 
-   void window_util::ExcludeChildren(oswindow oswindow, HRGN hrgn, const point & pointOffset)
+   void window_util::ExcludeChildren(oswindow oswindow, HRGN hrgn, const point_i32 & pointOffset)
    {
 
 
@@ -240,7 +240,7 @@ namespace user
    for(i32 i = 0; i < oswindowa.get_size(); i++)
    {
    oswindow oswindowChild = oswindowa[i];
-   ::rect rectChild;
+   ::rectangle_i32 rectChild;
    ::get_client_rect(oswindowChild, rectChild);
    ::_001ClientToScreen(oswindowChild, &rectChild.top_left());
    ::_001ClientToScreen(oswindowChild, &rectChild.bottom_right());
@@ -257,9 +257,9 @@ namespace user
 
    }*/
 
-   /*HRGN window_util::GetAClipRgn(oswindow oswindow, const point & pointOffset, bool bExludeChildren)
+   /*HRGN window_util::GetAClipRgn(oswindow oswindow, const point_i32 & pointOffset, bool bExludeChildren)
    {
-   ::rect rectWnd;
+   ::rectangle_i32 rectWnd;
    ::get_client_rect(oswindow, rectWnd);
    rectWnd.offset(pointOffset);
    HRGN hrgn = ::create_rect(rectWnd);
@@ -534,7 +534,7 @@ namespace user
    void window_util::ContraintPosToParent(oswindow oswindow)
    {
       //#if !defined(_UWP) && !defined(APPLE_IOS)
-      //      ::rect rectMajor;
+      //      ::rectangle_i32 rectMajor;
       //      ::oswindow oswindowParent = ::get_parent(oswindow);
       //      if(oswindowParent == nullptr)
       //      {
@@ -558,21 +558,21 @@ namespace user
       //         ::get_client_rect(oswindowParent, rectMajor);
       //      }
       //
-      //      ::rect rect;
-      //      ::get_client_rect(oswindow, rect);
+      //      ::rectangle_i32 rectangle;
+      //      ::get_client_rect(oswindow, rectangle);
       //
       //#ifdef WINDOWS_DESKTOP
       //
-      //      ::_001ClientToScreen(oswindow, &rect.top_left());
+      //      ::_001ClientToScreen(oswindow, &rectangle.top_left());
       //
-      //      ::_001ClientToScreen(oswindow, &rect.bottom_right());
+      //      ::_001ClientToScreen(oswindow, &rectangle.bottom_right());
       //
       //      if(oswindowParent != nullptr)
       //      {
       //
-      //         ::_001ScreenToClient(oswindowParent, &rect.top_left());
+      //         ::_001ScreenToClient(oswindowParent, &rectangle.top_left());
       //
-      //         ::_001ScreenToClient(oswindowParent, &rect.bottom_right());
+      //         ::_001ScreenToClient(oswindowParent, &rectangle.bottom_right());
       //
       //      }
       //
@@ -584,26 +584,26 @@ namespace user
       //
       //      bool bModified = false;
       //
-      //      if(rect.left > rectMajor.right)
+      //      if(rectangle.left > rectMajor.right)
       //      {
-      //         rect.offset(- rect.width() - (rect.left - rectMajor.right), 0);
+      //         rectangle.offset(- rectangle.width() - (rectangle.left - rectMajor.right), 0);
       //         bModified = true;
       //      }
-      //      if(rect.right < rectMajor.left)
+      //      if(rectangle.right < rectMajor.left)
       //      {
-      //         rect.offset(rect.width() + (rectMajor.left - rect.right), 0);
+      //         rectangle.offset(rectangle.width() + (rectMajor.left - rectangle.right), 0);
       //         bModified = true;
       //      }
-      //      if(rect.top > rectMajor.bottom)
+      //      if(rectangle.top > rectMajor.bottom)
       //      {
-      //         rect.offset(0, - rect.height() - (rect.top - rectMajor.bottom));
+      //         rectangle.offset(0, - rectangle.height() - (rectangle.top - rectMajor.bottom));
       //         bModified = true;
       //      }
       //
-      //      if(rect.bottom < rectMajor.top)
+      //      if(rectangle.bottom < rectMajor.top)
       //      {
       //
-      //         rect.offset(0, rect.height() + (rectMajor.top - rect.bottom));
+      //         rectangle.offset(0, rectangle.height() + (rectMajor.top - rectangle.bottom));
       //
       //         bModified = true;
       //
@@ -615,7 +615,7 @@ namespace user
       //      if(bModified)
       //      {
       //
-      //         ::set_window_pos(oswindow, HWND_TOP, rect.left, rect.top, rect.width(), rect.height(), 0);
+      //         ::set_window_pos(oswindow, HWND_TOP, rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), 0);
       //
       //      }
       //
@@ -629,14 +629,14 @@ namespace user
    }
 
    /*void window_util::send_message_to_descendants(oswindow oswindow, const ::id & id,
-   WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm)
+   wparam wParam, lparam lParam, bool bDeep, bool bOnlyPerm)
    {
    // walk through HWNDs to avoid creating temporary interaction_impl objects
    // unless we need to call this function recursively
    for (oswindow oswindow_Child = ::GetTopWindow; oswindow_Child != nullptr;
    oswindow_Child = ::GetNextWindow(oswindow_Child, GW_HWNDNEXT))
    {
-   // if bOnlyPerm is TRUE, don't send to non-permanent windows
+   // if bOnlyPerm is true, don't send to non-permanent windows
    if (bOnlyPerm)
    {
    ::user::interaction_impl * pwindow = interaction_impl::FromHandlePermanent(oswindow_Child);
@@ -661,7 +661,7 @@ namespace user
    }*/
 
 
-   void window_util::send_message_to_descendants(oswindow oswindow, ::u32 message, WPARAM wParam, LPARAM lParam, bool bDeep)
+   void window_util::send_message_to_descendants(oswindow oswindow, ::u32 message, wparam wParam, lparam lParam, bool bDeep)
    {
 
 #if defined(WINDOWS_DESKTOP)
@@ -860,7 +860,7 @@ namespace user
    }
    }*/
 
-//   void window_util::ExcludeChildren(oswindow oswindow, HRGN hrgn, const point & pointOffset)
+//   void window_util::ExcludeChildren(oswindow oswindow, HRGN hrgn, const point_i32 & pointOffset)
 //   {
 //
 //
@@ -875,7 +875,7 @@ namespace user
 //
 //         ::oswindow oswindowChild = oswindowa[i];
 //
-//         ::rect rectChild;
+//         ::rectangle_i32 rectChild;
 //
 //         ::GetClientRect(oswindowChild, rectChild);
 //
@@ -906,12 +906,12 @@ namespace user
 //
 //   }
 
-//   HRGN window_util::GetAClipRgn(oswindow oswindow, const point & pointOffset, bool bExludeChildren)
+//   HRGN window_util::GetAClipRgn(oswindow oswindow, const point_i32 & pointOffset, bool bExludeChildren)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
 //
-//      ::rect rectWnd;
+//      ::rectangle_i32 rectWnd;
 //
 //      ::GetClientRect(oswindow, rectWnd);
 //
@@ -1506,7 +1506,7 @@ namespace user
    }
 
 
-   void interaction_array::send_message(const ::id & id, WPARAM wparam, LPARAM lparam)
+   void interaction_array::send_message(const ::id & id, wparam wparam, lparam lparam)
 
    {
       for (i32 i = 0; i < this->interaction_count(); i++)
@@ -1528,7 +1528,7 @@ namespace user
    }
 
 
-   void interaction_array::send_message_to_descendants(const ::id & id, WPARAM wparam, LPARAM lparam, bool bRecursive)
+   void interaction_array::send_message_to_descendants(const ::id & id, wparam wparam, lparam lparam, bool bRecursive)
    {
 
       for (i32 i = 0; i < this->interaction_count(); i++)

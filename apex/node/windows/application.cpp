@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 
 
 namespace apex
@@ -70,7 +71,7 @@ namespace apex
    //   UNREFERENCED_PARAMETER(pcsz);
 
 
-   //   return FALSE;
+   //   return false;
 
    //}
 

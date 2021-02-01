@@ -109,7 +109,7 @@ namespace parallelization
 
    CLASS_DECL_APEX void post_quit_to_all_threads();
 
-   CLASS_DECL_APEX void post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam);
+   CLASS_DECL_APEX void post_to_all_threads(const ::id & id, wparam wparam, lparam lparam);
 
    //CLASS_DECL_APEX bool wait_threads(::duration duration, __pointer_array(::thread) threadaExcept = __pointer_array(::thread)());
 

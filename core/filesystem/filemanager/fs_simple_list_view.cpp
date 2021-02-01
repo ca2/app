@@ -328,7 +328,7 @@ namespace filemanager
             strSql += ";";
 
 
-            /*            cslock sl(get_document()->m_pcsAlbum1);
+            /*            critical_section_lock sl(get_document()->m_pcsAlbum1);
                         get_document()->m_pdsAlbum1->query(strSql);*/
 
             m_cache._001Invalidate(this);
@@ -635,7 +635,7 @@ namespace filemanager
 
             __pointer(::message::context_menu) pcontextmenu(pmessage);
 
-            ::point point = pcontextmenu->GetPoint();
+            ::point_i32 point = pcontextmenu->GetPoint();
 
             _001ScreenToClient(point);
 

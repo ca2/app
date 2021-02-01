@@ -31,7 +31,7 @@ string get_error_message(::u32 dwError);
 #include "host_interaction.h"
 
 //CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, ::message::message * pmessage);
-//CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
+//CLASS_DECL_AURA void __trace_message(const char * lpszPrefix, MESSAGE * lpmsg);
 
 CLASS_DECL_AURA void __cdecl __pre_translate_message(::message::message* pmessage);
 
@@ -41,14 +41,14 @@ CLASS_DECL_AURA void __cdecl __pre_translate_message(::message::message* pmessag
 
 
 int_bool PeekMessage(
-   LPMESSAGE lpMsg,
+   MESSAGE * lpMsg,
    oswindow hWnd,
    ::u32 wMsgFilterMin,
    ::u32 wMsgFilterMax,
    ::u32 wRemoveMsg);
 
 int_bool GetMessage(
-   LPMESSAGE lpMsg,
+   MESSAGE * lpMsg,
    oswindow hWnd,
    ::u32 wMsgFilterMin,
    ::u32 wMsgFilterMax);

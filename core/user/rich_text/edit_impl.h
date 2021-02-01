@@ -47,17 +47,17 @@ namespace user
 
          virtual void on_hit_test(::user::item & item) override;
 
-         virtual bool get_item_rect(RECT32 * prect, index i) override;
+         virtual bool get_item_rect(RECTANGLE_I32 * prectangle, index i) override;
 
-         virtual bool get_element_rect(RECT32 * prect, index i, enum_element eelement) override;
+         virtual bool get_element_rect(RECTANGLE_I32 * prectangle, index i, enum_element eelement) override;
 
-         virtual ::sized get_size() override;
+         virtual ::size_f64 get_size() override;
 
          virtual void assert_valid() const override;
          virtual void dump(dump_context & dumpcontext) const override;
 
          virtual bool _001GetItemText(string & str, index iItem) override;
-         virtual bool _001IsPointInside(::point point) override;
+         virtual bool _001IsPointInside(::point_i32 point) override;
          virtual bool update_data(bool bSaveAndValidate) override;
          virtual void update_placement() override;
 
@@ -138,7 +138,7 @@ virtual ::stream & read(::stream & stream) override;
          virtual void _001GetSelLineText(string & str) const override;
 
 
-         virtual void get_text_composition_area(::rect & r) override;
+         virtual void get_text_composition_area(::rectangle_i32 & r) override;
          virtual void on_text_composition(string str) override;
          virtual void on_text_composition_done() override;
          virtual bool edit_undo() override;

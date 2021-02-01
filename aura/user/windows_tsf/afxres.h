@@ -146,7 +146,7 @@
 #define AFX_IDW_HSCROLL_FIRST           0xEA00  // first Horz scrollbar (16 max)
 #define AFX_IDW_VSCROLL_FIRST           0xEA10  // first Vert scrollbar (16 max)
 
-#define AFX_IDW_SIZE_BOX                0xEA20  // size box for splitters
+#define AFX_IDW_SIZE_BOX                0xEA20  // size_i32 box for splitters
 #define AFX_IDW_PANE_SAVE               0xEA21  // to shift AFX_IDW_PANE_FIRST
 #endif //!RC_INVOKED
 
@@ -484,7 +484,7 @@
 
 // 0xf200-0xf20f reserved
 
-// font names and point sizes
+// font names and point_i32 sizes
 #define AFX_IDS_STATUS_FONT             0xF230
 #define AFX_IDS_TOOLTIP_FONT            0xF231
 #define AFX_IDS_UNICODE_FONT            0xF232

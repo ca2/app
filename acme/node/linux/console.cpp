@@ -117,7 +117,7 @@ namespace linux
 
       //make cout, wcout, cin, wcin, wcerr, cerr, wclog and clog
 
-      //point to console as well
+      //point_i32 to console as well
 
       //ios::sync_with_stdio();
 

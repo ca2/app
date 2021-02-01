@@ -80,13 +80,13 @@ typedef void         (*NPN_StatusProcPtr)(NPP instance, const char* message);
 /* Browser manages the lifetime of the buffer returned by NPN_UserAgent, don't
    depend on it sticking around and don't free it. */
 typedef const char*  (*NPN_UserAgentProcPtr)(NPP instance);
-typedef void*        (*NPN_MemAllocProcPtr)(::u32 size);
+typedef void*        (*NPN_MemAllocProcPtr)(::u32 size_i32);
 typedef void         (*NPN_MemFreeProcPtr)(void* ptr);
-typedef ::u32     (*NPN_MemFlushProcPtr)(::u32 size);
+typedef ::u32     (*NPN_MemFlushProcPtr)(::u32 size_i32);
 typedef void         (*NPN_ReloadPluginsProcPtr)(NPBool reloadPages);
 typedef void*        (*NPN_GetJavaEnvProcPtr)();
 typedef void*        (*NPN_GetJavaPeerProcPtr)(NPP instance);
-typedef void         (*NPN_InvalidateRectProcPtr)(NPP instance, NPRect *rect);
+typedef void         (*NPN_InvalidateRectProcPtr)(NPP instance, NPRect *rectangle_i32);
 typedef void         (*NPN_InvalidateRegionProcPtr)(NPP instance, NPRegion region);
 typedef void         (*NPN_ForceRedrawProcPtr)(NPP instance);
 typedef NPIdentifier (*NPN_GetStringIdentifierProcPtr)(const NPUTF8* name);

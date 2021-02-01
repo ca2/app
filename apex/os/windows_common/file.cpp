@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 
 
 #ifdef _UWP
@@ -39,7 +40,7 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder^ winrt_folder(string& strPath,
 //   if (::CreateDirectoryW(wstr, lpSecurityAttributes))
 //   {
 //
-//      return TRUE;
+//      return true;
 //
 //   }
 //
@@ -49,13 +50,13 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder^ winrt_folder(string& strPath,
 //      if (::CreateDirectoryW(wstr, lpSecurityAttributes))
 //      {
 //
-//         return TRUE;
+//         return true;
 //
 //      }
 //
 //   }
 //
-//   return FALSE;
+//   return false;
 //
 //}
 
@@ -247,7 +248,7 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder^ winrt_folder(string& strPath,
 //
 //                  }
 //
-//                  return TRUE;
+//                  return true;
 //
 //               }
 //               else if (item->IsOfType(::Windows::Storage::StorageItemTypes::File))
@@ -260,11 +261,11 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder^ winrt_folder(string& strPath,
 //
 //                  }
 //
-//                  return TRUE;
+//                  return true;
 //
 //               }
 //
-//               return FALSE;
+//               return false;
 //
 //            }
 //
@@ -285,7 +286,7 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder^ winrt_folder(string& strPath,
 //
 //      }
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
@@ -307,7 +308,7 @@ CLASS_DECL_APEX ::Windows::Storage::StorageFolder^ winrt_folder(string& strPath,
 //
 //   }
 //
-//   return TRUE;
+//   return true;
 //
 //}
 

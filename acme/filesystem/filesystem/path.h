@@ -39,10 +39,11 @@ namespace file
 
       e_path                     m_epath;
 
-      i64                    m_iSize; // if negative, not set/calculated/retrieved the file size(for directories would be all contained elements total sum size)
+      i64                        m_iSize; // if negative, not set/calculated/retrieved the file size_i32(for directories would be all contained elements total sum size_i32)
       int                        m_iDir; // if negative, not set/calculated/retrieved whether is a directory/folder/(file/folder/(...) container)
       strsize                    m_iName; // if negative, not set/calculated/retrieved where name starts
       strsize                    m_iRelative; // if negative, not set/calculated/retrieved where relative starts - this information is very, very relative :-) much more than all own other ::file::path cached information (relative to which folders... not stored this information...)
+      __pointer(::matter)        m_pmatterOsPath;
 
 
       path_meta(e_path epath = path_none, i64 iSize = -1, i32 iDir = -1, i64 iName = -1, strsize iRelative = -1, enumeration < ::file::enum_flag > eflag = ::file::e_flag_none)
@@ -64,38 +65,6 @@ namespace file
    };
 
 
-   struct CLASS_DECL_ACME path_os
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-      itemidlist        m_idlist;
-
-#endif
-
-      path_os() {}
-
-
-#ifdef WINDOWS_DESKTOP
-
-      path_os(const path_os & path) : m_idlist(path.m_idlist) {}
-
-      path_os(path_os && path) : m_idlist(::move(path.m_idlist)) {}
-
-#else
-
-      path_os(const path_os & path) {}
-
-      path_os(path_os && path) {}
-
-#endif
-
-
-
-
-   };
-
-
    CLASS_DECL_ACME string normalize_path(string strPath, e_path epath = path_none);
 
    CLASS_DECL_ACME bool normalize_path_inline(string & strPath, e_path & epath);
@@ -109,8 +78,7 @@ namespace file
    // not rigorous at all file::path ... more "ryg"orous with performance and like you should know what are you doing
    class CLASS_DECL_ACME path :
       public string,
-      public path_meta,
-      public path_os
+      public path_meta
    {
    public:
 

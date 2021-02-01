@@ -57,6 +57,7 @@ public:
 
 };
 
+
 template < typename PRED >
 class pred_delay_thread :
    virtual public delay_thread
@@ -91,10 +92,13 @@ template < typename PRED >
 delay_thread * pred_delay(::object * pobject, millis tickDelay, PRED pred)
 {
 
-   auto point  = __new(pred_delay_thread < PRED >(pobject, pred, tickDelay));
+   auto pthread  = __new(pred_delay_thread < PRED >(pobject, pred, tickDelay));
 
-   point->begin();
+   pthread->begin();
 
-   return point;
+   return pthread;
 
 }
+
+
+

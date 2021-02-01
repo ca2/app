@@ -45,7 +45,16 @@ namespace windows
       virtual ::u32 GetFileName(const char * pszPathName, string & str);
 
       virtual void GetModuleShortFileName(HINSTANCE hInst, string & strShortName);
+      
       virtual ::payload length(const ::file::path & path) override;
+
+      virtual ::status::result move(const ::file::path & pszNew, const ::file::path & psz) override;
+
+      virtual ::status::result del(const ::file::path & psz) override;
+
+      virtual bool is_read_only(const ::file::path & psz) override;
+
+      virtual rp(::file::file) resource_get_file(const ::file::path & path) override;
 
       virtual bool get_last_write_time(FILETIME * pfiletime, const string & strFilename);
 

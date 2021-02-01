@@ -24,9 +24,9 @@ public:
 };
 
 
-using line = line_base < ::point >;
-using line64 = line_base < ::point64 >;
-using linef = line_base < ::pointf >;
-using lined = line_base < ::pointd >;
+using line = line_base < ::point_i32 >;
+using line64 = line_base < ::point_i64 >;
+using linef = line_base < ::point_f32 >;
+using lined = line_base < ::point_f64 >;
 
 

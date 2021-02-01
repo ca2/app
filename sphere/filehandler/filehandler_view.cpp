@@ -166,7 +166,7 @@ namespace filehandler
       m_iItemHeight = 30;
    }
 
-   void view::list::on_layout(LPCRECT32 lpcrect)
+   void view::list::on_layout(const RECTANGLE_I32 * lpcrect)
    {
       i32 top = lpcrect->top;
       for(i32 i = 0; i < get_count(); i++)

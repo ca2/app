@@ -13,7 +13,7 @@
 * s8, s16, s32  -> signed counterparts of u8, u16, u32
 *
 * Always use macro's T8(), T16() or T32() to obtain exact-width results,
-* i.e., to specify the size of the result of each expression.
+* i.e., to specify the size_i32 of the result of each expression.
 */
 
 /*typedef signed char s8;

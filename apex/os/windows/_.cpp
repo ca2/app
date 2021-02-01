@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/node/_node.h"
+#include "apex/operating_system.h"
 #include <VersionHelpers.h>
 
 #ifndef USE_OS_IMAGE_LOADER
@@ -108,7 +108,7 @@ bool __node_apex_pre_init()
 {
 
 
-   defer_init_winsock();
+   defer_initialize_winsock();
 
    //xxdebug_box("__node_apex_pre_init","box",e_message_box_ok);
 
@@ -120,7 +120,7 @@ bool __node_apex_pre_init()
 
    //g_gdiplusHookToken = NULL;
 
-   //g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
+   //g_pgdiplusStartupInput->SuppressBackgroundThread = true;
 
    //Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken, g_pgdiplusStartupInput, g_pgdiplusStartupOutput);
 
@@ -149,7 +149,7 @@ bool __node_apex_pre_init()
    //    try
    //    {
 
-   //       FreeImage_Initialise(FALSE);
+   //       FreeImage_Initialise(false);
 
    //    }
    //    catch (...)
@@ -276,7 +276,7 @@ bool __node_apex_pos_term()
 
 
 //
-//string key_to_char(WPARAM wparam, LPARAM lparam)
+//string key_to_char(wparam wparam, lparam lparam)
 //
 //{
 //
@@ -433,7 +433,7 @@ int GetVersion_ex1()
 //   //#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WIN7) // Windows 7 or greater
 //#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_LONGHORN) // Windows 7 or greater
 //
-//   return FALSE;
+//   return false;
 //
 //#else
 //
@@ -575,7 +575,7 @@ int GetVersion_ex1()
 //
 //#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
 //
-//   return FALSE;
+//   return false;
 //
 //#else
 //
@@ -597,7 +597,7 @@ int GetVersion_ex1()
 ////
 ////#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
 ////
-////   return TRUE;
+////   return true;
 ////
 ////#else
 ////
@@ -625,11 +625,11 @@ int GetVersion_ex1()
 ////         dwBuild = 0;
 ////
 ////      if (dwVersion < 0x80000000)              // Windows NT
-////         s_bNativeUnicode = TRUE;
+////         s_bNativeUnicode = true;
 ////      else if (dwWindowsMajorVersion < 4)      // Win32s
-////         s_bNativeUnicode = FALSE;
+////         s_bNativeUnicode = false;
 ////      else                                     // Windows Me/98/95
-////         s_bNativeUnicode = FALSE;
+////         s_bNativeUnicode = false;
 ////
 ////   }
 ////
@@ -643,7 +643,7 @@ int GetVersion_ex1()
 
 
 
-// __is_valid_atom() returns TRUE if the passed parameter is
+// __is_valid_atom() returns true if the passed parameter is
 // a valid local or global atom.
 //
 //bool __is_valid_atom(ATOM nAtom)
@@ -651,26 +651,26 @@ int GetVersion_ex1()
 //   wchar_t sBuffer[256];
 //   if (GetAtomNameW(nAtom, sBuffer, _countof(sBuffer)))
 //   {
-//      return TRUE;
+//      return true;
 //   }
 //   ::u32 dwError = GetLastError();
 //   if (dwError == ERROR_INSUFFICIENT_BUFFER || dwError == ERROR_MORE_DATA)
 //   {
-//      return TRUE;
+//      return true;
 //   }
 //   if (GlobalGetAtomNameW(nAtom, sBuffer, _countof(sBuffer)))
 //   {
-//      return TRUE;
+//      return true;
 //   }
 //   dwError = GetLastError();
 //   if (dwError == ERROR_INSUFFICIENT_BUFFER || dwError == ERROR_MORE_DATA)
 //   {
-//      return TRUE;
+//      return true;
 //   }
-//   return FALSE;
+//   return false;
 //}
 //
-//// __is_valid_address() returns TRUE if the passed parameter is
+//// __is_valid_address() returns true if the passed parameter is
 //// a valid representation of a local or a global atom within a const char *.
 //
 ////bool __is_valid_atom(const char * psz)
@@ -752,7 +752,7 @@ int GetVersion_ex1()
 //
 //   //g_gdiplusHookToken = NULL;
 //
-//   //g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
+//   //g_pgdiplusStartupInput->SuppressBackgroundThread = true;
 //
 //   //Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken, g_pgdiplusStartupInput, g_pgdiplusStartupOutput);
 //
@@ -781,7 +781,7 @@ int GetVersion_ex1()
 //   ////    try
 //   ////    {
 //
-//   ////       FreeImage_Initialise(FALSE);
+//   ////       FreeImage_Initialise(false);
 //
 //   ////    }
 //   ////    catch (...)

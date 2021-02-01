@@ -136,7 +136,7 @@
 
 
 
-// i32 FillRect(HDC hdc, const RECT32 * lprc, HBRUSH hbr)
+// i32 FillRect(HDC hdc, const RECTANGLE_I32 * lprc, HBRUSH hbr)
 // {
 
 //    mutex_lock sl(user_mutex(), true);
@@ -167,7 +167,7 @@
 // }
 
 
-// int_bool GetCursorPos(POINT32 * lppointCursor)
+// int_bool GetCursorPos(POINT_I32 * lppointCursor)
 // {
 
 //    //mutex_lock sl(user_mutex(), true);

@@ -42,7 +42,7 @@ typedef struct xf_window xfWindow;
 #define _NET_WM_MOVERESIZE_SIZE_BOTTOMLEFT   6
 #define _NET_WM_MOVERESIZE_SIZE_LEFT         7
 #define _NET_WM_MOVERESIZE_MOVE              8   /* movement only */
-#define _NET_WM_MOVERESIZE_SIZE_KEYBOARD     9   /* size via keyboard */
+#define _NET_WM_MOVERESIZE_SIZE_KEYBOARD     9   /* size_i32 via keyboard */
 #define _NET_WM_MOVERESIZE_MOVE_KEYBOARD    10   /* move via keyboard */
 #define _NET_WM_MOVERESIZE_CANCEL           11   /* cancel operation */
 

@@ -539,7 +539,7 @@ int freerdp_client_parse_old_command_line_arguments(int argc, char** argv, rdpSe
 			}
 
 			free(str);
-			WLog_WARN(TAG,  "-g %s -> /size:%s or /w:%d /h:%d", arg->Value, arg->Value,
+			WLog_WARN(TAG,  "-g %s -> /size_i32:%s or /w:%d /h:%d", arg->Value, arg->Value,
 					  settings->DesktopWidth, settings->DesktopHeight);
 		}
 		CommandLineSwitchCase(arg, "k")

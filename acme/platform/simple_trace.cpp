@@ -137,7 +137,7 @@ CLASS_DECL_ACME void __trace(enum_trace_level elevel, const char * pszTag, const
 //      if (g_iMemoryCounters)
 //      {
 //
-//         g_pmutexMemoryCounters = new ::mutex(e_create_new, nullptr, FALSE, "Global\\ca2_memory_counters");
+//         g_pmutexMemoryCounters = new ::mutex(e_create_new, nullptr, false, "Global\\ca2_memory_counters");
 //
 //      }
 //

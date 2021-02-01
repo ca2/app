@@ -26,7 +26,7 @@ public:
    virtual void install_message_routing(::channel* pchannel) override;
 
 
-   static inline ::mutex* channel_mutex() { return s_pmutexChannel; }
+   static inline ::mutex * channel_mutex() { return s_pmutexChannel; }
 
    virtual void finalize() override;
 
@@ -53,10 +53,9 @@ public:
 
    virtual void route_message(::message::message * pmessage);
 
+   virtual __pointer(::message::base) get_message_base(MESSAGE * pmessage);
 
-   virtual __pointer(::message::base) get_message_base(LPMESSAGE pmsg);
-
-   virtual __pointer(::message::base) get_message_base(oswindow oswindow, const ::id & id, WPARAM wparam, lparam lparam);
+   ///virtual __pointer(::message::base) get_message_base(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam);
 
 
 #ifdef LINUX

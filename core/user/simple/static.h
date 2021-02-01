@@ -22,7 +22,7 @@ public:
    virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
    virtual ~simple_static();
 
-   //LRESULT OnSetIcon(WPARAM wparam, LPARAM lparam);
+   //LRESULT OnSetIcon(wparam wparam, lparam lparam);
 
 };
 

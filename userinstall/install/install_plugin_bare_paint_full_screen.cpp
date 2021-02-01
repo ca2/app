@@ -9,7 +9,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_full_screen(::draw2d::graphics_pointer & pgraphics,const RECT32 & lprect)
+   void plugin::on_bare_paint_full_screen(::draw2d::graphics_pointer & pgraphics,const RECTANGLE_I32 & lprect)
    {
 
       double dRate = get_progress_rate();
@@ -21,19 +21,19 @@ namespace hotplugin
 
       }
 
-      RECT32 rectWindow;
+      RECTANGLE_I32 rectWindow;
 
       get_window_rect(&rectWindow);
 
       i32 cx = rectWindow.right - rectWindow.left;
       i32 cy = rectWindow.bottom - rectWindow.top;
 
-      RECT32 rect;
+      RECTANGLE_I32 rectangle_i32;
 
-      rect.left = 0;
-      rect.top = 0;
-      rect.bottom = cy;
-      rect.right = cx;
+      rectangle.left = 0;
+      rectangle.top = 0;
+      rectangle.bottom = cy;
+      rectangle.right = cx;
 
       string str;
 
@@ -50,10 +50,10 @@ namespace hotplugin
       {
 
          byte uchR, uchG, uchB;
-         ::rect rect;
+         ::rectangle_i32 rectangle;
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          br->create_solid(ARGB(255, uchR, uchG, uchB));
-         r = rect_dim(rect.left, rect.top, cx, cy);
+         r = rect_dim(rectangle.left, rectangle.top, cx, cy);
          pgraphics->FillRect(r, br);
 
       }
@@ -72,21 +72,21 @@ namespace hotplugin
 
       strStatus = str;
 
-      //on_paint_progress(pgraphics, m_rect);
+      //on_paint_progress(pgraphics, m_rectangle);
 
-      pgraphics->text_out(rect.left + 84, rect.top + 84, strStatus);
+      pgraphics->text_out(rectangle.left + 84, rectangle.top + 84, strStatus);
 
       f->create_pixel_font(os_font_name(e_font_sans_fx), 90, true);
 
       pgraphics->SelectObject(f);
 
-      pgraphics->text_out(rect.left + 84, (i32)(rect.top + 133 + 49 * 0.2), strProgress);
+      pgraphics->text_out(rectangle.left + 84, (i32)(rectangle.top + 133 + 49 * 0.2), strProgress);
 
       f->create_pixel_font(os_font_name(e_font_sans_fx), 23);
 
       pgraphics->SelectObject(f);
 
-      pgraphics->text_out(rect.left + 84, (i32)(rect.top + 133 + 49 * 0.2 + 133 * 0.2), m_strStatus2);
+      pgraphics->text_out(rectangle.left + 84, (i32)(rectangle.top + 133 + 49 * 0.2 + 133 * 0.2), m_strStatus2);
 
    }
 

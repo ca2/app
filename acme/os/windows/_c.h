@@ -1,12 +1,14 @@
 ﻿#pragma once
 
 
-#include <shellapi.h>
-#include <wincrypt.h>
+//#include <shellapi.h>
+//#include <wincrypt.h>
 
 #include "parallelization.h"
 #include "utils.h"
 //#include "graphics.h"
+
+
 
 
 CLASS_DECL_ACME char get_drive_letter(const char * pDevicePath);
@@ -22,15 +24,15 @@ CLASS_DECL_ACME ithread_t get_main_ithread();
 
 //CLASS_DECL_ACME HMONITOR GetUiMonitorHandle(HWND hwnd);
 //CLASS_DECL_ACME HMONITOR GetPrimaryMonitorHandle();
-//CLASS_DECL_ACME bool GetPrimaryMonitorRect(RECT32 * prect);
+//CLASS_DECL_ACME bool GetPrimaryMonitorRect(RECTANGLE_I32 * prectangle);
 
 
 CLASS_DECL_ACME int WinRegGetValueW(HKEY hkey, const widechar * pSubKey, const widechar * lpValue, ::u32 dwFlags, LPDWORD pdwType, PVOID pvData, LPDWORD pcbData);
 
 
 
-#define MESSAGE MSG
-#define LPMESSAGE LPMSG
+//#define MESSAGE MSG
+//#define MESSAGE * LPMSG
 
 
 

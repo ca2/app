@@ -15,8 +15,8 @@ namespace datetime
       public:
 
 
-         point    m_point;
-         size     m_size;
+         point_i32    m_point;
+         size_i32     m_size;
 
 
          visual();

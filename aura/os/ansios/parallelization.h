@@ -3,7 +3,7 @@
 
 #if !defined(WINDOWS_DESKTOP)
 
-void set_defer_process_x_message(bool (* pfn)(hthread_t hthread,LPMESSAGE pMsg,oswindow oswindow,bool bPeek));
+void set_defer_process_x_message(bool (* pfn)(hthread_t hthread,MESSAGE * pMsg,oswindow oswindow,bool bPeek));
 
 
 #ifdef __cplusplus
@@ -95,9 +95,9 @@ union semun
 // class mq;
 
 
-// CLASS_DECL_AURA int_bool WINAPI GetMessage(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+// CLASS_DECL_AURA int_bool WINAPI GetMessage(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
-// CLASS_DECL_AURA int_bool WINAPI PeekMessage(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
+// CLASS_DECL_AURA int_bool WINAPI PeekMessage(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
 
 // CLASS_DECL_AURA int_bool WINAPI PostThreadMessage(ithread_t idthread, ::u32 Msg, WPARAM wParam, LPARAM lParam);
 

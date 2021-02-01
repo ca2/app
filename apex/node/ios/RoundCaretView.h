@@ -1,6 +1,6 @@
 /*
      File: RoundCaretView.h
- Abstract:  SimpleCaretView draws a basic text "caret", used as an insertion point cursor in RoundTextView.
+ Abstract:  SimpleCaretView draws a basic text "caret", used as an insertion point_i32 cursor in RoundTextView.
  
   Version: 2.0
  

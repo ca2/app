@@ -452,7 +452,7 @@ public:
 
    void add_tokens(const Type& pcsz,const Type& strSeparator,bool bAddEmpty = true);
 
-   void add_smallest_tokens(const Type& pcsz, const RawStringArray & straSeparator,bool bAddEmpty = true,bool bWithSeparator = FALSE);
+   void add_smallest_tokens(const Type& pcsz, const RawStringArray & straSeparator,bool bAddEmpty = true,bool bWithSeparator = false);
 
    void add_lines(const Type & str,bool bAddEmpty = true);
 
@@ -1168,7 +1168,7 @@ void string_array_base < Type, RawType >::insert_empty(::index nIndex,::count nC
 {
    // // ASSERT_VALID(this);
    ASSERT(nIndex >= 0);    // will expand to meet need
-   ASSERT(nCount > 0);     // zero or negative size not allowed
+   ASSERT(nCount > 0);     // zero or negative size_i32 not allowed
 
    if(nIndex >= this->m_nSize)
    {
@@ -1179,7 +1179,7 @@ void string_array_base < Type, RawType >::insert_empty(::index nIndex,::count nC
    {
       // inserting in the middle of the array
       ::count nOldSize = (::count) this->m_nSize;
-      this->set_size((::count) (this->m_nSize + nCount));  // grow it to new size
+      this->set_size((::count) (this->m_nSize + nCount));  // grow it to new size_i32
       // shift old data up to fill gap
       __memmov(&get_data()[nIndex + nCount],&get_data()[nIndex],(nOldSize - nIndex) * sizeof(Type));
 
@@ -1550,7 +1550,7 @@ void string_array_base < Type, RawType > ::add_tokens(const Type& pcsz,const Typ
    Type strToken;
    if(bAddEmpty)
    {
-      while(strTokenizer.GetNextToken(strToken,strSeparator,FALSE))
+      while(strTokenizer.GetNextToken(strToken,strSeparator,false))
 
       {
          string_array_base::add(strToken);
@@ -1558,7 +1558,7 @@ void string_array_base < Type, RawType > ::add_tokens(const Type& pcsz,const Typ
    }
    else
    {
-      while(strTokenizer.GetNextToken(strToken,strSeparator,FALSE))
+      while(strTokenizer.GetNextToken(strToken,strSeparator,false))
 
       {
          if(!strToken.is_empty())

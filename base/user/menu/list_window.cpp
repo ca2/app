@@ -171,13 +171,13 @@ namespace user
 
       }
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_parent()->get_client_rect(rectClient);
 
       pgraphics->set_font(this, ::user::e_element_none);
 
-      const ::size & size = pgraphics->GetTextExtent("XXXMMM");
+      const ::size_i32 & size = pgraphics->GetTextExtent("XXXMMM");
 
       i32 iMaxHeight = size.cy;
 
@@ -193,11 +193,11 @@ namespace user
 
       m_size.cy = (::i32) (m_dHeaderHeight + pitem->m_iSeparatorCount * 3 + pitem->m_iFullHeightItemCount * m_dItemHeight + 4);
 
-      ::rect rect(4, (::i32) m_dHeaderHeight + 4, m_size.cx - 8, 4);
+      ::rectangle_i32 rectangle(4, (::i32) m_dHeaderHeight + 4, m_size.cx - 8, 4);
 
       string str;
 
-      layout_buttons(m_pmenuitem, iMaxWidth + 4, rect, rectClient);
+      layout_buttons(m_pmenuitem, iMaxWidth + 4, rectangle_i32, rectClient);
 
       auto & puiClose = m_pitemClose->m_puserinteraction;
 
@@ -213,7 +213,7 @@ namespace user
    }
 
 
-   void menu_list_window::layout_buttons(menu_item * pitemParent, i32 iMaxWidth, RECT32 * prect, const ::rect & rectBound)
+   void menu_list_window::layout_buttons(menu_item * pitemParent, i32 iMaxWidth, RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectBound)
    {
 
       if (!m_bMenuOk)
@@ -235,16 +235,16 @@ namespace user
 
          menu_item * pitem = pitemParent->m_pmenuitema->element_at(i);
 
-         prect->bottom = (::i32) (prect->top + m_dItemHeight - 2);
+         prectangle->bottom = (::i32) (prectangle->top + m_dItemHeight - 2);
 
-         if(prect->bottom > rectBound.bottom)
+         if(prectangle->bottom > rectBound.bottom)
          {
 
-            prect->left += iMaxWidth + 16;
+            prectangle->left += iMaxWidth + 16;
 
-            prect->top = rectBound.top;
+            prectangle->top = rectBound.top;
 
-            prect->bottom = (::i32) (prect->top + m_dItemHeight - 2);
+            prectangle->bottom = (::i32) (prectangle->top + m_dItemHeight - 2);
 
          }
 
@@ -252,18 +252,18 @@ namespace user
          {
 
             pitem->m_puserinteraction->set_dim(
-            prect->left + pitem->m_iLevel * g_base_menu_indent,
-            prect->top,
+            prectangle->left + pitem->m_iLevel * g_base_menu_indent,
+            prectangle->top,
             iMaxWidth - pitem->m_iLevel * g_base_menu_indent,
-            prect->bottom - prect->top);
+            prectangle->bottom - prectangle->top);
 
             pitem->m_puserinteraction->display();
 
-            layout_buttons(pitem, iMaxWidth, prect, rectBound);
+            layout_buttons(pitem, iMaxWidth, prectangle, rectBound);
 
          }
 
-         prect->top = prect->bottom + 2;
+         prectangle->top = prectangle->bottom + 2;
 
 
       }

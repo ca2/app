@@ -648,7 +648,7 @@
 //
 //   rValue = passoc->element2();
 //
-//   return TRUE;
+//   return true;
 //
 //}
 //
@@ -1644,7 +1644,7 @@
 //      if(point == nullptr)
 //         return nullptr;
 //      else
-//         return (T*) *point;
+//         return (T*) *point_i32;
 //   }
 //
 //   // Operations

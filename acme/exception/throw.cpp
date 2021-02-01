@@ -9,10 +9,10 @@ void throw_memory_exception()
 }
 
 
-void throw_error_exception(const char * psz)
+void throw_exception(const char * psz)
 {
 
-   __throw(::exception::error(psz));
+   __throw(::exception::exception(psz));
 
 }
 

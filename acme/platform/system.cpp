@@ -8,6 +8,7 @@
 namespace acme
 {
 
+
    system::system()
    {
 
@@ -324,6 +325,22 @@ namespace acme
       return ::success;
 
    }
+
+
+   ::user::enum_desktop system::get_edesktop()
+   {
+
+      if (m_edesktop == ::user::e_desktop_none)
+      {
+
+         m_edesktop = calc_edesktop();
+
+      }
+
+      return m_edesktop;
+
+   }
+
 
 
 } // namespace acme

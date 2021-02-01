@@ -243,6 +243,21 @@
     <Filter Include="Header Files\graphics\draw2d">
       <UniqueIdentifier>{0cb109af-b237-4a4d-981f-97a8743d5c2e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\os\cross">
+      <UniqueIdentifier>{22ae8985-186b-49ef-a8ca-89910708a7d0}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\os\cross\windows">
+      <UniqueIdentifier>{6c9950b2-90f1-4e4b-a51f-46eec580dc43}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\node\cross">
+      <UniqueIdentifier>{f777025a-e796-4f05-89ff-3979f8cdca46}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\node\cross\windows">
+      <UniqueIdentifier>{6d39aee1-bca9-483c-876b-dca6baed1168}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\node\windows_common">
+      <UniqueIdentifier>{77e2d591-68ae-463a-a9ba-f6b32cf164fa}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="filesystem\filesystem.h">
@@ -953,12 +968,6 @@
     <ClInclude Include="primitive\geometry2d\size.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
-    <ClInclude Include="primitive\geometry2d\rect_array.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
-    </ClInclude>
-    <ClInclude Include="primitive\geometry2d\rect.h">
-      <Filter>Header Files\primitive\geometry2d</Filter>
-    </ClInclude>
     <ClInclude Include="primitive\geometry2d\polygon.h">
       <Filter>Header Files\primitive\geometry2d</Filter>
     </ClInclude>
@@ -1232,9 +1241,6 @@
     <ClInclude Include="os\windows\_.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows\_c.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="os\windows\_windows.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
@@ -1274,9 +1280,6 @@
     <ClInclude Include="os\windows\internal.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows\itemidlist.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="os\windows\port_forward.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
@@ -1296,9 +1299,6 @@
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="os\windows\simple_hold_handle.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\utils.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="os\windows\windowing.h">
@@ -1349,19 +1349,7 @@
     <ClInclude Include="os\chronometer.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
-    <ClInclude Include="os\_.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
     <ClInclude Include="os\_application.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_c.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_impl.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_os.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
     <ClInclude Include="os\acme.h">
@@ -1808,9 +1796,6 @@
     <ClInclude Include="exception\engine.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\error.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
     <ClInclude Include="exception\exception.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
@@ -1847,9 +1832,6 @@
     <ClInclude Include="exception\io.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\last_error.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
     <ClInclude Include="exception\memory.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
@@ -1874,22 +1856,13 @@
     <ClInclude Include="exception\os.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
-    <ClInclude Include="exception\overflow_error.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
     <ClInclude Include="exception\parsing.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\range_error.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\resource.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\result.h">
-      <Filter>Header Files\exception</Filter>
-    </ClInclude>
-    <ClInclude Include="exception\runtime_error.h">
       <Filter>Header Files\exception</Filter>
     </ClInclude>
     <ClInclude Include="exception\simple.h">
@@ -2177,12 +2150,6 @@
     <ClInclude Include="primitive\datetime\filetime_span.h">
       <Filter>Header Files\primitive\datetime</Filter>
     </ClInclude>
-    <ClInclude Include="os\cross\_.h">
-      <Filter>Header Files\os\cross</Filter>
-    </ClInclude>
-    <ClInclude Include="os\cross\windows\_.h">
-      <Filter>Header Files\os\cross\windows</Filter>
-    </ClInclude>
     <ClInclude Include="os\cross\windows\aaa_windows.h">
       <Filter>Header Files\os\cross\windows</Filter>
     </ClInclude>
@@ -2214,9 +2181,6 @@
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="parallelization\event.h">
-      <Filter>Header Files\parallelization</Filter>
-    </ClInclude>
-    <ClInclude Include="parallelization\file_change_event.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
     <ClInclude Include="parallelization\initial_single_lock.h">
@@ -2425,6 +2389,150 @@
     </ClInclude>
     <ClInclude Include="primitive\primitive\payload.h">
       <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="_c.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_i32.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_i64.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_f32.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\_f64.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\rectangle.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\geometry2d\rectangle_array.h">
+      <Filter>Header Files\primitive\geometry2d</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows_common\_geometry2.h">
+      <Filter>Header Files\os\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows\_graphics2d.h">
+      <Filter>Header Files\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\standard_exception.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\path.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\critical_section.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\sync_options.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\sync_options.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows_common\condition.h">
+      <Filter>Header Files\node\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows_common\critical_section.h">
+      <Filter>Header Files\node\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\file_change_event.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\primitive\bits.h">
+      <Filter>Header Files\primitive\primitive</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows\nano_timer.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows\shared_memory.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\_datetime.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows\_impl.h">
+      <Filter>Header Files\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="os\_2.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="os\_os2.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="os\_impl2.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="os\_c2.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows\_c.h">
+      <Filter>Header Files\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows\utils.h">
+      <Filter>Header Files\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="os\cross\windows\_2.h">
+      <Filter>Header Files\os\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="os\cross\_2.h">
+      <Filter>Header Files\os\cross</Filter>
+    </ClInclude>
+    <ClInclude Include="node\_node2.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows_common\_windows_common.h">
+      <Filter>Header Files\node\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows_common\_windows_common.h">
+      <Filter>Header Files\os\windows_common</Filter>
+    </ClInclude>
+    <ClInclude Include="node\cross\windows\file_memory_map.h">
+      <Filter>Header Files\node\cross\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows\itemidlist.h">
+      <Filter>Header Files\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\event.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\mutex.h">
+      <Filter>Header Files\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="parallelization\condition_variable.h">
+      <Filter>Header Files\parallelization</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\shared_memory.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\file_memory_map.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\datetime\micro_duration.h">
+      <Filter>Header Files\primitive\datetime</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\index_out_of_bounds.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\overflow.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\range.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="exception\runtime.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
+    <ClInclude Include="primitive\math\number_limits.h">
+      <Filter>Header Files\primitive\math</Filter>
+    </ClInclude>
+    <ClInclude Include="os\microsecond_sleep.h">
+      <Filter>Header Files\os</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2848,9 +2956,6 @@
     <ClCompile Include="os\windows\exception_engine.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\file.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows\internal.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
@@ -2861,9 +2966,6 @@
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\list_serial_ports.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\local_memory_map.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\lock.cpp">
@@ -2965,9 +3067,6 @@
     <ClCompile Include="os\windows_common\com.cpp">
       <Filter>Source Files\os\windows_common</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows_common\file_c.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows_common\unicode.cpp">
       <Filter>Source Files\os\windows_common</Filter>
     </ClCompile>
@@ -3004,9 +3103,6 @@
     <ClCompile Include="exception\dump_output.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="exception\-ehrror.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="exception\exception.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
@@ -3040,9 +3136,6 @@
     <ClCompile Include="exception\io.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="exception\-last_ehrror.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="exception\memory.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
@@ -3064,19 +3157,10 @@
     <ClCompile Include="exception\os.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="exception\-overflow_ehrror.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="exception\parsing.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
-    <ClCompile Include="exception\-range_ehrror.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
     <ClCompile Include="exception\resource.cpp">
-      <Filter>Source Files\exception</Filter>
-    </ClCompile>
-    <ClCompile Include="exception\-runtime_ehrror.cpp">
       <Filter>Source Files\exception</Filter>
     </ClCompile>
     <ClCompile Include="exception\simple.cpp">
@@ -3322,9 +3406,6 @@
     <ClCompile Include="node\windows\console.cpp">
       <Filter>Source Files\node\windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\gdiplus.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows\extract_icon.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
@@ -3345,9 +3426,6 @@
     </ClCompile>
     <ClCompile Include="user\os_colors.cpp">
       <Filter>Source Files\user</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows_common\net.cpp">
-      <Filter>Source Files\os\windows_common</Filter>
     </ClCompile>
     <ClCompile Include="primitive\primitive\matter.cpp">
       <Filter>Source Files\primitive\primitive</Filter>
@@ -3416,9 +3494,6 @@
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\event.cpp">
-      <Filter>Source Files\parallelization</Filter>
-    </ClCompile>
-    <ClCompile Include="parallelization\file_change_event.cpp">
       <Filter>Source Files\parallelization</Filter>
     </ClCompile>
     <ClCompile Include="parallelization\manual_reset_event.cpp">
@@ -3558,6 +3633,102 @@
     </ClCompile>
     <ClCompile Include="primitive\datetime\result.cpp">
       <Filter>Source Files\primitive\datetime</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\_wd16.cpp">
+      <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\_wd32.cpp">
+      <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\_ansi.cpp">
+      <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\standard_exception.cpp">
+      <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows_common\file.cpp">
+      <Filter>Source Files\os\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="os\cross\windows\windows.cpp">
+      <Filter>Source Files\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\cross\windows\user.cpp">
+      <Filter>Source Files\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\cross\windows\shared_memory.cpp">
+      <Filter>Source Files\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\cross\windows\locale.cpp">
+      <Filter>Source Files\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\cross\windows\error.cpp">
+      <Filter>Source Files\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\cross\windows\datetime.cpp">
+      <Filter>Source Files\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\cross\windows\crt_debug.cpp">
+      <Filter>Source Files\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\cross\windows\crt.cpp">
+      <Filter>Source Files\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\cross\windows\ansios_message_loop.cpp">
+      <Filter>Source Files\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\cross\windows\aaa_want_to_remove_windows_message_loop.cpp">
+      <Filter>Source Files\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\cross\windows\aaa_want_to_remote_cross_windows_nt.cpp">
+      <Filter>Source Files\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\cross\windows\aaa_thread_local_storage.cpp">
+      <Filter>Source Files\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\file.cpp">
+      <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\cross\windows\file.cpp">
+      <Filter>Source Files\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\cross\windows\dir.cpp">
+      <Filter>Source Files\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\cross\windows\time.cpp">
+      <Filter>Source Files\os\cross\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows_common\networking.cpp">
+      <Filter>Source Files\os\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="node\cross\windows\os_usleep.cpp">
+      <Filter>Source Files\os\windows_common</Filter>
+    </ClCompile>
+    <ClCompile Include="os\windows\console.cpp">
+      <Filter>Source Files\os\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\mutex.cpp">
+      <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="parallelization\condition_variable.cpp">
+      <Filter>Source Files\parallelization</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\shared_memory.cpp">
+      <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\file_memory_map.cpp">
+      <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\index_out_of_bounds.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\overflow.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\range.cpp">
+      <Filter>Source Files\exception</Filter>
+    </ClCompile>
+    <ClCompile Include="exception\runtime.cpp">
+      <Filter>Source Files\exception</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

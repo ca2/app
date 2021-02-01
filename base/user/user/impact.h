@@ -52,19 +52,19 @@ namespace user
 
       // OLE scrolling support (used for drag/drop as well)
       virtual bool OnScroll(::u32 nScrollCode, ::u32 nPos, bool bDoScroll = TRUE);
-      //virtual bool OnScrollBy(::size sizeScroll, bool bDoScroll = TRUE);
+      //virtual bool OnScrollBy(::size_i32 sizeScroll, bool bDoScroll = TRUE);
 
       // OLE drag/drop support
       /*   virtual DROPEFFECT OnDragEnter(COleDataObject* pDataObject,
-      u32 dwKeyState, const ::point & point);
+      u32 dwKeyState, const ::point_i32 & point);
       virtual DROPEFFECT OnDragOver(COleDataObject* pDataObject,
-      u32 dwKeyState, const ::point & point);
+      u32 dwKeyState, const ::point_i32 & point);
       virtual void OnDragLeave();
       virtual bool OnDrop(COleDataObject* pDataObject,
-      DROPEFFECT dropEffect, const ::point & point);
+      DROPEFFECT dropEffect, const ::point_i32 & point);
       virtual DROPEFFECT OnDropEx(COleDataObject* pDataObject,
-      DROPEFFECT dropDefault, DROPEFFECT dropList, const ::point & point);
-      virtual DROPEFFECT OnDragScroll(u32 dwKeyState, const ::point & point);*/
+      DROPEFFECT dropDefault, DROPEFFECT dropList, const ::point_i32 & point);
+      virtual DROPEFFECT OnDragScroll(u32 dwKeyState, const ::point_i32 & point);*/
 
       //virtual void OnPrepareDC(::draw2d::graphics_pointer & pgraphics, CPrintInfo* pInfo = nullptr);
 
@@ -94,7 +94,7 @@ namespace user
 
 
 
-      virtual void CalcWindowRect(RECT32 * pClientRect, ::u32 nAdjustType = adjustBorder) override;
+      virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect, ::u32 nAdjustType = adjustBorder) override;
 
 
 
@@ -154,20 +154,20 @@ namespace user
 
       // OLE scrolling support (used for drag/drop as well)
       //      virtual bool OnScroll(::u32 nScrollCode, ::u32 nPos, bool bDoScroll = TRUE);
-      //    virtual bool OnScrollBy(const ::size & sizeScroll, bool bDoScroll = TRUE);
+      //    virtual bool OnScrollBy(const ::size_i32 & sizeScroll, bool bDoScroll = TRUE);
 
       // OLE drag/drop support
 #ifndef ANDROID
       //virtual DROPEFFECT OnDragEnter(COleDataObject* pDataObject,
-      //   u32 dwKeyState, const ::point & point);
+      //   u32 dwKeyState, const ::point_i32 & point);
       //virtual DROPEFFECT OnDragOver(COleDataObject* pDataObject,
-      //   u32 dwKeyState, const ::point & point);
+      //   u32 dwKeyState, const ::point_i32 & point);
       //virtual void OnDragLeave();
       //virtual bool OnDrop(COleDataObject* pDataObject,
-      //   DROPEFFECT dropEffect, const ::point & point);
+      //   DROPEFFECT dropEffect, const ::point_i32 & point);
       //virtual DROPEFFECT OnDropEx(COleDataObject* pDataObject,
-      //   DROPEFFECT dropDefault, DROPEFFECT dropList, const ::point & point);
-      //virtual DROPEFFECT OnDragScroll(u32 dwKeyState, const ::point & point);
+      //   DROPEFFECT dropDefault, DROPEFFECT dropList, const ::point_i32 & point);
+      //virtual DROPEFFECT OnDragScroll(u32 dwKeyState, const ::point_i32 & point);
 #endif
 
 

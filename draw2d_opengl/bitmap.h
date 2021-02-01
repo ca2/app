@@ -134,8 +134,8 @@ namespace draw2d_opengl
 #endif
 
 
-      ::size               m_sizeOut;
-      ::size               m_sizeIn;
+      ::size_i32               m_sizeOut;
+      ::size_i32               m_sizeIn;
 
 
       bitmap();
@@ -170,7 +170,7 @@ namespace draw2d_opengl
       bool CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
       bool CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight);
       
-      virtual bool create_bitmap(::draw2d::graphics * pgraphics, const ::size& size, void** ppcolorref, int* piScan) override;
+      virtual bool create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32& size, void** ppcolorref, int* piScan) override;
       virtual bool CreateDIBitmap(::draw2d::graphics * pgraphics, int cx, int cy, u32 flInit, const void* pjBits, ::u32 iUsage) override;
 
 
@@ -179,8 +179,8 @@ namespace draw2d_opengl
 
       u32 SetBitmapBits(u32 dwCount, const void * lpBits);
       u32 GetBitmapBits(u32 dwCount, LPVOID lpBits) const;
-      ::size SetBitmapDimension(i32 nWidth, i32 nHeight);
-      ::size GetBitmapDimension() const;
+      ::size_i32 SetBitmapDimension(i32 nWidth, i32 nHeight);
+      ::size_i32 GetBitmapDimension() const;
 
       virtual void dump(dump_context & dumpcontext) const;
 

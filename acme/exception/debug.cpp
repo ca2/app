@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/os/_os.h"
+#include "acme/operating_system.h"
 
 
 byte OriginalBytes[5] = {0};
@@ -9,7 +9,7 @@ byte OriginalBytes[5] = {0};
 CLASS_DECL_ACME int is_debugger_attached()
 {
 
-   return __node_is_debugger_attached() != FALSE;
+   return __node_is_debugger_attached() != false;
 
 }
 

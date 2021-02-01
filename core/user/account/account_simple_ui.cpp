@@ -182,7 +182,7 @@ namespace account
    }
 
 
-   string simple_ui::do_account(const ::rect & rectParam)
+   string simple_ui::do_account(const ::rectangle_i32 & rectParam)
    {
 
       m_pcredentials->m_iPasswordOriginalLength = -1;
@@ -191,7 +191,7 @@ namespace account
 
       ::user::interaction * puiParent = psession->payload("plugin_parent").cast < ::user::interaction >();
 
-      ::rect rectDesktop;
+      ::rectangle_i32 rectDesktop;
 
       if(puiParent != nullptr)
       {
@@ -212,9 +212,9 @@ namespace account
 
       }
 
-      ::rect rectFontopus;
+      ::rectangle_i32 rectFontopus;
 
-      ::rect rectLogin;
+      ::rectangle_i32 rectLogin;
 
       int stdw = 800;
 
@@ -293,7 +293,7 @@ namespace account
    }
 
 
-   string simple_ui::get_cred(const ::rect & rect,string & strUsername,string & strPassword,string strToken,string strTitle)
+   string simple_ui::get_cred(const ::rectangle_i32 & rectangle,string & strUsername,string & strPassword,string strToken,string strTitle)
    {
 
       if(strTitle == "ca2")
@@ -313,7 +313,7 @@ namespace account
 
       }
 
-      id idResult = do_account(rect);
+      id idResult = do_account(rectangle);
 
       if(idResult == "ok")
       {
@@ -351,7 +351,7 @@ namespace account
 
          keep < bool > keepLayout(&m_bFontopusSimpleUiLayout,true,false,true);
 
-         ::rect rectClient1;
+         ::rectangle_i32 rectClient1;
 
          get_client_rect(rectClient1);
 
@@ -360,7 +360,7 @@ namespace account
          if(get_parent() != nullptr)
          {
 
-            ::rect rectParent;
+            ::rectangle_i32 rectParent;
 
             get_parent()->get_window_rect(rectParent);
 
@@ -377,7 +377,7 @@ namespace account
          if(rectClient1.area() < 100 * 100 || bParentChange)
          {
 
-            ::rect rectDesktop;
+            ::rectangle_i32 rectDesktop;
 
             if(get_parent() != nullptr)
             {
@@ -392,9 +392,9 @@ namespace account
 
             }
 
-            ::rect rectFontopus;
+            ::rectangle_i32 rectFontopus;
 
-            ::rect rectLogin;
+            ::rectangle_i32 rectLogin;
 
             int stdw = 800;
 
@@ -436,7 +436,7 @@ namespace account
       */
 
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 

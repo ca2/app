@@ -133,7 +133,7 @@ namespace windows
 
 
       if (m_pFoundInfo != nullptr)
-         return (m_pFoundInfo->dwFileAttributes & dwMask) != FALSE;
+         return (m_pFoundInfo->dwFileAttributes & dwMask) != false;
       else
          return false;
 

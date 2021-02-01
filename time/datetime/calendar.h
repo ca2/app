@@ -45,7 +45,7 @@ namespace datetime
 
          virtual void _001OnDraw(::draw2d::graphics* pgraphics);
 
-         void set_pos(point pt, size sz);
+         void set_pos(point_i32 pt, size_i32 sz);
 
          virtual void GetDateTime(const ::apex::str_context* pcontext, string& strDateTime);
 
@@ -58,9 +58,9 @@ namespace datetime
          virtual void next_year();
          virtual void previous_year();
 
-         virtual enum_element hit_test(const ::point & point);
-         virtual bool hit_test(enum_element eelement, const ::point& point);
-         virtual bool time_hit_test(::datetime::time& time, const ::point& point);
+         virtual enum_element hit_test(const ::point_i32 & point);
+         virtual bool hit_test(enum_element eelement, const ::point_i32& point);
+         virtual bool time_hit_test(::datetime::time& time, const ::point_i32& point);
 
 
       };

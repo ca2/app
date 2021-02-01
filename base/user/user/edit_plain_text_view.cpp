@@ -57,7 +57,7 @@ namespace user
    //{
 
 
-   //   // ::rect rectClient;
+   //   // ::rectangle_i32 rectClient;
    //   // get_client_rect(rectClient);
    //   // set_window_pos(0, rectClient.left, rectClient.top, rectClient.width(), rectClient.height(), SWP_SHOWWINDOW);
    //   // _001OnUpdate();

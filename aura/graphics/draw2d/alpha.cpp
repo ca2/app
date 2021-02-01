@@ -4,7 +4,7 @@
 
 CLASS_DECL_AURA void pre_multiply_alpha(unsigned int * puserinteraction, int cx, int cy, int stride)
 {
-   unsigned char * point = (unsigned char *)puserinteraction;
+   unsigned char * p = (unsigned char *)puserinteraction;
    unsigned char a1;
    unsigned char a2;
    unsigned char a3;
@@ -13,32 +13,32 @@ CLASS_DECL_AURA void pre_multiply_alpha(unsigned int * puserinteraction, int cx,
 #pragma loop(hint_parallel(0))
    for (int i = 0; i < s; i++)
    {
-      a1 = point[3];
-      a2 = point[7];
-      a3 = point[11];
-      a4 = point[15];
+      a1 = p[3];
+      a2 = p[7];
+      a3 = p[11];
+      a4 = p[15];
 
-      point[0] = (point[0] * a1) >> 8;
-      point[1] = (point[1] * a1) >> 8;
-      point[2] = (point[2] * a1) >> 8;
+      p[0] = (p[0] * a1) >> 8;
+      p[1] = (p[1] * a1) >> 8;
+      p[2] = (p[2] * a1) >> 8;
 
-      point[4] = (point[4] * a2) >> 8;
-      point[5] = (point[5] * a2) >> 8;
-      point[6] = (point[6] * a2) >> 8;
+      p[4] = (p[4] * a2) >> 8;
+      p[5] = (p[5] * a2) >> 8;
+      p[6] = (p[6] * a2) >> 8;
 
-      point[8] = (point[8] * a3) >> 8;
-      point[9] = (point[9] * a3) >> 8;
-      point[10] = (point[10] * a3) >> 8;
+      p[8] = (p[8] * a3) >> 8;
+      p[9] = (p[9] * a3) >> 8;
+      p[10] = (p[10] * a3) >> 8;
 
-      point[12] = (point[12] * a4) >> 8;
-      point[13] = (point[13] * a4) >> 8;
-      point[14] = (point[14] * a4) >> 8;
+      p[12] = (p[12] * a4) >> 8;
+      p[13] = (p[13] * a4) >> 8;
+      p[14] = (p[14] * a4) >> 8;
       //puserinteraction[i]=((puserinteraction[i] & 0xff000000) >> 24) << 24
       //   | (((((puserinteraction[i] & 0xff0000) >> 16) * ((puserinteraction[i] & 0xff000000) >> 24)) << 8) & 0xff0000)
       //   | ((((puserinteraction[i] & 0xff00) >> 8) * ((puserinteraction[i] & 0xff000000) >> 24)) & 0xff00)
       //   | (((puserinteraction[i] & 0xff) * ((puserinteraction[i] & 0xff000000) >> 24)) >> 8);
       //puserinteraction++;
-      point += 16;
+      p += 16;
    }
 
 }

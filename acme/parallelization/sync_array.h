@@ -1,8 +1,11 @@
 #pragma once
 
 
-using hsync_array = ::address_array < HSYNC >;
+#ifdef WINDOWS
+using hsync_array = ::address_array < hsync >;
+#endif
 
+#define MAXIMUM_SYNC_OBJECTS 64
 
 class CLASS_DECL_ACME sync_array :
    public matter
@@ -10,8 +13,10 @@ class CLASS_DECL_ACME sync_array :
 public:
 
 
+#ifdef WINDOWS
    hsync_array          m_hsyncaCache;
-   byte                 m_byteaSyncIndex[MAXIMUM_WAIT_OBJECTS];
+#endif
+   byte                 m_byteaSyncIndex[MAXIMUM_SYNC_OBJECTS];
 
 
    DECLARE_ARRAY_OF(sync_array, sync, sync);

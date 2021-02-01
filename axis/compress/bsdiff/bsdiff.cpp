@@ -393,7 +393,7 @@ int main(int argc,char *argv[])
    if (bz2err != BZ_OK)
       errx(1, "BZ2_bzWriteClose, bz2err = %d", bz2err);
 
-   /* Compute size of compressed ctrl data */
+   /* Compute size_i32 of compressed ctrl data */
    if ((len = ftello(pf)) == -1)
       err(1, "ftello");
    offtout(len-32, header + 8);
@@ -408,7 +408,7 @@ int main(int argc,char *argv[])
    if (bz2err != BZ_OK)
       errx(1, "BZ2_bzWriteClose, bz2err = %d", bz2err);
 
-   /* Compute size of compressed diff data */
+   /* Compute size_i32 of compressed diff data */
    if ((newsize = ftello(pf)) == -1)
       err(1, "ftello");
    offtout(newsize - len, header + 16);

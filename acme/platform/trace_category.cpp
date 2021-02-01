@@ -150,14 +150,14 @@ CLASS_DECL_ACME bool enable_trace_category(e_trace_category ecategory, bool bEna
 CLASS_DECL_ACME int_bool c_enable_trace_category(e_trace_category ecategory, int_bool iEnable)
 {
 
-   if (!enable_trace_category(ecategory, iEnable != FALSE))
+   if (!enable_trace_category(ecategory, iEnable != false))
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   return TRUE;
+   return true;
 
 }
 

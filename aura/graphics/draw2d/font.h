@@ -73,7 +73,7 @@ namespace draw2d
       {
       public:
 
-         sized       m_size;
+         size_f64       m_size;
          bool        m_bSize;
          wstring     m_wstr;
          void *      m_osdata[4];
@@ -160,11 +160,6 @@ namespace draw2d
 
       virtual double get_height(::draw2d::graphics * pgraphics);
 
-#ifdef WINDOWS
-
-      virtual bool GetLogFont(LOGFONTW * pfontw);
-
-#endif
 
    };
 

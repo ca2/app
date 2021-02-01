@@ -51,14 +51,14 @@ namespace user
       //virtual bool create_child(::user)
       bool SetIndicators(string_array & stra);
 
-      void SetBorders(const ::rect & rect);
+      void SetBorders(const ::rectangle_i32 & rectangle);
 
       void SetBorders(i32 cxLeft = 0, i32 cyTop = 0, i32 cxRight = 0, i32 cyBottom = 0);
 
       // standard control bar things
       i32 CommandToIndex(id id);
       id GetItemId(i32 nIndex);
-      void GetItemRect(i32 nIndex, RECT32 * prect);
+      void GetItemRect(i32 nIndex, RECTANGLE_I32 * prectangle);
 
 
       // specific to status_bar
@@ -81,10 +81,10 @@ namespace user
       virtual void DrawItem(LPDRAWITEMSTRUCT);
 #endif
 
-      virtual ::size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
+      virtual ::size_i32 CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz) override;
       bool pre_create_window(::user::system * pusersystem) override;
       //bool AllocElements(i32 nElements, i32 cbElement);
-      void CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::rect& rect, bool bHorz);
+      void CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::rectangle_i32& rectangle, bool bHorz);
       virtual void OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle) override;
 
       virtual void assert_valid() const override;

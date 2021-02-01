@@ -87,7 +87,7 @@ namespace draw2d_cairo
 
       }
 
-      m_rectBoundingBoxInternal = rect(0, 0, 0, 0);
+      m_rectBoundingBoxInternal = rectangle_i32(0, 0, 0, 0);
 
       max_bounding_box(m_rectBoundingBoxInternal);
 

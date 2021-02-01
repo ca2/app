@@ -111,7 +111,7 @@ void channel::transfer_receiver(::message::id_route & router, ::object * preceiv
 void channel::route_message(::message::message * pmessage)
 {
 
-   if (::is_null(pmessage)) { ASSERT(FALSE); return; } { sync_lock sl(channel_mutex()); pmessage->m_proutea = m_idroute[pmessage->m_id]; } if (pmessage->m_proutea.is_null()) { return; }
+   if (::is_null(pmessage)) { ASSERT(false); return; } { sync_lock sl(channel_mutex()); pmessage->m_proutea = m_idroute[pmessage->m_id]; } if (pmessage->m_proutea.is_null()) { return; }
 
    for(pmessage->m_pchannel = this, pmessage->m_iRouteIndex = pmessage->m_proutea->get_upper_bound(); pmessage->m_iRouteIndex >= 0; pmessage->m_iRouteIndex--)
    {
@@ -122,28 +122,44 @@ void channel::route_message(::message::message * pmessage)
 
 }
 
-
-__pointer(::message::base) channel::get_message_base(oswindow oswindow, const ::id & id, WPARAM wparam, lparam lparam)
+__pointer(::message::base) channel::get_message_base(MESSAGE * pmessage)
 {
 
-   if (id.m_etype != ::id::e_type_message)
-   {
+   auto pmessagebase = __new(::message::base);
 
-      __throw(invalid_argument_exception);
+   pmessagebase->set(
+      pmessage->hwnd, 
+      System.get_layered_window(pmessage->hwnd),
+      pmessage->message, 
+      pmessage->wParam, 
+      pmessage->lParam);
 
-   }
-
-   MESSAGE msg;
-
-   __zero(msg);
-
-   msg.message = (::u32) id.m_emessage;
-   msg.wParam = wparam;
-   msg.lParam = lparam;
-
-   return get_message_base(&msg);
+   return pmessagebase;
 
 }
+
+
+//__pointer(::message::base) channel::get_message_base(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
+//{
+//
+//   if (id.m_etype != ::id::e_type_message)
+//   {
+//
+//      __throw(invalid_argument_exception());
+//
+//   }
+//
+//   MESSAGE msg;
+//
+//   __zero(msg);
+//
+//   msg.message = (::u32) id.m_emessage;
+//   msg.wParam = wparam;
+//   msg.lParam = lparam;
+//
+//   return get_message_base(&msg);
+//
+//}
 
 
 #ifdef LINUX
@@ -162,73 +178,6 @@ __pointer(::message::base) channel::get_message_base(void * pevent,::user::inter
 #endif
 
 
-__pointer(::message::base) channel::get_message_base(LPMESSAGE pmsg)
-{
-
-   //__throw(todo("message"));
-   //__throw(todo("interaction"));
-   ::layered * playeredUserPrimitive = nullptr;
-
-   //if (pinteraction == nullptr && pmsg->hwnd != nullptr)
-   //{
-
-   //   if (pmsg->message == 126)
-   //   {
-
-   //      TRACE("e_message_display_change");
-
-   //   }
-
-   //   ::user::interaction_impl * pimpl = System.impl_from_handle(pmsg->hwnd);
-
-   //   if (pimpl != nullptr)
-   //   {
-
-   //      try
-   //      {
-
-   //         pinteraction = pimpl->m_puserinteraction;
-
-   //      }
-   //      catch (...)
-   //      {
-
-   //         pinteraction = nullptr;
-
-   //      }
-
-   //   }
-
-   //   if (pinteraction == nullptr)
-   //   {
-
-   //      pinteraction = pimpl;
-
-   //   }
-
-   //}
-
-   //if (pinteraction != nullptr)
-   //{
-
-   //   return pinteraction->get_message_base(pmsg->message, pmsg->wParam, pmsg->lParam);
-
-   //}
-
-   auto pbase = __new(::message::base);
-
-   if (!pbase)
-   {
-
-      return nullptr;
-
-   }
-
-   pbase->set(pmsg->hwnd, playeredUserPrimitive, (enum_message)pmsg->message, pmsg->wParam, pmsg->lParam);
-
-   return pbase;
-
-}
 
 
 void channel::remove_all_routes()

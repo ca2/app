@@ -50,16 +50,16 @@ public:
    void hex_dump(u64 i);
    void write(float f) override;
    void write(double d) override;
-   void write(oswindow h);
-   void write(HDC h);
-
-#ifdef WINDOWS
-   void write(HMENU h);
-   void write(HACCEL h);
-   void write(HFONT h);
-
-#endif
-
+//   void write(oswindow h);
+//   void write(HDC h);
+//
+//#ifdef WINDOWS
+//   void write(HMENU h);
+//   void write(HACCEL h);
+//   void write(HFONT h);
+//
+//#endif
+//
    void hex_dump(const char * pszLine, byte* pby, i32 nBytes, i32 nWidth);
 
    void flush() override;

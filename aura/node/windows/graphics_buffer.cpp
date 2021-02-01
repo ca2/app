@@ -1,11 +1,11 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 #include "aura/message.h"
 #include "aura/user/_user.h"
 #include "buffer.h"
-#include <stdio.h>
 
 
-extern point g_pointLastBottomRight;
+extern point_i32 g_pointLastBottomRight;
 
 
 #include "__debug_power.h"
@@ -109,7 +109,7 @@ namespace windows
    }
 
 
-   bool buffer::create_os_buffer(const ::size & size, int iStrideParam)
+   bool buffer::create_os_buffer(const ::size_i32 & size, int iStrideParam)
    {
 
       if (m_hdcScreen != NULL && m_oswindow != NULL)
@@ -203,7 +203,7 @@ namespace windows
    }
 
 
-   bool buffer::update_buffer(const ::size & size, int iStrideParam)
+   bool buffer::update_buffer(const ::size_i32 & size, int iStrideParam)
    {
 
       if (m_oswindow == nullptr || ::is_null(m_pimpl))
@@ -408,7 +408,7 @@ namespace windows
             //else
             //{
 
-            POINT32 pointSrc = { 0 };
+            POINT_I32 pointSrc = { 0 };
 
             BLENDFUNCTION blendPixelFunction = { AC_SRC_OVER, 0, 255, AC_SRC_ALPHA };
 
@@ -419,29 +419,29 @@ namespace windows
             {
                //HBRUSH h = ::CreateSolidBrush(RGB(255, 240, 155));
 
-               //rect r;
+               //rectangle_i32 r;
 
-               //rect.left = 10;
-               //rect.right = 20;
-               //rect.top = 0;
-               //rect.bottom = sz.cy;
+               //rectangle.left = 10;
+               //rectangle.right = 20;
+               //rectangle.top = 0;
+               //rectangle.bottom = sz.cy;
 
-               //::FillRect(m_hdc, rect, h);
+               //::FillRect(m_hdc, rectangle_i32, h);
 
                //::DeleteObject(h);
 
                Gdiplus::Graphics g(m_hdc);
 
-               Gdiplus::Rect rect;
+               Gdiplus::Rect rectangle_i32;
 
-               rect.X = 10;
-               rect.Width = 10;
-               rect.Y = 0;
-               rect.Height = size.cy;
+               rectangle.X = 10;
+               rectangle.Width = 10;
+               rectangle.Y = 0;
+               rectangle.Height = size.cy;
 
                Gdiplus::SolidBrush b(Gdiplus::Color(ARGB(255, 155, 240, 255)));
 
-               g.FillRectangle(&b, rect);
+               g.FillRectangle(&b, rectangle);
 
             }
 
@@ -461,28 +461,28 @@ namespace windows
 
                //HBRUSH h = ::CreateSolidBrush(RGB(180, 200, 255));
 
-               //rect r;
+               //rectangle_i32 r;
 
-               //rect.left = 20;
-               //rect.right = 30;
-               //rect.top = 0;
-               //rect.bottom = sz.cy;
+               //rectangle.left = 20;
+               //rectangle.right = 30;
+               //rectangle.top = 0;
+               //rectangle.bottom = sz.cy;
 
-               //::FillRect(m_hdc, rect, h);
+               //::FillRect(m_hdc, rectangle_i32, h);
 
                //::DeleteObject(h);
                Gdiplus::Graphics g(m_hdc);
 
-               Gdiplus::Rect rect;
+               Gdiplus::Rect rectangle_i32;
 
-               rect.X = 20;
-               rect.Width = 10;
-               rect.Y = 0;
-               rect.Height = size.cy;
+               rectangle.X = 20;
+               rectangle.Width = 10;
+               rectangle.Y = 0;
+               rectangle.Height = size.cy;
 
                Gdiplus::SolidBrush b(Gdiplus::Color(ARGB(255, 255, 210, 170)));
 
-               g.FillRectangle(&b, rect);
+               g.FillRectangle(&b, rectangle);
             }
 
 #endif
@@ -493,14 +493,14 @@ namespace windows
 
                               //HBRUSH h = ::CreateSolidBrush(RGB(180, 200, 255));
 
-                              //rect r;
+                              //rectangle_i32 r;
 
-                              //rect.left = 20;
-                              //rect.right = 30;
-                              //rect.top = 0;
-                              //rect.bottom = sz.cy;
+                              //rectangle.left = 20;
+                              //rectangle.right = 30;
+                              //rectangle.top = 0;
+                              //rectangle.bottom = sz.cy;
 
-                              //::FillRect(m_hdc, rect, h);
+                              //::FillRect(m_hdc, rectangle_i32, h);
 
                               //::DeleteObject(h);
 
@@ -512,17 +512,17 @@ namespace windows
 
                Gdiplus::Graphics g(m_hdc);
 
-               Gdiplus::Rect rect;
+               Gdiplus::Rect rectangle_i32;
 
-               rect.X = 0;
-               rect.Y = 0;
+               rectangle.X = 0;
+               rectangle.Y = 0;
 
-               rect.Width = 49;
-               rect.Height = 49;
+               rectangle.Width = 49;
+               rectangle.Height = 49;
 
                Gdiplus::SolidBrush b(Gdiplus::Color(ARGB(128, 255, 180, 170)));
 
-               g.FillRectangle(&b, rect);
+               g.FillRectangle(&b, rectangle);
 
                Gdiplus::Font font(L"Segoe UI", 20);
 
@@ -583,7 +583,7 @@ namespace windows
 
                }
 
-               RECT32 rectProbe;
+               RECTANGLE_I32 rectProbe;
 
                if (::GetWindowRect(m_pimpl->m_oswindow, &rectProbe))
                {
@@ -605,7 +605,7 @@ namespace windows
 
                //output_debug_string(str);
 
-               auto r = ::rect(point, size);
+               auto r = ::rectangle_i32(point, size);
 
                if (r == pimage->m_rectTag)
                {
@@ -620,7 +620,7 @@ namespace windows
 
                }
 
-               ::point pointBottomRight = point + size;
+               ::point_i32 pointBottomRight = point_i32 + size;
 
                if (g_pointLastBottomRight != pointBottomRight)
                {
@@ -657,15 +657,15 @@ namespace windows
             //
             //               }
 
-                           //RECT32 r3;
+                           //RECTANGLE_I32 r3;
 
                            //GetWindowRect(m_oswindow, &r3);
 
-                           //RECT32 r4;
+                           //RECTANGLE_I32 r4;
 
                            //GetClientRect(m_oswindow, &r4);
 
-                           //::SendMessage(m_pimpl->m_oswindow, WM_PRINT, (WPARAM)m_hdcScreen, PRF_OWNED | PRF_CHILDREN);
+                           //::SendMessage(m_pimpl->m_oswindow, WM_PRINT, (wparam)m_hdcScreen, PRF_OWNED | PRF_CHILDREN);
 
 #ifdef __DEBUG
 
@@ -691,7 +691,7 @@ namespace windows
 
             {
 
-               ::rect rClipScreen;
+               ::rectangle_i32 rClipScreen;
 
                int iResult = ::GetClipBox(m_hdcScreen, rClipScreen);
 
@@ -714,7 +714,7 @@ namespace windows
 
             {
 
-               ::rect rClip;
+               ::rectangle_i32 rClip;
 
                int iResult = ::GetClipBox(buffer.m_hdc, rClip);
 

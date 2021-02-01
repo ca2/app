@@ -96,12 +96,16 @@ The first release.
 */
 
 #include "framework.h"
+#include "acme/operating_system.h"
 #include "uac_tools.h"
 #include <VersionHelpers.h>
+#include <ShellApi.h>
+
+
 
 #ifdef IMPLEMENT_VISTA_TOOLS
 
-#define ASSERT_HERE ASSERT(FALSE)
+#define ASSERT_HERE ASSERT(false)
 
 /*#if ( NTDDI_VERSION < NTDDI_LONGHORN )
 #   error NTDDI_VERSION must be defined as NTDDI_LONGHORN or later
@@ -115,7 +119,7 @@ The first release.
 // #   ifdef __DEBUG
 // #      include <assert.h>
 // #      define ASSERT(x) assert( x )
-// #      define ASSERT_HERE assert( FALSE )
+// #      define ASSERT_HERE assert( false )
 // #   else // __DEBUG
 // #      define ASSERT(x)
 // #      define ASSERT_HERE
@@ -144,7 +148,7 @@ namespace VistaTools
    // to be able to specify the verb easily.
 
    bool
-   MyShellExec(oswindow oswindow,
+   MyShellExec(HWND hwnd,
                const char * pszVerb,
                const char * pszPath,
                const char * pszParameters,   // = nullptr
@@ -160,12 +164,12 @@ namespace VistaTools
       wstring wstrParm(pszPath);
       wstring wstrFldr(pszPath);
 
-      shex.cbSize         = sizeof(SHELLEXECUTEINFO);
-      shex.fMask         = (phProcess ? SEE_MASK_NOCLOSEPROCESS : 0);
-      shex.hwnd         = oswindow;
-      shex.lpVerb = wstrVerb;
+      shex.cbSize          = sizeof(SHELLEXECUTEINFO);
+      shex.fMask           = (phProcess ? SEE_MASK_NOCLOSEPROCESS : 0);
+      shex.hwnd            = hwnd;
+      shex.lpVerb          = wstrVerb;
 
-      shex.lpFile         = wstrPath;
+      shex.lpFile          = wstrPath;
 
       shex.lpParameters   = wstrParm;
 
@@ -173,7 +177,7 @@ namespace VistaTools
 
       shex.nShow         = SW_NORMAL;
 
-      bool bRet = ::ShellExecuteExW(&shex) != FALSE;
+      bool bRet = ::ShellExecuteExW(&shex) != false;
 
       if(phProcess)
          *phProcess = shex.hProcess;
@@ -184,7 +188,7 @@ namespace VistaTools
    bool IsVista()
    {
 
-      return IsWindowsVistaOrGreater() != FALSE;
+      return IsWindowsVistaOrGreater() != false;
 
       /*
       OSVERSIONINFO osver;
@@ -194,9 +198,9 @@ namespace VistaTools
       if (   ::GetVersionEx( &osver ) &&
       osver.dwPlatformId == VER_PLATFORM_WIN32_NT &&
       (osver.dwMajorVersion >= 6 ) )
-      return TRUE;
+      return true;
 
-      return FALSE;
+      return false;
 
       */
    }
@@ -211,7 +215,7 @@ namespace VistaTools
    bool
    IsWow64()
    {
-      BOOL bIsWow64 = FALSE;
+      BOOL bIsWow64 = false;
 
       if(nullptr != fnIsWow64Process)
       {
@@ -221,7 +225,7 @@ namespace VistaTools
          }
       }
 
-      return bIsWow64 != FALSE;
+      return bIsWow64 != false;
    }
 
 #endif//WIN64
@@ -319,14 +323,14 @@ namespace VistaTools
 
    bool
    RunElevated(
-   __in      oswindow   oswindow,
+   __in      HWND hwnd,
    __in      const char * pszPath,
    __in_opt   const char * pszParameters,   //   = nullptr,
    __in_opt   const char * pszDirectory,   //   = nullptr,
    __out_opt   HANDLE *phProcess)      //   = nullptr );
    {
       return MyShellExec(
-             oswindow,
+             hwnd,
              IsVista() ? "runas" : nullptr,
              pszPath,
              pszParameters,
@@ -351,7 +355,7 @@ namespace VistaTools
    ::u32   uVEMsg                     = 0;
 
    __declspec(allocate("ve_shared"))
-   bool   bVESuccess                  = FALSE;
+   bool   bVESuccess                  = false;
 
    __declspec(allocate("ve_shared"))
    char   szVE_Path[MAX_PATH]         = "";
@@ -363,7 +367,7 @@ namespace VistaTools
    char   szVE_Directory[MAX_PATH]      = "";
 
    __declspec(allocate("ve_shared"))
-   bool    bVE_NeedProcessHandle         = FALSE;
+   bool    bVE_NeedProcessHandle         = false;
 
    __declspec(allocate("ve_shared"))
    HANDLE   hVE_Process               = nullptr;
@@ -414,7 +418,7 @@ namespace VistaTools
 
    bool
    RunNonElevated(
-   __in      oswindow   oswindow,
+   __in      HWND hwnd,
    __in      const char * pszPath,
    __in_opt   const char * pszParameters,   //   = nullptr,
    __in_opt   const char * pszDirectory,   //   = nullptr,
@@ -437,7 +441,7 @@ namespace VistaTools
       {
          // if the current process is not elevated, we can use ShellExecuteEx directly!
 
-         return MyShellExec(oswindow,
+         return MyShellExec(hwnd,
                             nullptr,
                             pszPath,
                             pszParameters,
@@ -453,7 +457,7 @@ namespace VistaTools
       if(IsWow64())
       {
          ASSERT_HERE;
-         return FALSE;
+         return false;
       }
 
 #endif//WIN64
@@ -484,16 +488,20 @@ namespace VistaTools
       //////////////////////////////////////
       // find the shell interaction_impl (the desktop)
 
-      ::oswindow oswindowShell = ::FindWindowW(L"Progman",nullptr);
+      HWND oswindowShell = ::FindWindowW(L"Progman",nullptr);
 
       if(!oswindowShell)
       {
          ASSERT_HERE;
-         return FALSE;
+         return false;
       }
 
-      if(!oswindow)
-         oswindow = ::GetForegroundWindow();
+      if (!hwnd)
+      {
+       
+         hwnd = ::GetForegroundWindow();
+
+      }
 
       // Link (dynamically) to the GetModuleHandleExW API:
 
@@ -506,7 +514,7 @@ namespace VistaTools
       if(!pGetModuleHandleExW)
       {
          ASSERT_HERE;
-         return FALSE;
+         return false;
       }
 
       HMODULE hModule = nullptr;   // we need to know hModule of this DLL to install a global hook
@@ -517,7 +525,7 @@ namespace VistaTools
             &hModule))
       {
          ASSERT_HERE;
-         return FALSE;
+         return false;
       }
 
       /////////////////////////////////////////
@@ -529,7 +537,7 @@ namespace VistaTools
       if(!hVEHook)
       {
          ASSERT_HERE;
-         return FALSE;
+         return false;
       }
 
       //////////////////////////////////
@@ -541,7 +549,7 @@ namespace VistaTools
             pszPath,_tsizeof(szVE_Path))))
       {
          ASSERT_HERE;
-         return FALSE;
+         return false;
       }
 
       if(!(ansi_count_copy(
@@ -551,7 +559,7 @@ namespace VistaTools
             _tsizeof(szVE_Parameters))))
       {
          ASSERT_HERE;
-         return FALSE;
+         return false;
       }
 
       if(!(ansi_count_copy(
@@ -560,7 +568,7 @@ namespace VistaTools
             _tsizeof(szVE_Directory))))
       {
          ASSERT_HERE;
-         return FALSE;
+         return false;
       }
 
       bVE_NeedProcessHandle = (phProcess != nullptr);
@@ -568,12 +576,12 @@ namespace VistaTools
       /////////////////////////////////////////
       // Activate our hook callback procedure:
 
-      bVESuccess = FALSE; // assume failure
+      bVESuccess = false; // assume failure
 
       ::SendMessage(oswindowShell,uVEMsg,0,0);
 
       ////////////////////////////////////////////////////////
-      // At this point our hook procedure has been executed!
+      // At this point_i32 our hook procedure has been executed!
 
       if(phProcess)
          *phProcess = hVE_Process;

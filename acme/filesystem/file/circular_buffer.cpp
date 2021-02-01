@@ -35,9 +35,9 @@ namespace file
 
       if (m_t + l > m_max) // block crosses circular border
       {
-         auto l1 = m_max - m_t; // size left until circular border crossing
+         auto l1 = m_max - m_t; // size_i32 left until circular border crossing
          // always copy full block to buffer(m_memory.get_data()) + top pointer(m_t)
-         // because we have doubled the buffer size for performance reasons
+         // because we have doubled the buffer size_i32 for performance reasons
          ::memcpy_dup(m_memory.get_data() + m_t, s, l);
          ::memcpy_dup(m_memory.get_data(), s + l1, l - l1);
          m_t = l - l1;

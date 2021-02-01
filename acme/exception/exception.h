@@ -11,15 +11,15 @@ namespace exception
    public:
 
 
-      static bool    s_bDoStackTrace;
+      static bool             s_bDoStackTrace;
 
 
-      bool              m_bDumpBackTrace;
-      __pointer(callstack)     m_pcallstack;
-      bool              m_bHandled;
-      bool              m_bContinue;
-      const char *      m_pszMessage;
-      const char *      m_pszException;
+      bool                    m_bDumpBackTrace;
+      __pointer(callstack)    m_pcallstack;
+      bool                    m_bHandled;
+      bool                    m_bContinue;
+      const char *            m_pszMessage;
+      const char *            m_pszException;
 
       // A exception class is meant to be a small utility/tool class.
       // m_bLog -> too much managing (micro-managing and also big-managing)
@@ -28,18 +28,20 @@ namespace exception
       // Log can be supressed or translated at optional middle-stack handlers.
       // bool        m_bLog;
 
-      const char *         m_pszFile;
-      int                  m_iLine;
-      ::e_status                 m_estatus;
+      const char *            m_pszFile;
+      int                     m_iLine;
+      ::e_status              m_estatus;
+      int                     m_iLastError;
+      int                     m_iErr;
 
 
-      exception(const ::e_status & estatus = error_exception, i32 iSkip = callstack_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr) :
+      exception(const ::enum_status & estatus = error_exception, i32 iSkip = callstack_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr) :
          exception(nullptr, estatus, iSkip, caller_address)
       {
 
       }
 
-      exception(const char * pszMessage, const ::e_status & estatus = error_exception, i32 iSkip = callstack_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
+      exception(const char * pszMessage, const ::enum_status & estatus = error_exception, i32 iSkip = callstack_DEFAULT_SKIP_TRIGGER, void * caller_address = nullptr);
       virtual ~exception();
 
 

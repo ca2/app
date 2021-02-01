@@ -11,7 +11,7 @@
 CLASS_DECL_ACME void wide_parse_command_line(widechar *cmdstart, widechar **argv, widechar *args, i32 * numargs, i32 * numchars)
 {
 
-   widechar *point;
+   widechar *p;
    widechar c;
    i32 inquote;                    /* 1 = inside quotes */
    i32 copychar;                   /* 1 = copy char to *args */
@@ -21,7 +21,7 @@ CLASS_DECL_ACME void wide_parse_command_line(widechar *cmdstart, widechar **argv
    *numargs = 1;                   /* the program name at least */
 
    /* first scan the program name, copy it, and ::count the bytes */
-   point = cmdstart;
+   p = cmdstart;
    if (argv)
       *argv++ = args;
 
@@ -30,7 +30,7 @@ CLASS_DECL_ACME void wide_parse_command_line(widechar *cmdstart, widechar **argv
    it's first character before quote handling.  This is done
    so _[w]cwild() knows whether to expand an entry or not. */
    if (args)
-      *args++ = *point;
+      *args++ = *p;
    ++*numchars;
 
 #endif  /* WILDCARD */
@@ -42,14 +42,14 @@ CLASS_DECL_ACME void wide_parse_command_line(widechar *cmdstart, widechar **argv
       because the program name must be a legal NTFS/HPFS file name.
       Note that the double-quote characters are not copied, nor do they
       contribute to numchars. */
-   if ( *point == DQUOTEWCHAR ) {
+   if ( *p == DQUOTEWCHAR ) {
       /* scan from just past the first double-quote through the next
          double-quote, or up to a nullptr, whichever comes first */
-      while ( (*(++point) != DQUOTEWCHAR) && (*point != NULWCHAR) ) {
+      while ( (*(++p) != DQUOTEWCHAR) && (*p != NULWCHAR) ) {
 
             ++*numchars;
             if ( args )
-               *args++ = *point;
+               *args++ = *p;
       }
       /* append the terminating nullptr */
       ++*numchars;
@@ -57,22 +57,22 @@ CLASS_DECL_ACME void wide_parse_command_line(widechar *cmdstart, widechar **argv
             *args++ = NULWCHAR;
 
       /* if we stopped on a double-quote (usual case), skip over it */
-      if ( *point == DQUOTEWCHAR )
-            point++;
+      if ( *p == DQUOTEWCHAR )
+            p++;
    }
    else {
       /* Not a quoted program name */
       do {
             ++*numchars;
             if (args)
-               *args++ = *point;
+               *args++ = *p;
 
-            c = (widechar) *point++;
+            c = (widechar) *p++;
 
       } while ( c != SPACEWCHAR && c != NULWCHAR && c != TABWCHAR );
 
       if ( c == NULWCHAR ) {
-            point--;
+            p--;
       } else {
             if (args)
                *(args-1) = NULWCHAR;
@@ -84,12 +84,12 @@ CLASS_DECL_ACME void wide_parse_command_line(widechar *cmdstart, widechar **argv
    /* loop on each argument */
    for(;;) {
 
-      if ( *point ) {
-            while (*point == SPACEWCHAR || *point == TABWCHAR)
-               ++point;
+      if ( *p ) {
+            while (*p == SPACEWCHAR || *p == TABWCHAR)
+               ++p;
       }
 
-      if (*point == NULWCHAR)
+      if (*p == NULWCHAR)
             break;              /* end of args */
 
       /* scan an argument */
@@ -102,7 +102,7 @@ CLASS_DECL_ACME void wide_parse_command_line(widechar *cmdstart, widechar **argv
    it's first character before quote handling.  This is done
    so _[w]cwild() knows whether to expand an entry or not. */
    if (args)
-      *args++ = *point;
+      *args++ = *p;
    ++*numchars;
 
 #endif  /* WILDCARD */
@@ -114,18 +114,18 @@ CLASS_DECL_ACME void wide_parse_command_line(widechar *cmdstart, widechar **argv
          2N+1 backslashes + " ==> N backslashes + literal "
          N backslashes ==> N backslashes */
       numslash = 0;
-      while (*point == SLASHWCHAR) {
+      while (*p == SLASHWCHAR) {
             /* ::count number of backslashes for use below */
-            ++point;
+            ++p;
             ++numslash;
       }
-      if (*point == DQUOTEWCHAR) {
+      if (*p == DQUOTEWCHAR) {
             /* if 2N backslashes before, start/end quote, otherwise
                copy literally */
             if (numslash % 2 == 0) {
                if (inquote) {
-                  if (point[1] == DQUOTEWCHAR)
-                        point++;    /* Double quote inside quoted string */
+                  if (p[1] == DQUOTEWCHAR)
+                        p++;    /* Double quote inside quoted string */
                   else        /* skip first quote char and copy second */
                         copychar = 0;
                } else
@@ -144,15 +144,15 @@ CLASS_DECL_ACME void wide_parse_command_line(widechar *cmdstart, widechar **argv
       }
 
       /* if at end of arg, break loop */
-      if (*point == NULWCHAR || (!inquote && (*point == SPACEWCHAR || *point == TABWCHAR)))
+      if (*p == NULWCHAR || (!inquote && (*p == SPACEWCHAR || *p == TABWCHAR)))
             break;
 
       if (copychar) {
             if (args)
-               *args++ = *point;
+               *args++ = *p;
             ++*numchars;
       }
-      ++point;
+      ++p;
       }
 
       /* nullptr-terminate the argument */

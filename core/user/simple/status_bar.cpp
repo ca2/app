@@ -36,7 +36,7 @@ bool simple_status_bar::OnEraseBkgnd(::draw2d::graphics_pointer & pgraphics)
 void simple_status_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
    return;
-//   ::rect rectClient;
+//   ::rectangle_i32 rectClient;
 //
 //   get_client_rect(rectClient);
 //

@@ -35,7 +35,7 @@ BSTR SysAllocStringByteLen(const char * psz, ::u32 len)
   if (point == 0)
     return 0;
   *(::u32 *)point = len;
-  BSTR bstr = (BSTR)((::u32 *)point + 1);
+  BSTR bstr = (BSTR)((::u32 *)point_i32 + 1);
   __memmov(bstr, psz, len);
   u8 *pb = ((u8 *)bstr) + len;
   for (i32 i = 0; less_than(i, sizeof(OLECHAR) * 2); i++)
@@ -53,7 +53,7 @@ BSTR SysAllocString(const OLECHAR *sz)
   if (point == 0)
     return 0;
   *(::u32 *)point = strLen;
-  BSTR bstr = (BSTR)((::u32 *)point + 1);
+  BSTR bstr = (BSTR)((::u32 *)point_i32 + 1);
   __memmov(bstr, sz, len);
   return bstr;
 }

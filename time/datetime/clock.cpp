@@ -72,13 +72,13 @@ namespace datetime
       }
 
 
-      enum_element clock::hit_test(const point & point)
+      enum_element clock::hit_test(const point_i32 & point)
       {
 
          for (int iElement = e_element_none + 1; iElement < e_element_count; iElement++)
          {
 
-            if (hit_test((enum_element) iElement, point))
+            if (hit_test((enum_element) iElement, point_i32))
             {
 
                return (enum_element)iElement;
@@ -92,14 +92,14 @@ namespace datetime
       }
 
 
-      bool clock::hit_test(enum_element eelement, const point& pt)
+      bool clock::hit_test(enum_element eelement, const point_i32& pt)
       {
 
-         ::rect rect;
+         ::rectangle_i32 rectangle;
 
-         GetRect(rect, eelement);
+         GetRect(rectangle, eelement);
 
-         return rect.contains(pt) != FALSE;
+         return rectangle.contains(pt) != FALSE;
 
       }
 

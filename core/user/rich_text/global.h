@@ -19,7 +19,7 @@ namespace user
       index find_char_span(__pointer_array(span) & spana, strsize iChar);
       box * find_box(__pointer_array(line) & span, index iSel);
       string layout_text(const __pointer_array(line) & span);
-      void align(line * pline, const ::rectd & rect);
+      void align(line * pline, const ::rectangle_f64 & rectangle);
 
       string line_text(line & line);
       index sel_line(const __pointer_array(line) & span, index iSel);

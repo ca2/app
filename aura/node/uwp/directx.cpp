@@ -4,7 +4,7 @@
 #include "_uwp.h"
 
 
-::size winrt_get_big_back_buffer_size();
+::size_i32 winrt_get_big_back_buffer_size();
 
 using namespace Windows::UI::Core;
 using namespace Windows::Foundation;
@@ -284,7 +284,7 @@ namespace uwp
    // This is called in the dpiChanged event handler in the view class.
    void directx_base::SetDpi(float dpi)
    {
-      // Only handle window size changed if there is no pending DPI change.
+      // Only handle window size_i32 changed if there is no pending DPI change.
 
       m_window->Dispatcher->RunAsync(CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([this,dpi]()
       {
@@ -452,7 +452,7 @@ namespace uwp
       ::draw2d::device_lock devicelock(m_pimpl->m_puserinteraction);
 
       // Store the window bounds so the next time we get a SizeChanged event we can
-      // avoid rebuilding everything if the size is identical.
+      // avoid rebuilding everything if the size_i32 is identical.
       m_windowBounds.Width = (float) m_size.cx;
       m_windowBounds.Height = (float) m_size.cy;
 
@@ -686,7 +686,7 @@ namespace uwp
       ::draw2d::device_lock devicelock(m_pimpl->m_puserinteraction);
 
       // Store the window bounds so the next time we get a SizeChanged event we can
-      // avoid rebuilding everything if the size is identical.
+      // avoid rebuilding everything if the size_i32 is identical.
       m_windowBounds.Width = (float)m_size.cx;
       m_windowBounds.Height = (float)m_size.cy;
 
@@ -822,7 +822,7 @@ namespace uwp
       //   m_window->Dispatcher->RunAsync(CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([this]()
       //   {
 
-      // A window size change has been initiated and the app has just completed presenting
+      // A window size_i32 change has been initiated and the app has just completed presenting
       // the first frame with the new size. Notify the resize manager so we can short
       // circuit any resize animation and prevent unnecessary delays.
       //      CoreWindowResizeManager::GetForCurrentView()->NotifyLayoutCompleted();
@@ -923,7 +923,7 @@ namespace uwp
    //   //   if (pbuffer.is_set())
    //   //   {
 
-   //   //      size sz = pbuffer->get_buffer().get_size();
+   //   //      size_i32 sz = pbuffer->get_buffer().get_size();
 
    //   //      ::draw2d::graphics_pointer & pgraphics = pbuffer->get_buffer().get_graphics();
 

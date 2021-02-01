@@ -94,7 +94,7 @@ sys_thread * sys_thread_pool::get(pthread_t pthread)
 */
 
 
-bool TranslateMessage(LPMESSAGE lpmessage)
+bool TranslateMessage(MESSAGE * lpmessage)
 {
 
    UNREFERENCED_PARAMETER(lpmessage);

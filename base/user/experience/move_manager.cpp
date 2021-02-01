@@ -42,7 +42,7 @@ namespace experience
 
          auto pointCursor = pmouse->m_point;
 
-         ::rect rectWindow;
+         ::rectangle_i32 rectWindow;
 
          m_pframewindow->get_window_rect(rectWindow);
 
@@ -53,7 +53,7 @@ namespace experience
 
          //   auto pointRelative = m_pframewindow->m_windowrect.m_rectRestored.from_point_rate(pointRate);
 
-         //   point pointMove = __point(pointCursor - __point(pointRelative -
+         //   point_i32 pointMove = __point(pointCursor - __point(pointRelative -
          //      m_pframewindow->m_windowrect.m_rectRestored.origin()));
 
          //   m_pframewindow->move_to(pointMove);
@@ -272,7 +272,7 @@ namespace experience
          //u32 dwProcessId;
          //HICON hicon16;
          //HICON hicon48;
-         ::rect rectWindow;
+         ::rectangle_i32 rectWindow;
          ::GetWindowRect(oswindow, &rectWindow);
          HRGN hrgn = ::CreateRectRgnIndirect(&rectWindow);
          ::GetWindowRgn(oswindow, hrgn);
@@ -283,8 +283,8 @@ namespace experience
          ::DeleteObject(hrgn);
          ::DeleteObject(hrgnNew);*/
 
-         ::rect rect;
-         /*      if(g_rgnTotal->GetRgnBox(rect) == NULLREGION)
+         ::rectangle_i32 rectangle;
+         /*      if(g_rgnTotal->GetRgnBox(rectangle) == NULLREGION)
          return FALSE;
          else
          return TRUE;*/
@@ -313,20 +313,20 @@ namespace experience
 
 #endif
 
-      void move_manager::MoveWindow(void * oswindow, const ::point & point)
+      void move_manager::MoveWindow(void * oswindow, const ::point_i32 & point)
       {
 
          __pointer(::user::interaction) pframewindow = System.ui_from_handle(oswindow);
 
 
-         ::rect rectWindow;
+         ::rectangle_i32 rectWindow;
          pframewindow->get_window_rect(rectWindow);
 
 
 #ifdef WINDOWS_DESKTOP
 
-         cslock sl(m_pframewindow->m_pimpl->cs_display());
-         //m_pframewindow->m_rectParentClient.move_to(point64(point));
+         critical_section_lock sl(m_pframewindow->m_pimpl->cs_display());
+         //m_pframewindow->m_rectParentClient.move_to(point_i64(point));
          m_pframewindow->m_pimpl->_001UpdateWindow();
 
 #else

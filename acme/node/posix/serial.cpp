@@ -367,7 +367,7 @@ Serial::SerialImpl::reconfigurePort()
    if (m_stopbits == stopbits_one)
       options.c_cflag &= (tcflag_t)~(CSTOPB);
    else if (m_stopbits == stopbits_one_point_five)
-      // ONE POINT32 FIVE same as TWO.. there is no POSIX support for 1.5
+      // ONE POINT_I32 FIVE same as TWO.. there is no POSIX support for 1.5
       options.c_cflag |= (CSTOPB);
    else if (m_stopbits == stopbits_two)
       options.c_cflag |= (CSTOPB);
@@ -586,7 +586,7 @@ Serial::SerialImpl::read(u8 * buf, size_t size)
       }
    }
 
-   while (bytes_read < size)
+   while (bytes_read < size_i32)
    {
       auto millisRemaining = millisStart.remaining(total_timeout_ms);
       if (millisRemaining <= 0)
@@ -606,7 +606,7 @@ Serial::SerialImpl::read(u8 * buf, size_t size)
          if (size > 1 && m_timeout.m_millisInterByteTimeout == Timeout::max())
          {
             size_t bytes_available = available();
-            if (bytes_available + bytes_read < size)
+            if (bytes_available + bytes_read < size_i32)
             {
                waitByteTimes(size - (bytes_available + bytes_read));
             }
@@ -626,18 +626,18 @@ Serial::SerialImpl::read(u8 * buf, size_t size)
          }
          // Update bytes_read
          bytes_read += static_cast<size_t> (bytes_read_now);
-         // If bytes_read == size then we have read everything we need
-         if (bytes_read == size)
+         // If bytes_read == size_i32 then we have read everything we need
+         if (bytes_read == size_i32)
          {
             break;
          }
-         // If bytes_read < size then we have more to read
-         if (bytes_read < size)
+         // If bytes_read < size_i32 then we have more to read
+         if (bytes_read < size_i32)
          {
             continue;
          }
-         // If bytes_read > size then we have over read, which shouldn't happen
-         if (bytes_read > size)
+         // If bytes_read > size_i32 then we have over read, which shouldn't happen
+         if (bytes_read > size_i32)
          {
             __throw( SerialException("read over read, too many bytes where "
                "read, this shouldn't happen, might be "
@@ -725,17 +725,17 @@ Serial::SerialImpl::write(const u8 * data, size_t length)
             }
             // Update bytes_written
             bytes_written += static_cast<size_t> (bytes_written_now);
-            // If bytes_written == size then we have written everything we need to
+            // If bytes_written == size_i32 then we have written everything we need to
             if (bytes_written == length)
             {
                break;
             }
-            // If bytes_written < size then we have more to write
+            // If bytes_written < size_i32 then we have more to write
             if (bytes_written < length)
             {
                continue;
             }
-            // If bytes_written > size then we have over written, which shouldn't happen
+            // If bytes_written > size_i32 then we have over written, which shouldn't happen
             if (bytes_written > length)
             {
                __throw( SerialException("write over wrote, too many bytes where "

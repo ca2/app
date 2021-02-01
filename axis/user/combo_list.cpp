@@ -163,7 +163,7 @@ namespace user
 
       }
 
-      ::rectd rectClipBox;
+      ::rectangle_f64 rectClipBox;
 
       pgraphics->get_clip_box(&rectClipBox);
 
@@ -181,7 +181,7 @@ namespace user
 
       string strItem;
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       layout().get_client_rect(rectClient, ::user::e_layout_design);
 
@@ -193,7 +193,7 @@ namespace user
 
       pgraphics->fill_rect(rectClient);
 
-      ::rect rectItem;
+      ::rectangle_i32 rectItem;
 
       rectItem = rectClient;
 
@@ -351,7 +351,7 @@ namespace user
 
       string strItem;
 
-      ::sized size;
+      ::size_f64 size;
 
       psize->cx = 0;
 
@@ -996,7 +996,7 @@ namespace user
 
       auto rectClient = get_client_rect();
 
-      ::rect rectItem = rectClient;
+      ::rectangle_i32 rectItem = rectClient;
 
       int iAddUp = 0;
 
@@ -1052,16 +1052,16 @@ namespace user
    }
 
 
-   void combo_list::on_drop_down(const ::rect & rectWindow, const ::size & sizeFull)
+   void combo_list::on_drop_down(const ::rectangle_i32 & rectWindow, const ::size_i32 & sizeFull)
    {
 
-      ::rect rectMonitor;
+      ::rectangle_i32 rectMonitor;
 
       auto psession = Session;
 
       ::index i = psession->get_best_monitor(rectMonitor, rectWindow);
 
-      ::rect rectList;
+      ::rectangle_i32 rectList;
 
       rectList.left = rectWindow.left;
       rectList.right = rectWindow.left + max(rectWindow.width(), sizeFull.cx);
@@ -1080,7 +1080,7 @@ namespace user
 
          rectList.bottom = rectMonitor.bottom - m_iBorder;
 
-         ::rect rectListOver;
+         ::rectangle_i32 rectListOver;
 
          rectListOver.left = rectList.left;
          rectListOver.right = rectList.right;
@@ -1137,7 +1137,7 @@ namespace user
 
          pusersystem->m_puserinteractionOwner = m_pcombo;
 
-         pusersystem->set_rect(::rect(rectList).inflate(m_iBorder));
+         pusersystem->set_rect(::rectangle_i32(rectList).inflate(m_iBorder));
 
          //if (!create_window_ex(pusersystem, i >= 0 ? nullptr : m_pcombo->get_parent()))
          if(!create_host())
@@ -1155,7 +1155,7 @@ namespace user
       else
       {
 
-         place(::rect(rectList).inflate(m_iBorder));
+         place(::rectangle_i32(rectList).inflate(m_iBorder));
 
       }
 

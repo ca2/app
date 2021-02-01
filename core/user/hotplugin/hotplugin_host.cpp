@@ -6,7 +6,7 @@
 #if defined(LINUX) || defined(ANDROID) || defined(APPLEOS) || defined(SOLARIS)
 iptr get_map_failed();
 void my_munmap(void * pcolorref,HANDLE hfile);
-void * my_open_map(const char * psz,HANDLE * pfile,bool bRead,bool bWrite,i64 size);
+void * my_open_map(const char * psz,HANDLE * pfile,bool bRead,bool bWrite,i64 size_i32);
 #endif
 
 
@@ -82,7 +82,7 @@ namespace hotplugin
    }
 
 
-   void host::post_message(const ::id & id, WPARAM wparam, LPARAM lparam)
+   void host::post_message(const ::id & id, wparam wparam, lparam lparam)
 
    {
 
@@ -157,7 +157,7 @@ namespace hotplugin
    }
 
 
-   void host::on_paint(::draw2d::graphics_pointer & pgraphics,const ::rect & rect)
+   void host::on_paint(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangle)
 
    {
 
@@ -168,7 +168,7 @@ namespace hotplugin
          {
             //::u32 dwTime1= ::millis::now();
 
-            m_pplugin->on_paint(pgraphics, rect);
+            m_pplugin->on_paint(pgraphics, rectangle);
 
             //::u32 dwTime9= ::millis::now();
 
@@ -184,7 +184,7 @@ namespace hotplugin
       else
       {
 
-         plugin::on_paint(pgraphics, rect);
+         plugin::on_paint(pgraphics, rectangle);
 
 
       }
@@ -276,7 +276,7 @@ namespace hotplugin
 
       {
 
-         __pointer(::mutex) pmutex = __new(::mutex(e_create_new, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
+         ::mutex pmutex = __new(::mutex(e_create_new, "Global\\::ca::account::ca2_spa::7807e510-5579-11dd-ae16-0800200c7784"));
 
          if(::get_last_error() == ERROR_ALREADY_EXISTS)
          {
@@ -465,10 +465,10 @@ namespace hotplugin
    }
 
 
-   void host::set_bitmap(::draw2d::graphics_pointer & pgraphics,const ::rect & rect)
+   void host::set_bitmap(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangle)
    {
 
-      ensure_bitmap_data(rect.size(), false);
+      ensure_bitmap_data(rectangle.size(), false);
 
       if (!m_memorymapBitmap.is_mapped())
       {
@@ -479,7 +479,7 @@ namespace hotplugin
 
       sync_lock ml(m_pmutexBitmap);
 
-      m_sizeBitmap = abs(rect.size());
+      m_sizeBitmap = abs(rectangle.size());
 
 
       try
@@ -495,7 +495,7 @@ namespace hotplugin
 
          //g->create_from_bitmap(b);
 
-         //g.bit_blt(0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy, pgraphics, prect.left, prect.top);
+         //g.bit_blt(0, 0, m_sizeBitmap.cx, m_sizeBitmap.cy, pgraphics, prectangle.left, prectangle.top);
 
 
       }
@@ -509,17 +509,17 @@ namespace hotplugin
    }
 
 
-   void host::paint_bitmap(::draw2d::graphics_pointer & pgraphics,const ::rect & rect)
+   void host::paint_bitmap(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangle)
    {
 
-      ensure_bitmap_data(rect, false);
+      ensure_bitmap_data(rectangle, false);
 
       if(!m_memorymapBitmap.is_mapped())
          return;
 
       sync_lock ml(m_pmutexBitmap);
 
-      m_sizeBitmap = abs(rect.size());
+      m_sizeBitmap = abs(rectangle.size());
 
       try
       {
@@ -534,7 +534,7 @@ namespace hotplugin
 
          //g.create_from_bitmap(b);
 
-         //pgraphics.bit_blt(prect.left, prect.top, m_sizeBitmap.cx, m_sizeBitmap.cy, g, 0, 0);
+         //pgraphics.bit_blt(prectangle.left, prectangle.top, m_sizeBitmap.cx, m_sizeBitmap.cy, g, 0, 0);
 
 
       }
@@ -548,12 +548,12 @@ namespace hotplugin
    }
 
 
-   void host::blend_bitmap(::draw2d::graphics_pointer & pgraphics,const ::rect & rectOut)
+   void host::blend_bitmap(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectOut)
    {
 
-      auto rect = get_window_rect();
+      auto rectangle_i32 = get_window_rect();
 
-      m_sizeBitmap = abs(rect.size());
+      m_sizeBitmap = abs(rectangle.size());
 
       ensure_bitmap_data(m_sizeBitmap, false);
 
@@ -575,7 +575,7 @@ namespace hotplugin
 
       ::memcpy_dup(m_pimage->colorref(), m_memorymapBitmap.get_data(), (size_t) (m_pimage->area() * sizeof(color32_t)));
 
-      pgraphics->draw((const POINT32 *) &rectOut, m_sizeBitmap, m_pimage->g());
+      pgraphics->draw((const POINT_I32 *) &rectOut, m_sizeBitmap, m_pimage->g());
 
 
    }
@@ -587,20 +587,20 @@ namespace hotplugin
    }
 
 
-   //bool host::get_window_rect(RECT64 * prect)
+   //bool host::get_window_rect(RECTANGLE_I64 * prectangle)
    //{
 
-   //   ::copy(prect, m_rectWindow);
+   //   ::copy(prectangle, m_rectWindow);
 
    //   return true;
 
    //}
 
 
-   //bool host::get_client_rect(RECT64 * prect)
+   //bool host::get_client_rect(RECTANGLE_I64 * prectangle)
    //{
 
-   //   ::copy(prect,m_rectClient);
+   //   ::copy(prectangle,m_rectClient);
 
    //   return true;
 
@@ -625,7 +625,7 @@ namespace hotplugin
    }
 
 
-   void host::plugin_message_handler(const ::id & id,WPARAM wparam,LPARAM lparam, bool bEnsureTx)
+   void host::plugin_message_handler(const ::id & id,wparam wparam,lparam lparam, bool bEnsureTx)
 
    {
 

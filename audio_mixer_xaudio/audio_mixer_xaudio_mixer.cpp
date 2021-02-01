@@ -343,7 +343,7 @@ namespace multimedia
 
       }
 
-      bool audio_mixer::OnCommand(WPARAM wparam, LPARAM lparam)
+      bool audio_mixer::OnCommand(wparam wparam, lparam lparam)
       {
 
          __pointer(::multimedia::audio_mixer_mmsystem::device) device = m_pdevice;

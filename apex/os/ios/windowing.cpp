@@ -8,7 +8,7 @@
 #include "oswindow_data.h"
 
 
-mutex * g_pmutexOsWindowData = nullptr;
+::mutex * g_pmutexOsWindowData = nullptr;
 
 //::user::interaction * get_system_window_interaction(::os_system_window * psystemwindow)
 //{
@@ -597,7 +597,7 @@ void os_term_windowing()
 // }
 
 
-int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int iMargin)
+int_bool point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, int iMargin)
 {
 
    return abs(ptHitTest.x) < iMargin && abs(ptHitTest.y) < iMargin;

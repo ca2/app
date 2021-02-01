@@ -34,7 +34,7 @@ chldstatus_map * g_ppid = nullptr;
 critical_section * get_pid_cs()
 {
 
-   cslock cs(::acme::g_pcsGlobal);
+   critical_section_lock cs(::acme::g_pcsGlobal);
 
    if(g_pcsPid2 == nullptr)
    {
@@ -54,7 +54,7 @@ critical_section * get_pid_cs()
 chldstatus get_chldstatus(int iPid)
 {
 
-   cslock sl(get_pid_cs());
+   critical_section_lock sl(get_pid_cs());
 
    return g_ppid->operator[](iPid);
 
@@ -95,7 +95,7 @@ void ansios_sigchld_handler(int sig)
 
       {
 
-         cslock sl(get_pid_cs());
+         critical_section_lock sl(get_pid_cs());
 
          auto ppair = g_ppid->plookup(iPid);
 
@@ -257,7 +257,7 @@ namespace apple
 
       {
 
-         cslock sl(get_pid_cs());
+         critical_section_lock sl(get_pid_cs());
 
          status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),e);
 
@@ -830,7 +830,7 @@ auto tickStart = ::millis::now();
 
       {
 
-         cslock sl(get_pid_cs());
+         critical_section_lock sl(get_pid_cs());
 
          status = posix_spawn(&m_iPid,argv[0],&actions,&attr,(char * const *)argv.get_data(),environ);
 

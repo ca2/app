@@ -19,26 +19,26 @@ namespace user
       virtual void _001DrawSubItem(draw_list_item * pdrawitem) override;
 
       using ::user::list::_001HitTest_;
-      virtual bool _001HitTest_(const ::point & point, index&iItem, index&iSubItem) override;
+      virtual bool _001HitTest_(const ::point_i32 & point, index&iItem, index&iSubItem) override;
 
       void _000OnMouse(::message::mouse * pmouse) override;
 
-      void control_get_client_rect(::user::interaction * pinteraction,RECT32 * prect) override;
+      void control_get_client_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle) override;
 
-      void control_get_window_rect(::user::interaction * pinteraction,RECT32 * prect) override;
+      void control_get_window_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle) override;
 
-      bool control_001DisplayHitTest(const ::point & point);
+      bool control_001DisplayHitTest(const ::point_i32 & point);
 
       virtual bool _001IsEditing() override;
 
-      virtual bool _001IsPointInside(::user::interaction * pinteraction,point64 ptt) override;
+      virtual bool _001IsPointInside(::user::interaction * pinteraction,point_i64 ptt) override;
 
       virtual void _001OnAddColumn(list_column * pcolumn) override;
 
       virtual void _001HideEditingControls();
       virtual void _001HideControl(::user::interaction * pinteraction);
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
-      //virtual LRESULT _001BaseWndGetProperty(EProperty eprop,LPARAM lparam) override;
+      //virtual LRESULT _001BaseWndGetProperty(EProperty eprop,lparam lparam) override;
 
       void _001UpdateColumns() override;
       ::user::interaction * _001GetEditControl();

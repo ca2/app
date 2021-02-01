@@ -1,7 +1,7 @@
 #pragma once
 
 
-inline bool get_bounding_rect(RECT32 * prectBounding, const ::arc* parc)
+inline bool get_bounding_rect(RECTANGLE_I32 * prectBounding, const ::arc* parc)
 {
 
    prectBounding->left = (::i32) (parc->m_pointCenter.x - parc->m_sizeRadius.cx);
@@ -14,7 +14,7 @@ inline bool get_bounding_rect(RECT32 * prectBounding, const ::arc* parc)
 }
 
 
-inline bool get_bounding_rect(RECTD * prectBounding, const ::arc * parc)
+inline bool get_bounding_rect(RECTANGLE_F64 * prectBounding, const ::arc * parc)
 {
 
    prectBounding->left = parc->m_pointCenter.x - parc->m_sizeRadius.cx;
@@ -27,7 +27,7 @@ inline bool get_bounding_rect(RECTD * prectBounding, const ::arc * parc)
 }
 
 
-inline bool get_bounding_rect(RECT32* prectBounding, const line * pline)
+inline bool get_bounding_rect(RECTANGLE_I32* prectBounding, const line * pline)
 {
 
    prectBounding->left = min(pline->m_p1.x, pline->m_p2.x);
@@ -40,7 +40,7 @@ inline bool get_bounding_rect(RECT32* prectBounding, const line * pline)
 }
 
 
-inline bool get_bounding_rect(RECTD* prectBounding, const line* pline)
+inline bool get_bounding_rect(RECTANGLE_F64* prectBounding, const line* pline)
 {
 
    prectBounding->left = min(pline->m_p1.x, pline->m_p2.x);
@@ -53,7 +53,7 @@ inline bool get_bounding_rect(RECTD* prectBounding, const line* pline)
 }
 
 
-inline bool get_bounding_rect(RECT32* prectBounding, const lined* pline)
+inline bool get_bounding_rect(RECTANGLE_I32* prectBounding, const lined* pline)
 {
 
    prectBounding->left = (::i32)min(pline->m_p1.x, pline->m_p2.x);
@@ -66,7 +66,7 @@ inline bool get_bounding_rect(RECT32* prectBounding, const lined* pline)
 }
 
 
-inline bool get_bounding_rect(RECTD* prectBounding, const lined* pline)
+inline bool get_bounding_rect(RECTANGLE_F64* prectBounding, const lined* pline)
 {
 
    prectBounding->left = min(pline->m_p1.x, pline->m_p2.x);
@@ -79,80 +79,80 @@ inline bool get_bounding_rect(RECTD* prectBounding, const lined* pline)
 }
 
 
-inline bool get_bounding_rect(RECT32 * prectBounding, const RECT32 * prect)
+inline bool get_bounding_rect(RECTANGLE_I32 * prectBounding, const RECTANGLE_I32 * prectangle)
 {
 
-   copy(prectBounding, prect);
+   copy(prectBounding, prectangle);
 
    return true;
 
 }
 
 
-inline bool get_bounding_rect(RECTD* prectBounding, const RECT32 * prect)
+inline bool get_bounding_rect(RECTANGLE_F64* prectBounding, const RECTANGLE_I32 * prectangle)
 {
 
-   copy(prectBounding, prect);
+   copy(prectBounding, prectangle);
 
    return true;
 
 }
 
 
-inline bool get_bounding_rect(RECT32* prectBounding, const RECTD * prect)
+inline bool get_bounding_rect(RECTANGLE_I32* prectBounding, const RECTANGLE_F64 * prectangle)
 {
 
-   copy(prectBounding, prect);
+   copy(prectBounding, prectangle);
 
    return true;
 
 }
 
 
-inline bool get_bounding_rect(RECTD* prectBounding, const RECTD * prect)
+inline bool get_bounding_rect(RECTANGLE_F64* prectBounding, const RECTANGLE_F64 * prectangle)
 {
 
-   copy(prectBounding, prect);
+   copy(prectBounding, prectangle);
 
    return true;
 
 }
 
 
-inline bool get_bounding_rect(RECT32* prectBounding, const oval* prect)
+inline bool get_bounding_rect(RECTANGLE_I32* prectBounding, const oval* prectangle)
 {
 
-   copy(prectBounding, prect);
+   copy(prectBounding, prectangle);
 
    return true;
 
 }
 
 
-inline bool get_bounding_rect(RECTD* prectBounding, const oval* prect)
+inline bool get_bounding_rect(RECTANGLE_F64* prectBounding, const oval* prectangle)
 {
 
-   copy(prectBounding, prect);
+   copy(prectBounding, prectangle);
 
    return true;
 
 }
 
 
-inline bool get_bounding_rect(RECT32* prectBounding, const ovald* prect)
+inline bool get_bounding_rect(RECTANGLE_I32* prectBounding, const ovald* prectangle)
 {
 
-   copy(prectBounding, prect);
+   copy(prectBounding, prectangle);
 
    return true;
 
 }
 
 
-inline bool get_bounding_rect(RECTD* prectBounding, const ovald* prect)
+inline bool get_bounding_rect(RECTANGLE_F64* prectBounding, const ovald* prectangle)
 {
 
-   copy(prectBounding, prect);
+   copy(prectBounding, prectangle);
 
    return true;
 

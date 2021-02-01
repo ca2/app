@@ -12,9 +12,9 @@ string get_error_message(::u32 dwError);
 
 
 CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, ::message::message * pmessage);
-CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
-int_bool mq_peek_message(LPMESSAGE lpMsg,oswindow hWnd,::u32 wMsgFilterMin,::u32 wMsgFilterMax,::u32 wRemoveMsg);
-int_bool mq_get_message(LPMESSAGE lpMsg,oswindow hWnd,::u32 wMsgFilterMin,::u32 wMsgFilterMax);
+CLASS_DECL_AXIS void __trace_message(const char * lpszPrefix, MESSAGE * lpmsg);
+int_bool mq_peek_message(MESSAGE * lpMsg,oswindow hWnd,::u32 wMsgFilterMin,::u32 wMsgFilterMax,::u32 wRemoveMsg);
+int_bool mq_get_message(MESSAGE * lpMsg,oswindow hWnd,::u32 wMsgFilterMin,::u32 wMsgFilterMax);
 i32 CLASS_DECL_AXIS __mac_main(i32 argc, char * argv[]);
 
 

@@ -34,7 +34,7 @@ namespace user
 
       ::draw2d::graphics_pointer pgraphics = pdrawitem->m_pgraphics;
 
-      ::rect rectColumn = pdrawitem->rcItem;
+      ::rectangle_i32 rectColumn = pdrawitem->rcItem;
 
       i32 iColumn = pdrawitem->itemID;
 
@@ -43,24 +43,24 @@ namespace user
       if (plist->m_columna.get_visible(iColumn)->m_pimageHeader->is_set() && plist->m_columna.get_visible(iColumn)->m_pimageHeader->area() > 0)
       {
 
-         ::rect rect;
+         ::rectangle_i32 rectangle;
 
-         rect.left = 0;
-         rect.top = 0;
-         rect.right = plist->m_columna.get_visible(iColumn)->m_pimageHeader->width();
-         rect.bottom = plist->m_columna.get_visible(iColumn)->m_pimageHeader->height();
+         rectangle.left = 0;
+         rectangle.top = 0;
+         rectangle.right = plist->m_columna.get_visible(iColumn)->m_pimageHeader->width();
+         rectangle.bottom = plist->m_columna.get_visible(iColumn)->m_pimageHeader->height();
 
-         ::rect rC;
+         ::rectangle_i32 rC;
 
          rC = rectColumn;
 
          rC.left += 2;
 
-         rect.Align(::e_align_left_center, rC);
+         rectangle.Align(::e_align_left_center, rC);
 
-         pgraphics->stretch(rect, plist->m_columna.get_visible(iColumn)->m_pimageHeader->get_graphics());
+         pgraphics->stretch(rectangle, plist->m_columna.get_visible(iColumn)->m_pimageHeader->get_graphics());
 
-         rectColumn.left = rect.right + m_iImageSpacing;
+         rectColumn.left = rectangle.right + m_iImageSpacing;
 
       }
 
@@ -120,7 +120,7 @@ namespace user
    }
 
 
-   bool list_header::GetItemRect(RECT32 * prect, enum_element eelement, index iItem)
+   bool list_header::GetItemRect(RECTANGLE_I32 * prectangle, enum_element eelement, index iItem)
 
    {
 
@@ -153,31 +153,31 @@ namespace user
          }
       }
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      get_client_rect(rect);
-      rect.left = xLast;
-      rect.right = x;
+      get_client_rect(rectangle);
+      rectangle.left = xLast;
+      rectangle.right = x;
 
       if(eelement == e_element_item)
       {
-         *prect = rect;
+         *prectangle = rectangle_i32;
 
          return true;
       }
 
       if(eelement == element_item_Box)
       {
-         rect.right -= GetDividerWidth();
-         *prect = rect;
+         rectangle.right -= GetDividerWidth();
+         *prectangle = rectangle_i32;
 
          return true;
       }
 
       if(eelement == ElementDivider)
       {
-         rect.left = rect.right - GetDividerWidth();
-         *prect = rect;
+         rectangle.left = rectangle.right - GetDividerWidth();
+         *prectangle = rectangle_i32;
 
          return true;
       }
@@ -185,7 +185,7 @@ namespace user
    }
 
    bool list_header::GetItemRect(
-   RECT32 * prect,
+   RECTANGLE_I32 * prectangle,
 
    enum_element eelementLButtonDown,
    index iItemLButtonDown,
@@ -204,58 +204,58 @@ namespace user
       {
          if(iItem == iItemLButtonDown)
          {
-            ::rect rectA;
+            ::rectangle_i32 rectA;
             if(!GetItemRect(rectA, element_item_Box, iItem - 1))
             {
                GetItemRect(rectA, element_item_Box, iItem);
             }
 
-            ::rect rect;
-            GetItemRect(rect, element_item_Box, iItem);
+            ::rectangle_i32 rectangle;
+            GetItemRect(rectangle, element_item_Box, iItem);
 
-            ::rect rectB;
+            ::rectangle_i32 rectB;
             if(!GetItemRect(rectA, element_item_Box, iItem + 1))
             {
                GetItemRect(rectA, element_item_Box, iItem);
             }
 
-            rect.left = rectA.left + rectA.width() / 2;
-            rect.right = rectB.left + rectB.width() / 2;
-            *prect = rect;
+            rectangle.left = rectA.left + rectA.width() / 2;
+            rectangle.right = rectB.left + rectB.width() / 2;
+            *prectangle = rectangle_i32;
 
             return true;
          }
          else if(iItem <= iItemLButtonDown - 1)
          {
-            ::rect rectA;
+            ::rectangle_i32 rectA;
             if(!GetItemRect(rectA, element_item_Box, iItem - 1))
             {
                GetItemRect(rectA, element_item_Box, iItem);
             }
 
-            ::rect rect;
-            GetItemRect(rect, element_item_Box, iItem);
+            ::rectangle_i32 rectangle;
+            GetItemRect(rectangle, element_item_Box, iItem);
 
-            rect.left = rectA.left + rectA.width() / 2;
-            rect.right = rect.left + rect.width() / 2;
-            *prect = rect;
+            rectangle.left = rectA.left + rectA.width() / 2;
+            rectangle.right = rectangle.left + rectangle.width() / 2;
+            *prectangle = rectangle_i32;
 
             return true;
          }
          else if(iItem >= iItemLButtonDown + 1)
          {
-            ::rect rectB;
+            ::rectangle_i32 rectB;
             if(!GetItemRect(rectB, element_item_Box, iItem + 1))
             {
                GetItemRect(rectB, element_item_Box, iItem);
             }
 
-            ::rect rect;
-            GetItemRect(rect, element_item_Box, iItem);
+            ::rectangle_i32 rectangle;
+            GetItemRect(rectangle, element_item_Box, iItem);
 
-            rect.left = rect.left + rect.width() / 2;
-            rect.right = rectB.left + rectB.width() / 2;
-            *prect = rect;
+            rectangle.left = rectangle.left + rectangle.width() / 2;
+            rectangle.right = rectB.left + rectB.width() / 2;
+            *prectangle = rectangle_i32;
 
             return true;
          }
@@ -263,30 +263,30 @@ namespace user
       }
       else
       {
-         return GetItemRect(prect, eelement, iItem);
+         return GetItemRect(prectangle, eelement, iItem);
 
       }
 
    }
 
-   bool list_header::hit_test(const ::point & point, enum_element & eelement, index & iItemParam)
+   bool list_header::hit_test(const ::point_i32 & point, enum_element & eelement, index & iItemParam)
    {
       list * plist = m_plistctrlinterface;
-      ::rect rect;
+      ::rectangle_i32 rectangle;
       for(i32 iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
-         if(GetItemRect(rect, element_item_Box, iItem))
+         if(GetItemRect(rectangle, element_item_Box, iItem))
          {
-            if(rect.contains(point))
+            if(rectangle.contains(point))
             {
                iItemParam = iItem;
                eelement = element_item_Box;
                return true;
             }
          }
-         if(GetItemRect(rect, ElementDivider, iItem))
+         if(GetItemRect(rectangle, ElementDivider, iItem))
          {
-            if(rect.contains(point))
+            if(rectangle.contains(point))
             {
                iItemParam = iItem;
                eelement = ElementDivider;
@@ -297,24 +297,24 @@ namespace user
       return false;
    }
 
-   bool list_header::hit_test(const ::point & point, enum_element eelementLButtonDown, index iItemLButtonDown, enum_element & eelement, index & iItemParam)
+   bool list_header::hit_test(const ::point_i32 & point, enum_element eelementLButtonDown, index iItemLButtonDown, enum_element & eelement, index & iItemParam)
    {
       list * plist = m_plistctrlinterface;
-      ::rect rect;
+      ::rectangle_i32 rectangle;
       for(i32 iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
-         if(GetItemRect(rect, eelementLButtonDown, iItemLButtonDown, element_item_Box, iItem))
+         if(GetItemRect(rectangle, eelementLButtonDown, iItemLButtonDown, element_item_Box, iItem))
          {
-            if(rect.contains(point))
+            if(rectangle.contains(point))
             {
                iItemParam = iItem;
                eelement = element_item_Box;
                return true;
             }
          }
-         if(GetItemRect(rect, ElementDivider, iItem))
+         if(GetItemRect(rectangle, ElementDivider, iItem))
          {
-            if(rect.contains(point))
+            if(rectangle.contains(point))
             {
                iItemParam = iItem;
                eelement = ElementDivider;
@@ -476,10 +476,10 @@ namespace user
             }
             else if(m_eelementLButtonDown == ElementDivider)
             {
-               ::rect rect;
-               GetItemRect(rect, e_element_item, m_iItemLButtonDown);
-               rect.right = pointCursor.x;
-               i32 iNewWidth = rect.width();
+               ::rectangle_i32 rectangle;
+               GetItemRect(rectangle, e_element_item, m_iItemLButtonDown);
+               rectangle.right = pointCursor.x;
+               i32 iNewWidth = rectangle.width();
                plist->_001SetColumnWidth(m_iItemLButtonDown, max(0, iNewWidth));
                plist->set_need_redraw();
                set_need_redraw();
@@ -532,10 +532,10 @@ namespace user
       {
          if(m_eelementLButtonDown == ElementDivider)
          {
-            ::rect rect;
-            GetItemRect(rect, e_element_item, m_iItemLButtonDown);
-            rect.right = pointCursor.x;
-            i32 iNewWidth = rect.width();
+            ::rectangle_i32 rectangle;
+            GetItemRect(rectangle, e_element_item, m_iItemLButtonDown);
+            rectangle.right = pointCursor.x;
+            i32 iNewWidth = rectangle.width();
             plist->_001SetColumnWidth(m_iItemLButtonDown, max(0, iNewWidth));
             plist->set_need_redraw();
             set_need_redraw();
@@ -586,11 +586,11 @@ namespace user
       try
       {
 
-         ::rect rectClip;
+         ::rectangle_i32 rectClip;
 
          ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          bool bFirst = true;
 
@@ -617,9 +617,9 @@ namespace user
             
             ::user::interaction * pinteraction = this;
 
-            ::rect rectFocus;
+            ::rectangle_i32 rectFocus;
 
-            ::rect rectIntersect;
+            ::rectangle_i32 rectIntersect;
 
             index i = 0;
 
@@ -628,7 +628,7 @@ namespace user
 
                if (i == 1)
                {
-                  // guess list client rect doesn't include header?
+                  // guess list client rectangle_i32 doesn't include header?
                   pinteraction->::user::interaction::get_client_rect(rectFocus);
 
                }
@@ -678,13 +678,13 @@ namespace user
    {
 
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
-      ::rect rectUpdate(rectClient);
+      ::rectangle_i32 rectUpdate(rectClient);
 
-      ::rectd rectClipBox;
+      ::rectangle_f64 rectClipBox;
 
       pgraphics->get_clip_box(&rectClipBox);
 
@@ -708,12 +708,12 @@ namespace user
       ::draw2d::item drawitem;
       drawitem.m_pgraphics = pgraphics;
       list * plist = m_plistctrlinterface;
-      ::rect rectDivider;
-      ::draw2d::pen_pointer point(e_create);
+      ::rectangle_i32 rectDivider;
+      ::draw2d::pen_pointer point_i32(e_create);
 
       auto color = get_color(pstyle, ::user::e_element_separator);
 
-      point->create_solid(1.0, color);
+      point_i32->create_solid(1.0, color);
 
       for(i32 iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
@@ -745,7 +745,7 @@ namespace user
    }
 
 
-   ::point list_header::get_parent_viewport_offset() const
+   ::point_i32 list_header::get_parent_viewport_offset() const
    {
 
       __pointer(::user::interaction) puser = get_parent();

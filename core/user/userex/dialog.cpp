@@ -171,7 +171,7 @@ void dialog::EndModalLoop(id idResult)
 void dialog::on_position_parent_frame()
 {
 
-   ::rect rectOpen;
+   ::rectangle_i32 rectOpen;
 
    m_pframe->best_monitor(rectOpen);
 

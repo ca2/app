@@ -86,7 +86,7 @@ namespace sockets
       virtual void set_logger(::apex::log * plog);
 
       /** Log error to log class for print out / storage. */
-      //virtual void log(base_socket *point,const string & user_text,int err,const string & sys_err, enum_trace_level elevel = e_trace_level_warning);
+      //virtual void log(base_socket *point_i32,const string & user_text,int err,const string & sys_err, enum_trace_level elevel = e_trace_level_warning);
 
       // -------------------------------------------------------------------------
       // socket stuff
@@ -119,8 +119,8 @@ namespace sockets
       virtual bool socket_get_run() const;
 
       /** Override and return false to deny all incoming connections.
-      \lparam point listen_socket class pointer (use GetPort to identify which one) */
-      virtual bool OkToAccept(base_socket *point) = 0;
+      \lparam point_i32 listen_socket class pointer (use GetPort to identify which one) */
+      virtual bool OkToAccept(base_socket *point_i32) = 0;
 
       /** Called by socket when a socket changes state. */
       virtual void AddList(SOCKET s,list_t which_one,bool add) = 0;

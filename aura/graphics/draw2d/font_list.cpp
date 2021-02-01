@@ -36,7 +36,7 @@ namespace draw2d
       m_iSelUpdateId = -1;
 
       m_puserinteraction = nullptr;
-      m_rectMargin = rect(5, 5, 5, 5);
+      m_rectMargin = rectangle_i32(5, 5, 5, 5);
       m_iSel = -1;
       m_iHover = -1;
 
@@ -153,7 +153,7 @@ namespace draw2d
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      ::rect rectClient = pgraphics->m_puserinteraction->get_client_rect();
+      ::rectangle_i32 rectClient = pgraphics->m_puserinteraction->get_client_rect();
 
       rectClient += pgraphics->m_puserinteraction->get_viewport_offset();
 
@@ -200,7 +200,7 @@ namespace draw2d
 
          }
 
-         if (!pbox->m_rect.intersects(rectClient))
+         if (!pbox->m_rectangle.intersects(rectClient))
          {
 
             continue;
@@ -214,7 +214,7 @@ namespace draw2d
 
          }
 
-         pgraphics->draw(pbox->m_rect, pbox->m_pimage);
+         pgraphics->draw(pbox->m_rectangle, pbox->m_pimage);
 
       }
 
@@ -242,7 +242,7 @@ namespace draw2d
 
             }
 
-            pgraphics->draw(pbox->m_rect, pbox->m_pimage);
+            pgraphics->draw(pbox->m_rectangle, pbox->m_pimage);
 
          }
 
@@ -272,7 +272,7 @@ namespace draw2d
 
             }
 
-            pgraphics->draw(pbox->m_rect, pbox->m_pimage);
+            pgraphics->draw(pbox->m_rectangle, pbox->m_pimage);
 
          }
 
@@ -290,7 +290,7 @@ namespace draw2d
 
       auto plistdata = m_plistdata;
 
-      ::rect rectClient = pgraphics->m_puserinteraction->get_client_rect();
+      ::rectangle_i32 rectClient = pgraphics->m_puserinteraction->get_client_rect();
 
       rectClient += pgraphics->m_puserinteraction->get_viewport_offset();
 
@@ -324,9 +324,9 @@ namespace draw2d
 
          text_box * pbox = &plistdata->element_at(i)->m_box[iBox];
 
-         rect rect = pbox->m_rect;
+         rectangle_i32 rectangle = pbox->m_rectangle;
 
-         rect.right = rect.left + m_size.cx;
+         rectangle.right = rectangle.left + m_size.cx;
 
          if (!pbox->m_bOk)
          {
@@ -335,7 +335,7 @@ namespace draw2d
 
          }
 
-         if (!rectClient.intersects(rect))
+         if (!rectClient.intersects(rectangle))
          {
 
             if (bIntersected)
@@ -349,7 +349,7 @@ namespace draw2d
 
          }
 
-         if (bCheckHover && rect.contains_y(pointCursor.y))
+         if (bCheckHover && rectangle.contains_y(pointCursor.y))
          {
 
             pgraphics->m_puserinteraction->m_itemHover = __new(::user::item({ ::user::e_element_item, i }));
@@ -368,13 +368,13 @@ namespace draw2d
             if (!bCheckHover && i == m_iHover)
             {
 
-               pgraphics->fill_rect(rect, pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::e_element_background, ::user::e_state_selected | ::user::e_state_hover));
+               pgraphics->fill_rect(rectangle, pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::e_element_background, ::user::e_state_selected | ::user::e_state_hover));
 
             }
             else
             {
 
-               pgraphics->fill_rect(rect, pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::e_element_background, ::user::e_state_selected));
+               pgraphics->fill_rect(rectangle, pgraphics->m_puserinteraction->get_color(pgraphics->m_puserstyle, ::user::e_element_background, ::user::e_state_selected));
 
             }
 
@@ -386,11 +386,11 @@ namespace draw2d
 
             int iA = colorref_get_a_value(cr);
 
-            pgraphics->fill_rect(rect, cr);
+            pgraphics->fill_rect(rectangle, cr);
 
          }
 
-         pgraphics->draw(pbox->m_rect, pbox->m_pimage);
+         pgraphics->draw(pbox->m_rectangle, pbox->m_pimage);
 
       }
 
@@ -437,7 +437,7 @@ namespace draw2d
 
          sl.unlock();
 
-         ::sized s;
+         ::size_f64 s;
 
          string strText = m_strTextLayout;
 
@@ -495,7 +495,7 @@ namespace draw2d
 
                ::e_char_set echarsetFound = pbox->m_pfont->get_char_set(pgraphics);
 
-               size sSample;
+               size_i32 sSample;
 
                if (maxarea <= 0)
                {
@@ -962,9 +962,9 @@ namespace draw2d
 
          string strText = m_strTextLayout;
 
-         size s;
+         size_i32 s;
 
-         ::rect rect;
+         ::rectangle_i32 rectangle;
 
          __pointer(font_list_item) pitem;
 
@@ -1090,9 +1090,9 @@ namespace draw2d
 
             string strText = m_strTextLayout;
 
-            size s;
+            size_i32 s;
 
-            ::rect rect;
+            ::rectangle_i32 rectangle;
 
             for (index i = iStart; i < iCount && ::thread_get_run(); i += iScan)
             {
@@ -1147,7 +1147,7 @@ namespace draw2d
 
       sync_lock sl(mutex());
 
-      ::size sizeTotal;
+      ::size_i32 sizeTotal;
 
       if (m_etype == type_wide)
       {
@@ -1174,7 +1174,7 @@ namespace draw2d
    }
 
 
-   ::size font_list::layout_wide()
+   ::size_i32 font_list::layout_wide()
    {
 
       if (::is_null(m_puserinteraction))
@@ -1188,7 +1188,7 @@ namespace draw2d
 
       sync_lock sl(mutex());
 
-      ::size sizeTotal;
+      ::size_i32 sizeTotal;
 
       bool bIntersected = false;
 
@@ -1196,7 +1196,7 @@ namespace draw2d
 
       string strText = m_strTextLayout;
 
-      size s;
+      size_i32 s;
 
       int iMargin = 40;
 
@@ -1216,7 +1216,7 @@ namespace draw2d
 
       sizeTotal.cx = m_rectClient.width();
 
-      ::rect rectClient = m_puserinteraction->get_client_rect();
+      ::rectangle_i32 rectClient = m_puserinteraction->get_client_rect();
 
       rectClient += m_puserinteraction->get_viewport_offset();
 
@@ -1262,9 +1262,9 @@ namespace draw2d
 
          }
 
-         size & s = pitem->m_box[0].m_size;
+         size_i32 & s = pitem->m_box[0].m_size;
 
-         rect & rect = pitem->m_box[0].m_rect;
+         rectangle_i32 & rectangle = pitem->m_box[0].m_rectangle;
 
          x += iPadding;
 
@@ -1287,7 +1287,7 @@ namespace draw2d
 
                   font_list_item * pitem2 = plistdata->element_at(j);
 
-                  ::rect & rect2 = pitem2->m_box[0].m_rect;
+                  ::rectangle_i32 & rect2 = pitem2->m_box[0].m_rectangle;
 
                   rect2.offset_x(iOffset);
 
@@ -1313,15 +1313,15 @@ namespace draw2d
 
          //pgraphics->text_out(x + m_rectMargin.left,y + m_rectMargin.top,strText);
 
-         rect.left = x;
+         rectangle.left = x;
 
-         rect.top = y;
+         rectangle.top = y;
 
-         rect.right = rect.left + s.cx;
+         rectangle.right = rectangle.left + s.cx;
 
-         rect.bottom = rect.top + s.cy;
+         rectangle.bottom = rectangle.top + s.cy;
 
-         if (rect.intersects(rectClient))
+         if (rectangle.intersects(rectClient))
          {
 
             bIntersected = true;
@@ -1354,31 +1354,31 @@ namespace draw2d
 
          font_list_item * pitem = plistdata->element_at(i);
 
-         size & s = pitem->m_box[0].m_size;
+         size_i32 & s = pitem->m_box[0].m_size;
 
-         rect & rect = pitem->m_box[0].m_rect;
+         rectangle_i32 & rectangle = pitem->m_box[0].m_rectangle;
 
          for (index j = 1; j < 3; j++)
          {
 
             auto & size2 = pitem->m_box[j].m_size;
-            auto & rect2 = pitem->m_box[j].m_rect;
+            auto & rect2 = pitem->m_box[j].m_rectangle;
 
             int dw = (size2.cx - s.cx) / 2;
             int dh = (size2.cy - s.cy) / 2;
 
-            int x = m_rectClient.center_x() - rect.center_x();
+            int x = m_rectClient.center_x() - rectangle.center_x();
 
             if (x > 0)
             {
 
-               x = m_rectClient.center_x() - rect.left;
+               x = m_rectClient.center_x() - rectangle.left;
 
             }
             else
             {
 
-               x = m_rectClient.center_x() - rect.right;
+               x = m_rectClient.center_x() - rectangle.right;
 
             }
 
@@ -1394,7 +1394,7 @@ namespace draw2d
                rect2.right = m_rectClient.center_x()- x;
                rect2.left = rect2.right - size2.cx;
             }
-            rect2.top = rect.top - dh;
+            rect2.top = rectangle.top - dh;
             rect2.bottom = rect2.top + size2.cy;
 
             hExtra = max(hExtra, size2.cy);
@@ -1410,16 +1410,16 @@ namespace draw2d
    }
 
 
-   ::size font_list::layout_single_column()
+   ::size_i32 font_list::layout_single_column()
    {
 
       sync_lock sl(mutex());
 
-      ::size sizeTotal;
+      ::size_i32 sizeTotal;
 
       string strText = m_strTextLayout;
 
-      size s;
+      size_i32 s;
 
       int h = 0;
 
@@ -1444,18 +1444,18 @@ namespace draw2d
 
          }
 
-         size & s = pitem->m_box[0].m_size;
+         size_i32 & s = pitem->m_box[0].m_size;
 
-         rect & rect = pitem->m_box[0].m_rect;
+         rectangle_i32 & rectangle = pitem->m_box[0].m_rectangle;
 
 
 
-         pitem->m_box[0].m_rect.left = xSingleColumn;
-         pitem->m_box[0].m_rect.top = ySingleColumn;
-         pitem->m_box[0].m_rect.right = xSingleColumn + s.cx;
-         pitem->m_box[0].m_rect.bottom = ySingleColumn + s.cy;
+         pitem->m_box[0].m_rectangle.left = xSingleColumn;
+         pitem->m_box[0].m_rectangle.top = ySingleColumn;
+         pitem->m_box[0].m_rectangle.right = xSingleColumn + s.cx;
+         pitem->m_box[0].m_rectangle.bottom = ySingleColumn + s.cy;
 
-         sizeTotal.cx = max(m_size.cx, pitem->m_box[0].m_rect.right + 4);
+         sizeTotal.cx = max(m_size.cx, pitem->m_box[0].m_rectangle.right + 4);
 
          ySingleColumn += s.cy;
 
@@ -1471,7 +1471,7 @@ namespace draw2d
 
 
 
-   ::user::item font_list::hit_test(const ::point& point)
+   ::user::item font_list::hit_test(const ::point_i32& point)
    {
 
       sync_lock sl(mutex());
@@ -1492,7 +1492,7 @@ namespace draw2d
    }
 
 
-   ::user::item font_list::hit_test_wide(const ::point & point)
+   ::user::item font_list::hit_test_wide(const ::point_i32 & point)
    {
 
       sync_lock sl(mutex());
@@ -1509,7 +1509,7 @@ namespace draw2d
       if (m_iHover >= 0)
       {
 
-         if (plistdata->element_at(m_iHover)->m_box[BOX_HOVER].m_rect.contains(point))
+         if (plistdata->element_at(m_iHover)->m_box[BOX_HOVER].m_rectangle.contains(point))
          {
 
             return ::user::item(::user::e_element_item, m_iHover);
@@ -1528,7 +1528,7 @@ namespace draw2d
 
          }
 
-         if (plistdata->element_at(iItem)->m_box[BOX].m_rect.contains(point))
+         if (plistdata->element_at(iItem)->m_box[BOX].m_rectangle.contains(point))
          {
 
             return ::user::item(::user::e_element_item, iItem);
@@ -1542,7 +1542,7 @@ namespace draw2d
    }
 
 
-   ::user::item font_list::hit_test_single_column(const ::point & point)
+   ::user::item font_list::hit_test_single_column(const ::point_i32 & point)
    {
 
       sync_lock sl(mutex());
@@ -1566,11 +1566,11 @@ namespace draw2d
 
          }
 
-         rect rect(plistdata->element_at(iItem)->m_box[BOX].m_rect);
+         rectangle_i32 rectangle(plistdata->element_at(iItem)->m_box[BOX].m_rectangle);
 
-         rect.right = rect.left + m_size.cx;
+         rectangle.right = rectangle.left + m_size.cx;
 
-         if (rect.contains(point))
+         if (rectangle.contains(point))
          {
 
             return { ::user::e_element_item, iItem };
@@ -1633,7 +1633,7 @@ namespace draw2d
 
       }
 
-      *lprect = plistdata->element_at(i)->m_box[BOX].m_rect;
+      *lprect = plistdata->element_at(i)->m_box[BOX].m_rectangle;
 
       return true;
 
@@ -1668,7 +1668,7 @@ namespace draw2d
 
       }
 
-      *lprect = plistdata->element_at(i)->m_box[BOX].m_rect;
+      *lprect = plistdata->element_at(i)->m_box[BOX].m_rectangle;
 
       lprect->right = lprect->left + m_size.cx;
 
@@ -1677,17 +1677,17 @@ namespace draw2d
    }
 
 
-   void font_list::set_client_rect(LPCRECT32 lpcrect)
+   void font_list::set_client_rect(const RECTANGLE_I32 * lpcrect)
    {
 
-      ::rect rect(lpcrect);
+      ::rectangle_i32 rectangle(lpcrect);
 
-      if (rect != m_rectClient)
+      if (rectangle_i32 != m_rectClient)
       {
 
-         ::size sizeOld(m_rectClient.size());
+         ::size_i32 sizeOld(m_rectClient.size());
 
-         ::size sizeNew(rect.size());
+         ::size_i32 sizeNew(rectangle.size());
 
          m_rectClient = *lpcrect;
 

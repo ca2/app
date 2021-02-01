@@ -34,16 +34,16 @@ namespace draw2d_cairo
 
       bool dc_select(bool bSelect = true) override;
 
-      virtual ::e_status create(const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false) override;
+      virtual ::e_status create(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false) override;
       virtual ::e_status create(::draw2d::graphics * pgraphics) override;
       virtual bool destroy() override;
 
 
       virtual bool on_host_read_pixels(const ::pixmap * ppixmap) override;
       //virtual bool stretch(const ::image * pimage) override;
-      virtual bool _draw_raw(const ::rect & rect, ::image * pimage, const ::point & point = ::point()) override;
+      virtual bool _draw_raw(const ::rectangle_i32 & rectangle, ::image * pimage, const ::point_i32 & point = ::point_i32()) override;
 
-      //bool to(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc) override;
+      //bool to(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, const ::point_i32 & pointSrc) override;
       virtual ::e_status SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy) override;
 
 
@@ -51,7 +51,7 @@ namespace draw2d_cairo
       virtual ::stream & read(::stream & stream) override;
 
 
-      virtual bool blend(const ::point & ptDst, ::image * pimageAlf, const ::point & pointAlf, const ::size & size, byte bA) override;
+      virtual bool blend(const ::point_i32 & ptDst, ::image * pimageAlf, const ::point_i32 & pointAlf, const ::size_i32 & size, byte bA) override;
 
 
    };

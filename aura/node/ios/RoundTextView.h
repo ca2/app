@@ -70,7 +70,7 @@
 
 - (CGRect)caretRectForIndex:(int)index;
 - (CGRect)firstRectForRange:(NSRange)range;
-- (NSInteger)closestIndexToPoint:(CGPoint)point;
+- (NSInteger)closestIndexToPoint:(CGPoint)point_i32;
 
 + (UIColor *)caretColor;
 

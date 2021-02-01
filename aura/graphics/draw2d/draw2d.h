@@ -23,7 +23,7 @@ namespace draw2d
       __pointer(class ::draw2d::api)                           m_papi;
       __pointer(class font_department)                         m_pfontdepartment;
 
-      //__pointer(::mutex)                                        m_pmutexFont;
+      //::mutex                                        m_pmutexFont;
 #ifdef WINDOWS
       __composite(::draw2d_direct2d::plugin)                     m_pplugin;
 #endif
@@ -67,7 +67,7 @@ namespace draw2d
 
       virtual bool embossed_text_out(
       ::draw2d::graphics_pointer & pgraphics,
-      const ::rect & rect,
+      const ::rectangle_i32 & rectangle,
       string strText,
       ::draw2d::fastblur & blur,
       ::image_pointer & imageBlur,
@@ -86,7 +86,7 @@ namespace draw2d
       template < typename PRED >
       bool emboss_pred(
       ::draw2d::graphics_pointer & pgraphics,
-      const ::rect & rect,
+      const ::rectangle_i32 & rectangle,
       PRED pred,
       ::draw2d::fastblur & blur,
       ::image_pointer & imageBlur,

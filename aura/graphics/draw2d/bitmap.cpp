@@ -9,12 +9,12 @@ namespace draw2d
 
    bitmap::bitmap()
    {
-
-#ifdef WINDOWS_DESKTOP
-
-      m_hbitmapGet            = nullptr;
-
-#endif
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      m_hbitmapGet            = nullptr;
+//
+//#endif
 
       m_iStride               = 0;
 
@@ -24,24 +24,24 @@ namespace draw2d
    bitmap::~bitmap()
    {
 
-#ifdef WINDOWS_DESKTOP
-
-      // Implementators (derived classes) should have released or at last nulled m_hbitmapGet to
-      // indicate it is correctly Released through ReleaseHBITMAP
-
-      if(m_hbitmapGet != nullptr)
-      {
-
-         ReleaseHBITMAP(m_hbitmapGet);
-
-      }
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      // Implementators (derived classes) should have released or at last nulled m_hbitmapGet to
+//      // indicate it is correctly Released through ReleaseHBITMAP
+//
+//      if(m_hbitmapGet != nullptr)
+//      {
+//
+//         ReleaseHBITMAP(m_hbitmapGet);
+//
+//      }
+//
+//#endif
 
    }
 
 
-   bool bitmap::CreateBitmap(::draw2d::graphics* pgraphics, const ::size & size,::u32 nPlanes,::u32 nBitcount,const void * pBits,i32 stride)
+   bool bitmap::CreateBitmap(::draw2d::graphics* pgraphics, const ::size_i32 & size,::u32 nPlanes,::u32 nBitcount,const void * pBits,i32 stride)
    {
 
       UNREFERENCED_PARAMETER(size);
@@ -109,7 +109,7 @@ namespace draw2d
 //   }
 
 
-   bool bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size & size,void **ppvBits,int * stride)
+   bool bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32 & size,void **ppvBits,int * stride)
    {
 
       UNREFERENCED_PARAMETER(pgraphics);
@@ -200,12 +200,12 @@ namespace draw2d
    }
 
 
-   //const ::size & size bitmap::SetBitmapDimension(i32 nWidth,i32 nHeight)
+   //const ::size_i32 & size bitmap::SetBitmapDimension(i32 nWidth,i32 nHeight)
    //{
    //   UNREFERENCED_PARAMETER(nWidth);
    //   UNREFERENCED_PARAMETER(nHeight);
    //   ::exception::throw_not_implemented();
-   //   return ::size(0,0);
+   //   return ::size_i32(0,0);
    //}
 
 
@@ -222,7 +222,7 @@ namespace draw2d
       return nullptr;
    }
 
-   //const ::size & size bitmap::set_size(const ::size & size)
+   //const ::size_i32 & size bitmap::set_size(const ::size_i32 & size)
    //{
 
 
@@ -232,19 +232,19 @@ namespace draw2d
    //}
 
 
-   size bitmap::GetBitmapDimension() const
+   size_i32 bitmap::GetBitmapDimension() const
    {
 
       ::exception::throw_not_implemented();
 
-      ::size sizeRet(0,0);
+      ::size_i32 sizeRet(0,0);
 
       return sizeRet;
 
    }
 
 
-   size bitmap::get_size() const
+   size_i32 bitmap::get_size() const
    {
 
       return GetBitmapDimension();
@@ -252,7 +252,7 @@ namespace draw2d
    }
 
 
-   size bitmap::size() const
+   size_i32 bitmap::size() const
    {
 
 

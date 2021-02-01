@@ -642,9 +642,9 @@ namespace file
 
          string::operator  = ((const string &) path);
          *((path_meta *)this) = (const path_meta &)path;
-#ifdef WINDOWS_DESKTOP
-         m_idlist = path.m_idlist;
-#endif
+//#ifdef WINDOWS_DESKTOP
+//         m_idlist = path.m_idlist;
+//#endif
 
       }
 
@@ -791,7 +791,7 @@ namespace file
 
    bool path::is_relative()
    {
-      return file_path_is_relative_dup(*this) != FALSE;
+      return file_path_is_relative_dup(*this) != false;
    }
 
    path path::relative() const
@@ -1049,15 +1049,15 @@ namespace file
    bool path::is_empty() const
    {
 
-      return ::string::is_empty()
+      return ::string::is_empty();
 
-#ifdef WINDOWS_DESKTOP
-
-             && m_idlist.is_empty();
-#else
-             ;
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//             && m_idlist.is_empty();
+//#else
+//             ;
+//
+//#endif
 
    }
 

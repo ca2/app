@@ -53,7 +53,7 @@ namespace userex
 
       virtual bool on_after_create_impact_data(::user::impact_data * pimpactdata) override;
 
-      virtual void GetTabClientRect(RECT32 * prect) override;
+      virtual void GetTabClientRect(RECTANGLE_I32 * prectangle) override;
 
 
       virtual bool on_place_hold(::user::interaction * pinteraction, ::user::place_holder * pholder) override;

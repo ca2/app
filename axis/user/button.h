@@ -58,10 +58,10 @@ namespace user
       ::e_draw_text                       m_edrawtext;
       e_style                             m_estyle;
       //::enum_check                    m_echeck;
-      ::rect                              m_rectText;
+      ::rectangle_i32                              m_rectText;
       index                               m_iClick;
       e_stock_icon                        m_estockicon;
-      ::rect                              m_rectCheckBox;
+      ::rectangle_i32                              m_rectCheckBox;
       bitmap *                            m_pbitmap;
       list *                              m_plist;
 
@@ -89,7 +89,7 @@ namespace user
       virtual void _001OnButtonDrawBitmap(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnButtonDrawImageAndText(::draw2d::graphics_pointer & pgraphics);
       virtual void _001OnButtonDrawBackground(::draw2d::graphics_pointer & pgraphics);
-      virtual void _001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, RECT32 * prectText);
+      virtual void _001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, RECTANGLE_I32 * prectText);
 
       virtual void _001OnButtonDrawNormal(::draw2d::graphics_pointer & pgraphics);
 
@@ -113,7 +113,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnCreate);
 
 
-      virtual ::sized _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics) override;
+      virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual bool keyboard_focus_is_focusable() const override;
 
@@ -127,7 +127,7 @@ namespace user
       virtual void on_exit_button_style(e_style estyle);
 
       virtual void BaseToolTipRelayEvent(::message::message * pmessage);
-      virtual void BaseToolTipGetRect(RECT32 * prect);
+      virtual void BaseToolTipGetRect(RECTANGLE_I32 * prectangle);
 
       virtual i32 BaseToolTipGetIndex();
 

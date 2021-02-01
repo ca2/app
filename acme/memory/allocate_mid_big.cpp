@@ -4,6 +4,7 @@ Igor Pavlov
 Public domain */
 // from 7-zip on 2010-12-19
 #include "framework.h"
+#include "acme/operating_system.h"
 
 ////#include "Alloc.h"
 
@@ -23,7 +24,7 @@ void * MyAlloc(size_t size)
 #ifdef _SZ_ALLOC_DEBUG
    {
       void *point = malloc(size);
-      fprintf(stderr, "\nAlloc %10d bytes, count = %10d,  addr = %8X", size, g_allocCount++, (u32)point);
+      fprintf(stderr, "\nAlloc %10d bytes, count = %10d,  addr = %8X", size, g_allocCount++, (u32)point_i32);
       return point;
    }
 #else
@@ -38,7 +39,7 @@ void * MyRealloc(void * addr, size_t sizeOld, size_t sizeNew)
 #ifdef _SZ_ALLOC_DEBUG
    {
       void *point = realloc(addr, sizeNew);
-      fprintf(stderr, "\nAlloc %10d bytes, count = %10d,  addr = %8X", sizeNew, g_allocCount++, (u32)point);
+      fprintf(stderr, "\nAlloc %10d bytes, count = %10d,  addr = %8X", sizeNew, g_allocCount++, (u32)point_i32);
       return point;
    }
 #else

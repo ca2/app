@@ -31,12 +31,11 @@ inline void __string_exchange(text_stream & s, string & str) { s.string_exchange
 inline void __string_exchange(text_stream & s, ::file::path & path) { s.string_exchange(path); }
 inline void __string_exchange(text_stream & s, ::id & id) { s.string_exchange(id); }
 inline void __string_exchange(text_stream & s, void * & p) { s.number_exchange((::iptr &)p); }
-inline void __string_exchange(text_stream & s, oswindow & oswindow) { s.number_exchange((::iptr &)oswindow); }
 inline void __string_exchange(text_stream & s, wchar_t wsz[]) { s.string_exchange(wsz); }
 //inline void __string_exchange(text_stream & s, matter & matter) { s.json_exchange(matter); }
 
 
-//inline void __string_exchange(text_stream & s, ::rect & r) { s.json_exchange(r); }
+//inline void __string_exchange(text_stream & s, ::rectangle_i32 & r) { s.json_exchange(r); }
 
 
 

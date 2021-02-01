@@ -810,7 +810,7 @@ bool CLASS_DECL_APEX server_is_top_domain(const char * pszTop1, strsize blen, co
       {
          if(b2 == 't')
          {
-            // point
+            // point_i32
             if(alen == 3)
             {
                if(a1 == 'c' && a2 == 'o' && a3 == 'm')

@@ -12,10 +12,10 @@ namespace draw2d
 
       ::image_pointer            m_pimage;
       ::draw2d::font_pointer     m_pfont;
-      ::rect                     m_rect;
+      ::rectangle_i32                     m_rectangle;
       bool                       m_bInit;
       bool                       m_bOk;
-      size                       m_size;
+      size_i32                       m_size;
 
 
       text_box();

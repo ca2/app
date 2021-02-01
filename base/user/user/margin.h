@@ -11,14 +11,14 @@ namespace user
    public:
 
 
-      ::rect      m_rectMargin;
+      ::rectangle_i32      m_rectMargin;
 
 
       margin_base();
       virtual ~margin_base();
 
 
-      virtual void get_margin_rect(RECT32 * prectMargin) override;
+      virtual void get_margin_rect(RECTANGLE_I32 * prectMargin) override;
 
 
 
@@ -53,25 +53,25 @@ namespace user
 
       }
 
-//      void _001ScreenToClient(RECT32 * prect)
+//      void _001ScreenToClient(RECTANGLE_I32 * prectangle)
 
       //    {
 
-      //     BASE::_001ScreenToClient(prect);
+      //     BASE::_001ScreenToClient(prectangle);
 
 
-      /*prect->left   -= m_rectMargin.left;
+      /*prectangle->left   -= m_rectMargin.left;
 
-      prect->right  -= m_rectMargin.left;
+      prectangle->right  -= m_rectMargin.left;
 
-      prect->top    -= m_rectMargin.top;
+      prectangle->top    -= m_rectMargin.top;
 
-      prect->bottom -= m_rectMargin.top;*/
+      prectangle->bottom -= m_rectMargin.top;*/
 
 
       // }
 
-      virtual ::point get_viewport_offset() override
+      virtual ::point_i32 get_viewport_offset() override
       {
 
          auto pointOffset = BASE::get_viewport_offset();
@@ -93,7 +93,7 @@ namespace user
       }
 
 
-      virtual ::sized get_total_size() override
+      virtual ::size_f64 get_total_size() override
       {
 
          auto s = BASE::get_total_size();

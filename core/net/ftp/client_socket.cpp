@@ -76,7 +76,7 @@ namespace ftp
    ///                     a FTP server (for unit testing).
    /// @lparam[in] uiTimeout Timeout used for socket operation.
    /// @lparam[in] uiBufferSize Size of the buffer used for sending and receiving
-   ///                         data via sockets. The size have an influence on
+   ///                         data via sockets. The size_i32 have an influence on
    ///                         the performance. Through empiric test i come to the
    ///                         conclusion that 2048 is a good size.
    /// @lparam[in] uiResponseWait sleep time between receive calls to socket when getting
@@ -281,9 +281,9 @@ namespace ftp
          // this array stores all of the logon sequences for the various firewalls
          // in blocks of 3 nums.
          // 1st num is command to send,
-         // 2nd num is next point in logon sequence array if 200 series response
+         // 2nd num is next point_i32 in logon sequence array if 200 series response
          //         is rec'd from server as the result of the command,
-         // 3rd num is next point in logon sequence if 300 series rec'd
+         // 3rd num is next point_i32 in logon sequence if 300 series rec'd
          { 0,LO,3,    1,LO, 6,   2,LO,ER }, // no firewall
          { 3, 6,3,    4, 6,ER,   5,ER, 9,   0,LO,12,   1,LO,15,   2,LO,ER }, // SITE hostname
          { 3, 6,3,    4, 6,ER,   6,LO, 9,   1,LO,12,   2,LO,ER }, // USER after logon
@@ -602,14 +602,14 @@ namespace ftp
       long lRemoteFileSize = 0;
       FileSize(strRemoteFile, lRemoteFileSize);
 
-      for (auto * point : (observer_array &)m_setObserver)
-         point->OnPreReceiveFile(strRemoteFile, Observer.GetLocalStreamName(), lRemoteFileSize);
+      for (auto * point_i32 : (observer_array &)m_setObserver)
+         point_i32->OnPreReceiveFile(strRemoteFile, Observer.GetLocalStreamName(), lRemoteFileSize);
 
       const bool fRet = ExecuteDatachannelCommand(command::RETR(), strRemoteFile, repType, fPasv,
                         m_fResumeIfPossible ? Observer.GetLocalStreamSize() : 0, Observer);
 
-      for (auto * point : (observer_array &)m_setObserver)
-         point->OnPostReceiveFile(strRemoteFile, Observer.GetLocalStreamName(), lRemoteFileSize);
+      for (auto * point_i32 : (observer_array &)m_setObserver)
+         point_i32->OnPostReceiveFile(strRemoteFile, Observer.GetLocalStreamName(), lRemoteFileSize);
 
       return fRet;
    }
@@ -672,13 +672,13 @@ namespace ftp
       const long lLocalFileSize = Observer.GetLocalStreamSize();
       Observer.SetLocalStreamOffset((unsigned int) lRemoteFileSize);
 
-      for (auto * point : (observer_array &)m_setObserver)
-         point->OnPreSendFile(Observer.GetLocalStreamName(), strRemoteFile, lLocalFileSize);
+      for (auto * point_i32 : (observer_array &)m_setObserver)
+         point_i32->OnPreSendFile(Observer.GetLocalStreamName(), strRemoteFile, lLocalFileSize);
 
       const bool fRet = ExecuteDatachannelCommand(cmd, strRemoteFile, repType, fPasv, 0, Observer);
 
-      for (auto * point : (observer_array &)m_setObserver)
-         point->OnPostSendFile(Observer.GetLocalStreamName(), strRemoteFile, lLocalFileSize);
+      for (auto * point_i32 : (observer_array &)m_setObserver)
+         point_i32->OnPostSendFile(Observer.GetLocalStreamName(), strRemoteFile, lLocalFileSize);
 
       return fRet;
    }
@@ -1168,10 +1168,10 @@ auto tickStart = ::millis::now();
             }
 
 
-            for (auto * point : (observer_array &)m_setObserver)
+            for (auto * point_i32 : (observer_array &)m_setObserver)
             {
 
-               point->OnBytesSent(m_vBuffer, iNumWrite);
+               point_i32->OnBytesSent(m_vBuffer, iNumWrite);
 
             }
 
@@ -1221,10 +1221,10 @@ auto tickStart = ::millis::now();
 
          ((client_socket *) this)->m_fTransferInProgress = true;
 
-         for (auto * point : (observer_array &)m_setObserver)
+         for (auto * point_i32 : (observer_array &)m_setObserver)
          {
 
-            point->OnBeginReceivingData();
+            point_i32->OnBeginReceivingData();
 
          }
 
@@ -1270,10 +1270,10 @@ auto tickStart = ::millis::now();
 
                lTotalBytes += iNumRead;
 
-               for (auto * point : (observer_array &)m_setObserver)
+               for (auto * point_i32 : (observer_array &)m_setObserver)
                {
 
-                  point->OnBytesReceived(m_vBuffer, (long) iNumRead);
+                  point_i32->OnBytesReceived(m_vBuffer, (long) iNumRead);
 
                }
 
@@ -1290,10 +1290,10 @@ auto tickStart = ::millis::now();
 
          }
 
-         for (auto * point : (observer_array &)m_setObserver)
+         for (auto * point_i32 : (observer_array &)m_setObserver)
          {
 
-            point->OnEndReceivingData((long) lTotalBytes);
+            point_i32->OnEndReceivingData((long) lTotalBytes);
 
          }
 
@@ -1341,8 +1341,8 @@ auto tickStart = ::millis::now();
 
       try
       {
-         for (auto * point : (observer_array &)m_setObserver)
-            point->OnSendCommand(Command, Arguments);
+         for (auto * point_i32 : (observer_array &)m_setObserver)
+            point_i32->OnSendCommand(Command, Arguments);
          const string strCommand = Command.AsString(Arguments) + "\r\n";
          //write(strCommand, static_cast<int>(strCommand.length()), mc_uiTimeout);
          write(strCommand, static_cast<int>(strCommand.length()));
@@ -1398,8 +1398,8 @@ auto tickStart = ::millis::now();
 
       bool fRet = Reply.Set(strResponse);
 
-      for (auto * point : (observer_array &)m_setObserver)
-         point->OnResponse(Reply);
+      for (auto * point_i32 : (observer_array &)m_setObserver)
+         point_i32->OnResponse(Reply);
 
       return fRet;
    }
@@ -1977,18 +1977,18 @@ auto tickStart = ::millis::now();
    /// This command may be required by some servers to reserve sufficient storage
    /// to accommodate the new file to be transferred.
    /// @lparam[in] iReserveBytes The argument shall be a decimal integer representing
-   ///                          the number of bytes (using the logical byte size) of
+   ///                          the number of bytes (using the logical byte size_i32) of
    ///                          storage to be reserved for the file. For files sent
    ///                          with record or page structure a maximum record or page
-   ///                          size (in logical bytes) might also be necessary; this
+   ///                          size_i32 (in logical bytes) might also be necessary; this
    ///                          is indicated by a decimal integer in a second argument
    ///                          field of the command.
    /// @pararm[in] piMaxPageOrRecordSize This second argument is optional. This command
    ///                          shall be followed by a STORe or APPEnd command.
    ///                          The ALLO command should be treated as a NOOP (no operation)
    ///                          by those servers which do not require that the maximum
-   ///                          size of the file be declared beforehand, and those servers
-   ///                          interested in only the maximum record or page size should
+   ///                          size_i32 of the file be declared beforehand, and those servers
+   ///                          interested in only the maximum record or page size_i32 should
    ///                          accept a dummy value in the first argument and ignore it.
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::Allocate(int iReserveBytes, const int* piMaxPageOrRecordSize/*=nullptr*/)
@@ -2066,16 +2066,16 @@ auto tickStart = ::millis::now();
       return FTP_ERROR;
    }
 
-   /// Executes the FTP command const size &
-   /// Return size of file.
-   /// const size & is not specified in RFC 959.
+   /// Executes the FTP command const size_i32 &
+   /// Return size_i32 of file.
+   /// const size_i32 & is not specified in RFC 959.
    /// @lparam[in] Pathname of a file.
    /// @lparam[out] Size of the file specified in pathname.
    /// @return see return values of client_socket::SimpleErrorCheck
    int client_socket::FileSize(const string& strPath, long& lSize)
    {
       reply Reply;
-      if (!SendCommand(command::SIZE32(), { strPath } , Reply))
+      if (!SendCommand(command::SIZE_I32(), { strPath } , Reply))
          return FTP_ERROR;
       lSize = atoi(Reply.Value().substr(4));
       return SimpleErrorCheck(Reply);
@@ -2139,8 +2139,8 @@ auto tickStart = ::millis::now();
    /// @lparam[in] Line number in th sourcecode file where the error occurred.
    void client_socket::ReportError(const string& strErrorMsg, const string& strFile, ::u32 dwLineNr)
    {
-      for (auto * point : (observer_array &)m_setObserver)
-         point->OnInternalError(strErrorMsg, strFile, dwLineNr);
+      for (auto * point_i32 : (observer_array &)m_setObserver)
+         point_i32->OnInternalError(strErrorMsg, strFile, dwLineNr);
    }
 
 

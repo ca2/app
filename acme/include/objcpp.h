@@ -16,7 +16,7 @@
 //
 //   Fails by focusing!! By objective!! What is the objective?!?!?! What is the Goal?!?!? The Goal?!?!?! No!!! The Goal is Not The Goal!!
 // 2020-02-28 The Goal is The Goal!! All ways leads to the Goal!! So everything is objective....
-// So what is the point of method objective?? Or using adjective? like suhper fast and objective C++?
+// So what is the point_i32 of method objective?? Or using adjective? like suhper fast and objective C++?
 //
 //
 

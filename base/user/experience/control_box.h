@@ -40,10 +40,10 @@ namespace experience
       millis                                    m_millisShow;
       bool                                      m_bShowAttempt;
       bool                                      m_bDrag;
-      point                                     m_pointDrag;
+      point_i32                                     m_pointDrag;
       i32                                       m_iDefaultButtonMargin;
       i32                                       m_iDefaultButtonSize;
-      ::size                                    m_sizeButtonDefault;
+      ::size_i32                                    m_sizeButtonDefault;
       ::draw2d::font_pointer                    m_fontMarlett;
 
       ::draw2d::brush_pointer                   m_brushButtonBack;
@@ -78,7 +78,7 @@ namespace experience
 
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics);
 
-      void drag(const ::point & point);
+      void drag(const ::point_i32 & point);
 
 
       DECL_GEN_SIGNAL(_001OnShowWindow);
@@ -92,9 +92,9 @@ namespace experience
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics);
 
-      virtual ::size get_button_size(enum_button ebutton);
+      virtual ::size_i32 get_button_size(enum_button ebutton);
 
-      virtual ::rect get_button_margin(enum_button ebutton);
+      virtual ::rectangle_i32 get_button_margin(enum_button ebutton);
 
       virtual i32 calc_button_size(::draw2d::graphics_pointer & pgraphics);
 
@@ -102,7 +102,7 @@ namespace experience
 
       virtual void reset_layout(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void _layout_button(enum_button ebutton, ::rect & rect);
+      virtual void _layout_button(enum_button ebutton, ::rectangle_i32 & rectangle);
       virtual bool should_show_button(enum_button ebutton) const;
 
       virtual item * get_item(enum_button ebutton, bool bCreate = false);

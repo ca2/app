@@ -13,7 +13,7 @@
 //inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory(const ::id & id)
 //{
 //
-//   cslock lock(::factory::g_pcsFactory);
+//   critical_section_lock lock(::factory::g_pcsFactory);
 //
 //   auto pfactory = __new(::factory::factory< TYPE, BASE_TYPE >());
 //
@@ -28,7 +28,7 @@
 //inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory()
 //{
 //
-//   cslock lock(::factory::g_pcsFactory);
+//   critical_section_lock lock(::factory::g_pcsFactory);
 //
 //   auto pfactory = __new(::factory::factory< TYPE, BASE_TYPE >());
 //

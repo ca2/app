@@ -103,12 +103,12 @@ public:
 
    ::index find_first(ARG_TYPE t, ::index (* pfnCompare)(ARG_TYPE, ARG_TYPE), ::index start = 0, ::index last = -1) const;
 
-   ::index raw_find_first(TYPE * point, ::index first = 0, ::index last = -1) const;
+   ::index raw_find_first(TYPE * p, ::index first = 0, ::index last = -1) const;
 
    template < class DERIVED >
-   ::index find_first(DERIVED * point, ::index first = 0, ::index last = -1)
+   ::index find_first(DERIVED * p, ::index first = 0, ::index last = -1)
    {
-      return raw_find_first(dynamic_cast < TYPE * > (point), first, last);
+      return raw_find_first(dynamic_cast < TYPE * > (p), first, last);
    }
 
    template < class ARRAY >

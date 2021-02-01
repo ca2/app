@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/operating_system.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
 #endif
@@ -7,21 +8,21 @@
 #endif
 
 
-int_bool delete_hcursor(HCURSOR hcursor);
+int_bool delete_hcursor(hcursor hcursor);
 
 
-//HCURSOR CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot);
+//hcursor CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot);
 
 
 #ifdef MACOS
 
-using HCURSOR = void *; // NSCursor
+using hcursor = void *; // NSCursor
 
 void set_cursor_image(void * pimage, int xHotSpot, int yHotSpot);
 
 #endif
 
-//HCURSOR load_default_cursor(e_cursor ecursor);
+//hcursor load_default_cursor(e_cursor ecursor);
 
 namespace draw2d
 {
@@ -47,7 +48,7 @@ namespace draw2d
    }
 
 
-   //bool cursor::to(::draw2d::graphics_pointer & pgraphics, const ::point & point)
+   //bool cursor::to(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & point)
    //{
 
 
@@ -66,7 +67,7 @@ namespace draw2d
 
       }
 
-      HCURSOR hcursor = get_HCURSOR(pinteraction);
+      hcursor hcursor = get_HCURSOR(pinteraction);
 
       if(hcursor == hcursor_null)
       {
@@ -180,7 +181,7 @@ namespace draw2d
 
       }
 
-      HCURSOR hcursor = ::LoadCursor(nullptr, psz);
+      hcursor hcursor = ::LoadCursor(nullptr, psz);
 
       if (hcursor == nullptr)
       {
@@ -212,7 +213,7 @@ namespace draw2d
 #endif
 
 
-   HCURSOR cursor::get_HCURSOR(::user::interaction * pinteraction)
+   hcursor cursor::get_HCURSOR(::user::interaction * pinteraction)
    {
 
       if(m_hcursor == hcursor_null || m_bDefaultCursor)
@@ -245,7 +246,7 @@ namespace draw2d
             auto& imaging = System.imaging();
 
             // SCAFFOLD comment?!.... first parameter (oswindow) is not used in windows (but at other OS(es))...
-            HCURSOR hcursor = App(pinteraction).image().CreateAlphaCursor(pinteraction->get_handle(), m_pimage,m_szHotspotOffset.cx,m_szHotspotOffset.cy);
+            hcursor hcursor = App(pinteraction).image().CreateAlphaCursor(pinteraction->get_handle(), m_pimage,m_szHotspotOffset.cx,m_szHotspotOffset.cy);
 
             if (!hcursor)
             {

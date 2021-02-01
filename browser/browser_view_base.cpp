@@ -107,7 +107,7 @@ auto m_millisRoll = ::millis::now();
 
       defer_check_on_draw_layout();
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -162,8 +162,8 @@ auto m_millisRoll = ::millis::now();
 
          }
 
-         m_pimageTime->from(point(xOffset, 0), m_pimagePost, ::point(), ::size(m_pimagePost->width() - xOffset, m_pimagePost->height()));
-         m_pimageTime->from(::point(), m_pimagePost, point(m_pimagePost->width() - xOffset, 0), ::size(xOffset, m_pimagePost->height()));
+         m_pimageTime->from(point_i32(xOffset, 0), m_pimagePost, ::point_i32(), ::size_i32(m_pimagePost->width() - xOffset, m_pimagePost->height()));
+         m_pimageTime->from(::point_i32(), m_pimagePost, point_i32(m_pimagePost->width() - xOffset, 0), ::size_i32(xOffset, m_pimagePost->height()));
 
          //m_pimagePost->from(m_pimageTime);
          _001OnPostProcess(m_pimageTime->get_graphics());
@@ -203,7 +203,7 @@ auto m_millisRoll = ::millis::now();
          pdcParam->TextOutA(0, 0, __str(m_dwaFrame.get_size()));*/
 
 
-         ::size size = m_pimageTime->get_size();
+         ::size_i32 size = m_pimageTime->get_size();
 
          ::draw2d::graphics_pointer & pgraphics = m_pimageTime->get_graphics();
 
@@ -296,19 +296,19 @@ auto m_millisRoll = ::millis::now();
          int iFactor = 2;
          int iMult = 1 << iFactor;
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(rectClient);
 
-         ::size size = rectClient.size();
+         ::size_i32 size = rectClient.size();
 
-         ::size size2(size.cx / iMult, size.cy / iMult);
+         ::size_i32 size2(size.cx / iMult, size.cy / iMult);
 
 /*         m_pimage1->create_image({this,  size2});
 
          m_pimage1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-         m_pimage1->get_graphics()->StretchBlt(0, 0, size2.cx, size2->cy, pgraphics, 0, 0, size->cx, size->cy);
+         m_pimage1->get_graphics()->StretchBlt(0, 0, size2.cx, size2->cy, pgraphics, 0, 0, size_i32->cx, size_i32->cy);
 
          //if (0)
          {
@@ -324,7 +324,7 @@ auto m_millisRoll = ::millis::now();
             else
             {
 
-/*               m_pimage2->create_image({this,  size});
+/*               m_pimage2->create_image({this,  size_i32});
 
                m_pimage2->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 

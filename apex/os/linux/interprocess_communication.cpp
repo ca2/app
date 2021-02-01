@@ -99,7 +99,7 @@ namespace interprocess_communication
 
          pdata->request       = 1024;
 
-         pdata->size          = iLen;
+         pdata->size_i32          = iLen;
 
          ::memcpy_dup(pdata->data, pszMessage, iLen);
 
@@ -146,16 +146,16 @@ namespace interprocess_communication
          data_struct * pdata = (data_struct *)m.get_data();
          pdata->mtype        = 20170101;
          pdata->request      = 1024;
-         pdata->size         = iLen;
-         //if(data.size > 512)
+         pdata->size_i32         = iLen;
+         //if(data.size_i32 > 512)
          // return false;
 
-         /* The length is essentially the size of the structure minus sizeof(mtype) */
+         /* The length is essentially the size_i32 of the structure minus sizeof(mtype) */
          /*         i32 length = sizeof(data_struct) - sizeof(long);
 
                   i32 result;
 
-                  ::memcpy_dup(data.data, pszMessage, data.size);
+                  ::memcpy_dup(data.data, pszMessage, data.size_i32);
 
                   if((result = msgsnd(m_iQueue,&data,length,0)) == -1)
                   {
@@ -411,7 +411,7 @@ namespace interprocess_communication
 
             }
 
-            mem.assign(pdata->data,pdata->size);
+            mem.assign(pdata->data,pdata->size_i32);
 
             long lRequest = pdata->request;
 

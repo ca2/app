@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/operating_system.h"
 #include "_windows.h"
 #include "acme/os/windows_common/_file_c.h"
 #include "acme/os/windows_common/file.h"
@@ -122,7 +123,7 @@ namespace windows
       switch (eopen & 0x70)    // map compatibility mode to exclusive
       {
       default:
-         ASSERT(FALSE);  // invalid share mode?
+         ASSERT(false);  // invalid share mode?
       case ::file::e_open_share_compat:
       case ::file::e_open_share_exclusive:
          dwShareMode = 0;
@@ -143,14 +144,14 @@ namespace windows
       // map modeNoInherit flag
       SECURITY_ATTRIBUTES sa;
       SECURITY_ATTRIBUTES* psa = nullptr;
-      if ((eopen & ::file::e_open_no_inherit) != FALSE)
+      if ((eopen & ::file::e_open_no_inherit) != false)
       {
          psa = &sa;
          __zero(sa);
          sa.nLength = sizeof(sa);
          sa.lpSecurityDescriptor = nullptr;
 
-         sa.bInheritHandle = FALSE;
+         sa.bInheritHandle = false;
       }
 
       // map creation flags
@@ -261,7 +262,7 @@ namespace windows
 
       ASSERT(pdata != nullptr);
 
-      ASSERT(__is_valid_address(pdata, nCount, FALSE));
+      ASSERT(__is_valid_address(pdata, nCount, false));
 
       DWORD nWritten;
 
@@ -360,7 +361,7 @@ namespace windows
       ASSERT_VALID(this);
       ASSERT(m_handleFile != INVALID_HANDLE_VALUE);
 
-      bool bError = FALSE;
+      bool bError = false;
       ::u32 dwLastError = 0;
       if (m_handleFile != INVALID_HANDLE_VALUE)
       {
@@ -592,9 +593,9 @@ namespace windows
          }
 
          // convert times as appropriate
-         rStatus.m_ctime = ::datetime::time(information.ftCreationTime);
-         rStatus.m_atime = ::datetime::time(information.ftLastAccessTime);
-         rStatus.m_mtime = ::datetime::time(information.ftLastWriteTime);
+         rStatus.m_ctime = __time(information.ftCreationTime);
+         rStatus.m_atime = __time(information.ftLastAccessTime);
+         rStatus.m_mtime = __time(information.ftLastWriteTime);
 
          if (rStatus.m_ctime.get_time() == 0)
          {
@@ -704,7 +705,7 @@ bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
 
       wstrFullPath = wstrPath; // take it literally
 
-      return FALSE;
+      return false;
 
    }
 
@@ -723,7 +724,7 @@ bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
 
          wstrFullPath = wstrPath; // take it literally
 
-         return FALSE;
+         return false;
 
       }
 
@@ -738,7 +739,7 @@ bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
    if (!GetVolumeInformationW(wstrRoot, nullptr, 0, nullptr, &dwDummy, &dwFlags, nullptr, 0))
    {
       //      TRACE1("Warning: could not get volume information '%s'.\n", strRoot);
-      return FALSE;   // preserving case may not be correct
+      return false;   // preserving case may not be correct
    }
 
    // not all characters have complete uppercase/lowercase
@@ -770,7 +771,7 @@ bool CLASS_DECL_ACME vfxFullPath(wstring & wstrFullPath, const wstring & wstrPat
          wstrFullPath.release_string_buffer();
       }
    }
-   return TRUE;
+   return true;
 }
 
 
@@ -808,7 +809,7 @@ bool CLASS_DECL_ACME vfxGetInProcServer(const char * pszCLSID, string & str)
 
 {
    HKEY hKey = nullptr;
-   bool b = FALSE;
+   bool b = false;
    if (RegOpenKeyW(HKEY_CLASSES_ROOT, L"CLSID", &hKey) == ERROR_SUCCESS)
    {
       HKEY hKeyCLSID = nullptr;
@@ -862,7 +863,7 @@ bool CLASS_DECL_ACME vfxFullPath(unichar * pszPathOut, const unichar * pszFileIn
 
       lstrcpynW(pszPathOut, pszFileIn, _MAX_PATH); // take it literally
 
-      return FALSE;
+      return false;
 
    }
 
@@ -876,7 +877,7 @@ bool CLASS_DECL_ACME vfxFullPath(unichar * pszPathOut, const unichar * pszFileIn
    if (!GetVolumeInformationW(::str::international::utf8_to_unicode(strRoot), nullptr, 0, nullptr, &dwDummy, &dwFlags, nullptr, 0))
    {
       //      TRACE1("Warning: could not get volume information '%s'.\n", strRoot);
-      return FALSE;   // preserving case may not be correct
+      return false;   // preserving case may not be correct
    }
 
    // not all characters have complete uppercase/lowercase
@@ -897,7 +898,7 @@ bool CLASS_DECL_ACME vfxFullPath(unichar * pszPathOut, const unichar * pszFileIn
 
       }
    }
-   return TRUE;
+   return true;
 }
 
 

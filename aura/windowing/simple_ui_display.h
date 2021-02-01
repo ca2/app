@@ -20,8 +20,8 @@ namespace windowing
       string m_strFontName;
 
       __pointer(::windowing::window) m_pwindow;
-      ::point m_point;
-      ::size m_size;
+      ::point_i32 m_point;
+      ::size_i32 m_size;
 
       int m_iLineHeight;
       int m_iTextAscent;

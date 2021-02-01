@@ -1,5 +1,7 @@
 #include "framework.h"
-#include "acme/os/windows_common/cotaskptr.h"
+#include "acme/operating_system.h"
+#include "itemidlist.h"
+
 
 
 itemidlist::itemidlist() :
@@ -1195,7 +1197,7 @@ comptr < IShellFolder > itemidlist::get_shell_folder() const
    }
    else
    {
-      ASSERT(FALSE);
+      ASSERT(false);
    }
 
    return nullptr;

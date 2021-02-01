@@ -1141,9 +1141,9 @@ void simple_frame_window::on_layout(::draw2d::graphics_pointer & pgraphics)
    if (Application.is_true("client_only") && get_parent() == nullptr)
    {
 
-      auto rect = get_host_window()->get_client_rect();
+      auto rectangle_i32 = get_host_window()->get_client_rect();
 
-      set_dim(rect.left, rect.top, rect.width(), rect.height());
+      set_dim(rectangle.left, rectangle.top, rectangle.width(), rectangle.height());
 
    }
 
@@ -1488,16 +1488,16 @@ void simple_frame_window::ActivateFrame(edisplay edisplay)
 }
 
 
-void simple_frame_window::GetBorderRect(RECT32 * prect)
+void simple_frame_window::GetBorderRect(RECTANGLE_I32 * prectangle)
 
 {
-   *prect = m_rectBorder;
+   *prectangle = m_rectBorder;
 
 }
 
-void simple_frame_window::SetBorderRect(const ::rect & rect)
+void simple_frame_window::SetBorderRect(const ::rectangle_i32 & rectangle)
 {
-   m_rectBorder = rect;
+   m_rectBorder = rectangle_i32;
 }
 
 
@@ -1961,7 +1961,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
    dwDefaultStyle &= ~WS_VISIBLE;
 
-   ::rect rectFrame;
+   ::rectangle_i32 rectFrame;
 
    __pointer(::user::place_holder) pholder;
 
@@ -2337,7 +2337,7 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
          || psession->savings().is_trying_to_save(::e_resource_translucent_background))
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -2390,7 +2390,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
    windowing_output_debug_string("\nsimple_frame_window::_001OnDraw B");
 
-   ::rect rectClient;
+   ::rectangle_i32 rectClient;
 
    get_window_rect(rectClient);
 
@@ -2564,7 +2564,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
       class imaging & imaging = System.imaging();
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -2608,7 +2608,7 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
          if(m_pimageBlur->is_ok())
          {
 
-            ::rectd rectDst(rectClient.size());
+            ::rectangle_f64 rectDst(rectClient.size());
 
             m_pimageBlur->g()->draw(rectDst, pgraphics);
 
@@ -2699,19 +2699,19 @@ void simple_frame_window::on_after_set_parent()
 }
 
 
-bool simple_frame_window::get_client_rect(RECT32 * prect)
+bool simple_frame_window::get_client_rect(RECTANGLE_I32 * prectangle)
 {
 
    if (m_bWindowFrame && m_pframe != nullptr && !layout().is_full_screen() && !frame_is_transparent())
    {
 
-      return m_pframe->get_window_client_rect(prect);
+      return m_pframe->get_window_client_rect(prectangle);
 
    }
    else
    {
 
-      ::user::interaction::get_client_rect(prect);
+      ::user::interaction::get_client_rect(prectangle);
 
    }
 
@@ -2941,10 +2941,10 @@ void simple_frame_window::design_up()
 }
 
 
-//bool simple_frame_window::create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, const char * pszMenuName, u32 dwExStyle, ::create * pcreate)
+//bool simple_frame_window::create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, const char * pszMenuName, u32 dwExStyle, ::create * pcreate)
 //{
 //
-//   return ::user::frame_window::create_interaction(pszClassName, pszWindowName, uStyle, rect, puiParent, pszMenuName, dwExStyle, pcreate);
+//   return ::user::frame_window::create_interaction(pszClassName, pszWindowName, uStyle, rectangle_i32, puiParent, pszMenuName, dwExStyle, pcreate);
 //
 //}
 

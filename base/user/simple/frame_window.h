@@ -21,7 +21,7 @@ public:
    millis                                          m_millisLastSaveWindowRect;
    millis                                          m_millisLastSaveWindowRectRequest;
    ::image_pointer                                 m_pimageBk;
-   ::rect                                          m_FullScreenWindowRect;
+   ::rectangle_i32                                          m_FullScreenWindowRect;
    draw2d::fastblur                                m_blur;
    ::image_pointer                                 m_pimageBlur;
    ::user::enum_translucency                       m_etranslucencyFrame;
@@ -67,15 +67,15 @@ public:
    virtual bool on_set_parent(::user::primitive * puiParent) override;
    virtual void on_after_set_parent() override;
 
-   virtual bool get_client_rect(RECT32 * prect);
+   virtual bool get_client_rect(RECTANGLE_I32 * prectangle);
 
 
    virtual bool is_application_main_window();
 
    bool GetCustomFrame();
    void SetCustomFrame(bool bCustom);
-   void SetBorderRect(const ::rect & rect) override;
-   virtual void GetBorderRect(RECT32 * prect) override;
+   void SetBorderRect(const ::rectangle_i32 & rectangle) override;
+   virtual void GetBorderRect(RECTANGLE_I32 * prectangle) override;
 
    virtual ::color get_border_main_body_color() override;
 

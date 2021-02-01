@@ -31,7 +31,7 @@ namespace datetime
 
          void _001OnDraw(::draw2d::graphics* pgraphics);
 
-         void set_pos(point pt, size sz);
+         void set_pos(point_i32 pt, size_i32 sz);
 
 
 

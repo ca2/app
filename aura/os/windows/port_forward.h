@@ -26,7 +26,7 @@ namespace windows
 
 	   interface IDerivedNATExternalIPAddressCallback : public INATExternalIPAddressCallback
 	   {
-		   IDerivedNATExternalIPAddressCallback( ::net::port_forward_change_callbacks * point ) : m_pointer( point ), m_dwRef( 0 ) { };
+		   IDerivedNATExternalIPAddressCallback( ::net::port_forward_change_callbacks * point_i32 ) : m_pointer( point_i32 ), m_dwRef( 0 ) { };
 		
 		   HRESULT STDMETHODCALLTYPE NewExternalIPAddress( BSTR bstrNewExternalIPAddress )
 		   {
@@ -53,7 +53,7 @@ namespace windows
 	
 	   interface IDerivedNATNumberOfEntriesCallback : public INATNumberOfEntriesCallback
 	   {
-		   IDerivedNATNumberOfEntriesCallback( ::net::port_forward_change_callbacks* point ) : m_pointer( point ), m_dwRef( 0 ) { };
+		   IDerivedNATNumberOfEntriesCallback( ::net::port_forward_change_callbacks* point_i32 ) : m_pointer( point_i32 ), m_dwRef( 0 ) { };
 		
 		   HRESULT STDMETHODCALLTYPE NewNumberOfEntries( long lNewNumberOfEntries )
 		   {
@@ -136,7 +136,7 @@ namespace windows
 	
 	   pointer_array<port_map> m_MappingContainer;
 	
-	   CRITICAL_SECTION m_cs;
+	   CRITICAL_SECTION m_criticalsection;
 	
 	
 	   // some more protected members, most of which could not be declared until after full-declaration

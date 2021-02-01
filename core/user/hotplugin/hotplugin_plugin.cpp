@@ -17,7 +17,7 @@
 #if defined(LINUX) || defined(ANDROID) || defined(APPLEOS) || defined(SOLARIS)
 iptr get_map_failed();
 void my_munmap(void * pcolorref,HANDLE hfile);
-void * my_open_map(const char * psz,HANDLE * pfile,bool bRead,bool bWrite,i64 size);
+void * my_open_map(const char * psz,HANDLE * pfile,bool bRead,bool bWrite,i64 size_i32);
 #endif
 
 
@@ -137,7 +137,7 @@ namespace hotplugin
       }
    }
 
-   void plugin::post_message(const ::id & id, WPARAM wparam, LPARAM lparam)
+   void plugin::post_message(const ::id & id, wparam wparam, lparam lparam)
 
    {
       if(m_phost != nullptr)
@@ -157,19 +157,19 @@ namespace hotplugin
    }
 
    //// ca.dll-absence-(ca.dll-delay-load)-safe
-   //void plugin::get_window_rect(RECT32 * prect)
+   //void plugin::get_window_rect(RECTANGLE_I32 * prectangle)
 
    //{
 
-   //   *prect = m_rect;
+   //   *prectangle = m_rectangle;
 
 
    //}
 
-   //void plugin::set_window_rect(const ::rect & rect)
+   //void plugin::set_window_rect(const ::rectangle_i32 & rectangle)
    //{
 
-   //   m_rect = *rect;
+   //   m_rectangle = *rectangle_i32;
 
 
    //}
@@ -222,17 +222,17 @@ namespace hotplugin
    }
 
 
-   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const ::rect & rect)
+   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangle)
    {
 
-      on_bare_paint(pgraphics, rect);
+      on_bare_paint(pgraphics, rectangle);
 
    }
 
 
 #ifdef WINDOWS
 
-   /*   LRESULT plugin::message_handler(const ::id & id, WPARAM wparam, LPARAM lparam)
+   /*   LRESULT plugin::message_handler(const ::id & id, wparam wparam, lparam lparam)
 
       {
          return 0;
@@ -309,14 +309,14 @@ namespace hotplugin
    /*double cos_prec_dup(double x,double prec)
    {
    double t , s ;
-   i32 point;
+   i32 point_i32;
    point = 0;
    s = 1.0;
    t = 1.0;
    while(fabs(t/s) > prec)
    {
-   point++;
-   t = (-t * x * x) / ((2 * point - 1) * (2 * point));
+   point_i32++;
+   t = (-t * x * x) / ((2 * point_i32 - 1) * (2 * point_i32));
    s += t;
    }
    return s;
@@ -526,7 +526,7 @@ namespace hotplugin
    }
 
 
-   void plugin::on_bare_paint(::draw2d::graphics_pointer & pgraphics,const ::rect & rect)
+   void plugin::on_bare_paint(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangle)
 
    {
 
@@ -536,21 +536,21 @@ namespace hotplugin
       if (m_iHealingSurface == 0)
       {
 
-         on_bare_paint_veri_discreet(pgraphics, rect);
+         on_bare_paint_veri_discreet(pgraphics, rectangle);
 
 
       }
       else if(m_iHealingSurface == 1)
       {
 
-         on_bare_paint_discreet(pgraphics, rect);
+         on_bare_paint_discreet(pgraphics, rectangle);
 
 
       }
       else
       {
 
-         on_bare_paint_full_screen(pgraphics, rect);
+         on_bare_paint_full_screen(pgraphics, rectangle);
 
       }
 
@@ -613,14 +613,14 @@ namespace hotplugin
    }
 
 
-   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::rect & rectParam)
+   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectParam)
 
    {
 
       if(m_phost != nullptr && !m_phost->m_bShowProgress)
          return;
 
-      ::rect rectWindow(rectParam);
+      ::rectangle_i32 rectWindow(rectParam);
 
       i32 cx = rectWindow.right - rectWindow.left;
 
@@ -638,7 +638,7 @@ namespace hotplugin
 
       i32 pcy = cy / iLineCount;
 
-      ::rect rectP;
+      ::rectangle_i32 rectP;
 
       for(i32 iLine = 0; iLine < iLineCount; iLine++)
       {
@@ -750,10 +750,10 @@ namespace hotplugin
    }
 
 
-   void plugin::ensure_bitmap_data(const ::size & size, bool bCreate)
+   void plugin::ensure_bitmap_data(const ::size_i32 & size, bool bCreate)
    {
 
-      if (!size)
+      if (!size_i32)
       {
 
          return;
@@ -761,7 +761,7 @@ namespace hotplugin
       }
 
       if(m_memorymapBitmap.get_data() == nullptr
-            || m_sizeBitmapData != size)
+            || m_sizeBitmapData != size_i32)
       {
 
          m_sizeBitmapData = size;
@@ -797,7 +797,7 @@ namespace hotplugin
 
          ::file::path pathName = Context.dir().appdata() / "time" / "aura/app_app_nest-" + m_strBitmapChannel;
 
-         if(!m_memorymapBitmap.open(pathName,true,true,bCreate,size))
+         if(!m_memorymapBitmap.open(pathName,true,true,bCreate, size))
          {
 
             if(bCreate)
@@ -940,7 +940,7 @@ namespace hotplugin
 
    }
 
-   //bool plugin::_001ClientToScreen(POINT32 * ppt)
+   //bool plugin::_001ClientToScreen(POINT_I32 * ppt)
    //{
 
    //   ::user::interaction::_001ClientToScreen(ppt);
@@ -949,7 +949,7 @@ namespace hotplugin
 
    //}
 
-   //bool plugin::_001ScreenToClient(POINT32 * ppt)
+   //bool plugin::_001ScreenToClient(POINT_I32 * ppt)
    //{
 
    //   ::user::interaction::_001ScreenToClient(ppt);
@@ -959,7 +959,7 @@ namespace hotplugin
    //}
 
 
-   //bool plugin::get_window_rect(RECT64 * prect)
+   //bool plugin::get_window_rect(RECTANGLE_I64 * prectangle)
    //{
 
    //   if(m_phost == nullptr)
@@ -969,7 +969,7 @@ namespace hotplugin
 
    //   }
 
-   //   if(!m_phost->get_window_rect(prect))
+   //   if(!m_phost->get_window_rect(prectangle))
    //   {
 
    //      return false;
@@ -981,7 +981,7 @@ namespace hotplugin
    //}
 
 
-   //bool plugin::get_client_rect(RECT64 * prect)
+   //bool plugin::get_client_rect(RECTANGLE_I64 * prectangle)
    //{
 
    //   if(m_phost == nullptr)
@@ -992,7 +992,7 @@ namespace hotplugin
    //   }
 
 
-   //   if(!m_phost->get_client_rect(prect))
+   //   if(!m_phost->get_client_rect(prectangle))
    //   {
 
    //      return false;
@@ -1071,9 +1071,9 @@ namespace hotplugin
 
       const ::id & id;
 
-      WPARAM wparam;
+      wparam wparam;
 
-      LPARAM lparam;
+      lparam lparam;
 
 
       message = (::u32) (LPARAM) pbase->m_id.i64();
@@ -1103,7 +1103,7 @@ namespace hotplugin
    }
 
 
-   void plugin::plugin_message_handler(const ::id & id, WPARAM wparam, LPARAM lparam, bool bEnsureTx)
+   void plugin::plugin_message_handler(const ::id & id, wparam wparam, lparam lparam, bool bEnsureTx)
 
    {
 

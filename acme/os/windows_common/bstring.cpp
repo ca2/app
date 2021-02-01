@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "acme/operating_system.h"
+
+
 
 
 BSTR CLASS_DECL_ACME bstring::sys_alloc_string_byte_len(const char * psz, strsize len)

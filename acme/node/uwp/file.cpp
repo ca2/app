@@ -1037,7 +1037,7 @@ namespace uwp
 //      // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
 //      rStatus.m_attribute = (byte) (findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
 //
-//      // get just the low ::u32 of the file size
+//      // get just the low ::u32 of the file size_i32
 //      ASSERT(findFileData.nFileSizeHigh == 0);
 //      rStatus.m_size = (::i32)findFileData.nFileSizeLow;
 //

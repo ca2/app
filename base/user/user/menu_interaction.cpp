@@ -37,7 +37,7 @@ namespace user
    void menu_interaction::_001OnDrawDefault(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -72,23 +72,23 @@ namespace user
          pen->create_solid(1, RGB(0, 0, 0));
          pgraphics->set(pen);
          pgraphics->set(br);
-         ::rect rectPopupArrow;
+         ::rectangle_i32 rectPopupArrow;
          rectPopupArrow.left = rectClient.right - 9;
          rectPopupArrow.right = rectClient.right - 4;
          rectPopupArrow.top = ((rectClient.top + rectClient.bottom) / 2) - 4;
          rectPopupArrow.bottom = ((rectClient.top + rectClient.bottom) / 2) + 4;
-         pointd_array pointa;
+         point_f64_array pointa;
 
-         pointa.add(point(rectPopupArrow.left, rectPopupArrow.bottom));
+         pointa.add(point_i32(rectPopupArrow.left, rectPopupArrow.bottom));
 
-         pointa.add(point(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
+         pointa.add(point_i32(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
 
-         pointa.add(point(rectPopupArrow.left, rectPopupArrow.top));
+         pointa.add(point_i32(rectPopupArrow.left, rectPopupArrow.top));
 
 
 
-         pointa.add(point(rectPopupArrow.left, rectPopupArrow.bottom));
-         pgraphics->polygon(pointa);
+         pointa.add(point_i32(rectPopupArrow.left, rectPopupArrow.bottom));
+         pgraphics->polygon_i32(pointa);
 
       }
 
@@ -172,11 +172,11 @@ namespace user
 
       auto pstyle = get_style(pcalcsize->m_pgraphics);
 
-      ::rect rectMargin = get_margin(pstyle);
+      ::rectangle_i32 rectMargin = get_margin(pstyle);
 
-      ::rect rectBorder = get_border(pstyle);
+      ::rectangle_i32 rectBorder = get_border(pstyle);
 
-      ::rect rectPadding = get_padding(pstyle);
+      ::rectangle_i32 rectPadding = get_padding(pstyle);
 
       size.cx += rectMargin.left + rectBorder.left + rectPadding.left;
 

@@ -22,11 +22,11 @@ namespace draw2d
          document_properties();
          virtual ~document_properties();
 
-#ifdef WINDOWS_DESKTOP
-         virtual bool initialize_draw2d_printer_document_properties(printer * pprinter, DEVMODE * pdevmode = nullptr);
-#else
-         virtual bool initialize_draw2d_printer_document_properties(printer * pprinter);
-#endif
+//#ifdef WINDOWS_DESKTOP
+//         virtual bool initialize_draw2d_printer_document_properties(printer * pprinter, DEVMODE * pdevmode = nullptr);
+//#else
+//         virtual bool initialize_draw2d_printer_document_properties(printer * pprinter);
+//#endif
          virtual bool close();
          virtual ::draw2d::graphics_pointer create_graphics();
 

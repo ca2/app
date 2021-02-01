@@ -48,13 +48,13 @@ namespace user
    public:
 
 
-      ::rect                     m_rectGroup;
-      ::rect                     m_rectItem;
-      ::rect                     m_rectSubItem;
-      ::rect                     m_rectListItem;
-      ::rect                     m_rectImage;
-      ::rect                     m_rectText;
-      rect *                     m_prectClient;
+      ::rectangle_i32                     m_rectGroup;
+      ::rectangle_i32                     m_rectItem;
+      ::rectangle_i32                     m_rectSubItem;
+      ::rectangle_i32                     m_rectListItem;
+      ::rectangle_i32                     m_rectImage;
+      ::rectangle_i32                     m_rectText;
+      rectangle_i32 *                     m_prectClient;
 
 
       index                      m_iGroupRectGroup;

@@ -460,7 +460,7 @@ namespace sockets
       // IP options
       //@{
 
-      bool SetIpOptions(const void *point, socklen_t len);
+      bool SetIpOptions(const void *point_i32, socklen_t len);
       bool SetIpTOS(unsigned char tos);
       unsigned char IpTOS();
       bool SetIpTTL(int ttl);
@@ -666,7 +666,7 @@ namespace sockets
       void SetSocks4Host(const string & );
 #endif
       /** Socks4 server port to use. */
-      void SetSocks4Port(port_t point);
+      void SetSocks4Port(port_t point_i32);
       /** Provide a socks4 userid if required by the socks4 server. */
       void SetSocks4Userid(const string & x);
       /** get the ip address/port of socks4 server to use.
@@ -740,7 +740,7 @@ namespace sockets
 
 
       /** write traffic to an IFile. base_socket will not delete this object. */
-      void SetTrafficMonitor(file_pointer point) { m_spfileTrafficMonitor = point; }
+      void SetTrafficMonitor(file_pointer point_i32) { m_spfileTrafficMonitor = point_i32; }
       /** All traffic will be written to this IFile, if set. */
       file_pointer GetTrafficMonitor() { return m_spfileTrafficMonitor; }
 

@@ -71,7 +71,7 @@ namespace datetime
          //      int32_t iFirstWeek;
          int32_t iLastDayOfWeek = timeLastDayOfMonth.GetDayOfWeek();
          int32_t iLastDayPreviousMonth = (time - ::datetime::time_span(1, 0, 0, 0)).GetDay();
-         rect rectDay;
+         rectangle_i32 rectDay;
          int32_t iDay;
          pfile->raw_print("<table cellpadding=\"0\" cellspacing=\"0\">");
          if (pfile->m_strOptions.find("<no-week-bar-title>") < 0)

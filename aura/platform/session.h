@@ -66,14 +66,14 @@ namespace aura
 
 #if defined(WINDOWS)
 
-      //#pragma message("at macos??")
-      static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECT32* prcMonitor, LPARAM dwData);
+      ////#pragma message("at macos??")
+      //static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECTANGLE_I32* prcMonitor, lparam dwData);
 
-      void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECT32* prcMonitor);
+      //void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECTANGLE_I32* prcMonitor);
 
 #if defined(WINDOWS_DESKTOP)
       
-      inline ::user::interaction* system_window() { return __user_interaction(m_puiSession); }
+      //inline ::user::interaction* system_window() { return __user_interaction(m_puiSession); }
 
 #endif
 
@@ -85,22 +85,22 @@ namespace aura
 
       virtual void enum_display_monitors() override;
 
-      virtual index get_main_monitor(RECT32* prect = nullptr) override;
+      virtual index get_main_monitor(RECTANGLE_I32* prectangle = nullptr) override;
 
       virtual ::count get_monitor_count() override;
-      virtual bool  get_monitor_rect(index iMonitor, RECT32* prect) override;
+      virtual bool  get_monitor_rect(index iMonitor, RECTANGLE_I32* prectangle) override;
 
       virtual ::count get_desk_monitor_count() override;
-      virtual bool  get_desk_monitor_rect(index iMonitor, RECT32* prect) override;
+      virtual bool  get_desk_monitor_rect(index iMonitor, RECTANGLE_I32* prectangle) override;
 
 
-      virtual index get_main_wkspace(RECT32* prect = nullptr) override;
+      virtual index get_main_wkspace(RECTANGLE_I32* prectangle = nullptr) override;
 
       virtual ::count get_wkspace_count() override;
-      virtual bool  get_wkspace_rect(index iWkspace, RECT32* prect) override;
+      virtual bool  get_wkspace_rect(index iWkspace, RECTANGLE_I32* prectangle) override;
 
       virtual ::count get_desk_wkspace_count() override;
-      virtual bool  get_desk_wkspace_rect(index iWkspace, RECT32* prect) override;
+      virtual bool  get_desk_wkspace_rect(index iWkspace, RECTANGLE_I32* prectangle) override;
 
       virtual index get_ui_wkspace(::user::interaction* pinteraction);
 
@@ -134,10 +134,10 @@ namespace aura
       //inline ::sockets::sockets & sockets() { return *m_psockets; }
 
 
-      virtual size get_window_minimum_size() override;
+      virtual size_i32 get_window_minimum_size() override;
 
 
-      //virtual void  get_cursor_pos(POINT32 * ppoint);
+      //virtual void  get_cursor_pos(POINT_I32 * ppoint);
 
       virtual bool on_get_thread_name(string& strThreadName) override;
 
@@ -232,7 +232,7 @@ namespace aura
 
       virtual color32_t get_default_color(u64 u) override;
 
-      //virtual ::size get_window_minimum_size();
+      //virtual ::size_i32 get_window_minimum_size();
 
       virtual void frame_pre_translate_message(::message::message * pmessage) override;
 
@@ -281,51 +281,51 @@ namespace aura
       //virtual void translate_os_key_message(::user::key * pkey);
       //virtual bool on_create_frame_window();
 
-      virtual void get_cursor_pos(POINT32 * ppoint) override;
-      inline ::point get_cursor_pos() {::point point; get_cursor_pos(&point); return point;}
+      virtual void get_cursor_pos(POINT_I32 * ppoint) override;
+      inline ::point_i32 get_cursor_pos() {::point_i32 point; get_cursor_pos(&point); return point;}
 
-      //virtual void set_cursor_pos(const ::point & point) override;
+      //virtual void set_cursor_pos(const ::point_i32 & point) override;
 
-//      virtual index get_main_monitor(RECT32 * prect = nullptr) override;
+//      virtual index get_main_monitor(RECTANGLE_I32 * prectangle = nullptr) override;
 
       virtual bool set_main_monitor(index iMonitor) override;
       //virtual ::count get_monitor_count() override//;
-      //virtual bool  get_monitor_rect(index iMonitor, RECT32 * prect) override//;
+      //virtual bool  get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle) override//;
 
-//      virtual index get_main_wkspace(RECT32 * prect = nullptr) override;
+//      virtual index get_main_wkspace(RECTANGLE_I32 * prectangle = nullptr) override;
 
       virtual bool set_main_wkspace(index iWkspace) override;
       //virtual ::count get_wkspace_count() override;
-      //virtual bool  get_wkspace_rect(index iWkspace, RECT32 * prect) override;
+      //virtual bool  get_wkspace_rect(index iWkspace, RECTANGLE_I32 * prectangle) override;
 
-      virtual bool wkspace_to_monitor(RECT32 * prect, index iMonitor, index iWkspace) override;
+      virtual bool wkspace_to_monitor(RECTANGLE_I32 * prectangle, index iMonitor, index iWkspace) override;
 
-      virtual bool monitor_to_wkspace(RECT32 * prect, index iWkspace, index iMonitor) override;
+      virtual bool monitor_to_wkspace(RECTANGLE_I32 * prectangle, index iWkspace, index iMonitor) override;
 
-      virtual bool wkspace_to_monitor(RECT32 * prect) override;
+      virtual bool wkspace_to_monitor(RECTANGLE_I32 * prectangle) override;
 
-      virtual bool monitor_to_wkspace(RECT32 * prect) override;
+      virtual bool monitor_to_wkspace(RECTANGLE_I32 * prectangle) override;
 
       //virtual ::count get_desk_monitor_count() override;
-      //virtual bool  get_desk_monitor_rect(index iMonitor, RECT32 * prect) override;
+      //virtual bool  get_desk_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle) override;
 
-      virtual void  get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, const ::rect & rect) override;
+      virtual void  get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, const ::rectangle_i32 & rectangle) override;
 
-      virtual index initial_frame_position(RECT32 * prect, const ::rect & rect, bool bMove, ::user::interaction * pinteraction);
+      virtual index initial_frame_position(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bMove, ::user::interaction * pinteraction);
 
-      virtual index _get_best_zoneing(edisplay * pedisplay, ::rect * prect, const ::rect & rect, bool bPreserveSize = false) override;
+      virtual index _get_best_zoneing(edisplay * pedisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bPreserveSize = false) override;
 
-      virtual index get_best_monitor(RECT32 * prect, const ::rect & rect, ::e_activation eactivation = e_activation_default) override;
+      virtual index get_best_monitor(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::e_activation eactivation = e_activation_default) override;
 
-      virtual index get_best_wkspace(::rect * prect, const ::rect& rect, ::e_activation eactivation = e_activation_default) override;
+      virtual index get_best_wkspace(::rectangle_i32 * prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default) override;
 
-      virtual index get_good_iconify(RECT32 * prect, const ::rect & rect) override;
+      virtual index get_good_iconify(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle) override;
 
-      virtual index get_window_restore_1(RECT32 * prect, const ::rect & rect, ::user::interaction * pinteraction, edisplay edisplayRestore);
+      virtual index get_window_restore_1(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction, edisplay edisplayRestore);
 
-      virtual index get_window_restore_2(RECT32* prect, const ::rect& rect, ::user::interaction* pinteraction, edisplay edisplayRestore);
+      virtual index get_window_restore_2(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle, ::user::interaction* pinteraction, edisplay edisplayRestore);
 
-      virtual index get_good_move(RECT32 * prect, const ::rect & rect, ::user::interaction * pinteraction);
+      virtual index get_good_move(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction);
 
       //virtual index get_ui_wkspace(::user::interaction * pinteraction);
 
@@ -335,7 +335,7 @@ namespace aura
       //__pointer(::user::theme) get_user_theme(const char * pszExperienceLibrary, ::aura::application * papp = nullptr);
 
 
-      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::draw2d::brush_pointer & brushText);
+      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText);
 
 
       virtual void set_bound_ui(::id idView, ::user::interaction * pinteraction);
@@ -367,13 +367,13 @@ namespace aura
 
       //template < typename VIEW >
       //__pointer(::user::document)   create_form(__pointer(::user::interaction) pwndParent = nullptr, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(::type point_i32, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //template < typename VIEW >
       //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(::type point_i32, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_child_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle,::user::menu_item* pitem) override;
@@ -444,7 +444,7 @@ namespace aura
 
       virtual ::e_status     main() override;
 
-      virtual ::e_status defer_initialize_host_window(LPCRECT32 lprect = nullptr) override;
+      virtual ::e_status defer_initialize_host_window(const RECTANGLE_I32 * lprect = nullptr) override;
 
       //virtual service_base * allocate_new_service() override;
 

@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/operating_system.h"
 
 
 #ifdef RASPBIAN
@@ -91,7 +92,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn)
 }
 
 
-mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName, LPSECURITY_ATTRIBUTES psaAttribute)
+mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName ARG_SEC_ATTRS)
 {
 
    m_bAlreadyExists = false;
@@ -102,7 +103,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName, LPSECUR
 
    const unichar * pwszName = pstrName == nullptr ? nullptr : (const unichar *)wstrName;
 
-   m_hsync = ::CreateMutexExW(psaAttribute, pwszName, bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0, MUTEX_ALL_ACCESS);
+   m_hsync = ::CreateMutexExW(PARAM_SEC_ATTRS, pwszName, bInitiallyOwn ?  CREATE_MUTEX_INITIAL_OWNER : 0, MUTEX_ALL_ACCESS);
 
    DWORD dwLastError = ::GetLastError();
 
@@ -1661,27 +1662,27 @@ CLASS_DECL_ACME mutex * get_ui_destroyed_mutex()
 null_dacl_security_attributes::null_dacl_security_attributes()
 {
 
-   __zero(m_securityattributes);
+   __zero(((SECURITY_ATTRIBUTES &)((SECURITY_ATTRIBUTES &) m_securityattributes)));
 
-   m_securityattributes.nLength = sizeof(m_securityattributes);
+   ((SECURITY_ATTRIBUTES &)((SECURITY_ATTRIBUTES &) m_securityattributes)).nLength = sizeof(((SECURITY_ATTRIBUTES &) m_securityattributes));
 
-   m_securityattributes.bInheritHandle = FALSE; // matter uninheritable
+   ((SECURITY_ATTRIBUTES &)((SECURITY_ATTRIBUTES &) m_securityattributes)).bInheritHandle = FALSE; // matter uninheritable
 
    // declare and initialize a security descriptor
-   __zero(m_securitydescriptor);
+   __zero(((SECURITY_ATTRIBUTES &) ((SECURITY_ATTRIBUTES &) m_securityattributes)));
 
-   bool bInitOk = InitializeSecurityDescriptor(&m_securitydescriptor,SECURITY_DESCRIPTOR_REVISION) != FALSE;
+   bool bInitOk = InitializeSecurityDescriptor(&((SECURITY_ATTRIBUTES &) ((SECURITY_ATTRIBUTES &) m_securityattributes)),SECURITY_DESCRIPTOR_REVISION) != FALSE;
 
    if(bInitOk)
    {
       // give the security descriptor a Null Dacl
       // done using the  "TRUE, (PACL)nullptr" here
-      bool bSetOk = SetSecurityDescriptorDacl(&m_securitydescriptor,TRUE,(PACL)nullptr,FALSE) != FALSE;
+      bool bSetOk = SetSecurityDescriptorDacl(&((SECURITY_ATTRIBUTES &) ((SECURITY_ATTRIBUTES &) m_securityattributes)),TRUE,(PACL)nullptr,FALSE) != FALSE;
 
       if(bSetOk)
       {
 
-         m_securityattributes.lpSecurityDescriptor = &m_securitydescriptor;
+         ((SECURITY_ATTRIBUTES &) m_securityattributes).lpSecurityDescriptor = &((SECURITY_ATTRIBUTES &) ((SECURITY_ATTRIBUTES &) m_securityattributes));
 
 
       }
@@ -1698,7 +1699,7 @@ namespace install
 
    mutex::mutex(string strPlatform, string strSuffix) :
 #ifdef WINDOWS_DESKTOP
-      ::mutex(e_create_new, false, "Global\\::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, &m_securityattributes)
+      ::mutex(e_create_new, false, "Global\\::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, &((SECURITY_ATTRIBUTES &) m_securityattributes))
       , sync("Global\\::ca2::account::ccwarehouse::install::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
 #else
       ::mutex(e_create_new, false, "Global\\::ca2::account::ccwarehouse::spa::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, (LPSECURITY_ATTRIBUTES)nullptr)
@@ -1710,7 +1711,7 @@ namespace install
 
    admin_mutex::admin_mutex(string strPlatform, string strSuffix) :
 #ifdef WINDOWS_DESKTOP
-      mutex(e_create_new, false, "Global\\::ca2::account::ccwarehouse::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, &m_securityattributes)
+      mutex(e_create_new, false, "Global\\::ca2::account::ccwarehouse::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix, &((SECURITY_ATTRIBUTES &) m_securityattributes))
 #else
       mutex(e_create_new, false, "Global\\::ca2::account::ccwarehouse::" + strPlatform + "::200010001951042219770204-11dd-ae16-0800200c7784" + strSuffix)
 #endif

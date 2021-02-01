@@ -14,7 +14,7 @@
    char * lpszSize = _tcschr(szFontInfo, '\n');
    if (lpszSize != nullptr)
    {
-      // get point size and convert to pixels
+      // get point_i32 size_i32 and convert to pixels
       pLogFont->lfHeight = _ttoi(lpszSize+1);
       pLogFont->lfHeight =
          MulDiv(pLogFont->lfHeight, afxData.cyPixelsPerInch, 72);
@@ -47,7 +47,7 @@ int_bool CLASS_DECL_lnx _AfxCompareClassName(oswindow hWnd, const char * lpszCla
    return ::AfxInvariantStrICmp(szTemp, lpszClassName) == 0;
 }
 
-oswindow CLASS_DECL_lnx _AfxChildWindowFromPoint(oswindow hWnd, POINT32 pt)
+oswindow CLASS_DECL_lnx _AfxChildWindowFromPoint(oswindow hWnd, POINT_I32 pt)
 {
    ASSERT(hWnd != nullptr);
 
@@ -59,10 +59,10 @@ oswindow CLASS_DECL_lnx _AfxChildWindowFromPoint(oswindow hWnd, POINT32 pt)
       if (_AfxGetDlgCtrlID(hWndChild) != (::u16)0 &&
          (::GetWindowLong(hWndChild, GWL_STYLE) & WS_VISIBLE))
       {
-         // see if point hits the child ::interaction_impl
-         ::rect rect;
-         ::get_window_rect(hWndChild, rect);
-         if (rect.contains(point))
+         // see if point_i32 hits the child ::interaction_impl
+         ::rectangle_i32 rectangle;
+         ::get_window_rect(hWndChild, rectangle);
+         if (rectangle.contains(point))
             return hWndChild;
       }
    }

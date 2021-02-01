@@ -49,7 +49,7 @@ namespace html
       static bool parse_border_color(const char * psz, color32_t & cr);
 
       bool get_dimension(bool bParent, id idName, const string & strSubClass, html_data * pdata, ::html::element * pelemental, float & f);
-      bool get_surround_box(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelemental, ::rectf & rect);
+      bool get_surround_box(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelemental, ::rectangle_f32 & rectangle);
       bool get_border_box(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelemental, border & border);
       bool get_border_color(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelemental, border & border);
       // todo

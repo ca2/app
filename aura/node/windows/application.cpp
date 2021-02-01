@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 
 
 namespace aura
@@ -165,9 +166,9 @@ namespace aura
       if (bShow)
       {
 
-         HCURSOR hcursorWait = ::LoadCursor(nullptr, IDC_WAIT);
+         hcursor hcursorWait = ::LoadCursor(nullptr, IDC_WAIT);
 
-         HCURSOR hcursorPrevious = ::SetCursor(hcursorWait);
+         hcursor hcursorPrevious = ::SetCursor(hcursorWait);
 
          //     if(hcursorPrevious != hcursorWait)
          //         m_hcurWaitCursorRestore = hcursorPrevious;
@@ -181,7 +182,7 @@ namespace aura
 
    }
 
-   int_bool application::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
+   int_bool application::window_set_mouse_cursor(oswindow window, hcursor hcursor)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -242,7 +243,7 @@ namespace aura
    //}
 
 
-   //int_bool application::window_set_mouse_cursor(oswindow oswindow, HCURSOR hcursor)
+   //int_bool application::window_set_mouse_cursor(oswindow oswindow, hcursor hcursor)
    //{
 
    //   if (!::SetCursor(hcursor))
@@ -252,11 +253,11 @@ namespace aura
 
    //   }
 
-   //   return TRUE;
+   //   return true;
 
    //}
 
-   HCURSOR application::load_default_cursor(e_cursor ecursor)
+   hcursor application::load_default_cursor(e_cursor ecursor)
    {
 
       auto pcursor = windows_get_system_cursor(ecursor);

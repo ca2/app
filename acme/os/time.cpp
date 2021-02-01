@@ -12,7 +12,7 @@ CLASS_DECL_ACME void __seed_srand()
 
 }
 
-
+#if 0
 
 bool os_usleep::sleep(unsigned long usec)
 {
@@ -37,7 +37,7 @@ bool os_usleep::sleep(unsigned long usec)
 }
 
 
-
+#endif
 
 
 //CLASS_DECL_ACME void sleep(const ::duration& dur)

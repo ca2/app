@@ -176,7 +176,7 @@ string strNow)
 int_bool SetWindowRect(oswindow hwnd, LPRECT32 lprect);
 
 // int_bool PeekMessage(
-// LPMESSAGE lpMsg,
+// MESSAGE * lpMsg,
 // oswindow hWnd,
 // ::u32 wMsgFilterMin,
 // ::u32 wMsgFilterMax,
@@ -184,7 +184,7 @@ int_bool SetWindowRect(oswindow hwnd, LPRECT32 lprect);
 
 
 // int_bool GetMessage(
-// LPMESSAGE lpMsg,
+// MESSAGE * lpMsg,
 // oswindow hWnd,
 // ::u32 wMsgFilterMin,
 // ::u32 wMsgFilterMax);
@@ -468,22 +468,22 @@ namespace ios
 
       }
 
-      ::rect rectCreate;
+      ::rectangle_i32 rectCreate;
 
       pusersystem->m_createstruct.get_rect(rectCreate);
 
-      CGRect rect;
+      CGRect rectangle_i32;
 
-      __copy(rect, rectCreate);
+      __copy(rectangle, rectCreate);
       
       install_message_routing(m_puserinteraction);
 
       if(pusersystem->m_createstruct.hwndParent != HWND_MESSAGE)
       {
 
-         m_oswindow = oswindow_get(new_aura_window(this, rect));
+         m_oswindow = oswindow_get(new_aura_window(this, rectangle));
          
-         __copy(rectCreate, rect);
+         __copy(rectCreate, rectangle);
 
          m_puserinteraction->place(rectCreate);
 
@@ -519,7 +519,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::create_window(::user::interaction * pinteraction, const char * pszClassName,const char * pszWindowName,u32 uStyle,const ::rect & rect,::user::interaction * puiParent,id id, ::create * pcreate)
+   bool interaction_impl::create_window(::user::interaction * pinteraction, const char * pszClassName,const char * pszWindowName,u32 uStyle,const ::rectangle_i32 & rectangle,::user::interaction * puiParent,id id, ::create * pcreate)
    {
       
       // can't use for desktop or pop-up windows (use CreateEx instead)
@@ -528,7 +528,7 @@ namespace ios
       ASSERT((uStyle & WS_POPUP) == 0);
 
       ::user::system createstruct(0, pszClassName, pszWindowName, uStyle | WS_CHILD,
-                               rect);
+                               rectangle_i32);
 
       return create_window_ex(pinteraction, createstruct, puiParent, id);
       
@@ -548,16 +548,16 @@ namespace ios
 //   bool interaction_impl::native_create_window_ex(::user::system & createstruct)
 //   {
 //
-//      CGRect rect;
+//      CGRect rectangle_i32;
 //
-//      rect.origin.x = pinitialize->m_rect.left;
-//      rect.origin.y = pinitialize->m_rect.top;
-//      rect.size.width = width(pinitialize->m_rect);
-//      rect.size.height = height(pinitialize->m_rect);
+//      rectangle.origin.x = pinitialize->m_rectangle.left;
+//      rectangle.origin.y = pinitialize->m_rectangle.top;
+//      rectangle.size.width = width(pinitialize->m_rectangle);
+//      rectangle.size.height = height(pinitialize->m_rectangle);
 //
-//      m_rectParentClientRequest = pinitialize.m_rect;
+//      m_rectParentClientRequest = pinitialize.m_rectangle;
 //
-//      m_oswindow = oswindow_get(new_aura_window(this, rect));
+//      m_oswindow = oswindow_get(new_aura_window(this, rectangle));
 //
 //      install_message_routing(this);
 //
@@ -708,7 +708,7 @@ namespace ios
       
       UNREFERENCED_PARAMETER(pmessage);
 
-//      size sizeRequest = m_rectParentClientRequest.size();
+//      size_i32 sizeRequest = m_rectParentClientRequest.size();
 //
 //      for(auto & pinteraction : m_puserinteraction->m_uiptraChild)
 //      {
@@ -878,9 +878,9 @@ namespace ios
       //      ::GetClassName(get_handle(), szBuf, _countof(szBuf));
       //    dumpcontext << "\nclass name = \"" << szBuf << "\"";
 
-      ::rect rect;
-      m_puserinteraction->get_window_rect(&rect);
-      dumpcontext << "\nrect = " << rect;
+      ::rectangle_i32 rectangle;
+      m_puserinteraction->get_window_rect(&rectangle);
+      dumpcontext << "\nrect = " << rectangle_i32;
       dumpcontext << "\nparent ::user::interaction * = " << (void *)((::user::interaction_impl *) this)->get_parent();
 
       //      dumpcontext << "\nstyle = " << (void *)(dword_ptr)::GetWindowLong(get_handle(), GWL_STYLE);
@@ -907,7 +907,7 @@ namespace ios
    }
 
 
-//   LRESULT interaction_impl::DefWindowProc(::u32 nMsg, WPARAM wparam, ::lparam lparam)
+//   LRESULT interaction_impl::DefWindowProc(::u32 nMsg, wparam wparam, ::lparam lparam)
 //   {
 //      /*  if (m_pfnSuper != nullptr)
 //       return ::CallWindowProc(m_pfnSuper, get_handle(), nMsg, wparam, lparam);
@@ -1006,7 +1006,7 @@ namespace ios
       return FALSE;
    }
 
-   LRESULT interaction_impl::OnNTCtlColor(WPARAM wparam, LPARAM lparam)
+   LRESULT interaction_impl::OnNTCtlColor(wparam wparam, lparam lparam)
    {
       return 0;
    }
@@ -1226,13 +1226,13 @@ namespace ios
 
             pmouse->m_bTranslated = true;
 
-            rect rectWindow;
+            rectangle_i32 rectWindow;
 
             ((::user::interaction_impl *)this)->m_puserinteraction->get_window_rect(rectWindow);
 
             if(System.get_monitor_count() > 0)
             {
-               ::rect rcMonitor;
+               ::rectangle_i32 rcMonitor;
                System.get_monitor_rect(0, &rcMonitor);
                if(rectWindow.left >= rcMonitor.left)
                   pmouse->m_point.x += (::i32) rectWindow.left;
@@ -1348,7 +1348,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::OnCommand(WPARAM wparam, LPARAM lparam)
+   bool interaction_impl::OnCommand(wparam wparam, lparam lparam)
    // return TRUE if command invocation was attempted
    {
       
@@ -1360,7 +1360,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::OnNotify(WPARAM, LPARAM lparam, LRESULT* pResult)
+   bool interaction_impl::OnNotify(WPARAM, lparam lparam, LRESULT* pResult)
    {
       /*    ASSERT(pResult != nullptr);
        NMHDR* pNMHDR = (NMHDR*)lparam;
@@ -1626,7 +1626,7 @@ namespace ios
    }
 
 //   void interaction_impl::ScrollWindow(i32 xAmount, i32 yAmount,
-//                                       const ::rect & rect, LPCRECT32 lpClipRect)
+//                                       const ::rectangle_i32 & rectangle, const RECTANGLE_I32 * lpClipRect)
 //   {
 //      /*      ASSERT(::is_window(get_handle()));
 //
@@ -1647,11 +1647,11 @@ namespace ios
 //       for (; hWndChild != nullptr;
 //       hWndChild = ::GetNextWindow(hWndChild, GW_HWNDNEXT))
 //       {
-//       ::rect rect;
-//       ::get_window_rect(hWndChild, &rect);
-//       _001ScreenToClient(&rect);
+//       ::rectangle_i32 rectangle;
+//       ::get_window_rect(hWndChild, &rectangle);
+//       _001ScreenToClient(&rectangle);
 //       ::set_window_pos(hWndChild, nullptr,
-//       rect.left+xAmount, rect.top+yAmount, 0, 0,
+//       rectangle.left+xAmount, rectangle.top+yAmount, 0, 0,
 //       SWP_NOSIZE|SWP_NOACTIVATE|SWP_NOZORDER);
 //       }
 //       }
@@ -1672,7 +1672,7 @@ namespace ios
    /////////////////////////////////////////////////////////////////////////////
    // Special keyboard/system command processing
 
-   bool interaction_impl::HandleFloatingSysCommand(::u32 nID, LPARAM lparam)
+   bool interaction_impl::HandleFloatingSysCommand(::u32 nID, lparam lparam)
    {
       /*      ::user::interaction* pParent = GetTopLevelParent();
        switch (nID & 0xfff0)
@@ -1774,13 +1774,13 @@ namespace ios
       return false;
    }
 
-   bool interaction_impl::OnChildNotify(::u32 uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
+   bool interaction_impl::OnChildNotify(::u32 uMsg, wparam wparam, lparam lparam, LRESULT* pResult)
    {
 
       return ReflectChildNotify(uMsg, wparam, lparam, pResult);
    }
 
-   bool interaction_impl::ReflectChildNotify(::u32 uMsg, WPARAM wparam, LPARAM lparam, LRESULT* pResult)
+   bool interaction_impl::ReflectChildNotify(::u32 uMsg, wparam wparam, lparam lparam, LRESULT* pResult)
    {
       UNREFERENCED_PARAMETER(wparam);
       // Note: reflected messages are send directly to interaction_impl::OnWndMsg
@@ -1853,7 +1853,7 @@ namespace ios
       return false;   // let the parent handle it
    }
 
-   void interaction_impl::OnParentNotify(const ::id & id, LPARAM lparam)
+   void interaction_impl::OnParentNotify(const ::id & id, lparam lparam)
    {
       if ((LOWORD(message) == e_message_create || LOWORD(message) == e_message_destroy))
       {
@@ -1876,7 +1876,7 @@ namespace ios
    }
 
 
-   LRESULT interaction_impl::OnActivateTopLevel(WPARAM wparam, LPARAM)
+   LRESULT interaction_impl::OnActivateTopLevel(wparam wparam, LPARAM)
    {
 
       return 0;
@@ -1962,7 +1962,7 @@ namespace ios
       //return Default();
    }
 
-   LRESULT interaction_impl::OnDragList(WPARAM, LPARAM lparam)
+   LRESULT interaction_impl::OnDragList(WPARAM, lparam lparam)
    {
 
       __throw(not_implemented());
@@ -2302,7 +2302,7 @@ namespace ios
     Default();
     }
     */
-   bool CALLBACK interaction_impl::GetAppsEnumWindowsProc(oswindow hwnd, LPARAM lparam)
+   bool CALLBACK interaction_impl::GetAppsEnumWindowsProc(oswindow hwnd, lparam lparam)
    {
       user::oswindow_array * phwnda = (user::oswindow_array *) lparam;
       phwnda->add(hwnd);
@@ -2319,15 +2319,15 @@ namespace ios
    void interaction_impl::_001DeferPaintLayeredWindowBackground(HDC hdc)
    {
 
-//      ::rect rectClient;
+//      ::rectangle_i32 rectClient;
 //
 //      get_client_rect(rectClient);
 //
-//      ::rect rectUpdate;
+//      ::rectangle_i32 rectUpdate;
 //      
 //      get_window_rect(rectUpdate);
 //      
-//      ::rect rectPaint;
+//      ::rectangle_i32 rectPaint;
 //      
 //      rectPaint = rectUpdate;
 //      
@@ -2368,18 +2368,18 @@ namespace ios
       //
       //      ::draw2d::graphics_pointer graphics(get_object());
       //      WIN_DC(graphics.m_p)->Attach((HDC) pbase->m_wparam);
-      //      ::rect rectx;
+      //      ::rectangle_i32 rectx;
       //      ::draw2d::bitmap * pbitmap = &pgraphics->GetCurrentBitmap();
       //      ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
       //      //      ::u32 dw = ::get_last_error();
-      //      ::size size = pbitmap->get_size();
+      //      ::size_i32 size = pbitmap->get_size();
       //      rectx.left = 0;
       //      rectx.top = 0;
       //      rectx.right = size.cx;
       //      rectx.bottom = size.cy;
       //      try
       //      {
-      //         ::rect rectWindow;
+      //         ::rectangle_i32 rectWindow;
       //         get_window_rect(rectWindow);
       //
       //         ::image_pointer pimage(get_object());
@@ -2391,8 +2391,8 @@ namespace ios
       //         if(pgraphics->get_handle() == nullptr)
       //            return;
       //
-      //         ::rect rectPaint;
-      //         ::rect rectUpdate;
+      //         ::rectangle_i32 rectPaint;
+      //         ::rectangle_i32 rectUpdate;
       //         rectUpdate = rectWindow;
       //         rectPaint = rectWindow;
       //         rectPaint.offset(-rectPaint.top_left());
@@ -2406,12 +2406,12 @@ namespace ios
       //            _001OnDeferPaintLayeredWindowBackground(pgraphics);
       //         }
       //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SelectClipRgn(nullptr);
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(::point());
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
       //         _000OnDraw(pgraphics);
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(::point());
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
       //         //(dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
       //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SelectClipRgn(nullptr);
-      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(::point());
+      //         (dynamic_cast<::draw2d_quartz2d::graphics * >(pgraphics))->SetViewportOrg(::point_i32());
       //
       //         pgraphics->SelectClipRgn( nullptr);
       //         pgraphics->BitBlt(rectPaint.left, rectPaint.top,
@@ -2645,7 +2645,7 @@ namespace ios
 //   bool interaction_impl::_001ClientToScreen(LPRECT32 lprect)
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rectangle_i64 rectWindow;
 //
 //      if(!m_puserinteraction->get_window_rect(rectWindow))
 //      {
@@ -2664,10 +2664,10 @@ namespace ios
 //   }
 
 
-//   bool interaction_impl::_001ClientToScreen(POINT32 * lppoint)
+//   bool interaction_impl::_001ClientToScreen(POINT_I32 * lppoint)
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rectangle_i64 rectWindow;
 //
 //      if(!m_puserinteraction->get_window_rect(rectWindow))
 //      {
@@ -2684,10 +2684,10 @@ namespace ios
 //   }
 //
 //
-//   bool interaction_impl::_001ClientToScreen(RECT64 * lprect)
+//   bool interaction_impl::_001ClientToScreen(RECTANGLE_I64 * lprect)
 //   {
 //
-//      ::rect rectWindow;
+//      ::rectangle_i32 rectWindow;
 //
 //      if(!m_puserinteraction->get_window_rect(rectWindow))
 //      {
@@ -2706,10 +2706,10 @@ namespace ios
 //   }
 
 
-//   bool interaction_impl::_001ClientToScreen(POINT64 * lppoint)
+//   bool interaction_impl::_001ClientToScreen(POINT_I64 * lppoint)
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rectangle_i64 rectWindow;
 //
 //      if(!m_puserinteraction->get_window_rect(rectWindow))
 //      {
@@ -2728,7 +2728,7 @@ namespace ios
 //   bool interaction_impl::_001ScreenToClient(LPRECT32 lprect)
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rectangle_i64 rectWindow;
 //
 //      if(!m_puserinteraction->get_window_rect(rectWindow))
 //      {
@@ -2747,10 +2747,10 @@ namespace ios
 //   }
 
 
-//   bool interaction_impl::_001ScreenToClient(POINT32 * lppoint)
+//   bool interaction_impl::_001ScreenToClient(POINT_I32 * lppoint)
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rectangle_i64 rectWindow;
 //
 //      if(!m_puserinteraction->get_window_rect(rectWindow))
 //      {
@@ -2768,10 +2768,10 @@ namespace ios
 //   }
 //
 //
-//   bool interaction_impl::_001ScreenToClient(RECT64 * lprect)
+//   bool interaction_impl::_001ScreenToClient(RECTANGLE_I64 * lprect)
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rectangle_i64 rectWindow;
 //
 //      if(!m_puserinteraction->get_window_rect(rectWindow))
 //      {
@@ -2790,10 +2790,10 @@ namespace ios
 //
 //   }
 //
-//   bool interaction_impl::_001ScreenToClient(POINT64 * lppoint)
+//   bool interaction_impl::_001ScreenToClient(POINT_I64 * lppoint)
 //   {
 //
-//      ::rect64 rectWindow;
+//      ::rectangle_i64 rectWindow;
 //
 //      if(!m_puserinteraction->get_window_rect(rectWindow))
 //      {
@@ -2810,7 +2810,7 @@ namespace ios
 //   }
 
 
-//   bool interaction_impl::get_window_rect(RECT64 * lprect)
+//   bool interaction_impl::get_window_rect(RECTANGLE_I64 * lprect)
 //   {
 //      //      if(!::is_window(get_handle()))
 //      //       __throw(::exception::exception("no more a user::interaction"));
@@ -2825,7 +2825,7 @@ namespace ios
 //
 //      // if it is temporary user::interaction - probably not ca2 wrapped user::interaction
 //
-////      ::rect rect32;
+////      ::rectangle_i32 rect32;
 ////
 ////      if(m_puserinteraction == get_context_application()->m_psystem->m_possystemwindow->m_puserinteraction)
 ////      {
@@ -2856,7 +2856,7 @@ namespace ios
 //
 //   }
 
-//   bool interaction_impl::get_client_rect(RECT64 * lprect)
+//   bool interaction_impl::get_client_rect(RECTANGLE_I64 * lprect)
 //   {
 //
 //      if(!::is_window(get_handle()))
@@ -2864,7 +2864,7 @@ namespace ios
 //
 ////      ASSERT(::is_window(get_handle()));
 //
-//      ::rect rect32;
+//      ::rectangle_i32 rect32;
 //
 //      if(m_puserinteraction == get_context_application()->m_psystem->m_possystemwindow->m_puserinteraction)
 //      {
@@ -3020,7 +3020,7 @@ namespace ios
       return nullptr;
    }
 
-//   LRESULT interaction_impl::send_message(const ::id & id, WPARAM wparam, lparam lparam)
+//   LRESULT interaction_impl::send_message(const ::id & id, wparam wparam, lparam lparam)
 //   {
 //
 //      return ::user::interaction_impl::send_message(message, wparam, lparam);
@@ -3066,7 +3066,7 @@ namespace ios
 //      //return ::SendMessage(get_handle(), message, wParam, lParam);
 //   }
 
-//   bool interaction_impl::post_message(const ::id & id, WPARAM wparam, lparam lparam)
+//   bool interaction_impl::post_message(const ::id & id, wparam wparam, lparam lparam)
 //   {
 //      if(get_context_application() != nullptr)
 //      {
@@ -3078,13 +3078,13 @@ namespace ios
 //      }
 //   }
 //
-//   bool interaction_impl::DragDetect(POINT32 point) const
+//   bool interaction_impl::DragDetect(POINT_I32 point_i32) const
 //   {
 //
 //      __throw(not_implemented());
 //      //ASSERT(::is_window(get_handle()));
 //
-//      //return ::DragDetect(get_handle(), point) != FALSE;
+//      //return ::DragDetect(get_handle(), point_i32) != FALSE;
 //
 //   }
 
@@ -3167,7 +3167,7 @@ namespace ios
 
     */
 
-//   void interaction_impl::MoveWindow(const ::rect & rect, bool bRepaint)
+//   void interaction_impl::MoveWindow(const ::rectangle_i32 & rectangle, bool bRepaint)
 //   {
 //      MoveWindow(lpRect->left, lpRect->top, lpRect->right - lpRect->left, lpRect->bottom - lpRect->top, bRepaint);
 //   }
@@ -3216,7 +3216,7 @@ namespace ios
 //   }
 
 
-   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, POINT32 * lpPoint, ::u32 nCount)
+   void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, POINT_I32 * lpPoint, ::u32 nCount)
    {
       __throw(not_implemented());
       //      ASSERT(::is_window(get_handle()));
@@ -3227,7 +3227,7 @@ namespace ios
    {
       __throw(not_implemented());
       //      ASSERT(::is_window(get_handle()));
-      //      ::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_handle(), (POINT32 *)lpRect, 2);
+      //      ::MapWindowPoints(get_handle(), (oswindow) pwndTo->get_handle(), (POINT_I32 *)lpRect, 2);
    }
 
    ::draw2d::graphics * interaction_impl::GetDC()
@@ -3243,7 +3243,7 @@ namespace ios
       {
          oswindow = (::oswindow) get_handle();
       }
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
       //oswindow.get_client_rect(rectClient);
       rectClient.left = 0;
       rectClient.top = 0;
@@ -3327,7 +3327,7 @@ namespace ios
       //::InvalidateRect(get_handle(), nullptr, bErase);
    }
 
-   void interaction_impl::InvalidateRect(const ::rect & rect, bool bErase)
+   void interaction_impl::InvalidateRect(const ::rectangle_i32 & rectangle, bool bErase)
    {
       __throw(not_implemented());
       //ASSERT(::is_window(get_handle()));
@@ -3341,7 +3341,7 @@ namespace ios
       //::InvalidateRgn(get_handle(), (HRGN)pRgn->get_handle(), bErase);
    }
 
-   void interaction_impl::ValidateRect(const ::rect & rect)
+   void interaction_impl::ValidateRect(const ::rectangle_i32 & rectangle)
    {
       __throw(not_implemented());
       //ASSERT(::is_window(get_handle()));
@@ -3389,7 +3389,7 @@ namespace ios
 
    }
 
-//   void interaction_impl::send_message_to_descendants(const ::id & id, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
+//   void interaction_impl::send_message_to_descendants(const ::id & id, wparam wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
 //   {
 //      ASSERT(::is_window(get_handle()));
 //      //interaction_impl::send_message_to_descendants(get_handle(), message, wparam, lparam, bDeep, bOnlyPerm);
@@ -3460,7 +3460,7 @@ namespace ios
    }
 
 
-//   bool interaction_impl::RedrawWindow(const ::rect& rectUpdate, ::draw2d::region* prgnUpdate, ::u32 flags)
+//   bool interaction_impl::RedrawWindow(const ::rectangle_i32& rectUpdate, ::draw2d::region* prgnUpdate, ::u32 flags)
 //   {
 //
 //      if(flags & RDW_UPDATENOW)
@@ -3545,7 +3545,7 @@ namespace ios
     }
     */
 
-//   bool interaction_impl::DrawAnimatedRects(i32 idAni, const RECT32 *lprcFrom, const RECT32 *lprcTo)
+//   bool interaction_impl::DrawAnimatedRects(i32 idAni, const RECTANGLE_I32 *lprcFrom, const RECTANGLE_I32 *lprcTo)
 //   {
 //
 //      __throw(not_implemented());
@@ -3554,7 +3554,7 @@ namespace ios
 //
 //   }
 
-//   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics, LPCRECT32 lprc, ::u32 uFlags)
+//   bool interaction_impl::DrawCaption(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 * lprc, ::u32 uFlags)
 //   {
 //
 //      __throw(not_implemented());
@@ -3862,7 +3862,7 @@ namespace ios
 
    }
 
-   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wparam, LPARAM lparam)
+   LPARAM interaction_impl::SendDlgItemMessage(i32 nID, const ::id & id, wparam wparam, lparam lparam)
    {
 
       __throw(not_implemented());
@@ -3889,7 +3889,7 @@ namespace ios
 
    }
 
-//   i32 interaction_impl::ScrollWindowEx(i32 dx, i32 dy, const ::rect & rectScroll, const ::rect & rectClip, ::draw2d::region* prgnUpdate, LPRECT32 lpRectUpdate, ::u32 flags)
+//   i32 interaction_impl::ScrollWindowEx(i32 dx, i32 dy, const ::rectangle_i32 & rectScroll, const ::rectangle_i32 & rectClip, ::draw2d::region* prgnUpdate, LPRECT32 lpRectUpdate, ::u32 flags)
 //   {
 //
 //      __throw(not_implemented());
@@ -3907,22 +3907,22 @@ namespace ios
 
    }
 
-//   ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT32 point)
+//   ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT_I32 point_i32)
 //   {
 //
 //
 //      __throw(not_implemented());
 //      //      ASSERT(::is_window(get_handle()));
-//      //      return ::macos::interaction_impl::from_handle(::ChildWindowFromPoint(get_handle(), point));
+//      //      return ::macos::interaction_impl::from_handle(::ChildWindowFromPoint(get_handle(), point_i32));
 //
 //   }
 
-//   ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT32 point, ::u32 nFlags)
+//   ::user::interaction *  interaction_impl::ChildWindowFromPoint(POINT_I32 point_i32, ::u32 nFlags)
 //   {
 //
 //      __throw(not_implemented());
 //      //      ASSERT(::is_window(get_handle()));
-//      //      return ::macos::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
+//      //      return ::macos::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(), point_i32, nFlags));
 //
 //   }
 
@@ -3972,7 +3972,7 @@ namespace ios
 
    }
 
-   ::user::interaction * PASCAL interaction_impl::oswindowFromPoint(POINT32 point)
+   ::user::interaction * PASCAL interaction_impl::oswindowFromPoint(POINT_I32 point_i32)
    {
 
 
@@ -4043,16 +4043,16 @@ namespace ios
    }
 
 
-   point PASCAL interaction_impl::GetCaretPos()
+   point_i32 PASCAL interaction_impl::GetCaretPos()
    {
 
       __throw(not_implemented());
-      //      ::point point;
-      //      ::GetCaretPos((POINT32 *)&point); return point;
+      //      ::point_i32 point;
+      //      ::GetCaretPos((POINT_I32 *)&point); return point;
 
    }
 
-   void PASCAL interaction_impl::SetCaretPos(POINT32 point)
+   void PASCAL interaction_impl::SetCaretPos(POINT_I32 point_i32)
    {
 
       __throw(not_implemented());
@@ -4095,7 +4095,7 @@ namespace ios
 
    }
 
-   bool interaction_impl::SendNotifyMessage(const ::id & id, WPARAM wparam, LPARAM lparam)
+   bool interaction_impl::SendNotifyMessage(const ::id & id, wparam wparam, lparam lparam)
    {
 
       __throw(not_implemented());
@@ -4172,7 +4172,7 @@ namespace ios
       
       
    }
-   void interaction_impl::OnContextMenu(::user::interaction *, point)
+   void interaction_impl::OnContextMenu(::user::interaction *, point_i32)
    {
       //Default();
       
@@ -4356,42 +4356,42 @@ namespace ios
 //      
 //      
 //   }
-//   void interaction_impl::OnNcLButtonDblClk(::u32, point)
+//   void interaction_impl::OnNcLButtonDblClk(::u32, point_i32)
 //     {
 //      //Default();
 //      
 //      
 //   }
-//   void interaction_impl::OnNcLButtonDown(::u32, point)   {
+//   void interaction_impl::OnNcLButtonDown(::u32, point_i32)   {
 //      //Default();
 //      
 //      
 //   }
-//   void interaction_impl::OnNcLButtonUp(::u32, point)
+//   void interaction_impl::OnNcLButtonUp(::u32, point_i32)
 //   {
 //      //Default();
 //      
 //      
 //   }
-//   void interaction_impl::OnNcMButtonDblClk(::u32, point)
+//   void interaction_impl::OnNcMButtonDblClk(::u32, point_i32)
 //     {
 //      //Default();
 //      
 //      
 //   }
-//   void interaction_impl::OnNcMButtonDown(::u32, point)
+//   void interaction_impl::OnNcMButtonDown(::u32, point_i32)
 //   {
 //      //Default();
 //      
 //      
 //   }
-//   void interaction_impl::OnNcMButtonUp(::u32, point)
+//   void interaction_impl::OnNcMButtonUp(::u32, point_i32)
 //   {
 //      //Default();
 //      
 //      
 //   }
-//   void interaction_impl::OnNcMouseMove(::u32, point)
+//   void interaction_impl::OnNcMouseMove(::u32, point_i32)
 //   {
 //      //Default();
 //      
@@ -4402,19 +4402,19 @@ namespace ios
 //      //Default();
 //      
 //      
-//   }   void interaction_impl::OnNcRButtonDblClk(::u32, point)
+//   }   void interaction_impl::OnNcRButtonDblClk(::u32, point_i32)
 //   {
 //      //Default();
 //      
 //      
 //   }
-//   void interaction_impl::OnNcRButtonDown(::u32, point)
+//   void interaction_impl::OnNcRButtonDown(::u32, point_i32)
 //    {
 //      //Default();
 //      
 //      
 //   }
-//   void interaction_impl::OnNcRButtonUp(::u32, point)
+//   void interaction_impl::OnNcRButtonUp(::u32, point_i32)
 //    {
 //      //Default();
 //      
@@ -4503,37 +4503,37 @@ namespace ios
       
       
    }
-//   void interaction_impl::OnLButtonDblClk(::u32, point)
+//   void interaction_impl::OnLButtonDblClk(::u32, point_i32)
 //     {
 //      //Default();
 //
 //
 //   }
-//   void interaction_impl::OnLButtonDown(::u32, point)
+//   void interaction_impl::OnLButtonDown(::u32, point_i32)
 //     {
 //      //Default();
 //
 //
 //   }
-//   void interaction_impl::OnLButtonUp(::u32, point)
+//   void interaction_impl::OnLButtonUp(::u32, point_i32)
 //     {
 //      //Default();
 //
 //
 //   }
-//   void interaction_impl::OnMButtonDblClk(::u32, point)
+//   void interaction_impl::OnMButtonDblClk(::u32, point_i32)
 //      {
 //      //Default();
 //
 //
 //   }
-//   void interaction_impl::OnMButtonDown(::u32, point)
+//   void interaction_impl::OnMButtonDown(::u32, point_i32)
 //      {
 //      //Default();
 //
 //
 //   }
-//   void interaction_impl::OnMButtonUp(::u32, point)
+//   void interaction_impl::OnMButtonUp(::u32, point_i32)
 //     {
 //      //Default();
 //
@@ -4545,14 +4545,14 @@ namespace ios
          return 1;
       
    }
-//   void interaction_impl::OnMouseMove(::u32, point)
+//   void interaction_impl::OnMouseMove(::u32, point_i32)
 //   {
 //      //Default();
 //      
 //      
 //   }
 //
-//   bool interaction_impl::OnMouseWheel(::u32, short, point)
+//   bool interaction_impl::OnMouseWheel(::u32, short, point_i32)
 //   {
 //
 //      return true;
@@ -4565,19 +4565,19 @@ namespace ios
 //      
 //      
 //   }
-//   void interaction_impl::OnRButtonDblClk(::u32, point)
+//   void interaction_impl::OnRButtonDblClk(::u32, point_i32)
 //   {
 //      //Default();
 //      
 //      
 //   }
-//   void interaction_impl::OnRButtonDown(::u32, point)
+//   void interaction_impl::OnRButtonDown(::u32, point_i32)
 //     {
 //         //Default();
 //         
 //         
 //      }
-//   void interaction_impl::OnRButtonUp(::u32, point)
+//   void interaction_impl::OnRButtonUp(::u32, point_i32)
 //   {
 //      //Default();
 //      
@@ -4911,15 +4911,15 @@ namespace ios
       
       auto puserinteraction = pinteraction->get_parent_frame();
       
-      ::rect rWindowFrame;
+      ::rectangle_i32 rWindowFrame;
       
       puserinteraction->get_window_rect(rWindowFrame);
 
-      ::rect r1;
+      ::rectangle_i32 r1;
       
       pinteraction->get_window_rect(r1);
       
-      ::size size = m_puserinteraction->get_client_size();
+      ::size_i32 size = m_puserinteraction->get_client_size();
       
       int iSoftwareKeyboardTop = size.cy / 2;
       
@@ -4936,7 +4936,7 @@ namespace ios
       
       puserinteraction->post_redraw();
       
-      ::rect r2;
+      ::rectangle_i32 r2;
       
       pinteraction->get_window_rect(r2);
       
@@ -4960,7 +4960,7 @@ namespace ios
    
       auto puserinteraction = pinteraction->get_parent_frame();
       
-      ::rect rWindowFrame;
+      ::rectangle_i32 rWindowFrame;
       
       puserinteraction->get_window_rect(rWindowFrame);
 
@@ -5037,7 +5037,7 @@ namespace ios
 
       // graphics will be already set its view port to the user::interaction for linux - cairo with xlib
 
-      pgraphics->SetViewportOrg(::point());
+      pgraphics->SetViewportOrg(::point_i32());
 
    }
 
@@ -5073,7 +5073,7 @@ namespace ios
 
       }
 
-      cslock slDisplay(cs_display());
+      critical_section_lock slDisplay(cs_display());
       
       auto pbuffer = m_pgraphics;
 
@@ -5106,7 +5106,7 @@ namespace ios
 
       g->attach(cgc);
 
-      ::rect r = m_rectClientScreen;
+      ::rectangle_i32 r = m_rectClientScreen;
       
       int w = pimage->width();
       
@@ -5386,7 +5386,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::round_window_edit_caret_rect(CGRect * prect, long iSel)
+   bool interaction_impl::round_window_edit_caret_rect(CGRect * prectangle, long iSel)
    {
       
       __pointer(raw_key) prawkey = psession->get_keyboard_focus();
@@ -5396,19 +5396,19 @@ namespace ios
      if(pedit.is_set() && !prawkey.is_set())
      {
         
-        ::rect rect;
+        ::rectangle_i32 rectangle;
         
-        if(!pedit->caret_rect(rect, iSel))
+        if(!pedit->caret_rect(rectangle, iSel))
         {
            
            return false;
            
         }
         
-        prect->origin.x = rect.left;
-        prect->origin.y = rect.top;
-        prect->size.width = rect.width();
-        prect->size.height = rect.height();
+        prectangle->origin.x = rectangle.left;
+        prectangle->origin.y = rectangle.top;
+        prectangle->size.width = rectangle.width();
+        prectangle->size.height = rectangle.height();
         
         return true;
         
@@ -5628,9 +5628,9 @@ namespace ios
       m_rectWindowScreen.right = cx;
       m_rectWindowScreen.bottom = cy;
       
-      ::point p(0, 0);
+      ::point_i32 p(0, 0);
       
-      ::size s(cx, cy);
+      ::size_i32 s(cx, cy);
 
       m_puserinteraction->m_statePrevious2.m_point = p;
       m_puserinteraction->m_stateRequest2.m_point = p;
@@ -5677,10 +5677,10 @@ namespace ios
 
    }
 
-   void interaction_impl::round_window_moved(CGPoint point)
+   void interaction_impl::round_window_moved(CGPoint point_i32)
    {
 
-      ::point pointMove(point.x, point.y);
+      ::point_i32 pointMove(point.x, point.y);
 
       {
 

@@ -7,7 +7,7 @@ inline bool shape_contains(const ::arc* parc, const POINT & point)
 
    // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
 
-   ::rect r;
+   ::rectangle_i32 r;
 
    if (!get_bounding_rect(r, parc))
    {

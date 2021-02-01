@@ -189,7 +189,7 @@ id_array get_pids()
 //   do
 //   {
 //
-//      size += size / 10;
+//      size += size_i32 / 10;
 //
 //      m.set_size(size);
 //
@@ -214,7 +214,7 @@ id_array get_pids()
 //      if (size % sizeof(struct kinfo_proc) == 0)
 //      {
 //
-//         size_t nprocess = size / sizeof(struct kinfo_proc);
+//         size_t nprocess = size_i32 / sizeof(struct kinfo_proc);
 //
 //         if (nprocess)
 //         {

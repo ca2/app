@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "apex/operating_system.h"
 //#include <shlobj.h>
 //#include <Security.h>
 //#include <shlobj.h>
@@ -35,7 +36,7 @@ namespace windows
    ::file::path crypto::get_crypt_key_file_path()
    {
 
-      return Context.dir().appdata() / ".ca2/databin.bin";
+      return get_context()->dir().appdata() / ".ca2/databin.bin";
 
    }
 

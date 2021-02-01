@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 
 
 nano_timer::nano_timer()
@@ -6,7 +7,7 @@ nano_timer::nano_timer()
 
 #ifdef WINDOWS
 
-   m_hTimer = ::CreateWaitableTimer(nullptr, TRUE, nullptr);
+   m_hTimer = ::CreateWaitableTimer(nullptr, true, nullptr);
 
 #endif
 
@@ -22,7 +23,7 @@ void nano_timer::wait(u64 uWait)
 
       li.QuadPart = -((::i64)uWait / 100LL);
 
-      if (!SetWaitableTimer(m_hTimer, &li, 0, nullptr, nullptr, FALSE))
+      if (!SetWaitableTimer(m_hTimer, &li, 0, nullptr, nullptr, false))
       {
 
          sleep(::millis(uWait / 1000000LL));

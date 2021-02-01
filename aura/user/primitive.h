@@ -104,7 +104,7 @@ namespace user
       virtual double get_output_fps();
 
 
-      __pointer(::message::base) get_message_base(oswindow oswindow, const ::id & id, WPARAM wparam, lparam lparam) override;
+      __pointer(::message::base) get_message_base(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam);
 
 
       virtual ::user::interaction* get_host_window() const;
@@ -125,7 +125,7 @@ namespace user
 #endif
       virtual strsize _009GetWindowTextLength();
 
-      virtual bool GetFocusRect(RECT32 * prect);
+      virtual bool GetFocusRect(RECTANGLE_I32 * prectangle);
 
       virtual void defer_update_display();
 
@@ -150,7 +150,7 @@ namespace user
 
       virtual void UpdateWindow();
       
-      virtual void Invalidate(bool bErase = TRUE);
+      virtual void Invalidate(bool bErase = true);
 
       virtual bool has_pending_redraw_flags();
 
@@ -160,7 +160,7 @@ namespace user
 
       virtual void message_handler(::message::base * pbase);
 
-      virtual LRESULT message_handler(LPMESSAGE pmessage);
+      //virtual lresult message_handler(MESSAGE * pmessage);
 
       virtual void on_select();
 
@@ -172,7 +172,7 @@ namespace user
 
       virtual bool set_cursor(e_cursor ecursor);
 
-      virtual ::point get_cursor_pos() const;
+      virtual ::point_i32 get_cursor_pos() const;
 
       virtual bool _is_window() const;
 
@@ -247,7 +247,7 @@ namespace user
 
       virtual void sketch_prepare_window_minimize(::e_activation eactivation);
       virtual void sketch_prepare_window_maximize();
-      virtual void sketch_prepare_window_full_screen(const ::rect & rectHint = nullptr);
+      virtual void sketch_prepare_window_full_screen(const ::rectangle_i32 & rectHint = nullptr);
       virtual void sketch_prepare_window_restore(edisplay edisplay);
       virtual void sketch_prepare_window_dock(edisplay edisplayDock);
 
@@ -267,15 +267,15 @@ namespace user
 
       //virtual void BringToTop(edisplay edisplay);
       //virtual bool BringWindowToTop();
+//
+//#ifdef WINDOWS_DESKTOP
+//      virtual bool GetWindowPlacement(WINDOWPLACEMENT* pwndpl);
+//
+//      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* pwndpl);
+//
+//#endif
 
-#ifdef WINDOWS_DESKTOP
-      virtual bool GetWindowPlacement(WINDOWPLACEMENT* pwndpl);
-
-      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* pwndpl);
-
-#endif
-
-      //virtual bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
+      //virtual bool SendChildNotifyLastMsg(lresult* pResult = nullptr);
 
 
       virtual bool pre_create_window(::user::system * pusersystem);
@@ -295,7 +295,7 @@ namespace user
       virtual bool create_control(::user::interaction * puserinteractionParent, const ::id & id);
 
       //virtual bool create_window_ex(__pointer(::user::system) pcs, ::user::interaction * puiParent, const ::id & id);
-      virtual void CalcWindowRect(RECT32 * pClientRect,::u32 nAdjustType = adjustBorder);
+      virtual void CalcWindowRect(RECTANGLE_I32 * pClientRect,::u32 nAdjustType = adjustBorder);
 
 
       virtual bool IsTopParentActive();
@@ -306,30 +306,30 @@ namespace user
       virtual void destroy_window();
 
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
 
-      virtual bool RedrawWindow(const ::rect& rectUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
+  //    virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
 
-#else
+//#else
 
-      virtual bool RedrawWindow(const ::rect& rectUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = 0);
+      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr, ::draw2d::region * prgnUpdate = nullptr, ::u32 flags = 0);
 
-#endif
+//#endif
 
 
 //      virtual void UpdateWindow();
-      virtual void SetRedraw(bool bRedraw = TRUE);
-      virtual bool GetUpdateRect(RECT32 * prect,bool bErase = FALSE);
+      virtual void SetRedraw(bool bRedraw = true);
+      virtual bool GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase = false);
 
-      virtual i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = FALSE);
-//      virtual void Invalidate(bool bErase = TRUE);
-      virtual void InvalidateRect(const ::rect & rect,bool bErase = TRUE);
+      virtual i32 GetUpdateRgn(::draw2d::region* pRgn,bool bErase = false);
+//      virtual void Invalidate(bool bErase = true);
+      virtual void InvalidateRect(const ::rectangle_i32 & rectangle,bool bErase = true);
 
-      virtual void InvalidateRgn(::draw2d::region* pRgn,bool bErase = TRUE);
-      virtual void ValidateRect(const ::rect & rect);
+      virtual void InvalidateRgn(::draw2d::region* pRgn,bool bErase = true);
+      virtual void ValidateRect(const ::rectangle_i32 & rectangle);
 
       virtual void ValidateRgn(::draw2d::region* pRgn);
-      virtual void ShowOwnedPopups(bool bShow = TRUE);
+      virtual void ShowOwnedPopups(bool bShow = true);
 
 
       virtual u32 GetStyle() const;
@@ -340,22 +340,22 @@ namespace user
 
 
       //using ::channel::send;
-      virtual LRESULT send(::message::base * pbase);
+      virtual lresult send(::message::base * pbase);
       virtual bool post(::message::base * pbase);
 
-      virtual LRESULT send_message(const ::id & id, WPARAM wparam = 0, lparam lparam = 0);
+      virtual lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0);
 
-      virtual LRESULT message_call(const ::id & id, WPARAM wparam = 0, lparam lparam = 0);
-      virtual LRESULT message_call(::message::base * pbase);
+      virtual lresult message_call(const ::id & id, wparam wparam = 0, lparam lparam = 0);
+      virtual lresult message_call(::message::base * pbase);
 
 
 #ifdef LINUX
 
-      virtual LRESULT send_x11_event(void * pevent); // pevent <= XEvent *
+      virtual lresult send_x11_event(void * pevent); // pevent <= XEvent *
 
 #endif
 
-      virtual bool post_message(const ::id & id,WPARAM wParam = 0,lparam lParam = 0);
+      virtual bool post_message(const ::id & id, wparam wparam = 0,lparam lparam = 0);
 
       virtual bool post_simple_command(const e_simple_command & ecommand,lparam lParam = 0);
 
@@ -440,8 +440,8 @@ namespace user
 
 
 
-      virtual bool _001IsPointInside(::point point);
-      virtual ::user::interaction * _001FromPoint(::point point,bool bTestedIfParentVisible = false);
+      virtual bool _001IsPointInside(::point_i32 point);
+      virtual ::user::interaction * _001FromPoint(::point_i32 point,bool bTestedIfParentVisible = false);
 
       virtual void OnLinkClick(const char * psz,const char * pszTarget = nullptr);
 
@@ -473,7 +473,7 @@ namespace user
 
       virtual bool is_top_level_window() const;
 
-      virtual void send_message_to_descendants(const ::id & id,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE);
+      virtual void send_message_to_descendants(const ::id & id, wparam wParam = 0, lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = false);
 
       virtual void route_message_to_descendants(::message::message * pmessage);
       virtual void pre_translate_message(::message::message * pmessage);
@@ -483,10 +483,10 @@ namespace user
       //virtual bool is_descendant(const ::user::primitive * pinteraction,bool bIncludeSelf = false) const;
       virtual ::user::interaction * get_focusable_descendant() const;
 
-      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag = reposDefault, RECT32 * prectParam = nullptr, const ::rect & rectClient = nullptr, bool bStretch = true);
+      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectClient = nullptr, bool bStretch = true);
 
-      virtual ::user::interaction * ChildWindowFromPoint(const ::point & point);
-      virtual ::user::interaction * ChildWindowFromPoint(const ::point & point,::u32 nFlags);
+      virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point);
+      virtual ::user::interaction * ChildWindowFromPoint(const ::point_i32 & point,::u32 nFlags);
 
 
 //#ifdef WINDOWS_DESKTOP
@@ -515,11 +515,11 @@ namespace user
       virtual void PostNcDestroy();
 
 
-      //virtual LRESULT default_window_procedure();
+      //virtual lresult default_window_procedure();
       //virtual void default_window_procedure(::message::message * pbase);
 
 
-      virtual bool call_message_handler(const ::id & id, WPARAM wparam = 0, lparam lparam = 0, LRESULT * presult = nullptr);
+      virtual bool call_message_handler(const ::id & id, wparam wparam = 0, lparam lparam = 0, lresult * presult = nullptr);
 
 
       virtual void GuieProc(::message::message * pmessage);
@@ -535,8 +535,8 @@ namespace user
       virtual oswindow detach();
 
       
-      virtual ::sized _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
-      virtual ::sized _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
+      virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
+      virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
 
 
       virtual bool can_merge(::user::interaction * pinteraction);
@@ -554,10 +554,10 @@ namespace user
 
       virtual void set_viewport_org(::draw2d::graphics_pointer & pgraphics);
 
-      virtual void viewport_screen_to_client(POINT32 * ppt);
-      virtual void viewport_client_to_screen(POINT32 * ppt);
-      virtual void viewport_client_to_screen(RECT32 * ppt);
-      virtual void viewport_screen_to_client(RECT32 * ppt);
+      virtual void viewport_screen_to_client(POINT_I32 * ppt);
+      virtual void viewport_client_to_screen(POINT_I32 * ppt);
+      virtual void viewport_client_to_screen(RECTANGLE_I32 * ppt);
+      virtual void viewport_screen_to_client(RECTANGLE_I32 * ppt);
 
 
       virtual string get_window_default_matter();
@@ -585,10 +585,10 @@ namespace user
 
 
 
-      //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point & point = nullptr);
-      //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const char * pszMatter,i32 iFlags, const ::point & point);
-      //virtual __pointer(::user::menu) track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point & pointScreen = nullptr, const ::size& sizeMinimum = size(0, 0));
-      //virtual __pointer(::user::menu) track_popup_xml_menu_file(::payload varFile, i32 iFlags, const ::point & point = nullptr, const ::size & sizeMinimum = size(0, 0));
+      //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point_i32 & point = nullptr);
+      //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const char * pszMatter,i32 iFlags, const ::point_i32 & point);
+      //virtual __pointer(::user::menu) track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32 & pointScreen = nullptr, const ::size_i32& sizeMinimum = size_i32(0, 0));
+      //virtual __pointer(::user::menu) track_popup_xml_menu_file(::payload varFile, i32 iFlags, const ::point_i32 & point = nullptr, const ::size_i32 & sizeMinimum = size_i32(0, 0));
 
       //virtual bool track_popup_menu(::user::menu_item * pitem,i32 iFlags,::message::message * pmessage);
       //virtual __pointer(::user::menu) track_popup_xml_matter_menu(const char * pszMatter,i32 iFlags,::message::message * pmessage);
@@ -659,8 +659,8 @@ namespace user
       virtual void _001OnExitFullScreen();
       virtual void _001OnExitZoomed();
 
-      //virtual LRESULT send_message(const ::id & id, WPARAM wparam = 0, lparam lparam = 0);
-      //virtual bool post_message(const ::id & id, WPARAM wParam = 0, lparam lParam = 0);
+      //virtual lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0);
+      //virtual bool post_message(const ::id & id, wparam wParam = 0, lparam lParam = 0);
       //virtual void message_handler(::message::base * pbase);
       //virtual void pre_translate_message(::message::base * pbase);
 
@@ -751,7 +751,7 @@ namespace user
 
 #endif
 
-      //virtual bool SetPlacement(const ::rect & rect, ::u32 nFlags = SWP_SHOWWINDOW);
+      //virtual bool SetPlacement(const ::rectangle_i32 & rectangle, ::u32 nFlags = SWP_SHOWWINDOW);
 
       
       virtual i32 get_total_page_count(::promise::context * pcontext);
@@ -767,11 +767,11 @@ namespace user
       virtual void on_text_composition_done();
       virtual bool is_text_composition_active();
 
-      virtual void set_input_content_rect(const rect& rect);
-      virtual void set_input_selection_rect(const rect& rect);
+      virtual void set_input_content_rect(const rectangle_i32& rectangle);
+      virtual void set_input_selection_rect(const rectangle_i32& rectangle);
 
-      virtual rect get_input_content_rect();
-      virtual rect get_input_selection_rect();
+      virtual rectangle_i32 get_input_content_rect();
+      virtual rectangle_i32 get_input_selection_rect();
 
       virtual void InputConnectionBeginBatchEdit();
       virtual void InputConnectionEndBatchEdit();

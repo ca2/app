@@ -13,10 +13,10 @@ namespace VistaTools
 
    Return Values:
    If the function succeeds, and the current version of Windows is Vista or later,
-   the return value is TRUE.
+   the return value is true.
    If the function fails, or if the current version of Windows is older than Vista
    (that is, if it is Windows XP, Windows 2000, Windows Server 2003, Windows 98, etc.)
-   the return value is FALSE.
+   the return value is false.
    */
 
 #ifndef WIN64
@@ -30,9 +30,9 @@ namespace VistaTools
 
    Return Values:
    If the function succeeds, and the current version of Windows is x64,
-   the return value is TRUE.
+   the return value is true.
    If the function fails, or if the current version of Windows is 32-bit,
-   the return value is FALSE.
+   the return value is false.
 
    While this function is not Vista specific (it works under XP as well),
    we include it here to be able to prevent execution of the 32-bit code under 64-bit Windows,
@@ -85,12 +85,12 @@ namespace VistaTools
 
    The possible values are:
 
-   TRUE - the current process is elevated.
+   true - the current process is elevated.
    This value indicates that either UAC is enabled, and the process was elevated by
    the administrator, or that UAC is disabled and the process was started by a ::account::user
    who is a member of the Administrators group.
 
-   FALSE - the current process is not elevated (limited).
+   false - the current process is not elevated (limited).
    This value indicates that either UAC is enabled, and the process was started normally,
    without the elevation, or that UAC is disabled and the process was started by a standard ::account::user.
 
@@ -103,7 +103,7 @@ namespace VistaTools
 
    bool CLASS_DECL_ACME
    RunElevated(
-   __in      oswindow   oswindow,
+   __in      HWND hwnd,
    __in      const char * pszPath,
    __in_opt   const char * pszParameters   = nullptr,
    __in_opt   const char * pszDirectory   = nullptr,
@@ -136,8 +136,8 @@ namespace VistaTools
    If phProcess is nullptr, no handle is returned.
 
    Return Values
-   If the function succeeds, the return value is TRUE.
-   If the function fails, the return value is FALSE. To get extended error information,
+   If the function succeeds, the return value is true.
+   If the function fails, the return value is false. To get extended error information,
    call GetLastError().
 
    NOTE: This function will start a process elevated no matter which attribute (asInvoker,
@@ -154,7 +154,7 @@ namespace VistaTools
 
    bool CLASS_DECL_ACME
    RunNonElevated(
-   __in      oswindow   oswindow,
+   __in      HWND hwnd,
    __in      const char * pszPath,
    __in_opt   const char * pszParameters   = nullptr,
    __in_opt   const char * pszDirectory   = nullptr,
@@ -188,8 +188,8 @@ namespace VistaTools
    If phProcess is nullptr, no handle is returned.
 
    Return Values
-   If the function succeeds, the return value is TRUE.
-   If the function fails, the return value is FALSE. To get extended error information,
+   If the function succeeds, the return value is true.
+   If the function fails, the return value is false. To get extended error information,
    call GetLastError().
 
    NOTE: For this function to work, the application must be marked with the asInvoker or

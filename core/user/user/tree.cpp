@@ -203,7 +203,7 @@ namespace user
 
          tickStart.Now();
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(rectClient);
 
@@ -300,15 +300,15 @@ namespace user
 
             drawitemdata.m_iItem = iItem;
 
-            drawitemdata.m_rect = drawitemdata.m_rectClient;
+            drawitemdata.m_rectangle = drawitemdata.m_rectClient;
 
-            drawitemdata.m_rect.left = (::i32) (drawitemdata.m_iIndentation * pitem->m_iLevel);
+            drawitemdata.m_rectangle.left = (::i32) (drawitemdata.m_iIndentation * pitem->m_iLevel);
 
-            drawitemdata.m_rect.top = (::i32) (iItem * drawitemdata.m_dItemHeight);
+            drawitemdata.m_rectangle.top = (::i32) (iItem * drawitemdata.m_dItemHeight);
 
-            drawitemdata.m_rect.bottom = (::i32) (drawitemdata.m_rect.top + drawitemdata.m_dItemHeight);
+            drawitemdata.m_rectangle.bottom = (::i32) (drawitemdata.m_rectangle.top + drawitemdata.m_dItemHeight);
 
-            drawitemdata.m_rect.right = m_iCurrentViewWidth;
+            drawitemdata.m_rectangle.right = m_iCurrentViewWidth;
 
             {
                millis tickItem;
@@ -362,7 +362,7 @@ namespace user
 
       millis.Now();
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
 
 
@@ -386,7 +386,7 @@ namespace user
          if(ptree != nullptr && pimagelistTree.is_set() && data.m_pitem->m_dwState & ::data::tree_item_state_expandable)
          {
 
-            _001GetItemElementRect(rect, data, e_tree_element_expand_box);
+            _001GetItemElementRect(rectangle, data, e_tree_element_expand_box);
 
             i32 iImage;
 
@@ -403,7 +403,7 @@ namespace user
 
             }
 
-            pimagelistTree->draw(data.m_pdc, iImage, rect.top_left(), 0, m_uchHoverAlpha);
+            pimagelistTree->draw(data.m_pdc, iImage, rectangle.top_left(), 0, m_uchHoverAlpha);
 
          }
 
@@ -425,7 +425,7 @@ namespace user
       if (bHover) // selected
       {
 
-         auto rectFill = ::rectd(data.m_rectClient.left, data.m_rect.top, data.m_rectClient.right, data.m_rect.bottom);
+         auto rectFill = ::rectangle_f64(data.m_rectClient.left, data.m_rectangle.top, data.m_rectClient.right, data.m_rectangle.bottom);
 
          data.m_pdc->fill_rect(rectFill, ARGB(127, 125, 166, 228));
 
@@ -437,25 +437,25 @@ namespace user
          //if(psession->savings().is_trying_to_save(::e_resource_processing))
          //{
 
-            data.m_pdc->fill_rect(data.m_rect, ARGB(127, 96,96,96));
+            data.m_pdc->fill_rect(data.m_rectangle, ARGB(127, 96,96,96));
 
          //}
          //else
          //{
 
-         //   ::rect rectUnion;
+         //   ::rectangle_i32 rectUnion;
 
-         //   if (_001GetItemElementRect(rect, data, e_tree_element_image))
+         //   if (_001GetItemElementRect(rectangle, data, e_tree_element_image))
          //   {
 
-         //      rectUnion = rect;
+         //      rectUnion = rectangle_i32;
 
          //   }
 
-         //   if (_001GetItemElementRect(rect, data, e_tree_element_text))
+         //   if (_001GetItemElementRect(rectangle, data, e_tree_element_text))
          //   {
 
-         //      rectUnion.unite(rect, rectUnion);
+         //      rectUnion.unite(rectangle, rectUnion);
 
          //   }
 
@@ -479,10 +479,10 @@ namespace user
          if(iImage >= 0)
          {
 
-            if (_001GetItemElementRect(rect, data, e_tree_element_image))
+            if (_001GetItemElementRect(rectangle, data, e_tree_element_image))
             {
 
-               pimagelistItem->draw(data.m_pdc, iImage, rect.top_left(), 0);
+               pimagelistItem->draw(data.m_pdc, iImage, rectangle.top_left(), 0);
 
             }
 
@@ -494,7 +494,7 @@ namespace user
 
       string strItem = pitemData->get_text();
 
-      if(strItem.has_char() && _001GetItemElementRect(rect, data, e_tree_element_text))
+      if(strItem.has_char() && _001GetItemElementRect(rectangle, data, e_tree_element_text))
       {
 
          ::draw2d::brush_pointer brushText;
@@ -538,7 +538,7 @@ namespace user
 
          data.m_pdc->set(m_fontTreeItem);
 
-         data.m_pdc->_DrawText(strItem, rect, m_ealignText, m_edrawtext);
+         data.m_pdc->_DrawText(strItem, rectangle_i32, m_ealignText, m_edrawtext);
 
       }
 
@@ -693,12 +693,12 @@ namespace user
    }
 
 
-   void tree::perform_right_click(uptr nFlags, const ::point & pointCursor)
+   void tree::perform_right_click(uptr nFlags, const ::point_i32 & pointCursor)
    {
 
       //_001OnRightClick(nFlags, pointCursor);
 
-      auto point(pointCursor);
+      auto point_i32(pointCursor);
 
       __pointer(::data::tree_item) pitem;
 
@@ -775,7 +775,7 @@ namespace user
    }
 
 
-   __pointer(::data::tree_item) tree::_001HitTest(const ::point & point, ::user::enum_tree_element & eelement)
+   __pointer(::data::tree_item) tree::_001HitTest(const ::point_i32 & point, ::user::enum_tree_element & eelement)
    {
 
       index iy = point.y;
@@ -859,7 +859,7 @@ namespace user
    void tree::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::sized sizeTotal;
+      ::size_f64 sizeTotal;
 
       sizeTotal.cx = m_iCurrentViewWidth;
 
@@ -873,7 +873,7 @@ namespace user
 
 
    bool tree::_001GetItemElementRect(
-   RECT32 * prect,
+   RECTANGLE_I32 * prectangle,
 
    ::user::tree_draw_item &drawitem,
    ::user::enum_tree_element eelement)
@@ -882,46 +882,46 @@ namespace user
       {
       case e_tree_element_expand_box:
       {
-         prect->left   = (::i32)(drawitem.m_rect.left);
+         prectangle->left   = (::i32)(drawitem.m_rectangle.left);
 
-         prect->right  = min(prect->left + 16, drawitem.m_rect.right);
+         prectangle->right  = min(prectangle->left + 16, drawitem.m_rectangle.right);
 
-         prect->top    = (::i32)(drawitem.m_rect.top);
+         prectangle->top    = (::i32)(drawitem.m_rectangle.top);
 
-         prect->bottom = (::i32)(drawitem.m_rect.bottom);
+         prectangle->bottom = (::i32)(drawitem.m_rectangle.bottom);
 
       }
       break;
       case e_tree_element_image:
       {
-         prect->left   = (::i32)(drawitem.m_rect.left + 18);
+         prectangle->left   = (::i32)(drawitem.m_rectangle.left + 18);
 
-         prect->right  = min(prect->left + 16, drawitem.m_rect.right);
+         prectangle->right  = min(prectangle->left + 16, drawitem.m_rectangle.right);
 
 
          int iHDiff = 0;
          if (m_pimagelist != nullptr)
          {
 
-            iHDiff = (::i32) (drawitem.m_rect.height() - m_pimagelist->m_size.cy);
+            iHDiff = (::i32) (drawitem.m_rectangle.height() - m_pimagelist->m_size.cy);
 
          }
 
-         prect->top    = (::i32)(drawitem.m_rect.top +iHDiff/2);
+         prectangle->top    = (::i32)(drawitem.m_rectangle.top +iHDiff/2);
 
-         prect->bottom = (::i32)(drawitem.m_rect.bottom - iHDiff / 2);
+         prectangle->bottom = (::i32)(drawitem.m_rectangle.bottom - iHDiff / 2);
 
       }
       break;
       case e_tree_element_text:
       {
-         prect->left   = (::i32)(drawitem.m_rect.left + 38);
+         prectangle->left   = (::i32)(drawitem.m_rectangle.left + 38);
 
-         prect->right  = (::i32)(drawitem.m_rect.right);
+         prectangle->right  = (::i32)(drawitem.m_rectangle.right);
 
-         prect->top    = (::i32)(drawitem.m_rect.top);
+         prectangle->top    = (::i32)(drawitem.m_rectangle.top);
 
-         prect->bottom = (::i32)(drawitem.m_rect.bottom);
+         prectangle->bottom = (::i32)(drawitem.m_rectangle.bottom);
 
       }
       break;
@@ -1179,7 +1179,7 @@ namespace user
 
       ::user::interaction::on_layout(pgraphics);
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -1208,7 +1208,7 @@ namespace user
 
       m_iCurrentViewWidth = _001CalcTotalViewWidth();
 
-      sized sizeTotal;
+      size_f64 sizeTotal;
 
       sizeTotal.cx = m_iCurrentViewWidth;
 
@@ -1244,7 +1244,7 @@ namespace user
    }
 
 
-   void tree::_001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & context, ::user::tree * ptree, const ::point & point)
+   void tree::_001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & context, ::user::tree * ptree, const ::point_i32 & point)
    {
 
       if (context.contains(this))
@@ -1271,7 +1271,7 @@ namespace user
    }
 
 
-   void tree::update_tree_hover(point point)
+   void tree::update_tree_hover(point_i32 point_i32)
    {
 
       _001ScreenToClient(point);
@@ -1327,11 +1327,11 @@ namespace user
 
       }
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      get_client_rect(rect);
+      get_client_rect(rectangle);
 
-      return (::count)(rect.height() / _001GetItemHeight() - 1);
+      return (::count)(rectangle.height() / _001GetItemHeight() - 1);
 
    }
 
@@ -1339,7 +1339,7 @@ namespace user
    i32 tree::_001CalcCurrentViewWidth()
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -1498,7 +1498,7 @@ namespace user
       g->set_font(this, ::user::e_element_none);
 
 
-      ::size size;
+      ::size_i32 size;
       size = g->GetTextExtent(unitext("Ág"));
 
       int iItemHeight = 1;
@@ -1539,7 +1539,7 @@ namespace user
             }
             nOffset--;
             string strText = pitem->get_text();
-            sized s = g->GetTextExtent(strText);
+            size_f64 s = g->GetTextExtent(strText);
             iWidth = (i32)(48 + s.cx + iIndent * (iLevel + 1));
             if (iWidth > iMaxWidth)
             {

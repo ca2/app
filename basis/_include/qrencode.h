@@ -173,7 +173,7 @@ extern QRinput *QRinput_new2(int version, QRecLevel level);
 
 /**
  * Instantiate an input data object. Object's Micro QR Code flag is set.
- * Unlike with full-sized QR Code, version number must be specified (>0).
+ * Unlike with full-size_f64 QR Code, version number must be specified (>0).
  * @param version version number (1--4).
  * @param level Error correction level.
  * @return an input object (initialized). On error, NULL is returned and errno
@@ -188,7 +188,7 @@ extern QRinput *QRinput_newMQR(int version, QRecLevel level);
  * The data is copied and appended to the input object.
  * @param input input object.
  * @param mode encoding mode.
- * @param size size of data (byte).
+ * @param size_i32 size_i32 of data (byte).
  * @param data a pointer to the memory area of the input data.
  * @retval 0 success.
  * @retval -1 an error occurred and errno is set to indeicate the error.
@@ -267,7 +267,7 @@ extern void QRinput_free(QRinput *input);
 /**
  * Validate the input data.
  * @param mode encoding mode.
- * @param size size of data (byte).
+ * @param size_i32 size_i32 of data (byte).
  * @param data a pointer to the memory area of the input data.
  * @retval 0 success.
  * @retval -1 invalid arguments.
@@ -446,7 +446,7 @@ extern QRcode *QRcode_encodeString8bitMQR(const char *string, int version, QRecL
 /**
  * Encode byte stream (may include '\0') in 8-bit mode.
  * @warning This function is THREAD UNSAFE when pthread is disabled.
- * @param size size of the input data.
+ * @param size_i32 size_i32 of the input data.
  * @param data input data.
  * @param version version of the symbol. If 0, the library chooses the minimum
  *                version for the given input data.
@@ -508,7 +508,7 @@ extern QRcode_List *QRcode_encodeString8bitStructured(const char *string, int ve
  * Create structured symbols from byte stream (may include '\0'). Wholde data
  * are encoded in 8-bit mode.
  * @warning This function is THREAD UNSAFE when pthread is disabled.
- * @param size size of the input data.
+ * @param size_i32 size_i32 of the input data.
  * @param data input dat.
  * @param version version of the symbol.
  * @param level error correction level.

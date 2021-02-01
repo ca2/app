@@ -72,11 +72,11 @@ namespace apex
          data_struct data;
          data.mtype        = 15112000;
          data.request      = 0;
-         data.size         = ansi_length(pszMessage);
-         if(data.size > 512)
+         data.size_i32         = ansi_length(pszMessage);
+         if(data.size_i32 > 512)
             return false;
 
-         /* The length is essentially the size of the structure minus sizeof(mtype) */
+         /* The length is essentially the size_i32 of the structure minus sizeof(mtype) */
          i32 length = sizeof(data_struct) - sizeof(long);
 
          i32 result;
@@ -109,7 +109,7 @@ namespace apex
          data_struct data;
          data.mtype        = 15112000;
          data.request      = 0x80000000;
-         data.size         = (i32)ansi_length(pszMessage);
+         data.size_i32         = (i32)ansi_length(pszMessage);
 
          ::count cPos = 0;
 
@@ -129,7 +129,7 @@ namespace apex
             else
                data.size = (i32)cSend;
 
-            /* The length is essentially the size of the structure minus sizeof(mtype) */
+            /* The length is essentially the size_i32 of the structure minus sizeof(mtype) */
             i32 length = sizeof(data_struct) - sizeof(long);
 
             i32 result;
@@ -338,7 +338,7 @@ namespace apex
 
             data_struct data;
 
-            /* The length is essentially the size of the structure minus sizeof(mtype) */
+            /* The length is essentially the size_i32 of the structure minus sizeof(mtype) */
             length = sizeof(data_struct) - sizeof(long);
 
             memory mem;
@@ -363,10 +363,10 @@ namespace apex
 
                }
 
-               mem.append(data.data,data.size);
+               mem.append(data.data,data.size_i32);
 
 
-               if(data.size < 512)
+               if(data.size_i32 < 512)
                   break;
 
             }

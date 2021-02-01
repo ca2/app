@@ -66,7 +66,7 @@ namespace axis
 
       virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics,::user::frame * pframe) override;
 
-      virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::rect & rect, ::draw2d::graphics_pointer & pgraphics) override;
+      virtual bool draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::rectangle_i32 & rectangle, ::draw2d::graphics_pointer & pgraphics) override;
 
 
 
@@ -80,7 +80,7 @@ namespace axis
 
       //virtual bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, tab * ptab) override;
 
-      //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::draw2d::brush_pointer & brushText) override;
+      //virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText) override;
 
 
       //      virtual bool _001GetMainFrameTranslucency(::user::enum_translucency & etranslucency) override;
@@ -118,7 +118,7 @@ namespace axis
       //virtual ::draw2d::font_pointer  _001GetFont(e_font efont, ::draw2d::font * pfont = nullptr);
       //virtual enum_translucency     _001GetTranslucency(enum_element eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
       //virtual bool               _001GetFlag(::user::enum_flag eflag, bool bDefault = false);
-      //virtual ::rect             _001GetRect(::user::e_rect erect, ::rect rectDefault = nullptr);
+      //virtual ::rectangle_i32             _001GetRect(::user::e_rect erect, ::rectangle_i32 rectDefault = nullptr);
       //virtual int                _001GetInt(::user::e_int eint, int iDefault = 0);
       //virtual double             _001GetDouble(::user::e_double edouble, double dDefault = 0.0);
 
@@ -133,7 +133,7 @@ namespace axis
       //virtual bool get_font(::draw2d::font_pointer & sp, e_font efont, style_context * pcontext) override;
       //virtual bool get_translucency(enum_translucency & etranslucency, enum_element matter, style_context * pcontext) override;
       //virtual bool get_flag(bool & bSet, enum_flag eflag, style_context * pcontext) override;
-      //virtual bool get_rect(style_rect & rect, e_rect erect, style_context * pcontext) override;
+      //virtual bool get_rect(style_rect & rectangle, e_rect erect, style_context * pcontext) override;
       //virtual bool get_int(int & i, e_int eint, style_context * pcontext) override;
       //virtual bool get_double(double & d, e_double edouble, style_context * pcontext) override;
 

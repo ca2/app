@@ -120,7 +120,7 @@ bool __node_aura_pre_init()
 
    //g_gdiplusHookToken         = NULL;
 
-   //g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
+   //g_pgdiplusStartupInput->SuppressBackgroundThread = true;
 
    //Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken,g_pgdiplusStartupInput,g_pgdiplusStartupOutput);
 
@@ -276,7 +276,7 @@ bool __node_aura_pos_term()
 
 
 
-//string key_to_char(WPARAM wparam, LPARAM lparam)
+//string key_to_char(wparam wparam, lparam lparam)
 //
 //{
 //
@@ -597,7 +597,7 @@ int GetVersion_ex1()
 //
 //#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
 //
-//   return TRUE;
+//   return true;
 //
 //#else
 //
@@ -625,7 +625,7 @@ int GetVersion_ex1()
 //         dwBuild = 0;
 //
 //      if (dwVersion < 0x80000000)              // Windows NT
-//         s_bNativeUnicode = TRUE;
+//         s_bNativeUnicode = true;
 //      else if (dwWindowsMajorVersion < 4)      // Win32s
 //         s_bNativeUnicode = FALSE;
 //      else                                     // Windows Me/98/95
@@ -643,7 +643,7 @@ int GetVersion_ex1()
 
 
 
-// __is_valid_atom() returns TRUE if the passed parameter is
+// __is_valid_atom() returns true if the passed parameter is
 // a valid local or global atom.
 
 //bool __is_valid_atom(ATOM nAtom)
@@ -651,26 +651,26 @@ int GetVersion_ex1()
 //   wchar_t sBuffer[256];
 //   if(GetAtomNameW(nAtom,sBuffer,_countof(sBuffer)))
 //   {
-//      return TRUE;
+//      return true;
 //   }
 //   ::u32 dwError = get_last_error();
 //   if(dwError == ERROR_INSUFFICIENT_BUFFER || dwError == ERROR_MORE_DATA)
 //   {
-//      return TRUE;
+//      return true;
 //   }
 //   if(GlobalGetAtomNameW(nAtom,sBuffer,_countof(sBuffer)))
 //   {
-//      return TRUE;
+//      return true;
 //   }
 //   dwError = get_last_error();
 //   if(dwError == ERROR_INSUFFICIENT_BUFFER || dwError == ERROR_MORE_DATA)
 //   {
-//      return TRUE;
+//      return true;
 //   }
 //   return FALSE;
 //}
 //
-// __is_valid_address() returns TRUE if the passed parameter is
+// __is_valid_address() returns true if the passed parameter is
 // a valid representation of a local or a global atom within a const char *.
 
 //bool __is_valid_atom(const char * psz)

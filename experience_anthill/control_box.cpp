@@ -42,7 +42,7 @@ namespace experience
 
          }
 
-         ::rect rectClient = get_client_rect();
+         ::rectangle_i32 rectClient = get_client_rect();
 
          if (rectClient.is_empty())
          {

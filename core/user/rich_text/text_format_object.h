@@ -13,7 +13,7 @@ namespace user
 
       string            m_str = "Night1";
 
-      ::rect          m_rect;
+      ::rectangle_i32          m_rectangle;
 
 
       text_format_object();

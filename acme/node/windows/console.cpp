@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/operating_system.h"
 #include "acme/os/console.h"
 #include "console.h"
 #include "acme/node/windows/_windows.h"
@@ -21,7 +22,7 @@ namespace windows
 
       CONSOLE_FONT_INFOEX info = {};
       info.cbSize = sizeof(info);
-      GetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE),FALSE,&info);
+      GetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE),false,&info);
 
 
       info.dwFontSize.X = 14;
@@ -31,7 +32,7 @@ namespace windows
       info.FontWeight = 800;
       info.nFont = 0;
 
-      if(!SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE),FALSE,&info))
+      if(!SetCurrentConsoleFontEx(GetStdHandle(STD_OUTPUT_HANDLE),false,&info))
       {
          //TRACELASTERROR();
       }
@@ -114,7 +115,7 @@ namespace windows
 
       //make cout, wcout, cin, wcin, wcerr, cerr, wclog and clog
 
-      //point to console as well
+      //point_i32 to console as well
 
       //ios::sync_with_stdio();
 
@@ -130,7 +131,7 @@ namespace windows
       window.Left = 0;
       window.Bottom = height - 1;
       window.Right = width - 1;
-      SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE),TRUE,&window);
+      SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE),true,&window);
       COORD buffer = {(SHORT)width,(SHORT)height};
       SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE),buffer);
 

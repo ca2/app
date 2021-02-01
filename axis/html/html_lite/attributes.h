@@ -136,7 +136,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   enum LengthUnitsEnum { em, ex, px, per, in, cm, mm, point, pc };
+   enum LengthUnitsEnum { em, ex, px, per, in, cm, mm, point_i32, pc };
    i16 getLengthValue(LengthUnitsEnum &rUnit) const
    {
       static const char   _szUnits[][4] =

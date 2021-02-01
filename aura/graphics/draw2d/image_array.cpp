@@ -17,15 +17,15 @@ image_array::~image_array()
 bool image_array::explode(::object * pobject, ::payload varFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
 {
 
-   return explode(pobject, ::size(-1, -1), varFile, cols, rows, bCache, bCreateHelperMaps);
+   return explode(pobject, ::size_i32(-1, -1), varFile, cols, rows, bCache, bCreateHelperMaps);
 
 }
 
 
-bool image_array::explode(::object * pobject, const ::size & sizeParam, ::payload varFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
+bool image_array::explode(::object * pobject, const ::size_i32 & sizeParam, ::payload varFile, int cols, int rows, bool bCache, bool bCreateHelperMaps)
 {
 
-   ::size size(sizeParam);
+   ::size_i32 size(sizeParam);
 
    auto pimageSource = App(pobject).image().get_image(varFile);
 
@@ -43,7 +43,7 @@ bool image_array::explode(::object * pobject, const ::size & sizeParam, ::payloa
 
    }
 
-   ::size sizeSource(pimageSource->width() / cols, pimageSource->height() / rows);
+   ::size_i32 sizeSource(pimageSource->width() / cols, pimageSource->height() / rows);
 
    if (size.cx < 0)
    {
@@ -67,7 +67,7 @@ bool image_array::explode(::object * pobject, const ::size & sizeParam, ::payloa
 
          auto pimage = create_image(size);
 
-         auto rectDst = pimage->rect();
+         auto rectDst = pimage->rectangle_i32();
 
          auto rectSrc = ::rect_dim(sizeSource.cx * col, sizeSource.cy * row, sizeSource.cx, sizeSource.cy);
 

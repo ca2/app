@@ -47,7 +47,7 @@ namespace xml
       if(pnode == nullptr)
       {
          // property Node not found;
-         //ASSERT(FALSE);
+         //ASSERT(false);
          return;
       }
       

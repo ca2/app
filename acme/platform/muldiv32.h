@@ -249,11 +249,6 @@ inline u32 MulDivRU( u32 a, u32 b, u32 ca )
 //  some code references these by other names.
 //
 
-CLASS_DECL_ACME inline i32 muldiv32(i32 a, i32 b, i32 ca)
-{
-   return (i32) ::MulDiv((i32) a, (i32) b, (i32) ca);
-}
-
 
 #define muldivrd32  MulDivRD
 #define muldivru32  MulDivRU

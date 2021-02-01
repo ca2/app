@@ -19,7 +19,7 @@ namespace user
 
          string               m_strText;
          ::draw2d::font_pointer    m_font;
-         point                m_point;
+         point_i32                m_point;
          ::color              m_color;
 
 

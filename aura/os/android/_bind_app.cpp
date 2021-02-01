@@ -2,7 +2,7 @@
 #include "_os_impl.h"
 
 
-extern mutex* g_pmutexOs;
+extern ::mutex* g_pmutexOs;
 
 
 bool g_bAuraStart = false;

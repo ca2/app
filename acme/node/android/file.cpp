@@ -72,7 +72,7 @@ namespace android
 
       rStatus.m_attribute = 0;
 
-      // get just the low ::u32 of the file size
+      // get just the low ::u32 of the file size_i32
       //ASSERT(findFileData.nFileSizeHigh == 0);
       //rStatus.m_size = (::i32)findFileData.nFileSizeLow;
 
@@ -693,7 +693,7 @@ namespace android
          struct stat st;
          if(fstat(m_iFile, &st) == -1)
             return FALSE;
-         // get time ::file::seek_current file size
+         // get time ::file::seek_current file size_i32
          /*FILETIME ftCreate, ftAccess, ftModify;
          if (!::GetFileTime((HANDLE)m_iFile, &ftCreate, &ftAccess, &ftModify))
             return FALSE;*/

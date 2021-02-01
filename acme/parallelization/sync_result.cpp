@@ -1,6 +1,5 @@
 #include "framework.h"
-#include "acme/os/_c.h"
-#include "acme/os/_os.h"
+#include "acme/operating_system.h"
 
 
 #ifdef LINUX

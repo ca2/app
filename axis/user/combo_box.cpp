@@ -97,7 +97,7 @@ namespace user
 
       }
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       layout().get_client_rect(rectClient, ::user::e_layout_design);
       //::user::e_color colorText = color_text;
@@ -151,7 +151,7 @@ namespace user
 
       //}
 
-      ::rect rectText;
+      ::rectangle_i32 rectText;
 
       get_element_rect(rectText, e_element_text);
 
@@ -183,10 +183,10 @@ namespace user
    }
 
 
-   void combo_box::get_simple_drop_down_open_arrow_polygon(pointd_array& pointa)
+   void combo_box::get_simple_drop_down_open_arrow_polygon(point_f64_array& pointa)
    {
 
-      ::rect rectDropDown;
+      ::rectangle_i32 rectDropDown;
 
       get_element_rect(rectDropDown, e_element_drop_down);
 
@@ -194,7 +194,7 @@ namespace user
 
       i32 cy = cx * 2 / 3;
 
-      ::point pointCenter = rectDropDown.center();
+      ::point_i32 pointCenter = rectDropDown.center();
 
       pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
 
@@ -208,7 +208,7 @@ namespace user
    void combo_box::_001OnDrawCombo(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -231,11 +231,11 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      ::rect rectDropDown;
+      ::rectangle_i32 rectDropDown;
 
       get_element_rect(rectDropDown, e_element_drop_down);
 
-      ::rect rectDropIn(rectDropDown);
+      ::rectangle_i32 rectDropIn(rectDropDown);
 
       //::user::e_color colorDropDown = color_button_background_disabled;
       ::color colorDropDown = ::color(127, 127, 127, 255);
@@ -333,7 +333,7 @@ namespace user
 
       ::draw2d::path_pointer path(e_create);
 
-      pointd_array pointa;
+      point_f64_array pointa;
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 
@@ -462,7 +462,7 @@ namespace user
    }
 
 
-   bool combo_box::get_element_rect(RECT32 * prect, enum_element eelement)
+   bool combo_box::get_element_rect(RECTANGLE_I32 * prectangle, enum_element eelement)
 
    {
 
@@ -473,7 +473,7 @@ namespace user
 
       }
 
-      return interaction::get_element_rect(prect, eelement);
+      return interaction::get_element_rect(prectangle, eelement);
 
 
    }
@@ -482,7 +482,7 @@ namespace user
    void combo_box::on_hit_test(::user::item & item)
    {
 
-      ::rect rectElement;
+      ::rectangle_i32 rectElement;
 
       if(get_element_rect(rectElement, e_element_drop_down))
       {
@@ -540,7 +540,7 @@ namespace user
       if (is_drop_down())
       {
 
-         ::rect rectWindow;
+         ::rectangle_i32 rectWindow;
 
          get_window_rect(rectWindow, ::user::e_layout_sketch);
 
@@ -780,7 +780,7 @@ namespace user
 
          m_plist->query_full_size(pgraphics, m_sizeFull);
 
-         ::rect rectWindow;
+         ::rectangle_i32 rectWindow;
 
          get_window_rect(rectWindow, ::user::e_layout_sketch);
 
@@ -831,7 +831,7 @@ namespace user
 
       }
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient, ::user::e_layout_sketch);
 
@@ -914,7 +914,7 @@ namespace user
 
       /*      ::draw2d::font_pointer fontxyz(e_create);
 
-            ::rect rectClient;
+            ::rectangle_i32 rectClient;
 
             get_client_rect(rectClient);
 
@@ -1346,13 +1346,13 @@ namespace user
 
    }
 
-   void combo_box::GetDroppedControlRect(RECT32 * prect)
+   void combo_box::GetDroppedControlRect(RECTANGLE_I32 * prectangle)
 
    {
 
       //ASSERT(is_window());
 
-      //send_message( CB_GETDROPPEDCONTROLRECT, 0, (LPARAM)prect);
+      //send_message( CB_GETDROPPEDCONTROLRECT, 0, (LPARAM)prectangle);
 
 
    }

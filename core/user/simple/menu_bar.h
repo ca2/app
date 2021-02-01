@@ -66,12 +66,12 @@ protected:
    virtual bool on_click(const ::user::item & item) override;
    void _001OnDropDown(index iItem);
    //index _001GetHoverItem();
-   //void _001Hover(const ::point & point);
+   //void _001Hover(const ::point_i32 & point);
    //void _001Hover();
    //void _001DrawItem(::draw2d::graphics_pointer & pgraphics, index iItem);
-   //index _001HitTest(const POINT32 * point);
+   //index _001HitTest(const POINT_I32 * point_i32);
    //bool _001CheckItem(index iItem, bool bCheck);
-   //bool _001GetItemRect(index iItem, RECT32 * prect, enum_element eelement);
+   //bool _001GetItemRect(index iItem, RECTANGLE_I32 * prectangle, enum_element eelement);
 
    //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
    bool ReloadMenuBar();
@@ -84,14 +84,14 @@ protected:
    ::i32_spreadset * prel,
    ::draw2d::font * pfont);
 
-   //size CalcLayout(u32 dwMode, index nLength);
+   //size_i32 CalcLayout(u32 dwMode, index nLength);
 
-   //size CalcFixedLayout(bool bStretch, bool bHorz);
+   //size_i32 CalcFixedLayout(bool bStretch, bool bHorz);
 
-   //size CalcDynamicLayout(index nLength, u32 dwMode);
-   //static ::e_status  CalcSize(::user::toolbar_control & tbc, size & size);
-   //static ::e_status  CalcSize(CToolBarCtrl & tbc, size & size);
-   bool _track_popup_menu(const ::point & point);
+   //size_i32 CalcDynamicLayout(index nLength, u32 dwMode);
+   //static ::e_status  CalcSize(::user::toolbar_control & tbc, size_i32 & size);
+   //static ::e_status  CalcSize(CToolBarCtrl & tbc, size_i32 & size);
+   bool _track_popup_menu(const ::point_i32 & point);
    bool _track_popup_menu(index iItem);
    bool LoadMenuBar(::u32 nIDResource);
    void SetMenuID(::u32 nIDResource);

@@ -140,7 +140,7 @@ HGLOBAL WINAPI GlobalAlloc(::u32 uFlags, SIZE_T dwBytes)
 
    /* Open a file for writing.
     *  - Creating the file if it doesn't exist.
-    *  - Truncating it to 0 size if it already exists. (not really needed)
+    *  - Truncating it to 0 size_i32 if it already exists. (not really needed)
     *
     * Note: "O_WRONLY" mode is not sufficient when mmaping.
     */
@@ -153,7 +153,7 @@ HGLOBAL WINAPI GlobalAlloc(::u32 uFlags, SIZE_T dwBytes)
       return nullptr;
    }
 
-   /* Stretch the file size to the size of the (mmapped) array of ints
+   /* Stretch the file size_i32 to the size_i32 of the (mmapped) array of ints
     */
    result = ftruncate(hglobal->m_fd, dwBytes);
    if(result == -1)

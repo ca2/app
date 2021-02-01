@@ -33,7 +33,7 @@ bool __x11_hook_process_event(Display * pdisplay, XEvent * pevent, XGenericEvent
 
 bool __x11_hook_list_is_empty();
 
-::point g_pointX11Cursor;
+::point_i32 g_pointX11Cursor;
 
 
 mq * get_mq(ithread_t idthread, bool bCreate);
@@ -42,7 +42,7 @@ mq * get_mq(ithread_t idthread, bool bCreate);
 void oswindow_set_active_window(oswindow oswindow);
 
 
-CLASS_DECL_AURA void update_application_session_cursor(void * pvoidApp, const point & pointCursor);
+CLASS_DECL_AURA void update_application_session_cursor(void * pvoidApp, const point_i32 & pointCursor);
 
 bool is_return_key(XIRawEvent *event)
 {
@@ -154,7 +154,7 @@ Window g_windowX11Client = 0;
 
 
 
-int_bool _x11_get_cursor_pos(Display * d, POINT32 * ppointCursor);
+int_bool _x11_get_cursor_pos(Display * d, POINT_I32 * ppointCursor);
 
 
 
@@ -170,7 +170,7 @@ void wm_state_hidden_raw(oswindow w, bool bSet);
 CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow);
 
 
-int_bool x11_get_cursor_pos(POINT32 * ppointCursor);
+int_bool x11_get_cursor_pos(POINT_I32 * ppointCursor);
 
 #if !defined(RASPBIAN)
 
@@ -466,7 +466,7 @@ void unmapped_net_state_raw(Display * d, Window w, ...)
 }
 
 
-int_bool x11_get_window_rect(Display * d, Window window, RECT32 * prect)
+int_bool x11_get_window_rect(Display * d, Window window, RECTANGLE_I32 * prectangle)
 
 {
 
@@ -493,13 +493,13 @@ int_bool x11_get_window_rect(Display * d, Window window, RECT32 * prect)
 
    XTranslateCoordinates( d, window, windowRoot, 0, 0, &x, &y, &child );
 
-   prect->left      = x + attrs.x;
+   prectangle->left      = x + attrs.x;
 
-   prect->top       = y + attrs.y;
+   prectangle->top       = y + attrs.y;
 
-   prect->right     = x + attrs.x    + attrs.width;
+   prectangle->right     = x + attrs.x    + attrs.width;
 
-   prect->bottom    = y + attrs.y    + attrs.height;
+   prectangle->bottom    = y + attrs.y    + attrs.height;
 
 
 
@@ -807,7 +807,7 @@ oswindow _x11_get_active_window()
 
    sync_lock sl(x11_mutex());
 
-   oswindow pwindow = nullptr;
+   oswindow oswindow = nullptr;
 
    windowing_output_debug_string("\n::GetFocus 1");
 
@@ -911,7 +911,7 @@ bool x11_window_list(Display *disp, array < Window > & windowa)
 
 }
 
-bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, int iMargin)
+bool point_is_window_origin(POINT_I32 pointHitTest, oswindow oswindowExclude, int iMargin)
 {
 
    bool bIsOrigin = false;
@@ -953,14 +953,14 @@ bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, int 
 
       }
 
-      ::rect rectTest;
+      ::rectangle_i32 rectTest;
 
       for(index i = 0; i < windowa.get_size(); i++)
       {
 
          string strItem = x11_get_name(display, windowa[i]);
 
-         ::rect rectHigher;
+         ::rectangle_i32 rectHigher;
 
          if(::is_set(oswindowExclude) && windowa[i] == oswindowExclude->window())
          {
@@ -972,7 +972,7 @@ bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, int 
          if(x11_get_window_rect(display, windowa[i], rectHigher))
          {
 
-            ::rect rectHitTest;
+            ::rectangle_i32 rectHitTest;
 
             rectHitTest.set(rectHigher.origin(), ::size());
 
@@ -1049,27 +1049,27 @@ bool point_is_window_origin(POINT32 pointHitTest, oswindow oswindowExclude, int 
 
 //    }
 
-//    ::rect rect;
+//    ::rectangle_i32 rectangle;
 
-//    x11_get_window_rect(display, oswindow->window(), rect);
+//    x11_get_window_rect(display, oswindow->window(), rectangle);
 
 //    //r = oswindow->m_pimpl->m_puserinteraction->get_window_rect();
 
 //    string strTopic = x11_get_name(display, oswindow->window());
 
-//    ::rect rectTest;
+//    ::rectangle_i32 rectTest;
 
 //    for(iFind++; iFind < windowa.get_size(); iFind++)
 //    {
 
 //       string strItem = x11_get_name(display, windowa[iFind]);
 
-//       ::rect rectHigher;
+//       ::rectangle_i32 rectHigher;
 
 //       if(x11_get_window_rect(display, windowa[iFind], rectHigher))
 //       {
 
-//          if(rectTest.intersect(rectHigher, rect))
+//          if(rectTest.intersect(rectHigher, rectangle))
 //          {
 
 //             return true;
@@ -1139,22 +1139,22 @@ void upper_window_rects(oswindow oswindow, rect_array & ra)
 
    }
 
-   ::rect rect;
+   ::rectangle_i32 rectangle;
 
-   x11_get_window_rect(display, oswindow->window(), rect);
+   x11_get_window_rect(display, oswindow->window(), rectangle);
 
    //r = oswindow->m_pimpl->m_puserinteraction->get_window_rect();
 
    //string strTopic = x11_get_name(display, oswindow->window());
 
-   ::rect rectTest;
+   ::rectangle_i32 rectTest;
 
    for(iFind++; iFind < windowa.get_size(); iFind++)
    {
 
       //string strItem = x11_get_name(display, windowa[iFind]);
 
-      ::rect rectHigher;
+      ::rectangle_i32 rectHigher;
 
       if(x11_get_window_rect(display, windowa[iFind], rectHigher))
       {
@@ -1173,7 +1173,7 @@ oswindow get_focus()
 
    sync_lock sl(x11_mutex());
 
-   oswindow pwindow = nullptr;
+   oswindow oswindow = nullptr;
 
    windowing_output_debug_string("\n::GetFocus 1");
 
@@ -1677,12 +1677,12 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #define SIZEY  50
 
 
-//void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE32 * psize)
+//void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE_I32 * psize)
 //{
 //
 //   sync_lock sl(x11_mutex());
 //
-//   pgraphics->fill_rect(::rect(*psize), RGB(84, 90, 80));
+//   pgraphics->fill_rect(::rectangle_i32(*psize), RGB(84, 90, 80));
 //
 //   ::draw2d::brush_pointer pen(e_create_new);
 //
@@ -2757,7 +2757,7 @@ bool wm_add_remove_list_raw(oswindow w, Atom atomList, Atom atomFlag, bool bSet)
 
 #ifdef WINDOWS_DESKTOP
 
-   cslock slOsWindow(::user::g_pcsImpl);
+   critical_section_lock slOsWindow(::user::g_pcsImpl);
 
    return ::user::g_pmapImpl->operator[](oswindow);
 
@@ -3549,7 +3549,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                   if(pinteraction->m_millisMouseMovePeriod > 0)
                   {
 
-                     ::size sizeDistance((pinteraction->m_pointMouseMoveSkip.x - pinteraction->m_pointMouseMove.x),
+                     ::size_i32 sizeDistance((pinteraction->m_pointMouseMoveSkip.x - pinteraction->m_pointMouseMove.x),
                         (pinteraction->m_pointMouseMoveSkip.y - pinteraction->m_pointMouseMove.y));
 
                      if(!pinteraction->m_millisMouseMoveSkip.timeout(pinteraction->m_millisMouseMovePeriod)
@@ -3604,7 +3604,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
       }
 
-      WPARAM wparam(0);
+      wparam wparam(0);
 
       if(e.xmotion.state & Button1Mask)
       {
@@ -3847,9 +3847,9 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
                   //_x11_defer_check_configuration(msg.hwnd);
 
-                  ::point point(e.xconfigure.x, e.xconfigure.y);
+                  ::point_i32 point(e.xconfigure.x, e.xconfigure.y);
 
-                  ::size size(e.xconfigure.width, e.xconfigure.height);
+                  ::size_i32 size_i32(e.xconfigure.width, e.xconfigure.height);
 
                   auto pointWindow = pinteraction->layout().window().screen_origin();
 
@@ -3881,23 +3881,23 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                   // (evidence: override_redirect flag - but that when set leave you outside of much more things)
                   // Lets not fight this X11 "thing"
                   // Accept-"stall" "authocratic" "top-down" window manager set position and size.
-                  // This means setting same size and position to all three sketch and window states.
+                  // This means setting same size_i32 and position to all three sketch and window states.
                   // The buffer may need to be resized so don't mess with current design state.
 
-                  bool bPositionFix = pinteraction->layout().sketch().origin() != point;
+                  bool bPositionFix = pinteraction->layout().sketch().origin() != point_i32;
 
 #ifdef X11_PERMISSIVE_WITH_WINDOW_MANAGERS_THE_LAW_MAKERS_BECAUSE_YEAH_KNOW_WHAT_IS_BETTER_FOR_THE_USER_BUTT_DEV_STAKE_IS_MONEY_MONEY_MONEY_COMMODITY_THEY_ARE_BURNING_VALUE_AND_BURYING_MONEY_AND_TREASURES_BELOW_THE_DEAD_LAKE_OF_AVERAGING_BUT_GOD_WILL_SHAKE_THIS_FOR_LIFE
 
                if(bPositionFix)
                   {
 
-                     pinteraction->layout().sketch().origin() = point;
+                     pinteraction->layout().sketch().origin() = point_i32;
 
-                     pinteraction->layout().window().origin() = point;
+                     pinteraction->layout().window().origin() = point_i32;
 
-                     pinteraction->layout().sketch().screen_origin() = point;
+                     pinteraction->layout().sketch().screen_origin() = point_i32;
 
-                     pinteraction->layout().window().screen_origin() = point;
+                     pinteraction->layout().window().screen_origin() = point_i32;
 
                      pinteraction->set_reposition(true);
 
@@ -3944,7 +3944,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
                   }
 
-                  msg.hwnd->m_rect.set(point, size);
+                  msg.hwnd->m_rectangle.set(point, size);
 
                }
 
@@ -4090,7 +4090,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 //      int w = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cx;
 //      int h = msg.hwnd->m_pimpl->m_puserinteraction->layout().sketch().m_size.cy;
 //
-//      ::rect r;
+//      ::rectangle_i32 r;
 //
 //      get_window_rect(msg.hwnd, &r);
 //
@@ -4611,7 +4611,7 @@ int_bool set_window_pos(oswindow hwnd, oswindow hwndInsertAfter, i32 x, i32 y, i
 
 
 
-int_bool get_window_rect(oswindow hwnd, RECT32 * prect)
+int_bool get_window_rect(oswindow hwnd, RECTANGLE_I32 * prectangle)
 {
 
    sync_lock sl(x11_mutex());
@@ -4627,12 +4627,12 @@ int_bool get_window_rect(oswindow hwnd, RECT32 * prect)
 
    }
 
-   return x11_get_window_rect(d, hwnd->window(), prect);
+   return x11_get_window_rect(d, hwnd->window(), prectangle);
 
 }
 
 
-int_bool get_client_rect(oswindow window, RECT32 * prect)
+int_bool get_client_rect(oswindow window, RECTANGLE_I32 * prectangle)
 {
 
    sync_lock sl(x11_mutex());
@@ -4659,13 +4659,13 @@ int_bool get_client_rect(oswindow window, RECT32 * prect)
 
    }
 
-   prect->left      = 0;
+   prectangle->left      = 0;
 
-   prect->top       = 0;
+   prectangle->top       = 0;
 
-   prect->right     = prect->left    + attr.width;
+   prectangle->right     = prectangle->left    + attr.width;
 
-   prect->bottom    = prect->top     + attr.height;
+   prectangle->bottom    = prectangle->top     + attr.height;
 
    windowing_output_debug_string("\n::get_client_rect 2");
 
@@ -4674,14 +4674,14 @@ int_bool get_client_rect(oswindow window, RECT32 * prect)
 }
 
 
-int_bool ca2_GetClientRect(oswindow window, RECT32 * prect)
+int_bool ca2_GetClientRect(oswindow window, RECTANGLE_I32 * prectangle)
 {
 
    sync_lock sl(window->m_pimpl->m_puserinteraction->mutex());
 
-   window->m_pimpl->m_puserinteraction->get_window_rect(prect);
+   window->m_pimpl->m_puserinteraction->get_window_rect(prectangle);
 
-   offset_rect(prect, -prect->left, -prect->top);
+   offset_rect(prectangle, -prectangle->left, -prectangle->top);
 
    return TRUE;
 
@@ -4690,7 +4690,7 @@ int_bool ca2_GetClientRect(oswindow window, RECT32 * prect)
 
 
 
-int_bool x11_get_cursor_pos(POINT32 * ppointCursor)
+int_bool x11_get_cursor_pos(POINT_I32 * ppointCursor)
 {
 
    Window root_return;
@@ -4735,7 +4735,7 @@ int_bool x11_get_cursor_pos(POINT32 * ppointCursor)
 }
 
 
-int_bool GetCursorPos(POINT32 * ppointCursor)
+int_bool GetCursorPos(POINT_I32 * ppointCursor)
 {
 
    x11_sync([&]()
@@ -4760,11 +4760,11 @@ int_bool GetCursorPos(POINT32 * ppointCursor)
 //}
 
 
-void wm_full_screen(oswindow w, const ::rect & rect)
+void wm_full_screen(oswindow w, const ::rectangle_i32 & rectangle)
 
 {
 
-   w->full_screen(rect);
+   w->full_screen(rectangle);
 
 
 }
@@ -5401,12 +5401,12 @@ mq * get_mq(ithread_t idthread, bool bCreate);
 void oswindow_set_active_window(oswindow oswindow);
 
 
-CLASS_DECL_AURA void update_application_session_cursor(void * pvoidApp, const point & pointCursor);
+CLASS_DECL_AURA void update_application_session_cursor(void * pvoidApp, const point_i32 & pointCursor);
 
 
 
 
-int_bool _x11_get_cursor_pos(Display * d, POINT32 * ppointCursor);
+int_bool _x11_get_cursor_pos(Display * d, POINT_I32 * ppointCursor);
 
 
 
@@ -5422,7 +5422,7 @@ void wm_state_hidden_raw(oswindow w, bool bSet);
 CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow);
 
 
-int_bool x11_get_cursor_pos(POINT32 * ppointCursor);
+int_bool x11_get_cursor_pos(POINT_I32 * ppointCursor);
 
 
 

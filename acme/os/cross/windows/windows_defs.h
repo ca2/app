@@ -225,7 +225,7 @@ typedef const RECTL * LPCRECTL;
 {
     ::i32  x;
     ::i32  y;
-} POINT32, *PPOINT, *NPPOINT, *POINT32 *;*/
+} POINT_I32, *PPOINT, *NPPOINT, *POINT_I32 *;*/
 
 typedef struct _POINTL      /* ptl  */
 {
@@ -237,10 +237,10 @@ typedef struct _POINTL      /* ptl  */
 //{
 //   ::i32        cx;
 //   ::i32        cy;
-//} SIZE32, *PSIZE, *LPSIZE32;
+//} SIZE_I32, *PSIZE, *LPSIZE32;
 
-typedef SIZE32               SIZEL;
-typedef SIZE32               *PSIZEL, *LPSIZE32L;
+typedef SIZE_I32               SIZEL;
+typedef SIZE_I32               *PSIZEL, *LPSIZE32L;
 
 typedef struct tagPOINTS
 {

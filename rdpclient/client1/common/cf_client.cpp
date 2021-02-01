@@ -82,7 +82,7 @@
 //   int i;
 //   rdpGdi* gdi;
 //   int ninvalid;
-//   RECT32 updateRect;
+//   RECTANGLE_I32 updateRect;
 //   HGDI_RGN cinvalid;
 //   REGION16 invalidRegion;
 //   RECTANGLE_16 invalidRect;
@@ -175,7 +175,7 @@
 //BOOL af_hw_desktop_resize(wfContext* wfc)
 //{
 //	BOOL same;
-//	RECT32 rect;
+//	RECTANGLE_I32 rectangle_i32;
 //	rdpSettings* settings;
 //
 //	settings = wfc->instance->settings;
@@ -203,8 +203,8 @@
 //	else
 //	{
 //		af_update_offset(wfc);
-//		get_window_rect(wfc->hwnd, &rect);
-//		InvalidateRect(wfc->hwnd, &rect, TRUE);
+//		get_window_rect(wfc->hwnd, &rectangle);
+//		InvalidateRect(wfc->hwnd, &rectangle, TRUE);
 //	}
 //	return TRUE;
 //}

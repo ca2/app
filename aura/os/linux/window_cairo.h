@@ -23,7 +23,7 @@ public:
    virtual void create_window_graphics(oswindow window, i64 cx, i64 cy, int iStride = -1);
    virtual void destroy_window_graphics();
 
-   virtual void update_window(oswindow window, color32_t * pOsBitmapData, const ::rect & rect, int iStride = -1);
+   virtual void update_window(oswindow window, color32_t * pOsBitmapData, const ::rectangle_i32 & rectangle, int iStride = -1);
 
 
 };

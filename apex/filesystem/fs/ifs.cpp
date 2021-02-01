@@ -49,7 +49,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    ::file::listing listing;
 
-   Context.dir().ls(listing, path);
+   get_context()->dir().ls(listing, path);
 
    sl.lock();
 
@@ -128,7 +128,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    //property_set set;
 
-   //strSource = Context.http().get(strUrl, set);
+   //strSource = get_context()->http().get(strUrl, set);
 
    //if(strSource.is_empty())
    //{
@@ -191,7 +191,7 @@ bool ifs::has_subdir(const ::file::path & path)
 
    //      auto & path = dir.add_get(::file::path(listing.m_pathUser / pchild->attribute("name").get_string(),::file::path_url));
 
-   //      path.m_iSize = pchild->attribute("size");
+   //      path.m_iSize = pchild->attribute("size_i32");
 
    //      path.m_iDir = 0;
 
@@ -293,7 +293,7 @@ int ifs::is_dir(const ::file::path & path)
 
       ::file::listing listing;
 
-      Context.dir().ls(listing, path.folder());
+      get_context()->dir().ls(listing, path.folder());
 
    }
 

@@ -8,7 +8,7 @@
 #include "include/wrapper/cef_closure_task.h"
 #include "include/wrapper/cef_helpers.h"
 #include "acme/const/timer.h"
-int cef_main(HINSTANCE hInstance, HWND hwnd, RECT32 rect);
+int cef_main(HINSTANCE hInstance, HWND hwnd, RECTANGLE_I32 rectangle_i32);
 
 namespace browser
 {
@@ -289,7 +289,7 @@ namespace browser
 
          auto rectClient = get_client_rect();
 
-         pgraphics->draw(::rect(m_pimageBrowser->size()), m_pimageBrowser->g(), m_pimageBrowser->rect());
+         pgraphics->draw(::rectangle_i32(m_pimageBrowser->size()), m_pimageBrowser->g(), m_pimageBrowser->rectangle_i32());
 
       }
 
@@ -321,7 +321,7 @@ namespace browser
 
       CefMouseEvent event;
 
-      ::point point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_point;
 
       _001ScreenToClient(point);
 
@@ -362,7 +362,7 @@ namespace browser
    void view::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -370,13 +370,13 @@ namespace browser
          return;
 
 
-      ::rect rect = get_client_rect();
+      ::rectangle_i32 rectangle = get_client_rect();
 
-      client_to_screen(rect);
+      client_to_screen(rectangle);
 
-      get_top_level()->screen_to_client(rect);
+      get_top_level()->screen_to_client(rectangle);
 
-      if (rect.size() != m_pimageBrowser->size())
+      if (rectangle.size() != m_pimageBrowser->size())
       {
 
          if (Application.get_context_application()->m_bCefInitialized)
@@ -386,7 +386,7 @@ namespace browser
 
                m_bBrowser = true;
                CefWindowInfo info;
-               //info.SetAsChild(get_handle(), rect);
+               //info.SetAsChild(get_handle(), rectangle);
                info.SetAsWindowless(get_handle());
 
                CefBrowserSettings browserSettings;
@@ -401,7 +401,7 @@ namespace browser
                //                        // main_async([=]()
                //{
 
-               //   cef_main(System.m_hinstance, get_handle(), rect);
+               //   cef_main(System.m_hinstance, get_handle(), rectangle);
 
                //});
 
@@ -411,20 +411,20 @@ namespace browser
 
                m_pbrowser->GetHost()->WasResized();
                //auto hwnd = m_pbrowser->GetHost()->GetWindowHandle();
-               //auto rect = RECT32{ 0 };
-               //get_client_rect(&rect);
+               //auto rectangle_i32 = RECTANGLE_I32{ 0 };
+               //get_client_rect(&rectangle);
 
                //auto hwnd2 = get_handle();
 
                //m_pbrowser->
 
-               //::SetWindowPos(hwnd, HWND_TOP, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, SWP_NOZORDER);
+               //::SetWindowPos(hwnd, HWND_TOP, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, SWP_NOZORDER);
 
                //::set_window_pos(::GetWindow(get_handle(), GW_CHILD), HWND_TOP,
-               //               rect.left,
-               //               rect.top,
-               //               rect.width(),
-               //               rect.height(), 0);
+               //               rectangle.left,
+               //               rectangle.top,
+               //               rectangle.width(),
+               //               rectangle.height(), 0);
 
             }
 
@@ -690,9 +690,9 @@ namespace browser
       if (m_prender->m_bImageEnable && m_prender->m_pimageImage->is_ok())
       {
 
-         ::rect rectWork(0, 0, m_prender->m_pimageWork->get_size()->cx, m_prender->m_pimageWork->get_size()->cy);
+         ::rectangle_i32 rectWork(0, 0, m_prender->m_pimageWork->get_size()->cx, m_prender->m_pimageWork->get_size()->cy);
 
-         ::rect rectImage(0, 0, m_prender->m_pimageImage->get_size()->cx, m_prender->m_pimageImage->get_size()->cy);
+         ::rectangle_i32 rectImage(0, 0, m_prender->m_pimageImage->get_size()->cx, m_prender->m_pimageImage->get_size()->cy);
 
          rectImage.FitOnCenterOf(rectWork);
 
@@ -703,7 +703,7 @@ namespace browser
                || m_prender->m_bImageChanged)
          {
 
-            ::size size = rectImage.size();
+            ::size_i32 size = rectImage.size();
 
             m_prender->m_pimageImageStretched->release();
             {
@@ -836,10 +836,10 @@ namespace browser
    //      if (m_pbrowser != nullptr)
    //      {
    //         auto hwnd = m_pbrowser->GetHost()->GetWindowHandle();
-   //         auto rect = RECT32{ 0 };
-   //         get_client_rect(&rect);
+   //         auto rectangle_i32 = RECTANGLE_I32{ 0 };
+   //         get_client_rect(&rectangle);
 
-   //         ::set_window_pos(hwnd, HWND_TOP, rect.left, rect.top, rect.right - rect.left, rect.bottom - rect.top, SWP_NOZORDER);
+   //         ::set_window_pos(hwnd, HWND_TOP, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, SWP_NOZORDER);
    //      }
    //   }
    //}
@@ -858,26 +858,26 @@ namespace browser
    //}
 
    
-   bool view::GetRootScreenRect(CefRefPtr<CefBrowser> browser, CefRect & rect) 
+   bool view::GetRootScreenRect(CefRefPtr<CefBrowser> browser, CefRect & rectangle) 
    {
 
       auto rectWindow = get_top_level()->get_window_rect();
 
-      rect.Set(rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height());
+      rectangle.Set(rectWindow.left, rectWindow.top, rectWindow.width(), rectWindow.height());
 
       return true;
 
    }
 
 
-   bool view::GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect)
+   bool view::GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rectangle)
    {
 
-      ::rect rectClient = get_client_rect();
+      ::rectangle_i32 rectClient = get_client_rect();
 
       _001ClientToScreen(rectClient);
 
-      rect.Set(rectClient.left, rectClient.top, rectClient.width(), rectClient.height());
+      rectangle.Set(rectClient.left, rectClient.top, rectClient.width(), rectClient.height());
 
       return true;
 
@@ -896,9 +896,9 @@ namespace browser
 
       pixmap p;
 
-      p.init(::size(width, height), (color32_t *) buffer, width * sizeof(color32_t));
+      p.init(::size_i32(width, height), (color32_t *) buffer, width * sizeof(color32_t));
 
-/*      m_pimageBrowser->create_image(this, ::size(width, height));
+/*      m_pimageBrowser->create_image(this, ::size_i32(width, height));
 
       //m_pimageBrowser->g()->fill_solid_rect_dim(0, 0, width, height, ARGB(155, 255, 255, 0)) ;
 

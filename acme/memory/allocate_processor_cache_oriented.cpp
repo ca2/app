@@ -1,4 +1,6 @@
 #include "framework.h"
+#include "acme/operating_system.h"
+
 
 #if defined(_M_IX86)
 CLASS_DECL_ACME void x86_cache_oriented_destroy_all_memory_pools();

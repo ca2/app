@@ -41,7 +41,7 @@ void control_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   ::rect rectClient;
+   ::rectangle_i32 rectClient;
 
    get_client_rect(rectClient);
 

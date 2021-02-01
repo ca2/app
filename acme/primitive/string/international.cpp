@@ -21,7 +21,7 @@ namespace str
       bool UnicodeToMultiByte(::u32 uCodePage, ansichar * pstrMultiByte, strsize nCount, const widechar * pcsz)
       {
 
-         return WideCharToMultiByte2(uCodePage, 0, pcsz, -1, pstrMultiByte, (i32) nCount, nullptr, nullptr) != FALSE;
+         return WideCharToMultiByte2(uCodePage, 0, pcsz, -1, pstrMultiByte, (i32) nCount, nullptr, nullptr) != false;
 
       }
 
@@ -38,7 +38,7 @@ namespace str
 
          }
 
-         return WideCharToMultiByte2(uCodePage, 0, pcsz, (i32) iCount, pstrMultiByte, (i32) iMultiByteCount, nullptr, nullptr) != FALSE;
+         return WideCharToMultiByte2(uCodePage, 0, pcsz, (i32) iCount, pstrMultiByte, (i32) iMultiByteCount, nullptr, nullptr) != false;
 
       }
 

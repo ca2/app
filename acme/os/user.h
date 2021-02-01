@@ -12,7 +12,7 @@ typedef unsigned long HCURSOR;
 typedef void* HCURSOR;
 #endif
 
-#define hcursor_null ((HCURSOR) nullptr)
+//#define hcursor_null ((hcursor) nullptr)
 
 #endif
 

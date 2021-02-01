@@ -93,7 +93,7 @@ sys_thread * sys_thread_pool::get(pthread_t pthread)
 */
 
 
-bool TranslateMessage(LPMESSAGE lpmessage)
+bool TranslateMessage(MESSAGE * lpmessage)
 {
 
    UNREFERENCED_PARAMETER(lpmessage);
@@ -103,7 +103,7 @@ bool TranslateMessage(LPMESSAGE lpmessage)
 }
 
 
-LRESULT DispatchMessage(LPMESSAGE lpmessage)
+LRESULT DispatchMessage(MESSAGE * lpmessage)
 {
 
    if(lpmessage->hwnd == nullptr)

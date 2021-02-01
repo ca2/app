@@ -7,7 +7,7 @@
 
 
 #if defined(WINDOWS) && !defined(__VLD) && !defined(__MCRTDBG)
-
+#include "acme/operating_system.h"
 
 HANDLE g_system_heap()
 {

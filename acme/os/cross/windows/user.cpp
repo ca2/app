@@ -125,7 +125,7 @@ CLASS_DECL_ACME color32_t GetSysColor(::u32 dw)
 
 #
 
-//CLASS_DECL_ACME int_bool CopyRect(RECT32 * prectDest, const RECT32 * rectSrc)
+//CLASS_DECL_ACME int_bool CopyRect(RECTANGLE_I32 * prectDest, const RECTANGLE_I32 * rectSrc)
 //{
 //
 //   prectDest->left      = rectSrc->left;
@@ -137,34 +137,34 @@ CLASS_DECL_ACME color32_t GetSysColor(::u32 dw)
 //
 //}
 //
-//CLASS_DECL_ACME int_bool PtInRect(const RECT32 * prect, const POINT32 *  ppoint)
+//CLASS_DECL_ACME int_bool PtInRect(const RECTANGLE_I32 * prectangle, const POINT_I32 *  ppoint)
 //{
-//   return ppoint->x >= prect->left && ppoint->x <= prect->right
-//          && ppoint->y >= prect->top && ppoint->y <= prect->bottom;
+//   return ppoint->x >= prectangle->left && ppoint->x <= prectangle->right
+//          && ppoint->y >= prectangle->top && ppoint->y <= prectangle->bottom;
 //
 //}
 //
-//CLASS_DECL_ACME int_bool SetRect(RECT32 * prect, i32 x1, i32 y1, i32 x2, i32 y2)
+//CLASS_DECL_ACME int_bool SetRect(RECTANGLE_I32 * prectangle, i32 x1, i32 y1, i32 x2, i32 y2)
 //{
 //
-//   prect->left = x1;
-//   prect->top = y1;
+//   prectangle->left = x1;
+//   prectangle->top = y1;
 //
-//   prect->right = x2;
-//   prect->bottom = y2;
+//   prectangle->right = x2;
+//   prectangle->bottom = y2;
 //   return true;
 //}
 //
 //
-//CLASS_DECL_ACME int_bool SetRectEmpty(RECT32 * prect)
+//CLASS_DECL_ACME int_bool SetRectEmpty(RECTANGLE_I32 * prectangle)
 //{
 //
-//   SetRect(prect, 0, 0, 0, 0);
+//   SetRect(prectangle, 0, 0, 0, 0);
 //   return true;
 //}
 //
 //
-//CLASS_DECL_ACME int_bool EqualRect(const RECT32 * prect1, const RECT32 * prect2)
+//CLASS_DECL_ACME int_bool EqualRect(const RECTANGLE_I32 * prect1, const RECTANGLE_I32 * prect2)
 //{
 //   return prect1->left == prect2->left
 //          &&  prect1->top == prect2->top
@@ -173,72 +173,72 @@ CLASS_DECL_ACME color32_t GetSysColor(::u32 dw)
 //}
 //
 //
-//CLASS_DECL_ACME int_bool InflateRect(RECT32 * prect, i32 x, i32 y)
+//CLASS_DECL_ACME int_bool InflateRect(RECTANGLE_I32 * prectangle, i32 x, i32 y)
 //{
-//   prect->left -= x;
-//   prect->top -= y;
-//   prect->right += x;
-//   prect->bottom += y;
+//   prectangle->left -= x;
+//   prectangle->top -= y;
+//   prectangle->right += x;
+//   prectangle->bottom += y;
 //   return true;
 //}
 //
-//CLASS_DECL_ACME int_bool OffsetRect(RECT32 * prect, i32 x, i32 y)
+//CLASS_DECL_ACME int_bool OffsetRect(RECTANGLE_I32 * prectangle, i32 x, i32 y)
 //{
-//   prect->left += x;
-//   prect->top += y;
-//   prect->right += x;
-//   prect->bottom += y;
+//   prectangle->left += x;
+//   prectangle->top += y;
+//   prectangle->right += x;
+//   prectangle->bottom += y;
 //   return true;
 //}
 
 /*
-CLASS_DECL_ACME bool x_intersect_rect(RECT32 * prect, const RECT32 * prect1, const RECT32 * prect2)
+CLASS_DECL_ACME bool x_intersect_rect(RECTANGLE_I32 * prectangle, const RECTANGLE_I32 * prect1, const RECTANGLE_I32 * prect2)
 {
-   prect->left = max(prect1->left, prect2->left);
-   prect->right = min(prect1->right, prect2->right);
-   return prect->right >= prect->left;
+   prectangle->left = max(prect1->left, prect2->left);
+   prectangle->right = min(prect1->right, prect2->right);
+   return prectangle->right >= prectangle->left;
 }
 
-CLASS_DECL_ACME bool y_intersect_rect(RECT32 * prect, const RECT32 * prect1, const RECT32 * prect2)
+CLASS_DECL_ACME bool y_intersect_rect(RECTANGLE_I32 * prectangle, const RECTANGLE_I32 * prect1, const RECTANGLE_I32 * prect2)
 {
-   prect->top = max(prect1->top, prect2->top);
-   prect->bottom = min(prect1->bottom, prect2->bottom);
-   return prect->bottom >= prect->top;
+   prectangle->top = max(prect1->top, prect2->top);
+   prectangle->bottom = min(prect1->bottom, prect2->bottom);
+   return prectangle->bottom >= prectangle->top;
 }
 */
 
-//CLASS_DECL_ACME int_bool IntersectRect(RECT32 * prect, const RECT32 * prect1, const RECT32 * prect2)
+//CLASS_DECL_ACME int_bool IntersectRect(RECTANGLE_I32 * prectangle, const RECTANGLE_I32 * prect1, const RECTANGLE_I32 * prect2)
 //{
-//   int_bool bXIntersects = x_intersect_rect(prect, prect1, prect2);
-//   int_bool bYIntersects = y_intersect_rect(prect, prect1, prect2);
+//   int_bool bXIntersects = x_intersect_rect(prectangle, prect1, prect2);
+//   int_bool bYIntersects = y_intersect_rect(prectangle, prect1, prect2);
 //   return bXIntersects && bYIntersects;
 //}
 //
 //
-//CLASS_DECL_ACME int_bool UnionRect(RECT32 * prect, const RECT32 * prect1, const RECT32 * prect2)
+//CLASS_DECL_ACME int_bool UnionRect(RECTANGLE_I32 * prectangle, const RECTANGLE_I32 * prect1, const RECTANGLE_I32 * prect2)
 //{
-//   prect->left = min(prect1->left, prect2->left);
-//   prect->top = min(prect1->top, prect2->top);
-//   prect->right = max(prect1->right, prect2->right);
-//   prect->bottom = max(prect1->bottom, prect2->bottom);
-//   return ((prect->right - prect->left) > 0) && ((prect->bottom - prect->top) > 0);
+//   prectangle->left = min(prect1->left, prect2->left);
+//   prectangle->top = min(prect1->top, prect2->top);
+//   prectangle->right = max(prect1->right, prect2->right);
+//   prectangle->bottom = max(prect1->bottom, prect2->bottom);
+//   return ((prectangle->right - prectangle->left) > 0) && ((prectangle->bottom - prectangle->top) > 0);
 //}
 //
 //
-//CLASS_DECL_ACME int_bool SubtractRect(RECT32 * prect, const RECT32 * prect1, const RECT32 * prect2)
+//CLASS_DECL_ACME int_bool SubtractRect(RECTANGLE_I32 * prectangle, const RECTANGLE_I32 * prect1, const RECTANGLE_I32 * prect2)
 //{
-//   RECT32 rect;
-//   int_bool bXIntersects = x_intersect_rect(&rect, prect1, prect2);
-//   int_bool bYIntersects = y_intersect_rect(&rect, prect1, prect2);
+//   RECTANGLE_I32 rectangle_i32;
+//   int_bool bXIntersects = x_intersect_rect(&rectangle, prect1, prect2);
+//   int_bool bYIntersects = y_intersect_rect(&rectangle, prect1, prect2);
 //   if(bXIntersects)
 //   {
-//      prect->left    = prect->left;
-//      prect->right   = prect->right;
+//      prectangle->left    = prectangle->left;
+//      prectangle->right   = prectangle->right;
 //   }
 //   if(bYIntersects)
 //   {
-//      prect->top    = prect->top;
-//      prect->bottom   = prect->bottom;
+//      prectangle->top    = prectangle->top;
+//      prectangle->bottom   = prectangle->bottom;
 //   }
 //   return bXIntersects || bYIntersects;
 //}
@@ -630,10 +630,10 @@ CLASS_DECL_ACME string get_system_error_message(u32 dwError)
 #endif
 
 
-CLASS_DECL_ACME int_bool IsRectEmpty(const RECT32 * prect)
+CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 {
 
-   return prect == nullptr || prect->right <= prect->left || prect->bottom <= prect->top;
+   return prectangle == nullptr || prectangle->right <= prectangle->left || prectangle->bottom <= prectangle->top;
 
 }
 
@@ -775,7 +775,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECT32 * prect)
 //}
 
 //
-//int_bool WINAPI _001ClientToScreen(::oswindow oswindow, POINT32 * ppoint)
+//int_bool WINAPI _001ClientToScreen(::oswindow oswindow, POINT_I32 * ppoint)
 //{
 //
 //   if(::is_null(oswindow))
@@ -790,7 +790,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECT32 * prect)
 //}
 
 
-//int_bool WINAPI _001ScreenToClient(::oswindow oswindow, POINT32 * ppoint)
+//int_bool WINAPI _001ScreenToClient(::oswindow oswindow, POINT_I32 * ppoint)
 //{
 //
 //   if(::is_null(oswindow))

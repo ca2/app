@@ -92,15 +92,15 @@ namespace apex
 
       float                                              m_dpi;
 
-      //void *                                             m_ftlibrary;
+      //void *                                           m_ftlibrary;
 
-      ::payload                                                m_varFile;
-//      ::payload                                                m_
+      ::payload                                          m_varFile;
+//    ::payload                                          m_
 
-      __pointer(::mutex)                                 m_spmutexUserAppData;
-      __pointer(::mutex)                                 m_spmutexSystemAppData;
+      __pointer(::mutex)                                 m_pmutexUserAppData;
+      __pointer(::mutex)                                 m_pmutexSystemAppData;
 
-      __pointer(::mutex)                                 m_spmutexMatter;
+      __pointer(::mutex)                                 m_pmutexMatter;
 
       bool                                               m_bGudoNetCache;
 
@@ -108,7 +108,7 @@ namespace apex
 
       __composite(::parallelization::threading)           m_pthreading;
       ::e_display                                         m_edisplay;
-      size_t                                             m_nSafetyPoolSize; // ideal size
+      size_t                                             m_nSafetyPoolSize; // ideal size_i32
 
       bool                                               m_bFinalizeIfNoSessionSetting;
       bool                                               m_bFinalizeIfNoSession;
@@ -126,7 +126,7 @@ namespace apex
       millis                                               m_millisMainStart;
       millis                                               m_millisAfterApplicationFirstRequest;
 
-      //__pointer(::mutex)                                 m_spmutexOpenweatherCity;
+      //::mutex                                 m_spmutexOpenweatherCity;
 
       //string_array                                       m_straCityLo;
       //string_array                                       m_straCity;
@@ -287,7 +287,7 @@ namespace apex
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 
       //virtual ::install::canvas * install_create_canvas();
-      //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rect & rect);
+      //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
       //virtual int install_canvas_increment_mode();
 
       //virtual string install_get_platform() override;
@@ -297,6 +297,10 @@ namespace apex
       //virtual string install_get_latest_build_number(const char * pszVersion) override;
       //virtual i32 install_start(const char * pszCommandLine,const char * pszBuild) override;
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
+
+
+      virtual __pointer(::layered) get_layered_window(oswindow oswindow);
+
 
       virtual ::e_status process_init();
 
@@ -487,10 +491,10 @@ namespace apex
 
 
       template < typename T >
-      inline T * cast_clone(T * point)
+      inline T * cast_clone(T * p)
       {
 
-         return ::clone(point);
+         return ::clone(p);
 
       }
 
@@ -546,7 +550,7 @@ namespace apex
       virtual ::apex::library * get_library(const char * pszLibrary, bool bOpenCa2 = false);
 
 
-      virtual ::u32 os_post_to_all_threads(const ::id & id,WPARAM wparam = 0,lparam lparam = 0);
+      virtual ::u32 os_post_to_all_threads(const ::id & id,wparam wparam = 0,lparam lparam = 0);
 
 
       virtual void session_add(index iEdge, ::apex::session * psession);
@@ -678,7 +682,7 @@ namespace apex
 
       //#ifndef _UWP
 
-      virtual void get_time(timeval * point);
+      virtual void get_time(micro_duration * pmicroduration);
 
       //#endif
 
@@ -720,7 +724,7 @@ namespace apex
 
       //virtual bool initialize_native_window1();
 
-      //virtual void * initialize_native_window2(const ::rect & rect);
+      //virtual void * initialize_native_window2(const ::rectangle_i32 & rectangle);
 
 
       virtual void on_os_text(e_os_text etext, string strText);
@@ -734,9 +738,9 @@ namespace apex
 //
 //#if defined(WINDOWS)
 //      //#pragma message("at macos??")
-//      static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECT32 * prcMonitor, LPARAM dwData);
+//      static BOOL CALLBACK monitor_enum_proc(HMONITOR hmonitor, HDC hdcMonitor, RECTANGLE_I32 * prcMonitor, LPARAM dwData);
 //
-//      void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECT32 * prcMonitor);
+//      void monitor_enum(HMONITOR hmonitor, HDC hdcMonitor, RECTANGLE_I32 * prcMonitor);
 //
 //#endif
 
@@ -875,7 +879,7 @@ namespace apex
 
 #ifdef _UWP
 
-      virtual bool get_window_rect(RECT32* prect);
+      virtual bool get_window_rect(RECTANGLE_I32* prectangle);
 
 
 #endif
@@ -897,7 +901,7 @@ namespace apex
 
       //virtual ::e_status add_view_library(::apex::library* plibrary);
 
-      //virtual void get_cursor_pos(POINT32 * ppoint);
+      //virtual void get_cursor_pos(POINT_I32 * ppoint);
 
       virtual bool is_thread() const override;
 
@@ -948,16 +952,16 @@ namespace apex
 
 
       //virtual ::install::canvas * install_create_canvas() override;
-      //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rect & rect);
+      //virtual void install_canvas_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
       //virtual int install_canvas_increment_mode() override;
 
 
 
-      //virtual bool get_monitor_rect(index iMonitor, RECT32* prect) override;
+      //virtual bool get_monitor_rect(index iMonitor, RECTANGLE_I32* prectangle) override;
 
       //virtual ::count get_monitor_count() override;
 
-      //bool get_wkspace_rect(index iWkspace, RECT32* prect) override;
+      //bool get_wkspace_rect(index iWkspace, RECTANGLE_I32* prectangle) override;
 
 
       //virtual ::user::interaction_impl * impl_from_handle(void * pdata) override;
@@ -1007,7 +1011,7 @@ inline void set_enum_text(ENUM e, const char * psz)
 
    auto & system = System;
 
-   cslock sl(&system.m_csEnumText);
+   critical_section_lock sl(&system.m_csEnumText);
 
    system.m_mapEnumToText[typeid(e).name()][(i64)e] = psz;
 
@@ -1022,7 +1026,7 @@ inline string enum_text(ENUM e)
 
    auto & system = System;
 
-   cslock sl(&system.m_csEnumText);
+   critical_section_lock sl(&system.m_csEnumText);
 
    return system.m_mapEnumToText[typeid(e).name()][(i64)e];
 
@@ -1035,7 +1039,7 @@ inline ENUM text_enum(ENUM & e, const char * psz, ENUM eDefault = (ENUM)0)
 
    auto & system = System;
 
-   cslock sl(&system.m_csEnumText);
+   critical_section_lock sl(&system.m_csEnumText);
 
    i64 iValue;
 

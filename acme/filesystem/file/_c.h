@@ -20,10 +20,6 @@ CLASS_DECL_ACME int_bool file_path_is_relative_dup(const char * psz);
 CLASS_DECL_ACME int_bool file_exists(const char * path);
 
 
-#ifdef WINDOWS
-CLASS_DECL_ACME int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinst, ::u32 nID, LPCTSTR pcszType);
-
-#endif
 //CLASS_DECL_ACME int_bool is_file_ok(const char * path1, const char * pszTemplate);
 CLASS_DECL_ACME int_bool file_put_contents(const char * path, const void * contents, memsize len);
 //CLASS_DECL_ACME int_bool get_temp_file_name_dup(char * szRet, count iBufferSize, const char * lpszName, const char * pszExtension);
@@ -72,11 +68,7 @@ CLASS_DECL_ACME int_bool fd_set_size(i32 fd,size_t iSize);
 CLASS_DECL_ACME int_bool FILE_set_size(FILE * file,size_t iSize);
 
 
-#ifdef WINDOWS
 
-CLASS_DECL_ACME int_bool HFILE_set_size(HANDLE h, u64 iSize);
-
-#endif
 
 
 
@@ -96,10 +88,6 @@ CLASS_DECL_ACME int_bool HFILE_set_size(HANDLE h, u64 iSize);
 
 CLASS_DECL_ACME int_bool file_exists(const char * path1);
 
-#ifdef WINDOWS
-CLASS_DECL_ACME int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinst, ::u32 nID, LPCTSTR pcszType);
-
-#endif
 
 
 CLASS_DECL_ACME int_bool file_put_contents(const char * path, const char * contents, strsize len);

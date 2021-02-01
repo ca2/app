@@ -411,9 +411,9 @@ typedef struct _NPWindow
    /* OS/2: y - relative to visible netscape window */
    int32_t  x;      /* Position of top left corner relative */
    int32_t  y;      /* to a netscape page. */
-   ::u32 width;  /* Maximum window size */
+   ::u32 width;  /* Maximum window size_i32 */
    ::u32 height;
-   NPRect   clipRect; /* Clipping rectangle in port coordinates */
+   NPRect   clipRect; /* Clipping rectangle_i32 in port coordinates */
    /* Used by MAC only. */
 #if defined(XP_UNIX) && !defined(XP_MACOSX)
    void * ws_info; /* Platform-dependent additonal data */
@@ -430,7 +430,7 @@ typedef struct _NPImageExpose
    int32_t  y;          /* Expose y */
    ::u32 width;      /* Expose width */
    ::u32 height;     /* Expose height */
-   NPSize   dataSize;   /* Data buffer size */
+   NPSize   dataSize;   /* Data buffer size_i32 */
    float    translateX; /* translate X matrix value */
    float    translateY; /* translate Y matrix value */
    float    scaleX;     /* scale X matrix value */
@@ -677,9 +677,9 @@ NPError     NP_LOADDS NPN_DestroyStream(NPP instance, NPStream* stream,
                                         NPReason reason);
 void        NP_LOADDS NPN_Status(NPP instance, const char* message);
 const char* NP_LOADDS NPN_UserAgent(NPP instance);
-void*       NP_LOADDS NPN_MemAlloc(::u32 size);
+void*       NP_LOADDS NPN_MemAlloc(::u32 size_i32);
 void        NP_LOADDS NPN_MemFree(void* ptr);
-::u32    NP_LOADDS NPN_MemFlush(::u32 size);
+::u32    NP_LOADDS NPN_MemFlush(::u32 size_i32);
 void        NP_LOADDS NPN_ReloadPlugins(NPBool reloadPages);
 NPError     NP_LOADDS NPN_GetValue(NPP instance, NPNVariable variable,
                                    void *value);

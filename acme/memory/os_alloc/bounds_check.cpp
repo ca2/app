@@ -4,10 +4,10 @@
 
 
 
-void os_alloc_check_bounds(u8 * point)
+void os_alloc_check_bounds(u8 * point_i32)
 {
 
-	uptr * pinteraction = (uptr *)point;
+	uptr * pinteraction = (uptr *)point_i32;
 
 	byte a[256];
 
@@ -32,7 +32,7 @@ void os_alloc_check_bounds(u8 * point)
 void * os_alloc(size_t size)
 {
 
-	cslock sl(g_pmutexSystemHeap);
+	critical_section_lock sl(g_pmutexSystemHeap);
 
 	u8 * point = (u8 *)os_impl_alloc(size + 512 + sizeof(uptr));
 
@@ -40,7 +40,7 @@ void * os_alloc(size_t size)
 
 	__memset(&point[sizeof(uptr) + 256 + size], 0, 256);
 
-	uptr * pinteraction = (uptr *)point;
+	uptr * pinteraction = (uptr *)point_i32;
 
 	*pinteraction = size;
 
@@ -52,7 +52,7 @@ void * os_alloc(size_t size)
 void * os_realloc(void * pParam, size_t size)
 {
 
-	cslock sl(g_pmutexSystemHeap);
+	critical_section_lock sl(g_pmutexSystemHeap);
 
 	u8 * point = &((u8 *)pParam)[-(iptr)((sizeof(uptr) + 256))];
 
@@ -64,7 +64,7 @@ void * os_realloc(void * pParam, size_t size)
 
 	__memset(&point[sizeof(uptr) + 256 + size], 0, 256);
 
-	uptr * pinteraction = (uptr *)point;
+	uptr * pinteraction = (uptr *)point_i32;
 
 	*pinteraction = size;
 
@@ -76,7 +76,7 @@ void * os_realloc(void * pParam, size_t size)
 void os_free(void * pParam)
 {
 
-	cslock sl(g_pmutexSystemHeap);
+	critical_section_lock sl(g_pmutexSystemHeap);
 
 	u8 * point = &((u8 *)pParam)[-(iptr)((sizeof(uptr) + 256))];
 

@@ -337,7 +337,7 @@ namespace sockets
             if (response().m_strFile.has_char())
             {
 
-               compress.gz(pfile, Context.file().get_reader(response().m_strFile));
+               compress.gz(pfile, get_context()->file().get_reader(response().m_strFile));
 
                response().m_strFile.Empty();
 
@@ -478,7 +478,7 @@ namespace sockets
          if (::str::begins_ci(strContentType, "audio/"))
          {
 
-            auto preader = Context.file().get_reader(pcsz);
+            auto preader = get_context()->file().get_reader(pcsz);
 
             compress_context compress(this);
 
@@ -496,7 +496,7 @@ namespace sockets
             if (bMd5Request)
             {
 
-               response().print(Context.file().md5(pcsz));
+               response().print(get_context()->file().md5(pcsz));
 
                return true;
 
@@ -515,7 +515,7 @@ namespace sockets
             else
             {
 
-               auto preader = Context.file().shared_reader(pcsz);
+               auto preader = get_context()->file().shared_reader(pcsz);
 
                if (!preader)
                {
@@ -534,7 +534,7 @@ namespace sockets
       else
       {
 
-         auto preader = Context.file().shared_reader(pcsz);
+         auto preader = get_context()->file().shared_reader(pcsz);
 
          if (!preader)
          {

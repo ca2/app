@@ -70,7 +70,7 @@
 //};
 
 
-//mutex g_mutexSealed;
+//::mutex g_mutexSealed;
 
 
 //set < Object ^ >  g_setSealed;

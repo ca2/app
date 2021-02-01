@@ -88,7 +88,7 @@ namespace userex
    void home_view::_001OnCreate(::message::message * pmessage)
    {
 
-      //m_pimageBeam->create_image(this, ::size(32, 32));
+      //m_pimageBeam->create_image(this, ::size_i32(32, 32));
 
       //m_pimageBeam->fill(0);
 
@@ -153,7 +153,7 @@ namespace userex
    //}
 
 
-   void home_view::on_mouse(const ::point & point)
+   void home_view::on_mouse(const ::point_i32 & point)
    {
 
 
@@ -181,7 +181,7 @@ namespace userex
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      ::point point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_point;
 
       _001ScreenToClient(point);
 
@@ -199,7 +199,7 @@ namespace userex
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      ::point point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_point;
 
       _001ScreenToClient(point);
 
@@ -237,7 +237,7 @@ namespace userex
 
       ::user::impact::on_layout(pgraphics);
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -248,7 +248,7 @@ namespace userex
 
       }
 
-      ::rect rectColors;
+      ::rectangle_i32 rectColors;
 
       get_client_rect(rectColors);
 
@@ -266,7 +266,7 @@ namespace userex
 
       //m_pimage = create_image({m_rectColors->width() / 2,  m_rectColors->height()});
 
-      //m_pimage->g()->draw(m_pimage->rect(), m_pimageTemplate->get_graphics(), m_pimageTemplate->rect());
+      //m_pimage->g()->draw(m_pimage->rectangle_i32(), m_pimageTemplate->get_graphics(), m_pimageTemplate->rectangle_i32());
 
       //m_pimageLuminance = create_image({m_rectColors->width() / 8,  m_rectColors->height()});
 

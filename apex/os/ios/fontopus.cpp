@@ -29,18 +29,18 @@ namespace account
       spa_login            m_login;
       simple_graphics      m_graphics;
       simple_bitmap        m_bitmap;
-      SIZE32                 m_size;
-      POINT32                m_point;
+      SIZE_I32                 m_size;
+      POINT_I32                m_point;
       bool                 m_bLButtonDown;
-      POINT32                m_pointLButtonDown;
-      POINT32                m_pointLButtonDownPos;
+      POINT_I32                m_pointLButtonDown;
+      POINT_I32                m_pointLButtonDownPos;
 
       oswindow             m_oswindow;
 
       bool                 m_bShiftKey;
 
       bool                 m_bDrag;
-      ::rect               m_rectDesktop;
+      ::rectangle_i32               m_rectDesktop;
 
       manual_reset_event   m_eventReady;
 
@@ -56,13 +56,13 @@ namespace account
 
       virtual bool prepare_window(bool bShow);
 
-      virtual void _001ClientToScreen(POINT32 * ppt);
+      virtual void _001ClientToScreen(POINT_I32 * ppt);
 
-      virtual void _001ScreenToClient(POINT32 * ppt);
+      virtual void _001ScreenToClient(POINT_I32 * ppt);
 
-      virtual void get_window_rect(RECT32 * prect);
+      virtual void get_window_rect(RECTANGLE_I32 * prectangle);
 
-      virtual void get_client_rect(RECT32 * prect);
+      virtual void get_client_rect(RECTANGLE_I32 * prectangle);
 
       virtual void draw_dark_glass(simple_graphics & g);
       virtual void draw_pestana(simple_graphics &g);
@@ -79,8 +79,8 @@ namespace account
       virtual bool on_mouse_move(i32 x, i32 y);
 
 
-//      virtual bool on_windows_key_down(WPARAM wparam, LPARAM lparam);
-  //    virtual bool on_windows_key_up(WPARAM wparam, LPARAM lparam);
+//      virtual bool on_windows_key_down(wparam wparam, lparam lparam);
+  //    virtual bool on_windows_key_up(wparam wparam, lparam lparam);
 
     //  virtual void on_windows_gdi_draw_framebuffer();
 
@@ -113,44 +113,44 @@ namespace account
    void account::draw_auth_box(simple_graphics & g)
    {
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      get_client_rect(rect);
+      get_client_rect(rectangle);
 
       g.set_alpha_mode(draw2d::alpha_mode_blend);
 
       // front
-      point pa[4];  //  0       1
+      point_i32 pa[4];  //  0       1
       //
       //
       //  3       2
 
       // back
-      point pb[4];
+      point_i32 pb[4];
 
 
       // guards
-      point pc[4];
+      point_i32 pc[4];
 
 
-      pa[0].x = rect.left;
-      pa[0].y = rect.top;
-      pa[1].x = rect.right - rect.width() / 10;
-      pa[1].y = rect.top + rect.height() / 10;
-      pa[2].x = rect.right - rect.width() / 8;
-      pa[2].y = rect.bottom - rect.height() / 10;
-      pa[3].x = rect.left;
-      pa[3].y = rect.bottom;
+      pa[0].x = rectangle.left;
+      pa[0].y = rectangle.top;
+      pa[1].x = rectangle.right - rectangle.width() / 10;
+      pa[1].y = rectangle.top + rectangle.height() / 10;
+      pa[2].x = rectangle.right - rectangle.width() / 8;
+      pa[2].y = rectangle.bottom - rectangle.height() / 10;
+      pa[3].x = rectangle.left;
+      pa[3].y = rectangle.bottom;
 
 
-      pb[0].x = rect.left + rect.width() / 6;
-      pb[0].y = rect.top + rect.height() / 6;
-      pb[1].x = rect.right - rect.width() / 6;
-      pb[1].y = rect.top + rect.height() / 6;
-      pb[2].x = rect.right - rect.width() / 5;
-      pb[2].y = rect.bottom - rect.height() / 4;
-      pb[3].x = rect.left + rect.width() / 5;
-      pb[3].y = rect.bottom - rect.height() / 4;
+      pb[0].x = rectangle.left + rectangle.width() / 6;
+      pb[0].y = rectangle.top + rectangle.height() / 6;
+      pb[1].x = rectangle.right - rectangle.width() / 6;
+      pb[1].y = rectangle.top + rectangle.height() / 6;
+      pb[2].x = rectangle.right - rectangle.width() / 5;
+      pb[2].y = rectangle.bottom - rectangle.height() / 4;
+      pb[3].x = rectangle.left + rectangle.width() / 5;
+      pb[3].y = rectangle.bottom - rectangle.height() / 4;
 
       {
 
@@ -314,7 +314,7 @@ namespace account
    void account::draw_pestana(simple_graphics & g)
    {
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       get_window_rect(rectWindow);
 
@@ -448,7 +448,7 @@ namespace account
    bool account::prepare_window(bool bShow)
    {
 
-      rect & rectDesktop = m_rectDesktop;
+      rectangle_i32 & rectDesktop = m_rectDesktop;
 
       CGRect rectFontopus;
 
@@ -461,10 +461,10 @@ namespace account
       rectFontopus.size.height = h;
 
 
-      m_login.m_rect.left = (w - m_w) / 2;
-      m_login.m_rect.top = (h - m_h) / 2;
-      m_login.m_rect.right = m_w;
-      m_login.m_rect.bottom = m_h;
+      m_login.m_rectangle.left = (w - m_w) / 2;
+      m_login.m_rectangle.top = (h - m_h) / 2;
+      m_login.m_rectangle.right = m_w;
+      m_login.m_rectangle.bottom = m_h;
 
       m_login.defer_translate(this);
 
@@ -535,12 +535,12 @@ namespace account
 
 
 
-   void account::_001ClientToScreen(POINT32 * ppt)
+   void account::_001ClientToScreen(POINT_I32 * ppt)
    {
       ::_001ClientToScreen(m_oswindow, ppt);
    }
 
-   void account::_001ScreenToClient(POINT32 * ppt)
+   void account::_001ScreenToClient(POINT_I32 * ppt)
    {
       ::_001ScreenToClient(m_oswindow, ppt);
    }
@@ -571,11 +571,11 @@ namespace account
          return true;
 
 
-      ::rect rectLogin;
+      ::rectangle_i32 rectLogin;
 
       m_login.get_window_rect(rectLogin);
 
-      ::point point(x, y);
+      ::point_i32 point(x, y);
 
       if (rectLogin.is_empty().contains(point))
       {
@@ -585,9 +585,9 @@ namespace account
 
 
             {
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
       m_login.get_window_rect(&rectWindow);
-      POINT32 pointCursor;
+      POINT_I32 pointCursor;
       ::GetCursorPos(&pointCursor);
       if (rectWindow.is_empty().contains(pointCursor))
       DestroyWindow(hWnd);
@@ -606,7 +606,7 @@ namespace account
          if (!m_bDrag)
          {
             m_bDrag = true;
-            POINT32 ptNow;
+            POINT_I32 ptNow;
             ::GetCursorPos(&ptNow);
             m_point.x = ptNow.x - m_pointLButtonDown.x + m_pointLButtonDownPos.x;
             m_point.y = ptNow.y - m_pointLButtonDown.y + m_pointLButtonDownPos.y;
@@ -624,21 +624,21 @@ namespace account
    }
 
 
-   void account::get_window_rect(RECT32 * prect)
+   void account::get_window_rect(RECTANGLE_I32 * prectangle)
    {
-      ::get_window_rect(m_oswindow, prect);
+      ::get_window_rect(m_oswindow, prectangle);
    }
-   void account::get_client_rect(RECT32 * prect)
+   void account::get_client_rect(RECTANGLE_I32 * prectangle)
    {
 
-      ::get_client_rect(m_oswindow, prect);
+      ::get_client_rect(m_oswindow, prectangle);
 
    }
 
    void account::draw_dark_glass(simple_graphics & g)
    {
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       get_window_rect(rectWindow);
 
@@ -663,7 +663,7 @@ namespace account
    void account::draw_fuzzy_color_spread(simple_graphics & g)
    {
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       get_window_rect(rectWindow);
 

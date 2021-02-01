@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 #include "apex/platform/app_core.h"
 #include "_windows.h"
 
@@ -196,8 +197,8 @@ namespace windows
       pDropFiles->pFiles = sizeof(DROPFILES);
       pDropFiles->pt.x = 0;
       pDropFiles->pt.y = 0;
-      pDropFiles->fNC = TRUE;
-      pDropFiles->fWide = TRUE;
+      pDropFiles->fNC = true;
+      pDropFiles->fWide = true;
 
       char * psz = (char *)pDropFiles;
 
@@ -265,7 +266,7 @@ namespace windows
 
       ::u32 dwWidth, dwHeight;
       BITMAPINFOHEADER bi;
-      HCURSOR hAlphaCursor = nullptr;
+      hcursor hAlphaCursor = nullptr;
 
       dwWidth = pimage->width();
       dwHeight = pimage->height();
@@ -295,7 +296,7 @@ namespace windows
 
       ::memcpy_dup(point, &bi, sizeof(bi));
 
-      ::memcpy_dup(point + sizeof(bi), pimage->get_data(), pimage->scan_size() * pimage->height());
+      ::memcpy_dup(point_i32 + sizeof(bi), pimage->get_data(), pimage->scan_size() * pimage->height());
 
       GlobalUnlock(hglb);
 
@@ -620,7 +621,7 @@ namespace windows
 
             ::GetObject(hbitmap, sizeof(bm), &bm);
 
-            pimage->create(::size(bm.bmWidth, bm.bmHeight), NOK_IMAGE_OBJECT);
+            pimage->create(::size_i32(bm.bmWidth, bm.bmHeight), NOK_IMAGE_OBJECT);
 
             if (pimage->area() > 0)
             {

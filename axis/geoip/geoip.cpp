@@ -290,14 +290,14 @@ char *_GeoIP_full_path_to(const char *file_name)
       __memset(path, 0, sizeof(char) * 1024);
       snprintf(path, sizeof(char) * 1024 - 1, "%s/%s", GEOIPDATADIR, file_name);
 #else
-      char buf[MAX_PATH], *point, *q = nullptr;
+      char buf[MAX_PATH], *point_i32, *q = nullptr;
       __memset(buf, 0, sizeof(buf));
       len = GetModuleFileNameA(GetModuleHandle(nullptr), buf, sizeof(buf) - 1);
-      for (point = buf + len; point > buf; point--)
+      for (point = buf + len; point_i32 > buf; point_i32--)
          if (*point == '\\')
          {
             if (!q)
-               q = point;
+               q = point_i32;
             else
                *point = '/';
          }
@@ -479,7 +479,7 @@ i32 _check_mtime(GeoIP *gi)
                {
 #if !defined(_WIN32)
                   /* MMAP is only avail on UNIX */
-                  munmap(gi->cache, gi->size);
+                  munmap(gi->cache, gi->size_i32);
                   gi->cache = nullptr;
 #endif
                }
@@ -571,7 +571,7 @@ u32 _GeoIP_seek_record_v6 (GeoIP *gi, geoipv6_t ipnum)
    const uchar *buf = (gi->cache == nullptr) ? stack_buffer : nullptr;
    u32 offset = 0;
 
-   const uchar * point;
+   const uchar * point_i32;
    i32 j;
    size_t silence;
 
@@ -586,7 +586,7 @@ u32 _GeoIP_seek_record_v6 (GeoIP *gi, geoipv6_t ipnum)
       }
       else if (gi->index_cache == nullptr)
       {
-         /* simply point to record in memory */
+         /* simply point_i32 to record in memory */
          buf = gi->cache + (long)gi->record_length * 2 *offset;
       }
       else
@@ -614,7 +614,7 @@ u32 _GeoIP_seek_record_v6 (GeoIP *gi, geoipv6_t ipnum)
             do
             {
                x <<= 8;
-               x += *(--point);
+               x += *(--point_i32);
             }
             while ( --j );
          }
@@ -639,7 +639,7 @@ u32 _GeoIP_seek_record_v6 (GeoIP *gi, geoipv6_t ipnum)
             do
             {
                x <<= 8;
-               x += *(--point);
+               x += *(--point_i32);
             }
             while ( --j );
          }
@@ -676,7 +676,7 @@ u32 _GeoIP_seek_record (GeoIP *gi, u32 ipnum)
    const uchar *buf = (gi->cache == nullptr) ? stack_buffer : nullptr;
    u32 offset = 0;
 
-   const uchar * point;
+   const uchar * point_i32;
    i32 j;
    size_t silence;
 
@@ -691,7 +691,7 @@ u32 _GeoIP_seek_record (GeoIP *gi, u32 ipnum)
       }
       else if (gi->index_cache == nullptr)
       {
-         /* simply point to record in memory */
+         /* simply point_i32 to record in memory */
          buf = gi->cache + (long)gi->record_length * 2 *offset;
       }
       else
@@ -719,7 +719,7 @@ u32 _GeoIP_seek_record (GeoIP *gi, u32 ipnum)
             do
             {
                x <<= 8;
-               x += *(--point);
+               x += *(--point_i32);
             }
             while ( --j );
          }
@@ -744,7 +744,7 @@ u32 _GeoIP_seek_record (GeoIP *gi, u32 ipnum)
             do
             {
                x <<= 8;
-               x += *(--point);
+               x += *(--point_i32);
             }
             while ( --j );
          }
@@ -952,7 +952,7 @@ void GeoIP_delete (GeoIP *gi)
       if ( gi->flags & GEOIP_MMAP_CACHE )
       {
 #if !defined(_WIN32)
-         munmap(gi->cache, gi->size);
+         munmap(gi->cache, gi->size_i32);
 #endif
       }
       else

@@ -48,10 +48,10 @@ bool m_bDirty;
    virtual int round_window_get_x() = 0;
    virtual int round_window_get_y() = 0;
    virtual long round_window_edit_hit_test(int x, int y) = 0;
-   virtual bool round_window_edit_caret_rect(CGRect * prect, long iSel) = 0;
+   virtual bool round_window_edit_caret_rect(CGRect * prectangle, long iSel) = 0;
    
    virtual void round_window_resized(int cx, int cy) = 0;
-   virtual void round_window_moved(CGPoint point) = 0;
+   virtual void round_window_moved(CGPoint point_i32) = 0;
 
    virtual void round_window_become_key() = 0;
 
@@ -92,4 +92,4 @@ bool m_bDirty;
 };
 
 
-UIWindow * new_round_window(round_window * pwindow, CGRect rect);
+UIWindow * new_round_window(round_window * pwindow, CGRect rectangle_i32);

@@ -10,9 +10,6 @@ typedef __key_t key_t;
 //#include "ca_mutex.h"
 #endif
 
-//namespace apex
-//{
-
 
 namespace interprocess_communication
 {
@@ -109,7 +106,8 @@ namespace interprocess_communication
    public:
 
 
-      class CLASS_DECL_APEX receiver
+      class CLASS_DECL_APEX receiver :
+         virtual public ::matter
       {
       public:
 
@@ -121,14 +119,16 @@ namespace interprocess_communication
 
       };
 
-      receiver *           m_preceiver;
-      rx_private *         m_pp;
+
+      __pointer(receiver)     m_preceiver;
+      rx_private *            m_pp;
+
 
 #ifndef WINDOWS
 
-      bool                 m_bRunning;
-      bool                 m_bRun;
-      thread *             m_pthread;
+      bool                    m_bRunning;
+      bool                    m_bRun;
+      thread *                m_pthread;
 
 #endif
 
@@ -148,18 +148,13 @@ namespace interprocess_communication
 
       virtual bool on_idle();
 
-
-#ifdef WINDOWS_DESKTOP
-      //ATOM register_class(HINSTANCE hInstance);
-      //static LRESULT CALLBACK s_message_queue_proc(oswindow oswindow,const ::id & id,WPARAM wParam,LPARAM lParam);
-      LRESULT message_queue_proc(::u32 message,WPARAM wParam,LPARAM lParam);
-#else
-
-      bool start_receiving();
-
-      void * receive();
-
-#endif
+//ifndef WINDOWS
+//
+//      bool start_receiving();
+//
+//      void * receive();
+//
+//#endif
 
       bool is_rx_ok();
 
@@ -169,13 +164,13 @@ namespace interprocess_communication
 
 
    class CLASS_DECL_APEX interprocess_communication:
-      virtual public tx,
       virtual public rx::receiver
    {
    public:
 
 
-      rx                      m_rx;
+      __pointer(tx)           m_ptx;
+      __pointer(rx)           m_prx;
       string                  m_strChannel;
       unsigned int            m_millisTimeout;
 
@@ -211,10 +206,6 @@ namespace interprocess_communication
 
 
 } // namespace interprocess_communication
-
-
-//} // namespace apex
-
 
 
 

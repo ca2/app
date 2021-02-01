@@ -24,7 +24,7 @@ namespace windows
       virtual bool shutdown(bool bPowerOff) override;
 
       virtual void terminate_processes_by_title(const char * lpszName) override;
-      virtual ::file::path get_module_path(HMODULE hmodule) override;
+      //virtual ::file::path get_module_path(HMODULE hmodule) override;
       virtual bool get_pid_by_path(const char * lpszName, u32 & dwPid) override;
       virtual bool get_pid_by_title(const char * lpszName, u32 & dwPid) override;
       virtual void get_all_processes(u32_array & dwa) override;

@@ -95,17 +95,17 @@ namespace apex
 
       ////   ::user::native_window_initialize initialize;
 
-      ////   initialize.m_rect.left = 0;
+      ////   initialize.m_rectangle.left = 0;
 
-      ////   initialize.m_rect.top = 0;
+      ////   initialize.m_rectangle.top = 0;
 
       ////   node_data_exchange * pdataexchange = psystem->node_ddx();
 
-      ////   initialize.m_rect.right = pdataexchange->m_iScreenWidth;
+      ////   initialize.m_rectangle.right = pdataexchange->m_iScreenWidth;
 
-      ////   initialize.m_rect.bottom = pdataexchange->m_iScreenHeight;
+      ////   initialize.m_rectangle.bottom = pdataexchange->m_iScreenHeight;
 
-      ////   psystem->get_context_session()->defer_initialize_host_window(&initialize.m_rect);
+      ////   psystem->get_context_session()->defer_initialize_host_window(&initialize.m_rectangle);
 
       ////   //::user::system createstruct;
 

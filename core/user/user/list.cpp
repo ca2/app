@@ -180,7 +180,7 @@ namespace user
 
       sync_lock sl(m_pmeshdata->mutex());
 
-      ::rect rectClient = get_client_rect();
+      ::rectangle_i32 rectClient = get_client_rect();
 
       auto pointOffset = get_viewport_offset();
 
@@ -222,9 +222,9 @@ namespace user
                   || i == sizea.get_upper_bound())
             {
 
-               ::rect rect;
+               ::rectangle_i32 rectangle;
 
-               rect.top = ::i32(y - pointOffset.y);
+               rectangle.top = ::i32(y - pointOffset.y);
 
                if (i == 0)
                {
@@ -241,11 +241,11 @@ namespace user
                   y += sizea[i - 1].cy;
                   iNewStart = i - 1;
                }
-               rect.left = ::i32(-pointOffset.x);
-               rect.right = rectClient.right;
-               rect.bottom = ::i32(y - pointOffset.y);
+               rectangle.left = ::i32(-pointOffset.x);
+               rectangle.right = rectClient.right;
+               rectangle.bottom = ::i32(y - pointOffset.y);
 
-               pgraphics->_DrawText(m_strTopText.Mid(iStart, i - iStart), rect, e_align_left);
+               pgraphics->_DrawText(m_strTopText.Mid(iStart, i - iStart), rectangle_i32, e_align_left);
                iStart = iNewStart;
             }
          }
@@ -270,8 +270,8 @@ namespace user
       m_pdrawlistitem->m_iColumn = -1;
       m_pdrawlistitem->m_iColumnWidth = 0;
 
-      ::rect rectItem;
-      ::rect rectIntersect;
+      ::rectangle_i32 rectItem;
+      ::rectangle_i32 rectIntersect;
 
       auto iItemCount = m_nDisplayCount;
 
@@ -343,9 +343,9 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
             
-            pgraphics->fill_rect(::rectd(x1, y1, x2, y2), ARGB(90, 250, 250, 255));
+            pgraphics->fill_rect(::rectangle_f64(x1, y1, x2, y2), ARGB(90, 250, 250, 255));
 
-            pgraphics->draw_rect(::rectd(x1, y1, x2, y2), ARGB(192, 192, 192, 208));
+            pgraphics->draw_rect(::rectangle_f64(x1, y1, x2, y2), ARGB(192, 192, 192, 208));
 
          }
 
@@ -379,9 +379,9 @@ namespace user
 
       index iGroup;
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
-      ::rect rectIntersect;
+      ::rectangle_i32 rectIntersect;
 
       get_client_rect(rectClient);
 
@@ -483,11 +483,11 @@ namespace user
    void list::_001DrawItems(draw_list_item * pdrawitem, index iItemFirst, index iItemLast)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
-      ::rect rectIntersect;
+      ::rectangle_i32 rectIntersect;
 
       rectClient.offset(get_viewport_offset());
 
@@ -771,7 +771,7 @@ namespace user
 
          ::draw2d::pen * ppenHighlight = _001GetPenHighlight();
 
-         ::rect rectHighlight(pdrawitem->m_rectItem);
+         ::rectangle_i32 rectHighlight(pdrawitem->m_rectItem);
 
          rectHighlight.inflate(8, 0, 8, -1);
 
@@ -948,7 +948,7 @@ namespace user
       if (m_eview == impact_icon)
       {
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(rectClient);
 
@@ -1137,7 +1137,7 @@ namespace user
 
       m_nDisplayCount = _001CalcDisplayItemCount();
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
       if (m_eview == impact_list)
       {
@@ -1145,13 +1145,13 @@ namespace user
          if (m_nItemCount == 0)
          {
 
-            rect = ::rect(0, 0, 0, 0);
+            rectangle_i32 = ::rectangle_i32(0, 0, 0, 0);
 
          }
          else
          {
 
-            ::rect rectClient;
+            ::rectangle_i32 rectClient;
 
             get_client_rect(&rectClient);
 
@@ -1163,22 +1163,22 @@ namespace user
 
             _001GetItemRect(&itemFirst);
 
-            rect.top = rectClient.top;
+            rectangle.top = rectClient.top;
 
-            rect.bottom = rectClient.bottom;
+            rectangle.bottom = rectClient.bottom;
 
-            rect.left = rectClient.left;
+            rectangle.left = rectClient.left;
 
             if (m_dItemHeight <= 0 || rectClient.height() <= 0)
             {
 
-               rect.right = rectClient.right;
+               rectangle.right = rectClient.right;
 
             }
             else
             {
 
-               rect.right = (::i32)min(
+               rectangle.right = (::i32)min(
                             rectClient.left +
                             m_nItemCount * itemFirst.m_rectItem.width() * m_dItemHeight /
                             rectClient.height()
@@ -1195,7 +1195,7 @@ namespace user
          if (m_nItemCount == 0)
          {
 
-            rect = ::rect(0, 0, 0, 0);
+            rectangle_i32 = ::rectangle_i32(0, 0, 0, 0);
 
          }
          else
@@ -1211,11 +1211,11 @@ namespace user
 
             _001GetItemRect(&itemFirst);
 
-            rect = itemFirst.m_rectItem;
+            rectangle_i32 = itemFirst.m_rectItem;
 
-            rect.top = 0;
+            rectangle.top = 0;
 
-            rect.bottom = (::i32) ((_001GetItemCount() + (m_bHeaderCtrl ? 1 : 0)) * m_dItemHeight);
+            rectangle.bottom = (::i32) ((_001GetItemCount() + (m_bHeaderCtrl ? 1 : 0)) * m_dItemHeight);
 
          }
 
@@ -1223,7 +1223,7 @@ namespace user
       else if (m_eview == impact_icon)
       {
 
-         rect = ::rect(0, 0, 0, 0);
+         rectangle_i32 = ::rectangle_i32(0, 0, 0, 0);
 
          draw_list_item itemFirst(this);
 
@@ -1263,7 +1263,7 @@ namespace user
 
                draw_list_item itemTopRight(this);
 
-               ::rect rectClient;
+               ::rectangle_i32 rectClient;
 
                get_client_rect(&rectClient);
 
@@ -1276,9 +1276,9 @@ namespace user
                if (itemTopRight.m_bOk)
                {
 
-                  rect.unite(itemFirst.m_rectItem, itemLast.m_rectItem);
+                  rectangle.unite(itemFirst.m_rectItem, itemLast.m_rectItem);
 
-                  rect.unite(rect, itemTopRight.m_rectItem);
+                  rectangle.unite(rectangle, itemTopRight.m_rectItem);
 
                }
 
@@ -1288,7 +1288,7 @@ namespace user
 
       }
 
-      set_total_size(rect.size());
+      set_total_size(rectangle.size());
 
       ::user::scroll_base::on_change_view_size(pgraphics);
 
@@ -1387,7 +1387,7 @@ namespace user
 
       index iItemWidth = 0;
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
       string str;
 
@@ -1426,12 +1426,12 @@ namespace user
 
             pcolumn->m_pil->get_image_info(0, &ii);
 
-            rect = ii.m_rect;
+            rectangle_i32 = ii.m_rectangle;
 
-            if (rect.height() + 2 > iItemHeight)
+            if (rectangle.height() + 2 > iItemHeight)
             {
 
-               iItemHeight = (index)rect.height() + 2;
+               iItemHeight = (index)rectangle.height() + 2;
 
             }
 
@@ -1642,7 +1642,7 @@ namespace user
 
       }
 
-      return (::index) point->m_iOrder;
+      return (::index) point_i32->m_iOrder;
 
    }
 
@@ -1727,7 +1727,7 @@ namespace user
 
       index iItem;
 
-      if (_001DisplayHitTest(point(0, (::i32) (m_bHeaderCtrl ? m_dItemHeight : 0.)), iItem))
+      if (_001DisplayHitTest(point_i32(0, (::i32) (m_bHeaderCtrl ? m_dItemHeight : 0.)), iItem))
       {
 
          return (::index) iItem;
@@ -1761,7 +1761,7 @@ namespace user
       if (m_eview == impact_list)
       {
 
-         ::rect rectView;
+         ::rectangle_i32 rectView;
 
          get_client_rect(&rectView);
 
@@ -1793,11 +1793,11 @@ namespace user
       else if (m_eview == impact_icon)
       {
 
-         ::rect rectView;
+         ::rectangle_i32 rectView;
 
          get_client_rect(&rectView);
 
-         const ::size & sizeItem = get_item_size();
+         const ::size_i32 & sizeItem = get_item_size();
 
          return max((rectView.width() / sizeItem.cx) * (rectView.height() / sizeItem.cy),
                     m_piconlayout->m_iaDisplayToStrict.get_max_a() + 1);
@@ -1806,7 +1806,7 @@ namespace user
       else if (m_eview == impact_report)
       {
 
-         ::rect rectView;
+         ::rectangle_i32 rectView;
 
          get_client_rect(&rectView);
 
@@ -1855,11 +1855,11 @@ namespace user
 
       auto iItemLast = iItemFirst;
 
-      ::rect rectItem;
+      ::rectangle_i32 rectItem;
 
-      ::rect rectIntersect;
+      ::rectangle_i32 rectIntersect;
 
-      ::rect rectUpdate;
+      ::rectangle_i32 rectUpdate;
 
       get_client_rect(&rectUpdate);
 
@@ -1944,7 +1944,7 @@ namespace user
    }
 
 
-   bool list::_001HitTest_(const ::point & point, index &iItem, index &iSubItem, index&iListItem, ::user::mesh::enum_element &eelement)
+   bool list::_001HitTest_(const ::point_i32 & point, index &iItem, index &iSubItem, index&iListItem, ::user::mesh::enum_element &eelement)
    {
 
       UNREFERENCED_PARAMETER(point);
@@ -1958,7 +1958,7 @@ namespace user
    }
 
 
-   bool list::_001HitTest_(const ::point & point, index &iItem, index&iSubItem)
+   bool list::_001HitTest_(const ::point_i32 & point, index &iItem, index&iSubItem)
    {
 
       if (!_001DisplayHitTest(point, iItem, iSubItem))
@@ -1975,7 +1975,7 @@ namespace user
    }
 
 
-   bool list::_001HitTest_(const ::point & point, index & iItem)
+   bool list::_001HitTest_(const ::point_i32 & point, index & iItem)
    {
 
       if (!_001DisplayHitTest(point, iItem))
@@ -1992,7 +1992,7 @@ namespace user
    }
 
 
-   bool list::_001DisplayHitTest(const ::point & point, index& iItem, index& iSubItem, index& iListItem, ::user::mesh::enum_element &eelement)
+   bool list::_001DisplayHitTest(const ::point_i32 & point, index& iItem, index& iSubItem, index& iListItem, ::user::mesh::enum_element &eelement)
    {
 
       UNREFERENCED_PARAMETER(point);
@@ -2006,7 +2006,7 @@ namespace user
    }
 
 
-   bool list::_001DisplayHitTest(const ::point & point, index&iItemParam, index&iSubItemParam)
+   bool list::_001DisplayHitTest(const ::point_i32 & point, index&iItemParam, index&iSubItemParam)
    {
 
       index iItem;
@@ -2044,7 +2044,7 @@ namespace user
 
       auto pointOffset = get_viewport_offset();
 
-      ::rect rectMargin;
+      ::rectangle_i32 rectMargin;
 
       get_margin_rect(rectMargin);
 
@@ -2102,12 +2102,12 @@ namespace user
    }
 
 
-   bool list::_001DisplayHitTest(const ::point & point, index&iItemParam)
+   bool list::_001DisplayHitTest(const ::point_i32 & point, index&iItemParam)
    {
 
       {
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(&rectClient);
 
@@ -2180,7 +2180,7 @@ namespace user
 
          }
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(&rectClient);
 
@@ -2303,7 +2303,7 @@ namespace user
 
          }
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(&rectClient);
 
@@ -2637,7 +2637,7 @@ namespace user
       else if (m_eview == impact_list)
       {
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(&rectClient);
 
@@ -2703,7 +2703,7 @@ namespace user
       else if (m_eview == impact_icon)
       {
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(&rectClient);
 
@@ -2741,11 +2741,11 @@ namespace user
             if (pdrawitem->m_iItem == m_iItemLButtonDown || m_rangeSelection.has_item(pdrawitem->m_iDisplayItem))
             {
 
-               ::point point = m_pointLButtonUp;
+               ::point_i32 point = m_pointLButtonUp;
 
-               ::point point2 = m_pointLButtonDown1;
+               ::point_i32 point2 = m_pointLButtonDown1;
 
-               point -= point2;
+               point_i32 -= point2;
 
                pdrawitem->m_rectItem.offset(point);
 
@@ -2908,9 +2908,9 @@ namespace user
                {
 
                   pdrawitem->m_rectImage.left = x;
-                  pdrawitem->m_rectImage.right = x + ii.m_rect.width();
+                  pdrawitem->m_rectImage.right = x + ii.m_rectangle.width();
                   pdrawitem->m_rectImage.top = pdrawitem->m_rectGroup.top;
-                  pdrawitem->m_rectImage.bottom = pdrawitem->m_rectImage.top + ii.m_rect.height();
+                  pdrawitem->m_rectImage.bottom = pdrawitem->m_rectImage.top + ii.m_rectangle.height();
 
                   return_(pdrawitem->m_bOk, true);
 
@@ -2918,11 +2918,11 @@ namespace user
                else
                {
 
-                  x += ii.m_rect.width();
+                  x += ii.m_rectangle.width();
 
                   x += 2;
 
-                  iImageBottom += ii.m_rect.height() + 2;
+                  iImageBottom += ii.m_rectangle.height() + 2;
 
                }
 
@@ -3069,10 +3069,10 @@ namespace user
                      if (eelement == ::user::list::element_image)
                      {
 
-                        ::rect rectAlign(pdrawitem->m_rectSubItem);
+                        ::rectangle_i32 rectAlign(pdrawitem->m_rectSubItem);
 
                         rectAlign.left = x;
-                        ::rect rectIcon;
+                        ::rectangle_i32 rectIcon;
                         rectIcon.set(0, 0, pdrawitem->m_pcolumn->m_sizeIcon.cx, pdrawitem->m_pcolumn->m_sizeIcon.cy);
                         rectIcon.Align(e_align_left_center, rectAlign);
                         pdrawitem->m_rectImage = rectIcon;
@@ -3115,10 +3115,10 @@ namespace user
                      if (eelement == ::user::list::element_image)
                      {
 
-                        ::rect rectAlign(pdrawitem->m_rectSubItem);
+                        ::rectangle_i32 rectAlign(pdrawitem->m_rectSubItem);
                         rectAlign.left = x;
-                        ::rect rectIcon;
-                        rectIcon.set(0, 0, ii.m_rect.width(), ii.m_rect.height());
+                        ::rectangle_i32 rectIcon;
+                        rectIcon.set(0, 0, ii.m_rectangle.width(), ii.m_rectangle.height());
                         rectIcon.Align(e_align_left_center, rectAlign);
                         pdrawitem->m_rectImage = rectIcon;
 
@@ -3128,7 +3128,7 @@ namespace user
                      else
                      {
 
-                        x += ii.m_rect.width();
+                        x += ii.m_rectangle.width();
 
                         x += m_iImageSpacing;
 
@@ -3188,7 +3188,7 @@ namespace user
       if (m_bHeaderCtrl)
       {
 
-         ::rect rectFocus;
+         ::rectangle_i32 rectFocus;
 
          GetFocusRect(&rectFocus);
 
@@ -3358,7 +3358,7 @@ namespace user
       if (m_bDrag)
       {
 
-         m_pointLButtonUp = point;
+         m_pointLButtonUp = point_i32;
 
          set_need_redraw();
 
@@ -3391,7 +3391,7 @@ namespace user
             if (m_eview == impact_icon)
             {
 
-               ::rect rectClient;
+               ::rectangle_i32 rectClient;
 
                get_client_rect(&rectClient);
 
@@ -3401,7 +3401,7 @@ namespace user
 
                ::count iItemColumnCount = max(1, rectClient.width() / iItemSize);
 
-               m_pointLButtonUp = point;
+               m_pointLButtonUp = point_i32;
 
                index iDisplayBeg;
 
@@ -3549,7 +3549,7 @@ namespace user
 
          m_pointLButtonDown1 = m_pointLButtonDown2;
 
-         m_pointLButtonDown2 = point;
+         m_pointLButtonDown2 = point_i32;
 
          m_iClick = 2;
 
@@ -3559,7 +3559,7 @@ namespace user
 
          m_millisLButtonDownStart2 = tickNow;
 
-         m_pointLButtonDown2 = point;
+         m_pointLButtonDown2 = point_i32;
 
          m_iClick = 2;
 
@@ -3569,7 +3569,7 @@ namespace user
 
          m_millisLButtonDownStart1 = tickNow;
 
-         m_pointLButtonDown1 = point;
+         m_pointLButtonDown1 = point_i32;
 
          m_iClick = 1;
 
@@ -3600,7 +3600,7 @@ namespace user
 
             m_pointLButtonDown1 = m_pointLButtonDown2;
 
-            m_pointLButtonDown2 = point;
+            m_pointLButtonDown2 = point_i32;
 
             m_iClick = 2;
 
@@ -3610,7 +3610,7 @@ namespace user
 
             m_millisLButtonDownStart2 = tickNow;
 
-            m_pointLButtonDown2 = point;
+            m_pointLButtonDown2 = point_i32;
 
             m_iClick = 2;
 
@@ -3620,7 +3620,7 @@ namespace user
 
             m_millisLButtonDownStart1 = tickNow;
 
-            m_pointLButtonDown1 = point;
+            m_pointLButtonDown1 = point_i32;
 
             m_iClick = 1;
 
@@ -3675,7 +3675,7 @@ namespace user
 
                // uptr nFlags = 0;
 
-               // const ::point & point = point;
+               // const ::point_i32 & point = point_i32;
 
                // on_click(item);
 
@@ -3892,7 +3892,7 @@ namespace user
       if (m_bDrag)
       {
 
-         m_pointLButtonUp = point;
+         m_pointLButtonUp = point_i32;
 
          set_need_redraw();
 
@@ -4435,7 +4435,7 @@ namespace user
    }
 
 
-   bool list::_001OnHeaderCtrlEndDrag(WPARAM wparam, LPARAM lparam)
+   bool list::_001OnHeaderCtrlEndDrag(wparam wparam, lparam lparam)
 
    {
 
@@ -4464,21 +4464,21 @@ namespace user
    }
 
 
-   /*LRESULT list::OnEndColumnHeaderDragMessage(WPARAM wparam, LPARAM lparam)
+   /*LRESULT list::OnEndColumnHeaderDragMessage(wparam wparam, lparam lparam)
 
    {
    HeaderCtrlOnEndDrag();
    return 0;
    }*/
 
-   /*LRESULT list::OnEndColumnHeaderTrackMessage(WPARAM wparam, LPARAM lparam)
+   /*LRESULT list::OnEndColumnHeaderTrackMessage(wparam wparam, lparam lparam)
 
    {
    HeaderCtrlOnEndTrack();
    return 0;
    }*/
 
-   /*LRESULT list::OnColumnHeaderTrackMessage(WPARAM wparam, LPARAM lparam)
+   /*LRESULT list::OnColumnHeaderTrackMessage(wparam wparam, lparam lparam)
 
    {
    HeaderCtrlOnTrack();
@@ -4486,7 +4486,7 @@ namespace user
    }*/
 
 
-   bool list::_001OnHeaderCtrlEndTrack(WPARAM wparam, LPARAM lparam)
+   bool list::_001OnHeaderCtrlEndTrack(wparam wparam, lparam lparam)
 
    {
 
@@ -4519,7 +4519,7 @@ namespace user
    }
 
 
-   bool list::_001OnHeaderCtrlTrack(WPARAM wparam, LPARAM lparam)
+   bool list::_001OnHeaderCtrlTrack(wparam wparam, lparam lparam)
 
    {
 
@@ -5427,7 +5427,7 @@ namespace user
 
       }
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(&rectClient);
 
@@ -5507,7 +5507,7 @@ namespace user
       ::size_array sizea;
 
       m_dcextension.GetTextExtent(pgraphics, m_strTopText, sizea);
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
       get_client_rect(rectClient);
       index x = 0;
       index right = rectClient.right;
@@ -5639,9 +5639,9 @@ namespace user
 
       ::image_list::info ii;
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      ::size size;
+      ::size_i32 size;
 
       index cx = 0;
 
@@ -5665,9 +5665,9 @@ namespace user
 
             pcolumn->m_pil->get_image_info((i32)item.m_iImage, &ii);
 
-            rect = ii.m_rect;
+            rectangle_i32 = ii.m_rectangle;
 
-            cx += rect.width();
+            cx += rectangle.width();
 
             cx += 2;
 
@@ -6542,7 +6542,7 @@ namespace user
       if (m_iTopDisplayIndex < 0 && m_dItemHeight > 0 && m_eview == impact_report && point.y != 0 && m_nDisplayCount > 0)
       {
 
-         ::rect rectScroll;
+         ::rectangle_i32 rectScroll;
 
          auto pscrollbar = get_horizontal_scroll_bar();
 
@@ -6619,14 +6619,14 @@ namespace user
    }
 
 
-   bool list::update_hover(const ::point & point, bool bAvoidRedraw)
+   bool list::update_hover(const ::point_i32 & point, bool bAvoidRedraw)
    {
 
       index iItemHover;
 
       index iSubItemHover;
 
-      auto pointClient = point;
+      auto pointClient = point_i32;
 
       _001ScreenToClient(pointClient);
 
@@ -6859,7 +6859,7 @@ namespace user
          if (m_rangeSelection.get_item_count() > 0)
          {
 
-            ::rect rectClient;
+            ::rectangle_i32 rectClient;
 
             get_client_rect(&rectClient);
 
@@ -7008,7 +7008,7 @@ namespace user
    //}
 
 
-   ::size list::get_item_size()
+   ::size_i32 list::get_item_size()
    {
 
       if (m_eview == impact_icon)
@@ -7017,7 +7017,7 @@ namespace user
          if (m_columna.get_count() == 0)
          {
 
-            return ::size(32, 32);
+            return ::size_i32(32, 32);
 
          }
 
@@ -7025,7 +7025,7 @@ namespace user
 
          index iItemSize = iIconSize * 2;
 
-         return ::size((i32) iItemSize, (i32) iItemSize);
+         return ::size_i32((i32) iItemSize, (i32) iItemSize);
 
       }
       else
@@ -7329,7 +7329,7 @@ namespace user
                {
 
 
-                  pimage->create(m_rectImage.size() +size(m_plist->m_iIconBlurRadius * iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2));
+                  pimage->create(m_rectImage.size() +size_i32(m_plist->m_iIconBlurRadius * iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2));
                   //m_plist->m_blurIcon.initialize(m_rectImage.size() , m_plist.m_iIconBlurRadius);
 
                }
@@ -7345,7 +7345,7 @@ namespace user
                pimage->get_graphics()->fill_rect(pimage->size(), 0);
 
                get_image_list()->draw(pimage->g(), (i32)m_iImage,
-                                      point(m_plist->m_iIconBlurRadius*iRate, m_plist->m_iIconBlurRadius *iRate), m_rectImage.size(), ::point(), 0);
+                                      point_i32(m_plist->m_iIconBlurRadius*iRate, m_plist->m_iIconBlurRadius *iRate), m_rectImage.size(), ::point_i32(), 0);
 
                if (m_plist->m_dIconSaturation < 1.0)
                {
@@ -7370,7 +7370,7 @@ namespace user
                }
 
 
-               //pimage->g()->fill_rect(::rect(pimage->size()), ARGB(255, 200, 220, 255));
+               //pimage->g()->fill_rect(::rectangle_i32(pimage->size()), ARGB(255, 200, 220, 255));
                if (m_plist->m_iIconBlur > 0 && m_plist->m_iIconBlurRadius > 0)
                {
 
@@ -7388,12 +7388,12 @@ namespace user
 
             m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            ::rect rectDib(m_rectImage.top_left() - size(m_plist->m_iIconBlurRadius *iRate, m_plist->m_iIconBlurRadius * iRate),
+            ::rectangle_i32 rectDib(m_rectImage.top_left() - size_i32(m_plist->m_iIconBlurRadius *iRate, m_plist->m_iIconBlurRadius * iRate),
                       m_rectImage.size() + size(m_plist->m_iIconBlurRadius *iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2));
 
             m_pgraphics->draw(rectDib, pimage->get_graphics());
 
-            ::rect rectI;
+            ::rectangle_i32 rectI;
 
             if (m_plist->m_pimageSpot->is_set() && m_plist->m_pimageSpot->area() > 0 && rectI.intersect(m_rectImage, m_plist->m_rectSpot)
                   && m_iImage >= 0 && m_iImage < get_image_list()->get_image_count()   )
@@ -7402,15 +7402,15 @@ namespace user
 
                m_plist->m_pimageTime = create_image(m_plist->m_pimageSpot->size());
 
-               ::rect rect = rectI;
+               ::rectangle_i32 rectangle = rectI;
 
-               rect.offset(-m_rectImage.top_left());
+               rectangle.offset(-m_rectImage.top_left());
 
                //m_plist->m_pimageTime->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
                //m_plist->m_pimageTime->get_graphics()->fill_rect(r, 0);
 
-               ::rect rect2 = rectI;
+               ::rectangle_i32 rect2 = rectI;
 
                rect2.offset(-m_plist->m_rectSpot.top_left());
 
@@ -7418,9 +7418,9 @@ namespace user
 
                get_image_list()->draw(m_plist->m_pimageTime->get_graphics(), (i32)m_iImage,
                                       rect2.top_left(),
-                                      rect.size(), rect.top_left(), 0);
+                                      rectangle.size(), rectangle.top_left(), 0);
 
-               //m_pgraphics->draw(rectI + point(200,200), m_plist->m_pimageTime->get_graphics(), rect2.top_left());
+               //m_pgraphics->draw(rectI + point_i32(200,200), m_plist->m_pimageTime->get_graphics(), rect2.top_left());
 
                //m_plist->m_pimageTime->div_alpha(rect2->top_left(), rect2->size());
 
@@ -7447,7 +7447,7 @@ namespace user
          else
          {
             m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-            return get_image_list()->draw(m_pgraphics, (i32)m_iImage, m_rectImage.top_left(), m_rectImage.size(), ::point(), 0);
+            return get_image_list()->draw(m_pgraphics, (i32)m_iImage, m_rectImage.top_left(), m_rectImage.size(), ::point_i32(), 0);
          }
       }
       return false;
@@ -7456,7 +7456,7 @@ namespace user
 
    bool draw_list_item::draw_group_image()
    {
-      return m_plist->m_pilGroup->draw(m_pgraphics, (i32)m_iImage, m_rectImage.top_left(), m_rectImage.size(), ::point(), 0);
+      return m_plist->m_pilGroup->draw(m_pgraphics, (i32)m_iImage, m_rectImage.top_left(), m_rectImage.size(), ::point_i32(), 0);
    }
 
 
@@ -7677,11 +7677,11 @@ namespace user
 //         try
 //         {
 //
-//            ::rect rectClient;
+//            ::rectangle_i32 rectClient;
 //
 //            get_client_rect(rectClient);
 //
-//            ::rect rectClientHeader;
+//            ::rectangle_i32 rectClientHeader;
 //
 //            m_plistheader->get_client_rect(rectClientHeader);
 //
@@ -7771,17 +7771,17 @@ namespace user
    }
 
 
-   //bool list::get_client_rect(RECT32 * prect)
+   //bool list::get_client_rect(RECTANGLE_I32 * prectangle)
 
    //{
 
-      //mesh::get_client_rect(prect);
+      //mesh::get_client_rect(prectangle);
 
 
     //  if (m_bHeaderCtrl && m_plistheader != nullptr)
       //{
 
-      //   ::rect rectClient;
+      //   ::rectangle_i32 rectClient;
 
       //   m_plistheader->get_client_rect(rectClient);
 
@@ -7789,7 +7789,7 @@ namespace user
 
       //   _001ScreenToClient(rectClient);
 
-      //   prect->top += rectClient.bottom;
+      //   prectangle->top += rectClient.bottom;
 
 
       //}

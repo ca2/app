@@ -17,7 +17,7 @@
 
 CLASS_DECL_APEX string get_message_text(::u32 uMessage, bool bWithNumbers);
 
-bool __windows_message_bypass(HWND oswindow, ::u32 message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+bool __windows_message_bypass(HWND oswindow, ::u32 message, wparam wparam, lparam lparam, lresult & lresult)
 {
 
    if (message == e_message_nccreate)
@@ -84,7 +84,7 @@ extern ::u32 g_puiaMessageTrace[];
 #define STATE_WINDOW_DEACTIVATING 3
 #define STATE_WINDOW_ACTIVATING 4
 
-bool __windows_message_bypass(HWND oswindow, ::u32 message, WPARAM wparam, LPARAM lparam, LRESULT & lresult, ::u32 * puia)
+bool __windows_message_bypass(HWND oswindow, ::u32 message, wparam wparam, lparam lparam, lresult & lresult, ::u32 * puia)
 {
 
    for (int i = 0; puia[i] != -1; i++)
@@ -116,7 +116,7 @@ namespace windows
 {
 
 
-   bool interaction_impl::__windows_message_bypass(HWND oswindow, ::u32 message, WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   bool interaction_impl::__windows_message_bypass(HWND oswindow, ::u32 message, wparam wparam, lparam lparam, lresult & lresult)
    {
 
       //if (message == e_message_mouse_move)

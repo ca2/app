@@ -64,7 +64,7 @@ namespace iter
    ITERABLE & copy(ITERABLE & iterable, const ::payload payload);
 
    template < typename ITERABLE, typename ITYPE, typename ITERABLE2 >
-   ITERABLE & add_shortest_tokens(ITERABLE & iterable, const ITYPE & pcsz, const ITERABLE2 & iterableSeparator, bool bAddEmpty = true, bool bWithSeparator = FALSE);
+   ITERABLE & add_shortest_tokens(ITERABLE & iterable, const ITYPE & pcsz, const ITERABLE2 & iterableSeparator, bool bAddEmpty = true, bool bWithSeparator = false);
 
    template < typename ITERABLE, typename ITERABLE2 >
    ITERABLE2 & slice(ITERABLE & iterable, ITERABLE2 & iterable2, typename ITERABLE::iterator first, typename ITERABLE::iterator last = nullptr);
@@ -1573,7 +1573,7 @@ end:
    u32_array dwa;
    for(i32 i = 0; i < iterable.m_nSize; i++)
    {
-   strArray.add_tokens(get_at(i), "/", FALSE);
+   strArray.add_tokens(get_at(i), "/", false);
    if(strArray.get_size() > 1)
    {
    for(i32 j = 0; j < strArray.get_size(); j++)
@@ -4206,7 +4206,7 @@ public:
    }
 
    template < typename ITYPE, typename ITERABLE2 >
-   Container & add_shortest_tokens(const ITYPE & pcsz, const ITERABLE2 & iterableSeparator, bool bAddEmpty = true, bool bWithSeparator = FALSE)
+   Container & add_shortest_tokens(const ITYPE & pcsz, const ITERABLE2 & iterableSeparator, bool bAddEmpty = true, bool bWithSeparator = false)
    {
 
       return ::iter::add_shortest_tokens(*this, pcsz, iterableSeparator, bAddEmpty, bWithSeparator);

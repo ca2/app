@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/operating_system.h"
 #include "aura/user/_user.h"
 #include "aura/node/_node.h"
 #ifdef _UWP

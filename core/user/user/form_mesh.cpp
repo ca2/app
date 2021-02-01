@@ -38,7 +38,7 @@ namespace user
 
    }
 
-   bool form_mesh::_001HitTest_(const ::point & point,index &iItem,index &iSubItem)
+   bool form_mesh::_001HitTest_(const ::point_i32 & point,index &iItem,index &iSubItem)
    {
 
       return false;
@@ -105,7 +105,7 @@ namespace user
    void form_mesh::_001PlaceControl(::user::interaction * pinteraction, index iEditItem, bool bClick, bool bOnlySizeAndPosition)
    {
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
       draw_mesh_item item(this);
 
@@ -122,7 +122,7 @@ namespace user
 
          pinteraction->order_top();
          
-         pinteraction->place(rect);
+         pinteraction->place(rectangle);
 
          pinteraction->display();
 
@@ -274,7 +274,7 @@ namespace user
    //   mesh::_001UpdateColumns();
    //}
 
-   //LRESULT form_mesh::_001BaseWndGetProperty(EProperty eprop,LPARAM lparam)
+   //LRESULT form_mesh::_001BaseWndGetProperty(EProperty eprop,lparam lparam)
 
    //{
    //   switch(eprop)
@@ -385,7 +385,7 @@ namespace user
    }
 
 
-   bool form_mesh::_001IsPointInside(::user::interaction * pinteraction,point64 point)
+   bool form_mesh::_001IsPointInside(::user::interaction * pinteraction,point_i64 point_i32)
    {
 
       if(pinteraction != nullptr)
@@ -398,7 +398,7 @@ namespace user
             if(pinteraction == _001GetEditControl())
             {
                
-               ::rect rectWindow;
+               ::rectangle_i32 rectWindow;
                
                pinteraction->get_window_rect(rectWindow);
 
@@ -414,9 +414,9 @@ namespace user
 
       }
 
-      ::rect rectControl;
+      ::rectangle_i32 rectControl;
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
       draw_mesh_item item(this);
 
@@ -438,9 +438,9 @@ namespace user
 //      //_001GetElementRect(&item, ::user::mesh::element_sub_item);
 //      rectControl = item.m_rectSubItem;
 //      _001ClientToScreen(rectControl);
-//      rect64 rectForm;
+//      rectangle_i64 rectForm;
 //      get_window_rect(rectForm);
-//      rect64 rectClient;
+//      rectangle_i64 rectClient;
 //      rectClient.top = rectForm.top;
 //      rectClient.bottom = rectForm.bottom;
 //      rectClient.left = rectControl.left;
@@ -483,7 +483,7 @@ namespace user
 
       //}
 
-      //::point point = pmouse->m_point;
+      //::point_i32 point = pmouse->m_point;
 
       //_001ScreenToClient(point);
 
@@ -533,7 +533,7 @@ namespace user
       //}
       //}
       //}*/
-      //control_keep controlkeep(this,point);
+      //control_keep controlkeep(this,point_i32);
       //__pointer(::user::interaction) pinteraction = top_child();
       //__pointer(::user::interaction) puiBefore = nullptr;
       //bool bError;
@@ -582,20 +582,20 @@ namespace user
    }
 
 
-   void form_mesh::control_get_client_rect(::user::interaction * pinteraction,RECT32 * prect)
+   void form_mesh::control_get_client_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle)
 
    {
 
       if(pinteraction == nullptr)
       {
 
-         ::null(prect);
+         ::null(prectangle);
 
          return;
 
       }
 
-      ::rect rectControl;
+      ::rectangle_i32 rectControl;
 
       draw_mesh_item item(this);
 
@@ -634,28 +634,28 @@ namespace user
 
       rectControl = item.m_rectSubItem;
 
-      ::rect rect(rectControl);
+      ::rectangle_i32 rectangle(rectControl);
 
-      *prect = rect;
+      *prectangle = rectangle_i32;
 
 
    }
 
 
-   void form_mesh::control_get_window_rect(::user::interaction * pinteraction,RECT32 * prect)
+   void form_mesh::control_get_window_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle)
 
    {
-      control_get_client_rect(pinteraction,prect);
+      control_get_client_rect(pinteraction,prectangle);
 
-      _001ClientToScreen(prect);
+      _001ClientToScreen(prectangle);
 
    }
 
 
-   bool form_mesh::control_001DisplayHitTest(const ::point & point)
+   bool form_mesh::control_001DisplayHitTest(const ::point_i32 & point)
    {
 
-      return _001DisplayHitTest(point,m_itemControl.m_iItem, m_itemControl.m_iSubItem);
+      return _001DisplayHitTest(point_i32,m_itemControl.m_iItem, m_itemControl.m_iSubItem);
 
    }
 

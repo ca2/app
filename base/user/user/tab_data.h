@@ -12,7 +12,7 @@ namespace user
    public:
 
 
-      ::size                           m_sizeSep;
+      ::size_i32                           m_sizeSep;
       i32                              m_iHeightAddUp;
       ::draw2d::pen_pointer                 m_pen;
       //::draw2d::brush_pointer               m_brushTextHover;
@@ -28,13 +28,13 @@ namespace user
       i32                          m_iTabHeight;
       i32                          m_iTabWidth;
       tab_pane_array                   m_panea;
-      ::rect                           m_rectTab;
-      ::rect                           m_rectTabClient;
+      ::rectangle_i32                           m_rectTab;
+      ::rectangle_i32                           m_rectTabClient;
       draw2d::graphics_extension       m_dcextension;
       id_array                         m_idaSel;
-      ::rect                           m_rectBorder;
-      ::rect                           m_rectMargin;
-      ::rect                           m_rectTextMargin;
+      ::rectangle_i32                           m_rectBorder;
+      ::rectangle_i32                           m_rectMargin;
+      ::rectangle_i32                           m_rectTextMargin;
       __pointer(::image_list)          m_pimagelist;
       tab_callback * m_pcallback;
       ::index                          m_iClickTab;
@@ -43,7 +43,7 @@ namespace user
       ::match::any                     m_matchanyRestore;
       bool                             m_bEnableCloseAll;
       bool                             m_bNoClient;
-      ::size                           m_sizeTabTotal;
+      ::size_i32                           m_sizeTabTotal;
 
 
       tab_data();

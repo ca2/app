@@ -1,6 +1,5 @@
 #include "framework.h"
-#include "_.h"
-//#include "apex/platform/app_core.h"
+#include "apex/operating_system.h"
 
 
 namespace win32
@@ -68,7 +67,7 @@ namespace win32
       int i2 = GetThreadLocale();
 
 
-      CreateDialogParamW(System.m_hinstance, m_pszResource,
+      CreateDialogParamW((HINSTANCE) System.m_hinstance, m_pszResource,
                          pwnd == nullptr ? nullptr : pwnd->m_hwnd, &DialogProc, (LPARAM)this);
 
       m_bCreated = true;
@@ -79,7 +78,8 @@ namespace win32
 
 #ifdef WINDOWS
 
-   INT_PTR CALLBACK dialog::DialogProc(HWND hwnd, ::u32 message, WPARAM wparam, LPARAM lparam)
+
+   INT_PTR CALLBACK dialog::DialogProc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
    {
 
       dialog * pdialog;
@@ -113,13 +113,13 @@ namespace win32
    }
 
 
-   INT_PTR dialog::on_dialog_message(const ::id & id, WPARAM wparam, LPARAM lparam)
+   INT_PTR dialog::on_dialog_message(const ::id & id, wparam wparam, lparam lparam)
    {
 
       if (!id.is_message())
       {
 
-         __throw(invalid_argument_exception);
+         __throw(invalid_argument_exception());
 
       }
 
@@ -158,7 +158,7 @@ namespace win32
       else if (id == WM_NOTIFY)
       {
 
-         on_notify((NMHDR *)lparam);
+         on_notify((NMHDR *)lparam.m_lparam);
 
       }
       else if (id == e_message_close)

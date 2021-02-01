@@ -671,14 +671,14 @@ namespace base
 //
 //      virtual ::user::interaction * main_window();
 //
-////         virtual __pointer(::message::base) get_message_base(LPMESSAGE pmsg) override;
+////         virtual __pointer(::message::base) get_message_base(MESSAGE * pmsg) override;
 //
 //
 //      virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
 //      virtual void add_frame(::user::interaction * pwnd);
 //      virtual void remove_frame(::user::interaction * pwnd);
 //
-//      virtual bool send_message_to_windows(const ::id & id, WPARAM wparam, LPARAM lparam); // with tbs in <3
+//      virtual bool send_message_to_windows(const ::id & id, wparam wparam, lparam lparam); // with tbs in <3
 //
 //      virtual bool route_message_to_windows(::message::message * pmessage); // with tbs in <3
 //
@@ -723,7 +723,7 @@ namespace base
 //      virtual ::id translate_property_id(const ::id & id) override;
 //      //virtual property fetch_property(const ::id & id) override;
 //
-//      virtual void get_time(struct timeval *point);
+//      virtual void get_time(struct timeval *point_i32);
 //
 //      virtual void close(e_end eend);
 //
@@ -791,7 +791,7 @@ namespace base
 //      //virtual string sync_message_box(const string & pszMatter,property_set & propertyset) override;
 //
 //
-//      virtual __pointer(::user::interaction) uie_from_point(const ::point& point);
+//      virtual __pointer(::user::interaction) uie_from_point(const ::point_i32& point);
 //
 //      //virtual bool on_application_menu_action(const char* pszCommand) override;
 //
@@ -819,7 +819,7 @@ namespace base
 //      bool GetResourceData(::u32 nID, const char* lcszType, memory& storage);
 //
 //#ifdef WINDOWS
-//      virtual bool OnMessageWindowMessage(LPMESSAGE pmsg);
+//      virtual bool OnMessageWindowMessage(MESSAGE * pmsg);
 //
 //#elif defined(LINUX)
 //      virtual bool OnX11WindowMessage(void* pev);
@@ -1048,7 +1048,7 @@ namespace base
 //
 //      //virtual string dialog_box(const char* pszMatter, property_set& propertyset) override;
 //
-//      virtual i32 track_popup_menu(const char* pszMatter, const ::point& point, __pointer(::user::interaction) puie);
+//      virtual i32 track_popup_menu(const char* pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie);
 //
 //      virtual bool get_fs_size(string& strSize, const char* pszPath, bool& bPending);
 //      virtual bool get_fs_size(i64& i64Size, const char* pszPath, bool& bPending);
@@ -1107,10 +1107,10 @@ namespace base
 //
 //      /*
 //      virtual ::count get_monitor_count();
-//      virtual bool  get_monitor_rect(index i, RECT32 * prect);
+//      virtual bool  get_monitor_rect(index i, RECTANGLE_I32 * prectangle);
 //
 //      virtual ::count get_desk_monitor_count();
-//      virtual bool  get_desk_monitor_rect(index i, RECT32 * prect);
+//      virtual bool  get_desk_monitor_rect(index i, RECTANGLE_I32 * prectangle);
 //
 //      */
 //

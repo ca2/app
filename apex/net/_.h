@@ -1,46 +1,15 @@
 ﻿#pragma once
 
 
-#if defined(LINUX) || defined(APPLEOS) || defined(ANDROID)
-
-#include <netinet/in.h>
-
-#if defined(APPLEOS)
-
-typedef in6_addr in_addr6;
-
-#endif
-
-#endif
-
-
 namespace net
 {
 
-   struct address;
+
+   class address;
+
 
 } // namespace net
 
-
-namespace str
-{
-
-   CLASS_DECL_APEX void to(struct in6_addr & addr, const ansichar * psz);
-   CLASS_DECL_APEX void from(string & str, const in6_addr & addr);
-   CLASS_DECL_APEX void to(struct in_addr & addr, const ansichar * psz);
-   CLASS_DECL_APEX void from(string & str, const in_addr & addr);
-   CLASS_DECL_APEX void from(string & str, const sockaddr_in & addr);
-   CLASS_DECL_APEX void from(string & str, const sockaddr_in6 & addr);
-#ifdef BSD_STYLE_SOCKETS
-   CLASS_DECL_APEX void from(string & str, const sockaddr & addr);
-#endif
-
-} // namespace str
-
-
-inline void __exchange(::stream & s, struct in6_addr & addr);
-
-inline void __exchange(::stream & s, struct in_addr & addr);
 
 inline void __exchange(::stream & s, ::net::address & address);
 

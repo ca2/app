@@ -75,7 +75,7 @@ CLASS_DECL_AURA bool oswindow_assign(oswindow oswindow, ::user::interaction_impl
 
    }
 
-   cslock slOsWindow(::user::g_pcsImpl);
+   critical_section_lock slOsWindow(::user::g_pcsImpl);
 
    ::user::g_pmapImpl->set_at(oswindow, pimpl);
 
@@ -98,7 +98,7 @@ CLASS_DECL_AURA oswindow oswindow_remove_impl(::user::interaction_impl * pimpl)
 
    }
 
-   cslock slOsWindow(::user::g_pcsImpl);
+   critical_section_lock slOsWindow(::user::g_pcsImpl);
 
    oswindow oswindow = ::user::g_pmapHandle->operator[](pimpl);
 
@@ -155,7 +155,7 @@ CLASS_DECL_AURA void oswindow_remove(oswindow oswindow)
 
    {
 
-      cslock slOsWindow(::user::g_pcsImpl);
+      critical_section_lock slOsWindow(::user::g_pcsImpl);
 
       if (::user::g_pmapImpl->remove_key(oswindow))
       {

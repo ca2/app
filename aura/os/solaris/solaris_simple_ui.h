@@ -20,14 +20,14 @@ namespace os
       int                        m_w;
       int                        m_h;
 /*      ::image_pointer           m_pimage;
-      SIZE32                       m_size;
-      POINT32                      m_point;
+      SIZE_I32                       m_size;
+      POINT_I32                      m_point;
       window_xlib                m_xlib;
 
 
       oswindow                   m_window;
       bool                       m_bShiftKey;
-      ::rect                     m_rectDesktop;
+      ::rectangle_i32                     m_rectDesktop;
 
       XWindowAttributes          m_attr;
       i32                    m_iDepth;
@@ -45,7 +45,7 @@ namespace os
 
       bool                       m_bRunLoop;
 
-      ::rect                     m_rectWindow;
+      ::rectangle_i32                     m_rectWindow;
 
       bool                       m_bNoDecorations;
 
@@ -54,19 +54,19 @@ namespace os
 
       virtual ~simple_ui();
 
-      virtual bool create_window(LPCRECT32 lprect);
+      virtual bool create_window(const RECTANGLE_I32 * lprect);
 
-      virtual bool prepare_window(LPCRECT32 lprect);
+      virtual bool prepare_window(const RECTANGLE_I32 * lprect);
 
 
       using ::user::interaction::_001ClientToScreen;
-      virtual void _001ClientToScreen(POINT32 * ppt);
+      virtual void _001ClientToScreen(POINT_I32 * ppt);
 
       using ::user::interaction::_001ScreenToClient;
-      virtual void _001ScreenToClient(POINT32 * ppt);
+      virtual void _001ScreenToClient(POINT_I32 * ppt);
 
-      virtual void get_window_rect(RECT32 * prect);
-      virtual void get_client_rect(RECT32 * prect);
+      virtual void get_window_rect(RECTANGLE_I32 * prectangle);
+      virtual void get_client_rect(RECTANGLE_I32 * prectangle);
 
 
       virtual bool show_window(bool bShow = true);

@@ -17,8 +17,8 @@ typedef struct _cairo_rectangle_int cairo_rectangle_int_t;
 typedef cairo_rectangle_int_t         GdkRectangle;
 
 
-void copy(RECT32 * prectTarget, const GdkRectangle * prectSource);
-void copy(GdkRectangle * prectTarget, const RECT32 * prectSource);
+void copy(RECTANGLE_I32 * prectTarget, const GdkRectangle * prectSource);
+void copy(GdkRectangle * prectTarget, const RECTANGLE_I32 * prectSource);
 
 
 

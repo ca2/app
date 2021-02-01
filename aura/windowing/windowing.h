@@ -16,11 +16,11 @@ namespace windowing
 
       display_map          m_displaymap;
       window_map           m_windowmap;
-//      hook_map             m_hookmap;
+      monitor_map          m_monitormap;
 
       ::mutex              m_mutexDisplay;
       ::mutex              m_mutexWindow;
-//      ::mutex              m_mutexHook;
+      ::mutex              m_mutexMonitor;
 
 
       windowing();
@@ -30,13 +30,28 @@ namespace windowing
       virtual ::e_status process_init() override;
 
 
+      virtual display * get_display();
+
+      virtual void kick_idle();
+
+      virtual void __wait_timer_or_event(display * pdisplay);
+
+      virtual void __hook_on_idle(display * pdisplay);
+
+      virtual ::mutex * mutex();
+
+      virtual ::e_status defer_initialize_x11();
+      virtual void handle_just_hooks();
+      virtual void defer_handle_just_hooks();
+      virtual int message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox);
+      virtual bool __hook_process_event(display * pdisplay, void * pevent, void * cookie);
 
 
       virtual bool sn_start_context();
 
-      virtual HCURSOR load_default_cursor(e_cursor ecursor);
+      virtual __pointer(::draw2d::cursor) load_default_cursor(e_cursor ecursor);
 
-      virtual int_bool window_set_mouse_cursor(window * pwindow, HCURSOR hcursor);
+      virtual int_bool window_set_mouse_cursor(window * pwindow, ::draw2d::cursor * pcursor);
 
       virtual bool set_window_icon(window * pwindow, const ::file::path & path);
 

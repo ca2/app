@@ -65,9 +65,9 @@ extern "C" {
 //  4.  Add 0x10000
 //
 //  Result: U+10000. This is correct, since the first character in the Supplementary character
-//  range immediately follows the last code point in the 16-bit UTF-16 range (U+FFFF)
+//  range immediately follows the last code point_i32 in the 16-bit UTF-16 range (U+FFFF)
 //
-//  B) A UTF-32 code point such as U+2040A (this a CJK character in CJK Extension B), and wish
+//  B) A UTF-32 code point_i32 such as U+2040A (this a CJK character in CJK Extension B), and wish
 //  to convert it in UTF-16:
 //
 //  1.  Subtract 0x10000 - Result: 0x1040A
@@ -77,7 +77,7 @@ extern "C" {
 //
 //  RESULT: The surrogate pair: U+D841, U+DC0A
 //
-//  Special Unicode code point values, for use with UTF-16 surrogate pairs.
+//  Special Unicode code point_i32 values, for use with UTF-16 surrogate pairs.
 //
 #define HIGH_SURROGATE_START  0xd800
 #define HIGH_SURROGATE_END    0xdbff
@@ -975,7 +975,7 @@ typedef struct _numberfmtA
 {
    ::u32    NumDigits;                 // number of decimal digits
    ::u32    LeadingZero;               // if leading zero in decimal fields
-   ::u32    Grouping;                  // group size left of decimal
+   ::u32    Grouping;                  // group size_i32 left of decimal
    char *   lpDecimalSep;              // ptr to decimal separator string
    char *   lpThousandSep;             // ptr to thousand separator string
    ::u32    NegativeOrder;             // negative number ordering
@@ -984,7 +984,7 @@ typedef struct _numberfmtW
 {
    ::u32    NumDigits;                 // number of decimal digits
    ::u32    LeadingZero;               // if leading zero in decimal fields
-   ::u32    Grouping;                  // group size left of decimal
+   ::u32    Grouping;                  // group size_i32 left of decimal
    LPWSTR  lpDecimalSep;              // ptr to decimal separator string
    LPWSTR  lpThousandSep;             // ptr to thousand separator string
    ::u32    NegativeOrder;             // negative number ordering
@@ -1006,7 +1006,7 @@ typedef struct _currencyfmtA
 {
    ::u32    NumDigits;                 // number of decimal digits
    ::u32    LeadingZero;               // if leading zero in decimal fields
-   ::u32    Grouping;                  // group size left of decimal
+   ::u32    Grouping;                  // group size_i32 left of decimal
    char *   lpDecimalSep;              // ptr to decimal separator string
    char *   lpThousandSep;             // ptr to thousand separator string
    ::u32    NegativeOrder;             // negative currency ordering
@@ -1017,7 +1017,7 @@ typedef struct _currencyfmtW
 {
    ::u32    NumDigits;                 // number of decimal digits
    ::u32    LeadingZero;               // if leading zero in decimal fields
-   ::u32    Grouping;                  // group size left of decimal
+   ::u32    Grouping;                  // group size_i32 left of decimal
    LPWSTR  lpDecimalSep;              // ptr to decimal separator string
    LPWSTR  lpThousandSep;             // ptr to thousand separator string
    ::u32    NegativeOrder;             // negative currency ordering
@@ -1223,7 +1223,7 @@ typedef FARPROC CALINFO_ENUMPROCEXW;
 
 typedef struct _FILEMUIINFO
 {
-   ::u32       dwSize;                 // Size of the structure including buffer size [in]
+   ::u32       dwSize;                 // Size of the structure including buffer size_i32 [in]
    ::u32       dwVersion;              // Version of the structure [in]
    ::u32       dwFileType;             // Type of the file [out]
    byte        pChecksum[16];          // Checksum of the file [out]
@@ -2336,18 +2336,18 @@ int_bool
 WINAPI VerifyScripts(
 ::u32   dwFlags,            // optional behavior flags
 const widechar * lpLocaleScripts,    // Locale list of scripts string
-i32     cchLocaleScripts,   // size of locale script list string
+i32     cchLocaleScripts,   // size_i32 of locale script list string
 const widechar * lpTestScripts,      // test scripts string
-i32     cchTestScripts);    // size of test list string
+i32     cchTestScripts);    // size_i32 of test list string
 
 WINAXISAPI
 i32
 WINAPI GetStringScripts(
 ::u32   dwFlags,        // optional behavior flags
 const widechar * lpString,       // Unicode character input string
-i32     cchString,      // size of input string
+i32     cchString,      // size_i32 of input string
 __out_ecount_opt(cchScripts) LPWSTR  lpScripts,      // Script list output string
-i32     cchScripts);    // size of output string
+i32     cchScripts);    // size_i32 of output string
 
 #endif //(WINVER >= 0x0600)
 

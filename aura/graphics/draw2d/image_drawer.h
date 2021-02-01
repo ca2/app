@@ -185,7 +185,7 @@ public:
    }
 
    
-   virtual ::size get_image_drawer_size() const = 0;
+   virtual ::size_i32 get_image_drawer_size() const = 0;
 
 
    virtual bool draw(const image_drawing & imagedrawing);
@@ -194,8 +194,8 @@ public:
    virtual bool _draw_raw(const image_drawing & imagedrawing);
 
    
-   virtual bool _draw_raw(const ::rectd & rectDst, image * pimage, const image_drawing_options & imagedrawingoptions, const ::pointd & pointSrc);
-   virtual bool _stretch_raw(const ::rectd & rectDst, image * pimage, const image_drawing_options & imagedrawingoptions, const ::rectd & rectSrc);
+   virtual bool _draw_raw(const ::rectangle_f64 & rectDst, image * pimage, const image_drawing_options & imagedrawingoptions, const ::point_f64 & pointSrc);
+   virtual bool _stretch_raw(const ::rectangle_f64 & rectDst, image * pimage, const image_drawing_options & imagedrawingoptions, const ::rectangle_f64 & rectSrc);
 
 
 };

@@ -15,7 +15,7 @@ namespace file
       __pointer(memory_base)     m_pmemory;
       __pointer(::memory_file)        m_pmemoryfileIn;
       __pointer(::memory_file)        m_pmemoryfileOut;
-      __pointer(::mutex)                        m_spmutex;
+      ::mutex                        m_spmutex;
 
 
       transfer_file(::matter * pobject, ::mutex * pmutex = nullptr);

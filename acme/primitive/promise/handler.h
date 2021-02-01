@@ -13,12 +13,12 @@ namespace promise
 
       __pointer(::id_map<__pointer(::promise::subject)>)    m_pmapSubject;
 
-      static ::critical_section                             g_cs;
+      static critical_section                               s_criticalsection;
       // todo implement keyset
       // a hashmap of just the key (but not a value)
       // like std::set?
-      static ::set < handler_pointer >                      g_handlerset;
-      static bool                                           g_bDestroyAll;
+      static ::set < handler_pointer >                      s_handlerset;
+      static bool                                           s_bDestroyAll;
 
 
       handler() { }

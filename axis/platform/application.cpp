@@ -204,7 +204,7 @@ namespace axis
    };
 
 
-   int_bool CALLBACK enum_proc(oswindow hwnd, LPARAM lparam)
+   int_bool CALLBACK enum_proc(oswindow hwnd, lparam lparam)
    {
 
       open_browser_enum * penum = (open_browser_enum *)lparam;
@@ -225,7 +225,7 @@ namespace axis
    }
 
 
-   int_bool CALLBACK enum_proc_ff_topic(oswindow hwnd, LPARAM lparam)
+   int_bool CALLBACK enum_proc_ff_topic(oswindow hwnd, lparam lparam)
    {
 
       open_browser_enum * penum = (open_browser_enum *)lparam;
@@ -243,7 +243,7 @@ namespace axis
 
    }
 
-   int_bool CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, LPARAM lparam)
+   int_bool CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, lparam lparam)
 
    {
 
@@ -296,7 +296,7 @@ namespace axis
 //
 //
 
-//   string CLASS_DECL_AXIS application::get_cred(const string & strRequestUrl, const ::rect & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+//   string CLASS_DECL_AXIS application::get_cred(const string & strRequestUrl, const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
 // {
 
 //  __throw(not_implemented());

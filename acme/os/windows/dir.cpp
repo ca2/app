@@ -1,6 +1,6 @@
 #include "framework.h"
-#include "acme/node/windows/_windows.h"
-#include "acme/os/windows_common/cotaskptr.h"
+#include "acme/operating_system.h"
+#include <Shlobj.h>
 
 
 namespace windows
@@ -16,11 +16,6 @@ namespace windows
 
 
 } // namespace windows
-
-
-
-
-
 
 
 
@@ -195,3 +190,23 @@ namespace dir
 
 
 
+
+
+
+
+::file::path dir::program_data()
+{
+
+   return ::get_known_folder(FOLDERID_ProgramData);
+
+}
+
+
+::file::path dir::roaming()
+{
+
+
+   return ::get_known_folder(FOLDERID_RoamingAppData);
+
+
+}

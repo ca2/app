@@ -773,7 +773,7 @@ namespace core
    }
 
 
-   i32 user::track_popup_menu(const char * pszMatter, const ::point & point, __pointer(::user::interaction) puie)
+   i32 user::track_popup_menu(const char * pszMatter, const ::point_i32 & point, __pointer(::user::interaction) puie)
    {
 
       UNREFERENCED_PARAMETER(pszMatter);

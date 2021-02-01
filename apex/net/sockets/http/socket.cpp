@@ -585,7 +585,7 @@ namespace sockets
    {
       string version = "Mozilla/5.0 (Windows NT 6.1; WOW64; rv:10.0) Gecko/20100101 veriview/10.0";
 
-      //string version = "Mozilla/5.0 (Windows; U; Windows NT 6.0; point-BR; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13";
+      //string version = "Mozilla/5.0 (Windows; U; Windows NT 6.0; point_i32-BR; rv:1.9.2.13) Gecko/20101203 Firefox/3.6.13";
       //string version = "C++Sockets/";
 #ifdef _VERSION
       version += _VERSION;

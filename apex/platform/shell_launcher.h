@@ -13,43 +13,20 @@ namespace apex
    // to detect erronous adaptations of replacement
 
 
-   class CLASS_DECL_APEX shell_launcher
+   class CLASS_DECL_APEX shell_launcher :
+      virtual public ::matter
    {
    public:
 
 
-      oswindow          m_oswindow;
-      string            m_strOperation;
-      string            m_strFile;
-      string            m_strParameters;
-      string            m_strDirectory;
-      ::e_display        m_edisplay;
-      ::e_activation     m_eactivation;
-      duration          m_durationTimeout;
-
-#ifdef WINDOWS
-
-      HINSTANCE   m_h;
-      HINSTANCE   m_hinstApp;       // out when SEE_MASK_NOCLOSEPROCESS is specified
-      ULONG       m_fMask;          // in, SEE_MASK_XXX values
-      void *      m_lpIDList;       // in, valid when SEE_MASK_IDLIST is specified, PCIDLIST_ABSOLUTE, for use with SEE_MASK_IDLIST & SEE_MASK_INVOKEIDLIST
-      const char *      m_vssClass;       // in, valid when SEE_MASK_CLASSNAME is specified
-      HKEY        m_hkeyClass;      // in, valid when SEE_MASK_CLASSKEY is specified
-      u32       m_dwHotKey;       // in, valid when SEE_MASK_HOTKEY is specified
-      union
-      {
-         HANDLE   m_hIcon;          // not used
-         HANDLE   n_hMonitor;
-      };
-      HANDLE      m_hProcess;       // out, valid when SEE_MASK_NOCLOSEPROCESS specified
-
-#else
-
-      bool        m_bOk;
-      i32         m_dwResult;
-      i32         m_pid;
-
-#endif
+      oswindow             m_oswindow;
+      string               m_strOperation;
+      string               m_strFile;
+      string               m_strParameters;
+      string               m_strDirectory;
+      ::e_display          m_edisplay;
+      ::e_activation       m_eactivation;
+      duration             m_durationTimeout;
 
    protected:
 
@@ -60,14 +37,16 @@ namespace apex
    public:
 
 
-      shell_launcher(duration durationTimeout = ::one_minute());
-      shell_launcher(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout = ::one_minute());
+      shell_launcher();
+      virtual ~shell_launcher();
+
+      virtual ::e_status setup(duration durationTimeout = ::one_minute());
+      virtual ::e_status setup(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout = ::one_minute());
+
+      virtual ::e_status launch();
 
 
-      void execute();
-
-
-      bool succeeded();
+      virtual bool succeeded();
 
 
    };

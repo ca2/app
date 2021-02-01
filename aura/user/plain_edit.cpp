@@ -372,7 +372,7 @@ namespace user
       color32_t crSel;
       color32_t cr;
 
-      ::rectd rectClient = get_client_rect();
+      ::rectangle_f64 rectClient = get_client_rect();
 
       color32_t crEditBackground = get_color(pstyle, e_element_background);
 
@@ -760,9 +760,9 @@ namespace user
 
                double xB = plain_edit_get_line_extent(pgraphics, iLine, min(iErrorEnd, strExtent1.length()));
 
-               ::draw2d::pen_pointer point(e_create);
+               ::draw2d::pen_pointer point_i32(e_create);
 
-               point->create_solid(1.0, ARGB(iErrorA, 255, 0, 0));
+               point_i32->create_solid(1.0, ARGB(iErrorA, 255, 0, 0));
 
                pgraphics->set(point);
 
@@ -775,7 +775,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-               ::point point((long)(left + x1), (long)y);
+               ::point_i32 point((long)(left + x1), (long)y);
 
                _001ClientToScreen(point);
 
@@ -797,7 +797,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-               ::point point((long)(left + x1), (long) y);
+               ::point_i32 point((long)(left + x1), (long) y);
 
                _001ClientToScreen(point);
 
@@ -904,13 +904,13 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      ::point point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_point;
 
       _001ScreenToClient(point);
 
       m_bRMouseDown = true;
 
-      queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+      queue_graphics_call([this, point_i32](::draw2d::graphics_pointer & pgraphics)
          {
 
             strsize iHit = plain_edit_char_hit_test(pgraphics, point);
@@ -948,7 +948,7 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      ::point point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_point;
 
       _001ScreenToClient(point);
 
@@ -1006,7 +1006,7 @@ namespace user
          if (m_bLMouseDown)
          {
 
-            ::point pointCursor;
+            ::point_i32 pointCursor;
 
             auto psession = Session;
 
@@ -1014,7 +1014,7 @@ namespace user
 
             _001ScreenToClient(pointCursor);
 
-            ::rect rectActiveClient;
+            ::rectangle_i32 rectActiveClient;
 
             GetActiveClientRect(rectActiveClient);
 
@@ -1079,7 +1079,7 @@ namespace user
    }
 
 
-   ::rectd plain_edit::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::rectangle_f64 plain_edit::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
        return ::user::interaction::get_margin(pstyle, eelement, estate);
@@ -1617,7 +1617,7 @@ namespace user
 
       xEnd = index (plain_edit_get_line_extent(pgraphics, iLine, m_iaLineLen[iLine]));
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -1770,7 +1770,7 @@ namespace user
       else
       {
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          GetFocusRect(rectClient);
 
@@ -1842,19 +1842,19 @@ namespace user
          if (m_bLMouseDown)
          {
 
-            ::point point = pmouse->m_point;
+            ::point_i32 point = pmouse->m_point;
 
             _001ScreenToClient(point);
 
-            if (m_pointLastCursor != point)
+            if (m_pointLastCursor != point_i32)
             {
 
-               m_pointLastCursor = point;
+               m_pointLastCursor = point_i32;
 
 
                sync_lock sl(mutex());
 
-               ::rect rectWindow;
+               ::rectangle_i32 rectWindow;
 
                get_window_rect(rectWindow);
 
@@ -1865,10 +1865,10 @@ namespace user
 
                }
 
-               queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+               queue_graphics_call([this, point_i32](::draw2d::graphics_pointer & pgraphics)
                   {
 
-                     _set_sel_end(pgraphics, plain_edit_char_hit_test(pgraphics, point));
+                     _set_sel_end(pgraphics, plain_edit_char_hit_test(pgraphics, point_i32));
 
                   });
 
@@ -1901,7 +1901,7 @@ namespace user
       if (plain_edit_is_enabled())
       {
 
-         ::point point = pmouse->m_point;
+         ::point_i32 point = pmouse->m_point;
 
          _001ScreenToClient(point);
 
@@ -1915,7 +1915,7 @@ namespace user
 
             SetCapture();
 
-            queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+            queue_graphics_call([this, point_i32](::draw2d::graphics_pointer & pgraphics)
                {
 
                   auto iSelBeg = plain_edit_char_hit_test(pgraphics, point);
@@ -1968,14 +1968,14 @@ namespace user
       if (m_bLMouseDown)
       {
 
-         ::point point = pmouse->m_point;
+         ::point_i32 point = pmouse->m_point;
 
          _001ScreenToClient(point);
 
-         queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+         queue_graphics_call([this, point_i32](::draw2d::graphics_pointer & pgraphics)
             {
 
-               _set_sel_end(pgraphics, plain_edit_char_hit_test(pgraphics, point));
+               _set_sel_end(pgraphics, plain_edit_char_hit_test(pgraphics, point_i32));
 
             });
 
@@ -2008,7 +2008,7 @@ namespace user
 
       sync_lock sl(mutex());
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       GetFocusRect(rectClient);
 
@@ -2044,7 +2044,7 @@ namespace user
 
       pgraphics->set_font(this, ::user::e_element_none);
 
-      sized sizeUniText;
+      size_f64 sizeUniText;
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
 
@@ -2246,7 +2246,7 @@ namespace user
 
       }
 
-      sized size;
+      size_f64 size;
 
       string strLineGraphics;
 
@@ -2349,7 +2349,7 @@ namespace user
 
       //   m_sizeTotal.cy = (((i32)m_iaLineLen.get_count() + (m_bMultiLine ? max(5, m_iLineCount) : 0)) * m_iLineHeight);
 
-      //   const ::size & sizePage;
+      //   const ::size_i32 & sizePage;
 
       //   sizePage = rectClient.size();
 
@@ -2438,7 +2438,7 @@ namespace user
 
       }
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       GetFocusRect(rectClient);
 
@@ -2487,7 +2487,7 @@ namespace user
 
       pgraphics->set_font(this, ::user::e_element_none);
 
-      sized sizeUniText;
+      size_f64 sizeUniText;
 
       if (pgraphics == nullptr)
       {
@@ -2704,7 +2704,7 @@ namespace user
 
       }
 
-      sized size;
+      size_f64 size;
 
 
 
@@ -2749,7 +2749,7 @@ namespace user
 
          const char * pszNext = pszStart;
 
-         ::size sizeLast(0, 0);
+         ::size_i32 sizeLast(0, 0);
 
          auto & daExtent = m_daExtent[m_iLineStart + i];
 
@@ -2837,7 +2837,7 @@ namespace user
 
          m_sizeTotal.cy = (::i32) ((((i32)m_iaLineLen.get_count() + (m_bMultiLine ? max(5, m_iLineCount) : 0)) * m_dLineHeight));
 
-         ::sized sizePage;
+         ::size_f64 sizePage;
 
          sizePage = rectClient.size();
 
@@ -3013,7 +3013,7 @@ namespace user
 
       string strLine = plain_edit_get_expanded_line(pgraphics, iLine, { &iChar });
 
-      sized size = pgraphics->GetTextExtent(strLine, (i32)strLine.length(), (i32)iChar);
+      size_f64 size = pgraphics->GetTextExtent(strLine, (i32)strLine.length(), (i32)iChar);
 
       return size.cx;
 
@@ -3026,7 +3026,7 @@ namespace user
 
       sync_lock sl(mutex());
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       GetFocusRect(rectClient);
 
@@ -3152,7 +3152,7 @@ namespace user
 
       pgraphics->set_font(this, ::user::e_element_none);
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       GetFocusRect(rectClient);
 
@@ -3170,7 +3170,7 @@ namespace user
 
       sync_lock sl(mutex());
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       GetFocusRect(rectClient);
 
@@ -3239,12 +3239,12 @@ namespace user
    }
 
 
-   strsize plain_edit::plain_edit_char_hit_test(::draw2d::graphics_pointer& pgraphics, const ::point & pointParam)
+   strsize plain_edit::plain_edit_char_hit_test(::draw2d::graphics_pointer& pgraphics, const ::point_i32 & pointParam)
    {
 
-      ::point point(pointParam);
+      ::point_i32 point(pointParam);
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       GetFocusRect(rectClient);
 
@@ -3320,7 +3320,7 @@ namespace user
 
       sync_lock sl(mutex());
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       GetFocusRect(rectClient);
 
@@ -4362,7 +4362,7 @@ finished_update:
 
                      index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
-                     ::rect rectClient;
+                     ::rectangle_i32 rectClient;
 
                      GetFocusRect(rectClient);
 
@@ -4408,7 +4408,7 @@ finished_update:
 
                      index iLine = plain_edit_sel_to_line_x(pgraphics, m_ptree->m_iSelEnd, x);
 
-                     ::rect rectClient;
+                     ::rectangle_i32 rectClient;
 
                      GetFocusRect(rectClient);
 
@@ -4986,7 +4986,7 @@ finished_update:
 
 
 // HWND hwndIme = ImmGetDefaultIMEWnd(get_handle());
-   void plain_edit::get_text_composition_area(::rect & rect)
+   void plain_edit::get_text_composition_area(::rectangle_i32 & rectangle)
    {
 
       strsize iBeg;
@@ -5005,13 +5005,13 @@ finished_update:
       
       double y2 = y + m_dLineHeight;
 
-      ::point point((::i32)x,(::i32) y);
-      get_client_rect(rect);
-      rect.left =(::i32) x;
-      rect.top = (::i32)y;
-      rect.bottom = (::i32)y2;
-      _001ClientToScreen(rect);
-      get_wnd()->_001ScreenToClient(rect);
+      ::point_i32 point((::i32)x,(::i32) y);
+      get_client_rect(rectangle);
+      rectangle.left =(::i32) x;
+      rectangle.top = (::i32)y;
+      rectangle.bottom = (::i32)y2;
+      _001ClientToScreen(rectangle);
+      get_wnd()->_001ScreenToClient(rectangle);
 
    }
 
@@ -5499,7 +5499,7 @@ finished_update:
    void plain_edit::plain_edit_one_line_up(::draw2d::graphics_pointer& pgraphics)
    {
 
-      ::point pointOffset = get_viewport_offset();
+      ::point_i32 pointOffset = get_viewport_offset();
 
       set_viewport_offset_y(pgraphics, (int) ( pointOffset.y - m_dLineHeight));
 
@@ -6211,7 +6211,7 @@ finished_update:
 
          ::CreateCaret(hwnd, 0, 1, (int) m_dLineHeight);
 
-         ::point pointCaret = layout().design().origin();
+         ::point_i32 pointCaret = layout().design().origin();
 
          _001ClientToScreen(pointCaret);
 
@@ -6485,7 +6485,7 @@ finished_update:
    }
 
 
-   sized plain_edit::get_total_size()
+   size_f64 plain_edit::get_total_size()
    {
 
       return m_sizeTotal;

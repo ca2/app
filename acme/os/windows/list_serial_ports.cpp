@@ -1,5 +1,6 @@
 #include "framework.h"
-#undef Context
+#include "acme/operating_system.h"
+
 /*
  * Copyright (c) 2014 Craig Lilley <cralilley@gmail.com>
  * This software is made available under the terms of the MIT licence.
@@ -95,7 +96,7 @@ serial::list_ports()
 					friendly_name_max_length,
 					&friendly_name_actual_length);
 
-		if(got_friendly_name == TRUE && friendly_name_actual_length > 0)
+		if(got_friendly_name && friendly_name_actual_length > 0)
 			friendly_name[friendly_name_actual_length-1] = '\0';
 		else
 			friendly_name[0] = '\0';
@@ -114,7 +115,7 @@ serial::list_ports()
 					hardware_id_max_length,
 					&hardware_id_actual_length);
 
-		if(got_hardware_id == TRUE && hardware_id_actual_length > 0)
+		if(got_hardware_id && hardware_id_actual_length > 0)
 			hardware_id[hardware_id_actual_length-1] = '\0';
 		else
 			hardware_id[0] = '\0';

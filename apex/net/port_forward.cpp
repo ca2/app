@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 
 
 #ifdef WINDOWS
@@ -36,7 +37,7 @@ namespace net
    bool port_forward::IsAnyThreadRunning() const
    {
 
-	   bool bRet = FALSE;
+	   bool bRet = false;
 
 	   return bRet;
 
@@ -152,9 +153,9 @@ namespace net
    bool port_forward::GetMappingsUsingThread( oswindow oswindow )
    {
       UNREFERENCED_PARAMETER(oswindow);
-	   // returns TRUE if thread was started successfully
+	   // returns true if thread was started successfully
 
-      return FALSE;
+      return false;
    }
 
 
@@ -178,7 +179,7 @@ namespace net
       UNREFERENCED_PARAMETER(oldMapping);
       UNREFERENCED_PARAMETER(newMapping);
       UNREFERENCED_PARAMETER(oswindow);
-      return FALSE;
+      return false;
 
    }
 
@@ -202,7 +203,7 @@ namespace net
    {
       UNREFERENCED_PARAMETER(newMapping);
       UNREFERENCED_PARAMETER(oswindow);
-	   return FALSE;
+	   return false;
    }
 
 
@@ -225,7 +226,7 @@ namespace net
    {
       UNREFERENCED_PARAMETER(oldMapping);
       UNREFERENCED_PARAMETER(oswindow);
-	   return FALSE;
+	   return false;
    }
 
 
@@ -248,7 +249,7 @@ namespace net
    bool port_forward::GetDeviceInformationUsingThread( oswindow oswindow )
    {
       UNREFERENCED_PARAMETER(oswindow);
-      return FALSE;
+      return false;
 
    }
 
@@ -299,7 +300,7 @@ namespace net
 		   "New number of mappings = %d \n"
 		   "It is recommended to update your list of mappings", lNewNumberOfEntries );
 
-      os_message_box(tempStr,"Change Detected in Number of Port Mappings",e_message_box_ok | e_message_box_icon_exclamation);
+      System.message_box(tempStr,"Change Detected in Number of Port Mappings",e_message_box_ok | e_message_box_icon_exclamation);
 
 	   return S_OK;
    }
@@ -313,7 +314,7 @@ namespace net
 		   "New IP address = %s \n"
 		   "It is recommended to update your list of mappings", pszNewExternalIPAddress);
 
-      ::os_message_box(tempStr,"Change Detected in External IP Address",e_message_box_ok | e_message_box_icon_exclamation);
+      System.message_box(tempStr,"Change Detected in External IP Address",e_message_box_ok | e_message_box_icon_exclamation);
 
 	   return S_OK;
    }

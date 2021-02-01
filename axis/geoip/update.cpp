@@ -831,7 +831,7 @@ i16 GeoIP_update_database_general (::object * pobject, char * user_id,char * lic
 //   size = fwrite(compr, 1, comprLen, comp_fh);
 //   fclose(comp_fh);
 //   free(buf);
-//        if ( size != comprLen ) {
+//        if ( size_i32 != comprLen ) {
 //      return GEOIP_GZIP_IO_ERR;
 //   }
 //
@@ -961,7 +961,7 @@ i16 GeoIP_update_database_general (::object * pobject, char * user_id,char * lic
 //      lookupresult = 0;
 //      if (r != nullptr) {
 //         lookupresult = 1;
-//         free(rect);
+//         free(rectangle);
 //      }
 //      if (verbose == 1) {
 //         GeoIP_printf(f,"testing GEOIP_REGION_EDITION\n");
@@ -974,7 +974,7 @@ i16 GeoIP_update_database_general (::object * pobject, char * user_id,char * lic
 //      lookupresult = 0;
 //      if (r != nullptr) {
 //         lookupresult = 1;
-//         free(rect);
+//         free(rectangle);
 //      }
 //      if (verbose == 1) {
 //         GeoIP_printf(f,"testing GEOIP_CITY_EDITION\n");
@@ -988,7 +988,7 @@ i16 GeoIP_update_database_general (::object * pobject, char * user_id,char * lic
 //      lookupresult = 0;
 //      if (r != nullptr) {
 //         lookupresult = 1;
-//         free(rect);
+//         free(rectangle);
 //      }
 //      if (verbose == 1) {
 //         if (dbtype == GEOIP_ISP_EDITION) {

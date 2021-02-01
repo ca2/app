@@ -35,8 +35,8 @@ namespace user
    }
 
 
-   system::system(u32 uiExStyle, const char * pszClassName, const char * pszWindowName, u32 uStyle, ::rect rect, ::create * pcreate) :
-   system(rect)
+   system::system(u32 uiExStyle, const char * pszClassName, const char * pszWindowName, u32 uStyle, ::rectangle_i32 rectangle, ::create * pcreate) :
+   system(rectangle)
    {
 
       m_createstruct.dwExStyle = uiExStyle;
@@ -50,14 +50,14 @@ namespace user
    }
 
 
-   system::system(const ::rect & rect, ::u32 uExStyle, ::u32 uStyle, ::create * pcreate)
+   system::system(const ::rectangle_i32 & rectangle, ::u32 uExStyle, ::u32 uStyle, ::create * pcreate)
    {
 
       __zero(m_createstruct);
 
       create_common_construct();
          
-      set_rect(rect);
+      set_rect(rectangle);
 
       m_createstruct.dwExStyle = uExStyle;
 
@@ -104,13 +104,13 @@ namespace user
    }
 
 
-   void system::set_rect(const ::rect & rect)
+   void system::set_rect(const ::rectangle_i32 & rectangle)
    {
 
-      m_createstruct.x = rect.left;
-      m_createstruct.y = rect.top;
-      m_createstruct.cx = rect.width();
-      m_createstruct.cy = rect.height();
+      m_createstruct.x = rectangle.left;
+      m_createstruct.y = rectangle.top;
+      m_createstruct.cx = rectangle.width();
+      m_createstruct.cy = rectangle.height();
 
    }
 

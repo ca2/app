@@ -48,7 +48,7 @@ public:
 
    };
 
-   i64                                 m_countReference;
+   ::count                             m_countReference;
    ::eobject                           m_eobject;
 
 
@@ -85,7 +85,7 @@ public:
 
    inline bool is_set() const { return ::is_set(this); }
 
-   // sync/mutex
+   // sync/::mutex
    inline sync* mutex() const { return is_set() ? ((::matter*)this)->m_pmutex : nullptr; }
    void set_mutex(sync* psync);
    void defer_create_mutex();

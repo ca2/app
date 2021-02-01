@@ -253,7 +253,7 @@ namespace windowing
 //     return os;
 // }
 
-// Main entry point (test) ---------------------------------------------
+// Main entry point_i32 (test) ---------------------------------------------
 
 // int main(int argc, char** argv)
 // {

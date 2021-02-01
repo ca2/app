@@ -17,29 +17,6 @@ typedef unsigned char         uchar;
 typedef unsigned char         byte;
 
 
-#include <limits.h>
-
-inline int is_i32(i64 i)
-{
-
-   if (i > (i64)MAXI32)
-   {
-
-      return 0;
-
-   }
-
-
-   if (i < (i64)MINI32)
-   {
-
-      return 0;
-
-   }
-
-   return 1;
-
-}
 
 
 #ifdef __cplusplus

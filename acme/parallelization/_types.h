@@ -19,7 +19,7 @@ using thread_data_index = ::u32;
 #ifdef WINDOWS
 
 
-typedef HANDLE hthread_t;
+using hthread_t = void *;
 
 //typedef ::u32 ithread_t;
 

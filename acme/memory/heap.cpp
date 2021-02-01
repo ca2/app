@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 
 #include "plex_heap1.h"
 
@@ -6,11 +7,11 @@
 
 #ifdef RASPBIAN
 
-#define AXIS_MEMORY_MANAGEMENT TRUE
+#define AXIS_MEMORY_MANAGEMENT true
 
 #else
 
-#define AXIS_MEMORY_MANAGEMENT TRUE
+#define AXIS_MEMORY_MANAGEMENT true
 
 #endif
 

@@ -33,15 +33,15 @@ namespace base
 
 
       //virtual bool _001OnDrawMainFrameBackground(::draw2d::graphics_pointer & pgraphics, ::user::frame * pframe) override;
-      //virtual void DrawCheck(enum_check echeck, const ::rect & rect, ::draw2d::graphics_pointer & pgraphics) override;
+      //virtual void DrawCheck(enum_check echeck, const ::rectangle_i32 & rectangle, ::draw2d::graphics_pointer & pgraphics) override;
       //virtual bool simple_ui_draw_focus_rect(::user::interaction * pinteraction, ::draw2d::graphics_pointer & pgraphics) override;
       //virtual bool on_ui_event(enum_event eevent, e_object eobject, ::user::interaction * pinteraction) override;
       virtual bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab);
       virtual bool _001OnDrawMenuInteraction(::draw2d::graphics_pointer & pgraphics, ::user::menu_interaction * pbutton);
-      virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::draw2d::brush_pointer & brushText);
+      virtual void _001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText);
 
       virtual bool _001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab);
-      //virtual void _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient, ::enum_check echeck) override;
+      //virtual void _001DrawCheckBox(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient, ::enum_check echeck) override;
 
       //virtual bool _001DrawToolbarItem(::draw2d::graphics_pointer & pgraphics, i32 iItem, ::user::toolbar * ptoolbar) override;
       //virtual bool _001DrawSimpleScrollBar(::draw2d::graphics_pointer & pgraphics, simple_scroll_bar * pbar) override;
@@ -64,7 +64,7 @@ namespace base
       //virtual ::draw2d::font_pointer  _001GetFont(::user::interaction * pinteraction, e_font efont, ::draw2d::font * pfont = nullptr);
       //virtual enum_translucency     _001GetTranslucency(::user::interaction * pinteraction, enum_element eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
       //virtual bool               _001GetFlag(::user::interaction * pinteraction, ::user::enum_flag eflag, bool bDefault = false);
-      //virtual const rect &               _001GetRect(::user::interaction * pinteraction, ::user::e_rect erect, ::rect rectDefault = nullptr);
+      //virtual const rectangle_i32 &               _001GetRect(::user::interaction * pinteraction, ::user::e_rect erect, ::rectangle_i32 rectDefault = nullptr);
       //virtual int                _001GetInt(::user::interaction * pinteraction, ::user::e_int eint, int iDefault = 0);
       //virtual double             _001GetDouble(::user::interaction * pinteraction, ::user::e_double edouble, double dDefault = 0.0);
 
@@ -94,7 +94,7 @@ namespace base
       //virtual bool userstyle_font(::draw2d::font_pointer & sp, e_font efont, ::user::interaction * pinteraction);
       //virtual bool userstyle_translucency(enum_translucency & etranslucency, enum_element eelement, ::user::interaction * pinteraction);
       //virtual bool userstyle_flag(bool & bSet, ::user::enum_flag eflag, ::user::interaction * pinteraction);
-      //virtual bool userstyle_rect(const rect & & rect, ::user::e_rect erect, ::user::interaction * pinteraction);
+      //virtual bool userstyle_rect(const rectangle_i32 & & rectangle, ::user::e_rect erect, ::user::interaction * pinteraction);
       //virtual bool userstyle_int(int & i, ::user::e_int eint, ::user::interaction * pinteraction);
       //virtual bool userstyle_double(double & d, ::user::e_double edouble, ::user::interaction * pinteraction);
 
@@ -103,7 +103,7 @@ namespace base
       //virtual bool style_font(::draw2d::font_pointer & sp, e_font efont, ::user::interaction * pinteraction);
       //virtual bool style_translucency(enum_translucency & etranslucency, enum_element eelement, ::user::interaction * pinteraction);
       //virtual bool style_flag(bool & bSet, ::user::enum_flag eflag, ::user::interaction * pinteraction);
-      //virtual bool style_rect(const rect & & rect, ::user::e_rect erect, ::user::interaction * pinteraction);
+      //virtual bool style_rect(const rectangle_i32 & & rectangle, ::user::e_rect erect, ::user::interaction * pinteraction);
       //virtual bool style_int(int & i, ::user::e_int eint, ::user::interaction * pinteraction);
       //virtual bool style_double(double & d, ::user::e_double edouble, ::user::interaction * pinteraction);
 

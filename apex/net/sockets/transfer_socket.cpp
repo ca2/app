@@ -89,7 +89,7 @@ namespace sockets
 
       defer_create_mutex();
 
-      //defer_init_winsock();
+      //defer_initialize_winsock();
 
    }
 
@@ -304,7 +304,7 @@ namespace sockets
       transfer_socket(handler)
    {
 
-      //defer_init_winsock();
+      //defer_initialize_winsock();
 
    }
 
@@ -408,7 +408,7 @@ namespace sockets
       transfer_socket(handler)
    {
 
-      //defer_init_winsock();
+      //defer_initialize_winsock();
 
    }
 

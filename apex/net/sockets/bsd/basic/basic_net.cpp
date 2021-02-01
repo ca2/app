@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "apex/net/sockets/_sockets.h"
 #include "apex/net/_net_impl.h"
-#include <stdio.h>
+//#include <stdio.h>
 
 #ifdef RASPBIAN
 #include <sys/types.h>
@@ -383,7 +383,7 @@ namespace sockets
 //{
 
 
-//   return from_string(l, str) != FALSE;
+//   return from_string(l, str) != false;
 
 
 //}
@@ -609,7 +609,7 @@ string net::Sa2String(struct sockaddr *sa)
       {
          struct sockaddr_in *point = (struct sockaddr_in *)sa;
          ::sockets::address_pointer addr;
-         addr(new ::sockets::ipv4_address(get_context_application(), *point));
+         addr(new ::sockets::ipv4_address(get_context_application(), *point_i32));
          return addr;
       }
       break;
@@ -618,7 +618,7 @@ string net::Sa2String(struct sockaddr *sa)
       {
          struct sockaddr_in6 *point = (struct sockaddr_in6 *)sa;
          ::sockets::address_pointer addr;
-         addr(new ::sockets::ipv6_address(get_context_application(), *point));
+         addr(new ::sockets::ipv6_address(get_context_application(), *point_i32));
          return addr;
       }
       break;
@@ -1265,7 +1265,11 @@ net::dns_cache_item::dns_cache_item(const dns_cache_item & item)
 stream & net::dns_cache_item::write(stream & stream) const
 {
 
-   stream << m_ipaddr;
+   string strAddress;
+
+   ::str::from(strAddress, m_ipaddr);
+
+   stream << strAddress;
    stream << m_millisLastChecked;
    stream << m_bOk;
    stream << m_bTimeout;
@@ -1278,7 +1282,12 @@ stream & net::dns_cache_item::write(stream & stream) const
 stream & net::dns_cache_item::read(stream & stream)
 {
 
-   stream >> m_ipaddr;
+   string strAddress;
+
+   stream >> strAddress;
+
+   ::str::to(m_ipaddr, strAddress);
+
    stream >> m_millisLastChecked;
    stream >> m_bOk;
    stream >> m_bTimeout;

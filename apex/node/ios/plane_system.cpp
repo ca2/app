@@ -40,21 +40,21 @@
 //}
 
 
-//ui_window_ptr plane_system::plane_system_initialize(CGRect rect)
+//ui_window_ptr plane_system::plane_system_initialize(CGRect rectangle_i32)
 //{
 //
 //   ::user::native_window_initialize initialize;
 //
-//   initialize.m_rect.left = rect.origin.x;
-//   initialize.m_rect.top = rect.origin.y;
-//   initialize.m_rect.right = rect.origin.x + rect.size.width;
-//   initialize.m_rect.bottom = rect.origin.x + rect.size.height;
+//   initialize.m_rectangle.left = rectangle.origin.x;
+//   initialize.m_rectangle.top = rectangle.origin.y;
+//   initialize.m_rectangle.right = rectangle.origin.x + rectangle.size.width;
+//   initialize.m_rectangle.bottom = rectangle.origin.x + rectangle.size.height;
 //
 //   m_psystem->m_possystemwindow->m_puserinteraction->initialize_native_window(&initialize);
 //
 //   ::ios::interaction_impl * pimpl = m_psystem->m_possystemwindow->m_puserinteraction->m_pimpl.cast < ::ios::interaction_impl > ();
 //
-//   UIWindow * window = new_round_window(pimpl, rect);
+//   UIWindow * window = new_round_window(pimpl, rectangle);
 //
 //   pimpl->m_oswindow = oswindow_get(window);
 //
@@ -113,7 +113,7 @@
 //
 //   pimpl->send_message(e_message_create, 0, (LPARAM) &cs);
 //
-//   ::rect rectMainScreen;
+//   ::rectangle_i32 rectMainScreen;
 //
 //   GetMainScreenRect(rectMainScreen);
 //

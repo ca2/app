@@ -158,9 +158,9 @@ namespace html
 
 //         ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         //::rect rectWindow;
+         //::rectangle_i32 rectWindow;
          //m_pcheckbox->get_window_rect(rectWindow);
-  //       ::point pointPreviousViewportOrg = pgraphics->GetViewportOrg();
+  //       ::point_i32 pointPreviousViewportOrg = pgraphics->GetViewportOrg();
 
     //     pgraphics->OffsetViewportOrg((i32) m_box.left, (i32) m_box.top);
 

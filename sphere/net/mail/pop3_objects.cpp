@@ -319,8 +319,8 @@ int poplast(popsession* session){
 	int n;
 	
 	r=pop3_stat(session->sock);
-	n=stat2last(rect);
-	free(rect);
+	n=stat2last(rectangle);
+	free(rectangle);
 	return(n);
 }
 

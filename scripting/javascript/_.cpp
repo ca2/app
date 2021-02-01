@@ -125,7 +125,7 @@
 //#define ASSERT(X) assert(X)
 /* Frees the given link IF it isn't owned by anything else */
 #define CLEAN(x) { CScriptVarLink *__v = x; if (__v && !__v->owned) { delete __v; } }
-/* Create a LINK to point to VAR and free the old link.
+/* Create a LINK to point_i32 to VAR and free the old link.
  * BUT this is more clever - it tries to keep the old link if it's not owned to save allocations */
 #define CREATE_LINK(LINK, VAR) { if (!LINK || LINK->owned) LINK = new CScriptVarLink(VAR); else LINK->replaceWith(VAR); }
 
@@ -265,10 +265,10 @@ void replace(string &str, char textFrom, const char *textTo)
 {
    strsize sLen = strlen(textTo);
    strsize point = str.find(textFrom);
-   while (point >= 0)
+   while (point_i32 >= 0)
    {
-      str = str.substr(0, point) + textTo + str.substr(point+1);
-      point = str.find(textFrom, point+sLen);
+      str = str.substr(0, point_i32) + textTo + str.substr(point_i32+1);
+      point = str.find(textFrom, point_i32+sLen);
    }
 }
 
@@ -521,7 +521,7 @@ void CScriptLex::getNextToken()
             getNextCh();
          }
       }
-      // do fancy e-style floating point
+      // do fancy e-style floating point_i32
       if (!isHex && (currCh=='e'||currCh=='E'))
       {
          tk = LEX_FLOAT;
@@ -984,14 +984,14 @@ CScriptVarLink *CScriptVar::findChildOrCreateByPath(const string &path)
 
    strsize point = path.find('.');
 
-   if (point < 0)
+   if (point_i32 < 0)
    {
 
       return findChildOrCreate(path);
 
    }
 
-   return findChildOrCreate(path.substr(0,point), SCRIPTVAR_OBJECT)->payload->findChildOrCreateByPath(path.substr(point+1));
+   return findChildOrCreate(path.substr(0,point_i32), SCRIPTVAR_OBJECT)->payload->findChildOrCreateByPath(path.substr(point_i32+1));
 
 }
 

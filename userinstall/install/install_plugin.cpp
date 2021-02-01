@@ -824,7 +824,7 @@ run_install:
 
 
 
-   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const RECT32 & lprect)
+   void plugin::on_paint(::draw2d::graphics_pointer & pgraphics,const RECTANGLE_I32 & lprect)
    {
 
 #ifdef _UWP
@@ -977,19 +977,19 @@ run_install:
 #endif
 
 
-      RECT32 rect;
+      RECTANGLE_I32 rectangle_i32;
 
-      RECT32 rectWindow;
+      RECTANGLE_I32 rectWindow;
 
       get_window_rect(&rectWindow);
 
       i32 cx = rectWindow.right - rectWindow.left;
       i32 cy = rectWindow.bottom - rectWindow.top;
 
-      rect.left         = 0;
-      rect.top          = 0;
-      rect.right        = cx;
-      rect.bottom       = cy;
+      rectangle.left         = 0;
+      rectangle.top          = 0;
+      rectangle.right        = cx;
+      rectangle.bottom       = cy;
 
       //simple_bitmap b;
 
@@ -1003,7 +1003,7 @@ run_install:
 
       //pgraphics->create_from_bitmap(b);
 
-      //pgraphics->bit_blt(0, 0, cx, cy, pgraphics, ::hotplugin::plugin::m_rect.left, ::hotplugin::plugin::m_rect.top);
+      //pgraphics->bit_blt(0, 0, cx, cy, pgraphics, ::hotplugin::plugin::m_rectangle.left, ::hotplugin::plugin::m_rectangle.top);
 
 //      HFONT hfontOld = nullptr;
 //      HFONT hfont = nullptr;
@@ -1020,7 +1020,7 @@ run_install:
 
          bInstallingCa2 = true;
 
-         m_canvas.on_paint(pgraphics, rect);
+         m_canvas.on_paint(pgraphics, rectangle);
 
          m_bPendingRestartCa2 = true;
 
@@ -1040,12 +1040,12 @@ run_install:
          ::SelectObject(hdc, (HGDIOBJ) hpenOld);
          ::SelectObject(hdc, (HGDIOBJ) hbrushOld);*/
 
-         /*         RECT32 rect;
-         rect.left      = 0;
-         rect.top       = 0;
-         rect.bottom    = cx;
-         rect.right     = cy;
-         ::FillSolidRect_dup(hdc, &rect, RGB(255, 255, 255));
+         /*         RECTANGLE_I32 rectangle_i32;
+         rectangle.left      = 0;
+         rectangle.top       = 0;
+         rectangle.bottom    = cx;
+         rectangle.right     = cy;
+         ::FillSolidRect_dup(hdc, &rectangle, RGB(255, 255, 255));
          ::SetTextColor(hdc, RGB(255, 0, 255));
          const char * psz = "ca is not installed! You may try to install using low level spaboot_install.exe.";
          ::TextOutU_dup(hdc, 10, 10, psz, ansi_length(psz));*/
@@ -1059,19 +1059,19 @@ run_install:
 
       pgraphics->SetViewportOrg(0, 0);
       //pgraphics.bit_blt(lprect->left                , lprect->top                 , lprect->right - lprect->left, lprect->bottom - lprect->top,
-      //     pgraphics         , lprect->left - ::hotplugin::plugin::m_rect.left  , lprect.top - ::hotplugin::plugin::m_rect.top    );
+      //     pgraphics         , lprect->left - ::hotplugin::plugin::m_rectangle.left  , lprect.top - ::hotplugin::plugin::m_rectangle.top    );
 
       /*string strx = ansi_string_from_i64(lprect->left);
       string stry = ansi_string_from_i64(lprect->top);
       text_out(hdcWindow, lprect->left + 10, lprect->top + 10, strx, strx.get_length());
       text_out(hdcWindow, lprect->left + 110, lprect->top + 10, stry, stry.get_length());
-      string strx2 = ansi_string_from_i64(m_rect.left);
-      string stry2 = ansi_string_from_i64(m_rect.top);
+      string strx2 = ansi_string_from_i64(m_rectangle.left);
+      string stry2 = ansi_string_from_i64(m_rectangle.top);
       text_out(hdcWindow, lprect->left + 210, lprect->top + 10, strx2, strx2.get_length());
       text_out(hdcWindow, lprect->left + 310, lprect->top + 10, stry2, stry2.get_length());
       */
       //hdc,       lprect->left, lprect->top);
-      //::BitBlt(hdcWindow, m_rect.left, m_rect.top, cx, cy, hdc, 0, 0);
+      //::BitBlt(hdcWindow, m_rectangle.left, m_rectangle.top, cx, cy, hdc, 0, 0);
 
 #endif
 
@@ -1162,7 +1162,7 @@ run_install:
    //}
 
 
-   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const RECT32 & lprect)
+   void plugin::on_paint_progress(::draw2d::graphics_pointer & pgraphics,const RECTANGLE_I32 & lprect)
    {
 
       ::hotplugin::plugin::on_paint_progress(pgraphics, lprect);
@@ -1567,13 +1567,13 @@ restart:
 
    }
 
-   void plugin::viewport_screen_to_client(POINT32 * ppt)
+   void plugin::viewport_screen_to_client(POINT_I32 * ppt)
    {
       //::user::interaction::viewport_screen_to_client(ppt);
    }
 
 
-   void plugin::viewport_client_to_screen(POINT32 * ppt)
+   void plugin::viewport_client_to_screen(POINT_I32 * ppt)
    {
       //::user::interaction::viewport_client_to_screen(ppt);
 
@@ -1622,18 +1622,18 @@ restart:
 #else
 
 
-         ::rect rect;
+         ::rectangle_i32 rectangle;
 
-         get_window_rect(rect);
+         get_window_rect(rectangle);
 
-         if(!m_phost->m_pbasecomposer->m_bRectSent || m_rectSent != rect)
+         if(!m_phost->m_pbasecomposer->m_bRectSent || m_rectSent != rectangle_i32)
          {
 
             m_phost->m_pbasecomposer->m_bRectSent = true;
 
-            m_rectSent = rect;
+            m_rectSent = rectangle_i32;
 
-            if(!ensure_tx(::hotplugin::message_set_window,(void *)&rect,sizeof(RECT32)))
+            if(!ensure_tx(::hotplugin::message_set_window,(void *)&rectangle,sizeof(RECTANGLE_I32)))
             {
 
                m_phost->m_pbasecomposer->m_bRectSent = false;

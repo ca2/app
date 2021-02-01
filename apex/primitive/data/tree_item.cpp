@@ -455,14 +455,14 @@ namespace data
 
          m_iLevel = -1;
 
-         tree_item * point = this;
+         tree_item * p = this;
 
-         while (point != nullptr)
+         while (p != nullptr)
          {
 
             m_iLevel++;
 
-            point = point->m_pparent;
+            p = p->m_pparent;
 
          }
 
@@ -576,7 +576,7 @@ namespace data
 
       default:
          // Not Expected
-         ASSERT(FALSE);
+         ASSERT(false);
          return nullptr;
       }
 
@@ -624,7 +624,7 @@ namespace data
       break;
       default:
          // Not Expected
-         ASSERT(FALSE);
+         ASSERT(false);
          return nullptr;
       }
    }

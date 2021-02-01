@@ -315,7 +315,7 @@ namespace xml
    char * document::patch_entity_ref(const char * & pszXml, int bUseExtEnt)
    {
 
-      // pszXml must be a valid portion of and point to an entity ref in:
+      // pszXml must be a valid portion of and point_i32 to an entity ref in:
       // m_strData of this document
 
       const char * pszOldData = (const char *) m_memoryData.get_data();

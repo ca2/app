@@ -49,12 +49,12 @@ typedef struct kiss_fft_state* kiss_fft_cfg;
  *
  *  The state can be placed in a ::account::user supplied buffer 'mem':
  *  If lenmem is not nullptr and mem is not nullptr and *lenmem is large enough,
- *      then the function places the cfg in mem and the size used in *lenmem
+ *      then the function places the cfg in mem and the size_i32 used in *lenmem
  *      and returns mem.
  *
  *  If lenmem is not nullptr and ( mem is nullptr or *lenmem is not large enough),
  *      then the function returns nullptr and places the minimum cfg
- *      buffer size in *lenmem.
+ *      buffer size_i32 in *lenmem.
  * */
 
 kiss_fft_cfg kiss_fft_alloc(i32 nfft,i32 inverse_fft,void * mem,size_t * lenmem);

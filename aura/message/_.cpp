@@ -40,7 +40,7 @@ namespace message
 //
 //
 //
-//   CLASS_DECL_AURA bool is_idle_message(LPMESSAGE pmsg)
+//   CLASS_DECL_AURA bool is_idle_message(MESSAGE * pmsg)
 //
 //   {
 //

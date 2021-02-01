@@ -18,7 +18,7 @@ typedef u64 uptr;
 #else
 
 
-#error "OSBIT should be defined with system default pointer size in bit count."
+#error "OSBIT should be defined with system default pointer size_i32 in bit count."
 
 
 #endif

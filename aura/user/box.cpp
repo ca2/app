@@ -529,11 +529,11 @@ namespace user
 
       string strDisplay;
 
-      //::rect rectNormal;
+      //::rectangle_i32 rectNormal;
 
       //get_rect_normal(rectNormal);
 
-      ::rect rectMainMonitor;
+      ::rectangle_i32 rectMainMonitor;
 
       auto psession = Session;
 

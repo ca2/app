@@ -29,7 +29,7 @@ namespace opengl
    }
 
 
-   ::e_status context_glx::_create_offscreen_buffer(const ::size & size)
+   ::e_status context_glx::_create_offscreen_buffer(const ::size_i32 & size)
    {
 
       auto pgpu = System.get_gpu();
@@ -176,7 +176,7 @@ namespace opengl
    }
 
 
-   ::e_status context_glx::resize_offscreen_buffer(const ::size& size)
+   ::e_status context_glx::resize_offscreen_buffer(const ::size_i32& size)
    {
 
       if(!m_pbuffer)

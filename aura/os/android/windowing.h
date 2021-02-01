@@ -73,7 +73,7 @@ struct CLASS_DECL_AURA oswindow_data
    ::user::interaction_impl *    m_pimpl;
    hthread_t                       m_hthread;
    color32_t *                    m_pcolorref;
-   //RECT32                          m_rect;
+   //RECTANGLE_I32                          m_rectangle;
    bool                          m_bDestroying;
    bool                          m_bIconic;
    mq *                          m_pmq;
@@ -141,8 +141,8 @@ struct CLASS_DECL_AURA oswindow_data
    bool show_window(const ::e_display & edisplay, const ::e_activation & eactivation = e_activation_default);
    iptr get_window_long_ptr(i32 nIndex);
    iptr set_window_long_ptr(i32 nIndex, iptr l);
-   bool _001ClientToScreen(POINT32 * lppoint);
-   bool _001ScreenToClient(POINT32 * lppoint);
+   bool _001ClientToScreen(POINT_I32 * lppoint);
+   bool _001ScreenToClient(POINT_I32 * lppoint);
 
 
 
@@ -200,7 +200,7 @@ namespace ca2
 class event;
 
 
-class mutex;
+class ::mutex;
 
 
 

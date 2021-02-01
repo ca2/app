@@ -1,13 +1,8 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 #include "apex/message.h"
 #include "acme/update.h"
-#include "apex/os/_c.h"
-#include "apex/os/_.h"
-#include "apex/os/_os.h"
 #include "acme/parallelization/mq.h"
-#ifndef WINDOWS
-#include "acme/os/cross/windows/_windows.h"
-#endif
 
 
 CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
@@ -510,7 +505,7 @@ bool thread::has_message() const
 
    MESSAGE msg;
 
-   return ((thread*)this)->peek_message(&msg, nullptr, 0, 0, PM_NOREMOVE) != FALSE;
+   return ((thread*)this)->peek_message(&msg, nullptr, 0, 0, PM_NOREMOVE) != false;
 
 }
 
@@ -830,10 +825,10 @@ __pointer(::matter) thread::running(const char * pszTag) const
 }
 
 
-int thread::_GetMessage(LPMESSAGE pmessage, oswindow oswindow, ::u32 wMsgFilterMin,::u32 wMsgFilterMax)
+int thread::_GetMessage(MESSAGE * pmessage, oswindow oswindow, ::u32 wMsgFilterMin,::u32 wMsgFilterMax)
 {
 
-   __throw(exception::exception);
+   __throw(exception::exception());
 
    //__zero(pmessage);
 
@@ -2226,7 +2221,7 @@ size_t engine_symbol(char * sz, int n, DWORD_PTR * pdisplacement, DWORD_PTR dwAd
 //}
 
 
-bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa)
+bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
    clear_finish_bit();
@@ -2274,7 +2269,7 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, ::u
       u32 uiLine = 0;
 
       {
-         cslock csl(&::exception::engine().m_cs);
+         critical_section_lock csl(&::exception::engine().m_criticalsection);
 
          engine_fileline(uia[5], 0, 0, &uiLine, nullptr);
 
@@ -2368,10 +2363,10 @@ bool thread::begin_thread(bool bSynchInitialization, ::e_priority epriority, ::u
 
 
 
-bool thread::begin(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa)
+bool thread::begin(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
-   if(!begin_thread(false, epriority, nStackSize, uiCreateFlags, psa))
+   if(!begin_thread(false, epriority, nStackSize, uiCreateFlags, PARAM_SEC_ATTRS))
    {
 
       return false;
@@ -2383,10 +2378,10 @@ bool thread::begin(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, 
 }
 
 
-bool thread::begin_synch(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags, LPSECURITY_ATTRIBUTES psa)
+bool thread::begin_synch(::e_priority epriority, ::u32 nStackSize, u32 uiCreateFlags ARG_SEC_ATTRS)
 {
 
-   if(!begin_thread(true, epriority, nStackSize, uiCreateFlags, psa))
+   if(!begin_thread(true, epriority, nStackSize, uiCreateFlags, PARAM_SEC_ATTRS))
    {
 
       return false;
@@ -2532,7 +2527,7 @@ void thread::__os_initialize()
 
 //#ifdef WINDOWS_DESKTOP
 //
-//   DuplicateHandle(GetCurrentProcess(), ::GetCurrentThread(), GetCurrentProcess(), &m_hthread, 0, FALSE, DUPLICATE_SAME_ACCESS);
+//   DuplicateHandle(GetCurrentProcess(), ::GetCurrentThread(), GetCurrentProcess(), &m_hthread, 0, false, DUPLICATE_SAME_ACCESS);
 //
 //#else
 //
@@ -2609,7 +2604,7 @@ void thread::__os_finalize()
 
       }
 
-      MESSAGE message = {};
+      MSG message = {};
 
       ::PeekMessage(&message, NULL, WM_USER, WM_USER, PM_NOREMOVE);
 
@@ -2833,7 +2828,7 @@ void thread::post_quit_to_all_threads()
 }
 
 
-void thread::post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
+void thread::post_to_all_threads(const ::id & id, wparam wparam, lparam lparam)
 {
 
 #ifdef DEBUG
@@ -2842,7 +2837,7 @@ void thread::post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
    {
 
       //!!for e_message_quit please use post_quit_to_all_threads;
-      __throw(invalid_argument_exception);
+      __throw(invalid_argument_exception());
 
    }
 
@@ -2892,15 +2887,15 @@ bool thread::send_task(const ::promise::routine & routine, ::duration durationTi
 }
 
 
-bool thread::post_object(const ::id & id, WPARAM wParam, ::matter * pmatter)
+bool thread::post_object(const ::id & id, wparam wparam, ::matter * pmatter)
 {
 
-   return post_message(id, wParam, pmatter);
+   return post_message(id, wparam, pmatter);
 
 }
 
 
-bool thread::post_message(const ::id & id, WPARAM wParam, lparam lParam)
+bool thread::post_message(const ::id & id, wparam wparam, lparam lparam)
 {
 
 #ifdef WINDOWS_DESKTOP
@@ -2957,7 +2952,7 @@ bool thread::post_message(const ::id & id, WPARAM wParam, lparam lParam)
 
       }
 
-      int_bool bOk = ::PostThreadMessage(m_ithread, id.umessage(), wParam, lParam) != FALSE;
+      int_bool bOk = ::PostThreadMessage(m_ithread, id.umessage(), wparam, lparam) != false;
 
       if (!bOk)
       {
@@ -2972,18 +2967,18 @@ bool thread::post_message(const ::id & id, WPARAM wParam, lparam lParam)
 
 #endif
 
-   return get_mq()->post_message(nullptr, id, wParam, lParam);
+   return get_mq()->post_message(nullptr, id, wparam, lparam);
 
 }
 
 
-bool thread::send_object(const ::id & id, WPARAM wParam, lparam lParam, ::duration durWaitStep)
+bool thread::send_object(const ::id & id, wparam wparam, lparam lparam, ::duration durWaitStep)
 {
 
    if (!id.is_message())
    {
 
-      __throw(invalid_argument_exception);
+      __throw(invalid_argument_exception());
 
    }
 
@@ -3006,10 +3001,10 @@ bool thread::send_object(const ::id & id, WPARAM wParam, lparam lParam, ::durati
    if (m_hthread == (hthread_t)nullptr || !thread_get_run())
    {
 
-      if (lParam != 0)
+      if (lparam != 0)
       {
 
-         __pointer(object) spo((lparam)lParam);
+         __pointer(object) spo(lparam);
 
 
       }
@@ -3018,20 +3013,20 @@ bool thread::send_object(const ::id & id, WPARAM wParam, lparam lParam, ::durati
 
    }
 
-   send_message(id, wParam, lParam, durWaitStep);
+   send_message(id, wparam, lparam, durWaitStep);
 
    return true;
 
 }
 
 
-bool thread::send_message(const ::id & id, WPARAM wParam, lparam lParam, ::duration durWaitStep)
+bool thread::send_message(const ::id & id, wparam wparam, lparam lparam, ::duration durWaitStep)
 {
 
    if (!id.is_message())
    {
 
-      __throw(invalid_argument_exception);
+      __throw(invalid_argument_exception());
 
    }
 
@@ -3054,8 +3049,8 @@ bool thread::send_message(const ::id & id, WPARAM wParam, lparam lParam, ::durat
    auto pmessage = __new(::send_thread_message(get_context_object()));
 
    pmessage->m_message.message = id.u32();
-   pmessage->m_message.wParam = wParam;
-   pmessage->m_message.lParam = lParam;
+   pmessage->m_message.wParam = wparam;
+   pmessage->m_message.lParam = lparam;
 
    post_message(e_message_system, e_system_message_meta, pmessage);
 
@@ -3088,7 +3083,7 @@ bool thread::send_message(const ::id & id, WPARAM wParam, lparam lParam, ::durat
 //   if(pvoidOsData != nullptr)
 //   {
 //
-//      if(::DuplicateHandle(::GetCurrentProcess(),(HANDLE)pvoidOsData,GetCurrentProcess(),&m_hthread,THREAD_ALL_ACCESS,TRUE,0))
+//      if(::DuplicateHandle(::GetCurrentProcess(),(HANDLE)pvoidOsData,GetCurrentProcess(),&m_hthread,THREAD_ALL_ACCESS,true,0))
 //      {
 //
 //         m_bDupHandle = true;
@@ -3369,7 +3364,7 @@ mq* thread::_get_mq()
 
 }
 
-int_bool thread::peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
+int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
 {
 
    if (m_pmq)
@@ -3378,7 +3373,7 @@ int_bool thread::peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilte
       if (m_pmq->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
       {
 
-         return TRUE;
+         return true;
 
       }
 
@@ -3388,13 +3383,17 @@ int_bool thread::peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilte
 
    if (m_hthread && !m_bAuraMessageQueue)
    {
+      
+      MSG msg;
 
-      if (::PeekMessage(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
+      if (::PeekMessage(&msg, (HWND) oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
       {
 
-         return TRUE;
+         return true;
 
       }
+
+      __copy(pMsg, msg);
 
    }
 
@@ -3655,7 +3654,7 @@ int_bool thread::peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilte
 }
 
 
-int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
+int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
    bool bQuit = false;
@@ -3696,7 +3695,7 @@ int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilter
          if (!bQuit)
          {
 
-            return TRUE;
+            return true;
 
          }
 
@@ -3709,7 +3708,11 @@ int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilter
    if (m_hthread)
    {
 
-      int iRet = ::GetMessage(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax);
+      MSG msg;
+
+      int iRet = ::GetMessage(&msg, (HWND) oswindow, wMsgFilterMin, wMsgFilterMax);
+
+      __copy(pMsg, msg);
 
       if (iRet == -1)
       {
@@ -3733,7 +3736,7 @@ int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilter
          else
          {
 
-            return TRUE;
+            return true;
 
          }
 
@@ -3748,7 +3751,7 @@ int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilter
    if (pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax))
    {
 
-      return TRUE;
+      return true;
 
    }
 
@@ -3771,13 +3774,13 @@ int_bool thread::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilter
 }
 
 
-int_bool thread::post_message(oswindow oswindow, const ::id & id, WPARAM wParam, LPARAM lParam)
+int_bool thread::post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
 {
 
    if (!id.is_message())
    {
 
-      __throw(invalid_argument_exception);
+      __throw(invalid_argument_exception());
 
    }
 
@@ -3793,10 +3796,10 @@ int_bool thread::post_message(oswindow oswindow, const ::id & id, WPARAM wParam,
    if (m_hthread && !m_bAuraMessageQueue)
    {
 
-      if (::PostMessage(oswindow, id.u32(), wParam, lParam))
+      if (::PostMessage((HWND) oswindow, id.u32(), wparam, lparam))
       {
 
-         return TRUE;
+         return true;
 
       }
 
@@ -3804,7 +3807,7 @@ int_bool thread::post_message(oswindow oswindow, const ::id & id, WPARAM wParam,
 
 #endif
 
-   return get_mq()->post_message(oswindow, id, wParam, lParam);
+   return get_mq()->post_message(oswindow, id, wparam, lparam);
 
 }
 
@@ -3936,7 +3939,7 @@ bool thread::initialize_message_queue()
    //}
 
 
-   //single_lock sl(&m_sptimera->m_mutex,TRUE);
+   //single_lock sl(&m_sptimera->m_mutex,true);
 
    //i32 iMin = 100;
 
@@ -3977,12 +3980,16 @@ void thread::message_handler(::message::base * pbase)
    try
    {
 
-      MESSAGE & msg = m_message;
+      MESSAGE & message = m_message;
 
 #ifdef WINDOWS_DESKTOP
 
-      if (msg.hwnd != nullptr || msg.message == e_message_timer)
+      if (message.hwnd != nullptr || message.message == e_message_timer)
       {
+
+         MSG msg;
+
+         __copy(msg, message);
 
          ::TranslateMessage(&msg);
 
@@ -3994,13 +4001,13 @@ void thread::message_handler(::message::base * pbase)
 
 #endif
 
-      if (msg.message == e_message_event2)
+      if (message.message == e_message_event2)
       {
 
          //if(msg.lParam)
          {
 
-            auto psubject = System.new_subject(msg);
+            auto psubject = System.new_subject(message);
 
             process(psubject);
 
@@ -4013,13 +4020,13 @@ void thread::message_handler(::message::base * pbase)
          //}
 
       }
-      else if (msg.message == e_message_system)
+      else if (message.message == e_message_system)
       {
 
-         if (msg.wParam == e_system_message_create)
+         if (message.wParam == e_system_message_create)
          {
 
-            __pointer(::create) pcreate((lparam)msg.lParam);
+            __pointer(::create) pcreate((lparam)message.lParam);
 
             if (pcreate.is_set())
             {
@@ -4029,10 +4036,10 @@ void thread::message_handler(::message::base * pbase)
             }
 
          }
-         else if (msg.wParam == e_system_message_method)
+         else if (message.wParam == e_system_message_method)
          {
 
-            ::promise::routine routine(msg.lParam);
+            ::promise::routine routine(message.lParam);
 
             routine();
 
@@ -4045,10 +4052,10 @@ void thread::message_handler(::message::base * pbase)
          //   pobjectTask->call();
 
          //}
-         else if (msg.wParam == e_system_message_meta)
+         else if (message.wParam == e_system_message_meta)
          {
 
-            __pointer(::send_thread_message) pmessage(msg.lParam);
+            __pointer(::send_thread_message) pmessage(message.lParam);
 
             m_message = pmessage->m_message;
 
@@ -4073,7 +4080,7 @@ void thread::message_handler(::message::base * pbase)
 
       }
 
-      if(msg.message == WM_KICKIDLE)
+      if(message.message == WM_KICKIDLE)
       {
 
          return true;
@@ -4085,13 +4092,13 @@ void thread::message_handler(::message::base * pbase)
       if (get_context_application())
       {
 
-         pbase = get_context_application()->get_message_base(&msg);
+         pbase = get_context_application()->get_message_base(&message);
 
       }
       else if(get_context_session())
       {
 
-         pbase = get_context_session()->get_message_base(&msg);
+         pbase = get_context_session()->get_message_base(&message);
 
       }
 
@@ -4183,7 +4190,7 @@ bool thread::set_thread_priority(::e_priority epriority)
 
    i32 nPriority = get_os_thread_priority(epriority);
 
-   bool bOk = ::SetThreadPriority(m_hthread, nPriority) != FALSE;
+   bool bOk = ::SetThreadPriority(m_hthread, nPriority) != false;
 
    if (!bOk)
    {
@@ -4287,7 +4294,7 @@ bool thread::do_events()
 
    bool bProcessed = false;
 
-   while(peek_message(&msg,nullptr,0,0,PM_NOREMOVE) != FALSE)
+   while(peek_message(&msg,nullptr,0,0,PM_NOREMOVE) != false)
    {
 
       if (msg.message == e_message_quit) // do not pump, otherwise main loop will not process the message

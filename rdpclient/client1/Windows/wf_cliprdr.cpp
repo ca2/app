@@ -285,7 +285,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //			instance->m_pData = pData;
 //			instance->m_lOffset.QuadPart = 0;
 //
-//			/* get content size of this stream */
+//			/* get content size_i32 of this stream */
 //			cliprdr_send_request_filecontents(clipboard, (void*) instance,
 //				instance->m_lIndex, FILECONTENTS_SIZE, 0, 0, 8);
 //			instance->m_lSize.QuadPart = *((::i64*) clipboard->req_fdata);

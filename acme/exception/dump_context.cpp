@@ -439,7 +439,7 @@ void dump_context::write(const void * p)
    string str;
 
    // prefix a pointer with "$" and print in hex
-   str.Format("$%point", p);
+   str.Format("$%point_i32", p);
 
    output_string(str);
 
@@ -448,50 +448,50 @@ void dump_context::write(const void * p)
 }
 
 
-void dump_context::write(oswindow h)
-{
-
-   return write((void *)h);
-
-}
-
-
-void dump_context::write(HDC h)
-{
-
-   return write((void *)h);
-
-}
+//void dump_context::write(oswindow h)
+//{
+//
+//   return write((void *)h);
+//
+//}
 
 
-#ifdef WINDOWS
-
-
-void dump_context::write(HMENU h)
-{
-
-   return write((void *)h);
-
-}
-
-
-void dump_context::write(HACCEL h)
-{
-
-   return write((void *)h);
-
-}
-
-
-void dump_context::write(HFONT h)
-{
-
-   return write((void *)h);
-
-}
-
-
-#endif
+//void dump_context::write(HDC h)
+//{
+//
+//   return write((void *)h);
+//
+//}
+//
+//
+//#ifdef WINDOWS
+//
+//
+//void dump_context::write(HMENU h)
+//{
+//
+//   return write((void *)h);
+//
+//}
+//
+//
+//void dump_context::write(HACCEL h)
+//{
+//
+//   return write((void *)h);
+//
+//}
+//
+//
+//void dump_context::write(HFONT h)
+//{
+//
+//   return write((void *)h);
+//
+//}
+//
+//
+//#endif
 
 
 /////////////////////////////////////////////////////////////////////////////
@@ -530,7 +530,7 @@ void dump_context::hex_dump(const char * pszLine, byte* pby, i32 nBytes, i32 nWi
 
    }
 
-   ASSERT(__is_valid_address(pby, nBytes, FALSE));
+   ASSERT(__is_valid_address(pby, nBytes, false));
    if( pby == nullptr )
       __throw(invalid_argument_exception());
 

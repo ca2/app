@@ -3,7 +3,7 @@
 
 
 
-//CLASS_DECL_AURA string ca2_command_line(HINSTANCE hinstance);
+//CLASS_DECL_AURA string ca2_command_line(hinstance hinstance);
 //
 //CLASS_DECL_AURA HRESULT os_create_link(::file::path pathObj, ::file::path pathLink, string strDesc, ::file::path pathIcon = nullptr, int iIcon = 0);
 //
@@ -67,7 +67,7 @@ void __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
 //}
 
 
-//string ca2_command_line(HINSTANCE hinstance)
+//string ca2_command_line(hinstance hinstance)
 //{
 //
 //#ifdef CUBE

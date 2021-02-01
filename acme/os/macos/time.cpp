@@ -4,7 +4,7 @@
 // http://stackoverflow.com/questions/5167269/clock-gettime-alternative-in-mac-os-x
 // http://stackoverflow.com/users/346736/jbenet
 // https://stackoverflow.com/users/847987/charphacy
-// https://stackoverflow.com/users/1211018/point-marecki
+// https://stackoverflow.com/users/1211018/point_i32-marecki
 
 //#include <mach/clock.h>
 //#include <mach/mach.h>

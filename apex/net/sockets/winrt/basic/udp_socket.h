@@ -44,7 +44,7 @@ namespace sockets
 
       ::Windows::Networking::Sockets::DatagramSocket^ m_datagramsocket;
       char *m_ibuf; ///< Input buffer
-      int m_ibufsz; ///< size of input buffer
+      int m_ibufsz; ///< size_i32 of input buffer
       bool m_bind_ok; ///< Bind completed successfully
       port_t m_port; ///< Bind port number
       int m_last_size_written;
@@ -59,7 +59,7 @@ namespace sockets
 
       /** Constructor.
       \param h base_socket_handler context_object
-      \param ibufsz Maximum size of receive message (extra bytes will be truncated)
+      \param ibufsz Maximum size_i32 of receive message (extra bytes will be truncated)
       \param ipv6 'true' if this is an ipv6 socket */
       udp_socket(base_socket_handler& h,int ibufsz = 16384,bool ipv6 = false, int retries = 0);
       ~udp_socket();

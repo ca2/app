@@ -28,17 +28,17 @@ public:
    inline heap_item(void * p,memsize iSize,u32 millis)
 #endif
    {
-      m_pbStart = (u8 *)point;
-      m_pbEnd = ((u8 *)point) + max(iSize - 1,0);
+      m_pbStart = (u8 *)point_i32;
+      m_pbEnd = ((u8 *)point_i32) + max(iSize - 1,0);
       m_dwTickCount = millis;
    }
 
 
    inline char compare(void * p)
    {
-      if(((u8 *)point) <= m_pbStart)
+      if(((u8 *)point_i32) <= m_pbStart)
          return 1;
-      else if(((u8 *)point) >= m_pbEnd)
+      else if(((u8 *)point_i32) >= m_pbEnd)
          return -1;
       else
          return 0;
@@ -46,9 +46,9 @@ public:
 
    inline bool contains(void * p)
    {
-      if(((u8 *)point) <= m_pbStart)
+      if(((u8 *)point_i32) <= m_pbStart)
          return false;
-      else if(((u8 *)point) >= m_pbEnd)
+      else if(((u8 *)point_i32) >= m_pbEnd)
          return false;
       else
          return true;

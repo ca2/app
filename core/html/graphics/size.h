@@ -5,7 +5,7 @@
 //{
 //
 //
-//   class CLASS_DECL_CORE ::sizef
+//   class CLASS_DECL_CORE ::size_f32
 //   {
 //   public:
 //
@@ -14,26 +14,26 @@
 //      float    cy;
 //
 //
-//      inline ::sizef();
-//      inline ::sizef(const ::sizef & size);
-//      inline ::sizef(float cx, float cy);
+//      inline ::size_f32();
+//      inline ::size_f32(const ::size_f32 & size);
+//      inline ::size_f32(float cx, float cy);
 //
 //   };
 //
 //
-//   inline ::sizef::sizef()
+//   inline ::size_f32::size_f32()
 //   {
 //      cx = 0.0f;
 //      cy = 0.0f;
 //   }
 //
-//   inline ::sizef::sizef(const ::sizef & size)
+//   inline ::size_f32::size_f32(const ::size_f32 & size)
 //   {
-//      cx = (float) ::sizef.cx;
-//      cy = (float) ::sizef.cy;
+//      cx = (float) ::size_f32.cx;
+//      cy = (float) ::size_f32.cy;
 //   }
 //
-//   inline ::sizef::sizef(float cx, float cy)
+//   inline ::size_f32::size_f32(float cx, float cy)
 //   {
 //      this->cx = cx;
 //      this->cy = cy;

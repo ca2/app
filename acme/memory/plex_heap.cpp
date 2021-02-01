@@ -1,5 +1,6 @@
 #include "framework.h"
-
+#include "acme/operating_system.h"
+ 
 #include "plex_heap1.h"
 
 #include "plex_heap_impl1.h"
@@ -642,7 +643,7 @@ void plex_heap_alloc_array::_free(void * p,memsize size)
 void * plex_heap_alloc_sync::Alloc()
 {
 
-   cslock sl(&m_protect);
+   critical_section_lock sl(&m_criticalsection);
 
    if (m_pnodeFree == nullptr)
    {
@@ -709,7 +710,7 @@ void plex_heap_alloc_sync::Free(void * pParam)
 
    node * pnode = (node *)pParam;
 
-   cslock sl(&m_protect);
+   critical_section_lock sl(&m_criticalsection);
 
 #ifdef MEMDFREE // Free Debug - duplicate freeing ?
 
@@ -841,7 +842,7 @@ void plex_heap::FreeDataChain()     // free this one and links
 void plex_heap_alloc_sync::FreeAll()
 {
 
-   cslock sl(&m_protect);
+   critical_section_lock sl(&m_criticalsection);
 
    try
    {
@@ -864,7 +865,7 @@ void plex_heap_alloc_sync::FreeAll()
 void plex_heap_alloc_sync::NewBlock()
 {
 
-   cslock sl(&m_protect);
+   critical_section_lock sl(&m_criticalsection);
 
    ::u32 nAllocSize = m_nAllocSize;
 

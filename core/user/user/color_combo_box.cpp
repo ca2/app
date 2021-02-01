@@ -48,7 +48,7 @@ namespace user
 
       //__throw(todo("style"));
 
-      //::rectd r(2, 2, 2, 2);
+      //::rectangle_f64 r(2, 2, 2, 2);
 
       //create_rect(::user::rect_edit_padding, r, ::draw2d::unit_pixel);
 
@@ -129,7 +129,7 @@ namespace user
             if(bNew)
             {
 
-               ::rect rectWindow;
+               ::rectangle_i32 rectWindow;
 
                get_window_rect(rectWindow);
 
@@ -359,7 +359,7 @@ namespace user
 
          b->create_solid(c);
 
-         ::rect rEdit;
+         ::rectangle_i32 rEdit;
 
          get_element_rect(rEdit, e_element_combo_edit);
 
@@ -398,7 +398,7 @@ namespace user
 
          }
 
-         ::rect rectPadding = get_padding(pstyle);
+         ::rectangle_i32 rectPadding = get_padding(pstyle);
 
          rEdit.deflate(rectPadding);
 
@@ -406,11 +406,11 @@ namespace user
 
       }
 
-      ::rect rectDropDown;
+      ::rectangle_i32 rectDropDown;
 
       get_element_rect(rectDropDown, e_element_drop_down);
 
-      ::rect rectDropIn(rectDropDown);
+      ::rectangle_i32 rectDropIn(rectDropDown);
 
       color c(get_color(pstyle, estate));
 
@@ -431,7 +431,7 @@ namespace user
 
       ::draw2d::path_pointer path(e_create);
 
-      pointd_array pointa;
+      point_f64_array pointa;
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 

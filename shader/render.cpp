@@ -90,7 +90,7 @@ namespace app_shader
    void render::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      if (m_rect.area() <= 0)
+      if (m_rectangle.area() <= 0)
       {
 
          return;
@@ -100,7 +100,7 @@ namespace app_shader
       if (m_pcontext)
       {
 
-         m_pcontext->resize_offscreen_buffer(m_rect.size());
+         m_pcontext->resize_offscreen_buffer(m_rectangle.size());
 
       }
       
@@ -327,11 +327,11 @@ namespace app_shader
          pgraphics->get(matrixOriginal);
          ::draw2d::matrix matrix(matrixOriginal);
          matrix.scale(1.0, -1.0);
-         matrix.translate(0, m_rect.height());
+         matrix.translate(0, m_rectangle.height());
          pgraphics->set(matrix);
 #endif
 
-         pgraphics->stretch(m_rect, m_pcontext->m_pbuffer->m_pimage);
+         pgraphics->stretch(m_rectangle, m_pcontext->m_pbuffer->m_pimage);
 
 #if !defined(__APPLE__)
          pgraphics->set(matrixOriginal);
@@ -394,21 +394,21 @@ namespace app_shader
 
       //}
 
-      //rect rect;
+      //rectangle_i32 rectangle;
 
-      //int iSize = min(m_rect.width(), m_rect.height());
+      //int iSize = min(m_rectangle.width(), m_rectangle.height());
 
       //iSize = iSize * 3 / 4;
 
-      //rect.set_size(iSize, iSize);
+      //rectangle.set_size(iSize, iSize);
 
-      //rect.Align(e_align_center, m_rect);
+      //rectangle.Align(e_align_center, m_rectangle);
 
-      //rect.offset_x(-iSize / 5 * 3);
+      //rectangle.offset_x(-iSize / 5 * 3);
 
-      //rect.offset_x(iSize / 5 * m_iDrawing);
+      //rectangle.offset_x(iSize / 5 * m_iDrawing);
       //
-      //::sized size(0., 0.);
+      //::size_f64 size_i32(0., 0.);
       //
       //bool bDrawText = true;
       //
@@ -431,13 +431,13 @@ namespace app_shader
       //      if (m_iDrawing == 1)
       //      {
 
-      //         font->create_pixel_font(strFontFamily, rect.height() * 80.0 / size.get_maximum_dimension(), 800);
+      //         font->create_pixel_font(strFontFamily, rectangle.height() * 80.0 / size.get_maximum_dimension(), 800);
 
       //      }
       //      else
       //      {
 
-      //         font->create_pixel_font(strFontFamily, rect.height() * 160.0 / size.get_maximum_dimension(), 800);
+      //         font->create_pixel_font(strFontFamily, rectangle.height() * 160.0 / size.get_maximum_dimension(), 800);
 
       //      }
 
@@ -482,7 +482,7 @@ namespace app_shader
       //   else
       //   {
 
-      //      brush->CreateLinearGradientBrush(rect.top_left(), rect.bottom_right(), ARGB(255, 255, 255, 200), ARGB(255, 255, 125, 100));
+      //      brush->CreateLinearGradientBrush(rectangle.top_left(), rectangle.bottom_right(), ARGB(255, 255, 255, 200), ARGB(255, 255, 125, 100));
 
       //   }
 
@@ -492,15 +492,15 @@ namespace app_shader
 
       //pgraphics->SelectObject(brush);
 
-      //pgraphics->ellipse(rect);
+      //pgraphics->ellipse(rectangle);
 
-      //::rect rectText;
+      //::rectangle_i32 rectText;
 
       //rectText.set_size(size);
 
       //rectText.inflate(10, 10);
 
-      //rectText.Align(e_align_center, rect);
+      //rectText.Align(e_align_center, rectangle);
 
       //pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 

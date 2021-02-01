@@ -15,8 +15,8 @@ namespace experience
 
 
 
-               ::rect m_rectCaptionTextBk;
-               ::point m_pointMoveGripMinimal;
+               ::rectangle_i32 m_rectCaptionTextBk;
+               ::point_i32 m_pointMoveGripMinimal;
                //::draw2d::font_pointer                m_fontButton;
                //::draw2d::font_pointer                m_fontCaption;
                //e_style                          m_estyle;
@@ -33,7 +33,7 @@ namespace experience
                ::draw2d::pen_pointer                 m_penShadow1;
                ::draw2d::pen_pointer                 m_penDkShadow1;
                color32_t                         m_colorDkShadow;
-               size                             m_minSize;
+               size_i32                             m_minSize;
 
                ::draw2d::pen_pointer                 m_penHollow1;
                ::draw2d::pen_pointer                 m_penHollow2;
@@ -66,28 +66,28 @@ namespace experience
 
                virtual void title_bar_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-               virtual void _001OnBeforeMove(const ::rect & rectWindow);
+               virtual void _001OnBeforeMove(const ::rectangle_i32 & rectWindow);
 
 
-//               virtual void _001OnBeforeSize(const ::rect & rectWindow) override;
+//               virtual void _001OnBeforeSize(const ::rectangle_i32 & rectWindow) override;
 
 
                virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-               virtual bool get_element_rect(RECT32 * prect, enum_element eelement) override;
+               virtual bool get_element_rect(RECTANGLE_I32 * prectangle, enum_element eelement) override;
 
 
-               virtual bool hit_test(const point &point, enum_element &eelementParam);
+               virtual bool hit_test(const point_i32 &point, enum_element &eelementParam);
 
-               virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rect & rect);
+               virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
 
 
-               virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, color32_t cr, byte bAlpha);
+               virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, color32_t cr, byte bAlpha);
 
 
                //virtual ::user::front_end_schema * get_user_front_end_schema();
 
-               virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight);
+               virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight);
 
                virtual void on_draw_frame(::draw2d::graphics_pointer & pgraphics);
 
@@ -95,7 +95,7 @@ namespace experience
 
 
 
-               virtual void GetFrameRect(rect * prect) override;
+               virtual void GetFrameRect(rectangle_i32 * prectangle) override;
 
 
 

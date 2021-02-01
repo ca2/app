@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "acme/operating_system.h"
+
+
 #include "new_api.h"
 
 
@@ -27,7 +30,7 @@ string get_thread_name(hthread_t hthread)
    if (pfn_get_thread_description)
    {
 
-      hr = pfn_get_thread_description(hthread, &lpwsz);
+      hr = pfn_get_thread_description((HANDLE) hthread, &lpwsz);
 
    }
 
@@ -60,8 +63,6 @@ string get_thread_name(hthread_t hthread)
 }
 
 
-
-
 typedef HRESULT WINAPI FN_SetThreadDescription(_In_ hthread_t hthread, _In_ PCWSTR pThreadDescription);
 
 
@@ -88,7 +89,7 @@ CLASS_DECL_ACME bool set_thread_name(hthread_t hthread, const char* pszName)
    if (!bOk1)
    {
 
-      bOk1 = SetThreadName(GetThreadId(hthread), pszName) != FALSE;
+      bOk1 = SetThreadName(GetThreadId((HANDLE) hthread), pszName) != false;
 
    }
 
@@ -274,7 +275,7 @@ CLASS_DECL_ACME int get_processor_count()
 bool set_thread_name(const char * pszThreadName)
 {
 
-   return set_thread_name(::GetCurrentThread(), pszThreadName);
+   return set_thread_name((hthread_t) ::GetCurrentThread(), pszThreadName);
 
 }
 
@@ -308,7 +309,7 @@ int_bool SetThreadName(::u32 dwThreadID, const char* threadName)
    }
 #pragma warning(pop)
 
-   return TRUE;
+   return true;
 
 }
 
@@ -316,7 +317,7 @@ int_bool SetThreadName(::u32 dwThreadID, const char* threadName)
 CLASS_DECL_ACME string thread_get_name()
 {
 
-   return get_thread_name(::GetCurrentThread());
+   return get_thread_name((hthread_t)::GetCurrentThread());
 
 }
 

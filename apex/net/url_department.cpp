@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 #include "apex/id.h"
 #include "apex/astr.h"
 
@@ -1607,14 +1608,14 @@ namespace url
    bool department::is_valid_public_domain(const string& strDomain)
    {
 
-      cslock lock(&m_csPublicDomainExtension);
+      critical_section_lock lock(&m_csPublicDomainExtension);
 
       if (m_straPublicDomainExtension.isEmpty())
       {
 
          ::file::path pathPublicDomainExtensionList = "https://server.ca2.cc/public_internet_domain_extension_list.txt";
 
-         Context.file().load_lines(m_straPublicDomainExtension, pathPublicDomainExtensionList);
+         get_context()->file().load_lines(m_straPublicDomainExtension, pathPublicDomainExtensionList);
 
          m_straPublicDomainExtension.trim();
 

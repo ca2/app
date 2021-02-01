@@ -451,10 +451,10 @@ namespace xml
 //                        while(point != pszEnd && *point != '\0')
 //                        {
 //
-//                           if(point[0] == '&')
+//                           if(point_i32[0] == '&')
 //                           {
 //
-//                              point = m_pdocument->patch_entity_ref((const char * &) point, true, &xml, &pszEnd, nullptr);
+//                              point = m_pdocument->patch_entity_ref((const char * &) point_i32, true, &xml, &pszEnd, nullptr);
 //
 //                           }
 //                           else
@@ -699,7 +699,7 @@ namespace xml
          pnode->m_pdocument = m_pdocument;
          pnode->m_enode = ::data::e_node_xml_comment;
          pnode->m_strName = "#COMMENT";
-         _SetString( xml, end, &pnode->m_strValue, FALSE );
+         _SetString( xml, end, &pnode->m_strValue, false );
 
          par->m_nodea.add( pnode );
       }
@@ -744,7 +744,7 @@ namespace xml
          pnode->m_pdocument = m_pdocument;
          pnode->m_enode = ::data::e_node_xml_cdata;
          pnode->m_strName = "#CDATA";
-         _SetString( xml, end, &pnode->m_strValue, FALSE );
+         _SetString( xml, end, &pnode->m_strValue, false );
 
          pnodeParent->m_nodea.add( pnode );
       }

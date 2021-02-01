@@ -28,7 +28,7 @@ namespace aura
 
    extern CLASS_DECL_AURA critical_section* g_pcsFont;
 
-   extern CLASS_DECL_AURA mutex * g_pmutexWindowing;
+   extern CLASS_DECL_AURA ::mutex * g_pmutexWindowing;
 
    //extern critical_section* g_pcsRefDbg;
 
@@ -39,8 +39,8 @@ namespace aura
 //
 //#endif
 
-   extern ::mutex* g_pmutexChildren;
-   //extern ::mutex* g_pmutexThreadWaitClose;
+   extern ::mutex * g_pmutexChildren;
+   //extern ::mutex * g_pmutexThreadWaitClose;
    //extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
    //extern string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
@@ -64,7 +64,7 @@ namespace aura
 
    //extern __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
-   //extern ::mutex* g_pmutexGlobals;
+   //extern ::mutex * g_pmutexGlobals;
 
    //extern critical_section* g_pcsGlobal;
 
@@ -92,12 +92,12 @@ namespace aura
 //#endif
 
 
-   //extern ::mutex* g_pmutexCred;
+   //extern ::mutex * g_pmutexCred;
 
 
    //extern class ::exception_engine* g_pexceptionengine;
 
-   //extern ::mutex* g_pmutexMessageDispatch;
+   //extern ::mutex * g_pmutexMessageDispatch;
 
 
    //extern CLASS_DECL_AURA array < matter* >* g_paAura;
@@ -132,14 +132,14 @@ namespace aura
    //plex_heap_alloc_array * g_pplexheapallocarray;
 
    //extern int g_iMemoryCountersStartable;
-   //extern mutex * g_pmutexTrait;
+   //extern ::mutex * g_pmutexTrait;
    //extern ::mutex * g_pmutexFactory;
 
-   extern ::mutex* g_pmutexUiDestroyed;
+   extern ::mutex * g_pmutexUiDestroyed;
 
 //#ifdef ANDROID
 //
-//   extern ::mutex* g_pmutexOutputDebugStringA;
+//   extern ::mutex * g_pmutexOutputDebugStringA;
 //
 //#endif
 
@@ -170,9 +170,9 @@ namespace aura
 //#if defined(LINUX) || defined(__APPLE__)
 //
 //
-//   extern ::mutex* g_pmutexTz;
+//   extern ::mutex * g_pmutexTz;
 //
-//   extern ::mutex* g_pmutexThreadHandleLock;
+//   extern ::mutex * g_pmutexThreadHandleLock;
 //
 //
 //#endif // defined(LINUX) || defined(__APPLE__)
@@ -181,7 +181,7 @@ namespace aura
 //#ifdef __APPLE__
 //
 //
-//   extern ::mutex* g_pmutexCvt;
+//   extern ::mutex * g_pmutexCvt;
 //
 //
 //#endif

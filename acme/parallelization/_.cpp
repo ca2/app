@@ -1,6 +1,5 @@
 #include "framework.h"
-#include "acme/os/_c.h"
-#include "acme/os/_.h"
+#include "acme/operating_system.h"
 #include "acme/const/id.h"
 
 
@@ -36,13 +35,13 @@ namespace parallelization
 
    //CLASS_DECL_ACME comparable_eq_array<ithread_t> * s_piaThread2 = nullptr;
    //CLASS_DECL_ACME __pointer_array(thread) * s_pthreadptra2 = nullptr;
-   //CLASS_DECL_ACME::critical_section * s_pcs2 = nullptr;
+   //CLASS_DECL_ACMEcritical_section * s_pcs2 = nullptr;
 
 
    //CLASS_DECL_ACME void init_multithreading()
    //{
 
-   //   //s_pcs2 = new ::critical_section();
+   //   //s_pcs2 = new critical_section();
 
    //   //s_piaThread2 = new comparable_eq_array<ithread_t>;
 
@@ -787,4 +786,28 @@ bool thread_get_run()
    return ptask->thread_get_run();
 
 }
+
+
+
+
+#ifdef PARALLELIZATION_PTHREAD
+
+
+CRITICAL_SECTION_FUNCTION_RETURN pthread_recursive_mutex_init(pthread_mutex_t * pmutex)
+{
+
+   pthread_mutexattr_t attribute;
+
+   pthread_mutexattr_init(&attribute);
+
+   pthread_mutexattr_settype(&attribute, PTHREAD_MUTEX_RECURSIVE);
+
+   return pthread_mutex_init(pmutex, &attribute);
+
+}
+
+
+#endif
+
+
 

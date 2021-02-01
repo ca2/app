@@ -12,7 +12,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_veri_discreet(::draw2d::graphics_pointer & pgraphics,const RECT32 & lprect)
+   void plugin::on_bare_paint_veri_discreet(::draw2d::graphics_pointer & pgraphics,const RECTANGLE_I32 & lprect)
    {
 
       double dRate = get_progress_rate();
@@ -24,11 +24,11 @@ namespace hotplugin
 
       }
 
-      RECT32 rectWindow;
+      RECTANGLE_I32 rectWindow;
       get_window_rect(&rectWindow);
       //  i32 cx = rectWindow.right - rectWindow.left;
       //i32 cy = rectWindow.bottom - rectWindow.top;
-      RECT32 rect = lprect;
+      RECTANGLE_I32 rectangle_i32 = lprect;
 
 
 
@@ -41,31 +41,31 @@ namespace hotplugin
       int left;
       int right;
 
-      if(height(rect) < h)
+      if(height(rectangle) < h)
       {
-         top = rect.top;
-         bottom = rect.bottom;
+         top = rectangle.top;
+         bottom = rectangle.bottom;
       }
       else
       {
-         top = rect.top + height(rect) / 2 - h / 2;
-         bottom = rect.top + height(rect) / 2 + h / 2;
+         top = rectangle.top + height(rectangle) / 2 - h / 2;
+         bottom = rectangle.top + height(rectangle) / 2 + h / 2;
       }
 
-      if(width(rect) < m)
+      if(width(rectangle) < m)
       {
-         left = rect.left;
-         right = rect.right;
+         left = rectangle.left;
+         right = rectangle.right;
       }
       else
       {
 
-         left = rect.left + min(m / 2,width(rect) / 2);
-         right = rect.right - min(m / 2,width(rect) / 2);
+         left = rectangle.left + min(m / 2,width(rectangle) / 2);
+         right = rectangle.right - min(m / 2,width(rectangle) / 2);
 
       }
 
-      ::rect rectBar(left,top,right,bottom);
+      ::rectangle_i32 rectBar(left,top,right,bottom);
 
 
 
@@ -80,16 +80,16 @@ namespace hotplugin
 
       pgraphics->SelectObject(brush);
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
 
-      ::rect rectProgress(rectBar);
+      ::rectangle_i32 rectProgress(rectBar);
 
       rectProgress.right = (::i32) (rectProgress.left + rectBar.width() * min(1.0, max(0.0, dRate)));
 
-      ::rect rectProgressComplement(rectBar);
+      ::rectangle_i32 rectProgressComplement(rectBar);
 
       rectProgressComplement.left = rectProgress.right;
 

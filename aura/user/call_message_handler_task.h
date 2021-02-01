@@ -18,7 +18,7 @@ namespace user
       LPARAM                        m_lparam;
 
 
-      call_message_handler_task(interaction * pinteraction, const ::id & id, WPARAM wparam, LPARAM lparam);
+      call_message_handler_task(interaction * pinteraction, const ::id & id, wparam wparam, lparam lparam);
       virtual ~call_message_handler_task();
 
 

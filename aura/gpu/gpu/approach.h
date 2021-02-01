@@ -22,11 +22,11 @@ namespace gpu
 //      //HGLRC                         m_hrc;
 //      //HDC                           m_hdc;
 //      //HWND                          m_hwnd;
-//      //::size                        m_sizeNew;
-//      //::size                        m_size;
+//      //::size_i32                        m_sizeNew;
+//      //::size_i32                        m_size;
 //      //HDC                           m_hdcGraphics;
 //      //float                         m_z;
-//      //point                         m_pointTranslate;
+//      //point_i32                         m_pointTranslate;
 //      //__pointer(::opengl::buffer)   m_pbuffer;
 //      //__pointer(::opengl::program)  m_pprogram;
 //      //unsigned int                  VAO;
@@ -48,7 +48,7 @@ namespace gpu
       //virtual ::e_status start();
       //virtual ::e_status render();
 
-      //virtual bool create_offscreen_buffer(const ::size& size);
+      //virtual bool create_offscreen_buffer(const ::size_i32& size);
       //virtual bool destroy_offscreen_buffer();
 
 

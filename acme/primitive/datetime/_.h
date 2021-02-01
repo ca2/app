@@ -1,6 +1,8 @@
 #pragma once
 
 
+
+
 #ifndef WINDOWS
 
 typedef struct _SYSTEMTIME {
@@ -41,6 +43,9 @@ extern "C" CLASS_DECL_ACME int c_localtime_offset();
 
 
 //#include "department.h"
+
+
+#include "micro_duration.h"
 
 
 

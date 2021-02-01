@@ -168,7 +168,7 @@
 //
 //
 //
-//void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg)
+//void __trace_message(const char * lpszPrefix, MESSAGE * lpmsg)
 //{
 //   //ENSURE_ARG(AfxIsValidString(lpszPrefix));
 //   ENSURE_ARG(lpmsg != nullptr);

@@ -389,7 +389,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 //      __throw(invalid_argument_exception());
 //
 //   if (nGrowBy >= 0)
-//      m_nGrowBy = nGrowBy;  // set new size
+//      m_nGrowBy = nGrowBy;  // set new size_i32
 //
 //   if (nNewSize == 0)
 //   {
@@ -500,7 +500,7 @@ raw_array < TYPE, ARG_TYPE, ALLOCATOR >::~raw_array()
 //
 //   if (m_nSize != m_nMaxSize)
 //   {
-//      // shrink to desired size
+//      // shrink to desired size_i32
 //#ifdef SIZE_T_MAX
 //      ASSERT(m_nSize <= SIZE_T_MAX/sizeof(TYPE)); // no overflow
 //#endif
@@ -669,7 +669,7 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 //
 //
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_find_first(TYPE *point, ::index find, ::index last) const
+::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_find_first(TYPE *point_i32, ::index find, ::index last) const
 {
    if(find < 0)
       find += this->get_count();
@@ -677,7 +677,7 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
       last += this->get_count();
    for(; find <= last; find++)
    {
-      if(&this->element_at(find) == point)
+      if(&this->element_at(find) == point_i32)
          return find;
    }
    return -1;

@@ -36,14 +36,14 @@ const char * net_wm_state_text(e_net_wm_state estate);
 
 
 CLASS_DECL_ACME int xinerama_get_monitor_count();
-CLASS_DECL_ACME int xinerama_get_monitor_rect(index i, RECT32 * prect);
+CLASS_DECL_ACME int xinerama_get_monitor_rect(index i, RECTANGLE_I32 * prectangle);
 
 CLASS_DECL_ACME int xinerama_get_screen_size(int& width, int& height);
 
 
-int best_xinerama_monitor(::user::interaction * pinteraction, RECT32 * prectRet);
+int best_xinerama_monitor(::user::interaction * pinteraction, RECTANGLE_I32 * prectRet);
 
-int best_xinerama_monitor(::user::interaction * pinteraction, const ::rect & rect, RECT32 * lprectRet);
+int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle_i32 & rectangle, RECTANGLE_I32 * lprectRet);
 
 
 
@@ -112,8 +112,8 @@ int best_xinerama_monitor(::user::interaction * pinteraction, const ::rect & rec
 //   int                     m_iDepth;
 //   int                     m_iScreen;
 //
-//   point                   m_point;
-//   point                   m_pointOffset;
+//   point_i32                   m_point;
+//   point_i32                   m_pointOffset;
 //
 //   XFontSet                m_fontset;
 //

@@ -1,3 +1,3 @@
 #pragma once
 
-CGContextRef CGContextCreate(CGSize size);
+CGContextRef CGContextCreate(CGSize size_i32);

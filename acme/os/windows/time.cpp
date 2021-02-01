@@ -1,4 +1,9 @@
 ﻿#include "framework.h"
+#include "acme/operating_system.h"
+
+
+
+
 
 
 
@@ -8,7 +13,7 @@
 CLASS_DECL_ACME int_bool get_filetime(HANDLE hFile, LPFILETIME pCreationTime, LPFILETIME lpLastAccessTime, LPFILETIME lpLastWriteTime)
 {
 
-   return GetFileTime(hFile, pCreationTime, lpLastAccessTime, lpLastWriteTime) != FALSE;
+   return GetFileTime(hFile, pCreationTime, lpLastAccessTime, lpLastWriteTime) != false;
 
 }
 
@@ -67,7 +72,7 @@ CLASS_DECL_ACME int_bool get_filetime(HANDLE hFile, LPFILETIME pCreationTime, LP
 //   ::LARGE_INTEGER ft;
 //   ft.QuadPart = -static_cast<i64>(us * 10);  // '-' using relative time
 //
-//   ::HANDLE timer = ::CreateWaitableTimer(nullptr, TRUE, nullptr);
+//   ::HANDLE timer = ::CreateWaitableTimer(nullptr, true, nullptr);
 //   ::SetWaitableTimer(timer, &ft, 0, nullptr, nullptr, 0);
 //   ::WaitForSingleObject(timer, U32_INFINITE_TIMEOUT);
 //   ::CloseHandle(timer);
@@ -106,7 +111,7 @@ CLASS_DECL_ACME int_bool get_filetime(HANDLE hFile, LPFILETIME pCreationTime, LP
 //   LARGE_INTEGER li;   /* Time definition */
 //
 //   /* Create timer */
-//   if (!(timer = CreateWaitableTimer(nullptr, TRUE, nullptr)))
+//   if (!(timer = CreateWaitableTimer(nullptr, true, nullptr)))
 //   {
 //
 //      sleep((const ::millis &) nanos);
@@ -118,7 +123,7 @@ CLASS_DECL_ACME int_bool get_filetime(HANDLE hFile, LPFILETIME pCreationTime, LP
 //   /* Set timer properties */
 //   li.QuadPart = -(nanos.m_i / 100LL );
 //
-//   if (!SetWaitableTimer(timer, &li, 0, nullptr, nullptr, FALSE))
+//   if (!SetWaitableTimer(timer, &li, 0, nullptr, nullptr, false))
 //   {
 //
 //      CloseHandle(timer);
@@ -134,7 +139,7 @@ CLASS_DECL_ACME int_bool get_filetime(HANDLE hFile, LPFILETIME pCreationTime, LP
 //   CloseHandle(timer);
 //
 //   /* Slept without problems */
-//   //return TRUE;
+//   //return true;
 //
 //}
 

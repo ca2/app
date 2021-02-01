@@ -77,7 +77,7 @@ namespace user
 //   void primitive::RedrawOptimize(rect_array &array)
 //   {
 //
-//      ::rect rect;
+//      ::rectangle_i32 rectangle;
 //
 //Restart:
 //
@@ -86,11 +86,11 @@ namespace user
 //         for(i32 j = i + 1; j < array.get_size(); j++)
 //         {
 //            if(RedrawOptimize(
-//                  rect,
+//                  rectangle_i32,
 //                  array[i],
 //                  array[j]))
 //            {
-//               array[i] = rect;
+//               array[i] = rectangle_i32;
 //               array.remove_at(j);
 //               goto Restart;
 //
@@ -103,14 +103,14 @@ namespace user
 //   }
 //
 //
-//   bool primitive::RedrawOptimize(RECT32 * prectOut, const rect & rect1Param, const rect & rect2Param)
+//   bool primitive::RedrawOptimize(RECTANGLE_I32 * prectOut, const rectangle_i32 & rect1Param, const rectangle_i32 & rect2Param)
 //   {
 //
-//      ::rect rect1(rect1Param);
+//      ::rectangle_i32 rect1(rect1Param);
 //
-//      ::rect rect2(rect2Param);
+//      ::rectangle_i32 rect2(rect2Param);
 //
-//      ::rect rect3;
+//      ::rectangle_i32 rect3;
 //
 //      i32 iArea1 = rect1.width() * rect1.height();
 //      i32 iArea2 = rect2.width() * rect2.height();
@@ -340,7 +340,7 @@ namespace user
    //}
 
 
-   //bool primitive::Redraw(const ::rect & rect, ::draw2d::region * prgn)
+   //bool primitive::Redraw(const ::rectangle_i32 & rectangle, ::draw2d::region * prgn)
    //{
 
    //   if (get_wnd() == nullptr)
@@ -350,7 +350,7 @@ namespace user
 
    //   }
 
-   //   return get_wnd()->RedrawWindow(rect, prgn, RDW_INVALIDATE);
+   //   return get_wnd()->RedrawWindow(rectangle, prgn, RDW_INVALIDATE);
 
    //}
 
@@ -368,27 +368,27 @@ namespace user
    //}
 
 
-   /*bool primitive::_001ClientToScreen(RECT32 * prect)
+   /*bool primitive::_001ClientToScreen(RECTANGLE_I32 * prectangle)
    {
 
-      ::offset_rect(prect, client_screen_top_left());
+      ::offset_rect(prectangle, client_screen_top_left());
 
       return true;
 
    }
 
 
-   bool primitive::_001ClientToScreen(RECTD * prect)
+   bool primitive::_001ClientToScreen(RECTANGLE_F64 * prectangle)
    {
 
-      ::offset_rect(prect, client_screen_top_left());
+      ::offset_rect(prectangle, client_screen_top_left());
 
       return true;
 
    }
 */
 
-   //bool primitive::_001ClientToScreen(POINT32 * ppoint)
+   //bool primitive::_001ClientToScreen(POINT_I32 * ppoint)
    //{
 
    //   ::offset_point(ppoint, client_screen_top_left());
@@ -398,7 +398,7 @@ namespace user
    //}
 
 
-   //bool primitive::_001ClientToScreen(POINTD * ppoint)
+   //bool primitive::_001ClientToScreen(POINT_F64 * ppoint)
    //{
 
    //   ::offset(ppoint, client_screen_top_left());
@@ -408,17 +408,17 @@ namespace user
    //}
 
 
-   //bool primitive::_001ClientToScreen(RECT64 * prect)
+   //bool primitive::_001ClientToScreen(RECTANGLE_I64 * prectangle)
    //{
 
-   //   ::offset_rect(prect, point64(client_screen_top_left()));
+   //   ::offset_rect(prectangle, point_i64(client_screen_top_left()));
 
    //   return true;
 
    //}
 
 
-   //bool primitive::_001ClientToScreen(POINT64 * ppoint)
+   //bool primitive::_001ClientToScreen(POINT_I64 * ppoint)
    //{
 
    //   ::offset_point(ppoint, client_screen_top_left());
@@ -428,37 +428,27 @@ namespace user
    //}
 
 
-   //bool primitive::_001ScreenToClient(RECT32 * prect)
+   //bool primitive::_001ScreenToClient(RECTANGLE_I32 * prectangle)
    //{
 
-   //   ::offset_rect(prect, -client_screen_top_left());
+   //   ::offset_rect(prectangle, -client_screen_top_left());
 
    //   return true;
 
    //}
 
 
-   //bool primitive::_001ScreenToClient(RECTD * prect)
+   //bool primitive::_001ScreenToClient(RECTANGLE_F64 * prectangle)
    //{
 
-   //   ::offset_rect(prect, -client_screen_top_left());
+   //   ::offset_rect(prectangle, -client_screen_top_left());
 
    //   return true;
 
    //}
 
 
-   //bool primitive::_001ScreenToClient(POINT32 * ppoint)
-   //{
-
-   //   ::offset_point(ppoint, -client_screen_top_left());
-
-   //   return true;
-
-   //}
-
-
-   //bool primitive::_001ScreenToClient(POINTD * ppoint)
+   //bool primitive::_001ScreenToClient(POINT_I32 * ppoint)
    //{
 
    //   ::offset_point(ppoint, -client_screen_top_left());
@@ -468,17 +458,7 @@ namespace user
    //}
 
 
-   //bool primitive::_001ScreenToClient(RECT64 * prect)
-   //{
-
-   //   ::offset_rect(prect, -client_screen_top_left());
-
-   //   return true;
-
-   //}
-
-
-   //bool primitive::_001ScreenToClient(POINT64 * ppoint)
+   //bool primitive::_001ScreenToClient(POINT_F64 * ppoint)
    //{
 
    //   ::offset_point(ppoint, -client_screen_top_left());
@@ -488,7 +468,27 @@ namespace user
    //}
 
 
-   //bool primitive::GetWindowPos(RECT32 * prect)
+   //bool primitive::_001ScreenToClient(RECTANGLE_I64 * prectangle)
+   //{
+
+   //   ::offset_rect(prectangle, -client_screen_top_left());
+
+   //   return true;
+
+   //}
+
+
+   //bool primitive::_001ScreenToClient(POINT_I64 * ppoint)
+   //{
+
+   //   ::offset_point(ppoint, -client_screen_top_left());
+
+   //   return true;
+
+   //}
+
+
+   //bool primitive::GetWindowPos(RECTANGLE_I32 * prectangle)
    //{
 
    //   ::exception::throw_interface_only();
@@ -498,7 +498,7 @@ namespace user
    //}
 
 
-   //bool primitive::get_window_rect(RECT32 * prect)
+   //bool primitive::get_window_rect(RECTANGLE_I32 * prectangle)
    //{
 
    //   ::exception::throw_interface_only();
@@ -508,7 +508,7 @@ namespace user
    //}
 
 
-   //pointd primitive::client_screen_top_left()
+   //point_f64 primitive::client_screen_top_left()
    //{
 
    //   return nullptr;
@@ -516,7 +516,7 @@ namespace user
    //}
 
 
-   //bool primitive::get_client_rect(RECT32 * prect)
+   //bool primitive::get_client_rect(RECTANGLE_I32 * prectangle)
    //{
 
    //   ::exception::throw_interface_only();
@@ -526,7 +526,7 @@ namespace user
    //}
 
 
-   //bool primitive::get_client_rect(RECT64 * prect)
+   //bool primitive::get_client_rect(RECTANGLE_I64 * prectangle)
 
    //{
 
@@ -537,7 +537,7 @@ namespace user
    //}
 
 
-   //bool primitive::get_window_rect(RECT64 * prect)
+   //bool primitive::get_window_rect(RECTANGLE_I64 * prectangle)
 
    //{
 
@@ -721,7 +721,7 @@ namespace user
 
 
 
-   //bool primitive::SetPlacement(const ::rect & rect,::u32 nFlags)
+   //bool primitive::SetPlacement(const ::rectangle_i32 & rectangle,::u32 nFlags)
    //{
 
    //   ::exception::throw_interface_only();
@@ -823,7 +823,7 @@ namespace user
    //      });
 
    //}
-   //bool primitive::place(const ::rect & rect)
+   //bool primitive::place(const ::rectangle_i32 & rectangle)
    //{
 
    //   ::exception::throw_interface_only();
@@ -853,7 +853,7 @@ namespace user
    //}
 
 
-   //bool primitive::move_to(const ::point & point)
+   //bool primitive::move_to(const ::point_i32 & point)
    //{
 
    //   ::exception::throw_interface_only();
@@ -873,7 +873,7 @@ namespace user
    //}
 
 
-   //bool primitive::set_size(const size & sz)
+   //bool primitive::set_size(const size_i32 & sz)
    //{
 
    //   ::exception::throw_interface_only();
@@ -893,7 +893,7 @@ namespace user
    //}
 
 
-   //bool primitive::ResizeWindow(const size & sz,::u32 nFlags)
+   //bool primitive::ResizeWindow(const size_i32 & sz,::u32 nFlags)
    //{
 
    //   ::exception::throw_interface_only();
@@ -903,7 +903,7 @@ namespace user
    //}
 
 
-   //bool primitive::set_window_pos(class zorder zorder, const ::rect & rect, ::u32 nFlags)
+   //bool primitive::set_window_pos(class zorder zorder, const ::rectangle_i32 & rectangle, ::u32 nFlags)
 
    //{
 
@@ -913,7 +913,7 @@ namespace user
 
    //}
 
-   //bool primitive::defer_set_window_pos(iptr z, const  const rect & & rect, ::u32 nFlags) // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)
+   //bool primitive::defer_set_window_pos(iptr z, const  const rectangle_i32 & & rectangle, ::u32 nFlags) // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rectangle_i32(x, y, cx, cy)
    //{
 
    //   ::exception::throw_interface_only();
@@ -923,7 +923,7 @@ namespace user
    //}
 
 
-   //bool primitive::defer_set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags) // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)
+   //bool primitive::defer_set_window_pos(iptr z,i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags) // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rectangle_i32(x, y, cx, cy)
    //{
 
    //   ::exception::throw_interface_only();
@@ -981,7 +981,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::_001FromPoint(::point point,bool bTestedIfParentVisible)
+   ::user::interaction * primitive::_001FromPoint(::point_i32 point,bool bTestedIfParentVisible)
    {
 
       ::exception::throw_interface_only();
@@ -991,7 +991,7 @@ namespace user
    }
 
 
-   bool primitive::_001IsPointInside(::point point)
+   bool primitive::_001IsPointInside(::point_i32 point)
    {
 
 
@@ -1031,7 +1031,7 @@ namespace user
    }
 
 
-   LRESULT primitive::send(::message::base * pbase)
+   lresult primitive::send(::message::base * pbase)
    {
 
       if(pbase->userprimitive() == nullptr)
@@ -1061,7 +1061,7 @@ namespace user
    }
 
 
-   LRESULT primitive::send_message(const ::id & id,WPARAM wparam,lparam lparam)
+   lresult primitive::send_message(const ::id & id,wparam wparam,lparam lparam)
    {
 
       return message_call(id, wparam, lparam);
@@ -1069,7 +1069,7 @@ namespace user
    }
 
 
-   LRESULT primitive::message_call(const ::id & id, WPARAM wparam, lparam lparam)
+   lresult primitive::message_call(const ::id & id, wparam wparam, lparam lparam)
    {
 
       return 0;
@@ -1077,7 +1077,7 @@ namespace user
    }
 
 
-   LRESULT primitive::message_call(::message::base * pbase)
+   lresult primitive::message_call(::message::base * pbase)
    {
 
       return 0;
@@ -1088,7 +1088,7 @@ namespace user
 #ifdef LINUX
 
 
-   LRESULT primitive::send_x11_event(void * pevent)
+   lresult primitive::send_x11_event(void * pevent)
    {
 
       ::exception::throw_interface_only();
@@ -1164,7 +1164,7 @@ namespace user
    }
 
 
-   void primitive::send_message_to_descendants(const ::id & id,WPARAM wparam,lparam lparam,bool bDeep,bool bOnlyPerm)
+   void primitive::send_message_to_descendants(const ::id & id,wparam wparam,lparam lparam,bool bDeep,bool bOnlyPerm)
 
    {
 
@@ -1385,7 +1385,7 @@ namespace user
    }
 
 
-   bool primitive::RedrawWindow(const ::rect& rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   bool primitive::RedrawWindow(const ::rectangle_i32& rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       ::exception::throw_interface_only();
@@ -1395,7 +1395,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::ChildWindowFromPoint(const ::point & point)
+   ::user::interaction * primitive::ChildWindowFromPoint(const ::point_i32 & point)
    {
 
       ::exception::throw_interface_only();
@@ -1405,7 +1405,7 @@ namespace user
    }
 
 
-   ::user::interaction * primitive::ChildWindowFromPoint(const ::point & point,::u32 nFlags)
+   ::user::interaction * primitive::ChildWindowFromPoint(const ::point_i32 & point,::u32 nFlags)
    {
 
       ::exception::throw_interface_only();
@@ -1668,7 +1668,7 @@ namespace user
    //}
 
 
-   //LRESULT primitive::default_window_procedure()
+   //lresult primitive::default_window_procedure()
    //{
 
    //   ::exception::throw_interface_only();
@@ -1742,7 +1742,7 @@ namespace user
    }
 
 
-   void primitive::CalcWindowRect(RECT32 * prect,::u32 nAdjustType)
+   void primitive::CalcWindowRect(RECTANGLE_I32 * prectangle,::u32 nAdjustType)
 
    {
 
@@ -1751,7 +1751,7 @@ namespace user
    }
 
 
-   void primitive::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag, RECT32 * prectParam, const ::rect & rectClient, bool bStretch)
+   void primitive::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag, RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectClient, bool bStretch)
    {
 
       ::exception::throw_interface_only();
@@ -1892,7 +1892,7 @@ namespace user
    }
 
 
-   void primitive::viewport_client_to_screen(POINT32 * ppt)
+   void primitive::viewport_client_to_screen(POINT_I32 * ppt)
    {
 
       ::exception::throw_interface_only();
@@ -1900,7 +1900,7 @@ namespace user
    }
 
 
-   void primitive::viewport_screen_to_client(POINT32 * ppt)
+   void primitive::viewport_screen_to_client(POINT_I32 * ppt)
    {
 
       ::exception::throw_interface_only();
@@ -1908,7 +1908,7 @@ namespace user
    }
 
 
-   void primitive::viewport_client_to_screen(RECT32 * prect)
+   void primitive::viewport_client_to_screen(RECTANGLE_I32 * prectangle)
    {
 
       ::exception::throw_interface_only();
@@ -1916,7 +1916,7 @@ namespace user
    }
 
 
-   void primitive::viewport_screen_to_client(RECT32 * prect)
+   void primitive::viewport_screen_to_client(RECTANGLE_I32 * prectangle)
    {
 
       ::exception::throw_interface_only();
@@ -2001,7 +2001,7 @@ namespace user
    }
 
 
-   LRESULT primitive::message_handler(LPMESSAGE pmessage)
+   lresult primitive::message_handler(MESSAGE * pmessage)
 
    {
 
@@ -2093,7 +2093,7 @@ namespace user
    }
 
 
-   bool primitive::GetUpdateRect(RECT32 * prect,bool bErase)
+   bool primitive::GetUpdateRect(RECTANGLE_I32 * prectangle,bool bErase)
 
    {
 
@@ -2114,7 +2114,7 @@ namespace user
    }
 
 
-   void primitive::InvalidateRect(const ::rect & rect,bool bErase)
+   void primitive::InvalidateRect(const ::rectangle_i32 & rectangle,bool bErase)
 
    {
 
@@ -2131,7 +2131,7 @@ namespace user
    }
 
 
-   void primitive::ValidateRect(const ::rect & rect)
+   void primitive::ValidateRect(const ::rectangle_i32 & rectangle)
 
    {
 
@@ -2288,7 +2288,7 @@ namespace user
    }
 
 
-   bool primitive::post_message(const ::id & id,WPARAM wparam,lparam lparam)
+   bool primitive::post_message(const ::id & id,wparam wparam,lparam lparam)
    {
 
       ::exception::throw_interface_only();
@@ -2408,7 +2408,7 @@ namespace user
    }
 
 
-   void primitive::sketch_prepare_window_full_screen(const ::rect & rectHint)
+   void primitive::sketch_prepare_window_full_screen(const ::rectangle_i32 & rectHint)
    {
 
       ::exception::throw_interface_only();
@@ -2562,15 +2562,15 @@ namespace user
    }
 
 
-   ::point primitive::get_cursor_pos() const
+   ::point_i32 primitive::get_cursor_pos() const
    {
 
-      return ::point();
+      return ::point_i32();
 
    }
 
    
-   ::sized primitive::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
+   ::size_f64 primitive::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
    {
 
       return { 0.0, 0.0 };
@@ -2578,14 +2578,14 @@ namespace user
    }
 
 
-   ::sized primitive::_001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics)
+   ::size_f64 primitive::_001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rectd rectPadding(2.0, 2.0, 2.0, 2.0);
+      ::rectangle_f64 rectPadding(2.0, 2.0, 2.0, 2.0);
 
       auto sizeFitting = _001CalculateFittingSize(pgraphics);
 
-      ::sized sizePaddedFitting;
+      ::size_f64 sizePaddedFitting;
 
       sizePaddedFitting.cx = rectPadding.left + sizeFitting.cx + rectPadding.right;
 
@@ -2780,7 +2780,7 @@ namespace user
    }
 
 
-   bool primitive::GetFocusRect(RECT32* prect)
+   bool primitive::GetFocusRect(RECTANGLE_I32* prectangle)
    {
 
       return false;
@@ -3060,7 +3060,7 @@ namespace user
    //}
 
 
-   //bool primitive::track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point & point)
+   //bool primitive::track_popup_menu(::user::menu_item * pitem,i32 iFlags, const ::point_i32 & point)
    //{
 
    //   ::exception::throw_interface_only();
@@ -3070,7 +3070,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_menu(const ::payload & varXml,i32 iFlags, const ::point & point, const size & size)
+   //__pointer(::user::menu) primitive::track_popup_xml_menu(const ::payload & varXml,i32 iFlags, const ::point_i32 & point, const size_i32 & size)
    //{
 
    //   ::exception::throw_interface_only();
@@ -3080,7 +3080,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_matter_menu(const char * pszMatter,i32 iFlags, const ::point & point)
+   //__pointer(::user::menu) primitive::track_popup_xml_matter_menu(const char * pszMatter,i32 iFlags, const ::point_i32 & point)
    //{
 
    //   ::exception::throw_interface_only();
@@ -3090,7 +3090,7 @@ namespace user
    //}
 
 
-   //__pointer(::user::menu) primitive::track_popup_xml_menu_file(::payload varFile, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
+   //__pointer(::user::menu) primitive::track_popup_xml_menu_file(::payload varFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
    //{
 
    //   ::exception::throw_interface_only();
@@ -3433,7 +3433,7 @@ namespace user
    bool primitive::post_simple_command(const e_simple_command & ecommand, lparam lparam)
    {
 
-      post_message(e_message_simple_command, (WPARAM)ecommand, lparam);
+      post_message(e_message_simple_command, (wparam)ecommand, lparam);
 
       return true;
 
@@ -3455,7 +3455,7 @@ namespace user
    }
 
 
-   __pointer(::message::base) primitive::get_message_base(oswindow oswindow, const ::id & id, WPARAM wparam, lparam lparam)
+   __pointer(::message::base) primitive::get_message_base(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
    {
 
       __pointer(::message::base) pbase;
@@ -3564,7 +3564,7 @@ namespace user
       break;
       case ::message::PrototypeSize:
       {
-         pbase = __new(::message::size);
+         pbase = __new(::message::size_i32);
       }
       break;
       case ::message::PrototypeActivate:
@@ -3603,7 +3603,7 @@ namespace user
    }
 
 
-   bool primitive::call_message_handler(const ::id & id, WPARAM wparam, lparam lparam, LRESULT * plresult)
+   bool primitive::call_message_handler(const ::id & id, wparam wparam, lparam lparam, lresult * plresult)
    {
 
       auto pbase = get_message_base(get_handle(), id, wparam, lparam);
@@ -3719,10 +3719,10 @@ namespace user
    //}
 
 
-//   bool primitive::SetPlacement(const ::rect & rect, ::u32 nFlags)
+//   bool primitive::SetPlacement(const ::rectangle_i32 & rectangle, ::u32 nFlags)
 //   {
 //
-//      UNREFERENCED_PARAMETER(rect);
+//      UNREFERENCED_PARAMETER(rectangle);
 //      UNREFERENCED_PARAMETER(nFlags);
 //
 //      return false;
@@ -3950,7 +3950,7 @@ namespace user
       if (puiThis == nullptr)
          return nullptr;
 
-      single_lock(puiThis->get_context_application()->mutex(), TRUE);
+      single_lock(puiThis->get_context_application()->mutex(), true);
 
       __pointer(primitive) pinteraction;
 
@@ -4263,30 +4263,30 @@ namespace user
    }
 
 
-   void primitive::set_input_content_rect(const rect& rect)
+   void primitive::set_input_content_rect(const rectangle_i32& rectangle)
    {
 
    }
 
 
-   void primitive::set_input_selection_rect(const rect& rect)
+   void primitive::set_input_selection_rect(const rectangle_i32& rectangle)
    {
 
    }
 
 
-   rect primitive::get_input_content_rect()
+   rectangle_i32 primitive::get_input_content_rect()
    {
 
-      return rect();
+      return rectangle_i32();
 
    }
 
 
-   rect primitive::get_input_selection_rect()
+   rectangle_i32 primitive::get_input_selection_rect()
    {
 
-      return rect();
+      return rectangle_i32();
 
    }
 

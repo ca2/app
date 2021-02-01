@@ -43,7 +43,7 @@ namespace user
 
       }
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       ::user::interaction::get_client_rect(rectClient);
 
@@ -95,9 +95,9 @@ namespace user
 
       }
 
-      ::rect rectEllipse(rectClient);
+      ::rectangle_i32 rectEllipse(rectClient);
 
-      ::rect rW;
+      ::rectangle_i32 rW;
 
       get_window_rect(rW);
 
@@ -138,7 +138,7 @@ namespace user
 
          pgraphics->SelectObject(m_pen);
 
-         ::rect rectIcon(rectEllipse);
+         ::rectangle_i32 rectIcon(rectEllipse);
 
          rectIcon.deflate(rectIcon.width() / 4, rectIcon.height() / 4);
 
@@ -186,7 +186,7 @@ namespace user
    void button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 

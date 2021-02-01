@@ -68,7 +68,7 @@ namespace hex
    }
 
 
-   // sz buffer should have twice size of s (p)
+   // sz buffer should have twice size_i32 of s (p)
    inline CLASS_DECL_ACME void lower_from(char * sz, const void * p, memsize s)
    {
        const u8 * pb = (const u8 *) p;
@@ -93,7 +93,7 @@ namespace hex
        }
    }
 
-   // sz buffer should have twice size of s (p)
+   // sz buffer should have twice size_i32 of s (p)
    inline CLASS_DECL_ACME string lower_from(const void * p, memsize s)
    {
       string str;

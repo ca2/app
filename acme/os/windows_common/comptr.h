@@ -40,13 +40,13 @@ public:
 
    }
 
-   comptr(TYPE * point)
+   comptr(TYPE * p)
    {
-      if (point != nullptr)
+      if (p != nullptr)
       {
-         point->AddRef();
+         p->AddRef();
       }
-      m_p = point;
+      m_p = p;
    }
 
 
@@ -117,11 +117,11 @@ public:
    TYPE * detach()
    {
 
-      TYPE * point = operator ->();
+      TYPE * p = operator ->();
 
       m_p = nullptr;
 
-      return point;
+      return p;
 
    }
 
@@ -144,16 +144,16 @@ public:
 
    }
 
-   comptr & operator = (TYPE * point)
+   comptr & operator = (TYPE * p)
    {
 
-      if (m_p != point)
+      if (m_p != p)
       {
 
-         if (point != nullptr)
+         if (p != nullptr)
          {
 
-            point->AddRef();
+            p->AddRef();
 
 
          }
@@ -165,7 +165,7 @@ public:
 
          }
 
-         m_p = point;
+         m_p = p;
 
       }
 

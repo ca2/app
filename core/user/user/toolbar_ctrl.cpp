@@ -16,7 +16,7 @@ namespace user
    }
 
 
-   //bool toolbar_control::create_window(u32 uStyle,const ::rect & rect, ::user::interaction * puiParent, ::id id)
+   //bool toolbar_control::create_window(u32 uStyle,const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, ::id id)
    //{
    //   
    //   return create_window("ToolbarWindow32", nullptr, uStyle, puiParent, id);
@@ -148,8 +148,8 @@ namespace user
    if (bResult)
    {
    // set new sizes of the buttons
-   size sizeImage(pData->wWidth, pData->wHeight);
-   size sizeButton(pData->wWidth + 7, pData->wHeight + 7);
+   size_i32 sizeImage(pData->wWidth, pData->wHeight);
+   size_i32 sizeButton(pData->wWidth + 7, pData->wHeight + 7);
    //      SetSizes(sizeButton, sizeImage);
 
    // load bitmap now that sizes are known by the toolbar control
@@ -491,13 +491,13 @@ namespace user
 
    }
 
-   bool toolbar_control::GetItemRect(i32 nIndex, RECT32 * prect)
+   bool toolbar_control::GetItemRect(i32 nIndex, RECTANGLE_I32 * prectangle)
 
    {
 
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); return send_message( TB_GETITEMRECT, nIndex, (LPARAM)prect) != FALSE;
+   ASSERT(is_window()); return send_message( TB_GETITEMRECT, nIndex, (LPARAM)prectangle) != FALSE;
 
 
 #else
@@ -523,7 +523,7 @@ namespace user
 
    }
 
-   bool toolbar_control::SetButtonSize(const ::size & size)
+   bool toolbar_control::SetButtonSize(const ::size_i32 & size)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -538,7 +538,7 @@ namespace user
 
    }
 
-   bool toolbar_control::SetBitmapSize(const ::size & size)
+   bool toolbar_control::SetBitmapSize(const ::size_i32 & size)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -587,13 +587,13 @@ namespace user
    }
 
 
-   void toolbar_control::SetRows(i32 nRows, bool bLarger, RECT32 * prect)
+   void toolbar_control::SetRows(i32 nRows, bool bLarger, RECTANGLE_I32 * prectangle)
 
    {
 
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); send_message( TB_SETROWS, MAKELPARAM(nRows, bLarger), (LPARAM)prect);
+   ASSERT(is_window()); send_message( TB_SETROWS, MAKELPARAM(nRows, bLarger), (LPARAM)prectangle);
 
 
 #else
@@ -653,7 +653,7 @@ namespace user
    }
 
 
-   i32 toolbar_control::hit_test(POINT32 * ppt)
+   i32 toolbar_control::hit_test(POINT_I32 * ppt)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -832,13 +832,13 @@ namespace user
    }
 
 
-   bool toolbar_control::GetRect(i32 nID, RECT32 * prect)
+   bool toolbar_control::GetRect(i32 nID, RECTANGLE_I32 * prectangle)
 
    {
 
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); return send_message( TB_GETRECT, nID, (LPARAM)prect) != FALSE;
+   ASSERT(is_window()); return send_message( TB_GETRECT, nID, (LPARAM)prectangle) != FALSE;
 
 
 #else
@@ -1156,7 +1156,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-   bool toolbar_control::InsertMarkHitTest(POINT32 * ppt, LPTBINSERTMARK ptbim)
+   bool toolbar_control::InsertMarkHitTest(POINT_I32 * ppt, LPTBINSERTMARK ptbim)
    {
 
    ASSERT(is_window()); return send_message( TB_INSERTMARKHITTEST, (WPARAM)ppt, (LPARAM)ptbim) != FALSE;

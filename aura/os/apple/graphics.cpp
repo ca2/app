@@ -186,7 +186,7 @@ CTFontRef CreateFontConvertedToFamily(CTFontRef iFont, CFStringRef iFamily)
 
    // Create a copy of the original font with the new family. This call
    // attempts to preserve traits, and may return nullptr if that is not possible.
-   // Pass in 0.0 and nullptr for size and matrix to preserve the values from
+   // Pass in 0.0 and nullptr for size_i32 and matrix to preserve the values from
    // the original font.
    return CTFontCreateCopyWithFamily(iFont, 0.0, nullptr, iFamily);
 
@@ -256,20 +256,20 @@ CTFontRef CreateFontConvertedToFamily(CTFontRef iFont, CFStringRef iFamily)
 
 
 
-//void FillSolidRect_dup(HDC hdc, const ::rect & rect, color32_t clr)
+//void FillSolidRect_dup(HDC hdc, const ::rectangle_i32 & rectangle, color32_t clr)
 
 //{
 //   CGColorRef color = cg_create_color(clr);
-//   CGRect rect;
-//   rect.origin.x = prect->left;
+//   CGRect rectangle_i32;
+//   rectangle.origin.x = prectangle->left;
 
-//   rect.origin.y = prect->top;
+//   rectangle.origin.y = prectangle->top;
 
-//   rect.size.width = prect->right - prect->left;
+//   rectangle.size.width = prectangle->right - prectangle->left;
 
-//   rect.size.height = prect->bottom - prect->top;
+//   rectangle.size.height = prectangle->bottom - prectangle->top;
 
-//   CGContextFillRect(hdc->m_cgcontext, rect);
+//   CGContextFillRect(hdc->m_cgcontext, rectangle);
 //   cg_release_color(color);
 //}
 
@@ -347,9 +347,9 @@ bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef
 
    }
 
-   CGRect rect = {{0,0},{(CGFloat)cx,(CGFloat)cy}};
+   CGRect rectangle_i32 = {{0,0},{(CGFloat)cx,(CGFloat)cy}};
 
-   CGContextDrawImage(cgctx, rect, inImage);
+   CGContextDrawImage(cgctx, rectangle_i32, inImage);
 
    void *data = CGBitmapContextGetData (cgctx);
 

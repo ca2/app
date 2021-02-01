@@ -12,13 +12,15 @@ class colorref_array;
 
 
 
-
+#if 0
 
 CLASS_DECL_AURA bool TextOutU(HDC hdc, i32 x, i32 y, const char * pString, i32 ca);
 
 CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const char * pString, i32 ca, LPSIZE32 psizl);
 
-CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const char * pchText, i32 cchText, RECT32 * lprc, ::u32 format);
+CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const char * pchText, i32 cchText, RECTANGLE_I32 * lprc, ::u32 format);
+
+#endif
 
 CLASS_DECL_AURA void cra_from_quada(colorref_array & colorrefa, WINRGBQUAD * prgbquad, int iCount);
 
@@ -150,7 +152,7 @@ namespace draw2d
 
    CLASS_DECL_AURA void image_copy(::image * imagethis, ::image * pimage);
    CLASS_DECL_AURA void image_create(::object * pobject, ::image * & image);
-   CLASS_DECL_AURA void image_create_image(::image * pimage,  const ::size & size);
+   CLASS_DECL_AURA void image_create_image(::image * pimage,  const ::size_i32 & size);
    CLASS_DECL_AURA unsigned int * image_get_data(::image * pimage);
    CLASS_DECL_AURA graphics * image_get_graphics(::image * pimage);
 
@@ -161,7 +163,7 @@ namespace draw2d
 
 
 CLASS_DECL_AURA void draw_freetype_bitmap(::image * pm_p, i32 dx, i32 dy, void * pftbitmap, int x, int y);
-CLASS_DECL_AURA void draw_freetype_bitmap(::image * pm_p, i32 dx, i32 dy, void * pftbitmap, int x, int y, byte a, byte rect, byte g, byte b);
+CLASS_DECL_AURA void draw_freetype_bitmap(::image * pm_p, i32 dx, i32 dy, void * pftbitmap, int x, int y, byte a, byte rectangle_i32, byte g, byte b);
 
 
 
@@ -229,6 +231,9 @@ namespace draw2d
 
 
 } // namespace draw2d
+
+
+#include "aura/windowing/icon.h"
 
 
 #include "cursor.h"

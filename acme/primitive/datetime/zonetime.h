@@ -14,7 +14,7 @@ namespace datetime
       time_t        m_iZoneOffset;
 
 
-      static zonetime WINAPI get_current_time(time_t iZone) noexcept;
+      static zonetime get_current_time(time_t iZone) noexcept;
 
       zonetime() noexcept;
       zonetime(const zonetime & zonetime) noexcept;

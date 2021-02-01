@@ -156,7 +156,7 @@ namespace user
       int                                       m_iDataValue;
       flags < enum_control_function >           m_flagsfunction;
       enum_control_data_type                    m_edatatype;
-      ::rect                                    m_rect;
+      ::rectangle_i32                                    m_rectangle;
       property_set                              m_setValue;
       int                                       m_iSubItemDisableCheckBox;
       int                                       m_iSubItemDuplicateCheckBox;
@@ -221,8 +221,8 @@ namespace user
       ::user::item                                 m_itemHover;
       ::user::item                                 m_itemHoverMouse;
       ::user::item                                 m_itemPressed;
-      ::size                                       m_sizeRestoreBroad;
-      ::size                                       m_sizeRestoreCompact;
+      ::size_i32                                       m_sizeRestoreBroad;
+      ::size_i32                                       m_sizeRestoreCompact;
       enumeration < e_non_client >                       m_flagNonClient;
       bool                                         m_bTrackMouseLeave;
       bool                                         m_bMouseHover;
@@ -230,10 +230,10 @@ namespace user
       int                                          m_iMouseMoveSkipCount;
       int                                          m_iMouseMoveSkipSquareDistance;
       ::millis                                     m_millisMouseMoveSkip;
-      ::point                                      m_pointMouseMoveSkip;
+      ::point_i32                                      m_pointMouseMoveSkip;
       ::millis                                     m_millisMouseMovePeriod;
       bool                                         m_bMouseMovePending;
-      ::point                                      m_pointMouseMove;
+      ::point_i32                                      m_pointMouseMove;
       bool                                         m_bNeedLoadFormData;
       bool                                         m_bNeedSaveFormData;
       millis                                         m_millisLastRedraw;
@@ -241,7 +241,7 @@ namespace user
       __pointer(::user::form)                      m_pform;
       ::color                                      m_colorBackground;
       bool                                         m_bWorkspaceFullScreen;
-      point                                        m_pointScroll;
+      point_i32                                        m_pointScroll;
       bool                                         m_bHideOnTransparentFrame;
       bool                                         m_bOffScreenRender;
       bool                                         m_bMoveWindow;
@@ -261,7 +261,7 @@ namespace user
       ::millis                                     m_millisMouseMoveIgnore;
       __pointer(alpha_source)                      m_palphasource;
       double                                       m_dItemHeight;
-      point                                        m_pointMoveCursor;
+      point_i32                                        m_pointMoveCursor;
       bool                                         m_bDefaultWalkPreTranslateParentTree;
       __pointer(::aura::drawable)                  m_pdrawableBackground;
       bool                                         m_bBackgroundBypass;
@@ -427,7 +427,7 @@ namespace user
 
       virtual bool is_full_screen_enabled() const;
 
-      virtual bool get_element_rect(RECT32* prect, enum_element eelement);
+      virtual bool get_element_rect(RECTANGLE_I32* prectangle, enum_element eelement);
 
       virtual enum_element get_default_element() const;
       virtual ::draw2d::font_pointer get_font(style * pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
@@ -435,12 +435,12 @@ namespace user
       virtual enum_translucency get_translucency(style* pstyle) const;
       virtual int get_int(style* pstyle, enum_int eint, ::user::enum_state estate = e_state_none, int iDefault = 0) const;
       virtual double get_double(style* pstyle, enum_double edouble, ::user::enum_state estate = e_state_none, double dDefault = 0.) const;
-      virtual ::rectd get_border(style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
-      inline ::rectd get_border(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_border(pstyle, get_default_element(), estate); }
-      virtual ::rectd get_padding(style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none) const;
-      inline ::rectd get_padding(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_padding(pstyle, get_default_element(), estate); }
-      virtual ::rectd get_margin(style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
-      inline ::rectd get_margin(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_margin(pstyle, get_default_element(), estate); }
+      virtual ::rectangle_f64 get_border(style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
+      inline ::rectangle_f64 get_border(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_border(pstyle, get_default_element(), estate); }
+      virtual ::rectangle_f64 get_padding(style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none) const;
+      inline ::rectangle_f64 get_padding(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_padding(pstyle, get_default_element(), estate); }
+      virtual ::rectangle_f64 get_margin(style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
+      inline ::rectangle_f64 get_margin(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_margin(pstyle, get_default_element(), estate); }
       virtual ::color get_color(style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none) const;
       inline ::color get_color(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_color(pstyle, get_default_element(), estate); }
 
@@ -550,7 +550,7 @@ namespace user
       virtual void _001OnAfterAppearance();
 
 
-      virtual void defer_restore(const ::rect& rectRequest);
+      virtual void defer_restore(const ::rectangle_i32& rectRequest);
       ::object * parent_property_set_holder() const override;
 
       virtual void set_reposition(bool bSetThis = true);
@@ -594,17 +594,17 @@ namespace user
 
       virtual void sketch_prepare_window_minimize(::e_activation eactivation) override;
       virtual void sketch_prepare_window_maximize() override;
-      virtual void sketch_prepare_window_full_screen(const ::rect& rectHint = nullptr) override;
+      virtual void sketch_prepare_window_full_screen(const ::rectangle_i32& rectHint = nullptr) override;
       virtual void sketch_prepare_window_restore(edisplay edisplay) override;
       virtual void sketch_prepare_window_dock(edisplay edisplay) override;
 
 
-      inline void get_client_rect(LPRECT32 lprect, enum_layout elayout = e_layout_design) const { layout().state(elayout).client_rect(lprect); }
-      inline ::rect get_client_rect(enum_layout elayout = e_layout_design) const { return layout().state(elayout).client_rect(); }
+      inline void get_client_rect(RECTANGLE_I32 * lprect, enum_layout elayout = e_layout_design) const { layout().state(elayout).client_rect(lprect); }
+      inline ::rectangle_i32 get_client_rect(enum_layout elayout = e_layout_design) const { return layout().state(elayout).client_rect(); }
 
 
-      virtual void get_window_rect(LPRECT32 lprect, enum_layout elayout = e_layout_design) const { *lprect = get_window_rect(elayout); }
-      virtual ::rect get_window_rect(enum_layout elayout = e_layout_design) const;
+      virtual void get_window_rect(RECTANGLE_I32 * lprect, enum_layout elayout = e_layout_design) const { *lprect = get_window_rect(elayout); }
+      virtual ::rectangle_i32 get_window_rect(enum_layout elayout = e_layout_design) const;
 
 
       inline bool set_prodevian() { return add_prodevian(this); }
@@ -654,7 +654,7 @@ namespace user
       virtual bool set_cursor(e_cursor ecursor) override;
 
 
-      virtual ::point get_cursor_pos() const override;
+      virtual ::point_i32 get_cursor_pos() const override;
 
 
       virtual bool is_left_button_pressed() const;
@@ -862,16 +862,16 @@ namespace user
 
       virtual bool on_keyboard_focus(::user::primitive* pfocus) override;
 
-      virtual void get_child_rect(RECT32* prect);
+      virtual void get_child_rect(RECTANGLE_I32* prectangle);
 
-      inline auto get_child_rect() { ::rect rect(e_no_init); get_child_rect(&rect); return rect; }
+      inline auto get_child_rect() { ::rectangle_i32 rectangle(e_no_initialize); get_child_rect(&rectangle); return rectangle; }
 
-      virtual bool scroll_bar_get_client_rect(RECT32* prect);
+      virtual bool scroll_bar_get_client_rect(RECTANGLE_I32* prectangle);
 
       virtual void on_visual_applied();
 
-      virtual ::sized _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics) override;
-      virtual ::sized _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics) override;
+      virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics) override;
+      virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics) override;
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
       virtual void on_reposition() override;
@@ -882,13 +882,13 @@ namespace user
 
       virtual void defer_save_window_placement();
 
-#ifdef WINDOWS_DESKTOP
-
-      virtual bool GetWindowPlacement(WINDOWPLACEMENT* pwndpl);
-
-      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* pwndpl);
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      virtual bool GetWindowPlacement(WINDOWPLACEMENT* pwndpl);
+//
+//      virtual bool SetWindowPlacement(const WINDOWPLACEMENT* pwndpl);
+//
+//#endif
 
 
       virtual bool pre_create_window(::user::system * pusersystem) override;
@@ -911,7 +911,7 @@ namespace user
 
       //virtual bool create_window_ex(__pointer(::user::system) pcs, ::user::interaction* puiParent = nullptr, const ::id& id = ::id()) override;
       enum AdjustType { adjustBorder = 0, adjustOutside = 1 };
-      virtual void CalcWindowRect(RECT32* pClientRect, ::u32 nAdjustType = adjustBorder) override;
+      virtual void CalcWindowRect(RECTANGLE_I32* pClientRect, ::u32 nAdjustType = adjustBorder) override;
 
 
       virtual bool IsTopParentActive() override;
@@ -934,19 +934,19 @@ namespace user
       virtual void finalize() override;
 
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
+//
+//      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,
+//         ::draw2d::region* prgnUpdate = nullptr,
+//         ::u32 flags = RDW_INVALIDATE | RDW_ERASE) override;
+//
+//#else
 
-      virtual bool RedrawWindow(const ::rect& rectUpdate = nullptr,
-         ::draw2d::region* prgnUpdate = nullptr,
-         ::u32 flags = RDW_INVALIDATE | RDW_ERASE) override;
-
-#else
-
-      virtual bool RedrawWindow(const ::rect& rectUpdate = nullptr,
+      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,
          ::draw2d::region* prgnUpdate = nullptr,
          ::u32 flags = 0) override;
 
-#endif
+//#endif
 
 
       virtual void register_drop_target();
@@ -955,18 +955,18 @@ namespace user
 
 
       virtual void UpdateWindow() override;
-      virtual void SetRedraw(bool bRedraw = TRUE) override;
-      virtual bool GetUpdateRect(RECT32* prect, bool bErase = FALSE) override;
+      virtual void SetRedraw(bool bRedraw = true) override;
+      virtual bool GetUpdateRect(RECTANGLE_I32* prectangle, bool bErase = false) override;
 
-      virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = FALSE) override;
-      virtual void Invalidate(bool bErase = TRUE) override;
-      virtual void InvalidateRect(const ::rect& rect, bool bErase = TRUE) override;
+      virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false) override;
+      virtual void Invalidate(bool bErase = true) override;
+      virtual void InvalidateRect(const ::rectangle_i32& rectangle, bool bErase = true) override;
 
-      virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = TRUE) override;
-      virtual void ValidateRect(const ::rect& rect) override;
+      virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true) override;
+      virtual void ValidateRect(const ::rectangle_i32& rectangle) override;
 
       virtual void ValidateRgn(::draw2d::region* pRgn) override;
-      virtual void ShowOwnedPopups(bool bShow = TRUE) override;
+      virtual void ShowOwnedPopups(bool bShow = true) override;
 
 
       virtual u32 GetStyle() const override;
@@ -975,23 +975,23 @@ namespace user
       virtual bool ModifyStyleEx(u32 dwRemove, u32 dwAdd, ::u32 nFlags = 0) override;
 
       using ::user::primitive::send;
-      virtual LRESULT send(::message::base* pbase) override;
+      virtual lresult send(::message::base* pbase) override;
       virtual bool post(::message::base* pbase) override;
-      virtual LRESULT send_message(const ::id & id, WPARAM wparam = 0, lparam lparam = 0) override;
+      virtual lresult send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0) override;
 
-      virtual LRESULT message_call(const ::id & id, WPARAM wparam = 0, lparam lparam = 0) override;
-      virtual LRESULT message_call(message::base* base) override;
+      virtual lresult message_call(const ::id & id, wparam wparam = 0, lparam lparam = 0) override;
+      virtual lresult message_call(message::base* base) override;
 
 
 #ifdef LINUX
 
-      virtual LRESULT send_x11_event(void* pevent) override; // XEvent *
+      virtual lresult send_x11_event(void* pevent) override; // XEvent *
 
 #endif
 
-      virtual bool post_message(const ::id & id, WPARAM wParam = 0, lparam lParam = 0) override;
+      virtual bool post_message(const ::id & id, wparam wParam = 0, lparam lParam = 0) override;
 
-      virtual bool post_object(const ::id & id, WPARAM wParam, lparam lParam);
+      virtual bool post_object(const ::id & id, wparam wParam, lparam lParam);
 
 
       //virtual void SetWindowDisplayChanged() override;
@@ -1003,7 +1003,7 @@ namespace user
       virtual bool KillTimer(uptr uEvent) override;
 
       virtual bool is_this_enabled() const override;
-      virtual bool enable_window(bool bEnable = TRUE) override;
+      virtual bool enable_window(bool bEnable = true) override;
 
       //virtual void process_queue(::draw2d::graphics_pointer & pgraphics);
 
@@ -1057,7 +1057,7 @@ namespace user
       virtual void edit_on_text(string str) override;
       virtual void edit_on_sel(strsize iBeg, strsize iEnd) override;
 
-      virtual void get_text_composition_area(::rect & r);
+      virtual void get_text_composition_area(::rectangle_i32 & r);
       virtual void on_text_composition(string str) override;
       virtual void on_text_composition_done() override;
 
@@ -1137,8 +1137,8 @@ namespace user
       DECL_GEN_SIGNAL(_001OnTextComposition);
 
 
-      virtual bool _001IsPointInside(::point point) override;
-      virtual ::user::interaction* _001FromPoint(::point point, bool bTestedIfParentVisible = false) override;
+      virtual bool _001IsPointInside(::point_i32 point) override;
+      virtual ::user::interaction* _001FromPoint(::point_i32 point, bool bTestedIfParentVisible = false) override;
 
       virtual void OnLinkClick(const char* psz, const char* pszTarget = nullptr) override;
 
@@ -1195,7 +1195,7 @@ namespace user
       virtual ::user::frame * top_level_frame() const override;
 
 
-      virtual void send_message_to_descendants(const ::id & id, WPARAM wParam = 0, lparam lParam = 0, bool bDeep = TRUE, bool bOnlyPerm = FALSE) override;
+      virtual void send_message_to_descendants(const ::id & id, wparam wParam = 0, lparam lParam = 0, bool bDeep = true, bool bOnlyPerm = false) override;
 
       virtual void route_message_to_descendants(::message::message* pmessage) override;
 
@@ -1209,10 +1209,10 @@ namespace user
 
       virtual ::user::interaction* get_focusable_descendant() const override;
 
-      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag = reposDefault, RECT32* prectParam = nullptr, const ::rect& rectClient = nullptr, bool bStretch = true) override;
+      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32* prectParam = nullptr, const ::rectangle_i32& rectClient = nullptr, bool bStretch = true) override;
 
-      virtual ::user::interaction* ChildWindowFromPoint(const ::point& point) override;
-      virtual ::user::interaction* ChildWindowFromPoint(const ::point& point, ::u32 nFlags) override;
+      virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point) override;
+      virtual ::user::interaction* ChildWindowFromPoint(const ::point_i32& point, ::u32 nFlags) override;
 
       virtual ::user::interaction* get_next_sibling_window() override;
 
@@ -1232,7 +1232,7 @@ namespace user
 
 
       virtual void message_handler(::message::base* pbase) override;
-      virtual LRESULT message_handler(LPMESSAGE pmessage) override;
+      //virtual lresult message_handler(MESSAGE * pmessage) override;
 
       virtual void GuieProc(::message::message* pmessage) override;
 
@@ -1260,10 +1260,10 @@ namespace user
 
       virtual bool set_icon(::draw2d::icon * picon, bool bSmall) override;
 
-      virtual void viewport_screen_to_client(POINT32* ppt) override;
-      virtual void viewport_client_to_screen(POINT32* ppt) override;
-      virtual void viewport_client_to_screen(RECT32* ppt) override;
-      virtual void viewport_screen_to_client(RECT32* ppt) override;
+      virtual void viewport_screen_to_client(POINT_I32* ppt) override;
+      virtual void viewport_client_to_screen(POINT_I32* ppt) override;
+      virtual void viewport_client_to_screen(RECTANGLE_I32* ppt) override;
+      virtual void viewport_screen_to_client(RECTANGLE_I32* ppt) override;
 
 
       virtual string get_window_default_matter() override;
@@ -1305,8 +1305,8 @@ namespace user
 
 
 
-      //virtual bool track_popup_menu(::user::menu_item* pitem, i32 iFlags, const ::point& point) override;
-      //virtual __pointer(::user::menu) track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point& pointScreen = nullptr, const ::size& sizeMinimum = nullptr) override;
+      //virtual bool track_popup_menu(::user::menu_item* pitem, i32 iFlags, const ::point_i32& point) override;
+      //virtual __pointer(::user::menu) track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32& pointScreen = nullptr, const ::size_i32& sizeMinimum = nullptr) override;
 
 
       virtual void _001OnExitIconic() override;
@@ -1329,48 +1329,48 @@ namespace user
 
       virtual void keep_alive(::object* pliveobject = nullptr) override;
 
-      virtual void move_to(const ::point& point);
-      virtual void set_size(const ::size& size);
+      virtual void move_to(const ::point_i32& point);
+      virtual void set_size(const ::size_i32& size);
       virtual void move_to(i32 x, i32 y);
       virtual void set_size(i32 cx, i32 cy);
-      virtual void set_dim(const ::point& point, const ::size& size);
-      virtual void place(const ::rect& rect);
+      virtual void set_dim(const ::point_i32& point, const ::size_i32& size);
+      virtual void place(const ::rectangle_i32& rectangle);
       virtual void set_dim(i32 x, i32 y, i32 cx, i32 cy);
-      virtual interaction& operator =(const ::rect& rect);
+      virtual interaction& operator =(const ::rectangle_i32& rectangle);
 
 
       virtual void activation(::e_activation eactivation);
 
 
-      virtual void display_child(const ::rect & rect);
+      virtual void display_child(const ::rectangle_i32 & rectangle);
 
 
-      virtual ::user::interaction* best_top_level_parent(RECT32* prect);
+      virtual ::user::interaction* best_top_level_parent(RECTANGLE_I32* prectangle);
 
-      //virtual void get_window_rect(RECT32 * prect) const override;
+      //virtual void get_window_rect(RECTANGLE_I32 * prectangle) const override;
 
-      virtual index get_zoneing(::rect* prect, const ::rect& rect, edisplay edisplay);
+      virtual index get_zoneing(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, edisplay edisplay);
 
       virtual edisplay initial_restore_display();
 
 
 
-      virtual index calculate_broad_and_compact_restore(RECT32* prectWkspace = nullptr, SIZE32* psizeMin = nullptr, const ::rect& rectHint = nullptr);
+      virtual index calculate_broad_and_compact_restore(RECTANGLE_I32* prectWkspace = nullptr, SIZE_I32* psizeMin = nullptr, const ::rectangle_i32& rectHint = nullptr);
 
        //virtual void reset_window_state();
 
-      virtual index make_zoneing(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = zorder_top);
-      virtual index best_zoneing(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = zorder_top);
-      virtual index best_monitor(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
-      virtual index best_wkspace(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
-      virtual index good_restore(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top, edisplay edisplay = e_display_restore);
-      virtual index good_iconify(RECT32* prect, const ::rect& rect = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index make_zoneing(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index best_zoneing(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index best_monitor(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index best_wkspace(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index good_restore(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top, edisplay edisplay = e_display_restore);
+      virtual index good_iconify(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
 
-      virtual index good_move(RECT32* prect, const ::rect& rect = nullptr, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
-      virtual index get_best_zoneing(edisplay& edisplay, ::rect* prect, const ::rect& rectRequest = ::rect(), bool bPreserveSize = false);
-      virtual index get_best_wkspace(::rect* prect, const ::rect& rect, ::e_activation eactivation = e_activation_default);
+      virtual index good_move(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index get_best_zoneing(edisplay& edisplay, ::rectangle_i32* prectangle, const ::rectangle_i32& rectRequest = ::rectangle_i32(), bool bPreserveSize = false);
+      virtual index get_best_wkspace(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
 
-      virtual bool get_rect_normal(RECT32* prect);
+      virtual bool get_rect_normal(RECTANGLE_I32* prectangle);
 
 
       virtual scroll_bar* get_horizontal_scroll_bar();
@@ -1386,19 +1386,19 @@ namespace user
       virtual void offset_viewport_offset_x(::draw2d::graphics_pointer & pgraphics, int x);
       virtual void offset_viewport_offset_y(::draw2d::graphics_pointer & pgraphics, int y);
       virtual void offset_viewport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y);
-      virtual bool validate_viewport_offset(point& point);
+      virtual bool validate_viewport_offset(point_i32& point);
       virtual void on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics);
       virtual void on_viewport_offset(::draw2d::graphics_pointer & pgraphics);
-      virtual ::point get_viewport_offset();
-      virtual ::sized get_total_size();
+      virtual ::point_i32 get_viewport_offset();
+      virtual ::size_f64 get_total_size();
       virtual void on_change_view_size(::draw2d::graphics_pointer & pgraphics);
-      virtual ::sized get_page_size();
-      virtual ::e_status set_total_size(const ::sized& size);
-      virtual ::e_status set_page_size(const ::sized& size);
-      virtual ::point get_parent_accumulated_scroll(enum_layout elayout = e_layout_design) const;
-      virtual ::point get_parent_viewport_offset() const;
-      virtual ::point get_ascendant_viewport_offset() const;
-      virtual void get_margin_rect(RECT32* prectMargin);
+      virtual ::size_f64 get_page_size();
+      virtual ::e_status set_total_size(const ::size_f64& size);
+      virtual ::e_status set_page_size(const ::size_f64& size);
+      virtual ::point_i32 get_parent_accumulated_scroll(enum_layout elayout = e_layout_design) const;
+      virtual ::point_i32 get_parent_viewport_offset() const;
+      virtual ::point_i32 get_ascendant_viewport_offset() const;
+      virtual void get_margin_rect(RECTANGLE_I32* prectMargin);
 
       virtual int get_final_x_scroll_bar_width();
       virtual int get_final_y_scroll_bar_width();
@@ -1411,7 +1411,7 @@ namespace user
 
       virtual bool is_composite() override;
 
-      virtual ::size get_window_minimum_size();
+      virtual ::size_i32 get_window_minimum_size();
 
 
       virtual void UpDownTargetAttach(::user::interaction* pupdown);
@@ -1505,7 +1505,7 @@ namespace user
 
       virtual void defer_notify_mouse_move();
 
-      virtual void defer_notify_mouse_move(bool& bPointInside, point& pointLast);
+      virtual void defer_notify_mouse_move(bool& bPointInside, point_i32& pointLast);
 
       virtual bool has_pending_graphical_update() override;
 
@@ -1538,8 +1538,8 @@ namespace user
       virtual int client_width();
       virtual int client_height();
 
-      virtual ::sized get_size();
-      virtual ::sized get_client_size();
+      virtual ::size_f64 get_size();
+      virtual ::size_f64 get_client_size();
 
       virtual void resize_to_fit(::draw2d::graphics_pointer& pgraphics);
 
@@ -1575,17 +1575,17 @@ namespace user
       virtual bool simple_on_control_event(::message::message* pmessage, ::user::enum_event eevent);
 
       using ::aura::drawable::hit_test;
-      virtual void hit_test(::user::item& item, const ::point & point) override;
+      virtual void hit_test(::user::item& item, const ::point_i32 & point) override;
 
       using ::aura::drawable::on_hit_test;
       virtual void on_hit_test(::user::item & item) override;
 
-      virtual bool update_hover(const ::point & point, bool bAvoidRedraw = true);
+      virtual bool update_hover(const ::point_i32 & point, bool bAvoidRedraw = true);
       virtual bool update_hover(::message::mouse * pmouse, bool bAvoidRedraw = true);
 
       virtual bool get_rect(::user::item& item);
 
-      inline auto rect(const ::user::item& item) { get_rect((::user::item &) item); return item.m_rect; }
+      inline auto rectangle_i32(const ::user::item& item) { get_rect((::user::item &) item); return item.m_rectangle; }
 
       virtual __pointer(::user::item) add_user_item(const ::user::item & item);
 
@@ -1612,11 +1612,11 @@ namespace user
       virtual bool has_function(enum_control_function econtrolfunction) const;
       //virtual enum_control_type get_control_type() const;
       //virtual void _003CallCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
-      //virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) pwnd, const ::id & id, WPARAM wparam, LPARAM lparam, LRESULT& lresult);
+      //virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) pwnd, const ::id & id, wparam wparam, lparam lparam, lresult& lresult);
       //virtual void _003OnCustomDraw(::draw2d::graphics_pointer& pgraphics, ::aura::draw_context* pitem);
       //virtual void _003CustomWindowProc(::message::message* pmessage);
       //virtual form_list * get_form_list();
-      //virtual bool _001IsPointInside(::point point) override;
+      //virtual bool _001IsPointInside(::point_i32 point) override;
       //control null() { return control(); }
       //bool Validate(string& str);
       bool get_data(__pointer(::user::interaction) pwnd, ::payload& payload);
@@ -1626,14 +1626,14 @@ namespace user
       // index GetEditItem();
       //virtual ::user::interaction * ControlExGetWnd();
       //using ::user::box::get_client_rect;
-      //virtual bool get_client_rect(RECT32 * prect) override;
+      //virtual bool get_client_rect(RECTANGLE_I32 * prectangle) override;
       //using ::user::box::get_window_rect;
-      //virtual bool get_window_rect(RECT32 * prect) override;
+      //virtual bool get_window_rect(RECTANGLE_I32 * prectangle) override;
       //bool operator == (const class ::user::control_descriptor& descriptor) const;
       //bool operator == (const class control& control) const;
       virtual bool IsControlCommandEnabled();
       virtual void EnableControlCommand(bool bEnable);
-      //virtual void BaseControlExOnMouseMove(::u32 nFlags, const ::point & point);
+      //virtual void BaseControlExOnMouseMove(::u32 nFlags, const ::point_i32 & point);
       //virtual void on_hit_test(::user::item & item) override;
       //DECL_GEN_SIGNAL(_001OnCreate);
       //DECL_GEN_SIGNAL(_001OnMouseMove);
@@ -1647,8 +1647,8 @@ namespace user
       //virtual void on_control_event(::user::control_event* pevent) override;
       //virtual bool simple_on_control_event(::message::message * pmessage, ::user::enum_event eevent) override;
       //virtual void walk_pre_translate_tree(::message::message * pmessage,__pointer(::user::interaction) puiStop);
-      //virtual bool get_element_rect(RECT32* prect, enum_element eelement);
-      virtual void get_simple_drop_down_open_arrow_polygon(pointd_array& pointa);
+      //virtual bool get_element_rect(RECTANGLE_I32* prectangle, enum_element eelement);
+      virtual void get_simple_drop_down_open_arrow_polygon(point_f64_array& pointa);
       // control member functions END
 
 
@@ -1728,22 +1728,22 @@ namespace user
 
       bool _001InitialFramePosition();
 
-      bool _001InitialFramePosition(LPRECT32 lprect, const rectd & rectOptionalRateOrSize = {0., 0., 0., 0.});
+      bool _001InitialFramePosition(RECTANGLE_I32 * lprect, const rectangle_f64 & rectOptionalRateOrSize = {0., 0., 0., 0.});
 
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate() override;
 
 
 
       template < typename SIZE_SHIFTABLE >
-      inline auto screen_to_client(const SIZE_SHIFTABLE& o, enum_layout elayout = e_layout_design) { return o - ::size(layout().screen_origin(elayout)) + ::size(get_parent_accumulated_scroll(elayout)); }
+      inline auto screen_to_client(const SIZE_SHIFTABLE& o, enum_layout elayout = e_layout_design) { return o - ::size_i32(layout().screen_origin(elayout)) + ::size_i32(get_parent_accumulated_scroll(elayout)); }
 
 
       template < typename POINT_SHIFTABLE >
-      inline auto client_to_screen(const POINT_SHIFTABLE& o, enum_layout elayout = e_layout_design) { return o + layout().screen_origin(elayout) - ::size(get_parent_accumulated_scroll(elayout)); }
+      inline auto client_to_screen(const POINT_SHIFTABLE& o, enum_layout elayout = e_layout_design) { return o + layout().screen_origin(elayout) - ::size_i32(get_parent_accumulated_scroll(elayout)); }
 
 
       template < typename SIZE_SHIFTABLE >
-      inline auto parent_to_client(const SIZE_SHIFTABLE& o, enum_layout elayout = e_layout_design) { return o - ::size(layout().origin(elayout)); }
+      inline auto parent_to_client(const SIZE_SHIFTABLE& o, enum_layout elayout = e_layout_design) { return o - ::size_i32(layout().origin(elayout)); }
 
 
       template < typename POINT_SHIFTABLE >
@@ -1785,20 +1785,20 @@ namespace user
       template < typename POINT_OFFSETABLE >
       inline void _001ClientToParent(POINT_OFFSETABLE* po, enum_layout elayout = e_layout_design) { _001ClientToParent(*po, elayout); }
 
-      inline void ScreenToClient(RECT32* prect, enum_layout elayout = e_layout_design) { ::rect_sub(prect, layout().screen_origin(elayout)); }
-      inline void ScreenToClient(POINT32* ppoint, enum_layout elayout = e_layout_design) { ::point_sub(ppoint, layout().screen_origin(elayout)); }
+      inline void ScreenToClient(RECTANGLE_I32* prectangle, enum_layout elayout = e_layout_design) { ::rect_sub(prectangle, layout().screen_origin(elayout)); }
+      inline void ScreenToClient(POINT_I32* ppoint, enum_layout elayout = e_layout_design) { ::point_sub(ppoint, layout().screen_origin(elayout)); }
 
 
-      inline void ClientToScreen(RECT32* prect, enum_layout elayout = e_layout_design) { ::rect_add(prect, layout().screen_origin(elayout)); }
-      inline void ClientToScreen(POINT32* ppoint, enum_layout elayout = e_layout_design) { ::point_add(ppoint, layout().screen_origin(elayout)); }
+      inline void ClientToScreen(RECTANGLE_I32* prectangle, enum_layout elayout = e_layout_design) { ::rect_add(prectangle, layout().screen_origin(elayout)); }
+      inline void ClientToScreen(POINT_I32* ppoint, enum_layout elayout = e_layout_design) { ::point_add(ppoint, layout().screen_origin(elayout)); }
 
 
-      inline void ParentToClient(RECT32* prect, enum_layout elayout = e_layout_design) { ::rect_sub(prect, layout().origin(elayout)); }
-      inline void ParentToClient(POINT32* ppoint, enum_layout elayout = e_layout_design) { ::point_sub(ppoint, layout().origin(elayout)); }
+      inline void ParentToClient(RECTANGLE_I32* prectangle, enum_layout elayout = e_layout_design) { ::rect_sub(prectangle, layout().origin(elayout)); }
+      inline void ParentToClient(POINT_I32* ppoint, enum_layout elayout = e_layout_design) { ::point_sub(ppoint, layout().origin(elayout)); }
 
 
-      inline void ClientToParent(RECT32* prect, enum_layout elayout = e_layout_design) { ::rect_add(prect, layout().origin(elayout)); }
-      inline void ClientToParent(POINT32* ppoint, enum_layout elayout = e_layout_design) { ::point_add(ppoint, layout().origin(elayout)); }
+      inline void ClientToParent(RECTANGLE_I32* prectangle, enum_layout elayout = e_layout_design) { ::rect_add(prectangle, layout().origin(elayout)); }
+      inline void ClientToParent(POINT_I32* ppoint, enum_layout elayout = e_layout_design) { ::point_add(ppoint, layout().origin(elayout)); }
 
 
    };

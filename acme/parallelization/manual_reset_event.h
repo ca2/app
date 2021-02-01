@@ -16,6 +16,7 @@ TYPE * m_pnext; \
 ::factory::reusable_factory < TYPE, TYPE > * m_pfactory; \
 virtual void delete_this() { if(m_pfactory) m_pfactory->return_back(this); else delete this;}
 
+
 class CLASS_DECL_ACME manual_reset_event :
    public ::event
 {
@@ -33,42 +34,43 @@ public:
 };
 
 
-class CLASS_DECL_ACME long_counter :
+class CLASS_DECL_ACME i32_counter :
    public manual_reset_event
 {
 public:
 
 
-   interlocked_long m_long;
+   interlocked_i32      m_i;
 
    
-   long_counter(long lCount) : m_long(lCount) {}
+   i32_counter(long lCount) : m_i(lCount) {}
 
 
    long operator ++()
    {
 
-      long l = --m_long;
+      auto i = --m_i;
 
-      if (l <= 0)
+      if (i <= 0)
       {
 
          SetEvent();
 
       }
 
-      return l;
+      return i;
 
    }
+
 
    long operator ++(int)
    {
 
-      long l = m_long;
+      auto i = m_i;
    
       ++(*this);
 
-      return l;
+      return i;
 
    }
 
@@ -81,7 +83,8 @@ class CLASS_DECL_ACME counter :
 public:
 
 
-   interlocked_count m_count;
+   interlocked_count       m_count;
+
 
    counter(::count lCount) : m_count(lCount) {}
 

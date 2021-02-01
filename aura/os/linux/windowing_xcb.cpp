@@ -45,7 +45,7 @@ mq * get_mq(ithread_t idthread, bool bCreate);
 void oswindow_set_active_window(oswindow oswindow);
 
 
-CLASS_DECL_AURA void update_application_session_cursor(void * pvoidApp, const point & pointCursor);
+CLASS_DECL_AURA void update_application_session_cursor(void * pvoidApp, const point_i32 & pointCursor);
 
 
 

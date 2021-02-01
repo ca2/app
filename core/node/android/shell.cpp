@@ -290,7 +290,7 @@ namespace android
 //            nullptr,
 //            lpiextractimage)))
 //         {
-//            SIZE32 s;
+//            SIZE_I32 s;
 //            s.cx = 48;
 //            s.cy = 48;
 //            ::u32 dwDepth = 32;
@@ -1094,7 +1094,7 @@ namespace android
    //int shell::run()
    //{
 
-   //   // These images are the Shell standard extra-large icon size. This is typically 48x48, but the size can be customized by the user.
+   //   // These images are the Shell standard extra-large icon size. This is typically 48x48, but the size_i32 can be customized by the user.
 
    //   return 0;
 
@@ -1363,7 +1363,7 @@ namespace android
                   
                pimage48->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-               pimage48->get_graphics()->stretch({ 0, 0, 48, 48 }, pimage16->get_graphics(), pimage16->rect());
+               pimage48->get_graphics()->stretch({ 0, 0, 48, 48 }, pimage16->get_graphics(), pimage16->rectangle_i32());
 
                iImage = m_pil[16]->add_image(pimage16, 0, 0);
 
@@ -1657,7 +1657,7 @@ namespace android
    //         pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
    //         pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-   //         m_pilHover[iSize]->draw(pimage->get_graphics(), iImage, ::point(), 0);
+   //         m_pilHover[iSize]->draw(pimage->get_graphics(), iImage, ::point_i32(), 0);
    //         m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
    //         m_pilHover[iSize]->m_pimage->g()->BitBlt(iImage * 48, 0, 48, 48, pimage->get_graphics());
    //         m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -1668,15 +1668,15 @@ namespace android
    //            
    //         auto & d = *m_pilHover[iSize]->m_pimage;
 
-   //         size s = m_pil[iSize]->m_pimage->get_size();
+   //         size_i32 s = m_pil[iSize]->m_pimage->get_size();
 
    //         auto pimage = __create_image(d.size());
    //         pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
    //         pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
-   //         pimage->get_graphics()->draw(::point(), d.size(), d.get_graphics());
+   //         pimage->get_graphics()->draw(::point_i32(), d.size(), d.get_graphics());
    //         pimage->get_graphics()->fill_solid_rect_dim(0, 0, d.size().cx, d.size().cy, ARGB(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
    //         m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
-   //         m_pil[iSize]->m_pimage->g()->draw(::point(), d.size(), pimage->get_graphics());
+   //         m_pil[iSize]->m_pimage->g()->draw(::point_i32(), d.size(), pimage->get_graphics());
    //         m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
    //      }

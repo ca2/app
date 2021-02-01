@@ -34,7 +34,7 @@ public:
 
    
 
-   user::enum_line_hit hit_test(const point &pointCursor, strsize &iLine, strsize &iChar);
+   user::enum_line_hit hit_test(const point_i32 &pointCursor, strsize &iLine, strsize &iChar);
 
    void install_message_routing(::channel * pchannel);
 

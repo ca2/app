@@ -106,7 +106,7 @@ class ID3_CPP_EXPORT ID3_MemoryReader : public ID3_Reader
    const char_type* _cur;
    const char_type* _end;
 protected:
-   void setBuffer(const char_type* buf, size_type size)
+   void setBuffer(const char_type* buf, size_type size_i32)
    {
       _beg = buf;
       _cur = buf;
@@ -117,11 +117,11 @@ public:
    {
       this->setBuffer(NULL, 0);
    }
-   ID3_MemoryReader(const char_type* buf, size_type size)
+   ID3_MemoryReader(const char_type* buf, size_type size_i32)
    {
       this->setBuffer(buf, size);
    };
-   ID3_MemoryReader(const char* buf, size_type size)
+   ID3_MemoryReader(const char* buf, size_type size_i32)
    {
       this->setBuffer(reinterpret_cast<const char_type*>(buf), size);
    };

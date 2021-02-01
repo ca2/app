@@ -51,7 +51,7 @@ memory::memory(const u8 * pchSrc, strsize nLength, manager * pmanager)
 
    set_size(nLength);
 
-   ASSERT(__is_valid_address(pchSrc, nLength, FALSE));
+   ASSERT(__is_valid_address(pchSrc, nLength, false));
 
    ::memcpy_dup(m_memory.m_pbStorage, pchSrc, nLength);
 

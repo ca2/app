@@ -820,7 +820,7 @@ void stream::read(double & d)
 }
 
 
-//void stream::read(POINT32 & point)
+//void stream::read(POINT_I32 & point)
 //{
 //
 //   set_fail_bit();
@@ -828,7 +828,7 @@ void stream::read(double & d)
 //}
 //
 //
-//void stream::read(SIZE32 & size)
+//void stream::read(SIZE_I32 & size)
 //{
 //
 //   set_fail_bit();
@@ -836,7 +836,7 @@ void stream::read(double & d)
 //}
 //
 //
-//void stream::read(RECT32 & rect)
+//void stream::read(RECTANGLE_I32 & rectangle)
 //{
 //
 //   set_fail_bit();

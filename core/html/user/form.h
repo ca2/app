@@ -59,7 +59,7 @@ public:
    virtual void _001SetText(const string & str, const ::action_context & action_context) override;
 
 
-   virtual void GetClientBox(::rectf & box);
+   virtual void GetClientBox(::rectangle_f32 & box);
 
 
    virtual void defer_implement();

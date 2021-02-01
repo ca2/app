@@ -40,7 +40,7 @@ namespace hotplugin
       bool                                   m_bTryInitWindow;
       bool                                   m_bWindowOk;
       bool                                   m_bOk;
-      ::rect                                 m_rect;
+      ::rectangle_i32                                 m_rectangle;
       bool                                   m_bResponsive;
       string                                 m_strEntryHallText;
       millis m_millisEntryHallTextStart;

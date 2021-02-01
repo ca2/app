@@ -25,9 +25,9 @@ namespace filehandler
          string         m_strApp;
          ::index        m_iIndex;
 
-         ::rect         m_rectItem;
-         ::rect         m_rectStatusImage;
-         ::rect         m_rectName;
+         ::rectangle_i32         m_rectItem;
+         ::rectangle_i32         m_rectStatusImage;
+         ::rectangle_i32         m_rectName;
 
          item(::layered * pobjectContext);
 
@@ -49,7 +49,7 @@ namespace filehandler
 
          void parse(::filehandler::handler * phandler, const char * pszTopic);
 
-         void on_layout(LPCRECT32 lpcrect);
+         void on_layout(const RECTANGLE_I32 * lpcrect);
          void draw(__pointer(view) pview, ::draw2d::graphics_pointer & pgraphics);
 
       };

@@ -60,15 +60,15 @@ public:
    const SHAPE & shape() const { return *(SHAPE *)raw_type(); }
 
 
-   virtual bool expand_bounding_rect(RECTD* prect) const;
+   virtual bool expand_bounding_rect(RECTANGLE_F64* prectangle) const;
 
-   virtual bool expand_bounding_rect(RECT32* prect) const;
+   virtual bool expand_bounding_rect(RECTANGLE_I32* prectangle) const;
 
-   virtual bool get_bounding_rect(RECTD* prect) const;
+   virtual bool get_bounding_rect(RECTANGLE_F64* prectangle) const;
 
-   virtual bool get_bounding_rect(RECT32* prect) const;
+   virtual bool get_bounding_rect(RECTANGLE_I32* prectangle) const;
 
-   virtual bool contains(const ::pointd& point) const;
+   virtual bool contains(const ::point_f64& point) const;
 
 };
 
@@ -141,22 +141,22 @@ public:
    virtual void * raw_type() const { return (void*) &m_shape; }
 
 
-   virtual bool expand_bounding_rect(RECTD* prect) const;
+   virtual bool expand_bounding_rect(RECTANGLE_F64* prectangle) const;
 
 
-   virtual bool expand_bounding_rect(RECT32* prect) const;
+   virtual bool expand_bounding_rect(RECTANGLE_I32* prectangle) const;
 
 
-   virtual bool get_bounding_rect(RECTD* prect) const;
+   virtual bool get_bounding_rect(RECTANGLE_F64* prectangle) const;
 
 
-   virtual bool get_bounding_rect(RECT32* prect) const;
+   virtual bool get_bounding_rect(RECTANGLE_I32* prectangle) const;
 
 
-   virtual bool contains(const ::POINT32 & point) const;
+   virtual bool contains(const ::POINT_I32 & point) const;
 
 
-   virtual bool contains(const ::POINTD & point) const;
+   virtual bool contains(const ::POINT_F64 & point) const;
 
 
 };
@@ -165,8 +165,8 @@ public:
 using arc_shape = _shape < ::arc, e_shape_arc>;
 //using line_shape = _shape < ::line, e_shape_line >;
 using lined_shape = _shape < ::lined, e_shape_lined >;
-//using rect_shape = _shape < ::rect, e_shape_rect >;
-using rectd_shape = _shape < ::rectd, e_shape_rectd >;
+//using rect_shape = _shape < ::rectangle_i32, e_shape_rect >;
+using rectd_shape = _shape < ::rectangle_f64, e_shape_rectd >;
 //using oval_shape = _shape < ::oval, e_shape_oval >;
 using ovald_shape = _shape < ::ovald, e_shape_ovald >;
 
@@ -206,18 +206,18 @@ inline ___shape* __new_shape(const ::linesd& lines);
 
 
 //template < >
-//inline ___shape* __new_shape(const ::rect& rect)
+//inline ___shape* __new_shape(const ::rectangle_i32& rectangle)
 //{
 //
-//   return new rect_shape(rect);
+//   return new rect_shape(rectangle);
 //
 //}
 
 template < >
-inline ___shape* __new_shape(const ::rectd& rect)
+inline ___shape* __new_shape(const ::rectangle_f64& rectangle)
 {
 
-   return new rectd_shape(rect);
+   return new rectd_shape(rectangle);
 
 }
 

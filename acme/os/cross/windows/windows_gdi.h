@@ -20,7 +20,7 @@ struct tagLOGBRUSH;
 struct tagLOGRGN;
 
 //
-//struct POINT32
+//struct POINT_I32
 //{
 //
 //   ::i32  x;
@@ -29,7 +29,7 @@ struct tagLOGRGN;
 //};
 //
 //
-//typedef POINT32 * LPPOINT32;
+//typedef POINT_I32 * LPPOINT32;
 
 
 /* Ternary raster operations */
@@ -404,7 +404,7 @@ typedef PATTERN          *LPPATTERN;
 typedef struct tagLOGPEN
 {
    ::u32        lopnStyle;
-   POINT32       lopnWidth;
+   POINT_I32       lopnWidth;
    color32_t    lopnColor;
 } LOGPEN,*PLOGPEN,*NPLOGPEN,*LPLOGPEN;
 
@@ -708,7 +708,7 @@ HBITMAP CreateCompatibleBitmap(HDC hdc,i32 cx,i32 cy);
 int_bool BitBlt(HDC hdcDest,i32 nXDest,i32 nYDest,i32 nWidth,i32 nHeight,HDC hdcSrc,i32 nXSrc,i32 nYSrc,::u32 dwRop);
 
 
-//int_bool SetViewportOrgEx(HDC hdc, i32 X, i32 Y, POINT32 * lpPoint);
+//int_bool SetViewportOrgEx(HDC hdc, i32 X, i32 Y, POINT_I32 * lpPoint);
 
 
 
@@ -716,7 +716,7 @@ int_bool BitBlt(HDC hdcDest,i32 nXDest,i32 nYDest,i32 nWidth,i32 nHeight,HDC hdc
 
 //int_bool get_window_rect(oswindow hwnd,LPRECT32 lprect);
 
-i32 FillRect(HDC hDC,const RECT32 *lprc,HBRUSH hbr);
+i32 FillRect(HDC hDC,const RECTANGLE_I32 *lprc,HBRUSH hbr);
 
 //int_bool ReleaseDC(oswindow hwnd,HDC hdc);
 
@@ -730,14 +730,14 @@ HBRUSH CreateSolidBrush(color32_t color);
 typedef struct tagENHMETARECORD
 {
    ::u32   iType;              // Record type EMR_XXX
-   ::u32   nSize;              // Record size in bytes
+   ::u32   nSize;              // Record size_i32 in bytes
    ::u32   dParm[1];           // Parameters
 } ENHMETARECORD,*PENHMETARECORD,*LPENHMETARECORD;
 
 typedef struct tagENHMETAHEADER
 {
    ::u32   iType;              // Record typeEMR_HEADER
-   ::u32   nSize;              // Record size in bytes.  This may be greater
+   ::u32   nSize;              // Record size_i32 in bytes.  This may be greater
    // than the sizeof(ENHMETAHEADER).
    RECTL   rclBounds;          // Inclusive-inclusive bounds in device units
    RECTL   rclFrame;           // Inclusive-inclusive Picture Frame of metafile in .01 mm units

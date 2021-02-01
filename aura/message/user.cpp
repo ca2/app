@@ -25,7 +25,7 @@ namespace message
 {
 
 
-   void create::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
+   void create::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam)
    {
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
@@ -153,7 +153,7 @@ namespace message
    }
 
 
-   void activate::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void activate::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
    {
 
       base::set(oswindow, playeredUserPrimitive, id, wparam, lparam);
@@ -211,9 +211,9 @@ namespace message
 
    // https://stackoverflow.com/questions/15966642/how-do-you-tell-lshift-apart-from-rshift-in-wm-keydown-events
 
-   WPARAM MapLeftRightKeys(WPARAM vk, LPARAM lParam)
+   wparam MapLeftRightKeys(wparam vk, lparam lParam)
    {
-      WPARAM new_vk = vk;
+      wparam new_vk = vk;
       ::u32 scancode = (lParam & 0x00ff0000) >> 16;
       int extended = (lParam & 0x01000000) != 0;
       switch (vk)
@@ -240,7 +240,7 @@ namespace message
 #endif
 
 
-   void key::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void key::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
    {
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
@@ -278,7 +278,7 @@ namespace message
    }
 
 
-   void nc_activate::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void nc_activate::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
    {
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
@@ -288,7 +288,7 @@ namespace message
    }
 
 
-   void move::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
+   void move::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam)
    {
 
       base::set(oswindow, playeredUserPrimitive, id, wparam, lparam);
@@ -298,14 +298,14 @@ namespace message
    }
 
 
-   void size::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void size_i32::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
    {
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
 
       m_nType     = static_cast < ::u32 > (wparam);
 
-      m_size      = ::size(LOWORD(lparam),HIWORD(lparam));
+      m_size      = ::size_i32(LOWORD(lparam),HIWORD(lparam));
 
    }
 
@@ -366,7 +366,7 @@ namespace message
    }
 
 
-   void mouse::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void mouse::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
    {
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
@@ -394,7 +394,7 @@ namespace message
    }
 
 
-   void mouse_wheel::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void mouse_wheel::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
    {
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
@@ -436,7 +436,7 @@ namespace message
    }
 
 
-   point context_menu::GetPoint()
+   point_i32 context_menu::GetPoint()
    {
 
       return __point(m_lparam);
@@ -444,7 +444,7 @@ namespace message
    }
 
 
-   void scroll::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void scroll::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
    {
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
@@ -458,7 +458,7 @@ namespace message
    }
 
 
-   void show_window::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void show_window::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
    {
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
@@ -470,7 +470,7 @@ namespace message
    }
 
 
-   void kill_focus::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
+   void kill_focus::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam)
    {
 
       base::set(oswindow, playeredUserPrimitive, id, wparam, lparam);
@@ -480,7 +480,7 @@ namespace message
    }
 
 
-   void set_focus::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void set_focus::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
    {
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
@@ -494,7 +494,7 @@ namespace message
 
 #ifdef WINDOWS_DESKTOP
 
-   void window_pos::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void window_pos::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
    {
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
@@ -504,7 +504,7 @@ namespace message
    }
 
 
-   void nc_calc_size::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,WPARAM wparam,::lparam lparam)
+   void nc_calc_size::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
    {
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
@@ -543,7 +543,7 @@ namespace message
       return (i16)HIWORD(m_wparam);
    }
 
-   point mouse_wheel::GetPoint()
+   point_i32 mouse_wheel::GetPoint()
    {
       return point(GET_X_LPARAM(m_lparam),GET_Y_LPARAM(m_lparam));
    }

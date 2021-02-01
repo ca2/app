@@ -456,7 +456,7 @@ namespace sockets
       }
       add(resolv);
       m_resolve_q[p] = true;
-      TRACE(" *** Resolve '%s:%d' id#%d  m_resolve_q size: %d  p: %p\n", host, port, resolv -> GetId(), m_resolve_q.get_size(), p);
+      TRACE(" *** Resolve '%s:%d' id#%d  m_resolve_q size_i32: %d  p: %p\n", host, port, resolv -> GetId(), m_resolve_q.get_size(), p);
       return resolv -> GetId();
    }
 

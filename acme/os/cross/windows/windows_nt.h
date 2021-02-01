@@ -974,7 +974,7 @@ typedef struct DECLSPEC_ALIGN(16) _CONTEXT {
     /* Counter */
     DWORD64 Rip;             /* 0f8 */
 
-    /* Floating point */
+    /* Floating point_i32 */
     union {
         XMM_SAVE_AREA32 FltSave;  /* 100 */
         struct {
@@ -1882,7 +1882,7 @@ typedef struct _CONTEXT
     ::u32 wim;
     ::u32 tbr;
 
-    /* FIXME: floating point registers missing */
+    /* FIXME: floating point_i32 registers missing */
 
 } CONTEXT;
 
@@ -2588,8 +2588,8 @@ typedef struct _NT_TIB
 //    ::i32  ne_crc;               /* 08 Checksum */
 //    ::u16  ne_flags;             /* 0c Flags about segments in this file */
 //    ::u16  ne_autodata;          /* 0e Automatic data segment number */
-//    ::u16  ne_heap;              /* 10 Initial size of local heap */
-//    ::u16  ne_stack;             /* 12 Initial size of stack */
+//    ::u16  ne_heap;              /* 10 Initial size_i32 of local heap */
+//    ::u16  ne_stack;             /* 12 Initial size_i32 of stack */
 //    ::u32 ne_csip;              /* 14 Initial CS:IP */
 //    ::u32 ne_sssp;              /* 18 Initial SS:SP */
 //    ::u16  ne_cseg;              /* 1c # of entries in segment table */
@@ -3845,7 +3845,7 @@ typedef struct tagMESSAGE_RESOURCE_DATA {
 
 #define ANYSIZE_ARRAY   1
 
-/* FIXME:  Orphan.  What does it point to? */
+/* FIXME:  Orphan.  What does it point_i32 to? */
 typedef PVOID PACCESS_TOKEN;
 typedef PVOID PSECURITY_DESCRIPTOR;
 typedef PVOID PSID;

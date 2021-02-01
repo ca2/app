@@ -13,7 +13,7 @@ namespace tsf
    {
       OutputDebugString(TEXT("edit_window::OnStartComposition\n"));
 
-      *pfOk = TRUE;
+      *pfOk = true;
 
       if (m_cCompositions >= MAX_COMPOSITIONS)
       {

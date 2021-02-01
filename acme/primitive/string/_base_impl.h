@@ -1060,7 +1060,7 @@ strsize string_base < TYPE_CHAR >::replace(PCHAR1 pszOld, PCHAR2 pszNew, strsize
    // nReplacementLen is in XCHARs
    strsize nReplacementLen = ::str::string_safe_length(pszNew);
 
-   // loop once to figure out the size of the result string_base < TYPE_CHAR >
+   // loop once to figure out the size_i32 of the result string_base < TYPE_CHAR >
    strsize nCount = 0;
    {
       const CHAR_TYPE* pszStart = data() + iStart;
@@ -1126,7 +1126,7 @@ strsize string_base < TYPE_CHAR >::replace_ci(PCHAR1 pszOld, PCHAR2 pszNew, strs
    // nReplacementLen is in XCHARs
    strsize nReplacementLen = ::str::string_safe_length(pszNew);
 
-   // loop once to figure out the size of the result string_base < TYPE_CHAR >
+   // loop once to figure out the size_i32 of the result string_base < TYPE_CHAR >
    strsize nCount = 0;
    {
       const CHAR_TYPE * pszStart = data() + iStart;
@@ -1193,7 +1193,7 @@ template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR >
    // nReplacementLen is in XCHARs
    strsize nReplacementLen = ::str::string_safe_length(pszNew);
 
-   // loop once to figure out the size of the result string_base < TYPE_CHAR >
+   // loop once to figure out the size_i32 of the result string_base < TYPE_CHAR >
    strsize nCount = 0;
    {
       const CHAR_TYPE* pszStart = data() + iStart;
@@ -1274,7 +1274,7 @@ template < pointer_castable < TYPE_CHAR > PCHAR1, pointer_castable < TYPE_CHAR >
    // nReplacementLen is in XCHARs
    strsize nReplacementLen = ::str::string_safe_length(pszNew);
 
-   // loop once to figure out the size of the result string_base < TYPE_CHAR >
+   // loop once to figure out the size_i32 of the result string_base < TYPE_CHAR >
    strsize nCount = 0;
    {
       const CHAR_TYPE * pszStart = data() + iStart;
@@ -2854,83 +2854,13 @@ void string_base < TYPE_CHAR >::FormatV(const CHAR_TYPE* pszFormat, va_list args
 }
 
 
-// Format a message using format string_base < TYPE_CHAR > 'pszFormat' and va_list
-template < typename TYPE_CHAR >
-void string_base < TYPE_CHAR >::FormatMessageV(const CHAR_TYPE* pszFormat, va_list argList)
-{
-
-#ifdef WINDOWS_DESKTOP
-
-   // format message into temporary buffer pszTemp
-
-   CHAR_TYPE* pszTemp;
-
-   u32 dwResult = ::str::format_message(FORMAT_MESSAGE_FROM_STRING | FORMAT_MESSAGE_ALLOCATE_BUFFER, pszFormat, 0, 0, reinterpret_cast<CHAR_TYPE*>(&pszTemp), 0, &argList);
-
-   if (dwResult == 0)
-   {
-
-      throw_memory_exception();
-
-   }
-
-   *this = pszTemp;
-
-   LocalFree(pszTemp);
-
-#else
-
-   FormatV(pszFormat, argList);
-
-#endif
-
-}
-
-#ifdef WINDOWS
-
-// OLE BSTR support
-
-// allocate a BSTR containing a copy of the string_base < TYPE_CHAR >
-template < typename TYPE_CHAR >
-BSTR string_base < TYPE_CHAR >::AllocSysString() const
-{
-   BSTR bstrResult = ::str::AllocSysString(data(), get_length());
-   if (bstrResult == nullptr)
-   {
-      throw_memory_exception();
-   }
-   return(bstrResult);
-}
-
-
-template < typename TYPE_CHAR >
-BSTR string_base < TYPE_CHAR >::SetSysString(BSTR * pbstr) const
-{
-
-   ASSERT(__is_valid_address(pbstr, sizeof(BSTR)));
-
-   if (!::str::ReAllocSysString(pbstr, data(), get_length()))
-   {
-
-      throw_memory_exception();
-
-   }
-
-   ASSERT(*pbstr != nullptr);
-
-   return(*pbstr);
-
-}
-
-#endif
-
 // set the string_base < TYPE_CHAR > to the value of environment ::payload 'pszVar'
 template < typename TYPE_CHAR >
 bool string_base < TYPE_CHAR >::get_environment_variable(const CHAR_TYPE* pszVar)
 {
 
    u32 nLength = ::str::get_environment_variable(pszVar, nullptr, 0);
-   bool bRetVal = FALSE;
+   bool bRetVal = false;
 
    if (nLength == 0)
    {
@@ -2941,7 +2871,7 @@ bool string_base < TYPE_CHAR >::get_environment_variable(const CHAR_TYPE* pszVar
       CHAR_TYPE* pszBuffer = get_string_buffer(nLength);
       ::str::get_environment_variable(pszVar, pszBuffer, nLength);
       release_string_buffer();
-      bRetVal = TRUE;
+      bRetVal = true;
    }
 
    return(bRetVal);
@@ -2966,7 +2896,7 @@ bool string_base < TYPE_CHAR >::getenv(const CHAR_TYPE* pszVar)
 const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID );
 if( pImage == nullptr )
 {
-return( FALSE );
+return( false );
 }
 
 strsize nLength = ::str::get_char_length( pImage->achString, pImage->nLength );
@@ -2974,7 +2904,7 @@ CHAR_TYPE * pszBuffer = get_string_buffer( nLength );
 ::str::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
 release_string_buffer( nLength );
 
-return( TRUE );
+return( true );
 }*/
 
 // Load the string_base < TYPE_CHAR > from resource 'nID' in module 'hInstance', using language 'wLanguageID'
@@ -2983,7 +2913,7 @@ return( TRUE );
 const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID, wLanguageID );
 if( pImage == nullptr )
 {
-return( FALSE );
+return( false );
 }
 
 strsize nLength = ::str::get_char_length( pImage->achString, pImage->nLength );
@@ -2991,7 +2921,7 @@ CHAR_TYPE * pszBuffer = get_string_buffer( nLength );
 ::str::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
 release_string_buffer( nLength );
 
-return( TRUE );
+return( true );
 }*/
 
 
@@ -3031,28 +2961,6 @@ void __cdecl string_base < TYPE_CHAR >::AppendFormat(const CHAR_TYPE* pszFormat,
 
    va_end(argList);
 }
-
-// Format a message using format string_base < TYPE_CHAR > 'pszFormat'
-template < typename TYPE_CHAR >
-void __cdecl string_base < TYPE_CHAR >::FormatMessage(const CHAR_TYPE* pszFormat, ...)
-{
-   if (pszFormat == nullptr)
-   {
-
-      __throw(invalid_argument_exception());
-
-   }
-
-   va_list argList;
-
-   va_start(argList, pszFormat);
-
-   FormatMessageV(pszFormat, argList);
-
-   va_end(argList);
-
-}
-
 
 //#endif
 

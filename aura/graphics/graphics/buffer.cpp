@@ -70,7 +70,7 @@ namespace graphics
 
 
 
-   bool buffer::update_buffer(const ::size & size, int iScan)
+   bool buffer::update_buffer(const ::size_i32 & size, int iScan)
    {
 
       if (!m_pimageBuffer->create(size))

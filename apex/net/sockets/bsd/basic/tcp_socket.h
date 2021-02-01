@@ -157,8 +157,8 @@ namespace sockets
       tcp_socket(base_socket_handler& );
       /** Constructor with custom values for i/o buffer.
       \lparam h base_socket_handler context_object
-      \lparam isize Input buffer size
-      \lparam osize Output buffer size */
+      \lparam isize Input buffer size_i32
+      \lparam osize Output buffer size_i32 */
       tcp_socket(base_socket_handler& h,memsize isize,memsize osize);
       virtual ~tcp_socket();
 

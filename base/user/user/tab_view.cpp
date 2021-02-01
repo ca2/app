@@ -370,13 +370,13 @@ namespace user
 
       m_pdroptargetwindow = __new(tab_drop_target_window(this, (i32) pchannel->get_data()->m_iClickTab));
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      rect = pchannel->get_data()->m_rectTabClient;
+      rectangle_i32 = pchannel->get_data()->m_rectTabClient;
 
-      pchannel->_001ClientToScreen(&rect);
+      pchannel->_001ClientToScreen(&rectangle);
 
-      auto pusersystem = __new(::user::system (WS_EX_LAYERED, nullptr, nullptr, 0, rect));
+      auto pusersystem = __new(::user::system (WS_EX_LAYERED, nullptr, nullptr, 0, rectangle));
 
       //m_pdroptargetwindow->create_window_ex(pusersystem);
 
@@ -386,7 +386,7 @@ namespace user
 
       m_pdroptargetwindow->order(zorder_top_most);
 
-      m_pdroptargetwindow->place(rect);
+      m_pdroptargetwindow->place(rectangle);
 
       m_pdroptargetwindow->display(e_display_normal);
 
@@ -439,7 +439,7 @@ namespace user
 
       ::id idSplit;
 
-      ::rect rectTabClient = get_data()->m_rectTabClient;
+      ::rectangle_i32 rectTabClient = get_data()->m_rectTabClient;
 
       ::user::impact_data * pimpactdata = get_impact_data(id, rectTabClient);
 
@@ -607,7 +607,7 @@ namespace user
       }
 
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       m_pimpactdata->m_pplaceholder->get_client_rect(rectClient);
 
@@ -743,7 +743,7 @@ namespace user
    }
 
 
-   //::user::impact_data * tab_view::create_impact(id id, const ::rect & rectCreate, ::user::frame_window * pframewindow)
+   //::user::impact_data * tab_view::create_impact(id id, const ::rectangle_i32 & rectCreate, ::user::frame_window * pframewindow)
 
    //{
 
@@ -1077,9 +1077,9 @@ namespace user
       for (auto eposition : m_positiona)
       {
 
-         ::rect rect;
+         ::rectangle_i32 rectangle;
 
-         m_ptab->GetDragRect(rect, eposition);
+         m_ptab->GetDragRect(rectangle, eposition);
 
          if (eposition == epositionDrag)
          {
@@ -1098,9 +1098,9 @@ namespace user
 
          }
 
-         pgraphics->fill_rect(rect, crBk);
+         pgraphics->fill_rect(rectangle, crBk);
 
-         pgraphics->draw_rect(rect, crBorder);
+         pgraphics->draw_rect(rectangle, crBorder);
 
       }
 
@@ -1123,7 +1123,7 @@ namespace user
 
       ReleaseCapture();
 
-      auto point(pmouse->m_point);
+      auto point_i32(pmouse->m_point);
 
       _001ScreenToClient(point);
 

@@ -51,10 +51,10 @@ namespace exception
 
 
 
-#include "error.h"
-#include "overflow_error.h"
-#include "runtime_error.h"
-#include "range_error.h"
+#include "index_out_of_bounds.h"
+#include "overflow.h"
+#include "runtime.h"
+#include "range.h"
 
 
 #include "not_implemented.h"
@@ -135,10 +135,10 @@ CLASS_DECL_ACME dump_context & operator<<(dump_context & dumpcontext, const ::da
 // turn on/off tracking for a i16 while
 CLASS_DECL_ACME bool __enable_memory_tracking(bool bTrack);
 
-// Turn on/off the global flag gen_MemoryLeakOverride. if bEnable is TRUE
+// Turn on/off the global flag gen_MemoryLeakOverride. if bEnable is true
 // then further calls to __enable_memory_tracking() wont machine the current
 // memory tracking state, until __enable_memory_leak_override(bool bEnable)
-// is called again with bEnable == FALSE.
+// is called again with bEnable == false.
 CLASS_DECL_ACME bool __enable_memory_leak_override(bool bEnable);
 
 
@@ -155,8 +155,8 @@ void ::acme::DoForAllClasses(void (c_cdecl *pfn)(::type pClass,
 #else
 
 // non-DEBUG_ALLOC version that assume everything is OK
-#define __enable_memory_tracking(bTrack) FALSE
-#define __enable_memory_leak_override(bEnable) TRUE
+#define __enable_memory_tracking(bTrack) false
+#define __enable_memory_leak_override(bEnable) true
 #define __output_debug_string(psz) ::output_debug_string(psz)
 
 
@@ -213,10 +213,10 @@ CLASS_DECL_ACME void __set_thread_note(const char * pszNote);
 #define ENSURE_VALID(pOb)   ENSURE_VALID_THROW(pOb, __throw(invalid_argument_exception() ))
 
 #define ASSERT_POINTER(point, type) \
-   ASSERT(((point) != nullptr) && __is_valid_address((point), sizeof(type), FALSE))
+   ASSERT(((point) != nullptr) && __is_valid_address((point), sizeof(type), false))
 
 #define ASSERT_NULL_OR_POINTER(point, type) \
-   ASSERT(((point) == nullptr) || __is_valid_address((point), sizeof(type), FALSE))
+   ASSERT(((point) == nullptr) || __is_valid_address((point), sizeof(type), false))
 
 
 #if defined(__arm__)
@@ -245,7 +245,7 @@ CLASS_DECL_ACME void __set_thread_note(const char * pszNote);
          TRACE(trace_category_appmsg, 0, "%s (%s:%d)\n%s\n", szMsg, __FILE__, __LINE__, str); \
       else \
          TRACE(trace_category_appmsg, 0, "%s (%s:%d)\n", szMsg, __FILE__, __LINE__); \
-      ASSERT(FALSE); \
+      ASSERT(false); \
    } while (0)
 #else // NNDEBUG
 #define REPORT_EXCEPTION(pException, szMsg) \
@@ -323,8 +323,6 @@ CLASS_DECL_ACME void __dump(const ::matter * pOb);
 #define THIS_FILE          __FILE__
 
 
-
-#include "last_error.h"
 
 // mrs/src as of 2012-08-18
 // cyaxis/os/exception

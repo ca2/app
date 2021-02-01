@@ -102,17 +102,17 @@ namespace user
    }
 
 
-   void menu::update_position(const ::point & point)
+   void menu::update_position(const ::point_i32 & point)
    {
 
       m_bPositionHint = true;
 
-      m_pointPositionHint = point;
+      m_pointPositionHint = point_i32;
 
    }
 
 
-   void menu::hints(int iFlags, const ::point & point)
+   void menu::hints(int iFlags, const ::point_i32 & point)
    {
 
       update_flags(iFlags);
@@ -609,10 +609,10 @@ namespace user
    }
 
 
-   void menu::layout_menu(::draw2d::graphics_pointer & pgraphics, const ::point & point)
+   void menu::layout_menu(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & point)
    {
 
-      m_pointTrack = point;
+      m_pointTrack = point_i32;
 
       if (get_parent() != nullptr)
       {
@@ -639,11 +639,11 @@ namespace user
 
       __pointer(::user::menu_item_ptra) pmenuitema = pitem->m_pmenuitema;
 
-      ::rect rectMargin = get_margin(pstyle);
+      ::rectangle_i32 rectMargin = get_margin(pstyle);
 
-      ::rect rectBorder = get_border(pstyle);
+      ::rectangle_i32 rectBorder = get_border(pstyle);
 
-      ::rect rectPadding = get_padding(pstyle);
+      ::rectangle_i32 rectPadding = get_padding(pstyle);
 
       //int iElementPadding = rectPadding.left;
 
@@ -770,14 +770,14 @@ namespace user
 
       }
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       rectWindow.left = point.x;
       rectWindow.top = point.y;
       rectWindow.right = rectWindow.left + m_size.cx;
       rectWindow.bottom = rectWindow.top + m_size.cy;
 
-      ::rect rectMonitor;
+      ::rectangle_i32 rectMonitor;
 
       auto psession = Session;
 
@@ -839,7 +839,7 @@ namespace user
       if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
       {
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(rectClient);
 
@@ -998,11 +998,11 @@ namespace user
 
                            m_psubmenu->m_pmenuParent = this;
 
-                           ::rect rect;
+                           ::rectangle_i32 rectangle;
 
-                           pevent->m_puie->get_window_rect(rect);
+                           pevent->m_puie->get_window_rect(rectangle);
 
-                           m_psubmenu->update_position(rect.top_right());
+                           m_psubmenu->update_position(rectangle.top_right());
 
                            m_psubmenu->track_popup_menu(m_puiMenuNotify);
 
@@ -1098,11 +1098,11 @@ namespace user
 
             m_psubmenu->initialize(this);
 
-            ::rect rect;
+            ::rectangle_i32 rectangle;
 
-            pmenuitema->find(m_idTimerMenu)->m_puserinteraction->get_window_rect(rect);
+            pmenuitema->find(m_idTimerMenu)->m_puserinteraction->get_window_rect(rectangle);
 
-            m_psubmenu->update_position(rect.top_right());
+            m_psubmenu->update_position(rectangle.top_right());
 
             m_psubmenu->track_popup_menu(this, m_puiMenuNotify);
          }
@@ -1286,7 +1286,7 @@ namespace user
    }
 
 
-   size menu::get_window_minimum_size()
+   size_i32 menu::get_window_minimum_size()
    {
 
       return m_sizeMinimum;
@@ -1313,15 +1313,15 @@ namespace user
       //else
       //{
 
-      //   RECT32 * prect = (RECT32 *)pbase->m_lparam.m_lparam;
+      //   RECTANGLE_I32 * prectangle = (RECTANGLE_I32 *)pbase->m_lparam.m_lparam;
 
-      //   prect->left = m_pointTrack.x;
+      //   prectangle->left = m_pointTrack.x;
 
-      //   prect->top = m_pointTrack.y;
+      //   prectangle->top = m_pointTrack.y;
 
-      //   prect->right = prect->left + max(::user::interaction::get_window_minimum_size().cx, m_size.cx);
+      //   prectangle->right = prectangle->left + max(::user::interaction::get_window_minimum_size().cx, m_size.cx);
 
-      //   prect->bottom = prect->left + max(::user::interaction::get_window_minimum_size().cy, m_size.cy);
+      //   prectangle->bottom = prectangle->left + max(::user::interaction::get_window_minimum_size().cy, m_size.cy);
 
       //   pbase->m_bRet = true;
       //   pbase->set_lresult(0);

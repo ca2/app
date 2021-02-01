@@ -1005,7 +1005,7 @@ namespace aura
    }
 
 
-   void system::get_time(struct timeval * point)
+   void system::get_time(struct timeval * point_i32)
    {
 #ifdef _WIN32
       FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
@@ -1013,8 +1013,8 @@ namespace aura
       u64 tt;
       ::memcpy_dup(&tt, &ft, sizeof(tt));
       tt /= 10; // make it usecs
-      point->tv_sec = (long)tt / 1000000;
-      point->tv_usec = (long)tt % 1000000;
+      point_i32->tv_sec = (long)tt / 1000000;
+      point_i32->tv_usec = (long)tt % 1000000;
 #else
       gettimeofday(point, nullptr);
 #endif
@@ -1971,7 +1971,7 @@ namespace aura
    }
 
 
-   ::u32 system::os_post_to_all_threads(const ::id & id,WPARAM wparam,lparam lparam)
+   ::u32 system::os_post_to_all_threads(const ::id & id,wparam wparam,lparam lparam)
    {
 
       post_to_all_threads(id, wparam, lparam);
@@ -3243,7 +3243,7 @@ namespace aura
    // }
 
 // #ifndef APPLE_IOS
-//    void * system::initialize_native_window2(const ::rect & rect)
+//    void * system::initialize_native_window2(const ::rectangle_i32 & rectangle)
 
 //    {
 
@@ -3266,38 +3266,38 @@ namespace aura
 //
 //
 //
-//   CLASS_DECL_AURA bool get_window_rect(::aura::system_window ^ pwindow, RECTD * prect)
+//   CLASS_DECL_AURA bool get_window_rect(::aura::system_window ^ pwindow, RECTANGLE_F64 * prectangle)
 //
 //   {
 //
-//      Windows::Foundation::Rect rect = pwindow->get_window_rect();
+//      Windows::Foundation::Rect rectangle_i32 = pwindow->get_window_rect();
 //
-//      prect->left = rect.X;
+//      prectangle->left = rectangle.X;
 //
-//      prect->top = rect.Y;
+//      prectangle->top = rectangle.Y;
 //
-//      prect->right = prect->left + rect.Width;
+//      prectangle->right = prectangle->left + rectangle.Width;
 //
-//      prect->bottom = prect->top + rect.Height;
+//      prectangle->bottom = prectangle->top + rectangle.Height;
 //
 //
 //      return true;
 //   }
 //
 //
-//   CLASS_DECL_AURA bool get_window_rect(::aura::system_window ^ pwindow, RECT32 * prect)
+//   CLASS_DECL_AURA bool get_window_rect(::aura::system_window ^ pwindow, RECTANGLE_I32 * prectangle)
 //   {
 //
-//      ::rectd rect;
+//      ::rectangle_f64 rectangle_i32;
 //
-//      if (!get_window_rect(pwindow, (RECTD*)rect))
+//      if (!get_window_rect(pwindow, (RECTANGLE_F64*)rectangle_i32))
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      ::copy(prect, rect);
+//      ::copy(prectangle, rectangle);
 //
 //      return true;
 //
@@ -3345,7 +3345,7 @@ namespace aura
    }
 
 
-//   index system::get_main_monitor(RECT32 * prect)
+//   index system::get_main_monitor(RECTANGLE_I32 * prectangle)
 //   {
 //
 //      index iMainMonitor = 0;
@@ -3371,11 +3371,11 @@ namespace aura
 //
 //#endif
 //
-//      if (prect != nullptr)
+//      if (prectangle != nullptr)
 //
 //      {
 //
-//         get_monitor_rect(iMainMonitor, prect);
+//         get_monitor_rect(iMainMonitor, prectangle);
 //
 //
 //      }
@@ -3411,14 +3411,14 @@ namespace aura
    }*/
 
 
-//   bool system::get_monitor_rect(index iMonitor, RECT32 * prect)
+//   bool system::get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle)
 //   {
 //
 //#if MOBILE_PLATFORM
 //
-//      //get_context_session()->m_puiHost->get_window_rect(prect);
+//      //get_context_session()->m_puiHost->get_window_rect(prectangle);
 //
-//      GetMainScreenRect(prect);
+//      GetMainScreenRect(prectangle);
 //
 //      return true;
 //
@@ -3431,7 +3431,7 @@ namespace aura
 //
 //      }
 //
-//      *prect = m_monitorinfoa[iMonitor].rcMonitor;
+//      *prectangle = m_monitorinfoa[iMonitor].rcMonitor;
 //
 //
 //#elif defined(_UWP)
@@ -3451,7 +3451,7 @@ namespace aura
 //
 //      }
 //
-//      *prect = m_rectaMonitor[iMonitor];
+//      *prectangle = m_rectaMonitor[iMonitor];
 //
 //
 //#elif defined(__APPLE__)
@@ -3463,18 +3463,18 @@ namespace aura
 //
 //      }
 //
-//      GetScreenRect(prect, (int) iMonitor);
+//      GetScreenRect(prectangle, (int) iMonitor);
 //
 //
 //#else
 //
-//      prect->left = 0;
+//      prectangle->left = 0;
 //
-//      prect->top = 0;
+//      prectangle->top = 0;
 //
-//      prect->right = oslocal().m_iScreenWidth;
+//      prectangle->right = oslocal().m_iScreenWidth;
 //
-//      prect->bottom = oslocal().m_iScreenHeight;
+//      prectangle->bottom = oslocal().m_iScreenHeight;
 //
 //
 //#endif
@@ -3492,17 +3492,17 @@ namespace aura
 //   }
 //
 //
-//   bool system::get_desk_monitor_rect(index iMonitor, RECT32 * prect)
+//   bool system::get_desk_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle)
 //
 //   {
 //
-//      return get_monitor_rect(iMonitor, prect);
+//      return get_monitor_rect(iMonitor, prectangle);
 //
 //
 //   }
 //
 //
-//   index system::get_main_wkspace(RECT32 * prect)
+//   index system::get_main_wkspace(RECTANGLE_I32 * prectangle)
 //
 //   {
 //
@@ -3529,11 +3529,11 @@ namespace aura
 //
 //#endif
 //
-//      if (prect != nullptr)
+//      if (prectangle != nullptr)
 //
 //      {
 //
-//         get_wkspace_rect(iMainWkspace, prect);
+//         get_wkspace_rect(iMainWkspace, prectangle);
 //
 //
 //      }
@@ -3559,7 +3559,7 @@ namespace aura
 //   }
 //
 
-//   bool system::get_wkspace_rect(index iWkspace, RECT32 * prect)
+//   bool system::get_wkspace_rect(index iWkspace, RECTANGLE_I32 * prectangle)
 //   {
 //
 //#ifdef WINDOWS_DESKTOP
@@ -3567,12 +3567,12 @@ namespace aura
 //      if (iWkspace < 0 || iWkspace >= get_wkspace_count())
 //         return false;
 //
-//      *prect = m_monitorinfoa[iWkspace].rcWork;
+//      *prectangle = m_monitorinfoa[iWkspace].rcWork;
 //
 //
 //#elif defined(_UWP)
 //
-//      return get_monitor_rect(iWkspace, prect);
+//      return get_monitor_rect(iWkspace, prectangle);
 //
 //
 //      //#elif defined(LINUX)
@@ -3588,12 +3588,12 @@ namespace aura
 //
 //      }
 //
-//      GetWkspaceRect(prect, (int) iWkspace);
+//      GetWkspaceRect(prectangle, (int) iWkspace);
 //
 //
-//      //      prect->top += ::mac::get_system_main_menu_bar_height();
+//      //      prectangle->top += ::mac::get_system_main_menu_bar_height();
 //
-//      //    prect->bottom -= ::mac::get_system_dock_height();
+//      //    prectangle->bottom -= ::mac::get_system_dock_height();
 //
 //#elif defined(LINUX)
 //
@@ -3606,7 +3606,7 @@ namespace aura
 //
 //      }
 //
-//      *prect = m_rectaWork[iWkspace];
+//      *prectangle = m_rectaWork[iWkspace];
 //
 //
 //      return true;
@@ -3615,10 +3615,10 @@ namespace aura
 //
 //      //__throw(todo());
 //
-//      //::get_window_rect(::get_desktop_window(),prect);
+//      //::get_window_rect(::get_desktop_window(),prectangle);
 //
 //
-//      get_monitor_rect(iWkspace, prect);
+//      get_monitor_rect(iWkspace, prectangle);
 //
 //
 //#endif
@@ -3636,11 +3636,11 @@ namespace aura
 //   }
 //
 //
-//   bool system::get_desk_wkspace_rect(index iWkspace, RECT32 * prect)
+//   bool system::get_desk_wkspace_rect(index iWkspace, RECTANGLE_I32 * prectangle)
 //
 //   {
 //
-//      return get_wkspace_rect(iWkspace, prect);
+//      return get_wkspace_rect(iWkspace, prectangle);
 //
 //
 //   }
@@ -5793,7 +5793,7 @@ namespace aura
 ////      if(f != nullptr)
 ////      {
 ////
-////         output_debug_string("linux_g_direct_term entry point not found at basecore library");
+////         output_debug_string("linux_g_direct_term entry point_i32 not found at basecore library");
 ////
 ////         (*f)();
 ////
@@ -6182,7 +6182,7 @@ namespace aura
 #ifdef _UWP
 
 
-   bool system::get_window_rect(RECT32* prect)
+   bool system::get_window_rect(RECTANGLE_I32* prectangle)
    {
 
       if (::is_null(get_context_session()))
@@ -6204,7 +6204,7 @@ namespace aura
 
          auto puiHost = __user_interaction(get_context_session()->m_puiHost);
 
-         puiHost->get_window_rect(prect);
+         puiHost->get_window_rect(prectangle);
 
       }
       catch (...)

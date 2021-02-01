@@ -361,7 +361,7 @@ namespace uwp
 
                pimage48->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-               pimage48->get_graphics()->stretch(::size(48, 48), pimage16->get_graphics(), pimage16->rect());
+               pimage48->get_graphics()->stretch(::size_i32(48, 48), pimage16->get_graphics(), pimage16->rectangle_i32());
 
                iImage = m_pil[16]->add_image(pimage16, 0, 0);
 

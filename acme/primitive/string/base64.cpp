@@ -72,14 +72,14 @@ CLASS_DECL_ACME char* _crypto_base64_encode(const byte* data, int length)
 {
    int c;
    const byte* q;
-   char* point;
+   char* p;
    char* ret;
    int i = 0;
    int blocks;
 
    q = data;
-   point = ret = (char*)malloc((length + 3) * 4 / 3 + 1);
-   if (!point)
+   p = ret = (char*)malloc((length + 3) * 4 / 3 + 1);
+   if (!p)
       return nullptr;
 
    /* b1, b2, b3 are input bytes
@@ -100,10 +100,10 @@ CLASS_DECL_ACME char* _crypto_base64_encode(const byte* data, int length)
    {
       c = (q[0] << 16) + (q[1] << 8) + q[2];
 
-      *point++ = base64[(c & 0x00FC0000) >> 18];
-      *point++ = base64[(c & 0x0003F000) >> 12];
-      *point++ = base64[(c & 0x00000FC0) >> 6];
-      *point++ = base64[c & 0x0000003F];
+      *p++ = base64[(c & 0x00FC0000) >> 18];
+      *p++ = base64[(c & 0x0003F000) >> 12];
+      *p++ = base64[(c & 0x00000FC0) >> 6];
+      *p++ = base64[c & 0x0000003F];
    }
 
    /* then remainder */
@@ -113,21 +113,21 @@ CLASS_DECL_ACME char* _crypto_base64_encode(const byte* data, int length)
       break;
    case 1:
       c = (q[0] << 16);
-      *point++ = base64[(c & 0x00FC0000) >> 18];
-      *point++ = base64[(c & 0x0003F000) >> 12];
-      *point++ = '=';
-      *point++ = '=';
+      *p++ = base64[(c & 0x00FC0000) >> 18];
+      *p++ = base64[(c & 0x0003F000) >> 12];
+      *p++ = '=';
+      *p++ = '=';
       break;
    case 2:
       c = (q[0] << 16) + (q[1] << 8);
-      *point++ = base64[(c & 0x00FC0000) >> 18];
-      *point++ = base64[(c & 0x0003F000) >> 12];
-      *point++ = base64[(c & 0x00000FC0) >> 6];
-      *point++ = '=';
+      *p++ = base64[(c & 0x00FC0000) >> 18];
+      *p++ = base64[(c & 0x0003F000) >> 12];
+      *p++ = base64[(c & 0x00000FC0) >> 6];
+      *p++ = '=';
       break;
    }
 
-   *point = 0;
+   *p = 0;
 
    return ret;
 }
@@ -345,7 +345,7 @@ namespace str
    void base64::encode(::file::file * pfileOutput, ::file::file * pfileInput, e_mode emode)
    {
 
-      i32 i,hiteof= FALSE;
+      i32 i,hiteof= false;
       byte igroup[3],ogroup[4];
       i32 n;
       char ch;
@@ -359,7 +359,7 @@ namespace str
          {
             if(pfileInput->read(&ch, 1) == 0)
             {
-               hiteof= TRUE;
+               hiteof= true;
                break;
             }
             igroup[n]= (uchar)ch;
@@ -390,7 +390,7 @@ namespace str
    void base64::encode(::file::file *pfileOutput, u8 * pdata, memsize size, e_mode emode)
    {
 
-      i32 i, hiteof = FALSE;
+      i32 i, hiteof = false;
       byte igroup[3], ogroup[4];
       i32 n;
       char ch;
@@ -406,7 +406,7 @@ namespace str
          {
             if (read_char(pdata, size, &ch) == 0)
             {
-               hiteof = TRUE;
+               hiteof = true;
                break;
             }
             igroup[n] = (uchar)ch;
@@ -450,7 +450,7 @@ namespace str
                if( i > 0)
                {
                   //__throw(io_exception("Input file incomplete.\n"));
-                  //ASSERT(FALSE);
+                  //ASSERT(false);
                   return false;
                }
                return true;
@@ -510,7 +510,7 @@ namespace str
                if( i > 0)
                {
                   //__throw(io_exception("Input file incomplete.\n"));
-                  //ASSERT(FALSE);
+                  //ASSERT(false);
                   return -1;
                }
                return iDecode;

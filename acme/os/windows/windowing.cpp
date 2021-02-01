@@ -1,4 +1,7 @@
 ﻿#include "framework.h"
+#include "acme/operating_system.h"
+
+
 #if !BROAD_PRECOMPILED_HEADER
 #include "acme/user/_user.h"
 #endif
@@ -21,7 +24,7 @@
 //CLASS_DECL_ACME int_bool os_init_windowing()
 //{
 //
-//   return TRUE;
+//   return true;
 //
 //}
 //
@@ -48,10 +51,10 @@
 //}
 //
 
-CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
+CLASS_DECL_ACME int_bool is_window(HWND hwnd)
 {
 
-   return ::IsWindow(oswindow);
+   return ::IsWindow(hwnd);
 
 }
 
@@ -88,7 +91,7 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
 //}
 //
 //
-//CLASS_DECL_ACME oswindow get_focus()
+//CLASS_DECL_ACME hwnd get_focus()
 //{
 //
 //   GUITHREADINFO info;
@@ -105,37 +108,37 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
 //}
 //
 //
-//CLASS_DECL_ACME oswindow set_focus(oswindow oswindow)
+//CLASS_DECL_ACME hwnd set_focus(HWND hwnd)
 //{
 //
-//   return ::SetFocus(oswindow);
+//   return ::SetFocus(hwnd);
 //
 //}
 //
 //
-//CLASS_DECL_ACME oswindow get_active_window()
+//CLASS_DECL_ACME hwnd get_active_window()
 //{
 //
 //   //attach_thread_input_to_main_thread(true);
 //
-//   auto oswindow = ::GetActiveWindow();
+//   auto hwnd = ::GetActiveWindow();
 //
 //   //attach_thread_input_to_main_thread(false);
 //
-//   return oswindow;
+//   return hwnd;
 //
 //}
 //
 //
-//CLASS_DECL_ACME oswindow set_active_window(oswindow oswindow)
+//CLASS_DECL_ACME hwnd set_active_window(HWND hwnd)
 //{
 //
-//   return ::SetActiveWindow(oswindow);
+//   return ::SetActiveWindow(hwnd);
 //
 //}
 //
 //
-//CLASS_DECL_ACME oswindow get_capture()
+//CLASS_DECL_ACME hwnd get_capture()
 //{
 //
 //   return ::GetCapture();
@@ -143,10 +146,10 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
 //}
 //
 //
-//CLASS_DECL_ACME oswindow set_capture(oswindow oswindow)
+//CLASS_DECL_ACME hwnd set_capture(HWND hwnd)
 //{
 //
-//   return ::SetCapture(oswindow);
+//   return ::SetCapture(hwnd);
 //
 //}
 //
@@ -159,15 +162,15 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
 //}
 //
 //
-//CLASS_DECL_ACME int_bool destroy_window(oswindow oswindow)
+//CLASS_DECL_ACME int_bool destroy_window(HWND hwnd)
 //{
 //
-//   return ::DestroyWindow(oswindow);
+//   return ::DestroyWindow(hwnd);
 //
 //}
 //
 //
-//CLASS_DECL_ACME oswindow get_desktop_window()
+//CLASS_DECL_ACME hwnd get_desktop_window()
 //{
 //
 //   return ::GetDesktopWindow();
@@ -175,10 +178,10 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
 //}
 //
 //
-//CLASS_DECL_ACME oswindow get_window(oswindow oswindow, int iWindow)
+//CLASS_DECL_ACME hwnd get_window(HWND hwnd, int iWindow)
 //{
 //
-//   return ::GetWindow(oswindow, iWindow);
+//   return ::GetWindow(hwnd, iWindow);
 //
 //}
 //
@@ -200,10 +203,10 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
 //
 //// }
 //
-//CLASS_DECL_ACME int_bool show_window(oswindow oswindow, int iShowCmd)
+//CLASS_DECL_ACME int_bool show_window(HWND hwnd, int iShowCmd)
 //{
 //
-//   return ::ShowWindow(oswindow, iShowCmd);
+//   return ::ShowWindow(hwnd, iShowCmd);
 //
 //}
 //
@@ -250,26 +253,26 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
 ////}
 ////
 ////
-////BOOL CALLBACK top_level_enum::EnumWindowsProc(oswindow oswindow, LPARAM lParam)
+////BOOL CALLBACK top_level_enum::EnumWindowsProc(HWND hwnd, LPARAM lParam)
 ////{
 ////
 ////   top_level_enum * ptoplevelenum = (top_level_enum *) lParam;
 ////
-////   if (ptoplevelenum->m_bVisible && !IsWindowVisible(oswindow))
+////   if (ptoplevelenum->m_bVisible && !IsWindowVisible(hwnd))
 ////   {
 ////
 ////      return true;
 ////
 ////   }
 ////
-////   ptoplevelenum->m_poswindowa->add(oswindow);
+////   ptoplevelenum->m_poswindowa->add(hwnd);
 ////
 ////   return true;
 ////
 ////}
 ////
 //
-////int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int iMargin)
+////int_bool point_is_window_origin(POINT_I32 ptHitTest, hwnd oswindowExclude, int iMargin)
 ////{
 ////
 ////   auto poswindowa = get_top_level_windows();
@@ -281,25 +284,25 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
 ////
 ////   }
 ////
-////   ::rect rectWindow;
+////   ::rectangle_i32 rectWindow;
 ////
-////   for(auto & oswindow : *poswindowa)
+////   for(auto & hwnd : *poswindowa)
 ////   {
 ////
-////      if(oswindow != oswindowExclude)
+////      if(hwnd != oswindowExclude)
 ////      {
 ////
-////         if (!IsWindowVisible(oswindow))
+////         if (!IsWindowVisible(hwnd))
 ////         {
 ////
 ////            continue;
 ////
 ////         }
 ////
-////         if (::GetWindowRect(oswindow, rectWindow))
+////         if (::GetWindowRect(hwnd, rectWindow))
 ////         {
 ////
-////            ::rect rectHitTest;
+////            ::rectangle_i32 rectHitTest;
 ////            
 ////            rectHitTest.set(rectWindow.origin(), ::size());
 ////
@@ -327,30 +330,30 @@ CLASS_DECL_ACME int_bool is_window(oswindow oswindow)
 //
 ////
 ////
-////void window_create_caret(oswindow oswindow, HBITMAP hbitmap)
+////void window_create_caret(HWND hwnd, HBITMAP hbitmap)
 ////{
 ////
-////   ASSERT(::IsWindow(oswindow));
+////   ASSERT(::IsWindow(hwnd));
 ////
-////   ::CreateCaret(oswindow, hbitmap, 0, 0);
+////   ::CreateCaret(hwnd, hbitmap, 0, 0);
 ////
 ////}
 ////
-////void window_create_solid_caret(oswindow oswindow, i32 nWidth, i32 nHeight)
+////void window_create_solid_caret(HWND hwnd, i32 nWidth, i32 nHeight)
 ////{
 ////
-////   ASSERT(::IsWindow(oswindow));
+////   ASSERT(::IsWindow(hwnd));
 ////
-////   ::CreateCaret(oswindow, (HBITMAP)nullptr, nWidth, nHeight);
+////   ::CreateCaret(hwnd, (HBITMAP)nullptr, nWidth, nHeight);
 ////
 ////}
 ////
-////void window_create_gray_caret(oswindow oswindow, i32 nWidth, i32 nHeight)
+////void window_create_gray_caret(HWND hwnd, i32 nWidth, i32 nHeight)
 ////{
 ////
-////   ASSERT(::IsWindow(oswindow));
+////   ASSERT(::IsWindow(hwnd));
 ////
-////   ::CreateCaret(oswindow, (HBITMAP)1, nWidth, nHeight);
+////   ::CreateCaret(hwnd, (HBITMAP)1, nWidth, nHeight);
 ////
 ////}
 //
@@ -371,7 +374,7 @@ CLASS_DECL_ACME ::e_status _os_message_box(oswindow oswindow, const char* pszMes
 
    strTitle.replace_ci("<br>", "\n");
 
-   int iResult = ::MessageBoxW(oswindow, wstring(strMessage), wstring(strTitle), emessagebox);
+   int iResult = ::MessageBoxW((HWND) oswindow, wstring(strMessage), wstring(strTitle), emessagebox);
 
    enum_dialog_result edialogresult = (enum_dialog_result) iResult;
 
@@ -384,7 +387,7 @@ CLASS_DECL_ACME ::e_status _os_message_box(oswindow oswindow, const char* pszMes
 }
 //
 //
-CLASS_DECL_ACME ::e_status os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+CLASS_DECL_ACME ::e_status os_message_box(HWND hwnd, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
    //if (System.is_dedicated_thread())
@@ -393,7 +396,7 @@ CLASS_DECL_ACME ::e_status os_message_box(oswindow oswindow, const char * pszMes
    //   System.fork([=]()
    //      {
 
-   //         _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, callback);
+   //         _os_message_box(hwnd, pszMessage, pszTitle, emessagebox, callback);
 
    //      });
 
@@ -401,7 +404,7 @@ CLASS_DECL_ACME ::e_status os_message_box(oswindow oswindow, const char * pszMes
 
    //}
 
-   return _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, process);
+   return _os_message_box(hwnd, pszMessage, pszTitle, emessagebox, process);
 
 }
 //
@@ -427,7 +430,7 @@ CLASS_DECL_ACME bool windows_register_class(WNDCLASSEXW* pwndclass)
 
    {
 
-      return TRUE;
+      return true;
 
    }
 
@@ -438,11 +441,11 @@ CLASS_DECL_ACME bool windows_register_class(WNDCLASSEXW* pwndclass)
 
       ::u32 dw = GetLastError();
 
-      return FALSE;
+      return false;
 
    }
 
-   bool bRet = TRUE;
+   bool bRet = true;
 
    return bRet;
 
@@ -498,20 +501,73 @@ CLASS_DECL_ACME bool windows_register_class(HINSTANCE hinstance)
 }
 
 
-CLASS_DECL_ACME iptr get_window_long_ptr(oswindow oswindow, int iIndex)
+CLASS_DECL_ACME iptr get_window_long_ptr(HWND hwnd, int iIndex)
 {
 
-   return ::GetWindowLongPtrW(oswindow, iIndex);
+   return ::GetWindowLongPtrW(hwnd, iIndex);
 
 }
 
 
-CLASS_DECL_ACME iptr set_window_long_ptr(oswindow oswindow, int iIndex, iptr i)
+CLASS_DECL_ACME iptr set_window_long_ptr(HWND hwnd, int iIndex, iptr i)
 {
 
-   return ::SetWindowLongPtrW(oswindow, iIndex, i);
+   return ::SetWindowLongPtrW(hwnd, iIndex, i);
 
 }
 
 
+namespace str
+{
 
+
+   string get_window_text_timeout(oswindow oswindow, millis tickTimeout)
+   {
+
+      string str;
+
+      if (oswindow != nullptr)
+      {
+
+   #ifdef WINDOWS_DESKTOP
+
+         DWORD_PTR lresult = 0;
+
+         auto tickStart = ::millis::now();
+
+         tickTimeout = max(tickTimeout, 10);
+
+         if (!::SendMessageTimeoutW(__hwnd(oswindow), WM_GETTEXTLENGTH, 0, 0, SMTO_ABORTIFHUNG, __os(tickTimeout), &lresult))
+            return "";
+
+         tickTimeout -= tickStart.elapsed();
+
+         wstring wstr;
+
+         tickTimeout = min(tickTimeout, 10);
+
+         if (!::SendMessageTimeoutW(__hwnd(oswindow), WM_GETTEXT, (LPARAM)wstr.get_string_buffer(lresult + 1), lresult + 1, SMTO_ABORTIFHUNG, __os(tickTimeout), &lresult))
+            return "";
+
+         str = wstr;
+
+         //i32 nLen = ::GetWindowTextLength(oswindow);
+
+         //::GetWindowText(oswindow, str.get_string_buffer(nLen), nLen+1);
+
+         //str.ReleaseBuffer();
+
+   #else
+
+         __throw(todo());
+
+   #endif
+
+      }
+
+      return str;
+
+   }
+
+
+} // namespace str

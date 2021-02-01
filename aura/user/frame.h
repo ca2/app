@@ -72,7 +72,7 @@
 // Frame interaction_impl styles
 #define FWS_ADDTOTITLE  0x00008000L // modify title based on content
 #define FWS_PREFIXTITLE 0x00004000L // show document name before cast name
-#define FWS_SNAPTOBARS  0x00002000L // snap size to size of contained bars
+#define FWS_SNAPTOBARS  0x00002000L // snap size_i32 to size_i32 of contained bars
 
 namespace user
 {
@@ -89,7 +89,7 @@ namespace user
       enum_display                                 m_edisplayRestore;
       bool                                         m_bDefaultNotifyIcon;
       string                                       m_strFrameTitle;
-      ::size                                       m_sizeMinimum;
+      ::size_i32                                       m_sizeMinimum;
       bool                                         m_bCloseApplicationIfLastVisibleFrame;
       __reference(::user::style)                   m_puserstyle;
       bool                                         m_bShowControlBox;
@@ -143,19 +143,19 @@ namespace user
 
 
       virtual ::user::interaction * get_active_view() const;
-      virtual void set_active_view(::user::impact * pViewNew, bool bNotify = TRUE);
+      virtual void set_active_view(::user::impact * pViewNew, bool bNotify = true);
 
       virtual ::user::tool_window * tool_window(enum_tool etool, bool bCreate = false);
 
       virtual void ActivateFrame(::e_display edisplay = e_display_undefined);
 
-      virtual bool LoadToolBar(id idToolBar, const char * pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
+      virtual bool LoadToolBar(id idToolBar, const char * pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP);
 
       virtual bool is_frame_window() override;
 
       virtual void InitialFramePosition(bool bForceRestore = false);
 
-      virtual ::size get_window_minimum_size() override;
+      virtual ::size_i32 get_window_minimum_size() override;
 
       DECL_GEN_SIGNAL(_001OnAppExit);
 

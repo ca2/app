@@ -2,10 +2,10 @@
 
 
 
-HICON load_icon(::object * pobject, string_array & straMatter, string strIcon, int cx, int cy)
+hicon load_icon(::object * pobject, string_array & straMatter, string strIcon, int cx, int cy)
 {
 
-   HICON hicon = nullptr;
+   hicon hicon = nullptr;
 
    ::file::path path;
 
@@ -18,7 +18,7 @@ HICON load_icon(::object * pobject, string_array & straMatter, string strIcon, i
 
       path = Ctx(pobject).get_matter_cache_path(path);
 
-      hicon = (HICON)LoadImageW(nullptr, wstring(path), IMAGE_ICON, cx, cy, LR_LOADFROMFILE);
+      hicon = (hicon)LoadImageW(nullptr, wstring(path), IMAGE_ICON, cx, cy, LR_LOADFROMFILE);
 
       if (hicon != nullptr)
       {
@@ -51,10 +51,10 @@ CLASS_DECL_AURA void os_term_imaging()
 
 
 
-HBITMAP pixmap::update_windows_dib(const ::size& size)
+HBITMAP pixmap::update_windows_dib(const ::size_i32& size)
 {
 
-   if (m_size == size)
+   if (m_size == size_i32)
    {
 
       return nullptr;
@@ -94,7 +94,7 @@ HBITMAP pixmap::update_windows_dib(const ::size& size)
 
 
 
-//CLASS_DECL_AURA int_bool context_image::window_set_mouse_cursor(oswindow oswindow, HCURSOR hcursor)
+//CLASS_DECL_AURA int_bool context_image::window_set_mouse_cursor(oswindow oswindow, hcursor hcursor)
 //{
 //
 //   if (!::SetCursor(hcursor))
@@ -104,12 +104,12 @@ HBITMAP pixmap::update_windows_dib(const ::size& size)
 //
 //   }
 //
-//   return TRUE;
+//   return true;
 //
 //}
 
 
-int_bool delete_hcursor(HCURSOR hcursor)
+int_bool delete_hcursor(hcursor hcursor)
 {
 
    return ::DestroyCursor(hcursor);

@@ -113,7 +113,7 @@ int i;
 #endif
 	__memmov((char*)&(connection->sin_addr.s_addr),server->h_addr,server->h_length);
 	connection->sin_family=AF_INET;
-	connection->sin_port=htons(port?(unsigned short int)port:(unsigned short int)110);	/* integral size mismatch in argument - htons(port)*/
+	connection->sin_port=htons(port?(unsigned short int)port:(unsigned short int)110);	/* integral size_i32 mismatch in argument - htons(port)*/
 
 #ifdef USE_SSL
 	sock = ssl_prepare(port);

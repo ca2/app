@@ -94,7 +94,7 @@
 //      virtual ::user::primitive * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * pszWindow);
 //
 //
-//      virtual void get_time(struct timeval *point);
+//      virtual void get_time(struct timeval *point_i32);
 //      virtual void set_env_var(const string & payload,const string & value);
 //      virtual ithread_t get_thread_id();
 //      string draw2d_get_default_library_name();

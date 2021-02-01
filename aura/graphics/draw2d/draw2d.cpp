@@ -394,7 +394,7 @@ namespace draw2d
 
    bool draw2d::embossed_text_out(
    ::draw2d::graphics_pointer & pgraphics,
-   const ::rect & rect,
+   const ::rectangle_i32 & rectangle,
    string strText,
    ::draw2d::fastblur & blur,
    ::image_pointer & imageBlur,
@@ -421,13 +421,13 @@ namespace draw2d
       {
 
          pgraphics->set(pfont);
-         pgraphics->_DrawText(strText, *rect, ealign, edrawtext);
+         pgraphics->_DrawText(strText, *rectangle_i32, ealign, edrawtext);
 
       };
 
       emboss_pred(
       pgraphics,
-      rect,
+      rectangle_i32,
       pred,
       blur,
       imageBlur,
@@ -444,7 +444,7 @@ namespace draw2d
       pbrushText->create_solid((crText & 0x00ffffffu) | (bA << 24));
       pgraphics->set(pbrushText);
       pgraphics->set(pfont);
-      pgraphics->_DrawText(strText, *rect, ealign, edrawtext);
+      pgraphics->_DrawText(strText, *rectangle_i32, ealign, edrawtext);
 
       return true;
 
@@ -1062,7 +1062,7 @@ breakFilter2:
 //   void draw2d::enum_draw2d_fonts(::draw2d::font_enum_item_array& itema)
 //   {
 //
-//      cslock sl(::aura::g_pcsFont);
+//      critical_section_lock sl(::aura::g_pcsFont);
 //
 //      __pointer(::draw2d::font_enum_item) pitem;
 //

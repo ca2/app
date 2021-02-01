@@ -357,7 +357,7 @@ namespace multimedia
 
       }
 
-      bool device::OnCommand(WPARAM wparam, LPARAM lparam)
+      bool device::OnCommand(wparam wparam, lparam lparam)
       {
 
          u32 uiID = LOWORD(wparam);

@@ -1,9 +1,8 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 
 
-
-
-//CLASS_DECL_APEX string ca2_command_line(HINSTANCE hinstance);
+//CLASS_DECL_APEX string ca2_command_line(hinstance hinstance);
 
 //CLASS_DECL_APEX HRESULT os_create_link(::file::path pathObj, ::file::path pathLink, string strDesc, ::file::path pathIcon = nullptr, int iIcon = 0);
 
@@ -67,7 +66,7 @@ CLASS_DECL_APEX i32 ca2_main();
 //}
 
 
-//string ca2_command_line(HINSTANCE hinstance)
+//string ca2_command_line(hinstance hinstance)
 //{
 //
 //#ifdef CUBE
@@ -106,7 +105,7 @@ namespace apex
 
          ::file::path pathLnk;
 
-         pathObj = Context.file().module();
+         pathObj = get_context()->file().module();
 
          string strLinkTitle;
 

@@ -1090,7 +1090,7 @@ namespace sockets
                         m_spsslclientcontext->m_iRetry = 0;
                      }
                   }
-                  r = SSL_get_error(m_ssl, rect);
+                  r = SSL_get_error(m_ssl, rectangle);
                   INFO(log_this, "SSLNegotiate/SSL_connect", 0, "Connection failed");
                   SetSSLNegotiate(false);
                   SetCloseAndDelete();
@@ -1099,7 +1099,7 @@ namespace sockets
                }
                else
                {
-                  r = SSL_get_error(m_ssl, rect);
+                  r = SSL_get_error(m_ssl, rectangle);
                   if (r != SSL_ERROR_WANT_READ && r != SSL_ERROR_WANT_WRITE)
                   {
                      INFO(log_this, "SSLNegotiate/SSL_connect", -1, "Connection failed");
@@ -1141,7 +1141,7 @@ namespace sockets
                }
                else
                {
-                  r = SSL_get_error(m_ssl, rect);
+                  r = SSL_get_error(m_ssl, rectangle);
                   if (r != SSL_ERROR_WANT_READ && r != SSL_ERROR_WANT_WRITE)
                   {
                      INFO(log_this, "SSLNegotiate/SSL_accept", -1, "Connection failed");

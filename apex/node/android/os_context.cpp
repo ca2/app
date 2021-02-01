@@ -642,7 +642,7 @@ namespace android
    }
 
 
-   //void os_context::post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
+   //void os_context::post_to_all_threads(const ::id & id, wparam wparam, lparam lparam)
    //{
 
    //   ::exception::throw_not_implemented();
@@ -654,7 +654,7 @@ namespace android
 //   void os_context::enum_draw2d_fonts(::draw2d::font_enum_item_array& itema)
 //   {
 //
-//      cslock sl(::apex::g_pcsFont);
+//      critical_section_lock sl(::apex::g_pcsFont);
 //
 //      __pointer(::draw2d::font_enum_item) pitem;
 //

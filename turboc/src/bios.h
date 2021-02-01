@@ -23,7 +23,7 @@
   Filename:	bios.h
   Purpose:	A header file for TurboC. 
   Mod history:	05/19/02 RSB	Created to hold contributions by 
-  				Igor Buja.  At this point, Igor's code
+  				Igor Buja.  At this point_i32, Igor's code
 				is the only contents, and  my 
 				contribution is nil.
 */

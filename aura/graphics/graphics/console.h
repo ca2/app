@@ -13,8 +13,8 @@ namespace graphics
 
 
       ::image_pointer                     m_pimage;
-      ::size                              m_sizeTile;
-      ::size                              m_sizeWindow;
+      ::size_i32                              m_sizeTile;
+      ::size_i32                              m_sizeWindow;
       int                                 m_x;
       int                                 m_y;
       int                                 m_iColor;

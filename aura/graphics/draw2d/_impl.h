@@ -106,7 +106,7 @@ inline int image::line(int line)
 }
 
 
-//inline ::size image::size() const
+//inline ::size_i32 image::size() const
 //{
 //
 //   return m_size;
@@ -114,18 +114,18 @@ inline int image::line(int line)
 //}
 
 
-inline ::rect image::rect(const ::point& point)
+inline ::rectangle_i32 image::rectangle(const ::point_i32& point)
 {
 
-   return ::rect(point, get_size() - point);
+   return ::rectangle_i32(point, get_size() - point);
 
 }
 
 
-inline ::rect image::rect(const ::point& point) const
+inline ::rectangle_i32 image::rectangle(const ::point_i32& point) const
 {
 
-   return ::rect(point, get_size() - point);
+   return ::rectangle_i32(point, get_size() - point);
 
 }
 
@@ -412,7 +412,7 @@ inline void __exchange(::stream& s, ::hls& hls)
 }
 
 
-inline ::size image::get_size() const { return size(); }
+inline ::size_i32 image::get_size() const { return size(); }
 
 
 namespace draw2d
@@ -438,7 +438,7 @@ namespace draw2d
    template < typename PRED >
    bool draw2d::emboss_pred(
       ::draw2d::graphics_pointer & pgraphics,
-      const ::rect & rect,
+      const ::rectangle_i32 & rectangle,
       PRED pred,
       ::draw2d::fastblur & blur,
       ::image_pointer & pimageBlur,
@@ -452,7 +452,7 @@ namespace draw2d
 
       int iR = iSpreadRadius + iBlurRadius + iBlur + 1;
 
-      ::rect rectEmboss = rect;
+      ::rectangle_i32 rectEmboss = rectangle_i32;
 
       rectEmboss.left -= (::i32)(iR * g_dEmboss);
       rectEmboss.top -= (::i32)(iR * g_dEmboss);
@@ -466,19 +466,19 @@ namespace draw2d
 
          int iEffectiveBlurRadius = iBlurRadius;
 
-         const ::size & size = rectEmboss.size();
+         const ::size_i32 & size = rectEmboss.size();
 
          pimageBlur->create(rectEmboss);
 
          pimageBlur->fill(0, 0, 0, 0);
 
-         ::rect rectCache;
+         ::rectangle_i32 rectCache;
 
          rectCache.left = (::i32)(iR * g_dEmboss);
          rectCache.top = (::i32)(iR * g_dEmboss);
-         rectCache.right = rectCache.left + rect.width();
+         rectCache.right = rectCache.left + rectangle.width();
 
-         rectCache.bottom = rectCache.top + rect.height();
+         rectCache.bottom = rectCache.top + rectangle.height();
 
          ::image_pointer pimage;
 
@@ -507,11 +507,11 @@ namespace draw2d
          brushText->create_solid(ARGB(255, 255, 255, 255));
          pimage->get_graphics()->set(brushText);
 
-         pimage->get_graphics()->OffsetViewportOrg(rectCache.left - rect.left, rectCache.top - rect.top);
+         pimage->get_graphics()->OffsetViewportOrg(rectCache.left - rectangle.left, rectCache.top - rectangle.top);
 
          pred(pimage->get_graphics());
 
-         pimage->get_graphics()->OffsetViewportOrg(-rectCache.left + rect.left, -rectCache.top + rect.top);
+         pimage->get_graphics()->OffsetViewportOrg(-rectCache.left + rectangle.left, -rectCache.top + rectangle.top);
 
          System.imaging().channel_spread_set_color(pimageBlur->g(), nullptr, size, pimage->g(), nullptr, ::color::channel_alpha, iEffectiveSpreadRadius, ARGB(255, 255, 255, 255));
 

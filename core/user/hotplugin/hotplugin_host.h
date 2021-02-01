@@ -29,9 +29,9 @@ namespace hotplugin
 
       ::image_pointer               m_pimage;
 
-      ::rect                        m_rect;
-      ::rect                        m_rectClient;
-      ::rect                        m_rectWindow;
+      ::rectangle_i32                        m_rectangle;
+      ::rectangle_i32                        m_rectClient;
+      ::rectangle_i32                        m_rectWindow;
 
       bool                          m_bHostStarterStart;
 
@@ -53,15 +53,15 @@ namespace hotplugin
       // It is the location url of the page that hosts the plugin when the plugin was created.
       virtual string get_host_location_url() override;
 
-      virtual void post_message(const ::id & id, WPARAM wparam, LPARAM lparam) override;
+      virtual void post_message(const ::id & id, wparam wparam, lparam lparam) override;
 
       virtual oswindow get_host_window() override;
 
       //using ::hotplugin::plugin::get_window_rect;
-      //virtual bool get_window_rect(RECT64 * prect) override;
+      //virtual bool get_window_rect(RECTANGLE_I64 * prectangle) override;
 
       //using ::hotplugin::plugin::get_client_rect;
-      //virtual bool get_client_rect(RECT64 * prect) override;
+      //virtual bool get_client_rect(RECTANGLE_I64 * prectangle) override;
 
       virtual bool hotplugin_host_begin();
       virtual bool hotplugin_host_is_initialized();
@@ -89,7 +89,7 @@ namespace hotplugin
 
       virtual i32  start_ca2_system() override;
 
-      virtual void on_paint(::draw2d::graphics_pointer & pgraphics, const ::rect & rect) override;
+      virtual void on_paint(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle) override;
 
 
       virtual i32 start_app_install(const char * pszCommandLine);
@@ -116,19 +116,19 @@ namespace hotplugin
 
       virtual void set_status(const char * pszStatus) override;
 
-      virtual void set_bitmap(::draw2d::graphics * pimage, const ::rect & rect);
+      virtual void set_bitmap(::draw2d::graphics * pimage, const ::rectangle_i32 & rectangle);
 
 
-      virtual void paint_bitmap(::draw2d::graphics * pimage,const ::rect & rect);
+      virtual void paint_bitmap(::draw2d::graphics * pimage,const ::rectangle_i32 & rectangle);
 
 
-      virtual void blend_bitmap(::draw2d::graphics * pimage,const ::rect & rect);
+      virtual void blend_bitmap(::draw2d::graphics * pimage,const ::rectangle_i32 & rectangle);
 
 
       virtual void translate_mouse_message(int * px, int * py) override;
 
       virtual void message_handler(::message::base * pbase) override;
-      virtual void plugin_message_handler(const ::id & id,WPARAM wparam,LPARAM lparam, bool bEnsureTx) override;
+      virtual void plugin_message_handler(const ::id & id,wparam wparam,lparam lparam, bool bEnsureTx) override;
 
       virtual void plugin_message_handler(MESSAGE * pmsg, bool bEnsureTx) override;
 

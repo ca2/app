@@ -29,7 +29,7 @@ struct plane_system
    
    plane_system();
    
-   ui_window_ptr plane_system_initialize(CGRect rect);
+   ui_window_ptr plane_system_initialize(CGRect rectangle_i32);
    
    void plane_system_begin();
    

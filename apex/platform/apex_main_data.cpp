@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 
 
 //#ifdef ANDROID
@@ -56,7 +57,7 @@ void apex_main_data::system_construct(int argc, char** argv)
 
    m_hinstance = ::GetModuleHandle(nullptr);
 
-   windows_register_class(m_hinstance);
+   windows_register_class((HINSTANCE) m_hinstance);
 
    m_hPrevInstance = nullptr;
 
@@ -88,7 +89,7 @@ void apex_main_data::system_construct(int argc, wchar_t** argv)
 
    m_hinstance = ::GetModuleHandle(nullptr);
 
-   windows_register_class(m_hinstance);
+   windows_register_class((HINSTANCE) m_hinstance);
 
    m_hPrevInstance = nullptr;
 
@@ -112,7 +113,7 @@ void apex_main_data::system_construct(const char* pszCommandLine, const ::e_disp
 
    //m_poslocal = nullptr;
 
-   __zero(m_mainrunnera);
+   //__zero(m_mainrunnera);
 
 }
 
@@ -130,7 +131,7 @@ void apex_main_data::system_construct(os_local* poslocal, const ::e_display& edi
 
    //m_poslocal = poslocal;
 
-   __zero(m_mainrunnera);
+   //__zero(m_mainrunnera);
 
 }
 
@@ -138,14 +139,14 @@ void apex_main_data::system_construct(os_local* poslocal, const ::e_display& edi
 #ifdef WINDOWS_DESKTOP
 
 
-void apex_main_data::system_construct(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, i32 nCmdShow)
+void apex_main_data::system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, i32 nCmdShow)
 {
 
-   m_hinstance = hinstance;
+   m_hinstance = hinstanceThis;
 
-   windows_register_class(m_hinstance);
+   windows_register_class((HINSTANCE) m_hinstance);
 
-   MyRegisterClass(m_hinstance);
+   MyRegisterClass((HINSTANCE) m_hinstance);
 
    m_hPrevInstance = hPrevInstance;
 
@@ -159,7 +160,7 @@ void apex_main_data::system_construct(HINSTANCE hinstance, HINSTANCE hPrevInstan
 
    m_wargv = __wargv;
 
-   __zero(m_mainrunnera);
+   //__zero(m_mainrunnera);
 
 }
 

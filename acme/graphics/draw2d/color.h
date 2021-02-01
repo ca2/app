@@ -221,7 +221,7 @@ public:
    string _hex_color()
    {
 
-      ::_hex_color(*this);
+      return ::_hex_color(*this);
 
    }
 
@@ -229,9 +229,10 @@ public:
    string hex_color()
    {
 
-      ::hex_color(*this);
+      return ::hex_color(*this);
 
    }
+
 
    void blend(const ::color & color, double dRate)
    {
@@ -255,6 +256,9 @@ public:
    double get_hue() const { return get_hls().m_dH;}
 
 };
+
+
+#define LOBYTE(w)           ((byte)(((dword_ptr)(w)) & 0xff))
 
 
 CLASS_DECL_ACME color32_t alpha_color(byte bAlpha, color32_t cr);

@@ -31,16 +31,16 @@ namespace graphics
 
       virtual bool update_window(::image * pimage);
 
-      virtual ::size window_size();
+      virtual ::size_i32 window_size();
 
-      virtual i64 _001GetTopLeftWeightedOpaqueArea(LPCRECT32 lpcrect);
+      virtual i64 _001GetTopLeftWeightedOpaqueArea(const RECTANGLE_I32 * lpcrect);
 
       virtual sync * get_draw_lock();
       virtual ::draw2d::graphics * on_begin_draw();
 
       virtual void on_end_draw();
 
-      virtual bool update_buffer(const ::size & size, int iStrideParam = -1);
+      virtual bool update_buffer(const ::size_i32 & size, int iStrideParam = -1);
 
 
       virtual ::image_pointer & get_buffer_image();

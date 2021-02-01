@@ -19,7 +19,7 @@ namespace draw2d
       virtual ~buffered_graphics();
 
 
-      void Prepare(const ::rect & rect);
+      void Prepare(const ::rectangle_i32 & rectangle);
 
 
    };

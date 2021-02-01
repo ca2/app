@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/operating_system.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
 #endif
@@ -47,7 +48,7 @@ namespace user
    void horizontal_scroll_base::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       ::user::interaction::get_client_rect(rectClient);
 
@@ -61,7 +62,7 @@ namespace user
 
             get_horizontal_scroll_info(m_pscrollbarHorizontal->m_scrollinfo);
 
-            ::rect rectNewPos;
+            ::rectangle_i32 rectNewPos;
 
             auto pstyle = get_style(pgraphics);
 
@@ -205,7 +206,7 @@ namespace user
    }
 
 
-   bool horizontal_scroll_base::validate_viewport_offset(point & point)
+   bool horizontal_scroll_base::validate_viewport_offset(point_i32 & point)
    {
 
       if (point.x < 0)
@@ -252,7 +253,7 @@ namespace user
 
       m_scrolldataHorizontal.m_iWidth = get_int(pstyle, e_int_scroll_bar_width);
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -290,7 +291,7 @@ namespace user
 
       m_scrolldataHorizontal.m_bScroll = m_scrolldataHorizontal.m_bScrollEnable && m_scrolldataHorizontal.m_bScroll;
 
-      ::rect rectScroll;
+      ::rectangle_i32 rectScroll;
 
       get_client_rect(rectScroll);
 
@@ -362,7 +363,7 @@ namespace user
    void vertical_scroll_base::layout_scroll_bar(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient = get_client_rect();
+      ::rectangle_i32 rectClient = get_client_rect();
 
       //scroll_bar_get_client_rect(rectClient);
 
@@ -378,7 +379,7 @@ namespace user
 
             get_vertical_scroll_info(m_pscrollbarVertical->m_scrollinfo);
 
-            ::rect rectNewPos;
+            ::rectangle_i32 rectNewPos;
 
             auto pstyle = get_style(pgraphics);
 
@@ -586,7 +587,7 @@ namespace user
    }
 
 
-   bool vertical_scroll_base::validate_viewport_offset(point & point)
+   bool vertical_scroll_base::validate_viewport_offset(point_i32 & point)
    {
 
       if (point.y < 0)
@@ -638,7 +639,7 @@ namespace user
 
       m_scrolldataVertical.m_iWidth = get_int(pstyle, e_int_scroll_bar_width);
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -676,7 +677,7 @@ namespace user
 
       m_scrolldataVertical.m_bScroll = m_scrolldataVertical.m_bScrollEnable && m_scrolldataVertical.m_bScroll;
 
-      ::rect rectScroll;
+      ::rectangle_i32 rectScroll;
 
       get_client_rect(rectScroll);
 
@@ -744,7 +745,7 @@ namespace user
    }
 
 
-   bool scroll_base::validate_viewport_offset(point & point)
+   bool scroll_base::validate_viewport_offset(point_i32 & point)
    {
 
       bool xValidated = horizontal_scroll_base::validate_viewport_offset(point);
@@ -777,7 +778,7 @@ namespace user
 
       auto sizeTotal = get_total_size();
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -849,7 +850,7 @@ namespace user
       }
 
 
-      ::rect rectScroll;
+      ::rectangle_i32 rectScroll;
 
       get_client_rect(rectScroll);
 
@@ -1075,52 +1076,52 @@ namespace user
    }
 
 
-   bool scroll_base::GetActiveClientRect(RECT32 * prect)
+   bool scroll_base::GetActiveClientRect(RECTANGLE_I32 * prectangle)
    {
 
-      ::user::interaction::get_client_rect(prect);
+      ::user::interaction::get_client_rect(prectangle);
 
       auto sizeTotal = get_total_size();
 
       auto pointOffset = get_viewport_offset();
 
-      prect->right = (::i32) (prect->left + min(::width(prect), sizeTotal.cx - m_scrolldataHorizontal.m_iPage - pointOffset.x));
+      prectangle->right = (::i32) (prectangle->left + min(::width(prectangle), sizeTotal.cx - m_scrolldataHorizontal.m_iPage - pointOffset.x));
 
-      prect->bottom = (::i32) (prect->top + min(::height(prect), sizeTotal.cy - m_scrolldataVertical.m_iPage - pointOffset.y));
+      prectangle->bottom = (::i32) (prectangle->top + min(::height(prectangle), sizeTotal.cy - m_scrolldataVertical.m_iPage - pointOffset.y));
 
       return true;
 
    }
 
 
-   //bool scroll_base::get_client_rect(RECT32 * prect)
+   //bool scroll_base::get_client_rect(RECTANGLE_I32 * prectangle)
    //{
 
-   //   ::user::interaction::get_client_rect(prect);
+   //   ::user::interaction::get_client_rect(prectangle);
 
-   //   prect->right -= get_final_y_scroll_bar_width();
+   //   prectangle->right -= get_final_y_scroll_bar_width();
 
-   //   prect->bottom -= get_final_x_scroll_bar_width();
+   //   prectangle->bottom -= get_final_x_scroll_bar_width();
 
    //   return true;
 
    //}
 
 
-   bool scroll_base::GetFocusRect(RECT32 * prect)
+   bool scroll_base::GetFocusRect(RECTANGLE_I32 * prectangle)
    {
 
-      prect->left = 0;
-      prect->top = 0;
-      prect->right = layout().sketch().size().cx;
-      prect->bottom = layout().sketch().size().cy;
+      prectangle->left = 0;
+      prectangle->top = 0;
+      prectangle->right = layout().sketch().size().cx;
+      prectangle->bottom = layout().sketch().size().cy;
 
       return true;
 
    }
 
 
-   ::sized scroll_base::get_total_size()
+   ::size_f64 scroll_base::get_total_size()
    {
 
       return m_sizeTotal;
@@ -1128,7 +1129,7 @@ namespace user
    }
 
 
-   ::e_status scroll_base::set_total_size(const ::sized& size)
+   ::e_status scroll_base::set_total_size(const ::size_f64& size)
    {
 
       m_sizeTotal.cx = size.cx;
@@ -1140,7 +1141,7 @@ namespace user
    }
 
 
-   ::e_status scroll_base::set_page_size(const ::sized& size)
+   ::e_status scroll_base::set_page_size(const ::size_f64& size)
    {
 
       return ::error_interface_only;
@@ -1158,18 +1159,18 @@ namespace user
             && m_pscrollbarVertical.is_set() && m_pscrollbarVertical->m_pimpl.is_set())
       {
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(rectClient);
 
-         ::rect rect;
+         ::rectangle_i32 rectangle;
 
-         rect.top = rectClient.bottom;
-         rect.left = rectClient.right;
-         rect.right = (::i32) (rect.left + m_pscrollbarVertical->layout().design().size().cx);
-         rect.bottom = (::i32) (rect.top + m_pscrollbarHorizontal->layout().design().size().cy);
+         rectangle.top = rectClient.bottom;
+         rectangle.left = rectClient.right;
+         rectangle.right = (::i32) (rectangle.left + m_pscrollbarVertical->layout().design().size().cx);
+         rectangle.bottom = (::i32) (rectangle.top + m_pscrollbarHorizontal->layout().design().size().cy);
 
-         pgraphics->fill_rect(rect, ARGB(127, 127, 127, 127));
+         pgraphics->fill_rect(rectangle, ARGB(127, 127, 127, 127));
 
       }
 

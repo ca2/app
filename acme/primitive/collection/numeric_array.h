@@ -771,7 +771,7 @@ inline INTEGER get_integer_mean(const INTEGER * p, ::count N)
 
 
 template < typename T >
-inline T get_mean(const T * point, ::count N)
+inline T get_mean(const T * point_i32, ::count N)
 {
 
    double dSum = 0.0;
@@ -781,9 +781,9 @@ inline T get_mean(const T * point, ::count N)
    while(c > 0)
    {
 
-      dSum += *point;
+      dSum += *point_i32;
 
-      point++;
+      point_i32++;
 
       c--;
 

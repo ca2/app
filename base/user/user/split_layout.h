@@ -30,9 +30,9 @@ namespace user
 
 
          id                                  m_id;
-         ::rect                              m_rect;
-         ::rect                              m_rectClient;
-         ::size                              m_sizeFixed;
+         ::rectangle_i32                              m_rectangle;
+         ::rectangle_i32                              m_rectClient;
+         ::size_i32                              m_sizeFixed;
          bool                                m_bFixedSize;
          __pointer(::user::place_holder)     m_pplaceholder;
          __pointer(::user::impact_data)      m_pimpactdata;
@@ -75,17 +75,17 @@ namespace user
       bool InsertPaneAt(index iIndex, ::user::interaction * puserinteraction, bool bFixedSize, id idPane = id());
       bool SetPane(index iIndex, ::user::interaction* puserinteraction, bool bFixedSize, id idPane = id());
       bool RemovePaneAt(index iIndex);
-      void SetPaneFixedSize(index iIndex, SIZE32 * pSize);
-      void CalcSplitBarRect(index iIndex, RECT32 * prect);
+      void SetPaneFixedSize(index iIndex, SIZE_I32 * pSize);
+      void CalcSplitBarRect(index iIndex, RECTANGLE_I32 * prectangle);
 
-      void CalcPaneRect(i32 nMinPos, i32 nMaxPos, RECT32 * prect);
+      void CalcPaneRect(i32 nMinPos, i32 nMaxPos, RECTANGLE_I32 * prectangle);
 
-      void CalcPaneRect(index iIndex, RECT32 * prect);
+      void CalcPaneRect(index iIndex, RECTANGLE_I32 * prectangle);
 
 
       virtual __pointer(::user::interaction) get_pane_window(index iPane);
       virtual __pointer(::user::place_holder) get_pane_holder(index iPane);
-      virtual ::rect & get_pane_rect(index iPane);
+      virtual ::rectangle_i32 & get_pane_rect(index iPane);
       virtual id get_pane_id(index iPane);
       virtual Pane * get_pane_by_id(::id id);
 

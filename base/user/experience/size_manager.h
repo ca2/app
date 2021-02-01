@@ -14,9 +14,9 @@ namespace experience
       ::experience::frame_window *  m_pframewindow;
       e_hittest                     m_ehittestSizing;
       e_hittest                     m_ehittestCursor;
-      point                         m_pointCursorOrigin;
-      ::rect                        m_rectWindowOrigin;
-      size                          m_sizeMinimumBorder;
+      point_i32                         m_pointCursorOrigin;
+      ::rectangle_i32                        m_rectWindowOrigin;
+      size_i32                          m_sizeMinimumBorder;
       ::u32                          m_uiSWPFlags;
       enum_grip                        m_egripMask;
       i32                           m_iPaintCount;
@@ -26,7 +26,7 @@ namespace experience
       virtual ~size_manager();
 
 
-      e_hittest _001HitTest(const ::point & pointCursor);
+      e_hittest _001HitTest(const ::point_i32 & pointCursor);
 
 
       bool _001OnLButtonDown(::message::mouse * pmouse);
@@ -40,12 +40,12 @@ namespace experience
       void SetGripMask(enum_grip egrip);
       bool window_is_sizing();
       void SetSWPFlags(::u32 uFlags);
-      virtual ::size GetMinSize();
+      virtual ::size_i32 GetMinSize();
       e_cursor translate(e_hittest ehittest);
       bool set_frame_window(frame_window * pframewindow);
 
-      void size_window(e_hittest ehittest, ::user::interaction * pframewindow, const ::point & point, bool bTracking);
-      void move_window(::user::interaction * pframewindow, const ::rect & rect);
+      void size_window(e_hittest ehittest, ::user::interaction * pframewindow, const ::point_i32 & point, bool bTracking);
+      void move_window(::user::interaction * pframewindow, const ::rectangle_i32 & rectangle);
 
       virtual bool window_stop_sizing(bool bApply = true, ::message::mouse * pmouse = nullptr);
 

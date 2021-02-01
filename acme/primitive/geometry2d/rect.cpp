@@ -7,7 +7,7 @@
 //
 //
 //
-//void rect64::DeflateBottomRightSizeByRate(double dRate)
+//void rectangle_i64::DeflateBottomRightSizeByRate(double dRate)
 //{
 //   double dx = (double) width();
 //   double dy = (double) height();
@@ -19,21 +19,21 @@
 //   bottom -= (long) dy;
 //}
 //
-//void rect64::SetBottomRightSize(i64 iWidth, i64 iHeight)
+//void rectangle_i64::SetBottomRightSize(i64 iWidth, i64 iHeight)
 //{
 //   right = left + iWidth;
 //   bottom = top + iHeight;
 //}
 //
-//void rect64::ExtendOnCenter(const ::rect64 & rect)
+//void rectangle_i64::ExtendOnCenter(const ::rectangle_i64 & rectangle)
 //
 //{
 //   i64 cx = width();
 //   i64 cy = height();
 //
-//   double dx = (double) (rect.right - rect.left);
+//   double dx = (double) (rectangle.right - rectangle.left);
 //
-//   double dy = (double) (rect.bottom - rect.top);
+//   double dy = (double) (rectangle.bottom - rectangle.top);
 //
 //   double dr = max(dx / cx, dy / cy);
 //
@@ -46,29 +46,29 @@
 //}
 //
 //
-//void rect64::FitOnCenterOf(const ::rect64 & rect)
+//void rectangle_i64::FitOnCenterOf(const ::rectangle_i64 & rectangle)
 //
 //{
 //   i64 cx = width();
 //   i64 cy = height();
 //
-//   double dx = (double) (rect.right - rect.left);
+//   double dx = (double) (rectangle.right - rectangle.left);
 //
-//   double dy = (double) (rect.bottom - rect.top);
+//   double dy = (double) (rectangle.bottom - rectangle.top);
 //
 //   double dr = min(cx == 0 ? 1 : dx / cx, cy == 0 ? 1 : dy / cy);
 //
 //   i64 cw = cx == 0 ? (i64) dx : ((i64) (cx * dr));
 //   i64 ch = cy == 0 ? (i64) dy : ((i64) (cy * dr));
-//   left = (long) ((rect.left) + (dx - cw) / 2.0);
+//   left = (long) ((rectangle.left) + (dx - cw) / 2.0);
 //
-//   top = (long) ((rect.top) + (dy - ch) / 2.0);
+//   top = (long) ((rectangle.top) + (dy - ch) / 2.0);
 //
 //   right = left + cw;
 //   bottom = top + ch;
 //}
 //
-//void rect64::ScaleRect(double dx, double dy, i64 ix, i64 iy)
+//void rectangle_i64::ScaleRect(double dx, double dy, i64 ix, i64 iy)
 //{
 //   left    = (long) (((left    - ix) * dx) + ix);
 //   top     = (long) (((top     - iy) * dy) + iy);
@@ -77,7 +77,7 @@
 //
 //}
 //
-//void rect64::ScaleHeightAspect(i64 iNewHeight, i64 iCenterX, i64 iCenterY)
+//void rectangle_i64::ScaleHeightAspect(i64 iNewHeight, i64 iCenterX, i64 iCenterY)
 //{
 //   i64 iHeight = height();
 //   if(iHeight != 0)
@@ -87,41 +87,41 @@
 //   }
 //}
 //
-//void rect64::Align(i64 align, const ::rect64 & rect)
+//void rectangle_i64::Align(i64 align, const ::rectangle_i64 & rectangle)
 //
 //{
 //
-//   point64 ::point();
+//   point_i64 ::point_i32();
 //
 //   if((align & align_horizontal) == e_align_horizontal_center)
 //   {
-//      point.x = rect.left + (rect.right - rect.left) / 2 - width() / 2 - left;
+//      point.x = rectangle.left + (rectangle.right - rectangle.left) / 2 - width() / 2 - left;
 //
 //   }
 //   else if((align & align_horizontal) == e_align_left)
 //   {
-//      point.x = rect.left - left;
+//      point.x = rectangle.left - left;
 //
 //   }
 //   else if((align & align_horizontal) == e_align_right)
 //   {
-//      point.x = rect.right - right;
+//      point.x = rectangle.right - right;
 //
 //   }
 //
 //   if((align & align_vertical) ==  e_align_vertical_center)
 //   {
-//      point.y = rect.top + (rect.bottom - rect.top) / 2 - height() / 2 - top;
+//      point.y = rectangle.top + (rectangle.bottom - rectangle.top) / 2 - height() / 2 - top;
 //
 //   }
 //   else if((align & align_vertical) == e_align_top)
 //   {
-//      point.y = rect.top - top;
+//      point.y = rectangle.top - top;
 //
 //   }
 //   else if((align & align_vertical) == e_align_bottom)
 //   {
-//      point.y = rect.bottom - bottom;
+//      point.y = rectangle.bottom - bottom;
 //
 //   }
 //
@@ -129,24 +129,24 @@
 //
 //}
 //
-//void rect64::constraint_v5(const ::rect64 & rect, const class ::size64 & sizeMin)
+//void rectangle_i64::constraint_v5(const ::rectangle_i64 & rectangle, const class ::size_i64 & sizeMin)
 //
 //{
-//   if(left < rect.left)
+//   if(left < rectangle.left)
 //
-//      left = rect.left;
+//      left = rectangle.left;
 //
-//   if(right > rect.right)
+//   if(right > rectangle.right)
 //
-//      right = rect.right;
+//      right = rectangle.right;
 //
-//   if(top < rect.top)
+//   if(top < rectangle.top)
 //
-//      top = rect.top;
+//      top = rectangle.top;
 //
-//   if(bottom > rect.bottom)
+//   if(bottom > rectangle.bottom)
 //
-//      bottom = rect.bottom;
+//      bottom = rectangle.bottom;
 //
 //
 //   if(width() < sizeMin.cx)
@@ -156,25 +156,25 @@
 //
 //}
 //
-//bool rect64::contains(const ::rect64 & rect) const
+//bool rectangle_i64::contains(const ::rectangle_i64 & rectangle) const
 //
 //{
-//   return rect.left >= left
+//   return rectangle.left >= left
 //
-//          && rect.right <= right
+//          && rectangle.right <= right
 //
-//          && rect.top >= top
+//          && rectangle.top >= top
 //
-//          && rect.bottom <= bottom;
+//          && rectangle.bottom <= bottom;
 //
 //}
 //
 //// Subtract minor from major and return the greatest box around.
-//void rect64::SubtractRectMajor(const ::rect64 & rectMajor, const ::rect64 & rectMinor)
+//void rectangle_i64::SubtractRectMajor(const ::rectangle_i64 & rectMajor, const ::rectangle_i64 & rectMinor)
 //
 //{
-//   rect64 rectIntersect;
-//   rect64 rectRet(*this);
+//   rectangle_i64 rectIntersect;
+//   rectangle_i64 rectRet(*this);
 //   if(rectIntersect.is_empty().intersect(rectMajor, rectMinor))
 //
 //   {
@@ -272,7 +272,7 @@
 //
 //}
 //
-//void rect64::SubtractRectMinor(const ::rect64 & rectMajor, const ::rect64 & rectMinor)
+//void rectangle_i64::SubtractRectMinor(const ::rectangle_i64 & rectMajor, const ::rectangle_i64 & rectMinor)
 //
 //{
 //   UNREFERENCED_PARAMETER(rectMajor);
@@ -283,12 +283,12 @@
 //
 //
 //
-//i64 rect64::minimum_absolute_dimension() const noexcept { return min(INTABS(width()),INTABS(height())); }
-//i64 rect64::maximum_absolute_dimension() const noexcept { return min(INTABS(width()),INTABS(height())); }
+//i64 rectangle_i64::minimum_absolute_dimension() const noexcept { return min(INTABS(width()),INTABS(height())); }
+//i64 rectangle_i64::maximum_absolute_dimension() const noexcept { return min(INTABS(width()),INTABS(height())); }
 //
 //
 //
-//i64 rect64::minimum_signed_absolute_dimension(bool bNegativePreference) const noexcept
+//i64 rectangle_i64::minimum_signed_absolute_dimension(bool bNegativePreference) const noexcept
 //{
 //
 //   i64 w = width();
@@ -324,7 +324,7 @@
 //}
 //
 //
-//i64 rect64::maximum_signed_absolute_dimension(bool bPositivePreference) const noexcept
+//i64 rectangle_i64::maximum_signed_absolute_dimension(bool bPositivePreference) const noexcept
 //{
 //
 //   i64 w = width();
@@ -372,101 +372,37 @@
 //
 //
 //
-//void rectd::_001Constraint(const rectd& rect)
+//void rectangle_f64::_001Constraint(const rectangle_f64& rectangle)
 //
 //{
 //
-//   _001ConstraintX(rect);
+//   _001ConstraintX(rectangle);
 //
 //
-//   _001ConstraintY(rect);
+//   _001ConstraintY(rectangle);
 //
 //
 //}
 //
 //
-//void rectd::_001ConstraintX(const rectd& rect)
+//void rectangle_f64::_001ConstraintX(const rectangle_f64& rectangle)
 //
 //{
 //
-//   if (right > rect.right)
+//   if (right > rectangle.right)
 //
 //   {
 //
-//      offset_x(rect.right - right);
+//      offset_x(rectangle.right - right);
 //
 //
 //   }
 //
-//   if (left < rect.left)
+//   if (left < rectangle.left)
 //
 //   {
 //
-//      offset_x(rect.left - left);
-//
-//
-//   }
-//
-//
-//}
-//
-//
-//void rectd::_001ConstraintY(const rectd & rect)
-//
-//{
-//
-//   if (bottom > rect.bottom)
-//
-//   {
-//
-//      offset_y(rect.bottom - bottom);
-//
-//
-//   }
-//
-//   if (top < rect.top)
-//
-//   {
-//
-//      offset_y(rect.top - top);
-//
-//
-//   }
-//
-//}
-//
-//
-//void rectd::_001Constraint(const rectd & rect, RECTD * prectBounding)
-//
-//{
-//
-//   _001ConstraintX(rect, prectBounding);
-//
-//
-//   _001ConstraintY(rect, prectBounding);
-//
-//
-//}
-//
-//
-//void rectd::_001ConstraintX(const rectd & rect, RECTD * prectBounding)
-//
-//{
-//
-//   if (prectBounding->right > rect.right)
-//
-//   {
-//
-//      offset_x(::offset_x(prectBounding, rect.right - prectBounding->right));
-//
-//
-//   }
-//
-//   if (prectBounding->left < rect.left)
-//
-//   {
-//
-//      offset_x(::offset_x(prectBounding, rect.left - prectBounding->left));
+//      offset_x(rectangle.left - left);
 //
 //
 //   }
@@ -475,24 +411,88 @@
 //}
 //
 //
-//void rectd::_001ConstraintY(const rectd & rect, RECTD * prectBounding)
+//void rectangle_f64::_001ConstraintY(const rectangle_f64 & rectangle)
 //
 //{
 //
-//   if (prectBounding->bottom > rect.bottom)
+//   if (bottom > rectangle.bottom)
 //
 //   {
 //
-//      offset_y(::offset_y(prectBounding, rect.bottom - prectBounding->bottom));
+//      offset_y(rectangle.bottom - bottom);
 //
 //
 //   }
 //
-//   if (prectBounding->top < rect.top)
+//   if (top < rectangle.top)
 //
 //   {
 //
-//      offset_y(::offset_y(prectBounding, rect.top - prectBounding->top));
+//      offset_y(rectangle.top - top);
+//
+//
+//   }
+//
+//}
+//
+//
+//void rectangle_f64::_001Constraint(const rectangle_f64 & rectangle, RECTANGLE_F64 * prectBounding)
+//
+//{
+//
+//   _001ConstraintX(rectangle, prectBounding);
+//
+//
+//   _001ConstraintY(rectangle, prectBounding);
+//
+//
+//}
+//
+//
+//void rectangle_f64::_001ConstraintX(const rectangle_f64 & rectangle, RECTANGLE_F64 * prectBounding)
+//
+//{
+//
+//   if (prectBounding->right > rectangle.right)
+//
+//   {
+//
+//      offset_x(::offset_x(prectBounding, rectangle.right - prectBounding->right));
+//
+//
+//   }
+//
+//   if (prectBounding->left < rectangle.left)
+//
+//   {
+//
+//      offset_x(::offset_x(prectBounding, rectangle.left - prectBounding->left));
+//
+//
+//   }
+//
+//
+//}
+//
+//
+//void rectangle_f64::_001ConstraintY(const rectangle_f64 & rectangle, RECTANGLE_F64 * prectBounding)
+//
+//{
+//
+//   if (prectBounding->bottom > rectangle.bottom)
+//
+//   {
+//
+//      offset_y(::offset_y(prectBounding, rectangle.bottom - prectBounding->bottom));
+//
+//
+//   }
+//
+//   if (prectBounding->top < rectangle.top)
+//
+//   {
+//
+//      offset_y(::offset_y(prectBounding, rectangle.top - prectBounding->top));
 //
 //
 //   }
@@ -510,23 +510,23 @@
 //
 //
 //
-//void rectd::_001Align(double x, double y, const rectd& rect)
+//void rectangle_f64::_001Align(double x, double y, const rectangle_f64& rectangle)
 //{
 //
-//   _001AlignX(x, rect);
+//   _001AlignX(x, rectangle);
 //
-//   _001AlignY(y, rect);
+//   _001AlignY(y, rectangle);
 //
 //}
 //
 //
-//void rectd::_001AlignX(double dRate, const rectd& rect)
+//void rectangle_f64::_001AlignX(double dRate, const rectangle_f64& rectangle)
 //{
 //
 //   if (fabs(dRate) < 1000.0)
 //   {
 //
-//      align_x(dRate, rect);
+//      align_x(dRate, rectangle);
 //
 //   }
 //   else if (dRate >= 1000.0)
@@ -534,7 +534,7 @@
 //
 //      dRate -= 1000.0;
 //
-//      double x = rect.right + width() * dRate;
+//      double x = rectangle.right + width() * dRate;
 //
 //      move_to_x(x);
 //
@@ -545,7 +545,7 @@
 //
 //      dRate += 1000.0;
 //
-//      double x = rect.left + width() * dRate;
+//      double x = rectangle.left + width() * dRate;
 //
 //      move_to_x(x - width());
 //
@@ -554,13 +554,13 @@
 //}
 //
 //
-//void rectd::_001AlignY(double dRate, const rectd & rect)
+//void rectangle_f64::_001AlignY(double dRate, const rectangle_f64 & rectangle)
 //{
 //
 //   if (fabs(dRate) < 1000.0)
 //   {
 //
-//      align_y(dRate, rect);
+//      align_y(dRate, rectangle);
 //
 //   }
 //   else if (dRate >= 1000.0)
@@ -568,7 +568,7 @@
 //
 //      dRate -= 1000.0;
 //
-//      double y = rect.bottom + height() * dRate;
+//      double y = rectangle.bottom + height() * dRate;
 //
 //      move_to_y(y);
 //
@@ -579,7 +579,7 @@
 //
 //      dRate += 1000.0;
 //
-//      double y = rect.top + height() * dRate;
+//      double y = rectangle.top + height() * dRate;
 //
 //      move_to_y(y - height());
 //

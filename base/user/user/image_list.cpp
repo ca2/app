@@ -266,13 +266,13 @@ namespace user
 
          }
 
-         item.m_rect.left = x;
+         item.m_rectangle.left = x;
 
-         item.m_rect.right = x + w;
+         item.m_rectangle.right = x + w;
 
-         item.m_rect.top = y;
+         item.m_rectangle.top = y;
 
-         item.m_rect.bottom = y + h + text_height;
+         item.m_rectangle.bottom = y + h + text_height;
 
          return true;
 
@@ -296,7 +296,7 @@ namespace user
          if (!m_bNoName)
          {
 
-            item.m_rect.bottom -= m_iTextHeight;
+            item.m_rectangle.bottom -= m_iTextHeight;
 
          }
 
@@ -326,7 +326,7 @@ namespace user
 
          }
 
-         item.m_rect.top += m_size.cy;
+         item.m_rectangle.top += m_size.cy;
 
          return true;
 
@@ -350,7 +350,7 @@ namespace user
          if (get_rect(item))
          {
 
-            if (item.m_rect.contains(item.m_pointHitTest))
+            if (item.m_rectangle.contains(item.m_pointHitTest))
             {
 
                return;
@@ -371,7 +371,7 @@ namespace user
    void image_list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
       auto pstyle = get_style(pgraphics);
 
@@ -394,7 +394,7 @@ namespace user
 
          ::user::item itemText;
 
-         ::rect rectSel;
+         ::rectangle_i32 rectSel;
 
          itemText = e_element_text;
 
@@ -429,29 +429,29 @@ namespace user
                if (pimage->area() <= 0)
                {
 
-                  ::rect rectImage;
+                  ::rectangle_i32 rectImage;
 
-                  double dW = (double)rect.width() / (double)pimageSrc->width();
+                  double dW = (double)rectangle.width() / (double)pimageSrc->width();
 
-                  double dH = (double)rect.height() / (double)pimageSrc->height();
+                  double dH = (double)rectangle.height() / (double)pimageSrc->height();
 
                   double dMin = min(dW, dH);
 
-                  ::size szNew = pimageSrc->get_size() * dMin;
+                  ::size_i32 szNew = pimageSrc->get_size() * dMin;
 
                   pimage = create_image(szNew);
 
                   pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-                  pimage->g()->stretch(::rect(szNew), pimageSrc->get_graphics(),pimageSrc->rect());
+                  pimage->g()->stretch(::rectangle_i32(szNew), pimageSrc->get_graphics(),pimageSrc->rectangle_i32());
 
                }
 
-               ::rect rectImage;
+               ::rectangle_i32 rectImage;
 
-               rectImage.left = rect.left + (rect.width() - pimage->width()) / 2;
+               rectImage.left = rectangle.left + (rectangle.width() - pimage->width()) / 2;
 
-               rectImage.top = rect.top + (rect.height() - pimage->height()) / 2;
+               rectImage.top = rectangle.top + (rectangle.height() - pimage->height()) / 2;
 
                rectImage.right = rectImage.left + pimage->width();
 
@@ -462,7 +462,7 @@ namespace user
                if (!m_bNoName)
                {
 
-                  rectSel.bottom = itemText.m_rect.bottom;
+                  rectSel.bottom = itemText.m_rectangle.bottom;
 
                }
 
@@ -566,7 +566,7 @@ namespace user
 
                pgraphics->set_text_color(get_color(pstyle, e_element_text));
 
-               pgraphics->draw_text(str, itemText.m_rect, e_align_center);
+               pgraphics->draw_text(str, itemText.m_rectangle, e_align_center);
 
             }
 
@@ -588,11 +588,11 @@ namespace user
    void image_list::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
-      ::rect rectTotal(0, 0, 0, 0);
+      ::rectangle_i32 rectTotal(0, 0, 0, 0);
 
-      ::size sizeImage;
+      ::size_i32 sizeImage;
 
       for (index i = 0; i < m_imagea.get_count(); i++)
       {
@@ -605,11 +605,11 @@ namespace user
             if (i == 0)
             {
 
-               sizeImage = item.m_rect;
+               sizeImage = item.m_rectangle;
 
             }
 
-            rectTotal.unite(rectTotal, item.m_rect);
+            rectTotal.unite(rectTotal, item.m_rectangle);
 
          }
 

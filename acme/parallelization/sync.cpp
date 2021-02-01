@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/operating_system.h"
 
 
 //sync::sync(const char * lpszName)
@@ -64,7 +65,7 @@ sync::~sync()
    if (m_bOwner && m_hsync != nullptr)
    {
 
-      ::CloseHandle(m_hsync);
+      ::CloseHandle((HANDLE) m_hsync);
 
       m_hsync = nullptr;
 

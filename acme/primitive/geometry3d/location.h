@@ -79,9 +79,9 @@ public:
 };
 
 
-inline ::point __point(LPCLOCATIOND plocation)
+inline ::point_i32 __point(LPCLOCATIOND plocation)
 {
-   return ::point((::i32)plocation->x, (::i32)plocation->y);
+   return ::point_i32((::i32)plocation->x, (::i32)plocation->y);
 }
 
 

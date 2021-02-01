@@ -12,18 +12,18 @@ namespace draw2d_opengl
 
 
       bool                       m_bHasPointInternal;
-      ::pointd                   m_pointLast;
+      ::point_f64                   m_pointLast;
 
 
       path();
       virtual ~path();
 
 
-      virtual bool internal_add_arc(const ::rect & rect, double iStart, double iAngle);
+      virtual bool internal_add_arc(const ::rectangle_i32 & rectangle, double iStart, double iAngle);
 
-      virtual pointd internal_last_point();
+      virtual point_f64 internal_last_point();
 
-      virtual pointd internal_current_point();
+      virtual point_f64 internal_current_point();
 
 
       virtual bool internal_begin_figure(bool bFill, ::draw2d::enum_fill_mode efillmode);
@@ -49,13 +49,13 @@ namespace draw2d_opengl
 
       virtual bool _set(::draw2d::graphics* pgraphics, const ::linesd& pline) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::rect& prect) override;
+      virtual bool _set(::draw2d::graphics* pgraphics, const ::rectangle_i32& prectangle) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::rectd& prect) override;
+      virtual bool _set(::draw2d::graphics* pgraphics, const ::rectangle_f64& prectangle) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::polygon& ppolygon) override;
+      virtual bool _set(::draw2d::graphics* pgraphics, const ::polygon_i32& ppolygon) override;
 
-      virtual bool _set(::draw2d::graphics* pgraphics, const ::polygond& ppolygond) override;
+      virtual bool _set(::draw2d::graphics* pgraphics, const ::polygon_f64& ppolygond) override;
 
       virtual bool _set(::draw2d::graphics* pgraphics, const ::text_out& ptextout) override;
 

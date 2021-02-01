@@ -163,7 +163,7 @@ namespace hi5
       void authorization::display_main_frame()
       {
 
-         ::rect rectOpen;
+         ::rectangle_i32 rectOpen;
 
          m_ptabview->get_parent_frame()->best_top_level_parent(rectOpen);
 

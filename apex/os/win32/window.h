@@ -37,9 +37,9 @@ namespace win32
 
       virtual void on_command(::u32 nID);
 
-      iptr send_message(const ::id & id, WPARAM wparam = 0, LPARAM lparam = 0);
-      iptr send_message_w(const ::id & id, WPARAM wparam = 0, LPARAM lparam = 0);
-      void post_message(const ::id & id, WPARAM wparam = 0, LPARAM lparam = 0);
+      iptr send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0);
+      iptr send_message_w(const ::id & id, wparam wparam = 0, lparam lparam = 0);
+      void post_message(const ::id & id, wparam wparam = 0, lparam lparam = 0);
 
 
       void enable_window(bool bEnable = true);

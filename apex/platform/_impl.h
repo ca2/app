@@ -150,7 +150,7 @@ template < typename RECEIVER >
   if (preceiver == nullptr)
   {
 
-     ASSERT(FALSE);
+     ASSERT(false);
 
      __throw(invalid_argument_exception());
 
@@ -238,7 +238,7 @@ template < typename RECEIVER, typename MESSAGE >
   if (preceiver == nullptr)
   {
 
-     ASSERT(FALSE);
+     ASSERT(false);
 
      __throw(invalid_argument_exception());
 

@@ -361,7 +361,7 @@ namespace hotplugin
          //if(m_millisEntryHallTextStart.elapsed() > ((5000) / 3))
          //{
 
-         //   ::hotplugin::entry_hall_windows_on_paint(pgraphics,m_rect,m_strEntryHallText);
+         //   ::hotplugin::entry_hall_windows_on_paint(pgraphics,m_rectangle,m_strEntryHallText);
 
          //}
 
@@ -380,11 +380,11 @@ namespace hotplugin
 
          g->Attach((HDC)hdc);
 
-         ::rect rect;
+         ::rectangle_i32 rectangle;
 
-         m_paxishost->get_window_rect(rect);
+         m_paxishost->get_window_rect(rectangle);
 
-         m_paxishost->on_paint(g,rect);
+         m_paxishost->on_paint(g,rectangle_i32);
 
          g->Detach();
 

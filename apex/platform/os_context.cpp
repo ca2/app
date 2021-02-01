@@ -81,15 +81,15 @@
       __throw(interface_only_exception("this is an interface"));
    }
 
-#ifdef WINDOWS
-
-   ::file::path os_context::get_module_path(HMODULE hmodule)
-   {
-      UNREFERENCED_PARAMETER(hmodule);
-      __throw(interface_only_exception("this is an interface"));
-   }
-
-#endif
+//#ifdef WINDOWS
+//
+//   ::file::path os_context::get_module_path(HMODULE hmodule)
+//   {
+//      UNREFERENCED_PARAMETER(hmodule);
+//      __throw(interface_only_exception("this is an interface"));
+//   }
+//
+//#endif
 
 
    ::payload os_context::connection_settings_get_auto_detect()
@@ -357,15 +357,15 @@
    }
 
 
-#ifdef WINDOWS
-
-   DECLSPEC_NO_RETURN void os_context::raise_exception(u32 dwExceptionCode, u32 dwExceptionFlags)
-   {
-
-
-   }
-
-#endif
+//#ifdef WINDOWS
+//
+//   DECLSPEC_NO_RETURN void os_context::raise_exception(u32 dwExceptionCode, u32 dwExceptionFlags)
+//   {
+//
+//
+//   }
+//
+//#endif
 
 
    bool os_context::is_remote_session()

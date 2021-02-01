@@ -84,7 +84,7 @@ namespace xml
             //break;
 
             default:
-               ASSERT(FALSE);
+               ASSERT(false);
                break;
 
             }

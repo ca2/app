@@ -32,7 +32,7 @@ namespace windows
       virtual ~copydesk();
 
 
-      //static LRESULT WINAPI WindowProc(HWND hwnd, ::u32 message, WPARAM wparam, LPARAM lparam);
+      //static lresult WINAPI WindowProc(HWND hwnd, ::u32 message, wparam wparam, lparam lparam);
 
 
       DECL_GEN_SIGNAL(_001OnClipboardUpdate);

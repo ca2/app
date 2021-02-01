@@ -46,7 +46,7 @@ namespace uwp
       virtual ::e_status initialize_graphics_graphics(::user::interaction_impl* pimpl) override;
 
 
-      virtual bool create_buffer(const ::size& size, int iStride = -1);
+      virtual bool create_buffer(const ::size_i32& size, int iStride = -1);
       virtual void destroy_buffer();
       virtual bool update_window();
 
@@ -59,7 +59,7 @@ namespace uwp
       virtual void on_end_draw();
 
 
-      bool create_os_buffer(const ::size& size, int iStride = -1);
+      bool create_os_buffer(const ::size_i32& size, int iStride = -1);
       void destroy_os_buffer();
 
 

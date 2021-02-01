@@ -6,7 +6,7 @@ namespace html
 
 
    class CLASS_DECL_CORE border :
-      public ::rectf
+      public ::rectangle_f32
    {
    public:
 

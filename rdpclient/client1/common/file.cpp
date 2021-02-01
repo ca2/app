@@ -83,7 +83,7 @@ static int freerdp_client_rdp_file_set_integer(rdpFile* file, const char* name, 
 		file->DesktopWidth = value;
 	else if (_stricmp(name, "desktopheight") == 0)
 		file->DesktopHeight = value;
-	else if (_stricmp(name, "desktop size id") == 0)
+	else if (_stricmp(name, "desktop size_i32 id") == 0)
 		file->DesktopSizeId = value;
 	else if (_stricmp(name, "session bpp") == 0)
 		file->SessionBpp = value;

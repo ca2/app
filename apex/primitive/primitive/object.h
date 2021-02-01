@@ -268,7 +268,7 @@ public:
    virtual void to_string(const string_exchange & str) const override;
 
    //::image_result create_image();
-   //::image_result create_image(const ::size & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
+   //::image_result create_image(const ::size_i32 & size, ::eobject eobjectCreate = OK, int iGoodStride = -1, bool bPreserve = false);
 
    //::image_result get_image(const ::payload & varFile, bool bCache = true, bool bSync = true);
    //::image_result matter_image(const string & strMatter, bool bCache = true, bool bSync = true);
@@ -610,8 +610,7 @@ public:
    ::thread_pointer begin(
       ::e_priority epriority = ::priority_normal,
       ::u32 nStackSize = 0,
-      u32 dwCreateFlags = 0,
-      LPSECURITY_ATTRIBUTES pSecurityAttrs = nullptr);
+      u32 dwCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
    //::thread_pointer defer_fork(string strThread = "");
 

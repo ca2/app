@@ -121,17 +121,17 @@ namespace experience
       }
 
 
-      ::rect control_box::get_button_margin(enum_button ebutton)
+      ::rectangle_i32 control_box::get_button_margin(enum_button ebutton)
       {
 
          if (e_button_close == ebutton)
          {
 
-            return ::rect(1, 4, 4, 4);
+            return ::rectangle_i32(1, 4, 4, 4);
 
          }
 
-         return ::rect(1, 4, 2, 4);
+         return ::rectangle_i32(1, 4, 2, 4);
 
       }
 

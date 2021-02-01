@@ -9,17 +9,17 @@ class CLASS_DECL_ACME lparam
 public:
 
 
-   LPARAM m_lparam;
+   iptr m_lparam;
 
    lparam(std::nullptr_t = nullptr) { m_lparam = 0; }
 
-   lparam(i32 i) { m_lparam = (LPARAM) i; }
+   lparam(i32 i) { m_lparam = (iptr) i; }
 
-   lparam(i64 i) { m_lparam = (LPARAM) i; }
+   lparam(i64 i) { m_lparam = (iptr) i; }
 
 
    /// catching/receiving matter
-   inline lparam(void * p) { m_lparam = (LPARAM)p;  }
+   inline lparam(void * p) { m_lparam = (iptr)p;  }
 
 
    /// posting/sending matter
@@ -40,14 +40,14 @@ public:
    }
 
 
-   operator LPARAM &()
+   operator iptr &()
    {
 
       return m_lparam;
 
    }
 
-   operator LPARAM () const
+   operator iptr () const
    {
 
       return m_lparam;
@@ -97,7 +97,7 @@ public:
    }
 
 
-   lparam& operator = (LPARAM lparam)
+   lparam& operator = (iptr lparam)
    {
 
       m_lparam = lparam;
@@ -107,18 +107,18 @@ public:
    }
 
 
-   inline int x() const
+   inline short x() const
    {
 
-      return U32_LO_I16(m_lparam);
+      return (short) (m_lparam & 0xffff);
 
    }
 
 
-   inline int y() const
+   inline short y() const
    {
 
-      return U32_HI_I16(m_lparam);
+      return (short) ((m_lparam >> 16) & 0xffff);
 
    }
 

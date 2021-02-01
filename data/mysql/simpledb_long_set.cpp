@@ -492,23 +492,23 @@ bool db_long_set::find(const char * lpKey)
 bool db_long_set::load(const char * lpKey, LPRECT32 lpRect)
 {
 
-   ::rect rect;
+   ::rectangle_i32 rectangle;
 
    string strKey = lpKey;
 
-   if(!load(strKey + ".left", rect.left))
+   if(!load(strKey + ".left", rectangle.left))
       return false;
 
-   if(!load(strKey + ".top", rect.top))
+   if(!load(strKey + ".top", rectangle.top))
       return false;
 
-   if(!load(strKey + ".right", rect.right))
+   if(!load(strKey + ".right", rectangle.right))
       return false;
 
-   if(!load(strKey + ".bottom", rect.bottom))
+   if(!load(strKey + ".bottom", rectangle.bottom))
       return false;
 
-   *lpRect = rect;
+   *lpRect = rectangle_i32;
 
    return true;
 
@@ -520,7 +520,7 @@ bool db_long_set::load(const char * lpKey, LPRECT32 lpRect)
 // 'false' if one or more save operations has failed.
 // 'true' otherwise
 
-bool db_long_set::save(const char * lpKey, LPCRECT32 lpRect)
+bool db_long_set::save(const char * lpKey, const RECTANGLE_I32 * lpRect)
 {
 
    string strKey = lpKey;
@@ -545,12 +545,12 @@ bool db_long_set::save(const char * lpKey, LPCRECT32 lpRect)
 bool db_long_set::MoveWindow_(const char * lpKey, ::user::interaction_impl * pwindow)
 {
 
-   ::rect rect;
+   ::rectangle_i32 rectangle;
 
-   if(!load(lpKey, &rect))
+   if(!load(lpKey, &rectangle))
       return false;
 
-   pwindow->SetPlacement(rect);
+   pwindow->SetPlacement(rectangle);
 
    return true;
 
@@ -842,10 +842,10 @@ bool db_long_set::load(const char * lpKey, WINDOWPLACEMENT & wp)
 
 
 
-bool db_long_set::load(const char * lpKey, POINT32 * lpPoint)
+bool db_long_set::load(const char * lpKey, POINT_I32 * lpPoint)
 {
 
-   ::point point;
+   ::point_i32 point;
 
    string strKey = lpKey;
 
@@ -855,13 +855,13 @@ bool db_long_set::load(const char * lpKey, POINT32 * lpPoint)
    if(!load(strKey + ".y", point.y))
       return false;
 
-   *lpPoint = point;
+   *lpPoint = point_i32;
 
    return true;
 
 }
 
-bool db_long_set::save(const char * lpKey, POINT32 * lpPoint)
+bool db_long_set::save(const char * lpKey, POINT_I32 * lpPoint)
 {
 
    string strKey = lpKey;

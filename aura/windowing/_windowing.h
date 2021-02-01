@@ -3,8 +3,19 @@
 #pragma once
 
 
+
+
+
 #include "aura/windowing/_.h"
 
+
+
+//#ifdef WINDOWS
+//
+//interface ID2D1DeviceContext;
+//
+//#endif
+//
 
 //!!!#include <X11/Xlib.h>
 
@@ -19,21 +30,6 @@ namespace windowing
    class window;
 
 
-   display *get_display();
-
-   void kick_idle();
-
-   void __wait_timer_or_event(display *pdisplay);
-
-   void __hook_on_idle(display *pdisplay);
-
-   CLASS_DECL_ACME mutex *mutex();
-
-   ::e_status defer_initialize_x11();
-   void handle_just_hooks();
-   void defer_handle_just_hooks();
-   int message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox);
-   bool __hook_process_event(display * pdisplay, void * pevent, void * cookie);
 
    //CLASS_DECL_ACME i32 find_message_only_window(::user::interaction_impl * puserinteractionimpl);
    //CLASS_DECL_ACME i32 find_window(Display * pdisplay, Window window);
@@ -49,11 +45,17 @@ namespace windowing
 } // namespace windowing
 
 
+#include "monitor.h"
+
+
+#include "icon.h"
+
+
 #include "display.h"
 #include "window.h"
 
 
-//#include "event.h"
+
 #include "buffer.h"
 
 
@@ -66,6 +68,8 @@ namespace windowing
 
 
 #include "windowing.h"
+
+
 
 
 

@@ -96,7 +96,7 @@ namespace user
 
    }
 
-   bool message_queue::message_queue_post_message(const ::id & id,WPARAM wparam,lparam lparam)
+   bool message_queue::message_queue_post_message(const ::id & id,wparam wparam,lparam lparam)
    {
 
       return post_message(id, wparam, lparam);
@@ -104,7 +104,7 @@ namespace user
    }
 
 
-   LRESULT message_queue::message_queue_send_message(const ::id& id,WPARAM wparam,lparam lparam)
+   lresult message_queue::message_queue_send_message(const ::id& id,wparam wparam,lparam lparam)
    {
 
       return send_message(id, wparam, lparam);

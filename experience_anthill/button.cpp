@@ -102,9 +102,9 @@ namespace experience
 
       }
 
-      ::rect rectEllipse(rectClient);
+      ::rectangle_i32 rectEllipse(rectClient);
 
-      ::rect rW;
+      ::rectangle_i32 rW;
 
       get_window_rect(rW);
 
@@ -145,7 +145,7 @@ namespace experience
 
          pgraphics->set(m_pen);
 
-         ::rect rectIcon(rectEllipse);
+         ::rectangle_i32 rectIcon(rectEllipse);
 
          rectIcon.deflate(rectIcon.width() / 4, rectIcon.height() / 4);
 

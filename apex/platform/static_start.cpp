@@ -1,9 +1,10 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 #include "static_start.h"
 #include "apex/net/sockets/_sockets.h"
 #include "apex/platform/app_core.h"
 #include "apex/astr.h"
-#include "apex/os/_os.h"
+//#include "apex/os/_os.h"
 #ifndef WINDOWS
 #include "acme/os/cross/windows/_windows.h"
 #endif
@@ -12,7 +13,7 @@
 CLASS_DECL_APEX string __apex_get_text(string str);
 
 
-extern ::mutex* g_pmutexThreadDeferredCreation;
+extern ::mutex * g_pmutexThreadDeferredCreation;
 extern ::array < __pointer(thread) >* g_pthreadaDeferredCreate;
 
 
@@ -67,9 +68,9 @@ namespace apex
    //CLASS_DECL_APEX string_to_string * g_pmapFontFaceName = nullptr;
 
 
-   ::mutex* g_pmutexChildren;
+   ::mutex * g_pmutexChildren;
 
-   ::mutex* g_pmutexThreadWaitClose;
+   ::mutex * g_pmutexThreadWaitClose;
 
    //string_map < __pointer(::apex::library) >* g_pmapLibrary;
    //string_map < PFN_NEW_APEX_LIBRARY >* g_pmapNewAuraLibrary;
@@ -105,7 +106,7 @@ namespace apex
 
    //__LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
-   //::mutex* get_globals_mutex();
+   //::mutex * get_globals_mutex();
 
    //critical_section* g_pcsGlobal;
 
@@ -128,12 +129,12 @@ namespace apex
 //#endif
 
 
-   ::mutex* g_pmutexCred;
+   ::mutex * g_pmutexCred;
 
 
    class ::exception_engine* g_pexceptionengine;
 
-   ::mutex* g_pmutexMessageDispatch;
+   ::mutex * g_pmutexMessageDispatch;
 
 
    array < matter* >* g_paAura;
@@ -168,14 +169,14 @@ namespace apex
    //plex_heap_alloc_array * g_pplexheapallocarray;
 
    int g_iMemoryCountersStartable;
-   //mutex * g_pmutexTrait;
+   //::mutex * g_pmutexTrait;
    //::mutex * g_pmutexFactory;
 
-   ::mutex* g_pmutexUiDestroyed;
+   ::mutex * g_pmutexUiDestroyed;
 
 #ifdef ANDROID
 
-   ::mutex* g_pmutexOutputDebugStringA;
+   ::mutex * g_pmutexOutputDebugStringA;
 
 #endif
 
@@ -207,9 +208,9 @@ namespace apex
 #if defined(LINUX) || defined(__APPLE__)
 
 
-   ::mutex* g_pmutexTz;
+   ::mutex * g_pmutexTz;
 
-   ::mutex* g_pmutexThreadHandleLock;
+   ::mutex * g_pmutexThreadHandleLock;
 
 
 #endif // defined(LINUX) || defined(__APPLE__)
@@ -218,7 +219,7 @@ namespace apex
 #ifdef __APPLE__
 
 
-   ::mutex* g_pmutexCvt;
+   ::mutex * g_pmutexCvt;
 
 
 #endif
@@ -319,7 +320,7 @@ namespace apex
       //plex_heap_alloc_array * g_pplexheapallocarray = nullptr;
 
       g_iMemoryCountersStartable = 0;
-      //mutex * g_pmutexTrait;
+      //::mutex * g_pmutexTrait;
       //::mutex * g_pmutexFactory;
 
       g_pmutexUiDestroyed = 0;
@@ -581,7 +582,7 @@ namespace apex
 
       //g_pmapFontFaceName = new string_to_string();
 
-      g_pmutexThreadDeferredCreation = new mutex;
+      g_pmutexThreadDeferredCreation = new ::mutex;
 
       g_pthreadaDeferredCreate = new ::array < __pointer(thread) >();
 

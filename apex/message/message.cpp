@@ -61,7 +61,7 @@ namespace message
    bool message::previous() { if (--m_iRouteIndex < 0) return false; m_proutea.m_p->m_pData[m_iRouteIndex].m_p->m_pmessageable.m_p->on_message(this); return m_bRet; }
 
 
-   void message::set_lresult(LRESULT lresult)
+   void message::set_lresult(lresult lresult)
    {
 
       m_lresult = lresult;
@@ -69,7 +69,7 @@ namespace message
    }
 
 
-   void message::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
+   void message::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam)
    {
       
       initialize(playeredUserPrimitive);

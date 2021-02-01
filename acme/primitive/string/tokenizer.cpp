@@ -48,7 +48,7 @@ namespace str
             strToken = Mid(m_nCurrentIndex, i - m_nCurrentIndex);
          m_nCurrentIndex = i + strlen(pSeparator);
 
-         return TRUE;
+         return true;
       }
       else
       {
@@ -56,10 +56,10 @@ namespace str
          {
             strToken = Mid(m_nCurrentIndex);
             m_nCurrentIndex = get_length() + 1;
-            return TRUE;
+            return true;
          }
          else
-            return FALSE;
+            return false;
       }
 
    }
@@ -68,7 +68,7 @@ namespace str
    {
       if(m_nCurrentIndex >= get_length())
       {
-         return FALSE;
+         return false;
       }
       strsize iMinPos = get_length();
       strsize iMaxSepLen = 0;
@@ -97,7 +97,7 @@ namespace str
       else
          strToken = Mid(m_nCurrentIndex, iMinPos - m_nCurrentIndex);
       m_nCurrentIndex = iMinPos + iMaxSepLen;
-      return TRUE;
+      return true;
    }
 
    bool tokenizer::GetNextTokenEx(string &strToken, const char * pSeparator, bool bWithSeparator, bool bSkipAdjacent)
@@ -138,10 +138,10 @@ namespace str
          {
             strToken = Mid(m_nCurrentIndex);
             m_nCurrentIndex = get_length();
-            return TRUE;
+            return true;
          }
          else
-            return FALSE;
+            return false;
       }
 
    }
@@ -251,7 +251,7 @@ namespace str
          else
             strToken = Mid(m_nCurrentIndex, i1 - m_nCurrentIndex);
          m_nCurrentIndex = i1 + 2;
-         return TRUE;
+         return true;
       }
       else if(i2 >= 0)
       {
@@ -260,7 +260,7 @@ namespace str
          else
             strToken = Mid(m_nCurrentIndex, i2 - m_nCurrentIndex);
          m_nCurrentIndex = i2 + 2;
-         return TRUE;
+         return true;
       }
       else
       {
@@ -268,10 +268,10 @@ namespace str
          {
             strToken = Mid(m_nCurrentIndex);
             m_nCurrentIndex = get_length();
-            return TRUE;
+            return true;
          }
          else
-            return FALSE;
+            return false;
       }
    }
    

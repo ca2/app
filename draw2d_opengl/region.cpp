@@ -7,8 +7,8 @@
 namespace draw2d_opengl
 {
 
-   //region::region(const region & rect) :
-   //   ::draw2d::region(rect)
+   //region::region(const region & rectangle) :
+   //   ::draw2d::region(rectangle)
    //{
    //   //m_pregion = nullptr;
    //   m_bUpdated = false;
@@ -40,9 +40,9 @@ namespace draw2d_opengl
    void region::SetRectRgn(i32 x1, i32 y1, i32 x2, i32 y2)
    { ASSERT(get_os_data() != nullptr); ::SetRectRgn((HRGN)get_os_data(), x1, y1, x2, y2); }
    
-   void region::SetRectRgn(const ::rect & rect)
+   void region::SetRectRgn(const ::rectangle_i32 & rectangle)
    { 
-      ::SetRectRgn((HRGN)get_os_data(), rect.left, rect.top, rect.right, rect.bottom); 
+      ::SetRectRgn((HRGN)get_os_data(), rectangle.left, rectangle.top, rectangle.right, rectangle.bottom); 
    }
 
    i32 region::CombineRgn(const ::draw2d::region* pRgn1, const ::draw2d::region* pRgn2, i32 nCombineMode)
@@ -62,7 +62,7 @@ namespace draw2d_opengl
 
    i32 region::OffsetRgn(i32 x, i32 y)
    { ASSERT(get_os_data() != nullptr); return ::OffsetRgn((HRGN)get_os_data(), x, y); }
-   i32 region::OffsetRgn(const ::point & point)
+   i32 region::OffsetRgn(const ::point_i32 & point)
    { ASSERT(get_os_data() != nullptr); return ::OffsetRgn((HRGN)get_os_data(), point.x, point.y); }
 
    */
@@ -71,15 +71,15 @@ namespace draw2d_opengl
 
       //((region *)this)->defer_update();
 
-      //plusplus::Rect rect;
+      //plusplus::Rect rectangle_i32;
 
-      //((region *) this)->m_pregion->GetBounds(&rect, &plusplus::Graphics((HDC) nullptr));
+      //((region *) this)->m_pregion->GetBounds(&rectangle, &plusplus::Graphics((HDC) nullptr));
 
 
-      //lprect->left = rect.X;
-      //lprect->top = rect.Y;
-      //lprect->right = rect.X + rect.Width;
-      //lprect->bottom = rect.Y + rect.Height;
+      //lprect->left = rectangle.X;
+      //lprect->top = rectangle.Y;
+      //lprect->right = rectangle.X + rectangle.Width;
+      //lprect->bottom = rectangle.Y + rectangle.Height;
       
       return true;
 
@@ -88,37 +88,37 @@ namespace draw2d_opengl
    bool region::PtInRegion(i32 x, i32 y) const
    { 
 
-      plusplus::PointF pointf((plusplus::REAL) x, (plusplus::REAL) y);
+      plusplus::PointF point_f32((plusplus::REAL) x, (plusplus::REAL) y);
       
       ASSERT(get_os_data() != nullptr); //return ::PtInRegion((HRGN)get_os_data(), x, y); 
 
-      return m_pregion->IsVisible(pointf)  != FALSE;
+      return m_pregion->IsVisible(point_f32)  != FALSE;
    
    }
    */
-   bool region::contains(const ::point & point) const
+   bool region::contains(const ::point_i32 & point) const
    { 
 
     /*  ((region *) (this))->defer_update();
 
-      plusplus::PointF pointf((plusplus::REAL) point.x, (plusplus::REAL) point.y);
+      plusplus::PointF point_f32((plusplus::REAL) point.x, (plusplus::REAL) point.y);
       
       ASSERT(get_os_data() != nullptr);
 
-      return m_pregion->IsVisible(pointf)  != FALSE;
+      return m_pregion->IsVisible(point_f32)  != FALSE;
 */
       return true;
    }
    /*
-   bool region::RectInRegion(const ::rect & rect) const
+   bool region::RectInRegion(const ::rectangle_i32 & rectangle) const
    { 
-      //ASSERT(get_os_data() != nullptr); return ::RectInRegion((HRGN)get_os_data(), rect); 
+      //ASSERT(get_os_data() != nullptr); return ::RectInRegion((HRGN)get_os_data(), rectangle); 
 
-      plusplus::RectF rectf((plusplus::REAL) rect.left, (plusplus::REAL) rect.top, (plusplus::REAL) (rect.right - rect.left), (plusplus::REAL) (rect.bottom - rect.top));
+      plusplus::RectF rectangle_f32((plusplus::REAL) rectangle.left, (plusplus::REAL) rectangle.top, (plusplus::REAL) (rectangle.right - rectangle.left), (plusplus::REAL) (rectangle.bottom - rectangle.top));
       
       ASSERT(get_os_data() != nullptr); //return ::PtInRegion((HRGN)get_os_data(), x, y); 
 
-      return m_pregion->IsVisible(rectf)  != FALSE;
+      return m_pregion->IsVisible(rectangle_f32)  != FALSE;
 
    }
    */
@@ -199,14 +199,14 @@ namespace draw2d_opengl
 
    //   plusplus::GraphicsPath path;
 
-   //   plusplus::RectF rect;
+   //   plusplus::RectF rectangle_i32;
 
-   //   rect.X      = (plusplus::REAL) m_x1;
-   //   rect.Y      = (plusplus::REAL) m_y1;
-   //   rect.Width  = (plusplus::REAL) (m_x2 - m_x1);
-   //   rect.Height = (plusplus::REAL) (m_y2 - m_y1);
+   //   rectangle.X      = (plusplus::REAL) m_x1;
+   //   rectangle.Y      = (plusplus::REAL) m_y1;
+   //   rectangle.Width  = (plusplus::REAL) (m_x2 - m_x1);
+   //   rectangle.Height = (plusplus::REAL) (m_y2 - m_y1);
 
-   //   path.AddRectangle(rect);
+   //   path.AddRectangle(rectangle);
 
    //   return new plusplus::Region(&path);
    //      

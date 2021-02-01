@@ -45,7 +45,7 @@ namespace tranquillum
 
       }
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       ::user::interaction::get_client_rect(rectClient);
 
@@ -97,7 +97,7 @@ namespace tranquillum
 
       }
 
-      ::rect rectEllipse(rectClient);
+      ::rectangle_i32 rectEllipse(rectClient);
 
       //auto rW = get_window_rect();
 
@@ -138,7 +138,7 @@ namespace tranquillum
 
          pgraphics->set(m_pen);
 
-         ::rect rectIcon(rectEllipse);
+         ::rectangle_i32 rectIcon(rectEllipse);
 
          rectIcon.deflate(rectIcon.width() / 4, rectIcon.height() / 4);
 
@@ -186,7 +186,7 @@ namespace tranquillum
    void button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 

@@ -40,7 +40,7 @@ typedef struct _Button Button;
 #define BUTTON_CLOSE        3
 #define BTN_MAX             4
 
-/* bmp size */
+/* bmp size_i32 */
 #define BACKGROUND_W        581
 #define BACKGROUND_H        29
 #define LOCK_X              13
@@ -70,7 +70,7 @@ struct _Button {
 struct _FloatBar {
 	HWND parent;
 	HWND hwnd;
-	RECT32 rect;
+	RECTANGLE_I32 rectangle_i32;
 	::i32 width;
 	::i32 height;
 	wfContext* wfc;
@@ -233,9 +233,9 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 			floatbar->hwnd = hWnd;
 			floatbar->parent = get_parent(hWnd);
 
-			get_window_rect(floatbar->hwnd, &floatbar->rect);
-			floatbar->width = floatbar->rect.right - floatbar->rect.left;
-			floatbar->height = floatbar->rect.bottom - floatbar->rect.top;
+			get_window_rect(floatbar->hwnd, &floatbar->rectangle_i32);
+			floatbar->width = floatbar->rectangle.right - floatbar->rectangle.left;
+			floatbar->height = floatbar->rectangle.bottom - floatbar->rectangle.top;
 
 			hdc = GetDC(hWnd);
 			floatbar->hdcmem = CreateCompatibleDC(hdc);
@@ -297,14 +297,14 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 
 			if (dragging)
 			{
-				floatbar->rect.left = floatbar->rect.left + (lParam & 0xffff) - btn_dwn_x;
+				floatbar->rectangle.left = floatbar->rectangle.left + (lParam & 0xffff) - btn_dwn_x;
 
-				if (floatbar->rect.left < 0)
-					floatbar->rect.left = 0;
-				else if (floatbar->rect.left > xScreen - floatbar->width)
-					floatbar->rect.left = xScreen - floatbar->width;
+				if (floatbar->rectangle.left < 0)
+					floatbar->rectangle.left = 0;
+				else if (floatbar->rectangle.left > xScreen - floatbar->width)
+					floatbar->rectangle.left = xScreen - floatbar->width;
 
-				MoveWindow(hWnd, floatbar->rect.left, floatbar->rect.top, floatbar->width, floatbar->height, TRUE);
+				MoveWindow(hWnd, floatbar->rectangle.left, floatbar->rectangle.top, floatbar->width, floatbar->height, TRUE);
 			}
 			else
 			{
@@ -355,7 +355,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 				{
 					static int y = 0;
 
-					MoveWindow(floatbar->hwnd, floatbar->rect.left, (y++ - floatbar->height), floatbar->width, floatbar->height, TRUE);
+					MoveWindow(floatbar->hwnd, floatbar->rectangle.left, (y++ - floatbar->height), floatbar->width, floatbar->height, TRUE);
 					if (y == floatbar->height)
 					{
 						y = 0;
@@ -367,7 +367,7 @@ LRESULT CALLBACK floatbar_proc(HWND hWnd, ::u32 Msg, WPARAM wParam, LPARAM lPara
 				{
 					static int y = 0;
 
-					MoveWindow(floatbar->hwnd, floatbar->rect.left, -y++, floatbar->width, floatbar->height, TRUE);
+					MoveWindow(floatbar->hwnd, floatbar->rectangle.left, -y++, floatbar->width, floatbar->height, TRUE);
 					if (y == floatbar->height)
 					{
 						y = 0;
@@ -419,14 +419,14 @@ static FloatBar* floatbar_create(wfContext* wfc)
 int floatbar_hide(FloatBar* floatbar)
 {
 	KillTimer(floatbar->hwnd, TIMER_HIDE);
-	MoveWindow(floatbar->hwnd, floatbar->rect.left, -floatbar->height, floatbar->width, floatbar->height, TRUE);
+	MoveWindow(floatbar->hwnd, floatbar->rectangle.left, -floatbar->height, floatbar->width, floatbar->height, TRUE);
 	return 0;
 }
 
 int floatbar_show(FloatBar* floatbar)
 {
 	SetTimer(floatbar->hwnd, TIMER_HIDE, 3000, nullptr);
-	MoveWindow(floatbar->hwnd, floatbar->rect.left, floatbar->rect.top, floatbar->width, floatbar->height, TRUE);
+	MoveWindow(floatbar->hwnd, floatbar->rectangle.left, floatbar->rectangle.top, floatbar->width, floatbar->height, TRUE);
 	return 0;
 }
 

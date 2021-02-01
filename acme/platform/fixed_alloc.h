@@ -17,7 +17,7 @@ public:
       node* pNext;   // only valid when in free list
    };
 
-   ::u32 m_nAllocSize;   // size of each block from Alloc
+   ::u32 m_nAllocSize;   // size_i32 of each block from Alloc
    ::u32 m_nBlockSize;   // number of blocks to get at a time
    plex* m_pBlocks;   // linked list of blocks (is nBlocks*nAllocSize)
    node* m_pnodeFree;   // first free node (nullptr if no free nodes)

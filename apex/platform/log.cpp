@@ -200,7 +200,7 @@ namespace apex
 
 
          m_bLog = false;
-         //m_bLog = is_debugger_attached() != FALSE;
+         //m_bLog = is_debugger_attached() != false;
 
       }
 
@@ -381,7 +381,7 @@ namespace apex
 
       string_array stra;
 
-      stra.add_lines(psz, FALSE);
+      stra.add_lines(psz, false);
 
       string strPre;
 

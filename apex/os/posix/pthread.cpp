@@ -278,10 +278,10 @@ void __node_term_multithreading()
 
 #if defined(LINUX) // || defined(ANDROID)
 
-bool (*g_pfn_defer_process_x_message)(hthread_t hthread, LPMESSAGE pMsg, oswindow oswindow, bool bPeek) = nullptr;
+bool (*g_pfn_defer_process_x_message)(hthread_t hthread, MESSAGE * pMsg, oswindow oswindow, bool bPeek) = nullptr;
 
 
-bool apex_defer_process_x_message(hthread_t hthread, LPMESSAGE pMsg, oswindow oswindow, bool bPeek)
+bool apex_defer_process_x_message(hthread_t hthread, MESSAGE * pMsg, oswindow oswindow, bool bPeek)
 
 {
 
@@ -293,7 +293,7 @@ bool apex_defer_process_x_message(hthread_t hthread, LPMESSAGE pMsg, oswindow os
 
 }
 
-void set_defer_process_x_message(bool (*pfn)(hthread_t hthread, LPMESSAGE pMsg, oswindow oswindow, bool bPeek))
+void set_defer_process_x_message(bool (*pfn)(hthread_t hthread, MESSAGE * pMsg, oswindow oswindow, bool bPeek))
 
 {
 

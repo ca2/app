@@ -126,7 +126,7 @@ namespace helloworld
 
       ::draw2d::lock draw2dlock;
 
-      size sizeNew = size(m_cx, m_cy);
+      size_i32 sizeNew = size_i32(m_cx, m_cy);
 
       if (m_bNewLayout)
       {
@@ -393,7 +393,7 @@ namespace helloworld
 
       ::get_task()->m_bThreadToolsForIncreasedFps = true;
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       rectClient.left = 0;
 
@@ -439,7 +439,7 @@ namespace helloworld
 
       double r = (tri(w * t) + 1.0) / 2.0;
 
-      ::size size;
+      ::size_i32 size;
 
       string strHelloWorld;
 
@@ -495,11 +495,11 @@ namespace helloworld
 
 /*                  m_pimage->g()->SelectObject(brushText);
 
-/*                  m_pimage->g()->text_out((m_cxCache1 - size->cx) / 2, (m_cyCache1 - size->cy) / 2, strHelloWorld);
+/*                  m_pimage->g()->text_out((m_cxCache1 - size_i32->cx) / 2, (m_cyCache1 - size_i32->cy) / 2, strHelloWorld);
 
 /*                  m_pimage->map();
 
-/*                  System.imaging().spread(m_pimage->g(), ::point(), m_pimage->get_size(), m_pimage->g(), ::point(), int (m_dMaxRadius));
+/*                  System.imaging().spread(m_pimage->g(), ::point_i32(), m_pimage->get_size(), m_pimage->g(), ::point_i32(), int (m_dMaxRadius));
 
 /*                  m_pimage->blur();
 
@@ -573,11 +573,11 @@ namespace helloworld
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       System.imaging().bitmap_blend(pgraphics,
-                                         point((m_cx - m_pimageTemplate2->width()) / 2, (m_cy - m_pimageTemplate2->height()) / 2)
+                                         point_i32((m_cx - m_pimageTemplate2->width()) / 2, (m_cy - m_pimageTemplate2->height()) / 2)
                                          , m_pimageTemplate2->m_size,
-                                         m_pimageTemplate2->get_graphics(), ::point(), byte (128 + (255 - 128) * r));
+                                         m_pimageTemplate2->get_graphics(), ::point_i32(), byte (128 + (255 - 128) * r));
 
-      //pgraphics->from(rectClient.top_left(),m_pimageTemplate, ::point(), rectClient>si);
+      //pgraphics->from(rectClient.top_left(),m_pimageTemplate, ::point_i32(), rectClient>si);
 
       pgraphics->set_font(m_font);
 
@@ -642,7 +642,7 @@ namespace helloworld
       if (m_pimageWork->area() <= 0)
          return;
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       rectClient.left = 0;
 
@@ -724,7 +724,7 @@ namespace helloworld
 
       string strHelloWorld = get_helloworld();
 
-      ::size size = pgraphics->GetTextExtent(strHelloWorld);
+      ::size_i32 size = pgraphics->GetTextExtent(strHelloWorld);
 
       m_cxTarget = int(size.cx * 1.2);
       m_cyTarget = int(size.cy * 1.2);
@@ -763,7 +763,7 @@ namespace helloworld
 
 /*            m_pimage->g()->set_font(m_font);
 
-/*            m_pimage->g()->text_out((m_cx - size->cx) / 2, (m_cy - size->cy) / 2, strHelloWorld);
+/*            m_pimage->g()->text_out((m_cx - size_i32->cx) / 2, (m_cy - size_i32->cy) / 2, strHelloWorld);
 
             if (m_dMinRadius > 3.0)
             {
@@ -977,7 +977,7 @@ namespace helloworld
    //void render::_006OnDraw(::draw2d::graphics_pointer & pgraphics)
    //{
 
-   //   ::rect rectClient;
+   //   ::rectangle_i32 rectClient;
 
    //   rectClient.left = 0;
    //   rectClient.top = 0;
@@ -1055,7 +1055,7 @@ namespace helloworld
 
    //                  pimage->defer_update();
 
-/*   //                  System.imaging().bitmap_blend(pgraphics, ::point(), pimage->get_size(), pimage->get_graphics(), ::point(), 255 - uchAlpha);
+/*   //                  System.imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->get_graphics(), ::point_i32(), 255 - uchAlpha);
 
    //               }
 
@@ -1073,7 +1073,7 @@ namespace helloworld
 
    //                  pimage->defer_update();
 
-/*   //                  System.imaging().bitmap_blend(pgraphics, ::point(), pimage->get_size(), pimage->get_graphics(), ::point(), uchAlpha);
+/*   //                  System.imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->get_graphics(), ::point_i32(), uchAlpha);
 
    //               }
 
@@ -1134,7 +1134,7 @@ namespace helloworld
 
    //            pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
 
-   //            ::size size = pgraphics->GetTextExtent(strHelloWorld);
+   //            ::size_i32 size = pgraphics->GetTextExtent(strHelloWorld);
 
    //            double ratey = fHeight * 0.84 / size.cy;
 
@@ -1164,7 +1164,7 @@ namespace helloworld
 
    //         pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
 
-   //         ::size size = pgraphics->GetTextExtent(strHelloWorld);
+   //         ::size_i32 size = pgraphics->GetTextExtent(strHelloWorld);
 
    //         pgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloWorld);
 
@@ -1209,7 +1209,7 @@ namespace helloworld
 
    //      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-   //      pgraphics->BitBlt(::point(), size(m_cx, m_cy), m_pimageFast->get_graphics());
+   //      pgraphics->BitBlt(::point_i32(), size_i32(m_cx, m_cy), m_pimageFast->get_graphics());
 
    //      //pgraphics->FillSolidRect(400,400,100,100,ARGB(128,0,0,128));
 
@@ -1250,15 +1250,15 @@ namespace helloworld
 
    //      uchAlpha = byte(max(0, min(255, (m_millisLastOk.elapsed()) * 255 / m_millisAnime)));
 
-/*   //      System.imaging().bitmap_blend(pgraphics, ::point(), pimage->get_size(), pimage->g(), ::point(), uchAlpha);
+/*   //      System.imaging().bitmap_blend(pgraphics, ::point_i32(), pimage->get_size(), pimage->g(), ::point_i32(), uchAlpha);
 
-   //      System.imaging().bitmap_blend(pgraphics, ::point(), imageFast.get_size(), imageFast.get_graphics(), ::point(), 255 - uchAlpha);
+   //      System.imaging().bitmap_blend(pgraphics, ::point_i32(), imageFast.get_size(), imageFast.get_graphics(), ::point_i32(), 255 - uchAlpha);
 
    //   }
    //   else
    //   {
 
-/*   //      pgraphics->from(::point(), pimage->get_size(), pimage->g(), ::point());
+/*   //      pgraphics->from(::point_i32(), pimage->get_size(), pimage->g(), ::point_i32());
 
    //   }
 
@@ -1360,7 +1360,7 @@ namespace helloworld
 
       sync_lock slDraw(&m_mutexDraw);
 
-      ::size sizeNew = ::size(m_cx, m_cy);
+      ::size_i32 sizeNew = ::size_i32(m_cx, m_cy);
 
       bool bNewSize = m_pimageFast->width() != sizeNew->cx || m_pimageFast->height() != sizeNew->cy;
 
@@ -1385,7 +1385,7 @@ namespace helloworld
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
 
-      ::size size = pgraphics->GetTextExtent(strHelloWorld);
+      ::size_i32 size = pgraphics->GetTextExtent(strHelloWorld);
 
       double ratey = fHeight * 0.84 / size.cy;
 

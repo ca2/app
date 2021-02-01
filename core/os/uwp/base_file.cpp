@@ -666,7 +666,7 @@ string file_module_path_dup()
 // //    PSYSTEM_HANDLE_INFORMATION pSysHandleInformation = new SYSTEM_HANDLE_INFORMATION;
 // //    u32 size = sizeof(SYSTEM_HANDLE_INFORMATION);
 // //    ::u32 needed = 0;
-// //    NTSTATUS status = NtQuerySystemInformation(SystemHandleInformation,pSysHandleInformation,size,&needed);
+// //    NTSTATUS status = NtQuerySystemInformation(SystemHandleInformation,pSysHandleInformation, size,&needed);
 // //    if(!NT_SUCCESS(status))
 // //    {
 // //       if(0 == needed)
@@ -676,8 +676,8 @@ string file_module_path_dup()
 // //       // The previously supplied buffer wasn't enough.
 // //       delete pSysHandleInformation;
 // //       size = needed + 1024;
-// //       pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)new byte[size];
-// //       status = NtQuerySystemInformation(SystemHandleInformation,pSysHandleInformation,size,&needed);
+// //       pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)new byte[size_i32];
+// //       status = NtQuerySystemInformation(SystemHandleInformation,pSysHandleInformation, size,&needed);
 // //       if(!NT_SUCCESS(status))
 // //       {
 // //          // some other error so quit.
@@ -1392,7 +1392,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   {
 //      const char *src = (const char*)buffer;
 //      size_t startpos = 0,i = 0;
-//      for(i = 0; i < size*count; i++)
+//      for(i = 0; i < size_i32*count; i++)
 //      {
 //         if(src[i] != '\n')
 //            continue;
@@ -1428,7 +1428,7 @@ return (HANDLE)i;		// FIXME:  This doesn't work under Win64
 //   }
 //   else
 //   {
-//      size_t s = size * count;
+//      size_t s = size_i32 * count;
 //      const char *src = (const char*)buffer;
 //      size_t dwWritten = 0;
 //      while(s - dwWritten > 0)
@@ -1796,7 +1796,7 @@ int_bool close_handle(HANDLE h)
 
    TRUNCATE_EXISTING
    5
-   Opens a file and truncates it so that its size is zero bytes, only if it exists.
+   Opens a file and truncates it so that its size_i32 is zero bytes, only if it exists.
    If the specified file does not exist, the function fails and the last-error code is set to ERROR_FILE_NOT_FOUND (2).
    The calling process must open the file with the GENERIC_WRITE bit set as part of the dwDesiredAccess parameter.
 

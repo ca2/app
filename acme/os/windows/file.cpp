@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/operating_system.h"
 #include "acme/os/windows_common/_file_c.h"
 #include <stdio.h>
 #include <share.h>
@@ -21,19 +22,19 @@ int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinstance, DWORD 
    FILE * file;
 
    if(hrsrc == nullptr)
-      return FALSE;
+      return false;
 
    hglobalResource = LoadResource(hinstance, hrsrc);
 
    if(hglobalResource == nullptr)
-      return FALSE;
+      return false;
 
    dwResourseSize = SizeofResource(hinstance, hrsrc);
 
    if(hglobalResource != nullptr)
    {
 
-      bOk = FALSE;
+      bOk = false;
 
       pResource = (DWORD *) LockResource(hglobalResource);
 
@@ -56,7 +57,7 @@ int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinstance, DWORD 
 
    }
 
-   return FALSE;
+   return false;
 
 }
 
@@ -69,11 +70,11 @@ int_bool file_exists(const char * path1)
    if (dwFileAttributes == INVALID_FILE_ATTRIBUTES || (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   return TRUE;
+   return true;
 
 }
 
@@ -107,7 +108,7 @@ int_bool file_put_contents(const char * path, const char * contents, memsize len
 
    fclose(file);
 
-   return dwWrite == dwWritten && bOk != FALSE;
+   return dwWrite == dwWritten && bOk != false;
 
 }
 
@@ -576,10 +577,10 @@ struct PROCESS_INFO_t
 ////      SYSTEM_HANDLE& sh = pThreadParam->pSysHandleInformation->Handles[g_CurrentIndex];
 ////      g_CurrentIndex++;
 ////      HANDLE hDup = (HANDLE)sh.wValue;
-////      HANDLE hProcess = OpenProcess( PROCESS_DUP_HANDLE, FALSE, sh.dwProcessId );
+////      HANDLE hProcess = OpenProcess( PROCESS_DUP_HANDLE, false, sh.dwProcessId );
 ////      if( hProcess )
 ////      {
-////         bool b = DuplicateHandle( hProcess, (HANDLE)sh.wValue, GetCurrentProcess(), &hDup, 0, FALSE, DUPLICATE_SAME_ACCESS ) != FALSE;
+////         bool b = DuplicateHandle( hProcess, (HANDLE)sh.wValue, GetCurrentProcess(), &hDup, 0, false, DUPLICATE_SAME_ACCESS ) != false;
 ////         if( !b )
 ////         {
 ////            hDup = (HANDLE)sh.wValue;
@@ -632,7 +633,7 @@ struct PROCESS_INFO_t
 ////   bool bShortPath = false;
 ////   const char * pShortPath = strShortName;
 ////
-////   if(string( csShortName )!= csPath && FALSE == csShortName.is_empty())
+////   if(string( csShortName )!= csPath && false == csShortName.is_empty())
 ////   {
 ////      bShortPath = true;
 ////   }
@@ -659,7 +660,7 @@ struct PROCESS_INFO_t
 ////      // The previously supplied buffer wasn't enough.
 ////      delete pSysHandleInformation;
 ////      size = needed + 1024;
-////      pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)new byte[size];
+////      pSysHandleInformation = (PSYSTEM_HANDLE_INFORMATION)new byte[size_i32];
 ////      status = NtQuerySystemInformation( SystemHandleInformation, pSysHandleInformation, size, &needed );
 ////      if( !NT_SUCCESS(status))
 ////      {
@@ -682,8 +683,8 @@ struct PROCESS_INFO_t
 ////      ThreadParams.nFileType = nFileType;
 ////      ThreadParams.pGetFinalPathNameByHandle = pGetFinalPathNameByHandle;
 ////      ThreadParams.pSysHandleInformation = pSysHandleInformation;
-////      ThreadParams.hStartEvent = ::CreateEvent( 0, TRUE, FALSE, 0 );
-////      ThreadParams.hFinishedEvent = ::CreateEvent( 0, TRUE, FALSE, 0 );
+////      ThreadParams.hStartEvent = ::CreateEvent( 0, true, false, 0 );
+////      ThreadParams.hFinishedEvent = ::CreateEvent( 0, true, false, 0 );
 ////      HANDLE ThreadHandle = 0;
 ////      while( g_CurrentIndex < pSysHandleInformation->dwCount )
 ////      {
@@ -759,7 +760,7 @@ struct PROCESS_INFO_t
 ////         ADDRESS_INFO stAddress;
 ////         stAddress.pAddress = sh.pAddress;
 ////         DWORD dwReturn = 0;
-////         bool bSuccess = DeviceIoControl( hDriver, IOCTL_LISTDRV_BUFFERED_IO, &stAddress, sizeof(ADDRESS_INFO), &stHandle, sizeof(HANDLE_INFO), &dwReturn, nullptr ) != FALSE;
+////         bool bSuccess = DeviceIoControl( hDriver, IOCTL_LISTDRV_BUFFERED_IO, &stAddress, sizeof(ADDRESS_INFO), &stHandle, sizeof(HANDLE_INFO), &dwReturn, nullptr ) != false;
 ////
 ////
 ////         if( bSuccess && stHandle.tcFileName[0] != 0 &&
@@ -903,7 +904,7 @@ struct PROCESS_INFO_t
 ////               if(!LIBCALL(shlwapi,PathFileExistsW)(me32.szExePath))
 ////               {
 ////                  WCHAR tcFileName[MAX_PATH];
-////                  HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION|PROCESS_VM_READ, TRUE, pDwId[nIdx] );
+////                  HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION|PROCESS_VM_READ, true, pDwId[nIdx] );
 ////                  if( GetProcessImageFileNameW( hProcess, tcFileName, MAX_PATH ))
 ////                  {
 ////                     GetDrive( string(tcFileName), csModule, false );
@@ -1100,11 +1101,11 @@ int_bool file_delete(const char * pszFileName)
    if (!::DeleteFileW(wstrFileName))
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   return TRUE;
+   return true;
 
 }
 
@@ -1242,11 +1243,11 @@ bool GetDrive(const char * pszDosName, string& csDrive, bool bDriveLetterOnly)
                csDrive = pszDosName;
                csDrive.replace(string(tcDeviceName), string(tcDrive));
             }
-            return TRUE;
+            return true;
          }
       }
    }
-   return FALSE;
+   return false;
 }
 
 //#ifdef _M_IX86
@@ -1447,19 +1448,19 @@ CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinstance, DW
    DWORD * pResource;
 
    if (hrsrc == nullptr)
-      return FALSE;
+      return false;
 
    hglobalResource = LoadResource(hinstance, hrsrc);
 
    if (hglobalResource == nullptr)
-      return FALSE;
+      return false;
 
    dwResourceSize = SizeofResource(hinstance, hrsrc);
 
    if (hglobalResource != nullptr)
    {
 
-      bOk = TRUE;
+      bOk = true;
 
       pResource = (DWORD *) LockResource(hglobalResource);
 
@@ -1471,7 +1472,7 @@ CLASS_DECL_ACME bool read_resource_as_memory(memory & m, HINSTANCE hinstance, DW
 
    }
 
-   return FALSE;
+   return false;
 
 }
 
@@ -1482,8 +1483,7 @@ const char *            pFileName,
 
 ::u32                   dwDesiredAccess,
 ::u32                   dwShareMode,
-LPSECURITY_ATTRIBUTES   pSecurityAttributes,
-
+void *   pSecurityAttributes,
 ::u32                   dwCreationDisposition,
 ::u32                   dwFlagsAndAttributes,
 HANDLE                  hTemplateFile
@@ -1497,8 +1497,7 @@ HANDLE                  hTemplateFile
           wstr,
           dwDesiredAccess,
           dwShareMode,
-          pSecurityAttributes,
-
+          (LPSECURITY_ATTRIBUTES) pSecurityAttributes,
           dwCreationDisposition,
           dwFlagsAndAttributes,
           hTemplateFile);
@@ -1520,4 +1519,96 @@ string get_volume_path(const char * psz)
       return "";
    }
    return wsz;
+}
+
+
+
+namespace file
+{
+
+#ifdef WINDOWS
+
+
+   bool exception::get_error_message(string & str, unsigned int * pnHelpContext)
+   {
+
+      // if (pnHelpContext != nullptr)
+      //      *pnHelpContext = m_cause + __IDP_FILE_NONE;
+
+      string strMessage;
+
+      string strFileName = m_path;
+
+      if (strFileName.is_empty())
+      {
+
+         strFileName = "IDS_UNNAMED_FILE";
+
+      }
+
+      if (m_lOsError == ERROR_ACCESS_DENIED || m_lOsError == ERROR_SHARING_VIOLATION)
+      {
+
+         wstring wstr;
+
+         wstr = ::str::international::utf8_to_unicode(m_path.name());
+
+         // #ifdef WINDOWS_DESKTOP
+         //          GetOpenedFiles(wstr, ALL_TYPES, &exception::CallBackFunc, (uptr)this);
+         // #endif
+
+         if (m_strAdd.has_char())
+         {
+            ((exception *)this)->m_strAdd = " Process Using the file = " + m_strAdd;
+         }
+         else
+         {
+            ((exception *)this)->m_strAdd = " Process Using the file Not Found ";
+         }
+
+      }
+
+
+      string strExtra;
+
+      strExtra = get_system_error_message(m_lOsError);
+
+      strExtra += m_strAdd;
+
+      strMessage.Format("file error number: %d - %s - file: %s", m_estatus.m_estatus, strExtra.c_str(), strFileName.c_str());
+
+      str = strMessage;
+
+      return true;
+   }
+
+
+#endif
+
+
+} // namespace file
+
+
+
+
+
+
+
+
+int_bool file_exists_raw(const char * path1)
+{
+
+
+   u32 dwFileAttributes = GetFileAttributesA(path1);
+
+   if (dwFileAttributes == INVALID_FILE_ATTRIBUTES || (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+
 }

@@ -4,7 +4,7 @@
 #endif
 
 
-CLASS_DECL_AURA int_bool mq_post_message(oswindow oswindow, const ::id & id, WPARAM wparam, LPARAM lparam)
+CLASS_DECL_AURA int_bool mq_post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
 {
 
    ::user::interaction* pinteraction = oswindow_interaction(oswindow);
@@ -32,7 +32,7 @@ CLASS_DECL_AURA int_bool mq_post_message(oswindow oswindow, const ::id & id, WPA
 
    }
 
-   return TRUE;
+   return true;
 
 }
 
@@ -77,7 +77,7 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 
    });
 
-   return TRUE;
+   return true;
 
 }
 

@@ -1,5 +1,7 @@
 ﻿#include "framework.h"
-#include "acme/node/_node.h"
+#include "acme/operating_system.h"
+
+
 #include "acme/id.h"
 #include <VersionHelpers.h>
 
@@ -102,7 +104,7 @@ bool __node_acme_pre_init()
 
    //g_gdiplusHookToken         = NULL;
 
-   //g_pgdiplusStartupInput->SuppressBackgroundThread = TRUE;
+   //g_pgdiplusStartupInput->SuppressBackgroundThread = true;
 
    //Gdiplus::Status statusStartup = GdiplusStartup(&g_gdiplusToken,g_pgdiplusStartupInput,g_pgdiplusStartupOutput);
 
@@ -131,7 +133,7 @@ bool __node_acme_pre_init()
 //    try
 //    {
 
-//       FreeImage_Initialise(FALSE);
+//       FreeImage_Initialise(false);
 
 //    }
 //    catch (...)
@@ -238,7 +240,7 @@ bool __node_acme_pos_term()
 
 
 
-string key_to_char(WPARAM wparam, LPARAM lparam)
+string key_to_char(wparam wparam, lparam lparam)
 
 {
 
@@ -395,7 +397,7 @@ int_bool is_windows_98_or_lesser()
 //#if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WIN7) // Windows 7 or greater
 #if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_LONGHORN) // Windows 7 or greater
 
-   return FALSE;
+   return false;
 
 #else
 
@@ -537,7 +539,7 @@ int_bool is_windows_nt_lesser_than_2000()
 
 #if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
 
-   return FALSE;
+   return false;
 
 #else
 
@@ -564,7 +566,7 @@ int_bool is_windows_native_unicode()
 
 #if defined(_WIN32_WINNT) && (_WIN32_WINNT >= _WIN32_WINNT_WINXP) // winxp or greater
 
-   return TRUE;
+   return true;
 
 #else
 
@@ -592,11 +594,11 @@ int_bool is_windows_native_unicode()
          dwBuild = 0;
 
       if (dwVersion < 0x80000000)              // Windows NT
-         s_bNativeUnicode = TRUE;
+         s_bNativeUnicode = true;
       else if (dwWindowsMajorVersion < 4)      // Win32s
-         s_bNativeUnicode = FALSE;
+         s_bNativeUnicode = false;
       else                                     // Windows Me/98/95
-         s_bNativeUnicode = FALSE;
+         s_bNativeUnicode = false;
 
    }
 
@@ -607,7 +609,7 @@ int_bool is_windows_native_unicode()
 }
 
 
-// __is_valid_atom() returns TRUE if the passed parameter is
+// __is_valid_atom() returns true if the passed parameter is
 // a valid local or global atom.
 bool __is_valid_atom(ATOM nAtom)
 {
@@ -617,7 +619,7 @@ bool __is_valid_atom(ATOM nAtom)
    if(GetAtomNameW(nAtom,sBuffer,_countof(sBuffer)))
    {
       
-      return TRUE;
+      return true;
 
    }
    
@@ -626,14 +628,14 @@ bool __is_valid_atom(ATOM nAtom)
    if(dwError == ERROR_INSUFFICIENT_BUFFER || dwError == ERROR_MORE_DATA)
    {
 
-      return TRUE;
+      return true;
 
    }
 
    if(GlobalGetAtomNameW(nAtom,sBuffer,_countof(sBuffer)))
    {
 
-      return TRUE;
+      return true;
 
    }
 
@@ -642,16 +644,16 @@ bool __is_valid_atom(ATOM nAtom)
    if(dwError == ERROR_INSUFFICIENT_BUFFER || dwError == ERROR_MORE_DATA)
    {
 
-      return TRUE;
+      return true;
 
    }
 
-   return FALSE;
+   return false;
 
 }
 
 
-// __is_valid_address() returns TRUE if the passed parameter is
+// __is_valid_address() returns true if the passed parameter is
 // a valid representation of a local or a global atom within a const char *.
 
 bool __is_valid_atom(const char * psz)
@@ -673,14 +675,14 @@ bool __is_valid_atom(const wchar_t * psz)
 int_bool IsWow64()
 {
 
-   int_bool bIsWow64 = FALSE;
+   int_bool bIsWow64 = false;
 
    if (!IsWow64Process(GetCurrentProcess(), &bIsWow64))
    {
-      return FALSE;
+      return false;
    }
 
-   return bIsWow64 != FALSE;
+   return bIsWow64 != false;
 
 }
 
@@ -689,16 +691,16 @@ int_bool EnableTokenPrivilege(LPCTSTR pszPrivilege)
 {
    
    // do it only once
-   static int_bool bEnabled = FALSE;
+   static int_bool bEnabled = false;
 
    if (bEnabled)
    {
       
-      return TRUE;
+      return true;
 
    }
 
-   bEnabled = TRUE;
+   bEnabled = true;
 
    HANDLE hToken = 0;
 
@@ -708,7 +710,7 @@ int_bool EnableTokenPrivilege(LPCTSTR pszPrivilege)
    if (!OpenProcessToken(GetCurrentProcess(), TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY, &hToken))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -721,22 +723,22 @@ int_bool EnableTokenPrivilege(LPCTSTR pszPrivilege)
       tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
 
       // set the privilege for this process.
-      AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES)nullptr, 0);
+      AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES)nullptr, 0);
 
       DWORD dwError = ::GetLastError();
 
       if (dwError != ERROR_SUCCESS)
       {
 
-         return FALSE;
+         return false;
 
       }
 
-      return TRUE;
+      return true;
 
    }
 
-   return FALSE;
+   return false;
 
 }
 
@@ -828,9 +830,18 @@ CLASS_DECL_ACME string executable_get_app_id(HINSTANCE hinstance)
 }
 
 
+void show_error_message(const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+{
 
+   wstring wstrMessage(strMessage);
 
+   wstring wstrTitle(strTitle);
 
+   auto result = ::MessageBox(nullptr, wstrMessage, wstrTitle, (i32)emessagebox);
+
+   process(result);
+
+}
 
 
 

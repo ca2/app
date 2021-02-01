@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <winapifamily.h>
 #include <windows.h>
 #include <shlwapi.h>

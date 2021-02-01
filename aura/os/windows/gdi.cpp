@@ -41,12 +41,12 @@ CLASS_DECL_AURA void black_body(float * r, float * g, float * b, ::u32 dwTemp);
 //   LOGFONTW & logFont = *pLogFont;
 //
 //
-//   POINT32 point;
-//   // 72 points/inch, 10 decipoints/point
+//   POINT_I32 point_i32;
+//   // 72 points/inch, 10 decipoints/point_i32
 //   point.y = ::MulDiv(::GetDeviceCaps(hdc, LOGPIXELSY), logFont.lfHeight, 720);
 //   point.x = 0;
 //   ::DPtoLP(hdc, &point, 1);
-//   POINT32 pointOrg = { 0, 0 };
+//   POINT_I32 pointOrg = { 0, 0 };
 //   ::DPtoLP(hdc, &pointOrg, 1);
 //   logFont.lfHeight = -abs(point.y - pointOrg.y);
 //
@@ -147,7 +147,7 @@ namespace draw2d
 
       pgraphics->set(this);
 
-      pimage->get_graphics()->stretch(pimage->rect(), pgraphics);
+      pimage->get_graphics()->stretch(pimage->rectangle_i32(), pgraphics);
 
       return CreateHBITMAP(pimage);
 
@@ -228,7 +228,7 @@ namespace draw2d
 
          }
 
-         ::EnumFontFamiliesW(m_hdc, (const widechar *)nullptr, (FONTENUMPROCW)&wingdi_font_enum::callback, (LPARAM)this);
+         ::EnumFontFamiliesW(m_hdc, (const widechar *)nullptr, (FONTENUMPROCW)&wingdi_font_enum::callback, (lparam)this);
 
          for (auto & pitem : m_itema.ptra())
          {
@@ -243,15 +243,15 @@ namespace draw2d
       void enum_cs(::draw2d::font_enum_item * pitem)
       {
 
-         ::EnumFontFamiliesW(m_hdc, pitem->m_wstrName, (FONTENUMPROCW)&wingdi_font_enum::callback_cs, (LPARAM)pitem);
+         ::EnumFontFamiliesW(m_hdc, pitem->m_wstrName, (FONTENUMPROCW)&wingdi_font_enum::callback_cs, (lparam)pitem);
 
       }
 
 
-      static BOOL CALLBACK callback(LPLOGFONTW plf, LPNEWTEXTMETRICW lpntm, ::u32 FontType, LPVOID point);
+      static BOOL CALLBACK callback(LPLOGFONTW plf, LPNEWTEXTMETRICW lpntm, ::u32 FontType, LPVOID point_i32);
 
 
-      static BOOL CALLBACK callback_cs(LPLOGFONTW plf, LPNEWTEXTMETRICW lpntm, ::u32 FontType, LPVOID point);
+      static BOOL CALLBACK callback_cs(LPLOGFONTW plf, LPNEWTEXTMETRICW lpntm, ::u32 FontType, LPVOID point_i32);
 
 
    };
@@ -310,7 +310,7 @@ namespace draw2d
 
       }
 
-      return TRUE;
+      return true;
 
    }
 
@@ -329,7 +329,7 @@ namespace draw2d
 
       }
 
-      return TRUE;
+      return true;
 
    }
 
@@ -491,7 +491,7 @@ CLASS_DECL_AURA HBITMAP CreateAlphaBitmapV5(const ::image * pimage)
   HBITMAP hBitmap;
   void *pBits;
 
-  HCURSOR hAlphaCursor = nullptr;
+  hcursor hAlphaCursor = nullptr;
 
   dwWidth = pimage->width();  // width of the Bitmap V5 Dib bitmap
   dwHeight = pimage->height();  // height of the Bitmap V5 Dib bitmap
@@ -541,7 +541,7 @@ CLASS_DECL_AURA HBITMAP CreateAlphaBitmapV5(const ::image * pimage)
 }
 
 
-HCURSOR CreateAlphaIcon(const ::image * pimage, bool bIcon, int xHotSpot, int yHotSpot)
+hcursor CreateAlphaIcon(const ::image * pimage, bool bIcon, int xHotSpot, int yHotSpot)
 {
 
   if (!pimage->is_ok())
@@ -563,14 +563,14 @@ HCURSOR CreateAlphaIcon(const ::image * pimage, bool bIcon, int xHotSpot, int yH
   }
 
   ICONINFO ii;
-  ii.fIcon = bIcon ? TRUE : FALSE;  // Change fIcon to TRUE to create an alpha icon
+  ii.fIcon = bIcon ? true : FALSE;  // Change fIcon to true to create an alpha icon
   ii.xHotspot = xHotSpot;
   ii.yHotspot = yHotSpot;
   ii.hbmMask = hMonoBitmap;
   ii.hbmColor = hBitmap;
 
   // Create the alpha cursor with the alpha DIB section.
-  HICON hicon = CreateIconIndirect(&ii);
+  hicon hicon = CreateIconIndirect(&ii);
 
   DeleteObject(hBitmap);
   DeleteObject(hMonoBitmap);
@@ -579,7 +579,7 @@ HCURSOR CreateAlphaIcon(const ::image * pimage, bool bIcon, int xHotSpot, int yH
 }
 
 
-HCURSOR context_image::CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot)
+hcursor context_image::CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot)
 {
 
    if (::not_ok(pimage))
@@ -589,13 +589,13 @@ HCURSOR context_image::CreateAlphaCursor(oswindow window, const ::image * pimage
 
    }
 
-   return (HCURSOR) ::CreateAlphaIcon(pimage, false, xHotSpot, yHotSpot);
+   return (hcursor) ::CreateAlphaIcon(pimage, false, xHotSpot, yHotSpot);
 
 }
 
 
 
-//HCURSOR context_image::load_default_cursor(e_cursor ecursor)
+//hcursor context_image::load_default_cursor(e_cursor ecursor)
 //{
 //
 //   auto pcursor = windows_get_system_cursor(ecursor);
@@ -708,9 +708,9 @@ CLASS_DECL_AURA HBITMAP CreateHBITMAP2(pixmap * ppixmap)
 ////      return s;
 ////
 ////   Gdiplus::BitmapData target_info;
-////   Gdiplus::Rect rect(0, 0, source_info.bmWidth, source_info.bmHeight);
+////   Gdiplus::Rect rectangle_i32(0, 0, source_info.bmWidth, source_info.bmHeight);
 ////
-////   s = target->LockBits(&rect, Gdiplus::ImageLockModeWrite, pixel_format, &target_info);
+////   s = target->LockBits(&rectangle, Gdiplus::ImageLockModeWrite, pixel_format, &target_info);
 ////   if (s != Gdiplus::Ok)
 ////      return s;
 ////

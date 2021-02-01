@@ -32,13 +32,13 @@ public:
 
    }
 
-   comptr(TYPE * point)
+   comptr(TYPE * point_i32)
    {
       if (point != nullptr)
       {
-         point->AddRef();
+         point_i32->AddRef();
       }
-      m_p = point;
+      m_p = point_i32;
    }
 
 
@@ -143,16 +143,16 @@ public:
 
    }
 
-   comptr & operator = (TYPE * point)
+   comptr & operator = (TYPE * point_i32)
    {
 
-      if (m_p != point)
+      if (m_p != point_i32)
       {
 
          if (point != nullptr)
          {
 
-            point->AddRef();
+            point_i32->AddRef();
 
 
          }
@@ -164,7 +164,7 @@ public:
 
          }
 
-         m_p = point;
+         m_p = point_i32;
 
       }
 

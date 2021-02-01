@@ -98,15 +98,15 @@ namespace userex
 
       }
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      get_client_rect(rect);
+      get_client_rect(rectangle);
 
       auto pframewindow = m_mapframe[idView];
 
       pframewindow->order_front();
 
-      pframewindow->set_dim(rect.width() / 4, 0, rect.width() / 2, rect.height() / 5);
+      pframewindow->set_dim(rectangle.width() / 4, 0, rectangle.width() / 2, rectangle.height() / 5);
 
       pframewindow->display();
 
@@ -454,7 +454,7 @@ namespace userex
       if (m_ptemplateTab != nullptr)
       {
 
-         ::rect rectTab;
+         ::rectangle_i32 rectTab;
 
          __pointer(::user::document) pdocument = m_ptemplateTab->get_document();
 

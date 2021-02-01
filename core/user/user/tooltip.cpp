@@ -82,7 +82,7 @@ namespace user
 
       pgraphics->reset_clip();
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -90,7 +90,7 @@ namespace user
 
       path->set_current_point(rectClient.left, rectClient.bottom);
 
-      ::rect rectBody;
+      ::rectangle_i32 rectBody;
 
       rectBody = rectClient;
 
@@ -112,17 +112,17 @@ namespace user
 
       pgraphics->fill_path(path);
 
-      ::draw2d::pen_pointer point(e_create);
+      ::draw2d::pen_pointer point_i32(e_create);
 
       pgraphics->set(point);
 
-      point->create_solid(1.0, ARGB(190, 120, 120, 255));
+      point_i32->create_solid(1.0, ARGB(190, 120, 120, 255));
 
       pgraphics->draw_path(path);
 
       pgraphics->set_text_color(ARGB(255, 120, 120, 255));
 
-      //::rect rect;
+      //::rectangle_i32 rectangle;
 
       //rectText.left = 0;
 
@@ -140,16 +140,16 @@ namespace user
 
    }
 
-   size tooltip::CalcSize()
+   size_i32 tooltip::CalcSize()
    {
 
       string_array stra;
 
       stra.add_lines(m_str);
 
-      ::size size(0,0);
+      ::size_i32 size_i32(0,0);
 
-      ::size sizeLine;
+      ::size_i32 sizeLine;
 
       ::draw2d::graphics_pointer g(e_create);
 

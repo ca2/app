@@ -216,17 +216,17 @@ void text_stream::write(double d)
 }
 
 
-//void text_stream::write(const RECT32 & rect)
+//void text_stream::write(const RECTANGLE_I32 & rectangle)
 //{
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
 //
-//   *this << prect->left << prect->top << prect->right << prect->bottom;
+//   *this << prectangle->left << prectangle->top << prectangle->right << prectangle->bottom;
 //
 //}
 //
 //
-//void text_stream::write(const SIZE32 * psize)
+//void text_stream::write(const SIZE_I32 * psize)
 //{
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
@@ -237,7 +237,7 @@ void text_stream::write(double d)
 //
 //
 //
-//void text_stream::write(const POINT32 * ppoint)
+//void text_stream::write(const POINT_I32 * ppoint)
 //{
 //
 //   this->m_estrflag = (e_str_flag)((int)this->m_estrflag & ~(int)str_flag_ifnumberparenthesizeandspace);
@@ -395,26 +395,26 @@ void text_stream::read(double & d)
    m_p->read(&d, sizeof(d));
 }
 
-//void text_stream::read(RECT32 * prect)
+//void text_stream::read(RECTANGLE_I32 * prectangle)
 //
 //{
-//   m_p->read(&prect->left, sizeof(prect->left));
+//   m_p->read(&prectangle->left, sizeof(prectangle->left));
 //
-//   m_p->read(&prect->top, sizeof(prect->top));
+//   m_p->read(&prectangle->top, sizeof(prectangle->top));
 //
-//   m_p->read(&prect->right, sizeof(prect->right));
+//   m_p->read(&prectangle->right, sizeof(prectangle->right));
 //
-//   m_p->read(&prect->bottom, sizeof(prect->bottom));
+//   m_p->read(&prectangle->bottom, sizeof(prectangle->bottom));
 //   
 //}
 //
-//void text_stream::read(SIZE32 * psize)
+//void text_stream::read(SIZE_I32 * psize)
 //{
 //   m_p->read(&psize->cx, sizeof(psize->cx));
 //   m_p->read(&psize->cy, sizeof(psize->cy));
 //}
 //
-//void text_stream::read(POINT32 * ppoint)
+//void text_stream::read(POINT_I32 * ppoint)
 //{
 //   m_p->read(&ppoint->x, sizeof(ppoint->x));
 //   m_p->read(&ppoint->y, sizeof(ppoint->y));

@@ -17,11 +17,11 @@ namespace user
 
          __pointer(span)   m_pspan;
 
-         rectd             m_rectBox;
-         rectd             m_rectDevice;
-         rectd             m_rectHitTest;
+         rectangle_f64             m_rectBox;
+         rectangle_f64             m_rectDevice;
+         rectangle_f64             m_rectHitTest;
 
-         sized             m_sizeBox;
+         size_f64             m_sizeBox;
          strsize           m_iPosBeg;
          strsize           m_iPosEnd;
 

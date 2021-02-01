@@ -9,7 +9,7 @@
 
 //extern CLASS_DECL_BASE thread_int_ptr < DWORD_PTR > t_time1;
 
-// pgraphics->GetTextExtent("->:<-"); // oh no!! omg!! The size is the size of the alien!!
+// pgraphics->GetTextExtent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
@@ -434,7 +434,7 @@ namespace user
          if(top_level_frame()!= nullptr && top_level_frame()->layout().is_full_screen())
          {
 
-            ::rect rectTab(get_data()->m_rectTab);
+            ::rectangle_i32 rectTab(get_data()->m_rectTab);
 
             _001ClientToScreen(rectTab);
 
@@ -486,7 +486,7 @@ namespace user
          else if(::is_set(get_context_application()) && ::is_set(get_context_application()->get_context_session()))
          {
 
-            ::rect rectWindow;
+            ::rectangle_i32 rectWindow;
 
             get_window_rect(rectWindow);
 
@@ -558,9 +558,9 @@ namespace user
 
       }
 
-      //point pointViewportOffset = pgraphics->GetViewportOrg();
+      //point_i32 pointViewportOffset = pgraphics->GetViewportOrg();
 
-      ::rectd rClip;
+      ::rectangle_f64 rClip;
 
       pgraphics->get_clip_box(&rClip);
 
@@ -602,12 +602,12 @@ namespace user
    void tab::_001OnDrawSchema01(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rect;
-      ::rect rectBorder;
-      ::rect rectText;
-      ::rect rectClient;
-      ::rect rectIcon;
-      ::rect rectClose;
+      ::rectangle_i32 rectangle;
+      ::rectangle_i32 rectBorder;
+      ::rectangle_i32 rectText;
+      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectIcon;
+      ::rectangle_i32 rectClose;
 
       get_data()->m_pen->create_solid(1, RGB(32, 32, 32));
 
@@ -633,7 +633,7 @@ namespace user
 
          iTab++;
 
-         if (!get_element_rect(iTab, rect, ::user::e_element_tab))
+         if (!get_element_rect(iTab, rectangle_i32, ::user::e_element_tab))
             continue;
 
          if (!get_element_rect(iTab, rectBorder, ::user::e_element_border))
@@ -898,12 +898,12 @@ namespace user
    void tab::_001OnDrawStandard(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rect;
-      ::rect rectBorder;
-      ::rect rectText;
-      ::rect rectClient;
-      ::rect rectIcon;
-      ::rect rectClose;
+      ::rectangle_i32 rectangle;
+      ::rectangle_i32 rectBorder;
+      ::rectangle_i32 rectText;
+      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectIcon;
+      ::rectangle_i32 rectClose;
 
       auto pstyle = get_style(pgraphics);
 
@@ -931,7 +931,7 @@ namespace user
 
 
 
-         if(!get_element_rect(iVisiblePane, rect, e_element_tab))
+         if(!get_element_rect(iVisiblePane, rectangle_i32, e_element_tab))
             continue;
 
          if (!get_element_rect(iVisiblePane, rectBorder, e_element_border))
@@ -1146,24 +1146,24 @@ namespace user
    }
 
 
-   void tab::GetTabClientRect(RECT32 * prect)
+   void tab::GetTabClientRect(RECTANGLE_I32 * prectangle)
 
    {
 
-      *prect = get_data()->m_rectTabClient;
+      *prectangle = get_data()->m_rectTabClient;
 
 
    }
 
 
-   void tab::GetTabClientRect(RECT64 * prect)
+   void tab::GetTabClientRect(RECTANGLE_I64 * prectangle)
 
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
       get_client_rect(rectClient);
-      rect64 rect64(rectClient);
-      *prect = rect64;
+      rectangle_i64 rectangle_i64(rectClient);
+      *prectangle = rectangle_i64;
 
 
    }
@@ -1268,7 +1268,7 @@ namespace user
 
             tab_pane.do_split_layout(m_dcextension, pgraphics);
 
-            ::size size;
+            ::size_i32 size;
 
             m_dcextension.GetTextExtent(pgraphics, str, size);
 
@@ -1329,7 +1329,7 @@ namespace user
 
          get_data()->m_iTabHeight = iTabHeight;
 
-         //::rect rectClient;
+         //::rectangle_i32 rectClient;
 
          //get_client_rect(rectClient);
 
@@ -1353,7 +1353,7 @@ namespace user
 
          pgraphics->set(get_font(pstyle, e_state_selected));
 
-//         ::rect rectClient;
+//         ::rectangle_i32 rectClient;
 
 //         get_client_rect(rectClient);
 
@@ -1377,7 +1377,7 @@ namespace user
 
             tab_pane.do_split_layout(m_dcextension,pgraphics);
 
-            ::size size;
+            ::size_i32 size;
 
             m_dcextension.GetTextExtent(pgraphics, str, size);
 
@@ -1454,7 +1454,7 @@ namespace user
          get_data()->m_rectTab.right      = rectClient.right;
          get_data()->m_rectTab.bottom     = get_data()->m_rectTab.top + get_data()->m_iTabHeight;
 
-         ::rect & rectTabClient = get_data()->m_rectTabClient;
+         ::rectangle_i32 & rectTabClient = get_data()->m_rectTabClient;
 
          bool bTabbedClient = m_bShowTabs;
 
@@ -1541,11 +1541,11 @@ namespace user
 
       }
 
-      ::rect rectChild;
+      ::rectangle_i32 rectChild;
 
       GetTabClientRect(rectChild);
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       pholder->get_window_rect(rectWindow);
 
@@ -1825,10 +1825,10 @@ namespace user
    }
 
 
-   bool tab::get_element_rect(::index iTab, RECT32 * prect, enum_element eelement)
+   bool tab::get_element_rect(::index iTab, RECTANGLE_I32 * prectangle, enum_element eelement)
    {
 
-      point ptOffset(0,0);
+      point_i32 ptOffset(0,0);
 
       if(has_tab_scrolling())
       {
@@ -1841,13 +1841,13 @@ namespace user
             if(get_data()->m_bVertical)
             {
 
-               ::rect rect = get_data()->m_rectTab;
+               ::rectangle_i32 rectangle = get_data()->m_rectTab;
 
-               prect->left = rect.left;
+               prectangle->left = rectangle.left;
 
-               prect->top = rect.top;
+               prectangle->top = rectangle.top;
 
-               prect->right = rect.right;
+               prectangle->right = rectangle.right;
 
 
 #ifdef ANDROID
@@ -1856,17 +1856,17 @@ namespace user
 
 #endif
 
-               prect->bottom = rect.top + (::i32) (8.0f * fDensity);
+               prectangle->bottom = rectangle.top + (::i32) (8.0f * fDensity);
 
             }
             else
             {
 
-               ::rect rect = get_data()->m_rectTab;
+               ::rectangle_i32 rectangle = get_data()->m_rectTab;
 
-               prect->left = rect.left;
+               prectangle->left = rectangle.left;
 
-               prect->top = rect.top;
+               prectangle->top = rectangle.top;
 
 #ifdef ANDROID
 
@@ -1874,9 +1874,9 @@ namespace user
 
 #endif
 
-               prect->right = rect.left + (::i32)(8.0f * fDensity);
+               prectangle->right = rectangle.left + (::i32)(8.0f * fDensity);
 
-               prect->bottom = rect.bottom;
+               prectangle->bottom = rectangle.bottom;
 
             }
 
@@ -1889,9 +1889,9 @@ namespace user
             if(get_data()->m_bVertical)
             {
 
-               ::rect rect = get_data()->m_rectTab;
+               ::rectangle_i32 rectangle = get_data()->m_rectTab;
 
-               prect->left = rect.left;
+               prectangle->left = rectangle.left;
 
 #ifdef ANDROID
 
@@ -1899,17 +1899,17 @@ namespace user
 
 #endif
 
-               prect->top = rect.bottom - (::i32)(8.0f* fDensity);
+               prectangle->top = rectangle.bottom - (::i32)(8.0f* fDensity);
 
-               prect->right = rect.right;
+               prectangle->right = rectangle.right;
 
-               prect->bottom = rect.bottom;
+               prectangle->bottom = rectangle.bottom;
 
             }
             else
             {
 
-               ::rect rect = get_data()->m_rectTab;
+               ::rectangle_i32 rectangle = get_data()->m_rectTab;
 
 #ifdef ANDROID
 
@@ -1917,13 +1917,13 @@ namespace user
 
 #endif
 
-               prect->left = rect.right - (::i32) (8.0f * fDensity);
+               prectangle->left = rectangle.right - (::i32) (8.0f * fDensity);
 
-               prect->top = rect.top;
+               prectangle->top = rectangle.top;
 
-               prect->right = rect.right;
+               prectangle->right = rectangle.right;
 
-               prect->bottom = rect.bottom;
+               prectangle->bottom = rectangle.bottom;
 
             }
 
@@ -1962,7 +1962,7 @@ namespace user
       if(eelement == e_element_border)
       {
 
-         if (!get_element_rect(iTab, prect, e_element_tab))
+         if (!get_element_rect(iTab, prectangle, e_element_tab))
 
          {
 
@@ -1970,9 +1970,9 @@ namespace user
 
          }
 
-         ::rect_deflate(prect, &get_data()->m_rectMargin);
+         ::rect_deflate(prectangle, &get_data()->m_rectMargin);
 
-         //::OffsetRect(prect, ptOffset.x, ptOffset.y);
+         //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
          return true;
 
@@ -1981,16 +1981,16 @@ namespace user
       if(eelement == e_element_client)
       {
 
-         if (!get_element_rect(iTab, prect, e_element_border))
+         if (!get_element_rect(iTab, prectangle, e_element_border))
          {
 
             return false;
 
          }
 
-         ::rect_deflate(prect, &get_data()->m_rectBorder);
+         ::rect_deflate(prectangle, &get_data()->m_rectBorder);
 
-         //::OffsetRect(prect, ptOffset.x, ptOffset.y);
+         //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
          return true;
 
@@ -2006,18 +2006,18 @@ namespace user
 
          }
 
-         if (!get_element_rect(iTab, prect, e_element_client))
+         if (!get_element_rect(iTab, prectangle, e_element_client))
          {
 
             return false;
 
          }
 
-         prect->right = prect->left + get_data()->m_panea[iPane]->m_pimage->width();
+         prectangle->right = prectangle->left + get_data()->m_panea[iPane]->m_pimage->width();
 
-         prect->bottom = prect->top + get_data()->m_panea[iPane]->m_pimage->height();
+         prectangle->bottom = prectangle->top + get_data()->m_panea[iPane]->m_pimage->height();
 
-         //::OffsetRect(prect, ptOffset.x, ptOffset.y);
+         //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
          return true;
 
@@ -2025,7 +2025,7 @@ namespace user
       else if(eelement == e_element_text)
       {
 
-         if (!get_element_rect(iTab, prect, e_element_client))
+         if (!get_element_rect(iTab, prectangle, e_element_client))
          {
 
             return false;
@@ -2035,7 +2035,7 @@ namespace user
          if(::is_ok(get_data()->m_panea[iPane]->m_pimage))
          {
 
-            prect->left += get_data()->m_panea[iPane]->m_pimage->width() + 2;
+            prectangle->left += get_data()->m_panea[iPane]->m_pimage->width() + 2;
 
 
          }
@@ -2043,13 +2043,13 @@ namespace user
          if(!get_data()->m_panea[iPane]->m_bPermanent)
          {
 
-            prect->right -= 2 + 16 + 2;
+            prectangle->right -= 2 + 16 + 2;
 
          }
 
-         ::rect_deflate(prect, &get_data()->m_rectTextMargin);
+         ::rect_deflate(prectangle, &get_data()->m_rectTextMargin);
 
-         ::offset_rect(prect, ptOffset.x, ptOffset.y);
+         ::offset_rect(prectangle, ptOffset.x, ptOffset.y);
 
          return true;
 
@@ -2078,23 +2078,23 @@ namespace user
 
          }
 
-         if (!get_element_rect(iTab, prect, e_element_client))
+         if (!get_element_rect(iTab, prectangle, e_element_client))
          {
 
             return false;
 
          }
 
-         prect->right  = prect->right;
+         prectangle->right  = prectangle->right;
 
 
-         prect->left   = prect->right - 20;
+         prectangle->left   = prectangle->right - 20;
 
 
-         prect->top    = prect->bottom - 20;
+         prectangle->top    = prectangle->bottom - 20;
 
 
-         //::OffsetRect(prect, ptOffset.x, ptOffset.y);
+         //::OffsetRect(prectangle, ptOffset.x, ptOffset.y);
 
 
          return true;
@@ -2111,17 +2111,17 @@ namespace user
       if(get_data()->m_bVertical)
       {
 
-         ::rect rect = get_data()->m_rectTab;
+         ::rectangle_i32 rectangle = get_data()->m_rectTab;
 
-         rect.bottom = rect.top;
+         rectangle.bottom = rectangle.top;
 
-         prect->left   = rect.left;
+         prectangle->left   = rectangle.left;
 
-         prect->top    = (::i32) (rect.top +  iTab * get_data()->m_iTabHeight);
+         prectangle->top    = (::i32) (rectangle.top +  iTab * get_data()->m_iTabHeight);
 
-         prect->right  = rect.right;
+         prectangle->right  = rectangle.right;
 
-         prect->bottom = prect->top + get_data()->m_iTabHeight;
+         prectangle->bottom = prectangle->top + get_data()->m_iTabHeight;
 
       }
       else
@@ -2129,17 +2129,17 @@ namespace user
 
          ::user::tab_pane & tab_pane = get_data()->m_panea(iTab);
 
-         prect->left = tab_pane.m_point.x;
+         prectangle->left = tab_pane.m_point.x;
 
-         prect->top = tab_pane.m_point.y;
+         prectangle->top = tab_pane.m_point.y;
 
-         prect->right = tab_pane.m_point.x + tab_pane.m_size.cx;
+         prectangle->right = tab_pane.m_point.x + tab_pane.m_size.cx;
 
-         prect->bottom = tab_pane.m_point.y + tab_pane.m_size.cy;
+         prectangle->bottom = tab_pane.m_point.y + tab_pane.m_size.cy;
 
       }
 
-      ::offset_rect(prect, ptOffset.x, ptOffset.y);
+      ::offset_rect(prectangle, ptOffset.x, ptOffset.y);
 
       return true;
 
@@ -2249,7 +2249,7 @@ namespace user
 
       sync_lock sl(mutex());
 
-      ::rect rectScroll;
+      ::rectangle_i32 rectScroll;
 
       bool bScroll = has_tab_scrolling();
 
@@ -2287,7 +2287,7 @@ namespace user
       }
 
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
       for(i32 iPane = 0; iPane < get_data()->m_panea.get_size(); iPane++)
       {
@@ -2297,7 +2297,7 @@ namespace user
          if(pane.m_straTitle.get_size() > 1)
          {
 
-            ::rect rectText;
+            ::rectangle_i32 rectText;
 
             if(get_element_rect(iPane, rectText, e_element_text))
             {
@@ -2331,10 +2331,10 @@ namespace user
 
          }
 
-         if(get_element_rect(iPane, rect, e_element_close_tab_button) )
+         if(get_element_rect(iPane, rectangle_i32, e_element_close_tab_button) )
          {
 
-            if(rect.contains(item.m_pointHitTest))
+            if(rectangle.contains(item.m_pointHitTest))
             {
 
                item = { e_element_close_tab_button, iPane };
@@ -2345,10 +2345,10 @@ namespace user
 
          }
 
-         if(get_element_rect(iPane, rect, e_element_tab))
+         if(get_element_rect(iPane, rectangle_i32, e_element_tab))
          {
 
-            if(rect.contains(item.m_pointHitTest))
+            if(rectangle.contains(item.m_pointHitTest))
             {
 
                item = { e_element_tab, iPane };
@@ -3134,35 +3134,35 @@ namespace user
 
 
 
-   enum_position tab::DragHitTest(const ::point & point)
+   enum_position tab::DragHitTest(const ::point_i32 & point)
    {
-      ::rect rect;
-      GetDragRect(rect, e_position_top);
-      if(rect.contains(point))
+      ::rectangle_i32 rectangle;
+      GetDragRect(rectangle, e_position_top);
+      if(rectangle.contains(point))
       {
          return e_position_top;
       }
-      GetDragRect(rect, e_position_bottom);
+      GetDragRect(rectangle, e_position_bottom);
 
-      if(rect.contains(point))
+      if(rectangle.contains(point))
       {
 
          return e_position_bottom;
 
       }
 
-      GetDragRect(rect, e_position_left);
+      GetDragRect(rectangle, e_position_left);
 
-      if(rect.contains(point))
+      if(rectangle.contains(point))
       {
 
          return e_position_left;
 
       }
 
-      GetDragRect(rect, e_position_right);
+      GetDragRect(rectangle, e_position_right);
 
-      if(rect.contains(point))
+      if(rectangle.contains(point))
       {
 
          return e_position_right;
@@ -3174,56 +3174,56 @@ namespace user
    }
 
 
-   void tab::GetDragRect(RECT32 * prect, enum_position eposition)
+   void tab::GetDragRect(RECTANGLE_I32 * prectangle, enum_position eposition)
 
    {
       switch(eposition)
       {
       case e_position_top:
       {
-         prect->top = get_data()->m_rectTabClient.top;
+         prectangle->top = get_data()->m_rectTabClient.top;
 
-         prect->left = get_data()->m_rectTabClient.left + get_data()->m_rectTabClient.width() / 3;
+         prectangle->left = get_data()->m_rectTabClient.left + get_data()->m_rectTabClient.width() / 3;
 
-         prect->right = prect->left + get_data()->m_rectTabClient.width() / 3;
+         prectangle->right = prectangle->left + get_data()->m_rectTabClient.width() / 3;
 
-         prect->bottom = prect->top + get_data()->m_rectTabClient.height() / 3;
+         prectangle->bottom = prectangle->top + get_data()->m_rectTabClient.height() / 3;
 
       }
       break;
       case e_position_left:
       {
-         prect->top = get_data()->m_rectTabClient.top + get_data()->m_rectTabClient.height() / 3;
+         prectangle->top = get_data()->m_rectTabClient.top + get_data()->m_rectTabClient.height() / 3;
 
-         prect->left = get_data()->m_rectTabClient.left;
+         prectangle->left = get_data()->m_rectTabClient.left;
 
-         prect->right = prect->left + get_data()->m_rectTabClient.width() / 3;
+         prectangle->right = prectangle->left + get_data()->m_rectTabClient.width() / 3;
 
-         prect->bottom = prect->top + get_data()->m_rectTabClient.height() / 3;
+         prectangle->bottom = prectangle->top + get_data()->m_rectTabClient.height() / 3;
 
       }
       break;
       case e_position_right:
       {
-         prect->top = get_data()->m_rectTabClient.top + get_data()->m_rectTabClient.height() / 3;
+         prectangle->top = get_data()->m_rectTabClient.top + get_data()->m_rectTabClient.height() / 3;
 
-         prect->left = get_data()->m_rectTabClient.left + get_data()->m_rectTabClient.width() * 2 / 3;
+         prectangle->left = get_data()->m_rectTabClient.left + get_data()->m_rectTabClient.width() * 2 / 3;
 
-         prect->right = prect->left + get_data()->m_rectTabClient.width() / 3;
+         prectangle->right = prectangle->left + get_data()->m_rectTabClient.width() / 3;
 
-         prect->bottom = prect->top + get_data()->m_rectTabClient.height() / 3;
+         prectangle->bottom = prectangle->top + get_data()->m_rectTabClient.height() / 3;
 
       }
       break;
       case e_position_bottom:
       {
-         prect->top = get_data()->m_rectTabClient.top + get_data()->m_rectTabClient.height() * 2 / 3;
+         prectangle->top = get_data()->m_rectTabClient.top + get_data()->m_rectTabClient.height() * 2 / 3;
 
-         prect->left = get_data()->m_rectTabClient.left + get_data()->m_rectTabClient.width() / 3;
+         prectangle->left = get_data()->m_rectTabClient.left + get_data()->m_rectTabClient.width() / 3;
 
-         prect->right = prect->left + get_data()->m_rectTabClient.width() / 3;
+         prectangle->right = prectangle->left + get_data()->m_rectTabClient.width() / 3;
 
-         prect->bottom = prect->top + get_data()->m_rectTabClient.height() / 3;
+         prectangle->bottom = prectangle->top + get_data()->m_rectTabClient.height() / 3;
 
       }
       break;
@@ -3255,10 +3255,10 @@ namespace user
    }
 
 
-   void tab::get_child_rect(RECT32* prect)
+   void tab::get_child_rect(RECTANGLE_I32* prectangle)
    {
 
-      if (::is_null(prect))
+      if (::is_null(prectangle))
       {
 
          return;
@@ -3267,7 +3267,7 @@ namespace user
 
       sync_lock sl(mutex());
 
-      *prect = get_data()->m_rectTabClient;
+      *prectangle = get_data()->m_rectTabClient;
 
    }
 
@@ -3368,7 +3368,7 @@ namespace user
 
          auto psession = Session;
 
-         ::point point = psession->get_cursor_pos();
+         ::point_i32 point = psession->get_cursor_pos();
 
          auto item = hit_test(point);
 
@@ -3429,7 +3429,7 @@ namespace user
          try
          {
 
-            ::rect rectTabScreen(get_data()->m_rectTab);
+            ::rectangle_i32 rectTabScreen(get_data()->m_rectTab);
 
             _001ClientToScreen(rectTabScreen);
 

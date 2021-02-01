@@ -84,13 +84,13 @@ inline i32 __invariant_stricmp(const unichar *pwszLeft,const unichar *pwszRight)
 #endif
 }
 
-/////////////////////////////////////////////////////////////////////////////
-// Portability abstractions
-
-#define __set_dialog_control_id(oswindow, nID)     SetWindowLong(oswindow, GWL_ID, nID)
-#define __set_dialog_control_id_(oswindow, nID)     oswindow->SetWindowLong(GWL_ID, nID)
-#define __get_dialog_control_id(oswindow)         ((::u32)(::u16)::GetDlgCtrlID(oswindow))
-#define __get_dialog_control_id_(oswindow)         ((::u32)(::u16)oswindow->GetDlgCtrlId())
+///////////////////////////////////////////////////////////////////////////////
+//// Portability abstractions
+//
+//#define __set_dialog_control_id(oswindow, nID)     SetWindowLong(oswindow, GWL_ID, nID)
+//#define __set_dialog_control_id_(oswindow, nID)     oswindow->SetWindowLong(GWL_ID, nID)
+//#define __get_dialog_control_id(oswindow)         ((::u32)(::u16)::GetDlgCtrlID(oswindow))
+//#define __get_dialog_control_id_(oswindow)         ((::u32)(::u16)oswindow->GetDlgCtrlId())
 
 
 //#include "pipe.h"
@@ -118,7 +118,7 @@ namespace windows
 
    CLASS_DECL_ACME HINSTANCE   load_library(const char * psz);
 
-   CLASS_DECL_ACME bool        shell_get_special_folder_path(oswindow oswindow,::file::path &str,i32 csidl,bool fCreate);
+   CLASS_DECL_ACME bool        shell_get_special_folder_path(HWND hwnd,::file::path &str,i32 csidl,bool fCreate);
    CLASS_DECL_ACME ::file::path  shell_get_special_folder_path(i32 csidl, bool fCreate = true, oswindow oswindow = nullptr);
    CLASS_DECL_ACME ::u32       get_file_attributes(const char * pFileName);
 

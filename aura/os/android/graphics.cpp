@@ -4,7 +4,7 @@
 #include "aura/platform/static_start.h"
 
 
-//int_bool window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
+//int_bool window_set_mouse_cursor(oswindow window, hcursor hcursor)
 //{
 //
 //   return FALSE;
@@ -12,7 +12,7 @@
 //}
 
 
-//HCURSOR CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot)
+//hcursor CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot)
 //{
 //
 //   return FALSE;
@@ -20,7 +20,7 @@
 //}
 //
 //
-//HCURSOR load_default_cursor(e_cursor ecursor)
+//hcursor load_default_cursor(e_cursor ecursor)
 //{
 //
 //   return nullptr;
@@ -49,10 +49,10 @@ namespace draw2d
 
 
 
-int_bool delete_hcursor(HCURSOR hcursor)
+int_bool delete_hcursor(hcursor hcursor)
 {
 
-   return TRUE;
+   return true;
 
 }
 
@@ -65,7 +65,7 @@ namespace draw2d
    void draw2d::enum_draw2d_fonts(::draw2d::font_enum_item_array & itema)
    {
 
-      cslock sl(::aura::g_pcsFont);
+      critical_section_lock sl(::aura::g_pcsFont);
 
       __pointer(::draw2d::font_enum_item) pitem;
 

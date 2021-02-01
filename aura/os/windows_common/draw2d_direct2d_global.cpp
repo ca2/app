@@ -27,7 +27,7 @@ namespace draw2d
 {
 
 
-   ::mutex* lock::g_pmutex = nullptr;
+   ::mutex * lock::g_pmutex = nullptr;
 
 } // namespace draw2d
 

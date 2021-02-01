@@ -132,7 +132,7 @@ namespace gpu
    }
 
 
-   ::e_status context::create_offscreen_buffer(const ::size& size)
+   ::e_status context::create_offscreen_buffer(const ::size_i32& size)
    {
 
       auto pgpu = System.get_gpu();
@@ -176,7 +176,7 @@ namespace gpu
    }
 
 
-   ::e_status context::_create_offscreen_buffer(const ::size& size)
+   ::e_status context::_create_offscreen_buffer(const ::size_i32& size)
    {
 
       return ::success_none;
@@ -184,7 +184,7 @@ namespace gpu
    }
 
 
-   ::e_status context::resize_offscreen_buffer(const ::size& size)
+   ::e_status context::resize_offscreen_buffer(const ::size_i32& size)
    {
 
       if(!m_pbuffer)

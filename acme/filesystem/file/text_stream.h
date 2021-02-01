@@ -29,11 +29,11 @@ inline void __string_exchange(text_stream & s, string & str);
 inline void __string_exchange(text_stream & s, ::file::path & path);
 inline void __string_exchange(text_stream & s, ::id & id);
 inline void __string_exchange(text_stream & s, void * & p);
-inline void __string_exchange(text_stream & s, oswindow & oswindow);
+//inline void __string_exchange(text_stream & s, oswindow & oswindow);
 inline void __string_exchange(text_stream & s, wchar_t sz[]);
 //inline void __string_exchange(text_stream & s, ::matter & matter);
 
-//inline void __string_exchange(text_stream & s, ::rect & r);
+//inline void __string_exchange(text_stream & s, ::rectangle_i32 & r);
 
 
 
@@ -184,9 +184,9 @@ public:
    virtual void write (u64 u)  override;
    virtual void write (float f)  override;
    virtual void write (double d)  override;
-   //virtual void write(const POINT32 & point) override;
-   //virtual void write(const SIZE32 & size) override;
-   //virtual void write(const RECT32 & rect) override;
+   //virtual void write(const POINT_I32 & point) override;
+   //virtual void write(const SIZE_I32 & size) override;
+   //virtual void write(const RECTANGLE_I32 & rectangle) override;
 
    virtual void write (const char * psz) override;
    virtual void write(const ::id & id) override;

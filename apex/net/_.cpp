@@ -1,10 +1,12 @@
 #include "framework.h"
-#include "_.h"
-
-
-#ifndef WINDOWS
+#include "apex/net/sockets/_sockets.h"
+#if defined(LINUX) || defined(__APPLE__) || defined(ANDROID)
 #include <arpa/inet.h>
 #endif
+
+//#ifndef WINDOWS
+//#include <arpa/inet.h>
+//#endif
 
 #if defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
 #include <netdb.h>
@@ -457,6 +459,22 @@ namespace str
    }
 
 
+   CLASS_DECL_APEX void to(sockaddr_in & addr, const string & str)
+   {
+
+      return to(addr.sin_addr, str);
+
+   }
+
+
+   CLASS_DECL_APEX void to(sockaddr_in6 & addr, const string & str)
+   {
+
+      return to(addr.sin6_addr, str);
+
+   }
+
+
    CLASS_DECL_APEX void from(string & str, const sockaddr & addr)
    {
 
@@ -470,6 +488,31 @@ namespace str
       {
 
          from(str, *(sockaddr_in6 *)addr.sa_data);
+
+      }
+      else
+      {
+
+         __throw(::exception::exception("unexpected address family"));
+
+      }
+
+   }
+
+
+   CLASS_DECL_APEX void to(const sockaddr & addr, string & str)
+   {
+
+      if (addr.sa_family == AF_INET)
+      {
+
+         to(*(sockaddr_in *)addr.sa_data, str);
+
+      }
+      else if (addr.sa_family == AF_INET6)
+      {
+
+         to(*(sockaddr_in6 *)addr.sa_data, str);
 
       }
       else
@@ -841,6 +884,46 @@ namespace net
 
 } // namespace net
 
+
+
+
+
+
+
+namespace str
+{
+
+
+   CLASS_DECL_APEX string from(const struct sockaddr & sockaddr)
+   {
+
+      string str;
+
+      char sz[INET6_ADDRSTRLEN + INET_ADDRSTRLEN];
+
+      switch (sockaddr.sa_family)
+      {
+      case AF_INET:
+         inet_ntop(AF_INET, &(((struct sockaddr_in &)sockaddr).sin_addr), sz, sizeof(sz));
+         break;
+
+      case AF_INET6:
+         inet_ntop(AF_INET6, &(((struct sockaddr_in6 &)sockaddr).sin6_addr), sz, sizeof(sz));
+         break;
+
+      default:
+         strncpy(sz, "(Unknown Address Family)", sizeof(sz));
+         break;
+      };
+
+      str = sz;
+
+      return str;
+
+   }
+
+
+} // namespace str
 
 
 

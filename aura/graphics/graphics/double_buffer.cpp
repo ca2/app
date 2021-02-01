@@ -65,7 +65,7 @@ namespace graphics
 //         if(pimage->size().area() < sizeWindow.area())
 //         {
 //
-//            ::size sizeImage(1920, 1080);
+//            ::size_i32 sizeImage(1920, 1080);
 //
 //            if(sizeWindow.area() > sizeImage.area())
 //            {

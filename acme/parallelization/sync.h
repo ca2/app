@@ -1,8 +1,8 @@
 #pragma once
 
 
-#ifndef WINDOWS
-using HSYNC = ::sync *;
+#ifdef WINDOWS
+using hsync = void *;
 #endif
 
 
@@ -12,15 +12,16 @@ class CLASS_DECL_ACME sync :
 public:
 
 
-   HSYNC                   m_hsync;
+#ifdef WINDOWS
+   hsync                   m_hsync;
+#endif
    bool                    m_bOwner;
 
 #ifdef WINDOWS
    sync() { m_hsync = nullptr; m_bOwner = true; }
-   sync(HSYNC hsync) : m_hsync(hsync) { m_bOwner = true; }
+   sync(hsync hsync) : m_hsync(hsync) { m_bOwner = true; }
 #else
-   sync() { m_hsync = this; m_bOwner = true; }
-   sync(HSYNC hsync) : m_hsync(this) { m_bOwner = true; }
+   sync() { m_bOwner = true; }
 #endif
    virtual ~sync();
 
@@ -44,8 +45,9 @@ public:
    virtual void acquire_ownership();
    virtual void release_ownership();
 
-
-   inline HSYNC hsync() const { return m_hsync; }
+#ifdef WINDOWS
+   inline ::hsync hsync() const { return m_hsync; }
+#endif
 
 
 };

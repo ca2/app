@@ -123,9 +123,9 @@ namespace user
       __pointer(::user::interaction) find_first(oswindow oswindow);
 
       ::user::oswindow_array get_hwnda();
-      void send_message(const ::id & id, WPARAM wparam = 0, LPARAM lparam = 0);
+      void send_message(const ::id & id, wparam wparam = 0, lparam lparam = 0);
 
-      void send_message_to_descendants(const ::id & id, WPARAM wparam = 0, LPARAM lparam = 0, bool bRecursive = true);
+      void send_message_to_descendants(const ::id & id, wparam wparam = 0, lparam lparam = 0, bool bRecursive = true);
 
 
       interaction_array & operator = (const __pointer_array(::user::interaction) & a);
@@ -214,10 +214,10 @@ namespace user
       /*static void SortByZOrder(interaction_array & wndpa);*/
       static void SortByZOrder(oswindow_array & oswindowa);
 
-#ifdef WINDOWS
-      static HRGN GetAClipRgn(oswindow oswindow, const point & pointOffset, bool bExludeChilren);
-      static void ExcludeChildren(oswindow oswindow, HRGN hrgn, const point & pointOffset);
-#endif
+//#ifdef WINDOWS
+//      static HRGN GetAClipRgn(oswindow oswindow, const point_i32 & pointOffset, bool bExludeChilren);
+//      static void ExcludeChildren(oswindow oswindow, HRGN hrgn, const point_i32 & pointOffset);
+//#endif
 
 
       
@@ -226,15 +226,15 @@ namespace user
 
 
       /*static void send_message_to_descendants(oswindow oswindow, const ::id & id,
-      WPARAM wParam, LPARAM lParam, bool bDeep, bool bOnlyPerm);*/
-      static void send_message_to_descendants(oswindow oswindow, ::u32 message, WPARAM wParam, LPARAM lParam, bool bDeep);
+      wparam wParam, lparam lParam, bool bDeep, bool bOnlyPerm);*/
+      static void send_message_to_descendants(oswindow oswindow, ::u32 message, wparam wParam, lparam lParam, bool bDeep);
       static bool IsAscendant(oswindow oswindowAscendant, oswindow oswindowDescendant);
 
       static i32 GetZOrder(oswindow oswindow);
       static void GetZOrder(oswindow oswindow, int_array & ia);
 
-      //      static HRGN GetAClipRgn(oswindow oswindow, const point & pointOffset, bool bExludeChilren);
-      //      static void ExcludeChildren(oswindow oswindow, HRGN hrgn, const point & pointOffset);
+      //      static HRGN GetAClipRgn(oswindow oswindow, const point_i32 & pointOffset, bool bExludeChilren);
+      //      static void ExcludeChildren(oswindow oswindow, HRGN hrgn, const point_i32 & pointOffset);
 
       //static void SortByZOrder(comparable_array < ::user::interaction_impl *, ::user::interaction_impl * > & wndpa);
       //static void SortByZOrder(comparable_array < oswindow, oswindow > & oswindowa);

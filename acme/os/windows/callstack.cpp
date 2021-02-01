@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "acme/operating_system.h"
+
+
 #undef Context
 #undef Node
 #include "callstack.h"
@@ -212,13 +215,13 @@ int_bool __stdcall engine_ReadProcessMemory(
 
    {
 
-      return FALSE;
+      return false;
 
    }
+
    *pNumberOfBytesRead = (u32)size;
 
-
-   return TRUE;
+   return true;
 
 }
 
@@ -233,12 +236,12 @@ int_bool __stdcall engine_ReadProcessMemory32(HANDLE hProcess, ::u32 qwBaseAddre
 
    if (!ReadProcessMemory(hProcess, (const void *)qwBaseAddress, (LPVOID)pBuffer, nSize, &size))
 
-      return FALSE;
+      return false;
 
    *pNumberOfBytesRead = (u32)size;
 
 
-   return TRUE;
+   return true;
 
 }
 
@@ -249,7 +252,7 @@ int_bool __stdcall engine_ReadProcessMemory32(HANDLE hProcess, ::u32 qwBaseAddre
 int_bool __stdcall My_ReadProcessMemory (HANDLE, const void * pBaseAddress, LPVOID lpBuffer, u32 nSize, SIZE_T * lpNumberOfBytesRead)
 
 {
-return ReadProcessMemory(GetCurrentProcess(), pBaseAddress, lpBuffer, nSize, lpNumberOfBytesRead) != FALSE;
+return ReadProcessMemory(GetCurrentProcess(), pBaseAddress, lpBuffer, nSize, lpNumberOfBytesRead) != false;
 
 }
 #endif
@@ -260,7 +263,7 @@ namespace windows
 {
 
 
-   critical_section callstack::g_cs;
+   critical_section callstack::s_criticalsection;
 
 
    callstack::callstack(const char * pszFormat, i32 iSkip, void * caller_address, int iCount):
@@ -399,7 +402,7 @@ namespace windows
 
    void callstack::backtrace(OS_DWORD * pinteraction, int & c)
    {
-      cslock csl(&g_cs);
+      critical_section_lock csl(&s_criticalsection);
 
 #if FAST_STACK_TRACE
 
@@ -455,7 +458,7 @@ namespace windows
             SymFunctionTableAccess64,                      // __in_opt  PFUNCTION_TABLE_ACCESS_ROUTINE64 FunctionTableAccessRoutine,
             SymGetModuleBase64,                     // __in_opt  PGET_MODULE_AXIS_ROUTINE64 GetModuleBaseRoutine,
             nullptr                       // __in_opt  PTRANSLATE_ADDRESS_ROUTINE64 TranslateAddress
-         ) != FALSE;
+         ) != false;
 #else
          bool r = StackWalk(
             dwType,   // __in      u32 MachineType,
@@ -468,7 +471,7 @@ namespace windows
             SymFunctionTableAccess,                      // __in_opt  PFUNCTION_TABLE_ACCESS_ROUTINE64 FunctionTableAccessRoutine,
             SymGetModuleBase,                     // __in_opt  PGET_MODULE_AXIS_ROUTINE64 GetModuleBaseRoutine,
             nullptr                       // __in_opt  PTRANSLATE_ADDRESS_ROUTINE64 TranslateAddress
-         ) != FALSE;
+         ) != false;
 
 #endif
          /*#else
@@ -481,7 +484,7 @@ namespace windows
          My_ReadProcessMemory,
          SymFunctionTableAccess64,
          SymGetModuleBase64,
-         0) != FALSE;
+         0) != false;
 #endif*/
 
          if (!r || !m_stackframe.AddrFrame.Offset)
@@ -499,14 +502,14 @@ namespace windows
          // Before I get too carried away and start calculating
          // everything, I need to double-check that the address returned
          // by StackWalk really exists. I've seen cases in which
-         // StackWalk returns TRUE but the address doesn't belong to
+         // StackWalk returns true but the address doesn't belong to
          // a module in the process.
 
          DWORD64 dwModBase = SymGetModuleBase64(hprocess, m_stackframe.AddrPC.Offset);
 
          if (!dwModBase)
          {
-            //::output_debug_string("callstack::stack_next :: StackWalk returned TRUE but the address doesn't belong to a module in the process.");
+            //::output_debug_string("callstack::stack_next :: StackWalk returned true but the address doesn't belong to a module in the process.");
             return;
             if (bRetry)
             {
@@ -643,12 +646,12 @@ namespace windows
 
 
       // find the last '\' mark.
-      //char * point = strrchr(psz, '\\');
+      //char * p = strrchr(psz, '\\');
 
-      //if(point != nullptr)
+      //if(p != nullptr)
       //{
 
-      //   *(point + 1) = '\0';
+      //   *(p + 1) = '\0';
 
       //}
 
@@ -804,7 +807,7 @@ namespace windows
 //      if (NotificationReason == LDR_DLL_NOTIFICATION_REASON_LOADED)
 //      {
 //
-//         cslock csl(&::windows::callstack::g_cs);
+//         critical_section_lock csl(&::windows::callstack::s_criticalsection);
 //
 //         HANDLE hprocess = SymGetProcessHandle();
 //
@@ -848,7 +851,7 @@ namespace windows
       //}
 
 
-      cslock csl(&g_cs);
+      critical_section_lock csl(&s_criticalsection);
 
       if (m_bInit)
       {
@@ -864,7 +867,7 @@ namespace windows
       //SymSetOptions(SymGetOptions()|SYMOPT_DEFERRED_LOADS|SYMOPT_LOAD_LINES);
       SymSetOptions(SymGetOptions() | SYMOPT_LOAD_LINES);
       //   SymSetOptions (SYMOPT_UNDNAME|SYMOPT_LOAD_LINES);
-      if (!::SymInitialize(hprocess, 0, TRUE))
+      if (!::SymInitialize(hprocess, 0, true))
       {
          ::u32 dw = ::GetLastError();
          output_debug_string("Last Error = " + __str(dw));
@@ -913,7 +916,7 @@ namespace windows
    void callstack::clear()
    {
 
-      cslock csl(&g_cs);
+      critical_section_lock csl(&s_criticalsection);
 
       if (!m_bInit)
       {
@@ -941,7 +944,7 @@ namespace windows
    void callstack::reset()
    {
 
-      cslock csl(&g_cs);
+      critical_section_lock csl(&s_criticalsection);
 
 
       if (!m_bInit)
@@ -1134,7 +1137,7 @@ namespace windows
 
       }
 
-      cslock csl(&g_cs);
+      critical_section_lock csl(&s_criticalsection);
 
       *_strS = '\0';
 
@@ -1150,7 +1153,7 @@ namespace windows
       current_context context;
       __memset(&context, 0, sizeof(current_context));
 
-      bool bOk = DuplicateHandle(GetCurrentProcess(), get_current_hthread(), GetCurrentProcess(), &context.thread, 0, 0, DUPLICATE_SAME_ACCESS) != FALSE;
+      bool bOk = DuplicateHandle(GetCurrentProcess(), get_current_hthread(), GetCurrentProcess(), &context.thread, 0, 0, DUPLICATE_SAME_ACCESS) != false;
 
       _ASSERTE(bOk);
       _ASSERTE(context.thread);
@@ -1269,7 +1272,7 @@ namespace windows
    //char * callstack::stack_trace(OS_DWORD * pinteraction, int c, const char * pszFormat, int iCount)
    //{
 
-   //   cslock csl(&g_cs);
+   //   critical_section_lock csl(&s_criticalsection);
 
    //   *_strS = '\0';
 
@@ -1320,12 +1323,12 @@ namespace windows
 
    //   char sz[2];
    //   sz[1] = '\0';
-   //   for (char * point = (char *)pszFormat; *point; ++point)
+   //   for (char * p = (char *)pszFormat; *p; ++p)
    //   {
-   //      if (*point == '%')
+   //      if (*p == '%')
    //      {
-   //         ++point; // skips '%'
-   //         char ca = *point;
+   //         ++p; // skips '%'
+   //         char ca = *p;
    //         switch (ca)
    //         {
    //         case 'm':
@@ -1356,11 +1359,11 @@ namespace windows
    //                  strcpy(_strFile, " ");
    //               }
    //            }
-   //            if (*(point + 1) == 'd')
+   //            if (*(p + 1) == 'd')
    //            {
    //               ansi_from_u64(_strBuf, uiLineDisplacement, 10);
    //               ansi_concatenate(_str, _strBuf);
-   //               ++point;
+   //               ++p;
    //            }
    //            else
    //            {
@@ -1376,10 +1379,10 @@ namespace windows
    //                  strcpy(_strSymbol, "?()");
    //               }
    //            }
-   //            if (*(point + 1) == 'd')
+   //            if (*(p + 1) == 'd')
    //            {
    //               ansi_concatenate_i64(_str, uiSymbolDisplacement);
-   //               ++point;
+   //               ++p;
    //            }
    //            else
    //            {
@@ -1406,7 +1409,7 @@ namespace windows
    //      }
    //      else
    //      {
-   //         sz[0] = *point;
+   //         sz[0] = *p;
    //         ansi_concatenate(_str, sz);
    //      }
 
@@ -1458,7 +1461,7 @@ namespace  windows
    char * callstack::stack_trace(OS_DWORD * pinteraction, int c, const char * pszFormat, int iCount)
    {
 
-      cslock csl(&g_cs);
+      critical_section_lock csl(&s_criticalsection);
 
       *_strS = '\0';
 
@@ -1509,12 +1512,12 @@ namespace  windows
 
       char sz[2];
       sz[1] = '\0';
-      for (char * point = (char *)pszFormat; *point; ++point)
+      for (char * p = (char *)pszFormat; *p; ++p)
       {
-         if (*point == '%')
+         if (*p == '%')
          {
-            ++point; // skips '%'
-            char ca = *point;
+            ++p; // skips '%'
+            char ca = *p;
             switch (ca)
             {
             case 'm':
@@ -1545,11 +1548,11 @@ namespace  windows
                      strcpy(_strFile, " ");
                   }
                }
-               if (*(point + 1) == 'd')
+               if (*(p + 1) == 'd')
                {
                   ansi_from_u64(_strBuf, uiLineDisplacement, 10);
                   ansi_concatenate(_str, _strBuf);
-                  ++point;
+                  ++p;
                }
                else
                {
@@ -1565,10 +1568,10 @@ namespace  windows
                      strcpy(_strSymbol, "?()");
                   }
                }
-               if (*(point + 1) == 'd')
+               if (*(p + 1) == 'd')
                {
                   ansi_concatenate_i64(_str, uiSymbolDisplacement);
-                  ++point;
+                  ++p;
                }
                else
                {
@@ -1595,7 +1598,7 @@ namespace  windows
          }
          else
          {
-            sz[0] = *point;
+            sz[0] = *p;
             ansi_concatenate(_str, sz);
          }
 

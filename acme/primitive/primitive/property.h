@@ -509,9 +509,9 @@ public:
 ////   // 2018-11-11 macos macos macos macOS macOS macOS MACOS MACOS MACOS
 ////#if !defined(WINDOWS_DESKTOP) && !defined(LINUX) && !defined(ANDROID)
 ////
-////   property & operator =(size_t * point)
+////   property & operator =(size_t * point_i32)
 ////   {
-////      m_var = (::i64 *) point;
+////      m_var = (::i64 *) point_i32;
 ////      return *this;
 ////   }
 ////

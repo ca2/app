@@ -40,16 +40,32 @@ public:
 
    T ** pget(string key)
    {
+      
       return (T**) string_to_ptr::pget(key);
+
    }
+
+
    T * get(string key)
    {
-      T ** point = (T **) string_to_ptr::pget(key);
-      if(point == nullptr)
+
+      T ** p = (T **) string_to_ptr::pget(key);
+
+      if (p == nullptr)
+      {
+
          return nullptr;
+
+      }
       else
-         return (T*) *point;
+      {
+
+         return (T *)*p;
+
+      }
+
    }
+
 
    // Operations
    // lookup and add if not there

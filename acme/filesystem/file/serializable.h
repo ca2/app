@@ -149,9 +149,9 @@ namespace file
    //      while(point != nullptr)
    //      {
 
-   //         ostream << point->element1();
+   //         ostream << point_i32->element1();
 
-   //         ostream << point->element2();
+   //         ostream << point_i32->element2();
 
    //         point = m.get_next(point);
 

@@ -18,23 +18,23 @@ namespace draw3d
 
       ::draw2d::pen_pointer pen(e_create);
 
-      double zmin = point[0].z;
-      double zmax = point[0].z;
+      double zmin = point_i32[0].z;
+      double zmax = point_i32[0].z;
 
       index i;
 
       for(i = 1; i < point.get_count(); i++)
       {
-         if(point[i].z < zmin)
-            zmin = point[i].z;
-         else if(point[i].z > zmax)
-            zmax = point[i].z;
+         if(point_i32[i].z < zmin)
+            zmin = point_i32[i].z;
+         else if(point_i32[i].z > zmax)
+            zmax = point_i32[i].z;
       }
 
       for(i = 0; i < point.get_count(); i++)
       {
 
-         point[i].z -= zmin;
+         point_i32[i].z -= zmin;
 
       }
 
@@ -106,7 +106,7 @@ namespace draw3d
          for(index j = 0; j < point1.get_count(); j++)
          {
 
-            if((point[point1[j]].z + point[point2[j]].z) >(point[point1[iMax]].z + point[point2[iMax]].z))
+            if((point_i32[point1[j]].z + point_i32[point2[j]].z) >(point_i32[point1[iMax]].z + point_i32[point2[iMax]].z))
             {
                iMax = j;
             }
@@ -119,7 +119,7 @@ namespace draw3d
             ia.add_unique(point1[iMax]);
             ia.add_unique(point2[iMax]);
 
-            double r = (point[point1[iMax]].z + point[point2[iMax]].z) * d;
+            double r = (point_i32[point1[iMax]].z + point_i32[point2[iMax]].z) * d;
 
             ::color ca;
 
@@ -150,7 +150,7 @@ namespace draw3d
 
             m_pdc->set(pen);
 
-            m_pdc->draw_line(__pointd(point[point1[iMax]]), __pointd(point[point2[iMax]]));
+            m_pdc->draw_line(__pointd(point_i32[point1[iMax]]), __pointd(point_i32[point2[iMax]]));
 
          }
 
@@ -198,7 +198,7 @@ namespace draw3d
 
       ::draw2d::bitmap bm;
 
-      ::point point2da[3];
+      ::point_i32 point2da[3];
 
       int_array ia;
 
@@ -312,9 +312,9 @@ namespace draw3d
 
             pimage->fill((int)(dA * (184.0 - r * 128.0)),ca.red,ca.green,ca.blue);
 
-            point2da[0]=::point((::i32)locationa[f[iMax][0]].x,(::i32)locationa[f[iMax][0]].y);
-            point2da[1]= ::point((::i32)locationa[f[iMax][1]].x,(::i32)locationa[f[iMax][1]].y);
-            point2da[2]= ::point((::i32)locationa[f[iMax][2]].x,(::i32)locationa[f[iMax][2]].y);
+            point2da[0]=::point_i32((::i32)locationa[f[iMax][0]].x,(::i32)locationa[f[iMax][0]].y);
+            point2da[1]= ::point_i32((::i32)locationa[f[iMax][1]].x,(::i32)locationa[f[iMax][1]].y);
+            point2da[2]= ::point_i32((::i32)locationa[f[iMax][2]].x,(::i32)locationa[f[iMax][2]].y);
 
             __throw(todo("plgblt"));
             //m_pdc->PlgBlt(point2da, pimage->g(),0,0,pimage->width(),pimage->width(),bm,0,0);

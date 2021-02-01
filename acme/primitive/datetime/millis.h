@@ -32,7 +32,7 @@ public:
 
    millis() { m_i = 0; }
    millis(enum enum_now) { m_i = get_millis(); }
-   millis(enum enum_no_init) {}
+   millis(enum enum_no_initialize) {}
    template < primitive_integral INTEGRAL >
    millis(INTEGRAL i) { m_i = i; }
    millis(const secs & secs) { m_i = secs.m_i * 1'000; }
@@ -258,6 +258,9 @@ namespace papaya
 
 
 #define __prtick "%" PRtick " ms"
+
+
+#define U32_INFINITE_TIMEOUT ((u32)0xffffffffu)
 
 
 inline double __double(const ::millis & millis) { return (double) millis.m_i; }

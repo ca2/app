@@ -214,7 +214,7 @@ namespace zip
 //}
 //uptr  fileread_file_func (voidpf opaque, voidpf stream, void * buf, uptr size)
 //{
-//   return (uptr)((::zip::file *) opaque)->m_pfile.m_p->read(buf,size);
+//   return (uptr)((::zip::file *) opaque)->m_pfile.m_p->read(buf, size);
 //}
 //uptr  filewrite_file_func (voidpf opaque, voidpf stream, const void * buf, uptr size)
 //{
@@ -282,7 +282,7 @@ voidpf c_zip_file_open_file_func (voidpf opaque, const char* filename, i32 mode)
 }
 uptr  c_zip_file_read_file_func (voidpf opaque, voidpf stream, void * buf, uptr size)
 {
-   return (uptr)((::file::file *) opaque)->read(buf,size);
+   return (uptr)((::file::file *) opaque)->read(buf, size);
 }
 uptr  c_zip_file_write_file_func (voidpf opaque, voidpf stream, const void * buf, uptr size)
 {
@@ -338,28 +338,28 @@ i32 c_zip_file_testerror_file_func (voidpf opaque, voidpf stream)
 void * zip_filefuncdef_malloc()
 {
 
-   zlib_filefunc_def_s * point = (zlib_filefunc_def_s *)malloc(sizeof(zlib_filefunc_def_s));
+   zlib_filefunc_def_s * p = (zlib_filefunc_def_s *)malloc(sizeof(zlib_filefunc_def_s));
 
-   point->zopen_file = &c_zip_file_open_file_func;
-   point->zread_file = &c_zip_file_read_file_func;
-   point->zwrite_file = &c_zip_file_write_file_func;
-   point->ztell_file = &c_zip_file_tell_file_func;
-   point->zseek_file = &c_zip_file_seek_file_func;
-   point->zclose_file = &c_zip_file_close_file_func;
-   point->zerror_file = &c_zip_file_testerror_file_func;
+   p->zopen_file = &c_zip_file_open_file_func;
+   p->zread_file = &c_zip_file_read_file_func;
+   p->zwrite_file = &c_zip_file_write_file_func;
+   p->ztell_file = &c_zip_file_tell_file_func;
+   p->zseek_file = &c_zip_file_seek_file_func;
+   p->zclose_file = &c_zip_file_close_file_func;
+   p->zerror_file = &c_zip_file_testerror_file_func;
 
-   return point;
+   return p;
 
 }
 
 
 
-void zip_filefuncdef_set_file(void * p, ::file::file * pfile)
+void zip_filefuncdef_set_file(void * pParam, ::file::file * pfile)
 {
 
-   zlib_filefunc_def_s * point = (zlib_filefunc_def_s *)p;
+   zlib_filefunc_def_s * p = (zlib_filefunc_def_s *)pParam;
 
-   point->opaque = (voidpf)pfile;
+   p->opaque = (voidpf)pfile;
 
 }
 

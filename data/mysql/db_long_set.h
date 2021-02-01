@@ -37,7 +37,7 @@
 // #ifdef WINDOWS_DESKTOP
 //    bool load(const char * lpKey, WINDOWPLACEMENT & wp);
 // #endif
-//    bool load(const char * lpKey, POINT32 * lpPoint);
+//    bool load(const char * lpKey, POINT_I32 * lpPoint);
 
 //    // save Functions
 //    template < typename T >
@@ -49,11 +49,11 @@
 //    }
 
 //    bool save(const char * lpKey, i64 lValue);
-//    bool save(const char * lpKey, LPCRECT32 lpRect);
+//    bool save(const char * lpKey, const RECTANGLE_I32 * lpRect);
 // #ifdef WINDOWS_DESKTOP
 //    bool save(const char * lpKey, WINDOWPLACEMENT & wp);
 // #endif
-//    bool save(const char * lpKey, POINT32 * lpPoint);
+//    bool save(const char * lpKey, POINT_I32 * lpPoint);
 
 //    // Search Functions
 //    bool find(const char * lpKey);

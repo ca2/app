@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 #include "_windows.h"
 
 
@@ -38,7 +39,7 @@ namespace windows
    ::e_status file_system::update_module_path()
    {
 
-      m_pathModule = ::path::module();
+      m_pathModule = ::path::module(nullptr);
 
       m_pathCa2Module = ::path::module(::GetModuleHandleA("apex.dll"));
 

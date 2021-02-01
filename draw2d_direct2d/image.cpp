@@ -50,7 +50,7 @@ namespace draw2d_direct2d
    }
 
 
-   ::e_status image::create(const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+   ::e_status image::create(const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
    {
 
       if (m_pbitmap.is_set() && size == this->size())
@@ -190,7 +190,7 @@ namespace draw2d_direct2d
 
       }
 
-      ::size size = pbitmap->get_size();
+      ::size_i32 size = pbitmap->get_size();
 
       if (!create(size))
       {
@@ -225,7 +225,7 @@ namespace draw2d_direct2d
    }
 
 
-   //bool image::draw(::draw2d::graphics* pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc)
+   //bool image::draw(::draw2d::graphics* pgraphics, const ::point_i32 & point, const ::size_i32 & size, const ::point_i32 & pointSrc)
    //{
 
    //   return pgraphics->BitBlt(point.x, point.y, size.cx, size.cy, get_graphics(), pointSrc.x, pointSrc.y) != FALSE;
@@ -242,7 +242,7 @@ namespace draw2d_direct2d
 
    //   bitmap->CreateCompatibleBitmap(pgraphics, 1, 1);
 
-   //   ::size size = bitmap->get_size();
+   //   ::size_i32 size = bitmap->get_size();
 
    //   if (!create(size))
    //   {
@@ -265,7 +265,7 @@ namespace draw2d_direct2d
    //}
 
 
-   //bool image::from(const ::point & pointDest, ::draw2d::graphics* pgraphics, const ::point & point, const ::size & sz)
+   //bool image::from(const ::point_i32 & pointDest, ::draw2d::graphics* pgraphics, const ::point_i32 & point, const ::size_i32 & sz)
    //{
 
    //   return m_pgraphics->BitBlt(pointDest.x, pointDest.y, sz.cx, sz.cy, pgraphics, point.x, point.y) != FALSE;
@@ -300,7 +300,7 @@ namespace draw2d_direct2d
 
 #ifdef WINDOWS_DESKTOP
 
-      pimage1->g()->stretch(::sized(cx, cy), picon);
+      pimage1->g()->stretch(::size_f64(cx, cy), picon);
 
 #else
 
@@ -314,7 +314,7 @@ namespace draw2d_direct2d
       pimage2->fill(0, 0, 0, 0);
 
 //#ifdef WINDOWS_DESKTOP
-      pimage2->get_graphics()->stretch(::sized(cx, cy),picon);
+      pimage2->get_graphics()->stretch(::size_f64(cx, cy),picon);
 //#else
 //      pimage2->get_graphics()->DrawIcon(
 //      0, 0,
@@ -328,7 +328,7 @@ namespace draw2d_direct2d
       // Mask image
       auto pimageM = create_image({cx,  cy});
 
-      pimageM->g()->stretch(::sized(cx, cy), picon);
+      pimageM->g()->stretch(::size_f64(cx, cy), picon);
 
       byte * r1 = (byte*) pimage1->colorref();
       byte * r2 = (byte*) pimage2->colorref();
@@ -525,17 +525,17 @@ namespace draw2d_direct2d
    //   }
    //}
 
-   //void image::rotate(image image, const ::rect & rect, double dAngle, double dScale)
+   //void image::rotate(image image, const ::rectangle_i32 & rectangle, double dAngle, double dScale)
    //{
    //   // image image(get_object());
    //   //   pimage->Paste(this);
 
 
 
-   //   ::rect rect(rect);
+   //   ::rectangle_i32 rectangle(rectangle);
 
-   //   int cx = rect.width();
-   //   int cy = rect.height();
+   //   int cx = rectangle.width();
+   //   int cy = rectangle.height();
 
    //   int l = max(cx, cy);
 
@@ -545,8 +545,8 @@ namespace draw2d_direct2d
    //   int imin = - imax;
 
 
-   //   int joff = cy / 2 + rect.left;
-   //   int ioff = cx / 2 + rect.top;
+   //   int joff = cy / 2 + rectangle.left;
+   //   int ioff = cx / 2 + rectangle.top;
 
    //   //int iAngle = iStep % 360;
    //   //int iAngle = iStep;
@@ -630,13 +630,13 @@ namespace draw2d_direct2d
    /*void image::Fill (int A, int R, int G, int B )
    {
    color32_t color = RGB ( B, G, R ) | (A << 24);
-   int size=stride*cy;
+   int size_i32=stride*cy;
 
    color32_t * pcr;
 
    map();
 
-   int iSize32 = size / 32;
+   int iSize32 = size_i32 / 32;
    int i;
    for (i=0; i < iSize32; i+=32 )
    {
@@ -675,7 +675,7 @@ namespace draw2d_direct2d
    pcr[31] = color;
    }
 
-   for (i=0; i<size; i++ )
+   for (i=0; i<size_i32; i++ )
    {
    m_pcolorref[i]=color;
    }
@@ -742,7 +742,7 @@ namespace draw2d_direct2d
    //   }
    //}
 
-   //void image::create_frame(::size size, int iFrameCount)
+   //void image::create_frame(::size_i32 size, int iFrameCount)
    //{
    //   int iSliceCount = (int) sqrt((double) iFrameCount);
    //   int iFrameWidth = size.cx / iSliceCount;
@@ -949,7 +949,7 @@ namespace draw2d_direct2d
    //   }
    //}
 
-  bool image::_draw_raw(const ::rect & rectDst, ::image * pimage, const ::point & pointSrc)
+  bool image::_draw_raw(const ::rectangle_i32 & rectDst, ::image * pimage, const ::point_i32 & pointSrc)
    {
 
       return ::image::draw(rectDst, pimage, pointSrc);
@@ -1016,11 +1016,11 @@ namespace draw2d_direct2d
    //void image::fill_channel(int intensity, color::color::rgba::echannel echannel)
    //{
    //   int offset = ((int)echannel) % 4;
-   //   int size=cx*cy;
+   //   int size_i32=cx*cy;
 
    //   byte * pb;
 
-   //   int iSize32 = size / 32;
+   //   int iSize32 = size_i32 / 32;
    //   int i;
    //   for (i=0; i < iSize32; i+=32 )
    //   {
@@ -1059,7 +1059,7 @@ namespace draw2d_direct2d
    //      pb[31 * 4] = (byte) intensity;
    //   }
 
-   //   for (i=0; i<size; i++ )
+   //   for (i=0; i<size_i32; i++ )
    //   {
    //      *(((byte * ) &m_pcolorref[i]) + offset) = (byte) intensity;
    //   }
@@ -1345,7 +1345,7 @@ namespace draw2d_direct2d
 
       pgraphics->m_iType = 11;
 
-      ::size size = m_pbitmapMap->GetBitmapDimension();
+      ::size_i32 size = m_pbitmapMap->GetBitmapDimension();
 
       D2D1_SIZE_U sizeu = D2D1::SizeU(size.cx, size.cy);
 
@@ -1480,7 +1480,7 @@ namespace draw2d_direct2d
    //bool image::update_window(::aura::draw_interface * pwnd, ::message::message * pmessage, bool bTransferBuffer)
    //{
 
-   //   rect64 rectWindow;
+   //   rectangle_i64 rectWindow;
 
    //   pwnd->get_window_rect(rectWindow);
 
@@ -1488,21 +1488,21 @@ namespace draw2d_direct2d
 
    //   map(false);
 
-   //   ::rect rect(rectWindow);
+   //   ::rectangle_i32 rectangle(rectWindow);
 
-   //   //      Application.window_graphics_update_window(pwnd->get_window_graphics(),pwnd->get_handle(),m_pcolorref,rect,this->width(), this->height(), m_iScan, bTransferBuffer);
+   //   //      Application.window_graphics_update_window(pwnd->get_window_graphics(),pwnd->get_handle(),m_pcolorref,rectangle_i32,this->width(), this->height(), m_iScan, bTransferBuffer);
 
    //   return true;
 
    //}
 
 
-   bool image::blend(const ::point & pointDst, ::image * pimageSrc, const ::point & pointSrc, const ::size & sizeParam, byte bA)
+   bool image::blend(const ::point_i32 & pointDst, ::image * pimageSrc, const ::point_i32 & pointSrc, const ::size_i32 & sizeParam, byte bA)
    {
 
       return ::image::blend(pointDst, pimageSrc, pointSrc, sizeParam, bA);
 
-      //::size size(sizeParam);
+      //::size_i32 size(sizeParam);
 
       //::draw2d::lock draw2dlock;
 
@@ -1549,7 +1549,7 @@ namespace draw2d_direct2d
 
       //   bool bSmallerSourceRegion = false;
 
-      //   ::size sizeSource;
+      //   ::size_i32 sizeSource;
 
       //   {
 
@@ -1611,7 +1611,7 @@ namespace draw2d_direct2d
 
       //      ::draw2d::savedc k1(pgraphics);
 
-      //      ::rect rDst;
+      //      ::rectangle_i32 rDst;
       //      rDst.left = pointDst.x;
       //      rDst.top = pointDst.y;
       //      rDst.right = pointDst.x + size.cx;
@@ -1683,7 +1683,7 @@ namespace draw2d_direct2d
 
       //}
 
-      //::rect rectDib1(::point(), pimage->get_size());
+      //::rectangle_i32 rectDib1(::point_i32(), pimage->get_size());
 
       //fill(A_RGB(255, rgb));
 
@@ -1696,7 +1696,7 @@ namespace draw2d_direct2d
       //pgraphicsDib1->m_pdevicecontext->DrawImage(
       //pimage->get_bitmap()->get_os_data< ID2D1Bitmap>(),
       //D2D1::Point2F(0.f, 0.f),
-      //d2d1::rectf(rectDib1),
+      //d2d1::rectangle_f32(rectDib1),
       //D2D1_INTERPOLATION_MODE_NEAREST_NEIGHBOR,
       //D2D1_COMPOSITE_MODE_SOU_IN);
 

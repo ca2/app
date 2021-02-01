@@ -336,32 +336,32 @@ namespace str
 
    void ch_class::add_class(const ch_class &cclass)
    {
-      for(i32 point = 0; point < 256; point++)
+      for(i32 p = 0; p < 256; p++)
       {
-         if (infoIndex[point] == nullptr)
-            infoIndex[point] = new bit_array();
-         infoIndex[point]->add_bit_array(*cclass.infoIndex[point]);
+         if (infoIndex[p] == nullptr)
+            infoIndex[p] = new bit_array();
+         infoIndex[p]->add_bit_array(*cclass.infoIndex[p]);
       }
    }
 
    void ch_class::intersect_class(const ch_class &cclass)
    {
-      for(i32 point = 0; point < 256; point++)
+      for(i32 p = 0; p < 256; p++)
       {
-         if (infoIndex[point] != nullptr)
+         if (infoIndex[p] != nullptr)
          {
-            infoIndex[point]->intersect_bit_array(*cclass.infoIndex[point]);
+            infoIndex[p]->intersect_bit_array(*cclass.infoIndex[p]);
          }
       }
    }
 
    void ch_class::clear_class(const ch_class &cclass)
    {
-      for(i32 point = 0; point < 256; point++)
+      for(i32 p = 0; p < 256; p++)
       {
-         if(infoIndex[point] != nullptr)
+         if(infoIndex[p] != nullptr)
          {
-            infoIndex[point]->clear_bit_array(*cclass.infoIndex[point]);
+            infoIndex[p]->clear_bit_array(*cclass.infoIndex[p]);
          }
       }
    }

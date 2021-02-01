@@ -63,7 +63,7 @@
 //
 ////CLASS_DECL_CORE void __trace_message(const char * pszPrefix, ::message::message * pmessage);
 //
-////CLASS_DECL_CORE void __trace_message(const char * pszPrefix, LPMESSAGE lpmsg);
+////CLASS_DECL_CORE void __trace_message(const char * pszPrefix, MESSAGE * lpmsg);
 //
 //
 ////CLASS_DECL_CORE void __cdecl __pre_translate_message(::message::message * pmessage);

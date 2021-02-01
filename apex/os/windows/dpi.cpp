@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 
 
 typedef ::u32 FN_GetDpiForWindow(HWND hwnd);
@@ -53,7 +54,7 @@ void dpi_os_initialize()
    if (pfn_get_dpi_for_window)
    {
 
-      return pfn_get_dpi_for_window(hwnd);
+      return pfn_get_dpi_for_window((HWND) hwnd);
 
    }
 

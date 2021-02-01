@@ -317,7 +317,7 @@ namespace zip
 
       m_strZipFile = pcszFileName;
 
-      return TRUE;
+      return true;
    }
 
    bool in_file::dump(file_pointer  pfile)
@@ -382,7 +382,7 @@ namespace zip
       //ASSERT_VALID(this);
       ASSERT(get_zip_file() != nullptr);
 
-      ASSERT(FALSE);
+      ASSERT(false);
    }
 
    filesize in_file::seek(filesize lOff,::file::e_seek nFrom)
@@ -460,7 +460,7 @@ namespace zip
       //   ASSERT_VALID(this);
       //ASSERT(get_zip_file() != nullptr);
 
-      bool bError = FALSE;
+      bool bError = false;
       /*if(get_zip_file() != nullptr)
       {
       unzCloseCurrentFile(get_zip_file()->m_pf);

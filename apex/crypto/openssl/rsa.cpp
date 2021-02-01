@@ -29,7 +29,7 @@ namespace openssl
       BIGNUM* n = BN_new();
       BIGNUM* e = BN_new();
       BIGNUM* d = BN_new();
-      BIGNUM* point = BN_new();
+      BIGNUM* p = BN_new();
       BIGNUM* q = BN_new();
       BIGNUM* dmp1 = BN_new();
       BIGNUM* dmq1 = BN_new();
@@ -38,7 +38,7 @@ namespace openssl
       BN_hex2bn(&n, strN);
       BN_hex2bn(&e, strE);
       BN_hex2bn(&d, strD);
-      BN_hex2bn(&point, strP);
+      BN_hex2bn(&p, strP);
       BN_hex2bn(&q, strQ);
       BN_hex2bn(&dmp1, strDmp1);
       BN_hex2bn(&dmq1, strDmq1);
@@ -48,14 +48,14 @@ namespace openssl
       m_prsa->n = n;
       m_prsa->e = e;
       m_prsa->d = d;
-      m_prsa->p = point;
+      m_prsa->p = p;
       m_prsa->q = q;
       m_prsa->dmp1 = dmp1;
       m_prsa->dmq1 = dmq1;
       m_prsa->iqmp = iqmp;
 #else
       RSA_set0_key(m_prsa, n, e, d);
-      RSA_set0_factors(m_prsa, point, q);
+      RSA_set0_factors(m_prsa, p, q);
       RSA_set0_crt_params(m_prsa, dmp1, dmq1, iqmp);
 #endif
 

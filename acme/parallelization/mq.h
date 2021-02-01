@@ -1,6 +1,7 @@
 #pragma once
 
 
+
 struct mq_message 
 {
 
@@ -76,9 +77,10 @@ public:
    mq();
    virtual ~mq();
 
+
    int_bool peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
    int_bool get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
-   int_bool post_message(oswindow oswindow, const ::id & id, WPARAM wParam, LPARAM lParam);
+   int_bool post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam);
    int_bool post_message(const mq_message & message);
 
 

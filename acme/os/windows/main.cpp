@@ -1,9 +1,8 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 
 
-
-
-CLASS_DECL_ACME string ca2_command_line(HINSTANCE hinstance);
+CLASS_DECL_ACME string ca2_command_line(hinstance hinstance);
 
 CLASS_DECL_ACME HRESULT os_create_link(::file::path pathObj, ::file::path pathLink, string strDesc, ::file::path pathIcon = nullptr, int iIcon = 0);
 
@@ -67,7 +66,7 @@ CLASS_DECL_ACME void os_term_application()
 }
 
 
-string ca2_command_line(HINSTANCE hinstance)
+string ca2_command_line(hinstance hinstance)
 {
 
 #ifdef CUBE

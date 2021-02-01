@@ -105,7 +105,7 @@ void array_base < TYPE, ARG_TYPE, ALLOCATOR >::free_extra()
 
    if(m_nSize != m_nMaxSize)
    {
-      // shrink to desired size
+      // shrink to desired size_i32
 #ifdef SIZE_T_MAX
       ASSERT(m_nSize <= SIZE_T_MAX / sizeof(TYPE)); // no overflow
 #endif
@@ -203,7 +203,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
       // inserting in the middle of the array
       ::count nOldSize = (::count) m_nSize;
 
-      set_size((::count) m_nSize + nCount,-1);  // grow it to new size
+      set_size((::count) m_nSize + nCount,-1);  // grow it to new size_i32
       // destroy intial data before copying over it
       // shift old data up to fill gap
       ::acme::memmove_s(m_pData + nIndex + nCount,(size_t) ((nOldSize - nIndex) * sizeof(TYPE)),m_pData + nIndex,(size_t)((nOldSize - nIndex) * sizeof(TYPE)));
@@ -379,7 +379,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
       // inserting in the middle of the array
       ::count nOldSize = (::count) m_nSize;
 
-      set_size((::count) (m_nSize + nCount), -1);  // grow it to new size
+      set_size((::count) (m_nSize + nCount), -1);  // grow it to new size_i32
       // destroy intial data before copying over it
       // shift old data up to fill gap
       ::acme::memmove_s(m_pData + nIndex + nCount, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)), m_pData + nIndex, (size_t) ((nOldSize - nIndex) * sizeof(TYPE)));
@@ -494,7 +494,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
       __throw(invalid_argument_exception());
 
    if(nGrowBy >= 0)
-      m_nGrowBy = nGrowBy;  // set new size
+      m_nGrowBy = nGrowBy;  // set new size_i32
 
    if(nNewSize == 0)
    {
@@ -642,7 +642,7 @@ template < class TYPE, class ARG_TYPE, class ALLOCATOR >
    if(nGrowBy >= 0)
    {
 
-      m_nGrowBy = nGrowBy;  // set new size
+      m_nGrowBy = nGrowBy;  // set new size_i32
 
    }
 

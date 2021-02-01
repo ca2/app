@@ -167,11 +167,11 @@ CLASS_DECL_ACME void debug_debug_reference()
 {
    auto message = e_message_create;
 #if OSBIT == 64
-   WPARAM wparam = 0x12345678901234;
-   LPARAM lparam = 0x56781234567890;
+   wparam wparam = 0x12345678901234;
+   lparam lparam = 0x56781234567890;
 #else
-   WPARAM wparam = 0x1234567;
-   LPARAM lparam = 0x5678123;
+   wparam wparam = 0x1234567;
+   lparam lparam = 0x5678123;
 #endif
 
 

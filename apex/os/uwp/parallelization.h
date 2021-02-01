@@ -10,15 +10,15 @@ typedef struct tag_MSG
    ::u32        message;
    WPARAM      wParam;
    LPARAM      lParam;
-   POINT32       pt;
-} MESSAGE, * LPMESSAGE;
+   POINT_I32       pt;
+} MESSAGE, * MESSAGE *;
 #endif
 
 
 
-//CLASS_DECL_APEX int_bool WINAPI GetMessage(LPMESSAGE lpMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+//CLASS_DECL_APEX int_bool WINAPI GetMessage(MESSAGE * lpMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
-//CLASS_DECL_APEX int_bool WINAPI PeekMessage(LPMESSAGE lpMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax,::u32 wRemoveMsg);
+//CLASS_DECL_APEX int_bool WINAPI PeekMessage(MESSAGE * lpMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax,::u32 wRemoveMsg);
 
 //CLASS_DECL_APEX int_bool WINAPI PostThreadMessage(ithread_t idthread, ::u32 Msg, WPARAM wParam, LPARAM lParam);
 

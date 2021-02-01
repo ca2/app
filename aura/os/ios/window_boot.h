@@ -49,6 +49,6 @@ bool m_bDirty;
 };
 
 
-UIWindow * new_boot_window(boot_window * pwindow, CGRect rect);
+UIWindow * new_boot_window(boot_window * pwindow, CGRect rectangle_i32);
 void ios_application_main();
 int ios_app_run(int argc, char * argv[]);

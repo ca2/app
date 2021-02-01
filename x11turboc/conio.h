@@ -154,7 +154,7 @@ struct text_info
 __BEGIN_DECLS
 // It might seem that various of these functions (like
 // clrscr) could just be renamed to use the similar ncurses functions.
-// I think not, but I could be wrong.  Important point:  the textmode 
+// I think not, but I could be wrong.  Important point_i32:  the textmode 
 // function is optional in Turbo C, but must be used in all cases for us
 // because otherwise we can't guarantee that the necessary initialization
 // of ncurses has occurred.

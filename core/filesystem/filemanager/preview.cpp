@@ -32,7 +32,7 @@ namespace filemanager
 
 
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
       get_client_rect(rectClient);
       pgraphics->fill_rect(rectClient, RGB(200, 200, 190));
 

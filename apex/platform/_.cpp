@@ -11,7 +11,7 @@
 
 //extern string_map < __pointer(::apex::library) >* g_pmapLibrary;
 
-//extern ::mutex* &System.m_mutexLibrary;
+//extern ::mutex * &System.m_mutexLibrary;
 
 
 //extern "C"
@@ -44,9 +44,9 @@ CLASS_DECL_APEX int_bool defer_apex_term();
 //
 //         {
 //            rString.Empty();        // return is_empty string as well
-//            return FALSE;
+//            return false;
 //         }
-//         pszFullString++;       // point past the separator
+//         pszFullString++;       // point_i32 past the separator
 //
 //      }
 //
@@ -62,7 +62,7 @@ CLASS_DECL_APEX int_bool defer_apex_term();
 //
 //      rString.release_string_buffer();   // Need to call ReleaseBuffer after calling get_string_buffer
 //
-//      return TRUE;
+//      return true;
 //
 //   }
 //
@@ -192,7 +192,7 @@ int g_iApexRefCount = 0;
 //string_map < PFN_NEW_APEX_LIBRARY >* g_pmapNewApexLibrary = nullptr;
 
 
-//::mutex* &System.m_mutexLibrary = nullptr;
+//::mutex * &System.m_mutexLibrary = nullptr;
 
 
 CLASS_DECL_APEX string_map < PFN_NEW_APEX_LIBRARY >& __get_new_apex_library()
@@ -318,7 +318,7 @@ CLASS_DECL_APEX::apex::system * apex_create_apex_system()
 //   if (g_iApexRefCount >= 1)
 //   {
 //
-//      return TRUE;
+//      return true;
 //
 //   }
 //
@@ -330,7 +330,7 @@ CLASS_DECL_APEX::apex::system * apex_create_apex_system()
 //
 //   apex_term();
 //
-//   return TRUE;
+//   return true;
 //
 //}
 
@@ -462,10 +462,10 @@ CLASS_DECL_APEX::apex::system * apex_create_apex_system()
 void c_post_system_event(::u64 u, void* pparam)
 {
 
-   LPARAM lparam = (LPARAM)pparam;
+   lparam lparam = (iptr)pparam;
 
 
-   System.post_message(e_message_event2, (WPARAM)u, lparam);
+   System.post_message(e_message_event2, (iptr)u, lparam);
 
 
 }

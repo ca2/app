@@ -20,7 +20,7 @@ namespace geo
    }
 
 
-   ::mutex* department::get_openweather_city_mutex()
+   ::mutex * department::get_openweather_city_mutex()
    {
 
       sync_lock sl(mutex());
@@ -866,7 +866,7 @@ namespace geo
          return "cest";
 
       }
-      else if (strCountry == "point")
+      else if (strCountry == "point_i32")
       {
 
          return "west";

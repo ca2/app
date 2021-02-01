@@ -22,8 +22,8 @@ public:
 
 #else
 
-   CRITICAL_SECTION     m_sect;
-   CONDITION_VARIABLE   m_var;
+   critical_section     m_criticalsection;
+   condition_variable   m_conditionvariable;
 
 #endif
 

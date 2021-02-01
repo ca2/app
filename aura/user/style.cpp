@@ -149,15 +149,15 @@ namespace user
    }
 
 
-   bool style::draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::rect & rect, ::draw2d::graphics_pointer & pgraphics)
+   bool style::draw_check(::user::interaction * pinteraction, ::enum_check echeck, const ::rectangle_i32 & rectangle, ::draw2d::graphics_pointer & pgraphics)
    {
 
       if (echeck == ::check_tristate || echeck == ::check_checked)
       {
 
-         int w = rect.width();
+         int w = rectangle.width();
 
-         int h = rect.height();
+         int h = rectangle.height();
 
          ::draw2d::pen_pointer pen(e_create);
 
@@ -209,7 +209,7 @@ namespace user
 
       ::draw2d::savedc savedc(pgraphics);
 
-      ::rect rectClient = pinteraction->::user::interaction::get_client_rect();
+      ::rectangle_i32 rectClient = pinteraction->::user::interaction::get_client_rect();
 
       double dRotate = pinteraction->get_rotate();
 
@@ -525,10 +525,10 @@ namespace user
    //}
 
 
-   //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::draw2d::brush_pointer & brushText)
+   //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText)
    //{
 
-   //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rect, brushText);
+   //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rectangle_i32, brushText);
 
    //}
 
@@ -777,7 +777,7 @@ namespace user
    //}
 
 
-   //bool style::create_pixel_rect(e_rect erect, rectd r)
+   //bool style::create_pixel_rect(e_rect erect, rectangle_f64 r)
    //{
 
    //   return create_rect(erect, r, ::draw2d::unit_pixel);
@@ -801,7 +801,7 @@ namespace user
    //}
 
 
-   //bool style::create_point_rect(e_rect erect, rectd r)
+   //bool style::create_point_rect(e_rect erect, rectangle_f64 r)
    //{
 
    //   return create_rect(erect, r, ::draw2d::unit_point);
@@ -834,10 +834,10 @@ namespace user
    //}
 
 
-   //bool style::create_rect(e_rect erect, ::rectd rect, ::draw2d::enum_unit eunit)
+   //bool style::create_rect(e_rect erect, ::rectangle_f64 rectangle_i32, ::draw2d::enum_unit eunit)
    //{
 
-   //   return create_rect_coord(erect, rect.left, rect.top, rect.right, rect.bottom, eunit);
+   //   return create_rect_coord(erect, rectangle.left, rectangle.top, rectangle.right, rectangle.bottom, eunit);
 
    //}
 

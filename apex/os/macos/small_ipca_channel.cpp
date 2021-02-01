@@ -407,7 +407,7 @@ namespace interprocess_communication
 //
 //            data_struct data;
 //
-//            /* The length is essentially the size of the structure minus sizeof(mtype) */
+//            /* The length is essentially the size_i32 of the structure minus sizeof(mtype) */
 //            length = sizeof(data) - sizeof(data.message);
 //
 //            memory mem;
@@ -434,15 +434,15 @@ namespace interprocess_communication
 //
 //               }
 //
-//               mem.append(data.data,data.size);
+//               mem.append(data.data,data.size_i32);
 //
 //
-//               if(data.size < 512)
+//               if(data.size_i32 < 512)
 //                  break;
 //
 //            } while(true);
 //
-//            if(data.size > 0)
+//            if(data.size_i32 > 0)
 //            {
 //            if(data.request == 5)
 //            {

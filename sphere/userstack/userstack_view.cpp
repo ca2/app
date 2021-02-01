@@ -178,7 +178,7 @@ namespace userstack
    void view::_001OnContextMenu(::message::message * pmessage)
    {
 //      __pointer(::message::context_menu) pcontextmenu(pmessage);
-//      ::point point = pcontextmenu->GetPoint();
+//      ::point_i32 point = pcontextmenu->GetPoint();
 
    }
 
@@ -244,7 +244,7 @@ namespace userstack
    void view::GetAreaThumbRect(LPRECT32 lprect, i32 iArea)
    {
       
-      ::rect rectClient = get_client_rect();
+      ::rectangle_i32 rectClient = get_client_rect();
       
       if(iArea == m_iV)
       {
@@ -307,7 +307,7 @@ namespace userstack
    void view::on_hit_test(::user::item & item)
    {
       
-      ::rect rectArea;
+      ::rectangle_i32 rectArea;
       
       GetAreaThumbRect(rectArea, m_iV);
 
@@ -362,7 +362,7 @@ namespace userstack
 
    /*void view::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
       get_client_rect(rectClient);
       if(m_ppaneview != nullptr)
       {

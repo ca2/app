@@ -1,6 +1,12 @@
 #pragma once
 
 
+//namespace str
+//{
+//
+//   CLASS_DECL_APEX string get_window_text_timeout(oswindow oswindow, millis tickTimeout);
+//
+//} // namespace str
 
 
 //CLASS_DECL_APEX wstring windows_register_window_class(::object * pobject, ::u32 nClassStyle, HCURSOR hCursor = 0, HBRUSH hbrBackground = 0, HICON hIcon = 0);

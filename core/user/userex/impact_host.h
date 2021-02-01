@@ -46,7 +46,7 @@ namespace userex
    public:
 
 
-      ::size                                    m_sizeTabbedFrame;
+      ::size_i32                                    m_sizeTabbedFrame;
       string_map < __pointer(::user::document) >       m_mapdoc;
       string_map < simple_frame_window * >      m_mapframe;
       id_array                                  m_idaHandledViews;

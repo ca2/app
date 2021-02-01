@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 #include "apex/platform/machine_event_data.h"
 #include "apex/platform/machine_event.h"
 #include "apex/platform/machine_event_central.h"
@@ -7,7 +8,6 @@
 #include "apex/node/_node.h"
 #include "acme/platform/profiler.h"
 #include "apex/platform/static_setup.h"
-#include "acme/os/_os.h"
 #include "apex/id.h"
 #ifndef WINDOWS
 #include "acme/os/cross/windows/_windows.h"
@@ -18,7 +18,7 @@
 
 CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
 
-int GetMainScreenRect(LPRECT32 lprect);
+//int GetMainScreenRect(LPRECT32 lprect);
 
 
 const char* g_pszMultimediaLibraryName = nullptr;
@@ -228,7 +228,7 @@ namespace apex
 
 #if !defined(_UWP) && !defined(ANDROID)
 
-      m_spmutexMatter = __new(::mutex(e_create_new, false, "Local\\ca2-appmatter"));
+      m_pmutexMatter = __new(::mutex(e_create_new, false, "Local\\ca2-appmatter"));
 
 #endif
 
@@ -284,7 +284,7 @@ namespace apex
 
 #endif
 
-      m_nSafetyPoolSize = 512;        // default size
+      m_nSafetyPoolSize = 512;        // default size_i32
 
       estatus = __compose_new(m_pmath);
 
@@ -506,7 +506,7 @@ namespace apex
 
 
       //m_bInitApplication         = false;
-      //m_bInitApplicationResult   = FALSE;
+      //m_bInitApplicationResult   = false;
       //m_bProcessInitialize       = false;
       //m_bProcessInitializeResult = false;
 
@@ -925,7 +925,7 @@ namespace apex
             {
 
 //#if !defined(ANDROID)
-//               if (!plibrary->open(Context.dir().ca2module() / pszLibrary))
+//               if (!plibrary->open(get_context()->dir().ca2module() / pszLibrary))
 //#endif
 //               {
 //
@@ -1148,18 +1148,12 @@ namespace apex
    }
 
 
+   __pointer(::layered) system::get_layered_window(oswindow oswindow)
+   {
 
+      return nullptr;
 
-
-
-
-
-
-
-
-
-
-
+   }
 
 
    ::e_status system::process_init()
@@ -1382,7 +1376,7 @@ namespace apex
 
                ASSERT(m_hPrevInstance == nullptr);
 
-               HINSTANCE hinstance = m_hinstance;
+               HINSTANCE hinstance = (HINSTANCE)m_hinstance;
 
                auto edisplay = m_edisplay;
 
@@ -1600,10 +1594,10 @@ namespace apex
 
       }
 
-      //output_debug_string("CommonAppData (matter) : " + Context.dir().commonappdata()  + "\n");
-      //output_debug_string("commonappdata (matter) : " + Context.dir().commonappdata() + "\n");
-      //output_debug_string("Common App Data (matter) : " + Context.dir().commonappdata() + "\n");
-      //output_debug_string("common app data (matter) : " + Context.dir().commonappdata() + "\n");
+      //output_debug_string("CommonAppData (matter) : " + get_context()->dir().commonappdata()  + "\n");
+      //output_debug_string("commonappdata (matter) : " + get_context()->dir().commonappdata() + "\n");
+      //output_debug_string("Common App Data (matter) : " + get_context()->dir().commonappdata() + "\n");
+      //output_debug_string("common app data (matter) : " + get_context()->dir().commonappdata() + "\n");
 
       __compose_new(m_pcrypto);
 
@@ -1615,16 +1609,16 @@ namespace apex
       }
 
 
-#ifdef WINDOWS_DESKTOP
-
-      if (m_bGdiplus)
-      {
-
-         init_gdi_plus();
-
-      }
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (m_bGdiplus)
+//      {
+//
+//         init_gdi_plus();
+//
+//      }
+//
+//#endif
 
       //if(m_bDraw2d)
       //{
@@ -1658,7 +1652,7 @@ namespace apex
       if(m_iMatterFromHttpCache == -1)
       {
 
-         ::file::path pathSide = Context.side_get_matter_path("app/_matter/main");
+         ::file::path pathSide = get_context()->side_get_matter_path("app/_matter/main");
 
          ::file::path pathLocal = local_get_matter_path("app/_matter/main");
 
@@ -1726,16 +1720,25 @@ namespace apex
    }
 
 
-   void system::get_time(struct timeval * point)
+   void system::get_time(micro_duration * pmicroduration)
    {
+
 #ifdef _WIN32
+      
       FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
+      
       GetSystemTimeAsFileTime(&ft);
+      
       u64 tt;
+      
       ::memcpy_dup(&tt, &ft, sizeof(tt));
+
       tt /= 10; // make it usecs
-      point->tv_sec = (long)tt / 1000000;
-      point->tv_usec = (long)tt % 1000000;
+      
+      pmicroduration->m_secs = (long)tt / 1'000'000;
+      
+      pmicroduration->m_micros = (long)tt % 1'000'000;
+
 #else
       gettimeofday(point, nullptr);
 #endif
@@ -2329,7 +2332,7 @@ namespace apex
    }
 
 
-   ::u32 system::os_post_to_all_threads(const ::id & id,WPARAM wparam,lparam lparam)
+   ::u32 system::os_post_to_all_threads(const ::id & id,wparam wparam,lparam lparam)
    {
 
       post_to_all_threads(id,wparam,lparam);
@@ -2708,7 +2711,7 @@ namespace apex
    {
       if(string(pszId).has_char())
       {
-         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_global_id_mutex_name(pszAppName, pszId));
+         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_id_mutex_name(pszAppName, pszId));
          ::mutex * pmutex = ::mutex::open_mutex(get_global_id_mutex_name(pszAppName,pszId));
          if(pmutex == nullptr)
          {
@@ -2721,9 +2724,11 @@ namespace apex
 
 #if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(__APPLE__)
 
-            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().module()/strApp,strParameters,nullptr,e_display_normal);
+            auto plauncher = __create < ::apex::shell_launcher >();
+            
+            plauncher->setup(nullptr, nullptr, get_context()->dir().module() / strApp, strParameters, nullptr, e_display_normal);
 
-            launcher.execute();
+            plauncher->launch();
 
 #else
 
@@ -2741,7 +2746,7 @@ namespace apex
       }
       else
       {
-         //HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_global_mutex_name(pszAppName));
+         //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_mutex_name(pszAppName));
          ::mutex * pmutex = ::mutex::open_mutex(get_global_mutex_name(pszAppName));
          if(pmutex == nullptr)
          {
@@ -2754,9 +2759,11 @@ namespace apex
 
 #else
 
-            ::apex::shell_launcher launcher(nullptr,nullptr,Context.dir().module()/strApp,nullptr,nullptr, e_display_normal);
+            auto plauncher = __create < ::apex::shell_launcher >();
+            
+            plauncher->setup(nullptr, nullptr, get_context()->dir().module() / strApp, nullptr, nullptr, e_display_normal);
 
-            launcher.execute();
+            plauncher->launch();
 
 #endif
 
@@ -2777,7 +2784,7 @@ namespace apex
       string strId(pszId);
       if(strId.has_char())
       {
-         //HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_local_id_mutex_name(pszAppName, strId));
+         //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_id_mutex_name(pszAppName, strId));
          ::mutex * pmutex = ::mutex::open_mutex(get_local_id_mutex_name(pszAppName,strId));
          if(pmutex == nullptr)
          {
@@ -2792,9 +2799,11 @@ namespace apex
 
 #else
 
-            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
+            auto plauncher = __create < ::apex::shell_launcher >();
+            
+            plauncher->setup(nullptr, nullptr, get_context()->dir().ca2module() / strApp, strParameters, nullptr, e_display_normal);
 
-            launcher.execute();
+            plauncher->launch();
 
 #endif
 
@@ -2809,7 +2818,7 @@ namespace apex
       }
       else
       {
-         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_local_mutex_name(pszAppName));
+         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_mutex_name(pszAppName));
          ::mutex * pmutex = ::mutex::open_mutex(get_local_mutex_name(pszAppName));
          if(pmutex == nullptr)
          {
@@ -2824,9 +2833,11 @@ namespace apex
 
 #else
 
-            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
+            auto plauncher = __create < ::apex::shell_launcher >();
+            
+            plauncher->setup(nullptr, nullptr, get_context()->dir().ca2module() / strApp, strParameters, nullptr, e_display_normal);
 
-            launcher.execute();
+            plauncher->launch();
 
 #endif
 
@@ -3083,7 +3094,7 @@ namespace apex
 //      if(has_property("install"))
 //         return true;
 //
-//      file_pointer pfile = Context.file().get_file(Context.dir().appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
+//      file_pointer pfile = get_context()->file().get_file(get_context()->dir().appdata() / "applibcache.bin",::file::e_open_binary | ::file::e_open_read);
 //
 //      if(!pfile)
 //         return false;
@@ -3116,7 +3127,7 @@ namespace apex
 //
 //      ::file::listing straTitle(this);
 //
-//      ::file::path pathCa2Module = Context.dir().ca2module();
+//      ::file::path pathCa2Module = get_context()->dir().ca2module();
 //
 //      ::output_debug_string("\n\n::apex::system::find_applications_to_cache\n\n");
 //
@@ -3159,7 +3170,7 @@ namespace apex
 //      try
 //      {
 //
-//         file = psession->file().get_file(Context.dir().appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
+//         file = psession->file().get_file(get_context()->dir().appdata() / "applibcache.bin",::file::e_open_defer_create_directory | ::file::e_open_binary | ::file::e_open_create | ::file::e_open_write);
 //
 //      }
 //      catch(::exception::exception &)
@@ -3615,7 +3626,7 @@ namespace apex
    // }
 
 // #ifndef APPLE_IOS
-//    void * system::initialize_native_window2(const ::rect & rect)
+//    void * system::initialize_native_window2(const ::rectangle_i32 & rectangle)
 
 //    {
 
@@ -3638,38 +3649,38 @@ namespace apex
 //
 //
 //
-//   CLASS_DECL_APEX bool get_window_rect(::apex::system_window ^ pwindow, RECTD * prect)
+//   CLASS_DECL_APEX bool get_window_rect(::apex::system_window ^ pwindow, RECTANGLE_F64 * prectangle)
 //
 //   {
 //
-//      Windows::Foundation::Rect rect = pwindow->get_window_rect();
+//      Windows::Foundation::Rect rectangle_i32 = pwindow->get_window_rect();
 //
-//      prect->left = rect.X;
+//      prectangle->left = rectangle.X;
 //
-//      prect->top = rect.Y;
+//      prectangle->top = rectangle.Y;
 //
-//      prect->right = prect->left + rect.Width;
+//      prectangle->right = prectangle->left + rectangle.Width;
 //
-//      prect->bottom = prect->top + rect.Height;
+//      prectangle->bottom = prectangle->top + rectangle.Height;
 //
 //
 //      return true;
 //   }
 //
 //
-//   CLASS_DECL_APEX bool get_window_rect(::apex::system_window ^ pwindow, RECT32 * prect)
+//   CLASS_DECL_APEX bool get_window_rect(::apex::system_window ^ pwindow, RECTANGLE_I32 * prectangle)
 //   {
 //
-//      ::rectd rect;
+//      ::rectangle_f64 rectangle_i32;
 //
-//      if (!get_window_rect(pwindow, (RECTD*)rect))
+//      if (!get_window_rect(pwindow, (RECTANGLE_F64*)rectangle_i32))
 //      {
 //
 //         return false;
 //
 //      }
 //
-//      ::copy(prect, rect);
+//      ::copy(prectangle, rectangle);
 //
 //      return true;
 //
@@ -3702,7 +3713,7 @@ namespace apex
    string system::standalone_setting(string str)
    {
 
-      return file_as_string(Context.dir().standalone() / (str + ".txt"));
+      return file_as_string(get_context()->dir().standalone() / (str + ".txt"));
 
    }
 
@@ -3710,7 +3721,7 @@ namespace apex
    bool system::set_standalone_setting(string str, string strSetting)
    {
 
-      return file_put_contents(Context.dir().standalone() / (str + ".txt"), strSetting);
+      return file_put_contents(get_context()->dir().standalone() / (str + ".txt"), strSetting);
 
    }
 
@@ -3887,7 +3898,7 @@ namespace apex
    void system::browser(string strUrl, string strBrowser, string strProfile, string strTarget)
    {
 
-       Context.os().link_open(strUrl);
+       get_context()->os().link_open(strUrl);
 
        return;
 
@@ -3898,7 +3909,7 @@ namespace apex
 
          //::os_message_box(NULL, strUrl, strUrl, e_message_box_ok);
 
-         Context.os().link_open(strUrl);
+         get_context()->os().link_open(strUrl);
 
          return;
 
@@ -3915,7 +3926,7 @@ namespace apex
 
       string strParam;
 
-      Context.os().get_default_browser(strId, path, strParam);
+      get_context()->os().get_default_browser(strId, path, strParam);
 
       if (strProfile.is_empty() || strProfile == "native")
       {
@@ -3931,7 +3942,7 @@ namespace apex
       if (strWeather.is_empty() || !strWeather.begins_ci("browser_"))
       {
 
-         strWeather = Context.file().as_string(::dir::system() / "browser_weather.txt");
+         strWeather = get_context()->file().as_string(::dir::system() / "browser_weather.txt");
 
       }
 
@@ -4012,7 +4023,7 @@ namespace apex
          //if (m_strAppName == "app-core/commander")
          {
 
-            chromium(strUrl, strBrowser, strId, Context.os().get_app_path("chrome"), strProfile, strParam);
+            chromium(strUrl, strBrowser, strId, get_context()->os().get_app_path("chrome"), strProfile, strParam);
 
          }
          //else
@@ -4204,7 +4215,7 @@ namespace apex
 
 #ifdef _UWP
 
-      Context.os().native_full_web_browser(strUrl);
+      get_context()->os().native_full_web_browser(strUrl);
 
       return;
 
@@ -4367,7 +4378,7 @@ namespace apex
 
 #else
 
-      if (Context.dir().is(pathProfile))
+      if (get_context()->dir().is(pathProfile))
       {
 
          return;
@@ -4382,7 +4393,7 @@ namespace apex
 
       pathProfileDir = pathProfile.folder();
 
-      Context.dir().mk(pathProfileDir);
+      get_context()->dir().mk(pathProfileDir);
 
       string strParam = "-no-remote -CreateProfile \"" + strProfileName + " " + pathProfile + "\"";
 
@@ -4439,7 +4450,7 @@ namespace apex
 
 #ifdef _UWP
 
-      Context.os().native_full_web_browser(strUrl);
+      get_context()->os().native_full_web_browser(strUrl);
 
 #else
 
@@ -4470,7 +4481,7 @@ namespace apex
 
       }
 
-      if (!Context.file().exists(strBrowserPath) || !Context.dir().is(strBrowserDir))
+      if (!get_context()->file().exists(strBrowserPath) || !get_context()->dir().is(strBrowserDir))
       {
 
          return error_not_found;
@@ -4499,11 +4510,11 @@ namespace apex
       if (strBrowser.has_char())
       {
 
-         Context.file().put_contents_utf8(::dir::system() / "browser.txt", strBrowser);
+         get_context()->file().put_contents_utf8(::dir::system() / "browser.txt", strBrowser);
 
-         Context.file().put_contents_utf8(::dir::system() / "browser_path.txt", strBrowserPath);
+         get_context()->file().put_contents_utf8(::dir::system() / "browser_path.txt", strBrowserPath);
 
-         Context.file().put_contents_utf8(::dir::system() / "browser_dir.txt", strBrowserDir);
+         get_context()->file().put_contents_utf8(::dir::system() / "browser_dir.txt", strBrowserDir);
 
       }
 
@@ -4659,7 +4670,7 @@ namespace apex
 
       auto psubject = subject((::iptr) message.wParam);
 
-      psubject->m_pobjectTopic = (::object*) message.lParam;
+      psubject->m_pobjectTopic = (::object*) message.lParam.m_lparam;
 
       return psubject;
 
@@ -4972,7 +4983,7 @@ namespace apex
   //
   //
   //      //m_bInitApplication         = false;
-  //      //m_bInitApplicationResult   = FALSE;
+  //      //m_bInitApplicationResult   = false;
   //      //m_bProcessInitialize       = false;
   //      //m_bProcessInitializeResult = false;
   //
@@ -5108,7 +5119,7 @@ namespace apex
    //   if(m_bInitApplication)
    //      return m_bInitApplicationResult;
 
-   //   m_bInitApplicationResult      = FALSE;
+   //   m_bInitApplicationResult      = false;
    //   m_bInitApplication            = true;
 
    //   m_bInitApplicationResult = ::apex::system::InitApplication();
@@ -5311,7 +5322,7 @@ namespace apex
 
    {
 
-      string filename = Context.file().time_square();
+      string filename = get_context()->file().time_square();
 
       property_set set;
 
@@ -5319,7 +5330,7 @@ namespace apex
 
       set["cookies"] = pcookies;
 
-      if (!Context.http().download(pszUrl, filename, set))
+      if (!get_context()->http().download(pszUrl, filename, set))
 
       {
 
@@ -5340,13 +5351,13 @@ namespace apex
 
          set["cookies"] = pcookies;
 
-         Context.file().del(filename);
+         get_context()->file().del(filename);
 
-         return Context.http().download(str, strLocation, set);
+         return get_context()->http().download(str, strLocation, set);
 
       }
 
-      str = Context.file().as_string(filename);
+      str = get_context()->file().as_string(filename);
 
       return true;
 
@@ -5512,7 +5523,7 @@ namespace apex
 #ifdef _UWP
 
 
-   bool system::get_window_rect(RECT32* prect)
+   bool system::get_window_rect(RECTANGLE_I32* prectangle)
    {
 
       if (::is_null(get_context_session()))

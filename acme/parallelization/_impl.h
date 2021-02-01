@@ -49,7 +49,7 @@ _AFXMT_INLINE int_bool critical_section::Init()
    return TRUE;
 }
 
-_AFXMT_INLINE critical_section::critical_section() : sync < HANDLE > (nullptr)
+_AFXMT_INLINE critical_sectioncritical_section() : sync < HANDLE > (nullptr)
 {
    int_bool bSuccess;
 
@@ -93,7 +93,7 @@ inline bool sync_result::abandoned() const
 inline ::index sync_result::abandoned_index() const
 {
    if ( !abandoned() )
-      __throw(range_error("abandoned index out of range"));
+      __throw(range_exception("abandoned index out of range"));
    return -(m_iEvent + (::index)result_abandon0);
 }
 
@@ -117,7 +117,7 @@ inline bool sync_result::succeeded() const
 inline ::index sync_result::signaled_index() const
 {
    if ( !signaled() )
-      __throw(range_error("signaled index out of range"));
+      __throw(range_exception("signaled index out of range"));
    return m_iEvent;
 }
 

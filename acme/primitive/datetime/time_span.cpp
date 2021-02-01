@@ -77,7 +77,7 @@ namespace datetime
             {
 #pragma warning (push)
 #pragma warning (disable: 4127)  // conditional expression constant
-               ENSURE(FALSE);      // probably a bad format character
+               ENSURE(false);      // probably a bad format character
 #pragma warning (pop)
             }
             else

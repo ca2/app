@@ -20,7 +20,7 @@
 #pragma comment(lib, "cef_sandbox.lib")
 #endif
 
-// Entry point function for all processes.
+// Entry point_i32 function for all processes.
 //int APIENTRY cef_main(HINSTANCE hInstance,
 //                      HINSTANCE hPrevInstance,
 //                      char * lpCmdLine,
@@ -71,7 +71,7 @@ int APIENTRY app_browser_deferred_run(HINSTANCE hInstance,
 #pragma comment(lib, "cef_sandbox.lib")
 #endif
 
-// Entry point function for all processes.
+// Entry point_i32 function for all processes.
 //int APIENTRY cef_main(HINSTANCE hInstance,
 //                      HINSTANCE hPrevInstance,
 //                      char * lpCmdLine,
@@ -80,7 +80,7 @@ int APIENTRY app_browser_deferred_run(HINSTANCE hInstance,
 //   UNREFERENCED_PARAMETER(hPrevInstance);
 //   UNREFERENCED_PARAMETER(lpCmdLine);
 
-int cef_main(HINSTANCE hInstance, HWND hwnd, RECT32 rect)
+int cef_main(HINSTANCE hInstance, HWND hwnd, RECTANGLE_I32 rectangle_i32)
 {
 //   // Enable High-DPI support on Windows 7 or newer.
 //   CefEnableHighDPISupport();

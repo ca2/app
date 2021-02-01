@@ -465,7 +465,7 @@ void openURL(const string &url_str)
 //   if(credentials.get_credentials() != ::success_credentials)
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
@@ -513,7 +513,7 @@ void openURL(const string &url_str)
 //
 //   }
 //
-//   return TRUE;
+//   return true;
 //
 //}
 
@@ -1025,7 +1025,7 @@ void openURL(const string& url_str)
 //   if(credentials.get_credentials() != ::success_credentials)
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
@@ -1073,7 +1073,7 @@ void openURL(const string& url_str)
 //
 //   }
 //
-//   return TRUE;
+//   return true;
 //
 //}
 

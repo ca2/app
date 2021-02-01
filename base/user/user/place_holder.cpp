@@ -417,12 +417,12 @@ namespace user
    }
 
 
-   void place_holder::get_child_rect(RECT32* prect)
+   void place_holder::get_child_rect(RECTANGLE_I32* prectangle)
    {
 
-      get_parent()->get_child_rect(prect);
+      get_parent()->get_child_rect(prectangle);
 
-      offset(prect, -prect->left, -prect->top);
+      offset(prectangle, -prectangle->left, -prectangle->top);
 
    }
 

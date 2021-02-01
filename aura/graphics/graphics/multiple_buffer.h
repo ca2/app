@@ -46,7 +46,7 @@ namespace graphics
 
       virtual bool buffer_lock_round_swap_key_buffers() override;
 
-      index find_best_buffer(const ::size & size);
+      index find_best_buffer(const ::size_i32 & size);
 
       using graphics::update_window;
       virtual bool update_window() override;
@@ -58,7 +58,7 @@ namespace graphics
       virtual sync * get_screen_sync() override;
       virtual ::image_pointer & get_screen_image() override;
 
-      //virtual ::image_pointer & get_screen_image_and_sync(sync ** psync, const ::size & size) override;
+      //virtual ::image_pointer & get_screen_image_and_sync(sync ** psync, const ::size_i32 & size) override;
       //virtual sync * get_screen_sync() override;
 
    };

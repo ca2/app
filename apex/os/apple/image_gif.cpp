@@ -56,7 +56,7 @@
 //      CFTypeRef         values[2];
 //
 //      // Set up options if you want them. The options here are for
-//      // caching the image in a decoded form and for using floating-point
+//      // caching the image in a decoded form and for using floating-point_i32
 //      // values if the image format supports them.
 //      keys[0] = kCGImageSourceShouldCache;
 //      values[0] = (CFTypeRef)kCFBooleanFalse;
@@ -152,13 +152,13 @@
 //
 //            p->m_edisposal = ::draw2d::disposal_none;
 //
-//            p->m_rect.left = 0;
+//            p->m_rectangle.left = 0;
 //
-//            p->m_rect.top = 0;
+//            p->m_rectangle.top = 0;
 //
-//            p->m_rect.right = w;
+//            p->m_rectangle.right = w;
 //
-//            p->m_rect.bottom = h;
+//            p->m_rectangle.bottom = h;
 //
 //            p->m_colorTransparent = 0;
 //

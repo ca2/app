@@ -100,7 +100,7 @@ namespace draw2d_opengl
    }
 
 
-   bool bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size& size, void** ppcolorref, int* piScan)
+   bool bitmap::create_bitmap(::draw2d::graphics * pgraphics, const ::size_i32& size, void** ppcolorref, int* piScan)
    {
 
       UNREFERENCED_PARAMETER(pgraphics);
@@ -159,26 +159,26 @@ namespace draw2d_opengl
 
    }
 
-   size bitmap::SetBitmapDimension(i32 nWidth, i32 nHeight)
+   size_i32 bitmap::SetBitmapDimension(i32 nWidth, i32 nHeight)
    {
 
 
       ::exception::throw_not_implemented();
 
-      //::size size;
+      //::size_i32 size;
       //VERIFY(::SetBitmapDimensionEx((HBITMAP)get_handle(), nWidth, nHeight, &size));
       //return size;
-      return ::size(0, 0);
+      return ::size_i32(0, 0);
 
    }
 
-   size bitmap::GetBitmapDimension() const
+   size_i32 bitmap::GetBitmapDimension() const
    {
 
       //if(m_pbitmap == nullptr)
-      //   return ::size(0, 0);
+      //   return ::size_i32(0, 0);
 
-      //return ::size(m_pbitmap->GetWidth(), m_pbitmap->GetHeight());
+      //return ::size_i32(m_pbitmap->GetWidth(), m_pbitmap->GetHeight());
 
       return m_sizeOut;
 

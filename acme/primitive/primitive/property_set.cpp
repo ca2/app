@@ -968,7 +968,7 @@ void property_set::_parse_url_query(const char * pszUrlQuery)
 void property_set::parse_http_headers(const char * pszHeaders)
 {
    string_array stra;
-   stra.add_tokens(pszHeaders, "\r\n", TRUE);
+   stra.add_tokens(pszHeaders, "\r\n", true);
    string strName;
    for(i32 i = 0; i < stra.get_size(); i++)
    {

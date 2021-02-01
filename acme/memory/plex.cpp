@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 
 #include "plex_heap1.h"
 
@@ -14,11 +15,11 @@ plex* plex::create(plex*& pHead, uptr nMax, uptr cbElement)
 {
 
    memsize size = sizeof(plex) + nMax * cbElement + CA2_PALACE_SAFE_ZONE_BORDER_SIZE * 2;
-   plex* point = (plex*) memory_alloc(size);
+   plex* p = (plex*) memory_alloc(size);
    // may __throw( exception
-   point->pNext = pHead;
-   pHead = point;  // machine head (adds in reverse order for simplicity)
-   return point;
+   p->pNext = pHead;
+   pHead = p;  // machine head (adds in reverse order for simplicity)
+   return p;
 }
 
 void plex::FreeDataChain()     // free this one and links
@@ -26,14 +27,14 @@ void plex::FreeDataChain()     // free this one and links
    try
    {
       //plex* pPrevious = nullptr;
-      plex* point = this;
-      while (point != nullptr)
+      plex* p = this;
+      while (p != nullptr)
       {
-         byte* bytes = (byte*) point;
-         plex* pNextLocal = point->pNext;
+         byte* bytes = (byte*) p;
+         plex* pNextLocal = p->pNext;
          memory_free(bytes);
-         //pPrevious = point;
-         point = pNextLocal;
+         //pPrevious = p;
+         p = pNextLocal;
       }
    }
    catch(...)

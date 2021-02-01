@@ -127,7 +127,7 @@ namespace uwp
 
                //auto pchanged = ref new Windows::UI::Core::WindowSizeChangedEventArgs();
 
-               ::size size((LONG) m_window->Bounds.Width, (LONG) m_window->Bounds.Height);
+               ::size_i32 size_i32((LONG) m_window->Bounds.Width, (LONG) m_window->Bounds.Height);
 
                //pchanged->Size.Height = m_window->Bounds.Height;
 
@@ -158,10 +158,10 @@ namespace uwp
 
       m_pimpl = __create < ::user::interaction_impl >();
 
-      m_pimpl->m_rect.left = (LONG) m_window->Bounds.X;
-      m_pimpl->m_rect.top = (LONG) m_window->Bounds.Y;
-      m_pimpl->m_rect.right = (LONG) (m_window->Bounds.X + m_window->Bounds.Width);
-      m_pimpl->m_rect.top = (LONG) (m_window->Bounds.Y + m_window->Bounds.Height);
+      m_pimpl->m_rectangle.left = (LONG) m_window->Bounds.X;
+      m_pimpl->m_rectangle.top = (LONG) m_window->Bounds.Y;
+      m_pimpl->m_rectangle.right = (LONG) (m_window->Bounds.X + m_window->Bounds.Width);
+      m_pimpl->m_rectangle.top = (LONG) (m_window->Bounds.Y + m_window->Bounds.Height);
 
       m_pimpl->m_window = m_window;
 
@@ -288,14 +288,14 @@ namespace uwp
    void directx_framework_view::OnWindowSizeChanged(CoreWindow ^ sender, WindowSizeChangedEventArgs ^ args)
    {
 
-      ::size size((LONG) args->Size.Width, (LONG) args->Size.Height);
+      ::size_i32 size_i32((LONG) args->Size.Width, (LONG) args->Size.Height);
 
       on_window_size_changed(sender, size);
 
    }
 
 
-   void directx_framework_view::on_window_size_changed(CoreWindow ^ sender, const ::size & size)
+   void directx_framework_view::on_window_size_changed(CoreWindow ^ sender, const ::size_i32 & size)
    {
 
       m_directx->m_size = size;
@@ -832,7 +832,7 @@ namespace uwp
    Windows::Foundation::Rect directx_framework_view::get_input_content_rect()
    {
 
-      Windows::Foundation::Rect rect;
+      Windows::Foundation::Rect rectangle_i32;
       
       auto pfocusui = m_puserinteraction->get_keyboard_focus();
 
@@ -841,7 +841,7 @@ namespace uwp
       if (puserinteraction)
       {
 
-         ::rect r = puserinteraction->get_window_rect();
+         ::rectangle_i32 r = puserinteraction->get_window_rect();
 
          m_rectInputContentRect.X = (float) r.left;
          m_rectInputContentRect.Y = (float)r.top;
@@ -850,9 +850,9 @@ namespace uwp
 
       }
 
-      rect = m_rectInputContentRect;
+      rectangle_i32 = m_rectInputContentRect;
 
-      return rect;
+      return rectangle;
 
    }
 
@@ -860,9 +860,9 @@ namespace uwp
    Windows::Foundation::Rect directx_framework_view::get_input_selection_rect()
    {
 
-      Windows::Foundation::Rect rect = m_rectInputSelectionRect;
+      Windows::Foundation::Rect rectangle_i32 = m_rectInputSelectionRect;
 
-      return rect;
+      return rectangle;
 
    }
 
@@ -926,28 +926,28 @@ namespace uwp
    Windows::Foundation::Rect directx_framework_view::get_window_rect()
    {
 
-      Windows::Foundation::Rect rect = m_rectLastWindowRect;
+      Windows::Foundation::Rect rectangle_i32 = m_rectLastWindowRect;
 
-      /*      rect.X = 0;
-            rect.Y = 0;
-            rect.Width = 600;
-            rect.Height = 480;
+      /*      rectangle.X = 0;
+            rectangle.Y = 0;
+            rectangle.Width = 600;
+            rectangle.Height = 480;
 
             if(m_window == nullptr)
-               return rect;
+               return rectangle;
 
-            ::wait(m_window->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler ([=, &rect]()
+            ::wait(m_window->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler ([=, &rectangle]()
             {
                try
                {
-                  rect = m_window->Bounds;
+                  rectangle_i32 = m_window->Bounds;
                }
                catch(...)
                {
                }
             })));*/
 
-      return rect;
+      return rectangle;
 
    }
 

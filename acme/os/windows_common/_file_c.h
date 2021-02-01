@@ -2,14 +2,12 @@
 
 
 CLASS_DECL_ACME ::u32 windows_get_file_attributes(const char* path);
-CLASS_DECL_ACME int_bool windows_create_directory(const char* pszPath, LPSECURITY_ATTRIBUTES lpSecurityAttributes);
+CLASS_DECL_ACME int_bool windows_create_directory(const char* pszPath ARG_SEC_ATTRS);
 
 
-#define hfile_null INVALID_HANDLE_VALUE
+using hfile = void *;
 
-
-using hfile = HANDLE;
-
+#define hfile_null ((::hfile)(::iptr) -1)
 
 inline int_bool is_nok(hfile hfile)
 {
@@ -26,12 +24,13 @@ inline int_bool is_ok(hfile hfile)
 
 }
 
+using HANDLE = void *;
 
 CLASS_DECL_ACME hfile hfile_create(
 const char *            pFileName,
 ::u32                   dwDesiredAccess,
 ::u32                   dwShareMode,
-LPSECURITY_ATTRIBUTES   pSecurityAttributes,
+void *                  pSecurityAttributes,
 ::u32                   dwCreationDisposition,
 ::u32                   dwFlagsAndAttributes,
 HANDLE                  hTemplateFile

@@ -31,10 +31,10 @@ namespace gpu
 
       enum_mode                        m_emode;
 
-      ::size                           m_sizeNew;
-      ::size                           m_size;
+      ::size_i32                           m_sizeNew;
+      ::size_i32                           m_size;
       float                            m_z;
-      point                            m_pointTranslate;
+      point_i32                            m_pointTranslate;
       __pointer(::gpu::buffer)         m_pbuffer;
       __pointer(::gpu::program)        m_pprogram;
       unsigned int                     m_VAO;
@@ -56,10 +56,10 @@ namespace gpu
       virtual ::e_status start();
       virtual ::e_status render();
 
-      virtual ::e_status create_offscreen_buffer(const ::size& size);
-      virtual ::e_status _create_offscreen_buffer(const ::size& size);
+      virtual ::e_status create_offscreen_buffer(const ::size_i32& size);
+      virtual ::e_status _create_offscreen_buffer(const ::size_i32& size);
 
-      virtual ::e_status resize_offscreen_buffer(const ::size& size);
+      virtual ::e_status resize_offscreen_buffer(const ::size_i32& size);
       virtual ::e_status destroy_offscreen_buffer();
       
       virtual ::e_status prepare_for_gpu_read();

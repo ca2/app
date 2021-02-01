@@ -288,7 +288,7 @@ namespace user
          stream.exchange("italic", m_bItalic);
          stream.exchange("underline", m_bUnderline);
          stream.exchange("family", m_strFontFamily);
-         stream.exchange("size", m_dFontSize);
+         stream.exchange("size_i32", m_dFontSize);
          stream.exchange("foreground", (u32 &)m_colorForeground);
          stream.exchange("background", (u32 &)m_colorBackground);
          stream.exchange("script", (i32 &)m_escript);

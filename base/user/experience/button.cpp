@@ -81,11 +81,11 @@ namespace experience
 
          }
 
-         ::rect rectClip;
+         ::rectangle_i32 rectClip;
 
          ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          bool bFirst = true;
 
@@ -112,7 +112,7 @@ namespace experience
             
             ::user::interaction * pinteraction = this;
 
-            ::rect rectFocus;
+            ::rectangle_i32 rectFocus;
 
             index i = 0;
 

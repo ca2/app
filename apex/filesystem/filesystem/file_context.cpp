@@ -165,7 +165,7 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 
    }
 
-   return is_file_or_dir_dup(path, petype) != FALSE;
+   return is_file_or_dir_dup(path, petype) != false;
 
 }
 
@@ -181,60 +181,64 @@ bool file_context::is_file_or_dir(const ::file::path &path, ::payload *pvarQuery
 ::payload file_context::length(const ::file::path &path, ::payload *pvarQuery)
 {
 
-   if (path.m_iSize != -1)
-   {
+   __throw(interface_only_exception());
 
-      return max(0, path.m_iSize);
+   return false;
 
-   }
+   //if (path.m_iSize != -1)
+   //{
 
-   ::payload varRet;
+   //   return max(0, path.m_iSize);
 
-#ifdef WINDOWS
+   //}
 
-   WIN32_FILE_ATTRIBUTE_DATA data;
+   //::payload varRet;
 
-   if (!GetFileAttributesExW(::str::international::utf8_to_unicode(path), GetFileExInfoStandard, &data))
-   {
+//#ifdef WINDOWS
+//
+//   WIN32_FILE_ATTRIBUTE_DATA data;
+//
+//   if (!GetFileAttributesExW(::str::international::utf8_to_unicode(path), GetFileExInfoStandard, &data))
+//   {
+//
+//      varRet.set_type(::e_type_null);
+//
+//      ((::file::path &) path).m_iSize = -2;
+//
+//   }
+//   else
+//   {
+//
+//      varRet = (((u64) data.nFileSizeHigh) << 32) | (u64) data.nFileSizeLow;
+//
+//      ((::file::path &) path).m_iSize = varRet.m_i64;
+//
+//   }
+//
+//#else
+//
+//   struct stat stat;
+//
+//   if (::stat(path, &stat) == -1)
+//   {
+//
+//      varRet.set_type(::e_type_null);
+//
+//      ((::file::path &) path).m_iSize = -2;
+//
+//   }
+//   else
+//   {
+//
+//      varRet = (iptr)stat.st_size;
+//
+//      ((::file::path &)path).m_iSize = varRet.m_i64;
+//
+//   }
+//
+//#endif
 
-      varRet.set_type(::e_type_null);
-
-      ((::file::path &) path).m_iSize = -2;
-
-   }
-   else
-   {
-
-      varRet = (((u64) data.nFileSizeHigh) << 32) | (u64) data.nFileSizeLow;
-
-      ((::file::path &) path).m_iSize = varRet.m_i64;
-
-   }
-
-#else
-
-   struct stat stat;
-
-   if (::stat(path, &stat) == -1)
-   {
-
-      varRet.set_type(::e_type_null);
-
-      ((::file::path &) path).m_iSize = -2;
-
-   }
-   else
-   {
-
-      varRet = (iptr)stat.st_size;
-
-      ((::file::path &)path).m_iSize = varRet.m_i64;
-
-   }
-
-#endif
-
-   return varRet;
+//   return varRet;
 
 }
 
@@ -1196,107 +1200,111 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 ::status::result file_context::move(const ::file::path &pszNew, const ::file::path &psz)
 {
 
-#ifdef WINDOWS_DESKTOP
+   __throw(interface_only_exception());
 
-   if (!::MoveFileW(
-      ::str::international::utf8_to_unicode(psz),
-      ::str::international::utf8_to_unicode(pszNew)))
-   {
+   return nullptr;
 
-      DWORD dwError = ::GetLastError();
-
-      if (dwError == ERROR_ALREADY_EXISTS)
-      {
-
-         if (::CopyFileW(
-            ::str::international::utf8_to_unicode(psz),
-            ::str::international::utf8_to_unicode(pszNew),
-            FALSE))
-         {
-
-            if (!::DeleteFileW(::str::international::utf8_to_unicode(psz)))
-            {
-
-               dwError = ::GetLastError();
-
-               string strError;
-
-               strError.Format("Failed to delete the file to move \"%s\" error=%d", psz, dwError);
-
-               TRACE("%s", strError);
-
-            }
-
-            return ::success;
-
-         }
-
-         dwError = ::GetLastError();
-
-      }
-
-      string strError;
-
-      strError.Format("Failed to move file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
-
-      __throw(io_exception(::error_io, strError));
-
-   }
-
-#elif defined(_UWP)
-
-   ::Windows::Storage::StorageFile ^ file = get_os_file(psz, 0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
-
-   if (file == nullptr)
-   {
-
-      //output_debug_string("test");
-
-      __throw(::exception::exception("file::file_context::move Could not move file, could not open source file"));
-
-   }
-
-   string strDirOld = psz.folder();
-   string strDirNew = pszNew.folder();
-   string strNameOld = psz.name();
-   string strNameNew = pszNew.name();
-
-   if (strDirOld == strDirNew)
-   {
-      if (strNameOld == strNameNew)
-      {
-         return ::success;
-      }
-      else
-      {
-         ::wait(file->RenameAsync(strNameNew));
-      }
-   }
-   else
-   {
-      ::Windows::Storage::StorageFolder ^ folder = get_os_folder(strDirNew);
-      if (strNameOld == strNameNew)
-      {
-         ::wait(file->MoveAsync(folder));
-      }
-      else
-      {
-         ::wait(file->MoveAsync(folder, strNameNew));
-      }
-   }
-
-
-#else
-   if (::rename(psz, pszNew) != 0)
-   {
-      i32 err = errno;
-      string strError;
-      strError.Format("Failed to delete file error=%d", err);
-      __throw(::exception::exception(strError));
-   }
-#endif
-
-   return ::success;
+//#ifdef WINDOWS_DESKTOP
+//
+//   if (!::MoveFileW(
+//      ::str::international::utf8_to_unicode(psz),
+//      ::str::international::utf8_to_unicode(pszNew)))
+//   {
+//
+//      DWORD dwError = ::GetLastError();
+//
+//      if (dwError == ERROR_ALREADY_EXISTS)
+//      {
+//
+//         if (::CopyFileW(
+//            ::str::international::utf8_to_unicode(psz),
+//            ::str::international::utf8_to_unicode(pszNew),
+//            false))
+//         {
+//
+//            if (!::DeleteFileW(::str::international::utf8_to_unicode(psz)))
+//            {
+//
+//               dwError = ::GetLastError();
+//
+//               string strError;
+//
+//               strError.Format("Failed to delete the file to move \"%s\" error=%d", psz, dwError);
+//
+//               TRACE("%s", strError);
+//
+//            }
+//
+//            return ::success;
+//
+//         }
+//
+//         dwError = ::GetLastError();
+//
+//      }
+//
+//      string strError;
+//
+//      strError.Format("Failed to move file \"%s\" to \"%s\" error=%d", psz, pszNew, dwError);
+//
+//      __throw(io_exception(::error_io, strError));
+//
+//   }
+//
+//#elif defined(_UWP)
+//
+//   ::Windows::Storage::StorageFile ^ file = get_os_file(psz, 0, 0, nullptr, OPEN_EXISTING, 0, nullptr);
+//
+//   if (file == nullptr)
+//   {
+//
+//      //output_debug_string("test");
+//
+//      __throw(::exception::exception("file::file_context::move Could not move file, could not open source file"));
+//
+//   }
+//
+//   string strDirOld = psz.folder();
+//   string strDirNew = pszNew.folder();
+//   string strNameOld = psz.name();
+//   string strNameNew = pszNew.name();
+//
+//   if (strDirOld == strDirNew)
+//   {
+//      if (strNameOld == strNameNew)
+//      {
+//         return ::success;
+//      }
+//      else
+//      {
+//         ::wait(file->RenameAsync(strNameNew));
+//      }
+//   }
+//   else
+//   {
+//      ::Windows::Storage::StorageFolder ^ folder = get_os_folder(strDirNew);
+//      if (strNameOld == strNameNew)
+//      {
+//         ::wait(file->MoveAsync(folder));
+//      }
+//      else
+//      {
+//         ::wait(file->MoveAsync(folder, strNameNew));
+//      }
+//   }
+//
+//
+//#else
+//   if (::rename(psz, pszNew) != 0)
+//   {
+//      i32 err = errno;
+//      string strError;
+//      strError.Format("Failed to delete file error=%d", err);
+//      __throw(::exception::exception(strError));
+//   }
+//#endif
+//
+//   return ::success;
 
 }
 
@@ -1304,64 +1312,67 @@ bool file_context::put_contents_utf8(const ::payload &varFile, const char *pcszC
 ::status::result file_context::del(const ::file::path &psz)
 {
 
+   __throw(interface_only_exception());
 
-#ifdef WINDOWS_DESKTOP
+   return nullptr;
 
-   HANDLE h = ::CreateFileW(::str::international::utf8_to_unicode(string("\\\\?\\") + psz),
-                            GENERIC_READ | GENERIC_WRITE, 0, nullptr, OPEN_EXISTING,
-                            FILE_FLAG_OPEN_REPARSE_POINT | FILE_FLAG_DELETE_ON_CLOSE, nullptr);
-
-   if (h == INVALID_HANDLE_VALUE)
-   {
-
-      DWORD dwError = ::GetLastError();
-
-      if (dwError == 2) // the file does not exist, so delete "failed"
-      {
-
-         return ::success;
-
-      }
-
-      string strError;
-
-      strError.Format("Failed to delete file \"%s\" error=%d", psz, dwError);
-
-      return ::error_failed;
-
-   }
-   else
-   {
-      ::FlushFileBuffers(h);
-      ::CloseHandle(h);
-   }
-
-   /*      if(!::DeleteFileW(::str::international::utf8_to_unicode(string("\\\\?\\") + psz)))
-   {
-   u32 dwError = ::get_last_error();
-   if(dwError == 2) // the file does not exist, so delete "failed"
-   return;
-   string strError;
-   strError.Format("Failed to delete file \"%s\" error=%d", psz, dwError);
-   __throw(io_exception(strError));
-   }*/
-
-
-#else
-
-   if (unlink(psz) != 0)
-   {
-      i32 err = errno;
-      if (err != ENOENT) // already does not exist - consider removal successful - does not issue an exception
-      {
-         string strError;
-         strError.Format("Failed to delete file error=%d", err);
-         __throw(::exception::exception(strError));
-      }
-   }
-#endif
-
-   return ::success;
+//#ifdef WINDOWS_DESKTOP
+//
+//   HANDLE h = ::CreateFileW(::str::international::utf8_to_unicode(string("\\\\?\\") + psz),
+//                            GENERIC_READ | GENERIC_WRITE, 0, nullptr, OPEN_EXISTING,
+//                            FILE_FLAG_OPEN_REPARSE_POINT | FILE_FLAG_DELETE_ON_CLOSE, nullptr);
+//
+//   if (h == INVALID_HANDLE_VALUE)
+//   {
+//
+//      DWORD dwError = ::GetLastError();
+//
+//      if (dwError == 2) // the file does not exist, so delete "failed"
+//      {
+//
+//         return ::success;
+//
+//      }
+//
+//      string strError;
+//
+//      strError.Format("Failed to delete file \"%s\" error=%d", psz, dwError);
+//
+//      return ::error_failed;
+//
+//   }
+//   else
+//   {
+//      ::FlushFileBuffers(h);
+//      ::CloseHandle(h);
+//   }
+//
+//   /*      if(!::DeleteFileW(::str::international::utf8_to_unicode(string("\\\\?\\") + psz)))
+//   {
+//   u32 dwError = ::get_last_error();
+//   if(dwError == 2) // the file does not exist, so delete "failed"
+//   return;
+//   string strError;
+//   strError.Format("Failed to delete file \"%s\" error=%d", psz, dwError);
+//   __throw(io_exception(strError));
+//   }*/
+//
+//
+//#else
+//
+//   if (unlink(psz) != 0)
+//   {
+//      i32 err = errno;
+//      if (err != ENOENT) // already does not exist - consider removal successful - does not issue an exception
+//      {
+//         string strError;
+//         strError.Format("Failed to delete file error=%d", err);
+//         __throw(::exception::exception(strError));
+//      }
+//   }
+//#endif
+//
+//   return ::success;
 
 }
 
@@ -1555,33 +1566,47 @@ bool file_context::transfer(::file::file *pfileOut, ::file::file *pfileIn)
 bool file_context::is_read_only(const ::file::path &psz)
 {
 
-#ifdef WINDOWS_DESKTOP
-
-   u32 dwAttrib = windows_get_file_attributes(psz);
-
-   if (dwAttrib & FILE_ATTRIBUTE_READONLY)
-   {
-
-      return true;
-
-   }
+   __throw(interface_only_exception());
 
    return false;
 
-#elif defined(_UWP)
+//#ifdef WINDOWS_DESKTOP
+//
+//   u32 dwAttrib = windows_get_file_attributes(psz);
+//
+//   if (dwAttrib & FILE_ATTRIBUTE_READONLY)
+//   {
+//
+//      return true;
+//
+//   }
+//
+//   return false;
+//
+//#elif defined(_UWP)
+//
+//   __throw(todo());
+//
+//#else
+//
+//   struct stat st;
+//
+//   if (stat(psz, &st) != 0)
+//      return true;
+//
+//   return !(st.st_mode & S_IWUSR);
+//
+//#endif
 
-   __throw(todo());
+}
 
-#else
 
-   struct stat st;
+rp(::file::file) file_context::resource_get_file(const ::file::path & path)
+{
 
-   if (stat(psz, &st) != 0)
-      return true;
+   __throw(interface_only_exception());
 
-   return !(st.st_mode & S_IWUSR);
-
-#endif
+   return nullptr;
 
 }
 
@@ -2646,34 +2671,7 @@ file_result file_context::get_file(const ::payload &varFile, const ::file::e_ope
       else if (::str::begins_eat(path, "resource://") || ::str::begins_eat(path, "resource:\\\\"))
       {
 
-#ifdef WINDOWS_DESKTOP
-
-         auto pfile = create_memory_file();
-
-         int iId = atoi(path);
-         string strExtension = path.final_extension();
-
-         strExtension.make_upper();
-         const char *psz = strExtension;
-         if (strExtension == "HTML")
-         {
-
-            psz = (const char *) RT_HTML;
-
-         }
-
-         if (read_resource_as_memory(*pfile->get_primitive_memory(), System.m_hinstance, iId, psz))
-         {
-
-            return pfile;
-
-         }
-
-#else
-
-         throw_todo();
-
-#endif
+         return resource_get_file(path);
 
       }
       else if (::str::begins(path, "http://") || ::str::begins(path, "https://"))

@@ -3,7 +3,7 @@
 //
 //class osdisplay_dataptra;
 //class osdisplay_data;
-//class mutex;
+//class ::mutex;
 
 
 //CLASS_DECL_AURA i32 osdisplay_find(Display * pdisplay);

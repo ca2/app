@@ -30,7 +30,7 @@ namespace message
    }
 
 
-   base::base(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
+   base::base(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam)
    {
 
       m_uiMessageFlags     = 0;
@@ -88,7 +88,7 @@ namespace message
    }
 
 
-   void base::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam)
+   void base::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam)
    {
       
       m_playeredUserPrimitive = playeredUserPrimitive;
@@ -126,7 +126,7 @@ namespace message
 
    //}
 
-   //void timer::set(::user::primitive * pwnd,const ::id & id,WPARAM wparam,::lparam lparam)
+   //void timer::set(::user::primitive * pwnd,const ::id & id,wparam wparam,::lparam lparam)
    //{
 
    //   base::set(pwnd,id,wparam,lparam);

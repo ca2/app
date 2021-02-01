@@ -182,7 +182,7 @@ namespace file
       //         {
       //            TCHAR tcFileName[MAX_PATH];
       //            string csModule;
-      //            HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION|PROCESS_VM_READ, TRUE, OpenedFileInfo.dwPID );
+      //            HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION|PROCESS_VM_READ, true, OpenedFileInfo.dwPID );
       //            stInfo.dwImageListIndex = 0;
       //            if( !hProcess || !GetProcessImageFileName( hProcess, tcFileName, MAX_PATH ))
       //            {
@@ -245,60 +245,6 @@ namespace file
          */
 
 
-#ifdef WINDOWS
-
-
-      bool exception::get_error_message(string& str, PUINT pnHelpContext)
-      {
-
-         // if (pnHelpContext != nullptr)
-         //      *pnHelpContext = m_cause + __IDP_FILE_NONE;
-
-         string strMessage;
-
-         string strFileName = m_path;
-
-         if (strFileName.is_empty())
-            strFileName = "IDS_UNNAMED_FILE";
-
-         if (m_lOsError == ERROR_ACCESS_DENIED || m_lOsError == ERROR_SHARING_VIOLATION)
-         {
-
-            wstring wstr;
-
-            wstr = ::str::international::utf8_to_unicode(m_path.name());
-
-            // #ifdef WINDOWS_DESKTOP
-            //          GetOpenedFiles(wstr, ALL_TYPES, &exception::CallBackFunc, (uptr)this);
-            // #endif
-
-            if (m_strAdd.has_char())
-            {
-               ((exception*)this)->m_strAdd = " Process Using the file = " + m_strAdd;
-            }
-            else
-            {
-               ((exception*)this)->m_strAdd = " Process Using the file Not Found ";
-            }
-
-         }
-
-
-         string strExtra;
-
-         strExtra = get_system_error_message(m_lOsError);
-
-         strExtra += m_strAdd;
-
-         strMessage.Format("file error number: %d - %s - file: %s", m_estatus.m_estatus, strExtra.c_str(), strFileName.c_str());
-
-         str = strMessage;
-
-         return TRUE;
-      }
-
-
-#endif
 
     /*
       bool exception::get_error_message(string & str, P::u32 pnHelpContext) const
@@ -322,7 +268,7 @@ namespace file
 
       str = strMessage;
 
-      return TRUE;
+      return true;
       }
       */
 

@@ -20,7 +20,7 @@ namespace user
 
          ::draw2d::graphics_pointer               m_pgraphics;
 
-         //::rectd                       m_rect;
+         //::rectangle_f64                       m_rectangle;
          
          // storage data
          __pointer_array(span)                       m_spana;
@@ -29,7 +29,7 @@ namespace user
          __pointer(format)                      m_pformatCurrent;
 
          /// runtime span, ephemeral, derived
-         /// should be easily rebuildable from "storage" data and a client rectangle
+         /// should be easily rebuildable from "storage" data and a client rectangle_i32
          __pointer(__pointer_array(line))                 m_plinea;
 
          strsize                       m_iSelBeg;
@@ -45,7 +45,7 @@ namespace user
          virtual ~data();
 
 
-         virtual ::rectd get_drawing_rect();
+         virtual ::rectangle_f64 get_drawing_rect();
 
          // if span has alignment set, it generates new line
          __pointer(span) create_span(::e_align ealignNewLine = e_align_none);
@@ -62,7 +62,7 @@ namespace user
 
          virtual void do_layout(::draw2d::graphics_pointer & pgraphics);
 
-         virtual strsize hit_test(pointd point);
+         virtual strsize hit_test(point_f64 point_i32);
          virtual strsize hit_test_line_x(index iLine, double x);
 
          virtual strsize get_sel_beg();
@@ -83,7 +83,7 @@ namespace user
          virtual void _001GetText(string & str) const;
          virtual void _001GetLayoutText(string & str) const;
 
-         virtual void draw_text(::draw2d::graphics_pointer & pgraphics, const ::rectd & rect);
+         virtual void draw_text(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangle);
 
          virtual void optimize_data();
 

@@ -32,7 +32,7 @@ string get_error_message(::u32 dwError);
 
 //CLASS_DECL_APEX void __trace_message(const char * pszPrefix, ::message::message * pmessage);
 
-//CLASS_DECL_APEX void __trace_message(const char * pszPrefix, LPMESSAGE lpmsg);
+//CLASS_DECL_APEX void __trace_message(const char * pszPrefix, MESSAGE * lpmsg);
 
 
 //CLASS_DECL_APEX void __cdecl __pre_translate_message(::message::message * pmessage);

@@ -346,7 +346,7 @@ strsize lite_html_reader::read_form_document(const string & str)
 
 //   strsize   nRetVal = -1;
 //
-//   // determine file size
+//   // determine file size_i32
 //   strsize dwBufLen = ::GetFileSize(hFile, nullptr);
 //   if (dwBufLen == INVALID_FILE_SIZE)
 //   {
@@ -431,7 +431,7 @@ strsize lite_html_reader::read_html_file(HANDLE hFile)
 
    strsize      nRetVal     = 0;
 
-   // determine file size
+   // determine file size_i32
    strsize dwBufLen = ::GetFileSize(hFile, nullptr);
    if (dwBufLen == INVALID_FILE_SIZE)
    {
@@ -529,7 +529,7 @@ strsize lite_html_reader::read_html_file(i32 fd)
    try
    {
 
-      // determine file size
+      // determine file size_i32
       auto iFileSize = ::get_file_size(fd);
 
       if (iFileSize < 0)

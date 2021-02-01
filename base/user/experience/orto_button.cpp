@@ -35,7 +35,7 @@ namespace experience
    void orto_button::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       ::user::interaction::get_client_rect(rectClient);
 
@@ -112,7 +112,7 @@ namespace experience
 
          pgraphics->set(pen);
 
-         ::rect rectIcon(rectClient);
+         ::rectangle_i32 rectIcon(rectClient);
 
          rectIcon.deflate(rectIcon.width() / 6, rectIcon.height() / 6);
 
@@ -148,13 +148,13 @@ namespace experience
 
    LRESULT orto_button::OnAppForwardSyncMessage(WPARAM wParam, LPARAM lParam)
    {
-      LPMESSAGE pmsg = (LPMESSAGE)lParam;
+      MESSAGE * pmsg = (MESSAGE *)lParam;
 
       if (wParam == e_message_mouse_move)
       {
-         ::point pointCursor = pmsg->pt;
+         ::point_i32 pointCursor = pmsg->pt;
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
          ::user::interaction::get_client_rect(rectClient);
          ::user::interaction::_001ClientToScreen(rectClient);
 
@@ -187,9 +187,9 @@ namespace experience
       {
          /*if(m_bFocus)
          {
-         ::point pointCursor;
+         ::point_i32 pointCursor;
          psession->get_cursor_pos(&pointCursor);
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
          ::user::interaction::get_client_rect(rectClient);
          ::user::interaction::_001ClientToScreen(rectClient);
 
@@ -211,8 +211,8 @@ namespace experience
          //      __pointer(::user::interaction) pwnd = ::user::interaction::get_parent();
 
 
-         ::rect rect;
-         ::user::interaction::get_client_rect(rect);
+         ::rectangle_i32 rectangle;
+         ::user::interaction::get_client_rect(rectangle);
       }
 
 
@@ -221,7 +221,7 @@ namespace experience
    void orto_button::UpdateWndRgn()
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       ::user::interaction::get_client_rect(rectClient);
 

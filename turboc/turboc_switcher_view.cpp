@@ -57,7 +57,7 @@ namespace turboc
 
       initialize_split_layout();
 
-      m_ptopview = create_view < top_view >(NULL,::rect(),NULL,"switcher_top");
+      m_ptopview = create_view < top_view >(NULL,::rectangle_i32(),NULL,"switcher_top");
 
       if(m_ptopview == NULL)
       {

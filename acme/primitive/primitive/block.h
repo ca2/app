@@ -14,7 +14,7 @@ struct CLASS_DECL_ACME block :
    public BLOCK
 {
 
-   block(enum_no_init) {}
+   block(enum_no_initialize) {}
    block(const void * pdata = nullptr, i64 iSize = 0) { m_pdata = (byte *) pdata; m_iSize = iSize; }
    block(const memory_base & memory);
    block(const memory_base * pmemory);

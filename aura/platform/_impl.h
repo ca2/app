@@ -68,7 +68,7 @@ inline lparam::lparam(const ::context_object * p)
 
    ((context_object *) p)->add_ref(OBJ_REF_DBG_PTR(&g_lparamdbg));
 
-   m_lparam = (LPARAM)p;
+   m_lparam = (lparam)p;
 
 }
 

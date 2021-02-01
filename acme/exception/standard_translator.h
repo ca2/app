@@ -51,9 +51,9 @@ namespace exception
       virtual ~translator();
 
 #ifdef WINDOWS
-      void filter(u32 uiCode, _EXCEPTION_POINTERS * point);
-      static void __cdecl filter2(u32 uiCode, _EXCEPTION_POINTERS * point);
-      //void filter( _EXCEPTION_POINTERS * point);
+      void filter(u32 uiCode, _EXCEPTION_POINTERS * point_i32);
+      static void __cdecl filter2(u32 uiCode, _EXCEPTION_POINTERS * point_i32);
+      //void filter( _EXCEPTION_POINTERS * point_i32);
 #endif
 
       static string name(u32 uiCode);

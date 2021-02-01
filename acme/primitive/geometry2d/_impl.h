@@ -14,22 +14,22 @@ inline constexpr auto __horz(const SIZE & size) { return size.cx; }
 template < primitive_size SIZE >
 inline constexpr auto __vert(const SIZE & size) { return size.cy; }
 
-inline point& top_left(const RECT32* prect) { return *(point*)prect; }
-inline point& bottom_right(const RECT32* prect) { return *(point*)& prect->right; }
-inline point& top_left(const RECT32& rect) { return top_left(&rect); }
-inline point& bottom_right(const RECT32& rect) { return bottom_right(&rect); }
+inline point_i32& top_left(const RECTANGLE_I32* prectangle) { return *(point_i32*)prectangle; }
+inline point_i32& bottom_right(const RECTANGLE_I32* prectangle) { return *(point_i32*)& prectangle->right; }
+inline point_i32& top_left(const RECTANGLE_I32& rectangle) { return top_left(&rectangle); }
+inline point_i32& bottom_right(const RECTANGLE_I32& rectangle) { return bottom_right(&rectangle); }
 
 
-inline point64& top_left(const RECT64* prect) { return *(point64*)prect; }
-inline point64& bottom_right(const RECT64* prect) { return *(point64*)& prect->right; }
-inline point64& top_left(const RECT64& rect) { return top_left(&rect); }
-inline point64& bottom_right(const RECT64& rect) { return bottom_right(&rect); }
+inline point_i64& top_left(const RECTANGLE_I64* prectangle) { return *(point_i64*)prectangle; }
+inline point_i64& bottom_right(const RECTANGLE_I64* prectangle) { return *(point_i64*)& prectangle->right; }
+inline point_i64& top_left(const RECTANGLE_I64& rectangle) { return top_left(&rectangle); }
+inline point_i64& bottom_right(const RECTANGLE_I64& rectangle) { return bottom_right(&rectangle); }
 
 
-inline pointd& top_left(const RECTD* prect) { return *(pointd*)prect; }
-inline pointd& bottom_right(const RECTD* prect) { return *(pointd*)& prect->right; }
-inline pointd& top_left(const RECTD& rect) { return top_left(&rect); }
-inline pointd& bottom_right(const RECTD& rect) { return bottom_right(&rect); }
+inline point_f64& top_left(const RECTANGLE_F64* prectangle) { return *(point_f64*)prectangle; }
+inline point_f64& bottom_right(const RECTANGLE_F64* prectangle) { return *(point_f64*)& prectangle->right; }
+inline point_f64& top_left(const RECTANGLE_F64& rectangle) { return top_left(&rectangle); }
+inline point_f64& bottom_right(const RECTANGLE_F64& rectangle) { return bottom_right(&rectangle); }
 
 
 template < typename X, typename Y >
@@ -85,11 +85,11 @@ inline auto get_normal_dimension(e_orientation eorientation, X x, Y y)
 
 
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE >
-//inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECT_BASE_TYPE >::size_type(const POINT_TYPE & point) noexcept : size_type((size_type&)point) {}
+//inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECT_BASE_TYPE >::size_type(const POINT_TYPE & point) noexcept : size_type((size_type&)point_i32) {}
 //
 //
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE >
-//inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECT_BASE_TYPE >::size_type(const RECT_TYPE & rect) noexcept : size_type(rect.width(), rect.height()) {}
+//inline size_type < BASE_TYPE, POINT_BASE_TYPE, RECT_BASE_TYPE >::size_type(const RECT_TYPE & rectangle) noexcept : size_type(rectangle.width(), rectangle.height()) {}
 
 
 template < typename UNIT_TYPE >
@@ -200,10 +200,10 @@ inline ___shape* __new_shape(const GEOMETRY& geometry)
 
 
 template < typename SHAPE, enum_shape ESHAPE >
-bool _shape < SHAPE, ESHAPE >::expand_bounding_rect(RECTD* prect) const
+bool _shape < SHAPE, ESHAPE >::expand_bounding_rect(RECTANGLE_F64* prectangle) const
       {
 
-         ::RECTD r;
+         ::RECTANGLE_F64 r;
 
          if (!this->get_bounding_rect(&r))
          {
@@ -212,7 +212,7 @@ bool _shape < SHAPE, ESHAPE >::expand_bounding_rect(RECTD* prect) const
 
          }
 
-         ::union_rect(prect, prect, &r);
+         ::union_rect(prectangle, prectangle, &r);
 
          return true;
 
@@ -220,10 +220,10 @@ bool _shape < SHAPE, ESHAPE >::expand_bounding_rect(RECTD* prect) const
 
 
 template < typename SHAPE, enum_shape ESHAPE >
-bool _shape < SHAPE, ESHAPE >::expand_bounding_rect(RECT32* prect) const
+bool _shape < SHAPE, ESHAPE >::expand_bounding_rect(RECTANGLE_I32* prectangle) const
    {
 
-      ::RECT32 r;
+      ::RECTANGLE_I32 r;
 
       if (!this->get_bounding_rect(&r))
       {
@@ -232,7 +232,7 @@ bool _shape < SHAPE, ESHAPE >::expand_bounding_rect(RECT32* prect) const
 
       }
 
-      ::union_rect(prect, prect, &r);
+      ::union_rect(prectangle, prectangle, &r);
 
       return true;
 

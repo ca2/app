@@ -201,8 +201,8 @@ public:
    //inline list(const class list < TYPE, ARG_TYPE > & l);
    //inline list(const class list < TYPE, ARG_TYPE > & l);
 
-   inline static void from(list < TYPE, ARG_TYPE > & l, node * point);
-   inline static list < TYPE, ARG_TYPE >  from(node * point);
+   inline static void from(list < TYPE, ARG_TYPE > & l, node * p);
+   inline static list < TYPE, ARG_TYPE >  from(node * p);
 
    // helper functions (note: O(n) speed)
    // defaults to starting at the HEAD, return nullptr if not found
@@ -511,11 +511,11 @@ inline void list < TYPE, ARG_TYPE >::from(list < TYPE, ARG_TYPE > & l, node * pn
 }
 
 template<class TYPE, class ARG_TYPE>
-inline list < TYPE, ARG_TYPE > list < TYPE, ARG_TYPE >::from(node * point)
+inline list < TYPE, ARG_TYPE > list < TYPE, ARG_TYPE >::from(node * p)
 {
 
    list < TYPE, ARG_TYPE >  l;
-   from(l, point);
+   from(l, p);
    return l;
 
 }

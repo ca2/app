@@ -24,19 +24,13 @@ namespace datetime
    {
    public:
 
-#if defined(ANDROID) || defined(APPLEOS) || defined(SOLARIS) || defined(RASPBIAN)
-      time_t         m_time;
-#else
+      
       time_t m_time;
-#endif
 
 
       static time get_current_time() noexcept;
       inline static time now() noexcept { return get_current_time(); }
 
-#ifdef WINDOWS
-      static bool is_valid_FILETIME(const FILETIME& ft) noexcept;
-#endif
 
       time() noexcept;
       inline time(e_now) noexcept { m_time = now().m_time; }
@@ -46,8 +40,6 @@ namespace datetime
       time(const filetime & ft);
 #ifdef WINDOWS
       time(::u16 wDosDate, ::u16 wDosTime, i32 nDST = -1);
-      time(const SYSTEMTIME& st, i32 nDST = -1);
-      time(const FILETIME& ft, i32 nDST = -1);
 #endif
 
 
@@ -91,9 +83,6 @@ namespace datetime
       #endif
       */
 
-#ifdef WINDOWS
-      bool get_as_system_time( SYSTEMTIME& st ) const noexcept;
-#endif
 
       time_t get_time() const noexcept;
 
@@ -260,12 +249,12 @@ inline CLASS_DECL_ACME ::datetime::time operator + (const duration & duration, c
 
 }
 
-
-#ifdef WINDOWS
-
-CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::datetime::time & time);
-
-#endif
+//
+//#ifdef WINDOWS
+//
+//CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::datetime::time & time);
+//
+//#endif
 
 
 

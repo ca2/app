@@ -49,11 +49,9 @@ public:
 
    virtual bool set_thread_name(const char* pszName);
 
-
-
 #ifdef WINDOWS
 
-   static DWORD WINAPI s_os_task(void* p);
+   static ::u32 WINDOWS_API s_os_task(void* p);
 
 #else
 

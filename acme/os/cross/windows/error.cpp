@@ -1618,7 +1618,7 @@ static struct errentry errtable[] =
 };
 
 
-/* size of the table */
+/* size_i32 of the table */
 #define ERRTABLESIZE (sizeof(errtable)/sizeof(errtable[0]))
 
 int windows_error_to_errno(int iWindowsError)

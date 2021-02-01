@@ -232,14 +232,14 @@ namespace user
       }
 
 
-      strsize data::hit_test(pointd point)
+      strsize data::hit_test(point_f64 point_i32)
       {
 
          sync_lock sl(mutex());
 
          //double xLast = 0.0;
 
-         rectd rBox;
+         rectangle_f64 rBox;
 
          rBox.right = -1024.0 * 1024.0 * 1024.0;
          rBox.bottom = -1024.0 * 1024.0 * 1024.0;
@@ -1051,19 +1051,19 @@ namespace user
       //void data::do_layout()
       //{
 
-      //   //if (m_rect.is_empty())
+      //   //if (m_rectangle.is_empty())
       //   //{
       //   //
       //   //   if (m_pedit->is_picture_enabled())
       //   //   {
 
-      //   //      m_rect = m_pedit.get_rect_for_picture();
+      //   //      m_rectangle = m_pedit.get_rect_for_picture();
 
       //   //   }
 
       //   //}
 
-      //   do_layout(m_pedit->m_rect);
+      //   do_layout(m_pedit->m_rectangle);
 
       //}
 
@@ -1092,7 +1092,7 @@ namespace user
       void data::do_layout(::draw2d::graphics_pointer & pgraphics)
       {
 
-         //m_rect = rect;
+         //m_rectangle = rectangle_i32;
 
          sync_lock sl(mutex());
 
@@ -1118,11 +1118,11 @@ namespace user
 
          bool bLineWrap = false;
 
-         auto rect = get_drawing_rect();
+         auto rectangle_i32 = get_drawing_rect();
 
-         rectd rectClient(rect);
+         rectangle_f64 rectClient(rectangle);
 
-         int x = (int) rect.left;
+         int x = (int) rectangle.left;
 
          int xLast = x;
 
@@ -1245,7 +1245,7 @@ namespace user
 
                pline = __new(line);
 
-               x = (int) rect.left;
+               x = (int) rectangle.left;
 
                xLast = x;
 
@@ -1253,7 +1253,7 @@ namespace user
 
                ealign = pspan->m_ealignNewLine;
 
-               x = (int) rect.left;
+               x = (int) rectangle.left;
 
                //pbox = __new(box(pspan));
 
@@ -1261,7 +1261,7 @@ namespace user
 
                //int iHeight = pspan->format()->m_font->get_height();
 
-               //pbox->m_rect.set(x, 0, x, 0);
+               //pbox->m_rectangle.set(x, 0, x, 0);
 
                //pbox->m_rectHitTest.set(x, 0, x, 0);
 
@@ -1484,27 +1484,27 @@ namespace user
       }
 
 
-      ::rectd data::get_drawing_rect()
+      ::rectangle_f64 data::get_drawing_rect()
       {
 
-         ::rectd rect;
+         ::rectangle_f64 rectangle_i32;
 
          if (m_pedit->is_picture_enabled())
          {
 
-            rect = m_pedit->m_ppictureimpl->m_rectDrawing;
+            rectangle_i32 = m_pedit->m_ppictureimpl->m_rectDrawing;
 
-            rect -= rect.origin();
+            rectangle_i32 -= rectangle.origin();
 
          }
          else
          {
 
-            rect = m_pedit->get_client_rect();
+            rectangle_i32 = m_pedit->get_client_rect();
 
          }
 
-         return rect;
+         return rectangle;
 
       }
 
@@ -1527,11 +1527,11 @@ namespace user
 
          }
 
-         //rectd rectClient(rect);
+         //rectangle_f64 rectClient(rectangle);
 
-         auto rect = get_drawing_rect();
+         auto rectangle_i32 = get_drawing_rect();
 
-         //pgraphics->draw3d_rect(rect, ARGB(255, 0, 127, 0));
+         //pgraphics->draw3d_rect(rectangle, ARGB(255, 0, 127, 0));
 
          bool bHasFocus = false;
 
@@ -1579,7 +1579,7 @@ namespace user
 
             //}
 
-            int y = (int)  rect.top;
+            int y = (int)  rectangle.top;
 
 
             int nexty;
@@ -1747,7 +1747,7 @@ namespace user
 
             ::image_pointer imageDropShadow;
 
-            ::rect rDropShadow;
+            ::rectangle_i32 rDropShadow;
 
             if (m_pedit->m_ppictureimpl != nullptr)
             {
@@ -1765,13 +1765,13 @@ namespace user
 
                pimage->create(m_pedit->m_ppictureimpl->m_rectDrawing.size());
 
-               ::size sz = m_pedit->m_ppictureimpl->m_rectDrawing.size();
+               ::size_i32 sz = m_pedit->m_ppictureimpl->m_rectDrawing.size();
 
                pimage->g()->SetViewportOrg(sz.cx / 2, sz.cy / 2);
 
                ::draw2d::graphics_pointer pgraphicsImage = pimage->g();
 
-               draw_text(pgraphicsImage, rect);
+               draw_text(pgraphicsImage, rectangle);
 
                pimage->g()->SetViewportOrg(0, 0);
 
@@ -1781,7 +1781,7 @@ namespace user
 
             }
 
-            draw_text(pgraphics, rect);
+            draw_text(pgraphics, rectangle);
 
             // Draw Caret
 
@@ -1797,32 +1797,32 @@ namespace user
 
                   r = pbox->get_pos(m_iSelEnd);
 
-                  //r += rect.left;
+                  //r += rectangle.left;
 
-                  if (r > rect.left)
+                  if (r > rectangle.left)
                   {
 
                      r -= 1.0;
 
                   }
 
-                  if (r < rect.left + 2)
+                  if (r < rectangle.left + 2)
                   {
 
-                     r = rect.left + 2;
+                     r = rectangle.left + 2;
 
                   }
 
-                  if (r > rect.right - 2)
+                  if (r > rectangle.right - 2)
                   {
 
-                     r = rect.right - 2;
+                     r = rectangle.right - 2;
 
                   }
 
                   auto dDescent = pbox->m_pspan->m_pformat->m_font->get_descent(pgraphics);
 
-                  pgraphics->fill_rect(::rectd(r,
+                  pgraphics->fill_rect(::rectangle_f64(r,
                      pbox->m_rectBox.top + 1,
                      r + 0.5,
                      pbox->m_rectBox.bottom - dDescent),
@@ -2120,7 +2120,7 @@ namespace user
       }
 
 
-      void data::draw_text(::draw2d::graphics_pointer & pgraphics, const ::rectd & rectBox)
+      void data::draw_text(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectBox)
       {
 
          sync_lock sl(pgraphics->mutex());
@@ -2157,19 +2157,19 @@ namespace user
 
                //}
 
-               ::rect rect = pbox->m_rectBox;
+               ::rectangle_i32 rectangle = pbox->m_rectBox;
 
 
                if (pformat->m_escript == script_subscript)
                {
 
-                  rect.offset(0, rect.height() / 6);
+                  rectangle.offset(0, rectangle.height() / 6);
 
                }
                else if (pformat->m_escript == script_superscript)
                {
 
-                  rect.offset(0, -rect.height() / 3);
+                  rectangle.offset(0, -rectangle.height() / 3);
 
                }
 
@@ -2178,8 +2178,8 @@ namespace user
 
                   ::draw2d::path_pointer path(e_create);
 
-                  //path->add_draw_text(pbox->get_text(), rect, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_colorForeground);
-                  path->add_draw_text(pbox->get_text(), rect, e_align_bottom_left, e_draw_text_single_line, pformat->get_font(pgraphics));
+                  //path->add_draw_text(pbox->get_text(), rectangle_i32, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_colorForeground);
+                  path->add_draw_text(pbox->get_text(), rectangle_i32, e_align_bottom_left, e_draw_text_single_line, pformat->get_font(pgraphics));
 
                   ::draw2d::pen_pointer pen(e_create);
 
@@ -2205,7 +2205,7 @@ namespace user
 
                   string strText = pbox->get_text();
 
-                  pgraphics->draw_text(strText, rect, e_align_bottom_left, e_draw_text_single_line);
+                  pgraphics->draw_text(strText, rectangle_i32, e_align_bottom_left, e_draw_text_single_line);
 
                }
 

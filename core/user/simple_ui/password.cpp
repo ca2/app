@@ -49,7 +49,7 @@ namespace simple_ui
          pprinttask = nullptr;*/
 
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
       get_client_rect(rectClient);
 
  /*     if(pprinttask != nullptr)
@@ -77,7 +77,7 @@ namespace simple_ui
 
       pgraphics->blur(true, 4, rectClient);
       //class imaging & imaging = System.imaging();
-      //::rect rectClient;
+      //::rectangle_i32 rectClient;
       //         get_window_rect(rectClient);
       //       rectClient.offset(rectClient.top_left());
       if(rectClient.size() != m_pimage->size())
@@ -182,7 +182,7 @@ namespace simple_ui
       strsize iCursor = iSelEnd;
       __sort(iSelStart,iSelEnd);
       pgraphics->set(get_font(pstyle));
-      //size size3;
+      //size_i32 size3;
       ::draw2d::text_metric metric;
        pgraphics->get_text_metrics(&metric);
       double dLineHeight = metric.get_line_spacing();
@@ -235,11 +235,11 @@ namespace simple_ui
          pgraphics->set(brushText);
          pgraphics->text_out(left,y,strExtent1);
 
-         sized size1(0.0,0.0);
+         size_f64 size1(0.0,0.0);
          pgraphics->GetTextExtent(size1,strLine,(i32)strLine.length(),(i32)iStart);
-         sized sizeb(0.0,0.0);
+         size_f64 sizeb(0.0,0.0);
          pgraphics->GetTextExtent(sizeb,strLine,iEnd);
-         sized size2(0.0,0.0);
+         size_f64 size2(0.0,0.0);
          pgraphics->GetTextExtent(size2,strLine,(i32)strLine.length(),(i32)iEnd);
          size2.cx -= size1.cx;
 

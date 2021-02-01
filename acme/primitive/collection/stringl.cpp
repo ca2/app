@@ -125,7 +125,7 @@ void stringl::add_tail_tokens(const char * pcsz, const char * pcszSeparator, boo
    string strToken;
    if(bAddEmpty)
    {
-      while(strTokenizer.GetNextToken(strToken, pcszSeparator, FALSE))
+      while(strTokenizer.GetNextToken(strToken, pcszSeparator, false))
 
       {
          add_tail(strToken);
@@ -133,7 +133,7 @@ void stringl::add_tail_tokens(const char * pcsz, const char * pcszSeparator, boo
    }
    else
    {
-      while(strTokenizer.GetNextToken(strToken, pcszSeparator, FALSE))
+      while(strTokenizer.GetNextToken(strToken, pcszSeparator, false))
 
       {
          if(strToken.has_char())

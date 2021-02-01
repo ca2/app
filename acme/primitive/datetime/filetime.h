@@ -16,21 +16,18 @@ public:
 
    filetime() noexcept { m_filetime = 0; }
    filetime(filetime_t filetime) noexcept { m_filetime = filetime; }
-#ifdef WINDOWS
-   filetime(const FILETIME & filetime) noexcept { m_filetime = make64_from32(filetime.dwLowDateTime, filetime.dwHighDateTime); }
-#endif
 
    static filetime get_current_time() noexcept;
 
-#ifdef WINDOWS
-
-   filetime & operator=(const FILETIME & filetime) noexcept { m_filetime = make64_from32(filetime.dwLowDateTime, filetime.dwHighDateTime); return *this; }
-   inline FILETIME get_FILETIME() const noexcept { return {lower32_from64(m_filetime), upper32_from64(m_filetime)}; }
-
-   operator FILETIME * ()  { return (FILETIME *)&m_filetime; }
-   operator const FILETIME * () const { return (const FILETIME *)&m_filetime; }
-
-#endif
+//#ifdef WINDOWS
+//
+//   filetime & operator=(const FILETIME & filetime) noexcept { m_filetime = make64_from32(filetime.dwLowDateTime, filetime.dwHighDateTime); return *this; }
+//   inline FILETIME get_FILETIME() const noexcept { return {lower32_from64(m_filetime), upper32_from64(m_filetime)}; }
+//
+//   operator FILETIME * ()  { return (FILETIME *)&m_filetime; }
+//   operator const FILETIME * () const { return (const FILETIME *)&m_filetime; }
+//
+//#endif
 
    explicit operator filetime_t &() { return m_filetime; }
    explicit operator filetime_t () const { return m_filetime; }
@@ -163,14 +160,6 @@ inline filetime_set get_filetime_set(const char * psz)
 
 CLASS_DECL_ACME filetime __filetime(const ::datetime::time & time);
 
-
-#ifdef WINDOWS
-
-
-CLASS_DECL_ACME FILETIME __FILETIME(const ::datetime::time & time);
-
-
-#endif
 
 
 

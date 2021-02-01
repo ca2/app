@@ -49,7 +49,7 @@ public:
    virtual ::e_status save_dib(const ::file::path & path, const image * pimage);
 
    
-   virtual HCURSOR CreateAlphaCursor(oswindow oswindow, const image * pimage, int xHotSpot, int yHotSpot);
+   
    virtual void set_cursor_image(const image * pimage, int xHotSpot, int yHotSpot);
 
 

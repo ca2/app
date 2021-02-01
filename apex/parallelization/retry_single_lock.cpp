@@ -7,7 +7,7 @@ retry_single_lock::retry_single_lock(class sync * psync, duration durationLock, 
 {
 
    m_psync     = psync;
-   m_bAcquired       = FALSE;
+   m_bAcquired       = false;
    m_durationLock    = durationLock;
    m_durationSleep   = durationSleep;
    m_iRetry          = iRetry;
@@ -26,7 +26,7 @@ bool retry_single_lock::lock()
 {
 
    if(m_psync == nullptr)
-      return FALSE;
+      return false;
 
    i32 iRetry = 0;
 
@@ -56,7 +56,7 @@ bool retry_single_lock::unlock()
 {
 
    if(m_psync == nullptr)
-      return FALSE;
+      return false;
 
    if (m_bAcquired)
    {

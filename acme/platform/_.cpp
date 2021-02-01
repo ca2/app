@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 #include "acme/id.h"
 #include <stdio.h>
 
@@ -12,7 +13,7 @@
 
 //extern string_map < __pointer(::acme::library) >* g_pmapLibrary;
 
-//extern ::mutex* &System.m_mutexLibrary;
+//extern ::mutex * &System.m_mutexLibrary;
 
 
 //extern "C"
@@ -45,9 +46,9 @@ namespace acme
 
          {
             rString.Empty();        // return is_empty string as well
-            return FALSE;
+            return false;
          }
-         pszFullString++;       // point past the separator
+         pszFullString++;       // point_i32 past the separator
 
       }
 
@@ -63,7 +64,7 @@ namespace acme
 
       rString.release_string_buffer();   // Need to call ReleaseBuffer after method get_string_buffer
 
-      return TRUE;
+      return true;
 
    }
 
@@ -191,7 +192,7 @@ CLASS_DECL_ACME u32 g_tickStartTime = 0;
 //string_map < PFN_NEW_ACME_LIBRARY >* g_pmapNewAuraLibrary = nullptr;
 
 
-//::mutex* &System.m_mutexLibrary = nullptr;
+//::mutex * &System.m_mutexLibrary = nullptr;
 
 
 
@@ -252,7 +253,7 @@ CLASS_DECL_ACME int get_acme_init()
 //   if (g_iAuraRefCount >= 1)
 //   {
 //
-//      return TRUE;
+//      return true;
 //
 //   }
 //
@@ -264,7 +265,7 @@ CLASS_DECL_ACME int get_acme_init()
 //
 //   acme_term();
 //
-//   return TRUE;
+//   return true;
 //
 //}
 
@@ -397,7 +398,7 @@ CLASS_DECL_ACME int is_ptr_null(const void* p, size_t s)
 //void c_post_system_event(::u64 u, void* pparam)
 //{
 //
-//   LPARAM lparam = (LPARAM)pparam;
+//   lparam lparam = (LPARAM)pparam;
 //
 //
 //   System.post_message(e_message_event2, (WPARAM)u, lparam);

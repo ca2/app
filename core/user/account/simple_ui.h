@@ -17,7 +17,7 @@ namespace account
 
       __composite(login)                     m_plogin;
       bool                                   m_bFontopusSimpleUiLayout;
-      ::rect                                 m_rectParent;
+      ::rectangle_i32                                 m_rectParent;
 
       simple_ui **                           m_psimpleuiDeferTranslate;
 
@@ -30,9 +30,9 @@ namespace account
       virtual ::e_status initialize_simple_ui(::account::credentials * pcredentials);
 
 
-      virtual string get_cred(const ::rect & rect, string & strUsername, string & strPassword, string strToken, string strTitle);
+      virtual string get_cred(const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle);
 
-      virtual string do_account(const ::rect & rect);
+      virtual string do_account(const ::rectangle_i32 & rectangle);
 
       void install_message_routing(::channel * pchannel) override;
 

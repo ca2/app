@@ -19,19 +19,19 @@ namespace user
    }
 
 
-   void picture_interaction::hit_test(::user::item & item, const ::point & point)
+   void picture_interaction::hit_test(::user::item & item, const ::point_i32 & point)
    {
 
       if (is_picture_enabled())
       {
 
-         item.m_pointScreen = point;
+         item.m_pointScreen = point_i32;
 
          auto pointClient = get_parent()->screen_to_client(item.m_pointScreen);
 
          item.m_pointClient = drag_rtransform(pointClient);
 
-         item.m_pointClient += m_ppictureimpl->m_rect.size() / 2;
+         item.m_pointClient += m_ppictureimpl->m_rectangle.size() / 2;
 
          item.m_pointHitTest = item.m_pointClient + m_pointScroll;
 
@@ -67,7 +67,7 @@ namespace user
    }
 
 
-   ::sized picture_interaction::get_request_size()
+   ::size_f64 picture_interaction::get_request_size()
    {
 
       return layout().sketch().size();

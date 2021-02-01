@@ -50,13 +50,13 @@ namespace experience
 
       m_pointCursorOrigin = pointCursor;
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       m_pframewindow->get_window_rect(rectWindow);
 
       m_rectWindowOrigin = rectWindow;
 
-      ::rect rectEvent;
+      ::rectangle_i32 rectEvent;
 
       m_pframewindow->get_window_rect(rectEvent);
 
@@ -301,7 +301,7 @@ namespace experience
    }
 
 
-   ::size size_manager::GetMinSize()
+   ::size_i32 size_manager::GetMinSize()
    {
 
       return m_pframewindow->m_pframe->GetMinSize();
@@ -318,18 +318,18 @@ namespace experience
    }
 
 
-   void size_manager::size_window(e_hittest ehittest, ::user::interaction * pframewindow, const ::point & point, bool bTracking)
+   void size_manager::size_window(e_hittest ehittest, ::user::interaction * pframewindow, const ::point_i32 & point, bool bTracking)
    {
 
       bool bSize = true;
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
-      ::rect rectMonitor;
+      ::rectangle_i32 rectMonitor;
 
       pframewindow->best_monitor(rectMonitor);
 
-      ::size sizeMin = GetMinSize();
+      ::size_i32 sizeMin = GetMinSize();
 
       if(ehittest == hittest_sizing_top_left)
       {
@@ -506,10 +506,10 @@ namespace experience
    }
 
 
-   void size_manager::move_window(::user::interaction * pframewindow, const ::rect & rect)
+   void size_manager::move_window(::user::interaction * pframewindow, const ::rectangle_i32 & rectangle)
    {
 
-      auto rectWindow = rect;
+      auto rectWindow = rectangle_i32;
 
       auto sizeMin = GetMinSize();
 
@@ -520,7 +520,7 @@ namespace experience
 
       }
 
-      ::rect rectWindowNow;
+      ::rectangle_i32 rectWindowNow;
 
       m_pframewindow->get_window_rect(rectWindowNow);
 
@@ -540,13 +540,13 @@ namespace experience
 
       }
 
-      ::rect rectBefore;
+      ::rectangle_i32 rectBefore;
 
       pframewindow->get_window_rect(rectBefore);
 
-      ::rect rectAfter = rectWindow;
+      ::rectangle_i32 rectAfter = rectWindow;
 
-      ::rect rectParentClient = rectAfter;
+      ::rectangle_i32 rectParentClient = rectAfter;
 
       if(m_pframewindow->get_parent() != nullptr)
       {
@@ -555,7 +555,7 @@ namespace experience
 
       }
 
-      ::rect rectTotal;
+      ::rectangle_i32 rectTotal;
 
       rectTotal.unite(rectBefore, rectAfter);
 
@@ -642,7 +642,7 @@ namespace experience
    }
 
 
-   e_hittest size_manager::_001HitTest(const ::point & pointCursor)
+   e_hittest size_manager::_001HitTest(const ::point_i32 & pointCursor)
    {
       e_hittest ehittest = m_pframewindow->_001HitTest(pointCursor);
       switch(ehittest)

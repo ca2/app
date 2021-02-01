@@ -117,7 +117,7 @@ void html_form::_001OnImageLoaded(::message::message * pmessage)
    if(get_html_data() != nullptr)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -169,10 +169,10 @@ void html_form::install_message_routing(::channel * pchannel)
 }
 
 
-void html_form::GetClientBox(::rectf & box)
+void html_form::GetClientBox(::rectangle_f32 & box)
 {
 
-   ::rect rectClient;
+   ::rectangle_i32 rectClient;
 
    get_client_rect(rectClient);
 
@@ -236,7 +236,7 @@ void html_form::_001OnLButtonDown(::message::message * pmessage)
 
    __pointer(::message::mouse) pmouse(pmessage);
 
-   ::point point;
+   ::point_i32 point;
 
    point = pmouse->m_point;
 
@@ -285,7 +285,7 @@ void html_form::_001OnMouseMove(::message::message * pmessage)
 
    track_mouse_hover();
 
-   ::point point(pmouse->m_point);
+   ::point_i32 point(pmouse->m_point);
 
    _001ScreenToClient(point);
 
@@ -364,7 +364,7 @@ void html_form::_001OnLButtonUp(::message::message * pmessage)
 
    __pointer(::message::mouse) pmouse(pmessage);
 
-   ::point point(pmouse->m_point);
+   ::point_i32 point(pmouse->m_point);
 
    _001ScreenToClient(point);
 

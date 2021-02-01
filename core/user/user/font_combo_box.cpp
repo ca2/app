@@ -53,7 +53,7 @@ namespace user
 
       //__throw(todo("style"));
 
-      //::rectd r(2, 2, 2, 2);
+      //::rectangle_f64 r(2, 2, 2, 2);
 
       //create_rect(::user::rect_edit_padding, r, ::draw2d::unit_pixel);
 

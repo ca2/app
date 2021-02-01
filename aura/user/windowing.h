@@ -41,7 +41,7 @@ CLASS_DECL_AURA ::user::interaction * oswindow_interaction(oswindow oswindow);
 //
 //   }
 //
-//   cslock slOsWindow(::user::g_pcsUi);
+//   critical_section_lock slOsWindow(::user::g_pcsUi);
 //
 //   return ::user::g_pmapUi->operator[](oswindow);
 //

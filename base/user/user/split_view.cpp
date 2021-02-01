@@ -121,7 +121,7 @@ namespace user
 
    void split_view::_001OnSize(::message::message * pmessage)
    {
-      __pointer(::message::size) psize(pmessage);
+      __pointer(::message::size_i32) psize(pmessage);
       psize->previous();
       //on_layout(::draw2d::graphics_pointer & pgraphics);
    }
@@ -164,45 +164,45 @@ namespace user
 
 //      i32 i;
 
-      //::rect rect;
+      //::rectangle_i32 rectangle;
 
       //color32_t cr = ARGB(190, 92, 92, 80);
 
       //for(i = 0; i < get_pane_count(); i++)
       //{
       //
-      //   CalcPaneRect(i, &rect);
+      //   CalcPaneRect(i, &rectangle);
 
       //   // Top
       //   pgraphics->fill_rect(
-      //      rect.left,
-      //      rect.top,
-      //      rect.width(),
+      //      rectangle.left,
+      //      rectangle.top,
+      //      rectangle.width(),
       //      m_cyBorder,
       //      cr);
 
       //   // Right
       //   pgraphics->fill_rect(
-      //      rect.right - m_cxBorder,
-      //      rect.top,
+      //      rectangle.right - m_cxBorder,
+      //      rectangle.top,
       //      m_cxBorder,
-      //      rect.height(),
+      //      rectangle.height(),
       //      cr);
 
       //   // Bottom
       //   pgraphics->fill_rect(
-      //      rect.left,
-      //      rect.bottom - m_cyBorder,
-      //      rect.width(),
+      //      rectangle.left,
+      //      rectangle.bottom - m_cyBorder,
+      //      rectangle.width(),
       //      m_cyBorder,
       //      cr);
 
       //   // Left
       //   pgraphics->fill_rect(
-      //      rect.left,
-      //      rect.top,
+      //      rectangle.left,
+      //      rectangle.top,
       //      m_cxBorder,
-      //      rect.height(),
+      //      rectangle.height(),
       //      cr);
 
       //}

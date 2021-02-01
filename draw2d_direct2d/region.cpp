@@ -37,12 +37,12 @@ namespace draw2d_direct2d
       //ASSERT(get_os_data() != nullptr); ::SetRectRgn((HRGN)get_os_data(), x1, y1, x2, y2);
    }
 
-   void region::SetRectRgn(const ::rect & rect)
+   void region::SetRectRgn(const ::rectangle_i32 & rectangle)
    {
 
       __throw(todo());
 
-      //   ::SetRectRgn((HRGN)get_os_data(), rect.left, rect.top, rect.right, rect.bottom);
+      //   ::SetRectRgn((HRGN)get_os_data(), rectangle.left, rectangle.top, rectangle.right, rectangle.bottom);
    }
 
    int region::CombineRgn(const ::draw2d::region* pRgn1, const ::draw2d::region* pRgn2, int nCombineMode)
@@ -81,7 +81,7 @@ namespace draw2d_direct2d
 
       //ASSERT(get_os_data() != nullptr); return ::OffsetRgn((HRGN)get_os_data(), x, y);
    }
-   int region::OffsetRgn(const ::point & point)
+   int region::OffsetRgn(const ::point_i32 & point)
    {
 
       __throw(todo());
@@ -89,13 +89,13 @@ namespace draw2d_direct2d
 
       //ASSERT(get_os_data() != nullptr); return ::OffsetRgn((HRGN)get_os_data(), point.x, point.y);
    }
-   int region::GetRgnBox(RECT32 * prect) const
+   int region::GetRgnBox(RECTANGLE_I32 * prectangle) const
    {
 
       __throw(todo());
 
 
-      //ASSERT(get_os_data() != nullptr); return ::GetRgnBox((HRGN)get_os_data(), rect);
+      //ASSERT(get_os_data() != nullptr); return ::GetRgnBox((HRGN)get_os_data(), rectangle);
    }
 
 
@@ -113,16 +113,16 @@ namespace draw2d_direct2d
 
       return b != FALSE;
 
-      //Gdiplus::PointF pointf((Gdiplus::REAL) x, (Gdiplus::REAL) y);
+      //Gdiplus::PointF point_f32((Gdiplus::REAL) x, (Gdiplus::REAL) y);
       //
       //ASSERT(get_os_data() != nullptr); //return ::PtInRegion((HRGN)get_os_data(), x, y);
 
-      //return m_pgeometry->IsVisible(pointf)  != FALSE;
+      //return m_pgeometry->IsVisible(point_f32)  != FALSE;
 
    }
 
 
-   bool region::contains(::draw2d::graphics* pgraphics, const ::point & point) const
+   bool region::contains(::draw2d::graphics* pgraphics, const ::point_i32 & point) const
    {
 
       return contains(pgraphics, point.x, point.y);
@@ -131,28 +131,28 @@ namespace draw2d_direct2d
 
 
       //return ::PtInRegion((HRGN)get_os_data(), point.x, point.y);
-      //Gdiplus::PointF pointf((Gdiplus::REAL) point.x, (Gdiplus::REAL) point.y);
+      //Gdiplus::PointF point_f32((Gdiplus::REAL) point.x, (Gdiplus::REAL) point.y);
       //
       //ASSERT(get_os_data() != nullptr); //return ::PtInRegion((HRGN)get_os_data(), x, y);
 
-      //return m_pgeometry->IsVisible(pointf)  != FALSE;
+      //return m_pgeometry->IsVisible(point_f32)  != FALSE;
 
    }
 
 
-   bool region::RectInRegion(const ::rect & rect) const
+   bool region::RectInRegion(const ::rectangle_i32 & rectangle) const
    {
 
       __throw(todo());
 
 
-      //ASSERT(get_os_data() != nullptr); return ::RectInRegion((HRGN)get_os_data(), rect);
+      //ASSERT(get_os_data() != nullptr); return ::RectInRegion((HRGN)get_os_data(), rectangle);
 
-      //Gdiplus::RectF rectf((Gdiplus::REAL) rect.left, (Gdiplus::REAL) rect.top, (Gdiplus::REAL) (rect.right - rect.left), (Gdiplus::REAL) (rect.bottom - rect.top));
+      //Gdiplus::RectF rectangle_f32((Gdiplus::REAL) rectangle.left, (Gdiplus::REAL) rectangle.top, (Gdiplus::REAL) (rectangle.right - rectangle.left), (Gdiplus::REAL) (rectangle.bottom - rectangle.top));
       //
       //ASSERT(get_os_data() != nullptr); //return ::PtInRegion((HRGN)get_os_data(), x, y);
 
-      //return m_pgeometry->IsVisible(rectf)  != FALSE;
+      //return m_pgeometry->IsVisible(rectangle_f32)  != FALSE;
 
    }
 
@@ -251,7 +251,7 @@ namespace draw2d_direct2d
 
       ::draw2d::path_pointer path(this);
 
-      /*point_array pa;
+      /*point_i32_array pa;
 
       for(int i = 0; i < m_nCount; i++)
       {
@@ -283,7 +283,7 @@ namespace draw2d_direct2d
 
       ::draw2d::path_pointer path(this);
 
-      pointd_array pa;
+      point_f64_array pa;
 
       /*if(m_efillmode == ::draw2d::fill_mode_alternate)
       {
@@ -302,7 +302,7 @@ namespace draw2d_direct2d
          pa.remove_all();
          for(int j = 0; j < jCount; j++)
          {
-            pa.add(pointd(m_lppoints[n].x, m_lppoints[n].y));
+            pa.add(point_f64(m_lppoints[n].x, m_lppoints[n].y));
             n++;
          }
          //path->begin_figure(true, m_efillmode);

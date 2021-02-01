@@ -8,7 +8,7 @@ namespace hotplugin
 {
 
 
-   CLASS_DECL_BASE void entry_hall_windows_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, const string & strEntryHallText)
+   CLASS_DECL_BASE void entry_hall_windows_on_paint(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, const string & strEntryHallText)
    {
 
       int h = 33;
@@ -19,31 +19,31 @@ namespace hotplugin
       int left;
       int right;
 
-      if (height(rect) < h)
+      if (height(rectangle) < h)
       {
-         top = rect.top;
-         bottom = rect.bottom;
+         top = rectangle.top;
+         bottom = rectangle.bottom;
       }
       else
       {
-         top = rect.top + height(rect) / 2 - h / 2;
-         bottom = rect.top + height(rect) / 2 + h / 2;
+         top = rectangle.top + height(rectangle) / 2 - h / 2;
+         bottom = rectangle.top + height(rectangle) / 2 + h / 2;
       }
 
-      if (width(rect) < m)
+      if (width(rectangle) < m)
       {
-         left = rect.left;
-         right = rect.right;
+         left = rectangle.left;
+         right = rectangle.right;
       }
       else
       {
 
-         left = rect.left + min(m / 2, width(rect) / 2);
-         right = rect.right - min(m / 2, width(rect) / 2);
+         left = rectangle.left + min(m / 2, width(rectangle) / 2);
+         right = rectangle.right - min(m / 2, width(rectangle) / 2);
 
       }
 
-      ::rect rectBar(left, top, right, bottom);
+      ::rectangle_i32 rectBar(left, top, right, bottom);
 
       int w = 284;
 
@@ -51,9 +51,9 @@ namespace hotplugin
 
       int x = v % rectBar.width();
 
-      ::rect rectBrick(left + x, rectBar.top, left + x + w, rectBar.bottom);
+      ::rectangle_i32 rectBrick(left + x, rectBar.top, left + x + w, rectBar.bottom);
 
-      ::rect rectDraw;
+      ::rectangle_i32 rectDraw;
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 

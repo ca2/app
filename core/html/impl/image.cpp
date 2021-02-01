@@ -25,11 +25,11 @@ namespace html
 
                m_pimage->defer_realize(pgraphics);
 
-               auto pointDst = ::pointd((::i32)left(), (::i32)top());
+               auto pointDst = ::point_f64((::i32)left(), (::i32)top());
 
                auto sizeDst = m_pimage->size();
 
-               auto rectDst = ::rectd(pointDst, sizeDst);
+               auto rectDst = ::rectangle_f64(pointDst, sizeDst);
 
                pgraphics->draw(rectDst, m_pimage->get_graphics());
                

@@ -1402,7 +1402,7 @@ void object::release_references()
 
 }
 
-CLASS_DECL_ACME mutex* get_children_mutex();
+CLASS_DECL_ACME ::mutex* get_children_mutex();
 
 
 /// tells if pobject is dependant of this object or of any dependant objects
@@ -1513,11 +1513,11 @@ bool object::__is_child_task(::task * ptask) const
 // "ask" to close object, not cancellable
 
 //
-// ->at simple objects (from finish point of view)...
+// ->at simple objects (from finish point_i32 of view)...
 // ->for objects that doesn't have custom finalization
 // finish calls set_finish and finalize.
 //
-// ->for complex objects (from finish point of view)...
+// ->for complex objects (from finish point_i32 of view)...
 // ->for objects that have custom finalization
 // finish wouldn't call *finalize*,
 // but only set_finish or custom set_finish.

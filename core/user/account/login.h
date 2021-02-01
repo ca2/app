@@ -36,7 +36,7 @@ namespace account
       string                        m_strCred;
 
       
-      /// the best size to fit current ca2 icon (as of 2014)
+      /// the best size_i32 to fit current ca2 icon (as of 2014)
       draw2d::icon *                m_picon95;
       ::image_pointer                         m_pimage;
 

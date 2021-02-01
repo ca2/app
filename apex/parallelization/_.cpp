@@ -1,7 +1,5 @@
 #include "framework.h"
-#include "apex/os/_c.h"
-#include "apex/os/_.h"
-#include "acme/id.h"
+#include "acme/operating_system.h"
 
 
 namespace parallelization
@@ -10,13 +8,13 @@ namespace parallelization
 
    //CLASS_DECL_APEX comparable_eq_array<ithread_t> * s_piaThread2 = nullptr;
    //CLASS_DECL_APEX __pointer_array(thread) * s_pthreadptra2 = nullptr;
-   //CLASS_DECL_APEX::critical_section * s_pcs2 = nullptr;
+   //CLASS_DECL_APEXcritical_section * s_pcs2 = nullptr;
 
 
    CLASS_DECL_APEX void init_multithreading()
    {
 
-      //s_pcs2 = new ::critical_section();
+      //s_pcs2 = new critical_section();
 
       //s_piaThread2 = new comparable_eq_array<ithread_t>;
 
@@ -43,7 +41,7 @@ namespace parallelization
    CLASS_DECL_APEX bool thread_id_registered(ithread_t id)
    {
 
-      //cslock lock(s_pcs2);
+      //critical_section_lock lock(s_pcs2);
 
       //return s_piaThread2->contains(id);
 
@@ -149,7 +147,7 @@ namespace parallelization
    }
 
 
-   CLASS_DECL_APEX void post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
+   CLASS_DECL_APEX void post_to_all_threads(const ::id & id, wparam wparam, lparam lparam)
    {
 
       sync_lock sl(&System.m_mutexTask);

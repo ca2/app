@@ -205,15 +205,15 @@ namespace user
    /////////////////////////////////////////////////////////////////////////////
    // Attributes
 
-   size control_bar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz)
+   size_i32 control_bar::CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz)
    {
-      ::size size;
+      ::size_i32 size;
       size.cx = (bStretch && bHorz ? 32767 : 0);
       size.cy = (bStretch && !bHorz ? 32767 : 0);
       return size;
    }
 
-   size control_bar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, i32, u32 nMode)
+   size_i32 control_bar::CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, i32, u32 nMode)
    {
       return CalcFixedLayout(pgraphics, (nMode & LM_STRETCH) != 0, (nMode & LM_HORZ) != 0);
    }
@@ -510,9 +510,9 @@ namespace user
    {
       // get interaction_impl DC that is clipped to the non-client area
       /* trans   CWindowDC spgraphics(this);
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
          get_client_rect(rectClient);
-         ::rect rectWindow;
+         ::rectangle_i32 rectWindow;
          get_window_rect(rectWindow);
          _001ScreenToClient(rectWindow);
          rectClient.offset(-rectWindow.left, -rectWindow.top);
@@ -534,9 +534,9 @@ namespace user
    {
 
       // get interaction_impl DC that is clipped to the non-client area
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
       get_client_rect(rectClient);
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
       get_window_rect(rectWindow);
       _001ScreenToClient(rectWindow);
       rectClient.offset(-rectWindow.left, -rectWindow.top);
@@ -554,9 +554,9 @@ namespace user
       //SendMessage(e_message_erase_background, (WPARAM)spgraphics->get_handle1());
       pgraphics->reset_clip();
 
-      auto rect = ::rectd_dim(0, 0, rectWindow.width(), rectWindow.height());
+      auto rectangle_i32 = ::rectd_dim(0, 0, rectWindow.width(), rectWindow.height());
 
-      pgraphics->fill_rect(rect, ARGB(128, 192, 192, 187));
+      pgraphics->fill_rect(rectangle, ARGB(128, 192, 192, 187));
 
       // draw gripper in non-client area
       DrawGripper(pgraphics, rectWindow);
@@ -773,13 +773,13 @@ namespace user
       {
          
          // align the control bar
-         ::rect rect;
+         ::rectangle_i32 rectangle;
 
-         rect.copy(&playout->rect);
+         rectangle.copy(&playout->rectangle_i32);
 
-         ::size sizeAvail = rect.size();  // maximum size available
+         ::size_i32 sizeAvail = rectangle.size();  // maximum size_i32 available
 
-         // get maximum requested size
+         // get maximum requested size_i32
          u32 dwMode = playout->bStretch ? LM_STRETCH : 0;
 
          if ((m_dwStyle & CBRS_SIZE_DYNAMIC) && m_dwStyle & CBRS_FLOATING)
@@ -791,7 +791,7 @@ namespace user
 
          auto pgraphics = ::draw2d::create_memory_graphics();
 
-         ::size size = CalcDynamicLayout(pgraphics, -1, dwMode);
+         ::size_i32 size = CalcDynamicLayout(pgraphics, -1, dwMode);
 
          size.cx = min(size.cx, sizeAvail.cx);
          size.cy = min(size.cy, sizeAvail.cy);
@@ -803,12 +803,12 @@ namespace user
             playout->sizeTotal.cx = max(playout->sizeTotal.cx, size.cx);
 
             if (uStyle & CBRS_ALIGN_TOP)
-               playout->rect.top += size.cy;
+               playout->rectangle.top += size.cy;
 
             else if (uStyle & CBRS_ALIGN_BOTTOM)
             {
-               rect.top = rect.bottom - size.cy;
-               playout->rect.bottom -= size.cy;
+               rectangle.top = rectangle.bottom - size.cy;
+               playout->rectangle.bottom -= size.cy;
 
             }
          }
@@ -819,12 +819,12 @@ namespace user
             playout->sizeTotal.cy = max(playout->sizeTotal.cy, size.cy);
 
             if (uStyle & CBRS_ALIGN_LEFT)
-               playout->rect.left += size.cx;
+               playout->rectangle.left += size.cx;
 
             else if (uStyle & CBRS_ALIGN_RIGHT)
             {
-               rect.left = rect.right - size.cx;
-               playout->rect.right -= size.cx;
+               rectangle.left = rectangle.right - size.cx;
+               playout->rectangle.right -= size.cx;
 
             }
          }
@@ -833,13 +833,13 @@ namespace user
             ASSERT(FALSE);      // can never happen
          }
 
-         rect.right = rect.left + size.cx;
-         rect.bottom = rect.top + size.cy;
+         rectangle.right = rectangle.left + size.cx;
+         rectangle.bottom = rectangle.top + size.cy;
 
-         // only resize the interaction_impl if doing on_layout and not just rect query
+         // only resize the interaction_impl if doing on_layout and not just rectangle_i32 query
          //if (playout->hDWP != nullptr)
 
-         __reposition_window(playout, this, &rect);
+         __reposition_window(playout, this, &rectangle);
 
       }
 
@@ -881,18 +881,18 @@ namespace user
       //ASSERT_VALID(pgraphics);
 
       // paint inside client area
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      get_client_rect(rect);
+      get_client_rect(rectangle);
 
-      DrawBorders(pgraphics, rect);
+      DrawBorders(pgraphics, rectangle);
 
-      DrawGripper(pgraphics, rect);
+      DrawGripper(pgraphics, rectangle);
 
    }
 
 
-   void control_bar::DrawBorders(::draw2d::graphics_pointer & pgraphics, ::rect& rect)
+   void control_bar::DrawBorders(::draw2d::graphics_pointer & pgraphics, ::rectangle_i32& rectangle)
    {
 
       ASSERT_VALID(this);
@@ -904,10 +904,10 @@ namespace user
          return;
 
       // prepare for dark lines
-      ASSERT(rect.top == 0 && rect.left == 0);
-      ::rect rect1, rect2;
-      rect1 = rect;
-      rect2 = rect;
+      ASSERT(rectangle.top == 0 && rectangle.left == 0);
+      ::rectangle_i32 rect1, rect2;
+      rect1 = rectangle_i32;
+      rect2 = rectangle_i32;
       //   color32_t clr = afxData.bWin4 ? afxData.clrBtnShadow : afxData.clrWindowFrame;
 //      color32_t clr = afxData.clrBtnShadow;
       color32_t clr;
@@ -937,7 +937,7 @@ namespace user
       {
          if(uStyle & CBRS_GRIPPER)
          {
-            pgraphics->fill_rect(::rectd_dim(0, rect.top + 7, CX_BORDER, rect.height() - 7), clr);
+            pgraphics->fill_rect(::rectd_dim(0, rectangle.top + 7, CX_BORDER, rectangle.height() - 7), clr);
          }
          else
          {
@@ -949,22 +949,22 @@ namespace user
          if(uStyle & CBRS_GRIPPER)
          {
             pgraphics->fill_rect(
-            ::rectd(rect.left + 7,
-            rect.top,
-            rect.right - 7,
+            ::rectangle_f64(rectangle.left + 7,
+            rectangle.top,
+            rectangle.right - 7,
             1),
             RGB(128, 128, 123));
          }
          else
          {
             pgraphics->fill_rect(
-            ::rectd(rect.left,
-            rect.top,
-            rect.right,
+            ::rectangle_f64(rectangle.left,
+            rectangle.top,
+            rectangle.right,
             1),
             RGB(128, 128, 123));
          }
-         //      pgraphics->fill_rect(0, 0, rect.right, CY_BORDER, clr);
+         //      pgraphics->fill_rect(0, 0, rectangle.right, CY_BORDER, clr);
       }
       if (uStyle & (CBRS_BORDER_LEFT | CBRS_BORDER_TOP))
       {
@@ -985,9 +985,9 @@ namespace user
 
       // draw right and bottom
       if (uStyle & CBRS_BORDER_RIGHT)
-         pgraphics->fill_rect(::rectd(rect1.right, rect2.top, -CX_BORDER, rect2.height()), clr);
+         pgraphics->fill_rect(::rectangle_f64(rect1.right, rect2.top, -CX_BORDER, rect2.height()), clr);
       if (uStyle & CBRS_BORDER_BOTTOM)
-         pgraphics->fill_rect(::rectd(0, rect1.bottom, rect.right, -CY_BORDER), clr);
+         pgraphics->fill_rect(::rectangle_f64(0, rect1.bottom, rectangle.right, -CY_BORDER), clr);
 
       if (uStyle & CBRS_BORDER_3D)
       {
@@ -997,35 +997,35 @@ namespace user
 
          // draw left and top
          if (uStyle & CBRS_BORDER_LEFT)
-            pgraphics->fill_rect(::rectd(1, rect2.top, CX_BORDER, rect2.height()), clr);
+            pgraphics->fill_rect(::rectangle_f64(1, rect2.top, CX_BORDER, rect2.height()), clr);
          if (uStyle & CBRS_BORDER_TOP)
          {
             if(uStyle & CBRS_GRIPPER)
-               pgraphics->fill_rect(::rectd(rect.left + 7, rect.top + 1, rect.width() - 7, 1), clr);
+               pgraphics->fill_rect(::rectangle_f64(rectangle.left + 7, rectangle.top + 1, rectangle.width() - 7, 1), clr);
             else
-               pgraphics->fill_rect(::rectd(rect.left, rect.top + 1, rect.width(), 1), clr);
-            //pgraphics->fill_rect(0, 1, rect.right, CY_BORDER, clr);
+               pgraphics->fill_rect(::rectangle_f64(rectangle.left, rectangle.top + 1, rectangle.width(), 1), clr);
+            //pgraphics->fill_rect(0, 1, rectangle.right, CY_BORDER, clr);
          }
 
          // draw right and bottom
          if (uStyle & CBRS_BORDER_RIGHT)
-            pgraphics->fill_rect(::rectd(rect.right, rect2.top, -CX_BORDER, rect2.height()), clr);
+            pgraphics->fill_rect(::rectangle_f64(rectangle.right, rect2.top, -CX_BORDER, rect2.height()), clr);
          if (uStyle & CBRS_BORDER_BOTTOM)
-            pgraphics->fill_rect(::rectd(0, rect.bottom, rect.right, -CY_BORDER), clr);
+            pgraphics->fill_rect(::rectangle_f64(0, rectangle.bottom, rectangle.right, -CY_BORDER), clr);
       }
 
       if (uStyle & CBRS_BORDER_LEFT)
-         //rect.left += afxData.cxBorder2;
-         rect.left += 2;
+         //rectangle.left += afxData.cxBorder2;
+         rectangle.left += 2;
       if (uStyle & CBRS_BORDER_TOP)
-         //rect.top += afxData.cyBorder2;
-         rect.top += 2;
+         //rectangle.top += afxData.cyBorder2;
+         rectangle.top += 2;
       if (uStyle & CBRS_BORDER_RIGHT)
-         //rect.right -= afxData.cxBorder2;
-         rect.right -= 2;
+         //rectangle.right -= afxData.cxBorder2;
+         rectangle.right -= 2;
       if (uStyle & CBRS_BORDER_BOTTOM)
-         //rect.bottom -= afxData.cyBorder2;
-         rect.bottom -= 2;
+         //rectangle.bottom -= afxData.cyBorder2;
+         rectangle.bottom -= 2;
 
 #else
 
@@ -1055,7 +1055,7 @@ namespace user
    }
 
 
-   void control_bar::DrawGripper(::draw2d::graphics_pointer & pgraphics, const ::rect& rect)
+   void control_bar::DrawGripper(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle)
    {
 
       // only draw the gripper if not floating and gripper is specified
@@ -1064,15 +1064,15 @@ namespace user
          // draw the gripper in the border
          if (m_dwStyle & CBRS_ORIENT_HORZ)
          {
-            //pgraphics->draw3d_rect(rect.left+CX_BORDER_GRIPPER,
-            //   rect.top+m_rectBorder.top,
-            //   CX_GRIPPER, rect.height()-m_rectBorder.top-m_rectBorder.bottom,
+            //pgraphics->draw3d_rect(rectangle.left+CX_BORDER_GRIPPER,
+            //   rectangle.top+m_rectBorder.top,
+            //   CX_GRIPPER, rectangle.height()-m_rectBorder.top-m_rectBorder.bottom,
             //   afxData.clrBtnHilite, afxData.clrBtnShadow);
             i32 dx = CX_GRIPPER / 2;
             i32 dy = CY_GRIPPER / 2;
-            i32 ix = rect.left + CX_BORDER_GRIPPER;
-            i32 iy = rect.top + m_rectBorder.top + dy / 2;
-            i32 cy = rect.bottom - m_rectBorder.top - m_rectBorder.bottom - dy * 3;
+            i32 ix = rectangle.left + CX_BORDER_GRIPPER;
+            i32 iy = rectangle.top + m_rectBorder.top + dy / 2;
+            i32 cy = rectangle.bottom - m_rectBorder.top - m_rectBorder.bottom - dy * 3;
 
             for(; iy < cy; iy += dy)
             {
@@ -1084,15 +1084,15 @@ namespace user
          }
          else
          {
-            //         pgraphics->draw3d_rect(rect.left+m_rectBorder.top,
-            //            rect.top+CY_BORDER_GRIPPER,
-            //            rect.width()-m_rectBorder.top-m_rectBorder.bottom, CY_GRIPPER,
+            //         pgraphics->draw3d_rect(rectangle.left+m_rectBorder.top,
+            //            rectangle.top+CY_BORDER_GRIPPER,
+            //            rectangle.width()-m_rectBorder.top-m_rectBorder.bottom, CY_GRIPPER,
             //            afxData.clrBtnHilite, afxData.clrBtnShadow);
             i32 dx = CX_GRIPPER / 2;
             i32 dy = CY_GRIPPER / 2;
-            i32 ix = rect.left + m_rectBorder.top + dx / 2;
-            i32 iy = rect.top + CY_BORDER_GRIPPER;
-            i32 cx = rect.right - m_rectBorder.top - m_rectBorder.bottom - dx * 3;
+            i32 ix = rectangle.left + m_rectBorder.top + dx / 2;
+            i32 iy = rectangle.top + CY_BORDER_GRIPPER;
+            i32 cx = rectangle.right - m_rectBorder.top - m_rectBorder.bottom - dx * 3;
 
             for(; ix < cx; ix += dx)
             {
@@ -1105,43 +1105,43 @@ namespace user
       }
    }
 
-   // input rect should be client rectangle size
-   void control_bar::CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::rect& rect, bool bHorz) const
+   // input rectangle_i32 should be client rectangle_i32 size_i32
+   void control_bar::CalcInsideRect(::draw2d::graphics_pointer& pgraphics, ::rectangle_i32& rectangle, bool bHorz) const
    {
       ASSERT_VALID(this);
       u32 uStyle = m_dwStyle;
 
       if (uStyle & CBRS_BORDER_LEFT)
-//         rect.left += afxData.cxBorder2;
-         rect.left += 2;
+//         rectangle.left += afxData.cxBorder2;
+         rectangle.left += 2;
       if (uStyle & CBRS_BORDER_TOP)
-//         rect.top += afxData.cyBorder2;
-         rect.top += 2;
+//         rectangle.top += afxData.cyBorder2;
+         rectangle.top += 2;
       if (uStyle & CBRS_BORDER_RIGHT)
-//         rect.right -= afxData.cxBorder2;
-         rect.right -= 2;
+//         rectangle.right -= afxData.cxBorder2;
+         rectangle.right -= 2;
       if (uStyle & CBRS_BORDER_BOTTOM)
-//         rect.bottom -= afxData.cyBorder2;
-         rect.bottom -= 2;
+//         rectangle.bottom -= afxData.cyBorder2;
+         rectangle.bottom -= 2;
 
       // insert_at the top and bottom.
       if (bHorz)
       {
-         rect.left += m_rectBorder.left;
-         rect.top += m_rectBorder.top;
-         rect.right -= m_rectBorder.right;
-         rect.bottom -= m_rectBorder.bottom;
+         rectangle.left += m_rectBorder.left;
+         rectangle.top += m_rectBorder.top;
+         rectangle.right -= m_rectBorder.right;
+         rectangle.bottom -= m_rectBorder.bottom;
          if ((m_dwStyle & (CBRS_GRIPPER|CBRS_FLOATING)) == CBRS_GRIPPER)
-            rect.left += CX_BORDER_GRIPPER+CX_GRIPPER+CX_BORDER_GRIPPER;
+            rectangle.left += CX_BORDER_GRIPPER+CX_GRIPPER+CX_BORDER_GRIPPER;
       }
       else
       {
-         rect.left += m_rectBorder.top;
-         rect.top += m_rectBorder.left;
-         rect.right -= m_rectBorder.bottom;
-         rect.bottom -= m_rectBorder.right;
+         rectangle.left += m_rectBorder.top;
+         rectangle.top += m_rectBorder.left;
+         rectangle.right -= m_rectBorder.bottom;
+         rectangle.bottom -= m_rectBorder.right;
          if ((m_dwStyle & (CBRS_GRIPPER|CBRS_FLOATING)) == CBRS_GRIPPER)
-            rect.top += CY_BORDER_GRIPPER+CY_GRIPPER+CY_BORDER_GRIPPER;
+            rectangle.top += CY_BORDER_GRIPPER+CY_GRIPPER+CY_BORDER_GRIPPER;
       }
    }
 
@@ -1202,15 +1202,15 @@ namespace user
    }
 
 
-   void control_bar::SetBorders(const ::rect & rect)
+   void control_bar::SetBorders(const ::rectangle_i32 & rectangle)
    {
 
-      SetBorders(rect.left, rect.top, rect.right, rect.bottom);
+      SetBorders(rectangle.left, rectangle.top, rectangle.right, rectangle.bottom);
 
    }
 
 
-   ::rect control_bar::GetBorders()
+   ::rectangle_i32 control_bar::GetBorders()
    {
 
       return m_rectBorder;

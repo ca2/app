@@ -8,29 +8,13 @@ namespace file
    memory_map::memory_map()
    {
 
-      construct();
+      m_pdata = nullptr;
+      m_bRead = false;
+      m_bWrite = false;
+      m_bCreate = false;
+      m_size = 0;
 
    }
-
-
-   memory_map::memory_map(const char * psz, bool bRead, bool bWrite, bool bCreate, memsize size)
-   {
-
-      construct();
-
-      if (!open(psz, bRead, bWrite, bCreate, size))
-      {
-
-         string strFormat;
-
-         strFormat.Format("failed to open memory_map : \"%s\" bRead %d bWrite %d bCreate %d size %lld ", psz, int(bRead), int(bWrite), int(bCreate), size);
-
-         __throw(::exception::exception(strFormat));
-
-      }
-
-   }
-
 
 
    memory_map::~memory_map()
@@ -104,7 +88,28 @@ namespace file
    }
 
 
+   bool memory_map::open()
+   {
 
+      return false;
+
+   }
+
+
+   bool memory_map::close()
+   {
+
+      return false;
+
+   }
+
+
+   bool memory_map::is_mapped()
+   {
+
+      return false;
+
+   }
 
 // SALADA AND PASTA and me pig searching for food is good EAT IT!! But mama te
 

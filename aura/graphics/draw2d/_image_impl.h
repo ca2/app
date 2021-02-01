@@ -10,7 +10,7 @@
 //}
 //
 //
-//inline ::image_result object::create_image(const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+//inline ::image_result object::create_image(const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 //{
 //
 //   ::image_pointer pimage;
@@ -61,7 +61,7 @@
 //}
 
 
-//inline ::e_status object::__compose(__composite(::image) & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+//inline ::e_status object::__compose(__composite(::image) & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 //{
 //
 //   __compose(pimage);
@@ -78,7 +78,7 @@
 //}
 
 
-//inline ::e_status object::__internal_preserve_ownership(__composite(::image) & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride)
+//inline ::e_status object::__internal_preserve_ownership(__composite(::image) & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride)
 //{
 //
 //   return __compose(pimage, size, uidCreate, iGoodStride, true);
@@ -139,7 +139,7 @@
 //}
 
 
-//inline ::e_status object::__construct(::image_pointer & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+//inline ::e_status object::__construct(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 //{
 //
 //   // DIFFERENT __construct behaviour (for image)
@@ -151,7 +151,7 @@
 //
 //   }
 //
-//   if (pimage && pimage->size() != size)
+//   if (pimage && pimage->size() != size_i32)
 //   {
 //
 //      m_estatus = pimage->create(size, eobjectCreate, iGoodStride, bPreserve);
@@ -164,7 +164,7 @@
 //}
 
 
-//inline ::e_status object::__preserve(::image_pointer & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride)
+//inline ::e_status object::__preserve(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride)
 //{
 //
 //   return __construct(pimage, size, eobjectCreate, iGoodStride, true);
@@ -189,7 +189,7 @@ inline ::image_pointer create_image()
 }
 
 
-inline ::image_pointer create_image(const ::size & size, ::eobject eobjectFlag = IMAGE_OBJECT_OK)
+inline ::image_pointer create_image(const ::size_i32 & size, ::eobject eobjectFlag = IMAGE_OBJECT_OK)
 {
 
    auto ptype = __create < ::image >();
@@ -269,7 +269,7 @@ inline ::image_pointer create_image(const ::size & size, ::eobject eobjectFlag =
 
 
 // template < typename COMPOSER >
-// inline ::e_status __compose(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+// inline ::e_status __compose(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 // {
 
 //    auto estatus = __compose(pcomposer, pimage);
@@ -281,7 +281,7 @@ inline ::image_pointer create_image(const ::size & size, ::eobject eobjectFlag =
 
 //    }
 
-//    if (pimage && pimage->size() != size)
+//    if (pimage && pimage->size() != size_i32)
 //    {
 
 //       estatus = pimage->create(size, uidCreate, iGoodStride, bPreserve);
@@ -294,7 +294,7 @@ inline ::image_pointer create_image(const ::size & size, ::eobject eobjectFlag =
 
 
 // template < typename COMPOSER >
-// inline ::e_status __preserve(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride)
+// inline ::e_status __preserve(COMPOSER && pcomposer, __composite(::image) & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride)
 // {
 
 //    //if (((uptr)&pimage) < (uptr)pcomposer || ((uptr)&pimage) >= ((uptr)pcomposer) + sizeof(COMPOSER))
@@ -358,7 +358,7 @@ inline ::image_pointer & __construct(::image_pointer & pimage, ::object * pobjec
 }
 
 
-inline ::e_status __construct(::image_pointer & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+inline ::e_status __construct(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
 {
 
    auto estatus = __construct(pimage);
@@ -382,7 +382,7 @@ inline ::e_status __construct(::image_pointer & pimage, const ::size & size, ::e
 }
 
 
-inline ::e_status __preserve_construct(::image_pointer & pimage, const ::size & size, ::eobject eobjectCreate, int iGoodStride)
+inline ::e_status __preserve_construct(::image_pointer & pimage, const ::size_i32 & size, ::eobject eobjectCreate, int iGoodStride)
 {
 
    return __construct(pimage, size, eobjectCreate, iGoodStride, true);
@@ -393,13 +393,13 @@ inline ::e_status __preserve_construct(::image_pointer & pimage, const ::size & 
 
 
 
-inline void copy_colorref(color32_t * pcolorrefDst, const ::size & size, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc)
+inline void copy_colorref(color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc)
 {
    return copy_colorref(pcolorrefDst, size.cx, size.cy, iStrideDst, pcolorrefSrc, iStrideSrc);
 }
 
 
-inline CLASS_DECL_AURA void copy_colorref(color32_t * pcolorrefDst, const ::point & point, const ::size & size, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc)
+inline CLASS_DECL_AURA void copy_colorref(color32_t * pcolorrefDst, const ::point_i32 & point, const ::size_i32 & size, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc)
 {
 
    byte * pDst = (byte *) pcolorrefDst;
@@ -409,10 +409,10 @@ inline CLASS_DECL_AURA void copy_colorref(color32_t * pcolorrefDst, const ::poin
 }
 
 
-inline CLASS_DECL_AURA void copy_colorref(color32_t * pcolorrefDst, const ::rect & rect, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc)
+inline CLASS_DECL_AURA void copy_colorref(color32_t * pcolorrefDst, const ::rectangle_i32 & rectangle, int iStrideDst, const color32_t * pcolorrefSrc, int iStrideSrc)
 {
 
-   return copy_colorref(pcolorrefDst, rect.top_left(), rect.size(), iStrideDst, pcolorrefSrc, iStrideSrc);
+   return copy_colorref(pcolorrefDst, rectangle.top_left(), rectangle.size(), iStrideDst, pcolorrefSrc, iStrideSrc);
 
 }
 

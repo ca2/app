@@ -58,7 +58,7 @@ i32 WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, i32 len )
    lcflags = lctype & LOCALE_LOCALEINFOFLAGSMASK;
    lctype &= 0xffff;
 
-   //TRACE( "(lcid=0x%x,lctype=0x%x,%point,%d)\n", lcid, lctype, buffer, len );
+   //TRACE( "(lcid=0x%x,lctype=0x%x,%point_i32,%d)\n", lcid, lctype, buffer, len );
 
    /* first check for overrides in the registry */
 
@@ -107,23 +107,23 @@ i32 WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, i32 len )
       lang_id = MAKELANGID(PRIMARYLANGID(lang_id), SUBLANG_DEFAULT);
 
    point = nullptr;
-   for (i = 0; i < (lctype & 0x0f); i++) point += *point + 1;
+   for (i = 0; i < (lctype & 0x0f); i++) point_i32 += *point_i32 + 1;
 
    if (lcflags & LOCALE_RETURN_NUMBER) ret = sizeof(u32)/sizeof(WCHAR);
-   else if (is_genitive_name_supported( lctype ) && *point)
+   else if (is_genitive_name_supported( lctype ) && *point_i32)
    {
       /* genitive form's stored after a nullptr separator from a nominative */
-      for (i = 1; comparison::le(i, *point); i++) if (!point[i]) break;
+      for (i = 1; comparison::le(i, *point_i32); i++) if (!point_i32[i]) break;
 
-      if (comparison::le(i, *point) && (lcflags & LOCALE_RETURN_GENITIVE_NAMES))
+      if (comparison::le(i, *point_i32) && (lcflags & LOCALE_RETURN_GENITIVE_NAMES))
       {
-         ret = *point - i + 1;
-         point += i;
+         ret = *point_i32 - i + 1;
+         point_i32 += i;
       }
       else ret = i;
    }
    else
-      ret = (lctype == LOCALE_FONTSIGNATURE) ? *point : *point + 1;
+      ret = (lctype == LOCALE_FONTSIGNATURE) ? *point_i32 : *point_i32 + 1;
 
    if (!buffer) return ret;
 
@@ -136,12 +136,12 @@ i32 WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, i32 len )
    if (lcflags & LOCALE_RETURN_NUMBER)
    {
       u32 number;
-//        WCHAR *end, *tmp = HeapAlloc( GetProcessHeap(), 0, (*point + 1) * sizeof(WCHAR) );
+//        WCHAR *end, *tmp = HeapAlloc( GetProcessHeap(), 0, (*point_i32 + 1) * sizeof(WCHAR) );
       const WCHAR *end;
-      WCHAR * tmp = (WCHAR *) malloc((*point + 1) * sizeof(WCHAR) );
+      WCHAR * tmp = (WCHAR *) malloc((*point_i32 + 1) * sizeof(WCHAR) );
       if (!tmp) return 0;
-      ::memcpy_dup( tmp, point + 1, *point * sizeof(WCHAR) );
-      tmp[*point] = 0;
+      ::memcpy_dup( tmp, point_i32 + 1, *point_i32 * sizeof(WCHAR) );
+      tmp[*point_i32] = 0;
       number = (u32) wd16_to_i64( tmp, &end, 10 );
       if (!*end)
          ::memcpy_dup( buffer, &number, sizeof(number) );
@@ -153,14 +153,14 @@ i32 WINAPI GetLocaleInfoW( LCID lcid, LCTYPE lctype, LPWSTR buffer, i32 len )
 //        HeapFree( GetProcessHeap(), 0, tmp );
       free(tmp);
 
-      //TRACE( "(lcid=0x%x,lctype=0x%x,%point,%d) returning number %d\n", lcid, lctype, buffer, len, number );
+      //TRACE( "(lcid=0x%x,lctype=0x%x,%point_i32,%d) returning number %d\n", lcid, lctype, buffer, len, number );
    }
    else
    {
-      ::memcpy_dup( buffer, point + 1, ret * sizeof(WCHAR) );
+      ::memcpy_dup( buffer, point_i32 + 1, ret * sizeof(WCHAR) );
       if (lctype != LOCALE_FONTSIGNATURE) buffer[ret-1] = 0;
 
-      //TRACE( "(lcid=0x%x,lctype=0x%x,%point,%d) returning %d %s\n", lcid, lctype, buffer, len, ret, debugstr_w(buffer) );
+      //TRACE( "(lcid=0x%x,lctype=0x%x,%point_i32,%d) returning %d %s\n", lcid, lctype, buffer, len, ret, debugstr_w(buffer) );
    }
    return ret;
 }

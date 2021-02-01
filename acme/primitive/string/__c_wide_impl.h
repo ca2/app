@@ -539,9 +539,9 @@ inline i32 wide_count_collate_case_insensitive(const widechar * psz, const widec
 inline const widechar * wide_scan(const widechar * psz, const widechar * find)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return nullptr;
 
-   if (c_is_null(find)) return FALSE;
+   if (c_is_null(find)) return nullptr;
 
    return wcspbrk(psz, find);
 
@@ -568,16 +568,16 @@ inline widechar * wide_next_token(const widechar * delimiters, widechar ** actio
 inline i32 wide_begins(const widechar * psz, const widechar * prefix)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return false;
 
-   if (c_is_null(prefix)) return FALSE;
+   if (c_is_null(prefix)) return false;
 
    strsize len = wcslen(prefix);
 
    if (len > (strsize)wcslen(psz))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -589,9 +589,9 @@ inline i32 wide_begins(const widechar * psz, const widechar * prefix)
 inline i32 wide_begins_case_insensitive(const widechar * psz, const widechar * prefix)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return false;
 
-   if (c_is_null(prefix)) return FALSE;
+   if (c_is_null(prefix)) return false;
 
    return !wide_nicmp(psz, prefix, wcslen(prefix));
 
@@ -643,9 +643,9 @@ inline const widechar * wide_begins_eat_case_insensitive(const widechar * psz, c
 inline i32 wide_ends(const widechar * psz, const widechar * suffix)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return false;
 
-   if (c_is_null(suffix)) return FALSE;
+   if (c_is_null(suffix)) return false;
 
    strsize len = wcslen(suffix);
 
@@ -654,7 +654,7 @@ inline i32 wide_ends(const widechar * psz, const widechar * suffix)
    if (end < 0)
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -666,9 +666,9 @@ inline i32 wide_ends(const widechar * psz, const widechar * suffix)
 inline i32 wide_ends_case_insensitive(const widechar * psz, const widechar * suffix)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return false;
 
-   if (c_is_null(suffix)) return FALSE;
+   if (c_is_null(suffix)) return false;
 
    strsize len = wcslen(suffix);
 
@@ -677,7 +677,7 @@ inline i32 wide_ends_case_insensitive(const widechar * psz, const widechar * suf
    if (end < 0)
    {
 
-      return FALSE;
+      return false;
 
    }
 

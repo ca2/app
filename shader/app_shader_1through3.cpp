@@ -60,21 +60,21 @@ namespace simple_shader
 
       //}
 
-      //rect rect;
+      //rectangle_i32 rectangle;
 
-      //int iSize = min(m_rect.width(), m_rect.height());
+      //int iSize = min(m_rectangle.width(), m_rectangle.height());
 
       //iSize = iSize * 3 / 4;
 
-      //rect.set_size(iSize, iSize);
+      //rectangle.set_size(iSize, iSize);
 
-      //rect.Align(e_align_center, m_rect);
+      //rectangle.Align(e_align_center, m_rectangle);
 
-      //rect.offset_x(-iSize / 5 * 3);
+      //rectangle.offset_x(-iSize / 5 * 3);
 
-      //rect.offset_x(iSize / 5 * m_iDrawing);
+      //rectangle.offset_x(iSize / 5 * m_iDrawing);
       //
-      //::sized size(0., 0.);
+      //::size_f64 size_i32(0., 0.);
       //
       //bool bDrawText = true;
       //
@@ -97,13 +97,13 @@ namespace simple_shader
       //      if (m_iDrawing == 1)
       //      {
 
-      //         font->create_pixel_font(strFontFamily, rect.height() * 80.0 / size.get_maximum_dimension(), 800);
+      //         font->create_pixel_font(strFontFamily, rectangle.height() * 80.0 / size.get_maximum_dimension(), 800);
 
       //      }
       //      else
       //      {
 
-      //         font->create_pixel_font(strFontFamily, rect.height() * 160.0 / size.get_maximum_dimension(), 800);
+      //         font->create_pixel_font(strFontFamily, rectangle.height() * 160.0 / size.get_maximum_dimension(), 800);
 
       //      }
 
@@ -148,7 +148,7 @@ namespace simple_shader
       //   else
       //   {
 
-      //      brush->CreateLinearGradientBrush(rect.top_left(), rect.bottom_right(), ARGB(255, 255, 255, 200), ARGB(255, 255, 125, 100));
+      //      brush->CreateLinearGradientBrush(rectangle.top_left(), rectangle.bottom_right(), ARGB(255, 255, 255, 200), ARGB(255, 255, 125, 100));
 
       //   }
 
@@ -158,15 +158,15 @@ namespace simple_shader
 
       //pgraphics->SelectObject(brush);
 
-      //pgraphics->ellipse(rect);
+      //pgraphics->ellipse(rectangle);
 
-      //::rect rectText;
+      //::rectangle_i32 rectText;
 
       //rectText.set_size(size);
 
       //rectText.inflate(10, 10);
 
-      //rectText.Align(e_align_center, rect);
+      //rectText.Align(e_align_center, rectangle);
 
       //pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 
 
 #define TGA_FAILED 0
@@ -17,21 +18,23 @@ class block_input :
    virtual public matter
 {
 protected:
-   ::mutex    m_mutex;
-   bool     m_bBlocked;
-public:
+   ::mutex        m_mutex;
+   bool           m_bBlocked;
+public:  
    block_input(int iSleep = 200);
 
 
    virtual ~block_input();
 
 };
+
+
 block_input::block_input( int iSleep) :
    m_mutex(e_create_new, "Global\\ca2_input")
 {
    m_mutex.lock();
    //   repeat:
-   m_bBlocked = ::BlockInput(TRUE) != FALSE;
+   m_bBlocked = ::BlockInput(true) != false;
    //{
 
    //   ::u32 dw = ::GetLastError();
@@ -54,7 +57,7 @@ block_input::~block_input()
 
    if (m_bBlocked)
    {
-      ::BlockInput(FALSE);
+      ::BlockInput(false);
    }
    m_mutex.unlock();
 
@@ -67,7 +70,7 @@ block_input::~block_input()
 
 
 
-bool is_good_active_w(oswindow w)
+bool is_good_active_w(HWND w)
 {
 
    if (::GetForegroundWindow() == w || ::GetActiveWindow() == w || ::GetFocus() == w)
@@ -921,7 +924,7 @@ BOOL CALLBACK TerminateGuiAppEnum(HWND hwnd, LPARAM lParam);
 
    // If we can't open the process with PROCESS_TERMINATE rights,
    // then we give up immediately.
-   hProc = OpenProcess(SYNCHRONIZE | PROCESS_TERMINATE, FALSE,
+   hProc = OpenProcess(SYNCHRONIZE | PROCESS_TERMINATE, false,
                        dwPID);
 
    if (hProc == nullptr)
@@ -961,7 +964,7 @@ BOOL CALLBACK TerminateGuiAppEnum(HWND hwnd, LPARAM lParam)
 
    }
 
-   return TRUE;
+   return true;
 }
 
 

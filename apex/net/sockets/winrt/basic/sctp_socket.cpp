@@ -325,7 +325,7 @@ namespace sockets
          features of SCTP.  sd is the socket descriptor on which the message pointed to by msg of length len is received.
 
          If from is not nullptr, the source address of the message is filled in. The argument fromlen  is  a  value-result  parameter.
-         initialized  to  the  size  of the buffer associated with from , and modified on return to indicate the actual size of the
+         initialized  to  the  size_i32  of the buffer associated with from , and modified on return to indicate the actual size_i32 of the
          address stored.
 
          sinfo is a pointer to a sctp_sndrcvinfo structure to be filled upon receipt of the message.  msg_flags is a pointer  to  a

@@ -11,13 +11,13 @@ public:
 
 
 class CLASS_DECL_AURA size_image :
-   virtual public map < size, ::image_pointer >
+   virtual public map < size_i32, ::image_pointer >
 {
 public:
 
 
-   ::image_pointer & operator[](const ::size & size);
-   ::image_pointer & get(const ::size & size, bool & bExists);
+   ::image_pointer & operator[](const ::size_i32 & size);
+   ::image_pointer & get(const ::size_i32 & size, bool & bExists);
 
 
 };

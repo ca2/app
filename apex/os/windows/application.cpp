@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 
 //
 //#define TGA_FAILED 0
@@ -32,7 +33,7 @@
 //{
 //   m_mutex.lock();
 //   //   repeat:
-//   m_bBlocked = ::BlockInput(TRUE) != FALSE;
+//   m_bBlocked = ::BlockInput(true) != false;
 //   //{
 //
 //   //   ::u32 dw = ::GetLastError();
@@ -55,7 +56,7 @@
 //
 //   if (m_bBlocked)
 //   {
-//      ::BlockInput(FALSE);
+//      ::BlockInput(false);
 //   }
 //   m_mutex.unlock();
 //
@@ -922,7 +923,7 @@
 //
 //   // If we can't open the process with PROCESS_TERMINATE rights,
 //   // then we give up immediately.
-//   hProc = OpenProcess(SYNCHRONIZE | PROCESS_TERMINATE, FALSE,
+//   hProc = OpenProcess(SYNCHRONIZE | PROCESS_TERMINATE, false,
 //                       dwPID);
 //
 //   if (hProc == nullptr)
@@ -959,6 +960,6 @@
 //      PostMessage(hwnd, e_message_close, 0, 0);
 //   }
 //
-//   return TRUE;
+//   return true;
 //}
 //

@@ -74,7 +74,7 @@ namespace factory
    {
    public:
 
-      critical_section m_cs;
+      critical_section   m_criticalsection;
 
       BASE_TYPE* m_pfree;
 
@@ -87,44 +87,11 @@ namespace factory
 
       
 
-      virtual __pointer(BASE_TYPE) _call_new()
-      {
+      virtual __pointer(BASE_TYPE) _call_new();
+      
 
-         {
-
-            cslock lock(&m_cs);
-
-            if (m_pfree)
-            {
-
-               auto pNew = m_pfree;
-
-               m_pfree = pNew->m_pnext;
-
-               pNew->reuse();
-
-               return pNew;
-
-            }
-
-         }
-
-         return factory < TYPE, BASE_TYPE >::_call_new();
-
-      }
-
-
-      void return_back(BASE_TYPE* p)
-      {
-
-         cslock lock(&m_cs);
-
-         p->m_pnext = m_pfree;
-
-         m_pfree = p;
-
-      }
-
+      void return_back(BASE_TYPE * p);
+      
       void free_all()
       {
 

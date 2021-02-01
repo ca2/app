@@ -85,12 +85,12 @@ namespace aura
 
    CLASS_DECL_AURA critical_section * g_pcsFont = nullptr;
 
-   CLASS_DECL_AURA mutex * g_pmutexWindowing = nullptr;
+   CLASS_DECL_AURA ::mutex * g_pmutexWindowing = nullptr;
 
    CLASS_DECL_AURA string_map < int_to_string > * g_pmapFontFaceName = nullptr;
 
-   ::mutex* g_pmutexChildren;
-   ::mutex* g_pmutexThreadWaitClose;
+   ::mutex * g_pmutexChildren;
+   ::mutex * g_pmutexThreadWaitClose;
    //string_map < __pointer(::apex::library) >* g_pmapLibrary;
    //string_map < PFN_NEW_AURA_LIBRARY >* g_pmapNewAuraLibrary;
 
@@ -125,7 +125,7 @@ namespace aura
 
    __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
-   //::mutex* g_pmutexGlobals;
+   //::mutex * g_pmutexGlobals;
 
    //critical_section* g_pcsGlobal;
 
@@ -153,12 +153,12 @@ namespace aura
 //#endif
 
 
-   //::mutex* g_pmutexCred;
+   //::mutex * g_pmutexCred;
 
 
    //class ::exception_engine* g_pexceptionengine;
 
-   ::mutex* g_pmutexMessageDispatch;
+   ::mutex * g_pmutexMessageDispatch;
 
 
    //array < matter* >* g_paAura;
@@ -196,15 +196,15 @@ namespace aura
 
    // aura commented
    //int g_iMemoryCountersStartable;
-   //mutex * g_pmutexTrait;
+   //::mutex * g_pmutexTrait;
    //::mutex * g_pmutexFactory;
 
    // aura commented
-   ::mutex* g_pmutexUiDestroyed;
+   ::mutex * g_pmutexUiDestroyed;
 
 //#ifdef ANDROID
 //
-//   ::mutex* g_pmutexOutputDebugStringA;
+//   ::mutex * g_pmutexOutputDebugStringA;
 //
 //#endif
 
@@ -236,9 +236,9 @@ namespace aura
 //#if defined(LINUX) || defined(__APPLE__)
 //
 //
-//   ::mutex* g_pmutexTz;
+//   ::mutex * g_pmutexTz;
 //
-//   ::mutex* g_pmutexThreadHandleLock;
+//   ::mutex * g_pmutexThreadHandleLock;
 //
 //
 //#endif // defined(LINUX) || defined(__APPLE__)
@@ -247,7 +247,7 @@ namespace aura
 //#ifdef __APPLE__
 //
 //
-//   ::mutex* g_pmutexCvt;
+//   ::mutex * g_pmutexCvt;
 //
 //
 //#endif
@@ -361,7 +361,7 @@ namespace aura
       //plex_heap_alloc_array * g_pplexheapallocarray = nullptr;
 
       //g_iMemoryCountersStartable = 0;
-      //mutex * g_pmutexTrait;
+      //::mutex * g_pmutexTrait;
       //::mutex * g_pmutexFactory;
 
       g_pmutexUiDestroyed = 0;

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 #include "acme/id.h"
 #include "apex/platform/app_core.h"
 #include "apex/platform/static_setup.h"
@@ -41,7 +42,7 @@ void defer_term_ui();
 CLASS_DECL_ACME bool is_verbose();
 
 
-int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int iMargin);
+int_bool point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, int iMargin);
 
 #ifdef _UWP
 
@@ -180,7 +181,7 @@ namespace apex
    }
    
 
-   index session::get_main_monitor(RECT32* prect)
+   index session::get_main_monitor(RECTANGLE_I32* prectangle)
    {
 
       return -1;
@@ -196,7 +197,7 @@ namespace apex
    }
 
    
-   bool  session::get_monitor_rect(index iMonitor, RECT32* prect)
+   bool  session::get_monitor_rect(index iMonitor, RECTANGLE_I32* prectangle)
    {
 
       return false;
@@ -212,7 +213,7 @@ namespace apex
    }
 
 
-   bool  session::get_desk_monitor_rect(index iMonitor, RECT32* prect)
+   bool  session::get_desk_monitor_rect(index iMonitor, RECTANGLE_I32* prectangle)
    {
 
       return false;
@@ -220,7 +221,7 @@ namespace apex
    }
 
 
-   index session::get_main_wkspace(RECT32* prect)
+   index session::get_main_wkspace(RECTANGLE_I32* prectangle)
    {
 
       return -1;
@@ -236,7 +237,7 @@ namespace apex
    }
 
 
-   bool  session::get_wkspace_rect(index iWkspace, RECT32* prect)
+   bool  session::get_wkspace_rect(index iWkspace, RECTANGLE_I32* prectangle)
    {
 
       return false;
@@ -252,7 +253,7 @@ namespace apex
    }
   
    
-   bool  session::get_desk_wkspace_rect(index iWkspace, RECT32* prect)
+   bool  session::get_desk_wkspace_rect(index iWkspace, RECTANGLE_I32* prectangle)
    {
 
       return false;
@@ -276,7 +277,7 @@ namespace apex
    }
 
 
-   bool session::wkspace_to_monitor(RECT32* prect, index iMonitor, index iWkspace)
+   bool session::wkspace_to_monitor(RECTANGLE_I32* prectangle, index iMonitor, index iWkspace)
    {
 
       return false;
@@ -284,7 +285,7 @@ namespace apex
    }
 
 
-   bool session::monitor_to_wkspace(RECT32* prect, index iWkspace, index iMonitor)
+   bool session::monitor_to_wkspace(RECTANGLE_I32* prectangle, index iWkspace, index iMonitor)
    {
 
       return false;
@@ -292,7 +293,7 @@ namespace apex
    }
 
 
-   bool session::wkspace_to_monitor(RECT32* prect)
+   bool session::wkspace_to_monitor(RECTANGLE_I32* prectangle)
    {
 
       return false;
@@ -300,7 +301,7 @@ namespace apex
    }
 
 
-   bool session::monitor_to_wkspace(RECT32* prect)
+   bool session::monitor_to_wkspace(RECTANGLE_I32* prectangle)
    {
 
       return false;
@@ -308,7 +309,7 @@ namespace apex
    }
 
 
-   void session::get_monitor(rect_array& rectaMonitor, rect_array& rectaIntersect, const ::rect& rect)
+   void session::get_monitor(rect_array& rectaMonitor, rect_array& rectaIntersect, const ::rectangle_i32& rectangle)
    {
 
 
@@ -351,10 +352,10 @@ namespace apex
 
 
 
-   size session::get_window_minimum_size()
+   size_i32 session::get_window_minimum_size()
    {
 
-      return size(300, 300);
+      return size_i32(300, 300);
 
    }
 
@@ -1241,7 +1242,7 @@ namespace apex
    //}
 
 
-  void session::get_cursor_pos(POINT32 * ppoint)
+  void session::get_cursor_pos(POINT_I32 * ppoint)
   {
 
 
@@ -1249,11 +1250,11 @@ namespace apex
 //     if (m_bSystemSynchronizedCursor)
 //     {
 //
-//        POINT32 point;
+//        POINT_I32 point_i32;
 //
 //        ::GetCursorPos(&point);
 //
-//        m_pointCursor = point;
+//        m_pointCursor = point_i32;
 //
 //     }
 
@@ -1275,7 +1276,7 @@ namespace apex
 //   }
 //
 //
-   void session::set_cursor_pos(const ::point & point)
+   void session::set_cursor_pos(const ::point_i32 & point)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -1355,14 +1356,14 @@ namespace apex
 
    i64 g_i_get_best_zoneing = 0;
 
-   index session::_get_best_zoneing(edisplay * pedisplay, ::rect * prect, const ::rect & rectRequest, bool bPreserveSize)
+   index session::_get_best_zoneing(edisplay * pedisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectRequest, bool bPreserveSize)
    {
 
-      ::rect rect(rectRequest);
+      ::rectangle_i32 rectangle(rectRequest);
 
-      ::rect rectWkspace;
+      ::rectangle_i32 rectWkspace;
 
-      index iBestWkspace = get_best_wkspace(&rectWkspace, rect);
+      index iBestWkspace = get_best_wkspace(&rectWkspace, rectangle);
 
       edisplay edisplay;
 
@@ -1370,7 +1371,7 @@ namespace apex
 
       double dMargin = System.m_dpi;
 
-      if (ZONEING_COMPARE::is_equal(rect.top, rectWkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
+      if (ZONEING_COMPARE::is_equal(rectangle.top, rectWkspace.top, dMargin, !(edisplayPrevious & e_display_top)))
       {
 
          edisplay |= e_display_top;
@@ -1378,18 +1379,18 @@ namespace apex
          if (bPreserveSize)
          {
 
-            rect.move_top_to(rectWkspace.top);
+            rectangle.move_top_to(rectWkspace.top);
 
          }
          else
          {
 
-            rect.top = rectWkspace.top;
+            rectangle.top = rectWkspace.top;
 
          }
 
       }
-      else if (ZONEING_COMPARE::is_equal(rect.bottom, rectWkspace.bottom, dMargin, !(edisplayPrevious & e_display_bottom)))
+      else if (ZONEING_COMPARE::is_equal(rectangle.bottom, rectWkspace.bottom, dMargin, !(edisplayPrevious & e_display_bottom)))
       {
 
          edisplay |= e_display_bottom;
@@ -1397,13 +1398,13 @@ namespace apex
          if (bPreserveSize)
          {
 
-            rect.move_bottom_to(rectWkspace.bottom);
+            rectangle.move_bottom_to(rectWkspace.bottom);
 
          }
          else
          {
 
-            rect.bottom = rectWkspace.bottom;
+            rectangle.bottom = rectWkspace.bottom;
 
          }
 
@@ -1417,13 +1418,13 @@ namespace apex
          if (bPreserveSize)
          {
 
-            rect.move_left_to(rectWkspace.left);
+            rectangle.move_left_to(rectWkspace.left);
 
          }
          else
          {
 
-            rect.left = rectWkspace.left;
+            rectangle.left = rectWkspace.left;
 
          }
 
@@ -1436,13 +1437,13 @@ namespace apex
          if (bPreserveSize)
          {
 
-            rect.move_right_to(rectWkspace.right);
+            rectangle.move_right_to(rectWkspace.right);
 
          }
          else
          {
 
-            rect.right = rectWkspace.right;
+            rectangle.right = rectWkspace.right;
 
          }
 
@@ -1452,16 +1453,16 @@ namespace apex
          && is_different(edisplay & e_display_left, edisplay & e_display_right))
       {
 
-         if (ZONEING_COMPARE::is_centered(rectWkspace.top, rect.top, rect.bottom, rectWkspace.bottom))
+         if (ZONEING_COMPARE::is_centered(rectWkspace.top, rectangle.top, rectangle.bottom, rectWkspace.bottom))
          {
 
             edisplay |= e_display_bottom;
 
             edisplay |= e_display_top;
 
-            rect.bottom = rectWkspace.bottom;
+            rectangle.bottom = rectWkspace.bottom;
 
-            rect.top = rectWkspace.top;
+            rectangle.top = rectWkspace.top;
 
          }
 
@@ -1471,16 +1472,16 @@ namespace apex
          && is_different(edisplay & e_display_top, edisplay & e_display_bottom))
       {
 
-         if (ZONEING_COMPARE::is_centered(rectWkspace.left, rect.left, rect.right, rectWkspace.right))
+         if (ZONEING_COMPARE::is_centered(rectWkspace.left, rectangle.left, rectangle.right, rectWkspace.right))
          {
 
             edisplay |= e_display_left;
 
             edisplay |= e_display_right;
 
-            rect.left = rectWkspace.left;
+            rectangle.left = rectWkspace.left;
 
-            rect.right = rectWkspace.right;
+            rectangle.right = rectWkspace.right;
 
          }
 
@@ -1551,19 +1552,19 @@ namespace apex
       if (is_docking_appearance(edisplay))
       {
 
-         *prect = rect;
+         *prectangle = rectangle;
 
       }
       else if (edisplay == e_display_zoomed)
       {
 
-         *prect = rectWkspace;
+         *prectangle = rectWkspace;
 
       }
       else
       {
 
-         *prect = rectRequest;
+         *prectangle = rectRequest;
 
       }
 
@@ -1602,10 +1603,10 @@ namespace apex
       //      + ::str::from(rectWkspace.top) + ","
       //      + ::str::from(rectWkspace.right) + ","
       //      + ::str::from(rectWkspace.bottom) + " " +
-      //      "r" + ::str::from(prect->left) + ","
-      //      + ::str::from(prect->top) + ","
-      //      + ::str::from(prect->right) + ","
-      //      + ::str::from(prect->bottom) + " " +
+      //      "r" + ::str::from(prectangle->left) + ","
+      //      + ::str::from(prectangle->top) + ","
+      //      + ::str::from(prectangle->right) + ","
+      //      + ::str::from(prectangle->bottom) + " " +
       //      strE + " " + strP + "\n");
 
       //}
@@ -1631,37 +1632,37 @@ namespace apex
    }
 
 
-   index session::get_best_monitor(RECT32 * prect, const rect & rectParam, ::e_activation eactivation)
+   index session::get_best_monitor(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectParam, ::e_activation eactivation)
    {
 
       index iMatchingMonitor = -1;
 
       i64 iBestArea = -1;
 
-      ::rect rectMatch;
+      ::rectangle_i32 rectMatch;
 
-      ::rect rect(rectParam);
+      ::rectangle_i32 rectangle(rectParam);
 
-      if (eactivation & e_activation_under_mouse_cursor || rect.is_null())
+      if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
       {
 
-         ::point pointCursor = get_cursor_pos();
+         ::point_i32 pointCursor = get_cursor_pos();
 
-         rect.set(pointCursor - ::size(5, 5), ::size(10, 10));
+         rectangle.set(pointCursor - ::size_i32(5, 5), ::size_i32(10, 10));
 
       }
 
       for (index iMonitor = 0; iMonitor < get_monitor_count(); iMonitor++)
       {
 
-         ::rect rectIntersect;
+         ::rectangle_i32 rectIntersect;
 
-         ::rect rectMonitor;
+         ::rectangle_i32 rectMonitor;
 
          if (get_monitor_rect(iMonitor, rectMonitor))
          {
 
-            if (rectIntersect.top_left_null_intersect(rect, rectMonitor))
+            if (rectIntersect.top_left_null_intersect(rectangle, rectMonitor))
             {
 
                if (rectIntersect.area() > iBestArea)
@@ -1676,7 +1677,7 @@ namespace apex
                }
 
             }
-            else if (rectMonitor.contains(rect))
+            else if (rectMonitor.contains(rectangle))
             {
 
                iMatchingMonitor = iMonitor;
@@ -1692,10 +1693,10 @@ namespace apex
       if (iMatchingMonitor >= 0)
       {
 
-         if (prect != nullptr)
+         if (prectangle != nullptr)
          {
 
-            *prect = rectMatch;
+            *prectangle = rectMatch;
 
          }
 
@@ -1703,44 +1704,44 @@ namespace apex
 
       }
 
-      iMatchingMonitor = get_main_monitor(prect);
+      iMatchingMonitor = get_main_monitor(prectangle);
 
       return iMatchingMonitor;
 
    }
 
 
-   index session::get_best_wkspace(::rect * prect, const rect & rectParam, ::e_activation eactivation)
+   index session::get_best_wkspace(::rectangle_i32 * prectangle, const rectangle_i32 & rectParam, ::e_activation eactivation)
    {
 
       index iMatchingWkspace = -1;
 
       i64 iBestArea = -1;
 
-      ::rect rectMatch;
+      ::rectangle_i32 rectMatch;
 
-      ::rect rect(rectParam);
+      ::rectangle_i32 rectangle(rectParam);
 
-      if (eactivation & e_activation_under_mouse_cursor || rect.is_null())
+      if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
       {
 
-         ::point pointCursor = get_cursor_pos();
+         ::point_i32 pointCursor = get_cursor_pos();
 
-         rect.set(pointCursor - ::size(5, 5), ::size(10, 10));
+         rectangle.set(pointCursor - ::size_i32(5, 5), ::size_i32(10, 10));
 
       }
 
       for (index iWkspace = 0; iWkspace < get_wkspace_count(); iWkspace++)
       {
 
-         ::rect rectIntersect;
+         ::rectangle_i32 rectIntersect;
 
-         ::rect rectMonitor;
+         ::rectangle_i32 rectMonitor;
 
          if (get_wkspace_rect(iWkspace, rectMonitor))
          {
 
-            if (rectIntersect.top_left_null_intersect(rect, rectMonitor))
+            if (rectIntersect.top_left_null_intersect(rectangle, rectMonitor))
             {
 
                if (rectIntersect.area() > iBestArea)
@@ -1755,7 +1756,7 @@ namespace apex
                }
 
             }
-            else if (rectMonitor.contains(rect))
+            else if (rectMonitor.contains(rectangle))
             {
 
                iMatchingWkspace = iWkspace;
@@ -1771,10 +1772,10 @@ namespace apex
       if (iMatchingWkspace >= 0)
       {
 
-         if(prect != nullptr)
+         if(prectangle != nullptr)
          {
 
-            *prect = rectMatch;
+            *prectangle = rectMatch;
 
          }
 
@@ -1782,43 +1783,43 @@ namespace apex
 
       }
 
-      iMatchingWkspace = get_main_wkspace(prect);
+      iMatchingWkspace = get_main_wkspace(prectangle);
 
       return iMatchingWkspace;
 
    }
 
 
-   index session::get_good_iconify(RECT32 * prect, const rect & rectParam)
+   index session::get_good_iconify(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectParam)
    {
 
-      ::rect rectMonitor;
+      ::rectangle_i32 rectMonitor;
 
       index iMatchingMonitor = get_best_monitor(rectMonitor, rectParam);
 
-      prect->left = rectMonitor.left;
+      prectangle->left = rectMonitor.left;
 
-      prect->top = rectMonitor.top;
+      prectangle->top = rectMonitor.top;
 
-      prect->right = rectMonitor.left;
+      prectangle->right = rectMonitor.left;
 
-      prect->bottom = rectMonitor.top;
+      prectangle->bottom = rectMonitor.top;
 
       return iMatchingMonitor;
 
    }
 
 
-   //index session::initial_frame_position(RECT32 * prect, const rect & rectParam, bool bMove, ::user::interaction * pinteraction)
+   //index session::initial_frame_position(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectParam, bool bMove, ::user::interaction * pinteraction)
    //{
 
-   //   ::rect rectRestore(rectParam);
+   //   ::rectangle_i32 rectRestore(rectParam);
 
-   //   ::rect rectMonitor;
+   //   ::rectangle_i32 rectMonitor;
 
    //   index iMatchingMonitor = get_best_monitor(rectMonitor, rectParam);
 
-   //   ::size sizeMin;
+   //   ::size_i32 sizeMin;
 
    //   if (pinteraction != nullptr)
    //   {
@@ -1833,7 +1834,7 @@ namespace apex
 
    //   }
 
-   //   ::rect rectIntersect;
+   //   ::rectangle_i32 rectIntersect;
 
    //   if (bMove)
    //   {
@@ -1894,7 +1895,7 @@ namespace apex
 
    //      }
 
-   //      *prect = rectRestore;
+   //      *prectangle = rectRestore;
 
    //      return iMatchingMonitor;
 
@@ -1905,7 +1906,7 @@ namespace apex
    //      if (!bMove)
    //      {
 
-   //         *prect = rectIntersect;
+   //         *prectangle = rectIntersect;
 
    //      }
 
@@ -1916,20 +1917,20 @@ namespace apex
    //}
 
 
-   //index session::get_window_restore_1(RECT32 * prect, const rect & rectParam, ::user::interaction * pinteraction, edisplay edisplayRestore)
+   //index session::get_window_restore_1(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectParam, ::user::interaction * pinteraction, edisplay edisplayRestore)
    //{
 
-   //   ::rect rectRestore(rectParam);
+   //   ::rectangle_i32 rectRestore(rectParam);
 
-   //   ::rect rectWkspace;
+   //   ::rectangle_i32 rectWkspace;
 
-   //   ::size sizeMin;
+   //   ::size_i32 sizeMin;
 
    //   index iMatchingWkspace;
 
-   //   ::size sizeBroad;
+   //   ::size_i32 sizeBroad;
 
-   //   ::size sizeCompact;
+   //   ::size_i32 sizeCompact;
 
    //   if (pinteraction != nullptr)
    //   {
@@ -1988,7 +1989,7 @@ namespace apex
 
    //      }
 
-   //      ::rect rectWkspaceBitSmaller(rectWkspace);
+   //      ::rectangle_i32 rectWkspaceBitSmaller(rectWkspace);
 
    //      rectWkspaceBitSmaller.deflate(5);
 
@@ -1999,7 +2000,7 @@ namespace apex
 
    //      }
 
-   //      *prect = rectRestore;
+   //      *prectangle = rectRestore;
 
    //      return iMatchingWkspace;
 
@@ -2014,14 +2015,14 @@ namespace apex
    //}
 
 
-   //index session::get_window_restore_2(RECT32* prect, const rect& rectParam, ::user::interaction* pinteraction, edisplay edisplayRestore)
+   //index session::get_window_restore_2(RECTANGLE_I32* prectangle, const rectangle_i32& rectParam, ::user::interaction* pinteraction, edisplay edisplayRestore)
    //{
 
-   //   ::rect rect(rectParam);
+   //   ::rectangle_i32 rectangle(rectParam);
 
-   //   index iBestWkspace = get_window_restore_1(prect, rect, pinteraction, edisplayRestore);
+   //   index iBestWkspace = get_window_restore_1(prectangle, rectangle_i32, pinteraction, edisplayRestore);
 
-   //   bool bChangedSize = ::size(prect) != rectParam.size();
+   //   bool bChangedSize = ::size_i32(prectangle) != rectParam.size();
 
    //   if (iBestWkspace < 0 && !bChangedSize)
    //   {
@@ -2030,11 +2031,11 @@ namespace apex
 
    //   }
 
-   //   ::rect rectWkspace;
+   //   ::rectangle_i32 rectWkspace;
 
-   //   ::rect rectStart(prect);
+   //   ::rectangle_i32 rectStart(prectangle);
 
-   //   ::point pointLineStart(::top_left(prect));
+   //   ::point_i32 pointLineStart(::top_left(prectangle));
 
    //   get_wkspace_rect(iBestWkspace, rectWkspace);
 
@@ -2045,7 +2046,7 @@ namespace apex
 
    //      pointLineStart.offset(49, 49);
 
-   //      rect.move_to(pointLineStart);
+   //      rectangle.move_to(pointLineStart);
 
    //   }
 
@@ -2055,28 +2056,28 @@ namespace apex
    //      do
    //      {
 
-   //         if (!point_is_window_origin(::top_left(prect), pinteraction->get_handle(), 49))
+   //         if (!point_is_window_origin(::top_left(prectangle), pinteraction->get_handle(), 49))
    //         {
 
    //            return iBestWkspace;
 
    //         }
 
-   //         rect = *prect;
+   //         rectangle_i32 = *prectangle;
 
-   //         if (rect > pinteraction->m_sizeRestoreCompact)
+   //         if (rectangle_i32 > pinteraction->m_sizeRestoreCompact)
    //         {
 
-   //            rect.offset(49, 0);
+   //            rectangle.offset(49, 0);
 
-   //            if (!rectWkspace.contains(rect))
+   //            if (!rectWkspace.contains(rectangle))
    //            {
 
    //               pointLineStart.offset(0, 49);
 
-   //               rect.move_to(pointLineStart);
+   //               rectangle.move_to(pointLineStart);
 
-   //               if (!rectWkspace.contains(rect))
+   //               if (!rectWkspace.contains(rectangle))
    //               {
 
    //                  break;
@@ -2089,35 +2090,35 @@ namespace apex
    //         else
    //         {
 
-   //            rect.offset(49, 49);
+   //            rectangle.offset(49, 49);
 
    //         }
 
-   //         *prect = rect;
+   //         *prectangle = rectangle_i32;
 
    //      }
-   //      while (rectWkspace.contains(rect));
+   //      while (rectWkspace.contains(rectangle));
 
    //   }
 
-   //   if (rect.size() >= pinteraction->m_sizeRestoreCompact)
+   //   if (rectangle.size() >= pinteraction->m_sizeRestoreCompact)
    //   {
 
    //      pointLineStart = rectWkspace.origin();
 
    //      pointLineStart.offset(49, 49);
 
-   //      rect.move_to(pointLineStart);
+   //      rectangle.move_to(pointLineStart);
 
-   //      *prect = rect;
+   //      *prectangle = rectangle_i32;
 
    //      return iBestWkspace;
 
    //   }
 
-   //   rect = rectStart;
+   //   rectangle_i32 = rectStart;
 
-   //   rect.set_size(pinteraction->m_sizeRestoreCompact);
+   //   rectangle.set_size(pinteraction->m_sizeRestoreCompact);
 
    //   if(::is_window(pinteraction->get_handle()))
    //   {
@@ -2125,20 +2126,20 @@ namespace apex
    //      do
    //      {
 
-   //         if (!point_is_window_origin(::top_left(prect), pinteraction->get_handle(), 49))
+   //         if (!point_is_window_origin(::top_left(prectangle), pinteraction->get_handle(), 49))
    //         {
 
    //            return iBestWkspace;
 
    //         }
 
-   //         rect = *prect;
+   //         rectangle_i32 = *prectangle;
 
-   //         rect.offset(49, 49);
+   //         rectangle.offset(49, 49);
 
-   //         *prect = rect;
+   //         *prectangle = rectangle_i32;
 
-   //      } while (rectWkspace.contains(rect));
+   //      } while (rectWkspace.contains(rectangle));
 
    //   }
 
@@ -2146,7 +2147,7 @@ namespace apex
 
    //   pointLineStart.offset(49, 49);
 
-   //   rect.move_to(pointLineStart);
+   //   rectangle.move_to(pointLineStart);
 
    //   if(::is_window(pinteraction->get_handle()))
    //   {
@@ -2154,25 +2155,25 @@ namespace apex
    //      do
    //      {
 
-   //         if (!point_is_window_origin(::top_left(prect), pinteraction->get_handle(), 49))
+   //         if (!point_is_window_origin(::top_left(prectangle), pinteraction->get_handle(), 49))
    //         {
 
    //            return iBestWkspace;
 
    //         }
 
-   //         rect = *prect;
+   //         rectangle_i32 = *prectangle;
 
-   //         rect.offset(49, 0);
+   //         rectangle.offset(49, 0);
 
-   //         if (!rectWkspace.contains(rect))
+   //         if (!rectWkspace.contains(rectangle))
    //         {
 
    //            pointLineStart.offset(0, 49);
 
-   //            rect.move_to(pointLineStart);
+   //            rectangle.move_to(pointLineStart);
 
-   //            if (!rectWkspace.contains(rect))
+   //            if (!rectWkspace.contains(rectangle))
    //            {
 
    //               break;
@@ -2181,9 +2182,9 @@ namespace apex
 
    //         }
 
-   //         *prect = rect;
+   //         *prectangle = rectangle_i32;
 
-   //      } while (rectWkspace.contains(rect));
+   //      } while (rectWkspace.contains(rectangle));
 
    //   }
 
@@ -2191,21 +2192,21 @@ namespace apex
 
    //   pointLineStart.offset(49, 49);
 
-   //   rect.move_to(pointLineStart);
+   //   rectangle.move_to(pointLineStart);
 
-   //   *prect = rect;
+   //   *prectangle = rectangle_i32;
 
    //   return iBestWkspace;
 
    //}
 
 
-   //index session::get_good_move(RECT32 * prect, const rect & rectParam, ::user::interaction * pinteraction)
+   //index session::get_good_move(RECTANGLE_I32 * prectangle, const rectangle_i32 & rectParam, ::user::interaction * pinteraction)
    //{
 
-   //   index iMatchingMonitor = initial_frame_position(prect, rectParam, true, pinteraction);
+   //   index iMatchingMonitor = initial_frame_position(prectangle, rectParam, true, pinteraction);
 
-   //   if (__memcmp(prect, &rectParam, sizeof(const rect &)))
+   //   if (__memcmp(prectangle, &rectParam, sizeof(const rectangle_i32 &)))
    //   {
 
    //      return iMatchingMonitor;
@@ -2233,11 +2234,11 @@ namespace apex
    //   else
    //   {
 
-   //      ::rect rect;
+   //      ::rectangle_i32 rectangle;
 
-   //      pinteraction->get_window_rect(rect);
+   //      pinteraction->get_window_rect(rectangle);
 
-   //      return get_best_wkspace(nullptr, rect);
+   //      return get_best_wkspace(nullptr, rectangle);
 
    //   }
 
@@ -2477,7 +2478,7 @@ ret:
    }
 
 
-   ::e_status session::defer_initialize_host_window(LPCRECT32 lpcrect)
+   ::e_status session::defer_initialize_host_window(const RECTANGLE_I32 * lpcrect)
    {
 
       return ::success;
@@ -2773,7 +2774,7 @@ namespace apex
    {
 
 
-      return Context.os().is_remote_session();
+      return get_context()->os().is_remote_session();
 
 
    }
@@ -3150,7 +3151,7 @@ namespace apex
 //   }
 
 
-   //void session::_001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect& rect, ::draw2d::brush_pointer& brushText)
+   //void session::_001OnDefaultTabPaneDrawTitle(::user::tab_pane& pane, ::user::tab* ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32& rectangle, ::draw2d::brush_pointer& brushText)
    //{
 
    //   string_array& straTitle = pane.m_straTitle;
@@ -3166,17 +3167,17 @@ namespace apex
    //   else
    //   {
 
-   //      ::rect rectText(rect);
+   //      ::rectangle_i32 rectText(rectangle);
 
 
    //      ::draw2d::font_pointer font;
    //      font = pgraphics->get_current_font();
-   //      size sSep = ptab->get_data()->m_sizeSep;
-   //      ::rect rectEmp;
+   //      size_i32 sSep = ptab->get_data()->m_sizeSep;
+   //      ::rectangle_i32 rectEmp;
    //      for (index i = 0; i < straTitle.get_size(); i++)
    //      {
    //         string str = straTitle[i];
-   //         size s = pane.m_sizeaText[i];
+   //         size_i32 s = pane.m_sizeaText[i];
    //         rectText.right = rectText.left + s.cx;
    //         pgraphics->_DrawText(str, rectTexte_bottom_left, e_draw_text_no_prefix);
    //         rectText.left += s.cx;

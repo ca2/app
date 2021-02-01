@@ -5,7 +5,7 @@
 		// TEMPLATE CLASS _Bitset_base
 template<i32>
 	struct _Bitset_base
-	{	// default matter size
+	{	// default matter size_i32
 	typedef u32 _Ty;
 	};
 
@@ -182,7 +182,7 @@ public:
 		if (_Str.size() < _Pos)
 			_Xran();	// _Pos off end
 		if (_Str.size() - _Pos < _Count)
-			_Count = _Str.size() - _Pos;	// trim _Count to size
+			_Count = _Str.size() - _Pos;	// trim _Count to size_i32
 		if (_Bits < _Count)
 			_Count = _Bits;	// trim _Count to length of bitset
 		_Tidy();
@@ -357,7 +357,7 @@ public:
 		}
 
 	size_t size() const
-		{	// return size of bitset
+		{	// return size_i32 of bitset
 		return (_Bits);
 		}
 
@@ -456,12 +456,12 @@ private:
 
 	void _Xoflo() const
 	{	// report converted value too big to represent
-		__throw(overflow_error("bitset<N> overflow"));
+		__throw(overflow_exception("bitset<N> overflow"));
 	}
 
 	void _Xran() const
 	{	// report bit index out of range
-		__throw(range_error("invalid bitset<N> position"));
+		__throw(range_exception("invalid bitset<N> position"));
 	}
 
 };

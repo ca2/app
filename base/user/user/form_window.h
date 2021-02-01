@@ -22,10 +22,10 @@ namespace user
 
 
       //using ::user::interaction::_001IsPointInside;
-      virtual bool _001IsPointInside(interaction * pinteraction, point64 point) override;
-      virtual void control_get_window_rect(interaction * pinteraction, RECT32 * prect) override;
+      virtual bool _001IsPointInside(interaction * pinteraction, point_i64 point_i32) override;
+      virtual void control_get_window_rect(interaction * pinteraction, RECTANGLE_I32 * prectangle) override;
 
-      virtual void control_get_client_rect(interaction * pinteraction, RECT32 * prect) override;
+      virtual void control_get_client_rect(interaction * pinteraction, RECTANGLE_I32 * prectangle) override;
 
       //using form_callback::update;
       //using form_control::update;
@@ -69,15 +69,15 @@ namespace user
 
       DECL_GEN_SIGNAL(_001OnAppLanguage);
 
-      bool OnCommand(WPARAM wparam, LPARAM lparam);
+      bool OnCommand(wparam wparam, lparam lparam);
 
-      bool OnCommandButton(interaction * pinteraction, ::u32 uNotificationCode, LPARAM lparam);
+      bool OnCommandButton(interaction * pinteraction, ::u32 uNotificationCode, lparam lparam);
 
-      bool OnCommandCheckBox(interaction * pinteraction, ::u32 uNotificationCode, LPARAM lparam);
+      bool OnCommandCheckBox(interaction * pinteraction, ::u32 uNotificationCode, lparam lparam);
 
-      bool OnCommandComboBox(interaction * pinteraction, ::u32 uNotificationCode, LPARAM lparam);
+      bool OnCommandComboBox(interaction * pinteraction, ::u32 uNotificationCode, lparam lparam);
 
-      bool OnCommandEdit(interaction * pinteraction, ::u32 uNotificationCode, LPARAM lparam);
+      bool OnCommandEdit(interaction * pinteraction, ::u32 uNotificationCode, lparam lparam);
 
 
 

@@ -13,7 +13,7 @@ struct image_header
 
    e_image_type               m_etype;
    color32_t                  m_cr;
-   ::size                     m_size;
+   ::size_i32                     m_size;
 
 
 #ifdef __cplusplus
@@ -55,7 +55,7 @@ struct image_header
    int width() const { return m_size.cx; }
    int height() const { return m_size.cy; }
    int area() const { return m_size.area(); }
-   ::size size() const { return m_size; }
+   ::size_i32 size() const { return m_size; }
 
    void reset()
    {

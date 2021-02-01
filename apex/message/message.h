@@ -1,6 +1,9 @@
 #pragma once
 
 
+using lresult = iptr;
+
+
 namespace message
 {
 
@@ -25,8 +28,8 @@ namespace message
       oswindow                   m_oswindow;
       wparam                     m_wparam;
       lparam                     m_lparam;
-      LRESULT                    m_lresult;
-      enumeration < enum_flag >           m_eflagMessage;
+      lresult                    m_lresult;
+      enumeration < enum_flag >  m_eflagMessage;
 
       index                      m_iRouteIndex;
       index                      m_iParam;
@@ -68,8 +71,8 @@ namespace message
 
       bool previous(); // returns bRet
 
-      virtual void set_lresult(LRESULT lresult);
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam);
+      virtual void set_lresult(lresult lresult);
+      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam);
 
 
    };

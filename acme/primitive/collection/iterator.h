@@ -11,9 +11,9 @@ public:
    TYPE *         m_p;
 
 
-   random_access_iterator(TYPE * point)
+   random_access_iterator(TYPE * point_i32)
    {
-      m_p = point;
+      m_p = point_i32;
    }
 
    random_access_iterator(const random_access_iterator & it)
@@ -103,9 +103,9 @@ public:
 
    const TYPE *            m_p;
 
-   const_random_access_iterator(const TYPE * point)
+   const_random_access_iterator(const TYPE * point_i32)
    {
-      m_p = point;
+      m_p = point_i32;
    }
 
    const_random_access_iterator(const random_access_iterator < TYPE > & it)

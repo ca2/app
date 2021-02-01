@@ -157,7 +157,7 @@ namespace user
 
          auto point = psession->get_cursor_pos();
 
-         ::rect rectWindow;
+         ::rectangle_i32 rectWindow;
 
          get_window_rect(rectWindow);
 

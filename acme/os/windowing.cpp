@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "_os.h"
+#include "acme/operating_system.h"
 #include <stdio.h>
 #include "os/cross/windows/_windows.h"
 
@@ -48,7 +48,7 @@ void windowing_output_debug_string(const char * pszDebugString)
 
 
 
-//CLASS_DECL_ACME void update_application_session_cursor(void * pvoidApp, const point & pointCursor)
+//CLASS_DECL_ACME void update_application_session_cursor(void * pvoidApp, const point_i32 & pointCursor)
 //{
 //
 //   ::acme::application * papp = (::acme::application *) pvoidApp;

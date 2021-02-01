@@ -68,7 +68,7 @@ namespace exception
 {
 
 
-   exception::exception(const char * pszMessage, const ::e_status & estatus, i32 iSkip, void * caller_address)
+   exception::exception(const char * pszMessage, const ::enum_status & estatus, i32 iSkip, void * caller_address)
    {
 
 #if !defined(__SANITIZE_ADDRESS__)

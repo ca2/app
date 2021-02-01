@@ -48,7 +48,7 @@ void * os_impl_alloc(memsize size)
 //   else if(size > 2_mb)
 //   {
 //
-//      output_debug_string("size > 2_mb");
+//      output_debug_string("size_i32 > 2_mb");
 //
 //   }
 

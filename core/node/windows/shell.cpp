@@ -287,7 +287,7 @@ namespace windows
 
             {
 
-               size s;
+               size_i32 s;
 
                s.cx = 48;
 

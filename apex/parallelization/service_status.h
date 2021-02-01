@@ -12,17 +12,23 @@
 #ifdef WINDOWS_DESKTOP
 
 
-class CLASS_DECL_APEX service_status : public SERVICE_STATUS
+class CLASS_DECL_APEX service_status :
+   public SERVICE_STATUS
 {
 public:
 
+   
+   char sz[80];
+
+
    service_status()
    {
-      ASSERT(sizeof (*this) == sizeof (SERVICE_STATUS));
 
-      ::ZeroMemory(this,
-         sizeof (SERVICE_STATUS));
+      __zero(this);
+
    }
+
+
 };
 
 

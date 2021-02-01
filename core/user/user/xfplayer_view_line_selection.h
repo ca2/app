@@ -101,9 +101,9 @@ public:
 
    XfplayerViewLineSelection & operator =(XfplayerViewLineSelection & selection);
 
-   bool OnMouseMove(xfplayer_view_line & viewline, ::u32 user, const ::point & point);
-   bool OnLButtonDown(xfplayer_view_line & viewline, ::u32 user, const ::point & point);
-   bool OnLButtonUp(xfplayer_view_line & viewline, ::u32 user, const ::point & point);
+   bool OnMouseMove(xfplayer_view_line & viewline, ::u32 user, const ::point_i32 & point);
+   bool OnLButtonDown(xfplayer_view_line & viewline, ::u32 user, const ::point_i32 & point);
+   bool OnLButtonUp(xfplayer_view_line & viewline, ::u32 user, const ::point_i32 & point);
    bool OnTimer(xfplayer_view_line & viewline, ::u32 user);
 
 };

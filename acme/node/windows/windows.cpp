@@ -1,6 +1,9 @@
 ﻿#include "framework.h"
+#include "acme/operating_system.h"
 #include "acme/node/windows/_windows.h"
 #include "acme/os/windows_common/file.h"
+#include <Shlobj.h>
+#include <ShellApi.h>
 
 
 namespace windows
@@ -25,10 +28,10 @@ namespace windows
    }
 
 
-   bool CLASS_DECL_ACME shell_get_special_folder_path(oswindow oswindow,::file::path &str,i32 csidl,bool fCreate)
+   bool CLASS_DECL_ACME shell_get_special_folder_path(HWND hwnd,::file::path &str,i32 csidl,bool fCreate)
    {
 
-      return ::SHGetSpecialFolderPathW(oswindow,wtostring(str,MAX_PATH * 8),csidl,fCreate) != FALSE;
+      return ::SHGetSpecialFolderPathW(hwnd,wtostring(str,MAX_PATH * 8),csidl,fCreate) != false;
 
    }
 
@@ -116,7 +119,7 @@ namespace windows
 
    {
 
-      return ::DeleteFileW(::str::international::utf8_to_unicode(pFileName)) != FALSE;
+      return ::DeleteFileW(::str::international::utf8_to_unicode(pFileName)) != false;
 
 
    }
@@ -155,7 +158,7 @@ namespace windows
 
 
 
-//LRESULT CALLBACK __window_procedure(HWND oswindow, const ::id & id, WPARAM wparam, LPARAM lparam);
+//LRESULT CALLBACK __window_procedure(HWND oswindow, const ::id & id, wparam wparam, lparam lparam);
 //
 //WNDPROC get_window_procedure()
 //{

@@ -74,7 +74,7 @@ namespace windows
          {
             if (!DdeCmpStringHandles((HSZ)hsz2, pshellopen->m_hszAppName))
             {
-               return (HDDEDATA)TRUE;
+               return (HDDEDATA)true;
             }
          }
          return (HDDEDATA)FALSE;

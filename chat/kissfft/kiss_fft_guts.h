@@ -36,7 +36,7 @@ struct kiss_fft_state{
   Explanation of macros dealing with complex math:
 
    C_MUL(m,a,b)         : m = a*b
-   C_FIXDIV( ca , div )  : if a fixed point impl., ca /= div. noop otherwise
+   C_FIXDIV( ca , div )  : if a fixed point_i32 impl., ca /= div. noop otherwise
    C_SUB( res, a,b)     : res = a - b
    C_SUBFROM( res , a)  : res -= a
    C_ADDTO( res , a)    : res += a

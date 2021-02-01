@@ -1,7 +1,5 @@
 #include "framework.h"
-#include "apex/os/_c.h"
-#include "apex/os/_.h"
-#include "apex/os/_os.h"
+#include "acme/operating_system.h"
 
 
 retry_multi_lock::retry_multi_lock(const sync_array & synca, duration durationLock, duration durationSleep, i32 iRetry, bool bInitialLock)
@@ -59,7 +57,7 @@ sync_result retry_multi_lock::lock(bool bWaitForAll, u32 dwWakeMask /* = 0 */)
       if (dwWakeMask == 0)
       {
 
-         iResult = ::WaitForMultipleObjectsEx((u32)m_hsynca.get_count(), m_hsynca.get_data(), bWaitForAll, m_durationLock.u32_millis(), FALSE);
+         iResult = ::WaitForMultipleObjectsEx((u32)m_hsynca.get_count(), m_hsynca.get_data(), bWaitForAll, m_durationLock.u32_millis(), false);
 
       }
 #ifdef _UWP
@@ -89,7 +87,7 @@ sync_result retry_multi_lock::lock(bool bWaitForAll, u32 dwWakeMask /* = 0 */)
             for (index i = 0; i < m_hsynca.get_count(); i++)
             {
 
-               m_baLocked[i] = TRUE;
+               m_baLocked[i] = true;
 
             }
 
@@ -99,7 +97,7 @@ sync_result retry_multi_lock::lock(bool bWaitForAll, u32 dwWakeMask /* = 0 */)
          else
          {
 
-            m_baLocked[iIndex] = TRUE;
+            m_baLocked[iIndex] = true;
 
             break;
 
@@ -139,7 +137,7 @@ bool retry_multi_lock::unlock()
 
    }
 
-   return TRUE;
+   return true;
 
 }
 

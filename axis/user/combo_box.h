@@ -31,7 +31,7 @@ namespace user
       };
 
 
-      ::size                     m_sizeFull;
+      ::size_i32                     m_sizeFull;
       string                     m_strText;
       bool                       m_bCaseSensitiveMatch;
       ::millis                     m_millisShowComboList;
@@ -68,7 +68,7 @@ namespace user
 
       virtual enum_input_type preferred_input_type() const override;
 
-      virtual void get_simple_drop_down_open_arrow_polygon(pointd_array& pointa) override;
+      virtual void get_simple_drop_down_open_arrow_polygon(point_f64_array& pointa) override;
 
       virtual void set_current_item(const ::user::item & item, const ::action_context & action_context) override;
 
@@ -92,7 +92,7 @@ namespace user
 
       //virtual bool create_interaction(::user::interaction * pinteractionParent, const ::id & id) override;
 
-      virtual bool get_element_rect(RECT32 * prect, enum_element eelement) override;
+      virtual bool get_element_rect(RECTANGLE_I32 * prectangle, enum_element eelement) override;
 
       virtual void on_hit_test(::user::item & item) override;
 
@@ -169,7 +169,7 @@ namespace user
 
       i32 SetExtendedUI(bool bExtended = TRUE);
       bool GetExtendedUI();
-      void GetDroppedControlRect(RECT32 * prect);
+      void GetDroppedControlRect(RECTANGLE_I32 * prectangle);
 
       bool GetDroppedState();
 

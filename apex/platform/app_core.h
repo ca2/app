@@ -21,19 +21,19 @@ class raw_fail {};
 
 
 class os_local;
-
-
-class main_runner_data
-{
-public:
-   void *      m_p;
-#ifdef WINDOWS
-   HINSTANCE m_hinstance;
-#endif
-
-};
-typedef int MAIN_RUNNER(main_runner_data * pmainrunnerdata);
-typedef MAIN_RUNNER * LPFN_MAIN_RUNNER;
+//
+//
+//class main_runner_data
+//{
+//public:
+//   void *      m_p;
+//#ifdef WINDOWS
+//   HINSTANCE m_hinstance;
+//#endif
+//
+//};
+//typedef int MAIN_RUNNER(main_runner_data * pmainrunnerdata);
+//typedef MAIN_RUNNER * LPFN_MAIN_RUNNER;
 
 #include "apex_main_data.h"
 
@@ -67,7 +67,7 @@ public:
 
    bool on_result(const ::e_status & estatus);
 
-   static ::u32 WINAPI MAIN(void * pvoid);
+   //static ::u32 WINAPI MAIN(void * pvoid);
 
    //bool system_beg();
 

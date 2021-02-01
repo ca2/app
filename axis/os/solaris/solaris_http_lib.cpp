@@ -143,7 +143,7 @@ i32 tiny_http::t_read_buffer (i32 fd, char * buffer, i32 length, void (*callback
 //char *additional_header;	/* additional header */
 //querymode mode; 		/* type of query */
 //char *data;  /* Data to send after header. If nullptr, not data is sent */
-//i32 length;  /* size of data */
+//i32 length;  /* size_i32 of data */
 //i32 *pfd;    /* pointer to variable where to set file descriptor value */
 
 tiny_http::http_retcode tiny_http::t_query(const char * command,  const char * url,  const char * additional_header, querymode mode, char * data, i32 length, i32 * pfd)
@@ -285,7 +285,7 @@ tiny_http::http_retcode tiny_http::t_put(const char * data, i32 length, i32 over
  */
 //     char *filename; /* name of the ressource to read */
 //   char **pdata; /* address of a pointer variable which will be set
-//	      to point toward allocated memory containing read data.*/
+//	      to point_i32 toward allocated memory containing read data.*/
 //i32  *plength;/* address of integer variable which will be set to
 //		      length of the read data */
 //   char *typebuf; /* allocated buffer where the read data type is returned.

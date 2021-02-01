@@ -35,7 +35,7 @@ namespace experience
 
 
          virtual i32 calc_button_size(::draw2d::graphics_pointer & pgraphics) override;
-         virtual ::rect get_button_margin(enum_button ebutton);
+         virtual ::rectangle_i32 get_button_margin(enum_button ebutton);
 
 
       };

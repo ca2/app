@@ -23,7 +23,7 @@
   		user tries to manually shutdown the program.
   Mod history:	05/21/02 RSB	Created.
 
-  The point of this is handling the situation in which the user manually
+  The point_i32 of this is handling the situation in which the user manually
   tries to shutdown the program by closing its graphics window.  We can't
   do much about it if the text-mode window is closed manually, but in the
   case of the graphics window we can allow the programmer to decide whether

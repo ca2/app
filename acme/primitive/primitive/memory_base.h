@@ -277,11 +277,6 @@ public:
 
 #endif
 
-#ifdef WINDOWS
-
-   comptr < IStream > create_istream() const;
-
-#endif
 
 
    memory_base & erase(memsize pos = 0,memsize len = -1);

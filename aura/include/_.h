@@ -1511,7 +1511,7 @@ class form_document;
 //class thread;
 //class channel;
 //class critical_section;
-//class mutex;
+//class ::mutex;
 //class id;
 //
 //namespace colorertake5
@@ -1623,10 +1623,10 @@ class form_document;
 //
 //};
 //
-//enum enum_no_init
+//enum enum_no_initialize
 //{
 //
-//   e_no_init,
+//   e_no_initialize,
 //
 //};
 //
@@ -1935,14 +1935,14 @@ class form_document;
 //struct SIZEPARENTPARAMS
 //{
 //
-//   RECT32  rect;       // parent client rectangle (trim as appropriate)
-//   SIZE32  sizeTotal;  // total size on each side as on_layout proceeds
+//   RECTANGLE_I32  rectangle_i32;       // parent client rectangle_i32 (trim as appropriate)
+//   SIZE_I32  sizeTotal;  // total size_i32 on each side as on_layout proceeds
 //   bool  bStretch;   // should stretch to fill all space
 //
 //};
 //
 //
-//typedef struct RECTD RECTD;
+//typedef struct RECTANGLE_F64 RECTANGLE_F64;
 //
 //
 
@@ -2431,7 +2431,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //
 //#include "aura/primitive/math/c_number.h"
 //
-//using wparam = c_number < WPARAM >;
+//using wparam = c_number < wparam >;
 //
 //
 //
@@ -2517,7 +2517,7 @@ CLASS_DECL_AURA bool __node_aura_pos_term();
 //template < typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE >
 //class size_type;
 //
-//using size = size_type < SIZE32, POINT32, RECT32 >;
+//using size = size_type < SIZE_I32, POINT_I32, RECTANGLE_I32 >;
 //
 //
 //#include "aura/primitive/math/cast.h"

@@ -11,7 +11,7 @@ namespace str
    inline  constexpr auto     char_length_to_byte_length(const_wd32char_trigger, strsize nCharLength);
    inline  constexpr auto     byte_length_to_char_length(const_wd32char_trigger, memsize nByteLength);
 
-   inline  wd32char * char_next(const wd32char * point) noexcept;
+   inline  wd32char * char_next(const wd32char * point_i32) noexcept;
    inline  bool               isalpha(wd32char ch) noexcept;
    inline  bool               isdigit(wd32char ch) noexcept;
    inline  bool               isspace(wd32char ch) noexcept;
@@ -45,19 +45,14 @@ namespace str
 
    inline  u32                format_message(u32 dwFlags, const void * pSource, u32 dwMessageID, u32 dwLanguageID, wd32char * pszBuffer, u32 nSize, va_list * pArguments) noexcept;
    inline  strsize            string_safe_length(const wd32char * psz) noexcept;
-   inline  u32                get_environment_variable(const wd32char * pszVar, wd32char * pszBuffer, u32 dwSize);
+   CLASS_DECL_ACME u32        get_environment_variable(const wd32char * pszVar, wd32char * pszBuffer, u32 dwSize);
 
    inline  void               copy_string(wd32char * pszDst, const wd32char * pszSrc);
    inline  void               copy_chars(wd32char * pchDest, const wd32char * pchSrc, strsize nChars) noexcept;
    inline  void               copy_chars(wd32char * pchDest, size_t nDestLen, const wd32char * pchSrc, strsize nChars) noexcept;
    inline  void               copy_chars_overlapped(wd32char * pchDest, const wd32char * pchSrc, strsize nChars) noexcept;
 
-#ifdef WINDOWS
 
-   inline  BSTR               AllocSysString(const wd32char * pchData, strsize nDataLength) noexcept;
-   inline  bool               ReAllocSysString(BSTR * pbstr, const wd32char * pchData, strsize nDataLength) noexcept;
-
-#endif
 
 } // namespace str
 

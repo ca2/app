@@ -671,10 +671,10 @@ LRESULT edit_window::_OnEditKillFocus(VOID)
 
 //LRESULT edit_window::_OnSize(WPARAM wParam, LPARAM lParam)
 //{
-//    //adjust the size and location of the status bar
+//    //adjust the size_i32 and location of the status bar
 //    //SendMessage(m_hwndStatus, e_message_size, wParam, lParam);
 //
-//    RECT32    rc;
+//    RECTANGLE_I32    rc;
 //
 //    //GetWindowRect(m_hwndStatus, &rc);
 //    
@@ -855,7 +855,7 @@ void edit_window::_UpdateStatusBar(void)
     int     nParts[2];
     HDC     hdc;
     //HFONT   hFont;
-    SIZE32    size;
+    SIZE_I32    size;
     TCHAR   szComposition[MAX_PATH];
 
     //hdc = GetDC(m_hwndStatus);

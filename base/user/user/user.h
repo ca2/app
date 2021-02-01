@@ -85,10 +85,10 @@ namespace base
       virtual bool track_popup_menu(::user::interaction* pinteraction, ::user::menu_item* pitem, i32 iFlags, ::message::message* pmessage);
       virtual __pointer(::user::menu) track_popup_xml_menu_text(::user::interaction* pinteraction, string strXml, i32 iFlags, ::message::message* pmessage);
       virtual __pointer(::user::menu) track_popup_xml_matter_menu(::user::interaction* pinteraction, const char* pszMatter, i32 iFlags, ::message::message* pmessage);
-      virtual bool track_popup_menu(::user::interaction* pinteraction, ::user::menu_item* pitem, i32 iFlags, const ::point& point);
-      virtual __pointer(::user::menu) track_popup_xml_menu(::user::interaction* pinteraction, const ::payload& varXml, i32 iFlags, const ::point& point, const ::size& sizeMinimum = ::size());
-      virtual __pointer(::user::menu) track_popup_xml_matter_menu(::user::interaction* pinteraction, const char* pszMatter, i32 iFlags, const ::point& pointParam);
-      virtual __pointer(::user::menu) track_popup_xml_menu_file(::user::interaction* pinteraction, ::payload varXmlFile, i32 iFlags, const ::point& point, const ::size& sizeMinimum = ::size());
+      virtual bool track_popup_menu(::user::interaction* pinteraction, ::user::menu_item* pitem, i32 iFlags, const ::point_i32& point);
+      virtual __pointer(::user::menu) track_popup_xml_menu(::user::interaction* pinteraction, const ::payload& varXml, i32 iFlags, const ::point_i32& point, const ::size_i32& sizeMinimum = ::size());
+      virtual __pointer(::user::menu) track_popup_xml_matter_menu(::user::interaction* pinteraction, const char* pszMatter, i32 iFlags, const ::point_i32& pointParam);
+      virtual __pointer(::user::menu) track_popup_xml_menu_file(::user::interaction* pinteraction, ::payload varXmlFile, i32 iFlags, const ::point_i32& point, const ::size_i32& sizeMinimum = ::size());
 
 
       virtual void defer_instantiate_user_style(const char* pszUiInteractionLibrary = nullptr);

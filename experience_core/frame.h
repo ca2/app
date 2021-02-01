@@ -30,7 +30,7 @@
                ::draw2d::pen_pointer               m_penShadow1;
                ::draw2d::pen_pointer               m_penDkShadow1;
                color32_t                            m_colorDkShadow;
-               size                                m_minSize;
+               size_i32                                m_minSize;
 
                ::draw2d::pen_pointer               m_penHollow0;
                ::draw2d::pen_pointer               m_penHollow1;
@@ -69,23 +69,23 @@
 
                virtual void on_style_change();
 
-               //virtual void _001OnBeforeMove(const RECT32 & lpcrectWindow);
+               //virtual void _001OnBeforeMove(const RECTANGLE_I32 & lpcrectWindow);
 
-               //virtual void _001OnBeforeSize(const RECT32 & lpcrectWindow);
+               //virtual void _001OnBeforeSize(const RECTANGLE_I32 & lpcrectWindow);
 
                virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
                virtual bool get_element_rect(LPRECT32 lprect, enum_element eelement);
 
-               virtual bool _001HitTest(const POINT32 &point, enum_element &eelementParam);
+               virtual bool _001HitTest(const POINT_I32 &point, enum_element &eelementParam);
 
-               virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rect & rect);
+               virtual void Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle);
 
-               virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, color32_t cr, byte bAlpha);
+               virtual void ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, color32_t cr, byte bAlpha);
 
 //               virtual ::user::front_end_schema * get_user_front_end_schema();
 
-               virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight);
+               virtual void Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight);
 
                virtual void on_draw_frame(::draw2d::graphics_pointer & pgraphics);
 

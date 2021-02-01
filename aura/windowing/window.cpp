@@ -17,7 +17,7 @@
 
 extern SnLauncheeContext *g_psncontext;
 
-mutex *x11_mutex();
+::mutex *x11_mutex();
 
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT ::trace_object(::trace_category_windowing)
@@ -448,7 +448,7 @@ namespace windowing
 
       d1->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      d1->g()->stretch(d1->rect(), pimage->g(), pimage->rect());
+      d1->g()->stretch(d1->rectangle_i32(), pimage->g(), pimage->rectangle_i32());
 
       memory m(m_pimpl->m_puserinteraction->get_context_application());
 
@@ -510,7 +510,7 @@ namespace windowing
    
       d1->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
    
-      d1->get_graphics()->StretchBlt(0, 0, d1.width(), d1.height(), point->get_graphics(), 0, 0, point.width(), point.height());
+      d1->get_graphics()->StretchBlt(0, 0, d1.width(), d1.height(), point_i32->get_graphics(), 0, 0, point.width(), point.height());
    
       image d2(w->m_pimpl->m_puserinteraction->create_new, this);
    
@@ -523,7 +523,7 @@ namespace windowing
    
       d2->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
    
-      d2->get_graphics()->StretchBlt(0, 0, d2.width(), d2.height(), point->get_graphics(), 0, 0, point.width(), point.height());
+      d2->get_graphics()->StretchBlt(0, 0, d2.width(), d2.height(), point_i32->get_graphics(), 0, 0, point.width(), point.height());
    
       memory m(w->m_pimpl->m_puserinteraction->get_context_application());
    
@@ -856,12 +856,12 @@ namespace windowing
    }
 
 
-   void window::full_screen(const ::rect &rect)
+   void window::full_screen(const ::rectangle_i32 &rectangle)
    {
 
-      ::rect rBest;
+      ::rectangle_i32 rBest;
 
-      int iMonitor = best_xinerama_monitor(m_pimpl->m_puserinteraction, rect, rBest);
+      int iMonitor = best_xinerama_monitor(m_pimpl->m_puserinteraction, rectangle_i32, rBest);
 
       windowing_output_debug_string("\n::window::full_screen 1");
 
@@ -889,7 +889,7 @@ namespace windowing
 
       }
 
-      ::rect rWindow;
+      ::rectangle_i32 rWindow;
 
       rWindow.left = attr.x;
       rWindow.top = attr.y;
@@ -1041,6 +1041,49 @@ namespace windowing
    }
 
 
+   ::e_status window::set_focus()
+   {
+
+      __throw(interface_only_exception());
+
+      return ::error_interface_only;
+
+   }
+
+
+   __pointer(window) window::get_active_window()
+   {
+
+      __throw(interface_only_exception());
+
+      return nullptr;
+
+   }
+
+
+   ::e_status window::set_active_window()
+   {
+
+      __throw(interface_only_exception());
+
+      return ::error_interface_only;
+
+   }
+
+
+   ::e_status window::show_window(const ::e_display & edisplay, const ::e_activation & eactivation)
+   {
+
+      UNREFERENCED_PARAMETER(edisplay);
+      UNREFERENCED_PARAMETER(eactivation);
+
+      __throw(interface_only_exception());
+
+      return ::error_interface_only;
+
+   }
+
+
    iptr window::get_window_long_ptr(i32 nIndex)
    {
 
@@ -1075,7 +1118,7 @@ namespace windowing
    }
 
 
-   bool window::_001ClientToScreen(POINT32 *ppoint)
+   bool window::_001ClientToScreen(POINT_I32 *ppoint)
    {
 
       return true;
@@ -1083,7 +1126,7 @@ namespace windowing
    }
 
 
-   bool window::_001ScreenToClient(POINT32 *ppoint)
+   bool window::_001ScreenToClient(POINT_I32 *ppoint)
    {
 
       return true;
@@ -1134,7 +1177,7 @@ namespace windowing
          if (point != nullptr)
          {
 
-            lStatus = (long) *point;
+            lStatus = (long) *point_i32;
 
          }
 

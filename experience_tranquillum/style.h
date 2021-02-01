@@ -47,7 +47,7 @@ namespace experience
          //      virtual bool on_ui_event(::user::enum_event eevent, ::user::e_object eobject, ::user::interaction * pframewindow) override;
 
       bool _001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics,::user::tab * ptab) override;
-      void _001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::rect & rect,::draw2d::brush_pointer & brushText) override;
+      void _001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectangle,::draw2d::brush_pointer & brushText) override;
 
       virtual bool _001OnTabLayout(::draw2d::graphics_pointer& pgraphics, ::user::tab * ptab) override;
 

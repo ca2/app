@@ -1,6 +1,6 @@
 #pragma once
 
-
+#error ""
 #include <ddeml.h>
 
 

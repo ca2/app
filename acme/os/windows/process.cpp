@@ -1,18 +1,24 @@
 ﻿#include "framework.h"
+#include "acme/operating_system.h"
+#include <ShellApi.h>
+
+
 #include "process.h"
 
 
 #undef User
+#undef Node
 
 
 #include <Wtsapi32.h>
 #include <Userenv.h>
+#include <PSapi.h>
 
 
 HANDLE dup_handle(HANDLE h)
 {
 
-   DuplicateHandle(GetCurrentProcess(), ::GetCurrentThread(), GetCurrentProcess(), &h, 0, FALSE, DUPLICATE_SAME_ACCESS);
+   DuplicateHandle(GetCurrentProcess(), ::GetCurrentThread(), GetCurrentProcess(), &h, 0, false, DUPLICATE_SAME_ACCESS);
 
    return h;
 
@@ -467,6 +473,7 @@ i32 get_current_process_affinity_order()
 
 }
 
+
 CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder)
 {
 
@@ -505,7 +512,7 @@ bool process_modules(string_array & stra, u32 processID)
 
    u32 i;
 
-   hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, processID);
+   hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, false, processID);
 
    if (nullptr == hProcess)
       return false;
@@ -612,7 +619,7 @@ bool load_modules_diff(string_array & straOld, string_array & straNew, const cha
          // double check, ensure, that the module has not been already loaded
          // it may happen by loading a missing module that loads dependencies that satisfies straOld modules state.
 
-         if (::GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, straOld[i], &hmodule) == FALSE || hmodule == nullptr)
+         if (::GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, straOld[i], &hmodule) == false || hmodule == nullptr)
          {
 
             try
@@ -755,7 +762,7 @@ string module_path_from_pid(u32 pid)
 
 
 
-   HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, pid);
+   HANDLE hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, false, pid);
 
    if (hProcess == nullptr)
       return "";
@@ -899,7 +906,7 @@ CLASS_DECL_ACME bool process_contains_module(string & strImage, ::u32 processID,
 
    index i;
 
-   hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, processID);
+   hProcess = OpenProcess(PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, false, processID);
 
    if (nullptr == hProcess)
       return false;
@@ -1048,7 +1055,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //{
 //   //PROCESS_INFORMATION pi;
 //   //STARTUPINFO si;
-//   BOOL bResult = FALSE;
+//   BOOL bResult = false;
 //   DWORD dwSessionId, winlogonPid;
 //   HANDLE hUserToken, hUserTokenDup, hPToken, hProcess;
 //   DWORD dwCreationFlags;
@@ -1090,7 +1097,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //         // We found a winlogon process...
 //         // make sure it's running in the console session
 //         DWORD winlogonSessId = 0;
-//         HANDLE h = ::OpenProcess(PROCESS_QUERY_INFORMATION, FALSE, procEntry.th32ProcessID);
+//         HANDLE h = ::OpenProcess(PROCESS_QUERY_INFORMATION, false, procEntry.th32ProcessID);
 //         if (ProcessIdToSessionId(procEntry.th32ProcessID, &winlogonSessId))
 //         {
 //            if (winlogonSessId == dwSessionId)
@@ -1121,7 +1128,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //   //ZeroMemory(&pi,sizeof(pi));
 //   TOKEN_PRIVILEGES tp;
 //   LUID luid;
-//   hProcess = OpenProcess(MAXIMUM_ALLOWED, FALSE, winlogonPid);
+//   hProcess = OpenProcess(MAXIMUM_ALLOWED, false, winlogonPid);
 //
 //   if (!::OpenProcessToken(hProcess, TOKEN_ADJUST_PRIVILEGES | TOKEN_QUERY
 //      | TOKEN_DUPLICATE | TOKEN_ASSIGN_PRIMARY | TOKEN_ADJUST_SESSIONID
@@ -1147,7 +1154,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //   SetTokenInformation(hUserTokenDup,
 //      TokenSessionId, (void*)(DWORD_PTR)dwSessionId, sizeof(DWORD));
 //
-//   if (!AdjustTokenPrivileges(hUserTokenDup, FALSE, &tp, sizeof(TOKEN_PRIVILEGES),
+//   if (!AdjustTokenPrivileges(hUserTokenDup, false, &tp, sizeof(TOKEN_PRIVILEGES),
 //      (PTOKEN_PRIVILEGES)nullptr, nullptr))
 //   {
 //      int abc = GetLastError();
@@ -1161,7 +1168,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //
 //   LPVOID pEnv = nullptr;
 //
-//   if (LIBCALL(userenv, CreateEnvironmentBlock)(&pEnv, hUserTokenDup, TRUE))
+//   if (LIBCALL(userenv, CreateEnvironmentBlock)(&pEnv, hUserTokenDup, true))
 //   {
 //      dwCreationFlags |= CREATE_UNICODE_ENVIRONMENT;
 //   }
@@ -1176,7 +1183,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //      (wchar_t*)(const wchar_t *) wstring(pszCommand),                 // command line
 //      nullptr,            // pointer to process SECURITY_ATTRIBUTES
 //      nullptr,               // pointer to thread SECURITY_ATTRIBUTES
-//      FALSE,              // handles are not inheritable
+//      false,              // handles are not inheritable
 //      dwCreationFlags,     // creation flags
 //      pEnv,               // pointer to _new environment block
 //      wstring(pszDir),               // name of current directory
@@ -1219,7 +1226,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //
 //   tp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
 //
-//   if (!AdjustTokenPrivileges(h, FALSE, &tp, sizeof(TOKEN_PRIVILEGES), (PTOKEN_PRIVILEGES)nullptr, nullptr))
+//   if (!AdjustTokenPrivileges(h, false, &tp, sizeof(TOKEN_PRIVILEGES), (PTOKEN_PRIVILEGES)nullptr, nullptr))
 //   {
 //
 //      int iError = GetLastError();
@@ -1238,7 +1245,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //{
 //   //PROCESS_INFORMATION pi;
 //   //STARTUPINFO si;
-//   BOOL bResult = FALSE;
+//   BOOL bResult = false;
 //   //   DWORD dwSessionId,winlogonPid;
 //   HANDLE hUserTokenDup, hProcess, hPToken;
 //   DWORD dwCreationFlags;
@@ -1255,7 +1262,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //   //ZeroMemory(&pi,sizeof(pi));
 //
 ////   LUID luid;
-//   //hProcess = OpenProcess(MAXIMUM_ALLOWED,FALSE,winlogonPid);
+//   //hProcess = OpenProcess(MAXIMUM_ALLOWED,false,winlogonPid);
 //   hProcess = ::GetCurrentProcess();
 //
 //   //hPToken = hUserToken;
@@ -1269,33 +1276,33 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //   if (!enable_windows_token_privilege(hPToken, SE_DEBUG_NAME))
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
 //   if (!enable_windows_token_privilege(hPToken, SE_CREATE_TOKEN_NAME))
 //   {
-//      return FALSE;
+//      return false;
 //   }
 //
 //   if (!enable_windows_token_privilege(hPToken, SE_TCB_NAME))
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
 //   if (!enable_windows_token_privilege(hPToken, SE_ASSIGNPRIMARYTOKEN_NAME))
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
 //   if (!enable_windows_token_privilege(hPToken, SE_INCREASE_QUOTA_NAME))
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
@@ -1311,7 +1318,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //      string str;
 //      str.Format("lookup Privilege value Error: %u\n", dwError);
 //      message_box(str, "Help Me", e_message_box_ok);
-//      return FALSE;
+//      return false;
 //   }
 //   if (!DuplicateTokenEx(hUserToken, TOKEN_ALL_ACCESS, nullptr, SecurityDelegation, TokenPrimary, &hUserTokenDup))
 //   {
@@ -1327,7 +1334,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //
 //   LPVOID pEnv = nullptr;
 //
-//   if (LIBCALL(userenv, CreateEnvironmentBlock)(&pEnv, hUserTokenDup, TRUE))
+//   if (LIBCALL(userenv, CreateEnvironmentBlock)(&pEnv, hUserTokenDup, true))
 //   {
 //      dwCreationFlags |= CREATE_UNICODE_ENVIRONMENT;
 //   }
@@ -1342,7 +1349,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //      (wchar_t*)(const wchar_t*) wstring(pszCommand),                 // command line
 //      nullptr,            // pointer to process SECURITY_ATTRIBUTES
 //      nullptr,               // pointer to thread SECURITY_ATTRIBUTES
-//      FALSE,              // handles are not inheritable
+//      false,              // handles are not inheritable
 //      dwCreationFlags,     // creation flags
 //      pEnv,               // pointer to _new environment block
 //      wstring(pszDir),               // name of current directory
@@ -1362,7 +1369,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 //   //CloseHandle(hUserTokenDup);
 //   //CloseHandle(hPToken);
 //
-//   return TRUE;
+//   return true;
 //}
 //
 
@@ -1370,7 +1377,7 @@ CLASS_DECL_ACME void shared_library_process(dword_array & dwa, string_array & st
 CLASS_DECL_ACME int_bool is_process_running(::u32 pid)
 {
 
-   HANDLE process = OpenProcess(SYNCHRONIZE, FALSE, pid);
+   HANDLE process = OpenProcess(SYNCHRONIZE, false, pid);
 
    DWORD ret = WaitForSingleObject(process, 0);
 

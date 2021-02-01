@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/operating_system.h"
 #include "acme/node/windows/_windows.h"
 
 
@@ -146,7 +147,7 @@ namespace windows
 
       m_strRoot = ::str::international::unicode_to_utf8(wstrRoot);
 
-      return TRUE;
+      return true;
 
    }
 
@@ -161,7 +162,7 @@ namespace windows
       if (m_pFoundInfo != nullptr && pTimeStamp != nullptr)
       {
          *pTimeStamp = m_pFoundInfo->ftLastAccessTime;
-         return TRUE;
+         return true;
       }
       else
          return false;
@@ -178,7 +179,7 @@ namespace windows
       if (m_pFoundInfo != nullptr && pTimeStamp != nullptr)
       {
          *pTimeStamp = m_pFoundInfo->ftLastWriteTime;
-         return TRUE;
+         return true;
       }
       else
          return false;
@@ -195,7 +196,7 @@ namespace windows
       if (m_pFoundInfo != nullptr && pTimeStamp != nullptr)
       {
          *pTimeStamp = m_pFoundInfo->ftCreationTime;
-         return TRUE;
+         return true;
       }
       else
          return false;
@@ -211,8 +212,8 @@ namespace windows
 
       if (m_pFoundInfo != nullptr)
       {
-         refTime = ::datetime::time(m_pFoundInfo->ftLastAccessTime);
-         return TRUE;
+         refTime = __time(m_pFoundInfo->ftLastAccessTime);
+         return true;
       }
       else
          return false;
@@ -228,8 +229,8 @@ namespace windows
 
       if (m_pFoundInfo != nullptr)
       {
-         refTime = ::datetime::time(m_pFoundInfo->ftLastWriteTime);
-         return TRUE;
+         refTime = __time(m_pFoundInfo->ftLastWriteTime);
+         return true;
       }
       else
          return false;
@@ -243,8 +244,8 @@ namespace windows
 
       if (m_pFoundInfo != nullptr)
       {
-         refTime = ::datetime::time(((LPWIN32_FIND_DATAW) m_pFoundInfo)->ftCreationTime);
-         return TRUE;
+         refTime = __time(((LPWIN32_FIND_DATAW) m_pFoundInfo)->ftCreationTime);
+         return true;
       }
       else
          return false;
@@ -257,7 +258,7 @@ namespace windows
       ASSERT(m_hContext != nullptr);
       ASSERT_VALID(this);
 
-      // return TRUE if the file name is "." or ".." and
+      // return true if the file name is "." or ".." and
       // the file is a directory
 
       bool bResult = false;
@@ -275,7 +276,7 @@ namespace windows
                    pFindData->cFileName[2] == '\0'))
             {
 
-               bResult = TRUE;
+               bResult = true;
 
             }
 

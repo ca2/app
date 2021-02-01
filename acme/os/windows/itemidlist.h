@@ -14,10 +14,12 @@
 --------------------------------------*/
 
 #include <Shlobj.h>
+#include <shellapi.h>
 #include "acme/os/windows_common/comptr.h"
 
 
-class CLASS_DECL_ACME itemidlist
+class CLASS_DECL_ACME itemidlist :
+   virtual public ::matter
 {
 public:
 
@@ -89,7 +91,7 @@ public:
    static LPITEMIDLIST _create_one(LPCITEMIDLIST pidlf, int Index);
    static int _count(LPCITEMIDLIST pidl);
    static int _len(LPCITEMIDLIST pidl);
-   static int _len(LPCITEMIDLIST pidl, int nCount);//Get pidl size throught the specified count.
+   static int _len(LPCITEMIDLIST pidl, int nCount);//Get pidl size_i32 throught the specified count.
    static void _free(LPITEMIDLIST& pidl);
    static LPITEMIDLIST _copy(LPCITEMIDLIST pidl);//Duplicate specified pidl,and you need free it.
    //Get full-quality pidl throught a relative pidl and it's corresponding ShellFolder interface

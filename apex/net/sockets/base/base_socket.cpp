@@ -214,7 +214,7 @@ namespace sockets
    if (strProtocol.get_length())
    {
    point = getprotobyname( strProtocol );
-   if (!point)
+   if (!point_i32)
    {
    FATAL(log_this, "getprotobyname", Errno, bsd_socket_error(Errno));
    SetCloseAndDelete();
@@ -222,7 +222,7 @@ namespace sockets
    return INVALID_SOCKET;
    }
    }
-   int protno = point ? point -> p_proto : 0;
+   int protno = point_i32 ? point_i32 -> p_proto : 0;
 
    s = ::base_socket(af, iType, protno);
    if (s == INVALID_SOCKET)
@@ -340,7 +340,7 @@ namespace sockets
    if(m_addressRemote.m_p != nullptr)
    {
    struct sockaddr *point = *m_addressRemote;
-   struct sockaddr_in *sa = (struct sockaddr_in *)point;
+   struct sockaddr_in *sa = (struct sockaddr_in *)point_i32;
    ::memcpy_dup(&l, &sa -> sin_addr, sizeof(struct in_addr));
    }
    return l;
@@ -357,7 +357,7 @@ namespace sockets
    if (m_addressRemote.m_p != nullptr)
    {
    struct sockaddr *point = *m_addressRemote;
-   ::memcpy_dup(&fail, point, sizeof(struct sockaddr_in6));
+   ::memcpy_dup(&fail, point_i32, sizeof(struct sockaddr_in6));
    }
    else
    {
@@ -849,9 +849,9 @@ namespace sockets
    }
 
 
-   void base_socket::SetSocks4Port(port_t point)
+   void base_socket::SetSocks4Port(port_t point_i32)
    {
-      m_socks4_port = point;
+      m_socks4_port = point_i32;
    }
 
 
@@ -1143,12 +1143,12 @@ namespace sockets
    }
 
 
-   bool base_socket::SetIpOptions(const void *point, socklen_t len)
+   bool base_socket::SetIpOptions(const void *point_i32, socklen_t len)
    {
 
 #if defined(IP_OPTIONS) && defined(BSD_STYLE_SOCKETS)
 
-      if (setsockopt(GetSocket(), IPPROTO_IP, IP_OPTIONS, (char *)point, len) == -1)
+      if (setsockopt(GetSocket(), IPPROTO_IP, IP_OPTIONS, (char *)point_i32, len) == -1)
       {
 
          FATAL(log_this, "setsockopt(IPPROTO_IP, IP_OPTIONS)", Errno, __cstr(bsd_socket_error(Errno)));

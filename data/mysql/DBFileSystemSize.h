@@ -154,7 +154,7 @@ public:
    bool                             m_bServer;
    file_size_table::get_fs_size     m_size;
    bool                             m_bRet;
-   critical_section                 m_cs;
+   critical_section                 m_criticalsection;
    array < file_size_table::get_fs_size, file_size_table::get_fs_size & > m_sizea;
 
    size_map                         m_map;

@@ -14,7 +14,7 @@ namespace user
       e_orientation                    m_eorientation;
       scroll_info                      m_scrollinfo;
       bool                             m_bTracking;
-      ::size                           m_sizeTrackOffset;
+      ::size_i32                           m_sizeTrackOffset;
 
 
       scroll_bar();
@@ -32,13 +32,13 @@ namespace user
 
       virtual void post_scroll_message(::u32 nSBCode);
 
-      virtual ::point get_parent_viewport_offset() const override;
-      virtual ::point get_ascendant_viewport_offset() const override;
+      virtual ::point_i32 get_parent_viewport_offset() const override;
+      virtual ::point_i32 get_ascendant_viewport_offset() const override;
       
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual bool GetTrackRect(RECT32* prect, ::draw2d::graphics_pointer & pgraphics);
+      virtual bool GetTrackRect(RECTANGLE_I32* prectangle, ::draw2d::graphics_pointer & pgraphics);
 
 
       virtual ::color scrollbar_color_strong(::user::style* pstyle, ::user::enum_element eelement);

@@ -22,9 +22,9 @@ namespace user
 
       index_array             m_iaSel;
       //::user::item            m_itemLButtonDown;
-      ::size                  m_size;
+      ::size_i32                  m_size;
       bool                    m_bMultiSel;
-      ::size                  m_sizeImage;
+      ::size_i32                  m_sizeImage;
 
 
       image_list();

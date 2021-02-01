@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "apex/operating_system.h"
 #include "apex/node/windows/_windows.h"
 #include "file_os_watcher.h"
 //#include "apex/node/windows/buffer.h"

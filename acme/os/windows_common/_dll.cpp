@@ -1,4 +1,7 @@
 #include "framework.h"
+#include "acme/operating_system.h"
+
+
 #include "_c.h"
 
 #ifdef _UWP
@@ -54,7 +57,7 @@ WCHAR* wrap_dup_w(const WCHAR* pwsz, const WCHAR* pwszPrefix = nullptr, const WC
 }
 
 
-WCHAR* module_debug_wcsdup(HINSTANCE hinstance, const WCHAR* pwszPrefix = nullptr, const WCHAR* pwszSuffix = nullptr)
+WCHAR* module_debug_wcsdup(hinstance hinstance, const WCHAR* pwszPrefix = nullptr, const WCHAR* pwszSuffix = nullptr)
 {
 
    auto prefix_len = ::is_set(pwszPrefix) ? wcslen(pwszPrefix) : 0;
@@ -72,7 +75,7 @@ WCHAR* module_debug_wcsdup(HINSTANCE hinstance, const WCHAR* pwszPrefix = nullpt
 
       pwsz[0] = L'\'';
 
-      ::GetModuleFileNameW(hinstance, pwsz + 1, module_len);
+      ::GetModuleFileNameW((HINSTANCE) hinstance, pwsz + 1, module_len);
 
       auto name = wcsrchr(pwsz, '\\');
 
@@ -100,7 +103,7 @@ WCHAR* module_debug_wcsdup(HINSTANCE hinstance, const WCHAR* pwszPrefix = nullpt
 
       wcscat(pwsz, L"\'");
 
-      ::GetModuleFileNameW(hinstance, &pwsz[wcslen(pwsz)], (::u32)module_len);
+      ::GetModuleFileNameW((HINSTANCE) hinstance, &pwsz[wcslen(pwsz)], (::u32)module_len);
 
       wcscat(pwsz, L"\'");
 
@@ -122,7 +125,7 @@ WCHAR* module_debug_wcsdup(HINSTANCE hinstance, const WCHAR* pwszPrefix = nullpt
 }
 
 
-void module_debug_box_w(const ::e_message_box & emessagebox, HINSTANCE hinstance, const WCHAR* pwszCaption, WCHAR* pwszSuffix = nullptr)
+void module_debug_box_w(const ::e_message_box & emessagebox, hinstance hinstance, const WCHAR* pwszCaption, WCHAR* pwszSuffix = nullptr)
 {
 
    WCHAR* pwsz = nullptr;
@@ -137,7 +140,7 @@ void module_debug_box_w(const ::e_message_box & emessagebox, HINSTANCE hinstance
       try
       {
 
-         os_message_box(string(pwsz), string(pwszCaption), emessagebox);
+         show_error_message(string(pwsz), string(pwszCaption), emessagebox);
          //FUNCTION_DEBUGBOXW(pwsz, pwszCaption, iFlags);
 
       }
@@ -159,7 +162,7 @@ void module_debug_box_w(const ::e_message_box & emessagebox, HINSTANCE hinstance
 }
 
 
-void module_output_debug_string_w(HINSTANCE hinstance, const WCHAR* pwszPrefix = nullptr, const WCHAR* pwszSuffix = nullptr)
+void module_output_debug_string_w(hinstance hinstance, const WCHAR* pwszPrefix = nullptr, const WCHAR* pwszSuffix = nullptr)
 {
 
    auto pwsz = module_debug_wcsdup(hinstance, pwszPrefix, pwszSuffix);
@@ -187,7 +190,7 @@ void module_output_debug_string_w(HINSTANCE hinstance, const WCHAR* pwszPrefix =
 #ifdef _UWP
 [MTAThread]
 #endif
-int_bool CLASS_DECL_ACME _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason, LPVOID pReserved, int iLibMainDebugBox, const lib_main_int& intDelayMs)
+int_bool CLASS_DECL_ACME _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, LPVOID pReserved, int iLibMainDebugBox, const lib_main_int& intDelayMs)
 {
 
    UNREFERENCED_PARAMETER(pReserved);

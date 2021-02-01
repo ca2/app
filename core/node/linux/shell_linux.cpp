@@ -817,11 +817,11 @@ namespace linux
 
             pimage->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-            pimage->get_graphics()->stretch(::size(16, 16), pimage1->get_graphics(), pimage1->rect());
+            pimage->get_graphics()->stretch(::size_i32(16, 16), pimage1->get_graphics(), pimage1->rectangle_i32());
 
             pimage->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-            pimage->get_graphics()->stretch(::size(48, 48), pimage->get_graphics(), pimage->rect());
+            pimage->get_graphics()->stretch(::size_i32(48, 48), pimage->get_graphics(), pimage->rectangle_i32());
 
             sync_lock sl1(m_pilHover[48]->mutex());
 
@@ -1094,7 +1094,7 @@ namespace linux
 //               pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
 //               pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 //
-//               m_pilHover[iSize]->draw(pimage->get_graphics(), iImage, ::point(), 0);
+//               m_pilHover[iSize]->draw(pimage->get_graphics(), iImage, ::point_i32(), 0);
 //               m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 //               m_pilHover[iSize]->m_pimage->g()->BitBlt(iImage * 48, 0, 48, 48, pimage->get_graphics());
 //               m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -1103,15 +1103,15 @@ namespace linux
 //
 //            {
 //               auto & d = m_pilHover[iSize]->m_pimage;
-//               size s = m_pil[iSize]->m_pimage->get_size();
+//               size_i32 s = m_pil[iSize]->m_pimage->get_size();
 //               ::image_pointer pimage;
 //               pimage = __create_image(d->size());
 //               pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
 //               pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
-//               pimage->get_graphics()->draw(::point(), d->size(), d->get_graphics());
-//               pimage->get_graphics()->fill_rect(rect(d->size()), ARGB(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
+//               pimage->get_graphics()->draw(::point_i32(), d->size(), d->get_graphics());
+//               pimage->get_graphics()->fill_rect(rectangle_i32(d->size()), ARGB(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
 //               m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
-//               m_pil[iSize]->m_pimage->g()->draw(::point(), d->size(), pimage->get_graphics());
+//               m_pil[iSize]->m_pimage->g()->draw(::point_i32(), d->size(), pimage->get_graphics());
 //               m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 //
 //            }

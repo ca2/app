@@ -46,7 +46,7 @@ namespace userex
       if (!pimpactdata->m_pplaceholder)
       {
 
-         pimpactdata->m_pplaceholder = get_new_place_holder(ppane->m_rect);
+         pimpactdata->m_pplaceholder = get_new_place_holder(ppane->m_rectangle);
 
          ppane->m_pplaceholder = pimpactdata->m_pplaceholder;
 
@@ -100,7 +100,7 @@ namespace userex
 
       pane.m_id = id;
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       pane.m_pplaceholder->get_client_rect(rectClient);
 

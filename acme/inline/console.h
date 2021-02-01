@@ -1,4 +1,5 @@
 #include "console_common.h"
+#include "acme/operating_system.h"
 
 
 void stage();

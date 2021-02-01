@@ -15,10 +15,10 @@ public:
    inline void add_item(void * p,memsize iSize)
    {
 #ifdef _UWP
-      add(heap_item(point,iSize,GetTickCount64()));
+      add(heap_item(point_i32,iSize,GetTickCount64()));
       if(GetTickCount64() > m_millisLastCleanup + 10000)
 #else
-      add(heap_item(point,iSize,::get_tick()));
+      add(heap_item(point_i32,iSize,::get_tick()));
       if(::get_tick() > m_millisLastCleanup + 10000)
 #endif
       {

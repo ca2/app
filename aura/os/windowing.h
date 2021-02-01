@@ -29,12 +29,10 @@ CLASS_DECL_AURA oswindow get_desktop_window();
 CLASS_DECL_AURA int_bool show_window(oswindow oswindow, const ::e_display & edisplay, const ::e_activation & eactivation = e_activation_default);
 CLASS_DECL_AURA int_bool set_foreground_window(oswindow oswindow);
 
-CLASS_DECL_AURA int GetMainScreenRect(LPRECT32 lprect);
+//CLASS_DECL_AURA int GetMainScreenRect(LPRECT32 lprect);
 
 
-#ifdef WINDOWS_DESKTOP
-CLASS_DECL_AURA bool get_gui_thread_info(PGUITHREADINFO pinfo);
-#endif
+
 
 
 

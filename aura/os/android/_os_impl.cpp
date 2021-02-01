@@ -6,10 +6,10 @@ void android_edit_on_set_focus(int l, int t, int r, int b, const char* pszText, 
 void android_edit_on_kill_focus();
 
 
-mutex* g_pmutexOs;
+::mutex* g_pmutexOs;
 
 
-mutex* osmutex()
+::mutex* osmutex()
 {
 
    return g_pmutexOs;
@@ -198,22 +198,22 @@ void android_aura_main()
 
    }
 
-   ::rect rect;
+   ::rectangle_i32 rectangle;
 
-   rect.left = 0;
-   rect.top = 0;
-   rect.right = premote->getWidth();
-   rect.bottom = premote->getHeight();
+   rectangle.left = 0;
+   rectangle.top = 0;
+   rectangle.right = premote->getWidth();
+   rectangle.bottom = premote->getHeight();
 
    auto psession = System.get_context_session();
 
-   psession->defer_initialize_host_window(rect);
+   psession->defer_initialize_host_window(rectangle);
 
-   SetMainScreenRect(rect);
+   SetMainScreenRect(rectangle);
 
    //auto puserinteraction = __user_interaction(System.get_context_session()->m_puiHost);
 
-   //puserinteraction->place(rect);
+   //puserinteraction->place(rectangle);
 
    //puserinteraction->display(e_display_normal);
 

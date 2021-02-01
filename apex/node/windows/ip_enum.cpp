@@ -1,5 +1,4 @@
 #include "framework.h"
-#include <stdio.h>
 #include "apex/net/sockets/_sockets.h"
 #include "ip_enum.h"
 
@@ -50,7 +49,7 @@ namespace windows
    if (gethostname(szHostname, sizeof(szHostname)))
    {
    TRACE("Failed in call to gethostname, WSAGetLastError returns %d\n", WSAGetLastError());
-   return FALSE;
+   return false;
    }
 
    //get host information from the host name
@@ -58,14 +57,14 @@ namespace windows
    if (pHostEnt == nullptr)
    {
    TRACE("Failed in call to gethostbyname, WSAGetLastError returns %d\n", WSAGetLastError());
-   return FALSE;
+   return false;
    }
 
    //check the length of the IP adress
    if (pHostEnt->h_length != 4)
    {
    TRACE("IP address returned is not 32 bits !!\n");
-   return FALSE;
+   return false;
    }
 
    //call the virtual callback function in a loop
@@ -85,7 +84,7 @@ namespace windows
 
    }
 
-   return TRUE;
+   return true;
    }
    */
    ::count ip_enum::enumerate(array < ::net::address > & ipa)
@@ -96,7 +95,7 @@ namespace windows
       if (gethostname(szHostname, sizeof(szHostname)))
       {
          TRACE("Failed in call to gethostname, WSAGetLastError returns %d\n", WSAGetLastError());
-         return FALSE;
+         return false;
       }
       {
          struct addrinfo *result = nullptr;
@@ -133,11 +132,12 @@ namespace windows
                printf("Unspecified\n");
                break;
             case AF_INET:
+               
                printf("AF_INET (IPv4)\n");
+
                ipa.add(*ptr->ai_addr);
 
-
-               str = __str(ipa.last().u.m_sa);
+               ::str::from(str, ipa.last().u.m_sa);
 
                // sockaddr_ipv4 = (struct sockaddr_in *) ptr->ai_addr;
                //printf("\tIPv4 address %s\n",

@@ -16,8 +16,8 @@ public:
    color32_t             m_colorTransparent;
    color32_t             m_colorBack;
    byte                 m_backgroundIndex;
-   ::size               m_sizeLogical;
-   ::size               m_size;
+   ::size_i32               m_sizeLogical;
+   ::size_i32               m_size;
    ::image_pointer      m_pimageCompose;
    colorref_array       m_colorrefa;
 
@@ -26,11 +26,11 @@ public:
    virtual ~image_frame_array();
 
 
-   const ::size size() { return m_size; }
-   const ::size & size() const { return m_size; }
+   const ::size_i32 size() { return m_size; }
+   const ::size_i32 & size() const { return m_size; }
 
-   ::rect rect(const ::point & point = nullptr) { return ::rect(point, m_size); }
-   const ::rect rect(const ::point & point = nullptr) const { return ::rect(point, m_size); }
+   ::rectangle_i32 rectangle(const ::point_i32 & point = nullptr) { return ::rectangle_i32(point, m_size); }
+   const ::rectangle_i32 rectangle(const ::point_i32 & point = nullptr) const { return ::rectangle_i32(point, m_size); }
 
    virtual ::image_pointer calc_current_frame(image_dynamic & dynamic);
 

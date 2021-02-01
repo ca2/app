@@ -222,7 +222,7 @@ namespace filemanager
 
                set_position(1, 56);
 
-               ::rect rectClient;
+               ::rectangle_i32 rectClient;
 
                get_client_rect(rectClient);
 

@@ -6,7 +6,7 @@ namespace datetime
 {
 
 
-   ::datetime::zonetime WINAPI zonetime::get_current_time(time_t iZoneOffset) noexcept
+   ::datetime::zonetime zonetime::get_current_time(time_t iZoneOffset) noexcept
    {
 
       zonetime t;

@@ -48,31 +48,31 @@
             }
 
 
-            e_hittest frame_Minimal001::_001HitTest(const ::point & pointCursor)
+            e_hittest frame_Minimal001::_001HitTest(const ::point_i32 & pointCursor)
             {
                e_hittest etest = hittest_client;
                {
                   //      m_pframewindow->GetEventWindow()->_001ScreenToClient(point);
-                  ::rect rectEvent;
+                  ::rectangle_i32 rectEvent;
                   m_pframewindow->get_window_rect(rectEvent);
-                  ::rect rect;
-                  ::point pointCenter = rectEvent.center();
+                  ::rectangle_i32 rectangle;
+                  ::point_i32 pointCenter = rectEvent.center();
                   enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
 
                   if(egrip & e_grip_top_left)
                   {
-                     rect = rectEvent;
-                     rect.right = rect.left + 16;
-                     rect.bottom = rect.top + 5;
-                     if(rect.contains(pointCursor))
+                     rectangle_i32 = rectEvent;
+                     rectangle.right = rectangle.left + 16;
+                     rectangle.bottom = rectangle.top + 5;
+                     if(rectangle.contains(pointCursor))
                      {
                         etest = hittest_sizing_top_left;
                         goto SizingSuccess;
                      }
-                     rect = rectEvent;
-                     rect.right = rect.left + 5;
-                     rect.bottom = rect.top + 16;
-                     if(rect.contains(pointCursor))
+                     rectangle_i32 = rectEvent;
+                     rectangle.right = rectangle.left + 5;
+                     rectangle.bottom = rectangle.top + 16;
+                     if(rectangle.contains(pointCursor))
                      {
                         etest = hittest_sizing_top_left;
                         goto SizingSuccess;
@@ -80,18 +80,18 @@
                   }
                   if(egrip & e_grip_top_right)
                   {
-                     rect = rectEvent;
-                     rect.left = rect.right - 16;
-                     rect.bottom = rect.top + 5;
-                     if(rect.contains(pointCursor))
+                     rectangle_i32 = rectEvent;
+                     rectangle.left = rectangle.right - 16;
+                     rectangle.bottom = rectangle.top + 5;
+                     if(rectangle.contains(pointCursor))
                      {
                         etest = hittest_sizing_top_right;
                         goto SizingSuccess;
                      }
-                     rect = rectEvent;
-                     rect.left = rect.right - 5;
-                     rect.bottom = rect.top + 16;
-                     if(rect.contains(pointCursor))
+                     rectangle_i32 = rectEvent;
+                     rectangle.left = rectangle.right - 5;
+                     rectangle.bottom = rectangle.top + 16;
+                     if(rectangle.contains(pointCursor))
                      {
                         etest = hittest_sizing_top_right;
                         goto SizingSuccess;
@@ -99,18 +99,18 @@
                   }
                   if(egrip & e_grip_bottom_right)
                   {
-                     rect = rectEvent;
-                     rect.left = rect.right - 16;
-                     rect.top = rect.bottom - 5;
-                     if(rect.contains(pointCursor))
+                     rectangle_i32 = rectEvent;
+                     rectangle.left = rectangle.right - 16;
+                     rectangle.top = rectangle.bottom - 5;
+                     if(rectangle.contains(pointCursor))
                      {
                         etest = hittest_sizing_bottom_right;
                         goto SizingSuccess;
                      }
-                     rect = rectEvent;
-                     rect.left = rect.right - 5;
-                     rect.top = rect.bottom - 16;
-                     if(rect.contains(pointCursor))
+                     rectangle_i32 = rectEvent;
+                     rectangle.left = rectangle.right - 5;
+                     rectangle.top = rectangle.bottom - 16;
+                     if(rectangle.contains(pointCursor))
                      {
                         etest = hittest_sizing_bottom_right;
                         goto SizingSuccess;
@@ -118,18 +118,18 @@
                   }
                   if(egrip & e_grip_bottom_left)
                   {
-                     rect = rectEvent;
-                     rect.right = rect.left + 16;
-                     rect.top = rect.bottom - 5;
-                     if(rect.contains(pointCursor))
+                     rectangle_i32 = rectEvent;
+                     rectangle.right = rectangle.left + 16;
+                     rectangle.top = rectangle.bottom - 5;
+                     if(rectangle.contains(pointCursor))
                      {
                         etest = hittest_sizing_bottom_left;
                         goto SizingSuccess;
                      }
-                     rect = rectEvent;
-                     rect.right = rect.left + 5;
-                     rect.top = rect.bottom - 16;
-                     if(rect.contains(pointCursor))
+                     rectangle_i32 = rectEvent;
+                     rectangle.right = rectangle.left + 5;
+                     rectangle.top = rectangle.bottom - 16;
+                     if(rectangle.contains(pointCursor))
                      {
                         etest = hittest_sizing_bottom_left;
                         goto SizingSuccess;
@@ -137,11 +137,11 @@
                   }
                   if(egrip & e_grip_top)
                   {
-                     rect.top = rectEvent.top;
-                     rect.left = pointCenter.x - 8;
-                     rect.right = pointCenter.x + 8;
-                     rect.bottom = rectEvent.top + 5;
-                     if(rect.contains(pointCursor))
+                     rectangle.top = rectEvent.top;
+                     rectangle.left = pointCenter.x - 8;
+                     rectangle.right = pointCenter.x + 8;
+                     rectangle.bottom = rectEvent.top + 5;
+                     if(rectangle.contains(pointCursor))
                      {
                         etest = hittest_sizing_top;
                         goto SizingSuccess;
@@ -149,11 +149,11 @@
                   }
                   if(egrip & e_grip_bottom)
                   {
-                     rect.top = rectEvent.bottom - 5;
-                     rect.left = pointCenter.x - 8;
-                     rect.right = pointCenter.x + 8;
-                     rect.bottom = rectEvent.bottom;
-                     if(rect.contains(pointCursor))
+                     rectangle.top = rectEvent.bottom - 5;
+                     rectangle.left = pointCenter.x - 8;
+                     rectangle.right = pointCenter.x + 8;
+                     rectangle.bottom = rectEvent.bottom;
+                     if(rectangle.contains(pointCursor))
                      {
                         etest = hittest_sizing_bottom;
                         goto SizingSuccess;
@@ -161,11 +161,11 @@
                   }
                   if(egrip & e_grip_left)
                   {
-                     rect.top = pointCenter.y - 8;
-                     rect.left = rectEvent.left;
-                     rect.right = rectEvent.left + 5;
-                     rect.bottom = pointCenter.y + 8;
-                     if(rect.contains(pointCursor))
+                     rectangle.top = pointCenter.y - 8;
+                     rectangle.left = rectEvent.left;
+                     rectangle.right = rectEvent.left + 5;
+                     rectangle.bottom = pointCenter.y + 8;
+                     if(rectangle.contains(pointCursor))
                      {
                         etest = hittest_sizing_left;
                         goto SizingSuccess;
@@ -173,11 +173,11 @@
                   }
                   if(egrip & e_grip_right)
                   {
-                     rect.top = pointCenter.y - 8;
-                     rect.left = rectEvent.right - 5;
-                     rect.right = rectEvent.right;
-                     rect.bottom = pointCenter.y + 8;
-                     if(rect.contains(pointCursor))
+                     rectangle.top = pointCenter.y - 8;
+                     rectangle.left = rectEvent.right - 5;
+                     rectangle.right = rectEvent.right;
+                     rectangle.bottom = pointCenter.y + 8;
+                     if(rectangle.contains(pointCursor))
                      {
                         etest = hittest_sizing_right;
                         goto SizingSuccess;
@@ -195,7 +195,7 @@ SizingNone:;
 
 
 
-            void frame_Minimal001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient, enum_border eside)
+            void frame_Minimal001::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient, enum_border eside)
             {
 
                if (eside != e_border_top)
@@ -241,26 +241,26 @@ SizingNone:;
                if(is_translucid_style(estyle))
                {
 
-                  ::rect rect;
+                  ::rectangle_i32 rectangle;
 
-                  GetBorderRect(rectClient, rect, eside);
+                  GetBorderRect(rectClient, rectangle_i32, eside);
 
                   class imaging & imaging = System.imaging();
 
-                  imaging.color_blend(pgraphics, rect, colorMoveableBorder, 127);
+                  imaging.color_blend(pgraphics, rectangle_i32, colorMoveableBorder, 127);
 
                }
                /*else if(m_estyle == StyleLightBlue)
                {
 
-                  ::rect rect;
+                  ::rectangle_i32 rectangle;
 
-                  GetBorderRect(rectClient, rect, eside);
+                  GetBorderRect(rectClient, rectangle_i32, eside);
 
 
                   class imaging & imaging = System.imaging();
 
-                  imaging.color_blend(pgraphics, rect, crMoveableBorder, 127);
+                  imaging.color_blend(pgraphics, rectangle_i32, crMoveableBorder, 127);
 
 
 
@@ -283,13 +283,13 @@ SizingNone:;
 
                   rectClient.deflate(2, 2, 2, 2);
 
-                  ::rect rect;
+                  ::rectangle_i32 rectangle;
 
-                  GetBorderRect(rectClient, rect, eside);
+                  GetBorderRect(rectClient, rectangle_i32, eside);
 
                   class imaging & imaging = System.imaging();
 
-                  imaging.color_blend(pgraphics, rect, colorMoveableBorder, 127);
+                  imaging.color_blend(pgraphics, rectangle_i32, colorMoveableBorder, 127);
 
                }
 
@@ -311,7 +311,7 @@ SizingNone:;
 
                string str;
 
-               ::rect rectWindow;
+               ::rectangle_i32 rectWindow;
 
                pframewindow->get_window_rect(rectWindow);
 
@@ -334,7 +334,7 @@ SizingNone:;
             }
 
 
-            void frame_Minimal001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient)
+            void frame_Minimal001::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient)
 
             {
 
@@ -385,48 +385,48 @@ SizingNone:;
 
             }
 
-            void frame_Minimal001::GetBorderRect(const ::rect & rectClient, RECT32 * prect, enum_border eside)
+            void frame_Minimal001::GetBorderRect(const ::rectangle_i32 & rectClient, RECTANGLE_I32 * prectangle, enum_border eside)
 
             {
 
-               ::rect rectBig(rectClient);
+               ::rectangle_i32 rectBig(rectClient);
 
 
-               ::rect rectSmall;
+               ::rectangle_i32 rectSmall;
 
                get_window_client_rect(rectSmall);
 
-               ::rect rect;
+               ::rectangle_i32 rectangle;
 
                if(eside == e_border_top)
                {
-                  rect.left = rectBig.left;
-                  rect.right = rectBig.right;
-                  rect.top = rectBig.top;
-                  rect.bottom = rectSmall.top;
+                  rectangle.left = rectBig.left;
+                  rectangle.right = rectBig.right;
+                  rectangle.top = rectBig.top;
+                  rectangle.bottom = rectSmall.top;
                }
                else if(eside == e_border_left)
                {
-                  rect.left = rectBig.left;
-                  rect.right = rectSmall.left;
-                  rect.top = rectSmall.top;
-                  rect.bottom = rectSmall.bottom;
+                  rectangle.left = rectBig.left;
+                  rectangle.right = rectSmall.left;
+                  rectangle.top = rectSmall.top;
+                  rectangle.bottom = rectSmall.bottom;
                }
                else if(eside == e_border_right)
                {
-                  rect.left = rectSmall.right;
-                  rect.right = rectBig.right;
-                  rect.top = rectSmall.top;
-                  rect.bottom = rectSmall.bottom;
+                  rectangle.left = rectSmall.right;
+                  rectangle.right = rectBig.right;
+                  rectangle.top = rectSmall.top;
+                  rectangle.bottom = rectSmall.bottom;
                }
                else if(eside == e_border_bottom)
                {
-                  rect.left = rectBig.left;
-                  rect.right = rectBig.right;
-                  rect.top = rectSmall.bottom;
-                  rect.bottom = rectBig.bottom;
+                  rectangle.left = rectBig.left;
+                  rectangle.right = rectBig.right;
+                  rectangle.top = rectSmall.bottom;
+                  rectangle.bottom = rectBig.bottom;
                }
-               *prect = rect;
+               *prectangle = rectangle_i32;
 
             }
 
@@ -447,7 +447,7 @@ SizingNone:;
             }
 
 
-            void frame_Minimal001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient, enum_grip egrip)
+            void frame_Minimal001::DrawGrip(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient, enum_grip egrip)
 
             {
 
@@ -455,27 +455,27 @@ SizingNone:;
 
 
 
-//               ::rect rectC(rectClient);
+//               ::rectangle_i32 rectC(rectClient);
 
 //
-//               ::rect rectClient(rectClient);
+//               ::rectangle_i32 rectClient(rectClient);
 
 //
 //               rectClient.right--;
 //
 //               rectClient.bottom--;
 //
-//               ::rect rectClientB(rectClient);
+//               ::rectangle_i32 rectClientB(rectClient);
 //
-//               ::rect rectA;
+//               ::rectangle_i32 rectA;
 //
-//               ::point pointA;
+//               ::point_i32 pointA;
 //
-//               ::point pointB;
+//               ::point_i32 pointB;
 //
-//               ::point pointC;
+//               ::point_i32 pointC;
 //
-//               ::rect rect(rectClient);
+//               ::rectangle_i32 rectangle(rectClient);
 //
 //               switch(egrip)
 //               {
@@ -502,7 +502,7 @@ SizingNone:;
 //
 //                                  pgraphics->set(m_penFace1);
 //
-//                                  // Most external rectangle
+//                                  // Most external rectangle_i32
 //
 //                                  rectA = rectClient;
 //
@@ -647,7 +647,7 @@ SizingNone:;
 //
 //                                   pgraphics->set(m_penFace1);
 //
-//                                   // Most external rectangle
+//                                   // Most external rectangle_i32
 //
 //                                   rectA = rectClient;
 //
@@ -658,7 +658,7 @@ SizingNone:;
 //                                   pgraphics->line_to(pointB);
 //
 //
-//                                   // Most internal rectangle
+//                                   // Most internal rectangle_i32
 //
 //                                   rectA.top += 4;
 //                                   rectA.left += 4;
@@ -810,7 +810,7 @@ SizingNone:;
 //
 //                                     pgraphics->set(m_penFace1);
 //
-//                                     // Most external rectangle 0
+//                                     // Most external rectangle_i32 0
 //
 //                                     rectA = rectClient;
 //
@@ -820,7 +820,7 @@ SizingNone:;
 //                                     pgraphics->move_to(pointB);
 //                                     pgraphics->line_to(pointA);
 //
-//                                     // Most internal rectangle 4
+//                                     // Most internal rectangle_i32 4
 //
 //                                     rectA.top += 4;
 //                                     rectA.left += 4;
@@ -969,7 +969,7 @@ SizingNone:;
 //
 //                                      rectA = rectClient;
 //
-//                                      // Most internal rectangle
+//                                      // Most internal rectangle_i32
 //
 //                                      rectA.top += 4;
 //                                      rectA.left += 4;
@@ -1070,15 +1070,15 @@ SizingNone:;
 //                  break;
 //               case e_grip_top:
 //               {
-//                                    ::point pointCenter = rect.center();
+//                                    ::point_i32 pointCenter = rectangle.center();
 //
 //                                    int iMod;
-//                                    if(rect.width() % 2 == 1)
+//                                    if(rectangle.width() % 2 == 1)
 //                                       iMod = 1;
 //                                    else
 //                                       iMod = 0;
 //
-//                                    ::rect rectB;
+//                                    ::rectangle_i32 rectB;
 //
 //                                    rectB.top = rectC.top;
 //                                    rectB.left = pointCenter.x - GRIP_CENTER_LARGE_CX / 2 + iMod;
@@ -1090,12 +1090,12 @@ SizingNone:;
 //                  break;
 //               case e_grip_bottom:
 //               {
-//                                       ::point pointCenter = rect.center();
+//                                       ::point_i32 pointCenter = rectangle.center();
 //
-//                                       ::rect rectB;
+//                                       ::rectangle_i32 rectB;
 //
 //                                       int iMod;
-//                                       if(rect.width() % 2 == 1)
+//                                       if(rectangle.width() % 2 == 1)
 //                                          iMod = 1;
 //                                       else
 //                                          iMod = 0;
@@ -1110,16 +1110,16 @@ SizingNone:;
 //                  break;
 //               case e_grip_left:
 //               {
-//                                     ::point pointCenter = rect.center();
+//                                     ::point_i32 pointCenter = rectangle.center();
 //
 //                                     int iMod;
-//                                     if(rect.height() % 2 == 1)
+//                                     if(rectangle.height() % 2 == 1)
 //                                        iMod = 1;
 //                                     else
 //                                        iMod = 0;
 //
 //
-//                                     ::rect rectB;
+//                                     ::rectangle_i32 rectB;
 //
 //                                     rectB.top = pointCenter.y - GRIP_CENTER_LARGE_CY / 2 + iMod;
 //                                     rectB.left = rectC.left;
@@ -1131,16 +1131,16 @@ SizingNone:;
 //                  break;
 //               case e_grip_right:
 //               {
-//                                      ::point pointCenter = rect.center();
+//                                      ::point_i32 pointCenter = rectangle.center();
 //
 //                                      int iMod;
-//                                      if(rect.height() % 2 == 1)
+//                                      if(rectangle.height() % 2 == 1)
 //                                         iMod = 1;
 //                                      else
 //                                         iMod = 0;
 //
 //
-//                                      ::rect rectB;
+//                                      ::rectangle_i32 rectB;
 //
 //                                      rectB.top = pointCenter.y - GRIP_CENTER_LARGE_CY / 2 + iMod;
 //                                      rectB.right = rectC.right;
@@ -1157,34 +1157,34 @@ SizingNone:;
 //
 //            }
 //
-//            void frame_Minimal001::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const rect & rectParam)
+//            void frame_Minimal001::DrawRectGrip(::draw2d::graphics_pointer & pgraphics,const rectangle_i32 & rectParam)
 //            {
 //
 //
 //
-//               ::rect rect(rectParam);
+//               ::rectangle_i32 rectangle(rectParam);
 //
-//               //rect.right++;
+//               //rectangle.right++;
 //
-//               //rect.bottom++;
+//               //rectangle.bottom++;
 //
-//               pgraphics->Draw3dRect(rect, crButtonFace | 0xff000000, crButtonDarkShadow | 0xff000000);
+//               pgraphics->Draw3dRect(rectangle, crButtonFace | 0xff000000, crButtonDarkShadow | 0xff000000);
 //
-//               rect.deflate(1, 1);
+//               rectangle.deflate(1, 1);
 //
-//               pgraphics->Draw3dRect(rect, crButtonHilite | 0xff000000, crButtonShadow | 0xff000000);
+//               pgraphics->Draw3dRect(rectangle, crButtonHilite | 0xff000000, crButtonShadow | 0xff000000);
 //
-//               rect.deflate(1, 1);
+//               rectangle.deflate(1, 1);
 //
-//               //rect.right--;
+//               //rectangle.right--;
 //
-//               //rect.bottom--;
+//               //rectangle.bottom--;
 //
-//               pgraphics->FillSolidRect(rect, crButtonFace | 0xff000000);
+//               pgraphics->FillSolidRect(rectangle, crButtonFace | 0xff000000);
 
             }
 
-            void frame_Minimal001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient)
+            void frame_Minimal001::DrawGripSet(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient)
 
             {
 

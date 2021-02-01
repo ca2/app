@@ -1,56 +1,56 @@
 #include "framework.h"
 
 
-//void point::offset(i32 xOffset, i32 yOffset) noexcept
+//void point_i32::offset(i32 xOffset, i32 yOffset) noexcept
 //{ x += xOffset; y += yOffset; }
-//void point::offset(const ::point & point) noexcept
+//void point_i32::offset(const ::point_i32 & point) noexcept
 //{ x += point.x; y += point.y; }
-//void point::offset(const ::size & size) noexcept
+//void point_i32::offset(const ::size_i32 & size) noexcept
 //{ x += size.cx; y += size.cy; }
-//void point::SetPoint(i32 X, i32 Y) noexcept
+//void point_i32::SetPoint(i32 X, i32 Y) noexcept
 //{ x = X; y = Y; }
-//bool point::operator==(const ::point & point) const noexcept
+//bool point_i32::operator==(const ::point_i32 & point) const noexcept
 //   { return (x == point.x && y == point.y); }
-//bool point::operator!=(const ::point & point) const noexcept
+//bool point_i32::operator!=(const ::point_i32 & point) const noexcept
 //   { return (x != point.x || y != point.y); }
-//void point::operator+=(const ::size & size) noexcept
+//void point_i32::operator+=(const ::size_i32 & size) noexcept
 //   { x += size.cx; y += size.cy; }
-//void point::operator-=(const ::size & size) noexcept
+//void point_i32::operator-=(const ::size_i32 & size) noexcept
 //   { x -= size.cx; y -= size.cy; }
-//void point::operator+=(const ::point & point) noexcept
+//void point_i32::operator+=(const ::point_i32 & point) noexcept
 //   { x += point.x; y += point.y; }
-//void point::operator-=(const ::point & point) noexcept
+//void point_i32::operator-=(const ::point_i32 & point) noexcept
 //   { x -= point.x; y -= point.y; }
-//const ::point & point::operator+(const ::size & size) const noexcept
+//const ::point_i32 & point::operator+(const ::size_i32 & size) const noexcept
 //{ return point(x + size.cx, y + size.cy); }
-//const ::point & point::operator-(const ::size & size) const noexcept
+//const ::point_i32 & point::operator-(const ::size_i32 & size) const noexcept
 //{ return point(x - size.cx, y - size.cy); }
-//const ::point & point::operator-() const noexcept
+//const ::point_i32 & point::operator-() const noexcept
 //{ return point(-x, -y); }
-//const ::point & point::operator+(const ::point & point) const noexcept
+//const ::point_i32 & point::operator+(const ::point_i32 & point) const noexcept
 //{ return point(x +  point.x, y +  point.y); }
-//size point::operator-(const point &  point) const noexcept
-//{ return size(x -  point.x, y -  point.y); }
-//rect point::operator+(const ::rect & rect) const noexcept
+//size_i32 point_i32::operator-(const point_i32 &  point_i32) const noexcept
+//{ return size_i32(x -  point.x, y -  point.y); }
+//rectangle_i32 point_i32::operator+(const ::rectangle_i32 & rectangle) const noexcept
 
-//{ return rect(prect) + *this; }
+//{ return rectangle_i32(prectangle) + *this; }
 
-//rect point::operator-(const ::rect & rect) const noexcept
+//rectangle_i32 point_i32::operator-(const ::rectangle_i32 & rectangle) const noexcept
 
-//{ return rect(prect) - *this; }
+//{ return rectangle_i32(prectangle) - *this; }
 
 
-//::u32 point::u32() const noexcept
+//::u32 point_i32::u32() const noexcept
 //{
 //   return MAKELONG(x, y);
 //}
 //
-//::u64 point::u64() const noexcept
+//::u64 point_i32::u64() const noexcept
 //{
 //   return MAKELONG64(x, y);
 //}
 //
-//::lparam point::lparam() const noexcept
+//::lparam point_i32::lparam() const noexcept
 //
 //{
 //   return MAKELPARAM(x, y);
@@ -63,56 +63,56 @@
 
 
 
-//void point64::offset(i64 xOffset, i64 yOffset) noexcept
+//void point_i64::offset(i64 xOffset, i64 yOffset) noexcept
 //{ x += xOffset; y += yOffset; }
-//void point64::offset(POINT64 point64) noexcept
-//{ x += point64.x; y += point64.y; }
-//void point64::offset(SIZE64 size64) noexcept
-//{ x += size64.cx; y += size64.cy; }
-//void point64::SetPoint(i64 X, i64 Y) noexcept
+//void point_i64::offset(POINT_I64 point_i64) noexcept
+//{ x += point_i64.x; y += point_i64.y; }
+//void point_i64::offset(SIZE_I64 size_i64) noexcept
+//{ x += size_i64.cx; y += size_i64.cy; }
+//void point_i64::SetPoint(i64 X, i64 Y) noexcept
 //{ x = X; y = Y; }
-//bool point64::operator==(POINT64 point64) const noexcept
-//{ return (x == point64.x && y == point64.y); }
-//bool point64::operator!=(POINT64 point64) const noexcept
-//{ return (x != point64.x || y != point64.y); }
-//void point64::operator+=(SIZE64 size64) noexcept
-//{ x += size64.cx; y += size64.cy; }
-//void point64::operator-=(SIZE64 size64) noexcept
-//{ x -= size64.cx; y -= size64.cy; }
-//void point64::operator+=(POINT64 point64) noexcept
-//{ x += point64.x; y += point64.y; }
-//void point64::operator-=(POINT64 point64) noexcept
-//{ x -= point64.x; y -= point64.y; }
-//point64 point64::operator+(SIZE64 size64) const noexcept
-//{ return point64(x + size64.cx, y + size64.cy); }
-//point64 point64::operator-(SIZE64 size64) const noexcept
-//{ return point64(x - size64.cx, y - size64.cy); }
-//point64 point64::operator-() const noexcept
-//{ return point64(-x, -y); }
-//point64 point64::operator+(POINT64 point) const noexcept
-//{ return point64(x + point.x, y + point.y); }
-//size64 point64::operator-(POINT64 point) const noexcept
-//{ return size64(x - point.x, y - point.y); }
-//rect64 point64::operator+(const RECT64 * prect) const noexcept
+//bool point_i64::operator==(POINT_I64 point_i64) const noexcept
+//{ return (x == point_i64.x && y == point_i64.y); }
+//bool point_i64::operator!=(POINT_I64 point_i64) const noexcept
+//{ return (x != point_i64.x || y != point_i64.y); }
+//void point_i64::operator+=(SIZE_I64 size_i64) noexcept
+//{ x += size_i64.cx; y += size_i64.cy; }
+//void point_i64::operator-=(SIZE_I64 size_i64) noexcept
+//{ x -= size_i64.cx; y -= size_i64.cy; }
+//void point_i64::operator+=(POINT_I64 point_i64) noexcept
+//{ x += point_i64.x; y += point_i64.y; }
+//void point_i64::operator-=(POINT_I64 point_i64) noexcept
+//{ x -= point_i64.x; y -= point_i64.y; }
+//point_i64 point_i64::operator+(SIZE_I64 size_i64) const noexcept
+//{ return point_i64(x + size_i64.cx, y + size_i64.cy); }
+//point_i64 point_i64::operator-(SIZE_I64 size_i64) const noexcept
+//{ return point_i64(x - size_i64.cx, y - size_i64.cy); }
+//point_i64 point_i64::operator-() const noexcept
+//{ return point_i64(-x, -y); }
+//point_i64 point_i64::operator+(POINT_I64 point_i32) const noexcept
+//{ return point_i64(x + point.x, y + point.y); }
+//size_i64 point_i64::operator-(POINT_I64 point_i32) const noexcept
+//{ return size_i64(x - point.x, y - point.y); }
+//rectangle_i64 point_i64::operator+(const RECTANGLE_I64 * prectangle) const noexcept
 //
-//{ return rect64(prect) + *this; }
+//{ return rectangle_i64(prectangle) + *this; }
 //
-//rect64 point64::operator-(const RECT64 * prect) const noexcept
+//rectangle_i64 point_i64::operator-(const RECTANGLE_I64 * prectangle) const noexcept
 //
-//{ return rect64(prect) - *this; }
+//{ return rectangle_i64(prectangle) - *this; }
 //
 //
-//::u32 point64::u32() const noexcept
+//::u32 point_i64::u32() const noexcept
 //{
 //   return MAKELONG(x, y);
 //}
 //
-//::u64 point64::u64() const noexcept
+//::u64 point_i64::u64() const noexcept
 //{
 //   return MAKELONG64(x, y);
 //}
 //
-//LPARAM point64::lparam() const noexcept
+//LPARAM point_i64::lparam() const noexcept
 //
 //{
 //   return MAKELPARAM(x, y);
@@ -127,56 +127,56 @@
 
 
 
-//void pointd::offset(double xOffset, double yOffset) noexcept
+//void point_f64::offset(double xOffset, double yOffset) noexcept
 //{ x += xOffset; y += yOffset; }
-//void pointd::offset(POINTD pointd) noexcept
-//{ x += pointd.x; y += pointd.y; }
-//void pointd::offset(SIZED size) noexcept
+//void point_f64::offset(POINT_F64 point_f64) noexcept
+//{ x += point_f64.x; y += point_f64.y; }
+//void point_f64::offset(SIZE_F64 size_i32) noexcept
 //{ x += size.cx; y += size.cy; }
-//void pointd::SetPoint(double X, double Y) noexcept
+//void point_f64::SetPoint(double X, double Y) noexcept
 //{ x = X; y = Y; }
-//bool pointd::operator==(POINTD pointd) const noexcept
-//{ return (x == pointd.x && y == pointd.y); }
-//bool pointd::operator!=(POINTD pointd) const noexcept
-//{ return (x != pointd.x || y != pointd.y); }
-//void pointd::operator+=(SIZED size) noexcept
+//bool point_f64::operator==(POINT_F64 point_f64) const noexcept
+//{ return (x == point_f64.x && y == point_f64.y); }
+//bool point_f64::operator!=(POINT_F64 point_f64) const noexcept
+//{ return (x != point_f64.x || y != point_f64.y); }
+//void point_f64::operator+=(SIZE_F64 size_i32) noexcept
 //{ x += size.cx; y += size.cy; }
-//void pointd::operator-=(SIZED size) noexcept
+//void point_f64::operator-=(SIZE_F64 size_i32) noexcept
 //{ x -= size.cx; y -= size.cy; }
-//void pointd::operator+=(POINTD pointd) noexcept
-//{ x += pointd.x; y += pointd.y; }
-//void pointd::operator-=(POINTD pointd) noexcept
-//{ x -= pointd.x; y -= pointd.y; }
-//pointd pointd::operator+(SIZED size) const noexcept
-//{ return pointd(x + size.cx, y + size.cy); }
-//pointd pointd::operator-(SIZED size) const noexcept
-//{ return pointd(x - size.cx, y - size.cy); }
-//pointd pointd::operator-() const noexcept
-//{ return pointd(-x, -y); }
-//pointd pointd::operator+(POINTD point) const noexcept
-//{ return pointd(x +  point.x, y +  point.y); }
-//sized pointd::operator-(POINTD  point) const noexcept
-//{ return sized(x -  point.x, y -  point.y); }
-//rectd pointd::operator+(const rectd & prect) const noexcept
+//void point_f64::operator+=(POINT_F64 point_f64) noexcept
+//{ x += point_f64.x; y += point_f64.y; }
+//void point_f64::operator-=(POINT_F64 point_f64) noexcept
+//{ x -= point_f64.x; y -= point_f64.y; }
+//point_f64 point_f64::operator+(SIZE_F64 size_i32) const noexcept
+//{ return point_f64(x + size.cx, y + size.cy); }
+//point_f64 point_f64::operator-(SIZE_F64 size_i32) const noexcept
+//{ return point_f64(x - size.cx, y - size.cy); }
+//point_f64 point_f64::operator-() const noexcept
+//{ return point_f64(-x, -y); }
+//point_f64 point_f64::operator+(POINT_F64 point_i32) const noexcept
+//{ return point_f64(x +  point.x, y +  point.y); }
+//size_f64 point_f64::operator-(POINT_F64  point_i32) const noexcept
+//{ return size_f64(x -  point.x, y -  point.y); }
+//rectangle_f64 point_f64::operator+(const rectangle_f64 & prectangle) const noexcept
 //
-//{ return rectd(prect) + *this; }
+//{ return rectangle_f64(prectangle) + *this; }
 //
-//rectd pointd::operator-(const rectd & prect) const noexcept
+//rectangle_f64 point_f64::operator-(const rectangle_f64 & prectangle) const noexcept
 //
-//{ return rectd(prect) - *this; }
+//{ return rectangle_f64(prectangle) - *this; }
 //
 //
-//::u32 pointd::u32() const noexcept
+//::u32 point_f64::u32() const noexcept
 //{
 //   return MAKELONG((i32) x, (i32) y);
 //}
 //
-//::u64 pointd::u64() const noexcept
+//::u64 point_f64::u64() const noexcept
 //{
 //   return MAKELONG64((i32) x, (i32) y);
 //}
 //
-//LPARAM pointd::lparam() const noexcept
+//LPARAM point_f64::lparam() const noexcept
 //
 //{
 //   return MAKELPARAM((i32) x, (i32) y);

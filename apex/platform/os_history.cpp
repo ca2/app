@@ -13,9 +13,27 @@ bool os_history::hist(const char * psz)
 
 #if !defined(_UWP)
 
-   ::apex::shell_launcher launcher(nullptr, "open", psz, "", "", e_display_normal);
+   //__pointer() plauncher;
+   
+   auto plauncher = __create<::apex::shell_launcher>();
 
-   launcher.execute();
+   if (!plauncher)
+   {
+
+      return plauncher;
+
+   }
+   
+   auto estatus = plauncher->setup((oswindow) nullptr, "open", psz, "", "", e_display_normal);
+
+   if (!estatus)
+   {
+
+      return estatus;
+
+   }
+
+   plauncher->launch();
 
 #endif
 

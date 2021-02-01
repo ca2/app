@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 #include "task.h"
 #ifdef LINUX
 #include <pthread.h>
@@ -130,7 +131,7 @@ bool task::is_thread() const
 
 
 #ifdef WINDOWS
-DWORD WINAPI task::s_os_task(void* p)
+::u32 WINAPI task::s_os_task(void* p)
 #else
 void* task::s_os_task(void* p)
 #endif
@@ -406,7 +407,7 @@ void task::term_task()
    if (m_id.is_empty() || m_id == "task" || m_id == "thread")
    {
 
-      __throw(invalid_argument_exception);
+      __throw(invalid_argument_exception());
 
       return ::error_failed;
 
@@ -445,7 +446,7 @@ void task::term_task()
 
    DWORD dwThread = 0;
 
-   m_hthread = ::CreateThread(nullptr, nStackSize, &::task::s_os_task, (LPVOID)(task*)this, uCreateFlags, &dwThread);
+   m_hthread = ::CreateThread(nullptr, nStackSize, (LPTHREAD_START_ROUTINE) &::task::s_os_task, (LPVOID)(task*)this, uCreateFlags, &dwThread);
 
    m_ithread = dwThread;
 

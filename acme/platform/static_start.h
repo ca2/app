@@ -42,8 +42,8 @@ namespace acme
 
 #endif
 
-   extern ::mutex* g_pmutexChildren;
-   extern ::mutex* g_pmutexThreadWaitClose;
+   extern ::mutex * g_pmutexChildren;
+   extern ::mutex * g_pmutexThreadWaitClose;
    //extern string_map < __pointer(::acme::library) >* g_pmapLibrary;
    //extern string_map < PFN_NEW_ACME_LIBRARY >* g_pmapNewAuraLibrary;
 
@@ -76,7 +76,7 @@ namespace acme
 
    //extern ::mutex * &System.g_mutexLibrary;
 
-   extern __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
+   //extern __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
    //extern critical_section* g_pcsGlobal;
 
@@ -106,12 +106,12 @@ namespace acme
 #endif
 
 
-   extern ::mutex* g_pmutexCred;
+   extern ::mutex * g_pmutexCred;
 
 
    extern class ::exception_engine* g_pexceptionengine;
 
-   extern ::mutex* g_pmutexMessageDispatch;
+   extern ::mutex * g_pmutexMessageDispatch;
 
 
    extern CLASS_DECL_ACME array < matter* >* g_paAura;
@@ -135,25 +135,20 @@ namespace acme
 
    //extern map < ithread_t, ithread_t, ithread_t, ithread_t > * g_pmapThreadOn;
 
-#ifdef WINDOWS
-
-   extern LARGE_INTEGER g_largeintegerFrequency;
-
-#endif
 
    extern i64 g_iFirstNano;
 
    //plex_heap_alloc_array * g_pplexheapallocarray;
 
    extern int g_iMemoryCountersStartable;
-   //extern mutex * g_pmutexTrait;
+   //extern ::mutex * g_pmutexTrait;
    //extern ::mutex * g_pmutexFactory;
 
-   extern ::mutex* g_pmutexUiDestroyed;
+   extern ::mutex * g_pmutexUiDestroyed;
 
 #ifdef ANDROID
 
-   extern ::mutex* g_pmutexOutputDebugStringA;
+   extern ::mutex * g_pmutexOutputDebugStringA;
 
 #endif
 
@@ -184,9 +179,9 @@ namespace acme
 #if defined(LINUX) || defined(__APPLE__)
 
    
-   extern ::mutex* g_pmutexTz;
+   extern ::mutex * g_pmutexTz;
 
-   extern ::mutex* g_pmutexThreadHandleLock;
+   extern ::mutex * g_pmutexThreadHandleLock;
 
 
 #endif // defined(LINUX) || defined(__APPLE__)
@@ -195,7 +190,7 @@ namespace acme
 #ifdef __APPLE__
 
 
-   extern ::mutex* g_pmutexCvt;
+   extern ::mutex * g_pmutexCvt;
 
 
 #endif

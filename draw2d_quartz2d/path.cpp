@@ -49,22 +49,22 @@ namespace draw2d_quartz2d
    }
    
    
-   bool path::internal_add_arc(const ::rectd & rect, double dBeg, double dEnd, bool bClockwise)
+   bool path::internal_add_arc(const ::rectangle_f64 & rectangle, double dBeg, double dEnd, bool bClockwise)
    {
       
-      CGFloat d1 = rect.right - rect.left;
+      CGFloat d1 = rectangle.right - rectangle.left;
       
       if(d1 <= 0)
          return true;
       
-      CGFloat d2 = rect.bottom - rect.top;
+      CGFloat d2 = rectangle.bottom - rectangle.top;
       
       if(d2 <= 0)
          return true;
       
-      CGFloat x = (rect.right + rect.left) / 2.0;
+      CGFloat x = (rectangle.right + rectangle.left) / 2.0;
    
-      CGFloat y = (rect.bottom + rect.top) / 2.0;
+      CGFloat y = (rectangle.bottom + rectangle.top) / 2.0;
    
       if(d1 == d2)
       {
@@ -284,17 +284,17 @@ namespace draw2d_quartz2d
    bool path::_set(::draw2d::graphics * pgraphics, ::draw2d::path::arc * parc)
    {
    
-      ::rectd rect;
+      ::rectangle_f64 rectangle_i32;
       
-      rect.left = parc->m_pointCenter.x - parc->m_sizeRadius.cx;
-      rect.right = parc->m_pointCenter.x + parc->m_sizeRadius.cx;
-      rect.top = parc->m_pointCenter.y - parc->m_sizeRadius.cy;
-      rect.bottom = parc->m_pointCenter.y + parc->m_sizeRadius.cy;
+      rectangle.left = parc->m_pointCenter.x - parc->m_sizeRadius.cx;
+      rectangle.right = parc->m_pointCenter.x + parc->m_sizeRadius.cx;
+      rectangle.top = parc->m_pointCenter.y - parc->m_sizeRadius.cy;
+      rectangle.bottom = parc->m_pointCenter.y + parc->m_sizeRadius.cy;
       
       
-      rect.offset(m_pointOffset);
+      rectangle.offset(m_pointOffset);
       
-      return internal_add_arc(rect, parc->m_angleBeg.radian(), parc->m_angleEnd.radian(), parc->m_angleEnd < parc->m_angleBeg);
+      return internal_add_arc(rectangle, parc->m_angleBeg.radian(), parc->m_angleEnd.radian(), parc->m_angleEnd < parc->m_angleBeg);
       
    }
    
@@ -307,15 +307,15 @@ namespace draw2d_quartz2d
 //   }
    
    
-   bool path::_set(::draw2d::graphics * pgraphics, ::draw2d::path::rect * prect)
+   bool path::_set(::draw2d::graphics * pgraphics, ::draw2d::path::rectangle_i32 * prectangle)
    {
    
       CGRect r;
       
-      r.origin.x = prect->m_rect.left;
-      r.origin.y = prect->m_rect.top;
-      r.size.width = prect->m_rect.width();
-      r.size.height = prect->m_rect.height();
+      r.origin.x = prectangle->m_rectangle.left;
+      r.origin.y = prectangle->m_rectangle.top;
+      r.size.width = prectangle->m_rectangle.width();
+      r.size.height = prectangle->m_rectangle.height();
       
       r.origin.x += m_pointOffset.x;
       r.origin.y += m_pointOffset.y;
@@ -349,7 +349,7 @@ namespace draw2d_quartz2d
    }
                     
 
-   bool path::_set(::draw2d::graphics * pgraphics, ::draw2d::path::polygon * ppolygon)
+   bool path::_set(::draw2d::graphics * pgraphics, ::draw2d::path::polygon_i32 * ppolygon)
    {
 
       ::array < CGPoint > points;
@@ -415,7 +415,7 @@ namespace draw2d_quartz2d
 
 
 
-   bool path::contains(::draw2d::graphics_pointer & pgraphics, const ::pointd & point)
+   bool path::contains(::draw2d::graphics_pointer & pgraphics, const ::point_f64 & point)
    {
     
       CGMutablePathRef ppath = get_os_data <CGMutablePathRef>(pgraphics);

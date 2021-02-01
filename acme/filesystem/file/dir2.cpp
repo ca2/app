@@ -1,4 +1,5 @@
 #include "framework.h"
+
 //#include "acme/platform/app_core.h"
 
 #ifdef ANDROID
@@ -11,7 +12,6 @@ extern os_local* g_poslocal;
 // {
 
 
-   CLASS_DECL_ACME ::file::path get_known_folder(REFKNOWNFOLDERID kfid);
 
 
 // } // namespace windows
@@ -83,62 +83,6 @@ extern os_local* g_poslocal;
 
 }
 
-
-::file::path dir::program_data()
-{
-
-#ifdef WINDOWS_DESKTOP
-
-   return ::get_known_folder(FOLDERID_ProgramData);
-
-#else
-
-   return ca2roaming() / "program_data";
-
-#endif
-
-}
-
-
-::file::path dir::roaming()
-{
-
-   ::file::path path;
-
-#ifdef WINDOWS_DESKTOP
-
-   path = ::get_known_folder(FOLDERID_RoamingAppData);
-
-#elif defined(_UWP)
-
-   path = begin(::Windows::Storage::ApplicationData::Current->LocalFolder->Path);
-
-#elif defined(ANDROID)
-
-   path = oslocal()->m_pathCacheDirectory;
-
-#elif defined(__APPLE__)
-
-   path = ::file::path(getenv("HOME")) / "Library/Application Support";
-
-#else
-
-   path = ::file::path(getenv("HOME")) / ".config";
-
-#endif
-
-   //if (::get_context_system() != nullptr)
-   //{
-
-   //   sync_lock sl(System.mutex());
-
-   //  System.m_pathConfig = path;
-
-   //}
-
-   return path;
-
-}
 
 
 ::file::path dir::ca2roaming()

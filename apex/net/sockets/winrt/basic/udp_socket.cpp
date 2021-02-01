@@ -412,7 +412,7 @@ namespace sockets
       {
       if (sa_len != sizeof(sa))
       {
-      WARN("recvfrom", 0, "unexpected address struct size");
+      WARN("recvfrom", 0, "unexpected address struct size_i32");
       }
       this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
       if (!q--)
@@ -464,7 +464,7 @@ namespace sockets
       {
       if (sa_len != sizeof(sa))
       {
-      WARN("recvfrom", 0, "unexpected address struct size");
+      WARN("recvfrom", 0, "unexpected address struct size_i32");
       }
       this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
       if (!q--)

@@ -4,19 +4,31 @@
 namespace user
 {
 
+   class CLASS_DECL_AURA create_struct
+   {
+   public:
+
+      void *      lpCreateParams;
+      hinstance   hInstance;
+      void *      hMenu;
+      oswindow    hwndParent;
+      int         cy;
+      int         cx;
+      int         y;
+      int         x;
+      long        style;
+      wchar_t *   lpszName;
+      wchar_t *   lpszClass;
+      u32         dwExStyle;
+   };
+
 
    class CLASS_DECL_AURA system :
       virtual public ::context_object
    {
    public:
 
-#ifdef WINDOWS
-      CREATESTRUCTW        m_createstruct;
-#else
-      CREATESTRUCTA        m_createstruct;
-#endif
-
-
+      create_struct        m_createstruct;
 #ifdef WINDOWS
       wstring     m_strClassName;
       wstring     m_strWindowName;
@@ -66,11 +78,11 @@ namespace user
                   const char * pszClassName = 0,
                   const char * pszWindowName = 0,
                   u32 uStyle = 0,
-                  ::rect rect = nullptr,
+                  ::rectangle_i32 rectangle = nullptr,
                   ::create * pcreate = nullptr);
 
       system(
-         const ::rect & rect,
+         const ::rectangle_i32 & rectangle,
          ::u32 uExStyle = 0,
          ::u32 uStyle = 0,
          ::create * pcreate = nullptr);
@@ -81,13 +93,13 @@ namespace user
       
       void set_window_name(const char * pszWindowName);
 
-      void set_rect(const ::rect & rect);
+      void set_rect(const ::rectangle_i32 & rectangle);
 
-      void get_rect(RECT32 * prect);
+      void get_rect(RECTANGLE_I32 * prectangle);
 
       void add_visible(bool bAdd = true);
 
-      inline auto get_rect() { ::rect rect(e_no_init); get_rect(&rect); return rect; }
+      inline auto get_rect() { ::rectangle_i32 rectangle(e_no_initialize); get_rect(&rectangle); return rectangle; }
 
    };
 

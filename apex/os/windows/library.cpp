@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "apex/operating_system.h"
 
 
 void * __node_library_open(const char * pszPath, string & strMessage)
@@ -460,7 +461,7 @@ bool __node_library_close(void * plibrary)
    try
    {
 
-      bOk = ::FreeLibrary((HINSTANCE)plibrary) != FALSE;
+      bOk = ::FreeLibrary((HINSTANCE)plibrary) != false;
 
    }
    catch(...)

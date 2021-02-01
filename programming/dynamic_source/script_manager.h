@@ -105,7 +105,7 @@ namespace dynamic_source
 
 
       ::mutex                                               m_mutexImageSize;
-      string_map < ::size >                                 m_mapImageSize;
+      string_map < ::size_i32 >                                 m_mapImageSize;
 
 
 
@@ -214,8 +214,8 @@ namespace dynamic_source
       ::sockets::link_in_socket * get_link_in(const char * pszServer, ::sockets::link_out_socket * poutsocket);
       bool is_online(const char * pszServer);
       ::sockets::link_out_socket * create_link_out(const char * pszServer, ::sockets::httpd_socket * phttpdsocket);
-      ::size get_image_size(const ::file::path & strFile);
-      bool extract_image_size(const ::file::path & strFile,::size * psize);
+      ::size_i32 get_image_size(const ::file::path & strFile);
+      bool extract_image_size(const ::file::path & strFile,::size_i32 * psize);
 
 
       virtual void defer_clean_session();

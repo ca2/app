@@ -25,7 +25,7 @@ namespace user
 
 
       //using ::user::interaction::create_window;
-      //bool create_window(u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, ::id id);
+      //bool create_window(u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, ::id id);
       //bool create_child(::user::interaction * puserinteraction);
 
 
@@ -41,16 +41,16 @@ namespace user
 
 #endif
       i32 GetButtonCount();
-      bool GetItemRect(i32 nIndex, RECT32 * prect);
+      bool GetItemRect(i32 nIndex, RECTANGLE_I32 * prectangle);
 
-      bool GetRect(i32 nID, RECT32 * prect);
+      bool GetRect(i32 nID, RECTANGLE_I32 * prectangle);
 
       void SetButtonStructSize(i32 nSize);
       u32 get_button_size();
-      bool SetButtonSize(const ::size & size);
-      bool SetBitmapSize(const ::size & size);
+      bool SetButtonSize(const ::size_i32 & size);
+      bool SetBitmapSize(const ::size_i32 & size);
       __pointer(::user::interaction)  set_owner(__pointer(::user::interaction) pwindow);
-      void SetRows(i32 nRows, bool bLarger, RECT32 * prect);
+      void SetRows(i32 nRows, bool bLarger, RECTANGLE_I32 * prectangle);
 
       i32 GetRows();
       bool SetCmdID(i32 nIndex, ::u32 nID);
@@ -94,7 +94,7 @@ namespace user
 #endif
       bool GetMaxSize(LPSIZE32 pSize);
 #ifdef WINDOWS_DESKTOP
-      bool InsertMarkHitTest(POINT32 * ppt, LPTBINSERTMARK ptbim);
+      bool InsertMarkHitTest(POINT_I32 * ppt, LPTBINSERTMARK ptbim);
 #endif
       u32 GetExtendedStyle();
       u32 SetExtendedStyle(u32 dwExStyle);
@@ -136,7 +136,7 @@ namespace user
       bool MapAccelerator(char chAccel, ::u32* pIDBtn);
       bool MarkButton(i32 nID, bool fHighlight = TRUE);
       bool MoveButton(::u32 nOldPos, ::u32 nNewPos);
-      i32 hit_test(POINT32 * ppt);
+      i32 hit_test(POINT_I32 * ppt);
 
       void Customize();
       i32 AddStrings(const char * pszStrings);

@@ -24,8 +24,8 @@ namespace opengl
       context_egl();
       virtual ~context_egl();
 
-      virtual ::e_status _create_offscreen_buffer(const ::size& size) override;
-      virtual ::e_status resize_offscreen_buffer(const ::size& size) override;
+      virtual ::e_status _create_offscreen_buffer(const ::size_i32& size) override;
+      virtual ::e_status resize_offscreen_buffer(const ::size_i32& size) override;
       virtual ::e_status destroy_offscreen_buffer() override;
 
       virtual ::e_status make_current() override;

@@ -172,14 +172,14 @@ namespace http
       strFile.replace(":", "_");
       strFile.replace("//", "/");
       strFile.replace("?", "%19");
-      strFile = Context.dir().cache() / strFile + ".meta_information";
+      strFile = get_context()->dir().cache() / strFile + ".meta_information";
 
       string strCache;
 
       if (!set["nocache"].get_bool())
       {
 
-         Context.file().as_string(strFile);
+         get_context()->file().as_string(strFile);
 
          if (strCache.has_char())
          {
@@ -288,7 +288,7 @@ namespace http
 
       }
 
-      Context.file().put_contents(strFile, strCache);
+      get_context()->file().put_contents(strFile, strCache);
 
       if (::is_set(petype))
       {
@@ -320,7 +320,7 @@ namespace http
       strFile.replace(":", "_");
       strFile.replace("//", "/");
       strFile.replace("?", "%19");
-      strFile = Context.dir().cache() / strFile + ".length_question";
+      strFile = get_context()->dir().cache() / strFile + ".length_question";
 
       bool bNoCache = set["nocache"].get_bool();
 
@@ -329,7 +329,7 @@ namespace http
       if (!bNoCache)
       {
 
-         strCache = Context.file().as_string(strFile);
+         strCache = get_context()->file().as_string(strFile);
 
          if (strCache.has_char())
          {
@@ -366,7 +366,7 @@ namespace http
 
       }
 
-      Context.file().put_contents(strFile, strCache);
+      get_context()->file().put_contents(strFile, strCache);
 
       return len;
 
@@ -531,16 +531,16 @@ namespace http
       //      else if(i == 1)
       //      {
       //         // telmico: no proxy
-      //         string str = Context.file().as_string(Context.dir().appdata() / "machine/proxy.xml");
+      //         string str = get_context()->file().as_string(get_context()->dir().appdata() / "machine/proxy.xml");
       //         if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
       //         {
-      //            Context.file().copy(Context.dir().appdata()/ "proxy_original.xml", Context.dir().install()/ "proxy.xml", false);
+      //            get_context()->file().copy(get_context()->dir().appdata()/ "proxy_original.xml", get_context()->dir().install()/ "proxy.xml", false);
       //         }
-      //         if(Context.file().exists(Context.dir().appdata()/ "proxy.xml"))
+      //         if(get_context()->file().exists(get_context()->dir().appdata()/ "proxy.xml"))
       //         {
       //            try
       //            {
-      //               Context.file().del(Context.dir().appdata()/ "proxy.xml");
+      //               get_context()->file().del(get_context()->dir().appdata()/ "proxy.xml");
       //            }
       //            catch(...)
       //            {
@@ -550,20 +550,20 @@ namespace http
       //      else if(i == 2)
       //      {
       //         // telmico: original proxy configuration
-      //         if(Context.file().exists(Context.dir().appdata()/ "proxy_original.xml"))
+      //         if(get_context()->file().exists(get_context()->dir().appdata()/ "proxy_original.xml"))
       //         {
-      //            Context.file().copy(Context.dir().appdata()/ "proxy.xml", Context.dir().appdata()/"proxy_original.xml", false);
+      //            get_context()->file().copy(get_context()->dir().appdata()/ "proxy.xml", get_context()->dir().appdata()/"proxy_original.xml", false);
       //         }
       //      }
       //      else
       //      {
       //         // telmico: simple default proxy configuration : hostname=>proxy - try etc/hosts port=>80  - assume HTTP proxy
-      //         string str = Context.file().as_string(Context.dir().appdata()/"proxy.xml");
+      //         string str = get_context()->file().as_string(get_context()->dir().appdata()/"proxy.xml");
       //         if(str.has_char() && str.find("<") >= 0 && str.find(">") > 0)
       //         {
-      //            Context.file().copy(Context.dir().appdata()/"proxy_original.xml", Context.dir().appdata()/"proxy.xml", false);
+      //            get_context()->file().copy(get_context()->dir().appdata()/"proxy_original.xml", get_context()->dir().appdata()/"proxy.xml", false);
       //         }
-      //         Context.file().put_contents(Context.dir().appdata()/"proxy.xml", "proxy");
+      //         get_context()->file().put_contents(get_context()->dir().appdata()/"proxy.xml", "proxy");
       //      }
    }
 
@@ -571,7 +571,7 @@ namespace http
    void context::defer_auto_initialize_proxy_configuration()
    {
 
-      string strHost = Context.file().as_string(Context.dir().appdata() / "database\\text\\last_good_known_account_com.txt");
+      string strHost = get_context()->file().as_string(get_context()->dir().appdata() / "database\\text\\last_good_known_account_com.txt");
 
       string_array straRequestingServer;
 
@@ -653,7 +653,7 @@ namespace http
          varFile["disable_ca2_sessid"] = true;
          varFile["no_proxy_config"] = true;
 
-         ppac->m_strAutoConfigScript = Context.file().as_string(varFile);
+         ppac->m_strAutoConfigScript = get_context()->file().as_string(varFile);
 
 
          m_mapPac.set_at(pszUrl, ppac);
@@ -832,9 +832,9 @@ namespace http
 
       //xml::document doc;
 
-      //::file::path pathProxyXml = Context.dir().appdata() / "proxy.xml";
+      //::file::path pathProxyXml = get_context()->dir().appdata() / "proxy.xml";
 
-      //if (!Context.file().exists(pathProxyXml))
+      //if (!get_context()->file().exists(pathProxyXml))
       //{
 
       //   pproxy->m_bDirect = true;
@@ -843,7 +843,7 @@ namespace http
 
       //}
 
-      //string str = Context.file().as_string(pathProxyXml);
+      //string str = get_context()->file().as_string(pathProxyXml);
 
       //if (str.has_char() && str.find("<") < 0 && str.find(">") < 0)
       //{
@@ -959,14 +959,14 @@ namespace http
       ////      if(!bOk)
       ////      {
       ////
-      ////         //bool bAutoDetect = Context.os().connection_settings_get_auto_detect();
+      ////         //bool bAutoDetect = get_context()->os().connection_settings_get_auto_detect();
       ////
       ////         //if(bAutoDetect)
       ////         //{
       ////
       ////         //   TRACE("proxy auto_detect true");
       ////
-      ////         //   string strUrl = Context.os().connection_settings_get_auto_config_url();
+      ////         //   string strUrl = get_context()->os().connection_settings_get_auto_config_url();
       ////
       ////         //   if(strUrl.has_char())
       ////         //   {
@@ -984,7 +984,7 @@ namespace http
       ////
       ////         //   TRACE("proxy auto_detect false");
       ////
-      ////         //   string strUrl = Context.os().connection_settings_get_auto_config_url();
+      ////         //   string strUrl = get_context()->os().connection_settings_get_auto_config_url();
       ////
       ////         //   if(strUrl.has_char())
       ////         //   {
@@ -2554,7 +2554,7 @@ namespace http
    bool context::download(sockets::socket_handler & handler, __pointer(::sockets::http_session) & psession, const char * pszRequest, ::payload varFile, property_set & set)
    {
 
-      file_pointer spfile = Context.file().get_file(varFile,
+      file_pointer spfile = get_context()->file().get_file(varFile,
          ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
       set["file"] = spfile;
@@ -2579,7 +2579,7 @@ namespace http
 
       {
 
-         auto rfile = Context.file().get_file(varFile,
+         auto rfile = get_context()->file().get_file(varFile,
             ::file::e_open_binary | ::file::e_open_create | ::file::e_open_read_write | ::file::e_open_defer_create_directory);
 
          if (!rfile)
@@ -2822,9 +2822,9 @@ namespace http
 
    //   strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
 
-   //   strUserNameFile = Context.dir().appdata() / strSection + "_1";
+   //   strUserNameFile = get_context()->dir().appdata() / strSection + "_1";
 
-   //   strPasswordFile = Context.dir().appdata() / strSection + "_2";
+   //   strPasswordFile = get_context()->dir().appdata() / strSection + "_2";
 
    //   bool bOk = true;
 
@@ -2878,9 +2878,9 @@ namespace http
 
    //   strSection.Format("proxy_auth\\%s.%s", puser->m_strLogin.c_str(), "proxy_auth");
 
-   //   Context.file().del(Context.dir().appdata() / strSection + "_1");
+   //   get_context()->file().del(get_context()->dir().appdata() / strSection + "_1");
 
-   //   Context.file().del(Context.dir().appdata() / strSection + "_2");
+   //   get_context()->file().del(get_context()->dir().appdata() / strSection + "_2");
 
    //}
 

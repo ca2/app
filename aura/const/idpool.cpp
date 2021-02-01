@@ -94,8 +94,8 @@ namespace aura
       //de_de = "de-de";
 
       //br = "br";
-      //pt_br = "point-br";
-      //pt = "point";
+      //pt_br = "point_i32-br";
+      //pt = "point_i32";
 
       //es = "es";
 
@@ -192,7 +192,7 @@ namespace aura
       //html_h3 = "h3";
       //html_h4 = "h4";
       //html_h5 = "h5";
-      //html_p = "point";
+      //html_p = "point_i32";
       //html_table = "table";
       //html_tbody = "tbody";
       //html_tr = "tr";

@@ -358,17 +358,17 @@
 //      if(!(*theWindowsShell.m_pfnSHGetPathFromIDList)(pidl, pwszPath))
 //      {
 //         free(pwszPath);
-//         return FALSE;
+//         return false;
 //      }
 //      ::str::international::unicode_to_utf8(str, pwszPath);
 //      free(pwszPath);
-//      return TRUE;
+//      return true;
 //   }
 //
 //
 //   inline bool shell::SHGetPathFromIDList(LPCITEMIDLIST pidl, unichar * pszPath)
 //   {
-//      return (*theWindowsShell.m_pfnSHGetPathFromIDList)(pidl, pszPath) != FALSE;
+//      return (*theWindowsShell.m_pfnSHGetPathFromIDList)(pidl, pszPath) != false;
 //   }
 //
 //   inline HANDLE shell::FindFirstFile(const unichar * pcsz, WIN32_FIND_DATAW * pdata)
@@ -381,7 +381,7 @@
 //   inline bool shell::FindNextFile(HANDLE handle, WIN32_FIND_DATAW * pdata)
 //
 //   {
-//      return (*theWindowsShell.m_pfnFindNextFile)(handle, pdata) != FALSE;
+//      return (*theWindowsShell.m_pfnFindNextFile)(handle, pdata) != false;
 //
 //   }
 //
@@ -401,7 +401,7 @@
 //   inline bool shell::MoveFile(const unichar * pExistingFileName, const unichar * lpNewFileName)
 //
 //   {
-//      return (*theWindowsShell.m_pfnMoveFile)(pExistingFileName, lpNewFileName) != FALSE;
+//      return (*theWindowsShell.m_pfnMoveFile)(pExistingFileName, lpNewFileName) != false;
 //
 //   }
 //
@@ -435,7 +435,7 @@
 //
 //         pFileSystemNameBuffer,    // file system name buffer
 //
-//         nFileSystemNameSize) != FALSE;         // length of file system name buffer
+//         nFileSystemNameSize) != false;         // length of file system name buffer
 //   }
 //
 //   inline ::u32 shell::SHGetFileInfo(
@@ -527,7 +527,7 @@
 //      LPWNDCLASSW pwndclass)
 //
 //   {
-//      return (*theWindowsShell.m_pfnGetClassInfo)(hInstance, pClassName, pwndclass) != FALSE;
+//      return (*theWindowsShell.m_pfnGetClassInfo)(hInstance, pClassName, pwndclass) != false;
 //
 //   }
 //

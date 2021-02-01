@@ -78,15 +78,15 @@ namespace experience
    bool dock_manager::dock_window(::message::mouse* pmouse)
    {
 
-      ::point pointCursor = pmouse->m_point;
+      ::point_i32 pointCursor = pmouse->m_point;
 
-      ::point point;
+      ::point_i32 point;
 
-      ::rect rectDockButtonWindow;
+      ::rectangle_i32 rectDockButtonWindow;
 
       m_pframewindow->m_pframe->get_control_box()->get_button(e_button_dock)->get_window_rect(rectDockButtonWindow);
 
-      ::point pointDock = rectDockButtonWindow.center();
+      ::point_i32 pointDock = rectDockButtonWindow.center();
 
       auto pointMove = m_pointWindowOrigin + (pmouse->m_point - (m_pointWindowOrigin + dock_origin() + m_pointCursorDockOrigin));
 
@@ -94,19 +94,19 @@ namespace experience
 
       point = __point(pointCursor - pointDock);
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       m_pframewindow->get_window_rect(rectWindow);
 
-      ::rect rectEvent = rectWindow;
+      ::rectangle_i32 rectEvent = rectWindow;
 
       rectEvent.move_to(point);
 
-      ::rect rectCursor(pointCursor.x - 1, pointCursor.y - 1, pointCursor.x + 1, pointCursor.y + 1);
+      ::rectangle_i32 rectCursor(pointCursor.x - 1, pointCursor.y - 1, pointCursor.x + 1, pointCursor.y + 1);
 
-      ::rect screen;
+      ::rectangle_i32 screen;
 
-      ::rect rectWork;
+      ::rectangle_i32 rectWork;
 
       auto psession = Session;
 
@@ -132,7 +132,7 @@ namespace experience
 
       int cyCenterArea = rectWork.height() / 2;
 
-      ::rect rectCenter;
+      ::rectangle_i32 rectCenter;
 
       auto pointScreenCenter = rectWork.center();
 
@@ -212,13 +212,13 @@ namespace experience
 
       }
 
-      ::rect rectDock;
+      ::rectangle_i32 rectDock;
 
       enum_display edisplayDock = e_display_none;
 
       enum_display edisplayOld = m_pframewindow->layout().sketch().display();
 
-      ::rect rectScreenOld = m_pframewindow->layout().sketch().screen_rect();
+      ::rectangle_i32 rectScreenOld = m_pframewindow->layout().sketch().screen_rect();
 
       if (rectCenter.contains_x(pointCursor.x))
       {
@@ -327,7 +327,7 @@ namespace experience
          else
          {
 
-            ::rect rectNew(pointMove, m_pframewindow->m_windowrect.m_rectRestored.size());
+            ::rectangle_i32 rectNew(pointMove, m_pframewindow->m_windowrect.m_rectRestored.size());
 
             rectNew._001Constraint(rectWork);
 
@@ -561,10 +561,10 @@ namespace experience
    }
 
 
-   ::point dock_manager::dock_origin()
+   ::point_i32 dock_manager::dock_origin()
    {
 
-      ::point pointOrigin;
+      ::point_i32 pointOrigin;
 
       ::user::interaction * pinteraction = dock_button();
 

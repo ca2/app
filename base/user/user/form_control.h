@@ -38,10 +38,10 @@ namespace user
 
 
       //using ::user::interaction::_001IsPointInside;
-      virtual bool _001IsPointInside(::user::interaction * pinteraction,point64 point);
-      virtual void control_get_window_rect(::user::interaction * pinteraction,RECT32 * prect);
+      virtual bool _001IsPointInside(::user::interaction * pinteraction,point_i64 point_i32);
+      virtual void control_get_window_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle);
 
-      virtual void control_get_client_rect(::user::interaction * pinteraction,RECT32 * prect);
+      virtual void control_get_client_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle);
 
       
       virtual ::user::form * get_form() override;
@@ -89,15 +89,15 @@ namespace user
 
       DECL_GEN_SIGNAL(_001OnAppLanguage);
 
-      bool OnCommand(WPARAM wparam,LPARAM lparam);
+      bool OnCommand(wparam wparam,lparam lparam);
 
-      bool OnCommandButton(::user::interaction * pinteraction,::u32 uNotificationCode,LPARAM lparam);
+      bool OnCommandButton(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam);
 
-      bool OnCommandCheckBox(::user::interaction * pinteraction,::u32 uNotificationCode,LPARAM lparam);
+      bool OnCommandCheckBox(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam);
 
-      bool OnCommandComboBox(::user::interaction * pinteraction,::u32 uNotificationCode,LPARAM lparam);
+      bool OnCommandComboBox(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam);
 
-      bool OnCommandEdit(::user::interaction * pinteraction,::u32 uNotificationCode,LPARAM lparam);
+      bool OnCommandEdit(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam);
 
 
 
@@ -137,11 +137,11 @@ namespace user
 
       //virtual ::form_property_set * get_form_property_set() override;
 
-//      virtual bool _001IsPointInside(::user::interaction * pinteraction,point64 point);
+//      virtual bool _001IsPointInside(::user::interaction * pinteraction,point_i64 point_i32);
 
-      //    virtual void control_get_window_rect(::user::interaction * pinteraction,RECT32 * prect);
+      //    virtual void control_get_window_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle);
 
-      //  virtual void control_get_client_rect(::user::interaction * pinteraction,RECT32 * prect);
+      //  virtual void control_get_client_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle);
 
 
 

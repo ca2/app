@@ -17,7 +17,7 @@ namespace app_shader
       string                              m_strFragment;
       __pointer(::gpu::context)      m_pcontext;
       __pointer(::gpu::program)      m_pprogram;
-      rect                                m_rect;
+      rectangle_i32                                m_rectangle;
       ::user::interaction *               m_pinteraction;
       string                              m_strFont1;
       string_map < ::image_pointer >      m_pimagemap;

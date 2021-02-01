@@ -73,10 +73,10 @@ public:
    }
 
 
-   auto_pointer(T * point)
+   auto_pointer(T * p)
    {
 
-      m_p = point;
+      m_p = p;
       m_bArray = false;
 
    }
@@ -134,11 +134,11 @@ public:
    T * detach()
    {
 
-      T * point = m_p;
+      T * p = m_p;
 
       m_p = nullptr;
 
-      return point;
+      return p;
 
    }
 
@@ -197,10 +197,10 @@ public:
 
    }
 
-   void reset(T * point)
+   void reset(T * p)
    {
 
-      if (point == m_p)
+      if (p == m_p)
       {
 
          return;
@@ -209,15 +209,15 @@ public:
 
       destroy();
 
-      m_p = point;
+      m_p = p;
 
    }
 
 
-   auto_pointer & operator = (T * point)
+   auto_pointer & operator = (T * p)
    {
 
-      reset(point);
+      reset(p);
 
       return *this;
 

@@ -17,6 +17,7 @@
 //
 //
 #include "framework.h"
+#include "apex/operating_system.h"
 #include "file_os_watcher.h"
 
 
@@ -37,7 +38,7 @@ namespace file
 
       m_bRefresh = false;
 
-      m_bStop = TRUE;
+      m_bStop = true;
 
       CancelIo(m_hDirectory);
 
@@ -46,7 +47,7 @@ namespace file
       if (!HasOverlappedIoCompleted(&m_overlapped))
       {
 
-         SleepEx(5, TRUE);
+         SleepEx(5, true);
 
       }
 
@@ -125,7 +126,7 @@ namespace file
 
       }
 
-      m_overlapped.hEvent = CreateEvent(nullptr, TRUE, FALSE, nullptr);
+      m_overlapped.hEvent = CreateEvent(nullptr, true, false, nullptr);
 
       m_overlapped.Pointer = this;
 
@@ -233,7 +234,7 @@ namespace file
              m_hDirectory,
              m_buffer,
              sizeof(m_buffer),
-             m_bRecursive ? TRUE : FALSE,
+             m_bRecursive ? true : false,
              m_dwNotify,
              nullptr,
              &m_overlapped,

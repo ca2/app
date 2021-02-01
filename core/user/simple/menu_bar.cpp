@@ -166,17 +166,17 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
    m_iTracking = iItem;
    m_itemPressed = iItem;
    set_need_redraw();
-   ::rect rect;
-   _001GetElementRect(iItem, rect, ::user::e_element_item, ::user::e_state_none);
-   _001ClientToScreen(rect);
+   ::rectangle_i32 rectangle;
+   _001GetElementRect(iItem, rectangle_i32, ::user::e_element_item, ::user::e_state_none);
+   _001ClientToScreen(rectangle);
 
    /*#ifdef WINDOWS_DESKTOP
        TPMPARAMS tpm;
        tpm.cbSize = sizeof(TPMPARAMS);
-       tpm.rcExclude.top    = rect.top;
-       tpm.rcExclude.left   = rect.left;
-       tpm.rcExclude.bottom = rect.bottom;
-       tpm.rcExclude.right  = rect.right;
+       tpm.rcExclude.top    = rectangle.top;
+       tpm.rcExclude.left   = rectangle.left;
+       tpm.rcExclude.bottom = rectangle.bottom;
+       tpm.rcExclude.right  = rectangle.right;
    #endif*/
 
    return true;
@@ -264,7 +264,7 @@ LRESULT CALLBACK simple_menu_bar::MessageProc(index code, WPARAM wParam, LPARAM 
 
    UNREFERENCED_PARAMETER(wParam);
 
-   LPMESSAGE pmsg = (LPMESSAGE)lParam;
+   MESSAGE * pmsg = (MESSAGE *)lParam;
 
    if (code == MSGF_MENU)
    {
@@ -279,7 +279,7 @@ LRESULT CALLBACK simple_menu_bar::MessageProc(index code, WPARAM wParam, LPARAM 
 
          TRACE("simple_menu_bar::MessageProc %d %d %d \n", fwKeys, point.x, point.y);
 
-         //::point point(xPos, yPos);
+         //::point_i32 point(xPos, yPos);
 
          _001ScreenToClient(point);
 
@@ -297,7 +297,7 @@ LRESULT CALLBACK simple_menu_bar::MessageProc(index code, WPARAM wParam, LPARAM 
 #endif
 
 
-bool simple_menu_bar::_track_popup_menu(const ::point & point)
+bool simple_menu_bar::_track_popup_menu(const ::point_i32 & point)
 {
    //if (m_bTracking)
    //{
@@ -330,10 +330,10 @@ void simple_menu_bar::_001OnKeyDown(::message::message * pmessage)
 
 
 
-/*bool simple_menu_bar::CalcSize(::user::toolbar_control & tbc, size & size)
+/*bool simple_menu_bar::CalcSize(::user::toolbar_control & tbc, size_i32 & size)
 {
-    ::rect rectItem;
-    ::rect rectSize(0, 0, 0, 0);
+    ::rectangle_i32 rectItem;
+    ::rectangle_i32 rectSize(0, 0, 0, 0);
 
     for(index i = 0; i < tbc.GetButtonCount(); i++)
     {
@@ -344,10 +344,10 @@ void simple_menu_bar::_001OnKeyDown(::message::message * pmessage)
     return ;
 }
 
-bool simple_menu_bar::CalcSize(CToolBarCtrl & tbc, size & size)
+bool simple_menu_bar::CalcSize(CToolBarCtrl & tbc, size_i32 & size)
 {
-    ::rect rectItem;
-    ::rect rectSize(0, 0, 0, 0);
+    ::rectangle_i32 rectItem;
+    ::rectangle_i32 rectSize(0, 0, 0, 0);
 
     for(index i = 0; i < tbc.GetButtonCount(); i++)
     {
@@ -491,7 +491,7 @@ bool simple_menu_bar::ReloadMenuBar()
 
 /*void simple_menu_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
-   ::rect rectClient;
+   ::rectangle_i32 rectClient;
    get_client_rect(rectClient);
    class imaging & imaging = System.imaging();
    if(m_iHover >= -1)
@@ -526,7 +526,7 @@ bool simple_menu_bar::ReloadMenuBar()
 
 }
 */
-/*bool simple_menu_bar::_001GetItemRect(index iItem, RECT32 * prect, enum_element eelement)
+/*bool simple_menu_bar::_001GetItemRect(index iItem, RECTANGLE_I32 * prectangle, enum_element eelement)
 
 {
    if(iItem < 0 ||
@@ -536,43 +536,43 @@ bool simple_menu_bar::ReloadMenuBar()
    switch(eelement)
    {
    case e_element_item:
-      prect->left   = m_buttona[iItem].m_rect.left + ITEMCHECKEDCX;
+      prectangle->left   = m_buttona[iItem].m_rectangle.left + ITEMCHECKEDCX;
 
-      prect->right  = m_buttona[iItem].m_rect.right + ITEMCHECKEDPADRIGHT;
+      prectangle->right  = m_buttona[iItem].m_rectangle.right + ITEMCHECKEDPADRIGHT;
 
-      prect->top    = m_buttona[iItem].m_rect.top + ITEMCHECKEDCY;
+      prectangle->top    = m_buttona[iItem].m_rectangle.top + ITEMCHECKEDCY;
 
-      prect->bottom = m_buttona[iItem].m_rect.bottom;
+      prectangle->bottom = m_buttona[iItem].m_rectangle.bottom;
 
       break;
    case element_item_hover:
-      prect->left   = m_buttona[iItem].m_rect.left - ITEMCHECKEDPADLEFT;
+      prectangle->left   = m_buttona[iItem].m_rectangle.left - ITEMCHECKEDPADLEFT;
 
-      prect->right  = m_buttona[iItem].m_rect.right - ITEMCHECKEDCX + ITEMCHECKEDPADRIGHT;
+      prectangle->right  = m_buttona[iItem].m_rectangle.right - ITEMCHECKEDCX + ITEMCHECKEDPADRIGHT;
 
-      prect->top    = m_buttona[iItem].m_rect.top;
+      prectangle->top    = m_buttona[iItem].m_rectangle.top;
 
-      prect->bottom = m_buttona[iItem].m_rect.bottom - ITEMCHECKEDCY;
+      prectangle->bottom = m_buttona[iItem].m_rectangle.bottom - ITEMCHECKEDCY;
 
       break;
    case e_element_text:
-      prect->left   = m_buttona[iItem].m_rect.left + ITEMCHECKEDCX;
+      prectangle->left   = m_buttona[iItem].m_rectangle.left + ITEMCHECKEDCX;
 
-      prect->right  = m_buttona[iItem].m_rect.right;
+      prectangle->right  = m_buttona[iItem].m_rectangle.right;
 
-      prect->top    = m_buttona[iItem].m_rect.top + ITEMCHECKEDCY;
+      prectangle->top    = m_buttona[iItem].m_rectangle.top + ITEMCHECKEDCY;
 
-      prect->bottom = m_buttona[iItem].m_rect.bottom;
+      prectangle->bottom = m_buttona[iItem].m_rectangle.bottom;
 
       break;
    case element_text_hover:
-      prect->left   = m_buttona[iItem].m_rect.left + ITEMCHECKEDPADLEFT;
+      prectangle->left   = m_buttona[iItem].m_rectangle.left + ITEMCHECKEDPADLEFT;
 
-      prect->right  = m_buttona[iItem].m_rect.right - ITEMCHECKEDPADRIGHT - ITEMCHECKEDCX;
+      prectangle->right  = m_buttona[iItem].m_rectangle.right - ITEMCHECKEDPADRIGHT - ITEMCHECKEDCX;
 
-      prect->top    = m_buttona[iItem].m_rect.top + ITEMCHECKEDPADTOP;
+      prectangle->top    = m_buttona[iItem].m_rectangle.top + ITEMCHECKEDPADTOP;
 
-      prect->bottom = m_buttona[iItem].m_rect.bottom - ITEMCHECKEDPADBOTTOM - ITEMCHECKEDCY;
+      prectangle->bottom = m_buttona[iItem].m_rectangle.bottom - ITEMCHECKEDPADBOTTOM - ITEMCHECKEDCY;
 
       break;
    default:
@@ -590,16 +590,16 @@ bool simple_menu_bar::ReloadMenuBar()
    return true;
 }
 
-index simple_menu_bar::_001HitTest(const POINT32 *ppoint)
+index simple_menu_bar::_001HitTest(const POINT_I32 *ppoint)
 
 {
    for(index iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
-      if(m_buttona[iItem].m_rect.contains(*ppoint))
+      if(m_buttona[iItem].m_rectangle.contains(*ppoint))
 
          return iItem;
    }
-   ::rect rectClient;
+   ::rectangle_i32 rectClient;
    get_client_rect(rectClient);
    if(rectClient.contains(*ppoint))
 
@@ -613,7 +613,7 @@ index simple_menu_bar::_001HitTest(const POINT32 *ppoint)
    ::draw2d::memory_graphics pgraphics(this);;
    pgraphics->set(System.draw2d().fonts().GetMenuFont());
 
-   ::size size;
+   ::size_i32 size;
    index ix = ITEMCHECKEDPADLEFT;
    index iy = 0;
    for(index iItem = 0; iItem < m_buttona.get_size(); iItem++)
@@ -623,15 +623,15 @@ index simple_menu_bar::_001HitTest(const POINT32 *ppoint)
          m_buttona[iItem].m_wstr,
          m_buttona[iItem].m_wstr.get_length(),
          &size);
-      m_buttona[iItem].m_rect.left  = ix ;
+      m_buttona[iItem].m_rectangle.left  = ix ;
       ix += size.cx + ITEMCHECKEDCX + ITEMCHECKEDPADLEFT + ITEMCHECKEDPADRIGHT;
-      m_buttona[iItem].m_rect.right = ix;
-      m_buttona[iItem].m_rect.top   = 0;
+      m_buttona[iItem].m_rectangle.right = ix;
+      m_buttona[iItem].m_rectangle.top   = 0;
       iy = max(iy, size.cy);
    }
    for(iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
-      m_buttona[iItem].m_rect.bottom = iy + ITEMCHECKEDCX + ITEMCHECKEDPADTOP + ITEMCHECKEDPADBOTTOM;
+      m_buttona[iItem].m_rectangle.bottom = iy + ITEMCHECKEDCX + ITEMCHECKEDPADTOP + ITEMCHECKEDPADBOTTOM;
    }
 
 
@@ -652,7 +652,7 @@ index simple_menu_bar::_001HitTest(const POINT32 *ppoint)
 //   ASSERT_VALID(puiParent);   // must have a parent
 //   ASSERT(!((uStyle & CBRS_SIZE_FIXED) && (uStyle & CBRS_SIZE_DYNAMIC)));
 //
-//   //SetBorders(rect);
+//   //SetBorders(rectangle);
 //
 //   // save the style
 //   m_dwStyle = (uStyle & CBRS_ALL);
@@ -705,7 +705,7 @@ index simple_menu_bar::_001HitTest(const POINT32 *ppoint)
 //   }
 //}
 
-/*size simple_menu_bar::CalcDynamicLayout(index nLength, u32 dwMode)
+/*size_i32 simple_menu_bar::CalcDynamicLayout(index nLength, u32 dwMode)
 {
     if ((nLength == -1) && !(dwMode & LM_MRUWIDTH) && !(dwMode & LM_COMMIT) &&
       ((dwMode & LM_HORZDOCK) || (dwMode & LM_VERTDOCK)))
@@ -715,23 +715,23 @@ index simple_menu_bar::_001HitTest(const POINT32 *ppoint)
    return CalcLayout(dwMode, nLength);
 
 }
-size simple_menu_bar::CalcLayout(u32 dwMode, index nLength)
+size_i32 simple_menu_bar::CalcLayout(u32 dwMode, index nLength)
 {
    _001Layout();
-   size sizeResult;
+   size_i32 sizeResult;
    sizeResult.cx = 0;
    sizeResult.cy = 0;
 
    if(m_buttona.get_size() > 0)
    {
-      sizeResult.cx = m_buttona[m_buttona.get_size() - 1].m_rect.right + ITEMCHECKEDPADRIGHT;
-      sizeResult.cy = m_buttona[m_buttona.get_size() - 1].m_rect.bottom;
+      sizeResult.cx = m_buttona[m_buttona.get_size() - 1].m_rectangle.right + ITEMCHECKEDPADRIGHT;
+      sizeResult.cy = m_buttona[m_buttona.get_size() - 1].m_rectangle.bottom;
    }
 
    return sizeResult;
 }
 
-size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
+size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 {
    u32 dwMode = bStretch ? LM_STRETCH : 0;
    dwMode |= bHorz ? LM_HORZ : 0;
@@ -742,8 +742,8 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 
 /*void simple_menu_bar::_001DrawItem(::draw2d::graphics *graphics, index iItem)
 {
-   ::rect rectItem;
-   ::rect rectText;
+   ::rectangle_i32 rectItem;
+   ::rectangle_i32 rectText;
 
    SimpleMenuBarButton & button = m_buttona[iItem];
 
@@ -772,29 +772,29 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 
    if(eelement == element_item_hover)
    {
-      ::rect rectShadow;
+      ::rectangle_i32 rectShadow;
       _001GetItemRect(iItem, rectShadow, e_element_item);
 
       ::draw2d::pen_pointer penShadow(get_context_application(), PS_SOLID, 1, RGB(127, 127, 127));
       ::draw2d::brush_pointer brushShadow(get_context_application(), RGB(127, 127, 127));
       ::draw2d::pen * ppenOld = pgraphics->set(penShadow);
       ::draw2d::brush * pbrushOld = pgraphics->set(brushShadow);
-      pgraphics->rectangle(rectShadow);
+      pgraphics->rectangle_i32(rectShadow);
 
       ::draw2d::pen_pointer pen(get_context_application(), PS_SOLID, 1, RGB(92, 92, 92));
       ::draw2d::brush_pointer brush(get_context_application(), RGB(255, 255, 255));
       pgraphics->set(pen);
       pgraphics->set(brush);
-      pgraphics->rectangle(rectItem);
+      pgraphics->rectangle_i32(rectItem);
       pgraphics->set(ppenOld);
       pgraphics->set(pbrushOld);
 
-      ::rect rect;
-      _001GetItemRect(iItem, rect, e_element_text);
+      ::rectangle_i32 rectangle;
+      _001GetItemRect(iItem, rectangle_i32, e_element_text);
       pgraphics->set_text_color(RGB(192, 192, 192));
       draw2d::graphics_extension::_DrawText(pgraphics,
          button.m_wstr,
-         rect,
+         rectangle_i32,
          e_align_left_center);
    }
 
@@ -813,7 +813,7 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 //   m_bCheck = false;
 }*/
 
-/*void simple_menu_bar::_001Hover(const ::point & point)
+/*void simple_menu_bar::_001Hover(const ::point_i32 & point)
 {
    _track_popup_menu(point);
    index iHover = -1;
@@ -843,7 +843,7 @@ size simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 
 void simple_menu_bar::_001Hover()
 {
-   ::point point;
+   ::point_i32 point;
    GetCursorPos(&point);
    _001ScreenToClient(point);
    _001Hover(point);

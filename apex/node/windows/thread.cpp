@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "apex/operating_system.h"
 
 
 void CLASS_DECL_APEX __init_thread()
@@ -50,7 +51,7 @@ void CLASS_DECL_APEX __term_thread()
 
 __STATIC bool CLASS_DECL_APEX IsHelpKey(LPMSG pMsg)
 
-// return TRUE only for non-repeat F1 keydowns.
+// return true only for non-repeat F1 keydowns.
 {
    return pMsg->message == e_message_key_down &&
 

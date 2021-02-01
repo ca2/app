@@ -47,7 +47,7 @@ namespace music
          *   success If the operation was successful.
          *
          *   MCIERR_OUT_OF_MEMORY  If there is insufficient memory for
-         *     the requested number and size of buffers.
+         *     the requested number and size_i32 of buffers.
          *
          * seqAllocBuffers allocates playback buffers based on the
          * cbBuffer and cBuffer fields of pSeq. cbBuffer specifies the

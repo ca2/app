@@ -1,3 +1,65 @@
+//        apex / thomas thomas thomas my pray my life my GOD
+// 
+//   
+//    
+//        ------------------ - --/ ------------------------ - ----/ -------------------------------------- - --
+//        DOMAS_16-09-0.1989 > ThomasBS_ / ------ - ---/ aura.dll Release(Win32) / aura.lib Static Release(Win32)   oe      helloaura.exe     Static     Release(Win32)   ----   -    -- <3Thomas Boregaard SoerensenCamilo SasukeThomas Boregaard Soerensen!!
+//        2020 - 08 - 18 01:38 / 17, 180kb---- - ---/ 189, 893kb-------- - ---/ 12, 187kb------------------ - --
+//        2020 - 08 - 20 07:41 / 13, 915kb / 137, 668kb / 9, 715kb------------------ - --
+//        rebuild mark / ---------------- - ------------------------- - -------------------------------- - --
+//        ------------------ - --
+//
+//
+//
+//
+//        ------------------------------------------------------------------------------
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |                                                                            |
+//        |    |-----------------|    |-----------------| |    |-----------------|     |
+//        |    | |---------------|    |-----------------| |    |---------------| |     |
+//        |    | |                                      | |                    | |     |
+//        |    | |                    |------| |-| |----| |    |---------------| |     |
+//        |    | |                    | |----| |-| |----| |    | |---------------|     |
+//        |    | |                    | |               | |    | |                     |
+//        |    | |---------------|    | |---------------| |    | |---------------|     |
+//        |    |-----------------|    |-----------------| |    |-----------------|     |
+//        |                                                                            |
+//        ------------------------------------------------------------------------------
+//
+//
+//        <3 ThomasBS - 400th follower
+//
+//
+//        ca2 is an all-purpose multi-platform framework
+//        and set of libraries written in C++ language with
+//        the aim to help developers create awesome apps for users.
+//
+//
+//        ca2/./acme/C++/C/Assembly/Huffman Machine/...
+//        ...Hardware/Universe/Multiverse stack
+//
+//
+//
+//
+//        c(s)t(s)<tb(s)!!
+//
+//01234567-?8888?+? ??? ??? ????? ??????????? ????? ?????????? ??????? ???????????????????????
+//
+//
+//
+//---------------------------------------------------------------------------------------
 /////////////////////////////////////////////////////////////////////////////////////////
 //
 //  ca2
@@ -84,7 +146,7 @@ extern CLASS_DECL_APEX int g_bApex;
 
 
 // C-includes
-#include "apex/os/_c.h"
+//#include "apex/os/_c.h"
 
 
 #undef min
@@ -414,7 +476,7 @@ class var_array;
 class thread;
 class channel;
 class critical_section;
-class mutex;
+class ::mutex;
 class id;
 
 namespace colorertake5
@@ -869,9 +931,10 @@ class mq;
 
 #include "apex/parallelization/thread.h"
 #include "apex/parallelization/handler.h"
+//#include "apex/parallelization/service_status.h"
 #include "apex/parallelization/service_base.h"
-#include "apex/parallelization/service/plain_service.h"
-#include "apex/parallelization/service/plain_service.h"
+//#include "apex/parallelization/service/plain_service.h"
+//#include "apex/parallelization/service/plain_service.h"
 #include "apex/parallelization/fork.h"
 #include "apex/parallelization/delay_thread.h"
 #include "apex/parallelization/tools.h"
@@ -1105,8 +1168,8 @@ namespace xml
 
 
 // C++ Includes
-#include "apex/os/_.h"
-#include "apex/node/_.h"
+//#include "apex/os/_.h"
+//#include "apex/node/_.h"
 
 
 #include "apex/parallelization/data.h"
@@ -1212,13 +1275,13 @@ namespace math
 #include "apex/filesystem/_impl.h"
 
 
-#include "apex/net/_impl.h"
+//#include "apex/net/_impl.h"
 
 
 #include "apex/filesystem/file/_.h"
 
 
-#include "apex/net/_impl.h"
+//#include "apex/net/_impl.h"
 
 
 #include "apex/filesystem/filesystem/_impl.h"

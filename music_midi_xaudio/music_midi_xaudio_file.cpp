@@ -265,7 +265,7 @@ smf_Open_File_Cleanup:
          *****************************************************************************/
          ::e_status     buffer::CloseFile()
          {
-            single_lock(&m_cs, TRUE);
+            single_lock(m_criticalsection, TRUE);
             SetOpened(false);
             delete_contents();
             return ::success;
@@ -274,7 +274,7 @@ smf_Open_File_Cleanup:
 
          void buffer::delete_contents()
          {
-            single_lock(&m_cs, TRUE);
+            single_lock(m_criticalsection, TRUE);
             SetOpened(false);
 
 
@@ -376,7 +376,7 @@ smf_Open_File_Cleanup:
          *****************************************************************************/
          iptr buffer::TicksToMillisecs(imedia_time tkOffset)
          {
-            single_lock(&m_cs, true);
+            single_lock(m_criticalsection, true);
             if(!IsOpened())
                return 0xffffffff;
 
@@ -465,7 +465,7 @@ smf_Open_File_Cleanup:
          imedia_time buffer::MillisecsToTicks(imedia_time msOffset)
          {
 
-            single_lock(&m_cs, true);
+            single_lock(m_criticalsection, true);
 
             if(!IsOpened())
                return 0xffffffff;
@@ -974,7 +974,7 @@ smf_Open_File_Cleanup:
          *
          * lpmh                      - Contains information about the buffer to fill.
          *
-         * tkMax                     - Specifies a cutoff point in the stream
+         * tkMax                     - Specifies a cutoff point_i32 in the stream
          *                             beyond which events will not be read.
          *
          * Return@rdes
@@ -1100,7 +1100,7 @@ smf_Open_File_Cleanup:
 
                /* smfGetNextEvent doesn't set this because smfSeek uses it
                ** as well and needs to distinguish between reaching the
-               ** seek point and reaching end-of-file.
+               ** seek point_i32 and reaching end-of-file.
                **
                ** To the ::account::user, however, we present the selection between
                ** their given tkBase and tkEnd as the entire file, therefore
@@ -1237,7 +1237,7 @@ smf_Open_File_Cleanup:
                {
                   /* smfGetNextEvent doesn't set this because smfSeek uses it
                   ** as well and needs to distinguish between reaching the
-                  ** seek point and reaching end-of-file.
+                  ** seek point_i32 and reaching end-of-file.
                   **
                   ** To the ::account::user, however, we present the selection between
                   ** their given tkBase and tkEnd as the entire file, therefore
@@ -1269,7 +1269,7 @@ smf_Open_File_Cleanup:
          *
          * lpmh                      - Contains information about the buffer to fill.
          *
-         * tkMax                     - Specifies a cutoff point in the stream
+         * tkMax                     - Specifies a cutoff point_i32 in the stream
          *                             beyond which events will not be read.
          *
          * Return@rdes
@@ -1620,7 +1620,7 @@ smf_Open_File_Cleanup:
          * The meta events (tempo, time signature, key signature) will be the
          * first events in the buffer if they exist.
          *
-         * Use smfGetStateMaxSize to determine the maximum size of the state
+         * Use smfGetStateMaxSize to determine the maximum size_i32 of the state
          * information buffer. State information that will not fit into the given
          * buffer will be lost.
          *
@@ -2554,7 +2554,7 @@ smf_Open_File_Cleanup:
                {
                   // smfGetNextEvent doesn't set this because smfSeek uses it
                   // as well and needs to distinguish between reaching the
-                  // seek point and reaching end-of-file.
+                  // seek point_i32 and reaching end-of-file.
                   //
                   // To the ::account::user, however, we present the selection between
                   // their given tkBase and tkEnd as the entire file, therefore

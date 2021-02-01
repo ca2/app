@@ -59,7 +59,7 @@ namespace user
    void menu_button::_001OnDrawDefault(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -100,17 +100,17 @@ namespace user
          pen->create_solid(1, RGB(0, 0, 0));
          pgraphics->set(pen);
          pgraphics->set(br);
-         ::rect rectPopupArrow;
+         ::rectangle_i32 rectPopupArrow;
          rectPopupArrow.left = rectClient.right - 9;
          rectPopupArrow.right = rectClient.right - 4;
          rectPopupArrow.top = ((rectClient.top + rectClient.bottom) / 2) - 4;
          rectPopupArrow.bottom = ((rectClient.top + rectClient.bottom) / 2) + 4;
-         pointd_array pointa;
-         pointa.add(point(rectPopupArrow.left, rectPopupArrow.bottom));
-         pointa.add(point(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
-         pointa.add(point(rectPopupArrow.left, rectPopupArrow.top));
-         pointa.add(point(rectPopupArrow.left, rectPopupArrow.bottom));
-         pgraphics->polygon(pointa);
+         point_f64_array pointa;
+         pointa.add(point_i32(rectPopupArrow.left, rectPopupArrow.bottom));
+         pointa.add(point_i32(rectPopupArrow.right, (rectPopupArrow.bottom + rectPopupArrow.top) / 2));
+         pointa.add(point_i32(rectPopupArrow.left, rectPopupArrow.top));
+         pointa.add(point_i32(rectPopupArrow.left, rectPopupArrow.bottom));
+         pgraphics->polygon_i32(pointa);
       }
 
       _001DrawCheck(pgraphics);
@@ -230,8 +230,8 @@ namespace user
 
 
 
-         ::rect rectImage = m_rectCheckBox;
-         ::rect rectImageBorder = rectImage;
+         ::rectangle_i32 rectImage = m_rectCheckBox;
+         ::rectangle_i32 rectImageBorder = rectImage;
          rectImageBorder.inflate(2, 2);
          ::image_list::info ii;
          __pointer(image_list) pimagelist;
@@ -268,7 +268,7 @@ namespace user
 
             pimagelist->get_image_info(uImage, &ii);
 
-            ::rect & rectImageInfo(ii.m_rect);
+            ::rectangle_i32 & rectImageInfo(ii.m_rectangle);
             rectImage.offset(1, 1);
             rectImage.top = rectImage.bottom - rectImageInfo.height();
             rectImage.right = rectImage.left + rectImageInfo.width();
@@ -376,11 +376,11 @@ namespace user
 
       }
 
-      ::rect rectMargin = get_margin(pstyle);
+      ::rectangle_i32 rectMargin = get_margin(pstyle);
 
-      ::rect rectBorder = get_border(pstyle);
+      ::rectangle_i32 rectBorder = get_border(pstyle);
 
-      ::rect rectPadding = get_padding(pstyle);
+      ::rectangle_i32 rectPadding = get_padding(pstyle);
 
       size.cx += rectMargin.left + rectBorder.left + rectPadding.left;
 

@@ -1,6 +1,19 @@
 #pragma once
 
 
+#ifdef WINDOWS 
+#define ARG_SEC_ATTRS_DEF , void * psaAttributes = nullptr
+#define ARG_SEC_ATTRS , void * psaAttributes
+#define PARAM_SEC_ATTRS (LPSECURITY_ATTRIBUTES) psaAttributes
+#define ADD_PARAM_SEC_ATTRS , PARAM_SEC_ATTRS
+#else
+#define ARG_SEC_ATTRS_DEF 
+#define ARG_SEC_ATTRS
+#define PARAM_SEC_ATTRS
+#define ADD_PARAM_SEC_ATTRS 
+#endif
+
+
 class CLASS_DECL_ACME semaphore :
    virtual public sync
 {
@@ -20,8 +33,7 @@ public:
 
 #endif
 
-   semaphore(::i32 lInitialCount = 1, ::i32 lMaxCount = 1, const char * pstrName=nullptr, LPSECURITY_ATTRIBUTES psaAttributes = nullptr);
-
+   semaphore(::i32 lInitialCount = 1, ::i32 lMaxCount = 1, const char * pstrName=nullptr ARG_SEC_ATTRS_DEF);
    virtual ~semaphore();
 
 

@@ -27,7 +27,7 @@ inline bool __is_valid_string(const char* psz, memsize nMaxLength = UINT_MAX)
 }
 
 // Verify that a pointer points to valid memory
-inline bool __is_valid_address(const void* p, memsize nBytes, bool bReadWrite = TRUE)
+inline bool __is_valid_address(const void* p, memsize nBytes, bool bReadWrite = true)
 {
 #ifdef WINDOWS
    (bReadWrite);
@@ -113,17 +113,14 @@ public:
 #include "_conv_ansi.h"
 
 
-
-
-
 #include "_trait.h"
 
 
-#include "bstring.h"
-
 #include "string_wide_conversion.h"
 
+
 #include "to_integer.h"
+
 
 #endif
 

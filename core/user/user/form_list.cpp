@@ -324,11 +324,11 @@ namespace user
 
             //   ::user::item_range r;
 
-            //   rect.m_iLowerBound = iItem;
+            //   rectangle.m_iLowerBound = iItem;
 
-            //   rect.m_iUpperBound = iItem;
+            //   rectangle.m_iUpperBound = iItem;
 
-            //   m_rangeSelection.add_item(rect);
+            //   m_rangeSelection.add_item(rectangle);
 
             //}
             return ::user::list::on_click(item);
@@ -461,7 +461,7 @@ namespace user
       if(item.m_bOk)
       {
 
-         rectd rectControl(item.m_rectSubItem);
+         rectangle_f64 rectControl(item.m_rectSubItem);
 
          auto pointViewport = get_viewport_offset();
 
@@ -1090,7 +1090,7 @@ break_click:;
 
    }
 
-   //LRESULT form_list::_001BaseWndGetProperty(EProperty eprop,LPARAM lparam)
+   //LRESULT form_list::_001BaseWndGetProperty(EProperty eprop,lparam lparam)
 
    //{
    //   switch(eprop)
@@ -1193,7 +1193,7 @@ break_click:;
    }
 
 
-   bool form_list::_001IsPointInside(::user::interaction * pinteraction,point64 point)
+   bool form_list::_001IsPointInside(::user::interaction * pinteraction,point_i64 point_i32)
    {
 
       if(pinteraction != nullptr)
@@ -1206,7 +1206,7 @@ break_click:;
             if(pinteraction == _001GetEditControl())
             {
 
-               ::rect rectWindow;
+               ::rectangle_i32 rectWindow;
                
                pinteraction->get_window_rect(rectWindow);
 
@@ -1221,8 +1221,8 @@ break_click:;
             }
          }
       }
-      ::rect rectControl;
-      ::rect rect;
+      ::rectangle_i32 rectControl;
+      ::rectangle_i32 rectangle;
       draw_list_item item(this);
 
 
@@ -1243,9 +1243,9 @@ break_click:;
 //      //_001GetElementRect(&item, ::user::mesh::element_sub_item);
 //      rectControl = item.m_rectSubItem;
 //      _001ClientToScreen(rectControl);
-//      rect64 rectForm;
+//      rectangle_i64 rectForm;
 //      get_window_rect(rectForm);
-//      rect64 rectClient;
+//      rectangle_i64 rectClient;
 //      rectClient.top = rectForm.top;
 //      rectClient.bottom = rectForm.bottom;
 //      rectClient.left = rectControl.left;
@@ -1370,7 +1370,7 @@ break_click:;
       //}
       //}
       //}*/
-      //control_keep controlkeep(this,point);
+      //control_keep controlkeep(this,point_i32);
       //__pointer(::user::interaction) pinteraction = top_child();
       //__pointer(::user::interaction) puiBefore = nullptr;
       //bool bError;
@@ -1420,7 +1420,7 @@ break_click:;
 
 
 
-      //::point point = pmouse->m_point;
+      //::point_i32 point = pmouse->m_point;
       //_001ScreenToClient(point);
       ///*      if(emessage == e_message_left_button_down)
       //      {
@@ -1461,7 +1461,7 @@ break_click:;
       //      }
       //      }
       //      }*/
-      //control_keep controlkeep(this,point);
+      //control_keep controlkeep(this,point_i32);
       //__pointer(::user::interaction) pinteraction = top_child();
       //__pointer(::user::interaction) puiBefore = nullptr;
       //bool bError;
@@ -1510,20 +1510,20 @@ break_click:;
    }
 
 
-   void form_list::control_get_client_rect(::user::interaction * pinteraction,RECT32 * prect)
+   void form_list::control_get_client_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle)
 
    {
 
       if(pinteraction == nullptr)
       {
 
-         ::null(prect);
+         ::null(prectangle);
 
          return;
 
       }
 
-      ::rect rectControl;
+      ::rectangle_i32 rectControl;
 
       draw_list_item item(this);
 
@@ -1562,31 +1562,31 @@ break_click:;
 
       rectControl = item.m_rectSubItem;
 
-      ::rect rect(rectControl);
+      ::rectangle_i32 rectangle(rectControl);
 
-      *prect = rect;
-
-
-   }
-
-
-   void form_list::control_get_window_rect(::user::interaction * pinteraction,RECT32 * prect)
-
-   {
-
-      control_get_client_rect(pinteraction,prect);
-
-
-      _001ClientToScreen(prect);
+      *prectangle = rectangle_i32;
 
 
    }
 
 
-   bool form_list::control_001DisplayHitTest(const ::point & point)
+   void form_list::control_get_window_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle)
+
    {
 
-      return _001DisplayHitTest(point,m_itemControl.m_iItem,m_itemControl.m_iSubItem);
+      control_get_client_rect(pinteraction,prectangle);
+
+
+      _001ClientToScreen(prectangle);
+
+
+   }
+
+
+   bool form_list::control_001DisplayHitTest(const ::point_i32 & point)
+   {
+
+      return _001DisplayHitTest(point_i32,m_itemControl.m_iItem,m_itemControl.m_iSubItem);
 
    }
 
@@ -2086,10 +2086,10 @@ break_click:;
    }
 
 
-   bool form_list::_001HitTest_(const ::point & point,index &iItem,index &iSubItem)
+   bool form_list::_001HitTest_(const ::point_i32 & point,index &iItem,index &iSubItem)
    {
 
-      return ::user::list::_001HitTest_(point,iItem,iSubItem);
+      return ::user::list::_001HitTest_(point_i32,iItem,iSubItem);
 
    }
 
@@ -2140,14 +2140,14 @@ break_click:;
          //         if (pdrawitem->m_bOk)
          //         {
 
-         //            rect r;
+         //            rectangle_i32 r;
 
-         //            rect.left = 0;
-         //            rect.top = 0;
-         //            rect.right = 15;
-         //            rect.bottom = 15;
+         //            rectangle.left = 0;
+         //            rectangle.top = 0;
+         //            rectangle.right = 15;
+         //            rectangle.bottom = 15;
 
-         //            rect.Align(::e_align_center, pdrawitem->m_rectSubItem);
+         //            rectangle.Align(::e_align_center, pdrawitem->m_rectSubItem);
 
          //            _001GetItemText(pdrawitem);
 
@@ -2201,7 +2201,7 @@ break_click:;
 
             _001ClientToScreen(pdrawitem->m_rectWindow);
 
-            //::rect rectWindow;
+            //::rectangle_i32 rectWindow;
 
             //pinteraction->get_window_rect(rectWindow);
 

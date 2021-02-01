@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 #include "acme/node/windows/_windows.h"
 
 
@@ -45,7 +46,7 @@ namespace windows
 
       __zero(m_sa);
       m_sa.nLength = sizeof(SECURITY_ATTRIBUTES);
-      m_sa.bInheritHandle = bInherit ? TRUE : FALSE;
+      m_sa.bInheritHandle = bInherit ? true : false;
       m_sa.lpSecurityDescriptor = nullptr;
 
 
@@ -97,9 +98,9 @@ namespace windows
 
       DWORD dwWritten;
 
-      bSuccess = WriteFile(m_hWrite,(const char *)psz,dwLen,&dwWritten,nullptr) != FALSE;
+      bSuccess = WriteFile(m_hWrite,(const char *)psz,dwLen,&dwWritten,nullptr) != false;
 
-      return bSuccess != FALSE && dwWritten == dwLen;
+      return bSuccess != false && dwWritten == dwLen;
 
    }
 
@@ -125,7 +126,7 @@ namespace windows
          try
          {
 
-            bSuccess = ReadFile(m_hRead,chBuf,BUFSIZE,&dwRead,nullptr) != FALSE;
+            bSuccess = ReadFile(m_hRead,chBuf,BUFSIZE,&dwRead,nullptr) != false;
 
          }
          catch(...)
@@ -167,7 +168,7 @@ namespace windows
       try
       {
 
-         bSuccess = ReadFile(m_hRead,chBuf,BUFSIZE,&dwRead,nullptr) != FALSE;
+         bSuccess = ReadFile(m_hRead,chBuf,BUFSIZE,&dwRead,nullptr) != false;
 
       }
       catch(...)

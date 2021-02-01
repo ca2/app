@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 #include "apex/message/application.h"
 #include "apex/id.h"
 #include "acme/platform/version.h"
@@ -15,7 +16,7 @@
 
 
 #include "apex/node/_node.h"
-#include "apex/os/_os.h"
+//#include "apex/os/_os.h"
 
 #ifdef WINDOWS_DESKTOP
 
@@ -565,7 +566,7 @@ namespace apex
 
       }
 
-      return Context.file().module().title();
+      return get_context()->file().module().title();
 
    }
 
@@ -595,7 +596,7 @@ namespace apex
 
       auto pathFolder = get_app_localconfig_folder();
 
-      auto preader = Context.file().get_reader(pathFolder / "this.ini");
+      auto preader = get_context()->file().get_reader(pathFolder / "this.ini");
 
       if (preader)
       {
@@ -1237,10 +1238,10 @@ namespace apex
    };
 
 
-   int_bool CALLBACK enum_proc(oswindow hwnd, LPARAM lparam)
+   int_bool CALLBACK enum_proc(oswindow hwnd, lparam lparam)
    {
 
-      open_browser_enum * penum = (open_browser_enum *)lparam;
+      open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
 
       string str = ::str::get_window_text_timeout(hwnd, 1000);
 
@@ -1249,19 +1250,19 @@ namespace apex
 
          penum->m_hwnd = hwnd;
 
-         return FALSE;
+         return false;
 
       }
 
-      return TRUE;
+      return true;
 
    }
 
 
-   int_bool CALLBACK enum_proc_ff_topic(oswindow hwnd, LPARAM lparam)
+   int_bool CALLBACK enum_proc_ff_topic(oswindow hwnd, lparam lparam)
    {
 
-      open_browser_enum * penum = (open_browser_enum *)lparam;
+      open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
 
       string str = ::str::get_window_text_timeout(hwnd);
 
@@ -1272,15 +1273,15 @@ namespace apex
 
       }
 
-      return TRUE;
+      return true;
 
    }
 
-   int_bool CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, LPARAM lparam)
+   int_bool CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, lparam lparam)
 
    {
 
-      open_browser_enum * penum = (open_browser_enum *)lparam;
+      open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
 
 
       string str = ::str::get_window_text_timeout(hwnd, 1000);
@@ -1292,7 +1293,7 @@ namespace apex
 
       }
 
-      return TRUE;
+      return true;
 
    }
 
@@ -1343,7 +1344,7 @@ namespace apex
    //      if (strLink.begins_ci("mailto:"))
    //      {
 
-   //         return Context.os().file_open(this, strLink);
+   //         return get_context()->os().file_open(this, strLink);
 
    //      }
 
@@ -1364,18 +1365,18 @@ namespace apex
    //}
 
 
-#ifdef WINDOWS
-
-
-   void application::TermThread(HINSTANCE hInstTerm)
-   {
-
-      ::exception::throw_interface_only();
-
-   }
-
-
-#endif
+//#ifdef WINDOWS
+//
+//
+//   void application::TermThread(HINSTANCE hInstTerm)
+//   {
+//
+//      ::exception::throw_interface_only();
+//
+//   }
+//
+//
+//#endif
 
 
    bool application::_001OnDDECommand(const char * pcsz)
@@ -1469,7 +1470,7 @@ namespace apex
 //
 //
 
-//   string CLASS_DECL_APEX application::get_cred(const string & strRequestUrl, const ::rect & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+//   string CLASS_DECL_APEX application::get_cred(const string & strRequestUrl, const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
 // {
 
 //  __throw(not_implemented());
@@ -2010,7 +2011,7 @@ namespace apex
       if (m_pinterprocessintercommunication)
       {
 
-         m_pinterprocessintercommunication->on_new_instance(Context.file().module(), Context.os().get_pid());
+         m_pinterprocessintercommunication->on_new_instance(get_context()->file().module(), get_context()->os().get_pid());
 
       }
 
@@ -2022,7 +2023,7 @@ namespace apex
 
       //   ::file::path pathDatabase;
 
-      //   ::file::path pathFolder = Context.dir().appdata();
+      //   ::file::path pathFolder = get_context()->dir().appdata();
 
       //   if (is_system())
       //   {
@@ -2380,15 +2381,19 @@ namespace apex
 
 #ifdef WINDOWS_DESKTOP
 
-      MESSAGE msg;
+      MSG msg;
 
       // Create Windows Message Queue
       ::PeekMessageA(&msg, nullptr, 0, 0xffff, 0);
 
+      MESSAGE message;
+
+      __copy(message, msg);
+
       if (!is_system() && is_true("SessionSynchronizedInput"))
       {
 
-         ::AttachThreadInput(GetCurrentThreadId(), (u32)System.get_ithread(), TRUE);
+         ::AttachThreadInput(GetCurrentThreadId(), (u32)System.get_ithread(), true);
 
       }
 
@@ -2751,7 +2756,7 @@ retry_license:
 
 #ifdef WINDOWS_DESKTOP
 
-         windows_install_crash_dump_reporting(Context.file().module().name());
+         windows_install_crash_dump_reporting(get_context()->file().module().name());
 
 #endif
 
@@ -2800,7 +2805,7 @@ retry_license:
 
       }
 
-      sync_lock sl(System.m_spmutexSystemAppData);
+      sync_lock sl(System.m_pmutexSystemAppData);
 
       string strId(pszId);
       string strSystemLocale = System.m_strLocale;
@@ -3000,7 +3005,7 @@ retry_license:
    ::e_status application::os_create_service()
    {
 
-      return Context.os().create_service();
+      return get_context()->os().create_service();
 
    }
 
@@ -3008,7 +3013,7 @@ retry_license:
    ::e_status application::os_remove_service()
    {
 
-      return Context.os().remove_service();
+      return get_context()->os().remove_service();
 
    }
 
@@ -3016,7 +3021,7 @@ retry_license:
    ::e_status application::os_start_service()
    {
 
-      return Context.os().start_service();
+      return get_context()->os().start_service();
 
    }
 
@@ -3024,7 +3029,7 @@ retry_license:
    ::e_status application::os_stop_service()
    {
 
-      return Context.os().stop_service();
+      return get_context()->os().stop_service();
 
    }
 
@@ -3068,7 +3073,9 @@ retry_license:
 
          init_service();
 
-         ::service_base::serve(*m_pservice);
+         __throw(todo());
+
+         //service_main(m_pservice);
 
       }
       else if (has_property("run"))
@@ -3831,7 +3838,7 @@ retry_license:
 
 
 
-   __pointer(::acme::exclusive) application::get_exclusive(string strId, LPSECURITY_ATTRIBUTES psa)
+   __pointer(::acme::exclusive) application::get_exclusive(string strId ARG_SEC_ATTRS)
    {
 
       auto & pexclusive = m_mapExclusive[strId];
@@ -3839,7 +3846,7 @@ retry_license:
       if(!pexclusive)
       {
 
-         auto pexclusiveNew = __new(::acme::exclusive(strId, psa));
+         auto pexclusiveNew = __new(::acme::exclusive(strId ADD_PARAM_SEC_ATTRS));
 
          __m_own(this, pexclusive, pexclusiveNew OBJ_REF_DBG_COMMA_THIS_NOTE("::apex::application::get_exclusive") );
 
@@ -3850,10 +3857,10 @@ retry_license:
    }
 
 
-   bool application::exclusive_fails(string strId, LPSECURITY_ATTRIBUTES psa)
+   bool application::exclusive_fails(string strId ARG_SEC_ATTRS)
    {
 
-      auto pexclusive = get_exclusive(strId, psa);
+      auto pexclusive = get_exclusive(strId ADD_PARAM_SEC_ATTRS);
 
       if(!pexclusive)
       {
@@ -3889,18 +3896,18 @@ retry_license:
       SECURITY_ATTRIBUTES MutexAttributes;
       ZeroMemory(&MutexAttributes, sizeof(MutexAttributes));
       MutexAttributes.nLength = sizeof(MutexAttributes);
-      MutexAttributes.bInheritHandle = FALSE; // object uninheritable
+      MutexAttributes.bInheritHandle = false; // object uninheritable
       // declare and initialize a security descriptor
       SECURITY_DESCRIPTOR SD;
-      bool bInitOk = InitializeSecurityDescriptor(&SD, SECURITY_DESCRIPTOR_REVISION) != FALSE;
+      bool bInitOk = InitializeSecurityDescriptor(&SD, SECURITY_DESCRIPTOR_REVISION) != false;
       if (bInitOk)
       {
          // give the security descriptor a Null Dacl
-         // done using the  "TRUE, (PACL)nullptr" here
+         // done using the  "true, (PACL)nullptr" here
          bSetOk = SetSecurityDescriptorDacl(&SD,
-                                            TRUE,
+                                            true,
                                             (PACL)nullptr,
-                                            FALSE) != FALSE;
+                                            false) != false;
       }
 
       if (bSetOk)
@@ -4232,9 +4239,9 @@ retry_license:
 
             auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
 
-            pcall->add_arg(Context.file().module());
+            pcall->add_arg(get_context()->file().module());
 
-            pcall->add_arg(Context.os().get_pid());
+            pcall->add_arg(get_context()->os().get_pid());
 
             pcall->add_arg(System.command_line_text());
 
@@ -4293,9 +4300,9 @@ retry_license:
 
             auto pcall = m_pinterprocessintercommunication->create_call("application", "on_additional_local_instance");
 
-            pcall->add_arg(Context.file().module());
+            pcall->add_arg(get_context()->file().module());
 
-            pcall->add_arg(Context.os().get_pid());
+            pcall->add_arg(get_context()->os().get_pid());
 
             pcall->add_arg(System.command_line_text());
 
@@ -4895,7 +4902,7 @@ retry_license:
 
          sync_lock sl(mutex());
 
-         Context.file().add_contents(Context.dir().appdata() / (Context.file().module().name() + "_log_error.txt"), strMessage);
+         get_context()->file().add_contents(get_context()->dir().appdata() / (get_context()->file().module().name() + "_log_error.txt"), strMessage);
 
       }
 
@@ -4927,14 +4934,14 @@ retry_license:
 
       static int g_iCount = 0;
 
-      string strFile = Context.dir().appdata() / (Context.file().module().name() + "_log_error.txt");
+      string strFile = get_context()->dir().appdata() / (get_context()->file().module().name() + "_log_error.txt");
 
       g_iCount++;
 
       if (g_iCount == 1)
       {
 
-         Context.os().file_open(strFile);
+         get_context()->os().file_open(strFile);
 
       }
 
@@ -5043,7 +5050,7 @@ retry_license:
    ::e_status application::app_set(string strPath, string strValue)
    {
 
-      return Context.sys_set(::file::path(m_strAppName) / strPath, strValue);
+      return get_context()->sys_set(::file::path(m_strAppName) / strPath, strValue);
 
    }
 
@@ -5051,7 +5058,7 @@ retry_license:
    string application::app_get(string strPath, string strDefault)
    {
 
-      return Context.sys_get(::file::path(m_strAppName) / strPath, strDefault);
+      return get_context()->sys_get(::file::path(m_strAppName) / strPath, strDefault);
 
    }
 
@@ -5318,7 +5325,7 @@ retry_license:
    }
 
 
-   bool application::send_message_to_windows(const ::id & id, WPARAM wparam, LPARAM lparam) // with tbs in <3
+   bool application::send_message_to_windows(const ::id & id, wparam wparam, lparam lparam) // with tbs in <3
    {
 
       //__pointer(::user::interaction) pwnd;
@@ -5376,7 +5383,7 @@ retry_license:
 
       //}
 
-      __throw(interface_only_exception);
+      __throw(interface_only_exception());
 
       return false;
 
@@ -5386,7 +5393,7 @@ retry_license:
    bool application::route_message_to_windows(::message::message * pmessage) // with tbs in <3
    {
 
-      __throw(interface_only_exception);
+      __throw(interface_only_exception());
 
       //__pointer(::user::interaction) pwnd;
 
@@ -5498,7 +5505,7 @@ retry_license:
    //}
 
 
-   bool application::post_message(const ::id & id, WPARAM wparam, lparam lparam )
+   bool application::post_message(const ::id & id, wparam wparam, lparam lparam )
    {
 
       return ::thread::post_message(id, wparam, lparam);
@@ -5565,9 +5572,9 @@ retry_license:
 
       ::file::path path2;
 
-      path1 = Context.defer_process_path(path1Param);
+      path1 = get_context()->defer_process_path(path1Param);
 
-      path2 = Context.defer_process_path(path2Param);
+      path2 = get_context()->defer_process_path(path2Param);
 
       path1 = node_full_file_path(path1);
 
@@ -6474,19 +6481,19 @@ retry_license:
    //      if (is_system())
    //      {
 
-   //         pathDatabase = Context.dir().appdata() / "system.sqlite";
+   //         pathDatabase = get_context()->dir().appdata() / "system.sqlite";
 
    //      }
    //      else if (is_session())
    //      {
 
-   //         pathDatabase = Context.dir().appdata() / "session.sqlite";
+   //         pathDatabase = get_context()->dir().appdata() / "session.sqlite";
 
    //      }
    //      else
    //      {
 
-   //         pathDatabase = Context.dir().appdata() / "app.sqlite";
+   //         pathDatabase = get_context()->dir().appdata() / "app.sqlite";
 
    //      }
 
@@ -6754,7 +6761,7 @@ retry_license:
       string strSchema;
       TRACE("update_appmatter(root=%s, relative=%s, locale=%s, style=%s)", pszRoot.c_str(), pszRelative.c_str(), pszLocale.c_str(), pszStyle.c_str());
       ::file::path strRelative = ::file::path(pszRoot) / "_matter" / pszRelative / get_locale_schema_dir(pszLocale, pszStyle) + ".zip";
-      ::file::path strFile = Context.dir().install() / strRelative;
+      ::file::path strFile = get_context()->dir().install() / strRelative;
       ::file::path strUrl(::file::path_url);
 
       if (framework_is_basis())
@@ -6776,7 +6783,7 @@ retry_license:
 
             property_set setEmpty;
 
-            if (Context.http().open(handler, psession, System.url().get_server(strUrl), System.url().get_protocol(strUrl), setEmpty, nullptr))
+            if (get_context()->http().open(handler, psession, System.url().get_server(strUrl), System.url().get_protocol(strUrl), setEmpty, nullptr))
             {
 
                break;
@@ -6793,7 +6800,7 @@ retry_license:
 
       set["get_memory"] = "";
 
-      if (!Context.http().request(handler, psession, strUrl, set))
+      if (!get_context()->http().request(handler, psession, strUrl, set))
       {
 
          return false;
@@ -6889,11 +6896,11 @@ retry_license:
 
       varFile["disable_ca2_sessid"] = true;
 
-      string strMatter = Context.dir().matter(::file::path(pszMatter) / pszMatter2);
+      string strMatter = get_context()->dir().matter(::file::path(pszMatter) / pszMatter2);
 
       varFile["url"] = strMatter;
 
-      return Context.file().as_string(varFile);
+      return get_context()->file().as_string(varFile);
 
    }
 
@@ -7161,9 +7168,9 @@ retry_license:
 
       {
 
-         ::install::mutex mutex(process_platform_dir_name2());
+         auto pmutex = __new(::install::mutex(process_platform_dir_name2()));
 
-         if (mutex.already_exists())
+         if (pmutex->already_exists())
          {
 
             //            message_box("Could not launch spa installer. It is already running.", e_message_box_ok);
@@ -7539,16 +7546,16 @@ namespace apex
    }
 
 
-   LRESULT application::GetPaintMsgProc(i32 nCode, WPARAM wParam, LPARAM lParam)
-   {
+   //LRESULT application::GetPaintMsgProc(i32 nCode, WPARAM wParam, LPARAM lParam)
+   //{
 
-      UNREFERENCED_PARAMETER(nCode);
-      UNREFERENCED_PARAMETER(wParam);
-      UNREFERENCED_PARAMETER(lParam);
+   //   UNREFERENCED_PARAMETER(nCode);
+   //   UNREFERENCED_PARAMETER(wParam);
+   //   UNREFERENCED_PARAMETER(lParam);
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
 
 
    bool application::CreateFileFromRawResource(::u32 nID, const char* pcszType, const char* pcszFilePath)
@@ -7565,7 +7572,7 @@ namespace apex
 
 #ifdef WINDOWS
 
-   bool application::OnMessageWindowMessage(LPMESSAGE pmsg)
+   bool application::OnMessageWindowMessage(MESSAGE * pmsg)
 
    {
 
@@ -7611,25 +7618,25 @@ namespace apex
    }
 
 
-#ifdef WINDOWS_DESKTOP
-
-   HENHMETAFILE application::LoadEnhMetaFile(::u32 uResource)
-   {
-
-      memory storage;
-
-      if (!GetResourceData(uResource, "EnhMetaFile", storage))
-      {
-
-         return nullptr;
-
-      }
-
-      return SetEnhMetaFileBits((::u32)storage.get_size(), storage.get_data());
-
-   }
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//   HENHMETAFILE application::LoadEnhMetaFile(::u32 uResource)
+//   {
+//
+//      memory storage;
+//
+//      if (!GetResourceData(uResource, "EnhMetaFile", storage))
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      return SetEnhMetaFileBits((::u32)storage.get_size(), storage.get_data());
+//
+//   }
+//
+//#endif
 
    /////////////////////////////////////////////////////////////////////////////
    // WinApp UI related functions
@@ -7691,7 +7698,7 @@ namespace apex
          if (pbase->m_lparam == 0)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
             nIDP = "Command Failure";
-         pbase->m_lresult = (LRESULT)TRUE;        // pretend the command was handled
+         pbase->m_lresult = (LRESULT)true;        // pretend the command was handled
       }
 
       if (pe.is < memory_exception >())
@@ -7933,7 +7940,7 @@ namespace apex
    return false;
    }
 
-   return ( s_pfnActivateActCtx( m_hCtxt, &m_uCookie) == TRUE );
+   return ( s_pfnActivateActCtx( m_hCtxt, &m_uCookie) == true );
    }
 
    bool Deactivate()
@@ -7948,7 +7955,7 @@ namespace apex
    {
    uptr uCookie = m_uCookie;
    m_uCookie = 0;
-   return ( s_pfnDeactivateActCtx(0, uCookie) == TRUE );
+   return ( s_pfnDeactivateActCtx(0, uCookie) == true );
    }
    return true;
    }
@@ -8074,7 +8081,7 @@ namespace apex
 
 #endif
 
-      return TRUE;
+      return true;
 
 
    }
@@ -8082,9 +8089,9 @@ namespace apex
    bool application::GetSysPolicyValue(u32 dwPolicyID, bool* pbValue)
    {
       if (!pbValue)
-         return FALSE; // bad pointer
+         return false; // bad pointer
       *pbValue = (m_dwPolicies & dwPolicyID) != 0;
-      return TRUE;
+      return true;
    }
 
    //bool application::InitApplication()
@@ -8093,7 +8100,7 @@ namespace apex
 
    //   LoadSysPolicies();
 
-   //   return TRUE;
+   //   return true;
 
 
    //}
@@ -8114,12 +8121,12 @@ namespace apex
    for (i32 i = 1; i < __argc; i++)
    {
    const char * pszParam = __targv[i];
-   bool bFlag = FALSE;
+   bool bFlag = false;
    bool bLast = ((i + 1) == __argc);
    if (pszParam[0] == '-' || pszParam[0] == '/')
    {
    // remove flag specifier
-   bFlag = TRUE;
+   bFlag = true;
    ++pszParam;
    }
    rCmdInfo.ParseParam(pszParam, bFlag, bLast);
@@ -8131,9 +8138,9 @@ namespace apex
 
    /*CCommandLineInfo::CCommandLineInfo()
    {
-   m_bShowSplash = TRUE;
-   m_bRunEmbedded = FALSE;
-   m_bRunAutomated = FALSE;
+   m_bShowSplash = true;
+   m_bRunEmbedded = false;
+   m_bRunAutomated = false;
    m_nShellCommand = FileNew;
    }
 
@@ -8174,9 +8181,9 @@ namespace apex
    // OLE command switches are case insensitive, while
    // shell command switches are case sensitive
 
-   if (lstrcmpA(pszParam, "point") == 0)
+   if (lstrcmpA(pszParam, "point_i32") == 0)
    m_nShellCommand = FilePrintTo;
-   else if (lstrcmpA(pszParam, "point") == 0)
+   else if (lstrcmpA(pszParam, "point_i32") == 0)
    m_nShellCommand = FilePrint;
    else if (::__invariant_stricmp(pszParam, "Register") == 0 ||
    ::__invariant_stricmp(pszParam, "Regserver") == 0)
@@ -8190,13 +8197,13 @@ namespace apex
    }
    else if (::__invariant_stricmp(pszParam, "Embedding") == 0)
    {
-   m_bRunEmbedded = TRUE;
-   m_bShowSplash = FALSE;
+   m_bRunEmbedded = true;
+   m_bShowSplash = false;
    }
    else if (::__invariant_stricmp(pszParam, "Automation") == 0)
    {
-   m_bRunAutomated = TRUE;
-   m_bShowSplash = FALSE;
+   m_bRunAutomated = true;
+   m_bShowSplash = false;
    }
    }
 
@@ -8266,8 +8273,8 @@ namespace apex
    //      UNREFERENCED_PARAMETER(dwData);
    //      UNREFERENCED_PARAMETER(nCmd);
    //
-   //      // return global cast help mode state to FALSE (backward compatibility)
-   //      m_bHelpMode = FALSE;
+   //      // return global cast help mode state to false (backward compatibility)
+   //      m_bHelpMode = false;
    //      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task
    //
    //      //trans pMainWnd->WinHelp(dwData, nCmd);
@@ -8283,8 +8290,8 @@ namespace apex
    //
    //      UNREFERENCED_PARAMETER(nCmd);
    //
-   //      // return global cast help mode state to FALSE (backward compatibility)
-   //      m_bHelpMode = FALSE;
+   //      // return global cast help mode state to false (backward compatibility)
+   //      m_bHelpMode = false;
    //      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task
    //
    //      // trans pMainWnd->HtmlHelp(dwData, nCmd);
@@ -8298,8 +8305,8 @@ namespace apex
    //      //   __pointer(::user::interaction) pMainWnd = System.m_puiMain;
    //      //   ENSURE_VALID(pMainWnd);
    //
-   //      // return global cast help mode state to FALSE (backward compatibility)
-   //      m_bHelpMode = FALSE;
+   //      // return global cast help mode state to false (backward compatibility)
+   //      m_bHelpMode = false;
    //      // trans pMainWnd->PostMessage(WM_KICKIDLE); // trigger idle task
    //      // trans pMainWnd->WinHelpInternal(dwData, nCmd);
    //   }
@@ -8320,11 +8327,11 @@ namespace apex
       UNREFERENCED_PARAMETER(pDeviceName);
 
 
-#ifdef WINDOWS
-      if (m_hDevNames == nullptr)
-         return;
-
-#endif
+//#ifdef WINDOWS
+//      if (m_hDevNames == nullptr)
+//         return;
+//
+//#endif
 
    }
 
@@ -8535,7 +8542,7 @@ namespace apex
    {
    UpdatePrinterSelection(m_hDevNames == nullptr); //force default if no current
    if (m_hDevNames == nullptr)
-   return FALSE;               // no printer defaults
+   return false;               // no printer defaults
 
    ENSURE_ARG(pPrintDlg != nullptr);
    pPrintDlg->hDevNames = m_hDevNames;
@@ -8543,7 +8550,7 @@ namespace apex
 
    ::GlobalUnlock(m_hDevNames);
    ::GlobalUnlock(m_hDevMode);
-   return TRUE;
+   return true;
    }*/
 
    void application::UpdatePrinterSelection(bool bForceDefaults)
@@ -8557,18 +8564,18 @@ namespace apex
    }
 
 
-#ifdef WINDOWS
-
-   void application::SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld)
-   {
-      UNREFERENCED_PARAMETER(hDevNames);
-      UNREFERENCED_PARAMETER(hDevMode);
-      UNREFERENCED_PARAMETER(bFreeOld);
-      ::exception::throw_not_implemented();
-   }
-
-
-#endif
+//#ifdef WINDOWS
+//
+//   void application::SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld)
+//   {
+//      UNREFERENCED_PARAMETER(hDevNames);
+//      UNREFERENCED_PARAMETER(hDevMode);
+//      UNREFERENCED_PARAMETER(bFreeOld);
+//      ::exception::throw_not_implemented();
+//   }
+//
+//
+//#endif
 
    ::draw2d::graphics* application::CreatePrinterDC()
    {
@@ -8621,7 +8628,7 @@ namespace apex
 
    //      // hide the application's windows before closing all the documents
    //      m_puiMain1->m_puiThis->display(e_display_none);
-   //      // trans    m_puiMain->ShowOwnedPopups(FALSE);
+   //      // trans    m_puiMain->ShowOwnedPopups(false);
 
 
    //      m_puiMain1->m_puiThis->order(zorder_bottom);
@@ -8649,7 +8656,7 @@ namespace apex
    {
       /*      if (m_pdocmanager != nullptr)
       return document_manager()->save_all_modified();*/
-      return TRUE;
+      return true;
    }
 
 
@@ -8661,7 +8668,7 @@ namespace apex
    //      return document_manager()->OnDDECommand(pszCommand);
    //
    //      else*/
-   //      return FALSE;
+   //      return false;
    //   }
 
 
@@ -8748,7 +8755,7 @@ namespace apex
 
       //ASSERT(m_strAppName.has_char());
 
-      ////bool bEnable = __enable_memory_tracking(FALSE);
+      ////bool bEnable = __enable_memory_tracking(false);
       //free((void *)m_pszRegistryKey);
       //m_pszRegistryKey = strdup(pszRegistryKey);
 
@@ -8768,73 +8775,73 @@ namespace apex
    }
 
 
-#ifdef WINDOWS_DESKTOP
-
-   // returns key for HKEY_CURRENT_USER\"Software"\RegistryKey\ProfileName
-   // creating it if it doesn't exist
-   // responsibility of the caller to call RegCloseKey() on the returned HKEY
-   HKEY application::GetAppRegistryKey()
-   {
-      //ASSERT(m_pszRegistryKey != nullptr);
-      //ASSERT(m_pszProfileName != nullptr);
-
-      //HKEY hAppKey = nullptr;
-      //HKEY hSoftKey = nullptr;
-      //HKEY hCompanyKey = nullptr;
-      //if(RegOpenKeyEx(HKEY_CURRENT_USER,"software",0,KEY_WRITE | KEY_READ,
-      //   &hSoftKey) == ERROR_SUCCESS)
-      //{
-      //   ::u32 dw;
-      //   if(RegCreateKeyEx(hSoftKey,m_pszRegistryKey,0,REG_NONE,
-      //      REG_OPTION_NON_VOLATILE,KEY_WRITE | KEY_READ,nullptr,
-      //      &hCompanyKey,&dw) == ERROR_SUCCESS)
-      //   {
-      //      RegCreateKeyEx(hCompanyKey,m_pszProfileName,0,REG_NONE,
-      //         REG_OPTION_NON_VOLATILE,KEY_WRITE | KEY_READ,nullptr,
-      //         &hAppKey,&dw);
-      //   }
-      //}
-      //if(hSoftKey != nullptr)
-      //   RegCloseKey(hSoftKey);
-      //if(hCompanyKey != nullptr)
-      //   RegCloseKey(hCompanyKey);
-
-//      return hAppKey;
-      return nullptr;
-   }
-
-   // returns key for:
-   //      HKEY_CURRENT_USER\"Software"\RegistryKey\AppName\pszSection
-
-   // creating it if it doesn't exist.
-   // responsibility of the caller to call RegCloseKey() on the returned HKEY
-   HKEY application::GetSectionKey(const char* pszSection)
-   {
-
-      ASSERT(pszSection != nullptr);
-
-      HKEY hSectionKey = nullptr;
-
-      HKEY hAppKey = GetAppRegistryKey();
-
-      if (hAppKey == nullptr)
-      {
-
-         return nullptr;
-
-      }
-
-      DWORD dw;
-
-      RegCreateKeyExW(hAppKey, wstring(pszSection), 0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE | KEY_READ, nullptr, &hSectionKey, &dw);
-
-      RegCloseKey(hAppKey);
-
-      return hSectionKey;
-
-   }
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//   // returns key for HKEY_CURRENT_USER\"Software"\RegistryKey\ProfileName
+//   // creating it if it doesn't exist
+//   // responsibility of the caller to call RegCloseKey() on the returned HKEY
+//   HKEY application::GetAppRegistryKey()
+//   {
+//      //ASSERT(m_pszRegistryKey != nullptr);
+//      //ASSERT(m_pszProfileName != nullptr);
+//
+//      //HKEY hAppKey = nullptr;
+//      //HKEY hSoftKey = nullptr;
+//      //HKEY hCompanyKey = nullptr;
+//      //if(RegOpenKeyEx(HKEY_CURRENT_USER,"software",0,KEY_WRITE | KEY_READ,
+//      //   &hSoftKey) == ERROR_SUCCESS)
+//      //{
+//      //   ::u32 dw;
+//      //   if(RegCreateKeyEx(hSoftKey,m_pszRegistryKey,0,REG_NONE,
+//      //      REG_OPTION_NON_VOLATILE,KEY_WRITE | KEY_READ,nullptr,
+//      //      &hCompanyKey,&dw) == ERROR_SUCCESS)
+//      //   {
+//      //      RegCreateKeyEx(hCompanyKey,m_pszProfileName,0,REG_NONE,
+//      //         REG_OPTION_NON_VOLATILE,KEY_WRITE | KEY_READ,nullptr,
+//      //         &hAppKey,&dw);
+//      //   }
+//      //}
+//      //if(hSoftKey != nullptr)
+//      //   RegCloseKey(hSoftKey);
+//      //if(hCompanyKey != nullptr)
+//      //   RegCloseKey(hCompanyKey);
+//
+////      return hAppKey;
+//      return nullptr;
+//   }
+//
+//   // returns key for:
+//   //      HKEY_CURRENT_USER\"Software"\RegistryKey\AppName\pszSection
+//
+//   // creating it if it doesn't exist.
+//   // responsibility of the caller to call RegCloseKey() on the returned HKEY
+//   HKEY application::GetSectionKey(const char* pszSection)
+//   {
+//
+//      ASSERT(pszSection != nullptr);
+//
+//      HKEY hSectionKey = nullptr;
+//
+//      HKEY hAppKey = GetAppRegistryKey();
+//
+//      if (hAppKey == nullptr)
+//      {
+//
+//         return nullptr;
+//
+//      }
+//
+//      DWORD dw;
+//
+//      RegCreateKeyExW(hAppKey, wstring(pszSection), 0, REG_NONE, REG_OPTION_NON_VOLATILE, KEY_WRITE | KEY_READ, nullptr, &hSectionKey, &dw);
+//
+//      RegCloseKey(hAppKey);
+//
+//      return hSectionKey;
+//
+//   }
+//
+//#endif
 
    /*   ::u32 application::GetProfileInt(const char * pszSection, const char * pszEntry,
 
@@ -8949,7 +8956,7 @@ namespace apex
 
    if (hSecKey == nullptr)
    {
-   return FALSE;
+   return false;
    }
 
    // ensure destruction
@@ -8972,14 +8979,14 @@ namespace apex
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
-   return TRUE;
+   return true;
    }
    else
    {
    delete [] *ppData;
    *ppData = nullptr;
    }
-   return FALSE;
+   return false;
    }
    else
    {
@@ -8988,7 +8995,7 @@ namespace apex
    string str = GetProfileString(pszSection, pszEntry, nullptr);
 
    if (str.is_empty())
-   return FALSE;
+   return false;
    ASSERT(str.get_length()%2 == 0);
    iptr nLen = str.get_length();
    *pBytes = ::u32(nLen)/2;
@@ -8998,7 +9005,7 @@ namespace apex
    (*ppData)[i/2] = (byte)
    (((str[i+1] - 'A') << 4) + (str[i] - 'A'));
    }
-   return TRUE;
+   return true;
    }
    }
 
@@ -9016,7 +9023,7 @@ namespace apex
    HKEY hSecKey = GetSectionKey(pszSection);
 
    if (hSecKey == nullptr)
-   return FALSE;
+   return false;
    ::i32 lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_DWORD,
 
    (byte *)&nValue, sizeof(nValue));
@@ -9050,7 +9057,7 @@ namespace apex
    {
    HKEY hAppKey = GetAppRegistryKey();
    if (hAppKey == nullptr)
-   return FALSE;
+   return false;
    lResult = ::RegDeleteKey(hAppKey, pszSection);
 
    RegCloseKey(hAppKey);
@@ -9061,7 +9068,7 @@ namespace apex
    HKEY hSecKey = GetSectionKey(pszSection);
 
    if (hSecKey == nullptr)
-   return FALSE;
+   return false;
    // necessary to cast away const below
    lResult = ::RegDeleteValue(hSecKey, (char *)pszEntry);
 
@@ -9072,7 +9079,7 @@ namespace apex
    HKEY hSecKey = GetSectionKey(pszSection);
 
    if (hSecKey == nullptr)
-   return FALSE;
+   return false;
    lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_SZ,
 
    (byte *)pszValue, (lstrlen(pszValue)+1)*sizeof(char));
@@ -9103,7 +9110,7 @@ namespace apex
    HKEY hSecKey = GetSectionKey(pszSection);
 
    if (hSecKey == nullptr)
-   return FALSE;
+   return false;
    lResult = RegSetValueEx(hSecKey, pszEntry, nullptr, REG_BINARY,
 
    pData, nBytes);
@@ -9141,13 +9148,13 @@ namespace apex
 
    /*   property_set & application::propset(object * pobject)
    {
-   single_lock sl(&m_mapObjectSet, TRUE);
+   single_lock sl(&m_mapObjectSet, true);
    return m_mapObjectSet[pobject];
    }
 
    property_set * application::existing_propset(object * pobject)
    {
-   single_lock sl(&m_mapObjectSet, TRUE);
+   single_lock sl(&m_mapObjectSet, true);
    auto point = m_mapObjectSet.plookup(pobject);
    if(point == nullptr)
    return nullptr;
@@ -9195,7 +9202,7 @@ namespace apex
 
    //      // hide the application's windows before closing all the documents
    //      m_puiMain1->m_puiThis->display(e_display_none);
-   //      // trans    m_puiMain->ShowOwnedPopups(FALSE);
+   //      // trans    m_puiMain->ShowOwnedPopups(false);
 
 
    //      m_puiMain1->m_puiThis->order(zorder_bottom);
@@ -9481,7 +9488,7 @@ namespace apex
          &osvi,
          VER_MAJORVERSION | VER_MINORVERSION |
          VER_SERVICEPACKMAJOR | VER_SERVICEPACKMINOR,
-         dwlConditionMask) != FALSE;
+         dwlConditionMask) != false;
    }
 
 
@@ -9523,39 +9530,39 @@ namespace apex
    void application::EnableShellOpen()
    {
 
-#ifdef WINDOWS
-
-      ASSERT(m_atomApp == 0 && m_atomSystemTopic == 0); // do once
-
-      if (m_atomApp != 0 || m_atomSystemTopic != 0)
-      {
-
-         return;
-
-      }
-
-      // Win95 & Win98 sends a WM_DDE_INITIATE with an atom that points to the
-      // i16 file name so we need to use the i16 file name.
-      string strShortName;
-
-      strShortName = Context.file().module();
-
-      // strip out path
-      //string strFileName = ::PathFindFileName(strShortName);
-      // strip out extension
-      //char * pszFileName = strFileName.GetBuffer();
-      //::PathRemoveExtension(pszFileName);
-      //strFileName.ReleaseBuffer();
-
-      //      m_atomApp = ::GlobalAddAtom(strFileName);
-      //    m_atomSystemTopic = ::GlobalAddAtom("system");
-
-#endif
+//#ifdef WINDOWS
+//
+//      ASSERT(m_atomApp == 0 && m_atomSystemTopic == 0); // do once
+//
+//      if (m_atomApp != 0 || m_atomSystemTopic != 0)
+//      {
+//
+//         return;
+//
+//      }
+//
+//      // Win95 & Win98 sends a WM_DDE_INITIATE with an atom that points to the
+//      // i16 file name so we need to use the i16 file name.
+//      string strShortName;
+//
+//      strShortName = get_context()->file().module();
+//
+//      // strip out path
+//      //string strFileName = ::PathFindFileName(strShortName);
+//      // strip out extension
+//      //char * pszFileName = strFileName.GetBuffer();
+//      //::PathRemoveExtension(pszFileName);
+//      //strFileName.ReleaseBuffer();
+//
+//      //      m_atomApp = ::GlobalAddAtom(strFileName);
+//      //    m_atomSystemTopic = ::GlobalAddAtom("system");
+//
+//#endif
 
    }
 
 
-   //__pointer(::user::interaction) application::uie_from_point(const ::point& point)
+   //__pointer(::user::interaction) application::uie_from_point(const ::point_i32& point)
    //{
 
    //   user::interaction_pointer_array wnda = *m_puiptraFrame;
@@ -9710,7 +9717,7 @@ namespace apex
    //}
 
 
-   //i32 application::track_popup_menu(const char* pszMatter, const ::point& point, __pointer(::user::interaction) puie)
+   //i32 application::track_popup_menu(const char* pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie)
    //{
 
    //   UNREFERENCED_PARAMETER(pszMatter);
@@ -9870,7 +9877,7 @@ namespace apex
    {
 #ifdef WINDOWS_DESKTOP
       ::oswindow oswindow = (::oswindow) osdata;
-      if (!::IsWindow(oswindow))
+      if (!::IsWindow((HWND) oswindow))
          return -1;
       COPYDATASTRUCT cds;
       __memset(&cds, 0, sizeof(cds));
@@ -9878,7 +9885,7 @@ namespace apex
       cds.cbData = (u32)strlen(psz);
       cds.lpData = (PVOID)psz;
 
-      return (i32)SendMessage(oswindow, WM_COPYDATA, (WPARAM)osdataSender, (LPARAM)&cds);
+      return (i32)SendMessage((HWND) oswindow, WM_COPYDATA, (WPARAM)osdataSender, (LPARAM)&cds);
 #else
       __throw(todo());
 #endif
@@ -10398,7 +10405,7 @@ namespace apex
       //   //case MSGF_DDEMGR:
       //   // Unlike other WH_MSGFILTER codes, MSGF_DDEMGR should
       //   //  never call the next hook.
-      //   // By returning FALSE, the message will be dispatched
+      //   // By returning false, the message will be dispatched
       //   //  instead (the default behavior).
       //   //return;
 
@@ -10455,7 +10462,7 @@ namespace apex
 
 
 
-   /*string application::get_cred(const string & strRequestUrlParam,const ::rect & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   /*string application::get_cred(const string & strRequestUrlParam,const ::rectangle_i32 & rectangle,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
       string str = ::account::get_cred(this,strUsername,strPassword,strToken);
@@ -10498,7 +10505,7 @@ namespace apex
 
       pinteraction->m_login.m_ppassword->set_window_text("");
 
-      string strResult = pinteraction->get_cred(rect,strUsername,strPassword,strToken,strTitle);
+      string strResult = pinteraction->get_cred(rectangle,strUsername,strPassword,strToken,strTitle);
 
       pinteraction->DestroyWindow();
 
@@ -10567,7 +10574,7 @@ namespace apex
       //         //               sl.unlock();
       //         try
       //         {
-      //            pinteraction->send_message(WM_IDLEUPDATECMDUI, (WPARAM)TRUE);
+      //            pinteraction->send_message(WM_IDLEUPDATECMDUI, (WPARAM)true);
       //         }
       //         catch (...)
       //         {
@@ -10690,7 +10697,7 @@ namespace apex
    //            {
 
    //               pcheck->_001SetCheck(
-   //                  Context.os().is_user_auto_start(get_executable_appid()),
+   //                  get_context()->os().is_user_auto_start(get_executable_appid()),
    //                  ::e_source_initialize);
 
    //            }
@@ -10718,7 +10725,7 @@ namespace apex
    //            if (pcheck.is_set())
    //            {
 
-   //               Context.os().register_user_auto_start(
+   //               get_context()->os().register_user_auto_start(
    //                  get_executable_appid(),
    //                  get_executable_path(),
    //                  pcheck->echeck() == ::check_checked);
@@ -10801,7 +10808,7 @@ namespace apex
 
       ::file::path path = dir::config() / "programming/vs_build.txt";
 
-      string strBuild = Context.file().as_string(path);
+      string strBuild = get_context()->file().as_string(path);
 
       strBuild.trim();
 

@@ -533,7 +533,7 @@ catch(...)
 //
 //         ::TranslateMessage(&msg);
 //
-//         LRESULT lresult = ::DispatchMessageW(&msg);
+//         lresult lresult = ::DispatchMessageW(&msg);
 //
 //         return true;
 //
@@ -696,7 +696,7 @@ catch(...)
 
       //   }
       //}
-            int_bool    fResult = TRUE;
+            int_bool    fResult = true;
 
             //while (fResult)
             //{
@@ -796,7 +796,7 @@ catch(...)
 #ifdef WINDOWS_DESKTOP
 
 
-   int thread::_GetMessage(LPMESSAGE lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
+   int thread::_GetMessage(MESSAGE * lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
    {
 
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
@@ -804,7 +804,7 @@ catch(...)
       while (m_pmessagepump && m_pkeystrokemgr)
       {
 
-         BOOL fResult = TRUE;
+         BOOL fResult = true;
 
          if (FAILED(m_pmessagepump->GetMessage(lpMsg, hWnd, wMsgFilterMin, wMsgFilterMax, &fResult)))
          {
@@ -838,7 +838,7 @@ catch(...)
 
          }
 
-         return TRUE;
+         return true;
 
       }
 

@@ -199,13 +199,13 @@ i32 file_touch(const char * psz)
    if (pfile == nullptr)
    {
 
-      return FALSE;
+      return false;
 
    }
 
    ::fclose(pfile);
 
-   return TRUE;
+   return true;
 
 }
 

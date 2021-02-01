@@ -12,30 +12,30 @@ namespace draw2d
 
       ::u32   m_ui;
 
-      array <point_array, point_array &> m_pointsets;
-
-#ifdef WINDOWS_DESKTOP
-
-      GLYPHMETRICS   m_gm;
-
-#endif
+      array <point_i32_array, point_i32_array &> m_pointsets;
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      GLYPHMETRICS   m_gm;
+//
+//#endif
 
 
       glyph();
       virtual ~glyph();
 
 
-      void DrawGlyph(::draw2d::graphics_pointer & pgraphics, bool bFill, double dRateX, POINT32 * ppointoffset);
+      void DrawGlyph(::draw2d::graphics_pointer & pgraphics, bool bFill, double dRateX, POINT_I32 * ppointoffset);
 
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//      void Initialize(LPTTPOLYGONHEADER pph, u32 cbSize, i32 iFontHiHeight);
+//
+//
+//#endif
 
-      void Initialize(LPTTPOLYGONHEADER pph, u32 cbSize, i32 iFontHiHeight);
-
-
-#endif
-
-      void GetGlyphRect(i32 x, i32 y, RECT32 * prect);
+      void GetGlyphRect(i32 x, i32 y, RECTANGLE_I32 * prectangle);
 
 
       void clear();

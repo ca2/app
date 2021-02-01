@@ -6,13 +6,13 @@ class pmutex_lock
 public:
 
 
-   pthread_mutex_t * m_pmutex;
+   pthread_mutex_t * m_mutex;
 
    bool m_bLock;
 
 
    pmutex_lock(pthread_mutex_t * pmutex, bool bStartLocked = true) :
-      m_pmutex(pmutex),
+      m_mutex(pmutex),
       m_bLock(false)
    {
 
@@ -37,14 +37,14 @@ public:
    void lock()
    {
 
-      if(::is_null(m_pmutex))
+      if(::is_null(m_mutex))
       {
 
          return;
 
       }
 
-      pthread_mutex_lock(m_pmutex);
+      pthread_mutex_lock(m_mutex);
 
       m_bLock = true;
 
@@ -54,7 +54,7 @@ public:
    void unlock()
    {
 
-      if(::is_null(m_pmutex))
+      if(::is_null(m_mutex))
       {
 
          return;
@@ -66,7 +66,7 @@ public:
 
          m_bLock = false;
 
-         pthread_mutex_unlock(m_pmutex);
+         pthread_mutex_unlock(m_mutex);
 
       }
 

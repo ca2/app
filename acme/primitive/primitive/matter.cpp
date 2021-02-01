@@ -123,7 +123,7 @@ const char* matter::debug_note() const
 i64 matter::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   auto c = atomic_increment(&m_countReference);
+   auto c = m_countReference++;
 
 #if OBJ_REF_DBG
 
@@ -387,7 +387,7 @@ void matter::on_future(const ::payload & payload)
 ::e_status matter::add_composite(::matter* pmatter OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-   __throw(not_implemented);
+   __throw(not_implemented());
 
    return ::error_not_implemented;
 

@@ -49,7 +49,7 @@ namespace simple_ui
 
       }
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 

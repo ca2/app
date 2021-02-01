@@ -385,7 +385,7 @@ template < class T, class T_to_T >
 bool biunique < T, T_to_T > ::has_a(T a) const
 {
    T b;
-   return m_ab.lookup(a, b) != FALSE;
+   return m_ab.lookup(a, b) != false;
 }
 
 
@@ -393,7 +393,7 @@ template < class T, class T_to_T >
 bool biunique < T, T_to_T > ::has_b(T b) const
 {
    T a;
-   return m_ba.lookup(b, a) != FALSE;
+   return m_ba.lookup(b, a) != false;
 }
 
 template < class T, class T_to_T >

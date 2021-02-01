@@ -22,8 +22,6 @@ Foundation, Inc., 59 Temple Place - Suite 330, Boston, MA  02111-1307, USA.
 */
 #include "framework.h"
 #include "apex/net/sockets/_sockets.h"
-#include "apex/os/_c.h"
-#include "apex/os/_.h"
 //
 //#ifdef WINDOWS
 //extern "C"
@@ -256,7 +254,7 @@ namespace sockets
       if (m_rand_file.get_length())
       {
 
-         Context.file().del(m_rand_file);
+         get_context()->file().del(m_rand_file);
 
       }
 

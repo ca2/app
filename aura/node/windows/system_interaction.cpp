@@ -74,9 +74,9 @@ namespace user
       if (pbase != nullptr)
       {
 
-         WPARAM wparam = pbase->m_wparam;
+         wparam wparam = pbase->m_wparam;
 
-         LPARAM lparam = pbase->m_lparam;
+         lparam lparam = pbase->m_lparam;
 
          string strLparamString;
 

@@ -38,8 +38,8 @@ namespace user
          /// cached, derived, ephemeral, temporary values
          strsize           m_iPosBeg;
          strsize           m_iPosEnd;
-         sized             m_sizeSpan;
-         sized             m_sizeDevice;
+         size_f64             m_sizeSpan;
+         size_f64             m_sizeDevice;
          double_array      m_daPositionLeft;
          double_array      m_daPositionRight;
          double_array      m_daPositionDeviceLeft;

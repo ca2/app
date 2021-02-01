@@ -78,7 +78,7 @@ namespace sockets
       void SetCallOnConnect(bool x = true);
 
       /** Check call on connect flag.
-      \return true if OnConnect() should be called a.s.a.point */
+      \return true if OnConnect() should be called a.s.a.point_i32 */
       bool CallOnConnect();
 
       // LIST_RETRY

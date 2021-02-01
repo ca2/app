@@ -116,7 +116,7 @@
 //   }
 //
 //
-//   bool control::_003CallCustomWindowProc(__pointer(::user::interaction) pwnd, const ::id & id, WPARAM wparam, LPARAM lparam, LRESULT& lresult)
+//   bool control::_003CallCustomWindowProc(__pointer(::user::interaction) pwnd, const ::id & id, wparam wparam, lparam lparam, LRESULT& lresult)
 //
 //   {
 //
@@ -277,7 +277,7 @@
 //
 //
 //
-//   bool control::_001IsPointInside(::point point)
+//   bool control::_001IsPointInside(::point_i32 point)
 //   {
 //
 //      return ::user::interaction::_001IsPointInside(point);
@@ -405,38 +405,38 @@
 //
 //
 //
-//   //bool control::get_window_rect(RECT32 * prect)
+//   //bool control::get_window_rect(RECTANGLE_I32 * prectangle)
 //
 //   //{
 //
 //   //   if (m_pdrawcontext != nullptr)
 //   //   {
 //
-//   //      *prect = m_pdrawcontext->m_rectWindow;
+//   //      *prectangle = m_pdrawcontext->m_rectWindow;
 //
 //
 //   //      return true;
 //
 //   //   }
 //
-//   //   return ::user::box::get_window_rect(prect);
+//   //   return ::user::box::get_window_rect(prectangle);
 //
 //
 //   //}
 //
 //
 //
-//   //bool control::get_client_rect(RECT32 * prect)
+//   //bool control::get_client_rect(RECTANGLE_I32 * prectangle)
 //
 //   //{
 //
 //   //   if (m_pdrawcontext != nullptr)
 //   //   {
 //
-//   //      *prect = m_pdrawcontext->m_rectClient;
+//   //      *prectangle = m_pdrawcontext->m_rectClient;
 //
 //
-//   //      ::offset_rect(prect, -m_pdrawcontext->m_rectClient.top_left());
+//   //      ::offset_rect(prectangle, -m_pdrawcontext->m_rectClient.top_left());
 //
 //
 //   //      return true;
@@ -444,7 +444,7 @@
 //   //   }
 //
 //
-//   //   return ::user::box::get_client_rect(prect);
+//   //   return ::user::box::get_client_rect(prectangle);
 //
 //
 //   //}
@@ -750,13 +750,13 @@
 //
 //
 //
-//   //void control::BaseControlExOnMouseMove(::u32 nFlags, const ::point & point)
+//   //void control::BaseControlExOnMouseMove(::u32 nFlags, const ::point_i32 & point)
 //   //{
 //   //   UNREFERENCED_PARAMETER(nFlags);
 //   //   UNREFERENCED_PARAMETER(point);
 //   //   __pointer(::user::interaction) pwnd = ControlExGetWnd();
 //
-//   //   ::point pointCursor;
+//   //   ::point_i32 pointCursor;
 //   //   psession->get_cursor_pos(&pointCursor);
 //
 //   //   enum_element eelement;
@@ -976,21 +976,21 @@
 //   }
 //
 //
-//   bool control::get_element_rect(RECT32 * prect, enum_element eelement)
+//   bool control::get_element_rect(RECTANGLE_I32 * prectangle, enum_element eelement)
 //
 //   {
 //
 //      if (eelement == e_element_drop_down)
 //      {
 //
-//         ::rect rectClient;
+//         ::rectangle_i32 rectClient;
 //
 //         ((control *)this)->get_client_rect(rectClient);
 //
 //         //i32 iMargin = rectClient.height() / 8;
 //         i32 iMargin = 0;
 //
-//         ::rect rectDropDown;
+//         ::rectangle_i32 rectDropDown;
 //
 //         rectDropDown = rectClient;
 //
@@ -1001,7 +1001,7 @@
 //         rectDropDown.top += iMargin;
 //         rectDropDown.left = rectDropDown.right - iW;
 //
-//         *prect = rectDropDown;
+//         *prectangle = rectDropDown;
 //
 //
 //         return true;
@@ -1010,23 +1010,23 @@
 //      else if (eelement == e_element_combo_edit)
 //      {
 //
-//         ::rect rectClient;
+//         ::rectangle_i32 rectClient;
 //
 //         get_client_rect(rectClient);
 //
-//         ::rect rectDropDown;
+//         ::rectangle_i32 rectDropDown;
 //
 //         get_element_rect(rectDropDown, e_element_drop_down);
 //
-//         ::rect rectEdit = rectClient;
+//         ::rectangle_i32 rectEdit = rectClient;
 //
 //         rectEdit.right = rectDropDown.left;
 //
-//         //::rect rectPadding = _001GetRect(::user::rect_edit_padding);
+//         //::rectangle_i32 rectPadding = _001GetRect(::user::rect_edit_padding);
 //
 //         //rectEdit.deflate(rectPadding);
 //
-//         *prect = rectEdit;
+//         *prectangle = rectEdit;
 //
 //
 //         return true;
@@ -1038,10 +1038,10 @@
 //   }
 //
 //
-//   void control::get_simple_drop_down_open_arrow_polygon(pointd_array & pointa)
+//   void control::get_simple_drop_down_open_arrow_polygon(point_f64_array & pointa)
 //   {
 //
-//      ::rect rectDropDown;
+//      ::rectangle_i32 rectDropDown;
 //
 //      get_element_rect(rectDropDown, e_element_drop_down);
 //
@@ -1049,7 +1049,7 @@
 //
 //      i32 cy = cx * 2 / 3;
 //
-//      ::point pointCenter = rectDropDown.center();
+//      ::point_i32 pointCenter = rectDropDown.center();
 //
 //      pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
 //

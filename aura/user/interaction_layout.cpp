@@ -107,22 +107,22 @@ namespace user
 
 
 
-   //void interaction_layout::set_placement(const ::rect & rectParam)
+   //void interaction_layout::set_placement(const ::rectangle_i32 & rectParam)
    //{
 
-   //   ::rect rect(rectParam);
+   //   ::rectangle_i32 rectangle(rectParam);
 
-   //   rect.deflate(m_rectPadding);
+   //   rectangle.deflate(m_rectPadding);
 
-   //   request() = rect;
+   //   request() = rectangle_i32;
 
    //}
 
 
-   ::point interaction_layout::get_parent_accumulated_scroll(enum_layout elayout) const
+   ::point_i32 interaction_layout::get_parent_accumulated_scroll(enum_layout elayout) const
    {
 
-      return ::point();
+      return ::point_i32();
 
    }
 
@@ -143,7 +143,7 @@ namespace user
    //}
 
 
-   //void interaction_layout::move_to(const point & point)
+   //void interaction_layout::move_to(const point_i32 & point)
    //{
 
    //   move_to(point.x, point.y);
@@ -161,7 +161,7 @@ namespace user
    //}
 
 
-   //void interaction_layout::set_size(const ::size& size)
+   //void interaction_layout::set_size(const ::size_i32& size)
    //{
 
    //   set_size(size.cx, size.cy);
@@ -169,10 +169,10 @@ namespace user
    //}
 
 
-   //void interaction_layout::set_dim(const ::point& point, const ::size& size)
+   //void interaction_layout::set_dim(const ::point_i32& point, const ::size_i32& size)
    //{
    //
-   //   layout().sketch().m_point = point;
+   //   layout().sketch().m_point = point_i32;
    //
    //   layout().sketch().m_size = size;
    //
@@ -181,10 +181,10 @@ namespace user
    //}
 
 
-   //void interaction_layout::place(const ::rect& rect)
+   //void interaction_layout::place(const ::rectangle_i32& rectangle)
    //{
    //
-   //   set_dim(rect.origin(), rect.size());
+   //   set_dim(rectangle.origin(), rectangle.size());
    //
    //}
 
@@ -192,7 +192,7 @@ namespace user
    //void interaction_layout::set_dim(i32 x, i32 y, i32 cx, i32 cy)
    //{
    //
-   //   set_dim(::point(x, y), ::size(cx, cy));
+   //   set_dim(::point_i32(x, y), ::size_i32(cx, cy));
    //
    //}
 
@@ -449,10 +449,10 @@ namespace user
 
 
 
-   //void interaction_layout::get_window_rect(RECT32* prect) const
+   //void interaction_layout::get_window_rect(RECTANGLE_I32* prectangle) const
    //{
 
-   //   ::set_rect_point_size(prect, ui_state().m_pointScreen, ui_state().m_size);
+   //   ::set_rect_point_size(prectangle, ui_state().m_pointScreen, ui_state().m_size);
 
    //}
 
@@ -474,10 +474,10 @@ namespace user
    //}
 
 
-   void interaction_layout::set_initial_dim(const ::point & p, const ::size & s)
+   void interaction_layout::set_initial_dim(const ::point_i32 & p, const ::size_i32 & s)
    {
 
-      sketch() = ::rect(p, s);
+      sketch() = ::rectangle_i32(p, s);
 
       sketch().screen_origin() = p;
 

@@ -86,16 +86,16 @@
 
 
 
-      ::i64                                        m_iTaskSeed;
-      string                                       m_strApp;
-      ::id                                         m_idApp;
-      string_map < __pointer(::interprocess_communication::tx) >    m_txmap;
-      string_map < __pointer(::mutex) >            m_mapAppMutex;
-      __pointer(::interprocess_communication::rx)                   m_prx;
-      string_array                                 m_straModule;
+      ::i64                                                       m_iTaskSeed;
+      string                                                      m_strApp;
+      ::id                                                        m_idApp;
+      string_map < __pointer(::interprocess_communication::tx) >  m_txmap;
+      string_map < __pointer(::mutex) >                           m_mapAppMutex;
+      __pointer(::interprocess_communication::rx)                 m_prx;
+      string_array                                                m_straModule;
 
       // strTask - Task
-      interprocess_map                             m_mapTask;
+      interprocess_map                                            m_mapTask;
 
 
       interprocess_intercommunication(const string & strApp);

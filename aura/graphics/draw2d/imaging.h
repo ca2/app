@@ -5,7 +5,7 @@
 #define XFM_RETURN_LOADED_IMAGE 13
 
 
-#define RGB_TO_RGBQUAD(rect,g,b)   (RGB(b,g,rect))
+#define RGB_TO_RGBQUAD(rectangle,g,b)   (RGB(b,g,rectangle_i32))
 #define CLR_TO_RGBQUAD(clr)     (RGB(::blue(clr), ::green(clr), ::red(clr)))
 
 
@@ -39,13 +39,13 @@ public:
    virtual void blur_32CC_r2(::image * ppimageDst, ::image * pimageSrc);
 
    virtual bool channel_gray_blur_32CC(::image * ppimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius);
-   virtual bool channel_gray_blur(::draw2d::graphics * pgraphics, const ::point & pointDst, const ::size & size, ::draw2d::graphics * pdcSrc, const ::point & pointSrc, i32 iChannel, i32 iRadius);
+   virtual bool channel_gray_blur(::draw2d::graphics * pgraphics, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, i32 iChannel, i32 iRadius);
    virtual bool channel_gray_blur_32CC(::image * ppimageDst, ::image * pimageSrc, i32 iChannel, i32 iFilterWidth, i32 iFilterHeight,  byte * pbFilter);
 
-   virtual bool channel_gray_blur(::draw2d::graphics * pgraphics, const ::point & pointDst, const ::size & size, ::draw2d::graphics * pdcSrc, const ::point & pointSrc, i32 iChannel, const ::size & sizeFilter,  byte * pbFilter);
+   virtual bool channel_gray_blur(::draw2d::graphics * pgraphics, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, i32 iChannel, const ::size_i32 & sizeFilter,  byte * pbFilter);
 
    virtual bool channel_alpha_gray_blur_32CC(::image * ppimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius);
-   virtual bool channel_alpha_gray_blur(::draw2d::graphics * pgraphics, const ::point & pointDst, const ::size & size, ::draw2d::graphics * pdcSrc, const ::point & pointSrc, i32 iChannel, i32 iRadius);
+   virtual bool channel_alpha_gray_blur(::draw2d::graphics * pgraphics, const ::point_i32 & pointDst, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, i32 iChannel, i32 iRadius);
 
    void alpha_spread_R2_24CC(byte * pbDest, i32 xDest, i32 yDest, i32 wDest, i32 cx, i32 cy, byte * pbSrc, i32 ySrc, i32 xSrc, i32 wSrc, byte bMin);
 
@@ -56,45 +56,45 @@ public:
 
    bool channel_spread(
    ::draw2d::graphics * pgraphics,
-   const ::point & pointDst,
-   const ::size & size,
+   const ::point_i32 & pointDst,
+   const ::size_i32 & size,
    ::draw2d::graphics * pdcSrc,
-   const ::point & pointSrc,
+   const ::point_i32 & pointSrc,
    i32 iChannel,
    i32 iRadius);
 
    bool channel_spread_set_color(
    ::draw2d::graphics * pgraphics,
-   const ::point & pointDst,
-   const ::size & size,
+   const ::point_i32 & pointDst,
+   const ::size_i32 & size,
    ::draw2d::graphics * pdcSrc,
-   const ::point & pointSrc,
+   const ::point_i32 & pointSrc,
    i32 iChannel,
    i32 iRadius,
    color32_t cr);
 
    bool spread(
    ::draw2d::graphics * pgraphics,
-   const ::point & pointDst,
-   const ::size & size,
+   const ::point_i32 & pointDst,
+   const ::size_i32 & size,
    ::draw2d::graphics * pdcSrc,
-   const ::point & pointSrc,
+   const ::point_i32 & pointSrc,
    i32 iRadius);
 
    bool spread_set_color(
    ::draw2d::graphics * pgraphics,
-   const ::point & pointDst,
-   const ::size & size,
+   const ::point_i32 & pointDst,
+   const ::size_i32 & size,
    ::draw2d::graphics * pdcSrc,
-   const ::point & pointSrc,
+   const ::point_i32 & pointSrc,
    i32 iRadius,
    color32_t cr);
 
-   bool true_blend(::draw2d::graphics * pgraphics, const ::rect & rect, ::draw2d::graphics * pdcColorAlpha, const ::point & pointAlpha, ::image * pimageWork = nullptr, ::image * pimageWork2 = nullptr, ::image * pimageWork3 = nullptr);
+   bool true_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::graphics * pdcColorAlpha, const ::point_i32 & pointAlpha, ::image * pimageWork = nullptr, ::image * pimageWork2 = nullptr, ::image * pimageWork3 = nullptr);
 
    bool blur(::image * pimage, int iRadius);
 
-   bool blur(::image * pimage, rect rect, i32 iRadius);
+   bool blur(::image * pimage, rectangle_i32 rectangle, i32 iRadius);
 
    void color_blend_24CC(
    byte * pbA,
@@ -112,23 +112,23 @@ public:
    i32 w3);
 
 
-   bool color_blend(::draw2d::graphics * pgraphics, const ::rect & rect, ::draw2d::graphics * pdcColorAlpha, const ::point & pointAlpha, ::image * pimageWork = nullptr);
+   bool color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::graphics * pdcColorAlpha, const ::point_i32 & pointAlpha, ::image * pimageWork = nullptr);
 
-   bool color_blend(::draw2d::graphics * pgraphics, const ::rect & rect, ::draw2d::graphics * pdcColorAlpha, const ::point & pointAlpha, double dBlend);
-   bool color_blend(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, ::draw2d::graphics * pdcColorAlpha, const ::point & pointAlpha, double dBlend);
+   bool color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::graphics * pdcColorAlpha, const ::point_i32 & pointAlpha, double dBlend);
+   bool color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcColorAlpha, const ::point_i32 & pointAlpha, double dBlend);
 
    bool color_blend(::draw2d::graphics * pgraphics, i32 x, i32 y, i32 cx, i32 cy, color32_t cr, byte bAlpha);
-   bool color_blend(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, color32_t cr, byte alpha);
-   bool color_blend(::draw2d::graphics * pgraphics, const ::rect & rect, color32_t cr, byte alpha);
-   bool color_blend(::draw2d::graphics * pgraphics,   const ::rect64 & rect, color32_t cr,   byte alpha);
+   bool color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, color32_t cr, byte alpha);
+   bool color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, color32_t cr, byte alpha);
+   bool color_blend(::draw2d::graphics * pgraphics,   const ::rectangle_i64 & rectangle, color32_t cr,   byte alpha);
 
 
-   bool clip_color_blend(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, color32_t cr, byte alpha);
-   bool clip_color_blend(::draw2d::graphics * pgraphics, const ::rect & rect, color32_t cr, byte alpha);
+   bool clip_color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, color32_t cr, byte alpha);
+   bool clip_color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, color32_t cr, byte alpha);
 
    /*
-      bool clip_color_blend(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, color32_t cr, byte alpha, ::draw2d::region * prgnClip);
-      bool clip_color_blend(::draw2d::graphics * pgraphics, const ::rect & rect, color32_t cr, byte alpha, ::draw2d::region * prgnClip);
+      bool clip_color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, color32_t cr, byte alpha, ::draw2d::region * prgnClip);
+      bool clip_color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, color32_t cr, byte alpha, ::draw2d::region * prgnClip);
    */
 
    ::e_status trait(::image * pimage, ::i64 iTrait);
@@ -160,21 +160,21 @@ public:
          ::draw2d::bitmap * pbitmap,
          ::draw2d::bitmap * pbitmapOld,
          BITMAP * pbmp,
-         const ::rect & rect);
+         const ::rectangle_i32 & rectangle);
 
       bool ClipRestore(
          ::draw2d::graphics * pgraphics,
          ::draw2d::bitmap * pbitmap,
          ::draw2d::bitmap * pbitmapOld,
          BITMAP * pbmp,
-         const ::rect & rect);
+         const ::rectangle_i32 & rectangle);
 
       bool ClipSave(
          ::draw2d::graphics * pgraphics,
          ::draw2d::bitmap * pbitmap,
          ::draw2d::bitmap * pbitmapOld,
          BITMAP * pbmp,
-         const ::rect & rect,
+         const ::rectangle_i32 & rectangle,
          ::draw2d::region * prgnClip);
 
       bool ClipRestore(
@@ -182,7 +182,7 @@ public:
          ::draw2d::bitmap * pbitmap,
          ::draw2d::bitmap * pbitmapOld,
          BITMAP * pbmp,
-         const ::rect & rect,
+         const ::rectangle_i32 & rectangle,
          ::draw2d::region * prgnClip);
 
    */
@@ -193,7 +193,7 @@ public:
 //      BITMAPINFO & bmi,
 //      memory & memomrystorage,
 //      ::draw2d::bitmap * pbitmap,
-//      const ::rect & rect,
+//      const ::rectangle_i32 & rectangle,
 //      i32 & iWidth,
 //      ::u32 & uiStartScanLine,
 //      ::u32 & uiScanLineCount,
@@ -220,7 +220,7 @@ public:
 //      ::draw2d::graphics * pgraphics,
 //      ::draw2d::bitmap * pbitmap,
 //      ::draw2d::bitmap * pbitmapMask,
-//      const ::rect & rect,
+//      const ::rectangle_i32 & rectangle,
 //      color32_t crTransparent);
 //
 //   bool GrayVRCP(
@@ -235,15 +235,15 @@ public:
    bool color_blend(image_list * pilBlend, image_list * pil, color32_t cr, byte bAlpha);
    bool color_blend(::image * pimage, color32_t cr, byte bAlpha);
 
-   bool BitmapBlend2(::draw2d::graphics * pdcDst, const ::point & point, const ::size & size, ::draw2d::graphics * pdcSrc, const ::point & pointSrc,
+   bool BitmapBlend2(::draw2d::graphics * pdcDst, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc,
                      ::draw2d::graphics * pdcAlpha, // alpha information device (in alpha channel)
-                     const ::point & pointAlpha);
+                     const ::point_i32 & pointAlpha);
 
-   bool BitmapDivBlend(::draw2d::graphics * pdcDst, const ::point & point, const ::size & size, ::draw2d::graphics * pdcSrc, const ::point & pointSrc, byte bAlpha);
+   bool BitmapDivBlend(::draw2d::graphics * pdcDst, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, byte bAlpha);
 
-   //bool bitmap_blend(::draw2d::graphics * pdcDst, const ::point & point, const ::size & size, ::draw2d::graphics * pdcSrc, const ::point & pointSrc, byte bAlpha);
+   //bool bitmap_blend(::draw2d::graphics * pdcDst, const ::point_i32 & point, const ::size_i32 & size, ::draw2d::graphics * pdcSrc, const ::point_i32 & pointSrc, byte bAlpha);
 
-//   bool bitmap_blend(::draw2d::graphics * pdcDst, const ::point & point, const ::size & size, ::image * pimage, const ::point & pointSrc, byte bAlpha);
+//   bool bitmap_blend(::draw2d::graphics * pdcDst, const ::point_i32 & point, const ::size_i32 & size, ::image * pimage, const ::point_i32 & pointSrc, byte bAlpha);
 
    void BitmapBlend24CC(
    byte * pbA,
@@ -278,7 +278,7 @@ public:
    i32 wSrc,
    byte bAlpha);
 
-   virtual bool color_blend_3dRect(::draw2d::graphics * pgraphics, const ::rect & rect, color32_t crTopLeft, byte bAlphaTopLeft, color32_t crBottomRight, byte bAlphaBottomRight);
+   virtual bool color_blend_3dRect(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, color32_t crTopLeft, byte bAlphaTopLeft, color32_t crBottomRight, byte bAlphaBottomRight);
 
    virtual bool ColorInvert(::draw2d::graphics * pgraphics, i32 x, i32 y, i32 cx, i32 cy);
 
@@ -329,9 +329,9 @@ public:
    i32                 cx,
    i32                 cy);
 
-   void GetMultiLineTextExtent(HDC hDC, string_array *pArray, LPSIZE32 pSize);
+   //void GetMultiLineTextExtent(HDC hDC, string_array *pArray, LPSIZE32 pSize);
 
-   void DrawMultiLineText(HDC hDC, string_array *pArray);
+   //void DrawMultiLineText(HDC hDC, string_array *pArray);
 
 
    ::image_pointer get_work_image();

@@ -543,9 +543,9 @@ inline i32 wd16_count_collate_case_insensitive(const wd16char * psz, const wd16c
 inline const wd16char * wd16_scan(const wd16char * psz, const wd16char * find)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return nullptr;
 
-   if (c_is_null(find)) return FALSE;
+   if (c_is_null(find)) return nullptr;
 
    return wd16_pbrk((wd16char * ) psz, find);
 
@@ -572,16 +572,16 @@ inline wd16char * wd16_next_token(const wd16char * delimiters, wd16char ** actio
 inline i32 wd16_begins(const wd16char * psz, const wd16char * prefix)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return false;
 
-   if (c_is_null(prefix)) return FALSE;
+   if (c_is_null(prefix)) return false;
 
    auto len = wd16_len(prefix);
 
    if (len > wd16_len(psz))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -593,9 +593,9 @@ inline i32 wd16_begins(const wd16char * psz, const wd16char * prefix)
 inline i32 wd16_begins_case_insensitive(const wd16char * psz, const wd16char * prefix)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return false;
 
-   if (c_is_null(prefix)) return FALSE;
+   if (c_is_null(prefix)) return false;
 
    return !wd16_nicmp(psz, prefix, wd16_len(prefix));
 
@@ -647,9 +647,9 @@ inline const wd16char * wd16_begins_eat_case_insensitive(const wd16char * psz, c
 inline i32 wd16_ends(const wd16char * psz, const wd16char * suffix)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return false;
 
-   if (c_is_null(suffix)) return FALSE;
+   if (c_is_null(suffix)) return false;
 
    auto len = wd16_len(suffix);
 
@@ -658,7 +658,7 @@ inline i32 wd16_ends(const wd16char * psz, const wd16char * suffix)
    if (end < 0)
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -670,9 +670,9 @@ inline i32 wd16_ends(const wd16char * psz, const wd16char * suffix)
 inline i32 wd16_ends_case_insensitive(const wd16char * psz, const wd16char * suffix)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return false;
 
-   if (c_is_null(suffix)) return FALSE;
+   if (c_is_null(suffix)) return false;
 
    auto len = wd16_len(suffix);
 
@@ -681,7 +681,7 @@ inline i32 wd16_ends_case_insensitive(const wd16char * psz, const wd16char * suf
    if (end < 0)
    {
 
-      return FALSE;
+      return false;
 
    }
 

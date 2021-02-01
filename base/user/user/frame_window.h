@@ -50,7 +50,7 @@ namespace user
       u32                   m_dwPromptContext;    // current help prompt action_context for message box
       bool                       m_bHelpMode;           // if TRUE, then Shift+F1 help mode is active
       ::user::frame_window *     m_pNextFrameWnd; // next frame_window in cast global list
-      ::rect                     m_rectBorder;         // for OLE border space negotiation
+      ::rectangle_i32                     m_rectBorder;         // for OLE border space negotiation
 
       i32                    m_nShowDelay;           // SW_ command for delay show/hide
 
@@ -110,8 +110,8 @@ namespace user
       virtual void OnInitialFrameUpdate(bool bMakeVisible);
 
 
-      virtual void SetBorderRect(const ::rect & rect);
-      virtual void GetBorderRect(RECT32 * prect);
+      virtual void SetBorderRect(const ::rectangle_i32 & rectangle);
+      virtual void GetBorderRect(RECTANGLE_I32 * prectangle);
 
       virtual bool _001IsFrameWnd();
 
@@ -137,7 +137,7 @@ namespace user
 
       bool LoadAccelTable(const char * pszResourceName);
 
-      //virtual bool create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect = nullptr, ::user::interaction * puiParent = nullptr, const char * pszMenuName = nullptr, u32 dwExStyle = 0, ::create * pcreate = nullptr);
+      //virtual bool create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle = nullptr, ::user::interaction * puiParent = nullptr, const char * pszMenuName = nullptr, u32 dwExStyle = 0, ::create * pcreate = nullptr);
 
 
       virtual bool LoadFrame(const char * pszMatter,
@@ -186,7 +186,7 @@ namespace user
 
       // border space negotiation
       enum BorderCmd { borderGet = 1, borderRequest = 2, borderSet = 3 };
-      virtual bool NegotiateBorderSpace(::u32 nBorderCmd, RECT32 * pRectBorder);
+      virtual bool NegotiateBorderSpace(::u32 nBorderCmd, RECTANGLE_I32 * pRectBorder);
 
       virtual bool on_create_client(::user::system * pusersystem);
 
@@ -231,7 +231,7 @@ namespace user
 
       // implementation helpers for Shift+F1 help mode
       bool ProcessHelpMsg(MESSAGE & msg, u32 * pContext);
-      oswindow SetHelpCapture(const ::point & point, bool * pbDescendant);
+      oswindow SetHelpCapture(const ::point_i32 & point, bool * pbDescendant);
 
       // frame_window list management
       void AddFrameWnd();

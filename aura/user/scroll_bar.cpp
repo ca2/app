@@ -77,7 +77,7 @@ namespace user
    //}
 
 
-   point scroll_bar::get_ascendant_viewport_offset() const
+   point_i32 scroll_bar::get_ascendant_viewport_offset() const
    {
 
       if (get_parent() == nullptr)
@@ -92,7 +92,7 @@ namespace user
    }
 
 
-   point scroll_bar::get_parent_viewport_offset() const
+   point_i32 scroll_bar::get_parent_viewport_offset() const
    {
 
       return nullptr;
@@ -100,7 +100,7 @@ namespace user
    }
 
 
-   bool scroll_bar::GetTrackRect(RECT32* prect, ::draw2d::graphics_pointer & pgraphics)
+   bool scroll_bar::GetTrackRect(RECTANGLE_I32* prectangle, ::draw2d::graphics_pointer & pgraphics)
    {
 
       return false;
@@ -209,11 +209,11 @@ namespace user
       try
       {
          return;
-         ::rect rectClip;
+         ::rectangle_i32 rectClip;
 
          ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          bool bFirst = true;
 
@@ -235,7 +235,7 @@ namespace user
 
          ::user::interaction * pinteraction = this;
 
-         ::rect rectFocus;
+         ::rectangle_i32 rectFocus;
 
          index i = 0;
 

@@ -170,7 +170,7 @@ byte* wf_glyph_convert(wfContext* wfc, int width, int height, byte* data)
 //	return br;
 //}
 
-void wf_scale_rect(wfContext* wfc, RECT32* source)
+void wf_scale_rect(wfContext* wfc, RECTANGLE_I32* source)
 {
 	int ww, wh, dw, dh;
 
@@ -207,7 +207,7 @@ void wf_scale_rect(wfContext* wfc, RECT32* source)
 
 void wf_invalidate_region(wfContext* wfc, int x, int y, int width, int height)
 {
-	RECT32 rect;
+	RECTANGLE_I32 rectangle_i32;
 
 	wfc->update_rect.left = x + wfc->offset_x;
 	wfc->update_rect.top = y + wfc->offset_y;
@@ -217,12 +217,12 @@ void wf_invalidate_region(wfContext* wfc, int x, int y, int width, int height)
 	wf_scale_rect(wfc, &(wfc->update_rect));
 	InvalidateRect(wfc->hwnd, &(wfc->update_rect), FALSE);
 
-	rect.left = x;
-	rect.right = width;
-	rect.top = y;
-	rect.bottom = height;
-	wf_scale_rect(wfc, &rect);
-	gdi_InvalidateRegion(wfc->hdc, rect.left, rect.top, rect.right, rect.bottom);
+	rectangle.left = x;
+	rectangle.right = width;
+	rectangle.top = y;
+	rectangle.bottom = height;
+	wf_scale_rect(wfc, &rectangle);
+	gdi_InvalidateRegion(wfc->hdc, rectangle.left, rectangle.top, rectangle.right, rectangle.bottom);
 }
 
 void wf_update_offset(wfContext* wfc)
@@ -284,7 +284,7 @@ void wf_resize_window(wfContext* wfc)
 	{		
 		SetWindowLongPtr(wfc->hwnd, GWL_STYLE, WS_CHILD);
 
-		/* Now resize to get full canvas size and room for caption and borders */
+		/* Now resize to get full canvas size_i32 and room for caption and borders */
 		set_window_pos(wfc->hwnd, HWND_TOP, 0, 0, wfc->width, wfc->height, SWP_FRAMECHANGED);
 
 //		wf_update_canvas_diff(wfc);
@@ -308,7 +308,7 @@ void wf_resize_window(wfContext* wfc)
 		
 //		wf_update_canvas_diff(wfc);
 
-		/* Now resize to get full canvas size and room for caption and borders */
+		/* Now resize to get full canvas size_i32 and room for caption and borders */
 		set_window_pos(wfc->hwnd, HWND_TOP, wfc->client_x, wfc->client_y, wfc->client_width + wfc->diff.x, wfc->client_height + wfc->diff.y, 0 /*SWP_FRAMECHANGED*/);
 		//wf_size_scrollbars(wfc,  wfc->client_width, wfc->client_height);
 	}
@@ -535,48 +535,48 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //void wf_gdi_opaque_rect(wfContext* wfc, OPAQUE_RECT_ORDER* opaque_rect)
 //{
-//	RECT32 rect;
+//	RECTANGLE_I32 rectangle_i32;
 //	HBRUSH brush;
 //	::u32 brush_color;
 //
 //	brush_color = freerdp_color_convert_var_bgr(opaque_rect->color, wfc->srcBpp, wfc->dstBpp, wfc->clrconv);
 //
-//	rect.left = opaque_rect->nLeftRect;
-//	rect.top = opaque_rect->nTopRect;
-//	rect.right = opaque_rect->nLeftRect + opaque_rect->nWidth;
-//	rect.bottom = opaque_rect->nTopRect + opaque_rect->nHeight;
+//	rectangle.left = opaque_rect->nLeftRect;
+//	rectangle.top = opaque_rect->nTopRect;
+//	rectangle.right = opaque_rect->nLeftRect + opaque_rect->nWidth;
+//	rectangle.bottom = opaque_rect->nTopRect + opaque_rect->nHeight;
 //	brush = CreateSolidBrush(brush_color);
-//	FillRect(wfc->drawing->hdc, &rect, brush);
+//	FillRect(wfc->drawing->hdc, &rectangle, brush);
 //	DeleteObject(brush);
 //
 //	if (wfc->drawing == wfc->primary)
-//		wf_invalidate_region(wfc, rect.left, rect.top, rect.right - rect.left + 1, rect.bottom - rect.top + 1);
+//		wf_invalidate_region(wfc, rectangle.left, rectangle.top, rectangle.right - rectangle.left + 1, rectangle.bottom - rectangle.top + 1);
 //}
 //
 //void wf_gdi_multi_opaque_rect(wfContext* wfc, MULTI_OPAQUE_RECT_ORDER* multi_opaque_rect)
 //{
 //	int i;
-//	RECT32 rect;
+//	RECTANGLE_I32 rectangle_i32;
 //	HBRUSH brush;
 //	::u32 brush_color;
-//	DELTA_RECT* rectangle;
+//	DELTA_RECT* rectangle_i32;
 //
 //	brush_color = freerdp_color_convert_var_rgb(multi_opaque_rect->color, wfc->srcBpp, wfc->dstBpp, wfc->clrconv);
 //
 //	for (i = 1; i < (int) multi_opaque_rect->numRectangles + 1; i++)
 //	{
-//		rectangle = &multi_opaque_rect->rectangles[i];
+//		rectangle_i32 = &multi_opaque_rect->rectangles[i];
 //
-//		rect.left = rectangle->left;
-//		rect.top = rectangle->top;
-//		rect.right = rectangle->left + rectangle->width;
-//		rect.bottom = rectangle->top + rectangle->height;
+//		rectangle.left = rectangle_i32->left;
+//		rectangle.top = rectangle_i32->top;
+//		rectangle.right = rectangle_i32->left + rectangle_i32->width;
+//		rectangle.bottom = rectangle_i32->top + rectangle_i32->height;
 //		brush = CreateSolidBrush(brush_color);
 //
-//		FillRect(wfc->drawing->hdc, &rect, brush);
+//		FillRect(wfc->drawing->hdc, &rectangle, brush);
 //
 //		if (wfc->drawing == wfc->primary)
-//			wf_invalidate_region(wfc, rect.left, rect.top, rect.right - rect.left + 1, rect.bottom - rect.top + 1);
+//			wf_invalidate_region(wfc, rectangle.left, rectangle.top, rectangle.right - rectangle.left + 1, rectangle.bottom - rectangle.top + 1);
 //
 //		DeleteObject(brush);
 //	}
@@ -626,13 +626,13 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //	if (polyline->numDeltaEntries > 0)
 //	{
-//		POINT32  *pts;
-//		POINT32  temp;
+//		POINT_I32  *pts;
+//		POINT_I32  temp;
 //		int    numPoints;
 //		int    i;
 //
 //		numPoints = polyline->numDeltaEntries + 1;
-//		pts = (POINT32*) malloc(sizeof(POINT32) * numPoints);
+//		pts = (POINT_I32*) malloc(sizeof(POINT_I32) * numPoints);
 //		pts[0].x = temp.x = polyline->xStart;
 //		pts[0].y = temp.y = polyline->yStart;
 //
@@ -811,7 +811,7 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //void wf_update_canvas_diff(wfContext* wfc)
 //{
-//	RECT32 rc_client, rc_wnd;
+//	RECTANGLE_I32 rc_client, rc_wnd;
 //	int dx, dy;
 //
 //	get_client_rect(wfc->hwnd, &rc_client);

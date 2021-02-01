@@ -407,18 +407,18 @@ namespace draw2d
    }
 
 
-#ifdef WINDOWS
-
-
-   bool font::GetLogFont(LOGFONTW * pfontw)
-   {
-
-      return false;
-
-   }
-
-
-#endif // WINDOWS
+//#ifdef WINDOWS
+//
+//
+//   bool font::GetLogFont(LOGFONTW * pfontw)
+//   {
+//
+//      return false;
+//
+//   }
+//
+//
+//#endif // WINDOWS
 
 
 
@@ -453,11 +453,11 @@ namespace draw2d
 //   }
 //
 //
-//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rect & rect, double dRateX, double dHeight, string & str)
+//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, double dRateX, double dHeight, string & str)
 //   {
 //
 //
-//      System.draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str);
+//      System.draw2d().api().embossed_text_out(pgraphics, rectangle_i32, dRateX, dHeight, str);
 //
 //      return;
 //
@@ -466,8 +466,8 @@ namespace draw2d
 //      //      SetDC(pgraphics);
 //      //      SelectFont();
 //      //
-//      //      ::rect rectOffset(rect);
-//      //      const ::point & pointOffset(rectOffset.top_left());
+//      //      ::rectangle_i32 rectOffset(rectangle);
+//      //      const ::point_i32 & pointOffset(rectOffset.top_left());
 //      //
 //      //      glyph * pglyph;
 
@@ -508,11 +508,11 @@ namespace draw2d
 //
 //   }
 //
-//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rect & rect, double dRateX, double dHeight, string & str, LPINT piCharsPositions, i32 iCharsPositions, i32 iOffset)
+//   void font::embossed_text_out(::draw2d::graphics * pgraphics, const ::rectangle_i32 & rectangle, double dRateX, double dHeight, string & str, LPINT piCharsPositions, i32 iCharsPositions, i32 iOffset)
 
 //   {
 //
-//      System.draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
+//      System.draw2d().api().embossed_text_out(pgraphics, rectangle_i32, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
 
 //
 //      return;
@@ -522,8 +522,8 @@ namespace draw2d
 //      //      SetDC(pgraphics);
 //      //      SelectFont();
 //      //
-//      //      const ::rect rectOffset(rect);
-//      //      ::point pointOffset;
+//      //      const ::rectangle_i32 rectOffset(rectangle);
+//      //      ::point_i32 pointOffset;
 //      //
 //      //
 //      //      glyph * pglyph;
@@ -566,7 +566,7 @@ namespace draw2d
 //      /*   SetDC(pgraphics);
 //         SelectFont();
 //
-//         rect clipRect;
+//         rectangle_i32 clipRect;
 //
 //         i32 iOldMapMode = pgraphics->GetMapMode();
 //         pgraphics->SetMapMode(MM_TEXT);
@@ -593,7 +593,7 @@ namespace draw2d
 //      SetDC(pgraphics);
 //      SelectFont();
 //
-//      rect clipRect;
+//      rectangle_i32 clipRect;
 //
 //      pgraphics->text_out(x, y, str);
 //
@@ -626,12 +626,12 @@ namespace draw2d
 //      //   single_lock sl(&m_mutex);
 //      //   sl.lock(U32_INFINITE_TIMEOUT);
 //
-//      return TRUE;
+//      return true;
 //
 //#ifdef WINDOWS_DESKTOP
 //
 //      if (m_glyphset.find_first(user) >= 0)
-//         return TRUE;
+//         return true;
 //
 //      glyph glyph;
 //      glyph.m_ui = user;
@@ -657,7 +657,7 @@ namespace draw2d
 //
 //         m_glyphset.add(glyph);
 //
-//         return TRUE;
+//         return true;
 //
 //      }
 //
@@ -679,7 +679,7 @@ namespace draw2d
 //
 //      m_glyphset.add(glyph);
 //
-//      return TRUE;
+//      return true;
 //
 //#endif
 //
@@ -751,7 +751,7 @@ namespace draw2d
 //               }
 //               else if (ch == '\\')
 //               {
-//                  forceInsertion = TRUE;
+//                  forceInsertion = true;
 //               }
 //               else if (ch == '^')
 //               {
@@ -794,7 +794,7 @@ namespace draw2d
 //
 //   void font::TextOutEx(
 //   ::draw2d::graphics * pgraphics,
-//   const rect &               rect,
+//   const rectangle_i32 &               rectangle_i32,
 //   double               dRateX,
 //   double               dHeight,
 //   string                 &str,
@@ -808,13 +808,13 @@ namespace draw2d
 //      switch (iEffect)
 //      {
 //      case EffectSimple:
-//         simple_text_out(pgraphics, rect.left, rect.top, str, piCharsPositions, iCharsPositions);
+//         simple_text_out(pgraphics, rectangle.left, rectangle.top, str, piCharsPositions, iCharsPositions);
 
 //         break;
 //      case EffectEmbossed:
 //         embossed_text_out(
 //         pgraphics,
-//         rect,
+//         rectangle_i32,
 //         dRateX,
 //         dHeight,
 //         str,
@@ -997,106 +997,109 @@ void font::destroy()
 } // namespace draw2d
 
 
-bool CLASS_DECL_AURA TextOutU(HDC hdc, i32 x, i32 y, const char * pString, i32 ca)
-
-{
-
-#ifdef WINDOWS_DESKTOP
-
-   if (pString == nullptr)
-
-   {
-      return ::TextOutW(hdc, x, y, nullptr, ca) != FALSE;
-
-   }
-
-   wstring wstr = ::str::international::utf8_to_unicode(pString, ca);
-
-
-   bool bRet = ::TextOutW(hdc, x, y, wstr, (i32)wstr.get_length()) != FALSE;
-
-   return bRet;
-
-#else
-
-   __throw(todo());
-
-   /*
-
-      if(pString == nullptr)
-
-      {
-         return ::text_out(hdc, x, y, nullptr, 0) != FALSE;
-      }
-
-      return ::text_out(hdc, x, y, wstr, (i32) wstr.get_length()) != FALSE;
-   */
-
-#endif
-
-}
-
-
-CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const char * pString, i32 ca, LPSIZE32 psizl)
-
-{
-
-#ifdef WINDOWS_DESKTOP
-
-   if (pString == nullptr)
-
-   {
-
-      return ::GetTextExtentPoint32W(hdc, nullptr, ca, psizl) != FALSE;
-
-   }
-
-   wstring wstr = ::str::international::utf8_to_unicode(pString, ca);
-
-
-   bool bRet = ::GetTextExtentPoint32W(hdc, wstr, (i32)wstr.get_length(), psizl) != FALSE;
-
-   return bRet;
-
-#else
-
-   __throw(todo());
-
-#endif
-
-}
-
-
-CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const char * pchText, i32 cchText, RECT32 * prect, ::u32 format)
-
-{
-
-#ifdef WINDOWS_DESKTOP
-
-   if (pchText == nullptr)
-
-   {
-
-      return ::DrawTextW(hdc, nullptr, cchText, prect, format);
-
-
-   }
-
-   wstring wstr = ::str::international::utf8_to_unicode(pchText, cchText);
-
-
-   bool bRet = ::DrawTextW(hdc, wstr, (i32)wcslen(wstr), prect, format) != FALSE;
-
-
-   return bRet;
-
-#else
-
-   __throw(todo());
-
-#endif
-
-} // namespace draw2d
-
-
-
+//#if 0
+//
+//
+//bool CLASS_DECL_AURA TextOutU(hdc hdc, i32 x, i32 y, const char * pString, i32 ca)
+//
+//{
+//
+//   //#ifdef WINDOWS_DESKTOP
+//   //
+//   //   if (pString == nullptr)
+//   //
+//   //   {
+//   //      return ::TextOutW(hdc, x, y, nullptr, ca) != FALSE;
+//   //
+//   //   }
+//   //
+//   //   wstring wstr = ::str::international::utf8_to_unicode(pString, ca);
+//   //
+//   //
+//   //   bool bRet = ::TextOutW(hdc, x, y, wstr, (i32)wstr.get_length()) != FALSE;
+//   //
+//   //   return bRet;
+//   //
+//   //#else
+//
+//   __throw(todo());
+//
+//   /*
+//
+//      if(pString == nullptr)
+//
+//      {
+//         return ::text_out(hdc, x, y, nullptr, 0) != FALSE;
+//      }
+//
+//      return ::text_out(hdc, x, y, wstr, (i32) wstr.get_length()) != FALSE;
+//   */
+//
+//   //#endif
+//
+//}
+//
+//
+//CLASS_DECL_AURA bool GetTextExtentPoint32U(HDC hdc, const char * pString, i32 ca, LPSIZE32 psizl)
+//
+//{
+//   //
+//   //#ifdef WINDOWS_DESKTOP
+//   //
+//   //   if (pString == nullptr)
+//   //
+//   //   {
+//   //
+//   //      return ::GetTextExtentPoint32W(hdc, nullptr, ca, psizl) != FALSE;
+//   //
+//   //   }
+//   //
+//   //   wstring wstr = ::str::international::utf8_to_unicode(pString, ca);
+//   //
+//   //
+//   //   bool bRet = ::GetTextExtentPoint32W(hdc, wstr, (i32)wstr.get_length(), psizl) != FALSE;
+//   //
+//   //   return bRet;
+//   //
+//   //#else
+//
+//   __throw(todo());
+//
+//   //#endif
+//
+//}
+//
+//
+//CLASS_DECL_AURA i32  DrawTextU(HDC hdc, const char * pchText, i32 cchText, RECTANGLE_I32 * prectangle, ::u32 format)
+//
+//{
+//
+//   //#ifdef WINDOWS_DESKTOP
+//   //
+//   //   if (pchText == nullptr)
+//   //
+//   //   {
+//   //
+//   //      return ::DrawTextW(hdc, nullptr, cchText, prectangle, format);
+//   //
+//   //
+//   //   }
+//   //
+//   //   wstring wstr = ::str::international::utf8_to_unicode(pchText, cchText);
+//   //
+//   //
+//   //   bool bRet = ::DrawTextW(hdc, wstr, (i32)wcslen(wstr), prectangle, format) != FALSE;
+//   //
+//   //
+//   //   return bRet;
+//   //
+//   //#else
+//
+//   __throw(todo());
+//
+//   //#endif
+//
+//} // namespace draw2d
+//
+//
+//#endif

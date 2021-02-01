@@ -87,7 +87,7 @@ typedef void * _HFILE; /* file handle pointer */
 #define _DEBUG_CHECK_EVERY_128_DF  0x00800000  /* check heap every 128 heap ops */
 #define _DEBUG_CHECK_EVERY_1024_DF 0x04000000  /* check heap every 1024 heap ops */
 /*
-We do not check the heap by default at this point because the cost was too high
+We do not check the heap by default at this point_i32 because the cost was too high
 for some applications. You can still turn this feature on manually.
  */
 #define _DEBUG_CHECK_DEFAULT_DF    0
@@ -381,3 +381,10 @@ CLASS_DECL_ACME char trace_level_char(enum_trace_level elevel);
 //   return g_chaTraceLevel[trace_level_constraint(elevel)];
 //
 //}
+
+
+
+CLASS_DECL_ACME bool is_verbose();
+
+
+

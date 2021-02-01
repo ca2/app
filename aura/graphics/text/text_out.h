@@ -7,7 +7,7 @@ class CLASS_DECL_AURA text_out :
 public:
 
 
-   pointd                        m_point;
+   point_f64                        m_point;
 
    text_out() {  }
 

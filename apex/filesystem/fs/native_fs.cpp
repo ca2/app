@@ -164,7 +164,7 @@ namespace fs
 //         nullptr,
 //         strDesktopFolder,
 //         CSIDL_DESKTOP,
-//         FALSE);
+//         false);
 //
 //      ::file::path & path = listing.insert_at(0,strDesktopFolder);
 //      path.m_iDir = 1;

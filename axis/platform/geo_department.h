@@ -15,7 +15,7 @@ namespace geo
       //bool                                         m_bInitialCountryTimeZoneInit;
       bool                                         m_bInitialLocalityTimeZoneInit;
 
-      __pointer(::mutex)                                 m_spmutexOpenweatherCity;
+      ::mutex                                 m_spmutexOpenweatherCity;
       iptr_map < ::datetime::department::time_zone >     m_cityTimeZone;
       //string_map < time_zone >      m_countryTimeZone;
 
@@ -33,7 +33,7 @@ namespace geo
 
       virtual void defer_check_openweather_city_list();
 
-      ::mutex* get_openweather_city_mutex();
+      ::mutex * get_openweather_city_mutex();
 
       virtual openweather_city* openweather_find_city(string strQuery);
       virtual index openweather_find_city2(string strQuery, string& strCit, i64& iId, double& dLat, double& dLon);

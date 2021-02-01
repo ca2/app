@@ -94,18 +94,4 @@ inline void copy_color_matrix(A & a, const B & b)
 }
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-inline void copy(Gdiplus::ColorMatrix & a, const color_matrix & b)
-{
-
-   copy_color_matrix(a.m, b.a);
-
-}
-
-
-#endif
-
-
 

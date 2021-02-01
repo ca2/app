@@ -28,7 +28,7 @@ namespace windowing
    }
 
 
-   HCURSOR windowing::load_default_cursor(e_cursor ecursor)
+   hcursor windowing::load_default_cursor(e_cursor ecursor)
    {
 
 
@@ -38,7 +38,7 @@ namespace windowing
    }
 
 
-   int_bool windowing::window_set_mouse_cursor(window *pwindow, HCURSOR hcursor)
+   int_bool windowing::window_set_mouse_cursor(window *pwindow, hcursor hcursor)
    {
 
       return FALSE;

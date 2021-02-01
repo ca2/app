@@ -245,7 +245,7 @@ ID3_ENUM(ID3_FrameID)
    /* ???? */ ID3FID_NOFRAME = 0,       /**< No known frame */
               /* AENC */ ID3FID_AUDIOCRYPTO,       /**< Audio encryption */
               /* APIC */ ID3FID_PICTURE,           /**< Attached picture */
-              /* ASPI */ ID3FID_AUDIOSEEKPOINT,    /**< Audio seek point index */
+              /* ASPI */ ID3FID_AUDIOSEEKPOINT,    /**< Audio seek point_i32 index */
               /* COMM */ ID3FID_COMMENT,           /**< Comments */
               /* COMR */ ID3FID_COMMERCIAL,        /**< Commercial frame */
               /* ENCR */ ID3FID_CRYPTOREG,         /**< Encryption method registration */
@@ -263,7 +263,7 @@ ID3_ENUM(ID3_FrameID)
               /* PCNT */ ID3FID_PLAYCOUNTER,       /**< Play counter */
               /* POPM */ ID3FID_POPULARIMETER,     /**< Popularimeter */
               /* POSS */ ID3FID_POSITIONSYNC,      /**< Position synchronisation frame */
-              /* RBUF */ ID3FID_BUFFERSIZE,        /**< Recommended buffer size */
+              /* RBUF */ ID3FID_BUFFERSIZE,        /**< Recommended buffer size_i32 */
               /* RVA2 */ ID3FID_VOLUMEADJ2,        /**< Relative volume adjustment (2) */
               /* RVAD */ ID3FID_VOLUMEADJ,         /**< Relative volume adjustment */
               /* RVRB */ ID3FID_REVERB,            /**< Reverb */

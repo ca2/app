@@ -215,7 +215,7 @@ typedef LPMIXERcaPSA LPMIXERcaPS;
 
 typedef struct tagMIXERLINEA
 {
-   ::u32       cbStruct;               /* size of MIXERLINE structure */
+   ::u32       cbStruct;               /* size_i32 of MIXERLINE structure */
    ::u32       dwDestination;          /* zero based destination index */
    ::u32       dwSource;               /* zero based source index (if source) */
    ::u32       dwLineID;               /* unique line id for mixer device */
@@ -239,7 +239,7 @@ typedef struct tagMIXERLINEA
 } MIXERLINEA, *PMIXERLINEA, *LPMIXERLINEA;
 //typedef struct tagMIXERLINEW
 //{
-//   ::u32       cbStruct;               /* size of MIXERLINE structure */
+//   ::u32       cbStruct;               /* size_i32 of MIXERLINE structure */
 //   ::u32       dwDestination;          /* zero based destination index */
 //   ::u32       dwSource;               /* zero based source index (if source) */
 //   ::u32       dwLineID;               /* unique line id for mixer device */
@@ -275,7 +275,7 @@ typedef LPMIXERLINEA LPMIXERLINE;
 
 typedef struct tagMIXERCONTROLA
 {
-   ::u32           cbStruct;           /* size in bytes of MIXERCONTROL */
+   ::u32           cbStruct;           /* size_i32 in bytes of MIXERCONTROL */
    ::u32           dwControlID;        /* unique control id for mixer device */
    ::u32           dwControlType;      /* MIXERCONTROL_CONTROLTYPE_xxx */
    ::u32           fdwControl;         /* MIXERCONTROL_CONTROLF_xxx */
@@ -299,13 +299,13 @@ typedef struct tagMIXERCONTROLA
    union
    {
       ::u32       cSteps;             /* # of steps between min & max */
-      ::u32       cbCustomData;       /* size in bytes of custom data */
+      ::u32       cbCustomData;       /* size_i32 in bytes of custom data */
       ::u32       dwReserved[6];      /* !!! needed? we have cbStruct.... */
    } Metrics;
 } MIXERCONTROLA, *PMIXERCONTROLA, *LPMIXERCONTROLA;
 //typedef struct tagMIXERCONTROLW
 //{
-//   ::u32           cbStruct;           /* size in bytes of MIXERCONTROL */
+//   ::u32           cbStruct;           /* size_i32 in bytes of MIXERCONTROL */
 //   ::u32           dwControlID;        /* unique control id for mixer device */
 //   ::u32           dwControlType;      /* MIXERCONTROL_CONTROLTYPE_xxx */
 //   ::u32           fdwControl;         /* MIXERCONTROL_CONTROLF_xxx */
@@ -329,7 +329,7 @@ typedef struct tagMIXERCONTROLA
 //   union
 //   {
 //      ::u32       cSteps;             /* # of steps between min & max */
-//      ::u32       cbCustomData;       /* size in bytes of custom data */
+//      ::u32       cbCustomData;       /* size_i32 in bytes of custom data */
 //      ::u32       dwReserved[6];      /* !!! needed? we have cbStruct.... */
 //   } Metrics;
 //} MIXERCONTROLW, *PMIXERCONTROLW, *LPMIXERCONTROLW;
@@ -387,7 +387,7 @@ typedef LPMIXERCONTROLA LPMIXERCONTROL;
 
 typedef struct tagMIXERLINECONTROLSA
 {
-   ::u32           cbStruct;       /* size in bytes of MIXERLINECONTROLS */
+   ::u32           cbStruct;       /* size_i32 in bytes of MIXERLINECONTROLS */
    ::u32           dwLineID;       /* line id (from MIXERLINE.dwLineID) */
    union
    {
@@ -395,12 +395,12 @@ typedef struct tagMIXERLINECONTROLSA
       ::u32       dwControlType;  /* MIXER_GETLINECONTROLSF_ONEBYTYPE */
    } DUMMYUNIONNAME;
    ::u32           cControls;      /* count of controls pmxctrl points to */
-   ::u32           cbmxctrl;       /* size in bytes of _one_ MIXERCONTROL */
+   ::u32           cbmxctrl;       /* size_i32 in bytes of _one_ MIXERCONTROL */
    LPMIXERCONTROLA pamxctrl;       /* pointer to first MIXERCONTROL array */
 } MIXERLINECONTROLSA, *PMIXERLINECONTROLSA, *LPMIXERLINECONTROLSA;
 //typedef struct tagMIXERLINECONTROLSW
 //{
-//   ::u32           cbStruct;       /* size in bytes of MIXERLINECONTROLS */
+//   ::u32           cbStruct;       /* size_i32 in bytes of MIXERLINECONTROLS */
 //   ::u32           dwLineID;       /* line id (from MIXERLINE.dwLineID) */
 //   union
 //   {
@@ -408,7 +408,7 @@ typedef struct tagMIXERLINECONTROLSA
 //      ::u32       dwControlType;  /* MIXER_GETLINECONTROLSF_ONEBYTYPE */
 //   } DUMMYUNIONNAME;
 //   ::u32           cControls;      /* count of controls pmxctrl points to */
-//   ::u32           cbmxctrl;       /* size in bytes of _one_ MIXERCONTROL */
+//   ::u32           cbmxctrl;       /* size_i32 in bytes of _one_ MIXERCONTROL */
 //   LPMIXERCONTROLW pamxctrl;       /* pointer to first MIXERCONTROL array */
 //} MIXERLINECONTROLSW, *PMIXERLINECONTROLSW, *LPMIXERLINECONTROLSW;
 #ifdef UNICODE

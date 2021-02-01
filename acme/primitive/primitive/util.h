@@ -17,13 +17,13 @@ public:
    virtual ~observer()
    {
 
-      for (auto point : *this)
+      for (auto point_i32 : *this)
       {
 
          try
          {
 
-            point->detach_observer(m_point2This);
+            point_i32->detach_observer(m_point2This);
 
          }
          catch (...)
@@ -36,21 +36,21 @@ public:
 
    }
 
-   bool attach_observer(T * point)
+   bool attach_observer(T * point_i32)
    {
       if (this->contains(point))
          return false;
       this->add(point);
       m_point2This = dynamic_cast <T2 *>(this);
-      point->attach_observer(m_point2This);
+      point_i32->attach_observer(m_point2This);
       return true;
    }
-   bool detach_observer(T * point)
+   bool detach_observer(T * point_i32)
    {
       if (!this->contains(point))
          return false;
       this->remove(point);
-      point->detach_observer(m_point2This);
+      point_i32->detach_observer(m_point2This);
       return true;
    }
 };

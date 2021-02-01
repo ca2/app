@@ -44,13 +44,13 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ansichar > > * __nil < na
 //      }
 //      else
 //      {
-//         char* point=pszBuffer;
+//         char* point_i32=pszBuffer;
 //         for(strsize i=0 ; i < nLength ; ++i)
 //         {
 //            for(strsize j=0 ; j < ncharCharLen ; ++j)
 //            {
 //               *point = ((char *)buffcharChar)[j];
-//               ++point;
+//               ++point_i32;
 //            }
 //         }
 //      }
@@ -64,7 +64,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ansichar > > * __nil < na
 //   ASSERT(nLength >= 0);
 //   if(nLength > 0)
 //   {
-//      ASSERT(__is_valid_address(pch,nLength*sizeof(unichar),FALSE));
+//      ASSERT(__is_valid_address(pch,nLength*sizeof(unichar),false));
 //      if(pch == nullptr)
 //         __throw(invalid_argument_exception());
 //
@@ -94,7 +94,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ansichar > > * __nil < na
 //   ASSERT(nLength >= 0);
 //   if(nLength > 0)
 //   {
-//      ASSERT(__is_valid_address(pch,nLength*sizeof(wd32char),FALSE));
+//      ASSERT(__is_valid_address(pch,nLength*sizeof(wd32char),false));
 //      if(pch == nullptr)
 //         __throw(invalid_argument_exception());
 //
@@ -111,7 +111,7 @@ CLASS_DECL_ACME natural_meta_data < string_meta_data < ansichar > > * __nil < na
 //   ASSERT(nLength >= 0);
 //   if(nLength > 0)
 //   {
-//      ASSERT(__is_valid_address(pch,nLength*sizeof(unichar),FALSE));
+//      ASSERT(__is_valid_address(pch,nLength*sizeof(unichar),false));
 //      if(pch == nullptr)
 //         __throw(invalid_argument_exception());
 //
@@ -146,7 +146,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 */
 
 //
-//char* __cdecl char_traits::char_next(const char* point) noexcept
+//char* __cdecl char_traits::char_next(const char* point_i32) noexcept
 //{
 //   return const_cast<char*>(::str::utf8_inc(point));
 //}
@@ -307,7 +307,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //#ifdef WINDOWS
-//_INSECURE_DEPRECATE("You must pass an output size to char_traits::string_uppercase")
+//_INSECURE_DEPRECATE("You must pass an output size_i32 to char_traits::string_uppercase")
 //#endif
 //char * __cdecl char_traits::string_uppercase(char * psz) noexcept
 //{
@@ -317,12 +317,12 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      return nullptr;
 //   char * point = psz;
 //   string strFinal;
-//   while(*point)
+//   while(*point_i32)
 //   {
 //      strFinal += ::str::ch::to_upper_case(point);
 //      point = (char *) ::str::utf8_inc(point);
 //   }
-//   strcpy(point,strFinal);
+//   strcpy(point_i32,strFinal);
 //   return psz;
 //
 //
@@ -331,7 +331,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //}
 //
 //#if defined(WINDOWS)
-//_INSECURE_DEPRECATE("You must pass an output size to char_traits::string_lowercase")
+//_INSECURE_DEPRECATE("You must pass an output size_i32 to char_traits::string_lowercase")
 //#endif
 //char * __cdecl char_traits::string_lowercase(char * psz) noexcept
 //{
@@ -341,12 +341,12 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      return nullptr;
 //   char * point = psz;
 //   string strFinal;
-//   while(*point)
+//   while(*point_i32)
 //   {
 //      strFinal += ::str::ch::to_lower_case(point);
 //      point = (char *) ::str::utf8_inc(point);
 //   }
-//   strcpy(point,strFinal);
+//   strcpy(point_i32,strFinal);
 //   return psz;
 //
 //   //   return reinterpret_cast< char * >( _mbslwr( reinterpret_cast< uchar* >( psz ) ) );
@@ -356,7 +356,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //char * __cdecl char_traits::string_uppercase(char * psz,strsize size) noexcept
 //{
 //
-//   ::acme::strupr_s(psz,size);
+//   ::acme::strupr_s(psz, size);
 //
 //   return psz;
 //
@@ -365,7 +365,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //char * __cdecl char_traits::string_lowercase(char * psz, strsize size) noexcept
 //{
 //
-//   ::acme::strlwr_s(psz,size);
+//   ::acme::strlwr_s(psz, size);
 //
 //   return psz;
 //
@@ -377,7 +377,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      return nullptr;
 //   string strRev;
 //   char * point = psz + strlen(psz);
-//   while((point = (char*) ::str::utf8_dec(psz,point)) != nullptr)
+//   while((point = (char*) ::str::utf8_dec(psz,point_i32)) != nullptr)
 //   {
 //      strRev += ::str::get_utf8_char(point);
 //   }
@@ -478,7 +478,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //   //if(nDestLength >= 0)
 //   //{
-//   //   __throw(::exception::exception("I am wasting this branching (if(nDestLength >= 0) to tell you that nDestLength should be negative so the buffer is already correct size... or you like incorrect size? Go to Facebook and click in Like for Community \"I Like incorrect size!!\", there should exist such community... there are so many things in the multi bramas... The hardware will check again if you didn't dirtied any other process... (only another process, though)... and you're probably be fired or even not be hired if incorrect size"));
+//   //   __throw(::exception::exception("I am wasting this branching (if(nDestLength >= 0) to tell you that nDestLength should be negative so the buffer is already correct size... or you like incorrect size_i32? Go to Facebook and click in Like for Community \"I Like incorrect size_i32!!\", there should exist such community... there are so many things in the multi bramas... The hardware will check again if you didn't dirtied any other process... (only another process, though)... and you're probably be fired or even not be hired if incorrect size_i32"));
 //   //}
 //
 //   wd32_to_ansi(pszDest,pszSrc,nSrcLength);
@@ -645,7 +645,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //   if(size > UINT_MAX)
 //   {
-//      // API only allows u32 size
+//      // API only allows u32 size_i32
 //      __throw(invalid_argument_exception());
 //   }
 //   u32 dwSize=static_cast<u32>(size);
@@ -667,7 +667,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //
 //   if(size > UINT_MAX)
 //   {
-//      // API only allows u32 size
+//      // API only allows u32 size_i32
 //      __throw(invalid_argument_exception());
 //   }
 //   u32 dwSize=static_cast<u32>(size);
@@ -1659,7 +1659,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   // nReplacementLen is in XCHARs
 //   strsize nReplacementLen = str::SafeStringLen(pszNew);
 //
-//   // loop once to figure out the size of the result string
+//   // loop once to figure out the size_i32 of the result string
 //   strsize nCount = 0;
 //   {
 //      const char * pszStart = m_psz + iStart;
@@ -1724,7 +1724,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //   // nReplacementLen is in XCHARs
 //   strsize nReplacementLen = str::SafeStringLen(pszNew);
 //
-//   // loop once to figure out the size of the result string
+//   // loop once to figure out the size_i32 of the result string
 //   strsize nCount = 0;
 //   {
 //      const char * pszStart = m_psz + iStart;
@@ -3089,7 +3089,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //{
 //
 //   u32 nLength = str::get_environment_variable(pszVar,nullptr,0);
-//   bool bRetVal = FALSE;
+//   bool bRetVal = false;
 //
 //   if(nLength == 0)
 //   {
@@ -3100,7 +3100,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      char * pszBuffer = GetBuffer(nLength);
 //      str::get_environment_variable(pszVar,pszBuffer,nLength);
 //      ReleaseBuffer();
-//      bRetVal = TRUE;
+//      bRetVal = true;
 //   }
 //
 //   return(bRetVal);
@@ -3124,7 +3124,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID );
 //if( pImage == nullptr )
 //{
-//return( FALSE );
+//return( false );
 //}
 //
 //strsize nLength = str::get_char_length( pImage->achString, pImage->nLength );
@@ -3132,7 +3132,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //str::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
 //release_string_buffer( nLength );
 //
-//return( TRUE );
+//return( true );
 //}*/
 //
 //// Load the string from resource 'nID' in module 'hInstance', using language 'wLanguageID'
@@ -3141,7 +3141,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID, wLanguageID );
 //if( pImage == nullptr )
 //{
-//return( FALSE );
+//return( false );
 //}
 //
 //strsize nLength = str::get_char_length( pImage->achString, pImage->nLength );
@@ -3149,7 +3149,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //str::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
 //release_string_buffer( nLength );
 //
-//return( TRUE );
+//return( true );
 //}*/
 //
 //

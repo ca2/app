@@ -73,7 +73,7 @@ namespace browser
 
       string                           m_strHelloBrowser;
 
-      ::rect                           m_rectClient;
+      ::rectangle_i32                           m_rectClient;
 
 
       ::mutex                            m_mutexText;

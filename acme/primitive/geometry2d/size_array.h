@@ -29,9 +29,9 @@ public:
 };
 
 
-using size_array = size_array_base < size >;
-using size64_array = size_array_base < size64 >;
-using sized_array = size_array_base < sized >;
+using size_array = size_array_base < size_i32 >;
+using size64_array = size_array_base < size_i64 >;
+using sized_array = size_array_base < size_f64 >;
 
 
 

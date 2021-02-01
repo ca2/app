@@ -57,8 +57,8 @@ public:
 #elif defined(MUTEX_NAMED_VSEM)
    mutex(enum_create_new ecreatenew, const char * pstrName,key_t key, i32 semid, bool bOwner = true);
 #endif
-   mutex(enum_create_new ecreatenew, bool bInitiallyOwn, const char * lpszName, LPSECURITY_ATTRIBUTES lpsaAttribute = nullptr);
-   mutex(enum_create_new ecreatenew = e_create_new, bool bInitiallyOwn = FALSE);
+   mutex(enum_create_new ecreatenew, bool bInitiallyOwn, const char * lpszName ARG_SEC_ATTRS_DEF);
+   mutex(enum_create_new ecreatenew = e_create_new, bool bInitiallyOwn = false);
    virtual ~mutex();
 
 
@@ -96,21 +96,32 @@ CLASS_DECL_ACME ::mutex * get_ui_destroyed_mutex();
 
 
 
+
 #ifdef WINDOWS_DESKTOP
+
+class security_attributes
+{
+public:
+
+   char sz[32]; // I hope it is enough to hold SECURITY_ATTRIBUTES;
+
+};
+
 
 class null_dacl_security_attributes
 {
 public:
 
-   SECURITY_ATTRIBUTES m_securityattributes;
+   security_attributes m_securityattributes;
 
-   SECURITY_DESCRIPTOR m_securitydescriptor;
+   security_attributes m_securitydescriptor;
 
    null_dacl_security_attributes();
 
 };
 
 #endif
+
 
 
 namespace install
@@ -146,7 +157,3 @@ namespace install
 
 
 } // namespace install
-
-
-
-

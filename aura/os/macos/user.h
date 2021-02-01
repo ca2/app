@@ -71,9 +71,9 @@ namespace macos
  ::i32    top;
  ::i32    right;
  ::i32    bottom;
- } const rect &, *PRECT, *NPRECT, *RECT32 *;
+ } const rectangle_i32 &, *PRECT, *NPRECT, *RECTANGLE_I32 *;
  
- typedef const rect & * const rect &;
+ typedef const rectangle_i32 & * const rectangle_i32 &;
  
  
  
@@ -83,7 +83,7 @@ namespace macos
 CGContextRef get_nswindow_cgcontext(oswindow pnswindow);
 
 
-int_bool get_nswindow_rect(oswindow hwnd,RECT32 * prect);
+int_bool get_nswindow_rect(oswindow hwnd,RECTANGLE_I32 * prectangle);
 
 
 
@@ -168,7 +168,7 @@ typedef int wxCoord;
 //   
 //   bool IsFullySpecified() const { return x != wxDefaultCoord && y != wxDefaultCoord; }
 //   
-//   // combine this size with the other one replacing the default (i.e. equal
+//   // combine this size_i32 with the other one replacing the default (i.e. equal
 //   // to wxDefaultCoord) components of this object with those of the other
 //   void SetDefaults(const wxSize& size)
 //   {
@@ -196,7 +196,7 @@ typedef int wxCoord;
 //   
 //   // comparison
 //   bool operator==(const wxPoint& point) const { return x == point.x && y == point.y; }
-//   bool operator!=(const wxPoint& point) const { return !(*this == point); }
+//   bool operator!=(const wxPoint& point) const { return !(*this == point_i32); }
 //   
 //   // arithmetic operations (component wise)
 //   wxPoint operator+(const wxPoint& point) const { return wxPoint(x + point.x,y + point.y); }
@@ -339,7 +339,7 @@ typedef int wxCoord;
 
 
 
-int_bool set_nswindow_frame(oswindow hwnd, const RECT32 * prect, int iDisplay);
+int_bool set_nswindow_frame(oswindow hwnd, const RECTANGLE_I32 * prectangle, int iDisplay);
 int_bool move_nswindow(oswindow hwnd,int x,int y);
 int_bool make_key_and_order_front_nswindow(oswindow hwnd);
 int_bool order_front_nswindow(oswindow hwnd);

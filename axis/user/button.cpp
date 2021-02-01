@@ -153,7 +153,7 @@ namespace user
    }
 
 
-   ::sized button::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
+   ::size_f64 button::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
    {
 
       if (pgraphics.is_null())
@@ -167,13 +167,13 @@ namespace user
 
       string strText(m_strWindowText);
 
-      const ::size & size = pgraphics->GetTextExtent(strText);
+      const ::size_i32 & size = pgraphics->GetTextExtent(strText);
 
       ::draw2d::text_metric tm;
 
       pgraphics->get_text_metrics(&tm);
 
-      ::size sizeTotal;
+      ::size_i32 sizeTotal;
 
       sizeTotal.cx = (::i32) size.cx;
 
@@ -198,7 +198,7 @@ namespace user
       else if (m_estyle == style_bitmap)
       {
 
-         ::size sizeTotal = m_pbitmap->m_pimage->size();
+         ::size_i32 sizeTotal = m_pbitmap->m_pimage->size();
 
          set_size(sizeTotal);
 
@@ -259,23 +259,23 @@ namespace user
    void button::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient, ::user::e_layout_design);
 
       auto sizeText = _001CalculateAdjustedFittingSize(pgraphics);
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      rect.left = (::i32)(rectClient.left + (rectClient.width() - sizeText.cx) / 2);
+      rectangle.left = (::i32)(rectClient.left + (rectClient.width() - sizeText.cx) / 2);
 
-      rect.top = (::i32)(rectClient.top + (rectClient.height() - sizeText.cy) / 2);
+      rectangle.top = (::i32)(rectClient.top + (rectClient.height() - sizeText.cy) / 2);
 
-      rect.right = (::i32)(rect.left + sizeText.cx);
+      rectangle.right = (::i32)(rectangle.left + sizeText.cx);
 
-      rect.bottom = (::i32)(rect.top + sizeText.cy);
+      rectangle.bottom = (::i32)(rectangle.top + sizeText.cy);
 
-      m_rectText = rect;
+      m_rectText = rectangle_i32;
 
    }
 
@@ -291,7 +291,7 @@ namespace user
    void button::_002OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -384,13 +384,13 @@ namespace user
 
       rectClient.left += 3;
       rectClient.top += 3;
-      ::rect rectText = m_rectText;
+      ::rectangle_i32 rectText = m_rectText;
       //      string str = ::str::international::utf8_to_unicode(str);
       if (m_pbitmap->m_pimage->is_set())
       {
          if (m_pbitmap->m_pimage->width() > 0 && m_pbitmap->m_pimage->height() > 0)
          {
-            ::rect rectDib;
+            ::rectangle_i32 rectDib;
             rectDib = m_rectText;
             rectDib.bottom = min(rectText.top + m_pbitmap->m_pimage->width(), rectText.bottom);
             rectDib.right = min(rectText.left + m_pbitmap->m_pimage->height(), rectText.right);
@@ -529,7 +529,7 @@ namespace user
    void button::_001OnButtonDrawBackground(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -559,7 +559,7 @@ namespace user
 
          colorBottomRight.hls_rate(0.0, 0.2, 0.0);
 
-         ::rect rectPush(rectClient);
+         ::rectangle_i32 rectPush(rectClient);
 
          pgraphics->draw_3drect(rectPush, colorTopLeft, colorBottomRight);
 
@@ -585,10 +585,10 @@ namespace user
    }
 
 
-   void button::_001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, RECT32 * prectText)
+   void button::_001OnButtonDrawTextLayer(::draw2d::graphics_pointer & pgraphics, RECTANGLE_I32 * prectText)
    {
 
-      ::rect rectText(prectText);
+      ::rectangle_i32 rectText(prectText);
 
       if (m_estockicon == stock_icon_none)
       {
@@ -663,7 +663,7 @@ namespace user
 
          pgraphics->set(pen);
 
-         ::rect rectIcon(rectText);
+         ::rectangle_i32 rectIcon(rectText);
 
          rectIcon.deflate(rectIcon.width() / 4, rectIcon.height() / 4);
 
@@ -677,15 +677,15 @@ namespace user
    void button::_001OnButtonDrawNormal(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
       pgraphics->set_font(this, ::user::e_element_none);
 
-      ::rect rectMargin(2, 2,2, 2);
+      ::rectangle_i32 rectMargin(2, 2,2, 2);
 
-      ::rect rectBorder(2, 2, 2, 2);
+      ::rectangle_i32 rectBorder(2, 2, 2, 2);
 
       rectClient.deflate(rectMargin);
 
@@ -693,7 +693,7 @@ namespace user
 
       _001OnButtonDrawBackground(pgraphics);
 
-      ::rect rectPadding(4, 4, 4,4);
+      ::rectangle_i32 rectPadding(4, 4, 4,4);
 
       rectClient.deflate(rectPadding);
 
@@ -730,26 +730,26 @@ namespace user
       else if(!is_window_enabled() && ::is_ok(m_pbitmap->m_pimageDisabled))
          pimage = m_pbitmap->m_pimageDisabled;   // last image for disabled
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
-      ::rect rectMargin(4, 4, 4, 4);
+      ::rectangle_i32 rectMargin(4, 4, 4, 4);
 
-      ::rect rectBorder(2, 2,2 ,2);
+      ::rectangle_i32 rectBorder(2, 2,2 ,2);
 
       rectClient.deflate(rectMargin);
 
       rectClient.deflate(rectBorder);
 
-      ::rect rectPadding(4, 4,4,4);
+      ::rectangle_i32 rectPadding(4, 4,4,4);
 
       rectClient.deflate(rectPadding);
 
       if (pimage->area() > 0 && rectClient.area() > 0)
       {
 
-         ::rect rectAspect;
+         ::rectangle_i32 rectAspect;
 
          rectAspect.left = 0;
 
@@ -771,7 +771,7 @@ namespace user
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         pgraphics->stretch(rectAspect, pimage->g(), ::rect(pimage->get_size()));
+         pgraphics->stretch(rectAspect, pimage->g(), ::rectangle_i32(pimage->get_size()));
 
       }
 
@@ -783,17 +783,17 @@ namespace user
 
       _001OnButtonDrawBackground(pgraphics);
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
-      ::rect rectPadded(rectClient);
+      ::rectangle_i32 rectPadded(rectClient);
 
       int iPadding = 4;
 
       rectPadded.deflate(iPadding, iPadding);
 
-      ::rect rectAspect(rectPadded);
+      ::rectangle_i32 rectAspect(rectPadded);
 
       if (m_pbitmap->m_pimage)
       {
@@ -837,7 +837,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pgraphics->stretch(rectAspect, pimage->g(), ::rect(pimage->get_size()));
+            pgraphics->stretch(rectAspect, pimage->g(), ::rectangle_i32(pimage->get_size()));
 
             rectAspect.left = rectAspect.right + iPadding;
             rectAspect.right = rectPadded.right;
@@ -858,7 +858,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -913,24 +913,24 @@ namespace user
 
       class imaging & imaging = System.imaging();
 
-      ::rect rect = rectClient;
-      imaging.color_blend_3dRect(pgraphics,rect,colorExt1TL,215,colorExt1BR,215);
-      rect.deflate(1,1,1,1);
-      imaging.color_blend_3dRect(pgraphics,rect,colorExt1TL,210,colorExt1BR,210);
-      rect.deflate(1,1,1,1);
-      imaging.color_blend_3dRect(pgraphics,rect,colorExt2TL,205,colorExt2BR,205);
-      rect.deflate(1,1,1,1);
-      imaging.color_blend_3dRect(pgraphics,rect,colorExt2TL,200,colorExt2BR,200);
-      rect.deflate(1,1,1,1);
-      imaging.color_blend(pgraphics,rect.left,rect.top,rect.width(),rect.height(),cr,200);
-      rect.deflate(1,1,1,1);
+      ::rectangle_i32 rectangle = rectClient;
+      imaging.color_blend_3dRect(pgraphics,rectangle_i32,colorExt1TL,215,colorExt1BR,215);
+      rectangle.deflate(1,1,1,1);
+      imaging.color_blend_3dRect(pgraphics,rectangle_i32,colorExt1TL,210,colorExt1BR,210);
+      rectangle.deflate(1,1,1,1);
+      imaging.color_blend_3dRect(pgraphics,rectangle_i32,colorExt2TL,205,colorExt2BR,205);
+      rectangle.deflate(1,1,1,1);
+      imaging.color_blend_3dRect(pgraphics,rectangle_i32,colorExt2TL,200,colorExt2BR,200);
+      rectangle.deflate(1,1,1,1);
+      imaging.color_blend(pgraphics,rectangle.left,rectangle.top,rectangle.width(),rectangle.height(),cr,200);
+      rectangle.deflate(1,1,1,1);
 
-      i32 x1 = rect.left;
-      i32 x2 = x1 + rect.width() / 3;
+      i32 x1 = rectangle.left;
+      i32 x2 = x1 + rectangle.width() / 3;
 
-      rect.left = x1;
-      rect.right = x2;
-      rect.bottom = rect.top + 5;
+      rectangle.left = x1;
+      rectangle.right = x2;
+      rectangle.bottom = rectangle.top + 5;
 
       ::draw2d::pen_pointer pen(e_create);
 
@@ -938,7 +938,7 @@ namespace user
 
       pgraphics->set(pen);
 
-      imaging.color_blend_3dRect(pgraphics,rect,colorExt1TL,220,colorExt1BR,220);
+      imaging.color_blend_3dRect(pgraphics,rectangle_i32,colorExt1TL,220,colorExt1BR,220);
 
 
    }
@@ -1086,11 +1086,11 @@ namespace user
    }
 
 
-   void button::BaseToolTipGetRect(RECT32 * prect)
+   void button::BaseToolTipGetRect(RECTANGLE_I32 * prectangle)
 
    {
-      // use window client rect as the tool rect
-      get_client_rect(prect);
+      // use window client rectangle_i32 as the tool rectangle_i32
+      get_client_rect(prectangle);
 
    }
 
@@ -1103,7 +1103,7 @@ namespace user
 
    void button::_001OnButtonDrawList(::draw2d::graphics_pointer & pgraphics)
    {
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
       bool bItemHover;
       bool bSubItemHover;
 
@@ -1126,8 +1126,8 @@ namespace user
          bSubItemHover  = bItemHover;
       }
 
-      ::point point = rectClient.top_left();
-      point += ::size(1, 1);
+      ::point_i32 point = rectClient.top_left();
+      point_i32 += ::size_i32(1, 1);
 
       if(bSubItemHover)
       {
@@ -1141,7 +1141,7 @@ namespace user
             m_plist->m_pimagelistSubItemHover->draw(
             pgraphics,
             m_plist->m_iImageSubItemHover,
-            point,
+            point_i32,
             0);
          }
          else if(m_plist->m_pimagelistItemHover != nullptr)
@@ -1149,7 +1149,7 @@ namespace user
             m_plist->m_pimagelistItemHover->draw(
             pgraphics,
             m_plist->m_iImageItemHover,
-            point,
+            point_i32,
             0);
          }
          else if(m_plist->m_pimagelistNormal != nullptr)
@@ -1157,7 +1157,7 @@ namespace user
             m_plist->m_pimagelistNormal->draw(
             pgraphics,
             m_plist->m_iImageNormal,
-            point,
+            point_i32,
             0);
          }
       }
@@ -1168,7 +1168,7 @@ namespace user
             m_plist->m_pimagelistItemHover->draw(
             pgraphics,
             m_plist->m_iImageItemHover,
-            point,
+            point_i32,
             0);
          }
          else if(m_plist->m_pimagelistSubItemHover != nullptr)
@@ -1176,7 +1176,7 @@ namespace user
             m_plist->m_pimagelistSubItemHover->draw(
             pgraphics,
             m_plist->m_iImageSubItemHover,
-            point,
+            point_i32,
             0);
          }
          else if(m_plist->m_pimagelistNormal != nullptr)
@@ -1184,7 +1184,7 @@ namespace user
             m_plist->m_pimagelistNormal->draw(
             pgraphics,
             m_plist->m_iImageNormal,
-            point,
+            point_i32,
             0);
          }
       }
@@ -1195,7 +1195,7 @@ namespace user
             m_plist->m_pimagelistNormal->draw(
             pgraphics,
             m_plist->m_iImageNormal,
-            point,
+            point_i32,
             0);
          }
          else if(m_plist->m_pimagelistItemHover != nullptr)
@@ -1205,7 +1205,7 @@ namespace user
             pgraphics,
             
                m_plist->m_iImageItemHover,
-            point,
+            point_i32,
             0);
 
          }
@@ -1215,7 +1215,7 @@ namespace user
             m_plist->m_pimagelistSubItemHover->draw(
             pgraphics,
             m_plist->m_iImageSubItemHover,
-            point,
+            point_i32,
             0);
 
          }

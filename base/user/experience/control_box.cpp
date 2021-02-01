@@ -82,7 +82,7 @@ namespace experience
             && m_pframewindow->m_pframe->is_control_box_moveable())
       {
 
-         ::point point = pmouse->m_point;
+         ::point_i32 point = pmouse->m_point;
 
          m_pframewindow->_001ScreenToClient(point);
 
@@ -112,7 +112,7 @@ namespace experience
          if (m_bDrag)
          {
 
-            ::point point = pmouse->m_point;
+            ::point_i32 point = pmouse->m_point;
 
             m_pframewindow->_001ScreenToClient(point);
 
@@ -127,7 +127,7 @@ namespace experience
    }
 
 
-   void control_box::drag(const ::point & point)
+   void control_box::drag(const ::point_i32 & point)
    {
 
       //int x = point.x - m_pointDrag.x;
@@ -139,15 +139,15 @@ namespace experience
 
       //}
 
-      //::rect rectParent;
+      //::rectangle_i32 rectParent;
 
       //get_parent()->get_client_rect(rectParent);
 
-      //::rect rectClient;
+      //::rectangle_i32 rectClient;
 
       //get_client_rect(rectClient);
 
-      //::rect rectWindow;
+      //::rectangle_i32 rectWindow;
 
       //get_window_rect(rectWindow);
 
@@ -159,9 +159,9 @@ namespace experience
 
       //x = m_pframewindow->m_pframe->calc_control_box_left(true);
 
-      //::point point(x, rectWindow.top);
+      //::point_i32 point(x, rectWindow.top);
 
-      //::point pointScreen(point);
+      //::point_i32 pointScreen(point);
 
       //get_parent()->_001ClientToScreen(pointScreen);
 
@@ -226,7 +226,7 @@ namespace experience
 
          }
 
-         ::point pointCursor;
+         ::point_i32 pointCursor;
 
          auto psession = Session;
 
@@ -250,7 +250,7 @@ namespace experience
                   if (m_pframewindow->layout().is_full_screen())
                   {
 
-                     ::rect rectWindow;
+                     ::rectangle_i32 rectWindow;
 
                      get_window_rect(rectWindow);
 
@@ -289,7 +289,7 @@ namespace experience
                   if (m_pframewindow->layout().is_full_screen())
                   {
 
-                     ::rect rectWindow;
+                     ::rectangle_i32 rectWindow;
 
                      get_window_rect(rectWindow);
 
@@ -320,14 +320,14 @@ namespace experience
             if (m_pframewindow->layout().is_full_screen())
             {
 
-               ::rect rectWindow;
+               ::rectangle_i32 rectWindow;
 
                get_window_rect(rectWindow);
 
                rectWindow.left = min(rectWindow.left, rectWindow.right);
                rectWindow.bottom = min(rectWindow.top, rectWindow.bottom);
 
-               ::point point;
+               ::point_i32 point;
 
                try
                {
@@ -510,7 +510,7 @@ namespace experience
    }
 
 
-   void control_box::_layout_button(enum_button ebutton, ::rect& rect)
+   void control_box::_layout_button(enum_button ebutton, ::rectangle_i32& rectangle)
    {
 
       auto pbutton = get_box_button(ebutton);
@@ -522,23 +522,23 @@ namespace experience
 
          auto rectMargin = get_button_margin(ebutton);
 
-         rect.right = rect.left - rectMargin.right;
-         rect.left = rect.right - sizeButton.cx;
+         rectangle.right = rectangle.left - rectMargin.right;
+         rectangle.left = rectangle.right - sizeButton.cx;
 
          if (pbutton)
          {
 
-            rect.top = rectMargin.top;
-            rect.bottom = sizeButton.cy + rect.top;
+            rectangle.top = rectMargin.top;
+            rectangle.bottom = sizeButton.cy + rectangle.top;
 
             pbutton->order(zorder_top);
-            pbutton->place(rect);
+            pbutton->place(rectangle);
             pbutton->display();
             pbutton->UpdateWndRgn();
 
          }
 
-         rect.left -= rectMargin.left;
+         rectangle.left -= rectMargin.left;
 
       }
       else
@@ -559,48 +559,48 @@ namespace experience
    void control_box::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       m_pframewindow->get_window_rect(rectWindow);
 
-      ::rect rectParent(rectWindow);
+      ::rectangle_i32 rectParent(rectWindow);
 
       m_pframewindow->_001ScreenToClient(rectParent);
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      get_window_rect(rect);
+      get_window_rect(rectangle);
 
-      m_pframewindow->_001ScreenToClient(rect);
+      m_pframewindow->_001ScreenToClient(rectangle);
 
       reset_layout(pgraphics);
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
       int iWidth = rectClient.width();
 
 
-      rect.left = iWidth;
+      rectangle.left = iWidth;
 
-      _layout_button(e_button_close, rect);
+      _layout_button(e_button_close, rectangle);
 
-      _layout_button(e_button_up, rect);
+      _layout_button(e_button_up, rectangle);
 
-      _layout_button(e_button_down, rect);
+      _layout_button(e_button_down, rectangle);
 
-      _layout_button(e_button_maximize, rect);
+      _layout_button(e_button_maximize, rectangle);
 
-      _layout_button(e_button_restore, rect);
+      _layout_button(e_button_restore, rectangle);
 
-      _layout_button(e_button_minimize, rect);
+      _layout_button(e_button_minimize, rectangle);
 
-      _layout_button(e_button_notify_icon, rect);
+      _layout_button(e_button_notify_icon, rectangle);
 
-      _layout_button(e_button_transparent_frame, rect);
+      _layout_button(e_button_transparent_frame, rectangle);
 
-      _layout_button(e_button_dock, rect);
+      _layout_button(e_button_dock, rectangle);
 
 
    }
@@ -918,13 +918,13 @@ namespace experience
 
       int iDefaultButtonSize = calc_button_size(pgraphics);
 
-      m_sizeButtonDefault = ::size(iDefaultButtonSize,iDefaultButtonSize);
+      m_sizeButtonDefault = ::size_i32(iDefaultButtonSize,iDefaultButtonSize);
 
 
    }
 
 
-   size control_box::get_button_size(enum_button ebutton)
+   size_i32 control_box::get_button_size(enum_button ebutton)
    {
 
       return m_sizeButtonDefault;
@@ -932,10 +932,10 @@ namespace experience
    }
 
 
-   rect control_box::get_button_margin(enum_button ebutton)
+   rectangle_i32 control_box::get_button_margin(enum_button ebutton)
    {
 
-      ::rect rectMargin;
+      ::rectangle_i32 rectMargin;
 
       rectMargin.left = 0;
       rectMargin.top = m_iDefaultButtonMargin;
@@ -1058,22 +1058,22 @@ namespace experience
    void control_box::_001OnMove(::message::message * pmessage)
    {
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       m_pframewindow->get_window_rect(rectWindow);
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      get_window_rect(rect);
+      get_window_rect(rectangle);
 
-      m_pframewindow->_001ScreenToClient(rect);
+      m_pframewindow->_001ScreenToClient(rectangle);
 
-      m_pframewindow->m_pframe->m_bControlBoxAlignRight = rect.center().x > (rectWindow.width() / 2);
+      m_pframewindow->m_pframe->m_bControlBoxAlignRight = rectangle.center().x > (rectWindow.width() / 2);
 
-//      if (rect != *m_pframewindow->m_pframe->get_control_box_rect())
+//      if (rectangle_i32 != *m_pframewindow->m_pframe->get_control_box_rect())
 //      {
 //
-//         *m_pframewindow->m_pframe->get_control_box_rect() = rect;
+//         *m_pframewindow->m_pframe->get_control_box_rect() = rectangle_i32;
 //
 //         m_pframewindow->m_millisLastVisualChange.Now();
 //
@@ -1094,7 +1094,7 @@ namespace experience
    void control_box::_001OnSize(::message::message * pmessage)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -1126,11 +1126,11 @@ namespace experience
       try
       {
 
-         ::rect rectClip;
+         ::rectangle_i32 rectClip;
 
          ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          bool bFirst = true;
 
@@ -1157,7 +1157,7 @@ namespace experience
 
             ::user::interaction * pinteraction = this;
 
-            ::rect rectFocus;
+            ::rectangle_i32 rectFocus;
 
             while (pinteraction != nullptr)
             {

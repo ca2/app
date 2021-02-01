@@ -49,12 +49,12 @@ namespace message
 #include "listener_smart_pointer_array.h"
 
 
-#ifdef WINDOWS_DESKTOP
-
-#define MESSAGE MSG
-#define LPMESSAGE LPMSG
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//#define MESSAGE MSG
+//#define MESSAGE * LPMSG
+//
+//#endif
 
 namespace message
 {

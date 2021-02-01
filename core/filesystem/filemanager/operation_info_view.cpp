@@ -61,12 +61,12 @@ namespace filemanager
       rectProgress.right--;
       rectProgress.top++;
       rectProgress.bottom--;*/
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
       get_client_rect(rectClient);
       i32 iLineCount = 23;
       double dBarHeight = (double)rectClient.height() / (double)iLineCount;
       double dTop = 0.0;
-      ::rect rectProgress;
+      ::rectangle_i32 rectProgress;
       rectProgress = rectClient;
       //rectProgress.left += 23;
       //rectProgress.right -= 23;
@@ -75,7 +75,7 @@ namespace filemanager
       double dProgressL = 0.0;
       double dProgressU;
       double dProgressD = 1.0 / (double)iLineCount;
-      ::rect rectBar;
+      ::rectangle_i32 rectBar;
       double dProgress;
       dProgress = get_document()->m_thread.get_progress_rate();
       for(i32 iLine = 0; iLine < iLineCount; iLine++)

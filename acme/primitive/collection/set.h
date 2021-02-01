@@ -33,7 +33,7 @@ public:
    }
 
 
-   void InitHashTable(::u32 nHashSize, bool bAllocNow = TRUE)
+   void InitHashTable(::u32 nHashSize, bool bAllocNow = true)
    {
 
       if (m_ppassocHash != nullptr && m_ppassocHash != m_assocHashDefault && m_nHashTableSize > DEFAULT_HASH_TABLE_SIZE)
@@ -110,7 +110,7 @@ public:
    {
       return m_nHashTableSize;
    }
-   void InitHashTable(::u32 hashSize, bool bAllocNow = TRUE) {  }
+   void InitHashTable(::u32 hashSize, bool bAllocNow = true) {  }
 
    void remove_all()
    {
@@ -416,7 +416,7 @@ public:
    {
       return m_hashtable.GetHashTableSize();
    }
-   void InitHashTable(::u32 hashSize, bool bAllocNow = TRUE);
+   void InitHashTable(::u32 hashSize, bool bAllocNow = true);
 
 
    ELEMENT get(ARG_ELEMENT argkey, ARG_ELEMENT valueDefault);
@@ -697,7 +697,7 @@ void set < ELEMENT, ARG_ELEMENT >::construct()
 {
 
    //m_ppassocHash     = nullptr;
-   //m_nHashTableSize  = 17;  // default size
+   //m_nHashTableSize  = 17;  // default size_i32
    m_nCount = 0;
    //   this->m_passocFree      = nullptr;
    //   m_pplex           = nullptr;
@@ -1086,7 +1086,7 @@ const ELEMENT & set < ELEMENT, ARG_ELEMENT >::operator[](ARG_ELEMENT key) const
 
 template < class ELEMENT, class ARG_ELEMENT >
 inline bool set < ELEMENT, ARG_ELEMENT >::remove(SET_ELEMENT_ITEM * pelement)
-// erase - return TRUE if removed
+// erase - return true if removed
 {
 
    if (pelement->m_pnextHash != nullptr)
@@ -1251,8 +1251,6 @@ void set < ELEMENT, ARG_ELEMENT >::InitHashTable(
 
 template < class ELEMENT >
 using isoset = set < ELEMENT, ELEMENT >;
-
-using colorref_set = isoset < color32_t >;
 
 using dword_set = isoset < ::u32 >;
 

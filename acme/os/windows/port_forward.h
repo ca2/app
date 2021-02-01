@@ -26,7 +26,7 @@ namespace windows
 
 	   interface IDerivedNATExternalIPAddressCallback : public INATExternalIPAddressCallback
 	   {
-		   IDerivedNATExternalIPAddressCallback( ::net::port_forward_change_callbacks * point ) : m_pointer( point ), m_dwRef( 0 ) { };
+		   IDerivedNATExternalIPAddressCallback( ::net::port_forward_change_callbacks * point_i32 ) : m_pointer( point_i32 ), m_dwRef( 0 ) { };
 		
 		   HRESULT STDMETHODCALLTYPE NewExternalIPAddress( BSTR bstrNewExternalIPAddress )
 		   {
@@ -53,7 +53,7 @@ namespace windows
 	
 	   interface IDerivedNATNumberOfEntriesCallback : public INATNumberOfEntriesCallback
 	   {
-		   IDerivedNATNumberOfEntriesCallback( ::net::port_forward_change_callbacks* point ) : m_pointer( point ), m_dwRef( 0 ) { };
+		   IDerivedNATNumberOfEntriesCallback( ::net::port_forward_change_callbacks* point_i32 ) : m_pointer( point_i32 ), m_dwRef( 0 ) { };
 		
 		   HRESULT STDMETHODCALLTYPE NewNumberOfEntries( long lNewNumberOfEntries )
 		   {
@@ -94,7 +94,7 @@ namespace windows
 	   virtual pointer_array < port_map > get_port_map() const;  // gets a copy of currently-known port mappings
 	   virtual pointer_array < device >  get_igd() const;  // gets a copy of currently-know device information
 	
-	   virtual bool IsAnyThreadRunning() const;  // returns TRUE if there is any thread currently running
+	   virtual bool IsAnyThreadRunning() const;  // returns true if there is any thread currently running
 	
 	
    protected:
@@ -136,7 +136,7 @@ namespace windows
 	
 	   pointer_array<port_map> m_MappingContainer;
 	
-	   CRITICAL_SECTION m_cs;
+	   CRITICAL_SECTION m_criticalsection;
 	
 	
 	   // some more protected members, most of which could not be declared until after full-declaration

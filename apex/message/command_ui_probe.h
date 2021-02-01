@@ -27,7 +27,7 @@
 //    virtual void enable(bool bOn, const ::action_context & action_context = ::e_source_system);
 //    virtual void _001SetCheck(bool bCheck, const ::action_context & action_context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
 //    virtual void _001SetCheck(enum_check echeck, const ::action_context & action_context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
-//    virtual void SetRadio(bool bOn = TRUE, const ::action_context & action_context = ::e_source_system);
+//    virtual void SetRadio(bool bOn = true, const ::action_context & action_context = ::e_source_system);
 //    virtual void SetText(const char * pszText, const ::action_context & action_context = ::e_source_system);
 
 
@@ -50,7 +50,7 @@
 ////   afxDispStock = 1
 ////};
 //
-////IA64: __DISPMAP_ENTRY could be ordered more efficiently to reduce size
+////IA64: __DISPMAP_ENTRY could be ordered more efficiently to reduce size_i32
 //// bloat from alignment
 //#pragma warning( disable: 4121 )
 //struct CLASS_DECL_APEX __DISPMAP_ENTRY

@@ -42,7 +42,7 @@ namespace datetime
          ::datetime::time time(iYear,iMonth,1,0,0,0);
          ::datetime::time_span timespan(1,0,0,0);
          color32_t crBorder;
-         rect rectDay;
+         rectangle_i32 rectDay;
          int32_t iDay;
          for(iDay = 1; iDay <= 7; iDay++)
          {
@@ -114,27 +114,27 @@ namespace datetime
          }
 
          pgraphics->set(m_pfontYear);
-         ::rect rect;
-         GetRect(rect,e_element_year_title);
+         ::rectangle_i32 rectangle;
+         GetRect(rectangle,e_element_year_title);
          string strYear;
          strYear.Format("%d",iYear);
-         pgraphics->draw_text(strYear,rect,e_align_center);
+         pgraphics->draw_text(strYear,rectangle_i32,e_align_center);
 
          pgraphics->set(m_pfontMonth);
-         GetRect(rect,e_element_month_title);
+         GetRect(rectangle,e_element_month_title);
          string strMonth;
          strMonth = GetMonth(pgraphics->str_context(),iMonth);
-         pgraphics->draw_text(strMonth,rect,e_align_center);
+         pgraphics->draw_text(strMonth,rectangle_i32,e_align_center);
 
          pgraphics->set(m_pfontSpin);
-         GetRect(rect,e_element_previous_year);
-         pgraphics->draw_text("<<",rect,e_align_center);
-         GetRect(rect,e_element_next_year);
-         pgraphics->draw_text(">>",rect,e_align_center);
-         GetRect(rect,e_element_previous_month);
-         pgraphics->draw_text("<",rect,e_align_center);
-         GetRect(rect,e_element_next_month);
-         pgraphics->draw_text(">",rect,e_align_center);
+         GetRect(rectangle,e_element_previous_year);
+         pgraphics->draw_text("<<",rectangle_i32,e_align_center);
+         GetRect(rectangle,e_element_next_year);
+         pgraphics->draw_text(">>",rectangle_i32,e_align_center);
+         GetRect(rectangle,e_element_previous_month);
+         pgraphics->draw_text("<",rectangle_i32,e_align_center);
+         GetRect(rectangle,e_element_next_month);
+         pgraphics->draw_text(">",rectangle_i32,e_align_center);
       }
 
 
@@ -190,7 +190,7 @@ namespace datetime
 
 
 
-      void graphics::set_pos(point pt,size sz)
+      void graphics::set_pos(point_i32 pt,size_i32 sz)
       {
          m_point = pt;
          m_size = sz;
@@ -201,13 +201,13 @@ namespace datetime
 
 
 
-      enum_element graphics::hit_test(const ::point & point)
+      enum_element graphics::hit_test(const ::point_i32 & point)
       {
 
          for (int iElement = e_element_none + 1; iElement < e_element_count; iElement++)
          {
 
-            if (hit_test((enum_element)iElement, point))
+            if (hit_test((enum_element)iElement, point_i32))
             {
 
                return (enum_element)iElement;
@@ -220,13 +220,13 @@ namespace datetime
       }
 
 
-      bool graphics::time_hit_test(::datetime::time & timeRet,const point & point)
+      bool graphics::time_hit_test(::datetime::time & timeRet,const point_i32 & point)
       {
          int32_t iMonth = m_iMonth;
          int32_t iYear = m_iYear;
          ::datetime::time time(iYear,iMonth,1,0,0,0);
          ::datetime::time_span timespan(1,0,0,0);
-         rect rectDay;
+         rectangle_i32 rectDay;
          int32_t iDay;
          for(iDay = 1; iDay <= 33; iDay++)
          {
@@ -243,12 +243,12 @@ namespace datetime
          return false;
       }
 
-      bool graphics::hit_test(enum_element eelement, const point & pt)
+      bool graphics::hit_test(enum_element eelement, const point_i32 & pt)
       {
 
-         ::rect rect;
-         GetRect(rect,eelement);
-         return rect.contains(pt) != FALSE;
+         ::rectangle_i32 rectangle;
+         GetRect(rectangle,eelement);
+         return rectangle.contains(pt) != FALSE;
 
       }
 

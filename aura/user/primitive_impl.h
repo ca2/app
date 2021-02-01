@@ -35,7 +35,7 @@ namespace user
       u32                                       m_uiLastRedraw;
       bool                                      m_bUpdatingBuffer;
 
-      ::rect                                    m_rect;
+      ::rectangle_i32                                    m_rectangle;
 
 
 
@@ -105,8 +105,8 @@ virtual bool setWMClass(const char * psz);
       
       //virtual bool create_interaction();
       
-      //virtual bool create_interaction(::user::interaction * pinteraction, const ::rect & rect, ::user::primitive * pparent, id id);
-      //virtual bool create_interaction(::user::interaction * pinteraction, ::u32 uExStyle, u32 uStyle, const ::rect & rect, ::user::primitive * puiParent, ::create * pcreate = nullptr);
+      //virtual bool create_interaction(::user::interaction * pinteraction, const ::rectangle_i32 & rectangle, ::user::primitive * pparent, id id);
+      //virtual bool create_interaction(::user::interaction * pinteraction, ::u32 uExStyle, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::primitive * puiParent, ::create * pcreate = nullptr);
 
       //virtual bool _create_window(::user::interaction * pinteraction,__pointer(::user::system) pcs, ::user::primitive * puiParent = nullptr, id id = ::id());
 
@@ -117,53 +117,53 @@ virtual bool setWMClass(const char * psz);
 
       virtual bool prodevian_update_screen();
 
-      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id nIdLeftOver, ::u32 nFlag = reposDefault, RECT32 * prectParam = nullptr, const ::rect & rectClient = nullptr, bool bStretch = true) override;
+      virtual void RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id nIdLeftOver, ::u32 nFlag = reposDefault, RECTANGLE_I32 * prectParam = nullptr, const ::rectangle_i32 & rectClient = nullptr, bool bStretch = true) override;
 
       virtual bool window_move(i32 x, i32 y);
 
-      //virtual bool _get_client_rect(RECT64 * prect) override;
-      //virtual bool _get_window_rect(RECT64 * prect) override;
+      //virtual bool _get_client_rect(RECTANGLE_I64 * prectangle) override;
+      //virtual bool _get_window_rect(RECTANGLE_I64 * prectangle) override;
 
-      //virtual bool _001ClientToScreen(RECTD * prect) override;
+      //virtual bool _001ClientToScreen(RECTANGLE_F64 * prectangle) override;
 
-      //virtual bool _001ClientToScreen(RECT32 * prect) override;
+      //virtual bool _001ClientToScreen(RECTANGLE_I32 * prectangle) override;
 
-      //virtual bool _001ClientToScreen(RECT64 * prect) override;
+      //virtual bool _001ClientToScreen(RECTANGLE_I64 * prectangle) override;
 
-      //virtual bool _001ClientToScreen(POINTD * ppoint) override;
+      //virtual bool _001ClientToScreen(POINT_F64 * ppoint) override;
 
-      //virtual bool _001ClientToScreen(POINT32 * ppoint) override;
+      //virtual bool _001ClientToScreen(POINT_I32 * ppoint) override;
 
-      //virtual bool _001ClientToScreen(POINT64 * ppoint) override;
+      //virtual bool _001ClientToScreen(POINT_I64 * ppoint) override;
 
-      //virtual bool _001ScreenToClient(RECTD * prect) override;
+      //virtual bool _001ScreenToClient(RECTANGLE_F64 * prectangle) override;
 
-      //virtual bool _001ScreenToClient(RECT32 * prect) override;
+      //virtual bool _001ScreenToClient(RECTANGLE_I32 * prectangle) override;
 
-      //virtual bool _001ScreenToClient(RECT64 * prect) override;
+      //virtual bool _001ScreenToClient(RECTANGLE_I64 * prectangle) override;
 
-      //virtual bool _001ScreenToClient(POINTD * ppoint) override;
+      //virtual bool _001ScreenToClient(POINT_F64 * ppoint) override;
 
-      //virtual bool _001ScreenToClient(POINT32 * ppoint) override;
+      //virtual bool _001ScreenToClient(POINT_I32 * ppoint) override;
 
-      //virtual bool _001ScreenToClient(POINT64 * prect) override;
+      //virtual bool _001ScreenToClient(POINT_I64 * prectangle) override;
 
-      //svirtual bool SetPlacement(const ::rect & rect,::u32 nFlags = SWP_SHOWWINDOW) override;
-      //virtual bool place(const ::rect & rect) override;
+      //svirtual bool SetPlacement(const ::rectangle_i32 & rectangle,::u32 nFlags = SWP_SHOWWINDOW) override;
+      //virtual bool place(const ::rectangle_i32 & rectangle) override;
       //virtual bool RepositionWindow(i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW) override;
       // virtual bool MoveWindow(i32 x, i32 y, ::u32 nFlags = SWP_SHOWWINDOW) override;
-      //virtual bool move_to(const ::point & point) override;
+      //virtual bool move_to(const ::point_i32 & point) override;
       //virtual bool SizeWindow(i32 x,i32 y,::u32 nFlags = SWP_SHOWWINDOW) override;
-      //virtual bool SizeWindow(const size & sz,::u32 nFlags = SWP_SHOWWINDOW) override;
+      //virtual bool SizeWindow(const size_i32 & sz,::u32 nFlags = SWP_SHOWWINDOW) override;
       //virtual bool ResizeWindow(i32 cx,i32 cy,::u32 nFlags = SWP_SHOWWINDOW) override;
-      //virtual bool set_size(const size & sz) override;
-      //virtual bool set_window_pos(class zorder zorder, const ::rect & rect, ::u32 nFlags = SWP_SHOWWINDOW) override;
+      //virtual bool set_size(const size_i32 & sz) override;
+      //virtual bool set_window_pos(class zorder zorder, const ::rectangle_i32 & rectangle, ::u32 nFlags = SWP_SHOWWINDOW) override;
 
       //virtual bool set_window_pos(class zorder zorder, i32 x, i32 y, i32 cx, i32 cy, ::u32 nFlags = SWP_SHOWWINDOW) override;
-      //virtual bool set_window_pos(class zorder zorder, const point & point, const size & size, ::u32 nFlags = SWP_SHOWWINDOW);
-      //virtual bool defer_set_window_pos(zorder zorder, const ::rect & rect, ::u32 nFlags) override; // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(RECT32 * prect);
+      //virtual bool set_window_pos(class zorder zorder, const point_i32 & point, const size_i32 & size, ::u32 nFlags = SWP_SHOWWINDOW);
+      //virtual bool defer_set_window_pos(zorder zorder, const ::rectangle_i32 & rectangle, ::u32 nFlags) override; // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rectangle_i32(x, y, cx, cy)      virtual bool set_placement(RECTANGLE_I32 * prectangle);
 
-      //virtual bool defer_set_window_pos(zorder zorder, i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags) override; // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rect(x, y, cx, cy)      virtual bool set_placement(RECT32 * prect);
+      //virtual bool defer_set_window_pos(zorder zorder, i32 x,i32 y,i32 cx,i32 cy,::u32 nFlags) override; // only set_windows_pos if get_parent()->_001ScreenToClient(get_window_rect) different of rectangle_i32(x, y, cx, cy)      virtual bool set_placement(RECTANGLE_I32 * prectangle);
 
       //virtual i32 SetWindowRgn(HRGN hRgn,bool bRedraw);
       //virtual i32 GetWindowRgn(HRGN hRgn);
@@ -171,15 +171,15 @@ virtual bool setWMClass(const char * psz);
       //virtual ::e_status post_routine(const ::promise::routine & routine);
 
 
-#ifdef WINDOWS
+//#ifdef WINDOWS
+//
+//      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = RDW_INVALIDATE | RDW_ERASE) override;
+//
+//#else
 
-      virtual bool RedrawWindow(const ::rect& rectUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = RDW_INVALIDATE | RDW_ERASE) override;
+      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0) override;
 
-#else
-
-      virtual bool RedrawWindow(const ::rect& rectUpdate = nullptr,::draw2d::region* prgnUpdate = nullptr,::u32 flags = 0) override;
-
-#endif
+//#endif
 
       virtual void _001Print(::draw2d::graphics_pointer & pgraphics) override;
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -194,10 +194,10 @@ virtual bool setWMClass(const char * psz);
 
       virtual void set_viewport_org(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void viewport_screen_to_client(POINT32 * ppt) override;
-      virtual void viewport_client_to_screen(POINT32 * ppt) override;
-      virtual void viewport_client_to_screen(RECT32 * ppt) override;
-      virtual void viewport_screen_to_client(RECT32 * ppt) override;
+      virtual void viewport_screen_to_client(POINT_I32 * ppt) override;
+      virtual void viewport_client_to_screen(POINT_I32 * ppt) override;
+      virtual void viewport_client_to_screen(RECTANGLE_I32 * ppt) override;
+      virtual void viewport_screen_to_client(RECTANGLE_I32 * ppt) override;
 
 
 
@@ -259,12 +259,12 @@ virtual bool setWMClass(const char * psz);
       //virtual ::user::frame * EnsureParentFrame() override;
 
 
-      virtual LRESULT message_call(const ::id & id, WPARAM wparam, lparam lparam) override;
-      virtual LRESULT message_call(::message::base * pbase) override;
+      virtual lresult message_call(const ::id & id, wparam wparam, lparam lparam) override;
+      virtual lresult message_call(::message::base * pbase) override;
 
 
 
-      virtual void send_message_to_descendants(const ::id & id,WPARAM wParam = 0,lparam lParam = 0,bool bDeep = TRUE,bool bOnlyPerm = FALSE) override;
+      virtual void send_message_to_descendants(const ::id & id, wparam wParam = 0,lparam lParam = 0,bool bDeep = true,bool bOnlyPerm = false) override;
 
 
 
@@ -279,7 +279,7 @@ virtual bool setWMClass(const char * psz);
       virtual bool SetFocus() override;
 
 
-      virtual bool get_rect_normal(RECT32 * prect);
+      virtual bool get_rect_normal(RECTANGLE_I32 * prectangle);
 
 
       virtual bool SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr) override;
@@ -311,7 +311,7 @@ virtual bool setWMClass(const char * psz);
       virtual ::e_status impl_clear_keyboard_focus();
 
 
-      virtual bool post_message(const ::id & id, WPARAM wparam = 0, lparam lparam = 0) override;
+      virtual bool post_message(const ::id & id, wparam wparam = 0, lparam lparam = 0) override;
 
       virtual void PostNcDestroy() override;
 
@@ -324,8 +324,8 @@ virtual bool setWMClass(const char * psz);
 
       virtual void show_task(bool bShow);
 
-      virtual void redraw_add(::context_object * point);
-      virtual void redraw_remove(::context_object * point);
+      virtual void redraw_add(::context_object * point_i32);
+      virtual void redraw_remove(::context_object * point_i32);
       virtual bool has_redraw();
 
       virtual ::e_status show_software_keyboard(::user::primitive * pprimitive, string str, strsize iBeg, strsize iEnd) override;

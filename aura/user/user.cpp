@@ -231,7 +231,7 @@ namespace user
    }
 
 
-   void user::SendMessageToWindows(const ::id & id,WPARAM wparam,LPARAM lparam)
+   void user::SendMessageToWindows(const ::id & id,wparam wparam,lparam lparam)
    {
 
       auto psession = Session;
@@ -355,7 +355,7 @@ namespace user
 //   }
 
 
-   //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * lpWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam);
+   //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam);
 
 
    //CLASS_DECL_AURA __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * pWindowName, u32 uStyle, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam)
@@ -642,14 +642,14 @@ namespace aura
    //   return nullptr;
    //}
 
-   //bool session::get_monitor_rect(index iMonitor, RECT32 * prect)
+   //bool session::get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle)
 
    //{
 
    //   if (get_document() != nullptr && get_view() != nullptr)
    //   {
 
-   //      get_view()->get_window_rect(prect);
+   //      get_view()->get_window_rect(prectangle);
 
 
    //      return true;
@@ -658,7 +658,7 @@ namespace aura
    //   else
    //   {
 
-   //      return ::aura::session::get_monitor_rect(iMonitor, prect);
+   //      return ::aura::session::get_monitor_rect(iMonitor, prectangle);
 
 
    //   }

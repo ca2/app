@@ -56,10 +56,10 @@ typedef struct
 //
 
 static void
-_ReadProc(png_structp png_ptr, unsigned char *data, png_size_t size)
+_ReadProc(png_structp png_ptr, unsigned char *data, png_size_t size_i32)
 {
    pfi_ioStructure pfio = (pfi_ioStructure)png_get_io_ptr(png_ptr);
-   unsigned n = pfio->s_io->read_proc(data, (unsigned int)size, 1, pfio->s_handle);
+   unsigned n = pfio->s_io->read_proc(data, (unsigned int)size_i32, 1, pfio->s_handle);
    if(size && (n == 0))
    {
       throw "Read error: invalid or corrupted PNG file";
@@ -67,10 +67,10 @@ _ReadProc(png_structp png_ptr, unsigned char *data, png_size_t size)
 }
 
 static void
-_WriteProc(png_structp png_ptr, unsigned char *data, png_size_t size)
+_WriteProc(png_structp png_ptr, unsigned char *data, png_size_t size_i32)
 {
    pfi_ioStructure pfio = (pfi_ioStructure)png_get_io_ptr(png_ptr);
-   pfio->s_io->write_proc(data, (unsigned int)size, 1, pfio->s_handle);
+   pfio->s_io->write_proc(data, (unsigned int)size_i32, 1, pfio->s_handle);
 }
 
 void
@@ -700,7 +700,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 /*            return pimage;
          }
 
-         // set the individual row_pointers to point at the correct offsets
+         // set the individual row_pointers to point_i32 at the correct offsets
 
          row_pointers = (png_bytepp)malloc(height * sizeof(png_bytep));
 
@@ -997,15 +997,15 @@ static int_bool DLL_CALLCONV
          // write possible ICC profile
 
 /*         FIICCPROFILE *iccProfile = FreeImage_GetICCProfile(pimage);
-         if (iccProfile->size && iccProfile->data)
+         if (iccProfile->size_i32 && iccProfile->data)
          {
 #if defined(PNG_1_2_X)
 
-            png_set_iCCP(png_ptr, info_ptr, "Embedded Profile", 0, (png_charp)iccProfile->data, iccProfile->size);
+            png_set_iCCP(png_ptr, info_ptr, "Embedded Profile", 0, (png_charp)iccProfile->data, iccProfile->size_i32);
 
 #else
 
-            png_set_iCCP(png_ptr, info_ptr, "Embedded Profile", 0, (unsigned char *)iccProfile->data, iccProfile->size);
+            png_set_iCCP(png_ptr, info_ptr, "Embedded Profile", 0, (unsigned char *)iccProfile->data, iccProfile->size_i32);
 
 #endif
 

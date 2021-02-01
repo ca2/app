@@ -7,7 +7,7 @@ namespace file
 
    memsize locked_in_stream::read(filesize startPos, void *data, memsize size)
    {
-      cslock sl(&_criticalSection);
+      critical_section_lock sl(&_criticalSection);
       _stream->seek((filesize) startPos, ::file::seek_begin);
       return _stream->read(data, size);
    }

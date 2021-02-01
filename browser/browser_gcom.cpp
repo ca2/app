@@ -96,14 +96,14 @@ namespace browser
    {
 
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
       if (m_pimageBk)
       {
 
-/*         m_pimagePost->g()->draw(rectClient->intersect(m_pimage->rect()), m_pimage->g());
+/*         m_pimagePost->g()->draw(rectClient->intersect(m_pimage->rectangle_i32()), m_pimage->g());
 
          return;
 

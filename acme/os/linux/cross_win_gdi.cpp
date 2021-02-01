@@ -80,7 +80,7 @@
 //
 //
 //
-//// i32 FillRect(HDC hdc, const ::rect & prc, HBRUSH hbr)
+//// i32 FillRect(HDC hdc, const ::rectangle_i32 & prc, HBRUSH hbr)
 //
 //// {
 //

@@ -4,7 +4,7 @@
 //namespace html
 //{
 //
-//   //class CLASS_DECL_CORE ::pointf
+//   //class CLASS_DECL_CORE ::point_f32
 //   //{
 //   //public:
 //
@@ -13,13 +13,13 @@
 //   //   float    y;
 //
 //
-//   //   inline ::pointf();
-//   //   inline ::pointf(float x, float y);
+//   //   inline ::point_f32();
+//   //   inline ::point_f32(float x, float y);
 //
 //
 //   //};
 //
-//   //inline ::pointf::pointf()
+//   //inline ::point_f32::point_f32()
 //   //{
 //
 //   //   this->x  = 0.f;
@@ -27,7 +27,7 @@
 //
 //   //}
 //
-//   //inline ::pointf::pointf(float x, float y)
+//   //inline ::point_f32::point_f32(float x, float y)
 //   //{
 //
 //   //   this->x  = x;

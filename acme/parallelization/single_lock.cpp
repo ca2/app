@@ -6,7 +6,7 @@ single_lock::single_lock(sync * psync, bool bInitialLock)
 
    m_psync = psync;
 
-   m_bAcquired = FALSE;
+   m_bAcquired = false;
 
    if (bInitialLock)
    {

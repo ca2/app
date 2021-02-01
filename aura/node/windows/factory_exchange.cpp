@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-#include "aura/node/windows/_windows.h"
+#include "apex/operating_system.h"
 #include "aura/node/windows/buffer.h"
 #include "shell_open.h"
 
@@ -51,7 +51,7 @@ void __node_aura_factory_exchange()
 
    create_factory < ::windows::copydesk, ::user::copydesk >();
    create_factory < ::windows::shell_open, ::shell_open >();
-
+   create_factory < interprocess_communication_rx, ::interprocess_communication::rx >();
 
 }
 

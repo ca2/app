@@ -36,7 +36,7 @@ namespace user
 
 
    }
-   //void form_callback::OnUser123(WPARAM wparam,LPARAM lparam)
+   //void form_callback::OnUser123(wparam wparam,lparam lparam)
 
    //{
    //   UNREFERENCED_PARAMETER(wparam);

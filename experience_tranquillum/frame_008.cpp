@@ -56,18 +56,18 @@
             }
 
 
-            e_hittest frame_008::_001HitTest(const ::point & pointCursor)
+            e_hittest frame_008::_001HitTest(const ::point_i32 & pointCursor)
             {
                e_hittest etest = hittest_client;
                {
                   //      m_pframewindow->GetEventWindow()->_001ScreenToClient(point);
-                  ::rect rectEvent;
+                  ::rectangle_i32 rectEvent;
                   m_pframewindow->get_window_rect(rectEvent);
-                  ::rect rect;
-                  //::point pointCenter = rectEvent.center();
+                  ::rectangle_i32 rectangle;
+                  //::point_i32 pointCenter = rectEvent.center();
                   enum_grip egrip = m_pframewindow->size_manager()->GetGripMask();
 
-                  ::point pointHitTest = pointCursor;
+                  ::point_i32 pointHitTest = pointCursor;
 
                   if(rectEvent.left < 0)
                      pointHitTest.x -= rectEvent.left;
@@ -76,18 +76,18 @@
 
                   if(egrip & e_grip_top_left)
                   {
-                     rect = rectEvent;
-                     rect.right = rect.left + 16;
-                     rect.bottom = rect.top + 5;
-                     if(rect.contains(pointHitTest))
+                     rectangle_i32 = rectEvent;
+                     rectangle.right = rectangle.left + 16;
+                     rectangle.bottom = rectangle.top + 5;
+                     if(rectangle.contains(pointHitTest))
                      {
                         etest = hittest_sizing_top_left;
                         goto SizingSuccess;
                      }
-                     rect = rectEvent;
-                     rect.right = rect.left + 5;
-                     rect.bottom = rect.top + 16;
-                     if(rect.contains(pointHitTest))
+                     rectangle_i32 = rectEvent;
+                     rectangle.right = rectangle.left + 5;
+                     rectangle.bottom = rectangle.top + 16;
+                     if(rectangle.contains(pointHitTest))
                      {
                         etest = hittest_sizing_top_left;
                         goto SizingSuccess;
@@ -95,18 +95,18 @@
                   }
                   if(egrip & e_grip_top_right)
                   {
-                     rect = rectEvent;
-                     rect.left = rect.right - 16;
-                     rect.bottom = rect.top + 5;
-                     if(rect.contains(pointHitTest))
+                     rectangle_i32 = rectEvent;
+                     rectangle.left = rectangle.right - 16;
+                     rectangle.bottom = rectangle.top + 5;
+                     if(rectangle.contains(pointHitTest))
                      {
                         etest = hittest_sizing_top_right;
                         goto SizingSuccess;
                      }
-                     rect = rectEvent;
-                     rect.left = rect.right - 5;
-                     rect.bottom = rect.top + 16;
-                     if(rect.contains(pointHitTest))
+                     rectangle_i32 = rectEvent;
+                     rectangle.left = rectangle.right - 5;
+                     rectangle.bottom = rectangle.top + 16;
+                     if(rectangle.contains(pointHitTest))
                      {
                         etest = hittest_sizing_top_right;
                         goto SizingSuccess;
@@ -114,18 +114,18 @@
                   }
                   if(egrip & e_grip_bottom_right)
                   {
-                     rect = rectEvent;
-                     rect.left = rect.right - 16;
-                     rect.top = rect.bottom - 5;
-                     if(rect.contains(pointHitTest))
+                     rectangle_i32 = rectEvent;
+                     rectangle.left = rectangle.right - 16;
+                     rectangle.top = rectangle.bottom - 5;
+                     if(rectangle.contains(pointHitTest))
                      {
                         etest = hittest_sizing_bottom_right;
                         goto SizingSuccess;
                      }
-                     rect = rectEvent;
-                     rect.left = rect.right - 5;
-                     rect.top = rect.bottom - 16;
-                     if(rect.contains(pointHitTest))
+                     rectangle_i32 = rectEvent;
+                     rectangle.left = rectangle.right - 5;
+                     rectangle.top = rectangle.bottom - 16;
+                     if(rectangle.contains(pointHitTest))
                      {
                         etest = hittest_sizing_bottom_right;
                         goto SizingSuccess;
@@ -133,18 +133,18 @@
                   }
                   if(egrip & e_grip_bottom_left)
                   {
-                     rect = rectEvent;
-                     rect.right = rect.left + 16;
-                     rect.top = rect.bottom - 5;
-                     if(rect.contains(pointHitTest))
+                     rectangle_i32 = rectEvent;
+                     rectangle.right = rectangle.left + 16;
+                     rectangle.top = rectangle.bottom - 5;
+                     if(rectangle.contains(pointHitTest))
                      {
                         etest = hittest_sizing_bottom_left;
                         goto SizingSuccess;
                      }
-                     rect = rectEvent;
-                     rect.right = rect.left + 5;
-                     rect.top = rect.bottom - 16;
-                     if(rect.contains(pointHitTest))
+                     rectangle_i32 = rectEvent;
+                     rectangle.right = rectangle.left + 5;
+                     rectangle.top = rectangle.bottom - 16;
+                     if(rectangle.contains(pointHitTest))
                      {
                         etest = hittest_sizing_bottom_left;
                         goto SizingSuccess;
@@ -152,11 +152,11 @@
                   }
                   if(egrip & e_grip_top)
                   {
-                     rect.top = rectEvent.top;
-                     rect.left = rectEvent.left;
-                     rect.right = rectEvent.right;
-                     rect.bottom = rectEvent.top + 5;
-                     if(rect.contains(pointHitTest))
+                     rectangle.top = rectEvent.top;
+                     rectangle.left = rectEvent.left;
+                     rectangle.right = rectEvent.right;
+                     rectangle.bottom = rectEvent.top + 5;
+                     if(rectangle.contains(pointHitTest))
                      {
                         etest = hittest_sizing_top;
                         goto SizingSuccess;
@@ -164,11 +164,11 @@
                   }
                   if(egrip & e_grip_bottom)
                   {
-                     rect.top = rectEvent.bottom - 5;
-                     rect.left = rectEvent.left;
-                     rect.right = rectEvent.right;
-                     rect.bottom = rectEvent.bottom;
-                     if(rect.contains(pointHitTest))
+                     rectangle.top = rectEvent.bottom - 5;
+                     rectangle.left = rectEvent.left;
+                     rectangle.right = rectEvent.right;
+                     rectangle.bottom = rectEvent.bottom;
+                     if(rectangle.contains(pointHitTest))
                      {
                         etest = hittest_sizing_bottom;
                         goto SizingSuccess;
@@ -176,11 +176,11 @@
                   }
                   if(egrip & e_grip_left)
                   {
-                     rect.top = rectEvent.top;
-                     rect.left = rectEvent.left;
-                     rect.right = rectEvent.left + 5;
-                     rect.bottom = rectEvent.bottom;
-                     if(rect.contains(pointHitTest))
+                     rectangle.top = rectEvent.top;
+                     rectangle.left = rectEvent.left;
+                     rectangle.right = rectEvent.left + 5;
+                     rectangle.bottom = rectEvent.bottom;
+                     if(rectangle.contains(pointHitTest))
                      {
                         etest = hittest_sizing_left;
                         goto SizingSuccess;
@@ -188,11 +188,11 @@
                   }
                   if(egrip & e_grip_right)
                   {
-                     rect.top = rectEvent.top;
-                     rect.left = rectEvent.right - 5;
-                     rect.right = rectEvent.right;
-                     rect.bottom = rectEvent.bottom;
-                     if(rect.contains(pointHitTest))
+                     rectangle.top = rectEvent.top;
+                     rectangle.left = rectEvent.right - 5;
+                     rectangle.right = rectEvent.right;
+                     rectangle.bottom = rectEvent.bottom;
+                     if(rectangle.contains(pointHitTest))
                      {
                         etest = hittest_sizing_right;
                         goto SizingSuccess;
@@ -212,7 +212,7 @@ SizingNone:
 
 
 
-            void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient, enum_border eside)
+            void frame_008::draw_border_side(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient, enum_border eside)
 
             {
 
@@ -253,7 +253,7 @@ SizingNone:
                }
 
                enum_dock edock = m_pframewindow->dock_manager()->get_dock_mask();
-               ::rect rectA(rectClient);
+               ::rectangle_i32 rectA(rectClient);
 
                auto estyle = pframewindow->m_estyle;
 
@@ -272,27 +272,27 @@ SizingNone:
                        || estyle == ::user::StyleTranslucidLightBlue
                        || estyle == ::user::StyleTranslucidLightGreen)
                {
-                  ::rect rect;
-                  GetBorderRect(rectClient, rect, eside);
+                  ::rectangle_i32 rectangle;
+                  GetBorderRect(rectClient, rectangle_i32, eside);
 
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
-                                      rect,
+                                      rectangle_i32,
                                       crMoveableBorder,
                                       127);
                }
                else
                {
-                  ::rect rect;
-                  GetBorderRect(rectClient, rect, eside);
+                  ::rectangle_i32 rectangle;
+                  GetBorderRect(rectClient, rectangle_i32, eside);
 
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
-                                      rect,
+                                      rectangle_i32,
                                       crMoveableBorder,
                                       127);
 
-                  ::rect rectClientB = rectA;
+                  ::rectangle_i32 rectClientB = rectA;
 
                   rectClientB.bottom--;
                   rectClientB.right--;
@@ -335,13 +335,13 @@ SizingNone:
                if(!pframewindow->is_frame_experience_enabled())
                   return;
 
-               ::rect rectClient;
+               ::rectangle_i32 rectClient;
                pframewindow->get_client_rect(rectClient);
 
                string str;
 
 
-               ::rect rectNClient;
+               ::rectangle_i32 rectNClient;
 
                pframewindow->get_window_rect(rectNClient);
 
@@ -368,7 +368,7 @@ SizingNone:
             }
 
 
-            void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rect & rectClient)
+            void frame_008::DrawBorder(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectClient)
 
             {
 
@@ -395,7 +395,7 @@ SizingNone:
                if(m_bHollow)
                {
                   //return;
-                  ::rect rectA(rectClient);
+                  ::rectangle_i32 rectA(rectClient);
 
 
                   pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
@@ -407,7 +407,7 @@ SizingNone:
                   if (iMaxBorder > 0)
                   {
 
-                     ::rect rectDeflate(
+                     ::rectangle_i32 rectDeflate(
                         rectMargin.left / iMaxBorder,
                         rectMargin.top / iMaxBorder,
                         rectMargin.right / iMaxBorder,
@@ -429,7 +429,7 @@ SizingNone:
                      if (m_pframewindow->is_active())
                      {
 
-                        ::rect rectA(rectClient);
+                        ::rectangle_i32 rectA(rectClient);
 
                         for (index i = 0; i < iMaxBorder; i++)
                         {
@@ -513,46 +513,46 @@ SizingNone:
             }
 
             void frame_008::GetBorderRect(
-            const ::rect & rectClient,
+            const ::rectangle_i32 & rectClient,
 
-            RECT32 * prect,
+            RECTANGLE_I32 * prectangle,
 
             enum_border eside)
             {
-               ::rect rectBig(rectClient);
+               ::rectangle_i32 rectBig(rectClient);
 
-               ::rect rectSmall;
+               ::rectangle_i32 rectSmall;
                get_window_client_rect(rectSmall);
-               ::rect rect;
+               ::rectangle_i32 rectangle;
                if(eside == e_border_top)
                {
-                  rect.left = rectBig.left;
-                  rect.right = rectBig.right;
-                  rect.top = rectBig.top;
-                  rect.bottom = rectSmall.top;
+                  rectangle.left = rectBig.left;
+                  rectangle.right = rectBig.right;
+                  rectangle.top = rectBig.top;
+                  rectangle.bottom = rectSmall.top;
                }
                else if(eside == e_border_left)
                {
-                  rect.left = rectBig.left;
-                  rect.right = rectSmall.left;
-                  rect.top = rectSmall.top;
-                  rect.bottom = rectSmall.bottom;
+                  rectangle.left = rectBig.left;
+                  rectangle.right = rectSmall.left;
+                  rectangle.top = rectSmall.top;
+                  rectangle.bottom = rectSmall.bottom;
                }
                else if(eside == e_border_right)
                {
-                  rect.left = rectSmall.right;
-                  rect.right = rectBig.right;
-                  rect.top = rectSmall.top;
-                  rect.bottom = rectSmall.bottom;
+                  rectangle.left = rectSmall.right;
+                  rectangle.right = rectBig.right;
+                  rectangle.top = rectSmall.top;
+                  rectangle.bottom = rectSmall.bottom;
                }
                else if(eside == e_border_bottom)
                {
-                  rect.left = rectBig.left;
-                  rect.right = rectBig.right;
-                  rect.top = rectSmall.bottom;
-                  rect.bottom = rectBig.bottom;
+                  rectangle.left = rectBig.left;
+                  rectangle.right = rectBig.right;
+                  rectangle.top = rectSmall.bottom;
+                  rectangle.bottom = rectBig.bottom;
                }
-               *prect = rect;
+               *prectangle = rectangle_i32;
 
             }
 

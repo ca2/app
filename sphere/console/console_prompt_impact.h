@@ -19,7 +19,7 @@ namespace console
 
       strsize              m_iCursor;
 
-      ::size               m_sizeChar;
+      ::size_i32               m_sizeChar;
 
       string               m_strCommand;
 

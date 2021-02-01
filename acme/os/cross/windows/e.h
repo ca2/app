@@ -1654,7 +1654,7 @@
 //
 // MessageText:
 //
-// The file size exceeds the limit allowed and Cannot be saved.
+// The file size_i32 exceeds the limit allowed and Cannot be saved.
 //
 #define ERROR_FILE_TOO_LARGE             223L
 
@@ -2328,7 +2328,7 @@
 //
 // MessageText:
 //
-// IndiCAtes that an attempt was made to grow an LDT by setting its size, or that the size was not an even number of selectors.
+// IndiCAtes that an attempt was made to grow an LDT by setting its size, or that the size_i32 was not an even number of selectors.
 //
 #define ERROR_INVALID_LDT_SIZE           561L
 
@@ -2460,7 +2460,7 @@
 // MessageText:
 //
 // {Unable to Create Paging File}
-// The creation of the paging file %hs failed (%lx). The requested size was %ld.
+// The creation of the paging file %hs failed (%lx). The requested size_i32 was %ld.
 //
 #define ERROR_PAGEFILE_CREATE_FAILED     576L
 
@@ -2489,7 +2489,7 @@
 // MessageText:
 //
 // {EXCEPTION}
-// A real-mode appliCAtion issued a floating-point instruction and floating-point hardware is not present.
+// A real-mode appliCAtion issued a floating-point_i32 instruction and floating-point_i32 hardware is not present.
 //
 #define ERROR_ILLEGAL_FLOAT_CONTEXT      579L
 
@@ -2813,7 +2813,7 @@
 // MessageText:
 //
 // {Low On Registry Space}
-// The system has reached the maximum size allowed for the system part of the registry. Additional storage requests will be ignored.
+// The system has reached the maximum size_i32 allowed for the system part of the registry. Additional storage requests will be ignored.
 //
 #define ERROR_REGISTRY_QUOTA_LIMIT       613L
 
@@ -2975,7 +2975,7 @@
 // MessageText:
 //
 // {EXCEPTION}
-// Multiple floating point faults.
+// Multiple floating point_i32 faults.
 //
 #define ERROR_FLOAT_MULTIPLE_FAULTS      630L    // winnt
 
@@ -2985,7 +2985,7 @@
 // MessageText:
 //
 // {EXCEPTION}
-// Multiple floating point traps.
+// Multiple floating point_i32 traps.
 //
 #define ERROR_FLOAT_MULTIPLE_TRAPS       631L    // winnt
 
@@ -3023,7 +3023,7 @@
 // MessageText:
 //
 // {Virtual Memory Minimum Too Low}
-// Your system is low on virtual memory. Windows is increasing the size of your virtual memory paging file.
+// Your system is low on virtual memory. Windows is increasing the size_i32 of your virtual memory paging file.
 // During this process, memory requests for some appliCAtions may be denied. For more information, see Help.
 //
 #define ERROR_COMMITMENT_MINIMUM         635L
@@ -3145,7 +3145,7 @@
 //
 // MessageText:
 //
-// The create operation failed because the name contained at least one mount point which resolves to a volume to which the specified device matter is not attached.
+// The create operation failed because the name contained at least one mount point_i32 which resolves to a volume to which the specified device matter is not attached.
 //
 #define ERROR_MOUNT_POINT_NOT_RESOLVED   649L
 
@@ -3181,7 +3181,7 @@
 //
 // MessageText:
 //
-// System hive size has exceeded its limit.
+// System hive size_i32 has exceeded its limit.
 //
 #define ERROR_SYSTEM_HIVE_TOO_LARGE      653L
 
@@ -5053,7 +5053,7 @@
 //
 // MessageText:
 //
-// When accessing a new tape of a multivolume partition, the current block size is incorrect.
+// When accessing a new tape of a multivolume partition, the current block size_i32 is incorrect.
 //
 #define ERROR_INVALID_BLOCK_LENGTH       1106L
 
@@ -5514,7 +5514,7 @@
 //
 // MessageText:
 //
-// The point passed to GetMouseMovePoints is not in the buffer.
+// The point_i32 passed to GetMouseMovePoints is not in the buffer.
 //
 #define ERROR_POINT_NOT_FOUND            1171L
 
@@ -7938,7 +7938,7 @@
 //
 // MessageText:
 //
-// Incorrect size argument.
+// Incorrect size_i32 argument.
 //
 #define ERROR_INCORRECT_SIZE             1462L
 
@@ -9194,7 +9194,7 @@
 //
 // MessageText:
 //
-// A floating-point operation at the RPC server CAused a division by zero.
+// A floating-point_i32 operation at the RPC server CAused a division by zero.
 //
 #define RPC_S_FP_DIV_ZERO                1769L
 
@@ -9203,7 +9203,7 @@
 //
 // MessageText:
 //
-// A floating-point underflow occurred at the RPC server.
+// A floating-point_i32 underflow occurred at the RPC server.
 //
 #define RPC_S_FP_UNDERFLOW               1770L
 
@@ -9212,7 +9212,7 @@
 //
 // MessageText:
 //
-// A floating-point overflow occurred at the RPC server.
+// A floating-point_i32 overflow occurred at the RPC server.
 //
 #define RPC_S_FP_OVERFLOW                1771L
 
@@ -9815,7 +9815,7 @@
 //
 // MessageText:
 //
-// The specified form size is invalid.
+// The specified form size_i32 is invalid.
 //
 #define ERROR_INVALID_FORM_SIZE          1903L
 
@@ -11367,7 +11367,7 @@
 //
 // MessageText:
 //
-// The message provided exceeds the maximum size allowed for this parameter.
+// The message provided exceeds the maximum size_i32 allowed for this parameter.
 //
 #define ERROR_MESSAGE_EXCEEDS_MAX_SIZE   4336L
 
@@ -11473,7 +11473,7 @@
 //
 // MessageText:
 //
-// The reparse point attribute Cannot be set because it conflicts with an existing attribute.
+// The reparse point_i32 attribute Cannot be set because it conflicts with an existing attribute.
 //
 #define ERROR_REPARSE_ATTRIBUTE_CONFLICT 4391L
 
@@ -11482,7 +11482,7 @@
 //
 // MessageText:
 //
-// The data present in the reparse point buffer is invalid.
+// The data present in the reparse point_i32 buffer is invalid.
 //
 #define ERROR_INVALID_REPARSE_DATA       4392L
 
@@ -11491,7 +11491,7 @@
 //
 // MessageText:
 //
-// The tag present in the reparse point buffer is invalid.
+// The tag present in the reparse point_i32 buffer is invalid.
 //
 #define ERROR_REPARSE_TAG_INVALID        4393L
 
@@ -13971,7 +13971,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The requested log size is invalid.
+// The requested log size_i32 is invalid.
 //
 #define ERROR_LOG_RESIZE_INVALID_SIZE    6806L
 
@@ -15307,7 +15307,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The size limit for this request was exceeded.
+// The size_i32 limit for this request was exceeded.
 //
 #define ERROR_DS_SIZELIMIT_EXCEEDED      8227L
 
@@ -15658,7 +15658,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The maximum size of an matter has been exceeded.
+// The maximum size_i32 of an matter has been exceeded.
 //
 #define ERROR_DS_MAX_OBJ_SIZE_EXCEEDED   8304L
 
@@ -21528,7 +21528,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// Invalid hash size
+// Invalid hash size_i32
 //
 #define ERROR_IPSEC_IKE_INVALID_HASH_SIZE 13872L
 
@@ -22989,7 +22989,7 @@ Do not add any more error codes in that range.
 //
 // MessageText:
 //
-// The size of the manifest exceeds the maximum allowed.
+// The size_i32 of the manifest exceeds the maximum allowed.
 //
 #define ERROR_SXS_MANIFEST_TOO_BIG       14105L
 
@@ -24592,7 +24592,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// Invalid rectangle
+// Invalid rectangle_i32
 //
 #define OLE_E_INVALIDRECT                _HRESULT_TYPEDEF_(0x8004000DL)
 
@@ -24994,7 +24994,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The size of this matter exceeds the maximum size set by the Administrator.
+// The size_i32 of this matter exceeds the maximum size_i32 set by the Administrator.
 //
 #define CS_E_ADMIN_LIMIT_EXCEEDED        _HRESULT_TYPEDEF_(0x8004016DL)
 
@@ -27305,7 +27305,7 @@ typedef __success(return >= 0) long HRESULT;
 //
 // MessageText:
 //
-// The requested alloCAtion size was too large
+// The requested alloCAtion size_i32 was too large
 //
 #define MEM_E_INVALID_SIZE               _HRESULT_TYPEDEF_(0x80080011L)
 
@@ -31641,7 +31641,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The public key does not meet the minimum size required by the specified certifiCAte template.
+// The public key does not meet the minimum size_i32 required by the specified certifiCAte template.
 //
 #define CERTSRV_E_KEY_LENGTH             _HRESULT_TYPEDEF_(0x80094811L)
 
@@ -32108,7 +32108,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The size of the data could not be determined.
+// The size_i32 of the data could not be determined.
 //
 #define PERSIST_E_SIZEDEFINITE           _HRESULT_TYPEDEF_(0x800B0009L)
 
@@ -32117,7 +32117,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The size of the indefinite-sized data could not be determined.
+// The size_i32 of the indefinite-size_f64 data could not be determined.
 //
 #define PERSIST_E_SIZEINDEFINITE         _HRESULT_TYPEDEF_(0x800B000AL)
 
@@ -32894,7 +32894,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The operation involving unsigned file copying was rolled back, so that a system restore point could be set.
+// The operation involving unsigned file copying was rolled back, so that a system restore point_i32 could be set.
 //
 #define SPAPI_E_SET_SYSTEM_RESTORE_POINT _HRESULT_TYPEDEF_(0x800F0236L)
 
@@ -33716,7 +33716,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The new CAche item exceeds the maximum per-item size defined for the CAche.
+// The new CAche item exceeds the maximum per-item size_i32 defined for the CAche.
 //
 #define SCARD_W_CACHE_ITEM_TOO_BIG       _HRESULT_TYPEDEF_(0x80100072L)
 
@@ -35329,7 +35329,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Specified buffer is not big enough to contain entire requested dataset. Partial data populated up to the size of the buffer. caller needs to provide buffer of size as specified in the partially populated buffer's content (interface specific).
+// Specified buffer is not big enough to contain entire requested dataset. Partial data populated up to the size_i32 of the buffer. caller needs to provide buffer of size_i32 as specified in the partially populated buffer's content (interface specific).
 //
 #define ERROR_GRAPHICS_PARTIAL_DATA_POPULATED _HRESULT_TYPEDEF_(0x4026200AL)
 
@@ -36022,7 +36022,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Specified primary surface size is invalid.
+// Specified primary surface size_i32 is invalid.
 //
 #define ERROR_GRAPHICS_INVALID_PRIMARYSURFACE_SIZE _HRESULT_TYPEDEF_(0xC026233AL)
 
@@ -36031,7 +36031,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Specified visible region size is invalid.
+// Specified visible region size_i32 is invalid.
 //
 #define ERROR_GRAPHICS_INVALID_VISIBLEREGION_SIZE _HRESULT_TYPEDEF_(0xC026233BL)
 
@@ -37412,7 +37412,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The size of the data (or blob) parameter is bad or inconsistent with the referenced key.
+// The size_i32 of the data (or blob) parameter is bad or inconsistent with the referenced key.
 //
 #define TPM_E_BAD_DATASIZE               _HRESULT_TYPEDEF_(0x8028002BL)
 
@@ -38297,7 +38297,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The key size is not valid.
+// The key size_i32 is not valid.
 //
 #define TPMAPI_E_INVALID_KEY_SIZE        _HRESULT_TYPEDEF_(0x8029010FL)
 
@@ -39069,7 +39069,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The size of the data obtained from Active Directory was not expected. The BitLocker recovery information may be missing or corrupted.
+// The size_i32 of the data obtained from Active Directory was not expected. The BitLocker recovery information may be missing or corrupted.
 //
 #define FVE_E_AD_INVALID_DATASIZE        _HRESULT_TYPEDEF_(0x8031000CL)
 
@@ -39141,7 +39141,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The file system size is larger than the partition size in the partition table. This drive may be corrupt or may have been tampered with. To use it with BitLocker, you must reformat the partition.
+// The file system size_i32 is larger than the partition size_i32 in the partition table. This drive may be corrupt or may have been tampered with. To use it with BitLocker, you must reformat the partition.
 //
 #define FVE_E_BAD_PARTITION_SIZE         _HRESULT_TYPEDEF_(0x80310014L)
 
@@ -39195,7 +39195,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The buffer supplied to a function was insufficient to contain the returned data. Increase the buffer size before running the function again.
+// The buffer supplied to a function was insufficient to contain the returned data. Increase the buffer size_i32 before running the function again.
 //
 #define FVE_E_AD_INSUFFICIENT_BUFFER     _HRESULT_TYPEDEF_(0x8031001AL)
 
@@ -40131,7 +40131,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The requested virtualization size is too big.
+// The requested virtualization size_i32 is too big.
 //
 #define FVE_E_VIRTUALIZED_SPACE_TOO_BIG  _HRESULT_TYPEDEF_(0x80310089L)
 
@@ -41391,7 +41391,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The I/O operation failed because network media is disconnected or wireless access point is out of range.
+// The I/O operation failed because network media is disconnected or wireless access point_i32 is out of range.
 //
 #define ERROR_NDIS_MEDIA_DISCONNECTED    _NDIS_ERROR_TYPEDEF_(0x8034001FL)
 
@@ -42869,7 +42869,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The specified size for the volume is not a multiple of the sector size.
+// The specified size_i32 for the volume is not a multiple of the sector size.
 //
 #define ERROR_VOLMGR_VOLUME_LENGTH_NOT_SECTOR_SIZE_MULTIPLE _NDIS_ERROR_TYPEDEF_(0xC0380048L)
 
@@ -43187,7 +43187,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The system does not support this version of the virtual hard disk. The block size is invalid.
+// The system does not support this version of the virtual hard disk. The block size_i32 is invalid.
 //
 #define ERROR_VHD_INVALID_BLOCK_SIZE     _NDIS_ERROR_TYPEDEF_(0xC03A000BL)
 
@@ -43250,7 +43250,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The size of the virtual hard disk is not valid.
+// The size_i32 of the virtual hard disk is not valid.
 //
 #define ERROR_VHD_INVALID_SIZE           _NDIS_ERROR_TYPEDEF_(0xC03A0012L)
 
@@ -43259,7 +43259,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The file size of this virtual hard disk is not valid.
+// The file size_i32 of this virtual hard disk is not valid.
 //
 #define ERROR_VHD_INVALID_FILE_SIZE      _NDIS_ERROR_TYPEDEF_(0xC03A0013L)
 
@@ -43349,7 +43349,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// The sector size of the physiCAl disk on which the virtual disk resides is not supported.
+// The sector size_i32 of the physiCAl disk on which the virtual disk resides is not supported.
 //
 #define ERROR_VIRTDISK_UNSUPPORTED_DISK_SECTOR_SIZE _NDIS_ERROR_TYPEDEF_(0xC03A001DL)
 
@@ -43515,7 +43515,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// Access point name (APN) or Access string is incorrect.
+// Access point_i32 name (APN) or Access string is incorrect.
 //
 #define E_MBN_INVALID_ACCESS_STRING      _HRESULT_TYPEDEF_(0x80548204L)
 
@@ -43855,7 +43855,7 @@ copy protection errors.
 //
 // MessageText:
 //
-// A floating-point overflow occurred.
+// A floating-point_i32 overflow occurred.
 //
 #define UI_E_FP_OVERFLOW                 _HRESULT_TYPEDEF_(0x802A000BL)
 

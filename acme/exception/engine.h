@@ -36,7 +36,7 @@ class CLASS_DECL_ACME exception_engine :
 public:
 
 
-   critical_section     m_cs;
+   critical_section     m_criticalsection;
 
 
    exception_engine();

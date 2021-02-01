@@ -92,7 +92,7 @@ enum enum_message : ::i64
 
 //#define WM_IDLEUPDATECMDUI  0x0363  // wParam == bDisableIfNoHandler
    e_message_idle_update_command_user_interface = 0x0363,
-//#define WM_COMMANDHELP      0x0365  // lResult = TRUE/FALSE,
+//#define WM_COMMANDHELP      0x0365  // lResult = true/false,
    e_message_command_help = 0x0365,
 // lParam = dwContext
 //#define WM_HELPHITTEST      0x0366  // lResult = dwContext,
@@ -105,7 +105,7 @@ enum enum_message : ::i64
    e_message_recalc_parent,
 //#define WM_SIZECHILD        0x0369  // special notify from COleResizeBar
 // wParam = ID of child interaction_impl
-// lParam = pRectNew (new position/size)
+// lParam = pRectNew (new position/size_i32)
    e_message_size_child,
 //#define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
    e_message_kick_idle,
@@ -169,7 +169,7 @@ e_message_queue_sentinel =    0x0379,
 
 // WM_FORWARDMSG - used by aura to forward a message to another interaction_impl for processing
 //   WPARAM - u32 dwUserData - defined by ::account::user
-//   LPARAM - LPMESSAGE pMsg - a pointer to the MESSAGE structure
+//   LPARAM - MESSAGE * pMsg - a pointer to the MESSAGE structure
 //   return value - 0 if the message was not processed, nonzero if it was
 //#define WM_FORWARDMSG      0x037F
    e_message_forward_message = 0x037F,

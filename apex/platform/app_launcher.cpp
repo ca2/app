@@ -1,6 +1,5 @@
 #include "framework.h"
-#include "apex/os/_c.h"
-#include "apex/os/_.h"
+#include "apex/operating_system.h"
 
 
 namespace apex
@@ -41,9 +40,9 @@ namespace apex
 
 #endif
 
-      ::file::path pathCandidate = Context.dir().ca2module() / strExe;
+      ::file::path pathCandidate = get_context()->dir().ca2module() / strExe;
 
-      if (Context.file().exists(pathCandidate))
+      if (get_context()->file().exists(pathCandidate))
       {
 
          return ::move(pathCandidate);
@@ -104,7 +103,7 @@ namespace apex
       wstring wstrCmdLine = L"\"" + wstrApp + L"\"" + wstrParams;
 
       if(::CreateProcessW((unichar *)wstrApp.c_str(),(unichar *)wstrCmdLine.c_str(),
-                          nullptr,nullptr,FALSE,0,nullptr,wstrDir,
+                          nullptr,nullptr,false,0,nullptr,wstrDir,
                           &si,&pi))
          return true;
 

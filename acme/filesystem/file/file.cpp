@@ -1153,14 +1153,14 @@ namespace file
       ::exception::throw_interface_only();
    }
 
-   void file::write (const ::rect & rect)
+   void file::write (const ::rectangle_i32 & rectangle)
    {
       UNREFERENCED_PARAMETER(pcrect);
 
       ::exception::throw_interface_only();
    }
 
-   void file::write (const size & & size)
+   void file::write (const size_i32 & & size)
    {
       UNREFERENCED_PARAMETER(size);
       ::exception::throw_interface_only();

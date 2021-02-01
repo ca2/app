@@ -1,6 +1,6 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 
-#include "_os.h"
 
 #ifndef WINDOWS
 extern thread_data_index g_tlsindexLastError;

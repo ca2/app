@@ -12,7 +12,7 @@ i32 openssl_crypto_encrypt(memory & storageEncrypt, const memory & storageDecryp
    unsigned char iv[8] = { 1,2,3,4,5,6,7,8 };
    EVP_CIPHER_CTX * pctx = EVP_CIPHER_CTX_new();
    EVP_EncryptInit(pctx, EVP_bf_cbc(), (unsigned char *)key.get_data(), iv);
-   cipherlen = (i32)(storageDecrypt.get_size() + 16 - 1); //; 16 = key size
+   cipherlen = (i32)(storageDecrypt.get_size() + 16 - 1); //; 16 = key size_i32
    storageEncrypt.set_size(cipherlen);
    if (!EVP_EncryptUpdate(pctx, (unsigned char *)storageEncrypt.get_data(), &cipherlen, (const unsigned char *)storageDecrypt.get_data(), plainlen))
    {

@@ -15,7 +15,7 @@ namespace draw2d_opengl
 
 
       HBITMAP                          m_hbitmap;
-      class ::size64                   m_sizeWnd;
+      class ::size_i64                   m_sizeWnd;
       BITMAPINFO                       m_bitmapinfo;
       OffscreenContext *               m_phost;
 
@@ -37,16 +37,16 @@ namespace draw2d_opengl
 
       using ::image::create;
 
-      virtual ::e_status create(const ::size& size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false) override;
+      virtual ::e_status create(const ::size_i32& size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false) override;
 
       virtual ::e_status create(::draw2d::graphics* pgraphics);
 
       bool destroy();
 
       bool from(::draw2d::graphics * pgraphics);
-      //bool from(point ptDest, ::draw2d::graphics * pgraphics, const ::point & point, ::size sz);
+      //bool from(point_i32 ptDest, ::draw2d::graphics * pgraphics, const ::point_i32 & point, ::size_i32 sz);
 
-      virtual bool to(::draw2d::graphics * pgraphics, const ::point& point, const ::size& size, const ::point& pointSrc) override;
+      virtual bool to(::draw2d::graphics * pgraphics, const ::point_i32& point, const ::size_i32& size, const ::point_i32& pointSrc) override;
 
 
       //void SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy);
@@ -73,11 +73,11 @@ namespace draw2d_opengl
       //void mult_alpha(::image::image * pimageWork, bool bPreserveAlpha = true);
       //void set_rgb(i32 R, i32 G, i32 B);
 
-      //void rotate(::image::image * pimage, const ::rect & rect, double dAngle, double dScale);
+      //void rotate(::image::image * pimage, const ::rectangle_i32 & rectangle, double dAngle, double dScale);
       //void rotate(::image::image * pimage, double dAngle, double dScale);
       //void Rotate034(::image::image * pimage, double dAngle, double dScale);
 
-      //void RadialFill(byte a, byte rect, byte g, byte b, i32 x, i32 y, i32 iRadius);
+      //void RadialFill(byte a, byte rectangle_i32, byte g, byte b, i32 x, i32 y, i32 iRadius);
       //void RadialFill(
       //   byte a1, byte r1, byte g1, byte b1, // center colors
       //   byte a2, byte r2, byte g2, byte b2, // border colors
@@ -128,7 +128,7 @@ namespace draw2d_opengl
       void Line ( i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B );
       void LineGlass ( i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B, i32 A );*/
 
-      //void create_frame(::size size, i32 iFrameCount);
+      //void create_frame(::size_i32 size, i32 iFrameCount);
       //void set_frame2(void * lpdata, i32 iFrame, i32 iFrameCount);
       //void set_frame1(void * lpdata, i32 iFrame, i32 iFrameCount);
       //void get_frame(void * lpdata, i32 iFrame, i32 iFrameCount);

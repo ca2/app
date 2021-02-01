@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/operating_system.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
 #endif
@@ -355,7 +356,7 @@ namespace user
    }
 
 
-   ::rectd interaction::get_border(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::rectangle_f64 interaction::get_border(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       return nullptr;
@@ -363,14 +364,14 @@ namespace user
    }
 
    
-   ::rectd interaction::get_padding(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::rectangle_f64 interaction::get_padding(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
 
       if (get_control_type() == ::user::e_control_type_button)
       {
 
-         ::rectd rectDefaultPadding(16.0, 8.0, 16.0, 8.0);
+         ::rectangle_f64 rectDefaultPadding(16.0, 8.0, 16.0, 8.0);
 
          return rectDefaultPadding;
 
@@ -378,7 +379,7 @@ namespace user
       else
       {
 
-         ::rectd rectDefaultPadding(2.0, 2.0, 2.0, 2.0);
+         ::rectangle_f64 rectDefaultPadding(2.0, 2.0, 2.0, 2.0);
 
          return rectDefaultPadding;
 
@@ -387,7 +388,7 @@ namespace user
    }
 
 
-   ::rectd interaction::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::rectangle_f64 interaction::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (m_flagNonClient.has(non_client_focus_rect))
@@ -395,13 +396,13 @@ namespace user
 
          double dFocusHeightWidth = get_double(pstyle, ::user::e_double_focus_height_width, estate, 2.0);
 
-         ::rectd rectDefaultMargin(dFocusHeightWidth, dFocusHeightWidth, dFocusHeightWidth, dFocusHeightWidth);
+         ::rectangle_f64 rectDefaultMargin(dFocusHeightWidth, dFocusHeightWidth, dFocusHeightWidth, dFocusHeightWidth);
 
          return rectDefaultMargin;
 
       }
 
-      ::rectd rectDefaultMargin(0.0, 0.0, 0.0, 0.0);
+      ::rectangle_f64 rectDefaultMargin(0.0, 0.0, 0.0, 0.0);
 
       return rectDefaultMargin;
 
@@ -1117,7 +1118,7 @@ namespace user
 
          }
 
-         ::rect rectWindow;
+         ::rectangle_i32 rectWindow;
 
          auto pparent = puiParent->cast < ::user::interaction >();
 
@@ -1794,7 +1795,7 @@ namespace user
    void interaction::get_horizontal_scroll_info(scroll_info & info)
    {
 
-      ::size sizeTotal = get_total_size();
+      ::size_i32 sizeTotal = get_total_size();
 
       auto sizePage = get_page_size();
 
@@ -2080,7 +2081,7 @@ namespace user
    void interaction::_001OnSize(::message::message * pmessage)
    {
 
-      __pointer(::message::size) psize(pmessage);
+      __pointer(::message::size_i32) psize(pmessage);
 
       pmessage->previous();
 
@@ -2184,10 +2185,10 @@ namespace user
    }
 
 
-   ::point interaction::get_parent_accumulated_scroll(enum_layout elayout) const
+   ::point_i32 interaction::get_parent_accumulated_scroll(enum_layout elayout) const
    {
 
-      ::point pointScroll;
+      ::point_i32 pointScroll;
 
       auto pChild = this;
 
@@ -2222,11 +2223,11 @@ namespace user
       try
       {
 
-         ::rect rectClip;
+         ::rectangle_i32 rectClip;
 
          ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          bool bFirst = true;
 
@@ -2262,7 +2263,7 @@ namespace user
 
             __construct_new(m_pshapeaClip);
 
-            ::rect rectIntersect;
+            ::rectangle_i32 rectIntersect;
 
             while (pinteraction != nullptr)
             {
@@ -2273,7 +2274,7 @@ namespace user
 
                _001HostToClient(rectClient);
 
-               m_pshapeaClip->add_item(__new(rectd_shape(::rectd(rectClient))));
+               m_pshapeaClip->add_item(__new(rectd_shape(::rectangle_f64(rectClient))));
 
                m_pshapeaClip->add_item(__new(intersect_clip_shape()));
 
@@ -2465,7 +2466,7 @@ namespace user
    void interaction::_001CallOnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      point pointScroll = m_pointScroll;
+      point_i32 pointScroll = m_pointScroll;
 
       if (!pointScroll.is_null())
       {
@@ -2496,7 +2497,7 @@ namespace user
 
             _001OnClip(pgraphics);
 
-            ::rect rectDraw;
+            ::rectangle_i32 rectDraw;
 
             get_client_rect(rectDraw);
 
@@ -2583,7 +2584,7 @@ namespace user
    void interaction::on_viewport_offset(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::point pointOffset;
+      ::point_i32 pointOffset;
 
       if (m_puserinteractionParent != nullptr)
       {
@@ -2648,7 +2649,7 @@ namespace user
    void interaction::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
    {
 
-      point pointScroll = m_pointScroll;
+      point_i32 pointScroll = m_pointScroll;
 
       bool bParentScroll = false;
 
@@ -2783,13 +2784,13 @@ namespace user
 
       windowing_output_debug_string("\n_001UpdateBuffer : after check2");
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       get_window_rect(rectWindow, e_layout_design);
 
-      ::rect rect(rectWindow);
+      ::rectangle_i32 rectangle(rectWindow);
 
-      rect.offset(-rect.top_left());
+      rectangle.offset(-rectangle.top_left());
 
    //#ifdef _UWP
 
@@ -2826,7 +2827,7 @@ namespace user
          if (m_pimpl->is_composite())
          {
 
-            pgraphics->fill_rect(rect, ARGB(0, 0, 0, 0));
+            pgraphics->fill_rect(rectangle, ARGB(0, 0, 0, 0));
 
          }
          else
@@ -2835,13 +2836,13 @@ namespace user
             if (::user::is_app_dark_mode())
             {
 
-               pgraphics->fill_rect(rect, ARGB(255, 25, 25, 25));
+               pgraphics->fill_rect(rectangle, ARGB(255, 25, 25, 25));
 
             }
             else
             {
 
-               pgraphics->fill_rect(rect, ARGB(255, 255, 255, 255));
+               pgraphics->fill_rect(rectangle, ARGB(255, 255, 255, 255));
 
             }
 
@@ -2871,7 +2872,7 @@ namespace user
 
          auto rectClient = m_puserinteraction->get_client_rect();
 
-         ::rect rectHint(rectClient);
+         ::rectangle_i32 rectHint(rectClient);
 
          pgraphics->SelectClipRgn(nullptr);
 
@@ -2938,7 +2939,7 @@ namespace user
             try
             {
 
-               ::point pointCursor;
+               ::point_i32 pointCursor;
 
                psession->get_cursor_pos(pointCursor);
 
@@ -3128,7 +3129,7 @@ namespace user
 //
 //      }
 
-      ::point pointOffset;
+      ::point_i32 pointOffset;
 
       if (m_puserinteractionParent != nullptr)
       {
@@ -3227,7 +3228,7 @@ namespace user
          //   }
 
          //}
-         ////         ::point pointParentOffset = get_parent_viewport_offset();
+         ////         ::point_i32 pointParentOffset = get_parent_viewport_offset();
          ////
          ////         pgraphics->OffsetViewportOrg(-pointParentOffset.x, -pointParentOffset.y);
 
@@ -3324,7 +3325,7 @@ namespace user
 
       ::aura::draw_context * pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       if (pdrawcontext != nullptr)
       {
@@ -3461,7 +3462,7 @@ namespace user
       try
       {
 
-         string * pstringText = (string *) (iptr) (LPARAM) pmessage->m_lparam.m_lparam;
+         string * pstringText = (string *) (iptr) (lparam) pmessage->m_lparam.m_lparam;
 
          if(pstringText)
          {
@@ -3655,8 +3656,8 @@ namespace user
             //{
 
             //   // A Copy Paste error (the commented out code below)?
-            //   //single_lock sl(puiParent->mutex(),TRUE);
-            //   //single_lock sl2(mutex(),TRUE);
+            //   //single_lock sl(puiParent->mutex(),true);
+            //   //single_lock sl2(mutex(),true);
 
             //   if (!pholder->is_place_holding(this))
             //   {
@@ -3698,7 +3699,7 @@ namespace user
 
             }
 
-            if (!_001IsPointInside(point(pdrag->point.x, pdrag->point.y)))
+            if (!_001IsPointInside(point_i32(pdrag->point.x, pdrag->point.y)))
             {
 
                return;
@@ -3729,7 +3730,7 @@ namespace user
             try
             {
 
-               if (pinteraction->is_window_visible(e_layout_sketch) && (pdrag->m_id == MESSAGE_OLE_DRAGLEAVE || pinteraction->_001IsPointInside(point(pdrag->point.x, pdrag->point.y))))
+               if (pinteraction->is_window_visible(e_layout_sketch) && (pdrag->m_id == MESSAGE_OLE_DRAGLEAVE || pinteraction->_001IsPointInside(point_i32(pdrag->point.x, pdrag->point.y))))
                {
 
                   try
@@ -3988,7 +3989,7 @@ namespace user
 
       }
 
-      ::point pointCursor;
+      ::point_i32 pointCursor;
 
       auto psession = Session;
 
@@ -4075,7 +4076,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::_001FromPoint(::point point, bool bTestedIfParentVisible)
+   ::user::interaction * interaction::_001FromPoint(::point_i32 point, bool bTestedIfParentVisible)
    {
 
       if (bTestedIfParentVisible)
@@ -4124,7 +4125,7 @@ namespace user
    }
 
 
-   bool interaction::_001IsPointInside(::point point)
+   bool interaction::_001IsPointInside(::point_i32 point)
    {
 
       if (m_pimpl.is_null())
@@ -4141,7 +4142,7 @@ namespace user
 
       }
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       get_window_rect(rectWindow, e_layout_sketch);
 
@@ -4340,7 +4341,7 @@ namespace user
    }
 
 
-   LRESULT interaction::send(::message::base * pbase)
+   lresult interaction::send(::message::base * pbase)
    {
 
       message_handler(pbase);
@@ -4365,7 +4366,7 @@ namespace user
    }
 
 
-   LRESULT interaction::send_message(const ::id & id, WPARAM wparam, lparam lparam)
+   lresult interaction::send_message(const ::id & id, wparam wparam, lparam lparam)
    {
 
       if (m_pimpl == nullptr)
@@ -4380,7 +4381,7 @@ namespace user
    }
 
 
-   LRESULT interaction::message_call(const ::id & id, WPARAM wparam, lparam lparam)
+   lresult interaction::message_call(const ::id & id, wparam wparam, lparam lparam)
    {
 
       if (m_pimpl == nullptr)
@@ -4395,7 +4396,7 @@ namespace user
    }
 
 
-   LRESULT interaction::message_call(::message::base * pbase)
+   lresult interaction::message_call(::message::base * pbase)
    {
 
       if (m_pimpl == nullptr)
@@ -4413,7 +4414,7 @@ namespace user
 #ifdef LINUX
 
 
-   LRESULT interaction::send_x11_event(void * pevent)
+   lresult interaction::send_x11_event(void * pevent)
    {
 
       if (m_pimpl == nullptr)
@@ -4480,7 +4481,7 @@ namespace user
    }
 
 
-   void interaction::send_message_to_descendants(const ::id & id, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
+   void interaction::send_message_to_descendants(const ::id & id, wparam wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
 
    {
 
@@ -4838,7 +4839,7 @@ namespace user
 
          __pointer(interaction_impl) pimplNew;
 
-         auto rect(layout().sketch().screen_rect());
+         auto rectangle_i32(layout().sketch().screen_rect());
 
         /* auto psession = Session;
 
@@ -4860,11 +4861,11 @@ namespace user
 //
 //            wstring wstrWindowName(pszWindowName);
 //
-//            ::user::system pusersystem(0, wstrClassName, wstrWindowName, uStyle, rect, pcreate);
+//            ::user::system pusersystem(0, wstrClassName, wstrWindowName, uStyle, rectangle_i32, pcreate);
 //
 //#else
 
-            //auto pusersystem = __new(::user::system(uExStyle, uStyle, rect, pcreate));
+            //auto pusersystem = __new(::user::system(uExStyle, uStyle, rectangle_i32, pcreate));
 
 //#endif
 
@@ -4887,7 +4888,7 @@ namespace user
 
          //   //m_pdescriptor.defer_create(this);
 
-         //   if (!pimplNew->create_interaction(this, uStyle, rect, puiParent, pcreate))
+         //   if (!pimplNew->create_interaction(this, uStyle, rectangle_i32, puiParent, pcreate))
          //   {
 
          //      pimplNew.release();
@@ -5006,10 +5007,10 @@ namespace user
 
          //   //   }
 
-         //   //   pusersystem->m_createstruct.x = m_pimpl->m_rect.left;
-         //   //   pusersystem->m_createstruct.y = m_pimpl->m_rect.top;
-         //   //   pusersystem->m_createstruct.cx = m_pimpl->m_rect.width();
-         //   //   pusersystem->m_createstruct.cy = m_pimpl->m_rect.height();
+         //   //   pusersystem->m_createstruct.x = m_pimpl->m_rectangle.left;
+         //   //   pusersystem->m_createstruct.y = m_pimpl->m_rectangle.top;
+         //   //   pusersystem->m_createstruct.cx = m_pimpl->m_rectangle.width();
+         //   //   pusersystem->m_createstruct.cy = m_pimpl->m_rectangle.height();
 
          //   //}
          //   //else
@@ -5061,13 +5062,13 @@ namespace user
 
             //}
 
-            //::rect rect;
+            //::rectangle_i32 rectangle;
 
-            ////pusersystem->get_rect(rect);
+            ////pusersystem->get_rect(rectangle);
 
-            //::rect rectFrame(0, 0, 0, 0);
+            //::rectangle_i32 rectFrame(0, 0, 0, 0);
 
-            //if (IsRectEmpty(&rect))
+            //if (IsRectEmpty(&rectangle))
             //{
 
             //   if (rectFrame.is_null() && ::is_set(puserinteractionParent) && puserinteractionParent->is_place_holder())
@@ -5081,7 +5082,7 @@ namespace user
             //else
             //{
 
-            //   rectFrame = rect;
+            //   rectFrame = rectangle_i32;
 
             //}
 
@@ -5266,7 +5267,7 @@ namespace user
    }
 
 
-   bool interaction::RedrawWindow(const ::rect& rectUpdate, ::draw2d::region* prgnUpdate, ::u32 flags)
+   bool interaction::RedrawWindow(const ::rectangle_i32& rectUpdate, ::draw2d::region* prgnUpdate, ::u32 flags)
    {
 
       if (m_pimpl == nullptr)
@@ -5281,7 +5282,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::ChildWindowFromPoint(const ::point & point)
+   ::user::interaction * interaction::ChildWindowFromPoint(const ::point_i32 & point)
    {
 
       if (m_pimpl == nullptr)
@@ -5296,7 +5297,7 @@ namespace user
    }
 
 
-   ::user::interaction * interaction::ChildWindowFromPoint(const ::point & point, ::u32 nFlags)
+   ::user::interaction * interaction::ChildWindowFromPoint(const ::point_i32 & point, ::u32 nFlags)
    {
 
       if (m_pimpl == nullptr)
@@ -5857,7 +5858,7 @@ namespace user
    //}
 
 
-   //LRESULT interaction::default_window_procedure()
+   //lresult interaction::default_window_procedure()
    //{
 
    //   if (m_pimpl == nullptr)
@@ -6136,7 +6137,7 @@ namespace user
    }
 
 
-   void interaction::CalcWindowRect(RECT32 * prect, ::u32 nAdjustType)
+   void interaction::CalcWindowRect(RECTANGLE_I32 * prectangle, ::u32 nAdjustType)
    {
 
       if (m_pimpl == nullptr)
@@ -6146,12 +6147,12 @@ namespace user
 
       }
 
-      return m_pimpl->CalcWindowRect(prect, nAdjustType);
+      return m_pimpl->CalcWindowRect(prectangle, nAdjustType);
 
    }
 
 
-   void interaction::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag, RECT32 * prectParam, const ::rect & rectClient, bool bStretch)
+   void interaction::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, ::id idLeftOver, ::u32 nFlag, RECTANGLE_I32 * prectParam, const ::rectangle_i32 & rectClient, bool bStretch)
    {
 
       if (m_pimpl == nullptr)
@@ -6356,7 +6357,7 @@ namespace user
    }
 
 
-   void interaction::viewport_client_to_screen(POINT32 * ppt)
+   void interaction::viewport_client_to_screen(POINT_I32 * ppt)
    {
 
       m_pimpl->viewport_client_to_screen(ppt);
@@ -6372,7 +6373,7 @@ namespace user
    }
 
 
-   void interaction::viewport_screen_to_client(POINT32 * ppt)
+   void interaction::viewport_screen_to_client(POINT_I32 * ppt)
    {
 
       if (m_pimpl.is_null())
@@ -6387,22 +6388,22 @@ namespace user
    }
 
 
-   void interaction::viewport_client_to_screen(RECT32 * prect)
+   void interaction::viewport_client_to_screen(RECTANGLE_I32 * prectangle)
    {
 
-      viewport_client_to_screen((POINT32 *)&prect->left);
+      viewport_client_to_screen((POINT_I32 *)&prectangle->left);
 
-      viewport_client_to_screen((POINT32 *)&prect->right);
+      viewport_client_to_screen((POINT_I32 *)&prectangle->right);
 
    }
 
 
-   void interaction::viewport_screen_to_client(RECT32 * prect)
+   void interaction::viewport_screen_to_client(RECTANGLE_I32 * prectangle)
    {
 
-      viewport_screen_to_client((POINT32 *)&prect->left);
+      viewport_screen_to_client((POINT_I32 *)&prectangle->left);
 
-      viewport_screen_to_client((POINT32 *)&prect->right);
+      viewport_screen_to_client((POINT_I32 *)&prectangle->right);
 
    }
 
@@ -6849,13 +6850,13 @@ namespace user
 
       #endif
 
-      //::point point = process_state().m_point;
+      //::point_i32 point = process_state().m_point;
 
-      ::point point = layout().sketch().origin();
+      ::point_i32 point = layout().sketch().origin();
 
-      ::point pointScreen;
+      ::point_i32 pointScreen;
 
-      ::point pointHost;
+      ::point_i32 pointHost;
 
       const char* pszType = this->type_c_str();
 
@@ -6886,9 +6887,9 @@ namespace user
 
       }
 
-      ::point screenOriginSketchBefore = layout().sketch().screen_origin();
+      ::point_i32 screenOriginSketchBefore = layout().sketch().screen_origin();
 
-      ::point screenOriginDesignBefore = layout().design().screen_origin();
+      ::point_i32 screenOriginDesignBefore = layout().design().screen_origin();
 
       bool bRepositionThis =
          layout().sketch().screen_origin() != pointScreen ||
@@ -6965,7 +6966,7 @@ namespace user
       if (puiptraChild)
       {
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(rectClient);
 
@@ -7008,7 +7009,7 @@ namespace user
       //   if (m_playout->m_bFillParent)
       //   {
 
-      //      ::rect rectClient;
+      //      ::rectangle_i32 rectClient;
 
       //      get_client_rect(rectClient);
 
@@ -7173,7 +7174,7 @@ namespace user
    }
 
 
-   LRESULT interaction::message_handler(LPMESSAGE pmessage)
+   lresult interaction::message_handler(MESSAGE * pmessage)
    {
 
       return send_message((enum_message) pmessage->message, pmessage->wParam, pmessage->lParam);
@@ -7325,7 +7326,7 @@ namespace user
    }
 
 
-   bool interaction::GetUpdateRect(RECT32 * prect, bool bErase)
+   bool interaction::GetUpdateRect(RECTANGLE_I32 * prectangle, bool bErase)
    {
 
       if (m_pimpl == nullptr)
@@ -7335,7 +7336,7 @@ namespace user
 
       }
 
-      return m_pimpl->GetUpdateRect(prect, bErase);
+      return m_pimpl->GetUpdateRect(prectangle, bErase);
 
    }
 
@@ -7370,7 +7371,7 @@ namespace user
    }
 
 
-   void interaction::InvalidateRect(const ::rect & rect, bool bErase)
+   void interaction::InvalidateRect(const ::rectangle_i32 & rectangle, bool bErase)
    {
 
       if (m_pimpl == nullptr)
@@ -7380,7 +7381,7 @@ namespace user
 
       }
 
-      m_pimpl->InvalidateRect(rect, bErase);
+      m_pimpl->InvalidateRect(rectangle, bErase);
 
    }
 
@@ -7400,7 +7401,7 @@ namespace user
    }
 
 
-   void interaction::ValidateRect(const ::rect & rect)
+   void interaction::ValidateRect(const ::rectangle_i32 & rectangle)
    {
 
       if (m_pimpl == nullptr)
@@ -7410,7 +7411,7 @@ namespace user
 
       }
 
-      m_pimpl->ValidateRect(rect);
+      m_pimpl->ValidateRect(rectangle);
 
    }
 
@@ -7479,7 +7480,7 @@ namespace user
    }
 
 
-   ::sized interaction::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
+   ::size_f64 interaction::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)
    {
 
       pgraphics->set_font(this, ::user::e_element_none);
@@ -7488,13 +7489,13 @@ namespace user
 
       pgraphics->get_text_metrics(&metric);
 
-      ::sized setFittingFontHeight;
+      ::size_f64 setFittingFontHeight;
 
       string str;
 
       get_window_text(str);
 
-      ::sized size = pgraphics->GetTextExtent(str);
+      ::size_f64 size = pgraphics->GetTextExtent(str);
 
       setFittingFontHeight.cx = size.cx;
 
@@ -7505,16 +7506,16 @@ namespace user
    }
 
 
-   ::sized interaction::_001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics)
+   ::size_f64 interaction::_001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics)
    {
 
       auto pstyle = get_style(pgraphics);
 
-      ::rectd rectPadding = get_padding(pstyle);
+      ::rectangle_f64 rectPadding = get_padding(pstyle);
 
       auto sizeFitting = _001CalculateFittingSize(pgraphics);
 
-      ::sized sizePaddedFitting;
+      ::size_f64 sizePaddedFitting;
 
       sizePaddedFitting.cx = rectPadding.left + sizeFitting.cx + rectPadding.right;
 
@@ -7592,14 +7593,14 @@ namespace user
          if (pitem)
          {
 
-            if (pitem->m_rect.is_null())
+            if (pitem->m_rectangle.is_null())
             {
 
-               get_client_rect(pitem->m_rect);
+               get_client_rect(pitem->m_rectangle);
 
-               pitem->m_rect.left = pitem->m_rect.right - 32;
+               pitem->m_rectangle.left = pitem->m_rectangle.right - 32;
 
-               pitem->m_rect.bottom = pitem->m_rect.top + 32;
+               pitem->m_rectangle.bottom = pitem->m_rectangle.top + 32;
 
             }
 
@@ -7614,14 +7615,14 @@ namespace user
          if (pitem)
          {
 
-            if (pitem->m_rect.is_null())
+            if (pitem->m_rectangle.is_null())
             {
 
-               get_client_rect(pitem->m_rect);
+               get_client_rect(pitem->m_rectangle);
 
-               pitem->m_rect.left = pitem->m_rect.right - 48;
+               pitem->m_rectangle.left = pitem->m_rectangle.right - 48;
 
-               pitem->m_rect.bottom = pitem->m_rect.top + 48;
+               pitem->m_rectangle.bottom = pitem->m_rectangle.top + 48;
 
             }
 
@@ -7915,7 +7916,7 @@ namespace user
    void interaction::_001Emphasize(int cx, int cy)
    {
 
-      ::rect rectMainMonitor;
+      ::rectangle_i32 rectMainMonitor;
 
       auto psession = Session;
 
@@ -8151,7 +8152,7 @@ namespace user
 
 
 
-   bool interaction::post_message(const ::id & id, WPARAM wparam, lparam lparam)
+   bool interaction::post_message(const ::id & id, wparam wparam, lparam lparam)
 
    {
 
@@ -8174,7 +8175,7 @@ namespace user
    }
 
 
-   bool interaction::post_object(const ::id & id, WPARAM wparam, lparam lparam)
+   bool interaction::post_object(const ::id & id, wparam wparam, lparam lparam)
    {
 
       bool bIsWindow = m_pimpl.is_set() && is_window();
@@ -8410,10 +8411,10 @@ namespace user
    }
 
 
-   void interaction::defer_restore(const ::rect & rectRequest)
+   void interaction::defer_restore(const ::rectangle_i32 & rectRequest)
    {
 
-      ::rect rectWkspace;
+      ::rectangle_i32 rectWkspace;
 
       auto psession = Session;
 
@@ -8435,7 +8436,7 @@ namespace user
 
          //place(rect_dim(10, 10, 800, 300));
 
-         ::rect rectPlace(rectRequest);
+         ::rectangle_i32 rectPlace(rectRequest);
 
          if (rectPlace.size().any_lt(get_window_minimum_size()))
          {
@@ -8568,17 +8569,17 @@ namespace user
 
       }
 
-      ::point pointSketch = layout().sketch().origin();
+      ::point_i32 pointSketch = layout().sketch().origin();
 
-      ::point pointDesign = layout().design().origin();
+      ::point_i32 pointDesign = layout().design().origin();
 
       bool bPosition = pointSketch != pointDesign || m_bReposition;
 
       m_bReposition = false;
 
-      ::size sizeSketch = layout().sketch().size();
+      ::size_i32 sizeSketch = layout().sketch().size();
 
-      ::size sizeDesign = layout().design().size();
+      ::size_i32 sizeDesign = layout().design().size();
 
       if(m_bDerivedHeight)
       {
@@ -8587,7 +8588,7 @@ namespace user
 
          int iDerivedHeight = get_derived_height(iDerivedWidth);
 
-         ::size sizeMinimum = get_window_minimum_size();
+         ::size_i32 sizeMinimum = get_window_minimum_size();
 
          if(iDerivedHeight > 0)
          {
@@ -8683,7 +8684,7 @@ namespace user
          if (m_ewindowflag & e_window_flag_loading_window_rect)
          {
 
-            INFO("window visual changed: not setting pending save rect cause loading window rect");
+            INFO("window visual changed: not setting pending save rectangle_i32 cause loading window rectangle_i32");
 
          }
          else
@@ -9294,7 +9295,7 @@ namespace user
    }
 
 
-   ::point interaction::get_cursor_pos() const
+   ::point_i32 interaction::get_cursor_pos() const
    {
 
       auto pwnd = get_host_window();
@@ -9309,7 +9310,7 @@ namespace user
       if (!pwnd)
       {
 
-         return ::point();
+         return ::point_i32();
 
       }
 
@@ -9666,10 +9667,10 @@ restart:
    }
 
 
-   void interaction::get_child_rect(RECT32* prect)
+   void interaction::get_child_rect(RECTANGLE_I32* prectangle)
    {
 
-      get_client_rect(prect);
+      get_client_rect(prectangle);
 
    }
 
@@ -9689,7 +9690,7 @@ restart:
    bool interaction::keyboard_focus_OnKillFocus(oswindow oswindowNew)
    {
 
-      send_message(e_message_kill_focus, (WPARAM) oswindowNew);
+      send_message(e_message_kill_focus, (wparam) oswindowNew);
 
       if (m_pimpl == nullptr)
       {
@@ -9987,7 +9988,7 @@ restart:
 
 //{
 
-//   post_message(e_message_simple_command,(WPARAM)ecommand,lparam);
+//   post_message(e_message_simple_command,(wparam)ecommand,lparam);
 
 
 //   return true;
@@ -9999,7 +10000,7 @@ restart:
 
       __pointer(::message::base) pbase(pmessage);
 
-      LRESULT lresult = 0;
+      lresult lresult = 0;
 
       pbase->m_bRet = OnCommand(pbase);
 
@@ -10083,7 +10084,7 @@ restart:
 
       auto ptask = ::get_task();
 
-      ::point pointCursor;
+      ::point_i32 pointCursor;
 
       auto pimpl = m_pimpl.cast < interaction_impl>();
 
@@ -10105,11 +10106,11 @@ restart:
 
          pimpl->m_pointCursor = pointCursor;
 
-         LPARAM lparam;
+         lparam lparam;
 
          ::ScreenToClient(oswindow, pointCursor);
 
-         RECT32 rectClient;
+         RECTANGLE_I32 rectClient;
 
          ::GetClientRect(oswindow, &rectClient);
 
@@ -10278,7 +10279,7 @@ restart:
    //bool interaction::track_popup_menu(::user::menu_item * pitem, i32 iFlags)
    //{
 
-   //   ::point point;
+   //   ::point_i32 point;
 
    //   psession->get_cursor_pos(point);
 
@@ -10313,7 +10314,7 @@ restart:
 
    //   __pointer(::message::mouse) pmouse(pmessage);
 
-   //   ::point point = pmouse->m_point;
+   //   ::point_i32 point = pmouse->m_point;
 
    //   _001ScreenToClient(point);
 
@@ -10342,14 +10343,14 @@ restart:
 
    //   __pointer(::message::mouse) pmouse(pmessage);
 
-   //   ::point point = pmouse->m_point;
+   //   ::point_i32 point = pmouse->m_point;
 
    //   return track_popup_xml_matter_menu(pszMatter, iFlags, point);
 
    //}
 
 
-   //bool interaction::track_popup_menu(::user::menu_item * pitem, i32 iFlags, const ::point & point)
+   //bool interaction::track_popup_menu(::user::menu_item * pitem, i32 iFlags, const ::point_i32 & point)
    //{
 
    //   __pointer(::user::menu) pmenu = __create <  ::user::menu  > ();
@@ -10370,7 +10371,7 @@ restart:
    //}
 
 
-   //__pointer(::user::menu) interaction::track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
+   //__pointer(::user::menu) interaction::track_popup_xml_menu(const ::payload & varXml, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
    //{
 
    //   __pointer(::user::menu) pmenu = __create <  ::user::menu  > ();
@@ -10402,12 +10403,12 @@ restart:
    //}
 
 
-   //__pointer(::user::menu) interaction::track_popup_xml_matter_menu(const char * pszMatter, i32 iFlags, const ::point & pointParam)
+   //__pointer(::user::menu) interaction::track_popup_xml_matter_menu(const char * pszMatter, i32 iFlags, const ::point_i32 & pointParam)
    //{
 
    //   string strMatterSource(pszMatter);
 
-   //   ::point point(pointParam);
+   //   ::point_i32 point(pointParam);
 
    //   fork([=]()
    //   {
@@ -10452,12 +10453,12 @@ restart:
    //}
 
 
-   //__pointer(::user::menu) interaction::track_popup_xml_menu_file(::payload varXmlFile, i32 iFlags, const ::point & point, const ::size & sizeMinimum)
+   //__pointer(::user::menu) interaction::track_popup_xml_menu_file(::payload varXmlFile, i32 iFlags, const ::point_i32 & point, const ::size_i32 & sizeMinimum)
    //{
 
    //   string strXml = Context.file().as_string(varXmlFile);
 
-   //   return track_popup_xml_menu_text(strXml, iFlags, point, sizeMinimum)
+   //   return track_popup_xml_menu_text(strXml, iFlags, point_i32, sizeMinimum)
 
    //   //__pointer(::user::menu) pmenu = alloc <  ::user::menu  > ();
 
@@ -10617,15 +10618,15 @@ restart:
    }
 
 
-   void interaction::move_to(const ::point& point)
+   void interaction::move_to(const ::point_i32& point)
    {
 
-      layout().sketch() = point;
+      layout().sketch() = point_i32;
 
    }
 
 
-   void interaction::set_size(const ::size& size)
+   void interaction::set_size(const ::size_i32& size)
    {
 
       layout().sketch() = size;
@@ -10649,18 +10650,18 @@ restart:
    }
 
 
-   void interaction::set_dim(const ::point& point, const ::size& size)
+   void interaction::set_dim(const ::point_i32& point, const ::size_i32& size)
    {
 
-      place(::rect(point, size));
+      place(::rectangle_i32(point, size));
 
    }
 
 
-   void interaction::place(const ::rect& rect)
+   void interaction::place(const ::rectangle_i32& rectangle)
    {
 
-      layout().sketch() = rect;
+      layout().sketch() = rectangle_i32;
 
    }
 
@@ -10673,10 +10674,10 @@ restart:
    }
 
 
-   interaction& interaction::operator =(const ::rect& rect)
+   interaction& interaction::operator =(const ::rectangle_i32& rectangle)
    {
 
-      place(rect);
+      place(rectangle);
 
       return *this;
 
@@ -10691,17 +10692,17 @@ restart:
    }
 
 
-   void interaction::display_child(const ::rect& rect)
+   void interaction::display_child(const ::rectangle_i32& rectangle)
    {
 
-      place(rect);
+      place(rectangle);
 
       display(e_display_normal);
 
    }
 
 
-   ::user::interaction * interaction::best_top_level_parent(RECT32 * prect)
+   ::user::interaction * interaction::best_top_level_parent(RECTANGLE_I32 * prectangle)
    {
 
       __pointer(::user::interaction) pinteraction = get_top_level();
@@ -10709,13 +10710,13 @@ restart:
       if (!pinteraction || pinteraction == this)
       {
 
-         best_monitor(prect);
+         best_monitor(prectangle);
 
       }
       else
       {
 
-         pinteraction->get_window_rect(prect);
+         pinteraction->get_window_rect(prectangle);
 
       }
 
@@ -10724,16 +10725,16 @@ restart:
    }
 
 
-   ::rect interaction::get_window_rect(enum_layout elayout) const
+   ::rectangle_i32 interaction::get_window_rect(enum_layout elayout) const
    {
 
-      auto rect = layout().get_window_rect(elayout);
+      auto rectangle_i32 = layout().get_window_rect(elayout);
 
-      ::point pointParentOffset = get_parent_viewport_offset();
+      ::point_i32 pointParentOffset = get_parent_viewport_offset();
 
-      ::offset(rect, -pointParentOffset.x, -pointParentOffset.y);
+      ::offset(rectangle, -pointParentOffset.x, -pointParentOffset.y);
 
-      return rect;
+      return rectangle;
 
    }
 
@@ -10751,17 +10752,17 @@ restart:
    void interaction::sketch_prepare_window_maximize()
    {
 
-      ::rect rectRequest = layout().window().screen_rect();
+      ::rectangle_i32 rectRequest = layout().window().screen_rect();
 
       best_wkspace(nullptr, rectRequest, true, layout().sketch().activation(), layout().sketch().zorder());
 
    }
 
 
-   void interaction::sketch_prepare_window_full_screen(const ::rect & rectHint)
+   void interaction::sketch_prepare_window_full_screen(const ::rectangle_i32 & rectHint)
    {
 
-      ::rect rectRequest;
+      ::rectangle_i32 rectRequest;
 
       if (!rectHint.is_empty())
       {
@@ -10808,26 +10809,26 @@ restart:
    }
 
 
-   index interaction::best_monitor(RECT32 * prect, const ::rect & rect, bool bSet, ::e_activation eactivation, ::zorder zorderParam)
+   index interaction::best_monitor(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet, ::e_activation eactivation, ::zorder zorderParam)
    {
 
-      ::rect rectSample;
+      ::rectangle_i32 rectSample;
 
       auto psession = Session;
 
 
-      if (eactivation & e_activation_under_mouse_cursor || rect.is_null())
+      if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
       {
 
-         ::point pointCursor = psession->get_cursor_pos();
+         ::point_i32 pointCursor = psession->get_cursor_pos();
 
-         rectSample.set(pointCursor - ::size(5, 5), ::size(10, 10));
+         rectSample.set(pointCursor - ::size_i32(5, 5), ::size_i32(10, 10));
 
       }
-      else if (rect.is_set())
+      else if (rectangle.is_set())
       {
 
-         rectSample = rect;
+         rectSample = rectangle_i32;
 
       }
       else
@@ -10837,7 +10838,7 @@ restart:
 
       }
 
-      ::rect rectNew;
+      ::rectangle_i32 rectNew;
 
       index iMatchingMonitor = -1;
 
@@ -10880,10 +10881,10 @@ restart:
 
       }
 
-      if (prect != nullptr)
+      if (prectangle != nullptr)
       {
 
-         *prect = rectNew;
+         *prectangle = rectNew;
 
       }
 
@@ -10892,15 +10893,15 @@ restart:
    }
 
 
-   index interaction::best_wkspace(RECT32 * prect, const ::rect & rect, bool bSet, ::e_activation eactivation, ::zorder zorderParam)
+   index interaction::best_wkspace(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet, ::e_activation eactivation, ::zorder zorderParam)
    {
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
-      if (!::IsRectEmpty(&rect))
+      if (!::IsRectEmpty(&rectangle))
       {
 
-         rectWindow = rect;
+         rectWindow = rectangle_i32;
 
       }
       else
@@ -10910,17 +10911,17 @@ restart:
 
       }
 
-      ::rect rectNew;
+      ::rectangle_i32 rectNew;
 
       auto psession = Session;
 
       index iMatchingMonitor = psession->get_best_monitor(rectNew, rectWindow, eactivation);
 
-      ::rect rectWkspace;
+      ::rectangle_i32 rectWkspace;
 
       psession->get_wkspace_rect(iMatchingMonitor, rectWkspace);
 
-      if (bSet && (!::IsRectEmpty(&rect) || iMatchingMonitor >= 0))
+      if (bSet && (!::IsRectEmpty(&rectangle) || iMatchingMonitor >= 0))
       {
 
 #if !MOBILE_PLATFORM
@@ -10947,10 +10948,10 @@ restart:
 
       }
 
-      if (prect != nullptr)
+      if (prectangle != nullptr)
       {
 
-         *prect = rectWkspace;
+         *prectangle = rectWkspace;
 
 
       }
@@ -10960,7 +10961,7 @@ restart:
    }
 
 
-   index interaction::get_zoneing(::rect * prect, const ::rect & rectParam, edisplay edisplay)
+   index interaction::get_zoneing(::rectangle_i32 * prectangle, const ::rectangle_i32 & rectParam, edisplay edisplay)
    {
 
       if (!is_docking_appearance(edisplay))
@@ -10970,7 +10971,7 @@ restart:
 
       }
 
-      ::rect rectWkspace;
+      ::rectangle_i32 rectWkspace;
 
       index iWkspace = get_best_wkspace(&rectWkspace, rectParam);
 
@@ -10984,7 +10985,7 @@ restart:
       if (rectParam)
       {
 
-         *prect = rectParam;
+         *prectangle = rectParam;
 
       }
       else
@@ -10992,9 +10993,9 @@ restart:
 
          auto point = rectWkspace.center();
 
-         ::top_left(prect) = point;
+         ::top_left(prectangle) = point_i32;
 
-         ::bottom_right(prect) = point;
+         ::bottom_right(prectangle) = point_i32;
 
       }
 
@@ -11003,12 +11004,12 @@ restart:
       if (edisplay & ::e_display_top)
       {
 
-         prect->move_top_to(rectWkspace.top);
+         prectangle->move_top_to(rectWkspace.top);
 
-         if(::height(prect) < sizeMinimum.cy)
+         if(::height(prectangle) < sizeMinimum.cy)
          {
 
-            prect->bottom = prect->top + sizeMinimum.cy;
+            prectangle->bottom = prectangle->top + sizeMinimum.cy;
 
          }
 
@@ -11017,12 +11018,12 @@ restart:
       if (edisplay & ::e_display_bottom)
       {
 
-         prect->move_bottom_to(rectWkspace.bottom);
+         prectangle->move_bottom_to(rectWkspace.bottom);
 
-         if(::height(prect) < sizeMinimum.cy)
+         if(::height(prectangle) < sizeMinimum.cy)
          {
 
-            prect->top = prect->bottom - sizeMinimum.cy;
+            prectangle->top = prectangle->bottom - sizeMinimum.cy;
 
          }
 
@@ -11031,12 +11032,12 @@ restart:
       if (edisplay & ::e_display_left)
       {
 
-         prect->move_left_to(rectWkspace.left);
+         prectangle->move_left_to(rectWkspace.left);
 
-         if(::width(prect) < sizeMinimum.cx)
+         if(::width(prectangle) < sizeMinimum.cx)
          {
 
-            prect->right = prect->left + sizeMinimum.cx;
+            prectangle->right = prectangle->left + sizeMinimum.cx;
 
          }
 
@@ -11045,12 +11046,12 @@ restart:
       if (edisplay & ::e_display_right)
       {
 
-         prect->move_right_to(rectWkspace.right);
+         prectangle->move_right_to(rectWkspace.right);
 
-         if(::width(prect) < sizeMinimum.cx)
+         if(::width(prectangle) < sizeMinimum.cx)
          {
 
-            prect->left = prect->right + sizeMinimum.cx;
+            prectangle->left = prectangle->right + sizeMinimum.cx;
 
          }
 
@@ -11069,10 +11070,10 @@ restart:
    }
 
 
-   index interaction::calculate_broad_and_compact_restore(RECT32* prectWkspace, SIZE32 * psizeMin, const ::rect& rectHint)
+   index interaction::calculate_broad_and_compact_restore(RECTANGLE_I32* prectWkspace, SIZE_I32 * psizeMin, const ::rectangle_i32& rectHint)
    {
 
-      ::rect rectRestore(rectHint);
+      ::rectangle_i32 rectRestore(rectHint);
 
       if (rectRestore.is_null())
       {
@@ -11081,7 +11082,7 @@ restart:
 
       }
 
-      ::rect rectWkspace;
+      ::rectangle_i32 rectWkspace;
 
       auto psession = Session;
 
@@ -11090,7 +11091,7 @@ restart:
       if (iMatchingWkspace >= 0)
       {
 
-         ::size sizeMin;
+         ::size_i32 sizeMin;
 
          if (::is_set(psizeMin) && !is_empty(psizeMin))
          {
@@ -11144,20 +11145,20 @@ restart:
    //}
 
 
-   index interaction::make_zoneing(RECT32 * prect, const ::rect & rect, bool bSet, edisplay * pedisplay, ::e_activation eactivation, ::zorder zorderParam)
+   index interaction::make_zoneing(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet, edisplay * pedisplay, ::e_activation eactivation, ::zorder zorderParam)
    {
 
       if (pedisplay == nullptr || !is_docking_appearance(*pedisplay))
       {
 
-         return best_zoneing(prect, rect, bSet, pedisplay, eactivation, zorderParam);
+         return best_zoneing(prectangle, rectangle_i32, bSet, pedisplay, eactivation, zorderParam);
 
 
       }
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
-      if (IsRectEmpty(&rect))
+      if (IsRectEmpty(&rectangle))
       {
 
          get_window_rect(rectWindow);
@@ -11166,11 +11167,11 @@ restart:
       else
       {
 
-         rectWindow = rect;
+         rectWindow = rectangle_i32;
 
       }
 
-      ::rect rectNew;
+      ::rectangle_i32 rectNew;
 
       index iMatchingMonitor = get_zoneing(&rectNew, rectWindow, *pedisplay);
 
@@ -11187,10 +11188,10 @@ restart:
 
       }
 
-      if (prect != nullptr)
+      if (prectangle != nullptr)
       {
 
-         *prect = rectNew;
+         *prectangle = rectNew;
 
       }
 
@@ -11199,7 +11200,7 @@ restart:
    }
 
 
-   index interaction::get_best_zoneing(edisplay & edisplay, ::rect * prect, const ::rect & rectRequest, bool bPreserveSize)
+   index interaction::get_best_zoneing(edisplay & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectRequest, bool bPreserveSize)
    {
 
       edisplay = layout().design().display();
@@ -11211,30 +11212,30 @@ restart:
       if (rectRequest.is_empty())
       {
 
-         return psession->_get_best_zoneing(&edisplay, prect, layout().design().screen_rect(), bPreserveSize);
+         return psession->_get_best_zoneing(&edisplay, prectangle, layout().design().screen_rect(), bPreserveSize);
 
       }
       else
       {
 
-         return psession->_get_best_zoneing(&edisplay, prect, rectRequest, bPreserveSize);
+         return psession->_get_best_zoneing(&edisplay, prectangle, rectRequest, bPreserveSize);
 
       }
 
    }
 
 
-   index interaction::get_best_wkspace(::rect * prect, const ::rect& rect, ::e_activation eactivation)
+   index interaction::get_best_wkspace(::rectangle_i32 * prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation)
    {
 
       auto psession = Session;
 
-      return psession->get_best_wkspace(prect, rect, eactivation);
+      return psession->get_best_wkspace(prectangle, rectangle_i32, eactivation);
 
    }
 
 
-   index interaction::best_zoneing(RECT32 * prect, const ::rect & rect, bool bSet, edisplay * pedisplay, ::e_activation eactivation, ::zorder zorderParam)
+   index interaction::best_zoneing(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet, edisplay * pedisplay, ::e_activation eactivation, ::zorder zorderParam)
    {
 
       edisplay edisplay;
@@ -11248,16 +11249,16 @@ restart:
 
       *pedisplay = layout().design().display();
 
-      ::rect rectNew;
+      ::rectangle_i32 rectNew;
 
       index iMatchingMonitor;
 
       auto psession = Session;
 
-      if (rect.is_set())
+      if (rectangle.is_set())
       {
 
-         iMatchingMonitor = psession->_get_best_zoneing(pedisplay, &rectNew, rect);
+         iMatchingMonitor = psession->_get_best_zoneing(pedisplay, &rectNew, rectangle);
 
       }
       else
@@ -11267,7 +11268,7 @@ restart:
 
       }
 
-      if (bSet && (!::IsRectEmpty(&rect) || iMatchingMonitor >= 0))
+      if (bSet && (!::IsRectEmpty(&rectangle) || iMatchingMonitor >= 0))
       {
 
          sync_lock slUserMutex(mutex());
@@ -11280,11 +11281,11 @@ restart:
 
       }
 
-      if (prect != nullptr)
+      if (prectangle != nullptr)
 
       {
 
-         *prect = rectNew;
+         *prectangle = rectNew;
 
 
       }
@@ -11294,15 +11295,15 @@ restart:
    }
 
 
-   index interaction::good_restore(RECT32 * prect, const ::rect & rect, bool bSet, ::e_activation eactivation, ::zorder zorderParam, edisplay edisplay)
+   index interaction::good_restore(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet, ::e_activation eactivation, ::zorder zorderParam, edisplay edisplay)
    {
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
-      if (!::IsRectEmpty(&rect))
+      if (!::IsRectEmpty(&rectangle))
       {
 
-         rectWindow = rect;
+         rectWindow = rectangle_i32;
 
       }
       else
@@ -11312,7 +11313,7 @@ restart:
 
       }
 
-      ::rect rectNew;
+      ::rectangle_i32 rectNew;
 
       auto psession = Session;
 
@@ -11352,10 +11353,10 @@ restart:
 
       }
 
-      if (prect != nullptr)
+      if (prectangle != nullptr)
       {
 
-         *prect = rectNew;
+         *prectangle = rectNew;
 
       }
 
@@ -11364,15 +11365,15 @@ restart:
    }
 
 
-   index interaction::good_iconify(RECT32 * prect, const ::rect & rect, bool bSet, ::e_activation eactivation, ::zorder zorderParam)
+   index interaction::good_iconify(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bSet, ::e_activation eactivation, ::zorder zorderParam)
    {
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
-      if (!::IsRectEmpty(&rect))
+      if (!::IsRectEmpty(&rectangle))
       {
 
-         rectWindow = rect;
+         rectWindow = rectangle_i32;
 
       }
       else
@@ -11382,7 +11383,7 @@ restart:
 
       }
 
-      ::rect rectNew;
+      ::rectangle_i32 rectNew;
 
       auto psession = Session;
 
@@ -11397,10 +11398,10 @@ restart:
 
       }
 
-      if (prect != nullptr)
+      if (prectangle != nullptr)
       {
 
-         *prect = rectNew;
+         *prectangle = rectNew;
 
       }
 
@@ -11409,15 +11410,15 @@ restart:
    }
 
 
-   index interaction::good_move(RECT32 * prect, const ::rect & rect, ::e_activation eactivation, ::zorder zorderParam)
+   index interaction::good_move(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::e_activation eactivation, ::zorder zorderParam)
    {
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
-      if (!::IsRectEmpty(&rect))
+      if (!::IsRectEmpty(&rectangle))
       {
 
-         rectWindow = rect;
+         rectWindow = rectangle_i32;
 
       }
       else
@@ -11427,7 +11428,7 @@ restart:
 
       }
 
-      ::rect rectNew;
+      ::rectangle_i32 rectNew;
 
       auto psession = Session;
 
@@ -11444,10 +11445,10 @@ restart:
 
       }
 
-      if (prect != nullptr)
+      if (prectangle != nullptr)
       {
 
-         *prect = rectNew;
+         *prectangle = rectNew;
 
       }
 
@@ -11510,10 +11511,10 @@ restart:
 #endif
 
 
-   bool interaction::get_rect_normal(RECT32 * prect)
+   bool interaction::get_rect_normal(RECTANGLE_I32 * prectangle)
    {
 
-      return m_pimpl->get_rect_normal(prect);
+      return m_pimpl->get_rect_normal(prectangle);
 
    }
 
@@ -11579,7 +11580,7 @@ restart:
    void interaction::set_viewport_offset(::draw2d::graphics_pointer & pgraphics, int x, int y)
    {
 
-      ::point pointOffset(x, y);
+      ::point_i32 pointOffset(x, y);
 
       if (pointOffset == m_pointScroll)
       {
@@ -11602,7 +11603,7 @@ restart:
    }
 
 
-   bool interaction::validate_viewport_offset(point & point)
+   bool interaction::validate_viewport_offset(point_i32 & point)
    {
 
       if (point == m_pointScroll)
@@ -11641,20 +11642,20 @@ restart:
    }
 
 
-   point interaction::get_viewport_offset()
+   point_i32 interaction::get_viewport_offset()
    {
 
-      ::point point = m_pointScroll;
+      ::point_i32 point = m_pointScroll;
 
       return point;
 
    }
 
 
-   sized interaction::get_total_size()
+   size_f64 interaction::get_total_size()
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -11662,7 +11663,7 @@ restart:
 
    }
 
-   ::e_status interaction::set_total_size(const ::sized& size)
+   ::e_status interaction::set_total_size(const ::size_f64& size)
    {
 
       return ::error_interface_only;
@@ -11670,7 +11671,7 @@ restart:
    }
 
 
-   ::e_status interaction::set_page_size(const ::sized& size)
+   ::e_status interaction::set_page_size(const ::size_f64& size)
    {
 
       return ::error_interface_only;
@@ -11684,10 +11685,10 @@ restart:
    }
 
 
-   sized interaction::get_page_size()
+   size_f64 interaction::get_page_size()
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -11696,17 +11697,17 @@ restart:
    }
 
 
-   point interaction::get_ascendant_viewport_offset() const
+   point_i32 interaction::get_ascendant_viewport_offset() const
    {
 
       __pointer(::user::interaction) puser = get_parent();
 
-      point point;
+      point_i32 point_i32;
 
       while (puser.is_set())
       {
 
-         point += puser->get_viewport_offset();
+         point_i32 += puser->get_viewport_offset();
 
          puser = puser->get_parent();
 
@@ -11717,7 +11718,7 @@ restart:
    }
 
 
-   void interaction::get_margin_rect(RECT32 * prectMargin)
+   void interaction::get_margin_rect(RECTANGLE_I32 * prectMargin)
    {
 
       prectMargin->left = 0;
@@ -11754,7 +11755,7 @@ restart:
    }
 
 
-   point interaction::get_parent_viewport_offset() const
+   point_i32 interaction::get_parent_viewport_offset() const
    {
 
       ::user::interaction * puser = get_parent();
@@ -11762,11 +11763,11 @@ restart:
       if (puser == nullptr)
       {
 
-         return ::point();
+         return ::point_i32();
 
       }
 
-      ::point pointParentAccumulated;
+      ::point_i32 pointParentAccumulated;
 
       if(puser != NULL)
       {
@@ -12019,7 +12020,7 @@ restart:
 
    }
 
-   size interaction::get_window_minimum_size()
+   size_i32 interaction::get_window_minimum_size()
    {
 
       return nullptr;
@@ -12488,15 +12489,15 @@ restart:
 
       }
 
-      //::size sizeTooltip = get_tooltip()->m_size;
+      //::size_i32 sizeTooltip = get_tooltip()->m_size;
 
-      //::rect rectThisWindow;
+      //::rectangle_i32 rectThisWindow;
 
       //get_window_rect(rectThisWindow);
 
-      //::rect rectWindow;
+      //::rectangle_i32 rectWindow;
 
-      //::rect rectMonitor;
+      //::rectangle_i32 rectMonitor;
 
       //psession->get_best_monitor(rectMonitor, rectThisWindow);
 
@@ -12738,7 +12739,7 @@ restart:
    }
 
 
-   void interaction::defer_notify_mouse_move(bool & bPointInside, point & pointLast)
+   void interaction::defer_notify_mouse_move(bool & bPointInside, point_i32 & pointLast)
    {
 
       auto psession = Session;
@@ -12750,7 +12751,7 @@ restart:
 
       }
 
-      ::point pointCurrent;
+      ::point_i32 pointCurrent;
 
       psession->get_cursor_pos(pointCurrent);
 
@@ -12866,7 +12867,7 @@ restart:
 
       }
 
-      ::point pointCurrent;
+      ::point_i32 pointCurrent;
 
       psession->get_cursor_pos(pointCurrent);
 
@@ -12945,10 +12946,10 @@ restart:
    }
 
 
-   ::sized interaction::get_size()
+   ::size_f64 interaction::get_size()
    {
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       get_window_rect(rectWindow);
 
@@ -12957,10 +12958,10 @@ restart:
    }
 
 
-   ::sized interaction::get_client_size()
+   ::size_f64 interaction::get_client_size()
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -12972,7 +12973,7 @@ restart:
    int interaction::width()
    {
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       get_window_rect(rectWindow);
 
@@ -12984,7 +12985,7 @@ restart:
    int interaction::height()
    {
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       get_window_rect(rectWindow);
 
@@ -12996,7 +12997,7 @@ restart:
    int interaction::client_width()
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -13008,7 +13009,7 @@ restart:
    int interaction::client_height()
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -13101,17 +13102,17 @@ restart:
 
    //   screen_to_client(point);
 
-   //   point += m_ptScroll;
+   //   point_i32 += m_ptScroll;
 
 
    //}
 
-   //::user::item interaction::on_hit_test(const ::point& point)
+   //::user::item interaction::on_hit_test(const ::point_i32& point)
    //{
 
-   //   auto rect = this->rect(::user::e_element_client);
+   //   auto rectangle_i32 = this->rectangle_i32(::user::e_element_client);
 
-   //   if (!rect.contains(point))
+   //   if (!rectangle.contains(point))
    //   {
 
    //      return ::user::e_element_none;
@@ -13123,14 +13124,14 @@ restart:
    //}
 
 
-   bool interaction::scroll_bar_get_client_rect(RECT32 * prect)
+   bool interaction::scroll_bar_get_client_rect(RECTANGLE_I32 * prectangle)
    {
 
-      get_client_rect(prect);
+      get_client_rect(prectangle);
 
-      prect->right += get_final_y_scroll_bar_width();
+      prectangle->right += get_final_y_scroll_bar_width();
 
-      prect->bottom += get_final_x_scroll_bar_width();
+      prectangle->bottom += get_final_x_scroll_bar_width();
 
       return true;
 
@@ -13140,7 +13141,7 @@ restart:
    void interaction::on_calc_size(calc_size * psize)
    {
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       get_window_rect(rectWindow);
 
@@ -13325,21 +13326,21 @@ restart:
    }
 
 
-//void interaction::get_layout_rect(RECT32 * prect)
+//void interaction::get_layout_rect(RECTANGLE_I32 * prectangle)
 
 //{
 
-//   get_window_rect(prect);
+//   get_window_rect(prectangle);
 
 
 //}
 
 
-   /*void interaction::set_placement(const ::rect & rect)
+   /*void interaction::set_placement(const ::rectangle_i32 & rectangle)
 
    {
 
-      ::rect rectFinal(rect);
+      ::rectangle_i32 rectFinal(rectangle);
 
 
       rectFinal.deflate(m_rectPadding);
@@ -13742,12 +13743,12 @@ restart:
 
 
 
-   bool interaction::update_hover(const ::point& point, bool bAvoidRedraw)
+   bool interaction::update_hover(const ::point_i32& point, bool bAvoidRedraw)
    {
 
       sync_lock sl(mutex());
 
-      auto pointClient = point;
+      auto pointClient = point_i32;
 
       auto itemHitTest = hit_test(pointClient);
 
@@ -13871,10 +13872,10 @@ restart:
    }
 
 
-   void interaction::hit_test(::user::item & item, const ::point & point)
+   void interaction::hit_test(::user::item & item, const ::point_i32 & point)
    {
 
-      item.m_pointScreen = point;
+      item.m_pointScreen = point_i32;
 
       item.m_pointClient = screen_to_client(item.m_pointScreen);
 
@@ -13909,7 +13910,7 @@ restart:
          else if (get_rect(*pitem))
          {
 
-            if (pitem->m_rect.contains(item.m_pointHitTest))
+            if (pitem->m_rectangle.contains(item.m_pointHitTest))
             {
 
                ((ITEM&)item) = ((ITEM&)*pitem);
@@ -13922,9 +13923,9 @@ restart:
 
       }
 
-      auto rect = this->rect(::user::e_element_client);
+      auto rectangle_i32 = this->rectangle_i32(::user::e_element_client);
 
-      if (!rect.contains(item.m_pointHitTest))
+      if (!rectangle.contains(item.m_pointHitTest))
       {
 
          item = e_element_none;
@@ -13948,7 +13949,7 @@ restart:
       if (pitem)
       {
 
-         item.m_rect = pitem->m_rect;
+         item.m_rectangle = pitem->m_rectangle;
 
          return true;
 
@@ -13961,7 +13962,7 @@ restart:
 
       }
 
-      get_client_rect(item.m_rect);
+      get_client_rect(item.m_rectangle);
 
       return true;
 
@@ -14118,7 +14119,7 @@ restart:
    }
 
 
-   void interaction::get_text_composition_area(::rect & rect)
+   void interaction::get_text_composition_area(::rectangle_i32 & rectangle)
    {
 
 
@@ -14220,7 +14221,7 @@ restart:
    bool interaction::_001InitialFramePosition()
    {
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       bool bSet = false;
 
@@ -14268,12 +14269,12 @@ restart:
    }
 
 
-   bool interaction::_001InitialFramePosition(LPRECT32 lprect, const rectd & rectOptionalRateOrSize)
+   bool interaction::_001InitialFramePosition(LPRECT32 lprect, const rectangle_f64 & rectOptionalRateOrSize)
    {
 
-      ::rectd rectRate(rectOptionalRateOrSize);
+      ::rectangle_f64 rectRate(rectOptionalRateOrSize);
 
-      ::rect rectMainMonitor;
+      ::rectangle_i32 rectMainMonitor;
 
       auto psession = Session;
 
@@ -14286,7 +14287,7 @@ restart:
 
       }
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
 #if MOBILE_PLATFORM
 
@@ -14308,7 +14309,7 @@ restart:
       && abs(rectRate.top) < 10.0)
       {
 
-         rectRate *= rectd(rectMainMonitor.width(), rectMainMonitor.height(), rectMainMonitor.width(), rectMainMonitor.height());
+         rectRate *= rectangle_f64(rectMainMonitor.width(), rectMainMonitor.height(), rectMainMonitor.width(), rectMainMonitor.height());
 
       }
 
@@ -14611,7 +14612,7 @@ restart:
    void control_cmd_ui::enable(bool bOn)
    {
 
-      m_bEnableChanged = TRUE;
+      m_bEnableChanged = true;
 
       __pointer(::user::interaction) pwnd = m_puiOther;
 
@@ -14936,20 +14937,20 @@ restart:
    }
 
 
-   bool interaction::get_element_rect(RECT32* prect, enum_element eelement)
+   bool interaction::get_element_rect(RECTANGLE_I32* prectangle, enum_element eelement)
    {
 
       if (eelement == e_element_drop_down)
       {
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(rectClient);
 
          //i32 iMargin = rectClient.height() / 8;
          i32 iMargin = 0;
 
-         ::rect rectDropDown;
+         ::rectangle_i32 rectDropDown;
 
          rectDropDown = rectClient;
 
@@ -14960,7 +14961,7 @@ restart:
          rectDropDown.top += iMargin;
          rectDropDown.left = rectDropDown.right - iW;
 
-         *prect = rectDropDown;
+         *prectangle = rectDropDown;
 
 
          return true;
@@ -14969,23 +14970,23 @@ restart:
       else if (eelement == e_element_combo_edit)
       {
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(rectClient);
 
-         ::rect rectDropDown;
+         ::rectangle_i32 rectDropDown;
 
          get_element_rect(rectDropDown, e_element_drop_down);
 
-         ::rect rectEdit = rectClient;
+         ::rectangle_i32 rectEdit = rectClient;
 
          rectEdit.right = rectDropDown.left;
 
-         //::rect rectPadding = _001GetRect(::user::rect_edit_padding);
+         //::rectangle_i32 rectPadding = _001GetRect(::user::rect_edit_padding);
 
          //rectEdit.deflate(rectPadding);
 
-         *prect = rectEdit;
+         *prectangle = rectEdit;
 
 
          return true;
@@ -14997,10 +14998,10 @@ restart:
    }
 
 
-   void interaction::get_simple_drop_down_open_arrow_polygon(pointd_array& pointa)
+   void interaction::get_simple_drop_down_open_arrow_polygon(point_f64_array& pointa)
    {
 
-      ::rect rectDropDown;
+      ::rectangle_i32 rectDropDown;
 
       get_element_rect(rectDropDown, e_element_drop_down);
 
@@ -15008,7 +15009,7 @@ restart:
 
       i32 cy = cx * 2 / 3;
 
-      ::point pointCenter = rectDropDown.center();
+      ::point_i32 pointCenter = rectDropDown.center();
 
       pointa.add(pointCenter.x - cx / 2, pointCenter.y - cy / 2);
 

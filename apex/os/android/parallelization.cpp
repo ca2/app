@@ -5,7 +5,7 @@
 
 
 
-bool defer_process_x_message(hthread_t hthread, LPMESSAGE lpMsg, oswindow interaction_impl, bool bPeek)
+bool defer_process_x_message(hthread_t hthread, MESSAGE * lpMsg, oswindow interaction_impl, bool bPeek)
 {
 #ifndef ANDROID
 

@@ -28,7 +28,7 @@ namespace acme
       __pointer(::mutex)      m_pmutex;
 
 
-      exclusive(string str, LPSECURITY_ATTRIBUTES psa);
+      exclusive(string str ARG_SEC_ATTRS_DEF);
       virtual ~exclusive();
 
 

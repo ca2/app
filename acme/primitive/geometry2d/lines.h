@@ -62,10 +62,10 @@ lines_base < POINT_TYPE >::~lines_base()
 }
 
 
-using lines = lines_base < point >;
-using lines64 = lines_base < point64 >;
-using linesf = lines_base < pointf >;
-using linesd = lines_base < pointd >;
+using lines = lines_base < point_i32 >;
+using lines64 = lines_base < point_i64 >;
+using linesf = lines_base < point_f32 >;
+using linesd = lines_base < point_f64 >;
 
 
 

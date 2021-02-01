@@ -8,33 +8,65 @@ namespace apex
 #ifndef _UWP
 
 
-   shell_launcher::shell_launcher(duration durationTimeout)
+   shell_launcher::shell_launcher()
    {
 
-      m_iMode              = 1;
+
+   }
+      
+
+   shell_launcher::~shell_launcher()
+   {
+
 
    }
 
 
-   shell_launcher::shell_launcher(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout)
+   ::e_status shell_launcher::launch()
    {
 
-      m_iMode              = 0;
-      m_oswindow           = oswindow;
-      m_strOperation       = pszOperation;
-      m_strFile            = pszFile;
-      m_strParameters      = pszParameters;
-      m_strDirectory       = pszDirectory;
-      m_edisplay           = edisplay;
+      __throw(interface_only_exception());
+
+      return error_interface_only;
 
    }
 
+
+   bool shell_launcher::succeeded()
+   {
+
+      return false;
+
+   }
 
 #endif
 
 
 
+   ::e_status shell_launcher::setup(duration durationTimeout)
+   {
 
+      m_iMode = 1;
+
+      return ::success;
+
+   }
+
+
+   ::e_status shell_launcher::setup(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout)
+   {
+
+      m_iMode = 0;
+      m_oswindow = oswindow;
+      m_strOperation = pszOperation;
+      m_strFile = pszFile;
+      m_strParameters = pszParameters;
+      m_strDirectory = pszDirectory;
+      m_edisplay = edisplay;
+
+      return ::success;
+
+   }
 
 
 } // namespace apex

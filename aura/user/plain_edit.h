@@ -31,9 +31,9 @@ namespace user
       , virtual public ::user::edit_window
 #endif
 #else
-#ifdef WINDOWS_DESKTOP
-      , virtual public imm_client
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      , virtual public imm_client
+//#endif
 #endif
    {
    public:
@@ -88,7 +88,7 @@ namespace user
 
       //   action_context    m_actioncontext;
 
-      //   ::point           m_point;
+      //   ::point_i32           m_point;
       //   ::index           m_iSelEnd;
 
       //   call() {}
@@ -146,11 +146,11 @@ namespace user
       //{
       //public:
 
-      //   call_set_sel_end_on_point(point point)
+      //   call_set_sel_end_on_point(point_i32 point_i32)
       //   {
 
       //      m_ecall = e_call_set_sel_end;
-      //      m_point = point;
+      //      m_point = point_i32;
 
       //   }
 
@@ -179,7 +179,7 @@ namespace user
       ::index                             m_iLineEnd;
       count                               m_iLineCount;
       bool                                m_bCustomFrameBefore;
-      ::rect                              m_FullScreenWindowRect;
+      ::rectangle_i32                              m_FullScreenWindowRect;
 
       string_to_string                    m_base64map;
 
@@ -187,7 +187,7 @@ namespace user
       bool                                m_bEnterKeyOnPaste;
       bool                                m_bLMouseDown;
       bool                                m_bRMouseDown;
-      point                               m_pointSelStart;
+      point_i32                               m_pointSelStart;
       millis                              m_millisCaretPeriod;
       ::index                             m_iLineOffset;
       string_array                        m_straLines;
@@ -203,10 +203,10 @@ namespace user
       bool                                m_bMultiLine;
       bool                                m_bSendEnterKey;
       bool                                m_bReadOnly;
-      point                               m_pointLastCursor;
+      point_i32                               m_pointLastCursor;
 
       // Used for whatever it can make faster for large files (scroll for example)
-      // keep each line size
+      // keep each line size_i32
       index_array                         m_iaLineLen;
       // Used for whatever it can make faster for large files (scroll for example)
       // keep each line end flag 3 = \r \n     1 = \n  \r = 2
@@ -242,7 +242,7 @@ namespace user
       inline bool is_caret_on() const { return m_millisFocusStart.on_off(m_millisCaretPeriod); }
 
 
-      virtual void get_text_composition_area(::rect & r) override;
+      virtual void get_text_composition_area(::rectangle_i32 & r) override;
       virtual void edit_on_text(string str) override;
       virtual void edit_on_sel(strsize iSelBeg, strsize iSelEnd) override;
       virtual void on_text_composition(string str) override;
@@ -277,7 +277,7 @@ namespace user
       void _001OnTimer(::timer * ptimer) override;
 
 
-      virtual ::rectd get_margin(style * pstyle, enum_element eelement = ::user::e_element_none, ::user::enum_state estate = ::user::e_state_none) const override;
+      virtual ::rectangle_f64 get_margin(style * pstyle, enum_element eelement = ::user::e_element_none, ::user::enum_state estate = ::user::e_state_none) const override;
   
 
       DECL_GEN_SIGNAL(_001OnLButtonDown);
@@ -362,7 +362,7 @@ namespace user
       //virtual bool create_interaction(::user::interaction * pinteraction) override;
 
 
-      virtual strsize plain_edit_char_hit_test(::draw2d::graphics_pointer& pgraphics, const ::point & point);
+      virtual strsize plain_edit_char_hit_test(::draw2d::graphics_pointer& pgraphics, const ::point_i32 & point);
       virtual strsize plain_edit_line_char_hit_test(::draw2d::graphics_pointer& pgraphics, i32 x, index iLine);
 
       //colorertake5::file_type * colorer_select_type();
@@ -407,9 +407,9 @@ namespace user
       strsize plain_edit_line_column_to_sel(::draw2d::graphics_pointer& pgraphics, index iLine, index iColumn) override;
       strsize plain_edit_line_x_to_sel(::draw2d::graphics_pointer& pgraphics, index iLine, i32 x) override;
       index plain_edit_char_to_line(::draw2d::graphics_pointer& pgraphics, strsize iSel) override;
-      bool plain_edit_caret_rect(::draw2d::graphics_pointer& pgraphics, LPRECT32 lprect, strsize iSel);
-      bool plain_edit_index_range(::draw2d::graphics_pointer& pgraphics, LPRECT32 lprect, strsize iSel);
-      bool plain_edit_line_range(::draw2d::graphics_pointer& pgraphics, LPRECT32 lprect, ::index iLine);
+      bool plain_edit_caret_rect(::draw2d::graphics_pointer& pgraphics, RECTANGLE_I32 * lprect, strsize iSel);
+      bool plain_edit_index_range(::draw2d::graphics_pointer& pgraphics, RECTANGLE_I32 * lprect, strsize iSel);
+      bool plain_edit_line_range(::draw2d::graphics_pointer& pgraphics, RECTANGLE_I32 * lprect, ::index iLine);
 
       void plain_edit_one_line_up(::draw2d::graphics_pointer& pgraphics);
 
@@ -450,7 +450,7 @@ namespace user
 
       virtual void on_change_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual ::sized get_total_size() override;
+      virtual ::size_f64 get_total_size() override;
 
       virtual ::payload get_payload();
 

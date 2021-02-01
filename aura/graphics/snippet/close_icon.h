@@ -16,27 +16,27 @@ namespace user
       if (!pitem->m_ppath)
       {
 
-         ::rectd rect(pitem->m_rect);
+         ::rectangle_f64 rectangle_i32(pitem->m_rectangle);
 
-         double dMinimumDimension = rect.minimum_dimension();
+         double dMinimumDimension = rectangle.minimum_dimension();
 
          double dDeflate = dMinimumDimension / 3.0;
 
-         //double w = rect.width();
+         //double w = rectangle.width();
 
-         //double h = rect.height();
+         //double h = rectangle.height();
 
-         rect.deflate(0, dDeflate);
+         rectangle.deflate(0, dDeflate);
 
-         //double w2 = rect.width();
+         //double w2 = rectangle.width();
 
-         //double h2 = rect.height();
+         //double h2 = rectangle.height();
 
          pitem->m_ppath.create();
 
-         pitem->m_ppath->add_rect(rect, 45_degrees);
+         pitem->m_ppath->add_rect(rectangle, 45_degrees);
 
-         pitem->m_ppath->add_rect(rect, -45_degrees);
+         pitem->m_ppath->add_rect(rectangle, -45_degrees);
 
       }
 

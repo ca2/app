@@ -14,7 +14,7 @@
 
 //CLASS_DECL_ACME int_bool destroy_window(oswindow window);
 
-//CLASS_DECL_ACME int_bool GetCursorPos(POINT32 * lppointCursor);
+//CLASS_DECL_ACME int_bool GetCursorPos(POINT_I32 * lppointCursor);
 
 //CLASS_DECL_ACME int_bool PostMessage(oswindow oswindow, ::u32 Msg, WPARAM wParam, LPARAM lParam);
 
@@ -34,8 +34,8 @@ int_bool IsChild(oswindow oswindowParent, oswindow oswindowcandidateChildOrDesce
 //int_bool show_window(oswindow oswindow, const ::e_display & edisplay, const ::e_activation & eactivation = e_activation_default);
 //::i32 GetWindowLongA(oswindow oswindow, int nIndex);
 //::i32 SetWindowLongA(oswindow oswindow, int nIndex, ::i32 l);
-int_bool _001ClientToScreen(oswindow oswindow, POINT32 * lppoint);
-int_bool _001ScreenToClient(oswindow oswindow, POINT32 * lppoint);
+int_bool _001ClientToScreen(oswindow oswindow, POINT_I32 * lppoint);
+int_bool _001ScreenToClient(oswindow oswindow, POINT_I32 * lppoint);
 int_bool IsIconic(oswindow oswindow);
 int_bool IsWindowVisible(oswindow oswindow);
 //#define GetWindowLong GetWindowLongA
@@ -46,7 +46,7 @@ int_bool IsWindowVisible(oswindow oswindow);
 CLASS_DECL_ACME int_bool is_window(oswindow oswindow);
 
 
-//CLASS_DECL_ACME int_bool GetCursorPos(POINT32 * lppointCursor);
+//CLASS_DECL_ACME int_bool GetCursorPos(POINT_I32 * lppointCursor);
 
 #ifndef HWND_MESSAGE
 
@@ -671,7 +671,7 @@ typedef struct tagDRAWTEXTPARAMS
 
 
 /*
-* e_message_nccalcsize "window valid rect" return values
+* e_message_nccalcsize "window valid rectangle_i32" return values
 */
 #define WVR_ALIGNTOP        0x0010
 #define WVR_ALIGNLEFT       0x0020
@@ -936,7 +936,7 @@ typedef struct tagPAINTSTRUCT
 {
    HDC         hdc;
    int_bool        fErase;
-   RECT32        rcPaint;
+   RECTANGLE_I32        rcPaint;
    int_bool        fRestore;
    int_bool        fIncUpdate;
    byte        rgbReserved[32];
@@ -973,11 +973,11 @@ typedef struct tagWINDOWPLACEMENT
    ::u32  length;
    ::u32  flags;
    ::u32  showCmd;
-   POINT32 pointMinPosition;
-   POINT32 pointMaxPosition;
-   RECT32  rcNormalPosition;
+   POINT_I32 pointMinPosition;
+   POINT_I32 pointMaxPosition;
+   RECTANGLE_I32  rcNormalPosition;
 #ifdef _MAC
-   RECT32  rcDevice;
+   RECTANGLE_I32  rcDevice;
 #endif
 } WINDOWPLACEMENT;
 typedef WINDOWPLACEMENT *PWINDOWPLACEMENT,*LPWINDOWPLACEMENT;
@@ -997,8 +997,8 @@ oswindow    hwnd;
 ::u32        message;
 WPARAM      wParam;
 LPARAM      lParam;
-POINT32       pt;
-} MESSAGE, * LPMESSAGE;
+POINT_I32       pt;
+} MESSAGE, * MESSAGE *;
 
 */
 
@@ -1033,7 +1033,7 @@ int_bool WINAPI IsIconic(oswindow hWnd);
 //
 //#endif
 
-//int_bool RedrawWindow(oswindow hWnd, const RECT32 *lprcUpdate, HRGN hrgnUpdate, ::u32 flags);
+//int_bool RedrawWindow(oswindow hWnd, const RECTANGLE_I32 *lprcUpdate, HRGN hrgnUpdate, ::u32 flags);
 
 
 /*
@@ -1542,11 +1542,11 @@ typedef struct tagSTYLESTRUCT
  */
 typedef struct tagMINMAXINFO
 {
-   POINT32 pointReserved;
-   POINT32 pointMaxSize;
-   POINT32 pointMaxPosition;
-   POINT32 pointMinTrackSize;
-   POINT32 pointMaxTrackSize;
+   POINT_I32 pointReserved;
+   POINT_I32 pointMaxSize;
+   POINT_I32 pointMaxPosition;
+   POINT_I32 pointMinTrackSize;
+   POINT_I32 pointMaxTrackSize;
 } MINMAXINFO, *PMINMAXINFO, *LPMINMAXINFO;
 
 #define e_message_paintICON                    0x0026
@@ -2187,7 +2187,7 @@ typedef struct _tagWINDOWPOS
  */
 typedef struct tagNCCALCSIZE_PARAMS
 {
-   RECT32         rgrc[3];
+   RECTANGLE_I32         rgrc[3];
    PWINDOWPOS     lppos;
 } NCCALCSIZE_PARAMS, *LPNCCALCSIZE_PARAMS;
 
@@ -2195,7 +2195,7 @@ typedef struct tagNCCALCSIZE_PARAMS
 //#pragma endregion
 
 /*
- * e_message_nccalcsize "interaction_impl valid rect" return values
+ * e_message_nccalcsize "interaction_impl valid rectangle_i32" return values
  */
 #define WVR_ALIGNTOP        0x0010
 #define WVR_ALIGNLEFT       0x0020
@@ -2653,18 +2653,18 @@ LPTRACKMOUSEEVENT lpEventTrack);
 
 
 
-CLASS_DECL_ACME int_bool CopyRect(LPRECT32 prectDest, LPCRECT32 pcrectSrc);
-CLASS_DECL_ACME int_bool PtInRect(LPCRECT32 prect, POINT32 point);
-CLASS_DECL_ACME int_bool SetRect(LPRECT32 prect, i32 x1, i32 y1, i32 x2, i32 y2);
-CLASS_DECL_ACME int_bool SetRectEmpty(LPRECT32 prect);
-CLASS_DECL_ACME int_bool EqualRect(LPCRECT32 prect1, LPCRECT32 prect2);
-CLASS_DECL_ACME int_bool InflateRect(LPRECT32 prect, i32 x, i32 y);
-CLASS_DECL_ACME int_bool OffsetRect(LPRECT32 prect, i32 x, i32 y);
-CLASS_DECL_ACME int_bool IntersectRect(LPRECT32 prect, LPCRECT32 prect1, LPCRECT32 prect2);
-//CLASS_DECL_ACME int_bool x_intersect_rect(LPRECT32 prect, LPCRECT32 prect1, LPCRECT32 prect2);
-//CLASS_DECL_ACME int_bool y_intersect_rect(LPRECT32 prect, LPCRECT32 prect1, LPCRECT32 prect2);
-CLASS_DECL_ACME int_bool UnionRect(LPRECT32 prect, LPCRECT32 prect1, LPCRECT32 prect2);
-CLASS_DECL_ACME int_bool SubtractRect(LPRECT32 prect, LPCRECT32 prect1, LPCRECT32 prect2);
+CLASS_DECL_ACME int_bool CopyRect(LPRECT32 prectDest, const RECTANGLE_I32 * pcrectSrc);
+CLASS_DECL_ACME int_bool PtInRect(const RECTANGLE_I32 * prectangle, POINT_I32 point_i32);
+CLASS_DECL_ACME int_bool SetRect(LPRECT32 prectangle, i32 x1, i32 y1, i32 x2, i32 y2);
+CLASS_DECL_ACME int_bool SetRectEmpty(LPRECT32 prectangle);
+CLASS_DECL_ACME int_bool EqualRect(const RECTANGLE_I32 * prect1, const RECTANGLE_I32 * prect2);
+CLASS_DECL_ACME int_bool InflateRect(LPRECT32 prectangle, i32 x, i32 y);
+CLASS_DECL_ACME int_bool OffsetRect(LPRECT32 prectangle, i32 x, i32 y);
+CLASS_DECL_ACME int_bool IntersectRect(LPRECT32 prectangle, const RECTANGLE_I32 * prect1, const RECTANGLE_I32 * prect2);
+//CLASS_DECL_ACME int_bool x_intersect_rect(LPRECT32 prectangle, const RECTANGLE_I32 * prect1, const RECTANGLE_I32 * prect2);
+//CLASS_DECL_ACME int_bool y_intersect_rect(LPRECT32 prectangle, const RECTANGLE_I32 * prect1, const RECTANGLE_I32 * prect2);
+CLASS_DECL_ACME int_bool UnionRect(LPRECT32 prectangle, const RECTANGLE_I32 * prect1, const RECTANGLE_I32 * prect2);
+CLASS_DECL_ACME int_bool SubtractRect(LPRECT32 prectangle, const RECTANGLE_I32 * prect1, const RECTANGLE_I32 * prect2);
 
 //typedef struct oswindow_data *   oswindow;
 
@@ -2678,11 +2678,11 @@ CLASS_DECL_ACME int_bool SubtractRect(LPRECT32 prect, LPCRECT32 prect1, LPCRECT3
 //   WPARAM      wParam;
 //   LPARAM      lParam;
 //   ::u32       time;
-//   POINT32       pt;
+//   POINT_I32       pt;
 //#ifdef _MAC
 //   ::u32       lPrivate;
 //#endif
-//} MESSAGE, *PMESSAGE, *NPMESSAGE, *LPMESSAGE;
+//} MESSAGE, *PMESSAGE, *NPMESSAGE, *MESSAGE *;
 
 CLASS_DECL_ACME int_bool TranslateMessage(const MESSAGE * pmsg);
 CLASS_DECL_ACME LRESULT DispatchMessage(const MESSAGE * pmsg);
@@ -2692,11 +2692,11 @@ CLASS_DECL_ACME LRESULT DispatchMessage(const MESSAGE * pmsg);
 void set_TranslateMessage(int_bool (*pfn)(const MESSAGE * lpmessage));
 void set_DispatchMessage(LRESULT (*pfn)(const MESSAGE * lpmessage));
 
-CLASS_DECL_ACME int_bool IsRectEmpty(LPCRECT32 lpcrect);
+CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * lpcrect);
 
 //#ifdef cplusplus
 //
-//CLASS_DECL_ACME int_bool IsRectEmpty(const ::rect & rect);
+//CLASS_DECL_ACME int_bool IsRectEmpty(const ::rectangle_i32 & rectangle);
 //
 //#endif
 

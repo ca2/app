@@ -1,5 +1,5 @@
 #include "framework.h"
-#include <stdio.h>
+#include "acme/operating_system.h"
 
 #ifdef WINDOWS
 #include <Shcore.h>
@@ -59,10 +59,10 @@ memory_base & memory_base::prefix_der_length()
       move_and_grow(1 + iLen);
       get_data()[0] = 0x80 | iLen;
       auto s = get_size() - 1 - iLen;
-      u8 * point = (u8 *)&s;
+      u8 * p = (u8 *)&s;
       for(i32 i = 1; i <= iLen; i++)
       {
-         get_data()[i] = point[iLen - i];
+         get_data()[i] = p[iLen - i];
       }
    }
    return *this;
@@ -110,7 +110,7 @@ bool memory_base::set_size(memsize dwNewLength)
 
    //if(!is_enabled())
    //{
-   //   ASSERT(FALSE);
+   //   ASSERT(false);
    //   return false;
    //}
 
@@ -170,7 +170,7 @@ bool memory_base::allocate_internal(memsize dwNewLength)
 
    //if(!is_enabled())
    //{
-   //   ASSERT(FALSE);
+   //   ASSERT(false);
    //   return false;
    //}
 
@@ -559,7 +559,7 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 
    }
 
-   len = __min(natural(len),get_size() - pos);
+   len = minimum(natural(len),get_size() - pos);
 
    if(len <= 0)
    {
@@ -585,20 +585,20 @@ memory_base & memory_base::erase(memsize pos,memsize len)
 
 #ifdef WINDOWS_DESKTOP
 
-
-comptr < IStream > memory_base::create_istream() const
-{
-
-   if (get_data() == nullptr)
-   {
-
-      return nullptr;
-
-   }
-
-   return ::SHCreateMemStream(get_data(),(::u32)get_size());
-
-}
+//
+//comptr < IStream > memory_base::create_istream() const
+//{
+//
+//   if (get_data() == nullptr)
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return ::SHCreateMemStream(get_data(),(::u32)get_size());
+//
+//}
 
 
 #elif defined(_UWP)
@@ -1783,7 +1783,7 @@ CFDataRef memory_base::get_os_cf_data(memsize pos, memsize size) const
    {
       size = get_size() - pos;
    }
-   return CFDataCreate(kCFAllocatorDefault, (const ::u328 *)&get_data()[pos], (CFIndex)size);
+   return CFDataCreate(kCFAllocatorDefault, (const ::u328 *)&get_data()[pos], (CFIndex)size_i32);
 }
 
 

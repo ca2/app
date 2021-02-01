@@ -105,7 +105,7 @@ namespace graphics
    }
 
 
-   index multiple_buffer::find_best_buffer(const ::size & size)
+   index multiple_buffer::find_best_buffer(const ::size_i32 & size)
    {
 
       sync_lock sl(mutex());
@@ -132,7 +132,7 @@ namespace graphics
 
          iFound = m_iDone;
 
-         ::size sizeBuffer = m_imageaBuffer[iFound]->get_size();
+         ::size_i32 sizeBuffer = m_imageaBuffer[iFound]->get_size();
 
          bBigger = sizeBuffer.cx > size.cx || sizeBuffer.cy > size.cy;
 
@@ -155,7 +155,7 @@ namespace graphics
 
          }
 
-         ::size sizeBuffer = m_imageaBuffer[i]->get_size();
+         ::size_i32 sizeBuffer = m_imageaBuffer[i]->get_size();
 
          if (size == sizeBuffer)
          {
@@ -203,9 +203,9 @@ namespace graphics
 
             }
 
-            ::size sizeBuffer = m_imageaBuffer[i]->get_size();
+            ::size_i32 sizeBuffer = m_imageaBuffer[i]->get_size();
 
-            if (sizeBuffer == size)
+            if (sizeBuffer == size_i32)
             {
 
                iFound = i;
@@ -272,7 +272,7 @@ namespace graphics
       if (!bFoundExact)
       {
 
-         strFormat.Format(" buffer size %d, %d", pimageBuffer2->width(), pimageBuffer2->height());
+         strFormat.Format(" buffer size_i32 %d, %d", pimageBuffer2->width(), pimageBuffer2->height());
 
          s_iLastExact = -1;
 

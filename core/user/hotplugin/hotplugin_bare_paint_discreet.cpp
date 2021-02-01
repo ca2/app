@@ -9,7 +9,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const ::rect & rectParam)
+   void plugin::on_bare_paint_discreet(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectParam)
 
    {
 
@@ -22,15 +22,15 @@ namespace hotplugin
 
       }
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
       get_window_rect(&rectWindow);
       i32 cx = rectWindow.right - rectWindow.left;
       i32 cy = rectWindow.bottom - rectWindow.top;
-      ::rect rect;
-      rect.left = 0;
-      rect.top = 0;
-      rect.bottom = cy;
-      rect.right = cx;
+      ::rectangle_i32 rectangle;
+      rectangle.left = 0;
+      rectangle.top = 0;
+      rectangle.bottom = cy;
+      rectangle.right = cx;
 
       ::draw2d::pen_pointer pen(e_create);
 
@@ -46,11 +46,11 @@ namespace hotplugin
 
       pgraphics->SelectObject(brush);
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
-      pgraphics->rectangle(rectClient);
+      pgraphics->rectangle_i32(rectClient);
 
 
 
@@ -117,7 +117,7 @@ namespace hotplugin
 
       ::draw2d::path_pointer pathClip1(e_create);
 
-      ::rect rectClip1;
+      ::rectangle_i32 rectClip1;
 
       rectClip1.left = rectParam.left + iBorder1;
 
@@ -161,7 +161,7 @@ namespace hotplugin
 
       ::draw2d::path_pointer pathClip(e_create);
 
-      ::rect rectClip;
+      ::rectangle_i32 rectClip;
 
       rectClip.left = rectParam.left + cx / iRate - iBorder;
 
@@ -180,7 +180,7 @@ namespace hotplugin
       //pgraphics->exclude_clip(pathClip);
 
 
-      ::point pa[4];
+      ::point_i32 pa[4];
 
       //Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(49, 177 + iBarHeight, 177 + iBarHeight, 177 + 19));
       //graphics2.fill_rect(pbr, rectParam.left , rectParam.top, rectParam.left + cx, rectParam.top + cy);
@@ -254,7 +254,7 @@ namespace hotplugin
 
       br->create_solid(ARGB(90, 90, 90, 80));
 
-      ::rect rect1;
+      ::rectangle_i32 rect1;
 
       rect1.left = rectParam.left + cx / iRate - 1;
 
@@ -289,7 +289,7 @@ namespace hotplugin
       delete pbr;
       }
       }*/
-      ::rect rect2;
+      ::rectangle_i32 rect2;
       {
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          br->create_solid(ARGB(bA, uchR, uchG, uchB));

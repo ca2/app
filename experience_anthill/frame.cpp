@@ -62,14 +62,14 @@ namespace experience
             }
 
 
-            void frame::Glass(::draw2d::graphics_pointer & pgraphics, const ::rect & rectParam)
+            void frame::Glass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectParam)
             {
 
                auto pframewindow = m_pframewindow;
 
-               ::rect rectClient(rectParam);
+               ::rectangle_i32 rectClient(rectParam);
 
-               ::rect rectInflate;
+               ::rectangle_i32 rectInflate;
 
                if (rectClient.is_empty())
                {
@@ -85,7 +85,7 @@ namespace experience
 
                //__pointer(::user::interaction) pwndDesktop = System.get_desktop_window();
 
-               ::rect rectScreen;
+               ::rectangle_i32 rectScreen;
 
                pframewindow->best_monitor(rectScreen);
 
@@ -96,17 +96,17 @@ namespace experience
                pimage1 = create_image({rectClient.width() + iInflate * 2,  rectClient.height() + iInflate * 2});
 
                pimage2 = create_image({rectClient.width() + iInflate * 2,  rectClient.height() + iInflate * 2});
-               ::rect rectWindow = rectClient;
+               ::rectangle_i32 rectWindow = rectClient;
                pframewindow->_001ClientToScreen(rectWindow);
                //pimage = create_image({rectClient.width(),  rectClient.height()});
                //bool b = pimage2->get_graphics()->BitBlt(0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2, pgraphics, rectClient.left - iInflate, rectClient.top - iInflate);
                pimage2->get_graphics()->draw(
                   ::rect_dim(0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2),
                   pgraphics, 
-                  ::point(rectClient.left - iInflate, rectClient.top - iInflate));
+                  ::point_i32(rectClient.left - iInflate, rectClient.top - iInflate));
                //bool b = ::BitBlt(dc2, 0, 0, rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2, hdcScreen, rectClient.left - iInflate, rectClient.top - iInflate);
 
-               m_blur1.blur(pimage1, 2, ::rect(size(rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2)));
+               m_blur1.blur(pimage1, 2, ::rectangle_i32(size(rectClient.width() + iInflate * 2, rectClient.height() + iInflate * 2)));
 
                //spgraphics->Draw3dRect(rectClient, 127 << 24, 127 << 24);
                //rectClient.deflate(1, 1);
@@ -131,7 +131,7 @@ namespace experience
                rectWindow.height(),
                bf);*/
 
-               pgraphics->draw(rectClient, pimage1->g(), ::point(iInflate, iInflate));
+               pgraphics->draw(rectClient, pimage1->g(), ::point_i32(iInflate, iInflate));
 
             }
 
@@ -148,7 +148,7 @@ namespace experience
             //}
 
 
-            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rect & rect, color32_t cr, byte bAlpha)
+            void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, color32_t cr, byte bAlpha)
             {
 
                /*Gdiplus::Graphics g((HDC) pgraphics->get_os_data());
@@ -156,7 +156,7 @@ namespace experience
                Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr)));
                g.FillRectangle(&solidBrush, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top);*/
 
-               System.imaging().color_blend(pgraphics, rect, cr, bAlpha);
+               System.imaging().color_blend(pgraphics, rectangle_i32, cr, bAlpha);
 
             }
 
@@ -262,19 +262,19 @@ namespace experience
             }
 
 
-            bool frame::hit_test(const POINT32 &point, enum_element &eelementParam)
+            bool frame::hit_test(const POINT_I32 &point, enum_element &eelementParam)
             {
                
-               ::rect rect;
+               ::rectangle_i32 rectangle;
                
                for (enum_element eelement = (enum_element)(ElementNone + 1);
                      eelement < ElementEnd;
                      eelement++)
                {
                   
-                  get_element_rect(rect, eelement);
+                  get_element_rect(rectangle, eelement);
 
-                  if (rect.contains(point))
+                  if (rectangle.contains(point))
                   {
                      
                      eelementParam = eelement;
@@ -373,7 +373,7 @@ namespace experience
 
                }
 
-               m_minSize = size(144, 48);
+               m_minSize = size_i32(144, 48);
                m_minSize.cy = 48;
 
                set_frame_color_system_default_001();
@@ -443,14 +443,14 @@ namespace experience
             //}
 
 
-            void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rect & rectParam, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight)
+            void frame::Draw3dRectSide(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectParam, enum_border eborder, color32_t crTopLeft, color32_t crBottomRight)
             {
 
-               ::rect rect(rectParam);
-               i32 x = rect.left;
-               i32 y = rect.top;
-               i32 cx = rect.width();
-               i32 cy = rect.height();
+               ::rectangle_i32 rectangle(rectParam);
+               i32 x = rectangle.left;
+               i32 y = rectangle.top;
+               i32 cx = rectangle.width();
+               i32 cy = rectangle.height();
 
 
 
@@ -555,7 +555,7 @@ namespace experience
                if (pframewindow->layout().is_minimal())
                {
 
-                  ::rect rectIcon;
+                  ::rectangle_i32 rectIcon;
 
                   if (get_element_rect(rectIcon, ElementTopLeftIcon))
                   {
@@ -571,7 +571,7 @@ namespace experience
 
                   }
 
-                  ::rect rectGrip;
+                  ::rectangle_i32 rectGrip;
 
                   if (get_element_rect(rectGrip, ElementMoveGripMinimal))
                   {
@@ -608,7 +608,7 @@ namespace experience
 
                   }
 
-                  ::rect rectIcon;
+                  ::rectangle_i32 rectIcon;
 
                   auto pframewindow = m_pframewindow;
 
@@ -646,13 +646,13 @@ namespace experience
 
 }
 
-                  ::rect rect;
+                  ::rectangle_i32 rectangle;
 
                   
 
-                  pframewindow->get_window_rect(rect);
+                  pframewindow->get_window_rect(rectangle);
 
-                  rect -= rect.top_left();
+                  rectangle_i32 -= rectangle.top_left();
 
                   if (get_element_rect(rectIcon, ElementTopLeftIcon))
                   {
@@ -710,14 +710,14 @@ namespace experience
 
 
 
-            void frame::GetFrameRect(rect * prect)
+            void frame::GetFrameRect(rectangle_i32 * prectangle)
             {
 
-               m_pframewindow->get_window_rect(prect);
+               m_pframewindow->get_window_rect(prectangle);
 
-               prect->offset(-prect->top_left());
+               prectangle->offset(-prectangle->top_left());
 
-               prect->deflate(10,10);
+               prectangle->deflate(10,10);
 
             }
 

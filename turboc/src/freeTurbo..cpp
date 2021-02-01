@@ -27,7 +27,7 @@
 /*  in graphics.h.  The standard usage of the getimage function (and its
   friends) as envisaged by Borland's docs is this:
 
-  1.  Call "imagesize" to find out the size of the image buffer needed.
+  1.  Call "imagesize" to find out the size_i32 of the image buffer needed.
 /*  2.  Allocate the image buffer with "calloc" or "malloc".
 /*  3.  Fill the image buffer with "getimage".
 /*  4.  Call "putimage" one or more times to write the image somewhere.
@@ -151,7 +151,7 @@ freeTurbo (void *object)
 }
 
 //------------------------------------------------------------------------
-// If not using X-window system, the whole point is moot ...
+// If not using X-window system, the whole point_i32 is moot ...
 
 #else // WITH_X
 

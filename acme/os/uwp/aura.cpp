@@ -330,7 +330,7 @@ string normalize_path(const char * lpcszPath)
 
 
 
-string key_to_char(WPARAM wparam, LPARAM lparam)
+string key_to_char(wparam wparam, lparam lparam)
 {
    __throw(::exception::exception("todo"));
 }

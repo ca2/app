@@ -28,7 +28,7 @@ namespace experience
          virtual ~menu_manager();
 
 
-         bool OnLButtonDblClk(::u32 nFlags, const ::point & point);
+         bool OnLButtonDblClk(::u32 nFlags, const ::point_i32 & point);
          void relay_event(::message::message * pmessage);
 
          bool set_frame_window(frame_window * pframewindow);

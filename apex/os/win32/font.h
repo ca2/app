@@ -11,10 +11,10 @@ namespace win32
    public:
 
 
-
 #ifdef WINDOWS
       HFONT m_hfont;
 #endif
+
 
       font();
       virtual ~font();

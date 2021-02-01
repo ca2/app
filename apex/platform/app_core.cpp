@@ -1,8 +1,7 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 #include "app_core.h"
 #include "static_setup.h"
-#include "apex/os/_os.h"
-#include "apex/node/_node.h"
 #include "apex/platform/static_start.h"
 #include <stdio.h>
 #include <time.h>
@@ -19,7 +18,7 @@ CLASS_DECL_APEX void os_term_windowing();
 
 //extern string_map < __pointer(::apex::library) >* g_pmapLibrary ;
 //extern string_map < PFN_NEW_APEX_LIBRARY >* g_pmapNewAuraLibrary;
-//extern ::mutex* &System.m_mutexLibrary;
+//extern ::mutex * &System.m_mutexLibrary;
 
 
 #ifdef RASPBIAN
@@ -321,7 +320,7 @@ CLASS_DECL_APEX void set_debug_pointer(void * p);
 
 #ifdef WINDOWS_DESKTOP
 
-   stra3 = get_c_args_from_string(ca2_command_line(m_hinstance));
+   stra3 = get_c_args_from_string(ca2_command_line((hinstance) m_hinstance));
 
 #elif defined(__APPLE__)
 
@@ -1932,8 +1931,8 @@ __result(::apex::application) app_core::new_application(const char* pszAppId)
    if (!papp->is_serviceable() || papp->is_user_service())
    {
 
-      System.m_spmutexUserAppData = __new(::mutex(e_create_new, false, "Local\\ca2.UserAppData"));
-      System.m_spmutexSystemAppData = __new(::mutex(e_create_new, false, "Local\\ca2.SystemAppData"));
+      System.m_pmutexUserAppData = __new(::mutex(e_create_new, false, "Local\\ca2.UserAppData"));
+      System.m_pmutexSystemAppData = __new(::mutex(e_create_new, false, "Local\\ca2.SystemAppData"));
 
    }
 

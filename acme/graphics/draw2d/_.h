@@ -1,7 +1,7 @@
 #pragma once
 
 
-CLASS_DECL_ACME color32_t make_colorref(i32 a, i32 rect, i32 g, i32 b);
+
 
 
 inline byte clampAndConvert(double v)
@@ -17,21 +17,10 @@ inline byte clampAndConvert(double v)
 
 }
 
-CLASS_DECL_ACME color32_t argb_swap_rb(color32_t cr);
 
 
-#ifdef WINDOWS
 
 
-typedef RGBQUAD WINRGBQUAD;
-#ifdef _UWP
-typedef WINRGBQUAD * LPWINRGBQUAD;
-#else
-typedef LPRGBQUAD LPWINRGBQUAD;
-#endif
-
-
-#else
 
 
 typedef struct tagWINRGBQUAD {
@@ -42,13 +31,7 @@ typedef struct tagWINRGBQUAD {
 } WINRGBQUAD, * LPWINRGBQUAD;
 
 
-#endif
-
-
 #include "_const.h"
-
-
-#include "colorref_array.h"
 
 
 #include "opacity.h"
@@ -57,8 +40,25 @@ typedef struct tagWINRGBQUAD {
 #include "color.h"
 
 
+#include "colorref_array.h"
+
+
+
 
 
 CLASS_DECL_ACME string os_font_name(enum_font efont);
 CLASS_DECL_ACME string os_font_name(enum_operating_system eoperatingsystem, int iVariant, enum_font efont);
 CLASS_DECL_ACME string linux_font_name(enum_linux_distribution elinuxdistribution, enum_font efont);
+
+
+
+
+template < class VALUE, typename ARG_VALUE = typename argument_of < VALUE >::type >
+using colorrefmap = map < color32_t, VALUE, typename argument_of < color32_t >::type, ARG_VALUE >;
+
+
+using colorref_set = isoset < color32_t >;
+
+
+
+

@@ -228,7 +228,7 @@ namespace ftp
       insert(cmdRNFR, "RNFR", "RNFR <SP> <pathname> <CRLF>", 1, 0, RFC959, NonDatachannel);
       insert(cmdRNTO, "RNTO", "RNTO <SP> <pathname> <CRLF>", 1, 0, RFC959, NonDatachannel);
       insert(cmdSITE, "SITE", "SITE <SP> <string> <CRLF>", 1, 0, RFC959, NonDatachannel);
-      insert(cmdSIZE, "const size &", "const size & <SP> <pathname> <CRLF>", 1, 0, RFC3659, NonDatachannel);
+      insert(cmdSIZE, "const size_i32 &", "const size_i32 & <SP> <pathname> <CRLF>", 1, 0, RFC3659, NonDatachannel);
       insert(cmdSMNT, "SMNT", "SMNT <SP> <pathname> <CRLF>", 1, 0, RFC959, NonDatachannel);
       insert(cmdSTAT, "STAT", "STAT [<SP> <pathname>] <CRLF>", 1, 1, RFC959, NonDatachannel);
       insert(cmdSTOR, "STOR", "STOR <SP> <pathname> <CRLF>", 1, 0, RFC959, DatachannelWrite);

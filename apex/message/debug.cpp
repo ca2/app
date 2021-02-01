@@ -1,9 +1,7 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-//#include "apex/user/_user.h"
-#endif
+#include "apex/operating_system.h"
 #include "apex/message.h"
-#include "acme/os/cross/windows/_windows.h"
+
 
 #define __msg_entry(x) if(uMessage == (x)) { str = (#x); }
 

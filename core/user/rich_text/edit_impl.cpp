@@ -486,23 +486,23 @@ namespace user
       }
 
 
-      ::sized edit_impl::get_size()
+      ::size_f64 edit_impl::get_size()
       {
 
          if (is_picture_enabled())
          {
 
-            return m_ppictureimpl->m_rect.size();
+            return m_ppictureimpl->m_rectangle.size();
 
          }
          else
          {
 
-            ::rect rect;
+            ::rectangle_i32 rectangle;
 
-            get_window_rect(rect);
+            get_window_rect(rectangle);
 
-            return rect.size();
+            return rectangle.size();
 
          }
 
@@ -520,14 +520,14 @@ namespace user
       }
 
 
-      bool edit_impl::get_element_rect(RECT32 * prect, index i, enum_element eelement)
+      bool edit_impl::get_element_rect(RECTANGLE_I32 * prectangle, index i, enum_element eelement)
 
       {
 
          if (eelement == ::user::e_element_icon)
          {
 
-            if (!get_item_rect(prect, i))
+            if (!get_item_rect(prectangle, i))
 
             {
 
@@ -541,7 +541,7 @@ namespace user
          else if (eelement == ::user::e_element_text)
          {
 
-            if (!get_item_rect(prect, i))
+            if (!get_item_rect(prectangle, i))
 
             {
 
@@ -558,7 +558,7 @@ namespace user
 
       }
 
-      bool edit_impl::get_item_rect(RECT32 * prect, index i)
+      bool edit_impl::get_item_rect(RECTANGLE_I32 * prectangle, index i)
 
       {
 
@@ -594,7 +594,7 @@ namespace user
       void edit_impl::on_hit_test(::user::item & item)
       {
 
-         //::pointd pointHit = item.m_pointHitTest;
+         //::point_f64 pointHit = item.m_pointHitTest;
 
          //if (is_picture_enabled())
          //{
@@ -646,7 +646,7 @@ namespace user
 
          //::aura::draw_context* pdrawcontext = pgraphics->::aura::simple_chain < ::aura::draw_context >::get_last();
 
-         //::rect rectClient;
+         //::rectangle_i32 rectClient;
 
          //if (pdrawcontext != nullptr)
          //{
@@ -729,7 +729,7 @@ namespace user
          else
          {*/
 
-            ::rect rectClient;
+            ::rectangle_i32 rectClient;
 
             get_client_rect(rectClient);
 
@@ -821,21 +821,21 @@ namespace user
       }
 
 
-      bool edit_impl::_001IsPointInside(::point pointParam)
+      bool edit_impl::_001IsPointInside(::point_i32 pointParam)
       {
 
          if (is_picture_enabled())
          {
 
-            pointd point(pointParam);
+            point_f64 point_i32(pointParam);
 
             _001ScreenToClient(point);
 
-            ::rect rWindow;
+            ::rectangle_i32 rWindow;
 
             get_window_rect(rWindow);
 
-            rectd rectWindow;
+            rectangle_f64 rectWindow;
 
             __copy(rectWindow, rWindow);
 
@@ -843,15 +843,15 @@ namespace user
 
             copy(rectWindow, rectWindow);
 
-            point += rectWindow.top_left();
+            point_i32 += rectWindow.top_left();
 
             _rtransform_point(point);
 
-            point -= rectWindow.top_left();
+            point_i32 -= rectWindow.top_left();
 
             auto rectClient = get_client_rect();
 
-            return rectClient.contains(::point(point));
+            return rectClient.contains(::point_i32(point));
 
          }
 
@@ -1420,7 +1420,7 @@ namespace user
                   //i32 x;
                   //index iLine = SelToLineX(m_pdata->m_iSelEnd, x);
 
-                  //::rect rectClient;
+                  //::rectangle_i32 rectClient;
 
                   //GetFocusRect(rectClient);
 
@@ -1454,7 +1454,7 @@ namespace user
 
                   //index iLine = SelToLineX(m_pdata->m_iSelEnd, x);
 
-                  //::rect rectClient;
+                  //::rectangle_i32 rectClient;
 
                   //GetFocusRect(rectClient);
 
@@ -1977,7 +1977,7 @@ namespace user
 
          }
 
-         place(m_ppictureimpl->m_rect);
+         place(m_ppictureimpl->m_rectangle);
 
       }
 
@@ -1989,7 +1989,7 @@ namespace user
 
          m_pdata->write(stream);
 
-         ::rect rectWindow;
+         ::rectangle_i32 rectWindow;
 
          ((edit_impl *)this)->get_window_rect(rectWindow);
 
@@ -2014,7 +2014,7 @@ namespace user
 
          m_pdata->read(stream);
 
-         ::rect rectWindow;
+         ::rectangle_i32 rectWindow;
 
          stream >> rectWindow;
 
@@ -2029,7 +2029,7 @@ namespace user
       }
 
 
-      void edit_impl::get_text_composition_area(::rect & r)
+      void edit_impl::get_text_composition_area(::rectangle_i32 & r)
       {
 
       }

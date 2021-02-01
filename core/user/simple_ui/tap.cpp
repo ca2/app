@@ -173,11 +173,11 @@ namespace simple_ui
    bool tap::is_hover()
    {
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       get_window_rect(&rectWindow);
 
-      ::point pointCursor;
+      ::point_i32 pointCursor;
 
       auto psession = Session;
 
@@ -216,7 +216,7 @@ namespace simple_ui
 
 #endif
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(rectClient);
 
@@ -246,7 +246,7 @@ namespace simple_ui
 
          color32_t crBorderIn;
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(rectClient);
 
@@ -385,13 +385,13 @@ namespace simple_ui
 
          ::draw2d::brush_pointer br(e_create);
 
-         br->CreateLinearGradientBrush(point(rectClient.left, rectClient.top - 1), point(rectClient.left, rectClient.top + iBorderH + 2), crOut, crIn);
+         br->CreateLinearGradientBrush(point_i32(rectClient.left, rectClient.top - 1), point_i32(rectClient.left, rectClient.top + iBorderH + 2), crOut, crIn);
 
-         pgraphics->fill_rect(::rect(rectClient.left + 1, rectClient.top + 1, (i32)rectClient.width(), iBorderH), br);
+         pgraphics->fill_rect(::rectangle_i32(rectClient.left + 1, rectClient.top + 1, (i32)rectClient.width(), iBorderH), br);
 
-         br->CreateLinearGradientBrush(point(rectClient.left, rectClient.top + iBorderH - 1), point(rectClient.left, rectClient.top + iBorderH * 2 + 2), crIn, crOut);
+         br->CreateLinearGradientBrush(point_i32(rectClient.left, rectClient.top + iBorderH - 1), point_i32(rectClient.left, rectClient.top + iBorderH * 2 + 2), crIn, crOut);
 
-         pgraphics->fill_rect(::rect(rectClient.left + 1, rectClient.top + iBorderH, rectClient.left + (i32)rectClient.width(), rectClient.top + iBorderH + iBorderH), br);
+         pgraphics->fill_rect(::rectangle_i32(rectClient.left + 1, rectClient.top + iBorderH, rectClient.left + (i32)rectClient.width(), rectClient.top + iBorderH + iBorderH), br);
 
          /*Gdiplus::Pen pen1(crBorderOut);
 
@@ -401,7 +401,7 @@ namespace simple_ui
 
          pen->create_solid(1.0, crBorderIn);
 
-         pgraphics->draw_rect(::rect(rectClient.left + 1, rectClient.top + 1, rectClient.left + (i32)rectClient.width() - 2, rectClient.top + iBorderH * 2 - 2), pen);
+         pgraphics->draw_rect(::rectangle_i32(rectClient.left + 1, rectClient.top + 1, rectClient.left + (i32)rectClient.width() - 2, rectClient.top + iBorderH * 2 - 2), pen);
 
       }
 
@@ -418,7 +418,7 @@ namespace simple_ui
    void tap::simple_ui_draw_text(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -519,7 +519,7 @@ namespace simple_ui
    void tap::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 

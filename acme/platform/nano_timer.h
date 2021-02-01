@@ -8,7 +8,7 @@ public:
 
 #ifdef WINDOWS
 
-   HANDLE      m_hTimer;
+   windows_handle      m_hTimer;
 
 #endif
 
@@ -24,6 +24,8 @@ public:
 
 
 };
+
+
 
 
 

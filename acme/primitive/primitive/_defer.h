@@ -21,7 +21,7 @@ template < typename TYPE, typename BASE_TYPE>
 inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory(const ::id & id)
 {
 
-   cslock lock(::factory::get_factory_critical_section());
+   critical_section_lock lock(::factory::get_factory_critical_section());
 
    auto pfactory = __new(::factory::factory< TYPE, BASE_TYPE >());
 
@@ -36,7 +36,7 @@ template < typename TYPE, typename BASE_TYPE>
 inline __pointer(::factory::factory_base < BASE_TYPE >) create_factory()
 {
 
-   cslock lock(::factory::get_factory_critical_section());
+   critical_section_lock lock(::factory::get_factory_critical_section());
 
    auto pfactory = __new(::factory::factory< TYPE, BASE_TYPE >());
 
@@ -51,7 +51,7 @@ template < typename TYPE, typename BASE_TYPE>
 inline __pointer(::factory::factory_base < BASE_TYPE >) create_reusable_factory()
 {
 
-   cslock lock(::factory::get_factory_critical_section());
+   critical_section_lock lock(::factory::get_factory_critical_section());
 
    auto pfactory = __new(::factory::reusable_factory< TYPE, BASE_TYPE >());
 
@@ -230,6 +230,55 @@ namespace papaya
 
 
 } // namespace papaya
+
+
+
+namespace factory
+{
+
+
+   template < typename TYPE, typename BASE_TYPE >
+   inline __pointer(BASE_TYPE) reusable_factory < TYPE, BASE_TYPE >::_call_new()
+   {
+
+      {
+
+         critical_section_lock lock(&m_criticalsection);
+
+         if (m_pfree)
+         {
+
+            auto pNew = m_pfree;
+
+            m_pfree = pNew->m_pnext;
+
+            pNew->reuse();
+
+            return pNew;
+
+         }
+
+      }
+
+      return factory < TYPE, BASE_TYPE >::_call_new();
+
+   }
+
+
+   template < typename TYPE, typename BASE_TYPE >
+   inline void reusable_factory < TYPE, BASE_TYPE >::return_back(BASE_TYPE * p)
+   {
+
+      critical_section_lock lock(&m_criticalsection);
+
+      p->m_pnext = m_pfree;
+
+      m_pfree = p;
+
+   }
+
+
+} // namespace factory
 
 
 

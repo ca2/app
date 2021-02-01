@@ -58,9 +58,9 @@ RawResizeTurboC (gint Rows, gint Columns)
   // that don't yet exist, because the sizing has not yet completed,
   // and this can cause a segfault.  Anyhow, the loop is an attempt 
   // to kill time, or fill up the buffer, or whatever.  It aborts
-  // if it finds that the size has actually reached the correct
+  // if it finds that the size_i32 has actually reached the correct
   // value, so there's not too much harm in it except for remote
-  // logins (in which case the remote terminal size doesn't seem
+  // logins (in which case the remote terminal size_i32 doesn't seem
   // to be determined correctly).  We make a feeble attempt to 
   // determine if the login is remote, so that we can shorten the
   // loop in that case.
@@ -113,7 +113,7 @@ ResizeTurboC (gint Code)
     {
       // What this code does is to undo the manual resizing which the
       // user has performed, and to restore the physical terminal
-      // size to what textmode has set it at.  Unfortunately, this 
+      // size_i32 to what textmode has set it at.  Unfortunately, this 
       // only works if the ANSI sequence for resizing the screen works.
       // Fortunately, this works in xterm.
       struct winsize winsz;

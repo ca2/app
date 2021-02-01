@@ -28,26 +28,26 @@ namespace aura
          simple_chain < TYPE > ::m_pnext = nullptr;
       }
 
-      void chain(TYPE * point)
+      void chain(TYPE * p)
       {
          if (simple_chain < TYPE > ::m_pnext == nullptr)
          {
-            simple_chain < TYPE > ::m_pnext = point;
+            simple_chain < TYPE > ::m_pnext = p;
          }
          else
          {
-            simple_chain < TYPE > ::m_pnext->simple_chain < TYPE > ::chain(point);
+            simple_chain < TYPE > ::m_pnext->simple_chain < TYPE > ::chain(p);
          }
       }
-      void unchain(TYPE * point)
+      void unchain(TYPE * p)
       {
-         if (simple_chain < TYPE > ::m_pnext == point)
+         if (simple_chain < TYPE > ::m_pnext == p)
          {
             simple_chain < TYPE > ::m_pnext = simple_chain < TYPE > ::m_pnext->simple_chain < TYPE > ::m_pnext;
          }
          else
          {
-            simple_chain < TYPE > ::m_pnext->simple_chain < TYPE > ::unchain(point);
+            simple_chain < TYPE > ::m_pnext->simple_chain < TYPE > ::unchain(p);
          }
       }
 
@@ -79,8 +79,8 @@ namespace aura
    public:
 
       ::draw2d::graphics_pointer    m_pgraphics;
-      ::rect                        m_rectClient;
-      ::rect                        m_rectWindow;
+      ::rectangle_i32                        m_rectClient;
+      ::rectangle_i32                        m_rectWindow;
       bool                          m_bListItemHover;
       bool                          m_bListSubItemHover;
       bool                          m_bListItemSelected;

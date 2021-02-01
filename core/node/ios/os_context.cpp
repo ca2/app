@@ -808,7 +808,7 @@ namespace ios
    }
 
 
-   void os_context::post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam)
+   void os_context::post_to_all_threads(const ::id & id, wparam wparam, lparam lparam)
    {
 
 //      __throw(not_implemented());
@@ -891,10 +891,10 @@ CLASS_DECL_CORE bool _istlead(i32 ch)
 
 
 
-int_bool GetCursorPos(POINT32 * lppointCursor)
+int_bool GetCursorPos(POINT_I32 * lppointCursor)
 {
 
-   /*   HIPoint point;
+   /*   HIPoint point_i32;
 
    HICoordinateSpace space = kHICoordSpaceScreenPixel;
 

@@ -52,7 +52,7 @@ int maxlen
 *       the length of the string put in the buffer.  If the length
 *       of the string exceeds the length of the buffer, maxlen,
 *       then nullptr is returned.  If pnbuf = nullptr, maxlen is ignored.
-*       An entry point "_getdcwd()" is defined with takes the above
+*       An entry point_i32 "_getdcwd()" is defined with takes the above
 *       parameters, plus a drive number.  "_getcwd()" is implemented
 *       as a call to "_getcwd()" with the default drive (0).
 *

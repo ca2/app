@@ -1,53 +1,52 @@
 #include "framework.h"
-#include "acme/node/windows/_windows.h"
+#include "acme/operating_system.h"
 
 
-
-bool CLASS_DECL_ACME __is_combo_box_control(oswindow oswindow, ::u32 nStyle)
+bool CLASS_DECL_ACME __is_combo_box_control(HWND hwnd, ::u32 nStyle)
 {
-   if (oswindow == nullptr)
-      return FALSE;
+   if (hwnd == nullptr)
+      return false;
    // do cheap style compare first
-   if ((::u32)(::GetWindowLong(oswindow, GWL_STYLE) & 0x0F) != nStyle)
-      return FALSE;
+   if ((::u32)(::GetWindowLong(hwnd, GWL_STYLE) & 0x0F) != nStyle)
+      return false;
 
    // do expensive classname compare next
    wchar_t szCompare[_countof("combobox")+1];
-   ::GetClassNameW(oswindow, szCompare, _countof(szCompare));
+   ::GetClassNameW(hwnd, szCompare, _countof(szCompare));
    return ::wcsicmp(szCompare, L"combobox") == 0;
 }
 
 
-bool CLASS_DECL_ACME __compare_class_name(oswindow oswindow, const char * pszClassName)
+bool CLASS_DECL_ACME __compare_class_name(HWND hwnd, const char * pszClassName)
 {
 
-   ASSERT(::IsWindow(oswindow));
+   ASSERT(::IsWindow(hwnd));
 
    wchar_t szTemp[32];
 
-   ::GetClassNameW(oswindow, szTemp, _countof(szTemp));
+   ::GetClassNameW(hwnd, szTemp, _countof(szTemp));
 
    return ::wcsicmp(szTemp, wstring(pszClassName)) == 0;
 
 }
 
 
-oswindow CLASS_DECL_ACME __child_window_from_point(oswindow oswindow, const ::point & pointParam)
+HWND CLASS_DECL_ACME __child_window_from_point(HWND hwnd, const ::point_i32 & pointParam)
 {
-   ASSERT(oswindow != nullptr);
-   ::point point(pointParam);
+   ASSERT(hwnd != nullptr);
+   ::point_i32 point(pointParam);
    // check child windows
-   ::ClientToScreen(oswindow, &point);
-   ::oswindow oswindow_Child = ::GetWindow(oswindow, GW_CHILD);
+   ::ClientToScreen(hwnd, (POINT *) &point);
+   HWND oswindow_Child = ::GetWindow(hwnd, GW_CHILD);
    for (; oswindow_Child != nullptr; oswindow_Child = ::GetWindow(oswindow_Child, GW_HWNDNEXT))
    {
-      if (__get_dialog_control_id(oswindow_Child) != (::u16)0 &&
+      if (::GetDlgCtrlID(oswindow_Child) != (::u16)0 &&
             (::GetWindowLong(oswindow_Child, GWL_STYLE) & WS_VISIBLE))
       {
-         // see if point hits the child interaction_impl
-         ::rect rect;
-         ::GetWindowRect(oswindow_Child, rect);
-         if (rect.contains(point))
+         // see if point_i32 hits the child interaction_impl
+         ::rectangle_i32 rectangle;
+         ::GetWindowRect(oswindow_Child, (RECT *) &rectangle);
+         if (rectangle.contains(point))
             return oswindow_Child;
       }
    }

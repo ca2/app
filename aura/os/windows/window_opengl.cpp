@@ -27,7 +27,7 @@ namespace opengl
    }
 
 
-   bool buffer::update_buffer(const ::size & size, int iStride)
+   bool buffer::update_buffer(const ::size_i32 & size, int iStride)
    {
 
       return ::graphics::buffer::update_buffer(size, iStride);

@@ -26,8 +26,8 @@ class CLASS_DECL_AURA image_drawing :
 public:
 
 
-   ::rectd                    m_rectDst;
-   ::rectd                    m_rectSrc;
+   ::rectangle_f64                    m_rectDst;
+   ::rectangle_f64                    m_rectSrc;
    image_pointer              m_pimage;
 
 
@@ -152,7 +152,7 @@ public:
 
       auto concreteSize = pimagesource->size();
 
-      auto sizeDst = ::size(rectDst);
+      auto sizeDst = ::size_i32(rectDst);
 
       m_pimage = pimagesource->get_image(concreteSize);
 
@@ -167,9 +167,9 @@ public:
    void set(const RECTANGLE & rectDst, IMAGE_SOURCE_POINTER pimagesource, enum_image_selection eimageselection)
    {
 
-      auto sizeDst = ::size(rectDst);
+      auto sizeDst = ::size_i32(rectDst);
 
-      auto concreteSize = pimagesource->size(sizeDst, eimageselection);
+      auto concreteSize = pimagesource->size_i32(sizeDst, eimageselection);
 
       m_pimage = pimagesource->get_image(concreteSize);
 
@@ -201,7 +201,7 @@ public:
 
       auto concreteSize = pimagesource->size();
 
-      auto sizeDst = ::size(rectSrc);
+      auto sizeDst = ::size_i32(rectSrc);
 
       m_pimage = pimagesource->get_image(concreteSize);
 

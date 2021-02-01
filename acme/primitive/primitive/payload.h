@@ -127,10 +127,7 @@ public:
    payload(const id & id);
    payload(bool * pb);
    payload(const ::datetime::time & time);
-#ifdef WINDOWS
-   payload(const FILETIME & time);
-   payload(const SYSTEMTIME & time);
-#endif
+
    payload(string * pstr);
    payload(payload * pvar);
    payload(const payload * pvar);
@@ -177,6 +174,16 @@ public:
       m_etype = e_type_new;
       operator = (eflag);
    }
+
+
+
+   template < typename T >
+   payload(const T & t)
+   {
+      m_etype = e_type_new;
+      operator = (t);
+   }
+
 
    payload(const ::e_status & estatus)
    {
@@ -532,9 +539,6 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    payload & operator = (::u32 u);
    payload & operator = (::u32 * pinteraction);
 #ifdef WINDOWS
-   payload & operator = (LPDWORD lpdw);
-   payload & operator = (long l);
-   payload & operator = (DWORD dw);
 #elif defined(__APPLE__) || defined(ANDROID) || defined(RASPBIAN)
    payload & operator = (long l);
 #endif
@@ -544,11 +548,8 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    payload & operator = (::u64 * pi);
    payload & operator = (float f);
    payload & operator = (double d);
+   payload & operator = (long l);
    payload & operator = (const ::datetime::time & time);
-#ifdef WINDOWS
-   payload & operator = (const FILETIME & time);
-   payload & operator = (const SYSTEMTIME & time);
-#endif
    inline payload & operator = (const char * psz);
    inline payload & operator = (const string & str);
    inline payload & operator = (string && str);
@@ -600,6 +601,17 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
    {
 
       return this->operator = (sp.m_p);
+
+   }
+
+
+   template < class T >
+   payload & operator = (const T & t)
+   {
+
+      __copy(this, &t);
+
+      return *this;
 
    }
 
@@ -1069,20 +1081,6 @@ inline uptr payload::uptr(::uptr uiDefault) const
 
 
 #ifdef WINDOWS
-
-inline payload::operator long () const
-{
-
-   return i32();
-
-}
-
-inline payload & payload::operator = (LPDWORD pinteraction)
-{
-
-   return operator = ((::u32 *)pinteraction);
-
-}
 
 #elif defined(__APPLE__) || defined(RASBPIAN)
 

@@ -1,8 +1,11 @@
 #include "framework.h"
+#include "_.h"
 
 
 locationd box::center()
 {
+
+
    locationd point;
 
 

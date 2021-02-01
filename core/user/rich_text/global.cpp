@@ -517,7 +517,7 @@ namespace user
       }
 
 
-      void align(line * pline, const ::rectd & rect)
+      void align(line * pline, const ::rectangle_f64 & rectangle)
       {
 
          if (pline->is_empty())
@@ -545,7 +545,7 @@ namespace user
 
             int iWidth = (::i32)pline->last()->m_rectBox.right;
 
-            int iOffset = (::i32)(rect.right - iWidth);
+            int iOffset = (::i32)(rectangle.right - iWidth);
 
             if (ealign == e_align_center)
             {

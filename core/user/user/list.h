@@ -41,7 +41,7 @@ namespace user
       int                                    m_iTextSpreadRadius;
       int                                    m_iTextBlurRadius;
       int                                    m_iTextBlur;
-      ::rect                                 m_rectSpot;
+      ::rectangle_i32                                 m_rectSpot;
       ::image_pointer                        m_pimageSpot;
       ::image_pointer                        m_pimageTime;
       bool                                   m_bHighHighLight;
@@ -76,7 +76,7 @@ namespace user
 
       //mesh_data * GetDataInterface();
       using mesh::update_hover;
-      virtual bool update_hover(const ::point& point, bool bAvoidRedraw = true) override;
+      virtual bool update_hover(const ::point_i32& point, bool bAvoidRedraw = true) override;
       //::draw2d::font * _001GetFont();
       //::draw2d::font * _001GetFontHover();
       //::draw2d::pen * _001GetPenFocused();
@@ -106,7 +106,7 @@ namespace user
       virtual bool is_valid_strict_item(index iStrictItem) override;
 
 
-      virtual ::size get_item_size() override;
+      virtual ::size_i32 get_item_size() override;
 
       virtual void _001OnSort(index iSubItem) override;
       virtual void _001OnListHeaderItemClick(index iHeaderItem);
@@ -252,14 +252,14 @@ namespace user
       virtual ::count _001GetGroupCount() override;
 
 
-      virtual bool _001HitTest_(const ::point & point, index & iItem, index & iSubItem, index & iListItem, ::user::mesh::enum_element & eelement) override;
-      virtual bool _001HitTest_(const ::point & point, index & iItem, index & iSubItem) override;
-      virtual bool _001HitTest_(const ::point & point, index & iItemParam) override;
+      virtual bool _001HitTest_(const ::point_i32 & point, index & iItem, index & iSubItem, index & iListItem, ::user::mesh::enum_element & eelement) override;
+      virtual bool _001HitTest_(const ::point_i32 & point, index & iItem, index & iSubItem) override;
+      virtual bool _001HitTest_(const ::point_i32 & point, index & iItemParam) override;
 
 
-      virtual bool _001DisplayHitTest(const ::point & point, index & iItem, index & iSubItem, index & iListItem, ::user::mesh::enum_element & eelement) override;
-      virtual bool _001DisplayHitTest(const ::point & point, index & iItem, index & iSubItem) override;
-      virtual bool _001DisplayHitTest(const ::point & point, index & iItemParam) override;
+      virtual bool _001DisplayHitTest(const ::point_i32 & point, index & iItem, index & iSubItem, index & iListItem, ::user::mesh::enum_element & eelement) override;
+      virtual bool _001DisplayHitTest(const ::point_i32 & point, index & iItem, index & iSubItem) override;
+      virtual bool _001DisplayHitTest(const ::point_i32 & point, index & iItemParam) override;
 
 
       virtual void _001OnAfterSort() override;
@@ -310,14 +310,14 @@ namespace user
 
       virtual index HeaderCtrlMapColumnToOrder(index iColumn);
 
-      virtual bool _001OnHeaderCtrlEndDrag(WPARAM wparam, LPARAM lparam);
+      virtual bool _001OnHeaderCtrlEndDrag(wparam wparam, lparam lparam);
 
 
 
-      virtual bool _001OnHeaderCtrlEndTrack(WPARAM wparam, LPARAM lparam) override;
+      virtual bool _001OnHeaderCtrlEndTrack(wparam wparam, lparam lparam) override;
 
 
-      virtual bool _001OnHeaderCtrlTrack(WPARAM wparam, LPARAM lparam) override;
+      virtual bool _001OnHeaderCtrlTrack(wparam wparam, lparam lparam) override;
 
 
       virtual void _001ShowSubItem(index iSubItem, bool bShow = true) override;
@@ -374,7 +374,7 @@ namespace user
 
       virtual void _001OnClip(::draw2d::graphics_pointer & pgraphics) override;
 
-      //virtual bool get_client_rect(RECT32 * prect) override;
+      //virtual bool get_client_rect(RECTANGLE_I32 * prectangle) override;
 
 
       virtual void update_icon_list_view_sort();

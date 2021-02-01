@@ -124,7 +124,7 @@ index xfplayer_view_linea::FindLine(xfplayer_view_line * pline)
    return -1;
 }
 
-::user::enum_line_hit xfplayer_view_linea::hit_test(const point &pointCursor, index &iLine, strsize &iChar)
+::user::enum_line_hit xfplayer_view_linea::hit_test(const point_i32 &pointCursor, index &iLine, strsize &iChar)
 {
    sync_lock sl(mutex());
    for (index i = 0; i < this->line_count(); i++)

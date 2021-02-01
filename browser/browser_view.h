@@ -142,12 +142,12 @@ namespace browser
 
       }
       ///
-      // Called to retrieve the view rectangle which is relative to screen
-      // coordinates. Return true if the rectangle was provided.
+      // Called to retrieve the view rectangle_i32 which is relative to screen
+      // coordinates. Return true if the rectangle_i32 was provided.
       ///
       /*--cef()--*/
-      virtual bool GetRootScreenRect(CefRefPtr<CefBrowser> browser, CefRect & rect) override;
-      virtual bool GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rect) override;
+      virtual bool GetRootScreenRect(CefRefPtr<CefBrowser> browser, CefRect & rectangle) override;
+      virtual bool GetViewRect(CefRefPtr<CefBrowser> browser, CefRect& rectangle) override;
 
       virtual CefRefPtr<CefRenderHandler> GetRenderHandler() override { return this; }
       virtual CefRefPtr<CefDisplayHandler> GetDisplayHandler() override { return this; }
@@ -177,7 +177,7 @@ namespace browser
 
       //The CefRenderHandler::GetViewRect() method will be called to retrieve the desired view rectangle.
       //The CefRenderHandler::OnPaint() method will be called to provide invalid regions and the updated pixel buffer.The cefclient application draws the buffer using OpenGL but your application can use whatever technique you prefer.
-      //To resize the browser call CefBrowserHost::WasResized().This will result in a call to GetViewRect() to retrieve the new size followed by a call to OnPaint().
+      //To resize the browser call CefBrowserHost::WasResized().This will result in a call to GetViewRect() to retrieve the new size_i32 followed by a call to OnPaint().
       //Call the CefBrowserHost::SendXXX() methods to notify the browser of mouse, keyboard and focus events.
       //Call CefBrowserHost::CloseBrowser() to destroy browser.
       __pointer(::thread) m_pthreadBrowser;

@@ -301,7 +301,7 @@ namespace ftp
       static const command RNFR() { return cmdRNFR; }
       static const command RNTO() { return cmdRNTO; }
       static const command SITE() { return cmdSITE; }
-      static const command SIZE32() { return cmdSIZE; }
+      static const command SIZE_I32() { return cmdSIZE; }
       static const command SMNT() { return cmdSMNT; }
       static const command STAT() { return cmdSTAT; }
       static const command STOR() { return cmdSTOR; }

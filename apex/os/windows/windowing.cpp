@@ -1,6 +1,5 @@
 #include "framework.h"
-#include "windowing.h"
-//#include "top_level_enum.h"
+#include "apex/operating_system.h"
 
 
 #define ___TEMP_CLASS_NAME_SIZE 4096
@@ -18,7 +17,7 @@ CLASS_DECL_APEX void defer_dock_application(int_bool bDock)
 //CLASS_DECL_APEX int_bool os_init_windowing()
 //{
 //
-//   return TRUE;
+//   return true;
 //
 //}
 
@@ -102,12 +101,12 @@ CLASS_DECL_APEX oswindow get_focus()
 }
 
 
-CLASS_DECL_APEX oswindow set_focus(oswindow oswindow)
-{
-
-   return ::SetFocus(oswindow);
-
-}
+//CLASS_DECL_APEX oswindow set_focus(oswindow oswindow)
+//{
+//
+//   return ::SetFocus(oswindow);
+//
+//}
 
 
 CLASS_DECL_APEX oswindow get_active_window()
@@ -124,12 +123,12 @@ CLASS_DECL_APEX oswindow get_active_window()
 }
 
 
-CLASS_DECL_APEX oswindow set_active_window(oswindow oswindow)
-{
-
-   return ::SetActiveWindow(oswindow);
-
-}
+//CLASS_DECL_APEX oswindow set_active_window(oswindow oswindow)
+//{
+//
+//   return ::SetActiveWindow(oswindow);
+//
+//}
 
 
 CLASS_DECL_APEX oswindow get_capture()
@@ -140,12 +139,12 @@ CLASS_DECL_APEX oswindow get_capture()
 }
 
 
-CLASS_DECL_APEX oswindow set_capture(oswindow oswindow)
-{
-
-   return ::SetCapture(oswindow);
-
-}
+//CLASS_DECL_APEX oswindow set_capture(oswindow oswindow)
+//{
+//
+//   return ::SetCapture(oswindow);
+//
+//}
 
 
 CLASS_DECL_APEX int_bool release_capture()
@@ -156,20 +155,15 @@ CLASS_DECL_APEX int_bool release_capture()
 }
 
 
-CLASS_DECL_APEX int_bool destroy_window(oswindow oswindow)
-{
+//CLASS_DECL_APEX int_bool destroy_window(oswindow oswindow)
+//{
+//
+//   return ::DestroyWindow(oswindow);
+//
+//}
 
-   return ::DestroyWindow(oswindow);
-
-}
 
 
-CLASS_DECL_APEX oswindow get_desktop_window()
-{
-
-   return ::GetDesktopWindow();
-
-}
 
 
 
@@ -189,14 +183,14 @@ CLASS_DECL_APEX oswindow get_desktop_window()
 
 // }
 
-CLASS_DECL_APEX int_bool show_window(oswindow oswindow, const ::e_display & edisplay, const ::e_activation & eactivation)
-{
-
-   int nCmdShow = windows_show_window(edisplay, eactivation);
-
-   return ::ShowWindow(oswindow, nCmdShow);
-
-}
+//CLASS_DECL_APEX int_bool show_window(oswindow oswindow, const ::e_display & edisplay, const ::e_activation & eactivation)
+//{
+//
+//   int nCmdShow = windows_show_window(edisplay, eactivation);
+//
+//   return ::ShowWindow(oswindow, nCmdShow);
+//
+//}
 
 
 ///// from top to bottom
@@ -260,7 +254,7 @@ CLASS_DECL_APEX int_bool show_window(oswindow oswindow, const ::e_display & edis
 //}
 //
 //
-//int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int iMargin)
+//int_bool point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, int iMargin)
 //{
 //
 //   auto poswindowa = get_top_level_windows();
@@ -272,7 +266,7 @@ CLASS_DECL_APEX int_bool show_window(oswindow oswindow, const ::e_display & edis
 //
 //   }
 //
-//   ::rect rectWindow;
+//   ::rectangle_i32 rectWindow;
 //
 //   for(auto & oswindow : *poswindowa)
 //   {
@@ -290,7 +284,7 @@ CLASS_DECL_APEX int_bool show_window(oswindow oswindow, const ::e_display & edis
 //         if (::GetWindowRect(oswindow, rectWindow))
 //         {
 //
-//            ::rect rectHitTest;
+//            ::rectangle_i32 rectHitTest;
 //            
 //            rectHitTest.set(rectWindow.origin(), ::size());
 //

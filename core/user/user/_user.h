@@ -74,7 +74,7 @@ namespace user
    //{
    //public:
 
-   //   RECT32   m_rect;
+   //   RECTANGLE_I32   m_rectangle;
 
    //};
 

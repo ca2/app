@@ -69,7 +69,7 @@ namespace experience
       case e_message_left_button_double_click:
       {
                               auto point = __point(pbase->m_lparam);
-                              if(OnLButtonDblClk((::u32)pbase->m_wparam, point))
+                              if(OnLButtonDblClk((::u32)pbase->m_wparam, point_i32))
                               {
 
                                  pbase->m_lresult = 0;
@@ -100,7 +100,7 @@ namespace experience
             /*            ::user::menu * pmenu = pframewindow->GetSystemMenu(FALSE);
                      if(pmenu != nullptr)
                      {
-                     const ::point & point(LOWORD(lparam), HIWORD(lparam));
+                     const ::point_i32 & point(LOWORD(lparam), HIWORD(lparam));
 
                      pframewindow->_001ClientToScreen(&point);
                      pmenu->track_popup_menu(
@@ -114,7 +114,7 @@ namespace experience
       }
    }
 
-   bool menu_manager::OnLButtonDblClk(::u32 nFlags, const ::point & point)
+   bool menu_manager::OnLButtonDblClk(::u32 nFlags, const ::point_i32 & point)
    {
 
       UNREFERENCED_PARAMETER(nFlags);

@@ -506,13 +506,13 @@
 //i32 ansi_begins(const char* sz1, const char* prefix)
 //{
 //   if (sz1 == nullptr)
-//      return FALSE;
+//      return false;
 //   if (prefix == nullptr)
-//      return TRUE;
+//      return true;
 //   while (*sz1 != '\0' && *prefix != '\0')
 //   {
 //      if (*sz1 != *prefix)
-//         return FALSE;
+//         return false;
 //      sz1++;
 //      prefix++;
 //   }
@@ -522,13 +522,13 @@
 //i32 ansi_begins_ci(const char* sz1, const char* prefix)
 //{
 //   if (sz1 == nullptr)
-//      return FALSE;
+//      return false;
 //   if (prefix == nullptr)
-//      return TRUE;
+//      return true;
 //   while (*sz1 != '\0' && *prefix != '\0')
 //   {
 //      if (*sz1 != *prefix)
-//         return FALSE;
+//         return false;
 //      sz1++;
 //      prefix++;
 //   }
@@ -584,7 +584,7 @@
 
 void ansi_parse_command_line(char* cmdstart, char** argv, char* args, i32* numargs, i32* numchars)
 {
-   char* point;
+   char* p;
    char c;
    i32 inquote;                    /* 1 = inside quotes */
    i32 copychar;                   /* 1 = copy char to *args */
@@ -594,7 +594,7 @@ void ansi_parse_command_line(char* cmdstart, char** argv, char* args, i32* numar
    *numargs = 1;                   /* the program name at least */
 
    /* first scan the program name, copy it, and ::count the bytes */
-   point = cmdstart;
+   p = cmdstart;
    if (argv)
       *argv++ = args;
 
@@ -603,7 +603,7 @@ void ansi_parse_command_line(char* cmdstart, char** argv, char* args, i32* numar
    it's first character before quote handling.  This is done
    so _[w]cwild() knows whether to expand an entry or not. */
    if (args)
-      *args++ = *point;
+      *args++ = *p;
    ++* numchars;
 
 #endif  /* WILDCARD */
@@ -615,16 +615,16 @@ void ansi_parse_command_line(char* cmdstart, char** argv, char* args, i32* numar
       because the program name must be a legal NTFS/HPFS file name.
       Note that the double-quote characters are not copied, nor do they
       contribute to numchars. */
-   if (*point == DQUOTECHAR)
+   if (*p == DQUOTECHAR)
    {
       /* scan from just past the first double-quote through the next
          double-quote, or up to a nullptr, whichever comes first */
-      while ((*(++point) != DQUOTECHAR) && (*point != NULCHAR))
+      while ((*(++p) != DQUOTECHAR) && (*p != NULCHAR))
       {
 
          ++* numchars;
          if (args)
-            *args++ = *point;
+            *args++ = *p;
       }
       /* append the terminating nullptr */
       ++* numchars;
@@ -632,8 +632,8 @@ void ansi_parse_command_line(char* cmdstart, char** argv, char* args, i32* numar
          *args++ = NULCHAR;
 
       /* if we stopped on a double-quote (usual case), skip over it */
-      if (*point == DQUOTECHAR)
-         point++;
+      if (*p == DQUOTECHAR)
+         p++;
    }
    else
    {
@@ -642,16 +642,16 @@ void ansi_parse_command_line(char* cmdstart, char** argv, char* args, i32* numar
       {
          ++* numchars;
          if (args)
-            *args++ = *point;
+            *args++ = *p;
 
-         c = (char)*point++;
+         c = (char)*p++;
 
 
       } while (c != SPACECHAR && c != NULCHAR && c != TABCHAR);
 
       if (c == NULCHAR)
       {
-         point--;
+         p--;
       }
       else
       {
@@ -666,13 +666,13 @@ void ansi_parse_command_line(char* cmdstart, char** argv, char* args, i32* numar
    for (;;)
    {
 
-      if (*point)
+      if (*p)
       {
-         while (*point == SPACECHAR || *point == TABCHAR)
-            ++point;
+         while (*p == SPACECHAR || *p == TABCHAR)
+            ++p;
       }
 
-      if (*point == NULCHAR)
+      if (*p == NULCHAR)
          break;              /* end of args */
 
       /* scan an argument */
@@ -685,7 +685,7 @@ void ansi_parse_command_line(char* cmdstart, char** argv, char* args, i32* numar
       it's first character before quote handling.  This is done
       so _[w]cwild() knows whether to expand an entry or not. */
       if (args)
-         *args++ = *point;
+         *args++ = *p;
       ++* numchars;
 
 #endif  /* WILDCARD */
@@ -698,13 +698,13 @@ void ansi_parse_command_line(char* cmdstart, char** argv, char* args, i32* numar
             2N+1 backslashes + " ==> N backslashes + literal "
             N backslashes ==> N backslashes */
          numslash = 0;
-         while (*point == SLASHCHAR)
+         while (*p == SLASHCHAR)
          {
             /* ::count number of backslashes for use below */
-            ++point;
+            ++p;
             ++numslash;
          }
-         if (*point == DQUOTECHAR)
+         if (*p == DQUOTECHAR)
          {
             /* if 2N backslashes before, start/end quote, otherwise
                 copy literally */
@@ -712,8 +712,8 @@ void ansi_parse_command_line(char* cmdstart, char** argv, char* args, i32* numar
             {
                if (inquote)
                {
-                  if (point[1] == DQUOTECHAR)
-                     point++;    /* Double quote inside quoted string */
+                  if (p[1] == DQUOTECHAR)
+                     p++;    /* Double quote inside quoted string */
                   else        /* skip first quote char and copy second */
                      copychar = 0;
                }
@@ -734,16 +734,16 @@ void ansi_parse_command_line(char* cmdstart, char** argv, char* args, i32* numar
          }
 
          /* if at end of arg, break loop */
-         if (*point == NULCHAR || (!inquote && (*point == SPACECHAR || *point == TABCHAR)))
+         if (*p == NULCHAR || (!inquote && (*p == SPACECHAR || *p == TABCHAR)))
             break;
 
          if (copychar)
          {
             if (args)
-               *args++ = *point;
+               *args++ = *p;
             ++* numchars;
          }
-         ++point;
+         ++p;
          //#endif  /* _MBCS */
       }
 

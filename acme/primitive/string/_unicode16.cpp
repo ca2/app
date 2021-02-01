@@ -229,7 +229,7 @@ strsize ansi_to_wd16_len_len(const char* psz, strsize srclen)
 //}
 //
 //
-//strsize utf16_to_utf16(wd16char* point, const wd16char* codepoints, strsize input_size)
+//strsize utf16_to_utf16(wd16char* point_i32, const wd16char* codepoints, strsize input_size)
 //{
 //
 //   strsize len = 0;
@@ -247,7 +247,7 @@ strsize ansi_to_wd16_len_len(const char* psz, strsize srclen)
 //      if (cp < 0x10000)
 //      {
 //
-//         *point++ = static_cast<wd16char>(cp);
+//         *point_i32++ = static_cast<wd16char>(cp);
 //
 //      }
 //      else if (cp <= 0x10FFFF)
@@ -255,15 +255,15 @@ strsize ansi_to_wd16_len_len(const char* psz, strsize srclen)
 //
 //         cp -= 0x10000;
 //
-//         *point++ = static_cast<wd16char>((cp >> 10) + 0xD800);
+//         *point_i32++ = static_cast<wd16char>((cp >> 10) + 0xD800);
 //
-//         *point++ = static_cast<wd16char>((cp & 0x3FF) + 0xDC00);
+//         *point_i32++ = static_cast<wd16char>((cp & 0x3FF) + 0xDC00);
 //
 //      }
 //      else
 //      {
 //
-//         *point++ = static_cast<wd16char>(0xFFFD);
+//         *point_i32++ = static_cast<wd16char>(0xFFFD);
 //
 //      }
 //
@@ -285,7 +285,7 @@ strsize ansi_to_wd16_len_len(const char* psz, strsize srclen)
 //
 //   utf16_to_utf16(point, input, s);
 //
-//   point[s] = 0;
+//   point_i32[s] = 0;
 //
 //   return wstr;
 //
@@ -840,7 +840,7 @@ strsize utf16_to_utf16_len(const wd16char* codepoints, strsize input_size)
 }
 
 
-strsize utf16_to_utf16(wd16char * point, const wd16char* codepoints, strsize input_size)
+strsize utf16_to_utf16(wd16char * point_i32, const wd16char* codepoints, strsize input_size)
 {
 
    strsize len = 0;
@@ -858,7 +858,7 @@ strsize utf16_to_utf16(wd16char * point, const wd16char* codepoints, strsize inp
       if (cp < 0x10000)
       {
 
-         *point++ = static_cast<wd16char>(cp);
+         *point_i32++ = static_cast<wd16char>(cp);
 
       }
       else if (cp <= 0x10FFFF)
@@ -866,15 +866,15 @@ strsize utf16_to_utf16(wd16char * point, const wd16char* codepoints, strsize inp
 
          cp -= 0x10000;
 
-         *point++ = static_cast<wd16char>((cp >> 10) + 0xD800);
+         *point_i32++ = static_cast<wd16char>((cp >> 10) + 0xD800);
 
-         *point++ = static_cast<wd16char>((cp & 0x3FF) + 0xDC00);
+         *point_i32++ = static_cast<wd16char>((cp & 0x3FF) + 0xDC00);
 
       }
       else
       {
 
-         *point++ = static_cast<wd16char>(0xFFFD);
+         *point_i32++ = static_cast<wd16char>(0xFFFD);
 
       }
 
@@ -896,7 +896,7 @@ strsize utf16_to_utf16(wd16char * point, const wd16char* codepoints, strsize inp
 //
 //   utf16_to_utf16(point, input, s);
 //
-//   point[s] = 0;
+//   point_i32[s] = 0;
 //
 //   return wstr;
 //

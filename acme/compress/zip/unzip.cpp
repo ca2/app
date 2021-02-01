@@ -96,7 +96,7 @@ typedef struct
    uptr stream_initialised;   /* flag set if stream structure is initialised*/
 
    uptr offset_local_extrafield;/* offset of the static extra field */
-   u32  size_local_extrafield;/* size of the static extra field */
+   u32  size_local_extrafield;/* size_i32 of the static extra field */
    uptr pos_local_extrafield;   /* position in the static extra field in read*/
 
    u32 crc32;                /* crc32 of all data uncompressed */
@@ -124,7 +124,7 @@ typedef struct
    uptr current_file_ok;      /* flag about the usability of the current file*/
    uptr central_pos;          /* position of the beginning of the central dir*/
 
-   uptr size_central_dir;     /* size of the central directory  */
+   uptr size_central_dir;     /* size_i32 of the central directory  */
    uptr offset_central_dir;   /* offset of start of central directory with
                                    respect to the starting disk number */
 
@@ -332,7 +332,7 @@ voidpf filestream)
    uchar* buf;
    uptr uSizeFile;
    uptr uBackRead;
-   uptr uMaxBack=0xffff; /* maximum size of global comment */
+   uptr uMaxBack=0xffff; /* maximum size_i32 of global comment */
    uptr uPosFound=0;
 
    if (ZSEEK(*pzlib_filefunc_def,filestream,0,ZLIB_FILEFUNC_SEEK_END) != 0)
@@ -460,7 +460,7 @@ zlib_filefunc_def* pzlib_filefunc_def)
          (number_disk!=0))
       err=UNZ_BADZIPFILE;
 
-   /* size of the central directory */
+   /* size_i32 of the central directory */
    if (unzlocal_getLong(&us.z_filefunc, us.filestream,&us.size_central_dir)!=UNZ_OK)
       err=UNZ_ERRNO;
 
@@ -956,8 +956,8 @@ unz_file_pos* file_pos)
   read the static header of the current zipfile
   Check the coherency of the static header and info in the end of central
         directory about this file
-  store in *piSizeVar the size of extra info in static header
-        (filename and size of extra field data)
+  store in *piSizeVar the size_i32 of extra info in static header
+        (filename and size_i32 of extra field data)
 */
 static i32 unzlocal_CheckCurrentFileCoherencyHeader (
 unz_s* s,
@@ -1020,13 +1020,13 @@ u32  *psize_local_extrafield)
             ((uFlags & 8)==0))
       err=UNZ_BADZIPFILE;
 
-   if (unzlocal_getLong(&s->z_filefunc, s->filestream,&uData) != UNZ_OK) /* size compr */
+   if (unzlocal_getLong(&s->z_filefunc, s->filestream,&uData) != UNZ_OK) /* size_i32 compr */
       err=UNZ_ERRNO;
    else if ((err==UNZ_OK) && (uData!=s->cur_file_info.compressed_size) &&
             ((uFlags & 8)==0))
       err=UNZ_BADZIPFILE;
 
-   if (unzlocal_getLong(&s->z_filefunc, s->filestream,&uData) != UNZ_OK) /* size uncompr */
+   if (unzlocal_getLong(&s->z_filefunc, s->filestream,&uData) != UNZ_OK) /* size_i32 uncompr */
       err=UNZ_ERRNO;
    else if ((err==UNZ_OK) && (uData!=s->cur_file_info.uncompressed_size) &&
             ((uFlags & 8)==0))
@@ -1062,7 +1062,7 @@ extern i32 CLASS_DECL_ACME unzOpenCurrentFile3 (unzFile file, i32 * method, i32 
    unz_s* s;
    file_in_zip_read_info_s* pfile_in_zip_read_info;
    uptr offset_local_extrafield;  /* offset of the static extra field */
-   u32  size_local_extrafield;    /* size of the static extra field */
+   u32  size_local_extrafield;    /* size_i32 of the static extra field */
 #    ifndef NOUNCRYPT
    char source[12];
 #    else
@@ -1149,7 +1149,7 @@ extern i32 CLASS_DECL_ACME unzOpenCurrentFile3 (unzFile file, i32 * method, i32 
        * after the compressed stream in order to complete decompression and
        * return Z_STREAM_END.
        * In unzip, i don't wait absolutely Z_STREAM_END because I known the
-       * size of both compressed and uncompressed data
+       * size_i32 of both compressed and uncompressed data
        */
    }
    pfile_in_zip_read_info->rest_read_compressed =
@@ -1217,7 +1217,7 @@ i32 raw)
 /*
   read bytes from the current spfile->
   buf contain buffer where data must be copied
-  len the size of buf.
+  len the size_i32 of buf.
 
   return the number of byte copied if somes bytes are copied
   return 0 if the end of file was reached
@@ -1420,9 +1420,9 @@ unzFile file)
   This is the static-header version of the extra field (sometimes, there is
     more info in the static-header version than in the central-header)
 
-  if buf==nullptr, it return the size of the static extra field that can be read
+  if buf==nullptr, it return the size_i32 of the static extra field that can be read
 
-  if buf!=nullptr, len is the size of the buffer, the extra header is copied in
+  if buf!=nullptr, len is the size_i32 of the buffer, the extra header is copied in
     buf.
   the return value is the number of bytes copied in buf, or (if <0)
     the error code
@@ -1518,7 +1518,7 @@ unzFile file)
 
 /*
   get the global comment string of the ZipFile, in the szComment buffer.
-  uSizeBuf is the size of the szComment buffer.
+  uSizeBuf is the size_i32 of the szComment buffer.
   return the number of byte copied or an error code <0
 */
 extern i32 CLASS_DECL_ACME unzGetGlobalComment (

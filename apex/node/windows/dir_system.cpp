@@ -1,6 +1,9 @@
 ﻿#include "framework.h"
-#include "_windows.h"
-#include "acme/os/windows_common/cotaskptr.h"
+#include "apex/operating_system.h"
+#include <Shlobj.h>
+//#include "_windows.h"
+//#include "acme/os/windows_common/cotaskptr.h"
+
 //#include "apex/xml/_.h"
 
 
@@ -58,12 +61,12 @@ namespace windows
          nullptr,
          m_strCommonAppData,
          CSIDL_COMMON_APPDATA,
-         FALSE);
+         false);
       //shell_get_special_folder_path(
       // nullptr,
       //m_pathProfile,
       //CSIDL_PROFILE,
-      //FALSE);
+      //false);
 
       m_pathHome = get_known_folder(FOLDERID_Profile);
 
@@ -77,12 +80,12 @@ namespace windows
          nullptr,
          m_strPrograms,
          CSIDL_PROGRAMS,
-         FALSE);
+         false);
       shell_get_special_folder_path(
          nullptr,
          m_strCommonPrograms,
          CSIDL_COMMON_PROGRAMS,
-         FALSE);
+         false);
 
       {
 

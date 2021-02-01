@@ -216,7 +216,7 @@ public:
 //#include "sync.h"
 //#include "sync_array.h"
 //#include "semaphore.h"
-//#include "mutex.h"
+//#include "::mutex.h"
 //#include "event.h"
 //#include "set_event_on_exit.h"
 //#include "condition.h"
@@ -247,18 +247,18 @@ public:
 //#include "sync_task.h"
 
 
-#ifdef WINDOWS
-#include <Winsvc.h>
-#endif
+//#ifdef WINDOWS
+//#include <Winsvc.h>
+//#endif
 
-#include "service_status.h"
+//#include "service_status.h"
 #include "thread_os.h"
 
 
 #include "create_thread.h"
 
 
-#include "service/pool.h"
+//#include "service/pool.h"
 
 
 
@@ -267,7 +267,7 @@ public:
 //CLASS_DECL_APEX u32 random_processor_index_generator();
 
 
-//CLASS_DECL_APEX int_bool post_message(oswindow oswindow, const ::id & id, WPARAM wparam, LPARAM lparam);
+//CLASS_DECL_APEX int_bool post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam);
 
 
 

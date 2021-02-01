@@ -15,7 +15,7 @@ namespace experience
       bool                                         m_bHoverActive;
       bool                                         m_bEnableMouse;
       __composite(::experience::frame)             m_pframe;
-      ::rect                                       m_rectPending;
+      ::rectangle_i32                                       m_rectPending;
       bool                                         m_bEnableFrameExperience;
 
       bool                                         m_bFullScreenReturn;
@@ -90,8 +90,8 @@ namespace experience
 
       virtual void experience_on_start_dock(::message::mouse * pmouse);
 
-      //virtual bool WfiOnBeginSizing(::u32 nType, const ::point & point);
-      //virtual bool WfiOnBeginMoving(const ::point & point);
+      //virtual bool WfiOnBeginSizing(::u32 nType, const ::point_i32 & point);
+      //virtual bool WfiOnBeginMoving(const ::point_i32 & point);
 
       virtual void frame_experience_restore();
 
@@ -123,7 +123,7 @@ namespace experience
 
 
 
-      void OnNcCalcSize(RECT32 * prect);
+      void OnNcCalcSize(RECTANGLE_I32 * prectangle);
 
       class dock_manager * dock_manager();
       class move_manager * move_manager();
@@ -154,7 +154,7 @@ namespace experience
       bool window_is_notify_icon_enabled() override;
 
 
-      virtual index get_best_zoneing(edisplay & edisplay, ::rect * prect, const ::rect & rectRequest = ::rect(), bool bPreserveSize = false) override;
+      virtual index get_best_zoneing(edisplay & edisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectRequest = ::rectangle_i32(), bool bPreserveSize = false) override;
 
 
 
@@ -172,9 +172,9 @@ namespace experience
       void SetActiveFlag(bool fActive);
       void SetSWPFlags(::u32 uFlags);
 
-      void GetRegionClientRect(RECT32 * prect);
+      void GetRegionClientRect(RECTANGLE_I32 * prectangle);
 
-      void get_draw_client_rect(RECT32 * prect);
+      void get_draw_client_rect(RECTANGLE_I32 * prectangle);
 
 
       void relay_event(::message::message * pmessage);
@@ -197,7 +197,7 @@ namespace experience
       bool is_sysmenu_enabled();
 
 
-      e_hittest _001HitTest(const ::point& point);
+      e_hittest _001HitTest(const ::point_i32& point);
 
       
       virtual button * get_box_button(enum_button ebutton);

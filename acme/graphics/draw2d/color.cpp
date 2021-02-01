@@ -81,13 +81,13 @@ color::color(const COLOR32 & color32, int flags)
 
 proc hls2rgb {h l s} {
     # Posted by frederic.bonnet@ciril.fr
-    # h, l and s are floats between 0.0 and 1.0, ditto for rect, g and b
+    # h, l and s are floats between 0.0 and 1.0, ditto for rectangle_i32, g and b
     # h = 0   => red
     # h = 1/3 => green
     # h = 2/3 => blue
 
     set h6 [expr {($h-floor($h))*6}]
-    set rect [expr {  $h6 <= 3 ? 2-$h6
+    set rectangle_i32 [expr {  $h6 <= 3 ? 2-$h6
                             : $h6-4}]
     set g [expr {  $h6 <= 2 ? $h6
                             : $h6 <= 5 ? 4-$h6
@@ -95,14 +95,14 @@ proc hls2rgb {h l s} {
 1    set b [expr {  $h6 <= 1 ? -$h6
                             : $h6 <= 4 ? $h6-2
                             : 6-$h6}]
-    set rect [expr {$rect < 0.0 ? 0.0 : $rect > 1.0 ? 1.0 : double($rect)}]
+    set rectangle_i32 [expr {$rectangle_i32 < 0.0 ? 0.0 : $rectangle_i32 > 1.0 ? 1.0 : double($rectangle_i32)}]
     set g [expr {$g < 0.0 ? 0.0 : $g > 1.0 ? 1.0 : double($g)}]
     set b [expr {$b < 0.0 ? 0.0 : $b > 1.0 ? 1.0 : double($b)}]
 
-    set rect [expr {(($rect-1)*$s+1)*$l}]
+    set rectangle_i32 [expr {(($rectangle_i32-1)*$s+1)*$l}]
     set g [expr {(($g-1)*$s+1)*$l}]
     set b [expr {(($b-1)*$s+1)*$l}]
-    return [list $rect $g $b]
+    return [list $rectangle_i32 $g $b]
 }
 
 
@@ -639,18 +639,6 @@ void color::set_bgr(u32 bgr)
 }
 
 
-//void color::set_rgbquad(RGBQUAD quad)
-//{
-//   m_iR   = quad.rgbRed;
-//   m_iG   = quad.rgbGreen;
-//   m_iB   = quad.rgbBlue;
-//   m_iA   = quad.rgbReserved;
-//   m_dR     = m_iR / 255.0;
-//   m_dG     = m_iG / 255.0;
-//   m_dB     = m_iB / 255.0;
-//   m_dA     = m_iA / 255.0;
-//}
-
 void color::hls_rate(double dRateH, double dRateL, double dRateS)
 {
    double dH, dL, dS;
@@ -841,7 +829,7 @@ void CColor::get_hls(byte * H, byte * L, byte * S)
    dLightness = (byte) (((dMax + dMin) * HLSMAX) + RGBMAX) / (2 * RGBMAX);
    if(dMax == dMin)
    {
-      // rect=g=b --> achromatic case
+      // rectangle_i32=g=b --> achromatic case
       dSaturation = 0;                     // saturation
       dHue = UNDEFINED_HUE;             // hue
    }
@@ -890,7 +878,7 @@ double HueToRGB(
       dHue += HLSMAX;
    if (dHue > HLSMAX)
       dHue -= HLSMAX;
-   // return rect,g, or b value from this tridrant
+   // return rectangle_i32,g, or b value from this tridrant
    if (dHue < (HLSMAX/6))
       return ( d1 + (((d2-d1)*dHue+(HLSMAX/12))/(HLSMAX/6)) );
    if (dHue < (HLSMAX/2))

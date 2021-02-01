@@ -17,7 +17,7 @@ namespace aura
 
 
       ATOM rx_register_class(HINSTANCE hInstance);
-      LRESULT CALLBACK s_rx_message_queue_proc(oswindow oswindow,const ::id & id,WPARAM wparam,LPARAM lparam);
+      LRESULT CALLBACK s_rx_message_queue_proc(oswindow oswindow,const ::id & id,wparam wparam,lparam lparam);
 
 
 
@@ -378,7 +378,7 @@ namespace aura
       }
 
 
-      LRESULT CALLBACK s_rx_message_queue_proc(oswindow oswindow,const ::id & id,WPARAM wparam,LPARAM lparam)
+      LRESULT CALLBACK s_rx_message_queue_proc(oswindow oswindow,const ::id & id,wparam wparam,lparam lparam)
       {
 
          int iRet = 0;
@@ -430,7 +430,7 @@ namespace aura
       }
 
 
-      LRESULT rx::message_queue_proc(const ::id & id,WPARAM wparam,LPARAM lparam)
+      LRESULT rx::message_queue_proc(const ::id & id,wparam wparam,lparam lparam)
       {
 
          if(message == WM_USER + 100)

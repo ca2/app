@@ -88,7 +88,7 @@ namespace xml
          if(m_pnode->get_name() != pcszName)
          {
 
-            ASSERT(FALSE);
+            ASSERT(false);
 
             m_pnode = nullptr;
 

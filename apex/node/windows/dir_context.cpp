@@ -1,7 +1,7 @@
 #include "framework.h"
-#include "_windows.h"
+#include "apex/operating_system.h"
 #include "acme/id.h"
-//#include "apex/xml/_.h"
+#include <Shlobj.h>
 
 
 namespace windows
@@ -58,7 +58,7 @@ namespace windows
 
       //auto pdocument = create_xml_document();
 
-      //if (pdocument->load(Context.file().as_string(::dir::appdata() / "configuration/directory.xml")))
+      //if (pdocument->load(get_context()->file().as_string(::dir::appdata() / "configuration/directory.xml")))
       //{
 
       //   //xxdebug_box("win_dir::initialize (configuration)", "win_dir::initialize", 0);
@@ -68,7 +68,7 @@ namespace windows
 
       //      ::file::path pathFolderTime = pdocument->root()->get_child_value("time");
 
-      //      if (Context.dir().is(pathFolderTime))
+      //      if (get_context()->dir().is(pathFolderTime))
       //      {
 
       //         m_pdirsystem->m_strTimeFolder = pathFolderTime;
@@ -77,7 +77,7 @@ namespace windows
 
       //      ::file::path pathFolderNetseed = pdocument->root()->get_child_value("netseed");
 
-      //      if (Context.dir().is(pathFolderNetseed))
+      //      if (get_context()->dir().is(pathFolderNetseed))
       //      {
 
       //         m_pdirsystem->m_strNetSeedFolder = pathFolderNetseed;
@@ -421,7 +421,7 @@ namespace windows
 
                }
 
-               Context.dir().ls(listing);
+               get_context()->dir().ls(listing);
 
             }
 
@@ -429,7 +429,7 @@ namespace windows
 
          file_find file_find;
 
-         bool bWorking = file_find.find_file(listing.m_pathUser / "*") != FALSE;
+         bool bWorking = file_find.find_file(listing.m_pathUser / "*") != false;
 
          if (bWorking)
          {
@@ -437,7 +437,7 @@ namespace windows
             while (bWorking)
             {
 
-               bWorking = file_find.find_next_file() != FALSE;
+               bWorking = file_find.find_next_file() != false;
 
                if (!file_find.IsDots() && file_find.GetFilePath() != listing.m_pathUser)
                {
@@ -452,7 +452,7 @@ namespace windows
 
                         listing.last().m_iSize = file_find.get_length();
 
-                        listing.last().m_iDir = file_find.IsDirectory() != FALSE;
+                        listing.last().m_iDir = file_find.IsDirectory() != false;
 
                      }
 
@@ -493,7 +493,7 @@ namespace windows
          if (listing.m_pathFinal.is_empty())
          {
 
-            listing.m_pathFinal = Context.defer_process_path(listing.m_pathUser);
+            listing.m_pathFinal = get_context()->defer_process_path(listing.m_pathUser);
 
          }
 
@@ -609,7 +609,7 @@ namespace windows
 
                }
 
-               Context.dir().ls(listing);
+               get_context()->dir().ls(listing);
 
             }
 
@@ -617,7 +617,7 @@ namespace windows
 
          file_find file_find;
 
-         bool bWorking = file_find.find_file(listing.m_pathFinal / "*") != FALSE;
+         bool bWorking = file_find.find_file(listing.m_pathFinal / "*") != false;
 
          if (bWorking)
          {
@@ -625,7 +625,7 @@ namespace windows
             while (bWorking)
             {
 
-               bWorking = file_find.find_next_file() != FALSE;
+               bWorking = file_find.find_next_file() != false;
 
                if (!file_find.IsDots() && file_find.GetFilePath() != listing.m_pathFinal)
                {
@@ -640,7 +640,7 @@ namespace windows
 
                         listing.last().m_iSize = file_find.get_length();
 
-                        listing.last().m_iDir = file_find.IsDirectory() != FALSE;
+                        listing.last().m_iDir = file_find.IsDirectory() != false;
 
                      }
 
@@ -715,7 +715,7 @@ namespace windows
 
                      //listing.last().m_iSize = file_find.get_length();
 
-                     //listing.last().m_iDir = file_find.IsDirectory() != FALSE;
+                     //listing.last().m_iDir = file_find.IsDirectory() != false;
 
                   }
 
@@ -743,7 +743,6 @@ namespace windows
          return true;
 
       }
-
 
       ::u32 dwAttrib;
 
@@ -944,7 +943,7 @@ namespace windows
                try
                {
 
-                  Context.file().del(str);
+                  get_context()->file().del(str);
 
                }
                catch (...)
@@ -959,7 +958,7 @@ namespace windows
                try
                {
 
-                  Context.file().del(str);
+                  get_context()->file().del(str);
 
                }
                catch (...)
@@ -1033,7 +1032,7 @@ namespace windows
 
       }
 
-      return RemoveDirectoryW(wstring(path)) != FALSE;
+      return RemoveDirectoryW(wstring(path)) != false;
 
    }
 
@@ -1229,7 +1228,7 @@ namespace windows
    //   if(!vfxFullPath(wstrFullName,wstrFileName))
    //   {
    //      rStatus.m_strFullName.Empty();
-   //      return FALSE;
+   //      return false;
    //   }
    //   ::str::international::unicode_to_utf8(rStatus.m_strFullName,wstrFullName);
 
@@ -1237,13 +1236,13 @@ namespace windows
    //   HANDLE hFind = FindFirstFile((char *)pszFileName,&findFileData);
 
    //   if(hFind == INVALID_HANDLE_VALUE)
-   //      return FALSE;
+   //      return false;
    //   VERIFY(FindClose(hFind));
 
    //   // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
    //   rStatus.m_attribute = (byte)(findFileData.dwFileAttributes & ~FILE_ATTRIBUTE_NORMAL);
 
-   //   // get just the low ::u32 of the file size
+   //   // get just the low ::u32 of the file size_i32
    //   ASSERT(findFileData.nFileSizeHigh == 0);
    //   rStatus.m_size = (::i32)findFileData.nFileSizeLow;
 
@@ -1258,7 +1257,7 @@ namespace windows
    //   if(rStatus.m_atime.get_time() == 0)
    //      rStatus.m_atime = rStatus.m_mtime;
 
-   //   return TRUE;
+   //   return true;
    //}
 
    ::file::path dir_context::document()
@@ -1270,7 +1269,7 @@ namespace windows
          nullptr,
          path,
          CSIDL_MYDOCUMENTS,
-         FALSE);
+         false);
 
       return path;
 
@@ -1285,7 +1284,7 @@ namespace windows
          nullptr,
          path,
          CSIDL_DESKTOP,
-         FALSE);
+         false);
 
       return path;
 
@@ -1311,7 +1310,7 @@ namespace windows
          nullptr,
          path,
          CSIDL_MYMUSIC,
-         FALSE);
+         false);
 
       return path;
 
@@ -1327,7 +1326,7 @@ namespace windows
          nullptr,
          path,
          CSIDL_MYVIDEO,
-         FALSE);
+         false);
 
       return path;
 
@@ -1343,7 +1342,7 @@ namespace windows
          nullptr,
          path,
          CSIDL_MYPICTURES,
-         FALSE);
+         false);
 
       return path;
 

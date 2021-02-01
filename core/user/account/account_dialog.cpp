@@ -229,7 +229,7 @@ namespace account
    }
 
 
-   void dialog::do_modal(::rect rect)
+   void dialog::do_modal(::rectangle_i32 rectangle)
    {
 
       m_iDelay = 0;
@@ -242,7 +242,7 @@ namespace account
 
       ::user::interaction * puiParent = psession->cast < ::user::interaction > ("plugin_parent");
 
-      ::rect rectDesktop;
+      ::rectangle_i32 rectDesktop;
 
       if(puiParent != nullptr)
       {
@@ -250,7 +250,7 @@ namespace account
          puiParent->get_window_rect(rectDesktop);
 
       }
-      else if (rect.is_empty())
+      else if (rectangle.is_empty())
       {
 
          psession->get_main_monitor(rectDesktop);
@@ -259,11 +259,11 @@ namespace account
       else
       {
 
-         rectDesktop = rect;
+         rectDesktop = rectangle_i32;
 
       }
 
-      ::rect rectLogin;
+      ::rectangle_i32 rectLogin;
 
       int stdw = 800;
 
@@ -287,7 +287,7 @@ namespace account
 
       }
 
-      ::rect rectFontopus;
+      ::rectangle_i32 rectFontopus;
 
       rectFontopus.left = rectDesktop.left + (rectDesktop.width() - w) / 2;
 
@@ -567,9 +567,9 @@ namespace account
 
             m_bDrag = true;
 
-            const point & pointNow = pmouse->m_point;
+            const point_i32 & pointNow = pmouse->m_point;
 
-            ::point point;
+            ::point_i32 point;
 
             point.x = pointNow.x - m_pointLButtonDownPos.x;
 

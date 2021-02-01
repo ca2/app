@@ -135,14 +135,14 @@ namespace sockets
 
       {
 
-         struct protoent *point = nullptr;
+         struct protoent * pprotoent = nullptr;
 
          if (strProtocol.get_length())
          {
 
-            point = getprotobyname(strProtocol);
+            pprotoent = getprotobyname(strProtocol);
 
-            if (point == nullptr)
+            if (pprotoent == nullptr)
             {
 
                FATAL(log_this, "getprotobyname", Errno, bsd_socket_error(Errno));
@@ -157,10 +157,10 @@ namespace sockets
 
          }
 
-         if (point != nullptr)
+         if (pprotoent != nullptr)
          {
 
-            protno = point->p_proto;
+            protno = pprotoent->p_proto;
 
          }
 

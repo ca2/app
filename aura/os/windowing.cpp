@@ -53,7 +53,7 @@ CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
 
 
 
-//CLASS_DECL_AURA void update_application_session_cursor(void * pvoidApp, const point & pointCursor)
+//CLASS_DECL_AURA void update_application_session_cursor(void * pvoidApp, const point_i32 & pointCursor)
 //{
 //
 //   ::aura::application * papp = (::aura::application *) pvoidApp;
@@ -268,6 +268,6 @@ CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
 //
 //   });
 //
-//   return TRUE;
+//   return true;
 //
 //}

@@ -110,7 +110,7 @@ void SimpleApp::OnContextInitialized()
 //      //window_info.SetAsPopup(nullptr, "browser");
 //#endif
 //      CefWindowInfo info;
-//      window_info.SetAsChild(m_hwnd, m_rect);
+//      window_info.SetAsChild(m_hwnd, m_rectangle);
 //      // Create the first browser window.
 //      CefBrowserHost::CreateBrowser(window_info, handler, url, browser_settings,
 //                                    nullptr);

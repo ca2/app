@@ -173,8 +173,8 @@ namespace draw2d
    {
 
       mipmap_none,
-      mipmap_isotropic, // 3x original size (a bit more or less if there are scan adjustments)
-      mipmap_anisotropic, // 4x original size (a bit more or less if there are scan adjustments)
+      mipmap_isotropic, // 3x original size_i32 (a bit more or less if there are scan adjustments)
+      mipmap_anisotropic, // 4x original size_i32 (a bit more or less if there are scan adjustments)
 
    };
 

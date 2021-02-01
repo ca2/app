@@ -17,7 +17,7 @@ window_android::~window_android()
 }
 
 
-bool window_android::create_buffer(const ::size & size,int iStrideParam)
+bool window_android::create_buffer(const ::size_i32 & size,int iStrideParam)
 {
 
    destroy_buffer();

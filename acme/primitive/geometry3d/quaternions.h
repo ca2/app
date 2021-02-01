@@ -3,6 +3,16 @@
 
 #include <math.h>
 
+struct Q4
+{
+
+   double w;
+   double x;
+   double y;
+   double z;
+
+};
+
 
 class CLASS_DECL_ACME q4 :
    public Q4

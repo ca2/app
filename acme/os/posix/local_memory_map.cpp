@@ -110,7 +110,7 @@ namespace file
 
       strMutex = m_strName + "-::mutex";
 
-      m_pmutex = __new(::mutex(e_create_new, false, strMutex, nullptr));
+      m_mutex = __new(::mutex(e_create_new, false, strMutex, nullptr));
 
       return true;
 

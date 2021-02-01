@@ -6,7 +6,7 @@ namespace hotplugin
 {
 
 
-   void plugin::on_bare_paint_full_screen(::draw2d::graphics_pointer & pgraphics,const ::rect & rectParam)
+   void plugin::on_bare_paint_full_screen(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectParam)
    {
 
       double dRate = get_progress_rate();
@@ -18,19 +18,19 @@ namespace hotplugin
 
       }
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       get_window_rect(&rectWindow);
 
       i32 cx = rectWindow.right - rectWindow.left;
       i32 cy = rectWindow.bottom - rectWindow.top;
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      rect.left = 0;
-      rect.top = 0;
-      rect.bottom = cy;
-      rect.right = cx;
+      rectangle.left = 0;
+      rectangle.top = 0;
+      rectangle.bottom = cy;
+      rectangle.right = cx;
 
       string str;
 
@@ -47,10 +47,10 @@ namespace hotplugin
       {
 
          byte uchR, uchG, uchB;
-         ::rect rectDraw;
+         ::rectangle_i32 rectDraw;
          get_progress_color(uchR, uchG, uchB, dRate, 0);
          br->create_solid(ARGB(255, uchR, uchG, uchB));
-         rectDraw = rect_dim(rect.left, rect.top, cx, cy);
+         rectDraw = rect_dim(rectangle.left, rectangle.top, cx, cy);
 
          pgraphics->fill_rect(rectDraw, br);
 
@@ -70,7 +70,7 @@ namespace hotplugin
 
       strStatus = str;
 
-      //on_paint_progress(pgraphics, m_rect);
+      //on_paint_progress(pgraphics, m_rectangle);
 
       pgraphics->text_out(rectParam.left + 80, rectParam.top + 80, strStatus);
 

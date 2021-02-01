@@ -39,7 +39,7 @@ namespace file
 
       e_path                     m_epath;
 
-      i64                    m_iSize; // if negative, not set/calculated/retrieved the file size(for directories would be all contained elements total sum size)
+      i64                    m_iSize; // if negative, not set/calculated/retrieved the file size_i32(for directories would be all contained elements total sum size_i32)
       int                        m_iDir; // if negative, not set/calculated/retrieved whether is a directory/folder/(file/folder/(...) container)
       strsize                    m_iName; // if negative, not set/calculated/retrieved where name starts
       strsize                    m_iRelative; // if negative, not set/calculated/retrieved where relative starts - this information is very, very relative :-) much more than all own other ::file::path cached information (relative to which folders... not stored this information...)

@@ -153,7 +153,7 @@ namespace apex
 
 
    // Advanced: handling messages sent to message filter hook
-   bool application::ProcessMessageFilter(i32 code, LPMESSAGE lpMsg)
+   bool application::ProcessMessageFilter(i32 code, MESSAGE * lpMsg)
    {
    return  ::win::thread::ProcessMessageFilter(code, lpMsg);
    }

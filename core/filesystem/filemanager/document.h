@@ -100,7 +100,7 @@ namespace filemanager
       virtual void on_file_manager_item_update(::user::command * pcommand, const ::file::item_array & itema);
       virtual void on_file_manager_item_command(const char * pszId, const ::file::item_array & itema);
 
-      //::critical_section * GetItemIdListCriticalSection();
+      //critical_section * GetItemIdListCriticalSection();
 
       //virtual bool FileManagerBrowse(::file::item * pitem, const ::action_context & action_context);
       //virtual bool FileManagerBrowse(const char * pcsz, const ::action_context & action_context);

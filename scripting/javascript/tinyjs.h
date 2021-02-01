@@ -103,7 +103,7 @@ enum SCRIPTVAR_FLAGS
    SCRIPTVAR_FUNCTION    = 1,
    SCRIPTVAR_OBJECT      = 2,
    SCRIPTVAR_ARRAY       = 4,
-   SCRIPTVAR_DOUBLE      = 8,  // floating point double
+   SCRIPTVAR_DOUBLE      = 8,  // floating point_i32 double
    SCRIPTVAR_INTEGER     = 16, // integer number
    SCRIPTVAR_STRING      = 32, // string
    SCRIPTVAR_NULL        = 64, // it seems nullptr is its own data type

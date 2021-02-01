@@ -118,28 +118,28 @@ namespace user
       virtual i32 GetDividerWidth();
 
 
-      bool GetItemRect(RECT32 * prect, enum_element eelement, index iItem);
+      bool GetItemRect(RECTANGLE_I32 * prectangle, enum_element eelement, index iItem);
 
 
-      bool GetItemRect(RECT32 * prect, enum_element eelementLButtonDown, index iItemLButtonDown,
+      bool GetItemRect(RECTANGLE_I32 * prectangle, enum_element eelementLButtonDown, index iItemLButtonDown,
 
                        enum_element eelement,
                        index iItem);
 
       bool hit_test(
-      const ::point & point,
+      const ::point_i32 & point,
       enum_element & eelement,
       index & iItem);
 
       bool hit_test(
-      const ::point & point,
+      const ::point_i32 & point,
       enum_element eelementLButtonDown,
       index iItemLButtonDown,
       enum_element & eelement,
       index & iItem);
 
 
-      virtual ::point get_parent_viewport_offset() const override;
+      virtual ::point_i32 get_parent_viewport_offset() const override;
 
       // Message Handlers
    protected:

@@ -46,7 +46,7 @@ namespace draw2d
    }
 
 
-   bool region::create_rect(const ::rect & rect)
+   bool region::create_rect(const ::rectangle_i32 & rectangle)
    {
 
       if(m_eregion != e_region_none)
@@ -58,20 +58,20 @@ namespace draw2d
 
       m_eregion = e_region_rect;
 
-      m_x1 = rect.left;
+      m_x1 = rectangle.left;
 
-      m_y1 = rect.top;
+      m_y1 = rectangle.top;
 
-      m_x2 = rect.right;
+      m_x2 = rectangle.right;
 
-      m_y2 = rect.bottom;
+      m_y2 = rectangle.bottom;
 
       return true;
 
    }
 
 
-   bool region::create_oval(const ::rect & rect)
+   bool region::create_oval(const ::rectangle_i32 & rectangle)
    {
 
       if(m_eregion != e_region_none)
@@ -83,20 +83,20 @@ namespace draw2d
 
       m_eregion = e_region_oval;
 
-      m_x1 = rect.left;
+      m_x1 = rectangle.left;
 
-      m_y1 = rect.top;
+      m_y1 = rectangle.top;
 
-      m_x2 = rect.right;
+      m_x2 = rectangle.right;
 
-      m_y2 = rect.bottom;
+      m_y2 = rectangle.bottom;
 
       return true;
 
    }
 
 
-   bool region::create_polygon(const POINTD * ppoints, i32 nCount, ::draw2d::enum_fill_mode efillmode)
+   bool region::create_polygon(const POINT_F64 * ppoints, i32 nCount, ::draw2d::enum_fill_mode efillmode)
    {
 
       if(m_eregion != e_region_none)
@@ -110,8 +110,8 @@ namespace draw2d
 
       m_nCount = nCount;
       ::acme::del(m_lppoints);
-      m_lppoints = new ::pointd[m_nCount];
-      ::memcpy_dup(m_lppoints, ppoints, sizeof(POINTD) * m_nCount);
+      m_lppoints = new ::point_f64[m_nCount];
+      ::memcpy_dup(m_lppoints, ppoints, sizeof(POINT_F64) * m_nCount);
 
       m_efillmode = efillmode;
 
@@ -119,7 +119,7 @@ namespace draw2d
    }
 
 
-   bool region::create_polygon(const POINT32 * ppoints, i32 nCount, ::draw2d::enum_fill_mode efillmode)
+   bool region::create_polygon(const POINT_I32 * ppoints, i32 nCount, ::draw2d::enum_fill_mode efillmode)
    {
 
       if(m_eregion != e_region_none)
@@ -133,7 +133,7 @@ namespace draw2d
 
       m_nCount = nCount;
 
-      m_lppoints = new ::pointd[m_nCount];
+      m_lppoints = new ::point_f64[m_nCount];
 
       for(index i = 0; i < m_nCount; i++)
       {
@@ -151,7 +151,7 @@ namespace draw2d
    }
 
 
-   bool region::create_poly_polygon(const POINTD * ppoints, const i32 * ppolycounts, i32 nCount, ::draw2d::enum_fill_mode efillmode)
+   bool region::create_poly_polygon(const POINT_F64 * ppoints, const i32 * ppolycounts, i32 nCount, ::draw2d::enum_fill_mode efillmode)
    {
 
       if(m_eregion != e_region_none)
@@ -178,9 +178,9 @@ namespace draw2d
 
       }
 
-      m_lppoints = new ::pointd[iTotalCount];
+      m_lppoints = new ::point_f64[iTotalCount];
 
-      ::memcpy_dup(m_lppoints, ppoints, sizeof(POINTD) * iTotalCount);
+      ::memcpy_dup(m_lppoints, ppoints, sizeof(POINT_F64) * iTotalCount);
 
       m_efillmode = efillmode;
 
@@ -189,7 +189,7 @@ namespace draw2d
    }
 
 
-   bool region::create_poly_polygon(const POINT32 * ppoints, const i32 * ppolycounts,i32 nCount,::draw2d::enum_fill_mode efillmode)
+   bool region::create_poly_polygon(const POINT_I32 * ppoints, const i32 * ppolycounts,i32 nCount,::draw2d::enum_fill_mode efillmode)
    {
 
       if(m_eregion != e_region_none)
@@ -216,7 +216,7 @@ namespace draw2d
 
       }
 
-      m_lppoints = new ::pointd[iTotalCount];
+      m_lppoints = new ::point_f64[iTotalCount];
 
       for(i32 i = 0; i < iTotalCount; i++)
       {
@@ -288,8 +288,8 @@ namespace draw2d
          return *this;
       case e_region_polygon:
          m_nCount = regionSrc.m_nCount;
-         m_lppoints = new ::pointd[m_nCount];
-         ::memcpy_dup(m_lppoints, regionSrc.m_lppoints, sizeof(POINTD) * m_nCount);
+         m_lppoints = new ::point_f64[m_nCount];
+         ::memcpy_dup(m_lppoints, regionSrc.m_lppoints, sizeof(POINT_F64) * m_nCount);
          m_efillmode = regionSrc.m_efillmode;
          return *this;
       case e_region_poly_polygon:
@@ -302,8 +302,8 @@ namespace draw2d
          {
             iTotalCount += m_lppolycounts[i];
          }
-         m_lppoints = new ::pointd[iTotalCount];
-         ::memcpy_dup(m_lppoints, regionSrc.m_lppoints, sizeof(POINTD) * iTotalCount);
+         m_lppoints = new ::point_f64[iTotalCount];
+         ::memcpy_dup(m_lppoints, regionSrc.m_lppoints, sizeof(POINT_F64) * iTotalCount);
          m_efillmode = regionSrc.m_efillmode;
       }
       return *this;
@@ -328,7 +328,7 @@ namespace draw2d
    }
 
 
-   bool region::get_bounding_box(RECT32 * prect, ::draw2d::graphics * pgraphics)
+   bool region::get_bounding_box(RECTANGLE_I32 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
       ::exception::throw_interface_only();
@@ -338,7 +338,7 @@ namespace draw2d
    }
 
 
-   bool region::contains(const POINTD & point, ::draw2d::graphics * pgraphics)
+   bool region::contains(const POINT_F64 & point, ::draw2d::graphics * pgraphics)
    {
 
       return internal_contains(point);
@@ -346,7 +346,7 @@ namespace draw2d
    }
 
 
-   bool region::translate(const POINT32 & point, ::draw2d::graphics * pgraphics)
+   bool region::translate(const POINT_I32 & point, ::draw2d::graphics * pgraphics)
    {
 
       set_modified();
@@ -400,91 +400,91 @@ namespace draw2d
    }
 
 
-   bool region::contains(const POINT32 & point, ::draw2d::graphics * pgraphics)
+   bool region::contains(const POINT_I32 & point, ::draw2d::graphics * pgraphics)
    {
 
-      return contains(pointd(point));
+      return contains(point_f64(point));
 
    }
 
 
-   void region::max_bounding_box(RECT32 * prect, ::draw2d::graphics * pgraphics)
+   void region::max_bounding_box(RECTANGLE_I32 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::rectd rect;
+      ::rectangle_f64 rectangle_i32;
 
-      max_bounding_box(rect);
+      max_bounding_box(rectangle);
 
-      __copy(prect,rect);
+      __copy(prectangle,rectangle_i32);
 
    }
 
 
-   void region::max_bounding_box_rect(RECT32 * prect, ::draw2d::graphics * pgraphics)
+   void region::max_bounding_box_rect(RECTANGLE_I32 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::rectd rect;
+      ::rectangle_f64 rectangle_i32;
 
-      max_bounding_box_rect(rect);
+      max_bounding_box_rect(rectangle);
 
-      __copy(prect,rect);
-
-
-   }
-
-
-   void region::max_bounding_box_oval(RECT32 * prect, ::draw2d::graphics * pgraphics)
-   {
-
-      ::rectd rect;
-
-      max_bounding_box_oval(rect);
-
-      __copy(prect,rect);
+      __copy(prectangle,rectangle_i32);
 
 
    }
 
 
-   void region::max_bounding_box_polygon(RECT32 * prect, ::draw2d::graphics * pgraphics)
+   void region::max_bounding_box_oval(RECTANGLE_I32 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::rectd rect;
+      ::rectangle_f64 rectangle_i32;
 
-      max_bounding_box_polygon(rect);
+      max_bounding_box_oval(rectangle);
 
-      __copy(prect,rect);
-
-   }
-
-
-   void region::max_bounding_box_poly_polygon(RECT32 * prect, ::draw2d::graphics * pgraphics)
-   {
-
-      ::rectd rect;
-
-      max_bounding_box_poly_polygon(rect);
-
-      __copy(prect,rect);
+      __copy(prectangle,rectangle_i32);
 
 
    }
 
 
-   void region::max_bounding_box_combine(RECT32 * prect, ::draw2d::graphics * pgraphics)
+   void region::max_bounding_box_polygon(RECTANGLE_I32 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::rectd rect;
+      ::rectangle_f64 rectangle_i32;
 
-      max_bounding_box_combine(rect);
+      max_bounding_box_polygon(rectangle);
 
-      __copy(prect,rect);
+      __copy(prectangle,rectangle_i32);
+
+   }
+
+
+   void region::max_bounding_box_poly_polygon(RECTANGLE_I32 * prectangle, ::draw2d::graphics * pgraphics)
+   {
+
+      ::rectangle_f64 rectangle_i32;
+
+      max_bounding_box_poly_polygon(rectangle);
+
+      __copy(prectangle,rectangle_i32);
 
 
    }
 
 
-   void region::max_bounding_box(RECTD * prect, ::draw2d::graphics * pgraphics)
+   void region::max_bounding_box_combine(RECTANGLE_I32 * prectangle, ::draw2d::graphics * pgraphics)
+   {
+
+      ::rectangle_f64 rectangle_i32;
+
+      max_bounding_box_combine(rectangle);
+
+      __copy(prectangle,rectangle_i32);
+
+
+   }
+
+
+   void region::max_bounding_box(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
       switch(m_eregion)
@@ -492,19 +492,19 @@ namespace draw2d
       case e_region_none:
          return;
       case e_region_rect:
-         return max_bounding_box_rect(prect);
+         return max_bounding_box_rect(prectangle);
 
       case e_region_oval:
-         return max_bounding_box_oval(prect);
+         return max_bounding_box_oval(prectangle);
 
       case e_region_polygon:
-         return max_bounding_box_polygon(prect);
+         return max_bounding_box_polygon(prectangle);
 
       case e_region_poly_polygon:
-         return max_bounding_box_poly_polygon(prect);
+         return max_bounding_box_poly_polygon(prectangle);
 
       case e_region_combine:
-         return max_bounding_box_combine(prect);
+         return max_bounding_box_combine(prectangle);
 
       default:
          ::exception::throw_not_implemented();
@@ -513,35 +513,35 @@ namespace draw2d
    }
 
 
-   void region::max_bounding_box_rect(RECTD * prect, ::draw2d::graphics * pgraphics)
+   void region::max_bounding_box_rect(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
-      prect->left = min(prect->left,m_x1);
+      prectangle->left = min(prectangle->left,m_x1);
 
-      prect->right = max(prect->right,m_x2);
+      prectangle->right = max(prectangle->right,m_x2);
 
-      prect->top = min(prect->left,m_y1);
+      prectangle->top = min(prectangle->left,m_y1);
 
-      prect->bottom = max(prect->right,m_y2);
+      prectangle->bottom = max(prectangle->right,m_y2);
 
    }
 
 
-   void region::max_bounding_box_oval(RECTD * prect, ::draw2d::graphics * pgraphics)
+   void region::max_bounding_box_oval(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
-      prect->left = min(prect->left,m_x1);
+      prectangle->left = min(prectangle->left,m_x1);
 
-      prect->right = max(prect->right,m_x2);
+      prectangle->right = max(prectangle->right,m_x2);
 
-      prect->top = min(prect->left,m_y1);
+      prectangle->top = min(prectangle->left,m_y1);
 
-      prect->bottom = max(prect->right,m_y2);
+      prectangle->bottom = max(prectangle->right,m_y2);
 
    }
 
 
-   void region::max_bounding_box_polygon(RECTD * prect, ::draw2d::graphics * pgraphics)
+   void region::max_bounding_box_polygon(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
       if(m_nCount <= 0)
@@ -554,20 +554,20 @@ namespace draw2d
       for(int i = 0; i < m_nCount; i++)
       {
 
-         prect->left = min(prect->left,m_lppoints[i].x);
+         prectangle->left = min(prectangle->left,m_lppoints[i].x);
 
-         prect->right = max(prect->right,m_lppoints[i].x);
+         prectangle->right = max(prectangle->right,m_lppoints[i].x);
 
-         prect->top = min(prect->left,m_lppoints[i].y);
+         prectangle->top = min(prectangle->left,m_lppoints[i].y);
 
-         prect->bottom = max(prect->right,m_lppoints[i].y);
+         prectangle->bottom = max(prectangle->right,m_lppoints[i].y);
 
       }
 
    }
 
 
-   void region::max_bounding_box_poly_polygon(RECTD * prect, ::draw2d::graphics * pgraphics)
+   void region::max_bounding_box_poly_polygon(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
       i32 n = 0;
@@ -580,13 +580,13 @@ namespace draw2d
          for(int j = 0; j < iCount; j++,n++)
          {
 
-            prect->left = min(prect->left,m_lppoints[n].x);
+            prectangle->left = min(prectangle->left,m_lppoints[n].x);
 
-            prect->right = max(prect->right,m_lppoints[n].x);
+            prectangle->right = max(prectangle->right,m_lppoints[n].x);
 
-            prect->top = min(prect->left,m_lppoints[n].y);
+            prectangle->top = min(prectangle->left,m_lppoints[n].y);
 
-            prect->bottom = max(prect->right,m_lppoints[n].y);
+            prectangle->bottom = max(prectangle->right,m_lppoints[n].y);
 
          }
 
@@ -595,17 +595,17 @@ namespace draw2d
    }
 
 
-   void region::max_bounding_box_combine(RECTD * prect, ::draw2d::graphics * pgraphics)
+   void region::max_bounding_box_combine(RECTANGLE_F64 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
-      m_pregion1->max_bounding_box(prect);
+      m_pregion1->max_bounding_box(prectangle);
 
-      m_pregion2->max_bounding_box(prect);
+      m_pregion2->max_bounding_box(prectangle);
 
    }
 
 
-   bool region::internal_contains(const POINTD & point)
+   bool region::internal_contains(const POINT_F64 & point)
    {
 
       switch(m_eregion)
@@ -636,7 +636,7 @@ namespace draw2d
    }
 
 
-   bool region::internal_rectangle_contains(const POINTD & point)
+   bool region::internal_rectangle_contains(const POINT_F64 & point)
    {
 
       return point.x >= m_x1 && point.y >= m_y1 && point.x <= m_x2 && point.y <= m_y2;
@@ -644,7 +644,7 @@ namespace draw2d
    }
 
 
-   bool region::internal_oval_contains(const POINTD & point)
+   bool region::internal_oval_contains(const POINT_F64 & point)
    {
 
       double centerx    = (m_x2 + m_x1) / 2.0;
@@ -692,7 +692,7 @@ namespace draw2d
    }
 
 
-   bool region::internal_polygon_contains(const POINTD & point)
+   bool region::internal_polygon_contains(const POINT_F64 & point)
    {
 
       if (m_nCount <= 0)
@@ -702,7 +702,7 @@ namespace draw2d
 
       }
 
-      if (::polygon_contains_point(m_lppoints, m_nCount, point))
+      if (::polygon_contains_point(m_lppoints, m_nCount, point_i32))
       {
 
          return true;
@@ -714,7 +714,7 @@ namespace draw2d
    }
 
 
-   bool region::internal_poly_polygon_contains(const POINTD & point)
+   bool region::internal_poly_polygon_contains(const POINT_F64 & point)
    {
 
       i32 n = 0;
@@ -724,7 +724,7 @@ namespace draw2d
 
          i32 iCount = m_lppolycounts[i];
 
-         if (::polygon_contains_point(&m_lppoints[n], iCount, point))
+         if (::polygon_contains_point(&m_lppoints[n], iCount, point_i32))
          {
 
             return true;
@@ -740,7 +740,7 @@ namespace draw2d
    }
 
 
-   bool region::internal_combine_contains(const POINTD & point)
+   bool region::internal_combine_contains(const POINT_F64 & point)
    {
 
       if(m_ecombine == e_combine_add)
@@ -845,50 +845,50 @@ namespace draw2d
    }
 
 
-   bool region::internal_contains(const POINT32 & point)
+   bool region::internal_contains(const POINT_I32 & point)
    {
 
-      return internal_contains(pointd(point));
+      return internal_contains(point_f64(point));
 
    }
 
 
-   bool region::internal_rectangle_contains(const POINT32 & point)
+   bool region::internal_rectangle_contains(const POINT_I32 & point)
    {
 
-      return internal_rectangle_contains(pointd(point));
+      return internal_rectangle_contains(point_f64(point));
 
    }
 
 
-   bool region::internal_oval_contains(const POINT32 & point)
+   bool region::internal_oval_contains(const POINT_I32 & point)
    {
 
-      return internal_oval_contains(pointd(point));
+      return internal_oval_contains(point_f64(point));
 
    }
 
 
-   bool region::internal_polygon_contains(const POINT32 & point)
+   bool region::internal_polygon_contains(const POINT_I32 & point)
    {
 
-      return internal_polygon_contains(pointd(point));
+      return internal_polygon_contains(point_f64(point));
 
    }
 
 
-   bool region::internal_poly_polygon_contains(const POINT32 & point)
+   bool region::internal_poly_polygon_contains(const POINT_I32 & point)
    {
 
-      return internal_poly_polygon_contains(pointd(point));
+      return internal_poly_polygon_contains(point_f64(point));
 
    }
 
 
-   bool region::internal_combine_contains(const POINT32 & point)
+   bool region::internal_combine_contains(const POINT_I32 & point)
    {
 
-      return internal_combine_contains(pointd(point));
+      return internal_combine_contains(point_f64(point));
 
    }
 

@@ -10,15 +10,15 @@ public:
 
 
    template < class T2 >
-   inline static bool bases(T2 * point)
+   inline static bool bases(T2 * p)
    {
-      return dynamic_cast <T *> (point) != nullptr;
+      return dynamic_cast <T *> (p) != nullptr;
    }
 
    template < class T2 >
-   inline static bool bases(const ___pointer < T2 > & sp)
+   inline static bool bases(const ___pointer < T2 > & p)
    {
-      return dynamic_cast <T *> ((T2 *)sp.m_p) != nullptr;
+      return dynamic_cast <T *> ((T2 *)p.m_p) != nullptr;
    }
 
 };

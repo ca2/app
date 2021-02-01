@@ -13,7 +13,8 @@ namespace sockets
    {
    public:
 
-      interlocked_long                 m_lListenSocket;
+
+      interlocked_i32                  m_lListenSocket;
 
       SSLInitializer *                 m_psslinit;
 

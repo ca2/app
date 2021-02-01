@@ -10,7 +10,7 @@
 
 
 CLASS_DECL_AURA int xinerama_get_monitor_count();
-CLASS_DECL_AURA int xinerama_get_monitor_rect(index i, RECT32 * prect);
+CLASS_DECL_AURA int xinerama_get_monitor_rect(index i, RECTANGLE_I32 * prectangle);
 
 CLASS_DECL_AURA int xinerama_get_screen_size(int& width, int& height);
 
@@ -52,7 +52,7 @@ int xinerama_get_monitor_count()
 }
 
 
-int xinerama_get_monitor_rect(index iMonitor, RECT32 * prect)
+int xinerama_get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle)
 {
 
    xdisplay  d;
@@ -81,15 +81,15 @@ int xinerama_get_monitor_rect(index iMonitor, RECT32 * prect)
          if (iMonitor >= 0 && iMonitor < heads)
          {
 
-            prect->left = point[iMonitor].x_org;
+            prectangle->left = point_i32[iMonitor].x_org;
 
-            prect->top = point[iMonitor].y_org;
+            prectangle->top = point_i32[iMonitor].y_org;
 
-            prect->right = prect->left + point[iMonitor].width;
+            prectangle->right = prectangle->left + point_i32[iMonitor].width;
 
-            prect->bottom = prect->top + point[iMonitor].height;
+            prectangle->bottom = prectangle->top + point_i32[iMonitor].height;
 
-            screen_number = point[iMonitor].screen_number;
+            screen_number = point_i32[iMonitor].screen_number;
 
          }
 
@@ -110,13 +110,13 @@ int xinerama_get_monitor_rect(index iMonitor, RECT32 * prect)
 
    XRRScreenSize * psize = XRRSizes(d.display(), 0, &iCount);
 
-   prect->left = 0;
+   prectangle->left = 0;
 
-   prect->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdata->display()));
+   prectangle->right = WidthOfScreen(DefaultScreenOfDisplay(d.m_pdata->display()));
 
-   prect->top = 0;
+   prectangle->top = 0;
 
-   prect->bottom = HeightOfScreen(DefaultScreenOfDisplay(d.m_pdata->m_pdisplay));
+   prectangle->bottom = HeightOfScreen(DefaultScreenOfDisplay(d.m_pdata->m_pdisplay));
 
    return 0;
 
@@ -151,18 +151,18 @@ int xinerama_get_screen_size(int& width, int& height)
 
 
 // it doesn't work for final purpose, but it has example on how to "sort" rectangles with stability
-::array < rect > get_ordered_monitor_recta(::layered * pobjectContext)
+::array < rectangle_i32 > get_ordered_monitor_recta(::layered * pobjectContext)
 {
 
    index iMonitor = 0;
 
-   ::array < ::rect > rectaMonitor;
+   ::array < ::rectangle_i32 > rectaMonitor;
 
    ::aura::session * psession = Sess(__object(pobjectContext)->get_context_session());
 
    ::count cMonitor = psession->get_monitor_count();
 
-   ::rect rectMonitor;
+   ::rectangle_i32 rectMonitor;
 
    rectaMonitor.set_size(cMonitor);
 
@@ -210,7 +210,7 @@ int xinerama_get_screen_size(int& width, int& height)
 
 // it doesn't work for final purpose,
 // but it calls function that "sorts" rectangles with stability
-int get_best_ordered_monitor(::user::interaction * pinteraction, RECT32 * prectRet)
+int get_best_ordered_monitor(::user::interaction * pinteraction, RECTANGLE_I32 * prectRet)
 {
 
    auto rectaOrdered = get_ordered_monitor_recta(pinteraction->get_context_application());
@@ -228,32 +228,32 @@ int get_best_ordered_monitor(::user::interaction * pinteraction, RECT32 * prectR
 }
 
 
-int best_xinerama_monitor(::user::interaction * pinteraction, const ::rect & rectParam, RECT32 * prectRet)
+int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle_i32 & rectParam, RECTANGLE_I32 * prectRet)
 {
 
    ::null_rect(prectRet);
 
-   ::rect rect(rectParam);
+   ::rectangle_i32 rectangle(rectParam);
 
-   if(rect == nullptr)
+   if(rectangle_i32 == nullptr)
    {
 
-      rect = prectRet;
+      rectangle_i32 = prectRet;
 
    }
 
-   index iOrdered = pinteraction->best_monitor(prectRet, rect, false, e_activation_default, zorder_none);
+   index iOrdered = pinteraction->best_monitor(prectRet, rectangle_i32, false, e_activation_default, zorder_none);
 
    ::count cMonitor = xinerama_get_monitor_count();
 
-   ::rect rectMonitor;
+   ::rectangle_i32 rectMonitor;
 
    for(index i = 0; i < cMonitor; i++)
    {
 
       int iScreen = xinerama_get_monitor_rect(i, &rectMonitor);
 
-      if(rectMonitor == rect)
+      if(rectMonitor == rectangle_i32)
       {
 
          iOrdered = iScreen;
@@ -271,7 +271,7 @@ int best_xinerama_monitor(::user::interaction * pinteraction, const ::rect & rec
 }
 
 
-int best_xinerama_monitor(::user::interaction * pinteraction, RECT32 * prectRet)
+int best_xinerama_monitor(::user::interaction * pinteraction, RECTANGLE_I32 * prectRet)
 {
 
    return best_xinerama_monitor(pinteraction, nullptr, prectRet);
@@ -279,28 +279,28 @@ int best_xinerama_monitor(::user::interaction * pinteraction, RECT32 * prectRet)
 }
 
 
-int get_best_monitor(::user::interaction * pinteraction, const ::rect & rectParam, RECT32 * prectRet)
+int get_best_monitor(::user::interaction * pinteraction, const ::rectangle_i32 & rectParam, RECTANGLE_I32 * prectRet)
 {
 
-   ::rect rNull = nullptr;
+   ::rectangle_i32 rNull = nullptr;
 
-   ::rect rect(rectParam);
+   ::rectangle_i32 rectangle(rectParam);
 
-   if(rect == nullptr)
+   if(rectangle_i32 == nullptr)
    {
 
-      rect = rNull;
+      rectangle_i32 = rNull;
 
    }
 
-   index i = pinteraction->best_monitor(prectRet, rect, false, e_activation_default, zorder_none);
+   index i = pinteraction->best_monitor(prectRet, rectangle_i32, false, e_activation_default, zorder_none);
 
    return i;
 
 }
 
 
-int get_best_monitor(::user::interaction * pinteraction, RECT32 * prectRet)
+int get_best_monitor(::user::interaction * pinteraction, RECTANGLE_I32 * prectRet)
 {
 
    return get_best_monitor(pinteraction, nullptr, prectRet);

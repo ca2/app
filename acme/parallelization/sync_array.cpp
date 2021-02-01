@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/os/_os.h"
+#include "acme/operating_system.h"
 
 
 sync_array::sync_array()
@@ -78,9 +78,9 @@ bool sync_array::add_item(sync * psync)
 
    }
 
-   HSYNC hsync = psync->hsync();
+   auto hsync = psync->hsync();
 
-   if (hsync != nullptr && hsync != INVALID_HSYNC_VALUE)
+   if (hsync != nullptr)
    {
 
       m_byteaSyncIndex[m_hsyncaCache.get_size()] = (byte) m_synca.get_size();
@@ -90,7 +90,6 @@ bool sync_array::add_item(sync * psync)
    }
 
    m_synca.add(psync);
-
 
    return true;
 
@@ -126,9 +125,9 @@ void sync_array::remove(class sync * psync)
 
    m_synca.remove(psync);
 
-   HSYNC hsync = psync->hsync();
+   auto hsync = psync->hsync();
 
-   if (hsync != nullptr && hsync != INVALID_HSYNC_VALUE)
+   if (hsync != nullptr)
    {
 
       m_hsyncaCache.remove(hsync);
@@ -144,7 +143,7 @@ void sync_array::remove(index index)
    if (index >= m_synca.size())
    {
 
-      __throw(range_error("sync_array::remove: index out of bounds"));
+      __throw(range_exception("sync_array::remove: index out of bounds"));
 
    }
 

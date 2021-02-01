@@ -36,37 +36,6 @@ int_bool file_path_is_link(const char * pszPath)
 #endif
 
 
-int_bool file_exists_raw(const char * path1)
-{
-
-#ifdef WINDOWS
-
-   u32 dwFileAttributes = GetFileAttributesA(path1);
-
-   if (dwFileAttributes == INVALID_FILE_ATTRIBUTES || (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
-      return FALSE;
-
-   return TRUE;
-
-#else
-
-
-   // dedicaverse stat -> Sir And Arthur - Cesar Serenato
-
-   struct stat st;
-
-   if(stat(path1, &st))
-      return false;
-
-   if((st.st_mode & S_IFDIR))
-      return false;
-
-   return true;
-
-#endif
-
-}
-
 void file_put_contents_raw(const char * path, const char * psz)
 {
 

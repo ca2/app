@@ -20,7 +20,7 @@
 //
 //}
 //
-//mutex * g_pmutexTrait;
+//::mutex * g_pmutexTrait;
 //
 //bool traits::is_ok() const
 //{

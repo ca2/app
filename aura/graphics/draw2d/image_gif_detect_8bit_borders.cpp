@@ -1,7 +1,7 @@
 #include "framework.h"
 
 
-#define pixel(x, y) (ba[(pointer->m_rect.height() - (y) - 1) * iScan + (x)])
+#define pixel(x, y) (ba[(pointer->m_rectangle.height() - (y) - 1) * iScan + (x)])
 
 
 //bool draw2d_gif_detect_8bit_borders(image * imageCanvas, image_frame_array * pimagepointera, image_frame * pframe, int uFrameIndex, u8 * ba, int iScan, colorref_array & cra, int transparentIndex)

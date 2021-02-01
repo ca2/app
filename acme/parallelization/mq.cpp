@@ -1,14 +1,12 @@
 #include "framework.h"
-#include "acme/os/_c.h"
-#include "acme/os/_.h"
-#include "acme/os/_os.h"
+#include "acme/operating_system.h"
 #include "mq.h"
 
 #define WM_KICKIDLE         0x036A  // (params unused) causes idles to kick in
 #if defined(LINUX) // || defined(ANDROID)
 
 
-bool apex_defer_process_x_message(hthread_t hthread,LPMESSAGE pMsg,oswindow oswindow,bool bPeek);
+bool apex_defer_process_x_message(hthread_t hthread,MESSAGE * pMsg,oswindow oswindow,bool bPeek);
 
 
 #endif
@@ -32,7 +30,7 @@ mq::~mq()
 }
 
 
-int_bool mq::post_message(oswindow oswindow, const ::id & id, WPARAM wParam, LPARAM lParam)
+int_bool mq::post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
 {
 
    if (m_bQuit)
@@ -44,9 +42,9 @@ int_bool mq::post_message(oswindow oswindow, const ::id & id, WPARAM wParam, LPA
 
    mq_message message(id);
 
-   message.m_message.hwnd = oswindow;
-   message.m_message.wParam = wParam;
-   message.m_message.lParam = lParam;
+   message.m_message.hwnd = __hwnd(oswindow);
+   message.m_message.wParam = wparam;
+   message.m_message.lParam = lparam;
    message.m_message.pt.x = 0x80000000;
    message.m_message.pt.y = 0x80000000;
 
@@ -77,7 +75,7 @@ int_bool mq::post_message(const mq_message & message)
 
 
 
-int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
+int_bool mq::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
    if (wMsgFilterMax == 0)
@@ -374,7 +372,7 @@ int_bool mq_post_thread_message(ithread_t idthread, const ::id & id, WPARAM wpar
    if (id.m_etype != ::id::e_type_message)
    {
 
-      __throw(invalid_argument_exception);
+      __throw(invalid_argument_exception());
 
    }
 
@@ -394,7 +392,7 @@ int_bool mq_post_thread_message(ithread_t idthread, const ::id & id, WPARAM wpar
 
 
 
-CLASS_DECL_ACME int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
+CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
 {
 
    auto pmq = ::get_mq(::get_current_ithread(), false);
@@ -418,7 +416,7 @@ CLASS_DECL_ACME int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u3
 }
 
 
-CLASS_DECL_ACME int_bool mq_get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
+CLASS_DECL_ACME int_bool mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
 {
 
    auto pmq = ::get_mq(::get_current_ithread(), true);

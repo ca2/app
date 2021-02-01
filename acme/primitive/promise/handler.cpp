@@ -5,9 +5,9 @@ namespace promise
 {
 
 
-   ::critical_section handler::g_cs;
-   ::set<handler_pointer > handler::g_handlerset;
-   bool handler::g_bDestroyAll = false;
+   critical_section handler::s_criticalsection;
+   ::set<handler_pointer > handler::s_handlerset;
+   bool handler::s_bDestroyAll = false;
 
 
    //handler::handler()
@@ -273,9 +273,9 @@ namespace promise
    void handler::__remove(::matter *pmatter)
    {
 
-      cslock sl(&g_cs);
+      critical_section_lock sl(&s_criticalsection);
 
-      for (auto & handler : g_handlerset)
+      for (auto & handler : s_handlerset)
       {
 
          handler.element()->remove(pmatter);
@@ -288,7 +288,7 @@ namespace promise
    void handler::post_destroy_all()
    {
 
-      g_bDestroyAll = true;
+      s_bDestroyAll = true;
 
    }
 

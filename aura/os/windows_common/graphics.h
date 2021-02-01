@@ -1,4 +1,7 @@
 ﻿#pragma once
+
+
+#error ""
 //
 //
 //#ifdef _UWP

@@ -570,7 +570,7 @@ iptr oswindow_data::set_window_long_ptr(i32 nIndex, iptr l)
 }
 
 
-bool oswindow_data::_001ClientToScreen(POINT32 * pp)
+bool oswindow_data::_001ClientToScreen(POINT_I32 * pp)
 {
 
    return true;
@@ -578,7 +578,7 @@ bool oswindow_data::_001ClientToScreen(POINT32 * pp)
 }
 
 
-bool oswindow_data::_001ScreenToClient(POINT32 * pp)
+bool oswindow_data::_001ScreenToClient(POINT_I32 * pp)
 {
 
    return true;
@@ -649,7 +649,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 */
 
 
-void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya, SIZE32 * psize)
+void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya, SIZE_I32 * psize)
 {
 
    pgraphics->fill_solid_rect_dim(0, 0, psize->cx, psize->cy, RGB(84, 90, 80));
@@ -763,25 +763,25 @@ oswindow get_focus()
 }
 
 
-int_bool get_client_rect(oswindow_data * pdata, RECT32 * prect)
+int_bool get_client_rect(oswindow_data * pdata, RECTANGLE_I32 * prectangle)
 {
 
-   pdata->m_pimpl->m_puserinteraction->get_client_rect(prect);
+   pdata->m_pimpl->m_puserinteraction->get_client_rect(prectangle);
 
-   //prect->right -= prect->left;
-   //prect->bottom -= prect->top;
-   //prect->left = 0;
-   //prect->top = 0;
+   //prectangle->right -= prectangle->left;
+   //prectangle->bottom -= prectangle->top;
+   //prectangle->left = 0;
+   //prectangle->top = 0;
 
    return TRUE;
 
 }
 
 
-int_bool get_window_rect(oswindow_data * pdata, RECT32 * prect)
+int_bool get_window_rect(oswindow_data * pdata, RECTANGLE_I32 * prectangle)
 {
 
-   pdata->m_pimpl->m_puserinteraction->get_window_rect(prect);
+   pdata->m_pimpl->m_puserinteraction->get_window_rect(prectangle);
 
    return TRUE;
 
@@ -990,17 +990,17 @@ oswindow get_desktop_window()
 }
 
 
-POINT32 g_pointCursor;
+POINT_I32 g_pointCursor;
 
 
-int_bool SetCursorPos(POINT32 * lppt)
+int_bool SetCursorPos(POINT_I32 * lppt)
 {
    g_pointCursor = *lppt;
    return TRUE;
 }
 
 
-int_bool GetCursorPos(POINT32 * lppt)
+int_bool GetCursorPos(POINT_I32 * lppt)
 {
    *lppt = g_pointCursor;
    return TRUE;
@@ -1741,7 +1741,7 @@ CLASS_DECL_AURA ::e_status android_os_message_box(const char * pText, const char
 }
 
 
-int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int iMargin)
+int_bool point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, int iMargin)
 {
 
    return abs(ptHitTest.x) < iMargin && abs(ptHitTest.y) < iMargin;
@@ -1788,7 +1788,7 @@ int GetMainScreenRect(LPRECT32 lprect)
 }
 
 
-int SetMainScreenRect(LPCRECT32 lpcrect)
+int SetMainScreenRect(const RECTANGLE_I32 * lpcrect)
 {
 
    auto psession = System.get_context_session();

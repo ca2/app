@@ -99,7 +99,7 @@ auto m_millisRoll = ::millis::now();
 
       defer_check_on_draw_layout();
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -143,8 +143,8 @@ auto m_millisRoll = ::millis::now();
 
       }
 
-      m_pimageTime->from(point(xOffset, 0), m_pimagePost, ::point(), ::size(m_pimagePost->width() - xOffset, m_pimagePost->height()));
-      m_pimageTime->from(::point(), m_pimagePost, point(m_pimagePost->width() - xOffset, 0), size(xOffset, m_pimagePost->height()));
+      m_pimageTime->from(point_i32(xOffset, 0), m_pimagePost, ::point_i32(), ::size_i32(m_pimagePost->width() - xOffset, m_pimagePost->height()));
+      m_pimageTime->from(::point_i32(), m_pimagePost, point_i32(m_pimagePost->width() - xOffset, 0), size_i32(xOffset, m_pimagePost->height()));
 
       //m_pimagePost->from(m_pimageTime);
       _001OnPostProcess(m_pimageTime->get_graphics());
@@ -183,7 +183,7 @@ auto m_millisRoll = ::millis::now();
       pdcParam->TextOutA(0, 0, __str(m_dwaFrame.get_size()));*/
 
 
-      size s = m_pimageTime->get_size();
+      size_i32 s = m_pimageTime->get_size();
 
       ::draw2d::graphics_pointer & pgraphics = m_pimageTime->get_graphics();
 
@@ -252,13 +252,13 @@ auto m_millisRoll = ::millis::now();
          int iFactor = 2;
          int iMult = 1 << iFactor;
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(rectClient);
 
-         size s = rectClient.size();
+         size_i32 s = rectClient.size();
 
-         size s2(s.cx / iMult, s.cy / iMult);
+         size_i32 s2(s.cx / iMult, s.cy / iMult);
 
 /*         m_pimage1 = create_image(s2);
 

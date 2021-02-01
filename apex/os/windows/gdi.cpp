@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 
 
 CLASS_DECL_APEX HFONT wingdi_CreatePointFont(int nPointSize, const char* pszFaceName, HDC hdc, LOGFONTW* plf)
@@ -37,13 +38,13 @@ CLASS_DECL_APEX HFONT wingdi_CreatePointFontIndirect(LOGFONTW* pLogFont, HDC hdc
    LOGFONTW& logFont = *pLogFont;
 
 
-   POINT32 point;
-   // 72 points/inch, 10 decipoints/point
+   POINT_I32 point;
+   // 72 points/inch, 10 decipoints/point_i32
    point.y = ::MulDiv(::GetDeviceCaps(hdc, LOGPIXELSY), logFont.lfHeight, 720);
    point.x = 0;
-   ::DPtoLP(hdc, &point, 1);
-   POINT32 pointOrg = { 0, 0 };
-   ::DPtoLP(hdc, &pointOrg, 1);
+   ::DPtoLP(hdc, (POINT *) &point, 1);
+   POINT_I32 pointOrg = { 0, 0 };
+   ::DPtoLP(hdc, (POINT *) &pointOrg, 1);
    logFont.lfHeight = -abs(point.y - pointOrg.y);
 
    logFont.lfQuality = CLEARTYPE_NATURAL_QUALITY;

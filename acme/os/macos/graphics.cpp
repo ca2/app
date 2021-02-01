@@ -122,7 +122,7 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //{
 //   return FALSE;
 //}
-//int_bool GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE32 * psize)
+//int_bool GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE_I32 * psize)
 //{
 //   return FALSE;
 //}
@@ -262,7 +262,7 @@ HBRUSH CreateSolidBrush(color32_t cr)
 //
 //   // Create a copy of the original font with the new family. This call
 //   // attempts to preserve traits, and may return nullptr if that is not possible.
-//   // Pass in 0.0 and nullptr for size and matrix to preserve the values from
+//   // Pass in 0.0 and nullptr for size_i32 and matrix to preserve the values from
 //   // the original font.
 //   return CTFontCreateCopyWithFamily(iFont, 0.0, nullptr, iFamily);
 //
@@ -333,20 +333,20 @@ HBRUSH CreateSolidBrush(color32_t cr)
 //
 //
 //
-//void FillSolidRect_dup(HDC hdc, const ::rect & rect, color32_t clr)
+//void FillSolidRect_dup(HDC hdc, const ::rectangle_i32 & rectangle, color32_t clr)
 
 //{
 //   CGColorRef color = cg_create_color(clr);
-//   CGRect rect;
-//   rect.origin.x = prect->left;
+//   CGRect rectangle_i32;
+//   rectangle.origin.x = prectangle->left;
 
-//   rect.origin.y = prect->top;
+//   rectangle.origin.y = prectangle->top;
 
-//   rect.size.width = prect->right - prect->left;
+//   rectangle.size.width = prectangle->right - prectangle->left;
 
-//   rect.size.height = prect->bottom - prect->top;
+//   rectangle.size.height = prectangle->bottom - prectangle->top;
 
-//   CGContextFillRect(hdc->m_cgcontext, rect);
+//   CGContextFillRect(hdc->m_cgcontext, rectangle);
 //   cg_release_color(color);
 //}
 
@@ -390,12 +390,12 @@ HFONT CreatePointBoldFont_dup(int nPointSize, const char * pszFaceName, int BOLD
 //   // convert nPointSize to logical units based on pgraphics
 //   LOGFONT logFont = *pLogFont;
 //
-//   ::point point;
-//   // 72 points/inch, 10 decipoints/point
+//   ::point_i32 point;
+//   // 72 points/inch, 10 decipoints/point_i32
 //   point.y = ::MulDiv(::GetDeviceCaps(hDC, LOGPIXELSY), logFont.lfHeight, 720);
 //   point.x = 0;
 //   ::DPtoLP(hDC, &point, 1);
-//   const point & pointOrg = { 0, 0 };
+//   const point_i32 & pointOrg = { 0, 0 };
 //   ::DPtoLP(hDC, &pointOrg, 1);
 //   logFont.lfHeight = -abs_dup(point.y - pointOrg.y);
 //
@@ -452,9 +452,9 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char
 //
 //   }
 //
-//   CGRect rect = {{0,0},{(CGFloat)cx,(CGFloat)cy}};
+//   CGRect rectangle_i32 = {{0,0},{(CGFloat)cx,(CGFloat)cy}};
 //
-//   CGContextDrawImage(cgctx, rect, inImage);
+//   CGContextDrawImage(cgctx, rectangle_i32, inImage);
 //
 //   void *data = CGBitmapContextGetData (cgctx);
 //
@@ -695,7 +695,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 // }
 
 
-//int_bool get_client_rect(oswindow hwnd, RECT32 * prect)
+//int_bool get_client_rect(oswindow hwnd, RECTANGLE_I32 * prectangle)
 //
 //{
 //   /*   XWindowAttributes attrs;
@@ -704,26 +704,26 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 //    {
 //    return false;
 //    }
-//    prect->left      = 0;
+//    prectangle->left      = 0;
 //
-//    prect->top       = 0;
+//    prectangle->top       = 0;
 //
-//    prect->right     = prect->left    + attrs.width;
+//    prectangle->right     = prectangle->left    + attrs.width;
 //
-//    prect->bottom    = prect->top     + attrs.height;*/
+//    prectangle->bottom    = prectangle->top     + attrs.height;*/
 //
 //
-//   if(!get_window_rect(hwnd, prect))
+//   if(!get_window_rect(hwnd, prectangle))
 //
 //      return FALSE;
 //
-//   prect->right   -=  prect->left;
+//   prectangle->right   -=  prectangle->left;
 //
-//   prect->bottom  -=  prect->top;
+//   prectangle->bottom  -=  prectangle->top;
 //
-//   prect->left    =   0;
+//   prectangle->left    =   0;
 //
-//   prect->top     =   0;
+//   prectangle->top     =   0;
 //
 //
 //   return TRUE;
@@ -731,7 +731,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 //}
 
 //
-//int_bool get_window_rect(oswindow hwnd, RECT32 * prect)
+//int_bool get_window_rect(oswindow hwnd, RECTANGLE_I32 * prectangle)
 //
 //{
 //   /* XWindowAttributes attrs;
@@ -740,13 +740,13 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 //    {
 //    return false;
 //    }
-//    prect->left      = attrs.x;
+//    prectangle->left      = attrs.x;
 //
-//    prect->top       = attrs.y;
+//    prectangle->top       = attrs.y;
 //
-//    prect->right     = prect->left    + attrs.width;
+//    prectangle->right     = prectangle->left    + attrs.width;
 //
-//    prect->bottom    = prect->top     + attrs.height;*/
+//    prectangle->bottom    = prectangle->top     + attrs.height;*/
 //
 //
 //   //if(!hwnd->m_bNsWindowRect)
@@ -758,11 +758,11 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 //
 //   }
 //
-//   *prect = hwnd->m_rectNsWindow;
+//   *prectangle = hwnd->m_rectNsWindow;
 //
 //
 //
-//   //::copy(prect, hwnd->m_pimpl->m_rectParentClient);
+//   //::copy(prectangle, hwnd->m_pimpl->m_rectParentClient);
 //
 //
 //   return true;
@@ -773,24 +773,24 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 
 
 /*
- int FillRect(HDC hdc, const ::rect & prc, HBRUSH hbr)
+ int FillRect(HDC hdc, const ::rectangle_i32 & prc, HBRUSH hbr)
 
  {
 
- CGRect rect;
+ CGRect rectangle_i32;
 
- rect.origin.x     = prc->left;
+ rectangle.origin.x     = prc->left;
 
- rect.origin.y     = prc->top;
+ rectangle.origin.y     = prc->top;
 
- rect.size.width   = prc->right - lprc->left;
+ rectangle.size.width   = prc->right - lprc->left;
 
- rect.size.height  = prc->bottom - lprc->top;
+ rectangle.size.height  = prc->bottom - lprc->top;
 
 
  CGContextSetRGBFillColor(hdc->m_cgcontext, colorref_get_r_value(hbr->lbColor), colorref_get_g_value(hbr->lbColor), colorref_get_b_value(hbr->lbColor), colorref_get_a_value(hbr->lbColor));
 
- CGContextFillRect(hdc->m_cgcontext, rect);
+ CGContextFillRect(hdc->m_cgcontext, rectangle);
 
  return 1;
  }
@@ -878,7 +878,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 // {
 //     return FALSE;
 // }
-// int_bool GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE32 * psize)
+// int_bool GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE_I32 * psize)
 // {
 //     return FALSE;
 // }
@@ -1018,7 +1018,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 //
 //   // Create a copy of the original font with the new family. This call
 //   // attempts to preserve traits, and may return nullptr if that is not possible.
-//   // Pass in 0.0 and nullptr for size and matrix to preserve the values from
+//   // Pass in 0.0 and nullptr for size_i32 and matrix to preserve the values from
 //   // the original font.
 //   return CTFontCreateCopyWithFamily(iFont, 0.0, nullptr, iFamily);
 //
@@ -1088,20 +1088,20 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 
 
 
-// void FillSolidRect_dup(HDC hdc, const ::rect & rect, color32_t clr)
+// void FillSolidRect_dup(HDC hdc, const ::rectangle_i32 & rectangle, color32_t clr)
 
 // {
 //    CGColorRef color = cg_create_color(clr);
-//    CGRect rect;
-//    rect.origin.x = prect->left;
+//    CGRect rectangle_i32;
+//    rectangle.origin.x = prectangle->left;
 
-//    rect.origin.y = prect->top;
+//    rectangle.origin.y = prectangle->top;
 
-//    rect.size.width = prect->right - prect->left;
+//    rectangle.size.width = prectangle->right - prectangle->left;
 
-//    rect.size.height = prect->bottom - prect->top;
+//    rectangle.size.height = prectangle->bottom - prectangle->top;
 
-//    CGContextFillRect(hdc->m_cgcontext, rect);
+//    CGContextFillRect(hdc->m_cgcontext, rectangle);
 //    cg_release_color(color);
 // }
 
@@ -1201,7 +1201,7 @@ void os_term_imaging()
 
 
 
-//int_bool get_window_rect(oswindow hwnd, RECT32 * prect)
+//int_bool get_window_rect(oswindow hwnd, RECTANGLE_I32 * prectangle)
 //
 //{
 //   /* XWindowAttributes attrs;
@@ -1210,13 +1210,13 @@ void os_term_imaging()
 //    {
 //    return false;
 //    }
-//    prect->left      = attrs.x;
+//    prectangle->left      = attrs.x;
 //    
-//    prect->top       = attrs.y;
+//    prectangle->top       = attrs.y;
 //    
-//    prect->right     = prect->left    + attrs.width;
+//    prectangle->right     = prectangle->left    + attrs.width;
 //    
-//    prect->bottom    = prect->top     + attrs.height;*/
+//    prectangle->bottom    = prectangle->top     + attrs.height;*/
 //   
 //   
 //   //if(!hwnd->m_bNsWindowRect)
@@ -1228,11 +1228,11 @@ void os_term_imaging()
 //      
 //   }
 //   
-//   *prect = hwnd->m_rectNsWindow;
+//   *prectangle = hwnd->m_rectNsWindow;
 //   
 //   
 //   
-//   //::copy(prect, hwnd->m_pimpl->m_rectParentClient);
+//   //::copy(prectangle, hwnd->m_pimpl->m_rectParentClient);
 //   
 //   
 //   return true;

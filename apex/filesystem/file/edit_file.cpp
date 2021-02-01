@@ -1054,7 +1054,7 @@ namespace file
 
       if(m_pgroupitem == nullptr)
       {
-         ASSERT(FALSE);
+         ASSERT(false);
          return;
       }
       if(m_pgroupitem->m_pgroupitem == nullptr)

@@ -20,7 +20,7 @@ namespace message
 
 
       base();
-      base(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam);
+      base(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam);
 
       base(const base & base);
       virtual ~base();
@@ -39,9 +39,9 @@ namespace message
          
       }
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
 
-      inline void change(WPARAM wparam, ::lparam lparam) { set(m_oswindow,m_playeredUserPrimitive, m_id, wparam, lparam); }
+      inline void change(wparam wparam, ::lparam lparam) { set(m_oswindow,m_playeredUserPrimitive, m_id, wparam, lparam); }
 
       //base & operator = (const base & base);
 

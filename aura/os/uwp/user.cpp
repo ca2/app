@@ -8,10 +8,10 @@
 CLASS_DECL_AURA int g_iMouse = -1;
 
 
-CLASS_DECL_AURA int_bool get_cursor_pos(POINT32 * lppoint);
+CLASS_DECL_AURA int_bool get_cursor_pos(POINT_I32 * lppoint);
 
 
-CLASS_DECL_AURA int_bool ui_get_cursor_pos(POINT32 * ppt)
+CLASS_DECL_AURA int_bool ui_get_cursor_pos(POINT_I32 * ppt)
 {
 
    if (ppt == nullptr)
@@ -19,7 +19,7 @@ CLASS_DECL_AURA int_bool ui_get_cursor_pos(POINT32 * ppt)
 
    int_bool iRet = FALSE;
 
-   ::point pointCursor;
+   ::point_i32 pointCursor;
 
    ::wait(Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(Windows::UI::Core::CoreDispatcherPriority::Normal, ref new Windows::UI::Core::DispatchedHandler([=, &pointCursor, &iRet]()
    {
@@ -53,7 +53,7 @@ int g_iMouseX = 0;
 int g_iMouseY = 0;
 
 
-CLASS_DECL_AURA int_bool get_cursor_pos(POINT32 * lppoint)
+CLASS_DECL_AURA int_bool get_cursor_pos(POINT_I32 * lppoint)
 {
 
    lppoint->x = g_iMouseX;

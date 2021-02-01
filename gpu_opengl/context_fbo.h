@@ -30,8 +30,8 @@ namespace opengl
       virtual ::e_status lock_context() override;
       virtual ::e_status unlock_context() override;
 
-      virtual ::e_status _create_offscreen_buffer(const ::size& size) override;
-      //virtual ::e_status resize_offscreen_buffer(const ::size& size) override;
+      virtual ::e_status _create_offscreen_buffer(const ::size_i32& size) override;
+      //virtual ::e_status resize_offscreen_buffer(const ::size_i32& size) override;
       virtual ::e_status destroy_offscreen_buffer() override;
 
       virtual ::e_status make_current() override;
@@ -46,7 +46,7 @@ namespace opengl
       
       virtual ::e_status prepare_for_gpu_read() override;
       
-      virtual ::e_status resize_offscreen_buffer(const ::size& size) override;
+      virtual ::e_status resize_offscreen_buffer(const ::size_i32& size) override;
       
 
    };

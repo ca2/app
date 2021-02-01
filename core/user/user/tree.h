@@ -16,7 +16,7 @@ namespace user
    public:
 
 
-      //size                           m_sizeTotal;
+      //size_i32                           m_sizeTotal;
       ::e_align                                 m_ealignText;
       ::e_draw_text                             m_edrawtext;
       __composite(::data::tree)                 m_ptree;
@@ -28,7 +28,7 @@ namespace user
       index                                     m_dwFirstVisibleItem;
       index                                     m_iItemCount;
       ::u32                                     m_uiLButtonUpFlags;
-      point                                     m_pointLButtonUp;
+      point_i32                                     m_pointLButtonUp;
       ::data::tree_item *                       m_pitemFirstVisible;
       index                                     m_iFirstVisibleItemProperIndex;
       i32                                       m_iCurrentViewWidth;
@@ -88,20 +88,20 @@ namespace user
       void _001SetCollapseImage(const char * pszMatter);
       void _001SetExpandImage(const char * pszMatter);
       void update_tree_hover();
-      void update_tree_hover(point point);
+      void update_tree_hover(point_i32 point_i32);
       virtual void _001OnOpenItem(::data::tree_item * pitem, const ::action_context & action_context);
-      virtual void _001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & action_context, ::user::tree * ptree, const ::point & point);
+      virtual void _001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & action_context, ::user::tree * ptree, const ::point_i32 & point);
       void _001ExpandItem(::data::tree_item * pitem, const ::action_context & action_context, bool bExpand = true, bool bRedraw = true, bool bLayout = true);
       virtual void _001OnItemExpand(::data::tree_item * pitem, const ::action_context & action_context);
       virtual void _001OnItemCollapse(::data::tree_item * pitem, const ::action_context & action_context);
-      virtual bool _001GetItemElementRect(RECT32 * prect, tree_draw_item & drawitem, ::user::enum_tree_element eelement);
+      virtual bool _001GetItemElementRect(RECTANGLE_I32 * prectangle, tree_draw_item & drawitem, ::user::enum_tree_element eelement);
 
       virtual void install_message_routing(::channel * pchannel) override;
       virtual double _001GetItemHeight();
       virtual index _001GetIndentation();
 
 
-      __pointer(::data::tree_item) _001HitTest(const ::point & point, ::user::enum_tree_element & eelement);
+      __pointer(::data::tree_item) _001HitTest(const ::point_i32 & point, ::user::enum_tree_element & eelement);
 
       virtual bool on_click(const ::user::item & item) override;
 
@@ -109,7 +109,7 @@ namespace user
 
       virtual void perform_click();
 
-      virtual void perform_right_click(uptr uFlags, const ::point & point);
+      virtual void perform_right_click(uptr uFlags, const ::point_i32 & point);
 
       virtual i32 get_wheel_scroll_delta() override;
 
@@ -175,7 +175,7 @@ namespace user
 
       virtual bool keyboard_focus_is_focusable() const override;
 
-      //virtual ::sized get_total_size() override;
+      //virtual ::size_f64 get_total_size() override;
 
       virtual void on_viewport_offset(::draw2d::graphics_pointer & pgraphics) override;
 

@@ -40,15 +40,15 @@ namespace draw2d
       //   virtual ~matter();
 
 
-      //   virtual bool expand_bounding_rect(RECTD* prectd) const;
+      //   virtual bool expand_bounding_rect(RECTANGLE_F64* prectd) const;
 
-      //   virtual bool expand_bounding_rect(RECT32* prectd) const;
+      //   virtual bool expand_bounding_rect(RECTANGLE_I32* prectd) const;
 
-      //   virtual bool get_bounding_rect(RECTD* prectd) const;
+      //   virtual bool get_bounding_rect(RECTANGLE_F64* prectd) const;
 
-      //   virtual bool get_bounding_rect(RECT32* prectd) const;
+      //   virtual bool get_bounding_rect(RECTANGLE_I32* prectd) const;
 
-      //   virtual bool contains(const ::pointd& point) const;
+      //   virtual bool contains(const ::point_f64& point) const;
 
 
       //};
@@ -69,36 +69,36 @@ namespace draw2d
       //{
       //public:
 
-      //   pointd      m_pointCenter;
-      //   ::sized     m_sizeRadius;
-      //   pointd      m_pointBeg;
-      //   pointd      m_pointEnd;
+      //   point_f64      m_pointCenter;
+      //   ::size_f64     m_sizeRadius;
+      //   point_f64      m_pointBeg;
+      //   point_f64      m_pointEnd;
       //   angle       m_angleBeg;
       //   angle       m_angleEnd;
       //   angle       m_angleRotation;
 
       //   arc() { m_etype = type_arc; }
 
-      //   virtual bool get_bounding_rect(RECTD* prectd) const override;
+      //   virtual bool get_bounding_rect(RECTANGLE_F64* prectd) const override;
 
-      //   virtual bool contains(const ::pointd& point) const override;
+      //   virtual bool contains(const ::point_f64& point) const override;
 
       //};
 
 
-      //class CLASS_DECL_AURA rect :
+      //class CLASS_DECL_AURA rectangle_i32 :
       //   virtual public matter
       //{
       //public:
 
 
-      //   ::rectd m_rect;
+      //   ::rectangle_f64 m_rectangle;
 
-      //   rect() { m_etype = type_rect; }
+      //   rectangle_i32() { m_etype = type_rect; }
 
-      //   virtual bool get_bounding_rect(RECTD* prectd) const override;
+      //   virtual bool get_bounding_rect(RECTANGLE_F64* prectd) const override;
 
-      //   virtual bool contains(const ::pointd& point) const override;
+      //   virtual bool contains(const ::point_f64& point) const override;
 
 
       //};
@@ -110,13 +110,13 @@ namespace draw2d
       //public:
 
 
-      //   pointd   m_pointBeg;
-      //   pointd   m_pointEnd;
+      //   point_f64   m_pointBeg;
+      //   point_f64   m_pointEnd;
 
 
       //   line() { m_etype = type_line; }
 
-      //   virtual bool get_bounding_rect(RECTD* prectd) const override;
+      //   virtual bool get_bounding_rect(RECTANGLE_F64* prectd) const override;
 
 
       //};
@@ -127,33 +127,33 @@ namespace draw2d
       //{
       //public:
 
-      //   pointd_array                  m_pointa;
+      //   point_f64_array                  m_pointa;
 
 
       //   lines() { m_etype = type_lines; }
 
-      //   virtual bool get_bounding_rect(RECTD* prectd) const override;
+      //   virtual bool get_bounding_rect(RECTANGLE_F64* prectd) const override;
 
-      //   virtual bool contains(const ::pointd& point) const override;
+      //   virtual bool contains(const ::point_f64& point) const override;
 
 
       //};
 
 
-      //class CLASS_DECL_AURA polygon :
+      //class CLASS_DECL_AURA polygon_i32 :
       //   virtual public matter
       //{
       //public:
 
       //   ::draw2d::enum_fill_mode         m_efillmode;
-      //   pointd_array                  m_pointa;
+      //   point_f64_array                  m_pointa;
 
 
-      //   polygon() { m_etype = type_polygon; }
+      //   polygon_i32() { m_etype = type_polygon; }
 
-      //   virtual bool get_bounding_rect(RECTD* prectd) const override;
+      //   virtual bool get_bounding_rect(RECTANGLE_F64* prectd) const override;
 
-      //   virtual bool contains(const ::pointd & point) const override;
+      //   virtual bool contains(const ::point_f64 & point) const override;
 
 
       //};
@@ -175,13 +175,13 @@ namespace draw2d
       //{
       //public:
 
-      //   point                         m_point;
+      //   point_i32                         m_point;
 
       //   text_out() { m_etype = type_text_out; }
 
-      //   virtual bool get_bounding_rect(RECTD* prectd) const override;
+      //   virtual bool get_bounding_rect(RECTANGLE_F64* prectd) const override;
 
-      //   virtual bool contains(const ::pointd& point) const override;
+      //   virtual bool contains(const ::point_f64& point) const override;
 
       //};
 
@@ -191,14 +191,14 @@ namespace draw2d
       //{
       //public:
 
-      //   ::rectd                        m_rect;
+      //   ::rectangle_f64                        m_rectangle;
       //   int                           m_iDrawTextFlags;
 
       //   draw_text() { m_etype = type_draw_text; }
 
-      //   virtual bool get_bounding_rect(RECTD* prectd) const override;
+      //   virtual bool get_bounding_rect(RECTANGLE_F64* prectd) const override;
 
-      //   virtual bool contains(const ::pointd& point) const override;
+      //   virtual bool contains(const ::point_f64& point) const override;
 
       //};
 
@@ -215,10 +215,10 @@ namespace draw2d
 
       shape_array                      m_shapea;
       bool                             m_bHasPoint;
-      pointd                           m_pointBeg;
-      pointd                           m_pointEnd;
+      point_f64                           m_pointBeg;
+      point_f64                           m_pointEnd;
       ::draw2d::enum_fill_mode         m_efillmode;
-      pointd                           m_pointOffset;
+      point_f64                           m_pointOffset;
       
 
       path();
@@ -226,10 +226,10 @@ namespace draw2d
 
 
       virtual bool has_current_point();
-      virtual pointd get_current_point();
+      virtual point_f64 get_current_point();
 
       inline bool set_current_point(double x, double y) { return set_current_point({ x, y }); }
-      virtual bool set_current_point(const ::pointd & point);
+      virtual bool set_current_point(const ::point_f64 & point);
 
       virtual void set_fill_mode(::draw2d::enum_fill_mode efillmode);
       virtual ::draw2d::enum_fill_mode get_fill_mode();
@@ -237,48 +237,48 @@ namespace draw2d
       virtual bool begin_figure();
       virtual bool close_figure();
 
-      virtual bool add_arc_label(const ::rectd & rect);
+      virtual bool add_arc_label(const ::rectangle_f64 & rectangle);
 
 
-      virtual bool contains(::draw2d::graphics_pointer & pgraphics, const pointd& point);
+      virtual bool contains(::draw2d::graphics_pointer & pgraphics, const point_f64& point);
 
 
-      virtual bool add_rect(const ::rectd& rect, const ::pointd& point, const ::angle& angleRotation);
+      virtual bool add_rect(const ::rectangle_f64& rectangle, const ::point_f64& point, const ::angle& angleRotation);
 
-      virtual bool add_rect(const ::rectd& rect, const ::angle& angleCenterRotation);
+      virtual bool add_rect(const ::rectangle_f64& rectangle, const ::angle& angleCenterRotation);
 
-      virtual bool add_rect(const ::rectd& rect);
+      virtual bool add_rect(const ::rectangle_f64& rectangle);
 
-      virtual bool add_arc(const ::rectd & rect, const ::angle& angleBeg, const ::angle& angleSweep);
-      virtual bool varc(const ::pointd & point, double h, const ::angle & angle);
-      virtual bool harc(const ::pointd & point, double w, const ::angle & angle);
+      virtual bool add_arc(const ::rectangle_f64 & rectangle, const ::angle& angleBeg, const ::angle& angleSweep);
+      virtual bool varc(const ::point_f64 & point, double h, const ::angle & angle);
+      virtual bool harc(const ::point_f64 & point, double w, const ::angle & angle);
 
       
-      //virtual bool add_lines(const POINT32 * ppoint, ::count nCount);
-      virtual bool add_lines(const ::pointd * ppoint, ::count nCount);
+      //virtual bool add_lines(const POINT_I32 * ppoint, ::count nCount);
+      virtual bool add_lines(const ::point_f64 * ppoint, ::count nCount);
 
 
-      //virtual bool add_polygon(const POINT32* ppoint, ::count nCount);
-      virtual bool add_polygon(const ::pointd * ppoint, ::count nCount);
+      //virtual bool add_polygon(const POINT_I32* ppoint, ::count nCount);
+      virtual bool add_polygon(const ::point_f64 * ppoint, ::count nCount);
 
       
       inline bool add_line(double x, double y) { return add_line({ x, y }); }
-      virtual bool add_line(const pointd& point);
+      virtual bool add_line(const point_f64& point);
 
 
       inline bool add_line(double m, double n, double p, double q) { return add_line({ m, n }, { p, q }); }
-      virtual bool add_line(const pointd & point1, const pointd & point2);
+      virtual bool add_line(const point_f64 & point1, const point_f64 & point2);
 
 
-      virtual bool add_text_out(const ::pointd& point, const string& strText, ::draw2d::font_pointer spfont);
-      virtual bool add_draw_text(const string& strText, const ::rectd& rect, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::draw2d::font_pointer pfont);
+      virtual bool add_text_out(const ::point_f64& point, const string& strText, ::draw2d::font_pointer spfont);
+      virtual bool add_draw_text(const string& strText, const ::rectangle_f64& rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext, ::draw2d::font_pointer pfont);
 
 
       virtual void * detach();
 
 
-      virtual bool get_bounding_rect(::rectd * prect) const;
-      //virtual bool get_bounding_rect(RECT32 * prect) const;
+      virtual bool get_bounding_rect(::rectangle_f64 * prectangle) const;
+      //virtual bool get_bounding_rect(RECTANGLE_I32 * prectangle) const;
 
 
 
@@ -287,30 +287,30 @@ namespace draw2d
       //
       // get_round_rect()
       //
-      // Purpose:     Defines a Rounded rectangle and places it in the GraphicsPath
+      // Purpose:     Defines a Rounded rectangle_i32 and places it in the GraphicsPath
       //
       // Parameters:  pPath		- [out] pointer to GraphicsPath that will recieve the
       //									path data
-      //				rect			- [in]	Rect that defines the round rectangle boundaries
+      //				rectangle_i32			- [in]	Rect that defines the round rectangle_i32 boundaries
       //				dia			- [in]	diameter of the rounded corners (2*radius)
       //
       // Returns:     None
       //
 
-      //bool do_round_rect_corner(const ::rectd& rectCorner, const ::rectd& rectRect, i32 iDiameter, const ::e_border & eborder, int iCorner, bool & bOn);
-      bool do_round_rect_corner(const ::rectd& rectCorner, const ::rectd& rectRect, double dDiameter, const ::e_border & eborder, int iCorner, bool& bOn);
+      //bool do_round_rect_corner(const ::rectangle_f64& rectCorner, const ::rectangle_f64& rectRect, i32 iDiameter, const ::e_border & eborder, int iCorner, bool & bOn);
+      bool do_round_rect_corner(const ::rectangle_f64& rectCorner, const ::rectangle_f64& rectRect, double dDiameter, const ::e_border & eborder, int iCorner, bool& bOn);
 
-      bool add_round_top_left(const ::rectd & rect, double iDiameter, const ::e_border & eborder = e_border_all);
-      bool add_round_bottom_right(const ::rectd & rect, double iDiameter, const ::e_border & eborder = e_border_all);
+      bool add_round_top_left(const ::rectangle_f64 & rectangle, double iDiameter, const ::e_border & eborder = e_border_all);
+      bool add_round_bottom_right(const ::rectangle_f64 & rectangle, double iDiameter, const ::e_border & eborder = e_border_all);
 
 
-      //bool add_round_rect(const ::rectd & rect, double iRadius, const ::e_border & eborder = e_border_all);
-      //bool counter_corner(const ::rectd & rectCorner, double iRadius, const ::e_border & eborder);
-      //bool clock_corner(const ::rectd & rectCorner, double iRadius, const ::e_border & eborder);
+      //bool add_round_rect(const ::rectangle_f64 & rectangle, double iRadius, const ::e_border & eborder = e_border_all);
+      //bool counter_corner(const ::rectangle_f64 & rectCorner, double iRadius, const ::e_border & eborder);
+      //bool clock_corner(const ::rectangle_f64 & rectCorner, double iRadius, const ::e_border & eborder);
 
-      bool add_round_rect(const ::rectd & rect, double dRadius, const ::e_border & eborder = e_border_all);
-      bool counter_corner(const ::rectd & rectCorner, double dRadius, const ::e_border & eborder);
-      bool clock_corner(const ::rectd & rectCorner, double dRadius, const ::e_border & eborder);
+      bool add_round_rect(const ::rectangle_f64 & rectangle, double dRadius, const ::e_border & eborder = e_border_all);
+      bool counter_corner(const ::rectangle_f64 & rectCorner, double dRadius, const ::e_border & eborder);
+      bool clock_corner(const ::rectangle_f64 & rectCorner, double dRadius, const ::e_border & eborder);
 
 
       virtual bool _set_create(::draw2d::graphics* pgraphics);
@@ -329,13 +329,13 @@ namespace draw2d
 
       virtual bool _set(::draw2d::graphics * pgraphics, const ::linesd & pline);
 
-      //virtual bool _set(::draw2d::graphics * pgraphics, const ::rectd & prect);
+      //virtual bool _set(::draw2d::graphics * pgraphics, const ::rectangle_f64 & prectangle);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::rectd & prect);
+      virtual bool _set(::draw2d::graphics * pgraphics, const ::rectangle_f64 & prectangle);
 
-      //virtual bool _set(::draw2d::graphics * pgraphics, const ::polygon & ppolygon);
+      //virtual bool _set(::draw2d::graphics * pgraphics, const ::polygon_i32 & ppolygon);
 
-      virtual bool _set(::draw2d::graphics * pgraphics, const ::polygond & ppolygond);
+      virtual bool _set(::draw2d::graphics * pgraphics, const ::polygon_f64 & ppolygond);
 
       virtual bool _set(::draw2d::graphics * pgraphics, const ::text_out & ptextout);
 

@@ -15,7 +15,7 @@ THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS" AND 
 #include <math.h>
 
 /* The guts header contains all the multiplication and addition macros that are defined for
- fixed or doubleing point complex numbers.  It also delares the kf_ internal functions.
+ fixed or doubleing point_i32 complex numbers.  It also delares the kf_ internal functions.
  */
 
 static kiss_fft_cpx *scratchbuf=nullptr;

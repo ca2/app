@@ -1,5 +1,6 @@
 #pragma once
 
+
 typedef void GENERATE_RANDOM_BYTES(void * p, memsize s);
 using PFN_GENERATE_RANDOM_BYTES = GENERATE_RANDOM_BYTES *;
 
@@ -8,53 +9,52 @@ CLASS_DECL_ACME void set_generate_random_bytes(PFN_GENERATE_RANDOM_BYTES pfngene
 CLASS_DECL_ACME void generate_random_bytes(void * p, memsize s);
 
 
-
-// SIGNED SIGNED
-inline constexpr bool __lt(const i64 & a, const i64 & b) { return a < b; }
-inline constexpr bool __lt(const i32 & a, const i64 & b) { return a < b; }
-inline constexpr bool __lt(const i64 & a, const i32 & b) { return a < b; }
-
-// UNSIGNED SIGNED
-inline constexpr bool __lt(const u32 & a, const int & b) { return b < 0 ? false : a < static_cast < u32 > (b); }
-inline constexpr bool __lt(const size_t & a, const i64 & b) { return b < 0 ? false : a < static_cast < u64 > (b); }
-
-// SIGNED UNSIGNED
-inline constexpr bool __lt(const int & a, const u32 & b) { return a < 0 ? true : static_cast <u32> (a) < b; }
-inline constexpr bool __lt(const i64 & a, const size_t & b) { return a < 0 ? true : static_cast <u64> (a) < b; }
+template < primitive_integer INTEGER1, primitive_integer INTEGER2 >
+inline constexpr bool __lt(const INTEGER1 & a, const INTEGER2 & b) { return a < b; }
+template < primitive_integer INTEGER1, primitive_integer INTEGER2 >
+inline constexpr bool __le(const INTEGER1 & a, const INTEGER2 & b) { return a <= b; }
 
 
-// UNSIGNED SIGNED
-inline constexpr bool __le(const u32 & a, const int & b) { return b < 0 ? false : a <= static_cast <u32> (b); }
-inline constexpr bool __le(const size_t & a, const i64 & b) { return b < 0 ? false : a <= static_cast <u64> (b); }
-
-// SIGNED UNSIGNED
-inline constexpr bool __le(const int & a, const u32 & b) { return a < 0 ? false : static_cast <u32> (a) <= b; }
-inline constexpr bool __le(const i64 & a, const size_t & b) { return a < 0 ? false : static_cast <u64> (a) <= b; }
+template < primitive_natural NATURAL1, primitive_integer INTEGER2 >
+inline constexpr bool __lt(const NATURAL1 & a, const INTEGER2 & b) { return b < 0 ? false : a < static_cast < u32 > (b); }
+template < primitive_natural NATURAL1, primitive_integer INTEGER2 >
+inline constexpr bool __le(const NATURAL1 & a, const INTEGER2 & b) { return b < 0 ? false : a <= static_cast <u32> (b); }
 
 
-template < typename A, typename B >
-inline constexpr auto __gt(const A & a, const B & b) { return __lt(b, a); }
-
-template < typename A, typename B >
-inline constexpr auto __ge(const A & a, const B & b) { return __le(b, a); }
-
-
-// UNSIGNED SIGNED
-constexpr int __min(const u32 & a, const int & b) { return __lt(a, b) ? (i32) a : b; }
-constexpr i64 __min(const size_t & a, const i64 & b) { return __lt(a, b) ? (i64) a : b; }
-
-// SIGNED UNSIGNED
-constexpr int __min(const int & a, const u32 & b) { return __lt(a, b) ? a : (i32) b; }
-constexpr i64 __min(const i64 & a, const size_t & b) { return __lt(a, b) ? a : (i64) b; }
+template < primitive_integer INTEGER1, primitive_natural NATURAL2 >
+inline constexpr bool __lt(const INTEGER1 & a, const NATURAL2 & b) { return a < 0 ? true : static_cast <u32> (a) < b; }
+template < primitive_integer INTEGER1, primitive_natural NATURAL2 >
+inline constexpr bool __le(const INTEGER1 & a, const NATURAL2 & b) { return a < 0 ? false : static_cast <u64> (a) <= b; }
 
 
-// UNSIGNED SIGNED
-constexpr u32 __max(const u32 & a, const int & b) { return __lt(b, a) ? a : (u32) b; }
-constexpr size_t __max(const size_t & a, const i64 & b) { return __lt(b, a) ? a : (size_t) b; }
+template < primitive_natural NATURAL1, primitive_natural NATURAL2 >
+inline constexpr bool __lt(const NATURAL1 & a, const NATURAL2 & b) { return a < b; }
+template < primitive_natural NATURAL1, primitive_natural NATURAL2 >
+inline constexpr bool __le(const NATURAL1 & a, const NATURAL2 & b) { return a <= b; }
 
-// SIGNED UNSIGNED
-constexpr u32 __max(const int & a, const u32 & b) { return __lt(b, a) ? (u32) a : b; }
-constexpr size_t __max(const i64 & a, const size_t & b) { return __lt(b, a) ? (size_t) a : b; }
+
+template < typename T1, typename T2 >
+inline constexpr auto __ge(const T1 & a, const T2 & b) { return __le(b, a); }
+
+template < typename T1, typename T2 >
+inline constexpr auto __gt(const T1 & a, const T2 & b) { return __lt(b, a); }
+
+
+
+template < primitive_natural NATURAL1, primitive_integer INTEGER2 >
+constexpr INTEGER2 minimum(const NATURAL1 & a, const INTEGER2 & b) { return __lt(a, b) ? (INTEGER2) a : b; }
+
+template < primitive_integer INTEGER1, primitive_natural NATURAL2 >
+constexpr INTEGER1 minimum(const INTEGER1 & a, const NATURAL2 & b) { return __lt(a, b) ? a : (INTEGER1) b; }
+
+
+
+template < primitive_natural NATURAL1, primitive_integer INTEGER2 >
+constexpr INTEGER2 maximum(const NATURAL1 & a, const INTEGER2 & b) { return __lt(b, a) ? (INTEGER2)a :  b; }
+
+template < primitive_integer INTEGER1, primitive_natural NATURAL2 >
+constexpr INTEGER1 maximum(const int & a, const NATURAL2 & b) { return __lt(b, a) ?  a : (INTEGER1)b; }
+
 
 
 #include "count.h"
@@ -146,3 +146,10 @@ inline TYPE range_rate(TYPE iMin, TYPE iMax, double dRate)
 {
    return (TYPE)((iMax - iMin) * dRate) + iMin;
 }
+
+
+
+#include "number_limits.h"
+
+
+

@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "_.h"
+#include "apex/operating_system.h"
 
 
 namespace win32
@@ -69,7 +69,7 @@ namespace win32
    void window::set_font(font & font)
    {
 
-      ::SendMessageW(m_hwnd, WM_SETFONT, (WPARAM)font.get_os_data(), FALSE);
+      ::SendMessageW(m_hwnd, WM_SETFONT, (WPARAM)font.get_os_data(), false);
 
    }
 
@@ -80,13 +80,13 @@ namespace win32
    }
 
 
-   iptr window::send_message(const ::id & id, WPARAM wparam, LPARAM lparam)
+   iptr window::send_message(const ::id & id, wparam wparam, lparam lparam)
    {
 
       if (!id.is_message())
       {
 
-         __throw(invalid_argument_exception);
+         __throw(invalid_argument_exception());
 
       }
 
@@ -95,13 +95,13 @@ namespace win32
    }
 
 
-   iptr window::send_message_w(const ::id & id, WPARAM wparam, LPARAM lparam)
+   iptr window::send_message_w(const ::id & id, wparam wparam, lparam lparam)
    {
 
       if (!id.is_message())
       {
 
-         __throw(invalid_argument_exception);
+         __throw(invalid_argument_exception());
 
       }
 
@@ -110,13 +110,13 @@ namespace win32
    }
 
 
-   void window::post_message(const ::id & id, WPARAM wparam, LPARAM lparam)
+   void window::post_message(const ::id & id, wparam wparam, lparam lparam)
    {
 
       if (!id.is_message())
       {
 
-         __throw(invalid_argument_exception);
+         __throw(invalid_argument_exception());
 
       }
 
@@ -128,7 +128,7 @@ namespace win32
    void window::enable_window(bool bEnable)
    {
 
-      ::EnableWindow(m_hwnd, bEnable ? TRUE : FALSE);
+      ::EnableWindow(m_hwnd, bEnable ? true : false);
 
 
    }
@@ -142,7 +142,7 @@ namespace win32
       while (hwnd != nullptr)
       {
 
-         ::EnableWindow(hwnd, bEnable ? TRUE : FALSE);
+         ::EnableWindow(hwnd, bEnable ? true : false);
 
          RedrawWindow(hwnd, nullptr, nullptr, RDW_INVALIDATE | RDW_UPDATENOW | RDW_ALLCHILDREN);
 

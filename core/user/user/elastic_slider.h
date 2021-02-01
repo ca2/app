@@ -49,7 +49,7 @@ namespace user
 
 
       void UpdatePosition();
-      void CalcTension(point & point);
+      void CalcTension(point_i32 & point);
       void SetSliderPos(double dPos);
 
       double CalcScalar();
@@ -60,7 +60,7 @@ namespace user
 
       double GetForce();
 
-      void GetSliderRect(::rect & rect);
+      void GetSliderRect(::rectangle_i32 & rectangle);
 
 
    };

@@ -74,7 +74,7 @@ namespace android
 
       rStatus.m_attribute = 0;
 
-      // get just the low ::u32 of the file size
+      // get just the low ::u32 of the file size_i32
       //ASSERT(findFileData.nFileSizeHigh == 0);
       //rStatus.m_size = (::i32)findFileData.nFileSizeLow;
 
@@ -288,7 +288,7 @@ namespace android
             { ERROR_NOT_ENOUGH_QUOTA,       ENOMEM }    /* 1816 */
          };
 
-         /* size of the table */
+         /* size_i32 of the table */
 #define ERRTABLESIZE (sizeof(errtable)/sizeof(errtable[0]))
          set_last_error(-1);
          for (size_t u = 0; u < ERRTABLESIZE; u++)
@@ -714,7 +714,7 @@ namespace android
          struct stat st;
          if(fstat(m_iFile, &st) == -1)
             return FALSE;
-         // get time ::file::seek_current file size
+         // get time ::file::seek_current file size_i32
          /*FILETIME ftCreate, ftAccess, ftModify;
          if (!::GetFileTime((HANDLE)m_iFile, &ftCreate, &ftAccess, &ftModify))
             return FALSE;*/

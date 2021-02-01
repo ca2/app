@@ -3,7 +3,7 @@
 // "pluggable" non-member non-virtual global serializers
 
 // Use cases:
-// - Entry point convenience syntax sugar
+// - Entry point_i32 convenience syntax sugar
 // - syntax sugar
 template < typename TYPE >
 inline stream & operator >> (stream & stream, TYPE & t) { stream.defer_set_loading(); stream.exchange(t); return stream; }

@@ -124,7 +124,7 @@
 
 //      }
 
-//      if (!(point->*pfnOuput)(&os, &is))
+//      if (!(point_i32->*pfnOuput)(&os, &is))
 
 //      {
 
@@ -385,7 +385,7 @@
 
 //      }
 
-//      if (!(point->*pfnOuput)(os, is))
+//      if (!(point_i32->*pfnOuput)(os, is))
 
 //      {
 
@@ -407,7 +407,7 @@
 
 
 //template < class T >
-//bool ::file::system::output(::object * pobject, ::file::file & os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * pfileIn)
+//bool ::file::system::output(::object * pobject, ::file::file & os, T * point_i32, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * pfileIn)
 
 //{
 
@@ -425,7 +425,7 @@
 
 //      }
 
-//      if (!(point->*pfnOuput)(os, is))
+//      if (!(point_i32->*pfnOuput)(os, is))
 
 //      {
 
@@ -447,7 +447,7 @@
 
 
 //template < class T >
-//bool system::output(::object * pobject, ::file::file & os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * preader)
+//bool system::output(::object * pobject, ::file::file & os, T * point_i32, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * preader)
 //{
 
 //   ::file::path pathDownloading;
@@ -464,7 +464,7 @@
 
 //      }
 
-//      if (!(point->*pfnOuput)(os, is))
+//      if (!(point_i32->*pfnOuput)(os, is))
 
 //      {
 
@@ -508,7 +508,7 @@
 //bool application::output(const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return Context.file().output(get_context_application(), pathOut, point, pfnOuput, istream);
+//   return Context.file().output(get_context_application(), pathOut, point_i32, pfnOuput, istream);
 
 //}
 
@@ -517,7 +517,7 @@
 //bool application::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), const ::file::path & pathIn)
 //{
 
-//   return Context.file().output(get_context_application(), pfileOut, point, pfnOuput, pathIn);
+//   return Context.file().output(get_context_application(), pfileOut, point_i32, pfnOuput, pathIn);
 
 
 //}
@@ -560,11 +560,11 @@
 
 
 //template < class T >
-//bool application::output(::file::file& os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file & istream)
+//bool application::output(::file::file& os, T * point_i32, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file & istream)
 
 //{
 
-//   return Context.file().output(get_context_application(), os, point, pfnOuput, istream);
+//   return Context.file().output(get_context_application(), os, point_i32, pfnOuput, istream);
 
 
 //}
@@ -576,9 +576,9 @@
 //inline ::file::path operator + (const string & str,const ::file::path & path) { return ::file::path(str + string(path)); }
 //inline ::file::path operator + (const char * psz,const ::file::path & path) {  return ::file::path(psz + string(path)); }
 // xxxabc inline ::file::path operator + (const ::payload & payload,const ::file::path & path) { return ::file::path(payload.get_string() + string(path)); }
-//inline ::file::path operator / (const string & str,const ::file::path & path) { ::file::path point(str);  return point / path; }
-//inline ::file::path operator / (const char * psz,const ::file::path & path) { ::file::path point(psz);  return point / path; }
-// xxxabc inline ::file::path operator / (const ::payload & payload,const ::file::path & path) { ::file::path point(payload.get_file_path());  return point / path; }
+//inline ::file::path operator / (const string & str,const ::file::path & path) { ::file::path point_i32(str);  return point / path; }
+//inline ::file::path operator / (const char * psz,const ::file::path & path) { ::file::path point_i32(psz);  return point / path; }
+// xxxabc inline ::file::path operator / (const ::payload & payload,const ::file::path & path) { ::file::path point_i32(payload.get_file_path());  return point / path; }
 
 
 

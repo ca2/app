@@ -161,7 +161,7 @@ inline void __exchange_as_string(stream & s, STRINGABLE & stringable)
    if (s.is_storing())
    {
 
-      ::str::from(str, stringable);
+      ::str::from(str, (const STRINGABLE &) stringable);
 
       s.exchange(id::e_type_empty, str);
 
@@ -171,7 +171,7 @@ inline void __exchange_as_string(stream & s, STRINGABLE & stringable)
 
       s.exchange(id::e_type_empty, str);
 
-      ::str::to(stringable, str);
+      ::str::to(stringable, (const string &) str);
 
    }
 

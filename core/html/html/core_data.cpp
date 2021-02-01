@@ -140,12 +140,12 @@ namespace html
          }
       }
       if (!pelement->m_pimpl->m_bHover
-         || !pelement->m_pstyle->get_text("font-size", "hover", this, pelement, font.m_strSize))
+         || !pelement->m_pstyle->get_text("font-size_i32", "hover", this, pelement, font.m_strSize))
       {
          if (!pelement->m_pimpl->has_link()
-            || !pelement->m_pstyle->get_text("font-sizef", "link", this, pelement, font.m_strSize))
+            || !pelement->m_pstyle->get_text("font-size_f32", "link", this, pelement, font.m_strSize))
          {
-            pelement->m_pstyle->get_text("font-size", "", this, pelement, font.m_strSize);
+            pelement->m_pstyle->get_text("font-size_i32", "", this, pelement, font.m_strSize);
          }
       }
       if (!pelement->m_pimpl->m_bHover

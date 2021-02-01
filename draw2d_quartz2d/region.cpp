@@ -40,14 +40,14 @@ namespace draw2d_quartz2d
       if(m_eregion == ::draw2d::e_region_rect)
       {
 
-         CGRect rect;
+         CGRect rectangle_i32;
 
-         rect.origin.x = m_x1;
-         rect.origin.y = m_y1;
-         rect.size.width = m_x2 - m_x1;
-         rect.size.height = m_y2 - m_y1;
+         rectangle.origin.x = m_x1;
+         rectangle.origin.y = m_y1;
+         rectangle.size.width = m_x2 - m_x1;
+         rectangle.size.height = m_y2 - m_y1;
          
-         CGPathAddRect (m_path, nullptr, rect);
+         CGPathAddRect (m_path, nullptr, rectangle);
 
       }
       else if(m_eregion == ::draw2d::e_region_polygon)
@@ -66,14 +66,14 @@ namespace draw2d_quartz2d
       else if(m_eregion == ::draw2d::e_region_oval)
       {
 
-         CGRect rect;
+         CGRect rectangle_i32;
 
-         rect.origin.x = m_x1;
-         rect.origin.y = m_y1;
-         rect.size.width = m_x2 - m_x1;
-         rect.size.height = m_y2 - m_y1;
+         rectangle.origin.x = m_x1;
+         rectangle.origin.y = m_y1;
+         rectangle.size.width = m_x2 - m_x1;
+         rectangle.size.height = m_y2 - m_y1;
 
-         CGPathAddEllipseInRect(m_path, nullptr, rect);
+         CGPathAddEllipseInRect(m_path, nullptr, rectangle);
 
       }
       else if(m_eregion == ::draw2d::e_region_combine)

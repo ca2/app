@@ -42,7 +42,7 @@ namespace draw2d_quartz2d
 
 
    // bPreserve is currently disregarded
-   ::e_status image::create(const ::size & size, ::eobject eobjectCreateImage, int iGoodStride, bool bPreserve)
+   ::e_status image::create(const ::size_i32 & size, ::eobject eobjectCreateImage, int iGoodStride, bool bPreserve)
    {
 
       if(m_pbitmap.is_set()
@@ -153,7 +153,7 @@ namespace draw2d_quartz2d
 
       }
 
-      ::size size = pbitmap->get_size();
+      ::size_i32 size = pbitmap->get_size();
 
       if(!create(size))
       {
@@ -162,7 +162,7 @@ namespace draw2d_quartz2d
 
       }
 
-      from(point(), pgraphics, point(), size);
+      from(point_i32(), pgraphics, point_i32(), size);
 
       return true;
 
@@ -193,7 +193,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool image::to(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc)
+   bool image::to(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, const ::point_i32 & pointSrc)
    {
 
       return pgraphics->BitBlt(point.x, point.y, size.cx, size.cy, get_graphics(), pointSrc.x, pointSrc.y);
@@ -201,7 +201,7 @@ namespace draw2d_quartz2d
    }
 
 
-   bool image::from(const ::point & pointDest, ::draw2d::graphics * pgraphics, const ::point & point, const ::size & size)
+   bool image::from(const ::point_i32 & pointDest, ::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size)
    {
       
       return m_pgraphics->BitBlt(pointDest.x, pointDest.y, size.cx, size.cy, pgraphics, point.x, point.y);
@@ -369,14 +369,14 @@ namespace draw2d_quartz2d
    }
 
 
-   bool image::blend(const ::point & pointDstParam, ::image * pimplSrc, const ::point & pointSrcParam, const ::size & sizeParam, byte bA)
+   bool image::blend(const ::point_i32 & pointDstParam, ::image * pimplSrc, const ::point_i32 & pointSrcParam, const ::size_i32 & sizeParam, byte bA)
    {
       
-      ::point pointDst(pointDstParam);
+      ::point_i32 pointDst(pointDstParam);
       
-      ::point pointSrc(pointSrcParam);
+      ::point_i32 pointSrc(pointSrcParam);
       
-      ::size size(sizeParam);
+      ::size_i32 size(sizeParam);
 
       ::image * pimplDst = this;
 

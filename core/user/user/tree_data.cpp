@@ -213,13 +213,13 @@ namespace user
    }
 
 
-   void tree_data::_001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & context,::user::tree * ptree,const ::point & point)
+   void tree_data::_001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & context,::user::tree * ptree,const ::point_i32 & point)
    {
 
       for(index i = 0; i < m_usertreea.get_count(); i++)
       {
 
-         m_usertreea[i]->_001OnItemContextMenu(pitem,context,ptree,point);
+         m_usertreea[i]->_001OnItemContextMenu(pitem,context,ptree,point_i32);
 
       }
 

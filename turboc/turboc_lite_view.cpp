@@ -105,7 +105,7 @@ namespace turboc
       if(m_pimageWork->area() <= 0)
          return;
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       rectClient.left = 0;
 
@@ -164,7 +164,7 @@ namespace turboc
 
       pgraphics->set_font(m_font);
 
-      ::size size = pgraphics->GetTextExtent(strHelloMultiverse);
+      ::size_i32 size = pgraphics->GetTextExtent(strHelloMultiverse);
 
 
       if(!m_bFirstDone)
@@ -193,7 +193,7 @@ namespace turboc
 
 /*            m_pimage->g()->SelectObject(brushText);
 
-/*            m_pimage->g()->text_out((m_cxCache1 - size->cx) / 2,(m_cyCache1 - size->cy) / 2,strHelloMultiverse);
+/*            m_pimage->g()->text_out((m_cxCache1 - size_i32->cx) / 2,(m_cyCache1 - size_i32->cy) / 2,strHelloMultiverse);
 
 /*            m_pimage->blur(m_cxCache1,m_cyCache1);
 
@@ -261,7 +261,7 @@ namespace turboc
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      System.draw2d().imaging().bitmap_blend(pgraphics,::point(),rectClient.size(),m_pimageTemplate->get_graphics(),::point(),140 + 220 * r);
+      System.draw2d().imaging().bitmap_blend(pgraphics,::point_i32(),rectClient.size(),m_pimageTemplate->get_graphics(),::point_i32(),140 + 220 * r);
 
       //pgraphics->BitBlt(rectClient,m_pimageTemplate->get_graphics());
 

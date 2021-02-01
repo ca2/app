@@ -1,5 +1,5 @@
 ﻿#include "framework.h"
-#include "apex/node/windows/_windows.h"
+#include "apex/operating_system.h"
 
 
 namespace windows
@@ -76,7 +76,7 @@ namespace windows
       si.cb = sizeof(si);
       si.dwFlags = STARTF_USESHOWWINDOW;
       si.wShowWindow = e_display_none; */
-      //         if(!::CreateProcess(nullptr, (char *) (const char *) Context.dir().appdata("production\\build.bat"), nullptr, nullptr, FALSE, CREATE_NEW_CONSOLE, nullptr, nullptr, &si, &pi))
+      //         if(!::CreateProcess(nullptr, (char *) (const char *) Context.dir().appdata("production\\build.bat"), nullptr, nullptr, false, CREATE_NEW_CONSOLE, nullptr, nullptr, &si, &pi))
       m_si.dwFlags |= STARTF_USESHOWWINDOW;
       m_si.wShowWindow = e_display_none;
 
@@ -134,12 +134,12 @@ namespace windows
                                 pwszCommandLine,
                                 nullptr,          // process security attributes
                                 nullptr,          // primary thread security attributes
-                                TRUE,          // handles are inherited
+                                true,          // handles are inherited
                                 dwFlags | dwPriorityClass,             // creation flags
                                 nullptr,          // use parent's environment
                                 pwszDir,
                                 &m_si,  // STARTUPINFO pointer
-                                &m_pi) != FALSE;  // receives PROCESS_INFORMATION
+                                &m_pi) != false;  // receives PROCESS_INFORMATION
 
       // If an error occurs, exit the application.
       if (!bSuccess)
@@ -302,7 +302,7 @@ namespace windows
    {
       ::system(string("taskkill /F /T /PID " ) + __str((i32) m_pi.dwProcessId));
       return true;
-      //return TerminateProcess(m_pi.hthread, -1) != FALSE;
+      //return TerminateProcess(m_pi.hthread, -1) != false;
 
    }
 

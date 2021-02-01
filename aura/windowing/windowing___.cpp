@@ -197,7 +197,7 @@
 //}
 //
 //
-//mutex * x11_mutex() {return g_pmutexX11;}
+//::mutex * x11_mutex() {return g_pmutexX11;}
 //
 //
 //void x11_defer_handle_just_hooks()

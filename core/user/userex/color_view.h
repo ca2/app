@@ -12,7 +12,7 @@ namespace userex
 
 
       bool                             m_bMouseColorBeam;
-      ::point                          m_pointMouseColorBeam;
+      ::point_i32                          m_pointMouseColorBeam;
       bool                             m_bCompact;
       bool                             m_bLButtonPressed;
       ::user::plain_edit_view          m_editRed;
@@ -26,7 +26,7 @@ namespace userex
 
       ::hls                            m_hls;
 
-      ::rect                           m_rectColors;
+      ::rectangle_i32                           m_rectColors;
 
 
       color_view();
@@ -45,8 +45,8 @@ namespace userex
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void draw_beam(::draw2d::graphics_pointer & pgraphics, const ::point & point);
-      virtual void draw_level(::draw2d::graphics_pointer & pgraphics, const ::rect & rectW, int y);
+      virtual void draw_beam(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & point);
+      virtual void draw_level(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectW, int y);
 
 
       DECL_GEN_SIGNAL(_001OnCreate);
@@ -57,7 +57,7 @@ namespace userex
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void on_mouse(const ::point & point);
+      virtual void on_mouse(const ::point_i32 & point);
       virtual void rebuild_luminance();
 
       virtual color get_color();

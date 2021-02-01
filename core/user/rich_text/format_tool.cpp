@@ -120,7 +120,7 @@ namespace user
       //pfont->m_etextrenderinghint = ::draw2d::text_rendering_hint_clear_type_grid_fit;
       //m_pcomboSize->create_color(::user::color_text, ARGB(255, 80, 80, 80));
       //m_pcomboSize->create_color(::user::color_background, ARGB(255, 255, 255, 255));
-      //::rectd r(2, 2, 2, 2);
+      //::rectangle_f64 r(2, 2, 2, 2);
       //create_rect(::user::rect_edit_padding, r, ::draw2d::unit_pixel);
 
 
@@ -201,7 +201,7 @@ namespace user
 
       ::draw2d::brush_pointer brBk(e_create);
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -701,22 +701,22 @@ namespace user
    void format_tool::show_for_ui(::user::interaction* pinteraction)
    {
 
-      ::rect rectOther;
+      ::rectangle_i32 rectOther;
       
       pinteraction->get_window_rect(rectOther);
 
       set_owner(pinteraction);
 
-      ::rect rect(rectOther.top_left() - ::size(0, 48), ::size(100, 100));
+      ::rectangle_i32 rectangle(rectOther.top_left() - ::size_i32(0, 48), ::size_i32(100, 100));
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       get_window_rect(rectWindow);
 
-      ::rect rectRequest;
+      ::rectangle_i32 rectRequest;
 
-      rectRequest.left = rect.left - 32;
-      rectRequest.top = rect.top - 32;
+      rectRequest.left = rectangle.left - 32;
+      rectRequest.top = rectangle.top - 32;
       rectRequest.right = rectRequest.left + 400;
       rectRequest.bottom = rectRequest.top + 32;
 

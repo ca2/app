@@ -22,11 +22,11 @@ public:
 
 
    polygon_base();
-   polygon_base(const polygon_base & polygon);
-   polygon_base(polygon_base&& polygon);
+   polygon_base(const polygon_base & polygon_i32);
+   polygon_base(polygon_base&& polygon_i32);
    ~polygon_base();
 
-   void set_rect(const RECT_TYPE & rect);
+   void set_rect(const RECT_TYPE & rectangle);
 
 
    void check_dirty()
@@ -43,36 +43,36 @@ public:
 
    const RECT_TYPE & bounding_rect() const;
 
-   bool overlaps(const polygon_base & polygon) const;
+   bool overlaps(const polygon_base & polygon_i32) const;
 
-   polygon_base convex_intersection(const polygon_base & polygon) const;
+   polygon_base convex_intersection(const polygon_base & polygon_i32) const;
 
    // sort clockwise
    void sort();
 
    bool bounding_rectangle_contains(const POINT_TYPE & point) const;
 
-   polygon_base& operator = (const polygon_base& polygon);
-   polygon_base& operator = (polygon_base&& polygon);
+   polygon_base& operator = (const polygon_base& polygon_i32);
+   polygon_base& operator = (polygon_base&& polygon_i32);
 
 
 };
 
 template < typename POINT_TYPE >
-inline polygon_base < POINT_TYPE >::polygon_base(const polygon_base& polygon)
+inline polygon_base < POINT_TYPE >::polygon_base(const polygon_base& polygon_i32)
 {
-   operator = (polygon);
+   operator = (polygon_i32);
 
 }
 
 template < typename POINT_TYPE >
-inline polygon_base < POINT_TYPE >::polygon_base(polygon_base&& polygon) :
-   point_array_base < POINT_TYPE >(::move(polygon))
+inline polygon_base < POINT_TYPE >::polygon_base(polygon_base&& polygon_i32) :
+   point_array_base < POINT_TYPE >(::move(polygon_i32))
 {
    
-   m_bDirty = polygon.m_bDirty;
-   m_bDirtyBoundingRect = polygon.m_bDirtyBoundingRect;
-   m_rectBounding = polygon.m_rectBounding;
+   m_bDirty = polygon_i32.m_bDirty;
+   m_bDirtyBoundingRect = polygon_i32.m_bDirtyBoundingRect;
+   m_rectBounding = polygon_i32.m_rectBounding;
 
 }
 
@@ -85,7 +85,7 @@ inline bool polygon_base < POINT_TYPE >::bounding_rectangle_contains(const POINT
 }
 
 
-inline double atan(const pointd & point, double x, double y)
+inline double atan(const point_f64 & point, double x, double y)
 {
 
    return ::atan2(point.y - y, point.x - x);
@@ -115,16 +115,16 @@ void polygon_base < POINT_TYPE >::sort()
 
 
 template < typename POINT_TYPE >
-polygon_base<POINT_TYPE> & polygon_base < POINT_TYPE >::operator = (const polygon_base& polygon)
+polygon_base<POINT_TYPE> & polygon_base < POINT_TYPE >::operator = (const polygon_base& polygon_i32)
 {
 
-   if (&polygon != this)
+   if (&polygon_i32 != this)
    {
 
-      point_array_base < POINT_TYPE >::operator = (polygon);
-      m_bDirty = polygon.m_bDirty;
-      m_bDirtyBoundingRect = polygon.m_bDirtyBoundingRect;
-      m_rectBounding = polygon.m_rectBounding;
+      point_array_base < POINT_TYPE >::operator = (polygon_i32);
+      m_bDirty = polygon_i32.m_bDirty;
+      m_bDirtyBoundingRect = polygon_i32.m_bDirtyBoundingRect;
+      m_rectBounding = polygon_i32.m_rectBounding;
 
    }
 
@@ -133,16 +133,16 @@ polygon_base<POINT_TYPE> & polygon_base < POINT_TYPE >::operator = (const polygo
 }
 
 template < typename POINT_TYPE >
-polygon_base<POINT_TYPE>& polygon_base < POINT_TYPE >::operator = (polygon_base&& polygon)
+polygon_base<POINT_TYPE>& polygon_base < POINT_TYPE >::operator = (polygon_base&& polygon_i32)
 {
 
-   if (&polygon != this)
+   if (&polygon_i32 != this)
    {
 
-      point_array_base < POINT_TYPE >::operator = (::move(polygon));
-      m_bDirty = polygon.m_bDirty;
-      m_bDirtyBoundingRect = polygon.m_bDirtyBoundingRect;
-      m_rectBounding = polygon.m_rectBounding;
+      point_array_base < POINT_TYPE >::operator = (::move(polygon_i32));
+      m_bDirty = polygon_i32.m_bDirty;
+      m_bDirtyBoundingRect = polygon_i32.m_bDirtyBoundingRect;
+      m_rectBounding = polygon_i32.m_rectBounding;
 
    }
 
@@ -150,15 +150,15 @@ polygon_base<POINT_TYPE>& polygon_base < POINT_TYPE >::operator = (polygon_base&
 
 }
 
-inline bool line_intersection(pointd & point, const pointd & pt1, const pointd & pt2, const pointd & pt3, const pointd & pt4);
+inline bool line_intersection(point_f64 & point, const point_f64 & pt1, const point_f64 & pt2, const point_f64 & pt3, const point_f64 & pt4);
 
 
 
 
 //https://rbrundritt.wordpress.com/2008/10/20/approximate-points-of-intersection-of-two-line-segments/
 //latlong1 and latlong2 represent two coordinates that make up the bounded box
-//latlong3 is a point that we are checking to see is inside the box
-inline bool inBoundedBox(const pointd & pt1, const pointd & pt2, const pointd & pt3)
+//latlong3 is a point_i32 that we are checking to see is inside the box
+inline bool inBoundedBox(const point_f64 & pt1, const point_f64 & pt2, const point_f64 & pt3)
 {
 
    double dSpan = 0.01;
@@ -213,7 +213,7 @@ inline bool inBoundedBox(const pointd & pt1, const pointd & pt2, const pointd & 
 
 }
 
-inline bool inBoundedBox1(const pointd & pt1, const pointd & pt2, const pointd & pt3)
+inline bool inBoundedBox1(const point_f64 & pt1, const point_f64 & pt2, const point_f64 & pt3)
 {
 
    if (pt1.x < pt2.x)
@@ -268,7 +268,7 @@ inline bool inBoundedBox1(const pointd & pt1, const pointd & pt2, const pointd &
 
 
 //https://rbrundritt.wordpress.com/2008/10/20/approximate-points-of-intersection-of-two-line-segments/
-inline bool line_intersection(pointd & point, const pointd & pt1, const pointd & pt2, const pointd & pt3, const pointd & pt4)
+inline bool line_intersection(point_f64 & point, const point_f64 & pt1, const point_f64 & pt2, const point_f64 & pt3, const point_f64 & pt4)
 {
 
    //Line segment 1 (point1, point2)
@@ -300,10 +300,10 @@ inline bool line_intersection(pointd & point, const pointd & pt1, const pointd &
 }
 
 
-inline void get_intersection_points(pointd_array & pa, const pointd & point1, const pointd & point2, const pointd_array & paPolygon)
+inline void get_intersection_points(point_f64_array & pa, const point_f64 & point1, const point_f64 & point2, const point_f64_array & paPolygon)
 {
 
-   pointd point;
+   point_f64 point;
 
    for (iptr i = 0; i < paPolygon.get_count(); i++)
    {
@@ -340,10 +340,10 @@ polygon_base < POINT_TYPE >::~polygon_base()
 
 
 template < typename POINT_TYPE >
-void polygon_base < POINT_TYPE >::set_rect(const RECT_TYPE & rect)
+void polygon_base < POINT_TYPE >::set_rect(const RECT_TYPE & rectangle)
 {
 
-   m_rectBounding = rect;
+   m_rectBounding = rectangle_i32;
 
    this->set_size(4);
 
@@ -392,15 +392,15 @@ const typename polygon_base < POINT_TYPE >::RECT_TYPE & polygon_base < POINT_TYP
 
 
 template < typename POINT_TYPE >
-bool polygon_base < POINT_TYPE >::overlaps(const polygon_base & polygon) const
+bool polygon_base < POINT_TYPE >::overlaps(const polygon_base & polygon_i32) const
 {
 
-   if (this->get_count() >= 3 && polygon.get_count() >= 3)
+   if (this->get_count() >= 3 && polygon_i32.get_count() >= 3)
    {
 
-      const rectd & r1 = bounding_rect();
+      const rectangle_f64 & r1 = bounding_rect();
 
-      const rectd & r2 = polygon.bounding_rect();
+      const rectangle_f64 & r2 = polygon_i32.bounding_rect();
 
       if (!r1.intersects(r2))
       {
@@ -411,13 +411,13 @@ bool polygon_base < POINT_TYPE >::overlaps(const polygon_base & polygon) const
 
       ::count c1 = this->get_count();
 
-      ::count c2 = polygon.get_count();
+      ::count c2 = polygon_i32.get_count();
 
 
       for (int i = 0; i < c1; i++)
       {
 
-         if (polygon.polygon_contains(this->element_at(i)))
+         if (polygon_i32.polygon_contains(this->element_at(i)))
          {
 
             return true;
@@ -429,7 +429,7 @@ bool polygon_base < POINT_TYPE >::overlaps(const polygon_base & polygon) const
       for (int i = 0; i < c2; i++)
       {
 
-         if (this->polygon_contains(polygon[i]))
+         if (this->polygon_contains(polygon_i32[i]))
          {
 
             return true;
@@ -439,7 +439,7 @@ bool polygon_base < POINT_TYPE >::overlaps(const polygon_base & polygon) const
       }
 
 
-      pointd point;
+      point_f64 point;
 
       for (int i = 0; i < c1; i++)
       {
@@ -447,7 +447,7 @@ bool polygon_base < POINT_TYPE >::overlaps(const polygon_base & polygon) const
          for (int k = 0; k < c2; k++)
          {
 
-            if (line_intersection(point, this->element_at(i), this->element_at((i + 1) % c1), polygon[k], polygon[(k + 1) % c2]))
+            if (line_intersection(point, this->element_at(i), this->element_at((i + 1) % c1), polygon_i32[k], polygon_i32[(k + 1) % c2]))
             {
 
                return true;
@@ -467,12 +467,12 @@ bool polygon_base < POINT_TYPE >::overlaps(const polygon_base & polygon) const
 
 
 template < typename POINT_TYPE >
-polygon_base < POINT_TYPE > polygon_base < POINT_TYPE >::convex_intersection(const polygon_base & polygon) const
+polygon_base < POINT_TYPE > polygon_base < POINT_TYPE >::convex_intersection(const polygon_base & polygon_i32) const
 {
 
    ::count c1 = this->get_count();
 
-   ::count c2 = polygon.get_count();
+   ::count c2 = polygon_i32.get_count();
 
    polygon_base polygonResult;
 
@@ -483,7 +483,7 @@ polygon_base < POINT_TYPE > polygon_base < POINT_TYPE >::convex_intersection(con
       for (int i = 0; i < c1; i++)
       {
 
-         if (polygon.polygon_contains(this->element_at(i)))
+         if (polygon_i32.polygon_contains(this->element_at(i)))
          {
 
             polygonResult.tolerance_add_unique(0.001, this->element_at(i));
@@ -495,10 +495,10 @@ polygon_base < POINT_TYPE > polygon_base < POINT_TYPE >::convex_intersection(con
       for (int i = 0; i < c2; i++)
       {
 
-         if (this->polygon_contains(polygon[i]))
+         if (this->polygon_contains(polygon_i32[i]))
          {
 
-            polygonResult.tolerance_add_unique(0.001, polygon[i]);
+            polygonResult.tolerance_add_unique(0.001, polygon_i32[i]);
 
          }
 
@@ -507,7 +507,7 @@ polygon_base < POINT_TYPE > polygon_base < POINT_TYPE >::convex_intersection(con
       for (int i = 0; i < this->get_count(); i++)
       {
 
-         get_intersection_points(polygonResult, i % *this, (i + 1) % *this, polygon);
+         get_intersection_points(polygonResult, i % *this, (i + 1) % *this, polygon_i32);
 
       }
 
@@ -523,7 +523,7 @@ polygon_base < POINT_TYPE > polygon_base < POINT_TYPE >::convex_intersection(con
 
 
 
-using polygon = polygon_base < point >;
-using polygon64 = polygon_base < point64 >;
-using polygonf = polygon_base < pointf >;
-using polygond = polygon_base < pointd >;
+using polygon_i32 = polygon_base < point_i32 >;
+using polygon_i64 = polygon_base < point_i64 >;
+using polygon_f32 = polygon_base < point_f32 >;
+using polygon_f64 = polygon_base < point_f64 >;

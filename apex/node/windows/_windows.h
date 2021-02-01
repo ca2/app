@@ -7,6 +7,9 @@
 #include "_node_windows.h"
 
 
+#include "interprocess_communication.h"
+
+
 //CLASS_DECL_APEX::file::path get_known_folder(REFKNOWNFOLDERID kfid);
 
 //#include "buffer.h"
@@ -28,6 +31,7 @@
 //#include "registry.h"
 //#include "RoundWindowApp.h"
 //#include "shell.h"
+#include "shell_launcher.h"
 //#include "simple_hold_handle.h"
 //#include "stdio_file.h"
 #include "dir_system.h"
@@ -40,6 +44,8 @@
 //#include "uac_tools.h"
 #include "user.h"
 //#include "shell.h"
+
+#include "service.h"
 
 
 

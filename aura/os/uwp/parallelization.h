@@ -2,23 +2,23 @@
 
 
 
-#ifndef _UWP
+//#ifndef _UWP
+//
+//typedef struct tag_MSG
+//{
+//   oswindow    hwnd;
+//   ::u32        message;
+//   WPARAM      wParam;
+//   LPARAM      lParam;
+//   POINT_I32       pt;
+//} MESSAGE, * MESSAGE *;
+//#endif
 
-typedef struct tag_MSG
-{
-   oswindow    hwnd;
-   ::u32        message;
-   WPARAM      wParam;
-   LPARAM      lParam;
-   POINT32       pt;
-} MESSAGE, * LPMESSAGE;
-#endif
 
 
+//CLASS_DECL_AURA int_bool WINAPI GetMessage(MESSAGE * lpMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
-//CLASS_DECL_AURA int_bool WINAPI GetMessage(LPMESSAGE lpMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
-
-//CLASS_DECL_AURA int_bool WINAPI PeekMessage(LPMESSAGE lpMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax,::u32 wRemoveMsg);
+//CLASS_DECL_AURA int_bool WINAPI PeekMessage(MESSAGE * lpMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax,::u32 wRemoveMsg);
 
 //CLASS_DECL_AURA int_bool WINAPI PostThreadMessage(ithread_t idthread, ::u32 Msg, WPARAM wParam, LPARAM lParam);
 

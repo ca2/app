@@ -5,7 +5,7 @@
 #include "apex/platform/app_core.h"
 
 
-void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction, const ::rect & rect);
+void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction, const ::rectangle_i32 & rectangle);
 
 
 namespace user
@@ -101,7 +101,7 @@ namespace user
             INFO("-------------------------------------------------------------------");
             INFO("");
             INFO("");
-            INFO("interaction_child::create_window_ex (rect)");
+            INFO("interaction_child::create_window_ex (rectangle)");
             INFO("");
             INFO("");
 
@@ -170,7 +170,7 @@ namespace user
 
          }
 
-         //m_puserinteraction->send_message(e_message_create, 0, (lparam)(LPARAM)& pusersystem->m_createstruct);
+         //m_puserinteraction->send_message(e_message_create, 0, (lparam)(lparam)& pusersystem->m_createstruct);
          m_puserinteraction->send_message(e_message_create, 0, 0);
 
       }
@@ -192,17 +192,17 @@ namespace user
    }
 
 //
-//   //bool interaction_child::create_interaction(::user::interaction * pinteraction, const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::primitive * puiParent, id id, ::create * pcreate)
+//   //bool interaction_child::create_interaction(::user::interaction * pinteraction, const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::primitive * puiParent, id id, ::create * pcreate)
 //   bool interaction_child::create_child(::user::interaction * pinteraction, ::user::primitive * pprimitiveParent)
 //   {
 //
 //      auto pusersystem = __new(::user::system);
 //
-//      ::rect rect;
+//      ::rectangle_i32 rectangle;
 //
-//      rect.set(pinteraction->layout().sketch().screen_rect());
+//      rectangle.set(pinteraction->layout().sketch().screen_rect());
 //
-//      pusersystem->set_rect(&rect);
+//      pusersystem->set_rect(&rectangle);
 //
 //      ::u32 nExStyle = 0;
 //
@@ -249,7 +249,7 @@ namespace user
    //{
 
    //   return _create_interaction(pinteraction, pparent);
-   //   /*return create_interaction(pinteraction, nullptr, nullptr, WS_CHILD | WS_VISIBLE, rect, puiParent, id, nullptr);*/
+   //   /*return create_interaction(pinteraction, nullptr, nullptr, WS_CHILD | WS_VISIBLE, rectangle_i32, puiParent, id, nullptr);*/
 
    //}
 
@@ -310,7 +310,7 @@ namespace user
    }
 
 
-   void interaction_child::CalcWindowRect(RECT32 * pClientRect, ::u32 nAdjustType)
+   void interaction_child::CalcWindowRect(RECTANGLE_I32 * pClientRect, ::u32 nAdjustType)
 
    {
       UNREFERENCED_PARAMETER(pClientRect);
@@ -381,7 +381,7 @@ namespace user
    }
 
 
-   //LRESULT interaction_child::default_window_procedure()
+   //lresult interaction_child::default_window_procedure()
    //{
 
    //   return 0;
@@ -586,7 +586,7 @@ namespace user
    }
 
 
-   void interaction_child::send_message_to_descendants(const ::id & id, WPARAM wParam, lparam lParam, bool bDeep, bool bOnlyPerm)
+   void interaction_child::send_message_to_descendants(const ::id & id, wparam wParam, lparam lParam, bool bDeep, bool bOnlyPerm)
    {
 
       if (m_puserinteraction == nullptr)
@@ -659,7 +659,7 @@ namespace user
 
          }
 
-         ::rect rectWindow;
+         ::rectangle_i32 rectWindow;
 
          m_puserinteraction->get_window_rect(rectWindow, ::user::e_layout_design);
 
@@ -683,7 +683,7 @@ namespace user
    }
 
 
-   bool interaction_child::RedrawWindow(const ::rect & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   bool interaction_child::RedrawWindow(const ::rectangle_i32 & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       ::user::interaction * pinteraction = get_wnd();

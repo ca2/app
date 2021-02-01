@@ -114,7 +114,7 @@ namespace net
       virtual pointer_array < port_map > get_port_map() const;  // gets a copy of currently-known port mappings
       virtual pointer_array < device > get_igd() const;  // gets a copy of currently-know device information
 
-      virtual bool IsAnyThreadRunning() const;  // returns TRUE if there is any thread currently running
+      virtual bool IsAnyThreadRunning() const;  // returns true if there is any thread currently running
 
 
    };

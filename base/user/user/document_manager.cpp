@@ -42,8 +42,8 @@ namespace user
    const char document_manager::gen_IconIndexFmt[] = ",%d";
    const char document_manager::gen_Command[] = "command";
    const char document_manager::gen_OpenArg[] = " \"%1\"";
-   const char document_manager::gen_PrintArg[] = " /point \"%1\"";
-   const char document_manager::gen_PrintToArg[] = " /point \"%1\" \"%2\" \"%3\" \"%4\"";
+   const char document_manager::gen_PrintArg[] = " /point_i32 \"%1\"";
+   const char document_manager::gen_PrintToArg[] = " /point_i32 \"%1\" \"%2\" \"%3\" \"%4\"";
    const char document_manager::gen_DDEArg[] = " /dde";
 
    const char document_manager::gen_DDEExec[] = "ddeexec";
@@ -116,12 +116,12 @@ namespace user
       (const char *)gen_Command);
       __delete_reg_key(strTemp);
 
-      // path\shell\print\command = path /point filename
+      // path\shell\print\command = path /point_i32 filename
       strTemp.Format(gen_ShellPrintFmt, (const char *)strFileTypeId,
       (const char *)gen_Command);
       __delete_reg_key(strTemp);
 
-      // path\shell\printto\command = path /point filename printer driver port
+      // path\shell\printto\command = path /point_i32 filename printer driver port
       strTemp.Format(gen_ShellPrintToFmt, (const char *)strFileTypeId,
       (const char *)gen_Command);
       __delete_reg_key(strTemp);
@@ -250,8 +250,8 @@ namespace user
       else
       {
       // path\shell\open\command = path filename
-      // path\shell\print\command = path /point filename
-      // path\shell\printto\command = path /point filename printer driver port
+      // path\shell\print\command = path /point_i32 filename
+      // path\shell\printto\command = path /point_i32 filename printer driver port
       strOpenCommandLine += gen_OpenArg;
       if (bCompat)
       {
@@ -268,13 +268,13 @@ namespace user
 
       if (bCompat)
       {
-      // path\shell\print\command = path /point filename
+      // path\shell\print\command = path /point_i32 filename
       strTemp.Format(gen_ShellPrintFmt, (const char *)strFileTypeId,
       (const char *)gen_Command);
       if (!__set_reg_key(strTemp, strPrintCommandLine))
       continue;       // just skip it
 
-      // path\shell\printto\command = path /point filename printer driver port
+      // path\shell\printto\command = path /point_i32 filename printer driver port
       strTemp.Format(gen_ShellPrintToFmt, (const char *)strFileTypeId,
       (const char *)gen_Command);
       if (!__set_reg_key(strTemp, strPrintToCommandLine))

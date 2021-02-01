@@ -89,7 +89,7 @@ namespace uwp
       _In_ Windows::UI::Core::WindowSizeChangedEventArgs^ args
       );
 
-      void on_window_size_changed(::Windows::UI::Core::CoreWindow ^ sender, const ::size & size);
+      void on_window_size_changed(::Windows::UI::Core::CoreWindow ^ sender, const ::size_i32 & size);
 
       void DpiChanged(::Windows::Graphics::Display::DisplayInformation ^ sender, Object ^ obj);
 

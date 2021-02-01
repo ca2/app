@@ -6,7 +6,7 @@ void map < KEY, VALUE, ARG_KEY, ARG_VALUE, PAIR >::InitHashTable(
    ::u32 nHashSize, bool bAllocNow)
    //
    // Used to force allocation of a hash table or to override the default
-   //   hash table size of (which is fairly small)
+   //   hash table size_i32 of (which is fairly small)
 {
 
    ASSERT_VALID(this);

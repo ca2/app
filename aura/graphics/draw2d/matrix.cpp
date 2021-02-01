@@ -96,10 +96,10 @@ namespace draw2d
 
    }
 
-   void matrix::transform(point & point)
+   void matrix::transform(point_i32 & point)
    {
 
-      ::point p;
+      ::point_i32 p;
 
       p.x = (::i32) (point.x * a1 + point.y * b1 + c1);
       p.y = (::i32) (point.x * a2 + point.y * b2 + c2);
@@ -108,10 +108,10 @@ namespace draw2d
 
    }
 
-   void matrix::transform(pointd & point)
+   void matrix::transform(point_f64 & point)
    {
 
-      pointd p;
+      point_f64 p;
 
       p.x = point.x * a1 + point.y * b1 + c1;
       p.y = point.x * a2 + point.y * b2 + c2;

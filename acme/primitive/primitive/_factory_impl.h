@@ -8,7 +8,7 @@ namespace factory
    inline __pointer(factory_interface) & get_factory(const ::id & id)
    {
 
-      cslock cs(get_factory_critical_section());
+      critical_section_lock cs(get_factory_critical_section());
 
       return (*get_factory_map())[id];
 
@@ -18,7 +18,7 @@ namespace factory
    inline void set_factory(const ::id & id, const __pointer(factory_interface) & pfactory)
    {
 
-      cslock cs(get_factory_critical_section());
+      critical_section_lock cs(get_factory_critical_section());
 
       get_factory_map()->set_at(id, pfactory);
 

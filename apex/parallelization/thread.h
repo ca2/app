@@ -137,9 +137,9 @@ public:
    inline mq* get_mq() { return m_pmq ? m_pmq : _get_mq(); }
    mq* _get_mq();
 
-   int_bool peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
-   int_bool get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
-   int_bool post_message(oswindow oswindow, const ::id & id, WPARAM wParam, LPARAM lParam);
+   int_bool peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
+   int_bool get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+   int_bool post_message(oswindow oswindow, const ::id & id, wparam wParam, lparam lParam);
 
    user_interaction_ptr_array & uiptra();
 
@@ -233,13 +233,13 @@ public:
 
 
    ///virtual u32 ResumeThread();
-   virtual bool post_message(const ::id & id, WPARAM wParam = 0, lparam lParam = 0);
+   virtual bool post_message(const ::id & id, wparam wParam = 0, lparam lParam = 0);
 
-   virtual bool send_message(const ::id & id,WPARAM wParam = 0,lparam lParam = 0, ::duration durationTimeout = ::duration::infinite());
+   virtual bool send_message(const ::id & id, wparam wParam = 0,lparam lParam = 0, ::duration durationTimeout = ::duration::infinite());
 
-   virtual bool post_object(const ::id & id, WPARAM wParam, ::matter * pmatter);
+   virtual bool post_object(const ::id & id, wparam wParam, ::matter * pmatter);
 
-   virtual bool send_object(const ::id & id, WPARAM wParam, lparam lParam, ::duration durationTimeout = ::duration::infinite());
+   virtual bool send_object(const ::id & id, wparam wParam, lparam lParam, ::duration durationTimeout = ::duration::infinite());
 
    virtual bool post_task(const ::promise::routine & routine);
    virtual bool send_task(const ::promise::routine & routine, ::duration durationTimeout = ::duration::infinite());
@@ -295,7 +295,7 @@ public:
    __pointer(::matter) running(const char * pszTag) const override;
 
    ///virtual void relay_exception(::exception_pointer e, e_thread ethreadSource = thread_none);
-   virtual int _GetMessage(LPMESSAGE lpMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+   virtual int _GetMessage(MESSAGE * lpMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
    virtual bool has_step() const;
    virtual bool has_raw_message() const;
@@ -320,7 +320,7 @@ public:
    //virtual void process_window_message(::message::base * pbase);
    virtual ::e_status process_message();     // route message
    virtual ::e_status raw_process_message();     // route message
-   // virtual bool on_idle(::i32 lCount); // return TRUE if more idle processing
+   // virtual bool on_idle(::i32 lCount); // return true if more idle processing
    virtual ::e_status on_thread_on_idle(::thread * pthread, ::i32 lCount);
    virtual bool is_idle_message(::message::message * pmessage);  // checks for special messages
    virtual bool is_idle_message();  // checks for special messages
@@ -351,7 +351,7 @@ public:
 
 
    virtual void Delete();
-   // 'delete this' only if m_bAutoDelete == TRUE
+   // 'delete this' only if m_bAutoDelete == true
 
    virtual void dispatch_thread_message(::message::message * pmessage);  // helper
 
@@ -370,7 +370,7 @@ public:
 
 
    static void post_quit_to_all_threads();
-   static void post_to_all_threads(const ::id & id, WPARAM wparam, LPARAM lparam);
+   static void post_to_all_threads(const ::id & id, wparam wparam, lparam lparam);
 
 
 
@@ -446,23 +446,20 @@ public:
    bool bSynchInitialization = false,
    ::e_priority epriority = ::priority_normal,
    ::u32 nStackSize = 0,
-   u32 uiCreateFlags = 0,
-   LPSECURITY_ATTRIBUTES psa = nullptr);
+   u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
 
 
    virtual bool begin(
    ::e_priority epriority = ::priority_normal,
    ::u32 nStackSize = 0,
-   u32 uiCreateFlags = 0,
-   LPSECURITY_ATTRIBUTES psa = nullptr);
+   u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
 
    virtual bool begin_synch(
    ::e_priority epriority = ::priority_normal,
    ::u32 nStackSize = 0,
-   u32 uiCreateFlags = 0,
-   LPSECURITY_ATTRIBUTES psa = nullptr);
+   u32 uiCreateFlags = 0 ARG_SEC_ATTRS_DEF);
 
 
    virtual ::e_status inline_init();

@@ -90,7 +90,7 @@ namespace user
 //CLASS_DECL_ACME HMONITOR GetPrimaryMonitorHandle()
 //{
 //
-//   const POINT32 pointZero = { 0,0 };
+//   const POINT_I32 pointZero = { 0,0 };
 //
 //   return MonitorFromPoint(pointZero, MONITOR_DEFAULTTOPRIMARY);
 //

@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/operating_system.h"
 #include <time.h>
 //#include "apex/primitive/math/prime100k.h"
 #ifdef LINUX
@@ -19,7 +20,7 @@ namespace math
 
       int                  m_i;
       i32                  m_iRngReSeedCountDown;
-      critical_section     m_cs;
+      critical_section     m_criticalsection;
       rng                  m_rng;
 
 //#ifdef WINDOWS_DESKTOP
@@ -197,7 +198,7 @@ namespace math
       void generate_random_bytes(void * p, memsize s)
       {
 
-         cslock lock(&m_cs);
+         critical_section_lock lock(&m_criticalsection);
 
          u32 * pu = (u32 *) p;
 
@@ -234,7 +235,7 @@ namespace math
 //      void generate_random_bytes(void* p, memsize s)
 //      {
 //
-//         cslock lock(&m_cs);
+//         critical_section_lock lock(&m_criticalsection);
 //
 //
 //         ::CryptGenRandom(m_hCryptProv, (::u32)s, (byte*)p);

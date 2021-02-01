@@ -53,11 +53,11 @@ public:
 
 
    string_base() { }
-   string_base(enum_no_init) : POINTER(e_no_init) { }
+   string_base(enum_no_initialize) : POINTER(e_no_initialize) { }
    string_base(nullptr_t) { }
    string_base(for_moving) { }
    string_base(e_get_buffer, strsize len) { get_string_buffer(len); }
-   string_base(string_base && s) : string_base(e_no_init) { this->m_pdata = s.m_pdata; s.m_pdata = nullptr; }
+   string_base(string_base && s) : string_base(e_no_initialize) { this->m_pdata = s.m_pdata; s.m_pdata = nullptr; }
 
    template < has_to_string HAS_TO_STRING >
    string_base(const HAS_TO_STRING & has_to_string) : string_base(has_to_string.to_string()) { }
@@ -896,17 +896,10 @@ public:
 
    void AppendFormatV(const CHAR_TYPE* pszFormat, va_list args);
 
-   void FormatMessage(const CHAR_TYPE* pszFormat, ...);
+   //void FormatMessage(const CHAR_TYPE* pszFormat, ...);
 
-   void FormatMessageV(const CHAR_TYPE* pszFormat, va_list args);
 
-#ifdef WINDOWS
 
-   BSTR AllocSysString() const;
-
-   BSTR SetSysString(BSTR* pbstr) const;
-
-#endif
 
    // set the string_base to the value of environment ::payload 'pszVar'
    bool get_environment_variable(const CHAR_TYPE* pszVar);
@@ -923,7 +916,7 @@ public:
    const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID );
    if( pImage == nullptr )
    {
-   return( FALSE );
+   return( false );
    }
 
    strsize nLength = str_traits::GetcharLength( pImage->achString, pImage->nLength );
@@ -931,7 +924,7 @@ public:
    str_traits::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
    release_string_buffer( nLength );
 
-   return( TRUE );
+   return( true );
    }*/
 
    // Load the string_base from resource 'nID' in module 'hInstance', using language 'wLanguageID'
@@ -940,7 +933,7 @@ public:
    const STRINGRESOURCEIMAGE* pImage = gen_GetStringResourceImage( hInstance, nID, wLanguageID );
    if( pImage == nullptr )
    {
-   return( FALSE );
+   return( false );
    }
 
    strsize nLength = str_traits::GetcharLength( pImage->achString, pImage->nLength );
@@ -948,7 +941,7 @@ public:
    str_traits::ConvertTochar( pszBuffer, nLength, pImage->achString, pImage->nLength );
    release_string_buffer( nLength );
 
-   return( TRUE );
+   return( true );
    }*/
 
    void resize(strsize n)

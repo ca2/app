@@ -144,7 +144,7 @@ plex_heap_alloc_array * g_pheap = nullptr;
 
 
 
-#define AXIS_MEMORY_MANAGEMENT TRUE
+#define AXIS_MEMORY_MANAGEMENT true
 
 
 #if AXIS_MEMORY_MANAGEMENT
@@ -666,13 +666,13 @@ void * memory_realloc_dbg(void * pmemory, memsize size, i32 nBlockUse, const cha
    if(blockuse == 0 || blockuse == 1 || blockuse == 128 || blockuse == 129) // aligned
    {
 
-      return heap_memory::aligned(pbase,size,blockuse);
+      return heap_memory::aligned(pbase, size,blockuse);
 
    }
    else
    {
 
-      return heap_memory::unaligned(pbase,size,blockuse);
+      return heap_memory::unaligned(pbase, size,blockuse);
 
    }
 

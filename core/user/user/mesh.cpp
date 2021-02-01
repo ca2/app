@@ -165,7 +165,7 @@ namespace user
 
       draw_framing(pgraphics);
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -184,7 +184,7 @@ namespace user
 
          brushText->create_solid(get_color(pstyle, ::user::e_element_text));
 
-         const ::point & pointViewportOrg = pgraphics->GetViewportOrg();
+         const ::point_i32 & pointViewportOrg = pgraphics->GetViewportOrg();
 
          pgraphics->set(brushText);
          ::size_array sizea;
@@ -201,8 +201,8 @@ namespace user
             if((sizea[i].cx - x > right)
                   || i == sizea.get_upper_bound())
             {
-               ::rect rect;
-               rect.top = ::i32(y - pointScroll.y);
+               ::rectangle_i32 rectangle;
+               rectangle.top = ::i32(y - pointScroll.y);
                if(i == 0)
                {
                   w = sizea[0].cx - x      ;
@@ -218,11 +218,11 @@ namespace user
                   y += sizea[i - 1].cy;
                   iNewStart = i - 1;
                }
-               rect.left = ::i32(- pointScroll.x);
-               rect.right = rectClient.right;
-               rect.bottom = ::i32(y - pointScroll.y);
+               rectangle.left = ::i32(- pointScroll.x);
+               rectangle.right = rectClient.right;
+               rectangle.bottom = ::i32(y - pointScroll.y);
 
-               pgraphics->_DrawText(m_strTopText.Mid(iStart,i - iStart),rect,e_align_left);
+               pgraphics->_DrawText(m_strTopText.Mid(iStart,i - iStart),rectangle_i32,e_align_left);
                iStart = iNewStart;
             }
          }
@@ -250,8 +250,8 @@ namespace user
 //      m_pdrawmeshitem->m_iWidthColumn           = -1;
       m_pdrawmeshitem->m_iColumnWidth           = 0;
 
-      ::rect rectItem;
-      ::rect rectIntersect;
+      ::rectangle_i32 rectItem;
+      ::rectangle_i32 rectIntersect;
       auto iItemCount = m_nDisplayCount;
       auto iItemFirst = m_iTopDisplayIndex;
       decltype(iItemCount) iItemLast;
@@ -319,9 +319,9 @@ namespace user
 
       index iGroup;
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
-      ::rect rectIntersect;
+      ::rectangle_i32 rectIntersect;
 
       get_client_rect(rectClient);
 
@@ -441,15 +441,15 @@ namespace user
    void mesh::_001DrawItems(draw_mesh_item * pdrawitem,index iItemFirst,index iItemLast)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
-      ::rect rectVisible(rectClient);
+      ::rectangle_i32 rectVisible(rectClient);
 
       //rectVisible.deflate(2,2);
 
-      ::rect rectIntersect;
+      ::rectangle_i32 rectIntersect;
 
       if(m_eview == impact_icon)
       {
@@ -561,7 +561,7 @@ namespace user
       range & rangeSelection = m_rangeSelection;
       range & rangeHighlight = m_rangeHighlight;
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -601,9 +601,9 @@ namespace user
          else
          {
             color32_t crTranslucid = RGB(0,0,0);
-            ::rect rect = pdrawitem->m_rectItem;
-            rect.inflate(8,0,8,-1);
-            System.imaging().color_blend(pdrawitem->m_pgraphics,rect,crTranslucid,127);
+            ::rectangle_i32 rectangle = pdrawitem->m_rectItem;
+            rectangle.inflate(8,0,8,-1);
+            System.imaging().color_blend(pdrawitem->m_pgraphics,rectangle_i32,crTranslucid,127);
          }
       }
 
@@ -627,7 +627,7 @@ namespace user
       pdrawitem->m_iSubItemRectSubItem    = -1;
       pdrawitem->m_iSubItemRectColumn     = -1;
 
-      ::rect rectIntersect;
+      ::rectangle_i32 rectIntersect;
 
       if(m_eview == impact_grid)
       {
@@ -669,7 +669,7 @@ namespace user
       {
          ::draw2d::pen_pointer penHighlight(e_create);
          ::draw2d::pen * ppenHighlight = _001GetPenHighlight();
-         ::rect rectHighlight(pdrawitem->m_rectItem);
+         ::rectangle_i32 rectHighlight(pdrawitem->m_rectItem);
          rectHighlight.inflate(8,0,8,-1);
          pdrawitem->m_pgraphics->set(ppenHighlight);
          pdrawitem->m_pgraphics->draw_rect(rectHighlight);
@@ -801,7 +801,7 @@ namespace user
    void mesh::_001OnSize(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //__pointer(::message::size) psize(pmessage);
+      //__pointer(::message::size_i32) psize(pmessage);
       //set_need_layout();
       //psize->m_bRet = false;
    }
@@ -847,7 +847,7 @@ namespace user
       //{
       //   //            if(m_piconlayout->m_iWidth <= 0)
       //   {
-      //      ::rect rectClient;
+      //      ::rectangle_i32 rectClient;
       //      get_client_rect(rectClient);
       //      index iIconSize;
       //      if (m_nColumnCount > 0)
@@ -873,11 +873,11 @@ namespace user
       if(m_eview == impact_grid)
       {
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(rectClient);
 
-         ::size sizePage = rectClient.size();
+         ::size_i32 sizePage = rectClient.size();
 
          m_nGridColumnCount = _001GetColumnCount();
 
@@ -917,11 +917,11 @@ namespace user
       if(m_eview == impact_grid)
       {
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(rectClient);
 
-         ::size sizePage = rectClient.size();
+         ::size_i32 sizePage = rectClient.size();
 
          m_nGridItemCount = _001GetItemCount();
 
@@ -1003,7 +1003,7 @@ namespace user
    void mesh::on_change_view_size(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::size sizeTotal = get_total_size();
+      ::size_i32 sizeTotal = get_total_size();
 
       if(m_eview == impact_grid)
       {
@@ -1022,7 +1022,7 @@ namespace user
          else
          {
 
-            ::rect rectClient;
+            ::rectangle_i32 rectClient;
 
             get_client_rect(&rectClient);
 
@@ -1064,7 +1064,7 @@ namespace user
          else
          {
 
-            ::rect rect;
+            ::rectangle_i32 rectangle;
 
             draw_mesh_item itemFirst(this);
 
@@ -1101,9 +1101,9 @@ namespace user
 //            itemLast.m_rectItem.right     -= (m_scrolldata.m_rectMargin.left + m_scrolldata.m_rectMargin.right);
             //          itemLast.m_rectItem.bottom    -= (m_scrolldata.m_rectMargin.top + m_scrolldata.m_rectMargin.bottom);
 
-            rect.unite(itemFirst.m_rectItem,itemLast.m_rectItem);
+            rectangle.unite(itemFirst.m_rectItem,itemLast.m_rectItem);
 
-            sizeTotal = rect.size();
+            sizeTotal = rectangle.size();
 
          }
 
@@ -1111,7 +1111,7 @@ namespace user
       else if(m_eview == impact_icon)
       {
 
-         ::rect rect;
+         ::rectangle_i32 rectangle;
 
          draw_mesh_item itemFirst(this);
 
@@ -1130,7 +1130,7 @@ namespace user
          draw_mesh_item itemTopRight(this);
 //         if(m_flags.has(flag_auto_arrange) || m_piconlayout->m_iWidth <= 0)
          {
-            ::rect rectClient;
+            ::rectangle_i32 rectClient;
 
             get_client_rect(&rectClient);
 
@@ -1143,11 +1143,11 @@ namespace user
          */       itemTopRight.m_iDisplayItem = itemTopRight.m_iDisplayItem;
          _001GetItemRect(&itemTopRight);
 
-         rect.unite(itemFirst.m_rectItem,itemLast.m_rectItem);
+         rectangle.unite(itemFirst.m_rectItem,itemLast.m_rectItem);
 
-         rect.unite(rect,itemTopRight.m_rectItem);
+         rectangle.unite(rectangle,itemTopRight.m_rectItem);
 
-         sizeTotal = rect.size();
+         sizeTotal = rectangle.size();
 
       }
 
@@ -1347,7 +1347,7 @@ namespace user
 
          index iItem;
 
-         if(_001DisplayHitTest(::point((LONG)(pointScroll.x < 0 ? -pointScroll.x : 0), (LONG)(m_dItemHeight + (pointScroll.y < -0 ? -pointScroll.y : 0))),iItem))
+         if(_001DisplayHitTest(::point_i32((LONG)(pointScroll.x < 0 ? -pointScroll.x : 0), (LONG)(m_dItemHeight + (pointScroll.y < -0 ? -pointScroll.y : 0))),iItem))
          {
 
             return (::index) iItem;
@@ -1382,7 +1382,7 @@ namespace user
       if(m_eview == impact_grid)
       {
 
-         ::rect rectScroll;
+         ::rectangle_i32 rectScroll;
 
          get_client_rect(&rectScroll);
 
@@ -1409,16 +1409,16 @@ namespace user
       }
       if(m_eview == impact_icon)
       {
-         ::rect rectView;
+         ::rectangle_i32 rectView;
          get_client_rect(&rectView);
-         const ::size & sizeItem = get_item_size();
+         const ::size_i32 & sizeItem = get_item_size();
          return max((rectView.width() / sizeItem.cx) * (rectView.height() / sizeItem.cy),
                     m_piconlayout->m_iaDisplayToStrict.get_max_a() + 1);
       }
       else if(m_eview == impact_report || m_eview == impact_grid)
       {
          
-         ::rect rectView;
+         ::rectangle_i32 rectView;
          
          get_client_rect(&rectView);
          
@@ -1459,9 +1459,9 @@ namespace user
       }
       index iItemFirst = m_iTopDisplayIndex;
       index iItemLast = iItemFirst;
-      ::rect rectItem;
-      ::rect rectIntersect;
-      ::rect rectUpdate;
+      ::rectangle_i32 rectItem;
+      ::rectangle_i32 rectIntersect;
+      ::rectangle_i32 rectUpdate;
       get_client_rect(&rectUpdate);
       draw_mesh_item item(this);
       if(iItemFirst >= 0)
@@ -1509,7 +1509,7 @@ namespace user
    }
 
 
-   bool mesh::_001HitTest_(const ::point & point,index &iItem, index&iSubItem, index&iListItem,::user::mesh::enum_element &eelement)
+   bool mesh::_001HitTest_(const ::point_i32 & point,index &iItem, index&iSubItem, index&iListItem,::user::mesh::enum_element &eelement)
    {
       UNREFERENCED_PARAMETER(point);
       UNREFERENCED_PARAMETER(iItem);
@@ -1520,7 +1520,7 @@ namespace user
    }
 
 
-   bool mesh::_001HitTest_(const ::point & point,index &iItem, index&iSubItem)
+   bool mesh::_001HitTest_(const ::point_i32 & point,index &iItem, index&iSubItem)
    {
 
       if (!_001DisplayHitTest(point, iItem, iSubItem))
@@ -1537,7 +1537,7 @@ namespace user
    }
 
 
-   bool mesh::_001HitTest_(const ::point & point, index& iItem)
+   bool mesh::_001HitTest_(const ::point_i32 & point, index& iItem)
    {
 
       if (!_001DisplayHitTest(point, iItem))
@@ -1554,7 +1554,7 @@ namespace user
    }
 
 
-   bool mesh::_001DisplayHitTest(const ::point & point, index& iItem, index& iSubItem, index& iListItem,::user::mesh::enum_element &eelement)
+   bool mesh::_001DisplayHitTest(const ::point_i32 & point, index& iItem, index& iSubItem, index& iListItem,::user::mesh::enum_element &eelement)
    {
 
       UNREFERENCED_PARAMETER(point);
@@ -1568,12 +1568,12 @@ namespace user
    }
 
 
-   bool mesh::_001DisplayHitTest(const ::point & point, index&iItemParam, index&iSubItemParam)
+   bool mesh::_001DisplayHitTest(const ::point_i32 & point, index&iItemParam, index&iSubItemParam)
    {
 
       index iItem;
 
-      if(!_001DisplayHitTest(point,iItem))
+      if(!_001DisplayHitTest(point_i32,iItem))
       {
 
          return false;
@@ -1621,12 +1621,12 @@ namespace user
       return false;
    }
 
-   bool mesh::_001DisplayHitTest(const ::point & point, index&iItemParam)
+   bool mesh::_001DisplayHitTest(const ::point_i32 & point, index&iItemParam)
    {
 
       {
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(&rectClient);
 
@@ -1688,7 +1688,7 @@ namespace user
          if(m_dItemHeight <= 0)
             return false;
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
          get_client_rect(&rectClient);
          if(m_bTopText)
          {
@@ -1736,7 +1736,7 @@ namespace user
       {
          /*if(_001GetColumnCount() == 0)
             return false;
-         */::rect rectClient;
+         */::rectangle_i32 rectClient;
          get_client_rect(&rectClient);
          if(m_bTopText)
          {
@@ -2050,7 +2050,7 @@ namespace user
       }
       else if(m_eview == impact_list)
       {
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
          get_client_rect(&rectClient);
          if(m_bTopText)
          {
@@ -2089,7 +2089,7 @@ namespace user
       {
 //         if(m_flags.has(flag_auto_arrange) || m_piconlayout->m_iWidth <= 0)
          {
-            ::rect rectClient;
+            ::rectangle_i32 rectClient;
             get_client_rect(&rectClient);
             if(m_bTopText)
             {
@@ -2105,7 +2105,7 @@ namespace user
          }
          //else
          //{
-         //   ::rect rectClient;
+         //   ::rectangle_i32 rectClient;
          //   get_client_rect(&rectClient);
          //   if(m_bTopText)
          //   {
@@ -2152,7 +2152,7 @@ namespace user
          return_(pdrawitem->m_bOk,true);
 
          //return;
-         //__throw(::exception::exception("subitem rectangle on icon view? why are you asking for that now?"));
+         //__throw(::exception::exception("subitem rectangle_i32 on icon view? why are you asking for that now?"));
       }
 
       pdrawitem->m_bOk = false;
@@ -2241,16 +2241,16 @@ namespace user
                if(eelement == ::user::mesh::element_group_image)
                {
                   pdrawitem->m_rectImage.left      = x;
-                  pdrawitem->m_rectImage.right     = x + ii.m_rect.width();
+                  pdrawitem->m_rectImage.right     = x + ii.m_rectangle.width();
                   pdrawitem->m_rectImage.top       = pdrawitem->m_rectGroup.top;
-                  pdrawitem->m_rectImage.bottom    = pdrawitem->m_rectImage.top + ii.m_rect.height();
+                  pdrawitem->m_rectImage.bottom    = pdrawitem->m_rectImage.top + ii.m_rectangle.height();
                   return_(pdrawitem->m_bOk,true);
                }
                else
                {
-                  x += ii.m_rect.width();
+                  x += ii.m_rectangle.width();
                   x += 2;
-                  iImageBottom += ii.m_rect.height() + 2;
+                  iImageBottom += ii.m_rectangle.height() + 2;
                }
             }
             else if(eelement == ::user::mesh::element_group_image)
@@ -2364,14 +2364,14 @@ namespace user
             //      if(eelement == ::user::mesh::element_image)
             //      {
             //         pdrawitem->m_rectImage.left      = x;
-            //         pdrawitem->m_rectImage.right     = x + ii.m_rect.width();
+            //         pdrawitem->m_rectImage.right     = x + ii.m_rectangle.width();
             //         pdrawitem->m_rectImage.bottom    = pdrawitem->m_rectSubItem.bottom;
-            //         pdrawitem->m_rectImage.top       = pdrawitem->m_rectImage.bottom - ii.m_rect.height();
+            //         pdrawitem->m_rectImage.top       = pdrawitem->m_rectImage.bottom - ii.m_rectangle.height();
             //         return_(pdrawitem->m_bOk,true);
             //      }
             //      else
             //      {
-            //         x += ii.m_rect.width();
+            //         x += ii.m_rectangle.width();
             //         x += 2;
             //      }
             //   }
@@ -2515,7 +2515,7 @@ namespace user
 
       pmouse->m_lresult = 1;
 
-      ::point point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_point;
 
       _001ScreenToClient(point);
 
@@ -2548,7 +2548,7 @@ namespace user
       if (m_bDrag)
       {
 
-         m_pointLButtonUp = point;
+         m_pointLButtonUp = point_i32;
 
          set_need_redraw();
 
@@ -2623,7 +2623,7 @@ namespace user
 
       index iItem;
 
-      ::point point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_point;
 
       _001ScreenToClient(point);
 
@@ -2641,7 +2641,7 @@ namespace user
 
             m_pointLButtonDown1 = m_pointLButtonDown2;
 
-            m_pointLButtonDown2 = point;
+            m_pointLButtonDown2 = point_i32;
 
             m_iClick = 2;
 
@@ -2651,7 +2651,7 @@ namespace user
 
             m_millisLButtonDownStart2 = tickNow;
 
-            m_pointLButtonDown2 = point;
+            m_pointLButtonDown2 = point_i32;
 
             m_iClick = 2;
 
@@ -2661,7 +2661,7 @@ namespace user
 
             m_millisLButtonDownStart1 = tickNow;
 
-            m_pointLButtonDown1 = point;
+            m_pointLButtonDown1 = point_i32;
 
             m_iClick = 1;
 
@@ -2695,7 +2695,7 @@ namespace user
          if(m_bHoverSelect2)
          {
 
-            if(_001DisplayHitTest(point,iItem))
+            if(_001DisplayHitTest(point_i32,iItem))
             {
 
                // In "Hover Select"/"Single Click to Open" mode
@@ -2718,7 +2718,7 @@ namespace user
 
                // uptr nFlags = 0;
 
-               // const ::point & point = point;
+               // const ::point_i32 & point = point_i32;
 
                // on_click(item);
 
@@ -2743,7 +2743,7 @@ namespace user
             if(m_bMultiSelect && psession->is_key_pressed(::user::key_shift))
             {
 
-               if(_001DisplayHitTest(point,iItem))
+               if(_001DisplayHitTest(point_i32,iItem))
                {
 
                   item_range itemrange;
@@ -2766,7 +2766,7 @@ namespace user
             else if(m_bMultiSelect && psession->is_key_pressed(::user::key_control))
             {
 
-               if(_001DisplayHitTest(point,iItem))
+               if(_001DisplayHitTest(point_i32,iItem))
                {
 
                   item_range itemrange;
@@ -2793,7 +2793,7 @@ namespace user
 
                index iItem;
 
-               if(_001DisplayHitTest(point,iItem))
+               if(_001DisplayHitTest(point_i32,iItem))
                {
 
                   m_iShiftFirstSelection = iItem;
@@ -2804,7 +2804,7 @@ namespace user
 
                   m_uiLButtonDownFlags = pmouse->m_nFlags;
 
-                  m_pointLButtonDown1 = point;
+                  m_pointLButtonDown1 = point_i32;
 
                   SetTimer(e_timer_drag_start, 1200, nullptr);
 
@@ -2838,7 +2838,7 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      ::point point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_point;
 
       _001ScreenToClient(point);
 
@@ -2935,7 +2935,7 @@ namespace user
 
       pmouse->previous();
 
-      ::point point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_point;
 
       _001ScreenToClient(point);
 
@@ -2960,7 +2960,7 @@ namespace user
       {
 
          index iItem;
-         if(_001DisplayHitTest(point,iItem))
+         if(_001DisplayHitTest(point_i32,iItem))
          {
             if(!m_rangeSelection.has_item(iItem))
             {
@@ -2986,7 +2986,7 @@ namespace user
 
       pmouse->previous();
 
-      ::point point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_point;
 
       _001ScreenToClient(point);
 
@@ -3038,7 +3038,7 @@ namespace user
    }
 
 
-   bool mesh::_001OnRightClick(uptr nFlag,const ::point & point)
+   bool mesh::_001OnRightClick(uptr nFlag,const ::point_i32 & point)
    {
 
       UNREFERENCED_PARAMETER(nFlag);
@@ -3299,9 +3299,9 @@ namespace user
 
       }
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      //rect.null();
+      //rectangle.null();
 
       //set_need_layout();
 
@@ -3541,8 +3541,8 @@ namespace user
          //if(!_001IsEditing())
          {
             uptr nFlags = m_uiRButtonUpFlags;
-            const ::point & point = m_pointRButtonUp;
-            _001OnRightClick(nFlags,point);
+            const ::point_i32 & point = m_pointRButtonUp;
+            _001OnRightClick(nFlags,point_i32);
             set_need_redraw();
 
 
@@ -3671,7 +3671,7 @@ namespace user
       {
          return false;
       }
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
       get_client_rect(&rectClient);
       return rectClient.intersect(rectClient,item.m_rectItem) != 0;
    }
@@ -3735,7 +3735,7 @@ namespace user
 
       m_dcextension.GetTextExtent(pgraphics,m_strTopText,sizea);
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -3867,8 +3867,8 @@ namespace user
       pgraphics->set_font(this, ::user::e_element_none);
 
       ::image_list::info ii;
-      ::rect rect;
-      ::size size;
+      ::rectangle_i32 rectangle;
+      ::size_i32 size;
       index cx = 0;
       //mesh_column * pcolumn = m_columna._001GetByKey(iSubItem);
       draw_mesh_item item(this);
@@ -3881,15 +3881,15 @@ namespace user
       //   if(item.m_bOk && item.m_iImage >= 0)
       //   {
       //      pcolumn->m_pil->get_image_info((i32)item.m_iImage,&ii);
-      //      rect = ii.m_rect;
-      //      cx += rect.width();
+      //      rectangle_i32 = ii.m_rectangle;
+      //      cx += rectangle.width();
       //      cx += 2;
       //   }
       //}
       _001GetItemText(&item);
       if(item.m_bOk)
       {
-         m_dcextension.GetTextExtent(pgraphics,item.m_strText,size);
+         m_dcextension.GetTextExtent(pgraphics,item.m_strText, size);
          cx += size.cx;
       }
 
@@ -4708,13 +4708,13 @@ namespace user
    }
 
 
-   //rect mesh::get_scroll_margin()
+   //rectangle_i32 mesh::get_scroll_margin()
    //{
 
    //   if(m_eview == impact_grid && m_dItemHeight > 0)
    //   {
 
-   //      return rect(m_scrolldata.m_rectMargin.left,m_scrolldata.m_rectMargin.top/m_dItemHeight, m_scrolldata.m_rectMargin.right,m_scrolldata.m_rectMargin.bottom / m_dItemHeight);
+   //      return rectangle_i32(m_scrolldata.m_rectMargin.left,m_scrolldata.m_rectMargin.top/m_dItemHeight, m_scrolldata.m_rectMargin.right,m_scrolldata.m_rectMargin.bottom / m_dItemHeight);
 
    //   }
    //   else
@@ -4789,14 +4789,14 @@ namespace user
    }
 
 
-   bool mesh::update_hover(const ::point & point, bool bAvoidRedraw)
+   bool mesh::update_hover(const ::point_i32 & point, bool bAvoidRedraw)
    {
 
       index iItemHover;
       
       index iSubItemHover;
       
-      auto pointClient = point;
+      auto pointClient = point_i32;
 
       _001ScreenToClient(pointClient);
 
@@ -5147,7 +5147,7 @@ namespace user
          {
 //            if(m_piconlayout->m_iWidth <= 0)
 //            {
-//               ::rect rectClient;
+//               ::rectangle_i32 rectClient;
 //               get_client_rect(rectClient);
 //               index iIconSize;
 //               if(m_nColumnCount > 0)
@@ -5203,7 +5203,7 @@ namespace user
 
 
 
-   ::size mesh::get_item_size()
+   ::size_i32 mesh::get_item_size()
    {
 
       if(m_eview == impact_icon)
@@ -5212,7 +5212,7 @@ namespace user
          if(m_nColumnCount == 0)
          {
 
-            return ::size(32,32);
+            return ::size_i32(32,32);
 
          }
 
@@ -5222,7 +5222,7 @@ namespace user
 
          index iItemSize = iIconSize * 2;
 
-         return ::size((::i32) iItemSize, (::i32) iItemSize);
+         return ::size_i32((::i32) iItemSize, (::i32) iItemSize);
 
       }
       else
@@ -5493,7 +5493,7 @@ namespace user
       //else
       //{
       //   m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-      //   return get_image_list()->draw(m_pgraphics,(i32)m_iImage,m_rectImage.top_left(),m_rectImage.size(),point(0,0),0);
+      //   return get_image_list()->draw(m_pgraphics,(i32)m_iImage,m_rectImage.top_left(),m_rectImage.size(),point_i32(0,0),0);
       //}
       return false;
    }
@@ -5501,7 +5501,7 @@ namespace user
 
    bool draw_mesh_item::draw_group_image()
    {
-      return m_pmesh->m_pilGroup->draw(m_pgraphics,(i32)m_iImage,m_rectImage.top_left(),m_rectImage.size(),point(0,0),0);
+      return m_pmesh->m_pilGroup->draw(m_pgraphics,(i32)m_iImage,m_rectImage.top_left(),m_rectImage.size(),point_i32(0,0),0);
    }
 
 
@@ -5556,7 +5556,7 @@ namespace user
             pimage2 = create_image(size);
             pimage2->fill(0,0,0,0);
 
-            ::rect rectCache;
+            ::rectangle_i32 rectCache;
             rectCache.left = 2;
             rectCache.top = 2;
             rectCache.right = rectCache.left + (i32)m_rectText.width();
@@ -5566,15 +5566,15 @@ namespace user
 
             //::aura::application * get_context_application() = m_pmesh->get_context_application();
 
-            System.imaging().channel_spread_set_color(pimage2->get_graphics(),nullptr,size, pimage1->get_graphics(),nullptr,0,2,ARGB(192,192,192,192));
+            System.imaging().channel_spread_set_color(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,2,ARGB(192,192,192,192));
             pimage1->fill(0,0,0,0);
-            System.imaging().channel_alpha_gray_blur(pimage1->get_graphics(),nullptr,size, pimage2->get_graphics(),nullptr,0,1);
+            System.imaging().channel_alpha_gray_blur(pimage1->get_graphics(),nullptr, size, pimage2->get_graphics(),nullptr,0,1);
             pimage2->fill(0,0,0,0);
-            System.imaging().channel_alpha_gray_blur(pimage2->get_graphics(),nullptr,size, pimage1->get_graphics(),nullptr,0,1);
+            System.imaging().channel_alpha_gray_blur(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,1);
             pimage2->set_rgb(0,0,0);
 
 
-            System.imaging().color_blend(m_pgraphics,m_rectText, pimage2->get_graphics(),point(1,1),0.50);
+            System.imaging().color_blend(m_pgraphics,m_rectText, pimage2->get_graphics(),point_i32(1,1),0.50);
 
 
             brushText->create_solid(ARGB(255,255,255,255));
@@ -5710,7 +5710,7 @@ namespace user
    }
 
 
-   ::point mesh::get_viewport_offset()
+   ::point_i32 mesh::get_viewport_offset()
    {
 
       return ::user::interaction::get_viewport_offset();
@@ -5724,17 +5724,17 @@ namespace user
    //   if(m_eview == impact_grid && m_dItemHeight > 0)
    //   {
 
-   //      ::rect rectTotal;
+   //      ::rectangle_i32 rectTotal;
 
    //      _001GetViewRect(&rectTotal);
 
-   //      size sizeTotal = rectTotal.size();
+   //      size_i32 sizeTotal = rectTotal.size();
 
    //      m_sizeTotal.cx = sizeTotal.cx;
 
    //      m_sizeTotal.cy = sizeTotal.cy / m_dItemHeight;
 
-   //      ::rect rectViewClient;
+   //      ::rectangle_i32 rectViewClient;
 
    //      get_client_rect(&rectViewClient);
 
@@ -5761,7 +5761,7 @@ namespace user
    //}
 
 
-   //sized mesh::get_total_size()
+   //size_f64 mesh::get_total_size()
    //{
 
    //   return m_sizeTotal;
@@ -5769,19 +5769,19 @@ namespace user
    //}
 
 
-   sized mesh::get_page_size()
+   size_f64 mesh::get_page_size()
    {
 
       if(m_eview == impact_grid && m_dItemHeight > 0)
       {
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
 
          get_client_rect(rectClient);
 
          //auto pointScroll = get_viewport_offset();
 
-         ::size sizePage;
+         ::size_i32 sizePage;
 
          sizePage.cx = rectClient.width() / m_iDefaultColumnWidth;
 
@@ -5800,19 +5800,19 @@ namespace user
    }
 
 
-   //bool mesh::get_client_rect(RECT32 * prect)
+   //bool mesh::get_client_rect(RECTANGLE_I32 * prectangle)
    //{
 
    //   if(m_eview == impact_grid && m_dItemHeight > 0)
    //   {
 
-   //      ::user::interaction::get_client_rect(prect);
+   //      ::user::interaction::get_client_rect(prectangle);
 
    //   }
    //   else
    //   {
 
-   //      ::user::interaction::get_client_rect(prect);
+   //      ::user::interaction::get_client_rect(prectangle);
 
    //   }
 

@@ -258,7 +258,7 @@ namespace sockets
       else if (bConfigProxy)
       {
 
-         Context.http().config_proxy(get_url(), this);
+         get_context()->http().config_proxy(get_url(), this);
 
       }
       else

@@ -178,7 +178,7 @@ namespace user
             if(point.is_set())
             {
 
-               if(id == point->m_id)
+               if(id == point_i32->m_id)
                   return point;
                else
                   count++;

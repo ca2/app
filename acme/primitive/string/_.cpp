@@ -1,23 +1,28 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 
 
 #ifdef WINDOWS_DESKTOP
 
-string read_resource_as_string(HINSTANCE hinst, ::u32 nID, const char * pcszType, strsize iReadAtMostByteCount)
+
+string read_resource_as_string(hinstance hinst, ::u32 nID, const char * pcszType, strsize iReadAtMostByteCount)
 {
 
-   HRSRC hrsrc = ::FindResourceW(hinst, MAKEINTRESOURCEW(nID), wstring(pcszType));
-
+   HRSRC hrsrc = ::FindResourceW((HINSTANCE) hinst, MAKEINTRESOURCEW(nID), wstring(pcszType));
 
    if (hrsrc == nullptr)
+   {
+
       return "";
 
-   HGLOBAL hres = ::LoadResource(hinst, hrsrc);
+   }
+
+   HGLOBAL hres = ::LoadResource((HINSTANCE)hinst, hrsrc);
 
    if (hres == nullptr)
       return "";
 
-   u32 dwResSize = ::SizeofResource(hinst, hrsrc);
+   u32 dwResSize = ::SizeofResource((HINSTANCE)hinst, hrsrc);
 
    string str;
    char * psz = nullptr;

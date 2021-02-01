@@ -319,7 +319,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 
 //
 //
-//string key_to_char(WPARAM wparam, LPARAM lparam)
+//string key_to_char(wparam wparam, lparam lparam)
 //{
 //   __throw(::exception::exception("todo"));
 //}
@@ -475,7 +475,7 @@ ulong_ptr                        g_gdiplusHookToken         = nullptr;
 //}
 //
 //
-//bool defer_init_winsock();
+//bool defer_initialize_winsock();
 
 
 bool __node_aura_pre_init()

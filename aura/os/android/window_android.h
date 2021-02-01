@@ -10,14 +10,14 @@ public:
    //cairo_t *                      m_cairoSource;
    //cairo_surface_t *              m_cairosurfaceSource;
    memory                           m_mem;
-   size                             m_size;
+   size_i32                             m_size;
 
 
    window_android();
    virtual ~window_android();
 
 
-   virtual bool update_buffer(const ::size & size, int iStride = -1) override;
+   virtual bool update_buffer(const ::size_i32 & size, int iStride = -1) override;
    virtual void destroy_buffer() override;
 
    virtual bool update_window(::image * pimage) override;

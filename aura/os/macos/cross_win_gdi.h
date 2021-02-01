@@ -15,7 +15,7 @@
 // int_bool DeleteDC(HDC hdc);
 // int_bool AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn);
 // int_bool GetObject(HGDIOBJ hgdiobj, int iSize, void * object);
-// int_bool GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE32 * psize);
+// int_bool GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE_I32 * psize);
 /*int_bool WINAPI TransparentBlt(HDC hdcDest,
     __in int xoriginDest,
     __in int yoriginDest,

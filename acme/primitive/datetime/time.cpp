@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 #include <time.h>
 
 
@@ -28,37 +29,6 @@ namespace datetime
    }
 
 
-#ifdef WINDOWS
-
-
-   bool time::is_valid_FILETIME(const FILETIME & fileTime) noexcept
-   {
-
-      FILETIME localTime;
-
-      if (!FileTimeToLocalFileTime(&fileTime, &localTime))
-      {
-
-          return FALSE;
-
-      }
-
-      // then convert that time to system time
-      SYSTEMTIME sysTime;
-
-      if (!FileTimeToSystemTime(&localTime, &sysTime))
-      {
-
-          return FALSE;
-
-      }
-
-      return TRUE;
-
-   }
-
-
-#endif
 
 
    time::time(i32 nYear, i32 nMonth, i32 nDay, i32 nHour, i32 nMin, i32 nSec, i32 nDST)
@@ -142,112 +112,17 @@ namespace datetime
    }
 
 
-   time::time(const SYSTEMTIME& sysTime, i32 nDST)
+
+
+#endif
+
+   
+   time::time(const filetime & filetime)
    {
 
-      if (sysTime.wYear < 1900)
-      {
-
-         __throw(::exception::exception("invalid datetime::time"));
-
-      }
-
-      struct tm tm;
-      tm.tm_sec = sysTime.wSecond;
-      tm.tm_min = sysTime.wMinute;
-      tm.tm_hour = sysTime.wHour;
-
-      tm.tm_wday = sysTime.wDayOfWeek;
-      tm.tm_mday = sysTime.wDay;
-      tm.tm_mon = sysTime.wMonth-1;
-      tm.tm_year = sysTime.wYear - 1900;
-      tm.tm_isdst = nDST;
-
-#ifdef WINDOWS
-
-      //__throw(todo("datetime"));
-      m_time = _mkgmtime(&tm);
-#endif
-
-//      tm tm;
-  //    GetGmtTm(&tm);
-
-    //  TRACE("time%d", m_time);
-
-      //if (sysTime.wYear < 1900)
-      //{
-      //   time_t time0 = 0L;
-      //   time timeT(time0);
-      //   *this = timeT;
-      //}
-      //else
-      //{
-      //   time timeT(
-      //   (i32)sysTime.wYear, (i32)sysTime.wMonth, (i32)sysTime.wDay,
-      //   (i32)sysTime.wHour, (i32)sysTime.wMinute, (i32)sysTime.wSecond,
-      //   nDST);
-      //   *this = timeT;
-      //}
-   }
-
-   time::time(const FILETIME& filetime, i32 nDST)
-   {
-      //// first convert file time (UTC time) to local time
-      //FILETIME localTime;
-      //if (!FileTimeToLocalFileTime(&fileTime, &localTime))
-      //{
-        // m_time = 0;
-         //__throw(invalid_argument_exception());
-         //return;
-      //}
-
-      //// then convert that time to system time
-      SYSTEMTIME systemtime;
-      if (!FileTimeToSystemTime(&filetime, &systemtime))
-      {
-         m_time = 0;
-         __throw(invalid_argument_exception());
-         return;
-      }
-
-      *this = systemtime;
-
-      //// then convert the system time to a time_t (C-runtime local time)
-      //time timeT(sysTime, nDST);
-      //*this = timeT;
-   }
-
-
-#endif
-
-#define INTEL 1
-
-time::time(const filetime & filetime)
-
-#if defined(WINDOWS_DESKTOP) && defined(INTEL)
-
-      : time(*(FILETIME*)&filetime)
-
-#endif
-
-   {
-
-#ifndef WINDOWS_DESKTOP
-
-      auto estatus = mkgmtime_from_filetime(m_time, filetime.m_filetime);
-
-      if(!estatus)
-      {
-
-         __throw(exception::exception(estatus));
-
-      }
-
-#endif
+      m_time = __time((FILETIME &) filetime);
 
    }
-
-
 
 
    ::datetime::time & time::operator=(const time & time) noexcept
@@ -437,34 +312,7 @@ time::time(const filetime & filetime)
    }
 
 
-#ifdef WINDOWS
 
-
-   bool time::get_as_system_time(SYSTEMTIME& timeDest) const noexcept
-   {
-
-      struct tm ttm;
-      struct tm* ptm;
-
-      ptm = GetGmtTm(&ttm);
-
-      if(!ptm) { return false; }
-
-      timeDest.wYear = (::u16) (1900 + ptm->tm_year);
-      timeDest.wMonth = (::u16) (1 + ptm->tm_mon);
-      timeDest.wDayOfWeek = (::u16) ptm->tm_wday;
-      timeDest.wDay = (::u16) ptm->tm_mday;
-      timeDest.wHour = (::u16) ptm->tm_hour;
-      timeDest.wMinute = (::u16) ptm->tm_min;
-      timeDest.wSecond = (::u16) ptm->tm_sec;
-      timeDest.wMilliseconds = 0;
-
-      return true;
-
-   }
-
-
-#endif
 
 
    time_t time::get_time() const noexcept
@@ -904,11 +752,11 @@ CLASS_DECL_ACME SYSTEMTIME __SYSTEMTIME(const ::datetime::time & time)
 filetime __filetime(const ::datetime::time & time)
 {
 
-   SYSTEMTIME systemtime = __SYSTEMTIME(time);
+   SYSTEMTIME systemtime = __systemtime(time);
 
-   FILETIME filetime = {};
+   filetime filetime = {};
 
-   if (!SystemTimeToFileTime(&systemtime, &filetime))
+   if (!SystemTimeToFileTime(&systemtime, (FILETIME *) &filetime))
    {
 
 #ifdef WINDOWS
@@ -957,5 +805,133 @@ FILETIME __FILETIME(const ::datetime::time & time)
 
 #endif
 
+
+
+
+
+
+bool is_valid_FILETIME(const FILETIME & fileTime) noexcept
+{
+
+   FILETIME localTime;
+
+   if (!FileTimeToLocalFileTime(&fileTime, &localTime))
+   {
+
+      return false;
+
+   }
+
+   // then convert that time to system time
+   SYSTEMTIME sysTime;
+
+   if (!FileTimeToSystemTime(&localTime, &sysTime))
+   {
+
+      return false;
+
+   }
+
+   return true;
+
+}
+
+
+CLASS_DECL_ACME time_t __time(const SYSTEMTIME & systemtime, i32 nDST)
+{
+
+   if (systemtime.wYear < 1900)
+   {
+
+      __throw(::exception::exception("invalid datetime::time"));
+
+   }
+
+   struct tm tm;
+   tm.tm_sec = systemtime.wSecond;
+   tm.tm_min = systemtime.wMinute;
+   tm.tm_hour = systemtime.wHour;
+
+   tm.tm_wday = systemtime.wDayOfWeek;
+   tm.tm_mday = systemtime.wDay;
+   tm.tm_mon = systemtime.wMonth - 1;
+   tm.tm_year = systemtime.wYear - 1900;
+   tm.tm_isdst = nDST;
+
+   return _mkgmtime(&tm);
+
+}
+
+
+time_t __time(const FILETIME & filetime, i32 nDST)
+{
+
+   SYSTEMTIME systemtime;
+
+   if (!FileTimeToSystemTime(&filetime, &systemtime))
+   {
+      
+      __throw(invalid_argument_exception());
+
+      return 0;
+
+   }
+
+   return __time(systemtime);
+
+}
+
+
+#define INTEL 1
+
+//
+//time_t __time(const filetime & filetime)
+//{
+//
+//   auto time = __time(*(FILETIME *)&filetime);
+//
+//   auto estatus = mkgmtime_from_filetime(time.m_time, filetime.m_filetime);
+//
+//   if (!estatus)
+//   {
+//
+//      __throw(exception::exception(estatus));
+//
+//   }
+//
+//   return time;
+//
+//}
+
+
+CLASS_DECL_ACME SYSTEMTIME __systemtime(const ::datetime::time & time)
+{
+
+   SYSTEMTIME systemtime{};
+
+   struct tm ttm;
+   struct tm * ptm;
+
+   ptm = time.GetGmtTm(&ttm);
+
+   if (!ptm)
+   { 
+      
+      return systemtime; 
+   
+   }
+
+   systemtime.wYear = (::u16)(1900 + ptm->tm_year);
+   systemtime.wMonth = (::u16)(1 + ptm->tm_mon);
+   systemtime.wDayOfWeek = (::u16)ptm->tm_wday;
+   systemtime.wDay = (::u16)ptm->tm_mday;
+   systemtime.wHour = (::u16)ptm->tm_hour;
+   systemtime.wMinute = (::u16)ptm->tm_min;
+   systemtime.wSecond = (::u16)ptm->tm_sec;
+   systemtime.wMilliseconds = 0;
+
+   return systemtime;
+
+}
 
 

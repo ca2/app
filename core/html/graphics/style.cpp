@@ -98,7 +98,7 @@ namespace html
    }
 
 
-   bool style::get_surround_box(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelement, ::rectf & rect)
+   bool style::get_surround_box(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelement, ::rectangle_f32 & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -176,13 +176,13 @@ namespace html
          if(pstyleCur == pstyleLeft && if_then(pstyleLeft == pstyle, iLeft > i))
          {
 
-            rect.left = parse_dimension(pstyleLeft->m_propertyset[iLeft].get_string());
+            rectangle.left = parse_dimension(pstyleLeft->m_propertyset[iLeft].get_string());
 
          }
          else
          {
 
-            rect.left = f;
+            rectangle.left = f;
 
          }
 
@@ -196,13 +196,13 @@ namespace html
          if(pstyleCur == pstyleTop && if_then(pstyleTop == pstyle, iTop > i))
          {
 
-            rect.top =  parse_dimension(pstyleTop->m_propertyset[iTop].get_string());
+            rectangle.top =  parse_dimension(pstyleTop->m_propertyset[iTop].get_string());
 
          }
          else
          {
 
-            rect.top = f;
+            rectangle.top = f;
 
          }
 
@@ -216,13 +216,13 @@ namespace html
          if(pstyleCur == pstyleRight && if_then(pstyleRight == pstyle, iRight > i))
          {
 
-            rect.right =  parse_dimension(pstyleRight->m_propertyset[iRight].get_string());
+            rectangle.right =  parse_dimension(pstyleRight->m_propertyset[iRight].get_string());
 
          }
          else
          {
 
-            rect.right = f;
+            rectangle.right = f;
 
          }
 
@@ -236,13 +236,13 @@ namespace html
          if(pstyleCur == pstyleBottom && if_then(pstyleBottom == pstyle, iBottom > i))
          {
 
-            rect.bottom =  parse_dimension(pstyleBottom->m_propertyset[iBottom].get_string());
+            rectangle.bottom =  parse_dimension(pstyleBottom->m_propertyset[iBottom].get_string());
 
          }
          else
          {
 
-            rect.bottom = f;
+            rectangle.bottom = f;
 
          }
 
@@ -253,7 +253,7 @@ namespace html
    }
 
 
-   bool style::get_border_box(id idName, const string & strSubClass, html_data * pdata, ::html::element* pelement, border & rect)
+   bool style::get_border_box(id idName, const string & strSubClass, html_data * pdata, ::html::element* pelement, border & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -395,35 +395,35 @@ namespace html
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleLeft, iLeft, fLeft);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleLeftW, iLeftW, fLeftW);
-      rect.left          = (float) (double) varCur.get_double();
+      rectangle.left          = (float) (double) varCur.get_double();
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTop, iTop, fTop);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTopW, iTopW, fTopW);
-      rect.top           = (float) (double) varCur.get_double();
+      rectangle.top           = (float) (double) varCur.get_double();
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRight, iRight, fRight);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRightW, iRightW, fRightW);
-      rect.right         = (float) (double) varCur.get_double();
+      rectangle.right         = (float) (double) varCur.get_double();
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottom, iBottom, fBottom);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottomW, iBottomW, fBottomW);
-      rect.bottom        = (float) (double) varCur.get_double();
+      rectangle.bottom        = (float) (double) varCur.get_double();
 
       return true;
 
    }
 
 
-   bool style::get_border_color(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelement, border & rect)
+   bool style::get_border_color(id idName, const string & strSubClass, html_data * pdata, ::html::element * pelement, border & rectangle)
    {
 
       e_tag etag = pelement->m_etag;
@@ -566,28 +566,28 @@ namespace html
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleLeft, iLeft, (u32 &) crLeft);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleLeftW, iLeftW, (u32 &) crLeftW);
-      rect.crLeft        = (u32) varCur;
+      rectangle.crLeft        = (u32) varCur;
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTop, iTop, (u32 &) crTop);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleTopW, iTopW, (u32 &) crTopW);
-      rect.crTop         = (u32) varCur;
+      rectangle.crTop         = (u32) varCur;
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRight, iRight, (u32 &) crRight);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleRightW, iRightW, (u32 &) crRightW);
-      rect.crRight       = (u32) varCur;
+      rectangle.crRight       = (u32) varCur;
 
       pstyleCur         = pstyle1;
       iCur              = i1;
       varCur            = var1;
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottom, iBottom, (u32 &) crBottom);
       pdata->m_pcoredata->m_stylesheeta.greater(pstyleCur, iCur, varCur, pstyleCur, iCur, varCur, pstyleBottomW, iBottomW, (u32 &) crBottomW);
-      rect.crBottom      = (u32) varCur;
+      rectangle.crBottom      = (u32) varCur;
 
       return true;
 
@@ -656,7 +656,7 @@ namespace html
                   str = os_font_name(e_font_serif);
                   return true;
                }
-               else if(ansi_compare_ci("font-size", idName) == 0)
+               else if(ansi_compare_ci("font-size_i32", idName) == 0)
                {
                   str = "30";
                   return true;
@@ -678,7 +678,7 @@ namespace html
                   str = os_font_name(e_font_serif);
                   return true;
                }
-               else if(ansi_compare_ci("font-size", idName) == 0)
+               else if(ansi_compare_ci("font-size_i32", idName) == 0)
                {
                   str = "23";
                   return true;
@@ -700,7 +700,7 @@ namespace html
                   str = os_font_name(e_font_serif);
                   return true;
                }
-               else if(ansi_compare_ci("font-size", idName) == 0)
+               else if(ansi_compare_ci("font-size_i32", idName) == 0)
                {
                   str = "11";
                   return true;
@@ -722,7 +722,7 @@ namespace html
                   str = os_font_name(e_font_serif);
                   return true;
                }
-               else if(ansi_compare_ci("font-size", idName) == 0)
+               else if(ansi_compare_ci("font-size_i32", idName) == 0)
                {
                   str = "18";
                   return true;
@@ -758,7 +758,7 @@ namespace html
       }
       str = m_propertyset[idName];
       string strEm = str;
-      if(string(idName).compare_ci("font-size") == 0)
+      if(string(idName).compare_ci("font-size_i32") == 0)
       {
          if(::str::find_awwci("em", str) > 0)
          {
@@ -973,7 +973,7 @@ namespace html
          str.trim();
          return (float) strtod(str, nullptr);
       }
-      else if(::str::ends_eat_ci(str, "::pointf"))
+      else if(::str::ends_eat_ci(str, "::point_f32"))
       {
          str.trim();
          return (float) (strtod(str, nullptr) * 96.0 / 72.0);
@@ -1119,7 +1119,7 @@ namespace html
       }
       f = (float) strtod(&str[iFindDigit], nullptr);
       str = str.Mid(i);
-      if(::str::begins_ci(str, "::pointf"))
+      if(::str::begins_ci(str, "::point_f32"))
       {
          str.trim();
          if(str.get_length() == 2 || isspace(str[3]))

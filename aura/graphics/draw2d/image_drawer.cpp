@@ -33,7 +33,7 @@ bool image_drawer::draw(const image_drawing & imagedrawing)
 }
 
 
-//bool image_drawer::_draw_raw(const ::rectd & rectDst, const ::image_drawing & imagedrawing, const ::rectd & rectSrc)
+//bool image_drawer::_draw_raw(const ::rectangle_f64 & rectDst, const ::image_drawing & imagedrawing, const ::rectangle_f64 & rectSrc)
 //{
 //
 //   if (rectDst.size() == rectSrc.size())
@@ -54,7 +54,7 @@ bool image_drawer::draw(const image_drawing & imagedrawing)
 //}
 //
 //
-//bool image_drawer::_draw_raw(const ::rectd & rectDst, const ::image_drawing & imagedrawing, const ::pointd & pointSrc)
+//bool image_drawer::_draw_raw(const ::rectangle_f64 & rectDst, const ::image_drawing & imagedrawing, const ::point_f64 & pointSrc)
 //{
 //
 //   return false;
@@ -62,7 +62,7 @@ bool image_drawer::draw(const image_drawing & imagedrawing)
 //}
 //
 //
-//bool image_drawer::_stretch_raw(const ::rectd & rectDst, const ::image_drawing & imagedrawing, const ::rectd & rectSrc)
+//bool image_drawer::_stretch_raw(const ::rectangle_f64 & rectDst, const ::image_drawing & imagedrawing, const ::rectangle_f64 & rectSrc)
 //{
 //
 //   return false;
@@ -70,7 +70,7 @@ bool image_drawer::draw(const image_drawing & imagedrawing)
 //}
 //
 //
-//bool image_drawer::_draw_blend(const ::rectd & rectDst, const ::image_drawing & imagedrawing, const ::rectd & pointSrc)
+//bool image_drawer::_draw_blend(const ::rectangle_f64 & rectDst, const ::image_drawing & imagedrawing, const ::rectangle_f64 & pointSrc)
 //{
 //
 //   return false;
@@ -101,7 +101,7 @@ bool image_drawer::_draw_raw(const image_drawing & imagedrawing)
 }
 
 
-bool image_drawer::_draw_raw(const ::rectd & rectDst, image * pimage, const image_drawing_options & imagedrawingoptions, const ::pointd & pointSrc)
+bool image_drawer::_draw_raw(const ::rectangle_f64 & rectDst, image * pimage, const image_drawing_options & imagedrawingoptions, const ::point_f64 & pointSrc)
 {
 
    return false;
@@ -109,7 +109,7 @@ bool image_drawer::_draw_raw(const ::rectd & rectDst, image * pimage, const imag
 }
 
 
-bool image_drawer::_stretch_raw(const ::rectd & rectDst, image * pimage, const image_drawing_options & imagedrawingoptions, const ::rectd & rectSrc)
+bool image_drawer::_stretch_raw(const ::rectangle_f64 & rectDst, image * pimage, const image_drawing_options & imagedrawingoptions, const ::rectangle_f64 & rectSrc)
 {
 
    return false;

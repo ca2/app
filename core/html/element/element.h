@@ -71,9 +71,9 @@ namespace html
       element * get_element_by_name(id id);
       element * get_element_by_id(id id);
 
-      virtual element * hit_test(html_data * pdocument, const ::pointf & point);
-      virtual element * bound_hit_test(html_data * pdocument, const ::pointf & point);
-      virtual element * bound_hit_test(html_data * pdocument, const ::pointf & point, double & dMin);
+      virtual element * hit_test(html_data * pdocument, const ::point_f32 & point);
+      virtual element * bound_hit_test(html_data * pdocument, const ::point_f32 & point);
+      virtual element * bound_hit_test(html_data * pdocument, const ::point_f32 & point, double & dMin);
 
 
       virtual void implement(html_data * pdocument);

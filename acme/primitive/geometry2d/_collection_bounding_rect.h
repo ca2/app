@@ -1,7 +1,7 @@
 #pragma once
 
 
-inline bool get_bounding_rect(RECT32* prectBounding, const lines* plines)
+inline bool get_bounding_rect(RECTANGLE_I32* prectBounding, const lines* plines)
 {
 
    plines->get_bounding_rect(prectBounding);
@@ -11,10 +11,10 @@ inline bool get_bounding_rect(RECT32* prectBounding, const lines* plines)
 
 
 
-inline bool get_bounding_rect(RECTD* prectBounding, const lines* plines)
+inline bool get_bounding_rect(RECTANGLE_F64* prectBounding, const lines* plines)
 {
 
-   ::RECT32 r;
+   ::RECTANGLE_I32 r;
 
    plines->get_bounding_rect(&r);
 
@@ -25,10 +25,10 @@ inline bool get_bounding_rect(RECTD* prectBounding, const lines* plines)
 }
 
 
-inline bool get_bounding_rect(RECT32* prectBounding, const linesd* plines)
+inline bool get_bounding_rect(RECTANGLE_I32* prectBounding, const linesd* plines)
 {
 
-   ::RECTD r;
+   ::RECTANGLE_F64 r;
 
    plines->get_bounding_rect(&r);
 
@@ -39,7 +39,7 @@ inline bool get_bounding_rect(RECT32* prectBounding, const linesd* plines)
 }
 
 
-inline bool get_bounding_rect(RECTD* prectBounding, const linesd* plines)
+inline bool get_bounding_rect(RECTANGLE_F64* prectBounding, const linesd* plines)
 {
 
    plines->get_bounding_rect(prectBounding);
@@ -49,7 +49,7 @@ inline bool get_bounding_rect(RECTD* prectBounding, const linesd* plines)
 }
 
 
-inline bool get_bounding_rect(RECT32* prectBounding, const polygon* ppolygon)
+inline bool get_bounding_rect(RECTANGLE_I32* prectBounding, const polygon_i32* ppolygon)
 {
 
    ppolygon->get_bounding_rect(prectBounding);
@@ -59,10 +59,10 @@ inline bool get_bounding_rect(RECT32* prectBounding, const polygon* ppolygon)
 }
 
 
-inline bool get_bounding_rect(RECTD* prectBounding, const polygon* ppolygon)
+inline bool get_bounding_rect(RECTANGLE_F64* prectBounding, const polygon_i32* ppolygon)
 {
 
-   ::RECT32 r;
+   ::RECTANGLE_I32 r;
 
    ppolygon->get_bounding_rect(&r);
 
@@ -73,10 +73,10 @@ inline bool get_bounding_rect(RECTD* prectBounding, const polygon* ppolygon)
 }
 
 
-inline bool get_bounding_rect(RECT32* prectBounding, const polygond* ppolygon)
+inline bool get_bounding_rect(RECTANGLE_I32* prectBounding, const polygon_f64* ppolygon)
 {
 
-   ::RECTD r;
+   ::RECTANGLE_F64 r;
 
    ppolygon->get_bounding_rect(&r);
 
@@ -87,7 +87,7 @@ inline bool get_bounding_rect(RECT32* prectBounding, const polygond* ppolygon)
 }
 
 
-inline bool get_bounding_rect(RECTD* prectBounding, const polygond* ppolygon)
+inline bool get_bounding_rect(RECTANGLE_F64* prectBounding, const polygon_f64* ppolygon)
 {
 
    ppolygon->get_bounding_rect(prectBounding);

@@ -9,7 +9,26 @@
 #endif
 
 
+#define MAXIMUM_SYNC_OBJECTS 64
 
+using hsync = void *;
+
+#define INVALID_HSYNC_VALUE ((hsync)nullptr)
+
+#ifdef PARALLELIZATION_PTHREAD
+
+#define CRITICAL_SECTION_FUNCTION_RETURN int
+
+CRITICAL_SECTION_FUNCTION_RETURN pthread_recursive_mutex_init(pthread_mutex_t * pmutex);
+
+#else
+
+#define CRITICAL_SECTION_FUNCTION_RETURN void
+
+#endif
+
+
+CLASS_DECL_ACME ::u64 translate_processor_affinity(int iOrder);
 
 
 // LPVOID thread_data_get(thread_data_index dataindex);
@@ -204,8 +223,9 @@ class sync_lock;
 #include "mutex.h"
 #include "event.h"
 #include "set_event_on_exit.h"
+#include "critical_section.h"
+#include "condition_variable.h"
 #include "condition.h"
-#include "file_change_event.h"
 #include "socket_event.h"
 #include "single_lock.h"
 //#include "retry_single_lock.h"
@@ -239,10 +259,10 @@ class sync_lock;
 
 #include "sync_task.h"
 
-
-#ifdef WINDOWS
-#include <Winsvc.h>
-#endif
+//
+//#ifdef WINDOWS
+//#include <Winsvc.h>
+//#endif
 
 //#include "service_status.h"
 #include "thread_os.h"
@@ -253,14 +273,18 @@ class sync_lock;
 
 //#include "service/thread_pool.h"
 
+namespace windowing
+{
 
+   class window;
+
+} // namespace windowing
 
 
 
 //CLASS_DECL_ACME u32 random_processor_index_generator();
 
-
-CLASS_DECL_ACME int_bool post_message(oswindow oswindow, const ::id & id, WPARAM wparam, LPARAM lparam);
+CLASS_DECL_ACME int_bool post_message(oswindow hwnd, const ::id & id, wparam wparam, lparam lparam);
 
 
 
@@ -335,7 +359,7 @@ CLASS_DECL_ACME bool task_sleep(millis millis = U32_INFINITE_TIMEOUT, ::sync * p
 #endif
 
 
-string get_task_name(hthread_t hthread);
+string get_thread_name(hthread_t hthread);
 
 #include "acme/primitive/collection/runnable_array.h"
 

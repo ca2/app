@@ -8,7 +8,7 @@
 #include "acme/parallelization/mq.h"
 
 
-int_bool post_message(oswindow oswindow, const ::id & id, WPARAM wparam, LPARAM lparam)
+int_bool post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
 {
 
    return mq_post_message(oswindow, message, wparam, lparam);

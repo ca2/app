@@ -14,7 +14,7 @@ int_bool SetBkMode(HDC hdc, i32 iMode);
 int_bool DeleteDC(HDC hdc);
 int_bool AlphaBlend(HDC hdcDest, i32 xoriginDest, i32 yoriginDest, i32 wDest, i32 hDest, HDC hdcSrc, i32 xoriginSrc, i32 yoriginSrc, i32 wSrc, i32 hSrc, BLENDFUNCTION ftn);
 int_bool GetObject(HGDIOBJ hgdiobj, i32 iSize, void * object);
-int_bool GetTextExtentPoint(HDC hdc, const char * pszText, i32 iSize, SIZE32 * psize);
+int_bool GetTextExtentPoint(HDC hdc, const char * pszText, i32 iSize, SIZE_I32 * psize);
 /*int_bool WINAPI TransparentBlt(HDC hdcDest,
     __in i32 xoriginDest,
     __in i32 yoriginDest,

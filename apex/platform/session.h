@@ -63,7 +63,7 @@ namespace apex
       bool                                                  m_bProgrammerMode;
 
       bool                                                  m_bSystemSynchronizedCursor;
-      point                                                 m_pointCursor;
+      point_i32                                                 m_pointCursor;
 
       //comparable_array < __reference(::layered) > m_uiptraToolWindow;
 
@@ -107,21 +107,7 @@ namespace apex
 
       bool                                                  m_bSystemSynchronizedScreen;
 
-#ifdef WINDOWS_DESKTOP
 
-      //#pragma message("at macos??")
-      raw_array < MONITORINFO >                          m_monitorinfoa;
-      raw_array < HMONITOR >                             m_hmonitora;
-      raw_array < MONITORINFO >                          m_monitorinfoaDesk;
-
-#else
-
-      //rect_array                                         m_rectaMonitor;
-      //rect_array                                         m_rectaWork;
-
-      rect_array                                            m_rectaMonitor;
-      rect_array                                            m_rectaWkspace;
-#endif
 
       index                                                 m_iMainMonitor;
       index                                                 m_iMainWkspace;
@@ -162,22 +148,22 @@ namespace apex
 
       //void construct(::object * pobject, int iPhase) override;
 
-      virtual index get_main_monitor(RECT32* prect = nullptr);
+      virtual index get_main_monitor(RECTANGLE_I32* prectangle = nullptr);
 
       virtual ::count get_monitor_count();
-      virtual bool  get_monitor_rect(index iMonitor, RECT32* prect);
+      virtual bool  get_monitor_rect(index iMonitor, RECTANGLE_I32* prectangle);
 
       virtual ::count get_desk_monitor_count();
-      virtual bool  get_desk_monitor_rect(index iMonitor, RECT32* prect);
+      virtual bool  get_desk_monitor_rect(index iMonitor, RECTANGLE_I32* prectangle);
 
 
-      virtual index get_main_wkspace(RECT32* prect = nullptr);
+      virtual index get_main_wkspace(RECTANGLE_I32* prectangle = nullptr);
 
       virtual ::count get_wkspace_count();
-      virtual bool  get_wkspace_rect(index iWkspace, RECT32* prect);
+      virtual bool  get_wkspace_rect(index iWkspace, RECTANGLE_I32* prectangle);
 
       virtual ::count get_desk_wkspace_count();
-      virtual bool  get_desk_wkspace_rect(index iWkspace, RECT32* prect);
+      virtual bool  get_desk_wkspace_rect(index iWkspace, RECTANGLE_I32* prectangle);
 
       //virtual index get_ui_wkspace(::user::interaction * pinteraction);
 
@@ -202,10 +188,10 @@ namespace apex
       //inline ::sockets::sockets & sockets() { return *m_psockets; }
 
 
-      virtual size get_window_minimum_size();
+      virtual size_i32 get_window_minimum_size();
 
 
-      //virtual void  get_cursor_pos(POINT32 * ppoint);
+      //virtual void  get_cursor_pos(POINT_I32 * ppoint);
 
       virtual bool on_get_thread_name(string& strThreadName) override;
 
@@ -305,56 +291,56 @@ namespace apex
 
 
       // apex commented
-      virtual void get_cursor_pos(POINT32 * ppoint);
-      inline ::point get_cursor_pos() {::point point; get_cursor_pos(&point); return point;}
+      virtual void get_cursor_pos(POINT_I32 * ppoint);
+      inline ::point_i32 get_cursor_pos() {::point_i32 point; get_cursor_pos(&point); return point;}
 
       // apex commented
-      virtual void set_cursor_pos(const ::point & point);
+      virtual void set_cursor_pos(const ::point_i32 & point);
 
-      //virtual index get_main_monitor(RECT32 * prect = nullptr);
+      //virtual index get_main_monitor(RECTANGLE_I32 * prectangle = nullptr);
 
       virtual bool set_main_monitor(index iMonitor);
       //virtual ::count get_monitor_count();
-      //virtual bool  get_monitor_rect(index iMonitor, RECT32 * prect);
+      //virtual bool  get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle);
 
-      //virtual index get_main_wkspace(RECT32 * prect = nullptr);
+      //virtual index get_main_wkspace(RECTANGLE_I32 * prectangle = nullptr);
 
       virtual bool set_main_wkspace(index iWkspace);
       //virtual ::count get_wkspace_count();
-      //virtual bool  get_wkspace_rect(index iWkspace, RECT32 * prect);
+      //virtual bool  get_wkspace_rect(index iWkspace, RECTANGLE_I32 * prectangle);
 
-      virtual bool wkspace_to_monitor(RECT32 * prect, index iMonitor, index iWkspace);
+      virtual bool wkspace_to_monitor(RECTANGLE_I32 * prectangle, index iMonitor, index iWkspace);
 
-      virtual bool monitor_to_wkspace(RECT32 * prect, index iWkspace, index iMonitor);
+      virtual bool monitor_to_wkspace(RECTANGLE_I32 * prectangle, index iWkspace, index iMonitor);
 
-      virtual bool wkspace_to_monitor(RECT32 * prect);
+      virtual bool wkspace_to_monitor(RECTANGLE_I32 * prectangle);
 
-      virtual bool monitor_to_wkspace(RECT32 * prect);
+      virtual bool monitor_to_wkspace(RECTANGLE_I32 * prectangle);
 
       //virtual ::count get_desk_monitor_count();
-      //virtual bool  get_desk_monitor_rect(index iMonitor, RECT32 * prect);
+      //virtual bool  get_desk_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle);
 
-      virtual void  get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, const ::rect & rect);
-
-      // apex commented
-      //virtual index initial_frame_position(RECT32 * prect, const ::rect & rect, bool bMove, ::user::interaction * pinteraction);
-
-      virtual index _get_best_zoneing(edisplay * pedisplay, ::rect * prect, const ::rect & rect, bool bPreserveSize = false);
-
-      virtual index get_best_monitor(RECT32 * prect, const ::rect & rect, ::e_activation eactivation = e_activation_default);
-
-      virtual index get_best_wkspace(::rect * prect, const ::rect& rect, ::e_activation eactivation = e_activation_default);
-
-      virtual index get_good_iconify(RECT32 * prect, const ::rect & rect);
+      virtual void  get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, const ::rectangle_i32 & rectangle);
 
       // apex commented
-      //virtual index get_window_restore_1(RECT32 * prect, const ::rect & rect, ::user::interaction * pinteraction, edisplay edisplayRestore);
+      //virtual index initial_frame_position(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bMove, ::user::interaction * pinteraction);
+
+      virtual index _get_best_zoneing(edisplay * pedisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bPreserveSize = false);
+
+      virtual index get_best_monitor(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::e_activation eactivation = e_activation_default);
+
+      virtual index get_best_wkspace(::rectangle_i32 * prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
+
+      virtual index get_good_iconify(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle);
 
       // apex commented
-      //virtual index get_window_restore_2(RECT32* prect, const ::rect& rect, ::user::interaction* pinteraction, edisplay edisplayRestore);
+      //virtual index get_window_restore_1(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction, edisplay edisplayRestore);
 
       // apex commented
-      //virtual index get_good_move(RECT32 * prect, const ::rect & rect, ::user::interaction * pinteraction);
+      //virtual index get_window_restore_2(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle, ::user::interaction* pinteraction, edisplay edisplayRestore);
+
+      // apex commented
+      //virtual index get_good_move(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction);
 
       // apex commented
       //virtual index get_ui_wkspace(::user::interaction * pinteraction);
@@ -365,7 +351,7 @@ namespace apex
       //__pointer(::user::theme) get_user_theme(const char * pszExperienceLibrary, ::apex::application * papp = nullptr);
 
 
-      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rect & rect, ::draw2d::brush_pointer & brushText);
+      //virtual void _001OnDefaultTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText);
 
 
       // apex commented
@@ -399,13 +385,13 @@ namespace apex
 
       //template < typename VIEW >
       //__pointer(::user::document)   create_form(__pointer(::user::interaction) pwndParent = nullptr, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(::type point_i32, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //template < typename VIEW >
       //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(::type point_i32, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_child_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
 
 
@@ -483,7 +469,7 @@ namespace apex
 
       virtual ::e_status main() override;
 
-      virtual ::e_status defer_initialize_host_window(LPCRECT32 lpcrect = nullptr);
+      virtual ::e_status defer_initialize_host_window(const RECTANGLE_I32 * lpcrect = nullptr);
 
       __pointer(::apex::application) get_current_application();
 

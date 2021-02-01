@@ -170,7 +170,7 @@ namespace user
    }
 
 
-   void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, id idLeft, ::u32 nFlags, RECT32 * prectParam, const rect & rectClient, bool bStretch)
+   void primitive_impl::RepositionBars(::u32 nIDFirst, ::u32 nIDLast, id idLeft, ::u32 nFlags, RECTANGLE_I32 * prectParam, const rectangle_i32 & rectClient, bool bStretch)
    {
 
       if (!_is_window())
@@ -197,17 +197,17 @@ namespace user
       if (rectClient != nullptr)
       {
 
-         sizeparentparams.rect = rectClient;
+         sizeparentparams.rectangle_i32 = rectClient;
 
       }
       else
       {
 
-         m_puserinteraction->get_client_rect(&sizeparentparams.rect);
+         m_puserinteraction->get_client_rect(&sizeparentparams.rectangle_i32);
 
       }
 
-      if (::is_empty(sizeparentparams.rect))
+      if (::is_empty(sizeparentparams.rectangle_i32))
       {
 
          return;
@@ -230,7 +230,7 @@ namespace user
          else
          {
 
-            pinteraction->send_message((enum_message) e_message_size_parent, 0, (LPARAM)& sizeparentparams);
+            pinteraction->send_message((enum_message) e_message_size_parent, 0, (lparam)& sizeparentparams);
 
          }
 
@@ -244,7 +244,7 @@ namespace user
          if (bStretch)
          {
 
-            ::copy_rect(prectParam, &sizeparentparams.rect);
+            ::copy_rect(prectParam, &sizeparentparams.rectangle_i32);
 
          }
          else
@@ -273,13 +273,13 @@ namespace user
             ASSERT(prectParam != nullptr);
 
 
-            sizeparentparams.rect.left += prectParam->left;
+            sizeparentparams.rectangle.left += prectParam->left;
 
-            sizeparentparams.rect.top += prectParam->top;
+            sizeparentparams.rectangle.top += prectParam->top;
 
-            sizeparentparams.rect.right -= prectParam->right;
+            sizeparentparams.rectangle.right -= prectParam->right;
 
-            sizeparentparams.rect.bottom -= prectParam->bottom;
+            sizeparentparams.rectangle.bottom -= prectParam->bottom;
 
 
          }
@@ -287,9 +287,9 @@ namespace user
          if ((nFlags & reposNoPosLeftOver) != reposNoPosLeftOver)
          {
 
-            puiLeft->CalcWindowRect(&sizeparentparams.rect);
+            puiLeft->CalcWindowRect(&sizeparentparams.rectangle_i32);
 
-            puiLeft->place(sizeparentparams.rect);
+            puiLeft->place(sizeparentparams.rectangle_i32);
 
             puiLeft->display();
 
@@ -422,7 +422,7 @@ namespace user
    }
 
 
-   void primitive_impl::viewport_client_to_screen(POINT32 * ppt)
+   void primitive_impl::viewport_client_to_screen(POINT_I32 * ppt)
    {
 
       if (m_puserinteraction)
@@ -435,7 +435,7 @@ namespace user
    }
 
 
-   void primitive_impl::viewport_screen_to_client(POINT32 * ppt)
+   void primitive_impl::viewport_screen_to_client(POINT_I32 * ppt)
    {
 
       if (m_puserinteraction)
@@ -448,25 +448,25 @@ namespace user
    }
 
 
-   void primitive_impl::viewport_client_to_screen(RECT32 * prect)
+   void primitive_impl::viewport_client_to_screen(RECTANGLE_I32 * prectangle)
    {
 
-      viewport_client_to_screen((POINT32 *)& prect->left);
-      viewport_client_to_screen((POINT32 *)& prect->right);
+      viewport_client_to_screen((POINT_I32 *)& prectangle->left);
+      viewport_client_to_screen((POINT_I32 *)& prectangle->right);
 
    }
 
 
-   void primitive_impl::viewport_screen_to_client(RECT32 * prect)
+   void primitive_impl::viewport_screen_to_client(RECTANGLE_I32 * prectangle)
    {
 
-      viewport_screen_to_client((POINT32 *)& prect->left);
-      viewport_screen_to_client((POINT32 *)& prect->right);
+      viewport_screen_to_client((POINT_I32 *)& prectangle->left);
+      viewport_screen_to_client((POINT_I32 *)& prectangle->right);
 
    }
 
 
-   bool primitive_impl::RedrawWindow(const ::rect & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
+   bool primitive_impl::RedrawWindow(const ::rectangle_i32 & rectUpdate, ::draw2d::region * prgnUpdate, ::u32 flags)
    {
 
       if (!m_puserinteraction)
@@ -1000,7 +1000,7 @@ namespace user
    }
 
 
-   LRESULT primitive_impl::message_call(const ::id & id, WPARAM wparam, lparam lparam)
+   lresult primitive_impl::message_call(const ::id & id, wparam wparam, lparam lparam)
    {
 
       ___pointer < ::message::base > spbase;
@@ -1023,7 +1023,7 @@ namespace user
    }
 
 
-   LRESULT primitive_impl::message_call(::message::base * pbase)
+   lresult primitive_impl::message_call(::message::base * pbase)
    {
 
       if (m_puserinteraction == nullptr)
@@ -1064,7 +1064,7 @@ namespace user
    }
 
 
-   void primitive_impl::send_message_to_descendants(const ::id & id, WPARAM wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
+   void primitive_impl::send_message_to_descendants(const ::id & id, wparam wparam, lparam lparam, bool bDeep, bool bOnlyPerm)
    {
 
       return m_puserinteraction->send_message_to_descendants(id, wparam, lparam, bDeep, bOnlyPerm);
@@ -1121,10 +1121,10 @@ namespace user
    }
 
 
-   bool primitive_impl::get_rect_normal(RECT32 * prect)
+   bool primitive_impl::get_rect_normal(RECTANGLE_I32 * prectangle)
    {
 
-      m_puserinteraction->layout().sketch().screen_rect(prect);
+      m_puserinteraction->layout().sketch().screen_rect(prectangle);
 
       return true;
 
@@ -1395,7 +1395,7 @@ namespace user
    }
 
 
-   bool primitive_impl::post_message(const ::id & id, WPARAM wparam, lparam lparam)
+   bool primitive_impl::post_message(const ::id & id, wparam wparam, lparam lparam)
    {
 
       if (::is_null(m_puserinteraction))
@@ -1587,13 +1587,13 @@ namespace user
    }
 
 
-   void primitive_impl::redraw_add(::context_object * point)
+   void primitive_impl::redraw_add(::context_object * point_i32)
    {
 
    }
 
 
-   void primitive_impl::redraw_remove(::context_object * point)
+   void primitive_impl::redraw_remove(::context_object * point_i32)
    {
 
    }

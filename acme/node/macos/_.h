@@ -16,9 +16,9 @@ CLASS_DECL_ACME ::file::exception * get_FileException(::layered * pobjectContext
 
 
 //CLASS_DECL_ACME void __trace_message(const char * lpszPrefix, ::message::message * pmessage);
-//CLASS_DECL_ACME void __trace_message(const char * lpszPrefix, LPMESSAGE lpmsg);
-int_bool mq_peek_message(LPMESSAGE lpMsg,oswindow hWnd,::u32 wMsgFilterMin,::u32 wMsgFilterMax,::u32 wRemoveMsg);
-int_bool mq_get_message(LPMESSAGE lpMsg,oswindow hWnd,::u32 wMsgFilterMin,::u32 wMsgFilterMax);
+//CLASS_DECL_ACME void __trace_message(const char * lpszPrefix, MESSAGE * lpmsg);
+int_bool mq_peek_message(MESSAGE * lpMsg,oswindow hWnd,::u32 wMsgFilterMin,::u32 wMsgFilterMax,::u32 wRemoveMsg);
+int_bool mq_get_message(MESSAGE * lpMsg,oswindow hWnd,::u32 wMsgFilterMin,::u32 wMsgFilterMax);
 i32 CLASS_DECL_ACME __mac_main(i32 argc, char * argv[]);
 CLASS_DECL_ACME void vfxThrowFileException(::matter * pobject, const ::e_status & estatus, ::i32 lOsError, const char * lpszFileName = nullptr);
 

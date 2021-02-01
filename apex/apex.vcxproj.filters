@@ -255,14 +255,14 @@
     <Filter Include="Header Files\parallelization">
       <UniqueIdentifier>{3b04ff9f-5bd9-45cc-afe3-93cb56f5f110}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\parallelization\service">
-      <UniqueIdentifier>{4e169b66-fd0f-44c2-b9b1-7046ee52f2f9}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\parallelization">
       <UniqueIdentifier>{f5fb0b8d-82f2-4a87-b245-1747ef8e70a3}</UniqueIdentifier>
     </Filter>
     <Filter Include="Source Files\parallelization\service">
       <UniqueIdentifier>{711bcad9-5239-4e29-8d18-b825f0650185}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\node\ansios">
+      <UniqueIdentifier>{45cc027c-f817-429c-88fd-79641200900b}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -740,19 +740,10 @@
     <ClInclude Include="os\chronometer.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
-    <ClInclude Include="os\_.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
     <ClInclude Include="os\_application.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
-    <ClInclude Include="os\_c.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
     <ClInclude Include="os\_impl.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
-    <ClInclude Include="os\_os.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
     <ClInclude Include="os\apex.h">
@@ -1457,17 +1448,41 @@
     <ClInclude Include="parallelization\tools.h">
       <Filter>Header Files\parallelization</Filter>
     </ClInclude>
-    <ClInclude Include="parallelization\service\plain_service.h">
-      <Filter>Header Files\parallelization\service</Filter>
-    </ClInclude>
-    <ClInclude Include="parallelization\service\pool.h">
-      <Filter>Header Files\parallelization\service</Filter>
-    </ClInclude>
     <ClInclude Include="net\sockets\_sockets.h">
       <Filter>Header Files\net\sockets</Filter>
     </ClInclude>
     <ClInclude Include="platform\node.h">
       <Filter>Header Files\platform</Filter>
+    </ClInclude>
+    <ClInclude Include="net\_net.h">
+      <Filter>Header Files\net</Filter>
+    </ClInclude>
+    <ClInclude Include="os\_2.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\shell_launcher.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\ansios\shell_launcher.h">
+      <Filter>Header Files\node\ansios</Filter>
+    </ClInclude>
+    <ClInclude Include="operating_system.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="os\_os2.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="os\_c2.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\interprocess_communication.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\service.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\service_pool.h">
+      <Filter>Header Files\node\windows</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -1711,16 +1726,10 @@
     <ClCompile Include="os\windows\dpi.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\launcher.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="os\windows\library.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\main.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\simple_shell_launcher.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="os\_application.cpp">
@@ -2065,9 +2074,6 @@
     <ClCompile Include="platform\static_start_apex.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\interprocess_communication.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="platform\interprocess_task.cpp">
       <Filter>Source Files\platform</Filter>
     </ClCompile>
@@ -2172,6 +2178,18 @@
     </ClCompile>
     <ClCompile Include="platform\node.cpp">
       <Filter>Source Files\platform</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\interprocess_communication.cpp">
+      <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\service.cpp">
+      <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\shell_launcher.cpp">
+      <Filter>Source Files\node\windows</Filter>
+    </ClCompile>
+    <ClCompile Include="node\windows\launcher.cpp">
+      <Filter>Source Files\node\windows</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>

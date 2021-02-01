@@ -43,7 +43,7 @@ namespace os
    }
 
 
-   bool simple_ui::create_window(LPCRECT32 lpcrect)
+   bool simple_ui::create_window(const RECTANGLE_I32 * lpcrect)
    {
 
       single_lock ml(&user_mutex());
@@ -149,7 +149,7 @@ namespace os
       m_size.cy = height(lpcrect);
 
       m_rectWindow = *lpcrect;
-      m_rectWindow.deflate(1, 1); // make intentionally different from actual rect to trigger simple_ui on_move and on_size events
+      m_rectWindow.deflate(1, 1); // make intentionally different from actual rectangle_i32 to trigger simple_ui on_move and on_size events
 
       m_window = oswindow_get(display, window, vis, m_iDepth, m_iScreen, attr.colormap);
 
@@ -183,7 +183,7 @@ namespace os
 
 
 
-   bool simple_ui::prepare_window(LPCRECT32 lpcrect)
+   bool simple_ui::prepare_window(const RECTANGLE_I32 * lpcrect)
    {
 
       single_lock ml(&user_mutex());
@@ -496,13 +496,13 @@ namespace os
    }
 
 
-   void simple_ui::_001ClientToScreen(POINT32 * ppt)
+   void simple_ui::_001ClientToScreen(POINT_I32 * ppt)
    {
       //::_001ClientToScreen(m_window, ppt);
       ::user::interaction::_001ClientToScreen(ppt);
    }
 
-   void simple_ui::_001ScreenToClient(POINT32 * ppt)
+   void simple_ui::_001ScreenToClient(POINT_I32 * ppt)
    {
       //::_001ScreenToClient(m_window, ppt);
       ::user::interaction::_001ScreenToClient(ppt);
@@ -571,21 +571,21 @@ namespace os
 
 
 
-   void simple_ui::get_window_rect(RECT32 * prect)
+   void simple_ui::get_window_rect(RECTANGLE_I32 * prectangle)
    {
 
-      *prect = m_rectWindow;
+      *prectangle = m_rectWindow;
 
    }
-   void simple_ui::get_client_rect(RECT32 * prect)
+   void simple_ui::get_client_rect(RECTANGLE_I32 * prectangle)
    {
 
-      *prect = m_rectWindow;
+      *prectangle = m_rectWindow;
 
-      prect->right -= prect->left;
-      prect->bottom -= prect->top;
-      prect->left = 0;
-      prect->top = 0;
+      prectangle->right -= prectangle->left;
+      prectangle->bottom -= prectangle->top;
+      prectangle->left = 0;
+      prectangle->top = 0;
 
    }
 
@@ -593,7 +593,7 @@ namespace os
    void simple_ui::on_draw_framebuffer()
    {
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       ::get_window_rect(m_window, rectWindow);
 
@@ -617,13 +617,13 @@ namespace os
 /*      if (m_pimage->is_set() && m_pimage->g() != nullptr)
       {
 
-         ::rect rectClient = rectWindow;
+         ::rectangle_i32 rectClient = rectWindow;
 
          rectClient -= rectWindow.top_left();
 
-         ::rect rect;
+         ::rectangle_i32 rectangle;
 
-         rect = rectWindow;
+         rectangle_i32 = rectWindow;
 
 /*         m_pimage->g()->set_alpha_mode(draw2d::alpha_mode_set);
 
@@ -692,7 +692,7 @@ namespace os
             dst += 4;
          }
 
-/*         m_xlib.update_window(m_window, (color32_t *)m_pimage->get_data(), &rect, m_pimage->m_iScan);
+/*         m_xlib.update_window(m_window, (color32_t *)m_pimage->get_data(), &rectangle, m_pimage->m_iScan);
 
       }
 
@@ -704,10 +704,10 @@ namespace os
       m_point.x = x;
       m_point.y = y;
 
-      m_rect.left = m_point.x;
-      m_rect.right = m_point.x + m_size.cx;
-      m_rect.top = m_point.y;
-      m_rect.bottom = m_point.y + m_size.cy;
+      m_rectangle.left = m_point.x;
+      m_rectangle.right = m_point.x + m_size.cx;
+      m_rectangle.top = m_point.y;
+      m_rectangle.bottom = m_point.y + m_size.cy;
 
       return true;
 
@@ -719,10 +719,10 @@ namespace os
       m_size.cx = cx;
       m_size.cy = cy;
 
-      m_rect.left = m_point.x;
-      m_rect.right = m_point.x + m_size.cx;
-      m_rect.top = m_point.y;
-      m_rect.bottom = m_point.y + m_size.cy;
+      m_rectangle.left = m_point.x;
+      m_rectangle.right = m_point.x + m_size.cx;
+      m_rectangle.top = m_point.y;
+      m_rectangle.bottom = m_point.y + m_size.cy;
 
 /*      m_pimage = create_image({get_context_application()->create_new,  this});
 /*      m_pimage = create_image({m_size.cx,  m_size.cy});
@@ -773,10 +773,10 @@ namespace os
 
       ::set_window_pos(m_window, nullptr, x, y, 0, 0, SWP_NOSIZE | SWP_NOZORDER);
 
-      m_rect.left = x;
-      m_rect.top = y;
-      m_rect.right = x + m_size.cx;
-      m_rect.bottom = y + m_size.cy;
+      m_rectangle.left = x;
+      m_rectangle.top = y;
+      m_rectangle.right = x + m_size.cx;
+      m_rectangle.bottom = y + m_size.cy;
 
       m_point.x = x;
       m_point.y = y;

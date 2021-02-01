@@ -65,15 +65,15 @@ namespace user
    {
    protected:
 
-      ::point                                m_pointScreen;
-      ::point                                m_pointHost;
-      ::point                                m_point;
-      ::size                                 m_size;
+      ::point_i32                                m_pointScreen;
+      ::point_i32                                m_pointHost;
+      ::point_i32                                m_point;
+      ::size_i32                                 m_size;
       ::e_display                            m_edisplay3;
       ::e_appearance                         m_eappearance;
       bool                                   m_bReady;
       bool                                   m_bModified;
-      //::user::interaction_layout *           m_playout; // had mutex dependency, not anymore for now so commented out
+      //::user::interaction_layout *           m_playout; // had ::mutex dependency, not anymore for now so commented out
 
       //friend class interaction;
       //friend class interaction_layout;
@@ -106,24 +106,26 @@ namespace user
       visual_state& operator ^= (const enum_appearance& eappearance);
 
 
-      ::point origin() const { return m_point; }
-      visual_state& operator = (const ::point & point)
+      ::point_i32 origin() const { return m_point; }
+      visual_state& operator = (const ::point_i32 & point)
       { 
+
          set_modified(); 
          
          m_point = point; 
          
          return *this; 
+
       }
 
 
-      ::point screen_origin() const { return m_pointScreen; }
-      ::point& screen_origin() { return m_pointScreen; }
+      ::point_i32 screen_origin() const { return m_pointScreen; }
+      ::point_i32& screen_origin() { return m_pointScreen; }
 
-      ::point host_origin() const { return m_pointHost; }
-      ::point& host_origin() { return m_pointHost; }
+      ::point_i32 host_origin() const { return m_pointHost; }
+      ::point_i32& host_origin() { return m_pointHost; }
 
-      ::size size() const { return m_size; }
+      ::size_i32 size() const { return m_size; }
 
       template < primitive_size SIZE >
       visual_state& operator = (const SIZE & size) { set_modified(); m_size = size; return *this; }
@@ -141,18 +143,18 @@ namespace user
       bool operator != (const visual_state & visualstate) const { return !operator == (visualstate); }
 
 
-      inline auto screen_rect() const { return ::rect(m_pointScreen, m_size); }
-      void screen_rect(LPRECT32 lprect) const { *lprect = screen_rect(); }
+      inline auto screen_rect() const { return ::rectangle_i32(m_pointScreen, m_size); }
+      void screen_rect(RECTANGLE_I32 * lprect) const { *lprect = screen_rect(); }
 
-      inline auto host_rect() const { return ::rect(m_pointHost, m_size); }
-      void host_rect(LPRECT32 lprect) const { *lprect = host_rect(); }
+      inline auto host_rect() const { return ::rectangle_i32(m_pointHost, m_size); }
+      void host_rect(RECTANGLE_I32 * lprect) const { *lprect = host_rect(); }
 
-      auto client_rect() const { return ::rect(m_size); }
-      void client_rect(LPRECT32 lprect) const { *lprect = client_rect(); }
+      auto client_rect() const { return ::rectangle_i32(m_size); }
+      void client_rect(RECTANGLE_I32 * lprect) const { *lprect = client_rect(); }
 
 
-      auto parent_client_rect() const { return ::rect(m_point, m_size); }
-      void parent_client_rect(LPRECT32 lprect) const { *lprect = parent_client_rect(); }
+      auto parent_client_rect() const { return ::rectangle_i32(m_point, m_size); }
+      void parent_client_rect(RECTANGLE_I32 * lprect) const { *lprect = parent_client_rect(); }
 
 
    };
@@ -252,15 +254,15 @@ namespace user
       edisplay                   m_edisplayPrevious = e_display_none;
       edisplay                   m_edisplay = e_display_none;
       eappearance                m_eappearance = e_appearance_none;
-      rect                       m_rectSnapped = nullptr;
-      rect                       m_rectRestored = nullptr;
-      rect                       m_rectWindow = nullptr;
+      rectangle_i32                       m_rectSnapped = nullptr;
+      rectangle_i32                       m_rectRestored = nullptr;
+      rectangle_i32                       m_rectWindow = nullptr;
       int                        m_iControlBoxRightToLeft = 0;
       index                      m_iWkspace = 0;
 
       using memory_template < window_rect >::operator=;
-      bool operator == (const window_rect & rect) const {return !memcmp(this, &rect, sizeof(window_rect)); }
-      bool operator != (const window_rect & rect) const {return !operator==(rect); }
+      bool operator == (const window_rect & rectangle) const {return !memcmp(this, &rectangle, sizeof(window_rect)); }
+      bool operator != (const window_rect & rectangle) const {return !operator==(rectangle); }
 
    };
 

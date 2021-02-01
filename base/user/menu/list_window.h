@@ -33,7 +33,7 @@ namespace user
 
       virtual void calc_size(menu_item * pitemParent, ::draw2d::graphics_pointer & pgraphics, i32 & iMaxWidth, i32 & iMaxHeight);
 
-      virtual void layout_buttons(menu_item * pitemParent, i32 iMaxWidth, RECT32 * prect, const ::rect & lpcrectBound);
+      virtual void layout_buttons(menu_item * pitemParent, i32 iMaxWidth, RECTANGLE_I32 * prectangle, const ::rectangle_i32 & lpcrectBound);
 
 
 

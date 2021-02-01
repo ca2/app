@@ -52,7 +52,7 @@ namespace geometry
       return x * sin(phi) + y * cos(phi);
    }
 
-   void geometry::rotate(i32 xParam, i32 yParam, POINT32 * ppoint, i32 iCount, double phi)
+   void geometry::rotate(i32 xParam, i32 yParam, POINT_I32 * ppoint, i32 iCount, double phi)
 
    {
       double phicos = cos(phi);
@@ -64,7 +64,7 @@ namespace geometry
    void geometry::rotate(
       i32 xParam,
       i32 yParam,
-      POINT32 * ppoint,
+      POINT_I32 * ppoint,
 
       i32 iCount,
       double phicos,
@@ -83,7 +83,7 @@ namespace geometry
       }
    }
 
-   void geometry::rotate(i32 xParam, i32 yParam, POINTD * ppoint, i32 iCount, double phi)
+   void geometry::rotate(i32 xParam, i32 yParam, POINT_F64 * ppoint, i32 iCount, double phi)
 
    {
       double phicos = cos(phi);
@@ -95,7 +95,7 @@ namespace geometry
    void geometry::rotate(
       i32 xParam,
       i32 yParam,
-      POINTD * ppoint,
+      POINT_F64 * ppoint,
 
       i32 iCount,
       double phicos,
@@ -115,12 +115,12 @@ namespace geometry
    }
 
 
-   //void geometry::RandomPoint(POINT32 * ppoint, const ::rect & rect)
+   //void geometry::RandomPoint(POINT_I32 * ppoint, const ::rectangle_i32 & rectangle)
    //{
 
-   //   ppoint->x = (::i32)Sy(rect.left,rect.right);
+   //   ppoint->x = (::i32)Sy(rectangle.left,rectangle.right);
 
-   //   ppoint->y = (::i32)__random(rect.top,rect.bottom);
+   //   ppoint->y = (::i32)__random(rectangle.top,rectangle.bottom);
 
    //}
 
@@ -130,7 +130,7 @@ namespace geometry
    // Function Name: deflate
    //
    // Purpose:
-   // Change rectangle dimension using its dimensions and the specified
+   // Change rectangle_i32 dimension using its dimensions and the specified
    // rates. For example, the dLeftRate machine the left position of the
    // rectangle. If 0.0, it remains the same as the original left.
    // If 1.0, it turns as the original right. If 0.4, it will be 40%
@@ -144,24 +144,24 @@ namespace geometry
    // Vanessa Testoni
    //
    //////////////////////////////////////////////////////////////////////
-   void geometry::deflate(RECT32 * prect, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
+   void geometry::deflate(RECTANGLE_I32 * prectangle, double dLeftRate, double dRightRate, double dTopRate, double dBottomRate)
 
    {
-      ::rect rect(prect);
+      ::rectangle_i32 rectangle(prectangle);
 
-      prect->left = range_rate(rect.left, rect.right, dLeftRate);
+      prectangle->left = range_rate(rectangle.left, rectangle.right, dLeftRate);
 
-      prect->right = range_rate(rect.right, rect.left, dRightRate);
+      prectangle->right = range_rate(rectangle.right, rectangle.left, dRightRate);
 
-      prect->top = range_rate(rect.top, rect.bottom, dTopRate);
+      prectangle->top = range_rate(rectangle.top, rectangle.bottom, dTopRate);
 
-      prect->bottom = range_rate(rect.bottom, rect.top, dBottomRate);
+      prectangle->bottom = range_rate(rectangle.bottom, rectangle.top, dBottomRate);
 
 
    }
 
 
-   void rotation::rotate(POINT32 * ppoint, i32 iCount)
+   void rotation::rotate(POINT_I32 * ppoint, i32 iCount)
 
    {
       for (i32 i = 0; i < iCount; i++)

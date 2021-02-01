@@ -393,7 +393,7 @@
 //
 //   rValue = ppair->element2();
 //
-//   return TRUE;
+//   return true;
 //
 //}
 //
@@ -464,7 +464,7 @@
 //
 //template < class KEY, class ARG_KEY, class VALUE, class ARG_VALUE, class COMPARE >
 //bool fifo_map < KEY, ARG_KEY, VALUE, ARG_VALUE, COMPARE >::remove_key(ARG_KEY key)
-//// remove key - return TRUE if removed
+//// remove key - return true if removed
 //{
 //
 //   ASSERT_VALID(this);
@@ -990,7 +990,7 @@
 //      if(point == nullptr)
 //         return nullptr;
 //      else
-//         return (T*) *point;
+//         return (T*) *point_i32;
 //   }
 //
 //   // Operations

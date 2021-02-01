@@ -873,7 +873,7 @@ namespace str
 //      // It is possible that pszSrc points to a locationd inside of our
 //      // buffer.  GetBuffer() might machine m_psz if (1) the buffer
 //      // is shared or (2) the buffer is too small to hold the new
-//      // string.  We detect this aliasing, and modify pszSrc to point
+//      // string.  We detect this aliasing, and modify pszSrc to point_i32
 //      // into the newly allocated buffer instead.
 //      if(pszSrc == nullptr)
 //      {

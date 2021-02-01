@@ -290,17 +290,6 @@ namespace str
 
    inline wd32string & assign(wd32string & widestrDst, const wd32char* pansisz);
 
-#ifdef WINDOWS
-
-   inline ansistring & assign(ansistring & ansistrDst, const cotaskptr < PWSTR > & pwidesz);
-
-   inline widestring & assign(widestring & widestrDst, const cotaskptr < PSTR > & pansisz);
-
-   inline ansistring & assign(ansistring & ansistrDst, const cotaskptr < PWSTR > & pwidesz);
-
-   inline widestring & assign(widestring & widestrDst, const cotaskptr < PSTR > & pansisz);
-
-#endif
 
    inline ansistring & assign(ansistring & ansistrDst, const ::type & type);
 

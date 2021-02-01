@@ -27,7 +27,7 @@ namespace user
       virtual LRESULT _OnSetFocus(VOID);
       virtual LRESULT _OnKillFocus(VOID);
 
-      virtual void get_text_composition_area(::rect & r);
+      virtual void get_text_composition_area(::rectangle_i32 & r);
       virtual void on_text_composition_done(string str);
 
       virtual bool edit_undo();

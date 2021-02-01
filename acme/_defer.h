@@ -175,5 +175,3 @@ namespace papaya
 
 #include "acme/primitive/geometry2d/_defer.h"
 
-
-

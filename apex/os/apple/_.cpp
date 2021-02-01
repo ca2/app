@@ -213,7 +213,7 @@ string ca2_command_line()
 }
 
 
-void window_copy(CGRect * prectTarget, const ::rect * prectSource)
+void window_copy(CGRect * prectTarget, const ::rectangle_i32 * prectSource)
 {
 
    CGRect rectWorkspace = mm_get_workspace_rect();
@@ -226,7 +226,7 @@ void window_copy(CGRect * prectTarget, const ::rect * prectSource)
 }
 
 
-void window_copy(RECT32 * prectTarget, const CGRect * prectSource)
+void window_copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource)
 {
 
    CGRect rectWorkspace = mm_get_workspace_rect();
@@ -238,7 +238,7 @@ void window_copy(RECT32 * prectTarget, const CGRect * prectSource)
 
 }
 
-void copy(CGPoint * ppointTarget, const POINT32 * ppointSource)
+void copy(CGPoint * ppointTarget, const POINT_I32 * ppointSource)
 {
 
    ppointTarget->x      = ppointSource->x;
@@ -247,7 +247,7 @@ void copy(CGPoint * ppointTarget, const POINT32 * ppointSource)
 }
 
 
-void copy(POINT32 * ppointTarget, const CGPoint * ppointSource)
+void copy(POINT_I32 * ppointTarget, const CGPoint * ppointSource)
 {
 
    ppointTarget->x      = ppointSource->x;
@@ -255,7 +255,7 @@ void copy(POINT32 * ppointTarget, const CGPoint * ppointSource)
 
 }
 
-void copy(CGPoint * ppointTarget, const POINTD * ppointSource)
+void copy(CGPoint * ppointTarget, const POINT_F64 * ppointSource)
 {
 
    ppointTarget->x      = ppointSource->x;
@@ -264,7 +264,7 @@ void copy(CGPoint * ppointTarget, const POINTD * ppointSource)
 }
 
 
-void copy(POINTD * ppointTarget, const CGPoint * ppointSource)
+void copy(POINT_F64 * ppointTarget, const CGPoint * ppointSource)
 {
 
    ppointTarget->x      = ppointSource->x;
@@ -272,7 +272,7 @@ void copy(POINTD * ppointTarget, const CGPoint * ppointSource)
 
 }
 
-void copy(CGRect * prectTarget, const RECT32 * prectSource)
+void copy(CGRect * prectTarget, const RECTANGLE_I32 * prectSource)
 {
 
    prectTarget->origin.x      = prectSource->left;
@@ -283,7 +283,7 @@ void copy(CGRect * prectTarget, const RECT32 * prectSource)
 }
 
 
-void copy(RECT32 * prectTarget, const CGRect * prectSource)
+void copy(RECTANGLE_I32 * prectTarget, const CGRect * prectSource)
 {
    
    prectTarget->left          = prectSource->origin.x;
@@ -294,7 +294,7 @@ void copy(RECT32 * prectTarget, const CGRect * prectSource)
 }
 
 
-void copy(CGRect * prectTarget, const RECTD * prectSource)
+void copy(CGRect * prectTarget, const RECTANGLE_F64 * prectSource)
 {
    
    prectTarget->origin.x      = prectSource->left;
@@ -305,7 +305,7 @@ void copy(CGRect * prectTarget, const RECTD * prectSource)
 }
 
 
-void copy(RECTD * prectTarget, const CGRect * prectSource)
+void copy(RECTANGLE_F64 * prectTarget, const CGRect * prectSource)
 {
    
    prectTarget->left          = prectSource->origin.x;

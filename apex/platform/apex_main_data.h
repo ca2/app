@@ -16,7 +16,7 @@ public:
    int                              m_iExitCode;
    string                           m_strCommandLine;
    string                           m_strStandalone;
-   LPFN_MAIN_RUNNER                 m_mainrunnera[64];
+   //LPFN_MAIN_RUNNER                 m_mainrunnera[64];
    ::e_display                      m_edisplay;
    ::e_activation                   m_eactivation;
    string                           m_strAppId;
@@ -24,8 +24,8 @@ public:
 
 #ifdef WINDOWS
 
-   HINSTANCE                        m_hinstance;
-   HINSTANCE                        m_hPrevInstance;
+   hinstance                        m_hinstance;
+   hinstance                        m_hPrevInstance;
 
 #endif
 
@@ -45,7 +45,7 @@ public:
 
 #ifdef WINDOWS_DESKTOP
 
-   void system_construct(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, i32 nCmdShow);
+   void system_construct(hinstance hinstanceThis, hinstance hPrevInstance, char * pCmdLine, i32 nCmdShow);
 
 #elif defined(_UWP)
 

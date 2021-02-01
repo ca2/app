@@ -21,7 +21,7 @@ namespace user
             m_item                           = pformmesh->m_itemControl;
             pformmesh->m_itemControl         = item;
          }
-         inline control_keep(form_mesh * pformmesh,const ::point & point)
+         inline control_keep(form_mesh * pformmesh,const ::point_i32 & point)
          {
             m_pformmesh                      = pformmesh;
             m_item                           = pformmesh->m_itemControl;
@@ -55,22 +55,22 @@ namespace user
       void _000OnMouse(::message::mouse * pmouse) override;
 
 
-      virtual bool _001HitTest_(const ::point & point, index&iItem, index&iSubItem) override;
+      virtual bool _001HitTest_(const ::point_i32 & point, index&iItem, index&iSubItem) override;
 
-      void control_get_client_rect(::user::interaction * pinteraction,RECT32 * prect) override;
+      void control_get_client_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle) override;
 
-      void control_get_window_rect(::user::interaction * pinteraction,RECT32 * prect) override;
+      void control_get_window_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle) override;
 
-      bool control_001DisplayHitTest(const ::point & point);
+      bool control_001DisplayHitTest(const ::point_i32 & point);
 
       bool _001IsEditing() override;
 
-      virtual bool _001IsPointInside(::user::interaction * pinteraction,point64 ptt) override;
+      virtual bool _001IsPointInside(::user::interaction * pinteraction,point_i64 ptt) override;
 
       void _001HideEditingControls();
       void _001HideControl(::user::interaction * pinteraction);
       //virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
-      //virtual LRESULT _001BaseWndGetProperty(EProperty eprop,LPARAM lparam) override;
+      //virtual LRESULT _001BaseWndGetProperty(EProperty eprop,lparam lparam) override;
 
       ;; void _001UpdateColumns();
       ::user::interaction * _001GetEditControl();

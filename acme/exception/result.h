@@ -313,7 +313,7 @@ CLASS_DECL_ACME __pointer(::exception::exception) __trace_context_move_throw_exc
 
 
 
-#define __throw(...) throw(new __VA_ARGS__)
+#define __throw(...) throw(__VA_ARGS__)
 #define __rethrow(pe) throw pe;
 #define __throw_exit(estatus) __throw(exit_exception(estatus))
 
@@ -333,8 +333,8 @@ public:
    }
 
 
-   result_pointer(T * point) :
-      ___pointer<T>(point)
+   result_pointer(T * p) :
+      ___pointer<T>(p)
    {
 
       if (this->is_null())
@@ -361,9 +361,9 @@ public:
    }
 
    template < typename TYPE >
-   result_pointer(result_pointer && point) :
-      ___pointer<T>(::move(point)),
-      ::status::result(::move(point))
+   result_pointer(result_pointer && p) :
+      ___pointer<T>(::move(p)),
+      ::status::result(::move(p))
    {
 
 

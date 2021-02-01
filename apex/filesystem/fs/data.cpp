@@ -173,7 +173,7 @@ namespace fs
    //   string_array straSeparator;
    //   straSeparator.add("/");
    //   straSeparator.add("\\");
-   //   straParam.add_smallest_tokens(pcsz, straSeparator, TRUE);
+   //   straParam.add_smallest_tokens(pcsz, straSeparator, true);
 
    //   for(i32 i = 0; i < straParam.get_size(); )
    //   {

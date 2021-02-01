@@ -233,7 +233,7 @@ namespace user
    }
 
 
-   bool menu_view::get_item_rect(index i, RECT32 * prect)
+   bool menu_view::get_item_rect(index i, RECTANGLE_I32 * prectangle)
    {
 
       int iHeight = (int) ( m_fontTitle->m_dFontSize * 1.25 + 20);
@@ -246,7 +246,7 @@ namespace user
 
       y += 10;
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -271,13 +271,13 @@ namespace user
          iSep++;
       }
 
-      prect->top = (::i32)( y + (i + iSep) * iHeight);
+      prectangle->top = (::i32)( y + (i + iSep) * iHeight);
 
-      prect->bottom = prect->top + iHeight;
+      prectangle->bottom = prectangle->top + iHeight;
 
-      prect->left = x;
+      prectangle->left = x;
 
-      prect->right = x + w;
+      prectangle->right = x + w;
 
 
       return true;
@@ -290,7 +290,7 @@ namespace user
 
       index iPos = 0;
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
       xml::node * pnodeMain = m_pxmldoc->get_child_at("menubar", 0, 1);
 
@@ -308,9 +308,9 @@ namespace user
 
          ::index iCommand = -1;
 
-         get_item_rect(iPos, rect);
+         get_item_rect(iPos, rectangle);
 
-         if (rect.contains(item.m_pointHitTest))
+         if (rectangle.contains(item.m_pointHitTest))
          {
 
             item = { ::user::e_element_item, iPos, iMenu, -1 };
@@ -324,9 +324,9 @@ namespace user
          for (iCommand = 0; iCommand < pnode->get_children_count(); iCommand++)
          {
 
-            get_item_rect(iPos, rect);
+            get_item_rect(iPos, rectangle);
 
-            if (rect.contains(item.m_pointHitTest))
+            if (rectangle.contains(item.m_pointHitTest))
             {
 
                item = { ::user::e_element_item, iPos, iMenu, iCommand };
@@ -360,7 +360,7 @@ namespace user
 
       pimage1 = m_pimageMem;
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -390,9 +390,9 @@ namespace user
 
       pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      pgraphics->stretch(m_pimageLogo->rect({ 10, 10 }), m_pimageLogo->get_graphics());
+      pgraphics->stretch(m_pimageLogo->rectangle_i32({ 10, 10 }), m_pimageLogo->get_graphics());
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
       rect_array raMenu;
 
@@ -410,7 +410,7 @@ namespace user
       for (int i = 0; i < pnodeMain->get_children_count("menubar"); i++)
       {
 
-         ::rect rMenu;
+         ::rectangle_i32 rMenu;
 
          xml::node * pnode = pnodeMain->get_child_at("menubar", i, 1);
 
@@ -444,9 +444,9 @@ namespace user
 
                strItem = pnodeItem->get_value();
 
-               get_item_rect(iPos, rect);
+               get_item_rect(iPos, rectangle);
 
-               rMenu.unite(rMenu, rect);
+               rMenu.unite(rMenu, rectangle);
 
                pgraphics->set(m_pen);
 
@@ -460,7 +460,7 @@ namespace user
 
                      pgraphics->set(m_brBkHoverSel);
 
-                     draw_item_rectangle_hover_sel001(pgraphics, rect);
+                     draw_item_rectangle_hover_sel001(pgraphics, rectangle);
 
                   }
                   else
@@ -468,7 +468,7 @@ namespace user
 
                      pgraphics->set(m_brBkSel);
 
-                     draw_item_rectangle_hover001(pgraphics, rect);
+                     draw_item_rectangle_hover001(pgraphics, rectangle);
 
                   }
 
@@ -478,13 +478,13 @@ namespace user
 
                   pgraphics->set(m_brBkSel);
 
-                  draw_item_rectangle_sel001(pgraphics, rect);
+                  draw_item_rectangle_sel001(pgraphics, rectangle);
 
                }
                else
                {
 
-                  draw_item_rectangle(pgraphics, rect);
+                  draw_item_rectangle(pgraphics, rectangle);
 
                }
 
@@ -503,7 +503,7 @@ namespace user
 
                }
 
-               pgraphics->text_out(rect.left + 10, rect.top + 5, strItem);
+               pgraphics->text_out(rectangle.left + 10, rectangle.top + 5, strItem);
 
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -514,8 +514,8 @@ namespace user
 
                   pgraphics->set(m_penBkSel);
 
-                  pgraphics->move_to(rect.left + 1, rect.top);
-                  pgraphics->line_to(rect.left + 1, rect.bottom - 1);
+                  pgraphics->move_to(rectangle.left + 1, rectangle.top);
+                  pgraphics->line_to(rectangle.left + 1, rectangle.bottom - 1);
 
                   pimage1 = m_pimageMap[pnodeItem->attribute("id")];
 
@@ -530,10 +530,10 @@ namespace user
                if (pimage1->is_set())
                {
 
-                  ::rect rectDib;
+                  ::rectangle_i32 rectDib;
 
-                  rectDib.left = rect.right - pimage1->width() - 10;
-                  rectDib.top = rect.top + (rect.height() - pimage1->height()) / 2;
+                  rectDib.left = rectangle.right - pimage1->width() - 10;
+                  rectDib.top = rectangle.top + (rectangle.height() - pimage1->height()) / 2;
                   rectDib.set_size(pimage1->width(), pimage1->height());
 
                   pgraphics->stretch(rectDib, pimage1->g());
@@ -557,11 +557,11 @@ namespace user
 
          xml::node * pnode = pnodeMain->get_child_at("menubar", i, 1);
 
-         get_item_rect(iPos, rect);
+         get_item_rect(iPos, rectangle);
 
          pgraphics->set(m_pen);
 
-         draw_header_separator(pgraphics, rect.bottom_left(), rect.bottom_right());
+         draw_header_separator(pgraphics, rectangle.bottom_left(), rectangle.bottom_right());
 
          iPos++;
 
@@ -577,9 +577,9 @@ namespace user
 
                strItem = pnodeItem->get_value();
 
-               get_item_rect(iPos, rect);
+               get_item_rect(iPos, rectangle);
 
-               draw_item_separator(pgraphics, rect.bottom_left(), rect.bottom_right());
+               draw_item_separator(pgraphics, rectangle.bottom_left(), rectangle.bottom_right());
 
                iPos++;
 
@@ -621,7 +621,7 @@ namespace user
    void menu_view::on_layout(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -646,7 +646,7 @@ namespace user
 
       int iPos = 0;
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
       int iMenu;
 
@@ -675,7 +675,7 @@ namespace user
          for (iCommand = 0; iCommand < pnode->get_children_count(); iCommand++)
          {
 
-            get_item_rect(iPos, rect);
+            get_item_rect(iPos, rectangle);
 
             ::image_pointer pimage1 = Application.image().load_image(pnode->child_at(iCommand)->attribute("image"), false);
 
@@ -709,21 +709,21 @@ namespace user
    }
 
 
-   void menu_view::draw_border_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rect & rect)
+   void menu_view::draw_border_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
-      pgraphics->move_to(rect.left, rect.top);
+      pgraphics->move_to(rectangle.left, rectangle.top);
 
-      pgraphics->line_to(rect.right, rect.top);
+      pgraphics->line_to(rectangle.right, rectangle.top);
 
-      pgraphics->move_to(rect.left, rect.bottom);
+      pgraphics->move_to(rectangle.left, rectangle.bottom);
 
-      pgraphics->line_to(rect.right, rect.bottom);
+      pgraphics->line_to(rectangle.right, rectangle.bottom);
 
    }
 
 
-   void menu_view::draw_header_separator(::draw2d::graphics_pointer & pgraphics, const ::point& point1, const ::point& point2)
+   void menu_view::draw_header_separator(::draw2d::graphics_pointer & pgraphics, const ::point_i32& point1, const ::point_i32& point2)
    {
 
       pgraphics->move_to(point1);
@@ -732,18 +732,18 @@ namespace user
    }
 
 
-   void menu_view::draw_header_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rect & rect)
+   void menu_view::draw_header_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
-      pgraphics->fill_rect(rect, ARGB(255, 240, 240, 240));
+      pgraphics->fill_rect(rectangle, ARGB(255, 240, 240, 240));
 
-      pgraphics->move_to(rect.left, rect.top);
+      pgraphics->move_to(rectangle.left, rectangle.top);
 
-      pgraphics->line_to(rect.left, rect.bottom);
+      pgraphics->line_to(rectangle.left, rectangle.bottom);
 
-      pgraphics->move_to(rect.right, rect.top);
+      pgraphics->move_to(rectangle.right, rectangle.top);
 
-      pgraphics->line_to(rect.right, rect.bottom);
+      pgraphics->line_to(rectangle.right, rectangle.bottom);
 
 
 
@@ -751,107 +751,107 @@ namespace user
    }
 
 
-   void menu_view::draw_item_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rect & rect)
+   void menu_view::draw_item_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
-      pgraphics->move_to(rect.left, rect.top);
+      pgraphics->move_to(rectangle.left, rectangle.top);
 
-      pgraphics->line_to(rect.left, rect.bottom);
+      pgraphics->line_to(rectangle.left, rectangle.bottom);
 
-      pgraphics->move_to(rect.right, rect.top);
+      pgraphics->move_to(rectangle.right, rectangle.top);
 
-      pgraphics->line_to(rect.right, rect.bottom);
+      pgraphics->line_to(rectangle.right, rectangle.bottom);
 
 
    }
 
 
-   void menu_view::draw_item_rectangle_hover001(::draw2d::graphics_pointer & pgraphics, const ::rect & rect)
+   void menu_view::draw_item_rectangle_hover001(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
-      pgraphics->fill_rect(rect);
+      pgraphics->fill_rect(rectangle);
 
 
-      pgraphics->move_to(rect.left, rect.top);
+      pgraphics->move_to(rectangle.left, rectangle.top);
 
-      pgraphics->line_to(rect.left, rect.bottom);
+      pgraphics->line_to(rectangle.left, rectangle.bottom);
 
 
 
-      pgraphics->move_to(rect.right, rect.top);
+      pgraphics->move_to(rectangle.right, rectangle.top);
 
-      pgraphics->line_to(rect.right, rect.bottom);
+      pgraphics->line_to(rectangle.right, rectangle.bottom);
 
 
    }
 
 
-   void menu_view::draw_item_rectangle_sel001(::draw2d::graphics_pointer & pgraphics, const ::rect & rect)
+   void menu_view::draw_item_rectangle_sel001(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
-      pgraphics->fill_rect(rect);
+      pgraphics->fill_rect(rectangle);
 
-      pgraphics->move_to(rect.left, rect.top);
+      pgraphics->move_to(rectangle.left, rectangle.top);
 
-      pgraphics->line_to(rect.left, rect.bottom);
+      pgraphics->line_to(rectangle.left, rectangle.bottom);
 
-      pgraphics->move_to(rect.right, rect.bottom - 1);
+      pgraphics->move_to(rectangle.right, rectangle.bottom - 1);
 
-      int h = ::height(rect);
+      int h = ::height(rectangle);
 
-      pointd_array pta;
-      pta.add(rect.right, rect.bottom - h / 3 - 2);
+      point_f64_array pta;
+      pta.add(rectangle.right, rectangle.bottom - h / 3 - 2);
 
-      pta.add(rect.right + h * 3 / 16, rect.bottom - h / 2 - 2);
+      pta.add(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
 
-      pta.add(rect.right, rect.bottom - h * 2 / 3 - 2);
+      pta.add(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
 
       pgraphics->fill_polygon(pta);
-      pgraphics->line_to(rect.right, rect.bottom - h / 3 - 2);
+      pgraphics->line_to(rectangle.right, rectangle.bottom - h / 3 - 2);
 
-      pgraphics->line_to(rect.right + h * 3 / 16, rect.bottom - h / 2 - 2);
+      pgraphics->line_to(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
 
-      pgraphics->line_to(rect.right, rect.bottom - h * 2 / 3 - 2);
+      pgraphics->line_to(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
 
-      pgraphics->line_to(rect.right, rect.top);
+      pgraphics->line_to(rectangle.right, rectangle.top);
 
    }
 
-   void menu_view::draw_item_rectangle_hover_sel001(::draw2d::graphics_pointer & pgraphics, const ::rect & rect)
+   void menu_view::draw_item_rectangle_hover_sel001(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
-      pgraphics->fill_rect(rect);
+      pgraphics->fill_rect(rectangle);
 
-      pgraphics->move_to(rect.left, rect.top);
+      pgraphics->move_to(rectangle.left, rectangle.top);
 
-      pgraphics->line_to(rect.left, rect.bottom);
+      pgraphics->line_to(rectangle.left, rectangle.bottom);
 
-      pgraphics->move_to(rect.right, rect.bottom - 1);
+      pgraphics->move_to(rectangle.right, rectangle.bottom - 1);
 
-      int h = ::height(rect);
+      int h = ::height(rectangle);
 
-      pointd_array pta;
-      pta.add(rect.right, rect.bottom - h / 3 - 2);
+      point_f64_array pta;
+      pta.add(rectangle.right, rectangle.bottom - h / 3 - 2);
 
-      pta.add(rect.right + h * 3 / 16, rect.bottom - h / 2 - 2);
+      pta.add(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
 
-      pta.add(rect.right, rect.bottom - h * 2 / 3 - 2);
+      pta.add(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
 
       pgraphics->fill_polygon(pta);
-      pgraphics->line_to(rect.right, rect.bottom - h / 3 - 2);
+      pgraphics->line_to(rectangle.right, rectangle.bottom - h / 3 - 2);
 
-      pgraphics->line_to(rect.right + h * 3 / 16, rect.bottom - h / 2 - 2);
+      pgraphics->line_to(rectangle.right + h * 3 / 16, rectangle.bottom - h / 2 - 2);
 
-      pgraphics->line_to(rect.right, rect.bottom - h * 2 / 3 - 2);
+      pgraphics->line_to(rectangle.right, rectangle.bottom - h * 2 / 3 - 2);
 
 
-      pgraphics->line_to(rect.right, rect.top);
+      pgraphics->line_to(rectangle.right, rectangle.top);
 
 
    }
 
 
-   void menu_view::draw_item_separator(::draw2d::graphics_pointer & pgraphics, const ::point & point1, const ::point & point2)
+   void menu_view::draw_item_separator(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & point1, const ::point_i32 & point2)
    {
 
       pgraphics->move_to(point1);

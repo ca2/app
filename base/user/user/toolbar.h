@@ -18,7 +18,7 @@ namespace user
       e_toolbar_item_state                m_estate;
       e_toolbar_item_style                m_estyle;
       string                              m_str;
-      ::rect                              m_rect;
+      ::rectangle_i32                              m_rectangle;
       bool                                m_bEnableIfHasCommandHandler;
       ::draw2d::font_pointer              m_font;
 
@@ -58,8 +58,8 @@ namespace user
 
       bool                             m_bDelayedButtonLayout; // used to manage when button on_layout should be done
 
-      ::size               m_sizeImage;  // current image size
-      ::size               m_sizeButton; // current button size
+      ::size_i32               m_sizeImage;  // current image size_i32
+      ::size_i32               m_sizeButton; // current button size_i32
       bool                 m_bSimpleLayout;
       string_to_ptr *      m_pStringMap;  // used as CMapStringTo::u32
       //index                m_iButtonPressItem;
@@ -75,10 +75,10 @@ namespace user
       //using ::user::control_bar::create_window_ex;
       //virtual bool create_toolbar(::user::interaction * puiParent, u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP, id nID = __IDW_TOOLBAR);
 
-      void SetSizes(const ::size & sizeButton, const ::size & sizeImage);
-      // button size should be bigger than image
+      void SetSizes(const ::size_i32 & sizeButton, const ::size_i32 & sizeImage);
+      // button size_i32 should be bigger than image
       void SetHeight(index cyHeight);
-      // call after SetSizes, height overrides bitmap size
+      // call after SetSizes, height overrides bitmap size_i32
       //bool LoadToolBar(const char * pszResourceName);
 
       //bool LoadToolBar(::u32 nIDResource);
@@ -97,7 +97,7 @@ namespace user
       // standard control bar things
       index CommandToIndex(::u32 nIDFind);
       ::u32 GetItemID(index nIndex);
-      virtual void GetItemRect(index nIndex, RECT32 * prect);
+      virtual void GetItemRect(index nIndex, RECTANGLE_I32 * prectangle);
 
       e_toolbar_item_style get_item_style(index iIndex);
       void set_item_style(index iIndex, const e_toolbar_item_style & estyle);
@@ -118,9 +118,9 @@ namespace user
       // for direct access to the underlying common control
       inline toolbar_control& GetToolBarCtrl() const;
 
-      virtual ::size CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics);
-      virtual ::size CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz);
-      virtual ::size CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, index nLength, u32 nMode);
+      virtual ::size_i32 CalcSimpleLayout(::draw2d::graphics_pointer& pgraphics);
+      virtual ::size_i32 CalcFixedLayout(::draw2d::graphics_pointer& pgraphics, bool bStretch, bool bHorz);
+      virtual ::size_i32 CalcDynamicLayout(::draw2d::graphics_pointer& pgraphics, index nLength, u32 nMode);
       //virtual void OnUpdateCmdUI(__pointer(::user::frame_window) pTarget, bool bDisableIfNoHndler);
       __pointer(::user::interaction)  set_owner(__pointer(::user::interaction) pOwnerWnd);
 
@@ -138,16 +138,16 @@ namespace user
 
       virtual bool LoadXmlToolBar(const char * pszFileName);
 
-      virtual bool _001GetItemRect(index iItem,RECT32 * prect);
+      virtual bool _001GetItemRect(index iItem,RECTANGLE_I32 * prectangle);
 
-      virtual bool _001GetElementRect(index iItem,RECT32 * prect,enum_element eelement, ::user::enum_state estate);
+      virtual bool _001GetElementRect(index iItem,RECTANGLE_I32 * prectangle,enum_element eelement, ::user::enum_state estate);
 
       virtual bool _001SetItem(index iItem, toolbar_item * pitem);
       virtual toolbar_item * _001GetItem(index iItem);
       virtual index _001GetItemCount();
 
 
-      virtual ::size SimpleLayout(::draw2d::graphics_pointer& pgraphics);
+      virtual ::size_i32 SimpleLayout(::draw2d::graphics_pointer& pgraphics);
 
 
       // implementation helpers
@@ -155,9 +155,9 @@ namespace user
 //      virtual void _GetButton(::index nIndex, TBBUTTON* pButton) const;
 //      virtual void _SetButton(::index nIndex, TBBUTTON* pButton);
 //#endif
-      virtual ::size CalcLayout(::draw2d::graphics_pointer& pgraphics, u32 nMode, index nLength = -1);
+      virtual ::size_i32 CalcLayout(::draw2d::graphics_pointer& pgraphics, u32 nMode, index nLength = -1);
 //#ifdef WINDOWS_DESKTOP
-//      virtual ::size CalcSize(TBBUTTON* pData, index nCount);
+//      virtual ::size_i32 CalcSize(TBBUTTON* pData, index nCount);
 //      virtual index WrapToolBar(TBBUTTON* pData, index nCount, index nWidth);
 //      virtual void SizeToolBar(TBBUTTON* pData, index nCount, index nLength, bool bVert = FALSE);
 //#endif
@@ -173,7 +173,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnSetBitmapSize);
       DECL_GEN_SIGNAL(_001OnPreserveZeroBorderHelper);
 
-      //LRESULT OnSetSizeHelper(::size& size, LPARAM lParam);
+      //LRESULT OnSetSizeHelper(::size_i32& size, LPARAM lParam);
 
       virtual void install_message_routing(::channel * pchannel);
 
@@ -204,7 +204,7 @@ namespace user
 //#define e_toolbar_item_style_disabled   MAKELONG(0, TBSTATE_ENABLED)    // button is disabled
 //#define TBBS_INDETERMINATE  MAKELONG(0, TBSTATE_INDETERMINATE)  // third state
 //#define TBBS_HIDDEN     MAKELONG(0, e_toolbar_button_hidden) // button is hidden
-//#define TBBS_WRAPPED    MAKELONG(0, TBSTATE_WRAP)   // button is wrapped at this point
+//#define TBBS_WRAPPED    MAKELONG(0, TBSTATE_WRAP)   // button is wrapped at this point_i32
 //#define TBBS_ELLIPSES   MAKELONG(0, TBSTATE_ELIPSES)
 //#define TBBS_MARKED      MAKELONG(0, TBSTATE_MARKED)
 //

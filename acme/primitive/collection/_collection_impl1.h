@@ -47,7 +47,7 @@ namespace gen
 
           if(1 != (uiDim = SafeArrayGetDim(pvar->parray)))
           {
-              ASSERT(FALSE);
+              ASSERT(false);
               return false;
           }
 

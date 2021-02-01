@@ -41,7 +41,7 @@ namespace aura
    }
 
 
-   void drawable::hit_test(::user::item& item, const ::point& point)
+   void drawable::hit_test(::user::item& item, const ::point_i32& point)
    {
 
       UNREFERENCED_PARAMETER(item);
@@ -94,24 +94,24 @@ namespace aura
 
 
 
-   //bool drawable::_get_client_rect(RECT64 * prect)
+   //bool drawable::_get_client_rect(RECTANGLE_I64 * prectangle)
    //{
 
-   //   __copy(prect, get_window_rect64());
+   //   __copy(prectangle, get_window_rect64());
 
-   //   _001ScreenToClient(prect);
+   //   _001ScreenToClient(prectangle);
 
    //   return true;
 
    //}
 
 
-   //bool drawable::_get_window_rect(RECT64 * prect)
+   //bool drawable::_get_window_rect(RECTANGLE_I64 * prectangle)
    //{
 
-   //   __copy(prect, get_client_rect64());
+   //   __copy(prectangle, get_client_rect64());
 
-   //   _001ClientToScreen(prect);
+   //   _001ClientToScreen(prectangle);
 
    //   return true;
 
@@ -147,7 +147,7 @@ namespace aura
    }
 
 
-   ::user::item drawable::hit_test(const ::point& point)
+   ::user::item drawable::hit_test(const ::point_i32& point)
    {
 
       ::user::item item; hit_test(item, point); return item;

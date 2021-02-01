@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 
 
 #if defined(LINUX) || defined(__APPLE__)
@@ -14,7 +15,7 @@
 #endif
 
 
-semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName, LPSECURITY_ATTRIBUTES psaAttributes)
+semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName ARG_SEC_ATTRS)
 {
 
    ASSERT(lMaxCount > 0);
@@ -22,10 +23,14 @@ semaphore::semaphore(::i32 lInitialCount, ::i32 lMaxCount, const char * pstrName
 
 #ifdef WINDOWS
 
-   m_hsync = ::CreateSemaphoreExW(psaAttributes, lInitialCount, lMaxCount, pstrName == nullptr ? nullptr : (const wchar_t *)  ::str::international::utf8_to_unicode(pstrName), 0, SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
+   m_hsync = ::CreateSemaphoreExW(PARAM_SEC_ATTRS, lInitialCount, lMaxCount, pstrName == nullptr ? nullptr : (const wchar_t *)  ::str::international::utf8_to_unicode(pstrName), 0, SEMAPHORE_MODIFY_STATE | DELETE | SYNCHRONIZE);
 
    if (m_hsync == nullptr)
+   {
+
       __throw(resource_exception());
+
+   }
 
 #elif defined(ANDROID)
 

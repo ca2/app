@@ -818,7 +818,7 @@ namespace user
 
    //      {
    //         ::image_pointer d = m_pilHover[iSize]->m_pimage;
-   //         size s = m_pil[iSize]->m_pimage->get_size();
+   //         size_i32 s = m_pil[iSize]->m_pimage->get_size();
    //         ::image_pointer pimage(this);
    //         pimage->create(d->size());
    //         pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
@@ -826,7 +826,7 @@ namespace user
    //         pimage->get_graphics()->draw(nullptr, d->size(), d->get_graphics());
    //         pimage->get_graphics()->fill_solid_rect_dim(0, 0, d->size().cx, d->size().cy, ARGB(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
    //         m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
-   //         m_pil[iSize]->m_pimage->g()->draw(d->rect(), pimage->get_graphics());
+   //         m_pil[iSize]->m_pimage->g()->draw(d->rectangle_i32(), pimage->get_graphics());
    //         m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
    //      }
@@ -872,7 +872,7 @@ namespace user
             m_pilHover[iSize]->draw(pgraphics, iImage, nullptr, 0);
             m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-            auto rectDraw = ::rectd(::pointd(iImage * 48,0),::sized( 48, 48));
+            auto rectDraw = ::rectangle_f64(::point_f64(iImage * 48,0),::size_f64( 48, 48));
             m_pilHover[iSize]->m_pimage->g()->draw(rectDraw, pimage->get_graphics());
 
             m_pilHover[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -881,7 +881,7 @@ namespace user
 
          {
             ::image_pointer d = m_pilHover[iSize]->m_pimage;
-            //size s = m_pil[iSize]->m_pimage->get_size();
+            //size_i32 s = m_pil[iSize]->m_pimage->get_size();
             ::image_pointer pimage(this);
             pimage->create(d->size());
             pimage->fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
@@ -889,7 +889,7 @@ namespace user
             pimage->get_graphics()->stretch(d->size(), d);
             pimage->get_graphics()->fill_rect(d->size(), ARGB(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
             m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
-            m_pil[iSize]->m_pimage->g()->draw(d->rect(), pimage->get_graphics());
+            m_pil[iSize]->m_pimage->g()->draw(d->rectangle_i32(), pimage->get_graphics());
             m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
          }

@@ -20,11 +20,11 @@ public:
    };
 
 
-   i32                        m_nAllocSize;  // size of each block from Alloc
+   i32                        m_nAllocSize;  // size_i32 of each block from Alloc
    i32                        m_nBlockSize;  // number of blocks to get at a time
    plex_heap *                m_pBlocks;     // linked list of blocks (is nBlocks*nAllocSize)
    node*                      m_pnodeFree;   // first free node (nullptr if no free nodes)
-   critical_section           m_protect;
+   critical_section           m_criticalsection;
    i64                        m_iFreeHitCount;
    node *                     m_pnodeLastBlock;
 

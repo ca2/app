@@ -34,7 +34,7 @@ namespace simple_ui
       }
       else if (langid == MAKELANGID(LANG_PORTUGUESE, SUBLANG_PORTUGUESE_BRAZILIAN))
       {
-         strLocale = "point-br";
+         strLocale = "point_i32-br";
       }
       else if (PRIMARYLANGID(langid) == SPR_DEUTSCH)
       {

@@ -94,10 +94,10 @@ ls_jpeg_output_message (j_common_ptr cinfo) {
 Build a crop string.
 
 @param crop Output crop string
-@param left Specifies the left position of the cropped rectangle
-@param top Specifies the top position of the cropped rectangle
-@param right Specifies the right position of the cropped rectangle
-@param bottom Specifies the bottom position of the cropped rectangle
+@param left Specifies the left position of the cropped rectangle_i32
+@param top Specifies the top position of the cropped rectangle_i32
+@param right Specifies the right position of the cropped rectangle_i32
+@param bottom Specifies the bottom position of the cropped rectangle_i32
 @param width Image width
 @param height Image height
 @return Returns TRUE if successful, returns FALSE otherwise
@@ -123,13 +123,13 @@ getCropString(char* crop, int* left, int* top, int* right, int* bottom, int widt
 	*right = CLAMP(*right, 0, width);
 	*bottom = CLAMP(*bottom, 0, height);
 
-	// test for empty rect
+	// test for empty rectangle_i32
 
 	if(((*left - *right) == 0) || ((*top - *bottom) == 0)) {
 		return FALSE;
 	}
 
-	// normalize the rectangle
+	// normalize the rectangle_i32
 
 	if(*right < *left) {
 		INPLACESWAP(*left, *right);
@@ -138,7 +138,7 @@ getCropString(char* crop, int* left, int* top, int* right, int* bottom, int widt
 		INPLACESWAP(*top, *bottom);
 	}
 
-	// test for "noop" rect
+	// test for "noop" rectangle_i32
 
 	if(*left == 0 && *right == width && *top == 0 && *bottom == height) {
 		return FALSE;
@@ -308,7 +308,7 @@ JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* 
 			*bottom = (top ? *top : 0) + transfoptions.output_height;
 		}
 
-		// if only the crop rect is requested, we are done
+		// if only the crop rectangle_i32 is requested, we are done
 
 		if(onlyReturnCropRect) {
 			jpeg_destroy_compress(&dstinfo);

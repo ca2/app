@@ -15,7 +15,7 @@ public:
 
 
    size_type() noexcept { this->cx = 0; this->cy = 0; }
-   size_type(enum_no_init) noexcept {}
+   size_type(enum_no_initialize) noexcept {}
    size_type(::std::nullptr_t) noexcept { this->cx = 0; this->cy = 0; }
    size_type(UNIT_TYPE cx, UNIT_TYPE cy) noexcept { this->cx = cx; this->cy = cy; }
    size_type(::i32 i) noexcept { this->cx = (UNIT_TYPE) i; this->cy = (UNIT_TYPE) i; }
@@ -28,23 +28,23 @@ public:
    template < primitive_point POINT >
    size_type(const POINT & point) noexcept { this->cx = (UNIT_TYPE)point.x; this->cy = (UNIT_TYPE)point.y; }
    template < primitive_rectangle RECTANGLE >
-   size_type(const RECTANGLE & rect) noexcept { this->cx = (UNIT_TYPE)::width(rect); this->cy = (UNIT_TYPE)::height(rect); }
-   size_type(const SIZE32& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
-   size_type(const SIZE64& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
-   size_type(const SIZEF& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
-   size_type(const SIZED& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
-   size_type(const SIZE32* psize) noexcept : size_type(*psize) {}
-   size_type(const SIZE64* psize) noexcept : size_type(*psize) {}
-   size_type(const SIZEF* psize) noexcept : size_type(*psize) {}
-   size_type(const SIZED* psize) noexcept : size_type(*psize) {}
+   size_type(const RECTANGLE & rectangle) noexcept { this->cx = (UNIT_TYPE)::width(rectangle); this->cy = (UNIT_TYPE)::height(rectangle); }
+   size_type(const SIZE_I32& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
+   size_type(const SIZE_I64& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
+   size_type(const SIZE_F32& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
+   size_type(const SIZE_F64& size) noexcept : size_type((UNIT_TYPE)size.cx, (UNIT_TYPE)size.cy) {}
+   size_type(const SIZE_I32* psize) noexcept : size_type(*psize) {}
+   size_type(const SIZE_I64* psize) noexcept : size_type(*psize) {}
+   size_type(const SIZE_F32* psize) noexcept : size_type(*psize) {}
+   size_type(const SIZE_F64* psize) noexcept : size_type(*psize) {}
 #ifdef APPLEOS
    size_type(const CGSize& size) noexcept : size_type((UNIT_TYPE)size.width, (UNIT_TYPE)size.height) {}
    size_type(const CGSize *psize) noexcept : size_type(*psize) {}
 #endif
 
 
-   operator SIZE32* () noexcept { return this; }
-   operator const SIZE32* () const noexcept { return this; }
+   operator SIZE_I32* () noexcept { return this; }
+   operator const SIZE_I32* () const noexcept { return this; }
    operator bool () const noexcept { return is_set(); }
 
 
@@ -54,17 +54,17 @@ public:
    template < primitive_point POINT >
    POINT_TYPE operator-(const POINT & point1) const noexcept { POINT_TYPE point(this->cx, this->cy); ::offset_point(&point, -point1.x, -point1.y); return point;   }
 
-   RECT_TYPE operator+(const RECT_TYPE& rect1) const noexcept { RECT_TYPE rect(rect1); ::offset_rect(&rect, this->cx, this->cy); return rect; }
-   RECT_TYPE operator-(const RECT_TYPE& rect1) const noexcept { RECT_TYPE rect(rect1); ::offset_rect(&rect, -this->cx, -this->cy); return rect; }
+   RECT_TYPE operator+(const RECT_TYPE& rect1) const noexcept { RECT_TYPE rectangle(rect1); ::offset_rect(&rectangle, this->cx, this->cy); return rectangle; }
+   RECT_TYPE operator-(const RECT_TYPE& rect1) const noexcept { RECT_TYPE rectangle(rect1); ::offset_rect(&rectangle, -this->cx, -this->cy); return rectangle; }
 
    UNIT_TYPE area() const noexcept { return ::rect_area(this->cx, this->cy); }
    inline bool is_empty() const noexcept { return this->cx <= 0 || this->cy <= 0; }
    inline bool is_set() const noexcept { return !is_empty(); }
 
 
-   ::u32    u32() const noexcept { return __u32(this->cx, this->cy); }
-   ::u64    u64() const noexcept { return __u64(this->cx, this->cy); }
-   LPARAM    lparam() const noexcept { return MAKELPARAM(this->cx, this->cy); }
+   ::u32          u32() const noexcept { return __u32(this->cx, this->cy); }
+   ::u64          u64() const noexcept { return __u64(this->cx, this->cy); }
+   class lparam   lparam() const noexcept { return MAKELPARAM(this->cx, this->cy); }
 
    inline UNIT_TYPE width() const noexcept { return this->cx; }
    inline UNIT_TYPE height() const noexcept { return this->cy; }
@@ -158,37 +158,37 @@ public:
    inline bool operator == (const size_type & size) const noexcept { return this->cx == size.cx && this->cy == size.cy; }
    inline bool operator != (const size_type & size) const noexcept { return !operator ==(size); }
 
-   inline bool operator == (const RECT_TYPE & rect) const noexcept { return this->cx == rect.width() && this->cy == rect.height(); }
-   inline bool operator != (const RECT_TYPE & rect) const noexcept { return !operator ==(rect); }
+   inline bool operator == (const RECT_TYPE & rectangle) const noexcept { return this->cx == rectangle.width() && this->cy == rectangle.height(); }
+   inline bool operator != (const RECT_TYPE & rectangle) const noexcept { return !operator ==(rectangle); }
 
    inline bool operator > (const size_type & size) const noexcept { return this->cx > size.cx && this->cy > size.cy; }
    inline bool operator >= (const size_type & size) const noexcept { return this->cx >= size.cx && this->cy >= size.cy; }
    inline bool operator < (const size_type & size) const noexcept { return this->cx < size.cx && this->cy < size.cy; }
    inline bool operator <= (const size_type & size) const noexcept { return this->cx <= size.cx && this->cy <= size.cy; }
 
-   inline bool operator > (const RECT_TYPE & rect) const noexcept { return this->operator > (rect.size()); }
-   inline bool operator >= (const RECT_TYPE & rect) const noexcept { return this->operator >= (rect.size()); }
-   inline bool operator < (const RECT_TYPE & rect) const noexcept { return this->operator < (rect.size()); }
-   inline bool operator <= (const RECT_TYPE & rect) const noexcept { return this->operator <= (rect.size()); }
+   inline bool operator > (const RECT_TYPE & rectangle) const noexcept { return this->operator > (rectangle.size()); }
+   inline bool operator >= (const RECT_TYPE & rectangle) const noexcept { return this->operator >= (rectangle.size()); }
+   inline bool operator < (const RECT_TYPE & rectangle) const noexcept { return this->operator < (rectangle.size()); }
+   inline bool operator <= (const RECT_TYPE & rectangle) const noexcept { return this->operator <= (rectangle.size()); }
 
    inline bool any_gt (const size_type & size) const noexcept { return this->cx > size.cx || this->cy > size.cy; }
    inline bool any_ge (const size_type & size) const noexcept { return this->cx >= size.cx || this->cy >= size.cy; }
    inline bool any_lt (const size_type & size) const noexcept { return this->cx < size.cx || this->cy < size.cy; }
    inline bool any_le (const size_type & size) const noexcept { return this->cx <= size.cx || this->cy <= size.cy; }
 
-   inline bool any_gt (const RECT_TYPE & rect) const noexcept { return this->any_gt(rect.size()); }
-   inline bool any_ge (const RECT_TYPE & rect) const noexcept { return this->any_ge(rect.size()); }
-   inline bool any_lt (const RECT_TYPE & rect) const noexcept { return this->any_lt(rect.size()); }
-   inline bool any_le (const RECT_TYPE & rect) const noexcept { return this->any_le(rect.size()); }
+   inline bool any_gt (const RECT_TYPE & rectangle) const noexcept { return this->any_gt(rectangle.size()); }
+   inline bool any_ge (const RECT_TYPE & rectangle) const noexcept { return this->any_ge(rectangle.size()); }
+   inline bool any_lt (const RECT_TYPE & rectangle) const noexcept { return this->any_lt(rectangle.size()); }
+   inline bool any_le (const RECT_TYPE & rectangle) const noexcept { return this->any_le(rectangle.size()); }
 
 };
 
 
 
 
-inline auto abs(const ::size& size) noexcept { return ::size(abs(size.cx), abs(size.cy)); }
-inline auto abs(const ::size64& size) noexcept { return ::size64(abs(size.cx), abs(size.cy)); }
-inline auto abs(const ::sizef& size) noexcept { return ::sizef(abs(size.cx), abs(size.cy)); }
-inline auto abs(const ::sized& size) noexcept { return ::sized(abs(size.cx), abs(size.cy)); }
+inline auto abs(const ::size_i32& size) noexcept { return ::size_i32(abs(size.cx), abs(size.cy)); }
+inline auto abs(const ::size_i64& size) noexcept { return ::size_i64(abs(size.cx), abs(size.cy)); }
+inline auto abs(const ::size_f32& size) noexcept { return ::size_f32(abs(size.cx), abs(size.cy)); }
+inline auto abs(const ::size_f64& size) noexcept { return ::size_f64(abs(size.cx), abs(size.cy)); }
 
 

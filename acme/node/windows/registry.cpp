@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/operating_system.h"
 #include "acme/node/windows/_windows.h"
 #include "acme/const/id.h"
 
@@ -532,7 +533,7 @@ namespace windows
    ::e_status registry::key::_delete_key()
    {
 
-      ASSERT(FALSE);
+      ASSERT(false);
       // please verify if
       // using nullptr for the value parameter
       // deletes the key.

@@ -49,8 +49,8 @@ bool CompareElements(const TYPE * pElement1, const ARG_TYPE pElement2)
 {
 
    ENSURE(pElement1 != nullptr && pElement2 != nullptr);
-   ASSERT(__is_valid_address(pElement1, sizeof(TYPE), FALSE));
-   ASSERT(__is_valid_address(pElement2, sizeof(ARG_TYPE), FALSE));
+   ASSERT(__is_valid_address(pElement1, sizeof(TYPE), false));
+   ASSERT(__is_valid_address(pElement2, sizeof(ARG_TYPE), false));
 
    return *pElement1 == *pElement2;
 
@@ -270,7 +270,7 @@ typedef CLASS_DECL_ACME __pointer_array(index_array) index_2darray;
 
 #include "acme/primitive/geometry2d/point_array.h"
 #include "acme/primitive/geometry2d/size_array.h"
-#include "acme/primitive/geometry2d/rect_array.h"
+#include "acme/primitive/geometry2d/rectangle_array.h"
 
 
 #include "acme/primitive/geometry2d/polygon.h"

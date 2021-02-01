@@ -78,7 +78,7 @@ namespace helloworld
 
       //string                           m_strHelloWorld;
 
-      //::rect                           m_rectClient;
+      //::rectangle_i32                           m_rectClient;
 
 
       //::mutex *                          m_pmutexText;

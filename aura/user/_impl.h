@@ -14,19 +14,19 @@ namespace user
       
       ASSERT_VALID(this);
       
-      __pointer(T) point;
+      __pointer(T) p;
       
       ::user::interaction * puiParent = get_parent();  // start with one parent up
       
       while (puiParent != nullptr)
       {
          
-         point = puiParent;
+         p = puiParent;
          
-         if (point.is_set())
+         if (p.is_set())
          {
             
-            return point;
+            return p;
             
          }
          

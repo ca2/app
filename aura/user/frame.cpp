@@ -408,7 +408,7 @@ namespace user
    }
 
 
-   size frame::get_window_minimum_size()
+   size_i32 frame::get_window_minimum_size()
    {
 
       if (m_sizeMinimum.area() > 0)
@@ -420,7 +420,7 @@ namespace user
       else if (layout().sketch().display() == ::e_display_minimal)
       {
 
-         return ::size(8, 8);
+         return ::size_i32(8, 8);
 
       }
       else

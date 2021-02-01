@@ -22,9 +22,9 @@ struct pixmap
 
    i32                        m_iScan;
    color32_t *                 m_pcolorref1;
-   ::point                    m_point;
+   ::point_i32                    m_point;
    color32_t *                 m_pcolorrefRaw;
-   ::size                     m_sizeRaw;
+   ::size_i32                     m_sizeRaw;
 
 
 #ifdef __cplusplus
@@ -51,7 +51,7 @@ struct pixmap
       }
 
 
-      void init(const ::size & size, color32_t * pcolorref, i32 iScan)
+      void init(const ::size_i32 & size, color32_t * pcolorref, i32 iScan)
       {
 
          m_size = size;
@@ -80,13 +80,13 @@ struct pixmap
 
       inline bool is_ok() const { return ::is_set(this) && area() > 0; }
 
-      inline ::rect rect() const { return ::rect(m_point, m_size); }
+      inline ::rectangle_i32 rectangle() const { return ::rectangle_i32(m_point, m_size); }
 
-      inline ::rect rect(const ::point & point) const { return ::rect(point, m_size); }
+      inline ::rectangle_i32 rectangle(const ::point_i32 & point) const { return ::rectangle_i32(point, m_size); }
 
-      inline ::point top_left() const noexcept { return m_point; }
-      inline ::point origin() const noexcept { return top_left(); }
-      inline concrete < ::size > size() const noexcept { return m_size; }
+      inline ::point_i32 top_left() const noexcept { return m_point; }
+      inline ::point_i32 origin() const noexcept { return top_left(); }
+      inline concrete < ::size_i32 > size() const noexcept { return m_size; }
       inline int width() const noexcept { return m_size.cx; }
       inline int height() const noexcept { return m_size.cy; }
       inline int area() const noexcept { return m_size.area(); }
@@ -94,21 +94,19 @@ struct pixmap
 
 
       inline color32_t get_pixel(int x, int y) const;
-      inline color32_t get_pixel(const ::point & point) const { return get_pixel(point.x, point.y); }
+      inline color32_t get_pixel(const ::point_i32 & point) const { return get_pixel(point.x, point.y); }
 
       inline pixmap & operator =(const pixmap & pixmap);
-      inline pixmap & operator =(const ::rect & rect) { map(rect);  return *this; }
+      inline pixmap & operator =(const ::rectangle_i32 & rectangle) { map(rectangle);  return *this; }
 
-#ifdef WINDOWS_DESKTOP
-      HBITMAP update_windows_dib(const ::size & size);
-#endif
 
-      void map(const ::rect & rect)
+
+      void map(const ::rectangle_i32 & rectangle)
       {
 
-         m_point = rect.origin();
+         m_point = rectangle.origin();
 
-         m_size = rect.size();
+         m_size = rectangle.size();
 
          map();
 
@@ -154,10 +152,10 @@ struct pixmap
    //   }
    //
    //
-   //   ::rect map(::rect rectNew)
+   //   ::rectangle_i32 map(::rectangle_i32 rectNew)
    //   {
    //
-   //      auto rectPrevious = rect();
+   //      auto rectPrevious = rectangle_i32();
    //
    //      operator =(rectNew);
    //
@@ -166,7 +164,7 @@ struct pixmap
    //   }
    //
    //
-   //   void unmap(::rect rectPrevious)
+   //   void unmap(::rectangle_i32 rectPrevious)
    //   {
    //
    //      operator =(rectPrevious);
@@ -180,28 +178,28 @@ struct pixmap
    //   inline operator const bitmap* () const { return m_pbitmapMap; }
    //
    //   inline color32_t get_pixel(int x, int y) { m_pbitmapMap->get_pixel(x, y); }
-   //   inline color32_t get_pixel(const ::point& point) { m_pbitmapMap->get_pixel(point); }
+   //   inline color32_t get_pixel(const ::point_i32& point) { m_pbitmapMap->get_pixel(point); }
    //
    //
    //   inline bool is_ok() const { return m_pbitmapMap->is_ok(); }
    //
    //
-   //   inline ::rect rect() const { return m_pbitmapMap->rect(); }
+   //   inline ::rectangle_i32 rectangle() const { return m_pbitmapMap->rectangle_i32(); }
    //
    //
-   //   pixmap& operator = (const ::rect& rect) { m_point = rect.origin(); m_size = rect.size(); return *this; }
+   //   pixmap& operator = (const ::rectangle_i32& rectangle) { m_point = rectangle.origin(); m_size = rectangle.size(); return *this; }
    //
    //
-   //   inline ::rect rect(const point& point = nullptr) const { return m_pbitmapMap->rect(point); }
+   //   inline ::rectangle_i32 rectangle(const point_i32& point = nullptr) const { return m_pbitmapMap->rectangle_i32(point); }
    //
    //   pixmap& operator =(const pixmap& pixmap);
    //
-   //   inline ::rect rect() const { return m_pbitmapMap->rect(); }
+   //   inline ::rectangle_i32 rectangle() const { return m_pbitmapMap->rectangle_i32(); }
    //
    //
-   //   inline ::point top_left() const noexcept { return m_pbitmapMap->top_left(); }
-   //   inline ::point origin() const noexcept { return m_pbitmapMap->top_left(); }
-   //   inline ::size size() const noexcept { return m_pbitmapMap->size(); }
+   //   inline ::point_i32 top_left() const noexcept { return m_pbitmapMap->top_left(); }
+   //   inline ::point_i32 origin() const noexcept { return m_pbitmapMap->top_left(); }
+   //   inline ::size_i32 size() const noexcept { return m_pbitmapMap->size(); }
    //   inline int width() const noexcept { return m_pbitmapMap->width(); }
    //   inline int height() const noexcept { return m_pbitmapMap->height(); }
    //   inline int area() const noexcept { return m_pbitmapMap->area(); }
@@ -219,18 +217,18 @@ struct pixmap
 
 
       pixmap * m_pbitmap;
-      ::rect      m_rectPrevious;
+      ::rectangle_i32      m_rectPrevious;
       bool        m_bMapped;
 
 
       pixmap_lock() { }
 
 
-      pixmap_lock(pixmap * pmap, rect rect) :
+      pixmap_lock(pixmap * pmap, rectangle_i32 rectangle) :
          m_pbitmap(pmap)
       {
 
-         map(rect);
+         map(rectangle);
 
       }
 
@@ -249,7 +247,7 @@ struct pixmap
 
       }
 
-      bool map(::rect rectMap)
+      bool map(::rectangle_i32 rectMap)
       {
 
          if (m_bMapped)
@@ -259,7 +257,7 @@ struct pixmap
 
          }
 
-         m_rectPrevious = m_pbitmap->rect();
+         m_rectPrevious = m_pbitmap->rectangle();
 
          m_pbitmap->map(rectMap);
 
@@ -298,7 +296,7 @@ struct pixmap
 #ifdef __cplusplus
 
 
-inline void copy_colorref(color32_t * pcolorrefDst, const ::size & size, int iStrideDst, const ::pixmap * ppixmapSrc)
+inline void copy_colorref(color32_t * pcolorrefDst, const ::size_i32 & size, int iStrideDst, const ::pixmap * ppixmapSrc)
 {
 
    copy_colorref(pcolorrefDst, size, iStrideDst, ppixmapSrc->colorref(), ppixmapSrc->scan_size());
@@ -306,7 +304,7 @@ inline void copy_colorref(color32_t * pcolorrefDst, const ::size & size, int iSt
 }
 
 
-inline void copy_colorref(::pixmap * ppixmapDst, const ::size & size, const ::pixmap * ppixmapSrc)
+inline void copy_colorref(::pixmap * ppixmapDst, const ::size_i32 & size, const ::pixmap * ppixmapSrc)
 {
 
    copy_colorref(ppixmapDst->colorref(), size, ppixmapDst->scan_size(), ppixmapSrc);

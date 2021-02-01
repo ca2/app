@@ -192,7 +192,7 @@ namespace user
    }
 
 
-   ::point form_list_view::get_viewport_offset()
+   ::point_i32 form_list_view::get_viewport_offset()
    {
 
       return ::user::list_view::get_viewport_offset();
@@ -200,7 +200,7 @@ namespace user
    }
 
 
-   ::sized form_list_view::get_total_size()
+   ::size_f64 form_list_view::get_total_size()
    {
 
       return ::user::list_view::get_total_size();

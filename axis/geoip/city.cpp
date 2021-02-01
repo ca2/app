@@ -281,7 +281,7 @@ char * _iso_8859_1__utf8(const char * iso)
 
    signed char ca;
    char k;
-   char * point;
+   char * point_i32;
    char * t = (char *)iso;
    strsize len = 0;
    while ( ( ca = *t++) )
@@ -292,7 +292,7 @@ char * _iso_8859_1__utf8(const char * iso)
    len += t - iso;
    t = point = (char *) malloc( (size_t) len );
 
-   if ( point )
+   if ( point_i32 )
    {
       while ( ( ca = *iso++ ) )
       {

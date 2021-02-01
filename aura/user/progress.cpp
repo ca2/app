@@ -51,19 +51,19 @@ namespace user
 
       m_dRate = m_pscalar->get_rate();
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      get_client_rect(rect);
+      get_client_rect(rectangle);
 
-      pgraphics->fill_rect(rect, ARGB(255, 235, 235, 235));
+      pgraphics->fill_rect(rectangle, ARGB(255, 235, 235, 235));
 
-      pgraphics->draw_rect(rect, ARGB(255, 128, 128, 128));
+      pgraphics->draw_rect(rectangle, ARGB(255, 128, 128, 128));
 
-      rect.deflate(1, 1);
+      rectangle.deflate(1, 1);
 
-      rect.right = (::i32) (rect.width() * m_dRate + rect.left);
+      rectangle.right = (::i32) (rectangle.width() * m_dRate + rectangle.left);
 
-      pgraphics->fill_rect(rect, ARGB(255, 100, 220,180));
+      pgraphics->fill_rect(rectangle, ARGB(255, 100, 220,180));
 
    }
 

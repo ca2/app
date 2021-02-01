@@ -17,7 +17,7 @@ namespace user
 
       
 
-      ::size                                 m_sizeMinimum;
+      ::size_i32                                 m_sizeMinimum;
       __pointer(menu)                        m_pmenuParent;
       __pointer(menu_item)                   m_pmenuitem;
       __pointer(::user::interaction)   m_puserinteractionParent;
@@ -26,7 +26,7 @@ namespace user
       HMENU                                  m_hmenu;
 #endif
       bool                                   m_bOwnItem;
-      ::size                                 m_size;
+      ::size_i32                                 m_size;
       double                                 m_dCheckBoxSize;
       bool                                   m_bAutoDelete;
       double                                 m_dHeaderHeight;
@@ -36,8 +36,8 @@ namespace user
       u32                                    m_dwOut;
       __pointer(menu)                        m_psubmenu;
       id                                     m_idTimerMenu;
-      point                                  m_pointTrack;
-      point                                  m_pointPositionHint;
+      point_i32                                  m_pointTrack;
+      point_i32                                  m_pointPositionHint;
       int                                    m_iFlags;
       bool                                   m_bPositionHint;
       bool                                   m_bInline;
@@ -54,7 +54,7 @@ namespace user
       virtual ~menu();
 
       //virtual void nextstyle(::user::style_context * pcontext) override;
-      virtual ::size get_window_minimum_size() override;
+      virtual ::size_i32 get_window_minimum_size() override;
 
       //virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override
       //{
@@ -74,13 +74,13 @@ namespace user
 
       ::user::menu_item * GetSubMenu(i32 i);
 
-      virtual void layout_menu(::draw2d::graphics_pointer& pgraphics, const ::point & point);
+      virtual void layout_menu(::draw2d::graphics_pointer& pgraphics, const ::point_i32 & point);
 
       virtual bool contains_menu_item(menu_item * pitem, bool bRecursive = true) const;
 
       virtual void update_flags(int iFlags);
-      virtual void update_position(const ::point & point);
-      virtual void hints(int iFlags, const ::point & point);
+      virtual void update_position(const ::point_i32 & point);
+      virtual void hints(int iFlags, const ::point_i32 & point);
 
       virtual bool create_menu(::user::interaction * puiNotify = nullptr, ::user::interaction * puiParent = nullptr);
       virtual bool create_inline_menu(::user::interaction * puiNotify = nullptr, ::user::interaction * puiParent = nullptr);
@@ -128,7 +128,7 @@ namespace user
       virtual void update_command(menu_item * pitemParent);
 
       void calc_size(menu_item * pitem, ::draw2d::graphics_pointer & pgraphics, i32 & iMaxWidth, i32 & iMaxHeight);
-      void layout_buttons(menu_item * pitem, i32 iMaxWidth, RECT32 * prect, const ::rect & lpcrectBound);
+      void layout_buttons(menu_item * pitem, i32 iMaxWidth, RECTANGLE_I32 * prectangle, const ::rectangle_i32 & lpcrectBound);
 
 
 

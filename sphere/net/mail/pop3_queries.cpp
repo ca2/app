@@ -132,7 +132,7 @@ char query[]="STAT\r\n";
 }
 
 char* recv_rest(pop3sock_t sock, char* buf, int cs, int bs){
-/* recv rest of data through sock, given a cs  pre-filled buffer sized of bs.
+/* recv rest of data through sock, given a cs  pre-filled buffer size_f64 of bs.
 * end of data is assumed when data has a "\r\n.\r\n" string
 * recv() is TCPBUFLEN  bytes stepped, SUGGEST any good value...
 * Warning: after calling this function, buf must never be used again
@@ -244,10 +244,10 @@ char* buf;
       return(nullptr);
    }
    buf[r]='\0';
-	if(id>0){/* +OK id size */
+	if(id>0){/* +OK id size_i32 */
 		return(buf); /* 512 bytes are enough as say RFC 1939 */
 	}
-	/* else : +OK X messages (YYY octets)\n id size\n... */
+	/* else : +OK X messages (YYY octets)\n id size_i32\n... */
 	if(pop3_error(buf)){
 #ifdef EBUG
 		fprintf(stderr,"%s",buf);

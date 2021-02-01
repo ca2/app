@@ -1,13 +1,14 @@
 #pragma once
 
-
-#ifdef _UWP
-
-#include "acme/os/windows_common/comptr.h"
-#include <d2d1_1.h>
-
-#endif
-
+//#error
+//
+//#ifdef _UWP
+//
+//#include "acme/os/windows_common/comptr.h"
+//#include <d2d1_1.h>
+//
+//#endif
+//
 
 namespace draw2d
 {

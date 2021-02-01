@@ -459,7 +459,7 @@ typedef struct _GPU_DEVICE {
     char   DeviceName[32];
     char   DeviceString[128];
     ::u32  Flags;
-    RECT32   rcVirtualScreen;
+    RECTANGLE_I32   rcVirtualScreen;
 } GPU_DEVICE, *PGPU_DEVICE;
 #endif
 #ifndef WGL_NV_video_capture

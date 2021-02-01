@@ -29,7 +29,7 @@ CLASS_DECL_AURA bool __initialize();
 //
 //#include "command.h"
 
-
+//#error ""
 
 void CLASS_DECL_AURA __cdecl _ca2_purecall();
 void CLASS_DECL_AURA __cdecl _null_se_translator(u32 uiCode, EXCEPTION_POINTERS * ppointers);
@@ -127,7 +127,7 @@ namespace windows
    CLASS_DECL_AURA ::u32       get_temp_path(string & str);
    CLASS_DECL_AURA ::i32        reg_query_value(HKEY hkey,const char * pszSubKey,string & str);
 
-   CLASS_DECL_AURA HICON       extract_icon(HINSTANCE hInst,const char * pszExeFileName,::u32 nIconIndex);
+   CLASS_DECL_AURA hicon       extract_icon(HINSTANCE hInst,const char * pszExeFileName,::u32 nIconIndex);
 
    CLASS_DECL_AURA bool        delete_file(const char * pFileName);
 

@@ -260,13 +260,13 @@ namespace userex
 
          KillTimer(ptimer->m_uEvent);
 
-         ::rect rect;
+         ::rectangle_i32 rectangle;
 
          auto psession = Session;
 
-         psession->get_main_monitor(rect);
+         psession->get_main_monitor(rectangle);
 
-         rect.deflate(rect.width() / 6, rect.height() / 3, rect.width() / 6, rect.height() / 2);
+         rectangle.deflate(rectangle.width() / 6, rectangle.height() / 3, rectangle.width() / 6, rectangle.height() / 2);
 
          auto pframe = get_parent_frame();
 
@@ -276,7 +276,7 @@ namespace userex
             pframe->m_sizeMinimum.cx = 300;
             pframe->m_sizeMinimum.cy = 50;
 
-            pframe->good_restore(nullptr, rect, true);
+            pframe->good_restore(nullptr, rectangle_i32, true);
 
             pframe->set_need_redraw();
 
@@ -329,7 +329,7 @@ namespace userex
       int cxBorder = rectClient.width() / 16;
       int h = rectClient.height() / 4;
 
-      ::rect rectIndicator(rectClient);
+      ::rectangle_i32 rectIndicator(rectClient);
 
       rectIndicator.deflate(cxBorder, h, cxBorder, h * 2);
 

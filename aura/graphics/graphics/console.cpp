@@ -152,7 +152,7 @@ namespace graphics
 
       m_sizeWindow.cy = iHeight;
 
-      ::size sizeImage(m_sizeTile.cx * m_sizeWindow.cx + m_iBorder * 2, m_sizeTile.cy * m_sizeWindow.cy + m_iBorder * 2);
+      ::size_i32 sizeImage(m_sizeTile.cx * m_sizeWindow.cx + m_iBorder * 2, m_sizeTile.cy * m_sizeWindow.cy + m_iBorder * 2);
 
       m_pimage = create_image(sizeImage);
 
@@ -348,18 +348,18 @@ namespace graphics
             m_pimage->g()->set(pen2);
 
             m_pimage->g()->draw_line(
-               ::point(m_iBorder + x * m_sizeTile.cx,
+               ::point_i32(m_iBorder + x * m_sizeTile.cx,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               ::point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
+               ::point_i32(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
             );
 
             m_pimage->g()->set(pen1);
 
             m_pimage->g()->draw_line(
-               ::point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               ::point_i32(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               ::point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               ::point_i32(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1)
             );
 
@@ -380,9 +380,9 @@ namespace graphics
             }
 
             m_pimage->g()->draw_line(
-               point(m_iBorder + x * m_sizeTile.cx,
+               point_i32(m_iBorder + x * m_sizeTile.cx,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
+               point_i32(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
             );
 
@@ -403,9 +403,9 @@ namespace graphics
             }
 
             m_pimage->g()->draw_line(
-               point(m_iBorder + x * m_sizeTile.cx,
+               point_i32(m_iBorder + x * m_sizeTile.cx,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
+               point_i32(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
             );
 
@@ -426,9 +426,9 @@ namespace graphics
             }
 
             m_pimage->g()->draw_line(
-               point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               point_i32(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                   m_iBorder + y * m_sizeTile.cy),
-               point(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               point_i32(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1)
             );
 
@@ -443,17 +443,17 @@ namespace graphics
             m_pimage->g()->set(pen2);
 
            m_pimage->g()->draw_line(
-              ::pointd( m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+              ::point_f64( m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy ),
-              ::pointd( m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+              ::point_f64( m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
               m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1 )
             );
             m_pimage->g()->set(pen1);
 
             m_pimage->g()->draw_line(
-               ::pointd(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               ::pointd(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
+               ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
             );
 
@@ -468,17 +468,17 @@ namespace graphics
             m_pimage->g()->set(pen2);
 
             m_pimage->g()->draw_line(
-               ::pointd(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy),
-               ::pointd(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, 
+               ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, 
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1)
             );
             m_pimage->g()->set(pen1);
 
             m_pimage->g()->draw_line(
-               ::pointd(m_iBorder + x * m_sizeTile.cx,
+               ::point_f64(m_iBorder + x * m_sizeTile.cx,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               ::pointd(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
             );
 
@@ -499,9 +499,9 @@ namespace graphics
             }
 
             m_pimage->g()->draw_line(
-               ::pointd(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy),
-               ::pointd(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, 
+               ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2, 
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy + 1)
             );
 
@@ -522,9 +522,9 @@ namespace graphics
             }
 
             m_pimage->g()->draw_line(
-               ::pointd(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
+               ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx / 2,
                m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2),
-               ::pointd(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1, 
+               ::point_f64(m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx + 1, 
                   m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy / 2)
             );
             m_pimage->g()->draw_line(
@@ -737,7 +737,7 @@ namespace graphics
 
             m_pimage->g()->set_text_color(console_COLORREF(iColor));
 
-           m_pimage->g()->draw_text(str, rect(m_iBorder + x * m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy,
+           m_pimage->g()->draw_text(str, rectangle_i32(m_iBorder + x * m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy,
                m_iBorder + x * m_sizeTile.cx + m_sizeTile.cx, m_iBorder + y * m_sizeTile.cy + m_sizeTile.cy), e_align_center);
 
          }

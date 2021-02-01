@@ -35,9 +35,9 @@ namespace sockets
 {
 
 
-   EventHandler::EventHandler(::layered * pobject, ::apex::log *point) :
+   EventHandler::EventHandler(::layered * pobject, ::apex::log *point_i32) :
       ::object(pobject),
-      socket_handler(pobject, point),
+      socket_handler(pobject, point_i32),
       m_bQuit(false), m_ptcpsocket(nullptr)
    {
 
@@ -274,7 +274,7 @@ namespace sockets
    }
 
 
-   void EventHandler::add(base_socket *point)
+   void EventHandler::add(base_socket *point_i32)
    {
       if (!m_ptcpsocket)
       {
@@ -293,7 +293,7 @@ namespace sockets
          m_ptcpsocket -> open(::net::address("127.0.0.1", m_port));
          socket_handler::add(m_ptcpsocket);
       }
-      socket_handler::add( point );
+      socket_handler::add( point_i32 );
    }
 
 }

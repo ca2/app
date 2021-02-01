@@ -116,8 +116,8 @@ namespace user
 
       };
 
-      //size                             m_sizeTotal;
-      ::size                           m_sizePage;
+      //size_i32                             m_sizeTotal;
+      ::size_i32                           m_sizePage;
       ::user::list *                   m_plist; // should be set to this ::user::list if this is a list
 
       int                              m_iDefaultColumnWidth;
@@ -151,8 +151,8 @@ namespace user
 
       index                    m_iClick;
       bool                             m_bLButtonDown;
-      point                            m_pointLButtonDown1;
-      point                            m_pointLButtonDown2;
+      point_i32                            m_pointLButtonDown1;
+      point_i32                            m_pointLButtonDown2;
       millis                             m_millisLButtonDownStart1;
       millis                             m_millisLButtonDownStart2;
       index                    m_iDisplayItemLButtonDown1;
@@ -180,16 +180,16 @@ namespace user
       index                    m_iShiftFirstSelection;
       uptr                             m_uiLButtonDownFlags;
       uptr                             m_uiLButtonUpFlags;
-      point                            m_pointLButtonUp;
+      point_i32                            m_pointLButtonUp;
       ::u32                             m_uiRButtonUpFlags;
-      point                            m_pointRButtonUp;
+      point_i32                            m_pointRButtonUp;
       __pointer(regex)                 m_pregexFilter1;
       i32                              m_iFilter1Step;
       bool                             m_bFilter1;
 
       bool                             m_bTopText;
       string                           m_strTopText;
-      ::rect                           m_rectTopText;
+      ::rectangle_i32                           m_rectTopText;
       __pointer(mesh_data)                    m_pmeshdata;
 //      ::draw2d::font_pointer                m_font;
       //    ::draw2d::font_pointer                m_fontHover;
@@ -256,7 +256,7 @@ namespace user
 
       virtual mesh_data * GetDataInterface();
       using interaction::update_hover;
-      virtual bool update_hover(const ::point& point, bool bAvoidRedraw = true) override;
+      virtual bool update_hover(const ::point_i32& point, bool bAvoidRedraw = true) override;
       //::draw2d::font * _001GetFont();
       //::draw2d::font * _001GetFontHover();
       virtual ::draw2d::pen * _001GetPenFocused();
@@ -289,7 +289,7 @@ namespace user
       virtual void on_hover_select_timer();
 
 
-      virtual ::size get_item_size();
+      virtual ::size_i32 get_item_size();
 
       virtual void _001OnSort(index iSubItem);
       virtual void _001OnMeshHeaderItemClick(index iHeaderItem);
@@ -423,14 +423,14 @@ namespace user
       virtual ::count _001GetGroupCount();
 
 
-      virtual bool _001HitTest_(const ::point & point, index &iItem, index&iSubItem, index&iListItem,::user::mesh::enum_element &eelement);
-      virtual bool _001HitTest_(const ::point & point, index&iItem, index&iSubItem);
-      virtual bool _001HitTest_(const ::point & point, index&iItemParam);
+      virtual bool _001HitTest_(const ::point_i32 & point, index &iItem, index&iSubItem, index&iListItem,::user::mesh::enum_element &eelement);
+      virtual bool _001HitTest_(const ::point_i32 & point, index&iItem, index&iSubItem);
+      virtual bool _001HitTest_(const ::point_i32 & point, index&iItemParam);
 
 
-      virtual bool _001DisplayHitTest(const ::point & point, index&iItem, index&iSubItem, index&iListItem,::user::mesh::enum_element &eelement);
-      virtual bool _001DisplayHitTest(const ::point & point, index&iItem, index&iSubItem);
-      virtual bool _001DisplayHitTest(const ::point & point, index&iItemParam);
+      virtual bool _001DisplayHitTest(const ::point_i32 & point, index&iItem, index&iSubItem, index&iListItem,::user::mesh::enum_element &eelement);
+      virtual bool _001DisplayHitTest(const ::point_i32 & point, index&iItem, index&iSubItem);
+      virtual bool _001DisplayHitTest(const ::point_i32 & point, index&iItemParam);
 
 
       virtual void _001OnAfterSort();
@@ -469,7 +469,7 @@ namespace user
 
 
       virtual bool on_click(const ::user::item & item) override;
-      virtual bool _001OnRightClick(uptr uFlags,const ::point & point);
+      virtual bool _001OnRightClick(uptr uFlags,const ::point_i32 & point);
 
       virtual void _001GetSelection(range& selection);
 
@@ -481,10 +481,10 @@ namespace user
 
       virtual id _001GetColumnTextId(index iColumn);
 
-      virtual bool _001OnHeaderCtrlEndTrack(WPARAM wparam,LPARAM lparam);
+      virtual bool _001OnHeaderCtrlEndTrack(wparam wparam,lparam lparam);
 
 
-      virtual bool _001OnHeaderCtrlTrack(WPARAM wparam,LPARAM lparam);
+      virtual bool _001OnHeaderCtrlTrack(wparam wparam,lparam lparam);
 
 
       virtual void _001ShowSubItem(index iSubItem,bool bShow = true);
@@ -529,14 +529,14 @@ namespace user
 
       virtual void defer_create_mesh_data();
 
-      virtual ::point get_viewport_offset() override;
+      virtual ::point_i32 get_viewport_offset() override;
 
-      //virtual rect get_scroll_margin();
+      //virtual rectangle_i32 get_scroll_margin();
 
-      //virtual bool get_client_rect(RECT32 * prect);
+      //virtual bool get_client_rect(RECTANGLE_I32 * prectangle);
 
-      virtual ::sized get_page_size() override;
-      //virtual ::sized get_total_size() override;
+      virtual ::size_f64 get_page_size() override;
+      //virtual ::size_f64 get_total_size() override;
 
       virtual string _001GetItemId(index iStrictItem);
       virtual index _001GetItemById(const char * pszChar);

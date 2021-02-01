@@ -16,8 +16,8 @@ namespace user
       index                            m_iItem;
       index                            m_iIndentation;
       double                           m_dItemHeight;
-      ::rectd                          m_rectClient;
-      ::rectd                          m_rect;
+      ::rectangle_f64                          m_rectClient;
+      ::rectangle_f64                          m_rectangle;
    };
 
 
@@ -51,7 +51,7 @@ namespace user
       virtual void _001OnItemExpand(::data::tree_item * pitem, const ::action_context & action_context) override;
       virtual void _001OnItemCollapse(::data::tree_item * pitem, const ::action_context & action_context) override;
       virtual void _001OnOpenItem(::data::tree_item * pitem, const ::action_context & action_context) override;
-      virtual void _001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & action_context,::user::tree * ptree,const ::point & point);
+      virtual void _001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & action_context,::user::tree * ptree,const ::point_i32 & point);
 
       ::image_list * get_image_list() const override;
 

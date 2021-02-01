@@ -166,7 +166,7 @@ public:
       byte * pb = get_data();
 
 
-      //ASSERT(__is_valid_address(&(pb)[m_position], (uptr)nCount, TRUE));
+      //ASSERT(__is_valid_address(&(pb)[m_position], (uptr)nCount, true));
 
 
       ::memcpy_dup(&(pb)[m_position], pdata, (size_t)nCount);

@@ -7,7 +7,7 @@ public:
 
 
    sync *               m_psync;
-   HSYNC                m_hsync;
+   hsync                m_hsync;
    bool                 m_bAcquired;
    duration             m_durationLock;
    duration             m_durationSleep;

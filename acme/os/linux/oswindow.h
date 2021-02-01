@@ -47,7 +47,7 @@ class oswindow_dataptra;
 class event;
 
 
-class mutex;
+class ::mutex;
 
 
 class oswindow_data;
@@ -101,7 +101,7 @@ class oswindow_dataptra;
 class simple_event;
 
 
-class mutex;
+class ::mutex;
 
 
 class CLASS_DECL_AURA oswindow_data
@@ -126,7 +126,7 @@ public:
    Colormap                               m_colormap;
    millis                                   m_millisLastMouseMove;
    Window                                 m_parent;
-   ::rect                                 m_rect;
+   ::rectangle_i32                                 m_rectangle;
    string                                 m_strWMClass;
    int                                    m_iaNetWmState[net_wm_state_count];
 
@@ -222,7 +222,7 @@ public:
 
    void exit_iconify();
 
-   void full_screen(const ::rect & rect = nullptr);
+   void full_screen(const ::rectangle_i32 & rectangle = nullptr);
 
    void exit_full_screen();
 
@@ -245,9 +245,9 @@ public:
    bool show_window(const ::e_display & edisplay, const ::e_activation & eactivation);
    iptr get_window_long_ptr(i32 nIndex);
    iptr set_window_long_ptr(i32 nIndex, iptr l);
-   bool _001ClientToScreen(POINT32 * ppoint);
+   bool _001ClientToScreen(POINT_I32 * ppoint);
 
-   bool _001ScreenToClient(POINT32 * ppoint);
+   bool _001ScreenToClient(POINT_I32 * ppoint);
 
 
    Atom intern_atom(const char * pszAtomName, bool bCreate);
@@ -286,10 +286,10 @@ public:
    void remove_all()
    {
 
-      for(auto point : *this)
+      for(auto point_i32 : *this)
       {
 
-         delete point;
+         delete point_i32;
 
       }
 

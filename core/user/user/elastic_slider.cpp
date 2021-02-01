@@ -69,15 +69,15 @@ namespace user
       
       __pointer(::message::mouse) pmouse(pmessage);
       
-      ::rect rect;
+      ::rectangle_i32 rectangle;
       
-      GetSliderRect(rect);
+      GetSliderRect(rectangle);
       
       auto point = pmouse->m_point;
 
       _001ScreenToClient(point);
 
-      if(rect.contains(point))
+      if(rectangle.contains(point))
       {
 
          CalcTension(point);
@@ -120,9 +120,9 @@ namespace user
    }
 
 
-   void elastic_slider::CalcTension(point & point)
+   void elastic_slider::CalcTension(point_i32 & point)
    {
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
       get_client_rect(rectClient);
       if (rectClient.width() == 0)
       {
@@ -215,7 +215,7 @@ namespace user
 
 
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
       get_client_rect(rectClient);
 
       class imaging & imaging = System.imaging();
@@ -228,19 +228,19 @@ namespace user
       RGB(250, 255, 255),
       bAlpha);
 
-      ::rect rect;
-      GetSliderRect(rect);
+      ::rectangle_i32 rectangle;
+      GetSliderRect(rectangle);
 
-      pgraphics->draw_rect(rect,ARGB(bAlpha,255,255,255));
-      rect.deflate(1, 1);
-      pgraphics->draw_rect(rect,ARGB(bAlpha,255,255,0));
-      rect.deflate(1, 1);
-      pgraphics->draw_rect(rect,ARGB(bAlpha,255,255,255));
+      pgraphics->draw_rect(rectangle,ARGB(bAlpha,255,255,255));
+      rectangle.deflate(1, 1);
+      pgraphics->draw_rect(rectangle,ARGB(bAlpha,255,255,0));
+      rectangle.deflate(1, 1);
+      pgraphics->draw_rect(rectangle,ARGB(bAlpha,255,255,255));
 
       if(m_bSlide)
       {
          
-         pgraphics->move_to(rect.center());
+         pgraphics->move_to(rectangle.center());
          
          auto psession = Session;
 
@@ -255,18 +255,18 @@ namespace user
    }
 
 
-   void elastic_slider::GetSliderRect(::rect & rect)
+   void elastic_slider::GetSliderRect(::rectangle_i32 & rectangle)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
       i32 iWidth = 16;
-      rect.top = rectClient.top;
-      rect.bottom = rectClient.bottom;
-      rect.left = (::i32) min(rectClient.right, m_dPosition * (rectClient.width() - iWidth));
-      rect.right = (::i32) min(rectClient.right, m_dPosition * ((rectClient.width() - iWidth)) + iWidth);
+      rectangle.top = rectClient.top;
+      rectangle.bottom = rectClient.bottom;
+      rectangle.left = (::i32) min(rectClient.right, m_dPosition * (rectClient.width() - iWidth));
+      rectangle.right = (::i32) min(rectClient.right, m_dPosition * ((rectClient.width() - iWidth)) + iWidth);
    }
 
 } // namespace user

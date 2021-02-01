@@ -97,7 +97,7 @@ gettextTurboC (int left, int top, int right, int bottom, void *dest)
 	extern gint TranslatedChar[256];
 	// What ncurses character/color/attribute is at this position?
 	// The following line worked every time I tried it up to
-	// SuSE 8.0, at which point it wouldn't compile any longer.
+	// SuSE 8.0, at which point_i32 it wouldn't compile any longer.
 	// So, I've replaced it.
 	//ch = TempWin->_line[i].text[j];
 	mvwinchnstr (TempWin, i, j, &ch, 1);

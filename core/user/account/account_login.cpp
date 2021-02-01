@@ -192,7 +192,7 @@ namespace account
 
       ::simple_ui::draw draw;
 
-      ::rect r = get_client_rect();
+      ::rectangle_i32 r = get_client_rect();
 
       draw.simple_ui_draw_frame_window_rect(r, pgraphics);
 
@@ -318,7 +318,7 @@ namespace account
 
          pgraphics->draw_ca2_border2((int)(49 * rx), (int)(49 * ry) - 11, (int)((91 + 2 + 2) * ry), 1, 1, crBk, cr, crBorderOut, crBorderIn);
 
-         pgraphics->draw(::rect(::point((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11), ::size((int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry))), m_picon95);
+         pgraphics->draw(::rectangle_i32(::point_i32((int)(49 * rx) + 2, (int)(49 * ry) + 2 - 11), ::size_i32((int)((91 + 2 + 2) * ry), (int)((91 + 2 + 2) * ry))), m_picon95);
 
       }
       else

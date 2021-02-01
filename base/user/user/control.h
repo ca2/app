@@ -51,13 +51,13 @@ namespace user
    //   virtual enum_control_type get_control_type() const override;
 
    //   virtual void _003CallCustomDraw(::draw2d::graphics_pointer & pgraphics, ::aura::draw_context * pitem);
-   //   virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) pwnd, const ::id & id, WPARAM wparam, LPARAM lparam, LRESULT & lresult);
+   //   virtual bool _003CallCustomWindowProc(__pointer(::user::interaction) pwnd, const ::id & id, wparam wparam, lparam lparam, LRESULT & lresult);
 
    //   virtual void _003OnCustomDraw(::draw2d::graphics_pointer & pgraphics, ::aura::draw_context * pitem);
    //   virtual void _003CustomWindowProc(::message::message * pmessage);
 
    //   //virtual form_list * get_form_list();
-   //   virtual bool _001IsPointInside(::point point) override;
+   //   virtual bool _001IsPointInside(::point_i32 point) override;
 
    //   control null() { return control(); }
    //   bool Validate(string & str);
@@ -70,9 +70,9 @@ namespace user
    //   //virtual ::user::interaction * ControlExGetWnd();
 
    //   //using ::user::box::get_client_rect;
-   //   //virtual bool get_client_rect(RECT32 * prect) override;
+   //   //virtual bool get_client_rect(RECTANGLE_I32 * prectangle) override;
    //   //using ::user::box::get_window_rect;
-   //   //virtual bool get_window_rect(RECT32 * prect) override;
+   //   //virtual bool get_window_rect(RECTANGLE_I32 * prectangle) override;
 
 
 
@@ -83,7 +83,7 @@ namespace user
    //   virtual bool IsControlCommandEnabled();
    //   virtual void EnableControlCommand(bool bEnable);
 
-   //   //virtual void BaseControlExOnMouseMove(::u32 nFlags, const ::point & point);
+   //   //virtual void BaseControlExOnMouseMove(::u32 nFlags, const ::point_i32 & point);
 
    //   //virtual void on_hit_test(::user::item & item) override;
 
@@ -108,9 +108,9 @@ namespace user
 
 
 
-   //   virtual bool get_element_rect(RECT32 * prect, enum_element eelement);
+   //   virtual bool get_element_rect(RECTANGLE_I32 * prectangle, enum_element eelement);
 
-   //   virtual void get_simple_drop_down_open_arrow_polygon(point_array & pointa);
+   //   virtual void get_simple_drop_down_open_arrow_polygon(point_i32_array & pointa);
 
 
    //};

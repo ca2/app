@@ -47,7 +47,7 @@ namespace userex
 
       virtual void on_layout(::draw2d::graphics_pointer & pgraphics) override;
 
-      virtual void on_mouse(const ::point & point);
+      virtual void on_mouse(const ::point_i32 & point);
       virtual void rebuild_luminance();
 
 //      virtual color get_color();

@@ -433,7 +433,7 @@ namespace userex
    void color_view::_001OnCreate(::message::message * pmessage)
    {
 
-      //m_pimageBeam->create_image(this, ::size(32, 32));
+      //m_pimageBeam->create_image(this, ::size_i32(32, 32));
 
       //m_pimageBeam->fill(0);
 
@@ -502,7 +502,7 @@ namespace userex
    }
 
 
-   void color_view::on_mouse(const ::point & point)
+   void color_view::on_mouse(const ::point_i32 & point)
    {
 
       //sync_lock sl(mutex());
@@ -541,7 +541,7 @@ namespace userex
 
          int y = point.y - m_rectColors.top;
 
-         m_pointMouseColorBeam = point;
+         m_pointMouseColorBeam = point_i32;
 
          m_bMouseColorBeam = true;
 
@@ -579,7 +579,7 @@ namespace userex
       else if (point.x < m_rectColors.center().x + m_rectColors.width() / 8)
       {
 
-         auto pointLuminance = point - ::size(m_rectColors.center().x, m_rectColors.top);
+         auto pointLuminance = point_i32 - ::size_i32(m_rectColors.center().x, m_rectColors.top);
 
          m_hls.m_dL = 1.0 - ((double)pointLuminance.y / (double) m_pimage->height());
 
@@ -612,18 +612,18 @@ namespace userex
    }
 
 
-   void color_view::draw_beam(::draw2d::graphics_pointer & pgraphics, const ::point & pointParam)
+   void color_view::draw_beam(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & pointParam)
    {
 
-      pointd point(pointParam);
+      point_f64 point_i32(pointParam);
 
       double dSize = 17.0;
 
-      sized sizeBeam(dSize,dSize);
+      size_f64 sizeBeam(dSize,dSize);
 
-      rectd rectOuter(point.x - sizeBeam.cx / 2.0, point.y - sizeBeam.cy / 2.0, point.x + sizeBeam.cx / 2.0, point.y + sizeBeam.cy / 2.0);
+      rectangle_f64 rectOuter(point.x - sizeBeam.cx / 2.0, point.y - sizeBeam.cy / 2.0, point.x + sizeBeam.cx / 2.0, point.y + sizeBeam.cy / 2.0);
 
-      rectd rectInner(rectOuter);
+      rectangle_f64 rectInner(rectOuter);
 
       rectInner.deflate(sizeBeam.cx / 4.0, sizeBeam.cy / 4.0);
 
@@ -637,23 +637,11 @@ namespace userex
 
       {
 
-         pointd_array pointa;
+         point_f64_array pointa;
 
-         pointa.add(pointd(rectOuter.left, point.y - dHalfTriBase));
-         pointa.add(pointd(rectInner.left, point.y));
-         pointa.add(pointd(rectOuter.left, point.y + dHalfTriBase));
-
-         pgraphics->fill_polygon(pointa);
-
-      }
-
-      {
-
-         pointd_array pointa;
-
-         pointa.add(pointd(point.x - dHalfTriBase, rectOuter.top));
-         pointa.add(pointd(point.x, rectInner.top));
-         pointa.add(pointd(point.x + dHalfTriBase, rectOuter.top));
+         pointa.add(point_f64(rectOuter.left, point.y - dHalfTriBase));
+         pointa.add(point_f64(rectInner.left, point.y));
+         pointa.add(point_f64(rectOuter.left, point.y + dHalfTriBase));
 
          pgraphics->fill_polygon(pointa);
 
@@ -661,11 +649,11 @@ namespace userex
 
       {
 
-         pointd_array pointa;
+         point_f64_array pointa;
 
-         pointa.add(pointd(rectOuter.right, point.y - dHalfTriBase));
-         pointa.add(pointd(rectInner.right, point.y));
-         pointa.add(pointd(rectOuter.right, point.y + dHalfTriBase));
+         pointa.add(point_f64(point.x - dHalfTriBase, rectOuter.top));
+         pointa.add(point_f64(point.x, rectInner.top));
+         pointa.add(point_f64(point.x + dHalfTriBase, rectOuter.top));
 
          pgraphics->fill_polygon(pointa);
 
@@ -673,11 +661,23 @@ namespace userex
 
       {
 
-         pointd_array pointa;
+         point_f64_array pointa;
 
-         pointa.add(pointd(point.x - dHalfTriBase, rectOuter.bottom));
-         pointa.add(pointd(point.x, rectInner.bottom));
-         pointa.add(pointd(point.x + dHalfTriBase, rectOuter.bottom));
+         pointa.add(point_f64(rectOuter.right, point.y - dHalfTriBase));
+         pointa.add(point_f64(rectInner.right, point.y));
+         pointa.add(point_f64(rectOuter.right, point.y + dHalfTriBase));
+
+         pgraphics->fill_polygon(pointa);
+
+      }
+
+      {
+
+         point_f64_array pointa;
+
+         pointa.add(point_f64(point.x - dHalfTriBase, rectOuter.bottom));
+         pointa.add(point_f64(point.x, rectInner.bottom));
+         pointa.add(point_f64(point.x + dHalfTriBase, rectOuter.bottom));
 
          pgraphics->fill_polygon(pointa);
 
@@ -686,16 +686,16 @@ namespace userex
    }
 
 
-   void color_view::draw_level(::draw2d::graphics_pointer & pgraphics, const ::rect & rectW, int yParam)
+   void color_view::draw_level(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectW, int yParam)
    {
 
       double y = yParam;
 
       double dSize = 17.0;
 
-      rectd rectInner(rectW);
+      rectangle_f64 rectInner(rectW);
 
-      rectd rectOuter(rectInner);
+      rectangle_f64 rectOuter(rectInner);
 
       rectOuter.inflate(dSize / 2.0, dSize / 2.0);
 
@@ -709,11 +709,11 @@ namespace userex
 
       {
 
-         pointd_array pointa;
+         point_f64_array pointa;
 
-         pointa.add(pointd(rectOuter.left, y - dHalfTriBase));
-         pointa.add(pointd(rectInner.left, y));
-         pointa.add(pointd(rectOuter.left, y + dHalfTriBase));
+         pointa.add(point_f64(rectOuter.left, y - dHalfTriBase));
+         pointa.add(point_f64(rectInner.left, y));
+         pointa.add(point_f64(rectOuter.left, y + dHalfTriBase));
 
          pgraphics->fill_polygon(pointa);
 
@@ -721,11 +721,11 @@ namespace userex
 
       {
 
-         pointd_array pointa;
+         point_f64_array pointa;
 
-         pointa.add(pointd(rectOuter.right, y - dHalfTriBase));
-         pointa.add(pointd(rectInner.right, y));
-         pointa.add(pointd(rectOuter.right, y + dHalfTriBase));
+         pointa.add(point_f64(rectOuter.right, y - dHalfTriBase));
+         pointa.add(point_f64(rectInner.right, y));
+         pointa.add(point_f64(rectOuter.right, y + dHalfTriBase));
 
          pgraphics->fill_polygon(pointa);
 
@@ -737,13 +737,13 @@ namespace userex
    void color_view::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rC;
+      ::rectangle_i32 rC;
 
       get_client_rect(rC);
 
       pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      ::rect r1;
+      ::rectangle_i32 r1;
 
       r1.top_left() = m_rectColors.top_left();
 
@@ -756,13 +756,13 @@ namespace userex
 
       r1.set_size(m_pimage->get_size());
 
-      ::rect r2 = m_pimage->rect();
+      ::rectangle_i32 r2 = m_pimage->rectangle_i32();
 
-      ::rect rCursor;
+      ::rectangle_i32 rCursor;
 
       pgraphics->stretch(r1, m_pimage, r2);
 
-      ::point point;
+      ::point_i32 point;
 
       if (m_bMouseColorBeam)
       {
@@ -781,19 +781,19 @@ namespace userex
 
       draw_beam(pgraphics, point);
 
-      ::rect rectLum1;
+      ::rectangle_i32 rectLum1;
 
-      rectLum1.top_left() = m_rectColors.top_left() + ::size(m_pimage->width()-1, 0);
+      rectLum1.top_left() = m_rectColors.top_left() + ::size_i32(m_pimage->width()-1, 0);
 
       rectLum1.set_size(m_pimageLuminance->get_size());
 
-      r2 = m_pimageLuminance->rect();
+      r2 = m_pimageLuminance->rectangle_i32();
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       pgraphics->stretch(rectLum1, m_pimageLuminance->g(), r2);
 
-      r1.top_left() = m_rectColors.top_left() + ::size(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx - 1, 0);
+      r1.top_left() = m_rectColors.top_left() + ::size_i32(m_pimage->width() - 1 + m_pimageLuminance->get_size().cx - 1, 0);
 
       r1.set_size(m_rectColors.right - r1.left, m_pimage->height());
 
@@ -811,7 +811,7 @@ namespace userex
       
       __pointer(::message::mouse) pmouse(pmessage);
 
-      ::point point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_point;
 
       _001ScreenToClient(point);
 
@@ -831,7 +831,7 @@ namespace userex
 
       __pointer(::message::mouse) pmouse(pmessage);
       
-      ::point point = pmouse->m_point;
+      ::point_i32 point = pmouse->m_point;
       
       _001ScreenToClient(point);
 
@@ -866,7 +866,7 @@ namespace userex
       if (m_bLButtonPressed)
       {
 
-         ::point point = pmouse->m_point;
+         ::point_i32 point = pmouse->m_point;
 
          _001ScreenToClient(point);
 
@@ -884,7 +884,7 @@ namespace userex
 
       ::user::impact::on_layout(pgraphics);
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -895,7 +895,7 @@ namespace userex
 
       }
 
-      ::rect rectColors;
+      ::rectangle_i32 rectColors;
 
       get_client_rect(rectColors);
 
@@ -913,7 +913,7 @@ namespace userex
 
       m_pimage = create_image({m_rectColors.width() / 2,  m_rectColors.height()});
 
-      m_pimage->g()->stretch(m_pimage->rect(), m_pimageTemplate->get_graphics(), m_pimageTemplate->rect());
+      m_pimage->g()->stretch(m_pimage->rectangle_i32(), m_pimageTemplate->get_graphics(), m_pimageTemplate->rectangle_i32());
 
       m_pimageLuminance = create_image({m_rectColors.width() / 8,  m_rectColors.height()});
 

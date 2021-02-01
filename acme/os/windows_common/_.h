@@ -14,12 +14,9 @@ struct lib_main_int
 
 #ifndef CUBE
 
-CLASS_DECL_ACME int_bool _001DefaultDllMain(HINSTANCE hinstance, ::u32 dwReason, LPVOID pReserved, int iLibMainDebugBox = 0, const lib_main_int & intDelayMs = {});
+CLASS_DECL_ACME int_bool _001DefaultDllMain(hinstance hinstance, ::u32 dwReason, void * pReserved, int iLibMainDebugBox = 0, const lib_main_int & intDelayMs = {});
 
 #endif
-
-
-#include "bstring.h"
 
 
 //
@@ -47,7 +44,7 @@ CLASS_DECL_ACME int_bool is_windows_native_unicode();
 
 
 
-CLASS_DECL_ACME bool defer_init_winsock();
+CLASS_DECL_ACME bool defer_initialize_winsock();
 
 
 

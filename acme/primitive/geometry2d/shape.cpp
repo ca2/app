@@ -9,10 +9,10 @@
 #include "framework.h"
 
 
-bool ___shape::expand_bounding_rect(RECTD* prect) const
+bool ___shape::expand_bounding_rect(RECTANGLE_F64* prectangle) const
 {
 
-   rectd r;
+   rectangle_f64 r;
 
    if (!get_bounding_rect(&r))
    {
@@ -21,17 +21,17 @@ bool ___shape::expand_bounding_rect(RECTD* prect) const
 
    }
 
-   expand_rect(prect, r);
+   expand_rect(prectangle, r);
 
    return true;
 
 }
 
 
-bool ___shape::expand_bounding_rect(RECT32* prect) const
+bool ___shape::expand_bounding_rect(RECTANGLE_I32* prectangle) const
 {
 
-   rectd r;
+   rectangle_f64 r;
 
    if (!expand_bounding_rect(&r))
    {
@@ -40,39 +40,39 @@ bool ___shape::expand_bounding_rect(RECT32* prect) const
 
    }
 
-   expand_rect(prect, r);
+   expand_rect(prectangle, r);
 
    return true;
 
 }
 
 
-bool ___shape::get_bounding_rect(RECTD* prect) const
+bool ___shape::get_bounding_rect(RECTANGLE_F64* prectangle) const
 {
 
-   ::null_rect(prect);
+   ::null_rect(prectangle);
 
    return false;
 
 }
 
 
-bool ___shape::get_bounding_rect(RECT32* prect) const
+bool ___shape::get_bounding_rect(RECTANGLE_I32* prectangle) const
 {
 
-   ::null_rect(prect);
+   ::null_rect(prectangle);
 
    return false;
 
 }
 
 
-bool ___shape::contains(const ::pointd& point) const
+bool ___shape::contains(const ::point_f64& point) const
 {
 
    // BUG SS (STILL SIMPLE) using bounding box HAHA LOL ROFL
 
-   ::rectd r;
+   ::rectangle_f64 r;
 
    if (!get_bounding_rect(r))
    {

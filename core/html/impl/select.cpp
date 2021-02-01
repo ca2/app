@@ -159,7 +159,7 @@ namespace html
 
          }
 
-         string strSize = m_pelemental->m_pbase->get_tag()->get_attr_value("size");
+         string strSize = m_pelemental->m_pbase->get_tag()->get_attr_value("size_i32");
 
          int iSize = 20;
 
@@ -204,7 +204,7 @@ namespace html
 
          ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         //::rect rectWindow;
+         //::rectangle_i32 rectWindow;
 
          //m_pcombo->get_window_rect(rectWindow);
 

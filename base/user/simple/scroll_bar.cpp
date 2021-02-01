@@ -89,14 +89,14 @@ void simple_scroll_bar::_001OnMouseMove(::message::message * pmessage)
 
    __pointer(::message::mouse) pmouse(pmessage);
 
-   ::point point = screen_to_client(pmouse->m_point);
+   ::point_i32 point = screen_to_client(pmouse->m_point);
 
    if(m_bTracking)
    {
 
-      point -= m_sizeTrackOffset;
+      point_i32 -= m_sizeTrackOffset;
 
-      queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
+      queue_graphics_call([this, point_i32](::draw2d::graphics_pointer & pgraphics)
          {
 
             SetTrackingPos(point, pgraphics);
@@ -238,7 +238,7 @@ void simple_scroll_bar::_001OnLButtonUp(::message::message * pmessage)
 
          auto point = screen_to_client(pmouse->m_point);
 
-         point -= m_sizeTrackOffset;
+         point_i32 -= m_sizeTrackOffset;
 
          auto pgraphics = create_memory_graphics();
 
@@ -255,14 +255,14 @@ void simple_scroll_bar::_001OnLButtonUp(::message::message * pmessage)
 }
 
 
-bool simple_scroll_bar::GetTrackRect(RECT32 * prect, ::draw2d::graphics_pointer & pgraphics)
+bool simple_scroll_bar::GetTrackRect(RECTANGLE_I32 * prectangle, ::draw2d::graphics_pointer & pgraphics)
 {
 
-   ::rect rectClient;
+   ::rectangle_i32 rectClient;
 
    get_client_rect(rectClient);
 
-   ::size sizeTrack;
+   ::size_i32 sizeTrack;
 
    GetTrackSize(sizeTrack, pgraphics);
 
@@ -290,28 +290,28 @@ bool simple_scroll_bar::GetTrackRect(RECT32 * prect, ::draw2d::graphics_pointer 
 
       i32 iWidth = rectClient.width() - iScrollBarWidth * 2 - sizeTrack.cx;
 
-      prect->top = rectClient.top;
+      prectangle->top = rectClient.top;
 
 
-      prect->bottom = rectClient.top + sizeTrack.cy;
+      prectangle->bottom = rectClient.top + sizeTrack.cy;
 
 
       if (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage == 0)
       {
 
-         prect->left = 0;
+         prectangle->left = 0;
 
 
       }
       else
       {
 
-         prect->left = iScrollBarWidth + (iPos - m_scrollinfo.nMin) * iWidth / (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage);
+         prectangle->left = iScrollBarWidth + (iPos - m_scrollinfo.nMin) * iWidth / (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage);
 
 
       }
 
-      prect->right = prect->left + sizeTrack.cx;
+      prectangle->right = prectangle->left + sizeTrack.cx;
 
 
    }
@@ -320,24 +320,24 @@ bool simple_scroll_bar::GetTrackRect(RECT32 * prect, ::draw2d::graphics_pointer 
 
       i32 iHeight = rectClient.height() - iScrollBarWidth * 2 - sizeTrack.cy;
 
-      prect->left = rectClient.left;
+      prectangle->left = rectClient.left;
 
-      prect->right = prect->left + sizeTrack.cx;
+      prectangle->right = prectangle->left + sizeTrack.cx;
 
       if (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage == 0)
       {
 
-         prect->top = 0;
+         prectangle->top = 0;
 
       }
       else
       {
 
-         prect->top = iScrollBarWidth + (iPos - m_scrollinfo.nMin) * iHeight / (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage);
+         prectangle->top = iScrollBarWidth + (iPos - m_scrollinfo.nMin) * iHeight / (m_scrollinfo.nMax - m_scrollinfo.nMin - m_scrollinfo.nPage);
 
       }
 
-      prect->bottom = prect->top + sizeTrack.cy;
+      prectangle->bottom = prectangle->top + sizeTrack.cy;
 
    }
 
@@ -427,39 +427,39 @@ bool simple_scroll_bar::_001SetScrollInfo(::user::scroll_info * psi, bool bRedra
 }
 
 
-bool simple_scroll_bar::GetTrackClientRect(RECT32 * prect, ::draw2d::graphics_pointer & pgraphics)
+bool simple_scroll_bar::GetTrackClientRect(RECTANGLE_I32 * prectangle, ::draw2d::graphics_pointer & pgraphics)
 {
 
    auto pstyle = get_style(pgraphics);
 
    int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
 
-   ::rect rectClient;
+   ::rectangle_i32 rectClient;
 
    get_client_rect(rectClient);
 
    if(m_eorientation == orientation_horizontal)
    {
 //      i32 iWidth = rectClient.width() - GetSystemMetrics(SM_CXHSCROLL) * 2;
-      prect->bottom = rectClient.bottom;
+      prectangle->bottom = rectClient.bottom;
 
-      prect->top = rectClient.top;
+      prectangle->top = rectClient.top;
 
-      prect->left = rectClient.left + iScrollBarWidth;
+      prectangle->left = rectClient.left + iScrollBarWidth;
 
-      prect->right = rectClient.right - iScrollBarWidth;
+      prectangle->right = rectClient.right - iScrollBarWidth;
 
    }
    else if(m_eorientation == orientation_vertical)
    {
 //      i32 iWidth = rectClient.width() - GetSystemMetrics(SM_CYVSCROLL) * 2;
-      prect->top = rectClient.top + iScrollBarWidth;
+      prectangle->top = rectClient.top + iScrollBarWidth;
 
-      prect->bottom = rectClient.bottom - iScrollBarWidth;
+      prectangle->bottom = rectClient.bottom - iScrollBarWidth;
 
-      prect->left = rectClient.left + 1;
+      prectangle->left = rectClient.left + 1;
 
-      prect->right = rectClient.right - 1;
+      prectangle->right = rectClient.right - 1;
 
    }
 
@@ -468,14 +468,14 @@ bool simple_scroll_bar::GetTrackClientRect(RECT32 * prect, ::draw2d::graphics_po
 }
 
 
-i32 simple_scroll_bar::GetTrackSize(::size &size, ::draw2d::graphics_pointer & pgraphics)
+i32 simple_scroll_bar::GetTrackSize(::size_i32 &size, ::draw2d::graphics_pointer & pgraphics)
 {
 
    auto pstyle = get_style(pgraphics);
 
    int iScrollBarWidth = get_int(pstyle, ::user::e_int_scroll_bar_width);
 
-   ::rect rectClient;
+   ::rectangle_i32 rectClient;
 
    get_client_rect(rectClient);
 
@@ -563,16 +563,16 @@ i32 simple_scroll_bar::GetTrackSize(::size &size, ::draw2d::graphics_pointer & p
 }
 
 
-i32 simple_scroll_bar::SetTrackingPos(const ::point & point, ::draw2d::graphics_pointer & pgraphics)
+i32 simple_scroll_bar::SetTrackingPos(const ::point_i32 & point, ::draw2d::graphics_pointer & pgraphics)
 {
 
    i32 nPos = 0;
 
-   ::size sizeTrack;
+   ::size_i32 sizeTrack;
 
    GetTrackSize(sizeTrack, pgraphics);
 
-   ::rect rectClient;
+   ::rectangle_i32 rectClient;
 
    get_client_rect(rectClient);
 
@@ -667,9 +667,9 @@ i32 simple_scroll_bar::_001GetScrollPos()
 void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
 {
 
-   ::rect rectClient;
+   ::rectangle_i32 rectClient;
    get_client_rect(rectClient);
-   ::size size = rectClient.size();
+   ::size_i32 size = rectClient.size();
 
    int iArrowForce = 4;
    int iArrowStability = size.get_orthogonal_dimension(m_eorientation) - 2 - 3 * 2;
@@ -905,7 +905,7 @@ bool simple_scroll_bar::scrollbar_lineB(::draw2d::graphics_pointer & pgraphics)
 }
 
 
-bool simple_scroll_bar::scrollbar_pageA(const ::point & point, ::draw2d::graphics_pointer & pgraphics)
+bool simple_scroll_bar::scrollbar_pageA(const ::point_i32 & point, ::draw2d::graphics_pointer & pgraphics)
 {
 
    i32 nPos = m_scrollinfo.nPos;
@@ -930,19 +930,19 @@ bool simple_scroll_bar::scrollbar_pageA(const ::point & point, ::draw2d::graphic
 
    }
 
-   ::rect rectClient;
+   ::rectangle_i32 rectClient;
 
-   ::rect rectTrack;
+   ::rectangle_i32 rectTrack;
 
-   ::rect rect;
+   ::rectangle_i32 rectangle;
 
    get_client_rect(rectClient);
 
    GetTrackRect(rectTrack, pgraphics);
 
-   GetPageARect(rectClient,rectTrack,rect, pgraphics);
+   GetPageARect(rectClient,rectTrack,rectangle_i32, pgraphics);
 
-   if(!rect.contains(point))
+   if(!rectangle.contains(point))
       return false;
 
    if(m_scrollinfo.nPos == m_scrollinfo.nMin)
@@ -953,7 +953,7 @@ bool simple_scroll_bar::scrollbar_pageA(const ::point & point, ::draw2d::graphic
 }
 
 
-bool simple_scroll_bar::scrollbar_pageB(const ::point & point, ::draw2d::graphics_pointer & pgraphics)
+bool simple_scroll_bar::scrollbar_pageB(const ::point_i32 & point, ::draw2d::graphics_pointer & pgraphics)
 {
 
    i32 nPos = m_scrollinfo.nPos;
@@ -978,19 +978,19 @@ bool simple_scroll_bar::scrollbar_pageB(const ::point & point, ::draw2d::graphic
 
    }
 
-   ::rect rectClient;
+   ::rectangle_i32 rectClient;
 
-   ::rect rectTrack;
+   ::rectangle_i32 rectTrack;
 
-   ::rect rect;
+   ::rectangle_i32 rectangle;
 
    get_client_rect(rectClient);
 
    GetTrackRect(rectTrack, pgraphics);
 
-   GetPageBRect(rectClient,rectTrack,rect, pgraphics);
+   GetPageBRect(rectClient,rectTrack,rectangle_i32, pgraphics);
 
-   if(!rect.contains(point))
+   if(!rectangle.contains(point))
       return false;
 
    if(m_scrollinfo.nPos == m_scrollinfo.nMax - m_scrollinfo.nPage)
@@ -1073,7 +1073,7 @@ void simple_scroll_bar::UpdateBitmaps()
 }
 
 
-bool simple_scroll_bar::GetPageARect(RECT32 * prectClient,RECT32 * prectTrack, RECT32 * prect, ::draw2d::graphics_pointer & pgraphics)
+bool simple_scroll_bar::GetPageARect(RECTANGLE_I32 * prectClient,RECTANGLE_I32 * prectTrack, RECTANGLE_I32 * prectangle, ::draw2d::graphics_pointer & pgraphics)
 {
 
    auto pstyle = get_style(pgraphics);
@@ -1083,24 +1083,24 @@ bool simple_scroll_bar::GetPageARect(RECT32 * prectClient,RECT32 * prectTrack, R
    if(m_eorientation == orientation_horizontal)
    {
 
-      prect->left = prectClient->left + iScrollBarWidth;
+      prectangle->left = prectClient->left + iScrollBarWidth;
 
-      prect->top = prectTrack->top;
+      prectangle->top = prectTrack->top;
 
-      prect->right = prectTrack->left;
+      prectangle->right = prectTrack->left;
 
-      prect->bottom = prectTrack->bottom;
+      prectangle->bottom = prectTrack->bottom;
 
    }
    else if(m_eorientation == orientation_vertical)
    {
-      prect->left = prectTrack->left;
+      prectangle->left = prectTrack->left;
 
-      prect->top = prectClient->top + iScrollBarWidth;
+      prectangle->top = prectClient->top + iScrollBarWidth;
 
-      prect->right = prectTrack->right;
+      prectangle->right = prectTrack->right;
 
-      prect->bottom = prectTrack->top;
+      prectangle->bottom = prectTrack->top;
 
    }
 
@@ -1109,7 +1109,7 @@ bool simple_scroll_bar::GetPageARect(RECT32 * prectClient,RECT32 * prectTrack, R
 }
 
 
-bool simple_scroll_bar::GetPageBRect(RECT32 * prectClient,RECT32 * prectTrack, RECT32 * prect, ::draw2d::graphics_pointer & pgraphics)
+bool simple_scroll_bar::GetPageBRect(RECTANGLE_I32 * prectClient,RECTANGLE_I32 * prectTrack, RECTANGLE_I32 * prectangle, ::draw2d::graphics_pointer & pgraphics)
 {
 
    auto pstyle = get_style(pgraphics);
@@ -1119,24 +1119,24 @@ bool simple_scroll_bar::GetPageBRect(RECT32 * prectClient,RECT32 * prectTrack, R
    if(m_eorientation == orientation_horizontal)
    {
 
-      prect->left = prectTrack->right;
+      prectangle->left = prectTrack->right;
 
-      prect->top = prectTrack->top;
+      prectangle->top = prectTrack->top;
 
-      prect->right = prectClient->right - iScrollBarWidth;
+      prectangle->right = prectClient->right - iScrollBarWidth;
 
-      prect->bottom = prectTrack->bottom;
+      prectangle->bottom = prectTrack->bottom;
 
    }
    else if(m_eorientation == orientation_vertical)
    {
-      prect->left = prectTrack->left;
+      prectangle->left = prectTrack->left;
 
-      prect->top = prectTrack->bottom;
+      prectangle->top = prectTrack->bottom;
 
-      prect->right = prectTrack->right;
+      prectangle->right = prectTrack->right;
 
-      prect->bottom = prectClient->bottom - iScrollBarWidth;
+      prectangle->bottom = prectClient->bottom - iScrollBarWidth;
 
    }
 
@@ -1183,8 +1183,8 @@ class trw:
 {
 public:
 
-   ::point point1;
-   ::point point2;
+   ::point_i32 point1;
+   ::point_i32 point2;
 
 
    trw()
@@ -1240,7 +1240,7 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
       //if (pdrawcontext != nullptr)
       //{
 
-      //   ::rect rectClient;
+      //   ::rectangle_i32 rectClient;
 
       //   rectClient = pdrawcontext->m_rectWindow;
 
@@ -1262,7 +1262,7 @@ void simple_scroll_bar::_001OnClip(::draw2d::graphics_pointer & pgraphics)
 
          ::user::interaction * pinteraction = this;
 
-         ::rect rectFocus;
+         ::rectangle_i32 rectFocus;
 
          index i = 0;
 
@@ -1364,7 +1364,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    color32_t crBackground = get_color(pstyle, ::user::e_element_background);
 
-   ::rect rectClient;
+   ::rectangle_i32 rectClient;
 
    get_client_rect(rectClient);
 
@@ -1390,11 +1390,11 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    }
 
-   ::rect rectTrack;
+   ::rectangle_i32 rectTrack;
 
    GetTrackRect(rectTrack, pgraphics);
 
-   ::rect rectWindow;
+   ::rectangle_i32 rectWindow;
 
    get_window_rect(rectWindow);
 
@@ -1436,7 +1436,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //            iDeflate /= 2;
 
-   //            ::rect rectConstraint(m_rectTrack);
+   //            ::rectangle_i32 rectConstraint(m_rectTrack);
 
    //            rectConstraint.deflate(iDeflate, iDeflate);
 
@@ -1465,11 +1465,11 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //   }
 
-   //   const ::point & point1 = rectTrack.top_left() + m_sizeTrackOffset;
+   //   const ::point_i32 & point1 = rectTrack.top_left() + m_sizeTrackOffset;
 
    //   _001ClientToScreen(point1);
 
-   //   ::point point2;
+   //   ::point_i32 point2;
 
    //   psession->get_cursor_pos(&point2);
 
@@ -1524,7 +1524,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    //      uchAlpha = 255;
    //   }
 
-   //   ::rect rectMachineThumb;
+   //   ::rectangle_i32 rectMachineThumb;
 
    //   i32 iType = prop("tracking_type").i32();
 
@@ -1533,11 +1533,11 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //      int iSize = rectTrack.size().get_normal(m_eorientation);
 
-   //      rectMachineThumb.top_left() = rectTrack.top_left() + m_sizeTrackOffset - size(iSize / 2, iSize / 2);
+   //      rectMachineThumb.top_left() = rectTrack.top_left() + m_sizeTrackOffset - size_i32(iSize / 2, iSize / 2);
 
    //      rectMachineThumb.bottom_right() = rectMachineThumb.top_left() + size(iSize, iSize);
 
-   //      ::rect rectIntersect;
+   //      ::rectangle_i32 rectIntersect;
 
    //      rectIntersect.intersect(rectMachineThumb, rectTrack);
 
@@ -1553,7 +1553,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    //      int iSize = rectTrack.size().get_normal(m_eorientation);
 
-   //      rectMachineThumb.top_left() = rectTrack.top_left() + m_sizeTrackOffset - size(iSize / 2, iSize / 2);
+   //      rectMachineThumb.top_left() = rectTrack.top_left() + m_sizeTrackOffset - size_i32(iSize / 2, iSize / 2);
 
    //      rectMachineThumb.set_size(iSize, iSize);
 
@@ -1583,12 +1583,12 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    pgraphics->fill_rect(m_rectB);
 
-   ::rect rect;
+   ::rectangle_i32 rectangle;
 
    if (m_itemCurrent == ::user::e_element_scrollbar_pageA || m_itemHover== ::user::e_element_scrollbar_pageA)
    {
 
-      GetPageARect(rectClient, rectTrack, rect, pgraphics);
+      GetPageARect(rectClient, rectTrack, rectangle_i32, pgraphics);
 
       cr = scrollbar_color(pstyle, ::user::e_element_scrollbar_pageA);
 
@@ -1596,13 +1596,13 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
       pgraphics->set(m_brushDraw);
 
-      pgraphics->fill_rect(rect);
+      pgraphics->fill_rect(rectangle);
 
    }
    else if (m_itemCurrent == ::user::e_element_scrollbar_pageB || m_itemHover== ::user::e_element_scrollbar_pageB)
    {
 
-      GetPageBRect(rectClient, rectTrack, rect, pgraphics);
+      GetPageBRect(rectClient, rectTrack, rectangle_i32, pgraphics);
 
       cr = scrollbar_color(pstyle, ::user::e_element_scrollbar_pageB);
 
@@ -1610,7 +1610,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
       pgraphics->set(m_brushDraw);
 
-      pgraphics->fill_rect(rect);
+      pgraphics->fill_rect(rectangle);
 
    }
 
@@ -1655,14 +1655,14 @@ void simple_scroll_bar::_001OnDestroy(::message::message * pmessage)
 }
 
 
-void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics,const ::rect & rectDrawParam,const ::rect & lpcrectClip,byte uchAlpha)
+void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectDrawParam,const ::rectangle_i32 & lpcrectClip,byte uchAlpha)
 {
 
    ::draw2d::savedc dc(pgraphics);
 
    pgraphics->reset_clip();
 
-   ::rect rectDraw(rectDrawParam);
+   ::rectangle_i32 rectDraw(rectDrawParam);
 
    rectDraw.deflate(1,1);
 
@@ -1676,7 +1676,7 @@ void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgrap
 
    ::draw2d::brush_pointer brush(e_create);
 
-   ::rect rectDotto(0,0,5,5);
+   ::rectangle_i32 rectDotto(0,0,5,5);
 
    brush->create_solid(ARGB(150 * uchAlpha / 255,108,108,100));
 
@@ -1690,10 +1690,10 @@ void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgrap
 
 
 
-void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphics, const ::rect & rectDrawParam, const ::rect & lpcrectClip,byte uchAlpha)
+void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectDrawParam, const ::rectangle_i32 & lpcrectClip,byte uchAlpha)
 {
 
-   ::rectd rectDraw(rectDrawParam);
+   ::rectangle_f64 rectDraw(rectDrawParam);
 
    rectDraw.bottom--;
 
@@ -1755,7 +1755,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
             iSize = pow(iSize, 0.55);
 
-            rectd r(x - iSize, y - iSize, x + iSize, y + iSize);
+            rectangle_f64 r(x - iSize, y - iSize, x + iSize, y + iSize);
 
             m_pimageDots->g()->fill_rect(r, ARGB(80, 0, 0, 0));
 
@@ -1775,11 +1775,11 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
    auto rectDst = rectDraw;
 
-   auto pointSrc = ::pointd(iDiv, iDiv);
+   auto pointSrc = ::point_f64(iDiv, iDiv);
 
-   auto sizeSrc = m_pimageDots->get_size() - ::sized(iDiv * 2, iDiv * 2);
+   auto sizeSrc = m_pimageDots->get_size() - ::size_f64(iDiv * 2, iDiv * 2);
 
-   auto rectSrc = ::rectd(pointSrc, sizeSrc);
+   auto rectSrc = ::rectangle_f64(pointSrc, sizeSrc);
 
    image_drawing imagedrawing;
    
@@ -1795,7 +1795,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 void simple_scroll_bar::on_hit_test(::user::item & item)
 {
 
-   ::rect rectTrack;
+   ::rectangle_i32 rectTrack;
 
    auto pgraphics = create_memory_graphics();
 
@@ -1810,15 +1810,15 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
    else
    {
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
-      GetPageARect(rectClient, rectTrack, rect, pgraphics);
+      GetPageARect(rectClient, rectTrack, rectangle_i32, pgraphics);
 
-      if (rect.contains(item.m_pointClient))
+      if (rectangle.contains(item.m_pointClient))
       {
 
          item = ::user::e_element_scrollbar_pageA;
@@ -1827,9 +1827,9 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 
       }
 
-      GetPageBRect(rectClient, rectTrack, rect, pgraphics);
+      GetPageBRect(rectClient, rectTrack, rectangle_i32, pgraphics);
 
-      if (rect.contains(item.m_pointClient))
+      if (rectangle.contains(item.m_pointClient))
       {
 
          item = ::user::e_element_scrollbar_pageB;

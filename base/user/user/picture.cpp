@@ -5,25 +5,25 @@
 #include <math.h>
 
 
-property & operator << (property & property, const RECTD & rect)
+property & operator << (property & property, const RECTANGLE_F64 & rectangle)
 {
 
-   property["left"] = rect.left;
-   property["top"] = rect.top;
-   property["right"] = rect.right;
-   property["bottom"] = rect.bottom;
+   property["left"] = rectangle.left;
+   property["top"] = rectangle.top;
+   property["right"] = rectangle.right;
+   property["bottom"] = rectangle.bottom;
 
    return property;
 
 }
 
-property & operator >> (property & property, RECTD & rect)
+property & operator >> (property & property, RECTANGLE_F64 & rectangle)
 {
 
-   rect.left = property["left"];
-   rect.top = property["top"];
-   rect.right = property["right"];
-   rect.bottom = property["bottom"];
+   rectangle.left = property["left"];
+   rectangle.top = property["top"];
+   rectangle.right = property["right"];
+   rectangle.bottom = property["bottom"];
 
    return property;
 
@@ -131,7 +131,7 @@ namespace user
 
       //_rtransform_point(point);
 
-      if (m_ppictureimpl->m_rect.contains(item.m_pointHitTest))
+      if (m_ppictureimpl->m_rectangle.contains(item.m_pointHitTest))
       {
 
          item = 0;
@@ -145,10 +145,10 @@ namespace user
    }
 
 
-   pointd picture::_transform(const pointd & pointParam) const
+   point_f64 picture::_transform(const point_f64 & pointParam) const
    {
 
-      pointd point(pointParam);
+      point_f64 point_i32(pointParam);
 
       _transform_point(point);
 
@@ -157,10 +157,10 @@ namespace user
    }
 
 
-   pointd picture::_transform_drawing(const pointd & pointParam) const
+   point_f64 picture::_transform_drawing(const point_f64 & pointParam) const
    {
 
-      pointd point(pointParam);
+      point_f64 point_i32(pointParam);
 
       _transform_point_drawing(point);
 
@@ -169,7 +169,7 @@ namespace user
    }
 
 
-   void picture::_transform_point(pointd & point) const
+   void picture::_transform_point(point_f64 & point) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -181,18 +181,18 @@ namespace user
 
       ::draw2d::matrix m;
 
-      m.translate(-m_ppictureimpl->m_rect.center());
+      m.translate(-m_ppictureimpl->m_rectangle.center());
 
       m.rotate(m_ppictureimpl->m_dRotate);
 
-      m.translate(m_ppictureimpl->m_rect.center());
+      m.translate(m_ppictureimpl->m_rectangle.center());
 
       m.transform(point);
 
    }
 
 
-   void picture::_transform_point_drawing(pointd & point) const
+   void picture::_transform_point_drawing(point_f64 & point) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -214,10 +214,10 @@ namespace user
 
    }
 
-   pointd picture::_rtransform(const pointd & pointParam) const
+   point_f64 picture::_rtransform(const point_f64 & pointParam) const
    {
 
-      pointd point(pointParam);
+      point_f64 point_i32(pointParam);
 
       _rtransform_point(point);
 
@@ -226,10 +226,10 @@ namespace user
    }
 
 
-   pointd picture::_rtransform_drawing(const pointd & pointParam) const
+   point_f64 picture::_rtransform_drawing(const point_f64 & pointParam) const
    {
 
-      pointd point(pointParam);
+      point_f64 point_i32(pointParam);
 
       _rtransform_point_drawing(point);
 
@@ -238,7 +238,7 @@ namespace user
    }
 
 
-   void picture::_rtransform_point(pointd & point) const
+   void picture::_rtransform_point(point_f64 & point) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -250,18 +250,18 @@ namespace user
 
       ::draw2d::matrix m;
 
-      m.translate(-m_ppictureimpl->m_rect.center());
+      m.translate(-m_ppictureimpl->m_rectangle.center());
 
       m.rotate(-m_ppictureimpl->m_dRotate);
 
-      m.translate(m_ppictureimpl->m_rect.center());
+      m.translate(m_ppictureimpl->m_rectangle.center());
 
       m.transform(point);
 
    }
 
 
-   void picture::_rtransform_point_drawing(pointd & point) const
+   void picture::_rtransform_point_drawing(point_f64 & point) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -284,10 +284,10 @@ namespace user
    }
 
 
-   pointd picture::drag_transform(const pointd & pointParam) const
+   point_f64 picture::drag_transform(const point_f64 & pointParam) const
    {
 
-      pointd point(pointParam);
+      point_f64 point_i32(pointParam);
 
       drag_transform_point(point);
 
@@ -296,10 +296,10 @@ namespace user
    }
 
 
-   pointd picture::drag_transform_drawing(const pointd & pointParam) const
+   point_f64 picture::drag_transform_drawing(const point_f64 & pointParam) const
    {
 
-      pointd point(pointParam);
+      point_f64 point_i32(pointParam);
 
       drag_transform_point_drawing(point);
 
@@ -308,7 +308,7 @@ namespace user
    }
 
 
-   void picture::drag_transform_point(pointd & point) const
+   void picture::drag_transform_point(point_f64 & point) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -320,20 +320,20 @@ namespace user
 
       ::draw2d::matrix m;
 
-      m.translate(-m_ppictureimpl->m_rect.center());
+      m.translate(-m_ppictureimpl->m_rectangle.center());
 
       m.rotate(m_ppictureimpl->m_dRotate);
 
       m.scale(m_ppictureimpl->m_dZoom, m_ppictureimpl->m_dZoom);
 
-      m.translate(m_ppictureimpl->m_rect.center());
+      m.translate(m_ppictureimpl->m_rectangle.center());
 
       m.transform(point);
 
    }
 
 
-   void picture::drag_transform_point_drawing(pointd & point) const
+   void picture::drag_transform_point_drawing(point_f64 & point) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -357,10 +357,10 @@ namespace user
 
    }
 
-   pointd picture::drag_rtransform(const pointd & pointParam) const
+   point_f64 picture::drag_rtransform(const point_f64 & pointParam) const
    {
 
-      pointd point(pointParam);
+      point_f64 point_i32(pointParam);
 
       drag_rtransform_point(point);
 
@@ -369,10 +369,10 @@ namespace user
    }
 
 
-   pointd picture::drag_rtransform_drawing(const pointd & pointParam) const
+   point_f64 picture::drag_rtransform_drawing(const point_f64 & pointParam) const
    {
 
-      pointd point(pointParam);
+      point_f64 point_i32(pointParam);
 
       drag_rtransform_point_drawing(point);
 
@@ -381,7 +381,7 @@ namespace user
    }
 
 
-   void picture::drag_rtransform_point(pointd & point) const
+   void picture::drag_rtransform_point(point_f64 & point) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -393,7 +393,7 @@ namespace user
 
       ::draw2d::matrix m;
 
-      m.translate(-m_ppictureimpl->m_rect.center());
+      m.translate(-m_ppictureimpl->m_rectangle.center());
 
       m.rotate(-m_ppictureimpl->m_dRotate);
 
@@ -407,34 +407,34 @@ namespace user
 
 
 
-   void picture::set_drag_point(const ::pointd & point)
+   void picture::set_drag_point(const ::point_f64 & point)
    {
 
       auto size = get_size();
 
-      m_ppictureimpl->m_pointDrag2.x = point.x * size.cx/m_ppictureimpl->m_rect.width();
+      m_ppictureimpl->m_pointDrag2.x = point.x * size.cx/m_ppictureimpl->m_rectangle.width();
 
-      m_ppictureimpl->m_pointDrag2.y = point.y * size.cy / m_ppictureimpl->m_rect.height();
+      m_ppictureimpl->m_pointDrag2.y = point.y * size.cy / m_ppictureimpl->m_rectangle.height();
 
    }
 
-   ::pointd picture::get_drag_point()
+   ::point_f64 picture::get_drag_point()
    {
 
-      ::pointd point;
+      ::point_f64 point_i32;
 
       auto size = get_size();
 
-      point.x = m_ppictureimpl->m_pointDrag2.x *m_ppictureimpl->m_rect.width() / size.cx;
+      point.x = m_ppictureimpl->m_pointDrag2.x *m_ppictureimpl->m_rectangle.width() / size.cx;
 
-      point.y = m_ppictureimpl->m_pointDrag2.y *m_ppictureimpl->m_rect.height() / size.cy;
+      point.y = m_ppictureimpl->m_pointDrag2.y *m_ppictureimpl->m_rectangle.height() / size.cy;
 
       return point;
 
    }
 
 
-   void picture::drag_rtransform_point_drawing(pointd & point) const
+   void picture::drag_rtransform_point_drawing(point_f64 & point) const
    {
 
       if (m_ppictureimpl == nullptr)
@@ -465,7 +465,7 @@ namespace user
    }
 
 
-   void picture::update_drawing_rect(::sized sizePage, ::sized sizeClient)
+   void picture::update_drawing_rect(::size_f64 sizePage, ::size_f64 sizeClient)
    {
 
       ASSERT(is_picture_enabled());
@@ -473,23 +473,23 @@ namespace user
       if (sizeClient.area() <= 0)
       {
 
-         m_ppictureimpl->m_rectDrawing = m_ppictureimpl->m_rect;
+         m_ppictureimpl->m_rectDrawing = m_ppictureimpl->m_rectangle;
 
       }
       else
       {
 
-         m_ppictureimpl->m_rectDrawing.left = m_ppictureimpl->m_rect.left * sizePage.cx / sizeClient.cx;
-         m_ppictureimpl->m_rectDrawing.right = m_ppictureimpl->m_rect.right * sizePage.cx / sizeClient.cx;
-         m_ppictureimpl->m_rectDrawing.top = m_ppictureimpl->m_rect.top * sizePage.cy / sizeClient.cy;
-         m_ppictureimpl->m_rectDrawing.bottom = m_ppictureimpl->m_rect.bottom * sizePage.cy / sizeClient.cy;
+         m_ppictureimpl->m_rectDrawing.left = m_ppictureimpl->m_rectangle.left * sizePage.cx / sizeClient.cx;
+         m_ppictureimpl->m_rectDrawing.right = m_ppictureimpl->m_rectangle.right * sizePage.cx / sizeClient.cx;
+         m_ppictureimpl->m_rectDrawing.top = m_ppictureimpl->m_rectangle.top * sizePage.cy / sizeClient.cy;
+         m_ppictureimpl->m_rectDrawing.bottom = m_ppictureimpl->m_rectangle.bottom * sizePage.cy / sizeClient.cy;
 
       }
 
    }
 
 
-   void picture::update_screen_rect(::sized sizePage, ::sized sizeClient)
+   void picture::update_screen_rect(::size_f64 sizePage, ::size_f64 sizeClient)
    {
 
       ASSERT(is_picture_enabled());
@@ -497,16 +497,16 @@ namespace user
       if (sizePage.area() <= 0)
       {
 
-         m_ppictureimpl->m_rect = m_ppictureimpl->m_rectDrawing;
+         m_ppictureimpl->m_rectangle = m_ppictureimpl->m_rectDrawing;
 
       }
       else
       {
 
-         m_ppictureimpl->m_rect.left = m_ppictureimpl->m_rectDrawing.left * sizeClient.cx / sizePage.cx;
-         m_ppictureimpl->m_rect.right = m_ppictureimpl->m_rectDrawing.right * sizeClient.cx / sizePage.cx;
-         m_ppictureimpl->m_rect.top = m_ppictureimpl->m_rectDrawing.top * sizeClient.cy / sizePage.cy;
-         m_ppictureimpl->m_rect.bottom = m_ppictureimpl->m_rectDrawing.bottom * sizeClient.cy / sizePage.cy;
+         m_ppictureimpl->m_rectangle.left = m_ppictureimpl->m_rectDrawing.left * sizeClient.cx / sizePage.cx;
+         m_ppictureimpl->m_rectangle.right = m_ppictureimpl->m_rectDrawing.right * sizeClient.cx / sizePage.cx;
+         m_ppictureimpl->m_rectangle.top = m_ppictureimpl->m_rectDrawing.top * sizeClient.cy / sizePage.cy;
+         m_ppictureimpl->m_rectangle.bottom = m_ppictureimpl->m_rectDrawing.bottom * sizeClient.cy / sizePage.cy;
 
       }
 
@@ -515,7 +515,7 @@ namespace user
    void picture::update_region()
    {
 
-      if (m_ppictureimpl->m_rectRegion == m_ppictureimpl->m_rect
+      if (m_ppictureimpl->m_rectRegion == m_ppictureimpl->m_rectangle
             && m_ppictureimpl->m_rectRegionDrawing == m_ppictureimpl->m_rectDrawing)
       {
 
@@ -538,14 +538,14 @@ namespace user
 
       m_ppictureimpl->m_polygon.set_size(4);
 
-      m_ppictureimpl->m_polygon[0] = _transform(m_ppictureimpl->m_rect.top_left());
-      m_ppictureimpl->m_polygon[1] = _transform(m_ppictureimpl->m_rect.top_right());
-      m_ppictureimpl->m_polygon[2] = _transform(m_ppictureimpl->m_rect.bottom_right());
-      m_ppictureimpl->m_polygon[3] = _transform(m_ppictureimpl->m_rect.bottom_left());
+      m_ppictureimpl->m_polygon[0] = _transform(m_ppictureimpl->m_rectangle.top_left());
+      m_ppictureimpl->m_polygon[1] = _transform(m_ppictureimpl->m_rectangle.top_right());
+      m_ppictureimpl->m_polygon[2] = _transform(m_ppictureimpl->m_rectangle.bottom_right());
+      m_ppictureimpl->m_polygon[3] = _transform(m_ppictureimpl->m_rectangle.bottom_left());
 
       m_ppictureimpl->m_polygon.m_bDirty = true;
 
-      m_ppictureimpl->m_rectRegion = m_ppictureimpl->m_rect;
+      m_ppictureimpl->m_rectRegion = m_ppictureimpl->m_rectangle;
       m_ppictureimpl->m_rectRegionDrawing = m_ppictureimpl->m_rectDrawing;
 
    }
@@ -566,25 +566,25 @@ namespace user
    }
 
 
-   bool picture::intersects(const ::rectd & rectParam) const
+   bool picture::intersects(const ::rectangle_f64 & rectParam) const
    {
 
-      rectd rect(rectParam);
+      rectangle_f64 rectangle_i32(rectParam);
 
-      polygond polygon;
+      polygon_f64 polygon_i32;
 
-      polygon.set_size(4);
+      polygon_i32.set_size(4);
 
-      polygon[0] = rect.top_left();
-      polygon[1] = rect.top_right();
-      polygon[2] = rect.bottom_right();
-      polygon[3] = rect.bottom_left();
+      polygon_i32[0] = rectangle.top_left();
+      polygon_i32[1] = rectangle.top_right();
+      polygon_i32[2] = rectangle.bottom_right();
+      polygon_i32[3] = rectangle.bottom_left();
 
-      polygon.m_bDirty = false;
+      polygon_i32.m_bDirty = false;
 
-      polygon.m_bDirtyBoundingRect = false;
+      polygon_i32.m_bDirtyBoundingRect = false;
 
-      polygon.m_rectBounding = rect;
+      polygon_i32.m_rectBounding = rectangle_i32;
 
       if (m_ppictureimpl->m_polygon.get_size() <= 0)
       {
@@ -593,15 +593,15 @@ namespace user
 
       }
 
-      return polygon.overlaps(m_ppictureimpl->m_polygon);
+      return polygon_i32.overlaps(m_ppictureimpl->m_polygon);
 
    }
 
 
-   rectd picture::drawing_bounds() const
+   rectangle_f64 picture::drawing_bounds() const
    {
 
-      rectd rect(0.0, 0.0, 0.0, 0.0);
+      rectangle_f64 rectangle_i32(0.0, 0.0, 0.0, 0.0);
 
       if (m_ppictureimpl->m_polygonDrawing.get_size() <= 0)
       {
@@ -613,36 +613,36 @@ namespace user
       if (m_ppictureimpl->m_polygonDrawing.get_size() > 0)
       {
 
-         rect.left = rect.right = m_ppictureimpl->m_polygonDrawing[0].x;
+         rectangle.left = rectangle.right = m_ppictureimpl->m_polygonDrawing[0].x;
 
-         rect.top = rect.bottom = m_ppictureimpl->m_polygonDrawing[0].y;
+         rectangle.top = rectangle.bottom = m_ppictureimpl->m_polygonDrawing[0].y;
 
          for (index i = 1; i < m_ppictureimpl->m_polygonDrawing.get_size(); i++)
          {
 
-            if (m_ppictureimpl->m_polygonDrawing[i].x < rect.left)
+            if (m_ppictureimpl->m_polygonDrawing[i].x < rectangle.left)
             {
 
-               rect.left = m_ppictureimpl->m_polygonDrawing[i].x;
+               rectangle.left = m_ppictureimpl->m_polygonDrawing[i].x;
 
             }
-            else if (m_ppictureimpl->m_polygonDrawing[i].x > rect.right)
+            else if (m_ppictureimpl->m_polygonDrawing[i].x > rectangle.right)
             {
 
-               rect.right = m_ppictureimpl->m_polygonDrawing[i].x;
+               rectangle.right = m_ppictureimpl->m_polygonDrawing[i].x;
 
             }
 
-            if (m_ppictureimpl->m_polygonDrawing[i].y < rect.top)
+            if (m_ppictureimpl->m_polygonDrawing[i].y < rectangle.top)
             {
 
-               rect.top = m_ppictureimpl->m_polygonDrawing[i].y;
+               rectangle.top = m_ppictureimpl->m_polygonDrawing[i].y;
 
             }
-            else if (m_ppictureimpl->m_polygonDrawing[i].y > rect.bottom)
+            else if (m_ppictureimpl->m_polygonDrawing[i].y > rectangle.bottom)
             {
 
-               rect.bottom = m_ppictureimpl->m_polygonDrawing[i].y;
+               rectangle.bottom = m_ppictureimpl->m_polygonDrawing[i].y;
 
             }
 
@@ -650,14 +650,14 @@ namespace user
 
       }
 
-      return rect;
+      return rectangle;
 
    }
 
-   pointd_array & picture::drawing_polygon() const
+   point_f64_array & picture::drawing_polygon() const
    {
 
-      rectd rect(0.0, 0.0, 0.0, 0.0);
+      rectangle_f64 rectangle_i32(0.0, 0.0, 0.0, 0.0);
 
       if (m_ppictureimpl->m_polygonDrawing.get_size() <= 0)
       {
@@ -671,7 +671,7 @@ namespace user
    }
 
 
-   bool picture::intersects_drawing(const polygond & polygon) const
+   bool picture::intersects_drawing(const polygon_f64 & polygon_i32) const
    {
 
       ASSERT(is_picture_enabled());
@@ -683,19 +683,19 @@ namespace user
 
       }
 
-      return polygon.overlaps( m_ppictureimpl->m_polygonDrawing);
+      return polygon_i32.overlaps( m_ppictureimpl->m_polygonDrawing);
 
    }
 
 
-   bool picture::intersects_drawing(const ::rectd & rectParam) const
+   bool picture::intersects_drawing(const ::rectangle_f64 & rectParam) const
    {
 
       ASSERT(is_picture_enabled());
 
-      polygond polygon;
+      polygon_f64 polygon_i32;
 
-      polygon.set_rect(rectParam);
+      polygon_i32.set_rect(rectParam);
 
       if (m_ppictureimpl->m_polygonDrawing.get_size() <= 0)
       {
@@ -704,7 +704,7 @@ namespace user
 
       }
 
-      return polygon.overlaps(m_ppictureimpl->m_polygonDrawing);
+      return polygon_i32.overlaps(m_ppictureimpl->m_polygonDrawing);
 
    }
 
@@ -717,15 +717,15 @@ namespace user
    }
 
 
-   ::sized picture::get_size()
+   ::size_f64 picture::get_size()
    {
 
-      return ::sized(128, 128);
+      return ::size_f64(128, 128);
 
    }
 
 
-   ::sized picture::get_request_size()
+   ::size_f64 picture::get_request_size()
    {
 
       return get_size();
@@ -794,7 +794,7 @@ namespace user
    }
 
 
-   //int picture::on_hit_test_cursor(pointd point)
+   //int picture::on_hit_test_cursor(point_f64 point_i32)
    //{
 
    //   if (!is_valid())
@@ -806,7 +806,7 @@ namespace user
 
    //   _rtransform_point(point);
 
-   //   if(m_ppictureimpl->m_rect.contains(point))
+   //   if(m_ppictureimpl->m_rectangle.contains(point))
    //   {
 
    //      return 0;
@@ -818,7 +818,7 @@ namespace user
    //}
 
 
-   ::image_pointer picture::defer_draw_drop_shadow_phase1(rect & rectDropShadow, ::draw2d::fastblur & blurDropShadow, ::image_pointer & pimageDropShadow, ::image_pointer pimage)
+   ::image_pointer picture::defer_draw_drop_shadow_phase1(rectangle_i32 & rectDropShadow, ::draw2d::fastblur & blurDropShadow, ::image_pointer & pimageDropShadow, ::image_pointer pimage)
    {
 
       if (m_ppictureimpl->m_bGlowDropShadow)
@@ -828,7 +828,7 @@ namespace user
 
          int iBlur = (int) ceil(dBlur);
 
-         ::rect rectDib(pimage->get_size());
+         ::rectangle_i32 rectDib(pimage->get_size());
 
          int iShift = iBlur * 2;
 
@@ -843,7 +843,7 @@ namespace user
 
             pimageDropShadow->fill(0);
 
-            pimageDropShadow->g()->stretch(pimage->rect({ iShift, iShift }), pimage->g());
+            pimageDropShadow->g()->stretch(pimage->rectangle_i32({ iShift, iShift }), pimage->g());
 
             pimageDropShadow->paint_rgb(m_ppictureimpl->m_hlsGlowDropShadow);
 
@@ -857,17 +857,17 @@ namespace user
 
    }
 
-   void picture::defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const rect & rect, ::draw2d::fastblur & pblurDropShadow, ::image_pointer & pimageDropShadow)
+   void picture::defer_draw_drop_shadow_phase2(::draw2d::graphics_pointer & pgraphics, const rectangle_i32 & rectangle, ::draw2d::fastblur & pblurDropShadow, ::image_pointer & pimageDropShadow)
    {
 
       if (m_ppictureimpl->m_bGlowDropShadow)
       {
 
-         ::rect rectDropShadow(rect);
+         ::rectangle_i32 rectDropShadow(rectangle);
 
          rectDropShadow.offset(m_ppictureimpl->m_iGlowDropShadowOffset, m_ppictureimpl->m_iGlowDropShadowOffset);
 
-         pgraphics->stretch(rectDropShadow, pimageDropShadow->g(), pimageDropShadow->rect());
+         pgraphics->stretch(rectDropShadow, pimageDropShadow->g(), pimageDropShadow->rectangle_i32());
 
       }
 
@@ -881,10 +881,10 @@ namespace user
    }
 
 
-   void picture::hit_test(::user::item & item, const ::point & point)
+   void picture::hit_test(::user::item & item, const ::point_i32 & point)
    {
 
-      item.m_pointScreen = point;
+      item.m_pointScreen = point_i32;
 
       item.m_pointClient = _rtransform(item.m_pointScreen);
 
@@ -896,19 +896,19 @@ namespace user
 
 
 
-   ::rectd picture::get_rect_for_picture2()
+   ::rectangle_f64 picture::get_rect_for_picture2()
    {
 
       auto size = m_ppictureimpl->m_rectDrawing.size() / 2.0;
 
       auto pointDrag = get_drag_point();
 
-      size = ::sized(pointDrag.x * m_ppictureimpl->m_rectDrawing.width(),
+      size = ::size_f64(pointDrag.x * m_ppictureimpl->m_rectDrawing.width(),
          pointDrag.y * m_ppictureimpl->m_rectDrawing.height()) - size;
 
-      rectd rect(__pointd(size), ::sized(m_ppictureimpl->m_rectDrawing.size()));
+      rectangle_f64 rectangle_i32(__pointd(size), ::size_f64(m_ppictureimpl->m_rectDrawing.size()));
 
-      return rect;
+      return rectangle;
 
    }
 
@@ -927,18 +927,18 @@ namespace user
 
       ::draw2d::matrix mRot;
 
-      ::rectd rectClip(m_ppictureimpl->m_rectDrawing);
+      ::rectangle_f64 rectClip(m_ppictureimpl->m_rectDrawing);
 
-      ::polygond polygon;
+      ::polygon_f64 polygon_i32;
 
-      polygon.set_size(4);
+      polygon_i32.set_size(4);
 
-      polygon[0] = _transform_drawing(rectClip.top_left());
-      polygon[1] = _transform_drawing(rectClip.top_right());
-      polygon[2] = _transform_drawing(rectClip.bottom_right());
-      polygon[3] = _transform_drawing(rectClip.bottom_left());
+      polygon_i32[0] = _transform_drawing(rectClip.top_left());
+      polygon_i32[1] = _transform_drawing(rectClip.top_right());
+      polygon_i32[2] = _transform_drawing(rectClip.bottom_right());
+      polygon_i32[3] = _transform_drawing(rectClip.bottom_left());
 
-      pgraphics->intersect_clip(polygon);
+      pgraphics->intersect_clip(polygon_i32);
 
       mRot.append(::draw2d::matrix::rotation(m_ppictureimpl->m_dRotate));
 
@@ -951,8 +951,8 @@ namespace user
       pgraphics->prepend(::draw2d::matrix::scaling(m_ppictureimpl->m_dZoom, m_ppictureimpl->m_dZoom));
 
       pgraphics->prepend(::draw2d::matrix::translation(
-         -m_ppictureimpl->m_rect.width() / 2,
-         -m_ppictureimpl->m_rect.height() / 2));
+         -m_ppictureimpl->m_rectangle.width() / 2,
+         -m_ppictureimpl->m_rectangle.height() / 2));
 
       auto pointDrag = get_drag_point();
 
@@ -978,14 +978,14 @@ namespace user
 
 
 
-   void picture::move_to(pointd point, ::sized sizePage, ::sized sizeClient, const ::rectd & rectMargin)
+   void picture::move_to(point_f64 point_i32, ::size_f64 sizePage, ::size_f64 sizeClient, const ::rectangle_f64 & rectMargin)
    {
 
-      m_ppictureimpl->m_rect.move_to(point);
+      m_ppictureimpl->m_rectangle.move_to(point);
 
       update_region();
 
-      m_ppictureimpl->m_rect._001Constraint(rectMargin, m_ppictureimpl->m_rectBounding);
+      m_ppictureimpl->m_rectangle._001Constraint(rectMargin, m_ppictureimpl->m_rectBounding);
 
       update_drawing_rect(sizePage, sizeClient);
 
@@ -1000,13 +1000,13 @@ namespace user
    void picture::picture_impl::exchange(::stream & stream)
    {
 
-      __EXCHANGE(rect);
+      __EXCHANGE(rectangle);
       __EXCHANGE(rectDrawing);
       __EXCHANGE(rectCursor);
       __EXCHANGE(bDrag);
       __EXCHANGE(dRotate);
       __EXCHANGE(rectBounding);
-      __EXCHANGE(polygon);
+      __EXCHANGE(polygon_i32);
       __EXCHANGE(polygonDrawing);
       __EXCHANGE(ptaCursor);
       __EXCHANGE(dZoom);

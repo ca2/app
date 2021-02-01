@@ -78,7 +78,7 @@ namespace graphics
    }
 
 
-   ::size graphics::window_size()
+   ::size_i32 graphics::window_size()
    {
 
       if (::is_null(m_pimpl))
@@ -151,7 +151,7 @@ namespace graphics
    }
 
 
-   bool graphics::update_buffer(const ::size & size, int iStrideParam)
+   bool graphics::update_buffer(const ::size_i32 & size, int iStrideParam)
    {
 
       return false;
@@ -195,7 +195,7 @@ namespace graphics
    }
 
 
-   i64 graphics::_001GetTopLeftWeightedOpaqueArea(LPCRECT32 lpcrect)
+   i64 graphics::_001GetTopLeftWeightedOpaqueArea(const RECTANGLE_I32 * lpcrect)
    {
 
       sync_lock sl(get_screen_sync());

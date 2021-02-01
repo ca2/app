@@ -24,7 +24,7 @@ namespace draw2d_xlib
       bool                    m_bMapped;
       //HBITMAP               m_hbitmapOriginal;
       HBITMAP                 m_hbitmap;
-      class size64            m_sizeWnd;
+      class size_i64            m_sizeWnd;
       BITMAPINFO              m_bitmapinfo;
       XImage *                m_pimage;
 
@@ -57,7 +57,7 @@ namespace draw2d_xlib
 
 
       using object::create;
-      bool create(::size size);
+      bool create(::size_i32 size_i32);
       bool create(i32 iWidth, i32 iHeight);
       bool create(::image::image * pimage);
       bool Destroy();
@@ -65,10 +65,10 @@ namespace draw2d_xlib
 
       using image::from;
       bool from(::image::image * pimage);
-      bool from(point ptDest, ::draw2d::graphics * pgraphics, const ::point & point, ::size sz);
+      bool from(point_i32 ptDest, ::draw2d::graphics * pgraphics, const ::point_i32 & point, ::size_i32 sz);
 
       using image::to;
-      bool to(::draw2d::graphics * pgraphics, const ::point & point, ::size size, point ptSrc);
+      bool to(::draw2d::graphics * pgraphics, const ::point_i32 & point, ::size_i32 size, point_i32 ptSrc);
 
       virtual bool update_window(::window * pwnd, ::message::message * pmessage);
       virtual bool print_window(::window * pwnd, ::message::message * pmessage);
@@ -96,10 +96,10 @@ namespace draw2d_xlib
       //void mult_alpha(::image::image * pimageWork, bool bPreserveAlpha = true);
       //void set_rgb(i32 R, i32 G, i32 B);
 
-      //void rotate(::image::image * pimage, const ::rect & rect, double dAngle, double dScale);
+      //void rotate(::image::image * pimage, const ::rectangle_i32 & rectangle, double dAngle, double dScale);
       //void rotate(::image::image * pimage, double dAngle, double dScale);
       //void Rotate034(::image::image * pimage, double dAngle, double dScale);
-      //void RadialFill(byte a, byte rect, byte g, byte b, i32 x, i32 y, i32 iRadius);
+      //void RadialFill(byte a, byte rectangle_i32, byte g, byte b, i32 x, i32 y, i32 iRadius);
       //void RadialFill(
       //   byte a1, byte r1, byte g1, byte b1, // center colors
       //   byte a2, byte r2, byte g2, byte b2, // border colors
@@ -150,7 +150,7 @@ namespace draw2d_xlib
       void Line ( i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B );
       void LineGlass ( i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B, i32 A );*/
 
-      //void create_frame(::size size, i32 iFrameCount);
+      //void create_frame(::size_i32 size, i32 iFrameCount);
       //void set_frame2(void * lpdata, i32 iFrame, i32 iFrameCount);
       //void set_frame1(void * lpdata, i32 iFrame, i32 iFrameCount);
       //void get_frame(void * lpdata, i32 iFrame, i32 iFrameCount);

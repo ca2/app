@@ -56,7 +56,7 @@ thread_local size_t t_sizeDemangle;
 bool demangle (string & str, const char * pszType)
 {
 
-   //cslock cs(g_pcsDemangle);
+   //critical_section_lock cs(g_pcsDemangle);
 
    int status = -4;
 

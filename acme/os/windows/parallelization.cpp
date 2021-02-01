@@ -1,28 +1,5 @@
 ﻿#include "framework.h"
-
-
-
-
-
-
-//#include "framework.h"
-//
-//
-//
-//thread_data::thread_data()
-//{
-//
-//   m_dwIndex = thread_alloc();
-//
-//}
-//
-//
-//thread_data::~thread_data()
-//{
-//
-//   thread_free(m_dwIndex);
-//
-//}
+#include "acme/operating_system.h"
 
 
 static HANDLE g_hMainThread = nullptr;
@@ -33,32 +10,38 @@ void set_main_hthread(hthread_t hthread)
 
    MSG msg;
 
-   PeekMessage(&msg,nullptr,0,0xffffffff,FALSE);
+   PeekMessage(&msg,nullptr,0,0xffffffff,false);
 
-   g_hMainThread = hthread;
+   g_hMainThread = (HANDLE) hthread;
 
 }
+
 
 void set_main_ithread(ithread_t ithread)
 {
 
    MSG msg;
 
-   PeekMessage(&msg,nullptr,0,0xffffffff,FALSE);
+   PeekMessage(&msg,nullptr,0,0xffffffff,false);
 
    g_iMainThread = ithread;
 
 }
 
 
-HANDLE get_main_hthread()
+hthread_t get_main_hthread()
 {
-   return g_hMainThread;
+
+   return (hthread_t) g_hMainThread;
 
 }
-::u32   get_main_ithread()
+
+
+ithread_t get_main_ithread()
 {
-   return g_iMainThread;
+
+   return (ithread_t) g_iMainThread;
+
 }
 
 
@@ -70,11 +53,11 @@ void attach_thread_input_to_main_thread(bool bAttach)
    if (bAttach)
    {
 
-      PeekMessage(&msg, nullptr, 0, 0xffffffff, FALSE);
+      PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
 
    }
 
-   AttachThreadInput(::GetCurrentThreadId(),get_main_ithread(),bAttach ? TRUE : FALSE);
+   AttachThreadInput(::GetCurrentThreadId(),get_main_ithread(),bAttach ? true : false);
 
 }
 
@@ -82,7 +65,7 @@ void attach_thread_input_to_main_thread(bool bAttach)
 hthread_t get_current_hthread()
 {
 
-   return ::GetCurrentThread();
+   return (hthread_t) ::GetCurrentThread();
 
 }
 
@@ -90,7 +73,7 @@ hthread_t get_current_hthread()
 ithread_t get_current_ithread()
 {
 
-   return ::GetCurrentThreadId();
+   return (ithread_t) ::GetCurrentThreadId();
 
 }
 

@@ -1,6 +1,6 @@
 #include "framework.h"
 //#include "core/user/userex/_userex.h"
-// pgraphics->GetTextExtent("->:<-"); // oh no!! omg!! The size is the size of the alien!!
+// pgraphics->GetTextExtent("->:<-"); // oh no!! omg!! The size_i32 is the size_i32 of the alien!!
 #define MAGIC_PALACE_TAB_SPLT "->:<-"
 #define MAGIC_PALACE_TAB_SIZE "-/-"
 #define MAGIC_PALACE_TAB_TEXT "/"
@@ -253,7 +253,7 @@ namespace tranquillum
 
             tab_pane.do_split_layout(ptab->m_dcextension, pgraphics);
 
-            ::size size;
+            ::size_i32 size;
 
             ptab->m_dcextension.GetTextExtent(pgraphics, str, size);
 
@@ -301,7 +301,7 @@ namespace tranquillum
 
          ptab->get_data()->m_iTabHeight = iTabHeight;
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
          ptab->get_client_rect(rectClient);
 
          ptab->get_data()->m_rectTab.left = rectClient.left;
@@ -329,7 +329,7 @@ namespace tranquillum
          i32 cy;
          pgraphics->set_font(ptab, ::user::e_element_none, ::user::e_state_selected);
 
-         ::rect rectClient;
+         ::rectangle_i32 rectClient;
          ptab->get_client_rect(rectClient);
          int x = rectClient.left;
 
@@ -346,7 +346,7 @@ namespace tranquillum
 
             tab_pane.do_split_layout(ptab->m_dcextension, pgraphics);
 
-            ::size size;
+            ::size_i32 size;
 
             ptab->m_dcextension.GetTextExtent(pgraphics, str, size);
 
@@ -374,7 +374,7 @@ namespace tranquillum
 
             //            string str = tab_pane.get_title();
 
-            //            ::size size;
+            //            ::size_i32 size;
 
             ixAdd = 5;
 
@@ -437,7 +437,7 @@ namespace tranquillum
          m_rectTab.height(),
          0);*/
 
-         rect & rectTabClient = ptab->get_data()->m_rectTabClient;
+         rectangle_i32 & rectTabClient = ptab->get_data()->m_rectTabClient;
 
          //bool bTabbedClient = ptab->m_bShowTabs && !ptab->top_level_frame()->layout().is_full_screen();
          bool bTabbedClient = ptab->m_bShowTabs;
@@ -474,14 +474,14 @@ namespace tranquillum
    bool style::_001TabOnDrawSchema01(::draw2d::graphics_pointer & pgraphics, ::user::tab * ptab)
    {
 
-      ::rect rect;
-      ::rect rectBorder;
-      ::rect rectText;
-      ::rect rectClient;
-      ::rect rectIcon;
-      ::rect rectClose;
+      ::rectangle_i32 rectangle;
+      ::rectangle_i32 rectBorder;
+      ::rectangle_i32 rectText;
+      ::rectangle_i32 rectClient;
+      ::rectangle_i32 rectIcon;
+      ::rectangle_i32 rectClose;
 
-      ::rect r1;
+      ::rectangle_i32 r1;
       ptab->get_client_rect(r1);
 
       if (!ptab->get_data()->m_bNoClient)
@@ -497,7 +497,7 @@ namespace tranquillum
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      ::rect rcTab;
+      ::rectangle_i32 rcTab;
 
       rcTab = ptab->get_data()->m_rectTab;
 
@@ -507,16 +507,16 @@ namespace tranquillum
          pgraphics->fill_rect(rcTab, ARGB(255, 255, 255, 255));
 
       }
-      ::rect rcTape(rcTab);
+      ::rectangle_i32 rcTape(rcTab);
 
       rcTape.top = rcTape.bottom - 8;
 
       pgraphics->fill_rect(rcTape, ARGB(255, 192, 192, 192));
 
 
-      ::rect rcTabs(rcTab);
+      ::rectangle_i32 rcTabs(rcTab);
 
-      ::rect rcClient;
+      ::rectangle_i32 rcClient;
 
       rcClient = ptab->get_data()->m_rectTabClient;
 
@@ -554,7 +554,7 @@ namespace tranquillum
 
          iTab++;
 
-         if (!ptab->get_element_rect(iTab, rect, ::user::e_element_tab))
+         if (!ptab->get_element_rect(iTab, rectangle_i32, ::user::e_element_tab))
             continue;
 
          if (!ptab->get_element_rect(iTab, rectBorder, ::user::e_element_border))
@@ -582,7 +582,7 @@ namespace tranquillum
                if (ptab->get_data()->m_idaSel.contains(pane.m_id))
                {
 
-                  ::rect rSel;
+                  ::rectangle_i32 rSel;
 
                   rSel = rectClient;
 
@@ -718,9 +718,9 @@ namespace tranquillum
                if (ptab->get_data()->m_idaSel.contains(pane.m_id))
                {
 
-                  ::rect rSel;
+                  ::rectangle_i32 rSel;
 
-                  rSel = rect;
+                  rSel = rectangle_i32;
 
                   rSel.bottom = rectClient.top + 3;
 
@@ -805,9 +805,9 @@ namespace tranquillum
 
             }
 
-            ::rect rVertLine;
+            ::rectangle_i32 rVertLine;
 
-            rVertLine = rect;
+            rVertLine = rectangle_i32;
 
             rVertLine.left = rVertLine.right - 1;
             pgraphics->fill_rect(rVertLine, ARGB(127, 80, 80, 80));
@@ -879,7 +879,7 @@ namespace tranquillum
 
 
 
-   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::rect & rectParam,::draw2d::brush_pointer & brushText)
+   void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane,::user::tab * ptab,::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectParam,::draw2d::brush_pointer & brushText)
    {
 
       string_array & straTitle = pane.m_straTitle;
@@ -895,22 +895,22 @@ namespace tranquillum
       else
       {
 
-         ::rect rectText(rectParam);
+         ::rectangle_i32 rectText(rectParam);
 
          ::draw2d::font_pointer font;
 
          font = pgraphics->get_current_font();
 
-         size sSep = ptab->get_data()->m_sizeSep;
+         size_i32 sSep = ptab->get_data()->m_sizeSep;
 
          auto pstyle = ptab->get_style(pgraphics);
 
-         ::rect rectEmp;
+         ::rectangle_i32 rectEmp;
 
          for(index i = 0; i < straTitle.get_size(); i++)
          {
             string str = straTitle[i];
-            size s = pane.m_sizeaText[i];
+            size_i32 s = pane.m_sizeaText[i];
             rectText.right =rectText.left + s.cx;
             pgraphics->_DrawText(str,rectText,e_align_bottom_left, e_draw_text_no_prefix);
             rectText.left += s.cx;
@@ -1000,9 +1000,9 @@ namespace tranquillum
 
    //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-   //   ::rect rectItem;
+   //   ::rectangle_i32 rectItem;
 
-   //   ::rect rectImage;
+   //   ::rectangle_i32 rectImage;
 
    //   pgraphics->set_font(ptoolbar);
 
@@ -1072,7 +1072,7 @@ namespace tranquillum
 
    //   if ((nStyle & e_toolbar_item_style_separator) != 0)
    //   {
-   //      ::rect rectSeparator;
+   //      ::rectangle_i32 rectSeparator;
    //      rectSeparator.left = (rectImage.left + rectImage.right) / 2 - 1;
    //      rectSeparator.right = rectSeparator.left + 2;
    //      rectSeparator.top = rectImage.top;
@@ -1128,7 +1128,7 @@ namespace tranquillum
    //         else
    //         {
 
-   //            ::rect rectShadow;
+   //            ::rectangle_i32 rectShadow;
 
    //            ptoolbar->_001GetElementRect(iItem, rectShadow, ::user::toolbar::element_item_hover);
 
@@ -1145,7 +1145,7 @@ namespace tranquillum
 
    //               ::draw2d::pen * ppenOld = pgraphics->set(pen);
    //               ::draw2d::brush * pbrushOld = pgraphics->set(brush);
-   //               pgraphics->rectangle(rectItem);
+   //               pgraphics->rectangle_i32(rectItem);
    //               pgraphics->set(ppenOld);
    //               pgraphics->set(pbrushOld);
 
@@ -1154,21 +1154,21 @@ namespace tranquillum
    //            if (item.m_pimage->is_set())
    //            {
 
-   //               ::rect rect;
+   //               ::rectangle_i32 rectangle;
 
-   //               ptoolbar->_001GetElementRect(iItem, rect, ::user::toolbar::element_image_hover);
+   //               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image_hover);
 
-   //               System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), nullptr, 0.80);
+   //               System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
 
    //            }
    //            else if (uImage != 0xffffffffu)
    //            {
 
-   //               ::rect rect;
+   //               ::rectangle_i32 rectangle;
 
-   //               ptoolbar->_001GetElementRect(iItem, rect, ::user::toolbar::element_item_hover);
+   //               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_item_hover);
 
-   //               psession->userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uImage, rect.top_left(), 0);
+   //               psession->userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
 
    //               psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uImage, rectImage.top_left(), 0);
    //            }
@@ -1190,7 +1190,7 @@ namespace tranquillum
    //            brush->create_solid(ARGB(255, 255, 255, 255));
    //            ::draw2d::pen * ppenOld = pgraphics->set(pen);
    //            ::draw2d::brush * pbrushOld = pgraphics->set(brush);
-   //            pgraphics->rectangle(rectItem);
+   //            pgraphics->rectangle_i32(rectItem);
    //            pgraphics->set(ppenOld);
    //            pgraphics->set(pbrushOld);
 
@@ -1199,11 +1199,11 @@ namespace tranquillum
    //         if (item.m_pimage->is_set())
    //         {
 
-   //            ::rect rect;
+   //            ::rectangle_i32 rectangle;
 
-   //            ptoolbar->_001GetElementRect(iItem, rect, ::user::toolbar::element_image_press);
+   //            ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image_press);
 
-   //            System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), nullptr, 1.0);
+   //            System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
 
    //         }
    //         else if (uImage != 0xffffffff)
@@ -1236,11 +1236,11 @@ namespace tranquillum
    //         if (item.m_pimage->is_set())
    //         {
 
-   //            ::rect rect;
+   //            ::rectangle_i32 rectangle;
 
-   //            ptoolbar->_001GetElementRect(iItem, rect, ::user::toolbar::element_image);
+   //            ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image);
 
-   //            System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), nullptr, 0.20);
+   //            System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
 
    //         }
    //         else if (uImage != 0xffffffff)
@@ -1270,7 +1270,7 @@ namespace tranquillum
 
    //      ptoolbar->select_font(pgraphics, ::user::font_toolbar);
 
-   //      ::rect rectText;
+   //      ::rectangle_i32 rectText;
 
    //      ::draw2d::brush_pointer brushText(e_create);
 
@@ -1306,9 +1306,9 @@ namespace tranquillum
 
    //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-   //   ::rect rectItem;
+   //   ::rectangle_i32 rectItem;
 
-   //   ::rect rectImage;
+   //   ::rectangle_i32 rectImage;
 
    //   ptoolbar->select_font(pgraphics, ::user::font_toolbar);
 
@@ -1378,7 +1378,7 @@ namespace tranquillum
 
    //   if (item.m_id.compare_ci("separator") == 0)
    //   {
-   //      /*::rect rectSeparator;
+   //      /*::rectangle_i32 rectSeparator;
    //      rectSeparator.left = (rectImage.left + rectImage.right) / 2 - 1;
    //      rectSeparator.right = rectSeparator.left + 2;
    //      rectSeparator.top = rectImage.top;
@@ -1434,7 +1434,7 @@ namespace tranquillum
    //         else
    //         {
 
-   //            ::rect rectShadow;
+   //            ::rectangle_i32 rectShadow;
 
    //            ptoolbar->_001GetElementRect(iItem, rectShadow, ::user::toolbar::element_item_hover);
 
@@ -1449,7 +1449,7 @@ namespace tranquillum
    //               brush->create_solid(ptoolbar->_001GetColor(::user::color_button_background_hover));
    //               ::draw2d::pen * ppenOld = pgraphics->set(pen);
    //               ::draw2d::brush * pbrushOld = pgraphics->set(brush);
-   //               pgraphics->rectangle(rectItem);
+   //               pgraphics->rectangle_i32(rectItem);
    //               pgraphics->set(ppenOld);
    //               pgraphics->set(pbrushOld);
 
@@ -1458,21 +1458,21 @@ namespace tranquillum
    //            if (item.m_pimage->is_set())
    //            {
 
-   //               ::rect rect;
+   //               ::rectangle_i32 rectangle;
 
-   //               ptoolbar->_001GetElementRect(iItem, rect, ::user::toolbar::element_image_hover);
+   //               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image_hover);
 
-   //               System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), nullptr, 0.80);
+   //               System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
 
    //            }
    //            else if (uImage != 0xffffffffu)
    //            {
 
-   //               ::rect rect;
+   //               ::rectangle_i32 rectangle;
 
-   //               ptoolbar->_001GetElementRect(iItem, rect, ::user::toolbar::element_item_hover);
+   //               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_item_hover);
 
-   //               psession->userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uImage, rect.top_left(), 0);
+   //               psession->userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
 
    //               psession->userex()->menu()->MenuV033GetImageList()->draw(pgraphics, uImage, rectImage.top_left(), 0);
    //            }
@@ -1494,7 +1494,7 @@ namespace tranquillum
    //            brush->create_solid(ptoolbar->_001GetColor(::user::color_button_background_press));
    //            ::draw2d::pen * ppenOld = pgraphics->set(pen);
    //            ::draw2d::brush * pbrushOld = pgraphics->set(brush);
-   //            pgraphics->rectangle(rectItem);
+   //            pgraphics->rectangle_i32(rectItem);
    //            pgraphics->set(ppenOld);
    //            pgraphics->set(pbrushOld);
 
@@ -1503,11 +1503,11 @@ namespace tranquillum
    //         if (item.m_pimage->is_set())
    //         {
 
-   //            ::rect rect;
+   //            ::rectangle_i32 rectangle;
 
-   //            ptoolbar->_001GetElementRect(iItem, rect, ::user::toolbar::element_image_press);
+   //            ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image_press);
 
-   //            System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), nullptr, 1.0);
+   //            System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
 
    //         }
    //         else if (uImage != 0xffffffff)
@@ -1554,7 +1554,7 @@ namespace tranquillum
    //                                ::user::color_button_background_disabled));
    //            ::draw2d::pen * ppenOld = pgraphics->set(pen);
    //            ::draw2d::brush * pbrushOld = pgraphics->set(brush);
-   //            pgraphics->rectangle(rectItem);
+   //            pgraphics->rectangle_i32(rectItem);
    //            pgraphics->set(ppenOld);
    //            pgraphics->set(pbrushOld);
 
@@ -1563,11 +1563,11 @@ namespace tranquillum
    //         if (item.m_pimage->is_set())
    //         {
 
-   //            ::rect rect;
+   //            ::rectangle_i32 rectangle;
 
-   //            ptoolbar->_001GetElementRect(iItem, rect, ::user::toolbar::element_image);
+   //            ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image);
 
-   //            System.imaging().color_blend(pgraphics, rect.top_left(), rect.size(), item.m_pimage->g(), nullptr, 0.20);
+   //            System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
 
    //         }
    //         else if (uImage != 0xffffffff)
@@ -1597,7 +1597,7 @@ namespace tranquillum
 
    //      ptoolbar->select_font(pgraphics, ::user::font_toolbar);
 
-   //      ::rect rectText;
+   //      ::rectangle_i32 rectText;
 
    //      ::draw2d::brush_pointer brushText(e_create);
 
@@ -1635,7 +1635,7 @@ namespace tranquillum
    bool style::_001OnDrawSplitLayout(::draw2d::graphics_pointer & pgraphics, ::user::split_layout * psplitlayout)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       psplitlayout->get_client_rect(rectClient);
 

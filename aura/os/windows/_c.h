@@ -23,7 +23,7 @@
 //
 //CLASS_DECL_AURA HMONITOR GetUiMonitorHandle(HWND hwnd);
 //CLASS_DECL_AURA HMONITOR GetPrimaryMonitorHandle();
-//CLASS_DECL_AURA bool GetPrimaryMonitorRect(RECT32 * prect);
+//CLASS_DECL_AURA bool GetPrimaryMonitorRect(RECTANGLE_I32 * prectangle);
 //
 //
 //
@@ -60,7 +60,7 @@
 //
 //
 //#define MESSAGE MSG
-//#define LPMESSAGE LPMSG
+//#define MESSAGE * LPMSG
 //
 //
 //

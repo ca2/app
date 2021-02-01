@@ -15,11 +15,11 @@ public:
    ::draw2d::graphics_pointer       m_pgraphics;
    double                           m_dSpeed;
    double                           m_dIsotropicRate;
-   ::size                           m_sizeAlloc;
+   ::size_i32                           m_sizeAlloc;
    mutable bool                     m_bTrans; // optionally used by implementation
    mutable bool                     m_bMapped; // optionally used by implementation
    bool                             m_bReduced; // optionally used by implementation
-   point                            m_point;
+   point_i32                            m_point;
    double                           m_dFontFactor;
    ::draw2d::enum_alpha_mode        m_ealphamode;
    bool                             m_bOwn;

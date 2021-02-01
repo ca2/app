@@ -11,7 +11,7 @@ namespace str
    inline  constexpr auto     char_length_to_byte_length(const_ansichar_trigger, strsize nCharLength);
    inline  constexpr auto     byte_length_to_char_length(const_ansichar_trigger, memsize nByteLength);
 
-   inline  ansichar *         char_next(const ansichar * point) noexcept;
+   inline  ansichar *         char_next(const ansichar * point_i32) noexcept;
    inline  bool               isalpha(ansichar ch) noexcept;
    inline  bool               isdigit(ansichar ch) noexcept;
    inline  bool               isspace(ansichar ch) noexcept;
@@ -45,19 +45,12 @@ namespace str
 
    inline  u32                format_message(u32 dwFlags, const void * pSource, u32 dwMessageID, u32 dwLanguageID, ansichar * pszBuffer, u32 nSize, va_list * pArguments) noexcept;
    inline  strsize            string_safe_length(const ansichar * psz) noexcept;
-   inline  u32                get_environment_variable(const ansichar * pszVar, ansichar * pszBuffer, u32 dwSize);
+   CLASS_DECL_ACME u32        get_environment_variable(const ansichar * pszVar, ansichar * pszBuffer, u32 dwSize);
 
    inline  void               copy_string(ansichar * pszDst, const ansichar * pszSrc);
    inline  void               copy_chars(ansichar * pchDest, const ansichar * pchSrc, strsize nChars) noexcept;
    inline  void               copy_chars(ansichar * pchDest, size_t nDestLen, const ansichar * pchSrc, strsize nChars) noexcept;
    inline  void               copy_chars_overlapped(ansichar * pchDest, const ansichar * pchSrc, strsize nChars) noexcept;
-
-#ifdef WINDOWS
-
-   inline  BSTR               AllocSysString(const ansichar * pchData, strsize nDataLength) noexcept;
-   inline  bool               ReAllocSysString(BSTR * pbstr, const ansichar * pchData, strsize nDataLength) noexcept;
-
-#endif
 
 } // namespace str
 

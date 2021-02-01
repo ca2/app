@@ -48,10 +48,10 @@ namespace user
       return (this);
    }
 
-   void tool_tip_tool::BaseToolTipGetRect(RECT32 * prect)
+   void tool_tip_tool::BaseToolTipGetRect(RECTANGLE_I32 * prectangle)
 
    {
-      UNREFERENCED_PARAMETER(prect);
+      UNREFERENCED_PARAMETER(prectangle);
 
    }
 

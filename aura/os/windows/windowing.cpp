@@ -12,7 +12,7 @@
 CLASS_DECL_AURA int_bool os_init_windowing()
 {
 
-   return TRUE;
+   return true;
 
 }
 
@@ -44,13 +44,13 @@ top_level_enum::top_level_enum(bool bDesktop, bool bVisible) :
    if (bDesktop)
    {
 
-      ::EnumDesktopWindows(nullptr, &::top_level_enum::EnumWindowsProc, (LPARAM)this);
+      ::EnumDesktopWindows(nullptr, &::top_level_enum::EnumWindowsProc, (lparam)this);
 
    }
    else
    {
 
-      ::EnumWindows(&::top_level_enum::EnumWindowsProc, (LPARAM)this);
+      ::EnumWindows(&::top_level_enum::EnumWindowsProc, (lparam)this);
 
    }
 
@@ -64,7 +64,7 @@ top_level_enum::~top_level_enum()
 }
 
 
-BOOL CALLBACK top_level_enum::EnumWindowsProc(oswindow oswindow, LPARAM lParam)
+BOOL CALLBACK top_level_enum::EnumWindowsProc(oswindow oswindow, lparam lParam)
 {
 
    top_level_enum * ptoplevelenum = (top_level_enum *) lParam;
@@ -83,7 +83,7 @@ BOOL CALLBACK top_level_enum::EnumWindowsProc(oswindow oswindow, LPARAM lParam)
 }
 
 
-int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int iMargin)
+int_bool point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, int iMargin)
 {
 
    auto poswindowa = get_top_level_windows();
@@ -95,7 +95,7 @@ int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int
 
    }
 
-   ::rect rectWindow;
+   ::rectangle_i32 rectWindow;
 
    for(auto & oswindow : *poswindowa)
    {
@@ -113,7 +113,7 @@ int_bool point_is_window_origin(POINT32 ptHitTest, oswindow oswindowExclude, int
          if (::GetWindowRect(oswindow, rectWindow))
          {
 
-            ::rect rectHitTest;
+            ::rectangle_i32 rectHitTest;
             
             rectHitTest.set(rectWindow.origin(), ::size());
 
@@ -179,7 +179,7 @@ void defer_term_ui()
 }
 
 
-int_bool get_cursor_pos(POINT32 * ppoint)
+int_bool get_cursor_pos(POINT_I32 * ppoint)
 {
 
    return ::GetCursorPos(ppoint);

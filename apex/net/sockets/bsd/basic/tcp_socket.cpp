@@ -71,19 +71,19 @@ void SSL_set_app_data2(SSL *ssl, void *arg)
 
 static int current_session_key(::sockets::tcp_socket * c, ssl_ticket_key *key)
 {
-   int result = FALSE;
+   int result = false;
    sync_lock sl(c->mutex());
    if (c->m_ticketkeya.has_elements())
    {
       *key = c->m_ticketkeya.first();
-      result = TRUE;
+      result = true;
    }
    //apr_thread_rwlock_unlock(c->::mutex);
    return result;
 }
 static int find_session_key(::sockets::tcp_socket *c, unsigned char key_name[16], ssl_ticket_key *key, int *is_current_key)
 {
-   int result = FALSE;
+   int result = false;
    sync_lock sl(c->mutex());
    for (auto & ticketkey : c->m_ticketkeya)
    {
@@ -91,7 +91,7 @@ static int find_session_key(::sockets::tcp_socket *c, unsigned char key_name[16]
       if (__memcmp(ticketkey.key_name, key_name, 16) == 0)
       {
          *key = ticketkey;
-         result = TRUE;
+         result = true;
          *is_current_key = &c->m_ticketkeya.first() == &ticketkey;
          break;
       }
@@ -1242,12 +1242,12 @@ namespace sockets
          ::net::address ad = GetClientRemoteAddress();
          if(ad.is_valid())
          {
-            struct sockaddr *p0 = (struct sockaddr *)ad.sa();
-            struct sockaddr_in *point = (struct sockaddr_in *)p0;
-            if(point -> sin_family == AF_INET)
+            struct sockaddr * psockaddr = (struct sockaddr *)ad.sa();
+            struct sockaddr_in *psockaddrin = (struct sockaddr_in *)psockaddr;
+            if(psockaddrin->sin_family == AF_INET)
             {
-               ::memcpy_dup(request + 2,&point -> sin_port,2); // nwbo is ok here
-               ::memcpy_dup(request + 4,&point -> sin_addr,sizeof(struct in_addr));
+               ::memcpy_dup(request + 2,&psockaddrin->sin_port,2); // nwbo is ok here
+               ::memcpy_dup(request + 4,&psockaddrin->sin_addr,sizeof(struct in_addr));
             }
             else
             {
@@ -1839,7 +1839,7 @@ namespace sockets
          if (keyfile.ends_ci(".cat"))
          {
 
-            strCert = Context.file().as_string(keyfile);
+            strCert = get_context()->file().as_string(keyfile);
 
          }
          else
@@ -2048,16 +2048,26 @@ namespace sockets
 
    i32 tcp_socket_SSL_password_cb(char *buf,i32 num,i32 rwflag,void *userdata)
    {
+
       UNREFERENCED_PARAMETER(rwflag);
-      socket *p0 = static_cast<socket *>(userdata);
-      tcp_socket *point = dynamic_cast<tcp_socket *>(p0);
-      string pw = point ? point -> GetPassword().c_str() : "";
-      if(num < pw.get_length() + 1)
+
+      socket * psocket = static_cast<socket *>(userdata);
+
+      tcp_socket * ptcpsocket = dynamic_cast<tcp_socket *>(psocket);
+
+      string strPassword = ptcpsocket ? ptcpsocket->GetPassword().c_str() : "";
+
+      if(num < strPassword.get_length() + 1)
       {
+
          return 0;
+
       }
-      strcpy(buf,pw);
-      return (i32)pw.get_length();
+
+      strcpy(buf, strPassword);
+
+      return (i32)strPassword.get_length();
+
    }
 
 

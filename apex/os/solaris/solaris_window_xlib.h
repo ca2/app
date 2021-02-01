@@ -14,7 +14,7 @@ public:
    oswindow                      m_window;
    device_context *              m_pdc;
    memory           m_mem;
-   size                          m_size;
+   size_i32                          m_size;
    int                           m_iScan;
 /*   XImage *                      m_pimage;
 
@@ -25,7 +25,7 @@ public:
    virtual void create(oswindow window, i64 cx, i64 cy, int iStride = -1);
    virtual void destroy();
 
-   virtual void update_window(oswindow window, color32_t * pOsBitmapData, LPCRECT32 lpcrect, int iStride = -1);
+   virtual void update_window(oswindow window, color32_t * pOsBitmapData, const RECTANGLE_I32 * lpcrect, int iStride = -1);
 
 };
 

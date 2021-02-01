@@ -89,7 +89,7 @@ namespace user
    //}
 
 
-   bool form_control::OnCommand(WPARAM wparam,LPARAM lparam)
+   bool form_control::OnCommand(wparam wparam,lparam lparam)
    {
 
       ::u32 uNotificationCode = HIWORD(wparam);
@@ -132,7 +132,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandButton(::user::interaction * pinteraction,::u32 uNotificationCode,LPARAM lparam)
+   bool form_control::OnCommandButton(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam)
 
    {
 
@@ -169,7 +169,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandCheckBox(::user::interaction * pinteraction,::u32 uNotificationCode,LPARAM lparam)
+   bool form_control::OnCommandCheckBox(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam)
 
    {
 
@@ -205,7 +205,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandComboBox(::user::interaction * pinteraction,::u32 uNotificationCode,LPARAM lparam)
+   bool form_control::OnCommandComboBox(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam)
 
    {
 
@@ -249,7 +249,7 @@ namespace user
    }
 
 
-   bool form_control::OnCommandEdit(::user::interaction * pinteraction,::u32 uNotificationCode,LPARAM lparam)
+   bool form_control::OnCommandEdit(::user::interaction * pinteraction,::u32 uNotificationCode,lparam lparam)
 
    {
 
@@ -1316,7 +1316,7 @@ namespace user
    }
 
 
-   bool form_control::_001IsPointInside(::user::interaction * pinteraction,point64 point)
+   bool form_control::_001IsPointInside(::user::interaction * pinteraction,point_i64 point_i32)
    {
 
       if(pinteraction == nullptr)
@@ -1368,20 +1368,20 @@ namespace user
    //}
 
 
-   void form_control::control_get_window_rect(::user::interaction * pinteraction,RECT32 * prect)
+   void form_control::control_get_window_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle)
 
    {
 
-      pinteraction->get_window_rect(prect);
+      pinteraction->get_window_rect(prectangle);
 
 
    }
 
-   void form_control::control_get_client_rect(::user::interaction * pinteraction,RECT32 * prect)
+   void form_control::control_get_client_rect(::user::interaction * pinteraction,RECTANGLE_I32 * prectangle)
 
    {
 
-      pinteraction->get_client_rect(prect);
+      pinteraction->get_client_rect(prectangle);
 
 
    }

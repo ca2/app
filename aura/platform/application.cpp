@@ -926,7 +926,7 @@ namespace aura
 //   };
 //
 //
-//   int_bool CALLBACK enum_proc(oswindow hwnd, LPARAM lparam)
+//   int_bool CALLBACK enum_proc(oswindow hwnd, lparam lparam)
 //   {
 //
 //      open_browser_enum * penum = (open_browser_enum *)lparam;
@@ -942,12 +942,12 @@ namespace aura
 //
 //      }
 //
-//      return TRUE;
+//      return true;
 //
 //   }
 //
 //
-//   int_bool CALLBACK enum_proc_ff_topic(oswindow hwnd, LPARAM lparam)
+//   int_bool CALLBACK enum_proc_ff_topic(oswindow hwnd, lparam lparam)
 //   {
 //
 //      open_browser_enum * penum = (open_browser_enum *)lparam;
@@ -961,11 +961,11 @@ namespace aura
 //
 //      }
 //
-//      return TRUE;
+//      return true;
 //
 //   }
 //
-//   int_bool CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, LPARAM lparam)
+//   int_bool CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, lparam lparam)
 //
 //   {
 //
@@ -981,7 +981,7 @@ namespace aura
 //
 //      }
 //
-//      return TRUE;
+//      return true;
 //
 //   }
 //
@@ -1157,7 +1157,7 @@ namespace aura
 //
 //
 
-//   string CLASS_DECL_AURA application::get_cred(const string & strRequestUrl, const ::rect & rect, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
+//   string CLASS_DECL_AURA application::get_cred(const string & strRequestUrl, const ::rectangle_i32 & rectangle, string & strUsername, string & strPassword, string strToken, string strTitle, bool bInteractive)
 // {
 
 //  __throw(not_implemented());
@@ -2475,9 +2475,9 @@ retry_license:
 //      if (bInitOk)
 //      {
 //         // give the security descriptor a Null Dacl
-//         // done using the  "TRUE, (PACL)nullptr" here
+//         // done using the  "true, (PACL)nullptr" here
 //         bSetOk = SetSecurityDescriptorDacl(&SD,
-//                                            TRUE,
+//                                            true,
 //                                            (PACL)nullptr,
 //                                            FALSE) != FALSE;
 //      }
@@ -3958,7 +3958,7 @@ retry_license:
 
 
 
-   bool application::send_message_to_windows(const ::id & id, WPARAM wparam, LPARAM lparam) // with tbs in <3
+   bool application::send_message_to_windows(const ::id & id, wparam wparam, lparam lparam) // with tbs in <3
 
    {
 
@@ -4107,7 +4107,7 @@ retry_license:
    }
 
 
-   __pointer(::message::base) application::get_message_base(LPMESSAGE pmsg)
+   __pointer(::message::base) application::get_message_base(MESSAGE * pmsg)
    {
 
       ::user::primitive * pinteraction = nullptr;
@@ -4203,7 +4203,7 @@ retry_license:
    //}
 
 
-   bool application::post_message(const ::id & id, WPARAM wparam, lparam lparam )
+   bool application::post_message(const ::id & id, wparam wparam, lparam lparam )
    {
 
       return ::thread::post_message(id, wparam, lparam);
@@ -5579,9 +5579,9 @@ retry_license:
 //
 //      {
 //
-//         ::install::mutex mutex(process_platform_dir_name2());
+//         ::install__pointer(class ::mutex) ::mutex(process_platform_dir_name2());
 //
-//         if (mutex.already_exists())
+//         if (::mutex.already_exists())
 //         {
 //
 //            //            message_box("Could not launch spa installer. It is already running.", e_message_box_ok);
@@ -5654,7 +5654,7 @@ retry_license:
    //}
 
 
-   //void application::on_update_view(::user::impact * pview, ::user::impact * pviewSender, LPARAM lHint, object * pHint)
+   //void application::on_update_view(::user::impact * pview, ::user::impact * pviewSender, lparam lHint, object * pHint)
    //{
 
 
@@ -5985,7 +5985,7 @@ namespace aura
    }
 
 
-   LRESULT application::GetPaintMsgProc(i32 nCode, WPARAM wParam, LPARAM lParam)
+   lresult application::GetPaintMsgProc(i32 nCode, wparam wParam, lparam lParam)
    {
 
       UNREFERENCED_PARAMETER(nCode);
@@ -6011,7 +6011,7 @@ namespace aura
 
 #ifdef WINDOWS
 
-   bool application::OnMessageWindowMessage(LPMESSAGE pmsg)
+   bool application::OnMessageWindowMessage(MESSAGE * pmsg)
 
    {
 
@@ -6137,7 +6137,7 @@ namespace aura
          if (pbase->m_lparam == 0)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
             nIDP = "Command Failure";
-         pbase->m_lresult = (LRESULT)TRUE;        // pretend the command was handled
+         pbase->m_lresult = (lresult)true;        // pretend the command was handled
       }
 
       if (pe.is < memory_exception >())
@@ -6379,7 +6379,7 @@ namespace aura
    return false;
    }
 
-   return ( s_pfnActivateActCtx( m_hCtxt, &m_uCookie) == TRUE );
+   return ( s_pfnActivateActCtx( m_hCtxt, &m_uCookie) == true );
    }
 
    bool Deactivate()
@@ -6394,7 +6394,7 @@ namespace aura
    {
    uptr uCookie = m_uCookie;
    m_uCookie = 0;
-   return ( s_pfnDeactivateActCtx(0, uCookie) == TRUE );
+   return ( s_pfnDeactivateActCtx(0, uCookie) == true );
    }
    return true;
    }
@@ -6520,7 +6520,7 @@ namespace aura
 
 #endif
 
-      return TRUE;
+      return true;
 
 
    }
@@ -6530,7 +6530,7 @@ namespace aura
       if (!pbValue)
          return FALSE; // bad pointer
       *pbValue = (m_dwPolicies & dwPolicyID) != 0;
-      return TRUE;
+      return true;
    }
 
    //bool application::InitApplication()
@@ -6539,7 +6539,7 @@ namespace aura
 
    //   LoadSysPolicies();
 
-   //   return TRUE;
+   //   return true;
 
 
    //}
@@ -6565,7 +6565,7 @@ namespace aura
    if (pszParam[0] == '-' || pszParam[0] == '/')
    {
    // remove flag specifier
-   bFlag = TRUE;
+   bFlag = true;
    ++pszParam;
    }
    rCmdInfo.ParseParam(pszParam, bFlag, bLast);
@@ -6577,7 +6577,7 @@ namespace aura
 
    /*CCommandLineInfo::CCommandLineInfo()
    {
-   m_bShowSplash = TRUE;
+   m_bShowSplash = true;
    m_bRunEmbedded = FALSE;
    m_bRunAutomated = FALSE;
    m_nShellCommand = FileNew;
@@ -6620,9 +6620,9 @@ namespace aura
    // OLE command switches are case insensitive, while
    // shell command switches are case sensitive
 
-   if (lstrcmpA(pszParam, "point") == 0)
+   if (lstrcmpA(pszParam, "point_i32") == 0)
    m_nShellCommand = FilePrintTo;
-   else if (lstrcmpA(pszParam, "point") == 0)
+   else if (lstrcmpA(pszParam, "point_i32") == 0)
    m_nShellCommand = FilePrint;
    else if (::__invariant_stricmp(pszParam, "Register") == 0 ||
    ::__invariant_stricmp(pszParam, "Regserver") == 0)
@@ -6636,12 +6636,12 @@ namespace aura
    }
    else if (::__invariant_stricmp(pszParam, "Embedding") == 0)
    {
-   m_bRunEmbedded = TRUE;
+   m_bRunEmbedded = true;
    m_bShowSplash = FALSE;
    }
    else if (::__invariant_stricmp(pszParam, "Automation") == 0)
    {
-   m_bRunAutomated = TRUE;
+   m_bRunAutomated = true;
    m_bShowSplash = FALSE;
    }
    }
@@ -6989,7 +6989,7 @@ namespace aura
 
    ::GlobalUnlock(m_hDevNames);
    ::GlobalUnlock(m_hDevMode);
-   return TRUE;
+   return true;
    }*/
 
    void application::UpdatePrinterSelection(bool bForceDefaults)
@@ -7101,7 +7101,7 @@ namespace aura
    {
       /*      if (m_pdocmanager != nullptr)
       return document_manager()->save_all_modified();*/
-      return TRUE;
+      return true;
    }
 
 
@@ -7425,7 +7425,7 @@ namespace aura
    if (lResult == ERROR_SUCCESS)
    {
    ASSERT(dwType == REG_BINARY);
-   return TRUE;
+   return true;
    }
    else
    {
@@ -7451,7 +7451,7 @@ namespace aura
    (*ppData)[i/2] = (byte)
    (((str[i+1] - 'A') << 4) + (str[i] - 'A'));
    }
-   return TRUE;
+   return true;
    }
    }
 
@@ -7594,13 +7594,13 @@ namespace aura
 
    /*   property_set & application::propset(object * pobject)
    {
-   single_lock sl(&m_mapObjectSet, TRUE);
+   single_lock sl(&m_mapObjectSet, true);
    return m_mapObjectSet[pobject];
    }
 
    property_set * application::existing_propset(object * pobject)
    {
-   single_lock sl(&m_mapObjectSet, TRUE);
+   single_lock sl(&m_mapObjectSet, true);
    auto point = m_mapObjectSet.plookup(pobject);
    if(point == nullptr)
    return nullptr;
@@ -8012,7 +8012,7 @@ namespace aura
    }
 
 
-   __pointer(::user::interaction) application::uie_from_point(const ::point& point)
+   __pointer(::user::interaction) application::uie_from_point(const ::point_i32& point)
    {
 
       auto uia = *m_puiptraFrame;
@@ -8167,7 +8167,7 @@ namespace aura
    //}
 
 
-   i32 application::track_popup_menu(const char* pszMatter, const ::point& point, __pointer(::user::interaction) puie)
+   i32 application::track_popup_menu(const char* pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie)
    {
 
       UNREFERENCED_PARAMETER(pszMatter);
@@ -8335,7 +8335,7 @@ namespace aura
       cds.cbData = (u32)strlen(psz);
       cds.lpData = (PVOID)psz;
 
-      return (i32)SendMessage(oswindow, WM_COPYDATA, (WPARAM)osdataSender, (LPARAM)&cds);
+      return (i32)SendMessage(oswindow, WM_COPYDATA, (wparam)osdataSender, (lparam)&cds);
 #else
       __throw(todo());
 #endif
@@ -8845,7 +8845,7 @@ namespace aura
 
 
 
-   /*string application::get_cred(const string & strRequestUrlParam,const ::rect & rect,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
+   /*string application::get_cred(const string & strRequestUrlParam,const ::rectangle_i32 & rectangle,string & strUsername,string & strPassword,string strToken,string strTitle,bool bInteractive)
    {
 
       string str = ::account::get_cred(this,strUsername,strPassword,strToken);
@@ -8888,7 +8888,7 @@ namespace aura
 
       pinteraction->m_login.m_ppassword->set_window_text("");
 
-      string strResult = pinteraction->get_cred(rect,strUsername,strPassword,strToken,strTitle);
+      string strResult = pinteraction->get_cred(rectangle,strUsername,strPassword,strToken,strTitle);
 
       pinteraction->DestroyWindow();
 
@@ -8956,7 +8956,7 @@ namespace aura
               //               sl.unlock();
               try
               {
-                 pinteraction->send_message(WM_IDLEUPDATECMDUI, (WPARAM)TRUE);
+                 pinteraction->send_message(WM_IDLEUPDATECMDUI, (wparam)true);
               }
               catch (...)
               {
@@ -9231,7 +9231,7 @@ namespace aura
 
       }
 
-      HICON hicon = ::load_icon(this, straMatter, "icon.ico", 24, 24);
+      hicon hicon = ::load_icon(this, straMatter, "icon.ico", 24, 24);
 
       if (hicon == nullptr)
       {

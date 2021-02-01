@@ -20,7 +20,7 @@
 
       set_size(iCount);
 
-      ASSERT(__is_valid_address(pdata, iCount, FALSE));
+      ASSERT(__is_valid_address(pdata, iCount, false));
 
       ::memcpy_dup(m_memory.m_pbStorage, pdata, iCount);
 
@@ -56,7 +56,7 @@
 
       set_size(size);
 
-      ASSERT(__is_valid_address(pdata, (uptr) size, FALSE));
+      ASSERT(__is_valid_address(pdata, (uptr) size, false));
 
       ::memcpy_dup(m_memory.m_pbStorage, pdata, (size_t) size);
 
@@ -101,7 +101,7 @@
    //byte * virtual_memory::detach()
    //{
 
-   //   byte * point          = m_pbStorage;
+   //   byte * point_i32          = m_pbStorage;
 
    //   if(m_iOffset > 0)
    //   {

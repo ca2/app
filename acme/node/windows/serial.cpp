@@ -1,4 +1,5 @@
 ﻿#include "framework.h"
+#include "acme/operating_system.h"
 #include "acme/platform/serial.h"
 #include "serial.h"
 #include "acme/platform/serial_impl.h"

@@ -45,7 +45,7 @@ inline i32                    ansi_ends(const ansichar * sz1, const ansichar * s
 inline i32                    ansi_ends_ci(const ansichar * sz1, const ansichar * suffix);
 inline const ansichar *       ansi_find_char(const ansichar * sz, ansichar ch);
 inline const ansichar *       ansi_find_char_reverse(const ansichar * sz, ansichar ch);
-inline const ansichar *       ansi_concatenate_and_duplicate(const ansichar * psz1, const ansichar * psz2, int_bool iFree1 = FALSE, int_bool iFree2 = FALSE);
+inline const ansichar *       ansi_concatenate_and_duplicate(const ansichar * psz1, const ansichar * psz2, int_bool iFree1 = false, int_bool iFree2 = false);
 
 
 inline void                   ansi_from_u64(ansichar * psz, u64 u, i32 iBase = 10);

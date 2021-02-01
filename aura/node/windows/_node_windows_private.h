@@ -1,7 +1,7 @@
 #pragma once
 
 #undef User
-
+#error ""
 #include <Wtsapi32.h>
 #include <Psapi.h>
 #include <WinCred.h>

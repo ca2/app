@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 
 //http://borland.public.cppbuilder.nativeapi.narkive.com/7OPcjHO5/loading-x48-icons-with-extracticonex
 
@@ -174,7 +175,7 @@ BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, const widechar * pType, 
 
          pi->iIcon--;
 
-         return TRUE;
+         return true;
 
       }
 
@@ -185,7 +186,7 @@ BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, const widechar * pType, 
       if (-pi->iIcon != u)
       {
 
-         return TRUE;
+         return true;
 
       }
 
@@ -212,7 +213,7 @@ BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, const widechar * pType, 
          if (iId != pi->iIcon)
          {
 
-            return TRUE;
+            return true;
 
          }
 
@@ -220,7 +221,7 @@ BOOL ExtractResourceIcon_EnumNamesFunc(HMODULE hModule, const widechar * pType, 
       else
       {
 
-         return TRUE;
+         return true;
 
       }
 
@@ -267,7 +268,7 @@ retry:
                (PBYTE)pIconImage,
 
                e->dwBytesInRes,
-               TRUE,
+               true,
                0x00030000,//::u32 dwVersion,
                e->bWidth,
                e->bHeight,
@@ -324,14 +325,14 @@ retry:
             (PBYTE)pIconImage,
 
             e->dwBytesInRes,
-            TRUE,
+            true,
             0x00030000,//::u32 dwVersion,
             e->bWidth,
             e->bHeight,
             0);
 
          if (pi->hicon != nullptr)
-            return FALSE;
+            return false;
 
       }
 
@@ -360,14 +361,14 @@ retry:
             (PBYTE)pIconImage,
 
             e->dwBytesInRes,
-            TRUE,
+            true,
             0x00030000,//::u32 dwVersion,
             e->bWidth,
             e->bHeight,
             0);
 
          if (pi->hicon != nullptr)
-            return FALSE;
+            return false;
 
       }
 
@@ -394,14 +395,14 @@ retry:
             (PBYTE)pIconImage,
 
             e->dwBytesInRes,
-            TRUE,
+            true,
             0x00030000,//::u32 dwVersion,
             e->bWidth,
             e->bHeight,
             0);
 
          if (pi->hicon != nullptr)
-            return FALSE;
+            return false;
 
       }
 
@@ -429,14 +430,14 @@ retry:
             (PBYTE)pIconImage,
 
             e->dwBytesInRes,
-            TRUE,
+            true,
             0x00030000,//::u32 dwVersion,
             e->bWidth,
             e->bHeight,
             0);
 
          if (pi->hicon != nullptr)
-            return FALSE;
+            return false;
 
       }
 
@@ -464,14 +465,14 @@ retry:
             (PBYTE)pIconImage,
 
             e->dwBytesInRes,
-            TRUE,
+            true,
             0x00030000,//::u32 dwVersion,
             e->bWidth,
             e->bHeight,
             0);
 
          if (pi->hicon != nullptr)
-            return FALSE;
+            return false;
 
       }
 
@@ -499,14 +500,14 @@ retry:
             (PBYTE)pIconImage,
 
             e->dwBytesInRes,
-            TRUE,
+            true,
             0x00030000,//::u32 dwVersion,
             e->bWidth,
             e->bHeight,
             0);
 
          if (pi->hicon != nullptr)
-            return FALSE;
+            return false;
 
       }
 
@@ -534,14 +535,14 @@ retry:
             (PBYTE)pIconImage,
 
             e->dwBytesInRes,
-            TRUE,
+            true,
             0x00030000,//::u32 dwVersion,
             e->bWidth,
             e->bHeight,
             0);
 
          if (pi->hicon != nullptr)
-            return FALSE;
+            return false;
 
       }
 
@@ -569,14 +570,14 @@ retry:
             (PBYTE)pIconImage,
 
             e->dwBytesInRes,
-            TRUE,
+            true,
             0x00030000,//::u32 dwVersion,
             e->bWidth,
             e->bHeight,
             0);
 
          if (pi->hicon != nullptr)
-            return FALSE;
+            return false;
 
       }
 
@@ -604,19 +605,19 @@ retry:
             (PBYTE)pIconImage,
 
             e->dwBytesInRes,
-            TRUE,
+            true,
             0x00030000,//::u32 dwVersion,
             e->bWidth,
             e->bHeight,
             0);
 
          if (pi->hicon != nullptr)
-            return FALSE;
+            return false;
 
       }
 
    }
 
-   return FALSE;
+   return false;
 
 }

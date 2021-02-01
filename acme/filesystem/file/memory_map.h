@@ -11,35 +11,27 @@ namespace file
    {
    public:
 
+
       string                     m_strName;
       void *                     m_pdata;
-#ifdef WINDOWS
-      HANDLE                     m_hfile;
-      HANDLE                     m_hfilemap;
-#else
-      int                        m_iFile;
-#endif
       bool                       m_bRead;
       bool                       m_bWrite;
       bool                       m_bCreate;
       memsize                    m_size;
-      __pointer(::mutex)         m_pmutex;
 
 
       memory_map();
-      memory_map(const char * psz, bool bRead, bool bWrite, bool bCreate, memsize size);
       virtual ~memory_map();
 
+      
 
-      void construct();
+      virtual bool open();
+      virtual bool open(const char * psz, bool bRead, bool bWrite, bool bCreate, memsize size);
+      virtual bool close();
 
-      bool open();
-      bool open(const char * psz, bool bRead, bool bWrite, bool bCreate, memsize size);
-      bool close();
+      virtual void * get_data();
 
-      void * get_data();
-
-      bool is_mapped();
+      virtual bool is_mapped();
 
       inline string get_name();
       string get_path();

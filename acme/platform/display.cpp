@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "os/cross/windows/_windows.h"
+#include "acme/operating_system.h"
 
 
 CLASS_DECL_ACME enum_display equivalence_sink(enum_display edisplay)

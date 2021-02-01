@@ -21,7 +21,7 @@ public:
    void construct(const sync_array & synca, duration durationLock, duration durationSleep, i32 iRetry = -1, bool bInitialLock = true);
 
 
-   sync_result lock(bool bWaitForAll = TRUE, u32 dwWakeMask = 0);
+   sync_result lock(bool bWaitForAll = true, u32 dwWakeMask = 0);
    bool unlock();
    bool unlock(::i32 lCount, ::i32 * lPrevCount = nullptr);
    bool IsLocked(index dwItem);

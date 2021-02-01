@@ -176,7 +176,7 @@ namespace str
 
 
    //#ifdef WINDOWS
-   //_INSECURE_DEPRECATE("You must pass an output size to char_traits::string_uppercase")
+   //_INSECURE_DEPRECATE("You must pass an output size_i32 to char_traits::string_uppercase")
    //#endif
    //ansichar *  char_traits::string_uppercase(ansichar * psz) noexcept
    //{
@@ -186,12 +186,12 @@ namespace str
    //      return nullptr;
    //   ansichar * point = psz;
    //   string strFinal;
-   //   while(*point)
+   //   while(*point_i32)
    //   {
    //      strFinal += ::str::ch::to_upper_case(point);
    //      point = (ansichar *) ::str::utf8_inc(point);
    //   }
-   //   strcpy(point,strFinal);
+   //   strcpy(point_i32,strFinal);
    //   return psz;
    //
    //
@@ -200,7 +200,7 @@ namespace str
    //}
    //
    //#if defined(WINDOWS)
-   //_INSECURE_DEPRECATE("You must pass an output size to char_traits::string_lowercase")
+   //_INSECURE_DEPRECATE("You must pass an output size_i32 to char_traits::string_lowercase")
    //#endif
    //ansichar *  char_traits::string_lowercase(ansichar * psz) noexcept
    //{
@@ -210,12 +210,12 @@ namespace str
    //      return nullptr;
    //   ansichar * point = psz;
    //   string strFinal;
-   //   while(*point)
+   //   while(*point_i32)
    //   {
    //      strFinal += ::str::ch::to_lower_case(point);
    //      point = (ansichar *) ::str::utf8_inc(point);
    //   }
-   //   strcpy(point,strFinal);
+   //   strcpy(point_i32,strFinal);
    //   return psz;
    //
    //   //   return reinterpret_cast< ansichar * >( _mbslwr( reinterpret_cast< uchar* >( psz ) ) );
@@ -359,7 +359,7 @@ namespace str
    //
    //   //if(nDestLength >= 0)
    //   //{
-   //   //   __throw(::exception::exception("I am wasting this branching (if(nDestLength >= 0) to tell you that nDestLength should be negative so the buffer is already correct size... or you like incorrect size? Go to Facebook and click in Like for Community \"I Like incorrect size!!\", there should exist such community... there are so many things in the multi bramas... The hardware will check again if you didn't dirtied any other process... (only another process, though)... and you're probably be fired or even not be hired if incorrect size"));
+   //   //   __throw(::exception::exception("I am wasting this branching (if(nDestLength >= 0) to tell you that nDestLength should be negative so the buffer is already correct size... or you like incorrect size_i32? Go to Facebook and click in Like for Community \"I Like incorrect size_i32!!\", there should exist such community... there are so many things in the multi bramas... The hardware will check again if you didn't dirtied any other process... (only another process, though)... and you're probably be fired or even not be hired if incorrect size_i32"));
    //   //}
    //
    //   wd32_to_ansi(pszDest,pszSrc,nSrcLength);
@@ -385,67 +385,7 @@ namespace str
    //}
    //
 
-#ifdef WINDOWS
 
-
-   BSTR AllocSysString(const ansichar * pchData, strsize nDataLength) noexcept
-   {
-
-      BSTR bstr = nullptr;
-
-      strsize nLen = utf_to_utf_length(bstr, pchData, nDataLength);
-
-      bstr = ::SysAllocStringLen(nullptr, (::u32)nLen);
-
-      if (bstr != nullptr)
-      {
-
-         utf_to_utf(bstr, pchData, nDataLength);
-
-      }
-
-      return bstr;
-
-   }
-
-
-   // pbstr is [in,out] BSTR string
-   bool ReAllocSysString(BSTR * pbstr, const ansichar * pchData, strsize nDataLength) noexcept
-   {
-
-      strsize nLen = utf_to_utf_length(pbstr, pchData, nDataLength);
-
-      bool bSuccess = ::SysReAllocStringLen(pbstr, nullptr, (::u32)nLen) != 0;
-
-      if (bSuccess)
-      {
-
-         utf_to_utf(*pbstr, pchData, nDataLength);
-
-      }
-
-      return bSuccess;
-
-   }
-
-
-#endif
-
-
-   u32 format_message(u32 dwFlags, const void * pSource, u32 dwMessageID, u32 dwLanguageID, ansichar * pszBuffer, u32 nSize, va_list * pArguments) noexcept
-   {
-
-#ifdef WINDOWS
-
-      return ::FormatMessageA(dwFlags, pSource, dwMessageID, dwLanguageID, pszBuffer, nSize, pArguments);
-
-#else
-
-      return 0;
-
-#endif
-
-   }
 
 
    //u32  char_traits::format_message(u32 dwFlags,const void * pSource,u32 dwMessageID,u32 dwLanguageID,ansichar * pszBuffer,u32 nSize,va_list* pArguments) noexcept
@@ -491,46 +431,46 @@ namespace str
    //   // returns ansichar length
    //   return  ::str::get_utf8_char(pch).get_length();
    //}
-
-
-   u32  get_environment_variable(const ansichar * pszVar, ansichar * pszBuffer, u32 dwSize)
-   {
-
-#ifdef _UWP
-
-      __throw(todo());
-
-#elif defined(WINDOWS_DESKTOP)
-
-      return ::GetEnvironmentVariableA(pszVar, pszBuffer, dwSize);
-
-#else
-
-      const ansichar * pszEnv = getenv(pszVar);
-
-      if (pszBuffer == nullptr)
-      {
-
-         if (pszEnv == nullptr)
-         {
-
-            return 0;
-
-         }
-         else
-         {
-
-            return (u32)strlen(pszEnv);
-
-         }
-
-      }
-
-      return (u32)strlen(ansi_count_copy(pszBuffer, pszEnv, dwSize));
-
-#endif
-
-   }
+//
+//
+//   u32  get_environment_variable(const ansichar * pszVar, ansichar * pszBuffer, u32 dwSize)
+//   {
+//
+//#ifdef _UWP
+//
+//      __throw(todo());
+//
+//#elif defined(WINDOWS_DESKTOP)
+//
+//      return ::GetEnvironmentVariableA(pszVar, pszBuffer, dwSize);
+//
+//#else
+//
+//      const ansichar * pszEnv = getenv(pszVar);
+//
+//      if (pszBuffer == nullptr)
+//      {
+//
+//         if (pszEnv == nullptr)
+//         {
+//
+//            return 0;
+//
+//         }
+//         else
+//         {
+//
+//            return (u32)strlen(pszEnv);
+//
+//         }
+//
+//      }
+//
+//      return (u32)strlen(ansi_count_copy(pszBuffer, pszEnv, dwSize));
+//
+//#endif
+//
+//   }
 
 
    //void char_traits::ConvertToAnsi(ansichar* pstrString, strsize size)
@@ -540,7 +480,7 @@ namespace str
    //
    //   if(size > UINT_MAX)
    //   {
-   //      // API only allows u32 size
+   //      // API only allows u32 size_i32
    //      __throw(invalid_argument_exception());
    //   }
    //   u32 dwSize=static_cast<u32>(size);
@@ -562,7 +502,7 @@ namespace str
    //
    //   if(size > UINT_MAX)
    //   {
-   //      // API only allows u32 size
+   //      // API only allows u32 size_i32
    //      __throw(invalid_argument_exception());
    //   }
    //   u32 dwSize=static_cast<u32>(size);

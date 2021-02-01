@@ -194,22 +194,22 @@ namespace sockets
 
 
    /** send to specified address */
-   void udp_socket::SendToBuf(const string & h, port_t point, const char *data, i32 len, i32 flags)
+   void udp_socket::SendToBuf(const string & h, port_t point_i32, const char *data, i32 len, i32 flags)
    {
-      SendToBuf(::net::address(h, point), data, len, flags);
+      SendToBuf(::net::address(h, point_i32), data, len, flags);
    }
 
 
    /** send to specified address */
-   void udp_socket::SendToBuf(const in_addr & a, port_t point, const char *data, i32 len, i32 flags)
+   void udp_socket::SendToBuf(const in_addr & a, port_t point_i32, const char *data, i32 len, i32 flags)
    {
-      SendToBuf(::net::address(a, point), data, len, flags);
+      SendToBuf(::net::address(a, point_i32), data, len, flags);
    }
 
 
-   void udp_socket::SendToBuf(const in6_addr & a, port_t point, const char *data, i32 len, i32 flags)
+   void udp_socket::SendToBuf(const in6_addr & a, port_t point_i32, const char *data, i32 len, i32 flags)
    {
-      SendToBuf(::net::address(a, point), data, len, flags);
+      SendToBuf(::net::address(a, point_i32), data, len, flags);
    }
 
 
@@ -238,21 +238,21 @@ namespace sockets
    }
 
 
-   void udp_socket::SendTo(const string & a, port_t point, const string & str, i32 flags)
+   void udp_socket::SendTo(const string & a, port_t point_i32, const string & str, i32 flags)
    {
-      SendToBuf(a, point, str, (i32)str.get_length(), flags);
+      SendToBuf(a, point_i32, str, (i32)str.get_length(), flags);
    }
 
 
-   void udp_socket::SendTo(in_addr a, port_t point, const string & str, i32 flags)
+   void udp_socket::SendTo(in_addr a, port_t point_i32, const string & str, i32 flags)
    {
-      SendToBuf(a, point, str, (i32)str.get_length(), flags);
+      SendToBuf(a, point_i32, str, (i32)str.get_length(), flags);
    }
 
 
-   void udp_socket::SendTo(in6_addr a, port_t point, const string & str, i32 flags)
+   void udp_socket::SendTo(in6_addr a, port_t point_i32, const string & str, i32 flags)
    {
-      SendToBuf(a, point, str, (i32)str.get_length(), flags);
+      SendToBuf(a, point_i32, str, (i32)str.get_length(), flags);
    }
 
 
@@ -373,8 +373,15 @@ namespace sockets
          socklen_t sa_len = sizeof(sa);
          if (m_b_read_ts)
          {
-            struct timeval ts;
-            System.get_time(&ts);
+            
+            micro_duration microduration;
+            
+            System.get_time(&microduration);
+
+            struct timeval timeval;
+
+            __copy(timeval, microduration);
+
 #if !defined(LINUX) && !defined(MACOSX)
             memsize n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
 #else
@@ -382,7 +389,9 @@ namespace sockets
 #endif
             if (n > 0)
             {
-               this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len, &ts);
+               
+               this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len, &timeval);
+
             }
             else if (n == -1)
             {
@@ -415,7 +424,7 @@ namespace sockets
             if (sa_len != sizeof(sa))
             {
 
-               WARN("recvfrom", 0, "unexpected address struct size");
+               WARN("recvfrom", 0, "unexpected address struct size_i32");
 
             }
             this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);
@@ -444,8 +453,15 @@ namespace sockets
       socklen_t sa_len = sizeof(sa);
       if (m_b_read_ts)
       {
-         struct timeval ts;
-         System.get_time(&ts);
+         
+         micro_duration microduration;
+         
+         System.get_time(&microduration);
+
+         timeval timeval;
+
+         __copy(timeval, microduration);
+
 #if !defined(LINUX) && !defined(MACOSX)
          memsize n = recvfrom(GetSocket(), m_ibuf, m_ibufsz, 0, (struct sockaddr *)&sa, &sa_len);
 #else
@@ -453,7 +469,9 @@ namespace sockets
 #endif
          if (n > 0)
          {
-            this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len, &ts);
+            
+            this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len, &timeval);
+
          }
          else if (n == -1)
          {
@@ -479,7 +497,7 @@ namespace sockets
          if (sa_len != sizeof(sa))
          {
 
-            WARN("recvfrom", 0, "unexpected address struct size");
+            WARN("recvfrom", 0, "unexpected address struct size_i32");
 
          }
          this -> OnRawData(m_ibuf, n, (struct sockaddr *)&sa, sa_len);

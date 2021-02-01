@@ -38,7 +38,7 @@ namespace user
 //      //0,
 //      //0,
 //      //0);
-//      //   ::rect rect(0, 0, 0, 0);
+//      //   ::rectangle_i32 rectangle(0, 0, 0, 0);
 //
 //      if(!::user::interaction::create_child(pparent))
 //      {
@@ -63,7 +63,7 @@ namespace user
    void split_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 

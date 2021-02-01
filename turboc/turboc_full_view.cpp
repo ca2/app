@@ -97,7 +97,7 @@ namespace turboc
       if(m_pimageWork->area() <= 0)
          return;
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       rectClient.left = 0;
 
@@ -174,7 +174,7 @@ namespace turboc
 
       string strHelloMultiverse = get_processed_turboc();
 
-      ::size size = pgraphics->GetTextExtent(strHelloMultiverse);
+      ::size_i32 size = pgraphics->GetTextExtent(strHelloMultiverse);
 
       if(!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
@@ -206,7 +206,7 @@ namespace turboc
 
 /*         m_pimage->g()->set_font(m_font);
 
-/*         m_pimage->g()->text_out((m_cx - size->cx) / 2,(m_cy - size->cy) / 2,strHelloMultiverse);
+/*         m_pimage->g()->text_out((m_cx - size_i32->cx) / 2,(m_cy - size_i32->cy) / 2,strHelloMultiverse);
 
          if(m_dMinRadius > 3.0)
          {

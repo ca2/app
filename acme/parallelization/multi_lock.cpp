@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "acme/os/_os.h"
+#include "acme/operating_system.h"
 
 
 #undef new
@@ -51,7 +51,7 @@ multi_lock::multi_lock(::count c, const sync_array & synca, bool bInitialLock)
 
    m_synca.add(synca);
 
-   __zero(m_byteaLocked);
+   __zero(m_bitsLocked);
 
    if (bInitialLock)
    {
@@ -112,10 +112,10 @@ sync_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dw
       if (bWaitForAll)
       {
 
-         for (index j = 0, i = 0; j < m_synca.m_hsyncaCache.size(); j++)
+         for (byte j = 0, i = 0; j < m_synca.m_hsyncaCache.size(); j++)
          {
 
-            m_byteaLocked[i] = TRUE;
+            m_bitsLocked.set(i);
 
          }
 
@@ -123,7 +123,7 @@ sync_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dw
       else
       {
 
-         m_byteaLocked[(iResult - WAIT_OBJECT_0)] = TRUE;
+         m_bitsLocked.set(iResult - WAIT_OBJECT_0);
 
       }
 
@@ -140,10 +140,10 @@ bool multi_lock::unlock()
    for (index i=0; i < m_synca.m_hsyncaCache.get_count(); i++)
    {
 
-      if (m_byteaLocked[i] && m_synca.m_synca[i]->m_hsync)
+      if (m_bitsLocked.is_set(i) && m_synca.m_synca[i]->m_hsync)
       {
 
-         m_byteaLocked[i] = !m_synca.m_synca[i]->unlock();
+         m_bitsLocked.set(i, !m_synca.m_synca[i]->unlock());
 
       }
 
@@ -162,7 +162,7 @@ bool multi_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
    for (index i=0; i < m_synca.m_hsyncaCache.get_count(); i++)
    {
 
-      if (m_byteaLocked[i] && m_synca.m_synca[i]->m_hsync)
+      if (m_bitsLocked.is_set(i) && m_synca.m_synca[i]->m_hsync)
       {
 
          semaphore * pSemaphore = m_synca.sync_at(i).cast < semaphore >();
@@ -172,7 +172,12 @@ bool multi_lock::unlock(::i32 lCount, ::i32 * pPrevCount /* =nullptr */)
 
             bGotOne = true;
 
-            m_byteaLocked[i] = !m_synca.m_synca[i]->unlock(lCount, pPrevCount);
+            if (m_synca.m_synca[i]->unlock(lCount, pPrevCount))
+            {
+
+               m_bitsLocked.unset(i);
+
+            }
 
          }
 
@@ -190,7 +195,7 @@ bool multi_lock::IsLocked(index dwObject)
 
    ASSERT(dwObject < m_synca.size());
 
-   return m_byteaLocked[dwObject];
+   return m_bitsLocked[dwObject];
 
 }
 

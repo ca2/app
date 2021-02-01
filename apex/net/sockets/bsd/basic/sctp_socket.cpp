@@ -25,7 +25,7 @@ namespace sockets
    }
 
 
-   i32 SctpSocket::Bind(const string & a,port_t point)
+   i32 SctpSocket::Bind(const string & a,port_t point_i32)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -68,7 +68,7 @@ namespace sockets
    }
 
 
-   i32 SctpSocket::AddAddress(const string & a,port_t point)
+   i32 SctpSocket::AddAddress(const string & a,port_t point_i32)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -105,7 +105,7 @@ namespace sockets
    }
 
 
-   i32 SctpSocket::RemoveAddress(const string & a,port_t point)
+   i32 SctpSocket::RemoveAddress(const string & a,port_t point_i32)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -142,7 +142,7 @@ namespace sockets
    }
 
 
-   i32 SctpSocket::open(const string & a,port_t point)
+   i32 SctpSocket::open(const string & a,port_t point_i32)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -200,7 +200,7 @@ namespace sockets
 
 
 #ifndef SOLARIS
-   i32 SctpSocket::AddConnection(const string & a,port_t point)
+   i32 SctpSocket::AddConnection(const string & a,port_t point_i32)
    {
 #ifdef ENABLE_IPV6
 #ifdef IPPROTO_IPV6
@@ -287,8 +287,8 @@ namespace sockets
          return -1;
       }
       socket *point = create();
-      point -> attach(n);
-      point -> SetDeleteByHandler();
+      point_i32 -> attach(n);
+      point_i32 -> SetDeleteByHandler();
       Handler().add(point);
       return n;
    }
@@ -306,7 +306,7 @@ namespace sockets
          features of SCTP.  sd is the socket descriptor on which the message pointed to by msg of length len is received.
 
          If from is not nullptr, the source address of the message is filled in. The argument fromlen  is  a  value-result  parameter.
-         initialized  to  the  size  of the buffer associated with from , and modified on return to indicate the actual size of the
+         initialized  to  the  size_i32  of the buffer associated with from , and modified on return to indicate the actual size_i32 of the
          address stored.
 
          sinfo is a pointer to a sctp_sndrcvinfo structure to be filled upon receipt of the message.  msg_flags is a pointer  to  a

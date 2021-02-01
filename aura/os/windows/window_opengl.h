@@ -18,7 +18,7 @@ namespace opengl
 
 
 
-      virtual bool update_buffer(const ::size & size, int iStride = -1) override;
+      virtual bool update_buffer(const ::size_i32 & size, int iStride = -1) override;
       virtual void destroy_buffer() override;
 
 

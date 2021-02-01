@@ -32,12 +32,12 @@ namespace aura
 
       virtual bool is_composite();
 
-      virtual void hit_test(::user::item & item, const ::point & point);
+      virtual void hit_test(::user::item & item, const ::point_i32 & point);
       virtual void on_hit_test(::user::item & item);
 
       virtual void hit_test(::user::item & item, ::message::mouse * pmouse);
 
-      virtual ::user::item hit_test(const ::point & point);
+      virtual ::user::item hit_test(const ::point_i32 & point);
 
       virtual ::user::item hit_test(::message::mouse * pmouse);
 
@@ -59,23 +59,23 @@ namespace aura
 
 
 
-   //   //virtual bool _get_client_rect(RECT32 * prect) = 0;
-   //   //virtual bool _get_window_rect(RECT32 * prect) = 0;
+   //   //virtual bool _get_client_rect(RECTANGLE_I32 * prectangle) = 0;
+   //   //virtual bool _get_window_rect(RECTANGLE_I32 * prectangle) = 0;
    //   
-   //   //virtual ::point _client_parent_top_left() = 0;
-   //   //virtual ::point _client_screen_top_left() = 0;
+   //   //virtual ::point_i32 _client_parent_top_left() = 0;
+   //   //virtual ::point_i32 _client_screen_top_left() = 0;
 
 
-   //   //mutable size      m_sizeClient;
-   //   //mutable size      m_sizeScreen;
+   //   //mutable size_i32      m_sizeClient;
+   //   //mutable size_i32      m_sizeScreen;
 
-   //   //mutable point     m_pointClient;
-   //   //mutable point     m_pointScreen;
-   //   //mutable point     m_pointParentWindow;
-   //   //mutable point     m_pointParentClient;
+   //   //mutable point_i32     m_pointClient;
+   //   //mutable point_i32     m_pointScreen;
+   //   //mutable point_i32     m_pointParentWindow;
+   //   //mutable point_i32     m_pointParentClient;
 
-   //   //inline auto get_client_rect64() { ::rect64 rect; get_client_rect(rect); return rect; }
-   //   //inline auto get_window_rect64() { ::rect64 rect; get_window_rect(rect); return rect; }
+   //   //inline auto get_client_rect64() { ::rectangle_i64 rectangle_i32; get_client_rect(rectangle); return rectangle; }
+   //   //inline auto get_window_rect64() { ::rectangle_i64 rectangle_i32; get_window_rect(rectangle); return rectangle; }
 
 
    //};

@@ -148,7 +148,7 @@ namespace helloaxis
 
    void application::paint(HWND hwnd, ::draw2d::graphics_pointer & pgraphics)
    {
-      ::rect rcClient;
+      ::rectangle_i32 rcClient;
       ::get_client_rect(hwnd, rcClient);
       ::draw2d::brush_pointer br(e_create);
 

@@ -15,7 +15,7 @@ namespace windowing
 
       string m_strLabel;
       bool m_bTextRect;
-      ::rect m_rect;
+      ::rectangle_i32 m_rectangle;
       //XGlyphInfo m_infoText;
       bool m_bPress;
       bool m_bHover;

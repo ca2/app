@@ -24,9 +24,9 @@ namespace user
       virtual void install_message_routing(::channel * pchannel);
 
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
-      void GetStepHoverRect(RECT32 * prect, i64 iVal, i64 iMin, i64 iMax, const ::rect & rectClient);
+      void GetStepHoverRect(RECTANGLE_I32 * prectangle, i64 iVal, i64 iMin, i64 iMax, const ::rectangle_i32 & rectClient);
 
-      void GetStepRect(RECT32 * prect, i64 iVal, i64 iMin, i64 iMax, const ::rect & lpcrectClient);
+      void GetStepRect(RECTANGLE_I32 * prectangle, i64 iVal, i64 iMin, i64 iMax, const ::rectangle_i32 & lpcrectClient);
 
 
       void on_hit_test(::user::item & item);

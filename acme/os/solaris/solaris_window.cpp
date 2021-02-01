@@ -577,7 +577,7 @@ bool oswindow_data::show_window(i32 nCmdShow)
 }
 
 
-bool oswindow_data::_001ClientToScreen(POINT32 * pp)
+bool oswindow_data::_001ClientToScreen(POINT_I32 * pp)
 {
 
    return true;
@@ -585,7 +585,7 @@ bool oswindow_data::_001ClientToScreen(POINT32 * pp)
 }
 
 
-bool oswindow_data::_001ScreenToClient(POINT32 * pp)
+bool oswindow_data::_001ScreenToClient(POINT_I32 * pp)
 {
 
    return true;
@@ -700,7 +700,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 #define SIZEY  50
 
 
-void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE32 * psize)
+void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE_I32 * psize)
 {
 
    pgraphics->FillSolidRect(0, 0, psizecx, psize->cy, RGB(84, 90, 80));
@@ -728,7 +728,7 @@ public:
 
    __pointer_array(::simple_ui::label) m_labela;
 
-   ::rect m_rectDesktop;
+   ::rectangle_i32 m_rectDesktop;
 
    xlib_message_box(__pointer(base_application) papp) : ::matter(pobject), ::os::simple_ui(pobject), ::user::interaction(pobject)
    {
@@ -737,11 +737,11 @@ public:
 
    void draw_this(::draw2d::graphics *  pgraphics)
    {
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      get_client_rect(rect);
+      get_client_rect(rectangle);
 
-      pgraphics->FillSolidRect(rect, ARGB(255, 240, 240, 240));
+      pgraphics->FillSolidRect(rectangle, ARGB(255, 240, 240, 240));
    }
 
    using ::os::simple_ui::show_window;
@@ -751,9 +751,9 @@ public:
       ::get_window_rect(::get_desktop_window(), &m_rectDesktop);
 
 
-      ::rect rect(100, 100, 200, 200);
+      ::rectangle_i32 rectangle(100, 100, 200, 200);
 
-      if(!create_window(rect))
+      if(!create_window(rectangle))
          return 0;
 
 
@@ -775,7 +775,7 @@ public:
 
       int_array ya;
 
-      size sz;
+      size_i32 sz;
 
       sz.cx = 0;
       sz.cy = 0;
@@ -794,7 +794,7 @@ public:
          if(bEmpty)
             str = "L";
 
-         SIZE32 sizeItem = g->GetTextExtent(str);
+         SIZE_I32 sizeItem = g->GetTextExtent(str);
 
          int x = bTab ? 25 : 0;
 
@@ -835,28 +835,28 @@ public:
 
          label.m_bVisible = true;
 
-         label.m_rect.left = 10;
-         label.m_rect.top = 10 + (sz.cy / stra.get_count()) * i;
-         label.m_rect.right = label.m_rect.left+sz.cx - 20;
-         label.m_rect.bottom = label.m_rect.top+ (sz.cy / stra.get_count());
+         label.m_rectangle.left = 10;
+         label.m_rectangle.top = 10 + (sz.cy / stra.get_count()) * i;
+         label.m_rectangle.right = label.m_rectangle.left+sz.cx - 20;
+         label.m_rectangle.bottom = label.m_rectangle.top+ (sz.cy / stra.get_count());
 
       }
 
       sz.cx += 20;
       sz.cy += 20;
 
-      rect.left = m_rectDesktop.left + ((m_rectDesktop.width() - sz.cx) / 2);
-      rect.top = m_rectDesktop.top + ((m_rectDesktop.height() - sz.cy) / 4);
-      rect.right = rect.left + sz.cx;
-      rect.bottom = rect.top + sz.cy;
+      rectangle.left = m_rectDesktop.left + ((m_rectDesktop.width() - sz.cx) / 2);
+      rectangle.top = m_rectDesktop.top + ((m_rectDesktop.height() - sz.cy) / 4);
+      rectangle.right = rectangle.left + sz.cx;
+      rectangle.bottom = rectangle.top + sz.cy;
 
 
-      if(!prepare_window(rect))
+      if(!prepare_window(rectangle))
          return 0;
 
 
 
-      set_window_pos(m_window, nullptr, rect.left, rect.top, rect.width(), rect.height(), SWP_SHOWWINDOW);
+      set_window_pos(m_window, nullptr, rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), SWP_SHOWWINDOW);
 
       run_loop();
 

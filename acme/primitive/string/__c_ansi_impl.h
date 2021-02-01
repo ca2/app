@@ -544,9 +544,9 @@ inline i32 ansi_count_collate_ci(const ansichar * psz, const ansichar * sz2, str
 inline const ansichar * ansi_scan(const ansichar * psz, const ansichar * find)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return nullptr;
 
-   if (c_is_null(find)) return FALSE;
+   if (c_is_null(find)) return nullptr;
 
    return strpbrk(psz, find);
 
@@ -573,16 +573,16 @@ inline ansichar * ansi_next_token(const ansichar * delimiters, ansichar ** actio
 inline i32 ansi_begins(const ansichar * psz, const ansichar * prefix)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return false;
 
-   if (c_is_null(prefix)) return FALSE;
+   if (c_is_null(prefix)) return false;
 
    strsize len = strlen(prefix);
 
    if (len > (strsize)strlen(psz))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -594,9 +594,9 @@ inline i32 ansi_begins(const ansichar * psz, const ansichar * prefix)
 inline i32 ansi_begins_ci(const ansichar * psz, const ansichar * prefix)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return false;
 
-   if (c_is_null(prefix)) return FALSE;
+   if (c_is_null(prefix)) return false;
 
    return !ansi_nicmp(psz, prefix, strlen(prefix));
 
@@ -648,9 +648,9 @@ inline const ansichar * ansi_begins_eat_ci(const ansichar * psz, const ansichar 
 inline i32 ansi_ends(const ansichar * psz, const ansichar * suffix)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return false;
 
-   if (c_is_null(suffix)) return FALSE;
+   if (c_is_null(suffix)) return false;
 
    strsize len = strlen(suffix);
 
@@ -659,7 +659,7 @@ inline i32 ansi_ends(const ansichar * psz, const ansichar * suffix)
    if(end < 0)
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -671,9 +671,9 @@ inline i32 ansi_ends(const ansichar * psz, const ansichar * suffix)
 inline i32 ansi_ends_ci(const ansichar * psz, const ansichar * suffix)
 {
 
-   if (c_is_null(psz)) return FALSE;
+   if (c_is_null(psz)) return false;
 
-   if (c_is_null(suffix)) return FALSE;
+   if (c_is_null(suffix)) return false;
 
    strsize len = strlen(suffix);
 
@@ -682,7 +682,7 @@ inline i32 ansi_ends_ci(const ansichar * psz, const ansichar * suffix)
    if (end < 0)
    {
 
-      return FALSE;
+      return false;
 
    }
 

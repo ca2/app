@@ -20,7 +20,7 @@ namespace axis
 ////      m_pthreadimpl.create(this);
 ////      m_pthreadimpl->m_pthread = this;
 //
-//  //m_nSafetyPoolSize = 512;        // default size
+//  //m_nSafetyPoolSize = 512;        // default size_i32
 //
 //      shell::theLinuxShell.Initialize();
 //   }
@@ -259,7 +259,7 @@ namespace axis
 
 
       // Advanced: handling messages sent to message filter hook
-      bool application::ProcessMessageFilter(i32 code, LPMESSAGE pMsg)
+      bool application::ProcessMessageFilter(i32 code, MESSAGE * pMsg)
 
       {
          return  ::win::thread::ProcessMessageFilter(code, pMsg);
@@ -386,7 +386,7 @@ namespace axis
 
 
 
-//   void application::get_time(struct timeval *point)
+//   void application::get_time(struct timeval *point_i32)
 //   {
 //
 //#ifdef _WIN32
@@ -396,8 +396,8 @@ namespace axis
 //      u64 tt;
 //      ::memcpy_dup(&tt, &ft, sizeof(tt));
 //      tt /= 10; // make it usecs
-//      point->tv_sec = (long)tt / 1000000;
-//      point->tv_usec = (long)tt % 1000000;
+//      point_i32->tv_sec = (long)tt / 1000000;
+//      point_i32->tv_usec = (long)tt % 1000000;
 //
 //#else
 //

@@ -301,7 +301,7 @@ IFACEMETHODIMP CustomTextRenderer::DrawUnderline(
 {
    /*HRESULT hr;
 
-   D2D1_RECT_F rect = D2D1::RectF(
+   D2D1_RECT_F rectangle_i32 = D2D1::RectF(
       0,
       underline->offset,
       underline->width,
@@ -310,7 +310,7 @@ IFACEMETHODIMP CustomTextRenderer::DrawUnderline(
 
    ID2D1RectangleGeometry* pRectangleGeometry = nullptr;
    hr = m_pfactory->CreateRectangleGeometry(
-      &rect,
+      &rectangle,
       &pRectangleGeometry
       );
 
@@ -331,13 +331,13 @@ IFACEMETHODIMP CustomTextRenderer::DrawUnderline(
          );
    }
 
-   // Draw the outline of the rectangle
+   // Draw the outline of the rectangle_i32
    m_prendertarget->DrawGeometry(
       pTransformedGeometry,
       m_pbrushOutline
       );
 
-   // Fill in the rectangle
+   // Fill in the rectangle_i32
    m_prendertarget->FillGeometry(
       pTransformedGeometry,
       m_pbrushFill
@@ -366,7 +366,7 @@ IFACEMETHODIMP CustomTextRenderer::DrawStrikethrough(
 {
    /*HRESULT hr;
 
-   D2D1_RECT_F rect = D2D1::RectF(
+   D2D1_RECT_F rectangle_i32 = D2D1::RectF(
       0,
       strikethrough->offset,
       strikethrough->width,
@@ -375,7 +375,7 @@ IFACEMETHODIMP CustomTextRenderer::DrawStrikethrough(
 
    ID2D1RectangleGeometry* pRectangleGeometry = nullptr;
    hr = m_pfactory->CreateRectangleGeometry(
-      &rect,
+      &rectangle,
       &pRectangleGeometry
       );
 
@@ -396,13 +396,13 @@ IFACEMETHODIMP CustomTextRenderer::DrawStrikethrough(
          );
    }
 
-   // Draw the outline of the rectangle
+   // Draw the outline of the rectangle_i32
    m_prendertarget->DrawGeometry(
       pTransformedGeometry,
       m_pbrushOutline
       );
 
-   // Fill in the rectangle
+   // Fill in the rectangle_i32
    m_prendertarget->FillGeometry(
       pTransformedGeometry,
       m_pbrushFill

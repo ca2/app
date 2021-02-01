@@ -89,16 +89,16 @@
 //          )
 //{
 //    if(hFile == INVALID_HANDLE_VALUE)
-//        return FALSE;
+//        return false;
 //    if(hFile->m_etype != win_handle::type_file)
-//        return FALSE;
+//        return false;
 //    size_t sizeWritten = fwrite(pBuffer, nNumberOfBytesToWrite, 1, hFile->m_file.m_pfile);
 
 //    if(pNumberOfBytesWritten != nullptr)
 
 //        *pNumberOfBytesWritten = (u32) sizeWritten;
 
-//    return TRUE;
+//    return true;
 //}
 //
 //int_bool
@@ -115,16 +115,16 @@
 //         )
 //{
 //    if(hFile == INVALID_HANDLE_VALUE)
-//        return FALSE;
+//        return false;
 //    if(hFile->m_etype != win_handle::type_file)
-//        return FALSE;
+//        return false;
 //    size_t sizeRead = fwrite(pBuffer, nNumberOfBytesToRead, 1, hFile->m_file.m_pfile);
 
 //    if(pNumberOfBytesRead != nullptr)
 
 //        *pNumberOfBytesRead = (u32)sizeRead;
 
-//    return TRUE;
+//    return true;
 //}
 //
 //int_bool
@@ -133,9 +133,9 @@
 //                 HANDLE hFile
 //                 )
 //{    if(hFile == INVALID_HANDLE_VALUE)
-//    return FALSE;
+//    return false;
 //    if(hFile->m_etype != win_handle::type_file)
-//        return FALSE;
+//        return false;
 //    return fflush(hFile->m_file.m_pfile) == 0;
 //}
 //
@@ -147,10 +147,10 @@
 //            )
 //{
 //    if(hFile == INVALID_HANDLE_VALUE)
-//        return FALSE;
+//        return false;
 //    if(hFile->m_etype != win_handle::type_file)
-//        return FALSE;
-//    return fclose(hFile->m_file.m_pfile) != FALSE;
+//        return false;
+//    return fclose(hFile->m_file.m_pfile) != false;
 //}
 //
 //int_bool
@@ -160,8 +160,8 @@
 //            )
 //{
 //   if(hObject == INVALID_HANDLE_VALUE)
-//      return FALSE;
-//   int_bool bOk = FALSE;
+//      return false;
+//   int_bool bOk = false;
 //   switch(hObject->m_etype)
 //   {
 //      case win_handle::type_file:
@@ -310,6 +310,10 @@
 //#endif
 //
 //
+
+
+
+
 
 
 

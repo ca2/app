@@ -11,7 +11,7 @@ namespace sockets
    public:
 
 
-      interlocked_long                             m_lHttpGetSerial;
+      interlocked_i32                              m_lHttpGetSerial;
 
       i32                                          m_iErrorCode;
 

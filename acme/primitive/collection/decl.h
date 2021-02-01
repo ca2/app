@@ -1,5 +1,8 @@
 #pragma once
 
+
+#define UNREFERENCED_PARAMETER(u)	(void)(u)
+
 template < typename CONTAINER_TYPE >
 struct container_iterator
 {

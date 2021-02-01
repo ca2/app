@@ -161,8 +161,8 @@ public:
    bool show_window(i32 nCmdShow);
    ::i32 get_window_long(i32 nIndex);
    ::i32 set_window_long(i32 nIndex, ::i32 l);
-   bool _001ClientToScreen(POINT32 * lppoint);
-   bool _001ScreenToClient(POINT32 * lppoint);
+   bool _001ClientToScreen(POINT_I32 * lppoint);
+   bool _001ScreenToClient(POINT_I32 * lppoint);
 
    bool is_null() const
    {
@@ -221,12 +221,12 @@ inline ::i32 SetWindowLongA(::oswindow oswindow, i32 nIndex, ::i32 l)
    return oswindow->set_window_long(nIndex, l);
 }
 
-inline bool _001ClientToScreen(::oswindow oswindow, POINT32 * lppoint)
+inline bool _001ClientToScreen(::oswindow oswindow, POINT_I32 * lppoint)
 {
    return oswindow->_001ClientToScreen(lppoint);
 }
 
-inline bool _001ScreenToClient(::oswindow oswindow, POINT32 * lppoint)
+inline bool _001ScreenToClient(::oswindow oswindow, POINT_I32 * lppoint)
 {
    return oswindow->_001ScreenToClient(lppoint);
 }

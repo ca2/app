@@ -2,7 +2,7 @@
 //
 // fcvt.c
 //
-// Floating point to string conversion routines
+// Floating p to string conversion routines
 //
 // Copyright (C) 2002 Michael Ringgaard. All rights reserved.
 //
@@ -36,7 +36,7 @@
 //#include <math.h>
 
 //
-// cvt.c - IEEE floating point formatting routines for FreeBSD
+// cvt.c - IEEE floating p formatting routines for FreeBSD
 // from GNU libc-4.6.27
 //
 
@@ -48,13 +48,13 @@ char *ccvt_internal(double arg,int ndigits,int *decpt,int *sign,char *buf,int ef
 {
    int r2;
    double fi,fj;
-   char *point,*point1;
+   char *p,*point1;
 
    if(ndigits < 0) ndigits = 0;
    if(ndigits >= CVTBUFSIZE - 1) ndigits = CVTBUFSIZE - 2;
    r2 = 0;
    *sign = 0;
-   point = &buf[0];
+   p = &buf[0];
    if(arg < 0) {
       *sign = 1;
       arg = -arg;
@@ -69,7 +69,7 @@ char *ccvt_internal(double arg,int ndigits,int *decpt,int *sign,char *buf,int ef
          *--point1 = (int)((fj + .03) * 10) + '0';
          r2++;
       }
-      while(point1 < &buf[CVTBUFSIZE]) *point++ = *point1++;
+      while(point1 < &buf[CVTBUFSIZE]) *p++ = *point1++;
    }
    else if(arg > 0) {
       while((fj = arg * 10) < 1) {
@@ -85,10 +85,10 @@ char *ccvt_internal(double arg,int ndigits,int *decpt,int *sign,char *buf,int ef
       return buf;
    }
    int i = 0;
-   while(point <= point1 && point < &buf[CVTBUFSIZE] && (!(eflag & MAX_PRECISION) || (arg != 0.0 || i >= ndigits))) {
+   while(p <= point1 && p < &buf[CVTBUFSIZE] && (!(eflag & MAX_PRECISION) || (arg != 0.0 || i >= ndigits))) {
       arg *= 10;
       arg = modf(arg,&fj);
-      *point++ = (int)fj + '0';
+      *p++ = (int)fj + '0';
       i++;
    }
    if(pi != nullptr)
@@ -99,7 +99,7 @@ char *ccvt_internal(double arg,int ndigits,int *decpt,int *sign,char *buf,int ef
       buf[CVTBUFSIZE - 1] = '\0';
       return buf;
    }
-   point = point1;
+   p = point1;
    *point1 += 5;
    while(*point1 > '9') {
       *point1 = '0';
@@ -110,12 +110,12 @@ char *ccvt_internal(double arg,int ndigits,int *decpt,int *sign,char *buf,int ef
          *point1 = '1';
          (*decpt)++;
          if((eflag & 1) == 0) {
-            if(point > buf) *point = '0';
-            point++;
+            if(p > buf) *p = '0';
+            p++;
          }
       }
    }
-   *point = '\0';
+   *p = '\0';
    return buf;
 }
 

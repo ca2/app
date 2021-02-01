@@ -227,15 +227,15 @@
 ////}
 ////
 ////
-////void stream::write(RECT32 * prect)
+////void stream::write(RECTANGLE_I32 * prectangle)
 ////{
 ////
-////   oblt(*prect);
+////   oblt(*prectangle);
 ////
 ////}
 ////
 ////
-////void stream::write(SIZE32 * psize)
+////void stream::write(SIZE_I32 * psize)
 ////
 ////{
 ////
@@ -245,7 +245,7 @@
 ////}
 ////
 ////
-////void stream::write(POINT32 * ppoint)
+////void stream::write(POINT_I32 * ppoint)
 ////{
 ////
 ////   oblt(*ppoint);
@@ -438,16 +438,16 @@
 //
 //}
 //
-//void stream::read(RECT32 * prect)
+//void stream::read(RECTANGLE_I32 * prectangle)
 //
 //{
 //
-//   iblt(*prect);
+//   iblt(*prectangle);
 //
 //
 //}
 //
-//void stream::read(SIZE32 *psize)
+//void stream::read(SIZE_I32 *psize)
 //{
 //
 //   iblt(*psize);
@@ -455,7 +455,7 @@
 //}
 //
 //
-//void stream::read(POINT32 * ppoint)
+//void stream::read(POINT_I32 * ppoint)
 //{
 //
 //   iblt(*ppoint);

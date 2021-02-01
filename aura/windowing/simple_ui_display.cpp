@@ -365,14 +365,14 @@ namespace windowing
 //
 //               XGlyphInfo &rText = pbutton->m_infoText;
 //
-//               ::rect &rButtonOuter = pbutton->m_rect;
+//               ::rectangle_i32 &rButtonOuter = pbutton->m_rectangle;
 //
 //               rButtonOuter.right = right;
 //               rButtonOuter.left = right - m_iButtonWidth;
 //               rButtonOuter.top = m_iButtonTop;
 //               rButtonOuter.bottom = m_iButtonTop + m_iButtonHeight;
 //
-//               ::rect rButton = rButtonOuter;
+//               ::rectangle_i32 rButton = rButtonOuter;
 //
 //               rButton.deflate(1, 1);
 //
@@ -454,7 +454,7 @@ namespace windowing
 //
 //               XftDrawRect(m_pdraw, &colorBack, rButton.left, rButton.top, rButton.width(), rButton.height());
 //
-//               ::rect rectText(rButton);
+//               ::rectangle_i32 rectText(rButton);
 //
 //               rectText.deflate(m_iButtonHPadding, m_iButtonVPadding);
 //
@@ -564,7 +564,7 @@ namespace windowing
 //            //printf("Window created %" PRId64 "\n", m_window);
 //            XStoreName(pdisplay, m_window, m_strTitle);
 //
-//            const char *pszFont = "Ubuntu:size=12";
+//            const char *pszFont = "Ubuntu:size_i32=12";
 //
 //            m_pfont = XftFontOpenName(pdisplay, m_iScreen, pszFont);
 //
@@ -606,7 +606,7 @@ namespace windowing
    void simple_ui_display::on_layout(display *pdisplay)
    {
 
-      ::size sizeLine;
+      ::size_i32 sizeLine;
 
 //      XGlyphInfo infoDummy;
 //
@@ -671,7 +671,7 @@ namespace windowing
 //
 //      m_iButtonHeight = m_iButtonVPadding + m_iLineHeight + m_iButtonVPadding;
 //
-//      ::size sizeTotal;
+//      ::size_i32 sizeTotal;
 //
 //      sizeTotal.cx = max(m_iMarginLeft + sizeLine.cx + m_iMarginRight,
 //                         m_iMarginLeft + m_iButtonWidth * m_buttona.get_count() +
@@ -750,14 +750,14 @@ namespace windowing
 //         else if (e.type == MotionNotify)
 //         {
 //
-//            ::point point(e.xmotion.x, e.xmotion.y);
+//            ::point_i32 point(e.xmotion.x, e.xmotion.y);
 //
 //            bool bRedraw = false;
 //
 //            for (auto &pbutton : m_buttona)
 //            {
 //
-//               bool bHover = pbutton->m_rect.contains(point);
+//               bool bHover = pbutton->m_rectangle.contains(point);
 //
 //               if (is_different(bHover, pbutton->m_bHover))
 //               {
@@ -781,14 +781,14 @@ namespace windowing
 //         else if (e.type == ButtonPress)
 //         {
 //
-//            ::point point(e.xbutton.x, e.xbutton.y);
+//            ::point_i32 point(e.xbutton.x, e.xbutton.y);
 //
 //            bool bRedraw = false;
 //
 //            for (auto &pbutton : m_buttona)
 //            {
 //
-//               bool bPress = pbutton->m_rect.contains(point);
+//               bool bPress = pbutton->m_rectangle.contains(point);
 //
 //               if (is_different(bPress, pbutton->m_bPress))
 //               {
@@ -812,7 +812,7 @@ namespace windowing
 //         else if (e.type == ButtonRelease)
 //         {
 //
-//            ::point point(e.xbutton.x, e.xbutton.y);
+//            ::point_i32 point(e.xbutton.x, e.xbutton.y);
 //
 //            bool bRedraw = false;
 //
@@ -826,7 +826,7 @@ namespace windowing
 //
 //                  bRedraw = true;
 //
-//                  if (pbutton->m_rect.contains(point))
+//                  if (pbutton->m_rectangle.contains(point))
 //                  {
 //
 //                     if (on_click(pbutton->m_edialogresult))

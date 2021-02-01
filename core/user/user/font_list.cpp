@@ -347,21 +347,21 @@ namespace user
 
       index iSel = m_pfontlist->m_iSel;
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      if (m_pfontlist->get_box_rect(rect, iSel) && rect.area() > 0)
+      if (m_pfontlist->get_box_rect(rectangle, iSel) && rectangle.area() > 0)
       {
 
-         ::rect rectImpact;
+         ::rectangle_i32 rectImpact;
 
          get_client_rect(rectImpact);
 
          rectImpact.offset(m_pointScroll);
 
-         if (!rectImpact.contains(rect))
+         if (!rectImpact.contains(rectangle))
          {
 
-            m_pointScroll.y = (rect.top + rect.bottom - rectImpact.height()) / 2;
+            m_pointScroll.y = (rectangle.top + rectangle.bottom - rectImpact.height()) / 2;
 
          }
 
@@ -606,7 +606,7 @@ namespace user
 
          m_pfontlist->m_iSel = iItem;
 
-         m_pointScroll.y = m_pfontlist->m_plistdata->element_at(iItem)->m_box[0].m_rect.top;
+         m_pointScroll.y = m_pfontlist->m_plistdata->element_at(iItem)->m_box[0].m_rectangle.top;
 
       }
       else

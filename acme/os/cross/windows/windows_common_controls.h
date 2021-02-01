@@ -129,7 +129,7 @@ typedef struct _NMTBCUSTOMDRAW {
    color32_t clrBtnHighlight;       // 3D highlight
    color32_t clrHighlightHotTrack;  // In conjunction with fHighlightHotTrack
    // will cause button to highlight like a menu
-   RECT32 rcText;                    // Rect for text
+   RECTANGLE_I32 rcText;                    // Rect for text
 
    int nStringBkMode;
    int nHLStringBkMode;
@@ -325,7 +325,7 @@ typedef struct {
 
 #define TB_GETINSERTMARK        (WM_USER + 79)  // lParam == LPTBINSERTMARK
 #define TB_SETINSERTMARK        (WM_USER + 80)  // lParam == LPTBINSERTMARK
-#define TB_INSERTMARKHITTEST    (WM_USER + 81)  // wParam == POINT32 * lParam == LPTBINSERTMARK
+#define TB_INSERTMARKHITTEST    (WM_USER + 81)  // wParam == POINT_I32 * lParam == LPTBINSERTMARK
 #define TB_MOVEBUTTON           (WM_USER + 82)
 #define TB_GETMAXSIZE           (WM_USER + 83)  // lParam == LPSIZE32
 #define TB_SETEXTENDEDSTYLE     (WM_USER + 84)  // For TBSTYLE_EX_*
@@ -608,7 +608,7 @@ typedef struct {
    DWORD_PTR lParam;  // [in] lParam of button
    int iImage;       // [out] image index
    char * pszText;    // [out] new text for item
-   int cchText;      // [in] size of buffer pointed to by pszText
+   int cchText;      // [in] size_i32 of buffer pointed to by pszText
 } NMTBDISPINFOA,*LPNMTBDISPINFOA;
 
 typedef struct {
@@ -618,7 +618,7 @@ typedef struct {
    DWORD_PTR lParam;  // [in] lParam of button
    int iImage;       // [out] image index
    LPWSTR pszText;   // [out] new text for item
-   int cchText;      // [in] size of buffer pointed to by pszText
+   int cchText;      // [in] size_i32 of buffer pointed to by pszText
 } NMTBDISPINFOW,*LPNMTBDISPINFOW;
 
 
@@ -658,7 +658,7 @@ typedef struct tagNMTOOLBARA {
    TBBUTTON tbButton;
    int     cchText;
    char *   pszText;
-   RECT32    rcButton;
+   RECTANGLE_I32    rcButton;
 } NMTOOLBARA,*LPNMTOOLBARA;
 
 typedef struct tagNMTOOLBARW {
@@ -667,7 +667,7 @@ typedef struct tagNMTOOLBARW {
    TBBUTTON tbButton;
    int     cchText;
    LPWSTR   pszText;
-   RECT32    rcButton;
+   RECTANGLE_I32    rcButton;
 } NMTOOLBARW,*LPNMTOOLBARW;
 
 #ifdef UNICODE
@@ -728,7 +728,7 @@ typedef struct tagREBARINFO
 
 
 #define RBBS_BREAK          0x00000001  // break to new line
-#define RBBS_FIXEDSIZE      0x00000002  // band can't be sized
+#define RBBS_FIXEDSIZE      0x00000002  // band can't be size_f64
 #define RBBS_CHILDEDGE      0x00000004  // edge around top & bottom of child window
 #define RBBS_HIDDEN         0x00000008  // don't show
 #define RBBS_NOVERT         0x00000010  // don't show when vertical
@@ -736,7 +736,7 @@ typedef struct tagREBARINFO
 #define RBBS_VARIABLEHEIGHT 0x00000040  // allow autosizing of this child vertically
 #define RBBS_GRIPPERALWAYS  0x00000080  // always show the gripper
 #define RBBS_NOGRIPPER      0x00000100  // never show the gripper
-#define RBBS_USECHEVRON     0x00000200  // display drop-down button for this band if it's sized smaller than ideal width
+#define RBBS_USECHEVRON     0x00000200  // display drop-down button for this band if it's size_f64 smaller than ideal width
 #define RBBS_HIDETITLE      0x00000400  // keep band title hidden
 #define RBBS_TOPALIGN       0x00000800  // keep band in top row
 #if (NTDDI_VERSION >= NTDDI_VISTA)
@@ -755,7 +755,7 @@ typedef struct tagREBARINFO
 #define RBBIM_ID            0x00000100
 #define RBBIM_IDEALSIZE     0x00000200
 #define RBBIM_LPARAM        0x00000400
-#define RBBIM_HEADERSIZE    0x00000800  // control the size of the header
+#define RBBIM_HEADERSIZE    0x00000800  // control the size_i32 of the header
 #if (NTDDI_VERSION >= NTDDI_VISTA)
 #define RBBIM_CHEVRONLOCATION 0x00001000
 #define RBBIM_CHEVRONSTATE    0x00002000
@@ -784,7 +784,7 @@ typedef struct tagREBARBANDINFOA
    LPARAM      lParam;
    ::u32        cxHeader;
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-   RECT32        rcChevronLocation;  // the rect is in client co-ord wrt hwndChild
+   RECTANGLE_I32        rcChevronLocation;  // the rectangle_i32 is in client co-ord wrt hwndChild
    ::u32        uChevronState;      // STATE_SYSTEM_*
 #endif
 }   REBARBANDINFOA,*LPREBARBANDINFOA;
@@ -819,7 +819,7 @@ typedef struct tagREBARBANDINFOW
    LPARAM      lParam;
    ::u32        cxHeader;
 #if (NTDDI_VERSION >= NTDDI_VISTA)
-   RECT32        rcChevronLocation;    // the rect is in client co-ord wrt hwndChild
+   RECTANGLE_I32        rcChevronLocation;    // the rectangle_i32 is in client co-ord wrt hwndChild
    ::u32        uChevronState; // STATE_SYSTEM_*
 #endif
 }   REBARBANDINFOW,*LPREBARBANDINFOW;
@@ -864,7 +864,7 @@ typedef REBARBANDINFOW const *LPCREBARBANDINFOW;
 #define RBSTR_CHANGERECT            0x0001   // flags for RB_SIZETORECT
 #endif
 
-#define RB_SIZETORECT   (WM_USER +  23) // resize the rebar/break bands and such to this rect (lparam)
+#define RB_SIZETORECT   (WM_USER +  23) // resize the rebar/break bands and such to this rectangle_i32 (lparam)
 
 #define RB_SETCOLORSCHEME   CCM_SETCOLORSCHEME  // lParam is color scheme
 #define RB_GETCOLORSCHEME   CCM_GETCOLORSCHEME  // fills in COLORSCHEME pointed to by lParam
@@ -954,8 +954,8 @@ typedef struct tagNMREBARCHILDSIZE
    NMHDR hdr;
    ::u32 uBand;
    ::u32 wID;
-   RECT32 rcChild;
-   RECT32 rcBand;
+   RECTANGLE_I32 rcChild;
+   RECTANGLE_I32 rcBand;
 } NMREBARCHILDSIZE,*LPNMREBARCHILDSIZE;
 
 typedef struct tagNMREBAR
@@ -978,8 +978,8 @@ typedef struct tagNMRBAUTOSIZE
 {
    NMHDR hdr;
    int_bool fChanged;
-   RECT32 rcTarget;
-   RECT32 rcActual;
+   RECTANGLE_I32 rcTarget;
+   RECTANGLE_I32 rcActual;
 } NMRBAUTOSIZE,*LPNMRBAUTOSIZE;
 
 typedef struct tagNMREBARCHEVRON
@@ -988,7 +988,7 @@ typedef struct tagNMREBARCHEVRON
    ::u32 uBand;
    ::u32 wID;
    LPARAM lParam;
-   RECT32 rc;
+   RECTANGLE_I32 rc;
    LPARAM lParamNM;
 } NMREBARCHEVRON,*LPNMREBARCHEVRON;
 
@@ -996,7 +996,7 @@ typedef struct tagNMREBARCHEVRON
 typedef struct tagNMREBARSPLITTER
 {
    NMHDR hdr;
-   RECT32  rcSizing;
+   RECTANGLE_I32  rcSizing;
 } NMREBARSPLITTER,*LPNMREBARSPLITTER;
 #endif
 
@@ -1027,7 +1027,7 @@ typedef struct tagNMREBARAUTOBREAK
 
 typedef struct _RB_HITTESTINFO
 {
-   POINT32 pt;
+   POINT_I32 pt;
    ::u32 flags;
    int iBand;
 } RBHITTESTINFO,*LPRBHITTESTINFO;
@@ -1073,7 +1073,7 @@ typedef struct tagTOOLINFOA {
    ::u32 uFlags;
    oswindow hwnd;
    UINT_PTR uId;
-   RECT32 rect;
+   RECTANGLE_I32 rectangle_i32;
    HINSTANCE hinst;
    char * lpszText;
    LPARAM lParam;
@@ -1087,7 +1087,7 @@ typedef struct tagTOOLINFOW {
    ::u32 uFlags;
    oswindow hwnd;
    UINT_PTR uId;
-   RECT32 rect;
+   RECTANGLE_I32 rectangle_i32;
    HINSTANCE hinst;
    LPWSTR lpszText;
    LPARAM lParam;
@@ -1254,13 +1254,13 @@ typedef struct _TTGETTITLE
 
 typedef struct _TT_HITTESTINFOA {
    oswindow hwnd;
-   POINT32 pt;
+   POINT_I32 pt;
    TTTOOLINFOA ti;
 } TTHITTESTINFOA,*LPTTHITTESTINFOA;
 
 typedef struct _TT_HITTESTINFOW {
    oswindow hwnd;
-   POINT32 pt;
+   POINT_I32 pt;
    TTTOOLINFOW ti;
 } TTHITTESTINFOW,*LPTTHITTESTINFOW;
 
@@ -1346,8 +1346,8 @@ typedef struct tagNMTTDISPINFOW {
 
 // end_r_commctrl
 
-//WINCOMMCTRLAPI void WINAPI DrawStatusTextA(HDC hDC,LPCRECT32 lprc,const char * pszText,::u32 uFlags);
-//WINCOMMCTRLAPI void WINAPI DrawStatusTextW(HDC hDC,LPCRECT32 lprc,const widechar * pszText,::u32 uFlags);
+//WINCOMMCTRLAPI void WINAPI DrawStatusTextA(HDC hDC,const RECTANGLE_I32 * lprc,const char * pszText,::u32 uFlags);
+//WINCOMMCTRLAPI void WINAPI DrawStatusTextW(HDC hDC,const RECTANGLE_I32 * lprc,const widechar * pszText,::u32 uFlags);
 
 //WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowA(::i32 style,const char * lpszText,oswindow hwndParent,::u32 wID);
 //WINCOMMCTRLAPI oswindow WINAPI CreateStatusWindowW(::i32 style,const widechar * lpszText,oswindow hwndParent,::u32 wID);

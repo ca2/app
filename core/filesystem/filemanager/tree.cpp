@@ -486,14 +486,14 @@ namespace filemanager
          pbase->userinteraction()->KillTimer(123);
 
          /*
-         ::rect rect;
+         ::rectangle_i32 rectangle;
          i32 iArrange = (i32) lparam;
 
          if(_001IsItemVisible(iArrange))
          {
          m_bCreateImageListRedraw = true;
-         _001GetItemRect(iArrange, iArrange, rect);
-         set_need_redraw(rect);
+         _001GetItemRect(iArrange, iArrange, rectangle);
+         set_need_redraw(rectangle);
          m_bCreateImageListRedraw = false;
          }*/
       }

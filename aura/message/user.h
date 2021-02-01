@@ -54,7 +54,7 @@ namespace message
       create() { }
 
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
 
       virtual void error(const char * pcszErrorMessage);
 
@@ -84,7 +84,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
 
       inline bool is_active() const
       {
@@ -108,13 +108,13 @@ namespace message
    public:
 
 
-      point m_point;
+      point_i32 m_point;
 
       move() { }
 
       using ::message::base::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
 
 
    };
@@ -125,14 +125,14 @@ namespace message
    public:
 
 
-      ::u32     m_nType;
-      ::size   m_size;
+      ::u32          m_nType;
+      ::size_i32     m_size;
 
       size() { }
 
       using ::message::base::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
 
    };
 
@@ -151,7 +151,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
 
 
    };
@@ -170,7 +170,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
 
       static mouse * cast(::message::message * pmessage)
       {
@@ -196,11 +196,11 @@ namespace message
 
       i16 GetDelta();
 
-      point GetPoint();
+      point_i32 GetPoint();
 
       using ::message::base::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
 
    };
 
@@ -228,7 +228,7 @@ namespace message
 
       context_menu() { }
 
-      point GetPoint();
+      point_i32 GetPoint();
 
 
    };
@@ -263,7 +263,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
 
 
    };
@@ -280,7 +280,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
 
 
    };
@@ -323,7 +323,7 @@ namespace message
    public:
 
 
-      point m_point;
+      point_i32 m_point;
 
       nchittest() { }
 
@@ -340,7 +340,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
 
    };
 
@@ -356,7 +356,7 @@ namespace message
       nc_activate();
 
       using ::message::base::set;
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
 
    };
 
@@ -367,12 +367,12 @@ namespace message
 
 
       notify() { }
-
-#ifdef WINDOWS_DESKTOP
-
-      LPNMHDR get_lpnmhdr();
-
-#endif
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      LPNMHDR get_lpnmhdr();
+//
+//#endif
 
       i32 get_ctrl_id();
 
@@ -419,7 +419,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
 
 
    };
@@ -432,14 +432,14 @@ namespace message
    public:
 
 
-      WINDOWPOS * m_pwindowpos;
+      void * m_pwindowpos;
 
 
       window_pos() {}
 
       using ::message::base::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
 
 
    };
@@ -451,7 +451,7 @@ namespace message
 
 
       i32 m_i;
-      LPMEASUREITEMSTRUCT m_lpmis;
+       void  * m_LPMEASUREITEMSTRUCT;
 
       measure_item() { }
 
@@ -464,7 +464,7 @@ namespace message
    public:
 
 
-      NCCALCSIZE_PARAMS * m_pparams;
+       void * m_pNCCALCSIZE_PARAMS;
 
 
       nc_calc_size() { }
@@ -473,7 +473,7 @@ namespace message
 
       using ::message::base::set;
 
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, WPARAM wparam, ::lparam lparam) override;
+      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
 
 
    };
@@ -507,15 +507,15 @@ namespace message
          set(oswindow,playeredUserPrimitive,id,0,0);
 
       }
-
-#ifdef WINDOWS
-
-      IDataObject *  pDataObj;// [in] DragEnter, Drop
-      POINTL         point; // [in] DragEnter, DragOver, Drop
-      ::u32          grfKeyState; // [in] DragEnter, DragOver, Drop
-      ::u32          dwEffect; // [in][out] DragEnter, DragOver, Drop
-
-#endif
+//
+//#ifdef WINDOWS
+//
+//      IDataObject *  pDataObj;// [in] DragEnter, Drop
+//      POINTL         point_i32; // [in] DragEnter, DragOver, Drop
+//      ::u32          grfKeyState; // [in] DragEnter, DragOver, Drop
+//      ::u32          dwEffect; // [in][out] DragEnter, DragOver, Drop
+//
+//#endif
 
    };
 

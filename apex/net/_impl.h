@@ -8,19 +8,19 @@ inline bool is_url_dup(const string & strCandidate)
 
 }
 
-inline void __exchange(::stream & s, struct in6_addr & addr)
-{
+//inline void __exchange(::stream & s, struct in6_addr & addr)
+//{
+//
+//   __exchange_as_string(s, addr);
+//
+//}
 
-   __exchange_as_string(s, addr);
 
-}
-
-
-inline void __exchange(::stream & s, struct in_addr & addr)
-{
-
-   __exchange_as_string(s, addr);
-
-}
+//inline void __exchange(::stream & s, struct in_addr & addr)
+//{
+//
+//   __exchange_as_string(s, addr);
+//
+//}
 
 

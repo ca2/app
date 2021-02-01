@@ -41,21 +41,21 @@ namespace draw2d_opengl
    //}
 
 
-   pointd path::internal_last_point()
+   point_f64 path::internal_last_point()
    {
 
       if(m_bHasPointInternal)
       {
 
-         //return pointd((::i32) m_pointInternal.X, (::i32) m_pointInternal.Y);
+         //return point_f64((::i32) m_pointInternal.X, (::i32) m_pointInternal.Y);
 
-         return pointd(0, 0);
+         return point_f64(0, 0);
 
       }
       else
       {
 
-         __throw(::exception::exception("path does not have last point"));
+         __throw(::exception::exception("path does not have last point_i32"));
 
       }
 
@@ -119,9 +119,9 @@ namespace draw2d_opengl
    bool path::internal_add_rect(i32 x,i32 y,i32 cx,i32 cy)
    {
 
-      //plusplus::Rect rect(x,y,cx,cy);
+      //plusplus::Rect rectangle_i32(x,y,cx,cy);
 
-      //bool bOk2 = m_ppath->AddRectangle(rect) == plusplus::Status::Ok;
+      //bool bOk2 = m_ppath->AddRectangle(rectangle) == plusplus::Status::Ok;
 
 
       //return bOk2;
@@ -152,7 +152,7 @@ namespace draw2d_opengl
    }
 
 
-   pointd path::internal_current_point()
+   point_f64 path::internal_current_point()
    {
 
       return m_pointLast;
@@ -196,7 +196,7 @@ namespace draw2d_opengl
 
 
 
-   bool path::internal_add_arc(const ::rect & rect, double iStart, double iAngle)
+   bool path::internal_add_arc(const ::rectangle_i32 & rectangle, double iStart, double iAngle)
    {
 
       return true;
@@ -254,7 +254,7 @@ namespace draw2d_opengl
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::rect& prect)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::rectangle_i32& prectangle)
    {
 
       __throw(todo("::opengl::path"));
@@ -264,7 +264,7 @@ namespace draw2d_opengl
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::rectd& prect)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::rectangle_f64& prectangle)
    {
 
       __throw(todo("::opengl::path"));
@@ -274,7 +274,7 @@ namespace draw2d_opengl
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::polygon& ppolygon)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::polygon_i32& ppolygon)
    {
 
       __throw(todo("::opengl::path"));
@@ -284,7 +284,7 @@ namespace draw2d_opengl
    }
 
 
-   bool path::_set(::draw2d::graphics* pgraphics, const ::polygond& ppolygond)
+   bool path::_set(::draw2d::graphics* pgraphics, const ::polygon_f64& ppolygond)
    {
 
       __throw(todo("::opengl::path"));

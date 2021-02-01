@@ -29,18 +29,52 @@ public:
 //
 //};
 
+
 namespace console
 {
 
+   enum enum_color
+   {
+      e_color_foreground_blue_component   = 0x0001,
+      e_color_foreground_green_component  = 0x0002, // text color contains green.
+      e_color_foreground_red_component    = 0x0004, // text color contains red.
+      e_color_foreground_intensity        = 0x0008, // text color is intensified.
+      e_color_background_blue_component   = 0x0010, // background color contains blue.
+      e_color_background_green_component  = 0x0020, // background color contains green.
+      e_color_background_red_component    = 0x0040, // background color contains red.
+      e_color_background_intensity        = 0x0080, // background color is intensified.
+      e_color_foreground_white            = e_color_foreground_blue_component | e_color_foreground_green_component | e_color_foreground_red_component | e_color_foreground_intensity,
+      e_color_foreground_blue             = e_color_foreground_blue_component | e_color_foreground_intensity,
+      e_color_foreground_green            = e_color_foreground_green_component | e_color_foreground_intensity,
+      e_color_foreground_red              = e_color_foreground_red_component | e_color_foreground_intensity,
+      e_color_foreground_cyan             = e_color_foreground_blue_component | e_color_foreground_green_component |e_color_foreground_intensity,
+      e_color_foreground_magenta          = e_color_foreground_blue_component | e_color_foreground_red_component | e_color_foreground_intensity,
+      e_color_foreground_yellow           = e_color_foreground_red_component | e_color_foreground_green_component | e_color_foreground_intensity,
+      e_color_foreground_gray             = e_color_foreground_blue_component | e_color_foreground_green_component | e_color_foreground_red_component,
+      e_color_foreground_dark_blue        = e_color_foreground_blue_component,
+      e_color_foreground_dark_green       = e_color_foreground_green_component,
+      e_color_foreground_dark_red         = e_color_foreground_red_component,
+      e_color_foreground_tungsten         = e_color_foreground_blue_component | e_color_foreground_green_component,
+      e_color_foreground_purple           = e_color_foreground_blue_component | e_color_foreground_red_component,
+      e_color_foreground_kaki             = e_color_foreground_red_component | e_color_foreground_green_component,
+      e_color_foreground_black            = 0,
+      e_color_background_white            = e_color_background_blue_component | e_color_background_green_component | e_color_background_red_component | e_color_background_intensity,
+      e_color_background_blue             = e_color_background_blue_component | e_color_background_intensity,
+      e_color_background_green            = e_color_background_green_component | e_color_background_intensity,
+      e_color_background_red              = e_color_background_red_component | e_color_background_intensity,
+      e_color_background_cyan             = e_color_background_blue_component | e_color_background_green_component | e_color_background_intensity,
+      e_color_background_magenta          = e_color_background_blue_component | e_color_background_red_component | e_color_background_intensity,
+      e_color_background_yellow           = e_color_background_red_component | e_color_background_green_component | e_color_background_intensity,
+      e_color_background_gray             = e_color_background_blue_component | e_color_background_green_component | e_color_background_red_component,
+      e_color_background_dark_blue        = e_color_background_blue_component,
+      e_color_background_dark_green       = e_color_background_green_component,
+      e_color_background_dark_red         = e_color_background_red_component,
+      e_color_background_tungsten         = e_color_background_blue_component | e_color_background_green_component,
+      e_color_background_purple           = e_color_background_blue_component | e_color_background_red_component,
+      e_color_background_kaki             = e_color_background_red_component | e_color_background_green_component,
+      e_color_background_black            = 0,
+   };
 
-   const int WHITE    = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
-   const int RED      = FOREGROUND_RED | FOREGROUND_INTENSITY;
-   const int BLUE     = FOREGROUND_BLUE | FOREGROUND_INTENSITY;
-   const int DARKBLUE = FOREGROUND_BLUE;
-   const int CYAN     = FOREGROUND_GREEN | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
-   const int MAGENTA  = FOREGROUND_RED | FOREGROUND_BLUE | FOREGROUND_INTENSITY;
-   const int YELLOW   = FOREGROUND_RED | FOREGROUND_GREEN | FOREGROUND_INTENSITY;
-   const int BLACK    = 0;
 
 
    class CLASS_DECL_ACME console:

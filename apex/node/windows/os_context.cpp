@@ -1,5 +1,5 @@
 #include "framework.h"
-#include "apex/node/windows/_windows.h"
+#include "apex/operating_system.h"
 #include "acme/os/windows_common/_file_c.h"
 #include "acme/os/windows_common/cotaskptr.h"
 #include "acme/os/windows_common/file.h"
@@ -9,7 +9,7 @@
 #include "acme/id.h"
 #include "_node_windows_private.h"
 #include "acme/os/windows/_windows.h"
-
+#include <ShellApi.h>
 
 
 ::e_status hresult_to_estatus(HRESULT hresult)
@@ -83,15 +83,15 @@ namespace windows
       LookupPrivilegeValue(nullptr, SE_SHUTDOWN_NAME, &tkp.Privileges[0].Luid);
       tkp.PrivilegeCount = 1;
       tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-      AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
+      AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
       if (bIfPowerOff)
-         retval = ExitWindowsEx(EWX_POWEROFF, 0) != FALSE;
+         retval = ExitWindowsEx(EWX_POWEROFF, 0) != false;
       else
-         retval = ExitWindowsEx(EWX_SHUTDOWN, 0) != FALSE;
+         retval = ExitWindowsEx(EWX_SHUTDOWN, 0) != false;
 
       //reset the previlages
       tkp.Privileges[0].Attributes = 0;
-      AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
+      AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
       return retval;
    }
 
@@ -109,7 +109,7 @@ namespace windows
       }
       tkp.PrivilegeCount = 1;
       tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-      if(!AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0))
+      if(!AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0))
       {
          TRACELASTERROR();
          return false;
@@ -125,7 +125,7 @@ namespace windows
       }
       tkp.PrivilegeCount = 1;
       tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-      if(!AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0))
+      if(!AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0))
       {
          TRACELASTERROR();
          return false;
@@ -149,7 +149,7 @@ namespace windows
       }*/
       //reset the previlages
       tkp.Privileges[0].Attributes = 0;
-      AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
+      AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
       return true;
    }
 
@@ -163,7 +163,7 @@ namespace windows
 
          HANDLE hProcess = ::OpenProcess( PROCESS_QUERY_INFORMATION |
                                           PROCESS_VM_READ,
-                                          FALSE, uPid);
+                                          false, uPid);
          TerminateProcess(hProcess, (::u32) -1);
          CloseHandle(hProcess);
          /*::EnumWindows((WNDENUMPROC)
@@ -177,9 +177,9 @@ namespace windows
          !=WAIT_OBJECT_0)
          bResult = TerminateProcess(hProcess,0);
          else
-         bResult = TRUE;
+         bResult = true;
          CloseHandle(hProcess);
-         return bResult == TRUE;*/
+         return bResult == true;*/
 
       }
    }
@@ -231,7 +231,7 @@ namespace windows
       // get a handle to the process.
       HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
                                      PROCESS_VM_READ,
-                                     FALSE, dwPid );
+                                     false, dwPid );
 
       // get the process name.
 
@@ -245,7 +245,7 @@ namespace windows
          if(EnumProcessModules(hProcess, &hMod, sizeof(hMod), &cbNeeded))
          {
             
-            strName = get_module_path(hMod);
+            strName = ::path::module(hMod);
 
          }
 
@@ -286,28 +286,28 @@ namespace windows
    }
 
 
-   ::file::path os_context::get_module_path(HMODULE hmodule)
-   {
-      
-      wstring wstrPath;
-      
-      u32 dwSize = 1;
+   //::file::path os_context::get_module_path(HMODULE hmodule)
+   //{
+   //   
+   //   wstring wstrPath;
+   //   
+   //   u32 dwSize = 1;
 
-      while(natural(wstrPath.get_length() + 1) == dwSize)
-      {
+   //   while(natural(wstrPath.get_length() + 1) == dwSize)
+   //   {
 
-         dwSize = ::GetModuleFileNameW(
-                  hmodule,
-                  wstrPath.get_string_buffer(dwSize + 1024),
-                  (dwSize + 1024));
+   //      dwSize = ::GetModuleFileNameW(
+   //               hmodule,
+   //               wstrPath.get_string_buffer(dwSize + 1024),
+   //               (dwSize + 1024));
 
-         wstrPath.release_string_buffer();
+   //      wstrPath.release_string_buffer();
 
-      }
+   //   }
 
-      return ::str::international::unicode_to_utf8(wstrPath);
+   //   return ::str::international::unicode_to_utf8(wstrPath);
 
-   }
+   //}
 
 
    ::payload os_context::connection_settings_get_auto_detect()
@@ -520,10 +520,10 @@ namespace windows
          key.open(key, "@ca2.cc/npca2", true);
 
          key.set("Description", "ca2 plugin for NPAPI");
-         key.set("Path", Context.dir().ca2module() /"npca2.dll");
+         key.set("Path", get_context()->dir().ca2module() /"npca2.dll");
          key.set("ProductName", "ca2 plugin for NPAPI");
          key.set("Vendor", "ca2 Desenvolvimento de Software Ltda.");
-         key.set("Version", Context.file().as_string(Context.dir().install()/"appdata/x86/ca2_build.txt"));
+         key.set("Version", get_context()->file().as_string(get_context()->dir().install()/"appdata/x86/ca2_build.txt"));
 
          key.open(key, "application/apex", true);
 
@@ -882,9 +882,9 @@ namespace windows
    {
       LPTSTR ReferencedDomain=nullptr;
       DWORD cbSid=128;    // initial allocation attempt
-      DWORD cchReferencedDomain=16; // initial allocation size
+      DWORD cchReferencedDomain=16; // initial allocation size_i32
       SID_NAME_USE peUse;
-      BOOL bSuccess=FALSE; // assume this function will fail
+      BOOL bSuccess=false; // assume this function will fail
 
       __try
       {
@@ -911,7 +911,7 @@ namespace windows
                SystemName,         // machine to lookup account on
                AccountName,        // account to lookup
                *Sid,               // SID of interest
-               &cbSid,             // size of SID
+               &cbSid,             // size_i32 of SID
                ReferencedDomain,   // domain account was found on
                &cchReferencedDomain,
                &peUse
@@ -942,7 +942,7 @@ namespace windows
          //
          // Indicate success.
          //
-         bSuccess=TRUE;
+         bSuccess=true;
 
       } // finally
       __finally
@@ -1003,7 +1003,7 @@ namespace windows
       sec_cotaskptr < PVOID > pvAuthBlob;
       CREDUI_INFOW u;
       ULONG   ulAuthPackage = 0;
-      BOOL    fSave = FALSE;
+      BOOL    fSave = false;
       WCHAR szDomainAndUser[CREDUI_MAX_USERNAME_LENGTH + CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1];
       WCHAR szDomain[CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1];
 //      TOKEN_INFO ti;
@@ -1162,7 +1162,7 @@ retry:
                szDomain,
                &lenDomain,
                szPassword,
-               &lenPass) != FALSE;
+               &lenPass) != false;
 
 
          if(!bOk)
@@ -1321,7 +1321,7 @@ retry:
 
       strExe += ".exe";
 
-      string strCalling = Context.dir().module() / strExe + " : service";
+      string strCalling = get_context()->dir().module() / strExe + " : service";
 
       if(is_true("no_remote_simpledb"))
       {
@@ -1524,15 +1524,15 @@ retry:
       {
          CloseServiceHandle(hdlSCM);
          //Ret = ::GetLastError();
-         return FALSE;
+         return false;
       }
 
-      bool bOk = StartService(hdlServ,0,nullptr) != FALSE;
+      bool bOk = StartService(hdlServ,0,nullptr) != false;
 
       CloseServiceHandle(hdlServ);
       CloseServiceHandle(hdlSCM);
 
-      return bOk != FALSE;
+      return bOk != false;
    }
 
    bool os_context::stop_service(const string & strServiceName)
@@ -1565,7 +1565,7 @@ retry:
 
       __memset(&ss,0,sizeof(ss));
 
-      bool bOk = ::ControlService(hdlServ,SERVICE_CONTROL_STOP,&ss) != FALSE;
+      bool bOk = ::ControlService(hdlServ,SERVICE_CONTROL_STOP,&ss) != false;
 
       ::DeleteService(hdlServ);
 
@@ -1573,7 +1573,7 @@ retry:
 
       CloseServiceHandle(hdlSCM);
 
-      return bOk != FALSE;
+      return bOk != false;
    }
 
 
@@ -1585,7 +1585,7 @@ retry:
    bool os_context::is_remote_session()
    {
 
-      return GetSystemMetrics(SM_REMOTESESSION) != FALSE;
+      return GetSystemMetrics(SM_REMOTESESSION) != false;
 
    }
 
@@ -1744,7 +1744,7 @@ retry:
 
       wstring wstrFileIn = ::str::international::utf8_to_unicode(strSource);
 
-      bool bNativeUnicode = is_windows_native_unicode() != FALSE;
+      bool bNativeUnicode = is_windows_native_unicode() != false;
 
       SHFILEINFOW info;
 
@@ -1753,10 +1753,13 @@ retry:
       defer_co_initialize_ex(false);
 
       DWORD_PTR dw = 0;
-      if (!path.m_idlist.is_empty())
+
+      auto pitemidlist = path.m_pmatterOsPath.cast < ::itemidlist>();
+
+      if (pitemidlist)
       {
 
-         dw = SHGetFileInfoW((const wchar_t *) path.m_idlist.m_pidl, 0, &info, sizeof(info), SHGFI_ATTRIBUTES | SHGFI_PIDL);
+         dw = SHGetFileInfoW((const wchar_t *)pitemidlist->m_pidl, 0, &info, sizeof(info), SHGFI_ATTRIBUTES | SHGFI_PIDL);
 
       }
       else
@@ -1822,10 +1825,10 @@ retry:
 
                string strLink = ::str::international::unicode_to_utf8((const widechar *)wstr);
 
-               if (strLink.is_empty())
+               if (strLink.is_empty() && pitemidlist)
                {
 
-                  pshelllink->GetIDList(&path.m_idlist.m_pidl);
+                  pshelllink->GetIDList(&pitemidlist->m_pidl);
 
                }
                else
@@ -2005,7 +2008,7 @@ retry:
 
          ::file::path pathFolder;
 
-         ::windows::shell_get_special_folder_path(nullptr, pathFolder, CSIDL_WINDOWS, FALSE);
+         ::windows::shell_get_special_folder_path(nullptr, pathFolder, CSIDL_WINDOWS, false);
 
          pathFolder /= "Web/Wallpaper";
 
@@ -2040,7 +2043,7 @@ retry:
    bool os_context::file_open(::file::path path, string strParams, string strFolder)
    {
 
-      path = Context.defer_process_path(path);
+      path = get_context()->defer_process_path(path);
 
       fork([=]()
       {
@@ -2071,13 +2074,14 @@ retry:
 
          si.lpVerb = L"open";
 
+         auto pitemidlist = path.m_pmatterOsPath.cast < ::itemidlist >();
 
-         if (wstrTarget.is_empty())
+         if (wstrTarget.is_empty() && pitemidlist)
          {
 
             si.fMask |= SEE_MASK_IDLIST;
 
-            si.lpIDList = path.m_idlist.m_pidl;
+            si.lpIDList = pitemidlist->m_pidl;
 
 
          }
@@ -3703,7 +3707,7 @@ HRESULT win_create_link(const widechar * pszPathObj, const widechar * pszPathLin
          // for success.
 
          // Save the link by calling IPersistFile::Save.
-         hres = ppf->Save(pszPathLink, TRUE);
+         hres = ppf->Save(pszPathLink, true);
 
          ppf->Release();
       }

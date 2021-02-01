@@ -62,7 +62,7 @@ namespace app_app
 
       m_iCloseButtonDraw = 0;
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -172,11 +172,11 @@ namespace app_app
 
          int iSize = (int) (::sin(angle) * 20.0 + 64.0);
 
-         get_client_rect(pitem->m_rect);
+         get_client_rect(pitem->m_rectangle);
 
-         pitem->m_rect.left = pitem->m_rect.right - iSize;
+         pitem->m_rectangle.left = pitem->m_rectangle.right - iSize;
 
-         pitem->m_rect.bottom = pitem->m_rect.top + iSize;
+         pitem->m_rectangle.bottom = pitem->m_rectangle.top + iSize;
 
          auto psession = Session;
 

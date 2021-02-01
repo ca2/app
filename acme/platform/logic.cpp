@@ -6,14 +6,14 @@ namespace acme
    namespace logic
    {
 
-      bool forward_conditional(bool point, bool q)
+      bool forward_conditional(bool point_i32, bool q)
       {
-         return !point || q;
+         return !point_i32 || q;
       }
 
-      bool reverse_conditional(bool point, bool q)
+      bool reverse_conditional(bool point_i32, bool q)
       {
-         return  q || !point;
+         return  q || !point_i32;
       }
 
    } // namespace logic

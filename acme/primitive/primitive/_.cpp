@@ -52,8 +52,8 @@ void __assert_valid_object(const ::matter * pOb, const char * pszFileName, i32 n
 
    // check to make sure the VTable pointer is valid
    //   ASSERT(sizeof(::matter) == sizeof(void *));
-   //   if (!__is_valid_address(*(void **)pOb, sizeof(void *), FALSE))
-   if (!__is_valid_address(*(void **)pOb, sizeof(void *), FALSE))
+   //   if (!__is_valid_address(*(void **)pOb, sizeof(void *), false))
+   if (!__is_valid_address(*(void **)pOb, sizeof(void *), false))
    {
 
       //      TRACE(trace_category_appmsg, 0, "ASSERT_VALID fails with illegal vtable pointer.\n");
@@ -70,7 +70,7 @@ void __assert_valid_object(const ::matter * pOb, const char * pszFileName, i32 n
 
    }
 
-   /*if (!__is_valid_address(pOb, typeid(pOb->GetRuntimeClass()->m_nObjectSize, FALSE))
+   /*if (!__is_valid_address(pOb, typeid(pOb->GetRuntimeClass()->m_nObjectSize, false))
    {
    TRACE(trace_category_appmsg, 0, "ASSERT_VALID fails with illegal pointer.\n");
    if (__assert_failed_line(pszFileName, nLine))

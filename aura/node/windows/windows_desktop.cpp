@@ -1,4 +1,4 @@
-// WindowsDesktop1.cpp : Defines the entry point for the application.
+// WindowsDesktop1.cpp : Defines the entry point_i32 for the application.
 //
 
 #include "framework.h"
@@ -14,8 +14,8 @@ WCHAR szTitle[MAX_LOADSTRING];                  // The title bar text
 // Forward declarations of functions included in this code module:
 ATOM                MyRegisterClass(HINSTANCE hInstance);
 BOOL                InitInstance(HINSTANCE, int);
-LRESULT CALLBACK    WndProc(HWND, ::u32, WPARAM, LPARAM);
-INT_PTR CALLBACK    About(HWND, ::u32, WPARAM, LPARAM);
+lresult CALLBACK    WndProc(HWND, ::u32, wparam, lparam);
+INT_PTR CALLBACK    About(HWND, ::u32, wparam, lparam);
 
 ////int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
 ////   _In_opt_ HINSTANCE hPrevInstance,
@@ -111,11 +111,11 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 //   ShowWindow(hWnd, nCmdShow);
 //   UpdateWindow(hWnd);
 //
-//   return TRUE;
+//   return true;
 //}
 
 //
-//  FUNCTION: WndProc(HWND, ::u32, WPARAM, LPARAM)
+//  FUNCTION: WndProc(HWND, ::u32, wparam, lparam)
 //
 //  PURPOSE: Processes messages for the main window.
 //
@@ -124,7 +124,7 @@ ATOM MyRegisterClass(HINSTANCE hInstance)
 //  e_message_destroy  - post a quit message and return
 //
 //
-LRESULT CALLBACK WndProc(HWND hWnd, ::u32 message, WPARAM wParam, LPARAM lParam)
+lresult CALLBACK WndProc(HWND hWnd, ::u32 message, wparam wParam, lparam lParam)
 {
 
    switch (message)
@@ -148,19 +148,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, ::u32 message, WPARAM wParam, LPARAM lParam)
 }
 
 // Message handler for about box.
-INT_PTR CALLBACK About(HWND hDlg, ::u32 message, WPARAM wParam, LPARAM lParam)
+INT_PTR CALLBACK About(HWND hDlg, ::u32 message, wparam wParam, lparam lParam)
 {
    UNREFERENCED_PARAMETER(lParam);
    switch (message)
    {
    case WM_INITDIALOG:
-      return (INT_PTR)TRUE;
+      return (INT_PTR)true;
 
    case e_message_command:
       if (LOWORD(wParam) == e_dialog_result_ok || LOWORD(wParam) == e_dialog_result_cancel)
       {
          EndDialog(hDlg, LOWORD(wParam));
-         return (INT_PTR)TRUE;
+         return (INT_PTR)true;
       }
       break;
    }

@@ -278,16 +278,16 @@ public:
 
    virtual bool create(const char * pClassName, const char * lpWindowName,
 
-      u32 dwStyle, const ::rect & rect,
+      u32 dwStyle, const ::rectangle_i32 & rectangle,
       ::user::interaction_child* pParentWnd = nullptr, ::u32 nID = 0);
    virtual bool create_window_ex(u32 dwExStyle, const char * pClassName, const char * lpWindowName,
 
-      u32 dwStyle, const ::rect & rect,
+      u32 dwStyle, const ::rectangle_i32 & rectangle,
       ::user::interaction_child* pParentWnd = nullptr, ::u32 nID = 0);
 
 
    bool OnNcActivate(bool bActive);
-   LRESULT OnNcHitTest(const ::point & point);
+   LRESULT OnNcHitTest(const ::point_i32 & point);
    void OnSysCommand(::u32 nID, LPARAM lParam);
    void OnGetMinMaxInfo(MINMAXINFO* pMMI);
    LRESULT OnFloatStatus(WPARAM wParam, LPARAM lParam);
@@ -296,7 +296,7 @@ public:
 
 
 public:
-   static void CalcBorders(RECT32 * pClientRect, u32 dwStyle = 0, u32 dwExStyle = 0);
+   static void CalcBorders(RECTANGLE_I32 * pClientRect, u32 dwStyle = 0, u32 dwExStyle = 0);
 
 
 protected:

@@ -65,7 +65,7 @@ namespace turboc
       if(Application.m_bMultiverseChat)
       {
 
-         m_ptopview = create_view < top_view >(NULL,::rect(),NULL,"turboc_top");
+         m_ptopview = create_view < top_view >(NULL,::rectangle_i32(),NULL,"turboc_top");
 
          if(m_ptopview == NULL)
          {

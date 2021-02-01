@@ -30,7 +30,7 @@ namespace file
       virtual string get_file_path();
 
 #ifdef WINDOWS
-      virtual bool get_error_message(string & str, PUINT pnHelpContext = nullptr);
+      virtual bool get_error_message(string & str, unsigned int * pnHelpContext = nullptr);
 #endif
 
    };

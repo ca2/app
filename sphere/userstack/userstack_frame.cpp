@@ -121,7 +121,7 @@ namespace userstack
       }
       else if(uEvent == 4033)
       {
-         ::point point;
+         ::point_i32 point;
          if(m_bHoverMouse && ::get_tick() > m_millisLastHover + 300)
          {
             OnHoverAction();
@@ -168,9 +168,9 @@ namespace userstack
             && m_pdocument->m_pplatformdocument != nullptr
             && m_pdocument->m_pplatformdocument->get_platform_frame() != nullptr)
             {
-               ::rect rectClient;
+               ::rectangle_i32 rectClient;
                get_client_rect(rectClient);
-               ::point point = pmouse->m_point;
+               ::point_i32 point = pmouse->m_point;
                _001ScreenToClient(point);
                if(rectClient.contains(point))
                {
@@ -277,9 +277,9 @@ namespace userstack
          else if(pbase->m_lparam == 5)
          {
 #ifdef WINDOWS_DESKTOP
-            ::rect rect;
-            ::GetWindowRect(::get_desktop_window(), rect);
-            ::point point = rect.center();
+            ::rectangle_i32 rectangle;
+            ::GetWindowRect(::get_desktop_window(), rectangle);
+            ::point_i32 point = rectangle.center();
             if(!is_window_visible()
                   || ::WindowFromPoint(point) != get_safe_handle())
             {

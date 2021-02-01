@@ -1,7 +1,7 @@
 #pragma once
 
 
-
+#include <atomic>
 
 enum e_zero_init
 {
@@ -35,7 +35,7 @@ public:
    typedef TYPE_DATA                   DATA;
 
 
-   ::count                             m_countReference;
+   ::std::atomic <::count>             m_countReference;
    memsize_storage                     m_memsize;
    memsize_storage                     m_datasize;
    DATA                                m_endofmetadata[1024];
@@ -46,9 +46,9 @@ public:
 
    bool natural_is_shared() const { return m_countReference > 1; }
 
-   auto natural_add_ref() { return atomic_increment(&m_countReference); }
+   auto natural_add_ref() { return m_countReference++; }
 
-   auto natural_dec_ref() { return atomic_decrement(&m_countReference); }
+   auto natural_dec_ref() { return m_countReference--; }
 
    inline static ::memsize natural_offset() { meta_data metadata; return (((byte*)&metadata.m_endofmetadata - (byte*)&metadata) + NATURAL_METADATA_ALIGN - 1) & (~(NATURAL_METADATA_ALIGN - 1)); }
 
@@ -134,7 +134,7 @@ public:
    DATA *      m_pdata;
 
 
-   inline natural_pointer(enum_no_init) { }
+   inline natural_pointer(enum_no_initialize) { }
 
    inline natural_pointer(nullptr_t) { m_pdata = nullptr; }
 

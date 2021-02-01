@@ -23,11 +23,11 @@ CLASS_DECL_AURA bool _istlead(i32 ch)
 
 
 
-int_bool GetCursorPos(POINT32 * ppointCursor)
+int_bool GetCursorPos(POINT_I32 * ppointCursor)
 
 {
 
-   HIPoint point;
+   HIPoint point_i32;
 
    HICoordinateSpace space = kHICoordSpaceScreenPixel;
 

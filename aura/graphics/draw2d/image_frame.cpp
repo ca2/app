@@ -48,9 +48,9 @@ void image_frame::gif_set_disposal(int iDisposal)
 void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, image_frame_array * pframea)
 {
 
-   ::point point = m_rect.top_left();
+   ::point_i32 point = m_rectangle.top_left();
 
-   ::size size = m_rect.size();
+   ::size_i32 size = m_rectangle.size();
 
    if (m_edisposal == ::draw2d::disposal_none)
    {
@@ -101,9 +101,9 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
 
       }
 
-      ::rect rect = pframea->element_at(m_iFrame - 1)->m_rect;
+      ::rectangle_i32 rectangle = pframea->element_at(m_iFrame - 1)->m_rectangle;
 
-      pimageCompose->g()->fill_rect(rect, crBack);
+      pimageCompose->g()->fill_rect(rectangle, crBack);
 
    }
 
@@ -113,7 +113,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
 
            pimageCompose->set_alpha_mode(::draw2d::alpha_mode_set);
 
-           pimageCompose->g()->fill_rect(pframea->rect(), 0);
+           pimageCompose->g()->fill_rect(pframea->rectangle_i32(), 0);
 
         }*/
 

@@ -208,7 +208,7 @@ namespace uwp
       // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
       rStatus.m_attribute = (byte)(findnative_bufferData.dwnative_bufferAttributes & ~native_buffer_ATTRIBUTE_NORMAL);
 
-      // get just the low ::u32 of the native_buffer size
+      // get just the low ::u32 of the native_buffer size_i32
       ASSERT(findnative_bufferData.nnative_bufferSizeHigh == 0);
       rStatus.m_size = (::i32)findnative_bufferData.nnative_bufferSizeLow;
 

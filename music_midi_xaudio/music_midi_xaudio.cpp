@@ -410,10 +410,10 @@ namespace music
       * This function returns the maximum sizeof buffer that is needed to
       * hold the state information returned by f smfSeek.
       *
-      * pdwSize                   - Gets the size in bytes that should be allocated
+      * pdwSize                   - Gets the size_i32 in bytes that should be allocated
       *                             for the state buffer.
       *
-      * Returns the state size in bytes.
+      * Returns the state size_i32 in bytes.
       *
       *****************************************************************************/
       u32 GetStateMaxSize(

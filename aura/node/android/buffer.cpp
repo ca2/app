@@ -25,7 +25,7 @@ namespace android
    }
 
 
-   bool buffer::update_buffer(const ::size & size, int iStrideParam)
+   bool buffer::update_buffer(const ::size_i32 & size, int iStrideParam)
    {
 
       //destroy_buffer();
@@ -68,14 +68,14 @@ namespace android
 
       //ARect r;
 
-      //rect.left = 0;
-      //rect.top = 0;
-      //rect.right = pimage->width();
-      //rect.bottom = pimage->height();
+      //rectangle.left = 0;
+      //rectangle.top = 0;
+      //rectangle.right = pimage->width();
+      //rectangle.bottom = pimage->height();
 
       //__zero(buffer);
 
-      //ANativeWindow_lock(m_pimpl->m_oswindow->m_engine.app->window, &buffer, rect);
+      //ANativeWindow_lock(m_pimpl->m_oswindow->m_engine.app->window, &buffer, rectangle);
 
       ///**
       //* Unlock the window's drawing surface after previously locking it,

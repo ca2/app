@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+using hcursor = void *;
+
+
 namespace draw2d
 {
    
@@ -15,10 +18,10 @@ namespace draw2d
       bool                    m_bDefaultCursor;
       ::image_pointer         m_pimage;
       ::image_pointer         m_pimageCursor;
-      ::size                  m_szHotspotOffset;
+      ::size_i32              m_szHotspotOffset;
 
 
-      HCURSOR                 m_hcursor;
+      hcursor                 m_hcursor;
 
 
       cursor();
@@ -29,21 +32,21 @@ namespace draw2d
 
       virtual void finalize() override;
 
-      HCURSOR get_HCURSOR(::user::interaction * pinteraction);
+      hcursor get_HCURSOR(::user::interaction * pinteraction);
 
       bool set_current(::user::interaction * pinteraction, ::aura::session * psession);
 
       static bool reset(::user::interaction * pinteraction, ::aura::session * psession);
 
       inline ::draw2d::graphics * g() const { return m_pimage->g(); }
-      inline ::draw2d::graphics * g(const ::sized & sizeHint) { return m_pimage->g(sizeHint); }
+      inline ::draw2d::graphics * g(const ::size_f64 & sizeHint) { return m_pimage->g(sizeHint); }
 
       
-      inline ::image * get_image(const concrete < ::size > & concreteSize) { return m_pimage->get_image(concreteSize); }
+      inline ::image * get_image(const concrete < ::size_i32 > & concreteSize) { return m_pimage->get_image(concreteSize); }
 
 
-      inline concrete < ::size > size(const ::sized & sizeDst, enum_image_selection eimageselection) const { return m_pimage->size(sizeDst, eimageselection); }
-      inline concrete < ::size > size() const { return m_pimage->size(); }
+      inline concrete < ::size_i32 > size_i32(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const { return m_pimage->size_i32(sizeDst, eimageselection); }
+      inline concrete < ::size_i32 > size() const { return m_pimage->size(); }
 
 
    };
@@ -59,26 +62,8 @@ namespace draw2d
 } // namespace draw2d
 
 
-#ifdef WINDOWS_DESKTOP
 
-
-// Derived from Microsoft KB318876!!
-// on 2014-06-29!! During World Cup Games 2014!! Oitavas de Final, third game between Nederland and Mexico!!
-// Thank you God!!
-// Thank you Microsoft!!
-// Thank you Pappi!! Pelo passeio no Mercado Municipal de Curitiba com a Mummi e pelo almoo com o-bento de sushi e onigiri delicioso!!
-// Obrigado Mummi por tudo!! E por hoje tambm e por propiciar isso tudo!! Por falar to profundamente do Chico Xavier mesmo com muitas dvidas minhas!!
-// Meu Deus me ajude!!
-
-
-CLASS_DECL_AURA HBITMAP CreateAlphaBitmapV5(const ::image * pimage);
-CLASS_DECL_AURA HICON CreateAlphaIcon(const ::image * pimage,bool bIcon = true,int xHotSpot = 0,int yHotSpot = 0);
-
-
-#endif
-
-
-//CLASS_DECL_AURA HCURSOR CreateAlphaCursor(oswindow oswindow, const ::image * pimage,int xHotSpot,int yHotSpot);
+//CLASS_DECL_AURA hcursor CreateAlphaCursor(oswindow oswindow, const ::image * pimage,int xHotSpot,int yHotSpot);
 
 
 

@@ -37,21 +37,21 @@ namespace draw2d_quartz2d
       bool dc_select(bool bSelect = true) override;
 
 
-      ::e_status create(const ::size & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false) override;
+      ::e_status create(const ::size_i32 & size, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false) override;
       //::e_status create(i32 iWidth, i32 iHeight, ::eobject eobjectCreate = DEFAULT_CREATE_IMAGE_OBJECT_FLAG, int iGoodStride = -1, bool bPreserve = false) override;
       ::e_status create(::draw2d::graphics * pgraphics) override;
       virtual bool destroy() override;
 
 
 
-      bool from(const ::point & pointDest, ::draw2d::graphics * pgraphics, const ::point & point, const ::size & sz) override;
-      bool to(::draw2d::graphics * pgraphics, const ::point & point, const ::size & size, const ::point & pointSrc) override;
+      bool from(const ::point_i32 & pointDest, ::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & sz) override;
+      bool to(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, const ::point_i32 & pointSrc) override;
 
       ::e_status SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy) override;
 
       virtual bool set_mapped() override;
 
-      virtual bool blend(const ::point & pointDst, ::image * pimplSrc, const ::point & pointSrc, const ::size & size, byte bA) override;
+      virtual bool blend(const ::point_i32 & pointDst, ::image * pimplSrc, const ::point_i32 & pointSrc, const ::size_i32 & size, byte bA) override;
 
 
    };

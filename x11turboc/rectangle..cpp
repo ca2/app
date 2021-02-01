@@ -31,7 +31,7 @@
 //----------------------------------------------------------------------------
 
 void
-rectangle (int x1, int y1, int x2, int y2)
+rectangle_i32 (int x1, int y1, int x2, int y2)
 {
   int i, j;
   if (x1 > x2)

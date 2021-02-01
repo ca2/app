@@ -20,7 +20,7 @@ public:
    bool              m_bSignaled;  // meaningful only when m_bManualEvent
    i32               m_iSignalId;  // meaningful only when m_bManualEvent
    void *            m_pcond; // pthread_cond_t
-   void *            m_pmutex; // pthread_mutex_t;
+   void *            m_mutex; // pthread_mutex_t;
 
 
 #endif
@@ -34,7 +34,7 @@ public:
 #endif
 
 
-   event(char * sz = nullptr,bool bInitiallyOwn = false, bool bManualReset = false, const char * pszNAme = nullptr, LPSECURITY_ATTRIBUTES lpsaAttribute = nullptr);
+   event(char * sz = nullptr,bool bInitiallyOwn = false, bool bManualReset = false, const char * pszNAme = nullptr ARG_SEC_ATTRS_DEF);
 
    virtual ~event();
 

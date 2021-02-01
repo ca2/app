@@ -638,7 +638,7 @@ namespace uwp
 
          // Left arrow
       case VirtualKey::Left:
-         // If the shift key is down, then adjust the size of the selection.
+         // If the shift key is down, then adjust the size_i32 of the selection.
          //if ((int)m_window->GetKeyState(VirtualKey::Shift) & (int) CoreVirtualKeyStates::Down)
          //{
          //   // If this is the start of a selection, then remember which edge we are adjusting.
@@ -672,7 +672,7 @@ namespace uwp
 
          // Right arrow
       case VirtualKey::Right:
-         // If the shift key is down, then adjust the size of the selection.
+         // If the shift key is down, then adjust the size_i32 of the selection.
          //if ((int)m_window->GetKeyState(VirtualKey::Shift) & (int) CoreVirtualKeyStates::Down)
          //{
          //   // If this is the start of a selection, then remember which edge we are adjusting.

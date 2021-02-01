@@ -93,7 +93,7 @@ extern "C" {
 *    identifiers starting with LOOPER_ID_USER.
 *
 * 4/ Whenever you receive a LOOPER_ID_MAIN or LOOPER_ID_INPUT event,
-*    the returned data will point to an android_poll_source structure.  You
+*    the returned data will point_i32 to an android_poll_source structure.  You
 *    can call the process() function on it, and fill in android_app->onAppCmd
 *    and android_app->onInputEvent to be called for your own processing
 *    of the event.
@@ -143,7 +143,7 @@ struct android_app
    // Fill this in with the function to process main app commands (APP_CMD_*)
    void(*onAppCmd)(struct android_app* app, i32 cmd);
 
-   // Fill this in with the function to process input events.  At this point
+   // Fill this in with the function to process input events.  At this point_i32
    // the event has already been pre-dispatched, and it will be finished upon
    // return.  Return 1 if you have handled the event, 0 for any default
    // dispatching.
@@ -158,9 +158,9 @@ struct android_app
    // This is the last instance's saved state, as provided at creation time.
    // It is nullptr if there was no state.  You can use this as you need; the
    // memory will remain around until you call android_app_exec_cmd() for
-   // APP_CMD_RESUME, at which point it will be freed and savedState set to nullptr.
+   // APP_CMD_RESUME, at which point_i32 it will be freed and savedState set to nullptr.
    // These variables should only be changed when processing a APP_CMD_SAVE_STATE,
-   // at which point they will be initialized to nullptr and you can malloc your
+   // at which point_i32 they will be initialized to nullptr and you can malloc your
    // state and place the information here.  In that case the memory will be
    // freed for you later.
    void* savedState;
@@ -176,7 +176,7 @@ struct android_app
    // When non-nullptr, this is the window surface that the app can draw in.
    ANativeWindow* window;
 
-   // Current content rectangle of the window; this is the area where the
+   // Current content rectangle_i32 of the window; this is the area where the
    // window's content should be placed to be seen by the user.
    ARect contentRect;
 
@@ -277,7 +277,7 @@ enum
    /**
    * Command from main thread: the content area of the window has changed,
    * such as from the soft input window being shown or hidden.  You can
-   * find the new content rect in android_app::contentRect.
+   * find the new content rectangle_i32 in android_app::contentRect.
    */
    APP_CMD_CONTENT_RECT_CHANGED,
 
@@ -318,7 +318,7 @@ enum
    * Command from main thread: the app should generate a new saved state
    * for itself, to restore from later if needed.  If you have saved state,
    * allocate it with malloc and place it in android_app.savedState with
-   * the size in android_app.savedStateSize.  The will be freed for you
+   * the size_i32 in android_app.savedStateSize.  The will be freed for you
    * later.
    */
    APP_CMD_SAVE_STATE,

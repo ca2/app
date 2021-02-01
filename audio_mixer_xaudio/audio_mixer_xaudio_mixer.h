@@ -30,7 +30,7 @@ namespace multimedia
          ::e_status     set_new_device(u32 uiMixerId);
 
 
-         bool OnCommand(WPARAM wparam, LPARAM lparam);
+         bool OnCommand(wparam wparam, lparam lparam);
          void OnMixerControlChange(HMIXER hMixer, u32 dwControlID);
          void OnMixerLineChange(HMIXER hMixer, u32 dwLineID);
 

@@ -87,9 +87,9 @@ namespace console
 //      // every 100 ms approximately
 //      else if(uEvent == 4033)
 //      {
-//   /*      ::rect rectWindow;
+//   /*      ::rectangle_i32 rectWindow;
 //         get_window_rect(rectWindow);
-//         ::point point;
+//         ::point_i32 point;
 //         point = psession->get_cursor_pos();
 //         if(rectWindow.is_empty().contains(point) && !m_bTimerHide)
 //         {
@@ -101,7 +101,7 @@ namespace console
 //            m_bTimerHide = false;
 //            KillTimer(1001);
 //         }*/
-//         /*::point point;
+//         /*::point_i32 point;
 //         if(m_bHoverMouse && ::get_tick() > m_millisLastHover + 300)
 //         {
 //            OnHoverAction();
@@ -272,9 +272,9 @@ namespace console
       /*if(m_pframewindow->move_manager()->IsMoving())
       {
          oswindow oswindowDesktop = ::get_desktop_window();
-         ::rect rectDesktop;
+         ::rectangle_i32 rectDesktop;
          ::get_window_rect(oswindowDesktop, rectDesktop);
-         ::rect rectWindow;
+         ::rectangle_i32 rectWindow;
          get_window_rect(rectWindow);
          double a = (double) rectDesktop.height() / (double) rectDesktop.width();
          if(rectWindow.left < (rectDesktop.width() / 2))
@@ -337,7 +337,7 @@ namespace console
    void prompt_frame::ToFront()
    {
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       get_window_rect(rectWindow);
       
@@ -496,23 +496,23 @@ namespace console
    bool prompt_frame::show_mini()
    {
 
-      ::rect rect;
+      ::rectangle_i32 rectangle;
 
-      System.get_monitor_rect(0,rect);
+      System.get_monitor_rect(0,rectangle_i32);
 
       int iHeight = m_pframe->calc_caption_height(::e_display_normal) + m_pframe->m_rectMarginNormal.top;
 
-      rect.left += 100;
+      rectangle.left += 100;
 
-      rect.top = rect.bottom - 100 - iHeight;
+      rectangle.top = rectangle.bottom - 100 - iHeight;
 
-      rect.bottom -= 100;
+      rectangle.bottom -= 100;
 
-      rect.right -= 400;
+      rectangle.right -= 400;
 
       set_appearance(::e_display_minimal);
 
-      set_window_pos(zorder_top,rect,SWP_SHOWWINDOW);
+      set_window_pos(zorder_top,rectangle_i32,SWP_SHOWWINDOW);
 
       display(e_display_normal);
 

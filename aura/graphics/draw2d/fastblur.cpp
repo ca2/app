@@ -175,7 +175,7 @@ namespace draw2d
 
       }
 
-      if (m_size == size(cx, cy) && m_iRadius == radius)
+      if (m_size == size_i32(cx, cy) && m_iRadius == radius)
       {
 
          return true;
@@ -294,7 +294,7 @@ namespace draw2d
    }
 
 
-   bool fastblur::initialize(size sz,i32 iRadius)
+   bool fastblur::initialize(size_i32 sz,i32 iRadius)
    {
 
       return initialize(sz.cx,sz.cy,iRadius);
@@ -302,10 +302,10 @@ namespace draw2d
    }
 
 
-   bool fastblur::blur(::image * pimage, i32 iRadius, const ::rect & rect)
+   bool fastblur::blur(::image * pimage, i32 iRadius, const ::rectangle_i32 & rectangle)
    {
 
-      pixmap_lock lock(pimage, rect);
+      pixmap_lock lock(pimage, rectangle);
 
       return blur(pimage, iRadius);
 
@@ -359,7 +359,7 @@ namespace draw2d
 
       u32 * pdata = (u32 *) m_p->get_data();
 
-      u8 * point;
+      u8 * point_i32;
       vector4 * t = timage;
 
       int w = m_size.cx;
@@ -374,8 +374,8 @@ auto tickA0 = ::millis::now();
          {
             for(index x = 0; x < w; x++)
             {
-               point = (u8 *)&pdata[y * s + x];
-               t[y * w + x] = vector4(point[0],point[1],point[2],point[3]);
+               p = (u8 *)&pdata[y * s + x];
+               t[y * w + x] = vector4(point_i32[0],point_i32[1],point_i32[2],point_i32[3]);
             }
          }
 auto tickA1 = ::millis::now();
@@ -413,7 +413,7 @@ auto tick2 = ::millis::now();
          ::u32 dw3 = dw2 - dw1;
 
          string str1;
-         str1.Format("| Parameters: w=%d h=%d rect=%d  \n",w,h,m_iRadius);
+         str1.Format("| Parameters: w=%d h=%d rectangle_i32=%d  \n",w,h,m_iRadius);
          string str2;
          str2.Format("| time for calculating box blur : %d\b",dw3);
 
@@ -437,12 +437,12 @@ auto tickC0 = ::millis::now();
          {
             for(index x = 0; x < w; x++)
             {
-               point = (u8 *)&pdata[y * s + x];
+               p = (u8 *)&pdata[y * s + x];
                t = &timage[y * w + x];
-               point[0] = (byte)t->w;
-               point[1] = (byte)t->x;
-               point[2] = (byte)t->y;
-               point[3] = (byte)t->z;
+               point_i32[0] = (byte)t->w;
+               point_i32[1] = (byte)t->x;
+               point_i32[2] = (byte)t->y;
+               point_i32[3] = (byte)t->z;
             }
          }
 auto tickC1 = ::millis::now();
@@ -454,7 +454,7 @@ auto tickC1 = ::millis::now();
 #else
       u32 * pdata = (u32 *)pimage->colorref();
 
-      u8 * point;
+      u8 * point_i32;
       vector4 * t = timage;
 
       int w = m_size.cx;
@@ -476,8 +476,8 @@ auto tickA0 = ::millis::now();
          {
             for(index x = 0; x < wj; x++)
             {
-               point = (u8 *)&pdata[y * s + x];
-               t[y * wj + x] = vector4(point[0],point[1],point[2],point[3]);
+               p = (u8 *)&pdata[y * s + x];
+               t[y * wj + x] = vector4(point_i32[0],point_i32[1],point_i32[2],point_i32[3]);
             }
          }
          
@@ -523,7 +523,7 @@ auto tickA0 = ::millis::now();
          {
 
             string str1;
-            str1.Format("| Parameters: w=%d h=%d rect=%d  \n",wj,hj,m_iRadius);
+            str1.Format("| Parameters: w=%d h=%d rectangle_i32=%d  \n",wj,hj,m_iRadius);
             string str2;
             str2.Format("| time for calculating stack blur : " __prtick "\b",tick3.m_i);
 
@@ -550,12 +550,12 @@ auto tickC0 = ::millis::now();
          {
             for(index x = 0; x < w; x++)
             {
-               point = (u8 *)&pdata[y * s + x];
+               p = (u8 *)&pdata[y * s + x];
                t = &timage[y * wj + x];
-               point[0] = (byte)t->w;
-               point[1] = (byte)t->x;
-               point[2] = (byte)t->y;
-               point[3] = (byte)t->z;
+               point_i32[0] = (byte)t->w;
+               point_i32[1] = (byte)t->x;
+               point_i32[2] = (byte)t->y;
+               point_i32[3] = (byte)t->z;
             }
          }
          
@@ -611,7 +611,7 @@ auto tickC0 = ::millis::now();
 auto tick2 = ::millis::now();
       ::u32 dw3 = dw2 - dw1;
       string str1;
-      str1.Format("| Parameters: w=%d h=%d rect=%d  \n",m_size.cx,m_size.cy,m_iRadius);
+      str1.Format("| Parameters: w=%d h=%d rectangle_i32=%d  \n",m_size.cx,m_size.cy,m_iRadius);
       string str2;
       str2.Format("| time for calculating fast blur : %d\b",dw3);
 
@@ -1037,7 +1037,7 @@ auto tick2 = ::millis::now();
    * but, it's easy to see it's just a flavor of a two-pass
    * sliding box kernel.
    *
-   * this version is vectorized for float32 rect/g/b/a using sse
+   * this version is vectorized for float32 rectangle_i32/g/b/a using sse
    *
    * vector4() is just a class wrapping _mm_zzz_ps() family of SSE intrinsics
    * ( if you need one, start here:
@@ -1060,7 +1060,7 @@ auto tick2 = ::millis::now();
       const int r1 = radius + 1;
 
       // number of divisions in the kernel
-      // D(-rect), D(-rect+1), ... D(0), ... D(rect-1), D(rect)
+      // D(-rectangle_i32), D(-rectangle_i32+1), ... D(0), ... D(rectangle_i32-1), D(rectangle)
       const int div = (radius * 2) + 1;
 
       // temporary output space for first pass.
@@ -1114,11 +1114,11 @@ auto tick2 = ::millis::now();
          {
 
             // calcualte address of source pixel
-            const vector4& point = pix[yi + min(wm,max(i,0))];
+            const vector4& p = pix[yi + min(wm,max(i,0))];
 
             // put pixel in the stack
             vector4& sir = stack[i + radius];
-            sir = point;
+            sir = point_i32;
 
             // rbs is a weight from (1)...(radius+1)...(1)
             const int rbs = r1 - abs(i);
@@ -1156,8 +1156,8 @@ auto tick2 = ::millis::now();
             // past the right edge of the width pimage->
             // min() will cause the last pixel to repeat.
             //if(y == 0) vmin[x] = min(x + radius + 1,wm);
-            //vector4& point = pix[yw + vmin[x]];
-            vector4& point = pix[yw + vxmin[x]];
+            //vector4& p = pix[yw + vmin[x]];
+            vector4& p = pix[yw + vxmin[x]];
 
 
             // remove "past" pixels from the sum
@@ -1171,7 +1171,7 @@ auto tick2 = ::millis::now();
 
             // now this (same) stack entry is the "right" side
             // add new pixel to the stack, and update accumulators
-            sir = point;
+            sir = point_i32;
             insum += sir;
             sum += insum;
 
@@ -1208,9 +1208,9 @@ auto tick2 = ::millis::now();
             vector4& sir = stack[i + radius];
 
             yi = max(0,yp) + x;
-            const vector4& point = tsurface[yi];
+            const vector4& p = tsurface[yi];
 
-            sir = point;
+            sir = point_i32;
 
             const int rbs = r1 - abs(i);
             sum += sir * (float) rbs;
@@ -1353,7 +1353,7 @@ auto tick2 = ::millis::now();
       i32 wr = min(w,cx) - 1 - radius;
       i32 hr = min(h,cy) - 1 - radius;
       //   i32 div        = radius + radius + 1;
-      u8 * point;
+      u8 * p;
 
       yw = 0;
 
@@ -1403,11 +1403,11 @@ auto tick2 = ::millis::now();
          for(i = -radius; i <= radius; i++)
          {
 
-            point = &pb[yw + (min(wm,max(i,0)) * 4)];
-            rsum += point[0];
-            gsum += point[1];
-            bsum += point[2];
-            asum += point[3];
+            p = &pb[yw + (min(wm,max(i,0)) * 4)];
+            rsum += p[0];
+            gsum += p[1];
+            bsum += p[2];
+            asum += p[3];
 
          }
 
@@ -1489,11 +1489,11 @@ auto tick2 = ::millis::now();
 
          for(i = -radius; i <= radius; i++)
          {
-            point = &pwk[max(0,yp) + x * 4];
-            rsum += point[0];
-            gsum += point[1];
-            bsum += point[2];
-            asum += point[3];
+            p = &pwk[max(0,yp) + x * 4];
+            rsum += p[0];
+            gsum += p[1];
+            bsum += p[2];
+            asum += p[3];
             yp += stride;
          }
 
@@ -1568,7 +1568,7 @@ auto tick2 = ::millis::now();
 
 #endif // VECTOR3_SSE
 
-   bool fastblur::do_fastblur(u32 * pix,i32 w,i32 h,i32 radius,u8 * rect,u8 * g,u8 * b,u8 * a,u8 * dv,i32 stride,i32 * vmin,i32 * vmax,int cx,int cy,int bottomup)
+   bool fastblur::do_fastblur(u32 * pix,i32 w,i32 h,i32 radius,u8 * rectangle_i32,u8 * g,u8 * b,u8 * a,u8 * dv,i32 stride,i32 * vmin,i32 * vmax,int cx,int cy,int bottomup)
    {
 
       return false;
@@ -1587,7 +1587,7 @@ auto tick2 = ::millis::now();
             i32 wm = w - 1;
             i32 hm = h - 1;
             i32 div = radius + radius + 1;
-            i32 point;
+            i32 point_i32;
             i32 pu8_1;
             i32 pu8_2;
 
@@ -1605,16 +1605,16 @@ auto tick2 = ::millis::now();
                yi = y * s;
                for (i = -radius; i <= radius; i++)
                {
-                  point = pix[yi + min(wm, max(i, 0))];
-                  asum += ((point & 0xff000000) >> 24);
-                  rsum += ((point & 0xff0000) >> 16);
-                  gsum += ((point & 0x00ff00) >> 8);
-                  bsum += (point & 0x0000ff);
+                  p = pix[yi + min(wm, max(i, 0))];
+                  asum += ((point_i32 & 0xff000000) >> 24);
+                  rsum += ((point_i32 & 0xff0000) >> 16);
+                  gsum += ((point_i32 & 0x00ff00) >> 8);
+                  bsum += (point_i32 & 0x0000ff);
                }
                for (x = 0; x < w; x++)
                {
                   a[yi] = dv[asum];
-                  rect[yi] = dv[rsum];
+                  rectangle_i32[yi] = dv[rsum];
                   g[yi] = dv[gsum];
                   b[yi] = dv[bsum];
 
@@ -1642,7 +1642,7 @@ auto tick2 = ::millis::now();
                for (i = -radius; i <= radius; i++)
                {
                   yi = max(0, yp) + x;
-                  rsum += rect[yi];
+                  rsum += rectangle_i32[yi];
                   gsum += g[yi];
                   bsum += b[yi];
                   asum += a[yi];
@@ -1656,7 +1656,7 @@ auto tick2 = ::millis::now();
                   pu8_1 = x + vmin[y];
                   pu8_2 = x + vmax[y];
 
-                  rsum += rect[pu8_1] - rect[pu8_2];
+                  rsum += rectangle_i32[pu8_1] - rectangle_i32[pu8_2];
                   gsum += g[pu8_1] - g[pu8_2];
                   bsum += b[pu8_1] - b[pu8_2];
                   asum += a[pu8_1] - a[pu8_2];

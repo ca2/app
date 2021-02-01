@@ -19,7 +19,7 @@ void obj_type_ctr_inc(::matter * pobject)
 
    }
 
-   cslock sl(&g_csObjTypCtr);
+   critical_section_lock sl(&g_csObjTypCtr);
 
    const char* psz = typeid(*pobject).name();
 
@@ -50,7 +50,7 @@ void obj_type_ctr_dec(::matter* pobject)
 
    }
 
-   cslock sl(&g_csObjTypCtr);
+   critical_section_lock sl(&g_csObjTypCtr);
    const char* psz = typeid(*pobject).name();
 
    auto i = atomic_decrement(&g_pmapObjTypCtr->operator[](psz));

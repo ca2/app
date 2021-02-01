@@ -6,10 +6,10 @@ class CLASS_DECL_ACME arc
 public:
 
 
-   pointd      m_pointCenter;
-   ::sized     m_sizeRadius;
-   pointd      m_pointBeg;
-   pointd      m_pointEnd;
+   point_f64      m_pointCenter;
+   ::size_f64     m_sizeRadius;
+   point_f64      m_pointBeg;
+   point_f64      m_pointEnd;
    angle       m_angleBeg;
    angle       m_angleExt;
    angle       m_angleEnd2;

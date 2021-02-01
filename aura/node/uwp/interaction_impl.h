@@ -24,8 +24,8 @@ namespace uwp
       ::user::message_queue_listener *                                  m_plistener;
       bool                                                              m_bNotifyLayoutCompletedPending;
       string                                                            m_strWindowText;
-      pointd                                                            m_pointLastMouseMove;
-      //pointd                                                            m_pointCursor;
+      point_f64                                                            m_pointLastMouseMove;
+      //point_f64                                                            m_pointCursor;
       double                                                            m_dAccumulatedMouseMoveDistance;
       millis                                                              m_millisLastMouseMove;
       Agile < Windows::ApplicationModel::Core::CoreApplicationView >    m_view;
@@ -142,12 +142,12 @@ namespace uwp
       virtual ::e_status update_graphics_resources() override;
 
       // for child windows, views, panes etc
-      //virtual bool create_window(::user::interaction * pinteraction, const char * lpszClassName,const char * lpszWindowName,u32 dwStyle,const RECT32 & rect,::user::interaction * pParentWnd,id id, ::create * pcreate = nullptr) override;
+      //virtual bool create_window(::user::interaction * pinteraction, const char * lpszClassName,const char * lpszWindowName,u32 dwStyle,const RECTANGLE_I32 & rectangle,::user::interaction * pParentWnd,id id, ::create * pcreate = nullptr) override;
 
       virtual bool _native_create_window_ex(__pointer(::user::system) pcs);
 
 
-      virtual ::point get_cursor_pos() const;
+      virtual ::point_i32 get_cursor_pos() const;
 
 
       //virtual bool CreateEx(u32 dwExStyle, const char * lpszClassName,
@@ -157,13 +157,13 @@ namespace uwp
 
       //virtual bool CreateEx(u32 dwExStyle, const char * lpszClassName,
       //                      const char * lpszWindowName, u32 dwStyle,
-      //                      const RECT32& rect,
+      //                      const RECTANGLE_I32& rectangle,
       //                      ::user::interaction* pParentWnd, id id,
       //                      LPVOID lpParam = nullptr);
 
       virtual bool DestroyWindow();
 
-      // special pre-creation and ::user::interaction_impl rect adjustment hooks
+      // special pre-creation and ::user::interaction_impl rectangle_i32 adjustment hooks
       virtual bool pre_create_window(::user::system * pusersystem);
 
       // Advanced: virtual AdjustWindowRect
@@ -189,7 +189,7 @@ namespace uwp
       bool SendNotifyMessage(const ::id & id, WPARAM wParam, LPARAM lParam);
       bool SendChildNotifyLastMsg(LRESULT* pResult = nullptr);
 
-      bool DragDetect(POINT32 pt) const;
+      bool DragDetect(POINT_I32 pt) const;
 
 
 
@@ -202,11 +202,11 @@ namespace uwp
       ::draw2d::font* GetFont();
 
 
-      // Window size and position Functions
+      // Window size_i32 and position Functions
       //virtual bool layout().is_iconic();
       //virtual bool layout().is_zoomed();
       //void MoveWindow(int x, int y, int nWidth, int nHeight, bool bRepaint = TRUE);
-      //void MoveWindow(LPCRECT32 lpRect, bool bRepaint = TRUE);
+      //void MoveWindow(const RECTANGLE_I32 * lpRect, bool bRepaint = TRUE);
       //int SetWindowRgn(HRGN hRgn, bool bRedraw);
       //int GetWindowRgn(HRGN hRgn);
 
@@ -215,24 +215,24 @@ namespace uwp
       virtual ::u32 ArrangeIconicWindows();
       virtual bool BringWindowToTop();
       //using ::user::interaction_impl::get_window_rect;
-      //virtual bool get_window_rect(RECT64 * lpRect);
+      //virtual bool get_window_rect(RECTANGLE_I64 * lpRect);
       //using ::user::interaction_impl::get_client_rect;
-      //virtual bool get_client_rect(RECT64 * lpRect);
+      //virtual bool get_client_rect(RECTANGLE_I64 * lpRect);
 
       //virtual bool _001ClientToScreen(LPRECT32 lprect);
-      //virtual bool _001ClientToScreen(POINT32 * lppoint);
-      //virtual bool _001ClientToScreen(RECT64 * lprect);
-      //virtual bool _001ClientToScreen(POINT64 * lppoint);
+      //virtual bool _001ClientToScreen(POINT_I32 * lppoint);
+      //virtual bool _001ClientToScreen(RECTANGLE_I64 * lprect);
+      //virtual bool _001ClientToScreen(POINT_I64 * lppoint);
       //virtual bool _001ScreenToClient(LPRECT32 lprect);
-      //virtual bool _001ScreenToClient(POINT32 * lppoint);
-      //virtual bool _001ScreenToClient(RECT64 * lprect);
-      //virtual bool _001ScreenToClient(POINT64 * lppoint);
+      //virtual bool _001ScreenToClient(POINT_I32 * lppoint);
+      //virtual bool _001ScreenToClient(RECTANGLE_I64 * lprect);
+      //virtual bool _001ScreenToClient(POINT_I64 * lppoint);
 
       //      virtual bool GetWindowPlacement(WINDOWPLACEMENT* lpwndpl);
       //    virtual bool SetWindowPlacement(const WINDOWPLACEMENT* lpwndpl);
 
       // Coordinate Mapping Functions
-      virtual void MapWindowPoints(::user::interaction_impl * pwndTo, POINT32 * lpPoint, ::u32 nCount);
+      virtual void MapWindowPoints(::user::interaction_impl * pwndTo, POINT_I32 * lpPoint, ::u32 nCount);
       virtual void MapWindowPoints(::user::interaction_impl * pwndTo, LPRECT32 lpRect);
 
       // Update/Painting Functions
@@ -247,9 +247,9 @@ namespace uwp
       //virtual bool GetUpdateRect(LPRECT32 lpRect, bool bErase = FALSE);
       //virtual int GetUpdateRgn(::draw2d::region* pRgn, bool bErase = FALSE);
       //virtual void Invalidate(bool bErase = TRUE);
-      //virtual void InvalidateRect(LPCRECT32 lpRect, bool bErase = TRUE);
+      //virtual void InvalidateRect(const RECTANGLE_I32 * lpRect, bool bErase = TRUE);
       //virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = TRUE);
-      //virtual void ValidateRect(LPCRECT32 lpRect);
+      //virtual void ValidateRect(const RECTANGLE_I32 * lpRect);
       //virtual void ValidateRgn(::draw2d::region* pRgn);
       virtual bool ShowWindow(int nCmdShow);
       virtual void _001WindowMaximize();
@@ -260,13 +260,13 @@ namespace uwp
       virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, u32 flags);
       virtual bool LockWindowUpdate();
       virtual void UnlockWindowUpdate();
-      virtual bool RedrawWindow(const ::rect& rectUpdate = nullptr,
+      virtual bool RedrawWindow(const ::rectangle_i32& rectUpdate = nullptr,
                                 ::draw2d::region* prgnUpdate = nullptr,
                                 ::u32 flags = RDW_INVALIDATE | RDW_ERASE);
       //      virtual bool EnableScrollBar(int nSBFlags, ::u32 nArrowFlags = ESB_ENABLE_BOTH);
 
-      virtual bool DrawAnimatedRects(int idAni, const RECT32 *lprcFrom, const RECT32 *lprcTo);
-      virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, LPCRECT32 lprc, ::u32 uFlags);
+      virtual bool DrawAnimatedRects(int idAni, const RECTANGLE_I32 *lprcFrom, const RECTANGLE_I32 *lprcTo);
+      virtual bool DrawCaption(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 * lprc, ::u32 uFlags);
 
 #if(WINVER >= 0x0500)
 
@@ -346,8 +346,8 @@ namespace uwp
       virtual int GetScrollPos(int nBar) const;
       virtual void GetScrollRange(int nBar, LPINT lpMinPos, LPINT lpMaxPos) const;
       //virtual void ScrollWindow(int xAmount, int yAmount,
-      //                          LPCRECT32 lpRect = nullptr,
-      //                          LPCRECT32 lpClipRect = nullptr);
+      //                          const RECTANGLE_I32 * lpRect = nullptr,
+      //                          const RECTANGLE_I32 * lpClipRect = nullptr);
       virtual int SetScrollPos(int nBar, int nPos, bool bRedraw = TRUE);
       virtual void SetScrollRange(int nBar, int nMinPos, int nMaxPos,
                                   bool bRedraw = TRUE);
@@ -357,7 +357,7 @@ namespace uwp
       // return sibling scrollbar control (or nullptr if none)
 
       //virtual int ScrollWindowEx(int dx, int dy,
-      //                           LPCRECT32 lpRectScroll, LPCRECT32 lpRectClip,
+      //                           const RECTANGLE_I32 * lpRectScroll, const RECTANGLE_I32 * lpRectClip,
       //                           ::draw2d::region* prgnUpdate, LPRECT32 lpRectUpdate, ::u32 flags);
       //      virtual bool SetScrollInfo(int nBar, LPSCROLLINFO lpScrollInfo,
       //       bool bRedraw = TRUE);
@@ -371,8 +371,8 @@ namespace uwp
       //#endif   // WINVER >= 0x0500
 
       // Window Access Functions
-      virtual ::user::interaction *  ChildWindowFromPoint(POINT32 point);
-      virtual ::user::interaction *  ChildWindowFromPoint(POINT32 point, ::u32 nFlags);
+      virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point_i32);
+      virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point_i32, ::u32 nFlags);
       static __pointer(::user::interaction_impl) FindWindow(const char * lpszClassName, const char * lpszWindowName);
       static __pointer(::user::interaction_impl) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
@@ -386,7 +386,7 @@ namespace uwp
       virtual ::user::interaction *  get_parent() const override;
       using ::user::interaction_impl::set_parent;
 //      ::user::interaction *  SetParent(::user::interaction *  pWndNewParent);
-      static __pointer(::user::interaction_impl) WindowFromPoint(POINT32 point);
+      static __pointer(::user::interaction_impl) WindowFromPoint(POINT_I32 point_i32);
 
       // Alert Functions
 
@@ -410,8 +410,8 @@ namespace uwp
       static ::user::interaction_impl * GetOpenClipboardWindow();
 
       // Caret Functions
-      static point GetCaretPos();
-      static void SetCaretPos(POINT32 point);
+      static point_i32 GetCaretPos();
+      static void SetCaretPos(POINT_I32 point_i32);
       virtual void HideCaret();
       virtual void ShowCaret();
 
@@ -452,7 +452,7 @@ namespace uwp
       void OnCancelMode();
       void OnChildActivate();
       void OnClose();
-      void OnContextMenu(::user::interaction_impl * pWnd, point pos);
+      void OnContextMenu(::user::interaction_impl * pWnd, point_i32 pos);
       //      bool OnCopyData(::user::interaction_impl * pWnd, COPYDATASTRUCT* pCopyDataStruct);
       DECL_GEN_SIGNAL(_001OnCreate);
 
@@ -494,18 +494,18 @@ namespace uwp
       //      void OnNcCalcSize(bool bCalcValidRects, NCCALCSIZE_PARAMS* lpncsp);
       bool OnNcCreate(LPCREATESTRUCT lpCreateStruct);
 
-      LRESULT OnNcHitTest(::point point);
-      void OnNcLButtonDblClk(::u32 nHitTest, const ::point & point);
-      void OnNcLButtonDown(::u32 nHitTest, const ::point & point);
-      void OnNcLButtonUp(::u32 nHitTest, const ::point & point);
-      void OnNcMButtonDblClk(::u32 nHitTest, const ::point & point);
-      void OnNcMButtonDown(::u32 nHitTest, const ::point & point);
-      void OnNcMButtonUp(::u32 nHitTest, const ::point & point);
-      void OnNcMouseMove(::u32 nHitTest, const ::point & point);
+      LRESULT OnNcHitTest(::point_i32 point);
+      void OnNcLButtonDblClk(::u32 nHitTest, const ::point_i32 & point);
+      void OnNcLButtonDown(::u32 nHitTest, const ::point_i32 & point);
+      void OnNcLButtonUp(::u32 nHitTest, const ::point_i32 & point);
+      void OnNcMButtonDblClk(::u32 nHitTest, const ::point_i32 & point);
+      void OnNcMButtonDown(::u32 nHitTest, const ::point_i32 & point);
+      void OnNcMButtonUp(::u32 nHitTest, const ::point_i32 & point);
+      void OnNcMouseMove(::u32 nHitTest, const ::point_i32 & point);
       void OnNcPaint();
-      void OnNcRButtonDblClk(::u32 nHitTest, const ::point & point);
-      void OnNcRButtonDown(::u32 nHitTest, const ::point & point);
-      void OnNcRButtonUp(::u32 nHitTest, const ::point & point);
+      void OnNcRButtonDblClk(::u32 nHitTest, const ::point_i32 & point);
+      void OnNcRButtonDown(::u32 nHitTest, const ::point_i32 & point);
+      void OnNcRButtonUp(::u32 nHitTest, const ::point_i32 & point);
 
       // System message handler member functions
       //      void OnDropFiles(HDROP hDropInfo);
@@ -532,19 +532,19 @@ namespace uwp
       //    void OnVScroll(::u32 nSBCode, ::u32 nPos, CScrollBar* pScrollBar);
       void OnKeyDown(::u32 nChar, ::u32 nRepCnt, ::u32 nFlags);
       void OnKeyUp(::u32 nChar, ::u32 nRepCnt, ::u32 nFlags);
-      void OnLButtonDblClk(::u32 nFlags, const ::point & point);
-      void OnLButtonDown(::u32 nFlags, const ::point & point);
-      void OnLButtonUp(::u32 nFlags, const ::point & point);
-      void OnMButtonDblClk(::u32 nFlags, const ::point & point);
-      void OnMButtonDown(::u32 nFlags, const ::point & point);
-      void OnMButtonUp(::u32 nFlags, const ::point & point);
+      void OnLButtonDblClk(::u32 nFlags, const ::point_i32 & point);
+      void OnLButtonDown(::u32 nFlags, const ::point_i32 & point);
+      void OnLButtonUp(::u32 nFlags, const ::point_i32 & point);
+      void OnMButtonDblClk(::u32 nFlags, const ::point_i32 & point);
+      void OnMButtonDown(::u32 nFlags, const ::point_i32 & point);
+      void OnMButtonUp(::u32 nFlags, const ::point_i32 & point);
       int OnMouseActivate(::user::interaction_impl * pDesktopWnd, ::u32 nHitTest, const ::id & id);
-      void OnMouseMove(::u32 nFlags, const ::point & point);
-      bool OnMouseWheel(::u32 nFlags, short zDelta, const ::point & point);
+      void OnMouseMove(::u32 nFlags, const ::point_i32 & point);
+      bool OnMouseWheel(::u32 nFlags, short zDelta, const ::point_i32 & point);
       LRESULT OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam);
-      void OnRButtonDblClk(::u32 nFlags, const ::point & point);
-      void OnRButtonDown(::u32 nFlags, const ::point & point);
-      void OnRButtonUp(::u32 nFlags, const ::point & point);
+      void OnRButtonDblClk(::u32 nFlags, const ::point_i32 & point);
+      void OnRButtonDown(::u32 nFlags, const ::point_i32 & point);
+      void OnRButtonUp(::u32 nFlags, const ::point_i32 & point);
       DECL_GEN_SIGNAL(_001OnSetCursor);
       void OnTimer(uptr uEvent);
 
@@ -704,11 +704,11 @@ namespace uwp
 
       virtual bool is_text_composition_active() override;
 
-      virtual void set_input_content_rect(const rect& rect);
-      virtual void set_input_selection_rect(const rect& rect);
+      virtual void set_input_content_rect(const rectangle_i32& rectangle);
+      virtual void set_input_selection_rect(const rectangle_i32& rectangle);
 
-      virtual rect get_input_content_rect();
-      virtual rect get_input_selection_rect();
+      virtual rectangle_i32 get_input_content_rect();
+      virtual rectangle_i32 get_input_selection_rect();
 
 
    };

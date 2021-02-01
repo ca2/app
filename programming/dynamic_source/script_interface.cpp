@@ -245,7 +245,7 @@ namespace dynamic_source
       catch (...)
       {
 
-         // stop point
+         // stop point_i32
          bOk = false;
 
       }

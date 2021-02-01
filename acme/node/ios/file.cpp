@@ -679,7 +679,7 @@ namespace ios
 //
 //      rStatus.m_attribute = 0;
 //
-//      // get just the low ::u32 of the file size
+//      // get just the low ::u32 of the file size_i32
 //      //ASSERT(findFileData.nFileSizeHigh == 0);
 //      //rStatus.m_size = (::i32)findFileData.nFileSizeLow;
 //

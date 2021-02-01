@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 #include <stdio.h>
 #ifndef WINDOWS
 #include "acme/os/cross/windows/_windows.h"

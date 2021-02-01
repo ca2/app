@@ -345,7 +345,7 @@ namespace console
       if(bCaretOn)
       {
 
-         ::rect rectCaret;
+         ::rectangle_i32 rectCaret;
 
          rectCaret.left = (::i32) (iLeftMargin+m_sizeChar.cx * m_iCursor);
          rectCaret.right = rectCaret.left + m_sizeChar.cx;

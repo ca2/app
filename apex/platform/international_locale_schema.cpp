@@ -467,7 +467,7 @@ namespace str
          //      {
          //         if(ch2 == 't')
          //         {
-         //            // point
+         //            // point_i32
          //            defer_add_locale(__id(br), idSchema);
          //            defer_add_locale(__id(pt_br), idSchema);
          //            defer_add_locale(__id(es), idSchema);

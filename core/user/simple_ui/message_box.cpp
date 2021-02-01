@@ -95,7 +95,7 @@ namespace simple_ui
    i32 message_box::show()
    {
 
-      ::rect rectDesktop;
+      ::rectangle_i32 rectDesktop;
 
       string_array stra;
 
@@ -130,7 +130,7 @@ namespace simple_ui
 
       set_window_text(strTitle);
 
-      ::rect rectFontopus;
+      ::rectangle_i32 rectFontopus;
 
       int stdw = 800;
 
@@ -231,7 +231,7 @@ namespace simple_ui
    void message_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_client_rect(rectClient);
 
@@ -255,11 +255,11 @@ namespace simple_ui
 
       string strMessage = m_stra.implode("\n");
 
-      ::rect rect(rectClient);
+      ::rectangle_i32 rectangle(rectClient);
 
-      rect.deflate(10, 10);
+      rectangle.deflate(10, 10);
 
-      pgraphics->draw_text(strMessage, rect, e_align_top_left, e_draw_text_expand_tabs);
+      pgraphics->draw_text(strMessage, rectangle_i32, e_align_top_left, e_draw_text_expand_tabs);
 
    }
 

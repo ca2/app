@@ -146,7 +146,7 @@ namespace userex
 
                   pimageSmall = create_image({256,  256 * pimage1->height() / pimage1->width()});
 
-                  pimageSmall->g()->stretch(pimageSmall->rect(), pimage1->g(), pimage1->rect());
+                  pimageSmall->g()->stretch(pimageSmall->rectangle_i32(), pimage1->g(), pimage1->rectangle_i32());
 
                   pimage1 = pimageSmall;
 
@@ -225,7 +225,7 @@ namespace userex
 
    //   __pointer(::message::mouse) pmouse(pmessage);
 
-   //   const ::point & point = pmouse->m_point;
+   //   const ::point_i32 & point = pmouse->m_point;
 
    //   _001ScreenToClient(point);
 
@@ -252,7 +252,7 @@ namespace userex
 
    //   __pointer(::message::mouse) pmouse(pmessage);
 
-   //   const ::point & point = pmouse->m_point;
+   //   const ::point_i32 & point = pmouse->m_point;
 
    //   _001ScreenToClient(point);
 

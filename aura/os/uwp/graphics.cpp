@@ -74,9 +74,9 @@ namespace draw2d
 
 
 
-::size winrt_get_big_back_buffer_size()
+::size_i32 winrt_get_big_back_buffer_size()
 {
 
-   return ::size(1920, 1080);
+   return ::size_i32(1920, 1080);
 
 }

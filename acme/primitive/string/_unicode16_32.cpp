@@ -130,7 +130,7 @@ strsize wd32_to_wd16(wd16char* psz16, const wd32char* codepoints, strsize input_
 //
 //   wd32_to_wd16(point, input, s);
 //
-//   point[s] = 0;
+//   point_i32[s] = 0;
 //
 //   return wstr;
 //

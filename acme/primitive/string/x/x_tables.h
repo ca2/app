@@ -369,7 +369,7 @@ static unsigned int arr_CharInfo[] = {
    0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 2, 2, 25, 25, 0, 0,
 
 };
-// total structure size: 30720
+// total structure size_i32: 30720
 
 
 // number index table
@@ -411,7 +411,7 @@ static float arr_CharInfo2[] = {
 0, (float)36, (float)37, (float)38, (float)39, (float)40, (float)41, (float)42, (float)43, (float)44, (float)45, (float)46, (float)47, (float)48, (float)49, (float)50,
 
 };
-// total structure size: 10176
+// total structure size_i32: 10176
 
 
 /* ***** BEGIN LICENSE BLOCK *****

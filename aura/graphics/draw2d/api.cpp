@@ -19,16 +19,16 @@ namespace draw2d
 
    void api::draw_beziers(
       ::draw2d::graphics_pointer &  pgraphics,
-      ::pointd *                    ppoints,
+      ::point_f64 *                    ppoints,
       i32                           iCount,
       double                        dRateX,
-      ::pointd *                    ppointOffset)
+      ::point_f64 *                    ppointOffset)
    {
 
-      ::rect clipRect;
+      ::rectangle_i32 clipRect;
 
-      size viewportExt = pgraphics->GetViewportExt();
-      point viewportOrg = pgraphics->GetViewportOrg();
+      size_i32 viewportExt = pgraphics->GetViewportExt();
+      point_i32 viewportOrg = pgraphics->GetViewportOrg();
 
       pgraphics->OffsetViewportOrg(ppointOffset->x, ppointOffset->y);
 
@@ -49,16 +49,16 @@ namespace draw2d
 
    void api::draw_and_fill_beziers(
    ::draw2d::graphics_pointer & pgraphics,
-   ::pointd *             ppoints,
+   ::point_f64 *             ppoints,
    i32                  iCount,
    double               dRateX,
-   ::pointd *               ppointOffset)
+   ::point_f64 *               ppointOffset)
    {
 
-      ::rect clipRect;
+      ::rectangle_i32 clipRect;
 
-      size viewportExt = pgraphics->GetViewportExt();
-      point viewportOrg = pgraphics->GetViewportOrg();
+      size_i32 viewportExt = pgraphics->GetViewportExt();
+      point_i32 viewportOrg = pgraphics->GetViewportOrg();
 
       pgraphics->OffsetViewportOrg(
       ppointOffset->x,
@@ -81,18 +81,18 @@ namespace draw2d
 
    void api::draw_and_fill_beziers(
    ::draw2d::graphics_pointer & pgraphics,
-   array<pointd_array, pointd_array &> *
+   array<point_f64_array, point_f64_array &> *
    pglyph,
 
    double               dRateX,
-   pointd *               ppointOffset)
+   point_f64 *               ppointOffset)
 
    {
 
-      ::rect clipRect;
+      ::rectangle_i32 clipRect;
 
-      size viewportExt = pgraphics->GetViewportExt();
-      point viewportOrg = pgraphics->GetViewportOrg();
+      size_i32 viewportExt = pgraphics->GetViewportExt();
+      point_i32 viewportOrg = pgraphics->GetViewportOrg();
 
       pgraphics->OffsetViewportOrg(
       ppointOffset->x,
@@ -116,7 +116,7 @@ namespace draw2d
 
    void api::embossed_text_out(
    ::draw2d::graphics_pointer &     pgraphics,
-   const rectd &                    rect,
+   const rectangle_f64 &                    rectangle,
    double                           dRateX,
    double                           dHeight,
    const char *                     psz,
@@ -125,20 +125,20 @@ namespace draw2d
    i32                              iOffset)
    {
 
-      ::rect clipRect;
+      ::rectangle_i32 clipRect;
 
 
 
       //      i32 iOldMapMode = ::GetMapMode(pgraphics->m_hDC);
-      //      point viewportOrg;
+      //      point_i32 viewportOrg;
       //      ::draw2d::font * pfont = pgraphics->get_current_font();
       //      ASSERT(pfont != nullptr);
       //      VERIFY(::GetViewportOrgEx(pgraphics->m_hDC, &viewportOrg));
 
       //      VERIFY(::OffsetViewportOrgEx(
       //         pgraphics->m_hDC,
-      //         rect.left,
-      //         rect.top,
+      //         rectangle.left,
+      //         rectangle.top,
       //         nullptr));
       //      VERIFY(::SetMapMode(pgraphics->m_hDC, MM_ANISOTROPIC));
       //      if(floatRateX == 0.0)
@@ -147,9 +147,9 @@ namespace draw2d
 
       //      VERIFY(::SelectObject(pgraphics->m_hDC, pfont->m_hObject));
 
-      pgraphics->text_out(rect.left, rect.top, psz);
+      pgraphics->text_out(rectangle.left, rectangle.top, psz);
       pgraphics->begin_path();
-      pgraphics->text_out(rect.left, rect.top, psz);
+      pgraphics->text_out(rectangle.left, rectangle.top, psz);
       pgraphics->end_path();
       pgraphics->stroke_path();
 
@@ -173,18 +173,18 @@ namespace draw2d
    color32_t       crOutline,
    i32            iLen)
    {
-      ::rect clipRect;
+      ::rectangle_i32 clipRect;
 
       //      i32 iOldMapMode = ::GetMapMode(pgraphics->m_hDC);
-      //      point viewportOrg;
+      //      point_i32 viewportOrg;
       //      ::draw2d::font * pfont = pgraphics->get_current_font();
       //      ASSERT(pfont != nullptr);
       //      VERIFY(::GetViewportOrgEx(pgraphics->m_hDC, &viewportOrg));
 
       //      VERIFY(::OffsetViewportOrgEx(
       //         pgraphics->m_hDC,
-      //         rect.left,
-      //         rect.top,
+      //         rectangle.left,
+      //         rectangle.top,
       //         nullptr));
       //      VERIFY(::SetMapMode(pgraphics->m_hDC, MM_ANISOTROPIC));
       //      if(floatRateX == 0.0)
@@ -196,22 +196,22 @@ namespace draw2d
       string str;
       str = ::str::international::utf8_to_unicode(psz);
 
-#ifdef WINDOWS_DESKTOP
-      ::SetTextColor((HDC)pgraphics->get_os_data(), crOutline);
-      ::TextOutU((HDC)pgraphics->get_os_data(), iLeft - iWidth, iTop, str, iLen);
-      ::TextOutU((HDC)pgraphics->get_os_data(), iLeft, iTop - iWidth, str, iLen);
-      ::TextOutU((HDC)pgraphics->get_os_data(), iLeft + iWidth, iTop, str, iLen);
-      ::TextOutU((HDC)pgraphics->get_os_data(), iLeft, iTop + iWidth, str, iLen);
+//#ifdef WINDOWS_DESKTOP
+//      ::SetTextColor((HDC)pgraphics->get_os_data(), crOutline);
+//      ::TextOutU((HDC)pgraphics->get_os_data(), iLeft - iWidth, iTop, str, iLen);
+//      ::TextOutU((HDC)pgraphics->get_os_data(), iLeft, iTop - iWidth, str, iLen);
+//      ::TextOutU((HDC)pgraphics->get_os_data(), iLeft + iWidth, iTop, str, iLen);
+//      ::TextOutU((HDC)pgraphics->get_os_data(), iLeft, iTop + iWidth, str, iLen);
+//
+//      ::SetTextColor((HDC)pgraphics->get_os_data(), crText);
+//      ::TextOutU((HDC)pgraphics->get_os_data(), iLeft, iTop, str, iLen);
+//#endif
 
-      ::SetTextColor((HDC)pgraphics->get_os_data(), crText);
-      ::TextOutU((HDC)pgraphics->get_os_data(), iLeft, iTop, str, iLen);
-#endif
-
-      //pgraphics->text_out(rect.left, rect.top, str);
+      //pgraphics->text_out(rectangle.left, rectangle.top, str);
 //      pgraphics->BeginPath();
-//      ::TextOutW((HDC)pgraphics->get_os_data(), rect.left, rect.top, pcsz, iLen);
+//      ::TextOutW((HDC)pgraphics->get_os_data(), rectangle.left, rectangle.top, pcsz, iLen);
 
-      //pgraphics->text_out(rect.left, rect.top, str);
+      //pgraphics->text_out(rectangle.left, rectangle.top, str);
 //      pgraphics->EndPath();
 //      pgraphics->StrokePath();
 
@@ -226,7 +226,7 @@ namespace draw2d
 
    void api::simple_text_out(
    ::draw2d::graphics_pointer &  pgraphics,
-   const rectd &                 pcrect,
+   const rectangle_f64 &                 pcrect,
    double                        dRateX,
    double                        dHeight,
    const char *                  psz,
@@ -252,12 +252,12 @@ namespace draw2d
    }
 
 
-   void api::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::rectd & rect, double dHeight, double dRateX, const char * psz)
+   void api::embossed_text_out(::draw2d::graphics_pointer & pgraphics, const ::rectangle_f64 & rectangle, double dHeight, double dRateX, const char * psz)
    {
 
-      pgraphics->text_out(rect.left, rect.top, psz);
+      pgraphics->text_out(rectangle.left, rectangle.top, psz);
       pgraphics->begin_path();
-      pgraphics->text_out(rect.left, rect.top, psz);
+      pgraphics->text_out(rectangle.left, rectangle.top, psz);
       pgraphics->end_path();
       pgraphics->stroke_path();
 

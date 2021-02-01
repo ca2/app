@@ -80,7 +80,7 @@ namespace sockets
 
    void http_post_socket::AddFile(const string & name,const string & filename,const string & type)
    {
-      if (Context.file().exists(filename))
+      if (get_context()->file().exists(filename))
       {
          if (m_pmultipart == nullptr)
          {
@@ -88,11 +88,11 @@ namespace sockets
             m_pmultipart = __new(multipart(get_context_object()));
 
          }
-         m_pmultipart->m_map[name].m_spfile = Context.file().get_file(filename, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
+         m_pmultipart->m_map[name].m_spfile = get_context()->file().get_file(filename, ::file::e_open_binary | ::file::e_open_read | ::file::e_open_share_deny_none);
          //m_mapFiles[name]              = filename;
          m_pmultipart->m_map[name].m_uiContentLength = m_pmultipart->m_map[name].m_spfile->get_size();
          m_pmultipart->m_map[name].m_strContentType = type;
-         //m_mapContentLength[filename]  = Context.file().length(filename);
+         //m_mapContentLength[filename]  = get_context()->file().length(filename);
          //m_mapContentType[filename]    = type;
          //m_bMultipart                  = true;
 

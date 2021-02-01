@@ -82,18 +82,18 @@ namespace user
    }
 
 
-   void frame_window::GetBorderRect(RECT32 * prect)
+   void frame_window::GetBorderRect(RECTANGLE_I32 * prectangle)
    {
 
-      UNREFERENCED_PARAMETER(prect);
+      UNREFERENCED_PARAMETER(prectangle);
 
    }
 
 
-   void frame_window::SetBorderRect(const ::rect & rect)
+   void frame_window::SetBorderRect(const ::rectangle_i32 & rectangle)
    {
 
-      UNREFERENCED_PARAMETER(rect);
+      UNREFERENCED_PARAMETER(rectangle);
 
    }
 
@@ -492,11 +492,11 @@ namespace user
 
                   ::image_pointer pimage1;
 
-                  ::rect rect;
+                  ::rectangle_i32 rectangle;
 
-                  get_window_rect(rect);
+                  get_window_rect(rectangle);
 
-                  pimage1 = create_image(rect.size());
+                  pimage1 = create_image(rectangle.size());
 
                   sync * psync = pimpl->m_pgraphics->get_draw_lock();
 
@@ -504,7 +504,7 @@ namespace user
 
                   sync_lock sl(psync);
 
-                  auto rectDst = ::rectd(rect.size());
+                  auto rectDst = ::rectangle_f64(rectangle.size());
 
                   pimage1->get_graphics()->draw(rectDst, pgraphics);
 
@@ -523,7 +523,7 @@ namespace user
 
                   }
 
-                  estatus = pimage2->create({ 300, rect.size().cy * 300 / rect.size().cx });
+                  estatus = pimage2->create({ 300, rectangle.size().cy * 300 / rectangle.size().cx });
 
                   if (!estatus)
                   {
@@ -534,7 +534,7 @@ namespace user
 
                   pimage2->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-                  pimage2->get_graphics()->stretch(::rect(pimage2->size()), pimage1->get_graphics(), ::rect(rect.size()));
+                  pimage2->get_graphics()->stretch(::rectangle_i32(pimage2->size()), pimage1->get_graphics(), ::rectangle_i32(rectangle.size()));
 
                   Application.image().save_image(::dir::system() / "control_alt_p_w300.png", pimage2);
 
@@ -861,14 +861,14 @@ namespace user
    }
 
 
-   //bool frame_window::create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rect & rect, ::user::interaction * puiParent, const char * pszMenuName, u32 dwExStyle, ::create * pcreate)
+   //bool frame_window::create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, const char * pszMenuName, u32 dwExStyle, ::create * pcreate)
    //{
 
    //   UNREFERENCED_PARAMETER(pszMenuName);
 
    //   m_strFrameTitle = pszWindowName;    // save title for later
 
-   //   auto pusersystem = __new(::user::system (dwExStyle, pszClassName, pszWindowName, uStyle, rect, pcreate));
+   //   auto pusersystem = __new(::user::system (dwExStyle, pszClassName, pszWindowName, uStyle, rectangle_i32, pcreate));
 
    //   if (!::user::interaction::create_window_ex(pusersystem, puiParent, pcreate->m_id))
    //   {
@@ -1013,7 +1013,7 @@ namespace user
 
       dwDefaultStyle &= ~WS_VISIBLE;
 
-      ::rect rectFrame;
+      ::rectangle_i32 rectFrame;
 
       __pointer(::user::place_holder) pholder;
 
@@ -2401,15 +2401,15 @@ namespace user
       if (GetStyle() & FWS_SNAPTOBARS)
       {
 
-         ::rect rect(0, 0, 32767, 32767);
+         ::rectangle_i32 rectangle(0, 0, 32767, 32767);
 
-         RepositionBars(0, 0xffff, "pane_first", reposQuery, &rect, &rect, FALSE);
+         RepositionBars(0, 0xffff, "pane_first", reposQuery, &rectangle, &rectangle, FALSE);
 
-         RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectBorder, &rect, TRUE);
+         RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectBorder, &rectangle, TRUE);
 
-         CalcWindowRect(&rect);
+         CalcWindowRect(&rectangle);
 
-         set_size(rect.size());
+         set_size(rectangle.size());
 
          display(e_display_normal, e_activation_no_activate);
 
@@ -2425,10 +2425,10 @@ namespace user
 
 
    // frame_window implementation of OLE border space negotiation
-   bool frame_window::NegotiateBorderSpace(::u32 nBorderCmd, RECT32 * pRectBorder)
+   bool frame_window::NegotiateBorderSpace(::u32 nBorderCmd, RECTANGLE_I32 * pRectBorder)
    {
 
-      ::rect border, request;
+      ::rectangle_i32 border, request;
 
       switch (nBorderCmd)
       {
@@ -2453,7 +2453,7 @@ namespace user
                m_rectBorder.Null();
                return TRUE;
             }
-            // original rect is is_empty & pRectBorder is nullptr, no recalc needed
+            // original rectangle_i32 is is_empty & pRectBorder is nullptr, no recalc needed
 
             return FALSE;
 
@@ -3005,7 +3005,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      ::rect rectClient;
+      ::rectangle_i32 rectClient;
 
       get_window_rect(rectClient);
 

@@ -111,7 +111,7 @@ static bool g_bVerbose = false;
 #endif
 
 
-bool is_verbose()
+CLASS_DECL_ACME bool is_verbose()
 {
 
    return g_bVerbose;
@@ -158,7 +158,7 @@ CLASS_DECL_ACME void debug_print(const char* pszFormat, ...)
 
 int g_iMemoryCounters = -1;
 
-CLASS_DECL_ACME::mutex* g_pmutexMemoryCounters = nullptr;
+CLASS_DECL_ACME::mutex * g_pmutexMemoryCounters = nullptr;
 
 int g_iMemoryCountersStartable = 0;
 
@@ -173,7 +173,7 @@ CLASS_DECL_ACME bool memcnts()
       if (g_iMemoryCounters)
       {
 
-         g_pmutexMemoryCounters = new ::mutex(e_create_new, nullptr, FALSE, "Global\\ca2_memory_counters");
+         g_pmutexMemoryCounters = new ::mutex(e_create_new, false, "Global\\ca2_memory_counters");
 
       }
 

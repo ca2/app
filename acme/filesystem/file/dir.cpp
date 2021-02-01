@@ -1,7 +1,7 @@
 #include "framework.h"
+#include "acme/operating_system.h"
 
-//#include <Shlobj.h>
-#include "acme/os/_c.h"
+
 #if defined(__APPLE__)
 #include <sys/stat.h>
 #include <dirent.h>
@@ -15,9 +15,6 @@
 #include <dirent.h>
 #elif defined(_UWP)
 #include "acme/os/uwp/file_winrt.h"
-#elif defined(WINDOWS_DESKTOP)
-#include "acme/os/windows_common/_file_c.h"
-#include "acme/os/windows_common/cotaskptr.h"
 #endif
 
 
@@ -221,7 +218,7 @@ namespace dir
 
       {
 
-//         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero sized
+//         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
 //
 //         if(str.has_char())
 //         {
@@ -231,7 +228,7 @@ namespace dir
 //         }
 //
 //
-//         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero sized
+//         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
 //
 //         if(str.has_char())
 //         {
@@ -326,7 +323,7 @@ namespace dir
          if(wstrModuleFilePath.empty())
          {
 
-            SHGetSpecialFolderPathW(nullptr, wstrModuleFilePath, CSIDL_PROGRAM_FILES, FALSE);
+            SHGetSpecialFolderPathW(nullptr, wstrModuleFilePath, CSIDL_PROGRAM_FILES, false);
 
          }
 
@@ -482,7 +479,7 @@ namespace dir
 
          }
 
-         str = ::dir::pathfind(::file::path(str).folder(), "libacme.dylib", "rfs"); // readable - normal file - non zero sized
+         str = ::dir::pathfind(::file::path(str).folder(), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
 
          if(str.has_char())
          {
@@ -491,7 +488,7 @@ namespace dir
 
          }
 
-         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero sized
+         str = ::dir::pathfind(getenv("DYLD_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
 
          if(str.has_char())
          {
@@ -509,7 +506,7 @@ namespace dir
 
          }
 
-         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero sized
+         str = ::dir::pathfind(getenv("DYLD_FALLBACK_LIBRARY_PATH"), "libacme.dylib", "rfs"); // readable - normal file - non zero size_f64
 
          if(str.has_char())
          {
@@ -1724,7 +1721,7 @@ namespace dir
       if(wcslen(wstrModuleFilePath) == 0)
       {
 
-         SHGetSpecialFolderPathW(nullptr, wstrModuleFilePath, CSIDL_PROGRAM_FILES, FALSE);
+         SHGetSpecialFolderPathW(nullptr, wstrModuleFilePath, CSIDL_PROGRAM_FILES, false);
 
       }
 
@@ -1749,7 +1746,7 @@ namespace dir
       if (wcslen(wstrModuleFilePath) == 0)
       {
 
-         SHGetSpecialFolderPathW(nullptr, wstrModuleFilePath, CSIDL_PROGRAM_FILES, FALSE);
+         SHGetSpecialFolderPathW(nullptr, wstrModuleFilePath, CSIDL_PROGRAM_FILES, false);
 
       }
 
@@ -1770,7 +1767,7 @@ namespace dir
    ::file::path program_files_x86()
    {
 
-      ::file::path point("/opt/ca2");
+      ::file::path point_i32("/opt/ca2");
 
       return point;
 
@@ -1780,7 +1777,7 @@ namespace dir
    ::file::path program_files()
    {
 
-      ::file::path point("/opt/ca2");
+      ::file::path point_i32("/opt/ca2");
 
       return point;
 

@@ -1,4 +1,4 @@
-//
+//        acme / camilo made by thomas
 // 
 //   
 //    
@@ -88,21 +88,21 @@ class thread;
 
 
 CLASS_DECL_ACME void acme_ref();
-
-
-#ifdef WINDOWS_DESKTOP
-
-typedef i32 WINAPI __MAIN_DEFERRED_RUN(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, i32 nCmdShow);
-
-#else
-
-typedef i32 __MAIN_DEFERRED_RUN(int argc, char **argv);
-
-#endif
-
-
-typedef __MAIN_DEFERRED_RUN *__LPFN_MAIN_DEFERRED_RUN;
-extern CLASS_DECL_ACME __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
+//
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//typedef i32 WINAPI __MAIN_DEFERRED_RUN(HINSTANCE hinstance, HINSTANCE hPrevInstance, char * pCmdLine, i32 nCmdShow);
+//
+//#else
+//
+//typedef i32 __MAIN_DEFERRED_RUN(int argc, char **argv);
+//
+//#endif
+//
+//
+//typedef __MAIN_DEFERRED_RUN *__LPFN_MAIN_DEFERRED_RUN;
+//extern CLASS_DECL_ACME __LPFN_MAIN_DEFERRED_RUN __main_deferred_run;
 
 
 
@@ -336,6 +336,7 @@ template < non_pointer NON_POINTER >
 inline bool __is_zero(const NON_POINTER & t);
 
 
+typedef char ansichar;
 
 
 
@@ -345,6 +346,17 @@ CLASS_DECL_ACME void throw_todo(void);
 CLASS_DECL_ACME void set_last_status(const ::e_status &estatus);
 
 CLASS_DECL_ACME void windowing_output_debug_string(const char *pszDebugString);
+
+CLASS_DECL_ACME void output_debug_string(const ansichar * psz);
+CLASS_DECL_ACME void output_debug_string(const wd16char * psz);
+CLASS_DECL_ACME void output_debug_string(const wd32char * psz);
+
+
+using oswindow = void *;
+using windows_handle = void *;
+using hinstance = void *;
+
+
 
 
 namespace acme
@@ -511,7 +523,7 @@ namespace dynamic_source
 #include "acme/primitive/math/mkint_c.h"
 
 // C-includes
-#include "acme/os/_c.h"
+#include "acme/_c.h"
 #include "acme/memory/heap_c.h"
 
 
@@ -605,7 +617,9 @@ CLASS_DECL_ACME enum_platform_level get_platform_level();
 #define GET_X_LPARAM64(lparam)                        ((i32)(i16)LODWORD(lparam))
 #define GET_Y_LPARAM64(lparam)                        ((i32)(i16)HIDWORD(lparam))
 
-
+// Contains a 64-bit value representing the number
+// of 100-nanosecond intervals since January 1, 1601 (UTC).
+using filetime_t = ::u64;
 
 //typedef struct rdp_freerdp freerdp;
 
@@ -618,6 +632,22 @@ CLASS_DECL_ACME enum_platform_level get_platform_level();
 #if !defined(O_BINARY) && !defined(WINDOWS)
 # define O_BINARY 0
 #endif
+
+
+enum enum_optional
+{
+
+   e_optional,
+
+};
+
+
+enum enum_no_initialize
+{
+
+   e_no_initialize,
+
+};
 
 
 CLASS_DECL_ACME i32 ansi_open(const char *psz, i32 i);
@@ -633,7 +663,7 @@ CLASS_DECL_ACME void ansi_unlink(const char *psz);
 
 CLASS_DECL_ACME ::e_status get_last_status();
 
-typedef char ansichar;
+
 
 
 enum e_image_type
@@ -1274,11 +1304,13 @@ enum enum_copy_clone
 template < typename TYPE > \
 type operator + (const TYPE & t) const { auto copy = *this; copy.add(t); return copy; }
 
-#include "acme/primitive/math/_.h"
-
 #include "acme/memory/_heap.h"
 
 #include "acme/exception/_const.h"
+
+#include "acme/primitive/primitive/bits.h"
+
+#include "acme/primitive/math/_.h"
 
 //#include "acme/user/_const.h"
 
@@ -2004,21 +2036,6 @@ namespace audio
 #include "acme/primitive/collection/forward.h"
 
 
-enum enum_optional
-{
-
-   e_optional,
-
-};
-
-
-enum enum_no_init
-{
-
-   e_no_init,
-
-};
-
 
 #include "acme/primitive/logic/bit.h"
 
@@ -2247,8 +2264,6 @@ namespace acme
 } // namespace acme
 
 
-#include "acme/memory/malloc.h"
-
 
 class image_list;
 
@@ -2284,6 +2299,7 @@ namespace base
    class system;
 
 }
+
 
 
 class app_core;
@@ -2645,41 +2661,16 @@ inline stream &__save_object(stream &stream, const __pointer(BASE_TYPE) &p)
 
 #include "acme/primitive/math/c_number.h"
 
-
-using wparam = c_number<WPARAM>;
+using wparam = c_number<iptr>;
 
 
 #include "acme/primitive/math/math_clip.h"
 
 
-#include "acme/primitive/datetime/secs.h"
-
-
-#include "acme/primitive/datetime/millis.h"
-
-
-#include "acme/primitive/datetime/micros.h"
-
-
-#include "acme/primitive/datetime/nanos.h"
-
-
-
-
-#include "acme/primitive/datetime/duration.h"
+#include "acme/primitive/datetime/_datetime.h"
 
 #include "acme/platform/common.h"
 
-
-class filetime;
-
-
-#include "acme/primitive/datetime/date_span.h"
-#include "acme/primitive/datetime/time_span.h"
-#include "acme/primitive/datetime/time.h"
-#include "acme/primitive/datetime/zonetime.h"
-#include "acme/primitive/datetime/filetime_span.h"
-#include "acme/primitive/datetime/filetime.h"
 
 
 namespace status
@@ -2735,20 +2726,28 @@ namespace papaya
 class memory_base;
 
 
-template<typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE>
-class size_type;
+//template<typename BASE_TYPE, typename POINT_BASE_TYPE, typename RECT_BASE_TYPE>
+//class size_type;
 
 
-using size = size_type<SIZE32, POINT32, RECT32>;
+//using size = size_type<SIZE_I32, POINT_I32, RECTANGLE_I32>;
 
 
 #include "acme/primitive/math/cast.h"
 
 
 #include "acme/primitive/primitive/block.h"
+
+
 #include "acme/memory/memory.h"
 
+
+#include "acme/memory/malloc.h"
+
+
 #include "acme/primitive/primitive/enumeration.h"
+
+
 
 
 class thread;
@@ -2785,6 +2784,8 @@ namespace user
 #include "acme/platform/_global.h"
 
 
+CLASS_DECL_ACME void show_error_message(const string & strMessage, const string & strTitle, const ::e_message_box & emessagebox = e_message_box_ok, const ::promise::process & process = nullptr);
+
 class function;
 
 
@@ -2800,6 +2801,10 @@ namespace factory
 
 #include "acme/primitive/primitive/matter.h"
 #include "acme/primitive/primitive/layered.h"
+
+
+#include "acme/primitive/geometry2d/_.h"
+
 
 
 class manual_reset_event;
@@ -2861,11 +2866,6 @@ inline bool failed(const ::property &set) { return !::succeeded(set); }
 
 #include "acme/primitive/primitive/_papaya.h"
 
-
-#include "acme/primitive/geometry2d/_.h"
-
-
-//#include "acme/primitive/primitive/matter.h"
 
 
 #include "acme/primitive/primitive/_factory_prefix.h"
@@ -2971,6 +2971,17 @@ namespace http
 
 
 
+struct MESSAGE
+{
+
+   oswindow       hwnd;
+   ::u32          message;
+   wparam         wParam;
+   lparam         lParam;
+   point_i32      pt;
+   ::u64          time;
+
+};
 
 
 //class create_thread;
@@ -2978,13 +2989,13 @@ namespace http
 using generic_pointer = __pointer(::matter);
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-#include "acme/os/windows/itemidlist.h"
-
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//#include "acme/os/windows/itemidlist.h"
+//
+//
+//#endif
 
 
 namespace core
@@ -3040,7 +3051,7 @@ CLASS_DECL_ACME void add_release_on_end(::matter * pmatter);
 
 #include "acme/primitive/geometry2d/_collection.h"
 
-#include "acme/primitive/geometry3d/_.h"
+//#include "acme/primitive/geometry3d/_.h"
 
 
 class message_box;
@@ -3236,9 +3247,6 @@ inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::co
 #include "acme/platform/enum.h"
 
 
-#include "acme/parallelization/critical_section.h"
-
-
 #include "acme/primitive/primitive/factory.h"
 
 
@@ -3260,9 +3268,9 @@ inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::co
 //
 //      };
 //
-//   //CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow, RECTD * prect);
+//   //CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow, RECTANGLE_F64 * prectangle);
 //
-//   //CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow, RECT32 * prect);
+//   //CLASS_DECL_ACME bool get_window_rect(system_window ^ pwindow, RECTANGLE_I32 * prectangle);
 //
 //
 //#endif
@@ -3653,8 +3661,8 @@ namespace xml
 
 
 // C++ Includes
-#include "acme/os/_.h"
-#include "acme/node/_.h"
+#include "acme/os/_2.h"
+//#include "acme/node/_.h"
 
 
 i32 CLASS_DECL_ACME MultiByteToWideChar2(::u32 CodePage, ::u32 dwFlags, const ansichar *pMultByteStr, i32 cbMultiByte,
@@ -3956,6 +3964,7 @@ CLASS_DECL_ACME string get_last_error_string();
 #include "acme/primitive/primitive/_.h"
 
 
+
 //#include "acme/scripting/javascript/javascript.h"
 
 
@@ -4157,7 +4166,7 @@ namespace draw2d
 //#include "acme/database/_impl.h"
 
 
-#include "acme/os/_impl.h"
+//#include "acme/os/_impl.h"
 
 
 #include "acme/primitive/primitive/_id_impl.h"

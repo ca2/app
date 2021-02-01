@@ -7,7 +7,7 @@ class CLASS_DECL_AURA image_frame :
 public:
 
 
-   ::rect                        m_rect;
+   ::rectangle_i32                        m_rectangle;
    ::image_pointer               m_pimage;
    millis                          m_tick;
    index                         m_iFrame;

@@ -60,7 +60,7 @@ string imm_context::get_string(int iStr)
 
    unichar * point = wstr.get_string_buffer(iLen);
 
-   ImmGetCompositionStringW(m_himc, iStr, point, iLen);
+   ImmGetCompositionStringW(m_himc, iStr, point_i32, iLen);
 
    wstr.release_string_buffer();
 

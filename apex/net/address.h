@@ -15,7 +15,7 @@ namespace net
 {
 
 
-   struct CLASS_DECL_APEX address
+   class CLASS_DECL_APEX address
    {
    public:
 

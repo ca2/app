@@ -49,17 +49,17 @@ namespace draw2d_opengl
 
 
 
-   ::e_status image::create(const ::size& size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
+   ::e_status image::create(const ::size_i32& size, ::eobject eobjectCreate, int iGoodStride, bool bPreserve)
    {
 
       if(m_pbitmap.is_set()
             && m_pbitmap->get_os_data() != nullptr
-            && m_size == size)
+            && m_size == size_i32)
          return true;
 
       destroy();
 
-      if (!size)
+      if (!size_i32)
       {
 
          return true;
@@ -179,7 +179,7 @@ namespace draw2d_opengl
    }
 
 
-   bool image::to(::draw2d::graphics * pgraphics, const ::point& point, const ::size& size, const ::point& pointSrc)
+   bool image::to(::draw2d::graphics * pgraphics, const ::point_i32& point, const ::size_i32& size, const ::point_i32& pointSrc)
    {
 
       return pgraphics->draw(point, size, get_graphics(), point);
@@ -204,7 +204,7 @@ namespace draw2d_opengl
 
       }
 
-      ::size size = pgraphics->m_pimage->get_size();
+      ::size_i32 size = pgraphics->m_pimage->get_size();
 
       if(!create(size))
       {
@@ -224,13 +224,13 @@ namespace draw2d_opengl
    }
 
 
-   //bool image::from(point ptDest, ::draw2d::graphics * pgraphics, const ::point & point, ::size sz)
+   //bool image::from(point_i32 ptDest, ::draw2d::graphics * pgraphics, const ::point_i32 & point, ::size_i32 sz)
    //{
 
    //   if (m_pgraphics.is_null())
    //      return false;
 
-   //   return m_pgraphics->BitBlt(ptDest, sz, pgraphics, point) != FALSE;
+   //   return m_pgraphics->BitBlt(ptDest, sz, pgraphics, point_i32) != FALSE;
 
    //}
 
@@ -242,7 +242,7 @@ namespace draw2d_opengl
 
       color32_t * pcr;
 
-      i64 iSize32 = size / 32;
+      i64 iSize32 = size_i32 / 32;
       i32 i;
       for (i=0; i < iSize32; i+=32 )
       {
@@ -281,7 +281,7 @@ namespace draw2d_opengl
          pcr[31] = color;
       }
 
-      for (i=0; i<size; i++ )
+      for (i=0; i<size_i32; i++ )
       {
          m_pcolorref[i]=color;
       }
@@ -294,7 +294,7 @@ namespace draw2d_opengl
       byte * pbyte = (byte *) m_pcolorref;
 
       i32 i;
-      for (i=0; i<size; i++ )
+      for (i=0; i<size_i32; i++ )
       {
          *pbyte++ = (byte) R;
          *pbyte++ = (byte) G;
@@ -308,7 +308,7 @@ namespace draw2d_opengl
       byte *dst=(byte*)m_pcolorref;
       i64 size = area();
 
-      while ( size-- )
+      while ( size_i32-- )
       {
          dst[3] = dst[i];
          dst+=4;
@@ -320,7 +320,7 @@ namespace draw2d_opengl
       byte *dst=(byte*)m_pcolorref;
       i64 size = area();
 
-      while ( size-- )
+      while ( size_i32-- )
       {
          dst[0] = dst[3];
          dst[1] = dst[3];
@@ -385,7 +385,7 @@ namespace draw2d_opengl
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
 
-   //   while ( size-- )
+   //   while ( size_i32-- )
    //   {
    //      *dst = (byte) (*dst == FromRgb ? ToRgb : *dst);
    //      dst+=4;
@@ -402,7 +402,7 @@ namespace draw2d_opengl
    //   byte uchG = ::green(cr);
    //   byte uchR = ::red(cr);
 
-   //   while ( size-- )
+   //   while ( size_i32-- )
    //   {
    //      dst[3] = dst[i];
    //      dst[0] = uchB;
@@ -459,7 +459,7 @@ namespace draw2d_opengl
    //{
    //   i64 size = area();
    //   LPBYTE lpb = (LPBYTE) m_pcolorref;
-   //   for ( i32 i=0; i<size; i++ )
+   //   for ( i32 i=0; i<size_i32; i++ )
    //   {
    //      lpb[0] = 255 - lpb[0];
    //      lpb[1] = 255 - lpb[1];
@@ -470,12 +470,12 @@ namespace draw2d_opengl
 
    //void image::color::channel_invert(color::color::rgba::echannel echannel)
    //{
-   //   i64 size   = area();
-   //   register i64 size64 = size / 64;
+   //   i64 size_i32   = area();
+   //   register i64 size_i64 = size_i32 / 64;
    //   LPBYTE lpb = (LPBYTE) m_pcolorref;
    //   lpb += ((i32)echannel) % 4;
    //   register i64 i = 0;
-   //   for(; i < size64; i++)
+   //   for(; i < size_i64; i++)
    //   {
    //      lpb[4 *  0] = 255 - lpb[4 *  0];
    //      lpb[4 *  1] = 255 - lpb[4 *  1];
@@ -575,7 +575,7 @@ namespace draw2d_opengl
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
-   //   while ( size-- )
+   //   while ( size_i32-- )
    //   {
    //      dst[0]=(byte)(((B-dst[0])*A+(dst[0]<<8))>>8);
    //      dst[1]=(byte)(((G-dst[1])*A+(dst[1]<<8))>>8);
@@ -632,7 +632,7 @@ namespace draw2d_opengl
    //   ::u32 dwG_ = dwG << 8;
    //   ::u32 dwR_ = dwR << 8;
    //
-   //   while ( size-- )
+   //   while ( size_i32-- )
    //   {
    //      dst[0]=(byte)(((dst[0]-dwB)*bAlpha+dwB_)>>8);
    //      dst[1]=(byte)(((dst[1]-dwG)*bAlpha+dwG_)>>8);
@@ -652,7 +652,7 @@ namespace draw2d_opengl
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
-   //   while ( size-- )
+   //   while ( size_i32-- )
    //   {
    //      dst[0]=(byte)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
    //      dst[1]=(byte)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
@@ -675,7 +675,7 @@ namespace draw2d_opengl
 
    //   A = 2 - A;
    //
-   //   while ( size-- )
+   //   while ( size_i32-- )
    //   {
    //      dst[0]=(byte)(((src[0]-dst[0])*alf[A]+(dst[0]<<8))>>8);
    //      dst[1]=(byte)(((src[1]-dst[1])*alf[A]+(dst[1]<<8))>>8);
@@ -697,7 +697,7 @@ namespace draw2d_opengl
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
-   //   while ( size-- )
+   //   while ( size_i32-- )
    //   {
    //      dst[0]=(byte)((src[0]<dst[0]) ? src[0] : dst[0]);
    //      dst[1]=(byte)((src[1]<dst[1]) ? src[1] : dst[1]);
@@ -716,7 +716,7 @@ namespace draw2d_opengl
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
-   //   while ( size-- )
+   //   while ( size_i32-- )
    //   {
    //      i32 Difference;
    //      Difference=src[0]-dst[0];
@@ -739,7 +739,7 @@ namespace draw2d_opengl
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
-   //   while ( size-- )
+   //   while ( size_i32-- )
    //   {
    //      dst[0]=(byte)((src[0]>dst[0]) ? src[0] : dst[0]);
    //      dst[1]=(byte)((src[1]>dst[1]) ? src[1] : dst[1]);
@@ -759,7 +759,7 @@ namespace draw2d_opengl
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
-   //   while ( size-- )
+   //   while ( size_i32-- )
    //   {
    //      dst[0]=(byte)(((src[0])*(dst[0]))>>8);
    //      dst[1]=(byte)(((src[1])*(dst[1]))>>8);
@@ -778,7 +778,7 @@ namespace draw2d_opengl
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
-   //   while ( size-- )
+   //   while ( size_i32-- )
    //   {
    //      dst[0]=(byte)(255-(((255-src[0])*(255-dst[0]))>>8));
    //      dst[1]=(byte)(255-(((255-src[1])*(255-dst[1]))>>8));
@@ -1288,7 +1288,7 @@ namespace draw2d_opengl
 
    //   i32 size=cx*cy;
 
-   //   for ( i32 i=0; i<size; i++ )
+   //   for ( i32 i=0; i<size_i32; i++ )
    //      if(m_pcolorref[i]== crFind)
    //         m_pcolorref[i] = crSet;
    //      else
@@ -1301,7 +1301,7 @@ namespace draw2d_opengl
    //   color32_t crFind = color.get_rgb();
    //   i64 size = area();
 
-   //   for ( i32 i=0; i<size; i++ )
+   //   for ( i32 i=0; i<size_i32; i++ )
    //      if((m_pcolorref[i] & 0x00ffffff) == crFind)
    //         ((LPBYTE)&m_pcolorref[i])[3] = 255;
    //      else
@@ -1899,7 +1899,7 @@ namespace draw2d_opengl
 
    //void image::rotate(
    //   image image,
-   //   const ::rect & rect,
+   //   const ::rectangle_i32 & rectangle,
    //   double dAngle,
    //   double dScale)
    //{
@@ -1908,10 +1908,10 @@ namespace draw2d_opengl
 
 
 
-   //   ::rect rect(rect);
+   //   ::rectangle_i32 rectangle(rectangle);
 
-   //   i32 cx = rect.width();
-   //   i32 cy = rect.height();
+   //   i32 cx = rectangle.width();
+   //   i32 cy = rectangle.height();
 
    //   i32 l = max(cx, cy);
    //
@@ -1921,8 +1921,8 @@ namespace draw2d_opengl
    //   i32 imin = - imax;
 
 
-   //   i32 joff = cy / 2 + rect.left;
-   //   i32 ioff = cx / 2 + rect.top;
+   //   i32 joff = cy / 2 + rectangle.left;
+   //   i32 ioff = cx / 2 + rectangle.top;
 
    //   //i32 iAngle = iStep % 360;
    //   //i32 iAngle = iStep;
@@ -2010,7 +2010,7 @@ namespace draw2d_opengl
 
    //   color32_t * pcr;
 
-   //   i64 iSize32 = size / 32;
+   //   i64 iSize32 = size_i32 / 32;
    //   i32 i;
    //   for (i=0; i < iSize32; i+=32 )
    //   {
@@ -2049,7 +2049,7 @@ namespace draw2d_opengl
    //      pcr[31] = color;
    //   }
 
-   //   for (i=0; i<size; i++ )
+   //   for (i=0; i<size_i32; i++ )
    //   {
    //      m_pcolorref[i]=color;
    //   }
@@ -2115,7 +2115,7 @@ namespace draw2d_opengl
    //   }
    //}
 
-   //void image::create_frame(::size size, i32 iFrameCount)
+   //void image::create_frame(::size_i32 size, i32 iFrameCount)
    //{
    //   i32 iSliceCount = (i32) sqrt((double) iFrameCount);
    //   i32 iFrameWidth = size.cx / iSliceCount;
@@ -2420,7 +2420,7 @@ namespace draw2d_opengl
    //       pb[31 * 4] = (byte) intensity;
    //    }
 
-   //    for (; i<size; i++ )
+   //    for (; i<size_i32; i++ )
    //    {
    //       *(((byte * ) &m_pcolorref[i]) + offset) = (byte) intensity;
    //    }
@@ -2465,7 +2465,7 @@ namespace draw2d_opengl
 //   {
 //
 //
-//      rect64 rectWindow;
+//      rectangle_i64 rectWindow;
 //
 //      pwnd->get_window_rect(rectWindow);
 //
@@ -2540,7 +2540,7 @@ namespace draw2d_opengl
 //////
 ////      }
 ////#endif
-//      ::rect rect(rectWindow);
+//      ::rectangle_i32 rectangle(rectWindow);
 //
 //      // Copy the contents of the framebuffer - which in our case is our pbuffer -
 //      // to our bitmap image in local system memory. Notice that we also need
@@ -2575,7 +2575,7 @@ namespace draw2d_opengl
 //      }
 //
 //
-//      pwnd->get_window_graphics()->update_window(pwnd->get_handle(),(color32_t*)b->m_memOut.get_data(),rect, b->m_sizeOut.cx, b.m_sizeOut.cy, b.m_sizeOut.cx * 4,bTransferBuffer);
+//      pwnd->get_window_graphics()->update_window(pwnd->get_handle(),(color32_t*)b->m_memOut.get_data(),rectangle_i32, b->m_sizeOut.cx, b.m_sizeOut.cy, b.m_sizeOut.cx * 4,bTransferBuffer);
 //      b->m_bFlashed = true;
 //
 //      return true;
@@ -2593,14 +2593,14 @@ namespace draw2d_opengl
 //
 //      m_pgraphics->attach((HDC) pbase->m_wparam);
 //
-//      ::rect rectx;
+//      ::rectangle_i32 rectx;
 //
 //      ::draw2d::bitmap * pbitmap = m_pgraphics->get_current_bitmap();
 //
 //      ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
 //
 //      //      u32 dw = ::get_last_error();
-//      ::size size = pbitmap->get_size();
+//      ::size_i32 size = pbitmap->get_size();
 //
 //      rectx.left = 0;
 //      rectx.top = 0;
@@ -2610,7 +2610,7 @@ namespace draw2d_opengl
 //      try
 //      {
 //
-//         ::rect rectWindow;
+//         ::rectangle_i32 rectWindow;
 //
 //         pwnd->get_window_rect(rectWindow);
 //
@@ -2624,20 +2624,20 @@ namespace draw2d_opengl
 //         if(pgraphics->get_os_data() == nullptr)
 //            return false;
 //
-//         ::rect rectPaint;
-//         ::rect rectUpdate;
+//         ::rectangle_i32 rectPaint;
+//         ::rectangle_i32 rectUpdate;
 //         rectUpdate = rectWindow;
 //         rectPaint = rectWindow;
 //         rectPaint.offset(-rectPaint.top_left());
 //         m_pgraphics->SelectClipRgn(nullptr);
 //         pwnd->_001OnDeferPaintLayeredWindowBackground(pimage->get_graphics());
 //         m_pgraphics->SelectClipRgn(nullptr);
-//         m_pgraphics-> SetViewportOrg(::point());
+//         m_pgraphics-> SetViewportOrg(::point_i32());
 //         pwnd->_000OnDraw(pimage->get_graphics());
-//         m_pgraphics->SetViewportOrg(::point());
+//         m_pgraphics->SetViewportOrg(::point_i32());
 //         //(dynamic_cast<::win::graphics * >(pgraphics))->FillSolidRect(rectUpdate.left, rectUpdate.top, 100, 100, 255);
 //         m_pgraphics->SelectClipRgn(nullptr);
-//         m_pgraphics->SetViewportOrg(::point());
+//         m_pgraphics->SetViewportOrg(::point_i32());
 //
 //         m_pgraphics->SelectClipRgn( nullptr);
 //         m_pgraphics->BitBlt(rectPaint.left, rectPaint.top,

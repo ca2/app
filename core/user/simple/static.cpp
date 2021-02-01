@@ -31,7 +31,7 @@ void simple_static::pre_subclass_window()
 }
 
 
-//LRESULT simple_static::OnSetIcon(WPARAM wparam, LPARAM lparam)
+//LRESULT simple_static::OnSetIcon(wparam wparam, lparam lparam)
 //{
 //
 //   if(m_pimagelist != nullptr)
@@ -57,7 +57,7 @@ void simple_static::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       if (picon != nullptr)
       {
 
-         pgraphics->draw(::rect(::point(), ::size(this->get_client_size().get_minimum_dimension())), picon);
+         pgraphics->draw(::rectangle_i32(::point_i32(), ::size_i32(this->get_client_size().get_minimum_dimension())), picon);
 
       }
 

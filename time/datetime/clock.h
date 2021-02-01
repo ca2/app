@@ -39,8 +39,8 @@ namespace datetime
          virtual void next_hour();
          virtual void previous_hour();
 
-         virtual enum_element hit_test(const ::point& point);
-         virtual bool hit_test(enum_element eelement, const ::point& point);
+         virtual enum_element hit_test(const ::point_i32& point);
+         virtual bool hit_test(enum_element eelement, const ::point_i32& point);
 
 
       };

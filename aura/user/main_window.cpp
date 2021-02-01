@@ -45,7 +45,7 @@ namespace user
    ::e_status main_window::create_main_window()
    {
 
-      ::rect rectWindow;
+      ::rectangle_i32 rectWindow;
 
       bool bInitialFramePosition = _001InitialFramePosition(rectWindow, m_rectInitialRateOrSize);
 

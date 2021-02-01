@@ -9,7 +9,7 @@
 
 
 extern SnLauncheeContext* g_psncontext;
-mutex * x11_mutex();
+::mutex * x11_mutex();
 
 #undef ALOG_CONTEXT
 #define ALOG_CONTEXT ::trace_object(::trace_category_windowing)
@@ -510,7 +510,7 @@ bool oswindow_data::set_icon(::image * pimage)
 
    d1->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-   d1->g()->stretch(d1->rect(), pimage->g(), pimage->rect());
+   d1->g()->stretch(d1->rectangle_i32(), pimage->g(), pimage->rectangle_i32());
 
    memory m(m_pimpl->m_puserinteraction->get_context_application());
 
@@ -572,7 +572,7 @@ bool oswindow_data::set_icon(::image * pimage)
 
    d1->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-   d1->get_graphics()->StretchBlt(0, 0, d1.width(), d1.height(), point->get_graphics(), 0, 0, point.width(), point.height());
+   d1->get_graphics()->StretchBlt(0, 0, d1.width(), d1.height(), point_i32->get_graphics(), 0, 0, point.width(), point.height());
 
    image d2(w->m_pimpl->m_puserinteraction->create_new, this);
 
@@ -585,7 +585,7 @@ bool oswindow_data::set_icon(::image * pimage)
 
    d2->get_graphics()->set_interpolation_mode(e_interpolation_mode_high_quality_bicubic);
 
-   d2->get_graphics()->StretchBlt(0, 0, d2.width(), d2.height(), point->get_graphics(), 0, 0, point.width(), point.height());
+   d2->get_graphics()->StretchBlt(0, 0, d2.width(), d2.height(), point_i32->get_graphics(), 0, 0, point.width(), point.height());
 
    memory m(w->m_pimpl->m_puserinteraction->get_context_application());
 
@@ -919,12 +919,12 @@ bool oswindow_data::show_window(const ::e_display & edisplay, const ::e_activati
 }
 
 
-void oswindow_data::full_screen(const ::rect & rect)
+void oswindow_data::full_screen(const ::rectangle_i32 & rectangle)
 {
 
-   ::rect rBest;
+   ::rectangle_i32 rBest;
 
-   int iMonitor = best_xinerama_monitor(m_pimpl->m_puserinteraction, rect, rBest);
+   int iMonitor = best_xinerama_monitor(m_pimpl->m_puserinteraction, rectangle_i32, rBest);
 
    windowing_output_debug_string("\n::oswindow_data::full_screen 1");
 
@@ -952,7 +952,7 @@ void oswindow_data::full_screen(const ::rect & rect)
 
    }
 
-   ::rect rWindow;
+   ::rectangle_i32 rWindow;
 
    rWindow.left      = attr.x;
    rWindow.top       = attr.y;
@@ -1138,7 +1138,7 @@ iptr oswindow_data::set_window_long_ptr(i32 nIndex, iptr i)
 }
 
 
-bool oswindow_data::_001ClientToScreen(POINT32 * ppoint)
+bool oswindow_data::_001ClientToScreen(POINT_I32 * ppoint)
 {
 
    return true;
@@ -1146,7 +1146,7 @@ bool oswindow_data::_001ClientToScreen(POINT32 * ppoint)
 }
 
 
-bool oswindow_data::_001ScreenToClient(POINT32 * ppoint)
+bool oswindow_data::_001ScreenToClient(POINT_I32 * ppoint)
 {
 
    return true;
@@ -1194,10 +1194,10 @@ long oswindow_data::get_state()
 
       long lStatus = -1;
 
-      if(point!= nullptr)
+      if(point_i32!= nullptr)
       {
 
-         lStatus = (long)*point;
+         lStatus = (long)*point_i32;
 
       }
 

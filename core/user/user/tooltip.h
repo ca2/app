@@ -13,7 +13,7 @@ namespace user
 
       string               m_str;
       ::draw2d::font_pointer    m_font;
-      ::size               m_size;
+      ::size_i32               m_size;
       bool                 m_bError;
 
 
@@ -27,7 +27,7 @@ namespace user
 
       void install_message_routing(::channel * pchannel) override;
 
-      ::size CalcSize();
+      ::size_i32 CalcSize();
 
       DECL_GEN_SIGNAL(_001OnCreate);
       void _001OnTimer(::timer * ptimer) override;

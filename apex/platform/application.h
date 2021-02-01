@@ -126,29 +126,29 @@ namespace apex
 
       string                                          m_strHelpFilePath;
 
-#ifdef WINDOWS
-
-      HGLOBAL                                         m_hDevMode;             // printer Dev Mode
-      HGLOBAL                                         m_hDevNames;            // printer Device Names
-
-#endif
+//#ifdef WINDOWS
+//
+//      HGLOBAL                                         m_hDevMode;             // printer Dev Mode
+//      HGLOBAL                                         m_hDevNames;            // printer Device Names
+//
+//#endif
 
       u32                                             m_dwPromptContext;        // help action_context override for message box
       // LKG
       u32                                             m_dwPolicies;            // block for storing boolean system policies
 
       // Support for Shift+F1 help mode.
-      // TRUE if we're in SHIFT+F1 mode.
+      // true if we're in SHIFT+F1 mode.
       bool                                            m_bHelpMode;
 
       //::userex::pane_tab_view *                       m_ppaneviewMain;
 
       string                                          m_strProfileName;
 
-#ifdef WINDOWS
-      ATOM                                            m_atomApp;
-      ATOM                                            m_atomSystemTopic;   // for DDE open
-#endif
+//#ifdef WINDOWS
+//      ATOM                                            m_atomApp;
+//      ATOM                                            m_atomSystemTopic;   // for DDE open
+//#endif
 
       ::u32                                            m_nNumPreviewPages; // number of default printed pages
 
@@ -329,9 +329,9 @@ namespace apex
 
 
 
-#ifdef WINDOWS
-      virtual void TermThread(HINSTANCE hInstTerm);
-#endif
+//#ifdef WINDOWS
+//      virtual void TermThread(HINSTANCE hInstTerm);
+//#endif
 
       //virtual void set_env_var(const string & payload, const string & value) override;
 
@@ -449,8 +449,8 @@ namespace apex
       virtual string get_theme();
 
 
-      virtual __pointer(::acme::exclusive) get_exclusive(string str, LPSECURITY_ATTRIBUTES psa);
-      virtual bool exclusive_fails(string str, LPSECURITY_ATTRIBUTES psa);
+      virtual __pointer(::acme::exclusive) get_exclusive(string str ARG_SEC_ATTRS_DEF);
+      virtual bool exclusive_fails(string str ARG_SEC_ATTRS_DEF);
 
 
       virtual bool start_application(bool bSynch, ::create * pcreate);
@@ -807,14 +807,14 @@ namespace apex
 
       //virtual ::user::interaction * main_window();
 
-//         virtual __pointer(::message::base) get_message_base(LPMESSAGE pmsg) override;
+//         virtual __pointer(::message::base) get_message_base(MESSAGE * pmsg) override;
 
 
       //virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
       //virtual void add_frame(::user::interaction * pwnd);
       //virtual void remove_frame(::user::interaction * pwnd);
 
-      virtual bool send_message_to_windows(const ::id & id, WPARAM wparam, LPARAM lparam); // with tbs in <3
+      virtual bool send_message_to_windows(const ::id & id, wparam wparam, lparam lparam); // with tbs in <3
 
       virtual bool route_message_to_windows(::message::message * pmessage); // with tbs in <3
 
@@ -832,7 +832,7 @@ namespace apex
       // user virtual ::user::document * place_hold(::user::interaction * pinteraction);
 
 
-      virtual bool post_message(const ::id & id, WPARAM wParam = 0, lparam lParam = 0) override;
+      virtual bool post_message(const ::id & id, wparam wParam = 0, lparam lParam = 0) override;
 
 
       //virtual ::draw2d::icon * set_icon(object * pobject, ::draw2d::icon * picon, bool bBigIcon);
@@ -861,7 +861,7 @@ namespace apex
       virtual ::id translate_property_id(const ::id & id) override;
       //virtual property fetch_property(const ::id & id) override;
 
-      virtual void get_time(struct timeval *point);
+      virtual void get_time(micro_duration * pmicroduration);
 
 
       virtual void close(::apex::enum_end eend);
@@ -926,7 +926,7 @@ namespace apex
       //virtual string sync_message_box(const string & pszMatter,property_set & propertyset) override;
 
 
-      //virtual __pointer(::user::interaction) uie_from_point(const ::point& point);
+      //virtual __pointer(::user::interaction) uie_from_point(const ::point_i32& point);
 
       //virtual bool on_application_menu_action(const char* pszCommand) override;
 
@@ -944,17 +944,17 @@ namespace apex
       //virtual void on_request(::create* pcreate) override;
 
       // overrides for implementation
-      virtual bool on_idle(::i32 lCount); // return TRUE if more idle processing
+      virtual bool on_idle(::i32 lCount); // return true if more idle processing
       virtual void process_window_procedure_exception(::exception_pointer pe, ::message::message* pmessage) override;
 
       void EnableModelessEx(bool bEnable);
-#ifdef WINDOWS
-      HENHMETAFILE LoadEnhMetaFile(::u32 uResource);
-#endif
+//#ifdef WINDOWS
+//      HENHMETAFILE LoadEnhMetaFile(::u32 uResource);
+//#endif
       bool GetResourceData(::u32 nID, const char* lcszType, memory& storage);
 
 #ifdef WINDOWS
-      virtual bool OnMessageWindowMessage(LPMESSAGE pmsg);
+      virtual bool OnMessageWindowMessage(MESSAGE * pmsg);
 
 #elif defined(LINUX)
       virtual bool OnX11WindowMessage(void* pev);
@@ -962,7 +962,7 @@ namespace apex
 
       bool CreateFileFromRawResource(::u32 nID, const char* lcszType, const char* pcszFilePath);
 
-      virtual LRESULT GetPaintMsgProc(i32 nCode, WPARAM wParam, LPARAM lParam);
+      //virtual LRESULT GetPaintMsgProc(i32 nCode, WPARAM wParam, LPARAM lParam);
 
 
       void OnUpdateRecentFileMenu(::user::command* pcommand);
@@ -1008,16 +1008,16 @@ namespace apex
       void SetRegistryKey(::u32 nIDRegistryKey);
 
 
-      void RegisterShellFileTypes(bool bCompat = FALSE);
+      void RegisterShellFileTypes(bool bCompat = false);
 
       // call after all doc templates are registered
       void UnregisterShellFileTypes();
 
-
-#ifdef WINDOWS
-      // Printer DC Setup routine, 'struct tagPD' is a PRINTDLG structure.
-      void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld = TRUE);
-#endif
+//
+//#ifdef WINDOWS
+//      // Printer DC Setup routine, 'struct tagPD' is a PRINTDLG structure.
+//      void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld = true);
+//#endif
 
       // create a DC for the system default printer.
       ::draw2d::graphics* CreatePrinterDC();
@@ -1099,12 +1099,12 @@ namespace apex
 
       static void DoEnableModeless(bool bEnable); // to disable OLE in-place dialogs
 
-#ifdef WINDOWS_DESKTOP
-      // helpers for registration
-      HKEY GetSectionKey(const char* pszSection);
-
-      HKEY GetAppRegistryKey();
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      // helpers for registration
+//      HKEY GetSectionKey(const char* pszSection);
+//
+//      HKEY GetAppRegistryKey();
+//#endif
 
       void OnAppExit();
       // System Policy Settings
@@ -1184,7 +1184,7 @@ namespace apex
 
       //virtual string dialog_box(const char* pszMatter, property_set& propertyset) override;
 
-      //virtual i32 track_popup_menu(const char* pszMatter, const ::point& point, __pointer(::user::interaction) puie);
+      //virtual i32 track_popup_menu(const char* pszMatter, const ::point_i32& point, __pointer(::user::interaction) puie);
 
       virtual bool get_fs_size(string& strSize, const char* pszPath, bool& bPending);
       virtual bool get_fs_size(i64& i64Size, const char* pszPath, bool& bPending);
@@ -1195,11 +1195,11 @@ namespace apex
       //virtual bool _001CloseApplicationByUser(__pointer(::user::interaction) pwndExcept);
 
 
-#ifdef WINDOWS_DESKTOP
-
-      static BOOL CALLBACK GetAppsEnumWindowsProc(oswindow oswindow, LPARAM lParam);
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      static BOOL CALLBACK GetAppsEnumWindowsProc(oswindow oswindow, LPARAM lParam);
+//
+//#endif
 
       void update_app_interest();
       void ensure_app_interest();
@@ -1243,10 +1243,10 @@ namespace apex
 
       /*
       virtual ::count get_monitor_count();
-      virtual bool  get_monitor_rect(index i, RECT32 * prect);
+      virtual bool  get_monitor_rect(index i, RECTANGLE_I32 * prectangle);
 
       virtual ::count get_desk_monitor_count();
-      virtual bool  get_desk_monitor_rect(index i, RECT32 * prect);
+      virtual bool  get_desk_monitor_rect(index i, RECTANGLE_I32 * prectangle);
 
       */
 
@@ -1454,13 +1454,6 @@ typedef __pointer(::apex::application) (*LPFN_instantiate_application)(__pointer
 
 extern CLASS_DECL_APEX LPFN_instantiate_application g_lpfn_instantiate_application;
 
-#ifdef WINDOWS_DESKTOP
-
-CLASS_DECL_APEX BOOL LaunchAppIntoDifferentSession(const char* pszProcess, const char* pszCommand, const char* pszDir, STARTUPINFO* psi, PROCESS_INFORMATION* ppi, int iSession = -1);
-
-CLASS_DECL_APEX BOOL LaunchAppIntoSystemAcc(const char* pszProcess, const char* pszCommand, const char* pszDir, STARTUPINFO* psi, PROCESS_INFORMATION* ppi);
-
-#endif // WINDOWS_DESKTOP
 
 
 

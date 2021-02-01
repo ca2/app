@@ -24,7 +24,7 @@ namespace user
 
 
       __pointer(::draw2d::font_list)   m_pfontlist;
-      ::rect                           m_rectMargin;
+      ::rectangle_i32                           m_rectMargin;
       bool                             m_bEnsureVisible;
       bool                             m_bFirstShown;
       ::i32                            m_iLayoutSerial;

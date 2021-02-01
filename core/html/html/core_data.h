@@ -167,7 +167,7 @@ namespace html
       ::user::form_callback* m_pcallback;
       ::user::interaction* m_puserinteraction;
       __pointer(::draw2d::graphics) m_pgraphics;
-      ::rectf                              m_box;
+      ::rectangle_f32                              m_box;
       string                           m_strTitle;
       layout_state1                    m_layoutstate1;
       layout_state2                    m_layoutstate2;

@@ -1627,8 +1627,8 @@
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/include $(WorkspaceDir)/platform-macos $(WorkspaceDir)/app/_include $(WorkspaceDir)/third/include . .. $(WorkspaceDir) $(WorkspaceDir)/app  /base/include   ";
-				WorkspaceDir = "$(SRCROOT)/../..";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/platform-macos $(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/third/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include . .. $(WorkspaceDir) $(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)  /base/include   ";
+				WorkspaceDir = "$(SRCROOT)/../../..";
 			};
 			name = Debug;
 		};
@@ -1677,8 +1677,8 @@
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				SDKROOT = macosx;
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/include $(WorkspaceDir)/platform-macos $(WorkspaceDir)/app/_include $(WorkspaceDir)/third/include . .. $(WorkspaceDir) $(WorkspaceDir)/app  /base/include   ";
-				WorkspaceDir = "$(SRCROOT)/../..";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/platform-macos $(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/third/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include . .. $(WorkspaceDir) $(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)  /base/include   ";
+				WorkspaceDir = "$(SRCROOT)/../../..";
 			};
 			name = Release;
 		};

@@ -602,8 +602,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(HOME)/__archive/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
-					"$(HOME)/__archive/archive/storage-$(PLATFORM_MODIFIER)/third/library/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-$(PLATFORM_MODIFIER)/third/library/$(CONFIGURATION)",
 					"$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
@@ -613,10 +613,10 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRIP_INSTALLED_PRODUCT = NO;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/third/include $(WorkspaceDir)/app/_include $(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/third/include/";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir) $(WorkspaceDir)/include $(WorkspaceDir)/platform-$(PLATFORM_MODIFIER) $(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/app/_include $(WorkspaceDir)/third/include $(WorkspaceDir)/app . $(PROJECT_DIR) $(HOME)/__archive/sensitive/sensitive/include";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/source/third/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include $(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/third/include/";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/platform-$(PLATFORM_MODIFIER) $(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/third/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include $(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER) . $(PROJECT_DIR) $(HOME)/__archive/sensitive/sensitive/include";
 				USE_HEADERMAP = NO;
-				WorkspaceDir = "$(SRCROOT)/../..";
+				WorkspaceDir = "$(SRCROOT)/../../..";
 			};
 			name = Debug;
 		};
@@ -672,8 +672,8 @@
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(HOME)/__archive/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
-					"$(HOME)/__archive/archive/storage-$(PLATFORM_MODIFIER)/third/library/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-$(PLATFORM_MODIFIER)/third/library/$(CONFIGURATION)",
 					"$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)",
 				);
 				MACOSX_DEPLOYMENT_TARGET = 10.8;
@@ -681,10 +681,10 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/third/include $(WorkspaceDir)/app/_include $(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/third/include/";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir) $(WorkspaceDir)/include $(WorkspaceDir)/platform-$(PLATFORM_MODIFIER) $(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/app/_include $(WorkspaceDir)/third/include $(WorkspaceDir)/app . $(PROJECT_DIR) $(HOME)/__archive/sensitive/sensitive/include";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/include $(WorkspaceDir)/source/third/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include $(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/third/include/";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir)/platform-$(PLATFORM_MODIFIER) $(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/third/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include $(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER) . $(PROJECT_DIR) $(HOME)/__archive/sensitive/sensitive/include";
 				USE_HEADERMAP = NO;
-				WorkspaceDir = "$(SRCROOT)/../..";
+				WorkspaceDir = "$(SRCROOT)/../../..";
 			};
 			name = Release;
 		};

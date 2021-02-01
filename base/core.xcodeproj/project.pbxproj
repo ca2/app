@@ -3438,14 +3438,14 @@
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/platform-macos $(WorkspaceDir)/app/_include $(WorkspaceDir)/third/include";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/include $(WorkspaceDir) $(WorkspaceDir)/app $(PROJECT_DIR)/.. $(PROJECT_DIR) .";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/platform-macos $(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/third/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir) $(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER) $(PROJECT_DIR)/.. $(PROJECT_DIR) .";
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wno-unused-value",
 				);
-				WorkspaceDir = "$(SRCROOT)/../..";
+				WorkspaceDir = "$(SRCROOT)/../../..";
 			};
 			name = Debug;
 		};
@@ -3510,15 +3510,15 @@
 				SDKROOT = macosx;
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
-				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/platform-macos $(WorkspaceDir)/app/_include $(WorkspaceDir)/third/include";
-				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/include $(WorkspaceDir) $(WorkspaceDir)/app $(PROJECT_DIR)/.. $(PROJECT_DIR) .";
+				SYSTEM_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/platform-macos $(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include $(WorkspaceDir)/source/third/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include $(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include";
+				USER_HEADER_SEARCH_PATHS = "$(WorkspaceDir)/source $(WorkspaceDir)/source/include $(WorkspaceDir) $(WorkspaceDir)/source/app $(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER) $(PROJECT_DIR)/.. $(PROJECT_DIR) .";
 				USE_HEADERMAP = NO;
 				VALIDATE_PRODUCT = YES;
 				WARNING_CFLAGS = (
 					"-Wno-comment",
 					"-Wno-unused-value",
 				);
-				WorkspaceDir = "$(SRCROOT)/../..";
+				WorkspaceDir = "$(SRCROOT)/../../..";
 			};
 			name = Release;
 		};

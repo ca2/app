@@ -205,7 +205,6 @@
 		9A68BC7A2511444E008DABD2 /* delay_thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B58C2511444B008DABD2 /* delay_thread.h */; };
 		9A68BC7B2511444E008DABD2 /* thread_impl.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B58D2511444B008DABD2 /* thread_impl.h */; };
 		9A68BC7C2511444E008DABD2 /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B58E2511444B008DABD2 /* thread.h */; };
-		9A68BC7D2511444E008DABD2 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B58F2511444B008DABD2 /* _.cpp */; };
 		9A68BC7F2511444E008DABD2 /* common.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5912511444B008DABD2 /* common.h */; };
 		9A68BC802511444E008DABD2 /* thread_os.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5922511444B008DABD2 /* thread_os.h */; };
 		9A68BC822511444E008DABD2 /* fork.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B5942511444B008DABD2 /* fork.h */; };
@@ -759,7 +758,6 @@
 		9A68C18325114451008DABD2 /* _c.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68BB272511444D008DABD2 /* _c.h */; };
 		9A68C18425114451008DABD2 /* policy_objcpp.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68BB282511444D008DABD2 /* policy_objcpp.h */; };
 		9A68C18525114451008DABD2 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68BB292511444D008DABD2 /* _.h */; };
-		9A68C18625114451008DABD2 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68BB2C2511444D008DABD2 /* _.h */; };
 		9A68C18725114451008DABD2 /* update.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68BB2D2511444D008DABD2 /* update.h */; };
 		9A7D920B251AF16300DE81AE /* menu_shared.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A7D9207251AF16200DE81AE /* menu_shared.cpp */; };
 		9A7D920C251AF16300DE81AE /* menu_shared.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A7D920A251AF16300DE81AE /* menu_shared.h */; };
@@ -1173,7 +1171,6 @@
 		9AD6942D251A754800C0EBD7 /* user.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7752511444B008DABD2 /* user.h */; };
 		9AD6942E251A754800C0EBD7 /* thread.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B9DF2511444C008DABD2 /* thread.h */; };
 		9AD6942F251A754800C0EBD7 /* net.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7172511444B008DABD2 /* net.h */; };
-		9AD69430251A754800C0EBD7 /* _.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68BB2C2511444D008DABD2 /* _.h */; };
 		9AD69431251A754800C0EBD7 /* interprocess_intercommunication.h in Headers */ = {isa = PBXBuildFile; fileRef = 9AAE6EA4251921CC00F10692 /* interprocess_intercommunication.h */; };
 		9AD69432251A754800C0EBD7 /* port_forward.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B51E2511444A008DABD2 /* port_forward.h */; };
 		9AD69433251A754800C0EBD7 /* _os.h in Headers */ = {isa = PBXBuildFile; fileRef = 9A68B7E82511444B008DABD2 /* _os.h */; };
@@ -1433,7 +1430,6 @@
 		9AD69533251A754800C0EBD7 /* command_line.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B66B2511444B008DABD2 /* command_line.cpp */; };
 		9AD69534251A754800C0EBD7 /* static_setup.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B6202511444B008DABD2 /* static_setup.cpp */; };
 		9AD69535251A754800C0EBD7 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B7972511444B008DABD2 /* main.cpp */; };
-		9AD69536251A754800C0EBD7 /* _.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B58F2511444B008DABD2 /* _.cpp */; };
 		9AD69537251A754800C0EBD7 /* os_context.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B6382511444B008DABD2 /* os_context.cpp */; };
 		9AD69538251A754800C0EBD7 /* listener.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B4B82511444A008DABD2 /* listener.cpp */; };
 		9AD69539251A754800C0EBD7 /* file_raw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9A68B86B2511444C008DABD2 /* file_raw.cpp */; };
@@ -4322,7 +4318,6 @@
 				9A68BE292511444F008DABD2 /* user.h in Headers */,
 				9A68C04D25114450008DABD2 /* thread.h in Headers */,
 				9A68BDE52511444F008DABD2 /* net.h in Headers */,
-				9A68C18625114451008DABD2 /* _.h in Headers */,
 				9AAE6EAC251921CF00F10692 /* interprocess_intercommunication.h in Headers */,
 				9A68BC262511444E008DABD2 /* port_forward.h in Headers */,
 				9A68BE932511444F008DABD2 /* _os.h in Headers */,
@@ -4798,7 +4793,6 @@
 				9AD6942D251A754800C0EBD7 /* user.h in Headers */,
 				9AD6942E251A754800C0EBD7 /* thread.h in Headers */,
 				9AD6942F251A754800C0EBD7 /* net.h in Headers */,
-				9AD69430251A754800C0EBD7 /* _.h in Headers */,
 				9AD69431251A754800C0EBD7 /* interprocess_intercommunication.h in Headers */,
 				9AD69432251A754800C0EBD7 /* port_forward.h in Headers */,
 				9AD69433251A754800C0EBD7 /* _os.h in Headers */,
@@ -4949,7 +4943,7 @@
 		9A68A43E251143F8008DABD2 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 1160;
+				LastUpgradeCheck = 1240;
 				ORGANIZATIONNAME = "Camilo Sasuke Tsumanuma";
 				TargetAttributes = {
 					9A68A445251143F8008DABD2 = {
@@ -5229,7 +5223,6 @@
 				9A68BD492511444F008DABD2 /* command_line.cpp in Sources */,
 				9A68BD032511444E008DABD2 /* static_setup.cpp in Sources */,
 				9A68BE442511444F008DABD2 /* main.cpp in Sources */,
-				9A68BC7D2511444E008DABD2 /* _.cpp in Sources */,
 				9A68BD1A2511444E008DABD2 /* os_context.cpp in Sources */,
 				9A68BBC92511444E008DABD2 /* listener.cpp in Sources */,
 				9A68BF1025114450008DABD2 /* file_raw.cpp in Sources */,
@@ -5534,7 +5527,6 @@
 				9AD69534251A754800C0EBD7 /* static_setup.cpp in Sources */,
 				9ACC5D9D251A9698008528B1 /* factory_exchange.cpp in Sources */,
 				9AD69535251A754800C0EBD7 /* main.cpp in Sources */,
-				9AD69536251A754800C0EBD7 /* _.cpp in Sources */,
 				9AD69537251A754800C0EBD7 /* os_context.cpp in Sources */,
 				9AD69538251A754800C0EBD7 /* listener.cpp in Sources */,
 				9AD69539251A754800C0EBD7 /* file_raw.cpp in Sources */,
@@ -5725,6 +5717,7 @@
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_PRAGMA_PACK = NO;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -5761,15 +5754,15 @@
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(HOME)/__archive/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
-					"$(HOME)/__archive/archive/storage-$(PLATFORM_MODIFIER)/third/library/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-$(PLATFORM_MODIFIER)/third/library/$(CONFIGURATION)",
 					"$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -5781,26 +5774,36 @@
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				STRIP_INSTALLED_PRODUCT = NO;
 				SYSTEM_HEADER_SEARCH_PATHS = (
-					"$(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/third/include",
-					"$(WorkspaceDir)/app/_include",
-					"$(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/third/include/",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/source/third/include",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/third/include/",
 				);
 				USER_HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)",
-					"$(WorkspaceDir)/include",
+					"$(WorkspaceDir)/source",
+					"$(WorkspaceDir)/source/include",
 					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)/_include",
-					"$(WorkspaceDir)/app/_include",
-					"$(WorkspaceDir)/third/include",
-					"$(WorkspaceDir)/app",
+					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/source/third/include",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
 					.,
 					"$(PROJECT_DIR)",
 					"$(HOME)/__archive/sensitive/sensitive/include",
 				);
 				USE_HEADERMAP = NO;
 				WARNING_CFLAGS = "";
-				WorkspaceDir = "$(SRCROOT)/../..";
+				WorkspaceDir = "$(SRCROOT)/../../..";
 			};
 			name = Debug;
 		};
@@ -5838,6 +5841,7 @@
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_PRAGMA_PACK = NO;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -5870,15 +5874,15 @@
 				GCC_WARN_UNUSED_VARIABLE = NO;
 				HEADER_SEARCH_PATHS = "";
 				INSTALL_PATH = "@executable_path";
-				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 12.0;
 				LD_RUNPATH_SEARCH_PATHS = "@executable_path";
 				LIBRARY_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(HOME)/__archive/archive/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
-					"$(HOME)/__archive/archive/storage-$(PLATFORM_MODIFIER)/third/library/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-$(PLATFORM_MODIFIER)/library/$(CONFIGURATION)",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/storage-$(PLATFORM_MODIFIER)/third/library/$(CONFIGURATION)",
 					"$(WorkspaceDir)/time/$(PLATFORM_MODIFIER)",
 				);
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				OTHER_LDFLAGS = "-all_load";
@@ -5888,19 +5892,29 @@
 				SKIP_INSTALL = YES;
 				STRINGS_FILE_OUTPUT_ENCODING = "UTF-8";
 				SYSTEM_HEADER_SEARCH_PATHS = (
-					"$(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/include",
-					"$(WorkspaceDir)/third/include",
-					"$(WorkspaceDir)/app/_include",
-					"$(HOME)/__archive/archive/third-$(PLATFORM_MODIFIER)/third/include/",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/include",
+					"$(WorkspaceDir)/source/third/include",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/third-$(PLATFORM_MODIFIER)/third/include/",
 				);
 				USER_HEADER_SEARCH_PATHS = (
-					"$(WorkspaceDir)",
-					"$(WorkspaceDir)/include",
+					"$(WorkspaceDir)/source",
+					"$(WorkspaceDir)/source/include",
 					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)",
 					"$(WorkspaceDir)/platform-$(PLATFORM_MODIFIER)/_include",
-					"$(WorkspaceDir)/app/_include",
-					"$(WorkspaceDir)/third/include",
-					"$(WorkspaceDir)/app",
+					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)/_include",
+					"$(WorkspaceDir)/source/third/include",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include/include",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/third-$(PLATFORM_MODIFIER)/third/include",
+					"$(WorkspaceDir)/source/app",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
+					"$(WorkspaceDir)/archive $(WorkspaceDir)/archive/platform-$(PLATFORM_MODIFIER)",
 					.,
 					"$(PROJECT_DIR)",
 					"$(HOME)/__archive/sensitive/sensitive/include",
@@ -5908,7 +5922,7 @@
 				USE_HEADERMAP = NO;
 				VALIDATE_PRODUCT = YES;
 				WARNING_CFLAGS = "";
-				WorkspaceDir = "$(SRCROOT)/../..";
+				WorkspaceDir = "$(SRCROOT)/../../..";
 			};
 			name = Release;
 		};

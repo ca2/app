@@ -30,7 +30,7 @@ imm_context::~imm_context()
 bool imm_context::close()
 {
 
-   return ImmSetOpenStatus(m_himc, false) != FALSE;
+   return ImmSetOpenStatus(m_himc, false) != false;
 
 }
 
@@ -38,7 +38,7 @@ bool imm_context::close()
 bool imm_context::is_opened() const
 {
 
-   return ImmGetOpenStatus(m_himc) != FALSE;
+   return ImmGetOpenStatus(m_himc) != false;
 
 }
 
@@ -46,7 +46,7 @@ bool imm_context::is_opened() const
 bool imm_context::close_candidate(index iIndex)
 {
 
-   return ImmNotifyIME(m_himc, NI_CLOSECANDIDATE, 0, (::u32)iIndex) != FALSE;
+   return ImmNotifyIME(m_himc, NI_CLOSECANDIDATE, 0, (::u32)iIndex) != false;
 
 }
 
@@ -60,7 +60,7 @@ string imm_context::get_string(int iStr)
 
    unichar * point = wstr.get_string_buffer(iLen);
 
-   ImmGetCompositionStringW(m_himc, iStr, point_i32, iLen);
+   ImmGetCompositionStringW(m_himc, iStr, point, iLen);
 
    wstr.release_string_buffer();
 

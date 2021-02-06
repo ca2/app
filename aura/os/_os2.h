@@ -7,6 +7,9 @@
 #pragma once
 
 
+#include "apex/os/_os2.h"
+
+
 #if defined(MACOS)
 
 #include "aura/os/apple/_apple.h"

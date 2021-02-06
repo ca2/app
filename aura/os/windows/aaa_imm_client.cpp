@@ -1,8 +1,8 @@
-﻿#include "framework.h"
+#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
 #endif
-#include "imm_client.h"
+//#include "imm_client.h"
 #include "aura/os/windows/imm_context.h"
 
 
@@ -76,8 +76,8 @@ void imm_client::_011OnChar(::message::message * pmessage)
 
       auto psession = Session;
 
-      if (psession->is_key_pressed(::user::key_control)
-         || psession->is_key_pressed(::user::key_alt))
+      if (psession->is_key_pressed(::user::e_key_control)
+         || psession->is_key_pressed(::user::e_key_alt))
       {
 
          return;
@@ -454,7 +454,7 @@ void imm_client::_001OnKeyDown(::message::message * pmessage)
 
    __pointer(::message::key) pkey(pmessage);
 
-   if (pkey->m_ekey == ::user::key_escape)
+   if (pkey->m_ekey == ::user::e_key_escape)
    {
 
       if (m_bImeCandidateOpened)

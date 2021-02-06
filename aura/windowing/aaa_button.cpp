@@ -3,8 +3,10 @@
 #include "framework.h"
 #include "_windowing.h"
 
+
 namespace windowing
 {
+
 
    button::button(const char *psz, enum_dialog_result edialogresult) :
       m_strLabel(psz),
@@ -25,5 +27,6 @@ namespace windowing
 
 
 } // namespace windowing
+
 
 

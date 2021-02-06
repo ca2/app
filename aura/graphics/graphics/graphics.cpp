@@ -200,7 +200,7 @@ namespace graphics
 
       sync_lock sl(get_screen_sync());
 
-      color colorTransparent(0);
+      ::color::color colorTransparent(0);
 
       return get_screen_image()->_001GetTopLeftWeightedOpaqueArea(colorTransparent, lpcrect);
 

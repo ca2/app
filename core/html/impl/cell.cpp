@@ -195,25 +195,25 @@ namespace html
          if (m_border.left < 1.f && bTableBorder)
          {
             m_border.left = get_table()->m_iBorder;
-            m_border.crLeft = ARGB(255, 90, 90, 90);
+            m_border.crLeft = argb(255, 90, 90, 90);
             m_border.styleLeft = ::html::border::style_solid;
          }
          if (m_border.top < 1.f && bTableBorder)
          {
             m_border.top = get_table()->m_iBorder;
-            m_border.crTop = ARGB(255, 90, 90, 90);
+            m_border.crTop = argb(255, 90, 90, 90);
             m_border.styleTop = ::html::border::style_solid;
          }
          if (m_border.right < 1.f && bTableBorder)
          {
             m_border.right = get_table()->m_iBorder;
-            m_border.crRight = ARGB(255, 192, 192, 192);
+            m_border.crRight = argb(255, 192, 192, 192);
             m_border.styleRight = ::html::border::style_solid;
          }
          if (m_border.bottom < 1.f && bTableBorder)
          {
             m_border.bottom = get_table()->m_iBorder;
-            m_border.crBottom = ARGB(255, 192, 192, 192);
+            m_border.crBottom = argb(255, 192, 192, 192);
             m_border.styleBottom = ::html::border::style_solid;
          }
 

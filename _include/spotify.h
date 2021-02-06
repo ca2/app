@@ -206,7 +206,7 @@ typedef enum sp_bitrate {
  */
 typedef enum sp_playlist_type {
   SP_PLAYLIST_TYPE_PLAYLIST     = 0, ///< A normal playlist.
-  SP_PLAYLIST_TYPE_START_FOLDER = 1, ///< Marks a folder starting point_i32,
+  SP_PLAYLIST_TYPE_START_FOLDER = 1, ///< Marks a folder starting point,
   SP_PLAYLIST_TYPE_END_FOLDER   = 2, ///< and ending point.
   SP_PLAYLIST_TYPE_PLACEHOLDER  = 3, ///< Unknown entry.
 } sp_playlist_type;

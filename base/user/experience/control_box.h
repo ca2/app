@@ -56,15 +56,15 @@ namespace experience
       ::draw2d::pen_pointer                     m_penButtonBackFocus;
       ::draw2d::pen_pointer                     m_penButtonBackDisabled;
 
-      ::color                                   m_colorButtonFore;
-      ::color                                   m_colorButtonForeSel;
-      ::color                                   m_colorButtonForeFocus;
-      ::color                                   m_colorButtonForeDisabled;
+      ::color::color                                   m_colorButtonFore;
+      ::color::color                                   m_colorButtonForeSel;
+      ::color::color                                   m_colorButtonForeFocus;
+      ::color::color                                   m_colorButtonForeDisabled;
 
       enum_button_item_map                      m_itemmap;
       id_map < enum_button >                    m_idmap;
             
-      ::color                                   m_colorBackground;
+      ::color::color                                   m_colorBackground;
 
 
       control_box();

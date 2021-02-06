@@ -66,19 +66,19 @@ namespace user
       imaging.change_hue(
       m_pilHue,
       MenuV033GetImageList(),
-      RGB(192, 192, 180),
+      rgb(192, 192, 180),
       0.50);
 
       imaging.color_blend(
       m_pilBlend,
       MenuV033GetImageList(),
-      RGB(255, 255, 240),
+      rgb(255, 255, 240),
       64);
 
       imaging.change_hue(
       m_pilHueLight,
       m_pil,
-      RGB(220, 220, 215),
+      rgb(220, 220, 215),
       0.5);
 
       return true;

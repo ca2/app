@@ -703,7 +703,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & stra, bool_array  & baTab, int_array  & ya,SIZE_I32 * psize)
 {
 
-   pgraphics->FillSolidRect(0, 0, psizecx, psize->cy, RGB(84, 90, 80));
+   pgraphics->FillSolidRect(0, 0, psizecx, psize->cy, rgb(84, 90, 80));
 
    draw2d::brush_pointer pen(pgraphics->create_new, this);
 
@@ -741,7 +741,7 @@ public:
 
       get_client_rect(rectangle);
 
-      pgraphics->FillSolidRect(rectangle, ARGB(255, 240, 240, 240));
+      pgraphics->FillSolidRect(rectangle, argb(255, 240, 240, 240));
    }
 
    using ::os::simple_ui::show_window;

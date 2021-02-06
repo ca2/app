@@ -87,7 +87,7 @@ namespace user
    }
 
 
-   ::color style_base::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
+   ::color::color style_base::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (::is_set(pinteraction))
@@ -101,7 +101,7 @@ namespace user
             if (eelement == ::user::e_element_background)
             {
 
-               return ::color(0, 0, 0, 0);
+               return ::color::color(0, 0, 0, 0);
 
             }
 
@@ -109,7 +109,7 @@ namespace user
 
       }
 
-      return ::color();
+      return ::color::color();
 
    }
 

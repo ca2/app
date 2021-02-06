@@ -41,7 +41,7 @@ namespace acme
    }
 
 
-   bool node::_calc_dark_mode()
+   bool node::_os_calc_app_dark_mode()
    {
 
       return false;
@@ -49,18 +49,142 @@ namespace acme
    }
 
 
+   bool node::_os_calc_system_dark_mode()
+   {
+
+      return false;
+
+   }
+
+
+   void node::defer_initialize_dark_mode()
+   {
+
+      if (m_bLastDarkModeApp.is_set() && m_bLastDarkModeSystem.is_set())
+      {
+
+         return;
+
+      }
+
+      os_calc_user_dark_mode();
+
+   }
+
+
+   ::e_status node::set_system_dark_mode(bool bDark)
+   {
+
+      m_bLastDarkModeApp = bDark;
+
+      return ::success;
+
+   }
+
+
+   ::e_status node::set_app_dark_mode(bool bDark)
+   {
+
+      m_bLastDarkModeApp = bDark;
+
+      return ::success;
+
+   }
+
+
+
+   bool node::is_system_dark_mode()
+   {
+
+      if (m_bLastDarkModeSystem.is_empty())
+      {
+
+         os_calc_user_dark_mode();
+
+      }
+
+      return m_bLastDarkModeSystem;
+
+   }
+
+   
+   bool node::is_app_dark_mode()
+   {
+
+      if (m_bLastDarkModeApp.is_empty())
+      {
+
+         defer_initialize_dark_mode();
+
+      }
+
+      return m_bLastDarkModeApp;
+
+   }
+
+
+   ::color::color node::get_system_app_background_color()
+   {
+
+      return m_colorSystemAppBackground;
+
+   }
+
+
+   void node::set_system_app_background_color(::color::color color)
+   {
+
+      m_colorSystemAppBackground = color;
+
+   }
+
+
+   double node::get_system_app_luminance()
+   {
+
+      return m_dSystemLuminance;
+
+   }
+
+
+   void node::set_system_app_luminance(double dLuminance)
+   {
+
+      m_dSystemLuminance = dLuminance;
+
+   }
+
+
+   int node::get_simple_ui_darkness()
+   {
+
+      return m_iWeatherDarkness;
+
+   }
+
+
+   void node::set_simple_ui_darkness(int iWeatherDarkness)
+   {
+
+      m_iWeatherDarkness = iWeatherDarkness;
+
+   }
+
+
    void node::os_calc_user_dark_mode()
    {
 
-      bool bDarkMode = _calc_dark_mode();
+      bool bDarkModeApp = _os_calc_app_dark_mode();
 
-      if(is_different(::user::is_app_dark_mode(), bDarkMode)
-      || is_different(::user::is_system_dark_mode(), bDarkMode))
+      bool bDarkModeSystem = _os_calc_system_dark_mode();
+
+      if(m_bLastDarkModeApp != bDarkModeApp
+      || m_bLastDarkModeSystem != bDarkModeSystem)
       {
 
-         ::user::set_app_dark_mode(bDarkMode);
+         m_bLastDarkModeApp = bDarkModeApp;
 
-         ::user::set_system_dark_mode(bDarkMode);
+         m_bLastDarkModeSystem = bDarkModeSystem;
 
          System.deliver(id_os_dark_mode);
 
@@ -255,6 +379,62 @@ namespace acme
       return false;
 
   }
+
+
+  string node::get_user_name()
+  {
+
+
+     return "";
+
+  }
+
+
+  ::color::color node::get_simple_ui_color(::user::enum_element eelement, ::user::enum_state estate)
+  {
+
+     ::color::color color;
+
+     if (eelement == ::user::e_element_background)
+     {
+
+        if (is_app_dark_mode())
+        {
+
+           color = argb(255, 0x50, 0x50, 0x58);
+
+        }
+        else
+        {
+
+           color = argb(255, 0xcd, 0xcd, 0xc8);
+
+        }
+
+     }
+     else
+     {
+
+        if (is_app_dark_mode())
+        {
+
+           color = argb(255, 255, 255, 255);
+
+        }
+        else
+        {
+
+           color = argb(255, 49, 50, 42);
+
+        }
+
+     }
+
+     return color;
+
+  }
+
+
 
 
 } // namespace acme

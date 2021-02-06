@@ -609,7 +609,7 @@ namespace user
       ::rectangle_i32 rectIcon;
       ::rectangle_i32 rectClose;
 
-      get_data()->m_pen->create_solid(1, RGB(32, 32, 32));
+      get_data()->m_pen->create_solid(1, rgb(32, 32, 32));
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
 
@@ -670,7 +670,7 @@ namespace user
 
                   path->close_figure();
 
-                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
+                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 235, 235, 230), argb(250, 255, 255, 250));
 
                   pgraphics->set(pane.m_brushFillSel);
 
@@ -699,7 +699,7 @@ namespace user
                   if (m_itemHover == iTab && m_itemHover != ::user::e_element_close_tab_button && !m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
-                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
+                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
 
                      pgraphics->set(pane.m_brushFillHover);
 
@@ -719,7 +719,7 @@ namespace user
                   else
                   {
 
-                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
+                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 175, 175, 170), argb(250, 195, 195, 190));
 
                      pgraphics->set(pane.m_brushFill);
 
@@ -772,7 +772,7 @@ namespace user
 
                   path->close_figure();
 
-                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
+                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 235, 235, 230), argb(250, 255, 255, 250));
 
                   pgraphics->set(pane.m_brushFillSel);
 
@@ -805,7 +805,7 @@ namespace user
                   if (m_itemHover == iTab  && m_itemHover != ::user::e_element_close_tab_button && !m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
-                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
+                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
 
                      pgraphics->set(pane.m_brushFillHover);
 
@@ -823,7 +823,7 @@ namespace user
                   else
                   {
 
-                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
+                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 175, 175, 170), argb(250, 195, 195, 190));
 
                      pgraphics->set(pane.m_brushFill);
 
@@ -907,13 +907,13 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      get_data()->m_pen->create_solid(1,RGB(32,32,32));
+      get_data()->m_pen->create_solid(1,rgb(32,32,32));
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      pgraphics->fill_rect(get_data()->m_rectTab, ARGB(0xc0, 250, 255, 255));
+      pgraphics->fill_rect(get_data()->m_rectTab, argb(0xc0, 250, 255, 255));
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 
@@ -965,7 +965,7 @@ namespace user
 
                ::draw2d::pen_pointer pen(e_create);
 
-               pen->create_solid(1.0, ARGB(255, 0, 0, 0));
+               pen->create_solid(1.0, argb(255, 0, 0, 0));
 
                pgraphics->set(pen);
 
@@ -987,7 +987,7 @@ namespace user
 
                ::draw2d::pen_pointer pen(e_create);
 
-               pen->create_solid(1.0, ARGB(255, 0, 0, 0));
+               pen->create_solid(1.0, argb(255, 0, 0, 0));
 
                pgraphics->set(pen);
 
@@ -1040,7 +1040,7 @@ namespace user
 
                ::draw2d::pen_pointer pen(e_create);
 
-               pen->create_solid(1.0, ARGB(255, 0, 0, 0));
+               pen->create_solid(1.0, argb(255, 0, 0, 0));
 
                pgraphics->set(pen);
 
@@ -1054,7 +1054,7 @@ namespace user
 
                pgraphics->set(get_font(pstyle, e_state_selected));
 
-               brushText->create_solid(ARGB(255, 0, 0, 0));
+               brushText->create_solid(argb(255, 0, 0, 0));
 
             }
             else
@@ -1062,7 +1062,7 @@ namespace user
 
                ::draw2d::pen_pointer pen(e_create);
 
-               pen->create_solid(1.0, ARGB(255, 0, 0, 0));
+               pen->create_solid(1.0, argb(255, 0, 0, 0));
 
                pgraphics->set(pen);
 
@@ -1113,13 +1113,13 @@ namespace user
 
                brushText = get_data()->m_brushCloseSel;
 
-               brushText->create_solid(ARGB(0xff, 255, 127, 0));
+               brushText->create_solid(argb(0xff, 255, 127, 0));
 
             }
             else
             {
 
-               brushText->create_solid(ARGB(0xff, 0, 0, 0));
+               brushText->create_solid(argb(0xff, 0, 0, 0));
 
             }
 

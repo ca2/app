@@ -216,7 +216,7 @@ using HSYNC = sync *;
 #define GetGValue(rgb)      (LOBYTE(((::u16)(rgb)) >> 8))
 #define GetBValue(rgb)      (LOBYTE((rgb)>>16))
 
-#define RGB(r,g,b)          ((color32_t)(((byte)(r)|((::u16)((byte)(g))<<8))|(((::u32)(byte)(b))<<16)))
+#define rgb(r,g,b)          ((color32_t)(((byte)(r)|((::u16)((byte)(g))<<8))|(((::u32)(byte)(b))<<16)))
 
 
 

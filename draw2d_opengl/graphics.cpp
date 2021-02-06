@@ -1519,7 +1519,7 @@ namespace draw2d_opengl
 
       glBegin(GL_LINE_LOOP);
       
-      ::opengl::color(ppen->m_color);
+      ::opengl::color::color(ppen->m_color);
       
       ::opengl::vertex2f(rectangle);
       
@@ -2687,7 +2687,7 @@ namespace draw2d_opengl
 //         imageWork4.from(point_i32(max(0, m_pointAlphaBlend.x - xDest), max(0, m_pointAlphaBlend.y - yDest)),
 //                         m_pimageAlphaBlend->get_graphics(), point_i32(max(0, xDest - m_pointAlphaBlend.x), max(0, yDest - m_pointAlphaBlend.y)), size);
 //
-//         imageWork.channel_multiply(::color::channel_alpha, imageWork4);
+//         imageWork.channel_multiply(::color::e_channel_alpha, imageWork4);
 //
 //
 //         keep < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
@@ -2814,7 +2814,7 @@ namespace draw2d_opengl
          imageWork4.from(point_i32(max(0, m_pointAlphaBlend.x - xDest), max(0, m_pointAlphaBlend.y - yDest)),
             m_pimageAlphaBlend->get_graphics(), point_i32(max(0, xDest - m_pointAlphaBlend.x), max(0, yDest - m_pointAlphaBlend.y)), size);
 
-         imageWork.channel_multiply(::color::channel_alpha, imageWork4);
+         imageWork.channel_multiply(::color::e_channel_alpha, imageWork4);
 
 
          keep < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
@@ -4876,7 +4876,7 @@ namespace draw2d_opengl
 
          glBegin(GL_QUADS);
 
-         ::opengl::color(cr);
+         ::opengl::color::color(cr);
 
          ::opengl::vertex2f(rectangle);
 
@@ -4902,7 +4902,7 @@ namespace draw2d_opengl
 
       glBegin(GL_LINES);
 
-      ::opengl::color(ppen->m_color);
+      ::opengl::color::color(ppen->m_color);
 
       glVertex2f(point1.x, point1.y);
       glVertex2f(point2.x, point2.y);
@@ -4924,7 +4924,7 @@ namespace draw2d_opengl
 
       glBegin(GL_LINES);
 
-      ::opengl::color(m_ppen->m_color);
+      ::opengl::color::color(m_ppen->m_color);
 
       glVertex2f(m_point.x, m_point.y);
       glVertex2f(point.x, point.y);
@@ -4998,7 +4998,7 @@ namespace draw2d_opengl
 
       //glLineWidth(ppen->m_dWidth);
 
-      ::opengl::color(ppen->m_color);
+      ::opengl::color::color(ppen->m_color);
 
       return ::success;
 
@@ -5009,7 +5009,7 @@ namespace draw2d_opengl
    ::e_status graphics::set(::draw2d::brush * pbrush)
    {
 
-      ::opengl::color(pbrush->m_color);
+      ::opengl::color::color(pbrush->m_color);
       
       return ::success;
 

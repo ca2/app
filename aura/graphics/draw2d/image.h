@@ -165,13 +165,13 @@ public:
 
    virtual bool set_rgb(color32_t cr);
    virtual bool set_rgb(i32 R, i32 G, i32 B);
-   virtual bool tint(::image * pimage, const rgba & rgba);
+   virtual bool tint(::image * pimage, const ::color32 & color32);
    virtual bool set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A);
    virtual bool rgb_from(::image * pimage);
-   virtual bool paint_rgb(color c);
+   virtual bool paint_rgb(::color::color color);
 
-   virtual ::i64 get_rgba_area(const rgba & rgba) const;
-   virtual ::i64 get_rgba_area(const rgba& rgba, const RECTANGLE_I32 * lpcrect) const;
+   virtual ::i64 get_rgba_area(const ::color32 & color32) const;
+   virtual ::i64 get_rgba_area(const ::color32 & color32, const RECTANGLE_I32 * lpcrect) const;
    virtual ::i64 _001GetTopLeftWeightedOpaqueArea(int iAlphaMin) const;
    virtual ::i64 _001GetTopLeftWeightedOpaqueArea(int iAlphaMin, const RECTANGLE_I32 * lpcrect) const;
 
@@ -198,8 +198,8 @@ public:
    virtual u32 GetPixel(i32 x, i32 y);
    virtual u32 GetPixel(const ::point_i32 & point) { return GetPixel(point.x, point.y); }
    virtual bool Mask(color32_t crMask, color32_t crInMask, color32_t crOutMask);
-   virtual bool channel_mask(byte uchFind, byte uchSet, byte uchUnset, color::e_channel echannel);
-   virtual bool transparent_color(color color);
+   virtual bool channel_mask(byte uchFind, byte uchSet, byte uchUnset, ::color::enum_channel echannel);
+   virtual bool transparent_color(::color::color color);
 
 
    virtual bool create_thumbnail(const char * pszPath);
@@ -265,8 +265,8 @@ public:
 
 
 
-   virtual bool fill_channel(i32 C, color::e_channel echannel);
-   virtual bool white_fill_channel(i32 C, color::e_channel echannel);
+   virtual bool fill_channel(i32 C, ::color::enum_channel echannel);
+   virtual bool white_fill_channel(i32 C, ::color::enum_channel echannel);
    virtual bool fill_byte(uchar uch);
    virtual bool fill(color32_t level);
    virtual bool fill(i32 A, i32 R, i32 G, i32 B);
@@ -275,18 +275,18 @@ public:
    virtual bool fill_glass(i32 R, i32 G, i32 B, i32 A);
    virtual bool fill_stippled_glass(i32 R, i32 G, i32 B);
    virtual bool invert();
-   virtual bool channel_invert(color::e_channel echannel);
-   virtual bool channel_multiply(double dRate, color::e_channel echannel, bool bIfAlphaIgnorePreDivPosMult = false);
-   virtual bool channel_multiply(color::e_channel echannel, ::image * pimage, bool bIfAlphaIgnorePreDivPosMult = false);
-   virtual bool channel_lighten(color::e_channel echannel, ::image * pimage);
-   virtual bool channel_darken(color::e_channel echannel, ::image * pimage);
-   virtual bool channel_from(color::e_channel echannel, ::image * pimage);
-   virtual bool channel_multiply(color::e_channel echannel, ::image * pimage, const ::rectangle_i32 & rectangle, bool bIfAlphaIgnorePreDivPosMult = false);
+   virtual bool channel_invert(::color::enum_channel echannel);
+   virtual bool channel_multiply(double dRate, ::color::enum_channel echannel, bool bIfAlphaIgnorePreDivPosMult = false);
+   virtual bool channel_multiply(::color::enum_channel echannel, ::image * pimage, bool bIfAlphaIgnorePreDivPosMult = false);
+   virtual bool channel_lighten(::color::enum_channel echannel, ::image * pimage);
+   virtual bool channel_darken(::color::enum_channel echannel, ::image * pimage);
+   virtual bool channel_from(::color::enum_channel echannel, ::image * pimage);
+   virtual bool channel_multiply(::color::enum_channel echannel, ::image * pimage, const ::rectangle_i32 & rectangle, bool bIfAlphaIgnorePreDivPosMult = false);
 
-   virtual bool channel_from(color::e_channel echannel, ::image * pimage, const ::rectangle_i32 & rectangle);
+   virtual bool channel_from(::color::enum_channel echannel, ::image * pimage, const ::rectangle_i32 & rectangle);
 
-   virtual bool channel_copy(color::e_channel echannelDst, color::e_channel echannelSrc);
-   virtual bool channel_copy(color::e_channel echannelDst, color::e_channel echannelSrc, ::image * pimage);
+   virtual bool channel_copy(::color::enum_channel echannelDst, ::color::enum_channel echannelSrc);
+   virtual bool channel_copy(::color::enum_channel echannelDst, ::color::enum_channel echannelSrc, ::image * pimage);
 
    virtual bool Map(i32 ToRgb, i32 FromRgb);
 

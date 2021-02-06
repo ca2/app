@@ -313,24 +313,24 @@ namespace apex
       switch (u)
       {
       case COLOR_3DFACE:
-         return ARGB(127, 192, 192, 184);
+         return argb(127, 192, 192, 184);
       case COLOR_WINDOW:
-         return ARGB(127, 255, 255, 255);
+         return argb(127, 255, 255, 255);
       case COLOR_3DLIGHT:
-         return ARGB(127, 218, 218, 210);
+         return argb(127, 218, 218, 210);
       case COLOR_3DHIGHLIGHT:
-         return ARGB(127, 238, 238, 230);
+         return argb(127, 238, 238, 230);
       case COLOR_3DSHADOW:
-         return ARGB(127, 138, 138, 130);
+         return argb(127, 138, 138, 130);
       case COLOR_3DDKSHADOW:
-         return ARGB(127, 90, 90, 80);
+         return argb(127, 90, 90, 80);
       default:
          break;
       }
 
 #endif
 
-      return ARGB(127, 0, 0, 0);
+      return argb(127, 0, 0, 0);
 
    }
 
@@ -1225,30 +1225,30 @@ namespace apex
    //}
 
 
-  void session::get_cursor_pos(POINT_I32 * ppoint)
-  {
-
-
-//   __throw(todo("aura"));
-//     if (m_bSystemSynchronizedCursor)
+//  void session::get_cursor_pos(POINT_I32 * ppoint)
+//  {
+//
+//
+////   __throw(todo("aura"));
+////     if (m_bSystemSynchronizedCursor)
+////     {
+////
+////        POINT_I32 point_i32;
+////
+////        ::GetCursorPos(&point);
+////
+////        m_pointCursor = point;
+////
+////     }
+//
+//     if (ppoint != nullptr)
 //     {
 //
-//        POINT_I32 point_i32;
-//
-//        ::GetCursorPos(&point);
-//
-//        m_pointCursor = point;
+//        *ppoint = m_pointCursor;
 //
 //     }
-
-     if (ppoint != nullptr)
-     {
-
-        *ppoint = m_pointCursor;
-
-     }
-
-  }
+//
+//  }
 
 //
 //   oswindow session::get_capture()
@@ -1259,16 +1259,16 @@ namespace apex
 //   }
 //
 //
-   void session::set_cursor_pos(const ::point_i32 & point)
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-      ::SetCursorPos(point.x, point.y);
-
-#endif
-
-   }
+//   void session::set_cursor_pos(const ::point_i32 & point)
+//   {
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      ::SetCursorPos(point.x, point.y);
+//
+//#endif
+//
+//   }
 //
 //
 //   bool session::ReleaseCapture()
@@ -2703,12 +2703,12 @@ namespace apex
    //            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
    //            if (ptab->m_itemHover == (::user::enum_element)(::user::e_element_split + i))
    //            {
-   //               pgraphics->fill_rect(rectEmp, ARGB(128, 150, 184, 255));
+   //               pgraphics->fill_rect(rectEmp, argb(128, 150, 184, 255));
    //               pgraphics->set(ptab->get_data()->m_brushTextHover);
    //            }
    //            else
    //            {
-   //               //pgraphics->fill_rect(rectEmp,ARGB(128,208,223,233));
+   //               //pgraphics->fill_rect(rectEmp,argb(128,208,223,233));
    //               pgraphics->set(ptab->get_data()->m_brushText);
    //            }
    //            pgraphics->set(ptab->m_pfontTab);

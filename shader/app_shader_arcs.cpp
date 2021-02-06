@@ -18,7 +18,7 @@ namespace simple_shader
 
       font->create_pixel_font(strFontFamily, 14.0, FW_LIGHT);
 
-      ::color color(m_hlsText);
+      ::color::color color(m_hlsText);
 
       pgraphics->set_text_color(color);
 
@@ -56,7 +56,7 @@ namespace simple_shader
 
       rectBack.bottom = rectBack.top + size.cy * 2 + 4 * 3;
 
-      pgraphics->fill_rect(rectBack, ARGB(127, 80, 80, 80));
+      pgraphics->fill_rect(rectBack, argb(127, 80, 80, 80));
 
       pgraphics->text_out(rectBack.left + 4, rectBack.top + 4, str1);
 
@@ -76,13 +76,13 @@ namespace simple_shader
          if (dAngle < 0.0)
          {
 
-            pen->create_solid(4.0, ARGB(255, 120, 120, 120));
+            pen->create_solid(4.0, argb(255, 120, 120, 120));
 
          }
          else
          {
 
-            pen->create_solid(4.0, ARGB(255, 255, 255, 255));
+            pen->create_solid(4.0, argb(255, 255, 255, 255));
 
          }
 
@@ -102,7 +102,7 @@ namespace simple_shader
             else
             {
 
-               pen->create_solid(4.0, ARGB(255, 255, 230, 155));
+               pen->create_solid(4.0, argb(255, 255, 230, 155));
 
             }
 
@@ -113,13 +113,13 @@ namespace simple_shader
             if (bPath)
             {
 
-               pen->create_solid(4.0, ARGB(255, 255, 255, 255));
+               pen->create_solid(4.0, argb(255, 255, 255, 255));
 
             }
             else
             {
 
-               pen->create_solid(4.0, ARGB(255, 50, 180, 255));
+               pen->create_solid(4.0, argb(255, 50, 180, 255));
 
             }
 
@@ -198,13 +198,13 @@ namespace simple_shader
       if (__bool(Application.m_echeckSimple))
       {
 
-         pgraphics->fill_rect(rClient, ARGB(127, 192, 192, 192));
+         pgraphics->fill_rect(rClient, argb(127, 192, 192, 192));
 
       }
       else
       {
 
-         pgraphics->fill_rect(rClient, ARGB(127, 120, 120, 120));
+         pgraphics->fill_rect(rClient, argb(127, 120, 120, 120));
 
       }
 

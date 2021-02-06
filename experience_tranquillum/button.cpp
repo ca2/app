@@ -129,12 +129,12 @@ namespace tranquillum
       {
 
          m_brush->create_solid(::is_set(pgraphics->get_current_pen())
-                               ? (color32_t) pgraphics->get_current_pen()->m_color : ARGB(255, 255, 255, 255));
+                               ? (color32_t) pgraphics->get_current_pen()->m_color : argb(255, 255, 255, 255));
 
          pgraphics->set(m_brush);
 
          m_pen->create_solid(1.0, ::is_set(pgraphics->get_current_pen())
-                             ? (color32_t) pgraphics->get_current_pen()->m_color : ARGB(255, 255, 255, 255));
+                             ? (color32_t) pgraphics->get_current_pen()->m_color : argb(255, 255, 255, 255));
 
          pgraphics->set(m_pen);
 
@@ -144,7 +144,7 @@ namespace tranquillum
 
          pgraphics->draw_stock_icon(rectIcon, m_estockicon);
 
-         //pgraphics->FillSolidRect(rectEllipse, ARGB(255, 255, 255, 255));
+         //pgraphics->FillSolidRect(rectEllipse, argb(255, 255, 255, 255));
 
       }
 

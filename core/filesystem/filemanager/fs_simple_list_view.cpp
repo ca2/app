@@ -81,7 +81,7 @@ namespace filemanager
                pcolumn->m_iSubItem = SubItemId;
                //      pcolumn->m_uiSmallBitmap = IDB_ALBUM_SMALL_256;
                pcolumn->m_iSmallImageWidth = 16;
-               pcolumn->m_colorSmallMask = RGB(255, 0, 255);
+               pcolumn->m_colorSmallMask = rgb(255, 0, 255);
                pcolumn->m_pil = m_pil;
                */
                pcolumn->m_iWidth = 170;
@@ -89,7 +89,7 @@ namespace filemanager
                pcolumn->m_iSubItem = SubItemTitle;
                //      pcolumn->m_uiSmallBitmap = IDB_ALBUM_SMALL_256;
                pcolumn->m_iSmallImageWidth = 16;
-               pcolumn->m_colorSmallMask = RGB(255, 0, 255);
+               pcolumn->m_colorSmallMask = rgb(255, 0, 255);
                pcolumn->m_pil = m_pil;
 
 

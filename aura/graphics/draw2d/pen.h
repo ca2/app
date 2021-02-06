@@ -17,7 +17,7 @@ namespace draw2d
       enum_line_join          m_elinejoin;
       enum_pen_align          m_epenalign;
       double                  m_dWidth;
-      ::color                 m_color;
+      ::color::color                 m_color;
       __pointer(brush)        m_pbrush;
 
 
@@ -28,7 +28,7 @@ namespace draw2d
       virtual void dump(dump_context & dumpcontext) const;
 
       virtual bool create_null();
-      virtual bool create_solid(double dWidth, const ::color &color);
+      virtual bool create_solid(double dWidth, const ::color::color &color);
       virtual bool create_brush(double dWidth, ::draw2d::brush * pbrush);
 
       virtual enum_line_cap get_beg_cap();
@@ -97,7 +97,7 @@ namespace draw2d
 
    //};
 
-   inline pen_pointer solid_pen(double dWidth, const ::color& color)
+   inline pen_pointer solid_pen(double dWidth, const ::color::color& color)
    {
 
       auto ppen = ::__create < pen >();

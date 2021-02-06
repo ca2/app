@@ -51,31 +51,31 @@ namespace experience
       if (!is_window_enabled())
       {
 
-         pgraphics->fill_rect(rectClient, ARGB(255, 90, 90, 80));
+         pgraphics->fill_rect(rectClient, argb(255, 90, 90, 80));
 
-         crText = ARGB(255, 49, 50, 23);
+         crText = argb(255, 49, 50, 23);
 
       }
       else if (m_itemHover.is_set())
       {
 
-         pgraphics->fill_rect(rectClient, ARGB(190, 49, 50, 23));
+         pgraphics->fill_rect(rectClient, argb(190, 49, 50, 23));
 
-         crText = ARGB(255, 255, 255, 255);
+         crText = argb(255, 255, 255, 255);
 
       }
       else if (has_focus())
       {
 
-         pgraphics->fill_rect(rectClient, ARGB(255, 255, 250, 184));
+         pgraphics->fill_rect(rectClient, argb(255, 255, 250, 184));
 
-         crText = ARGB(255, 255, 255, 255);
+         crText = argb(255, 255, 255, 255);
 
       }
       else
       {
 
-         crText = ARGB(255, 243, 243, 233);
+         crText = argb(255, 243, 243, 233);
 
       }
 

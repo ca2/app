@@ -23,7 +23,7 @@ namespace app_shader
       string_map < ::image_pointer >      m_pimagemap;
       ::image_pointer                     m_pimage1;
       ::image_pointer                     m_pimage2;
-      ::hls                               m_hlsText;
+      ::color::hls                               m_hlsText;
       ::millis                              m_millisStart;
       ::gpu::enum_shader_source           m_eshadersource;
 

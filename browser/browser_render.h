@@ -61,7 +61,7 @@ namespace browser
       ::image_pointer                            m_pimageTemplate;
       ::image_pointer                            m_pimageTemplate2;
 
-      ::color::hls                     m_hlsForeground;
+      ::color::color::color::hls                     m_hlsForeground;
 
       bool                             m_bVoidTransfer;
       bool                             m_bFirstDone;

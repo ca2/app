@@ -30,7 +30,7 @@ namespace browser
       if (m_bAlternate)
       {
 
-         color c(ARGB(255, 200, 200, 180));
+         ::color::color color(argb(255, 200, 200, 180));
 
          c.get_hls(m_hlsForeground);
 
@@ -516,7 +516,7 @@ namespace browser
 
 /*                  m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-                  brushText->create_solid(ARGB(255, 255, 255, 255));
+                  brushText->create_solid(argb(255, 255, 255, 255));
 
 /*                  m_pimage->g()->SelectObject(brushText);
 
@@ -532,7 +532,7 @@ namespace browser
 
                   m_pimageTemplate->fill(0, 0, 0, 0);
 
-/*                  m_pimageTemplate->channel_copy(::color::channel_alpha, ::color::channel_green, m_pimage);
+/*                  m_pimageTemplate->channel_copy(::color::e_channel_alpha, ::color::e_channel_green, m_pimage);
 
                }
 
@@ -566,7 +566,7 @@ namespace browser
 
 
 
-      ::color ca;
+      ::color::color ca;
 
 
 //      if (false)
@@ -629,7 +629,7 @@ namespace browser
       else
       {
 
-         color color(m_hlsForeground);
+         ::color::color color(m_hlsForeground);
 
          color.m_iA = 255;
 
@@ -645,9 +645,9 @@ namespace browser
          pgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBrowser);
 
       }
-      //      pgraphics->FillSolidRect(200,00,100,100,ARGB(128,128,128,255));
+      //      pgraphics->FillSolidRect(200,00,100,100,argb(128,128,128,255));
 
-      //    pgraphics->FillSolidRect(200,200,100,100,ARGB(128,128,128,0));
+      //    pgraphics->FillSolidRect(200,200,100,100,argb(128,128,128,0));
 
       if(!m_bFirstDone)
       {
@@ -727,7 +727,7 @@ namespace browser
 
       double dBlur = m_dMinRadius + (m_dMaxRadius - m_dMinRadius) * r;
 
-      ::color ca;
+      ::color::color ca;
 
 //      if (false)
 //      {
@@ -803,7 +803,7 @@ namespace browser
 
 /*            m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            brushText->create_solid(ARGB(255, 255, 255, 255));
+            brushText->create_solid(argb(255, 255, 255, 255));
 
 /*            m_pimage->g()->SelectObject(brushText);
 
@@ -832,7 +832,7 @@ namespace browser
             if (!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
             {
 
-/*               m_pimage->channel_copy(::color::channel_alpha, ::color::channel_green);
+/*               m_pimage->channel_copy(::color::e_channel_alpha, ::color::e_channel_green);
 
 /*               m_pimageTint->tint(m_pimage, ca);
 
@@ -859,7 +859,7 @@ namespace browser
       else
       {
 
-         color color(m_hlsForeground);
+         ::color::color color(m_hlsForeground);
 
          color.m_iA = 255;
 
@@ -1097,7 +1097,7 @@ namespace browser
 
             }
 
-            ::color ca;
+            ::color::color ca;
 
             double dPeriod = (500) * 11;
 
@@ -1365,11 +1365,11 @@ namespace browser
 
       ::draw2d::pen_pointer pen(e_create);
 
-      pen->create_solid(1.0, ARGB(255, 90, 90, 80));
+      pen->create_solid(1.0, argb(255, 90, 90, 80));
 
       ::draw2d::pen_pointer penW(e_create);
 
-      penW->create_solid(3.0, ARGB(84, 255, 255, 255));
+      penW->create_solid(3.0, argb(84, 255, 255, 255));
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 

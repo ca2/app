@@ -524,6 +524,48 @@ RECT_TYPE1 * copy(RECT_TYPE1 * prect1, const RECT_TYPE2* prect2)
 }
 
 
+template < primitive_rectangle RECT_TYPE1, XYDim_rectangle RECT_TYPE2 >
+RECT_TYPE1 * copy(RECT_TYPE1 * prect1, const RECT_TYPE2 * prect2)
+{
+
+   prect1->left = (decltype(RECT_TYPE1::left))prect2->X;
+   prect1->top = (decltype(RECT_TYPE1::top))prect2->Y;
+   prect1->right = (decltype(RECT_TYPE1::right))(prect2->X + prect2->Width);
+   prect1->bottom = (decltype(RECT_TYPE1::bottom))(prect2->Y + prect2->Height);
+
+   return prect1;
+
+}
+
+
+template < XYDim_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+RECT_TYPE1 * copy(RECT_TYPE1 * prect1, const RECT_TYPE2 * prect2)
+{
+
+   prect1->X = (decltype(RECT_TYPE1::X))prect2->left;
+   prect1->Y = (decltype(RECT_TYPE1::Y))prect2->top;
+   prect1->Width = (decltype(RECT_TYPE1::Width))(prect2->right - prect2->left);
+   prect1->Height = (decltype(RECT_TYPE1::Height))(prect2->bottom - prect2->top);
+
+   return prect1;
+
+}
+
+
+template < XYDim_rectangle RECT_TYPE1, XYDim_rectangle RECT_TYPE2 >
+RECT_TYPE1 * copy(RECT_TYPE1 * prect1, const RECT_TYPE2 * prect2)
+{
+
+   prect1->X = (decltype(RECT_TYPE1::X))prect2->X;
+   prect1->Y = (decltype(RECT_TYPE1::Y))prect2->Y;
+   prect1->Width = (decltype(RECT_TYPE1::Width))prect2->Width;
+   prect1->Height = (decltype(RECT_TYPE1::Height))prect2->Height;
+
+   return prect1;
+
+}
+
+
 template < primitive_point POINT1, primitive_point POINT2 >
 POINT1 * copy(POINT1 * ppoint1, const POINT2 * ppoint2)
 {

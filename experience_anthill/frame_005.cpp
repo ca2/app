@@ -51,7 +51,7 @@ namespace experience
 
                auto psession = Session;
 
-               m_brushGrip->create_solid(ARGB(0xff, 0x60, 0x65, 0x55));
+               m_brushGrip->create_solid(argb(0xff, 0x60, 0x65, 0x55));
 
                auto pframewindow = m_pframewindow;
 
@@ -234,9 +234,9 @@ SizingNone:;
 
                auto psession = Session;
 
-               ::color    colorMoveableBorder;
-               ::color    colorMoveableBorderHilight;
-               ::color    colorMoveableBorderShadow;
+               ::color::color    colorMoveableBorder;
+               ::color::color    colorMoveableBorderHilight;
+               ::color::color    colorMoveableBorderShadow;
 
                if(pframewindow->m_fActive)
                {

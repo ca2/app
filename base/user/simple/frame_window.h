@@ -77,7 +77,7 @@ public:
    void SetBorderRect(const ::rectangle_i32 & rectangle) override;
    virtual void GetBorderRect(RECTANGLE_I32 * prectangle) override;
 
-   virtual ::color get_border_main_body_color() override;
+   virtual ::color::color get_border_main_body_color() override;
 
    void ViewOnActivateFrame(__pointer(::user::impact) pview, ::u32 user, __pointer(::user::interaction) pframe);
 

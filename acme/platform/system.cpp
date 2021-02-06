@@ -124,20 +124,12 @@ namespace acme
    }
 
 
-   void system::defer_calc_os_dark_mode()
-   {
+   //void system::defer_calc_os_dark_mode()
+   //{
 
-      ::user::os_calc_dark_mode();
+   //   node()->os_calc_dark_mode();
 
-   }
-
-
-//   void system::defer_calc_os_user_theme()
-//   {
-//
-//      ::user::os_calc_user_theme();
-//
-//   }
+   //}
 
 
    void system::on_subject(::promise::subject *psubject)
@@ -149,7 +141,14 @@ namespace acme
          if (psubject->id() == id_os_dark_mode)
          {
 
-            defer_calc_os_dark_mode();
+            auto pnode = node();
+
+            if (pnode)
+            {
+
+               pnode->os_calc_user_dark_mode();
+
+            }
 
          }
          else if (psubject->id() == id_os_user_theme)

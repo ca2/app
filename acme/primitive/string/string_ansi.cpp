@@ -322,7 +322,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      strFinal += ::str::ch::to_upper_case(point);
 //      point = (char *) ::str::utf8_inc(point);
 //   }
-//   strcpy(point_i32,strFinal);
+//   strcpy(point,strFinal);
 //   return psz;
 //
 //
@@ -346,7 +346,7 @@ void fixed_string_log::OnReallocateSpill(strsize nActualChars,strsize nFixedChar
 //      strFinal += ::str::ch::to_lower_case(point);
 //      point = (char *) ::str::utf8_inc(point);
 //   }
-//   strcpy(point_i32,strFinal);
+//   strcpy(point,strFinal);
 //   return psz;
 //
 //   //   return reinterpret_cast< char * >( _mbslwr( reinterpret_cast< uchar* >( psz ) ) );

@@ -270,7 +270,7 @@ namespace windows
 
       wstring wstrKey(pszKey);
 
-      set_hwnd(::CreateWindowExW(0, L"small_ipc_rx_color::channel_message_queue_class", wstrKey, 0, 0, 0, 0, 0, HWND_MESSAGE, nullptr, hinstance, nullptr));
+      set_hwnd(::CreateWindowExW(0, L"small_ipc_rx_::color::e_channel_message_queue_class", wstrKey, 0, 0, 0, 0, 0, HWND_MESSAGE, nullptr, hinstance, nullptr));
 
       if (get_hwnd() == nullptr)
       {
@@ -429,7 +429,7 @@ namespace windows
       wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW + 1);
       wcex.lpszMenuName = nullptr;
 
-      wcex.lpszClassName = L"small_ipc_rx_color::channel_message_queue_class";
+      wcex.lpszClassName = L"small_ipc_rx_::color::e_channel_message_queue_class";
 
       wcex.hIconSm = nullptr;
 

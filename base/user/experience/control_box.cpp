@@ -1037,20 +1037,20 @@ namespace experience
    void control_box::set_button_color_system_default_001()
    {
 
-      m_brushButtonBack->create_solid(ARGB(0, 0, 0, 0));
-      m_brushButtonBackSel->create_solid(ARGB(255, 150, 220, 145));
-      m_brushButtonBackFocus->create_solid(ARGB(255, 150, 220, 145));
-      m_brushButtonBackDisabled->create_solid(ARGB(255, 180, 180, 175));
+      m_brushButtonBack->create_solid(argb(0, 0, 0, 0));
+      m_brushButtonBackSel->create_solid(argb(255, 150, 220, 145));
+      m_brushButtonBackFocus->create_solid(argb(255, 150, 220, 145));
+      m_brushButtonBackDisabled->create_solid(argb(255, 180, 180, 175));
 
-      m_penButtonBack->create_solid(2, ARGB(255, 255, 255, 255));
-      m_penButtonBackSel->create_solid(2, ARGB(255, 255, 255, 255));
-      m_penButtonBackFocus->create_solid(2, ARGB(255, 255, 255, 255));
-      m_penButtonBackDisabled->create_solid(2, ARGB(255, 220, 220, 215));
+      m_penButtonBack->create_solid(2, argb(255, 255, 255, 255));
+      m_penButtonBackSel->create_solid(2, argb(255, 255, 255, 255));
+      m_penButtonBackFocus->create_solid(2, argb(255, 255, 255, 255));
+      m_penButtonBackDisabled->create_solid(2, argb(255, 220, 220, 215));
 
-      m_colorButtonFore = ARGB(255, 255, 255, 255);
-      m_colorButtonForeSel = ARGB(255, 255, 255, 255);
-      m_colorButtonForeFocus = ARGB(255, 255, 255, 255);
-      m_colorButtonForeDisabled = ARGB(255, 220, 220, 215);
+      m_colorButtonFore = argb(255, 255, 255, 255);
+      m_colorButtonForeSel = argb(255, 255, 255, 255);
+      m_colorButtonForeFocus = argb(255, 255, 255, 255);
+      m_colorButtonForeDisabled = argb(255, 220, 220, 215);
 
    }
 

@@ -174,7 +174,7 @@ namespace user
 
       virtual ::e_status set_cursor(::windowing::cursor * pcursor);
 
-      virtual ::point_i32 get_cursor_pos() const;
+      //virtual ::point_i32 get_cursor_pos() const;
 
       virtual bool _is_window() const;
 

@@ -165,11 +165,13 @@ namespace user
       if (m_bCursorRedraw)
       {
 
-         ::point_i32 pointCursor;
-
          auto psession = Session;
 
-         psession->get_cursor_pos(pointCursor);
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pointCursor = pwindowing->get_cursor_pos();
 
          if (m_pointCursor != pointCursor)
          {
@@ -936,11 +938,13 @@ namespace user
 
          ::rectangle_i32 rectUi;
 
-         ::point_i32 pointCursor;
-
          auto psession = Session;
 
-         psession->get_cursor_pos(pointCursor);
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pointCursor = pwindowing->get_cursor_pos();
 
          ::user::interaction_array uia;
 
@@ -1285,7 +1289,11 @@ namespace user
    void interaction_impl::install_message_routing(::channel * pchannel)
    {
 
+      last_install_message_routing(pchannel);
+
       ::user::primitive::install_message_routing(pchannel);
+
+      m_puserinteraction->install_message_routing(pchannel);
 
       if (!m_puserinteraction->m_bMessageWindow)
       {
@@ -1295,6 +1303,8 @@ namespace user
       }
 
       MESSAGE_LINK(e_message_destroy, pchannel, this, &interaction_impl::_001OnDestroy);
+
+      prio_install_message_routing(pchannel);
 
    }
 
@@ -1496,6 +1506,8 @@ namespace user
       }
 
       //::destroy_window(get_handle());
+
+      m_pwindow->destroy_window();
 
    }
 
@@ -2701,21 +2713,21 @@ namespace user
    }
 
 
-   ::point_i32 interaction_impl::get_cursor_pos() const
-   {
+   //::point_i32 interaction_impl::get_cursor_pos() const
+   //{
 
-      auto psession = Session;
+   //   auto psession = Session;
 
-      if (!psession)
-      {
+   //   if (!psession)
+   //   {
 
-         return ::point_i32();
+   //      return ::point_i32();
 
-      }
+   //   }
 
-      return psession->get_cursor_pos();
+   //   return psession->get_cursor_pos();
 
-   }
+   //}
 
 
    ::e_status interaction_impl::set_cursor(::windowing::cursor * pcursor)
@@ -5456,7 +5468,7 @@ namespace user
 
       sync_lock sl(m_pgraphics->get_screen_sync());
 
-      color colorTransparent(0);
+      ::color::color colorTransparent(0);
 
       ::rectangle_i32 rectangle(lpcrect);
 
@@ -5482,7 +5494,7 @@ namespace user
    i64 interaction_impl::opaque_area()
    {
 
-      color colorTransparent(0);
+      ::color::color colorTransparent(0);
 
       ::rectangle_i32 rectangle;
 
@@ -5496,7 +5508,7 @@ namespace user
    i64 interaction_impl::_001GetTopLeftWeightedArea()
    {
 
-      color colorTransparent(0);
+      ::color::color colorTransparent(0);
 
       ::rectangle_i32 rectangle;
 

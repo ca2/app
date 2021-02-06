@@ -459,7 +459,7 @@ namespace user
    }
 
 
-   ::color interaction::get_color(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::color::color interaction::get_color(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       //if (pstyle)
@@ -2879,22 +2879,24 @@ namespace user
          if (m_pimpl->is_composite())
          {
 
-            pgraphics->fill_rect(rectangle, ARGB(0, 0, 0, 0));
+            pgraphics->fill_rect(rectangle, argb(0, 0, 0, 0));
 
          }
          else
          {
 
-            if (::user::is_app_dark_mode())
+            auto pnode = System.node();
+
+            if (pnode && pnode->is_app_dark_mode())
             {
 
-               pgraphics->fill_rect(rectangle, ARGB(255, 25, 25, 25));
+               pgraphics->fill_rect(rectangle, argb(255, 25, 25, 25));
 
             }
             else
             {
 
-               pgraphics->fill_rect(rectangle, ARGB(255, 255, 255, 255));
+               pgraphics->fill_rect(rectangle, argb(255, 255, 255, 255));
 
             }
 
@@ -2930,12 +2932,12 @@ namespace user
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         pgraphics->fill_rect(rectHint, ARGB(128, __random(128, 255), __random(128, 255), __random(128, 255)));
+         pgraphics->fill_rect(rectHint, argb(128, __random(128, 255), __random(128, 255), __random(128, 255)));
 
       }
 
    #endif
-//      pgraphics->fill_solid_rect_dim(10, 50, 200, 200, ARGB(128, __random(128, 255), __random(128, 255), __random(128, 255)));
+//      pgraphics->fill_solid_rect_dim(10, 50, 200, 200, argb(128, __random(128, 255), __random(128, 255), __random(128, 255)));
 
 
       windowing_output_debug_string("\n_001UpdateBuffer : after Print");
@@ -2995,15 +2997,15 @@ namespace user
             try
             {
 
-               ::point_i32 pointCursor;
-
-               psession->get_cursor_pos(pointCursor);
-
-               _001ScreenToClient(pointCursor, e_layout_design);
+               auto psession = Session;
 
                auto puser = psession->user();
 
                auto pwindowing = puser->windowing();
+
+               auto pointCursor = pwindowing->get_cursor_pos();
+
+               _001ScreenToClient(pointCursor, e_layout_design);
 
                auto * pcursor = pwindowing->get_cursor();
 
@@ -4049,11 +4051,13 @@ namespace user
 
       }
 
-      ::point_i32 pointCursor;
-
       auto psession = Session;
 
-      psession->get_cursor_pos(&pointCursor);
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
 
       if (!pkey->m_bRet)
       {
@@ -9710,28 +9714,28 @@ namespace user
    }
 
 
-   ::point_i32 interaction::get_cursor_pos() const
-   {
+   //::point_i32 interaction::get_cursor_pos() const
+   //{
 
-      auto pwnd = get_host_window();
+   //   auto pwnd = get_host_window();
 
-      if (pwnd == this)
-      {
+   //   if (pwnd == this)
+   //   {
 
-         return m_pimpl->get_cursor_pos();
+   //      return m_pimpl->get_cursor_pos();
 
-      }
+   //   }
 
-      if (!pwnd)
-      {
+   //   if (!pwnd)
+   //   {
 
-         return ::point_i32();
+   //      return ::point_i32();
 
-      }
+   //   }
 
-      return pwnd->get_cursor_pos();
+   //   return pwnd->get_cursor_pos();
 
-   }
+   //}
 
 
    void interaction::_001OnMouseEnter(::message::message * pmessage)
@@ -10356,7 +10360,18 @@ restart:
 
                display(e_display_hide);
 
-               Application._001TryCloseApplication();
+               set_need_layout();
+
+               set_need_redraw();
+
+               post_redraw();
+
+               fork([this]()
+                  {
+
+                     Application._001TryCloseApplication();
+
+                  });
 
                return;
 
@@ -11181,7 +11196,7 @@ restart:
       if (eactivation & e_activation_under_mouse_cursor || rectangle.is_null())
       {
 
-         ::point_i32 pointCursor = psession->get_cursor_pos();
+         ::point_i32 pointCursor = pwindowing->get_cursor_pos();
 
          rectSample.set(pointCursor - ::size_i32(5, 5), ::size_i32(10, 10));
 
@@ -13509,7 +13524,7 @@ restart:
 
    //   screen_to_client(point);
 
-   //   point_i32 += m_ptScroll;
+   //   point += m_ptScroll;
 
 
    //}

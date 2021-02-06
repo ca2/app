@@ -74,7 +74,7 @@ namespace hotplugin
 
       ::draw2d::brush_pointer brush(e_create);
 
-      brush->create_solid(ARGB(190, 49, 50, 49));
+      brush->create_solid(argb(190, 49, 50, 49));
 
       pgraphics->SelectObject(pen);
 
@@ -100,12 +100,12 @@ namespace hotplugin
          byte uchR,uchG,uchB;
          ::draw2d::brush_pointer br(e_create);
          get_progress_color(uchR,uchG,uchB,dRate,0);
-         br->create_solid(ARGB(184,uchR,uchG,uchB));
+         br->create_solid(argb(184,uchR,uchG,uchB));
          pgraphics->fill_rect(rectProgress,br);
 
       }
 
-      pen->create_solid(1.0,ARGB(149, 150, 149, 142));
+      pen->create_solid(1.0,argb(149, 150, 149, 142));
 
       pgraphics->draw_rect(rectBar, pen);
 
@@ -123,7 +123,7 @@ namespace hotplugin
 
       rectBar.top += 5;
 
-      pgraphics->set_text_color(ARGB(255, 255, 255, 255));
+      pgraphics->set_text_color(argb(255, 255, 255, 255));
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_clear_type_grid_fit);
 

@@ -305,7 +305,7 @@ namespace simpledb
 
             strUrl += System.url().url_encode(strKey);
 
-            strValue = Context.http().get(strUrl, set);
+            strValue = get_context()->http().get(strUrl, set);
 
             if (strValue.is_empty() || ::failed(set["get_status"]))
             {

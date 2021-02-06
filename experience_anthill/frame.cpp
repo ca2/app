@@ -23,7 +23,7 @@ namespace experience
 
                m_rectMarginNormal.set(5, 5, 5, 5);
 
-               m_colorCaptionText = ARGB(255, 255, 255, 255);
+               m_colorCaptionText = argb(255, 255, 255, 255);
 
                //m_rectClient = nullptr;
 
@@ -137,7 +137,7 @@ namespace experience
 
             color32_t frame::get_border_main_body_color()
             {
-               return ARGB(255, 63, 150, 106);
+               return argb(255, 63, 150, 106);
             }
 
             //::user::front_end_schema * frame::get_user_front_end_schema()
@@ -349,13 +349,13 @@ namespace experience
 
                auto crButtonShadow = pframewindow->get_color(pstyle, ::user::e_element_button_shadow);
 
-               m_penText1->create_solid(1, ARGB(255, 255, 255, 255));
+               m_penText1->create_solid(1, argb(255, 255, 255, 255));
                m_penFace1->create_solid(1, crButtonFace | 0xff000000);
                m_penHilight1->create_solid(1, crButtonHilite | 0xff000000);
                m_penShadow1->create_solid(1, crButtonShadow | 0xff000000);
                m_penDkShadow1->create_solid(1, crButtonDarkShadow | 0xff000000);
                m_colorDkShadow = crButtonDarkShadow;
-               m_colorFrameBorder = RGB(0, 0, 0) | 0xff000000;
+               m_colorFrameBorder = rgb(0, 0, 0) | 0xff000000;
 
 
             }
@@ -399,33 +399,33 @@ namespace experience
             //   {
             //   case StyleLightBlue:
             //   case StyleTranslucidLightBlue:
-            //      return ARGB(255, 116, 160, 220);
+            //      return argb(255, 116, 160, 220);
             //   case StyleTranslucidWarmGray:
-            //      return ARGB(255, 190, 184, 177);
+            //      return argb(255, 190, 184, 177);
             //      break;
             //   case StyleDarkWarmBlue:
-            //      return ARGB(255, 34, 54, 75);
+            //      return argb(255, 34, 54, 75);
             //      break;
             //   case StyleBlackBorder:
-            //      return RGB(116, 160, 220) | 0xff000000;
+            //      return rgb(116, 160, 220) | 0xff000000;
             //   case StyleLightGreen:
             //   case StyleTranslucidLightGreen:
-            //      return RGB(116, 220, 160) | 0xff000000;
+            //      return rgb(116, 220, 160) | 0xff000000;
             //   case StyleRedOrange:
-            //      return RGB(255, 170, 136) | 0xff000000;
+            //      return rgb(255, 170, 136) | 0xff000000;
             //   case StyleBlueRedPurple:
-            //      return RGB(200, 100, 220) | 0xff000000;
+            //      return rgb(200, 100, 220) | 0xff000000;
             //   case StyleEveningSun:
-            //      return RGB(255, 210, 100) | 0xff000000;
+            //      return rgb(255, 210, 100) | 0xff000000;
             //   case StyleTranslucidWarmLiteGray:
-            //      return RGB(239, 230, 219) | 0xff000000;
+            //      return rgb(239, 230, 219) | 0xff000000;
             //   default:
-            //      return RGB(200, 100, 220) | 0xff000000;
+            //      return rgb(200, 100, 220) | 0xff000000;
             //   }
 
 
             //   // Light Green/Translucid Light Green
-            //   return RGB(116, 220, 160) | 0xff000000;
+            //   return rgb(116, 220, 160) | 0xff000000;
 
             //}
 
@@ -581,13 +581,13 @@ namespace experience
                      while (i < rectGrip.width() - 5 + 1)
                      {
 
-                        pgraphics->draw_3drect(::rect_dim(rectGrip.left + i, rectGrip.top, 3, rectGrip.height()), ARGB(110, 230, 230, 230), ARGB(110, 130, 130, 130));
+                        pgraphics->draw_3drect(::rect_dim(rectGrip.left + i, rectGrip.top, 3, rectGrip.height()), argb(110, 230, 230, 230), argb(110, 130, 130, 130));
 
                         i += 5;
 
                      }
 
-                     //pgraphics->Draw3dRect(rectGrip.left + 12,rectGrip.top,3,rectGrip.height(),ARGB(190, 255, 255, 255),ARGB(190, 90, 90, 90));
+                     //pgraphics->Draw3dRect(rectGrip.left + 12,rectGrip.top,3,rectGrip.height(),argb(190, 255, 255, 255),argb(190, 90, 90, 90));
 
                   }
 

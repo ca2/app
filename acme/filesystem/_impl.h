@@ -407,7 +407,7 @@ namespace file
 
 
 //template < class T >
-//bool ::file::system::output(::matter * pobject, ::file::file & os, T * point_i32, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * pfileIn)
+//bool ::file::system::output(::matter * pobject, ::file::file & os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * pfileIn)
 
 //{
 
@@ -447,7 +447,7 @@ namespace file
 
 
 //template < class T >
-//bool system::output(::matter * pobject, ::file::file & os, T * point_i32, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * preader)
+//bool system::output(::matter * pobject, ::file::file & os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file * preader)
 //{
 
 //   ::file::path pathDownloading;
@@ -560,7 +560,7 @@ namespace file
 
 
 //template < class T >
-//bool application::output(::file::file& os, T * point_i32, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file & istream)
+//bool application::output(::file::file& os, T * point, bool (T::*pfnOuput)(::file::file &, ::file::file &), ::file::file & istream)
 
 //{
 

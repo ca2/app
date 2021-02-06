@@ -114,7 +114,7 @@ namespace user
       imaging.color_blend(
          pgraphics,
          rectClient,
-         RGB(150, 200, 255),
+         rgb(150, 200, 255),
          bAlpha);
 
       i64 iMin = m_scalar.minimum();
@@ -132,7 +132,7 @@ namespace user
                imaging.color_blend(
                   pgraphics,
                   rectangle,
-                  RGB(255, 255, 240),
+                  rgb(255, 255, 240),
                   bAlpha);
             }
             else
@@ -140,7 +140,7 @@ namespace user
                imaging.color_blend(
                   pgraphics,
                   rectangle,
-                  RGB(255, 255, 150),
+                  rgb(255, 255, 150),
                   bAlpha);
             }
          }
@@ -151,7 +151,7 @@ namespace user
                imaging.color_blend(
                   pgraphics,
                   rectangle,
-                  RGB(255, 180, 180),
+                  rgb(255, 180, 180),
                   bAlpha);
             }
             else
@@ -159,7 +159,7 @@ namespace user
                imaging.color_blend(
                   pgraphics,
                   rectangle,
-                  RGB(100, 100, 255),
+                  rgb(100, 100, 255),
                   bAlpha);
             }
          }

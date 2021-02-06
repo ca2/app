@@ -528,7 +528,7 @@ i32 axis_sqlite_callback(void * res_ptr,i32 ncol, char** reslt,char** cols)
 
    __construct_new(prowa);
 
-   if (pfielda->isEmpty())
+   if (pfielda->is_empty())
    {
 
       pfielda->set_size(ncol);

@@ -70,22 +70,6 @@ void unit_test_primitive_var_aura_block();
 void dappy(const char * psz);
 
 
-#ifdef WINDOWS_DESKTOP
-string get_user_name()
-{
-   
-   WCHAR wsz[1024];
-
-   DWORD dwSize = sizeof(wsz) / sizeof(WCHAR);
-
-   ::GetUserNameW(wsz,&dwSize);
-
-   return string(wsz);
-
-}
-#include "aura/os/windows/_c.h"
-#endif
-
 
 
 namespace axis

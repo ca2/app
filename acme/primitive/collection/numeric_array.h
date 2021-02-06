@@ -133,7 +133,7 @@ public:
    const numeric_array  < TYPE > & array1,
    TYPE & tMax);
 
-   TYPE GetMean();
+   TYPE simple_total_mean();
 
    void set(const TYPE & t, index iStart = 0, index iEnd = -1);
 
@@ -770,26 +770,50 @@ inline INTEGER get_integer_mean(const INTEGER * p, ::count N)
 }
 
 
-template < typename T >
-inline T get_mean(const T * point_i32, ::count N)
+template < primitive_integral INTEGRAL >
+inline INTEGRAL simple_total_mean(const INTEGRAL * p, ::count N)
 {
 
-   double dSum = 0.0;
+   ::i64 i = 0;
 
    ::count c = N;
 
    while(c > 0)
    {
 
-      dSum += *point_i32;
+      i += *p;
 
-      point_i32++;
+      p++;
 
       c--;
 
    }
 
-   return (typename ::numeric_info < T >::TYPE) (dSum / (double)N);
+   return (INTEGRAL) (i / N);
+
+}
+
+
+template < primitive_floating FLOATING >
+inline FLOATING simple_total_mean(const FLOATING * p, ::count N)
+{
+
+   double d = 0.;
+
+   ::count c = N;
+
+   while (c > 0)
+   {
+
+      d += *p;
+
+      p++;
+
+      c--;
+
+   }
+
+   return (FLOATING)(d / (double) N);
 
 }
 
@@ -799,16 +823,18 @@ inline int get_mean(const int * A, ::count N)
    return get_integer_mean(A, N);
 }
 
+
 template < class TYPE >
-TYPE numeric_array < TYPE >::GetMean()
+TYPE numeric_array < TYPE >::simple_total_mean()
 {
 
-   return get_mean(this->get_data(), this->get_count());
+   return ::simple_total_mean(this->get_data(), this->get_count());
 
 }
 
+
 template < class TYPE >
-void numeric_array < TYPE >::set(const TYPE & t, index iStart, index iEnd)
+void numeric_array < TYPE >::set(const TYPE & t, ::index iStart, ::index iEnd)
 {
    if(iEnd == -1)
       iEnd = this->get_upper_bound();

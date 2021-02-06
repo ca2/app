@@ -17,7 +17,7 @@
 
 
 //
-//inline auto gdiplus_color(const ::color& color)
+//inline auto gdiplus_color(const ::color::color& color)
 //{
 //
 //   return Gdiplus::Color(color.m_iA, color.m_iR, color.m_iG, color.m_iB);

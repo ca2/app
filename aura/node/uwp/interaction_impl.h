@@ -372,7 +372,7 @@ namespace uwp
 
       // Window Access Functions
       virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point_i32);
-      virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point_i32, ::u32 nFlags);
+      virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point, ::u32 nFlags);
       static __pointer(::user::interaction_impl) FindWindow(const char * lpszClassName, const char * lpszWindowName);
       static __pointer(::user::interaction_impl) FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 

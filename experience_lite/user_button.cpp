@@ -129,12 +129,12 @@ namespace user
       {
 
          m_brush->create_solid(pgraphics->get_current_pen().is_set()
-                               ? pgraphics->get_current_pen()->m_cr : ARGB(255, 255, 255, 255));
+                               ? pgraphics->get_current_pen()->m_cr : argb(255, 255, 255, 255));
 
          pgraphics->SelectObject(m_brush);
 
          m_pen->create_solid(1.0, pgraphics->get_current_pen().is_set()
-                             ? pgraphics->get_current_pen()->m_cr : ARGB(255, 255, 255, 255));
+                             ? pgraphics->get_current_pen()->m_cr : argb(255, 255, 255, 255));
 
          pgraphics->SelectObject(m_pen);
 
@@ -144,7 +144,7 @@ namespace user
 
          pgraphics->draw_stock_icon(rectIcon, m_estockicon);
 
-         //pgraphics->FillSolidRect(rectEllipse, ARGB(255, 255, 255, 255));
+         //pgraphics->FillSolidRect(rectEllipse, argb(255, 255, 255, 255));
 
       }
 

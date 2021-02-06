@@ -135,7 +135,7 @@ typedef struct tagBITMAP
 
 
 /* ICM Color Definitions */
-// The following two structures are used for defining RGB's in terms of CIEXYZ.
+// The following two structures are used for defining rgb's in terms of CIEXYZ.
 
 typedef struct tagCIEXYZ
 {
@@ -447,7 +447,7 @@ typedef LPEXTLOGPEN HPEN;
 #define AD_COUNTERCLOCKWISE 1
 #define AD_CLOCKWISE        2
 
-#define RGB(r,g,b)          ((color32_t)(((byte)(r)|((::u16)((byte)(g))<<8))|(((::u32)(byte)(b))<<16)))
+#define rgb(r,g,b)          ((color32_t)(((byte)(r)|((::u16)((byte)(g))<<8))|(((::u32)(byte)(b))<<16)))
 
 #define GetRValue(rgb)      (LOBYTE(rgb))
 #define GetGValue(rgb)      (LOBYTE(((::u16)(rgb)) >> 8))

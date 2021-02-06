@@ -113,12 +113,12 @@ namespace simple_ui
       imaging.color_blend(
       pgraphics,
       rectClient,
-      RGB(200, 255, 255),
+      rgb(200, 255, 255),
       127);
       }*/
 
       color ca;
-      ca.set_rgb(RGB(227,227,210));
+      ca.set_rgb(rgb(227,227,210));
       ca.hls_rate(0.0,-0.33,-0.23);
 //      color32_t crBorder = ca.get_rgb() | (0xff << 24);
       //pgraphics->draw3d_rect(rectClient,crBorder,crBorder);
@@ -166,7 +166,7 @@ namespace simple_ui
 
       ::draw2d::brush_pointer brushText(e_create);
 
-      penCaret->create_solid(1.0,ARGB(255,0,0,0));
+      penCaret->create_solid(1.0,argb(255,0,0,0));
 
 
       /*   rectClient.top = m_point.y;
@@ -247,7 +247,7 @@ namespace simple_ui
          {
 
             auto rectFill = ::rectd_dim((i32)(left + size1.cx), (i32)y, (i32)size2.cx, (i32)size2.cy);
-            pgraphics->fill_rect(rectFill,ARGB(255,120,240,180));
+            pgraphics->fill_rect(rectFill,argb(255,120,240,180));
             brushText->create_solid(crSel);
             pgraphics->set(brushText);
             pgraphics->text_out(left + size1.cx,y,strExtent2);

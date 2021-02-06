@@ -58,7 +58,7 @@
 
                frame::on_initialize_experience_frame();
 
-               m_brushGrip->create_solid(ARGB(0xff, 0x60, 0x65, 0x55));
+               m_brushGrip->create_solid(argb(0xff, 0x60, 0x65, 0x55));
 
                auto psession = Session;
 

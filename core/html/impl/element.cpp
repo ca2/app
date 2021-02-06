@@ -913,7 +913,7 @@ namespace html
       bool element::get_color(color32_t & cr)
       {
 
-         cr = ARGB(255, 0, 0, 0);
+         cr = argb(255, 0, 0, 0);
 
          return true;
 

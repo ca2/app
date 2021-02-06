@@ -270,7 +270,7 @@ namespace uwp
                System.imaging().Createcolor_blend_ImageList(
                   m_pil48,
                   m_pil48Hover,
-                  RGB(255, 255, 240),
+                  rgb(255, 255, 240),
                   64);
             }
             else
@@ -383,7 +383,7 @@ namespace uwp
          if (imagekey.m_cr == 0)
          {
 
-            System.imaging().color_blend(m_pil[48], m_pilHover[48], RGB(255, 255, 240), 64);
+            System.imaging().color_blend(m_pil[48], m_pilHover[48], rgb(255, 255, 240), 64);
 
          }
          else

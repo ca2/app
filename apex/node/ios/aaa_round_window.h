@@ -40,8 +40,8 @@ bool m_bDirty;
    virtual void round_window_mouse_up(double x, double y) = 0;
    virtual void round_window_mouse_moved(double x, double y) = 0;
    virtual void round_window_mouse_dragged(double x, double y) = 0;
-   virtual bool round_window_key_down(::user::e_key ekey) = 0;
-   virtual bool round_window_key_up(::user::e_key ekey) = 0;
+   virtual bool round_window_key_down(::user::enum_key ekey) = 0;
+   virtual bool round_window_key_up(::user::enum_key ekey) = 0;
    virtual bool round_window_on_text(const char * pszText, long iSel, long iEnd) = 0;
    virtual bool round_window_on_sel_text(long iBeg, long iEnd) = 0;
    

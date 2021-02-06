@@ -24,13 +24,13 @@ namespace user
 
       m_flagNonClient.remove(non_client_focus_rect);
 
-      m_brBkHoverSel->create_solid(ARGB(255, 230, 230, 230));
+      m_brBkHoverSel->create_solid(argb(255, 230, 230, 230));
 
-      m_brBkSel->create_solid(ARGB(255, 240, 240, 240));
+      m_brBkSel->create_solid(argb(255, 240, 240, 240));
 
-      m_penBkSel->create_solid(3.0, ARGB(255, 0, 148, 202));
+      m_penBkSel->create_solid(3.0, argb(255, 0, 148, 202));
 
-      m_pen->create_solid(1.0, ARGB(255, 210, 210, 210));
+      m_pen->create_solid(1.0, argb(255, 210, 210, 210));
 
    }
 
@@ -426,7 +426,7 @@ namespace user
 
          draw_header_rectangle(pgraphics, rMenu);
 
-         pgraphics->set_text_color(ARGB(255, 0, 0, 0));
+         pgraphics->set_text_color(argb(255, 0, 0, 0));
 
          pgraphics->text_out(rMenu.left + 10, rMenu.top + 5, strTitle);
 
@@ -493,13 +493,13 @@ namespace user
                if (m_itemCurrent == item)
                {
 
-                  pgraphics->set_text_color(ARGB(255, 0, 148, 202));
+                  pgraphics->set_text_color(argb(255, 0, 148, 202));
 
                }
                else
                {
 
-                  pgraphics->set_text_color(ARGB(255, 60, 60, 60));
+                  pgraphics->set_text_color(argb(255, 60, 60, 60));
 
                }
 
@@ -735,7 +735,7 @@ namespace user
    void menu_view::draw_header_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
-      pgraphics->fill_rect(rectangle, ARGB(255, 240, 240, 240));
+      pgraphics->fill_rect(rectangle, argb(255, 240, 240, 240));
 
       pgraphics->move_to(rectangle.left, rectangle.top);
 

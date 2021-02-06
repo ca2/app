@@ -287,11 +287,11 @@ namespace apex
 
 
       // apex commented
-      virtual void get_cursor_pos(POINT_I32 * ppoint);
-      inline ::point_i32 get_cursor_pos() {::point_i32 point; get_cursor_pos(&point); return point;}
+      //virtual void get_cursor_pos(POINT_I32 * ppoint);
+      //inline ::point_i32 get_cursor_pos() {::point_i32 point; get_cursor_pos(&point); return point;}
 
       // apex commented
-      virtual void set_cursor_pos(const ::point_i32 & point);
+      //virtual void set_cursor_pos(const ::point_i32 & point);
 
       //virtual index get_main_monitor(RECTANGLE_I32 * prectangle = nullptr);
 
@@ -381,13 +381,13 @@ namespace apex
 
       //template < typename VIEW >
       //__pointer(::user::document)   create_form(__pointer(::user::interaction) pwndParent = nullptr, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::type point_i32, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument), ::payload varArgs = payload(::e_type_empty_argument));
       //template < typename VIEW >
       //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::type point_i32, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_child_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = payload(::e_type_empty_argument));
 
 

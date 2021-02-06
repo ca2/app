@@ -187,7 +187,7 @@ namespace str
    //      strFinal += ::str::ch::to_upper_case(point);
    //      point = (wd32char *) ::str::utf8_inc(point);
    //   }
-   //   strcpy(point_i32,strFinal);
+   //   strcpy(point,strFinal);
    //   return psz;
    //
    //
@@ -211,7 +211,7 @@ namespace str
    //      strFinal += ::str::ch::to_lower_case(point);
    //      point = (wd32char *) ::str::utf8_inc(point);
    //   }
-   //   strcpy(point_i32,strFinal);
+   //   strcpy(point,strFinal);
    //   return psz;
    //
    //   //   return reinterpret_cast< wd32char * >( _mbslwr( reinterpret_cast< uchar* >( psz ) ) );

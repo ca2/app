@@ -148,7 +148,7 @@ namespace user
 
 
 
-      color32_t crText = ARGB(255, 0, 0, 0);
+      color32_t crText = argb(255, 0, 0, 0);
 
       if(m_bHover)
       {
@@ -164,13 +164,13 @@ namespace user
          if(rectWindow.contains(point))
          {
 
-            crText = ::color(255, 0, 0, 0);
+            crText = ::color::color(255, 0, 0, 0);
 
          }
          else
          {
 
-            crText = ::color(255, 0, 0, 0);
+            crText = ::color::color(255, 0, 0, 0);
 
          }
 
@@ -178,7 +178,7 @@ namespace user
       else
       {
 
-         crText = ::color(255, 0, 0, 0);
+         crText = ::color::color(255, 0, 0, 0);
 
       }
 

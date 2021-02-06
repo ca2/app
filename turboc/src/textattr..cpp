@@ -26,14 +26,14 @@
 #include "framework.h"
 //#include "conio.h"
 
-#define COLOR_BLACK ARGB(255, 0, 0, 0)
-#define COLOR_BLUE  ARGB(255, 0, 0, 255)
-#define COLOR_GREEN ARGB(255, 0, 255, 0)
-#define COLOR_CYAN ARGB(255, 0, 255, 255)
-#define COLOR_RED ARGB(255, 255, 0, 0)
-#define COLOR_MAGENTA ARGB(255, 255, 0, 255)
-#define COLOR_YELLOW ARGB(255, 255, 255, 0)
-#define COLOR_WHITE ARGB(255, 255, 25, 255)
+#define COLOR_BLACK argb(255, 0, 0, 0)
+#define COLOR_BLUE  argb(255, 0, 0, 255)
+#define COLOR_GREEN argb(255, 0, 255, 0)
+#define COLOR_CYAN argb(255, 0, 255, 255)
+#define COLOR_RED argb(255, 255, 0, 0)
+#define COLOR_MAGENTA argb(255, 255, 0, 255)
+#define COLOR_YELLOW argb(255, 255, 255, 0)
+#define COLOR_WHITE argb(255, 255, 25, 255)
 #define A_NORMAL 0
 #define A_BOLD 1
 #define A_BLINK 2

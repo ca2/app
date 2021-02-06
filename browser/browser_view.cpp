@@ -900,7 +900,7 @@ namespace browser
 
 /*      m_pimageBrowser->create_image(this, ::size_i32(width, height));
 
-      //m_pimageBrowser->g()->fill_solid_rect_dim(0, 0, width, height, ARGB(155, 255, 255, 0)) ;
+      //m_pimageBrowser->g()->fill_solid_rect_dim(0, 0, width, height, argb(155, 255, 255, 0)) ;
 
       m_pimageBrowser->map();
 

@@ -7,7 +7,7 @@ class interlocked
 public:
 
 
-   INTERLOCKED_LONG * m_plong;
+   char sz[(sizeof(INTERLOCKED_LONG) + 7) & ~7];
 
 
    interlocked(INTERLOCKED_LONG l = 0);
@@ -18,7 +18,8 @@ public:
    //void subtract(INTERLOCKED_LONG l);
 
 
-   inline operator INTERLOCKED_LONG() { return *m_plong; }
+   inline operator INTERLOCKED_LONG &() { return *(INTERLOCKED_LONG*)(((iptr) this + 7) & ~7); }
+   inline operator INTERLOCKED_LONG () const { return *(INTERLOCKED_LONG *)(((iptr) this + 7) & ~7); }
 
    interlocked & operator = (INTERLOCKED_LONG i);
    //bool operator == (long i) const;
@@ -59,76 +60,76 @@ using interlocked_count = ::interlocked < ::i64 >;
 template < typename INTERLOCKED_LONG >
 inline interlocked < INTERLOCKED_LONG >::interlocked(INTERLOCKED_LONG l)
 {
-#if defined(WINDOWS) || defined(APPLEOS)
-  m_plong = (INTERLOCKED_LONG *)aligned_memory_alloc(sizeof(INTERLOCKED_LONG));
-#else
-  m_plong = (INTERLOCKED_LONG *)malloc(sizeof(INTERLOCKED_LONG));
-#endif
-  * m_plong = l;
+//#if defined(WINDOWS) || defined(APPLEOS)
+  //&operator INTERLOCKED_LONG &() = (INTERLOCKED_LONG *)aligned_memory_alloc(sizeof(INTERLOCKED_LONG));
+//#else
+  //&operator INTERLOCKED_LONG &() = (INTERLOCKED_LONG *)malloc(sizeof(INTERLOCKED_LONG));
+//#endif
+  //* &operator INTERLOCKED_LONG &() = l;
 }
 
 template < typename INTERLOCKED_LONG >
 inline interlocked < INTERLOCKED_LONG >::~interlocked()
 {
-  if (m_plong != nullptr)
-  {
-#if defined(WINDOWS) || defined(APPLEOS)
-     memory_free(m_plong);
-#else
-     free(m_plong);
-#endif
-  }
+//  if (&operator INTERLOCKED_LONG &() != nullptr)
+//  {
+//#if defined(WINDOWS) || defined(APPLEOS)
+//     memory_free(&operator INTERLOCKED_LONG &());
+//#else
+//     free(&operator INTERLOCKED_LONG &());
+//#endif
+//  }
 }
 
 //template < typename INTERLOCKED_LONG >
 //inline void interlocked < INTERLOCKED_LONG >::add(INTERLOCKED_LONG l)
 //{
-//  interlocked_exchange_add(m_plong, l);
+//  interlocked_exchange_add(&operator INTERLOCKED_LONG &(), l);
 //}
 //
 //
 //template < typename INTERLOCKED_LONG >
 //inline void interlocked < INTERLOCKED_LONG >::subtract(INTERLOCKED_LONG l)
 //{
-//  interlocked_exchange_add(m_plong, -l);
+//  interlocked_exchange_add(&operator INTERLOCKED_LONG &(), -l);
 //}
 
 
 //template < typename INTERLOCKED_LONG >
 //inline interlocked < INTERLOCKED_LONG > & interlocked < INTERLOCKED_LONG >::operator = (INTERLOCKED_LONG l)
 //{
-//  interlocked_exchange(m_plong, l);
+//  interlocked_exchange(&operator INTERLOCKED_LONG &(), l);
 //  return *this;
 //}
 
 //bool interlocked_long::operator == (long i) const
 //{
-//   return *m_plong == i;
+//   return *&operator INTERLOCKED_LONG &() == i;
 //}
 //
 //bool interlocked_long::operator > (long i) const
 //{
-//   return *m_plong > i;
+//   return *&operator INTERLOCKED_LONG &() > i;
 //}
 //
 //bool interlocked_long::operator >= (long i) const
 //{
-//   return *m_plong >= i;
+//   return *&operator INTERLOCKED_LONG &() >= i;
 //}
 //
 //bool interlocked_long::operator < (long i) const
 //{
-//   return *m_plong < i;
+//   return *&operator INTERLOCKED_LONG &() < i;
 //}
 //
 //bool interlocked_long::operator <= (long i) const
 //{
-//   return *m_plong <= i;
+//   return *&operator INTERLOCKED_LONG &() <= i;
 //}
 //
 //bool interlocked_long::operator != (long i) const
 //{
-//   return *m_plong != i;
+//   return *&operator INTERLOCKED_LONG &() != i;
 //}
 
 
@@ -136,7 +137,7 @@ template < typename INTERLOCKED_LONG >
 inline interlocked < INTERLOCKED_LONG > & interlocked < INTERLOCKED_LONG >::operator++()
 {
 
-   atomic_increment(m_plong);
+   atomic_increment(&operator INTERLOCKED_LONG &());
 
    return *this;
 
@@ -147,7 +148,7 @@ template < typename INTERLOCKED_LONG >
 inline interlocked < INTERLOCKED_LONG > & interlocked < INTERLOCKED_LONG >::operator--()
 {
 
-   atomic_decrement(m_plong);
+   atomic_decrement(&operator INTERLOCKED_LONG &());
 
    return *this;
 
@@ -158,9 +159,9 @@ template < typename INTERLOCKED_LONG >
 inline INTERLOCKED_LONG interlocked < INTERLOCKED_LONG >::operator++(int)
 {
 
-  auto l = *m_plong;
+  auto l = *&operator INTERLOCKED_LONG &();
 
-  atomic_increment(m_plong);
+  atomic_increment(&operator INTERLOCKED_LONG &());
 
   return l;
 
@@ -171,9 +172,9 @@ template < typename INTERLOCKED_LONG >
 inline INTERLOCKED_LONG interlocked < INTERLOCKED_LONG >::operator--(int)
 {
 
-  auto l = *m_plong;
+  auto l = *&operator INTERLOCKED_LONG &();
 
-  atomic_decrement(m_plong);
+  atomic_decrement(&operator INTERLOCKED_LONG &());
 
   return l;
 

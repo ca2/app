@@ -101,7 +101,7 @@ namespace draw2d_cairo
       // ::draw2d_cairo::object* provided so compiler doesn't use SelectObject(HGDIOBJ)
 
 // color and color Palette Functions
-      //color32_t GetNearestColor(const ::color & color) override;
+      //color32_t GetNearestColor(const ::color::color & color) override;
       //::draw2d::palette* SelectPalette(::draw2d::palette* pPalette, bool bForceBackground) override;
       //::u32 RealizePalette() override;
       //void UpdateColors() override;
@@ -123,10 +123,10 @@ namespace draw2d_cairo
 //#if (_WIN32_WINNT >= 0x0500)
 //
 //      color32_t GetDCBrushColor() override;
-//      color32_t SetDCBrushColor(const ::color & color) override;
+//      color32_t SetDCBrushColor(const ::color::color & color) override;
 //
 //      color32_t GetDCPenColor() override;
-//      color32_t SetDCPenColor(const ::color & color) override;
+//      color32_t SetDCPenColor(const ::color::color & color) override;
 //
 //#endif
 
@@ -307,19 +307,19 @@ namespace draw2d_cairo
       //bool _stretch_raw(const ::rectangle_f64 & rectDst, ::draw2d::graphics * pgraphicsSrc, const ::rectangle_f64 & rectSrc) override;
 
 
-      ::color GetPixel(double x, double y) override;
-      ::color GetPixel(const ::point_f64 & point_f64) override;
-      ::color SetPixel(double x, double y, const ::color & color) override;
-      ::color SetPixel(const ::point_f64 & point_f64, const ::color & color) override;
-//      bool FloodFill(double x, double y, const ::color & color) override;
-//      bool ExtFloodFill(double x, double y, const ::color & color, ::u32 nFillType) override;
+      ::color::color GetPixel(double x, double y) override;
+      ::color::color GetPixel(const ::point_f64 & point_f64) override;
+      ::color::color SetPixel(double x, double y, const ::color::color & color) override;
+      ::color::color SetPixel(const ::point_f64 & point_f64, const ::color::color & color) override;
+//      bool FloodFill(double x, double y, const ::color::color & color) override;
+//      bool ExtFloodFill(double x, double y, const ::color::color & color, ::u32 nFillType) override;
 //      bool MaskBlt(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc,
 //                   double xSrc, double ySrc, ::draw2d::bitmap& maskBitmap, double xMask, double yMask,
 //                   u32 dwRop) override;
 //      bool PlgBlt(::point_f64 * lpPoint, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc,
 //                  double nWidth, double nHeight, ::draw2d::bitmap& maskBitmap, double xMask, double yMask) override;
-      bool SetPixelV(double x, double y, const ::color & color) override;
-      bool SetPixelV(const ::point_f64 & point_f64, const ::color & color) override;
+      bool SetPixelV(double x, double y, const ::color::color & color) override;
+      bool SetPixelV(const ::point_f64 & point_f64, const ::color::color & color) override;
 //      bool GradientFill(TRIVERTEX* pVertices, WINULONG nVertices,
 //                        void * pMesh, WINULONG nMeshElements, u32 dwMode) override;
 //      bool TransparentBlt(double xDest, double yDest, i32 nDestWidth, i32 nDestHeight,
@@ -473,10 +473,10 @@ namespace draw2d_cairo
 //                        const ::rectangle_f64 & rectLast, const ::size_f64 & sizeLast,
 //                        ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr) override;
       //void fill_rect(const RECTANGLE_I64 * rectangle_f64, color32_t clr) override;
-      //void fill_rect(const ::rectangle_f64 & rectangle_f64, const ::color & color) override;
-      bool fill_rect(const ::rectangle_f64 & rectangle_f64, const ::color & color) override;
+      //void fill_rect(const ::rectangle_f64 & rectangle_f64, const ::color::color & color) override;
+      bool fill_rect(const ::rectangle_f64 & rectangle_f64, const ::color::color & color) override;
       //void fill_rect(double x, double y, double cx, double cy, color32_t clr) override;
-      //bool draw_3drect(const ::rectangle_f64 & rectangle_f64, const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
+      //bool draw_3drect(const ::rectangle_f64 & rectangle_f64, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
       //void draw3d_rect(double x, double y, double cx, double cy,
       //              color32_t clrTopLeft, color32_t clrBottomRight) override;
 

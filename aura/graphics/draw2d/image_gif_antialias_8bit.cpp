@@ -106,7 +106,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //                  dA = dA * dA2 / 255.0;
 //
-//                  pointer->m_pimage->m_pcolorref[iPixel] = ARGB(
+//                  pointer->m_pimage->m_pcolorref[iPixel] = argb(
 //                     (byte)dA,
 //                     (byte)(trans(dR, dA, dUnequalDarken)),
 //                     (byte)(trans(dG, dA, dUnequalDarken)),
@@ -130,7 +130,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            }
 //
-//            //pointer->m_pimage->m_pcolorref[iPixel] = ARGB((byte)255, (byte)dR, (byte)dG, (byte)dB);
+//            //pointer->m_pimage->m_pcolorref[iPixel] = argb((byte)255, (byte)dR, (byte)dG, (byte)dB);
 //
 //         }
 //
@@ -185,7 +185,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //                  dA = dA * dA2 / 255.0;
 //
-//                  pointer->m_pimage->m_pcolorref[iPixel] = ARGB(
+//                  pointer->m_pimage->m_pcolorref[iPixel] = argb(
 //                     (byte)dA,
 //                     (byte)(trans(dR, dA, dUnequalDarken)),
 //                     (byte)(trans(dG, dA, dUnequalDarken)),
@@ -209,7 +209,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            }
 //
-//            //pointer->m_pimage->m_pcolorref[iPixel] = ARGB((byte)255, (byte)dR, (byte)dG, (byte)dB);
+//            //pointer->m_pimage->m_pcolorref[iPixel] = argb((byte)255, (byte)dR, (byte)dG, (byte)dB);
 //
 //         }
 //
@@ -269,7 +269,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //                  dA = dA * dA2 / 255.0;
 //
-//                  pointer->m_pimage->m_pcolorref[iPixel] = ARGB(
+//                  pointer->m_pimage->m_pcolorref[iPixel] = argb(
 //                     (byte)dA,
 //                     (byte)(trans(dR, dA, dUnequalDarken)),
 //                     (byte)(trans(dG, dA, dUnequalDarken)),
@@ -293,7 +293,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            }
 //
-//            //pointer->m_pimage->m_pcolorref[iPixel] = ARGB((byte)255, (byte)dR, (byte)dG, (byte)dB);
+//            //pointer->m_pimage->m_pcolorref[iPixel] = argb((byte)255, (byte)dR, (byte)dG, (byte)dB);
 //
 //         }
 //
@@ -348,7 +348,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //                  dA = dA * dA2 / 255.0;
 //
-//                  pointer->m_pimage->m_pcolorref[iPixel] = ARGB(
+//                  pointer->m_pimage->m_pcolorref[iPixel] = argb(
 //                     (byte)dA,
 //                     (byte)(trans(dR, dA, dUnequalDarken)),
 //                     (byte)(trans(dG, dA, dUnequalDarken)),
@@ -372,7 +372,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            }
 //
-//            //pointer->m_pimage->m_pcolorref[iPixel] = ARGB((byte)255, (byte)dR, (byte)dG, (byte)dB);
+//            //pointer->m_pimage->m_pcolorref[iPixel] = argb((byte)255, (byte)dR, (byte)dG, (byte)dB);
 //
 //         }
 //
@@ -436,7 +436,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //                  dA = dA * dA2 / 255.0;
 //
-//                  pointer->m_pimage->m_pcolorref[iPixel] = ARGB(
+//                  pointer->m_pimage->m_pcolorref[iPixel] = argb(
 //                     (byte)dA,
 //                     (byte)(trans(dR, dA, dUnequalDarken)),
 //                     (byte)(trans(dG, dA, dUnequalDarken)),
@@ -460,7 +460,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            }
 //
-//            //pointer->m_pimage->m_pcolorref[iPixel] = ARGB((byte)255, (byte)dR, (byte)dG, (byte)dB);
+//            //pointer->m_pimage->m_pcolorref[iPixel] = argb((byte)255, (byte)dR, (byte)dG, (byte)dB);
 //
 //         }
 //
@@ -515,7 +515,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //                  dA = dA * dA2 / 255.0;
 //
-//                  pointer->m_pimage->m_pcolorref[iPixel] = ARGB(
+//                  pointer->m_pimage->m_pcolorref[iPixel] = argb(
 //                     (byte)dA,
 //                     (byte)(trans(dR, dA, dUnequalDarken)),
 //                     (byte)(trans(dG, dA, dUnequalDarken)),
@@ -539,7 +539,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            }
 //
-//            //               // pointer->m_pimage->m_pcolorref[iPixel] = ARGB((byte)dA, (byte)dR, (byte)dG, (byte)dB);
+//            //               // pointer->m_pimage->m_pcolorref[iPixel] = argb((byte)dA, (byte)dR, (byte)dG, (byte)dB);
 //
 //         }
 //
@@ -602,7 +602,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //                  dA = dA * dA2 / 255.0;
 //
-//                  pointer->m_pimage->m_pcolorref[iPixel] = ARGB(
+//                  pointer->m_pimage->m_pcolorref[iPixel] = argb(
 //                     (byte)dA,
 //                     (byte)(trans(dR, dA, dUnequalDarken)),
 //                     (byte)(trans(dG, dA, dUnequalDarken)),
@@ -626,7 +626,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            }
 //
-//            //             // pointer->m_pimage->m_pcolorref[iPixel] = ARGB((byte)dA, (byte)dR, (byte)dG, (byte)dB);
+//            //             // pointer->m_pimage->m_pcolorref[iPixel] = argb((byte)dA, (byte)dR, (byte)dG, (byte)dB);
 //
 //         }
 //
@@ -681,7 +681,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //                  dA = dA * dA2 / 255.0;
 //
-//                  pointer->m_pimage->m_pcolorref[iPixel] = ARGB(
+//                  pointer->m_pimage->m_pcolorref[iPixel] = argb(
 //                     (byte)dA,
 //                     (byte)(trans(dR, dA, dUnequalDarken)),
 //                     (byte)(trans(dG, dA, dUnequalDarken)),
@@ -705,7 +705,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            }
 //
-//            // pointer->m_pimage->m_pcolorref[iPixel] = ARGB((byte)dA, (byte)dR, (byte)dG, (byte)dB);
+//            // pointer->m_pimage->m_pcolorref[iPixel] = argb((byte)dA, (byte)dR, (byte)dG, (byte)dB);
 //
 //         }
 //
@@ -769,7 +769,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //                  dA = dA * dA2 / 255.0;
 //
-//                  pointer->m_pimage->m_pcolorref[iPixel] = ARGB(
+//                  pointer->m_pimage->m_pcolorref[iPixel] = argb(
 //                     (byte)dA,
 //                     (byte)(trans(dR, dA, dUnequalDarken)),
 //                     (byte)(trans(dG, dA, dUnequalDarken)),
@@ -793,7 +793,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            }
 //
-//            // pointer->m_pimage->m_pcolorref[iPixel] = ARGB((byte)dA, (byte)dR, (byte)dG, (byte)dB);
+//            // pointer->m_pimage->m_pcolorref[iPixel] = argb((byte)dA, (byte)dR, (byte)dG, (byte)dB);
 //
 //         }
 //
@@ -848,7 +848,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //                  dA = dA * dA2 / 255.0;
 //
-//                  pointer->m_pimage->m_pcolorref[iPixel] = ARGB(
+//                  pointer->m_pimage->m_pcolorref[iPixel] = argb(
 //                     (byte)dA,
 //                     (byte)(trans(dR, dA, dUnequalDarken)),
 //                     (byte)(trans(dG, dA, dUnequalDarken)),
@@ -872,7 +872,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            }
 //
-//            // pointer->m_pimage->m_pcolorref[iPixel] = ARGB((byte)dA, (byte)dR, (byte)dG, (byte)dB);
+//            // pointer->m_pimage->m_pcolorref[iPixel] = argb((byte)dA, (byte)dR, (byte)dG, (byte)dB);
 //
 //         }
 //
@@ -934,7 +934,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //                  dA = dA * dA2 / 255.0;
 //
-//                  pointer->m_pimage->m_pcolorref[iPixel] = ARGB(
+//                  pointer->m_pimage->m_pcolorref[iPixel] = argb(
 //                     (byte)dA,
 //                     (byte)(trans(dR, dA, dUnequalDarken)),
 //                     (byte)(trans(dG, dA, dUnequalDarken)),
@@ -958,7 +958,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            }
 //
-//            // pointer->m_pimage->m_pcolorref[iPixel] = ARGB((byte)dA, (byte)dR, (byte)dG, (byte)dB);
+//            // pointer->m_pimage->m_pcolorref[iPixel] = argb((byte)dA, (byte)dR, (byte)dG, (byte)dB);
 //
 //         }
 //
@@ -1013,7 +1013,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //                  dA = dA * dA2 / 255.0;
 //
-//                  pointer->m_pimage->m_pcolorref[iPixel] = ARGB(
+//                  pointer->m_pimage->m_pcolorref[iPixel] = argb(
 //                     (byte)dA,
 //                     (byte)(trans(dR, dA, dUnequalDarken)),
 //                     (byte)(trans(dG, dA, dUnequalDarken)),
@@ -1037,7 +1037,7 @@ bool draw2d_gif_antialias_8bit(image & imageCompose, image_frame_array * pimagep
 //
 //            }
 //
-//            // pointer->m_pimage->m_pcolorref[iPixel] = ARGB((byte)dA, (byte)dR, (byte)dG, (byte)dB);
+//            // pointer->m_pimage->m_pcolorref[iPixel] = argb((byte)dA, (byte)dR, (byte)dG, (byte)dB);
 //
 //         }
 //

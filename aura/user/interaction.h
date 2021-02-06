@@ -281,7 +281,7 @@ namespace user
       millis                                         m_millisLastRedraw;
       ::id                                         m_idView;
       __pointer(::user::form)                      m_pform;
-      ::color                                      m_colorBackground;
+      ::color::color                                      m_colorBackground;
       bool                                         m_bWorkspaceFullScreen;
       point_i32                                        m_pointScroll;
       bool                                         m_bHideOnTransparentFrame;
@@ -509,8 +509,8 @@ namespace user
       inline ::rectangle_f64 get_padding(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_padding(pstyle, get_default_element(), estate); }
       virtual ::rectangle_f64 get_margin(style* pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
       inline ::rectangle_f64 get_margin(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_margin(pstyle, get_default_element(), estate); }
-      virtual ::color get_color(style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none) const;
-      inline ::color get_color(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_color(pstyle, get_default_element(), estate); }
+      virtual ::color::color get_color(style* pstyle, enum_element eelement, ::user::enum_state elayout = e_state_none) const;
+      inline ::color::color get_color(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_color(pstyle, get_default_element(), estate); }
 
       virtual eflag get_draw_flags(style* pstyle) const;
 
@@ -728,7 +728,7 @@ namespace user
       virtual ::e_status set_cursor(::windowing::cursor * pcursor);
 
 
-      virtual ::point_i32 get_cursor_pos() const override;
+      //virtual ::point_i32 get_cursor_pos() const override;
 
 
       virtual bool is_left_button_pressed() const;

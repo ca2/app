@@ -2376,7 +2376,7 @@ return true;
       //catch(...)
       //{
       //}
-      //pgraphics->FillSolidRect(rectx, RGB(255, 255, 255));
+      //pgraphics->FillSolidRect(rectx, rgb(255, 255, 255));
       //METROWIN_DC(graphics.m_p)->Detach();
       //pmessage->m_bRet = true;
       //pbase->set_lresult(0);

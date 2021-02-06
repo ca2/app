@@ -34,7 +34,7 @@ namespace android
 
       //return ::user::interaction::_001DrawThis(pgraphics);
       
-      //pgraphics->fill_solid_rect_dim(10, 10, 100, 100, ARGB(255, 0, 0, 255));
+      //pgraphics->fill_solid_rect_dim(10, 10, 100, 100, argb(255, 0, 0, 255));
       
 
    }
@@ -43,9 +43,9 @@ namespace android
    void host_interaction::_001DrawChildren(::draw2d::graphics_pointer & pgraphics)
    {
 
-//      pgraphics->fill_solid_rect_dim(10, 110, 100, 100, ARGB(255, 100, 155, 255));
+//      pgraphics->fill_solid_rect_dim(10, 110, 100, 100, argb(255, 100, 155, 255));
 //
-//      pgraphics->fill_solid_rect_dim(10, 210, 100, 100, ARGB(255, 200, 225, 255));
+//      pgraphics->fill_solid_rect_dim(10, 210, 100, 100, argb(255, 200, 225, 255));
 
       ::user::interaction::_001DrawChildren(pgraphics);
       

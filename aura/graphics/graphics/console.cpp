@@ -92,27 +92,27 @@ namespace graphics
       {
       case e_dos_color_background_white:
       case e_dos_color_foreground_white:
-         return ARGB(255, 255, 255, 255);
+         return argb(255, 255, 255, 255);
       case e_dos_color_background_blue:
       case e_dos_color_foreground_blue:
-         return ARGB(255, 127, 127, 255);
+         return argb(255, 127, 127, 255);
       case e_dos_color_background_dark_blue:
       case e_dos_color_foreground_dark_blue:
-         return ARGB(255, 0, 0, 255);
+         return argb(255, 0, 0, 255);
       case e_dos_color_background_red:
       case e_dos_color_foreground_red:
-         return ARGB(255, 255, 0, 0);
+         return argb(255, 255, 0, 0);
       case e_dos_color_background_cyan:
       case e_dos_color_foreground_cyan:
-         return ARGB(255, 0, 255, 255);
+         return argb(255, 0, 255, 255);
       case e_dos_color_background_magenta:
       case e_dos_color_foreground_magenta:
-         return ARGB(255, 255, 0, 255);
+         return argb(255, 255, 0, 255);
       case e_dos_color_background_yellow:
       case e_dos_color_foreground_yellow:
-         return ARGB(255, 255, 255, 0);
+         return argb(255, 255, 255, 0);
       case e_dos_color_background_black:
-         return ARGB(255, 255, 255, 0);
+         return argb(255, 255, 255, 0);
       }
 
       return 0;
@@ -205,7 +205,7 @@ namespace graphics
    }
 
 
-   void console::SetScreenColor(enum_dos_color color, int iLineStart, int iLineCount)
+   void console::SetScreenColor(::enum_dos_color color, int iLineStart, int iLineCount)
    {
 
       m_edoscolor = color;

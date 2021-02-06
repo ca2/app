@@ -85,7 +85,7 @@ namespace html
       //virtual bool get_color(color32_t & cr, ::user::e_color ecolor, ::user::style_context * pcontext) override;
       //virtual bool get_font(::draw2d::font_pointer & spfont, ::user::e_font efont, ::user::style_context * pcontext) override;
 
-      virtual ::color get_color(::user::style * pstyle, ::css::enum_color ecolor);
+      virtual ::color::color get_color(::user::style * pstyle, ::css::enum_color ecolor);
       virtual ::draw2d::font_pointer get_font();
 
       void initialize();

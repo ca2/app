@@ -152,13 +152,13 @@ namespace draw2d
       
 
 
-      void draw_ca2(int x,int y,int z,const ::color & colorBk,const ::color & color);
-      void draw_ca2_with_border(int x,int y,int z,int b,const ::color & colorBk,const ::color & color,const ::color & colorOut);
-      void draw_ca2_border2(int x,int y,int z,int bOut,int bIn,const ::color & colorBk,const ::color & color,const ::color & colorBorderOut,const ::color & colorIn);
-      void draw_ca2_with_border2(int x,int y,int z,int bOut,int bIn,const ::color & colorBk,const ::color & color,const ::color & colorBorderOut,const ::color & colorIn);
+      void draw_ca2(int x,int y,int z,const ::color::color & colorBk,const ::color::color & color);
+      void draw_ca2_with_border(int x,int y,int z,int b,const ::color::color & colorBk,const ::color::color & color,const ::color::color & colorOut);
+      void draw_ca2_border2(int x,int y,int z,int bOut,int bIn,const ::color::color & colorBk,const ::color::color & color,const ::color::color & colorBorderOut,const ::color::color & colorIn);
+      void draw_ca2_with_border2(int x,int y,int z,int bOut,int bIn,const ::color::color & colorBk,const ::color::color & color,const ::color::color & colorBorderOut,const ::color::color & colorIn);
 
 
-      void draw_border(const ::rectangle_f64 & rectangle, const ::color & color, int iWidth);
+      void draw_border(const ::rectangle_f64 & rectangle, const ::color::color & color, int iWidth);
       void draw_rect_side(const ::rectangle_f64& rectangle_f64, enum_border eborder);
 
       virtual bool is_set();
@@ -202,7 +202,7 @@ namespace draw2d
 
       virtual bool blur(bool bExpand, double dRadius, const ::rectangle_f64 & rectangle);
 
-      virtual bool set_solid_pen(double dWidth, const ::color & color);
+      virtual bool set_solid_pen(double dWidth, const ::color::color & color);
 
       virtual bool IsPrinting();            // true if being used for printing
 
@@ -250,7 +250,7 @@ namespace draw2d
 
 
 
-      virtual bool set_text_color(color c);
+      virtual bool set_text_color(::color::color color);
 
       virtual ::e_status set(::draw2d::region* pregion);
       virtual ::e_status set(::draw2d::pen* ppen);
@@ -261,7 +261,7 @@ namespace draw2d
 
 
       // color and color Palette Functions
-      //virtual color32_t GetNearestColor(const ::color & color);
+      //virtual color32_t GetNearestColor(const ::color::color & color);
       //virtual ::draw2d::palette* SelectPalette(::draw2d::palette* pPalette, bool bForceBackground);
       //virtual ::u32 RealizePalette();
       //virtual void UpdateColors();
@@ -304,10 +304,10 @@ namespace draw2d
 //#if (_WIN32_WINNT >= 0x0500)
 //
 //      virtual color32_t GetDCBrushColor();
-//      virtual color32_t SetDCBrushColor(const ::color & color);
+//      virtual color32_t SetDCBrushColor(const ::color::color & color);
 //
 //      virtual color32_t GetDCPenColor();
-//      virtual color32_t SetDCPenColor(const ::color & color);
+//      virtual color32_t SetDCPenColor(const ::color::color & color);
 //
 //#endif
 
@@ -587,7 +587,7 @@ namespace draw2d
 
       virtual bool fill_rect(const ::rectangle_f64 & rectangle);
       virtual bool fill_rect(const ::rectangle_f64 & rectangle, ::draw2d::brush * pbrush);
-      virtual bool fill_rect(const ::rectangle_f64 & rectangle, const ::color & color);
+      virtual bool fill_rect(const ::rectangle_f64 & rectangle, const ::color::color & color);
 
       //virtual bool rectangle_i32(const rectangle_f64 & rectangle_f64);
       //virtual bool draw_rect(const rectangle_f64 & rectangle_f64);
@@ -702,21 +702,21 @@ namespace draw2d
 
 
 
-      virtual ::color GetPixel(double x, double y);
-      virtual ::color GetPixel(const ::point_f64 & point);
-      virtual ::color SetPixel(double x, double y, const ::color & color);
-      virtual ::color SetPixel(const ::point_f64 & point, const ::color & color);
-      virtual ::color blend_pixel(const ::point_f64 & point, const ::color & color);
-//      virtual bool FloodFill(double x, double y, const ::color & color);
-//      virtual bool ExtFloodFill(double x, double y, const ::color & color, ::u32 nFillType);
+      virtual ::color::color GetPixel(double x, double y);
+      virtual ::color::color GetPixel(const ::point_f64 & point);
+      virtual ::color::color SetPixel(double x, double y, const ::color::color & color);
+      virtual ::color::color SetPixel(const ::point_f64 & point, const ::color::color & color);
+      virtual ::color::color blend_pixel(const ::point_f64 & point, const ::color::color & color);
+//      virtual bool FloodFill(double x, double y, const ::color::color & color);
+//      virtual bool ExtFloodFill(double x, double y, const ::color::color & color, ::u32 nFillType);
 //      virtual bool MaskBlt(double x, double y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
 //                           double xSrc, double ySrc, ::draw2d::bitmap& maskBitmap, double xMask, double yMask,
 //                           u32 dwRop);
 //      virtual bool PlgBlt(::point_f64 * pPoint, ::draw2d::graphics * pgraphicsSrc, double xSrc, double ySrc,
 //
 //                          i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, double xMask, double yMask);
-      virtual bool SetPixelV(double x, double y, const ::color & color);
-      virtual bool SetPixelV(const ::point_f64 & point, const ::color & color);
+      virtual bool SetPixelV(double x, double y, const ::color::color & color);
+      virtual bool SetPixelV(const ::point_f64 & point, const ::color::color & color);
       //virtual bool GradientFill(TRIVERTEX* pVertices, WINULONG nVertices,
       //void * pMesh, WINULONG nMeshElements, u32 dwMode);
 //      virtual bool TransparentBlt(double xDest, double yDest, i32 nDestWidth, i32 nDestHeight,
@@ -957,14 +957,14 @@ namespace draw2d
 
       //                          ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr);
 
-      //virtual void fill_rect(const ::rectangle_f64 & rectangle, const ::color & color);
-      //virtual void fill_rect(const rectangle_f64 & rectangle_f64, const ::color & color);
+      //virtual void fill_rect(const ::rectangle_f64 & rectangle, const ::color::color & color);
+      //virtual void fill_rect(const rectangle_f64 & rectangle_f64, const ::color::color & color);
 
-      virtual bool draw_3drect(const ::rectangle_f64 & rectangle, const ::color& colorTopLeft, const ::color& colorBottomRight, const ::e_border & eborder = e_border_all);
-      //virtual void draw_3drect(const rectangle_f64 & rectangle_f64, const ::color& colorTopLeft, const ::color& colorBottomRight, const ::e_border & eborder = e_border_all);
+      virtual bool draw_3drect(const ::rectangle_f64 & rectangle, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, const ::e_border & eborder = e_border_all);
+      //virtual void draw_3drect(const rectangle_f64 & rectangle_f64, const ::color::color& colorTopLeft, const ::color::color& colorBottomRight, const ::e_border & eborder = e_border_all);
 
-      virtual bool draw_rect(const ::rectangle_f64 & rectangle, const ::color& color, const ::e_border & eborder = e_border_all);
-      //virtual void draw_rect(const rectangle_f64 & rectangle_f64, const ::color& color, const ::e_border & eborder = e_border_all);
+      virtual bool draw_rect(const ::rectangle_f64 & rectangle, const ::color::color& color, const ::e_border & eborder = e_border_all);
+      //virtual void draw_rect(const rectangle_f64 & rectangle_f64, const ::color::color& color, const ::e_border & eborder = e_border_all);
 
       virtual bool set_font(::user::interaction* pinteraction, ::user::enum_element eelement = ::user::e_element_none, ::user::enum_state estate = ::user::e_state_none);
 
@@ -998,9 +998,9 @@ namespace draw2d
       //bool draw_round_top_left(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, i32 radius, const ::e_border & eborder = e_border_all);
       //bool draw_round_bottom_right(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen, i32 radius, const ::e_border & eborder = e_border_all);
 
-      //bool draw_round_rect(const ::rectangle_f64 & rectangle, const ::color & color, double radius, double width, const ::e_border & eborder = e_border_all);
-      //bool draw_round_top_left(const ::rectangle_f64 & rectangle, const ::color & color, i32 radius, i32 width, const ::e_border & eborder = e_border_all);
-      //bool draw_round_bottom_right(const ::rectangle_f64 & rectangle, const ::color & color, i32 radius, i32 width, const ::e_border & eborder = e_border_all);
+      //bool draw_round_rect(const ::rectangle_f64 & rectangle, const ::color::color & color, double radius, double width, const ::e_border & eborder = e_border_all);
+      //bool draw_round_top_left(const ::rectangle_f64 & rectangle, const ::color::color & color, i32 radius, i32 width, const ::e_border & eborder = e_border_all);
+      //bool draw_round_bottom_right(const ::rectangle_f64 & rectangle, const ::color::color & color, i32 radius, i32 width, const ::e_border & eborder = e_border_all);
 
 
       bool draw_stock_icon(const ::rectangle_f64 & rectangle_f64, e_stock_icon eicon);
@@ -1020,7 +1020,7 @@ namespace draw2d
       //
       // Returns:     None
       //
-      bool fill_round_rect(const ::rectangle_f64 & rectangle, const ::color & color, double radius);
+      bool fill_round_rect(const ::rectangle_f64 & rectangle, const ::color::color & color, double radius);
 
       //=============================================================================
       //
@@ -1057,7 +1057,7 @@ namespace draw2d
 
       virtual float nanosvg_distPtSeg(float x, float y, float px, float py, float qx, float qy);
       virtual void nanosvg_cubicBez(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4, float tol, int level);
-      virtual void nanosvg_drawPath(float* pts, int npts, char closed, float tol, const ::color & color);
+      virtual void nanosvg_drawPath(float* pts, int npts, char closed, float tol, const ::color::color & color);
       virtual void nanosvg_drawControlPts(float* pts, int npts);
       virtual void nanosvg_drawframe(NSVGimage* pimage, int x, int y, int w, int h);
       // virtual void nanosvg_resizecb(int width, int height, int x, int y, int w, int h);
@@ -1115,21 +1115,21 @@ namespace draw2d
       //inline bool fill_polygon(point_i32_array & pointa) { return fill_polygon(pointa.get_data(), pointa.get_count()); }
       inline bool fill_polygon(point_f64_array & pointa) { return fill_polygon(pointa.get_data(), pointa.get_count()); }
 
-      //inline void fill_solid_rect_dim(double x, double y, i32 cx, i32 cy, const ::color & color) { return fill_rect(rectd_dim(x, y, cx, cy), color); }
-      //inline void fill_solid_rect_dim(double x, double y, double cx, double cy, const ::color & color); // { return fill_rect(rectdd_dim(x, y, cx, cy), color); }
+      //inline void fill_solid_rect_dim(double x, double y, i32 cx, i32 cy, const ::color::color & color) { return fill_rect(rectd_dim(x, y, cx, cy), color); }
+      //inline void fill_solid_rect_dim(double x, double y, double cx, double cy, const ::color::color & color); // { return fill_rect(rectdd_dim(x, y, cx, cy), color); }
 
-      //inline void fill_solid_rectd_coord(double x1, double y1, double x2, double y2, const ::color & color) { return fill_rect(::rectangle_f64(x1, y1, x2, y2), color); }
-      //inline void fill_solid_rectd_coord(double x1, double y1, double x2, double y2, const ::color & color) { return fill_rect(rectangle_f64(x1, y1, x2, y2), color); }
+      //inline void fill_solid_rectd_coord(double x1, double y1, double x2, double y2, const ::color::color & color) { return fill_rect(::rectangle_f64(x1, y1, x2, y2), color); }
+      //inline void fill_solid_rectd_coord(double x1, double y1, double x2, double y2, const ::color::color & color) { return fill_rect(rectangle_f64(x1, y1, x2, y2), color); }
 
-      //inline void draw_3drect_dim(double x, double y, i32 cx, i32 cy, const ::color& colorTopLeft, const ::color& colorBottomLeft) { return draw_3drect(rectd_dim(x, y, cx, cy), colorTopLeft, colorBottomLeft); }
-      //inline void draw_3drect_dim(double x, double y, double cx, double cy, const ::color& colorTopLeft, const ::color& colorBottomLeft) { return draw_3drect(rectd_dim(x, y, cx, cy), colorTopLeft, colorBottomLeft); }
-      //inline void draw_rect_dim(double x, double y, i32 cx, i32 cy, const ::color& color) { return draw_rect(rectd_dim(x, y, cx, cy), color); }
-      //inline void draw_rect_dim(double x, double y, double cx, double cy, const ::color& color) { return draw_rect(rectd_dim(x, y, cx, cy), color); }
+      //inline void draw_3drect_dim(double x, double y, i32 cx, i32 cy, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_3drect(rectd_dim(x, y, cx, cy), colorTopLeft, colorBottomLeft); }
+      //inline void draw_3drect_dim(double x, double y, double cx, double cy, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_3drect(rectd_dim(x, y, cx, cy), colorTopLeft, colorBottomLeft); }
+      //inline void draw_rect_dim(double x, double y, i32 cx, i32 cy, const ::color::color& color) { return draw_rect(rectd_dim(x, y, cx, cy), color); }
+      //inline void draw_rect_dim(double x, double y, double cx, double cy, const ::color::color& color) { return draw_rect(rectd_dim(x, y, cx, cy), color); }
 
-      //inline void draw_3drect_coord(double x1, double y1, double x2, double y2, const ::color& colorTopLeft, const ::color& colorBottomLeft) { return draw_3drect(::rectangle_f64(x1, y1, x2, y2), colorTopLeft, colorBottomLeft); }
-      //inline void draw_3drect_coord(double x1, double y1, double x2, double y2, const ::color& colorTopLeft, const ::color& colorBottomLeft) { return draw_3drect(rectangle_f64(x1, y1, x2, y2), colorTopLeft, colorBottomLeft); }
-      //inline void draw_rect_coord(double x1, double y1, double x2, double y2, const ::color& color) { return draw_rect(::rectangle_f64(x1, y1, x2, y2), color); }
-      //inline void draw_rect_coord(double x1, double y1, double x2, double y2, const ::color& color) { return draw_rect(rectangle_f64(x1, y1, x2, y2), color); }
+      //inline void draw_3drect_coord(double x1, double y1, double x2, double y2, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_3drect(::rectangle_f64(x1, y1, x2, y2), colorTopLeft, colorBottomLeft); }
+      //inline void draw_3drect_coord(double x1, double y1, double x2, double y2, const ::color::color& colorTopLeft, const ::color::color& colorBottomLeft) { return draw_3drect(rectangle_f64(x1, y1, x2, y2), colorTopLeft, colorBottomLeft); }
+      //inline void draw_rect_coord(double x1, double y1, double x2, double y2, const ::color::color& color) { return draw_rect(::rectangle_f64(x1, y1, x2, y2), color); }
+      //inline void draw_rect_coord(double x1, double y1, double x2, double y2, const ::color::color& color) { return draw_rect(rectangle_f64(x1, y1, x2, y2), color); }
 
 
       

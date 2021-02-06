@@ -279,7 +279,7 @@ namespace android
 
       // Window Access Functions
       virtual ::user::interaction * ChildWindowFromPoint(POINT_I32 point_i32);
-      virtual ::user::interaction * ChildWindowFromPoint(POINT_I32 point_i32,::u32 nFlags);
+      virtual ::user::interaction * ChildWindowFromPoint(POINT_I32 point,::u32 nFlags);
       static ::user::interaction * FindWindow(const char * lpszClassName,const char * lpszWindowName);
       static ::user::interaction * FindWindowEx(oswindow oswindowParent,oswindow oswindowChildAfter,const char * lpszClass,const char * lpszWindow);
 

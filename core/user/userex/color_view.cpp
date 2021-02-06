@@ -8,13 +8,13 @@
 
 
 //#if defined(APPLEOS)
-//#define ARGB_COLORREF(A, R, G, B) ARGB(A, R, G, B)
+//#define ARGB_COLORREF(A, R, G, B) argb(A, R, G, B)
 //#define COLORREF_get_a_value(cr) colorref_get_a_value(cr)
 //#define COLORREF_get_r_value(cr) colorref_get_r_value(cr)
 //#define COLORREF_get_g_value(cr) colorref_get_g_value(cr)
 //#define COLORREF_get_b_value(cr) colorref_get_b_value(cr)
 //#else
-//#define ARGB_COLORREF(A, R, G, B) ARGB(A, B, G, R)
+//#define ARGB_COLORREF(A, R, G, B) argb(A, B, G, R)
 //#define COLORREF_get_a_value(cr) colorref_get_a_value(cr)
 //#define COLORREF_get_r_value(cr) colorref_get_b_value(cr)
 //#define COLORREF_get_g_value(cr) colorref_get_g_value(cr)
@@ -29,13 +29,13 @@ namespace flag
    void dk(::draw2d::graphics_pointer & pgraphics, double x, double y, double w, double h)
    {
 
-      color32_t crDenmarkRoed = ARGB(255, 200, 16, 46);
+      color32_t crDenmarkRoed = argb(255, 200, 16, 46);
 
       double dx = w / 90.0;
 
       double dy = h / 70.0;
 
-      pgraphics->fill_rect(::rectd_dim(x + 0, y + 0, 90.0 * dx, 70.0 * dy), ARGB(255, 255, 255, 255));
+      pgraphics->fill_rect(::rectd_dim(x + 0, y + 0, 90.0 * dx, 70.0 * dy), argb(255, 255, 255, 255));
 
       pgraphics->fill_rect(::rectd_dim(x + 0, y + 0, 30.0 * dx, 30.0 * dy), crDenmarkRoed);
 
@@ -168,7 +168,7 @@ namespace visual
 
       int b = image_b_value(cr);
 
-      cr = ARGB(a, r, g, b);
+      cr = argb(a, r, g, b);
 
       return cr;
 
@@ -222,7 +222,7 @@ namespace visual
 
       ::count h = pimage->height();
 
-      color c;
+      ::color::color color;
 
       double dh = (double) h;
 
@@ -439,7 +439,7 @@ namespace userex
 
       //::draw2d::pen_pointer pen(e_create);
 
-      //pen->create_solid(1.0, ARGB(255, 255, 255, 255));
+      //pen->create_solid(1.0, argb(255, 255, 255, 255));
 
       //m_pimageBeam->g()->set(pen);
 
@@ -474,10 +474,10 @@ namespace userex
    }
 
 
-   color color_view::get_color()
+   ::color::color color_view::get_color()
    {
 
-      color color;
+      ::color::color color;
 
       color.set_hls(m_hls);
 
@@ -488,7 +488,7 @@ namespace userex
    }
 
 
-   void color_view::set_color(color color)
+   void color_view::set_color(::color::color color)
    {
 
       m_bMouseColorBeam = false;
@@ -549,9 +549,9 @@ namespace userex
             x, y,
             iColorsWidth, m_rectColors.height());
 
-         color c(cr);
+         ::color::color color(cr);
 
-         ::hls hls;
+         ::color::hls hls;
 
          c.get_hls(hls);
 
@@ -629,7 +629,7 @@ namespace userex
 
       ::draw2d::brush_pointer br(e_create);
 
-      br->create_solid(ARGB(255, 0, 0, 0));
+      br->create_solid(argb(255, 0, 0, 0));
 
       pgraphics->set(br);
 
@@ -701,7 +701,7 @@ namespace userex
 
       ::draw2d::brush_pointer br(e_create);
 
-      br->create_solid(ARGB(255, 0, 0, 0));
+      br->create_solid(argb(255, 0, 0, 0));
 
       pgraphics->set(br);
 

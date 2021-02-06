@@ -10,7 +10,7 @@ public:
    bool                                m_bOk;
    ::user::control_event *             m_pusercontrolevent;
    ::user::interaction *               m_puserinteraction;
-   ::user::e_key                       m_ekey;
+   ::user::enum_key                       m_ekey;
    bool                                m_bEnterKeyPressed;
    ::payload                                 m_varFile;
    e_impact                            m_epaneview;

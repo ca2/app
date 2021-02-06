@@ -20,7 +20,7 @@ namespace user
          string               m_strText;
          ::draw2d::font_pointer    m_font;
          point_i32                m_point;
-         ::color              m_color;
+         ::color::color              m_color;
 
 
       };

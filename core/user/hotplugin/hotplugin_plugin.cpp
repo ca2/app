@@ -666,7 +666,7 @@ namespace hotplugin
 
             rectP.right    = rectWindow.right;
 
-            pgraphics->fill_rect(rectP, ARGB(90, 90, 90, 80));
+            pgraphics->fill_rect(rectP, argb(90, 90, 90, 80));
 
          }
 

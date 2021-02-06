@@ -44,7 +44,7 @@ public:
    __pointer(::file::item)                         m_pfileitem;
    //__pointer(::u)                        m_pupdatetask;
    ::i64                                           m_iUpdateSerial;
-   ::user::e_key                                   m_ekey;
+   ::user::enum_key                                   m_ekey;
    ::payload                                           m_var;
    bool                                            m_bModified;
    int                                             m_iMillisSleep;

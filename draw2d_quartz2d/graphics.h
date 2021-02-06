@@ -101,7 +101,7 @@ namespace draw2d_quartz2d
 
 
       // color and color Palette Functions
-//      color32_t GetNearestColor(const ::color & color) override;
+//      color32_t GetNearestColor(const ::color::color & color) override;
 //      ::draw2d::palette* SelectPalette(::draw2d::palette* pPalette, bool bForceBackground) override;
 //      ::u32 RealizePalette() override;
 //      void UpdateColors() override;
@@ -113,7 +113,7 @@ namespace draw2d_quartz2d
       i32 GetROP2() override;
       i32 GetStretchBltMode() override;
 
-      //virtual color32_t SetBkColor(const ::color & color);
+      //virtual color32_t SetBkColor(const ::color::color & color);
       i32 SetBkMode(i32 nBkMode);
       i32 SetPolyFillMode(i32 nPolyFillMode) override;
       i32 SetROP2(i32 nDrawMode) override;
@@ -125,10 +125,10 @@ namespace draw2d_quartz2d
 #if (_WIN32_WINNT >= 0x0500)
 
       color32_t GetDCBrushColor() const;
-      color32_t SetDCBrushColor(const ::color & color);
+      color32_t SetDCBrushColor(const ::color::color & color);
 
       color32_t GetDCPenColor() const;
-      color32_t SetDCPenColor(const ::color & color);
+      color32_t SetDCPenColor(const ::color::color & color);
 
 #endif
 
@@ -311,19 +311,19 @@ namespace draw2d_quartz2d
                      i32 xSrc, i32 ySrc, ::u32 dwRop) override;
       virtual bool StretchBltRaw(double x, double y, double nWidth, double nHeight, ::draw2d::graphics * pgraphicsSrc,
                                  i32 xSrc, i32 ySrc, i32 nSrcWidth, i32 nSrcHeight, ::u32 dwRop) override;
-      ::color GetPixel(i32 x, i32 y) override;
-      ::color GetPixel(const ::point_i32 & point) override;
-      ::color SetPixel(i32 x, i32 y, const ::color & color) override;
-      ::color SetPixel(const ::point_i32 & point, const ::color & color) override;
-//      bool FloodFill(i32 x, i32 y, const ::color & color) override;
-//      bool ExtFloodFill(i32 x, i32 y, const ::color & color, ::u32 nFillType) override;
+      ::color::color GetPixel(i32 x, i32 y) override;
+      ::color::color GetPixel(const ::point_i32 & point) override;
+      ::color::color SetPixel(i32 x, i32 y, const ::color::color & color) override;
+      ::color::color SetPixel(const ::point_i32 & point, const ::color::color & color) override;
+//      bool FloodFill(i32 x, i32 y, const ::color::color & color) override;
+//      bool ExtFloodFill(i32 x, i32 y, const ::color::color & color, ::u32 nFillType) override;
 //      bool MaskBlt(i32 x, i32 y, i32 nWidth, i32 nHeight, ::draw2d::graphics * pgraphicsSrc,
 //                   i32 xSrc, i32 ySrc, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask,
 //                   ::u32 dwRop) override;
 //      bool PlgBlt(POINT_I32 * lpPoint, ::draw2d::graphics * pgraphicsSrc, i32 xSrc, i32 ySrc,
 //                  i32 nWidth, i32 nHeight, ::draw2d::bitmap& maskBitmap, i32 xMask, i32 yMask) override;
-      bool SetPixelV(i32 x, i32 y, const ::color & color) override;
-      bool SetPixelV(const ::point_i32 & point, const ::color & color) override;
+      bool SetPixelV(i32 x, i32 y, const ::color::color & color) override;
+      bool SetPixelV(const ::point_i32 & point, const ::color::color & color) override;
 //      bool GradientFill(TRIVERTEX* pVertices, WINULONG nVertices,
 //                        void * pMesh, WINULONG nMeshElements, ::u32 dwMode) override;
 //      bool TransparentBlt(i32 xDest, i32 yDest, i32 nDestWidth, i32 nDestHeight,
@@ -494,8 +494,8 @@ namespace draw2d_quartz2d
 //      void DrawDragRect(const ::rectangle_f64 & rectangle, const ::size_i32 & size,
 //                        const ::rectangle_f64 & rectLast, const ::size_i32 & sizeLast,
 //                        ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr) override;
-      virtual void fill_rect(const ::rectangle_f64 & rectangle, const ::color & color) override;
-      virtual void draw_3drect(const ::rectangle_f64 & rectangle, const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
+      virtual void fill_rect(const ::rectangle_f64 & rectangle, const ::color::color & color) override;
+      virtual void draw_3drect(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
 
       virtual void assert_valid() const override;
       virtual void dump(dump_context & dumpcontext) const override;
@@ -550,7 +550,7 @@ namespace draw2d_quartz2d
       bool _draw();
 
 
-      void internal_set_fill_color(const ::color & color);
+      void internal_set_fill_color(const ::color::color & color);
 
 
       virtual void enum_fonts(::draw2d::font_enum_item_array & itema) override;

@@ -1586,7 +1586,7 @@ break_click:;
    bool form_list::control_001DisplayHitTest(const ::point_i32 & point)
    {
 
-      return _001DisplayHitTest(point_i32,m_itemControl.m_iItem,m_itemControl.m_iSubItem);
+      return _001DisplayHitTest(point,m_itemControl.m_iItem,m_itemControl.m_iSubItem);
 
    }
 
@@ -2089,7 +2089,7 @@ break_click:;
    bool form_list::_001HitTest_(const ::point_i32 & point,index &iItem,index &iSubItem)
    {
 
-      return ::user::list::_001HitTest_(point_i32,iItem,iSubItem);
+      return ::user::list::_001HitTest_(point,iItem,iSubItem);
 
    }
 
@@ -2116,7 +2116,7 @@ break_click:;
             if (!crBackHover)
             {
 
-               crBackHover = ARGB(40, 0, 0, 0);
+               crBackHover = argb(40, 0, 0, 0);
 
             }
 

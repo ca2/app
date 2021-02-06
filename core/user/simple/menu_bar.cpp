@@ -502,7 +502,7 @@ bool simple_menu_bar::ReloadMenuBar()
          rectClient.top,
          rectClient.width(),
          rectClient.height(),
-         RGB(255, 255, 250),
+         rgb(255, 255, 250),
          128);
    }
    else
@@ -513,7 +513,7 @@ bool simple_menu_bar::ReloadMenuBar()
          rectClient.top,
          rectClient.width(),
          rectClient.height(),
-         RGB(230, 230, 225),
+         rgb(230, 230, 225),
          56);
    }
 
@@ -775,14 +775,14 @@ size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
       ::rectangle_i32 rectShadow;
       _001GetItemRect(iItem, rectShadow, e_element_item);
 
-      ::draw2d::pen_pointer penShadow(get_context_application(), PS_SOLID, 1, RGB(127, 127, 127));
-      ::draw2d::brush_pointer brushShadow(get_context_application(), RGB(127, 127, 127));
+      ::draw2d::pen_pointer penShadow(get_context_application(), PS_SOLID, 1, rgb(127, 127, 127));
+      ::draw2d::brush_pointer brushShadow(get_context_application(), rgb(127, 127, 127));
       ::draw2d::pen * ppenOld = pgraphics->set(penShadow);
       ::draw2d::brush * pbrushOld = pgraphics->set(brushShadow);
       pgraphics->rectangle(rectShadow);
 
-      ::draw2d::pen_pointer pen(get_context_application(), PS_SOLID, 1, RGB(92, 92, 92));
-      ::draw2d::brush_pointer brush(get_context_application(), RGB(255, 255, 255));
+      ::draw2d::pen_pointer pen(get_context_application(), PS_SOLID, 1, rgb(92, 92, 92));
+      ::draw2d::brush_pointer brush(get_context_application(), rgb(255, 255, 255));
       pgraphics->set(pen);
       pgraphics->set(brush);
       pgraphics->rectangle(rectItem);
@@ -791,14 +791,14 @@ size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
 
       ::rectangle_i32 rectangle;
       _001GetItemRect(iItem, rectangle, e_element_text);
-      pgraphics->set_text_color(RGB(192, 192, 192));
+      pgraphics->set_text_color(rgb(192, 192, 192));
       draw2d::graphics_extension::_DrawText(pgraphics,
          button.m_wstr,
          rectangle,
          e_align_left_center);
    }
 
-   pgraphics->set_text_color(RGB(0, 0, 0));
+   pgraphics->set_text_color(rgb(0, 0, 0));
    draw2d::graphics_extension::_DrawText(pgraphics,
       button.m_wstr,
       rectText,

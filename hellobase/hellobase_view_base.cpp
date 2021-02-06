@@ -21,7 +21,7 @@ namespace hellobase
    {
       m_prender = nullptr;
       m_fontDrawStatus->create_pixel_font("Arial", 20, 400);
-      m_colorDrawStatus = ARGB(255, 255, 255, 0);
+      m_colorDrawStatus = argb(255, 255, 255, 0);
 
 
 
@@ -153,7 +153,7 @@ auto m_millisRoll = ::millis::now();
 
       pdcParam->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      //      m_pimagePost->get_graphics()->FillSolidRect(110,110,100,100,ARGB(184,177,184,60));
+      //      m_pimagePost->get_graphics()->FillSolidRect(110,110,100,100,argb(184,177,184,60));
 
 
       /*  m_dwaFrame.add(::get_tick());
@@ -172,7 +172,7 @@ auto m_millisRoll = ::millis::now();
 
       }
 
-      pdcParam->set_text_color(ARGB(255, 255, 255, 0));
+      pdcParam->set_text_color(argb(255, 255, 255, 0));
 
       ::draw2d::font_pointer f(e_create);
 
@@ -189,9 +189,9 @@ auto m_millisRoll = ::millis::now();
 
       pdcParam->from(s, pgraphics);
 
-      //pdcScreen->FillSolidRect(10,10,100,100,ARGB(184,49,184,60));
+      //pdcScreen->FillSolidRect(10,10,100,100,argb(184,49,184,60));
 
-      //pdcScreen->Draw3dRect(200,200,100,100,ARGB(255,0,255,0),ARGB(255,0,0,255));
+      //pdcScreen->Draw3dRect(200,200,100,100,argb(255,0,255,0),argb(255,0,0,255));
       //u64 endTime = get_nanos();
 
       //u64 micros = (endTime - startTime) / 1000;
@@ -367,7 +367,7 @@ auto m_millisRoll = ::millis::now();
 
             ::draw2d::pen_pointer pen(e_create);
 
-            pen->create_solid(0.5, ARGB(84, 0, 0, 0));
+            pen->create_solid(0.5, argb(84, 0, 0, 0));
 
             pgraphics->SelectObject(pen);
 

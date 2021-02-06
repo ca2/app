@@ -53,49 +53,49 @@ namespace tranquillum
 
       //create_int(::user::int_element_padding, 4);
 
-      //m_colorBackground = ARGB(255, 255, 255, 255);
-      //m_colorText = ARGB(255, 0, 0, 0);
+      //m_colorBackground = argb(255, 255, 255, 255);
+      //m_colorText = argb(255, 0, 0, 0);
 
 
-      //create_color(::user::color_background, ARGB(255, 255, 255, 255));
-      //create_color(::user::color_text, ARGB(255, 0, 0, 0));
-      //create_color(::user::color_edit_text, ARGB(255, 0, 0, 0));
-      //create_color(::user::color_edit_text_selected, ARGB(255, 255, 255, 255));
-      //create_color(::user::color_edit_background_selected, ARGB(255, 100, 150, 230));
-      //create_color(::user::color_text_selected, ARGB(255, 255, 255, 255));
-      //create_color(::user::color_text_selected_highlight, ARGB(255, 255, 255, 255));
-      //create_color(::user::color_text_highlight, ARGB(255, 255, 255, 255));
-      //create_color(::user::color_text_hover, ARGB(255, 20, 55, 255));
-      //create_color(::user::color_background_selected, ARGB(255, 100, 150, 230));
-      //create_color(::user::color_background_selected_highlight, ARGB(255, 110, 180, 240));
-      //create_color(::user::color_background_highlight, ARGB(255, 120, 200, 250));
-      //create_color(::user::color_background_hover, ARGB(255, 120, 200, 250));
-      //create_color(::user::color_background_selected_hover, ARGB(255, 130, 220, 252));
-      //create_color(::user::color_background, ARGB(255, 255, 255, 255));
-      //create_color(::user::color_button_text, ARGB(255, 255, 255, 255));
-      //create_color(::user::color_list_header, ARGB(255, 40, 40, 40));
-      //create_color(::user::color_list_header_background, ARGB(255, 230, 230, 230));
-      //create_color(::user::color_list_background, ARGB(255, 255, 255, 255));
-      //create_color(::user::color_list_item_text, ARGB(255, 50, 50, 50));
-      //create_color(::user::color_list_item_text_hover, ARGB(255, 50, 50, 50));
-      //create_color(::user::color_list_item_text_selected, ARGB(255, 250, 250, 250));
-      //create_color(::user::color_list_item_text_selected_hover, ARGB(255, 250, 250, 250));
-      //create_color(::user::color_list_item_background, ARGB(255, 255, 255, 255));
-      //create_color(::user::color_list_item_background_hover, ARGB(255, 205, 235, 255));
-      //create_color(::user::color_list_item_background_selected, ARGB(255, 100, 150, 230));
-      //create_color(::user::color_list_item_background_selected_hover, ARGB(255, 130, 180, 240));
-      //create_color(::user::color_button_background, ARGB(255, 80, 150, 220));
-      //create_color(::user::color_button_background_hover, ARGB(255, 110, 180, 240));
-      //create_color(::user::color_button_background_press, ARGB(255, 95, 165, 230));
-      //create_color(::user::color_button_background_disabled, ARGB(255, 160, 160, 160));
-      //create_color(::user::color_button_text, ARGB(255, 255, 255, 255));
-      //create_color(::user::color_button_text_hover, ARGB(255, 255, 255, 255));
-      //create_color(::user::color_button_text_press, ARGB(255, 255, 255, 255));
-      //create_color(::user::color_button_text_disabled, ARGB(255, 200, 210, 220));
-      //create_color(::user::color_scrollbar_strong, ARGB(255, 210, 210, 210));
-      //create_color(::user::color_scrollbar_strong_hover, ARGB(255, 200, 200, 200));
-      //create_color(::user::color_scrollbar, ARGB(255, 230, 230, 230));
-      //create_color(::user::color_scrollbar_hover, ARGB(255, 225, 225, 225));
+      //create_color(::user::color_background, argb(255, 255, 255, 255));
+      //create_color(::user::color_text, argb(255, 0, 0, 0));
+      //create_color(::user::color_edit_text, argb(255, 0, 0, 0));
+      //create_color(::user::color_edit_text_selected, argb(255, 255, 255, 255));
+      //create_color(::user::color_edit_background_selected, argb(255, 100, 150, 230));
+      //create_color(::user::color_text_selected, argb(255, 255, 255, 255));
+      //create_color(::user::color_text_selected_highlight, argb(255, 255, 255, 255));
+      //create_color(::user::color_text_highlight, argb(255, 255, 255, 255));
+      //create_color(::user::color_text_hover, argb(255, 20, 55, 255));
+      //create_color(::user::color_background_selected, argb(255, 100, 150, 230));
+      //create_color(::user::color_background_selected_highlight, argb(255, 110, 180, 240));
+      //create_color(::user::color_background_highlight, argb(255, 120, 200, 250));
+      //create_color(::user::color_background_hover, argb(255, 120, 200, 250));
+      //create_color(::user::color_background_selected_hover, argb(255, 130, 220, 252));
+      //create_color(::user::color_background, argb(255, 255, 255, 255));
+      //create_color(::user::color_button_text, argb(255, 255, 255, 255));
+      //create_color(::user::color_list_header, argb(255, 40, 40, 40));
+      //create_color(::user::color_list_header_background, argb(255, 230, 230, 230));
+      //create_color(::user::color_list_background, argb(255, 255, 255, 255));
+      //create_color(::user::color_list_item_text, argb(255, 50, 50, 50));
+      //create_color(::user::color_list_item_text_hover, argb(255, 50, 50, 50));
+      //create_color(::user::color_list_item_text_selected, argb(255, 250, 250, 250));
+      //create_color(::user::color_list_item_text_selected_hover, argb(255, 250, 250, 250));
+      //create_color(::user::color_list_item_background, argb(255, 255, 255, 255));
+      //create_color(::user::color_list_item_background_hover, argb(255, 205, 235, 255));
+      //create_color(::user::color_list_item_background_selected, argb(255, 100, 150, 230));
+      //create_color(::user::color_list_item_background_selected_hover, argb(255, 130, 180, 240));
+      //create_color(::user::color_button_background, argb(255, 80, 150, 220));
+      //create_color(::user::color_button_background_hover, argb(255, 110, 180, 240));
+      //create_color(::user::color_button_background_press, argb(255, 95, 165, 230));
+      //create_color(::user::color_button_background_disabled, argb(255, 160, 160, 160));
+      //create_color(::user::color_button_text, argb(255, 255, 255, 255));
+      //create_color(::user::color_button_text_hover, argb(255, 255, 255, 255));
+      //create_color(::user::color_button_text_press, argb(255, 255, 255, 255));
+      //create_color(::user::color_button_text_disabled, argb(255, 200, 210, 220));
+      //create_color(::user::color_scrollbar_strong, argb(255, 210, 210, 210));
+      //create_color(::user::color_scrollbar_strong_hover, argb(255, 200, 200, 200));
+      //create_color(::user::color_scrollbar, argb(255, 230, 230, 230));
+      //create_color(::user::color_scrollbar_hover, argb(255, 225, 225, 225));
 
 
    }
@@ -107,7 +107,7 @@ namespace tranquillum
    }
 
 
-   ::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
+   ::color::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (::is_set(pinteraction))
@@ -125,7 +125,7 @@ namespace tranquillum
             if (eelement == ::user::e_element_background)
             {
 
-               return ARGB(255, 116, 160, 220);
+               return argb(255, 116, 160, 220);
 
             }
 
@@ -136,7 +136,7 @@ namespace tranquillum
             if (eelement == ::user::e_element_background)
             {
 
-               return ::color(0, 0, 0, 0);
+               return ::color::color(0, 0, 0, 0);
 
             }
 
@@ -147,7 +147,7 @@ namespace tranquillum
       if (eelement == ::user::e_element_background)
       {
 
-         return ::color(255, 255, 255, 255);
+         return ::color::color(255, 255, 255, 255);
 
       }
       else if (eelement == ::user::e_element_text)
@@ -212,7 +212,7 @@ namespace tranquillum
 
       color32_t crBackground = pframe->get_color(pstyle, ::user::e_element_background);
 
-      //crBackground = ARGB(255, 200, 180, 180);
+      //crBackground = argb(255, 200, 180, 180);
 
       pgraphics->fill_rect(rectClient, crBackground);
 
@@ -487,11 +487,11 @@ namespace tranquillum
       if (!ptab->get_data()->m_bNoClient)
       {
 
-         pgraphics->fill_rect(r1, ARGB(255, 255, 255, 255));
+         pgraphics->fill_rect(r1, argb(255, 255, 255, 255));
 
       }
 
-      ptab->get_data()->m_pen->create_solid(1, RGB(32, 32, 32));
+      ptab->get_data()->m_pen->create_solid(1, rgb(32, 32, 32));
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
 
@@ -504,14 +504,14 @@ namespace tranquillum
       if (ptab->get_data()->m_bNoClient)
       {
 
-         pgraphics->fill_rect(rcTab, ARGB(255, 255, 255, 255));
+         pgraphics->fill_rect(rcTab, argb(255, 255, 255, 255));
 
       }
       ::rectangle_i32 rcTape(rcTab);
 
       rcTape.top = rcTape.bottom - 8;
 
-      pgraphics->fill_rect(rcTape, ARGB(255, 192, 192, 192));
+      pgraphics->fill_rect(rcTape, argb(255, 192, 192, 192));
 
 
       ::rectangle_i32 rcTabs(rcTab);
@@ -588,9 +588,9 @@ namespace tranquillum
 
                   rSel.bottom = rectClient.top + 3;
 
-                  pgraphics->fill_rect(rSel, ARGB(255, 120, 155, 240));
+                  pgraphics->fill_rect(rSel, argb(255, 120, 155, 240));
 
-                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 235, 235, 230), ARGB(250, 255, 255, 250));
+                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 235, 235, 230), argb(250, 255, 255, 250));
 
                   pgraphics->set(pane.m_brushFillSel);
 
@@ -640,7 +640,7 @@ namespace tranquillum
                      && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
-                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
+                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
 
                      pgraphics->set(pane.m_brushFillHover);
 
@@ -662,7 +662,7 @@ namespace tranquillum
                   else
                   {
 
-                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
+                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 175, 175, 170), argb(250, 195, 195, 190));
 
                      pgraphics->set(pane.m_brushFill);
 
@@ -724,9 +724,9 @@ namespace tranquillum
 
                   rSel.bottom = rectClient.top + 3;
 
-                  pgraphics->fill_rect(rSel, ARGB(255, 120, 155, 240));
+                  pgraphics->fill_rect(rSel, argb(255, 120, 155, 240));
 
-                  pane.m_brushFillSel->create_solid(ARGB(255, 255, 255, 255));
+                  pane.m_brushFillSel->create_solid(argb(255, 255, 255, 255));
 
                   pgraphics->set(pane.m_brushFillSel);
 
@@ -765,7 +765,7 @@ namespace tranquillum
                      && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
-                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 215, 215, 210), ARGB(250, 235, 235, 230));
+                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 215, 215, 210), argb(250, 235, 235, 230));
 
                      pgraphics->set(pane.m_brushFillHover);
 
@@ -783,7 +783,7 @@ namespace tranquillum
                   else
                   {
 
-                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), ARGB(230, 175, 175, 170), ARGB(250, 195, 195, 190));
+                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 175, 175, 170), argb(250, 195, 195, 190));
 
                      pgraphics->set(pane.m_brushFill);
 
@@ -810,7 +810,7 @@ namespace tranquillum
             rVertLine = rectangle;
 
             rVertLine.left = rVertLine.right - 1;
-            pgraphics->fill_rect(rVertLine, ARGB(127, 80, 80, 80));
+            pgraphics->fill_rect(rVertLine, argb(127, 80, 80, 80));
 
             //if (iPane == ptab->get_data()->m_panea.get_upper_bound())
             //{
@@ -924,7 +924,7 @@ namespace tranquillum
                if(ptab->m_itemHover.m_iItem == ((int) ::user::e_element_split) + i)
                {
                   
-                  pgraphics->fill_rect(rectEmp,ARGB(128,149,184,255));
+                  pgraphics->fill_rect(rectEmp,argb(128,149,184,255));
                   
                   brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_hover));
                   
@@ -1077,7 +1077,7 @@ namespace tranquillum
    //      rectSeparator.right = rectSeparator.left + 2;
    //      rectSeparator.top = rectImage.top;
    //      rectSeparator.bottom = rectImage.bottom;
-   //      pgraphics->draw3d_rect(rectSeparator, ARGB(255, 92, 92, 92), ARGB(255, 255, 255, 255));
+   //      pgraphics->draw3d_rect(rectSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
    //   }
    //   else
    //   {
@@ -1098,9 +1098,9 @@ namespace tranquillum
    //               rectItem.top,
    //               rectItem.width(),
    //               rectItem.height(),
-   //               RGB(255, 255, 250), 208);
+   //               rgb(255, 255, 250), 208);
 
-   //               pgraphics->draw3d_rect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+   //               pgraphics->draw3d_rect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
    //            }
 
@@ -1137,11 +1137,11 @@ namespace tranquillum
 
    //               ::draw2d::pen_pointer pen(e_create);
 
-   //               pen->create_solid(1, ARGB(184, 92, 184, 92));
+   //               pen->create_solid(1, argb(184, 92, 184, 92));
 
    //               ::draw2d::brush_pointer brush(e_create);
 
-   //               brush->create_solid(ARGB(123, 177, 184, 255));
+   //               brush->create_solid(argb(123, 177, 184, 255));
 
    //               ::draw2d::pen * ppenOld = pgraphics->set(pen);
    //               ::draw2d::brush * pbrushOld = pgraphics->set(brush);
@@ -1184,10 +1184,10 @@ namespace tranquillum
 
    //            ::draw2d::pen_pointer pen(e_create);
 
-   //            pen->create_solid(1, ARGB(255, 92, 92, 92));
+   //            pen->create_solid(1, argb(255, 92, 92, 92));
    //            ::draw2d::brush_pointer brush(e_create);
 
-   //            brush->create_solid(ARGB(255, 255, 255, 255));
+   //            brush->create_solid(argb(255, 255, 255, 255));
    //            ::draw2d::pen * ppenOld = pgraphics->set(pen);
    //            ::draw2d::brush * pbrushOld = pgraphics->set(brush);
    //            pgraphics->rectangle(rectItem);
@@ -1222,14 +1222,14 @@ namespace tranquillum
 
    //            ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
-   //            pgraphics->fill_rect(rectItem, ARGB(184, 255, 255, 255));
+   //            pgraphics->fill_rect(rectItem, argb(184, 255, 255, 255));
 
    //         }
 
    //         if ((nStyle & TBBS_CHECKED) != 0)
    //         {
 
-   //            pgraphics->draw3d_rect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+   //            pgraphics->draw3d_rect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
    //         }
 
@@ -1277,13 +1277,13 @@ namespace tranquillum
    //      if ((nStyle & e_toolbar_item_style_disabled) == 0)
    //      {
 
-   //         brushText->create_solid(ARGB(255, 0, 0, 0));
+   //         brushText->create_solid(argb(255, 0, 0, 0));
 
    //      }
    //      else
    //      {
 
-   //         brushText->create_solid(ARGB(255, 123, 123, 118));
+   //         brushText->create_solid(argb(255, 123, 123, 118));
 
    //      }
 
@@ -1383,7 +1383,7 @@ namespace tranquillum
    //      rectSeparator.right = rectSeparator.left + 2;
    //      rectSeparator.top = rectImage.top;
    //      rectSeparator.bottom = rectImage.bottom;*/
-   //      //pgraphics->Draw3dRect(rectSeparator, ARGB(255, 92, 92, 92), ARGB(255, 255, 255, 255));
+   //      //pgraphics->Draw3dRect(rectSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
    //   }
    //   else
    //   {
@@ -1404,9 +1404,9 @@ namespace tranquillum
    //               rectItem.top,
    //               rectItem.width(),
    //               rectItem.height(),
-   //               RGB(255, 255, 250), 208);
+   //               rgb(255, 255, 250), 208);
 
-   //               pgraphics->draw3d_rect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+   //               pgraphics->draw3d_rect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
    //            }
 
@@ -1526,14 +1526,14 @@ namespace tranquillum
 
    //            ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
-   //            pgraphics->fill_rect(rectItem, ARGB(184, 255, 255, 255));
+   //            pgraphics->fill_rect(rectItem, argb(184, 255, 255, 255));
 
    //         }
 
    //         if ((nStyle & TBBS_CHECKED) != 0)
    //         {
 
-   //            pgraphics->draw3d_rect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+   //            pgraphics->draw3d_rect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
    //         }
 
@@ -1604,9 +1604,9 @@ namespace tranquillum
    //      if ((nStyle & e_toolbar_item_style_disabled) == 0)
    //      {
 
-   //         brushText->create_solid(ARGB(255, 255, 255, 255));
+   //         brushText->create_solid(argb(255, 255, 255, 255));
 
-   //         pgraphics->set_text_color(ARGB(255, 255, 255, 255));
+   //         pgraphics->set_text_color(argb(255, 255, 255, 255));
 
    //      }
    //      else
@@ -1639,7 +1639,7 @@ namespace tranquillum
 
       psplitlayout->get_client_rect(rectClient);
 
-      pgraphics->fill_rect(rectClient, ARGB(255, 255, 255, 255));
+      pgraphics->fill_rect(rectClient, argb(255, 255, 255, 255));
 
       return true;
 

@@ -1523,7 +1523,7 @@ bool simple_frame_window::GetCustomFrame()
 }
 
 
-::color simple_frame_window::get_border_main_body_color()
+::color::color simple_frame_window::get_border_main_body_color()
 {
 
    if (!m_pframe)
@@ -2341,7 +2341,7 @@ void simple_frame_window::_001OnDeferPaintLayeredWindowBackground(::draw2d::grap
 
       get_client_rect(rectClient);
 
-      pgraphics->fill_rect(rectClient, RGB(0, 0, 0));
+      pgraphics->fill_rect(rectClient, rgb(0, 0, 0));
 
    }
    else
@@ -2475,7 +2475,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
 #if TEST
 
-         pgraphics->fill_solid_rect_dim(0, 0, 100, 100, ARGB(128, 255, 0, 0));
+         pgraphics->fill_solid_rect_dim(0, 0, 100, 100, argb(128, 255, 0, 0));
 
 #endif
 
@@ -2522,7 +2522,7 @@ void simple_frame_window::_000OnDraw(::draw2d::graphics_pointer & pgraphicsParam
 
 #if TEST
 
-      pgraphics->fill_solid_rect_dim(0, 100, 100, 100, ARGB(128, 0, 0, 255));
+      pgraphics->fill_solid_rect_dim(0, 100, 100, 100, argb(128, 0, 0, 255));
 
 #endif
 
@@ -2575,14 +2575,14 @@ void simple_frame_window::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
       if(psession->savings().is_trying_to_save(::e_resource_translucent_background))
       {
 
-         //pgraphics->fill_rect(rectClient, RGB(150, 220, 140));
+         //pgraphics->fill_rect(rectClient, rgb(150, 220, 140));
 
       }
       else if(psession->savings().is_trying_to_save(::e_resource_processing)
               || psession->savings().is_trying_to_save(::e_resource_blur_background))
       {
 
-         imaging.color_blend(pgraphics,rectClient,RGB(150,180,140),150);
+         imaging.color_blend(pgraphics,rectClient,rgb(150,180,140),150);
 
       }
       else
@@ -3555,7 +3555,7 @@ void simple_frame_window::draw_frame_and_control_box_over(::draw2d::graphics_poi
 
    }
 
-   //pgraphics->fill_solid_rect_dim(200, 200, 1600, 800, ARGB(128, 200, 240, 150));
+   //pgraphics->fill_solid_rect_dim(200, 200, 1600, 800, argb(128, 200, 240, 150));
 
 }
 

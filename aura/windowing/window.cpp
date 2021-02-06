@@ -82,6 +82,11 @@ namespace windowing
    }
 
 
+   void window::message_handler(::message::base * pbase)
+   {
+
+
+   }
 
 
    ::e_status window::create_window(::user::interaction_impl * pimpl)

@@ -4,18 +4,18 @@
 
 double primitive_color_round(double d);
 
-color color::transparent(0, 0, 0, 0);
-color color::black(0, 0, 0, 255);
-color color::red(255, 0, 0, 255);
-color color::green(0, 255, 0, 255);
-color color::blue(0, 0, 255, 255);
-color color::yellow(255, 255, 0, 255);
-color color::cyan(0, 255, 255, 255);
-color color::magenta(255, 0, 255, 255);
-color color::white(255, 255, 255, 255);
+::color::color color::transparent(0, 0, 0, 0);
+::color::color color::black(0, 0, 0, 255);
+::color::color color::red(255, 0, 0, 255);
+::color::color color::green(0, 255, 0, 255);
+::color::color color::blue(0, 0, 255, 255);
+::color::color color::yellow(255, 255, 0, 255);
+::color::color color::cyan(0, 255, 255, 255);
+::color::color color::magenta(255, 0, 255, 255);
+::color::color color::white(255, 255, 255, 255);
 
 
-color::color()
+color::color::color()
 {
 
    m_iA = -1;
@@ -23,7 +23,7 @@ color::color()
 }
 
 
-color::color(const color & color)
+color::color::color(const ::color::color & color)
 {
 
    operator = (color);
@@ -31,7 +31,7 @@ color::color(const color & color)
 }
 
 
-color::color(color32_t cr)
+color::color::color(color32_t cr)
 {
 
    operator = (cr);
@@ -39,7 +39,7 @@ color::color(color32_t cr)
 }
 
 
-color::color(enum_color ecolor, int A)
+color::color::color(enum_color ecolor, int A)
 {
 
    set_rgb(pure_color(ecolor));
@@ -49,14 +49,14 @@ color::color(enum_color ecolor, int A)
 }
 
 
-color::color(int R, int G, int B, int A)
+color::color::color(int R, int G, int B, int A)
 {
 
    set(R, G, B, A);
 
 }
 
-color::color(const hls & hls, int A)
+color::color::color(const hls & hls, int A)
 {
 
    operator = (hls);
@@ -729,11 +729,11 @@ const hls & hls)
 void CColor::get_hls(byte * H, byte * L, byte * S)
 {
    double dHue, dLightness, dSaturation;
-   // input RGB values
+   // input rgb values
    double dRed = m_bRed;
    double dGreen = m_bGreen;
    double dBlue = m_bBlue;
-   // max and min RGB values
+   // max and min rgb values
    double dMax, dMin;
    // intermediate value: % of spread from max
    double dRedDelta, dGreenDelta, dBlueDelta;
@@ -808,7 +808,7 @@ void CColor::set_hls(
    double dLightness,
    double dSaturation)
 {
-   double dRed, dGreen, dBlue;        // RGB component values
+   double dRed, dGreen, dBlue;        // rgb component values
    double dMagic1, dMagic2;       // calculated magic numbers (really!)
 
    if (dSaturation == 0.0)
@@ -830,7 +830,7 @@ void CColor::set_hls(
          dMagic2 = dLightness + dSaturation - ((dLightness * dSaturation) + (HLSMAX/2.0))/HLSMAX;
       dMagic1 = 2.0 * dLightness- dMagic2;
 
-      // get RGB, change units from HLSMAX to RGBMAX
+      // get rgb, change units from HLSMAX to RGBMAX
       dRed   = (HueToRGB(dMagic1, dMagic2, dHue+(HLSMAX/3.0))*RGBMAX +
          (HLSMAX/2.0))/HLSMAX;
       dGreen   = (HueToRGB(dMagic1, dMagic2, dHue)*RGBMAX + (HLSMAX/2.0)) / HLSMAX;
@@ -846,11 +846,11 @@ void CColor::set_hls(
 
 u32 CColor::get_rgb()
 {
-   return RGB(m_bRed, m_bGreen, m_bBlue);
+   return rgb(m_bRed, m_bGreen, m_bBlue);
 }*/
 
 
-color & color::operator = (const color & color)
+::color::color & color::operator = (const ::color::color & color)
 {
    if (&color != this)
    {
@@ -863,7 +863,7 @@ color & color::operator = (const color & color)
 }
 
 
-color & color::operator = (color32_t cr)
+::color::color & color::operator = (color32_t cr)
 {
 
    set_argb(cr);
@@ -873,7 +873,7 @@ color & color::operator = (color32_t cr)
 }
 
 
-color & color::operator = (enum_color ecolor)
+::color::color & color::operator = (enum_color ecolor)
 {
 
    set_rgb(pure_color(ecolor));
@@ -890,7 +890,7 @@ color & color::operator = (enum_color ecolor)
 }
 
 
-color & color::operator = (const hls & hls)
+::color::color & color::operator = (const hls & hls)
 {
 
    set_hls(hls);
@@ -900,7 +900,7 @@ color & color::operator = (const hls & hls)
 }
 
 
-//color & color::operator = (RGBQUAD rgbquad)
+//::color::color & color::operator = (RGBQUAD rgbquad)
 //{
 //   set_rgbquad(rgbquad);
 //   return *this;
@@ -922,14 +922,14 @@ bool color::parse_color(const char * psz)
       {
          i32 iA, iR, iG, iB;
          sscanf(str, "#%02x%02x%02x%02x", &iA, &iR, &iG, &iB);
-         set_COLORREF(ARGB(iA, iR, iG, iB));
+         set_COLORREF(argb(iA, iR, iG, iB));
          return true;
       }
       else if (!ishexdigit(str[7]))
       {
          i32 iR, iG, iB;
          sscanf(str, "#%02x%02x%02x", &iR, &iG, &iB);
-         set_COLORREF(ARGB(255, iR, iG, iB));
+         set_COLORREF(argb(255, iR, iG, iB));
          return true;
       }
    }
@@ -939,7 +939,7 @@ bool color::parse_color(const char * psz)
       {
          i32 iA, iR, iG, iB;
          sscanf(str, "#%1x%1x%1x%1x", &iA, &iR, &iG, &iB);
-         set_COLORREF(ARGB(
+         set_COLORREF(argb(
                       duplicate_color_nible(iA),
                       duplicate_color_nible(iR),
                       duplicate_color_nible(iG),
@@ -950,7 +950,7 @@ bool color::parse_color(const char * psz)
       {
          int iR, iG, iB;
          sscanf(str, "#%1x%1x%1x", &iR, &iG, &iB);
-         set_COLORREF(ARGB(255,
+         set_COLORREF(argb(255,
                            duplicate_color_nible(iR),
                            duplicate_color_nible(iG),
                            duplicate_color_nible(iB)));
@@ -971,12 +971,12 @@ bool color::parse_color(const char * psz)
             int_array & ia = a.inta();
             if (ia.get_count() == 3)
             {
-               set_COLORREF(ARGB(255, ia[0], ia[1], ia[2]));
+               set_COLORREF(argb(255, ia[0], ia[1], ia[2]));
                return true;
             }
             else if (ia.get_count() == 4)
             {
-               set_COLORREF(ARGB(ia[0], ia[1], ia[2], ia[3]));
+               set_COLORREF(argb(ia[0], ia[1], ia[2], ia[3]));
                return true;
             }
          }
@@ -1010,31 +1010,31 @@ CLASS_DECL_AURA color32_t pure_color(enum_color ecolor)
    switch (ecolor)
    {
    case e_color_black:
-      cr = RGB(0, 0, 0);
+      cr = rgb(0, 0, 0);
       break;
    case e_color_red:
-      cr = RGB(255, 0, 0);
+      cr = rgb(255, 0, 0);
       break;
    case e_color_green:
-      cr = RGB(0, 255, 0);
+      cr = rgb(0, 255, 0);
       break;
    case e_color_blue:
-      cr = RGB(0, 0, 255);
+      cr = rgb(0, 0, 255);
       break;
    case e_color_white:
-      cr = RGB(255, 255, 255);
+      cr = rgb(255, 255, 255);
       break;
    case e_color_yellow:
-      cr = RGB(255, 255, 0);
+      cr = rgb(255, 255, 0);
       break;
    case e_color_magenta:
-      cr = RGB(255, 0, 255);
+      cr = rgb(255, 0, 255);
       break;
    case e_color_cyan:
-      cr = RGB(0, 255, 255);
+      cr = rgb(0, 255, 255);
       break;
    case e_color_gray:
-      cr = RGB(127, 127, 127);
+      cr = rgb(127, 127, 127);
    default:
       cr = 0;
       break;
@@ -1092,12 +1092,12 @@ CLASS_DECL_AURA void cra_from_quada(colorref_array & colorrefa, RGBQUAD * prgbqu
    {
 
 #if defined(ANDROID) && defined(__arm__)
-      colorrefa[i] = ARGB(255, prgbquad[i].rgbRed, prgbquad[i].rgbGreen, prgbquad[i].rgbBlue);
+      colorrefa[i] = argb(255, prgbquad[i].rgbRed, prgbquad[i].rgbGreen, prgbquad[i].rgbBlue);
 #else
-      colorrefa[i] = ARGB(255, prgbquad[i].rgbBlue, prgbquad[i].rgbGreen, prgbquad[i].rgbRed);
+      colorrefa[i] = argb(255, prgbquad[i].rgbBlue, prgbquad[i].rgbGreen, prgbquad[i].rgbRed);
 #endif
 
-      if (colorrefa[i] == ARGB(255, 255, 255, 255))
+      if (colorrefa[i] == argb(255, 255, 255, 255))
       {
 
          output_debug_string("completely white");

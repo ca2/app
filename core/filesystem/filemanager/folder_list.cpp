@@ -348,25 +348,25 @@ namespace filemanager
          if (filemanager_document()->m_emode == ::userfs::mode_saving)
          {
 
-            cr = ARGB(190, 255, 180, 90);
+            cr = argb(190, 255, 180, 90);
 
          }
          else if (filemanager_document()->m_emode == ::userfs::mode_import)
          {
 
-            cr = ARGB(190, 90, 177, 255);
+            cr = argb(190, 90, 177, 255);
 
          }
          else if (filemanager_document()->m_emode == ::userfs::mode_export)
          {
 
-            cr = ARGB(190, 255, 255, 177);
+            cr = argb(190, 255, 255, 177);
 
          }
          else if (filemanager_document()->m_emode == ::userfs::mode_import)
          {
 
-            cr = ARGB(190, 180, 255, 90);
+            cr = argb(190, 180, 255, 90);
 
          }
 
@@ -376,7 +376,7 @@ namespace filemanager
       else
       {
 
-         return RGB(200, 255, 255);
+         return rgb(200, 255, 255);
 
       }
 

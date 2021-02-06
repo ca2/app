@@ -251,7 +251,7 @@ ScaleRow (  color32_t           *pSrc,
          g += (byte)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(GetGValue(pSrcRow[i])));
          b += (byte)(Contrib->ContribRow[x].Weights[i-iLeft] * (double)(GetBValue(pSrcRow[i])));
       }
-      pDstRow[x] = RGB(r,g,b); // Place result in destination pixel
+      pDstRow[x] = rgb(r,g,b); // Place result in destination pixel
    }
 }
 
@@ -330,7 +330,7 @@ ScaleCol (  color32_t           *pSrc,
          g += byte(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(GetGValue(pCurSrc)));
          b += byte(Contrib->ContribRow[y].Weights[i-iLeft] * (double)(GetBValue(pCurSrc)));
       }
-      pRes[y * uResWidth + uCol] = RGB (r,g,b);   // Place result in destination pixel
+      pRes[y * uResWidth + uCol] = rgb (r,g,b);   // Place result in destination pixel
    }
 }
 

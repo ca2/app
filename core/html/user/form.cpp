@@ -55,7 +55,7 @@ html_form::~html_form()
 void html_form::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
 
-   //pgraphics->fill_solid_rect_dim(5, 5, 100, 100, ARGB(255, 255, 255, 0));
+   //pgraphics->fill_solid_rect_dim(5, 5, 100, 100, argb(255, 255, 255, 0));
 
    ::html_data * sphtmldata = nullptr;
 

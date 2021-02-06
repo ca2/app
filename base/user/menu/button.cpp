@@ -93,11 +93,11 @@ namespace user
 
          ::draw2d::brush_pointer br(e_create);
 
-         br->create_solid(ARGB(255, 0, 0, 0));
+         br->create_solid(argb(255, 0, 0, 0));
 
          ::draw2d::pen_pointer pen(e_create);
 
-         pen->create_solid(1, RGB(0, 0, 0));
+         pen->create_solid(1, rgb(0, 0, 0));
          pgraphics->set(pen);
          pgraphics->set(br);
          ::rectangle_i32 rectPopupArrow;
@@ -125,7 +125,7 @@ namespace user
 
       crBackground &= 0x00ffffff;
 
-      crBackground = crBackground | ARGB(200, 0, 0, 0);
+      crBackground = crBackground | argb(200, 0, 0, 0);
 
       return crBackground;
 
@@ -276,7 +276,7 @@ namespace user
             if (echeck() == ::check_checked)
             {
 
-               pgraphics->fill_rect(rectImageBorder, RGB(127, 127, 127));
+               pgraphics->fill_rect(rectImageBorder, rgb(127, 127, 127));
 
                auto psession = Session;
 

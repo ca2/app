@@ -1,7 +1,7 @@
 #pragma once
 
 
-typedef string_map < ::color > string_to_color;
+typedef string_map < ::color::color > string_to_color;
 class LiteHTMLEntityResolver;
 
 

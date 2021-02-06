@@ -43,7 +43,7 @@ namespace user
 
       pgraphics->fill_rect(rectangle_f64, color);
 
-      if (color.get_hls().m_dL <= 0.5)
+      if (color.get_luminance() <= 0.5)
       {
 
          // If color is dark (dark mode?)

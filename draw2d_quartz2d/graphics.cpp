@@ -1527,7 +1527,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::color graphics::GetPixel(i32 x, i32 y)
+   ::color::color graphics::GetPixel(i32 x, i32 y)
    {
 
       __throw(not_implemented());
@@ -1539,7 +1539,7 @@ namespace draw2d_quartz2d
    }
 
 
-   ::color graphics::GetPixel(const ::point_i32 & point)
+   ::color::color graphics::GetPixel(const ::point_i32 & point)
    {
 
       __throw(not_implemented());
@@ -1549,22 +1549,22 @@ namespace draw2d_quartz2d
    }
 
 
-   ::color graphics::SetPixel(i32 x, i32 y, const ::color & color)
+   ::color::color graphics::SetPixel(i32 x, i32 y, const ::color::color & color)
    {
 
       __throw(not_implemented());
 
-      return ::color();
+      return ::color::color();
 
    }
 
 
-   ::color graphics::SetPixel(const ::point_i32 & point, const ::color & color)
+   ::color::color graphics::SetPixel(const ::point_i32 & point, const ::color::color & color)
    {
 
       __throw(not_implemented());
 
-      return ::color();
+      return ::color::color();
 
    }
 
@@ -1699,7 +1699,7 @@ namespace draw2d_quartz2d
 
 //               ::image_pointer pimage0;
 //               image0 = create_image(rectText.size());
-//               image0.get_graphics()->set_text_color(RGB(255, 255, 255));
+//               image0.get_graphics()->set_text_color(rgb(255, 255, 255));
 //               image0.get_graphics()->SelectObject(get_current_font());
 //
 //               image0.get_graphics()->text_out(0, 0, str);
@@ -1712,13 +1712,13 @@ namespace draw2d_quartz2d
 //
 //               pimage1->get_graphics()->text_out(0, 0, str);
 //
-//               pimage1->channel_from(::color::channel_alpha, image0);
+//               pimage1->channel_from(::color::e_channel_alpha, image0);
 //               ::image_pointer pimage2;
 //               pimage2 = create_image(rectText.size());
 //               pimage2->Fill(255, 0, 0, 0);
 //               pimage2->from(point_i32((i64) max(0, m_pointAlphaBlend.x - x), (i64) max(0, m_pointAlphaBlend.y - y)),
 //                          m_pimageAlphaBlend->get_graphics(), point_i32((i64) max(0, x - m_pointAlphaBlend.x), (i64) max(0, y - m_pointAlphaBlend.y)), rectText.size());
-//               pimage1->channel_multiply(::color::channel_alpha, pimage2);
+//               pimage1->channel_multiply(::color::e_channel_alpha, pimage2);
 //               /* p::image_pointer pimage3(get_object());
 //                pimage1->mult_alpha(image3);*/
 //
@@ -2199,7 +2199,7 @@ namespace draw2d_quartz2d
 //
 //   }
 
-   bool graphics::SetPixelV(i32 x, i32 y, const ::color & color)
+   bool graphics::SetPixelV(i32 x, i32 y, const ::color::color & color)
    {
 
       __throw(not_implemented());
@@ -2210,7 +2210,7 @@ namespace draw2d_quartz2d
 
    }
 
-   bool graphics::SetPixelV(const ::point_i32 & point, const ::color & color)
+   bool graphics::SetPixelV(const ::point_i32 & point, const ::color::color & color)
    {
 
       __throw(not_implemented());
@@ -2765,7 +2765,7 @@ namespace draw2d_quartz2d
 //         imageWork4.from(point_i32(max(0, m_pointAlphaBlend.x - xDst), max(0, m_pointAlphaBlend.y - yDst)),
 //                         m_pimageAlphaBlend->get_graphics(), point_i32(max(0, xDst - m_pointAlphaBlend.x), max(0, yDst - m_pointAlphaBlend.y)), size);
 //
-//         imageWork.channel_multiply(::color::channel_alpha, imageWork4);
+//         imageWork.channel_multiply(::color::e_channel_alpha, imageWork4);
 //
 //
 //         ::keep < image > keep2(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
@@ -2855,7 +2855,7 @@ namespace draw2d_quartz2d
     imageWork4.from(point_i32(max(0, m_pointAlphaBlend.x - xDest), max(0, m_pointAlphaBlend.y - yDest)),
     m_pimageAlphaBlend->get_graphics(), point_i32(max(0, xDest - m_pointAlphaBlend.x), max(0, yDest - m_pointAlphaBlend.y)), size);
 
-    imageWork.channel_multiply(::color::channel_alpha, imageWork4);
+    imageWork.channel_multiply(::color::e_channel_alpha, imageWork4);
 
 
     keeper < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
@@ -3097,14 +3097,14 @@ namespace draw2d_quartz2d
 //
 //   }
 
-   /*void graphics::FillSolidRect(const ::rectangle_i32 & rectangle, const ::color & color)
+   /*void graphics::FillSolidRect(const ::rectangle_i32 & rectangle, const ::color::color & color)
     {
     ::SetBkColor(get_handle1(), clr);
     ::ExtTextOut(get_handle1(), 0, 0, ETO_OPAQUE, rectangle, nullptr, 0, nullptr);
     }*/
 
 
-   void graphics::draw_3drect(const ::rectangle_f64 & rectangle, const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder)
+   void graphics::draw_3drect(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder)
    {
       ::i32 x = rectangle.left;
       ::i32 y = rectangle.top;
@@ -4498,7 +4498,7 @@ namespace draw2d_quartz2d
    }
 
 
-   void graphics::fill_rect(const ::rectangle_f64 & rectParam, const ::color & color)
+   void graphics::fill_rect(const ::rectangle_f64 & rectParam, const ::color::color & color)
    {
 
       CGRect rectangle_i32;
@@ -5652,7 +5652,7 @@ namespace draw2d_quartz2d
 
    }
 
-   void graphics::internal_set_fill_color(const ::color & color)
+   void graphics::internal_set_fill_color(const ::color::color & color)
    {
 
       CGContextSetRGBFillColor(m_pdc, color.dr(), color.dg(), color.db(), color.da());
@@ -5982,7 +5982,7 @@ namespace draw2d_quartz2d
 
                bFill = true;
 
-               crFill = spbrush.is_null() ? ARGB(255, 0, 0, 0) : spbrush->m_color.operator unsigned int();
+               crFill = spbrush.is_null() ? argb(255, 0, 0, 0) : spbrush->m_color.operator unsigned int();
 
             }
 
@@ -5993,7 +5993,7 @@ namespace draw2d_quartz2d
 
             bStroke = true;
 
-            crStroke = sppen.is_null() ? ARGB(255, 0, 0, 0) : sppen->m_color.operator color32_t();
+            crStroke = sppen.is_null() ? argb(255, 0, 0, 0) : sppen->m_color.operator color32_t();
 
          }
 

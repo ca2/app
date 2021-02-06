@@ -287,7 +287,7 @@ namespace draw2d_cairo
 
    //void image::Fill ( i32 R, i32 G, i32 B )
    //{
-   //   color32_t color=RGB ( B, G, R );
+   //   color32_t color=rgb ( B, G, R );
    //   i32 size=cx*cy;
 
    //   color32_t * pcr;
@@ -412,9 +412,9 @@ namespace draw2d_cairo
 
    //   imageWork.FillByte(0);
 
-   //   imageWork.channel_from(::color::channel_alpha, this);
+   //   imageWork.channel_from(::color::e_channel_alpha, this);
 
-   //   imageWork.channel_invert(::color::channel_alpha);
+   //   imageWork.channel_invert(::color::e_channel_alpha);
 
 
    //   BLENDFUNCTION bf;
@@ -429,9 +429,9 @@ namespace draw2d_cairo
    //   if(bPreserveAlpha)
    //   {
 
-   //      imageWork.channel_invert(::color::channel_alpha);
+   //      imageWork.channel_invert(::color::e_channel_alpha);
 
-   //      color::channel_from(::color::channel_alpha, imageWork);
+   //      ::color::e_channel_from(::color::e_channel_alpha, imageWork);
 
    //   }
 
@@ -808,7 +808,7 @@ namespace draw2d_cairo
 //      catch(...)
 //      {
 //      }
-//      m_spgraphics->fill_rect(rectx, RGB(255, 255, 255));
+//      m_spgraphics->fill_rect(rectx, rgb(255, 255, 255));
 //      pmessage->m_bRet = true;
 //      pbase->set_lresult(0);
 //

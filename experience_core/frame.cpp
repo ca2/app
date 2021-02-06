@@ -17,7 +17,7 @@ namespace experience
                m_penDkShadow1(e_create)
             {
 
-               m_colorCaptionText = ARGB(255, 0, 0, 0);
+               m_colorCaptionText = argb(255, 0, 0, 0);
 
                m_rectClient.set(0, 0, 0, 0);
 
@@ -115,7 +115,7 @@ namespace experience
             color32_t frame::get_border_main_body_color()
             {
 
-               return RGB(63, 150, 106);
+               return rgb(63, 150, 106);
 
             }
 
@@ -305,7 +305,7 @@ namespace experience
             {
                m_colorMoveableBorder = cr;
 
-               color color;
+               ::color::color color;
 
                color.set_rgb(cr);
                color.hls_rate(0.0, 0.5, 0.0);
@@ -379,7 +379,7 @@ namespace experience
                m_penShadow1->create_solid(1, pframewindow->get_color(pstyle, ::user::e_element_button_shadow));
                m_penDkShadow1->create_solid(1, pframewindow->get_color(pstyle, ::user::e_element_button_dark_shadow));
                m_colorDkShadow = pframewindow->get_color(pstyle, ::user::e_element_button_dark_shadow);
-               m_colorFrameBorder = RGB(0, 0, 0) | 0xff000000;
+               m_colorFrameBorder = rgb(0, 0, 0) | 0xff000000;
 
             }
 
@@ -417,7 +417,7 @@ namespace experience
 
                   pcontrolbox->m_colorBackground = m_colorCaptionTextBk;
 
-                  m_colorCaptionText = ARGB(255, 255, 255, 255);
+                  m_colorCaptionText = argb(255, 255, 255, 255);
 
                }
                else if (m_pframewindow->m_estyle == ::user::StyleBlackPiano || m_pframewindow->m_estyle == ::user::StyleBlackBorder)
@@ -425,7 +425,7 @@ namespace experience
 
                   pcontrolbox->m_colorBackground = m_colorCaptionTextBk;
 
-                  m_colorCaptionText = ARGB(255, 255, 255, 255);
+                  m_colorCaptionText = argb(255, 255, 255, 255);
 
                }
 
@@ -438,32 +438,32 @@ namespace experience
             //   {
             //   case ::user::StyleLightBlue:
             //   case ::user::StyleTranslucidLightBlue:
-            //      return RGB(116, 160, 220);
+            //      return rgb(116, 160, 220);
             //   case ::user::StyleBlackPiano:
             //   case ::user::StyleBlackBorder:
-            //      return RGB(0, 0, 0);
+            //      return rgb(0, 0, 0);
             //   case ::user::StyleTranslucidWarmGray:
-            //      return ARGB(255, 190, 184, 177);
+            //      return argb(255, 190, 184, 177);
             //      break;
             //   case ::user::StyleDarkWarmBlue:
-            //      return ARGB(255,34,54,75);
+            //      return argb(255,34,54,75);
             //      break;
             //   case ::user::StyleLightGreen:
             //   case ::user::StyleTranslucidLightGreen:
-            //      return RGB(116, 220, 160) | 0xff000000;
+            //      return rgb(116, 220, 160) | 0xff000000;
             //   case ::user::StyleRedOrange:
-            //      return RGB(255, 170, 136) | 0xff000000;
+            //      return rgb(255, 170, 136) | 0xff000000;
             //   case ::user::StyleBlueRedPurple:
-            //      return RGB(200, 100, 220) | 0xff000000;
+            //      return rgb(200, 100, 220) | 0xff000000;
             //   case ::user::StyleEveningSun:
-            //      return RGB(255, 210, 100) | 0xff000000;
+            //      return rgb(255, 210, 100) | 0xff000000;
             //   case ::user::StyleTranslucidWarmLiteGray:
-            //      return RGB(239, 230, 219) | 0xff000000;
+            //      return rgb(239, 230, 219) | 0xff000000;
             //   }
 
 
             //   // Light Green/Translucid Light Green
-            //   return RGB(116, 220, 160) | 0xff000000;
+            //   return rgb(116, 220, 160) | 0xff000000;
 
             //}
 
@@ -611,7 +611,7 @@ namespace experience
 
                         ::rectangle_f64 rectangle(rectGrip.left + i, rectGrip.top, 3, rectGrip.height());
 
-                        pgraphics->draw_3drect(rectangle, ARGB(110,230,230,230),ARGB(110,130,130,130));
+                        pgraphics->draw_3drect(rectangle, argb(110,230,230,230),argb(110,130,130,130));
 
                         i += 5;
 

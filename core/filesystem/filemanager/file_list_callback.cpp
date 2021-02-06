@@ -44,13 +44,13 @@ namespace filemanager
       System.imaging().change_hue(
       m_pimagelistNormal,
       m_pimagelistSubItemHover,
-      RGB(220, 220, 215),
+      rgb(220, 220, 215),
       0.50);
 
       System.imaging().color_blend(
       m_pimagelistItemHover,
       m_pimagelistSubItemHover,
-      RGB(220, 220, 215),
+      rgb(220, 220, 215),
       127);
 
       return true;

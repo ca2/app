@@ -285,7 +285,7 @@ for(i32 i = 0; i < pil->get_image_count(); i++)
 {
 VERIFY(pil->get_image_info(i, &ii));
 const ::rectangle_i32 & rectangle = ii.m_rectangle;
-GrayVRCP(spgraphics->get_os_data(), ii.hbmImage, ii.hbmMask, rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), RGB(192, 192, 192));
+GrayVRCP(spgraphics->get_os_data(), ii.hbmImage, ii.hbmMask, rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), rgb(192, 192, 192));
 }
 return pil;
 
@@ -452,7 +452,7 @@ for(i32 i = 0; i < pil->get_image_count(); i++)
 {
 VERIFY(pil->get_image_info(i, &ii));
 const ::rectangle_i32 & rectangle = ii.m_rectangle;
-GrayVRCP(spgraphics->get_os_data(), ii.hbmImage, ii.hbmMask, rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), RGB(192, 192, 192));
+GrayVRCP(spgraphics->get_os_data(), ii.hbmImage, ii.hbmMask, rectangle.left, rectangle.top, rectangle.width(), rectangle.height(), rgb(192, 192, 192));
 }
 return pil;
 
@@ -485,7 +485,7 @@ return pil;
 ////
 ////#else
 ////
-////   color32_t cr3dshadow = ARGB(255,127,127,127);
+////   color32_t cr3dshadow = argb(255,127,127,127);
 ////
 ////#endif
 ////
@@ -503,7 +503,7 @@ return pil;
 ////
 ////#else
 ////
-////   color32_t cr3dhighlight = ARGB(255,192,192,192);
+////   color32_t cr3dhighlight = argb(255,192,192,192);
 ////
 ////#endif
 ////
@@ -2041,7 +2041,7 @@ bool imaging::clip_color_blend(::draw2d::graphics * pgraphics, const rectangle_i
 bool imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & point,const ::size_i32 & size,color32_t cr,byte bA)
 {
 
-   pgraphics->fill_rect(rectangle_i32(size), ARGB(bA,colorref_get_r_value(cr),colorref_get_g_value(cr),colorref_get_b_value(cr)));
+   pgraphics->fill_rect(rectangle_i32(size), argb(bA,colorref_get_r_value(cr),colorref_get_g_value(cr),colorref_get_b_value(cr)));
 
    return true;
 
@@ -2218,7 +2218,7 @@ bool imaging::CreateBitmap(::draw2d::graphics *pgraphics,::draw2d::bitmap * pitm
    if(bCreate)
    {
 
-      ::color color(255, 196, 255);
+      ::color::color color(255, 196, 255);
 
       pgraphics->fill_rect(rectangle_i32(0,0,cxout,cyout), color);
 
@@ -4169,7 +4169,7 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & po
 
       pimage->g()->stretch(::rectangle_f64(size), pdcColorAlpha, ::rectangle_f64(pointAlpha, size));
 
-      pimage->channel_multiply(dBlend, ::color::channel_alpha);
+      pimage->channel_multiply(dBlend, ::color::e_channel_alpha);
 
       return pgraphics->draw(::rectangle_f64(point, size), pimage) != false;
 
@@ -6746,7 +6746,7 @@ bool imaging::HueVRCP(::image * pimage,color32_t crHue,double dCompress)
 
    color32_t cra[256];
 
-   color color;
+   ::color::color color;
 
    for(i32 i = 0; i < 256; i++)
    {
@@ -6843,7 +6843,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const 
 
    }
 
-   brushText->create_solid(ARGB((byte)(255 * dBlend),colorref_get_r_value(cr),colorref_get_g_value(cr),colorref_get_b_value(cr)));
+   brushText->create_solid(argb((byte)(255 * dBlend),colorref_get_r_value(cr),colorref_get_g_value(cr),colorref_get_b_value(cr)));
 
    pgraphics->set(brushText);
 

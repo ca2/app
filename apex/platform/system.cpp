@@ -182,16 +182,23 @@ namespace apex
 
       ::datetime::time timeNow = ::datetime::time::get_current_time();
 
-      if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
+      auto pnode = node();
+
+      if (pnode)
       {
 
-         set_simple_ui_darkness(0);
+         if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
+         {
 
-      }
-      else
-      {
+            pnode->set_simple_ui_darkness(0);
 
-         set_simple_ui_darkness(255);
+         }
+         else
+         {
+
+            pnode->set_simple_ui_darkness(255);
+
+         }
 
       }
 

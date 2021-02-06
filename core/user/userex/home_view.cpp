@@ -6,13 +6,13 @@
 
 
 //#if defined(APPLEOS)
-//#define ARGB_COLORREF(A, R, G, B) ARGB(A, R, G, B)
+//#define ARGB_COLORREF(A, R, G, B) argb(A, R, G, B)
 //#define COLORREF_get_a_value(cr) colorref_get_a_value(cr)
 //#define COLORREF_get_r_value(cr) colorref_get_r_value(cr)
 //#define COLORREF_get_g_value(cr) colorref_get_g_value(cr)
 //#define COLORREF_get_b_value(cr) colorref_get_b_value(cr)
 //#else
-//#define ARGB_COLORREF(A, R, G, B) ARGB(A, B, G, R)
+//#define ARGB_COLORREF(A, R, G, B) argb(A, B, G, R)
 //#define COLORREF_get_a_value(cr) colorref_get_a_value(cr)
 //#define COLORREF_get_r_value(cr) colorref_get_b_value(cr)
 //#define COLORREF_get_g_value(cr) colorref_get_g_value(cr)
@@ -94,7 +94,7 @@ namespace userex
 
       //::draw2d::pen_pointer pen(e_create);
 
-      //pen->create_solid(1.0, ARGB(255, 255, 255, 255));
+      //pen->create_solid(1.0, argb(255, 255, 255, 255));
 
       //m_pimageBeam->g()->set(pen);
 
@@ -132,7 +132,7 @@ namespace userex
    //color home_view::get_color()
    //{
 
-   //   //color color;
+   //   //::color::color color;
 
    //   //color.set_hls(m_hls);
 
@@ -145,7 +145,7 @@ namespace userex
    //}
 
 
-   //void home_view::set_color(color color)
+   //void home_view::set_color(::color::color color)
    //{
 
    //   color.get_hls(m_hls);

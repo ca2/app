@@ -211,7 +211,7 @@ namespace user
 
       byte bAlpha1 = (byte) (128.0* get_alpha());
 
-      imaging.color_blend(pgraphics, rectClient, RGB(250,255,255), bAlpha1);
+      imaging.color_blend(pgraphics, rectClient, rgb(250,255,255), bAlpha1);
 
       ::rectangle_i32 rectangle;
 
@@ -219,13 +219,13 @@ namespace user
 
       byte bAlpha = (byte) (220.0* get_alpha());
 
-      pgraphics->draw_3drect(rectangle,ARGB(bAlpha / 255,108,100,210),ARGB(bAlpha,90,70,180));
+      pgraphics->draw_3drect(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
       rectangle.deflate(1,1);
-      pgraphics->draw_3drect(rectangle,ARGB(bAlpha / 255,150,120,150),ARGB(bAlpha,60,80,150));
+      pgraphics->draw_3drect(rectangle,argb(bAlpha / 255,150,120,150),argb(bAlpha,60,80,150));
       rectangle.deflate(1,1);
-      pgraphics->draw_3drect(rectangle,ARGB(bAlpha / 255,108,100,210),ARGB(bAlpha,90,70,180));
+      pgraphics->draw_3drect(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
       rectangle.deflate(1,1);
-      pgraphics->fill_rect(rectangle,ARGB(bAlpha1,140,108,120));
+      pgraphics->fill_rect(rectangle,argb(bAlpha1,140,108,120));
       //if(m_bSlide)
       //{
       //   pgraphics->move_to(rectangle.center());

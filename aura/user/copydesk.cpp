@@ -420,7 +420,7 @@ namespace user
 
                               pimage->g()->set(pfont);
 
-                              pimage->g()->set_text_color(ARGB(255, 0, 0, 0));
+                              pimage->g()->set_text_color(argb(255, 0, 0, 0));
 
                               pimage->g()->draw_text(str, ::rectangle_i32(pimage->get_size()), e_align_bottom_left);
 

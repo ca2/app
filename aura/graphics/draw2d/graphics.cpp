@@ -330,7 +330,7 @@ namespace draw2d
    }
 
 
-   bool graphics::set_text_color(color color)
+   bool graphics::set_text_color(::color::color color)
    {
 
       ::draw2d::brush_pointer brush(e_create);
@@ -475,7 +475,7 @@ namespace draw2d
    }
 
 
-   //color32_t graphics::GetNearestColor(const ::color & colorColor)
+   //color32_t graphics::GetNearestColor(const ::color::color & colorColor)
    //{
 
    //   UNREFERENCED_PARAMETER(crColor);
@@ -1149,7 +1149,7 @@ namespace draw2d
                m_pimageAlphaBlend->get_graphics(),
                ::point_f64(max(0, rectDst.left - m_pointAlphaBlend.x), max(0, rectDst.top - m_pointAlphaBlend.y)));
 
-            pimage1->channel_multiply(::color::channel_alpha, pimage2);
+            pimage1->channel_multiply(::color::e_channel_alpha, pimage2);
 
             stretch(::rectangle_f64(pointDst, size), pimage1->g(), ::rectangle_f64(pointSrc, size));
 
@@ -1409,7 +1409,7 @@ namespace draw2d
    //}
 
 
-   ::color graphics::GetPixel(double x, double y)
+   ::color::color graphics::GetPixel(double x, double y)
    {
 
       UNREFERENCED_PARAMETER(x);
@@ -1420,7 +1420,7 @@ namespace draw2d
    }
 
 
-   ::color graphics::GetPixel(const ::point_f64 & point)
+   ::color::color graphics::GetPixel(const ::point_f64 & point)
    {
 
       UNREFERENCED_PARAMETER(point);
@@ -1430,7 +1430,7 @@ namespace draw2d
    }
 
 
-   ::color graphics::SetPixel(double x, double y, const ::color & color)
+   ::color::color graphics::SetPixel(double x, double y, const ::color::color & color)
    {
 
       UNREFERENCED_PARAMETER(x);
@@ -1442,7 +1442,7 @@ namespace draw2d
    }
 
 
-   ::color graphics::SetPixel(const ::point_f64 & point, const ::color& color)
+   ::color::color graphics::SetPixel(const ::point_f64 & point, const ::color::color& color)
    {
 
       UNREFERENCED_PARAMETER(point);
@@ -1453,7 +1453,7 @@ namespace draw2d
    }
 
 
-   ::color graphics::blend_pixel(const ::point_f64 & point, const ::color & color)
+   ::color::color graphics::blend_pixel(const ::point_f64 & point, const ::color::color & color)
    {
 
       UNREFERENCED_PARAMETER(point);
@@ -1838,7 +1838,7 @@ namespace draw2d
    }
 
 
-   bool graphics::SetPixelV(double x, double y, const ::color& color)
+   bool graphics::SetPixelV(double x, double y, const ::color::color& color)
    {
 
       UNREFERENCED_PARAMETER(x);
@@ -1850,7 +1850,7 @@ namespace draw2d
    }
 
 
-   bool graphics::SetPixelV(const ::point_f64 & point, const ::color& color)
+   bool graphics::SetPixelV(const ::point_f64 & point, const ::color::color& color)
    {
 
       UNREFERENCED_PARAMETER(point);
@@ -2197,7 +2197,7 @@ namespace draw2d
    }
 
 
-   bool graphics::fill_rect(const ::rectangle_f64 & rectangle, const ::color & color)
+   bool graphics::fill_rect(const ::rectangle_f64 & rectangle, const ::color::color & color)
    {
 
       ::draw2d::brush_pointer brushSolidColor(e_create);
@@ -2216,7 +2216,7 @@ namespace draw2d
    }
 
 
-   //void graphics::fill_rect(const ::rectangle_f64 & rectangle, const ::color& color)
+   //void graphics::fill_rect(const ::rectangle_f64 & rectangle, const ::color::color& color)
    //{
 
    //   fill_rect(::rectangle_f64(rectangle), color);
@@ -2224,7 +2224,7 @@ namespace draw2d
    //}
 
 
-   bool graphics::draw_3drect(const ::rectangle_f64 & rectangle, const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder)
+   bool graphics::draw_3drect(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder)
    {
 
       if (eborder & e_border_top)
@@ -2294,7 +2294,7 @@ namespace draw2d
    }
 
 
-   bool graphics::draw_rect(const ::rectangle_f64 & rectangle, const ::color & color, const ::e_border & eborder)
+   bool graphics::draw_rect(const ::rectangle_f64 & rectangle, const ::color::color & color, const ::e_border & eborder)
    {
 
       if (!draw_3drect(rectangle, color, color, eborder))
@@ -3610,7 +3610,7 @@ namespace draw2d
    }
 
 
-   bool graphics::set_solid_pen(double dWidth, const ::color & color)
+   bool graphics::set_solid_pen(double dWidth, const ::color::color & color)
    {
 
       if(m_ppen.is_null())
@@ -3749,7 +3749,7 @@ namespace draw2d
    //
    // Returns:     None
    //
-   //bool graphics::draw_round_rect(const ::rectangle_f64 & rectParam, const ::color & color, double radius, const ::e_border & eborder)
+   //bool graphics::draw_round_rect(const ::rectangle_f64 & rectParam, const ::color::color & color, double radius, const ::e_border & eborder)
    //{
 
    //   ::rectangle_f64 rectangle(rectParam);
@@ -3795,7 +3795,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::draw_round_top_left(const ::rectangle_f64 & rectParam, const ::color & color, i32 radius, double width, const ::e_border & eborder)
+   //bool graphics::draw_round_top_left(const ::rectangle_f64 & rectParam, const ::color::color & color, i32 radius, double width, const ::e_border & eborder)
    //{
 
    //   ::rectangle_f64 rectangle(rectParam);
@@ -3852,7 +3852,7 @@ namespace draw2d
    //}
 
 
-   //bool graphics::draw_round_bottom_right(const ::rectangle_f64 & rectParam, const ::color & color, i32 radius, double width, const ::e_border & eborder)
+   //bool graphics::draw_round_bottom_right(const ::rectangle_f64 & rectParam, const ::color::color & color, i32 radius, double width, const ::e_border & eborder)
    //{
 
    //   ::rectangle_f64 rectangle(rectParam);
@@ -3900,7 +3900,7 @@ namespace draw2d
    //
    // Returns:     None
    //
-   bool graphics::fill_round_rect(const ::rectangle_f64 & rectangle, const ::color & color, double radius)
+   bool graphics::fill_round_rect(const ::rectangle_f64 & rectangle, const ::color::color & color, double radius)
    {
 
       ::draw2d::brush_pointer br(e_create);
@@ -4753,7 +4753,7 @@ namespace draw2d
                   double fx = 1.0 - fmod(fabs(dx), 1.0);
                   A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
                   A = min(A, 255);
-                  colorref[x + wscan * y] = ARGB((A * iA) / 255, iB, iG, iR);
+                  colorref[x + wscan * y] = argb((A * iA) / 255, iB, iG, iR);
                }
             }
             dTint = dBaseTint * 0.51;
@@ -4772,7 +4772,7 @@ namespace draw2d
                   double fx = 1.0 - fmod(fabs(dx), 1.0);
                   A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
                   A = min(A, 255);
-                  colorref[x + wscan * y] = ARGB((A * iA) / 255, iB, iG, iR);
+                  colorref[x + wscan * y] = argb((A * iA) / 255, iB, iG, iR);
                }
 
             }
@@ -4794,7 +4794,7 @@ namespace draw2d
                   double fx = 1.0 - fmod(fabs(dx), 1.0);
                   A = (int)(A + ((fx * fy) * 255.0 * dStep * dTint));
                   A = min(A, 255);
-                  colorref[x + wscan * y] = ARGB((A * iA) / 255, iB, iG, iR);
+                  colorref[x + wscan * y] = argb((A * iA) / 255, iB, iG, iR);
 
                }
 
@@ -4815,7 +4815,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_ca2_with_border2(int x, int y, int z, int bOut, int bIn, const ::color & colorBk, const ::color & color, const ::color & colorOut, const ::color & colorIn)
+   void graphics::draw_ca2_with_border2(int x, int y, int z, int bOut, int bIn, const ::color::color & colorBk, const ::color::color & color, const ::color::color & colorOut, const ::color::color & colorIn)
    {
 
       draw_ca2(x + bIn + bOut, y + bIn + bOut, z, colorBk, color);
@@ -4825,7 +4825,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_ca2_with_border(int x, int y, int z, int b, const ::color & colorBk, const ::color & color, const ::color & colorBorder)
+   void graphics::draw_ca2_with_border(int x, int y, int z, int b, const ::color::color & colorBk, const ::color::color & color, const ::color::color & colorBorder)
    {
 
       draw_ca2(x + b, y + b, z, colorBk, color);
@@ -4876,7 +4876,7 @@ namespace draw2d
 
 
 
-   void graphics::draw_ca2(int x, int y, int z, const ::color & colorBk, const ::color & color)
+   void graphics::draw_ca2(int x, int y, int z, const ::color::color & colorBk, const ::color::color & color)
    {
 
       ::draw2d::brush_pointer b(e_create);
@@ -5028,7 +5028,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_ca2_border2(int x, int y, int z, int bOut, int bIn, const ::color & colorBk, const ::color & color, const ::color & colorOut, const ::color & colorIn)
+   void graphics::draw_ca2_border2(int x, int y, int z, int bOut, int bIn, const ::color::color & colorBk, const ::color::color & color, const ::color::color & colorOut, const ::color::color & colorIn)
    {
       int w = z / 19;
 
@@ -5149,7 +5149,7 @@ namespace draw2d
    }
 
 
-   void graphics::nanosvg_drawPath(float* pts, int npts, char closed, float tol, const ::color & color)
+   void graphics::nanosvg_drawPath(float* pts, int npts, char closed, float tol, const ::color::color & color)
    {
 
       int i;
@@ -5305,7 +5305,7 @@ namespace draw2d
 
       ::draw2d::pen_pointer pen(e_create);
 
-      pen->create_solid(1.0, ARGB(255, 0, 128, 0));
+      pen->create_solid(1.0, argb(255, 0, 128, 0));
 
       set(pen);
 
@@ -5315,7 +5315,7 @@ namespace draw2d
          for (path = shape->paths; path != nullptr; path = path->next)
          {
 
-            nanosvg_drawPath(path->pts, path->npts, path->closed, px / 3.0f, ARGB(255, 0, 128, 0));
+            nanosvg_drawPath(path->pts, path->npts, path->closed, px / 3.0f, argb(255, 0, 128, 0));
 
 //            nanosvg_drawControlPts(path->pts, path->npts);
 
@@ -5544,7 +5544,7 @@ namespace draw2d
    }
 
 
-   void graphics::draw_border(const ::rectangle_f64 & rectParam, const ::color & color, int iWidth)
+   void graphics::draw_border(const ::rectangle_f64 & rectParam, const ::color::color & color, int iWidth)
    {
 
       ::rectangle_f64 rectangle(rectParam);

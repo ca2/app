@@ -40,7 +40,7 @@ namespace html
    color32_t style::parse_color(const char * psz)
    {
 
-      color c;
+      ::color::color color;
 
       c.parse_color(psz);
 
@@ -1146,12 +1146,12 @@ namespace html
       // todo ::str::find_cssci would find red between spaces but not concatenated
       if(str.find_ci("magenta") >= 0)
       {
-         cr = ARGB(255, 255, 0, 255);
+         cr = argb(255, 255, 0, 255);
          return true;
       }
       else if(str.find_ci("green") >= 0)
       {
-         cr = ARGB(255, 0, 255, 0);
+         cr = argb(255, 0, 255, 0);
          return true;
       }
 
@@ -1194,7 +1194,7 @@ namespace html
             i32 B = (i32) ::str::consume_natural(psz, 255);
             ::str::consume_spaces(psz, 0);
             ::str::consume(psz, ")");
-            cr = ARGB(255, R, G, B);
+            cr = argb(255, R, G, B);
             return true;
          }
          catch(...)

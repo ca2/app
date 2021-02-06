@@ -22,12 +22,12 @@ namespace experience
       };
 
 
-      ::color                                m_colorFrameBorder;
-      ::color                                m_colorMoveableBorderHilight;
-      ::color                                m_colorMoveableBorderDkShadow;
-      ::color                                m_colorCaptionTextBk;
-      ::color                                m_colorActiveCaptionTextBk;
-      ::color                                m_colorCaptionText;
+      ::color::color                                m_colorFrameBorder;
+      ::color::color                                m_colorMoveableBorderHilight;
+      ::color::color                                m_colorMoveableBorderDkShadow;
+      ::color::color                                m_colorCaptionTextBk;
+      ::color::color                                m_colorActiveCaptionTextBk;
+      ::color::color                                m_colorCaptionText;
 
       bool                                 m_bHollow;
       string                               m_strLibrary;
@@ -41,8 +41,8 @@ namespace experience
       point_i32                                m_pointWindowIcon;
       ///point_i32                                m_pointMoveGripMinimal;
 
-      ::color                             m_colorMoveableBorder;
-      ::color                             m_colorMoveableBorderShadow;
+      ::color::color                             m_colorMoveableBorder;
+      ::color::color                             m_colorMoveableBorderShadow;
 
 
       ::experience::experience *           m_pexperience;
@@ -101,7 +101,7 @@ namespace experience
       virtual string get_default_user_style() const;
 
 
-      virtual void set_moveable_border_color(const ::color & color);
+      virtual void set_moveable_border_color(const ::color::color & color);
 
 
 

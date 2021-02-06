@@ -188,7 +188,7 @@ GC simple_ui_display::create_gc()
 //
 //   XAllocColor(m_display, colormap, &xcolour);
 
-//   XSetForeground(m_display, gc, ARGB(255, iR, iG, iB));
+//   XSetForeground(m_display, gc, argb(255, iR, iG, iB));
 
    XSetLineAttributes(d, gc, line_width, line_style, cap_style, join_style);
 
@@ -357,7 +357,7 @@ int simple_ui_display::show()
 
    attr.colormap = colormap;
    attr.border_pixel = 0;
-   attr.background_pixel = ARGB(255, 255, 255, 255);
+   attr.background_pixel = argb(255, 255, 255, 255);
    attr.event_mask =
       KeyPressMask |
       KeyReleaseMask |

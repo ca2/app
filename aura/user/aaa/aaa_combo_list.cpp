@@ -111,7 +111,7 @@ namespace user
 
       ::draw2d::brush_pointer brBk(e_create);
 
-      brBk->create_solid(ARGB(230, 255, 255, 255));
+      brBk->create_solid(argb(230, 255, 255, 255));
 
       pgraphics->set(brBk);
 
@@ -169,9 +169,9 @@ namespace user
 
                //cr = _001GetColor(::user::color_list_item_text_selected_hover);
 
-               crBk = ARGB(255, 120, 190, 220);
+               crBk = argb(255, 120, 190, 220);
 
-               cr = ARGB(255, 255, 255, 255);
+               cr = argb(255, 255, 255, 255);
 
                strDebug += "sel;";
 
@@ -179,9 +179,9 @@ namespace user
             else
             {
 
-               crBk = ARGB(255, 235, 245, 255);
+               crBk = argb(255, 235, 245, 255);
 
-               cr = ARGB(255, 0, 0, 0);
+               cr = argb(255, 0, 0, 0);
 
             }
 
@@ -191,17 +191,17 @@ namespace user
 
             strDebug += "sel;";
 
-            crBk = ARGB(255, 120, 150, 190);
+            crBk = argb(255, 120, 150, 190);
 
-            cr = ARGB(255, 255, 255, 255);
+            cr = argb(255, 255, 255, 255);
 
          }
          else
          {
 
-            crBk = ARGB(255, 255, 255, 255);
+            crBk = argb(255, 255, 255, 255);
 
-            cr = ARGB(255, 0, 0, 0);
+            cr = argb(255, 0, 0, 0);
 
          }
 
@@ -233,7 +233,7 @@ namespace user
 
       //color32_t crBorder = _001GetColor(::user::color_border);
 
-      color32_t crBorder = ARGB(255, 0, 0, 0);
+      color32_t crBorder = argb(255, 0, 0, 0);
 
       ::draw2d::pen_pointer pen(e_create);
 

@@ -1615,7 +1615,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 }
 
 
-::color graphics::GetPixel(double x, double y)
+::color::color graphics::GetPixel(double x, double y)
 {
 
     ::exception::throw_not_implemented();
@@ -1625,7 +1625,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 }
 
 
-::color graphics::GetPixel(const ::point_f64 & point)
+::color::color graphics::GetPixel(const ::point_f64 & point)
 {
 
     ::exception::throw_not_implemented();
@@ -1635,7 +1635,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 }
 
 
-::color graphics::SetPixel(double x, double y, const ::color & color)
+::color::color graphics::SetPixel(double x, double y, const ::color::color & color)
 {
 
     ::exception::throw_not_implemented();
@@ -1645,7 +1645,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 }
 
 
-::color graphics::SetPixel(const ::point_f64 & point, const ::color & color)
+::color::color graphics::SetPixel(const ::point_f64 & point, const ::color::color & color)
 {
 
     ::exception::throw_not_implemented();
@@ -1655,7 +1655,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 }
 
 
-//bool graphics::FloodFill(double x, double y, const ::color & color)
+//bool graphics::FloodFill(double x, double y, const ::color::color & color)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -1665,7 +1665,7 @@ bool graphics::_stretch_raw(const ::rectangle_f64 & rectDst, ::image * pimage, c
 //}
 //
 //
-//bool graphics::ExtFloodFill(double x, double y, const ::color & color, ::u32 nFillType)
+//bool graphics::ExtFloodFill(double x, double y, const ::color::color & color, ::u32 nFillType)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -2343,7 +2343,7 @@ i32 graphics::EndDoc()
 //}
 
 
-bool graphics::SetPixelV(double x, double y, const ::color & color)
+bool graphics::SetPixelV(double x, double y, const ::color::color & color)
 {
 
    ::exception::throw_not_implemented();
@@ -2353,7 +2353,7 @@ bool graphics::SetPixelV(double x, double y, const ::color & color)
 }
 
 
-bool graphics::SetPixelV(const ::point_f64 & point, const ::color & color)
+bool graphics::SetPixelV(const ::point_f64 & point, const ::color::color & color)
 {
 
    ::exception::throw_not_implemented();
@@ -4192,7 +4192,7 @@ bool graphics::GetTextExtent(size_f64 & size_f64, const string & str)
 }
 
 
-bool graphics::fill_rect(const ::rectangle_f64 & rectangle, const ::color & color)
+bool graphics::fill_rect(const ::rectangle_f64 & rectangle, const ::color::color & color)
 {
 
     sync_lock ml(cairo_mutex());
@@ -4215,7 +4215,7 @@ bool graphics::fill_rect(const ::rectangle_f64 & rectangle, const ::color & colo
 }
 
 
-//bool graphics::fill_rect(const ::rectangle_f64 & rectangle, const ::color & color)
+//bool graphics::fill_rect(const ::rectangle_f64 & rectangle, const ::color::color & color)
 //{
 //
 //    sync_lock ml(cairo_mutex());

@@ -884,7 +884,7 @@ namespace core
    }
 
 
-   bool user::modal_get_color(::user::interaction * puiOwner, ::hls & hls)
+   bool user::modal_get_color(::user::interaction * puiOwner, ::color::hls & hls)
    {
 
 #ifdef WINDOWS_DESKTOP
@@ -895,10 +895,10 @@ namespace core
       // init-int this array did not affect the mouse problem
       // ::u32 idx ;
       // for (idx=0; idx<16; idx++) {
-      // crCustColors[idx] = RGB(idx, idx, idx) ;
+      // crCustColors[idx] = rgb(idx, idx, idx) ;
       // }
 
-      ::color c(hls);
+      ::color::color color(hls);
 
       ZeroMemory(&cc, sizeof(cc));
       cc.lStructSize = sizeof(CHOOSECOLOR);

@@ -669,7 +669,7 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 //
 //
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_find_first(TYPE *point_i32, ::index find, ::index last) const
+::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_find_first(TYPE *point, ::index find, ::index last) const
 {
    if(find < 0)
       find += this->get_count();

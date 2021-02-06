@@ -254,7 +254,7 @@ SizingNone:;
 
                   pgraphics->fill_rect(rectangle, A_RGB(255, crMoveableBorder));//m_colorMoveableBorderDkShadow);
 
-                  // RGB(255, 170, 136) RedOrange
+                  // rgb(255, 170, 136) RedOrange
                }
                else if(m_pframewindow->m_estyle == ::user::StyleLightBlue || m_pframewindow->m_estyle == ::user::StyleRedOrange)
                {
@@ -438,31 +438,31 @@ SizingNone:;
                   pgraphics->set(m_penHollow0);
                   pgraphics->draw_rect(rectA);
 
-                  //Draw3dRectSide(pgraphics,rectA,eside,ARGB(8,50,100,200),ARGB(8,50,100,200));
+                  //Draw3dRectSide(pgraphics,rectA,eside,argb(8,50,100,200),argb(8,50,100,200));
                   rectA.deflate(1,1,1,1);
 
                   pgraphics->set(m_penHollow1);
                   pgraphics->draw_rect(rectA);
 
-                  //Draw3dRectSide(pgraphics,rectA,eside,ARGB(11,50,100,200),ARGB(11,50,100,200));
+                  //Draw3dRectSide(pgraphics,rectA,eside,argb(11,50,100,200),argb(11,50,100,200));
                   rectA.deflate(1,1,1,1);
 
                   pgraphics->set(m_penHollow2);
                   pgraphics->draw_rect(rectA);
 
-                  //Draw3dRectSide(pgraphics,rectA,eside,ARGB(23,50,100,200),ARGB(23,50,100,200));
+                  //Draw3dRectSide(pgraphics,rectA,eside,argb(23,50,100,200),argb(23,50,100,200));
                   rectA.deflate(1,1,1,1);
 
                   pgraphics->set(m_penHollow3);
                   pgraphics->draw_rect(rectA);
 
-                  //Draw3dRectSide(pgraphics,rectA,eside,ARGB(49,50,100,200),ARGB(49,50,100,200));
+                  //Draw3dRectSide(pgraphics,rectA,eside,argb(49,50,100,200),argb(49,50,100,200));
                   rectA.deflate(1,1,1,1);
 
                   pgraphics->set(m_penHollow4);
                   pgraphics->draw_rect(rectA);
 
-                  //Draw3dRectSide(pgraphics,rectA,eside,ARGB(49 +23,50,100,200),ARGB(49+23,50,100,200));
+                  //Draw3dRectSide(pgraphics,rectA,eside,argb(49 +23,50,100,200),argb(49+23,50,100,200));
                   rectA.deflate(1,1,1,1);
 
                   pgraphics->set(m_penHollow5);
@@ -544,7 +544,7 @@ SizingNone:;
 
                on_style_change_001_and_002();
 
-               ::color color = m_colorMoveableBorderDkShadow;
+               ::color::color color = m_colorMoveableBorderDkShadow;
 
                color.alpha = 8;
                m_penHollow0->create_solid(1.0,color);
@@ -599,12 +599,12 @@ SizingNone:;
                   rectA.right = 4;
                   rectA.bottom = size;
 
-                  pgraphics->fill_rect(rectA, ARGB(255, 0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, argb(255, 0x60, 0x65, 0x55));
 
                   rectA.right = size;
                   rectA.bottom = 4;
 
-                  pgraphics->fill_rect(rectA, ARGB(255, 0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, argb(255, 0x60, 0x65, 0x55));
 
                }
                break;
@@ -615,12 +615,12 @@ SizingNone:;
                   rectA.left = rectA.right - 4;
                   rectA.bottom = size;
 
-                  pgraphics->fill_rect(rectA, ARGB(255, 0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, argb(255, 0x60, 0x65, 0x55));
 
                   rectA.left = rectA.right - size;
                   rectA.bottom = 4;
 
-                  pgraphics->fill_rect(rectA, ARGB(255, 0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, argb(255, 0x60, 0x65, 0x55));
                }
                break;
                case e_grip_bottom_left:
@@ -630,12 +630,12 @@ SizingNone:;
                   rectA.right = 4;
                   rectA.top = rectA.bottom - size;
 
-                  pgraphics->fill_rect(rectA, ARGB(255, 0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, argb(255, 0x60, 0x65, 0x55));
 
                   rectA.right = size;
                   rectA.top = rectA.bottom - 4;
 
-                  pgraphics->fill_rect(rectA, ARGB(255, 0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, argb(255, 0x60, 0x65, 0x55));
                }
                break;
                case e_grip_bottom_right:
@@ -645,12 +645,12 @@ SizingNone:;
                   rectA.left = rectA.right - 4;
                   rectA.top = rectA.bottom - size;
 
-                  pgraphics->fill_rect(rectA, ARGB(255, 0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, argb(255, 0x60, 0x65, 0x55));
 
                   rectA.left = rectA.right - size;
                   rectA.top = rectA.bottom - 4;
 
-                  pgraphics->fill_rect(rectA, ARGB(255, 0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, argb(255, 0x60, 0x65, 0x55));
                }
                break;
                case e_grip_top:
@@ -661,7 +661,7 @@ SizingNone:;
                   rectA.right = rectA.left + size;
                   rectA.bottom = 4;
 
-                  pgraphics->fill_rect(rectA, ARGB(255, 0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, argb(255, 0x60, 0x65, 0x55));
 
                }
                break;
@@ -673,7 +673,7 @@ SizingNone:;
                   rectA.right = rectA.left + size;
                   rectA.top = rectA.bottom - 4;
 
-                  pgraphics->fill_rect(rectA, ARGB(255, 0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, argb(255, 0x60, 0x65, 0x55));
                }
                break;
                case e_grip_left:
@@ -684,7 +684,7 @@ SizingNone:;
                   rectA.top = rectA.top + rectA.height() / 2 - size / 2;
                   rectA.bottom = rectA.top + size;
 
-                  pgraphics->fill_rect(rectA, ARGB(255, 0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, argb(255, 0x60, 0x65, 0x55));
                }
                break;
                case e_grip_right:
@@ -695,7 +695,7 @@ SizingNone:;
                   rectA.top = rectA.top + rectA.height() / 2 - size / 2;
                   rectA.bottom = rectA.top + size;
 
-                  pgraphics->fill_rect(rectA, ARGB(255, 0x60, 0x65, 0x55));
+                  pgraphics->fill_rect(rectA, argb(255, 0x60, 0x65, 0x55));
                }
                break;
                default:

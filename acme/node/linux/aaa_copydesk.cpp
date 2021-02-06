@@ -127,7 +127,7 @@ void clipboard_image_received_func(GtkClipboard * clipboard, GdkPixbuf * pixbuf,
          if(!bHasAlpha)
          {
 
-            pdata->m_pimage->fill_channel(255, ::color::channel_alpha);
+            pdata->m_pimage->fill_channel(255, ::color::e_channel_alpha);
 
          }
 
@@ -425,7 +425,7 @@ gboolean clipboard_callback(gpointer data)
 //               if(!bHasAlpha)
 //               {
 //
-//                  pdata->m_pimage->fill_channel(255, ::color::channel_alpha);
+//                  pdata->m_pimage->fill_channel(255, ::color::e_channel_alpha);
 //
 //               }
 //

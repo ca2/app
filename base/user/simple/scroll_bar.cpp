@@ -23,15 +23,15 @@ simple_scroll_bar::simple_scroll_bar() :
    m_scrollinfo.nPos    = 0;
 
 
-   //m_cr = ARGB(127,180,80,120);
-   //m_colorStrong = ARGB(150, 150, 150, 150);
-   //m_colorBorder = ARGB(190, 180, 180, 180);
-   //m_colorLiteBorder = ARGB(184,84 + 23,84 + 23,77 + 23);
+   //m_cr = argb(127,180,80,120);
+   //m_colorStrong = argb(150, 150, 150, 150);
+   //m_colorBorder = argb(190, 180, 180, 180);
+   //m_colorLiteBorder = argb(184,84 + 23,84 + 23,77 + 23);
 
-   //m_colorHover = ARGB(100,190,180,250);
-   //m_colorHoverStrong = ARGB(130, 190, 180, 250);
-   //m_colorHoverBorder = ARGB(190, 160, 150, 180);
-   //m_colorHoverLiteBorder = ARGB(184,84 + 23 - 23,84 + 23,77 + 23 + 84);
+   //m_colorHover = argb(100,190,180,250);
+   //m_colorHoverStrong = argb(130, 190, 180, 250);
+   //m_colorHoverBorder = argb(190, 160, 150, 180);
+   //m_colorHoverLiteBorder = argb(184,84 + 23 - 23,84 + 23,77 + 23 + 84);
 
 }
 
@@ -1368,7 +1368,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
 
    get_client_rect(rectClient);
 
-   if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
+   if ((crBackground & argb(255, 0, 0, 0)) != 0)
    {
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -1378,13 +1378,13 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
       if (psession->savings().is_trying_to_save(::e_resource_processing))
       {
 
-         pgraphics->fill_rect(rectClient, RGB(255, 255, 255));
+         pgraphics->fill_rect(rectClient, rgb(255, 255, 255));
 
       }
       else
       {
 
-         pgraphics->fill_rect(rectClient, ARGB(255, 240, 240, 240));
+         pgraphics->fill_rect(rectClient, argb(255, 240, 240, 240));
 
       }
 
@@ -1668,7 +1668,7 @@ void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgrap
 
    ::draw2d::pen_pointer pen(e_create);
 
-   pen->create_solid(2.0,ARGB(150 * uchAlpha / 255,108, 108, 100));
+   pen->create_solid(2.0,argb(150 * uchAlpha / 255,108, 108, 100));
 
    pgraphics->set(pen);
 
@@ -1678,7 +1678,7 @@ void simple_scroll_bar::draw_mac_thumb_simple(::draw2d::graphics_pointer & pgrap
 
    ::rectangle_i32 rectDotto(0,0,5,5);
 
-   brush->create_solid(ARGB(150 * uchAlpha / 255,108,108,100));
+   brush->create_solid(argb(150 * uchAlpha / 255,108,108,100));
 
    pgraphics->set(brush);
 
@@ -1757,7 +1757,7 @@ void simple_scroll_bar::draw_mac_thumb_dots(::draw2d::graphics_pointer & pgraphi
 
             rectangle_f64 r(x - iSize, y - iSize, x + iSize, y + iSize);
 
-            m_pimageDots->g()->fill_rect(r, ARGB(80, 0, 0, 0));
+            m_pimageDots->g()->fill_rect(r, argb(80, 0, 0, 0));
 
             y += m_pimageDots->height() / (iDiv2 + 1.0);
 
@@ -1863,7 +1863,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 }
 
 
-::color simple_scroll_bar::scrollbar_color_strong(::user::style * pstyle, ::user::enum_element eelement)
+::color::color simple_scroll_bar::scrollbar_color_strong(::user::style * pstyle, ::user::enum_element eelement)
 {
 
    if (m_itemCurrent == eelement || m_itemHover== eelement)
@@ -1886,7 +1886,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 }
 
 
-::color simple_scroll_bar::scrollbar_color(::user::style* pstyle, ::user::enum_element eelement)
+::color::color simple_scroll_bar::scrollbar_color(::user::style* pstyle, ::user::enum_element eelement)
 {
 
    if(m_itemCurrent == eelement || m_itemHover== eelement)
@@ -1909,7 +1909,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 }
 
 
-::color simple_scroll_bar::scrollbar_border_color(::user::style* pstyle, ::user::enum_element eelement)
+::color::color simple_scroll_bar::scrollbar_border_color(::user::style* pstyle, ::user::enum_element eelement)
 {
 
    if(m_itemCurrent == eelement || m_itemHover== eelement)
@@ -1932,7 +1932,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 }
 
 
-::color simple_scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::user::enum_element eelement)
+::color::color simple_scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::user::enum_element eelement)
 {
 
    if(m_itemCurrent == eelement || m_itemHover== eelement)
@@ -1955,7 +1955,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 }
 
 
-::color simple_scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::user::enum_element eelement)
+::color::color simple_scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::user::enum_element eelement)
 {
 
    if (m_itemCurrent == eelement || m_itemHover == eelement)

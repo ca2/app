@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 
@@ -229,7 +229,7 @@ strsize ansi_to_wd16_len_len(const char* psz, strsize srclen)
 //}
 //
 //
-//strsize utf16_to_utf16(wd16char* point_i32, const wd16char* codepoints, strsize input_size)
+//strsize utf16_to_utf16(wd16char* p, const wd16char* codepoints, strsize input_size)
 //{
 //
 //   strsize len = 0;
@@ -247,7 +247,7 @@ strsize ansi_to_wd16_len_len(const char* psz, strsize srclen)
 //      if (cp < 0x10000)
 //      {
 //
-//         *point_i32++ = static_cast<wd16char>(cp);
+//         *p++ = static_cast<wd16char>(cp);
 //
 //      }
 //      else if (cp <= 0x10FFFF)
@@ -255,15 +255,15 @@ strsize ansi_to_wd16_len_len(const char* psz, strsize srclen)
 //
 //         cp -= 0x10000;
 //
-//         *point_i32++ = static_cast<wd16char>((cp >> 10) + 0xD800);
+//         *p++ = static_cast<wd16char>((cp >> 10) + 0xD800);
 //
-//         *point_i32++ = static_cast<wd16char>((cp & 0x3FF) + 0xDC00);
+//         *p++ = static_cast<wd16char>((cp & 0x3FF) + 0xDC00);
 //
 //      }
 //      else
 //      {
 //
-//         *point_i32++ = static_cast<wd16char>(0xFFFD);
+//         *p++ = static_cast<wd16char>(0xFFFD);
 //
 //      }
 //
@@ -281,11 +281,11 @@ strsize ansi_to_wd16_len_len(const char* psz, strsize srclen)
 //
 //   wstring wstr;
 //
-//   wd16char* point = wstr.get_buffer(s);
+//   wd16char* p = wstr.get_buffer(s);
 //
-//   utf16_to_utf16(point, input, s);
+//   utf16_to_utf16(p, input, s);
 //
-//   point_i32[s] = 0;
+//   p[s] = 0;
 //
 //   return wstr;
 //
@@ -305,9 +305,9 @@ extern "C"
    wchar_t* c_wide_str(const char* str)
    {
 #if defined(__APPLE__) || defined(LINUX) || defined(ANDROID)
-      wchar_t* point = ansi_to_wd32_dup(str);
-      wchar_t* point2 = wcsdup(point);
-      memory_free(point);
+      wchar_t* p = ansi_to_wd32_dup(str);
+      wchar_t* point2 = wcsdup(p);
+      memory_free(p);
       return point2;
 #else
       return wcsdup(::str::international::utf8_to_unicode(str));
@@ -840,7 +840,7 @@ strsize utf16_to_utf16_len(const wd16char* codepoints, strsize input_size)
 }
 
 
-strsize utf16_to_utf16(wd16char * point_i32, const wd16char* codepoints, strsize input_size)
+strsize utf16_to_utf16(wd16char * p, const wd16char* codepoints, strsize input_size)
 {
 
    strsize len = 0;
@@ -853,12 +853,16 @@ strsize utf16_to_utf16(wd16char * point_i32, const wd16char* codepoints, strsize
       input_size--;
 
       if (cp == 0)
+      {
+
          break;
+
+      }
 
       if (cp < 0x10000)
       {
 
-         *point_i32++ = static_cast<wd16char>(cp);
+         *p++ = static_cast<wd16char>(cp);
 
       }
       else if (cp <= 0x10FFFF)
@@ -866,15 +870,15 @@ strsize utf16_to_utf16(wd16char * point_i32, const wd16char* codepoints, strsize
 
          cp -= 0x10000;
 
-         *point_i32++ = static_cast<wd16char>((cp >> 10) + 0xD800);
+         *p++ = static_cast<wd16char>((cp >> 10) + 0xD800);
 
-         *point_i32++ = static_cast<wd16char>((cp & 0x3FF) + 0xDC00);
+         *p++ = static_cast<wd16char>((cp & 0x3FF) + 0xDC00);
 
       }
       else
       {
 
-         *point_i32++ = static_cast<wd16char>(0xFFFD);
+         *p++ = static_cast<wd16char>(0xFFFD);
 
       }
 
@@ -892,11 +896,11 @@ strsize utf16_to_utf16(wd16char * point_i32, const wd16char* codepoints, strsize
 //
 //   wstring wstr;
 //
-//   unichar* point = wstr.get_buffer(s);
+//   unichar* p = wstr.get_buffer(s);
 //
-//   utf16_to_utf16(point, input, s);
+//   utf16_to_utf16(p, input, s);
 //
-//   point_i32[s] = 0;
+//   p[s] = 0;
 //
 //   return wstr;
 //

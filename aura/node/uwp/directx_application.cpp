@@ -441,7 +441,7 @@ namespace uwp
 
       bool bSpecialKey = false;
 
-      ::user::e_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
+      ::user::enum_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
 
       if(bSpecialKey || !bTextFocus || m_psystem->get_context_session()->is_key_pressed(::user::e_key_control)
          || m_psystem->get_context_session()->is_key_pressed(::user::e_key_alt))
@@ -498,7 +498,7 @@ namespace uwp
 
       bool bSpecialKey = false;
 
-      ::user::e_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
+      ::user::enum_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
 
       if (bSpecialKey || !bTextFocus)
       {

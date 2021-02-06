@@ -7,7 +7,7 @@
 
 
 
-extern "C" void * small_ipc_rx_color::channel_receive_proc(void * param);
+extern "C" void * small_ipc_rx_::color::e_channel_receive_proc(void * param);
 
 namespace aura
 {
@@ -217,7 +217,7 @@ namespace aura
 
          m_bRun = true;
 
-         if(pthread_create(&m_thread,nullptr,&small_ipc_rx_color::channel_receive_proc,this) != 0)
+         if(pthread_create(&m_thread,nullptr,&small_ipc_rx_::color::e_channel_receive_proc,this) != 0)
          {
 
             m_bRunning = false;
@@ -233,7 +233,7 @@ namespace aura
       }
 
 
-      extern "C" void * small_ipc_rx_color::channel_receive_proc(void * param)
+      extern "C" void * small_ipc_rx_::color::e_channel_receive_proc(void * param)
       {
 
          small_ipc_rx_channel * pchannel = (small_ipc_rx_channel *)param;

@@ -7,7 +7,7 @@
 #include "acme/os/cross.h"
 #include "toolbar.h"
 
-#define CLR_TO_RGBQUAD(clr)     (RGB(::blue(clr), ::green(clr), ::red(clr)))
+#define CLR_TO_RGBQUAD(clr)     (rgb(::blue(clr), ::green(clr), ::red(clr)))
 
 struct __COLORMAP
 {

@@ -325,7 +325,7 @@ NTSTATUS WINAPI RtlLocalTimeToSystemTime( const LARGE_INTEGER *LocalTime,
 {
    ::i32 bias;
 
-//xxx    TRACE("(%point_i32, %point_i32)\n", LocalTime, SystemTime);
+//xxx    TRACE("(%point, %point_i32)\n", LocalTime, SystemTime);
 
    bias = TIME_GetBias();
    SystemTime->QuadPart = LocalTime->QuadPart + bias * (::i64)TICKSPERSEC;
@@ -350,7 +350,7 @@ NTSTATUS WINAPI RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
 {
    ::i32 bias;
 
-//xxx    TRACE("(%point_i32, %point_i32)\n", SystemTime, LocalTime);
+//xxx    TRACE("(%point, %point_i32)\n", SystemTime, LocalTime);
 
    bias = TIME_GetBias();
    LocalTime->QuadPart = SystemTime->QuadPart - bias * (::i64)TICKSPERSEC;

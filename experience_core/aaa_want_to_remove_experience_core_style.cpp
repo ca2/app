@@ -40,7 +40,7 @@ namespace experience_lite
       ::rect rectIcon;
       ::rect rectClose;
 
-      ptab->get_data()->m_pen->create_solid(1,RGB(32,32,32));
+      ptab->get_data()->m_pen->create_solid(1,rgb(32,32,32));
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
 
@@ -98,7 +98,7 @@ namespace experience_lite
 
                   path->end_figure(false);
 
-                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,235,235,230),ARGB(250,255,255,250));
+                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
 
                   pgraphics->SelectObject(pane.m_brushFillSel);
 
@@ -129,7 +129,7 @@ namespace experience_lite
                   if(iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::e_element_close_tab_button && ptab->m_eelementHover < ::user::e_element_split && ptab->m_eelementHover >(::user::e_element_split + 100))
                   {
 
-                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,215,215,210),ARGB(250,235,235,230));
+                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
 
                      pgraphics->SelectObject(pane.m_brushFillHover);
 
@@ -147,7 +147,7 @@ namespace experience_lite
                   else
                   {
 
-                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,175,175,170),ARGB(250,195,195,190));
+                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,175,175,170),argb(250,195,195,190));
 
                      pgraphics->SelectObject(pane.m_brushFill);
 
@@ -198,13 +198,13 @@ namespace experience_lite
 
                   path->end_figure(false);
 
-                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,235,235,230),ARGB(250,255,255,250));
+                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
 
                   pgraphics->SelectObject(pane.m_brushFillSel);
 
                   pgraphics->fill_path(path);
 
-                  ptab->get_data()->m_penBorderSel->create_solid(1.0,ARGB(255,0,0,0));
+                  ptab->get_data()->m_penBorderSel->create_solid(1.0,argb(255,0,0,0));
 
                   pgraphics->SelectObject(ptab->get_data()->m_penBorderSel);
 
@@ -233,7 +233,7 @@ namespace experience_lite
                   if(iTab == ptab->m_iHover && ptab->m_eelementHover != ::user::e_element_close_tab_button && (ptab->m_eelementHover < ::user::e_element_split || ptab->m_eelementHover >(::user::e_element_split + 100)))
                   {
 
-                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,215,215,210),ARGB(250,235,235,230));
+                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
 
                      pgraphics->SelectObject(pane.m_brushFillHover);
 
@@ -251,7 +251,7 @@ namespace experience_lite
                   else
                   {
 
-                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,175,175,170),ARGB(250,195,195,190));
+                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,175,175,170),argb(250,195,195,190));
 
                      pgraphics->SelectObject(pane.m_brushFill);
 
@@ -359,12 +359,12 @@ namespace experience_lite
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
                if(ptab->m_eelementHover == (int)::user::e_element_split + i)
                {
-                  pgraphics->FillSolidRect(rectEmp,ARGB(128,149,184,255));
+                  pgraphics->FillSolidRect(rectEmp,argb(128,149,184,255));
                   pgraphics->SelectObject(ptab->get_data()->m_brushTextHover);
                }
                else
                {
-                  //pgraphics->FillSolidRect(rectEmp,ARGB(128,208,223,233));
+                  //pgraphics->FillSolidRect(rectEmp,argb(128,208,223,233));
                   pgraphics->SelectObject(ptab->get_data()->m_brushText);
                }
                pgraphics->set_font(ptab->get_data()->m_fontBigBold);
@@ -643,7 +643,7 @@ namespace experience_lite
 
       pbar->GetClientRect(rectClient);
 
-      if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
+      if ((crBackground & argb(255, 0, 0, 0)) != 0)
       {
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
@@ -651,13 +651,13 @@ namespace experience_lite
          if (psession->savings().is_trying_to_save(::e_resource_processing))
          {
 
-            pgraphics->FillSolidRect(rectClient, RGB(255, 255, 255));
+            pgraphics->FillSolidRect(rectClient, rgb(255, 255, 255));
 
          }
          else
          {
 
-            pgraphics->FillSolidRect(rectClient, ARGB(255, 210, 210, 210));
+            pgraphics->FillSolidRect(rectClient, argb(255, 210, 210, 210));
 
          }
 
@@ -937,7 +937,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_background_hover)
       {
 
-         cr = ARGB(120, 110, 100, 200);
+         cr = argb(120, 110, 100, 200);
 
          return true;
 
@@ -945,7 +945,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_split_layout_background)
       {
 
-         cr = ARGB(0, 0, 0, 0);
+         cr = argb(0, 0, 0, 0);
 
          return true;
 
@@ -953,7 +953,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_list_background)
       {
 
-         cr = ARGB(80, 255, 255, 255);
+         cr = argb(80, 255, 255, 255);
 
          return true;
 
@@ -961,7 +961,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_edit_background)
       {
 
-         cr = ARGB(80, 255, 255, 255);
+         cr = argb(80, 255, 255, 255);
 
          return true;
 
@@ -969,7 +969,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_edit_background_selected)
       {
 
-         cr = ARGB(120, 0, 0, 0);
+         cr = argb(120, 0, 0, 0);
 
          return true;
 
@@ -977,7 +977,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_text)
       {
 
-         cr = ARGB(255, 0, 0, 0);
+         cr = argb(255, 0, 0, 0);
 
          return true;
 
@@ -985,7 +985,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_text_selected)
       {
 
-         cr = ARGB(255, 255, 255, 255);
+         cr = argb(255, 255, 255, 255);
 
          return true;
 
@@ -993,7 +993,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_text_highlight)
       {
 
-         cr = ARGB(255, 50, 150, 150);
+         cr = argb(255, 50, 150, 150);
 
          return true;
 
@@ -1001,7 +1001,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_text_selected_highlight)
       {
 
-         cr = ARGB(255, 20, 90, 100);
+         cr = argb(255, 20, 90, 100);
 
          return true;
 
@@ -1009,7 +1009,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_edit_text)
       {
 
-         cr = ARGB(255, 0, 0, 0);
+         cr = argb(255, 0, 0, 0);
 
          return true;
 
@@ -1017,7 +1017,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_edit_text_selected)
       {
 
-         cr = ARGB(255, 0, 0, 0);
+         cr = argb(255, 0, 0, 0);
 
          return true;
 
@@ -1025,7 +1025,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_tree_background)
       {
 
-         cr = ARGB(80, 255, 255, 255);
+         cr = argb(80, 255, 255, 255);
 
          return true;
 
@@ -1033,7 +1033,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_view_background)
       {
 
-         cr = ARGB(80, 255, 255, 255);
+         cr = argb(80, 255, 255, 255);
 
          return true;
 
@@ -1041,7 +1041,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_scrollbar_background)
       {
 
-         cr = ARGB(80, 255, 255, 255);
+         cr = argb(80, 255, 255, 255);
 
          return true;
 
@@ -1049,7 +1049,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_background_selected)
       {
 
-         cr = ARGB(255, 155, 185, 255);
+         cr = argb(255, 155, 185, 255);
 
          return true;
 
@@ -1057,7 +1057,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_list_header)
       {
 
-         cr = ARGB(255, 255, 255, 255);
+         cr = argb(255, 255, 255, 255);
 
          return true;
 
@@ -1065,7 +1065,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_list_header_background)
       {
 
-         cr = ARGB(255, 0x58, 0x5C, 0x5D);
+         cr = argb(255, 0x58, 0x5C, 0x5D);
 
          return true;
 
@@ -1073,7 +1073,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_list_item_background)
       {
 
-         cr = ARGB(30, 0, 0, 0);
+         cr = argb(30, 0, 0, 0);
 
          return true;
 
@@ -1089,7 +1089,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_toolbar_background)
       {
 
-         cr = ARGB(80, 0xF3, 0XF5, 0xF5);
+         cr = argb(80, 0xF3, 0XF5, 0xF5);
 
          return true;
 
@@ -1098,7 +1098,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_button_background_disabled)
       {
 
-         cr = ARGB(255, 128, 128, 128);
+         cr = argb(255, 128, 128, 128);
 
          return true;
 
@@ -1107,7 +1107,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_button_background_hover)
       {
 
-         cr = ARGB(255, 0x55, 0x99, 0xC2);
+         cr = argb(255, 0x55, 0x99, 0xC2);
 
          return true;
 
@@ -1115,21 +1115,21 @@ namespace experience_lite
       else if (ecolor == ::user::color_button_background)
       {
 
-         cr = ARGB(255, 0x30, 0x75, 0xA0);
+         cr = argb(255, 0x30, 0x75, 0xA0);
 
          return true;
       }
       else if (ecolor == ::user::color_button_background_press)
       {
 
-         cr = ARGB(255, 0x07, 0x6D, 0x91);
+         cr = argb(255, 0x07, 0x6D, 0x91);
 
          return true;
       }
       else if (ecolor == ::user::color_button_text_disabled)
       {
 
-         cr = ARGB(255, 0x80, 0x80, 0x80);
+         cr = argb(255, 0x80, 0x80, 0x80);
 
          return true;
 
@@ -1137,7 +1137,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_button_text_hover)
       {
 
-         cr = ARGB(255, 255, 255, 255);
+         cr = argb(255, 255, 255, 255);
 
          return true;
 
@@ -1145,7 +1145,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_button_text)
       {
 
-         cr = ARGB(255, 255, 255, 255);
+         cr = argb(255, 255, 255, 255);
 
          return true;
 
@@ -1153,7 +1153,7 @@ namespace experience_lite
       else if (ecolor == ::user::color_button_text_press)
       {
 
-         cr = ARGB(255, 255, 255, 255);
+         cr = argb(255, 255, 255, 255);
 
          return true;
 

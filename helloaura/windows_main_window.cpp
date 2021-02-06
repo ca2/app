@@ -187,7 +187,7 @@ LRESULT CALLBACK WndProc(HWND hWnd, const ::id & id, WPARAM wParam, LPARAM lPara
 /*      if (pimage->is_set() && pimage->m_pcolorref != nullptr)
       {
 
-/*         pimage->get_graphics()->FillSolidRect(prender->m_rectClient, ARGB(255, 255, 255, 255));
+/*         pimage->get_graphics()->FillSolidRect(prender->m_rectClient, argb(255, 255, 255, 255));
 
 /*         prender->_006OnDraw(pimage->get_graphics());
 

@@ -568,7 +568,7 @@ namespace draw2d
       ig = (G < 0) ? 0 : (G > 255) ? 255 : G;
       ib = (B < 0) ? 0 : (B > 255) ? 255 : B;
 
-      return RGB(ir,ig,ib);
+      return rgb(ir,ig,ib);
    }
 
 } // namespace draw2d

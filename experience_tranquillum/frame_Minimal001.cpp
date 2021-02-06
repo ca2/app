@@ -209,11 +209,11 @@ SizingNone:;
 
                auto pstyle = pframewindow->get_style(pgraphics);
 
-               ::color    colorMoveableBorder;
+               ::color::color    colorMoveableBorder;
 
-               ::color    colorMoveableBorderHilight;
+               ::color::color    colorMoveableBorderHilight;
 
-               ::color    colorMoveableBorderShadow;
+               ::color::color    colorMoveableBorderShadow;
 
                if(pframewindow->is_active())
                {

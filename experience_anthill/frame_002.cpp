@@ -20,7 +20,7 @@
 color32_t SetAValue(byte a, color32_t cr)
 {
 
-   return ARGB(a, colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr));
+   return argb(a, colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr));
 
 }
 
@@ -216,9 +216,9 @@ SizingNone:;
 
                auto pframewindow = m_pframewindow;
 
-               ::color    colorMoveableBorder;
-               ::color    colorMoveableBorderHilight;
-               ::color    colorMoveableBorderShadow;
+               ::color::color    colorMoveableBorder;
+               ::color::color    colorMoveableBorderHilight;
+               ::color::color    colorMoveableBorderShadow;
 
                if(pframewindow->m_fActive)
                {

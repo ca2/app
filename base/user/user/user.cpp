@@ -1493,7 +1493,7 @@ namespace base
 //
 //color32_t argb_swap_rb(color32_t cr)
 //{
-//   return ARGB(
+//   return argb(
 //      colorref_get_a_value(cr),
 //      colorref_get_b_value(cr),
 //      colorref_get_g_value(cr),

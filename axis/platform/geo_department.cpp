@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 namespace geo
@@ -16,31 +16,6 @@ namespace geo
    department::~department()
    {
 
-
-   }
-
-
-   ::mutex * department::get_openweather_city_mutex()
-   {
-
-      sync_lock sl(mutex());
-
-      if (m_spmutexOpenweatherCity.is_null())
-      {
-
-#ifdef _UWP
-
-         m_spmutexOpenweatherCity = __new(::mutex());
-
-#else
-
-         m_spmutexOpenweatherCity = __new(::mutex(e_create_new, false, "Global\\ca2_weather_city"));
-
-#endif
-
-      }
-
-      return m_spmutexOpenweatherCity;
 
    }
 

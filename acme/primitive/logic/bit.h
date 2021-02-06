@@ -39,6 +39,8 @@ namespace logic
 
       inline bool is_empty() const { return m_ebit == e_bit_empty; }
 
+      inline bool is_set() const { return m_ebit != e_bit_empty; }
+
       inline bool notTrue() const { return m_ebit < e_bit_yes; }
 
 

@@ -208,11 +208,11 @@ namespace simple_ui
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
 
-         br->create_solid(ARGB(190, 255, 184, 240));
+         br->create_solid(argb(190, 255, 184, 240));
 
 #else
 
-         br->create_solid(ARGB(190, 190, 255, 177));
+         br->create_solid(argb(190, 190, 255, 177));
 
 #endif
 
@@ -260,25 +260,25 @@ namespace simple_ui
             if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
             {
 
-               crOut = ARGB(1140, 255, 230, 255);
+               crOut = argb(1140, 255, 230, 255);
 
-               crIn = ARGB(255, 255, 133, 255);
+               crIn = argb(255, 255, 133, 255);
 
-               crBorderOut = ARGB(190, 150, 100, 150);
+               crBorderOut = argb(190, 150, 100, 150);
 
-               crBorderIn = ARGB(190, 255, 240, 255);
+               crBorderIn = argb(190, 255, 240, 255);
 
             }
             else
             {
 
-               crOut = ARGB(1140, 205, 180, 205);
+               crOut = argb(1140, 205, 180, 205);
 
-               crIn = ARGB(255, 205, 83, 205);
+               crIn = argb(255, 205, 83, 205);
 
-               crBorderOut = ARGB(190, 100, 50, 100);
+               crBorderOut = argb(190, 100, 50, 100);
 
-               crBorderIn = ARGB(190, 205, 190, 205);
+               crBorderIn = argb(190, 205, 190, 205);
 
             }
 
@@ -289,23 +289,23 @@ namespace simple_ui
             {
 
 
-               crOut = ARGB(1140, 230, 255, 225);
+               crOut = argb(1140, 230, 255, 225);
 
-               crIn = ARGB(255, 133, 255, 80 + 49);
+               crIn = argb(255, 133, 255, 80 + 49);
 
-               crBorderOut = ARGB(190, 100, 150, 100);
+               crBorderOut = argb(190, 100, 150, 100);
 
-               crBorderIn = ARGB(190, 240, 255, 235);
+               crBorderIn = argb(190, 240, 255, 235);
             }
             else
             {
-               crOut = ARGB(1140, 230, 255, 225);
+               crOut = argb(1140, 230, 255, 225);
 
-               crIn = ARGB(255, 133, 255, 80 + 49);
+               crIn = argb(255, 133, 255, 80 + 49);
 
-               crBorderOut = ARGB(190, 100, 150, 100);
+               crBorderOut = argb(190, 100, 150, 100);
 
-               crBorderIn = ARGB(190, 240, 255, 235);
+               crBorderIn = argb(190, 240, 255, 235);
 
             }
 
@@ -320,37 +320,37 @@ namespace simple_ui
             if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
             {
 
-               crOut = ARGB(190, 255, 210, 255);
+               crOut = argb(190, 255, 210, 255);
 
-               crIn = ARGB(255, 255, 1140, 255);
+               crIn = argb(255, 255, 1140, 255);
 
-               crBorderOut = ARGB(190, 90, 20, 90);
+               crBorderOut = argb(190, 90, 20, 90);
 
-               crBorderIn = ARGB(190, 255, 240, 255);
+               crBorderIn = argb(190, 255, 240, 255);
 
             }
             else
             {
 
-               crOut = ARGB(190, 205, 120, 205);
+               crOut = argb(190, 205, 120, 205);
 
-               crIn = ARGB(255, 205, 134, 205);
+               crIn = argb(255, 205, 134, 205);
 
-               crBorderOut = ARGB(190, 40, 0, 40);
+               crBorderOut = argb(190, 40, 0, 40);
 
-               crBorderIn = ARGB(190, 205, 120, 205);
+               crBorderIn = argb(190, 205, 120, 205);
 
             }
 
 #else
 
-            crOut = ARGB(190, 210, 255, 205);
+            crOut = argb(190, 210, 255, 205);
 
-            crIn = ARGB(255, 133, 255, 80 + 49);
+            crIn = argb(255, 133, 255, 80 + 49);
 
-            crBorderOut = ARGB(190, 20, 90, 20);
+            crBorderOut = argb(190, 20, 90, 20);
 
-            crBorderIn = ARGB(190, 240, 255, 235);
+            crBorderIn = argb(190, 240, 255, 235);
 
 #endif
 
@@ -433,13 +433,13 @@ namespace simple_ui
       if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
       {
 
-         crText = ARGB(223, 74, 39, 67);
+         crText = argb(223, 74, 39, 67);
 
       }
       else
       {
 
-         crText = ARGB(223, 255, 255, 255);
+         crText = argb(223, 255, 255, 255);
 
       }
 
@@ -449,13 +449,13 @@ namespace simple_ui
       if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
       {
 
-         crText = ARGB(223, 49, 90, 23);
+         crText = argb(223, 49, 90, 23);
 
       }
       else
       {
 
-         crText = ARGB(223, 49, 90, 23);
+         crText = argb(223, 49, 90, 23);
       }
 
 #endif
@@ -488,7 +488,7 @@ namespace simple_ui
 
       __pointer(::message::key) pkey(pmessage);
 
-      ::user::e_key iKey = pkey->m_ekey;
+      ::user::enum_key iKey = pkey->m_ekey;
 
       if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {

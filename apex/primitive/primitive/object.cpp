@@ -42,7 +42,7 @@ object::~object()
 i64 object::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   auto c = atomic_increment(&m_countReference);
+   auto c = m_countReference++;
 
 #if OBJ_REF_DBG
 
@@ -58,7 +58,7 @@ i64 object::add_ref(OBJ_REF_DBG_PARAMS_DEF)
 i64 object::dec_ref(OBJ_REF_DBG_PARAMS_DEF)
 {
 
-   auto c = atomic_decrement(&m_countReference);
+   auto c = m_countReference--;
 
 #if OBJ_REF_DBG
 

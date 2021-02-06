@@ -399,7 +399,7 @@ bool LiteHTMLElemAttr::isSysColorValue(::lite_html_reader * preader) const
    if((m_strValue.get_length()) && (::isalpha(m_strValue[0])))
    {
 
-      ::color color;
+      ::color::color color;
 
       string      strKey(m_strValue);
 
@@ -450,7 +450,7 @@ bool LiteHTMLElemAttr::isHexColorValue() const
 color32_t LiteHTMLElemAttr::getColorValue(::lite_html_reader * preader) const
 {
 
-   color color;
+   ::color::color color;
 
    if(isNamedColorValue(preader))
    {

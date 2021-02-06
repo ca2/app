@@ -152,9 +152,9 @@ namespace user
    void mesh::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      m_penFocused->create_solid(2,ARGB(255,0,255,255));
+      m_penFocused->create_solid(2,argb(255,0,255,255));
 
-      m_penHighlight->create_solid(2,ARGB(255,0,255,255));
+      m_penHighlight->create_solid(2,argb(255,0,255,255));
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
 
@@ -574,7 +574,7 @@ namespace user
 
       if(pdrawitem->m_bListItemHover)
       {
-         pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem,ARGB(128,255,255,255));
+         pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem,argb(128,255,255,255));
          pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none, ::user::e_state_hover);
       }
       else
@@ -596,11 +596,11 @@ namespace user
       {
          if(psession->savings().is_trying_to_save(::e_resource_processing))
          {
-            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem,ARGB(255,96,96,96));
+            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem,argb(255,96,96,96));
          }
          else
          {
-            color32_t crTranslucid = RGB(0,0,0);
+            color32_t crTranslucid = rgb(0,0,0);
             ::rectangle_i32 rectangle = pdrawitem->m_rectItem;
             rectangle.inflate(8,0,8,-1);
             System.imaging().color_blend(pdrawitem->m_pgraphics,rectangle,crTranslucid,127);
@@ -1573,7 +1573,7 @@ namespace user
 
       index iItem;
 
-      if(!_001DisplayHitTest(point_i32,iItem))
+      if(!_001DisplayHitTest(point,iItem))
       {
 
          return false;
@@ -2695,7 +2695,7 @@ namespace user
          if(m_bHoverSelect2)
          {
 
-            if(_001DisplayHitTest(point_i32,iItem))
+            if(_001DisplayHitTest(point,iItem))
             {
 
                // In "Hover Select"/"Single Click to Open" mode
@@ -2743,7 +2743,7 @@ namespace user
             if(m_bMultiSelect && psession->is_key_pressed(::user::e_key_shift))
             {
 
-               if(_001DisplayHitTest(point_i32,iItem))
+               if(_001DisplayHitTest(point,iItem))
                {
 
                   item_range itemrange;
@@ -2766,7 +2766,7 @@ namespace user
             else if(m_bMultiSelect && psession->is_key_pressed(::user::e_key_control))
             {
 
-               if(_001DisplayHitTest(point_i32,iItem))
+               if(_001DisplayHitTest(point,iItem))
                {
 
                   item_range itemrange;
@@ -2793,7 +2793,7 @@ namespace user
 
                index iItem;
 
-               if(_001DisplayHitTest(point_i32,iItem))
+               if(_001DisplayHitTest(point,iItem))
                {
 
                   m_iShiftFirstSelection = iItem;
@@ -2960,7 +2960,7 @@ namespace user
       {
 
          index iItem;
-         if(_001DisplayHitTest(point_i32,iItem))
+         if(_001DisplayHitTest(point,iItem))
          {
             if(!m_rangeSelection.has_item(iItem))
             {
@@ -3828,7 +3828,7 @@ namespace user
    //   //pcolumn->m_iWidth = -1;
    //   //pcolumn->m_iSubItem = 0;
    //   //pcolumn->m_iSmallImageWidth = 16;
-   //   //pcolumn->m_colorSmallMask = ARGB(255,255,0,255);
+   //   //pcolumn->m_colorSmallMask = argb(255,255,0,255);
 
 
    //   //_001InsertColumn(column);
@@ -5412,7 +5412,7 @@ namespace user
       m_iSubItem        = -1;
       m_iListItem       = -1;
       m_colorText              = (color32_t)-1;
-      m_colorTextBackground    = ARGB(255, 0, 0, 0);
+      m_colorTextBackground    = argb(255, 0, 0, 0);
       m_colorItemBackground = 0;
       m_iState          = -1;
       m_iImage          = -1;
@@ -5550,7 +5550,7 @@ namespace user
             pimage1 = create_image(size);
             pimage1->fill(0,0,0,0);
             ::draw2d::brush_pointer brushText(e_create);
-            brushText->create_solid(ARGB(255,255,255,255));
+            brushText->create_solid(argb(255,255,255,255));
             pimage1->get_graphics()->set(brushText);
             ::image_pointer pimage2;
             pimage2 = create_image(size);
@@ -5566,7 +5566,7 @@ namespace user
 
             //::aura::application * get_context_application() = m_pmesh->get_context_application();
 
-            System.imaging().channel_spread_set_color(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,2,ARGB(192,192,192,192));
+            System.imaging().channel_spread_set_color(pimage2->get_graphics(),nullptr, size, pimage1->get_graphics(),nullptr,0,2,argb(192,192,192,192));
             pimage1->fill(0,0,0,0);
             System.imaging().channel_alpha_gray_blur(pimage1->get_graphics(),nullptr, size, pimage2->get_graphics(),nullptr,0,1);
             pimage2->fill(0,0,0,0);
@@ -5577,7 +5577,7 @@ namespace user
             System.imaging().color_blend(m_pgraphics,m_rectText, pimage2->get_graphics(),point_i32(1,1),0.50);
 
 
-            brushText->create_solid(ARGB(255,255,255,255));
+            brushText->create_solid(argb(255,255,255,255));
             m_pgraphics->set(brushText);
             m_pgraphics->set(m_pfont);
             m_pgraphics->_DrawText(m_strText,m_rectText,m_ealign, m_edrawtext);

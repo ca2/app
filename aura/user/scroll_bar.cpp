@@ -108,95 +108,95 @@ namespace user
    }
 
 
-   ::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_color_strong(::user::style* pstyle, ::user::enum_element eelement)
    {
 
       if (m_itemCurrent == eelement || m_itemHover== eelement)
       {
 
-         return ARGB(130, 190, 180, 250);
+         return argb(130, 190, 180, 250);
 
       }
       else
       {
 
-         return ARGB(150, 150, 150, 150);
+         return argb(150, 150, 150, 150);
 
       }
 
    }
 
 
-   ::color scroll_bar::scrollbar_color(::user::style * pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_color(::user::style * pstyle, ::user::enum_element eelement)
    {
 
       if(m_itemCurrent == eelement || m_itemHover== eelement)
       {
 
-         return ARGB(100, 190, 180, 250);
+         return argb(100, 190, 180, 250);
 
       }
       else
       {
 
-         return ARGB(150, 150, 150, 150);
+         return argb(150, 150, 150, 150);
 
       }
 
    }
 
 
-   ::color scroll_bar::scrollbar_border_color(::user::style* pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_border_color(::user::style* pstyle, ::user::enum_element eelement)
    {
 
       if(m_itemCurrent == eelement || m_itemHover== eelement)
       {
 
-         return ARGB(190, 180, 180, 180);
+         return argb(190, 180, 180, 180);
 
       }
       else
       {
 
-         return ARGB(190, 160, 160, 160);
+         return argb(190, 160, 160, 160);
 
       }
 
    }
 
 
-   ::color scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_lite_border_color(::user::style* pstyle, ::user::enum_element eelement)
    {
 
       if(m_itemCurrent == eelement || m_itemHover== eelement)
       {
 
-         return ARGB(190, 90, 110, 180);
+         return argb(190, 90, 110, 180);
 
       }
       else
       {
 
-         return ARGB(190, 110, 110, 100);
+         return argb(190, 110, 110, 100);
 
       }
 
    }
 
 
-   ::color scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::user::enum_element eelement)
+   ::color::color scroll_bar::scrollbar_draw_color(::user::style* pstyle, ::user::enum_element eelement)
    {
 
       if (m_itemCurrent == eelement || m_itemHover == eelement)
       {
 
-         return ARGB(127, 90, 90, 90);
+         return argb(127, 90, 90, 90);
 
       }
       else
       {
 
-         return ARGB(127, 65, 65, 65);
+         return argb(127, 65, 65, 65);
 
       }
 

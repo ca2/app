@@ -123,7 +123,7 @@ namespace filehandler
       
       bool bHover = pview->m_itemHover == m_iIndex;
 
-      cr = bHover ? ARGB(255, 230, 255, 230) : ARGB(255, 200, 255, 200);
+      cr = bHover ? argb(255, 230, 255, 230) : argb(255, 200, 255, 200);
       if(!Sess(papp).savings().is_trying_to_save(::e_resource_processing)
             && !Sess(papp).savings().is_trying_to_save(::e_resource_display_bandwidth)
             && !Sess(papp).savings().is_trying_to_save(::e_resource_memory))
@@ -135,21 +135,21 @@ namespace filehandler
       {
          pgraphics->fill_rect(m_rectItem, cr);
       }
-      cr = bHover ? ARGB(255, 150, 255, 150) : ARGB(255, 50, 255, 50);
+      cr = bHover ? argb(255, 150, 255, 150) : argb(255, 50, 255, 50);
       pgraphics->fill_rect(m_rectStatusImage, cr);
       color32_t cr1;
       color32_t cr2;
       if(bHover)
       {
-         cr = ARGB(255, 0, 100, 0);
-         cr1 = ARGB(255, 120, 255, 150);
-         cr2 = ARGB(255, 23, 200, 33);
+         cr = argb(255, 0, 100, 0);
+         cr1 = argb(255, 120, 255, 150);
+         cr2 = argb(255, 23, 200, 33);
       }
       else
       {
-         cr = ARGB(255, 40, 40, 40);
-         cr1 = ARGB(255, 100, 100, 100);
-         cr2 = ARGB(255, 10, 10, 10);
+         cr = argb(255, 40, 40, 40);
+         cr1 = argb(255, 100, 100, 100);
+         cr2 = argb(255, 10, 10, 10);
       }
       pgraphics->draw3d_rect(m_rectItem, cr1, cr2);
       cr |= 0xff000000;

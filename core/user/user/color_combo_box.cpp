@@ -251,7 +251,7 @@ namespace user
 
       ::draw2d::brush_pointer br(e_create);
 
-      //::user::e_color colorDropDown = color_button_background_disabled;
+      //::user::e_::color::color colorDropDown = color_button_background_disabled;
 
       auto estate = get_state();
 
@@ -344,7 +344,7 @@ namespace user
 
       {
 
-         color c(m_hls);
+         ::color::color color(m_hls);
 
          c.m_iA = 255;
 
@@ -370,7 +370,7 @@ namespace user
             if (!colorBackground)
             {
 
-               colorBackground = ARGB(210, 230, 230, 230);
+               colorBackground = argb(210, 230, 230, 230);
 
             }
 
@@ -388,7 +388,7 @@ namespace user
             if (!color2)
             {
 
-               color2 = ARGB(210, 230, 230, 230);
+               color2 = argb(210, 230, 230, 230);
 
             }
 
@@ -412,12 +412,12 @@ namespace user
 
       ::rectangle_i32 rectDropIn(rectDropDown);
 
-      color c(get_color(pstyle, estate));
+      ::color::color color(get_color(pstyle, estate));
 
       if (!c)
       {
 
-         c = ARGB(210, 230, 230, 230);
+         c = argb(210, 230, 230, 230);
 
       }
 
@@ -435,7 +435,7 @@ namespace user
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 
-      br->create_solid(ARGB(210, 0, 0, 0));
+      br->create_solid(argb(210, 0, 0, 0));
 
       pgraphics->set(br);
 

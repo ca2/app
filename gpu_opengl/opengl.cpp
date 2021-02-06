@@ -54,7 +54,7 @@ namespace opengl
 #ifdef WINDOWS_DESKTOP
 
 
-   LRESULT CALLBACK Draw2OpenGLWndProc(HWND hwnd, ::u32 message, wparam wparam, lparam lparam)
+   LRESULT CALLBACK Draw2OpenGLWndProc(HWND hwnd, UINT message, WPARAM wparam, LPARAM lparam)
    {
 
       return DefWindowProc(hwnd, message, wparam, lparam);
@@ -86,7 +86,7 @@ namespace opengl
 
          wndclass.style = CS_OWNDC;
          wndclass.lpfnWndProc = &Draw2OpenGLWndProc;
-         wndclass.hInstance = System.m_hinstance;
+         wndclass.hInstance = ::GetModuleHandleW(L"gpu_opengl.dll");
          wndclass.lpszClassName = L"draw2d_opengl_offscreen_buffer_window";
 
          m_atomClass = RegisterClassW(&wndclass);

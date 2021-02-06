@@ -139,7 +139,7 @@ namespace draw3d
 
             double r = (locationa[point1[iMax]].z + locationa[point2[iMax]].z) * d;
 
-            ::color ca;
+            ::color::color ca;
 
             double dPeriod = (5000) * 11;
 
@@ -156,7 +156,7 @@ namespace draw3d
             color32_t clr = ca.get_rgb();
 
 
-            pen->create_solid((1.05 - r) * 10.0,ARGB((int)(dA * (255.0 - r * 200.0)),ca.red,ca.green,ca.blue));
+            pen->create_solid((1.05 - r) * 10.0,argb((int)(dA * (255.0 - r * 200.0)),ca.red,ca.green,ca.blue));
             if(i < 6)
             {
                pen->m_epen = ::draw2d::e_pen_dot;
@@ -179,7 +179,7 @@ namespace draw3d
       }
 
 
-      //pen->create_solid(1.0,ARGB(255,((int)(clr)),((int)(clr)),((int)(clr)))); m_pdc->set(pen)
+      //pen->create_solid(1.0,argb(255,((int)(clr)),((int)(clr)),((int)(clr)))); m_pdc->set(pen)
 
       //SET_PCOLOR((p02.z + p03.z) / (2.0 * z));
       //m_pdc->draw_line((float)p02.x,(float)p02.y,(float)p03.x,(float)p03.y);
@@ -300,7 +300,7 @@ namespace draw3d
 
             double r = (locationa[f[iMax][0]].z + locationa[f[iMax][1]].z + locationa[f[iMax][2]].z) * d;
 
-            ::color ca;
+            ::color::color ca;
 
             double dPeriod = (5000) * 11;
 
@@ -317,7 +317,7 @@ namespace draw3d
             color32_t clr = ca.get_rgb();
 
 
-            /*pen->create_solid((1.05 - r) * 10.0,ARGB((int)(dA * (255.0 - r * 200.0)),ca.m_iR,ca.m_iG,ca.m_iB));
+            /*pen->create_solid((1.05 - r) * 10.0,argb((int)(dA * (255.0 - r * 200.0)),ca.m_iR,ca.m_iG,ca.m_iB));
             if(i < 6)
             {
             pen->m_etype = ::draw2d::e_pen_dot;
@@ -347,7 +347,7 @@ namespace draw3d
       }
 
 
-      //pen->create_solid(1.0,ARGB(255,((int)(clr)),((int)(clr)),((int)(clr)))); m_pdc->set(pen)
+      //pen->create_solid(1.0,argb(255,((int)(clr)),((int)(clr)),((int)(clr)))); m_pdc->set(pen)
 
       //SET_PCOLOR((p02.z + p03.z) / (2.0 * z));
       //m_pdc->draw_line((float)p02.x,(float)p02.y,(float)p03.x,(float)p03.y);

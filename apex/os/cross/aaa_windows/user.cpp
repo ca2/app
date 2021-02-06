@@ -23,13 +23,13 @@ CLASS_DECL_APEX color32_t GetSysColor(::u32 dw)
    switch(dw)
    {
    case COLOR_HIGHLIGHT:
-      return ARGB(255, 200, 200, 196);
+      return argb(255, 200, 200, 196);
    case COLOR_BTNSHADOW:
-      return ARGB(90, 192, 192, 187);
+      return argb(90, 192, 192, 187);
    case COLOR_BTNTEXT:
-      return ARGB(255, 0, 0, 0);
+      return argb(255, 0, 0, 0);
    default:
-      return ARGB(255, 0, 0, 0);
+      return argb(255, 0, 0, 0);
    };
 
 }

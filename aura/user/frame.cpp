@@ -106,7 +106,7 @@ namespace user
    }
 
 
-   ::color frame::get_border_main_body_color()
+   ::color::color frame::get_border_main_body_color()
    {
 
       return 0;
@@ -174,13 +174,13 @@ namespace user
    }
 
    
-   ::color frame::get_moveable_border_color()
+   ::color::color frame::get_moveable_border_color()
    {
 
       if (!m_puserstyle)
       {
 
-         return ::color();
+         return ::color::color();
 
       }
 

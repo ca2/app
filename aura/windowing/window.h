@@ -152,6 +152,9 @@ namespace windowing
 
       virtual void install_message_routing(::channel * pchannel);
 
+
+      virtual void message_handler(::message::base * pbase);
+
       //bool operator==(const interaction_impl & wnd) const;
       //bool operator!=(const interaction_impl & wnd) const;
 

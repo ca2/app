@@ -310,7 +310,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //         rectWindow.top,
 //         rectWindow.width(),
 //         rectWindow.height(),
-//         RGB(215, 215, 210),
+//         rgb(215, 215, 210),
 //         220);
 //      }
 //      else
@@ -321,7 +321,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //         rectWindow.top,
 //         rectWindow.width(),
 //         rectWindow.height(),
-//         RGB(215, 215, 210),
+//         rgb(215, 215, 210),
 //         180);
 //      }
 //   }
@@ -330,7 +330,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //#ifdef WINDOWS_DESKTOP
 //      pgraphics->fill_rect(rectWindow, psession->get_default_color(COLOR_3DFACE));
 //#else
-//      pgraphics->fill_rect(rectWindow, ARGB(255, 190, 184, 177));
+//      pgraphics->fill_rect(rectWindow, argb(255, 190, 184, 177));
 //#endif
 //   }
 //
@@ -375,7 +375,7 @@ void simple_toolbar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //   /*   pgraphics->fill_rect(
 //   rectWindow.left + 7, rectWindow.top,
 //   rectWindow.right, rectWindow.top + 1,
-//   RGB(128, 128, 123));*/
+//   rgb(128, 128, 123));*/
 //
 //   // erase parts not drawn
 //   //pgraphics->IntersectClipRect(rectWindow);
@@ -712,7 +712,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
       rectSeparator.bottom = rectImage.bottom;
 
-      pgraphics->draw_3drect(rectSeparator, ARGB(255, 92, 92, 92), ARGB(255, 255, 255, 255));
+      pgraphics->draw_3drect(rectSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
 
    }
    else
@@ -736,9 +736,9 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
                rectItem.top,
                rectItem.width(),
                rectItem.height(),
-               RGB(255, 255, 250), 208);
+               rgb(255, 255, 250), 208);
 
-               pgraphics->draw_3drect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+               pgraphics->draw_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
             }
 
@@ -775,11 +775,11 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                ::draw2d::pen_pointer pen(e_create);
 
-               pen->create_solid(1, ARGB(190, 92, 184, 92));
+               pen->create_solid(1, argb(190, 92, 184, 92));
 
                ::draw2d::brush_pointer brush(e_create);
 
-               brush->create_solid(ARGB(123, 180, 184, 255));
+               brush->create_solid(argb(123, 180, 184, 255));
 
                pgraphics->set(pen);
 
@@ -823,11 +823,11 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             ::draw2d::pen_pointer pen(e_create);
 
-            pen->create_solid(1, ARGB(255, 92, 92, 92));
+            pen->create_solid(1, argb(255, 92, 92, 92));
 
             ::draw2d::brush_pointer brush(e_create);
 
-            brush->create_solid(ARGB(255, 255, 255, 255));
+            brush->create_solid(argb(255, 255, 255, 255));
 
             pgraphics->set(pen);
 
@@ -863,14 +863,14 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             _001GetElementRect(iItem, rectItem, ::user::e_element_item, estate);
 
-            pgraphics->fill_rect(rectItem, ARGB(190, 255, 255, 255));
+            pgraphics->fill_rect(rectItem, argb(190, 255, 255, 255));
 
          }
 
          if (estate & ::user::e_state_checked)
          {
 
-            pgraphics->draw_3drect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+            pgraphics->draw_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
          }
 
@@ -932,13 +932,13 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
       if (!(estate & ::user::e_state_disabled))
       {
 
-         brushText->create_solid(ARGB(255, 0, 0, 0));
+         brushText->create_solid(argb(255, 0, 0, 0));
 
       }
       else
       {
 
-         brushText->create_solid(ARGB(255, 120, 120, 118));
+         brushText->create_solid(argb(255, 120, 120, 118));
 
       }
 
@@ -1129,7 +1129,7 @@ m_pimagelist->create(
 
    m_sizeImage.cx,
    1,
-   RGB(192, 192, 192)
+   rgb(192, 192, 192)
    );
 
 _001OnImageListAttrib();
@@ -1561,7 +1561,7 @@ void simple_toolbar::_001OnImageListAttrib()
       &spgraphics,
       m_pimagelistHue,
       m_pimagelist,
-      RGB(192, 192, 180),
+      rgb(192, 192, 180),
       0.50
    );
 
@@ -1575,7 +1575,7 @@ void simple_toolbar::_001OnImageListAttrib()
    System.imaging().Createcolor_blend_ImageList(
       m_pimagelistBlend,
       m_pimagelist,
-      RGB(255, 255, 240),
+      rgb(255, 255, 240),
       64
    );
 
@@ -1590,7 +1590,7 @@ void simple_toolbar::_001OnImageListAttrib()
       &spgraphics,
       m_pimagelistHueLight,
       m_pimagelist,
-      RGB(220, 220, 215),
+      rgb(220, 220, 215),
       0.50
       );
 

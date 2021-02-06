@@ -40,30 +40,6 @@
     <Filter Include="Header Files\math\calculator">
       <UniqueIdentifier>{5ef78e00-2086-4116-9d7a-c1edc3c52407}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\database">
-      <UniqueIdentifier>{b59bccc2-6240-4cea-a5c0-5b674fc90ce1}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\database\database">
-      <UniqueIdentifier>{cde8b1a9-d6ea-4f45-ba49-ab2330e97326}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\database\simpledb">
-      <UniqueIdentifier>{682298d7-70fd-4566-a676-6fb0038558dd}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\database\sqlite">
-      <UniqueIdentifier>{65f5d1d1-91d8-4a76-95c6-2ca429bf492d}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database">
-      <UniqueIdentifier>{18a61fd2-bfd9-4f88-9df9-c7dc6120a358}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database\database">
-      <UniqueIdentifier>{7e5321fc-5b18-4845-92d5-8274837a29e4}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database\simpledb">
-      <UniqueIdentifier>{a96c4b7f-dbc7-4998-ba8c-5ee5dfc0a417}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Header Files\database\sqlite">
-      <UniqueIdentifier>{7e5a04f6-a138-48f6-9c45-ef68c0579270}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Source Files\math">
       <UniqueIdentifier>{2339bdcd-dfff-440a-a07c-7858db32668f}</UniqueIdentifier>
     </Filter>
@@ -162,6 +138,30 @@
     </Filter>
     <Filter Include="Source Files\const">
       <UniqueIdentifier>{1f7a5706-62b9-4115-a745-628e4325230b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database">
+      <UniqueIdentifier>{18a61fd2-bfd9-4f88-9df9-c7dc6120a358}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\database">
+      <UniqueIdentifier>{7e5321fc-5b18-4845-92d5-8274837a29e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\simpledb">
+      <UniqueIdentifier>{a96c4b7f-dbc7-4998-ba8c-5ee5dfc0a417}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\database\sqlite">
+      <UniqueIdentifier>{7e5a04f6-a138-48f6-9c45-ef68c0579270}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database">
+      <UniqueIdentifier>{b59bccc2-6240-4cea-a5c0-5b674fc90ce1}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\database">
+      <UniqueIdentifier>{cde8b1a9-d6ea-4f45-ba49-ab2330e97326}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\simpledb">
+      <UniqueIdentifier>{682298d7-70fd-4566-a676-6fb0038558dd}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\database\sqlite">
+      <UniqueIdentifier>{65f5d1d1-91d8-4a76-95c6-2ca429bf492d}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -307,76 +307,76 @@
       <Filter>Header Files\geoip</Filter>
     </ClInclude>
     <ClInclude Include="database\_.h">
-      <Filter>Source Files\database</Filter>
+      <Filter>Header Files\database</Filter>
     </ClInclude>
     <ClInclude Include="database\sqlitedb\_.h">
-      <Filter>Source Files\database\sqlite</Filter>
+      <Filter>Header Files\database\sqlite</Filter>
     </ClInclude>
     <ClInclude Include="database\sqlitedb\database.h">
-      <Filter>Source Files\database\sqlite</Filter>
+      <Filter>Header Files\database\sqlite</Filter>
     </ClInclude>
     <ClInclude Include="database\sqlitedb\dataset.h">
-      <Filter>Source Files\database\sqlite</Filter>
+      <Filter>Header Files\database\sqlite</Filter>
     </ClInclude>
     <ClInclude Include="database\simpledb\_.h">
-      <Filter>Source Files\database\simpledb</Filter>
+      <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="database\simpledb\_simpledb.h">
-      <Filter>Source Files\database\simpledb</Filter>
+      <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="database\simpledb\aaa_want_to_removesimpledb_database.h">
-      <Filter>Source Files\database\simpledb</Filter>
+      <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="database\simpledb\file_set.h">
-      <Filter>Source Files\database\simpledb</Filter>
+      <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="database\simpledb\item.h">
-      <Filter>Source Files\database\simpledb</Filter>
+      <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="database\simpledb\queue_item.h">
-      <Filter>Source Files\database\simpledb</Filter>
+      <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="database\simpledb\server.h">
-      <Filter>Source Files\database\simpledb</Filter>
+      <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="database\simpledb\simpledb.h">
-      <Filter>Source Files\database\simpledb</Filter>
+      <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="database\simpledb\storage.h">
-      <Filter>Source Files\database\simpledb</Filter>
+      <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="database\simpledb\thread.h">
-      <Filter>Source Files\database\simpledb</Filter>
+      <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="database\simpledb\thread_localdatabase.h">
-      <Filter>Source Files\database\simpledb</Filter>
+      <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="database\simpledb\veiev_post.h">
-      <Filter>Source Files\database\simpledb</Filter>
+      <Filter>Header Files\database\simpledb</Filter>
     </ClInclude>
     <ClInclude Include="database\database\_.h">
-      <Filter>Source Files\database\database</Filter>
+      <Filter>Header Files\database\database</Filter>
     </ClInclude>
     <ClInclude Include="database\database\_impl.h">
-      <Filter>Source Files\database\database</Filter>
+      <Filter>Header Files\database\database</Filter>
     </ClInclude>
     <ClInclude Include="database\database\const.h">
-      <Filter>Source Files\database\database</Filter>
+      <Filter>Header Files\database\database</Filter>
     </ClInclude>
     <ClInclude Include="database\database\database.h">
-      <Filter>Source Files\database\database</Filter>
+      <Filter>Header Files\database\database</Filter>
     </ClInclude>
     <ClInclude Include="database\database\dataset.h">
-      <Filter>Source Files\database\database</Filter>
+      <Filter>Header Files\database\database</Filter>
     </ClInclude>
     <ClInclude Include="database\database\definition.h">
-      <Filter>Source Files\database\database</Filter>
+      <Filter>Header Files\database\database</Filter>
     </ClInclude>
     <ClInclude Include="database\database\field_definition.h">
-      <Filter>Source Files\database\database</Filter>
+      <Filter>Header Files\database\database</Filter>
     </ClInclude>
     <ClInclude Include="database\database\template.h">
-      <Filter>Source Files\database\database</Filter>
+      <Filter>Header Files\database\database</Filter>
     </ClInclude>
     <ClInclude Include="html\html_lite\tag.h">
       <Filter>Header Files\html\html_lite</Filter>
@@ -672,40 +672,40 @@
       <Filter>Source Files\geoip</Filter>
     </ClCompile>
     <ClCompile Include="database\sqlitedb\database.cpp">
-      <Filter>Header Files\database\sqlite</Filter>
+      <Filter>Source Files\database\sqlite</Filter>
     </ClCompile>
     <ClCompile Include="database\simpledb\file_set.cpp">
-      <Filter>Header Files\database\simpledb</Filter>
+      <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
     <ClCompile Include="database\simpledb\item.cpp">
-      <Filter>Header Files\database\simpledb</Filter>
+      <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
     <ClCompile Include="database\simpledb\server.cpp">
-      <Filter>Header Files\database\simpledb</Filter>
+      <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
     <ClCompile Include="database\simpledb\simpledb.cpp">
-      <Filter>Header Files\database\simpledb</Filter>
+      <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
     <ClCompile Include="database\simpledb\storage.cpp">
-      <Filter>Header Files\database\simpledb</Filter>
+      <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
     <ClCompile Include="database\simpledb\thread.cpp">
-      <Filter>Header Files\database\simpledb</Filter>
+      <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
     <ClCompile Include="database\simpledb\thread_localdatabase.cpp">
-      <Filter>Header Files\database\simpledb</Filter>
+      <Filter>Source Files\database\simpledb</Filter>
     </ClCompile>
     <ClCompile Include="database\database\database.cpp">
-      <Filter>Header Files\database\database</Filter>
+      <Filter>Source Files\database\database</Filter>
     </ClCompile>
     <ClCompile Include="database\database\dataset.cpp">
-      <Filter>Header Files\database\database</Filter>
+      <Filter>Source Files\database\database</Filter>
     </ClCompile>
     <ClCompile Include="database\database\definition.cpp">
-      <Filter>Header Files\database\database</Filter>
+      <Filter>Source Files\database\database</Filter>
     </ClCompile>
     <ClCompile Include="database\database\field_definition.cpp">
-      <Filter>Header Files\database\database</Filter>
+      <Filter>Source Files\database\database</Filter>
     </ClCompile>
     <ClCompile Include="math\calculator\calculator.cpp">
       <Filter>Source Files\math\calculator</Filter>

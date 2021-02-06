@@ -96,7 +96,7 @@ public:
    color32_t getColorValue(::lite_html_reader * preader) const;
 
    /**
-    * Returns the RGB value of the attribute in hexadecimal format
+    * Returns the rgb value of the attribute in hexadecimal format
     * @return hexadecimal string representing the color value
     * @since 1.0
     * @author Gurmeet S. Kochar

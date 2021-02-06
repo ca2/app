@@ -994,7 +994,7 @@ namespace apex
 //
 //CLASS_DECL_APEX color32_t dk_red() // <3 tbs
 //{
-//   return ARGB(255, 200, 16, 46);
+//   return argb(255, 200, 16, 46);
 //}
 
 

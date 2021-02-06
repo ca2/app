@@ -55,7 +55,7 @@ namespace core
       //__composite(::user::keyboard)              m_pkeyboard;
 
       //index                                      m_iEdge;
-      //::map < ::user::e_key, ::user::e_key, bool, bool > *  m_pmapKeyPressed;
+      //::map < ::user::enum_key, ::user::enum_key, bool, bool > *  m_pmapKeyPressed;
 
       //bool                                       m_bProgrammerMode;
 
@@ -172,7 +172,7 @@ namespace core
 
       class keyboard & keyboard();
 
-      virtual bool modal_get_color(::user::interaction * puiOwner, ::hls & hls);
+      virtual bool modal_get_color(::user::interaction * puiOwner, ::color::hls & hls);
 
       virtual void AddToRecentFileList(const char * pszPathName);
 
@@ -206,11 +206,11 @@ namespace core
       __pointer(::user::impact_system) get_template(index index) const;
 
 
-      __pointer(::form_document)   create_form(::object * pobject, ::type point_i32, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      __pointer(::form_document)   create_form(::object * pobject, ::type point, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
       __pointer(::form_document)   create_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
       __pointer(::form_document)   create_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
       __pointer(::form_document)   create_child_form(::object * pobject, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
-      __pointer(::form_document)   create_child_form(::object * pobject, ::type point_i32, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
+      __pointer(::form_document)   create_child_form(::object * pobject, ::type point, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
       __pointer(::form_document)   create_child_form(::object * pobject, __pointer(::user::form) pview, ::user::form_callback * pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::e_type_empty_argument);
 
       template < typename FORM >
@@ -424,9 +424,9 @@ namespace core
 
       //::aura::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
 
-      //virtual bool is_key_pressed(::user::e_key ekey);
+      //virtual bool is_key_pressed(::user::enum_key ekey);
 
-      //virtual void set_key_pressed(::user::e_key ekey, bool bPressed);
+      //virtual void set_key_pressed(::user::enum_key ekey, bool bPressed);
 
       //virtual ::user::primitive * get_keyboard_focus();
       //virtual bool set_keyboard_focus(::user::primitive * pkeyboardfocus);
@@ -539,13 +539,13 @@ namespace core
 
       //template < typename VIEW >
       //__pointer(::user::document)   create_form(__pointer(::user::interaction) pwndParent = nullptr, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_form(::type point_i32, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_child_form(::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument), ::payload varArgs = ::payload(::e_type_empty_argument));
       //template < typename VIEW >
       //__pointer(::user::document)   create_child_form(__pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument));
-      //__pointer(::user::document)   create_child_form(::type point_i32, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument));
+      //__pointer(::user::document)   create_child_form(::type point, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument));
       //__pointer(::user::document)   create_child_form(__pointer(::user::form) pview, ::user::form_callback* pcallback, __pointer(::user::interaction) pwndParent, ::payload payload = ::payload(::e_type_empty_argument));
 
 

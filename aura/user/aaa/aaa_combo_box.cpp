@@ -95,9 +95,9 @@ namespace user
       ::rect rectClient;
 
       get_client_rect(rectClient);
-      //::user::e_color colorText = color_text;
+      //::user::e_::color::color colorText = color_text;
 
-      ::color colorText(0, 0, 0, 255);
+      ::color::color colorText(0, 0, 0, 255);
 
       //if (m_pdrawcontext != nullptr)
       //{
@@ -108,13 +108,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorText = ::color(192,192,192, 255);
+      //         colorText = ::color::color(192,192,192, 255);
 
       //      }
       //      else
       //      {
 
-      //         colorText = ::color(255, 255, 255, 255);
+      //         colorText = ::color::color(255, 255, 255, 255);
 
       //      }
 
@@ -125,13 +125,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorText = ::color(80, 80, 80, 255);;
+      //         colorText = ::color::color(80, 80, 80, 255);;
 
       //      }
       //      else
       //      {
 
-      //         colorText = ::color(80, 80, 80, 255);;
+      //         colorText = ::color::color(80, 80, 80, 255);;
 
       //      }
 
@@ -213,8 +213,8 @@ namespace user
 
       ::rect rectDropIn(rectDropDown);
 
-      //::user::e_color colorDropDown = color_button_background_disabled;
-      ::color colorDropDown = ::color(127, 127, 127, 255);
+      //::user::e_::color::color colorDropDown = color_button_background_disabled;
+      ::color::color colorDropDown = ::color::color(127, 127, 127, 255);
 
       //if (m_pdrawcontext != nullptr)
       //{
@@ -225,13 +225,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorDropDown = ::color(80, 80, 180, 255);
+      //         colorDropDown = ::color::color(80, 80, 180, 255);
 
       //      }
       //      else
       //      {
 
-      //         colorDropDown = ::color(100, 100, 200, 255);
+      //         colorDropDown = ::color::color(100, 100, 200, 255);
 
       //      }
 
@@ -242,13 +242,13 @@ namespace user
       //      if (m_pdrawcontext->is_control_hover())
       //      {
 
-      //         colorDropDown = ::color(200, 200, 250, 255);
+      //         colorDropDown = ::color::color(200, 200, 250, 255);
 
       //      }
       //      else
       //      {
 
-      //         colorDropDown = ::color(192, 192, 192, 255);
+      //         colorDropDown = ::color::color(192, 192, 192, 255);
 
       //      }
 
@@ -264,13 +264,13 @@ namespace user
             if (m_itemHover)
             {
 
-               colorDropDown = ::color(200, 200, 250, 255);
+               colorDropDown = ::color::color(200, 200, 250, 255);
 
             }
             else
             {
 
-               colorDropDown = ::color(200, 200, 250, 255);
+               colorDropDown = ::color::color(200, 200, 250, 255);
 
             }
 
@@ -281,13 +281,13 @@ namespace user
             if (m_itemHover)
             {
 
-               colorDropDown = ::color(200, 200, 250, 255);
+               colorDropDown = ::color::color(200, 200, 250, 255);
 
             }
             else
             {
 
-               colorDropDown = ::color(200, 200, 250, 255);
+               colorDropDown = ::color::color(200, 200, 250, 255);
 
             }
 
@@ -295,7 +295,7 @@ namespace user
 
       }
 
-      color c(colorDropDown);
+      ::color::color color(colorDropDown);
 
       c.hls_rate(0.0, 0.5, 0.1);
 
@@ -311,7 +311,7 @@ namespace user
 
       get_simple_drop_down_open_arrow_polygon(pointa);
 
-      br->create_solid(ARGB(210, 0, 0, 0));
+      br->create_solid(argb(210, 0, 0, 0));
 
       pgraphics->set(br);
 

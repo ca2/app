@@ -80,7 +80,7 @@ static int s_format_id;
 
 #define JFXX_TYPE_JPEG 	0x10	// JFIF extension marker: JPEG-compressed thumbnail image
 #define JFXX_TYPE_8bit 	0x11	// JFIF extension marker: palette thumbnail image
-#define JFXX_TYPE_24bit	0x13	// JFIF extension marker: RGB thumbnail image
+#define JFXX_TYPE_24bit	0x13	// JFIF extension marker: rgb thumbnail image
 
 // ----------------------------------------------------------
 //   Typedef declarations
@@ -1366,14 +1366,14 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
             }
             else
             {
-               // load as CMYK and convert to RGB
+               // load as CMYK and convert to rgb
 /*               pimage = FreeImage_AllocateHeader(header_only, cinfo.output_width, cinfo.output_height, 24, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK);
 /*               if(!pimage) throw_simple_exception(FI_MSG_ERROR_DIB_MEMORY);
             }
          }
          else
          {
-            // RGB or greyscale image
+            // rgb or greyscale image
 /*            pimage = FreeImage_AllocateHeader(header_only, cinfo.output_width, cinfo.output_height, 8 * cinfo.output_components, FI_RGBA_RED_MASK, FI_RGBA_GREEN_MASK, FI_RGBA_BLUE_MASK);
 /*            if(!pimage) throw_simple_exception(FI_MSG_ERROR_DIB_MEMORY);
 
@@ -1429,7 +1429,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
          if((cinfo.out_color_space == JCS_CMYK) && ((flags & JPEG_CMYK) != JPEG_CMYK))
          {
-            // convert from CMYK to RGB
+            // convert from CMYK to rgb
 
             JSAMPARRAY buffer;		// output row buffer
             unsigned row_stride;	// physical row width in output buffer
@@ -1491,7 +1491,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
          }
          else
          {
-            // normal case (RGB or greyscale image)
+            // normal case (rgb or greyscale image)
 
             while (cinfo.output_scanline < cinfo.output_height)
             {
@@ -1763,7 +1763,7 @@ static int_bool DLL_CALLCONV
 
          if(color_type == FIC_RGB)
          {
-            // 24-bit RGB image : need to __swap red and blue channels
+            // 24-bit rgb image : need to __swap red and blue channels
 /*            unsigned pitch = FreeImage_GetPitch(pimage);
             byte *target = (byte*)malloc(pitch * sizeof(byte));
             if (target == nullptr)

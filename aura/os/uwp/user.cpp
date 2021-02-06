@@ -253,7 +253,7 @@ using namespace Windows::System::Threading;
 //}
 //
 //
-//::user::e_key virtualkey_to_userkey(::Windows::System::VirtualKey e, bool& bSpecialKey)
+//::user::enum_key virtualkey_to_userkey(::Windows::System::VirtualKey e, bool& bSpecialKey)
 //{
 //   bSpecialKey = false;
 //   switch (e)
@@ -420,7 +420,7 @@ using namespace Windows::System::Threading;
 //      }
 //   }
 //
-//   return (::user::e_key) e;
+//   return (::user::enum_key) e;
 //
 //}
 //
@@ -580,7 +580,7 @@ namespace user
 {
 
 
-   CLASS_DECL_AURA ::color calc_system_app_background_color()
+   CLASS_DECL_AURA ::color::color calc_system_app_background_color()
    {
 
       auto psystem = ::get_context_system()->m_paurasystem;
@@ -588,7 +588,7 @@ namespace user
       if (!psystem)
       {
 
-         return ARGB(255, 255, 255, 255);
+         return argb(255, 255, 255, 255);
 
       }
 
@@ -597,7 +597,7 @@ namespace user
       if(!pimplMain)
       {
 
-         return ARGB(255, 255, 255, 255);
+         return argb(255, 255, 255, 255);
 
       }
 
@@ -606,7 +606,7 @@ namespace user
       if (!pframeworkview)
       {
 
-         return ARGB(255, 255, 255, 255);
+         return argb(255, 255, 255, 255);
 
       }
 
@@ -615,7 +615,7 @@ namespace user
       if (!puisettings)
       {
 
-         return ARGB(255, 255, 255, 255);
+         return argb(255, 255, 255, 255);
 
       }
 
@@ -627,7 +627,7 @@ namespace user
 
       auto b = color.B;
 
-      return ::color(r, g, b, 255);
+      return ::color::color(r, g, b, 255);
 
    }
 

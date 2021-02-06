@@ -1330,7 +1330,7 @@ void message_box_paint(::draw2d::graphics_pointer & pgraphics, string_array & st
 
    sync_lock sl(g_pmutexX);
 
-   pgraphics->fill_rect(::rect(*psize), RGB(84, 90, 80));
+   pgraphics->fill_rect(::rect(*psize), rgb(84, 90, 80));
 
    draw2d::brush_pointer pen(e_create_new, pgraphics);
 

@@ -757,12 +757,12 @@ namespace experience
    }
 
 
-   void frame::set_moveable_border_color(const ::color & colorParam)
+   void frame::set_moveable_border_color(const ::color::color & colorParam)
    {
 
       m_colorMoveableBorder = colorParam;
 
-      ::color color;
+      ::color::color color;
 
       color = colorParam;
       color.hls_rate(0.0, 0.5, 0.0);

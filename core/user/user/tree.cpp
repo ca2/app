@@ -427,7 +427,7 @@ namespace user
 
          auto rectFill = ::rectangle_f64(data.m_rectClient.left, data.m_rectangle.top, data.m_rectClient.right, data.m_rectangle.bottom);
 
-         data.m_pdc->fill_rect(rectFill, ARGB(127, 125, 166, 228));
+         data.m_pdc->fill_rect(rectFill, argb(127, 125, 166, 228));
 
       }
 
@@ -437,7 +437,7 @@ namespace user
          //if(psession->savings().is_trying_to_save(::e_resource_processing))
          //{
 
-            data.m_pdc->fill_rect(data.m_rectangle, ARGB(127, 96,96,96));
+            data.m_pdc->fill_rect(data.m_rectangle, argb(127, 96,96,96));
 
          //}
          //else
@@ -461,7 +461,7 @@ namespace user
 
          //   class imaging & imaging = System.imaging();
 
-         //   color32_t crTranslucid = RGB(0, 0, 0);
+         //   color32_t crTranslucid = rgb(0, 0, 0);
 
          //   imaging.color_blend(data.m_pdc,    rectUnion.left, rectUnion.top,
          //   rectUnion.width(), rectUnion.height(),

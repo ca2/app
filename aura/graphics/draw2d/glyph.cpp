@@ -164,7 +164,7 @@ namespace draw2d
 //   *
 //   *  RETURNS    : number of Bezier points added to the const point_i32 & array.
 //   ****************************************************************************/
-//   //::u32 AppendPolyLineToBezier( POINT_I32 * point_i32, POINTFX start, LPTTPOLYCURVE pCurve )
+//   //::u32 AppendPolyLineToBezier( POINT_I32 * point, POINTFX start, LPTTPOLYCURVE pCurve )
 //
 //   ::u32 AppendPolyLineToBezier(
 //   point_i32_array      &pointsset,
@@ -224,7 +224,7 @@ namespace draw2d
 //   *
 //   *  RETURNS    : number of Bezier points added to the const point_i32 & array.
 //   ****************************************************************************/
-//   //::u32 AppendQuadBSplineToBezier( POINT_I32 * point_i32, POINTFX start, LPTTPOLYCURVE pCurve )
+//   //::u32 AppendQuadBSplineToBezier( POINT_I32 * point, POINTFX start, LPTTPOLYCURVE pCurve )
 //
 //   ::u32 AppendQuadBSplineToBezier(
 //   point_i32_array & pointset,
@@ -305,7 +305,7 @@ namespace draw2d
 //   *
 //   *  RETURNS    : number of points aded to the point_i32 const point_i32 & array.
 //   ****************************************************************************/
-//   //::u32 CloseContour( POINT_I32 * point_i32, ::u32 cTotal )
+//   //::u32 CloseContour( POINT_I32 * point, ::u32 cTotal )
 //   ::u32 CloseContour(
 //   point_i32_array & pointset,
 //   ::u32 cTotal )

@@ -40,7 +40,7 @@ namespace datetime
       GetRect(&rectangle,e_element_clock);
       ::draw2d::pen_pointer pen(e_create);
       
-      pen->create_solid(1, ARGB(255, 0, 0, 0));
+      pen->create_solid(1, argb(255, 0, 0, 0));
       pgraphics->set(pen);
       pgraphics->draw_ellipse(rectangle);
 
@@ -49,8 +49,8 @@ namespace datetime
       ::draw2d::pen_pointer penHour(e_create);
       ::draw2d::pen_pointer penMinute(e_create);
 
-      penHour->create_solid(5, ARGB(255, 0, 0, 0));
-      penMinute->create_solid(1, ARGB(255, 0, 0, 0));
+      penHour->create_solid(5, argb(255, 0, 0, 0));
+      penMinute->create_solid(1, argb(255, 0, 0, 0));
 
       double dRIntH = rectangle.width() * 57 / 128;
       double dRIntM = rectangle.width() * 59 / 128;
@@ -84,7 +84,7 @@ namespace datetime
       double dRSecond = rectangle.width() * 16 / 32;
 
       ::draw2d::pen_pointer penHM(e_create);
-      penHM->create_solid(2, ARGB(255, 0, 0, 0));
+      penHM->create_solid(2, argb(255, 0, 0, 0));
       pgraphics->set(penHM);
 
       pgraphics->move_to(pointCenter);
@@ -102,7 +102,7 @@ namespace datetime
          pgraphics->line_to(pointMinute);
       }
       ::draw2d::pen_pointer penRed(e_create);
-      penRed->create_solid(1, ARGB(255, 200, 0, 0));
+      penRed->create_solid(1, argb(255, 200, 0, 0));
       pgraphics->set(penRed);
       pgraphics->move_to(pointCenter);
       {
@@ -131,7 +131,7 @@ namespace datetime
 
 
 
-   void graphics::set_pos(point_i32 point_i32,size_i32 sz)
+   void graphics::set_pos(point_i32 point,size_i32 sz)
    {
       m_point = point;
       m_size = sz;

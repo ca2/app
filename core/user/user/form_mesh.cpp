@@ -655,7 +655,7 @@ namespace user
    bool form_mesh::control_001DisplayHitTest(const ::point_i32 & point)
    {
 
-      return _001DisplayHitTest(point_i32,m_itemControl.m_iItem, m_itemControl.m_iSubItem);
+      return _001DisplayHitTest(point,m_itemControl.m_iItem, m_itemControl.m_iSubItem);
 
    }
 

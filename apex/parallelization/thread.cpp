@@ -3990,7 +3990,7 @@ void thread::message_handler(::message::base * pbase)
 
          MSG msg;
 
-         __copy(msg, message);
+         copy(&msg, &message);
 
          ::TranslateMessage(&msg);
 

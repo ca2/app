@@ -229,9 +229,9 @@ namespace turboc
 
             //::draw2d::pen_pointer pen(this_create);
 
-            //pen->create_solid(1.0,ARGB(255,84 / 2,84 / 2,77 / 2));
+            //pen->create_solid(1.0,argb(255,84 / 2,84 / 2,77 / 2));
 
-            //pgraphics->FillSolidRect(0,0,m_cx,m_cy,ARGB(0,0,0,0));
+            //pgraphics->FillSolidRect(0,0,m_cx,m_cy,argb(0,0,0,0));
 
             //pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -242,7 +242,7 @@ namespace turboc
          }
 
 
-         ::color ca;
+         ::color::color ca;
 
          double dPeriod = (500) * 11;
 
@@ -250,7 +250,7 @@ namespace turboc
 
          ::draw2d::brush_pointer brush(this_create);
 
-         brush->create_solid(ARGB(255,ca.m_iR,ca.m_iG,ca.m_iB));
+         brush->create_solid(argb(255,ca.m_iR,ca.m_iG,ca.m_iB));
 
          pgraphics->SelectObject(brush);
 
@@ -293,7 +293,7 @@ namespace turboc
 
          pgraphics->BitBlt(::point_i32(),size_i32(m_cx,m_cy),m_pimageFast->get_graphics());
 
-         //pgraphics->FillSolidRect(400,400,100,100,ARGB(128,0,0,128));
+         //pgraphics->FillSolidRect(400,400,100,100,argb(128,0,0,128));
 
          m_bOkPending = true;
 
@@ -366,7 +366,7 @@ namespace turboc
       //System.draw2d().imaging().bitmap_blend(pgraphics,::point_i32(),imageFast.m_size,imageFast.get_graphics(),::point_i32(),255);
 
 
-      //pgraphics->FillSolidRect(100,100,100,100,ARGB(128,0,128,0));
+      //pgraphics->FillSolidRect(100,100,100,100,argb(128,0,128,0));
 
    }
 
@@ -394,9 +394,9 @@ namespace turboc
 
       pdcScreen->from(::point_i32(),m_pimagePost->m_size,m_pimagePost.get_graphics(),::point_i32());
 
-//      pdcScreen->FillSolidRect(500,200,100,100,ARGB(255,255,210,0));
+//      pdcScreen->FillSolidRect(500,200,100,100,argb(255,255,210,0));
 
-      //    pdcScreen->Draw3dRect(200,200,100,100,ARGB(255,0,255,0),ARGB(255,0,0,255));
+      //    pdcScreen->Draw3dRect(200,200,100,100,argb(255,0,255,0),argb(255,0,0,255));
 
    }
 
@@ -455,16 +455,16 @@ namespace turboc
 
       ::draw2d::pen_pointer pen(this_create);
 
-      pen->create_solid(1.0,ARGB(255,84 / 2,84 / 2,77 / 2));
+      pen->create_solid(1.0,argb(255,84 / 2,84 / 2,77 / 2));
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      //pgraphics->FillSolidRect(0, 0, m_cx, m_cy, ARGB(0,0,0,0));
+      //pgraphics->FillSolidRect(0, 0, m_cx, m_cy, argb(0,0,0,0));
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       pgraphics->draw_path(path,pen);
-      //pgraphics->FillSolidRect(00,00,100,100,ARGB(128,128,0,0));
+      //pgraphics->FillSolidRect(00,00,100,100,argb(128,128,0,0));
 
    }
 
@@ -628,21 +628,21 @@ namespace turboc
                rm = (g + b) / 4;
                gm = (r + b) / 4;
                bm = (r + g) / 4;
-/*               pimage->get_data()[i * pimage->width() + j] = ARGB(a,r,rm,rm);
-/*               pimage->get_data()[i * pimage->width() + j+1] = ARGB(a,gm,g,gm);
-/*               pimage->get_data()[i * pimage->width() + j+2] = ARGB(a,bm,bm,b);
-/*               pimage->get_data()[(i+1) * pimage->width() + j] = ARGB(a,r,rm,rm);
-/*               pimage->get_data()[(i + 1) * pimage->width() + j + 1] = ARGB(a,gm,g,gm);
-/*               pimage->get_data()[(i + 1) * pimage->width() + j + 2] = ARGB(a,bm,bm,b);
-/*               pimage->get_data()[(i + 2) * pimage->width() + j] = ARGB(a,r,rm,rm);
-/*               pimage->get_data()[(i + 2) * pimage->width() + j + 1] = ARGB(a,gm,g,gm);
-/*               pimage->get_data()[(i + 2) * pimage->width() + j + 2] = ARGB(a,bm,bm,b);
+/*               pimage->get_data()[i * pimage->width() + j] = argb(a,r,rm,rm);
+/*               pimage->get_data()[i * pimage->width() + j+1] = argb(a,gm,g,gm);
+/*               pimage->get_data()[i * pimage->width() + j+2] = argb(a,bm,bm,b);
+/*               pimage->get_data()[(i+1) * pimage->width() + j] = argb(a,r,rm,rm);
+/*               pimage->get_data()[(i + 1) * pimage->width() + j + 1] = argb(a,gm,g,gm);
+/*               pimage->get_data()[(i + 1) * pimage->width() + j + 2] = argb(a,bm,bm,b);
+/*               pimage->get_data()[(i + 2) * pimage->width() + j] = argb(a,r,rm,rm);
+/*               pimage->get_data()[(i + 2) * pimage->width() + j + 1] = argb(a,gm,g,gm);
+/*               pimage->get_data()[(i + 2) * pimage->width() + j + 2] = argb(a,bm,bm,b);
             }
          }
 
          ::draw2d::pen_pointer pen(this_create);
 
-         pen->create_solid(0.5,ARGB(84,0,0,0));
+         pen->create_solid(0.5,argb(84,0,0,0));
 
 /*         pimage->g()->SelectObject(pen);
 

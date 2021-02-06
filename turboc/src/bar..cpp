@@ -58,7 +58,7 @@ bar (int x1, int y1, int x2, int y2)
   //XSetTile (TcDisplay, TcGc, TcTile);
   // Now do the actual drawing.
   //XFillRectangle (TcDisplay, TcPixmaps[TcActivePage], TcGc, x1, y1, i, j);
-  TcPixmaps[TcActivePage]->get_graphics()->FillSolidRect(x1,y1,i,j,ARGB(128,255,255,255));
+  TcPixmaps[TcActivePage]->get_graphics()->FillSolidRect(x1,y1,i,j,argb(128,255,255,255));
   tc().defer_synch();
 //  if (TcActivePage == TcVisualPage)
   //  {

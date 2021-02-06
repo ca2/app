@@ -40,7 +40,7 @@ namespace draw2d_xlib
     * \param pXServerConnection A pointer to the CXServerConnection object.
     * \param pScreen A pointer to the CScreen object.
     */
-   color::color()
+   color::color::color()
    {
 
       m_pdisplay = nullptr;

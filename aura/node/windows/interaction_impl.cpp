@@ -458,7 +458,9 @@ namespace windows
    void interaction_impl::install_message_routing(::channel * pchannel)
    {
 
-      m_pwindow->install_message_routing(pchannel);
+      ::user::interaction_impl::install_message_routing(pchannel);
+
+      //m_puserinteraction->install_message_routing(pchannel);
 
    }
 

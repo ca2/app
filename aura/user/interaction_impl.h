@@ -415,7 +415,7 @@ namespace user
 //#endif
 
 
-      virtual ::point_i32 get_cursor_pos() const override;
+      //virtual ::point_i32 get_cursor_pos() const override;
 
       virtual ::e_status set_cursor(::windowing::cursor * pcursor) override;
 

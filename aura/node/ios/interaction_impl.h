@@ -320,7 +320,7 @@ namespace ios
 
       // oswindow Access Functions
 //      virtual ::user::interaction *  child_window_from_point(POINT_I32 point_i32) override;
-  //    virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point_i32, ::u32 nFlags) override;
+  //    virtual ::user::interaction *  ChildWindowFromPoint(POINT_I32 point, ::u32 nFlags) override;
       static ::user::interaction * PASCAL FindWindow(const char * lpszClassName, const char * lpszWindowName);
       static ::user::interaction * FindWindowEx(oswindow hwndParent, oswindow hwndChildAfter, const char * lpszClass, const char * lpszWindow);
 
@@ -636,8 +636,8 @@ namespace ios
       
       virtual void round_window_become_key() override;
 
-      virtual bool round_window_key_down(::user::e_key ekey) override;
-      virtual bool round_window_key_up(::user::e_key ekey) override;
+      virtual bool round_window_key_down(::user::enum_key ekey) override;
+      virtual bool round_window_key_up(::user::enum_key ekey) override;
       virtual bool round_window_on_text(const char * pszText, long iSelBeg, long iSelEnd) override;
       virtual bool round_window_on_sel_text(long iBeg, long iEnd) override;
       virtual long round_window_edit_hit_test(int x, int y) override;

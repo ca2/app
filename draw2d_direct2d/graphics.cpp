@@ -361,7 +361,7 @@ namespace draw2d_direct2d
 
       //      pimage1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      //      pimage1->get_graphics()->fill_rect(rectDib1, ARGB(0, 0, 0, 0));
+      //      pimage1->get_graphics()->fill_rect(rectDib1, argb(0, 0, 0, 0));
 
       //      if (!pimage1->from(::point_f64(), pgraphicsSrc, ::point_f64(xSrc, ySrc), ::size_f64))
       //      {
@@ -376,7 +376,7 @@ namespace draw2d_direct2d
 
       //      pimage2->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      //      pimage2->get_graphics()->fill_rect(rectDib1, ARGB(255, 0, 0, 0));
+      //      pimage2->get_graphics()->fill_rect(rectDib1, argb(255, 0, 0, 0));
 
       //      if (!pimage2->from(::point_f64(), m_pimageAlphaBlend, point_i32 - m_pointAlphaBlend, rectIntersect.size()))
       //      {
@@ -559,7 +559,7 @@ namespace draw2d_direct2d
 
          pimage1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-         pimage1->get_graphics()->fill_rect(rectDib1, ARGB(0, 0, 0, 0));
+         pimage1->get_graphics()->fill_rect(rectDib1, argb(0, 0, 0, 0));
 
          pimage1->get_graphics()->text_out(0, 0, block);
 
@@ -569,7 +569,7 @@ namespace draw2d_direct2d
 
          pimage2->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-         pimage2->get_graphics()->fill_rect(rectDib1, ARGB(255, 0, 0, 0));
+         pimage2->get_graphics()->fill_rect(rectDib1, argb(255, 0, 0, 0));
 
          if (!pimage2->draw(rectIntersect.size(), m_pimageAlphaBlend, __pointd(point - m_pointAlphaBlend)))
          {
@@ -639,7 +639,7 @@ namespace draw2d_direct2d
    }
 
 
-   //color32_t graphics::GetNearestColor(const ::color & color)
+   //color32_t graphics::GetNearestColor(const ::color::color & color)
    //{
 
    //   __throw(todo());
@@ -1890,7 +1890,7 @@ namespace draw2d_direct2d
    //}
 
 
-   ::color graphics::GetPixel(double x, double y)
+   ::color::color graphics::GetPixel(double x, double y)
    {
 
       __throw(todo());
@@ -1898,7 +1898,7 @@ namespace draw2d_direct2d
    }
 
 
-   ::color graphics::GetPixel(const ::point_f64 & point)
+   ::color::color graphics::GetPixel(const ::point_f64 & point)
    {
 
       __throw(todo());
@@ -1906,7 +1906,7 @@ namespace draw2d_direct2d
    }
 
 
-   ::color graphics::SetPixel(double x, double y, const ::color & color)
+   ::color::color graphics::SetPixel(double x, double y, const ::color::color & color)
    {
 
       __throw(todo());
@@ -1914,7 +1914,7 @@ namespace draw2d_direct2d
    }
 
 
-   ::color graphics::SetPixel(const ::point_f64 & point, const ::color & color)
+   ::color::color graphics::SetPixel(const ::point_f64 & point, const ::color::color & color)
    {
 
       __throw(todo());
@@ -1922,7 +1922,7 @@ namespace draw2d_direct2d
    }
 
 
-//   bool graphics::FloodFill(double x, double y, const ::color & color)
+//   bool graphics::FloodFill(double x, double y, const ::color::color & color)
 //   {
 //
 //      __throw(todo());
@@ -1930,7 +1930,7 @@ namespace draw2d_direct2d
 //   }
 //
 //
-//   bool graphics::ExtFloodFill(double x, double y, const ::color & color, ::u32 nFillType)
+//   bool graphics::ExtFloodFill(double x, double y, const ::color::color & color, ::u32 nFillType)
 //   {
 //
 //      __throw(todo());
@@ -2492,7 +2492,7 @@ namespace draw2d_direct2d
 //   }
 
 
-   bool graphics::SetPixelV(double x, double y, const ::color & color)
+   bool graphics::SetPixelV(double x, double y, const ::color::color & color)
    {
 
       __throw(todo());
@@ -2503,7 +2503,7 @@ namespace draw2d_direct2d
 
    }
 
-   bool graphics::SetPixelV(const ::point_f64 & point, const ::color & color)
+   bool graphics::SetPixelV(const ::point_f64 & point, const ::color::color & color)
    {
 
       __throw(todo());
@@ -3045,7 +3045,7 @@ namespace draw2d_direct2d
    imageWork4.from(point_i32(max(0, m_pointAlphaBlend.x - xDest), max(0, m_pointAlphaBlend.y - yDest)),
    m_pimageAlphaBlend->get_graphics(), point_i32(max(0, xDest - m_pointAlphaBlend.x), max(0, yDest - m_pointAlphaBlend.y)), ::size_f64);
 
-   imageWork.channel_multiply(::color::channel_alpha, imageWork4);
+   imageWork.channel_multiply(::color::e_channel_alpha, imageWork4);
 
 
    keep < image > keep(&m_pimageAlphaBlend, nullptr, m_pimageAlphaBlend, true);
@@ -3106,7 +3106,7 @@ namespace draw2d_direct2d
    //   //return ::GetDCBrushColor(get_handle1());
 
    //}
-   //inline color32_t graphics::SetDCBrushColor(const ::color & color)
+   //inline color32_t graphics::SetDCBrushColor(const ::color::color & color)
    //{
 
    //   __throw(todo());
@@ -3127,7 +3127,7 @@ namespace draw2d_direct2d
    //   //return ::GetDCPenColor(get_handle1());
 
    //}
-   //inline color32_t graphics::SetDCPenColor(const ::color & color)
+   //inline color32_t graphics::SetDCPenColor(const ::color::color & color)
    //{
 
    //   __throw(todo());
@@ -3394,7 +3394,7 @@ namespace draw2d_direct2d
    //}
 
 
-   //bool graphics::fill_rect(const ::rectangle_f64 & rectangle, const ::color & color)
+   //bool graphics::fill_rect(const ::rectangle_f64 & rectangle, const ::color::color & color)
    //{
 
    //   return fill_rect(rectangle_f64(rectangle), color);
@@ -3402,7 +3402,7 @@ namespace draw2d_direct2d
    //}
 
 
-   //bool graphics::draw_3drect(const ::rectangle_f64 & rectangle, const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder)
+   //bool graphics::draw_3drect(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder)
    //{
 
    //   draw_3drect(rectangle_f64(rectangle), colorTopLeft, colorBottomRight, eborder);
@@ -3410,7 +3410,7 @@ namespace draw2d_direct2d
    //}
 
 
-   //void graphics::draw_3drect(const ::rectangle_f64 & rectangle,  const ::color & colorTopLeft, const ::color & colorBottomRight, const ::e_border & eborder)
+   //void graphics::draw_3drect(const ::rectangle_f64 & rectangle,  const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder)
    //{
 
    //   double x = rectangle.left;
@@ -3592,12 +3592,12 @@ namespace draw2d_direct2d
    }
 
 
-   // color32_t graphics::SetTextColor(const ::color & color)
+   // color32_t graphics::SetTextColor(const ::color::color & color)
 //   {
    //  return set_color(crColor);
-   //const ::color & colorRetVal = m_colorColor;
+   //const ::color::color & colorRetVal = m_colorColor;
    //m_colorColor = crColor;
-   /*      const ::color & colorRetVal = CLR_INVALID;
+   /*      const ::color::color & colorRetVal = CLR_INVALID;
    if(get_handle1() != nullptr && get_handle1() != get_handle2())
    crRetVal = ::SetTextColor(get_handle1(), crColor);
    if(get_handle2() != nullptr)
@@ -4852,7 +4852,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::fill_rect(const ::rectangle_f64 & rectParam, const ::color & color)
+   bool graphics::fill_rect(const ::rectangle_f64 & rectParam, const ::color::color & color)
    {
 
       if (!m_pdevicecontext)

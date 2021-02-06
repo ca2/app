@@ -225,17 +225,17 @@ namespace user
       imaging.color_blend(
       pgraphics,
       rectClient,
-      RGB(250, 255, 255),
+      rgb(250, 255, 255),
       bAlpha);
 
       ::rectangle_i32 rectangle;
       GetSliderRect(rectangle);
 
-      pgraphics->draw_rect(rectangle,ARGB(bAlpha,255,255,255));
+      pgraphics->draw_rect(rectangle,argb(bAlpha,255,255,255));
       rectangle.deflate(1, 1);
-      pgraphics->draw_rect(rectangle,ARGB(bAlpha,255,255,0));
+      pgraphics->draw_rect(rectangle,argb(bAlpha,255,255,0));
       rectangle.deflate(1, 1);
-      pgraphics->draw_rect(rectangle,ARGB(bAlpha,255,255,255));
+      pgraphics->draw_rect(rectangle,argb(bAlpha,255,255,255));
 
       if(m_bSlide)
       {

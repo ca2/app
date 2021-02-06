@@ -2258,7 +2258,7 @@ namespace ios
 //   }
 
 
-//   bool interaction_impl::round_window_key_down(::user::e_key ekey)
+//   bool interaction_impl::round_window_key_down(::user::enum_key ekey)
 //   {
 //
 //      return false;
@@ -2266,7 +2266,7 @@ namespace ios
 //   }
 
 
-//   bool interaction_impl::round_window_key_up(::user::e_key ekey)
+//   bool interaction_impl::round_window_key_up(::user::enum_key ekey)
 //   {
 //
 //      return false;
@@ -2418,7 +2418,7 @@ namespace ios
       //      catch(...)
       //      {
       //      }
-      //      pgraphics->FillSolidRect(rectx, RGB(255, 255, 255));
+      //      pgraphics->FillSolidRect(rectx, rgb(255, 255, 255));
       //      WIN_DC(graphics.m_p)->Detach();
       //      pmessage->m_bRet = true;
       //      pbase->set_lresult(0);
@@ -5133,7 +5133,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::round_window_key_down(::user::e_key ekey)
+   bool interaction_impl::round_window_key_down(::user::enum_key ekey)
    {
 
       __pointer(::message::base) spbase;
@@ -5153,7 +5153,7 @@ namespace ios
    }
 
 
-   bool interaction_impl::round_window_key_up(::user::e_key ekey)
+   bool interaction_impl::round_window_key_up(::user::enum_key ekey)
    {
 
       __pointer(::message::base) spbase;
@@ -5300,13 +5300,13 @@ namespace ios
          else if(strText[0] >= 'a' && strText[0] <= 'z')
          {
 
-            pkey->m_ekey = (::user::e_key)(::user::e_key_a + strText[0] - 'a');
+            pkey->m_ekey = (::user::enum_key)(::user::e_key_a + strText[0] - 'a');
 
          }
          else if(strText[0] >= '0' && strText[0] <= '9')
          {
 
-            pkey->m_ekey = (::user::e_key)(::user::e_key_0 + strText[0] - '0');
+            pkey->m_ekey = (::user::enum_key)(::user::e_key_0 + strText[0] - '0');
 
          }
          else if(strText[0] >= 'A' && strText[0] <= 'Z')
@@ -5320,7 +5320,7 @@ namespace ios
 
             sleep(100_ms);
 
-            pkey->m_ekey = (::user::e_key)(::user::e_key_a + strText[0] - 'A');
+            pkey->m_ekey = (::user::enum_key)(::user::e_key_a + strText[0] - 'A');
 
             on_host_message_handler(spbase);
 

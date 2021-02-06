@@ -139,10 +139,10 @@ namespace base
 //      create_session_default_color(color_text_press, 200, COLOR_HIGHLIGHT);
 //      create_color(color_text_disabled, alpha_color(200, ::color_gray));
 //      create_session_default_color(color_text_hover, 200, COLOR_HIGHLIGHT);
-//      create_color(color_background, ARGB(100, 180, 192, 255));
-//      create_color(color_background_press, ARGB(200, 180, 192, 255));
-//      create_color(color_background_disabled, ARGB(100, 180, 192, 255));
-//      create_color(color_background_hover, ARGB(125, 180, 192, 255));
+//      create_color(color_background, argb(100, 180, 192, 255));
+//      create_color(color_background_press, argb(200, 180, 192, 255));
+//      create_color(color_background_disabled, argb(100, 180, 192, 255));
+//      create_color(color_background_hover, argb(125, 180, 192, 255));
 //      create_flag(flag_border);
 //      create_translucency(e_element_none, ::user::e_translucency_present);
 //
@@ -183,14 +183,14 @@ namespace base
 //      theme_current_control(control_system_menu_close);
 //
 //      create_point_font(font_default, "Marlett", 11.0);
-//      create_color(color_text_normal, ARGB(200, 200, 100, 80));
-//      create_color(color_text_press, ARGB(225, 255, 0, 0));
-//      create_color(color_text_disabled, ARGB(200, 127, 127, 127));
-//      create_color(color_text_hover, ARGB(200, 255, 50, 50));
-//      create_color(color_background, ARGB(200, 210, 192, 192));
-//      create_color(color_background_press, ARGB(225, 255, 192, 192));
-//      create_color(color_background_disabled, ARGB(200, 192, 192, 192));
-//      create_color(color_background_hover, ARGB(200, 223, 192, 192));
+//      create_color(color_text_normal, argb(200, 200, 100, 80));
+//      create_color(color_text_press, argb(225, 255, 0, 0));
+//      create_color(color_text_disabled, argb(200, 127, 127, 127));
+//      create_color(color_text_hover, argb(200, 255, 50, 50));
+//      create_color(color_background, argb(200, 210, 192, 192));
+//      create_color(color_background_press, argb(225, 255, 192, 192));
+//      create_color(color_background_disabled, argb(200, 192, 192, 192));
+//      create_color(color_background_hover, argb(200, 223, 192, 192));
 //      create_flag(flag_border, false);
 //      create_translucency(e_element_none, ::user::e_translucency_present);
 //

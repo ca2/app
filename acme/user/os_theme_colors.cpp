@@ -22,14 +22,14 @@ namespace user
    bool is_ok(const os_theme_colors & themecolors)
    {
 
-      if(themecolors.m_colorBack.color32 == themecolors.m_colorFore.color32)
+      if(themecolors.m_colorBack == themecolors.m_colorFore)
       {
 
          return false;
 
       }
 
-      if(themecolors.m_colorFore.color32 == themecolors.m_colorFace.color32)
+      if(themecolors.m_colorFore == themecolors.m_colorFace)
       {
 
          return false;

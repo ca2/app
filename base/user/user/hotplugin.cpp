@@ -79,7 +79,7 @@ namespace hotplugin
 
       ::draw2d::brush_pointer brush(e_create);
 
-      brush->create_solid(ARGB(190, 49, 50, 49));
+      brush->create_solid(argb(190, 49, 50, 49));
 
       pgraphics->fill_rect(rectBar, brush);
 
@@ -88,7 +88,7 @@ namespace hotplugin
 
          ::draw2d::brush_pointer brushGreen(e_create);
 
-         brushGreen->create_solid(ARGB(190, 80, 190, 123));
+         brushGreen->create_solid(argb(190, 80, 190, 123));
 
          if (rectDraw.intersect(rectBar, rectBrick))
          {
@@ -119,7 +119,7 @@ namespace hotplugin
 
       ::draw2d::pen_pointer pen(e_create);
 
-      pen->create_solid(1.0f, ARGB(149, 150, 149, 142));
+      pen->create_solid(1.0f, argb(149, 150, 149, 142));
 
       pgraphics->draw_rect(rectBar, pen);
 
@@ -131,7 +131,7 @@ namespace hotplugin
 
       rectBar.top += 5;
 
-      pgraphics->set_text_color(ARGB(190, 255, 255, 255));
+      pgraphics->set_text_color(argb(190, 255, 255, 255));
 
       pgraphics->text_out(rectBar.left, rectBar.top, str);
 

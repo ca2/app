@@ -2060,7 +2060,7 @@ namespace android
       //      catch(...)
       //      {
       //      }
-      //      pgraphics->FillSolidRect(rectx, RGB(255, 255, 255));
+      //      pgraphics->FillSolidRect(rectx, rgb(255, 255, 255));
       //      WIN_DC(graphics.m_p)->Detach();
       //      pmessage->m_bRet = true;
       //      pbase->set_lresult(0);
@@ -3700,7 +3700,7 @@ namespace android
 
    }
 
-   ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT_I32 point_i32, ::u32 nFlags)
+   ::user::interaction * interaction_impl::ChildWindowFromPoint(POINT_I32 point, ::u32 nFlags)
    {
 
       __throw(not_implemented());

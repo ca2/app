@@ -24,12 +24,12 @@ namespace user
    void text_format_object::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      pgraphics->fill_rect(m_rectangle, ARGB(127, 255, 255, 180));
+      pgraphics->fill_rect(m_rectangle, argb(127, 255, 255, 180));
       pgraphics->draw_text(m_str, m_rectangle, e_align_center);
       ::rectangle_i32 rectangle(m_rectangle);
-      pgraphics->draw_rect(rectangle, ARGB(127, 255, 255, 255));
+      pgraphics->draw_rect(rectangle, argb(127, 255, 255, 255));
       rectangle.deflate(1, 1);
-      pgraphics->draw_rect(rectangle, ARGB(127, 255, 255, 255));
+      pgraphics->draw_rect(rectangle, argb(127, 255, 255, 255));
 
    }
 

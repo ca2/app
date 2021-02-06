@@ -1873,30 +1873,30 @@ namespace filemanager
 
    //   if (filemanager_data() != nullptr && filemanager_data()->is_topic())
    //   {
-   //      return ARGB(255, 255, 255, 255);
+   //      return argb(255, 255, 255, 255);
    //      //color32_t cr;
    //      //if (filemanager_document()->m_emode == document::mode_saving)
    //      //{
 
-   //      //   cr = ARGB(255, 255, 210, 180);
+   //      //   cr = argb(255, 255, 210, 180);
 
    //      //}
    //      //else if (filemanager_document()->m_emode == document::mode_import)
    //      //{
 
-   //      //   cr = ARGB(255, 180, 210, 255);
+   //      //   cr = argb(255, 180, 210, 255);
 
    //      //}
    //      //else if (filemanager_document()->m_emode == document::mode_export)
    //      //{
 
-   //      //   cr = ARGB(255, 255, 250, 210);
+   //      //   cr = argb(255, 255, 250, 210);
 
    //      //}
    //      //else
    //      //{
 
-   //      //   cr = ARGB(190, 210, 255, 180);
+   //      //   cr = argb(190, 210, 255, 180);
 
    //      //}
    //      //return cr;
@@ -1904,7 +1904,7 @@ namespace filemanager
    //   else
    //   {
 
-   //      return ARGB(255, 255, 255, 255);
+   //      return argb(255, 255, 255, 255);
 
    //   }
 

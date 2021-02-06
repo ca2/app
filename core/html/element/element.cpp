@@ -1679,7 +1679,7 @@ namespace html
    //}
 
 
-   ::color element::get_color(::user::style * pstyle, ::css::enum_color ecolor)
+   ::color::color element::get_color(::user::style * pstyle, ::css::enum_color ecolor)
    {
 
       color32_t cr;
@@ -1716,7 +1716,7 @@ namespace html
 
       }
 
-      return ::color();
+      return ::color::color();
 
       //return m_pdata->m_pcoredata->m_pform->get_color(cr, ecolor);
 

@@ -96,10 +96,10 @@ public:
 
    //inline ::index find_first(ARG_TYPE t, ::index (* pfnCompare)(ARG_TYPE, ARG_TYPE), ::index start = 0, ::index last = -1) const;
 
-   //::index raw_find_first(TYPE * point_i32, ::index first = 0, ::index last = -1) const;
+   //::index raw_find_first(TYPE * point, ::index first = 0, ::index last = -1) const;
 
    //template < class DERIVED >
-   //inline ::index find_first(DERIVED * point_i32, ::index first = 0, ::index last = -1)
+   //inline ::index find_first(DERIVED * point, ::index first = 0, ::index last = -1)
    //{
    //   return raw_find_first(dynamic_cast < TYPE * > (point), first, last);
    //}

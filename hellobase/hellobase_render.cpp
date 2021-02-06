@@ -401,7 +401,7 @@ namespace hellobase
 //
 //      //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 //
-//      //pgraphics->FillSolidRect(rectClient,ARGB(0, 0, 0, 0));
+//      //pgraphics->FillSolidRect(rectClient,argb(0, 0, 0, 0));
 //
 //      //      i32 iCount = 30;
 //
@@ -487,7 +487,7 @@ namespace hellobase
 //
 //                  m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 //
-//                  brushText->create_solid(ARGB(255, 255, 255, 255));
+//                  brushText->create_solid(argb(255, 255, 255, 255));
 //
 //                  m_pimage->g()->SelectObject(brushText);
 //
@@ -503,7 +503,7 @@ namespace hellobase
 //
 //                  m_pimageTemplate->Fill(0, 0, 0, 0);
 //
-//                  m_pimageTemplate->channel_copy(::color::channel_alpha, ::color::channel_green, m_pimage);
+//                  m_pimageTemplate->channel_copy(::color::e_channel_alpha, ::color::e_channel_green, m_pimage);
 //
 //               }
 //
@@ -525,7 +525,7 @@ namespace hellobase
 //
 //
 //
-//      ::color ca;
+//      ::color::color ca;
 //
 //
 ////      if (false)
@@ -582,7 +582,7 @@ namespace hellobase
 //      if (psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
 //      {
 //
-//         brushText->create_solid(ARGB(255, ca.m_iR, ca.m_iG, ca.m_iB));
+//         brushText->create_solid(argb(255, ca.m_iR, ca.m_iG, ca.m_iB));
 //
 //      }
 //      else
@@ -591,13 +591,13 @@ namespace hellobase
 //         if (m_bAlternate)
 //         {
 //
-//            brushText->create_solid(ARGB(255, 184, 184, 177));
+//            brushText->create_solid(argb(255, 184, 184, 177));
 //
 //         }
 //         else
 //         {
 //
-//            brushText->create_solid(ARGB(255, 255, 255, 255));
+//            brushText->create_solid(argb(255, 255, 255, 255));
 //
 //         }
 //
@@ -611,9 +611,9 @@ namespace hellobase
 //         pgraphics->text_out((m_cx - size.cx) / 2, (m_cy - size.cy) / 2, strHelloBase);
 //
 //      }
-//      //      pgraphics->FillSolidRect(200,00,100,100,ARGB(128,128,128,255));
+//      //      pgraphics->FillSolidRect(200,00,100,100,argb(128,128,128,255));
 //
-//      //    pgraphics->FillSolidRect(200,200,100,100,ARGB(128,128,128,0));
+//      //    pgraphics->FillSolidRect(200,200,100,100,argb(128,128,128,0));
 //
 //      if(!m_bFirstDone)
 //      {
@@ -687,7 +687,7 @@ namespace hellobase
 //
 //      double dBlur = m_dMinRadius + (m_dMaxRadius - m_dMinRadius) * r;
 //
-//      ::color ca;
+//      ::color::color ca;
 //
 ////      if (false)
 ////      {
@@ -755,7 +755,7 @@ namespace hellobase
 //
 //            m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 //
-//            brushText->create_solid(ARGB(255, 255, 255, 255));
+//            brushText->create_solid(argb(255, 255, 255, 255));
 //
 //            m_pimage->g()->SelectObject(brushText);
 //
@@ -784,7 +784,7 @@ namespace hellobase
 //            if (!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
 //            {
 //
-//               m_pimage->channel_copy(::color::channel_alpha, ::color::channel_green);
+//               m_pimage->channel_copy(::color::e_channel_alpha, ::color::e_channel_green);
 //
 //               m_pimageTint->tint(m_pimage, ca->m_iR, ca->m_iG, ca->m_iB);
 //
@@ -805,7 +805,7 @@ namespace hellobase
 //      if (psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
 //      {
 //
-//         brushText->create_solid(ARGB(255, ca.m_iR, ca.m_iG, ca.m_iB));
+//         brushText->create_solid(argb(255, ca.m_iR, ca.m_iG, ca.m_iB));
 //
 //      }
 //      else
@@ -814,13 +814,13 @@ namespace hellobase
 //         if (m_bAlternate)
 //         {
 //
-//            brushText->create_solid(ARGB(255, 184, 184, 177));
+//            brushText->create_solid(argb(255, 184, 184, 177));
 //
 //         }
 //         else
 //         {
 //
-//            brushText->create_solid(ARGB(255, 255, 255, 255));
+//            brushText->create_solid(argb(255, 255, 255, 255));
 //
 //         }
 //
@@ -1146,7 +1146,7 @@ namespace hellobase
 
       //      }
 
-      //      ::color ca;
+      //      ::color::color ca;
 
       //      double dPeriod = (500) * 11;
 
@@ -1154,7 +1154,7 @@ namespace hellobase
 
       //      ::draw2d::brush_pointer brush(e_create);
 
-      //      brush->create_solid(ARGB(255, ca.m_iR, ca.m_iG, ca.m_iB));
+      //      brush->create_solid(argb(255, ca.m_iR, ca.m_iG, ca.m_iB));
 
       //      pgraphics->SelectObject(brush);
 
@@ -1211,7 +1211,7 @@ namespace hellobase
 
       //   pgraphics->BitBlt(::point_i32(), size_i32(m_cx, m_cy), m_pimageFast->get_graphics());
 
-      //   //pgraphics->FillSolidRect(400,400,100,100,ARGB(128,0,0,128));
+      //   //pgraphics->FillSolidRect(400,400,100,100,argb(128,0,0,128));
 
       //   m_pview->m_bOkPending = true;
 
@@ -1409,21 +1409,21 @@ namespace hellobase
 
    //   ::draw2d::pen_pointer pen(e_create);
 
-   //   pen->create_solid(1.0, ARGB(255, 90, 90, 80));
+   //   pen->create_solid(1.0, argb(255, 90, 90, 80));
 
    //   ::draw2d::pen_pointer penW(e_create);
 
-   //   penW->create_solid(3.0, ARGB(84, 255, 255, 255));
+   //   penW->create_solid(3.0, argb(84, 255, 255, 255));
 
    //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   //   //      pgraphics->FillSolidRect((m_cx - size.cx) / 2,(m_cy - size.cy) / 2, 100, 100, ARGB(255,255,200,240));
+   //   //      pgraphics->FillSolidRect((m_cx - size.cx) / 2,(m_cy - size.cy) / 2, 100, 100, argb(255,255,200,240));
 
    //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
    //   pgraphics->draw_path(path, penW);
    //   pgraphics->draw_path(path, pen);
-   //   //pgraphics->FillSolidRect(00,00,100,100,ARGB(128,128,0,0));
+   //   //pgraphics->FillSolidRect(00,00,100,100,argb(128,128,0,0));
 
    //}
 

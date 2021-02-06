@@ -454,7 +454,7 @@ namespace xml
 //                           if(point_i32[0] == '&')
 //                           {
 //
-//                              point = m_pdocument->patch_entity_ref((const char * &) point_i32, true, &xml, &pszEnd, nullptr);
+//                              point = m_pdocument->patch_entity_ref((const char * &) point, true, &xml, &pszEnd, nullptr);
 //
 //                           }
 //                           else

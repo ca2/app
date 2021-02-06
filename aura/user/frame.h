@@ -121,7 +121,7 @@ namespace user
       
       virtual bool is_translucid_user_style(enum_style estyle);
       virtual ::user::enum_style translate_user_style(const char * pszStyle);
-      virtual ::color get_moveable_border_color();
+      virtual ::color::color get_moveable_border_color();
 
       virtual void set_user_style(enum_style estyle);
       virtual void set_user_style(const char * pszStyle);
@@ -137,7 +137,7 @@ namespace user
 
       virtual bool on_create_bars();
 
-      virtual ::color get_border_main_body_color();
+      virtual ::color::color get_border_main_body_color();
 
       ::e_status add_menu_item(const string & strPath, const string & strText, const string & strId);
 

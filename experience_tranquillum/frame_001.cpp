@@ -204,11 +204,11 @@ SizingNone:;
 
                auto estyle = pframewindow->m_estyle;
 
-               ::color    colorMoveableBorder;
+               ::color::color    colorMoveableBorder;
 
-               ::color    colorMoveableBorderHilight;
+               ::color::color    colorMoveableBorderHilight;
 
-               ::color    colorMoveableBorderShadow;
+               ::color::color    colorMoveableBorderShadow;
 
                if(pframewindow->is_active())
                {

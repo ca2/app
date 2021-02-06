@@ -67,7 +67,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-      pgraphics->fill_rect(rectClient, ARGB(255, 180, 180, 180));
+      pgraphics->fill_rect(rectClient, argb(255, 180, 180, 180));
 
 
    }

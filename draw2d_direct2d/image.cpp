@@ -629,7 +629,7 @@ namespace draw2d_direct2d
 
    /*void image::Fill (int A, int R, int G, int B )
    {
-   color32_t color = RGB ( B, G, R ) | (A << 24);
+   color32_t color = rgb ( B, G, R ) | (A << 24);
    int size_i32=stride*cy;
 
    color32_t * pcr;
@@ -714,7 +714,7 @@ namespace draw2d_direct2d
    //      int iR = (int) dR;
    //      int iG = (int) dG;
    //      int iB = (int) dB;
-   //      return RGB(iR, iG, iB);
+   //      return rgb(iR, iG, iB);
    //   }
    //   else
    //   {
@@ -1013,7 +1013,7 @@ namespace draw2d_direct2d
    //   return dPi;
    //}
 
-   //void image::fill_channel(int intensity, color::color::rgba::echannel echannel)
+   //void image::fill_channel(int intensity, color::color::color::rgba::echannel echannel)
    //{
    //   int offset = ((int)echannel) % 4;
    //   int size_i32=cx*cy;
@@ -1664,7 +1664,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool image::tint(::image * pimage, const rgba & rgba)
+   bool image::tint(::image * pimage, const ::color32 & color32)
    {
 
       return ::image::tint(pimage, rgba);

@@ -305,7 +305,7 @@ namespace user
 
          auto pstyle = get_style(pgraphics);
 
-         color colorBackground = get_color(pstyle, ::user::e_element_background);
+         ::color::color colorBackground = get_color(pstyle, ::user::e_element_background);
 
          auto rectBackground(rectClient);
 

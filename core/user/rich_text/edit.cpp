@@ -417,7 +417,7 @@ namespace user
 
             copy(rectWindow, rectWindow);
 
-            point_i32 += rectWindow.top_left();
+            point += rectWindow.top_left();
 
             _rtransform_point(point);
 

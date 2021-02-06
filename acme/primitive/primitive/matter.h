@@ -48,7 +48,7 @@ public:
 
    };
 
-   ::count                             m_countReference;
+   ::interlocked_count                 m_countReference;
    ::eobject                           m_eobject;
 
 

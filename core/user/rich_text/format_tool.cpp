@@ -112,14 +112,14 @@ namespace user
       m_pcomboFamily->create_control(this, "combo_family");
       //auto pfont = m_pcomboFamily->create_point_font(::user::font_plain_edit, os_font_name(e_font_sans_ui), 9.0);
       //pfont->m_etextrenderinghint = ::draw2d::text_rendering_hint_clear_type_grid_fit;
-      //m_pcomboFamily->create_color(::user::color_text, ARGB(255, 80, 80, 80));
-      //m_pcomboFamily->create_color(::user::color_background, ARGB(255, 255, 255, 255));
+      //m_pcomboFamily->create_color(::user::color_text, argb(255, 80, 80, 80));
+      //m_pcomboFamily->create_color(::user::color_background, argb(255, 255, 255, 255));
 
       m_pcomboSize->create_control(this, "combo_size");
       //pfont = m_pcomboSize->create_point_font(::user::font_plain_edit, os_font_name(e_font_sans_ui), 9.0);
       //pfont->m_etextrenderinghint = ::draw2d::text_rendering_hint_clear_type_grid_fit;
-      //m_pcomboSize->create_color(::user::color_text, ARGB(255, 80, 80, 80));
-      //m_pcomboSize->create_color(::user::color_background, ARGB(255, 255, 255, 255));
+      //m_pcomboSize->create_color(::user::color_text, argb(255, 80, 80, 80));
+      //m_pcomboSize->create_color(::user::color_background, argb(255, 255, 255, 255));
       //::rectangle_f64 r(2, 2, 2, 2);
       //create_rect(::user::rect_edit_padding, r, ::draw2d::unit_pixel);
 
@@ -188,10 +188,10 @@ namespace user
       m_pbuttonAlignRight->m_flagNonClient.remove(::user::interaction::non_client_focus_rect);
       m_pbuttonAlignRight->m_flagNonClient.remove(::user::interaction::non_client_background);
 
-      //create_color(::user::color_background, ARGB(255, 200, 200, 200));
-      //create_color(::user::color_button_background, ARGB(0, 0, 0, 0));
-      //create_color(::user::color_button_background_hover, ARGB(255, 180, 180, 180));
-      //create_color(::user::color_button_background_press, ARGB(255, 160, 160, 160));
+      //create_color(::user::color_background, argb(255, 200, 200, 200));
+      //create_color(::user::color_button_background, argb(0, 0, 0, 0));
+      //create_color(::user::color_button_background_hover, argb(255, 180, 180, 180));
+      //create_color(::user::color_button_background_press, argb(255, 160, 160, 160));
 
    }
 
@@ -206,7 +206,7 @@ namespace user
       get_client_rect(rectClient);
 
       brBk->CreateLinearGradientBrush(rectClient.top_left(), rectClient.bottom_left(),
-                                      ARGB(255, 230, 230, 230), ARGB(255, 200, 200, 200));
+                                      argb(255, 230, 230, 230), argb(255, 200, 200, 200));
 
       pgraphics->fill_rect(rectClient, brBk);
 
@@ -440,12 +440,12 @@ namespace user
                   // init-int this array did not affect the mouse problem
                   // ::u32 idx ;
                   // for (idx=0; idx<16; idx++) {
-                  // crCustColors[idx] = RGB(idx, idx, idx) ;
+                  // crCustColors[idx] = rgb(idx, idx, idx) ;
                   // }
 
                   ZeroMemory(&cc, sizeof(cc));
                   cc.lStructSize = sizeof(CHOOSECOLOR);
-                  cc.rgbResult = RGB(0, 0, 0);
+                  cc.rgbResult = rgb(0, 0, 0);
                   cc.lpCustColors = (COLORREF *) crCustColors;
 
                   cc.Flags = CC_RGBINIT | CC_FULLOPEN;

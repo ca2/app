@@ -23,8 +23,8 @@ namespace axis
       //::draw2d::font_pointer                 m_pfontCombo;
       //enum_translucency                         m_etranslucency;
       //enum_translucency                         m_etranslucencyButton;
-      //::color                                m_colorBackground;
-      //::color                                m_colorText;
+      //::color::color                                m_colorBackground;
+      //::color::color                                m_colorText;
       //__pointer(color_map)                 m_mapColor;
       //__pointer(font_map)                  m_mapFont;
       //__pointer(translucency_map)          m_mapTranslucency;
@@ -129,7 +129,7 @@ namespace axis
       //virtual bool _001HasTranslucency(enum_element eelement = e_element_none);
 
 
-      virtual ::color get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override;
+      virtual ::color::color get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override;
       //virtual bool get_font(::draw2d::font_pointer & sp, e_font efont, style_context * pcontext) override;
       //virtual bool get_translucency(enum_translucency & etranslucency, enum_element matter, style_context * pcontext) override;
       //virtual bool get_flag(bool & bSet, enum_flag eflag, style_context * pcontext) override;

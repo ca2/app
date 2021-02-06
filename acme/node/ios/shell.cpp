@@ -169,7 +169,7 @@ namespace ios
                System.imaging().Createcolor_blend_ImageList(
                   m_pil48,
                   m_pil48Hover,
-                  RGB(255, 255, 240),
+                  rgb(255, 255, 240),
                   64);
             }
             else
@@ -278,7 +278,7 @@ namespace ios
             System.imaging().color_blend(
             m_pil[48],
             m_pilHover[48],
-            RGB(255, 255, 240),
+            rgb(255, 255, 240),
             64);
 
          }
@@ -1521,7 +1521,7 @@ namespace ios
 //               System.imaging().Createcolor_blend_ImageList(
 //                  m_pil48,
 //                  m_pil48Hover,
-//                  RGB(255, 255, 240),
+//                  rgb(255, 255, 240),
 //                  64);
 //            }
 //            else
@@ -1629,7 +1629,7 @@ namespace ios
 //            System.imaging().Createcolor_blend_ImageList(
 //            m_pil[48],
 //            m_pilHover[48],
-//            RGB(255, 255, 240),
+//            rgb(255, 255, 240),
 //            64);
 //
 //         }
@@ -1864,7 +1864,7 @@ namespace ios
 //      {
 //
 //         return m_pilHover[iSize]->pred_add_image([&](auto pimage)
-//         { System.imaging().Createcolor_blend_image(pimage, RGB(255, 255, 240), 64); }
+//         { System.imaging().Createcolor_blend_image(pimage, rgb(255, 255, 240), 64); }
 //         , m_pil[iSize], iImage);
 //
 //      }
@@ -1896,7 +1896,7 @@ namespace ios
 //            pimage->Fill(255, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk));
 //            pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 //            pimage->get_graphics()->draw(::point_i32(), d.size(), d.get_graphics());
-//            pimage->get_graphics()->fill_solid_rect_dim(0, 0, d.size().cx, d.size().cy, ARGB(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
+//            pimage->get_graphics()->fill_solid_rect_dim(0, 0, d.size().cx, d.size().cy, argb(123, colorref_get_r_value(crBk), colorref_get_g_value(crBk), colorref_get_b_value(crBk)));
 //            m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 //            m_pil[iSize]->m_pimage->g()->draw(::point_i32(), d->size(), pimage->get_graphics());
 //            m_pil[iSize]->m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);

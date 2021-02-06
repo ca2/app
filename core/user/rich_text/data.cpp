@@ -1531,7 +1531,7 @@ namespace user
 
          auto rectangle_i32 = get_drawing_rect();
 
-         //pgraphics->draw3d_rect(rectangle, ARGB(255, 0, 127, 0));
+         //pgraphics->draw3d_rect(rectangle, argb(255, 0, 127, 0));
 
          bool bHasFocus = false;
 
@@ -1626,13 +1626,13 @@ namespace user
             if (bHasFocus && m_pedit->is_text_editable())
             {
 
-               crBkSel = ARGB(192, 175, 200, 240);
+               crBkSel = argb(192, 175, 200, 240);
 
             }
             else
             {
 
-               crBkSel = ARGB(127, 192, 210, 225);
+               crBkSel = argb(127, 192, 210, 225);
 
             }
 
@@ -1826,7 +1826,7 @@ namespace user
                      pbox->m_rectBox.top + 1,
                      r + 0.5,
                      pbox->m_rectBox.bottom - dDescent),
-                     ARGB(255, 0, 0, 0));
+                     argb(255, 0, 0, 0));
 
                }
 

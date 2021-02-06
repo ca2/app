@@ -403,15 +403,15 @@ namespace userfs
    {
       if (get_document() == nullptr)
       {
-         return RGB(200, 255, 255);
+         return rgb(200, 255, 255);
       }
       /*      else if(get_filemanager_template()->get_filemanager_data()->is_saving())
       {
-      return RGB(255, 180, 90);
+      return rgb(255, 180, 90);
       }*/
       else
       {
-         return RGB(200, 255, 255);
+         return rgb(200, 255, 255);
       }
    }
 

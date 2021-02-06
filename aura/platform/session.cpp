@@ -1519,7 +1519,7 @@ namespace aura
    color32_t session::get_default_color(u64 u)
    {
 
-      return ARGB(255, 255, 255, 255);
+      return argb(255, 255, 255, 255);
 
    }
 
@@ -2148,9 +2148,14 @@ ret:
 
       auto puser = m_puser;
 
-      auto pwindowing = puser->m_pwindowing;
+      if (puser)
+      {
 
-      pwindowing->defer_term_ui();
+         auto pwindowing = puser->m_pwindowing;
+
+         pwindowing->defer_term_ui();
+
+      }
 
    }
 
@@ -2504,7 +2509,7 @@ namespace aura
    }
 
 
-   ::color session::get_color(const ::user::interaction * puserinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
+   ::color::color session::get_color(const ::user::interaction * puserinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (eelement == ::user::e_element_background)
@@ -2512,16 +2517,18 @@ namespace aura
 
          color32_t crBk;
 
-         if (::user::is_app_dark_mode())
+         auto pnode = System.node();
+
+         if (pnode && pnode->is_app_dark_mode())
          {
 
-            crBk = ARGB(255, 0x40, 0x40, 0x40);
+            crBk = argb(255, 0x40, 0x40, 0x40);
 
          }
          else
          {
 
-            crBk = ARGB(255, 255, 255, 255);
+            crBk = argb(255, 255, 255, 255);
 
          }
 
@@ -2533,16 +2540,18 @@ namespace aura
 
          color32_t crBk;
 
-         if (::user::is_app_dark_mode())
+         auto pnode = System.node();
+
+         if (pnode && pnode->is_app_dark_mode())
          {
 
-            crBk = ARGB(255, 127, 127, 127);
+            crBk = argb(255, 127, 127, 127);
 
          }
          else
          {
 
-            crBk = ARGB(255, 192, 192, 192);
+            crBk = argb(255, 192, 192, 192);
 
          }
 
@@ -2554,16 +2563,18 @@ namespace aura
 
          color32_t crText;
 
-         if (::user::is_app_dark_mode())
+         auto pnode = System.node();
+
+         if (pnode && pnode->is_app_dark_mode())
          {
 
-            crText = ARGB(255, 255, 255, 255);
+            crText = argb(255, 255, 255, 255);
 
          }
          else
          {
 
-            crText = ARGB(255, 49, 50, 42);
+            crText = argb(255, 49, 50, 42);
 
          }
 
@@ -2571,7 +2582,7 @@ namespace aura
 
       }
 
-      return ::color();
+      return ::color::color();
 
    }
 

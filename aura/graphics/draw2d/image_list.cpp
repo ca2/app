@@ -420,7 +420,7 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 
    auto rectangle = rectd_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
 
-   m_pimage->get_graphics()->fill_rect(rectangle, ARGB(0, 0, 0, 0));
+   m_pimage->get_graphics()->fill_rect(rectangle, argb(0, 0, 0, 0));
 
    m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_blend);
 

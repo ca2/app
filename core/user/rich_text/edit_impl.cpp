@@ -670,7 +670,7 @@ namespace user
 
          //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         //   color32_t crBackground = _001GetColor(::user::color_background, ARGB(128, 255, 255, 255));
+         //   color32_t crBackground = _001GetColor(::user::color_background, argb(128, 255, 255, 255));
 
          //   //if (colorref_get_r_value(crBackground) != 255)
          //   //{
@@ -679,7 +679,7 @@ namespace user
 
          //   //}
 
-         //   //crBackground = ARGB(255, 100, 200, 255);
+         //   //crBackground = argb(255, 100, 200, 255);
 
          //   if (crBackground != 0)
          //   {
@@ -694,7 +694,7 @@ namespace user
 
          //   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         //   color32_t crBackground = _001GetColor(m_ecolorBackground, ARGB(200, 255, 255, 255));
+         //   color32_t crBackground = _001GetColor(m_ecolorBackground, argb(200, 255, 255, 255));
 
          //   //if (colorref_get_r_value(crBackground) != 255)
          //   //{
@@ -703,7 +703,7 @@ namespace user
 
          //   //}
 
-         //   //crBackground = ARGB(255, 255, 200, 100);
+         //   //crBackground = argb(255, 255, 200, 100);
 
          //   pgraphics->fill_rect(rectClient, crBackground);
 
@@ -733,7 +733,7 @@ namespace user
 
             get_client_rect(rectClient);
 
-            pgraphics->fill_rect(rectClient, ARGB(40, 255, 255, 255));
+            pgraphics->fill_rect(rectClient, argb(40, 255, 255, 255));
 
             draw_impl(pgraphics);
 
@@ -843,7 +843,7 @@ namespace user
 
             copy(rectWindow, rectWindow);
 
-            point_i32 += rectWindow.top_left();
+            point += rectWindow.top_left();
 
             _rtransform_point(point);
 

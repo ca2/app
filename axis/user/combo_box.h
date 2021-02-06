@@ -144,9 +144,9 @@ namespace user
       i32 SetDroppedWidth(::u32 nWidth);
       i32 GetDroppedWidth();
 
-#if defined(WINDOWS_DESKTOP) && (WINVER >= 0x0500)
-      bool GetComboBoxInfo(PCOMBOBOXINFO pcbi);
-#endif   // WINVER >= 0x0500
+//#if defined(WINDOWS_DESKTOP) && (WINVER >= 0x0500)
+//      bool GetComboBoxInfo(PCOMBOBOXINFO pcbi);
+//#endif   // WINVER >= 0x0500
 
       // for edit control
       bool GetEditSel(strsize & nStartChar, strsize & nEndChar);
@@ -198,16 +198,16 @@ namespace user
 
 
       // Overridables (must override draw, measure and compare for owner draw)
-#ifdef WINDOWS_DESKTOP
-      virtual void DrawItem(LPDRAWITEMSTRUCT pDrawItemStruct);
-
-      virtual void MeasureItem(LPMEASUREITEMSTRUCT pMeasureItemStruct);
-
-      virtual i32 CompareItem(LPCOMPAREITEMSTRUCT pCompareItemStruct);
-
-      virtual void DeleteItem(LPDELETEITEMSTRUCT pDeleteItemStruct);
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      virtual void DrawItem(LPDRAWITEMSTRUCT pDrawItemStruct);
+//
+//      virtual void MeasureItem(LPMEASUREITEMSTRUCT pMeasureItemStruct);
+//
+//      virtual i32 CompareItem(LPCOMPAREITEMSTRUCT pCompareItemStruct);
+//
+//      virtual void DeleteItem(LPDELETEITEMSTRUCT pDeleteItemStruct);
+//
+//#endif
 
       virtual bool OnChildNotify(::message::base * pbase) override;
 

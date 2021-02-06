@@ -30,7 +30,7 @@ namespace experience
       }
 
    
-      ::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
+      ::color::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
       {
 
          if (::is_set(pinteraction))
@@ -258,13 +258,13 @@ namespace experience
                if (::user::is_app_dark_mode())
                {
 
-                  return ::color(50, 120, 190, 127);
+                  return ::color::color(50, 120, 190, 127);
 
                }
                else
                {
 
-                  return ::color(100, 160, 220, 127);
+                  return ::color::color(100, 160, 220, 127);
 
                }
 
@@ -275,13 +275,13 @@ namespace experience
                if (::user::is_app_dark_mode())
                {
 
-                  return ::color::white;
+                  return ::color::color::white;
 
                }
                else
                {
 
-                  return ::color::black;
+                  return ::color::color::black;
 
                }
 
@@ -300,13 +300,13 @@ namespace experience
                   if (::user::is_app_dark_mode())
                   {
 
-                     return ::color(100, 110, 120, 127);
+                     return ::color::color(100, 110, 120, 127);
 
                   }
                   else
                   {
 
-                     return ::color(180, 190, 200, 127);
+                     return ::color::color(180, 190, 200, 127);
 
                   }
 
@@ -317,13 +317,13 @@ namespace experience
                   if (::user::is_app_dark_mode())
                   {
 
-                     return ::color::black;
+                     return ::color::color::black;
 
                   }
                   else
                   {
 
-                     return ::color::white;
+                     return ::color::color::white;
 
                   }
 
@@ -339,13 +339,13 @@ namespace experience
                   if (::user::is_app_dark_mode())
                   {
 
-                     return ::color(100, 160, 220, 127);
+                     return ::color::color(100, 160, 220, 127);
 
                   }
                   else
                   {
 
-                     return ::color(50, 120, 190, 127);
+                     return ::color::color(50, 120, 190, 127);
 
                   }
 
@@ -356,13 +356,13 @@ namespace experience
                   if (::user::is_app_dark_mode())
                   {
 
-                     return ::color::black;
+                     return ::color::color::black;
 
                   }
                   else
                   {
 
-                     return ::color::white;
+                     return ::color::color::white;
 
                   }
 
@@ -372,7 +372,7 @@ namespace experience
 
          }
 
-         return ::color();
+         return ::color::color();
 
       }
    
@@ -397,13 +397,13 @@ namespace experience
 
       {
 
-         color colorBack = ptab->get_color(pstyle, ::user::e_element_background);
+         ::color::color colorBack = ptab->get_color(pstyle, ::user::e_element_background);
 
          pgraphics->fill_rect(r1, colorBack);
 
       }
 
-      ptab->get_data()->m_pen->create_solid(1,RGB(32,32,32));
+      ptab->get_data()->m_pen->create_solid(1,rgb(32,32,32));
 
       pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
 
@@ -427,7 +427,7 @@ namespace experience
 
       rcClient.top = rcTabs.bottom;
       
-      color colorBack = ptab->get_color(pstyle, ::user::e_element_tab_layout_background);
+      ::color::color colorBack = ptab->get_color(pstyle, ::user::e_element_tab_layout_background);
       
       if(colorBack.is_set())
       {
@@ -445,9 +445,9 @@ namespace experience
          
       }
 
-      ::color color1 = ptab->get_color(pstyle, ::user::e_element_tab_item_background);
+      ::color::color color1 = ptab->get_color(pstyle, ::user::e_element_tab_item_background);
 
-      ::color color2(color1);
+      ::color::color color2(color1);
 
       color2.hls_rate(0.0, 0.2, 0.0);
 
@@ -505,9 +505,9 @@ namespace experience
 
                   path->close_figure();
 
-                  ::color colorSel1 = ptab->get_color(pstyle, ::user::e_element_tab_item_background, ::user::e_state_selected);
+                  ::color::color colorSel1 = ptab->get_color(pstyle, ::user::e_element_tab_item_background, ::user::e_state_selected);
 
-                  ::color colorSel2(colorSel1);
+                  ::color::color colorSel2(colorSel1);
 
                   colorSel2.hls_rate(0.0, 0.2, 0.0);
 
@@ -559,7 +559,7 @@ namespace experience
                      && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
-                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,215,215,210),ARGB(250,235,235,230));
+                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
 
                      pgraphics->set(pane.m_brushFillHover);
 
@@ -579,7 +579,7 @@ namespace experience
                   else
                   {
 
-                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,175,175,170),ARGB(250,195,195,190));
+                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,175,175,170),argb(250,195,195,190));
 
                      pgraphics->set(pane.m_brushFill);
 
@@ -656,9 +656,9 @@ namespace experience
 
                   path->close_figure();
 
-                  ::color colorSel1 = ptab->get_color(pstyle, ::user::e_element_tab_item_background, ::user::e_state_selected);
+                  ::color::color colorSel1 = ptab->get_color(pstyle, ::user::e_element_tab_item_background, ::user::e_state_selected);
 
-                  ::color colorSel2(colorSel1);
+                  ::color::color colorSel2(colorSel1);
 
                   colorSel2.hls_rate(0.0, 0.2, 0.0);
 
@@ -691,7 +691,7 @@ namespace experience
 
                   }
 
-                  ::color colorText = ptab->get_color(pstyle, ::user::e_element_text);
+                  ::color::color colorText = ptab->get_color(pstyle, ::user::e_element_text);
 
                   brushText->create_solid(colorText);
 
@@ -723,7 +723,7 @@ namespace experience
                      && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
-                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,215,215,210),ARGB(250,235,235,230));
+                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
 
                      pgraphics->set(pane.m_brushFillHover);
 
@@ -877,7 +877,7 @@ namespace experience
                if(ptab->m_itemHover == (::user::enum_element)(::user::e_element_split + i))
                {
 
-                  pgraphics->fill_rect(rectEmp,ARGB(128, 150, 184, 255));
+                  pgraphics->fill_rect(rectEmp,argb(128, 150, 184, 255));
 
                   brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_hover));
 
@@ -1311,7 +1311,7 @@ namespace experience
          rectSeparator.top = rectImage.top;
          rectSeparator.bottom = rectImage.bottom;
          
-         pgraphics->draw_3drect(rectSeparator, ARGB(255, 92, 92, 92), ARGB(255, 255, 255, 255));
+         pgraphics->draw_3drect(rectSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
          
       }
       else
@@ -1333,9 +1333,9 @@ namespace experience
                   rectItem.top,
                   rectItem.width(),
                   rectItem.height(),
-                  RGB(255, 255, 250), 208);
+                  rgb(255, 255, 250), 208);
 
-                  pgraphics->draw_rect(rectItem, ARGB(255, 127, 127, 127));
+                  pgraphics->draw_rect(rectItem, argb(255, 127, 127, 127));
                   
                }
 
@@ -1372,10 +1372,10 @@ namespace experience
 
                   ::draw2d::pen_pointer pen(e_create);
 
-                  pen->create_solid(1, ARGB(190, 92, 184, 92));
+                  pen->create_solid(1, argb(190, 92, 184, 92));
                   ::draw2d::brush_pointer brush(e_create);
 
-                  brush->create_solid(ARGB(123, 180, 184, 255));
+                  brush->create_solid(argb(123, 180, 184, 255));
                   pgraphics->set(pen);
                   pgraphics->set(brush);
                   pgraphics->rectangle(rectItem);
@@ -1415,10 +1415,10 @@ namespace experience
 
                ::draw2d::pen_pointer pen(e_create);
 
-               pen->create_solid(1, ARGB(255, 92, 92, 92));
+               pen->create_solid(1, argb(255, 92, 92, 92));
                ::draw2d::brush_pointer brush(e_create);
 
-               brush->create_solid(ARGB(255, 255, 255, 255));
+               brush->create_solid(argb(255, 255, 255, 255));
                pgraphics->set(pen);
                pgraphics->set(brush);
                pgraphics->rectangle(rectItem);
@@ -1451,14 +1451,14 @@ namespace experience
 
                ptoolbar->_001GetElementRect(iItem, rectItem, ::user::e_element_item, ::user::e_state_none);
 
-               pgraphics->fill_rect(rectItem, ARGB(190, 255, 255, 255));
+               pgraphics->fill_rect(rectItem, argb(190, 255, 255, 255));
 
             }
 
             if (estate & ::user::e_state_checked)
             {
 
-               pgraphics->draw_3drect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+               pgraphics->draw_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
             }
 
@@ -1506,13 +1506,13 @@ namespace experience
          if (!(estyle & e_toolbar_item_style_disabled))
          {
 
-            brushText->create_solid(ARGB(255, 0, 0, 0));
+            brushText->create_solid(argb(255, 0, 0, 0));
 
          }
          else
          {
 
-            brushText->create_solid(ARGB(255, 120, 120, 118));
+            brushText->create_solid(argb(255, 120, 120, 118));
 
          }
 
@@ -1567,7 +1567,7 @@ namespace experience
          rectSeparator.right = rectSeparator.left + 2;
          rectSeparator.top = rectImage.top;
          rectSeparator.bottom = rectImage.bottom;*/
-         //pgraphics->Draw3dRect(rectSeparator, ARGB(255, 92, 92, 92), ARGB(255, 255, 255, 255));
+         //pgraphics->Draw3dRect(rectSeparator, argb(255, 92, 92, 92), argb(255, 255, 255, 255));
       }
       else
       {
@@ -1590,9 +1590,9 @@ namespace experience
                   rectItem.top,
                   rectItem.width(),
                   rectItem.height(),
-                  RGB(255, 255, 250), 208);
+                  rgb(255, 255, 250), 208);
 
-                  pgraphics->draw_3drect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+                  pgraphics->draw_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
                }
 
                if (uImage != 0xffffffffu)
@@ -1714,7 +1714,7 @@ namespace experience
             if (estate & ::user::e_state_checked)
             {
 
-               pgraphics->draw_3drect(rectItem, ARGB(255, 127, 127, 127), ARGB(255, 255, 255, 255));
+               pgraphics->draw_3drect(rectItem, argb(255, 127, 127, 127), argb(255, 255, 255, 255));
 
             }
 
@@ -1777,9 +1777,9 @@ namespace experience
          if (!(estate & ::user::e_state_disabled))
          {
 
-            brushText->create_solid(ARGB(255, 255, 255, 255));
+            brushText->create_solid(argb(255, 255, 255, 255));
 
-            pgraphics->set_text_color(ARGB(255, 255, 255, 255));
+            pgraphics->set_text_color(argb(255, 255, 255, 255));
 
          }
          else
@@ -1812,7 +1812,7 @@ namespace experience
 
       ::rectangle_i32 rectClient = psplitlayout->get_client_rect();
 
-      pgraphics->fill_rect(rectClient, ARGB(255, 255, 255, 255));
+      pgraphics->fill_rect(rectClient, argb(255, 255, 255, 255));
 
       return true;
 

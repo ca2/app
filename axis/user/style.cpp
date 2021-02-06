@@ -74,13 +74,13 @@ namespace axis
 
    //   ::user::style::initialize_style();
 
-   //   color color;
+   //   ::color::color color;
    //   color.set_rgb(psession->get_default_color(COLOR_HIGHLIGHT));
 
-   //   class color colorHover(color);
+   //   class ::color::color colorHover(color);
    //   colorHover.hls_rate(0.0, 0.3, 0.0);
 
-   //   class color colorPress(color);
+   //   class ::color::color colorPress(color);
    //   colorPress.hls_rate(0.0, 0.7, 0.0);
 
    //   m_eschema = schema_default;
@@ -115,13 +115,13 @@ namespace axis
          if (bHover)
          {
 
-            pen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? ARGB(255, 50, 80, 160) : ARGB(255, 80, 120, 200));
+            pen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 50, 80, 160) : argb(255, 80, 120, 200));
 
          }
          else
          {
 
-            pen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? ARGB(255, 0, 0, 0) : ARGB(255, 96, 96, 96));
+            pen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
 
          }
 
@@ -150,9 +150,9 @@ namespace axis
          //else
          //{
 
-         //   pen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? ARGB(255, 0, 0, 0) : ARGB(255, 96, 96, 96));
+         //   pen->create_solid(1 * (w + h) / 30, echeck == ::check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
 
-         //}pinteraction->get ? ARGB(255, 50, 80, 160) : ARGB(255, 80, 120, 200)
+         //}pinteraction->get ? argb(255, 50, 80, 160) : argb(255, 80, 120, 200)
 
          auto colorCheck = pinteraction->get_color(this, estate);
 
@@ -272,7 +272,7 @@ namespace axis
 
                   pen.create();
 
-                  pen->create_solid(1.0, ARGB(190, 90, 90, 80));
+                  pen->create_solid(1.0, argb(190, 90, 90, 80));
 
                }
 
@@ -305,7 +305,7 @@ namespace axis
 
                      pen.create();
 
-                     pen->create_solid(1.0, bError ? ARGB(195, 255, 130, 120) : bHover ? ARGB(220, 120, 190, 255) : ARGB(220, 150, 190, 235));
+                     pen->create_solid(1.0, bError ? argb(195, 255, 130, 120) : bHover ? argb(220, 120, 190, 255) : argb(220, 150, 190, 235));
 
                   }
 
@@ -327,7 +327,7 @@ namespace axis
 
                      pen.create();
 
-                     pen->create_solid(1.0, bError ? ARGB(155, 255, 150, 140) : bHover ? ARGB(200, 140, 200, 255) : ARGB(200, 150, 210, 235));
+                     pen->create_solid(1.0, bError ? argb(155, 255, 150, 140) : bHover ? argb(200, 140, 200, 255) : argb(200, 150, 210, 235));
 
                   }
 
@@ -366,7 +366,7 @@ namespace axis
 
                      pen.create();
 
-                     pen->create_solid(1.0, bError ? ARGB(135, 255, 170, 160) : bHover ? ARGB(160, 160, 210, 255) : ARGB(160, 180, 220, 255));
+                     pen->create_solid(1.0, bError ? argb(135, 255, 170, 160) : bHover ? argb(160, 160, 210, 255) : argb(160, 180, 220, 255));
 
                   }
 
@@ -391,10 +391,10 @@ namespace axis
 
                   //pathRound->end_figure(true);
 
-                  //::draw2d::pen_pointer pen(pgraphics, 1.0, ARGB(60, 108, 149, 255));
+                  //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(60, 108, 149, 255));
                   ::draw2d::pen_pointer pen(e_create);
 
-                  pen->create_solid(1.0, bError ? ARGB(105, 255, 190, 180) : bHover ? ARGB(120, 180, 220, 255) : ARGB(120, 200, 230, 235));
+                  pen->create_solid(1.0, bError ? argb(105, 255, 190, 180) : bHover ? argb(120, 180, 220, 255) : argb(120, 200, 230, 235));
 
                   pgraphics->set(pen);
 
@@ -418,10 +418,10 @@ namespace axis
 
                   //pathRound->end_figure(true);
 
-                  //::draw2d::pen_pointer pen(pgraphics, 1.0, ARGB(48, 108, 149, 255));
+                  //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(48, 108, 149, 255));
                   ::draw2d::pen_pointer pen(e_create);
 
-                  pen->create_solid(1.0, bError ? ARGB(75, 255, 210, 200) : bHover ? ARGB(80, 200, 230, 255) : ARGB(80, 220, 231, 235));
+                  pen->create_solid(1.0, bError ? argb(75, 255, 210, 200) : bHover ? argb(80, 200, 230, 255) : argb(80, 220, 231, 235));
 
                   pgraphics->set(pen);
 
@@ -446,10 +446,10 @@ namespace axis
 
                   //pathRound->end_figure(true);
 
-                  //::draw2d::pen_pointer pen(pgraphics, 1.0, ARGB(36, 108, 149, 255));
+                  //::draw2d::pen_pointer pen(pgraphics, 1.0, argb(36, 108, 149, 255));
                   ::draw2d::pen_pointer pen(e_create);
 
-                  pen->create_solid(1.0, bError ? ARGB(45, 255, 230, 220) : bHover ? ARGB(40, 220, 240, 255) : ARGB(40, 230, 235, 240));
+                  pen->create_solid(1.0, bError ? argb(45, 255, 230, 220) : bHover ? argb(40, 220, 240, 255) : argb(40, 230, 235, 240));
 
                   pgraphics->set(pen);
 
@@ -468,7 +468,7 @@ namespace axis
 
             ::draw2d::pen_pointer pen(e_create);
 
-            pen->create_solid(3.0, ARGB(255, 90, 80, 255));
+            pen->create_solid(3.0, argb(255, 90, 80, 255));
 
             pgraphics->draw_rect(rectClient, pen);
 
@@ -866,7 +866,7 @@ namespace axis
    }
 
 
-   ::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
+   ::color::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
    {
 
       if (::is_set(pinteraction))
@@ -880,7 +880,7 @@ namespace axis
             if (eelement == ::user::e_element_background)
             {
 
-               return ::color(0, 0, 0, 0);
+               return ::color::color(0, 0, 0, 0);
 
             }
 
@@ -888,7 +888,7 @@ namespace axis
 
       }
 
-      return ::color();
+      return ::color::color();
 
    }
 
@@ -1102,13 +1102,13 @@ namespace axis
 
       //   ::user::style::initialize_style();
 
-      //   color color;
+      //   ::color::color color;
       //   color.set_rgb(psession->get_default_color(COLOR_HIGHLIGHT));
 
-      //   class color colorHover(color);
+      //   class ::color::color colorHover(color);
       //   colorHover.hls_rate(0.0, 0.3, 0.0);
 
-      //   class color colorPress(color);
+      //   class ::color::color colorPress(color);
       //   colorPress.hls_rate(0.0, 0.7, 0.0);
 
       //   m_eschema = schema_default;

@@ -635,9 +635,9 @@ namespace html
 
          ::draw2d::graphics_pointer & pgraphics = pdata->m_pcoredata->m_pgraphics;
 
-         color32_t crBkSel = RGB(120, 240, 150);
+         color32_t crBkSel = rgb(120, 240, 150);
 
-         color32_t crSel = RGB(10, 30, 20);
+         color32_t crSel = rgb(10, 30, 20);
 
          e_tag etag = m_pelemental->m_etag;
 
@@ -758,7 +758,7 @@ namespace html
          }
          else if(has_link())
          {
-            brushText->create_solid(ARGB(255, 127, 127, 255));
+            brushText->create_solid(argb(255, 127, 127, 255));
          }
          else if(m_pelemental->m_pstyle->get_color("color", "", pdata, m_pelemental, cr))
          {
@@ -766,7 +766,7 @@ namespace html
          }
          else
          {
-            brushText->create_solid(ARGB(255, 0, 0, 0));
+            brushText->create_solid(argb(255, 0, 0, 0));
          }
 
 
@@ -871,7 +871,7 @@ namespace html
                   //            pgraphics->set_text_color(cr);
                   brushText->create_solid(cr);
                   pgraphics->set(brushText);
-                  //pgraphics->SetBkColor(RGB(120, 240, 180));
+                  //pgraphics->SetBkColor(rgb(120, 240, 180));
                   //          pgraphics->SetBkMode(TRANSPARENT);
                   pgraphics->text_out(left + size1.cx + size2.cx,y,strExtent3);
 
@@ -892,14 +892,14 @@ namespace html
                else
                {
                   pgraphics->text_out(left,top,strLine);
-                  //pgraphics->fill_rect(left,top,50,50,ARGB(255,0,255,0));
+                  //pgraphics->fill_rect(left,top,50,50,argb(255,0,255,0));
                }
 
                cy += m_sizea[i].cy;
                lim += strLine.get_length();
             }
          }
-         //pgraphics->fill_rect(0, 0, 100, 100, RGB(0, 255, 0));
+         //pgraphics->fill_rect(0, 0, 100, 100, rgb(0, 255, 0));
 
          */
 
@@ -967,13 +967,13 @@ namespace html
          if(has_link())
          {
 
-            cr =  ARGB(255, 127, 127, 255);
+            cr =  argb(255, 127, 127, 255);
 
          }
          else
          {
 
-            cr = ARGB(255, 0, 0, 0);
+            cr = argb(255, 0, 0, 0);
 
          }
 

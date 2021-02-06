@@ -252,7 +252,7 @@ uptr virtualkey_to_char(::Windows::System::VirtualKey e)
 }
 
 
-::user::e_key virtualkey_to_userkey(::Windows::System::VirtualKey e, bool& bSpecialKey)
+::user::enum_key virtualkey_to_userkey(::Windows::System::VirtualKey e, bool& bSpecialKey)
 {
    bSpecialKey = false;
    switch (e)
@@ -419,7 +419,7 @@ uptr virtualkey_to_char(::Windows::System::VirtualKey e)
       }
    }
 
-   return (::user::e_key) e;
+   return (::user::enum_key) e;
 
 }
 
@@ -590,7 +590,7 @@ uptr virtualkey_to_code(::Windows::System::VirtualKey e)
 
 //       auto b = color.B;
 
-//       return ARGB(255, r, g, b);
+//       return argb(255, r, g, b);
 
 //    }
 

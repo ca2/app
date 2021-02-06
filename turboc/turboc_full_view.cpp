@@ -143,7 +143,7 @@ namespace turboc
 
       double dBlur = m_dMinRadius + (m_dMaxRadius - m_dMinRadius) * r;
 
-      ::color ca;
+      ::color::color ca;
 
       if(false)
       {
@@ -200,7 +200,7 @@ namespace turboc
 
 /*         m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         brushText->create_solid(ARGB(255,255,255,255));
+         brushText->create_solid(argb(255,255,255,255));
 
 /*         m_pimage->g()->SelectObject(brushText);
 
@@ -229,7 +229,7 @@ namespace turboc
          if(!psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
          {
 
-/*            m_pimage->channel_copy(::color::channel_alpha,::color::channel_green);
+/*            m_pimage->channel_copy(::color::e_channel_alpha,::color::e_channel_green);
 
 /*            m_pimage->set_rgb(ca->m_iR,ca->m_iG,ca->m_iB);
 
@@ -248,7 +248,7 @@ namespace turboc
       if(psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {
 
-         brushText->create_solid(ARGB(255,ca.m_iR,ca.m_iG,ca.m_iB));
+         brushText->create_solid(argb(255,ca.m_iR,ca.m_iG,ca.m_iB));
 
       }
       else
@@ -257,13 +257,13 @@ namespace turboc
          if(m_bAlternate)
          {
 
-            brushText->create_solid(ARGB(255,184,184,177));
+            brushText->create_solid(argb(255,184,184,177));
 
          }
          else
          {
 
-            brushText->create_solid(ARGB(255,255,255,255));
+            brushText->create_solid(argb(255,255,255,255));
 
          }
 

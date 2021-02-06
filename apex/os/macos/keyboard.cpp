@@ -11,7 +11,7 @@
 namespace user
 {
 
-   CLASS_DECL_APEX ::user::e_key vkcode_to_userkey(wparam wparam)
+   CLASS_DECL_APEX ::user::enum_key vkcode_to_userkey(wparam wparam)
    {
 
       iptr vkcode = (iptr)wparam;

@@ -174,20 +174,20 @@ namespace user
          if (echeck == ::check_tristate)
          {
 
-            pgraphics->fill_rect(rectCheckBox, ARGB(255, 220, 220, 220));
+            pgraphics->fill_rect(rectCheckBox, argb(255, 220, 220, 220));
 
          }
 
          if (drawcontext.m_bListItemHover)
          {
 
-            pgraphics->draw_rect(rectCheckBox, ARGB(255, 60, 120, 200));
+            pgraphics->draw_rect(rectCheckBox, argb(255, 60, 120, 200));
 
          }
          else
          {
 
-            pgraphics->draw_rect(rectCheckBox, ARGB(255, 128, 128, 128));
+            pgraphics->draw_rect(rectCheckBox, argb(255, 128, 128, 128));
 
          }
 
@@ -222,13 +222,13 @@ namespace user
          if (drawcontext.m_bListItemHover)
          {
 
-            crText = ARGB(255, 0, 0, 0);
+            crText = argb(255, 0, 0, 0);
 
          }
          else
          {
 
-            crText = ARGB(255, 0, 0, 0);
+            crText = argb(255, 0, 0, 0);
 
          }
 
@@ -320,39 +320,39 @@ namespace user
 
       //double dNow = ::get_millis();
 
-      ::draw2d::path_pointer point_i32(e_create);
+      ::draw2d::path_pointer ppath(e_create);
 
       ::rectangle_i32 rectL(1, 1, h-2, h-2);
 
       auto rectR = rect_dim(h-2, 1, h-2, h-2);
 
-      point_i32->add_arc(rectL, -90_degree, -180_degree);
+      ppath->add_arc(rectL, -90_degree, -180_degree);
 
-      point_i32->add_line((rectL.left + rectL.right) / 2, rectL.bottom);
+      ppath->add_line((rectL.left + rectL.right) / 2, rectL.bottom);
 
-      point_i32->add_line((rectR.left + rectR.right) / 2, rectR.bottom);
+      ppath->add_line((rectR.left + rectR.right) / 2, rectR.bottom);
 
-      point_i32->add_arc(rectR, 90.0, -180.0);
+      ppath->add_arc(rectR, 90.0, -180.0);
 
-      point_i32->add_line((rectR.left + rectR.right) / 2, rectR.top);
+      ppath->add_line((rectR.left + rectR.right) / 2, rectR.top);
 
-      point_i32->add_line((rectL.left + rectL.right) / 2, rectL.top);
+      ppath->add_line((rectL.left + rectL.right) / 2, rectL.top);
 
-      point_i32->close_figure();
+      ppath->close_figure();
 
-      ::draw2d::pen_pointer point1(e_create);
+      ::draw2d::pen_pointer ppen(e_create);
 
       ::draw2d::pen_pointer p0(e_create);
 
       ::draw2d::brush_pointer br1(e_create);
 
-      point1->create_solid(2.0, ARGB(255, 0, 0, 0));
+      ppen->create_solid(2.0, argb(255, 0, 0, 0));
 
-      p0->create_solid(2.0, ARGB(255, 90, 150, 255));
+      p0->create_solid(2.0, argb(255, 90, 150, 255));
 
-      point1->m_epenalign = ::draw2d::e_pen_align_center;
+      ppen->m_epenalign = ::draw2d::e_pen_align_center;
 
-      br1->create_solid(ARGB(255, 90, 150, 255));
+      br1->create_solid(argb(255, 90, 150, 255));
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -376,7 +376,7 @@ namespace user
 
          }
 
-         color32_t cr = ARGB(255, 255, 255, 255);
+         color32_t cr = argb(255, 255, 255, 255);
 
          ::draw2d::brush_pointer br(e_create);
 
@@ -402,9 +402,9 @@ namespace user
          pgraphics->set(br1);
          pgraphics->set(p0);
 
-         pgraphics->path(point);
+         pgraphics->path(ppath);
 
-         br->create_solid(ARGB(255,
+         br->create_solid(argb(255,
                                (byte)((double) colorref_get_r_value(cr) * dRate),
                                (byte)((double) colorref_get_g_value(cr) * dRate),
                                (byte)((double) colorref_get_b_value(cr) * dRate)));
@@ -419,18 +419,17 @@ namespace user
 
          byte bAlphaP1 = (byte) (255.0 * (1.0 - dRate));
 
-         color32_t crP1 = ARGB(bAlphaP1, 0, 0, 0);
+         color32_t crP1 = argb(bAlphaP1, 0, 0, 0);
 
-         point1->create_solid(2.0, crP1);
+         ppen->create_solid(2.0, crP1);
 
-         point1->set_modified();
+         ppen->set_modified();
 
-         pgraphics->set(point1);
+         pgraphics->set(ppen);
 
          pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
 
-         pgraphics->draw_path(point);
-
+         pgraphics->draw_path(ppath);
 
       }
       else
@@ -445,20 +444,19 @@ namespace user
 
             ::draw2d::brush_pointer br(e_create);
 
-            br->create_solid(ARGB(255, 0, 0, 0));
+            br->create_solid(argb(255, 0, 0, 0));
 
             pgraphics->set(br);
 
             pgraphics->fill_ellipse(rectEllipse);
 
-            point1->create_solid(2.0, ARGB(255, 0, 0, 0));
+            ppen->create_solid(2.0, argb(255, 0, 0, 0));
 
-            pgraphics->set(point1);
+            pgraphics->set(ppen);
 
             pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
 
-            pgraphics->draw_path(point);
-
+            pgraphics->draw_path(ppath);
 
          }
          else
@@ -468,7 +466,7 @@ namespace user
 
             pgraphics->set(p0);
 
-            pgraphics->path(point);
+            pgraphics->path(ppath);
 
             rectEllipse.Align(e_align_right | e_align_vertical_center, rectangle);
 
@@ -476,7 +474,7 @@ namespace user
 
             ::draw2d::brush_pointer br(e_create);
 
-            br->create_solid(ARGB(255, 255, 255, 255));
+            br->create_solid(argb(255, 255, 255, 255));
 
             pgraphics->set(br);
 
@@ -504,25 +502,25 @@ namespace user
       rectCheckBox.right = iMin + 1;
       rectCheckBox.bottom = iMin + 1;
 
-      color32_t crPen = ARGB(255, 0, 0, 0);
+      color32_t crPen = argb(255, 0, 0, 0);
       color32_t crBrush;
 
       if (echeck() == ::check_checked)
       {
 
-         crBrush = ARGB(255, 100, 220, 120);
+         crBrush = argb(255, 100, 220, 120);
 
       }
       else if (echeck() == ::check_unchecked)
       {
 
-         crBrush = ARGB(255, 220, 220, 100);
+         crBrush = argb(255, 220, 220, 100);
 
       }
       else
       {
 
-         crBrush = ARGB(255, 128, 128, 128);
+         crBrush = argb(255, 128, 128, 128);
 
       }
 
@@ -539,12 +537,12 @@ namespace user
       pgraphics->set(brush);
 
       pgraphics->ellipse(rectCheckBox);
-      //   pgraphics->draw3d_rect(rectCheckBox, ARGB(255, 128, 128, 128), ARGB(255, 128, 128, 128));
+      //   pgraphics->draw3d_rect(rectCheckBox, argb(255, 128, 128, 128), argb(255, 128, 128, 128));
       //   if (m_echeck == check_tristate
       //      || m_echeck == check_checked)
       //   {
       //      ::draw2d::pen_pointer pen(e_create);
-      //      pen->create_solid(1, m_echeck == check_checked ? ARGB(255, 0, 0, 0) : ARGB(255, 96, 96, 96));
+      //      pen->create_solid(1, m_echeck == check_checked ? argb(255, 0, 0, 0) : argb(255, 96, 96, 96));
       //      pgraphics->set(pen);
       //      pgraphics->move_to(2, 8);
       //      pgraphics->line_to(6, 12);

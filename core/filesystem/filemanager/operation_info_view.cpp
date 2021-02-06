@@ -26,7 +26,7 @@ namespace filemanager
       color32_t cr;
       for(x = ileft; x < iMaxW; x+=iW)
       {
-         cr = RGB(
+         cr = rgb(
               255 - iDeltaVermelho - iDeltaDark,
               (255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
               255 - iDeltaAzul - 23 - iDeltaDark);
@@ -34,7 +34,7 @@ namespace filemanager
       }
       if(x < iRight)
       {
-         cr = RGB(
+         cr = rgb(
               255 - iDeltaVermelho - iDeltaDark,
               (255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
               255 - iDeltaAzul - 23 - iDeltaDark);
@@ -85,7 +85,7 @@ namespace filemanager
          dProgressU = dProgressL + dProgressD;
          if(dProgress < dProgressU)
          {
-            pgraphics->fill_rect(rectProgress,RGB(255,240,200));
+            pgraphics->fill_rect(rectProgress,rgb(255,240,200));
          }
          if(dProgress > dProgressL)
          {

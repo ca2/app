@@ -1682,7 +1682,7 @@ Retrieved from: http://en.literateprograms.org/Hello_World_(C,_Cairo)?oldid=1038
 //
 //   sync_lock sl(x11_mutex());
 //
-//   pgraphics->fill_rect(::rectangle_i32(*psize), RGB(84, 90, 80));
+//   pgraphics->fill_rect(::rectangle_i32(*psize), rgb(84, 90, 80));
 //
 //   ::draw2d::brush_pointer pen(e_create_new);
 //

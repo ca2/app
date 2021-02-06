@@ -252,7 +252,7 @@ namespace draw2d_opengl
 
    /*void image::Fill ( i32 R, i32 G, i32 B )
    {
-      color32_t color=RGB ( B, G, R );
+      color32_t color=rgb ( B, G, R );
       i64 size = area();
 
       color32_t * pcr;
@@ -368,9 +368,9 @@ namespace draw2d_opengl
 
       imageWork.FillByte(0);
 
-      imageWork.channel_from(::color::channel_alpha, this);
+      imageWork.channel_from(::color::e_channel_alpha, this);
 
-      imageWork.channel_invert(::color::channel_alpha);
+      imageWork.channel_invert(::color::e_channel_alpha);
 
 
       BLENDFUNCTION bf;
@@ -385,9 +385,9 @@ namespace draw2d_opengl
       if(bPreserveAlpha)
       {
 
-         imageWork.channel_invert(::color::channel_alpha);
+         imageWork.channel_invert(::color::e_channel_alpha);
 
-         color::channel_from(::color::channel_alpha, imageWork);
+         ::color::e_channel_from(::color::e_channel_alpha, imageWork);
 
       }
 
@@ -449,18 +449,18 @@ namespace draw2d_opengl
 
    //void image::BitBlt(imagepimage, i32 op)
    //{
-   //   if(op == 123) // zero dest RGB, invert alpha, and OR src RGB
+   //   if(op == 123) // zero dest rgb, invert alpha, and OR src rgb
    //   {
    //      i64 isize = area();
    //      LPDWORD lpbitsSrc= (LPDWORD) pimage->get_data();
    //      LPDWORD lpbitsDest= (LPDWORD) m_pcolorref;
 
-   //      color32_t _colorref = RGB ( 0, 0, 0 ) | (255 << 24);
+   //      color32_t _colorref = rgb ( 0, 0, 0 ) | (255 << 24);
    //      color32_t colorrefa[2];
    //      colorrefa[0] = _colorref;
    //      colorrefa[1] = _colorref;
 
-   //      color32_t _colorrefN = RGB ( 255, 255, 255) | (0 << 24);
+   //      color32_t _colorrefN = rgb ( 255, 255, 255) | (0 << 24);
    //      color32_t colorrefaN[2];
    //      colorrefaN[0] = _colorrefN;
    //      colorrefaN[1] = _colorrefN;
@@ -483,7 +483,7 @@ namespace draw2d_opengl
    //   }
    //}
 
-   //void image::color::channel_invert(color::color::rgba::echannel echannel)
+   //void image::color::e_channel_invert(color::color::color::rgba::echannel echannel)
    //{
    //   i64 size   = area();
    //   register i64 size64 = size / 64;
@@ -567,7 +567,7 @@ namespace draw2d_opengl
    //      lpb += 4;
    //   }
    //}
-   //void image::color::channel_multiply(color::color::rgba::echannel echannel, double dRate)
+   //void image::color::e_channel_multiply(color::color::color::rgba::echannel echannel, double dRate)
    //{
    //   if(dRate < 0)
    //      return;
@@ -601,7 +601,7 @@ namespace draw2d_opengl
 
    //void image::FillStippledGlass ( i32 R, i32 G, i32 B )
    //{
-   //   color32_t color=RGB ( B, G, R );
+   //   color32_t color=rgb ( B, G, R );
    //   i32 w=m_size.cx;
    //   i32 h=m_size.cy;
 
@@ -882,7 +882,7 @@ namespace draw2d_opengl
 
    //   // Prepare buffer Address
    //   color32_t *dst=m_pcolorref+(py*m_size.cx)+px;
-   //   color32_t color=RGB ( B, G, R );
+   //   color32_t color=rgb ( B, G, R );
 
    //   // Do Fill
    //   while ( dy-- )
@@ -942,7 +942,7 @@ namespace draw2d_opengl
 
    //   // Prepare buffer Address
    //   color32_t *dst=m_pcolorref+(py*m_size.cx)+px;
-   //   color32_t color=RGB ( B, G, R );
+   //   color32_t color=rgb ( B, G, R );
 
    //   // Do FillStippledGlass
    //   for ( i32 j=0; j<dy; j++ )
@@ -1170,7 +1170,7 @@ namespace draw2d_opengl
    /*void image::Line ( i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B )
    {
       i32 dx, dy, k1, k2, d, x, y;
-      color32_t color=RGB ( B, G, R );
+      color32_t color=rgb ( B, G, R );
 
       dx=x2-x1;
       dy=y2-y1;
@@ -1201,7 +1201,7 @@ namespace draw2d_opengl
 //   void image::Line ( i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B )
 //   {
 //      i32 d, x, y, ax, ay, sx, sy, dx, dy;
-//      color32_t color=RGB ( B, G, R );
+//      color32_t color=rgb ( B, G, R );
 //
 //      dx=x2-x1;
 //      ax=abs ( dx )<<1;
@@ -1247,7 +1247,7 @@ namespace draw2d_opengl
 //   void image::LineGlass ( i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B, i32 A )
 //   {
 //      i32 d, x, y, ax, ay, sx, sy, dx, dy;
-////      color32_t color=RGB ( B, G, R );
+////      color32_t color=rgb ( B, G, R );
 //      byte *dst=(byte *)m_pcolorref;
 //
 //      dx=x2-x1;
@@ -1297,9 +1297,9 @@ namespace draw2d_opengl
 
    //void image::Mask(color32_t crMask, color32_t crInMask, color32_t crOutMask)
    //{
-   //   color32_t crFind = RGB(::blue(crMask), ::green(crMask), ::red(crMask));
-   //   color32_t crSet = RGB(::blue(crInMask), ::green(crInMask), ::red(crInMask));
-   //   color32_t crUnset  = RGB(::blue(crOutMask), ::green(crOutMask), ::red(crOutMask));
+   //   color32_t crFind = rgb(::blue(crMask), ::green(crMask), ::red(crMask));
+   //   color32_t crSet = rgb(::blue(crInMask), ::green(crInMask), ::red(crInMask));
+   //   color32_t crUnset  = rgb(::blue(crOutMask), ::green(crOutMask), ::red(crOutMask));
 
    //   i32 size=cx*cy;
 
@@ -1311,7 +1311,7 @@ namespace draw2d_opengl
 
    //}
 
-   //void image::transparent_color(color color)
+   //void image::transparent_color(::color::color color)
    //{
    //   color32_t crFind = color.get_rgb();
    //   i64 size = area();
@@ -1323,7 +1323,7 @@ namespace draw2d_opengl
    //         ((LPBYTE)&m_pcolorref[i])[3] = 0;
    //}
 
-   //void image::color::channel_mask(uchar uchFind, uchar uchSet, uchar uchUnset, color::color::rgba::echannel echannel)
+   //void image::color::e_channel_mask(uchar uchFind, uchar uchSet, uchar uchUnset, color::color::color::rgba::echannel echannel)
    //{
    //   i32 size = cx * cy;
    //   uchar * puch = (uchar * ) m_pcolorref;
@@ -1342,7 +1342,7 @@ namespace draw2d_opengl
    //u32 image::GetPixel(i32 x, i32 y)
    //{
    //   ::u32 dw = *(m_pcolorref + x + (cy - y - 1) * cx);
-   //   return RGB(::blue(dw), ::green(dw), ::red(dw));
+   //   return rgb(::blue(dw), ::green(dw), ::red(dw));
    //}
 
    // too slow for animation on AMD XP gen_hon.
@@ -2020,7 +2020,7 @@ namespace draw2d_opengl
 
    //void image::Fill (i32 A, i32 R, i32 G, i32 B )
    //{
-   //   color32_t color = RGB ( B, G, R ) | (A << 24);
+   //   color32_t color = rgb ( B, G, R ) | (A << 24);
    //   i32 size=cx*cy;
 
    //   color32_t * pcr;
@@ -2102,7 +2102,7 @@ namespace draw2d_opengl
    //      i32 iR = (i32) dR;
    //      i32 iG = (i32) dG;
    //      i32 iB = (i32) dB;
-   //      return RGB(iR, iG, iB);
+   //      return rgb(iR, iG, iB);
    //   }
    //   else
    //   {
@@ -2374,7 +2374,7 @@ namespace draw2d_opengl
    //    return dPi;
    // }
 
-   // void image::fill_channel(i32 intensity, color::color::rgba::echannel echannel)
+   // void image::fill_channel(i32 intensity, color::color::color::rgba::echannel echannel)
    // {
    //     i32 offset = ((i32)echannel) % 4;
    //    i32 size=m_size.cx*cy;
@@ -2649,7 +2649,7 @@ namespace draw2d_opengl
 //      catch(...)
 //      {
 //      }
-//      m_spgraphics->FillSolidRect(rectx, RGB(255, 255, 255));
+//      m_spgraphics->FillSolidRect(rectx, rgb(255, 255, 255));
 //      pmessage->m_bRet = true;
 //      pbase->set_lresult(0);
 //

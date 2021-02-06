@@ -482,11 +482,11 @@ CLASS_DECL_ACME void throw_what_exclamation_exclamation(const char *psz);
 #define colorref_get_g_value(rgb)    (low_byte((rgb)>>8))
 #define colorref_get_b_value(rgb)    (low_byte((rgb)>>16))
 #define colorref_get_a_value(rgb)    (low_byte((rgb)>>24))
-#define RGBA(r, g, b, a)         ((color32_t)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
-#define ARGB(a, r, g, b)      RGBA(r, g, b, a)
+//#define RGBA(r, g, b, a)         ((color32_t)((low_byte(r)|((::u16)(low_byte(g))<<8))|(((u32)low_byte(b))<<16)|(((u32)low_byte(a))<<24)))
+//#define argb(a, r, g, b)      RGBA(r, g, b, a)
 
 
-#define __acolor(a, r, g, b)      ::color(r, g, b, a)
+#define __acolor(a, r, g, b)      ::color::color(r, g, b, a)
 
 
 CLASS_DECL_ACME int trailingBytesForUTF8(char ch);

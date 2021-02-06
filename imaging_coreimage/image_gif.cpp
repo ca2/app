@@ -180,7 +180,7 @@ namespace coreimage_imaging
                // Note: It's not in (1/100) of a second like still falsely described in the documentation as per iOS 8 (rdar://19507384) but in seconds stored as `kCFNumberFloat32Type`.
                // Frame properties example:
                // {
-               //     ColorModel = RGB;
+               //     ColorModel = rgb;
                //     Depth = 8;
                //     PixelHeight = 960;
                //     PixelWidth = 640;

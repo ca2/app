@@ -1170,7 +1170,7 @@ namespace user
          rectangle.right = (::i32) (rectangle.left + m_pscrollbarVertical->layout().design().size().cx);
          rectangle.bottom = (::i32) (rectangle.top + m_pscrollbarHorizontal->layout().design().size().cy);
 
-         pgraphics->fill_rect(rectangle, ARGB(127, 127, 127, 127));
+         pgraphics->fill_rect(rectangle, argb(127, 127, 127, 127));
 
       }
 

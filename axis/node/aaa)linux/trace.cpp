@@ -149,7 +149,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 
 //   {
 //#ifdef OS64BIT
-//      //TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point_i32, msg = %s (%point_i32, %point_i32)\n",
+//      //TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = %s (%point, %point_i32)\n",
 //        // pszPrefix, pbase->m_hwnd, pszMsgName,
 
 //         //pbase->m_wparam, pbase->m_lparam);
@@ -163,7 +163,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 //   else
 //   {
 //#ifdef OS64BIT
-////      ::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point_i32, msg = 0x%04X (%point_i32, %point_i32)\n",
+////      ::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = 0x%04X (%point, %point_i32)\n",
 //  //       pszPrefix, pbase->m_hwnd, pszMsgName,
 
 //    //     pbase->m_wparam, pbase->m_lparam);
@@ -263,7 +263,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 
 //   {
 //#ifdef WIN64
-////      TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point_i32, msg = %hs (%point_i32, %point_i32)\n",
+////      TRACE(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = %hs (%point, %point_i32)\n",
 //  //       pszPrefix, pMsg->hwnd, pszMsgName,
 
 //    //     pMsg->wParam, pMsg->lParam);
@@ -278,7 +278,7 @@ static void TraceDDE(const char * pszPrefix, const MESSAGE* pMsg)
 //   else
 //   {
 //#ifdef WIN64
-//      //::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point_i32, msg = 0x%04X (%point_i32, %point_i32)\n",
+//      //::output_debug_string(::ca2::trace::category_WinMsg, 4, "%s: hwnd=%point, msg = 0x%04X (%point, %point_i32)\n",
 //        // pszPrefix, pMsg->hwnd, pszMsgName,
 
 //         //pMsg->wParam, pMsg->lParam);

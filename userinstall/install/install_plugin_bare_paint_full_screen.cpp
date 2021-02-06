@@ -52,13 +52,13 @@ namespace hotplugin
          byte uchR, uchG, uchB;
          ::rectangle_i32 rectangle;
          get_progress_color(uchR, uchG, uchB, dRate, 0);
-         br->create_solid(ARGB(255, uchR, uchG, uchB));
+         br->create_solid(argb(255, uchR, uchG, uchB));
          r = rect_dim(rectangle.left, rectangle.top, cx, cy);
          pgraphics->FillRect(r, br);
 
       }
 
-      br->create_solid(ARGB(255, 255, 255, 255));
+      br->create_solid(argb(255, 255, 255, 255));
 
       pgraphics->SelectObject(br);
 

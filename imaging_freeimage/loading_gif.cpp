@@ -316,11 +316,11 @@ namespace imaging_freeimage
 //
 //#if defined(ANDROID) && defined(__arm__)
 //
-//            color32_t crQuad = ARGB(255, quad.rgbRed, quad.rgbGreen, quad.rgbBlue);
+//            color32_t crQuad = argb(255, quad.rgbRed, quad.rgbGreen, quad.rgbBlue);
 //
 //#else
 //
-//            //color32_t crQuad = ARGB(255, quad.rgbBlue, quad.rgbGreen, quad.rgbRed);
+//            //color32_t crQuad = argb(255, quad.rgbBlue, quad.rgbGreen, quad.rgbRed);
 //
 //#endif
 //

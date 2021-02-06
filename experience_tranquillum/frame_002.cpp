@@ -20,7 +20,7 @@
 color32_t SetAValue(byte a, color32_t cr)
 {
 
-   return ARGB(a, colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr));
+   return argb(a, colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr));
 
 }
 

@@ -69,25 +69,25 @@ namespace html
          if(m_border.left == 0.f && bTableBorder)
          {
             m_border.left = m_iBorder;
-            m_border.crLeft = ARGB(255, 192, 192, 192);
+            m_border.crLeft = argb(255, 192, 192, 192);
             m_border.styleLeft = ::html::border::style_solid;
          }
          if(m_border.top == 0.f && bTableBorder)
          {
             m_border.top = m_iBorder;
-            m_border.crTop = ARGB(255, 192, 192, 192);
+            m_border.crTop = argb(255, 192, 192, 192);
             m_border.styleTop = ::html::border::style_solid;
          }
          if(m_border.right == 0.f && bTableBorder)
          {
             m_border.right = m_iBorder;
-            m_border.crRight = ARGB(255, 90, 90, 90);
+            m_border.crRight = argb(255, 90, 90, 90);
             m_border.styleRight = ::html::border::style_solid;
          }
          if(m_border.bottom == 0.f && bTableBorder)
          {
             m_border.bottom = m_iBorder;
-            m_border.crBottom = ARGB(255, 90, 90, 90);
+            m_border.crBottom = argb(255, 90, 90, 90);
             m_border.styleBottom = ::html::border::style_solid;
          }
 
@@ -348,7 +348,7 @@ namespace html
          {
 
          pdata->m_pcoredata->m_pdc->draw3d_rect(get_x() - m_iBorder - 2, get_y() - m_iBorder - 2,
-         get_cx() + ((m_iBorder + 2) * 2), get_cy() + ((m_iBorder + 2) * 2), ARGB(255, 190, 184, 184), ARGB(255, 90, 90, 90));
+         get_cx() + ((m_iBorder + 2) * 2), get_cy() + ((m_iBorder + 2) * 2), argb(255, 190, 184, 184), argb(255, 90, 90, 90));
 
          }*/
       }

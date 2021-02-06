@@ -1030,9 +1030,9 @@ run_install:
 
          m_bPendingRestartCa2 = true;
 
-         /* HPEN hpen = (HPEN) ::create_solid(1, RGB(0, 0, 0));
+         /* HPEN hpen = (HPEN) ::create_solid(1, rgb(0, 0, 0));
          HPEN hpenOld = (HPEN) ::SelectObject(hdc, hpen);
-         HBRUSH hbrush = (HBRUSH) ::create_solid(RGB(255, 0, 255));
+         HBRUSH hbrush = (HBRUSH) ::create_solid(rgb(255, 0, 255));
          HBRUSH hbrushOld = (HBRUSH) ::SelectObject(hdc, hbrush);
 
          ::Ellipse(hdc, 23, 23, 49, 49);
@@ -1045,8 +1045,8 @@ run_install:
          rectangle.top       = 0;
          rectangle.bottom    = cx;
          rectangle.right     = cy;
-         ::FillSolidRect_dup(hdc, &rectangle, RGB(255, 255, 255));
-         ::SetTextColor(hdc, RGB(255, 0, 255));
+         ::FillSolidRect_dup(hdc, &rectangle, rgb(255, 255, 255));
+         ::SetTextColor(hdc, rgb(255, 0, 255));
          const char * psz = "ca is not installed! You may try to install using low level spaboot_install.exe.";
          ::TextOutU_dup(hdc, 10, 10, psz, ansi_length(psz));*/
       }

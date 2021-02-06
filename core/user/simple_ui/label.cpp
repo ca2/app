@@ -32,9 +32,9 @@ namespace simple_ui
       {
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
-         c = ARGB(255, 1140, 149 + 49, 177 + 49);
+         c = argb(255, 1140, 149 + 49, 177 + 49);
 #else
-         c = ARGB(255, 149 + 49, 1140, 123 + 49);
+         c = argb(255, 149 + 49, 1140, 123 + 49);
 #endif
 
       }
@@ -42,9 +42,9 @@ namespace simple_ui
       {
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
-         c = ARGB(255, 90, 50, 80);
+         c = argb(255, 90, 50, 80);
 #else
-         c = ARGB(255, 49, 90, 23);
+         c = argb(255, 49, 90, 23);
 #endif
 
       }

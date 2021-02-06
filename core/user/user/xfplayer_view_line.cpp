@@ -16,8 +16,8 @@ xfplayer_view_line::xfplayer_view_line() :
    m_pContainer = nullptr;
    m_bEnhancedEmboss = true;
    m_bCacheEmboss = false;
-   m_cr = ARGB(255, 255, 255, 255);
-   m_colorOutline = ARGB(255, 0, 0, 0);
+   m_cr = argb(255, 255, 255, 255);
+   m_colorOutline = argb(255, 0, 0, 0);
    m_nFont = 0;
    m_lpBitmapData = nullptr;
    m_bAutoSizeX = false;
@@ -295,10 +295,10 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
                   //const ::point_i32 & point = pgraphics->GetViewportOrg();
                   //pimage->from(nullptr, pgraphics, point_i32 + rectangle.top_left(), rectangle.size());
                   pimage->g()->draw(rectangle.size(), pgraphics, rectangle.top_left());
-                  //pimage->get_graphics()->fill_rect(0, 0, 16, 16, ARGB(255, 255, 0, 255));
+                  //pimage->get_graphics()->fill_rect(0, 0, 16, 16, argb(255, 255, 0, 255));
                   pimage->invert();
-                  //pimage->fill_channel(0, ::color::channel_blue);
-                  pimage->fill_channel(255, ::color::channel_alpha);
+                  //pimage->fill_channel(0, ::color::e_channel_blue);
+                  pimage->fill_channel(255, ::color::e_channel_alpha);
                   pgraphics->draw(rectangle, pimage);
                }
             }
@@ -1495,7 +1495,7 @@ void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, con
 
    draw2d::brush_pointer brushText(e_create);
 
-   brushText->create_solid(ARGB(96, 96, 96, 96));
+   brushText->create_solid(argb(96, 96, 96, 96));
 
    pdcCache->set(brushText);
 
@@ -1525,7 +1525,7 @@ void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, con
    }
 
 
-   System.imaging().channel_spread_set_color(pdcCache, nullptr, size, pdcCache, nullptr, 0, i32(max(1.0, m_floatRateX * 2.0 + 2)), ARGB(23, 23, 20, 23));
+   System.imaging().channel_spread_set_color(pdcCache, nullptr, size, pdcCache, nullptr, 0, i32(max(1.0, m_floatRateX * 2.0 + 2)), argb(23, 23, 20, 23));
 
    pdcCache->set_alpha_mode(::draw2d::alpha_mode_blend);
    System.imaging().channel_alpha_gray_blur(pdcCache, nullptr, size, pdcCache, nullptr, 0, i32(max(1.0, m_floatRateX * 2.5)));

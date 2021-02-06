@@ -61,14 +61,14 @@ namespace filemanager
 
       //color32_t crBackground = get_color(pstyle, ::user::e_element_background);
 
-      //if ((crBackground & ARGB(255, 0, 0, 0)) != 0)
+      //if ((crBackground & argb(255, 0, 0, 0)) != 0)
       //{
 
       //   ::rectangle_i32 rectClient;
 
       //   get_client_rect(rectClient);
 
-      //   pgraphics->fill_rect(rectClient, ARGB(255, 255, 255, 255));
+      //   pgraphics->fill_rect(rectClient, argb(255, 255, 255, 255));
 
       //}
 

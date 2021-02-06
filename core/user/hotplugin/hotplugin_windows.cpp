@@ -22,10 +22,10 @@ namespace hotplugin
 
    //HBRUSH hbrushBack = (HBRUSH) ::CreatePatternBrush(hbm);
    //::DeleteObject(hbm);
-   //HBRUSH hbrushDark = ::CreateSolidBrush(RGB(90, 90, 80));
-   //HBRUSH hbrushLate = ::CreateSolidBrush(RGB(140,140,77 + 42));
-   //HBRUSH hbrushLite = ::CreateSolidBrush(RGB(255,255,250));
-   //HBRUSH hbrushGren = ::CreateSolidBrush(RGB(77,184,123));
+   //HBRUSH hbrushDark = ::CreateSolidBrush(rgb(90, 90, 80));
+   //HBRUSH hbrushLate = ::CreateSolidBrush(rgb(140,140,77 + 42));
+   //HBRUSH hbrushLite = ::CreateSolidBrush(rgb(255,255,250));
+   //HBRUSH hbrushGren = ::CreateSolidBrush(rgb(77,184,123));
 
    //HPEN hpen = (HPEN) ::GetStockObject(NULL_PEN);
 
@@ -39,7 +39,7 @@ namespace hotplugin
 
    //::SelectObject(hdc,hbrushDark);
 
-   //HPEN hpenLite = ::CreatePen(PS_DOT,1,RGB(184,184,177));
+   //HPEN hpenLite = ::CreatePen(PS_DOT,1,rgb(184,184,177));
 
    //
 
@@ -47,9 +47,9 @@ namespace hotplugin
 
    ////rectBar.deflate(2,2);
 
-   //::SetTextColor(hdc,RGB(84,255,84));
+   //::SetTextColor(hdc,rgb(84,255,84));
 
-   //::SetBkColor(hdc,RGB(0,255,0));
+   //::SetBkColor(hdc,rgb(0,255,0));
 
    //::SetBkMode(hdc,TRANSPARENT);
 
@@ -67,7 +67,7 @@ namespace hotplugin
 
    //::rectangle_i32(hdc,rectBar.left,rectBar.top,rectBar.right,rectBar.bottom);
 
-   //::SetTextColor(hdc,RGB(184,184,177));
+   //::SetTextColor(hdc,rgb(184,184,177));
 
    //::rectangle_i32(hdc,rectBar.left-1,rectBar.top-1,rectBar.right + 1,rectBar.top);
    //::rectangle_i32(hdc,rectBar.left - 1,rectBar.bottom,rectBar.right + 1,rectBar.bottom+1);
@@ -134,7 +134,7 @@ namespace hotplugin
 
    //::SetBkMode(hdc,TRANSPARENT);
 
-   //::SetTextColor(hdc,RGB(250,250,250));
+   //::SetTextColor(hdc,rgb(250,250,250));
 
    ////HFONT hStockFont = (HFONT)::GetStockObject(SYSTEM_FONT);
 

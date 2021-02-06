@@ -650,8 +650,8 @@ namespace ios
       
       virtual void round_window_become_key() override;
 
-      virtual bool round_window_key_down(::user::e_key ekey) override;
-      virtual bool round_window_key_up(::user::e_key ekey) override;
+      virtual bool round_window_key_down(::user::enum_key ekey) override;
+      virtual bool round_window_key_up(::user::enum_key ekey) override;
       virtual bool round_window_on_text(const char * pszText, long iSelBeg, long iSelEnd) override;
       virtual bool round_window_on_sel_text(long iBeg, long iEnd) override;
       virtual long round_window_edit_hit_test(int x, int y) override;

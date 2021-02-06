@@ -556,7 +556,7 @@ namespace user
 
       auto rectangle_i32 = ::rectd_dim(0, 0, rectWindow.width(), rectWindow.height());
 
-      pgraphics->fill_rect(rectangle, ARGB(128, 192, 192, 187));
+      pgraphics->fill_rect(rectangle, argb(128, 192, 192, 187));
 
       // draw gripper in non-client area
       DrawGripper(pgraphics, rectWindow);
@@ -911,7 +911,7 @@ namespace user
       //   color32_t clr = afxData.bWin4 ? afxData.clrBtnShadow : afxData.clrWindowFrame;
 //      color32_t clr = afxData.clrBtnShadow;
       color32_t clr;
-      clr = RGB(128, 128, 123);
+      clr = rgb(128, 128, 123);
 
 
 
@@ -953,7 +953,7 @@ namespace user
             rectangle.top,
             rectangle.right - 7,
             1),
-            RGB(128, 128, 123));
+            rgb(128, 128, 123));
          }
          else
          {
@@ -962,7 +962,7 @@ namespace user
             rectangle.top,
             rectangle.right,
             1),
-            RGB(128, 128, 123));
+            rgb(128, 128, 123));
          }
          //      pgraphics->fill_rect(0, 0, rectangle.right, CY_BORDER, clr);
       }
@@ -993,7 +993,7 @@ namespace user
       {
          // prepare for hilite lines
 //         clr = afxData.clrBtnHilite;
-         clr = RGB(250, 250, 245);
+         clr = rgb(250, 250, 245);
 
          // draw left and top
          if (uStyle & CBRS_BORDER_LEFT)

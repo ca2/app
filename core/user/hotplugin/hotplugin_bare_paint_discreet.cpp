@@ -34,7 +34,7 @@ namespace hotplugin
 
       ::draw2d::pen_pointer pen(e_create);
 
-      pen->create_solid(1.0, RGB(84, 90, 80));
+      pen->create_solid(1.0, rgb(84, 90, 80));
 
       ::draw2d::brush_pointer brush(e_create);
 
@@ -189,7 +189,7 @@ namespace hotplugin
 
       ::draw2d::brush_pointer br(e_create);
 
-      br->create_solid(ARGB(49, 184 + 23, 184 + 23, 184 + 19));
+      br->create_solid(argb(49, 184 + 23, 184 + 23, 184 + 19));
 
       i32 mcy = cy / 2;
 
@@ -252,7 +252,7 @@ namespace hotplugin
 
       rectClip.inflate(3);
 
-      br->create_solid(ARGB(90, 90, 90, 80));
+      br->create_solid(argb(90, 90, 90, 80));
 
       ::rectangle_i32 rect1;
 
@@ -292,21 +292,21 @@ namespace hotplugin
       ::rectangle_i32 rect2;
       {
          get_progress_color(uchR, uchG, uchB, dRate, 0);
-         br->create_solid(ARGB(bA, uchR, uchG, uchB));
+         br->create_solid(argb(bA, uchR, uchG, uchB));
          rect2 = rect_dim(rectParam.left + cx / iRate, rectParam.top + (cy - iBarHeight) / 2, iProgressCount, 5);
 
          pgraphics->fill_rect(rect2, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 1);
-         br->create_solid(ARGB(bA, uchR, uchG, uchB));
+         br->create_solid(argb(bA, uchR, uchG, uchB));
          rect2 = rect_dim(rectParam.left + cx / iRate, rectParam.top + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
 
          pgraphics->fill_rect(rect2, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 2);
-         br->create_solid(ARGB(bA, uchR, uchG, uchB));
+         br->create_solid(argb(bA, uchR, uchG, uchB));
          rect2 = rect_dim(rectParam.left + cx / iRate, rectParam.top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
 
          pgraphics->fill_rect(rect2, br);
@@ -314,33 +314,33 @@ namespace hotplugin
 
       i32 iOffset = 3;
 
-      pen->create_solid(1.0, ARGB(220, 180, 180, 180));
+      pen->create_solid(1.0, argb(220, 180, 180, 180));
       pgraphics->draw_line(rectParam.left + cx / iRate - iOffset, rectParam.top + (cy - iBarHeight) / 2 - iOffset, rectParam.left + cx - cx / iRate + iOffset, rectParam.top + (cy - iBarHeight) / 2 - iOffset, pen);
 
       pgraphics->draw_line(rectParam.left + cx / iRate - iOffset, rectParam.top + (cy - iBarHeight) / 2 - iOffset, rectParam.left + cx / iRate - iOffset, rectParam.top + (cy + iBarHeight) / 2 + iOffset, pen);
 
 
-      pen->create_solid(1.0, ARGB(220, 80, 80, 80));
+      pen->create_solid(1.0, argb(220, 80, 80, 80));
       pgraphics->draw_line(rectParam.left + cx / iRate - iOffset, rectParam.top + (cy + iBarHeight) / 2 + iOffset, rectParam.left + cx - cx / iRate + iOffset, rectParam.top + (cy + iBarHeight) / 2 + iOffset, pen);
 
       pgraphics->draw_line(rectParam.left + cx - cx / iRate + iOffset, rectParam.top + (cy - iBarHeight) / 2 - iOffset, rectParam.left + cx - cx / iRate + iOffset, rectParam.top + (cy + iBarHeight) / 2 + iOffset, pen);
 
 
       iOffset = 2;
-      pen->create_solid(1.0, ARGB(220, 90, 90, 90));
+      pen->create_solid(1.0, argb(220, 90, 90, 90));
       pgraphics->draw_line(rectParam.left + cx / iRate - iOffset, rectParam.top + (cy - iBarHeight) / 2 - iOffset, rectParam.left + cx - cx / iRate + iOffset, rectParam.top + (cy - iBarHeight) / 2 - iOffset, pen);
 
       pgraphics->draw_line(rectParam.left + cx / iRate - iOffset, rectParam.top + (cy - iBarHeight) / 2 - iOffset, rectParam.left + cx / iRate - iOffset, rectParam.top + (cy + iBarHeight) / 2 + iOffset, pen);
 
 
-      pen->create_solid(1.0, ARGB(220, 170, 170, 170));
+      pen->create_solid(1.0, argb(220, 170, 170, 170));
       pgraphics->draw_line(rectParam.left + cx / iRate - iOffset, rectParam.top + (cy + iBarHeight) / 2 + iOffset, rectParam.left + cx - cx / iRate + iOffset, rectParam.top + (cy + iBarHeight) / 2 + iOffset, pen);
 
       pgraphics->draw_line(rectParam.left + cx - cx / iRate + iOffset, rectParam.top + (cy - iBarHeight) / 2 - iOffset, rectParam.left + cx - cx / iRate + iOffset, rectParam.top + (cy + iBarHeight) / 2 + iOffset, pen);
 
 
 
-      br->create_solid(ARGB(127, 255, 255, 255));
+      br->create_solid(argb(127, 255, 255, 255));
 
       pgraphics->SelectObject(br);
 

@@ -307,7 +307,7 @@ namespace console
       if(m_millisLastError.elapsed() < 84 && !m_bOk)
       {
 
-         crTopic = ARGB(255,255,0,210);
+         crTopic = argb(255,255,0,210);
 
       }
       else
@@ -315,7 +315,7 @@ namespace console
 
          m_bOk = true;
 
-         crTopic = ARGB(255,100,210,84);
+         crTopic = argb(255,100,210,84);
 
       }
 
@@ -327,7 +327,7 @@ namespace console
       
       m_sizeChar = m_sizeChar.max(pgraphics.GetTextExtent("p"));
 
-      pgraphics->fill_rect(rectClient,ARGB(dwAlpha,0,0,0));
+      pgraphics->fill_rect(rectClient,argb(dwAlpha,0,0,0));
 
       pgraphics->set_text_color(crTopic);
 

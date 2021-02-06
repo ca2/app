@@ -145,18 +145,18 @@ namespace user
    void list::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      m_penFocused->create_solid(2, ARGB(255, 0, 255, 255));
+      m_penFocused->create_solid(2, argb(255, 0, 255, 255));
 
       if (m_bHighHighLight)
       {
 
-         m_penHighlight->create_solid(2, ARGB(255, 0, 255, 255));
+         m_penHighlight->create_solid(2, argb(255, 0, 255, 255));
 
       }
       else
       {
 
-         m_penHighlight->create_solid(2, ARGB(60, 0, 130, 130));
+         m_penHighlight->create_solid(2, argb(60, 0, 130, 130));
 
       }
 
@@ -343,9 +343,9 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
             
-            pgraphics->fill_rect(::rectangle_f64(x1, y1, x2, y2), ARGB(90, 250, 250, 255));
+            pgraphics->fill_rect(::rectangle_f64(x1, y1, x2, y2), argb(90, 250, 250, 255));
 
-            pgraphics->draw_rect(::rectangle_f64(x1, y1, x2, y2), ARGB(192, 192, 192, 208));
+            pgraphics->draw_rect(::rectangle_f64(x1, y1, x2, y2), argb(192, 192, 192, 208));
 
          }
 
@@ -641,9 +641,9 @@ namespace user
 
             pdrawitem->m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pdrawitem->m_pgraphics->draw_rect(pdrawitem->m_rectItem, ARGB(80, 235, 235, 255));
+            pdrawitem->m_pgraphics->draw_rect(pdrawitem->m_rectItem, argb(80, 235, 235, 255));
 
-            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, ARGB(40, 255, 255, 255));
+            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, argb(40, 255, 255, 255));
 
          }
 
@@ -687,7 +687,7 @@ namespace user
          else if (psession->savings().is_trying_to_save(::e_resource_processing))
          {
 
-            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, ARGB(255, 96, 96, 96));
+            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, argb(255, 96, 96, 96));
 
          }
          else
@@ -792,7 +792,7 @@ namespace user
             if (!color)
             {
 
-               color = ARGB(255, 96, 96, 96);
+               color = argb(255, 96, 96, 96);
 
             }
 
@@ -5601,7 +5601,7 @@ namespace user
          pcolumn->m_iWidth = -1;
          pcolumn->m_iSubItem = 0;
          pcolumn->m_iSmallImageWidth = 16;
-         pcolumn->m_colorSmallMask = ARGB(255, 255, 0, 255);
+         pcolumn->m_colorSmallMask = argb(255, 255, 0, 255);
 
 
 
@@ -7229,7 +7229,7 @@ namespace user
       m_iSubItem = -1;
       m_iListItem = -1;
       m_colorText = (color32_t)-1;
-      m_colorTextBackground = ARGB(255, 0, 0, 0);
+      m_colorTextBackground = argb(255, 0, 0, 0);
       m_colorItemBackground = 0;
       m_iState = -1;
       m_iImage = -1;
@@ -7370,7 +7370,7 @@ namespace user
                }
 
 
-               //pimage->g()->fill_rect(::rectangle_i32(pimage->size()), ARGB(255, 200, 220, 255));
+               //pimage->g()->fill_rect(::rectangle_i32(pimage->size()), argb(255, 200, 220, 255));
                if (m_plist->m_iIconBlur > 0 && m_plist->m_iIconBlurRadius > 0)
                {
 
@@ -7424,7 +7424,7 @@ namespace user
 
                //m_plist->m_pimageTime->div_alpha(rect2->top_left(), rect2->size());
 
-               m_plist->m_pimageTime->channel_multiply(::color::channel_alpha, m_plist->m_pimageSpot, rect2);
+               m_plist->m_pimageTime->channel_multiply(::color::e_channel_alpha, m_plist->m_pimageSpot, rect2);
 
                //m_plist->m_pimageTime->mult_alpha(rect2->top_left(), rect2->size());
 
@@ -7484,7 +7484,7 @@ namespace user
       if (!m_plist->m_bHighHighLight)
       {
 
-         color c;
+         ::color::color color;
 
          c.set_COLORREF(m_colorText);
 
@@ -7568,7 +7568,7 @@ namespace user
 
             m_pgraphics->draw_text(m_strText, m_rectText, ealign, edrawtext);
 
-            //m_pgraphics->fill_rect(m_rectText.left, m_rectText.top, 100, 100, ARGB(128, 100, 125, 255));
+            //m_pgraphics->fill_rect(m_rectText.left, m_rectText.top, 100, 100, argb(128, 100, 125, 255));
 
             if (m_strText == "LOVE OR NOTHING")
             {

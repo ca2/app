@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "apex/net/_net.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "axis/geoip/_.h"
 #endif
@@ -290,16 +291,16 @@ char *_GeoIP_full_path_to(const char *file_name)
       __memset(path, 0, sizeof(char) * 1024);
       snprintf(path, sizeof(char) * 1024 - 1, "%s/%s", GEOIPDATADIR, file_name);
 #else
-      char buf[MAX_PATH], *point_i32, *q = nullptr;
+      char buf[MAX_PATH], *p, *q = nullptr;
       __memset(buf, 0, sizeof(buf));
       len = GetModuleFileNameA(GetModuleHandle(nullptr), buf, sizeof(buf) - 1);
-      for (point = buf + len; point_i32 > buf; point_i32--)
-         if (*point == '\\')
+      for (p = buf + len; p > buf; p--)
+         if (*p == '\\')
          {
             if (!q)
-               q = point;
+               q = p;
             else
-               *point = '/';
+               *p = '/';
          }
       *q = 0;
       __memset(path, 0, sizeof(char) * 1024);
@@ -571,7 +572,7 @@ u32 _GeoIP_seek_record_v6 (GeoIP *gi, geoipv6_t ipnum)
    const uchar *buf = (gi->cache == nullptr) ? stack_buffer : nullptr;
    u32 offset = 0;
 
-   const uchar * point_i32;
+   const uchar * p;
    i32 j;
    size_t silence;
 
@@ -609,12 +610,12 @@ u32 _GeoIP_seek_record_v6 (GeoIP *gi, geoipv6_t ipnum)
          {
             /* General case */
             j = gi->record_length;
-            point = &buf[2*j];
+            p = &buf[2*j];
             x = 0;
             do
             {
                x <<= 8;
-               x += *(--point_i32);
+               x += *(--p);
             }
             while ( --j );
          }
@@ -634,12 +635,12 @@ u32 _GeoIP_seek_record_v6 (GeoIP *gi, geoipv6_t ipnum)
          {
             /* General case */
             j = gi->record_length;
-            point = &buf[1*j];
+            p = &buf[1*j];
             x = 0;
             do
             {
                x <<= 8;
-               x += *(--point_i32);
+               x += *(--p);
             }
             while ( --j );
          }
@@ -676,7 +677,7 @@ u32 _GeoIP_seek_record (GeoIP *gi, u32 ipnum)
    const uchar *buf = (gi->cache == nullptr) ? stack_buffer : nullptr;
    u32 offset = 0;
 
-   const uchar * point_i32;
+   const uchar * p;
    i32 j;
    size_t silence;
 
@@ -714,12 +715,12 @@ u32 _GeoIP_seek_record (GeoIP *gi, u32 ipnum)
          {
             /* General case */
             j = gi->record_length;
-            point = &buf[2*j];
+            p = &buf[2*j];
             x = 0;
             do
             {
                x <<= 8;
-               x += *(--point_i32);
+               x += *(--p);
             }
             while ( --j );
          }
@@ -739,12 +740,12 @@ u32 _GeoIP_seek_record (GeoIP *gi, u32 ipnum)
          {
             /* General case */
             j = gi->record_length;
-            point = &buf[1*j];
+            p = &buf[1*j];
             x = 0;
             do
             {
                x <<= 8;
-               x += *(--point_i32);
+               x += *(--p);
             }
             while ( --j );
          }

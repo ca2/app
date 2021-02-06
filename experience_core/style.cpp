@@ -41,7 +41,7 @@ namespace experience
          ::rectangle_i32 rectIcon;
          ::rectangle_i32 rectClose;
 
-         ptab->get_data()->m_pen->create_solid(1,RGB(32,32,32));
+         ptab->get_data()->m_pen->create_solid(1,rgb(32,32,32));
 
          pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
 
@@ -127,7 +127,7 @@ namespace experience
 
                   path->close_figure();
 
-                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,235,235,230),ARGB(250,255,255,250));
+                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
 
                   pgraphics->set(pane.m_brushFillSel);
 
@@ -173,7 +173,7 @@ namespace experience
                      && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
-                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,215,215,210),ARGB(250,235,235,230));
+                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
 
                      pgraphics->set(pane.m_brushFillHover);
 
@@ -193,7 +193,7 @@ namespace experience
                   else
                   {
 
-                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,175,175,170),ARGB(250,195,195,190));
+                     pane.m_brushFill->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,175,175,170),argb(250,195,195,190));
 
                      pgraphics->set(pane.m_brushFill);
 
@@ -250,7 +250,7 @@ namespace experience
 
                   //path->end_figure(false);
 
-                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,235,235,230),ARGB(250,255,255,250));
+                  pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,235,235,230),argb(250,255,255,250));
 
                   pgraphics->set(pane.m_brushFillSel);
 
@@ -300,7 +300,7 @@ namespace experience
                      && !ptab->m_itemHover.in_range(::user::e_element_split, 100))
                   {
 
-                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),ARGB(230,215,215,210),ARGB(250,235,235,230));
+                     pane.m_brushFillHover->CreateLinearGradientBrush(rectBorder.top_left(),rectBorder.bottom_left(),argb(230,215,215,210),argb(250,235,235,230));
 
                      pgraphics->set(pane.m_brushFillHover);
 
@@ -325,10 +325,10 @@ namespace experience
                      brushFill->CreateLinearGradientBrush(
                         rectBorder.top_left(),
                         rectBorder.bottom_left(),
-                        ARGB(230, 175, 175, 170),
-                        ARGB(250, 195, 195, 190)); //*/
+                        argb(230, 175, 175, 170),
+                        argb(250, 195, 195, 190)); //*/
 
-                        // brushFill->create_solid(::color::white);
+                        // brushFill->create_solid(::color::color::white);
 
                      pgraphics->set(brushFill);
 
@@ -396,14 +396,14 @@ namespace experience
             if(ptab->get_element_rect(-1,rectScroll, ::user::e_element_tab_near_scroll))
             {
 
-               pgraphics->fill_rect(rectScroll, ARGB(255, 255, 255, 255));
+               pgraphics->fill_rect(rectScroll, argb(255, 255, 255, 255));
 
             }
 
             if(ptab->get_element_rect(-1,rectScroll, ::user::e_element_tab_far_scroll))
             {
 
-               pgraphics->fill_rect(rectScroll, ARGB(255, 255, 255, 255));
+               pgraphics->fill_rect(rectScroll, argb(255, 255, 255, 255));
 
             }
 
@@ -468,12 +468,12 @@ namespace experience
 
                   pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-                  ::color colorText;
+                  ::color::color colorText;
 
                   if(ptab->m_itemHover == (::index) ::user::e_element_split + i)
                   {
 
-                     pgraphics->fill_rect(rectEmp,ARGB(128, 150, 190, 255));
+                     pgraphics->fill_rect(rectEmp,argb(128, 150, 190, 255));
 
                      colorText = ptab->get_color(this, ::user::e_element_item_text, ::user::e_state_hover);
 
@@ -815,7 +815,7 @@ namespace experience
       }
 
 
-      ::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
+      ::color::color style::get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate) const
       {
 
          if (::is_set(pinteraction))
@@ -841,13 +841,13 @@ namespace experience
                   if (::user::is_app_dark_mode())
                   {
 
-                     return ::color(80, 80, 80, 127);
+                     return ::color::color(80, 80, 80, 127);
 
                   }
                   else
                   {
 
-                     return ::color(255, 255, 255, 127);
+                     return ::color::color(255, 255, 255, 127);
 
                   }
 
@@ -866,13 +866,13 @@ namespace experience
                      if (::user::is_app_dark_mode())
                      {
 
-                        return ::color(255, 255, 255, 127);
+                        return ::color::color(255, 255, 255, 127);
 
                      }
                      else
                      {
 
-                        return ::color(80, 80, 80, 127);
+                        return ::color::color(80, 80, 80, 127);
 
                      }
 
@@ -883,13 +883,13 @@ namespace experience
                      if (::user::is_app_dark_mode())
                      {
 
-                        return ::color(80, 80, 80, 255);
+                        return ::color::color(80, 80, 80, 255);
 
                      }
                      else
                      {
 
-                        return ::color(255, 255, 255, 255);
+                        return ::color::color(255, 255, 255, 255);
 
                      }
 
@@ -905,13 +905,13 @@ namespace experience
                      if (::user::is_app_dark_mode())
                      {
 
-                        return ::color(80, 80, 80, 127);
+                        return ::color::color(80, 80, 80, 127);
 
                      }
                      else
                      {
 
-                        return ::color(255, 255, 255, 127);
+                        return ::color::color(255, 255, 255, 127);
 
                      }
 
@@ -922,13 +922,13 @@ namespace experience
                      if (::user::is_app_dark_mode())
                      {
 
-                        return ::color(255, 255, 255, 255);
+                        return ::color::color(255, 255, 255, 255);
 
                      }
                      else
                      {
 
-                        return ::color(80, 80, 80, 255);
+                        return ::color::color(80, 80, 80, 255);
 
                      }
 
@@ -947,13 +947,13 @@ namespace experience
                   if (::user::is_app_dark_mode())
                   {
 
-                     return ::color(80, 80, 80, 127);
+                     return ::color::color(80, 80, 80, 127);
 
                   }
                   else
                   {
 
-                     return ::color(255, 255, 255, 127);
+                     return ::color::color(255, 255, 255, 127);
 
                   }
                }
@@ -969,7 +969,7 @@ namespace experience
                   else
                   {
 
-                     return ::color(0, 0, 0, 0);
+                     return ::color::color(0, 0, 0, 0);
 
                   }
 
@@ -1002,7 +1002,7 @@ namespace experience
                   if(estate & ::user::e_state_hover)
                   {
 
-                     return ::color(255, 120, 150, 200);
+                     return ::color::color(255, 120, 150, 200);
 
                   }
                   else
@@ -1027,7 +1027,7 @@ namespace experience
                else if (eelement == ::user::e_element_item_background)
                {
 
-                  return ::color(0, 0, 0, 0);
+                  return ::color::color(0, 0, 0, 0);
 
                }
 
@@ -1238,7 +1238,7 @@ namespace experience
 
             }
 
-         return ::color();
+         return ::color::color();
 
       }
 
@@ -1246,7 +1246,7 @@ namespace experience
       bool style::_001DrawSimpleScrollBar(::draw2d::graphics_pointer & pgraphics, ::user::scroll_bar * pscrollbar)
       {
 
-         ::color colorBackground = pscrollbar->get_color(this, ::user::e_element_scrollbar);
+         ::color::color colorBackground = pscrollbar->get_color(this, ::user::e_element_scrollbar);
 
          ::rectangle_i32 rectClient = pscrollbar->get_client_rect();
 
@@ -1276,7 +1276,7 @@ namespace experience
 
          pscrollbar->get_window_rect(rectWindow);
 
-         ::color colorBorder = pscrollbar->scrollbar_border_color(this, ::user::e_element_scrollbar_rect);
+         ::color::color colorBorder = pscrollbar->scrollbar_border_color(this, ::user::e_element_scrollbar_rect);
 
          auto pbar = pscrollbar->cast < ::simple_scroll_bar >();
 
@@ -1284,7 +1284,7 @@ namespace experience
 
          penDraw->create_solid(1, colorBorder);
 
-         ::color colorTrack = pscrollbar->scrollbar_color(this, ::user::e_element_scrollbar_rect);
+         ::color::color colorTrack = pscrollbar->scrollbar_color(this, ::user::e_element_scrollbar_rect);
 
          ::draw2d::brush_pointer brushDraw(e_create);
 

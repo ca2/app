@@ -398,7 +398,7 @@ namespace user
       crSel = get_color(pstyle, e_element_text, e_state_selected);
       crBkSel = get_color(pstyle, e_element_background, e_state_selected);
 
-      color colorComposeBk;
+      ::color::color colorComposeBk;
 
       colorComposeBk = crBk;
       colorComposeBk.blend(crBkSel, 0.5);
@@ -526,7 +526,7 @@ namespace user
 
          {
 
-            color32_t crOverride = ARGB(255, 0, 0, 0);
+            color32_t crOverride = argb(255, 0, 0, 0);
 
             bool bOverride = false;
 
@@ -762,7 +762,7 @@ namespace user
 
                ::draw2d::pen_pointer pen(e_create);
 
-               pen->create_solid(1.0, ARGB(iErrorA, 255, 0, 0));
+               pen->create_solid(1.0, argb((byte) iErrorA, 255, 0, 0));
 
                pgraphics->set(pen);
 
@@ -1006,11 +1006,13 @@ namespace user
          if (m_bLMouseDown)
          {
 
-            ::point_i32 pointCursor;
-
             auto psession = Session;
 
-            psession->get_cursor_pos(&pointCursor);
+            auto puser = psession->user();
+
+            auto pwindowing = puser->windowing();
+
+            auto pointCursor = pwindowing->get_cursor_pos();
 
             _001ScreenToClient(pointCursor);
 

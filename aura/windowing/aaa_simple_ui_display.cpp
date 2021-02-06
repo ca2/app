@@ -508,7 +508,7 @@ namespace windowing
 //
 //            attr.colormap = m_colormap;
 //            attr.border_pixel = 0;
-//            attr.background_pixel = ARGB(255, 255, 255, 255);
+//            attr.background_pixel = argb(255, 255, 255, 255);
 //            attr.event_mask =
 //               KeyPressMask |
 //               KeyReleaseMask |

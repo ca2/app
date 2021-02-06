@@ -59,7 +59,7 @@ void simple_status_bar::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 //      rectClient.top,
 //      rectClient.width(),
 //      rectClient.height(),
-//      ARGB(255, 190, 184, 177),
+//      argb(255, 190, 184, 177),
 //      208);
 //#endif
 //

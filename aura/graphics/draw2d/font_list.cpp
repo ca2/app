@@ -42,13 +42,13 @@ namespace draw2d
 
       defer_create_mutex();
 
-      m_dwaFg.add(ARGB(255, 80, 80, 80));
-      m_dwaFg.add(ARGB(255, 45, 45, 45));
-      m_dwaFg.add(ARGB(255, 255, 255, 255));
+      m_dwaFg.add(argb(255, 80, 80, 80));
+      m_dwaFg.add(argb(255, 45, 45, 45));
+      m_dwaFg.add(argb(255, 255, 255, 255));
 
-      m_dwaBg.add(ARGB(0, 0, 0, 0));
-      m_dwaBg.add(ARGB(128, 128, 200, 152));
-      m_dwaBg.add(ARGB(128, 80, 80, 80));
+      m_dwaBg.add(argb(0, 0, 0, 0));
+      m_dwaBg.add(argb(128, 128, 200, 152));
+      m_dwaBg.add(argb(128, 80, 80, 80));
 
       m_etype = type_single_column;
 
@@ -296,7 +296,11 @@ namespace draw2d
 
       auto psession = Session;
 
-      auto pointCursor = psession->get_cursor_pos();
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
 
       pgraphics->m_puserinteraction->_001ScreenToClient(pointCursor);
 

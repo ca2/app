@@ -44,7 +44,7 @@ namespace user
       ::draw2d::brush_pointer                   m_brushTextHighlight;
       ::draw2d::brush_pointer                   m_brushText;
       ::draw2d::font_pointer                    m_fontTreeItem;
-      ::color                                   m_colorTreeBackground;
+      ::color::color                                   m_colorTreeBackground;
 
 
       bool                                      m_bHoverStart;

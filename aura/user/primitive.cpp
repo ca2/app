@@ -2589,12 +2589,12 @@ namespace user
 
    }
 
-   ::point_i32 primitive::get_cursor_pos() const
-   {
+   //::point_i32 primitive::get_cursor_pos() const
+   //{
 
-      return ::point_i32();
+   //   return ::point_i32();
 
-   }
+   //}
 
    
    ::size_f64 primitive::_001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics)

@@ -620,7 +620,7 @@ namespace linux
                      // initial (XCreateWindow) size_i32 and position maybe not be honored.
                      // so requesting the same change again in a effort to set the "docked/snapped" size_i32 and position.
 
-                     m_oswindow->set_window_pos(zorder_top, pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, SWP_SHOWWINDOW);
+                     m_oswindow->set_window_pos(e_zorder_top, pusersystem->m_createstruct.x, pusersystem->m_createstruct.y, pusersystem->m_createstruct.cx, pusersystem->m_createstruct.cy, SWP_SHOWWINDOW);
 
                   }
 
@@ -994,7 +994,7 @@ namespace linux
 
       {
 
-         single_lock sl(get_context_application() == nullptr ? nullptr : get_context_application()->mutex(), TRUE);
+         single_lock sl(get_context_application() == nullptr ? nullptr : get_context_application()->mutex(), true);
 
          ::thread* pThread = ::get_task();
 
@@ -1167,7 +1167,7 @@ namespace linux
       if (window != nullptr)
       {
 
-         bResult = ::destroy_window(window) != FALSE;
+         bResult = ::destroy_window(window) != false;
 
          //Detach();
 
@@ -1248,7 +1248,7 @@ namespace linux
       /*    ASSERT(::is_window((oswindow) get_handle()));
           pwndpl->length = sizeof(WINDOWPLACEMENT);
 
-          return ::GetWindowPlacement(get_handle(), pwndpl) != FALSE;*/
+          return ::GetWindowPlacement(get_handle(), pwndpl) != false;*/
 
       return false;
    }
@@ -1259,7 +1259,7 @@ namespace linux
       /*      ASSERT(::is_window((oswindow) get_handle()));
             ((WINDOWPLACEMENT*)pwndpl)->length = sizeof(WINDOWPLACEMENT);
 
-            return ::SetWindowPlacement(get_handle(), pwndpl) != FALSE;*/
+            return ::SetWindowPlacement(get_handle(), pwndpl) != false;*/
 
       return false;
    }
@@ -1310,7 +1310,7 @@ namespace linux
 //   {
 //      UNREFERENCED_PARAMETER(bEnable);
 //      UNREFERENCED_PARAMETER(nFlag);
-//      return FALSE;
+//      return false;
 //   }
 
 //   LRESULT interaction_impl::OnNTCtlColor(wparam wparam, lparam lparam)
@@ -1926,7 +1926,7 @@ namespace linux
 
 
          oswindow hWnd = get_handle();
-         return ::GetScrollInfo(hWnd, nBar, pScrollInfo) != FALSE;
+         return ::GetScrollInfo(hWnd, nBar, pScrollInfo) != false;
 
       }
    */
@@ -1937,7 +1937,7 @@ namespace linux
 //      /*      SCROLLINFO info;
 //            if (GetScrollInfo(nBar, &info, SIF_PAGE))
 //            {
-//               nMax -= __max(info.nPage-1,0);
+//               nMax -= maximum(info.nPage-1,0);
 //            }*/
 //      return nMax;
 //   }
@@ -1986,7 +1986,7 @@ namespace linux
 //      /*::u32 dwExStyle = GetExStyle();
 //      if (nAdjustType == 0)
 //         dwExStyle &= ~WS_EX_CLIENTEDGE;
-//      ::AdjustWindowRectEx(pClientRect, GetStyle(), FALSE, dwExStyle);*/
+//      ::AdjustWindowRectEx(pClientRect, GetStyle(), false, dwExStyle);*/
 //
 //   }
 //
@@ -2082,10 +2082,10 @@ namespace linux
 //   bool PASCAL interaction_impl::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
 //   {
 //      // get the ::collection::map, and if no ::collection::map, then this message does not need reflection
-//      /*      single_lock sl(afxMutexHwnd(), TRUE);
+//      /*      single_lock sl(afxMutexHwnd(), true);
 //            hwnd_map * pMap = afxMapHWND();
 //            if (pMap == nullptr)
-//               return FALSE;
+//               return false;
 //
 //            // check if in permanent ::collection::map, if it is reflect it (could be OLE control)
 //            __pointer(::interaction_impl) pWnd =  (pMap->lookup_permanent(hWndChild)); */
@@ -2095,7 +2095,7 @@ namespace linux
 ////      ASSERT(pWnd == nullptr || pWnd->get_handle() == hWndChild);
 ////      if (pWnd == nullptr)
 ////      {
-////         return FALSE;
+////         return false;
 ////      }
 ////
 ////      // only OLE controls and permanent windows will get reflected msgs
@@ -2135,7 +2135,7 @@ namespace linux
 //         // reflect the message through the message ::collection::map as WM_REFLECT_BASE+uMsg
 //         //return interaction_impl::OnWndMsg(WM_REFLECT_BASE+uMsg, wparam, lparam, pResult);
 //
-//         return FALSE;
+//         return false;
 //
 //      // special case for e_message_command
 //      case e_message_command:
@@ -2146,7 +2146,7 @@ namespace linux
 //         {
 //         if (pResult != nullptr)
 //         *pResult = 1;
-//         return TRUE;
+//         return true;
 //         } */
 //      }
 //      break;
@@ -2178,7 +2178,7 @@ namespace linux
 //            // reflect the message through the message ::collection::map as OCM_CTLCOLOR
 //            bool bResult = interaction_impl::OnWndMsg(WM_REFLECT_BASE+WM_CTLCOLOR, 0, (LPARAM)&ctl, pResult);
 //            if ((HBRUSH)*pResult == nullptr)
-//            bResult = FALSE;
+//            bResult = false;
 //            return bResult;*/
 //            return false;
 //         }
@@ -2205,7 +2205,7 @@ namespace linux
 //   {
 //      bool bHandled;
 //
-//      bHandled = FALSE;
+//      bHandled = false;
 //      if( !bHandled )
 //      {
 ////         Default();
@@ -2234,7 +2234,7 @@ namespace linux
 //
 //   {
 //
-//      gen_GotScrollLines = FALSE;
+//      gen_GotScrollLines = false;
 //
 //      interaction_impl::OnDisplayChange(0, 0);
 //
@@ -2249,7 +2249,7 @@ namespace linux
 //
 //         const MESSAGE* pMsg = GetCurrentMessage();
 //
-//         send_message_to_descendants(pMsg->message, pMsg->wParam, pMsg->lParam, TRUE, TRUE);
+//         send_message_to_descendants(pMsg->message, pMsg->wParam, pMsg->lParam, true, true);
 //
 //      }
 //
@@ -2410,7 +2410,7 @@ namespace linux
 //      user::oswindow_array * phwnda = (user::oswindow_array *) lparam;
 //
 //      phwnda->add(hwnd);
-//      return TRUE;
+//      return true;
 //   }
 //
 //   void interaction_impl::get_app_wnda(user::oswindow_array & wnda)
@@ -2534,7 +2534,7 @@ namespace linux
    bool interaction_impl::_is_window() const
    {
 
-      return ::is_window(m_oswindow) != FALSE;
+      return ::is_window(m_oswindow) != false;
 
    }
 
@@ -3081,7 +3081,7 @@ namespace linux
       else
       {
 
-         return ::is_iconic((oswindow) get_handle()) != FALSE;
+         return ::is_iconic((oswindow) get_handle()) != false;
 
       }
 
@@ -3202,7 +3202,7 @@ namespace linux
 //
 //      }
 //
-      return ::post_message((oswindow) get_handle(), message, wparam, lparam) != FALSE;
+      return ::post_message((oswindow) get_handle(), message, wparam, lparam) != false;
 
    }
 
@@ -3213,7 +3213,7 @@ namespace linux
 //      __throw(not_implemented());
 //      //ASSERT(::is_window((oswindow) get_handle()));
 //
-//      //return ::DragDetect(get_handle(), point_i32) != FALSE;
+//      //return ::DragDetect(get_handle(), point_i32) != false;
 //
 //   }
 //
@@ -3364,7 +3364,7 @@ namespace linux
 //   {
 //
 ////      __throw(not_implemented());
-////      return ::BringWindowToTop(get_handle()) != FALSE;
+////      return ::BringWindowToTop(get_handle()) != false;
 //      return true;
 //   }
 //
@@ -3502,7 +3502,7 @@ namespace linux
 //   {
 //      __throw(not_implemented());
 //      //ASSERT(::is_window((oswindow) get_handle()));
-//      //return ::GetUpdateRect(get_handle(), prectangle, bErase) != FALSE;
+//      //return ::GetUpdateRect(get_handle(), prectangle, bErase) != false;
 //
 //   }
 //
@@ -3649,7 +3649,7 @@ namespace linux
 //
 //      __throw(not_implemented());
 //      //ASSERT(::is_window((oswindow) get_handle()));
-//      //return ::LockWindowUpdate(get_handle()) != FALSE;
+//      //return ::LockWindowUpdate(get_handle()) != false;
 //
 //   }
 //
@@ -3691,7 +3691,7 @@ namespace linux
 
          ASSERT(::is_window((oswindow) get_handle()));
 
-         return ::EnableScrollBar(get_handle(), nSBFlags, nArrowFlags) != FALSE;
+         return ::EnableScrollBar(get_handle(), nSBFlags, nArrowFlags) != false;
 
       }
    */
@@ -3702,7 +3702,7 @@ namespace linux
 //
 //      __throw(not_implemented());
 //      //ASSERT(::is_window((oswindow) get_handle()));
-//      //return ::DrawAnimatedRects(get_handle(), idAni, prcFrom, lprcTo) != FALSE;
+//      //return ::DrawAnimatedRects(get_handle(), idAni, prcFrom, lprcTo) != false;
 //
 //
 //   }
@@ -3714,7 +3714,7 @@ namespace linux
 //
 //      __throw(not_implemented());
 //      //ASSERT(::is_window((oswindow) get_handle()));
-//      //return ::DrawCaption(get_handle(), (HDC)(dynamic_cast<::linux::graphics * >(pgraphics))->get_handle(), prc, uFlags) != FALSE;
+//      //return ::DrawCaption(get_handle(), (HDC)(dynamic_cast<::linux::graphics * >(pgraphics))->get_handle(), prc, uFlags) != false;
 //
 //
 //   }
@@ -3748,12 +3748,12 @@ namespace linux
 //
 ////       m_puserinteraction->get_context_application()->unset_timer(m_puserinteraction, uEvent);
 //
-//      //     return TRUE;
+//      //     return true;
 //
 //      //return ::user::int
 //
 //      //ASSERT(::is_window((oswindow) get_handle()));
-//      //return ::KillTimer(get_handle(), uEvent)  != FALSE;
+//      //return ::KillTimer(get_handle(), uEvent)  != false;
 //
 //   }
 
@@ -3923,7 +3923,7 @@ namespace linux
 //
 //      __throw(not_implemented());
 ////      ASSERT(::is_window((oswindow) get_handle()));
-////      return ::DlgDirSelectEx(get_handle(), pString, nSize, nIDListBox) != FALSE;
+////      return ::DlgDirSelectEx(get_handle(), pString, nSize, nIDListBox) != false;
 //
 //
 //   }
@@ -3934,7 +3934,7 @@ namespace linux
 //
 //      __throw(not_implemented());
 ////      ASSERT(::is_window((oswindow) get_handle()));
-////      return ::DlgDirSelectComboBoxEx(get_handle(), pString, nSize, nIDComboBox) != FALSE;
+////      return ::DlgDirSelectComboBoxEx(get_handle(), pString, nSize, nIDComboBox) != false;
 //
 //
 //   }
@@ -4064,7 +4064,7 @@ namespace linux
 //
 //      __throw(not_implemented());
 ////      ASSERT(::is_window((oswindow) get_handle()));
-////      return ::linux::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(), point_i32, nFlags));
+////      return ::linux::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
 //
 //   }
 //
@@ -4131,7 +4131,7 @@ namespace linux
 //
 //      __throw(not_implemented());
 ////      ASSERT(::is_window((oswindow) get_handle()));
-////      return ::FlashWindow(get_handle(), bInvert) != FALSE;
+////      return ::FlashWindow(get_handle(), bInvert) != false;
 //
 //   }
 //
@@ -4140,7 +4140,7 @@ namespace linux
 //
 //      __throw(not_implemented());
 ////      ASSERT(::is_window((oswindow) get_handle()));
-////      return ::ChangeClipboardChain(get_handle(), hWndNext) != FALSE;
+////      return ::ChangeClipboardChain(get_handle(), hWndNext) != false;
 //
 //   }
 //
@@ -4158,7 +4158,7 @@ namespace linux
 //
 //      __throw(not_implemented());
 ////      ASSERT(::is_window((oswindow) get_handle()));
-////      return ::OpenClipboard(get_handle()) != FALSE;
+////      return ::OpenClipboard(get_handle()) != false;
 //
 //   }
 //
@@ -4232,7 +4232,7 @@ namespace linux
    bool interaction_impl::SetForegroundWindow()
    {
 
-      return ::set_foreground_window(get_handle()) != FALSE;
+      return ::set_foreground_window(get_handle()) != false;
 
    }
 
@@ -4254,7 +4254,7 @@ namespace linux
 //   {
 //
 //      __throw(not_implemented());
-////      return ::SendNotifyMessage(get_handle(), message, wparam, lparam) != FALSE;
+////      return ::SendNotifyMessage(get_handle(), message, wparam, lparam) != false;
 //
 //
 //   }
@@ -4282,7 +4282,7 @@ namespace linux
 //
 //      __throw(not_implemented());
 ////      ASSERT(::is_window((oswindow) get_handle()));
-////      return ::SetWindowContextHelpId(get_handle(), dwContextHelpId) != FALSE;
+////      return ::SetWindowContextHelpId(get_handle(), dwContextHelpId) != false;
 //
 //   }
 //
@@ -4376,7 +4376,7 @@ namespace linux
 //   bool interaction_impl::OnQueryNewPalette()
 //   {
 //
-//      //return Default() != FALSE;
+//      //return Default() != false;
 //      return true;
 //
 //   }
@@ -4384,7 +4384,7 @@ namespace linux
 //   bool interaction_impl::OnQueryOpen()
 //   {
 //
-//      //return Default() != FALSE;
+//      //return Default() != false;
 //      return true;
 //
 //   }
@@ -4437,7 +4437,7 @@ namespace linux
 //   bool interaction_impl::OnNcActivate(bool)
 //   {
 //
-//      //return Default() != FALSE;
+//      //return Default() != false;
 //      return true;
 //
 //   }
@@ -4450,7 +4450,7 @@ namespace linux
 //   bool interaction_impl::OnNcCreate(::user::system *)
 //   {
 //
-////      return Default() != FALSE;
+////      return Default() != false;
 //return true;
 //
 //   }
@@ -4527,7 +4527,7 @@ namespace linux
 //   bool interaction_impl::OnMouseWheel(::u32, short, point_i32)
 //   {
 //
-//      return Default() != FALSE;
+//      return Default() != false;
 //
 //   }
 //
@@ -4596,7 +4596,7 @@ namespace linux
 //   bool interaction_impl::OnDeviceChange(::u32, dword_ptr)
 //   {
 //
-//      return Default() != FALSE;
+//      return Default() != false;
 //
 //   }
 //
@@ -4625,7 +4625,7 @@ namespace linux
 //
 //      __throw(todo());
 //
-//      //::EnableWindow(get_handle(), FALSE);
+//      //::EnableWindow(get_handle(), false);
 //
 //   }
 //
@@ -4634,7 +4634,7 @@ namespace linux
 //
 //      __throw(todo());
 //
-//      //::EnableWindow(get_handle(), TRUE);
+//      //::EnableWindow(get_handle(), true);
 //
 //   }
 //
@@ -4669,7 +4669,7 @@ namespace linux
 //
 //      __throw(not_implemented());
 ////      ASSERT(::is_window((oswindow) get_handle()));
-////      return ::OpenIcon(get_handle()) != FALSE;
+////      return ::OpenIcon(get_handle()) != false;
 //
 //   }
 //
@@ -4715,7 +4715,7 @@ namespace linux
 //         /*         if (hWndTop != nullptr && ::IsWindowEnabled(hWndTop) && hWndTop != hWnd)
 //                  {
 //                     *pWndTop = hWndTop;
-//                     ::EnableWindow(hWndTop, FALSE);
+//                     ::EnableWindow(hWndTop, false);
 //                  }
 //                  else
 //                     *pWndTop = nullptr;*/
@@ -4736,7 +4736,7 @@ namespace linux
 ////   {
 ////      __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
 ////      perasebkgnd->m_bRet = true;
-////      perasebkgnd->set_result(TRUE);
+////      perasebkgnd->set_result(true);
 ////   }
 //
 //

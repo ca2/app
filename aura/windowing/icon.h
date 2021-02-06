@@ -1,4 +1,4 @@
-// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen - Honoring Thomas Borregaard Sørensen My ONLY GOD
+// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen - Honoring Thomas Borregaard SÃ¸rensen My ONLY GOD
 // recreated by Camilo 2021-02-01 16:38
 #pragma once
 
@@ -13,14 +13,19 @@ namespace windowing
    public:
 
 
-      string      m_strAppTrayIcon;
+      string                                    m_strAppTrayIcon;
+
+      array < concrete < ::size_i32 > >         m_sizea;
 
 
       icon();
       virtual ~icon();
 
 
-      virtual iptr get_os_data() const;
+      virtual void get_sizes(array < concrete < ::size_i32 > > & a);
+
+
+      virtual void * get_os_data(const ::size_i32 & size) const;
 
 
       virtual bool load_matter(string strPath);
@@ -28,14 +33,7 @@ namespace windowing
       virtual bool load_file(string strPath);
 
 
-      virtual image * get_image(const concrete < ::size_i32 > & size);
-
-//
-//#ifdef WINDOWS
-//
-//      virtual ::e_status     attach_os_data(hicon hicon, bool bTakeOwnership = true);
-//
-//#endif
+      virtual image_pointer get_image(const concrete < ::size_i32 > & size);
 
 
       

@@ -209,7 +209,7 @@ namespace draw2d_cairo
       if(pbitmap == nullptr)
       {
 
-         return FALSE;
+         return false;
 
       }
 
@@ -217,12 +217,12 @@ namespace draw2d_cairo
 
       if(!create(size))
       {
-         return FALSE;
+         return false;
       }
 
       g()->stretch(size, pgraphics);
 
-      return TRUE;
+      return true;
 
    }
 
@@ -244,7 +244,7 @@ namespace draw2d_cairo
 //   bool image::to(::draw2d::graphics * pgraphics, const ::point_i32 & point, const ::size_i32 & size, const ::point_i32 & ptSrc)
 //   {
 //
-//      return pgraphics->BitBlt(point, size.cx, size.cy, get_graphics(), ptSrc.x, ptSrc.y) != FALSE;
+//      return pgraphics->BitBlt(point, size.cx, size.cy, get_graphics(), ptSrc.x, ptSrc.y) != false;
 //
 //      /*  return SetDIBitsToDevice(
 //           (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1(),
@@ -252,7 +252,7 @@ namespace draw2d_cairo
 //           size.cx, size.cy,
 //           ptSrc.x, ptSrc.y, ptSrc.y, cy - ptSrc.y,
 //           m_pcolorrefMap, &m_info, 0)
-//              != FALSE; */
+//              != false; */
 //
 //   }
 
@@ -271,7 +271,7 @@ namespace draw2d_cairo
 //         return false;
 //      }
 //      __throw(todo());
-//      // xxx bool bOk = GetDIBits(LNX_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, cy, m_pcolorrefMap, &(m_info), DIB_RGB_COLORS) != FALSE;
+//      // xxx bool bOk = GetDIBits(LNX_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, cy, m_pcolorrefMap, &(m_info), DIB_RGB_COLORS) != false;
 //      // xxx pgraphics->SelectObject(pbitmap);
 //      // xxx return bOk;
    }
@@ -292,7 +292,7 @@ namespace draw2d_cairo
 
    //   color32_t * pcr;
 
-   //   i32 iSize32 = size_i32 / 32;
+   //   i32 iSize32 = size / 32;
    //   i32 i;
    //   for (i=0; i < iSize32; i+=32 )
    //   {
@@ -358,7 +358,7 @@ namespace draw2d_cairo
    //         *pbyte++ = (byte) B * pbyte[1] / 255;
    //         pbyte++;
    //      }
-   //      j+= rectangle_i32;
+   //      j+= rectangle;
    //   }
    //}
 
@@ -367,7 +367,7 @@ namespace draw2d_cairo
    //   byte *dst=(byte*)m_pcolorrefMap;
    //   i32 size=cx*cy;
 
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[3] = dst[i];
    //      dst+=4;
@@ -379,7 +379,7 @@ namespace draw2d_cairo
    //   byte *dst=(byte*)m_pcolorrefMap;
    //   i64 size = cx * cy;
 
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[0] = dst[3];
    //      dst[1] = dst[3];
@@ -507,7 +507,7 @@ namespace draw2d_cairo
 
             pdata += 4;
 
-            size_i32--;
+            size--;
 
          }
 
@@ -691,7 +691,7 @@ namespace draw2d_cairo
    //bool image::stretch(const ::image * pimage)
    //{
 
-   //   if (!get_graphics()->stretch(this->rectangle_i32(), pimage->g(), pimage->rectangle_i32()))
+   //   if (!get_graphics()->stretch(this->rectangle(), pimage->g(), pimage->rectangle()))
    //   {
 
    //      return false;
@@ -727,7 +727,7 @@ namespace draw2d_cairo
 //
 //      ::rectangle_i32 rectangle(rectWindow);
 //
-//      //Application.window_graphics_update_window(pwnd->get_window_graphics(), pwnd->get_handle(), m_pcolorrefMap, rectangle_i32,m_size.cx, m_size.cy, m_iScan);
+//      //Application.window_graphics_update_window(pwnd->get_window_graphics(), pwnd->get_handle(), m_pcolorrefMap, rectangle,m_size.cx, m_size.cy, m_iScan);
 //
 //      return true;
 //
@@ -856,7 +856,7 @@ namespace draw2d_cairo
 ////
 ////      ::rectangle_i32 rectangle(rectWindow);
 ////
-//////      Application.window_graphics_update_window(pwnd->get_window_graphics(), pwnd->get_handle(), m_pcolorrefMap, rectangle_i32, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
+//////      Application.window_graphics_update_window(pwnd->get_window_graphics(), pwnd->get_handle(), m_pcolorrefMap, rectangle, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
 ////
 ////      return true;
 ////
@@ -901,7 +901,7 @@ namespace draw2d_cairo
 //
 //      ::rectangle_i32 rectangle(rectWindow);
 //
-//      //Application.window_graphics_update_window(pwnd->get_window_graphics(), pwnd->get_handle(), m_pcolorrefMap, rectangle_i32, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
+//      //Application.window_graphics_update_window(pwnd->get_window_graphics(), pwnd->get_handle(), m_pcolorrefMap, rectangle, m_size.cx, m_size.cy, m_iScan, bTransferBuffer);
 //
 //      return true;
 //

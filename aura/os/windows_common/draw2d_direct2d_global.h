@@ -1,5 +1,9 @@
 #pragma once
 
+
+#include "aura/operating_system.h"
+
+
 #include <winapifamily.h>
 #include <windows.h>
 #include <shlwapi.h>

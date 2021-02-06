@@ -116,7 +116,7 @@ namespace android
 //            break;
 //         default:
 //            // unexpected icon type
-//            ASSERT(FALSE);
+//            ASSERT(false);
 //            return 0x80000000;
 //         }
 //
@@ -761,7 +761,7 @@ namespace android
    //      break;
    //   default:
    //      // unexpected icon type
-   //      ASSERT(FALSE);
+   //      ASSERT(false);
    //      return false;
    //   }
 
@@ -1363,7 +1363,7 @@ namespace android
                   
                pimage48->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-               pimage48->get_graphics()->stretch({ 0, 0, 48, 48 }, pimage16->get_graphics(), pimage16->rectangle_i32());
+               pimage48->get_graphics()->stretch({ 0, 0, 48, 48 }, pimage16->get_graphics(), pimage16->rectangle());
 
                iImage = m_pil[16]->add_image(pimage16, 0, 0);
 

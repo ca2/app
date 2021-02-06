@@ -673,7 +673,7 @@ namespace html
                {
                   App(pdata->get_context_application()).imaging().color_blend(
                   pgraphics,
-                  rectangle_i32,
+                  rectangle,
                   cr,
                   max(0, min(255, (byte)(d * 255))));
                }
@@ -681,7 +681,7 @@ namespace html
                {
                   App(pdata->get_context_application()).imaging().color_blend(
                   pgraphics,
-                  rectangle_i32,
+                  rectangle,
                   cr,
                   max(0, min(255, (byte)(d * 255))));
                }
@@ -689,7 +689,7 @@ namespace html
                {
                   App(pdata->get_context_application()).imaging().color_blend(
                   pgraphics,
-                  rectangle_i32,
+                  rectangle,
                   cr,
                   max(0, min(255, (byte)(d * 255))));
                }

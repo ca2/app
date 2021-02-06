@@ -6,7 +6,7 @@ namespace windowing
 {
 
 
-   class CLASS_DECL_ACME monitor :
+   class CLASS_DECL_AURA monitor :
       virtual public ::matter
    {
    public:
@@ -22,6 +22,9 @@ namespace windowing
 
 
       virtual ::e_status update_cache();
+
+      virtual ::u32 get_monitor_color_temperature();
+      virtual bool adjust_monitor( ::u32 dwTemperature, double dBrightness, double dwGamma);
 
 
    };

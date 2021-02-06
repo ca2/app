@@ -10,11 +10,11 @@ int_bool init_data_library()
    if (mysql_server_init(0, NULL, NULL))
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   return TRUE;
+   return true;
 
 }
 

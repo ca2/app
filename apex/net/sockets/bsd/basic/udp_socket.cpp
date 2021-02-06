@@ -238,27 +238,35 @@ namespace sockets
    }
 
 
-   void udp_socket::SendTo(const string & a, port_t point_i32, const string & str, i32 flags)
+   void udp_socket::SendTo(const string & a, port_t port, const string & str, i32 flags)
    {
-      SendToBuf(a, point_i32, str, (i32)str.get_length(), flags);
+      
+      SendToBuf(a, port, str, (i32)str.get_length(), flags);
+
    }
 
 
-   void udp_socket::SendTo(in_addr a, port_t point_i32, const string & str, i32 flags)
+   void udp_socket::SendTo(in_addr a, port_t port, const string & str, i32 flags)
    {
-      SendToBuf(a, point_i32, str, (i32)str.get_length(), flags);
+
+      SendToBuf(a, port, str, (i32)str.get_length(), flags);
+
    }
 
 
-   void udp_socket::SendTo(in6_addr a, port_t point_i32, const string & str, i32 flags)
+   void udp_socket::SendTo(in6_addr a, port_t port, const string & str, i32 flags)
    {
-      SendToBuf(a, point_i32, str, (i32)str.get_length(), flags);
+      
+      SendToBuf(a, port, str, (i32)str.get_length(), flags);
+
    }
 
 
    void udp_socket::SendTo(const ::net::address & ad, const string & str, i32 flags)
    {
+
       SendToBuf(ad, str, (i32)str.get_length(), flags);
+
    }
 
 

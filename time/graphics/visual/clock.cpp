@@ -118,7 +118,7 @@ namespace datetime
 
 
 
-   void graphics::GetRect(LPRECT32 lprect,enum enum_element eelement)
+   void graphics::GetRect(RECTANGLE_I32 * lprect,enum enum_element eelement)
    {
       if(eelement == e_element_clock)
       {
@@ -133,7 +133,7 @@ namespace datetime
 
    void graphics::set_pos(point_i32 point_i32,size_i32 sz)
    {
-      m_point = point_i32;
+      m_point = point;
       m_size = sz;
    }
 

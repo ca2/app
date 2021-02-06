@@ -390,7 +390,7 @@ namespace user
 
       pgraphics->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-      pgraphics->stretch(m_pimageLogo->rectangle_i32({ 10, 10 }), m_pimageLogo->get_graphics());
+      pgraphics->stretch(m_pimageLogo->rectangle({ 10, 10 }), m_pimageLogo->get_graphics());
 
       ::rectangle_i32 rectangle;
 

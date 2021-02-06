@@ -44,7 +44,7 @@ CLASS_DECL_APEX i64 oswindow_id(HWND hwnd)
 }
 
 
-//CLASS_DECL_APEX int_bool is_window(oswindow oswindow)
+//CLASS_DECL_APEX int_bool is_window(::windowing::window * pwindow)
 //{
 //
 //   return ::IsWindow(oswindow);
@@ -83,47 +83,47 @@ CLASS_DECL_APEX bool get_gui_thread_info(PGUITHREADINFO pinfo)
 
 }
 
+//
+//CLASS_DECL_APEX oswindow get_focus()
+//{
+//
+//   GUITHREADINFO info;
+//
+//   if (!get_gui_thread_info(&info))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return info.hwndFocus;
+//
+//}
 
-CLASS_DECL_APEX oswindow get_focus()
-{
 
-   GUITHREADINFO info;
-
-   if (!get_gui_thread_info(&info))
-   {
-
-      return nullptr;
-
-   }
-
-   return info.hwndFocus;
-
-}
-
-
-//CLASS_DECL_APEX oswindow set_focus(oswindow oswindow)
+//CLASS_DECL_APEX oswindow set_focus(::windowing::window * pwindow)
 //{
 //
 //   return ::SetFocus(oswindow);
 //
 //}
+//
+//
+//CLASS_DECL_APEX oswindow get_active_window()
+//{
+//
+//   //attach_thread_input_to_main_thread(true);
+//
+//   auto oswindow = ::GetActiveWindow();
+//
+//   //attach_thread_input_to_main_thread(false);
+//
+//   return oswindow;
+//
+//}
 
 
-CLASS_DECL_APEX oswindow get_active_window()
-{
-
-   //attach_thread_input_to_main_thread(true);
-
-   auto oswindow = ::GetActiveWindow();
-
-   //attach_thread_input_to_main_thread(false);
-
-   return oswindow;
-
-}
-
-
-//CLASS_DECL_APEX oswindow set_active_window(oswindow oswindow)
+//CLASS_DECL_APEX oswindow set_active_window(::windowing::window * pwindow)
 //{
 //
 //   return ::SetActiveWindow(oswindow);
@@ -131,15 +131,15 @@ CLASS_DECL_APEX oswindow get_active_window()
 //}
 
 
-CLASS_DECL_APEX oswindow get_capture()
-{
+//CLASS_DECL_APEX oswindow get_capture()
+//{
+//
+//   return ::GetCapture();
+//
+//}
 
-   return ::GetCapture();
 
-}
-
-
-//CLASS_DECL_APEX oswindow set_capture(oswindow oswindow)
+//CLASS_DECL_APEX oswindow set_capture(::windowing::window * pwindow)
 //{
 //
 //   return ::SetCapture(oswindow);
@@ -155,7 +155,7 @@ CLASS_DECL_APEX int_bool release_capture()
 }
 
 
-//CLASS_DECL_APEX int_bool destroy_window(oswindow oswindow)
+//CLASS_DECL_APEX int_bool destroy_window(::windowing::window * pwindow)
 //{
 //
 //   return ::DestroyWindow(oswindow);
@@ -183,7 +183,7 @@ CLASS_DECL_APEX int_bool release_capture()
 
 // }
 
-//CLASS_DECL_APEX int_bool show_window(oswindow oswindow, const ::e_display & edisplay, const ::e_activation & eactivation)
+//CLASS_DECL_APEX int_bool show_window(::windowing::window * pwindow, const ::e_display & edisplay, const ::e_activation & eactivation)
 //{
 //
 //   int nCmdShow = windows_show_window(edisplay, eactivation);
@@ -235,7 +235,7 @@ CLASS_DECL_APEX int_bool release_capture()
 //}
 //
 //
-//BOOL CALLBACK top_level_enum::EnumWindowsProc(oswindow oswindow, LPARAM lParam)
+//BOOL CALLBACK top_level_enum::EnumWindowsProc(::windowing::window * pwindow, LPARAM lParam)
 //{
 //
 //   top_level_enum * ptoplevelenum = (top_level_enum *) lParam;
@@ -254,7 +254,7 @@ CLASS_DECL_APEX int_bool release_capture()
 //}
 //
 //
-//int_bool point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, int iMargin)
+//int_bool point_is_window_origin(POINT_I32 ptHitTest, ::windowing::window * pwindowExclude, int iMargin)
 //{
 //
 //   auto poswindowa = get_top_level_windows();
@@ -312,7 +312,7 @@ CLASS_DECL_APEX int_bool release_capture()
 
 
 //
-//void window_create_caret(oswindow oswindow, HBITMAP hbitmap)
+//void window_create_caret(::windowing::window * pwindow, HBITMAP hbitmap)
 //{
 //
 //   ASSERT(::IsWindow(oswindow));
@@ -321,7 +321,7 @@ CLASS_DECL_APEX int_bool release_capture()
 //
 //}
 //
-//void window_create_solid_caret(oswindow oswindow, i32 nWidth, i32 nHeight)
+//void window_create_solid_caret(::windowing::window * pwindow, i32 nWidth, i32 nHeight)
 //{
 //
 //   ASSERT(::IsWindow(oswindow));
@@ -330,7 +330,7 @@ CLASS_DECL_APEX int_bool release_capture()
 //
 //}
 //
-//void window_create_gray_caret(oswindow oswindow, i32 nWidth, i32 nHeight)
+//void window_create_gray_caret(::windowing::window * pwindow, i32 nWidth, i32 nHeight)
 //{
 //
 //   ASSERT(::IsWindow(oswindow));
@@ -343,7 +343,7 @@ CLASS_DECL_APEX int_bool release_capture()
 //CLASS_DECL_APEX string message_box_result_to_string(int iResult);
 //
 //
-//CLASS_DECL_APEX ::e_status _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::future future)
+//CLASS_DECL_APEX ::e_status _os_message_box(::windowing::window * pwindow, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, ::future future)
 //{
 //
 //   string strMessage(pszMessage);
@@ -365,29 +365,31 @@ CLASS_DECL_APEX int_bool release_capture()
 //}
 //
 
-CLASS_DECL_ACME::e_status _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process);
-
-
-CLASS_DECL_APEX ::e_status apex_os_message_box(oswindow oswindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
-{
-
-   if (System.is_dedicated_thread())
-   {
-
-      System.fork([=]()
-         {
-
-            _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, process);
-
-         });
-
-      return ::success;
-
-   }
-
-   return _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, process);
-
-}
+//
+//
+//CLASS_DECL_ACME::e_status _os_message_box(::windowing::window * pwindow, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process);
+//
+//
+//CLASS_DECL_APEX ::e_status apex_os_message_box(::windowing::window * pwindow, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+//{
+//
+//   if (System.is_dedicated_thread())
+//   {
+//
+//      System.fork([=]()
+//         {
+//
+//            _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, process);
+//
+//         });
+//
+//      return ::success;
+//
+//   }
+//
+//   return _os_message_box(oswindow, pszMessage, pszTitle, emessagebox, process);
+//
+//}
 
 
 //

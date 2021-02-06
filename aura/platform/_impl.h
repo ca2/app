@@ -79,7 +79,7 @@ inline void dump_elements(dump_context & dumpcontext, const TYPE* pElements, ::c
 
    ENSURE((nCount == 0) || (pElements != nullptr));
    ASSERT((nCount == 0) ||
-          __is_valid_address(pElements, (size_t)nCount * sizeof(TYPE), FALSE));
+          __is_valid_address(pElements, (size_t)nCount * sizeof(TYPE), false));
 #ifdef WINDOWS
    &dumpcontext; // not used
    pElements;  // not used
@@ -330,7 +330,7 @@ template < typename RECEIVER >
    if (preceiver == nullptr)
    {
 
-      ASSERT(FALSE);
+      ASSERT(false);
 
       __throw(invalid_argument_exception());
 
@@ -418,7 +418,7 @@ template < typename RECEIVER, typename MESSAGE >
    if (preceiver == nullptr)
    {
 
-      ASSERT(FALSE);
+      ASSERT(false);
 
       __throw(invalid_argument_exception());
 

@@ -131,7 +131,7 @@
 //      u32                                             m_dwPolicies;            // block for storing boolean system policies
 //
 //      // Support for Shift+F1 help mode.
-//      // TRUE if we're in SHIFT+F1 mode.
+//      // true if we're in SHIFT+F1 mode.
 //      bool                                            m_bHelpMode;
 //
 //      ::userex::pane_tab_view *                       m_ppaneviewMain;
@@ -497,7 +497,7 @@
 //      //virtual ::file::path full_process_path(::file::path path);
 //
 //      //virtual void DoWaitCursor(i32 nCode); // 0 => restore, 1=> begin, -1=> end
-//      virtual void ShowWaitCursor(bool bShow = true);
+//      virtual void show_wait_cursor(bool bShow = true);
 //
 //
 //
@@ -931,7 +931,7 @@
 //      //virtual void on_request(::create* pcreate) override;
 //
 //      // overrides for implementation
-//      virtual bool on_idle(::i32 lCount); // return TRUE if more idle processing
+//      virtual bool on_idle(::i32 lCount); // return true if more idle processing
 //      virtual void process_window_procedure_exception(::exception_pointer pe, ::message::message* pmessage) override;
 //
 //      void EnableModelessEx(bool bEnable);
@@ -995,7 +995,7 @@
 //      void SetRegistryKey(::u32 nIDRegistryKey);
 //
 //
-//      void RegisterShellFileTypes(bool bCompat = FALSE);
+//      void RegisterShellFileTypes(bool bCompat = false);
 //
 //      // call after all doc templates are registered
 //      void UnregisterShellFileTypes();
@@ -1003,7 +1003,7 @@
 //
 //
 //      // Printer DC Setup routine, 'struct tagPD' is a PRINTDLG structure.
-//      void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld = TRUE);
+//      void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld = true);
 //
 //      // create a DC for the system default printer.
 //      ::draw2d::graphics* CreatePrinterDC();

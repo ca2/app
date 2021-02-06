@@ -484,7 +484,7 @@ namespace imaging_freeimage
    //bool os_init_imaging()
    //{
 
-   //   FreeImage_Initialise(FALSE);
+   //   FreeImage_Initialise(false);
 
    //   return true;
    //}

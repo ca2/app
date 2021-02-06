@@ -97,7 +97,7 @@ namespace user
 #endif
 
 
-      return TRUE;
+      return true;
 
    }
 
@@ -244,7 +244,7 @@ namespace user
       if (nAdjustType != 0)
       {
       // allow for special client-edge style
-      ::AdjustWindowRectEx(pClientRect, 0, FALSE, GetExStyle());
+      ::AdjustWindowRectEx(pClientRect, 0, false, GetExStyle());
 
 
       // default behavior for in-place editing handles scrollbars
@@ -418,7 +418,7 @@ namespace user
    //   //UNUSED(pSender);     // unused in release builds
 
    //   // invalidate the entire pane, erase background too
-   //   //Invalidate(TRUE);
+   //   //Invalidate(true);
 
    //   //Application.on_update_view(this,pSender,lHint,pHint);
 
@@ -452,7 +452,7 @@ namespace user
       ASSERT_VALID(pDocItem);
       //  UNUSED(pDocItem);    // unused in release builds
 
-      return FALSE;   // not implemented, so not selected
+      return false;   // not implemented, so not selected
    }
 
    void impact::OnActivateView(bool bActivate, __pointer(::user::impact) pActivateView, __pointer(::user::impact))
@@ -496,7 +496,7 @@ namespace user
    get_handle() != oswindow_Focus && !::IsChild(get_handle(), oswindow_Focus))
    {
    // re-activate this ::user::impact
-   OnActivateView(TRUE, this, this);
+   OnActivateView(true, this, this);
    }
    else
    {
@@ -513,12 +513,12 @@ namespace user
 
    bool impact::OnScroll(::u32 /*nScrollCode*/, ::u32 /*nPos*/, bool /*bDoScroll*/)
    {
-      return FALSE;
+      return false;
    }
 
    //bool impact::OnScrollBy(size /*sizeScroll*/, bool /*bDoScroll*/)
    //{
-   //   return FALSE;
+   //   return false;
    //}
 
    /////////////////////////////////////////////////////////////////////////////
@@ -548,7 +548,7 @@ namespace user
    //bool impact::OnDrop(COleDataObject* /*pDataObject*/,
    //DROPEFFECT /*dropEffect*/, point_i32 /*point_i32*/)
    //{
-   // return FALSE;
+   // return false;
    //}
 
    //DROPEFFECT impact::OnDropEx(COleDataObject* /*pDataObject*/,
@@ -600,19 +600,19 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pCmdUI);
       /*ENSURE_ARG(pCmdUI != nullptr);
-      CSplitterWnd* pSplitter = GetParentSplitter(this, FALSE);
+      CSplitterWnd* pSplitter = GetParentSplitter(this, false);
       pCmdUI->enable(pSplitter != nullptr && !pSplitter->IsTracking());*/
    }
 
    bool impact::OnSplitCmd(::u32)
    {
-      /*   CSplitterWnd* pSplitter = GetParentSplitter(this, FALSE);
+      /*   CSplitterWnd* pSplitter = GetParentSplitter(this, false);
       if (pSplitter == nullptr)
-      return FALSE;
+      return false;
 
       ASSERT(!pSplitter->IsTracking());
       pSplitter->DoKeyboardSplit();*/
-      return TRUE;    // attempted at least
+      return true;    // attempted at least
    }
 
    void impact::OnUpdateNextPaneMenu(::user::command* pCmdUI)
@@ -620,7 +620,7 @@ namespace user
       UNREFERENCED_PARAMETER(pCmdUI);
       /*ASSERT(pCmdUI->m_nID == ID_NEXT_PANE ||
       pCmdUI->m_nID == ID_PREV_PANE);
-      CSplitterWnd* pSplitter = GetParentSplitter(this, FALSE);
+      CSplitterWnd* pSplitter = GetParentSplitter(this, false);
       pCmdUI->enable(pSplitter != nullptr &&
       pSplitter->CanActivateNext(pCmdUI->m_nID == ID_PREV_PANE));*/
    }
@@ -628,13 +628,13 @@ namespace user
    bool impact::OnNextPaneCmd(::u32 nID)
    {
       UNREFERENCED_PARAMETER(nID);
-      /*   CSplitterWnd* pSplitter = GetParentSplitter(this, FALSE);
+      /*   CSplitterWnd* pSplitter = GetParentSplitter(this, false);
       if (pSplitter == nullptr)
-      return FALSE;
+      return false;
 
       ASSERT(nID == ID_NEXT_PANE || nID == ID_PREV_PANE);
       pSplitter->ActivateNext(nID == ID_PREV_PANE);*/
-      return TRUE;
+      return true;
    }
 
    ///////////////////////////////////////////////////////////////////////////////
@@ -1073,7 +1073,7 @@ namespace user
    ASSERT_VALID(pDocItem);
    //      UNUSED(pDocItem);    // unused in release builds
 
-   return FALSE;   // not implemented, so not selected
+   return false;   // not implemented, so not selected
    }*/
 
 
@@ -1111,7 +1111,7 @@ namespace user
                this != oswindow_Focus && !is_child(oswindow_Focus))
          {
             // re-activate this ::user::impact
-            OnActivateView(TRUE, this, this);
+            OnActivateView(true, this, this);
          }
          else
          {
@@ -1168,7 +1168,7 @@ namespace user
                this != oswindow_Focus && !is_child(oswindow_Focus))
          {
             // re-activate this ::user::impact
-            OnActivateView(TRUE, this, this);
+            OnActivateView(true, this, this);
          }
          else
          {
@@ -1208,7 +1208,7 @@ namespace user
 //   bool impact::OnDrop(COleDataObject* /*pDataObject*/,
 //      DROPEFFECT /*dropEffect*/, point_i32 /*point_i32*/)
 //   {
-//      return FALSE;
+//      return false;
 //   }
 //
 //   DROPEFFECT impact::OnDropEx(COleDataObject* /*pDataObject*/,

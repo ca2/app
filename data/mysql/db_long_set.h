@@ -33,7 +33,7 @@
 //    }
 
 //    bool load(const char * lpKey, i64 * lValue);
-//    bool load(const char * lpKey, LPRECT32 lpRect);
+//    bool load(const char * lpKey, RECTANGLE_I32 * lpRect);
 // #ifdef WINDOWS_DESKTOP
 //    bool load(const char * lpKey, WINDOWPLACEMENT & wp);
 // #endif

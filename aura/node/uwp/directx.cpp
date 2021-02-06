@@ -479,7 +479,7 @@ namespace uwp
          System.draw2d().direct2d()->m_pd2device->ClearResources();
          {
             Microsoft::WRL::ComPtr < ID3D11CommandList > pcommandlist;
-            hr = System.draw2d().direct2d()->m_pd3devicecontext->FinishCommandList(FALSE, &pcommandlist);
+            hr = System.draw2d().direct2d()->m_pd3devicecontext->FinishCommandList(false, &pcommandlist);
             if (SUCCEEDED(hr))
             {
             }

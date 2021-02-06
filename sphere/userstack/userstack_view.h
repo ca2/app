@@ -68,7 +68,7 @@ namespace userstack
 
       ::user::document * get_document();
 
-      void GetAreaThumbRect(LPRECT32 lprect, i32 iArea);
+      void GetAreaThumbRect(RECTANGLE_I32 * lprect, i32 iArea);
 
       void on_hit_test(::user::item & item) override;
 

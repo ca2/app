@@ -116,7 +116,7 @@
 //::u32 WaitForMultipleObjects(::u32 dwSize, HSYNC * pwaitableptra, int_bool bWaitForAll, ::u32 dwTimeout)
 //{
 //
-//   return WaitForMultipleObjectsEx(dwSize, pwaitableptra, bWaitForAll, dwTimeout, FALSE);
+//   return WaitForMultipleObjectsEx(dwSize, pwaitableptra, bWaitForAll, dwTimeout, false);
 //
 //}
 //
@@ -124,7 +124,7 @@
 //::u32 WaitForSingleObjectEx(HSYNC  pwaitable, ::u32 dwTimeout, int_bool bAlertable)
 //{
 //
-//   return WaitForMultipleObjectsEx(1, &pwaitable, TRUE, dwTimeout, bAlertable);
+//   return WaitForMultipleObjectsEx(1, &pwaitable, true, dwTimeout, bAlertable);
 //
 //}
 //
@@ -132,7 +132,7 @@
 //::u32 WaitForSingleObject(HSYNC  pwaitable, ::u32 dwTimeout)
 //{
 //
-//   return WaitForSingleObjectEx(pwaitable, dwTimeout, FALSE);
+//   return WaitForSingleObjectEx(pwaitable, dwTimeout, false);
 //
 //}
 //
@@ -464,7 +464,7 @@
 ////
 ////         pendingThreads()[threadHandle] = info;
 ////
-////         //::WaitForSingleObjectEx(info.suspensionEvent, U32_INFINITE_TIMEOUT, FALSE);
+////         //::WaitForSingleObjectEx(info.suspensionEvent, U32_INFINITE_TIMEOUT, false);
 ////      }
 ////      else
 ////      {
@@ -544,14 +544,14 @@
 ////
 ////      pthread_setschedparam(hthread->m_posthread->m_pthread,iPolicy,&schedparam);
 ////
-////      return TRUE;
+////      return true;
 ////
 ////   }
 ////
 ////   // Store the new priority.
 ////   threadInfo->m_element2.nPriority = nCa2Priority;
 ////
-////   return TRUE;
+////   return true;
 ////}
 ////
 ////
@@ -1038,7 +1038,7 @@
 ////
 ////   throw "todo"; // PeekMessage function used to create message queue Windows Desktop
 ////
-////   //PeekMessage(&msg, NULL, 0, 0xffffffff, FALSE);
+////   //PeekMessage(&msg, NULL, 0, 0xffffffff, false);
 ////
 ////   g_hMainThread = hthread;
 ////
@@ -1051,7 +1051,7 @@
 ////
 ////   throw "todo"; // PeekMessage function used to create message queue Windows Desktop
 ////
-////   //PeekMessage(&msg, NULL, 0, 0xffffffff, FALSE);
+////   //PeekMessage(&msg, NULL, 0, 0xffffffff, false);
 ////
 ////   g_iMainThread = ithread;
 ////
@@ -1077,9 +1077,9 @@
 ////   // metrowin todo
 ////   throw "todo"; // PeekMessage function used to create message queue Windows Desktop
 ////
-////   //PeekMessage(&msg, NULL, 0, 0xffffffff, FALSE);
+////   //PeekMessage(&msg, NULL, 0, 0xffffffff, false);
 ////
-////   //   AttachThreadInput(::GetCurrentThreadId(), get_main_ithread(), bAttach ? TRUE : FALSE); // AttachThreadInput function used to attach thread input to main thread in Windows Desktop
+////   //   AttachThreadInput(::GetCurrentThreadId(), get_main_ithread(), bAttach ? true : false); // AttachThreadInput function used to attach thread input to main thread in Windows Desktop
 ////
 ////}
 ////*/
@@ -1174,13 +1174,13 @@
 ////   hthread_t h = ::get_thread_handle(idThread);
 ////
 ////   if(h == NULL)
-////      return FALSE;
+////      return false;
 ////
 ////
 ////   mq * pmq = get_mq(h);
 ////
 ////   if(pmq == NULL)
-////      return FALSE;
+////      return false;
 ////
 ////   sync_lock ml(&pmq->m_mutex);
 ////
@@ -1212,13 +1212,13 @@
 ////   hthread_t  h = oswindow->get_user_interaction()->m_papp->get_os_handle();
 ////
 ////   if(h == NULL)
-////      return FALSE;
+////      return false;
 ////
 ////
 ////   mq * pmq = get_mq(h);
 ////
 ////   if(pmq == NULL)
-////      return FALSE;
+////      return false;
 ////
 ////   sync_lock ml(&pmq->m_mutex);
 ////
@@ -1286,7 +1286,7 @@
 ////   while(m_bRun)
 ////   {
 ////
-////      if(m_bRun && !PeekMessage(&msg,NULL,0,0xffffffffu,TRUE))
+////      if(m_bRun && !PeekMessage(&msg,NULL,0,0xffffffffu,true))
 ////      {
 ////
 ////         if(m_bRun && !on_idle())
@@ -1399,7 +1399,7 @@ int_bool TlsSetValue(thread_data_index dwTlsIndex, LPVOID lpTlsValue)
 	pthread_key_t key;
 	key = (pthread_key_t) dwTlsIndex;
 	pthread_setspecific(key, lpTlsValue);
-	return TRUE;
+	return true;
 }
 
 int_bool TlsFree(thread_data_index dwTlsIndex)
@@ -1407,7 +1407,7 @@ int_bool TlsFree(thread_data_index dwTlsIndex)
 	pthread_key_t key;
 	key = (pthread_key_t) dwTlsIndex;
 	pthread_key_delete(key);
-	return TRUE;
+	return true;
 }
 
 

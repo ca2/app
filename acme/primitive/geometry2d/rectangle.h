@@ -36,9 +36,9 @@ public:
    template < primitive_point POINT1, primitive_point POINT2 >
    rect_type(const POINT1 & point1, const POINT2 & point2) noexcept { top_left() = point1; bottom_right() = point2; }
    template < primitive_rectangle RECTANGLE >
-   rect_type(const RECTANGLE & t) noexcept { ::copy_rect(this, &t); }
+   rect_type(const RECTANGLE & t) noexcept { ::copy(this, &t); }
    template < primitive_rectangle RECTANGLE >
-   rect_type(const RECTANGLE * p) noexcept { ::copy_rect(this, p); }
+   rect_type(const RECTANGLE * p) noexcept { ::copy(this, p); }
 
 
    POINT_TYPE& origin() noexcept { return top_left(); }
@@ -238,7 +238,8 @@ public:
  rect_type & unite(const rect_type & rectangle) noexcept { return *::union_rect(this, this, &rectangle); }
  rect_type get_union(const rect_type & rect1) const noexcept { rect_type rectangle(*this); rectangle.unite(rect1); return *this;}
 
- rect_type & operator=(const rect_type& rectangle) noexcept { return *::copy_rect(this, &rectangle); }
+ template < primitive_rectangle RECTANGLE >
+ rect_type & operator=(const RECTANGLE & rectangle) noexcept { return *::copy(this, &rectangle); }
 
  bool operator==(const rect_type& rectangle) const noexcept { return ::rect_equals(this, &rectangle); }
  bool operator!=(const rect_type& rectangle) const noexcept { return !operator ==(rectangle); }

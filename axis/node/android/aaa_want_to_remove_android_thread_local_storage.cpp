@@ -147,7 +147,7 @@ no_track_object* ( * pfnCreateObject)())
 {
    if (m_pObject == nullptr)
    {
-      single_lock sl(&m_mutex, TRUE);
+      single_lock sl(&m_mutex, true);
       try
       {
          if (m_pObject == nullptr)

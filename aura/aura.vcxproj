@@ -1145,8 +1145,6 @@
     <ClCompile Include="os\windows\aura.cpp" />
     <ClCompile Include="os\windows\gdi.cpp" />
     <ClCompile Include="os\windows\graphics.cpp" />
-    <ClCompile Include="os\windows\imm_client.cpp" />
-    <ClCompile Include="os\windows\imm_context.cpp" />
     <ClCompile Include="os\windows\main.cpp" />
     <ClCompile Include="os\windows\monitor.cpp" />
     <ClCompile Include="os\windows\windowing.cpp" />
@@ -1195,6 +1193,7 @@
     <ClCompile Include="user\style.cpp" />
     <ClCompile Include="user\style_base.cpp" />
     <ClCompile Include="user\style_control.cpp" />
+    <ClCompile Include="user\text_composition.cpp" />
     <ClCompile Include="user\tool_window.cpp" />
     <ClCompile Include="user\user.cpp" />
     <ClCompile Include="user\wait_cursor.cpp" />
@@ -1312,16 +1311,13 @@
     <ClCompile Include="user\window_util.cpp" />
     <ClCompile Include="user\_.cpp" />
     <ClCompile Include="windowing\buffer.cpp" />
-    <ClCompile Include="windowing\button.cpp" />
+    <ClCompile Include="windowing\cursor.cpp" />
+    <ClCompile Include="windowing\cursor_set.cpp" />
     <ClCompile Include="windowing\debug.cpp" />
     <ClCompile Include="windowing\display.cpp" />
-    <ClCompile Include="windowing\event.cpp" />
-    <ClCompile Include="windowing\hook.cpp" />
     <ClCompile Include="windowing\icon.cpp" />
     <ClCompile Include="windowing\keyboard.cpp" />
-    <ClCompile Include="windowing\message_box.cpp" />
     <ClCompile Include="windowing\monitor.cpp" />
-    <ClCompile Include="windowing\simple_ui_display.cpp" />
     <ClCompile Include="windowing\window.cpp" />
     <ClCompile Include="windowing\windowing.cpp" />
     <ClCompile Include="windowing\windowing___.cpp" />
@@ -1408,8 +1404,8 @@
     <ClInclude Include="operating_system.h" />
     <ClInclude Include="os\os.h" />
     <ClInclude Include="os\windowing.h" />
-    <ClInclude Include="os\windows\imm_client.h" />
-    <ClInclude Include="os\windows\imm_context.h" />
+    <ClInclude Include="os\windows\aaa_imm_client.h" />
+    <ClInclude Include="os\windows\aaa_imm_context.h" />
     <ClInclude Include="os\windows\windowing.h" />
     <ClInclude Include="os\windows\_.h" />
     <ClInclude Include="os\windows\_windows.h" />
@@ -1417,7 +1413,9 @@
     <ClInclude Include="os\windows_common\graphics.h" />
     <ClInclude Include="os\windows_common\_.h" />
     <ClInclude Include="os\_.h" />
-    <ClInclude Include="os\_os.h" />
+    <ClInclude Include="os\_2.h" />
+    <ClInclude Include="os\_c2.h" />
+    <ClInclude Include="os\_os2.h" />
     <ClInclude Include="platform\application.h" />
     <ClInclude Include="platform\drawable.h" />
     <ClInclude Include="platform\draw_context2.h" />
@@ -1454,7 +1452,6 @@
     <ClInclude Include="memory\plex_heap1.h" />
     <ClInclude Include="memory\plex_heap_impl1.h" />
     <ClInclude Include="update.h" />
-    <ClInclude Include="user.h" />
     <ClInclude Include="user\box.h" />
     <ClInclude Include="user\callback.h" />
     <ClInclude Include="user\controller.h" />
@@ -1494,6 +1491,7 @@
     <ClInclude Include="user\style.h" />
     <ClInclude Include="user\style_base.h" />
     <ClInclude Include="user\style_control.h" />
+    <ClInclude Include="user\text_composition.h" />
     <ClInclude Include="user\tool_window.h" />
     <ClInclude Include="user\user.h" />
     <ClInclude Include="user\wait_cursor.h" />
@@ -1691,6 +1689,8 @@
     <ClInclude Include="inline\__debug_box_set_impl.h" />
     <ClInclude Include="windowing\buffer.h" />
     <ClInclude Include="windowing\button.h" />
+    <ClInclude Include="windowing\cursor.h" />
+    <ClInclude Include="windowing\cursor_set.h" />
     <ClInclude Include="windowing\display.h" />
     <ClInclude Include="windowing\event.h" />
     <ClInclude Include="windowing\exception.h" />

@@ -1,6 +1,6 @@
 #pragma once
 
-#error ""
+#include "aura/operating_system.h"
 #include <ddeml.h>
 
 

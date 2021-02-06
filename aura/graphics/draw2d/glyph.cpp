@@ -392,7 +392,7 @@ namespace draw2d
 //         {
 //            point_i32_array pointset;
 //            //pPoints = new CPoints();
-//            //         pPoints->m_lpPoints = point_i32;
+//            //         pPoints->m_lpPoints = point;
 //
 //            //point = (POINT_I32 *)malloc( dwBuffSize );
 //            //         point = (POINT_I32 *) new byte(dwBuffSize);
@@ -480,7 +480,7 @@ namespace draw2d
 //            if (pointset.last().x != pointset.first().x ||
 //                  pointset.last().y != pointset.first().y)
 //            {
-//               //cTotal += CloseContour( point_i32, cTotal );
+//               //cTotal += CloseContour(point, cTotal );
 //               cTotal = CloseContour(pointset, cTotal );
 //            }
 //
@@ -493,7 +493,7 @@ namespace draw2d
 //
 //            // draw the contour
 //
-//            //poly_bezier( hDC, point_i32, cTotal );
+//            //poly_bezier( hDC, point, cTotal );
 //            //pPoints->m_dwCount = cTotal;
 //            m_pointsets.add(pointset);
 //         }

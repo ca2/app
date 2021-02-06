@@ -467,7 +467,7 @@ namespace experience
 
          iTab++;
 
-         if(!ptab->get_element_rect(iTab,rectangle_i32,::user::e_element_tab))
+         if(!ptab->get_element_rect(iTab,rectangle,::user::e_element_tab))
             continue;
 
          if(!ptab->get_element_rect(iTab,rectBorder, ::user::e_element_border))
@@ -848,7 +848,7 @@ namespace experience
       if(straTitle.get_count() <= 1)
       {
 
-         pgraphics->_DrawText(pane.get_title(), rectangle_i32, e_align_bottom_left, e_draw_text_no_prefix);
+         pgraphics->_DrawText(pane.get_title(), rectangle, e_align_bottom_left, e_draw_text_no_prefix);
 
       }
       else
@@ -1039,7 +1039,7 @@ namespace experience
          ptab->get_data()->m_rectTab.bottom     = rectClient.bottom;
 
          /*      m_puserinteraction->set_window_pos(
-         zorder_top,
+         e_zorder_top,
          m_rectTab.left,
          m_rectTab.top,
          m_rectTab.width(),
@@ -1160,7 +1160,7 @@ namespace experience
          ptab->get_data()->m_rectTab.bottom     = ptab->get_data()->m_rectTab.top + ptab->get_data()->m_iTabHeight;
 
          /*      set_window_pos(
-         zorder_top,
+         e_zorder_top,
          m_rectTab.left,
          m_rectTab.top,
          m_rectTab.width(),
@@ -1378,7 +1378,7 @@ namespace experience
                   brush->create_solid(ARGB(123, 180, 184, 255));
                   pgraphics->set(pen);
                   pgraphics->set(brush);
-                  pgraphics->rectangle_i32(rectItem);
+                  pgraphics->rectangle(rectItem);
 
                }
 
@@ -1387,7 +1387,7 @@ namespace experience
 
                   ::rectangle_i32 rectangle;
 
-                  ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::e_element_image, ::user::e_state_hover);
+                  ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_hover);
 
                   System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.9);
 
@@ -1397,7 +1397,7 @@ namespace experience
 
                   ::rectangle_i32 rectangle;
 
-                  ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::e_element_item, ::user::e_state_hover);
+                  ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_item, ::user::e_state_hover);
 
                   pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
 
@@ -1421,7 +1421,7 @@ namespace experience
                brush->create_solid(ARGB(255, 255, 255, 255));
                pgraphics->set(pen);
                pgraphics->set(brush);
-               pgraphics->rectangle_i32(rectItem);
+               pgraphics->rectangle(rectItem);
 
             }
 
@@ -1430,7 +1430,7 @@ namespace experience
 
                ::rectangle_i32 rectangle;
 
-               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::e_element_image, ::user::e_state_pressed);
+               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_pressed);
 
                System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 1.0);
 
@@ -1467,7 +1467,7 @@ namespace experience
 
                ::rectangle_i32 rectangle;
 
-               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::e_element_image, ::user::e_state_none);
+               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_none);
 
                System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.2);
 
@@ -1634,7 +1634,7 @@ namespace experience
                   brush->create_solid(ptoolbar->get_color(pstyle, ::user::e_element_face, ::user::e_state_hover));
                   pgraphics->set(pen);
                   pgraphics->set(brush);
-                  pgraphics->rectangle_i32(rectItem);
+                  pgraphics->rectangle(rectItem);
 
                }
 
@@ -1643,7 +1643,7 @@ namespace experience
 
                   ::rectangle_i32 rectangle;
 
-                  ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::e_element_image, ::user::e_state_hover);
+                  ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_hover);
 
                   System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.8);
 
@@ -1653,7 +1653,7 @@ namespace experience
 
                   ::rectangle_i32 rectangle;
 
-                  ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::e_element_item, ::user::e_state_hover);
+                  ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_item, ::user::e_state_hover);
 
                   pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
 
@@ -1677,7 +1677,7 @@ namespace experience
                brush->create_solid(ptoolbar->get_color(pstyle, ::user::e_element_face, ::user::e_state_pressed));
                pgraphics->set(pen);
                pgraphics->set(brush);
-               pgraphics->rectangle_i32(rectItem);
+               pgraphics->rectangle(rectItem);
 
             }
 
@@ -1686,7 +1686,7 @@ namespace experience
 
                ::rectangle_i32 rectangle;
 
-               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::e_element_image, ::user::e_state_pressed);
+               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, ::user::e_state_pressed);
 
                System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 1.0);
 
@@ -1729,7 +1729,7 @@ namespace experience
                brush->create_solid(ptoolbar->get_color(pstyle, ::user::e_element_face, estate));
                pgraphics->set(pen);
                pgraphics->set(brush);
-               pgraphics->rectangle_i32(rectItem);
+               pgraphics->rectangle(rectItem);
 
             }
 
@@ -1738,7 +1738,7 @@ namespace experience
 
                ::rectangle_i32 rectangle;
 
-               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::e_element_image, estate);
+               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::e_element_image, estate);
 
                System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), ::point_i32(), 0.20);
 

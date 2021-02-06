@@ -1,6 +1,8 @@
 #pragma once
 
 
+#define MAKELONG(a, b)          ((::i32)(((::u16)(((::uptr)(a)) & 0xffff)) | ((::u32)((::u16)(((::uptr)(b)) & 0xffff))) << 16))
+#define MAKELPARAM(l, h)        ((::lparam)(::uptr)(::u32)MAKELONG(l, h))
 
 
 class CLASS_DECL_ACME lparam
@@ -9,13 +11,15 @@ class CLASS_DECL_ACME lparam
 public:
 
 
-   iptr m_lparam;
+   iptr             m_lparam;
+
 
    lparam(std::nullptr_t = nullptr) { m_lparam = 0; }
 
-   lparam(i32 i) { m_lparam = (iptr) i; }
+   template < primitive_integral INTEGRAL >
+   lparam(INTEGRAL i) { m_lparam = (iptr) i; }
 
-   lparam(i64 i) { m_lparam = (iptr) i; }
+   lparam(::i32 x, ::i32 y) { m_lparam = MAKELPARAM(x, y); }
 
 
    /// catching/receiving matter

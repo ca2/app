@@ -15,13 +15,13 @@
 #endif
 
 
-#if defined(WINDOWS_DESKTOP)
+//#if defined(WINDOWS_DESKTOP)
 
-CLASS_DECL_ACME bool windows_register_class(HINSTANCE hinstance);
+//CLASS_DECL_ACME bool windows_register_class(HINSTANCE hinstance);
 
-CLASS_DECL_ACME ATOM MyRegisterClass(HINSTANCE hInstance);
+//CLASS_DECL_ACME ATOM MyRegisterClass(HINSTANCE hInstance);
 
-#endif
+//#endif
 
 
 apex_main_data::apex_main_data()
@@ -57,7 +57,7 @@ void apex_main_data::system_construct(int argc, char** argv)
 
    m_hinstance = ::GetModuleHandle(nullptr);
 
-   windows_register_class((HINSTANCE) m_hinstance);
+   //windows_register_class((HINSTANCE) m_hinstance);
 
    m_hPrevInstance = nullptr;
 
@@ -89,7 +89,7 @@ void apex_main_data::system_construct(int argc, wchar_t** argv)
 
    m_hinstance = ::GetModuleHandle(nullptr);
 
-   windows_register_class((HINSTANCE) m_hinstance);
+   //windows_register_class((HINSTANCE) m_hinstance);
 
    m_hPrevInstance = nullptr;
 
@@ -144,9 +144,9 @@ void apex_main_data::system_construct(hinstance hinstanceThis, hinstance hPrevIn
 
    m_hinstance = hinstanceThis;
 
-   windows_register_class((HINSTANCE) m_hinstance);
+   //windows_register_class((HINSTANCE) m_hinstance);
 
-   MyRegisterClass((HINSTANCE) m_hinstance);
+   //MyRegisterClass((HINSTANCE) m_hinstance);
 
    m_hPrevInstance = hPrevInstance;
 

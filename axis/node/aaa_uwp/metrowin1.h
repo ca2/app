@@ -54,7 +54,7 @@ CLASS_DECL_AXIS ::_UWP::thread * __get_thread();
 CLASS_DECL_AXIS void __set_thread(::thread * pthread);
 CLASS_DECL_AXIS MSG* __get_current_message();
 
-CLASS_DECL_AXIS void __end_thread(::object * pobject, ::u32 nExitCode, bool bDelete = TRUE);
+CLASS_DECL_AXIS void __end_thread(::object * pobject, ::u32 nExitCode, bool bDelete = true);
 
 CLASS_DECL_AXIS void __init_thread();
 //CLASS_DECL_AXIS void __term_thread(::object * pobject, HINSTANCE hInstTerm = nullptr);

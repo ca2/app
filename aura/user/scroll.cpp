@@ -71,7 +71,7 @@ namespace user
             rectNewPos.right = rectNewPos.left + rectClient.width() - get_final_y_scroll_bar_width();
             rectNewPos.bottom = rectClient.bottom;
 
-            m_pscrollbarHorizontal->order(zorder_top);
+            m_pscrollbarHorizontal->order(e_zorder_top);
 
             m_pscrollbarHorizontal->place(rectNewPos);
 
@@ -390,7 +390,7 @@ namespace user
             rectNewPos.right = rectClient.right;
             rectNewPos.bottom = rectNewPos.top+ rectClient.height() - get_final_x_scroll_bar_width();
 
-            m_pscrollbarVertical->order(zorder_top);
+            m_pscrollbarVertical->order(e_zorder_top);
 
             m_pscrollbarVertical->place(rectNewPos);
 

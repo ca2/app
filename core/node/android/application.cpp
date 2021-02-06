@@ -76,7 +76,7 @@ namespace aura
    //}
 
 
-   void application::ShowWaitCursor(bool bShow)
+   void application::show_wait_cursor(bool bShow)
    {
 
 

@@ -169,7 +169,7 @@ namespace apex
 
          }
 
-         if (m_createaPending.isEmpty())
+         if (m_createaPending.is_empty())
          {
 
             return nullptr;

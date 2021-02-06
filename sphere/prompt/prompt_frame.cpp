@@ -352,7 +352,7 @@ namespace prompt
          rectWindow.bottom = rectWindow.top + 200;
          bChanged = true;
       }
-      set_window_pos(      zorder_top_most,      rectWindow,      SWP_SHOWWINDOW);
+      set_window_pos(      e_zorder_top_most,      rectWindow,      SWP_SHOWWINDOW);
    }
 
    void frame::message_queue_message_handler(::message::message * pmessage)

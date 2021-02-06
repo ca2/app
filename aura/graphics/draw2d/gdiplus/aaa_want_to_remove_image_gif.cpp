@@ -966,7 +966,7 @@ HRESULT windows_image_get_frame(::image * pimageCompose,
          if (SUCCEEDED(hr))
          {
 
-            pframe->m_bTransparent = propValue.boolVal != FALSE;
+            pframe->m_bTransparent = propValue.boolVal != false;
 
          }
 

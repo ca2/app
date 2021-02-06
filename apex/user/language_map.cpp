@@ -188,7 +188,7 @@ namespace user
       if (m_pintstring != NULL)
       {
 
-         if (m_straLang.isEmpty())
+         if (m_straLang.is_empty())
          {
 
             return false;

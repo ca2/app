@@ -123,7 +123,7 @@ namespace experience
             void frame::ColorGlass(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, color32_t cr, byte bAlpha)
             {
 
-               System.imaging().color_blend(pgraphics, rectangle_i32, cr, bAlpha);
+               System.imaging().color_blend(pgraphics, rectangle, cr, bAlpha);
 
             }
 
@@ -244,7 +244,7 @@ namespace experience
                return (frame::enum_element) (*((i32*)&eelement))++;
             }
 
-            bool frame::get_element_rect(LPRECT32 lprect, enum_element eelement)
+            bool frame::get_element_rect(RECTANGLE_I32 * lprect, enum_element eelement)
             {
                switch(eelement)
                {
@@ -609,7 +609,7 @@ namespace experience
                      while(i < rectGrip.width() - 5 + 1)
                      {
 
-                        ::rectangle_f64 rectangle_i32(rectGrip.left + i, rectGrip.top, 3, rectGrip.height());
+                        ::rectangle_f64 rectangle(rectGrip.left + i, rectGrip.top, 3, rectGrip.height());
 
                         pgraphics->draw_3drect(rectangle, ARGB(110,230,230,230),ARGB(110,130,130,130));
 

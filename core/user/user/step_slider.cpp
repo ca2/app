@@ -24,7 +24,7 @@ namespace user
    //bool step_slider::create_window(::user::interaction * pwndParent, id id)
    //{
 
-   //   return ::user::interaction::create_window(nullptr, nullptr, WS_CHILD, pwndParent, id) != FALSE;
+   //   return ::user::interaction::create_window(nullptr, nullptr, WS_CHILD, pwndParent, id) != false;
 
    //}
 
@@ -131,7 +131,7 @@ namespace user
             {
                imaging.color_blend(
                   pgraphics,
-                  rectangle_i32,
+                  rectangle,
                   RGB(255, 255, 240),
                   bAlpha);
             }
@@ -139,7 +139,7 @@ namespace user
             {
                imaging.color_blend(
                   pgraphics,
-                  rectangle_i32,
+                  rectangle,
                   RGB(255, 255, 150),
                   bAlpha);
             }
@@ -150,7 +150,7 @@ namespace user
             {
                imaging.color_blend(
                   pgraphics,
-                  rectangle_i32,
+                  rectangle,
                   RGB(255, 180, 180),
                   bAlpha);
             }
@@ -158,7 +158,7 @@ namespace user
             {
                imaging.color_blend(
                   pgraphics,
-                  rectangle_i32,
+                  rectangle,
                   RGB(100, 100, 255),
                   bAlpha);
             }
@@ -248,7 +248,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-      m_itemHover = rectClient.contains(point) != FALSE;
+      m_itemHover = rectClient.contains(point) != false;
 
    }
 

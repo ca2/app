@@ -530,7 +530,7 @@ namespace user
 
       __pointer(::message::key) pkey(pmessage);
 
-      if(pkey->m_ekey == ::user::key_down)
+      if(pkey->m_ekey == ::user::e_key_down)
       {
 
          if(!is_drop_down())
@@ -961,11 +961,11 @@ namespace user
    //Derived class is responsible for implementing these handlers
    //for owner/self draw controls (except for the optional DeleteItem)
    void combo_box::DrawItem(LPDRAWITEMSTRUCT)
-   { ASSERT(FALSE); }
+   { ASSERT(false); }
    void combo_box::MeasureItem(LPMEASUREITEMSTRUCT)
-   { ASSERT(FALSE); }
+   { ASSERT(false); }
    i32 combo_box::CompareItem(LPCOMPAREITEMSTRUCT)
-   { ASSERT(FALSE); return 0; }
+   { ASSERT(false); return 0; }
    void combo_box::DeleteItem(LPDELETEITEMSTRUCT)
    { /* default to nothing */ }
 #endif
@@ -1006,7 +1006,7 @@ namespace user
       default:
          return ::user::interaction::OnChildNotify(pbase);
       }
-      return TRUE;
+      return true;
    }
 
 
@@ -1034,19 +1034,19 @@ namespace user
       /*      ASSERT(is_window()); u32 dw = u32(send_message( CB_GETEDITSEL, 0, 0));
             nStartChar = LOWORD(dw);
             nEndChar = LOWORD(dw);*/
-      return TRUE;
+      return true;
    }
    bool combo_box::LimitText(strsize nMaxChars)
    {
       //ASSERT(is_window());
-      //return send_message( CB_LIMITTEXT, nMaxChars, 0) != FALSE;
+      //return send_message( CB_LIMITTEXT, nMaxChars, 0) != false;
       return true;
    }
 
    bool combo_box::SetEditSel(strsize nStartChar, strsize nEndChar)
    {
       //ASSERT(is_window());
-      //return send_message( CB_SETEDITSEL, 0, MAKELONG(nStartChar, nEndChar)) != FALSE;
+      //return send_message( CB_SETEDITSEL, 0, MAKELONG(nStartChar, nEndChar)) != false;
       return true;
    }
 

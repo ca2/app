@@ -267,10 +267,10 @@ SizingNone:
                   //   Draw3dRectSide(pgraphics,rectA,eside,crMoveableBorder,crMoveableBorder);
 
                   //   ::rectangle_i32 rectangle;
-                  //   GetBorderRect(lpcrectClient,rectangle_i32,eside);
+                  //   GetBorderRect(lpcrectClient,rectangle,eside);
                   //   class imaging & imaging = System.imaging();
                   //   imaging.color_blend(pgraphics,
-                  //      rectangle_i32,
+                  //      rectangle,
                   //      crMoveableBorder,
                   //      127);
 
@@ -282,20 +282,20 @@ SizingNone:
                        || m_estyle == StyleTranslucidLightGreen)
                {
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(lpcrectClient, rectangle_i32, eside);
+                  GetBorderRect(lpcrectClient, rectangle, eside);
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
-                                      rectangle_i32,
+                                      rectangle,
                                       crMoveableBorder,
                                       127);
                }
                else
                {
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(lpcrectClient, rectangle_i32, eside);
+                  GetBorderRect(lpcrectClient, rectangle, eside);
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
-                                      rectangle_i32,
+                                      rectangle,
                                       crMoveableBorder,
                                       127);
 
@@ -499,7 +499,7 @@ SizingNone:
 
             void frame_008::GetBorderRect(
             const RECTANGLE_I32 & lpcrectClient,
-            LPRECT32 lprect,
+            RECTANGLE_I32 * lprect,
             enum_border eside)
             {
                ::rectangle_i32 rectBig(lpcrectClient);
@@ -534,7 +534,7 @@ SizingNone:
                   rectangle.top = rectSmall.bottom;
                   rectangle.bottom = rectBig.bottom;
                }
-               *lprect = rectangle_i32;
+               *lprect = rectangle;
             }
 
 

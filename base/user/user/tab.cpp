@@ -633,7 +633,7 @@ namespace user
 
          iTab++;
 
-         if (!get_element_rect(iTab, rectangle_i32, ::user::e_element_tab))
+         if (!get_element_rect(iTab, rectangle, ::user::e_element_tab))
             continue;
 
          if (!get_element_rect(iTab, rectBorder, ::user::e_element_border))
@@ -931,7 +931,7 @@ namespace user
 
 
 
-         if(!get_element_rect(iVisiblePane, rectangle_i32, e_element_tab))
+         if(!get_element_rect(iVisiblePane, rectangle, e_element_tab))
             continue;
 
          if (!get_element_rect(iVisiblePane, rectBorder, e_element_border))
@@ -1554,7 +1554,7 @@ namespace user
       if(bDisplay && iPane == _001GetSel())
       {
 
-         pholder->order(zorder_top);
+         pholder->order(e_zorder_top);
 
       }
 
@@ -2331,7 +2331,7 @@ namespace user
 
          }
 
-         if(get_element_rect(iPane, rectangle_i32, e_element_close_tab_button) )
+         if(get_element_rect(iPane, rectangle, e_element_close_tab_button) )
          {
 
             if(rectangle.contains(item.m_pointHitTest))
@@ -2345,7 +2345,7 @@ namespace user
 
          }
 
-         if(get_element_rect(iPane, rectangle_i32, e_element_tab))
+         if(get_element_rect(iPane, rectangle, e_element_tab))
          {
 
             if(rectangle.contains(item.m_pointHitTest))

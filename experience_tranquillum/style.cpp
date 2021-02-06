@@ -310,7 +310,7 @@ namespace tranquillum
          ptab->get_data()->m_rectTab.bottom = rectClient.bottom;
 
          /*      m_puserinteraction->set_window_pos(
-         zorder_top,
+         e_zorder_top,
          m_rectTab.left,
          m_rectTab.top,
          m_rectTab.width(),
@@ -430,7 +430,7 @@ namespace tranquillum
          ptab->get_data()->m_rectTab.bottom = ptab->get_data()->m_rectTab.top + ptab->get_data()->m_iTabHeight;
 
          /*      set_window_pos(
-         zorder_top,
+         e_zorder_top,
          m_rectTab.left,
          m_rectTab.top,
          m_rectTab.width(),
@@ -554,7 +554,7 @@ namespace tranquillum
 
          iTab++;
 
-         if (!ptab->get_element_rect(iTab, rectangle_i32, ::user::e_element_tab))
+         if (!ptab->get_element_rect(iTab, rectangle, ::user::e_element_tab))
             continue;
 
          if (!ptab->get_element_rect(iTab, rectBorder, ::user::e_element_border))
@@ -720,7 +720,7 @@ namespace tranquillum
 
                   ::rectangle_i32 rSel;
 
-                  rSel = rectangle_i32;
+                  rSel = rectangle;
 
                   rSel.bottom = rectClient.top + 3;
 
@@ -807,7 +807,7 @@ namespace tranquillum
 
             ::rectangle_i32 rVertLine;
 
-            rVertLine = rectangle_i32;
+            rVertLine = rectangle;
 
             rVertLine.left = rVertLine.right - 1;
             pgraphics->fill_rect(rVertLine, ARGB(127, 80, 80, 80));
@@ -1145,7 +1145,7 @@ namespace tranquillum
 
    //               ::draw2d::pen * ppenOld = pgraphics->set(pen);
    //               ::draw2d::brush * pbrushOld = pgraphics->set(brush);
-   //               pgraphics->rectangle_i32(rectItem);
+   //               pgraphics->rectangle(rectItem);
    //               pgraphics->set(ppenOld);
    //               pgraphics->set(pbrushOld);
 
@@ -1156,7 +1156,7 @@ namespace tranquillum
 
    //               ::rectangle_i32 rectangle;
 
-   //               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image_hover);
+   //               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_hover);
 
    //               System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
 
@@ -1166,7 +1166,7 @@ namespace tranquillum
 
    //               ::rectangle_i32 rectangle;
 
-   //               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_item_hover);
+   //               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_item_hover);
 
    //               psession->userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
 
@@ -1190,7 +1190,7 @@ namespace tranquillum
    //            brush->create_solid(ARGB(255, 255, 255, 255));
    //            ::draw2d::pen * ppenOld = pgraphics->set(pen);
    //            ::draw2d::brush * pbrushOld = pgraphics->set(brush);
-   //            pgraphics->rectangle_i32(rectItem);
+   //            pgraphics->rectangle(rectItem);
    //            pgraphics->set(ppenOld);
    //            pgraphics->set(pbrushOld);
 
@@ -1201,7 +1201,7 @@ namespace tranquillum
 
    //            ::rectangle_i32 rectangle;
 
-   //            ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image_press);
+   //            ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_press);
 
    //            System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
 
@@ -1238,7 +1238,7 @@ namespace tranquillum
 
    //            ::rectangle_i32 rectangle;
 
-   //            ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image);
+   //            ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image);
 
    //            System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
 
@@ -1449,7 +1449,7 @@ namespace tranquillum
    //               brush->create_solid(ptoolbar->_001GetColor(::user::color_button_background_hover));
    //               ::draw2d::pen * ppenOld = pgraphics->set(pen);
    //               ::draw2d::brush * pbrushOld = pgraphics->set(brush);
-   //               pgraphics->rectangle_i32(rectItem);
+   //               pgraphics->rectangle(rectItem);
    //               pgraphics->set(ppenOld);
    //               pgraphics->set(pbrushOld);
 
@@ -1460,7 +1460,7 @@ namespace tranquillum
 
    //               ::rectangle_i32 rectangle;
 
-   //               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image_hover);
+   //               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_hover);
 
    //               System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.80);
 
@@ -1470,7 +1470,7 @@ namespace tranquillum
 
    //               ::rectangle_i32 rectangle;
 
-   //               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_item_hover);
+   //               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_item_hover);
 
    //               psession->userex()->menu()->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
 
@@ -1494,7 +1494,7 @@ namespace tranquillum
    //            brush->create_solid(ptoolbar->_001GetColor(::user::color_button_background_press));
    //            ::draw2d::pen * ppenOld = pgraphics->set(pen);
    //            ::draw2d::brush * pbrushOld = pgraphics->set(brush);
-   //            pgraphics->rectangle_i32(rectItem);
+   //            pgraphics->rectangle(rectItem);
    //            pgraphics->set(ppenOld);
    //            pgraphics->set(pbrushOld);
 
@@ -1505,7 +1505,7 @@ namespace tranquillum
 
    //            ::rectangle_i32 rectangle;
 
-   //            ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image_press);
+   //            ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_press);
 
    //            System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
 
@@ -1554,7 +1554,7 @@ namespace tranquillum
    //                                ::user::color_button_background_disabled));
    //            ::draw2d::pen * ppenOld = pgraphics->set(pen);
    //            ::draw2d::brush * pbrushOld = pgraphics->set(brush);
-   //            pgraphics->rectangle_i32(rectItem);
+   //            pgraphics->rectangle(rectItem);
    //            pgraphics->set(ppenOld);
    //            pgraphics->set(pbrushOld);
 
@@ -1565,7 +1565,7 @@ namespace tranquillum
 
    //            ::rectangle_i32 rectangle;
 
-   //            ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image);
+   //            ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image);
 
    //            System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.20);
 

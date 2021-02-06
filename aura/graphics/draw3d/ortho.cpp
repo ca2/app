@@ -12,29 +12,39 @@ namespace draw3d
 
       double dA = bA / 255.0;
 
-      array < locationd >  point = pbox->vertices();
+      array < locationd > locationa = pbox->vertices();
 
       m_pdc->set_alpha_mode(::draw2d::alpha_mode_blend);
 
       ::draw2d::pen_pointer pen(e_create);
 
-      double zmin = point_i32[0].z;
-      double zmax = point_i32[0].z;
+      double zmin = locationa[0].z;
+      double zmax = locationa[0].z;
 
       index i;
 
-      for(i = 1; i < point.get_count(); i++)
+      for(i = 1; i < locationa.get_count(); i++)
       {
-         if(point_i32[i].z < zmin)
-            zmin = point_i32[i].z;
-         else if(point_i32[i].z > zmax)
-            zmax = point_i32[i].z;
+
+          if (locationa[i].z < zmin)
+          {
+
+              zmin = locationa[i].z;
+
+          }
+          else if (locationa[i].z > zmax)
+          {
+
+              zmax = locationa[i].z;
+
+          }
+
       }
 
-      for(i = 0; i < point.get_count(); i++)
+      for(i = 0; i < locationa.get_count(); i++)
       {
 
-         point_i32[i].z -= zmin;
+          locationa[i].z -= zmin;
 
       }
 
@@ -42,10 +52,18 @@ namespace draw3d
 
       double d;
 
-      if(zmax <= 0.0)
-         d = 0.0;
+      if (zmax <= 0.0)
+      {
+
+          d = 0.0;
+
+      }
       else
-         d = 0.5 / zmax;
+      {
+
+          d = 0.5 / zmax;
+
+      }
 
 
       int_array  point1;
@@ -106,7 +124,7 @@ namespace draw3d
          for(index j = 0; j < point1.get_count(); j++)
          {
 
-            if((point_i32[point1[j]].z + point_i32[point2[j]].z) >(point_i32[point1[iMax]].z + point_i32[point2[iMax]].z))
+            if((locationa[point1[j]].z + locationa[point2[j]].z) >(locationa[point1[iMax]].z + locationa[point2[iMax]].z))
             {
                iMax = j;
             }
@@ -119,7 +137,7 @@ namespace draw3d
             ia.add_unique(point1[iMax]);
             ia.add_unique(point2[iMax]);
 
-            double r = (point_i32[point1[iMax]].z + point_i32[point2[iMax]].z) * d;
+            double r = (locationa[point1[iMax]].z + locationa[point2[iMax]].z) * d;
 
             ::color ca;
 
@@ -150,7 +168,7 @@ namespace draw3d
 
             m_pdc->set(pen);
 
-            m_pdc->draw_line(__pointd(point_i32[point1[iMax]]), __pointd(point_i32[point2[iMax]]));
+            m_pdc->draw_line(__pointd(locationa[point1[iMax]]), __pointd(locationa[point2[iMax]]));
 
          }
 

@@ -364,9 +364,9 @@ int_bool file_delete(const char * lpszFileName)
 
 
    if(!::unlink(lpszFileName))
-      return FALSE;
+      return false;
 
-   return TRUE;
+   return true;
 
 
 }

@@ -1,7 +1,6 @@
 #pragma once
 
 
-
 class mq;
 
 
@@ -295,7 +294,7 @@ public:
    __pointer(::matter) running(const char * pszTag) const override;
 
    ///virtual void relay_exception(::exception_pointer e, e_thread ethreadSource = thread_none);
-   virtual int _GetMessage(MESSAGE * lpMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+   virtual int _GetMessage(MESSAGE * lpMsg, ::windowing::window * pwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
    virtual bool has_step() const;
    virtual bool has_raw_message() const;

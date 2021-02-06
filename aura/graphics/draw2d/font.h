@@ -166,13 +166,6 @@ namespace draw2d
 
    typedef ___pointer < font > font_pointer;
 
-#ifdef WINDOWS
-
-   CLASS_DECL_AURA void wingdi_enum_fonts(::draw2d::font_enum_item_array & itema, bool bRaster, bool bTrueType, bool bOther);
-   CLASS_DECL_AURA ::e_char_set wingdi_get_cs(int iCharSet);
-
-#endif
-
    class CLASS_DECL_AURA font_enum_item :
       virtual public context_object
    {

@@ -222,7 +222,7 @@ namespace aura
       bool tx::is_tx_ok()
       {
 
-         return ::IsWindow(m_oswindow) != FALSE;
+         return ::IsWindow(m_oswindow) != false;
 
       }
 
@@ -496,7 +496,7 @@ namespace aura
       bool rx::is_rx_ok()
       {
 
-         return ::IsWindow(m_oswindow) != FALSE;
+         return ::IsWindow(m_oswindow) != false;
 
       }
 

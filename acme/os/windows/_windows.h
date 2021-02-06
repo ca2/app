@@ -1,9 +1,46 @@
 #pragma once
 
 
+
+
+inline void copy(MESSAGE * pmessage, const MSG * pmsg)
+{
+
+   pmessage->oswindow = (oswindow)(pmsg->hwnd);
+   pmessage->message = pmsg->message;
+   pmessage->wParam = pmsg->wParam;
+   pmessage->lParam = pmsg->lParam;
+   pmessage->pt = pmsg->pt;
+   pmessage->time = pmsg->time;
+
+
+}
+
+inline void copy(MSG * pmsg, const MESSAGE * pmessage)
+{
+
+   pmsg->hwnd = (HWND)(pmessage->oswindow);
+   pmsg->message = pmessage->message;
+   pmsg->wParam = pmessage->wParam;
+   pmsg->lParam = pmessage->lParam;
+   pmsg->pt.x = pmessage->pt.x;
+   pmsg->pt.y = pmessage->pt.y;
+   pmsg->time = (DWORD)pmessage->time;
+
+
+}
+
+namespace str
+{
+
+   string CLASS_DECL_ACME get_window_text_timeout(oswindow oswindow, millis tickTimeout = 1000);
+
+} // namespace str
+
+
 CLASS_DECL_ACME void TRACELASTERROR();
 
-CLASS_DECL_ACME::file::path get_known_folder(REFKNOWNFOLDERID kfid);
+//CLASS_DECL_ACME::file::path get_known_folder(REFKNOWNFOLDERID kfid);
 //#include "acme/os/windows_common/comptr.h"
 
 
@@ -14,6 +51,14 @@ inline HWND __hwnd(oswindow oswindow)
 {
 
    return (HWND)oswindow;
+
+}
+
+
+inline oswindow __oswindow(HWND hwnd)
+{
+
+   return (oswindow)hwnd;
 
 }
 

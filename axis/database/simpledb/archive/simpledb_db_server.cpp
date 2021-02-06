@@ -239,7 +239,7 @@ bool db_server::destroy_message_queue()
 {
    //if(is_window())
    //{
-   //   return DestroyWindow() != FALSE;
+   //   return DestroyWindow() != false;
    //}
    return true;
 }

@@ -130,7 +130,7 @@ namespace geometry
    // Function Name: deflate
    //
    // Purpose:
-   // Change rectangle_i32 dimension using its dimensions and the specified
+   // Change rectangle dimension using its dimensions and the specified
    // rates. For example, the dLeftRate machine the left position of the
    // rectangle. If 0.0, it remains the same as the original left.
    // If 1.0, it turns as the original right. If 0.4, it will be 40%

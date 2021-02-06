@@ -4,7 +4,7 @@
 int_bool delete_hcursor(HCURSOR hcursor)
 {
 
-   return TRUE;
+   return true;
 
 }
 

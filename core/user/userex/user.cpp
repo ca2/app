@@ -1596,7 +1596,7 @@ namespace core
    bool user::impl_set_wallpaper(index iScreen, string strLocalImagePath)
    {
 
-      return SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, wstring(strLocalImagePath), SPIF_UPDATEINIFILE | SPIF_SENDCHANGE) != FALSE;
+      return SystemParametersInfoW(SPI_SETDESKWALLPAPER, 0, wstring(strLocalImagePath), SPIF_UPDATEINIFILE | SPIF_SENDCHANGE) != false;
 
    }
 

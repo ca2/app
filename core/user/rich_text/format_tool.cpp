@@ -724,7 +724,7 @@ namespace user
 
       place(rectRequest);
 
-      order(zorder_top_most);
+      order(e_zorder_top_most);
 
       display(e_display_normal, e_activation_no_activate);
 

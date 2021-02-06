@@ -567,18 +567,18 @@ CLASS_DECL_APEX string get_system_error_message(u32 dwError)
 //{
 //
 //   if(pmsg == nullptr)
-//      return FALSE;
+//      return false;
 //
 //   if(pmsg->hwnd == nullptr)
-//      return FALSE;
+//      return false;
 //
 //   if(pmsg->hwnd->m_pimpl == nullptr)
-//      return FALSE;
+//      return false;
 //
 //   if (pmsg->hwnd->m_pimpl->m_puserinteraction == nullptr)
-//      return FALSE;
+//      return false;
 //
-//   return FALSE;
+//   return false;
 //
 //}
 //
@@ -625,14 +625,14 @@ int_bool IsChild(oswindow oswindowParent, ::oswindow oswindowcandidateChildOrDes
    if(::is_null(puiParent))
    {
 
-      return FALSE;
+      return false;
 
    }
 
    if(::is_null(puiChild))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -680,7 +680,7 @@ int_bool show_window(::oswindow oswindow, const ::e_display & edisplay)
    if(::is_null(oswindow))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -758,7 +758,7 @@ int_bool WINAPI _001ClientToScreen(::oswindow oswindow, POINT32 * ppoint)
    if(::is_null(oswindow))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -773,7 +773,7 @@ int_bool WINAPI _001ScreenToClient(::oswindow oswindow, POINT32 * ppoint)
    if(::is_null(oswindow))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -788,7 +788,7 @@ int_bool WINAPI is_iconic(::oswindow oswindow)
    if(::is_null(oswindow))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -803,7 +803,7 @@ int_bool WINAPI IsWindowVisible(::oswindow oswindow)
    if(::is_null(oswindow))
    {
 
-      return FALSE;
+      return false;
 
    }
 

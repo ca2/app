@@ -99,9 +99,9 @@ namespace draw2d_opengl
             0,								// Angle Of Escapement
             0,								// Orientation Angle
             m_iFontWeight,						// Font Weight
-            m_bItalic ? TRUE : FALSE,							// Italic
-            m_bUnderline ? TRUE : FALSE,							// Underline
-            m_bStrikeout ? TRUE : FALSE,							// Strikeout
+            m_bItalic ? true : false,							// Italic
+            m_bUnderline ? true : false,							// Underline
+            m_bStrikeout ? true : false,							// Strikeout
             ANSI_CHARSET,					// Character Set Identifier
             OUT_TT_PRECIS,					// Output Precision
             CLIP_DEFAULT_PRECIS,			// Clipping Precision

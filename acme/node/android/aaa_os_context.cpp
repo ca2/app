@@ -35,15 +35,15 @@ namespace android
             LookupPrivilegeValue(nullptr, SE_SHUTDOWN_NAME, &tkp.Privileges[0].Luid);
             tkp.PrivilegeCount = 1;
             tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-            AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
+            AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
             if (bIfPowerOff)
-               retval = ExitWindowsEx(EWX_POWEROFF, 0) != FALSE;
+               retval = ExitWindowsEx(EWX_POWEROFF, 0) != false;
             else
-               retval = ExitWindowsEx(EWX_SHUTDOWN, 0) != FALSE;
+               retval = ExitWindowsEx(EWX_SHUTDOWN, 0) != false;
 
             //reset the previlages
             tkp.Privileges[0].Attributes = 0;
-            AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
+            AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
             return retval;*/
 
       ::exception::throw_not_implemented();
@@ -65,7 +65,7 @@ namespace android
             }
             tkp.PrivilegeCount = 1;
             tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-            if(!AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0))
+            if(!AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0))
             {
                TRACELASTERROR();
                return false;
@@ -81,7 +81,7 @@ namespace android
             }
             tkp.PrivilegeCount = 1;
             tkp.Privileges[0].Attributes = SE_PRIVILEGE_ENABLED;
-            if(!AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0))
+            if(!AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0))
             {
                TRACELASTERROR();
                return false;
@@ -105,7 +105,7 @@ namespace android
             }*/
       //reset the previlages
       /*    tkp.Privileges[0].Attributes = 0;
-          AdjustTokenPrivileges(hToken, FALSE, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
+          AdjustTokenPrivileges(hToken, false, &tkp, 0, (PTOKEN_PRIVILEGES) nullptr, 0);
           return true;*/
       ::exception::throw_not_implemented();
       return false;
@@ -122,7 +122,7 @@ namespace android
             {
                HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
                   PROCESS_VM_READ,
-                  FALSE, dwPid );
+                  false, dwPid );
                TerminateProcess(hProcess, (::u32) -1);
                CloseHandle(hProcess);
                /*::EnumWindows((WNDENUMPROC)
@@ -136,9 +136,9 @@ namespace android
                !=WAIT_OBJECT_0)
                bResult = TerminateProcess(hProcess,0);
                else
-               bResult = TRUE;
+               bResult = true;
                CloseHandle(hProcess);
-               return bResult == TRUE;*/
+               return bResult == true;*/
 
       //  }
    }
@@ -188,7 +188,7 @@ namespace android
       // get a handle to the process.
       HANDLE hProcess = OpenProcess( PROCESS_QUERY_INFORMATION |
          PROCESS_VM_READ,
-         FALSE, dwPid );
+         false, dwPid );
 
       // get the process name.
 
@@ -637,7 +637,7 @@ namespace android
 //      ::exception::throw_not_implemented();
       return false;
       /*
-            return GetSystemMetrics(SM_REMOTESESSION) != FALSE;
+            return GetSystemMetrics(SM_REMOTESESSION) != false;
       */
    }
 

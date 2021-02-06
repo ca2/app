@@ -459,7 +459,7 @@ IFACEMETHODIMP_(unsigned long) CustomTextRenderer::Release()
 *  CustomTextRenderer::IsPixelSnappingDisabled                    *
 *                                                                 *
 *  Determines whether pixel snapping is disabled. The recommended *
-*  default is FALSE, unless doing animation that requires         *
+*  default is false, unless doing animation that requires         *
 *  subpixel vertical placement.                                   *
 *                                                                 *
 ******************************************************************/
@@ -469,7 +469,7 @@ IFACEMETHODIMP CustomTextRenderer::IsPixelSnappingDisabled(
    __out BOOL* isDisabled
    )
 {
-   *isDisabled = FALSE;
+   *isDisabled = false;
    return S_OK;
 }
 

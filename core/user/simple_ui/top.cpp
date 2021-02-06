@@ -73,7 +73,7 @@ namespace simple_ui
 //      else
 //      {
 //
-//         pncactivate->m_lresult = FALSE;
+//         pncactivate->m_lresult = false;
 //
 //         pncactivate->m_bRet = true;
 //
@@ -82,7 +82,7 @@ namespace simple_ui
 //
 //#else
 //
-//      pncactivate->m_lresult = TRUE;
+//      pncactivate->m_lresult = true;
 //
 //      pncactivate->m_bRet = true;
 //

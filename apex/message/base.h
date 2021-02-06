@@ -41,7 +41,7 @@ namespace message
 
       virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
 
-      inline void change(wparam wparam, ::lparam lparam) { set(m_oswindow,m_playeredUserPrimitive, m_id, wparam, lparam); }
+      inline void change(wparam wparam, ::lparam lparam) { set(m_oswindow, m_playeredUserPrimitive, m_id, wparam, lparam); }
 
       //base & operator = (const base & base);
 

@@ -400,7 +400,7 @@ namespace uwp
             pkey->m_id = e_message_key_down;
             pkey->m_playeredUserPrimitive = psession->m_puiHost;
             pkey->m_nChar = 0;
-            pkey->m_ekey = ::user::key_refer_to_text_member;
+            pkey->m_ekey = ::user::e_key_refer_to_text_member;
             pkey->m_wparam = pkey->m_nChar;
             pkey->m_nFlags = 0;
             pkey->m_lparam = pkey->m_nFlags << 16;

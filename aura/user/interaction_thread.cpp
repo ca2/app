@@ -293,7 +293,7 @@ namespace user
 
       __bind(this, m_pprodevian, m_pimpl->m_pprodevian);
 
-      m_oswindow = m_pimpl->m_oswindow;
+      m_oswindow = m_pimpl->m_pwindow->get_oswindow();
 
       //delete m_pusersystem;
 
@@ -479,27 +479,28 @@ namespace user
       if (msg.message == ::e_message_redraw)
       {
 
-         auto pinteraction = System.ui_from_handle(msg.hwnd);
+         auto pimpl = m_pimpl;
 
-         if(::is_set(pinteraction))
+         if (pimpl)
          {
 
-            string strType = ::str::demangle(pinteraction->type_name());
+            auto pinteraction = pimpl->m_puserinteraction;
 
-            if(strType.contains_ci("filemanager"))
+            if (::is_set(pinteraction))
             {
 
-               //INFO("filemanager");
+               string strType = ::str::demangle(pinteraction->type_name());
+
+               if (strType.contains_ci("filemanager"))
+               {
+
+                  //INFO("filemanager");
+
+               }
+
+               pinteraction->prodevian_redraw(msg.wParam & 1);
 
             }
-
-            pinteraction->prodevian_redraw(msg.wParam & 1);
-
-         }
-         else
-         {
-
-         //   INFO("e_message_redraw pinteraction == nullptr");
 
          }
 
@@ -704,7 +705,7 @@ catch(...)
             //   BOOL    fEaten;
 
                /*
-               Get the next message in the queue. fResult receives FALSE if e_message_quit is encountered
+               Get the next message in the queue. fResult receives false if e_message_quit is encountered
                */
 //            }
 
@@ -712,7 +713,7 @@ catch(...)
 
             //if (FAILED(pMsgPump->GetMessage(&msg, NULL, 0, 0, &fResult)))
             //{
-            //   fResult = FALSE;
+            //   fResult = false;
             //}
             //else if (e_message_key_down == msg.message)
             //{
@@ -793,81 +794,81 @@ catch(...)
    }
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-   int thread::_GetMessage(MESSAGE * lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
-   {
-
-#ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
-
-      while (m_pmessagepump && m_pkeystrokemgr)
-      {
-
-         BOOL fResult = true;
-
-         if (FAILED(m_pmessagepump->GetMessage(lpMsg, hWnd, wMsgFilterMin, wMsgFilterMax, &fResult)))
-         {
-
-            return FALSE;
-
-         }
-         else
-         {
-
-            BOOL    fEaten;
-
-            if (e_message_key_down == lpMsg->message)
-            {
-               // does an ime want it?
-               if (m_pkeystrokemgr->TestKeyDown(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten &&
-                  m_pkeystrokemgr->KeyDown(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten)
-               {
-                  continue;
-               }
-            }
-            else if (e_message_key_up == lpMsg->message)
-            {
-               // does an ime want it?
-               if (m_pkeystrokemgr->TestKeyUp(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten &&
-                  m_pkeystrokemgr->KeyUp(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten)
-               {
-                  continue;
-               }
-            }
-
-         }
-
-         return true;
-
-      }
-
-#endif
-
-      int iRet = ::thread::_GetMessage(lpMsg, hWnd, wMsgFilterMin, wMsgFilterMax);
-
-      if (iRet <= 0)
-      {
-
-         return iRet;
-
-      }
-
-      return iRet;
-
-      //if (ImmIsUIMessageW(lpMsg->hwnd, lpMsg->message, lpMsg->wParam, lpMsg->lParam))
-      //{
-
-      //   return iRet;
-
-      //}
-
-      //return iRet;
-
-   }
-
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//   int thread::_GetMessage(MESSAGE * lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
+//   {
+//
+//#ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
+//
+//      while (m_pmessagepump && m_pkeystrokemgr)
+//      {
+//
+//         BOOL fResult = true;
+//
+//         if (FAILED(m_pmessagepump->GetMessage(lpMsg, hWnd, wMsgFilterMin, wMsgFilterMax, &fResult)))
+//         {
+//
+//            return false;
+//
+//         }
+//         else
+//         {
+//
+//            BOOL    fEaten;
+//
+//            if (e_message_key_down == lpMsg->message)
+//            {
+//               // does an ime want it?
+//               if (m_pkeystrokemgr->TestKeyDown(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten &&
+//                  m_pkeystrokemgr->KeyDown(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten)
+//               {
+//                  continue;
+//               }
+//            }
+//            else if (e_message_key_up == lpMsg->message)
+//            {
+//               // does an ime want it?
+//               if (m_pkeystrokemgr->TestKeyUp(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten &&
+//                  m_pkeystrokemgr->KeyUp(lpMsg->wParam, lpMsg->lParam, &fEaten) == S_OK && fEaten)
+//               {
+//                  continue;
+//               }
+//            }
+//
+//         }
+//
+//         return true;
+//
+//      }
+//
+//#endif
+//
+//      int iRet = ::thread::_GetMessage(lpMsg, hWnd, wMsgFilterMin, wMsgFilterMax);
+//
+//      if (iRet <= 0)
+//      {
+//
+//         return iRet;
+//
+//      }
+//
+//      return iRet;
+//
+//      //if (ImmIsUIMessageW(lpMsg->hwnd, lpMsg->message, lpMsg->wParam, lpMsg->lParam))
+//      //{
+//
+//      //   return iRet;
+//
+//      //}
+//
+//      //return iRet;
+//
+//   }
+//
+//
+//#endif
 
 
    bool thread::thread_get_run() const

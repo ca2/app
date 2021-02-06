@@ -412,7 +412,7 @@ bool node_save_image(::file::file * pfile, const ::image * pimage, ::save_image 
 
       ul = stg.cbSize.QuadPart - ulPos;
 
-      pstream->Read(mem.get_data(), (ULONG)__min(ul, mem.get_size()), &ulRead);
+      pstream->Read(mem.get_data(), (ULONG)minimum(ul, mem.get_size()), &ulRead);
 
       if (ulRead > 0)
       {

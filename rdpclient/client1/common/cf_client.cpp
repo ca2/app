@@ -74,7 +74,7 @@
 //   rdpGdi* gdi = ((rdpContext*)wfc)->gdi;
 //   gdi->primary->hdc->hwnd->invalid->null = 1;
 //   gdi->primary->hdc->hwnd->ninvalid = 0;
-//   return TRUE;
+//   return true;
 //}
 //
 //BOOL af_sw_end_paint(wfContext* wfc)
@@ -95,7 +95,7 @@
 //   cinvalid = gdi->primary->hdc->hwnd->cinvalid;
 //
 //   if(ninvalid < 1)
-//      return TRUE;
+//      return true;
 //
 //   region16_init(&invalidRegion);
 //
@@ -118,14 +118,14 @@
 //      updateRect.right = extents->right;
 //      updateRect.bottom = extents->bottom;
 //
-//      InvalidateRect(wfc->hwnd,&updateRect,FALSE);
+//      InvalidateRect(wfc->hwnd,&updateRect,false);
 //
 //      if(wfc->rail)
 //         af_rail_invalidate_region(wfc,&invalidRegion);
 //   }
 //
 //   region16_uninit(&invalidRegion);
-//   return TRUE;
+//   return true;
 //}
 
 //BOOL af_sw_desktop_resize(wfContext* wfc)
@@ -152,24 +152,24 @@
 //	}
 //
 //	if (!gdi_init(instance, CLRCONV_ALPHA | CLRBUF_32BPP, wfc->primary->pdata))
-//		return FALSE;
+//		return false;
 //
 //	gdi = instance->context->gdi;
 //	wfc->hdc = gdi->primary->hdc;
 //
-//	return TRUE;
+//	return true;
 //}
 //
 //BOOL af_hw_begin_paint(wfContext* wfc)
 //{
 //	wfc->hdc->hwnd->invalid->null = 1;
 //	wfc->hdc->hwnd->ninvalid = 0;
-//	return TRUE;
+//	return true;
 //}
 //
 //BOOL af_hw_end_paint(wfContext* wfc)
 //{
-//	return TRUE;
+//	return true;
 //}
 //
 //BOOL af_hw_desktop_resize(wfContext* wfc)
@@ -185,7 +185,7 @@
 //
 //	if (wfc->primary)
 //	{
-//		same = (wfc->primary == wfc->drawing) ? TRUE : FALSE;
+//		same = (wfc->primary == wfc->drawing) ? true : false;
 //
 //		af_image_free(wfc->primary);
 //
@@ -195,7 +195,7 @@
 //			wfc->drawing = wfc->primary;
 //	}
 //
-//	if (wfc->fullscreen != TRUE)
+//	if (wfc->fullscreen != true)
 //	{
 //		if (wfc->hwnd)
 //			set_window_pos(wfc->hwnd, HWND_TOP, -1, -1, wfc->width + wfc->diff.x, wfc->height + wfc->diff.y, SWP_NOMOVE);
@@ -204,9 +204,9 @@
 //	{
 //		af_update_offset(wfc);
 //		get_window_rect(wfc->hwnd, &rectangle);
-//		InvalidateRect(wfc->hwnd, &rectangle, TRUE);
+//		InvalidateRect(wfc->hwnd, &rectangle, true);
 //	}
-//	return TRUE;
+//	return true;
 //}
 
 CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
@@ -239,28 +239,28 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 
    settings->OsMajorType = OSMAJORTYPE_WINDOWS;
    settings->OsMinorType = OSMINORTYPE_WINDOWS_NT;
-   settings->OrderSupport[NEG_DSTBLT_INDEX] = TRUE;
-   settings->OrderSupport[NEG_PATBLT_INDEX] = TRUE;
-   settings->OrderSupport[NEG_SCRBLT_INDEX] = TRUE;
-   settings->OrderSupport[NEG_OPAQUE_RECT_INDEX] = TRUE;
-   settings->OrderSupport[NEG_DRAWNINEGRID_INDEX] = FALSE;
-   settings->OrderSupport[NEG_MULTIDSTBLT_INDEX] = FALSE;
-   settings->OrderSupport[NEG_MULTIPATBLT_INDEX] = FALSE;
-   settings->OrderSupport[NEG_MULTISCRBLT_INDEX] = FALSE;
-   settings->OrderSupport[NEG_MULTIOPAQUERECT_INDEX] = TRUE;
-   settings->OrderSupport[NEG_MULTI_DRAWNINEGRID_INDEX] = FALSE;
-   settings->OrderSupport[NEG_LINETO_INDEX] = TRUE;
-   settings->OrderSupport[NEG_POLYLINE_INDEX] = TRUE;
-   settings->OrderSupport[NEG_MEMBLT_INDEX] = TRUE;
-   settings->OrderSupport[NEG_MEM3BLT_INDEX] = FALSE;
-   settings->OrderSupport[NEG_SAVEBITMAP_INDEX] = FALSE;
-   settings->OrderSupport[NEG_GLYPH_INDEX_INDEX] = FALSE;
-   settings->OrderSupport[NEG_FAST_INDEX_INDEX] = FALSE;
-   settings->OrderSupport[NEG_FAST_GLYPH_INDEX] = FALSE;
-   settings->OrderSupport[NEG_POLYGON_SC_INDEX] = FALSE;
-   settings->OrderSupport[NEG_POLYGON_CB_INDEX] = FALSE;
-   settings->OrderSupport[NEG_ELLIPSE_SC_INDEX] = FALSE;
-   settings->OrderSupport[NEG_ELLIPSE_CB_INDEX] = FALSE;
+   settings->OrderSupport[NEG_DSTBLT_INDEX] = true;
+   settings->OrderSupport[NEG_PATBLT_INDEX] = true;
+   settings->OrderSupport[NEG_SCRBLT_INDEX] = true;
+   settings->OrderSupport[NEG_OPAQUE_RECT_INDEX] = true;
+   settings->OrderSupport[NEG_DRAWNINEGRID_INDEX] = false;
+   settings->OrderSupport[NEG_MULTIDSTBLT_INDEX] = false;
+   settings->OrderSupport[NEG_MULTIPATBLT_INDEX] = false;
+   settings->OrderSupport[NEG_MULTISCRBLT_INDEX] = false;
+   settings->OrderSupport[NEG_MULTIOPAQUERECT_INDEX] = true;
+   settings->OrderSupport[NEG_MULTI_DRAWNINEGRID_INDEX] = false;
+   settings->OrderSupport[NEG_LINETO_INDEX] = true;
+   settings->OrderSupport[NEG_POLYLINE_INDEX] = true;
+   settings->OrderSupport[NEG_MEMBLT_INDEX] = true;
+   settings->OrderSupport[NEG_MEM3BLT_INDEX] = false;
+   settings->OrderSupport[NEG_SAVEBITMAP_INDEX] = false;
+   settings->OrderSupport[NEG_GLYPH_INDEX_INDEX] = false;
+   settings->OrderSupport[NEG_FAST_INDEX_INDEX] = false;
+   settings->OrderSupport[NEG_FAST_GLYPH_INDEX] = false;
+   settings->OrderSupport[NEG_POLYGON_SC_INDEX] = false;
+   settings->OrderSupport[NEG_POLYGON_CB_INDEX] = false;
+   settings->OrderSupport[NEG_ELLIPSE_SC_INDEX] = false;
+   settings->OrderSupport[NEG_ELLIPSE_CB_INDEX] = false;
 
    settings->GlyphSupportLevel = GLYPH_SUPPORT_NONE;
 
@@ -273,10 +273,10 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
    //ZeroMemory(wfc->clrconv,sizeof(CLRCONV));
 
    //wfc->clrconv->palette = nullptr;
-   //wfc->clrconv->alpha = FALSE;
+   //wfc->clrconv->alpha = false;
 
    if(!(instance->context->cache = cache_new(settings)))
-      return FALSE;
+      return false;
 
    desktopWidth = settings->DesktopWidth;
    desktopHeight = settings->DesktopHeight;
@@ -322,7 +322,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
       (settings->DesktopWidth > 4096) || (settings->DesktopHeight > 4096))
    {
       WLog_ERR(TAG,"invalid dimensions %d %d",settings->DesktopWidth,settings->DesktopHeight);
-      return FALSE;
+      return false;
    }
 
    ///freerdp_set_param_uint32(settings,FreeRDP_KeyboardLayout,(int)GetKeyboardLayout(0) & 0x0000FFFF);
@@ -335,12 +335,12 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 
    ///freerdp_channels_pre_connect(instance->context->channels,instance);
 
-   return TRUE;
+   return true;
 }
 
 //void af_add_system_menu(wfContext* wfc)
 //{
-//	HMENU hMenu = GetSystemMenu(wfc->hwnd, FALSE);
+//	HMENU hMenu = GetSystemMenu(wfc->hwnd, false);
 //
 //	MENUITEMINFO item_info;
 //	ZeroMemory(&item_info, sizeof(MENUITEMINFO));
@@ -353,7 +353,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //	item_info.cch = (::u32) _wcslen(_T("Smart sizing"));
 //	item_info.dwItemData = (ULONG_PTR) wfc;
 //
-//	InsertMenuItem(hMenu, 6, TRUE, &item_info);
+//	InsertMenuItem(hMenu, 6, true, &item_info);
 //
 //	if (wfc->instance->settings->SmartSizing)
 //	{
@@ -386,7 +386,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //		wfc->primary = af_image_new(wfc, wfc->width, wfc->height, wfc->dstBpp, nullptr);
 //
 //		if (!gdi_init(instance, CLRCONV_ALPHA | CLRBUF_32BPP, wfc->primary->pdata))
-//			return FALSE;
+//			return false;
 //
 //		gdi = instance->context->gdi;
 //		wfc->hdc = gdi->primary->hdc;
@@ -398,7 +398,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //		wfc->primary = af_image_new(wfc, wfc->width, wfc->height, wfc->dstBpp, nullptr);
 //
 //		if (!(wfc->hdc = gdi_GetDC()))
-//			return FALSE;
+//			return false;
 //
 //		wfc->hdc->bitsPerPixel = wfc->dstBpp;
 //		wfc->hdc->bytesPerPixel = wfc->dstBpp / 8;
@@ -428,7 +428,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //		_snwprintf(lpWindowName, ARRAYSIZE(lpWindowName), L"FreeRDP: %S:%d", settings->ServerHostname, settings->ServerPort);
 //
 //	if (settings->EmbeddedWindow)
-//		settings->Decorations = FALSE;
+//		settings->Decorations = false;
 //
 //	if (wfc->fullscreen)
 //		dwStyle = WS_POPUP;
@@ -453,7 +453,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //	wfc->drawing = wfc->primary;
 //
 //	EventArgsInit(&e, "wfreerdp");
-//	e.embed = FALSE;
+//	e.embed = false;
 //	e.handle = (void*) wfc->hwnd;
 //	PubSub_OnEmbedWindow(context->pubSub, context, &e);
 //
@@ -486,12 +486,12 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //	}
 //
 //	if (freerdp_channels_post_connect(context->channels, instance) < 0)
-//		return FALSE;
+//		return false;
 //
 //	if (wfc->fullscreen)
 //		floatbar_window_create(wfc);
 //
-//	return TRUE;
+//	return true;
 //}
 //
 //static CREDUI_INFOA wfUiInfo =
@@ -518,7 +518,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //	//char User[CREDUI_MAX_USERNAME_LENGTH + 1];
 //	//char Domain[CREDUI_MAX_DOMAIN_TARGET_LENGTH + 1];
 //
-//	//fSave = FALSE;
+//	//fSave = false;
 //	//ZeroMemory(UserName, sizeof(UserName));
 //	//ZeroMemory(Password, sizeof(Password));
 //	//dwFlags = CREDUI_FLAGS_DO_NOT_PERSIST | CREDUI_FLAGS_EXCLUDE_CERTIFICATES;
@@ -530,7 +530,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //	//if (status != NO_ERROR)
 //	//{
 //	//	WLog_ERR(TAG, "CredUIPromptForCredentials unexpected status: 0x%08X", status);
-//	//	return FALSE;
+//	//	return false;
 //	//}
 //
 //	//ZeroMemory(User, sizeof(User));
@@ -542,7 +542,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //	//if (!(*username))
 //	//{
 //	//	WLog_ERR(TAG, "strdup failed", status);
-//	//	return FALSE;
+//	//	return false;
 //	//}
 //
 //	//if (strlen(Domain) > 0)
@@ -554,7 +554,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //	//{
 //	//	free(*username);
 //	//	WLog_ERR(TAG, "strdup failed", status);
-//	//	return FALSE;
+//	//	return false;
 //	//}
 //
 //	//*password = _strdup(Password);
@@ -562,10 +562,10 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //	//{
 //	//	free(*username);
 //	//	free(*domain);
-//	//	return FALSE;
+//	//	return false;
 //	//}
 //
-//	//return TRUE;
+//	//return true;
 //}
 //
 //static BOOL af_authenticate(freerdp* instance,
@@ -610,7 +610,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //	SetConsoleMode(input_handle, mode);
 //#endif
 //
-//	return TRUE;
+//	return true;
 //}
 //
 //static BOOL af_auto_reconnect(freerdp* instance)
@@ -622,7 +622,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //
 //	/* Only auto reconnect on network disconnects. */
 //	if (freerdp_error_info(instance) != 0)
-//		return FALSE;
+//		return false;
 //
 //	/* A network disconnect was detected */
 //	WLog_ERR(TAG, "Network disconnect!");
@@ -630,7 +630,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //	if (!instance->settings->AutoReconnectionEnabled)
 //	{
 //		/* No auto-reconnect - just quit */
-//		return FALSE;
+//		return false;
 //	}
 //
 //	/* Perform an auto-reconnect. */
@@ -638,21 +638,21 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //	{
 //		/* Quit retrying if max retries has been exceeded */
 //		if (num_retries++ >= max_retries)
-//			return FALSE;
+//			return false;
 //
 //		/* Attempt the next reconnect */
 //		WLog_INFO(TAG,  "Attempting reconnect (%u of %u)", num_retries, max_retries);
 //
 //		if (freerdp_reconnect(instance))
 //		{
-//			return TRUE;
+//			return true;
 //		}
 //
 //		sleep(5000_ms);
 //	}
 //
 //	WLog_ERR(TAG, "Maximum reconnect retries exceeded");
-//	return FALSE;
+//	return false;
 //}
 //
 //void* af_input_thread(void* arg)
@@ -669,7 +669,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //
 //	while (MessageQueue_Wait(queue))
 //	{
-//		while (MessageQueue_Peek(queue, &message, TRUE))
+//		while (MessageQueue_Peek(queue, &message, true))
 //		{
 //			status = freerdp_message_queue_process_message(instance,
 //					FREERDP_INPUT_MESSAGE_QUEUE, &message);
@@ -752,7 +752,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //			nCount += tmp;
 //		}
 //
-//		if (MsgWaitForMultipleObjects(nCount, handles, FALSE, 1000, QS_ALLINPUT) == WAIT_FAILED)
+//		if (MsgWaitForMultipleObjects(nCount, handles, false, 1000, QS_ALLINPUT) == WAIT_FAILED)
 //		{
 //			WLog_ERR(TAG, "wfreerdp_run: WaitForMultipleObjects failed: 0x%04X", get_last_error());
 //			break;
@@ -773,7 +773,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //		if (freerdp_shall_disconnect(instance))
 //			break;
 //
-//		quit_msg = FALSE;
+//		quit_msg = false;
 //
 //		while (PeekMessage(&msg, nullptr, 0, 0, PM_NOREMOVE))
 //		{
@@ -801,7 +801,7 @@ CLASS_DECL_EXPORT BOOL af_pre_connect(freerdp* instance)
 //
 //			if ((msg_ret == 0) || (msg_ret == -1))
 //			{
-//				quit_msg = TRUE;
+//				quit_msg = true;
 //				break;
 //			}
 //
@@ -952,7 +952,7 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 //      return;
 //
 //   // prevent infinite message loop
-//   wfc->disablewindowtracking = TRUE;
+//   wfc->disablewindowtracking = true;
 //
 //   if(wfc->instance->settings->SmartSizing)
 //   {
@@ -961,10 +961,10 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 //
 //      if(wfc->xScrollVisible || wfc->yScrollVisible)
 //      {
-//         if(ShowScrollBar(wfc->hwnd,SB_BOTH,FALSE))
+//         if(ShowScrollBar(wfc->hwnd,SB_BOTH,false))
 //         {
-//            wfc->xScrollVisible = FALSE;
-//            wfc->yScrollVisible = FALSE;
+//            wfc->xScrollVisible = false;
+//            wfc->yScrollVisible = false;
 //         }
 //      }
 //   }
@@ -976,20 +976,20 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 //
 //      if(!horiz && client_width < wfc->instance->settings->DesktopWidth)
 //      {
-//         horiz = TRUE;
+//         horiz = true;
 //      }
 //      else if(horiz && client_width >= wfc->instance->settings->DesktopWidth/* - GetSystemMetrics(SM_CXVSCROLL)*/)
 //      {
-//         horiz = FALSE;
+//         horiz = false;
 //      }
 //
 //      if(!vert && client_height < wfc->instance->settings->DesktopHeight)
 //      {
-//         vert = TRUE;
+//         vert = true;
 //      }
 //      else if(vert && client_height >= wfc->instance->settings->DesktopHeight/* - GetSystemMetrics(SM_CYHSCROLL)*/)
 //      {
-//         vert = FALSE;
+//         vert = false;
 //      }
 //
 //      if(horiz == vert && (horiz != wfc->xScrollVisible && vert != wfc->yScrollVisible))
@@ -1030,7 +1030,7 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 //         si.nMax   = wfc->instance->settings->DesktopWidth;
 //         si.nPage  = client_width;
 //         si.nPos   = wfc->xCurrentScroll;
-//         SetScrollInfo(wfc->hwnd,SB_HORZ,&si,TRUE);
+//         SetScrollInfo(wfc->hwnd,SB_HORZ,&si,true);
 //      }
 //
 //      if(vert)
@@ -1046,11 +1046,11 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 //         si.nMax   = wfc->instance->settings->DesktopHeight;
 //         si.nPage  = client_height;
 //         si.nPos   = wfc->yCurrentScroll;
-//         SetScrollInfo(wfc->hwnd,SB_VERT,&si,TRUE);
+//         SetScrollInfo(wfc->hwnd,SB_VERT,&si,true);
 //      }
 //   }
 //
-//   wfc->disablewindowtracking = FALSE;
+//   wfc->disablewindowtracking = false;
 //   //	af_update_canvas_diff(wfc);
 //}
 //
@@ -1073,7 +1073,7 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 //#endif
 //
 //   freerdp_register_addin_provider(freerdp_channels_load_static_addin_entry,0);
-//   return TRUE;
+//   return true;
 //}
 //
 //void wfreerdp_client_global_uninit(void)
@@ -1086,10 +1086,10 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 ////	wfContext* wfc = (wfContext*) context;
 ////
 ////	if (!(wfreerdp_client_global_init()))
-////		return FALSE;
+////		return false;
 ////
 ////	if (!(context->channels = freerdp_channels_new()))
-////		return FALSE;
+////		return false;
 ////
 ////	instance->PreConnect = af_pre_connect;
 ////	instance->PostConnect = af_post_connect;
@@ -1100,7 +1100,7 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 ////	wfc->instance = instance;
 ////	wfc->settings = instance->settings;
 ////
-////	return TRUE;
+////	return true;
 ////}
 //
 //void wfreerdp_client_free(freerdp* instance,rdpContext* context)
@@ -1131,7 +1131,7 @@ rdpSettings* freerdp_client_get_settings(rdp_context* wfc)
 ////
 ////	hInstance = GetModuleHandle(nullptr);
 ////	hWndParent = (HWND) instance->settings->ParentWindowId;
-////	instance->settings->EmbeddedWindow = (hWndParent) ? TRUE : FALSE;
+////	instance->settings->EmbeddedWindow = (hWndParent) ? true : false;
 ////
 ////	wfc->hWndParent = hWndParent;
 ////	wfc->hInstance = hInstance;

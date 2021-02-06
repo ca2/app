@@ -21,7 +21,7 @@ class event;
 /*
  * Defines for the fVirt field of the Accelerator table structure.
  */
-#define WIN_FVIRTKEY  TRUE          /* Assumed to be == TRUE */
+#define WIN_FVIRTKEY  true          /* Assumed to be == true */
 #define WIN_FNOINVERT 0x02
 #define WIN_FSHIFT    0x04
 #define WIN_FCONTROL  0x08

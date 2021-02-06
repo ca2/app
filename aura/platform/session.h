@@ -26,13 +26,6 @@ namespace aura
 
       ::user::interaction_impl *                            m_pimplPendingFocus2;
       ::user::interaction *                                 m_puiLastUserInputPopup;
-      ::draw2d::cursor *                                    m_pcursor;
-      ::draw2d::cursor *                                    m_pcursorCursor;
-      e_cursor                                              m_ecursorDefault;
-      e_cursor                                              m_ecursor;
-
-      ::user::interaction *                                 m_puiCapture;
-      bool                                                  m_bDrawCursor;
 
       //__pointer_array(::user::interaction)                  m_uiptraToolWindow;
 
@@ -46,8 +39,8 @@ namespace aura
 
       __composite(::apex::savings)                          m_psavings;
 
-      index                                                 m_iMainMonitor;
-      index                                                 m_iMainWkspace;
+      //index                                                 m_iMainMonitor;
+      //index                                                 m_iMainWkspace;
 
       id_map < ::user::interaction * >                      m_mapboundui;
 
@@ -55,13 +48,14 @@ namespace aura
       __composite(::user::user)                             m_puser;
 
 
+
       session();
       virtual ~session();
 
 
-      virtual ::u32 get_monitor_color_temperature(index iMonitor);
-      virtual bool adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
-      virtual bool os_adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
+      //virtual ::u32 get_monitor_color_temperature(index iMonitor);
+      //virtual bool adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
+      //virtual bool os_adjust_monitor(index iMonitor, ::u32 dwTemperature, double dBrightness, double dwGamma);
 
 
 #if defined(WINDOWS)
@@ -80,29 +74,11 @@ namespace aura
 
 #endif
 
+
+
       virtual ::e_status finish(::context_object * pcontextobjectFinish = nullptr) override;
 
 
-      virtual void enum_display_monitors() override;
-
-      virtual index get_main_monitor(RECTANGLE_I32* prectangle = nullptr) override;
-
-      virtual ::count get_monitor_count() override;
-      virtual bool  get_monitor_rect(index iMonitor, RECTANGLE_I32* prectangle) override;
-
-      virtual ::count get_desk_monitor_count() override;
-      virtual bool  get_desk_monitor_rect(index iMonitor, RECTANGLE_I32* prectangle) override;
-
-
-      virtual index get_main_wkspace(RECTANGLE_I32* prectangle = nullptr) override;
-
-      virtual ::count get_wkspace_count() override;
-      virtual bool  get_wkspace_rect(index iWkspace, RECTANGLE_I32* prectangle) override;
-
-      virtual ::count get_desk_wkspace_count() override;
-      virtual bool  get_desk_wkspace_rect(index iWkspace, RECTANGLE_I32* prectangle) override;
-
-      virtual index get_ui_wkspace(::user::interaction* pinteraction);
 
 
       virtual ::e_status     initialize(::layered * pobjectContext) override;
@@ -134,7 +110,8 @@ namespace aura
       //inline ::sockets::sockets & sockets() { return *m_psockets; }
 
 
-      virtual size_i32 get_window_minimum_size() override;
+
+      //virtual size_i32 get_window_minimum_size() override;
 
 
       //virtual void  get_cursor_pos(POINT_I32 * ppoint);
@@ -159,11 +136,11 @@ namespace aura
 
       //virtual ::e_status     interactive_credentials(::account::credentials * pcredentials) override;
 
-      virtual bool on_create_frame_window() override;
+      virtual bool on_create_frame_window();
 
       //virtual string account_get_user_sessid(const string & str) override;
 
-      virtual void translate_os_key_message(::user::key * pkey);
+      //virtual void translate_os_key_message(::user::key * pkey);
 
       //virtual void on_user_logon(::account::user * puser);
 
@@ -234,9 +211,7 @@ namespace aura
 
       //virtual ::size_i32 get_window_minimum_size();
 
-      virtual void frame_pre_translate_message(::message::message * pmessage) override;
-
-      virtual bool defer_create_session_frame_window();
+//      virtual void frame_pre_translate_message(::message::message * pmessage) override;
 
       //inline ::account::department * account() { return m_paccount; }
 
@@ -254,78 +229,44 @@ namespace aura
 
       //::aura::application * application_get(const char * pszAppId, bool bCreate, bool bSynch, ::create * pcreate) override;
 
-      virtual bool is_key_pressed(::user::e_key ekey) override;
+      virtual bool is_key_pressed(::user::enum_key ekey) override;
 
-      virtual void set_key_pressed(::user::e_key ekey, bool bPressed) override;
+      virtual void set_key_pressed(::user::enum_key ekey, bool bPressed) override;
 
-      virtual ::user::primitive * get_active_ui() override;
+      //virtual ::user::primitive * get_active_ui() override;
+
+      //virtual void set_active_guie(::user::interaction * pinteraction);
+      //virtual void set_focus_guie(::user::interaction * pinteraction);
+
 
       virtual void on_finally_focus_set(::user::primitive * pelementalFocus);
 
-      virtual oswindow get_capture();
+      //virtual ::user::interaction * get_capture();
 
-      virtual bool set_cursor(::user::interaction * pinteraction, ::draw2d::cursor * pcursor);
-      virtual bool set_cursor(::user::interaction * pinteraction, e_cursor ecursor);
-      virtual bool set_default_cursor(::user::interaction * pinteraction, e_cursor ecursor);
-      virtual ::draw2d::cursor * get_cursor();
-      virtual ::draw2d::cursor * get_default_cursor();
+      //virtual bool set_cursor(::user::interaction * pinteraction, ::draw2d::cursor * pcursor);
+      //virtual bool set_cursor(::user::interaction * pinteraction, enum_cursor ecursor);
+      //virtual bool set_default_cursor(::user::interaction * pinteraction, enum_cursor ecursor);
+      //virtual ::draw2d::cursor * get_cursor();
+      //virtual ::draw2d::cursor * get_default_cursor();
 
       virtual bool on_ui_mouse_message(::message::mouse * pmouse);
 
-      virtual ::user::primitive * GetActiveWindow();
-      virtual ::user::primitive * GetFocus();
+      //virtual ::user::primitive * GetActiveWindow();
+      //virtual ::user::primitive * GetFocus();
 
-      virtual bool ReleaseCapture();
-      virtual __pointer(::user::interaction) GetCapture();
+      //virtual bool ReleaseCapture();
+
+      //virtual ::user::interaction * get_capture() override;
 
       //virtual void translate_os_key_message(::user::key * pkey);
       //virtual bool on_create_frame_window();
 
-      virtual void get_cursor_pos(POINT_I32 * ppoint) override;
-      inline ::point_i32 get_cursor_pos() {::point_i32 point; get_cursor_pos(&point); return point;}
+      //virtual void get_cursor_pos(POINT_I32 * ppoint) override;
+      //inline ::point_i32 get_cursor_pos() {::point_i32 point; get_cursor_pos(&point); return point;}
 
       //virtual void set_cursor_pos(const ::point_i32 & point) override;
 
 //      virtual index get_main_monitor(RECTANGLE_I32 * prectangle = nullptr) override;
-
-      virtual bool set_main_monitor(index iMonitor) override;
-      //virtual ::count get_monitor_count() override//;
-      //virtual bool  get_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle) override//;
-
-//      virtual index get_main_wkspace(RECTANGLE_I32 * prectangle = nullptr) override;
-
-      virtual bool set_main_wkspace(index iWkspace) override;
-      //virtual ::count get_wkspace_count() override;
-      //virtual bool  get_wkspace_rect(index iWkspace, RECTANGLE_I32 * prectangle) override;
-
-      virtual bool wkspace_to_monitor(RECTANGLE_I32 * prectangle, index iMonitor, index iWkspace) override;
-
-      virtual bool monitor_to_wkspace(RECTANGLE_I32 * prectangle, index iWkspace, index iMonitor) override;
-
-      virtual bool wkspace_to_monitor(RECTANGLE_I32 * prectangle) override;
-
-      virtual bool monitor_to_wkspace(RECTANGLE_I32 * prectangle) override;
-
-      //virtual ::count get_desk_monitor_count() override;
-      //virtual bool  get_desk_monitor_rect(index iMonitor, RECTANGLE_I32 * prectangle) override;
-
-      virtual void  get_monitor(rect_array & rectaMonitor, rect_array & rectaIntersect, const ::rectangle_i32 & rectangle) override;
-
-      virtual index initial_frame_position(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, bool bMove, ::user::interaction * pinteraction);
-
-      virtual index _get_best_zoneing(edisplay * pedisplay, ::rectangle_i32 * prectangle, const ::rectangle_i32 & rectangle, bool bPreserveSize = false) override;
-
-      virtual index get_best_monitor(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::e_activation eactivation = e_activation_default) override;
-
-      virtual index get_best_wkspace(::rectangle_i32 * prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default) override;
-
-      virtual index get_good_iconify(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle) override;
-
-      virtual index get_window_restore_1(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction, edisplay edisplayRestore);
-
-      virtual index get_window_restore_2(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle, ::user::interaction* pinteraction, edisplay edisplayRestore);
-
-      virtual index get_good_move(RECTANGLE_I32 * prectangle, const ::rectangle_i32 & rectangle, ::user::interaction * pinteraction);
 
       //virtual index get_ui_wkspace(::user::interaction * pinteraction);
 

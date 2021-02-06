@@ -31,13 +31,13 @@ namespace draw2d
    public:
 
 
-      index          m_iSerial;
-      index          m_iUpdateId;
-      int            m_iBaseSize;
-      int_array      m_iaSize;
-      ::rectangle_i32         m_rectClient;
-      int            m_iUpdatedCount;
-      bool           m_bLayoutStillIntersect;
+      index             m_iSerial;
+      index             m_iUpdateId;
+      int               m_iBaseSize;
+      int_array         m_iaSize;
+      ::rectangle_i32   m_rectClient;
+      int               m_iUpdatedCount;
+      bool              m_bLayoutStillIntersect;
 
 
    };
@@ -62,8 +62,8 @@ namespace draw2d
    protected:
 
 
-      ::rectangle_i32                                          m_rectClient;
-      enum_type                                          m_etype;
+      ::rectangle_i32                                 m_rectClient;
+      enum_type                                       m_etype;
 
 
    public:
@@ -81,14 +81,15 @@ namespace draw2d
       u32_array                                       m_dwaFg;
       ::user::interaction *                           m_puserinteraction;
 
-      point_i32                                           m_point;
-      ::size_i32                                          m_size;
+
+      point_i32                                       m_point;
+      ::size_i32                                      m_size;
       string                                          m_strText;
       string                                          m_strTextLayout;
 
-      ::rectangle_i32                                          m_rectMargin;
+      ::rectangle_i32                                 m_rectMargin;
       int                                             m_iBaseSizeLayout;
-      millis                                            m_millisLastLayout;
+      millis                                          m_millisLastLayout;
       __pointer(::thread)                             m_pthreadLayout;
       bool                                            m_bLayoutWideStillIntersect;
       int_array                                       m_iaSize;
@@ -106,14 +107,9 @@ namespace draw2d
 
       virtual ::e_status initialize(::layered* pobjectContext) override;
 
-
       virtual void on_subject(::promise::subject * psubject) override;
 
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
-
-
-      //virtual void defer_update();
-      //virtual void update();
 
       virtual void defer_font_enumeration(::promise::subject * psubject);
       virtual void update_font_enumeration(::promise::subject * psubject);

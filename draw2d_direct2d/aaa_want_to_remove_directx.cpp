@@ -524,7 +524,7 @@ namespace draw2d_direct2d
 
       // Set the underline on the text range
       ::draw2d_direct2d::throw_if_failed(
-         m_textLayout->SetUnderline(TRUE, textRange)
+         m_textLayout->SetUnderline(true, textRange)
          );
 
       // Set the font weight on the text range

@@ -285,16 +285,16 @@ namespace experience
 
          ::rectangle_i32 rectangle;
          /*      if(g_rgnTotal->GetRgnBox(rectangle) == NULLREGION)
-         return FALSE;
+         return false;
          else
-         return TRUE;*/
+         return true;*/
          /*__pointer(::user::interaction) pframewindow = ::user::interaction::from_handle_dup;
          if(pframewindow == nullptr)
-         return TRUE;
-         //HICON hicon = pframewindow->GetIcon(FALSE);
+         return true;
+         //HICON hicon = pframewindow->GetIcon(false);
          //if(hicon == nullptr)
          //{
-         //hicon = pframewindow->GetIcon(TRUE);
+         //hicon = pframewindow->GetIcon(true);
          //}
          /*i32 iStyle = pframewindow->GetStyle();
          i32 iStyleEx = pframewindow->GetExStyle();
@@ -308,7 +308,7 @@ namespace experience
          if(!pview->m_areaa.Contains(pframewindow->GetSafeoswindow_(), pview->m_iArea))
          pview->m_areaa[pview->m_iArea].m_oswindowa.add(pframewindow->GetSafeoswindow_());
          }*/
-         return TRUE;
+         return true;
       }
 
 #endif

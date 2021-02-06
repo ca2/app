@@ -248,7 +248,7 @@ namespace linux
       //      break;
       //   default:
       //      // unexpected icon type
-      //      ASSERT(FALSE);
+      //      ASSERT(false);
       //      return false;
       //   }
 
@@ -817,11 +817,11 @@ namespace linux
 
             pimage->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-            pimage->get_graphics()->stretch(::size_i32(16, 16), pimage1->get_graphics(), pimage1->rectangle_i32());
+            pimage->get_graphics()->stretch(::size_i32(16, 16), pimage1->get_graphics(), pimage1->rectangle());
 
             pimage->get_graphics()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-            pimage->get_graphics()->stretch(::size_i32(48, 48), pimage->get_graphics(), pimage->rectangle_i32());
+            pimage->get_graphics()->stretch(::size_i32(48, 48), pimage->get_graphics(), pimage->rectangle());
 
             sync_lock sl1(m_pilHover[48]->mutex());
 

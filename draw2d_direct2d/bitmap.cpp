@@ -206,7 +206,7 @@ namespace draw2d_direct2d
    {
       //   return Attach(::LoadBitmap(::aura::FindResourceHandle(
       //lpszResourceName, RT_BITMAP), lpszResourceName));
-      return FALSE;
+      return false;
 
    }
 

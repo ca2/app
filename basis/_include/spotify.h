@@ -3083,7 +3083,7 @@ SP_LIBEXPORT(const char *) sp_playlist_get_description(sp_playlist *playlist);
  * @param[in]  playlist       Playlist object
  * @param[out] image          20 byte image id
 
- * @return                    TRUE if playlist has an image, FALSE if not
+ * @return                    true if playlist has an image, false if not
  *
  */
 SP_LIBEXPORT(bool) sp_playlist_get_image(sp_playlist *playlist, byte image[20]);

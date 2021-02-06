@@ -91,7 +91,7 @@ namespace dynamic_source
       strName.replace("/", "\\");
 #endif
 
-      single_lock sl(mutex(), TRUE);
+      single_lock sl(mutex(), true);
 
       auto ppair = m_map.get_assoc(strName);
 
@@ -120,7 +120,7 @@ namespace dynamic_source
       if(::str::begins(lpcszName, "netnode://"))
       {
          
-         single_lock sl(mutex(), TRUE);
+         single_lock sl(mutex(), true);
 
          pscript  = get(lpcszName);
 
@@ -191,7 +191,7 @@ namespace dynamic_source
    void script_cache::set_all_out_of_date()
    {
       return;
-//   single_lock sl(mutex(), TRUE);
+//   single_lock sl(mutex(), true);
 //   __pointer(script) pscript;
 //   string strName;
 //   POSITION pos = m_map.get_start_position();
@@ -221,7 +221,7 @@ namespace dynamic_source
 
       ::file::path pathChanged = str;
 
-      single_lock sl(mutex(), TRUE);
+      single_lock sl(mutex(), true);
 
       for (auto & pair : m_map)
       {

@@ -237,7 +237,7 @@ namespace multimedia
          
             sync_lock sl(mutex());
 
-            status = AudioQueueDispose(m_Queue, FALSE);
+            status = AudioQueueDispose(m_Queue, false);
             
          }
 
@@ -296,7 +296,7 @@ namespace multimedia
 
          m_estate = e_state_stopping;
          
-         OSStatus status = AudioQueueStop(m_Queue, FALSE);
+         OSStatus status = AudioQueueStop(m_Queue, false);
 
          m_estatusWave = translate(status);
 
@@ -408,7 +408,7 @@ namespace multimedia
       imedia_time out::out_get_time()
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          OSStatus                status;
 
@@ -450,7 +450,7 @@ namespace multimedia
       imedia_time out::out_get_time()
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          OSStatus                status;
 

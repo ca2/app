@@ -1,6 +1,9 @@
 #pragma once
 
 
+#include "aura/operating_system.h"
+
+
 #include "aura/os/_os.h"
 #include <GL/glx.h>
 #include <GL/glu.h>

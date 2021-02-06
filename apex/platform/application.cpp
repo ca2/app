@@ -1238,17 +1238,17 @@ namespace apex
    };
 
 
-   int_bool CALLBACK enum_proc(oswindow hwnd, lparam lparam)
+   int_bool CALLBACK enum_proc(oswindow oswindow, lparam lparam)
    {
 
       open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
 
-      string str = ::str::get_window_text_timeout(hwnd, 1000);
+      string str = ::str::get_window_text_timeout(oswindow, 1000);
 
       if (::str::ends_ci(str, penum->m_strWindowEnd))
       {
 
-         penum->m_hwnd = hwnd;
+         penum->m_hwnd = oswindow;
 
          return false;
 
@@ -1259,17 +1259,17 @@ namespace apex
    }
 
 
-   int_bool CALLBACK enum_proc_ff_topic(oswindow hwnd, lparam lparam)
+   int_bool CALLBACK enum_proc_ff_topic(oswindow oswindow, lparam lparam)
    {
 
       open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
 
-      string str = ::str::get_window_text_timeout(hwnd);
+      string str = ::str::get_window_text_timeout(oswindow);
 
       if (::str::ends_ci(str, penum->m_strTopic))
       {
 
-         penum->m_hwndaTopic.add(hwnd);
+         penum->m_hwndaTopic.add(oswindow);
 
       }
 
@@ -1277,19 +1277,18 @@ namespace apex
 
    }
 
-   int_bool CALLBACK enum_proc_ff_counter_topic(oswindow hwnd, lparam lparam)
 
+   int_bool CALLBACK enum_proc_ff_counter_topic(oswindow oswindow, lparam lparam)
    {
 
       open_browser_enum * penum = (open_browser_enum *)lparam.m_lparam;
 
-
-      string str = ::str::get_window_text_timeout(hwnd, 1000);
+      string str = ::str::get_window_text_timeout(oswindow, 1000);
 
       if (::str::ends_ci(str, penum->m_strCounterTopic))
       {
 
-         penum->m_hwndaCounterTopic.add(hwnd);
+         penum->m_hwndaCounterTopic.add(oswindow);
 
       }
 
@@ -1457,13 +1456,13 @@ namespace apex
    //}
 
 
-//   void application::ShowWaitCursor(bool bShow)
+//   void application::show_wait_cursor(bool bShow)
 //   {
 //
 //      if (m_pappimpl.is_null())
 //         return;
 //
-//      m_pappimpl->ShowWaitCursor(bShow);
+//      m_pappimpl->show_wait_cursor(bShow);
 //
 //
 //   }
@@ -5678,12 +5677,12 @@ retry_license:
 
    //}
 
-   void application::process_message(::message::base * pbase)
-   {
+   //void application::process_message(::message::base * pbase)
+   //{
 
-      return ::thread::process_message(pbase);
+   //   return ::thread::process_message(pbase);
 
-   }
+   //}
 
 
 //   ::account::user * application::interactive_get_user(::file::path pathUrl)
@@ -6952,7 +6951,7 @@ retry_license:
       {
 
          m_iWaitCursorCount = 0;
-         ShowWaitCursor(false);
+         show_wait_cursor(false);
 
       }
       else if (nCode == 0)
@@ -6966,12 +6965,12 @@ retry_license:
          if (m_iWaitCursorCount > 0)
          {
 
-            ShowWaitCursor(true);
+            show_wait_cursor(true);
 
          }
 
          m_iWaitCursorCount = 0;
-         ShowWaitCursor(false);
+         show_wait_cursor(false);
 
       }
       else
@@ -6984,7 +6983,7 @@ retry_license:
 
          m_iWaitCursorCount++;
 
-         ShowWaitCursor(true);
+         show_wait_cursor(true);
 
       }
 
@@ -6992,7 +6991,7 @@ retry_license:
 
    }
 
-   //void application::ShowWaitCursor(bool bShow)
+   //void application::show_wait_cursor(bool bShow)
    //{
 
    //}
@@ -8631,7 +8630,7 @@ namespace apex
    //      // trans    m_puiMain->ShowOwnedPopups(false);
 
 
-   //      m_puiMain1->m_puiThis->order(zorder_bottom);
+   //      m_puiMain1->m_puiThis->order(e_zorder_bottom);
    //      //m_puiMain->m_puiThis->m_bZ = true;
    //      // put the window at the bottom of zorder, so it isn't activated
    //      // m_puiMain->m_puiThis->zorder();
@@ -9205,7 +9204,7 @@ namespace apex
    //      // trans    m_puiMain->ShowOwnedPopups(false);
 
 
-   //      m_puiMain1->m_puiThis->order(zorder_bottom);
+   //      m_puiMain1->m_puiThis->order(e_zorder_bottom);
    //      //m_puiMain->m_puiThis->m_bZ = true;
    //      // put the window at the bottom of zorder, so it isn't activated
    //      // m_puiMain->m_puiThis->zorder();
@@ -9845,51 +9844,51 @@ namespace apex
    //}
 
 
-   oswindow application::get_ca2_app_wnd(const char* psz)
-   {
+   //oswindow application::get_ca2_app_wnd(const char* psz)
+   //{
 
-      UNREFERENCED_PARAMETER(psz);
+   //   UNREFERENCED_PARAMETER(psz);
 
-      return nullptr;
+   //   return nullptr;
 
-   }
-
-
-   i32 application::send_simple_command(const char* psz, void* osdataSender)
-   {
-      string strApp;
-      string_array stra;
-      stra.add_tokens(psz, "::", true);
-      if (stra.get_size() > 0)
-      {
-         strApp = stra[0];
-         oswindow oswindow = get_ca2_app_wnd(strApp);
-         if (oswindow != nullptr)
-         {
-            return send_simple_command((void*)oswindow, psz, osdataSender);
-         }
-      }
-      return -1;
-   }
+   //}
 
 
-   i32 application::send_simple_command(void* osdata, const char* psz, void* osdataSender)
-   {
-#ifdef WINDOWS_DESKTOP
-      ::oswindow oswindow = (::oswindow) osdata;
-      if (!::IsWindow((HWND) oswindow))
-         return -1;
-      COPYDATASTRUCT cds;
-      __memset(&cds, 0, sizeof(cds));
-      cds.dwData = 888888;
-      cds.cbData = (u32)strlen(psz);
-      cds.lpData = (PVOID)psz;
-
-      return (i32)SendMessage((HWND) oswindow, WM_COPYDATA, (WPARAM)osdataSender, (LPARAM)&cds);
-#else
-      __throw(todo());
-#endif
-   }
+//   i32 application::send_simple_command(const char* psz, void* osdataSender)
+//   {
+//      string strApp;
+//      string_array stra;
+//      stra.add_tokens(psz, "::", true);
+//      if (stra.get_size() > 0)
+//      {
+//         strApp = stra[0];
+//         ::windowing::window * pwindow = get_ca2_app_wnd(strApp);
+//         if (oswindow != nullptr)
+//         {
+//            return send_simple_command((void*)oswindow, psz, osdataSender);
+//         }
+//      }
+//      return -1;
+//   }
+//
+//
+//   i32 application::send_simple_command(void* osdata, const char* psz, void* osdataSender)
+//   {
+//#ifdef WINDOWS_DESKTOP
+//      ::::windowing::window * pwindow = (::oswindow) osdata;
+//      if (!::IsWindow(__hwnd(oswindow)))
+//         return -1;
+//      COPYDATASTRUCT cds;
+//      __memset(&cds, 0, sizeof(cds));
+//      cds.dwData = 888888;
+//      cds.cbData = (u32)strlen(psz);
+//      cds.lpData = (PVOID)psz;
+//
+//      return (i32)SendMessage(__hwnd(oswindow), WM_COPYDATA, (WPARAM)osdataSender, (LPARAM)&cds);
+//#else
+//      __throw(todo());
+//#endif
+//   }
 
 
    void application::ensure_app_interest()
@@ -10605,12 +10604,12 @@ namespace apex
    //}
 
 
-   ::e_status application::process_message()
-   {
+   //::e_status application::process_message()
+   //{
 
-      return ::thread::process_message();
+   //   return ::thread::process_message();
 
-   }
+   //}
 
 
    //void application::SetCurrentHandles()

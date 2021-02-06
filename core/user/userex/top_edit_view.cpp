@@ -85,7 +85,7 @@ namespace userex
 
       get_document()->update_all_views(psubject);
 
-      if (pkey->m_ekey == ::user::key_return)
+      if (pkey->m_ekey == ::user::e_key_return)
       {
 
          m_bEnterKeyPressed = true;

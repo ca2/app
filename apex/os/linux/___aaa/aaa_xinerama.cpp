@@ -213,7 +213,7 @@ int get_best_ordered_monitor(::user::interaction * pinteraction, RECT32 * prectR
 
    auto rectaOrdered = get_ordered_monitor_recta(pinteraction->get_context_application());
 
-   index iJustForComparison = pinteraction->best_monitor(prectRet, nullptr, FALSE, 0, zorder_none);
+   index iJustForComparison = pinteraction->best_monitor(prectRet, nullptr, false, 0, zorder_none);
 
    index iOrdered = rectaOrdered.pred_find_first([&](auto & rectMonitorSorted) { return rectMonitorSorted == *prectRet; });
 
@@ -293,7 +293,7 @@ int get_best_monitor(::user::interaction * pinteraction, const ::rect & rectPara
 
    }
 
-   index i = pinteraction->best_monitor(prectRet, rect, FALSE, 0, zorder_none);
+   index i = pinteraction->best_monitor(prectRet, rect, false, 0, zorder_none);
 
    return i;
 

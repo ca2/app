@@ -363,7 +363,7 @@ namespace experience
             if (edisplayDock == edisplayOld || rectDock != rectWindow)
             {
 
-               m_pframewindow->order(zorder_top);
+               m_pframewindow->order(e_zorder_top);
 
                m_pframewindow->place(rectDock);
 

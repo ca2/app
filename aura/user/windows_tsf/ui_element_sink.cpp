@@ -44,7 +44,7 @@ namespace tsf
    //   if (m_cCompositions >= MAX_COMPOSITIONS)
    //   {
    //      //can't handle any more compositions
-   //      *pfOk = FALSE;
+   //      *pfOk = false;
    //      return S_OK;
    //   }
 

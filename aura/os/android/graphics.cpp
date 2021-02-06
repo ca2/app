@@ -7,7 +7,7 @@
 //int_bool window_set_mouse_cursor(oswindow window, hcursor hcursor)
 //{
 //
-//   return FALSE;
+//   return false;
 //
 //}
 
@@ -15,12 +15,12 @@
 //hcursor CreateAlphaCursor(oswindow window, const ::image * pimage, int xHotSpot, int yHotSpot)
 //{
 //
-//   return FALSE;
+//   return false;
 //
 //}
 //
 //
-//hcursor load_default_cursor(e_cursor ecursor)
+//hcursor load_default_cursor(enum_cursor ecursor)
 //{
 //
 //   return nullptr;

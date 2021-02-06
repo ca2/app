@@ -114,7 +114,7 @@ namespace user
 
    //   rectangle.deflate(m_rectPadding);
 
-   //   request() = rectangle_i32;
+   //   request() = rectangle;
 
    //}
 
@@ -172,7 +172,7 @@ namespace user
    //void interaction_layout::set_dim(const ::point_i32& point, const ::size_i32& size)
    //{
    //
-   //   layout().sketch().m_point = point_i32;
+   //   layout().sketch().m_point = point;
    //
    //   layout().sketch().m_size = size;
    //

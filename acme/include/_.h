@@ -351,8 +351,14 @@ CLASS_DECL_ACME void output_debug_string(const ansichar * psz);
 CLASS_DECL_ACME void output_debug_string(const wd16char * psz);
 CLASS_DECL_ACME void output_debug_string(const wd32char * psz);
 
+namespace windowing
+{
 
-using oswindow = void *;
+   class window;
+
+} // namespace windowing
+
+//using oswindow = void *;
 using windows_handle = void *;
 using hinstance = void *;
 
@@ -1667,7 +1673,7 @@ template<typename TYPE>
 inline bool is_ok(const TYPE *p)
 {
 
-   return ::is_set(p);
+   return ::is_set(p) && p->is_ok();
 
 }
 
@@ -2748,6 +2754,7 @@ class memory_base;
 #include "acme/primitive/primitive/enumeration.h"
 
 
+#include "acme/exception/status.h"
 
 
 class thread;
@@ -2967,19 +2974,31 @@ namespace http
 //
 //} // namespace draw2d
 
+#ifdef WINDOWS_DESKTOP
+
+struct hwnd { }; // as pointer is a HWND
+
+using oswindow_t = hwnd;
+
+#else
+
+using oswindow_ = ::windowing::window;
+
+#endif
 
 
+using oswindow = oswindow_t *;
 
 
 struct MESSAGE
 {
 
-   oswindow       hwnd;
-   ::u32          message;
-   wparam         wParam;
-   lparam         lParam;
-   point_i32      pt;
-   ::u64          time;
+   oswindow                oswindow;
+   ::u32                   message;
+   wparam                  wParam;
+   lparam                  lParam;
+   point_i32               pt;
+   ::u64                   time;
 
 };
 

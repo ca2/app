@@ -131,7 +131,7 @@ namespace account
 
       __pointer(::message::key) pkey(pmessage);
 
-      if(pkey->m_ekey == ::user::key_return)
+      if(pkey->m_ekey == ::user::e_key_return)
       {
 
          m_plogin->on_action("submit");
@@ -139,7 +139,7 @@ namespace account
          pmessage->m_bRet = true;
 
       }
-      else if(pkey->m_ekey == ::user::key_escape)
+      else if(pkey->m_ekey == ::user::e_key_escape)
       {
 
          m_plogin->on_action("escape");
@@ -268,7 +268,7 @@ namespace account
 
       set_window_text( "account Auth Windows");
 
-      order(zorder_top);
+      order(e_zorder_top);
 
       place(rectFontopus);
 
@@ -428,7 +428,7 @@ namespace account
                get_parent()->_001ScreenToClient(rectFontopus);
 
 
-            set_window_pos(zorder_top,rectFontopus,SWP_SHOWWINDOW);
+            set_window_pos(e_zorder_top,rectFontopus,SWP_SHOWWINDOW);
 
          }
 

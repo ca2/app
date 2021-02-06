@@ -186,7 +186,7 @@ mq * get_mq(ithread_t idthread, bool bCreate);
 ::u32 WaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout)
 {
 
-   return WaitForMultipleObjectsEx(dwSize, synca, bWaitForAll, tickTimeout, FALSE);
+   return WaitForMultipleObjectsEx(dwSize, synca, bWaitForAll, tickTimeout, false);
 
 }
 
@@ -194,7 +194,7 @@ mq * get_mq(ithread_t idthread, bool bCreate);
 ::u32 WaitForSingleObjectEx(HSYNC hsync, ::u32 tickTimeout, int_bool bAlertable)
 {
 
-   return WaitForMultipleObjectsEx(1, &hsync, TRUE, tickTimeout, bAlertable);
+   return WaitForMultipleObjectsEx(1, &hsync, true, tickTimeout, bAlertable);
 
 }
 
@@ -202,7 +202,7 @@ mq * get_mq(ithread_t idthread, bool bCreate);
 ::u32 WaitForSingleObject(HSYNC hsync, ::u32 tickTimeout)
 {
 
-   return WaitForSingleObjectEx(hsync, tickTimeout, FALSE);
+   return WaitForSingleObjectEx(hsync, tickTimeout, false);
 
 }
 
@@ -329,7 +329,7 @@ void * os_thread_thread_proc(void * pparameter);
 //
 //   pthread_setschedparam((pthread_t)hthread, iPolicy, &schedparam);
 //
-//   return TRUE;
+//   return true;
 //
 //}
 
@@ -374,7 +374,7 @@ CLASS_DECL_ACME void set_main_hthread(hthread_t hthread)
    // MESSAGE msg;
 
    // PeekMessage function used to create message queue Windows Desktop
-   // PeekMessage(&msg, nullptr, 0, 0xffffffff, FALSE);
+   // PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
 
    g_hMainThread = hthread;
 
@@ -387,7 +387,7 @@ CLASS_DECL_ACME void set_main_ithread(ithread_t ithread)
    //   MESSAGE msg;
 
    // PeekMessage function used to create message queue Windows Desktop
-   // PeekMessage(&msg, nullptr, 0, 0xffffffff, FALSE);
+   // PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
 
    g_uiMainThread = ithread;
 

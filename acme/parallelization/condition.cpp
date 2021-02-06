@@ -349,7 +349,7 @@ bool condition::lock(const duration& durationTimeout)
    if (SleepConditionVariableCS(
       &(CONDITION_VARIABLE &)m_conditionvariable,
       &(CRITICAL_SECTION &)m_criticalsection,
-      durationTimeout.u32_millis()) != FALSE)
+      durationTimeout.u32_millis()) != false)
    {
 
       return true;

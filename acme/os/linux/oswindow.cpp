@@ -507,7 +507,7 @@ bool oswindow_data::set_icon(::image * pimage)
 
    d1->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-   d1->g()->stretch(d1->rectangle_i32(), pimage->g(), pimage->rectangle_i32());
+   d1->g()->stretch(d1->rectangle(), pimage->g(), pimage->rectangle());
 
    memory m(m_pimpl->m_puserinteraction->get_context_application());
 
@@ -921,7 +921,7 @@ void oswindow_data::full_screen(const ::rectangle_i32 & rectangle)
 
    ::rectangle_i32 rBest;
 
-   int iMonitor = best_xinerama_monitor(m_pimpl->m_puserinteraction, rectangle_i32, rBest);
+   int iMonitor = best_xinerama_monitor(m_pimpl->m_puserinteraction, rectangle, rBest);
 
    windowing_output_debug_string("\n::oswindow_data::full_screen 1");
 
@@ -1474,7 +1474,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
       if(!(nFlags & SWP_NOZORDER))
       {
 
-         if(zorder.m_ezorder == zorder_top_most)
+         if(zorder.m_ezorder == e_zorder_top_most)
          {
 
             if(m_iaNetWmState[net_wm_state_above] != 1)
@@ -1487,7 +1487,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
             XRaiseWindow(display(), window());
 
          }
-         else if(zorder.m_ezorder == zorder_top)
+         else if(zorder.m_ezorder == e_zorder_top)
          {
 
             if(m_iaNetWmState[net_wm_state_above] != 0
@@ -1505,7 +1505,7 @@ bool oswindow_data::_set_window_pos(class ::zorder zorder, i32 x, i32 y, i32 cx,
             XRaiseWindow(display(), window());
 
          }
-         else if(zorder.m_ezorder == zorder_bottom)
+         else if(zorder.m_ezorder == e_zorder_bottom)
          {
 
             if(m_iaNetWmState[net_wm_state_below] != 1)

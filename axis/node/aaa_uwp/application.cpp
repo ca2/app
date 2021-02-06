@@ -50,7 +50,7 @@ namespace axis
    //bool application::_001OnDDECommand(const char * pcsz)
    //{
    //   UNREFERENCED_PARAMETER(pcsz);
-   //   return FALSE;
+   //   return false;
    //}
 
    //HINSTANCE application::GetHinstance()
@@ -237,7 +237,7 @@ namespace axis
       {
          ::uwp::thread::Delete();
       }
-      // 'delete this' only if m_bAutoDelete == TRUE
+      // 'delete this' only if m_bAutoDelete == true
 
       bool application::DispatchThreadMessageEx(MSG* msg)  // helper
       {
@@ -329,7 +329,7 @@ namespace axis
 
 
 
-   void application::ShowWaitCursor(bool bShow)
+   void application::show_wait_cursor(bool bShow)
    {
 
    }

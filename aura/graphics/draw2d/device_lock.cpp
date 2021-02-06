@@ -1,10 +1,6 @@
 #include "framework.h"
 #include "aura/operating_system.h"
-#include "aura/user/_user.h"
-#include "aura/node/_node.h"
-#ifdef _UWP
-#include "aura/os/windows_common/draw2d_direct2d_global.h"
-#endif
+
 
 
 namespace draw2d

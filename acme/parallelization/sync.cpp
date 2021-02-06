@@ -147,7 +147,7 @@ sync_result sync::wait(const duration & durationTimeout)
 
 #ifdef WINDOWS
 
-      return sync_result((u32) ::WaitForSingleObjectEx(m_hsync, durationTimeout.u32_millis(), FALSE));
+      return sync_result((u32) ::WaitForSingleObjectEx(m_hsync, durationTimeout.u32_millis(), false));
 
 #endif
 

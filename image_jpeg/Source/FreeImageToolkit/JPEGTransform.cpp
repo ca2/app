@@ -100,12 +100,12 @@ Build a crop string.
 @param bottom Specifies the bottom position of the cropped rectangle_i32
 @param width Image width
 @param height Image height
-@return Returns TRUE if successful, returns FALSE otherwise
+@return Returns true if successful, returns false otherwise
 */
 static int_bool
 getCropString(char* crop, int* left, int* top, int* right, int* bottom, int width, int height) {
 	if(!left || !top || !right || !bottom) {
-		return FALSE;
+		return false;
 	}
 
 	*left = CLAMP(*left, 0, width);
@@ -126,7 +126,7 @@ getCropString(char* crop, int* left, int* top, int* right, int* bottom, int widt
 	// test for empty rectangle_i32
 
 	if(((*left - *right) == 0) || ((*top - *bottom) == 0)) {
-		return FALSE;
+		return false;
 	}
 
 	// normalize the rectangle_i32
@@ -141,22 +141,22 @@ getCropString(char* crop, int* left, int* top, int* right, int* bottom, int widt
 	// test for "noop" rectangle_i32
 
 	if(*left == 0 && *right == width && *top == 0 && *bottom == height) {
-		return FALSE;
+		return false;
 	}
 
 	// build the crop option
 	sprintf(crop, "%dx%d+%d+%d", *right - *left, *bottom - *top, *left, *top);
 
-	return TRUE;
+	return true;
 }
 
 static int_bool
 JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* dst_io, fi_handle dst_handle, FREE_IMAGE_JPEG_OPERATION operation, int* left, int* top, int* right, int* bottom, int_bool perfect) {
 	const int_bool onlyReturnCropRect = (dst_io == nullptr) || (dst_handle == nullptr);
 	const long stream_start = onlyReturnCropRect ? 0 : dst_io->tell_proc(dst_handle);
-	int_bool swappedDim = FALSE;
-	int_bool trimH = FALSE;
-	int_bool trimV = FALSE;
+	int_bool swappedDim = false;
+	int_bool trimH = false;
+	int_bool trimV = false;
 
 	// Set up the jpeglib structures
 	jpeg_decompress_struct srcinfo;
@@ -180,53 +180,53 @@ JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* 
 	copyoption = JCOPYOPT_ALL;
 
 	// Set up default JPEG parameters
-	transfoptions.force_grayscale = FALSE;
-	transfoptions.crop = FALSE;
+	transfoptions.force_grayscale = false;
+	transfoptions.crop = false;
 
 	// Select the transform option
 	switch(operation) {
 		case FIJPEG_OP_FLIP_H:		// horizontal flip
 			transfoptions.transform = JXFORM_FLIP_H;
-			trimH = TRUE;
+			trimH = true;
 			break;
 		case FIJPEG_OP_FLIP_V:		// vertical flip
 			transfoptions.transform = JXFORM_FLIP_V;
-			trimV = TRUE;
+			trimV = true;
 			break;
 		case FIJPEG_OP_TRANSPOSE:	// transpose across UL-to-LR axis
 			transfoptions.transform = JXFORM_TRANSPOSE;
-			swappedDim = TRUE;
+			swappedDim = true;
 			break;
 		case FIJPEG_OP_TRANSVERSE:	// transpose across UR-to-LL axis
 			transfoptions.transform = JXFORM_TRANSVERSE;
-			trimH = TRUE;
-			trimV = TRUE;
-			swappedDim = TRUE;
+			trimH = true;
+			trimV = true;
+			swappedDim = true;
 			break;
 		case FIJPEG_OP_ROTATE_90:	// 90-degree clockwise rotation
 			transfoptions.transform = JXFORM_ROT_90;
-			trimH = TRUE;
-			swappedDim = TRUE;
+			trimH = true;
+			swappedDim = true;
 			break;
 		case FIJPEG_OP_ROTATE_180:	// 180-degree rotation
-			trimH = TRUE;
-			trimV = TRUE;
+			trimH = true;
+			trimV = true;
 			transfoptions.transform = JXFORM_ROT_180;
 			break;
 		case FIJPEG_OP_ROTATE_270:	// 270-degree clockwise (or 90 ccw)
 			transfoptions.transform = JXFORM_ROT_270;
-			trimV = TRUE;
-			swappedDim = TRUE;
+			trimV = true;
+			swappedDim = true;
 			break;
 		default:
 		case FIJPEG_OP_NONE:		// no transformation
 			transfoptions.transform = JXFORM_NONE;
 			break;
 	}
-	// (perfect == TRUE) ==> fail if there is non-transformable edge blocks
-	transfoptions.perfect = (perfect == TRUE) ? TRUE : FALSE;
+	// (perfect == true) ==> fail if there is non-transformable edge blocks
+	transfoptions.perfect = (perfect == true) ? true : false;
 	// Drop non-transformable edge blocks: trim off any partial edge MCUs that the transform can't handle.
-	transfoptions.trim = TRUE;
+	transfoptions.trim = true;
 
 	try {
 
@@ -249,7 +249,7 @@ JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* 
 		jcopy_markers_setup(&srcinfo, copyoption);
 
 		// Read the file header
-		jpeg_read_header(&srcinfo, TRUE);
+		jpeg_read_header(&srcinfo, true);
 
 		// crop option
 		char crop[64];
@@ -266,7 +266,7 @@ JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* 
 		// jpeg_read_coefficients so that memory allocation will be done right
 
 		// Prepare transformation workspace
-		// Fails right away if perfect flag is TRUE and transformation is not perfect
+		// Fails right away if perfect flag is true and transformation is not perfect
 		if( !jtransform_request_workspace(&srcinfo, &transfoptions) ) {
 			FreeImage_OutputMessageProc(FIF_JPEG, "Transformation is not perfect");
 			__throw((1));
@@ -313,7 +313,7 @@ JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* 
 		if(onlyReturnCropRect) {
 			jpeg_destroy_compress(&dstinfo);
 			jpeg_destroy_decompress(&srcinfo);
-			return TRUE;
+			return true;
 		}
 
 		// Read source file as DCT coefficients
@@ -358,10 +358,10 @@ JPEGTransformFromHandle(FreeImageIO* src_io, fi_handle src_handle, FreeImageIO* 
 	catch(...) {
 		jpeg_destroy_compress(&dstinfo);
 		jpeg_destroy_decompress(&srcinfo);
-		return FALSE;
+		return false;
 	}
 
-	return TRUE;
+	return true;
 }
 
 // ----------------------------------------------------------
@@ -391,7 +391,7 @@ openStdIO(const char* src_file, const char* dst_file, FreeImageIO* dst_io, fi_ha
 	FreeImageIO io;
 	SetDefaultIO (&io);
 
-	const int_bool isSameFile = (dst_file && (strcmp(src_file, dst_file) == 0)) ? TRUE : FALSE;
+	const int_bool isSameFile = (dst_file && (strcmp(src_file, dst_file) == 0)) ? true : false;
 
 	FILE* srcp = nullptr;
 	FILE* dstp = nullptr;
@@ -414,20 +414,20 @@ openStdIO(const char* src_file, const char* dst_file, FreeImageIO* dst_io, fi_ha
 			FreeImage_OutputMessageProc(FIF_JPEG, "Cannot open \"%s\" for writing", dst_file);
 		}
 		closeStdIO(srcp, dstp);
-		return FALSE;
+		return false;
 	}
 
 	if(FreeImage_GetFileTypeFromHandle(&io, srcp) != FIF_JPEG) {
 		FreeImage_OutputMessageProc(FIF_JPEG, " Source file \"%s\" is not jpeg", src_file);
 		closeStdIO(srcp, dstp);
-		return FALSE;
+		return false;
 	}
 
 	*dst_io = io;
 	*src_handle = srcp;
 	*dst_handle = dstp;
 
-	return TRUE;
+	return true;
 }
 
 static int_bool
@@ -440,7 +440,7 @@ openStdIOU(const wchar_t* src_file, const wchar_t* dst_file, FreeImageIO* dst_io
 	FreeImageIO io;
 	SetDefaultIO (&io);
 
-	const int_bool isSameFile = (dst_file && (wcscmp(src_file, dst_file) == 0)) ? TRUE : FALSE;
+	const int_bool isSameFile = (dst_file && (wcscmp(src_file, dst_file) == 0)) ? true : false;
 
 	FILE* srcp = nullptr;
 	FILE* dstp = nullptr;
@@ -462,23 +462,23 @@ openStdIOU(const wchar_t* src_file, const wchar_t* dst_file, FreeImageIO* dst_io
 			FreeImage_OutputMessageProc(FIF_JPEG, "Cannot open destination file for writing");
 		}
 		closeStdIO(srcp, dstp);
-		return FALSE;
+		return false;
 	}
 
 	if(FreeImage_GetFileTypeFromHandle(&io, srcp) != FIF_JPEG) {
 		FreeImage_OutputMessageProc(FIF_JPEG, " Source file is not jpeg");
 		closeStdIO(srcp, dstp);
-		return FALSE;
+		return false;
 	}
 
 	*dst_io = io;
 	*src_handle = srcp;
 	*dst_handle = dstp;
 
-	return TRUE;
+	return true;
 
 #else
-	return FALSE;
+	return false;
 #endif // _WIN32
 }
 
@@ -489,7 +489,7 @@ FreeImage_JPEGTransform(const char *src_file, const char *dst_file, FREE_IMAGE_J
 	fi_handle dst;
 
 	if(!openStdIO(src_file, dst_file, &io, &src, &dst)) {
-		return FALSE;
+		return false;
 	}
 
 	int_bool ret = JPEGTransformFromHandle(&io, src, &io, dst, operation, nullptr, nullptr, nullptr, nullptr, perfect);
@@ -506,10 +506,10 @@ FreeImage_JPEGCrop(const char *src_file, const char *dst_file, int left, int top
 	fi_handle dst;
 
 	if(!openStdIO(src_file, dst_file, &io, &src, &dst)) {
-		return FALSE;
+		return false;
 	}
 
-	int_bool ret = FreeImage_JPEGTransformFromHandle(&io, src, &io, dst, FIJPEG_OP_NONE, &left, &top, &right, &bottom, FALSE);
+	int_bool ret = FreeImage_JPEGTransformFromHandle(&io, src, &io, dst, FIJPEG_OP_NONE, &left, &top, &right, &bottom, false);
 
 	closeStdIO(src, dst);
 
@@ -523,7 +523,7 @@ FreeImage_JPEGTransformU(const wchar_t *src_file, const wchar_t *dst_file, FREE_
 	fi_handle dst;
 
 	if(!openStdIOU(src_file, dst_file, &io, &src, &dst)) {
-		return FALSE;
+		return false;
 	}
 
 	int_bool ret = JPEGTransformFromHandle(&io, src, &io, dst, operation, nullptr, nullptr, nullptr, nullptr, perfect);
@@ -540,10 +540,10 @@ FreeImage_JPEGCropU(const wchar_t *src_file, const wchar_t *dst_file, int left, 
 	fi_handle dst;
 
 	if(!openStdIOU(src_file, dst_file, &io, &src, &dst)) {
-		return FALSE;
+		return false;
 	}
 
-	int_bool ret = FreeImage_JPEGTransformFromHandle(&io, src, &io, dst, FIJPEG_OP_NONE, &left, &top, &right, &bottom, FALSE);
+	int_bool ret = FreeImage_JPEGTransformFromHandle(&io, src, &io, dst, FIJPEG_OP_NONE, &left, &top, &right, &bottom, false);
 
 	closeStdIO(src, dst);
 
@@ -557,7 +557,7 @@ FreeImage_JPEGTransformCombined(const char *src_file, const char *dst_file, FREE
 	fi_handle dst;
 
 	if(!openStdIO(src_file, dst_file, &io, &src, &dst)) {
-		return FALSE;
+		return false;
 	}
 
 	int_bool ret = FreeImage_JPEGTransformFromHandle(&io, src, &io, dst, operation, left, top, right, bottom, perfect);
@@ -574,7 +574,7 @@ FreeImage_JPEGTransformCombinedU(const wchar_t *src_file, const wchar_t *dst_fil
 	fi_handle dst;
 
 	if(!openStdIOU(src_file, dst_file, &io, &src, &dst)) {
-		return FALSE;
+		return false;
 	}
 
 	int_bool ret = FreeImage_JPEGTransformFromHandle(&io, src, &io, dst, operation, left, top, right, bottom, perfect);
@@ -596,10 +596,10 @@ getMemIO(FIMEMORY* src_stream, FIMEMORY* dst_stream, FreeImageIO* dst_io, fi_han
 
 	if(dst_stream) {
 		FIMEMORYHEADER *mem_header = (FIMEMORYHEADER*)(dst_stream->data);
-		if(mem_header->delete_me != TRUE) {
+		if(mem_header->delete_me != true) {
 			// do not save in a user buffer
 			FreeImage_OutputMessageProc(FIF_JPEG, "Destination memory buffer is read only");
-			return FALSE;
+			return false;
 		}
 	}
 
@@ -607,7 +607,7 @@ getMemIO(FIMEMORY* src_stream, FIMEMORY* dst_stream, FreeImageIO* dst_io, fi_han
 	*src_handle = src_stream;
 	*dst_handle = dst_stream;
 
-	return TRUE;
+	return true;
 }
 
 int_bool DLL_CALLCONV
@@ -617,7 +617,7 @@ FreeImage_JPEGTransformCombinedFromMemory(FIMEMORY* src_stream, FIMEMORY* dst_st
 	fi_handle dst;
 
 	if(!getMemIO(src_stream, dst_stream, &io, &src, &dst)) {
-		return FALSE;
+		return false;
 	}
 
 	return FreeImage_JPEGTransformFromHandle(&io, src, &io, dst, operation, left, top, right, bottom, perfect);

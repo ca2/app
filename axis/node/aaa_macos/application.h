@@ -89,7 +89,7 @@
 //      string multimedia_audio_get_default_library_name();
 //      string veriwell_multimedia_music_midi_get_default_library_name();
 //
-//      virtual void ShowWaitCursor(bool bShow);
+//      virtual void show_wait_cursor(bool bShow);
 //   
 //   };
 //

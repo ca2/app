@@ -462,7 +462,7 @@ namespace apple
 
       }
 
-      setenv("DYLD_FALLBACK_LIBRARY_PATH", strFallback, TRUE);
+      setenv("DYLD_FALLBACK_LIBRARY_PATH", strFallback, true);
 
       // Create authorization context_object
       OSStatus status;

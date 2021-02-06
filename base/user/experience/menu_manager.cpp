@@ -46,7 +46,7 @@ namespace experience
          {
             //               auto pframewindow = m_pframewindow;
 
-            /*            ::user::menu * pmenu = pframewindow->GetSystemMenu(FALSE);
+            /*            ::user::menu * pmenu = pframewindow->GetSystemMenu(false);
                      if(pmenu != nullptr)
                      {
                      pmenu->track_popup_menu(
@@ -97,7 +97,7 @@ namespace experience
          {
             //               auto pframewindow = m_pframewindow;
 
-            /*            ::user::menu * pmenu = pframewindow->GetSystemMenu(FALSE);
+            /*            ::user::menu * pmenu = pframewindow->GetSystemMenu(false);
                      if(pmenu != nullptr)
                      {
                      const ::point_i32 & point(LOWORD(lparam), HIWORD(lparam));

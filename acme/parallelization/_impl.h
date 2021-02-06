@@ -43,10 +43,10 @@ _AFXMT_INLINE int_bool critical_section::Init()
    }
    __except(STATUS_NO_MEMORY == GetExceptionCode())
    {
-      return FALSE;
+      return false;
    }
 
-   return TRUE;
+   return true;
 }
 
 _AFXMT_INLINE critical_sectioncritical_section() : sync < HANDLE > (nullptr)
@@ -72,12 +72,12 @@ _AFXMT_INLINE int_bool critical_section::Lock()
    {
       __throw(memory_exception());
    }
-   return TRUE;
+   return true;
 }
 _AFXMT_INLINE int_bool critical_section::Lock(::u32 tickTimeout)
 { ASSERT(tickTimeout == U32_INFINITE_TIMEOUT); (void)tickTimeout; return Lock(); }
 _AFXMT_INLINE int_bool critical_section::Unlock()
-{ ::LeaveCriticalSection(&m_sect); return TRUE; }
+{ ::LeaveCriticalSection(&m_sect); return true; }
 
 #endif //_AFXMT_INLINE
 

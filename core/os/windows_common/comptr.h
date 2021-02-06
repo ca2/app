@@ -38,7 +38,7 @@ public:
       {
          point_i32->AddRef();
       }
-      m_p = point_i32;
+      m_p = point;
    }
 
 
@@ -164,7 +164,7 @@ public:
 
          }
 
-         m_p = point_i32;
+         m_p = point;
 
       }
 

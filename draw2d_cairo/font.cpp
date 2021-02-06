@@ -28,7 +28,7 @@ namespace draw2d_cairo
 
       pc2->lf = *lpelf;
 
-      return TRUE;
+      return true;
 
    }
 

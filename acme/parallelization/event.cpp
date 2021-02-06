@@ -230,7 +230,7 @@ bool event::SetEvent()
    try
    {
 
-      return ::SetEvent((HANDLE)m_hsync) != FALSE;
+      return ::SetEvent((HANDLE)m_hsync) != false;
 
    }
    catch(...)
@@ -308,7 +308,7 @@ bool event::SetEvent()
 //
 //   ASSERT(m_hsync != nullptr);
 //
-//   return ::PulseEvent(m_hsync) != FALSE;
+//   return ::PulseEvent(m_hsync) != false;
 //
 //#else
 //
@@ -343,7 +343,7 @@ bool event::ResetEvent()
 
       }
 
-      return ::ResetEvent((HANDLE)m_hsync) != FALSE;
+      return ::ResetEvent((HANDLE)m_hsync) != false;
 
    }
    catch(...)
@@ -404,7 +404,7 @@ sync_result event::wait ()
    while (true)
    {
 
-      int iResult = ::WaitForSingleObjectEx(hsync(), 300, FALSE);
+      int iResult = ::WaitForSingleObjectEx(hsync(), 300, false);
 
       if(iResult == WAIT_OBJECT_0)
       {
@@ -539,7 +539,7 @@ sync_result event::wait (const duration & durationTimeout)
 
    auto osduration = durationTimeout.u32_millis();
 
-   result = sync_result((u32) ::WaitForSingleObjectEx(hsync(), osduration,FALSE));
+   result = sync_result((u32) ::WaitForSingleObjectEx(hsync(), osduration,false));
 
 #elif defined(ANDROID)
 
@@ -764,7 +764,7 @@ bool event::is_signaled() const
 
 #ifdef WINDOWS
 
-   return WAIT_OBJECT_0 == ::WaitForSingleObjectEx((HANDLE)m_hsync,0,FALSE);
+   return WAIT_OBJECT_0 == ::WaitForSingleObjectEx((HANDLE)m_hsync,0,false);
 
 #elif defined(ANDROID)
 
@@ -839,7 +839,7 @@ bool event::lock(const duration & durationTimeout)
 
 //#ifdef WINDOWS
 //
-//   u32 dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsync,durationTimeout.u32_millis(),FALSE);
+//   u32 dwRet = ::WaitForSingleObjectEx((HANDLE)m_hsync,durationTimeout.u32_millis(),false);
 //
 //   if (dwRet == WAIT_OBJECT_0 || dwRet == WAIT_ABANDONED)
 //      return true;

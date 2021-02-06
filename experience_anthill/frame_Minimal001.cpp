@@ -254,11 +254,11 @@ namespace experience
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(rectClient, rectangle_i32, eside);
+                  GetBorderRect(rectClient, rectangle, eside);
 
                   class imaging & imaging = System.imaging();
 
-                  imaging.color_blend(pgraphics, rectangle_i32, crMoveableBorder, 127);
+                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
 
                }
                /*else if(m_estyle == StyleLightBlue)
@@ -266,11 +266,11 @@ namespace experience
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(rectClient, rectangle_i32, eside);
+                  GetBorderRect(rectClient, rectangle, eside);
 
                   class imaging & imaging = System.imaging();
 
-                  imaging.color_blend(pgraphics, rectangle_i32, crMoveableBorder, 127);
+                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
 
 
 
@@ -294,11 +294,11 @@ namespace experience
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(rectClient, rectangle_i32, eside);
+                  GetBorderRect(rectClient, rectangle, eside);
 
                   class imaging & imaging = System.imaging();
 
-                  imaging.color_blend(pgraphics, rectangle_i32, crMoveableBorder, 127);
+                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
 
                }
 
@@ -391,7 +391,7 @@ namespace experience
 
             }
 
-            void frame_Minimal001::GetBorderRect(const ::rectangle_i32 & rectClient, LPRECT32 lprect, enum_border eside)
+            void frame_Minimal001::GetBorderRect(const ::rectangle_i32 & rectClient, RECTANGLE_I32 * lprect, enum_border eside)
             {
 
                ::rectangle_i32 rectBig(rectClient);
@@ -430,7 +430,7 @@ namespace experience
                   rectangle.top = rectSmall.bottom;
                   rectangle.bottom = rectBig.bottom;
                }
-               *lprect = rectangle_i32;
+               *lprect = rectangle;
             }
 
 

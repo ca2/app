@@ -36,7 +36,7 @@ CLASS_DECL_APEX bool __node_apex_pos_init()
 //
 //   t_hthread->m_bRun = true;
 
-   return TRUE;
+   return true;
 
 }
 

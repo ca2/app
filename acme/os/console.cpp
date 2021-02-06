@@ -93,10 +93,10 @@ namespace console
    }
 
 
-   void console_composite::SetScreenColor(int color, int iLineStart, int iLineCount)
+   void console_composite::SetScreenColor(enum_dos_color edoscolor, int iLineStart, int iLineCount)
    {
 
-      m_pconsole->SetScreenColor(color, iLineStart, iLineCount);
+      m_pconsole->SetScreenColor(edoscolor, iLineStart, iLineCount);
 
    }
 

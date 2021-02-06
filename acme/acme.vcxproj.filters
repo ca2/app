@@ -2534,6 +2534,9 @@
     <ClInclude Include="os\microsecond_sleep.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
+    <ClInclude Include="exception\status.h">
+      <Filter>Header Files\exception</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="primitive\primitive\application_bias.cpp">

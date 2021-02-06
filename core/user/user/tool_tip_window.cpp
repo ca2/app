@@ -47,7 +47,7 @@ namespace user
             if(m_iEventTool != ptool->BaseToolTipGetIndex()
                   || point != m_point)
             {
-               m_point = point_i32;
+               m_point = point;
                m_iEventTool = ptool->BaseToolTipGetIndex();
                //ptool->BaseToolTipGetWnd()->_001ScreenToClient(&m_point);
                KillTimer(e_timer_show_delayed);
@@ -133,7 +133,7 @@ namespace user
          ::rectangle_i32 rectToolScreen;
          ptool->BaseToolTipGetRect(rectToolScreen);
          ptool->BaseToolTipGetWnd()->_001ClientToScreen(rectToolScreen);
-         CalcRect(pgraphics, rectangle_i32, rectToolScreen, m_strTip);
+         CalcRect(pgraphics, rectangle, rectToolScreen, m_strTip);
 
          ::rectangle_i32 rectScreen;
          Session->get_main_monitor(rectangle);
@@ -164,7 +164,7 @@ namespace user
       }
 
 
-      order(zorder_top_most);
+      order(e_zorder_top_most);
       
       place(rectangle);
       
@@ -532,7 +532,7 @@ namespace user
       }*/
 
       // rgn.CreatePolygonRgn(pointa, 6, ALTERNATE);
-      //   SetWindowRgn((HRGN) rgn.detach(), TRUE);
+      //   SetWindowRgn((HRGN) rgn.detach(), true);
    }
 
 
@@ -616,12 +616,12 @@ namespace user
          point =  rectangle.random_point();
          break;
       default:
-         ASSERT(FALSE);
+         ASSERT(false);
          break;
       }
 
 
-      m_point = point_i32;
+      m_point = point;
    }
 
 } // namespace user

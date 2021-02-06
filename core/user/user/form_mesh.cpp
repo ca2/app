@@ -341,7 +341,7 @@ namespace user
 
       __pointer(::message::key) pkey(pmessage);
 
-      if(pkey->m_ekey == ::user::key_return)
+      if(pkey->m_ekey == ::user::e_key_return)
       {
 
          _001SaveEdit(_001GetEditControl());
@@ -445,7 +445,7 @@ namespace user
 //      rectClient.bottom = rectForm.bottom;
 //      rectClient.left = rectControl.left;
 //      rectClient.right = rectControl.right;
-//      return rectClient.contains(point) != FALSE;
+//      return rectClient.contains(point) != false;
    }
 
    //void form_mesh::_001OnColumnChange()
@@ -636,7 +636,7 @@ namespace user
 
       ::rectangle_i32 rectangle(rectControl);
 
-      *prectangle = rectangle_i32;
+      *prectangle = rectangle;
 
 
    }
@@ -692,7 +692,7 @@ namespace user
       //if(find_control(pinteraction,iItem,iSubItem))
       //{
 
-      //   pinteraction->order(zorder_top);
+      //   pinteraction->order(e_zorder_top);
       //   
       //   pinteraction->display();
       //   //, nullptr, SWP_NOSIZE | SWP_NOMOVE);

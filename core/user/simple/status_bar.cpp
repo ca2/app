@@ -29,7 +29,7 @@ simple_status_bar::~simple_status_bar()
 /*
 bool simple_status_bar::OnEraseBkgnd(::draw2d::graphics_pointer & pgraphics)
 {
-   return TRUE;
+   return true;
 }
 */
 

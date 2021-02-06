@@ -51,8 +51,8 @@
 #endif
 
 
-//CLASS_DECL_AURA iptr get_window_long_ptr(oswindow oswindow, int iIndex);
-//CLASS_DECL_AURA iptr set_window_long_ptr(oswindow oswindow, int iIndex, iptr i);
+//CLASS_DECL_AURA iptr get_window_long_ptr(::windowing::window * pwindow, int iIndex);
+//CLASS_DECL_AURA iptr set_window_long_ptr(::windowing::window * pwindow, int iIndex, iptr i);
 
 
 
@@ -67,7 +67,7 @@
 //namespace str
 //{
 //
-//   string CLASS_DECL_AURA get_window_text_timeout(oswindow oswindow, millis tickTimeout = 1000);
+//   string CLASS_DECL_AURA get_window_text_timeout(::windowing::window * pwindow, millis tickTimeout = 1000);
 //
 //} // namespace str
 //

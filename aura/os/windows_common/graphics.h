@@ -1,7 +1,7 @@
-﻿#pragma once
+#pragma once
 
 
-#error ""
+//#error ""
 //
 //
 //#ifdef _UWP

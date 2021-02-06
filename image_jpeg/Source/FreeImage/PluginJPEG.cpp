@@ -215,9 +215,9 @@ init_destination (j_compress_ptr cinfo)
 	*entire* buffer (use the saved start address and buffer length;
 	ignore the current state of next_output_byte and free_in_buffer).
 	Then reset the pointer & count to the start of the buffer, and
-	return TRUE indicating that the buffer has been dumped.
-	free_in_buffer must be set to a positive value when TRUE is
-	returned.  A FALSE return should only be used when I/O suspension is
+	return true indicating that the buffer has been dumped.
+	free_in_buffer must be set to a positive value when true is
+	returned.  A false return should only be used when I/O suspension is
 	desired.
 */
 METHODDEF(boolean)
@@ -236,7 +236,7 @@ empty_output_buffer (j_compress_ptr cinfo)
    dest->pub.next_output_byte = dest->buffer;
    dest->pub.free_in_buffer = OUTPUT_BUF_SIZE;
 
-   return TRUE;
+   return true;
 }
 
 /**
@@ -286,7 +286,7 @@ init_source (j_decompress_ptr cinfo)
     * This is correct behavior for reading a series of images from one source.
    */
 
-   src->start_of_file = TRUE;
+   src->start_of_file = true;
 }
 
 /**
@@ -294,10 +294,10 @@ init_source (j_decompress_ptr cinfo)
 	data is wanted.  In typical applications, it should read fresh data
 	into the buffer (ignoring the current state of next_input_byte and
 	bytes_in_buffer), reset the pointer & count to the start of the
-	buffer, and return TRUE indicating that the buffer has been reloaded.
+	buffer, and return true indicating that the buffer has been reloaded.
 	It is not necessary to fill the buffer entirely, only to obtain at
 	least one more byte.  bytes_in_buffer MUST be set to a positive value
-	if TRUE is returned.  A FALSE return should only be used when I/O
+	if true is returned.  A false return should only be used when I/O
 	suspension is desired.
 */
 METHODDEF(boolean)
@@ -331,9 +331,9 @@ fill_input_buffer (j_decompress_ptr cinfo)
 
    src->pub.next_input_byte = src->buffer;
    src->pub.bytes_in_buffer = nbytes;
-   src->start_of_file = FALSE;
+   src->start_of_file = false;
 
-   return TRUE;
+   return true;
 }
 
 /**
@@ -364,7 +364,7 @@ skip_input_data (j_decompress_ptr cinfo, long num_bytes)
 
          (void) fill_input_buffer(cinfo);
 
-         /* note we assume that fill_input_buffer will never return FALSE,
+         /* note we assume that fill_input_buffer will never return false,
           * so suspension need not be handled.
           */
       }
@@ -467,7 +467,7 @@ jpeg_freeimage_dst (j_compress_ptr cinfo, fi_handle outfile, FreeImageIO *io)
 
    // read the comment
    char *value = (char*)malloc((length + 1) * sizeof(char));
-   if(value == nullptr) return FALSE;
+   if(value == nullptr) return false;
    ::memcpy(value, profile, length);
    value[length] = '\0';
 
@@ -493,7 +493,7 @@ jpeg_freeimage_dst (j_compress_ptr cinfo, fi_handle outfile, FreeImageIO *io)
 
    free(value);
 
-   return TRUE;
+   return true;
 }
 
 /**
@@ -516,20 +516,20 @@ marker_is_icc(jpeg_saved_marker_ptr marker)
       {
          if(memcmp(icc_signature, marker->data, sizeof(icc_signature)) == 0)
          {
-            return TRUE;
+            return true;
          }
       }
    }
 
-   return FALSE;
+   return false;
 }
 
 /**
   See if there was an ICC profile in the JPEG file being read;
   if so, reassemble and return the profile data.
 
-  TRUE is returned if an ICC profile was found, FALSE if not.
-  If TRUE is returned, *icc_data_ptr is set to point_i32 to the
+  true is returned if an ICC profile was found, false if not.
+  If true is returned, *icc_data_ptr is set to point_i32 to the
   returned data, and *icc_data_len is set to its length.
 
   IMPORTANT: the data at **icc_data_ptr has been allocated with malloc()
@@ -540,7 +540,7 @@ marker_is_icc(jpeg_saved_marker_ptr marker)
   will prefer to have the data stick around after decompression finishes.)
 
   NOTE: if the file contains invalid ICC APP2 markers, we just silently
-  return FALSE.  You might want to issue an error message instead.
+  return false.  You might want to issue an error message instead.
 */
 static int_bool
 jpeg_read_icc_profile(j_decompress_ptr cinfo, JOCTET **icc_data_ptr, unsigned *icc_data_len)
@@ -556,7 +556,7 @@ jpeg_read_icc_profile(j_decompress_ptr cinfo, JOCTET **icc_data_ptr, unsigned *i
    unsigned data_length[MAX_SEQ_NO+1];	// size_i32 of profile data in marker
    unsigned data_offset[MAX_SEQ_NO+1];	// offset for data in marker
 
-   *icc_data_ptr = nullptr;		// avoid confusion if FALSE return
+   *icc_data_ptr = nullptr;		// avoid confusion if false return
    *icc_data_len = 0;
 
    /**
@@ -577,17 +577,17 @@ jpeg_read_icc_profile(j_decompress_ptr cinfo, JOCTET **icc_data_ptr, unsigned *i
          }
          else if (num_markers != GETJOCTET(marker->data[13]))
          {
-            return FALSE;		// inconsistent num_markers fields
+            return false;		// inconsistent num_markers fields
          }
          // sequence number
          seq_no = GETJOCTET(marker->data[12]);
          if (seq_no <= 0 || seq_no > num_markers)
          {
-            return FALSE;		// bogus sequence number
+            return false;		// bogus sequence number
          }
          if (marker_present[seq_no])
          {
-            return FALSE;		// duplicate sequence numbers
+            return false;		// duplicate sequence numbers
          }
          marker_present[seq_no] = 1;
          data_length[seq_no] = marker->data_length - ICC_HEADER_SIZE;
@@ -595,7 +595,7 @@ jpeg_read_icc_profile(j_decompress_ptr cinfo, JOCTET **icc_data_ptr, unsigned *i
    }
 
    if (num_markers == 0)
-      return FALSE;
+      return false;
 
    /**
    check for missing markers, count total space needed,
@@ -607,19 +607,19 @@ jpeg_read_icc_profile(j_decompress_ptr cinfo, JOCTET **icc_data_ptr, unsigned *i
    {
       if (marker_present[seq_no] == 0)
       {
-         return FALSE;		// missing sequence number
+         return false;		// missing sequence number
       }
       data_offset[seq_no] = total_length;
       total_length += data_length[seq_no];
    }
 
    if (total_length <= 0)
-      return FALSE;		// found only empty markers ?
+      return false;		// found only empty markers ?
 
    // allocate space for assembled data
    icc_data = (JOCTET *) malloc(total_length * sizeof(JOCTET));
    if (icc_data == nullptr)
-      return FALSE;		// out of memory
+      return false;		// out of memory
 
    // and fill it in
    for (marker = cinfo->marker_list; marker != nullptr; marker = marker->next)
@@ -643,7 +643,7 @@ jpeg_read_icc_profile(j_decompress_ptr cinfo, JOCTET **icc_data_ptr, unsigned *i
    *icc_data_ptr = icc_data;
    *icc_data_len = total_length;
 
-   return TRUE;
+   return true;
 }
 
 /**
@@ -660,7 +660,7 @@ static int_bool
 /*	@param image Input FIBITMAP
 	@param dataptr Pointer to the APP1 marker
 	@param datalen APP1 marker length
-	@return Returns TRUE if successful, FALSE otherwise
+	@return Returns true if successful, false otherwise
 */
 static int_bool
 /*jpeg_read_xmp_profile(FIBITMAP * pimage, const byte *dataptr, unsigned int datalen)
@@ -676,7 +676,7 @@ static int_bool
    if(length <= xmp_signature_size)
    {
       // avoid reading corrupted or empty data
-      return FALSE;
+      return false;
    }
 
    // verify the identifying string
@@ -706,10 +706,10 @@ static int_bool
          FreeImage_DeleteTag(tag);
       }
 
-      return TRUE;
+      return true;
    }
 
-   return FALSE;
+   return false;
 }
 
 /**
@@ -717,14 +717,14 @@ static int_bool
 /*	@param image Input FIBITMAP
 	@param dataptr Pointer to the APP0 marker
 	@param datalen APP0 marker length
-	@return Returns TRUE if successful, FALSE otherwise
+	@return Returns true if successful, false otherwise
 */
 static int_bool
 /*jpeg_read_jfxx(FIBITMAP * pimage, const byte *dataptr, unsigned int datalen)
 {
    if(datalen < 6)
    {
-      return FALSE;
+      return false;
    }
 
    const int id_length = 5;
@@ -759,7 +759,7 @@ static int_bool
       break;
    }
 
-   return TRUE;
+   return true;
 }
 
 
@@ -820,7 +820,7 @@ static int_bool
       free(icc_profile);
    }
 
-   return TRUE;
+   return true;
 }
 
 // ----------------------------------------------------------
@@ -847,10 +847,10 @@ static int_bool
          {
             jpeg_write_marker(cinfo, JPEG_COM, (byte*)tag_value + i, (unsigned int) min((long)strlen(tag_value + i), MAX_BYTES_IN_MARKER));
          }
-         return TRUE;
+         return true;
       }
    }
-   return FALSE;
+   return false;
 }
 
 /**
@@ -869,7 +869,7 @@ static int_bool
       // ICC_HEADER_SIZE: ICC signature is 'ICC_PROFILE' + 2 bytes
 
       byte *profile = (byte*)malloc((iccProfile->size + ICC_HEADER_SIZE) * sizeof(byte));
-      if(profile == nullptr) return FALSE;
+      if(profile == nullptr) return false;
       memcpy(profile, icc_signature, 12);
 
       for(long i = 0; i < (long)iccProfile->size_i32; i += MAX_DATA_BYTES_IN_MARKER)
@@ -878,7 +878,7 @@ static int_bool
          // sequence number
          profile[12] = (byte) ((i / MAX_DATA_BYTES_IN_MARKER) + 1);
          // number of markers
-         profile[13] = (byte) (iccProfile->size_i32 / MAX_DATA_BYTES_IN_MARKER + 1);
+         profile[13] = (byte) (iccProfile->size / MAX_DATA_BYTES_IN_MARKER + 1);
 
          memcpy(profile + ICC_HEADER_SIZE, (byte*)iccProfile->data + i, length);
          jpeg_write_marker(cinfo, ICC_MARKER, profile, (length + ICC_HEADER_SIZE));
@@ -886,15 +886,15 @@ static int_bool
 
       free(profile);
 
-      return TRUE;
+      return true;
    }
 
-   return FALSE;
+   return false;
 }
 
 /**
 	Write JPEG_APPD marker (IPTC or Adobe Photoshop profile)
-	@return Returns TRUE if successful, FALSE otherwise
+	@return Returns true if successful, false otherwise
 */
 static int_bool
 /*jpeg_write_iptc_profile(j_compress_ptr cinfo, FIBITMAP * pimage)
@@ -936,16 +936,16 @@ static int_bool
          // release profile
          free(profile);
 
-         return TRUE;
+         return true;
       }
    }
 
-   return FALSE;
+   return false;
 }
 
 /**
 	Write JPEG_APP1 marker (XMP profile)
-	@return Returns TRUE if successful, FALSE otherwise
+	@return Returns true if successful, false otherwise
 */
 static int_bool
 /*jpeg_write_xmp_profile(j_compress_ptr cinfo, FIBITMAP * pimage)
@@ -968,7 +968,7 @@ static int_bool
          ::u32 tag_length = FreeImage_GetTagLength(tag_xmp);
 
          byte *profile = (byte*)malloc((tag_length + xmp_header_size) * sizeof(byte));
-         if(profile == nullptr) return FALSE;
+         if(profile == nullptr) return false;
          memcpy(profile, xmp_signature, xmp_header_size);
 
          for(::u32 i = 0; i < tag_length; i += 65504L)
@@ -981,16 +981,16 @@ static int_bool
 
          free(profile);
 
-         return TRUE;
+         return true;
       }
    }
 
-   return FALSE;
+   return false;
 }
 
 /**
 	Write JPEG_APP1 marker (Exif profile)
-	@return Returns TRUE if successful, FALSE otherwise
+	@return Returns true if successful, false otherwise
 */
 static int_bool
 /*jpeg_write_exif_profile_raw(j_compress_ptr cinfo, FIBITMAP * pimage)
@@ -1009,7 +1009,7 @@ static int_bool
       if(memcmp(exif_signature, tag_value, sizeof(exif_signature)) != 0)
       {
          // not an Exif profile
-         return FALSE;
+         return false;
       }
 
       if(nullptr != tag_value)
@@ -1017,7 +1017,7 @@ static int_bool
          ::u32 tag_length = FreeImage_GetTagLength(tag_exif);
 
          byte *profile = (byte*)malloc(tag_length * sizeof(byte));
-         if(profile == nullptr) return FALSE;
+         if(profile == nullptr) return false;
 
          for(::u32 i = 0; i < tag_length; i += 65504L)
          {
@@ -1029,11 +1029,11 @@ static int_bool
 
          free(profile);
 
-         return TRUE;
+         return true;
       }
    }
 
-   return FALSE;
+   return false;
 }
 
 /**
@@ -1046,13 +1046,13 @@ static int_bool
 /*   FIBITMAP* thumbnail = FreeImage_GetThumbnail(pimage);
    if(!thumbnail)
    {
-      return TRUE;
+      return true;
    }
    // check for a compatible output format
    if((FreeImage_GetImageType(thumbnail) != FIT_BITMAP) || ((FreeImage_GetBPP(thumbnail) != 8) && (FreeImage_GetBPP(thumbnail) != 24)))
    {
       FreeImage_OutputMessageProc(s_format_id, FI_MSG_WARNING_INVALID_THUMBNAIL);
-      return FALSE;
+      return false;
    }
 
    // stores the thumbnail as a baseline JPEG into a memory block
@@ -1068,13 +1068,13 @@ static int_bool
       {
          FreeImage_OutputMessageProc(s_format_id, "Warning: attached thumbnail is %d bytes larger than maximum supported size - Thumbnail saving aborted", eof - MAX_JFXX_THUMB_SIZE);
          FreeImage_CloseMemory(stream);
-         return FALSE;
+         return false;
       }
    }
    else
    {
       FreeImage_CloseMemory(stream);
-      return FALSE;
+      return false;
    }
 
    byte* thData = nullptr;
@@ -1121,7 +1121,7 @@ static int_bool
 
    FreeImage_CloseMemory(stream);
 
-   return TRUE;
+   return true;
 }
 
 /**
@@ -1148,7 +1148,7 @@ static int_bool
    // write Exif raw data
 /*   jpeg_write_exif_profile_raw(cinfo, pimage);
 
-   return TRUE;
+   return true;
 }
 
 // ------------------------------------------------------------
@@ -1243,19 +1243,19 @@ SupportsExportDepth(int depth)
 static int_bool DLL_CALLCONV
 SupportsExportType(FREE_IMAGE_TYPE type)
 {
-   return (type == FIT_BITMAP) ? TRUE : FALSE;
+   return (type == FIT_BITMAP) ? true : false;
 }
 
 static int_bool DLL_CALLCONV
 SupportsICCProfiles()
 {
-   return TRUE;
+   return true;
 }
 
 static int_bool DLL_CALLCONV
 SupportsNoPixels()
 {
-   return TRUE;
+   return true;
 }
 
 // ----------------------------------------------------------
@@ -1309,7 +1309,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
 
          // step 3: read handle parameters with jpeg_read_header()
 
-         jpeg_read_header(&cinfo, TRUE);
+         jpeg_read_header(&cinfo, true);
 
          // step 4: set parameters for decompression
 
@@ -1339,7 +1339,7 @@ Load(FreeImageIO *io, fi_handle handle, int page, int flags, void *data)
          if ((flags & JPEG_ACCURATE) != JPEG_ACCURATE)
          {
             cinfo.dct_method          = JDCT_IFAST;
-            cinfo.do_fancy_upsampling = FALSE;
+            cinfo.do_fancy_upsampling = false;
          }
 
          if ((flags & JPEG_GREYSCALE) == JPEG_GREYSCALE)
@@ -1633,7 +1633,7 @@ static int_bool DLL_CALLCONV
          // compute optimal Huffman coding tables for the image
          if((flags & JPEG_OPTIMIZE) == JPEG_OPTIMIZE)
          {
-            cinfo.optimize_coding = TRUE;
+            cinfo.optimize_coding = true;
          }
 
          // Set JFIF density parameters from the DIB data
@@ -1746,11 +1746,11 @@ static int_bool DLL_CALLCONV
             }
          }
 
-         jpeg_set_quality(&cinfo, quality, TRUE); /* limit to baseline-JPEG values */
+         jpeg_set_quality(&cinfo, quality, true); /* limit to baseline-JPEG values */
 
          // Step 5: Start compressor
 
-         jpeg_start_compress(&cinfo, TRUE);
+         jpeg_start_compress(&cinfo, true);
 
          // Step 6: Write special markers
 
@@ -1867,7 +1867,7 @@ static int_bool DLL_CALLCONV
 
          jpeg_destroy_compress(&cinfo);
 
-         return TRUE;
+         return true;
 
       }
       catch (const char *text)
@@ -1876,11 +1876,11 @@ static int_bool DLL_CALLCONV
          {
             FreeImage_OutputMessageProc(s_format_id, text);
          }
-         return FALSE;
+         return false;
       }
    }
 
-   return FALSE;
+   return false;
 }
 
 extern "C"

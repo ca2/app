@@ -448,7 +448,7 @@ namespace user
          //   if (_001GetItemElementRect(rectangle, data, e_tree_element_image))
          //   {
 
-         //      rectUnion = rectangle_i32;
+         //      rectUnion = rectangle;
 
          //   }
 
@@ -538,7 +538,7 @@ namespace user
 
          data.m_pdc->set(m_fontTreeItem);
 
-         data.m_pdc->_DrawText(strItem, rectangle_i32, m_ealignText, m_edrawtext);
+         data.m_pdc->_DrawText(strItem, rectangle, m_ealignText, m_edrawtext);
 
       }
 

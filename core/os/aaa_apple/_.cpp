@@ -357,7 +357,7 @@ i64 oswindow_id(oswindow w)
 
 int is_window(oswindow window)
 {
-   return (window == nullptr) ? FALSE : (window->get_user_interaction() != nullptr);
+   return (window == nullptr) ? false : (window->get_user_interaction() != nullptr);
 }
 
 

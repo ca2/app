@@ -1316,7 +1316,7 @@ run_install:
          if(a == 1)
          {
 
-            m_phost->m_bInstalling = b != FALSE;
+            m_phost->m_bInstalling = b != false;
 
          }
          else if(a == 3)
@@ -1631,7 +1631,7 @@ restart:
 
             m_phost->m_pbasecomposer->m_bRectSent = true;
 
-            m_rectSent = rectangle_i32;
+            m_rectSent = rectangle;
 
             if(!ensure_tx(::hotplugin::message_set_window,(void *)&rectangle,sizeof(RECTANGLE_I32)))
             {

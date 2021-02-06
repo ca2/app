@@ -42,11 +42,7 @@ namespace user
 
       virtual bool start_window_visual() override;
 
-      virtual bool SetFocus() override;
-
-      virtual bool has_focus() override;
-      virtual bool is_active() override;
-
+      //virtual bool is_active() const override;
 
       virtual bool DestroyWindow() override;
 

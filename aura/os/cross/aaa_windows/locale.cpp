@@ -196,9 +196,9 @@ int_bool is_genitive_name_supported( LCTYPE lctype )
    case LOCALE_SMONTHNAME11:
    case LOCALE_SMONTHNAME12:
    case LOCALE_SMONTHNAME13:
-      return TRUE;
+      return true;
    default:
-      return FALSE;
+      return false;
    }
 }
 
@@ -547,7 +547,7 @@ WINAXISAPI
 LCID WINAPI GetSystemDefaultLCID(void)
 {
    LCID lcid;
-   NtQueryDefaultLocale( FALSE, &lcid );
+   NtQueryDefaultLocale( false, &lcid );
    return lcid;
 }
 
@@ -651,6 +651,6 @@ WINAXISAPI
 LCID WINAPI GetUserDefaultLCID(void)
 {
    LCID lcid;
-   NtQueryDefaultLocale( TRUE, &lcid );
+   NtQueryDefaultLocale( true, &lcid );
    return lcid;
 }

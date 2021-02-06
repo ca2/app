@@ -604,8 +604,15 @@ inline operator ::e ## ENUMTYPE() const { return e ## ENUMTYPE(); }
 
    }
 
+   template < a_pointer POINTER >
+   payload & operator = (POINTER p)
+   {
 
-   template < class T >
+      return this->operator = ((::matter *) p);
+
+   }
+
+   template < not_pointer T >
    payload & operator = (const T & t)
    {
 

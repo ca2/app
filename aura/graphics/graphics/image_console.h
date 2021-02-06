@@ -27,7 +27,7 @@ namespace graphics
       int                           m_iLastPen;
 
 
-      console(size sizeTile);
+      console::size_i32 sizeTile);
 
       virtual ::draw2d::pen_pointer & get_pen2(int iColor);
       virtual ::draw2d::pen_pointer & get_pen1(int iColor);

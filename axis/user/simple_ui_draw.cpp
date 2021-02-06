@@ -30,7 +30,7 @@ namespace simple_ui
 
       ::rectangle_i32 rectDraw;
 
-      rectDraw = rectangle_i32;
+      rectDraw = rectangle;
 
       rectDraw.deflate(0, 0, 1, 1);
 
@@ -46,7 +46,7 @@ namespace simple_ui
 
       pgraphics->set(point);
 
-      pgraphics->rectangle_i32(rectDraw);
+      pgraphics->rectangle(rectDraw);
 
    }
 
@@ -137,7 +137,7 @@ namespace simple_ui
 
       ::rectangle_i32 rectDraw;
 
-      rectDraw = rectangle_i32;
+      rectDraw = rectangle;
 
       pgraphics->fill_rect(rectDraw, ARGB(90, 127, 127, 127));
 
@@ -150,7 +150,7 @@ namespace simple_ui
 
       ::rectangle_i32 rectDraw;
 
-      rectDraw = rectangle_i32;
+      rectDraw = rectangle;
 
       pgraphics->set_alpha_mode(draw2d::alpha_mode_blend);
 
@@ -178,7 +178,7 @@ namespace simple_ui
    void draw::simple_ui_draw_auth_box(const ::rectangle_i32& rectangle, ::draw2d::graphics_pointer& pgraphics)
    {
 
-      ::rectangle_i32 rectDraw = rectangle_i32;
+      ::rectangle_i32 rectDraw = rectangle;
 
       pgraphics->set_alpha_mode(draw2d::alpha_mode_blend);
 
@@ -434,7 +434,7 @@ namespace simple_ui
 
       m_rectangle.deflate(0, 0, 1, 1);
 
-      pgraphics->rectangle_i32(m_rectangle);*/
+      pgraphics->rectangle(m_rectangle);*/
 
       //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 

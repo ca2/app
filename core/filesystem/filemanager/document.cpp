@@ -56,7 +56,7 @@ namespace filemanager
       UNREFERENCED_PARAMETER(lFlags);
       UNREFERENCED_PARAMETER(ptemplate);
 
-      ASSERT(bOpenFileDialog == FALSE);
+      ASSERT(bOpenFileDialog == false);
 
       __pointer(document) pdocument = this;
 
@@ -69,7 +69,7 @@ namespace filemanager
       i32 iWidth = rectOpen.width();
       i32 iHeight = rectOpen.width();
       rectOpen.deflate(iWidth / 5, iHeight / 5);
-      pview->get_parent_frame()->order(zorder_top);
+      pview->get_parent_frame()->order(e_zorder_top);
       pview->get_parent_frame()->place(rectOpen);
       pview->get_parent_frame()->display();
 
@@ -79,7 +79,7 @@ namespace filemanager
       pview->get_parent_frame()->RunModalLoop();
       varFile = pdocument->m_strTopic;
       pview->get_parent_frame()->DestroyWindow();
-      return TRUE;
+      return true;
 
    }
 
@@ -755,7 +755,7 @@ namespace filemanager
 
       __pointer(::user::command) pcommand(pmessage);
 
-      pcommand->enable(TRUE);
+      pcommand->enable(true);
 
       pmessage->m_bRet = true;
 
@@ -783,7 +783,7 @@ namespace filemanager
 
       __pointer(::user::command) pcommand(pmessage);
 
-      pcommand->enable(TRUE);
+      pcommand->enable(true);
 
       pmessage->m_bRet = true;
 
@@ -828,13 +828,13 @@ namespace filemanager
       if (m_pitem.is_null() || m_pitem->m_filepathUser.is_empty())
       {
 
-         pcommand->enable(FALSE);
+         pcommand->enable(false);
 
       }
       else
       {
 
-         pcommand->enable(TRUE);
+         pcommand->enable(true);
 
       }
 
@@ -855,7 +855,7 @@ namespace filemanager
 
       __pointer(::user::command) pcommand(pmessage);
 
-      pcommand->enable(TRUE);
+      pcommand->enable(true);
 
       pmessage->m_bRet = true;
 
@@ -877,7 +877,7 @@ namespace filemanager
 
       __pointer(::user::command) pcommand(pmessage);
 
-      pcommand->enable(TRUE);
+      pcommand->enable(true);
 
       pmessage->m_bRet = true;
 
@@ -901,7 +901,7 @@ namespace filemanager
 
       __pointer(::user::command) pcommand(pmessage);
 
-      pcommand->enable(TRUE);
+      pcommand->enable(true);
 
       pmessage->m_bRet = true;
 
@@ -939,19 +939,19 @@ namespace filemanager
    void document::_001OnUpdateFileSaveAs(::message::message * pmessage)
    {
       __pointer(::user::command) pcommand(pmessage);
-      pcommand->enable(TRUE);
+      pcommand->enable(true);
    }
 
    void document::_001OnUpdateFileImport(::message::message * pmessage)
    {
       __pointer(::user::command) pcommand(pmessage);
-      pcommand->enable(TRUE);
+      pcommand->enable(true);
    }
 
    void document::_001OnUpdateFileExport(::message::message * pmessage)
    {
       __pointer(::user::command) pcommand(pmessage);
-      pcommand->enable(TRUE);
+      pcommand->enable(true);
    }
 
 

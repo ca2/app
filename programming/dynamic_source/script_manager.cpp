@@ -764,7 +764,7 @@ namespace dynamic_source
 
       try
       {
-         single_lock sl(&m_mutexIncludeMatches, TRUE);
+         single_lock sl(&m_mutexIncludeMatches, true);
 
          try
          {
@@ -797,7 +797,7 @@ namespace dynamic_source
       try
       {
 
-         single_lock sl(&m_mutexIncludeExpandMd5, TRUE);
+         single_lock sl(&m_mutexIncludeExpandMd5, true);
 
          m_mapIncludeExpandMd5.remove_key(path);
 
@@ -815,7 +815,7 @@ namespace dynamic_source
 
       try
       {
-         single_lock sl(&m_mutexIncludeMatches, TRUE);
+         single_lock sl(&m_mutexIncludeMatches, true);
 
          try
          {
@@ -848,7 +848,7 @@ namespace dynamic_source
       try
       {
 
-         single_lock sl(&m_mutexIncludeExpandMd5, TRUE);
+         single_lock sl(&m_mutexIncludeExpandMd5, true);
 
          m_mapIncludeExpandMd5.remove_all();
 
@@ -863,7 +863,7 @@ namespace dynamic_source
 
    bool script_manager::include_matches_file_exists(const string & strPath)
    {
-      single_lock sl(&m_mutexIncludeMatches, TRUE);
+      single_lock sl(&m_mutexIncludeMatches, true);
       string_map < bool >::pair * ppair = m_mapIncludeMatchesFileExists.plookup(strPath);
       if(ppair != nullptr)
          return ppair->element2();
@@ -880,13 +880,13 @@ namespace dynamic_source
 
    void script_manager::set_include_matches_file_exists(const string & strPath, bool bFileExists)
    {
-      single_lock sl(&m_mutexIncludeMatches, TRUE);
+      single_lock sl(&m_mutexIncludeMatches, true);
       m_mapIncludeMatchesFileExists.set_at(strPath, bFileExists);
    }
 
    bool script_manager::include_matches_is_dir(const string & strPath)
    {
-      single_lock sl(&m_mutexIncludeMatches, TRUE);
+      single_lock sl(&m_mutexIncludeMatches, true);
       string_map < bool >::pair * ppair = m_mapIncludeMatchesIsDir.plookup(strPath);
       if(ppair != nullptr)
          return ppair->element2();
@@ -904,7 +904,7 @@ namespace dynamic_source
       if(strPath.is_empty())
          return false;
 
-      single_lock sl(&m_mutexIncludeHasScript, TRUE);
+      single_lock sl(&m_mutexIncludeHasScript, true);
       string_map < bool >::pair * ppair = m_mapIncludeHasScript.plookup(strPath);
       if(ppair != nullptr)
          return ppair->element2();
@@ -924,13 +924,13 @@ namespace dynamic_source
 
    string script_manager::include_expand_md5(const string & strPath)
    {
-      single_lock sl(&m_mutexIncludeExpandMd5, TRUE);
+      single_lock sl(&m_mutexIncludeExpandMd5, true);
       return m_mapIncludeExpandMd5[strPath];
    }
 
    void script_manager::set_include_expand_md5(const string & strPath, const string & strMd5)
    {
-      single_lock sl(&m_mutexIncludeExpandMd5, TRUE);
+      single_lock sl(&m_mutexIncludeExpandMd5, true);
       m_mapIncludeExpandMd5[strPath] = strMd5;
    }
 
@@ -1049,7 +1049,7 @@ namespace dynamic_source
    __pointer(::dynamic_source::session) script_manager::get_session(const char * pszId)
    {
 
-      single_lock sl(&m_mutexSession, TRUE);
+      single_lock sl(&m_mutexSession, true);
 
       auto ppair = m_mapSession.plookup(pszId);
 
@@ -1090,7 +1090,7 @@ namespace dynamic_source
    void script_manager::defer_clean_session()
    {
       
-      single_lock sl(&m_mutexSession, TRUE);
+      single_lock sl(&m_mutexSession, true);
       
       ::datetime::time time;
       
@@ -1149,7 +1149,7 @@ namespace dynamic_source
 
       }*/
 
-      single_lock sl(&m_mutexRsa, TRUE);
+      single_lock sl(&m_mutexRsa, true);
 
       return  System.crypto().generate_rsa_key();
 
@@ -1177,7 +1177,7 @@ namespace dynamic_source
 
       __pointer(::crypto::rsa) prsa = System.crypto().generate_rsa_key();
 
-      single_lock sl(&m_mutexRsa, TRUE);
+      single_lock sl(&m_mutexRsa, true);
 
       m_rsaptra.add(prsa);
 
@@ -1234,7 +1234,7 @@ namespace dynamic_source
    bool script_manager::has_link_out_link(const char * pszServer, ::sockets::link_in_socket * pinsocket, ::sockets::httpd_socket * phttpdsocket)
    {
 
-      single_lock sl(&m_mutexOutLink, TRUE);
+      single_lock sl(&m_mutexOutLink, true);
 
       auto ppair = m_mapOutLink.plookup(pszServer);
 
@@ -1248,7 +1248,7 @@ namespace dynamic_source
          if(psocket != nullptr)
          {
 
-            single_lock sl2(&m_mutexInLink, TRUE);
+            single_lock sl2(&m_mutexInLink, true);
 
             if(phttpdsocket != nullptr)
             {
@@ -1283,13 +1283,13 @@ namespace dynamic_source
    ::sockets::link_in_socket * script_manager::get_link_in(const char * pszServer, ::sockets::link_out_socket * poutsocket)
    {
 
-      single_lock sl2(&m_mutexInLink, TRUE);
+      single_lock sl2(&m_mutexInLink, true);
 
       auto ppair = m_mapInLink.plookup(poutsocket);
 
       {
 
-         single_lock sl3(&m_mutexTunnel, TRUE);
+         single_lock sl3(&m_mutexTunnel, true);
 
          tunnel_map_item item;
 
@@ -1315,7 +1315,7 @@ namespace dynamic_source
    bool script_manager::is_online(const char * pszServer)
    {
 
-      single_lock sl(&m_mutexTunnel, TRUE);
+      single_lock sl(&m_mutexTunnel, true);
 
       string_map < tunnel_map_item >::pair * ppair = m_mapTunnel.plookup(pszServer);
 
@@ -1341,7 +1341,7 @@ namespace dynamic_source
 
       {
 
-         single_lock sl(&m_mutexTunnel, TRUE);
+         single_lock sl(&m_mutexTunnel, true);
 
          tunnel_map_item item;
 
@@ -1354,7 +1354,7 @@ namespace dynamic_source
 
       {
 
-         single_lock sl(&m_mutexOutLink, TRUE);
+         single_lock sl(&m_mutexOutLink, true);
          m_mapOutLink.set_at(pszServer, psocket);
 
       }
@@ -1581,7 +1581,7 @@ namespace dynamic_source
    bool script_manager::should_build(const ::file::path & strScriptPath)
    {
 
-      single_lock sl(&m_mutexShouldBuild, TRUE);
+      single_lock sl(&m_mutexShouldBuild, true);
 
       bool bShouldBuild = false;
 

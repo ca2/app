@@ -401,7 +401,7 @@ namespace user
          if (is_picture_enabled())
          {
 
-            point_f64 point_i32(pointParam);
+            point_f64 point(pointParam);
 
             _001ScreenToClient(point);
 
@@ -528,10 +528,10 @@ namespace user
 
          auto psession = Session;
 
-         if (pkey->m_ekey == ::user::key_return)
+         if (pkey->m_ekey == ::user::e_key_return)
          {
 
-            if (psession->is_key_pressed(::user::key_control) && psession->is_key_pressed(::user::key_alt))
+            if (psession->is_key_pressed(::user::e_key_control) && psession->is_key_pressed(::user::e_key_alt))
             {
 
                pkey->m_bRet = false;
@@ -541,10 +541,10 @@ namespace user
             }
 
          }
-         else if (pkey->m_ekey == ::user::key_tab)
+         else if (pkey->m_ekey == ::user::e_key_tab)
          {
 
-            if (psession->is_key_pressed(::user::key_control) && psession->is_key_pressed(::user::key_alt))
+            if (psession->is_key_pressed(::user::e_key_control) && psession->is_key_pressed(::user::e_key_alt))
             {
 
                pkey->m_bRet = false;
@@ -554,7 +554,7 @@ namespace user
             }
 
          }
-         else if (pkey->m_ekey == ::user::key_alt)
+         else if (pkey->m_ekey == ::user::e_key_alt)
          {
 
             pkey->m_bRet = false;
@@ -562,7 +562,7 @@ namespace user
             return;
 
          }
-         else if (pkey->m_ekey == ::user::key_escape)
+         else if (pkey->m_ekey == ::user::e_key_escape)
          {
 
             ::user::control_event ev;
@@ -587,10 +587,10 @@ namespace user
             return;
 
          }
-         else if (pkey->m_ekey == ::user::key_c)
+         else if (pkey->m_ekey == ::user::e_key_c)
          {
 
-            if (psession->is_key_pressed(::user::key_control))
+            if (psession->is_key_pressed(::user::e_key_control))
             {
 
                pkey->m_bRet = true;
@@ -613,10 +613,10 @@ namespace user
             }
 
          }
-         else if (pkey->m_ekey == ::user::key_v)
+         else if (pkey->m_ekey == ::user::e_key_v)
          {
 
-            if (psession->is_key_pressed(::user::key_control))
+            if (psession->is_key_pressed(::user::e_key_control))
             {
 
                pkey->m_bRet = true;
@@ -631,10 +631,10 @@ namespace user
             }
 
          }
-         else if (pkey->m_ekey == ::user::key_x)
+         else if (pkey->m_ekey == ::user::e_key_x)
          {
 
-            if (psession->is_key_pressed(::user::key_control))
+            if (psession->is_key_pressed(::user::e_key_control))
             {
 
                pkey->m_bRet = true;
@@ -670,16 +670,16 @@ namespace user
 
          auto psession = Session;
 
-         if (pkey->m_ekey == ::user::key_return)
+         if (pkey->m_ekey == ::user::e_key_return)
          {
 
-            if (psession->is_key_pressed(::user::key_control) && psession->is_key_pressed(::user::key_alt))
+            if (psession->is_key_pressed(::user::e_key_control) && psession->is_key_pressed(::user::e_key_alt))
             {
                pkey->m_bRet = false;
                return;
             }
          }
-         else if (pkey->m_ekey == ::user::key_alt)
+         else if (pkey->m_ekey == ::user::e_key_alt)
          {
 
             pkey->m_bRet = false;
@@ -733,9 +733,9 @@ namespace user
 
          ::message::key & key = *pkey;
 
-         if (key.m_ekey == ::user::key_shift || key.m_ekey == ::user::key_lshift || key.m_ekey == ::user::key_rshift
-            || key.m_ekey == ::user::key_control || key.m_ekey == ::user::key_lcontrol || key.m_ekey == ::user::key_rcontrol
-            || key.m_ekey == ::user::key_alt || key.m_ekey == ::user::key_lalt || key.m_ekey == ::user::key_ralt
+         if (key.m_ekey == ::user::e_key_shift || key.m_ekey == ::user::e_key_lshift || key.m_ekey == ::user::e_key_rshift
+            || key.m_ekey == ::user::e_key_control || key.m_ekey == ::user::e_key_lcontrol || key.m_ekey == ::user::e_key_rcontrol
+            || key.m_ekey == ::user::e_key_alt || key.m_ekey == ::user::e_key_lalt || key.m_ekey == ::user::e_key_ralt
             )
          {
 
@@ -743,8 +743,8 @@ namespace user
 
          }
 
-         if (key.m_ekey == ::user::key_right || key.m_ekey == ::user::key_up
-            || key.m_ekey == ::user::key_left || key.m_ekey == ::user::key_down)
+         if (key.m_ekey == ::user::e_key_right || key.m_ekey == ::user::e_key_up
+            || key.m_ekey == ::user::e_key_left || key.m_ekey == ::user::e_key_down)
          {
 
             _001OnChar(&key);
@@ -755,7 +755,7 @@ namespace user
 
          auto psession = Session;
 
-         bool bShift = psession->is_key_pressed(::user::key_shift);
+         bool bShift = psession->is_key_pressed(::user::e_key_shift);
 
          if (key.m_nChar < 256 && isalpha((i32)key.m_nChar))
          {

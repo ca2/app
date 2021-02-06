@@ -122,7 +122,7 @@
 //      bool tx::is_tx_ok()
 //      {
 //
-////         return ::IsWindow(m_oswindow) != FALSE;
+////         return ::IsWindow(m_oswindow) != false;
 //         return m_strBaseChannel.has_char();
 //
 //      }
@@ -454,7 +454,7 @@
 //      bool rx::is_rx_ok()
 //      {
 //
-//         //return ::IsWindow(m_oswindow) != FALSE;
+//         //return ::IsWindow(m_oswindow) != false;
 //         return true;
 //
 //      }

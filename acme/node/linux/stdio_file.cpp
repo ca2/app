@@ -41,7 +41,7 @@ namespace linux
       m_pStream = nullptr;
       //if (!::linux::file::open(pszFileName, (nOpenFlags & ~::file::e_open_text)))
 
-      // return FALSE;
+      // return false;
 
 //   ASSERT(m_hFile != hFileNull);
       // ASSERT(m_bCloseOnDelete);
@@ -143,7 +143,7 @@ namespace linux
    {
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
-//   ASSERT(fx_is_valid_address(pdata, nCount, FALSE));
+//   ASSERT(fx_is_valid_address(pdata, nCount, false));
 
 
       if (fwrite(pdata, sizeof(byte), nCount, m_pStream) != nCount)
@@ -336,7 +336,7 @@ namespace linux
          nErr = fclose(m_pStream);
 
 //   m_hFile = (::u32) hFileNull;
-      //m_bCloseOnDelete = FALSE;
+      //m_bCloseOnDelete = false;
       m_pStream = nullptr;
 
       if (nErr != 0)
@@ -352,7 +352,7 @@ namespace linux
          fclose(m_pStream);  // close but ignore errors
 //   m_hFile = (::u32) hFileNull;
       m_pStream = nullptr;
-      //m_bCloseOnDelete = FALSE;
+      //m_bCloseOnDelete = false;
    }
 
 

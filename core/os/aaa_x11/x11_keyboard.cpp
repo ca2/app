@@ -488,13 +488,13 @@ namespace user
       if(keysym >= 'a' && keysym <= 'z')
       {
 
-         return (::user::e_key) ((int)(::user::key_a) + keysym - 'a');
+         return (::user::e_key) ((int)(::user::e_key_a) + keysym - 'a');
 
       }
       else if(keysym >= 'A' && keysym <= 'Z')
       {
 
-         return (::user::e_key) ((int)(::user::key_a) + keysym - 'A');
+         return (::user::e_key) ((int)(::user::e_key_a) + keysym - 'A');
 
       }
 

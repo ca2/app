@@ -150,7 +150,7 @@ namespace linux
       switch (eopen & ::file::e_open_share_mask)    // ::collection::map compatibility mode to exclusive
       {
       default:
-         ASSERT(FALSE);  // invalid share mode?
+         ASSERT(false);  // invalid share mode?
       case ::file::e_open_share_compat:
       case ::file::e_open_share_exclusive:
          //dwShareMode = 0;
@@ -262,7 +262,7 @@ namespace linux
 
       ASSERT(pdata != nullptr);
 
-      ASSERT(__is_valid_address(pdata, nCount, FALSE));
+      ASSERT(__is_valid_address(pdata, nCount, false));
 
 
       memsize pos = 0;
@@ -340,7 +340,7 @@ namespace linux
    void file::close()
    {
 
-      bool bError = FALSE;
+      bool bError = false;
 
       if (m_iFile != INVALID_FILE)
          bError = ::close(m_iFile) == -1;
@@ -711,7 +711,7 @@ namespace linux
       {
          struct stat st;
          if(fstat(m_iFile, &st) == -1)
-            return FALSE;
+            return false;
 
          rStatus.m_size = st.st_size;
 
@@ -727,7 +727,7 @@ namespace linux
          if (rStatus.m_atime.get_time() == 0)
             rStatus.m_atime = rStatus.m_mtime;
       }
-      return TRUE;
+      return true;
    }
 
 

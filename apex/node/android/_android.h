@@ -64,8 +64,4 @@ CLASS_DECL_APEX void vfxThrowFileException(::object* pobject, const ::e_status& 
 #include "internal.h"
 
 
-//#include "interaction_impl.h"
-
-
-
 

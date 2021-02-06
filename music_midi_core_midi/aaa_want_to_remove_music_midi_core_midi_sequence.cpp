@@ -66,7 +66,7 @@ namespace music
          ::e_status     sequence::Start()
          {
 
-            single_lock sl(mutex(), TRUE);
+            single_lock sl(mutex(), true);
 
             if (sequence::e_state_pre_rolled != get_state())
             {
@@ -158,7 +158,7 @@ namespace music
 
             //return ::error_internal;
 
-   //         single_lock sl(mutex(), TRUE);
+   //         single_lock sl(mutex(), true);
    //
    //         if(get_state() != e_state_pre_rolled)
    //            return error_unsupported_function;
@@ -321,7 +321,7 @@ namespace music
           ***************************************************************************/
    //      ::e_status     sequence::Pause()
    //      {
-   //         single_lock sl(mutex(), TRUE);
+   //         single_lock sl(mutex(), true);
    //
    //         //    assert(nullptr != pSeq);
    //
@@ -365,7 +365,7 @@ namespace music
    //      {
    //         //    assert(nullptr != pSeq);
    //
-   //         single_lock sl(mutex(), TRUE);
+   //         single_lock sl(mutex(), true);
    //
    //         if (e_state_paused != get_state())
    //            return error_unsupported_function;
@@ -404,7 +404,7 @@ namespace music
          ::e_status     sequence::Stop()
          {
 
-            single_lock sl(mutex(), TRUE);
+            single_lock sl(mutex(), true);
 
             if(get_state() == e_state_stopping)
                return ::success;
@@ -710,7 +710,7 @@ namespace music
              case EVENT_ID_PAD:
              break;
              default:
-             ASSERT(FALSE);
+             ASSERT(false);
              break;
              }*/
 
@@ -880,7 +880,7 @@ namespace music
 
    //      ::e_status     sequence::CloseStream()
    //      {
-   //         single_lock sl(mutex(), TRUE);
+   //         single_lock sl(mutex(), true);
    //         if(IsPlaying())
    //         {
    //            Stop();
@@ -914,7 +914,7 @@ namespace music
             void sequence::OnMidiPlaybackEnd(::music::midi::sequence::event * pevent)
          {
             UNREFERENCED_PARAMETER(pevent);
-            single_lock sl(mutex(), TRUE);
+            single_lock sl(mutex(), true);
             //   LPMIDIHDR lpmh = pevent->m_lpmh;
             //   midi_callback_data * lpData = &m_midicallbackdata;
             //::e_status     estatus;

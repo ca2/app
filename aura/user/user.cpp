@@ -28,6 +28,198 @@ namespace user
    }
 
 
+   ::user::interaction * user::get_capture()
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pwindow = pwindowing->get_capture();
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pimpl = pwindow->m_pimpl;
+
+      if (::is_null(pimpl))
+      {
+
+         return nullptr;
+
+      }
+
+      return pimpl->m_puserinteractionCapture;
+
+   }
+
+
+   ::user::interaction * user::get_focus()
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pwindow = pwindowing->get_focus();
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pimpl = pwindow->m_pimpl;
+
+      if (::is_null(pimpl))
+      {
+
+         return nullptr;
+
+      }
+
+      return pimpl->m_puserinteractionFocus;
+
+   }
+
+
+   ::user::interaction * user::get_active_window()
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pwindow = pwindowing->get_active_window();
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pimpl = pwindow->m_pimpl;
+
+      if (::is_null(pimpl))
+      {
+
+         return nullptr;
+
+      }
+
+      return pimpl->m_puserinteraction;
+
+   }
+
+
+   ::e_status user::set_active_window(::user::interaction * puserinteraction)
+   {
+
+      ::windowing::window * pwindow = nullptr;
+
+      if (::is_set(puserinteraction))
+      {
+
+         pwindow = puserinteraction->get_window();
+
+      }
+
+      auto estatus = pwindow->set_active_window();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return ::success;
+
+   }
+
+
+   ::user::interaction * user::get_foreground_window()
+   {
+
+      auto pwindowing = windowing();
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pwindow = pwindowing->get_foreground_window();
+
+      if (::is_null(pwindowing))
+      {
+
+         return nullptr;
+
+      }
+
+      auto pimpl = pwindow->m_pimpl;
+
+      if (::is_null(pimpl))
+      {
+
+         return nullptr;
+
+      }
+
+      return pimpl->m_puserinteraction;
+
+   }
+
+
+   ::e_status user::set_foreground_window(::user::interaction * puserinteraction)
+   {
+
+      ::windowing::window * pwindow = nullptr;
+
+      if (::is_set(puserinteraction))
+      {
+
+         pwindow = puserinteraction->get_window();
+
+      }
+
+      auto estatus = pwindow->set_foreground_window();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return ::success;
+
+   }
+
+
    ::user::style* user::get_user_style()
    {
 
@@ -146,14 +338,25 @@ namespace user
    ::e_status user::init2()
    {
 
-      if (!::apex::department::init2())
+      auto estatus = ::apex::department::init2();
+
+      if(!estatus)
       {
 
-         return false;
+         return estatus;
 
       }
 
-      return true;
+      estatus = create_os_windowing();
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
 
    }
 
@@ -921,6 +1124,75 @@ namespace user
    }
 
 
+   ::e_status user::create_os_windowing()
+   {
+
+      ::e_status estatus = ::success;
+
+#ifdef LINUX
+
+      auto edesktop = get_edesktop();
+
+      if (edesktop & ::user::e_desktop_kde)
+      {
+
+         estatus = do_factory_exchange("node", "kde");
+
+      }
+      else if (edesktop & ::user::e_desktop_gnome)
+      {
+
+         estatus = do_factory_exchange("node", "gnome");
+
+      }
+      else
+      {
+
+         estatus = do_factory_exchange("node", "kde");
+
+         if (!estatus)
+         {
+
+            estatus = do_factory_exchange("node", "gnome");
+
+         }
+
+      }
+
+#elif defined(WINDOWS_DESKTOP)
+
+      estatus = System.do_factory_exchange("windowing", "win32");
+
+#endif
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = ::__construct(m_pwindowing);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      estatus = m_pwindowing->initialize_windowing(this);
+
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
 
 
    __namespace_object_factory(user, ::static_setup::flag_object_user);

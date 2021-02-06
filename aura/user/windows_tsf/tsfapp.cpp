@@ -67,7 +67,7 @@ int WINAPI WinMain( HINSTANCE hInstance,
             // get the message pump wrapper interface
             if(SUCCEEDED(g_pThreadMgr->QueryInterface(IID_ITfMessagePump, (void **)&pMsgPump)))
             {
-                BOOL    fResult = TRUE;
+                BOOL    fResult = true;
                 
                 while(fResult)
                 {
@@ -75,11 +75,11 @@ int WINAPI WinMain( HINSTANCE hInstance,
                     BOOL    fEaten;
 
                     /*
-                    Get the next message in the queue. fResult receives FALSE if e_message_quit is encountered
+                    Get the next message in the queue. fResult receives false if e_message_quit is encountered
                     */
                     if(FAILED(pMsgPump->GetMessage(&msg, NULL, 0, 0, &fResult)))
                     {
-                        fResult = FALSE;
+                        fResult = false;
                     }
                     else if(e_message_key_down == msg.message)
                     {

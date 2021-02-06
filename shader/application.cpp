@@ -62,7 +62,7 @@ namespace app_shader
 
       __compose(m_pwindow, __create_new < window >());
 
-      ::rectangle_i32 rectWindow;
+      rectangle_i32 rectWindow;
 
       m_pwindow->_001InitialFramePosition(rectWindow, { 0.05, 0.05, 0.4, 0.4 });
 

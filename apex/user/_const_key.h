@@ -12,7 +12,7 @@
 //{
 //
 //
-//   enum e_key
+//   enum enum_key
 //   {
 //
 //      key_none,

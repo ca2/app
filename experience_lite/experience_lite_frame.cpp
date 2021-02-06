@@ -233,7 +233,7 @@
                return (frame::enum_element) (*((i32*)&eelement))++;
             }
 
-            bool frame::get_element_rect(LPRECT32 lprect, enum_element eelement)
+            bool frame::get_element_rect(RECTANGLE_I32 * lprect, enum_element eelement)
             {
                switch (eelement)
                {

@@ -339,7 +339,7 @@ namespace uwp
    void directx_base::defer_resize_top_level_windows()
    {
 
-      m_pimpl->m_puserinteraction->set_window_pos(zorder_top, 0, 0, m_size.cx, m_size.cy, SWP_SHOWWINDOW);
+      m_pimpl->m_puserinteraction->set_window_pos(e_zorder_top, 0, 0, m_size.cx, m_size.cy, SWP_SHOWWINDOW);
 
       if (System.has_property("client_only"))
       {
@@ -352,7 +352,7 @@ namespace uwp
             if (pinteraction->is_window_visible())
             {
 
-               pinteraction->set_window_pos(zorder_top, 0, 0, m_size.cx, m_size.cy, SWP_SHOWWINDOW);
+               pinteraction->set_window_pos(e_zorder_top, 0, 0, m_size.cx, m_size.cy, SWP_SHOWWINDOW);
 
                pinteraction->set_need_layout();
 
@@ -402,7 +402,7 @@ namespace uwp
          m_d2dDevice->ClearResources();
          {
             Microsoft::WRL::ComPtr < ID3D11CommandList > pcommandlist;
-            hr = m_d3dContext->FinishCommandList(FALSE, &pcommandlist);
+            hr = m_d3dContext->FinishCommandList(false, &pcommandlist);
             if (SUCCEEDED(hr))
             {
             }

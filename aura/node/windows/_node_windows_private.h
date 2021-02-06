@@ -1,7 +1,9 @@
 #pragma once
 
-#undef User
-#error ""
+
+#include "aura/operating_system.h"
+
+
 #include <Wtsapi32.h>
 #include <Psapi.h>
 #include <WinCred.h>

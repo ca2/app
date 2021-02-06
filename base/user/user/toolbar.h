@@ -159,7 +159,7 @@ namespace user
 //#ifdef WINDOWS_DESKTOP
 //      virtual ::size_i32 CalcSize(TBBUTTON* pData, index nCount);
 //      virtual index WrapToolBar(TBBUTTON* pData, index nCount, index nWidth);
-//      virtual void SizeToolBar(TBBUTTON* pData, index nCount, index nLength, bool bVert = FALSE);
+//      virtual void SizeToolBar(TBBUTTON* pData, index nCount, index nLength, bool bVert = false);
 //#endif
       void on_layout(::draw2d::graphics_pointer & pgraphics); // called for for delayed button on_layout
 

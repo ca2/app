@@ -28,7 +28,7 @@ namespace user
       m_bAutoWindowFrame = true;
       m_bWindowFrame = true;
       m_nWindow = -1;                 // unknown interaction_impl ID
-      m_bAutoMenuEnable = TRUE;       // auto enable on by default
+      m_bAutoMenuEnable = true;       // auto enable on by default
       //m_lpfnCloseProc = nullptr;
 #ifdef WINDOWS_DESKTOP
       m_hMenuDefault = nullptr;
@@ -54,7 +54,7 @@ namespace user
 
       m_pNextFrameWnd = nullptr;         // not in list yet
 
-      m_bInRecalcLayout = FALSE;
+      m_bInRecalcLayout = false;
       m_nShowDelay = -1;              // no delay pending
 
       m_bFrameMoveEnable = true;
@@ -129,7 +129,7 @@ namespace user
       {
       case simple_command_update_frame_title:
 
-         on_update_frame_title(psimplecommand->m_lparam != FALSE);
+         on_update_frame_title(psimplecommand->m_lparam != false);
 
          psimplecommand->m_bRet = true;
 
@@ -477,10 +477,10 @@ namespace user
 
          auto psession = Session;
 
-         if (psession->is_key_pressed(::user::key_alt) && psession->is_key_pressed(::user::key_control))
+         if (psession->is_key_pressed(::user::e_key_alt) && psession->is_key_pressed(::user::e_key_control))
          {
 
-            if (pkey->m_ekey == ::user::key_p)
+            if (pkey->m_ekey == ::user::e_key_p)
             {
 
                __pointer(::user::interaction_impl) pimpl = m_pimpl;
@@ -586,7 +586,7 @@ namespace user
    bool frame_window::OnQueryNewPalette()
    {
       // trans    return user::frame_window::OnQueryNewPalette();
-      return FALSE;
+      return false;
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -632,12 +632,12 @@ namespace user
       if (pFrameWnd->m_bHelpMode)
       {
 
-         return TRUE;
+         return true;
 
       }
       // trans   return user::frame_window::OnSetCursor(pwindow, nHitTest, message);
 
-      return TRUE;
+      return true;
 
    }
 
@@ -655,9 +655,9 @@ namespace user
    application* pApp = &System;
    if (pApp != nullptr)
    pApp->WinHelpInternal(lParam);
-   return TRUE;
+   return true;
    }
-   return FALSE;
+   return false;
    }*/
 
    /*LRESULT frame_window::OnHelpHitTest(WPARAM, LPARAM)
@@ -669,7 +669,7 @@ namespace user
    }*/
 
    //bool frame_window::OnCommand(WPARAM wParam, LPARAM lParam)
-   //   // return TRUE if command invocation was attempted
+   //   // return true if command invocation was attempted
    //{
    //   //   ::oswindow oswindow_Ctrl = (::oswindow) lParam;
    //   //   ::u32 nID = LOWORD(wParam);
@@ -682,12 +682,12 @@ namespace user
    //   // route as help
    //   if (!SendMessage(WM_COMMANDHELP, 0, HID_BASE_COMMAND+nID))
    //   SendMessage(e_message_command, ID_DEFAULT_HELP);
-   //   return TRUE;
+   //   return true;
    //   }
    //   */
    //   // route as normal command
    //   // trans   return user::frame_window::OnCommand(wParam, lParam);
-   //   return FALSE;
+   //   return false;
    //}
 
 
@@ -718,7 +718,7 @@ namespace user
          if (oswindow->is_window_enabled() && ::user::is_descendant(pParent, oswindow) && oswindow->send_message(WM_DISABLEMODAL) == 0)
          {
 
-            oswindow->enable_window(FALSE);
+            oswindow->enable_window(false);
 
             m_uiptraDisable.add(oswindow);
 
@@ -744,7 +744,7 @@ namespace user
          ASSERT(m_uiptraDisable[nIndex] != nullptr);
 
          if (m_uiptraDisable[nIndex]->is_window())
-            m_uiptraDisable[nIndex]->enable_window(TRUE);
+            m_uiptraDisable[nIndex]->enable_window(true);
 
       }
 
@@ -791,7 +791,7 @@ namespace user
       //         // Work around for MAPI support. This makes sure the main interaction_impl
       //         // remains disabled even when the mail system is booting.
       //
-      //         enable_window(FALSE);
+      //         enable_window(false);
       //
       //#ifdef WINDOWS_DESKTOP
       //
@@ -826,7 +826,7 @@ namespace user
 
       //// force e_message_ncactivate because Windows may think it is unecessary
       //if (bEnable && (m_nFlags & WF_STAYACTIVE))
-      //   send_message(e_message_ncactivate, TRUE);
+      //   send_message(e_message_ncactivate, true);
       //// force e_message_ncactivate for floating windows too
    }
 
@@ -868,7 +868,7 @@ namespace user
 
    //   m_strFrameTitle = pszWindowName;    // save title for later
 
-   //   auto pusersystem = __new(::user::system (dwExStyle, pszClassName, pszWindowName, uStyle, rectangle_i32, pcreate));
+   //   auto pusersystem = __new(::user::system (dwExStyle, pszClassName, pszWindowName, uStyle, rectangle, pcreate));
 
    //   if (!::user::interaction::create_window_ex(pusersystem, puiParent, pcreate->m_id))
    //   {
@@ -1037,7 +1037,7 @@ namespace user
 
       }
 
-      output_debug_string("\nm_bLayoutEnable FALSE");
+      output_debug_string("\nm_bLayoutEnable false");
 
       //auto pusersystem = __new(::user::system (0L, nullptr, m_strFrameTitle, dwDefaultStyle, rectFrame, pcreate));
 
@@ -1080,9 +1080,9 @@ namespace user
       //   LoadAccelTable(MAKEINTRESOURCE(nIDResource));
 
       if (pcreate == nullptr)   // send initial update
-         send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (LPARAM)0, TRUE, TRUE);
+         send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (LPARAM)0, true, true);
 
-      return TRUE;
+      return true;
 
       return false;
 
@@ -1106,7 +1106,7 @@ namespace user
 
       puiParent, nIDResource, (LPVOID) pContext))
       {
-      return FALSE;   // will self destruct on failure normally
+      return false;   // will self destruct on failure normally
       }
 
       // save the default menu handle
@@ -1118,9 +1118,9 @@ namespace user
       LoadAccelTable(MAKEINTRESOURCE(nIDResource));
 
       if (pContext == nullptr)   // send initial update
-      send_message_to_descendants(WM_INITIALUPDATE, 0, 0, TRUE, TRUE);
+      send_message_to_descendants(WM_INITIALUPDATE, 0, 0, true, true);
 
-      return TRUE;*/
+      return true;*/
    }
 
 
@@ -1163,7 +1163,7 @@ namespace user
 
             pview = pwindow;
 
-            set_active_view(pview, FALSE);
+            set_active_view(pview, false);
 
          }
 
@@ -1181,7 +1181,7 @@ namespace user
          m_bLayoutEnable = true;
 
          // send initial update to all views (and other controls) in the frame
-         send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (LPARAM)0, TRUE, TRUE);
+         send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (LPARAM)0, true, true);
 
          // give ::user::impact a chance to save the focus (CFormView needs this)
          if (pview != nullptr)
@@ -1198,7 +1198,7 @@ namespace user
          if (pview != nullptr)
          {
 
-            pview->OnActivateView(TRUE, pview, pview);
+            pview->OnActivateView(true, pview, pview);
 
          }
 
@@ -1209,7 +1209,7 @@ namespace user
       // update frame counts and frame title (may already have been visible)
       if (pDoc != nullptr)
          pDoc->update_frame_counts();
-      on_update_frame_title(TRUE);
+      on_update_frame_title(true);
 
       //if (get_parent() != nullptr
       //      && get_parent()->is_place_holder()
@@ -1274,7 +1274,7 @@ namespace user
       pApp->HideApplication();
 
       // close all documents first
-      pApp->close_all_documents(FALSE);
+      pApp->close_all_documents(false);
 
 
       // there are cases where destroying the documents may destroy the
@@ -1290,7 +1290,7 @@ namespace user
       // shut down with on_close_document instead.
       if (pdocument != nullptr && pdocument->m_bAutoDelete)
       {
-      bool bOtherFrame = FALSE;
+      bool bOtherFrame = false;
       POSITION pos = pdocument->get_view_count();
       while (pos != nullptr)
       {
@@ -1298,7 +1298,7 @@ namespace user
       ENSURE_VALID(pview);
       if (pview->get_parent_frame() != this)
       {
-      bOtherFrame = TRUE;
+      bOtherFrame = true;
       break;
       }
       }
@@ -1773,7 +1773,7 @@ namespace user
       if (pActiveView != nullptr)
       {
 
-         pActiveView->OnActivateView(FALSE, pActiveView, pActiveView);
+         pActiveView->OnActivateView(false, pActiveView, pActiveView);
 
       }
 
@@ -1827,7 +1827,7 @@ namespace user
       if (pActiveView != nullptr)
       {
          if (pactivate->m_eactivate != e_activate_inactive && !pactivate->m_bMinimized)
-            pActiveView->OnActivateView(TRUE, pActiveView, pActiveView);
+            pActiveView->OnActivateView(true, pActiveView, pActiveView);
 
          // always notify the ::user::impact of frame activations
          pActiveView->OnActivateFrame(pactivate->m_eactivate, this);
@@ -1854,7 +1854,7 @@ namespace user
 //      else
 //      {
 //
-//         pncactivate->m_lresult = FALSE;
+//         pncactivate->m_lresult = false;
 //
 //         pncactivate->m_bRet = true;
 //
@@ -1863,7 +1863,7 @@ namespace user
 //
 //#else
 //
-//      pncactivate->m_lresult = TRUE;
+//      pncactivate->m_lresult = true;
 //
 //      pncactivate->m_bRet = true;
 //
@@ -1930,7 +1930,7 @@ namespace user
    bool frame_window::OnQueryEndSession()
    {
 
-      return TRUE;
+      return true;
    }
 
    // when Windows session ends, close all documents
@@ -2009,7 +2009,7 @@ namespace user
       if (pviewOld != nullptr && bNotify)
       {
 
-         pviewOld->OnActivateView(FALSE, pviewNew, pviewOld);
+         pviewOld->OnActivateView(false, pviewNew, pviewOld);
 
       }
 
@@ -2031,7 +2031,7 @@ namespace user
          if (bNotify)
          {
 
-            pviewNew->OnActivateView(TRUE, pviewNew, pviewOld);
+            pviewNew->OnActivateView(true, pviewNew, pviewOld);
 
          }
 
@@ -2326,7 +2326,7 @@ namespace user
 
 
             // show any modeless dialogs, popup windows, float tools, etc
-            ShowOwnedWindows(FALSE);
+            ShowOwnedWindows(false);
 
             // Hide the main pane
          }
@@ -2349,7 +2349,7 @@ namespace user
 
 
             // show any modeless dialogs, popup windows, float tools, etc
-            ShowOwnedWindows(TRUE);
+            ShowOwnedWindows(true);
          }
       }
       */
@@ -2385,7 +2385,7 @@ namespace user
 
       // clear idle flags for recalc on_layout if called elsewhere
       //   if (m_nIdleFlags & idleNotify)
-      //   bNotify = TRUE;
+      //   bNotify = true;
       m_nIdleFlags &= ~(idleLayout | idleNotify);
       {
 
@@ -2403,9 +2403,9 @@ namespace user
 
          ::rectangle_i32 rectangle(0, 0, 32767, 32767);
 
-         RepositionBars(0, 0xffff, "pane_first", reposQuery, &rectangle, &rectangle, FALSE);
+         RepositionBars(0, 0xffff, "pane_first", reposQuery, &rectangle, &rectangle, false);
 
-         RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectBorder, &rectangle, TRUE);
+         RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectBorder, &rectangle, true);
 
          CalcWindowRect(&rectangle);
 
@@ -2441,7 +2441,7 @@ namespace user
          break;
 
       case borderRequest:
-         return TRUE;
+         return true;
 
       case borderSet:
          if (pRectBorder == nullptr)
@@ -2451,11 +2451,11 @@ namespace user
             {
                // releasing all border space -- recalc needed
                m_rectBorder.Null();
-               return TRUE;
+               return true;
             }
             // original rectangle_i32 is is_empty & pRectBorder is nullptr, no recalc needed
 
-            return FALSE;
+            return false;
 
          }
 
@@ -2465,17 +2465,17 @@ namespace user
             // the rects are different -- recalc needed
             m_rectBorder.copy(pRectBorder);
 
-            return TRUE;
+            return true;
 
          }
 
-         return FALSE;   // no recalc needed
+         return false;   // no recalc needed
 
       default:
-         ASSERT(FALSE);  // invalid frame_window::BorderCmd
+         ASSERT(false);  // invalid frame_window::BorderCmd
       }
 
-      return TRUE;
+      return true;
 
    }
 
@@ -2494,12 +2494,12 @@ namespace user
       if (m_pviewActive != nullptr)
       {
 
-         return TRUE;        // active ::user::impact will erase/paint itself
+         return true;        // active ::user::impact will erase/paint itself
 
       }
 
       // for ::user::impact-less frame just use the default background fill
-      return TRUE;
+      return true;
       //   return user::frame_window::OnEraseBkgnd(pgraphics);
 
    }
@@ -2517,8 +2517,8 @@ namespace user
 
       auto psession = Session;
 
-      keyState |= psession->is_key_pressed(::user::key_control) ? MK_CONTROL : 0;
-      keyState |= psession->is_key_pressed(::user::key_shift) ? MK_SHIFT : 0;
+      keyState |= psession->is_key_pressed(::user::e_key_control) ? MK_CONTROL : 0;
+      keyState |= psession->is_key_pressed(::user::e_key_shift) ? MK_SHIFT : 0;
 
       oswindow hwFocus = ::GetFocus();
       const oswindow hwDesktop = ::get_desktop_window();
@@ -2575,7 +2575,7 @@ namespace user
 
       }
 
-      if(!layout().sketch().zorder().is_change_request() || layout().sketch().zorder() != zorder_top)
+      if(!layout().sketch().zorder().is_change_request() || layout().sketch().zorder() != e_zorder_top)
       {
 
          order_top();
@@ -2645,7 +2645,7 @@ namespace user
       /*   return m_nIDTracking != 0 &&
       m_nIDTracking != __IDS_HELPMODEMESSAGE &&
       m_nIDTracking != __IDS_IDLEMESSAGE;*/
-      return FALSE;
+      return false;
    }
 
 
@@ -2729,7 +2729,7 @@ namespace user
       m_sizeMinimum.cx = 0;
       m_sizeMinimum.cy = 0;
       m_nWindow = -1;                 // unknown interaction_impl ID
-      m_bAutoMenuEnable = TRUE;       // auto enable on by default
+      m_bAutoMenuEnable = true;       // auto enable on by default
 //      m_lpfnCloseProc = nullptr;
 #ifdef WINDOWS_DESKTOP
       m_hMenuDefault = nullptr;
@@ -2749,7 +2749,7 @@ namespace user
 
       m_pNextFrameWnd = nullptr;         // not in list yet
 
-      m_bInRecalcLayout = FALSE;
+      m_bInRecalcLayout = false;
       m_nShowDelay = -1;              // no delay pending
 
       AddFrameWnd();
@@ -2821,7 +2821,7 @@ namespace user
       ASSERT(ID_VIEW_TOOLBAR == __IDW_TOOLBAR);
       ASSERT(ID_VIEW_REBAR == __IDW_REBAR);*/
 
-      return FALSE;
+      return false;
    }
 
 
@@ -2847,7 +2847,7 @@ namespace user
 
    //   // update title if necessary
    //   if(m_nIdleFlags & idleTitle)
-   //      on_update_frame_title(TRUE);
+   //      on_update_frame_title(true);
 
    //   // recalc on_layout if necessary
    //   if(m_nIdleFlags & idleLayout)
@@ -2880,7 +2880,7 @@ namespace user
 
 //       // update title if necessary
 //       if (m_nIdleFlags & idleTitle)
-//          on_update_frame_title(TRUE);
+//          on_update_frame_title(true);
 
 //       // recalc on_layout if necessary
 //       if (m_nIdleFlags & idleLayout)

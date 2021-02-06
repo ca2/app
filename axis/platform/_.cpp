@@ -44,7 +44,7 @@ namespace axis
 
          {
             rString.Empty();        // return is_empty string as well
-            return FALSE;
+            return false;
          }
          pszFullString++;       // point_i32 past the separator
 
@@ -62,7 +62,7 @@ namespace axis
 
       rString.release_string_buffer();   // Need to call ReleaseBuffer after calling get_string_buffer
 
-      return TRUE;
+      return true;
 
    }
 
@@ -341,7 +341,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 ////   if (g_iAuraRefCount >= 1)
 ////   {
 ////
-////      return TRUE;
+////      return true;
 ////
 ////   }
 ////
@@ -353,7 +353,7 @@ CLASS_DECL_AXIS u32 g_tickStartTime = 0;
 ////
 ////   aura_term();
 ////
-////   return TRUE;
+////   return true;
 ////
 ////}
 //

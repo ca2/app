@@ -206,7 +206,7 @@ Serial::readline(string& buffer, size_t size, string eol)
       {
          break; // EOL found
       }
-      if (read_so_far == size_i32)
+      if (read_so_far == size)
       {
          break; // Reached the maximum read length
       }
@@ -257,7 +257,7 @@ Serial::readlines(size_t size, string eol)
                read_so_far - start_of_line));
          start_of_line = read_so_far;
       }
-      if (read_so_far == size_i32)
+      if (read_so_far == size)
       {
          if (start_of_line != read_so_far)
          {

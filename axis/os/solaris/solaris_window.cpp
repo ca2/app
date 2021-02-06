@@ -512,7 +512,7 @@ bool oswindow_data::show_window(i32 nCmdShow)
 
    }
 
-   return TRUE;
+   return true;
 
 }
 
@@ -969,7 +969,7 @@ int_bool ReleaseCapture()
    xdisplay d(g_oswindowCapture->display());
 
 
-   int_bool bRet = XUngrabPointer(g_oswindowCapture->display(), CurrentTime) != FALSE;
+   int_bool bRet = XUngrabPointer(g_oswindowCapture->display(), CurrentTime) != false;
 
    if(bRet)
       g_oswindowCapture = nullptr;
@@ -1165,7 +1165,7 @@ int_bool DestroyWindow(oswindow window)
    single_lock sl(&user_mutex(), true);
 
    if(!IsWindow(window))
-      return FALSE;
+      return false;
 
    Display * pdisplay = window->display();
 

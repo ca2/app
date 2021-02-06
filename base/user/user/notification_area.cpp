@@ -49,7 +49,7 @@ namespace user
       lf.lfHeight = 16;
       m_hfontRegular = CreateFontIndirectW(&lf);
 
-      lf.lfItalic = TRUE;
+      lf.lfItalic = true;
       m_hfontHidden = CreateFontIndirectW(&lf);
 
       m_oswindowTray = FindTrayToolbarWindow();

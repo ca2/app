@@ -72,7 +72,7 @@ bool ms_download_dup(const char * pszUrl, const char * pszFile, bool bProgress, 
    }
    ::u32 dwSize = 0;
    char * pszOutBuffer;
-   int_bool  bResults = FALSE;
+   int_bool  bResults = false;
 
    WCHAR * pwzHost = utf8_to_16(strHost);
 
@@ -110,7 +110,7 @@ vsstring ms_get_dup(const char * pszUrl, bool bCache, void (*callback)(void *, i
    ::u32 dwSize = 0;
    ::u32 dwDownloaded = 0;
    char * pszOutBuffer;
-   int_bool  bResults = FALSE;
+   int_bool  bResults = false;
 
    g_tinyhttp.m_strUserAgent = "ccwarehouse_ca2_account/linux";
 
@@ -199,7 +199,7 @@ iPort = 443;
 ::u32 dwSize = 0;
 ::u32 dwDownloaded = 0;
 char * pszOutBuffer;
-int_bool  bResults = FALSE;
+int_bool  bResults = false;
 HINTERNET  hSession = nullptr,
 hConnect = nullptr,
 hRequest = nullptr;
@@ -360,7 +360,7 @@ if((l = RegQueryValueEx(hkey, "DefaultConnectionSettings", nullptr, nullptr, (by
 {
 apop.dwAutoDetectFlags = WINHTTP_AUTO_DETECT_TYPE_DHCP | WINHTTP_AUTO_DETECT_TYPE_DNS_A;
 apop.dwFlags = WINHTTP_AUTOPROXY_AUTO_DETECT;
-apop.fAutoLogonIfChallenged = TRUE;
+apop.fAutoLogonIfChallenged = true;
 apop.lpszAutoConfigUrl = nullptr;
 bGot = true;
 }
@@ -383,7 +383,7 @@ if((l = RegQueryValueEx(hkey, "AutoConfigURL", nullptr, nullptr, (byte *) szPac,
 apop.dwAutoDetectFlags = 0;
 apop.dwFlags = WINHTTP_AUTOPROXY_CONFIG_URL;
 apop.lpszAutoConfigUrl = utf8_to_16(szPac);
-apop.fAutoLogonIfChallenged = TRUE;
+apop.fAutoLogonIfChallenged = true;
 bGot = true;
 }
 else

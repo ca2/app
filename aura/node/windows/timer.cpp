@@ -1,7 +1,7 @@
 ﻿#include "framework.h"
 // Thank you TBS!!
 
-VOID CALLBACK aura_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
+//VOID CALLBACK aura_timer_TimerRoutine(PVOID pParam, BOOLEAN TimerOrWaitFired);
 
 
 

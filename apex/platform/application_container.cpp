@@ -48,7 +48,7 @@ void application_container::app_remove(::apex::application * papp)
 
    m_applicationa.remove(papp);
 
-   if (m_applicationa.isEmpty() && m_bFinalizeIfNoApplication)
+   if (m_applicationa.is_empty() && m_bFinalizeIfNoApplication)
    {
 
       finish(this);

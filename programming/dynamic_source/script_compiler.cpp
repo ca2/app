@@ -1669,7 +1669,7 @@ namespace dynamic_source
    library & script_compiler::lib(const char * pszLibrary)
    {
 
-      single_lock slLibrary(&m_mutexLibrary,TRUE);
+      single_lock slLibrary(&m_mutexLibrary,true);
 
       auto p = m_mapLib.plookup(pszLibrary);
 
@@ -3036,7 +3036,7 @@ ch_else:
 //      return m_bLastLibraryVersionCheck;
 //   }
 
-//   single_lock slLibrary(&m_mutexLibrary, TRUE);
+//   single_lock slLibrary(&m_mutexLibrary, true);
 
 //   for(i32 i = 0; i < m_straLibSourcePath.get_size(); i++)
 //   {
@@ -3075,7 +3075,7 @@ ch_else:
    void library::load_library()
    {
 
-      single_lock slLibrary(&m_mutex, TRUE);
+      single_lock slLibrary(&m_mutex, true);
 
       m_plibraryLib.create(this);
 
@@ -3124,7 +3124,7 @@ ch_else:
 
    void library::unload_library()
    {
-      single_lock slLibrary(&m_mutex, TRUE);
+      single_lock slLibrary(&m_mutex, true);
       m_plibraryLib->close();
    }
 

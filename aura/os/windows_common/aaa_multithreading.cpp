@@ -100,7 +100,7 @@ CLASS_DECL_AURA bool set_thread_name(hthread_t hthread, const char* pszName)
    if (!bOk1)
    {
 
-      bOk1 = SetThreadName(GetThreadId(hthread), pszName) != FALSE;
+      bOk1 = SetThreadName(GetThreadId(hthread), pszName) != false;
 
    }
 
@@ -336,7 +336,7 @@ int_bool SetThreadName(::u32 dwThreadID, const char* threadName)
    }
 #pragma warning(pop)
 
-   return TRUE;
+   return true;
 
 }
 

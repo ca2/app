@@ -4,15 +4,23 @@
 #endif
 
 
-CLASS_DECL_AURA int_bool mq_post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
+CLASS_DECL_AURA int_bool mq_post_message(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam)
 {
 
-   ::user::interaction* pinteraction = oswindow_interaction(oswindow);
+   //auto psession = Session;
+
+   //auto puser = psession->m_puser;
+
+   //auto pwindowing = puser->m_pwindowing;
+
+   //auto pwindow = pwindowing->window(oswindow);
+
+   auto pinteraction = __interaction(pwindow);
 
    if (pinteraction == nullptr)
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -21,14 +29,14 @@ CLASS_DECL_AURA int_bool mq_post_message(oswindow oswindow, const ::id & id, wpa
    if (!pmq)
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   if (!pmq->post_message(oswindow, id, wparam, lparam))
+   if (!pmq->post_message(pwindow->get_oswindow(), id, wparam, lparam))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -38,15 +46,23 @@ CLASS_DECL_AURA int_bool mq_post_message(oswindow oswindow, const ::id & id, wpa
 
 
 
-CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
+CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(::windowing::window * pwindow)
 {
 
-   ::user::interaction * pinteraction = oswindow_interaction(oswindow);
+   //auto psession = Session;
+
+   //auto puser = psession->m_puser;
+
+   //auto pwindowing = puser->m_pwindowing;
+
+   //auto pwindow = pwindowing->window(oswindow);
+
+   ::user::interaction * pinteraction = __interaction(pwindow);
 
    if(pinteraction == nullptr)
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -64,7 +80,7 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
    if(pmq == nullptr)
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -73,7 +89,7 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
    pmq->m_messagea.pred_remove([=](mq_message & item)
    {
 
-      return item.m_message.hwnd == oswindow;
+      return item.m_message.oswindow == pwindow->get_oswindow();
 
    });
 

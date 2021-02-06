@@ -152,7 +152,7 @@ namespace experience
          g.FillRectangle(&solidBrush, prectangle->left, prectangle->top, prectangle->right - prectangle->left, prectangle->bottom - prectangle->top);*/
 
 
-         System.imaging().color_blend(pgraphics, rectangle_i32, cr, bAlpha);
+         System.imaging().color_blend(pgraphics, rectangle, cr, bAlpha);
 
 
       }

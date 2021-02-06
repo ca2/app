@@ -167,7 +167,7 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
    m_itemPressed = iItem;
    set_need_redraw();
    ::rectangle_i32 rectangle;
-   _001GetElementRect(iItem, rectangle_i32, ::user::e_element_item, ::user::e_state_none);
+   _001GetElementRect(iItem, rectangle, ::user::e_element_item, ::user::e_state_none);
    _001ClientToScreen(rectangle);
 
    /*#ifdef WINDOWS_DESKTOP
@@ -779,22 +779,22 @@ size_i32 simple_menu_bar::CalcFixedLayout(bool bStretch, bool bHorz)
       ::draw2d::brush_pointer brushShadow(get_context_application(), RGB(127, 127, 127));
       ::draw2d::pen * ppenOld = pgraphics->set(penShadow);
       ::draw2d::brush * pbrushOld = pgraphics->set(brushShadow);
-      pgraphics->rectangle_i32(rectShadow);
+      pgraphics->rectangle(rectShadow);
 
       ::draw2d::pen_pointer pen(get_context_application(), PS_SOLID, 1, RGB(92, 92, 92));
       ::draw2d::brush_pointer brush(get_context_application(), RGB(255, 255, 255));
       pgraphics->set(pen);
       pgraphics->set(brush);
-      pgraphics->rectangle_i32(rectItem);
+      pgraphics->rectangle(rectItem);
       pgraphics->set(ppenOld);
       pgraphics->set(pbrushOld);
 
       ::rectangle_i32 rectangle;
-      _001GetItemRect(iItem, rectangle_i32, e_element_text);
+      _001GetItemRect(iItem, rectangle, e_element_text);
       pgraphics->set_text_color(RGB(192, 192, 192));
       draw2d::graphics_extension::_DrawText(pgraphics,
          button.m_wstr,
-         rectangle_i32,
+         rectangle,
          e_align_left_center);
    }
 
@@ -863,7 +863,7 @@ void simple_menu_bar::_001OnTimer(::timer * ptimer)
 /*
 bool simple_menu_bar::OnEraseBkgnd(::draw2d::graphics_pointer & pgraphics)
 {
-   return TRUE;
+   return true;
 }
 */
 

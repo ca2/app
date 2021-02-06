@@ -85,7 +85,7 @@ namespace user
 
       u32 SetDrawTextFlags(u32 dwMask, u32 dwDTFlags);
       bool GetAnchorHighlight();
-      bool SetAnchorHighlight(bool fAnchor = TRUE);
+      bool SetAnchorHighlight(bool fAnchor = true);
       i32 GetHotItem();
       i32 SetHotItem(i32 nHot);
 #ifdef WINDOWS_DESKTOP
@@ -103,11 +103,11 @@ namespace user
 
    // Operations
    public:
-      bool EnableButton(i32 nID, bool bEnable = TRUE);
-      bool CheckButton(i32 nID, bool bCheck = TRUE);
-      bool PressButton(i32 nID, bool bPress = TRUE);
-      bool HideButton(i32 nID, bool bHide = TRUE);
-      bool Indeterminate(i32 nID, bool bIndeterminate = TRUE);
+      bool EnableButton(i32 nID, bool bEnable = true);
+      bool CheckButton(i32 nID, bool bCheck = true);
+      bool PressButton(i32 nID, bool bPress = true);
+      bool HideButton(i32 nID, bool bHide = true);
+      bool Indeterminate(i32 nID, bool bIndeterminate = true);
       i32 AddBitmap(i32 nNumButtons, ::draw2d::bitmap* pBitmap);
 
 
@@ -134,7 +134,7 @@ namespace user
 
 
       bool MapAccelerator(char chAccel, ::u32* pIDBtn);
-      bool MarkButton(i32 nID, bool fHighlight = TRUE);
+      bool MarkButton(i32 nID, bool fHighlight = true);
       bool MoveButton(::u32 nOldPos, ::u32 nNewPos);
       i32 hit_test(POINT_I32 * ppt);
 

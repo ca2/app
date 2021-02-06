@@ -357,7 +357,7 @@ namespace sockets
    if (m_addressRemote.m_p != nullptr)
    {
    struct sockaddr *point = *m_addressRemote;
-   ::memcpy_dup(&fail, point_i32, sizeof(struct sockaddr_in6));
+   ::memcpy_dup(&fail, point, sizeof(struct sockaddr_in6));
    }
    else
    {
@@ -849,9 +849,11 @@ namespace sockets
    }
 
 
-   void base_socket::SetSocks4Port(port_t point_i32)
+   void base_socket::SetSocks4Port(port_t port)
    {
-      m_socks4_port = point_i32;
+
+      m_socks4_port = port;
+
    }
 
 

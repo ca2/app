@@ -60,7 +60,7 @@ namespace app_app
 
       __compose_new(m_pwindow);
 
-      //::rectangle_i32 rectWindow;
+      //rectangle_i32 rectWindow;
 
       //bool bOk = m_pwindow->_001InitialFramePosition(rectWindow, );
 

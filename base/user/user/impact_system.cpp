@@ -132,7 +132,7 @@ namespace user
 
          TRACE(trace_category_appmsg, e_trace_level_error, "Error: you must override impact_system::create_new_document.\n");
 
-         ASSERT(FALSE);
+         ASSERT(false);
 
          return nullptr;
 
@@ -206,7 +206,7 @@ namespace user
 
          TRACE(trace_category_appmsg, e_trace_level_error, "Error: you must override impact_system::create_new_frame.\n");
 
-         ASSERT(FALSE);
+         ASSERT(false);
 
          return nullptr;
 
@@ -305,9 +305,9 @@ namespace user
       {
          __pointer(::user::document) pdocument = get_document(index);
          if (!pdocument->save_modified())
-            return FALSE;
+            return false;
       }
-      return TRUE;
+      return true;
    }
 
    void impact_system::pre_close_all_documents()

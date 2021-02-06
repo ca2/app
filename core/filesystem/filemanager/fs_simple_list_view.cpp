@@ -191,7 +191,7 @@ namespace filemanager
                pitem->m_strText.Empty();
                break;
             default:
-               //ASSERT(FALSE);
+               //ASSERT(false);
                pitem->m_strText.Empty();
                break;
             }
@@ -342,7 +342,7 @@ namespace filemanager
 
             UNREFERENCED_PARAMETER(wstrFile);
             UNREFERENCED_PARAMETER(uiTimer);
-            ASSERT(FALSE);
+            ASSERT(false);
 
          }
 
@@ -352,7 +352,7 @@ namespace filemanager
 
             //UNREFERENCED_PARAMETER(pParameter);
 
-            ASSERT(FALSE);
+            ASSERT(false);
 
             /*FillTask * pobjectTask = (FillTask *) pParameter;
 
@@ -497,7 +497,7 @@ namespace filemanager
             }
             else
             {
-            ASSERT(FALSE);
+            ASSERT(false);
             }
 
             }
@@ -517,7 +517,7 @@ namespace filemanager
             }
             else
             {
-            ASSERT(FALSE);
+            ASSERT(false);
             }
             }
             else
@@ -720,7 +720,7 @@ namespace filemanager
                               else
                               {
                                  // unknown item type
-                                 ASSERT(FALSE);
+                                 ASSERT(false);
                               }
 
                               switch(item.m_etype)
@@ -796,7 +796,7 @@ namespace filemanager
          {
             __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
             perasebkgnd->m_bRet = true;
-            perasebkgnd->set_result(TRUE);
+            perasebkgnd->set_result(true);
          }
 
          ::count list_view::_001GetItemCount()

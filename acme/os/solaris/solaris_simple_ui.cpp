@@ -369,27 +369,27 @@ namespace os
                            if(keysym == XK_Tab)
                            {
                               //on_key_down(VK_TAB);
-                              on_char(::user::key_tab, "");
+                              on_char(::user::e_key_tab, "");
 
                            }
                            else if(keysym == XK_Return)
                            {
                               //on_key_down(VK_RETURN);
-                              on_char(::user::key_return, "");
+                              on_char(::user::e_key_return, "");
                            }
                            else if(keysym == XK_BackSpace)
                            {
                               //on_key_down(VK_RETURN);
-                              on_char(::user::key_back, "");
+                              on_char(::user::e_key_back, "");
                            }
                            else if(keysym == XK_Delete)
                            {
                               //on_key_down(VK_RETURN);
-                              on_char(::user::key_delete, "");
+                              on_char(::user::e_key_delete, "");
                            }
                            else if(keysym == XK_Shift_L || keysym == XK_Shift_R)
                            {
-                              on_key_down(::user::key_shift);
+                              on_key_down(::user::e_key_shift);
                            }
                            else
                            {
@@ -417,7 +417,7 @@ namespace os
                            }
                            else if(keysym == XK_Shift_L || keysym == XK_Shift_R)
                            {
-                              on_key_up(::user::key_shift);
+                              on_key_up(::user::e_key_shift);
                            }
 
                         }
@@ -539,9 +539,9 @@ namespace os
 
       baState[uiKey & 0xff] = 0x80;
 
-      /*if((GetAsyncKeyState(::user::key_shift) & 0x80000000) != 0)
+      /*if((GetAsyncKeyState(::user::e_key_shift) & 0x80000000) != 0)
       {
-      baState[::user::key_shift] |= 0x80;
+      baState[::user::e_key_shift] |= 0x80;
       }
       */
       if (m_bShiftKey)

@@ -191,11 +191,11 @@ namespace android
       //{
       //   // use case insensitive compare as a starter
       //   if (lstrcmpi(lpszPath1, lpszPath2) != 0)
-      //   return FALSE;
+      //   return false;
 
       //   // on non-DBCS systems, we are done
       //   if (!GetSystemMetrics(SM_DBCSENABLED))
-      //   return TRUE;
+      //   return true;
 
       //   // on DBCS systems, the file name may not actually be the same
       //   // in particular, the file system is case sensitive with respect to
@@ -203,7 +203,7 @@ namespace android
       //   // (ie. fullwidth-R is different from fullwidth-r).
       //   i32 nLen = lstrlen(lpszPath1);
       //   if (nLen != lstrlen(lpszPath2))
-      //   return FALSE;
+      //   return false;
       //   ASSERT(nLen < _MAX_PATH);
 
       //   // need to get both CT_CTYPE1 and CT_CTYPE3 for each filename
@@ -233,11 +233,11 @@ namespace android
       //   // if CT_CTYPE1 is different then file system considers these
       //   // file names different.
       //   if (aCharType11[i] != aCharType21[i])
-      //   return FALSE;
+      //   return false;
       //   }
       //   ++i; // look at next character type
       //   }
-      //   return TRUE; // otherwise file name is truly the same
+      //   return true; // otherwise file name is truly the same
       //}
 
       //void dir::root_ones(string_array & straPath, string_array & straTitle, ::aura::application * papp)

@@ -55,7 +55,7 @@
 
 //       }
 
-//       return TRUE;
+//       return true;
 //    }
 
 // #else
@@ -94,13 +94,13 @@
 
 //       }
 
-//       return TRUE;
+//       return true;
 //    }
 
 
 // #endif
 
-//    return FALSE;
+//    return false;
 
 // }
 
@@ -109,18 +109,18 @@
 CLASS_DECL_ACE int _ca_is_basis()
 {
 #if CA2_PLATFORM_VERSION == CA2_BASIS
-   return TRUE;
+   return true;
 #else
-   return FALSE;
+   return false;
 #endif
 }
 
 CLASS_DECL_ACE int _ca_is_stage()
 {
 #if CA2_PLATFORM_VERSION == CA2_STAGE
-   return TRUE;
+   return true;
 #else
-   return FALSE;
+   return false;
 #endif
 }
 

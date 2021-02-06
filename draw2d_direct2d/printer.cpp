@@ -21,7 +21,7 @@ namespace draw2d_direct2d
       if(is_opened())
          close();
 #ifndef _UWP
-      return OpenPrinterW((LPWSTR) (const widechar *) wstring(pszDeviceName), &m_hPrinter, nullptr) != FALSE && m_hPrinter != nullptr;
+      return OpenPrinterW((LPWSTR) (const widechar *) wstring(pszDeviceName), &m_hPrinter, nullptr) != false && m_hPrinter != nullptr;
 #else
       __throw(todo());
       return false;
@@ -47,7 +47,7 @@ namespace draw2d_direct2d
       if(m_hPrinter != nullptr)
       {
 #ifndef _UWP
-         bOk = ::ClosePrinter(m_hPrinter) != FALSE;
+         bOk = ::ClosePrinter(m_hPrinter) != false;
 #else
          __throw(todo());
          return false;

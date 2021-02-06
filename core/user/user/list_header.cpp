@@ -161,7 +161,7 @@ namespace user
 
       if(eelement == e_element_item)
       {
-         *prectangle = rectangle_i32;
+         *prectangle = rectangle;
 
          return true;
       }
@@ -169,7 +169,7 @@ namespace user
       if(eelement == element_item_Box)
       {
          rectangle.right -= GetDividerWidth();
-         *prectangle = rectangle_i32;
+         *prectangle = rectangle;
 
          return true;
       }
@@ -177,7 +177,7 @@ namespace user
       if(eelement == ElementDivider)
       {
          rectangle.left = rectangle.right - GetDividerWidth();
-         *prectangle = rectangle_i32;
+         *prectangle = rectangle;
 
          return true;
       }
@@ -221,7 +221,7 @@ namespace user
 
             rectangle.left = rectA.left + rectA.width() / 2;
             rectangle.right = rectB.left + rectB.width() / 2;
-            *prectangle = rectangle_i32;
+            *prectangle = rectangle;
 
             return true;
          }
@@ -238,7 +238,7 @@ namespace user
 
             rectangle.left = rectA.left + rectA.width() / 2;
             rectangle.right = rectangle.left + rectangle.width() / 2;
-            *prectangle = rectangle_i32;
+            *prectangle = rectangle;
 
             return true;
          }
@@ -255,7 +255,7 @@ namespace user
 
             rectangle.left = rectangle.left + rectangle.width() / 2;
             rectangle.right = rectB.left + rectB.width() / 2;
-            *prectangle = rectangle_i32;
+            *prectangle = rectangle;
 
             return true;
          }

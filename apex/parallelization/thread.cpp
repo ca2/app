@@ -752,7 +752,7 @@ bool thread::pump_runnable()
    while(thread_get_run())
    {
 
-      if (m_routinea.isEmpty())
+      if (m_routinea.is_empty())
       {
 
          return false;
@@ -825,7 +825,7 @@ __pointer(::matter) thread::running(const char * pszTag) const
 }
 
 
-int thread::_GetMessage(MESSAGE * pmessage, oswindow oswindow, ::u32 wMsgFilterMin,::u32 wMsgFilterMax)
+int thread::_GetMessage(MESSAGE * pmessage, ::windowing::window * pwindow, ::u32 wMsgFilterMin,::u32 wMsgFilterMax)
 {
 
    __throw(exception::exception());
@@ -3364,6 +3364,7 @@ mq* thread::_get_mq()
 
 }
 
+
 int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
 {
 
@@ -3386,7 +3387,7 @@ int_bool thread::peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilte
       
       MSG msg;
 
-      if (::PeekMessage(&msg, (HWND) oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
+      if (::PeekMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
       {
 
          return true;
@@ -3710,7 +3711,7 @@ int_bool thread::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilter
 
       MSG msg;
 
-      int iRet = ::GetMessage(&msg, (HWND) oswindow, wMsgFilterMin, wMsgFilterMax);
+      int iRet = ::GetMessage(&msg, __hwnd(oswindow), wMsgFilterMin, wMsgFilterMax);
 
       __copy(pMsg, msg);
 
@@ -3796,7 +3797,7 @@ int_bool thread::post_message(oswindow oswindow, const ::id & id, wparam wparam,
    if (m_hthread && !m_bAuraMessageQueue)
    {
 
-      if (::PostMessage((HWND) oswindow, id.u32(), wparam, lparam))
+      if (::PostMessage(__hwnd(oswindow), id.u32(), wparam, lparam))
       {
 
          return true;
@@ -3984,7 +3985,7 @@ void thread::message_handler(::message::base * pbase)
 
 #ifdef WINDOWS_DESKTOP
 
-      if (message.hwnd != nullptr || message.message == e_message_timer)
+      if (message.oswindow != nullptr || message.message == e_message_timer)
       {
 
          MSG msg;

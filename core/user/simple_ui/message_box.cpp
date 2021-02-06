@@ -215,7 +215,7 @@ namespace simple_ui
 
       TRACE("(4) Just after create_window_ex for message_box (m_pimpl->m_puserinteraction) : %" PRIxPTR, m_pimpl->m_puserinteraction.m_p);
 
-      order(zorder_top);
+      order(e_zorder_top);
 
       place(rectFontopus);
 
@@ -259,7 +259,7 @@ namespace simple_ui
 
       rectangle.deflate(10, 10);
 
-      pgraphics->draw_text(strMessage, rectangle_i32, e_align_top_left, e_draw_text_expand_tabs);
+      pgraphics->draw_text(strMessage, rectangle, e_align_top_left, e_draw_text_expand_tabs);
 
    }
 
@@ -291,7 +291,7 @@ namespace simple_ui
 
          __pointer(tap) ptap = m_tapaA[i];
 
-         ptap->order(zorder_top);
+         ptap->order(e_zorder_top);
 
          ptap->set_dim(x, y, cx, cy);
 
@@ -310,7 +310,7 @@ namespace simple_ui
 
          __pointer(tap) ptap = m_tapaB[i];
 
-         ptap->order(zorder_top);
+         ptap->order(e_zorder_top);
 
          ptap->set_dim(x, y, cx, cy);
 

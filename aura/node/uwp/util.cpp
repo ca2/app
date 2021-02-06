@@ -11,7 +11,7 @@
 
    char szFontInfo[256];
    if (!::ca2::LoadString(nIDS, szFontInfo,_countof(szFontInfo)))
-      return FALSE;
+      return false;
 
    char * lpszSize = _tcschr(szFontInfo, '\n');
    if (lpszSize != nullptr)
@@ -23,16 +23,16 @@
       *lpszSize = '\0';
    }
    ::ca2::tcsncpy_s(pLogFont->lfFaceName, _countof(pLogFont->lfFaceName), szFontInfo, _TRUNCATE);
-   return TRUE;
+   return true;
 }*/
 #ifdef WINDOWS_DESKTOP
 bool CLASS_DECL_AURA __is_combo_box_control(oswindow hWnd, ::u32 nStyle)
 {
    if (hWnd == nullptr)
-      return FALSE;
+      return false;
    // do cheap style compare first
    if ((::u32)(::GetWindowLong(hWnd, GWL_STYLE) & 0x0F) != nStyle)
-      return FALSE;
+      return false;
 
    // do expensive classname compare next
    char szCompare[_countof("combobox")+1];
@@ -130,7 +130,7 @@ void CLASS_DECL_AURA __cancel_modes(oswindow hWndRcvr)
       return;
 
    // finally, we should cancel the mode!
-   ::SendMessage(hWndCancel, CB_SHOWDROPDOWN, FALSE, 0L);
+   ::SendMessage(hWndCancel, CB_SHOWDROPDOWN, false, 0L);
 }*/
 
 void CLASS_DECL_AURA __global_free(HGLOBAL hGlobal)

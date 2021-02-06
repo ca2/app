@@ -279,7 +279,7 @@ namespace simple_ui
          y += dLineHeight;
          lim += straLines[i].get_length();
 
-         //ASSERT(FALSE);
+         //ASSERT(false);
 
       }
 

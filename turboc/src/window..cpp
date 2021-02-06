@@ -67,6 +67,6 @@ window (int left, int top, int right, int bottom)
 	//       CurrentAttributes.winright - CurrentAttributes.winleft, 0);
  //   }
  // wrefresh (CurrentWindow);
- // scrollok (stdscr, FALSE);
- // scrollok (CurrentWindow, TRUE);
+ // scrollok (stdscr, false);
+ // scrollok (CurrentWindow, true);
 }

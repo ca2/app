@@ -34,7 +34,7 @@ void simple_list_view::OnDraw(::draw2d::graphics_pointer & pgraphics)
    
    UNREFERENCED_PARAMETER(pgraphics);
    
-   ASSERT(FALSE);
+   ASSERT(false);
 
 }
 

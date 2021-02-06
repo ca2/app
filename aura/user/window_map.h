@@ -23,25 +23,25 @@ namespace user
    class primitive;
 
 
-   class CLASS_DECL_AURA window_map :
-      virtual public ::object
-   {
-   public:
+   //class CLASS_DECL_AURA window_map :
+   //   virtual public ::object
+   //{
+   //public:
 
 
-      map < oswindow, ::user::primitive * > m_map;
+   //   map < oswindow, ::user::primitive * > m_map;
 
 
-      window_map();
-      virtual ~window_map();
+   //   window_map();
+   //   virtual ~window_map();
 
 
-      ::user::primitive * get(oswindow oswindow);
+   //   ::user::primitive * get(::windowing::window * pwindow);
 
 
-      void set(oswindow oswindow, const ::user::primitive * pinterface);
+   //   void set(::windowing::window * pwindow, const ::user::primitive * pinterface);
 
-   };
+   //};
 
 
 } // namespace user

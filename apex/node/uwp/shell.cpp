@@ -176,7 +176,7 @@ return nullptr;
 /*
 * allocate a buffer for the ::account::user.
 */
-/*      if ( (p = (WCHAR *)malloc(__max(len, maxlen) * sizeof(WCHAR)))
+/*      if ( (p = (WCHAR *)malloc(maximum(len, maxlen) * sizeof(WCHAR)))
 == nullptr )
 {
 //                errno = ENOMEM;
@@ -279,11 +279,11 @@ namespace uwp
 
       bool bNativeUnicode;
       if (dwVersion < 0x80000000)              // Windows NT
-         bNativeUnicode = TRUE;
+         bNativeUnicode = true;
       else if (dwWindowsMajorVersion < 4)      // Win32s
-         bNativeUnicode = FALSE;
+         bNativeUnicode = false;
       else                                     // Windows Me/98/95
-         bNativeUnicode = FALSE;
+         bNativeUnicode = false;
 
 
    //      if(bNativeUnicode)
@@ -332,8 +332,8 @@ namespace uwp
 //   {
 //      char pszPathA[MAX_PATH * 2];
 //      if(!::SHGetPathFromIDListA(pidl, pszPathA))
-//         return FALSE;
-//      return ::str::international::ACPToUnicode(pszPath, MAX_PATH * 2, pszPathA) ? TRUE : FALSE;
+//         return false;
+//      return ::str::international::ACPToUnicode(pszPath, MAX_PATH * 2, pszPathA) ? true : false;
 //   }*/
 //
 ///*   BOOL shell::_MoveFile(const unichar * lpExistingFileName, const unichar * lpNewFileName)
@@ -371,9 +371,9 @@ namespace uwp
 //   BOOL shell::_FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata)
 //   {
 //      WIN32_FIND_DATAA data;
-//      bool b = ::FindNextFileA(handle, &data) != FALSE;
-//      if(b == FALSE)
-//         return FALSE;
+//      bool b = ::FindNextFileA(handle, &data) != false;
+//      if(b == false)
+//         return false;
 //
 //      lpdata->dwFileAttributes = data.dwFileAttributes;
 //      lpdata->ftCreationTime = data.ftCreationTime;
@@ -479,7 +479,7 @@ namespace uwp
 //         lpMaximumComponentLength,
 //         lpFileSystemFlags,
 //         strFileSystemNameBuffer.GetBuffer(nFileSystemNameSize),
-//         nFileSystemNameSize) != FALSE;
+//         nFileSystemNameSize) != false;
 //
 //      strVolumeNameBuffer.ReleaseBuffer();
 //      strFileSystemNameBuffer.ReleaseBuffer();
@@ -509,7 +509,7 @@ namespace uwp
 //         &shia,
 //         sizeof(shia),
 //         uFlags))
-//         return FALSE;
+//         return false;
 //      ::str::international::ACPToUnicode(
 //         psfi->szDisplayName,
 //         sizeof(psfi->szDisplayName) / sizeof(WCHAR),
@@ -518,7 +518,7 @@ namespace uwp
 //         psfi->szTypeName,
 //         sizeof(psfi->szTypeName) / sizeof(WCHAR),
 //         shia.szTypeName);
-//      return TRUE;
+//      return true;
 //   }
 //
 //
@@ -545,9 +545,9 @@ namespace uwp
 //      }
 //      if(!GetStringTypeA(uCodePage, dwInfoType, lpsz, (int) iCount, lpCharType))
 //      {
-//         return FALSE;
+//         return false;
 //      }
-//      return TRUE;
+//      return true;
 //   }
 //
 //
@@ -644,7 +644,7 @@ namespace uwp
 //         lpszClassName = strClassName;
 //      }
 //      if(!::GetClassInfoA(hInstance, lpszClassName, &wndclass))
-//         return FALSE;
+//         return false;
 //
 //      lpWndClass->style = wndclass.style;
 //      lpWndClass->lpfnWndProc = wndclass.lpfnWndProc;
@@ -671,7 +671,7 @@ namespace uwp
 //
 //      lpWndClass->lpszClassName = (const unichar *) wndclass.lpszClassName;
 //
-//      return TRUE;
+//      return true;
 //
 //   }
 //   ATOM shell::_RegisterClass(

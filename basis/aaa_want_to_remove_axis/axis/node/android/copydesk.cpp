@@ -59,7 +59,7 @@ namespace android
 
 //      if(::user::interaction_impl *::is_set() && ::user::interaction_impl *::m_p->is_window())
       {
-         //       bOk = ::user::interaction_impl *::m_p->DestroyWindow() != FALSE;
+         //       bOk = ::user::interaction_impl *::m_p->DestroyWindow() != false;
       }
       //  else
       {

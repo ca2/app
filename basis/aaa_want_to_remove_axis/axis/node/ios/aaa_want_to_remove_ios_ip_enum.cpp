@@ -45,7 +45,7 @@ namespace ios
       if (gethostname(szHostname, sizeof(szHostname)))
       {
          TRACE("Failed in call to gethostname, errno returns %d\n", errno);
-         return FALSE;
+         return false;
       }
       
       //get host information from the host name
@@ -53,14 +53,14 @@ namespace ios
       if (phostent == NULL)
       {
          TRACE("Failed in call to gethostbyname, errno returns %d\n", errno);
-         return FALSE;
+         return false;
       }
       
       //check the length of the IP adress
       if (phostent->h_length != 4)
       {
          TRACE("IP address returned is not 32 bits !!\n");
-         return FALSE;
+         return false;
       }
       
       //call the virtual callback function in a loop
@@ -89,7 +89,7 @@ namespace ios
          
       }
       
-      return TRUE;
+      return true;
       
    }
    

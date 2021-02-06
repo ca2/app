@@ -45,11 +45,11 @@ namespace user
 //
 //         System.message_box("Could not create Split Bar");
 //
-//         return FALSE;
+//         return false;
 //
 //      }
 //
-//      return TRUE;
+//      return true;
 //
 //   }
 

@@ -127,7 +127,7 @@ namespace uwp
 
                //auto pchanged = ref new Windows::UI::Core::WindowSizeChangedEventArgs();
 
-               ::size_i32 size_i32((LONG) m_window->Bounds.Width, (LONG) m_window->Bounds.Height);
+               ::size_i32 size((LONG) m_window->Bounds.Width, (LONG) m_window->Bounds.Height);
 
                //pchanged->Size.Height = m_window->Bounds.Height;
 
@@ -288,7 +288,7 @@ namespace uwp
    void directx_framework_view::OnWindowSizeChanged(CoreWindow ^ sender, WindowSizeChangedEventArgs ^ args)
    {
 
-      ::size_i32 size_i32((LONG) args->Size.Width, (LONG) args->Size.Height);
+      ::size_i32 size((LONG) args->Size.Width, (LONG) args->Size.Height);
 
       on_window_size_changed(sender, size);
 
@@ -443,8 +443,8 @@ namespace uwp
 
       ::user::e_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
 
-      if(bSpecialKey || !bTextFocus || m_psystem->get_context_session()->is_key_pressed(::user::key_control)
-         || m_psystem->get_context_session()->is_key_pressed(::user::key_alt))
+      if(bSpecialKey || !bTextFocus || m_psystem->get_context_session()->is_key_pressed(::user::e_key_control)
+         || m_psystem->get_context_session()->is_key_pressed(::user::e_key_alt))
       {
 
          pkey->m_id                 = e_message_key_down;
@@ -457,7 +457,7 @@ namespace uwp
          //pkey->m_strText            = m_strNewText;
          //if (pkey->m_strText.has_char())
          //{
-           // pkey->m_ekey = ::user::key_refer_to_text_member;
+           // pkey->m_ekey = ::user::e_key_refer_to_text_member;
          //}
    //      pkey->m_key = args;
 

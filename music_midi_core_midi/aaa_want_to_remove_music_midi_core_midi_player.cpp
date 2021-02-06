@@ -193,18 +193,18 @@ namespace music
 
          void player::OnMmsgDone(::music::midi::sequence * pSeq)
          {
-            ASSERT(FALSE);
-            ASSERT(FALSE);
-            ASSERT(FALSE);
-            ASSERT(FALSE);
-            ASSERT(FALSE);
-            ASSERT(FALSE);
-            ASSERT(FALSE);
-            ASSERT(FALSE);
+            ASSERT(false);
+            ASSERT(false);
+            ASSERT(false);
+            ASSERT(false);
+            ASSERT(false);
+            ASSERT(false);
+            ASSERT(false);
+            ASSERT(false);
             ASSERT(pSeq == get_sequence());
             if(pSeq->IsSettingPosition())
             {
-               get_sequence()->SetSettingPositionFlag(FALSE);
+               get_sequence()->SetSettingPositionFlag(false);
                try
                {
                   //         PrerollAndWait(m_dNextPositionRate);
@@ -231,7 +231,7 @@ namespace music
             //      pMsg->message == MM_MOM_OPEN)
             //   {
             //      OnMidiOutMessage(pMsg->message, pMsg->wParam, pMsg->lParam);
-            //      return TRUE;
+            //      return true;
             //   }
 //            if(pbase->m_puserinteraction == nullptr)
 //            {

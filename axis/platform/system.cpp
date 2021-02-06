@@ -10,7 +10,7 @@
 void __node_axis_factory_exchange();
 
 
-//int GetMainScreenRect(LPRECT32 lprect);
+//int GetMainScreenRect(RECTANGLE_I32 * lprect);
 
 //
 //const char* g_pszMultimediaLibraryName = nullptr;

@@ -68,7 +68,7 @@ namespace draw2d_xlib
 //      Destroy ();
    }
 
-   bool image::create(::size_i32 size_i32)
+   bool image::create(::size_i32 size)
    {
       return create(size.cx, size.cy);
    }
@@ -86,7 +86,7 @@ namespace draw2d_xlib
       Destroy();
 
       if(width <= 0 || height <= 0)
-         return FALSE;
+         return false;
 
       __memset(&m_info, 0, sizeof (BITMAPINFO));
 
@@ -108,7 +108,7 @@ namespace draw2d_xlib
          m_size.cx = 0;
          m_size.cy = 0;
          m_iScan = 0;
-         return FALSE;
+         return false;
       }
 
       if(!m_pbitmap->CreateDIBSection(nullptr, &m_info, DIB_RGB_COLORS, (void **) &m_pcolorref, &m_iScan, nullptr, 0))
@@ -116,7 +116,7 @@ namespace draw2d_xlib
          m_size.cx = 0;
          m_size.cy = 0;
          m_iScan = 0;
-         return FALSE;
+         return false;
       }
 
 
@@ -128,17 +128,17 @@ namespace draw2d_xlib
          /*if(pbitmap == nullptr || pbitmap->get_os_data() == nullptr)
          {
             Destroy();
-            return FALSE;
+            return false;
          }
          ((Gdiplus::Bitmap *)pbitmap->get_os_data())->GetHBITMAP(Gdiplus::Color(0, 0, 0, 0), &m_hbitmapOriginal);*/
          m_size.cx = width;
          m_size.cy = height;
-         return TRUE;
+         return true;
       }
       else
       {
          Destroy();
-         return FALSE;
+         return false;
       }
    }
 
@@ -159,14 +159,14 @@ namespace draw2d_xlib
    {
       ::draw2d::bitmap * pbitmap = (dynamic_cast < ::draw2d_xlib::graphics * > (pgraphics))->get_current_bitmap();
       if(pbitmap == nullptr)
-         return FALSE;
+         return false;
       ::size_i32 size = pbitmap->get_size();
       if(!create(size.cx, size.cy))
       {
-         return FALSE;
+         return false;
       }
       from(pgraphics);
-      return TRUE;
+      return true;
    }
 
    bool image::Destroy ()
@@ -189,13 +189,13 @@ namespace draw2d_xlib
       m_pcolorref             = nullptr;
       m_bMapped               = false;
 
-      return TRUE;
+      return true;
    }
 
    bool image::to(::draw2d::graphics * pgraphics, const ::point_i32 & point, ::size_i32 size, const ::point_i32 & pointSrc)
    {
 
-      return pgraphics->BitBlt(point.x, point.y, size.cx, size.cy, get_graphics(), pointSrc.x, pointSrc.y) != FALSE;
+      return pgraphics->BitBlt(point.x, point.y, size.cx, size.cy, get_graphics(), pointSrc.x, pointSrc.y) != false;
 
       /*  return SetDIBitsToDevice(
            (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1(),
@@ -203,7 +203,7 @@ namespace draw2d_xlib
            size.cx, size.cy,
            pointSrc.x, pointSrc.y, pointSrc.y, cy - pointSrc.y,
            m_pcolorref, &m_info, 0)
-              != FALSE; */
+              != false; */
 
    }
 
@@ -221,14 +221,14 @@ namespace draw2d_xlib
          return false;
       }
       __throw(todo());
-      // xxx bool bOk = GetDIBits(LNX_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, cy, m_pcolorref, &(m_info), DIB_RGB_COLORS) != FALSE;
+      // xxx bool bOk = GetDIBits(LNX_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, cy, m_pcolorref, &(m_info), DIB_RGB_COLORS) != false;
       // xxx pgraphics->SelectObject(pbitmap);
       // xxx return bOk;
    }
 
    bool image::from(point_i32 ptDest, ::draw2d::graphics * pgraphics, const ::point_i32 & point, ::size_i32 sz)
    {
-      return m_spgraphics->BitBlt(ptDest.x, ptDest.y, sz.cx, sz.cy, pgraphics, point.x, point.y) != FALSE;
+      return m_spgraphics->BitBlt(ptDest.x, ptDest.y, sz.cx, sz.cy, pgraphics, point.x, point.y) != false;
    }
 
    //void image::Fill ( i32 R, i32 G, i32 B )
@@ -238,7 +238,7 @@ namespace draw2d_xlib
 
    //   color32_t * pcr;
 
-   //   i32 iSize32 = size_i32 / 32;
+   //   i32 iSize32 = size / 32;
    //   i32 i;
    //   for (i=0; i < iSize32; i+=32 )
    //   {
@@ -304,7 +304,7 @@ namespace draw2d_xlib
    //         *pbyte++ = (byte) B * pbyte[1] / 255;
    //         pbyte++;
    //      }
-   //      j+= rectangle_i32;
+   //      j+= rectangle;
    //   }
    //}
 
@@ -313,7 +313,7 @@ namespace draw2d_xlib
    //   byte *dst=(byte*)m_pcolorref;
    //   i32 size=cx*cy;
 
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[3] = dst[i];
    //      dst+=4;
@@ -325,7 +325,7 @@ namespace draw2d_xlib
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = cx * cy;
 
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[0] = dst[3];
    //      dst[1] = dst[3];
@@ -454,7 +454,7 @@ namespace draw2d_xlib
    //   byte *dst=(byte*)m_pcolorref;
    //   i32 size=cx*cy;
 
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      *dst = (byte) (*dst == FromRgb ? ToRgb : *dst);
    //      dst+=4;
@@ -471,7 +471,7 @@ namespace draw2d_xlib
    //   byte uchG = ::green(cr);
    //   byte uchR = ::red(cr);
 
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[3] = dst[i];
    //      dst[0] = uchB;
@@ -571,7 +571,7 @@ namespace draw2d_xlib
    //void image::color::channel_invert(color::color::rgba::echannel echannel)
    //{
    //   i64 size_i32   = cx * cy;
-   //   register i64 size_i64 = size_i32 / 64;
+   //   register i64 size_i64 = size / 64;
    //   byte * lpb = (byte *) m_pcolorref;
    //   lpb += ((i32)echannel) % 4;
    //   register i64 i = 0;
@@ -675,7 +675,7 @@ namespace draw2d_xlib
    //   byte *dst=(byte*)m_pcolorref;
    //   i32 size=cx*cy;
 
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[0]=(byte)(((B-dst[0])*A+(dst[0]<<8))>>8);
    //      dst[1]=(byte)(((G-dst[1])*A+(dst[1]<<8))>>8);
@@ -732,7 +732,7 @@ namespace draw2d_xlib
    //   u32 dwG_ = dwG << 8;
    //   u32 dwR_ = dwR << 8;
 
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[0]=(byte)(((dst[0]-dwB)*bAlpha+dwB_)>>8);
    //      dst[1]=(byte)(((dst[1]-dwG)*bAlpha+dwG_)>>8);
@@ -752,7 +752,7 @@ namespace draw2d_xlib
    //   byte *dst=(byte*)m_pcolorref;
    //   i32 size=cx*cy;
 
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[0]=(byte)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
    //      dst[1]=(byte)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
@@ -775,7 +775,7 @@ namespace draw2d_xlib
 
    //   A = 2 - A;
 
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[0]=(byte)(((src[0]-dst[0])*alf[A]+(dst[0]<<8))>>8);
    //      dst[1]=(byte)(((src[1]-dst[1])*alf[A]+(dst[1]<<8))>>8);
@@ -797,7 +797,7 @@ namespace draw2d_xlib
    //   byte *dst=(byte*)m_pcolorref;
    //   i32 size=cx*cy;
 
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[0]=(byte)((src[0]<dst[0]) ? src[0] : dst[0]);
    //      dst[1]=(byte)((src[1]<dst[1]) ? src[1] : dst[1]);
@@ -816,7 +816,7 @@ namespace draw2d_xlib
    //   byte *dst=(byte*)m_pcolorref;
    //   i32 size=cx*cy;
 
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      i32 Difference;
    //      Difference=src[0]-dst[0];
@@ -839,7 +839,7 @@ namespace draw2d_xlib
    //   byte *dst=(byte*)m_pcolorref;
    //   i32 size=cx*cy;
 
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[0]=(byte)((src[0]>dst[0]) ? src[0] : dst[0]);
    //      dst[1]=(byte)((src[1]>dst[1]) ? src[1] : dst[1]);
@@ -859,7 +859,7 @@ namespace draw2d_xlib
    //   byte *dst=(byte*)m_pcolorref;
    //   i32 size=cx*cy;
 
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[0]=(byte)(((src[0])*(dst[0]))>>8);
    //      dst[1]=(byte)(((src[1])*(dst[1]))>>8);
@@ -878,7 +878,7 @@ namespace draw2d_xlib
    //   byte *dst=(byte*)m_pcolorref;
    //   i32 size=cx*cy;
 
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[0]=(byte)(255-(((255-src[0])*(255-dst[0]))>>8));
    //      dst[1]=(byte)(255-(((255-src[1])*(255-dst[1]))>>8));
@@ -2112,7 +2112,7 @@ namespace draw2d_xlib
 
    //   color32_t * pcr;
 
-   //   i32 iSize32 = size_i32 / 32;
+   //   i32 iSize32 = size / 32;
    //   i32 i;
    //   for (i=0; i < iSize32; i+=32 )
    //   {
@@ -2472,7 +2472,7 @@ namespace draw2d_xlib
 
    //    byte * pb;
 
-   //    i32 iSize32 = size_i32 / 32;
+   //    i32 iSize32 = size / 32;
    //    i32 i;
    //    for (i=0; i < iSize32; i+=32 )
    //    {
@@ -2573,7 +2573,7 @@ namespace draw2d_xlib
 
       ::rectangle_i32 rectangle(rectWindow);
 
-      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rectangle_i32, m_iScan);
+      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rectangle, m_iScan);
 
       return true;
 
@@ -2678,7 +2678,7 @@ namespace draw2d_xlib
 //
 //      ::rectangle_i32 rectangle(rectWindow);
 //
-//      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rectangle_i32, m_iScan);
+//      window_graphics::update_window(pwnd->m_pgraphics, pwnd->get_handle(), m_pcolorref, rectangle, m_iScan);
 
       return true;
 

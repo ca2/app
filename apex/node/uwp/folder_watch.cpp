@@ -48,7 +48,7 @@
 //      WCHAR wchFileName[dwBuffLength];
 //
 //
-//      while(::ReadDirectoryChangesW(hDirectory, buffer, dwBuffLength, TRUE,
+//      while(::ReadDirectoryChangesW(hDirectory, buffer, dwBuffLength, true,
 //                                    FILE_NOTIFY_CHANGE_FILE_NAME |
 //                                    FILE_NOTIFY_CHANGE_LAST_WRITE |
 //                                    FILE_NOTIFY_CHANGE_CREATION, &dwBytesReturned,

@@ -112,7 +112,7 @@ namespace aura
       bool tx::is_tx_ok()
       {
 
-         //return ::IsWindow(m_hwnd) != FALSE;
+         //return ::IsWindow(m_hwnd) != false;
 
          return m_strBaseChannel.has_char();
 

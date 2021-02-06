@@ -147,7 +147,7 @@ namespace user
 
       stra.add_lines(m_str);
 
-      ::size_i32 size_i32(0,0);
+      ::size_i32 size(0,0);
 
       ::size_i32 sizeLine;
 

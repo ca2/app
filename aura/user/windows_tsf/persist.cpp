@@ -284,7 +284,7 @@
 //                
 //                //put the text into the edit control, but don't send a change notification
 //                BOOL    fOldNotify = m_fNotify;
-//                m_fNotify = FALSE;
+//                m_fNotify = false;
 //                SetWindowTextW(m_hwndEdit, pwsz);
 //                m_fNotify = fOldNotify;
 //

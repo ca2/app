@@ -156,7 +156,7 @@ namespace experience
                Gdiplus::SolidBrush solidBrush(Gdiplus::Color(bAlpha, colorref_get_r_value(cr), colorref_get_g_value(cr), colorref_get_b_value(cr)));
                g.FillRectangle(&solidBrush, lprect->left, lprect->top, lprect->right - lprect->left, lprect->bottom - lprect->top);*/
 
-               System.imaging().color_blend(pgraphics, rectangle_i32, cr, bAlpha);
+               System.imaging().color_blend(pgraphics, rectangle, cr, bAlpha);
 
             }
 
@@ -224,7 +224,7 @@ namespace experience
                return (frame::enum_element) (*((i32*)&eelement))++;
             }
 
-            bool frame::get_element_rect(LPRECT32 lprect, enum_element eelement)
+            bool frame::get_element_rect(RECTANGLE_I32 * lprect, enum_element eelement)
             {
                switch (eelement)
                {

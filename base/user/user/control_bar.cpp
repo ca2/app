@@ -28,7 +28,7 @@ namespace user
       //m_rectBorder.left = m_rectBorder.right = 6;
       m_cxDefaultGap = 2;
       //m_rectBorder.top = m_rectBorder.bottom = 1;
-      m_bAutoDelete = FALSE;
+      m_bAutoDelete = false;
       m_nStateFlags = 0;
       m_pDockSite = nullptr;
       m_pDockBar = nullptr;
@@ -79,7 +79,7 @@ namespace user
       if (!::user::interaction::pre_create_window(pusersystem))
       {
 
-         return FALSE;
+         return false;
 
       }
 
@@ -125,7 +125,7 @@ namespace user
          m_bFullScreenBar = true;
       }
 
-      return TRUE;
+      return true;
    }
 
    void control_bar::SetBarStyle(u32 uStyle)
@@ -158,7 +158,7 @@ namespace user
       {
          ASSERT(cbElement > 0);
          if ((pData = calloc(nElements, cbElement)) == nullptr)
-            return FALSE;
+            return false;
       }
       free(m_pData);      // free old data
 
@@ -166,7 +166,7 @@ namespace user
       m_pData = pData;
       m_nCount = nElements;
 
-      return TRUE;
+      return true;
    }
    */
 
@@ -220,7 +220,7 @@ namespace user
 
    bool control_bar::IsDockBar()
    {
-      return FALSE;
+      return false;
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -243,7 +243,7 @@ namespace user
 #ifdef WINDOWS_DESKTOP
       auto psession = Session;
 
-      if (psession->is_key_pressed(::user::key_lbutton))
+      if (psession->is_key_pressed(::user::e_key_lbutton))
          return;
 #else
       __throw(todo());
@@ -262,7 +262,7 @@ namespace user
       //   if (m_nStateFlags & statusSet)
       //   {
       //      m_nStateFlags &= ~statusSet;
-      //      return TRUE;
+      //      return true;
       //   }
       //   KillTimer(ID_TIMER_WAIT);
       //}
@@ -274,10 +274,10 @@ namespace user
       //      pOwner->send_message(WM_SETMESSAGESTRING, nHit);
       //      m_nStateFlags |= statusSet;
       //      ResetTimer(ID_TIMER_CHECK, 200);
-      //      return TRUE;
+      //      return true;
       //   }
       //}
-      return FALSE;
+      return false;
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -660,7 +660,7 @@ namespace user
 //          if (pTarget == nullptr)
 //             pTarget = (get_parent_frame());
 //          if (pTarget != nullptr)
-//             OnUpdateCmdUI(pTarget, pbase->m_wparam != FALSE);
+//             OnUpdateCmdUI(pTarget, pbase->m_wparam != false);
 //       }
 //       pbase->set_lresult(0L);
 //    }
@@ -672,7 +672,7 @@ namespace user
       // // update the indicators before becoming visible
       // ::message::base base(get_object());
       // LRESULT lresult;
-      // base.set(this, WM_IDLEUPDATECMDUI, TRUE, (LPARAM) 0, lresult);
+      // base.set(this, WM_IDLEUPDATECMDUI, true, (LPARAM) 0, lresult);
       // _001OnIdleUpdateCmdUI(&base);
 
    }
@@ -775,7 +775,7 @@ namespace user
          // align the control bar
          ::rectangle_i32 rectangle;
 
-         rectangle.copy(&playout->rectangle_i32);
+         rectangle.copy(&playout->rectangle);
 
          ::size_i32 sizeAvail = rectangle.size();  // maximum size_i32 available
 
@@ -830,7 +830,7 @@ namespace user
          }
          else
          {
-            ASSERT(FALSE);      // can never happen
+            ASSERT(false);      // can never happen
          }
 
          rectangle.right = rectangle.left + size.cx;
@@ -865,12 +865,12 @@ namespace user
    {
       return is_this_visible();
       //if (m_nStateFlags & delayHide)
-      //   return FALSE;
+      //   return false;
 
       //if ((m_nStateFlags & delayShow) || ((GetStyle() & WS_VISIBLE) != 0))
-      //   return TRUE;
+      //   return true;
 
-      //return FALSE;
+      //return false;
    }
 
 
@@ -906,8 +906,8 @@ namespace user
       // prepare for dark lines
       ASSERT(rectangle.top == 0 && rectangle.left == 0);
       ::rectangle_i32 rect1, rect2;
-      rect1 = rectangle_i32;
-      rect2 = rectangle_i32;
+      rect1 = rectangle;
+      rect2 = rectangle;
       //   color32_t clr = afxData.bWin4 ? afxData.clrBtnShadow : afxData.clrWindowFrame;
 //      color32_t clr = afxData.clrBtnShadow;
       color32_t clr;
@@ -1190,7 +1190,7 @@ namespace user
 
    bool control_bar::IsFloating()
    {
-      return FALSE;
+      return false;
    }
 
 

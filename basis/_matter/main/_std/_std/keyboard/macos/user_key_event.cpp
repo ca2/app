@@ -6,7 +6,7 @@ if([event modifierFlags] & NSNumericPadKeyMask) // arrow keys have this mask
    unichar key = 0;
    
    if([arrow length] == 0)
-      return ::user::key_none;            // reject dead keys
+      return ::user::e_key_none;            // reject dead keys
    
    if([arrow length] == 1)
    {
@@ -16,28 +16,28 @@ if([event modifierFlags] & NSNumericPadKeyMask) // arrow keys have this mask
       if(key == NSLeftArrowFunctionKey)
       {
          
-         return 1002; //::user::key_left;
+         return 1002; //::user::e_key_left;
          
       }
       
       if(key == NSRightArrowFunctionKey)
       {
          
-         return 1004; //::user::key_right;
+         return 1004; //::user::e_key_right;
          
       }
       
       if(key == NSUpArrowFunctionKey)
       {
          
-         return 1003; // ::user::key_up;
+         return 1003; // ::user::e_key_up;
          
       }
       
       if(key == NSDownArrowFunctionKey)
       {
          
-         return 1005; // ::user::key_down;
+         return 1005; // ::user::e_key_down;
          
       }
       
@@ -53,221 +53,221 @@ else
    
    if(ush == 12)
    {
-      return ::user::key_q;
+      return ::user::e_key_q;
    }
    else if(ush == 13)
    {
-      return ::user::key_w;
+      return ::user::e_key_w;
    }
    else if(ush == 14)
    {
-      return ::user::key_e;
+      return ::user::e_key_e;
    }
    else if(ush == 15)
    {
-      return ::user::key_r;
+      return ::user::e_key_r;
    }
    else if(ush == 17)
    {
-      return ::user::key_t;
+      return ::user::e_key_t;
    }
    else if(ush == 16)
    {
-      return ::user::key_y;
+      return ::user::e_key_y;
    }
    else if(ush == 32)
    {
-      return ::user::key_u;
+      return ::user::e_key_u;
    }
    else if(ush == 34)
    {
-      return ::user::key_i;
+      return ::user::e_key_i;
    }
    else if(ush == 31)
    {
-      return ::user::key_o;
+      return ::user::e_key_o;
    }
    else if(ush == 35)
    {
-      return ::user::key_p;
+      return ::user::e_key_p;
    }
    else if(ush == 0)
    {
-      return ::user::key_a;
+      return ::user::e_key_a;
    }
    else if(ush == 1)
    {
-      return ::user::key_s;
+      return ::user::e_key_s;
    }
    else if(ush == 2)
    {
-      return ::user::key_d;
+      return ::user::e_key_d;
    }
    else if(ush == 3)
    {
-      return ::user::key_f;
+      return ::user::e_key_f;
    }
    else if(ush == 5)
    {
-      return ::user::key_g;
+      return ::user::e_key_g;
    }
    else if(ush == 4)
    {
-      return ::user::key_h;
+      return ::user::e_key_h;
    }
    else if(ush == 38)
    {
-      return ::user::key_j;
+      return ::user::e_key_j;
    }
    else if(ush == 40)
    {
-      return ::user::key_k;
+      return ::user::e_key_k;
    }
    else if(ush == 37)
    {
-      return ::user::key_l;
+      return ::user::e_key_l;
    }
    else if(ush == 41)
    {
-      return ::user::key_semicolon;
+      return ::user::e_key_semicolon;
    }
    else if(ush == 6)
    {
-      return ::user::key_z;
+      return ::user::e_key_z;
    }
    else if(ush == 7)
    {
-      return ::user::key_x;
+      return ::user::e_key_x;
    }
    else if(ush == 8)
    {
-      return ::user::key_c;
+      return ::user::e_key_c;
    }
    else if(ush == 9)
    {
-      return ::user::key_v;
+      return ::user::e_key_v;
    }
    else if(ush == 11)
    {
-      return ::user::key_b;
+      return ::user::e_key_b;
    }
    else if(ush == 45)
    {
-      return ::user::key_n;
+      return ::user::e_key_n;
    }
    else if(ush == 46)
    {
-      return ::user::key_m;
+      return ::user::e_key_m;
    }
    else if(ush == 43)
    {
-      return ::user::key_comma;
+      return ::user::e_key_comma;
    }
    else if(ush == 47)
    {
-      return ::user::key_dot;
+      return ::user::e_key_dot;
    }
    else if(ush == 44)
    {
-      //         return ::user::key_;
+      //         return ::user::e_key_;
    }
    else if(ush == 18)
    {
-      return ::user::key_1;
+      return ::user::e_key_1;
    }
    else if(ush == 19)
    {
-      return ::user::key_2;
+      return ::user::e_key_2;
    }
    else if(ush == 20)
    {
-      return ::user::key_3;
+      return ::user::e_key_3;
    }
    else if(ush == 21)
    {
-      return ::user::key_4;
+      return ::user::e_key_4;
    }
    else if(ush == 23)
    {
-      return ::user::key_5;
+      return ::user::e_key_5;
    }
    else if(ush == 22)
    {
-      return ::user::key_6;
+      return ::user::e_key_6;
    }
    else if(ush == 26)
    {
-      return ::user::key_7;
+      return ::user::e_key_7;
    }
    else if(ush == 28)
    {
-      return ::user::key_8;
+      return ::user::e_key_8;
    }
    else if(ush == 25)
    {
-      return ::user::key_9;
+      return ::user::e_key_9;
    }
    else if(ush == 29)
    {
-      return ::user::key_0;
+      return ::user::e_key_0;
    }
    else if(ush == 36)
    {
-      return ::user::key_return;
+      return ::user::e_key_return;
    }
    else if(ush == 48)
    {
-      return ::user::key_tab;
+      return ::user::e_key_tab;
    }
    else if(ush == 51)
    {
-      return ::user::key_back;
+      return ::user::e_key_back;
    }
    else if(ush == 117)
    {
-      return ::user::key_delete;
+      return ::user::e_key_delete;
    }
    else if(ush == 44)
    {
-      return ::user::key_semicolon2;
+      return ::user::e_key_semicolon2;
    }
    else if(ush == 24)
    {
-      return ::user::key_equal;
+      return ::user::e_key_equal;
    }
    else if(ush == 27)
    {
-      return ::user::key_hyphen;
+      return ::user::e_key_hyphen;
    }
    else if(ush == 94)
    {
-      return ::user::key_slash2;
+      return ::user::e_key_slash2;
    }
    else if(ush == 30)
    {
-      return ::user::key_openbracket2;
+      return ::user::e_key_openbracket2;
    }
    else if(ush == 42)
    {
-      return ::user::key_closebracket2;
+      return ::user::e_key_closebracket2;
    }
    else if(ush == 39)
    {
-      return ::user::key_til2;
+      return ::user::e_key_til2;
    }
    else if(ush == 33)
    {
-      return ::user::key_acute2;
+      return ::user::e_key_acute2;
    }
    else if(ush == 115)
    {
-      return ::user::key_home;
+      return ::user::e_key_home;
    }
    else if(ush == 119)
    {
-      return ::user::key_end;
+      return ::user::e_key_end;
    }
    
 }
 
-return ::user::key_none;;
+return ::user::e_key_none;;

@@ -11,13 +11,18 @@
 
 #endif
 
+
 #undef new
+
 
 struct myfx_CTLCOLOR
 {
-   ::oswindow oswindow;
-   HDC hDC;
-   ::u32 nCtlType;
+   
+   ::oswindow     m_oswindow;
+   hdc            m_hdc;
+   ::u32          m_nCtlType;
+
+
 };
 
 
@@ -169,11 +174,17 @@ namespace message
       else
       {
 
-         m_pWndOther = System.ui_from_handle(lparam.cast < void >());
+         auto psession = Session;
+
+         auto puser = psession->m_puser;
+
+         auto pwindowing = puser->m_pwindowing;
+
+         m_pWndOther = __interaction(pwindowing->window(lparam.cast < oswindow_t >()));
 
       }
 
-      m_bMinimized = HIWORD(wparam) != FALSE;
+      m_bMinimized = HIWORD(wparam) != false;
 
    }
 
@@ -195,7 +206,7 @@ namespace message
    key::key()
    {
 
-      m_ekey = ::user::key_none;
+      m_ekey = ::user::e_key_none;
       m_nScanCode = 0;
       m_nChar = 0;
       m_nRepCnt = 0;
@@ -204,40 +215,6 @@ namespace message
       m_nFlags = 0;
 
    }
-
-
-#ifdef WINDOWS_DESKTOP
-
-
-   // https://stackoverflow.com/questions/15966642/how-do-you-tell-lshift-apart-from-rshift-in-wm-keydown-events
-
-   wparam MapLeftRightKeys(wparam vk, lparam lParam)
-   {
-      wparam new_vk = vk;
-      ::u32 scancode = (lParam & 0x00ff0000) >> 16;
-      int extended = (lParam & 0x01000000) != 0;
-      switch (vk)
-      {
-      case VK_SHIFT:
-         new_vk = MapVirtualKey(scancode, MAPVK_VSC_TO_VK_EX);
-         break;
-      case VK_CONTROL:
-         new_vk = extended ? VK_RCONTROL : VK_LCONTROL;
-         break;
-      case VK_MENU:
-         new_vk = extended ? VK_RMENU : VK_LMENU;
-         break;
-      default:
-         // not a key we map from matter to left/right specialized
-         //  just return it.
-         new_vk = vk;
-         break;
-      }
-      return new_vk;
-   }
-
-
-#endif
 
 
    void key::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
@@ -255,20 +232,6 @@ namespace message
 
       m_bExt = (lparam & (1 << 24)) != 0;
 
-#ifdef WINDOWS_DESKTOP
-
-      m_iVirtualKey = (int) MapLeftRightKeys(wparam, lparam);
-
-#else
-
-      m_iVirtualKey = -1;
-
-#endif
-
-      auto psession = Session;
-
-      psession->translate_os_key_message(this);
-
    }
 
 
@@ -283,7 +246,7 @@ namespace message
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
 
-      m_bActive = wparam != FALSE;
+      m_bActive = wparam != false;
 
    }
 
@@ -298,7 +261,7 @@ namespace message
    }
 
 
-   void size_i32::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
+   void size::set(oswindow oswindow, ::layered * playeredUserPrimitive,const ::id & id,wparam wparam,::lparam lparam)
    {
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
@@ -313,7 +276,7 @@ namespace message
    mouse::mouse()
    {
 
-      m_ecursor = cursor_unmodified;
+      m_ecursor = e_cursor_unmodified;
 
       m_pcursor = nullptr;
 
@@ -341,15 +304,19 @@ namespace message
 
                   auto psession = Sess(userinteraction()->get_context_session());
 
-                  psession->set_cursor(dynamic_cast <::user::interaction *> (userinteraction()), m_pcursor);
+                  auto puserinteraction = dynamic_cast <::user::interaction *> (userinteraction());
+
+                  puserinteraction->set_cursor(m_pcursor->get_cursor());
 
                }
-               else if (m_ecursor != cursor_unmodified && papplication->get_context_session() != nullptr)
+               else if (m_ecursor != e_cursor_unmodified && papplication->get_context_session() != nullptr)
                {
 
                   auto psession = Sess(userinteraction()->get_context_session());
 
-                  psession->set_cursor(dynamic_cast <::user::interaction *> (userinteraction()), m_ecursor);
+                  auto puserinteraction = dynamic_cast <::user::interaction *> (userinteraction());
+
+                  puserinteraction->set_cursor(m_ecursor);
 
                }
 
@@ -379,11 +346,11 @@ namespace message
 
       m_bTranslated = true;  // in root coordinates
 
-#elif defined(WINDOWS_DESKTOP)
-
-      m_bTranslated = true; // not in root coordinates
-
-      ::ClientToScreen(m_oswindow, &m_point);
+//#elif defined(WINDOWS_DESKTOP)
+//
+//      m_bTranslated = true; // not in root coordinates
+//
+//      ::ClientToScreen(m_oswindow, &m_point);
 
 #else
 
@@ -463,7 +430,7 @@ namespace message
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
 
-      m_bShow = wparam != FALSE;
+      m_bShow = wparam != false;
 
       m_nStatus = static_cast<::u32>(lparam);
 
@@ -475,7 +442,7 @@ namespace message
 
       base::set(oswindow, playeredUserPrimitive, id, wparam, lparam);
 
-      m_oswindowNew = (::oswindow) wparam;
+      m_oswindowNew = (::oswindow) wparam.m_number;
 
    }
 
@@ -499,7 +466,7 @@ namespace message
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
 
-      m_pwindowpos = reinterpret_cast<WINDOWPOS*>(lparam.m_lparam);
+      m_pWINDOWPOS = reinterpret_cast<void*>(lparam.m_lparam);
 
    }
 
@@ -509,7 +476,7 @@ namespace message
 
       base::set(oswindow, playeredUserPrimitive, id,wparam,lparam);
 
-      m_pparams = reinterpret_cast<NCCALCSIZE_PARAMS*>(lparam.m_lparam);
+      m_pNCCALCSIZE_PARAMS = reinterpret_cast<void*>(lparam.m_lparam);
 
    }
 
@@ -517,7 +484,7 @@ namespace message
    bool nc_calc_size::GetCalcValidRects()
    {
 
-      return m_wparam != FALSE;
+      return m_wparam != false;
 
    }
 
@@ -545,7 +512,7 @@ namespace message
 
    point_i32 mouse_wheel::GetPoint()
    {
-      return point(GET_X_LPARAM(m_lparam),GET_Y_LPARAM(m_lparam));
+      return point_i32(GET_X_LPARAM(m_lparam),GET_Y_LPARAM(m_lparam));
    }
 
    ::u32 command::GetNotifyCode()
@@ -569,12 +536,12 @@ namespace message
 
 #ifdef WINDOWS_DESKTOP
 
-   LPNMHDR notify::get_lpnmhdr()
-   {
+   //LPNMHDR notify::get_lpnmhdr()
+   //{
 
-      return (LPNMHDR)m_lparam.m_lparam;
+   //   return (LPNMHDR)m_lparam.m_lparam;
 
-   }
+   //}
 
 #endif
 

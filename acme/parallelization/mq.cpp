@@ -6,7 +6,7 @@
 #if defined(LINUX) // || defined(ANDROID)
 
 
-bool apex_defer_process_x_message(hthread_t hthread,MESSAGE * pMsg,oswindow oswindow,bool bPeek);
+bool apex_defer_process_x_message(hthread_t hthread,MESSAGE * pMsg,::windowing::window * pwindow,bool bPeek);
 
 
 #endif
@@ -36,13 +36,13 @@ int_bool mq::post_message(oswindow oswindow, const ::id & id, wparam wparam, lpa
    if (m_bQuit)
    {
 
-      return FALSE;
+      return false;
 
    }
 
    mq_message message(id);
 
-   message.m_message.hwnd = __hwnd(oswindow);
+   message.m_message.oswindow = oswindow;
    message.m_message.wParam = wparam;
    message.m_message.lParam = lparam;
    message.m_message.pt.x = 0x80000000;
@@ -59,7 +59,7 @@ int_bool mq::post_message(const mq_message & message)
    if(m_bQuit)
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -69,10 +69,9 @@ int_bool mq::post_message(const mq_message & message)
 
    m_eventNewMessage.set_event();
 
-   return TRUE;
+   return true;
 
 }
-
 
 
 int_bool mq::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax)
@@ -106,14 +105,14 @@ int_bool mq::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
          }
 
-         if ((oswindow == nullptr || msg.m_message.hwnd == oswindow) && msg.m_message.message >= wMsgFilterMin && msg.m_message.message <= wMsgFilterMax)
+         if ((oswindow == nullptr || msg.m_message.oswindow == oswindow) && msg.m_message.message >= wMsgFilterMin && msg.m_message.message <= wMsgFilterMax)
          {
 
             *pMsg = msg.m_message;
 
             m_messagea.remove_at(i);
 
-            return TRUE;
+            return true;
 
          }
 
@@ -124,7 +123,7 @@ int_bool mq::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
       if(m_bQuit)
       {
 
-         return FALSE;
+         return false;
 
       }
 
@@ -133,7 +132,7 @@ int_bool mq::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
          m_bKickIdle = false;
 
-         pMsg->hwnd = nullptr;
+         pMsg->oswindow = nullptr;
          pMsg->message = WM_KICKIDLE;
          pMsg->wParam = 0;
          pMsg->lParam = 0;
@@ -141,7 +140,7 @@ int_bool mq::get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
          pMsg->pt.y = INT_MIN;
          pMsg->time = 0;
 
-         return TRUE;
+         return true;
 
       }
 
@@ -181,7 +180,7 @@ int_bool mq::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFilterMin,
 
       MESSAGE & msg = m_messagea[i].m_message;
 
-      if((oswindow == nullptr || msg.hwnd == oswindow) && msg.message >= wMsgFilterMin && msg.message <= wMsgFilterMax)
+      if((oswindow == nullptr || msg.oswindow == oswindow) && msg.message >= wMsgFilterMin && msg.message <= wMsgFilterMax)
       {
 
          *pMsg = msg;
@@ -193,7 +192,7 @@ int_bool mq::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFilterMin,
 
          }
 
-         return TRUE;
+         return true;
 
       }
 
@@ -206,13 +205,13 @@ int_bool mq::peek_message(MESSAGE * pMsg, oswindow oswindow,::u32 wMsgFilterMin,
 //   if(apex_defer_process_x_message(hthread,pMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
 //   {
 //
-//      return TRUE;
+//      return true;
 //
 //   }
 //
 //#endif
 
-   return FALSE;
+   return false;
 
 }
 
@@ -283,7 +282,7 @@ void clear_mq(ithread_t idthread)
 ////   if(pinteraction == nullptr)
 ////   {
 ////
-////      return FALSE;
+////      return false;
 ////
 ////   }
 ////
@@ -294,7 +293,7 @@ void clear_mq(ithread_t idthread)
 ////   if(pmq == nullptr)
 ////   {
 ////
-////      return FALSE;
+////      return false;
 ////
 ////   }
 ////
@@ -303,7 +302,7 @@ void clear_mq(ithread_t idthread)
 //}
 
 
-//CLASS_DECL_APEX int_bool mq_remove_window_from_all_queues(oswindow oswindow)
+//CLASS_DECL_APEX int_bool mq_remove_window_from_all_queues(::windowing::window * pwindow)
 //{
 //
 ////   ::user::interaction * pinteraction = oswindow_interaction(oswindow);
@@ -311,7 +310,7 @@ void clear_mq(ithread_t idthread)
 ////   if(pinteraction == nullptr)
 ////   {
 ////
-////      return FALSE;
+////      return false;
 ////
 ////   }
 ////
@@ -329,7 +328,7 @@ void clear_mq(ithread_t idthread)
 ////   if(pmq == nullptr)
 ////   {
 ////
-////      return FALSE;
+////      return false;
 ////
 ////   }
 ////
@@ -342,7 +341,7 @@ void clear_mq(ithread_t idthread)
 ////
 ////   });
 //
-//   return TRUE;
+//   return true;
 //
 //}
 //
@@ -381,15 +380,13 @@ int_bool mq_post_thread_message(ithread_t idthread, const ::id & id, WPARAM wpar
    if (::is_null(pmq))
    {
 
-      return FALSE;
+      return false;
 
    }
 
    return pmq->post_message(nullptr, id.m_emessage, wparam, lparam);
 
 }
-
-
 
 
 CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg)
@@ -400,18 +397,18 @@ CLASS_DECL_ACME int_bool mq_peek_message(MESSAGE * pMsg, oswindow oswindow, ::u3
    if (pmq == nullptr)
    {
 
-      return FALSE;
+      return false;
 
    }
 
    if (!pmq->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   return TRUE;
+   return true;
 
 }
 
@@ -424,18 +421,18 @@ CLASS_DECL_ACME int_bool mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32
    if (pmq == nullptr)
    {
 
-      return FALSE;
+      return false;
 
    }
 
    if (!pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax))
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   return TRUE;
+   return true;
 
 }
 

@@ -36,7 +36,7 @@ CLASS_DECL_ACME bool __node_acme_pos_init()
 //
 //   t_hthread->m_bRun = true;
 
-   return TRUE;
+   return true;
 
 }
 

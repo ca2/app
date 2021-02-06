@@ -6,7 +6,15 @@
 
 
 
+
+
+
 #include "acme/graphics/draw2d/color32.h"
+
+
+#pragma pack(pop, cross_windows)
+
+
 
 using dummy_pointer = void *;
 
@@ -34,7 +42,7 @@ using dummy_pointer = void *;
 //
 //using RECTANGLE_I32 = RECT;
 //
-//using LPRECT32 = LPRECT;
+//using RECTANGLE_I32 * = LPRECT;
 //
 //using const RECTANGLE_I32 * = LPCRECT;
 //
@@ -265,18 +273,6 @@ typedef iptr            LRESULT;
 //#endif // if !defined(WINDOWS_DESKTOP)
 //
 
-
-#pragma pack(pop, cross_windows)
-
-
-struct SIZEPARENTPARAMS
-{
-
-   RECTANGLE_I32  rectangle_i32;       // parent client rectangle_i32 (trim as appropriate)
-   SIZE_I32  sizeTotal;  // total size_i32 on each side as on_layout proceeds
-   bool  bStretch;   // should stretch to fill all space
-
-};
 
 
 typedef struct RECTANGLE_F64 RECTANGLE_F64;

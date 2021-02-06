@@ -51,7 +51,7 @@ namespace user
 
       tbs.pszValueName = wstring(pszValueName);
 
-      send_message( TB_SAVERESTOREW, (WPARAM)TRUE, (LPARAM)&tbs);
+      send_message( TB_SAVERESTOREW, (WPARAM)true, (LPARAM)&tbs);
    }
 
    void toolbar_control::RestoreState(HKEY hKeyRoot, const char * pszSubKey,
@@ -66,7 +66,7 @@ namespace user
 
       tbs.pszValueName =wstring( pszValueName);
 
-      send_message( TB_SAVERESTOREW, (WPARAM)FALSE, (LPARAM)&tbs);
+      send_message( TB_SAVERESTOREW, (WPARAM)false, (LPARAM)&tbs);
    }
 #endif
 
@@ -128,15 +128,15 @@ namespace user
    HRSRC hRsrc = ::FindResource(hInst, pszResourceName, RT_TOOLBAR);
 
    if (hRsrc == nullptr)
-   return FALSE;
+   return false;
 
    HGLOBAL hGlobal = LoadResource(hInst, hRsrc);
    if (hGlobal == nullptr)
-   return FALSE;
+   return false;
 
    CToolBarCtrlData* pData = (CToolBarCtrlData*)LockResource(hGlobal);
    if (pData == nullptr)
-   return FALSE;
+   return false;
    ASSERT(pData->wVersion == 1);
 
    ::u32* pItems = new ::u32[pData->wItemCount];
@@ -170,7 +170,7 @@ namespace user
       ASSERT(nIDCount >= 1);  // must be at least one of them
       ASSERT(pIDArray == nullptr ||
 
-         __is_valid_address(pIDArray, sizeof(::u32) * nIDCount, FALSE));
+         __is_valid_address(pIDArray, sizeof(::u32) * nIDCount, false));
 
 
       // delete all existing buttons
@@ -207,7 +207,7 @@ namespace user
       button.iBitmap = iImage++;
       }
       if (!DefWindowProc(TB_ADDBUTTONSW, 1, (LPARAM)&button))
-      return FALSE;
+      return false;
       }
       }
       else
@@ -218,13 +218,13 @@ namespace user
       {
       ASSERT(button.fsStyle == TBSTYLE_BUTTON);
       if (!DefWindowProc(TB_ADDBUTTONSW, 1, (LPARAM)&button))
-      return FALSE;
+      return false;
       }
       }
       //   m_nCount = (i32)DefWindowProc(TB_BUTTONCOUNT, 0, 0);
-      //   m_bDelayedButtonLayout = TRUE; */
+      //   m_bDelayedButtonLayout = true; */
 
-      return TRUE;
+      return true;
    }
 
    i32 toolbar_control::GetButtonText(::u32 uId, string &str)
@@ -262,7 +262,7 @@ namespace user
    bool toolbar_control::EnableButton(i32 nID, bool bEnable)
    {
 #ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_ENABLEBUTTON, nID, MAKELPARAM(bEnable, 0)) != FALSE;
+      ASSERT(is_window()); return send_message( TB_ENABLEBUTTON, nID, MAKELPARAM(bEnable, 0)) != false;
 #else
       __throw(todo());
 #endif
@@ -271,7 +271,7 @@ namespace user
    bool toolbar_control::CheckButton(i32 nID, bool bCheck)
    {
 #ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_CHECKBUTTON, nID, MAKELPARAM(bCheck, 0)) != FALSE;
+      ASSERT(is_window()); return send_message( TB_CHECKBUTTON, nID, MAKELPARAM(bCheck, 0)) != false;
 #else
       __throw(todo());
 #endif
@@ -280,7 +280,7 @@ namespace user
    bool toolbar_control::PressButton(i32 nID, bool bPress)
    {
 #ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_PRESSBUTTON, nID, MAKELPARAM(bPress, 0)) != FALSE;
+      ASSERT(is_window()); return send_message( TB_PRESSBUTTON, nID, MAKELPARAM(bPress, 0)) != false;
 #else
       __throw(todo());
 #endif
@@ -291,7 +291,7 @@ namespace user
    {
 
 #ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_HIDEBUTTON, nID, MAKELPARAM(bHide, 0)) != FALSE;
+      ASSERT(is_window()); return send_message( TB_HIDEBUTTON, nID, MAKELPARAM(bHide, 0)) != false;
 #else
       __throw(todo());
 #endif
@@ -301,7 +301,7 @@ namespace user
    bool toolbar_control::Indeterminate(i32 nID, bool bIndeterminate)
    {
 #ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_INDETERMINATE, nID, MAKELPARAM(bIndeterminate, 0)) != FALSE;
+      ASSERT(is_window()); return send_message( TB_INDETERMINATE, nID, MAKELPARAM(bIndeterminate, 0)) != false;
 #else
       __throw(todo());
 #endif
@@ -311,7 +311,7 @@ namespace user
    bool toolbar_control::IsButtonEnabled(i32 nID)
    {
 #ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_ISBUTTONENABLED, nID) != FALSE;
+      ASSERT(is_window()); return send_message( TB_ISBUTTONENABLED, nID) != false;
 #else
       __throw(todo());
 #endif
@@ -322,7 +322,7 @@ namespace user
    bool toolbar_control::IsButtonChecked(i32 nID)
    {
 #ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_ISBUTTONCHECKED, nID) != FALSE;
+      ASSERT(is_window()); return send_message( TB_ISBUTTONCHECKED, nID) != false;
 #else
       __throw(todo());
 #endif
@@ -332,7 +332,7 @@ namespace user
    bool toolbar_control::IsButtonPressed(i32 nID)
    {
 #ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_ISBUTTONPRESSED, nID) != FALSE;
+      ASSERT(is_window()); return send_message( TB_ISBUTTONPRESSED, nID) != false;
 #else
       __throw(todo());
 #endif
@@ -342,7 +342,7 @@ namespace user
    bool toolbar_control::IsButtonHidden(i32 nID)
    {
 #ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_ISBUTTONHIDDEN, nID) != FALSE;
+      ASSERT(is_window()); return send_message( TB_ISBUTTONHIDDEN, nID) != false;
 #else
       __throw(todo());
 #endif
@@ -352,7 +352,7 @@ namespace user
    bool toolbar_control::IsButtonIndeterminate(i32 nID)
    {
 #ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_ISBUTTONINDETERMINATE, nID) != FALSE;
+      ASSERT(is_window()); return send_message( TB_ISBUTTONINDETERMINATE, nID) != false;
 #else
       __throw(todo());
 #endif
@@ -363,7 +363,7 @@ namespace user
    {
 #ifdef WINDOWS_DESKTOP
       ASSERT(is_window()); 
-      return send_message( TB_SETSTATE, nID, (LPARAM) nState) != FALSE;
+      return send_message( TB_SETSTATE, nID, (LPARAM) nState) != false;
 #else
       __throw(todo());
 #endif
@@ -385,7 +385,7 @@ namespace user
 
    {
 #ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_ADDBUTTONSW, nNumButtons, (LPARAM)pButtons) != FALSE;
+      ASSERT(is_window()); return send_message( TB_ADDBUTTONSW, nNumButtons, (LPARAM)pButtons) != false;
 
 #else
       __throw(todo());
@@ -395,7 +395,7 @@ namespace user
 
    {
 #ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_INSERTBUTTON, nIndex, (LPARAM)pButton) != FALSE;
+      ASSERT(is_window()); return send_message( TB_INSERTBUTTON, nIndex, (LPARAM)pButton) != false;
 
 #else
       __throw(todo());
@@ -407,7 +407,7 @@ namespace user
    bool toolbar_control::DeleteButton(i32 nIndex)
    {
 #ifdef WINDOWS_DESKTOP
-      ASSERT(is_window()); return send_message( TB_DELETEBUTTON, nIndex) != FALSE;
+      ASSERT(is_window()); return send_message( TB_DELETEBUTTON, nIndex) != false;
 #else
       __throw(todo());
 #endif
@@ -421,7 +421,7 @@ namespace user
 
    {
 
-      ASSERT(is_window()); return send_message( TB_GETBUTTON, nIndex, (LPARAM)pButton) != FALSE;
+      ASSERT(is_window()); return send_message( TB_GETBUTTON, nIndex, (LPARAM)pButton) != false;
 
 
    }
@@ -497,7 +497,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); return send_message( TB_GETITEMRECT, nIndex, (LPARAM)prectangle) != FALSE;
+   ASSERT(is_window()); return send_message( TB_GETITEMRECT, nIndex, (LPARAM)prectangle) != false;
 
 
 #else
@@ -528,7 +528,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); return send_message( TB_SETBUTTONSIZE, 0, MAKELPARAM(size.cx, size.cy)) != FALSE;
+   ASSERT(is_window()); return send_message( TB_SETBUTTONSIZE, 0, MAKELPARAM(size.cx, size.cy)) != false;
 
 #else
 
@@ -543,7 +543,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); return send_message( TB_SETBITMAPSIZE, 0, MAKELPARAM(size.cx, size.cy)) != FALSE;
+   ASSERT(is_window()); return send_message( TB_SETBITMAPSIZE, 0, MAKELPARAM(size.cx, size.cy)) != false;
 
 #else
 
@@ -626,7 +626,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-      ASSERT(is_window()); return send_message(TB_SETCMDID, nIndex, (LPARAM) nID) != FALSE;
+      ASSERT(is_window()); return send_message(TB_SETCMDID, nIndex, (LPARAM) nID) != false;
 
 #else
 
@@ -838,7 +838,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); return send_message( TB_GETRECT, nID, (LPARAM)prectangle) != FALSE;
+   ASSERT(is_window()); return send_message( TB_GETRECT, nID, (LPARAM)prectangle) != false;
 
 
 #else
@@ -855,7 +855,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); return send_message( TB_ISBUTTONHIGHLIGHTED, nID) != FALSE;
+   ASSERT(is_window()); return send_message( TB_ISBUTTONHIGHLIGHTED, nID) != false;
 
 #else
 
@@ -893,7 +893,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); return send_message( TB_SETBUTTONWIDTH, 0, MAKELPARAM(cxMin, cxMax)) != FALSE;
+   ASSERT(is_window()); return send_message( TB_SETBUTTONWIDTH, 0, MAKELPARAM(cxMin, cxMax)) != false;
 
 #else
 
@@ -961,7 +961,7 @@ namespace user
    {
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); return send_message( TB_SETINDENT, iIndent) != FALSE;
+   ASSERT(is_window()); return send_message( TB_SETINDENT, iIndent) != false;
 
 #else
 
@@ -974,7 +974,7 @@ namespace user
    {
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); return send_message( TB_SETMAXTEXTROWS, iMaxRows) != FALSE;
+   ASSERT(is_window()); return send_message( TB_SETMAXTEXTROWS, iMaxRows) != false;
 
 #else
 
@@ -1002,7 +1002,7 @@ namespace user
 //   bool toolbar_control::GetButtonInfo(i32 nID, TBBUTTONINFO* ptbbi)
 //   {
 //
-//      ASSERT(is_window()); return send_message( TB_GETBUTTONINFO, nID, (LPARAM)ptbbi) != FALSE;
+//      ASSERT(is_window()); return send_message( TB_GETBUTTONINFO, nID, (LPARAM)ptbbi) != false;
 //
 //   }
 //
@@ -1014,7 +1014,7 @@ namespace user
    bool toolbar_control::GetButtonInfo(i32 nID, TBBUTTONINFOW* ptbbi)
    {
 
-      ASSERT(is_window()); return send_message( TB_GETBUTTONINFOW, nID, (LPARAM)ptbbi) != FALSE;
+      ASSERT(is_window()); return send_message( TB_GETBUTTONINFOW, nID, (LPARAM)ptbbi) != false;
 
    }
 
@@ -1026,7 +1026,7 @@ namespace user
 //   bool toolbar_control::SetButtonInfo(i32 nID, TBBUTTONINFO* ptbbi)
 //   {
 //
-//      ASSERT(is_window()); return send_message( TB_SETBUTTONINFO, nID, (LPARAM)ptbbi) != FALSE;
+//      ASSERT(is_window()); return send_message( TB_SETBUTTONINFO, nID, (LPARAM)ptbbi) != false;
 //
 //   }
 //
@@ -1038,7 +1038,7 @@ namespace user
    bool toolbar_control::SetButtonInfo(i32 nID, TBBUTTONINFOW* ptbbi)
    {
 
-      ASSERT(is_window()); return send_message( TB_SETBUTTONINFOW, nID, (LPARAM)ptbbi) != FALSE;
+      ASSERT(is_window()); return send_message( TB_SETBUTTONINFOW, nID, (LPARAM)ptbbi) != false;
 
 
    }
@@ -1064,7 +1064,7 @@ namespace user
    {
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); return send_message( TB_GETANCHORHIGHLIGHT) != FALSE;
+   ASSERT(is_window()); return send_message( TB_GETANCHORHIGHLIGHT) != false;
 
 #else
 
@@ -1077,7 +1077,7 @@ namespace user
    {
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); return send_message( TB_SETANCHORHIGHLIGHT, fAnchor) != FALSE;
+   ASSERT(is_window()); return send_message( TB_SETANCHORHIGHLIGHT, fAnchor) != false;
 
 #else
 
@@ -1143,7 +1143,7 @@ namespace user
    {
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); return send_message( TB_GETMAXSIZE, 0, (LPARAM)pSize) != FALSE;
+   ASSERT(is_window()); return send_message( TB_GETMAXSIZE, 0, (LPARAM)pSize) != false;
 
 #else
 
@@ -1159,7 +1159,7 @@ namespace user
    bool toolbar_control::InsertMarkHitTest(POINT_I32 * ppt, LPTBINSERTMARK ptbim)
    {
 
-   ASSERT(is_window()); return send_message( TB_INSERTMARKHITTEST, (WPARAM)ppt, (LPARAM)ptbim) != FALSE;
+   ASSERT(is_window()); return send_message( TB_INSERTMARKHITTEST, (WPARAM)ppt, (LPARAM)ptbim) != false;
 
    }
 
@@ -1170,7 +1170,7 @@ namespace user
    {
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); return send_message( TB_MAPACCELERATOR, (WPARAM)chAccel, (LPARAM)pIDBtn) != FALSE;
+   ASSERT(is_window()); return send_message( TB_MAPACCELERATOR, (WPARAM)chAccel, (LPARAM)pIDBtn) != false;
 
 #else
 
@@ -1183,7 +1183,7 @@ namespace user
    {
 #ifdef WINDOWS_DESKTOP
 
-   ASSERT(is_window()); return send_message( TB_MARKBUTTON, nID, MAKELPARAM(bHighlight, 0)) != FALSE;
+   ASSERT(is_window()); return send_message( TB_MARKBUTTON, nID, MAKELPARAM(bHighlight, 0)) != false;
 
 #else
 
@@ -1197,7 +1197,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-      ASSERT(is_window()); return send_message( TB_MOVEBUTTON, nOldPos, (LPARAM) nNewPos) != FALSE;
+      ASSERT(is_window()); return send_message( TB_MOVEBUTTON, nOldPos, (LPARAM) nNewPos) != false;
 
 #else
 

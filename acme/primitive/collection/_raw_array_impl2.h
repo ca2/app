@@ -677,7 +677,7 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
       last += this->get_count();
    for(; find <= last; find++)
    {
-      if(&this->element_at(find) == point_i32)
+      if(&this->element_at(find) == point)
          return find;
    }
    return -1;

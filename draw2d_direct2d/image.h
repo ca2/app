@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace draw2d_direct2d
@@ -56,7 +56,7 @@ namespace draw2d_direct2d
       virtual bool blend(const ::point_i32 & pointDst, ::image * pimageSrc, const ::point_i32 & pointSrc, const ::size_i32 & size, byte bA) override;
 
       using ::image::tint;
-      virtual bool tint(::image * pimage, const rgb & rgb) override;
+      virtual bool tint(::image * pimage, const rgba & rgba) override;
 
       
 

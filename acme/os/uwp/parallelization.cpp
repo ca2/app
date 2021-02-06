@@ -178,7 +178,7 @@ CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HAN
 
       ph[nCount] = (HANDLE)::get_mq(get_current_ithread(), true)->m_eventNewMessage.hsync();
 
-      dwResult = ::WaitForMultipleObjectsEx(nCount + 1, ph, dwFlags & MWMO_WAITALL, dwMilliseconds, TRUE);
+      dwResult = ::WaitForMultipleObjectsEx(nCount + 1, ph, dwFlags & MWMO_WAITALL, dwMilliseconds, true);
 
       delete ph;
 
@@ -186,7 +186,7 @@ CLASS_DECL_ACME DWORD WINAPI MsgWaitForMultipleObjectsEx(DWORD nCount, const HAN
    else
    {
 
-      dwResult = ::WaitForMultipleObjectsEx(nCount, pHandles, dwFlags, dwMilliseconds, FALSE);
+      dwResult = ::WaitForMultipleObjectsEx(nCount, pHandles, dwFlags, dwMilliseconds, false);
 
    }
 

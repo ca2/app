@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 using hcursor = void *;
@@ -14,29 +14,31 @@ namespace draw2d
    public:
 
 
-      e_cursor                m_ecursor;
-      bool                    m_bDefaultCursor;
-      ::image_pointer         m_pimage;
-      ::image_pointer         m_pimageCursor;
-      ::size_i32              m_szHotspotOffset;
+      enum_cursor                         m_ecursor;
+      bool                                m_bDefaultCursor;
+      ::image_pointer                     m_pimage;
+      ::image_pointer                     m_pimageCursor;
+      ::size_i32                          m_szHotspotOffset;
 
 
-      hcursor                 m_hcursor;
+      __pointer(::windowing::cursor)      m_pcursor;
 
 
       cursor();
       virtual ~cursor();
 
 
-      bool initialize_system_default();
+      virtual bool initialize_system_default();
 
       virtual void finalize() override;
 
-      hcursor get_HCURSOR(::user::interaction * pinteraction);
+      //::windowing::cursor * get_cursor(::user::interaction * pinteraction);
 
-      bool set_current(::user::interaction * pinteraction, ::aura::session * psession);
+      virtual ::windowing::cursor * get_cursor();
 
-      static bool reset(::user::interaction * pinteraction, ::aura::session * psession);
+      //bool set_current(::user::interaction * pinteraction, ::aura::session * psession);
+
+      //static bool reset(::user::interaction * pinteraction, ::aura::session * psession);
 
       inline ::draw2d::graphics * g() const { return m_pimage->g(); }
       inline ::draw2d::graphics * g(const ::size_f64 & sizeHint) { return m_pimage->g(sizeHint); }
@@ -45,7 +47,7 @@ namespace draw2d
       inline ::image * get_image(const concrete < ::size_i32 > & concreteSize) { return m_pimage->get_image(concreteSize); }
 
 
-      inline concrete < ::size_i32 > size_i32(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const { return m_pimage->size_i32(sizeDst, eimageselection); }
+      inline concrete < ::size_i32 > size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const { return m_pimage->size(sizeDst, eimageselection); }
       inline concrete < ::size_i32 > size() const { return m_pimage->size(); }
 
 
@@ -63,7 +65,7 @@ namespace draw2d
 
 
 
-//CLASS_DECL_AURA hcursor CreateAlphaCursor(oswindow oswindow, const ::image * pimage,int xHotSpot,int yHotSpot);
+//CLASS_DECL_AURA hcursor CreateAlphaCursor(::windowing::window * pwindow, const ::image * pimage,int xHotSpot,int yHotSpot);
 
 
 

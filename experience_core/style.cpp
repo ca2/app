@@ -75,7 +75,7 @@ namespace experience
 
             iTab++;
 
-            if(!ptab->get_element_rect(iTab,rectangle_i32, ::user::e_element_tab))
+            if(!ptab->get_element_rect(iTab,rectangle, ::user::e_element_tab))
                continue;
 
             if(!ptab->get_element_rect(iTab,rectBorder, ::user::e_element_border))
@@ -426,7 +426,7 @@ namespace experience
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pgraphics->_DrawText(pane.get_title(), rectangle_i32, e_align_bottom_left, e_draw_text_no_prefix);
+            pgraphics->_DrawText(pane.get_title(), rectangle, e_align_bottom_left, e_draw_text_no_prefix);
 
          }
          else
@@ -633,7 +633,7 @@ namespace experience
             ptab->get_data()->m_rectTab.bottom     = rectClient.bottom;
 
             /*      m_puserinteraction->set_window_pos(
-            zorder_top,
+            e_zorder_top,
             m_rectTab.left,
             m_rectTab.top,
             m_rectTab.width(),
@@ -752,7 +752,7 @@ namespace experience
             ptab->get_data()->m_rectTab.bottom     = ptab->get_data()->m_rectTab.top + ptab->get_data()->m_iTabHeight;
 
             /*      set_window_pos(
-            zorder_top,
+            e_zorder_top,
             m_rectTab.left,
             m_rectTab.top,
             m_rectTab.width(),
@@ -1294,7 +1294,7 @@ namespace experience
 
          pgraphics->set(brushDraw);
 
-         pgraphics->rectangle_i32(rectTrack);
+         pgraphics->rectangle(rectTrack);
 
          if (pbar->m_bTracking || pbar->is_true("tracking_on"))
          {
@@ -1487,7 +1487,7 @@ namespace experience
 
          pgraphics->set(pbar->m_brushDraw);
 
-         pgraphics->rectangle_i32(pbar->m_rectA);
+         pgraphics->rectangle(pbar->m_rectA);
 
          penArrow->create_solid(1.0, pbar->scrollbar_lite_border_color(this, ::user::e_element_scrollbar_rectB));
 
@@ -1497,14 +1497,14 @@ namespace experience
 
          pgraphics->set(pbar->m_brushDraw);
 
-         pgraphics->rectangle_i32(pbar->m_rectB);
+         pgraphics->rectangle(pbar->m_rectB);
 
          ::rectangle_i32 rectangle;
 
          if (pbar->m_itemCurrent == ::user::e_element_scrollbar_pageA || pbar->m_itemHover == ::user::e_element_scrollbar_pageA)
          {
 
-            pbar->GetPageARect(rectClient, rectTrack, rectangle_i32, pgraphics);
+            pbar->GetPageARect(rectClient, rectTrack, rectangle, pgraphics);
 
             pbar->m_brushDraw->create_solid(pbar->scrollbar_color(this, ::user::e_element_scrollbar_pageA));
 
@@ -1516,7 +1516,7 @@ namespace experience
          else if (pbar->m_itemCurrent == ::user::e_element_scrollbar_pageB || pbar->m_itemHover == ::user::e_element_scrollbar_pageB)
          {
 
-            pbar->GetPageBRect(rectClient, rectTrack, rectangle_i32, pgraphics);
+            pbar->GetPageBRect(rectClient, rectTrack, rectangle, pgraphics);
 
             pbar->m_brushDraw->create_solid(pbar->scrollbar_color(this, ::user::e_element_scrollbar_pageB));
 

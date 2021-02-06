@@ -85,6 +85,7 @@ enum enum_status
    error_no_session,
    error_no_system,
    error_no_application,
+   error_no_interface,
 
    error_time_bag = INT_FAILURE_STATUS(STATUS_RANGE_EXCEPTION),
    error_open_failed,

@@ -375,7 +375,7 @@ bool simple_scroll_bar::_001GetScrollInfo(::user::scroll_info * psi)
       psi->nTrackPos = m_scrollinfo.nTrackPos;
 
    }
-   return TRUE;
+   return true;
 }
 
 
@@ -420,7 +420,7 @@ bool simple_scroll_bar::_001SetScrollInfo(::user::scroll_info * psi, bool bRedra
    {
       //      set_need_redraw();
    }
-   return TRUE;
+   return true;
    m_scrollinfo.fMask = SIF_ALL;
    // trans   ::user::interaction::SetScrollInfo(SB_CTL, &m_scrollinfo);
    return true;
@@ -611,7 +611,7 @@ i32 simple_scroll_bar::SetTrackingPos(const ::point_i32 & point, ::draw2d::graph
    else
    {
 
-      ASSERT(FALSE);
+      ASSERT(false);
 
    }
 
@@ -778,7 +778,7 @@ void simple_scroll_bar::on_layout(::draw2d::graphics_pointer & pgraphics)
    }
    else
    {
-      ASSERT(FALSE);
+      ASSERT(false);
    }
 
    m_rgnA->create_rect(m_rectA);
@@ -940,7 +940,7 @@ bool simple_scroll_bar::scrollbar_pageA(const ::point_i32 & point, ::draw2d::gra
 
    GetTrackRect(rectTrack, pgraphics);
 
-   GetPageARect(rectClient,rectTrack,rectangle_i32, pgraphics);
+   GetPageARect(rectClient,rectTrack,rectangle, pgraphics);
 
    if(!rectangle.contains(point))
       return false;
@@ -988,7 +988,7 @@ bool simple_scroll_bar::scrollbar_pageB(const ::point_i32 & point, ::draw2d::gra
 
    GetTrackRect(rectTrack, pgraphics);
 
-   GetPageBRect(rectClient,rectTrack,rectangle_i32, pgraphics);
+   GetPageBRect(rectClient,rectTrack,rectangle, pgraphics);
 
    if(!rectangle.contains(point))
       return false;
@@ -1588,7 +1588,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    if (m_itemCurrent == ::user::e_element_scrollbar_pageA || m_itemHover== ::user::e_element_scrollbar_pageA)
    {
 
-      GetPageARect(rectClient, rectTrack, rectangle_i32, pgraphics);
+      GetPageARect(rectClient, rectTrack, rectangle, pgraphics);
 
       cr = scrollbar_color(pstyle, ::user::e_element_scrollbar_pageA);
 
@@ -1602,7 +1602,7 @@ void simple_scroll_bar::_001OnVerisimpleDraw(::draw2d::graphics_pointer & pgraph
    else if (m_itemCurrent == ::user::e_element_scrollbar_pageB || m_itemHover== ::user::e_element_scrollbar_pageB)
    {
 
-      GetPageBRect(rectClient, rectTrack, rectangle_i32, pgraphics);
+      GetPageBRect(rectClient, rectTrack, rectangle, pgraphics);
 
       cr = scrollbar_color(pstyle, ::user::e_element_scrollbar_pageB);
 
@@ -1816,7 +1816,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 
       get_client_rect(rectClient);
 
-      GetPageARect(rectClient, rectTrack, rectangle_i32, pgraphics);
+      GetPageARect(rectClient, rectTrack, rectangle, pgraphics);
 
       if (rectangle.contains(item.m_pointClient))
       {
@@ -1827,7 +1827,7 @@ void simple_scroll_bar::on_hit_test(::user::item & item)
 
       }
 
-      GetPageBRect(rectClient, rectTrack, rectangle_i32, pgraphics);
+      GetPageBRect(rectClient, rectTrack, rectangle, pgraphics);
 
       if (rectangle.contains(item.m_pointClient))
       {

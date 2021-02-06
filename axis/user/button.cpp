@@ -275,7 +275,7 @@ namespace user
 
       rectangle.bottom = (::i32)(rectangle.top + sizeText.cy);
 
-      m_rectText = rectangle_i32;
+      m_rectText = rectangle;
 
    }
 
@@ -429,7 +429,7 @@ namespace user
 
       ::user::e_key iKey = pkey->m_ekey;
 
-      if (iKey == ::user::key_return || iKey == ::user::key_space)
+      if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {
 
          ::user::control_event ev;
@@ -914,13 +914,13 @@ namespace user
       class imaging & imaging = System.imaging();
 
       ::rectangle_i32 rectangle = rectClient;
-      imaging.color_blend_3dRect(pgraphics,rectangle_i32,colorExt1TL,215,colorExt1BR,215);
+      imaging.color_blend_3dRect(pgraphics,rectangle,colorExt1TL,215,colorExt1BR,215);
       rectangle.deflate(1,1,1,1);
-      imaging.color_blend_3dRect(pgraphics,rectangle_i32,colorExt1TL,210,colorExt1BR,210);
+      imaging.color_blend_3dRect(pgraphics,rectangle,colorExt1TL,210,colorExt1BR,210);
       rectangle.deflate(1,1,1,1);
-      imaging.color_blend_3dRect(pgraphics,rectangle_i32,colorExt2TL,205,colorExt2BR,205);
+      imaging.color_blend_3dRect(pgraphics,rectangle,colorExt2TL,205,colorExt2BR,205);
       rectangle.deflate(1,1,1,1);
-      imaging.color_blend_3dRect(pgraphics,rectangle_i32,colorExt2TL,200,colorExt2BR,200);
+      imaging.color_blend_3dRect(pgraphics,rectangle,colorExt2TL,200,colorExt2BR,200);
       rectangle.deflate(1,1,1,1);
       imaging.color_blend(pgraphics,rectangle.left,rectangle.top,rectangle.width(),rectangle.height(),cr,200);
       rectangle.deflate(1,1,1,1);
@@ -938,7 +938,7 @@ namespace user
 
       pgraphics->set(pen);
 
-      imaging.color_blend_3dRect(pgraphics,rectangle_i32,colorExt1TL,220,colorExt1BR,220);
+      imaging.color_blend_3dRect(pgraphics,rectangle,colorExt1TL,220,colorExt1BR,220);
 
 
    }

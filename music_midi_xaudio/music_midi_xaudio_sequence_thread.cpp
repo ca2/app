@@ -227,7 +227,7 @@ namespace music
             catch (::exception_pointer e)
             {
                string str;
-               ASSERT(FALSE);
+               ASSERT(false);
 
                /* super merge module      CVmsMusDll::load_string(str, IDS_PREROLLUSERERROR001);
                pme->SetUserText(str);*/

@@ -133,14 +133,14 @@ namespace android
    //   u32 dwStyle = ::GetWindowLong(oswindow,nStyleOffset);
    //   u32 dwNewStyle = (dwStyle & ~dwRemove) | dwAdd;
    //   if(dwStyle == dwNewStyle)
-   //      return FALSE;
+   //      return false;
 
    //   ::SetWindowLong(oswindow,nStyleOffset,dwNewStyle);
    //   if(nFlags != 0)
    //   {
    //      ::SetWindowPos(oswindow,nullptr,0,0,0,0,SWP_NOSIZE | SWP_NOMOVE | SWP_NOZORDER | SWP_NOACTIVATE | nFlags);
    //   }
-   //   return TRUE;
+   //   return true;
    //}
 
 
@@ -400,7 +400,7 @@ namespace android
       if(m_oswindow != get_handle())
       {
 
-         ASSERT(FALSE); // should have been set in send msg hook
+         ASSERT(false); // should have been set in send msg hook
 
       }
 
@@ -422,7 +422,7 @@ namespace android
 
    //   install_message_routing(this);
 
-   //   m_puserinteraction->set_window_pos(zorder_top, pinitialize->m_rectangle, SWP_SHOWWINDOW);
+   //   m_puserinteraction->set_window_pos(e_zorder_top, pinitialize->m_rectangle, SWP_SHOWWINDOW);
 
    //   m_puserinteraction->ModifyStyle(0, WS_VISIBLE);
 
@@ -624,7 +624,7 @@ namespace android
    void interaction_impl::PostNcDestroy()
    {
 
-      single_lock sl(m_puserinteraction->get_context_application()->mutex(), TRUE);
+      single_lock sl(m_puserinteraction->get_context_application()->mutex(), true);
 
       ::user::interaction_impl * pwindow;
 
@@ -716,7 +716,7 @@ namespace android
       if (get_handle() != nullptr)
       {
 
-         bResult = ::destroy_window(get_handle()) != FALSE;
+         bResult = ::destroy_window(get_handle()) != false;
 
       }
 
@@ -765,7 +765,7 @@ namespace android
 
    //   //lpwndpl->length = sizeof(WINDOWPLACEMENT);
 
-   //   //return ::GetWindowPlacement(get_handle(),lpwndpl) != FALSE;
+   //   //return ::GetWindowPlacement(get_handle(),lpwndpl) != false;
 
    //   return false;
 
@@ -781,7 +781,7 @@ namespace android
 
    //   //((WINDOWPLACEMENT*)lpwndpl)->length = sizeof(WINDOWPLACEMENT);
 
-   //   //return ::SetWindowPlacement(get_handle(),lpwndpl) != FALSE;
+   //   //return ::SetWindowPlacement(get_handle(),lpwndpl) != false;
 
    //   return false;
 
@@ -828,7 +828,7 @@ namespace android
    {
       UNREFERENCED_PARAMETER(bEnable);
       UNREFERENCED_PARAMETER(nFlag);
-      return FALSE;
+      return false;
    }
 
 
@@ -836,20 +836,20 @@ namespace android
    //{
    //   ASSERT(::is_window(((interaction_impl *) this)->get_handle()));
    //   ASSERT(psbi != nullptr);
-   //   return ::GetScrollBarInfo(((interaction_impl *) this)->get_handle(),idObject,psbi) != FALSE;
+   //   return ::GetScrollBarInfo(((interaction_impl *) this)->get_handle(),idObject,psbi) != false;
    //}
 
    //bool interaction_impl::GetTitleBarInfo(PTITLEBARINFO pti) const
    //{
    //   ASSERT(::is_window(((interaction_impl *) this)->get_handle()));
    //   ASSERT(pti != nullptr);
-   //   return ::GetTitleBarInfo(((interaction_impl *) this)->get_handle(),pti) != FALSE;
+   //   return ::GetTitleBarInfo(((interaction_impl *) this)->get_handle(),pti) != false;
    //}
 
    //bool interaction_impl::AnimateWindow(millis millis,u32 dwFlags)
    //{
    //   ASSERT(::is_window(get_handle()));
-   //   return ::AnimateWindow(get_handle(),millis,dwFlags) != FALSE;
+   //   return ::AnimateWindow(get_handle(),millis,dwFlags) != false;
    //}
 
    //bool interaction_impl::FlashWindowEx(u32 dwFlags,::u32  uCount,millis tickTimeout)
@@ -862,7 +862,7 @@ namespace android
    //   fwi.uCount = uCount;
    //   fwi.tickTimeout = tickTimeout;
 
-   //   return ::FlashWindowEx(&fwi) != FALSE;
+   //   return ::FlashWindowEx(&fwi) != false;
    //}
 
 
@@ -870,7 +870,7 @@ namespace android
    //bool interaction_impl::SetLayeredWindowAttributes(color32_t crKey,byte bAlpha,u32 dwFlags)
    //{
    //   ASSERT(::is_window(get_handle()));
-   //   return ::SetLayeredWindowAttributes(get_handle(),crKey,bAlpha,dwFlags) != FALSE;
+   //   return ::SetLayeredWindowAttributes(get_handle(),crKey,bAlpha,dwFlags) != false;
    //}
 
    //bool interaction_impl::UpdateLayeredWindow(::draw2d::graphics * pDCDst,POINT_I32 *pptDst,SIZE_I32 *psize,
@@ -880,21 +880,21 @@ namespace android
    //   ::exception::throw_not_implemented();
    //   return false;
    //   /*      return ::UpdateLayeredWindow(get_handle(), WIN_HDC(pDCDst), pptDst, psize,
-   //   WIN_HDC(pDCSrc), pptSrc, crKey, pblend, dwFlags) != FALSE;*/
+   //   WIN_HDC(pDCSrc), pptSrc, crKey, pblend, dwFlags) != false;*/
    //}
 
 
    //bool interaction_impl::GetLayeredWindowAttributes(color32_t *pcrKey,byte *pbAlpha,u32 *pdwFlags) const
    //{
    //   ASSERT(::is_window(((interaction_impl *) this)->get_handle()));
-   //   return ::GetLayeredWindowAttributes(((interaction_impl *) this)->get_handle(),pcrKey,pbAlpha,(LPDWORD)pdwFlags) != FALSE;
+   //   return ::GetLayeredWindowAttributes(((interaction_impl *) this)->get_handle(),pcrKey,pbAlpha,(LPDWORD)pdwFlags) != false;
    //}
 
    //bool interaction_impl::PrintWindow(::draw2d::graphics_pointer & pgraphics,::u32 nFlags) const
    //{
    //   ASSERT(::is_window(((interaction_impl *) this)->get_handle()));
    //   ::exception::throw_not_implemented();
-   //   //      return ::PrintWindow(get_handle(), (HDC)(dynamic_cast<::android::graphics * >(pgraphics))->get_handle(), nFlags) != FALSE;
+   //   //      return ::PrintWindow(get_handle(), (HDC)(dynamic_cast<::android::graphics * >(pgraphics))->get_handle(), nFlags) != false;
    //   return false;
    //}
 
@@ -983,12 +983,12 @@ namespace android
 
       // Cancel any tracking modes
       send_message(WM_CANCELMODE);
-      send_message_to_descendants(WM_CANCELMODE,0,0,TRUE,TRUE);
+      send_message_to_descendants(WM_CANCELMODE,0,0,true,true);
 
       // need to use top level parent (for the case where get_handle() is in DLL)
       __pointer(::user::interaction) pwindow = EnsureTopLevel();
       pwindow->send_message(WM_CANCELMODE);
-      pwindow->send_message_to_descendants(WM_CANCELMODE,0,0,TRUE,TRUE);
+      pwindow->send_message_to_descendants(WM_CANCELMODE,0,0,true,true);
 
       // attempt to cancel capture
       oswindow oswindow_Capture = ::get_capture();
@@ -1152,8 +1152,8 @@ namespace android
          //__zero(wp);
          //wp.length = sizeof(WINDOWPLACEMENT);
          //::GetWindowPlacement(get_handle(),&wp);
-         //bool bZoomed = ::IsZoomed(get_handle()) != FALSE;
-         //bool bIconic = ::IsIconic(get_handle()) != FALSE;
+         //bool bZoomed = ::IsZoomed(get_handle()) != false;
+         //bool bIconic = ::IsIconic(get_handle()) != false;
          psession->m_puiLastLButtonDown = m_puserinteraction;
       }
       /*      else if(pbase->m_id == CA2M_BERGEDGE)
@@ -1348,7 +1348,7 @@ namespace android
    bool interaction_impl::OnCommand(::message::base * pbase)
    {
       UNREFERENCED_PARAMETER(pbase);
-      return FALSE;
+      return false;
    }
 
 
@@ -1470,7 +1470,7 @@ namespace android
    //   ASSERT(lpScrollInfo != nullptr);
 
    //   oswindow oswindow = get_handle();
-   //   return ::GetScrollInfo(oswindow,nBar,lpScrollInfo) != FALSE;
+   //   return ::GetScrollInfo(oswindow,nBar,lpScrollInfo) != false;
    //}
 
    i32 interaction_impl::GetScrollLimit(i32 nBar)
@@ -1480,7 +1480,7 @@ namespace android
       //SCROLLINFO info;
       //if(GetScrollInfo(nBar,&info,SIF_PAGE))
       //{
-      //   nMax -= __max(info.nPage - 1,0);
+      //   nMax -= maximum(info.nPage - 1,0);
       //}
       //return nMax;
       return -1;
@@ -1521,12 +1521,12 @@ namespace android
 
 
 
-   void interaction_impl::CalcWindowRect(LPRECT32 lpClientRect, ::u32 nAdjustType)
+   void interaction_impl::CalcWindowRect(RECTANGLE_I32 * lpClientRect, ::u32 nAdjustType)
    {
       /*::u32 dwExStyle = GetExStyle();
       if (nAdjustType == 0)
       dwExStyle &= ~WS_EX_CLIENTEDGE;
-      ::AdjustWindowRectEx(lpClientRect, GetStyle(), FALSE, dwExStyle);*/
+      ::AdjustWindowRectEx(lpClientRect, GetStyle(), false, dwExStyle);*/
    }
 
 /////////////////////////////////////////////////////////////////////////////
@@ -1616,10 +1616,10 @@ namespace android
 //bool PASCAL interaction_impl::ReflectLastMsg(oswindow hWndChild, LRESULT* pResult)
 //{
 //   // get the ::collection::map, and if no ::collection::map, then this message does not need reflection
-//   /*      single_lock sl(afxMutexHwnd(), TRUE);
+//   /*      single_lock sl(afxMutexHwnd(), true);
 //   hwnd_map * pMap = afxMapHWND();
 //   if (pMap == nullptr)
-//   return FALSE;
+//   return false;
 //
 //   // check if in permanent ::collection::map, if it is reflect it (could be OLE control)
 //   __pointer(::interaction_impl) pWnd =  (pMap->lookup_permanent(hWndChild)); */
@@ -1627,7 +1627,7 @@ namespace android
 //   ASSERT(pWnd == nullptr || LNX_WINDOW(pWnd)->get_handle() == hWndChild);
 //   if (pWnd == nullptr)
 //   {
-//      return FALSE;
+//      return false;
 //   }
 //
 //   // only OLE controls and permanent windows will get reflected msgs
@@ -1662,7 +1662,7 @@ namespace android
 //   case WM_COMPAREITEM:
 //      // reflect the message through the message ::collection::map as WM_REFLECT_BASE+uMsg
 //      //return interaction_impl::OnWndMsg(WM_REFLECT_BASE+uMsg, wparam, lparam, pResult);
-//      return FALSE;
+//      return false;
 //
 //      // special case for e_message_command
 //   case e_message_command:
@@ -1673,7 +1673,7 @@ namespace android
 //      {
 //      if (pResult != nullptr)
 //      *pResult = 1;
-//      return TRUE;
+//      return true;
 //      } */
 //   }
 //   break;
@@ -1704,7 +1704,7 @@ namespace android
 //         // reflect the message through the message ::collection::map as OCM_CTLCOLOR
 //         bool bResult = interaction_impl::OnWndMsg(WM_REFLECT_BASE+WM_CTLCOLOR, 0, (LPARAM)&ctl, pResult);
 //         if ((HBRUSH)*pResult == nullptr)
-//         bResult = FALSE;
+//         bResult = false;
 //         return bResult;*/
 //         return false;
 //      }
@@ -1729,7 +1729,7 @@ namespace android
    {
       bool bHandled;
 
-      bHandled = FALSE;
+      bHandled = false;
       if (!bHandled)
       {
          Default();
@@ -1757,7 +1757,7 @@ namespace android
    void interaction_impl::OnSettingChange(::u32 uFlags, const char * lpszSection)
    {
 
-      gen_GotScrollLines = FALSE;
+      gen_GotScrollLines = false;
 
       interaction_impl::OnDisplayChange(0, 0);
 
@@ -1772,7 +1772,7 @@ namespace android
 
          //const MESSAGE* pMsg = GetCurrentMessage();
 
-         //send_message_to_descendants(pMsg->message, pMsg->wParam, pMsg->lParam, TRUE, TRUE);
+         //send_message_to_descendants(pMsg->message, pMsg->wParam, pMsg->lParam, true, true);
 
       }
 
@@ -1892,7 +1892,7 @@ namespace android
    //{
    //   user::oswindow_array * phwnda = (user::oswindow_array *) lparam;
    //   phwnda->add(hwnd);
-   //   return TRUE;
+   //   return true;
    //}
 
 
@@ -2079,7 +2079,7 @@ namespace android
    //      MESSAGE msg;
    //      __throw(not_implemented());
    //      //while (PeekMessage(&msg, nullptr, WM_ENTERIDLE, WM_ENTERIDLE, PM_REMOVE))
-   //      //while (PeekMessage(&msg, nullptr, WM_ENTERIDLE, WM_ENTERIDLE, TRUE))
+   //      //while (PeekMessage(&msg, nullptr, WM_ENTERIDLE, WM_ENTERIDLE, true))
    //      // DispatchMessage(&msg);
    //   }
 
@@ -2097,8 +2097,8 @@ namespace android
 
 //// implementation of OnCtlColor for default gray backgrounds
 ////   (works for any interaction_impl containing controls)
-////  return value of FALSE means caller must call DefWindowProc's default
-////  TRUE means that 'hbrGray' will be used and the appropriate text
+////  return value of false means caller must call DefWindowProc's default
+////  true means that 'hbrGray' will be used and the appropriate text
 ////    ('clrText') and background colors are set.
 //   bool PASCAL interaction_impl::GrayCtlColor(HDC hDC, oswindow hWnd, ::u32 nCtlColor,
 //         HBRUSH hbrGray, color32_t clrText)
@@ -2108,14 +2108,14 @@ namespace android
 //      //      {
 //      //         // sometimes Win32 passes a nullptr hDC in the WM_CTLCOLOR message.
 //      //         //         TRACE(::ca2::trace::category_AppMsg, 0, "Warning: hDC is nullptr in interaction_impl::GrayCtlColor; WM_CTLCOLOR not processed.\n");
-//      //         return FALSE;
+//      //         return false;
 //      //      }
 //      //
 //      //      if (hbrGray == nullptr ||
 //      //         nCtlColor == CTLCOLOR_EDIT || nCtlColor == CTLCOLOR_MSGBOX ||
 //      //         nCtlColor == CTLCOLOR_SCROLLBAR)
 //      //      {
-//      //         return FALSE;
+//      //         return false;
 //      //      }
 //      //
 //      //      if (nCtlColor == CTLCOLOR_LISTBOX)
@@ -2123,7 +2123,7 @@ namespace android
 //      //         // only handle requests to draw the space between edit and drop button
 //      //         //  in a drop-down combo (not a drop-down list)
 //      //         if (!__is_combo_box_control(hWnd, (::u32)CBS_DROPDOWN))
-//      //            return FALSE;
+//      //            return false;
 //      //      }
 //      //
 //      //      // set background color and return handle to brush
@@ -2133,7 +2133,7 @@ namespace android
 //      //      if (clrText == (color32_t)-1)
 //      //         clrText = ::GetSysColor(COLOR_WINDOWTEXT);  // normal text
 //      //      ::SetTextColor(hDC, clrText);
-//      //      return TRUE;
+//      //      return true;
 //   }
 
 
@@ -2232,7 +2232,7 @@ namespace android
 
    bool interaction_impl::CheckAutoCenter()
    {
-      return TRUE;
+      return true;
    }
 
 
@@ -2257,7 +2257,7 @@ namespace android
    //      // load it
    //      hResource = LoadResource(hInst, hDlgInit);
    //      if (hResource == nullptr)
-   //      return FALSE;
+   //      return false;
    //      // lock it
    //      lpResource = LockResource(hResource);
    //      ASSERT(lpResource != nullptr);
@@ -2353,7 +2353,7 @@ namespace android
    //   else
    //   {
 
-   //      return ::IsChild((oswindow)get_handle(), pWnd->get_handle()) != FALSE;
+   //      return ::IsChild((oswindow)get_handle(), pWnd->get_handle()) != false;
 
    //   }
 
@@ -2363,7 +2363,7 @@ namespace android
    bool interaction_impl::_is_window() const
    {
 
-      return ::is_window((oswindow)get_safe_handle()) != FALSE;
+      return ::is_window((oswindow)get_safe_handle()) != false;
 
    }
 
@@ -2423,7 +2423,7 @@ namespace android
 //
 //      ASSERT(::is_window((oswindow)get_handle()));
 //      /*   return ::set_window_pos(get_handle(), pWndInsertAfter->get_handle(),
-//      x, y, cx, cy, nFlags) != FALSE; */
+//      x, y, cx, cy, nFlags) != false; */
 //
 //      //__throw(not_implemented());
 //
@@ -2489,7 +2489,7 @@ namespace android
    //}
 
 
-   //bool interaction_impl::_001ClientToScreen(LPRECT32 lprect)
+   //bool interaction_impl::_001ClientToScreen(RECTANGLE_I32 * lprect)
    //{
 
    //   ::rectangle_i64 rectWindow;
@@ -2573,7 +2573,7 @@ namespace android
    //}
 
 
-   //bool interaction_impl::_001ScreenToClient(LPRECT32 lprect)
+   //bool interaction_impl::_001ScreenToClient(RECTANGLE_I32 * lprect)
    //{
 
    //   ::rectangle_i64 rectWindow;
@@ -2785,7 +2785,7 @@ namespace android
    //   else
    //   {
 
-   //      return ::IsIconic((oswindow)get_handle()) != FALSE;
+   //      return ::IsIconic((oswindow)get_handle()) != false;
 
    //   }
 
@@ -2879,7 +2879,7 @@ namespace android
    {
 
       return ::user::interaction_impl::post_message(id, wparam, lparam);
-      //return ::post_me((oswindow)get_handle(), message, wparam, lparam) != FALSE;
+      //return ::post_me((oswindow)get_handle(), message, wparam, lparam) != false;
 
    }
 
@@ -2890,7 +2890,7 @@ namespace android
    //   __throw(not_implemented());
    //   //ASSERT(::is_window((oswindow) get_handle()));
 
-   //   //return ::DragDetect(get_handle(), point_i32) != FALSE;
+   //   //return ::DragDetect(get_handle(), point_i32) != false;
 
    //}
 
@@ -3051,7 +3051,7 @@ namespace android
    //{
 
    //   //      __throw(not_implemented());
-   //   //      return ::BringWindowToTop(get_handle()) != FALSE;
+   //   //      return ::BringWindowToTop(get_handle()) != false;
 
    //   return true;
 
@@ -3069,7 +3069,7 @@ namespace android
    //}
 
 
-   //void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, LPRECT32 lpRect)
+   //void interaction_impl::MapWindowPoints(::user::interaction * pwndTo, RECTANGLE_I32 * lpRect)
    //{
 
    //   __throw(not_implemented());
@@ -3171,11 +3171,11 @@ namespace android
    //   //::SendMessage(get_handle(), WM_SETREDRAW, bRedraw, 0);
    //}
 
-   //bool interaction_impl::GetUpdateRect(LPRECT32 lpRect, bool bErase)
+   //bool interaction_impl::GetUpdateRect(RECTANGLE_I32 * lpRect, bool bErase)
    //{
    //   __throw(not_implemented());
    //   //ASSERT(::is_window((oswindow) get_handle()));
-   //   //return ::GetUpdateRect(get_handle(), lpRect, bErase) != FALSE;
+   //   //return ::GetUpdateRect(get_handle(), lpRect, bErase) != false;
    //}
 
    //i32 interaction_impl::GetUpdateRgn(draw2d::region * pRgn, bool bErase)
@@ -3317,7 +3317,7 @@ namespace android
 
       __throw(not_implemented());
       //ASSERT(::is_window((oswindow) get_handle()));
-      //return ::LockWindowUpdate(get_handle()) != FALSE;
+      //return ::LockWindowUpdate(get_handle()) != false;
 
    }
 
@@ -3364,7 +3364,7 @@ namespace android
 
    ASSERT(::is_window((oswindow) get_handle()));
 
-   return ::EnableScrollBar(get_handle(), nSBFlags, nArrowFlags) != FALSE;
+   return ::EnableScrollBar(get_handle(), nSBFlags, nArrowFlags) != false;
 
    }
    */
@@ -3374,7 +3374,7 @@ namespace android
 
    //   __throw(not_implemented());
    //   //ASSERT(::is_window((oswindow) get_handle()));
-   //   //return ::DrawAnimatedRects(get_handle(), idAni, lprcFrom, lprcTo) != FALSE;
+   //   //return ::DrawAnimatedRects(get_handle(), idAni, lprcFrom, lprcTo) != false;
 
    //}
 
@@ -3383,7 +3383,7 @@ namespace android
 
    //   __throw(not_implemented());
    //   //ASSERT(::is_window((oswindow) get_handle()));
-   //   //return ::DrawCaption(get_handle(), (HDC)(dynamic_cast<::android::graphics * >(pgraphics))->get_handle(), lprc, uFlags) != FALSE;
+   //   //return ::DrawCaption(get_handle(), (HDC)(dynamic_cast<::android::graphics * >(pgraphics))->get_handle(), lprc, uFlags) != false;
 
    //}
 
@@ -3415,10 +3415,10 @@ namespace android
 
    //   //m_puserinteraction->get_context_application()->unset_timer(m_puserinteraction, uEvent);
 
-   //   //return TRUE;
+   //   //return true;
 
    //   //ASSERT(::is_window((oswindow) get_handle()));
-   //   //return ::KillTimer(get_handle(), uEvent)  != FALSE;
+   //   //return ::KillTimer(get_handle(), uEvent)  != false;
 
    //}
 
@@ -3577,7 +3577,7 @@ namespace android
 
       __throw(not_implemented());
       //      ASSERT(::is_window((oswindow) get_handle()));
-      //      return ::DlgDirSelectEx(get_handle(), lpString, nSize, nIDListBox) != FALSE;
+      //      return ::DlgDirSelectEx(get_handle(), lpString, nSize, nIDListBox) != false;
 
    }
 
@@ -3586,7 +3586,7 @@ namespace android
 
       __throw(not_implemented());
       //      ASSERT(::is_window((oswindow) get_handle()));
-      //      return ::DlgDirSelectComboBoxEx(get_handle(), lpString, nSize, nIDComboBox) != FALSE;
+      //      return ::DlgDirSelectComboBoxEx(get_handle(), lpString, nSize, nIDComboBox) != false;
 
    }
 
@@ -3672,7 +3672,7 @@ namespace android
 
    }
 
-   i32 interaction_impl::ScrollWindowEx(i32 dx, i32 dy, const RECTANGLE_I32 * lpRectScroll, const RECTANGLE_I32 * lpRectClip, ::draw2d::region * prgnUpdate, LPRECT32 lpRectUpdate, ::u32 flags)
+   i32 interaction_impl::ScrollWindowEx(i32 dx, i32 dy, const RECTANGLE_I32 * lpRectScroll, const RECTANGLE_I32 * lpRectClip, ::draw2d::region * prgnUpdate, RECTANGLE_I32 * lpRectUpdate, ::u32 flags)
    {
 
       __throw(not_implemented());
@@ -3705,7 +3705,7 @@ namespace android
 
       __throw(not_implemented());
       //      ASSERT(::is_window((oswindow) get_handle()));
-      //      return ::android::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(), point_i32, nFlags));
+      //      return ::android::interaction_impl::from_handle(::ChildWindowFromPointEx(get_handle(), point, nFlags));
 
    }
 
@@ -3774,7 +3774,7 @@ namespace android
 
    //   __throw(not_implemented());
    //   //      ASSERT(::is_window((oswindow) get_handle()));
-   //   //      return ::FlashWindow(get_handle(), bInvert) != FALSE;
+   //   //      return ::FlashWindow(get_handle(), bInvert) != false;
 
    //}
 
@@ -3783,7 +3783,7 @@ namespace android
 
    //   __throw(not_implemented());
    //   //      ASSERT(::is_window((oswindow) get_handle()));
-   //   //      return ::ChangeClipboardChain(get_handle(), hWndNext) != FALSE;
+   //   //      return ::ChangeClipboardChain(get_handle(), hWndNext) != false;
 
    //}
 
@@ -3801,7 +3801,7 @@ namespace android
 
    //   __throw(not_implemented());
    //   //      ASSERT(::is_window((oswindow) get_handle()));
-   //   //      return ::OpenClipboard(get_handle()) != FALSE;
+   //   //      return ::OpenClipboard(get_handle()) != false;
 
    //}
 
@@ -3868,7 +3868,7 @@ namespace android
    {
 
       //    __throw(not_implemented());
-      //      return ::SetForegroundWindow(get_handle()) != FALSE;
+      //      return ::SetForegroundWindow(get_handle()) != false;
 
       return false;
 
@@ -3888,7 +3888,7 @@ namespace android
    //{
 
    //   __throw(not_implemented());
-   //   //      return ::SendNotifyMessage(get_handle(), message, wparam, lparam) != FALSE;
+   //   //      return ::SendNotifyMessage(get_handle(), message, wparam, lparam) != false;
 
    //}
 
@@ -3915,7 +3915,7 @@ namespace android
 
       __throw(not_implemented());
       //      ASSERT(::is_window((oswindow) get_handle()));
-      //      return ::SetWindowContextHelpId(get_handle(), dwContextHelpId) != FALSE;
+      //      return ::SetWindowContextHelpId(get_handle(), dwContextHelpId) != false;
 
    }
 
@@ -3958,7 +3958,7 @@ namespace android
    //bool interaction_impl::OnCopyData(::user::interaction *, COPYDATASTRUCT*)
    //{
 
-   //   return Default() != FALSE;
+   //   return Default() != false;
 
    //}
 
@@ -3974,7 +3974,7 @@ namespace android
    //bool interaction_impl::OnEraseBkgnd(::draw2d::graphics *)
    //{
 
-   //   return Default() != FALSE;
+   //   return Default() != false;
 
    //}
 
@@ -4006,21 +4006,21 @@ namespace android
    bool interaction_impl::OnQueryEndSession()
    {
 
-      return Default() != FALSE;
+      return Default() != false;
 
    }
 
    bool interaction_impl::OnQueryNewPalette()
    {
 
-      return Default() != FALSE;
+      return Default() != false;
 
    }
 
    bool interaction_impl::OnQueryOpen()
    {
 
-      return Default() != FALSE;
+      return Default() != false;
 
    }
 
@@ -4097,7 +4097,7 @@ namespace android
    bool interaction_impl::OnNcActivate(bool)
    {
 
-      return Default() != FALSE;
+      return Default() != false;
 
    }
 
@@ -4109,7 +4109,7 @@ namespace android
    bool interaction_impl::OnNcCreate(::user::system *)
    {
 
-      return Default() != FALSE;
+      return Default() != false;
 
    }
 
@@ -4253,7 +4253,7 @@ namespace android
    //bool interaction_impl::OnMouseWheel(::u32, short, point_i32)
    //{
 
-   //   return Default() != FALSE;
+   //   return Default() != false;
 
    //}
 
@@ -4352,11 +4352,11 @@ namespace android
 //   { Default(); }
 //   void interaction_impl::OnStyleChanging(i32, LPSTYLESTRUCT)
 //   { Default(); }
-   void interaction_impl::OnSizing(::u32, LPRECT32)
+   void interaction_impl::OnSizing(::u32, RECTANGLE_I32 *)
    {
       Default();
    }
-   void interaction_impl::OnMoving(::u32, LPRECT32)
+   void interaction_impl::OnMoving(::u32, RECTANGLE_I32 *)
    {
       Default();
    }
@@ -4368,7 +4368,7 @@ namespace android
    bool interaction_impl::OnDeviceChange(::u32, dword_ptr)
    {
 
-      return Default() != FALSE;
+      return Default() != false;
 
    }
 
@@ -4403,7 +4403,7 @@ namespace android
 
       __throw(todo());
 
-      //::EnableWindow(get_handle(), FALSE);
+      //::EnableWindow(get_handle(), false);
 
    }
 
@@ -4412,7 +4412,7 @@ namespace android
 
       __throw(todo());
 
-      //::EnableWindow(get_handle(), TRUE);
+      //::EnableWindow(get_handle(), true);
 
    }
 
@@ -4445,7 +4445,7 @@ namespace android
 
       __throw(not_implemented());
       //      ASSERT(::is_window((oswindow) get_handle()));
-      //      return ::OpenIcon(get_handle()) != FALSE;
+      //      return ::OpenIcon(get_handle()) != false;
 
    }
 
@@ -4491,7 +4491,7 @@ namespace android
 //         /*         if (hWndTop != nullptr && ::IsWindowEnabled(hWndTop) && hWndTop != hWnd)
 //         {
 //         *pWndTop = hWndTop;
-//         ::EnableWindow(hWndTop, FALSE);
+//         ::EnableWindow(hWndTop, false);
 //         }
 //         else
 //         *pWndTop = nullptr;*/
@@ -4512,7 +4512,7 @@ namespace android
 //{
 //   __pointer(::message::erase_bkgnd) perasebkgnd(pmessage);
 //   perasebkgnd->m_bRet = true;
-//   perasebkgnd->set_result(TRUE);
+//   perasebkgnd->set_result(true);
 //}
 
    void interaction_impl::_001BaseWndInterfaceMap()

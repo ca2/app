@@ -64,8 +64,4 @@ CLASS_DECL_ACME void vfxThrowFileException(::matter* pobject, const ::e_status& 
 #include "internal.h"
 
 
-//#include "interaction_impl.h"
-
-
-
 

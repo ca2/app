@@ -110,7 +110,7 @@ BOOL ca2rdp_get_fds(freerdp* instance, void** rfds, int* rcount, void** wfds, in
    rfds[*rcount] = (void*)(size_t)(ca2rdpi->read_fds);
    (*rcount)++;
 
-   return TRUE;
+   return true;
 }
 
 BOOL ca2rdp_check_fds(freerdp* instance, fd_set* set)
@@ -120,12 +120,12 @@ BOOL ca2rdp_check_fds(freerdp* instance, fd_set* set)
    ca2rdpi = ((ca2rdpContext*) instance->context)->ca2rdpi;
 
    if (!FD_ISSET(ca2rdpi->read_fds, set))
-      return TRUE;
+      return true;
 
 //	if (read(ca2rdpi->read_fds, &(ca2rdpi->event), sizeof(ca2rdpi->event)) > 0)
    //	ca2rdp_event_process(instance, &(ca2rdpi->event));
 
-   return TRUE;
+   return true;
 }
 
 BOOL ca2rdp_pre_connect(freerdp* instance)
@@ -144,30 +144,30 @@ BOOL ca2rdp_pre_connect(freerdp* instance)
    settings = instance->settings;
    bitmap_cache = settings->BitmapCacheEnabled;
 
-   settings->OrderSupport[NEG_DSTBLT_INDEX] = TRUE;
-   settings->OrderSupport[NEG_PATBLT_INDEX] = TRUE;
-   settings->OrderSupport[NEG_SCRBLT_INDEX] = TRUE;
-   settings->OrderSupport[NEG_OPAQUE_RECT_INDEX] = TRUE;
-   settings->OrderSupport[NEG_DRAWNINEGRID_INDEX] = FALSE;
-   settings->OrderSupport[NEG_MULTIDSTBLT_INDEX] = FALSE;
-   settings->OrderSupport[NEG_MULTIPATBLT_INDEX] = FALSE;
-   settings->OrderSupport[NEG_MULTISCRBLT_INDEX] = FALSE;
-   settings->OrderSupport[NEG_MULTIOPAQUERECT_INDEX] = TRUE;
-   settings->OrderSupport[NEG_MULTI_DRAWNINEGRID_INDEX] = FALSE;
-   settings->OrderSupport[NEG_LINETO_INDEX] = TRUE;
-   settings->OrderSupport[NEG_POLYLINE_INDEX] = TRUE;
+   settings->OrderSupport[NEG_DSTBLT_INDEX] = true;
+   settings->OrderSupport[NEG_PATBLT_INDEX] = true;
+   settings->OrderSupport[NEG_SCRBLT_INDEX] = true;
+   settings->OrderSupport[NEG_OPAQUE_RECT_INDEX] = true;
+   settings->OrderSupport[NEG_DRAWNINEGRID_INDEX] = false;
+   settings->OrderSupport[NEG_MULTIDSTBLT_INDEX] = false;
+   settings->OrderSupport[NEG_MULTIPATBLT_INDEX] = false;
+   settings->OrderSupport[NEG_MULTISCRBLT_INDEX] = false;
+   settings->OrderSupport[NEG_MULTIOPAQUERECT_INDEX] = true;
+   settings->OrderSupport[NEG_MULTI_DRAWNINEGRID_INDEX] = false;
+   settings->OrderSupport[NEG_LINETO_INDEX] = true;
+   settings->OrderSupport[NEG_POLYLINE_INDEX] = true;
    settings->OrderSupport[NEG_MEMBLT_INDEX] = bitmap_cache;
-   settings->OrderSupport[NEG_MEM3BLT_INDEX] = FALSE;
+   settings->OrderSupport[NEG_MEM3BLT_INDEX] = false;
    settings->OrderSupport[NEG_MEMBLT_V2_INDEX] = bitmap_cache;
-   settings->OrderSupport[NEG_MEM3BLT_V2_INDEX] = FALSE;
-   settings->OrderSupport[NEG_SAVEBITMAP_INDEX] = FALSE;
-   settings->OrderSupport[NEG_GLYPH_INDEX_INDEX] = FALSE;
-   settings->OrderSupport[NEG_FAST_INDEX_INDEX] = FALSE;
-   settings->OrderSupport[NEG_FAST_GLYPH_INDEX] = FALSE;
-   settings->OrderSupport[NEG_POLYGON_SC_INDEX] = FALSE;
-   settings->OrderSupport[NEG_POLYGON_CB_INDEX] = FALSE;
-   settings->OrderSupport[NEG_ELLIPSE_SC_INDEX] = FALSE;
-   settings->OrderSupport[NEG_ELLIPSE_CB_INDEX] = FALSE;
+   settings->OrderSupport[NEG_MEM3BLT_V2_INDEX] = false;
+   settings->OrderSupport[NEG_SAVEBITMAP_INDEX] = false;
+   settings->OrderSupport[NEG_GLYPH_INDEX_INDEX] = false;
+   settings->OrderSupport[NEG_FAST_INDEX_INDEX] = false;
+   settings->OrderSupport[NEG_FAST_GLYPH_INDEX] = false;
+   settings->OrderSupport[NEG_POLYGON_SC_INDEX] = false;
+   settings->OrderSupport[NEG_POLYGON_CB_INDEX] = false;
+   settings->OrderSupport[NEG_ELLIPSE_SC_INDEX] = false;
+   settings->OrderSupport[NEG_ELLIPSE_CB_INDEX] = false;
 
    //ca2rdpi->clrconv = (CLRCONV*) malloc(sizeof(CLRCONV));
    //ZeroMemory(ca2rdpi->clrconv, sizeof(CLRCONV));
@@ -183,7 +183,7 @@ BOOL ca2rdp_pre_connect(freerdp* instance)
 
    instance->context->cache = cache_new(instance->settings);
 
-   return TRUE;
+   return true;
 }
 
 BOOL ca2rdp_post_connect(freerdp* instance)
@@ -254,7 +254,7 @@ BOOL ca2rdp_post_connect(freerdp* instance)
 
    //freerdp_channels_post_connect(instance->context->channels, instance);
 
-   return TRUE;
+   return true;
 }
 
 BOOL ca2rdp_verify_certificate(freerdp* instance, char* subject, char* issuer, char* fingerprint)
@@ -276,7 +276,7 @@ BOOL ca2rdp_verify_certificate(freerdp* instance, char* subject, char* issuer, c
 
       if (answer == 'y' || answer == 'Y')
       {
-         return TRUE;
+         return true;
       }
       else if (answer == 'n' || answer == 'N')
       {
@@ -284,7 +284,7 @@ BOOL ca2rdp_verify_certificate(freerdp* instance, char* subject, char* issuer, c
       }
    }
 
-   return FALSE;
+   return false;
 }
 
 static int ca2rdp_receive_channel_data(freerdp* instance, int channelId, byte* data, int size, int flags, int total_size)
@@ -365,17 +365,17 @@ int ca2rdpreerdp_run(freerdp* instance)
       rcount = 0;
       wcount = 0;
 
-      if (freerdp_get_fds(instance, rfds, &rcount, wfds, &wcount) != TRUE)
+      if (freerdp_get_fds(instance, rfds, &rcount, wfds, &wcount) != true)
       {
          WLog_ERR(TAG, "Failed to get FreeRDP file descriptor\n");
          break;
       }
-      if (freerdp_channels_get_fds(channels, instance, rfds, &rcount, wfds, &wcount) != TRUE)
+      if (freerdp_channels_get_fds(channels, instance, rfds, &rcount, wfds, &wcount) != true)
       {
          WLog_ERR(TAG, "Failed to get channel manager file descriptor\n");
          break;
       }
-      if (ca2rdp_get_fds(instance, rfds, &rcount, wfds, &wcount) != TRUE)
+      if (ca2rdp_get_fds(instance, rfds, &rcount, wfds, &wcount) != true)
       {
          WLog_ERR(TAG, "Failed to get ca2rdpreerdp file descriptor\n");
          break;
@@ -411,17 +411,17 @@ int ca2rdpreerdp_run(freerdp* instance)
          }
       }
 
-      if (freerdp_check_fds(instance) != TRUE)
+      if (freerdp_check_fds(instance) != true)
       {
          WLog_ERR(TAG, "Failed to check FreeRDP file descriptor\n");
          break;
       }
-      if (ca2rdp_check_fds(instance, &rfds_set) != TRUE)
+      if (ca2rdp_check_fds(instance, &rfds_set) != true)
       {
          WLog_ERR(TAG, "Failed to check ca2rdpreerdp file descriptor\n");
          break;
       }
-      if (freerdp_channels_check_fds(channels, instance) != TRUE)
+      if (freerdp_channels_check_fds(channels, instance) != true)
       {
          WLog_ERR(TAG, "Failed to check channel manager file descriptor\n");
          break;

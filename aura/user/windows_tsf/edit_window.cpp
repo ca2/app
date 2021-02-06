@@ -1,4 +1,5 @@
 #include "framework.h"
+#include "aura/operating_system.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
 #endif
@@ -43,18 +44,18 @@ namespace tsf
        ///m_pDocMgr = NULL;
        //m_pPrevDocMgr = NULL;
        //m_pContext = NULL;
-       m_fLocked = FALSE;
+       m_fLocked = false;
        m_dwLockType = 0;
-       m_fPendingLockUpgrade = FALSE;
+       m_fPendingLockUpgrade = false;
        m_acpStart = 0;
        m_acpEnd = 0;
-       m_fInterimChar = FALSE;
+       m_fInterimChar = false;
        m_ActiveSelEnd = TS_AE_START;
        m_pServices = NULL;
        m_cCompositions = 0;
        //m_pCategoryMgr = NULL;
        //m_pDisplayAttrMgr = NULL;
-       m_fLayoutChanged = FALSE;
+       m_fLayoutChanged = false;
        m_fNotify = true;
        m_cchOldLength = 0;
 
@@ -102,7 +103,7 @@ namespace tsf
        hr = ptm->QueryInterface(IID_ITfThreadMgr, (LPVOID*)&m_pthreadmgr);
        if(FAILED(hr))
        {
-           return FALSE;
+           return false;
        }
 
        hr = CoCreateInstance(  CLSID_TF_CategoryMgr,
@@ -112,7 +113,7 @@ namespace tsf
                                (LPVOID*)&m_pCategoryMgr);
        if(FAILED(hr))
        {
-           return FALSE;
+           return false;
        }
     
 
@@ -124,7 +125,7 @@ namespace tsf
                                (LPVOID*)&m_pDisplayAttrMgr);
        if(FAILED(hr))
        {
-           return FALSE;
+           return false;
        }
 
     
@@ -132,7 +133,7 @@ namespace tsf
        hr = m_pthreadmgr->CreateDocumentMgr(&m_pDocMgr);
        if(FAILED(hr))
        {
-           return FALSE;
+           return false;
        }
 
        //create the context
@@ -143,14 +144,14 @@ namespace tsf
                                        &m_EditCookie);
        if(FAILED(hr))
        {
-           return FALSE;
+           return false;
        }
 
        //push the context onto the document stack
        hr = m_pDocMgr->Push(m_pContext);
        if(FAILED(hr))
        {
-           return FALSE;
+           return false;
        }
 
        comptr < ITfSource > psource;
@@ -185,7 +186,7 @@ namespace tsf
 
        //    if(0 == RegisterClass(&wc))
        //    {
-       //        return FALSE;
+       //        return false;
        //    }
        //}
        //create the main window
@@ -224,7 +225,7 @@ namespace tsf
            //                                NULL);
            //if(NULL == m_hwndEdit)
            //{
-           //    return FALSE;
+           //    return false;
            //}
 
            ////create the status bar
@@ -261,12 +262,12 @@ namespace tsf
            m_rgAttributes[ATTR_INDEX_TEXT_ORIENTATION].varDefaultValue.vt = VT_I4;
            m_rgAttributes[ATTR_INDEX_TEXT_ORIENTATION].varDefaultValue.lVal = 0;
 
-           //vertical writing - this is a VT_BOOL that is always FALSE in this app
+           //vertical writing - this is a VT_BOOL that is always false in this app
            m_rgAttributes[ATTR_INDEX_TEXT_VERTICALWRITING].dwFlags = 0;
            m_rgAttributes[ATTR_INDEX_TEXT_VERTICALWRITING].attrid = &TSATTRID_Text_VerticalWriting;
            VariantInit(&m_rgAttributes[ATTR_INDEX_TEXT_VERTICALWRITING].varValue);
            m_rgAttributes[ATTR_INDEX_TEXT_VERTICALWRITING].varDefaultValue.vt = VT_BOOL;
-           m_rgAttributes[ATTR_INDEX_TEXT_VERTICALWRITING].varDefaultValue.lVal = FALSE;
+           m_rgAttributes[ATTR_INDEX_TEXT_VERTICALWRITING].varDefaultValue.lVal = false;
 
            _InitFunctionProvider();
         
@@ -286,7 +287,7 @@ namespace tsf
            return true;
        //}
 
-       //return FALSE;
+       //return false;
    }
 
    /**************************************************************************
@@ -740,7 +741,7 @@ namespace tsf
    {
        if(m_fLocked)
        {
-           return FALSE;
+           return false;
        }
     
        m_fLocked = true;
@@ -772,13 +773,13 @@ namespace tsf
    {
        HRESULT hr;
     
-       m_fLocked = FALSE;
+       m_fLocked = false;
        m_dwLockType = 0;
     
        //if there is a pending lock upgrade, grant it
        if(m_fPendingLockUpgrade)
        {
-           m_fPendingLockUpgrade = FALSE;
+           m_fPendingLockUpgrade = false;
 
            RequestLock(TS_LF_READWRITE, &hr);
        }
@@ -786,7 +787,7 @@ namespace tsf
        //if any layout changes occurred during the lock, notify the manager
        if(m_fLayoutChanged)
        {
-           m_fLayoutChanged = FALSE;
+           m_fLayoutChanged = false;
            m_AdviseSink.pTextStoreACPSink->OnLayoutChange(TS_LC_CHANGE, EDIT_VIEW_COOKIE);
        }
    }
@@ -875,7 +876,7 @@ namespace tsf
 
        //nParts[1] = -1;
     
-       //SendMessage(m_hwndStatus, SB_SIMPLE, FALSE, 0);
+       //SendMessage(m_hwndStatus, SB_SIMPLE, false, 0);
        //SendMessage(m_hwndStatus, SB_SETPARTS, ARRAYSIZE(nParts), (lparam)nParts);
 
        //SendMessage(m_hwndStatus, SB_SETTEXT, 0, (lparam)szComposition);
@@ -940,7 +941,7 @@ namespace tsf
     
        //empty the text in the edit control, but don't send a change notification
        BOOL    fOldNotify = m_fNotify;
-       m_fNotify = FALSE;
+       m_fNotify = false;
        //SetWindowTextW(m_hwndEdit, NULL);
        _001SetText("", ::e_source_user);
        m_fNotify = fOldNotify;
@@ -1420,7 +1421,7 @@ namespace tsf
                                    /*
                                    The GUID_PROP_COMPOSING attribute value is a VT_I4 that contains a boolean indicating if the text is part of a composition.
                                    */
-                                   BOOL    fComposing = FALSE;
+                                   BOOL    fComposing = false;
 
                                    if(VT_EMPTY == tfPropVal.varValue.vt)
                                    {
@@ -1477,7 +1478,7 @@ namespace tsf
 
    BOOL edit_window::_CanReconvertSelection(void)
    {
-       BOOL                fConv = FALSE;
+       BOOL                fConv = false;
        HRESULT             hr;
        ITfFunctionProvider *pFuncProv;
     
@@ -1617,7 +1618,7 @@ namespace tsf
 
    BOOL edit_window::_CanPlaybackSelection(void)
    {
-       BOOL                fCanPlayback = FALSE;
+       BOOL                fCanPlayback = false;
        HRESULT             hr;
        ITfFunctionProvider *pFuncProv;
     

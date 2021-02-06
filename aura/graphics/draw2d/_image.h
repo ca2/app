@@ -195,7 +195,7 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //
 //
 //   virtual bool SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy)= 0;
-//   virtual bool RadialFill(byte a, byte rectangle_i32, byte g, byte b, i32 x, i32 y, i32 iRadius)= 0;
+//   virtual bool RadialFill(byte a, byte rectangle, byte g, byte b, i32 x, i32 y, i32 iRadius)= 0;
 //   virtual bool RadialFill(
 //   byte a1, byte r1, byte g1, byte b1, // center colors
 //   byte a2, byte r2, byte g2, byte b2, // border colors

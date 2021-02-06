@@ -509,9 +509,6 @@
     <ClInclude Include="platform\drawable.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="user.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="platform\_platform.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
@@ -782,9 +779,6 @@
     <ClInclude Include="os\_.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
-    <ClInclude Include="os\_os.h">
-      <Filter>Header Files\os</Filter>
-    </ClInclude>
     <ClInclude Include="os\os.h">
       <Filter>Header Files\os</Filter>
     </ClInclude>
@@ -795,9 +789,6 @@
       <Filter>Header Files\message</Filter>
     </ClInclude>
     <ClInclude Include="os\windows\windowing.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="os\windows\imm_context.h">
       <Filter>Header Files\os\windows</Filter>
     </ClInclude>
     <ClInclude Include="os\windowing.h">
@@ -917,9 +908,6 @@
     <ClInclude Include="platform\shell_open.h">
       <Filter>Header Files\platform</Filter>
     </ClInclude>
-    <ClInclude Include="os\windows\imm_client.h">
-      <Filter>Header Files\os\windows</Filter>
-    </ClInclude>
     <ClInclude Include="graphics\draw2d\device_lock.h">
       <Filter>Header Files\graphics\draw2d</Filter>
     </ClInclude>
@@ -1005,6 +993,30 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="windowing\icon.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="os\_c2.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="os\_2.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="os\_os2.h">
+      <Filter>Header Files\os</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\cursor.h">
+      <Filter>Header Files\windowing</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows\aaa_imm_context.h">
+      <Filter>Header Files\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="os\windows\aaa_imm_client.h">
+      <Filter>Header Files\os\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="user\text_composition.h">
+      <Filter>Header Files\user</Filter>
+    </ClInclude>
+    <ClInclude Include="windowing\cursor_set.h">
       <Filter>Header Files\windowing</Filter>
     </ClInclude>
   </ItemGroup>
@@ -1429,9 +1441,6 @@
     <ClCompile Include="os\windows\aura.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
-    <ClCompile Include="os\windows\imm_context.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
     <ClCompile Include="os\windowing.cpp">
       <Filter>Source Files\os</Filter>
     </ClCompile>
@@ -1463,9 +1472,6 @@
       <Filter>Source Files\graphics\graphics</Filter>
     </ClCompile>
     <ClCompile Include="os\windows\monitor.cpp">
-      <Filter>Source Files\os\windows</Filter>
-    </ClCompile>
-    <ClCompile Include="os\windows\imm_client.cpp">
       <Filter>Source Files\os\windows</Filter>
     </ClCompile>
     <ClCompile Include="node\windows\user_frame.cpp">
@@ -1510,28 +1516,13 @@
     <ClCompile Include="windowing\buffer.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
-    <ClCompile Include="windowing\button.cpp">
-      <Filter>Source Files\windowing</Filter>
-    </ClCompile>
     <ClCompile Include="windowing\debug.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
     <ClCompile Include="windowing\display.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
-    <ClCompile Include="windowing\event.cpp">
-      <Filter>Source Files\windowing</Filter>
-    </ClCompile>
-    <ClCompile Include="windowing\hook.cpp">
-      <Filter>Source Files\windowing</Filter>
-    </ClCompile>
     <ClCompile Include="windowing\keyboard.cpp">
-      <Filter>Source Files\windowing</Filter>
-    </ClCompile>
-    <ClCompile Include="windowing\message_box.cpp">
-      <Filter>Source Files\windowing</Filter>
-    </ClCompile>
-    <ClCompile Include="windowing\simple_ui_display.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
     <ClCompile Include="windowing\window.cpp">
@@ -1550,6 +1541,15 @@
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
     <ClCompile Include="windowing\icon.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\cursor.cpp">
+      <Filter>Source Files\windowing</Filter>
+    </ClCompile>
+    <ClCompile Include="user\text_composition.cpp">
+      <Filter>Source Files\user</Filter>
+    </ClCompile>
+    <ClCompile Include="windowing\cursor_set.cpp">
       <Filter>Source Files\windowing</Filter>
     </ClCompile>
   </ItemGroup>

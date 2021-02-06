@@ -3,6 +3,7 @@
 
 #define STEPPY_DEBUG 0
 
+
 namespace app_app
 {
 
@@ -10,11 +11,13 @@ namespace app_app
    window::window()
    {
 
+      m_bTransparent = true;
+
       m_rectInitialRateOrSize = { 0.05, 0.05, 0.4, 0.4 };
 
       m_dBreathPeriod = 60.0;
 
-      m_dStartTime = ::get_secs();
+      m_millisStart.Now();
 
       m_dPhaseShift = 0.0;
 
@@ -39,13 +42,14 @@ namespace app_app
 
 #endif
 
-#ifdef WINDOWS_DESKTOP
 
-      ModifyStyle(WS_CAPTION, 0);
+//#ifdef WINDOWS_DESKTOP
 
-#endif
+  //    ModifyStyle(WS_CAPTION, 0);
 
-      ModifyStyleEx(0, WS_EX_LAYERED);
+//#endif
+
+  //    ModifyStyleEx(0, WS_EX_LAYERED);
 
       auto & app = App(this);
 
@@ -128,13 +132,13 @@ namespace app_app
 
          }
 
-         double time = get_secs() - m_dStartTime;
+         auto time = m_millisStart.elapsed();
 
          double dFrequency = 1.0 / m_dBreathPeriod;
 
          double omega = 2.0 * System.math().GetPi() * dFrequency;
 
-         double angle = omega * time;
+         double angle = omega * time.m_i;
 
          angle += m_dPhaseShift;
 
@@ -162,7 +166,7 @@ namespace app_app
 
             omega = 2.0 * System.math().GetPi() * dFrequency;
 
-            double angleNew = omega * time;
+            double angleNew = omega * time.m_i;
 
             m_dPhaseShift = angle - angleNew;
 

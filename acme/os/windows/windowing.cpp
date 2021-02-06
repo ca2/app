@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/operating_system.h"
 
 
@@ -363,50 +363,50 @@ CLASS_DECL_ACME string message_box_result_to_string(enum_dialog_result edialogre
 //
 
 
-CLASS_DECL_ACME ::e_status _os_message_box(oswindow oswindow, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
-{
-
-   string strMessage(pszMessage);
-
-   strMessage.replace_ci("<br>", "\n");
-
-   string strTitle(pszTitle);
-
-   strTitle.replace_ci("<br>", "\n");
-
-   int iResult = ::MessageBoxW((HWND) oswindow, wstring(strMessage), wstring(strTitle), emessagebox);
-
-   enum_dialog_result edialogresult = (enum_dialog_result) iResult;
-
-   string strResult = message_box_result_to_string(edialogresult);
-
-   process(strResult);
-
-   return ::success;
-
-}
+//CLASS_DECL_ACME ::e_status _os_message_box(::windowing::window * pwindow, const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+//{
 //
+//   string strMessage(pszMessage);
 //
-CLASS_DECL_ACME ::e_status os_message_box(HWND hwnd, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
-{
-
-   //if (System.is_dedicated_thread())
-   //{
-
-   //   System.fork([=]()
-   //      {
-
-   //         _os_message_box(hwnd, pszMessage, pszTitle, emessagebox, callback);
-
-   //      });
-
-   //   return ::success;
-
-   //}
-
-   return _os_message_box(hwnd, pszMessage, pszTitle, emessagebox, process);
-
-}
+//   strMessage.replace_ci("<br>", "\n");
+//
+//   string strTitle(pszTitle);
+//
+//   strTitle.replace_ci("<br>", "\n");
+//
+//   int iResult = ::MessageBoxW(__hwnd(oswindow), wstring(strMessage), wstring(strTitle), emessagebox);
+//
+//   enum_dialog_result edialogresult = (enum_dialog_result) iResult;
+//
+//   string strResult = message_box_result_to_string(edialogresult);
+//
+//   process(strResult);
+//
+//   return ::success;
+//
+//}
+////
+////
+//CLASS_DECL_ACME ::e_status os_message_box(HWND hwnd, const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
+//{
+//
+//   //if (System.is_dedicated_thread())
+//   //{
+//
+//   //   System.fork([=]()
+//   //      {
+//
+//   //         _os_message_box(hwnd, pszMessage, pszTitle, emessagebox, callback);
+//
+//   //      });
+//
+//   //   return ::success;
+//
+//   //}
+//
+//   return _os_message_box(hwnd, pszMessage, pszTitle, emessagebox, process);
+//
+//}
 //
 //
 //
@@ -421,84 +421,86 @@ CLASS_DECL_ACME ::e_status os_message_box(HWND hwnd, const char * pszMessage, co
 //
 
 
-CLASS_DECL_ACME bool windows_register_class(WNDCLASSEXW* pwndclass)
-{
-
-   WNDCLASSEXW wndcls;
-
-   if (GetClassInfoExW(pwndclass->hInstance, pwndclass->lpszClassName, &wndcls))
-
-   {
-
-      return true;
-
-   }
-
-   pwndclass->cbSize = sizeof(WNDCLASSEXW);
-
-   if (!::RegisterClassExW(pwndclass))
-   {
-
-      ::u32 dw = GetLastError();
-
-      return false;
-
-   }
-
-   bool bRet = true;
-
-   return bRet;
-
-}
+//CLASS_DECL_ACME bool windows_register_class(WNDCLASSEXW* pwndclass)
+//{
+//
+//   WNDCLASSEXW wndcls;
+//
+//   if (GetClassInfoExW(pwndclass->hInstance, pwndclass->lpszClassName, &wndcls))
+//
+//   {
+//
+//      return true;
+//
+//   }
+//
+//   pwndclass->cbSize = sizeof(WNDCLASSEXW);
+//
+//   if (!::RegisterClassExW(pwndclass))
+//   {
+//
+//      ::u32 dw = GetLastError();
+//
+//      return false;
+//
+//   }
+//
+//   bool bRet = true;
+//
+//   return bRet;
+//
+//}
 
 
 
 
 
 LRESULT CALLBACK WndProc(HWND hWnd, ::u32 message, WPARAM wParam, LPARAM lParam);
+//
+//WNDPROC g_pwindowprocedure = &WndProc;
+//
+//CLASS_DECL_ACME void os_set_window_procedure(WNDPROC pwndproc)
+//{
+//
+//   g_pwindowprocedure = pwndproc;
+//
+//}
+//
+//
+//CLASS_DECL_ACME WNDPROC get_window_procedure()
+//{
+//
+//   return g_pwindowprocedure;
+//
+//}
 
-WNDPROC g_pwindowprocedure = &WndProc;
-
-CLASS_DECL_ACME void os_set_window_procedure(WNDPROC pwndproc)
-{
-
-   g_pwindowprocedure = pwndproc;
-
-}
-
-
-CLASS_DECL_ACME WNDPROC get_window_procedure()
-{
-
-   return g_pwindowprocedure;
-
-}
-
-
-CLASS_DECL_ACME bool windows_register_class(HINSTANCE hinstance)
-{
-
-   WNDCLASSEXW wcex = {};
-
-   wcex.cbSize = sizeof(WNDCLASSEXW);
-   wcex.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
-   wcex.lpfnWndProc = get_window_procedure();
-   wcex.cbClsExtra = 0;
-   wcex.cbWndExtra = 0;
-   wcex.hInstance = hinstance;
-   wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW);
-   wcex.lpszClassName = L"windows_interaction_impl";
-
-   if (!RegisterClassExW(&wcex))
-   {
-
-      return false;
-
-   }
-
-   return true;
-
-}
+//CLASS_DECL_WINDOWING_WIN32 WNDPROC windows_user_interaction_impl_get_window_procedure();
+//
+//
+//CLASS_DECL_ACME bool windows_register_class(HINSTANCE hinstance)
+//{
+//
+//   WNDCLASSEXW wcex = {};
+//
+//   wcex.cbSize = sizeof(WNDCLASSEXW);
+//   wcex.style = CS_HREDRAW | CS_VREDRAW | CS_OWNDC;
+//   wcex.lpfnWndProc = windows_user_interaction_impl_get_window_procedure();
+//   wcex.cbClsExtra = 0;
+//   wcex.cbWndExtra = 40;
+//   wcex.hInstance = hinstance;
+//   wcex.hbrBackground = (HBRUSH)(COLOR_WINDOW);
+//   wcex.lpszClassName = L"windows_interaction_impl";
+//
+//   if (!RegisterClassExW(&wcex))
+//   {
+//
+//      return false;
+//
+//   }
+//
+//   return true;
+//
+//}
 
 
 CLASS_DECL_ACME iptr get_window_long_ptr(HWND hwnd, int iIndex)

@@ -60,19 +60,19 @@ void scMyIpAddress(CScriptVar *pvar, void *data);
 ///*   ipaddr_t l_host;
 //   if (!Sys(tinyJS->get_context_system()).net().u2ip(host, l_host))
 //   {
-//   	pvar->getReturnVar()->setInt(FALSE);
+//   	pvar->getReturnVar()->setInt(false);
 //      return;
 //   }
 //   ipaddr_t l_addr;
 //   if (!Sys(tinyJS->get_context_system()).net().u2ip(addr, l_addr))
 //   {
-//   	pvar->getReturnVar()->setInt(FALSE);
+//   	pvar->getReturnVar()->setInt(false);
 //      return;
 //   }
 //   ipaddr_t l_mask;
 //   if (!Sys(tinyJS->get_context_system()).net().u2ip(mask, l_mask))
 //   {
-//   	pvar->getReturnVar()->setInt(FALSE);
+//   	pvar->getReturnVar()->setInt(false);
 //      return;
 //   }*/
 //

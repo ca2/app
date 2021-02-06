@@ -248,11 +248,11 @@ SizingNone:;
                      || estyle == ::user::StyleTranslucidLightGreen)
                {
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(rectClient, rectangle_i32, eside);
+                  GetBorderRect(rectClient, rectangle, eside);
 
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
-                                      rectangle_i32,
+                                      rectangle,
                                       crMoveableBorder,
                                       127);
                }
@@ -271,11 +271,11 @@ SizingNone:;
                   Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorder, crMoveableBorder);
 
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(rectClient, rectangle_i32, eside);
+                  GetBorderRect(rectClient, rectangle, eside);
 
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
-                                      rectangle_i32,
+                                      rectangle,
                                       crMoveableBorder,
                                       127);
                }
@@ -285,14 +285,14 @@ SizingNone:;
                   ::rectangle_i32 rectClient = rectClientParam;
 
                   rectClient.deflate(1, 1);
-                  GetBorderRect(rectClient, rectangle_i32, eside);
+                  GetBorderRect(rectClient, rectangle, eside);
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
-                                      rectangle_i32,
+                                      rectangle,
                                       crMoveableBorder,
                                       200);
 
-                  GetBorderRect(rectClient, rectangle_i32, eside);
+                  GetBorderRect(rectClient, rectangle, eside);
 
 
                   ::rectangle_i32 rectClientB = rectA;
@@ -469,7 +469,7 @@ SizingNone:;
                   rectangle.top = rectSmall.bottom;
                   rectangle.bottom = rectBig.bottom;
                }
-               *prectangle = rectangle_i32;
+               *prectangle = rectangle;
 
             }
 

@@ -31,9 +31,9 @@ namespace datetime
          virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
-         virtual void GetRectDay(::datetime::time& time, LPRECT32 lprect);
-         virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, LPRECT32 lprect);
-         virtual void GetRect(LPRECT32 lprect, enum enum_element eelement);
+         virtual void GetRectDay(::datetime::time& time, RECTANGLE_I32 * lprect);
+         virtual void GetRectDay(int32_t iWeekDay, int32_t iLine, RECTANGLE_I32 * lprect);
+         virtual void GetRect(RECTANGLE_I32 * lprect, enum enum_element eelement);
 
          void _001OnDraw(::draw2d::graphics* pgraphics);
 

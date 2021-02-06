@@ -42,6 +42,7 @@ namespace user
       ::promise::routine                     m_routineFailure;
       __pointer(::user::interaction_impl)    m_pimpl;
       __pointer(::create)                    m_pcreate;
+      ::windowing::window *                  m_pwindow;
 
 
 

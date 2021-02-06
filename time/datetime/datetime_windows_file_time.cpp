@@ -18,7 +18,7 @@ namespace windows
       {
 
 #if defined(_WIN32) && !defined(UNDER_CE) && !defined(METROWIN)
-         return ::DosDateTimeToFileTime((::u3216_t)(dosTime >> 16), (::u3216_t)(dosTime & 0xFFFF), &ft) != FALSE;
+         return ::DosDateTimeToFileTime((::u3216_t)(dosTime >> 16), (::u3216_t)(dosTime & 0xFFFF), &ft) != false;
 #else
 
          ft.dwLowDateTime = 0;

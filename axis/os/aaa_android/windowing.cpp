@@ -730,7 +730,7 @@ int_bool get_client_rect(oswindow_data * pdata, RECT32 * prect)
    //prect->left = 0;
    //prect->top = 0;
 
-   return TRUE;
+   return true;
 
 }
 
@@ -740,7 +740,7 @@ int_bool get_window_rect(oswindow_data * pdata, RECT32 * prect)
 
    pdata->m_pimpl->m_puserinteraction->get_window_rect(prect);
 
-   return TRUE;
+   return true;
 
 }
 
@@ -779,28 +779,28 @@ int_bool IsAscendant(oswindow_data * pdata, oswindow_data * pdataAscendant)
 {
 
    if (pdata == nullptr)
-      return FALSE;
+      return false;
 
    oswindow_data * pdataParent = pdata->get_parent();
 
    if (pdataAscendant == nullptr)
    {
       if (pdataParent == nullptr)
-         return TRUE;
+         return true;
       else
-         return FALSE;
+         return false;
    }
 
    while (pdataParent != nullptr)
    {
 
       if (pdataParent == pdataAscendant)
-         return TRUE;
+         return true;
 
       pdataParent = pdataParent->get_parent();
    }
 
-   return FALSE;
+   return false;
 
 }
 
@@ -856,11 +856,11 @@ int_bool destroy_window(oswindow w)
    if (!is_window(w))
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   return FALSE;
+   return false;
 
 }
 
@@ -925,14 +925,14 @@ POINT32 g_pointCursor;
 int_bool SetCursorPos(POINT32 * lppt)
 {
    g_pointCursor = *lppt;
-   return TRUE;
+   return true;
 }
 
 
 int_bool GetCursorPos(POINT32 * lppt)
 {
    *lppt = g_pointCursor;
-   return TRUE;
+   return true;
 }
 
 
@@ -1178,7 +1178,7 @@ void _android_size(float xDummy, float yDummy, float cx, float cy)
    if (System.get_context_session()->m_puiHost == nullptr)
       return;
 
-   System.get_context_session()->m_puiHost->set_window_pos(zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
+   System.get_context_session()->m_puiHost->set_window_pos(e_zorder_top, 0, 0, cx, cy, SWP_SHOWWINDOW);
 
 
 }
@@ -1270,22 +1270,22 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
    switch (keyCode)
    {
    case 62:
-      pkey->m_ekey = ::user::key_space;
+      pkey->m_ekey = ::user::e_key_space;
       break;
    case 67:
-      pkey->m_ekey = ::user::key_back;
+      pkey->m_ekey = ::user::e_key_back;
       break;
    case 112:
-      pkey->m_ekey = ::user::key_delete;
+      pkey->m_ekey = ::user::e_key_delete;
       break;
    case 59:
-      pkey->m_ekey = ::user::key_lshift;
+      pkey->m_ekey = ::user::e_key_lshift;
       break;
    case 60:
-      pkey->m_ekey = ::user::key_rshift;
+      pkey->m_ekey = ::user::e_key_rshift;
       break;
    case 66:
-      pkey->m_ekey = ::user::key_return;
+      pkey->m_ekey = ::user::e_key_return;
       break;
    default:
       bOk = false;
@@ -1295,8 +1295,8 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
    if(!bOk)
    {
 
-      //pkey->m_ekey = (::user::e_key) ((int) ::user::key_a + keyCode - 29);
-      pkey->m_ekey = ::user::key_refer_to_text_member;
+      //pkey->m_ekey = (::user::e_key) ((int) ::user::e_key_a + keyCode - 29);
+      pkey->m_ekey = ::user::e_key_refer_to_text_member;
 
       wd32char u32sz[2];
       u32sz[0] = iUni;
@@ -1308,9 +1308,9 @@ int translate_android_key_message(::message::key * pkey, int keyCode, int iUni)
    //else if (keyCode >= 7 && keyCode <= 16)
    //{
 
-   //   pkey->m_ekey = (::user::e_key) ((int) ::user::key_0 + keyCode - 7);
+   //   pkey->m_ekey = (::user::e_key) ((int) ::user::e_key_0 + keyCode - 7);
 
-   //   pkey->m_ekey = ::user::key_refer_to_text_member;
+   //   pkey->m_ekey = ::user::e_key_refer_to_text_member;
 
    //   pkey->m_strText = string((unichar)iUni);
 
@@ -1362,7 +1362,7 @@ namespace axis
 
       pkey->m_id = e_message_key_down;
 
-      pkey->m_ekey = ::user::key_refer_to_text_member;
+      pkey->m_ekey = ::user::e_key_refer_to_text_member;
 
       pkey->m_strText = strText;
 
@@ -1371,7 +1371,7 @@ namespace axis
 
          pkey->m_strText.Empty();
 
-         pkey->m_ekey = ::user::key_return;
+         pkey->m_ekey = ::user::e_key_return;
 
          //psession->m_puiHost->message_handler(pkey);
 
@@ -1451,11 +1451,11 @@ int_bool is_window(oswindow oswindow)
    if (::oswindow_data::s_pdataptra->find_first(oswindow) < 0)
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   return TRUE;
+   return true;
 
 }
 
@@ -1603,12 +1603,12 @@ double _001GetWindowTopLeftWeightedOccludedOpaqueRate(oswindow oswindow)
 
 
 
-int GetMainScreenRect(LPRECT32 lprect)
+int GetMainScreenRect(RECTANGLE_I32 * lprect)
 {
 
    *lprect = System.get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen;
 
-   return TRUE;
+   return true;
 
 }
 
@@ -1622,7 +1622,7 @@ int SetMainScreenRect(LPCRECT32 lpcrect)
 
    System.get_context_session()->m_puiHost->m_pimpl->cast < ::user::interaction_impl >()->m_rectWindowScreen = *lpcrect;
 
-   return TRUE;
+   return true;
 
 }
 

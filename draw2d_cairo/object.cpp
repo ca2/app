@@ -40,12 +40,12 @@ namespace draw2d_cairo
    bool object::operator==(const object& obj) const
    {
       //return ((HGDIOBJ) obj.get_os_data()) == get_handle();
-      return FALSE;
+      return false;
    }
    bool object::operator!=(const object& obj) const
    {
       //return ((HGDIOBJ) obj.get_os_data()) != get_handle();
-      return TRUE;
+      return true;
    }
 
 
@@ -99,9 +99,9 @@ namespace draw2d_cairo
 //   bool object::delete_object()
 //   {
 //      //if (get_os_data() == nullptr)
-//        // return FALSE;
+//        // return false;
 //      //return ::DeleteObject(Detach());
-//      return FALSE;
+//      return false;
 //   }
 //
 //   /////////////////////////////////////////////////////////////////////////////

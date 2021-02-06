@@ -14,7 +14,7 @@ concept image_source_pointer = requires(IMAGE_SOURCE_POINTER p, const concrete <
    { p->get_image(concreteSize) } -> ::std::same_as < image * >;
 
 
-   { p->size_i32(sizeDst, eimageselection) } -> ::std::same_as < concrete < ::size_i32 > >;
+   { p->size(sizeDst, eimageselection) } -> ::std::same_as < concrete < ::size_i32 > >;
    { p->size() } -> ::std::same_as < concrete < ::size_i32 > >;
 
 

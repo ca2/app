@@ -1733,6 +1733,7 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="exception\simple.h" />
     <ClInclude Include="exception\standard.h" />
     <ClInclude Include="exception\standard_translator.h" />
+    <ClInclude Include="exception\status.h" />
     <ClInclude Include="exception\system.h" />
     <ClInclude Include="exception\temporary.h" />
     <ClInclude Include="exception\throw.h" />

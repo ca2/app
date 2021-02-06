@@ -111,7 +111,7 @@ namespace sockets
             string strBody = m_pemail->m_strBody;
             strBody.replace("\r\n", "\n");
             string_array stra;
-            stra.add_tokens(strBody, "\n", TRUE);
+            stra.add_tokens(strBody, "\n", true);
             for(i32 i = 0; i < stra.get_count(); i++)
             {
                if(stra[i].Mid(0, 1) == ".")

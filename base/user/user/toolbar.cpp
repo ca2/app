@@ -39,7 +39,7 @@ namespace user
       // initialize state
       m_pStringMap = nullptr;
 
-      m_bDelayedButtonLayout = TRUE;
+      m_bDelayedButtonLayout = true;
 
       // default image sizes
       m_sizeImage.cx = 16;
@@ -114,16 +114,16 @@ namespace user
 //
 //
 ////         if(!::user::control_bar::create_interaction(TOOLBARCLASSNAMEA,nullptr,uStyle,nullptr,puiParent,nID))
-//      //          return FALSE;
+//      //          return false;
 //      if(!::user::control_bar::create_interaction("ToolbarWindow32",nullptr,uStyle, puiParent,nID))
-//         return FALSE;
+//         return false;
 //
 //      // sync up the sizes
 //      SetSizes(m_sizeButton, m_sizeImage);
 //
 //      // Note: Parent must resize itself for control bar to be resized
 //
-//      return TRUE;
+//      return true;
 //   }
 
 
@@ -248,7 +248,7 @@ namespace user
                replaceBitmap.hInstNew = nullptr;
                replaceBitmap.nIDNew = (::u32)hbmImageWell;
                replaceBitmap.nButtons = bitmap.bmWidth / m_sizeImage.cx;
-               bResult = default_window_procedure(TB_REPLACEBITMAP, 0, (LPARAM)&replaceBitmap) != FALSE;
+               bResult = default_window_procedure(TB_REPLACEBITMAP, 0, (LPARAM)&replaceBitmap) != false;
             }
             // remove old bitmap, if present
             if (bResult)
@@ -273,7 +273,7 @@ namespace user
 //
 //      ASSERT(nIDCount >= 1);  // must be at least one of them
 //
-//      ASSERT(pIDArray == nullptr || __is_valid_address(pIDArray, sizeof(::u32) * nIDCount, FALSE));
+//      ASSERT(pIDArray == nullptr || __is_valid_address(pIDArray, sizeof(::u32) * nIDCount, false));
 //
 //      // delete all existing buttons
 //      index nCount = (index)default_window_procedure(TB_BUTTONCOUNT, 0, 0);
@@ -308,7 +308,7 @@ namespace user
 //               button.iBitmap = (int) iImage++;
 //            }
 //            if (!default_window_procedure(TB_ADDBUTTONS, 1, (LPARAM)&button))
-//               return FALSE;
+//               return false;
 //         }
 //      }
 //      else
@@ -319,15 +319,15 @@ namespace user
 //         {
 //            ASSERT(button.fsStyle == TBSTYLE_BUTTON);
 //            if (!default_window_procedure(TB_ADDBUTTONS, 1, (LPARAM)&button))
-//               return FALSE;
+//               return false;
 //         }
 //      }
 //      //   m_nCount = (index)default_window_procedure(TB_BUTTONCOUNT, 0, 0);
-//      m_bDelayedButtonLayout = TRUE;
+//      m_bDelayedButtonLayout = true;
 //#else
 //      __throw(todo());
 //#endif
-      return TRUE;
+      return true;
    }
 /*
 
@@ -458,7 +458,7 @@ namespace user
    {
       //ASSERT(m_bDelayedButtonLayout);
 
-      //m_bDelayedButtonLayout = FALSE;
+      //m_bDelayedButtonLayout = false;
 
       //bool bHorz = (m_dwStyle & CBRS_ORIENT_HORZ) != 0;
       //if(m_bSimpleLayout)
@@ -699,7 +699,7 @@ namespace user
 //
 //   //      if (x + dx > nWidth)
 //   //      {
-//   //         bool bFound = FALSE;
+//   //         bool bFound = false;
 //   //         for (index j = i; j >= 0  &&  !(pData[j].fsState & TBSTATE_WRAP); j--)
 //   //         {
 //   //            // find last separator that isn't hidden
@@ -709,7 +709,7 @@ namespace user
 //   //                  (pData[j].idCommand == 0) &&
 //   //                  !(pData[j].fsState & e_toolbar_button_hidden))
 //   //            {
-//   //               bFound = TRUE; i = j; x = 0;
+//   //               bFound = true; i = j; x = 0;
 //   //               pData[j].fsState |= TBSTATE_WRAP;
 //   //               nResult++;
 //   //               break;
@@ -726,7 +726,7 @@ namespace user
 //   //                      (pData[j].idCommand != 0)))
 //   //                  continue;
 //
-//   //               bFound = TRUE; i = j; x = 0;
+//   //               bFound = true; i = j; x = 0;
 //   //               pData[j].fsState |= TBSTATE_WRAP;
 //   //               nResult++;
 //   //               break;
@@ -919,7 +919,7 @@ namespace user
 //
 //            bool bIsDelayed = m_bDelayedButtonLayout;
 //
-//            m_bDelayedButtonLayout = FALSE;
+//            m_bDelayedButtonLayout = false;
 //
 //            index i;
 //
@@ -958,7 +958,7 @@ namespace user
 //
 //                     _001ClientToScreen(&rectangle);
 //
-//                     pControl[nControlCount].rectOldPos = rectangle_i32;
+//                     pControl[nControlCount].rectOldPos = rectangle;
 //
 //                     nControlCount++;
 //
@@ -1121,7 +1121,7 @@ return { 0,0 };
 //      if (__memcmp(&save, &button, sizeof(save)) != 0)
 //      {
 //         _SetButton(nIndex, &button);
-//         m_bDelayedButtonLayout = TRUE;
+//         m_bDelayedButtonLayout = true;
 //      }
 //#else
 //      __throw(todo());
@@ -1156,7 +1156,7 @@ return { 0,0 };
          ::exception::throw_not_implemented();
          // xxx nString = (index)default_window_procedure(TB_ADDSTRINGW, 0, (LPARAM)(const char *)(const unichar *)strTemp);
          if (nString == -1)
-            return FALSE;
+            return false;
 
          // cache string away in string map
          m_pStringMap->set_at(wstrText, (void *)nString);
@@ -1190,7 +1190,7 @@ return { 0,0 };
 //      __throw(todo());
 //#endif
 
-      return TRUE;
+      return true;
    }
 
    string toolbar::GetButtonText(index nIndex) const
@@ -1277,7 +1277,7 @@ return { 0,0 };
 
       auto pgraphics = ::draw2d::create_memory_graphics();
 
-      ::user::control_bar::CalcInsideRect(pgraphics, rectangle_i32, bHorz);
+      ::user::control_bar::CalcInsideRect(pgraphics, rectangle, bHorz);
 
       // adjust non-client area for border space
       pnccalcsize->m_pparams->rgrc[0].left += rectangle.left;
@@ -1309,7 +1309,7 @@ return { 0,0 };
          // recalc non-client area when border styles machine
          //set_window_pos(zorder_none, 0, 0, 0, 0, SWP_NOMOVE | SWP_NOSIZE | SWP_NOACTIVATE | SWP_DRAWFRAME);
       }
-      m_bDelayedButtonLayout = TRUE;
+      m_bDelayedButtonLayout = true;
    }
 
    /*
@@ -1407,7 +1407,7 @@ return { 0,0 };
 //      LRESULT lResult = 0;
 //
 ////#ifdef WINDOWS_DESKTOP
-////      bool bModify = FALSE;
+////      bool bModify = false;
 ////      u32 uStyle = GetStyle();
 ////      bModify = ModifyStyle(0, TBSTYLE_TRANSPARENT|TBSTYLE_FLAT);
 ////
@@ -1435,7 +1435,7 @@ return { 0,0 };
 //
 //#ifdef LRESULT
 //
-//      bool bModify = FALSE;
+//      bool bModify = false;
 //      u32 uStyle = 0;
 //      uStyle = GetStyle();
 //      bModify = ModifyStyle(0, TBSTYLE_TRANSPARENT|TBSTYLE_FLAT);
@@ -1602,7 +1602,7 @@ return { 0,0 };
 //         for (i = 0; i < nCount; i++)
 //         {
 //            if(pData[i].fsState & TBSTATE_WRAP)
-//               ASSERT(FALSE);
+//               ASSERT(false);
 //         }
 //         ::rectangle_i32 rectItem;
 //         ::rectangle_i32 rectSize(0, 0, 0, 0);
@@ -1640,7 +1640,7 @@ return { 0,0 };
       const ::size_i32 & size = CalcSimpleLayout(pgraphics);
 
       /*set_window_pos(
-      zorder_top,
+      e_zorder_top,
       0, 0,
       size.cx, size.cy,
       SWP_SHOWWINDOW

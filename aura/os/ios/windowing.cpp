@@ -327,7 +327,7 @@ int_bool release_capture()
 
    g_oswindowCapture = nullptr;
 
-   return TRUE;
+   return true;
 
 }
 
@@ -450,44 +450,44 @@ oswindow set_active_window(oswindow window)
 //              {
 //   
 //   if(hwnd == nullptr)
-//      return FALSE;
+//      return false;
 //   if(hwnd->m_pimpl == nullptr)
-//      return FALSE;
-//      return  hwnd->m_pimpl->m_puserinteraction->set_window_pos((iptr)hwndInsertAfter, x, y, cx, cy, uFlags) ? TRUE : FALSE;
+//      return false;
+//      return  hwnd->m_pimpl->m_puserinteraction->set_window_pos((iptr)hwndInsertAfter, x, y, cx, cy, uFlags) ? true : false;
 //      
 //   });
 //   
-//   return TRUE;
+//   return true;
 //
 //}
 //
 
 
-int_bool get_window_rect(oswindow hwnd, LPRECT32 lprect)
+int_bool get_window_rect(oswindow hwnd, RECTANGLE_I32 * lprect)
 {
 
    if(void_ptr_is_null(hwnd))
-      return FALSE;
+      return false;
 
    if(void_ptr_is_null(lprect))
-      return FALSE;
+      return false;
 
    hwnd->m_pimpl->m_puserinteraction->get_window_rect(lprect);
 
-   return TRUE;
+   return true;
 
 }
 
 
-int_bool SetWindowRect(oswindow hwnd, LPRECT32 lprect)
+int_bool SetWindowRect(oswindow hwnd, RECTANGLE_I32 * lprect)
 {
 
    if(hwnd == nullptr)
-      return FALSE;
+      return false;
 
    hwnd->m_pimpl->m_puserinteraction->SetPlacement(*lprect);
 
-   return TRUE;
+   return true;
 
 }
 
@@ -496,9 +496,9 @@ int_bool EnableWindow(oswindow hwnd, int_bool bEnable)
 {
 
    if(hwnd == nullptr)
-      return FALSE;
+      return false;
 
-   return TRUE;
+   return true;
 
 }
 

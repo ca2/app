@@ -67,7 +67,7 @@ public:
 
 
    // inline concrete < ::size_i32 > size_i32(const ::size_f64 &, const ::size_f64 &, enum_image_selection) const { return get_size(); }
-   inline concrete < ::size_i32 > size_i32(const ::size_f64 &, enum_image_selection ) const { return get_size(); }
+   inline concrete < ::size_i32 > size(const ::size_f64 &, enum_image_selection ) const { return get_size(); }
    using image_meta::size;
    
    inline ::rectangle_i32 rectangle(const ::point_i32 & point = nullptr);
@@ -182,7 +182,7 @@ public:
 
 
    virtual ::e_status SetIconMask(::draw2d::icon * picon, i32 cx, i32 cy);
-   virtual bool RadialFill(byte a, byte rectangle_i32, byte g, byte b, i32 x, i32 y, i32 iRadius);
+   virtual bool RadialFill(byte a, byte rectangle, byte g, byte b, i32 x, i32 y, i32 iRadius);
    virtual bool RadialFill(
    byte a1, byte r1, byte g1, byte b1, // center colors
    byte a2, byte r2, byte g2, byte b2, // border colors

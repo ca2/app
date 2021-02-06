@@ -69,7 +69,7 @@ namespace draw2d_direct2d
 
       //   ASSERT(get_os_data() != nullptr);
 
-      // return ::EqualRgn((HRGN)get_os_data(), (HRGN)pRgn->get_os_data()) != FALSE;
+      // return ::EqualRgn((HRGN)get_os_data(), (HRGN)pRgn->get_os_data()) != false;
 
    }
 
@@ -104,20 +104,20 @@ namespace draw2d_direct2d
 
       ((region *) this)->defer_update(pgraphics, 0);
 
-      BOOL b = FALSE;
+      BOOL b = false;
 
       HRESULT hr = m_pgeometry->FillContainsPoint(D2D1::Point2F((FLOAT) x, (FLOAT) y), nullptr, &b);
 
       if(FAILED(hr))
          return false;
 
-      return b != FALSE;
+      return b != false;
 
       //Gdiplus::PointF point_f32((Gdiplus::REAL) x, (Gdiplus::REAL) y);
       //
       //ASSERT(get_os_data() != nullptr); //return ::PtInRegion((HRGN)get_os_data(), x, y);
 
-      //return m_pgeometry->IsVisible(point_f32)  != FALSE;
+      //return m_pgeometry->IsVisible(point_f32)  != false;
 
    }
 
@@ -135,7 +135,7 @@ namespace draw2d_direct2d
       //
       //ASSERT(get_os_data() != nullptr); //return ::PtInRegion((HRGN)get_os_data(), x, y);
 
-      //return m_pgeometry->IsVisible(point_f32)  != FALSE;
+      //return m_pgeometry->IsVisible(point_f32)  != false;
 
    }
 
@@ -152,7 +152,7 @@ namespace draw2d_direct2d
       //
       //ASSERT(get_os_data() != nullptr); //return ::PtInRegion((HRGN)get_os_data(), x, y);
 
-      //return m_pgeometry->IsVisible(rectangle_f32)  != FALSE;
+      //return m_pgeometry->IsVisible(rectangle_f32)  != false;
 
    }
 

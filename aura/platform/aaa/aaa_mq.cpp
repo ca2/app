@@ -41,7 +41,7 @@ int_bool mq::post_message(oswindow oswindow, ::u32 uMessage, WPARAM wParam, LPAR
    if(m_bQuit)
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -65,7 +65,7 @@ int_bool mq::post_message(const MESSAGE & message)
    if(m_bQuit)
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -75,7 +75,7 @@ int_bool mq::post_message(const MESSAGE & message)
 
    m_eventNewMessage.set_event();
 
-   return TRUE;
+   return true;
 
 }
 
@@ -118,7 +118,7 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
 
             m_messagea.remove_at(i);
 
-            return TRUE;
+            return true;
 
          }
 
@@ -129,7 +129,7 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
       if(m_bQuit)
       {
 
-         return FALSE;
+         return false;
 
       }
 
@@ -146,7 +146,7 @@ int_bool mq::get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32 wMsgFilterMin,
          pMsg->pt.y = INT_MIN;
          pMsg->time = 0;
 
-         return TRUE;
+         return true;
 
       }
 
@@ -198,7 +198,7 @@ int_bool mq::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsgFilterMin,:
 
          }
 
-         return TRUE;
+         return true;
 
       }
 
@@ -211,13 +211,13 @@ int_bool mq::peek_message(LPMESSAGE pMsg,oswindow oswindow,::u32 wMsgFilterMin,:
 //   if(aura_defer_process_x_message(hthread,pMsg,oswindow,!(wRemoveMsg & PM_REMOVE)))
 //   {
 //
-//      return TRUE;
+//      return true;
 //
 //   }
 //
 //#endif
 
-   return FALSE;
+   return false;
 
 }
 
@@ -346,7 +346,7 @@ CLASS_DECL_AURA int_bool post_ui_message(const MESSAGE & message)
 //   if(pinteraction == nullptr)
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
@@ -357,7 +357,7 @@ CLASS_DECL_AURA int_bool post_ui_message(const MESSAGE & message)
 //   if(pmq == nullptr)
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
@@ -374,7 +374,7 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 //   if(pinteraction == nullptr)
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
@@ -392,7 +392,7 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 //   if(pmq == nullptr)
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
@@ -405,7 +405,7 @@ CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
 //
 //   });
 
-   return TRUE;
+   return true;
 
 }
 
@@ -437,7 +437,7 @@ int_bool mq_post_thread_message(ithread_t idthread, const ::id & id, WPARAM wpar
    if (::is_null(pmq))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -454,7 +454,7 @@ CLASS_DECL_AURA int_bool mq_post_message(oswindow oswindow, const ::id & id, WPA
    if (pinteraction == nullptr)
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -463,18 +463,18 @@ CLASS_DECL_AURA int_bool mq_post_message(oswindow oswindow, const ::id & id, WPA
    if (!pmq)
    {
 
-      return FALSE;
+      return false;
 
    }
 
    if (!pmq->post_message(oswindow, message, wparam, lparam))
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   return TRUE;
+   return true;
 
 }
 
@@ -487,18 +487,18 @@ CLASS_DECL_AURA int_bool mq_peek_message(LPMESSAGE pMsg, oswindow oswindow, ::u3
    if (pmq == nullptr)
    {
 
-      return FALSE;
+      return false;
 
    }
 
    if (!pmq->peek_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax, wRemoveMsg))
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   return TRUE;
+   return true;
 
 }
 
@@ -511,18 +511,18 @@ CLASS_DECL_AURA int_bool mq_get_message(LPMESSAGE pMsg, oswindow oswindow, ::u32
    if (pmq == nullptr)
    {
 
-      return FALSE;
+      return false;
 
    }
 
    if (!pmq->get_message(pMsg, oswindow, wMsgFilterMin, wMsgFilterMax))
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   return TRUE;
+   return true;
 
 }
 

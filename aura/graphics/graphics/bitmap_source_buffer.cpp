@@ -48,7 +48,7 @@ namespace graphics
    void bitmap_source_buffer::defer_initialize_bitmap_source_buffer()
    {
 
-      if (m_oswindow == nullptr || m_pimpl->m_puserinteraction->payload("bitmap-source").is_empty())
+      if (m_pwindow == nullptr || m_pimpl->m_puserinteraction->payload("bitmap-source").is_empty())
       {
 
          return;

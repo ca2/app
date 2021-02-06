@@ -85,7 +85,7 @@ namespace simpledb
 
    session * & manager::get_context_session(const char * pszId)
    {
-      single_lock sl(&m_mutexSession, TRUE);
+      single_lock sl(&m_mutexSession, true);
       ::simpledb::session * & psession = m_mapSession[pszId];
       return psession;
    }

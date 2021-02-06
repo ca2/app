@@ -545,7 +545,7 @@ namespace user
 
       rectangle.bottom = (::i32) (rectangle.top + sizeText.cy);
 
-      m_rectText = rectangle_i32;
+      m_rectText = rectangle;
 
    }
 
@@ -725,7 +725,7 @@ namespace user
 
       ::user::e_key iKey = pkey->m_ekey;
 
-      if (iKey == ::user::key_return || iKey == ::user::key_space)
+      if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {
 
          ::user::control_event ev;

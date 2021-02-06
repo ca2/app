@@ -144,7 +144,7 @@ namespace music
             bool IsPlaying() override;
 
             bool IsSettingPosition() override;
-            void SetSettingPositionFlag(bool bSet = TRUE) override;
+            void SetSettingPositionFlag(bool bSet = true) override;
 
             imedia_time GetQuarterNote() override;
 

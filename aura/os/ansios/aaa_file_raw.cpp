@@ -44,9 +44,9 @@ int_bool file_exists_raw(const char * path1)
    u32 dwFileAttributes = GetFileAttributesA(path1);
 
    if (dwFileAttributes == INVALID_FILE_ATTRIBUTES || (dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) != 0)
-      return FALSE;
+      return false;
 
-   return TRUE;
+   return true;
 
 #else
 

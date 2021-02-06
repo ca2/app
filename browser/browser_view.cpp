@@ -289,7 +289,7 @@ namespace browser
 
          auto rectClient = get_client_rect();
 
-         pgraphics->draw(::rectangle_i32(m_pimageBrowser->size()), m_pimageBrowser->g(), m_pimageBrowser->rectangle_i32());
+         pgraphics->draw(::rectangle_i32(m_pimageBrowser->size()), m_pimageBrowser->g(), m_pimageBrowser->rectangle());
 
       }
 

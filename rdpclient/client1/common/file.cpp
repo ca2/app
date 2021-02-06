@@ -223,12 +223,12 @@ static BOOL freerdp_client_parse_rdp_file_integer_unicode(rdpFile* file, WCHAR* 
 	int ivalue;
 	char* nameA;
 	char* valueA;
-	BOOL ret = TRUE;
+	BOOL ret = true;
 
 	length = (int) _wcslen(name);
 	nameA = (char*) malloc(length + 1);
 	if (!nameA)
-		return FALSE;
+		return false;
 	WideCharToMultiByte(CP_UTF8, 0, name, length, nameA, length, nullptr, nullptr);
 	nameA[length] = '\0';
 
@@ -237,14 +237,14 @@ static BOOL freerdp_client_parse_rdp_file_integer_unicode(rdpFile* file, WCHAR* 
 	if (!valueA)
 	{
 		free(nameA);
-		return FALSE;
+		return false;
 	}
 	WideCharToMultiByte(CP_UTF8, 0, value, length, valueA, length, nullptr, nullptr);
 	valueA[length] = '\0';
 
 	ivalue = atoi(valueA);
 	if (freerdp_client_rdp_file_set_integer(file, nameA, ivalue, index) < 0)
-		ret = FALSE;
+		ret = false;
 
 	free(nameA);
 	free(valueA);
@@ -255,8 +255,8 @@ static BOOL freerdp_client_parse_rdp_file_integer_ascii(rdpFile* file, const cha
 {
 	int ivalue = atoi(value);
 	if (freerdp_client_rdp_file_set_integer(file, name, ivalue, index) < 0)
-		return FALSE;
-	return TRUE;
+		return false;
+	return true;
 }
 
 /**
@@ -360,16 +360,16 @@ static BOOL freerdp_client_add_option(rdpFile* file, char* option)
 		new_size = file->argSize * 2;
 		new_argv = (char**) realloc(file->argv, new_size * sizeof(char*));
 		if (!new_argv)
-			return FALSE;
+			return false;
 		file->argv = new_argv;
 		file->argSize = new_size;
 	}
 
 	file->argv[file->argc] = _strdup(option);
 	if (!file->argv[file->argc])
-		return FALSE;
+		return false;
 	(file->argc)++;
-	return TRUE;
+	return true;
 }
 
 static int freerdp_client_parse_rdp_file_add_line(rdpFile* file, char* line, int index)
@@ -404,14 +404,14 @@ static int freerdp_client_parse_rdp_file_add_line(rdpFile* file, char* line, int
 static BOOL freerdp_client_parse_rdp_file_add_line_unicode(rdpFile* file, WCHAR* line, int index)
 {
 	char* lineA = nullptr;
-	BOOL ret = TRUE;
+	BOOL ret = true;
 
 	ConvertFromUnicode(CP_UTF8, 0, line, -1, &lineA, 0, nullptr, nullptr);
 	if (!lineA)
-		return FALSE;
+		return false;
 
 	if (freerdp_client_parse_rdp_file_add_line(file, lineA, index) == -1)
-		ret = FALSE;
+		ret = false;
 
 	free(lineA);
 	return ret;
@@ -420,8 +420,8 @@ static BOOL freerdp_client_parse_rdp_file_add_line_unicode(rdpFile* file, WCHAR*
 static BOOL freerdp_client_parse_rdp_file_add_line_ascii(rdpFile* file, char* line, int index)
 {
 	if (freerdp_client_parse_rdp_file_add_line(file, line, index) == -1)
-		return FALSE;
-	return TRUE;
+		return false;
+	return true;
 }
 
 static BOOL freerdp_client_parse_rdp_file_string_unicode(rdpFile* file, WCHAR* name, WCHAR* value, int index)
@@ -429,12 +429,12 @@ static BOOL freerdp_client_parse_rdp_file_string_unicode(rdpFile* file, WCHAR* n
 	int length;
 	char* nameA;
 	char* valueA;
-	BOOL ret = TRUE;
+	BOOL ret = true;
 
 	length = (int) _wcslen(name);
 	nameA = (char*) malloc(length + 1);
 	if (!nameA)
-		return FALSE;
+		return false;
 	WideCharToMultiByte(CP_UTF8, 0, name, length, nameA, length, nullptr, nullptr);
 	nameA[length] = '\0';
 
@@ -443,13 +443,13 @@ static BOOL freerdp_client_parse_rdp_file_string_unicode(rdpFile* file, WCHAR* n
 	if (!valueA)
 	{
 		free(nameA);
-		return FALSE;
+		return false;
 	}
 	WideCharToMultiByte(CP_UTF8, 0, value, length, valueA, length, nullptr, nullptr);
 	valueA[length] = '\0';
 
 	if (freerdp_client_rdp_file_set_string(file, nameA, valueA, index) == -1)
-		ret = FALSE;
+		ret = false;
 
 	free(nameA);
 	free(valueA);
@@ -458,13 +458,13 @@ static BOOL freerdp_client_parse_rdp_file_string_unicode(rdpFile* file, WCHAR* n
 
 static BOOL freerdp_client_parse_rdp_file_string_ascii(rdpFile* file, char* name, char* value, int index)
 {
-	BOOL ret = TRUE;
+	BOOL ret = true;
 	char* valueA = _strdup(value);
 	if (!valueA)
-		return FALSE;
+		return false;
 
 	if (freerdp_client_rdp_file_set_string(file, name, valueA, index) == -1)
-		ret = FALSE;
+		ret = false;
 
 	free(valueA);
 	return ret;
@@ -477,7 +477,7 @@ static BOOL freerdp_client_parse_rdp_file_option_unicode(rdpFile* file, WCHAR* o
 
 	ConvertFromUnicode(CP_UTF8, 0, option, -1, &optionA, 0, nullptr, nullptr);
 	if (!optionA)
-		return FALSE;
+		return false;
 
 	ret = freerdp_client_add_option(file, optionA);
 	free(optionA);
@@ -514,12 +514,12 @@ static BOOL freerdp_client_parse_rdp_file_buffer_ascii(rdpFile* file, const byte
 			end = &line[length - 1];
 
 			if (!freerdp_client_parse_rdp_file_add_line_ascii(file, line, index))
-				return FALSE;
+				return false;
 
 			if (beg[0] == '/')
 			{
 				if (!freerdp_client_parse_rdp_file_option_ascii(file, line, index))
-					return FALSE;
+					return false;
 
 				goto next_line; /* FreeRDP option */
 			}
@@ -548,13 +548,13 @@ static BOOL freerdp_client_parse_rdp_file_buffer_ascii(rdpFile* file, const byte
 			{
 				/* integer type */
 				if (!freerdp_client_parse_rdp_file_integer_ascii(file, name, value, index))
-					return FALSE;
+					return false;
 			}
 			else if (*type == 's')
 			{
 				/* string type */
 				if (!freerdp_client_parse_rdp_file_string_ascii(file, name, value, index))
-					return FALSE;
+					return false;
 			}
 			else if (*type == 'b')
 			{
@@ -567,7 +567,7 @@ next_line:
 		index++;
 	}
 
-	return TRUE;
+	return true;
 }
 
 static BOOL freerdp_client_parse_rdp_file_buffer_unicode(rdpFile* file, const byte* buffer, size_t size)
@@ -594,7 +594,7 @@ static BOOL freerdp_client_parse_rdp_file_buffer_unicode(rdpFile* file, const by
 			end = &line[length - 1];
 
 			if (!freerdp_client_parse_rdp_file_add_line_unicode(file, line, index))
-				return FALSE;
+				return false;
 
 			if (beg[0] == '/')
 			{
@@ -627,13 +627,13 @@ static BOOL freerdp_client_parse_rdp_file_buffer_unicode(rdpFile* file, const by
 			{
 				/* integer type */
 				if (!freerdp_client_parse_rdp_file_integer_unicode(file, name, value, index))
-					return FALSE;
+					return false;
 			}
 			else if (*type == 's')
 			{
 				/* string type */
 				if (!freerdp_client_parse_rdp_file_string_unicode(file, name, value, index))
-					return FALSE;
+					return false;
 			}
 			else if (*type == 'b')
 			{
@@ -646,13 +646,13 @@ next_line:
 		index++;
 	}
 
-	return TRUE;
+	return true;
 }
 
 BOOL freerdp_client_parse_rdp_file_buffer(rdpFile* file, const byte* buffer, size_t size)
 {
 	if (size < 2)
-		return FALSE;
+		return false;
 
 	if ((buffer[0] == BOM_UTF16_LE[0]) && (buffer[1] == BOM_UTF16_LE[1]))
 		return freerdp_client_parse_rdp_file_buffer_unicode(file, &buffer[2], size - 2);
@@ -671,7 +671,7 @@ BOOL freerdp_client_parse_rdp_file(rdpFile* file, const char* name)
 	fp = fopen(name, "r");
 
 	if (!fp)
-		return FALSE;
+		return false;
 
 	fseek(fp, 0, SEEK_END);
 	filesize = ftell(fp);
@@ -680,14 +680,14 @@ BOOL freerdp_client_parse_rdp_file(rdpFile* file, const char* name)
 	if (filesize < 1)
 	{
 		fclose(fp);
-		return FALSE;
+		return false;
 	}
 
 	buffer = (byte*) malloc(filesize + 2);
 	if (!buffer)
 	{
 		fclose(fp);
-		return FALSE;
+		return false;
 	}
 	read_size = fread(buffer, filesize, 1, fp);
 
@@ -701,7 +701,7 @@ BOOL freerdp_client_parse_rdp_file(rdpFile* file, const char* name)
 	if (read_size < 1)
 	{
 		free(buffer);
-		return FALSE;
+		return false;
 	}
 
 	buffer[filesize] = '\0';
@@ -714,11 +714,11 @@ BOOL freerdp_client_parse_rdp_file(rdpFile* file, const char* name)
 	return status;
 }
 
-#define WRITE_ALL_SETTINGS TRUE
+#define WRITE_ALL_SETTINGS true
 #define SETTING_MODIFIED(_settings, _field) (WRITE_ALL_SETTINGS || _settings->SettingsModified[FreeRDP_##_field])
 #define SETTING_MODIFIED_SET(_target, _settings, _field) if SETTING_MODIFIED(_settings, _field) _target = _settings->_field
 #define SETTING_MODIFIED_SET_STRING(_target, _settings, _field) do { if SETTING_MODIFIED(_settings, _field) _target = _strdup(_settings->_field); \
-                                                                     if (!_target) return FALSE; \
+                                                                     if (!_target) return false; \
                                                                    } while (0)
 
 BOOL freerdp_client_populate_rdp_file_from_settings(rdpFile* file, const rdpSettings* settings)
@@ -763,7 +763,7 @@ BOOL freerdp_client_populate_rdp_file_from_settings(rdpFile* file, const rdpSett
 	SETTING_MODIFIED_SET(file->SpanMonitors, settings, SpanMonitors);
 	SETTING_MODIFIED_SET(file->UseMultiMon, settings, UseMultimon);
 
-	return TRUE;
+	return true;
 }
 
 BOOL freerdp_client_write_rdp_file(const rdpFile* file, const char* name, BOOL unicode)
@@ -779,7 +779,7 @@ BOOL freerdp_client_write_rdp_file(const rdpFile* file, const char* name, BOOL u
 	if (length < 0)
 	{
 		WLog_ERR(TAG,  "freerdp_client_write_rdp_file: error determining buffer size.");
-		return FALSE;
+		return false;
 	}
 
 	buffer = (char*) malloc((length + 1) * sizeof(char));
@@ -788,7 +788,7 @@ BOOL freerdp_client_write_rdp_file(const rdpFile* file, const char* name, BOOL u
 	{
 		WLog_ERR(TAG,  "freerdp_client_write_rdp_file: error writing to output buffer");
 		free(buffer);
-		return FALSE;
+		return false;
 	}
 
 	fp = fopen(name, "w+b");
@@ -806,7 +806,7 @@ BOOL freerdp_client_write_rdp_file(const rdpFile* file, const char* name, BOOL u
 				free(buffer);
 				free(unicodestr);
 				fclose(fp);
-				return FALSE;
+				return false;
 			}
 
 			free(unicodestr);
@@ -817,7 +817,7 @@ BOOL freerdp_client_write_rdp_file(const rdpFile* file, const char* name, BOOL u
 			{
 				free(buffer);
 				fclose(fp);
-				return FALSE;
+				return false;
 			}
 		}
 
@@ -827,7 +827,7 @@ BOOL freerdp_client_write_rdp_file(const rdpFile* file, const char* name, BOOL u
 
 	free(buffer);
 
-	return (status == 0) ? TRUE : FALSE;
+	return (status == 0) ? true : false;
 }
 
 size_t freerdp_client_write_rdp_file_buffer(const rdpFile* file, char* buffer, size_t size)
@@ -872,7 +872,7 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 	if (~((size_t) file->Domain))
 	{
 		if (freerdp_set_param_string(settings, FreeRDP_Domain, file->Domain) != 0)
-			return FALSE;
+			return false;
 	}
 
 	if (~((size_t) file->Username))
@@ -881,14 +881,14 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 		char* domain = nullptr;
 
 		if (freerdp_parse_username(file->Username, &user, &domain) != 0)
-			return FALSE;
+			return false;
 		if (freerdp_set_param_string(settings, FreeRDP_Username, user) != 0)
-			return FALSE;
+			return false;
 
 		if (domain)
 		{
 			if (freerdp_set_param_string(settings, FreeRDP_Domain, domain) != 0)
-				return FALSE;
+				return false;
 		}
 
 		free(user);
@@ -901,10 +901,10 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 		char* host = nullptr;
 
 		if (freerdp_parse_hostname(file->FullAddress, &host, &port) != 0)
-			return FALSE;
+			return false;
 
 		if (freerdp_set_param_string(settings, FreeRDP_ServerHostname, host) != 0)
-			return FALSE;
+			return false;
 
 		if (port > 0)
 			freerdp_set_param_uint32(settings, FreeRDP_ServerPort, (::u32) port);
@@ -932,12 +932,12 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 	if (~((size_t) file->AlternateShell))
 	{
 		if(freerdp_set_param_string(settings, FreeRDP_AlternateShell, file->AlternateShell) != 0)
-			return FALSE;
+			return false;
 	}
 	if (~((size_t) file->ShellWorkingDirectory))
 	{
 		if (freerdp_set_param_string(settings, FreeRDP_ShellWorkingDirectory, file->ShellWorkingDirectory) != 0)
-			return FALSE;
+			return false;
 	}
 
 	if (~file->ScreenModeId)
@@ -956,20 +956,20 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 		 */
 
 		freerdp_set_param_bool(settings, FreeRDP_Fullscreen,
-				(file->ScreenModeId == 2) ? TRUE : FALSE);
+				(file->ScreenModeId == 2) ? true : false);
 	}
 
 	if (~((size_t) file->SmartSizing))
 	{
 		freerdp_set_param_bool(settings, FreeRDP_SmartSizing,
-				(file->SmartSizing == 1) ? TRUE : FALSE);
+				(file->SmartSizing == 1) ? true : false);
 	}
 
 	if (~((size_t) file->LoadBalanceInfo))
 	{
 		settings->LoadBalanceInfo = (byte*) _strdup(file->LoadBalanceInfo);
 		if (!settings->LoadBalanceInfo)
-			return FALSE;
+			return false;
 		settings->LoadBalanceInfoLength = (int) strlen((char*) settings->LoadBalanceInfo);
 	}
 
@@ -991,7 +991,7 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 		 */
 
 		freerdp_set_param_bool(settings, FreeRDP_IgnoreCertificate,
-				(file->AuthenticationLevel == 0) ? TRUE : FALSE);
+				(file->AuthenticationLevel == 0) ? true : false);
 	}
 
 	if (~file->ConnectionType)
@@ -1001,16 +1001,16 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 	{
 		if (file->AudioMode == AUDIO_MODE_REDIRECT)
 		{
-			freerdp_set_param_bool(settings, FreeRDP_AudioPlayback, TRUE);
+			freerdp_set_param_bool(settings, FreeRDP_AudioPlayback, true);
 		}
 		else if (file->AudioMode == AUDIO_MODE_PLAY_ON_SERVER)
 		{
-			freerdp_set_param_bool(settings, FreeRDP_RemoteConsoleAudio, TRUE);
+			freerdp_set_param_bool(settings, FreeRDP_RemoteConsoleAudio, true);
 		}
 		else if (file->AudioMode == AUDIO_MODE_NONE)
 		{
-			freerdp_set_param_bool(settings, FreeRDP_AudioPlayback, FALSE);
-			freerdp_set_param_bool(settings, FreeRDP_RemoteConsoleAudio, FALSE);
+			freerdp_set_param_bool(settings, FreeRDP_AudioPlayback, false);
+			freerdp_set_param_bool(settings, FreeRDP_RemoteConsoleAudio, false);
 		}
 	}
 
@@ -1023,10 +1023,10 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 		char* host = nullptr;
 
 		if (freerdp_parse_hostname(file->GatewayHostname, &host, &port) != 0)
-			return FALSE;
+			return false;
 
 		if (freerdp_set_param_string(settings, FreeRDP_GatewayHostname, host) != 0)
-			return FALSE;
+			return false;
 
 		if (port > 0)
 			freerdp_set_param_uint32(settings, FreeRDP_GatewayPort, (::u32) port);
@@ -1045,27 +1045,27 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 	if (~((size_t) file->RemoteApplicationProgram))
 	{
 		if (freerdp_set_param_string(settings, FreeRDP_RemoteApplicationProgram, file->RemoteApplicationProgram) != 0)
-			return FALSE;
+			return false;
 	}
 	if (~((size_t) file->RemoteApplicationName))
 	{
 		if (freerdp_set_param_string(settings, FreeRDP_RemoteApplicationName, file->RemoteApplicationName) != 0)
-			return FALSE;
+			return false;
 	}
 	if (~((size_t) file->RemoteApplicationIcon))
 	{
 		if (freerdp_set_param_string(settings, FreeRDP_RemoteApplicationIcon, file->RemoteApplicationIcon) != 0)
-			return FALSE;
+			return false;
 	}
 	if (~((size_t) file->RemoteApplicationFile))
 	{
 		if (freerdp_set_param_string(settings, FreeRDP_RemoteApplicationGuid, file->RemoteApplicationGuid) != 0)
-			return FALSE;
+			return false;
 	}
 	if (~((size_t) file->RemoteApplicationCmdLine))
 	{
 		if (freerdp_set_param_string(settings, FreeRDP_RemoteApplicationCmdLine, file->RemoteApplicationCmdLine) != 0)
-			return FALSE;
+			return false;
 	}
 
 	if (~file->SpanMonitors)
@@ -1153,7 +1153,7 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 		 *
 		 */
 
-		freerdp_set_param_bool(settings, FreeRDP_RedirectDrives, TRUE);
+		freerdp_set_param_bool(settings, FreeRDP_RedirectDrives, true);
 	}
 
 	if (~((size_t) file->DrivesToRedirect))
@@ -1165,7 +1165,7 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 		 * comma-separated list of drive letters to redirect.
 		 */
 
-		freerdp_set_param_bool(settings, FreeRDP_RedirectDrives, TRUE);
+		freerdp_set_param_bool(settings, FreeRDP_RedirectDrives, true);
 	}
 
 	if (~file->KeyboardHook)
@@ -1178,12 +1178,12 @@ BOOL freerdp_client_populate_settings_from_rdp_file(rdpFile* file, rdpSettings* 
 		char* ConnectionFile = settings->ConnectionFile;
 
 		settings->ConnectionFile = nullptr;
-		if (freerdp_client_settings_parse_command_line(settings, file->argc, file->argv, FALSE) < 0)
-			return FALSE;
+		if (freerdp_client_settings_parse_command_line(settings, file->argc, file->argv, false) < 0)
+			return false;
 		settings->ConnectionFile = ConnectionFile;
 	}
 
-	return TRUE;
+	return true;
 }
 
 static rdpFileLine* freerdp_client_rdp_file_find_line_index(rdpFile* file, int index)
@@ -1198,7 +1198,7 @@ static rdpFileLine* freerdp_client_rdp_file_find_line_index(rdpFile* file, int i
 static rdpFileLine* freerdp_client_rdp_file_find_line_by_name(rdpFile* file, const char* name)
 {
 	int index;
-	BOOL bFound = FALSE;
+	BOOL bFound = false;
 	rdpFileLine* line = nullptr;
 
 	for (index = 0; index < file->lineCount; index++)
@@ -1209,7 +1209,7 @@ static rdpFileLine* freerdp_client_rdp_file_find_line_by_name(rdpFile* file, con
 		{
 			if (strcmp(name, line->name) == 0)
 			{
-				bFound = TRUE;
+				bFound = true;
 				break;
 			}
 		}

@@ -98,7 +98,7 @@ namespace sockets
 
       ::net::address          m_addressRemote; ///< Remote end ::net::address
       ::net::address          m_addressRemoteClient; ///< Address of last connect()
-      file_pointer            m_spfileTrafficMonitor;
+      file_pointer            m_pfileTrafficMonitor;
 
       bool                    m_b_chunked;
 
@@ -740,9 +740,9 @@ namespace sockets
 
 
       /** write traffic to an IFile. base_socket will not delete this object. */
-      void SetTrafficMonitor(file_pointer point_i32) { m_spfileTrafficMonitor = point_i32; }
+      void SetTrafficMonitor(file_pointer p) { m_pfileTrafficMonitor = p; }
       /** All traffic will be written to this IFile, if set. */
-      file_pointer GetTrafficMonitor() { return m_spfileTrafficMonitor; }
+      file_pointer GetTrafficMonitor() { return m_pfileTrafficMonitor; }
 
       /** \name Triggers */
       //@{

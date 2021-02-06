@@ -10,7 +10,6 @@ file_find.h
 file_watcher.h
 folder_watch.h
 handle.h
-interaction_impl.h
 ip_enum.h
 os.h
 pipe.h
@@ -23,7 +22,6 @@ simple_hold_handle.h
 stdio_file.h
 system_dir.h
 system_file.h
-system_interaction_impl.h
 thread.h
 tts_speaker.h
 uac_tools.h

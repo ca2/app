@@ -24,7 +24,7 @@ namespace aura
       try
       {
 
-         set_mutex(__new(::mutex(e_create_new, FALSE, strId, psa)));
+         set_mutex(__new(::mutex(e_create_new, false, strId, psa)));
 
          m_dwLastError = ::GetLastError();
 
@@ -35,7 +35,7 @@ namespace aura
          try
          {
 
-            set_mutex(__new(::mutex(e_create_new, FALSE, strId)));
+            set_mutex(__new(::mutex(e_create_new, false, strId)));
 
             m_dwLastError = ::GetLastError();
 

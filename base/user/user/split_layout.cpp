@@ -521,7 +521,7 @@ namespace user
          if (bIsWindowVisible)
          {
 
-            pwnd->order(zorder_top);
+            pwnd->order(e_zorder_top);
 
             pwnd->place(rectBar);
 
@@ -555,7 +555,7 @@ namespace user
 
          rectClient.deflate(m_cxBorder,m_cyBorder);
 
-         pwnd->order(zorder_top);
+         pwnd->order(e_zorder_top);
 
          pwnd->place(rectClient);
 
@@ -1152,7 +1152,7 @@ namespace user
    void split_layout::RelayEventSplitBar(index iSplitBar, const ::id & id, WPARAM wParam, LPARAM lParam)
    {
 
-      ASSERT(FALSE);
+      ASSERT(false);
 
       if(!m_bInitialized)
          return;

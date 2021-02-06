@@ -191,7 +191,7 @@ namespace user
    //      get_client_rect(&rectClient);
 
    //      m_pmeshheader->set_window_pos(
-   //         zorder_top,
+   //         e_zorder_top,
    //         0,0,
    //         max(m_iItemWidth + 10,rectClient.width()),
    //         m_iItemHeight,

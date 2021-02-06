@@ -624,7 +624,7 @@ namespace linux
 
       }
 
-      return ::rmdir(path) != FALSE;
+      return ::rmdir(path) != false;
 
    }
 

@@ -245,9 +245,9 @@ SizingNone:;
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(lpcrectClient, rectangle_i32, eside);
+                  GetBorderRect(lpcrectClient, rectangle, eside);
 
-                  ColorGlass(pgraphics, rectangle_i32, crMoveableBorder, 127);
+                  ColorGlass(pgraphics, rectangle, crMoveableBorder, 127);
 
                }
                else if(m_estyle == StyleLightBlue)
@@ -265,19 +265,19 @@ SizingNone:;
                   Draw3dRectSide(pgraphics, rectA, eside, crMoveableBorder, crMoveableBorder);
 
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(lpcrectClient, rectangle_i32, eside);
+                  GetBorderRect(lpcrectClient, rectangle, eside);
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
-                                      rectangle_i32,
+                                      rectangle,
                                       crMoveableBorder,
                                       127);
                }
                else
                {
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(lpcrectClient, rectangle_i32, eside);
+                  GetBorderRect(lpcrectClient, rectangle, eside);
 
-                  ColorGlass(pgraphics, rectangle_i32, crMoveableBorder, 230);
+                  ColorGlass(pgraphics, rectangle, crMoveableBorder, 230);
 
                   ::rectangle_i32 rectClientB = rectA;
 
@@ -414,7 +414,7 @@ SizingNone:;
 
             void frame_005::GetBorderRect(
             const RECTANGLE_I32 & lpcrectClient,
-            LPRECT32 lprect,
+            RECTANGLE_I32 * lprect,
             enum_border eside)
             {
                ::rectangle_i32 rectBig(lpcrectClient);
@@ -456,7 +456,7 @@ SizingNone:;
 
                }
 
-               *lprect = rectangle_i32;
+               *lprect = rectangle;
 
             }
 
@@ -649,7 +649,7 @@ SizingNone:;
                {
                   rectA = rectClient;
 
-                  rectA.left = rectA.left + rectA.width() / 2 - size_i32 / 2;
+                  rectA.left = rectA.left + rectA.width() / 2 - size / 2;
                   rectA.right = rectA.left + size;
                   rectA.bottom = 4;
 
@@ -661,7 +661,7 @@ SizingNone:;
                {
                   rectA = rectClient;
 
-                  rectA.left = rectA.left + rectA.width() / 2 - size_i32 / 2;
+                  rectA.left = rectA.left + rectA.width() / 2 - size / 2;
                   rectA.right = rectA.left + size;
                   rectA.top = rectA.bottom - 4;
 
@@ -673,7 +673,7 @@ SizingNone:;
                   rectA = rectClient;
 
                   rectA.right = 4;
-                  rectA.top = rectA.top + rectA.height() / 2 - size_i32 / 2;
+                  rectA.top = rectA.top + rectA.height() / 2 - size / 2;
                   rectA.bottom = rectA.top + size;
 
                   pgraphics->fill_rect(rectA, m_brushGrip);
@@ -684,7 +684,7 @@ SizingNone:;
                   rectA = rectClient;
 
                   rectA.left = rectA.right - 4;
-                  rectA.top = rectA.top + rectA.height() / 2 - size_i32 / 2;
+                  rectA.top = rectA.top + rectA.height() / 2 - size / 2;
                   rectA.bottom = rectA.top + size;
 
                   pgraphics->fill_rect(rectA, m_brushGrip);

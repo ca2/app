@@ -86,7 +86,7 @@ typedef ::u32     (*NPN_MemFlushProcPtr)(::u32 size_i32);
 typedef void         (*NPN_ReloadPluginsProcPtr)(NPBool reloadPages);
 typedef void*        (*NPN_GetJavaEnvProcPtr)();
 typedef void*        (*NPN_GetJavaPeerProcPtr)(NPP instance);
-typedef void         (*NPN_InvalidateRectProcPtr)(NPP instance, NPRect *rectangle_i32);
+typedef void         (*NPN_InvalidateRectProcPtr)(NPP instance, NPRect *rectangle);
 typedef void         (*NPN_InvalidateRegionProcPtr)(NPP instance, NPRegion region);
 typedef void         (*NPN_ForceRedrawProcPtr)(NPP instance);
 typedef NPIdentifier (*NPN_GetStringIdentifierProcPtr)(const NPUTF8* name);

@@ -177,7 +177,7 @@ return nullptr;
 /*
 * allocate a buffer for the ::account::user.
 */
-/*      if ( (point = (WCHAR *)malloc(__max(len, maxlen) * sizeof(WCHAR)))
+/*      if ( (point = (WCHAR *)malloc(maximum(len, maxlen) * sizeof(WCHAR)))
 == nullptr )
 {
 //                errno = ENOMEM;
@@ -278,8 +278,8 @@ namespace windows
       {
          char pszPathA[MAX_PATH * 2];
          if(!::SHGetPathFromIDListA(pidl, pszPathA))
-            return FALSE;
-         return ::str::international::utf8_to_unicode(pszPath, MAX_PATH * 2, pszPathA) ? TRUE : FALSE;
+            return false;
+         return ::str::international::utf8_to_unicode(pszPath, MAX_PATH * 2, pszPathA) ? true : false;
       }
 
       BOOL shell::_MoveFile(const unichar * pExistingFileName, const unichar * lpNewFileName)
@@ -333,9 +333,9 @@ namespace windows
 
       {
          WIN32_FIND_DATAA data;
-         bool b = ::FindNextFileA(handle, &data) != FALSE;
-         if(b == FALSE)
-            return FALSE;
+         bool b = ::FindNextFileA(handle, &data) != false;
+         if(b == false)
+            return false;
 
          pdata->dwFileAttributes = data.dwFileAttributes;
 
@@ -470,7 +470,7 @@ namespace windows
    //      pFileSystemFlags,
 
    //      strFileSystemNameBuffer.GetBuffer(nFileSystemNameSize),
-   //      nFileSystemNameSize) != FALSE;
+   //      nFileSystemNameSize) != false;
 
    //   strVolumeNameBuffer.ReleaseBuffer();
    //   strFileSystemNameBuffer.ReleaseBuffer();
@@ -502,7 +502,7 @@ namespace windows
    //      &shia,
    //      sizeof(shia),
    //      uFlags))
-   //      return FALSE;
+   //      return false;
    //   ::str::international::ACPToUnicode(
    //      psfi->szDisplayName,
    //      sizeof(psfi->szDisplayName) / sizeof(WCHAR),
@@ -511,7 +511,7 @@ namespace windows
    //      psfi->szTypeName,
    //      sizeof(psfi->szTypeName) / sizeof(WCHAR),
    //      shia.szTypeName);
-   //   return TRUE;
+   //   return true;
    //}
 
 
@@ -544,9 +544,9 @@ namespace windows
    //   if(!GetStringTypeA(uCodePage, dwInfoType, psz, (i32) iCount, lpCharType))
 
    //   {
-   //      return FALSE;
+   //      return false;
    //   }
-   //   return TRUE;
+   //   return true;
    //}
 
 
@@ -664,7 +664,7 @@ namespace windows
    //   }
    //   if(!::GetClassInfoA(hInstance, pszClassName, &wndclass))
 
-   //      return FALSE;
+   //      return false;
 
    //   pwndclass->style = wndclass.style;
 
@@ -706,7 +706,7 @@ namespace windows
    //   pwndclass->pszClassName = (const unichar *) wndclass.pszClassName;
 
 
-   //   return TRUE;
+   //   return true;
 
    //}
    //ATOM shell::_RegisterClass(

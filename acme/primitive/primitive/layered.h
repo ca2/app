@@ -2,6 +2,7 @@
 
 
 #define MAX_LAYERED_COUNT 8
+#define MAX_LAYERED_OS_DATA_COUNT 4
 
 
 class CLASS_DECL_ACME layered :
@@ -10,9 +11,13 @@ class CLASS_DECL_ACME layered :
 private:
 
 
-   void* m_pa[MAX_LAYERED_COUNT];
+   void *      m_pa[MAX_LAYERED_COUNT];
+   void *      m_osdataa[MAX_LAYERED_OS_DATA_COUNT];
+
 
 public:
+
+
 
    layered() : m_pa{} { }
    virtual ~layered();
@@ -20,6 +25,12 @@ public:
    void set_layer(byte bLayeredIndex, void* p);
 
    inline void * layer(byte bLayeredIndex) const { return ::c_is_null(this) ? nullptr : m_pa[bLayeredIndex]; }
+
+
+   inline void * get_os_data(byte b = 0) const { return m_osdataa[b]; }
+   inline void set_os_data(byte b, void * p) { m_osdataa[b] = p; }
+   inline void set_os_data(void * p) { m_osdataa[0] = p; }
+
 
 };
 
@@ -35,6 +46,7 @@ public:
 #define LAYERED_USER_CONTROL_EVENT 7
 #define LAYERED_TASK_POOL 5
 #define LAYERED_OS_USER_INTERACTION_IMPL 6
+#define LAYERED_IMPL 7
 
 
 class object;

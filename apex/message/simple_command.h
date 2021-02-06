@@ -18,8 +18,8 @@ namespace message
 
 
       using ::message::base::set;
-      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
 
+      virtual void set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam) override;
 
 
    };

@@ -311,7 +311,7 @@ namespace html
 
       __pointer(::message::key) pkey(pmessage);
 
-      if (pkey->m_ekey == ::user::key_tab)
+      if (pkey->m_ekey == ::user::e_key_tab)
       {
 
          auto pfocus = get_form()->get_keyboard_focus();
@@ -692,7 +692,7 @@ namespace html
 
       byte_array ba;
 
-      //bool bCancel = FALSE;
+      //bool bCancel = false;
 
       ////on_before_navigate(varFile, 0, 0, ba, nullptr, &bCancel);
 

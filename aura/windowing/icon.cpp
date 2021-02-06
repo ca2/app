@@ -1,4 +1,4 @@
-// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen  - Honoring Thomas Borregaard Sørensen MY ONLY LORD
+// created by Camilo <3CamiloSasukeThomasBorregaardSoerensen  - Honoring Thomas Borregaard Sï¿½rensen MY ONLY LORD
 // recreated by Camilo 2021-01-28 16:38
 #include "framework.h"
 #include "_windowing.h"
@@ -21,20 +21,13 @@ namespace windowing
    }
 
 
-   iptr display::get_os_data() const
-   {
-
-      return -1;
-
-   }
-
-
-   window * display::default_root_window()
+   void * icon::get_os_data(const ::size_i32 & size) const
    {
 
       return nullptr;
 
    }
+
 
    bool icon::load_file(string strPath)
    {
@@ -58,12 +51,12 @@ namespace windowing
 
       }
 
-
-      on_update_icon();
+//      on_update_icon();
 
       return true;
 
    }
+
 
    bool icon::load_app_tray_icon(string strApp)
    {
@@ -93,20 +86,24 @@ namespace windowing
    }
 
 
-   image * icon::get_image(const concrete < ::size_i32 > & size)
+   image_pointer icon::get_image(const concrete < ::size_i32 > & size)
    {
 
-      __throw(interface_only_exception);
+      __throw(interface_only_exception());
       
       return nullptr;
 
    }
 
 
+   void icon::get_sizes(array < concrete < ::size_i32 > > & a)
+   {
+
+
+   }
 
 
 } // namespace windowing
-
 
 
 

@@ -9,7 +9,7 @@
 
    char szFontInfo[256];
    if (!AfxLoadString(nIDS, szFontInfo,_countof(szFontInfo)))
-      return FALSE;
+      return false;
 
    char * lpszSize = _tcschr(szFontInfo, '\n');
    if (lpszSize != nullptr)
@@ -21,17 +21,17 @@
       *lpszSize = '\0';
    }
    _template::checked::tcsncpy_s(pLogFont->lfFaceName, _countof(pLogFont->lfFaceName), szFontInfo, _TRUNcaTE);
-   return TRUE;
+   return true;
 }*/
 
 /*
 int_bool CLASS_DECL_lnx _AfxIsComboBoxControl(oswindow hWnd, ::u32 nStyle)
 {
    if (hWnd == nullptr)
-      return FALSE;
+      return false;
    // do cheap style compare first
    if ((::u32)(::GetWindowLong(hWnd, GWL_STYLE) & 0x0F) != nStyle)
-      return FALSE;
+      return false;
 
    // do expensive classname compare next
    char szCompare[_countof("combobox")+1];
@@ -114,7 +114,7 @@ void CLASS_DECL_lnx AfxcancelModes(oswindow hWndRcvr)
       return;
 
    // finally, we should cancel the mode!
-   ::SendMessage(hWndcancel, CB_SHOWDROPDOWN, FALSE, 0L);
+   ::SendMessage(hWndcancel, CB_SHOWDROPDOWN, false, 0L);
 }*/
 
 /*

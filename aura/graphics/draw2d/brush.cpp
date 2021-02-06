@@ -216,16 +216,16 @@ namespace draw2d
    }
 
 
-   bool brush::CreateRadialGradientBrush(point_f64 point_i32,size_f64 s,const color & color1,const color & color2)
+   bool brush::CreateRadialGradientBrush(point_f64 point,size_f64 s,const color & color1,const color & color2)
    {
 
       if(m_etype == type_radial_gradient_color
-            && m_point == point_i32
+            && m_point == point
             && m_size == s)
          return true;
 
       m_etype           = type_radial_gradient_color;
-      m_point           = point_i32;
+      m_point           = point;
       m_size            = s;
       m_color1          = color1;
       m_color2          = color2;

@@ -50,7 +50,7 @@ namespace hotplugin
 
       get_client_rect(rectClient);
 
-      pgraphics->rectangle_i32(rectClient);
+      pgraphics->rectangle(rectClient);
 
 
 

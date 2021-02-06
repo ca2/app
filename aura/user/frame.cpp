@@ -36,16 +36,16 @@ namespace user
 
       MESSAGE_LINK(WM_APPEXIT, pchannel, this, &frame::_001OnAppExit);
 
-#ifdef WINDOWS_DESKTOP
-
-      if (is_frame_window())
-      {
-
-         MESSAGE_LINK((::enum_message)WM_SYSCOMMAND, pchannel, this, &frame::_001OnSysCommand);
-
-      }
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (is_frame_window())
+//      {
+//
+//         MESSAGE_LINK((::enum_message)WM_SYSCOMMAND, pchannel, this, &frame::_001OnSysCommand);
+//
+//      }
+//
+//#endif
 
 
    }
@@ -428,7 +428,11 @@ namespace user
 
          auto psession = Session;
 
-         return psession->get_window_minimum_size();
+         auto puser = psession->m_puser;
+
+         auto pwindowing = puser->m_pwindowing;
+
+         return pwindowing->get_window_minimum_size();
 
       }
 

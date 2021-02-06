@@ -29,7 +29,7 @@ namespace userex
          if(pcommand->m_id == m_menua[i]->m_id.compounded(::id::e_type_command_probe))
          {
 
-            pcommand->enable(TRUE);
+            pcommand->enable(true);
 
             pcommand->m_bRet = true;
 

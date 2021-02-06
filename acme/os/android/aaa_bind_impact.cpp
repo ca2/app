@@ -186,7 +186,7 @@
 //
 //   env->ReleaseStringChars(str, (jchar*)utf16);
 //
-//   return TRUE;
+//   return true;
 //
 //}
 

@@ -384,7 +384,7 @@ namespace user
 
       m_pdroptargetwindow->create_host();
 
-      m_pdroptargetwindow->order(zorder_top_most);
+      m_pdroptargetwindow->order(e_zorder_top_most);
 
       m_pdroptargetwindow->place(rectangle);
 
@@ -614,7 +614,7 @@ namespace user
       if (!rectTabClient.is_empty())
       {
 
-         m_pimpactdata->m_pplaceholder->order(zorder_top);
+         m_pimpactdata->m_pplaceholder->order(e_zorder_top);
 
          m_pimpactdata->m_pplaceholder->place(rectTabClient);
 

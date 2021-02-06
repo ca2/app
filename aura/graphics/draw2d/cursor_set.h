@@ -14,7 +14,7 @@ namespace draw2d
 
 
 
-      map < e_cursor, __pointer(cursor) >   m_cursormap;
+      map < enum_cursor, __pointer(cursor) >   m_cursormap;
 
 
       cursor_set();
@@ -22,14 +22,14 @@ namespace draw2d
 
       void load_hotspot(const ::file::path& pszDir);
 
-      string cursor_name(e_cursor ecursor);
-      e_cursor cursor_enum(string strCursor);
+      string cursor_name(enum_cursor ecursor);
+      enum_cursor cursor_enum(string strCursor);
 
       void parse_hotspot_text(string strText);
-      __pointer(cursor) set_system_default_cursor(e_cursor ecursor);
+      __pointer(cursor) set_system_default_cursor(enum_cursor ecursor);
 
-      __pointer(cursor) get_cursor(e_cursor ecursor);
-      __pointer(cursor) set_cursor_file(e_cursor ecursor, const ::file::path& path, bool bFromCache);
+      __pointer(cursor) get_cursor(enum_cursor ecursor);
+      __pointer(cursor) set_cursor_file(enum_cursor ecursor, const ::file::path& path, bool bFromCache);
       ::count set_cursor_set_from_matter(const ::file::path& pszMatter);
       ::count set_cursor_set_from_dir(const ::file::path& pszDir, bool bFromCache = true);
       ::count set_cursor_set_system_default();

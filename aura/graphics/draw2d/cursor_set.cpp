@@ -35,38 +35,38 @@ namespace draw2d
    }
 
 
-   string cursor_set::cursor_name(e_cursor ecursor)
+   string cursor_set::cursor_name(enum_cursor ecursor)
    {
 
       switch (ecursor)
       {
-      case cursor_arrow:
+      case e_cursor_arrow:
          return "arrow";
-      case cursor_hand:
+      case e_cursor_hand:
          return "hand";
-      case cursor_text_select:
+      case e_cursor_text_select:
          return "text_select";
-      case cursor_size_top_left:
+      case e_cursor_size_top_left:
          return "size_top_left";
-      case cursor_size_top:
+      case e_cursor_size_top:
          return "size_top";
-      case cursor_size_top_right:
+      case e_cursor_size_top_right:
          return "size_top_right";
-      case cursor_size_right:
+      case e_cursor_size_right:
          return "size_top_right";
-      case cursor_size_bottom_right:
+      case e_cursor_size_bottom_right:
          return "size_bottom_right";
-      case cursor_size_bottom:
+      case e_cursor_size_bottom:
          return "size_bottom";
-      case cursor_size_bottom_left:
+      case e_cursor_size_bottom_left:
          return "size_bottom_left";
-      case cursor_size_left:
+      case e_cursor_size_left:
          return "size_left";
-      case cursor_size_vertical:
+      case e_cursor_size_vertical:
          return "size_vertical";
-      case cursor_size_horizontal:
+      case e_cursor_size_horizontal:
          return "size_horizontal";
-      case cursor_move:
+      case e_cursor_move:
          return "size_top_right";
       default:
          return "(unknown)";
@@ -74,43 +74,43 @@ namespace draw2d
 
    }
 
-   e_cursor cursor_set::cursor_enum(string strCursor)
+   enum_cursor cursor_set::cursor_enum(string strCursor)
    {
 
       strCursor.make_lower();
       strCursor.trim();
 
-      if (strCursor == "arrow") { return cursor_arrow; }
-      else if (strCursor == "hand") { return cursor_hand; }
-      else if (strCursor == "text_select") { return cursor_text_select; }
+      if (strCursor == "arrow") { return e_cursor_arrow; }
+      else if (strCursor == "hand") { return e_cursor_hand; }
+      else if (strCursor == "text_select") { return e_cursor_text_select; }
       else if (::str::begins_eat_ci(strCursor, "size_"))
       {
          if (::str::begins_eat_ci(strCursor, "top"))
          {
-            if (strCursor.is_empty()) { return cursor_size_top; }
-            else if (strCursor == "_left") { return cursor_size_top_left; }
-            else if (strCursor == "_right") { return cursor_size_top_right; }
+            if (strCursor.is_empty()) { return e_cursor_size_top; }
+            else if (strCursor == "_left") { return e_cursor_size_top_left; }
+            else if (strCursor == "_right") { return e_cursor_size_top_right; }
          }
          else if (::str::begins_eat_ci(strCursor, "bottom"))
          {
-            if (strCursor.is_empty()) { return cursor_size_bottom; }
-            else if (strCursor == "_left") { return cursor_size_bottom_left; }
-            else if (strCursor == "_right") { return cursor_size_bottom_right; }
+            if (strCursor.is_empty()) { return e_cursor_size_bottom; }
+            else if (strCursor == "_left") { return e_cursor_size_bottom_left; }
+            else if (strCursor == "_right") { return e_cursor_size_bottom_right; }
          }
-         else if (strCursor == "left") { return cursor_size_left; }
-         else if (strCursor == "right") { return cursor_size_right; }
-         else if (strCursor == "vertical") { return cursor_size_vertical; }
-         else if (strCursor == "horizontal") { return cursor_size_horizontal; }
+         else if (strCursor == "left") { return e_cursor_size_left; }
+         else if (strCursor == "right") { return e_cursor_size_right; }
+         else if (strCursor == "vertical") { return e_cursor_size_vertical; }
+         else if (strCursor == "horizontal") { return e_cursor_size_horizontal; }
       }
-      else if (strCursor == "move") { return cursor_move; }
+      else if (strCursor == "move") { return e_cursor_move; }
 
 
-      return cursor_none;
+      return e_cursor_none;
 
    }
 
 
-   __pointer(cursor) cursor_set::get_cursor(e_cursor ecursor)
+   __pointer(cursor) cursor_set::get_cursor(enum_cursor ecursor)
    {
 
       sync_lock sl(mutex());
@@ -135,52 +135,52 @@ namespace draw2d
    }
 
 
-   __pointer(cursor) cursor_set::set_cursor_file(e_cursor ecursor, const ::file::path& pathParam, bool bFromCache)
+   __pointer(cursor) cursor_set::set_cursor_file(enum_cursor ecursor, const ::file::path& pathParam, bool bFromCache)
    {
 
       cursor* pcursor = nullptr;
 
-      {
+      //{
 
-         sync_lock sl(mutex());
+      //   sync_lock sl(mutex());
 
-         pcursor = get_cursor(ecursor);
+      //   pcursor = get_cursor(ecursor);
 
-      }
+      //}
 
-      auto path = pathParam;
+      //auto path = pathParam;
 
-      if (System.m_bImaging)
-      {
+      //if (System.m_bImaging)
+      //{
 
-      //fork([this, pcursor, path, bFromCache]()
-      {
+      ////fork([this, pcursor, path, bFromCache]()
+      //{
 
-         pcursor->initialize_system_default();
+      //   pcursor->initialize_system_default();
 
-         if (Application.image().load_cursor(pcursor, path, true, bFromCache))
-         {
+      //   if (Session->user()->windowing()->load_cursor(pcursor, path, true, bFromCache))
+      //   {
 
-            //return pcursor;
+      //      //return pcursor;
 
-         }
-         else
-         {
+      //   }
+      //   else
+      //   {
 
 
-            {
+      //      {
 
-               //return pcursor;
+      //         //return pcursor;
 
-            }
+      //      }
 
-            //return nullptr;
+      //      //return nullptr;
 
-         }
+      //   }
 
-      }//);
+      //}//);
 
-      }
+      //}
 
       return pcursor;
 
@@ -258,7 +258,7 @@ namespace draw2d
 
       ::count count = 0;
 
-      if (set_cursor_file(cursor_arrow, pathDir / "arrow.png", bFromCache))
+      if (set_cursor_file(e_cursor_arrow, pathDir / "arrow.png", bFromCache))
       {
          count++;
       }
@@ -266,109 +266,109 @@ namespace draw2d
       {
          return 0;
       }
-      if (set_cursor_file(cursor_hand, pathDir / "hand.png", bFromCache))
+      if (set_cursor_file(e_cursor_hand, pathDir / "hand.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(cursor_hand, pathDir / "arrow.png", bFromCache);
+         set_cursor_file(e_cursor_hand, pathDir / "arrow.png", bFromCache);
       }
-      if (set_cursor_file(cursor_text_select, pathDir / "text_select.png", bFromCache))
+      if (set_cursor_file(e_cursor_text_select, pathDir / "text_select.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(cursor_text_select, pathDir / "arrow.png", bFromCache);
+         set_cursor_file(e_cursor_text_select, pathDir / "arrow.png", bFromCache);
       }
-      if (set_cursor_file(cursor_size_top_left, pathDir / "size_top_left.png", bFromCache))
+      if (set_cursor_file(e_cursor_size_top_left, pathDir / "size_top_left.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(cursor_size_top_left, pathDir / "arrow.png", bFromCache);
+         set_cursor_file(e_cursor_size_top_left, pathDir / "arrow.png", bFromCache);
       }
-      if (set_cursor_file(cursor_size_top, pathDir / "size_top.png", bFromCache))
+      if (set_cursor_file(e_cursor_size_top, pathDir / "size_top.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(cursor_size_top, pathDir / "arrow.png", bFromCache);
+         set_cursor_file(e_cursor_size_top, pathDir / "arrow.png", bFromCache);
       }
-      if (set_cursor_file(cursor_size_top_right, pathDir / "size_top_right.png", bFromCache))
+      if (set_cursor_file(e_cursor_size_top_right, pathDir / "size_top_right.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(cursor_size_top_right, pathDir / "arrow.png", bFromCache);
+         set_cursor_file(e_cursor_size_top_right, pathDir / "arrow.png", bFromCache);
       }
-      if (set_cursor_file(cursor_size_right, pathDir / "size_right.png", bFromCache))
+      if (set_cursor_file(e_cursor_size_right, pathDir / "size_right.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(cursor_size_right, pathDir / "arrow.png", bFromCache);
+         set_cursor_file(e_cursor_size_right, pathDir / "arrow.png", bFromCache);
       }
-      if (set_cursor_file(cursor_size_bottom_right, pathDir / "size_bottom_right.png", bFromCache))
+      if (set_cursor_file(e_cursor_size_bottom_right, pathDir / "size_bottom_right.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(cursor_size_bottom_right, pathDir / "arrow.png", bFromCache);
+         set_cursor_file(e_cursor_size_bottom_right, pathDir / "arrow.png", bFromCache);
       }
-      if (set_cursor_file(cursor_size_bottom, pathDir / "size_bottom.png", bFromCache))
+      if (set_cursor_file(e_cursor_size_bottom, pathDir / "size_bottom.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(cursor_size_bottom, pathDir / "arrow.png", bFromCache);
+         set_cursor_file(e_cursor_size_bottom, pathDir / "arrow.png", bFromCache);
       }
-      if (set_cursor_file(cursor_size_bottom_left, pathDir / "size_bottom_left.png", bFromCache))
+      if (set_cursor_file(e_cursor_size_bottom_left, pathDir / "size_bottom_left.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(cursor_size_bottom_left, pathDir / "arrow.png", bFromCache);
+         set_cursor_file(e_cursor_size_bottom_left, pathDir / "arrow.png", bFromCache);
       }
-      if (set_cursor_file(cursor_size_left, pathDir / "size_left.png", bFromCache))
+      if (set_cursor_file(e_cursor_size_left, pathDir / "size_left.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(cursor_size_left, pathDir / "arrow.png", bFromCache);
+         set_cursor_file(e_cursor_size_left, pathDir / "arrow.png", bFromCache);
       }
-      if (set_cursor_file(cursor_size_vertical, pathDir / "size_vertical.png", bFromCache))
+      if (set_cursor_file(e_cursor_size_vertical, pathDir / "size_vertical.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(cursor_size_vertical, pathDir / "arrow.png", bFromCache);
+         set_cursor_file(e_cursor_size_vertical, pathDir / "arrow.png", bFromCache);
       }
-      if (set_cursor_file(cursor_size_horizontal, pathDir / "size_horizontal.png", bFromCache))
+      if (set_cursor_file(e_cursor_size_horizontal, pathDir / "size_horizontal.png", bFromCache))
       {
          count++;
       }
       else
       {
-         set_cursor_file(cursor_size_horizontal, pathDir / "arrow.png", bFromCache);
+         set_cursor_file(e_cursor_size_horizontal, pathDir / "arrow.png", bFromCache);
       }
-      if (set_cursor_file(cursor_move, pathDir / "move.png", false))
+      if (set_cursor_file(e_cursor_move, pathDir / "move.png", false))
       {
          count++;
       }
       else
       {
-         set_cursor_file(cursor_move, pathDir / "arrow.png", bFromCache);
+         set_cursor_file(e_cursor_move, pathDir / "arrow.png", bFromCache);
       }
 
       load_hotspot(pathDir);
@@ -383,67 +383,67 @@ namespace draw2d
 
       ::count count = 0;
 
-      if (set_system_default_cursor(cursor_arrow))
+      if (set_system_default_cursor(e_cursor_arrow))
       {
          count++;
       }
 
-      if (set_system_default_cursor(cursor_hand))
+      if (set_system_default_cursor(e_cursor_hand))
       {
          count++;
       }
 
-      if (set_system_default_cursor(cursor_text_select))
+      if (set_system_default_cursor(e_cursor_text_select))
       {
          count++;
       }
 
-      if (set_system_default_cursor(cursor_size_top_left))
+      if (set_system_default_cursor(e_cursor_size_top_left))
       {
          count++;
       }
 
-      if (set_system_default_cursor(cursor_size_top))
+      if (set_system_default_cursor(e_cursor_size_top))
       {
          count++;
       }
 
-      if (set_system_default_cursor(cursor_size_top_right))
+      if (set_system_default_cursor(e_cursor_size_top_right))
       {
          count++;
       }
 
-      if (set_system_default_cursor(cursor_size_right))
+      if (set_system_default_cursor(e_cursor_size_right))
       {
          count++;
       }
 
-      if (set_system_default_cursor(cursor_size_bottom_right))
+      if (set_system_default_cursor(e_cursor_size_bottom_right))
       {
          count++;
       }
 
-      if (set_system_default_cursor(cursor_size_bottom))
+      if (set_system_default_cursor(e_cursor_size_bottom))
       {
          count++;
       }
 
-      if (set_system_default_cursor(cursor_size_bottom_left))
+      if (set_system_default_cursor(e_cursor_size_bottom_left))
       {
          count++;
       }
 
-      if (set_system_default_cursor(cursor_size_left))
+      if (set_system_default_cursor(e_cursor_size_left))
       {
          count++;
       }
 
-      if (set_system_default_cursor(cursor_size_vertical))
+      if (set_system_default_cursor(e_cursor_size_vertical))
       {
          count++;
       }
 
-      if (set_system_default_cursor(cursor_size_horizontal))
+      if (set_system_default_cursor(e_cursor_size_horizontal))
       {
          count++;
       }
@@ -452,7 +452,7 @@ namespace draw2d
 
    }
 
-   __pointer(cursor) cursor_set::set_system_default_cursor(e_cursor ecursor)
+   __pointer(cursor) cursor_set::set_system_default_cursor(enum_cursor ecursor)
    {
 
       sync_lock sl(mutex());

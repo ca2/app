@@ -541,7 +541,7 @@ namespace userex
 
          int y = point.y - m_rectColors.top;
 
-         m_pointMouseColorBeam = point_i32;
+         m_pointMouseColorBeam = point;
 
          m_bMouseColorBeam = true;
 
@@ -615,7 +615,7 @@ namespace userex
    void color_view::draw_beam(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & pointParam)
    {
 
-      point_f64 point_i32(pointParam);
+      point_f64 point(pointParam);
 
       double dSize = 17.0;
 
@@ -756,7 +756,7 @@ namespace userex
 
       r1.set_size(m_pimage->get_size());
 
-      ::rectangle_i32 r2 = m_pimage->rectangle_i32();
+      ::rectangle_i32 r2 = m_pimage->rectangle();
 
       ::rectangle_i32 rCursor;
 
@@ -787,7 +787,7 @@ namespace userex
 
       rectLum1.set_size(m_pimageLuminance->get_size());
 
-      r2 = m_pimageLuminance->rectangle_i32();
+      r2 = m_pimageLuminance->rectangle();
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -913,7 +913,7 @@ namespace userex
 
       m_pimage = create_image({m_rectColors.width() / 2,  m_rectColors.height()});
 
-      m_pimage->g()->stretch(m_pimage->rectangle_i32(), m_pimageTemplate->get_graphics(), m_pimageTemplate->rectangle_i32());
+      m_pimage->g()->stretch(m_pimage->rectangle(), m_pimageTemplate->get_graphics(), m_pimageTemplate->rectangle());
 
       m_pimageLuminance = create_image({m_rectColors.width() / 8,  m_rectColors.height()});
 

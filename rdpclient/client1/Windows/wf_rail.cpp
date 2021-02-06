@@ -43,59 +43,59 @@ typedef struct _WINDOW_STYLE WINDOW_STYLE;
 
 static const WINDOW_STYLE WINDOW_STYLES[] =
 {
-	{ WS_BORDER, "WS_BORDER", FALSE },
-	{ WS_CAPTION, "WS_CAPTION", FALSE },
-	{ WS_CHILD, "WS_CHILD", FALSE },
-	{ WS_CLIPCHILDREN, "WS_CLIPCHILDREN", FALSE },
-	{ WS_CLIPSIBLINGS, "WS_CLIPSIBLINGS", FALSE },
-	{ WS_DISABLED, "WS_DISABLED", FALSE },
-	{ WS_DLGFRAME, "WS_DLGFRAME", FALSE },
-	{ WS_GROUP, "WS_GROUP", FALSE },
-	{ WS_HSCROLL, "WS_HSCROLL", FALSE },
-	{ WS_ICONIC, "WS_ICONIC", FALSE },
-	{ WS_MAXIMIZE, "WS_MAXIMIZE", FALSE },
-	{ WS_MAXIMIZEBOX, "WS_MAXIMIZEBOX", FALSE },
-	{ WS_MINIMIZE, "WS_MINIMIZE", FALSE },
-	{ WS_MINIMIZEBOX, "WS_MINIMIZEBOX", FALSE },
-	{ WS_OVERLAPPED, "WS_OVERLAPPED", FALSE },
-	{ WS_OVERLAPPEDWINDOW, "WS_OVERLAPPEDWINDOW", TRUE },
-	{ WS_POPUP, "WS_POPUP", FALSE },
-	{ WS_POPUPWINDOW, "WS_POPUPWINDOW", TRUE },
-	{ WS_SIZEBOX, "WS_SIZEBOX", FALSE },
-	{ WS_SYSMENU, "WS_SYSMENU", FALSE },
-	{ WS_TABSTOP, "WS_TABSTOP", FALSE },
-	{ WS_THICKFRAME, "WS_THICKFRAME", FALSE },
-	{ WS_VISIBLE, "WS_VISIBLE", FALSE }
+	{ WS_BORDER, "WS_BORDER", false },
+	{ WS_CAPTION, "WS_CAPTION", false },
+	{ WS_CHILD, "WS_CHILD", false },
+	{ WS_CLIPCHILDREN, "WS_CLIPCHILDREN", false },
+	{ WS_CLIPSIBLINGS, "WS_CLIPSIBLINGS", false },
+	{ WS_DISABLED, "WS_DISABLED", false },
+	{ WS_DLGFRAME, "WS_DLGFRAME", false },
+	{ WS_GROUP, "WS_GROUP", false },
+	{ WS_HSCROLL, "WS_HSCROLL", false },
+	{ WS_ICONIC, "WS_ICONIC", false },
+	{ WS_MAXIMIZE, "WS_MAXIMIZE", false },
+	{ WS_MAXIMIZEBOX, "WS_MAXIMIZEBOX", false },
+	{ WS_MINIMIZE, "WS_MINIMIZE", false },
+	{ WS_MINIMIZEBOX, "WS_MINIMIZEBOX", false },
+	{ WS_OVERLAPPED, "WS_OVERLAPPED", false },
+	{ WS_OVERLAPPEDWINDOW, "WS_OVERLAPPEDWINDOW", true },
+	{ WS_POPUP, "WS_POPUP", false },
+	{ WS_POPUPWINDOW, "WS_POPUPWINDOW", true },
+	{ WS_SIZEBOX, "WS_SIZEBOX", false },
+	{ WS_SYSMENU, "WS_SYSMENU", false },
+	{ WS_TABSTOP, "WS_TABSTOP", false },
+	{ WS_THICKFRAME, "WS_THICKFRAME", false },
+	{ WS_VISIBLE, "WS_VISIBLE", false }
 };
 
 static const WINDOW_STYLE EXTENDED_WINDOW_STYLES[] =
 {
-	{ WS_EX_ACCEPTFILES, "WS_EX_ACCEPTFILES", FALSE },
-	{ WS_EX_APPWINDOW, "WS_EX_APPWINDOW", FALSE },
-	{ WS_EX_CLIENTEDGE, "WS_EX_CLIENTEDGE", FALSE },
-	{ WS_EX_COMPOSITED, "WS_EX_COMPOSITED", FALSE },
-	{ WS_EX_CONTEXTHELP, "WS_EX_CONTEXTHELP", FALSE },
-	{ WS_EX_CONTROLPARENT, "WS_EX_CONTROLPARENT", FALSE },
-	{ WS_EX_DLGMODALFRAME, "WS_EX_DLGMODALFRAME", FALSE },
-	{ WS_EX_LAYERED, "WS_EX_LAYERED", FALSE },
-	{ WS_EX_LAYOUTRTL, "WS_EX_LAYOUTRTL", FALSE },
-	{ WS_EX_LEFT, "WS_EX_LEFT", FALSE },
-	{ WS_EX_LEFTSCROLLBAR, "WS_EX_LEFTSCROLLBAR", FALSE },
-	{ WS_EX_LTRREADING, "WS_EX_LTRREADING", FALSE },
-	{ WS_EX_MDICHILD, "WS_EX_MDICHILD", FALSE },
-	{ WS_EX_NOACTIVATE, "WS_EX_NOACTIVATE", FALSE },
-	{ WS_EX_NOINHERITLAYOUT, "WS_EX_NOINHERITLAYOUT", FALSE },
-	{ WS_EX_NOPARENTNOTIFY, "WS_EX_NOPARENTNOTIFY", FALSE },
-	{ WS_EX_OVERLAPPEDWINDOW, "WS_EX_OVERLAPPEDWINDOW", TRUE },
-	{ WS_EX_PALETTEWINDOW, "WS_EX_PALETTEWINDOW", TRUE },
-	{ WS_EX_RIGHT, "WS_EX_RIGHT", FALSE },
-	{ WS_EX_RIGHTSCROLLBAR, "WS_EX_RIGHTSCROLLBAR", FALSE },
-	{ WS_EX_RTLREADING, "WS_EX_RTLREADING", FALSE },
-	{ WS_EX_STATICEDGE, "WS_EX_STATICEDGE", FALSE },
-	{ WS_EX_TOOLWINDOW, "WS_EX_TOOLWINDOW", FALSE },
-	{ WS_EX_TOPMOST, "WS_EX_TOPMOST", FALSE },
-	{ WS_EX_TRANSPARENT, "WS_EX_TRANSPARENT", FALSE },
-	{ WS_EX_WINDOWEDGE, "WS_EX_WINDOWEDGE", FALSE }
+	{ WS_EX_ACCEPTFILES, "WS_EX_ACCEPTFILES", false },
+	{ WS_EX_APPWINDOW, "WS_EX_APPWINDOW", false },
+	{ WS_EX_CLIENTEDGE, "WS_EX_CLIENTEDGE", false },
+	{ WS_EX_COMPOSITED, "WS_EX_COMPOSITED", false },
+	{ WS_EX_CONTEXTHELP, "WS_EX_CONTEXTHELP", false },
+	{ WS_EX_CONTROLPARENT, "WS_EX_CONTROLPARENT", false },
+	{ WS_EX_DLGMODALFRAME, "WS_EX_DLGMODALFRAME", false },
+	{ WS_EX_LAYERED, "WS_EX_LAYERED", false },
+	{ WS_EX_LAYOUTRTL, "WS_EX_LAYOUTRTL", false },
+	{ WS_EX_LEFT, "WS_EX_LEFT", false },
+	{ WS_EX_LEFTSCROLLBAR, "WS_EX_LEFTSCROLLBAR", false },
+	{ WS_EX_LTRREADING, "WS_EX_LTRREADING", false },
+	{ WS_EX_MDICHILD, "WS_EX_MDICHILD", false },
+	{ WS_EX_NOACTIVATE, "WS_EX_NOACTIVATE", false },
+	{ WS_EX_NOINHERITLAYOUT, "WS_EX_NOINHERITLAYOUT", false },
+	{ WS_EX_NOPARENTNOTIFY, "WS_EX_NOPARENTNOTIFY", false },
+	{ WS_EX_OVERLAPPEDWINDOW, "WS_EX_OVERLAPPEDWINDOW", true },
+	{ WS_EX_PALETTEWINDOW, "WS_EX_PALETTEWINDOW", true },
+	{ WS_EX_RIGHT, "WS_EX_RIGHT", false },
+	{ WS_EX_RIGHTSCROLLBAR, "WS_EX_RIGHTSCROLLBAR", false },
+	{ WS_EX_RTLREADING, "WS_EX_RTLREADING", false },
+	{ WS_EX_STATICEDGE, "WS_EX_STATICEDGE", false },
+	{ WS_EX_TOOLWINDOW, "WS_EX_TOOLWINDOW", false },
+	{ WS_EX_TOPMOST, "WS_EX_TOPMOST", false },
+	{ WS_EX_TRANSPARENT, "WS_EX_TRANSPARENT", false },
+	{ WS_EX_WINDOWEDGE, "WS_EX_WINDOWEDGE", false }
 };
 
 void PrintWindowStyles(::u32 style)
@@ -438,7 +438,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //		railWindow = (wfRailWindow*) calloc(1, sizeof(wfRailWindow));
 //
 //		if (!railWindow)
-//			return FALSE;
+//			return false;
 //
 //		railWindow->wfc = wfc;
 //
@@ -509,7 +509,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //
 //		UpdateWindow(railWindow->hWnd);
 //
-//		return TRUE;
+//		return true;
 //	}
 //	else
 //	{
@@ -518,7 +518,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //	}
 //
 //	if (!railWindow)
-//		return TRUE;
+//		return true;
 //
 //	if ((fieldFlags & WINDOW_ORDER_FIELD_WND_OFFSET) ||
 //		(fieldFlags & WINDOW_ORDER_FIELD_WND_SIZE))
@@ -627,7 +627,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //				DeleteObject(hWndRect);
 //			}
 //
-//			SetWindowRgn(railWindow->hWnd, hWndRects, TRUE);
+//			SetWindowRgn(railWindow->hWnd, hWndRects, true);
 //			DeleteObject(hWndRects);
 //		}
 //	}
@@ -643,7 +643,7 @@ static void PrintRailIconInfo(WINDOW_ORDER_INFO* orderInfo, ICON_INFO* iconInfo)
 //	}
 //
 //	UpdateWindow(railWindow->hWnd);
-//	return TRUE;
+//	return true;
 //}
 
 static BOOL wf_rail_window_delete(rdpContext* context, WINDOW_ORDER_INFO* orderInfo)
@@ -658,14 +658,14 @@ static BOOL wf_rail_window_delete(rdpContext* context, WINDOW_ORDER_INFO* orderI
 			(void*) (UINT_PTR) orderInfo->windowId);
 
 	if (!railWindow)
-		return TRUE;
+		return true;
 
 	HashTable_Remove(wfc->railWindows, (void*) (UINT_PTR) orderInfo->windowId);
 
 	DestroyWindow(railWindow->hWnd);
 
 	free(railWindow);
-	return TRUE;
+	return true;
 }
 
 static BOOL wf_rail_window_icon(rdpContext* context, WINDOW_ORDER_INFO* orderInfo, WINDOW_ICON_ORDER* windowIcon)
@@ -691,13 +691,13 @@ static BOOL wf_rail_window_icon(rdpContext* context, WINDOW_ORDER_INFO* orderInf
 			(void*) (UINT_PTR) orderInfo->windowId);
 
 	if (!railWindow)
-		return TRUE;
+		return true;
 
-	bigIcon = (orderInfo->fieldFlags & WINDOW_ORDER_FIELD_ICON_BIG) ? TRUE : FALSE;
+	bigIcon = (orderInfo->fieldFlags & WINDOW_ORDER_FIELD_ICON_BIG) ? true : false;
 
 	hDC = GetDC(railWindow->hWnd);
 
-	iconInfo.fIcon = TRUE;
+	iconInfo.fIcon = true;
 	iconInfo.xHotspot = 0;
 	iconInfo.yHotspot = 0;
 
@@ -749,13 +749,13 @@ static BOOL wf_rail_window_icon(rdpContext* context, WINDOW_ORDER_INFO* orderInf
 	{
 		/* icon should be cached */
 	}
-	return TRUE;
+	return true;
 }
 
 static BOOL wf_rail_window_cached_icon(rdpContext* context, WINDOW_ORDER_INFO* orderInfo, WINDOW_CACHED_ICON_ORDER* windowCachedIcon)
 {
 	WLog_DBG(TAG, "RailWindowCachedIcon");
-	return TRUE;
+	return true;
 }
 
 static void wf_rail_notify_icon_common(rdpContext* context, WINDOW_ORDER_INFO* orderInfo, NOTIFY_ICON_STATE_ORDER* notifyIconState)
@@ -801,7 +801,7 @@ static BOOL wf_rail_notify_icon_create(rdpContext* context, WINDOW_ORDER_INFO* o
 	WLog_DBG(TAG, "RailNotifyIconCreate");
 
 	wf_rail_notify_icon_common(context, orderInfo, notifyIconState);
-	return TRUE;
+	return true;
 }
 
 static BOOL wf_rail_notify_icon_update(rdpContext* context, WINDOW_ORDER_INFO* orderInfo, NOTIFY_ICON_STATE_ORDER* notifyIconState)
@@ -812,7 +812,7 @@ static BOOL wf_rail_notify_icon_update(rdpContext* context, WINDOW_ORDER_INFO* o
 	WLog_DBG(TAG, "RailNotifyIconUpdate");
 
 	wf_rail_notify_icon_common(context, orderInfo, notifyIconState);
-	return TRUE;
+	return true;
 }
 
 static BOOL wf_rail_notify_icon_delete(rdpContext* context, WINDOW_ORDER_INFO* orderInfo)
@@ -821,7 +821,7 @@ static BOOL wf_rail_notify_icon_delete(rdpContext* context, WINDOW_ORDER_INFO* o
 	RailClientContext* rail = wfc->rail;
 
 	WLog_DBG(TAG, "RailNotifyIconDelete");
-	return TRUE;
+	return true;
 }
 
 static BOOL wf_rail_monitored_desktop(rdpContext* context, WINDOW_ORDER_INFO* orderInfo, MONITORED_DESKTOP_ORDER* monitoredDesktop)
@@ -830,7 +830,7 @@ static BOOL wf_rail_monitored_desktop(rdpContext* context, WINDOW_ORDER_INFO* or
 	RailClientContext* rail = wfc->rail;
 
 	WLog_DBG(TAG, "RailMonitorDesktop");
-	return TRUE;
+	return true;
 }
 
 static BOOL wf_rail_non_monitored_desktop(rdpContext* context, WINDOW_ORDER_INFO* orderInfo)
@@ -839,7 +839,7 @@ static BOOL wf_rail_non_monitored_desktop(rdpContext* context, WINDOW_ORDER_INFO
 	RailClientContext* rail = wfc->rail;
 
 	WLog_DBG(TAG, "RailNonMonitorDesktop");
-	return TRUE;
+	return true;
 }
 
 //void wf_rail_register_update_callbacks(rdpUpdate* update)
@@ -904,16 +904,16 @@ static int wf_rail_server_handshake(RailClientContext* context, RAIL_HANDSHAKE_O
 	sysparam.highContrast.flags = 0x7E;
 
 	sysparam.params |= SPI_MASK_SET_MOUSE_BUTTON_SWAP;
-	sysparam.mouseButtonSwap = FALSE;
+	sysparam.mouseButtonSwap = false;
 
 	sysparam.params |= SPI_MASK_SET_KEYBOARD_PREF;
-	sysparam.keyboardPref = FALSE;
+	sysparam.keyboardPref = false;
 
 	sysparam.params |= SPI_MASK_SET_DRAG_FULL_WINDOWS;
-	sysparam.dragFullWindows = FALSE;
+	sysparam.dragFullWindows = false;
 
 	sysparam.params |= SPI_MASK_SET_KEYBOARD_CUES;
-	sysparam.keyboardCues = FALSE;
+	sysparam.keyboardCues = false;
 
 	sysparam.params |= SPI_MASK_SET_WORK_AREA;
 	sysparam.workArea.left = 0;
@@ -921,7 +921,7 @@ static int wf_rail_server_handshake(RailClientContext* context, RAIL_HANDSHAKE_O
 	sysparam.workArea.right = settings->DesktopWidth;
 	sysparam.workArea.bottom = settings->DesktopHeight;
 
-	sysparam.dragFullWindows = FALSE;
+	sysparam.dragFullWindows = false;
 
 	context->ClientSystemParam(context, &sysparam);
 
@@ -999,7 +999,7 @@ void wf_rail_invalidate_region(wfContext* wfc, REGION16* invalidRegion)
 				updateRect.right = extents->right - railWindow->x;
 				updateRect.bottom = extents->bottom - railWindow->y;
 
-				InvalidateRect(railWindow->hWnd, &updateRect, FALSE);
+				InvalidateRect(railWindow->hWnd, &updateRect, false);
 			}
 		}
 	}
@@ -1025,7 +1025,7 @@ void wf_rail_invalidate_region(wfContext* wfc, REGION16* invalidRegion)
 //
 //	wf_rail_register_update_callbacks(context->update);
 //
-//	wfc->railWindows = HashTable_New(TRUE);
+//	wfc->railWindows = HashTable_New(true);
 //	return (wfc->railWindows != nullptr);
 //}
 

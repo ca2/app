@@ -1610,7 +1610,7 @@ namespace url
 
       critical_section_lock lock(&m_csPublicDomainExtension);
 
-      if (m_straPublicDomainExtension.isEmpty())
+      if (m_straPublicDomainExtension.is_empty())
       {
 
          ::file::path pathPublicDomainExtensionList = "https://server.ca2.cc/public_internet_domain_extension_list.txt";

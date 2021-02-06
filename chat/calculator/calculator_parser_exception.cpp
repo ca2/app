@@ -22,7 +22,7 @@ numeric_parser_exception::~numeric_parser_exception()
 CLASS_DECL_CA2_MATH bool get_avoid_numeric_parser_exception()
 {
 
-   return t_iAvoidNumericParserException != FALSE;
+   return t_iAvoidNumericParserException != false;
 
 }
 
@@ -45,7 +45,7 @@ avoid_numeric_parser_exception::avoid_numeric_parser_exception()
 
    m_iBefore = t_iAvoidNumericParserException;
 
-   t_iAvoidNumericParserException = TRUE;
+   t_iAvoidNumericParserException = true;
 
 }
 

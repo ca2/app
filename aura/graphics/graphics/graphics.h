@@ -11,9 +11,9 @@ namespace graphics
    public:
 
 
-      ::user::interaction_impl *    m_pimpl;
-      ::oswindow                    m_oswindow;
-      bool                          m_bNewBuffer;
+      __pointer(::user::interaction_impl)    m_pimpl;
+      __pointer(::windowing::window)         m_pwindow;
+      bool                                   m_bNewBuffer;
 
 
       graphics();

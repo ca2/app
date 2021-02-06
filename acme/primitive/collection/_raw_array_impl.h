@@ -661,19 +661,32 @@ template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 //
 //
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
-::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_find_first(TYPE *point_i32, ::index find, ::index last) const
+::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::raw_find_first(TYPE *p, ::index find, ::index last) const
 {
+
    if(find < 0)
       find += this->get_count();
+
    if(last < 0)
       last += this->get_count();
+
    for(; find <= last; find++)
    {
-      if(&this->element_at(find) == point_i32)
+
+      if (&this->element_at(find) == p)
+      {
+
          return find;
+
+      }
+
    }
+
    return -1;
+
 }
+
+
 template<class TYPE, class ARG_TYPE, class ALLOCATOR >
 ::index raw_array < TYPE, ARG_TYPE, ALLOCATOR >::find_first(ARG_TYPE t, ::index ( * pfnCompare )(ARG_TYPE, ARG_TYPE), ::index find, ::index last) const
 

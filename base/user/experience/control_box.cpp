@@ -171,7 +171,7 @@ namespace experience
 
       //m_pframewindow->prop("control_box_right_to_right") = iControlBoxRight;
 
-      //order(zorder_top);
+      //order(e_zorder_top);
 
       //move_to(point);
 
@@ -300,7 +300,7 @@ namespace experience
                      if (pointCursor.x >= rectWindow.left && pointCursor.y <= rectWindow.right && pointCursor.y == 0)
                      {
 
-                        order(zorder_top);
+                        order(e_zorder_top);
 
                         display();
 
@@ -531,7 +531,7 @@ namespace experience
             rectangle.top = rectMargin.top;
             rectangle.bottom = sizeButton.cy + rectangle.top;
 
-            pbutton->order(zorder_top);
+            pbutton->order(e_zorder_top);
             pbutton->place(rectangle);
             pbutton->display();
             pbutton->UpdateWndRgn();
@@ -1070,10 +1070,10 @@ namespace experience
 
       m_pframewindow->m_pframe->m_bControlBoxAlignRight = rectangle.center().x > (rectWindow.width() / 2);
 
-//      if (rectangle_i32 != *m_pframewindow->m_pframe->get_control_box_rect())
+//      if (rectangle != *m_pframewindow->m_pframe->get_control_box_rect())
 //      {
 //
-//         *m_pframewindow->m_pframe->get_control_box_rect() = rectangle_i32;
+//         *m_pframewindow->m_pframe->get_control_box_rect() = rectangle;
 //
 //         m_pframewindow->m_millisLastVisualChange.Now();
 //

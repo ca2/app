@@ -979,7 +979,7 @@ namespace android
 
       }
 
-      return ::rmdir(path) != FALSE;
+      return ::rmdir(path) != false;
 
    }
 
@@ -1186,7 +1186,7 @@ namespace android
 //         nullptr,
 //         str,
 //         CSIDL_PROFILE,
-//         FALSE);*/
+//         false);*/
 //
 //      str = getenv("HOME");
 //
@@ -1222,7 +1222,7 @@ namespace android
 //            nullptr,
 //            str,
 //            CSIDL_PROFILE,
-//            FALSE);
+//            false);
 //         return path(path(str, "ca2\\_____default"), lpcsz);
 //      }
 //      else

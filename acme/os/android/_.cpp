@@ -89,7 +89,7 @@ CLASS_DECL_ACME bool __node_acme_pos_init()
    //
    //   t_hthread->m_bRun = true;
 
-   return TRUE;
+   return true;
 
 }
 
@@ -123,6 +123,6 @@ CLASS_DECL_ACME bool __node_acme_pos_term()
 CLASS_DECL_ACME int __node_is_debugger_attached()
 {
 
-   return FALSE;
+   return false;
 
 }

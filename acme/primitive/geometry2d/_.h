@@ -470,7 +470,7 @@ RECT_TYPE * union_rect(RECT_TYPE * prectangle, const RECT_TYPE1* prect1, const R
       else
       {
 
-         copy_rect(prectangle, prect2);
+         copy(prectangle, prect2);
 
       }
 
@@ -478,7 +478,7 @@ RECT_TYPE * union_rect(RECT_TYPE * prectangle, const RECT_TYPE1* prect1, const R
    else if (is_rect_empty(prect1))
    {
 
-      copy_rect(prectangle, prect1);
+      copy(prectangle, prect1);
 
    }
    else
@@ -510,8 +510,8 @@ RECT_TYPE* subtract_rect(RECT_TYPE* prectangle, const RECT_TYPE1* prect1, const 
 }
 
 
-template < typename RECT_TYPE1, typename RECT_TYPE2 >
-RECT_TYPE1 * copy_rect(RECT_TYPE1 * prect1, const RECT_TYPE2* prect2)
+template < primitive_rectangle RECT_TYPE1, primitive_rectangle RECT_TYPE2 >
+RECT_TYPE1 * copy(RECT_TYPE1 * prect1, const RECT_TYPE2* prect2)
 {
 
    prect1->left = (decltype(RECT_TYPE1::left)) prect2->left;
@@ -525,7 +525,7 @@ RECT_TYPE1 * copy_rect(RECT_TYPE1 * prect1, const RECT_TYPE2* prect2)
 
 
 template < primitive_point POINT1, primitive_point POINT2 >
-POINT1 * copy_point(POINT1 * ppoint1, const POINT2 * ppoint2)
+POINT1 * copy(POINT1 * ppoint1, const POINT2 * ppoint2)
 {
 
    ppoint1->x = (decltype(POINT1::x))ppoint2->x;
@@ -993,57 +993,6 @@ template < primitive_integral INTEGRAL1, primitive_integral INTEGRAL2, primitive
 inline INTEGRAL_RESULT muldiv(INTEGRAL1 i, INTEGRAL2 iNumerator, INTEGRAL3 iDenominator);
 
 
-inline void copy(POINT_I32* ppointDst, const POINT_I32* ppointSrc) { *ppointDst = *ppointSrc; }
-inline void copy(POINT_I32* ppointDst, const POINT_I64* ppointSrc) { ::copy_point(ppointDst, ppointSrc);}
-inline void copy(POINT_I32* ppointDst, const POINT_F32* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
-inline void copy(POINT_I32* ppointDst, const POINT_F64* ppointSrc) { ::copy_point(ppointDst, ppointSrc ); }
-inline void copy(POINT_I64* ppointDst, const POINT_I32* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
-inline void copy(POINT_I64* ppointDst, const POINT_I64* ppointSrc) { *ppointDst = *ppointSrc; }
-inline void copy(POINT_I64* ppointDst, const POINT_F32* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
-inline void copy(POINT_I64* ppointDst, const POINT_F64* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
-inline void copy(POINT_F32* ppointDst, const POINT_I32* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
-inline void copy(POINT_F32* ppointDst, const POINT_I64* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
-inline void copy(POINT_F32* ppointDst, const POINT_F32* ppointSrc) { *ppointDst = *ppointSrc; }
-inline void copy(POINT_F32* ppointDst, const POINT_F64* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
-inline void copy(POINT_F64* ppointDst, const POINT_I32* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
-inline void copy(POINT_F64* ppointDst, const POINT_I64* ppointSrc) { ::copy_point(ppointDst, ppointSrc); }
-inline void copy(POINT_F64* ppointDst, const POINT_F64* ppointSrc) { *ppointDst=*ppointSrc; }
-
-inline void copy(SIZE_I32* psizeDst, const SIZE_I32* psizeSrc) { *psizeDst = *psizeSrc; }
-inline void copy(SIZE_I32* psizeDst, const SIZE_I64* psizeSrc) { ::copy_size(psizeDst, psizeSrc ); }
-inline void copy(SIZE_I32* psizeDst, const SIZE_F32* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
-inline void copy(SIZE_I32* psizeDst, const SIZE_F64* psizeSrc) { ::copy_size(psizeDst, psizeSrc ); }
-inline void copy(SIZE_I64* psizeDst, const SIZE_I32* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
-inline void copy(SIZE_I64* psizeDst, const SIZE_I64* psizeSrc) { *psizeDst = *psizeSrc; }
-inline void copy(SIZE_I64* psizeDst, const SIZE_F32* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
-inline void copy(SIZE_I64* psizeDst, const SIZE_F64* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
-inline void copy(SIZE_F32* psizeDst, const SIZE_I32* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
-inline void copy(SIZE_F32* psizeDst, const SIZE_I64* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
-inline void copy(SIZE_F32* psizeDst, const SIZE_F32* psizeSrc) { *psizeDst = *psizeSrc; }
-inline void copy(SIZE_F32* psizeDst, const SIZE_F64* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
-inline void copy(SIZE_F64* psizeDst, const SIZE_I32* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
-inline void copy(SIZE_F64* psizeDst, const SIZE_I64* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
-inline void copy(SIZE_F64* psizeDst, const SIZE_F32* psizeSrc) { ::copy_size(psizeDst, psizeSrc); }
-inline void copy(SIZE_F64* psizeDst, const SIZE_F64* psizeSrc) { *psizeDst = *psizeSrc; }
-
-inline void copy(RECTANGLE_I32* prectDst, const RECTANGLE_I32* prectSrc) { *prectDst=*prectSrc; }
-inline void copy(RECTANGLE_I32* prectDst, const RECTANGLE_I64* prectSrc) { ::copy_rect(prectDst, prectSrc ); }
-inline void copy(RECTANGLE_I32* prectDst, const RECTANGLE_F32* prectSrc) { ::copy_rect(prectDst, prectSrc); }
-inline void copy(RECTANGLE_I32* prectDst, const RECTANGLE_F64* prectSrc) { ::copy_rect(prectDst, prectSrc ); }
-inline void copy(RECTANGLE_I64* prectDst, const RECTANGLE_I32* prectSrc) { ::copy_rect(prectDst, prectSrc); }
-inline void copy(RECTANGLE_I64* prectDst, const RECTANGLE_I64* prectSrc) { *prectDst = *prectSrc; }
-inline void copy(RECTANGLE_I64* prectDst, const RECTANGLE_F32* prectSrc) { ::copy_rect(prectDst, prectSrc); }
-inline void copy(RECTANGLE_I64* prectDst, const RECTANGLE_F64* prectSrc) { ::copy_rect(prectDst, prectSrc); }
-inline void copy(RECTANGLE_F32* prectDst, const RECTANGLE_I32* prectSrc) { ::copy_rect(prectDst, prectSrc); }
-inline void copy(RECTANGLE_F32* prectDst, const RECTANGLE_I64* prectSrc) { ::copy_rect(prectDst, prectSrc); }
-inline void copy(RECTANGLE_F32* prectDst, const RECTANGLE_F32* prectSrc) { *prectDst = *prectSrc; }
-inline void copy(RECTANGLE_F32* prectDst, const RECTANGLE_F64* prectSrc) { ::copy_rect(prectDst, prectSrc); }
-inline void copy(RECTANGLE_F64* prectDst, const RECTANGLE_I32* prectSrc) { ::copy_rect(prectDst, prectSrc); }
-inline void copy(RECTANGLE_F64* prectDst, const RECTANGLE_I64* prectSrc) { ::copy_rect(prectDst, prectSrc); }
-inline void copy(RECTANGLE_F64* prectDst, const RECTANGLE_F32* prectSrc) { ::copy_rect(prectDst, prectSrc); }
-inline void copy(RECTANGLE_F64* prectDst, const RECTANGLE_F64* prectSrc) { *prectDst = *prectSrc; }
-
-
 
 
 
@@ -1119,13 +1068,16 @@ inline RECTANGLE_F32* offset(RECTANGLE_F32* prectangle, float x, float y) { retu
 inline bool intersect(RECTANGLE_F32* prectangle, const RECTANGLE_F32* prect1, const RECTANGLE_F32* prect2) { return ::intersect_rect(prectangle, prect1, prect2); }
 inline bool unite(RECTANGLE_F32* prectangle, const RECTANGLE_F32* prect1, const RECTANGLE_F32* prect2) { return ::union_rect(prectangle, prect1, prect2); }
 inline float width(const RECTANGLE_F32* prectangle) { return ::rect_width(prectangle); }
-inline float height(const RECTANGLE_F32* prectangle) { return ::rect_height(prectangle); }
+template < primitive_rectangle RECTANGLE > 
+inline auto height(const RECTANGLE * prectangle) { return ::rect_height(prectangle); }
+template < primitive_rectangle RECTANGLE >
+inline auto height(const RECTANGLE & rectangle) { return ::height(&rectangle); }
 inline float area(const RECTANGLE_F32* prectangle) { return ::rect_area(prectangle); }
 inline bool is_empty(const RECTANGLE_F32* prectangle) { return ::is_rect_empty(prectangle); }
 inline void swap_left_right(RECTANGLE_F32* prectangle) noexcept { ::__swap(prectangle->left, prectangle->right); }
 
 inline float width(const RECTANGLE_F32& rectangle) { return ::width(&rectangle); }
-inline float height(const RECTANGLE_F32& rectangle) { return ::height(&rectangle); }
+//inline float height(const RECTANGLE_F32& rectangle) { return ::height(&rectangle); }
 inline float area(const RECTANGLE_F32& rectangle) { return ::area(&rectangle); }
 inline bool is_empty(const RECTANGLE_F32& rectangle) { return ::is_empty(&rectangle); }
 inline void swap_left_right(RECTANGLE_F32& rectangle) noexcept { ::swap_left_right(&rectangle); }
@@ -1142,13 +1094,13 @@ inline RECTANGLE_F64* offset(RECTANGLE_F64* prectangle, double x, double y) { re
 inline bool intersect(RECTANGLE_F64* prectangle, const RECTANGLE_F64* prect1, const RECTANGLE_F64* prect2) { return ::intersect_rect(prectangle, prect1, prect2); }
 inline bool unite(RECTANGLE_F64 * prectangle, const RECTANGLE_F64 * prect1, const RECTANGLE_F64 * prect2) { return ::union_rect(prectangle, prect1, prect2); }
 inline double width(const RECTANGLE_F64 * prectangle) { return ::rect_width(prectangle); }
-inline double height(const RECTANGLE_F64 * prectangle) { return ::rect_height(prectangle); }
+//inline double height(const RECTANGLE_F64 * prectangle) { return ::rect_height(prectangle); }
 inline double area(const RECTANGLE_F64 * prectangle) { return ::rect_area(prectangle); }
 inline bool is_empty(const RECTANGLE_F64* prectangle) { return ::is_rect_empty(prectangle); }
 inline void swap_left_right(RECTANGLE_F64 * prectangle) noexcept { ::__swap(prectangle->left, prectangle->right); }
 
 inline double width(const RECTANGLE_F64 & rectangle) { return ::width(&rectangle); }
-inline double height(const RECTANGLE_F64& rectangle) { return ::height(&rectangle); }
+//inline double height(const RECTANGLE_F64& rectangle) { return ::height(&rectangle); }
 inline double area(const RECTANGLE_F64 & rectangle) { return ::area(&rectangle); }
 inline bool is_empty(const RECTANGLE_F64 & rectangle) { return ::is_empty(&rectangle); }
 inline void swap_left_right(RECTANGLE_F64 & rectangle) noexcept { ::swap_left_right(&rectangle); }
@@ -1179,11 +1131,6 @@ inline RECTANGLE_F64& operator += (RECTANGLE_F64& rectangle, const ::point_f64& 
 #include "size.h"
 #include "rectangle.h"
 
-
-inline void copy(::rectangle_i32* prectDst, const ::rectangle_i32* prectSrc) { *prectDst=*prectSrc; }
-inline void copy(::rectangle_i64* prectDst, const ::rectangle_i64* prectSrc) { *prectDst=*prectSrc; }
-inline void copy(::rectangle_f32* prectDst, const ::rectangle_f32* prectSrc) { *prectDst=*prectSrc; }
-inline void copy(::rectangle_f64* prectDst, const ::rectangle_f64* prectSrc) { *prectDst=*prectSrc; }
 
 
 
@@ -1278,7 +1225,7 @@ inline auto __pointd(const ::size_f64 & size) noexcept { return ::point_f64(size
 
 #ifdef _UWP
 
-inline ::Windows::Foundation::Rect ScaleRect(::Windows::Foundation::Rect rectangle_i32, double scale)
+inline ::Windows::Foundation::Rect ScaleRect(::Windows::Foundation::Rect rectangle, double scale)
 {
 
    rectangle.X = (float)(rectangle.X*scale);

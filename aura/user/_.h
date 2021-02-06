@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 #include  "apex/_.h"
@@ -60,7 +60,7 @@ namespace user
    class keyboard;
    class copydesk;
    class main_frame;
-   class window_map;
+   //class window_map;
    class plain_edit;
    class message_queue;
 
@@ -81,7 +81,7 @@ namespace user
 
 
 
-CLASS_DECL_AURA ::user::primitive* __user_primitive(oswindow oswindow);
+CLASS_DECL_AURA ::user::primitive* __user_primitive(::windowing::window * pwindow);
 
 
 

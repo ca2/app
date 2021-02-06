@@ -449,32 +449,13 @@ namespace draw2d
    bool path::set_current_point(const ::point_f64 & point)
    {
 
-      m_pointEnd = point_i32;
+      m_pointEnd = point;
 
       m_bHasPoint = true;
 
       return true;
 
    }
-
-
-   //bool path::add_rect(const ::rectangle_i32& rectangle, const ::angle& angleRotationCenter)
-   //{
-
-   //   if (angleRotationCenter == 0)
-   //   {
-
-   //      return add_rect(rectangle);
-
-   //   }
-   //   else
-   //   {
-
-   //      return add_rect(rectangle, rectangle.center(), angleRotationCenter);
-
-   //   }
-
-   //}
 
 
    bool path::add_rect(const ::rectangle_f64& rectangle, const ::angle& angleRotationCenter)
@@ -808,7 +789,7 @@ namespace draw2d
 
       textout.m_strText     = strText;
       textout.m_pfont       = pfont;
-      textout.m_point       = point_i32;
+      textout.m_point       = point;
 
       m_shapea.add_item(ptextout);
 
@@ -824,13 +805,14 @@ namespace draw2d
 
       ::draw_text & drawtext = pdrawtext->m_shape;
 
-      drawtext.m_strText          = strText;
-      drawtext.m_pfont            = pfont;
 
-      drawtext.m_rectangle             = rectangle_i32;
-      drawtext.m_ealign = ealign;
-      drawtext.m_edrawtext   = edrawtext;
+      drawtext.m_strText            = strText;
+      drawtext.m_pfont              = pfont;
 
+
+      drawtext.m_rectangle          = rectangle;
+      drawtext.m_ealign             = ealign;
+      drawtext.m_edrawtext          = edrawtext;
 
       m_shapea.add(pdrawtext);
 
@@ -870,7 +852,7 @@ namespace draw2d
 
       line.m_p1 = m_pointEnd;
 
-      line.m_p2 = point_i32;
+      line.m_p2 = point;
 
       m_shapea.add(pline);
 
@@ -1173,7 +1155,7 @@ namespace draw2d
 
    //   default:
    //   {
-   //      ASSERT(FALSE);
+   //      ASSERT(false);
    //      return false;
    //   }
 
@@ -1352,8 +1334,11 @@ namespace draw2d
 
       default:
       {
-         ASSERT(FALSE);
+
+         ASSERT(false);
+
          return false;
+
       }
 
       };
@@ -1504,7 +1489,7 @@ namespace draw2d
    bool path::_set(::draw2d::graphics* pgraphics, const::arc & arc)
    {
 
-      __throw(interface_only_exception);
+      __throw(interface_only_exception());
 
       return false;
 
@@ -1514,7 +1499,7 @@ namespace draw2d
    //bool path::_set(::draw2d::graphics* pgraphics, const ::line & line)
    //{
 
-   //   __throw(interface_only_exception);
+   //   __throw(interface_only_exception());
 
    //   return false;
 
@@ -1524,7 +1509,7 @@ namespace draw2d
    bool path::_set(::draw2d::graphics* pgraphics, const::lined& line)
    {
 
-      __throw(interface_only_exception);
+      __throw(interface_only_exception());
 
       return false;
 
@@ -1534,7 +1519,7 @@ namespace draw2d
    //bool path::_set(::draw2d::graphics* pgraphics, const::lines& lines)
    //{
 
-   //   __throw(interface_only_exception);
+   //   __throw(interface_only_exception());
 
    //   return false;
 
@@ -1544,7 +1529,7 @@ namespace draw2d
    bool path::_set(::draw2d::graphics* pgraphics, const::linesd& lines)
    {
 
-      __throw(interface_only_exception);
+      __throw(interface_only_exception());
 
       return false;
 
@@ -1554,7 +1539,7 @@ namespace draw2d
    //bool path::_set(::draw2d::graphics* pgraphics, const ::rectangle_i32 & rectangle)
    //{
 
-   //   __throw(interface_only_exception);
+   //   __throw(interface_only_exception());
 
    //   return false;
 
@@ -1564,7 +1549,7 @@ namespace draw2d
    bool path::_set(::draw2d::graphics* pgraphics, const ::rectangle_f64 & rectangle)
    {
 
-      __throw(interface_only_exception);
+      __throw(interface_only_exception());
 
       return false;
 
@@ -1574,7 +1559,7 @@ namespace draw2d
    //bool path::_set(::draw2d::graphics* pgraphics, const ::polygon_i32& polygon_i32)
    //{
 
-   //   __throw(interface_only_exception);
+   //   __throw(interface_only_exception());
 
    //   return false;
 
@@ -1584,7 +1569,7 @@ namespace draw2d
    bool path::_set(::draw2d::graphics* pgraphics, const ::polygon_f64& polygon_f64)
    {
 
-      __throw(interface_only_exception);
+      __throw(interface_only_exception());
 
       return false;
 
@@ -1594,7 +1579,7 @@ namespace draw2d
    bool path::_set(::draw2d::graphics* pgraphics, const ::text_out & textout)
    {
 
-      __throw(interface_only_exception);
+      __throw(interface_only_exception());
 
       return false;
 
@@ -1604,7 +1589,7 @@ namespace draw2d
    bool path::_set(::draw2d::graphics* pgraphics, const ::draw_text& drawtext)
    {
 
-      __throw(interface_only_exception);
+      __throw(interface_only_exception());
 
       return false;
 
@@ -1676,7 +1661,7 @@ namespace draw2d
 
    //   rectRect.deflate(0, 0, 1, 1);
 
-   //   ::size_i32 size_i32(iDiameter, iDiameter);
+   //   ::size_i32 size(iDiameter, iDiameter);
 
    //   ::rectangle_i32 rectCorner(rectRect);
 
@@ -1984,7 +1969,7 @@ namespace draw2d
    bool path::add_arc_label(const ::rectangle_f64 & rectParam)
    {
 
-      ::rectangle_f64 rectangle_i32;
+      ::rectangle_f64 rectangle;
       ::rectangle_f64 r2;
 
       {

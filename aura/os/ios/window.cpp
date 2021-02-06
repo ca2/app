@@ -292,11 +292,11 @@ iptr oswindow_data::set_window_long_ptr(iptr iIndex, iptr iNewLong)
 //{
 //
 //   //ifGetCapture().display() == nullptr)
-//   // return FALSE;
+//   // return false;
 //
-//   //  int_bool bRet = XUngrabPointer(GetCapture().display(), CurrentTime) != FALSE;
+//   //  int_bool bRet = XUngrabPointer(GetCapture().display(), CurrentTime) != false;
 //
-//   int_bool bRet = TRUE;
+//   int_bool bRet = true;
 //
 //   if(bRet)
 //      g_oswindowCapture = nullptr;

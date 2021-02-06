@@ -343,7 +343,7 @@ template < typename POINT_TYPE >
 void polygon_base < POINT_TYPE >::set_rect(const RECT_TYPE & rectangle)
 {
 
-   m_rectBounding = rectangle_i32;
+   m_rectBounding = rectangle;
 
    this->set_size(4);
 

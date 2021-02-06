@@ -91,22 +91,22 @@ namespace experience
                if (!m_bFullScreenOnMaximize)
                {
 
-                  if (pkey->m_ekey == ::user::key_alt || pkey->m_ekey == ::user::key_lalt || pkey->m_ekey == ::user::key_ralt)
+                  if (pkey->m_ekey == ::user::e_key_alt || pkey->m_ekey == ::user::e_key_lalt || pkey->m_ekey == ::user::e_key_ralt)
                   {
 
                      m_bFullScreenAlt = false;
 
                   }
-                  else if (pkey->m_ekey == ::user::key_control || pkey->m_ekey == ::user::key_lcontrol || pkey->m_ekey == ::user::key_rcontrol)
+                  else if (pkey->m_ekey == ::user::e_key_control || pkey->m_ekey == ::user::e_key_lcontrol || pkey->m_ekey == ::user::e_key_rcontrol)
                   {
 
                      m_bFullScreenCtrl = false;
 
                   }
-                  else if (pkey->m_ekey == ::user::key_return)
+                  else if (pkey->m_ekey == ::user::e_key_return)
                   {
 
-                     if (psession->is_key_pressed(::user::key_control) && psession->is_key_pressed(::user::key_alt))
+                     if (psession->is_key_pressed(::user::e_key_control) && psession->is_key_pressed(::user::e_key_alt))
                      {
 
                         m_bFullScreenReturn = true;
@@ -140,16 +140,16 @@ namespace experience
             else if (pmessage->m_id == e_message_key_up || pmessage->m_id == e_message_sys_key_up)
             {
 
-               if (pkey->m_ekey == ::user::key_return)
+               if (pkey->m_ekey == ::user::e_key_return)
                {
 
                }
-               else if (pkey->m_ekey == ::user::key_alt || pkey->m_ekey == ::user::key_lalt || pkey->m_ekey == ::user::key_ralt)
+               else if (pkey->m_ekey == ::user::e_key_alt || pkey->m_ekey == ::user::e_key_lalt || pkey->m_ekey == ::user::e_key_ralt)
                {
 
                   auto psession = Session;
 
-                  if (layout().is_full_screen() && psession->is_key_pressed(::user::key_control) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
+                  if (layout().is_full_screen() && psession->is_key_pressed(::user::e_key_control) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
                   {
 
                      pkey->m_bRet = true;
@@ -175,10 +175,10 @@ namespace experience
                   m_bFullScreenAlt = false;
 
                }
-               else if (pkey->m_ekey == ::user::key_control || pkey->m_ekey == ::user::key_lcontrol || pkey->m_ekey == ::user::key_rcontrol)
+               else if (pkey->m_ekey == ::user::e_key_control || pkey->m_ekey == ::user::e_key_lcontrol || pkey->m_ekey == ::user::e_key_rcontrol)
                {
 
-                  if (layout().is_full_screen() && psession->is_key_pressed(::user::key_alt) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
+                  if (layout().is_full_screen() && psession->is_key_pressed(::user::e_key_alt) && !m_bFullScreenAlt && !m_bFullScreenCtrl)
                   {
 
                      pkey->m_bRet = true;
@@ -278,7 +278,7 @@ namespace experience
          else if(_001GetTopLeftWeightedOccludedOpaqueRate()  > 0.025)
          {
 
-            order(::zorder_top);
+            order(::e_zorder_top);
 
             display(e_display_default, e_activation_set_foreground);
 
@@ -1936,7 +1936,7 @@ namespace experience
          if (is_docking_appearance(edisplay))
          {
 
-            *prectangle = rectangle_i32;
+            *prectangle = rectangle;
 
          }
          else if (edisplay == e_display_zoomed)

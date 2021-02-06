@@ -27,7 +27,7 @@ namespace datetime
          virtual ::e_status initialize(::layered * pobjectContext) override;
 
 
-         void GetRect(LPRECT32 lprect, enum enum_element eelement);
+         void GetRect(RECTANGLE_I32 * lprect, enum enum_element eelement);
 
          void _001OnDraw(::draw2d::graphics* pgraphics);
 

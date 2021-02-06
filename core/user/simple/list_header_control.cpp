@@ -91,7 +91,7 @@ void simple_list_header_control::_001OnEndDrag(::message::message * pmessage)
 
    get_parent()->send_message(::user::list::MESSAGE_ENDCOLUMNHEADERDRAG);
 
-   pnotify->m_lresult = FALSE;
+   pnotify->m_lresult = false;
 
    pnotify->m_bRet = false;
 

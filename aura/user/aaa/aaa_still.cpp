@@ -783,7 +783,7 @@ namespace user
 
       ::user::e_key iKey = pkey->m_ekey;
 
-      if (iKey == ::user::key_return || iKey == ::user::key_space)
+      if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {
 
          ::user::control_event ev;

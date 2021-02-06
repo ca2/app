@@ -11,10 +11,10 @@ class simple_tool_command : public ::user::command        // class private to th
 public: // re-implementations only
 
    simple_tool_command(::layered * pobjectContext);
-   virtual void enable(bool bOn = TRUE, const ::action_context & context = ::e_source_system);
+   virtual void enable(bool bOn = true, const ::action_context & context = ::e_source_system);
    //   virtual void _001SetCheck(bool bCheck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
    virtual void _001SetCheck(enum_check echeck, const ::action_context & context = ::e_source_system);   // 0, 1 or 2 (indeterminate)
-//   virtual void SetRadio(bool bOn = TRUE, const ::action_context & context = ::e_source_system);
+//   virtual void SetRadio(bool bOn = true, const ::action_context & context = ::e_source_system);
    virtual void SetText(const char * pszText, const ::action_context & context = ::e_source_system);
 
 };
@@ -143,7 +143,7 @@ void simple_toolbar::install_message_routing(::channel * pchannel)
 //   if (!::user::interaction::create_window(nullptr, nullptr, uStyle, puiParent, nID))
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
@@ -785,7 +785,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                pgraphics->set(brush);
 
-               pgraphics->rectangle_i32(rectItem);
+               pgraphics->rectangle(rectItem);
 
             }
 
@@ -794,7 +794,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                ::rectangle_i32 rectangle;
 
-               _001GetElementRect(iItem, rectangle_i32, ::user::e_element_image, estate);
+               _001GetElementRect(iItem, rectangle, ::user::e_element_image, estate);
 
                System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 0.85);
 
@@ -804,7 +804,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                ::rectangle_i32 rectangle;
 
-               _001GetElementRect(iItem, rectangle_i32, ::user::e_element_image, estate);
+               _001GetElementRect(iItem, rectangle, ::user::e_element_image, estate);
 
                pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
 
@@ -833,7 +833,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             pgraphics->set(brush);
 
-            pgraphics->rectangle_i32(rectItem);
+            pgraphics->rectangle(rectItem);
 
          }
 
@@ -842,7 +842,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             ::rectangle_i32 rectangle;
 
-            _001GetElementRect(iItem, rectangle_i32, ::user::e_element_image, estate);
+            _001GetElementRect(iItem, rectangle, ::user::e_element_image, estate);
 
             System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.size(), item.m_pimage->g(), nullptr, 1.0);
 
@@ -879,7 +879,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
             ::rectangle_i32 rectangle;
 
-            if(_001GetElementRect(iItem, rectangle_i32, ::user::e_element_image, estate))
+            if(_001GetElementRect(iItem, rectangle, ::user::e_element_image, estate))
             {
 
 //            if(rectangle.width() > 10000)
@@ -887,7 +887,7 @@ void simple_toolbar::_001DrawSimpleToolbarItem(::draw2d::graphics_pointer & pgra
 
                //           output_debug_string("width > 10000");
 
-               //         _001GetElementRect(iItem, rectangle_i32, element_image);
+               //         _001GetElementRect(iItem, rectangle, element_image);
 
                //    }
 
@@ -1046,7 +1046,7 @@ bool simple_toolbar::_001GetElementRect(index iItem, RECTANGLE_I32 * prectangle,
 
    }
       
-   *prectangle = rectangle_i32;
+   *prectangle = rectangle;
 
    return true;
 
@@ -1102,7 +1102,7 @@ HINSTANCE hInstImageWell = ::aura::FindResourceHandle(pszResourceName, RT_BITMAP
 HRSRC hRsrcImageWell = ::FindResource(hInstImageWell, pszResourceName, RT_BITMAP);
 
 if (hRsrcImageWell == nullptr)
-return FALSE;
+return false;
 
 // load the bitmap
 HBITMAP hbmImageWell;
@@ -1113,7 +1113,7 @@ hbmImageWell = imaging::LoadSysColorBitmap(pgraphics, hInstImageWell, hRsrcImage
 
 // tell common control toolbar about the new bitmap
 //   if (!AddReplaceBitmap(hbmImageWell))
-//      return FALSE;
+//      return false;
 
 // remember the resource handles so the bitmap can be recolored if necessary
 m_hInstImageWell = hInstImageWell;
@@ -1137,7 +1137,7 @@ _001OnImageListAttrib();
 */
 
 /*
-return TRUE;
+return true;
 }
 */
 
@@ -1612,7 +1612,7 @@ simple_tool_command::simple_tool_command(::layered * pobjectContext) :
 void simple_tool_command::enable(bool bEnable, const ::action_context & context)
 {
 
-   m_bEnableChanged = TRUE;
+   m_bEnableChanged = true;
 
    __pointer(simple_toolbar) pToolBar = m_puiOther;
 
@@ -1750,7 +1750,7 @@ void simple_tool_command::SetText(const char *, const ::action_context & context
 //
 //      pitem->m_fsState = (byte)HIWORD(nStyle);
 //
-//      m_bDelayedButtonLayout = TRUE;
+//      m_bDelayedButtonLayout = true;
 //
 //   }
 //
@@ -1771,7 +1771,7 @@ void simple_toolbar::_001OnNcCalcSize(::message::message * pmessage)
 
    auto pgraphics = ::draw2d::create_memory_graphics();
 
-   ::user::control_bar::CalcInsideRect(pgraphics, rectangle_i32, bHorz);
+   ::user::control_bar::CalcInsideRect(pgraphics, rectangle, bHorz);
 
    // adjust non-client area for border space
    pnccalcsize->m_pparams->rgrc[0].left += rectangle.left;
@@ -1895,7 +1895,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
       }
 
-      bool bFound = FALSE;
+      bool bFound = false;
 
       if (x + dx > nWidth - rectBorder.right)
       {
@@ -1911,7 +1911,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
                   !(m_itema[j]->m_estate & e_toolbar_item_state_hidden))
             {
 
-               bFound = TRUE;
+               bFound = true;
 
                i = j;
 
@@ -1946,7 +1946,7 @@ index simple_toolbar::WrapToolBar(::draw2d::graphics_pointer & pgraphics, index 
 
                }
 
-               bFound = TRUE;
+               bFound = true;
 
                i = j;
 
@@ -2187,7 +2187,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
 
             ::rectangle_i32 rectangle;
 
-            CalcInsideRect(pgraphics, rectangle_i32, (dwMode & LM_HORZ) != 0);
+            CalcInsideRect(pgraphics, rectangle, (dwMode & LM_HORZ) != 0);
 
             bool bVert = (dwMode & LM_LENGTHY) != 0;
 
@@ -2222,7 +2222,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
 
          bool bIsDelayed = m_bDelayedButtonLayout;
 
-         m_bDelayedButtonLayout = FALSE;
+         m_bDelayedButtonLayout = false;
 
          index i;
 
@@ -2261,7 +2261,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
 
                   _001ClientToScreen(rectangle);
 
-                  pControl[nControlCount].rectOldPos = rectangle_i32;
+                  pControl[nControlCount].rectOldPos = rectangle;
 
                   nControlCount++;
 
@@ -2386,7 +2386,7 @@ size_i32 simple_toolbar::CalcLayout(::draw2d::graphics_pointer & pgraphics, u32 
 
       ::rectangle_i32 rectangle;
 
-      CalcInsideRect(pgraphics, rectangle_i32, (dwMode & LM_HORZ) != 0);
+      CalcInsideRect(pgraphics, rectangle, (dwMode & LM_HORZ) != 0);
 
       sizeResult.cy -= rectangle.height();
 
@@ -2451,7 +2451,7 @@ void simple_toolbar::OnBarStyleChange(u32 dwOldStyle, u32 dwNewStyle)
 
    }
 
-   m_bDelayedButtonLayout = TRUE;
+   m_bDelayedButtonLayout = true;
 
 }
 

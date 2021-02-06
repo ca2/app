@@ -18,16 +18,6 @@
 #endif
 
 
-template <typename T>
-inline void SafeRelease(T *&point)
-{
-   if(nullptr != point_i32)
-   {
-      point_i32->Release();
-      point = nullptr;
-   }
-}
-
 
 #define AC_SRC_ALPHA                0x01
 
@@ -149,88 +139,88 @@ i32                 cy)
 }
 
 
-void imaging::GetMultiLineTextExtent(HDC hDC,string_array * pArray,LPSIZE32 pSize)
+//void imaging::GetMultiLineTextExtent(HDC hDC,string_array * pArray,LPSIZE32 pSize)
+//
+//{
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   TEXTMETRICW tm;
+//
+//   GetTextMetricsW(hDC,&tm);
+//
+//   index nIndex;
+//   ::count nSize;
+//
+//   nSize = pArray->get_size();
+//   pSize->cx = 0;
+//
+//   ::size_i32 size;
+//   for(nIndex = 0; nIndex < nSize; nIndex++)
+//   {
+//      const string &str = pArray->get_at(nIndex);
+//      wstring wstr(str);
+//      GetTextExtentPoint32W(hDC,wstr,(i32)wstr.get_length(),&size);
+//      if(size.cx > pSize->cx)
+//
+//         pSize->cx = size.cx;
+//
+//   }
+//   //   pSize->cy =
+//
+//   //      (tm.tmHeight +
+//   //      tm.tmExternalLeading +
+//   //      tm.tmInternalLeading) *
+//   nSize;
+//   pSize->cy = (::i32)((tm.tmHeight + tm.tmExternalLeading) * nSize);
+//
+//
+//#else
+//
+//   __throw(todo());
+//
+//#endif
+//
+//}
+//
 
-{
-
-#ifdef WINDOWS_DESKTOP
-
-   TEXTMETRICW tm;
-
-   GetTextMetricsW(hDC,&tm);
-
-   index nIndex;
-   ::count nSize;
-
-   nSize = pArray->get_size();
-   pSize->cx = 0;
-
-   ::size_i32 size;
-   for(nIndex = 0; nIndex < nSize; nIndex++)
-   {
-      const string &str = pArray->get_at(nIndex);
-      wstring wstr(str);
-      GetTextExtentPoint32W(hDC,wstr,(i32)wstr.get_length(),&size);
-      if(size.cx > pSize->cx)
-
-         pSize->cx = size.cx;
-
-   }
-   //   pSize->cy =
-
-   //      (tm.tmHeight +
-   //      tm.tmExternalLeading +
-   //      tm.tmInternalLeading) *
-   nSize;
-   pSize->cy = (::i32)((tm.tmHeight + tm.tmExternalLeading) * nSize);
-
-
-#else
-
-   __throw(todo());
-
-#endif
-
-}
-
-
-void imaging::DrawMultiLineText(HDC hDC,string_array * pArray)
-{
-
-#ifdef WINDOWS_DESKTOP
-
-   TEXTMETRICW tm;
-
-   GetTextMetricsW(hDC,&tm);
-
-   index nIndex;
-   ::count nSize;
-
-   nSize = pArray->get_size();
-
-   i32 yPos = 0;
-
-   for(nIndex = 0; nIndex < nSize; nIndex++)
-   {
-
-      const string &str = pArray->get_at(nIndex);
-      wstring wstr(str);
-      TextOutW(hDC,0,yPos,wstr,(i32)wstr.get_length());
-
-      yPos +=
-      tm.tmHeight +
-      tm.tmExternalLeading +
-      tm.tmInternalLeading;
-
-   }
-
-#else
-
-   __throw(todo());
-
-#endif
-
-}
+//void imaging::DrawMultiLineText(HDC hDC,string_array * pArray)
+//{
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   TEXTMETRICW tm;
+//
+//   GetTextMetricsW(hDC,&tm);
+//
+//   index nIndex;
+//   ::count nSize;
+//
+//   nSize = pArray->get_size();
+//
+//   i32 yPos = 0;
+//
+//   for(nIndex = 0; nIndex < nSize; nIndex++)
+//   {
+//
+//      const string &str = pArray->get_at(nIndex);
+//      wstring wstr(str);
+//      TextOutW(hDC,0,yPos,wstr,(i32)wstr.get_length());
+//
+//      yPos +=
+//      tm.tmHeight +
+//      tm.tmExternalLeading +
+//      tm.tmInternalLeading;
+//
+//   }
+//
+//#else
+//
+//   __throw(todo());
+//
+//#endif
+//
+//}
 
 //bool imaging::GrayVRCP(
 //   ::draw2d::graphics * pgraphics,
@@ -247,7 +237,7 @@ void imaging::DrawMultiLineText(HDC hDC,string_array * pArray)
 //   UNREFERENCED_PARAMETER(cy);
 //   UNREFERENCED_PARAMETER(crAlpha);
 //   ::exception::throw_not_implemented();
-//   ASSERT(FALSE);
+//   ASSERT(false);
 //
 //   return 0;
 //
@@ -2069,7 +2059,7 @@ bool imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point_i32 
 bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::rectangle_i64 & rectangle, color32_t cr, byte alpha)
 {
 
-   return color_blend(pgraphics,(const ::rectangle_i32 &) rectangle_i32,cr,alpha);
+   return color_blend(pgraphics,(const ::rectangle_i32 &)rectangle,cr,alpha);
 
 }
 
@@ -2141,7 +2131,7 @@ bool imaging::CreateBitmap(::draw2d::graphics * pgraphics, ::draw2d::graphics * 
    if(!pgraphics->set(pbitmap))
    {
 
-      if(!pbitmap->CreateCompatibleBitmap(pdcScreen,cxout,cyout))
+      if(!pbitmap->CreateCompatibleBitmap(pdcScreen, cxout, cyout))
       {
 
          return false;
@@ -2160,7 +2150,7 @@ bool imaging::CreateBitmap(::draw2d::graphics * pgraphics, ::draw2d::graphics * 
    if(bCreate)
    {
 
-      pgraphics->fill_rect(rectangle_i32(0,0,cxout,cyout),RGB(0,0,0));
+      pgraphics->fill_rect(rectangle_i32(0,0,cxout,cyout), 0);
 
    }
 
@@ -2187,37 +2177,55 @@ bool imaging::CreateBitmap(::draw2d::graphics *pgraphics,::draw2d::bitmap * pitm
 
       if(size.cx >= cx && size.cy >= cy)
       {
+
          bCreate = false;
+
       }
 
    }
+
    if(bCreate)
    {
-      if(!pitmap->CreateCompatibleBitmap(pgraphics,cxout,cyout))
 
+      if(!pitmap->CreateCompatibleBitmap(pgraphics,cxout,cyout))
       {
+
          return false;
+
       }
+
    }
+
    if(!pgraphics->set(pitmap))
-
    {
+
       if(!pitmap->CreateCompatibleBitmap(pgraphics,cxout,cyout))
-
       {
+
          return false;
+
       }
+
       if(!pgraphics->set(pitmap))
-
       {
+
          return false;
+
       }
+
    }
+
    if(bCreate)
    {
-      pgraphics->fill_rect(rectangle_i32(0,0,cxout,cyout),RGB(255,196,255));
+
+      ::color color(255, 196, 255);
+
+      pgraphics->fill_rect(rectangle_i32(0,0,cxout,cyout), color);
+
    }
+
    return true;
+
 }
 
 
@@ -4119,7 +4127,7 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & po
 */
 
 
-bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & pointParam,const ::size_i32 & size,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlphaParam,double dBlend)
+bool imaging::color_blend(::draw2d::graphics * pgraphics, const ::point_i32 & pointParam,const ::size_i32 & size,::draw2d::graphics * pdcColorAlpha,const ::point_i32 & pointAlphaParam,double dBlend)
 {
 
    ::point_i32 point(pointParam);
@@ -4142,7 +4150,7 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & poi
    if (dBlend >= 1.0)
    {
 
-      return pgraphics->draw(::rectangle_f64(point, size), pdcColorAlpha, pointAlpha) != FALSE;
+      return pgraphics->draw(::rectangle_f64(point, size), pdcColorAlpha, pointAlpha) != false;
 
    }
    else
@@ -4163,7 +4171,7 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & poi
 
       pimage->channel_multiply(dBlend, ::color::channel_alpha);
 
-      return pgraphics->draw(::rectangle_f64(point, size), pimage) != FALSE;
+      return pgraphics->draw(::rectangle_f64(point, size), pimage) != false;
 
    }
 
@@ -4410,7 +4418,7 @@ i32 w3)
 
 //      if(!pdcDst->BitBlt(pointDst.x,pointDst.y,size.cx,size.cy,graphicsMem,pointSrc.x,pointSrc.y))
 //      {
-//         ASSERT(FALSE);
+//         ASSERT(false);
 //      }
 //      graphicsMem->set(pmpMemOld);
 
@@ -4589,7 +4597,7 @@ i32 w3)
 
 //      if(!pdcDst->BitBlt(pointDst.x,pointDst.y,size.cx,size.cy,graphicsMem,pointSrc.x,pointSrc.y))
 //      {
-//         ASSERT(FALSE);
+//         ASSERT(false);
 //      }
 //      graphicsMem->set(pmpMemOld);
 
@@ -5672,7 +5680,7 @@ breakFilter2:
 
 //      if(!pdcDst->BitBlt(xDest,yDest,cx,cy,graphicsMem,xSrc,ySrc))
 //      {
-//         ASSERT(FALSE);
+//         ASSERT(false);
 //      }
 //      graphicsMem->set(pmpMemOld);
 
@@ -6252,7 +6260,7 @@ i32      iSize)
 
 //      if(!pdcDst->BitBlt(xDest,yDest,cx,cy,graphicsMem,xDest,yDest))
 //      {
-//         ASSERT(FALSE);
+//         ASSERT(false);
 //      }
 //      graphicsMem->set(pmpMemOld);
 
@@ -6878,7 +6886,7 @@ void imaging::AlphaTextOut(::draw2d::graphics *pgraphics,i32 left,i32 top,const 
 #if !defined(WINDOWS_DESKTOP) && !defined(LINUX)
 
 
-hcursor context_image::CreateAlphaCursor(oswindow oswindow, const image * pimage, int xHotSpot, int yHotSpot)
+hcursor context_image::CreateAlphaCursor(::windowing::window * pwindow, const image * pimage, int xHotSpot, int yHotSpot)
 {
 
    return 0;
@@ -6886,7 +6894,7 @@ hcursor context_image::CreateAlphaCursor(oswindow oswindow, const image * pimage
 }
 
 
-//hcursor context_image::load_default_cursor(e_cursor ecursor)
+//hcursor context_image::load_default_cursor(enum_cursor ecursor)
 //{
 //
 //   return NULL;
@@ -6912,7 +6920,7 @@ void context_image::set_cursor_image(const image * pimage, int xHotSpot, int yHo
 
    sync_lock sl(&m_mutexWork);
 
-   if (m_imageaWork.isEmpty())
+   if (m_imageaWork.is_empty())
    {
 
       sl.unlock();

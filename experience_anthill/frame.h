@@ -86,7 +86,7 @@ namespace experience
 
                virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
-               virtual bool get_element_rect(LPRECT32 lprect, enum_element eelement) override;
+               virtual bool get_element_rect(RECTANGLE_I32 * lprect, enum_element eelement) override;
 
                virtual bool hit_test(const POINT_I32 &point, enum_element &eelementParam);
 

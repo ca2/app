@@ -52,7 +52,7 @@ namespace account
 
       virtual ~account();
 
-      virtual string show_auth_window(LPRECT32 lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
+      virtual string show_auth_window(RECTANGLE_I32 * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer);
 
       virtual bool prepare_window(bool bShow);
 
@@ -370,7 +370,7 @@ namespace account
    {
    }
 
-   string account::show_auth_window(LPRECT32 lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
+   string account::show_auth_window(RECTANGLE_I32 * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strRequestingServer)
    {
 
       if (lprect == nullptr)
@@ -474,7 +474,7 @@ namespace account
 
       if (!m_oswindow)
       {
-         return FALSE;
+         return false;
       }
 
       m_login.on_layout(::draw2d::graphics_pointer & pgraphics);
@@ -485,7 +485,7 @@ namespace account
 
 
 
-      return TRUE;
+      return true;
 
    }
 
@@ -787,7 +787,7 @@ namespace account
 
    account account::s_account;
 
-   string CLASS_DECL_BOOT show_auth_window(LPRECT32 lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
+   string CLASS_DECL_BOOT show_auth_window(RECTANGLE_I32 * lprect, string & strUsername, string & strSessId, string & strServerId, string & strLoginUrl, string strFontopusServer)
    {
 
       return ::account::account::s_account.show_auth_window(lprect, strUsername, strSessId, strServerId, strLoginUrl, strFontopusServer);

@@ -522,7 +522,7 @@ namespace userfs
 
       UNREFERENCED_PARAMETER(item);
       UNREFERENCED_PARAMETER(context);
-      ASSERT(FALSE);
+      ASSERT(false);
 
    }
 
@@ -532,7 +532,7 @@ namespace userfs
 
    //   UNREFERENCED_PARAMETER(item);
    //   UNREFERENCED_PARAMETER(context);
-   //   ASSERT(FALSE);
+   //   ASSERT(false);
 
    //}
 
@@ -540,7 +540,7 @@ namespace userfs
    {
       UNREFERENCED_PARAMETER(itema);
       UNREFERENCED_PARAMETER(context);
-      ASSERT(FALSE);
+      ASSERT(false);
    }
 
    void list::_001OnInitializeForm(::user::interaction * pinteraction)

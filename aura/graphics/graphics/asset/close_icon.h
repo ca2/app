@@ -16,7 +16,7 @@ namespace user
       if (!pitem->m_ppath)
       {
 
-         ::rectangle_f64 rectangle_i32(pitem->m_rectangle);
+         ::rectangle_f64 rectangle(pitem->m_rectangle);
 
          double dMinimumDimension = rectangle.minimum_dimension();
 

@@ -232,10 +232,10 @@ namespace user
       inline void request_ready() { m_bRequestReady = true; }
 
 
-      inline void order_top() { order(zorder_top); }
-      inline void order_front() { order(zorder_top); }
-      inline void order_top_most() { order(zorder_top_most); }
-      inline void order_bottom() { order(zorder_bottom); }
+      inline void order_top() { order(e_zorder_top); }
+      inline void order_front() { order(e_zorder_top); }
+      inline void order_top_most() { order(e_zorder_top_most); }
+      inline void order_bottom() { order(e_zorder_bottom); }
 
 
       inline bool has_appearance(eappearance eappearance) { return ui_state().m_eappearance & eappearance; }

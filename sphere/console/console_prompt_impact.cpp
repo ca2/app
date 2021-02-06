@@ -119,7 +119,7 @@ namespace console
 
       ::message::key & key = *pkey;
 
-      if(key.m_ekey == ::user::key_escape)
+      if(key.m_ekey == ::user::e_key_escape)
       {
 
          GetTypedParent < prompt_frame > ()->hide();
@@ -129,21 +129,21 @@ namespace console
          clear();
 
       }
-      else if(key.m_ekey == ::user::key_return)
+      else if(key.m_ekey == ::user::e_key_return)
       {
 
          interpret_command();
 
       }
-      else if(key.m_ekey == ::user::key_shift || key.m_ekey == ::user::key_lshift || key.m_ekey == ::user::key_rshift
-              || key.m_ekey == ::user::key_control || key.m_ekey == ::user::key_lcontrol || key.m_ekey == ::user::key_rcontrol
-              || key.m_ekey == ::user::key_alt || key.m_ekey == ::user::key_lalt || key.m_ekey == ::user::key_ralt
+      else if(key.m_ekey == ::user::e_key_shift || key.m_ekey == ::user::e_key_lshift || key.m_ekey == ::user::e_key_rshift
+              || key.m_ekey == ::user::e_key_control || key.m_ekey == ::user::e_key_lcontrol || key.m_ekey == ::user::e_key_rcontrol
+              || key.m_ekey == ::user::e_key_alt || key.m_ekey == ::user::e_key_lalt || key.m_ekey == ::user::e_key_ralt
              )
       {
 
 
       }
-      else if(pkey->m_ekey == ::user::key_back)
+      else if(pkey->m_ekey == ::user::e_key_back)
       {
 
          if(m_iCursor <= 0)
@@ -165,7 +165,7 @@ namespace console
          return;
 
       }
-      else if(pkey->m_ekey == ::user::key_delete)
+      else if(pkey->m_ekey == ::user::e_key_delete)
       {
 
          if(m_iCursor >= m_strCommand.utf8_get_length())
@@ -185,7 +185,7 @@ namespace console
          return;
 
       }
-      else if(pkey->m_ekey == ::user::key_left)
+      else if(pkey->m_ekey == ::user::e_key_left)
       {
 
          if(m_iCursor <= 0)
@@ -196,7 +196,7 @@ namespace console
          return;
 
       }
-      else if(pkey->m_ekey == ::user::key_right)
+      else if(pkey->m_ekey == ::user::e_key_right)
       {
 
          if(m_iCursor >= m_strCommand.utf8_get_length())
@@ -212,7 +212,7 @@ namespace console
 
          string str;
 
-         if(pkey->m_ekey == ::user::key_space)
+         if(pkey->m_ekey == ::user::e_key_space)
          {
 
             str = " ";

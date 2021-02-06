@@ -283,12 +283,12 @@ namespace coreimage_imaging
          bConv = false;
       }
 
-      bOk = FreeImage_SaveToMemory(eformat, pfi8, pfm1, iFreeImageSave) != FALSE;
+      bOk = FreeImage_SaveToMemory(eformat, pfi8, pfm1, iFreeImageSave) != false;
 
       byte * pbData = nullptr;
       ::u32 dwSize = 0;
       if (bOk)
-         bOk = FreeImage_AcquireMemory(pfm1, &pbData, &dwSize) != FALSE;
+         bOk = FreeImage_AcquireMemory(pfm1, &pbData, &dwSize) != false;
       if (bOk)
       {
          try
@@ -311,7 +311,7 @@ namespace coreimage_imaging
 
 
 
-      return bOk != FALSE;
+      return bOk != false;
 
       //#endif
 

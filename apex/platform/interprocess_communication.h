@@ -20,41 +20,41 @@ namespace interprocess_communication
    {
    public:
 
-#ifdef _UWP
-
-      //i32              m_iSerial;
-
-#elif defined(WINDOWS_DESKTOP)
-
-
-      oswindow             m_oswindow;
-
-
-#elif defined(APPLEOS)
-
-
-      CFMessagePortRef     m_port;
-
-
-#elif !defined(_UWP)
-
-      key_t                m_key;
-      int                  m_iQueue;
-
-      struct data_struct
-      {
-
-
-         long     mtype;
-         long     request;
-         int      size;
-         char     data[0];
-
-
-      };
-
-
-#endif
+//#ifdef _UWP
+//
+//      //i32              m_iSerial;
+//
+//#elif defined(WINDOWS_DESKTOP)
+//
+//
+//      HWND              m_hwnd;
+//
+//
+//#elif defined(APPLEOS)
+//
+//
+//      CFMessagePortRef     m_port;
+//
+//
+//#elif !defined(_UWP)
+//
+//      key_t                m_key;
+//      int                  m_iQueue;
+//
+//      struct data_struct
+//      {
+//
+//
+//         long     mtype;
+//         long     request;
+//         int      size;
+//         char     data[0];
+//
+//
+//      };
+//
+//
+//#endif
 
 
       string   m_strBaseChannel;

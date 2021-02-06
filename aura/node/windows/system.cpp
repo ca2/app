@@ -10,14 +10,36 @@ namespace aura
    ::e_status system::message_box(const char * pszMessage, const char * pszTitle, const ::e_message_box & emessagebox, const promise::process & process)
    {
 
-      return os_message_box(pszMessage, pszTitle, emessagebox, process);
+      auto psession = Session;
+
+      auto puser = psession->m_puser;
+
+      auto pwindowing = puser->m_pwindowing;
+
+      auto ret = pwindowing->message_box(pszMessage, pszTitle, emessagebox);
+
+      process(ret);
+
+      return ::success;
 
    }
+
 
    ::e_status system::message_box_timeout(const char * pszMessage, const char * pszTitle, const ::duration & durationTimeout, const ::e_message_box & emessagebox, const promise::process & process)
    {
 
-      return os_message_box(pszMessage, pszTitle, emessagebox, process);
+      auto psession = Session;
+
+      auto puser = psession->m_puser;
+
+      auto pwindowing = puser->m_pwindowing;
+
+      auto ret = pwindowing->message_box(pszMessage, pszTitle, emessagebox);
+
+      process(ret);
+
+      return ::success;
+
 
    }
 

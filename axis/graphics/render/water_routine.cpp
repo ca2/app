@@ -15,7 +15,7 @@ namespace draw2d
       m_iWidth = 0;
       m_iHeight = 0;
 
-      m_bDrawWithLight = TRUE;
+      m_bDrawWithLight = true;
       m_iLightModifier = 1;
       m_iHpage = 0;
       m_density = 5;
@@ -69,7 +69,7 @@ namespace draw2d
    void water_routine::to(color32_t * pSrcImage, color32_t * pTargetImage)
    {
       // Yes they have to be the same size...(for now)
-      if(m_bDrawWithLight == FALSE)
+      if(m_bDrawWithLight == false)
       {
          DrawWaterNoLight(m_iHpage,pSrcImage,pTargetImage);
       }

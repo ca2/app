@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace draw2d
@@ -13,13 +13,11 @@ namespace draw2d
 
       static double g_dEmboss;
 
-      bool           m_bSettingCursorMatter;
 
       i32_map < __pointer(memory) > m_alpha_spread__24CC_filterMap;
       i32_map < __pointer(memory) > m_alpha_spread__32CC_filterMap;
 
 
-      __pointer(cursor_set)                                    m_pcursorset;
       __pointer(class ::draw2d::api)                           m_papi;
       __pointer(class font_department)                         m_pfontdepartment;
 
@@ -58,9 +56,6 @@ namespace draw2d
 
       class font_department & fonts();
 
-
-      __pointer(cursor) get_cursor(e_cursor ecursor);
-      virtual bool set_cursor_set_from_matter(const ::file::path& pathDir);
 
 
       virtual void term_instance() override;
@@ -101,7 +96,7 @@ namespace draw2d
 
       virtual bool channel_spread__32CC(::image * pimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius, color32_t crSpreadSetColor);
 
-      virtual void enum_draw2d_fonts(::draw2d::font_enum_item_array& itema);
+      //virtual void enum_draw2d_fonts(::draw2d::font_enum_item_array& itema);
 
 
    };

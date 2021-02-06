@@ -19,18 +19,18 @@ namespace message
 //
 //      __pointer(::message::base) pbase(pmessage);
 //
-//      // Return FALSE if the message just dispatched should _not_
+//      // Return false if the message just dispatched should _not_
 //      // cause on_idle to be run.  Messages which do not usually
 //      // affect the state of the ::account::user interface and happen very
 //      // often are checked for.
 //
 //      if(pbase == nullptr)
-//         return FALSE;
+//         return false;
 //
 //      // redundant e_message_mouse_move and e_message_non_client_mouse_move
 //      if(pbase->is_message() && (pbase->m_id == e_message_mouse_move || pbase->m_id == e_message_non_client_mouse_move))
 //      {
-//         return TRUE;
+//         return true;
 //      }
 //
 //      // e_message_paint and WM_SYSTIMER (caret blink)
@@ -44,7 +44,7 @@ namespace message
 //
 //   {
 //
-//      // Return FALSE if the message just dispatched should _not_
+//      // Return false if the message just dispatched should _not_
 //      // cause on_idle to be run.  Messages which do not usually
 //      // affect the state of the ::account::user interface and happen very
 //      // often are checked for.

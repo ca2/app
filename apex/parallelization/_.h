@@ -267,7 +267,7 @@ public:
 //CLASS_DECL_APEX u32 random_processor_index_generator();
 
 
-//CLASS_DECL_APEX int_bool post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam);
+//CLASS_DECL_APEX int_bool post_message(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam);
 
 
 

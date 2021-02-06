@@ -75,7 +75,7 @@
 
                virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics);
 
-               virtual bool get_element_rect(LPRECT32 lprect, enum_element eelement);
+               virtual bool get_element_rect(RECTANGLE_I32 * lprect, enum_element eelement);
 
                virtual bool _001HitTest(const POINT_I32 &point, enum_element &eelementParam);
 

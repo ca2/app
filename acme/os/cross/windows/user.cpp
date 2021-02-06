@@ -638,7 +638,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 }
 
 
-//int_bool IsChild(oswindow oswindowParent, ::oswindow oswindowcandidateChildOrDescendant)
+//int_bool IsChild(::windowing::window * pwindowParent, ::::windowing::window * pwindowcandidateChildOrDescendant)
 //{
 //
 //   auto puiParent = ::oswindow_interaction(oswindowParent);
@@ -648,14 +648,14 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //   if(::is_null(puiParent))
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
 //   if(::is_null(puiChild))
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
@@ -664,7 +664,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //}
 //
 //
-//oswindow WINAPI get_parent(::oswindow oswindow)
+//oswindow WINAPI get_parent(::::windowing::window * pwindow)
 //{
 //
 //   if(::is_null(oswindow))
@@ -679,7 +679,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //}
 
 
-//oswindow WINAPI SetParent(::oswindow oswindow, ::oswindow oswindowNewParent)
+//oswindow WINAPI SetParent(::::windowing::window * pwindow, ::::windowing::window * pwindowNewParent)
 //{
 //
 //   if(::is_null(oswindow))
@@ -697,13 +697,13 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //#ifndef _UWP
 //
 //
-//int_bool show_window(::oswindow oswindow, ::e_display edisplay)
+//int_bool show_window(::::windowing::window * pwindow, ::e_display edisplay)
 //{
 //
 //   if(::is_null(oswindow))
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
@@ -715,7 +715,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //#endif
 //
 
-//::i32 WINAPI GetWindowLongA(::oswindow oswindow, int nIndex)
+//::i32 WINAPI GetWindowLongA(::::windowing::window * pwindow, int nIndex)
 //{
 //
 //   if(::is_null(oswindow))
@@ -730,7 +730,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //}
 
 
-//::i32 WINAPI SetWindowLongA(::oswindow oswindow, int nIndex, ::i32 l)
+//::i32 WINAPI SetWindowLongA(::::windowing::window * pwindow, int nIndex, ::i32 l)
 //{
 //
 //   if(::is_null(oswindow))
@@ -745,7 +745,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //}
 
 
-//LONG_PTR WINAPI GetWindowLongPtrA(::oswindow oswindow, int nIndex)
+//LONG_PTR WINAPI GetWindowLongPtrA(::::windowing::window * pwindow, int nIndex)
 //{
 //
 //   if(::is_null(oswindow))
@@ -760,7 +760,7 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //}
 
 
-//LONG_PTR WINAPI SetWindowLongPtrA(::oswindow oswindow, int nIndex, LONG_PTR l)
+//LONG_PTR WINAPI SetWindowLongPtrA(::::windowing::window * pwindow, int nIndex, LONG_PTR l)
 //{
 //
 //   if(::is_null(oswindow))
@@ -775,13 +775,13 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //}
 
 //
-//int_bool WINAPI _001ClientToScreen(::oswindow oswindow, POINT_I32 * ppoint)
+//int_bool WINAPI _001ClientToScreen(::::windowing::window * pwindow, POINT_I32 * ppoint)
 //{
 //
 //   if(::is_null(oswindow))
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
@@ -790,13 +790,13 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //}
 
 
-//int_bool WINAPI _001ScreenToClient(::oswindow oswindow, POINT_I32 * ppoint)
+//int_bool WINAPI _001ScreenToClient(::::windowing::window * pwindow, POINT_I32 * ppoint)
 //{
 //
 //   if(::is_null(oswindow))
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
@@ -805,13 +805,13 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //}
 
 
-//int_bool WINAPI is_iconic(::oswindow oswindow)
+//int_bool WINAPI is_iconic(::::windowing::window * pwindow)
 //{
 //
 //   if(::is_null(oswindow))
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
@@ -820,13 +820,13 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //}
 
 //
-//int_bool WINAPI IsWindowVisible(::oswindow oswindow)
+//int_bool WINAPI IsWindowVisible(::::windowing::window * pwindow)
 //{
 //
 //   if(::is_null(oswindow))
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
@@ -842,12 +842,12 @@ CLASS_DECL_ACME int_bool IsRectEmpty(const RECTANGLE_I32 * prectangle)
 //
 //#endif
 //
-//CLASS_DECL_ACME int_bool is_window(oswindow oswindow);
+//CLASS_DECL_ACME int_bool is_window(::windowing::window * pwindow);
 //
 //
 //
 //extern "C"
-//CLASS_DECL_ACME i32 os_message_box_w(oswindow oswindow, const WCHAR * pszText, const WCHAR * pszCaption, u32 uFlags)
+//CLASS_DECL_ACME i32 os_message_box_w(::windowing::window * pwindow, const WCHAR * pszText, const WCHAR * pszCaption, u32 uFlags)
 //{
 //
 //   return ::os_message_box(oswindow, string(pszText), string(pszCaption), uFlags);

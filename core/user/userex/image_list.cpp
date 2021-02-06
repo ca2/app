@@ -146,7 +146,7 @@ namespace userex
 
                   pimageSmall = create_image({256,  256 * pimage1->height() / pimage1->width()});
 
-                  pimageSmall->g()->stretch(pimageSmall->rectangle_i32(), pimage1->g(), pimage1->rectangle_i32());
+                  pimageSmall->g()->stretch(pimageSmall->rectangle(), pimage1->g(), pimage1->rectangle());
 
                   pimage1 = pimageSmall;
 

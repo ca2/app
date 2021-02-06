@@ -96,9 +96,9 @@ string_to_string * g_pmapFontPath;
 //   //   aiFontCount[1]++;
 //
 //   //if (aiFontCount[0] || aiFontCount[1] || aiFontCount[2])
-//   //   return TRUE;
+//   //   return true;
 //   //else
-//   //   return FALSE;
+//   //   return false;
 //
 //   //UNREFERENCED_PARAMETER(lplf);
 //   //UNREFERENCED_PARAMETER(lpntm);
@@ -147,7 +147,7 @@ graphics::graphics()
 
 #endif
 
-   m_bPrinting = FALSE;
+   m_bPrinting = false;
    m_pdc = nullptr;
    m_etextrenderinghint = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
 
@@ -913,7 +913,7 @@ bool graphics::invert_rect(const ::rectangle_f64 & rectangle)
 //
 //        }
 //
-//        bool bOk = FALSE;
+//        bool bOk = false;
 //
 //        BITMAPINFO info;
 //
@@ -1975,7 +1975,7 @@ bool graphics::get_output_text_metrics(::draw2d::text_metric * lpMetrics)
 //}
 //
 //
-//bool graphics::ScrollDC(i32 dx, i32 dy, const ::rectangle_i32 & rectScroll, const ::rectangle_i32 & rectClip, ::draw2d::region* pRgnUpdate, LPRECT32 lpRectUpdate)
+//bool graphics::ScrollDC(i32 dx, i32 dy, const ::rectangle_i32 & rectScroll, const ::rectangle_i32 & rectClip, ::draw2d::region* pRgnUpdate, RECTANGLE_I32 * lpRectUpdate)
 //{
 //
 //    ::exception::throw_not_implemented();
@@ -3532,7 +3532,7 @@ void graphics::DPtoLP(::size_f64 * psize)
 //bool graphics::draw_text(const char * lpszString, strsize nCount, const ::rectangle_i32 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
 //{
 //
-//    return draw_text(string(lpszString, nCount), rectangle_i32, nFormat);
+//    return draw_text(string(lpszString, nCount), rectangle, nFormat);
 //
 //}
 
@@ -3551,7 +3551,7 @@ bool graphics::draw_text(const string & strParam, const ::rectangle_f64 & rectPa
 
     __copy(rectangle, rectParam);
 
-    return internal_draw_text(strParam, rectangle_i32, ealign, edrawtext);
+    return internal_draw_text(strParam, rectangle, ealign, edrawtext);
 
 }
 
@@ -3559,7 +3559,7 @@ bool graphics::draw_text(const string & strParam, const ::rectangle_f64 & rectPa
 bool graphics::internal_draw_text(const block & block, const ::rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
 {
 
-    return internal_draw_text_pango(block, rectangle_i32, ealign, edrawtext, &pango_cairo_show_layout);
+    return internal_draw_text_pango(block, rectangle, ealign, edrawtext, &pango_cairo_show_layout);
 
 }
 
@@ -3692,7 +3692,7 @@ bool graphics::internal_draw_text_pango(const block & block, const ::rectangle_f
 bool graphics::draw_text(const string & strParam, const ::rectangle_f64 & rectangle, const ::e_align & ealign, const ::e_draw_text & edrawtext)
 {
 
-    return internal_draw_text(strParam, rectangle_i32, ealign, edrawtext, &cairo_show_text);
+    return internal_draw_text(strParam, rectangle, ealign, edrawtext, &cairo_show_text);
 
 }
 
@@ -4257,7 +4257,7 @@ bool graphics::TextOutRaw(double x, double y, const block & block)
 
     auto rectangle_i32 = ::rectangle_f64(point_f64(x, y), size_f64(65535.0, 65535.0));
 
-    internal_draw_text(block, rectangle_i32, e_align_none);
+    internal_draw_text(block, rectangle, e_align_none);
 
 #else
 
@@ -4268,7 +4268,7 @@ bool graphics::TextOutRaw(double x, double y, const block & block)
                       65535
                   );
 
-    internal_draw_text(block, rectangle_i32, e_null, e_null, &cairo_show_text);
+    internal_draw_text(block, rectangle, e_null, e_null, &cairo_show_text);
 
     return true;
 
@@ -5496,11 +5496,11 @@ bool graphics::_set(const ::text_out & textout)
 
 #if defined(USE_PANGO)
 
-    internal_draw_text_pango(textout.m_strText, rectangle_i32, e_align_top_left, e_draw_text_none, &pango_cairo_layout_path);
+    internal_draw_text_pango(textout.m_strText, rectangle, e_align_top_left, e_draw_text_none, &pango_cairo_layout_path);
 
 #else
 
-    internal_draw_text(textout.m_strText, rectangle_i32, e_align_top_left, e_draw_text_none, &cairo_text_path);
+    internal_draw_text(textout.m_strText, rectangle, e_align_top_left, e_draw_text_none, &cairo_text_path);
 
 #endif
 
@@ -5529,11 +5529,11 @@ bool graphics::_set(const ::draw_text & drawtext)
 
 #if defined(USE_PANGO)
 
-   internal_draw_text_pango(drawtext.m_strText, rectangle_i32, e_align_top_left, e_draw_text_none, &pango_cairo_layout_path);
+   internal_draw_text_pango(drawtext.m_strText, rectangle, e_align_top_left, e_draw_text_none, &pango_cairo_layout_path);
 
 #else
 
-   internal_draw_text(drawtext.m_strText, rectangle_i32, e_align_top_left, e_draw_text_none, &cairo_text_path);
+   internal_draw_text(drawtext.m_strText, rectangle, e_align_top_left, e_draw_text_none, &cairo_text_path);
 
 #endif
 

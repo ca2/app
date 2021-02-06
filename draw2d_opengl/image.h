@@ -77,7 +77,7 @@ namespace draw2d_opengl
       //void rotate(::image::image * pimage, double dAngle, double dScale);
       //void Rotate034(::image::image * pimage, double dAngle, double dScale);
 
-      //void RadialFill(byte a, byte rectangle_i32, byte g, byte b, i32 x, i32 y, i32 iRadius);
+      //void RadialFill(byte a, byte rectangle, byte g, byte b, i32 x, i32 y, i32 iRadius);
       //void RadialFill(
       //   byte a1, byte r1, byte g1, byte b1, // center colors
       //   byte a2, byte r2, byte g2, byte b2, // border colors

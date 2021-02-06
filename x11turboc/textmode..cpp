@@ -416,19 +416,19 @@ textmode (int newmode)
   //putenv (s);
   //sprintf (s, "COLUMNS=%d", Columns);
   //putenv (s);
-  //use_env (TRUE);
+  //use_env (true);
   //system ("tset pcmw");
   initscr ();
   start_color ();
   //resizeterm (Rows, Columns);
-  nodelay (stdscr, TRUE);
-  scrollok (stdscr, TRUE);
+  nodelay (stdscr, true);
+  scrollok (stdscr, true);
   // cbreak (); 
   raw ();
   noecho ();
   nonl ();
-  intrflush (stdscr, FALSE);
-  keypad (stdscr, TRUE);
+  intrflush (stdscr, false);
+  keypad (stdscr, true);
   wresize (stdscr, Rows, Columns);
   // Initialize the translation table.
   if (TranslatedChar[(int) ' '] == 0)

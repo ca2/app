@@ -37,11 +37,11 @@ int_bool sys_message_queue::GetMessage(MESSAGE * pmsg)
          m_msgptra.remove_at(0);
          if(pmsg->message == 0xffff)
          {
-            return FALSE;
+            return false;
          }
          else
          {
-            return TRUE;
+            return true;
          }
 
       }

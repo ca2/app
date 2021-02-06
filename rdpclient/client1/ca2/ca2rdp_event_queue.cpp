@@ -48,7 +48,7 @@ CLASS_DECL_AXIS_RDPCLIENT void ca2rdp_queue_event(void * input,int bKey,int down
    item.down = down;
    item.scancode = scancode;
    item.emessage = emessage;
-   item.pt = point_i32;
+   item.pt = point;
 
    g_eventmap[input].add(item);
 }

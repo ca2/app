@@ -1220,7 +1220,7 @@ m_millisHeartBeat.Now();
       {
 
          m_iWaitCursorCount = 0;
-         ShowWaitCursor(false);
+         show_wait_cursor(false);
 
       }
       else if(nCode == 0)
@@ -1234,12 +1234,12 @@ m_millisHeartBeat.Now();
          if(m_iWaitCursorCount > 0)
          {
 
-            ShowWaitCursor(true);
+            show_wait_cursor(true);
 
          }
 
          m_iWaitCursorCount = 0;
-         ShowWaitCursor(false);
+         show_wait_cursor(false);
 
       }
       else
@@ -1252,7 +1252,7 @@ m_millisHeartBeat.Now();
 
          m_iWaitCursorCount++;
 
-         ShowWaitCursor(true);
+         show_wait_cursor(true);
 
       }
 
@@ -1260,7 +1260,7 @@ m_millisHeartBeat.Now();
 
    }
 
-   //void application::ShowWaitCursor(bool bShow)
+   //void application::show_wait_cursor(bool bShow)
    //{
 
    //}

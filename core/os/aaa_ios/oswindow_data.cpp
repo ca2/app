@@ -72,7 +72,7 @@ bool oswindow_data::_001ScreenToClient(POINT32 *lppoint)
 int_bool SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int cx, int cy, ::u32 uFlags)
 {
    
-   return TRUE;
+   return true;
    
 //   //   int   value_mask = 0;
 //   bool  bMove = !(uFlags & SWP_NOMOVE);
@@ -107,7 +107,7 @@ int_bool SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int
 //
 //      iptr iInsertAfter = (iptr) hwndInsertAfter;
 //
-//      if(iInsertAfter == zorder_top || iInsertAfter == ZORDER_TOPMOST)
+//      if(iInsertAfter == e_zorder_top || iInsertAfter == ZORDER_TOPMOST)
 //      {
 //
 //         order_front_nswindow(hwnd);
@@ -116,7 +116,7 @@ int_bool SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int
 //
 //   }
 //
-//   //   [[hwnd->window() dd_invokeOnMainThreadAndWaitUntilDone:TRUE] display];
+//   //   [[hwnd->window() dd_invokeOnMainThreadAndWaitUntilDone:true] display];
 //
 //
 //
@@ -136,7 +136,7 @@ int_bool SetWindowPos(oswindow hwnd, oswindow hwndInsertAfter, int x, int y, int
 //
 //    if(!(uFlags & SWP_NOZORDER) && hwndInsertAfter < 0)
 //    {
-//    if(hwndInsertAfter == zorder_top || hwndInsertAfter == ZORDER_TOPMOST)
+//    if(hwndInsertAfter == e_zorder_top || hwndInsertAfter == ZORDER_TOPMOST)
 //    {
 //    XRaiseWindow(display, hwnd);
 //    }

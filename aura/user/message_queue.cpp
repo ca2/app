@@ -85,14 +85,14 @@ namespace user
    bool message_queue::message_queue_set_timer(uptr uId,::u32 dwMillis)
    {
 
-      return SetTimer(uId,dwMillis,nullptr) != FALSE;
+      return SetTimer(uId,dwMillis,nullptr) != false;
 
    }
 
    bool message_queue::message_queue_del_timer(uptr uId)
    {
 
-      return KillTimer(uId) != FALSE;
+      return KillTimer(uId) != false;
 
    }
 
@@ -115,7 +115,7 @@ namespace user
    bool message_queue::message_queue_destroy()
    {
 
-      return DestroyWindow() != FALSE;
+      return DestroyWindow() != false;
 
    }
 

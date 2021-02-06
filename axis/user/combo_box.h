@@ -167,7 +167,7 @@ namespace user
       i32 GetItemHeight(index nIndex);
       index FindStringExact(index nIndexStart, const char * pszFind);
 
-      i32 SetExtendedUI(bool bExtended = TRUE);
+      i32 SetExtendedUI(bool bExtended = true);
       bool GetExtendedUI();
       void GetDroppedControlRect(RECTANGLE_I32 * prectangle);
 
@@ -175,7 +175,7 @@ namespace user
 
       // Operations
       // for drop-down combo boxes
-      void ShowDropDown(bool bShowIt = TRUE);
+      void ShowDropDown(bool bShowIt = true);
 
       // manipulating listbox items
       virtual index AddString(const char * pszString, uptr dwItemData = 0);

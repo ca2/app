@@ -211,8 +211,8 @@ PTIME_FIELDS TimeFields)
  *   Time         [O] Destination for the converted time.
  *
  * RETURNS
- *   Success: TRUE.
- *   Failure: FALSE.
+ *   Success: true.
+ *   Failure: false.
  */
 int_bool WINAPI RtlTimeFieldsToTime(
 PTIME_FIELDS tfTimeFields,
@@ -232,7 +232,7 @@ PLARGE_INTEGER Time)
          [ tfTimeFields->Month ==2 || IsLeapYear(tfTimeFields->Year)]
          [ tfTimeFields->Month - 1] ||
          tfTimeFields->Year < 1601 )
-      return FALSE;
+      return false;
 
    /* now calculate a day count from the date
     * First start counting years from March. This way the leap days
@@ -263,7 +263,7 @@ PLARGE_INTEGER Time)
                       tfTimeFields->Second ) * 1000 +
                      tfTimeFields->Milliseconds ) * TICKSPERMSEC;
 
-   return TRUE;
+   return true;
 }
 
 /***********************************************************************
@@ -366,16 +366,16 @@ NTSTATUS WINAPI RtlSystemTimeToLocalTime( const LARGE_INTEGER *SystemTime,
  *   Seconds [O] Destination for the converted time.
  *
  * RETURNS
- *   Success: TRUE.
- *   Failure: FALSE, if the resulting value will not fit in a ::u32.
+ *   Success: true.
+ *   Failure: false, if the resulting value will not fit in a ::u32.
  */
 int_bool WINAPI RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Seconds )
 {
    ULONGLONG tmp = ((ULONGLONG)Time->u.HighPart << 32) | Time->u.LowPart;
    tmp = tmp / TICKSPERSEC - SECS_1601_TO_1970;
-   if (tmp > 0xffffffff) return FALSE;
+   if (tmp > 0xffffffff) return false;
    *Seconds = (::u32)tmp;
-   return TRUE;
+   return true;
 }
 
 /******************************************************************************
@@ -388,16 +388,16 @@ int_bool WINAPI RtlTimeToSecondsSince1970( const LARGE_INTEGER *Time, LPDWORD Se
  *   Seconds [O] Destination for the converted time.
  *
  * RETURNS
- *   Success: TRUE.
- *   Failure: FALSE, if the resulting value will not fit in a ::u32.
+ *   Success: true.
+ *   Failure: false, if the resulting value will not fit in a ::u32.
  */
 int_bool WINAPI RtlTimeToSecondsSince1980( const LARGE_INTEGER *Time, LPDWORD Seconds )
 {
    ULONGLONG tmp = ((ULONGLONG)Time->u.HighPart << 32) | Time->u.LowPart;
    tmp = tmp / TICKSPERSEC - SECS_1601_TO_1980;
-   if (tmp > 0xffffffff) return FALSE;
+   if (tmp > 0xffffffff) return false;
    *Seconds = (::u32)tmp;
-   return TRUE;
+   return true;
 }
 
 /******************************************************************************
@@ -632,9 +632,9 @@ int_bool match_tz_date(const RTL_SYSTEM_TIME *st, const RTL_SYSTEM_TIME *reg_st)
 {
    ::u16 wDay;
 
-   if (st->wMonth != reg_st->wMonth) return FALSE;
+   if (st->wMonth != reg_st->wMonth) return false;
 
-   if (!st->wMonth) return TRUE; /* no transition dates */
+   if (!st->wMonth) return true; /* no transition dates */
 
    wDay = reg_st->wDay;
    if (!reg_st->wYear) /* date in a day-of-week format */
@@ -644,9 +644,9 @@ int_bool match_tz_date(const RTL_SYSTEM_TIME *st, const RTL_SYSTEM_TIME *reg_st)
          st->wHour != reg_st->wHour ||
          st->wMinute != reg_st->wMinute ||
          st->wSecond != reg_st->wSecond ||
-         st->wMilliseconds != reg_st->wMilliseconds) return FALSE;
+         st->wMilliseconds != reg_st->wMilliseconds) return false;
 
-   return TRUE;
+   return true;
 }
 
 int_bool match_tz_info(const RTL_TIME_ZONE_INFORMATION *tzi, const RTL_TIME_ZONE_INFORMATION *reg_tzi)
@@ -654,9 +654,9 @@ int_bool match_tz_info(const RTL_TIME_ZONE_INFORMATION *tzi, const RTL_TIME_ZONE
    if (tzi->Bias == reg_tzi->Bias &&
          match_tz_date(&tzi->StandardDate, &reg_tzi->StandardDate) &&
          match_tz_date(&tzi->DaylightDate, &reg_tzi->DaylightDate))
-      return TRUE;
+      return true;
 
-   return FALSE;
+   return false;
 }
 
 /*
@@ -668,18 +668,18 @@ static int_bool reg_query_value(HKEY hkey, const widechar * name, ::u32 type, vo
     KEY_VALUE_PARTIAL_INFORMATION *info = (KEY_VALUE_PARTIAL_INFORMATION *)buf;
 
     if (count > sizeof(buf) - sizeof(KEY_VALUE_PARTIAL_INFORMATION))
-        return FALSE;
+        return false;
 
     RtlInitUnicodeString(&nameW, name);
 
     if (NtQueryValueKey(hkey, &nameW, KeyValuePartialInformation,
                         buf, sizeof(buf), &count))
-        return FALSE;
+        return false;
 
-    if (info->Type != type) return FALSE;
+    if (info->Type != type) return false;
 
     ::memcpy_dup(data, info->Data, info->DataLength);
-    return TRUE;
+    return true;
 }
 
 */
@@ -986,7 +986,7 @@ int_bool WINAPI FileTimeToSystemTime( const FILETIME *ft, LPSYSTEMTIME syst )
    syst->wSecond = tf.Second;
    syst->wMilliseconds = tf.Milliseconds;
    syst->wDayOfWeek = tf.Weekday;
-   return TRUE;
+   return true;
 }
 
 
@@ -1009,11 +1009,11 @@ int_bool WINAPI SystemTimeToFileTime( const SYSTEMTIME *syst, LPFILETIME ft )
    if( !RtlTimeFieldsToTime(&tf, &t))
    {
       set_last_error( ERROR_INVALID_PARAMETER);
-      return FALSE;
+      return false;
    }
    ft->dwLowDateTime = t.u.LowPart;
    ft->dwHighDateTime = t.u.HighPart;
-   return TRUE;
+   return true;
 }
 
 

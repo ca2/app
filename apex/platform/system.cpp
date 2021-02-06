@@ -18,7 +18,7 @@
 
 CLASS_DECL_APEX void apex_generate_random_bytes(void* p, memsize s);
 
-//int GetMainScreenRect(LPRECT32 lprect);
+//int GetMainScreenRect(RECTANGLE_I32 * lprect);
 
 
 const char* g_pszMultimediaLibraryName = nullptr;
@@ -1148,7 +1148,7 @@ namespace apex
    }
 
 
-   __pointer(::layered) system::get_layered_window(oswindow oswindow)
+   ::layered * system::get_layered_window(oswindow oswindow)
    {
 
       return nullptr;
@@ -2309,6 +2309,8 @@ namespace apex
       return estatus;
 
    }
+
+
 
 
    void system::process_term()
@@ -3671,7 +3673,7 @@ namespace apex
 //   CLASS_DECL_APEX bool get_window_rect(::apex::system_window ^ pwindow, RECTANGLE_I32 * prectangle)
 //   {
 //
-//      ::rectangle_f64 rectangle_i32;
+//      ::rectangle_f64 rectangle;
 //
 //      if (!get_window_rect(pwindow, (RECTANGLE_F64*)rectangle_i32))
 //      {
@@ -4819,7 +4821,6 @@ CLASS_DECL_APEX bool set_last_run_application_path(string strAppId)
 
 
 #ifdef WINDOWS_DESKTOP
-//#include "apex/os/windows/windows_system_interaction_impl.h"
 #elif defined(_UWP)
 #include "apex/os/uwp/_uwp.h"
 #endif

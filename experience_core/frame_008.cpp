@@ -250,7 +250,7 @@ SizingNone:;
                {
 
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(rectA, rectangle_i32, eside);
+                  GetBorderRect(rectA, rectangle, eside);
 
                   pgraphics->fill_rect(rectangle, A_RGB(255, crMoveableBorder));//m_colorMoveableBorderDkShadow);
 
@@ -274,10 +274,10 @@ SizingNone:;
                      Draw3dRectSide(pgraphics,rectA,eside,crMoveableBorder,crMoveableBorder);
 
                      ::rectangle_i32 rectangle;
-                     GetBorderRect(rectClient,rectangle_i32,eside);
+                     GetBorderRect(rectClient,rectangle,eside);
                      class imaging & imaging = System.imaging();
                      imaging.color_blend(pgraphics,
-                                         rectangle_i32,
+                                         rectangle,
                                          crMoveableBorder,
                                          127);
 
@@ -289,20 +289,20 @@ SizingNone:;
                        || m_pframewindow->m_estyle == ::user::StyleTranslucidLightGreen)
                {
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(rectClient, rectangle_i32, eside);
+                  GetBorderRect(rectClient, rectangle, eside);
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
-                                      rectangle_i32,
+                                      rectangle,
                                       crMoveableBorder,
                                       127);
                }
                else
                {
                   ::rectangle_i32 rectangle;
-                  GetBorderRect(rectClient, rectangle_i32, eside);
+                  GetBorderRect(rectClient, rectangle, eside);
                   class imaging & imaging = System.imaging();
                   imaging.color_blend(pgraphics,
-                                      rectangle_i32,
+                                      rectangle,
                                       crMoveableBorder,
                                       127);
 
@@ -496,7 +496,7 @@ SizingNone:;
             }
 
 
-            void frame_008::GetBorderRect(const ::rectangle_i32 & rectClient, LPRECT32 lprect, enum_border eside)
+            void frame_008::GetBorderRect(const ::rectangle_i32 & rectClient, RECTANGLE_I32 * lprect, enum_border eside)
             {
                ::rectangle_i32 rectBig(rectClient);
 
@@ -535,7 +535,7 @@ SizingNone:;
                   rectangle.top = rectSmall.bottom;
                   rectangle.bottom = rectBig.bottom;
                }
-               *lprect = rectangle_i32;
+               *lprect = rectangle;
             }
 
 
@@ -657,7 +657,7 @@ SizingNone:;
                {
                   rectA = rectClient;
 
-                  rectA.left = rectA.left + rectA.width() / 2 - size_i32 / 2;
+                  rectA.left = rectA.left + rectA.width() / 2 - size / 2;
                   rectA.right = rectA.left + size;
                   rectA.bottom = 4;
 
@@ -669,7 +669,7 @@ SizingNone:;
                {
                   rectA = rectClient;
 
-                  rectA.left = rectA.left + rectA.width() / 2 - size_i32 / 2;
+                  rectA.left = rectA.left + rectA.width() / 2 - size / 2;
                   rectA.right = rectA.left + size;
                   rectA.top = rectA.bottom - 4;
 
@@ -681,7 +681,7 @@ SizingNone:;
                   rectA = rectClient;
 
                   rectA.right = 4;
-                  rectA.top = rectA.top + rectA.height() / 2 - size_i32 / 2;
+                  rectA.top = rectA.top + rectA.height() / 2 - size / 2;
                   rectA.bottom = rectA.top + size;
 
                   pgraphics->fill_rect(rectA, ARGB(255, 0x60, 0x65, 0x55));
@@ -692,7 +692,7 @@ SizingNone:;
                   rectA = rectClient;
 
                   rectA.left = rectA.right - 4;
-                  rectA.top = rectA.top + rectA.height() / 2 - size_i32 / 2;
+                  rectA.top = rectA.top + rectA.height() / 2 - size / 2;
                   rectA.bottom = rectA.top + size;
 
                   pgraphics->fill_rect(rectA, ARGB(255, 0x60, 0x65, 0x55));

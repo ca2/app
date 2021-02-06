@@ -148,7 +148,7 @@ namespace user
    point_f64 picture::_transform(const point_f64 & pointParam) const
    {
 
-      point_f64 point_i32(pointParam);
+      point_f64 point(pointParam);
 
       _transform_point(point);
 
@@ -160,7 +160,7 @@ namespace user
    point_f64 picture::_transform_drawing(const point_f64 & pointParam) const
    {
 
-      point_f64 point_i32(pointParam);
+      point_f64 point(pointParam);
 
       _transform_point_drawing(point);
 
@@ -217,7 +217,7 @@ namespace user
    point_f64 picture::_rtransform(const point_f64 & pointParam) const
    {
 
-      point_f64 point_i32(pointParam);
+      point_f64 point(pointParam);
 
       _rtransform_point(point);
 
@@ -229,7 +229,7 @@ namespace user
    point_f64 picture::_rtransform_drawing(const point_f64 & pointParam) const
    {
 
-      point_f64 point_i32(pointParam);
+      point_f64 point(pointParam);
 
       _rtransform_point_drawing(point);
 
@@ -287,7 +287,7 @@ namespace user
    point_f64 picture::drag_transform(const point_f64 & pointParam) const
    {
 
-      point_f64 point_i32(pointParam);
+      point_f64 point(pointParam);
 
       drag_transform_point(point);
 
@@ -299,7 +299,7 @@ namespace user
    point_f64 picture::drag_transform_drawing(const point_f64 & pointParam) const
    {
 
-      point_f64 point_i32(pointParam);
+      point_f64 point(pointParam);
 
       drag_transform_point_drawing(point);
 
@@ -360,7 +360,7 @@ namespace user
    point_f64 picture::drag_rtransform(const point_f64 & pointParam) const
    {
 
-      point_f64 point_i32(pointParam);
+      point_f64 point(pointParam);
 
       drag_rtransform_point(point);
 
@@ -372,7 +372,7 @@ namespace user
    point_f64 picture::drag_rtransform_drawing(const point_f64 & pointParam) const
    {
 
-      point_f64 point_i32(pointParam);
+      point_f64 point(pointParam);
 
       drag_rtransform_point_drawing(point);
 
@@ -421,7 +421,7 @@ namespace user
    ::point_f64 picture::get_drag_point()
    {
 
-      ::point_f64 point_i32;
+      ::point_f64 point;
 
       auto size = get_size();
 
@@ -584,7 +584,7 @@ namespace user
 
       polygon_i32.m_bDirtyBoundingRect = false;
 
-      polygon_i32.m_rectBounding = rectangle_i32;
+      polygon_i32.m_rectBounding = rectangle;
 
       if (m_ppictureimpl->m_polygon.get_size() <= 0)
       {
@@ -794,7 +794,7 @@ namespace user
    }
 
 
-   //int picture::on_hit_test_cursor(point_f64 point_i32)
+   //int picture::on_hit_test_cursor(point_f64 point)
    //{
 
    //   if (!is_valid())
@@ -843,7 +843,7 @@ namespace user
 
             pimageDropShadow->fill(0);
 
-            pimageDropShadow->g()->stretch(pimage->rectangle_i32({ iShift, iShift }), pimage->g());
+            pimageDropShadow->g()->stretch(pimage->rectangle({ iShift, iShift }), pimage->g());
 
             pimageDropShadow->paint_rgb(m_ppictureimpl->m_hlsGlowDropShadow);
 
@@ -867,7 +867,7 @@ namespace user
 
          rectDropShadow.offset(m_ppictureimpl->m_iGlowDropShadowOffset, m_ppictureimpl->m_iGlowDropShadowOffset);
 
-         pgraphics->stretch(rectDropShadow, pimageDropShadow->g(), pimageDropShadow->rectangle_i32());
+         pgraphics->stretch(rectDropShadow, pimageDropShadow->g(), pimageDropShadow->rectangle());
 
       }
 
@@ -884,7 +884,7 @@ namespace user
    void picture::hit_test(::user::item & item, const ::point_i32 & point)
    {
 
-      item.m_pointScreen = point_i32;
+      item.m_pointScreen = point;
 
       item.m_pointClient = _rtransform(item.m_pointScreen);
 
@@ -978,7 +978,7 @@ namespace user
 
 
 
-   void picture::move_to(point_f64 point_i32, ::size_f64 sizePage, ::size_f64 sizeClient, const ::rectangle_f64 & rectMargin)
+   void picture::move_to(point_f64 point, ::size_f64 sizePage, ::size_f64 sizeClient, const ::rectangle_f64 & rectMargin)
    {
 
       m_ppictureimpl->m_rectangle.move_to(point);

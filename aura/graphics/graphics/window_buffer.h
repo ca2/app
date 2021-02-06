@@ -12,7 +12,7 @@ namespace graphics
 
 
       int                           m_iGoodStride;
-      ::image_pointer                       m_pimageBuffer;
+      ::image_pointer               m_pimageBuffer;
 
       bool                          m_bDibIsHostingBuffer;
       file::memory_map              m_memorymap;

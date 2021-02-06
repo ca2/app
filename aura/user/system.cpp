@@ -43,7 +43,6 @@ namespace user
       set_class_name(pszClassName);
       set_window_name(pszWindowName);
       m_createstruct.style = uStyle;
-      //m_createstruct.CREATE_STRUCT_P_CREATE_PARAMS = pvCreateParams;
       m_pcreate = pcreate;
       m_puserinteractionOwner = nullptr;
 
@@ -124,16 +123,16 @@ namespace user
 
       }
 
-      if (!(m_createstruct.style & WS_VISIBLE))
-      {
+      //if (!(m_createstruct.style & WS_VISIBLE))
+      //{
 
-         m_createstruct.style |= WS_VISIBLE;
+      //   m_createstruct.style |= WS_VISIBLE;
 
-      }
+      //}
 
    }
 
-   void system::get_rect(LPRECT32 lprect)
+   void system::get_rect(RECTANGLE_I32 * lprect)
    {
 
       lprect->left = m_createstruct.x;

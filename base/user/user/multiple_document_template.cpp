@@ -111,7 +111,7 @@ namespace user
 
       bool bAutoDelete = pdocument->m_bAutoDelete;
 
-      pdocument->m_bAutoDelete = FALSE;   // don't destroy if something goes wrong
+      pdocument->m_bAutoDelete = false;   // don't destroy if something goes wrong
 
       __pointer(::user::frame_window) pFrame = create_new_frame(pdocument, nullptr, pcreate);
 
@@ -151,12 +151,12 @@ namespace user
 
          // avoid creating temporary compound file when starting up invisible
          if (!bMakeVisible)
-            pdocument->m_bEmbedded = TRUE;
+            pdocument->m_bEmbedded = true;
 
          if (!pdocument->on_new_document())
          {
             // ::account::user has be alerted to what failed in on_new_document
-            TRACE(trace_category_appmsg, e_trace_level_warning, "::user::document::on_new_document returned FALSE.\n");
+            TRACE(trace_category_appmsg, e_trace_level_warning, "::user::document::on_new_document returned false.\n");
             pFrame->DestroyWindow();
             return;
 
@@ -175,7 +175,7 @@ namespace user
             // if m_bQueueDocumentOpening flag is set, document opening is queued, and failure would be reported in a unknown way
             // prepare aura for async operations and also async failures
             // ::account::user has be alerted to what failed in on_open_document
-            TRACE(trace_category_appmsg, e_trace_level_warning, "::user::document::on_open_document returned FALSE.\n");
+            TRACE(trace_category_appmsg, e_trace_level_warning, "::user::document::on_open_document returned false.\n");
             pFrame->post_message(e_message_destroy_window);
             return;
 

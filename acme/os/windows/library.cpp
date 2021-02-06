@@ -459,7 +459,7 @@ bool __node_library_close(void * plibrary)
    try
    {
 
-      bOk = ::FreeLibrary((HINSTANCE)plibrary) != FALSE;
+      bOk = ::FreeLibrary((HINSTANCE)plibrary) != false;
 
    }
    catch(...)

@@ -1,28 +1,28 @@
 #include "framework.h"
-#include "aqua/xml/_.h"
-#include "apex/platform/app_core.h"
-#include "acme/const/id.h"
-#include "aura/node/_node.h"
-#include "acme/platform/profiler.h"
+//#include "aqua/xml/_.h"
+//#include "apex/platform/app_core.h"
+//#include "acme/const/id.h"
+//#include "aura/node/_node.h"
+//#include "acme/platform/profiler.h"
 #include "apex/platform/static_setup.h"
 #include "apex/platform/str_context.h"
-#include "acme/node/windows/registry.h"
+//#include "acme/node/windows/registry.h"
 #include "apex/platform/history.h"
 #include "aura/gpu/gpu/_.h"
 #include "aura/const/idpool.h"
-#ifdef _UWP
-#include "aura/node/uwp/directx_application.h"
-#include "aura/os/windows_common/draw2d_direct2d_global.h"
-#endif
+//#ifdef _UWP
+//#include "aura/node/uwp/directx_application.h"
+//#include "aura/os/windows_common/draw2d_direct2d_global.h"
+//#endif
 
-int GetMainScreenRect(LPRECT32 lprect);
+int GetMainScreenRect(RECTANGLE_I32 * lprect);
 
 
 #ifdef LINUX
 const char * get_main_app_id();
 #endif
 
-
+void __node_aura_factory_exchange();
 
 #ifdef CUBE
 extern "C"
@@ -30,10 +30,10 @@ extern "C"
 #endif
 
 
-#ifdef WINDOWS_DESKTOP
-#include <highlevelmonitorconfigurationapi.h>
-#endif
-
+//#ifdef WINDOWS_DESKTOP
+//#include <highlevelmonitorconfigurationapi.h>
+//#endif
+//
 
 //void ___compile_test_sort_array_21304528734();
 
@@ -157,24 +157,7 @@ namespace aura
 
       enable_trace_category(trace_category_prodevian, false);
 
-    #ifdef WINDOWS_DESKTOP
-
-      {
-
-         auto hdc = CreateCompatibleDC(NULL);
-
-         m_dpi = (float) GetDeviceCaps(hdc, LOGPIXELSX);
-
-         ::DeleteDC(hdc);
-
-      }
-
-   #else
-
-      m_dpi = 96.0;
-
-   #endif
-
+    
       m_pDraw2dFactoryExchange = nullptr;
 
       g_pmutexImage = new ::mutex();
@@ -221,7 +204,6 @@ namespace aura
  
       __node_aura_factory_exchange();
 
-
       m_bGudoNetCache = true;
 
       //m_purldepartment = nullptr;
@@ -232,14 +214,14 @@ namespace aura
 
       ::draw2d::static_initialize();
 
-      estatus = __compose_new(m_pwindowmap);
+      //estatus = __compose_new(m_pwindowmap);
 
-      if (!estatus)
-      {
+      //if (!estatus)
+      //{
 
-         return estatus;
+      //   return estatus;
 
-      }
+      //}
 
   
       m_pDraw2dFactoryExchange = nullptr;
@@ -409,12 +391,12 @@ namespace aura
    }
 
 
-   class ::user::window_map & system::window_map()
-   {
+   //class ::user::window_map & system::window_map()
+   //{
 
-      return *m_pwindowmap;
+   //   return *m_pwindowmap;
 
-   }
+   //}
 
 
    //void system::defer_check_exit()
@@ -1004,21 +986,21 @@ namespace aura
 
    }
 
-
-   void system::get_time(struct timeval * point_i32)
-   {
-#ifdef _WIN32
-      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
-      GetSystemTimeAsFileTime(&ft);
-      u64 tt;
-      ::memcpy_dup(&tt, &ft, sizeof(tt));
-      tt /= 10; // make it usecs
-      point_i32->tv_sec = (long)tt / 1000000;
-      point_i32->tv_usec = (long)tt % 1000000;
-#else
-      gettimeofday(point, nullptr);
-#endif
-   }
+//
+//   void system::get_time(struct timeval * point_i32)
+//   {
+//#ifdef _WIN32
+//      FILETIME ft; // Contains a 64-bit value representing the number of 100-nanosecond intervals since January 1, 1601 (UTC).
+//      GetSystemTimeAsFileTime(&ft);
+//      u64 tt;
+//      ::memcpy_dup(&tt, &ft, sizeof(tt));
+//      tt /= 10; // make it usecs
+//      point_i32->tv_sec = (long)tt / 1000000;
+//      point_i32->tv_usec = (long)tt % 1000000;
+//#else
+//      gettimeofday(point, nullptr);
+//#endif
+//   }
 
 
    ::e_status system::init_draw2d()
@@ -1086,7 +1068,7 @@ namespace aura
 
       sync_lock sl(&System.m_mutexLibrary);
 
-      estatus = __construct_new(m_pdraw2d);
+      estatus = __construct(m_pdraw2d);
 
       if (!estatus)
       {
@@ -1706,7 +1688,7 @@ namespace aura
 
       }
 
-      os_init_windowing();
+      //os_init_windowing();
 
       return ::success;
 
@@ -2351,7 +2333,7 @@ namespace aura
    {
       if(string(pszId).has_char())
       {
-         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_global_id_mutex_name(pszAppName, pszId));
+         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_id_mutex_name(pszAppName, pszId));
          ::mutex * pmutex = ::mutex::open_mutex(get_global_id_mutex_name(pszAppName,pszId));
          if(pmutex == nullptr)
          {
@@ -2364,9 +2346,11 @@ namespace aura
 
 #if defined(WINDOWS_DESKTOP) || defined(LINUX) || defined(__APPLE__)
 
-            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().module()/strApp,strParameters,nullptr,e_display_normal);
+            auto plauncher = __create_new<::apex::shell_launcher>();
+            
+            plauncher->setup(nullptr, nullptr, Context.dir().module() / strApp, strParameters, nullptr, e_display_normal);
 
-            launcher.execute();
+            plauncher->launch();
 
 #else
 
@@ -2384,7 +2368,7 @@ namespace aura
       }
       else
       {
-         //HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_global_mutex_name(pszAppName));
+         //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_global_mutex_name(pszAppName));
          ::mutex * pmutex = ::mutex::open_mutex(get_global_mutex_name(pszAppName));
          if(pmutex == nullptr)
          {
@@ -2396,10 +2380,11 @@ namespace aura
             __throw(todo());
 
 #else
+            auto plauncher = __create_new<::apex::shell_launcher>();
 
-            ::apex::shell_launcher launcher(nullptr,nullptr,Context.dir().module()/strApp,nullptr,nullptr, e_display_normal);
+            plauncher->setup(nullptr,nullptr,Context.dir().module()/strApp,nullptr,nullptr, e_display_normal);
 
-            launcher.execute();
+            plauncher->launch();
 
 #endif
 
@@ -2420,7 +2405,7 @@ namespace aura
       string strId(pszId);
       if(strId.has_char())
       {
-         //HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_local_id_mutex_name(pszAppName, strId));
+         //HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_id_mutex_name(pszAppName, strId));
          ::mutex * pmutex = ::mutex::open_mutex(get_local_id_mutex_name(pszAppName,strId));
          if(pmutex == nullptr)
          {
@@ -2435,9 +2420,11 @@ namespace aura
 
 #else
 
-            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
+            auto plauncher = __create_new<::apex::shell_launcher>();
 
-            launcher.execute();
+            plauncher->setup(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
+
+            plauncher->launch();
 
 #endif
 
@@ -2452,7 +2439,7 @@ namespace aura
       }
       else
       {
-         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, FALSE, get_local_mutex_name(pszAppName));
+         //         HANDLE h = ::OpenMutex(SYNCHRONIZE, false, get_local_mutex_name(pszAppName));
          ::mutex * pmutex = ::mutex::open_mutex(get_local_mutex_name(pszAppName));
          if(pmutex == nullptr)
          {
@@ -2467,9 +2454,11 @@ namespace aura
 
 #else
 
-            ::apex::shell_launcher launcher(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
+            auto plauncher = __create_new<::apex::shell_launcher>();
 
-            launcher.execute();
+            plauncher->setup(nullptr,nullptr, Context.dir().ca2module() / strApp,strParameters,nullptr, e_display_normal);
+
+            plauncher->launch();
 
 #endif
 
@@ -3288,7 +3277,7 @@ namespace aura
 //   CLASS_DECL_AURA bool get_window_rect(::aura::system_window ^ pwindow, RECTANGLE_I32 * prectangle)
 //   {
 //
-//      ::rectangle_f64 rectangle_i32;
+//      ::rectangle_f64 rectangle;
 //
 //      if (!get_window_rect(pwindow, (RECTANGLE_F64*)rectangle_i32))
 //      {
@@ -3308,41 +3297,41 @@ namespace aura
 
 
 
-   ::user::interaction_impl * system::impl_from_handle(void * pdata)
-   {
+   //::user::interaction_impl * system::impl_from_handle(void * pdata)
+   //{
 
-      return oswindow_interaction_impl((oswindow)pdata);
+   //   return oswindow_interaction_impl((oswindow)pdata);
 
-   }
+   //}
 
-   ::user::interaction * system::ui_from_handle(void * pdata)
-   {
+   //::user::interaction * system::ui_from_handle(void * pdata)
+   //{
 
-      ::user::interaction_impl * pimpl = impl_from_handle(pdata);
+   //   ::user::interaction_impl * pimpl = impl_from_handle(pdata);
 
-      if (pimpl == nullptr)
-      {
+   //   if (pimpl == nullptr)
+   //   {
 
-         return nullptr;
+   //      return nullptr;
 
-      }
+   //   }
 
-      try
-      {
+   //   try
+   //   {
 
-         return pimpl->m_puserinteraction;
+   //      return pimpl->m_puserinteraction;
 
-      }
-      catch (...)
-      {
+   //   }
+   //   catch (...)
+   //   {
 
-         __throw(resource_exception("not good window anymore"));
+   //      __throw(resource_exception("not good window anymore"));
 
-      }
+   //   }
 
-      return nullptr;
+   //   return nullptr;
 
-   }
+   //}
 
 
 //   index system::get_main_monitor(RECTANGLE_I32 * prectangle)
@@ -4385,159 +4374,159 @@ namespace aura
    }
 
 
-   void system::defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile)
-   {
-
-#ifdef _UWP
-
-
-#else
-
-      if (Context.dir().is(pathProfile))
-      {
-
-         return;
-
-      }
-
-      ::file::path pathDir;
-
-      pathDir = pathFirefox.folder();
-
-      ::file::path pathProfileDir;
-
-      pathProfileDir = pathProfile.folder();
-
-      Context.dir().mk(pathProfileDir);
-
-      string strParam = "-no-remote -CreateProfile \"" + strProfileName + " " + pathProfile + "\"";
-
-      ::property_set set;
-
-      call_sync(pathFirefox, strParam, pathDir, e_display_default, 3_min, set);
-
-#endif
-
-   }
-
-
-   ::e_status system::get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory)
-   {
-
-#ifdef WINDOWS_DESKTOP
-
-      try
-      {
-
-         ::windows::registry::key key(HKEY_LOCAL_MACHINE, "SOFTWARE\\Mozilla\\Mozilla Firefox");
-
-         string strCurrentVersion;
-
-         key.get("CurrentVersion", strCurrentVersion);
-
-         key.open(HKEY_LOCAL_MACHINE, "SOFTWARE\\Mozilla\\Mozilla Firefox\\" + strCurrentVersion + "\\Main");
-
-         key.get("PathToExe", strPathToExe);
-
-         key.get("Install Directory", strInstallDirectory);
-
-      }
-      catch (const ::e_status & estatus)
-      {
-
-         return estatus;
-
-      }
-
-      return ::success;
-
-#else
-
-      return ::error_failed;
-
-#endif
-
-   }
-
-
-   ::e_status system::firefox(string strUrl, string strBrowser, string strProfile, string strParam)
-   {
-
-#ifdef _UWP
-
-      Context.os().native_full_web_browser(strUrl);
-
-#else
-
-      string strBrowserPath;
-      string strBrowserDir;
-      string strBrowserHelperPath;
-      string strBrowserHelperDir;
-
-      ::file::path pathAppDataDir(getenv("APPDATA"));
-
-      ::file::path pathProfile;
-
-      strParam = "-P \"" + strProfile + "\"";
-
-      if (strUrl.has_char())
-      {
-
-         strParam += " -new-tab \"" + strUrl + "\"";
-
-      }
-
-      auto estatus = get_firefox_installation_info(strBrowserPath, strBrowserDir);
-
-      if (::failed(estatus))
-      {
-
-         return estatus;
-
-      }
-
-      if (!Context.file().exists(strBrowserPath) || !Context.dir().is(strBrowserDir))
-      {
-
-         return error_not_found;
-
-      }
-
-      strBrowserHelperPath = ::file::path(strBrowserDir) / "uninstall/helper.exe";
-
-      strBrowserHelperDir = ::file::path(strBrowserDir) / "uninstall";
-
-      pathProfile = pathAppDataDir / "ca2/Firefox/Profile" / strProfile;
-
-      defer_create_firefox_profile(strBrowserPath, strProfile, pathProfile);
-
-      bool bFound = false;
-
-      if (!bFound)
-      {
-
-         call_async(strBrowserPath, strParam, strBrowserDir, e_display_normal, false);
-
-         call_async(strBrowserHelperPath, "/SetAsDefaultAppUser", strBrowserHelperDir, e_display_none, false);
-
-      }
-
-      if (strBrowser.has_char())
-      {
-
-         Context.file().put_contents_utf8(::dir::system() / "browser.txt", strBrowser);
-
-         Context.file().put_contents_utf8(::dir::system() / "browser_path.txt", strBrowserPath);
-
-         Context.file().put_contents_utf8(::dir::system() / "browser_dir.txt", strBrowserDir);
-
-      }
-
-#endif
-
-      return ::success;
-
-   }
+//   void system::defer_create_firefox_profile(::file::path pathFirefox, string strProfileName, ::file::path pathProfile)
+//   {
+//
+//#ifdef _UWP
+//
+//
+//#else
+//
+//      if (Context.dir().is(pathProfile))
+//      {
+//
+//         return;
+//
+//      }
+//
+//      ::file::path pathDir;
+//
+//      pathDir = pathFirefox.folder();
+//
+//      ::file::path pathProfileDir;
+//
+//      pathProfileDir = pathProfile.folder();
+//
+//      Context.dir().mk(pathProfileDir);
+//
+//      string strParam = "-no-remote -CreateProfile \"" + strProfileName + " " + pathProfile + "\"";
+//
+//      ::property_set set;
+//
+//      call_sync(pathFirefox, strParam, pathDir, e_display_default, 3_min, set);
+//
+//#endif
+//
+//   }
+
+
+//   ::e_status system::get_firefox_installation_info(string & strPathToExe, string & strInstallDirectory)
+//   {
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      try
+//      {
+//
+//         ::windows::registry::key key(HKEY_LOCAL_MACHINE, "SOFTWARE\\Mozilla\\Mozilla Firefox");
+//
+//         string strCurrentVersion;
+//
+//         key.get("CurrentVersion", strCurrentVersion);
+//
+//         key.open(HKEY_LOCAL_MACHINE, "SOFTWARE\\Mozilla\\Mozilla Firefox\\" + strCurrentVersion + "\\Main");
+//
+//         key.get("PathToExe", strPathToExe);
+//
+//         key.get("Install Directory", strInstallDirectory);
+//
+//      }
+//      catch (const ::e_status & estatus)
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      return ::success;
+//
+//#else
+//
+//      return ::error_failed;
+//
+//#endif
+//
+//   }
+//
+//
+//   ::e_status system::firefox(string strUrl, string strBrowser, string strProfile, string strParam)
+//   {
+//
+//#ifdef _UWP
+//
+//      Context.os().native_full_web_browser(strUrl);
+//
+//#else
+//
+//      string strBrowserPath;
+//      string strBrowserDir;
+//      string strBrowserHelperPath;
+//      string strBrowserHelperDir;
+//
+//      ::file::path pathAppDataDir(getenv("APPDATA"));
+//
+//      ::file::path pathProfile;
+//
+//      strParam = "-P \"" + strProfile + "\"";
+//
+//      if (strUrl.has_char())
+//      {
+//
+//         strParam += " -new-tab \"" + strUrl + "\"";
+//
+//      }
+//
+//      auto estatus = get_firefox_installation_info(strBrowserPath, strBrowserDir);
+//
+//      if (::failed(estatus))
+//      {
+//
+//         return estatus;
+//
+//      }
+//
+//      if (!Context.file().exists(strBrowserPath) || !Context.dir().is(strBrowserDir))
+//      {
+//
+//         return error_not_found;
+//
+//      }
+//
+//      strBrowserHelperPath = ::file::path(strBrowserDir) / "uninstall/helper.exe";
+//
+//      strBrowserHelperDir = ::file::path(strBrowserDir) / "uninstall";
+//
+//      pathProfile = pathAppDataDir / "ca2/Firefox/Profile" / strProfile;
+//
+//      defer_create_firefox_profile(strBrowserPath, strProfile, pathProfile);
+//
+//      bool bFound = false;
+//
+//      if (!bFound)
+//      {
+//
+//         call_async(strBrowserPath, strParam, strBrowserDir, e_display_normal, false);
+//
+//         call_async(strBrowserHelperPath, "/SetAsDefaultAppUser", strBrowserHelperDir, e_display_none, false);
+//
+//      }
+//
+//      if (strBrowser.has_char())
+//      {
+//
+//         Context.file().put_contents_utf8(::dir::system() / "browser.txt", strBrowser);
+//
+//         Context.file().put_contents_utf8(::dir::system() / "browser_path.txt", strBrowserPath);
+//
+//         Context.file().put_contents_utf8(::dir::system() / "browser_dir.txt", strBrowserDir);
+//
+//      }
+//
+//#endif
+//
+//      return ::success;
+//
+//   }
 
    string system::get_local_mutex_name(const char * pszAppName)
    {
@@ -5359,7 +5348,7 @@ namespace aura
   //
   //
   //      //m_bInitApplication         = false;
-  //      //m_bInitApplicationResult   = FALSE;
+  //      //m_bInitApplicationResult   = false;
   //      //m_bProcessInitialize       = false;
   //      //m_bProcessInitializeResult = false;
   //
@@ -5499,7 +5488,7 @@ namespace aura
    //   if(m_bInitApplication)
    //      return m_bInitApplicationResult;
 
-   //   m_bInitApplicationResult      = FALSE;
+   //   m_bInitApplicationResult      = false;
    //   m_bInitApplication            = true;
 
    //   m_bInitApplicationResult = ::aura::system::InitApplication();
@@ -6331,54 +6320,8 @@ namespace aura
    //}
 
 
-   void system::set_active_guie(::user::interaction* pinteraction)
-   {
+   
 
-#ifdef WINDOWS_DESKTOP
-
-      if (pinteraction == nullptr)
-      {
-
-         ::set_active_window(nullptr);
-
-      }
-      else
-      {
-
-         ::set_active_window(pinteraction->get_wnd()->get_safe_handle());
-
-      }
-
-#endif
-
-   }
-
-
-   void system::set_focus_guie(::user::interaction* pinteraction)
-   {
-
-      if (pinteraction == nullptr)
-      {
-
-         ::set_focus(nullptr);
-
-         return;
-
-      }
-
-
-      ::set_focus(pinteraction->get_safe_handle());
-
-      if (pinteraction->get_wnd() != nullptr)
-      {
-
-         pinteraction->SetFocus();
-
-      }
-
-      return;
-
-   }
 
 
    void system::on_subject(::promise::subject * psubject)
@@ -6417,6 +6360,8 @@ namespace aura
       ::aqua::system::on_subject(psubject, pcontext);
 
    }
+
+
 
 
    ::e_status system::initialize_estamira()
@@ -6763,7 +6708,7 @@ namespace aura
 
 #else
 
-      __throw(not_implemented);
+      __throw(not_implemented());
 
       return ::error_interface_only;
 

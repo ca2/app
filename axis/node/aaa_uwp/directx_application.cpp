@@ -386,8 +386,8 @@ namespace uwp
 
       ::user::e_key ekey = virtualkey_to_userkey(args->VirtualKey, bSpecialKey);
 
-      if(bSpecialKey || !bTextFocus || m_psystem->get_context_session()->is_key_pressed(::user::key_control)
-         || m_psystem->get_context_session()->is_key_pressed(::user::key_alt))
+      if(bSpecialKey || !bTextFocus || m_psystem->get_context_session()->is_key_pressed(::user::e_key_control)
+         || m_psystem->get_context_session()->is_key_pressed(::user::e_key_alt))
       {
 
          pkey->m_id                 = e_message_key_down;
@@ -400,7 +400,7 @@ namespace uwp
          //pkey->m_strText            = m_strNewText;
          //if (pkey->m_strText.has_char())
          //{
-           // pkey->m_ekey = ::user::key_refer_to_text_member;
+           // pkey->m_ekey = ::user::e_key_refer_to_text_member;
          //}
    //      pkey->m_key = args;
 

@@ -25,7 +25,7 @@ extern "C" i32 WINAPI DllMain(HINSTANCE hInstance, u32 dwReason, LPVOID)
 
    }
 
-   return TRUE;
+   return true;
 
 }
 

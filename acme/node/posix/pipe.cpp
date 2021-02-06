@@ -118,7 +118,7 @@ namespace posix
 
       dwWritten = ::write(m_fd[1], (const char *)psz, dwLen);
 
-      return bSuccess != FALSE && dwWritten == dwLen;
+      return bSuccess != false && dwWritten == dwLen;
 
    }
 

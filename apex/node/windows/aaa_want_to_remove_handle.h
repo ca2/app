@@ -223,8 +223,8 @@ handle_map < HT, CT > ::handle_map(::layered * pobjectContext) :
 
    ASSERT(HT::s_iHandleCount == 1 || HT::s_iHandleCount == 2);
 
-   m_permanentMap.InitHashTable(1024, TRUE);
-   m_temporaryMap.InitHashTable(1024, TRUE);
+   m_permanentMap.InitHashTable(1024, true);
+   m_temporaryMap.InitHashTable(1024, true);
 
    m_pfnConstructObject    = ConstructDestruct<CT>::Construct;
    m_pfnDestructObject     = ConstructDestruct<CT>::Destruct;
@@ -235,7 +235,7 @@ template < class HT, class CT >
 CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (__pointer(::apex::application), HANDLE), __pointer(::apex::application) papp)
 {
 
-   single_lock sl(&m_mutex, TRUE);
+   single_lock sl(&m_mutex, true);
 
    ASSERT(HT::s_iHandleCount == 1 || HT::s_iHandleCount == 2);
 
@@ -262,7 +262,7 @@ CT* handle_map < HT, CT >::from_handle(HANDLE h, CT * (*pfnAllocator) (__pointer
    // C++ object to wrap it.  We don't want the ::account::user to see this memory
    // allocation, so we turn tracing off.
 
-   //bool bEnable = __enable_memory_tracking(FALSE);
+   //bool bEnable = __enable_memory_tracking(false);
 #ifndef ___PORTABLE
 //   _PNH pnhOldHandler = __set_new_handler(&__critical_new_handler);
 #endif
@@ -321,9 +321,9 @@ template < class HT, class CT >
 void handle_map < HT, CT >::set_permanent(HANDLE h, CT * permOb)
 {
 
-   single_lock sl(&m_mutex, TRUE);
+   single_lock sl(&m_mutex, true);
 
-   //bool bEnable = __enable_memory_tracking(FALSE);
+   //bool bEnable = __enable_memory_tracking(false);
    m_permanentMap[(LPVOID)h] = permOb;
    //__enable_memory_tracking(bEnable);
 
@@ -335,7 +335,7 @@ template < class HT, class CT >
 void handle_map < HT, CT > ::remove_handle(HANDLE h)
 {
 
-   single_lock sl(&m_mutex, TRUE);
+   single_lock sl(&m_mutex, true);
 
    // make sure the handle entry is consistent before deleting
    CT* pTemp = lookup_temporary(h);
@@ -366,7 +366,7 @@ template < class HT, class CT >
 void handle_map < HT, CT >::delete_temp()
 {
 
-   single_lock sl(&m_mutex, TRUE);
+   single_lock sl(&m_mutex, true);
 
    if (::is_null(this))
       return;
@@ -418,7 +418,7 @@ template < class HT, class CT >
 inline CT* handle_map <HT, CT>::lookup_permanent(HANDLE h)
 {
 
-   single_lock sl(&m_mutex, TRUE);
+   single_lock sl(&m_mutex, true);
 
    CT * pt = m_permanentMap.get(h, (CT*) nullptr);
    if(pt != nullptr && pt->get_os_data() == (void *) h)
@@ -432,7 +432,7 @@ template < class HT, class CT >
 inline CT* handle_map <HT, CT>::lookup_temporary(HANDLE h)
 {
 
-   single_lock sl(&m_mutex, TRUE);
+   single_lock sl(&m_mutex, true);
 
    CT * pt = m_temporaryMap.get(h, (CT*) nullptr);
    if(pt != nullptr && pt->get_os_data() == (void *) h)
@@ -443,4 +443,4 @@ inline CT* handle_map <HT, CT>::lookup_temporary(HANDLE h)
 }
 
 
-CLASS_DECL_APEX oswindow_map * get_oswindow_map(bool bCreate = FALSE);
+CLASS_DECL_APEX oswindow_map * get_oswindow_map(bool bCreate = false);

@@ -45,8 +45,8 @@ public:
 CLASS_DECL_CORE index oswindow_find(::user::interaction_impl* pinteraction);
 CLASS_DECL_CORE oswindow oswindow_get(::user::interaction_impl* pinteraction);
 CLASS_DECL_CORE oswindow oswindow_remove(::user::interaction_impl* pinteraction);
-CLASS_DECL_CORE::user::interaction_impl* oswindow_interaction_impl(oswindow oswindow);
-CLASS_DECL_CORE::user::interaction* oswindow_interaction(oswindow oswindow);
+//CLASS_DECL_CORE::user::interaction_impl* oswindow_interaction_impl(oswindow oswindow);
+//CLASS_DECL_CORE::user::interaction* oswindow_interaction(oswindow oswindow);
 #if defined(__cplusplus_winrt)
 CLASS_DECL_CORE Agile < Windows::UI::Core::CoreWindow > oswindow_core_window(oswindow window);
 #endif

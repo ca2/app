@@ -363,7 +363,7 @@ namespace ios
 ////            break;
 ////         default:
 ////            // unexpected icon type
-////            ASSERT(FALSE);
+////            ASSERT(false);
 ////            return 0x80000000;
 ////         }
 ////
@@ -1008,7 +1008,7 @@ namespace ios
    //      break;
    //   default:
    //      // unexpected icon type
-   //      ASSERT(FALSE);
+   //      ASSERT(false);
    //      return false;
    //   }
 

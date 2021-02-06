@@ -260,16 +260,17 @@ namespace apex
       virtual ::e_status create_os_node() override;
 
 
-         //::thread * get_task(ithread_t ithread);
+      //::thread * get_task(ithread_t ithread);
       //ithread_t get_thread_id(::thread * pthread);
       //void set_thread(ithread_t ithread, ::thread * pthread);
       //void unset_thread(ithread_t ithread, ::thread * pthread);
-   //::url::department                           & url()     { return m_urldepartment; }
+      //::url::department & url() { return m_urldepartment; }
 
 
       //inline ::gpu::approach* get_gpu() { if (!m_pgpu) create_gpu(); return m_pgpu.get(); };
       //inline ::gpu::approach* gpu() { return m_pgpu.get(); };
       //virtual ::e_status create_gpu();
+
 
       ::thread_group * thread_group(::e_priority epriority = ::priority_none);
 
@@ -299,7 +300,7 @@ namespace apex
       //virtual i32 install_progress_app_add_up(int iAddUp = 1) override;
 
 
-      virtual __pointer(::layered) get_layered_window(oswindow oswindow);
+      virtual ::layered * get_layered_window(oswindow oswindow);
 
 
       virtual ::e_status process_init();

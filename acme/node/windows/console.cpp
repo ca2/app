@@ -157,15 +157,30 @@ namespace windows
       SetConsoleTextAttribute(GetStdHandle(STD_OUTPUT_HANDLE),color);
    }
 
-   void console::SetScreenColor(int color, int iLineStart, int iLineCount)
+   
+   void console::SetScreenColor(enum_dos_color edoscolor, int iLineStart, int iLineCount)
    {
+
       COORD coord = {0,(SHORT)iLineStart};
+
       DWORD dwWritten;
-      if(iLineCount < 0)
+
+      if (iLineCount < 0)
+      {
+
          iLineCount = m_iH + iLineCount + 1;
-      if(iLineCount > m_iH - iLineStart)
+
+      }
+
+      if (iLineCount > m_iH - iLineStart)
+      {
+
          iLineCount = m_iH - iLineStart;
-      FillConsoleOutputAttribute(GetStdHandle(STD_OUTPUT_HANDLE),color,iLineCount * m_iW,coord,&dwWritten);
+
+      }
+
+      FillConsoleOutputAttribute(GetStdHandle(STD_OUTPUT_HANDLE), (int) edoscolor,iLineCount * m_iW,coord,&dwWritten);
+
    }
 
 

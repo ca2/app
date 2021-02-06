@@ -1,9 +1,7 @@
 #pragma once
 
-
-
-
-
+typedef struct tagMSG MSG;
+inline void copy(MESSAGE * pmessage, const MSG * pmsg);
 
 
 //#ifdef WINDOWS

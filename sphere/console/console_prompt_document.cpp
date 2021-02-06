@@ -20,11 +20,11 @@ namespace console
    {
 
       if(!::user::document::on_new_document())
-         return FALSE;
+         return false;
 
       update_all_views(nullptr, NEW_DOCUMENT_UPDATE);
 
-      return TRUE;
+      return true;
 
    }
 

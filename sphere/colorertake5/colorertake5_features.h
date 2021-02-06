@@ -12,28 +12,28 @@
   If defined, use dlmalloc memory management implementation
 */
 #ifndef COLORER_FEATURE_USE_DL_MALLOC
-  #define COLORER_FEATURE_USE_DL_MALLOC TRUE
+  #define COLORER_FEATURE_USE_DL_MALLOC true
 #endif
 
 /**
   If defined, long-living classes use chunk allocation procedure
 */
 #ifndef COLORER_FEATURE_USE_CHUNK_ALLOC
-  #define COLORER_FEATURE_USE_CHUNK_ALLOC TRUE
+  #define COLORER_FEATURE_USE_CHUNK_ALLOC true
 #endif
 
 /**
   If defined, HTTP input_source is implemented.
 */
 #ifndef COLORER_FEATURE_HTTPINPUTSOURCE
-  #define COLORER_FEATURE_HTTPINPUTSOURCE TRUE
+  #define COLORER_FEATURE_HTTPINPUTSOURCE true
 #endif
 
 /**
   If defined, JAR input_source is implemented.
 */
 #ifndef COLORER_FEATURE_JARINPUTSOURCE
-  #define COLORER_FEATURE_JARINPUTSOURCE TRUE
+  #define COLORER_FEATURE_JARINPUTSOURCE true
 #endif
 
 #endif

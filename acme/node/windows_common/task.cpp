@@ -406,7 +406,7 @@ void task::term_task()
    if (m_id.is_empty() || m_id == "task" || m_id == "thread")
    {
 
-      __throw(invalid_argument_exception);
+      __throw(invalid_argument_exception());
 
       return ::error_failed;
 

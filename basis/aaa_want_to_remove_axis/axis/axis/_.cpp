@@ -50,7 +50,7 @@ CLASS_DECL_AXIS int_bool defer_axis_init()
    g_iAxisRefCount++;
 
    if(g_iAxisRefCount > 1)
-      return TRUE;
+      return true;
 
    ::axis::static_start::init();
 
@@ -74,7 +74,7 @@ CLASS_DECL_AXIS int_bool defer_axis_term()
    g_iAxisRefCount--;
 
    if(g_iAxisRefCount >= 1)
-      return TRUE;
+      return true;
 
    __node_axis_pre_term();
 
@@ -86,7 +86,7 @@ CLASS_DECL_AXIS int_bool defer_axis_term()
 
    defer_aura_term();
 
-   return TRUE;
+   return true;
 
 }
 

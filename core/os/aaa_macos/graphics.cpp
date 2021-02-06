@@ -67,7 +67,7 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //int_bool cg_release_color(CGColorRef colorref)
 //{
 //   CGColorRelease(colorref);
-//   return TRUE;
+//   return true;
 //}
 //
 
@@ -88,15 +88,15 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //}
 //int_bool SelectObject(HDC hdc, HGDIOBJ hgdiobj)
 //{
-//   return FALSE;
+//   return false;
 //}
 //int_bool Rectangle(HDC hdc, int x1, int y1, int x2, int y2)
 //{
-//   return FALSE;
+//   return false;
 //}
 //int_bool DeleteObject(HGDIOBJ hgdiobj)
 //{
-//   return FALSE;
+//   return false;
 //}
 //HDC CreateCompatibleDC(HDC hdc)
 //{
@@ -108,23 +108,23 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //}
 //int_bool SetBkMode(HDC hdc, int iMode)
 //{
-//   return FALSE;
+//   return false;
 //}
 //int_bool DeleteDC(HDC hdc)
 //{
-//   return FALSE;
+//   return false;
 //}
 //int_bool AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn)
 //{
-//   return FALSE;
+//   return false;
 //}
 //int_bool GetObject(HGDIOBJ hgdiobj, int iSize, void * object)
 //{
-//   return FALSE;
+//   return false;
 //}
 //int_bool GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE32 * psize)
 //{
-//   return FALSE;
+//   return false;
 //}
 //
 //
@@ -134,7 +134,7 @@ bool macos1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const 
 //
 //   cg_release_color(hdc->m_cgcolorrefText);
 //   hdc->m_cgcolorrefText = cg_create_color(crText);
-//   return TRUE;
+//   return true;
 //}
 
 HBRUSH CreateSolidBrush(color32_t cr)
@@ -326,7 +326,7 @@ HBRUSH CreateSolidBrush(color32_t cr)
 //   CFRelease(string);
 //
 //
-//   return TRUE;
+//   return true;
 //
 //
 //}
@@ -358,7 +358,7 @@ HFONT CreatePointBoldFont_dup(int nPointSize, const char * pszFaceName, int BOLD
 //HFONT CreatePointFont_dup(int nPointSize, const char * pszFaceName, HDC hdc)
 //
 //{
-//   return CreatePointBoldFont_dup(nPointSize, pszFaceName, FALSE, hdc);
+//   return CreatePointBoldFont_dup(nPointSize, pszFaceName, false, hdc);
 //
 //}
 //
@@ -631,7 +631,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 //int_bool cg_release_color(CGColorRef colorref)
 //{
 //   CGColorRelease(colorref);
-//   return TRUE;
+//   return true;
 //}
 //
 
@@ -680,7 +680,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 // {
 
 //    if(hdc == nullptr)
-//       return FALSE;
+//       return false;
 
 //    /*QDEndCGContext(hdc->m_windowPort, &hdc->m_cgcontext);
 
@@ -690,7 +690,7 @@ bool mm1_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const cha
 //    }*/
 
 //    delete hdc;
-//    return TRUE;
+//    return true;
 
 // }
 
@@ -715,7 +715,7 @@ int_bool get_client_rect(oswindow hwnd, RECT32 * prect)
 
    if(!get_window_rect(hwnd, prect))
 
-      return FALSE;
+      return false;
 
    prect->right   -=  prect->left;
 
@@ -726,7 +726,7 @@ int_bool get_client_rect(oswindow hwnd, RECT32 * prect)
    prect->top     =   0;
 
 
-   return TRUE;
+   return true;
 
 }
 
@@ -843,15 +843,15 @@ int_bool get_client_rect(oswindow hwnd, RECT32 * prect)
 // }
 // int_bool SelectObject(HDC hdc, HGDIOBJ hgdiobj)
 // {
-//     return FALSE;
+//     return false;
 // }
 // int_bool Rectangle(HDC hdc, int x1, int y1, int x2, int y2)
 // {
-//     return FALSE;
+//     return false;
 // }
 // int_bool DeleteObject(HGDIOBJ hgdiobj)
 // {
-//     return FALSE;
+//     return false;
 // }
 // HDC CreateCompatibleDC(HDC hdc)
 // {
@@ -864,23 +864,23 @@ int_bool get_client_rect(oswindow hwnd, RECT32 * prect)
 // }
 // int_bool SetBkMode(HDC hdc, int iMode)
 // {
-//     return FALSE;
+//     return false;
 // }
 // int_bool DeleteDC(HDC hdc)
 // {
-//     return FALSE;
+//     return false;
 // }
 // int_bool AlphaBlend(HDC hdcDest, int xoriginDest, int yoriginDest, int wDest, int hDest, HDC hdcSrc, int xoriginSrc, int yoriginSrc, int wSrc, int hSrc, BLENDFUNCTION ftn)
 // {
-//     return FALSE;
+//     return false;
 // }
 // int_bool GetObject(HGDIOBJ hgdiobj, int iSize, void * object)
 // {
-//     return FALSE;
+//     return false;
 // }
 // int_bool GetTextExtentPoint(HDC hdc, const char * pszText, int iSize, SIZE32 * psize)
 // {
-//     return FALSE;
+//     return false;
 // }
 
 
@@ -890,7 +890,7 @@ int_bool get_client_rect(oswindow hwnd, RECT32 * prect)
 
 //    cg_release_color(hdc->m_cgcolorrefText);
 //    hdc->m_cgcolorrefText = cg_create_color(crText);
-//    return TRUE;
+//    return true;
 // }
 
 // HBRUSH CreateSolidBrush(color32_t cr)
@@ -1081,7 +1081,7 @@ int_bool get_client_rect(oswindow hwnd, RECT32 * prect)
 //    CFRelease(string);
 
 
-//    return TRUE;
+//    return true;
 
 
 // }
@@ -1113,7 +1113,7 @@ HFONT CreatePointBoldFont_dup(int nPointSize, const char * pszFaceName, int BOLD
 //HFONT CreatePointFont_dup(int nPointSize, const char * pszFaceName, HDC hdc)
 
 //{
-//   return CreatePointBoldFont_dup(nPointSize, pszFaceName, FALSE, hdc);
+//   return CreatePointBoldFont_dup(nPointSize, pszFaceName, false, hdc);
 
 //}
 //

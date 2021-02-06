@@ -48,7 +48,7 @@ namespace user
       HACCEL                     m_hAccelTable;       // accelerator table
 #endif
       u32                   m_dwPromptContext;    // current help prompt action_context for message box
-      bool                       m_bHelpMode;           // if TRUE, then Shift+F1 help mode is active
+      bool                       m_bHelpMode;           // if true, then Shift+F1 help mode is active
       ::user::frame_window *     m_pNextFrameWnd; // next frame_window in cast global list
       ::rectangle_i32                     m_rectBorder;         // for OLE border space negotiation
 
@@ -148,8 +148,8 @@ namespace user
       virtual ::user::document * get_active_document();
 
       virtual ::user::impact * get_active_view() const override;           // active ::user::impact or nullptr
-      virtual void set_active_view(::user::impact * pViewNew, bool bNotify = TRUE) override;
-      // active ::user::impact or nullptr, bNotify == FALSE if focus should not be set
+      virtual void set_active_view(::user::impact * pViewNew, bool bNotify = true) override;
+      // active ::user::impact or nullptr, bNotify == false if focus should not be set
 
       // Active frame (for frames within frames -- MDI)
       virtual __pointer(::user::frame_window) GetActiveFrame();
@@ -158,7 +158,7 @@ namespace user
       virtual void GetMessageString(::u32 nID, string & rMessage) const;
 
       bool m_bAutoMenuEnable;
-      // TRUE => menu items without handlers will be disabled
+      // true => menu items without handlers will be disabled
 
       bool IsTracking() const;
 
@@ -212,7 +212,7 @@ namespace user
       virtual void DelayUpdateFrameMenu(HMENU hMenuAlt);
 #endif
       void DelayUpdateFrameTitle();
-      void DelayRecalcLayout(bool bNotify = TRUE);
+      void DelayRecalcLayout(bool bNotify = true);
 
       // for Shift+F1 help support
       bool CanEnterHelpMode();

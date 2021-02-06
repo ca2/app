@@ -159,7 +159,7 @@
 //      virtual int run();
 //      virtual void pre_translate_message(::message::message * pmessage);
 //      virtual bool pump_message();     // low level message pump
-//      virtual bool on_idle(::i32 lCount); // return TRUE if more idle processing
+//      virtual bool on_idle(::i32 lCount); // return true if more idle processing
 //      virtual bool is_idle_message(MSG* pMsg);  // checks for special messages
 //
 //      // thread termination
@@ -178,7 +178,7 @@
 //      virtual void dump(dump_context & dumpcontext) const;
 //      virtual void CommonConstruct();
 //      virtual void Delete();
-//         // 'delete this' only if m_bAutoDelete == TRUE
+//         // 'delete this' only if m_bAutoDelete == true
 //
 //
 //
@@ -201,7 +201,7 @@
 //      //__pointer(::user::printer) get_printer(const char * pszDeviceName);
 //
 //
-//      void ShowWaitCursor(bool bShow);
+//      void show_wait_cursor(bool bShow);
 //
 //      virtual string draw2d_get_default_library_name();
 //

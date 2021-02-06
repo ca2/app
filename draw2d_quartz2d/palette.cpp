@@ -49,7 +49,7 @@ namespace draw2d_quartz2d
 
     //   return Attach(::CreatePalette(lpLogPalette));
 
-    return FALSE;
+    return false;
 
     }
 
@@ -65,7 +65,7 @@ namespace draw2d_quartz2d
     //ASSERT(pgraphics != nullptr && (dynamic_cast<::win::graphics * >(pgraphics))->get_handle1() != nullptr);
     //return Attach(::CreateHalftonePalette((dynamic_cast<::win::graphics * >(pgraphics))->get_handle1()));
 
-    return FALSE;
+    return false;
 
     }
 
@@ -125,7 +125,7 @@ namespace draw2d_quartz2d
 
     //return ::ResizePalette((HPALETTE)get_os_data(), nNumEntries);
 
-    return FALSE;
+    return false;
 
     }
 

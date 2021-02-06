@@ -12,11 +12,9 @@ namespace app_app
 
 
       double      m_dBreathPeriod;
-      double      m_dStartTime;
-      //double      m_dLastTime;
+      millis      m_millisStart;
       double      m_dPhaseShift;
-
-      int m_iCloseButtonDraw;
+      int         m_iCloseButtonDraw;
 
 
       window();

@@ -457,7 +457,7 @@ namespace draw2d
 //   {
 //
 //
-//      System.draw2d().api().embossed_text_out(pgraphics, rectangle_i32, dRateX, dHeight, str);
+//      System.draw2d().api().embossed_text_out(pgraphics, rectangle, dRateX, dHeight, str);
 //
 //      return;
 //
@@ -466,7 +466,7 @@ namespace draw2d
 //      //      SetDC(pgraphics);
 //      //      SelectFont();
 //      //
-//      //      ::rectangle_i32 rectOffset(rectangle);
+//      //      rectangle_i32 rectOffset(rectangle);
 //      //      const ::point_i32 & pointOffset(rectOffset.top_left());
 //      //
 //      //      glyph * pglyph;
@@ -512,7 +512,7 @@ namespace draw2d
 
 //   {
 //
-//      System.draw2d().api().embossed_text_out(pgraphics, rectangle_i32, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
+//      System.draw2d().api().embossed_text_out(pgraphics, rectangle, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
 
 //
 //      return;
@@ -522,7 +522,7 @@ namespace draw2d
 //      //      SetDC(pgraphics);
 //      //      SelectFont();
 //      //
-//      //      const ::rectangle_i32 rectOffset(rectangle);
+//      //      const rectangle_i32 rectOffset(rectangle);
 //      //      ::point_i32 pointOffset;
 //      //
 //      //
@@ -566,7 +566,7 @@ namespace draw2d
 //      /*   SetDC(pgraphics);
 //         SelectFont();
 //
-//         rectangle_i32 clipRect;
+//         rectangle clipRect;
 //
 //         i32 iOldMapMode = pgraphics->GetMapMode();
 //         pgraphics->SetMapMode(MM_TEXT);
@@ -593,7 +593,7 @@ namespace draw2d
 //      SetDC(pgraphics);
 //      SelectFont();
 //
-//      rectangle_i32 clipRect;
+//      rectangle clipRect;
 //
 //      pgraphics->text_out(x, y, str);
 //
@@ -650,7 +650,7 @@ namespace draw2d
 //      u32 cbBuffer = m_pDC->GetGlyphOutline(user, GGO_NATIVE, &glyph.m_gm, 0, nullptr, &mat2);
 //
 //      if (cbBuffer == GDI_ERROR)
-//         return FALSE;
+//         return false;
 //
 //      if (cbBuffer == 0)
 //      {
@@ -666,7 +666,7 @@ namespace draw2d
 //
 //      if (pPH == nullptr)
 
-//         return FALSE;
+//         return false;
 //
 //      m_pDC->GetGlyphOutline(user, GGO_NATIVE, &gm, cbBuffer, pPH, &mat2);
 
@@ -732,7 +732,7 @@ namespace draw2d
 //      char           ch;
 //      string         str;
 //      i32        i, j, k;
-//      bool           forceInsertion = FALSE;
+//      bool           forceInsertion = false;
 //
 //      SelectFont();
 //      for (i = 0; i < str2aTokens.get_size(); i++)
@@ -746,7 +746,7 @@ namespace draw2d
 //               ch = str.operator[](k);
 //               if (forceInsertion)
 //               {
-//                  forceInsertion = FALSE;
+//                  forceInsertion = false;
 //                  AddGlyph(ch);
 //               }
 //               else if (ch == '\\')
@@ -794,7 +794,7 @@ namespace draw2d
 //
 //   void font::TextOutEx(
 //   ::draw2d::graphics * pgraphics,
-//   const rectangle_i32 &               rectangle_i32,
+//   const rectangle &               rectangle,
 //   double               dRateX,
 //   double               dHeight,
 //   string                 &str,
@@ -814,7 +814,7 @@ namespace draw2d
 //      case EffectEmbossed:
 //         embossed_text_out(
 //         pgraphics,
-//         rectangle_i32,
+//         rectangle,
 //         dRateX,
 //         dHeight,
 //         str,
@@ -824,7 +824,7 @@ namespace draw2d
 //         iOffset);
 //         break;
 //      default:
-//         ASSERT(FALSE);
+//         ASSERT(false);
 //
 //      }
 //
@@ -1009,14 +1009,14 @@ void font::destroy()
 //   //   if (pString == nullptr)
 //   //
 //   //   {
-//   //      return ::TextOutW(hdc, x, y, nullptr, ca) != FALSE;
+//   //      return ::TextOutW(hdc, x, y, nullptr, ca) != false;
 //   //
 //   //   }
 //   //
 //   //   wstring wstr = ::str::international::utf8_to_unicode(pString, ca);
 //   //
 //   //
-//   //   bool bRet = ::TextOutW(hdc, x, y, wstr, (i32)wstr.get_length()) != FALSE;
+//   //   bool bRet = ::TextOutW(hdc, x, y, wstr, (i32)wstr.get_length()) != false;
 //   //
 //   //   return bRet;
 //   //
@@ -1029,10 +1029,10 @@ void font::destroy()
 //      if(pString == nullptr)
 //
 //      {
-//         return ::text_out(hdc, x, y, nullptr, 0) != FALSE;
+//         return ::text_out(hdc, x, y, nullptr, 0) != false;
 //      }
 //
-//      return ::text_out(hdc, x, y, wstr, (i32) wstr.get_length()) != FALSE;
+//      return ::text_out(hdc, x, y, wstr, (i32) wstr.get_length()) != false;
 //   */
 //
 //   //#endif
@@ -1050,14 +1050,14 @@ void font::destroy()
 //   //
 //   //   {
 //   //
-//   //      return ::GetTextExtentPoint32W(hdc, nullptr, ca, psizl) != FALSE;
+//   //      return ::GetTextExtentPoint32W(hdc, nullptr, ca, psizl) != false;
 //   //
 //   //   }
 //   //
 //   //   wstring wstr = ::str::international::utf8_to_unicode(pString, ca);
 //   //
 //   //
-//   //   bool bRet = ::GetTextExtentPoint32W(hdc, wstr, (i32)wstr.get_length(), psizl) != FALSE;
+//   //   bool bRet = ::GetTextExtentPoint32W(hdc, wstr, (i32)wstr.get_length(), psizl) != false;
 //   //
 //   //   return bRet;
 //   //
@@ -1088,7 +1088,7 @@ void font::destroy()
 //   //   wstring wstr = ::str::international::utf8_to_unicode(pchText, cchText);
 //   //
 //   //
-//   //   bool bRet = ::DrawTextW(hdc, wstr, (i32)wcslen(wstr), prectangle, format) != FALSE;
+//   //   bool bRet = ::DrawTextW(hdc, wstr, (i32)wcslen(wstr), prectangle, format) != false;
 //   //
 //   //
 //   //   return bRet;

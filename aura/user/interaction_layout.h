@@ -132,7 +132,7 @@ namespace user
       //virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer& pgraphics) override;
 
       //virtual oswindow get_handle() const override;
-      //virtual bool attach(oswindow oswindow_New);
+      //virtual bool attach(::windowing::window * pwindow_New);
       //virtual oswindow detach();
 
 
@@ -305,7 +305,7 @@ namespace user
       virtual void on_add_layout(::user::interaction_layout * playout);
 
 
-      inline ::size_i32 size_i32(enum_layout elayout = e_layout_design) const { return state(elayout).size(); }
+      inline ::size_i32 size(enum_layout elayout = e_layout_design) const { return state(elayout).size(); }
 
       inline ::point_i32 origin(enum_layout elayout = e_layout_design) const { return state(elayout).origin(); }
       inline ::point_i32 host_origin(enum_layout elayout = e_layout_design) const { return state(elayout).host_origin(); }

@@ -318,7 +318,7 @@ bool semaphore::unlock(::i32 lCount, ::i32 * pPrevCount)
 
 #ifdef WINDOWS
 
-   return ::ReleaseSemaphore(m_hsync, lCount, (LPLONG) pPrevCount) != FALSE;
+   return ::ReleaseSemaphore(m_hsync, lCount, (LPLONG) pPrevCount) != false;
 
 #elif defined(ANDROID)
 

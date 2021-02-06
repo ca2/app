@@ -266,7 +266,7 @@ namespace userex
 
       //m_pimage = create_image({m_rectColors->width() / 2,  m_rectColors->height()});
 
-      //m_pimage->g()->draw(m_pimage->rectangle_i32(), m_pimageTemplate->get_graphics(), m_pimageTemplate->rectangle_i32());
+      //m_pimage->g()->draw(m_pimage->rectangle(), m_pimageTemplate->get_graphics(), m_pimageTemplate->rectangle());
 
       //m_pimageLuminance = create_image({m_rectColors->width() / 8,  m_rectColors->height()});
 

@@ -30,7 +30,7 @@ namespace user
 
       m_pimpactsystem = nullptr;
 
-      m_bEmbedded = FALSE;        // default to file-based document
+      m_bEmbedded = false;        // default to file-based document
 
       defer_create_mutex();
 
@@ -694,16 +694,16 @@ namespace user
       //if ( lstrlen(pszPathName) >= _MAX_PATH )
 
       //{
-      //   ASSERT(FALSE);
+      //   ASSERT(false);
       // aura API requires paths with length < _MAX_PATH
       // No other way to handle the error from a void function
       //   ::aura::ThrowFileException(::file::exception::badPath);
       //}
 
-      //   if( ::aura::FullPath(szFullPath, pszPathName) == FALSE )
+      //   if( ::aura::FullPath(szFullPath, pszPathName) == false )
 
       //   {
-      //      ASSERT(FALSE);
+      //      ASSERT(false);
       // aura API requires paths with length < _MAX_PATH
       // No other way to handle the error from a void function
       //      ::aura::ThrowFileException(::file::exception::badPath);
@@ -716,7 +716,7 @@ namespace user
       m_path = Context.defer_process_path(m_path);
       //m_filepathEx = strFullPath;
       //!m_strPathName.is_empty());       // must be set to something
-      m_bEmbedded = FALSE;
+      m_bEmbedded = false;
 
       // set the document_interface title based on path name
       set_title(strFullPath.title());
@@ -735,7 +735,7 @@ namespace user
       m_strPathName = pszPathName;
 
       ASSERT(!m_strPathName.is_empty());       // must be set to something
-      m_bEmbedded = FALSE;
+      m_bEmbedded = false;
       ASSERT_VALID(this);
 
       // set the document_interface title based on path name
@@ -1391,7 +1391,7 @@ namespace user
       //default:
       //{
 
-      //   ASSERT(FALSE);
+      //   ASSERT(false);
       //   break;
 
       //}
@@ -1434,8 +1434,8 @@ namespace user
 
    // note: pszPathName can be different than 'm_strPathName'
 
-   // if 'bReplace' is TRUE will machine file name if successful (SaveAs)
-   // if 'bReplace' is FALSE will not machine path name (SaveCopyAs)
+   // if 'bReplace' is true will machine file name if successful (SaveAs)
+   // if 'bReplace' is false will not machine path name (SaveCopyAs)
    {
 
       ::payload newName = varFile;
@@ -1469,8 +1469,8 @@ namespace user
             }
          }
 
-         //if (!Application.do_prompt_file_name(newName, __str("Save ") + newName, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, FALSE, ptemplate, this))
-           // return FALSE;       // don't even attempt to save
+         //if (!Application.do_prompt_file_name(newName, __str("Save ") + newName, 0 /*OFN_HIDEREADONLY | OFN_PATHMUSTEXIST */, false, ptemplate, this))
+           // return false;       // don't even attempt to save
 
       }
 
@@ -1499,14 +1499,14 @@ namespace user
             }
 
          }
-         return FALSE;
+         return false;
       }
 
       // reset the title and machine the document_interface name
       if (bReplace)
          set_path_name(newName);
 
-      return TRUE;        // success
+      return true;        // success
    }
 
 
@@ -1523,7 +1523,7 @@ namespace user
 
             TRACE(trace_category_appmsg, e_trace_level_warning, "Warning: File save with new name failed.\n");
 
-            return FALSE;
+            return false;
 
          }
 
@@ -1636,7 +1636,7 @@ namespace user
                if (nFrames == 1)
                   pframe->m_nWindow = 0;      // the only one of its kind
 
-               pframe->post_simple_command(simple_command_update_frame_title, (LPARAM) TRUE);
+               pframe->post_simple_command(simple_command_update_frame_title, (LPARAM) true);
 
                iFrame++;
 

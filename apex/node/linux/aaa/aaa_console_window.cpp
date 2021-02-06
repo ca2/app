@@ -16,7 +16,7 @@ namespace linux
       initscr();
       raw();
       noecho();
-      keypad(stdscr, TRUE);
+      keypad(stdscr, true);
       start_color();
 
       init_color(COLOR_WHITE, 1000, 1000, 1000);
@@ -132,7 +132,7 @@ namespace linux
             window.Left = 0;
             window.Bottom = height - 1;
             window.Right = width - 1;
-            SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE),TRUE,&window);
+            SetConsoleWindowInfo(GetStdHandle(STD_OUTPUT_HANDLE),true,&window);
             COORD buffer ={width,height};
             SetConsoleScreenBufferSize(GetStdHandle(STD_OUTPUT_HANDLE),buffer);
       */

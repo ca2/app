@@ -161,7 +161,7 @@ namespace apex
 
 
       string_array                                    m_straAppInterest;
-      string_map < oswindow, oswindow >               m_mapAppInterest;
+      //string_map < oswindow, oswindow >               m_mapAppInterest;
 
       ::duration                                      m_durationGcomBackgroundUpdate;
 
@@ -348,7 +348,7 @@ namespace apex
 
       virtual string get_mutex_name_gen();
 
-      //virtual ::user::interaction * user_interaction_from_oswindow(oswindow oswindow);
+      //virtual ::user::interaction * user_interaction_from_oswindow(::windowing::window * pwindow);
 
 
       virtual i32 hotplugin_host_starter_start_sync(const char * pszCommandLine, ::apex::application * papp, hotplugin::host * phost, hotplugin::plugin * pplugin = nullptr);
@@ -511,7 +511,7 @@ namespace apex
       //virtual ::file::path full_process_path(::file::path path);
 
       //virtual void DoWaitCursor(i32 nCode); // 0 => restore, 1=> begin, -1=> end
-      virtual void ShowWaitCursor(bool bShow = true);
+      virtual void show_wait_cursor(bool bShow = true);
 
 
 
@@ -701,7 +701,7 @@ namespace apex
       virtual ::e_status     call_request(::create * pcreate) override;
 
 
-      virtual void process_message(::message::base * base) override;
+      //virtual void process_message(::message::base * base) override;
 
       virtual void message_handler(::message::base * pbase) override;
 
@@ -1197,7 +1197,7 @@ namespace apex
 
 //#ifdef WINDOWS_DESKTOP
 //
-//      static BOOL CALLBACK GetAppsEnumWindowsProc(oswindow oswindow, LPARAM lParam);
+//      static BOOL CALLBACK GetAppsEnumWindowsProc(::windowing::window * pwindow, LPARAM lParam);
 //
 //#endif
 
@@ -1205,15 +1205,15 @@ namespace apex
       void ensure_app_interest();
 
 
-      virtual oswindow get_ca2_app_wnd(const char* psz);
+      //virtual oswindow get_ca2_app_wnd(const char* psz);
 
 
       //virtual void request_create(::create * pcreate);
 
       //      virtual void on_exclusive_instance_local_conflict();
 
-      virtual i32 send_simple_command(const char* psz, void* osdataSender);
-      virtual i32 send_simple_command(void* osdata, const char* psz, void* osdataSender);
+      //virtual i32 send_simple_command(const char* psz, void* osdataSender);
+      //virtual i32 send_simple_command(void* osdata, const char* psz, void* osdataSender);
 
       //virtual ::apex::printer* get_printer(const char* pszDeviceName) override;
 
@@ -1390,7 +1390,11 @@ namespace apex
 
 
 
-      virtual ::e_status process_message() override;
+//#ifdef WINDOWS_DESKTOP
+//      virtual ::e_status process_message(::layered * pwindow);     // route message
+//#else
+//      virtual ::e_status process_message();     // route message
+//#endif
 
       //i32 hotplugin_host_host_starter_start_sync(const char* pszCommandLine, ::apex::application* papp, ::hotplugin::host* phost, ::hotplugin::plugin* pplugin) override;
 

@@ -50,7 +50,7 @@ namespace account
          
          TRACE(trace_category_general, e_trace_level_error, "::account::storage_client::get Token is Empty!");
          
-         ASSERT(FALSE);
+         ASSERT(false);
          
          return error_failed;
          
@@ -70,7 +70,7 @@ namespace account
          
          TRACE(trace_category_general, e_trace_level_error, "::account::storage_client::set Token is Empty!");
          
-         //ASSERT(FALSE);
+         //ASSERT(false);
          
          return false;
          

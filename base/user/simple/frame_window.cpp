@@ -672,7 +672,7 @@ bool simple_frame_window::initialize_frame_window_experience()
 
 #if defined(LINUX) || defined(APPLEOS)
 
-   SetActiveFlag(TRUE);
+   SetActiveFlag(true);
 
 #endif
 
@@ -962,7 +962,7 @@ void simple_frame_window::_001OnShowWindow(::message::message * pmessage)
    if(pshow->m_bShow)
    {
 
-      output_debug_string("\nsimple_frame_window::_001OnShowWindow TRUE " + string(typeid(*this).name()));
+      output_debug_string("\nsimple_frame_window::_001OnShowWindow true " + string(typeid(*this).name()));
 
       defer_set_icon();
 
@@ -970,7 +970,7 @@ void simple_frame_window::_001OnShowWindow(::message::message * pmessage)
    else
    {
 
-      output_debug_string("\nsimple_frame_window::_001OnShowWindow FALSE " + string(typeid(*this).name()));
+      output_debug_string("\nsimple_frame_window::_001OnShowWindow false " + string(typeid(*this).name()));
 
    }
 
@@ -1013,7 +1013,7 @@ void simple_frame_window::_001OnDisplayChange(::message::message * pmessage)
    else
    {
 
-      post_simple_command(simple_command_load_window_rect, (LPARAM)FALSE);
+      post_simple_command(simple_command_load_window_rect, (LPARAM)false);
 
    }
 
@@ -1497,7 +1497,7 @@ void simple_frame_window::GetBorderRect(RECTANGLE_I32 * prectangle)
 
 void simple_frame_window::SetBorderRect(const ::rectangle_i32 & rectangle)
 {
-   m_rectBorder = rectangle_i32;
+   m_rectBorder = rectangle;
 }
 
 
@@ -1795,7 +1795,7 @@ void simple_frame_window::_001OnActivateApp(::message::message * pmessage)
 
    pbase->previous();
 
-   //bool bActive = pbase->m_wparam != FALSE;
+   //bool bActive = pbase->m_wparam != false;
 
    if (get_parent() == nullptr && GetExStyle() & WS_EX_LAYERED)
    {
@@ -1977,7 +1977,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
 
       m_bLayoutEnable = false;
 
-      INFO("simple_frame_window::LoadFrame m_bLayoutEnable FALSE");
+      INFO("simple_frame_window::LoadFrame m_bLayoutEnable false");
 
    }
 
@@ -2127,7 +2127,7 @@ bool simple_frame_window::LoadFrame(const char * pszMatter, u32 dwDefaultStyle, 
    if (pusersystem == nullptr)   // send initial update
    {
 
-      send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (LPARAM)0, TRUE, TRUE);
+      send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (LPARAM)0, true, true);
 
    }
 
@@ -2280,7 +2280,7 @@ void simple_frame_window::InitialFramePosition(bool bForceRestore)
 
    //set_need_redraw();
 
-   output_debug_string("\nm_bLayoutEnable TRUE");
+   output_debug_string("\nm_bLayoutEnable true");
 
    if (get_parent() == nullptr || is_host_top_level())
    {
@@ -2944,7 +2944,7 @@ void simple_frame_window::design_up()
 //bool simple_frame_window::create_interaction(const char * pszClassName, const char * pszWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, const char * pszMenuName, u32 dwExStyle, ::create * pcreate)
 //{
 //
-//   return ::user::frame_window::create_interaction(pszClassName, pszWindowName, uStyle, rectangle_i32, puiParent, pszMenuName, dwExStyle, pcreate);
+//   return ::user::frame_window::create_interaction(pszClassName, pszWindowName, uStyle, rectangle, puiParent, pszMenuName, dwExStyle, pcreate);
 //
 //}
 
@@ -3176,12 +3176,12 @@ void simple_frame_window::NotifyFloatingWindows(u32 dwFlags)
    //      // Excel will try to Activate itself when it receives a
    //      // e_message_ncactivate so we need to keep it from doing that here.
    //      //m_nFlags |= WF_KEEPMINIACTIVE;
-   //      pParent->send_message(e_message_ncactivate, TRUE);
+   //      pParent->send_message(e_message_ncactivate, true);
    //      //m_nFlags &= ~WF_KEEPMINIACTIVE;
    //   }
    //   else
    //   {
-   //      pParent->send_message(e_message_ncactivate, FALSE);
+   //      pParent->send_message(e_message_ncactivate, false);
    //   }
    //}
 
@@ -3229,7 +3229,7 @@ void simple_frame_window::_001OnQueryEndSession(::message::message * pmessage)
 
    }
 
-   pbase->m_lresult = TRUE;
+   pbase->m_lresult = true;
 
    return;
 
@@ -3283,14 +3283,14 @@ string simple_frame_window::get_window_default_matter()
 //         if (pwindow != nullptr && base_class < ::user::impact >::bases(pwindow))
 //         {
 //            pview = (pwindow.m_p);
-//            pframe->set_active_view(pview, FALSE);
+//            pframe->set_active_view(pview, false);
 //         }
 //      }
 //
 //      if (pfiu->m_bMakeVisible)
 //      {
 //         // send initial update to all views (and other controls) in the frame
-//         pframe->send_message_to_descendants(WM_INITIALUPDATE, 0, (LPARAM)0, TRUE, TRUE);
+//         pframe->send_message_to_descendants(WM_INITIALUPDATE, 0, (LPARAM)0, true, true);
 //
 //         // give ::user::impact a chance to save the focus (CFormView needs this)
 //         if (pview != nullptr)
@@ -3316,7 +3316,7 @@ string simple_frame_window::get_window_default_matter()
 //            pframe->ActivateFrame(edisplay);
 //         }
 //         if (pview != nullptr)
-//            pview->OnActivateView(TRUE, pview, pview);
+//            pview->OnActivateView(true, pview, pview);
 //
 //      }
 //
@@ -3324,7 +3324,7 @@ string simple_frame_window::get_window_default_matter()
 //      // update frame counts and frame title (may already have been visible)
 //      if (pdocument != nullptr)
 //         pdocument->update_frame_counts();
-//      pframe->on_update_frame_title(TRUE);
+//      pframe->on_update_frame_title(true);
 //
 //      set_need_redraw();
 //   }

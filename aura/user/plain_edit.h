@@ -4,6 +4,10 @@
 class element_2d;
 
 
+#define TEXT_COMPOSITION_MESSAGE_UPDATE_CANDIDATE_WINDOW_POSITION 256
+#define TEXT_COMPOSITION_MESSAGE_UPDATE_CARET 512
+
+
 namespace colorertake5
 {
 
@@ -31,9 +35,7 @@ namespace user
       , virtual public ::user::edit_window
 #endif
 #else
-//#ifdef WINDOWS_DESKTOP
-//      , virtual public imm_client
-//#endif
+     , virtual public text_composition_composite
 #endif
    {
    public:
@@ -150,7 +152,7 @@ namespace user
       //   {
 
       //      m_ecall = e_call_set_sel_end;
-      //      m_point = point_i32;
+      //      m_point = point;
 
       //   }
 

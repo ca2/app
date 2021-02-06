@@ -107,7 +107,7 @@ namespace user
 
       m_bPositionHint = true;
 
-      m_pointPositionHint = point_i32;
+      m_pointPositionHint = point;
 
    }
 
@@ -513,7 +513,7 @@ namespace user
       if (!m_pmenuitem->create_buttons(pgraphics, this))
       {
 
-         ASSERT(FALSE);
+         ASSERT(false);
 
          return false;
 
@@ -612,7 +612,7 @@ namespace user
    void menu::layout_menu(::draw2d::graphics_pointer & pgraphics, const ::point_i32 & point)
    {
 
-      m_pointTrack = point_i32;
+      m_pointTrack = point;
 
       if (get_parent() != nullptr)
       {
@@ -814,7 +814,7 @@ namespace user
 
       }
 
-      order(zorder_top_most);
+      order(e_zorder_top_most);
 
       place(rectWindow);
 
@@ -1244,7 +1244,7 @@ namespace user
 //      else
 //      {
 //
-//         pncactivate->m_lresult = FALSE;
+//         pncactivate->m_lresult = false;
 //
 //         pncactivate->m_bRet = true;
 //
@@ -1253,7 +1253,7 @@ namespace user
 //
 //#else
 //
-//      pncactivate->m_lresult = TRUE;
+//      pncactivate->m_lresult = true;
 //
 //      pncactivate->m_bRet = true;
 //
@@ -1303,7 +1303,7 @@ namespace user
 
       return;
 
-      //if (pbase->m_wparam == TRUE)
+      //if (pbase->m_wparam == true)
       //{
 
       //   pbase->m_bRet = true;
@@ -1365,7 +1365,7 @@ namespace user
 
 #endif
 
-      return TRUE;
+      return true;
 
    }
 

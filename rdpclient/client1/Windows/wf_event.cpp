@@ -63,7 +63,7 @@ LRESULT CALLBACK wf_ll_kbd_proc(int nCode, WPARAM wParam, LPARAM lParam)
 	if (g_flipping_in)
 	{
 		if (!alt_ctrl_down())
-			g_flipping_in = FALSE;
+			g_flipping_in = false;
 		return CallNextHookEx(nullptr, nCode, wParam, lParam);
 	}
 
@@ -112,10 +112,10 @@ LRESULT CALLBACK wf_ll_kbd_proc(int nCode, WPARAM wParam, LPARAM lParam)
 					if (wParam == e_message_key_down)
 					{
 						DEBUG_KBD("Pause, sent as Ctrl+NumLock");
-						freerdp_input_send_keyboard_event_ex(input, TRUE, RDP_SCANCODE_LCONTROL);
-						freerdp_input_send_keyboard_event_ex(input, TRUE, RDP_SCANCODE_NUMLOCK);
-						freerdp_input_send_keyboard_event_ex(input, FALSE, RDP_SCANCODE_LCONTROL);
-						freerdp_input_send_keyboard_event_ex(input, FALSE, RDP_SCANCODE_NUMLOCK);
+						freerdp_input_send_keyboard_event_ex(input, true, RDP_SCANCODE_LCONTROL);
+						freerdp_input_send_keyboard_event_ex(input, true, RDP_SCANCODE_NUMLOCK);
+						freerdp_input_send_keyboard_event_ex(input, false, RDP_SCANCODE_LCONTROL);
+						freerdp_input_send_keyboard_event_ex(input, false, RDP_SCANCODE_NUMLOCK);
 					}
 					else
 					{
@@ -145,7 +145,7 @@ LRESULT CALLBACK wf_ll_kbd_proc(int nCode, WPARAM wParam, LPARAM lParam)
 	{
 		if (!alt_ctrl_down())
 		{
-			g_flipping_out = FALSE;
+			g_flipping_out = false;
 			g_focus_hWnd = nullptr;
 		}
 	}
@@ -214,11 +214,11 @@ static int wf_event_process_WM_MOUSEWHEEL(wfContext* wfc, HWND hWnd, ::u32 Msg, 
 void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 {
 	// Holding the CTRL key down while resizing the window will force the desktop aspect ratio.
-	LPRECT32 rectangle_i32;
+	RECTANGLE_I32 * rectangle_i32;
 
 	if (wfc->instance->settings->SmartSizing && (GetAsyncKeyState(VK_CONTROL) & 0x8000))
 	{
-		rectangle_i32 = (LPRECT32) wParam;
+		rectangle_i32 = (RECTANGLE_I32 *) wParam;
 
 		switch(lParam)
 		{
@@ -260,7 +260,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //	MINMAXINFO* minmax;
 //	SCROLLINFO si;
 //
-//	processed = TRUE;
+//	processed = true;
 //	ptr = GetWindowLongPtr(hWnd, GWLP_USERDATA);
 //	wfc = (wfContext*) ptr;
 //
@@ -284,7 +284,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //			case WM_GETMINMAXINFO:
 //				if (wfc->instance->settings->SmartSizing)
 //				{
-//					processed = FALSE;
+//					processed = false;
 //				}
 //				else
 //				{
@@ -324,7 +324,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //				{
 //					wf_size_scrollbars(wfc, LOWORD(lParam), HIWORD(lParam));
 //
-//					// Workaround: when the window is maximized, the call to "ShowScrollBars" returns TRUE but has no effect.
+//					// Workaround: when the window is maximized, the call to "ShowScrollBars" returns true but has no effect.
 //					if (wParam == SIZE_MAXIMIZED && !wfc->fullscreen)
 //						set_window_pos(wfc->hwnd, HWND_TOP, 0, 0, windowRect.right - windowRect.left, windowRect.bottom - windowRect.top, SWP_NOMOVE | SWP_FRAMECHANGED);
 //				}
@@ -451,7 +451,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //					si.cbSize = sizeof(si); 
 //					si.fMask  = SIF_POS; 
 //					si.nPos   = wfc->xCurrentScroll;
-//					SetScrollInfo(wfc->hwnd, SB_HORZ, &si, TRUE);
+//					SetScrollInfo(wfc->hwnd, SB_HORZ, &si, true);
 //				}
 //				break;
 //
@@ -524,7 +524,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //					si.cbSize = sizeof(si); 
 //					si.fMask  = SIF_POS; 
 //					si.nPos   = wfc->yCurrentScroll;
-//					SetScrollInfo(wfc->hwnd, SB_VERT, &si, TRUE);
+//					SetScrollInfo(wfc->hwnd, SB_VERT, &si, true);
 //				}
 //				break; 
 //
@@ -532,26 +532,26 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //				{
 //					if (wParam == SYSCOMMAND_ID_SMARTSIZING)
 //					{
-//						HMENU hMenu = GetSystemMenu(wfc->hwnd, FALSE);
+//						HMENU hMenu = GetSystemMenu(wfc->hwnd, false);
 //						freerdp_set_param_bool(wfc->instance->settings, FreeRDP_SmartSizing, !wfc->instance->settings->SmartSizing);
 //						CheckMenuItem(hMenu, SYSCOMMAND_ID_SMARTSIZING, wfc->instance->settings->SmartSizing ? MF_CHECKED : MF_UNCHECKED);
 //
 //					}
 //					else
 //					{
-//						processed = FALSE;
+//						processed = false;
 //					}
 //				}
 //				break;
 //
 //			default:
-//				processed = FALSE;
+//				processed = false;
 //				break;
 //		}
 //	}
 //	else
 //	{
-//		processed = FALSE;
+//		processed = false;
 //	}
 //
 //	if (processed)
@@ -573,7 +573,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //		case e_message_set_focus:
 //			DEBUG_KBD("getting focus %X", hWnd);
 //			if (alt_ctrl_down())
-//				g_flipping_in = TRUE;
+//				g_flipping_in = true;
 //			g_focus_hWnd = hWnd;
 //			freerdp_set_focus(wfc->instance);
 //			break;
@@ -583,7 +583,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //			{
 //				DEBUG_KBD("loosing focus %X", hWnd);
 //				if (alt_ctrl_down())
-//					g_flipping_out = TRUE;
+//					g_flipping_out = true;
 //				else
 //					g_focus_hWnd = nullptr;
 //			}
@@ -595,13 +595,13 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //				if (activate != WA_INACTIVE)
 //				{
 //					if (alt_ctrl_down())
-//						g_flipping_in = TRUE;
+//						g_flipping_in = true;
 //					g_focus_hWnd = hWnd;
 //				}
 //				else
 //				{
 //					if (alt_ctrl_down())
-//						g_flipping_out = TRUE;
+//						g_flipping_out = true;
 //					else
 //						g_focus_hWnd = nullptr;
 //				}
@@ -648,7 +648,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 //		return StretchBlt(hdc, 0, 0, ww, wh, wfc->primary->hdc, 0, 0, dw, dh);
 //	}
 //
-//	return TRUE;
+//	return true;
 //}
 
 void wf_scale_mouse_event(wfContext* wfc, rdpInput* input, ::u3216 flags, ::u3216 x, ::u3216 y)

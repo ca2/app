@@ -57,9 +57,6 @@ namespace user
       virtual bool enable_window(bool bEnable = true) override;
 
 
-      virtual bool has_focus() override;
-      virtual bool is_active() override;
-      virtual bool is_this_enabled() const override;
 
 
       virtual bool create_host(::user::interaction * puserinteraction);
@@ -271,12 +268,17 @@ virtual bool setWMClass(const char * psz);
       virtual void pre_translate_message(::message::message * pmessage) override;
 
 
-      virtual bool SetCapture(::user::interaction * pinteraction = nullptr) override;
-      virtual bool ReleaseCapture() override;
-      virtual ::user::interaction * GetCapture() override;
+      //virtual bool is_active() const override;
+
+      //virtual bool has_capture() const override;
+      //virtual bool set_capture(::user::interaction * pinteraction = nullptr) override;
+      //virtual ::user::interaction * get_capture() const override;
+
+      //virtual bool has_focus() const override;
+      //virtual bool set_focus(::user::interaction * pinteraction = nullptr) override;
+      //virtual ::user::interaction * get_focus() const override;
 
 
-      virtual bool SetFocus() override;
 
 
       virtual bool get_rect_normal(RECTANGLE_I32 * prectangle);

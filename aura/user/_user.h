@@ -71,8 +71,8 @@ namespace user
    class split_layout;
    class style;
    class scroll_info;
-   class window_map;
-   class system_interaction;
+   //class window_map;
+   //class system_interaction;
 
 
    //class place_holder;
@@ -237,6 +237,8 @@ namespace user
 
 
 #include "interaction_impl.h"
+
+
 #include "copydesk.h"
 #include "interaction_child.h"
 #include "scroll_info.h"
@@ -594,6 +596,10 @@ namespace user
 // #endif
 
 
+
+#include "text_composition.h"
+
+
 #include "plain_edit.h"
 
 
@@ -794,6 +800,10 @@ namespace user
 
 
 } // namespace user
+
+
+#include "user.h"
+
 
 
 

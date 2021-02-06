@@ -169,7 +169,7 @@ namespace hotplugin
    //void plugin::set_window_rect(const ::rectangle_i32 & rectangle)
    //{
 
-   //   m_rectangle = *rectangle_i32;
+   //   m_rectangle = *rectangle;
 
 
    //}

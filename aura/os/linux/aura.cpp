@@ -36,7 +36,7 @@ CLASS_DECL_AURA bool __node_aura_pos_init()
 //
 //   t_hthread->m_bRun = true;
 
-   return TRUE;
+   return true;
 
 }
 

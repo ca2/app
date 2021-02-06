@@ -70,9 +70,9 @@ int ppfcontrol = PPFCONTROL;
 #define N_C	'\0'		/* Definice NULL-teho znaku */
 #endif
 
-#ifndef TRUE
-#define FALSE	0
-#define TRUE  !FALSE
+#ifndef true
+#define false	0
+#define true  !false
 #endif
 
 /*
@@ -341,7 +341,7 @@ print_file (const char *file, int port, int lowlevel_print)
   FILE *f;
   char *text, pom[1024 + 1];
 
-  if (lowlevel_print == TRUE)
+  if (lowlevel_print == true)
     {
 
       if ((f = fopen (file, "rt")) == NULL)

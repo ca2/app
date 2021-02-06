@@ -64,7 +64,7 @@ namespace android
 
       }
       //if (hFind == INVALID_HANDLE_VALUE)
-      // return FALSE;
+      // return false;
       //VERIFY(FindClose(hFind));
 
       // strip attribute of NORMAL bit, our API doesn't have a "normal" bit.
@@ -206,7 +206,7 @@ namespace android
       switch (eopen & 0x70)    // ::collection::map compatibility mode to exclusive
       {
       default:
-         ASSERT(FALSE);  // invalid share mode?
+         ASSERT(false);  // invalid share mode?
       case ::file::e_open_share_compat:
       case ::file::e_open_share_exclusive:
          //dwShareMode = 0;
@@ -257,7 +257,7 @@ namespace android
             pfe->m_cause = ::win::file_exception::os_error_to_exception(pfe->m_lOsError);
             pfe->m_strFileName = lpszFileName;
             }
-            return FALSE;
+            return false;
             }
             else
             {*/
@@ -276,7 +276,7 @@ namespace android
          }
          catch(...)
          {
-            return FALSE;
+            return false;
          }
 
          m_strFileName = ::str::international::unicode_to_utf8(m_wstrFileName);
@@ -295,7 +295,7 @@ namespace android
             pfe->m_cause = ::win::file_exception::os_error_to_exception(pfe->m_lOsError);
             pfe->m_strFileName = lpszFileName;
             }
-            return FALSE;
+            return false;
             }
             else
             {*/
@@ -373,7 +373,7 @@ namespace android
 
       ASSERT(lpBuf != nullptr);
 
-      ASSERT(__is_valid_address(lpBuf, nCount, FALSE));
+      ASSERT(__is_valid_address(lpBuf, nCount, false));
 
       memsize pos = 0;
 
@@ -476,7 +476,7 @@ namespace android
       ASSERT_VALID(this);
       ASSERT(m_iFile != hFileNull);
 
-      bool bError = FALSE;
+      bool bError = false;
       if (m_iFile != hFileNull)
          bError = ::close(m_iFile) == -1;
 
@@ -692,11 +692,11 @@ namespace android
       {
          struct stat st;
          if(fstat(m_iFile, &st) == -1)
-            return FALSE;
+            return false;
          // get time ::file::seek_current file size_i32
          /*FILETIME ftCreate, ftAccess, ftModify;
          if (!::GetFileTime((HANDLE)m_iFile, &ftCreate, &ftAccess, &ftModify))
-            return FALSE;*/
+            return false;*/
 
          rStatus.m_size = st.st_size;
 
@@ -712,7 +712,7 @@ namespace android
          if (rStatus.m_atime.get_time() == 0)
             rStatus.m_atime = rStatus.m_mtime;
       }
-      return TRUE;
+      return true;
    }
 
 

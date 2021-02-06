@@ -134,7 +134,7 @@ namespace interprocess_communication
       base::base()
       {
 
-         m_oswindow = nullptr;
+         //set_hwnd(nullptr);
 
       }
 
@@ -160,10 +160,14 @@ namespace interprocess_communication
       bool tx::close()
       {
 
-         if (m_oswindow == nullptr)
-            return true;
+         //if (get_hwnd() == nullptr)
+         //{
 
-         m_oswindow = nullptr;
+         //   return true;
+
+         //}
+
+         //set_hwnd(nullptr);
 
          m_strBaseChannel = "";
 

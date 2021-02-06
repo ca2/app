@@ -346,15 +346,15 @@ LPDWORD     pNumberOfBytesRead
 
    SIZE_T size = 0;
 #if defined(_UWP) || defined(LINUX) || defined(APPLEOS) || defined(ANDROID) || defined(SOLARIS)
-   return FALSE;
+   return false;
 #else
    if(!ReadProcessMemory(hProcess, (const void *) qwBaseAddress, (LPVOID) pBuffer, nSize, &size))
 
-      return FALSE;
+      return false;
    *pNumberOfBytesRead = (u32) size;
 
 
-   return TRUE;
+   return true;
 #endif
 
 }
@@ -372,12 +372,12 @@ int_bool __stdcall My_ReadProcessMemory32(HANDLE hProcess, ::u32 qwBaseAddress, 
 #else
    if (!ReadProcessMemory(hProcess, (const void *)qwBaseAddress, (LPVOID)pBuffer, nSize, &size))
 
-      return FALSE;
+      return false;
 #endif
    *pNumberOfBytesRead = (u32)size;
 
 
-   return TRUE;
+   return true;
 
 }
 
@@ -388,7 +388,7 @@ int_bool __stdcall My_ReadProcessMemory32(HANDLE hProcess, ::u32 qwBaseAddress, 
 int_bool __stdcall My_ReadProcessMemory (HANDLE, const void * pBaseAddress, LPVOID lpBuffer, u32 nSize, SIZE_T * lpNumberOfBytesRead)
 
 {
-return ReadProcessMemory(GetCurrentProcess(), pBaseAddress, lpBuffer, nSize, lpNumberOfBytesRead) != FALSE;
+return ReadProcessMemory(GetCurrentProcess(), pBaseAddress, lpBuffer, nSize, lpNumberOfBytesRead) != false;
 
 }
 #endif
@@ -601,7 +601,7 @@ namespace exception
                   SymFunctionTableAccess64,                      // __in_opt  PFUNCTION_TABLE_ACCESS_ROUTINE64 FunctionTableAccessRoutine,
                   SymGetModuleBase64,                     // __in_opt  PGET_MODULE_AXIS_ROUTINE64 GetModuleBaseRoutine,
                   nullptr                       // __in_opt  PTRANSLATE_ADDRESS_ROUTINE64 TranslateAddress
-                  ) != FALSE;
+                  ) != false;
 #else
          bool r = StackWalk(
                   dwType,   // __in      u32 MachineType,
@@ -614,7 +614,7 @@ namespace exception
                   SymFunctionTableAccess,                      // __in_opt  PFUNCTION_TABLE_ACCESS_ROUTINE64 FunctionTableAccessRoutine,
                   SymGetModuleBase,                     // __in_opt  PGET_MODULE_AXIS_ROUTINE64 GetModuleBaseRoutine,
                   nullptr                       // __in_opt  PTRANSLATE_ADDRESS_ROUTINE64 TranslateAddress
-                  ) != FALSE;
+                  ) != false;
 
 #endif
          /*#else
@@ -627,7 +627,7 @@ namespace exception
          My_ReadProcessMemory,
          SymFunctionTableAccess64,
          SymGetModuleBase64,
-         0) != FALSE;
+         0) != false;
 #endif*/
 
          if (!r || !m_stackframe.AddrFrame.Offset)
@@ -645,14 +645,14 @@ namespace exception
          // Before I get too carried away and start calculating
          // everything, I need to double-check that the address returned
          // by StackWalk really exists. I've seen cases in which
-         // StackWalk returns TRUE but the address doesn't belong to
+         // StackWalk returns true but the address doesn't belong to
          // a module in the process.
 
          DWORD64 dwModBase = SymGetModuleBase64(hprocess, m_stackframe.AddrPC.Offset);
 
          if (!dwModBase)
          {
-         //::output_debug_string("engine::stack_next :: StackWalk returned TRUE but the address doesn't belong to a module in the process.");
+         //::output_debug_string("engine::stack_next :: StackWalk returned true but the address doesn't belong to a module in the process.");
          return;
          if (bRetry)
          {
@@ -1047,7 +1047,7 @@ namespace exception
       //SymSetOptions(SymGetOptions()|SYMOPT_DEFERRED_LOADS|SYMOPT_LOAD_LINES);
       SymSetOptions(SymGetOptions() | SYMOPT_LOAD_LINES);
       //   SymSetOptions (SYMOPT_UNDNAME|SYMOPT_LOAD_LINES);
-      if (!::SymInitialize(hprocess, 0, TRUE))
+      if (!::SymInitialize(hprocess, 0, true))
       {
          ::u32 dw = ::GetLastError();
          output_debug_string("Last Error = " + __str(dw));
@@ -1340,7 +1340,7 @@ namespace exception
       current_context context;
       __memset(&context, 0, sizeof(current_context));
 
-      bool bOk = DuplicateHandle(GetCurrentProcess(), get_current_hthread(), GetCurrentProcess(), &context.thread, 0, 0, DUPLICATE_SAME_ACCESS) != FALSE;
+      bool bOk = DuplicateHandle(GetCurrentProcess(), get_current_hthread(), GetCurrentProcess(), &context.thread, 0, 0, DUPLICATE_SAME_ACCESS) != false;
 
       _ASSERTE(bOk);
       _ASSERTE(context.thread);

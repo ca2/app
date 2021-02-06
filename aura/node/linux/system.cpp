@@ -401,7 +401,7 @@ bool os_init_application()
 //
 //   gtk_main_quit();
 //
-//   return FALSE;
+//   return false;
 //
 //}
 
@@ -425,7 +425,7 @@ bool os_init_application()
 //
 //   run_runnable((matter *) pdata);
 //
-//   return FALSE;
+//   return false;
 //
 //}
 //

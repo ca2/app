@@ -53,7 +53,7 @@ namespace uwp
       UNUSED_ALWAYS(dwUnused);
       close();
       m_pNextInfo = new WIN32_FIND_DATAW;
-      m_bGotLast = FALSE;
+      m_bGotLast = false;
 
       if (pstrName == nullptr)
          pstrName = "*.*";
@@ -68,7 +68,7 @@ namespace uwp
          ::u32 dwTemp = ::get_last_error();
          close();
          ::set_last_error(dwTemp);
-         return FALSE;
+         return false;
       }
       wstring wstrRoot;
 
@@ -82,7 +82,7 @@ namespace uwp
          m_strRoot.Empty();
          close();
          ::set_last_error(ERROR_INVALID_NAME);
-         return FALSE;
+         return false;
       }
       else
       {
@@ -107,7 +107,7 @@ namespace uwp
          wstrRoot.release_string_buffer();
       }
       m_strRoot = ::str::international::unicode_to_utf8(wstrRoot);
-      return TRUE;
+      return true;
    }
 
    bool file_find::MatchesMask(::u32 dwMask) const
@@ -118,7 +118,7 @@ namespace uwp
       if (m_pFoundInfo != nullptr)
          return (!!(((LPWIN32_FIND_DATAW) m_pFoundInfo)->dwFileAttributes & dwMask));
       else
-         return FALSE;
+         return false;
    }
 
    bool file_find::GetLastAccessTime(FILETIME* pTimeStamp) const
@@ -130,10 +130,10 @@ namespace uwp
       if (m_pFoundInfo != nullptr && pTimeStamp != nullptr)
       {
          *pTimeStamp = ((LPWIN32_FIND_DATAW) m_pFoundInfo)->ftLastAccessTime;
-         return TRUE;
+         return true;
       }
       else
-         return FALSE;
+         return false;
    }
 
    bool file_find::GetLastWriteTime(FILETIME* pTimeStamp) const
@@ -145,10 +145,10 @@ namespace uwp
       if (m_pFoundInfo != nullptr && pTimeStamp != nullptr)
       {
          *pTimeStamp = ((LPWIN32_FIND_DATAW) m_pFoundInfo)->ftLastWriteTime;
-         return TRUE;
+         return true;
       }
       else
-         return FALSE;
+         return false;
    }
 
    bool file_find::GetCreationTime(FILETIME* pTimeStamp) const
@@ -159,10 +159,10 @@ namespace uwp
       if (m_pFoundInfo != nullptr && pTimeStamp != nullptr)
       {
          *pTimeStamp = ((LPWIN32_FIND_DATAW) m_pFoundInfo)->ftCreationTime;
-         return TRUE;
+         return true;
       }
       else
-         return FALSE;
+         return false;
    }
 
    bool file_find::GetLastAccessTime(::datetime::time& refTime) const
@@ -173,10 +173,10 @@ namespace uwp
       if (m_pFoundInfo != nullptr)
       {
          refTime = ::datetime::time(((LPWIN32_FIND_DATAW) m_pFoundInfo)->ftLastAccessTime);
-         return TRUE;
+         return true;
       }
       else
-         return FALSE;
+         return false;
    }
 
    bool file_find::GetLastWriteTime(::datetime::time& refTime) const
@@ -187,10 +187,10 @@ namespace uwp
       if (m_pFoundInfo != nullptr)
       {
          refTime = ::datetime::time(((LPWIN32_FIND_DATAW) m_pFoundInfo)->ftLastWriteTime);
-         return TRUE;
+         return true;
       }
       else
-         return FALSE;
+         return false;
    }
 
    bool file_find::GetCreationTime(::datetime::time& refTime) const
@@ -201,10 +201,10 @@ namespace uwp
       if (m_pFoundInfo != nullptr)
       {
          refTime = ::datetime::time(((LPWIN32_FIND_DATAW) m_pFoundInfo)->ftCreationTime);
-         return TRUE;
+         return true;
       }
       else
-         return FALSE;
+         return false;
    }
 
    bool file_find::IsDots() const
@@ -212,10 +212,10 @@ namespace uwp
       ASSERT(m_hContext != nullptr);
       ASSERT_VALID(this);
 
-      // return TRUE if the file name is "." or ".." and
+      // return true if the file name is "." or ".." and
       // the file is a directory
 
-      bool bResult = FALSE;
+      bool bResult = false;
       if (m_pFoundInfo != nullptr && IsDirectory())
       {
          LPWIN32_FIND_DATAW pFindData = (LPWIN32_FIND_DATAW) m_pFoundInfo;
@@ -225,7 +225,7 @@ namespace uwp
                   (pFindData->cFileName[1] == '.' &&
                    pFindData->cFileName[2] == '\0'))
             {
-               bResult = TRUE;
+               bResult = true;
             }
          }
       }
@@ -238,7 +238,7 @@ namespace uwp
       ASSERT(m_hContext != nullptr);
 
       if (m_hContext == nullptr)
-         return FALSE;
+         return false;
       if (m_pFoundInfo == nullptr)
          m_pFoundInfo = new WIN32_FIND_DATAW;
 

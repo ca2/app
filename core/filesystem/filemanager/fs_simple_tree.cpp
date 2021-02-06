@@ -175,7 +175,7 @@ namespace filemanager
                {
 
                   // unknown folder type
-                  ASSERT(FALSE);
+                  ASSERT(false);
 
                }
 

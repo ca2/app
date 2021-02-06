@@ -131,13 +131,13 @@ BOOL CTSFMainWnd::Initialize(int nCmdShow)
                     ShowWindow(m_hWnd, nCmdShow);
                     UpdateWindow(m_hWnd);
             
-                    return TRUE;
+                    return true;
                 }
             }
         }
     }
 
-    return FALSE;
+    return false;
 }
 
 /**************************************************************************
@@ -247,7 +247,7 @@ LRESULT CTSFMainWnd::_OnCreate(VOID)
 
     if(!m_pTSFEditWnd->_Initialize(g_pThreadMgr, m_tfClientID))
     {
-        _CleanupEditWnd(TRUE);
+        _CleanupEditWnd(true);
         
         return -1;
     }
@@ -263,7 +263,7 @@ LRESULT CTSFMainWnd::_OnCreate(VOID)
 
 LRESULT CTSFMainWnd::_OnDestroy(VOID)
 {
-    _CleanupEditWnd(FALSE);
+    _CleanupEditWnd(false);
 
     PostQuitMessage(0);
     
@@ -324,7 +324,7 @@ LRESULT CTSFMainWnd::_OnCommand(::u16 wID, ::u16 wCmd, HWND hWnd)
         {
             TCHAR   szFile[MAX_PATH];
 
-            if(_GetFileName(m_hWnd, szFile, MAX_PATH, TRUE))
+            if(_GetFileName(m_hWnd, szFile, MAX_PATH, true))
             {
                 m_pTSFEditWnd->_LoadFromFile(szFile);
             }
@@ -335,7 +335,7 @@ LRESULT CTSFMainWnd::_OnCommand(::u16 wID, ::u16 wCmd, HWND hWnd)
         {
             TCHAR   szFile[MAX_PATH];
 
-            if(_GetFileName(m_hWnd, szFile, MAX_PATH, FALSE))
+            if(_GetFileName(m_hWnd, szFile, MAX_PATH, false))
             {
                 m_pTSFEditWnd->_SaveToFile(szFile);
             }
@@ -394,7 +394,7 @@ LRESULT CTSFMainWnd::_OnNotify(::u32, LPNMHDR)
 LRESULT CTSFMainWnd::_OnSize(::u16 wWidth, ::u16 wHeight)
 {
     //position the edit window to fill the client area
-    MoveWindow(m_pTSFEditWnd->_GetWindow(), 0, 0, wWidth, wHeight, TRUE);
+    MoveWindow(m_pTSFEditWnd->_GetWindow(), 0, 0, wWidth, wHeight, true);
     
     return 0;
 }
@@ -431,7 +431,7 @@ LRESULT CTSFMainWnd::_OnInitMenuPopup(WPARAM wParam, LPARAM lParam)
 BOOL CTSFMainWnd::_GetFileName(HWND hwndOwner, char * lpszFile, ULONG uChars, BOOL fOpen)
 {
     OPENFILENAME    ofn;
-    BOOL            fReturn = FALSE;
+    BOOL            fReturn = false;
 
     *lpszFile = 0;
 

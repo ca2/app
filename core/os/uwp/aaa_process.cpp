@@ -159,7 +159,7 @@ bool process_modules(string_array & stra, ::u32 processID)
 
    unsigned int i;
 
-   hProcess = OpenProcess( PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, FALSE, processID );
+   hProcess = OpenProcess( PROCESS_QUERY_INFORMATION | PROCESS_VM_READ, false, processID );
 
    if (nullptr == hProcess)
       return false;
@@ -270,7 +270,7 @@ bool load_modules_diff(string_array & straOld, string_array & straNew, const cha
          // double check, ensure, that the module has not been already loaded
          // it may happen by loading a missing module that loads dependencies that satisfies straOld modules state.
 
-         if(::GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, straOld[i], &hmodule) == FALSE || hmodule == nullptr)
+         if(::GetModuleHandleExA(GET_MODULE_HANDLE_EX_FLAG_UNCHANGED_REFCOUNT, straOld[i], &hmodule) == false || hmodule == nullptr)
          {
 
             try

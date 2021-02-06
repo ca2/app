@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 
 
 extern CLASS_DECL_AURA image_array * g_pimagea;
@@ -228,7 +228,7 @@ namespace draw2d_direct2d
    //bool image::draw(::draw2d::graphics* pgraphics, const ::point_i32 & point, const ::size_i32 & size, const ::point_i32 & pointSrc)
    //{
 
-   //   return pgraphics->BitBlt(point.x, point.y, size.cx, size.cy, get_graphics(), pointSrc.x, pointSrc.y) != FALSE;
+   //   return pgraphics->BitBlt(point.x, point.y, size.cx, size.cy, get_graphics(), pointSrc.x, pointSrc.y) != false;
 
    //}
 
@@ -268,7 +268,7 @@ namespace draw2d_direct2d
    //bool image::from(const ::point_i32 & pointDest, ::draw2d::graphics* pgraphics, const ::point_i32 & point, const ::size_i32 & sz)
    //{
 
-   //   return m_pgraphics->BitBlt(pointDest.x, pointDest.y, sz.cx, sz.cy, pgraphics, point.x, point.y) != FALSE;
+   //   return m_pgraphics->BitBlt(pointDest.x, pointDest.y, sz.cx, sz.cy, pgraphics, point.x, point.y) != false;
 
    //}
 
@@ -636,7 +636,7 @@ namespace draw2d_direct2d
 
    map();
 
-   int iSize32 = size_i32 / 32;
+   int iSize32 = size / 32;
    int i;
    for (i=0; i < iSize32; i+=32 )
    {
@@ -1020,7 +1020,7 @@ namespace draw2d_direct2d
 
    //   byte * pb;
 
-   //   int iSize32 = size_i32 / 32;
+   //   int iSize32 = size / 32;
    //   int i;
    //   for (i=0; i < iSize32; i+=32 )
    //   {
@@ -1490,7 +1490,7 @@ namespace draw2d_direct2d
 
    //   ::rectangle_i32 rectangle(rectWindow);
 
-   //   //      Application.window_graphics_update_window(pwnd->get_window_graphics(),pwnd->get_handle(),m_pcolorref,rectangle_i32,this->width(), this->height(), m_iScan, bTransferBuffer);
+   //   //      Application.window_graphics_update_window(pwnd->get_window_graphics(),pwnd->get_handle(),m_pcolorref,rectangle,this->width(), this->height(), m_iScan, bTransferBuffer);
 
    //   return true;
 
@@ -1514,21 +1514,21 @@ namespace draw2d_direct2d
       //   if (pgraphicsMap == nullptr)
       //   {
 
-      //      return FALSE;
+      //      return false;
 
       //   }
 
       //   if (pgraphicsMap->get_current_bitmap() == nullptr)
       //   {
 
-      //      return FALSE;
+      //      return false;
 
       //   }
 
       //   if (pgraphicsMap->get_current_bitmap()->get_os_data() == nullptr)
       //   {
 
-      //      return FALSE;
+      //      return false;
 
       //   }
 
@@ -1658,16 +1658,16 @@ namespace draw2d_direct2d
       //}
       //catch (...)
       //{
-      //   return FALSE;
+      //   return false;
       //}
 
    }
 
 
-   bool image::tint(::image * pimage, const rgb & rgb)
+   bool image::tint(::image * pimage, const rgba & rgba)
    {
 
-      return ::image::tint(pimage, rgb);
+      return ::image::tint(pimage, rgba);
 
       //if (!::is_ok(pimage)) // || pimage->get_bitmap() || !pimage->get_bitmap()->m_osdata[0])
       //{

@@ -55,7 +55,7 @@ public:
 
    virtual __pointer(::message::base) get_message_base(MESSAGE * pmessage);
 
-   ///virtual __pointer(::message::base) get_message_base(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam);
+   ///virtual __pointer(::message::base) get_message_base(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam);
 
 
 #ifdef LINUX

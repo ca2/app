@@ -21,7 +21,7 @@ namespace user
    void tool_command::enable(bool bOn)
    {
 
-      m_bEnableChanged = TRUE;
+      m_bEnableChanged = true;
 
 
 #ifdef WINDOWS_DESKTOP

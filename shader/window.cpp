@@ -89,7 +89,7 @@ namespace app_shader
 
       __pointer(::message::key) pkey(pmessage);
 
-      if (pkey->m_ekey == ::user::key_s)
+      if (pkey->m_ekey == ::user::e_key_s)
       {
 
          m_bSaveFrame = true;

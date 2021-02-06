@@ -76,7 +76,7 @@ namespace aura
    //}
 
 
-   void application::ShowWaitCursor(bool bShow)
+   void application::show_wait_cursor(bool bShow)
    {
 
 
@@ -173,7 +173,7 @@ namespace aura
    int_bool application::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
    {
 
-      return FALSE;
+      return false;
 
    }
 

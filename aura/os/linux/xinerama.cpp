@@ -242,7 +242,7 @@ int best_xinerama_monitor(::user::interaction * pinteraction, const ::rectangle_
 
    }
 
-   index iOrdered = pinteraction->best_monitor(prectRet, rectangle_i32, false, e_activation_default, zorder_none);
+   index iOrdered = pinteraction->best_monitor(prectRet, rectangle, false, e_activation_default, zorder_none);
 
    ::count cMonitor = xinerama_get_monitor_count();
 
@@ -293,7 +293,7 @@ int get_best_monitor(::user::interaction * pinteraction, const ::rectangle_i32 &
 
    }
 
-   index i = pinteraction->best_monitor(prectRet, rectangle_i32, false, e_activation_default, zorder_none);
+   index i = pinteraction->best_monitor(prectRet, rectangle, false, e_activation_default, zorder_none);
 
    return i;
 

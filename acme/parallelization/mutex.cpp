@@ -117,7 +117,7 @@ mutex::mutex(enum_create_new, bool bInitiallyOwn, const char * pstrName ARG_SEC_
       if(pstrName != nullptr)
       {
 
-         m_hsync = ::OpenMutexW(SYNCHRONIZE,FALSE,::str::international::utf8_to_unicode(pstrName));
+         m_hsync = ::OpenMutexW(SYNCHRONIZE,false,::str::international::utf8_to_unicode(pstrName));
 
       }
 
@@ -766,7 +766,7 @@ sync_result mutex::wait(const duration & duration)
             if (iError < 0)
             {
 
-               ASSERT(FALSE);
+               ASSERT(false);
 
                return sync_result(sync_result::result_error);
 
@@ -1152,7 +1152,7 @@ bool mutex::lock()
          if (iError < 0)
          {
 
-            ASSERT(FALSE);
+            ASSERT(false);
 
             return false;
 
@@ -1313,7 +1313,7 @@ bool mutex::unlock()
 
 #ifdef WINDOWS
 
-   return ::ReleaseMutex(m_hsync) != FALSE;
+   return ::ReleaseMutex(m_hsync) != false;
 
 #else
 
@@ -1344,7 +1344,7 @@ bool mutex::unlock()
       if (!pthread_equal(m_thread, pthread_self()))
       {
 
-         ASSERT(FALSE);
+         ASSERT(false);
 
          int iError = pthread_mutex_unlock(&m_mutex);
 
@@ -1419,7 +1419,7 @@ bool mutex::unlock()
       if(!pthread_equal(m_thread, pthread_self()))
       {
 
-         ASSERT(FALSE);
+         ASSERT(false);
 
          int iError = pthread_mutex_unlock(&m_mutex);
 
@@ -1482,7 +1482,7 @@ __pointer(mutex) open_mutex(const char * lpszName)
 
 #ifdef WINDOWS
 
-   HANDLE h = ::OpenMutexW(SYNCHRONIZE, FALSE, ::str::international::utf8_to_unicode(lpszName));
+   HANDLE h = ::OpenMutexW(SYNCHRONIZE, false, ::str::international::utf8_to_unicode(lpszName));
 
    if (h == nullptr || h == INVALID_HANDLE_VALUE)
    {
@@ -1666,18 +1666,18 @@ null_dacl_security_attributes::null_dacl_security_attributes()
 
    ((SECURITY_ATTRIBUTES &)((SECURITY_ATTRIBUTES &) m_securityattributes)).nLength = sizeof(((SECURITY_ATTRIBUTES &) m_securityattributes));
 
-   ((SECURITY_ATTRIBUTES &)((SECURITY_ATTRIBUTES &) m_securityattributes)).bInheritHandle = FALSE; // matter uninheritable
+   ((SECURITY_ATTRIBUTES &)((SECURITY_ATTRIBUTES &) m_securityattributes)).bInheritHandle = false; // matter uninheritable
 
    // declare and initialize a security descriptor
    __zero(((SECURITY_ATTRIBUTES &) ((SECURITY_ATTRIBUTES &) m_securityattributes)));
 
-   bool bInitOk = InitializeSecurityDescriptor(&((SECURITY_ATTRIBUTES &) ((SECURITY_ATTRIBUTES &) m_securityattributes)),SECURITY_DESCRIPTOR_REVISION) != FALSE;
+   bool bInitOk = InitializeSecurityDescriptor(&((SECURITY_ATTRIBUTES &) ((SECURITY_ATTRIBUTES &) m_securityattributes)),SECURITY_DESCRIPTOR_REVISION) != false;
 
    if(bInitOk)
    {
       // give the security descriptor a Null Dacl
-      // done using the  "TRUE, (PACL)nullptr" here
-      bool bSetOk = SetSecurityDescriptorDacl(&((SECURITY_ATTRIBUTES &) ((SECURITY_ATTRIBUTES &) m_securityattributes)),TRUE,(PACL)nullptr,FALSE) != FALSE;
+      // done using the  "true, (PACL)nullptr" here
+      bool bSetOk = SetSecurityDescriptorDacl(&((SECURITY_ATTRIBUTES &) ((SECURITY_ATTRIBUTES &) m_securityattributes)),true,(PACL)nullptr,false) != false;
 
       if(bSetOk)
       {

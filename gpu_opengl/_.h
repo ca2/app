@@ -7,6 +7,9 @@
 #include "aura/_.h"
 
 
+#include "aura/operating_system.h"
+
+
 #include "aura/gpu/gpu/_.h"
 
 

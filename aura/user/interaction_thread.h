@@ -1,6 +1,9 @@
 ﻿#pragma once
 
 
+#include "aura/operating_system.h"
+
+
 #ifdef WINDOWS_DESKTOP
 
 #ifdef ENABLE_TEXT_SERVICES_FRAMEWORK
@@ -76,9 +79,9 @@ namespace user
       virtual ::e_status init_thread() override;
       virtual void term_thread() override;
 
-#ifdef WINDOWS_DESKTOP
-      virtual int _GetMessage(LPMSG lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax) override;
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      virtual int _GetMessage(LPMSG lpMsg, HWND hWnd, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax) override;
+//#endif
 
       virtual bool pump_message() override;
 

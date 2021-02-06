@@ -245,7 +245,7 @@ namespace uwp
 
          //}
 
-         //return (status.dwRunningState & SPRS_IS_SPEAKING) != FALSE;
+         //return (status.dwRunningState & SPRS_IS_SPEAKING) != false;
 
       }
 

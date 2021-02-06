@@ -77,7 +77,7 @@ namespace user
 
 
       virtual void on_hit_test(::user::item & item) override;
-      //virtual int on_hit_test_cursor(point_f64 point_i32);
+      //virtual int on_hit_test_cursor(point_f64 point);
       //virtual int on_hit_test( point_i32) const;
       virtual bool intersects_drawing(const polygon_f64 & polygon_i32) const;
       virtual bool intersects_drawing(const ::rectangle_f64 & rectangle) const;
@@ -140,7 +140,7 @@ namespace user
       virtual void draw_impl(::draw2d::graphics_pointer & pgraphics);
 
 
-      virtual void move_to(point_f64 point_i32, ::size_f64 sizePage, ::size_f64 sizeClient, const ::rectangle_f64 & rectMargin);
+      virtual void move_to(point_f64 point, ::size_f64 sizePage, ::size_f64 sizeClient, const ::rectangle_f64 & rectMargin);
 
 
       virtual void exchange(::stream & stream) override;

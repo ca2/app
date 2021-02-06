@@ -232,7 +232,7 @@ namespace user
       }
 
 
-      strsize data::hit_test(point_f64 point_i32)
+      strsize data::hit_test(point_f64 point)
       {
 
          sync_lock sl(mutex());
@@ -1092,7 +1092,7 @@ namespace user
       void data::do_layout(::draw2d::graphics_pointer & pgraphics)
       {
 
-         //m_rectangle = rectangle_i32;
+         //m_rectangle = rectangle;
 
          sync_lock sl(mutex());
 
@@ -1212,7 +1212,7 @@ namespace user
                if(iLenSpan != iLenMeasure)
                {
 
-                  ASSERT(FALSE);
+                  ASSERT(false);
 
                   output_debug_string("unexpected: iLenSpan != iLenMeasure");
 
@@ -1487,7 +1487,7 @@ namespace user
       ::rectangle_f64 data::get_drawing_rect()
       {
 
-         ::rectangle_f64 rectangle_i32;
+         ::rectangle_f64 rectangle;
 
          if (m_pedit->is_picture_enabled())
          {
@@ -2178,8 +2178,8 @@ namespace user
 
                   ::draw2d::path_pointer path(e_create);
 
-                  //path->add_draw_text(pbox->get_text(), rectangle_i32, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_colorForeground);
-                  path->add_draw_text(pbox->get_text(), rectangle_i32, e_align_bottom_left, e_draw_text_single_line, pformat->get_font(pgraphics));
+                  //path->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left | DT_SINGLELINE, pformat->get_font(pgraphics), pformat->m_colorForeground);
+                  path->add_draw_text(pbox->get_text(), rectangle, e_align_bottom_left, e_draw_text_single_line, pformat->get_font(pgraphics));
 
                   ::draw2d::pen_pointer pen(e_create);
 
@@ -2205,7 +2205,7 @@ namespace user
 
                   string strText = pbox->get_text();
 
-                  pgraphics->draw_text(strText, rectangle_i32, e_align_bottom_left, e_draw_text_single_line);
+                  pgraphics->draw_text(strText, rectangle, e_align_bottom_left, e_draw_text_single_line);
 
                }
 

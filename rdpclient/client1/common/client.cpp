@@ -159,21 +159,21 @@ static BOOL freerdp_client_settings_post_process(rdpSettings* settings)
 	 * that the rdp file also triggers this functionality */
 	if (settings->SpanMonitors)
 	{
-		settings->UseMultimon = TRUE;
-		settings->Fullscreen = TRUE;
+		settings->UseMultimon = true;
+		settings->Fullscreen = true;
 	}
 	else if (settings->UseMultimon)
 	{
-		settings->Fullscreen = TRUE;
+		settings->Fullscreen = true;
 	}
 
-	return TRUE;
+	return true;
 
 out_error:
 	free(settings->GatewayUsername);
 	free(settings->GatewayDomain);
 	free(settings->GatewayPassword);
-	return FALSE;
+	return false;
 }
 
 

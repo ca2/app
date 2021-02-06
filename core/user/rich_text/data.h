@@ -62,7 +62,7 @@ namespace user
 
          virtual void do_layout(::draw2d::graphics_pointer & pgraphics);
 
-         virtual strsize hit_test(point_f64 point_i32);
+         virtual strsize hit_test(point_f64 point);
          virtual strsize hit_test_line_x(index iLine, double x);
 
          virtual strsize get_sel_beg();

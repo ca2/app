@@ -183,12 +183,12 @@ namespace experience
             ::rectangle_i32 rectangle(0, 0, 32767, 32767);
 
             pframewindow->RepositionBars(0, 0xffff, "pane_first", pframewindow->reposQuery,
-                                 &rectangle, &rectangle, FALSE);
+                                 &rectangle, &rectangle, false);
             rectangle.offset(rectClient.top_left());
             ::rectangle_i32 rectBorder;
             pframewindow->GetBorderRect(rectBorder);
             pframewindow->RepositionBars(0, 0xffff, "pane_first", pframewindow->reposExtra,
-                                 &rectBorder, &rectangle, TRUE);
+                                 &rectBorder, &rectangle, true);
             pframewindow->SetBorderRect(rectBorder);
             pframewindow->CalcWindowRect(&rectangle);
             OnNcCalcSize(&rectangle);
@@ -679,7 +679,7 @@ namespace experience
 
          get_control_box()->display();
 
-         get_control_box()->order(::zorder_top_most);
+         get_control_box()->order(::e_zorder_top_most);
 
       }
       else
@@ -814,7 +814,7 @@ namespace experience
 
       rectangle.offset(-rectangle.top_left());
 
-      *prectangle = rectangle_i32;
+      *prectangle = rectangle;
 
 
       return true;
@@ -1047,14 +1047,14 @@ namespace experience
          else
          {
 
-            m_pframewindow->layout().sketch() = rectangle_i32;
+            m_pframewindow->layout().sketch() = rectangle;
 
          }
 
          if (is_docking_appearance(edisplay))
          {
 
-            m_pframewindow->m_windowrect.m_rectSnapped = rectangle_i32;
+            m_pframewindow->m_windowrect.m_rectSnapped = rectangle;
 
          }
 
@@ -1069,19 +1069,19 @@ namespace experience
          if (m_pframewindow->size_manager()->window_is_sizing())
          {
 
-            m_pframewindow->m_windowrect.m_rectRestored = rectangle_i32;
+            m_pframewindow->m_windowrect.m_rectRestored = rectangle;
 
-            m_pframewindow->m_windowrect.m_rectSnapped = rectangle_i32;
+            m_pframewindow->m_windowrect.m_rectSnapped = rectangle;
 
-            m_pframewindow->layout().sketch() = rectangle_i32;
+            m_pframewindow->layout().sketch() = rectangle;
 
          }
          else if (m_pframewindow->move_manager()->window_is_moving())
          {
 
-            m_pframewindow->m_windowrect.m_rectSnapped = rectangle_i32;
+            m_pframewindow->m_windowrect.m_rectSnapped = rectangle;
 
-            m_pframewindow->layout().sketch() = rectangle_i32;
+            m_pframewindow->layout().sketch() = rectangle;
 
             m_pframewindow->set_reposition();
 

@@ -459,7 +459,7 @@
 //   try
 //   {
 //
-//      bOk = ::FreeLibrary((HINSTANCE)plibrary) != FALSE;
+//      bOk = ::FreeLibrary((HINSTANCE)plibrary) != false;
 //
 //   }
 //   catch(...)

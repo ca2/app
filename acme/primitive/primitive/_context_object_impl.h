@@ -24,7 +24,7 @@ inline ::i64_array& context_object::idarray() const { if (!m_pia) ((context_obje
 inline bool context_object::contains(const property_set & set) const
 {
 
-  if (set.isEmpty())
+  if (set.is_empty())
   {
 
      return true;

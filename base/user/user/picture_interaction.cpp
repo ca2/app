@@ -25,7 +25,7 @@ namespace user
       if (is_picture_enabled())
       {
 
-         item.m_pointScreen = point_i32;
+         item.m_pointScreen = point;
 
          auto pointClient = get_parent()->screen_to_client(item.m_pointScreen);
 

@@ -86,7 +86,7 @@ namespace user
 ////            else
 ////            {
 ////               // Failed creation
-////               ASSERT(FALSE);
+////               ASSERT(false);
 ////            }
 ////         }
 ////
@@ -564,7 +564,7 @@ namespace user
             //   }
             //   break;
             //   default:
-            //      ASSERT(FALSE);
+            //      ASSERT(false);
             //      break;
             //   }
             //}

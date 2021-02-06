@@ -193,7 +193,7 @@ CLASS_DECL_APEX::e_priority process_get_scheduling_priority(int iOsPolicy, const
 ::u32 WaitForMultipleObjects(::u32 dwSize, HSYNC * synca, int_bool bWaitForAll, ::u32 tickTimeout)
 {
 
-   return WaitForMultipleObjectsEx(dwSize, synca, bWaitForAll, tickTimeout, FALSE);
+   return WaitForMultipleObjectsEx(dwSize, synca, bWaitForAll, tickTimeout, false);
 
 }
 
@@ -201,7 +201,7 @@ CLASS_DECL_APEX::e_priority process_get_scheduling_priority(int iOsPolicy, const
 ::u32 WaitForSingleObjectEx(HSYNC hsync, ::u32 tickTimeout, int_bool bAlertable)
 {
 
-   return WaitForMultipleObjectsEx(1, &hsync, TRUE, tickTimeout, bAlertable);
+   return WaitForMultipleObjectsEx(1, &hsync, true, tickTimeout, bAlertable);
 
 }
 
@@ -209,7 +209,7 @@ CLASS_DECL_APEX::e_priority process_get_scheduling_priority(int iOsPolicy, const
 ::u32 WaitForSingleObject(HSYNC hsync, ::u32 tickTimeout)
 {
 
-   return WaitForSingleObjectEx(hsync, tickTimeout, FALSE);
+   return WaitForSingleObjectEx(hsync, tickTimeout, false);
 
 }
 
@@ -330,7 +330,7 @@ int_bool WINAPI SetThreadPriority(hthread_t hthread, i32 nCa2Priority)
 
    pthread_setschedparam((pthread_t)hthread, iPolicy, &schedparam);
 
-   return TRUE;
+   return true;
 
 }
 
@@ -375,7 +375,7 @@ CLASS_DECL_APEX void set_main_hthread(hthread_t hthread)
    // MESSAGE msg;
 
    // PeekMessage function used to create message queue Windows Desktop
-   // PeekMessage(&msg, nullptr, 0, 0xffffffff, FALSE);
+   // PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
 
    g_hMainThread = hthread;
 
@@ -388,7 +388,7 @@ CLASS_DECL_APEX void set_main_ithread(ithread_t ithread)
    //   MESSAGE msg;
 
    // PeekMessage function used to create message queue Windows Desktop
-   // PeekMessage(&msg, nullptr, 0, 0xffffffff, FALSE);
+   // PeekMessage(&msg, nullptr, 0, 0xffffffff, false);
 
    g_uiMainThread = ithread;
 

@@ -263,7 +263,7 @@ namespace windows
 {
 
 
-   critical_section callstack::s_criticalsection;
+   critical_section * callstack::s_pcriticalsection = nullptr;
 
 
    callstack::callstack(const char * pszFormat, i32 iSkip, void * caller_address, int iCount):
@@ -402,7 +402,7 @@ namespace windows
 
    void callstack::backtrace(OS_DWORD * pinteraction, int & c)
    {
-      critical_section_lock csl(&s_criticalsection);
+      critical_section_lock csl(s_pcriticalsection);
 
 #if FAST_STACK_TRACE
 
@@ -851,7 +851,7 @@ namespace windows
       //}
 
 
-      critical_section_lock csl(&s_criticalsection);
+      critical_section_lock csl(s_pcriticalsection);
 
       if (m_bInit)
       {
@@ -916,7 +916,7 @@ namespace windows
    void callstack::clear()
    {
 
-      critical_section_lock csl(&s_criticalsection);
+      critical_section_lock csl(s_pcriticalsection);
 
       if (!m_bInit)
       {
@@ -944,7 +944,7 @@ namespace windows
    void callstack::reset()
    {
 
-      critical_section_lock csl(&s_criticalsection);
+      critical_section_lock csl(s_pcriticalsection);
 
 
       if (!m_bInit)
@@ -1137,7 +1137,7 @@ namespace windows
 
       }
 
-      critical_section_lock csl(&s_criticalsection);
+      critical_section_lock csl(s_pcriticalsection);
 
       *_strS = '\0';
 
@@ -1272,7 +1272,7 @@ namespace windows
    //char * callstack::stack_trace(OS_DWORD * pinteraction, int c, const char * pszFormat, int iCount)
    //{
 
-   //   critical_section_lock csl(&s_criticalsection);
+   //   critical_section_lock csl(s_pcriticalsection);
 
    //   *_strS = '\0';
 
@@ -1461,7 +1461,7 @@ namespace  windows
    char * callstack::stack_trace(OS_DWORD * pinteraction, int c, const char * pszFormat, int iCount)
    {
 
-      critical_section_lock csl(&s_criticalsection);
+      critical_section_lock csl(s_pcriticalsection);
 
       *_strS = '\0';
 

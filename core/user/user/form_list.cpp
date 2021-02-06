@@ -698,7 +698,7 @@ break_click:;
          //      }
          //      break;
          //      default:
-         //         ASSERT(FALSE);
+         //         ASSERT(false);
          //         break;
          //      }
          //   }
@@ -1162,7 +1162,7 @@ break_click:;
    {
       __pointer(::message::key) pkey(pmessage);
 
-      if(pkey->m_ekey == ::user::key_return)
+      if(pkey->m_ekey == ::user::e_key_return)
       {
          _001SaveEdit(_001GetEditControl());
          _001HideEditingControls();
@@ -1250,7 +1250,7 @@ break_click:;
 //      rectClient.bottom = rectForm.bottom;
 //      rectClient.left = rectControl.left;
 //      rectClient.right = rectControl.right;
-//      return rectClient.contains(point) != FALSE;
+//      return rectClient.contains(point) != false;
    }
 
 
@@ -1564,7 +1564,7 @@ break_click:;
 
       ::rectangle_i32 rectangle(rectControl);
 
-      *prectangle = rectangle_i32;
+      *prectangle = rectangle;
 
 
    }
@@ -1917,7 +1917,7 @@ break_click:;
 
          auto psession = Session;
 
-         if (psession->is_key_pressed(::user::key_shift))
+         if (psession->is_key_pressed(::user::e_key_shift))
          {
 
             bOk = _001PreviousEditableControl(iItem, iSubItem);

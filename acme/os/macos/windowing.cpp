@@ -355,7 +355,7 @@ void ns_main_async(dispatch_block_t block);
 //int_bool release_capture()
 //{
 //
-//   int_bool bRet = TRUE;
+//   int_bool bRet = true;
 //
 //   if(bRet)
 //   {
@@ -523,14 +523,14 @@ void ns_main_async(dispatch_block_t block);
 //   if(is_null(w))
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
 //   if(is_null(w->m_pimpl))
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
@@ -1004,7 +1004,7 @@ void ns_main_async(dispatch_block_t block);
 //            if(iWindowId == windowid)
 //            {
 //
-//               rect1 = rectangle_i32;
+//               rect1 = rectangle;
 //
 //            }
 //            else if(bFound)

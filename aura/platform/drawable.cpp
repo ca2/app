@@ -126,12 +126,13 @@ namespace aura
    }
 
 
-   oswindow drawable::get_handle() const
+   oswindow drawable::get_oswindow() const
    {
 
       return nullptr;
 
    }
+
 
    bool drawable::is_composite()
    {

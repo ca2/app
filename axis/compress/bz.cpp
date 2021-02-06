@@ -312,7 +312,7 @@ stop1:
 //   }
 //   fclose_dup(fileUn);
 //   BZ2_bzclose(file);
-//   //   ::CopyFile(strUn, pcszUncompressed, FALSE);
+//   //   ::CopyFile(strUn, pcszUncompressed, false);
 
 //   //   ::DeleteFile(strUn);
 //   return 0;

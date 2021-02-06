@@ -133,7 +133,7 @@ namespace ios
 //         string_array straSeparator;
 //         straSeparator.add("/");
 //         straSeparator.add("\\");
-//         straParam.add_smallest_tokens(pcsz, straSeparator, FALSE);
+//         straParam.add_smallest_tokens(pcsz, straSeparator, false);
 //         if(straParam.get_count() > 0)
 //         {
 //            strsize iFind = straParam[0].find(':');
@@ -574,7 +574,7 @@ namespace ios
 //         string_array straSeparator;
 //         straSeparator.add("\\");
 //         straSeparator.add("/");
-//         stra.add_smallest_tokens(lpcszPath, straSeparator, FALSE);
+//         stra.add_smallest_tokens(lpcszPath, straSeparator, false);
 //      }
 //
 //      class file_system::path & file_system::path()

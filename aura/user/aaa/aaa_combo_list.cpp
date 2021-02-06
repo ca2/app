@@ -489,7 +489,7 @@ namespace user
       pusersystem->m_createstruct.dwExStyle |= WS_EX_TOPMOST;
       //pusersystem->m_createstruct.dwExStyle |= WS_EX_NOACTIVATE;
 
-      return TRUE;
+      return true;
    }
 
 
@@ -621,7 +621,7 @@ namespace user
          //   if(pset != nullptr)
          //   {
 
-         //      pset->SetActiveFlag(FALSE);
+         //      pset->SetActiveFlag(false);
 
          //   }
 
@@ -659,13 +659,13 @@ namespace user
 
       __pointer(::message::key) pkey(pmessage);
 
-      if (pkey->m_ekey == ::user::key_escape)
+      if (pkey->m_ekey == ::user::e_key_escape)
       {
 
          m_pcombo->ShowDropDown(false);
 
       }
-      else if (pkey->m_ekey == ::user::key_tab)
+      else if (pkey->m_ekey == ::user::e_key_tab)
       {
 
          m_pcombo->ShowDropDown(false);
@@ -681,19 +681,19 @@ namespace user
 
 
       }
-      else if (pkey->m_ekey == ::user::key_down)
+      else if (pkey->m_ekey == ::user::e_key_down)
       {
 
          m_pcombo->m_itemHover = min(m_pcombo->m_itemHover + 1, m_pcombo->_001GetListCount() - 1);
 
       }
-      else if (pkey->m_ekey == ::user::key_up)
+      else if (pkey->m_ekey == ::user::e_key_up)
       {
 
          m_pcombo->m_itemHover = max(m_pcombo->m_itemHover - 1, 0);
 
       }
-      else if (pkey->m_ekey == ::user::key_return)
+      else if (pkey->m_ekey == ::user::e_key_return)
       {
 
          m_pcombo->set_current_item(m_pcombo->m_itemHover, ::e_source_user);

@@ -169,7 +169,7 @@ public: // re-implementations only
    m_pestatus(pestatus)
    {
    }
-   virtual void Enable(bool bOn = TRUE, const ::action_context & context = ::e_source_system)
+   virtual void Enable(bool bOn = true, const ::action_context & context = ::e_source_system)
    {
          if(bOn)
          {
@@ -202,7 +202,7 @@ public: // re-implementations only
 
       }
    }
-//   virtual void SetRadio(bool bOn = TRUE, const ::action_context & context = ::e_source_system);
+//   virtual void SetRadio(bool bOn = true, const ::action_context & context = ::e_source_system);
    //virtual void SetText(const char * pszText, const ::action_context & context = ::e_source_system);
 
 };

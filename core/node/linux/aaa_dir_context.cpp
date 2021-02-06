@@ -634,7 +634,7 @@ namespace linux
 
       }
 
-      return ::rmdir(psz) != FALSE;
+      return ::rmdir(psz) != false;
 
    }
 

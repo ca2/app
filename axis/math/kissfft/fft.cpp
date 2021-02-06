@@ -306,8 +306,8 @@ void kf_factor(i32 n,i32 * facbuf)
             if (point_i32 > floor_sqrt)
                 point = n;          /* no more factors, skip to end */
         }
-        n /= point_i32;
-        *facbuf++ = point_i32;
+        n /= point;
+        *facbuf++ = point;
         *facbuf++ = n;
     } while (n > 1);
 }

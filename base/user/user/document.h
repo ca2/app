@@ -13,8 +13,8 @@ namespace user
 
 
 
-      bool                                m_bAutoDelete;     // TRUE => delete document when no more views
-      bool                                m_bEmbedded;       // TRUE => document is being created by OLE
+      bool                                m_bAutoDelete;     // true => delete document when no more views
+      bool                                m_bEmbedded;       // true => document is being created by OLE
 
       __pointer(::create)                 m_pcreate;
       string                              m_strTitle;
@@ -70,11 +70,11 @@ namespace user
       virtual string get_save_file_extension();
 
       const ::file::path & get_file_path() const;
-      virtual void set_path_name(::payload varFile, bool bAddToMRU = TRUE);
+      virtual void set_path_name(::payload varFile, bool bAddToMRU = true);
 
       ::user::impact_system * get_document_template() const;
       virtual bool is_modified();
-      virtual void set_modified_flag(bool bModified = TRUE);
+      virtual void set_modified_flag(bool bModified = true);
       virtual void set_new(bool bNew = true);
 
       virtual bool is_new_document();
@@ -178,7 +178,7 @@ namespace user
             if(point.is_set())
             {
 
-               if(id == point_i32->m_id)
+               if(id == point->m_id)
                   return point;
                else
                   count++;
@@ -191,8 +191,8 @@ namespace user
 
       }
 
-      //bool                             m_bAutoDelete;     // TRUE => delete document when no more views
-      //bool                             m_bEmbedded;       // TRUE => document is being created by OLE
+      //bool                             m_bAutoDelete;     // true => delete document when no more views
+      //bool                             m_bEmbedded;       // true => document is being created by OLE
 
 
       //controller();
@@ -284,7 +284,7 @@ namespace user
 
       // advanced overridables, closing down frame/doc, etc.
       virtual bool can_close_frame(::user::frame_window * pframe);
-      virtual bool save_modified(); // return TRUE if ok to continue
+      virtual bool save_modified(); // return true if ok to continue
       virtual void pre_close_frame(::user::frame_window * pframe);
 
 

@@ -36,7 +36,7 @@ namespace ios
 
       m_pStream = nullptr;
       //if (!::lnx::file::open(lpszFileName, (nOpenFlags & ~::file::e_open_text)))
-      // return FALSE;
+      // return false;
 
       //   ASSERT(m_hFile != hFileNull);
       // ASSERT(m_bCloseOnDelete);
@@ -129,7 +129,7 @@ namespace ios
    {
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
-      //   ASSERT(fx_is_valid_address(lpBuf, nCount, FALSE));
+      //   ASSERT(fx_is_valid_address(lpBuf, nCount, false));
 
       if (fwrite(lpBuf, sizeof(byte), nCount, m_pStream) != nCount)
          vfxThrowFileexception(::file::exception::type_generic, errno, m_strFileName);
@@ -290,7 +290,7 @@ namespace ios
          nErr = fclose(m_pStream);
 
       //   m_hFile = (::u32) hFileNull;
-      //      m_bCloseOnDelete = FALSE;
+      //      m_bCloseOnDelete = false;
       m_pStream = nullptr;
 
       if (nErr != 0)
@@ -307,7 +307,7 @@ namespace ios
          fclose(m_pStream);  // close but ignore errors
       //   m_hFile = (::u32) hFileNull;
       m_pStream = nullptr;
-      //      m_bCloseOnDelete = FALSE;
+      //      m_bCloseOnDelete = false;
    }
 
    __pointer(::file::file) stdio_file::Duplicate() const

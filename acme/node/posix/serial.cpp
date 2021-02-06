@@ -626,8 +626,8 @@ Serial::SerialImpl::read(u8 * buf, size_t size)
          }
          // Update bytes_read
          bytes_read += static_cast<size_t> (bytes_read_now);
-         // If bytes_read == size_i32 then we have read everything we need
-         if (bytes_read == size_i32)
+         // If bytes_read == size then we have read everything we need
+         if (bytes_read == size)
          {
             break;
          }
@@ -725,7 +725,7 @@ Serial::SerialImpl::write(const u8 * data, size_t length)
             }
             // Update bytes_written
             bytes_written += static_cast<size_t> (bytes_written_now);
-            // If bytes_written == size_i32 then we have written everything we need to
+            // If bytes_written == size then we have written everything we need to
             if (bytes_written == length)
             {
                break;

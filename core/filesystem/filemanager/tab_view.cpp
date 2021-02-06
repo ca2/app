@@ -316,7 +316,7 @@ namespace filemanager
             if (pframe.is_set())
             {
 
-               pframe->InitialUpdateFrame(nullptr, TRUE);
+               pframe->InitialUpdateFrame(nullptr, true);
 
                pframe->display(e_display_normal);
 

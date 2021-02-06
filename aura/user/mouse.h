@@ -21,7 +21,7 @@ namespace user
       point_i32                   m_point;
       point_i32                   m_pointDesired;
       bool                    m_bTranslated;
-      e_cursor                m_ecursor;
+      enum_cursor                m_ecursor;
       ::draw2d::cursor *      m_pcursor;
 
 

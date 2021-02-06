@@ -63,7 +63,7 @@ CLASS_DECL_AURA bool node_save_image(Windows::Storage::Streams::IRandomAccessStr
 
       ul = (ULONG) stg.cbSize.QuadPart - ulPos;
 
-      pstream->Read(memBuffer.get_data(), (ULONG)__min(ul, memBuffer.get_size()), &ulRead);
+      pstream->Read(memBuffer.get_data(), (ULONG)minimum(ul, memBuffer.get_size()), &ulRead);
 
       if (ulRead > 0)
       {

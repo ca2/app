@@ -297,7 +297,7 @@ char *_GeoIP_full_path_to(const char *file_name)
          if (*point == '\\')
          {
             if (!q)
-               q = point_i32;
+               q = point;
             else
                *point = '/';
          }

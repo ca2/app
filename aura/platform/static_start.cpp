@@ -6,8 +6,8 @@
 #include "apex/platform/app_core.h"
 #include "acme/primitive/primitive/malloc.h"
 #include "aura/astr.h"
-#include "aura/os/_os.h"
-
+//#include "aura/os/_os.h"
+//
 //#include <sqlite3.h>
 
 #ifdef RASPBIAN
@@ -123,7 +123,7 @@ namespace aura
 
    //::mutex * &System.g_mutexLibrary;
 
-   __LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
+   //__LPFN_MAIN_DEFERRED_RUN g_main_deferred_run;
 
    //::mutex * g_pmutexGlobals;
 
@@ -290,7 +290,7 @@ namespace aura
 
 #endif
 
-      g_main_deferred_run = nullptr;
+      //g_main_deferred_run = nullptr;
 
       //g_pmutexGlobals = nullptr;
 

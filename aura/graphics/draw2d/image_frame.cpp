@@ -113,7 +113,7 @@ void image_frame::_001Process(::image * pimageCompose, ::image * pimageFrame, im
 
            pimageCompose->set_alpha_mode(::draw2d::alpha_mode_set);
 
-           pimageCompose->g()->fill_rect(pframea->rectangle_i32(), 0);
+           pimageCompose->g()->fill_rect(pframea->rectangle(), 0);
 
         }*/
 

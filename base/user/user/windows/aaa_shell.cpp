@@ -99,7 +99,7 @@ namespace user
             break;
          default:
             // unexpected icon type
-            ASSERT(FALSE);
+            ASSERT(false);
             return 0x80000000;
          }
 

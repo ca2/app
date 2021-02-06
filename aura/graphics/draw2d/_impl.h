@@ -452,7 +452,7 @@ namespace draw2d
 
       int iR = iSpreadRadius + iBlurRadius + iBlur + 1;
 
-      ::rectangle_i32 rectEmboss = rectangle_i32;
+      ::rectangle_i32 rectEmboss = rectangle;
 
       rectEmboss.left -= (::i32)(iR * g_dEmboss);
       rectEmboss.top -= (::i32)(iR * g_dEmboss);

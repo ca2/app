@@ -136,7 +136,7 @@ public:
     * @since 1.0
     * @author Gurmeet S. Kochar
     */
-   enum LengthUnitsEnum { em, ex, px, per, in, cm, mm, point_i32, pc };
+   enum LengthUnitsEnum { em, ex, px, per, in, cm, mm, point, pc };
    i16 getLengthValue(LengthUnitsEnum &rUnit) const
    {
       static const char   _szUnits[][4] =
@@ -369,7 +369,7 @@ public:
    {
       if (!(nIndex >= 0 && nIndex < getCount()))
       {
-         ASSERT(FALSE);
+         ASSERT(false);
          return (LiteHTMLElemAttr());
       }
       return ( *((*m_parrAttrib)[nIndex]) );

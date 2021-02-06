@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #include "acme/operating_system.h"
 #include "acme/node/windows/_windows.h"
 #include "acme/os/windows_common/file.h"
@@ -36,7 +36,7 @@ namespace windows
    }
 
 
-   ::file::path CLASS_DECL_ACME shell_get_special_folder_path(i32 csidl, bool fCreate, oswindow oswindow)
+   ::file::path CLASS_DECL_ACME shell_get_special_folder_path(i32 csidl, bool fCreate, ::windowing::window * pwindow)
    {
 
       ::file::path path;

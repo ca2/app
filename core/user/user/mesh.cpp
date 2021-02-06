@@ -222,7 +222,7 @@ namespace user
                rectangle.right = rectClient.right;
                rectangle.bottom = ::i32(y - pointScroll.y);
 
-               pgraphics->_DrawText(m_strTopText.Mid(iStart,i - iStart),rectangle_i32,e_align_left);
+               pgraphics->_DrawText(m_strTopText.Mid(iStart,i - iStart),rectangle,e_align_left);
                iStart = iNewStart;
             }
          }
@@ -603,7 +603,7 @@ namespace user
             color32_t crTranslucid = RGB(0,0,0);
             ::rectangle_i32 rectangle = pdrawitem->m_rectItem;
             rectangle.inflate(8,0,8,-1);
-            System.imaging().color_blend(pdrawitem->m_pgraphics,rectangle_i32,crTranslucid,127);
+            System.imaging().color_blend(pdrawitem->m_pgraphics,rectangle,crTranslucid,127);
          }
       }
 
@@ -2414,8 +2414,8 @@ namespace user
 
       }
 
-      if(pkey->m_ekey == ::user::key_down || pkey->m_ekey == ::user::key_up ||
-            pkey->m_ekey == ::user::key_next || pkey->m_ekey == ::user::key_prior)
+      if(pkey->m_ekey == ::user::e_key_down || pkey->m_ekey == ::user::e_key_up ||
+            pkey->m_ekey == ::user::e_key_next || pkey->m_ekey == ::user::e_key_prior)
       {
 
          if(m_nItemCount > 0)
@@ -2429,36 +2429,36 @@ namespace user
 
             if(iItem < 0)
             {
-               if(pkey->m_ekey == ::user::key_down || pkey->m_ekey == ::user::key_next)
+               if(pkey->m_ekey == ::user::e_key_down || pkey->m_ekey == ::user::e_key_next)
                {
                   iItem = 0;
                }
-               else if(pkey->m_ekey == ::user::key_up || pkey->m_ekey == ::user::key_prior)
+               else if(pkey->m_ekey == ::user::e_key_up || pkey->m_ekey == ::user::e_key_prior)
                {
                   iItem = m_nItemCount - 1;
                }
             }
             else
             {
-               if(pkey->m_ekey == ::user::key_down)
+               if(pkey->m_ekey == ::user::e_key_down)
                {
                   iItem++;
                }
-               else if(pkey->m_ekey == ::user::key_next)
+               else if(pkey->m_ekey == ::user::e_key_next)
                {
                   iItem += m_nDisplayCount;
                }
-               else if(pkey->m_ekey == ::user::key_up)
+               else if(pkey->m_ekey == ::user::e_key_up)
                {
                   iItem--;
                }
-               else if(pkey->m_ekey == ::user::key_prior)
+               else if(pkey->m_ekey == ::user::e_key_prior)
                {
                   iItem -= m_nDisplayCount;
                }
                else
                {
-                  ASSERT(FALSE);
+                  ASSERT(false);
                   pmessage->m_bRet = false;
                   return;
                }
@@ -2490,7 +2490,7 @@ namespace user
             _001OnSelectionChange();
          }
       }
-      else if(pkey->m_ekey == ::user::key_delete)
+      else if(pkey->m_ekey == ::user::e_key_delete)
       {
 
          ::user::range range;
@@ -2548,7 +2548,7 @@ namespace user
       if (m_bDrag)
       {
 
-         m_pointLButtonUp = point_i32;
+         m_pointLButtonUp = point;
 
          set_need_redraw();
 
@@ -2641,7 +2641,7 @@ namespace user
 
             m_pointLButtonDown1 = m_pointLButtonDown2;
 
-            m_pointLButtonDown2 = point_i32;
+            m_pointLButtonDown2 = point;
 
             m_iClick = 2;
 
@@ -2651,7 +2651,7 @@ namespace user
 
             m_millisLButtonDownStart2 = tickNow;
 
-            m_pointLButtonDown2 = point_i32;
+            m_pointLButtonDown2 = point;
 
             m_iClick = 2;
 
@@ -2661,7 +2661,7 @@ namespace user
 
             m_millisLButtonDownStart1 = tickNow;
 
-            m_pointLButtonDown1 = point_i32;
+            m_pointLButtonDown1 = point;
 
             m_iClick = 1;
 
@@ -2718,7 +2718,7 @@ namespace user
 
                // uptr nFlags = 0;
 
-               // const ::point_i32 & point = point_i32;
+               // const ::point_i32 & point = point;
 
                // on_click(item);
 
@@ -2740,7 +2740,7 @@ namespace user
          else
          {
 
-            if(m_bMultiSelect && psession->is_key_pressed(::user::key_shift))
+            if(m_bMultiSelect && psession->is_key_pressed(::user::e_key_shift))
             {
 
                if(_001DisplayHitTest(point_i32,iItem))
@@ -2763,7 +2763,7 @@ namespace user
                }
 
             }
-            else if(m_bMultiSelect && psession->is_key_pressed(::user::key_control))
+            else if(m_bMultiSelect && psession->is_key_pressed(::user::e_key_control))
             {
 
                if(_001DisplayHitTest(point_i32,iItem))
@@ -2804,7 +2804,7 @@ namespace user
 
                   m_uiLButtonDownFlags = pmouse->m_nFlags;
 
-                  m_pointLButtonDown1 = point_i32;
+                  m_pointLButtonDown1 = point;
 
                   SetTimer(e_timer_drag_start, 1200, nullptr);
 
@@ -2948,11 +2948,11 @@ namespace user
 
       auto psession = Session;
 
-      if(psession->is_key_pressed(::user::key_shift))
+      if(psession->is_key_pressed(::user::e_key_shift))
       {
 
       }
-      else if(psession->is_key_pressed(::user::key_control))
+      else if(psession->is_key_pressed(::user::e_key_control))
       {
 
       }
@@ -3371,10 +3371,10 @@ namespace user
 
                m_iItemEnter = -1;
 
-               bool bLShiftKeyDown = psession->is_key_pressed(::user::key_lshift);
-               bool bRShiftKeyDown = psession->is_key_pressed(::user::key_rshift);
-               bool bLControlKeyDown = psession->is_key_pressed(::user::key_lcontrol);
-               bool bRControlKeyDown = psession->is_key_pressed(::user::key_rcontrol);
+               bool bLShiftKeyDown = psession->is_key_pressed(::user::e_key_lshift);
+               bool bRShiftKeyDown = psession->is_key_pressed(::user::e_key_rshift);
+               bool bLControlKeyDown = psession->is_key_pressed(::user::e_key_lcontrol);
+               bool bRControlKeyDown = psession->is_key_pressed(::user::e_key_rcontrol);
                bool bShiftKeyDown = bLShiftKeyDown || bRShiftKeyDown;
                bool bControlKeyDown = bLControlKeyDown || bRControlKeyDown;
 
@@ -4623,7 +4623,7 @@ namespace user
    i32 mesh::_001CalcMeshWidth(::draw2d::graphics_pointer& pgraphics)
    {
 
-      ASSERT(FALSE);
+      ASSERT(false);
 
       return -1;
 
@@ -4796,7 +4796,7 @@ namespace user
       
       index iSubItemHover;
       
-      auto pointClient = point_i32;
+      auto pointClient = point;
 
       _001ScreenToClient(pointClient);
 
@@ -4935,7 +4935,7 @@ namespace user
          return "sort-icon";
          break;
       default:
-         ASSERT(FALSE);
+         ASSERT(false);
          return "sort";
       }
    }
@@ -5230,7 +5230,7 @@ namespace user
 
          // not implemented
 
-         ASSERT(FALSE);
+         ASSERT(false);
 
          return size();
 
@@ -5487,7 +5487,7 @@ namespace user
       //   if(m_pcolumn->m_mapIcon.lookup((i32)m_iImage,picon))
       //   {
       //      m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-      //      return m_pgraphics->DrawIcon(m_rectImage.top_left(),picon) != FALSE;
+      //      return m_pgraphics->DrawIcon(m_rectImage.top_left(),picon) != false;
       //   }
       //}
       //else

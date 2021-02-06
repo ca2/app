@@ -57,7 +57,7 @@ namespace hi5
          m_ptabview->get_wnd()->RunModalLoop();
 
 
-         m_ptemplatePane->close_all_documents(FALSE);
+         m_ptemplatePane->close_all_documents(false);
          return m_strPin;
       }
 

@@ -186,7 +186,7 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_aura_1on_1text_1composit
 
    env->ReleaseStringChars(str, (jchar*)utf16);
 
-   return TRUE;
+   return true;
 
 }
 

@@ -9,24 +9,25 @@
 
 //#define VERI_BASIC_TEST
 
-namespace windowing
-{
-
-
-   buffer::buffer()
-   {
-
-
-   }
-
-
-   buffer::~buffer()
-   {
-
-   }
-
-
-} // namespace windowing
-
+//
+//namespace windowing
+//{
+//
+//
+//   buffer::buffer()
+//   {
+//
+//
+//   }
+//
+//
+//   buffer::~buffer()
+//   {
+//
+//   }
+//
+//
+//} // namespace windowing
+//
 
 

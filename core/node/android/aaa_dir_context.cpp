@@ -974,7 +974,7 @@ namespace android
 
       }
 
-      return ::rmdir(psz) != FALSE;
+      return ::rmdir(psz) != false;
 
    }
 
@@ -1095,7 +1095,7 @@ namespace android
          nullptr,
          str,
          CSIDL_COMMON_APPDATA,
-         FALSE);*/
+         false);*/
 
       str = ::dir::system() / ".ca2/app/appdata";
       string strRelative;
@@ -1154,7 +1154,7 @@ namespace android
 //         nullptr,
 //         str,
 //         CSIDL_PROFILE,
-//         FALSE);*/
+//         false);*/
 //
 //      str = getenv("HOME");
 //
@@ -1190,7 +1190,7 @@ namespace android
 //            nullptr,
 //            str,
 //            CSIDL_PROFILE,
-//            FALSE);
+//            false);
 //         return path(path(str, "ca2\\_____default"), lpcsz);
 //      }
 //      else

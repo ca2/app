@@ -407,7 +407,7 @@ bool db_long_set::save(const char * lpKey, i64 lValue)
 bool db_long_set::find(const char * lpKey)
 {
    UNREFERENCED_PARAMETER(lpKey);
-   /*    single_lock sl(&m_CriticalSection, TRUE);
+   /*    single_lock sl(&m_CriticalSection, true);
    HRESULT hr;
    if(m_bIndexed)
    {
@@ -420,7 +420,7 @@ bool db_long_set::find(const char * lpKey)
    }
    if(hr == DB_S_ENDOFROWSET)
    {
-   return FALSE;
+   return false;
    }
    if(FAILED(get_data(0)))
    {
@@ -429,7 +429,7 @@ bool db_long_set::find(const char * lpKey)
    if(strSection.compare_ci(m_Section) == 0 &&
    strKey.compare_ci(m_Key) == 0)
    {
-   return TRUE;
+   return true;
    }
    CDBLongRow l;
    _tcscpy(l.m_Section , lpSection);
@@ -441,16 +441,16 @@ bool db_long_set::find(const char * lpKey)
    &l,
    DBSEEK_FIRSTEQ);
    if(FAILED(hr))
-   return FALSE;
+   return false;
    HROW* phRow = &m_hRow;
    ULONG ulRowsFetched = 0;
    hr = m_spRowset->GetNextRows(nullptr, 0, 1, &ulRowsFetched, &phRow);
    if (hr != S_OK)
-   return FALSE;
+   return false;
    hr = get_data();
    if(FAILED(hr))
-   return FALSE;
-   return TRUE;
+   return false;
+   return true;
    }
    else
    {
@@ -462,9 +462,9 @@ bool db_long_set::find(const char * lpKey)
    }
    if(hr == DB_S_ENDOFROWSET)
    {
-   return FALSE;
+   return false;
    }
-   while(TRUE)
+   while(true)
    {
    if(FAILED(get_data(0)))
    {
@@ -473,7 +473,7 @@ bool db_long_set::find(const char * lpKey)
    if(strSection.compare_ci(m_Section) == 0 &&
    strKey.compare_ci(m_Key) == 0)
    {
-   return TRUE;
+   return true;
    }
    if(FAILED(hr = MoveNext()))
    {
@@ -481,7 +481,7 @@ bool db_long_set::find(const char * lpKey)
    }
    if(hr == DB_S_ENDOFROWSET)
    {
-   return FALSE;
+   return false;
    }
    }
    }*/
@@ -489,7 +489,7 @@ bool db_long_set::find(const char * lpKey)
 }
 
 
-bool db_long_set::load(const char * lpKey, LPRECT32 lpRect)
+bool db_long_set::load(const char * lpKey, RECTANGLE_I32 * lpRect)
 {
 
    ::rectangle_i32 rectangle;
@@ -508,7 +508,7 @@ bool db_long_set::load(const char * lpKey, LPRECT32 lpRect)
    if(!load(strKey + ".bottom", rectangle.bottom))
       return false;
 
-   *lpRect = rectangle_i32;
+   *lpRect = rectangle;
 
    return true;
 
@@ -855,7 +855,7 @@ bool db_long_set::load(const char * lpKey, POINT_I32 * lpPoint)
    if(!load(strKey + ".y", point.y))
       return false;
 
-   *lpPoint = point_i32;
+   *lpPoint = point;
 
    return true;
 

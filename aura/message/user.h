@@ -432,7 +432,7 @@ namespace message
    public:
 
 
-      void * m_pwindowpos;
+      void * m_pWINDOWPOS;
 
 
       window_pos() {}

@@ -375,7 +375,7 @@ namespace base
 //      //virtual ::file::path full_process_path(::file::path path);
 //
 //      //virtual void DoWaitCursor(i32 nCode); // 0 => restore, 1=> begin, -1=> end
-//      virtual void ShowWaitCursor(bool bShow = true);
+//      virtual void show_wait_cursor(bool bShow = true);
 //
 //
 //
@@ -809,7 +809,7 @@ namespace base
 //      //virtual void on_request(::create* pcreate) override;
 //
 //      // overrides for implementation
-//      virtual bool on_idle(::i32 lCount); // return TRUE if more idle processing
+//      virtual bool on_idle(::i32 lCount); // return true if more idle processing
 //      virtual void process_window_procedure_exception(::exception_pointer pe, ::message::message* pmessage) override;
 //
 //      void EnableModelessEx(bool bEnable);
@@ -873,7 +873,7 @@ namespace base
 //      void SetRegistryKey(::u32 nIDRegistryKey);
 //
 //
-//      void RegisterShellFileTypes(bool bCompat = FALSE);
+//      void RegisterShellFileTypes(bool bCompat = false);
 //
 //      // call after all doc templates are registered
 //      void UnregisterShellFileTypes();
@@ -881,7 +881,7 @@ namespace base
 //
 //
 //      // Printer DC Setup routine, 'struct tagPD' is a PRINTDLG structure.
-//      void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld = TRUE);
+//      void SelectPrinter(HANDLE hDevNames, HANDLE hDevMode, bool bFreeOld = true);
 //
 //      // create a DC for the system default printer.
 //      ::draw2d::graphics* CreatePrinterDC();

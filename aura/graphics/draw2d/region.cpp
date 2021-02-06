@@ -411,11 +411,11 @@ namespace draw2d
    void region::max_bounding_box(RECTANGLE_I32 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::rectangle_f64 rectangle_i32;
+      ::rectangle_f64 rectangle;
 
       max_bounding_box(rectangle);
 
-      __copy(prectangle,rectangle_i32);
+      __copy(prectangle, rectangle);
 
    }
 
@@ -423,11 +423,11 @@ namespace draw2d
    void region::max_bounding_box_rect(RECTANGLE_I32 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::rectangle_f64 rectangle_i32;
+      ::rectangle_f64 rectangle;
 
       max_bounding_box_rect(rectangle);
 
-      __copy(prectangle,rectangle_i32);
+      __copy(prectangle, rectangle);
 
 
    }
@@ -436,12 +436,11 @@ namespace draw2d
    void region::max_bounding_box_oval(RECTANGLE_I32 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::rectangle_f64 rectangle_i32;
+      ::rectangle_f64 rectangle;
 
       max_bounding_box_oval(rectangle);
 
-      __copy(prectangle,rectangle_i32);
-
+      __copy(prectangle, rectangle);
 
    }
 
@@ -449,11 +448,11 @@ namespace draw2d
    void region::max_bounding_box_polygon(RECTANGLE_I32 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::rectangle_f64 rectangle_i32;
+      ::rectangle_f64 rectangle;
 
       max_bounding_box_polygon(rectangle);
 
-      __copy(prectangle,rectangle_i32);
+      __copy(prectangle, rectangle);
 
    }
 
@@ -461,12 +460,11 @@ namespace draw2d
    void region::max_bounding_box_poly_polygon(RECTANGLE_I32 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::rectangle_f64 rectangle_i32;
+      ::rectangle_f64 rectangle;
 
       max_bounding_box_poly_polygon(rectangle);
 
-      __copy(prectangle,rectangle_i32);
-
+      __copy(prectangle, rectangle);
 
    }
 
@@ -474,12 +472,11 @@ namespace draw2d
    void region::max_bounding_box_combine(RECTANGLE_I32 * prectangle, ::draw2d::graphics * pgraphics)
    {
 
-      ::rectangle_f64 rectangle_i32;
+      ::rectangle_f64 rectangle;
 
       max_bounding_box_combine(rectangle);
 
-      __copy(prectangle,rectangle_i32);
-
+      __copy(prectangle, rectangle);
 
    }
 
@@ -702,7 +699,7 @@ namespace draw2d
 
       }
 
-      if (::polygon_contains_point(m_lppoints, m_nCount, point_i32))
+      if (::polygon_contains_point(m_lppoints, m_nCount, point))
       {
 
          return true;
@@ -724,7 +721,7 @@ namespace draw2d
 
          i32 iCount = m_lppolycounts[i];
 
-         if (::polygon_contains_point(&m_lppoints[n], iCount, point_i32))
+         if (::polygon_contains_point(&m_lppoints[n], iCount, point))
          {
 
             return true;

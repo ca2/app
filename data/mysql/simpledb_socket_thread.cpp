@@ -42,21 +42,21 @@ namespace simpledb
       if(!::CreateProcess(nullptr, "netnoderewrite.exe",
       nullptr,
       nullptr,
-      TRUE,
+      true,
       0,
       nullptr,
       ".",
       &startupinfo,
       &m_pi))
       {
-      return FALSE;
+      return false;
       }
 
 
       WaitForInputIdle(m_pi.hProcess, U32_INFINITE_TIMEOUT);
 
 
-      //   m_hChildThreadId = ::OpenThread(THREAD_ALL_ACCESS, TRUE, m_pi.dwThreadId);
+      //   m_hChildThreadId = ::OpenThread(THREAD_ALL_ACCESS, true, m_pi.dwThreadId);
 
       ::post_thread_message(m_pi.dwThreadId, WM_APP, 0, m_nThreadID);
 
@@ -71,13 +71,13 @@ namespace simpledb
       {
       u32 dw = ::get_last_error();
       TRACE("error %u", dw);
-      return FALSE;
+      return false;
       }
       if(!m_plistensocket->Listen())
       {
       u32 dw = ::get_last_error();
       TRACE("error %u", dw);
-      return FALSE;
+      return false;
       }*/
       m_evInitialized.SetEvent();
       return true;

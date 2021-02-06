@@ -88,12 +88,12 @@ namespace message
    }
 
 
-   void base::set(oswindow oswindow, ::layered * playeredUserPrimitive, const ::id & id, wparam wparam, ::lparam lparam)
+   void base::set(oswindow oswindow, ::layered * pwindow, const ::id & id, wparam wparam, ::lparam lparam)
    {
       
-      m_playeredUserPrimitive = playeredUserPrimitive;
+      m_playeredUserPrimitive = pwindow;
 
-      ::message::message::set(oswindow,playeredUserPrimitive, id, wparam, lparam);
+      ::message::message::set(oswindow, pwindow, id, wparam, lparam);
 
    }
 

@@ -27,10 +27,9 @@ protected:
    __pointer(matter_array)                            m_preferencea;
 
 
+
 public:
 
-
-   
    ::object_meta *                                    m_pmeta;
    ::i64                                              m_cRun;
 
@@ -58,6 +57,8 @@ public:
 
 
 #endif
+
+   
 
 
    inline matter_array * _composite_array() { return m_pcompositea; }

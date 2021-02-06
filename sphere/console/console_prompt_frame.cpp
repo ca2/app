@@ -355,7 +355,7 @@ namespace console
          bChanged = true;
       }
 
-      set_window_pos(      zorder_top_most,      rectWindow,      SWP_SHOWWINDOW);
+      set_window_pos(      e_zorder_top_most,      rectWindow,      SWP_SHOWWINDOW);
 
    }
 
@@ -512,7 +512,7 @@ namespace console
 
       set_appearance(::e_display_minimal);
 
-      set_window_pos(zorder_top,rectangle_i32,SWP_SHOWWINDOW);
+      set_window_pos(e_zorder_top,rectangle,SWP_SHOWWINDOW);
 
       display(e_display_normal);
 

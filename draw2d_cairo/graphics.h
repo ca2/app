@@ -47,7 +47,7 @@ namespace draw2d_cairo
 
       virtual void * detach() override;
 
-      bool IsPrinting() override;            // TRUE if being used for printing
+      bool IsPrinting() override;            // true if being used for printing
 
       //::draw2d::pen *     get_current_pen() override;
       //::draw2d::brush *   get_current_brush() override;
@@ -256,9 +256,9 @@ namespace draw2d_cairo
 //      bool DrawState(const ::point_f64 & point_f64, const ::size_f64 & size_f64, ::draw2d::bitmap* pBitmap, ::u32 nFlags,
 //                     ::draw2d::brush* pBrush = nullptr) override;
 //      bool DrawState(const ::point_f64 & point_f64, const ::size_f64 & size_f64, const char * lpszText, ::u32 nFlags,
-//                     bool bPrefixText = TRUE, i32 nTextLen = 0, HBRUSH hBrush = nullptr) override;
+//                     bool bPrefixText = true, i32 nTextLen = 0, HBRUSH hBrush = nullptr) override;
 //      bool DrawState(const ::point_f64 & point_f64, const ::size_f64 & size_f64, const char * lpszText, ::u32 nFlags,
-//                     bool bPrefixText = TRUE, i32 nTextLen = 0, ::draw2d::brush* pBrush = nullptr) override;
+//                     bool bPrefixText = true, i32 nTextLen = 0, ::draw2d::brush* pBrush = nullptr) override;
 
 
 
@@ -396,7 +396,7 @@ namespace draw2d_cairo
 
 //      // Scrolling Functions
 //      bool ScrollDC(i32 dx, i32 dy, const ::rectangle_f64 & rectScroll, const ::rectangle_f64 & rectClip,
-//                    ::draw2d::region* pRgnUpdate, LPRECT32 lpRectUpdate) override;
+//                    ::draw2d::region* pRgnUpdate, RECTANGLE_I32 * lpRectUpdate) override;
 
 //      // font Functions
 //      bool GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer) override;

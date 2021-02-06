@@ -93,7 +93,7 @@ namespace hotplugin
 
       rectProgressComplement.left = rectProgress.right;
 
-      pgraphics->rectangle_i32(rectProgressComplement);
+      pgraphics->rectangle(rectProgressComplement);
 
       {
 

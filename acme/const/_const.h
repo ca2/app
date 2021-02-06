@@ -284,28 +284,28 @@ enum enum_trace_level
 
 };
 
-enum e_cursor
+enum enum_cursor
 {
 
-   cursor_unmodified,
-   cursor_draw2d,
-   cursor_default,
-   cursor_none,
-   cursor_system,
-   cursor_arrow,
-   cursor_hand,
-   cursor_text_select,
-   cursor_size_top_left,
-   cursor_size_top,
-   cursor_size_top_right,
-   cursor_size_right,
-   cursor_size_bottom_right,
-   cursor_size_bottom,
-   cursor_size_bottom_left,
-   cursor_size_left,
-   cursor_size_vertical,
-   cursor_size_horizontal,
-   cursor_move
+   e_cursor_unmodified,
+   e_cursor_draw2d,
+   e_cursor_default,
+   e_cursor_none,
+   e_cursor_system,
+   e_cursor_arrow,
+   e_cursor_hand,
+   e_cursor_text_select,
+   e_cursor_size_top_left,
+   e_cursor_size_top,
+   e_cursor_size_top_right,
+   e_cursor_size_right,
+   e_cursor_size_bottom_right,
+   e_cursor_size_bottom,
+   e_cursor_size_bottom_left,
+   e_cursor_size_left,
+   e_cursor_size_vertical,
+   e_cursor_size_horizontal,
+   e_cursor_move
 
 };
 
@@ -419,19 +419,19 @@ enum enum_clock
 
 
 
-enum e_zorder
+enum enum_zorder
 {
 
-   zorder_none = 0,
-   zorder_bottom,
-   zorder_normal_anchor,
-   zorder_normal,
-   zorder_top,
-   zorder_no_top_most,
-   zorder_top_most_anchor,
-   zorder_top_most,
+   e_zorder_none = 0,
+   e_zorder_bottom,
+   e_zorder_normal_anchor,
+   e_zorder_normal,
+   e_zorder_top,
+   e_zorder_no_top_most,
+   e_zorder_top_most_anchor,
+   e_zorder_top_most,
 
-   zorder_hwnd = -1,
+   e_zorder_hwnd = -1,
 
 
 };

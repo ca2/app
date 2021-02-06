@@ -137,7 +137,7 @@ namespace user
 
                pframe->m_sizeMinimum.cy = 150;
 
-               pframe->order(zorder_top_most);
+               pframe->order(e_zorder_top_most);
                
                pframe->set_dim(rectWindow.left, rectWindow.bottom, 400, 200);
                
@@ -147,7 +147,7 @@ namespace user
             else
             {
 
-               pframe->order(zorder_top_most);
+               pframe->order(e_zorder_top_most);
 
                pframe->display();
 

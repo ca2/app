@@ -5,7 +5,7 @@
 #include "apex/platform/app_core.h"
 
 
-void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction, const ::rectangle_i32 & rectangle);
+//void __reposition_window(SIZEPARENTPARAMS * pLayout, ::user::interaction * pinteraction, const ::rectangle_i32 & rectangle);
 
 
 namespace user
@@ -249,7 +249,7 @@ namespace user
    //{
 
    //   return _create_interaction(pinteraction, pparent);
-   //   /*return create_interaction(pinteraction, nullptr, nullptr, WS_CHILD | WS_VISIBLE, rectangle_i32, puiParent, id, nullptr);*/
+   //   /*return create_interaction(pinteraction, nullptr, nullptr, WS_CHILD | WS_VISIBLE, rectangle, puiParent, id, nullptr);*/
 
    //}
 
@@ -293,20 +293,6 @@ namespace user
    void interaction_child::__synthesizes_creates_styles(::user::interaction * pinteraction, ::u32 & nExStyle, ::u32 & nStyle)
    {
 
-      if (pinteraction->m_bTransparent)
-      {
-
-         nExStyle |= WS_EX_LAYERED;
-
-      }
-
-      if (pinteraction->layout().is_this_screen_visible())
-      {
-
-         nStyle |= WS_VISIBLE;
-
-      }
-
    }
 
 
@@ -319,7 +305,7 @@ namespace user
       //u32 dwExStyle = GetExStyle();
       //if (nAdjustType == 0)
       //   dwExStyle &= ~WS_EX_CLIENTEDGE;
-      //::AdjustWindowRectEx(pClientRect, GetStyle(), FALSE, dwExStyle);
+      //::AdjustWindowRectEx(pClientRect, GetStyle(), false, dwExStyle);
 
    }
 
@@ -327,42 +313,60 @@ namespace user
 
 
 
-   bool interaction_child::SetFocus()
-   {
+   //bool interaction_child::has_focus() const
+   //{
 
-      if (::is_null(m_puserinteraction))
-      {
+   //   if (::is_set(pinteraction) || pinteraction != m_puserinteraction)
+   //   {
 
-         return false;
+   //      m_puserinteraction->set_
 
-      }
+   //   }
 
-      if (m_puserinteraction->keyboard_focus_is_focusable())
-      {
+   //   if (::is_null(pinteraction) || pinteraction == m_puserinteraction)
+   //   {
 
-         m_puserinteraction->set_keyboard_focus();
+   //      m_bFocus = true;
 
-      }
-
-      return true;
-
-   }
+   //      return true;
 
 
-   bool interaction_child::has_focus()
-   {
-
-      return ::user::primitive_impl::has_focus();
-
-   }
+   //   }
+   //   
+   //   if (pinteraction == m_puserinteraction)
+   //   {
 
 
-   bool interaction_child::is_active()
-   {
+   //   }
 
-      return false;
 
-   }
+   //   return p
+   //   if (m_puserinteraction->keyboard_focus_is_focusable())
+   //   {
+
+   //      m_puserinteraction->set_keyboard_focus();
+
+   //   }
+
+   //   return true;
+
+   //}
+
+
+   //bool interaction_child::has_focus()
+   //{
+
+   //   return ::user::primitive_impl::has_focus();
+
+   //}
+
+
+   //bool interaction_child::is_active()
+   //{
+
+   //   return false;
+
+   //}
 
 
    u32 interaction_child::GetStyle() const
@@ -521,7 +525,7 @@ namespace user
          if (::is_visible(edisplay))
          {
 
-            ModifyStyle(0, WS_VISIBLE);
+            //ModifyStyle(0, WS_VISIBLE);
 
             m_puserinteraction->send_message(e_message_show_window, 1);
 
@@ -529,7 +533,7 @@ namespace user
          else
          {
 
-            ModifyStyle(WS_VISIBLE, 0);
+            ///ModifyStyle(WS_VISIBLE, 0);
 
             m_puserinteraction->send_message(e_message_show_window, 0);
 

@@ -1,5 +1,8 @@
 #pragma once
 
+
+#include "aura/operating_system.h"
+
 //#include "aura/os/_os.h"
 #include <EGL/egl.h>
 #include <EGL/eglext.h>

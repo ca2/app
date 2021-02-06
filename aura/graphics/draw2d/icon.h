@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 using hicon = void *;
 
@@ -15,14 +15,14 @@ namespace draw2d
    protected:
 
 
-      __pointer(::windowing::icon)  m_picon;
-      map < ::size_i32, void * >    m_iconmap;
-      __pointer(size_image)         m_pimagemap;
+      friend class ::windowing::icon;
+
+      __pointer(::windowing::icon)              m_picon;
+      __pointer(size_image)                     m_pimagemap;
+      array < concrete < ::size_i32 > >         m_sizea;
       // Sizes of Readily Available Icons in Increasing Sorting Order
-      ::size_array                  m_sizea;
-      bool                          m_bAutoDelete;
-      string                        m_strAppTrayIcon;
-      ::size_i32                        m_size;
+      bool                                      m_bAutoDelete;
+      string                                    m_strAppTrayIcon;
 
    public:
 
@@ -32,23 +32,20 @@ namespace draw2d
       virtual ~icon();
 
 
-      virtual ::e_status     initialize(::layered * pobjectContext) override;
+      virtual ::e_status initialize(::layered * pobjectContext) override;
+
+
+      virtual void initialize_with_windowing_icon(::windowing::icon * picon);
 
 
       virtual windowing::icon * get_windowing_icon();
 
 
-      //virtual ::e_status     attach_os_data(void * picon, bool bTakeOwnership = true);
-
-
-
       string get_tray_icon_name();
-
-      //bool load_file(string strPath);
-
 
       ::size_i32 get_size();
       ::size_i32 get_smaller_size(const ::size_i32 & size);
+
 
       virtual void on_update_icon();
 
@@ -66,7 +63,7 @@ namespace draw2d
 
 
       // inline concrete < ::size_i32 > size_i32(const ::size_f64 & sizeDst, const ::size_f64 & sizeSrc, enum_image_selection eimageselection) const { return get_image(sizeDst)->size_i32(sizeDst, sizeSrc, eimageselection); }
-      inline concrete < ::size_i32 > size_i32(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const { return get_image(sizeDst)->size_i32(sizeDst, eimageselection); }
+      inline concrete < ::size_i32 > size(const ::size_f64 & sizeDst, enum_image_selection eimageselection) const { return get_image(sizeDst)->size(sizeDst, eimageselection); }
       inline concrete < ::size_i32 > size() const { return get_image(::size_f64())->size(); }
 
          
@@ -84,9 +81,5 @@ namespace draw2d
 } // namespace draw2d
 
 
-#ifdef WINDOWS_DESKTOP
 
-CLASS_DECL_AURA hicon load_icon(::object * pobject, string_array & straMatter, string strIcon, int cx, int cy);
-
-#endif
 

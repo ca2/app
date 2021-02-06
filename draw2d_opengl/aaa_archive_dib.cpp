@@ -157,16 +157,16 @@ namespace draw2d_opengl
       ::draw2d::bitmap * pbitmap = (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_current_bitmap();
 
       if(pbitmap == nullptr)
-         return FALSE;
+         return false;
 
       if (!create(pbitmap->get_size()))
       {
-         return FALSE;
+         return false;
       }
 
       from(pgraphics);
 
-      return TRUE;
+      return true;
 
    }
 
@@ -198,7 +198,7 @@ namespace draw2d_opengl
            size.cx, size.cy,
            ptSrc.x, ptSrc.y, ptSrc.y, cy - ptSrc.y,
            m_pcolorref, &m_info, 0)
-              != FALSE; */
+              != false; */
 
    }
 
@@ -230,7 +230,7 @@ namespace draw2d_opengl
 
       }
 
-      bool bOk = GetDIBits(GL2D_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, m_size.cy, m_pcolorref, &(m_info), DIB_RGB_COLORS) != FALSE;
+      bool bOk = GetDIBits(GL2D_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, m_size.cy, m_pcolorref, &(m_info), DIB_RGB_COLORS) != false;
 
       GL2D_GRAPHICS(pgraphics)->SelectObject(pbitmap);
 
@@ -245,7 +245,7 @@ namespace draw2d_opengl
       if (m_spgraphics.is_null())
          return false;
 
-      return m_spgraphics->BitBlt(ptDest, sz, pgraphics, point) != FALSE;
+      return m_spgraphics->BitBlt(ptDest, sz, pgraphics, point) != false;
 
    }
 

@@ -490,7 +490,7 @@ namespace simple_ui
 
       ::user::e_key iKey = pkey->m_ekey;
 
-      if (iKey == ::user::key_return || iKey == ::user::key_space)
+      if (iKey == ::user::e_key_return || iKey == ::user::e_key_space)
       {
 
          on_action(m_id);
@@ -498,7 +498,7 @@ namespace simple_ui
          pkey->m_bRet = true;
 
       }
-      else if (iKey == ::user::key_tab)
+      else if (iKey == ::user::e_key_tab)
       {
 
          keyboard_set_focus_next();

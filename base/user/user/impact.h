@@ -51,8 +51,8 @@ namespace user
       virtual bool IsSelected(const object* pDocItem) const; // support for OLE
 
       // OLE scrolling support (used for drag/drop as well)
-      virtual bool OnScroll(::u32 nScrollCode, ::u32 nPos, bool bDoScroll = TRUE);
-      //virtual bool OnScrollBy(::size_i32 sizeScroll, bool bDoScroll = TRUE);
+      virtual bool OnScroll(::u32 nScrollCode, ::u32 nPos, bool bDoScroll = true);
+      //virtual bool OnScrollBy(::size_i32 sizeScroll, bool bDoScroll = true);
 
       // OLE drag/drop support
       /*   virtual DROPEFFECT OnDragEnter(COleDataObject* pDataObject,
@@ -153,8 +153,8 @@ namespace user
       //      virtual bool IsSelected(const object* pDocItem) const; // support for OLE
 
       // OLE scrolling support (used for drag/drop as well)
-      //      virtual bool OnScroll(::u32 nScrollCode, ::u32 nPos, bool bDoScroll = TRUE);
-      //    virtual bool OnScrollBy(const ::size_i32 & sizeScroll, bool bDoScroll = TRUE);
+      //      virtual bool OnScroll(::u32 nScrollCode, ::u32 nPos, bool bDoScroll = true);
+      //    virtual bool OnScrollBy(const ::size_i32 & sizeScroll, bool bDoScroll = true);
 
       // OLE drag/drop support
 #ifndef ANDROID

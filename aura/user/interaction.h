@@ -1,6 +1,8 @@
 #pragma once
 
 
+
+
 namespace user
 {
 
@@ -109,12 +111,52 @@ namespace user
 
       };
 
-      bool                                         m_bExtendOnParent : 1;
-      bool                                         m_bExtendOnParentIfClientOnly : 1;
+      //union
+      //{
 
-      bool                                         m_bToolWindow:1;
-      bool                                         m_bMessageWindow : 1;
+      //   struct
+      //   {
 
+            bool              m_bExtendOnParent : 1;
+            bool              m_bExtendOnParentIfClientOnly : 1;
+
+            bool              m_bToolWindow : 1;
+            bool              m_bMessageWindow : 1;
+
+            //bool              m_bIsWindow : 1;
+            //bool              m_bEnable : 1;
+            //bool              m_bFocus : 1;
+            //bool              m_bActive : 1;
+            //bool              m_bRedrawInQueue : 1;
+            //bool              m_bVisualChanged : 1;
+            //bool              m_bAutoProdevianOnShow : 1;
+            //bool              m_bOnShowWindowVisible : 1;
+            //bool              m_bOnShowWindowScreenVisible : 1;
+            //bool              m_bSatelliteWindow : 1;
+            //bool              m_bGraphical : 1;
+            //bool              m_bDisableWindowPlacementSnapping : 1;
+            //bool              m_bEmbeddedProdevian : 1;
+            //bool              m_bArbitraryPositioning : 1;
+            //bool              m_bDesktopWindow : 1;
+            //bool              m_bDockWindow : 1;
+            //bool              m_bLoadWindowRectOnImpl : 1;
+            //bool              m_bWindowCreated : 1;
+            //bool              m_bUpdown : 1;
+            //bool              m_bPostponeVisualUpdate : 1;
+            //bool              m_bMiniaturizable : 1;
+            //bool              m_bAutoStoreWindowRect : 1;
+            //bool              m_bPendingSaveWindowRect : 1;
+            //bool              m_bLoadingWindowRect : 1;
+            //bool              m_bMainFrame : 1;
+            //bool              m_bDestroying : 1;
+            //bool              m_bNotVisible : 1;
+            //bool              m_bSatelliteWindowIfChild : 1;
+            //bool              m_bEmbeddedProdevianIfChild : 1;
+
+      //   }
+      //   i64    m_iaFlags[2];
+
+      //};
 
       ewindowflag                                  m_ewindowflag;
       bool                                         m_bDerivedHeight;
@@ -278,7 +320,7 @@ namespace user
       __pointer(interaction)                       m_puserinteractionOwner;
       u64                                          m_uiUserInteractionFlags;
       bool                                         m_bCursorInside;
-      e_cursor                                     m_ecursor;
+      enum_cursor                                     m_ecursor;
       bool                                         m_bRectOk;
       bool                                         m_bParentScroll;
       string                                       m_strWindowText;
@@ -325,6 +367,14 @@ namespace user
 
       //class control_descriptor& descriptor();
       //const class control_descriptor& descriptor() const;
+
+      virtual bool _001CanEnterScreenSaver();
+
+      virtual bool _001Maximize();
+
+      virtual bool _001Restore();
+
+      virtual bool _001Minimize();
 
       ::user::interaction * get_host_window() const override;
 
@@ -429,6 +479,24 @@ namespace user
 
       virtual bool get_element_rect(RECTANGLE_I32* prectangle, enum_element eelement);
 
+
+      virtual __status< rectangle_i32 > rectangle(enum_element eelement)
+      {
+
+          ::rectangle_i32 rectangle;
+
+          if (!get_element_rect(rectangle, eelement))
+          {
+
+              return ::error_failed;
+
+          }
+
+          return rectangle;
+
+      }
+
+
       virtual enum_element get_default_element() const;
       virtual ::draw2d::font_pointer get_font(style * pstyle, enum_element eelement, ::user::enum_state estate = e_state_none) const;
       inline ::draw2d::font_pointer get_font(style* pstyle, ::user::enum_state estate = e_state_none) const { return get_font(pstyle, get_default_element(), estate); }
@@ -521,6 +589,9 @@ namespace user
       virtual void delete_this() override;
 
 
+      virtual void display_system_minimize();
+
+
       //virtual bool window_move(i32 x, i32 y) override;
 
 
@@ -581,10 +652,10 @@ namespace user
       virtual ::zorder zorder(enum_layout elayout = e_layout_design) const;
       virtual void order(::zorder zorder);
 
-      inline void order_top() { order(zorder_top); }
-      inline void order_front() { order(zorder_top); }
-      inline void order_top_most() { order(zorder_top_most); }
-      inline void order_bottom() { order(zorder_bottom); }
+      inline void order_top() { order(e_zorder_top); }
+      inline void order_front() { order(e_zorder_top); }
+      inline void order_top_most() { order(e_zorder_top_most); }
+      inline void order_bottom() { order(e_zorder_bottom); }
 
 
       virtual void sketch_to_design(::draw2d::graphics_pointer & pgraphics, bool & bUpdateBuffer, bool & bUpdateWindow) override;
@@ -648,10 +719,13 @@ namespace user
       virtual bool is_place_holder() override;
 
       
-      virtual e_cursor get_cursor() override;
+      virtual enum_cursor get_cursor() override;
 
 
-      virtual bool set_cursor(e_cursor ecursor) override;
+      virtual ::e_status set_cursor(enum_cursor ecursor) override;
+
+
+      virtual ::e_status set_cursor(::windowing::cursor * pcursor);
 
 
       virtual ::point_i32 get_cursor_pos() const override;
@@ -1002,8 +1076,7 @@ namespace user
       virtual bool SetTimer(uptr uEvent, ::millis millisElapse, PFN_TIMER pfnTimer = nullptr) override;
       virtual bool KillTimer(uptr uEvent) override;
 
-      virtual bool is_this_enabled() const override;
-      virtual bool enable_window(bool bEnable = true) override;
+//      virtual bool enable_window(bool bEnable = true) override;
 
       //virtual void process_queue(::draw2d::graphics_pointer & pgraphics);
 
@@ -1033,19 +1106,17 @@ namespace user
 
 #endif
 
-      virtual bool SetCapture(::user::interaction* pinteraction = nullptr) override;
-      virtual bool ReleaseCapture() override;
-      virtual ::user::interaction* GetCapture() override;
+      virtual bool is_active() const;
 
+      virtual bool has_capture() const;
+      virtual bool set_capture();
 
-      virtual bool has_focus() override;
-      virtual bool SetFocus() override;
-      //virtual ::user::interaction* get_keyboard_focus() override;
-      virtual bool SetForegroundWindow() override;
-      virtual bool is_active() override;
-      virtual interaction* GetActiveWindow() override;
-      virtual interaction* SetActiveWindow() override;
+      virtual bool has_focus() const;
+      virtual bool set_focus();
 
+      virtual bool is_window_enabled() const;
+      inline bool is_this_window_enabled() const { return m_ewindowflag.is(e_window_flag_enable); }
+      virtual bool enable_window(bool bEnable = true);
 
       virtual void on_calc_size(calc_size* pcalcsize);
 
@@ -1061,7 +1132,7 @@ namespace user
       virtual void on_text_composition(string str) override;
       virtual void on_text_composition_done() override;
 
-      virtual bool is_text_composition_active() override;
+      //virtual bool is_text_composition_active() override;
 
       virtual int on_text_composition_message(int iMessage);
 
@@ -1088,9 +1159,9 @@ namespace user
 
       virtual void _000OnMouseLeave(::message::message* pmessage) override;
 
-      virtual void _000OnMouse(::message::mouse* pmouse);
-      virtual void _000OnThisMouse(::message::mouse* pmouse);
-      virtual void _000OnChildrenMouse(::message::mouse* pmouse);
+      //virtual void _000OnMouse(::message::mouse* pmouse);
+      //virtual void _000OnThisMouse(::message::mouse* pmouse);
+      //virtual void _000OnChildrenMouse(::message::mouse* pmouse);
       virtual void _000OnKey(::message::key* pkey);
       virtual void _000OnDrag(::message::drag_and_drop* pdrag);
 
@@ -1138,6 +1209,9 @@ namespace user
 
 
       virtual bool _001IsPointInside(::point_i32 point) override;
+      
+      inline bool _001IsClientPointInside(::point_i32 point) { return layout().sketch().client_rect().contains(point); }
+
       virtual ::user::interaction* _001FromPoint(::point_i32 point, bool bTestedIfParentVisible = false) override;
 
       virtual void OnLinkClick(const char* psz, const char* pszTarget = nullptr) override;
@@ -1145,8 +1219,9 @@ namespace user
       virtual void pre_translate_message(::message::message* pmessage) override;
 
 
-      ::user::interaction* get_child_by_name(const char* lpszName, i32 iLevel = -1);
-      ::user::interaction* get_child_by_id(id id, i32 iLevel = -1);
+      ::user::interaction * get_child_by_name(const char* lpszName, i32 iLevel = -1);
+      ::user::interaction * get_child_by_id(id id, i32 iLevel = -1);
+      ::user::interaction * child_from_point(const ::point_i32 & point);
 
 
       virtual bool is_ascendant(const primitive * puiIsAscendant, bool bIncludeSelf) const override;
@@ -1228,7 +1303,7 @@ namespace user
       virtual void PostNcDestroy() override;
 
 
-      virtual void default_message_handler(::message::message * pmessage) override;
+      virtual void default_message_handler(::message::base * pbase) override;
 
 
       virtual void message_handler(::message::base* pbase) override;
@@ -1241,9 +1316,13 @@ namespace user
       virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual oswindow get_handle() const override;
-      virtual bool attach(oswindow oswindow_New) override;
+      virtual oswindow get_oswindow() const override;
+      //virtual bool attach(::windowing::window * pwindow_New) override;
       virtual oswindow detach() override;
+
+
+      virtual windowing::window * get_window() const override;
+
 
       virtual void* get_os_data() const;
 
@@ -1359,14 +1438,14 @@ namespace user
 
        //virtual void reset_window_state();
 
-      virtual index make_zoneing(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = zorder_top);
-      virtual index best_zoneing(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = zorder_top);
-      virtual index best_monitor(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
-      virtual index best_wkspace(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
-      virtual index good_restore(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top, edisplay edisplay = e_display_restore);
-      virtual index good_iconify(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index make_zoneing(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual index best_zoneing(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_display* pedisplay = nullptr, ::e_activation eactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual index best_monitor(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual index best_wkspace(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
+      virtual index good_restore(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top, edisplay edisplay = e_display_restore);
+      virtual index good_iconify(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, bool bSet = false, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
 
-      virtual index good_move(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, ::e_activation eeactivation = e_activation_default, ::zorder zorder = zorder_top);
+      virtual index good_move(RECTANGLE_I32* prectangle, const ::rectangle_i32& rectangle = nullptr, ::e_activation eeactivation = e_activation_default, ::zorder zorder = e_zorder_top);
       virtual index get_best_zoneing(edisplay& edisplay, ::rectangle_i32* prectangle, const ::rectangle_i32& rectRequest = ::rectangle_i32(), bool bPreserveSize = false);
       virtual index get_best_wkspace(::rectangle_i32* prectangle, const ::rectangle_i32& rectangle, ::e_activation eactivation = e_activation_default);
 
@@ -1503,9 +1582,9 @@ namespace user
 
 
 
-      virtual void defer_notify_mouse_move();
+      //virtual void defer_notify_mouse_move();
 
-      virtual void defer_notify_mouse_move(bool& bPointInside, point_i32& pointLast);
+      //virtual void defer_notify_mouse_move(bool& bPointInside, point_i32& pointLast);
 
       virtual bool has_pending_graphical_update() override;
 
@@ -1840,7 +1919,7 @@ namespace user
 
 
 
-CLASS_DECL_AURA::user::interaction* oswindow_interaction(oswindow oswindow);
+//CLASS_DECL_AURA::user::interaction* oswindow_interaction(::windowing::window * pwindow);
 
 
 

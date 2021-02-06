@@ -88,7 +88,7 @@ namespace multimedia
          }
          else if(pbase->m_wparam == 19)
          {
-            ASSERT(FALSE);
+            ASSERT(false);
             //        CDBCentral * pgraphics = (CDBCentral *) lParam;
             //      pgraphics->SongsCreateBuildAlbumThread(
             //        (CDataCentral::EBuildSongsAlbumOperation)
@@ -99,7 +99,7 @@ namespace multimedia
          }
          else if(pbase->m_wparam == 20)
          {
-            ASSERT(FALSE);
+            ASSERT(false);
             //        CDBCentral * pgraphics = (CDBCentral *) lParam;
             //      pgraphics->SongsCreateBuildAlbumThread(
             //        (CDataCentral::EBuildSongsAlbumOperation)
@@ -109,7 +109,7 @@ namespace multimedia
          }
          else if(pbase->m_wparam == 810)
          {
-            ASSERT(FALSE);
+            ASSERT(false);
             //        CDBCentral * pgraphics = (CDBCentral *) lParam;
             //      pgraphics->SongsCreateBuildAlbumThread(
             //        (CDataCentral::EBuildSongsAlbumOperation)
@@ -118,11 +118,11 @@ namespace multimedia
          }
          else if(pbase->m_wparam == 20191817)
          {
-            ASSERT(FALSE);
+            ASSERT(false);
          }
          else if(pbase->m_wparam == 67985)
          {
-            ASSERT(FALSE);
+            ASSERT(false);
             //        m_pMixerDocTemplate->close_all_documents(lParam != 0);
          }
 
@@ -162,7 +162,7 @@ namespace multimedia
          {
 
          case 21:
-            //                    ASSERT(FALSE);
+            //                    ASSERT(false);
             //                  //ReserveSong_(pMsg->lParam);
             //GetPlayerDocTemplate()->ReserveSong(lParam, false, true);
             break;
@@ -236,7 +236,7 @@ namespace multimedia
          break;
          case 676869:
          {
-            //ASSERT(FALSE);
+            //ASSERT(false);
             /*            CDBBuildAlbumThreadData * lpdata =
             (CDBBuildAlbumThreadData *)lParam;
             if(!lpdata->m_ptaskdlg->create(IDD_TASK))

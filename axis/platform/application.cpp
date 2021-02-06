@@ -216,11 +216,11 @@ namespace axis
 
          penum->m_hwnd = hwnd;
 
-         return FALSE;
+         return false;
 
       }
 
-      return TRUE;
+      return true;
 
    }
 
@@ -239,7 +239,7 @@ namespace axis
 
       }
 
-      return TRUE;
+      return true;
 
    }
 
@@ -259,7 +259,7 @@ namespace axis
 
       }
 
-      return TRUE;
+      return true;
 
    }
 
@@ -283,13 +283,13 @@ namespace axis
    //}
 
 
-//   void application::ShowWaitCursor(bool bShow)
+//   void application::show_wait_cursor(bool bShow)
 //   {
 //
 //      if (m_pappimpl.is_null())
 //         return;
 //
-//      m_pappimpl->ShowWaitCursor(bShow);
+//      m_pappimpl->show_wait_cursor(bShow);
 //
 //
 //   }

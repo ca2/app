@@ -620,7 +620,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	STGMEDIUM stgmeds[3];
 //
 //	if (!ppDataObject)
-//		return FALSE;
+//		return false;
 //
 //	fmtetc[0].cfFormat = RegisterClipboardFormatW(CFSTR_FILEDESCRIPTORW);
 //	fmtetc[0].dwAspect = DVASPECT_CONTENT;
@@ -654,7 +654,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //	*ppDataObject = (IDataObject*) CliprdrDataObject_New(fmtetc, stgmeds, 3, clipboard);
 //
-//	return (*ppDataObject) ? TRUE : FALSE;
+//	return (*ppDataObject) ? true : false;
 //}
 //
 //void wf_destroy_file_obj(IDataObject* instance)
@@ -873,7 +873,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //static INLINE BOOL file_transferring(wfClipboard* clipboard)
 //{
-//	return get_local_format_id_by_name(clipboard, _T("FileGroupDescriptorW")) ? TRUE : FALSE;
+//	return get_local_format_id_by_name(clipboard, _T("FileGroupDescriptorW")) ? true : false;
 //}
 //
 //static ::u32 get_remote_format_id(wfClipboard* clipboard, ::u32 local_format)
@@ -1271,7 +1271,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	if (!file_name || !buffer || !puSize)
 //	{
 //		WLog_ERR(TAG,  "get file contents Invalid Arguments.");
-//		return FALSE;
+//		return false;
 //	}
 //	
 //	hFile = CreateFileW(file_name, GENERIC_READ, FILE_SHARE_READ, nullptr, OPEN_EXISTING,
@@ -1279,7 +1279,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	
 //	if (hFile == INVALID_HANDLE_VALUE)
 //	{
-//		return FALSE;
+//		return false;
 //	}
 //
 //	SetFilePointer(hFile, positionLow, (PLONG) &positionHigh, FILE_BEGIN);
@@ -1294,7 +1294,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //
 //	*puSize = nGet;
 //
-//	return TRUE;
+//	return true;
 //}
 //
 ///* path_name has a '\' at the end. e.g. c:\newfolder\, file_name is c:\newfolder\new.txt */
@@ -1447,7 +1447,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //{
 //	wfClipboard* clipboard = (wfClipboard*) context->custom;
 //
-//	clipboard->sync = TRUE;
+//	clipboard->sync = true;
 //	wf_cliprdr_send_client_capabilities(clipboard);
 //	cliprdr_send_format_list(clipboard);
 //
@@ -1767,7 +1767,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	LPDATAOBJECT pDataObj = nullptr;
 //	STGMEDIUM vStgMedium;
 //	LPSTREAM pStream = nullptr;
-//	BOOL bIsStreamFile = TRUE;
+//	BOOL bIsStreamFile = true;
 //	static LPSTREAM	pStreamStc = nullptr;
 //	static ::u32 uStreamIdStc = 0;
 //	wfClipboard* clipboard = (wfClipboard*) context->custom;
@@ -1810,7 +1810,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //			pStreamStc = nullptr;
 //		}
 //
-//		bIsStreamFile = FALSE;
+//		bIsStreamFile = false;
 //
 //		hRet = IDataObject_EnumFormatEtc(pDataObj, DATADIR_GET, &pEnumFormatEtc);
 //
@@ -1830,7 +1830,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //						{
 //							pStreamStc = vStgMedium.pstm;
 //							uStreamIdStc = fileContentsRequest->streamId;
-//							bIsStreamFile = TRUE;
+//							bIsStreamFile = true;
 //						}
 //						break;
 //					}
@@ -1840,7 +1840,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //		}
 //	}
 //
-//	if (bIsStreamFile == TRUE)
+//	if (bIsStreamFile == true)
 //	{
 //		if (fileContentsRequest->dwFlags == FILECONTENTS_SIZE)
 //		{
@@ -1890,7 +1890,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //				fileContentsRequest->nPositionLow, fileContentsRequest->nPositionHigh,
 //				fileContentsRequest->cbRequested, &uSize);
 //
-//			if (bRet == FALSE)
+//			if (bRet == false)
 //			{
 //				WLog_ERR(TAG, "get file contents failed.");
 //				uSize = 0;
@@ -1960,7 +1960,7 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	clipboard->context = cliprdr;
 //		
 //	clipboard->channels = context->channels;
-//	clipboard->sync = FALSE;
+//	clipboard->sync = false;
 //
 //	clipboard->map_capacity = 32;
 //	clipboard->map_size = 0;
@@ -1975,10 +1975,10 @@ void wf_destroy_file_obj(IDataObject* instance);
 //	if (!(clipboard->fileDescriptor = (FILEDESCRIPTORW**) calloc(1, clipboard->file_array_size * sizeof(FILEDESCRIPTORW*))))
 //		goto fail_file_descriptor;
 //
-//	if (!(clipboard->response_data_event = CreateEvent(nullptr, TRUE, FALSE, _T("response_data_event"))))
+//	if (!(clipboard->response_data_event = CreateEvent(nullptr, true, false, _T("response_data_event"))))
 //		goto fail_data_event;
 //
-//	if (!(clipboard->req_fevent = CreateEvent(nullptr, TRUE, FALSE, _T("request_filecontents_event"))))
+//	if (!(clipboard->req_fevent = CreateEvent(nullptr, true, false, _T("request_filecontents_event"))))
 //		goto fail_filecontents_event;
 //
 //	clipboard->ID_FILEDESCRIPTORW = RegisterClipboardFormatW(CFSTR_FILEDESCRIPTORW);

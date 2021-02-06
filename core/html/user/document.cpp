@@ -364,7 +364,7 @@ void html_document::on_command(::user::command * pcommand)
 bool html_document::open_document(const ::payload & varFile)
 {
 
-   return on_open_document(varFile) != FALSE;
+   return on_open_document(varFile) != false;
 
 }
 

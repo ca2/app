@@ -14,9 +14,9 @@ CLASS_DECL_AXIS int_bool ui_get_cursor_pos(POINT_I32 * ppt)
 {
 
    if (ppt == nullptr)
-      return FALSE;
+      return false;
 
-   int_bool iRet = FALSE;
+   int_bool iRet = false;
 
    ::point_i32 pointCursor;
 
@@ -36,7 +36,7 @@ CLASS_DECL_AXIS int_bool ui_get_cursor_pos(POINT_I32 * ppt)
 
    })));
 
-   if (iRet != FALSE)
+   if (iRet != false)
    {
 
       *ppt = pointCursor;
@@ -60,7 +60,7 @@ CLASS_DECL_AXIS int_bool GetCursorPos(POINT_I32 * lppoint)
    lppoint->y = g_iMouseY;
 
    if (g_iMouse < 0)
-      return FALSE;
+      return false;
 
    Windows::ApplicationModel::Core::CoreApplication::MainView->CoreWindow->Dispatcher->RunAsync(::Windows::UI::Core::CoreDispatcherPriority::Normal,
           ref new Windows::UI::Core::DispatchedHandler([]()
@@ -88,7 +88,7 @@ CLASS_DECL_AXIS int_bool GetCursorPos(POINT_I32 * lppoint)
 
    }));
 
-   return TRUE;
+   return true;
 
 }
 
@@ -258,159 +258,159 @@ uptr virtualkey_to_char(::Windows::System::VirtualKey e)
    switch (e)
    {
    case ::Windows::System::VirtualKey::Number0:
-      return ::user::key_0;
+      return ::user::e_key_0;
    case ::Windows::System::VirtualKey::Number1:
-      return ::user::key_1;
+      return ::user::e_key_1;
    case ::Windows::System::VirtualKey::Number2:
-      return ::user::key_2;
+      return ::user::e_key_2;
    case ::Windows::System::VirtualKey::Number3:
-      return ::user::key_3;
+      return ::user::e_key_3;
    case ::Windows::System::VirtualKey::Number4:
-      return ::user::key_4;
+      return ::user::e_key_4;
    case ::Windows::System::VirtualKey::Number5:
-      return ::user::key_5;
+      return ::user::e_key_5;
    case ::Windows::System::VirtualKey::Number6:
-      return ::user::key_6;
+      return ::user::e_key_6;
    case ::Windows::System::VirtualKey::Number7:
-      return ::user::key_7;
+      return ::user::e_key_7;
    case ::Windows::System::VirtualKey::Number8:
-      return ::user::key_8;
+      return ::user::e_key_8;
    case ::Windows::System::VirtualKey::Number9:
-      return ::user::key_9;
+      return ::user::e_key_9;
    case ::Windows::System::VirtualKey::A:
-      return ::user::key_a;
+      return ::user::e_key_a;
    case ::Windows::System::VirtualKey::B:
-      return ::user::key_b;
+      return ::user::e_key_b;
    case ::Windows::System::VirtualKey::C:
-      return ::user::key_c;
+      return ::user::e_key_c;
    case ::Windows::System::VirtualKey::D:
-      return ::user::key_d;
+      return ::user::e_key_d;
    case ::Windows::System::VirtualKey::E:
-      return ::user::key_e;
+      return ::user::e_key_e;
    case ::Windows::System::VirtualKey::F:
-      return ::user::key_f;
+      return ::user::e_key_f;
    case ::Windows::System::VirtualKey::G:
-      return ::user::key_g;
+      return ::user::e_key_g;
    case ::Windows::System::VirtualKey::H:
-      return ::user::key_h;
+      return ::user::e_key_h;
    case ::Windows::System::VirtualKey::I:
-      return ::user::key_i;
+      return ::user::e_key_i;
    case ::Windows::System::VirtualKey::J:
-      return ::user::key_j;
+      return ::user::e_key_j;
    case ::Windows::System::VirtualKey::K:
-      return ::user::key_k;
+      return ::user::e_key_k;
    case ::Windows::System::VirtualKey::L:
-      return ::user::key_l;
+      return ::user::e_key_l;
    case ::Windows::System::VirtualKey::M:
-      return ::user::key_m;
+      return ::user::e_key_m;
    case ::Windows::System::VirtualKey::N:
-      return ::user::key_n;
+      return ::user::e_key_n;
    case ::Windows::System::VirtualKey::O:
-      return ::user::key_o;
+      return ::user::e_key_o;
    case ::Windows::System::VirtualKey::P:
-      return ::user::key_p;
+      return ::user::e_key_p;
    case ::Windows::System::VirtualKey::Q:
-      return ::user::key_q;
+      return ::user::e_key_q;
    case ::Windows::System::VirtualKey::R:
-      return ::user::key_r;
+      return ::user::e_key_r;
    case ::Windows::System::VirtualKey::S:
-      return ::user::key_s;
+      return ::user::e_key_s;
    case ::Windows::System::VirtualKey::T:
-      return ::user::key_t;
+      return ::user::e_key_t;
    case ::Windows::System::VirtualKey::U:
-      return ::user::key_u;
+      return ::user::e_key_u;
    case ::Windows::System::VirtualKey::V:
-      return ::user::key_v;
+      return ::user::e_key_v;
    case ::Windows::System::VirtualKey::W:
-      return ::user::key_w;
+      return ::user::e_key_w;
    case ::Windows::System::VirtualKey::X:
-      return ::user::key_x;
+      return ::user::e_key_x;
    case ::Windows::System::VirtualKey::Y:
-      return ::user::key_y;
+      return ::user::e_key_y;
    case ::Windows::System::VirtualKey::Z:
-      return ::user::key_z;
+      return ::user::e_key_z;
    case ::Windows::System::VirtualKey::Shift:
       bSpecialKey = true;
-      return ::user::key_shift;
+      return ::user::e_key_shift;
    case ::Windows::System::VirtualKey::LeftShift:
       bSpecialKey = true;
-      return ::user::key_lshift;
+      return ::user::e_key_lshift;
    case ::Windows::System::VirtualKey::RightShift:
       bSpecialKey = true;
-      return ::user::key_rshift;
+      return ::user::e_key_rshift;
    case ::Windows::System::VirtualKey::Control:
       bSpecialKey = true;
-      return ::user::key_control;
+      return ::user::e_key_control;
    case ::Windows::System::VirtualKey::LeftControl:
       bSpecialKey = true;
-      return ::user::key_lcontrol;
+      return ::user::e_key_lcontrol;
    case ::Windows::System::VirtualKey::RightControl:
       bSpecialKey = true;
-      return ::user::key_rcontrol;
+      return ::user::e_key_rcontrol;
    case ::Windows::System::VirtualKey::Menu:
       bSpecialKey = true;
-      return ::user::key_alt;
+      return ::user::e_key_alt;
    case ::Windows::System::VirtualKey::LeftMenu:
       bSpecialKey = true;
-      return ::user::key_lalt;
+      return ::user::e_key_lalt;
    case ::Windows::System::VirtualKey::RightMenu:
       bSpecialKey = true;
-      return ::user::key_ralt;
+      return ::user::e_key_ralt;
    case ::Windows::System::VirtualKey::Tab:
       bSpecialKey = true;
-      return ::user::key_tab;
+      return ::user::e_key_tab;
    case ::Windows::System::VirtualKey::Enter:
       bSpecialKey = true;
-      return ::user::key_return;
+      return ::user::e_key_return;
    case ::Windows::System::VirtualKey::Delete:
       bSpecialKey = true;
-      return ::user::key_delete;
+      return ::user::e_key_delete;
    case ::Windows::System::VirtualKey::Back:
       bSpecialKey = true;
-      return ::user::key_back;
+      return ::user::e_key_back;
    case ::Windows::System::VirtualKey::Left:
       bSpecialKey = true;
-      return ::user::key_left;
+      return ::user::e_key_left;
    case ::Windows::System::VirtualKey::Right:
       bSpecialKey = true;
-      return ::user::key_right;
+      return ::user::e_key_right;
    case ::Windows::System::VirtualKey::Up:
       bSpecialKey = true;
-      return ::user::key_up;
+      return ::user::e_key_up;
    case ::Windows::System::VirtualKey::Down:
       bSpecialKey = true;
-      return ::user::key_down;
+      return ::user::e_key_down;
    case ::Windows::System::VirtualKey::PageUp:
       bSpecialKey = true;
-      return ::user::key_up;
+      return ::user::e_key_up;
    case ::Windows::System::VirtualKey::PageDown:
       bSpecialKey = true;
-      return ::user::key_down;
+      return ::user::e_key_down;
    case ::Windows::System::VirtualKey::Home:
       bSpecialKey = true;
-      return ::user::key_home;
+      return ::user::e_key_home;
    case ::Windows::System::VirtualKey::End:
       bSpecialKey = true;
-      return ::user::key_end;
+      return ::user::e_key_end;
    case ::Windows::System::VirtualKey::Escape:
       bSpecialKey = true;
-      return ::user::key_escape;
+      return ::user::e_key_escape;
    case 186:
-      return ::user::key_semicolon;
+      return ::user::e_key_semicolon;
    case 187:
-      return ::user::key_equal;
+      return ::user::e_key_equal;
    case 188:
-      return ::user::key_comma;
+      return ::user::e_key_comma;
    case 189:
-      return ::user::key_hyphen;
+      return ::user::e_key_hyphen;
    case 190:
-      return ::user::key_dot;
+      return ::user::e_key_dot;
    case 191:
-      return ::user::key_semicolon2;
+      return ::user::e_key_semicolon2;
    case 193:
-      return ::user::key_slash2;
+      return ::user::e_key_slash2;
    case ::Windows::System::VirtualKey::Space:
-      return ::user::key_space;
+      return ::user::e_key_space;
    default:
       ;
       {

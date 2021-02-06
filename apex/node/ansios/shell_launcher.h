@@ -33,7 +33,7 @@ public:
 
 
    shell_launcher(duration durationTimeout = ::one_minute());
-   shell_launcher(oswindow oswindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout = ::one_minute());
+   shell_launcher(::windowing::window * pwindow, const char * pszOperation, const char * pszFile, const char * pszParameters, const char * pszDirectory, ::e_display edisplay, duration durationTimeout = ::one_minute());
 
 
    void execute();

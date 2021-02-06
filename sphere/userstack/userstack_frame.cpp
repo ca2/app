@@ -71,11 +71,11 @@ namespace userstack
    {
 
       if( !simple_frame_window::pre_create_window(pusersystem) )
-         return FALSE;
+         return false;
 
       pusersystem->m_createstruct.dwExStyle &= ~WS_EX_WINDOWEDGE;
 
-      return TRUE;
+      return true;
 
    }
 
@@ -271,7 +271,7 @@ namespace userstack
             
             display();
             
-            set_window_pos(zorder_top, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
+            set_window_pos(e_zorder_top, 0, 0, 0, 0, SWP_NOSIZE | SWP_NOMOVE);
             display(e_display_full_screen);
          }
          else if(pbase->m_lparam == 5)

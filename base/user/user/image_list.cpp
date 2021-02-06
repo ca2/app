@@ -124,14 +124,14 @@ namespace user
 
       auto psession = Session;
 
-      if (!psession->is_key_pressed(::user::key_control) || !m_bMultiSel)
+      if (!psession->is_key_pressed(::user::e_key_control) || !m_bMultiSel)
       {
 
          iaSel.remove_all();
 
       }
 
-      if (psession->is_key_pressed(::user::key_shift) && m_bMultiSel)
+      if (psession->is_key_pressed(::user::e_key_shift) && m_bMultiSel)
       {
 
          if (m_itemCurrent.is_set())
@@ -443,7 +443,7 @@ namespace user
 
                   pimage->g()->set_interpolation_mode(::draw2d::e_interpolation_mode_high_quality_bicubic);
 
-                  pimage->g()->stretch(::rectangle_i32(szNew), pimageSrc->get_graphics(),pimageSrc->rectangle_i32());
+                  pimage->g()->stretch(::rectangle_i32(szNew), pimageSrc->get_graphics(),pimageSrc->rectangle());
 
                }
 

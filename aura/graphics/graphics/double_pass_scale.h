@@ -394,7 +394,7 @@ VertScale ( color32_t           *pSrc,
 //::u32        uNewHeight)
 //{
    // Scale source image horizontally into temporary image
-//   m_bCanceled = FALSE;
+//   m_bCanceled = false;
 //   color32_t *pTemp = new color32_t [uNewWidth * uOrigHeight];
 //   HorizScale (pOrigImage,
 //               uOrigWidth,
@@ -441,7 +441,7 @@ color32_t   *pOrigImage,
 {
 
    // Scale source image horizontally into temporary image
-   m_bCanceled = FALSE;
+   m_bCanceled = false;
 
    acme::malloc < color32_t * > pTemp;
 

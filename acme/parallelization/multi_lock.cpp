@@ -86,7 +86,7 @@ sync_result multi_lock::lock(const duration & duration, bool bWaitForAll, u32 dw
    if (dwWakeMask == 0)
    {
 
-      iResult = ::WaitForMultipleObjectsEx((u32) m_synca.m_hsyncaCache.get_count(), m_synca.m_hsyncaCache.get_data(), bWaitForAll, duration.u32_millis(), FALSE);
+      iResult = ::WaitForMultipleObjectsEx((u32) m_synca.m_hsyncaCache.get_count(), m_synca.m_hsyncaCache.get_data(), bWaitForAll, duration.u32_millis(), false);
 
    }
    else
@@ -149,7 +149,7 @@ bool multi_lock::unlock()
 
    }
 
-   return TRUE;
+   return true;
 
 }
 

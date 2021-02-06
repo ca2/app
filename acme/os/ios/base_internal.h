@@ -34,7 +34,7 @@ typedef struct tagRECT
    ::i32    top;
    ::i32    right;
    ::i32    bottom;
-} RECTANGLE_I32, *PRECT, *NPRECT, *LPRECT32;
+} RECTANGLE_I32, *PRECT, *NPRECT, *RECTANGLE_I32 *;
 
 typedef const RECTANGLE_I32 * const RECTANGLE_I32 *;
 
@@ -46,7 +46,7 @@ typedef const RECTANGLE_I32 * const RECTANGLE_I32 *;
 //CGContextRef get_nswindow_cgcontext(oswindow pnswindow);
 
 
-int_bool get_uiwindow_rect(oswindow hwnd, LPRECT32 lprect);
+int_bool get_uiwindow_rect(oswindow hwnd, RECTANGLE_I32 * lprect);
 
 
 

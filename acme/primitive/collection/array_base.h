@@ -6,6 +6,7 @@
 
 #define DECLARE_TYPED_ARRAY_ACCESSOR_OF(ITEM, CONTAINER, TYPE, CONTAINER_TYPE) \
 __pointer(TYPE) & ITEM ## _at(::index i) { return CONTAINER[i]; } \
+const TYPE * ITEM ## _at(::index i) const { return CONTAINER[i]; } \
 TYPE * get_ ## ITEM(::index i) const { return CONTAINER.bounds(i) ? CONTAINER[i] : nullptr; } \
 ::count ITEM ## _count() const { return CONTAINER.get_count(); } \
 bool has_ ## ITEM() const { return CONTAINER.has_element(); } \
@@ -447,7 +448,6 @@ public:
    inline bool has_element() const noexcept { return m_nSize > 0; }
    inline bool is_empty(::count countMinimum = 0) const noexcept { return m_nSize <= countMinimum; }
    inline bool empty(::count countMinimum = 0) const noexcept { return m_nSize <= countMinimum; }
-   inline bool isEmpty(::count countMinimum = 0) const noexcept { return m_nSize <= countMinimum; }
    inline bool has_elements(::count countMinimum = 1) const noexcept { return m_nSize >= countMinimum; }
    inline ::index get_lower_bound(::index i = 0) const;
    inline ::index get_middle_index(::index i = 0) const;

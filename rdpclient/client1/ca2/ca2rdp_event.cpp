@@ -269,19 +269,19 @@ BOOL ca2rdp_event_process(freerdp* instance, DFBEvent* event)
 				break;
 
 			case DIET_BUTTONPRESS:
-				ca2rdp_send_mouse_button_event(instance->input, TRUE, input_event->button, pointer_x, pointer_y);
+				ca2rdp_send_mouse_button_event(instance->input, true, input_event->button, pointer_x, pointer_y);
 				break;
 
 			case DIET_BUTTONRELEASE:
-				ca2rdp_send_mouse_button_event(instance->input, FALSE, input_event->button, pointer_x, pointer_y);
+				ca2rdp_send_mouse_button_event(instance->input, false, input_event->button, pointer_x, pointer_y);
 				break;
 
 			case DIET_KEYPRESS:
-				ca2rdp_send_keyboard_event(instance->input, TRUE, input_event->key_id - DIKI_UNKNOWN, input_event->key_symbol - DFB_FUNCTION_KEY(0));
+				ca2rdp_send_keyboard_event(instance->input, true, input_event->key_id - DIKI_UNKNOWN, input_event->key_symbol - DFB_FUNCTION_KEY(0));
 				break;
 
 			case DIET_KEYRELEASE:
-				ca2rdp_send_keyboard_event(instance->input, FALSE, input_event->key_id - DIKI_UNKNOWN, input_event->key_symbol - DFB_FUNCTION_KEY(0));
+				ca2rdp_send_keyboard_event(instance->input, false, input_event->key_id - DIKI_UNKNOWN, input_event->key_symbol - DFB_FUNCTION_KEY(0));
 				break;
 
 			case DIET_UNKNOWN:
@@ -289,6 +289,6 @@ BOOL ca2rdp_event_process(freerdp* instance, DFBEvent* event)
 		}
 	}
 
-	return TRUE;
+	return true;
 }
 */

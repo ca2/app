@@ -110,7 +110,7 @@ int_bool is_file_or_dir_dup(const char * path1, ::file::enum_type * petype)
 
       }
 
-      return FALSE;
+      return false;
 
    }
 
@@ -132,7 +132,7 @@ int_bool is_file_or_dir_dup(const char * path1, ::file::enum_type * petype)
 
    }
 
-   return TRUE;
+   return true;
 
 }
 
@@ -509,11 +509,11 @@ int_bool file_delete(const char * pszFileName)
 
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   return TRUE;
+   return true;
 
 
 }

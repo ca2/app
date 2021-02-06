@@ -1,7 +1,4 @@
 #include "framework.h"
-#ifdef WINDOWS
-#include "aura/os/windows_common/draw2d_direct2d_global.h"
-#endif
 
 
 namespace aura
@@ -32,8 +29,6 @@ namespace draw2d
       //m_pmutexFont = __new(::mutex);
 
       create_factory < cursor_set >();
-
-      m_bSettingCursorMatter = false;
 
    }
 
@@ -79,26 +74,6 @@ namespace draw2d
    }
 
 
-#ifdef WINDOWS
-
-   ::draw2d_direct2d::plugin * draw2d::direct2d()
-   {
-
-      if (!m_pplugin)
-      {
-
-         __compose_new(m_pplugin);
-
-         //m_pplugin->initialize();
-
-      }
-
-      return m_pplugin;
-
-   }
-
-
-#endif
 
 
    ::e_status draw2d::init1()
@@ -266,13 +241,6 @@ namespace draw2d
 
       m_alpha_spread__32CC_filterMap.remove_all();
 
-      if (m_pcursorset)
-      {
-
-         m_pcursorset->finalize();
-
-      }
-
    }
 
 
@@ -282,8 +250,6 @@ namespace draw2d
       m_papi.release();
 
       m_pfontdepartment.release();
-
-      m_pcursorset.release();
 
       ::apex::department::finalize();
 
@@ -314,62 +280,7 @@ namespace draw2d
    }
 
 
-   __pointer(cursor) draw2d::get_cursor(e_cursor ecursor)
-   {
 
-      sync_lock sl(mutex());
-
-      if (m_pcursorset.is_null())
-      {
-
-         auto estatus =  __construct_new(m_pcursorset);
-
-         if (!estatus)
-         {
-
-            return nullptr;
-
-         }
-
-         m_pcursorset->set_cursor_set_system_default();
-
-      }
-
-      return m_pcursorset->get_cursor(ecursor);
-
-   }
-
-
-   bool draw2d::set_cursor_set_from_matter(const ::file::path& pathDir)
-   {
-
-      sync_lock sl(mutex());
-
-      if (m_bSettingCursorMatter)
-      {
-
-         return false;
-
-      }
-
-      __keep(m_bSettingCursorMatter);
-
-      sl.unlock();
-
-      auto pcursorset = __create_new < cursor_set > ();
-
-      if (!pcursorset->set_cursor_set_from_matter(pathDir))
-      {
-
-         return false;
-
-      }
-
-      m_pcursorset = pcursorset;
-
-      return true;
-
-   }
 
 
    // should not call axis class implementation because draw2d::draw2d is inside a n-furcation of user::draw2d
@@ -421,13 +332,13 @@ namespace draw2d
       {
 
          pgraphics->set(pfont);
-         pgraphics->_DrawText(strText, *rectangle_i32, ealign, edrawtext);
+         pgraphics->_DrawText(strText, *rectangle, ealign, edrawtext);
 
       };
 
       emboss_pred(
       pgraphics,
-      rectangle_i32,
+      rectangle,
       pred,
       blur,
       imageBlur,
@@ -444,7 +355,7 @@ namespace draw2d
       pbrushText->create_solid((crText & 0x00ffffffu) | (bA << 24));
       pgraphics->set(pbrushText);
       pgraphics->set(pfont);
-      pgraphics->_DrawText(strText, *rectangle_i32, ealign, edrawtext);
+      pgraphics->_DrawText(strText, *rectangle, ealign, edrawtext);
 
       return true;
 

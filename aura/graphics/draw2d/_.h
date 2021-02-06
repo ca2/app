@@ -163,7 +163,7 @@ namespace draw2d
 
 
 CLASS_DECL_AURA void draw_freetype_bitmap(::image * pm_p, i32 dx, i32 dy, void * pftbitmap, int x, int y);
-CLASS_DECL_AURA void draw_freetype_bitmap(::image * pm_p, i32 dx, i32 dy, void * pftbitmap, int x, int y, byte a, byte rectangle_i32, byte g, byte b);
+CLASS_DECL_AURA void draw_freetype_bitmap(::image * pm_p, i32 dx, i32 dy, void * pftbitmap, int x, int y, byte a, byte rectangle, byte g, byte b);
 
 
 
@@ -186,21 +186,8 @@ CLASS_DECL_AURA void draw_freetype_bitmap(::image * pm_p, i32 dx, i32 dy, void *
 #include "path.h"
 
 
-
 #include "image_map.h"
 #include "image_map_ex1.h"
-
-
-
-
-//namespace aura
-//{
-//
-//
-//   class str_context;
-//
-//
-//}
 
 
 #ifdef WINDOWS
@@ -233,6 +220,7 @@ namespace draw2d
 } // namespace draw2d
 
 
+#include "aura/windowing/cursor.h"
 #include "aura/windowing/icon.h"
 
 

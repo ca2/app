@@ -205,7 +205,7 @@ namespace graphics
 
             ::size_i32 sizeBuffer = m_imageaBuffer[i]->get_size();
 
-            if (sizeBuffer == size_i32)
+            if (sizeBuffer == size)
             {
 
                iFound = i;

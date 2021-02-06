@@ -276,7 +276,7 @@ namespace userex
             pframe->m_sizeMinimum.cx = 300;
             pframe->m_sizeMinimum.cy = 50;
 
-            pframe->good_restore(nullptr, rectangle_i32, true);
+            pframe->good_restore(nullptr, rectangle, true);
 
             pframe->set_need_redraw();
 

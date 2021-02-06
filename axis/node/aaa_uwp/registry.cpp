@@ -5,7 +5,7 @@
 namespace uwp
 {
 
-#if FALSE
+#if false
    registry::registry()
    {
 
@@ -147,7 +147,7 @@ namespace uwp
 
    bool registry::Key::DeleteKey()
    {
-      ASSERT(FALSE);
+      ASSERT(false);
       // please verify if
       // using nullptr for the value parameter
       // deletes the key.

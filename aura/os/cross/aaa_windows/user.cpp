@@ -583,14 +583,14 @@ int_bool IsChild(oswindow oswindowParent, ::oswindow oswindowcandidateChildOrDes
    if(::is_null(puiParent))
    {
 
-      return FALSE;
+      return false;
 
    }
 
    if(::is_null(puiChild))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -638,7 +638,7 @@ int_bool show_window(::oswindow oswindow, ::e_display edisplay)
    if(::is_null(oswindow))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -716,7 +716,7 @@ int_bool WINAPI _001ClientToScreen(::oswindow oswindow, POINT32 * ppoint)
    if(::is_null(oswindow))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -731,7 +731,7 @@ int_bool WINAPI _001ScreenToClient(::oswindow oswindow, POINT32 * ppoint)
    if(::is_null(oswindow))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -746,7 +746,7 @@ int_bool WINAPI is_iconic(::oswindow oswindow)
    if(::is_null(oswindow))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -761,7 +761,7 @@ int_bool WINAPI IsWindowVisible(::oswindow oswindow)
    if(::is_null(oswindow))
    {
 
-      return FALSE;
+      return false;
 
    }
 

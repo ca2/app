@@ -46,7 +46,7 @@ namespace draw2d_xlib
 
    bool object::delete_object()
    {
-      return FALSE;
+      return false;
    }
 
 

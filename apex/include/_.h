@@ -307,6 +307,9 @@ namespace core
 #include "apex/platform/apex_main_struct.h"
 
 
+
+
+
 class eimpact;
 
 enum e_simple_command : ::i64;

@@ -1082,7 +1082,7 @@ namespace base
 
       ::point_i32 point(pointParam);
 
-      fork([this, strMatterSource, iFlags, point_i32, pinteraction]()
+      fork([this, strMatterSource, iFlags, point, pinteraction]()
       {
 
          auto pmenu = __create <  ::user::menu  >();
@@ -1130,7 +1130,7 @@ namespace base
 
       string strXml = Context.file().as_string(varXmlFile);
 
-      return track_popup_xml_menu(pinteraction, strXml, iFlags, point_i32, sizeMinimum);
+      return track_popup_xml_menu(pinteraction, strXml, iFlags, point, sizeMinimum);
 
       //__pointer(::user::menu) pmenu = alloc <  ::user::menu  > ();
 

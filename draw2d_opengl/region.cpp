@@ -56,7 +56,7 @@ namespace draw2d_opengl
       
       ASSERT(get_os_data() != nullptr); 
       
-      return ::EqualRgn((HRGN)get_os_data(), (HRGN)pRgn->get_os_data()) != FALSE;
+      return ::EqualRgn((HRGN)get_os_data(), (HRGN)pRgn->get_os_data()) != false;
 
    }
 
@@ -66,7 +66,7 @@ namespace draw2d_opengl
    { ASSERT(get_os_data() != nullptr); return ::OffsetRgn((HRGN)get_os_data(), point.x, point.y); }
 
    */
-   bool region::get_bounding_box(LPRECT32 lprect) const
+   bool region::get_bounding_box(RECTANGLE_I32 * lprect) const
    {
 
       //((region *)this)->defer_update();
@@ -92,7 +92,7 @@ namespace draw2d_opengl
       
       ASSERT(get_os_data() != nullptr); //return ::PtInRegion((HRGN)get_os_data(), x, y); 
 
-      return m_pregion->IsVisible(point_f32)  != FALSE;
+      return m_pregion->IsVisible(point_f32)  != false;
    
    }
    */
@@ -105,7 +105,7 @@ namespace draw2d_opengl
       
       ASSERT(get_os_data() != nullptr);
 
-      return m_pregion->IsVisible(point_f32)  != FALSE;
+      return m_pregion->IsVisible(point_f32)  != false;
 */
       return true;
    }
@@ -118,7 +118,7 @@ namespace draw2d_opengl
       
       ASSERT(get_os_data() != nullptr); //return ::PtInRegion((HRGN)get_os_data(), x, y); 
 
-      return m_pregion->IsVisible(rectangle_f32)  != FALSE;
+      return m_pregion->IsVisible(rectangle_f32)  != false;
 
    }
    */

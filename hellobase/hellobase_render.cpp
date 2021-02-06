@@ -209,7 +209,7 @@ namespace hellobase
       ////
       ////      LARGE_INTEGER li = {};
       ////
-      ////      timer = CreateWaitableTimer(nullptr, TRUE, nullptr);
+      ////      timer = CreateWaitableTimer(nullptr, true, nullptr);
       ////
       ////#endif
 

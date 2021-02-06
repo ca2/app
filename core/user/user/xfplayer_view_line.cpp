@@ -374,7 +374,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
    }
    break;
    default:
-      ASSERT(FALSE);
+      ASSERT(false);
    }
 
    return true;
@@ -546,7 +546,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
    }
    break;
    default:
-      ASSERT(FALSE);
+      ASSERT(false);
    }
 
    return true;
@@ -1076,13 +1076,13 @@ void xfplayer_view_line::OnTimerAnimate(::draw2d::graphics_pointer& pgraphics, r
             /*to(
                 pdcForeground,
                 false,
-                rectangle_i32, rectaModified,
+                rectangle, rectaModified,
                 false);*/
          }
       }
       break;
       default:
-         ASSERT(FALSE);
+         ASSERT(false);
       }
    }
 }
@@ -1141,7 +1141,7 @@ i32 xfplayer_view_line::MapToFontEffect(i32 iLineEffect)
    case EffectEmbossed:
       return EffectEmbossed;
    }
-   ASSERT(FALSE);
+   ASSERT(false);
    return -1;
 }
 
@@ -1196,7 +1196,7 @@ void xfplayer_view_line::SetPlacement(const ::rectangle_i32 & rectangle)
 
    single_lock sl(m_pContainer->mutex());
 
-   m_rectangle = rectangle_i32;
+   m_rectangle = rectangle;
 
    m_bPendingLayoutUpdate = true;
 
@@ -1368,7 +1368,7 @@ void xfplayer_view_line::embossed_text_out(::draw2d::graphics_pointer & pgraphic
 
       point.y = (::i32) (iTop - ((max(2.0, m_floatRateX * 8.0)) / 2));
 
-      System.imaging().color_blend(pgraphics, point_i32, m_pimageMain->get_size(), m_pimageMain->g(), ::point_i32(), dBlend);
+      System.imaging().color_blend(pgraphics, point, m_pimageMain->get_size(), m_pimageMain->g(), ::point_i32(), dBlend);
 
       if (m_bColonPrefix)
       {
@@ -1806,7 +1806,7 @@ void xfplayer_view_line::OnSetCursor(::message::message * pmessage)
    //
    //    pmouse->m_ecursor = cursor_hand;
    //
-   //    return TRUE;
+   //    return true;
    //
    //}
 

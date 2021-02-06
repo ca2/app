@@ -209,7 +209,7 @@ namespace filemanager
 
             get_parent_frame()->ActivateFrame(e_display_normal);
 
-            OnActivateView(TRUE, this, this);
+            OnActivateView(true, this, this);
 
             set_need_redraw();
 

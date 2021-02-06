@@ -46,7 +46,7 @@ namespace draw2d_quartz2d
       virtual ~graphics();
 
 
-      bool IsPrinting() override;            // TRUE if being used for printing
+      bool IsPrinting() override;            // true if being used for printing
 
       ::draw2d::pen * get_current_pen() override;
       ::draw2d::brush * get_current_brush() override;
@@ -74,7 +74,7 @@ namespace draw2d_quartz2d
       virtual bool RestoreDC(i32 nSavedDC) override;
       i32 GetDeviceCaps(i32 nIndex) override;
       ::u32 SetBoundsRect(const ::rectangle_i32 & rectBounds, ::u32 flags) override;
-      ::u32 GetBoundsRect(LPRECT32 rectBounds, ::u32 flags) override;
+      ::u32 GetBoundsRect(RECTANGLE_I32 * rectBounds, ::u32 flags) override;
       // xxx      bool ResetDC(const DEVMODE* lpDevMode);
 
       // Drawing-Tool Functions
@@ -267,9 +267,9 @@ namespace draw2d_quartz2d
             bool DrawState(const ::point_i32 & point, const ::size_i32 & size, HICON hIcon, ::u32 nFlags,
                            ::draw2d::brush* pBrush = nullptr);*/
 //      virtual bool DrawState(const ::point_i32 & point, const ::size_i32 & size, const char * lpszText, ::u32 nFlags,
-//                             bool bPrefixText = TRUE, i32 nTextLen = 0, HBRUSH hBrush = nullptr) override;
+//                             bool bPrefixText = true, i32 nTextLen = 0, HBRUSH hBrush = nullptr) override;
 //      virtual bool DrawState(const ::point_i32 & point, const ::size_i32 & size, const char * lpszText, ::u32 nFlags,
-//                             bool bPrefixText = TRUE, i32 nTextLen = 0, ::draw2d::brush* pBrush = nullptr) override;
+//                             bool bPrefixText = true, i32 nTextLen = 0, ::draw2d::brush* pBrush = nullptr) override;
       //xxx      bool DrawState(const ::point_i32 & point, const ::size_i32 & size, DRAWSTATEPROC lpDrawProc,
       //xxx         LPARAM lData, ::u32 nFlags, HBRUSH hBrush = nullptr);
       //xxx      bool DrawState(const ::point_i32 & point, const ::size_i32 & size, DRAWSTATEPROC lpDrawProc,
@@ -414,7 +414,7 @@ namespace draw2d_quartz2d
 
 //      // Scrolling Functions
 //      bool ScrollDC(i32 dx, i32 dy, const ::rectangle_i32 & rectScroll, const ::rectangle_i32 & rectClip,
-//                    ::draw2d::region* pRgnUpdate, LPRECT32 lpRectUpdate) override;
+//                    ::draw2d::region* pRgnUpdate, RECTANGLE_I32 * lpRectUpdate) override;
 //
 //      // font Functions
 //      bool GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer) override;

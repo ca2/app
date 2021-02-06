@@ -54,7 +54,7 @@ namespace draw2d_opengl
 
       if(m_pbitmap.is_set()
             && m_pbitmap->get_os_data() != nullptr
-            && m_size == size_i32)
+            && m_size == size)
          return true;
 
       destroy();
@@ -151,16 +151,16 @@ namespace draw2d_opengl
       ::draw2d::bitmap * pbitmap = (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->get_current_bitmap();
 
       if(pbitmap == nullptr)
-         return FALSE;
+         return false;
 
       if (!create(pbitmap->get_size()))
       {
-         return FALSE;
+         return false;
       }
 
       from(pgraphics);
 
-      return TRUE;
+      return true;
 
    }
 
@@ -215,7 +215,7 @@ namespace draw2d_opengl
 
       __throw(todo("::opengl::image"));
 
-      //bool bOk = GetDIBits(GL2D_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, m_size.cy, get_data(), &(m_bitmapinfo), DIB_RGB_COLORS) != FALSE;
+      //bool bOk = GetDIBits(GL2D_HDC(pgraphics), (HBITMAP) pbitmap->get_os_data(), 0, m_size.cy, get_data(), &(m_bitmapinfo), DIB_RGB_COLORS) != false;
 
       //GL2D_GRAPHICS(pgraphics)->set(pbitmap);
 
@@ -230,7 +230,7 @@ namespace draw2d_opengl
    //   if (m_pgraphics.is_null())
    //      return false;
 
-   //   return m_pgraphics->BitBlt(ptDest, sz, pgraphics, point_i32) != FALSE;
+   //   return m_pgraphics->BitBlt(ptDest, sz, pgraphics, point_i32) != false;
 
    //}
 
@@ -242,7 +242,7 @@ namespace draw2d_opengl
 
       color32_t * pcr;
 
-      i64 iSize32 = size_i32 / 32;
+      i64 iSize32 = size / 32;
       i32 i;
       for (i=0; i < iSize32; i+=32 )
       {
@@ -308,7 +308,7 @@ namespace draw2d_opengl
       byte *dst=(byte*)m_pcolorref;
       i64 size = area();
 
-      while ( size_i32-- )
+      while ( size-- )
       {
          dst[3] = dst[i];
          dst+=4;
@@ -320,7 +320,7 @@ namespace draw2d_opengl
       byte *dst=(byte*)m_pcolorref;
       i64 size = area();
 
-      while ( size_i32-- )
+      while ( size-- )
       {
          dst[0] = dst[3];
          dst[1] = dst[3];
@@ -385,7 +385,7 @@ namespace draw2d_opengl
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
 
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      *dst = (byte) (*dst == FromRgb ? ToRgb : *dst);
    //      dst+=4;
@@ -402,7 +402,7 @@ namespace draw2d_opengl
    //   byte uchG = ::green(cr);
    //   byte uchR = ::red(cr);
 
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[3] = dst[i];
    //      dst[0] = uchB;
@@ -471,7 +471,7 @@ namespace draw2d_opengl
    //void image::color::channel_invert(color::color::rgba::echannel echannel)
    //{
    //   i64 size_i32   = area();
-   //   register i64 size_i64 = size_i32 / 64;
+   //   register i64 size_i64 = size / 64;
    //   LPBYTE lpb = (LPBYTE) m_pcolorref;
    //   lpb += ((i32)echannel) % 4;
    //   register i64 i = 0;
@@ -575,7 +575,7 @@ namespace draw2d_opengl
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[0]=(byte)(((B-dst[0])*A+(dst[0]<<8))>>8);
    //      dst[1]=(byte)(((G-dst[1])*A+(dst[1]<<8))>>8);
@@ -632,7 +632,7 @@ namespace draw2d_opengl
    //   ::u32 dwG_ = dwG << 8;
    //   ::u32 dwR_ = dwR << 8;
    //
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[0]=(byte)(((dst[0]-dwB)*bAlpha+dwB_)>>8);
    //      dst[1]=(byte)(((dst[1]-dwG)*bAlpha+dwG_)>>8);
@@ -652,7 +652,7 @@ namespace draw2d_opengl
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[0]=(byte)(((src[0]-dst[0])*A+(dst[0]<<8))>>8);
    //      dst[1]=(byte)(((src[1]-dst[1])*A+(dst[1]<<8))>>8);
@@ -675,7 +675,7 @@ namespace draw2d_opengl
 
    //   A = 2 - A;
    //
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[0]=(byte)(((src[0]-dst[0])*alf[A]+(dst[0]<<8))>>8);
    //      dst[1]=(byte)(((src[1]-dst[1])*alf[A]+(dst[1]<<8))>>8);
@@ -697,7 +697,7 @@ namespace draw2d_opengl
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[0]=(byte)((src[0]<dst[0]) ? src[0] : dst[0]);
    //      dst[1]=(byte)((src[1]<dst[1]) ? src[1] : dst[1]);
@@ -716,7 +716,7 @@ namespace draw2d_opengl
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      i32 Difference;
    //      Difference=src[0]-dst[0];
@@ -739,7 +739,7 @@ namespace draw2d_opengl
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[0]=(byte)((src[0]>dst[0]) ? src[0] : dst[0]);
    //      dst[1]=(byte)((src[1]>dst[1]) ? src[1] : dst[1]);
@@ -759,7 +759,7 @@ namespace draw2d_opengl
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[0]=(byte)(((src[0])*(dst[0]))>>8);
    //      dst[1]=(byte)(((src[1])*(dst[1]))>>8);
@@ -778,7 +778,7 @@ namespace draw2d_opengl
    //   byte *dst=(byte*)m_pcolorref;
    //   i64 size = area();
    //
-   //   while ( size_i32-- )
+   //   while ( size-- )
    //   {
    //      dst[0]=(byte)(255-(((255-src[0])*(255-dst[0]))>>8));
    //      dst[1]=(byte)(255-(((255-src[1])*(255-dst[1]))>>8));
@@ -2010,7 +2010,7 @@ namespace draw2d_opengl
 
    //   color32_t * pcr;
 
-   //   i64 iSize32 = size_i32 / 32;
+   //   i64 iSize32 = size / 32;
    //   i32 i;
    //   for (i=0; i < iSize32; i+=32 )
    //   {
@@ -2575,7 +2575,7 @@ namespace draw2d_opengl
 //      }
 //
 //
-//      pwnd->get_window_graphics()->update_window(pwnd->get_handle(),(color32_t*)b->m_memOut.get_data(),rectangle_i32, b->m_sizeOut.cx, b.m_sizeOut.cy, b.m_sizeOut.cx * 4,bTransferBuffer);
+//      pwnd->get_window_graphics()->update_window(pwnd->get_handle(),(color32_t*)b->m_memOut.get_data(),rectangle, b->m_sizeOut.cx, b.m_sizeOut.cy, b.m_sizeOut.cx * 4,bTransferBuffer);
 //      b->m_bFlashed = true;
 //
 //      return true;

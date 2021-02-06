@@ -75,7 +75,7 @@ namespace user
 //         uStyle |= SBARS_SIZEGRIP;
 //#endif
 //
-//      //return ::user::interaction::create_window(STATUSCLASSNAMEA, nullptr, uStyle, rectangle_i32, puiParent, strId);
+//      //return ::user::interaction::create_window(STATUSCLASSNAMEA, nullptr, uStyle, rectangle, puiParent, strId);
 //      return ::user::interaction::create_window("msctls_statusbar32",nullptr,uStyle,puiParent,strId);
 //
 //   }
@@ -96,17 +96,17 @@ namespace user
       ASSERT(stra.get_count() >= 1);  // must be at least one of them
       //ASSERT(pIDArray == nullptr ||
 
-      //      __is_valid_address(pIDArray, sizeof(::u32) * nIDCount, FALSE));
+      //      __is_valid_address(pIDArray, sizeof(::u32) * nIDCount, false));
 
       ASSERT(is_window());
 
       // first allocate array for panes and copy initial data
       //   if (!AllocElements(nIDCount, sizeof(__STATUSPANE)))
-      //      return FALSE;
+      //      return false;
       //   ASSERT(nIDCount == m_panea.get_count());
 
       // copy initial data from indicator array
-      bool bResult = TRUE;
+      bool bResult = true;
       //if (pIDArray != nullptr)
 
       //{
@@ -129,14 +129,14 @@ namespace user
                         {
                            TRACE(trace_category_appmsg, 0, "Warning: failed to load indicator string 0x%04X.\n",
                               pSBP->strId);
-                           bResult = FALSE;
+                           bResult = false;
                            break;
                         } */
             pSBP->cxText = (i32) (spgraphicsScreen->GetTextExtent(pSBP->strText).cx);
             ASSERT(pSBP->cxText >= 0);
-            if (!SetPaneText(i, pSBP->strText, FALSE))
+            if (!SetPaneText(i, pSBP->strText, false))
             {
-               bResult = FALSE;
+               bResult = false;
                break;
             }
          }
@@ -157,7 +157,7 @@ namespace user
 //         if (hOldFont != nullptr)
       //          spgraphicsScreen->set(hOldFont);
       //}
-      UpdateAllPanes(TRUE, TRUE);
+      UpdateAllPanes(true, true);
 
       return bResult;
    }
@@ -177,7 +177,7 @@ namespace user
 
       // allocate new elements
       //if (!::user::control_bar::AllocElements(nElements, cbElement))
-      //   return FALSE;
+      //   return false;
 
       // construct new elements
       pSBP = _GetPanePtr(0);
@@ -189,7 +189,7 @@ namespace user
    #pragma pop_macro("new")
          ++pSBP;
       }*/
-   /*   return TRUE;
+   /*   return true;
    }
    */
 
@@ -237,7 +237,7 @@ namespace user
 //         ::rectangle_i32 rectangle;
 //         get_window_rect(rectangle);
 //         rectangle.offset(-rectangle.left, -rectangle.top);
-//         CalcInsideRect(rectangle, TRUE);
+//         CalcInsideRect(rectangle, true);
 //         i32 rgBorders[3];
 //
 //         default_window_procedure(SB_GETBORDERS, 0, (LPARAM)&rgBorders);
@@ -365,7 +365,7 @@ namespace user
 //         {
 //            // ... we need to re-on_layout the panes
 //            pSBP->nStyle = nStyle;
-//            UpdateAllPanes(TRUE, FALSE);
+//            UpdateAllPanes(true, false);
 //         }
 //
 //         // use SetPaneText, since it updates the style and text
@@ -390,13 +390,13 @@ namespace user
    {
       ASSERT_VALID(this);
 
-      bool bChanged = FALSE;
+      bool bChanged = false;
       __STATUSPANE* pSBP = _GetPanePtr(nIndex);
       pSBP->m_id = id;
       if (pSBP->nStyle != nStyle)
       {
          if ((pSBP->nStyle ^ nStyle) & SBPS_STRETCH)
-            bChanged = TRUE;
+            bChanged = true;
          else
          {
             pSBP->nStyle = nStyle;
@@ -409,10 +409,10 @@ namespace user
       {
          // change width of one pane -> invalidate the entire status bar
          pSBP->cxText = cxWidth;
-         bChanged = TRUE;
+         bChanged = true;
       }
       if (bChanged)
-         UpdateAllPanes(TRUE, FALSE);
+         UpdateAllPanes(true, false);
    }
 
    void status_bar::GetPaneText(i32 nIndex, string & s)
@@ -446,7 +446,7 @@ namespace user
 
       {
          // nothing to change
-         return TRUE;
+         return true;
       }
 
       try
@@ -461,7 +461,7 @@ namespace user
       catch(::exception::exception *)
       {
          // Note: DELETE_EXCEPTION(e) not required
-         return FALSE;
+         return false;
       }
 
 
@@ -469,7 +469,7 @@ namespace user
       {
          // can't update now, wait until later
          pSBP->nFlags |= SBPF_UPDATE;
-         return TRUE;
+         return true;
       }
 
       pSBP->nFlags &= ~SBPF_UPDATE;
@@ -479,7 +479,7 @@ namespace user
 //                    (LPARAM)(const char *)pSBP->strText);
 //#endif
 //
-      return TRUE;
+      return true;
    }
 
    /////////////////////////////////////////////////////////////////////////////
@@ -508,7 +508,7 @@ namespace user
       // get border information
       ::rectangle_i32 rectangle;
 
-      CalcInsideRect(pgraphics, rectangle_i32, bHorz);
+      CalcInsideRect(pgraphics, rectangle, bHorz);
       ::size_i32 size;
       size.cx =0;
       size.cy =0;
@@ -560,7 +560,7 @@ namespace user
 //
 //      ::rectangle_i32 rectangle;
 //
-//      ::user::control_bar::CalcInsideRect(rectangle, TRUE);
+//      ::user::control_bar::CalcInsideRect(rectangle, true);
 //      ASSERT(rectangle.top >= 2);
 //
 //      // adjust non-client area for border space
@@ -597,7 +597,7 @@ namespace user
 #ifdef WINDOWS_DESKTOP
    void status_bar::DrawItem(LPDRAWITEMSTRUCT)
    {
-      ASSERT(FALSE);
+      ASSERT(false);
    }
 #endif
 
@@ -627,7 +627,7 @@ namespace user
 
    /*void status_bar::OnPaint()
    {
-      UpdateAllPanes(FALSE, TRUE);
+      UpdateAllPanes(false, true);
 
       default_window_procedure();
    }
@@ -638,7 +638,7 @@ namespace user
 
       UNREFERENCED_PARAMETER(pgraphics);
 
-      UpdateAllPanes(FALSE, TRUE);
+      UpdateAllPanes(false, true);
 
       //default_window_procedure();
 
@@ -653,7 +653,7 @@ namespace user
       pmessage->previous();
 
       // need to adjust pane right edges (because of stretchy pane)
-      UpdateAllPanes(TRUE, FALSE);
+      UpdateAllPanes(true, false);
    }
 
    void status_bar::_001OnWindowPosChanging(::message::message * pmessage)
@@ -819,7 +819,7 @@ namespace user
 
    void status_command::enable(bool bOn)
    {
-      m_bEnableChanged = TRUE;
+      m_bEnableChanged = true;
       __pointer(status_bar) pStatusBar = m_puiOther;
       ASSERT(pStatusBar != nullptr);
       ASSERT_KINDOF(status_bar, pStatusBar);

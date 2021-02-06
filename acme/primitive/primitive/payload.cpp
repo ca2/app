@@ -1520,15 +1520,15 @@ bool payload::is_empty() const
    case e_type_element:
       return is_element_null();
    case e_type_stra:
-      return ::is_null(m_pstra) || m_pstra->isEmpty();
+      return ::is_null(m_pstra) || m_pstra->is_empty();
    case e_type_inta:
-      return ::is_null(m_pia) || m_pia->isEmpty();
+      return ::is_null(m_pia) || m_pia->is_empty();
    case type_vara:
-      return ::is_null(m_pvara) || m_pvara->isEmpty();
+      return ::is_null(m_pvara) || m_pvara->is_empty();
    case e_type_propset:
-      return ::is_null(m_pset) || m_pset->isEmpty();
+      return ::is_null(m_pset) || m_pset->is_empty();
    case e_type_i64a:
-      return ::is_null(m_pi64a) || m_pi64a->isEmpty();
+      return ::is_null(m_pi64a) || m_pi64a->is_empty();
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
    case e_type_path:
@@ -5511,15 +5511,15 @@ bool payload::is_false() const
    case e_type_element:
       return is_element_null();
    case e_type_stra:
-      return ::is_null(m_pstra) || m_pstra->isEmpty();
+      return ::is_null(m_pstra) || m_pstra->is_empty();
    case e_type_inta:
-      return ::is_null(m_pia) || m_pia->isEmpty();
+      return ::is_null(m_pia) || m_pia->is_empty();
    case type_vara:
-      return ::is_null(m_pvara) || m_pvara->isEmpty();
+      return ::is_null(m_pvara) || m_pvara->is_empty();
    case e_type_propset:
-      return ::is_null(m_pset) || m_pset->isEmpty();
+      return ::is_null(m_pset) || m_pset->is_empty();
    case e_type_i64a:
-      return ::is_null(m_pi64a) || m_pi64a->isEmpty();
+      return ::is_null(m_pi64a) || m_pi64a->is_empty();
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
    case e_type_path:
@@ -5652,15 +5652,15 @@ bool payload::is_set_false() const
    case e_type_element:
       return is_element_null();
    case e_type_stra:
-      return ::is_null(m_pstra) || m_pstra->isEmpty();
+      return ::is_null(m_pstra) || m_pstra->is_empty();
    case e_type_inta:
-      return ::is_null(m_pia) || m_pia->isEmpty();
+      return ::is_null(m_pia) || m_pia->is_empty();
    case type_vara:
-      return ::is_null(m_pvara) || m_pvara->isEmpty();
+      return ::is_null(m_pvara) || m_pvara->is_empty();
    case e_type_propset:
-      return ::is_null(m_pset) || m_pset->isEmpty();
+      return ::is_null(m_pset) || m_pset->is_empty();
    case e_type_i64a:
-      return ::is_null(m_pi64a) || m_pi64a->isEmpty();
+      return ::is_null(m_pi64a) || m_pi64a->is_empty();
    case e_type_memory:
       return ::is_null(m_pmemory) || m_pmemory->is_empty();
    case e_type_path:

@@ -10,12 +10,16 @@
 
 #ifdef WINDOWS
 
-
 LARGE_INTEGER g_largeintegerFrequency;
 
 
 #endif
 
+#ifdef WINDOWS_DESKTOP
+
+#include "acme/os/windows/callstack.h"
+
+#endif
 
 ::array < ::promise::routine > * g_proutineaOsTerm;
 
@@ -541,6 +545,8 @@ namespace acme
 
       g_pcsGlobal = new critical_section();
 
+      ::windows::callstack::s_pcriticalsection = new critical_section();
+
       //::update::g_pcs = new critical_section();
 
 #ifndef __MCRTDBG
@@ -963,6 +969,8 @@ namespace acme
 #endif
 
       delete_all_release_on_end();
+
+      ::acme::del(::windows::callstack::s_pcriticalsection);
 
       ::acme::del(g_pcsGlobal);
 

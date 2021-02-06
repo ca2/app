@@ -510,7 +510,7 @@ namespace axis
    //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText)
    //{
 
-   //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rectangle_i32, brushText);
+   //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rectangle, brushText);
 
    //}
 
@@ -816,7 +816,7 @@ namespace axis
    //}
 
 
-   //bool style::create_rect(e_rect erect, ::rectangle_f64 rectangle_i32, ::draw2d::enum_unit eunit)
+   //bool style::create_rect(e_rect erect, ::rectangle_f64 rectangle, ::draw2d::enum_unit eunit)
    //{
 
    //   return create_rect_coord(erect, rectangle.left, rectangle.top, rectangle.right, rectangle.bottom, eunit);
@@ -1138,7 +1138,7 @@ namespace axis
       //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText)
       //{
 
-      //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rectangle_i32, brushText);
+      //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rectangle, brushText);
 
       //}
 
@@ -1420,7 +1420,7 @@ namespace axis
       //}
 
 
-      //bool style::create_rect(e_rect erect, ::rectangle_f64 rectangle_i32, ::draw2d::enum_unit eunit)
+      //bool style::create_rect(e_rect erect, ::rectangle_f64 rectangle, ::draw2d::enum_unit eunit)
       //{
 
       //   return create_rect_coord(erect, rectangle.left, rectangle.top, rectangle.right, rectangle.bottom, eunit);

@@ -439,8 +439,8 @@ typedef struct _NPImageExpose
 
 typedef struct _NPFullPrint
 {
-   NPBool pluginPrinted;/* Set TRUE if plugin handled fullscreen printing */
-   NPBool printOne;     /* TRUE if plugin should print one copy to default
+   NPBool pluginPrinted;/* Set true if plugin handled fullscreen printing */
+   NPBool printOne;     /* true if plugin should print one copy to default
                           printer */
    void* platformPrint; /* Platform-specific printing info */
 } NPFullPrint;

@@ -67,13 +67,13 @@ device_context::device_context()
 
 
 //    if(hdc == nullptr)
-//       return FALSE;
+//       return false;
 
 //    XFreeGC(hdc->m_pdisplay, hdc->m_gc);
 //    XCloseDisplay(hdc->m_pdisplay);
 
 //    delete hdc;
-//    return TRUE;
+//    return true;
 
 // }
 

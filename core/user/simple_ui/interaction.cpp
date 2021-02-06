@@ -393,7 +393,7 @@ namespace simple_ui
 //   void interaction::on_hit_test(::user::item & item)
 //   {
 //
-//      auto rectangle_i32 = this->rectangle_i32(::user::e_element_client);
+//      auto rectangle_i32 = this->rectangle(::user::e_element_client);
 //
 //      if (!rectangle.contains(point))
 //      {
@@ -525,7 +525,7 @@ namespace simple_ui
 //
 //      m_rectangle.deflate(0, 0, 1, 1);
 //
-//      pgraphics->rectangle_i32(m_rectangle);*/
+//      pgraphics->rectangle(m_rectangle);*/
 //
 //      //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 //
@@ -602,7 +602,7 @@ namespace simple_ui
 //
 //      pgraphics->set(point);
 //
-//      pgraphics->rectangle_i32(rectClient);
+//      pgraphics->rectangle(rectClient);
 //
 //   }
 //

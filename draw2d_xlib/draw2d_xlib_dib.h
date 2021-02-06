@@ -57,7 +57,7 @@ namespace draw2d_xlib
 
 
       using object::create;
-      bool create(::size_i32 size_i32);
+      bool create(::size_i32 size);
       bool create(i32 iWidth, i32 iHeight);
       bool create(::image::image * pimage);
       bool Destroy();
@@ -99,7 +99,7 @@ namespace draw2d_xlib
       //void rotate(::image::image * pimage, const ::rectangle_i32 & rectangle, double dAngle, double dScale);
       //void rotate(::image::image * pimage, double dAngle, double dScale);
       //void Rotate034(::image::image * pimage, double dAngle, double dScale);
-      //void RadialFill(byte a, byte rectangle_i32, byte g, byte b, i32 x, i32 y, i32 iRadius);
+      //void RadialFill(byte a, byte rectangle, byte g, byte b, i32 x, i32 y, i32 iRadius);
       //void RadialFill(
       //   byte a1, byte r1, byte g1, byte b1, // center colors
       //   byte a2, byte r2, byte g2, byte b2, // border colors

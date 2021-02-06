@@ -58,13 +58,13 @@ WriteFile(
           )
 {
     if(hFile == INVALID_HANDLE_VALUE)
-        return FALSE;
+        return false;
     if(hFile->m_etype != win_handle::type_file)
-        return FALSE;
+        return false;
     size_t sizeWritten = fwrite(lpBuffer, nNumberOfBytesToWrite, 1, hFile->m_file.m_pfile);
     if(lpNumberOfBytesWritten != nullptr)
         *lpNumberOfBytesWritten = (u32) sizeWritten;
-    return TRUE;
+    return true;
 }
 
 int_bool
@@ -78,13 +78,13 @@ ReadFile(
          )
 {
     if(hFile == INVALID_HANDLE_VALUE)
-        return FALSE;
+        return false;
     if(hFile->m_etype != win_handle::type_file)
-        return FALSE;
+        return false;
     size_t sizeRead = fwrite(lpBuffer, nNumberOfBytesToRead, 1, hFile->m_file.m_pfile);
     if(lpNumberOfBytesRead != nullptr)
         *lpNumberOfBytesRead = (u32)sizeRead;
-    return TRUE;
+    return true;
 }
 
 int_bool
@@ -93,9 +93,9 @@ FlushFileBuffers(
                  HANDLE hFile
                  )
 {    if(hFile == INVALID_HANDLE_VALUE)
-    return FALSE;
+    return false;
     if(hFile->m_etype != win_handle::type_file)
-        return FALSE;
+        return false;
     return fflush(hFile->m_file.m_pfile) == 0;
 }
 
@@ -107,10 +107,10 @@ __win_CloseFile(
             )
 {
     if(hFile == INVALID_HANDLE_VALUE)
-        return FALSE;
+        return false;
     if(hFile->m_etype != win_handle::type_file)
-        return FALSE;
-    return fclose(hFile->m_file.m_pfile) != FALSE;
+        return false;
+    return fclose(hFile->m_file.m_pfile) != false;
 }
 
 int_bool
@@ -120,8 +120,8 @@ CloseHandle(
             )
 {
    if(hObject == INVALID_HANDLE_VALUE)
-      return FALSE;
-   int_bool bOk = FALSE;
+      return false;
+   int_bool bOk = false;
    switch(hObject->m_etype)
    {
       case win_handle::type_file:

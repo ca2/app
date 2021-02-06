@@ -37,7 +37,7 @@ bool simple_child_frame::pre_create_window(::user::system * pusersystem)
    if (!simple_frame_window::pre_create_window(pusersystem))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -63,7 +63,7 @@ bool simple_child_frame::pre_create_window(::user::system * pusersystem)
 
    pusersystem->m_createstruct.style &= ~WS_OVERLAPPEDWINDOW;
 
-   return TRUE;
+   return true;
 
 }
 

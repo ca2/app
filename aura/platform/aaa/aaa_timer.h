@@ -18,7 +18,7 @@ public:
 
 #ifdef WINDOWS
 
-      m_hTimer = ::CreateWaitableTimer(nullptr, TRUE, nullptr);
+      m_hTimer = ::CreateWaitableTimer(nullptr, true, nullptr);
 
 #endif
 
@@ -34,7 +34,7 @@ public:
 
       li.QuadPart = - ((::i64) uWait / 100LL);
 
-      if (!SetWaitableTimer(m_hTimer, &li, 0, nullptr, nullptr, FALSE))
+      if (!SetWaitableTimer(m_hTimer, &li, 0, nullptr, nullptr, false))
       {
 
          sleep(::u32(uWait / 1000000LL));

@@ -44,12 +44,12 @@ extern "C" {
 #endif
 #endif
 
-#ifndef FALSE
-#define FALSE               0
+#ifndef false
+#define false               0
 #endif
 
-#ifndef TRUE
-#define TRUE                1
+#ifndef true
+#define true                1
 #endif
 
 #ifndef IN

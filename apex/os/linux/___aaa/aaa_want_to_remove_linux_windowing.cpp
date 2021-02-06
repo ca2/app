@@ -277,7 +277,7 @@ int_bool x11_get_window_rect(Display * d, Window window, RECT32 * prect)
 
       windowing_output_debug_string("\n::x11_get_window_rect 1.1");
 
-      return FALSE;
+      return false;
 
    }
 
@@ -305,7 +305,7 @@ int_bool x11_get_window_rect(Display * d, Window window, RECT32 * prect)
 
    windowing_output_debug_string("\n::x11_get_window_rect 2");
 
-   return TRUE;
+   return true;
 
 }
 
@@ -372,7 +372,7 @@ int_bool release_capture()
 //    if(g_oswindowCapture == nullptr)
 //    {
 
-//       return FALSE;
+//       return false;
 
 //    }
 
@@ -380,7 +380,7 @@ int_bool release_capture()
 
    xdisplay d(x11_get_display());
 
-   int_bool bRet = XUngrabPointer(d, CurrentTime) != FALSE;
+   int_bool bRet = XUngrabPointer(d, CurrentTime) != false;
 
    //if(bRet)
    {
@@ -1188,7 +1188,7 @@ int_bool destroy_window(oswindow window)
    //single_lock sl(&user_mutex(), true);
 
    if(!is_window(window))
-      return FALSE;
+      return false;
 
    Display * pdisplay = window->display();
 
@@ -1256,11 +1256,11 @@ int_bool is_window(oswindow oswindow)
    if(::oswindow_data::s_pdataptra->find_first(oswindow) < 0)
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   return TRUE;
+   return true;
 
 }
 
@@ -2336,7 +2336,7 @@ CLASS_DECL_APEX int_bool PostMessage(oswindow oswindow, ::u32 Msg, WPARAM wParam
    if(::is_null(oswindow))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -3359,7 +3359,7 @@ int_bool get_window_rect(oswindow hwnd, RECT32 * prect)
 
       windowing_output_debug_string("\n::x11_GetWindowRect 1.1");
 
-      return FALSE;
+      return false;
 
    }
 
@@ -3385,7 +3385,7 @@ int_bool get_client_rect(oswindow window, RECT32 * prect)
 
       windowing_output_debug_string("\n::x11_GetWindowRect 1.1");
 
-      return FALSE;
+      return false;
 
    }
 
@@ -3396,7 +3396,7 @@ int_bool get_client_rect(oswindow window, RECT32 * prect)
 
       windowing_output_debug_string("\n::x11_GetWindowRect 1.2");
 
-      return FALSE;
+      return false;
 
    }
 
@@ -3411,7 +3411,7 @@ int_bool get_client_rect(oswindow window, RECT32 * prect)
 
    windowing_output_debug_string("\n::x11_GetWindowRect 2");
 
-   return TRUE;
+   return true;
 
 }
 
@@ -3428,7 +3428,7 @@ int_bool ca2_GetClientRect(oswindow window, RECT32 * prect)
    OffsetRect(prect, -prect->left, -prect->top);
 
 
-   return TRUE;
+   return true;
 
 }
 
@@ -3458,7 +3458,7 @@ int_bool x11_get_cursor_pos(POINT32 * ppointCursor)
 
       windowing_output_debug_string("\n::GetCursorPos 1.1");
 
-      return FALSE;
+      return false;
 
    }
 
@@ -3469,7 +3469,7 @@ int_bool x11_get_cursor_pos(POINT32 * ppointCursor)
 
    windowing_output_debug_string("\n::GetCursorPos 2");
 
-   return TRUE;
+   return true;
 
 }
 
@@ -3488,7 +3488,7 @@ int_bool GetCursorPos(POINT32 * ppointCursor)
 
    //});
 
-   return TRUE;
+   return true;
 
 }
 
@@ -3619,13 +3619,13 @@ int_bool x11_set_cursor(oswindow window, HCURSOR hcursor)
 
       windowing_output_debug_string("\n::x11_GetWindowRect 1.1");
 
-      return FALSE;
+      return false;
 
    }
 
    XDefineCursor(d, window->window(), hcursor);
 
-   return TRUE;
+   return true;
 
 }
 
@@ -3951,7 +3951,7 @@ int_bool WINAPI SetWindowPos(oswindow hWnd,oswindow hWndInsertAfter,i32 X,i32 Y,
 int_bool imaging::window_set_mouse_cursor(oswindow window, HCURSOR hcursor)
 {
 
-   int iBool = FALSE;
+   int iBool = false;
 
    x11_sync([&iBool, window, hcursor]()
    {

@@ -400,7 +400,7 @@ GtkWidget * linux_g_direct_app_indicator_init(AppIndicator * pindicator, user_no
 //
 //            gtk_ui_manager_insert_action_group (uim, action_group, 0);
 //
-//            bOk = gtk_ui_manager_add_ui_from_string (uim, ui_info, -1, &error) != FALSE;
+//            bOk = gtk_ui_manager_add_ui_from_string (uim, ui_info, -1, &error) != false;
 //
 //            if(!bOk)
 //            {

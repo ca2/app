@@ -390,16 +390,16 @@ int_bool is_window(oswindow oswindow)
 {
 
    if (((void *)oswindow) == nullptr)
-      return FALSE;
+      return false;
 
-   return TRUE;
+   return true;
 
 }
 
 int destroy_window(oswindow oswindow)
 {
 
-   return TRUE;
+   return true;
 
 }
 
@@ -572,7 +572,7 @@ CLASS_DECL_CORE int_bool show_window(oswindow oswindow, int iShowCmd)
    UNREFERENCED_PARAMETER(oswindow);
    UNREFERENCED_PARAMETER( iShowCmd);
 
-   return TRUE;
+   return true;
 
 }
 

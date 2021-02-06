@@ -356,7 +356,7 @@ oswindow set_capture(oswindow window)
 int_bool release_capture()
 {
 
-   int_bool bRet = TRUE;
+   int_bool bRet = true;
 
    if(bRet)
    {
@@ -518,14 +518,14 @@ int_bool destroy_window(oswindow w)
    if(is_null(w))
    {
       
-      return FALSE;
+      return false;
       
    }
    
    if(is_null(w->m_pimpl))
    {
       
-      return FALSE;
+      return false;
       
    }
    

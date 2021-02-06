@@ -509,7 +509,7 @@ namespace experience
    void size_manager::move_window(::user::interaction * pframewindow, const ::rectangle_i32 & rectangle)
    {
 
-      auto rectWindow = rectangle_i32;
+      auto rectWindow = rectangle;
 
       auto sizeMin = GetMinSize();
 

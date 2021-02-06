@@ -18,7 +18,9 @@ namespace windows
 #elif defined(WINDOWS_DESKTOP)
 
 
-      oswindow             m_oswindow;
+      //HWND             m_hwnd;
+
+      //m_osdataa[0] == = HWND;
 
 
 #elif defined(APPLEOS)
@@ -55,10 +57,14 @@ namespace windows
       virtual ~interprocess_communication_base();
 
 
+      HWND get_hwnd() const { return (HWND) get_os_data(); }
+      void set_hwnd(HWND hwnd) { set_os_data((void *) hwnd); }
+
    };
 
 
    class CLASS_DECL_APEX interprocess_communication_tx :
+      virtual public interprocess_communication_base,
       virtual public interprocess_communication::tx
    {
    public:
@@ -90,6 +96,7 @@ namespace windows
 
 
    class CLASS_DECL_APEX interprocess_communication_rx :
+      virtual public interprocess_communication_base,
       virtual public interprocess_communication::rx
    {
    public:
@@ -121,6 +128,7 @@ namespace windows
 
 
    class CLASS_DECL_APEX interprocess_communication :
+      virtual public interprocess_communication_base,
       virtual public ::interprocess_communication::interprocess_communication
    {
    public:

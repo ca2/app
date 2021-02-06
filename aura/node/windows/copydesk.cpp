@@ -1,7 +1,7 @@
 #include "framework.h"
 #include "apex/operating_system.h"
 #include "apex/platform/app_core.h"
-#include "_windows.h"
+#include "copydesk.h"
 
 
 namespace windows
@@ -134,7 +134,7 @@ namespace windows
 
       //::SetWindowLongPtr(m_hwnd, GWLP_USERDATA, (LONG_PTR) this);
 
-      if(!::AddClipboardFormatListener(get_handle()))
+      if(!::AddClipboardFormatListener((HWND)get_oswindow()))
       {
 
          finalize();
@@ -163,7 +163,7 @@ namespace windows
    void copydesk::_001OnDestroy(::message::message * pmessage)
    {
 
-      bool bOk1 = ::RemoveClipboardFormatListener(get_handle());
+      bool bOk1 = ::RemoveClipboardFormatListener((HWND)get_oswindow());
 
       //bool bOk2 = ::DestroyWindow(m_hwnd);
 
@@ -289,14 +289,14 @@ namespace windows
 
       }
 
-      byte * point = (byte *) ::GlobalLock(hglb);
+      byte * p = (byte *) ::GlobalLock(hglb);
 
 
       pimage->map();
 
-      ::memcpy_dup(point, &bi, sizeof(bi));
+      ::memcpy_dup(p, &bi, sizeof(bi));
 
-      ::memcpy_dup(point_i32 + sizeof(bi), pimage->get_data(), pimage->scan_size() * pimage->height());
+      ::memcpy_dup(p + sizeof(bi), pimage->get_data(), pimage->scan_size() * pimage->height());
 
       GlobalUnlock(hglb);
 
@@ -648,7 +648,7 @@ namespace windows
 
                pimage->map();
 
-               bOk = GetDIBits(hdcMem, hbitmap, 0, bm.bmHeight, pimage->get_data(), &bi, DIB_RGB_COLORS) != FALSE;
+               bOk = GetDIBits(hdcMem, hbitmap, 0, bm.bmHeight, pimage->get_data(), &bi, DIB_RGB_COLORS) != false;
 
             }
 

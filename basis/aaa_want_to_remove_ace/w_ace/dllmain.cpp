@@ -10,5 +10,5 @@ BOOL APIENTRY DllMain(HMODULE /* hModule */, ::u32 ul_reason_for_call, LPVOID /*
     case DLL_PROCESS_DETACH:
         break;
     }
-    return TRUE;
+    return true;
 }

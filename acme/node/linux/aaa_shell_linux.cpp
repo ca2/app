@@ -222,7 +222,7 @@ namespace linux
       //      break;
       //   default:
       //      // unexpected icon type
-      //      ASSERT(FALSE);
+      //      ASSERT(false);
       //      return false;
       //   }
 

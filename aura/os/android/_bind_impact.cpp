@@ -209,7 +209,7 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionBeginBatc
 
    }
 
-   return TRUE;
+   return true;
 
 
 }
@@ -247,7 +247,7 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionEndBatchE
 
    }
 
-   return TRUE;
+   return true;
 
 
 }
@@ -304,7 +304,7 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionSetCompos
 
    env->ReleaseStringChars(text, (jchar*)utf16);
 
-   return TRUE;
+   return true;
 
 }
 
@@ -341,7 +341,7 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionSetCompos
 
    }
 
-   return TRUE;
+   return true;
 
 }
 
@@ -377,7 +377,7 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionSetSelect
 
    }
 
-   return TRUE;
+   return true;
 
 }
 
@@ -435,7 +435,7 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionCommitTex
 
    env->ReleaseStringChars(text, (jchar *)utf16);
 
-   return TRUE;
+   return true;
 
 }
 
@@ -472,7 +472,7 @@ JNIEXPORT jboolean JNICALL Java_com_android_1app_impact_InputConnectionFinishCom
 
    }
 
-   return TRUE;
+   return true;
 
 }
 

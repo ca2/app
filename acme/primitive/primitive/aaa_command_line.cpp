@@ -21,9 +21,9 @@ command_line::command_line(const string & strCommandLine)
 
 void command_line::common_construct()
 {
-   m_bShowSplash     = TRUE;
-   m_bRunEmbedded    = FALSE;
-   m_bRunAutomated   = FALSE;
+   m_bShowSplash     = true;
+   m_bRunEmbedded    = false;
+   m_bRunAutomated   = false;
    m_ecommand        = command_application_start;
    m_iEdge           = 0;
    m_puserinteractionParent       = nullptr;
@@ -88,17 +88,17 @@ void command_line::ParseParamFlag(const string & strParam)
    else if(strParam.compare_ci("Embedding") == 0)
    {
 
-      m_bRunEmbedded = TRUE;
+      m_bRunEmbedded = true;
 
-      m_bShowSplash = FALSE;
+      m_bShowSplash = false;
 
    }
    else if(strParam.compare_ci("Automation") == 0)
    {
 
-      m_bRunAutomated = TRUE;
+      m_bRunAutomated = true;
 
-      m_bShowSplash = FALSE;
+      m_bShowSplash = false;
 
    }
 

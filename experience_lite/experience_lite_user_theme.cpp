@@ -139,7 +139,7 @@ namespace lite
 
          iTab++;
 
-         if(!ptab->get_element_rect(iTab,rectangle_i32,::user::e_element_tab))
+         if(!ptab->get_element_rect(iTab,rectangle,::user::e_element_tab))
             continue;
 
          if(!ptab->get_element_rect(iTab,rectBorder, ::user::e_element_border))
@@ -660,7 +660,7 @@ namespace lite
          ptab->get_data()->m_rectTab.bottom     = rectClient.bottom;
 
          /*      m_puserinteraction->set_window_pos(
-         zorder_top,
+         e_zorder_top,
          m_rectTab.left,
          m_rectTab.top,
          m_rectTab.width(),
@@ -780,7 +780,7 @@ namespace lite
          ptab->get_data()->m_rectTab.bottom     = ptab->get_data()->m_rectTab.top + ptab->get_data().m_iTabHeight;
 
          /*      set_window_pos(
-         zorder_top,
+         e_zorder_top,
          m_rectTab.left,
          m_rectTab.top,
          m_rectTab.width(),
@@ -993,7 +993,7 @@ namespace lite
                   brush->create_solid(ARGB(123, 177, 184, 255));
                   ::draw2d::pen * ppenOld = pgraphics->SelectObject(pen);
                   ::draw2d::brush * pbrushOld = pgraphics->SelectObject(brush);
-                  pgraphics->rectangle_i32(rectItem);
+                  pgraphics->rectangle(rectItem);
                   pgraphics->SelectObject(ppenOld);
                   pgraphics->SelectObject(pbrushOld);
 
@@ -1004,7 +1004,7 @@ namespace lite
 
                   ::rectangle_i32 rectangle;
 
-                  ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image_hover);
+                  ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_hover);
 
 /*                  System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->84);
 
@@ -1014,7 +1014,7 @@ namespace lite
 
                   ::rectangle_i32 rectangle;
 
-                  ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_item_hover);
+                  ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_item_hover);
 
                   pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
 
@@ -1038,7 +1038,7 @@ namespace lite
                brush->create_solid(ARGB(255, 255, 255, 255));
                ::draw2d::pen * ppenOld = pgraphics->SelectObject(pen);
                ::draw2d::brush * pbrushOld = pgraphics->SelectObject(brush);
-               pgraphics->rectangle_i32(rectItem);
+               pgraphics->rectangle(rectItem);
                pgraphics->SelectObject(ppenOld);
                pgraphics->SelectObject(pbrushOld);
 
@@ -1049,7 +1049,7 @@ namespace lite
 
                ::rectangle_i32 rectangle;
 
-               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image_press);
+               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_press);
 
 /*               System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 1->0);
 
@@ -1086,7 +1086,7 @@ namespace lite
 
                ::rectangle_i32 rectangle;
 
-/*               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image);
+/*               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image);
 
 /*               System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->23);
 
@@ -1300,7 +1300,7 @@ namespace lite
                   brush->create_solid(ptoolbar->_001GetColor(::user::color_button_background_hover));
                   ::draw2d::pen * ppenOld = pgraphics->SelectObject(pen);
                   ::draw2d::brush * pbrushOld = pgraphics->SelectObject(brush);
-                  pgraphics->rectangle_i32(rectItem);
+                  pgraphics->rectangle(rectItem);
                   pgraphics->SelectObject(ppenOld);
                   pgraphics->SelectObject(pbrushOld);
 
@@ -1311,7 +1311,7 @@ namespace lite
 
                   ::rectangle_i32 rectangle;
 
-                  ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image_hover);
+                  ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_hover);
 
 /*                  System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->84);
 
@@ -1321,7 +1321,7 @@ namespace lite
 
                   ::rectangle_i32 rectangle;
 
-                  ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_item_hover);
+                  ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_item_hover);
 
                   pmenucentral->MenuV033GetImageListHue()->draw(pgraphics, uImage, rectangle.top_left(), 0);
 
@@ -1345,7 +1345,7 @@ namespace lite
                brush->create_solid(ptoolbar->_001GetColor(::user::color_button_background_press));
                ::draw2d::pen * ppenOld = pgraphics->SelectObject(pen);
                ::draw2d::brush * pbrushOld = pgraphics->SelectObject(brush);
-               pgraphics->rectangle_i32(rectItem);
+               pgraphics->rectangle(rectItem);
                pgraphics->SelectObject(ppenOld);
                pgraphics->SelectObject(pbrushOld);
 
@@ -1356,7 +1356,7 @@ namespace lite
 
                ::rectangle_i32 rectangle;
 
-               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image_press);
+               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image_press);
 
 /*               System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 1->0);
 
@@ -1405,7 +1405,7 @@ namespace lite
                                    ::user::color_button_background_disabled));
                ::draw2d::pen * ppenOld = pgraphics->SelectObject(pen);
                ::draw2d::brush * pbrushOld = pgraphics->SelectObject(brush);
-               pgraphics->rectangle_i32(rectItem);
+               pgraphics->rectangle(rectItem);
                pgraphics->SelectObject(ppenOld);
                pgraphics->SelectObject(pbrushOld);
 
@@ -1416,7 +1416,7 @@ namespace lite
 
                ::rectangle_i32 rectangle;
 
-/*               ptoolbar->_001GetElementRect(iItem, rectangle_i32, ::user::toolbar::element_image);
+/*               ptoolbar->_001GetElementRect(iItem, rectangle, ::user::toolbar::element_image);
 
 /*               System.imaging().color_blend(pgraphics, rectangle.top_left(), rectangle.get_size(), item.m_pimage->g(), ::point_i32(), 0->23);
 

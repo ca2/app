@@ -210,7 +210,7 @@ void XfplayerViewLineSelection::OnSelEvent(xfplayer_view_line & viewline, Xfplay
 
       break;
    default:
-      ASSERT(FALSE);
+      ASSERT(false);
    }
 }
 
@@ -290,7 +290,7 @@ bool XfplayerViewLineSelection::SetSelAfter(xfplayer_view_line & viewline)
 void XfplayerViewLineSelection::NormalizeSel(xfplayer_view_line & viewline)
 {
    UNREFERENCED_PARAMETER(viewline);
-   ASSERT(FALSE);
+   ASSERT(false);
    /*   string str;
    if(m_item.m_iLineStart < 0)
    {

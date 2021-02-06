@@ -133,7 +133,7 @@ namespace account
 
       __pointer(::message::key) pkey(pmessage);
 
-      if(pkey->m_ekey == ::user::key_return)
+      if(pkey->m_ekey == ::user::e_key_return)
       {
 
          m_plogin->on_action("submit");
@@ -141,7 +141,7 @@ namespace account
          pmessage->m_bRet = true;
 
       }
-      else if(pkey->m_ekey == ::user::key_escape)
+      else if(pkey->m_ekey == ::user::e_key_escape)
       {
 
          m_plogin->on_action("escape");
@@ -210,7 +210,7 @@ namespace account
          if (m_iDelay >= 6 && !is_window_visible())
          {
 
-            order(zorder_top);
+            order(e_zorder_top);
 
             place(m_rectFontopus);
 
@@ -259,7 +259,7 @@ namespace account
       else
       {
 
-         rectDesktop = rectangle_i32;
+         rectDesktop = rectangle;
 
       }
 

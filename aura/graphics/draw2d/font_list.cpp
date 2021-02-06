@@ -290,7 +290,7 @@ namespace draw2d
 
       auto plistdata = m_plistdata;
 
-      ::rectangle_i32 rectClient = pgraphics->m_puserinteraction->get_client_rect();
+      rectangle_i32 rectClient = pgraphics->m_puserinteraction->get_client_rect();
 
       rectClient += pgraphics->m_puserinteraction->get_viewport_offset();
 
@@ -1180,7 +1180,7 @@ namespace draw2d
       if (::is_null(m_puserinteraction))
       {
 
-         return ::size();
+         return ::size_i32();
 
       }
 
@@ -1216,7 +1216,7 @@ namespace draw2d
 
       sizeTotal.cx = m_rectClient.width();
 
-      ::rectangle_i32 rectClient = m_puserinteraction->get_client_rect();
+      rectangle_i32 rectClient = m_puserinteraction->get_client_rect();
 
       rectClient += m_puserinteraction->get_viewport_offset();
 
@@ -1264,7 +1264,7 @@ namespace draw2d
 
          size_i32 & s = pitem->m_box[0].m_size;
 
-         rectangle_i32 & rectangle = pitem->m_box[0].m_rectangle;
+         auto & rectangle = pitem->m_box[0].m_rectangle;
 
          x += iPadding;
 
@@ -1287,7 +1287,7 @@ namespace draw2d
 
                   font_list_item * pitem2 = plistdata->element_at(j);
 
-                  ::rectangle_i32 & rect2 = pitem2->m_box[0].m_rectangle;
+                  auto & rect2 = pitem2->m_box[0].m_rectangle;
 
                   rect2.offset_x(iOffset);
 
@@ -1356,7 +1356,7 @@ namespace draw2d
 
          size_i32 & s = pitem->m_box[0].m_size;
 
-         rectangle_i32 & rectangle = pitem->m_box[0].m_rectangle;
+         auto & rectangle = pitem->m_box[0].m_rectangle;
 
          for (index j = 1; j < 3; j++)
          {
@@ -1446,7 +1446,7 @@ namespace draw2d
 
          size_i32 & s = pitem->m_box[0].m_size;
 
-         rectangle_i32 & rectangle = pitem->m_box[0].m_rectangle;
+         auto & rectangle = pitem->m_box[0].m_rectangle;
 
 
 
@@ -1584,7 +1584,7 @@ namespace draw2d
    }
 
 
-   bool font_list::get_box_rect(LPRECT32 lprect, ::index i)
+   bool font_list::get_box_rect(RECTANGLE_I32 * lprect, ::index i)
    {
 
       sync_lock sl(mutex());
@@ -1605,7 +1605,7 @@ namespace draw2d
    }
 
 
-   bool font_list::get_box_rect_wide(LPRECT32 lprect, ::index i)
+   bool font_list::get_box_rect_wide(RECTANGLE_I32 * lprect, ::index i)
    {
 
       sync_lock sl(mutex());
@@ -1640,7 +1640,7 @@ namespace draw2d
    }
 
 
-   bool font_list::get_box_rect_single_column(LPRECT32 lprect, ::index i)
+   bool font_list::get_box_rect_single_column(RECTANGLE_I32 * lprect, ::index i)
    {
 
       sync_lock sl(mutex());
@@ -1682,7 +1682,7 @@ namespace draw2d
 
       ::rectangle_i32 rectangle(lpcrect);
 
-      if (rectangle_i32 != m_rectClient)
+      if (rectangle != m_rectClient)
       {
 
          ::size_i32 sizeOld(m_rectClient.size());

@@ -616,7 +616,7 @@ namespace user
 
       __pointer(::message::key) pkey(pmessage);
 
-      if(pkey->m_ekey == ::user::key_space)
+      if(pkey->m_ekey == ::user::e_key_space)
       {
 
          _001ToggleCheck(::e_source_user);

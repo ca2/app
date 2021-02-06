@@ -54,7 +54,7 @@ CLASS_DECL_ACME ::_UWP::thread * __get_thread();
 CLASS_DECL_ACME void __set_thread(::thread * pthread);
 CLASS_DECL_ACME MSG* __get_current_message();
 
-CLASS_DECL_ACME void __end_thread(::matter * pobject, ::u32 nExitCode, bool bDelete = TRUE);
+CLASS_DECL_ACME void __end_thread(::matter * pobject, ::u32 nExitCode, bool bDelete = true);
 
 CLASS_DECL_ACME void __init_thread();
 //CLASS_DECL_ACME void __term_thread(::matter * pobject, HINSTANCE hInstTerm = nullptr);

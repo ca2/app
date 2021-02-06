@@ -16,7 +16,7 @@ namespace filemanager
 
    bool operation_document::on_new_document()
    {
-      return TRUE;
+      return true;
    }
 
 

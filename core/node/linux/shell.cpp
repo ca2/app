@@ -175,7 +175,7 @@ i32 __cdecl _validdrive (
 //
 //         allocate a buffer for the ::account::user.
 //
-//      if ( (point = (WCHAR *)malloc(__max(len, maxlen) * sizeof(WCHAR)))
+//      if ( (point = (WCHAR *)malloc(maximum(len, maxlen) * sizeof(WCHAR)))
 //           == nullptr )
 //      {
 ////                errno = ENOMEM;

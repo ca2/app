@@ -197,7 +197,7 @@ namespace linux
 
       void get_window_text(string & str) override;
       //strsize GetWindowTextLength();
-      void SetFont(::draw2d::font* pFont, bool bRedraw = TRUE);
+      void SetFont(::draw2d::font* pFont, bool bRedraw = true);
       ::draw2d::font* GetFont();
 
 
@@ -206,8 +206,8 @@ namespace linux
       //virtual bool layout().is_zoomed();
       //virtual bool layout().is_full_screen();
       //void MoveWindow(i32 x, i32 y, i32 nWidth, i32 nHeight,
-        //              bool bRepaint = TRUE);
-      //void MoveWindow(const ::rect & rect, bool bRepaint = TRUE);
+        //              bool bRepaint = true);
+      //void MoveWindow(const ::rect & rect, bool bRepaint = true);
 
 //      i32 SetWindowRgn(HRGN hRgn, bool bRedraw);
 //      i32 GetWindowRgn(HRGN hRgn);
@@ -273,14 +273,14 @@ namespace linux
 //      virtual void PrintClient(::draw2d::graphics_pointer & pgraphics, ::u32 dwFlags) const;
 
 //      virtual void UpdateWindow();
-//      virtual void SetRedraw(bool bRedraw = TRUE);
-//      virtual bool GetUpdateRect(RECT32 * prect, bool bErase = FALSE);
+//      virtual void SetRedraw(bool bRedraw = true);
+//      virtual bool GetUpdateRect(RECT32 * prect, bool bErase = false);
 //
-//      virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = FALSE);
-//      virtual void Invalidate(bool bErase = TRUE);
-//      virtual void InvalidateRect(const ::rect & rect, bool bErase = TRUE);
+//      virtual i32 GetUpdateRgn(::draw2d::region* pRgn, bool bErase = false);
+//      virtual void Invalidate(bool bErase = true);
+//      virtual void InvalidateRect(const ::rect & rect, bool bErase = true);
 //
-//      virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = TRUE);
+//      virtual void InvalidateRgn(::draw2d::region* pRgn, bool bErase = true);
 //      virtual void ValidateRect(const ::rect & rect);
 //
 //      virtual void ValidateRgn(::draw2d::region* pRgn);
@@ -300,7 +300,7 @@ namespace linux
 
 
       //virtual bool _is_window_visible() override;
-      //virtual void ShowOwnedPopups(bool bShow = TRUE);
+      //virtual void ShowOwnedPopups(bool bShow = true);
 
       //virtual ::draw2d::graphics * GetDCEx(::draw2d::region* prgnClip, ::u32 flags);
       //virtual bool LockWindowUpdate();
@@ -353,7 +353,7 @@ namespace linux
 
       // oswindow State Functions
       virtual bool IsWindowEnabled();
-      virtual bool EnableWindow(bool bEnable = TRUE);
+      virtual bool EnableWindow(bool bEnable = true);
 
       // the active ::user::interaction_impl applies only to top-level (frame windows)
       virtual ::user::interaction * GetActiveWindow() override;
@@ -403,16 +403,16 @@ namespace linux
 //      virtual bool DlgDirSelectComboBox(char * pString, i32 nSize, i32 nIDComboBox);
 
 
-      //virtual ::u32 GetChildByIdInt(i32 nID, bool * pTrans = nullptr, bool bSigned = TRUE) const;
+      //virtual ::u32 GetChildByIdInt(i32 nID, bool * pTrans = nullptr, bool bSigned = true) const;
 
       //virtual i32 GetChildByIdText(i32 nID, char * pStr, i32 nMaxCount) const;
 
       //virtual i32 GetChildByIdText(i32 nID, string & rectString) const;
-//      virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
-//      virtual ::user::interaction * GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious = FALSE) const;
+//      virtual ::user::interaction * GetNextDlgGroupItem(::user::interaction * pWndCtl, bool bPrevious = false) const;
+//      virtual ::user::interaction * GetNextDlgTabItem(::user::interaction * pWndCtl, bool bPrevious = false) const;
 //      virtual ::u32 IsDlgButtonChecked(i32 nIDButton) const;
 //      virtual LRESULT SendDlgItemMessage(i32 nID, const ::id & id, WPARAM wParam = 0, LPARAM lParam = 0);
-//      virtual void SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned = TRUE);
+//      virtual void SetDlgItemInt(i32 nID, ::u32 nValue, bool bSigned = true);
 //      virtual void SetDlgItemText(i32 nID, const char * pszString);
 
 
@@ -424,11 +424,11 @@ namespace linux
 //                                const ::rect & rectClient = nullptr,
 //                                const ::rect & rectClip = nullptr);
 //
-//      virtual i32 SetScrollPos(i32 nBar, i32 nPos, bool bRedraw = TRUE);
+//      virtual i32 SetScrollPos(i32 nBar, i32 nPos, bool bRedraw = true);
 //      virtual void SetScrollRange(i32 nBar, i32 nMinPos, i32 nMaxPos,
-//                                  bool bRedraw = TRUE);
-//      virtual void ShowScrollBar(::u32 nBar, bool bShow = TRUE);
-//      virtual void EnableScrollBarCtrl(i32 nBar, bool bEnable = TRUE);
+//                                  bool bRedraw = true);
+//      virtual void ShowScrollBar(::u32 nBar, bool bShow = true);
+//      virtual void EnableScrollBarCtrl(i32 nBar, bool bEnable = true);
 //      //      virtual CScrollBar* GetScrollBarCtrl(i32 nBar) const;
 //      // return sibling scrollbar control (or nullptr if none)
 //
@@ -439,7 +439,7 @@ namespace linux
 
       //xxx      virtual bool SetScrollInfo(i32 nBar, LPSCROLLINFO pScrollInfo,
 
-      //xxx         bool bRedraw = TRUE);
+      //xxx         bool bRedraw = true);
       //xxx      virtual bool GetScrollInfo(i32 nBar, LPSCROLLINFO pScrollInfo, ::u32 nMask = SIF_ALL);
 
 //      virtual i32 GetScrollLimit(i32 nBar);

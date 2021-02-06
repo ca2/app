@@ -138,7 +138,7 @@ namespace filemanager
 
             }
 
-            OnActivateView(TRUE, this, this);
+            OnActivateView(true, this, this);
 
             set_need_redraw();
 

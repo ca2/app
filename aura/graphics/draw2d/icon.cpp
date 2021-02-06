@@ -1,20 +1,6 @@
 #include "framework.h"
 
-#ifdef WINDOWS_DESKTOP
 
-// http ://stackoverflow.com/questions/1913468/how-to-determine-the-size_i32-of-an-icon-from-a-hicon
-// http://stackoverflow.com/users/739731/sergey
-
-struct MYICON_INFO
-{
-   int     nWidth;
-   int     nHeight;
-   int     nBitsPerPixel;
-};
-
-MYICON_INFO MyGetIconInfo(hicon hIcon);
-
-#endif
 
 
 namespace draw2d
@@ -30,7 +16,7 @@ namespace draw2d
    }
 
 
-  
+
 
 
 
@@ -85,9 +71,15 @@ namespace draw2d
 
       }
 
-      __object(pobjectContext)->__construct(m_pimagemap);
-
       return estatus;
+
+   }
+
+
+   void icon::initialize_with_windowing_icon(::windowing::icon * picon)
+   {
+
+      m_picon = picon;
 
    }
 
@@ -98,7 +90,7 @@ namespace draw2d
       return m_picon;
 
    }
-   
+
 
    string icon::get_tray_icon_name()
    {
@@ -108,15 +100,11 @@ namespace draw2d
    }
 
 
-
    void icon::on_update_icon()
    {
 
       if (m_picon == nullptr)
       {
-
-         m_size.cx = 0;
-         m_size.cy = 0;
 
          return;
 
@@ -124,12 +112,7 @@ namespace draw2d
 
 #ifdef WINDOWS_DESKTOP
 
-      auto info = MyGetIconInfo((hicon)m_picon);
-
-      m_size.cx = info.nWidth;
-      m_size.cy = info.nHeight;
-
-      get_image(m_size);
+      m_picon->get_sizes(m_sizea);
 
 #else
 
@@ -144,13 +127,6 @@ namespace draw2d
 
 #endif
 
-      for (auto & size : m_pimagemap->keys())
-      {
-
-         m_sizea.add(size);
-
-      }
-
       m_sizea.pred_sort([](auto & size1, auto & size2)
          {
 
@@ -164,7 +140,51 @@ namespace draw2d
    ::size_i32 icon::get_size()
    {
 
-      return m_size;
+      if (m_sizea.is_empty())
+      {
+
+         return nullptr;
+
+      }
+
+      return m_sizea[0];
+
+   }
+
+
+   image * icon::get_image(const concrete < ::size_i32 > & size)
+   {
+
+      bool bExists;
+
+      __defer_construct_new(m_pimagemap);
+
+      auto & pimage = m_pimagemap->get(size, bExists);
+
+      if (bExists)
+      {
+
+         return pimage;
+
+      }
+
+      if (!m_picon)
+      {
+
+         return nullptr;
+
+      }
+
+      pimage = m_picon->get_image(size);
+
+      if (!pimage)
+      {
+
+         return nullptr;
+
+      }
+
+      return pimage;
 
    }
 
@@ -172,13 +192,12 @@ namespace draw2d
    ::size_i32 icon::get_smaller_size(const ::size_i32 & size)
    {
 
-      if (m_sizea.isEmpty())
+      if (m_sizea.is_empty())
       {
 
          return nullptr;
 
       }
-
 
       ::index iFound = -1;
 

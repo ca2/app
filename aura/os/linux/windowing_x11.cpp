@@ -477,7 +477,7 @@ int_bool x11_get_window_rect(Display * d, Window window, RECTANGLE_I32 * prectan
 
       windowing_output_debug_string("\n::x11_get_window_rect 1.1 (xgetwindowattributes failed)");
 
-      return FALSE;
+      return false;
 
    }
 
@@ -505,7 +505,7 @@ int_bool x11_get_window_rect(Display * d, Window window, RECTANGLE_I32 * prectan
 
    windowing_output_debug_string("\n::x11_get_window_rect 2");
 
-   return TRUE;
+   return true;
 
 }
 
@@ -572,7 +572,7 @@ int_bool release_capture()
 //    if(g_oswindowCapture == nullptr)
 //    {
 
-//       return FALSE;
+//       return false;
 
 //    }
 
@@ -580,7 +580,7 @@ int_bool release_capture()
 
    xdisplay d(x11_get_display());
 
-   int_bool bRet = XUngrabPointer(d, CurrentTime) != FALSE;
+   int_bool bRet = XUngrabPointer(d, CurrentTime) != false;
 
    //if(bRet)
    {
@@ -1544,7 +1544,7 @@ int_bool destroy_window(oswindow window)
 
       bOk = false;
 
-      return FALSE;
+      return false;
 
    }
 
@@ -1621,11 +1621,11 @@ int_bool is_window(oswindow oswindow)
    if(::oswindow_data::s_pdataptra->find_first(oswindow) < 0)
    {
 
-      return FALSE;
+      return false;
 
    }
 
-   return TRUE;
+   return true;
 
 }
 
@@ -3849,7 +3849,7 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
 
                   ::point_i32 point(e.xconfigure.x, e.xconfigure.y);
 
-                  ::size_i32 size_i32(e.xconfigure.width, e.xconfigure.height);
+                  ::size_i32 size(e.xconfigure.width, e.xconfigure.height);
 
                   auto pointWindow = pinteraction->layout().window().screen_origin();
 
@@ -3884,20 +3884,20 @@ bool x11_process_event(osdisplay_data * pdisplaydata, XEvent & e)
                   // This means setting same size_i32 and position to all three sketch and window states.
                   // The buffer may need to be resized so don't mess with current design state.
 
-                  bool bPositionFix = pinteraction->layout().sketch().origin() != point_i32;
+                  bool bPositionFix = pinteraction->layout().sketch().origin() != point;
 
 #ifdef X11_PERMISSIVE_WITH_WINDOW_MANAGERS_THE_LAW_MAKERS_BECAUSE_YEAH_KNOW_WHAT_IS_BETTER_FOR_THE_USER_BUTT_DEV_STAKE_IS_MONEY_MONEY_MONEY_COMMODITY_THEY_ARE_BURNING_VALUE_AND_BURYING_MONEY_AND_TREASURES_BELOW_THE_DEAD_LAKE_OF_AVERAGING_BUT_GOD_WILL_SHAKE_THIS_FOR_LIFE
 
                if(bPositionFix)
                   {
 
-                     pinteraction->layout().sketch().origin() = point_i32;
+                     pinteraction->layout().sketch().origin() = point;
 
-                     pinteraction->layout().window().origin() = point_i32;
+                     pinteraction->layout().window().origin() = point;
 
-                     pinteraction->layout().sketch().screen_origin() = point_i32;
+                     pinteraction->layout().sketch().screen_origin() = point;
 
-                     pinteraction->layout().window().screen_origin() = point_i32;
+                     pinteraction->layout().window().screen_origin() = point;
 
                      pinteraction->set_reposition(true);
 
@@ -4623,7 +4623,7 @@ int_bool get_window_rect(oswindow hwnd, RECTANGLE_I32 * prectangle)
 
       windowing_output_debug_string("\n::get_window_rect 1.1");
 
-      return FALSE;
+      return false;
 
    }
 
@@ -4644,7 +4644,7 @@ int_bool get_client_rect(oswindow window, RECTANGLE_I32 * prectangle)
 
       windowing_output_debug_string("\n::get_client_rect 1.1 (display is null)");
 
-      return FALSE;
+      return false;
 
    }
 
@@ -4655,7 +4655,7 @@ int_bool get_client_rect(oswindow window, RECTANGLE_I32 * prectangle)
 
       windowing_output_debug_string("\n::get_client_rect 1.2 (xgetwindowattributes failed");
 
-      return FALSE;
+      return false;
 
    }
 
@@ -4669,7 +4669,7 @@ int_bool get_client_rect(oswindow window, RECTANGLE_I32 * prectangle)
 
    windowing_output_debug_string("\n::get_client_rect 2");
 
-   return TRUE;
+   return true;
 
 }
 
@@ -4683,7 +4683,7 @@ int_bool ca2_GetClientRect(oswindow window, RECTANGLE_I32 * prectangle)
 
    offset_rect(prectangle, -prectangle->left, -prectangle->top);
 
-   return TRUE;
+   return true;
 
 }
 
@@ -4716,7 +4716,7 @@ int_bool x11_get_cursor_pos(POINT_I32 * ppointCursor)
 
       windowing_output_debug_string("\n::GetCursorPos 1.1");
 
-      return FALSE;
+      return false;
 
    }
 
@@ -4730,7 +4730,7 @@ int_bool x11_get_cursor_pos(POINT_I32 * ppointCursor)
 
    windowing_output_debug_string("\n::GetCursorPos 2");
 
-   return TRUE;
+   return true;
 
 }
 
@@ -4747,7 +4747,7 @@ int_bool GetCursorPos(POINT_I32 * ppointCursor)
 
    });
 
-   return TRUE;
+   return true;
 
 }
 
@@ -5163,7 +5163,7 @@ int_bool set_foregaura_window(oswindow oswindow)
    if(!::is_window(oswindow))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -5185,7 +5185,7 @@ int_bool set_foregaura_window(oswindow oswindow)
 
    });
 
-   return TRUE;
+   return true;
 
 }
 
@@ -5348,7 +5348,7 @@ int_bool set_foreground_window(oswindow oswindow)
    if(!::is_window(oswindow))
    {
 
-      return FALSE;
+      return false;
 
    }
 
@@ -5370,7 +5370,7 @@ int_bool set_foreground_window(oswindow oswindow)
 
    });
 
-   return TRUE;
+   return true;
 
 }
 

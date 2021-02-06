@@ -8,24 +8,24 @@
 #define ALOG_CONTEXT ::trace_object(::trace_category_windowing)
 
 
-
-static oswindow g_oswindowSplash = nullptr;
-
-
-void set_splash(oswindow oswindow)
-{
-
-   g_oswindowSplash = oswindow;
-
-}
-
-
-oswindow get_splash()
-{
-
-   return g_oswindowSplash;
-
-}
+//
+//static oswindow g_oswindowSplash = nullptr;
+//
+//
+//void set_splash(::windowing::window * pwindow)
+//{
+//
+//   g_oswindowSplash = oswindow;
+//
+//}
+//
+//
+//oswindow get_splash()
+//{
+//
+//   return g_oswindowSplash;
+//
+//}
 
 
 

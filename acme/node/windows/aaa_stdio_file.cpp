@@ -155,7 +155,7 @@ namespace windows
    {
       ASSERT_VALID(this);
       ASSERT(m_pStream != nullptr);
-      ASSERT(__is_valid_address(pdata, nCount, FALSE));
+      ASSERT(__is_valid_address(pdata, nCount, false));
 
 
       if (fwrite(pdata, sizeof(byte), (size_t)nCount, m_pStream) != nCount)

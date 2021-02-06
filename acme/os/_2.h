@@ -60,12 +60,7 @@ CLASS_DECL_ACME void press_any_key_to_exit(const char* psz = nullptr);
 //void adapt_font_name(string & str);
 
 
-namespace str
-{
 
-   string CLASS_DECL_ACME get_window_text_timeout(oswindow oswindow, millis tickTimeout = 1000);
-
-} // namespace str
 
 
 //CLASS_DECL_ACME void defer_dock_application(int_bool bDock);
@@ -104,8 +99,8 @@ CLASS_DECL_ACME locale_t get_c_locale();
 
 //#ifdef
 //
-//CLASS_DECL_ACME iptr get_window_long_ptr(oswindow oswindow, int iIndex);
-//CLASS_DECL_ACME iptr set_window_long_ptr(oswindow oswindow, int iIndex, iptr i);
+//CLASS_DECL_ACME iptr get_window_long_ptr(::windowing::window * pwindow, int iIndex);
+//CLASS_DECL_ACME iptr set_window_long_ptr(::windowing::window * pwindow, int iIndex, iptr i);
 
 
 #include "user.h"

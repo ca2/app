@@ -4,7 +4,7 @@
 namespace uwp
 {
 
-#if FALSE
+#if false
    class CLASS_DECL_AXIS registry :
       virtual public ::object
    {

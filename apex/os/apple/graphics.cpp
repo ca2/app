@@ -33,7 +33,7 @@ CGColorRef cg_create_color(color32_t cr)
 int_bool cg_release_color(CGColorRef colorref)
 {
    CGColorRelease(colorref);
-   return TRUE;
+   return true;
 }
 
 
@@ -249,7 +249,7 @@ CTFontRef CreateFontConvertedToFamily(CTFontRef iFont, CFStringRef iFamily)
 //   CFRelease(string);
 //
 //
-//   return TRUE;
+//   return true;
 //
 //
 //}
@@ -281,7 +281,7 @@ CTFontRef CreateFontConvertedToFamily(CTFontRef iFont, CFStringRef iFamily)
 //HFONT CreatePointFont_dup(int nPointSize, const char * pszFaceName, HDC hdc)
 
 //{
-//   return CreatePointBoldFont_dup(nPointSize, pszFaceName, FALSE, hdc);
+//   return CreatePointBoldFont_dup(nPointSize, pszFaceName, false, hdc);
 
 //}
 //
@@ -349,7 +349,7 @@ bool GetImagePixelData(unsigned int * pcr, int cx, int cy, int iScan, CGImageRef
 
    CGRect rectangle_i32 = {{0,0},{(CGFloat)cx,(CGFloat)cy}};
 
-   CGContextDrawImage(cgctx, rectangle_i32, inImage);
+   CGContextDrawImage(cgctx, rectangle, inImage);
 
    void *data = CGBitmapContextGetData (cgctx);
 

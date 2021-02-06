@@ -98,7 +98,7 @@ BOOL freerdp_client_old_parse_hostname(char* str, char** ServerHostname, ::u32* 
 	{
 		/* Either "[...]" or "[...]:..." with at most one : after the brackets */
 		if (!(*ServerHostname = _strdup(str + 1)))
-			return FALSE;
+			return false;
 
 		if ((p = strchr((char*) *ServerHostname, ']')))
 		{
@@ -112,7 +112,7 @@ BOOL freerdp_client_old_parse_hostname(char* str, char** ServerHostname, ::u32* 
 	{
 		/* Port number is cut off and used if exactly one : in the string */
 		if (!(*ServerHostname = _strdup(str)))
-			return FALSE;
+			return false;
 
 		if ((p = strchr((char*) *ServerHostname, ':')) && !strchr(p + 1, ':'))
 		{
@@ -120,7 +120,7 @@ BOOL freerdp_client_old_parse_hostname(char* str, char** ServerHostname, ::u32* 
 			*ServerPort = atoi(p + 1);
 		}
 	}
-	return TRUE;
+	return true;
 }
 
 int freerdp_client_old_process_plugin(rdpSettings* settings, ADDIN_ARGV* args)
@@ -129,7 +129,7 @@ int freerdp_client_old_process_plugin(rdpSettings* settings, ADDIN_ARGV* args)
 	if (strcmp(args->argv[0], "cliprdr") == 0)
 	{
 		args_handled++;
-		settings->RedirectClipboard = TRUE;
+		settings->RedirectClipboard = true;
 		WLog_WARN(TAG,  "--plugin cliprdr -> +clipboard");
 	}
 	else if (strcmp(args->argv[0], "rdpdr") == 0)
@@ -488,7 +488,7 @@ int freerdp_client_parse_old_command_line_arguments(int argc, char** argv, rdpSe
 
 		CommandLineSwitchCase(arg, "0")
 		{
-			settings->ConsoleSession = TRUE;
+			settings->ConsoleSession = true;
 			WLog_WARN(TAG,  "-0 -> /admin");
 		}
 		CommandLineSwitchCase(arg, "a")
@@ -504,7 +504,7 @@ int freerdp_client_parse_old_command_line_arguments(int argc, char** argv, rdpSe
 		}
 		CommandLineSwitchCase(arg, "D")
 		{
-			settings->Decorations = FALSE;
+			settings->Decorations = false;
 			WLog_WARN(TAG,  "-D -> -decorations");
 		}
 		CommandLineSwitchCase(arg, "T")
@@ -521,7 +521,7 @@ int freerdp_client_parse_old_command_line_arguments(int argc, char** argv, rdpSe
 		}
 		CommandLineSwitchCase(arg, "f")
 		{
-			settings->Fullscreen = TRUE;
+			settings->Fullscreen = true;
 			WLog_WARN(TAG,  "-f -> /f");
 		}
 		CommandLineSwitchCase(arg, "g")
@@ -549,7 +549,7 @@ int freerdp_client_parse_old_command_line_arguments(int argc, char** argv, rdpSe
 		}
 		CommandLineSwitchCase(arg, "K")
 		{
-			settings->GrabKeyboard = FALSE;
+			settings->GrabKeyboard = false;
 			WLog_WARN(TAG,  "-K -> -grab-keyboard");
 		}
 		CommandLineSwitchCase(arg, "n")
@@ -560,7 +560,7 @@ int freerdp_client_parse_old_command_line_arguments(int argc, char** argv, rdpSe
 		}
 		CommandLineSwitchCase(arg, "o")
 		{
-			settings->RemoteConsoleAudio = TRUE;
+			settings->RemoteConsoleAudio = true;
 			WLog_WARN(TAG,  "-o -> /audio-mode:1");
 		}
 		CommandLineSwitchCase(arg, "p")
@@ -632,12 +632,12 @@ int freerdp_client_parse_old_command_line_arguments(int argc, char** argv, rdpSe
 		}
 		CommandLineSwitchCase(arg, "z")
 		{
-			settings->CompressionEnabled = TRUE;
+			settings->CompressionEnabled = true;
 			WLog_WARN(TAG,  "-z -> /compression");
 		}
 		CommandLineSwitchCase(arg, "app")
 		{
-			settings->RemoteApplicationMode = TRUE;
+			settings->RemoteApplicationMode = true;
 			WLog_WARN(TAG,  "--app -> /app: + program name or alias");
 		}
 		CommandLineSwitchCase(arg, "ext")
@@ -646,45 +646,45 @@ int freerdp_client_parse_old_command_line_arguments(int argc, char** argv, rdpSe
 		}
 		CommandLineSwitchCase(arg, "no-auth")
 		{
-			settings->Authentication = FALSE;
+			settings->Authentication = false;
 			WLog_WARN(TAG,  "--no-auth -> -authentication");
 		}
 		CommandLineSwitchCase(arg, "authonly")
 		{
-			settings->AuthenticationOnly = TRUE;
+			settings->AuthenticationOnly = true;
 		}
 		CommandLineSwitchCase(arg, "from-stdin")
 		{
-			settings->CredentialsFromStdin = TRUE;
+			settings->CredentialsFromStdin = true;
 		}
 		CommandLineSwitchCase(arg, "no-fastpath")
 		{
-			settings->FastPathInput = FALSE;
-			settings->FastPathOutput = FALSE;
+			settings->FastPathInput = false;
+			settings->FastPathOutput = false;
 			WLog_WARN(TAG,  "--no-fastpath -> -fast-path");
 		}
 		CommandLineSwitchCase(arg, "no-motion")
 		{
-			settings->MouseMotion = FALSE;
+			settings->MouseMotion = false;
 			WLog_WARN(TAG,  "--no-motion -> -mouse-motion");
 		}
 		CommandLineSwitchCase(arg, "gdi")
 		{
 			if (strcmp(arg->Value, "sw") == 0)
-				settings->SoftwareGdi = TRUE;
+				settings->SoftwareGdi = true;
 			else if (strcmp(arg->Value, "hw") == 0)
-				settings->SoftwareGdi = FALSE;
+				settings->SoftwareGdi = false;
 
 			WLog_WARN(TAG,  "--gdi %s -> /gdi:%s", arg->Value, arg->Value);
 		}
 		CommandLineSwitchCase(arg, "no-osb")
 		{
-			settings->OffscreenSupportLevel = FALSE;
+			settings->OffscreenSupportLevel = false;
 			WLog_WARN(TAG,  "--no-osb -> -offscreen-cache");
 		}
 		CommandLineSwitchCase(arg, "no-bmp-cache")
 		{
-			settings->BitmapCacheEnabled = FALSE;
+			settings->BitmapCacheEnabled = false;
 			WLog_WARN(TAG,  "--no-bmp-cache -> -bitmap-cache");
 		}
 		CommandLineSwitchCase(arg, "plugin")
@@ -693,7 +693,7 @@ int freerdp_client_parse_old_command_line_arguments(int argc, char** argv, rdpSe
 		}
 		CommandLineSwitchCase(arg, "rfx")
 		{
-			settings->RemoteFxCodec = TRUE;
+			settings->RemoteFxCodec = true;
 			WLog_WARN(TAG,  "--rfx -> /rfx");
 		}
 		CommandLineSwitchCase(arg, "rfx-mode")
@@ -707,32 +707,32 @@ int freerdp_client_parse_old_command_line_arguments(int argc, char** argv, rdpSe
 		}
 		CommandLineSwitchCase(arg, "nsc")
 		{
-			settings->NSCodec = TRUE;
+			settings->NSCodec = true;
 			WLog_WARN(TAG,  "--nsc -> /nsc");
 		}
 		CommandLineSwitchCase(arg, "disable-wallpaper")
 		{
-			settings->DisableWallpaper = TRUE;
+			settings->DisableWallpaper = true;
 			WLog_WARN(TAG,  "--disable-wallpaper -> -wallpaper");
 		}
 		CommandLineSwitchCase(arg, "composition")
 		{
-			settings->AllowDesktopComposition = TRUE;
+			settings->AllowDesktopComposition = true;
 			WLog_WARN(TAG,  "--composition -> +composition");
 		}
 		CommandLineSwitchCase(arg, "disable-full-window-drag")
 		{
-			settings->DisableFullWindowDrag = TRUE;
+			settings->DisableFullWindowDrag = true;
 			WLog_WARN(TAG,  "--disable-full-window-drag -> -window-drag");
 		}
 		CommandLineSwitchCase(arg, "disable-menu-animations")
 		{
-			settings->DisableMenuAnims = TRUE;
+			settings->DisableMenuAnims = true;
 			WLog_WARN(TAG,  "--disable-menu-animations -> -menu-anims");
 		}
 		CommandLineSwitchCase(arg, "disable-theming")
 		{
-			settings->DisableThemes = TRUE;
+			settings->DisableThemes = true;
 			WLog_WARN(TAG,  "--disable-theming -> -themes");
 		}
 		CommandLineSwitchCase(arg, "ntlm")
@@ -741,51 +741,51 @@ int freerdp_client_parse_old_command_line_arguments(int argc, char** argv, rdpSe
 		}
 		CommandLineSwitchCase(arg, "ignore-certificate")
 		{
-			settings->IgnoreCertificate = TRUE;
+			settings->IgnoreCertificate = true;
 			WLog_WARN(TAG,  "--ignore-certificate -> /cert-ignore");
 		}
 		CommandLineSwitchCase(arg, "sec")
 		{
 			if (ansi_count_compare("rdp", arg->Value, 1) == 0) /* Standard RDP */
 			{
-				settings->RdpSecurity = TRUE;
-				settings->TlsSecurity = FALSE;
-				settings->NlaSecurity = FALSE;
-				settings->UseRdpSecurityLayer = FALSE;
+				settings->RdpSecurity = true;
+				settings->TlsSecurity = false;
+				settings->NlaSecurity = false;
+				settings->UseRdpSecurityLayer = false;
 			}
 			else if (ansi_count_compare("tls", arg->Value, 1) == 0) /* TLS */
 			{
-				settings->RdpSecurity = FALSE;
-				settings->TlsSecurity = TRUE;
-				settings->NlaSecurity = FALSE;
+				settings->RdpSecurity = false;
+				settings->TlsSecurity = true;
+				settings->NlaSecurity = false;
 			}
 			else if (ansi_count_compare("nla", arg->Value, 1) == 0) /* NLA */
 			{
-				settings->RdpSecurity = FALSE;
-				settings->TlsSecurity = FALSE;
-				settings->NlaSecurity = TRUE;
+				settings->RdpSecurity = false;
+				settings->TlsSecurity = false;
+				settings->NlaSecurity = true;
 			}
 
 			WLog_WARN(TAG,  "--sec %s -> /sec:%s", arg->Value, arg->Value);
 		}
 		CommandLineSwitchCase(arg, "no-rdp")
 		{
-			settings->RdpSecurity = FALSE;
+			settings->RdpSecurity = false;
 			WLog_WARN(TAG,  "--no-rdp -> -sec-rdp");
 		}
 		CommandLineSwitchCase(arg, "no-tls")
 		{
-			settings->TlsSecurity = FALSE;
+			settings->TlsSecurity = false;
 			WLog_WARN(TAG,  "--no-tls -> -sec-tls");
 		}
 		CommandLineSwitchCase(arg, "no-nla")
 		{
-			settings->NlaSecurity = FALSE;
+			settings->NlaSecurity = false;
 			WLog_WARN(TAG,  "--no-nla -> -sec-nla");
 		}
 		CommandLineSwitchCase(arg, "secure-checksum")
 		{
-			settings->SaltedChecksum = TRUE;
+			settings->SaltedChecksum = true;
 		}
 		CommandLineSwitchDefault(arg)
 		{

@@ -640,7 +640,7 @@ html_document * html_form::get_document()
 void html_form::_001OnKeyDown(::message::message * pmessage)
 {
    __pointer(::message::key) pkey(pmessage);
-   if(pkey->m_ekey == ::user::key_tab)
+   if(pkey->m_ekey == ::user::e_key_tab)
    {
       pkey->m_bRet = true;
       return;

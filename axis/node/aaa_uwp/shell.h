@@ -285,18 +285,18 @@ namespace uwp
    if(!(*theWindowsShell.m_pfnSHGetPathFromIDList)(pidl, pwszPath))
    {
    free(pwszPath);
-   return FALSE;
+   return false;
    }
    ::str::international::unicode_to_utf8(str, pwszPath);
    free(pwszPath);
-   return TRUE;
+   return true;
    }
    */
 
    /*
    inline bool shell::SHGetPathFromIDList(LPCITEMIDLIST pidl, unichar * pszPath)
    {
-   return (*theWindowsShell.m_pfnSHGetPathFromIDList)(pidl, pszPath) != FALSE;
+   return (*theWindowsShell.m_pfnSHGetPathFromIDList)(pidl, pszPath) != false;
    }
    */
 
@@ -307,7 +307,7 @@ namespace uwp
 
    inline bool shell::FindNextFile(HANDLE handle, WIN32_FIND_DATAW * lpdata)
    {
-      return (*theWindowsShell.m_pfnFindNextFile)(handle, lpdata) != FALSE;
+      return (*theWindowsShell.m_pfnFindNextFile)(handle, lpdata) != false;
    }
 
    inline WCHAR * shell::_fullpath(WCHAR *UserBuf, const WCHAR *path, size_t maxlen)
@@ -323,7 +323,7 @@ namespace uwp
 
    inline bool shell::MoveFile(const unichar * lpExistingFileName, const unichar * lpNewFileName)
    {
-      return (*theWindowsShell.m_pfnMoveFile)(lpExistingFileName, lpNewFileName) != FALSE;
+      return (*theWindowsShell.m_pfnMoveFile)(lpExistingFileName, lpNewFileName) != false;
    }
 
    inline bool shell::GetVolumeInformation(
@@ -344,7 +344,7 @@ namespace uwp
          lpMaximumComponentLength, // maximum file name length
          lpFileSystemFlags,        // file system options
          lpFileSystemNameBuffer,    // file system name buffer
-         nFileSystemNameSize) != FALSE;         // length of file system name buffer
+         nFileSystemNameSize) != false;         // length of file system name buffer
    }
 
    /*
@@ -424,7 +424,7 @@ namespace uwp
    const unichar * lpClassName,
    LPWNDCLASSW lpWndClass)
    {
-   return (*theWindowsShell.m_pfnGetClassInfo)(hInstance, lpClassName, lpWndClass) != FALSE;
+   return (*theWindowsShell.m_pfnGetClassInfo)(hInstance, lpClassName, lpWndClass) != false;
    }
 
    inline ATOM shell::RegisterClass(

@@ -4,7 +4,7 @@
 namespace uwp
 {
 
-#if FALSE
+#if false
    class CLASS_DECL_CORE registry :
       virtual public ::object
    {

@@ -2,7 +2,7 @@
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
 #endif
-#include "_os.h"
+//#include "_os.h"
 #include <stdio.h>
 #include "acme/parallelization/mq.h"
 
@@ -17,7 +17,7 @@ CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
 //static oswindow g_oswindowSplash = nullptr;
 
 
-//void set_splash(oswindow oswindow)
+//void set_splash(::windowing::window * pwindow)
 //{
 //
 //   g_oswindowSplash = oswindow;
@@ -66,26 +66,26 @@ CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
 //   }
 //
 //}
-
-
-
-::user::interaction* oswindow_interaction(oswindow oswindow)
-{
-
-   auto pimpl = oswindow_interaction_impl(oswindow);
-
-   if (::is_null(pimpl))
-   {
-
-      return nullptr;
-
-   }
-
-   return pimpl->m_puserinteraction;
-
-}
-
-
+//
+//
+//
+//::user::interaction* oswindow_interaction(::windowing::window * pwindow)
+//{
+//
+//   auto pimpl = oswindow_interaction_impl(oswindow);
+//
+//   if (::is_null(pimpl))
+//   {
+//
+//      return nullptr;
+//
+//   }
+//
+//   return pimpl->m_puserinteraction;
+//
+//}
+//
+//
 
 
 
@@ -229,7 +229,7 @@ CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
 //
 //
 
-//CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(oswindow oswindow)
+//CLASS_DECL_AURA int_bool mq_remove_window_from_all_queues(::windowing::window * pwindow)
 //{
 //
 //   ::user::interaction * pinteraction = oswindow_interaction(oswindow);
@@ -237,7 +237,7 @@ CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
 //   if(pinteraction == nullptr)
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //
@@ -255,7 +255,7 @@ CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
 //   if(pmq == nullptr)
 //   {
 //
-//      return FALSE;
+//      return false;
 //
 //   }
 //

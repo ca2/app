@@ -56,7 +56,7 @@ namespace windows
       bool bOk = true;
       if(m_hPrinter != nullptr)
       {
-         bOk = ::ClosePrinter(m_hPrinter) != FALSE;
+         bOk = ::ClosePrinter(m_hPrinter) != false;
          m_hPrinter = nullptr;
       }
       return bOk;

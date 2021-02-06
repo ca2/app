@@ -19,7 +19,7 @@ void os_term_imaging()
 CLASS_DECL_AURA int_bool window_set_mouse_cursor(oswindow, HCURSOR hcursor)
 {
 
-   return FALSE;
+   return false;
 
 }
 
@@ -27,7 +27,7 @@ CLASS_DECL_AURA int_bool window_set_mouse_cursor(oswindow, HCURSOR hcursor)
 HCURSOR CreateAlphaCursor(oswindow window, const ::image* pimage, int xHotSpot, int yHotSpot)
 {
 
-   return FALSE;
+   return false;
 
 }
 
@@ -43,7 +43,7 @@ HCURSOR load_default_cursor(e_cursor ecursor)
 int_bool delete_hcursor(HCURSOR hcursor)
 {
 
-   return TRUE;
+   return true;
 
 }
 

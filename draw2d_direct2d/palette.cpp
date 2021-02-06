@@ -30,7 +30,7 @@ namespace draw2d_direct2d
 
       //return Attach(::CreatePalette(lpLogPalette));
 
-      return FALSE;
+      return false;
 
    }
 
@@ -39,7 +39,7 @@ namespace draw2d_direct2d
    {
       //ASSERT(pgraphics != nullptr && (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->get_handle1() != nullptr);
       //return Attach(::CreateHalftonePalette((dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->get_handle1()));
-      return FALSE;
+      return false;
 
    }
    ::u32 palette::GetPaletteEntries(::u32 nStartIndex, ::u32 nNumEntries,
@@ -93,7 +93,7 @@ namespace draw2d_direct2d
       __throw(todo());
 
       //ASSERT(get_os_data() != nullptr);
-      //return ::ResizePalette((HPALETTE)get_os_data(), nNumEntries) != FALSE;
+      //return ::ResizePalette((HPALETTE)get_os_data(), nNumEntries) != false;
    }
 
    int palette::GetEntryCount()

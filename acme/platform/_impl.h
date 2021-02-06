@@ -68,7 +68,7 @@ inline lparam::lparam(const ::matter * p)
 
    ((matter *) p)->add_ref(OBJ_REF_DBG_PTR(&lparam_debug()));
 
-   m_lparam = (lparam)p;
+   m_lparam = (iptr)(void *) p;
 
 }
 

@@ -156,8 +156,8 @@ namespace uwp
       LPDROPFILES pDropFiles = (LPDROPFILES) ::GlobalLock(hglbCopy);
       pDropFiles->pFiles = sizeof(DROPFILES);
       pDropFiles->point.x = pDropFiles->point.y = 0;
-      pDropFiles->fNC = TRUE;
-      pDropFiles->fWide = TRUE; // ANSI charset
+      pDropFiles->fNC = true;
+      pDropFiles->fWide = true; // ANSI charset
 
       ASSERT(m_p->is_window());
       char * lptstrCopy = (char *) pDropFiles;

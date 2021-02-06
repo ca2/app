@@ -113,19 +113,19 @@ int dir_mk(const char * psz)
 int_bool is_absolute_path(const char * psz)
 {
    if(psz == nullptr)
-      return FALSE;
+      return false;
    if(*psz == '\0')
-      return FALSE;
+      return false;
 #ifdef WINDOWS
    if(isalpha(psz[0]) && psz[1] == ':')
-      return TRUE;
+      return true;
    if(psz[0] == '\\' && psz[1] == '\\')
-      return TRUE;
+      return true;
 #else
    if(psz[0] == '/')
-      return TRUE;
+      return true;
 #endif
-   return FALSE;
+   return false;
 
 }
 

@@ -508,7 +508,7 @@ namespace file
 //bool application::output(const ::file::path & pathOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), ::file::file * pfileIn)
 //{
 
-//   return Context.file().output(get_context_application(), pathOut, point_i32, pfnOuput, istream);
+//   return Context.file().output(get_context_application(), pathOut, point, pfnOuput, istream);
 
 //}
 
@@ -517,7 +517,7 @@ namespace file
 //bool application::output(::file::file * pfileOut, T * p, bool (T::*pfnOuput)(::file::file *, ::file::file *), const ::file::path & pathIn)
 //{
 
-//   return Context.file().output(get_context_application(), pfileOut, point_i32, pfnOuput, pathIn);
+//   return Context.file().output(get_context_application(), pfileOut, point, pfnOuput, pathIn);
 
 
 //}
@@ -564,7 +564,7 @@ namespace file
 
 //{
 
-//   return Context.file().output(get_context_application(), os, point_i32, pfnOuput, istream);
+//   return Context.file().output(get_context_application(), os, point, pfnOuput, istream);
 
 
 //}

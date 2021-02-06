@@ -679,7 +679,7 @@ namespace filemanager
       if (iPos >= 0)
       {
 
-         pcommand->enable(TRUE);
+         pcommand->enable(true);
 
          pcommand->m_bRet = true;
 
@@ -820,7 +820,7 @@ namespace filemanager
    //void file_list::_001OnUpdateSpafy2(::message::message * pmessage)
    //{
    //   __pointer(::user::command) pcommand(pmessage);
-   //   pcommand->enable(TRUE);
+   //   pcommand->enable(true);
    //   pmessage->m_bRet = true;
    //}
 
@@ -1774,7 +1774,7 @@ namespace filemanager
 
    //   DBFileSystemSizeSet * pset = pcentral->m_pfilesystemsizeset;
 
-   //   single_lock sl(pset->m_table.mutex(), TRUE);
+   //   single_lock sl(pset->m_table.mutex(), true);
 
    //   for (i32 i = 0; i < fs_list()->m_itema.get_count(); i++)
    //   {

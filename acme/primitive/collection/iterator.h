@@ -11,64 +11,101 @@ public:
    TYPE *         m_p;
 
 
-   random_access_iterator(TYPE * point_i32)
+   random_access_iterator(TYPE * p)
    {
-      m_p = point_i32;
+
+      m_p = p;
+
    }
+
 
    random_access_iterator(const random_access_iterator & it)
    {
+
       operator = (it);
+
    }
 
 
    random_access_iterator & operator = (const random_access_iterator & it)
    {
+
       m_p = it.m_p;
+
       return *this;
+
    }
+
 
    bool operator == (const random_access_iterator & it)
    {
+
       return m_p == it.m_p;
+
    }
+
 
    bool operator != (const random_access_iterator & it)
    {
+
       return !operator==(it);
+
    }
+
 
    random_access_iterator operator ++(int)
    {
+
       random_access_iterator it = *this;
+
       operator ++();
+
       return it;
+
    }
+
 
    random_access_iterator operator --(int)
    {
+
       random_access_iterator it = *this;
+
       operator --();
+
       return it;
+
    }
+
 
    random_access_iterator & operator ++()
    {
+
       m_p++;
+
       return *this;
+
    }
+
 
    random_access_iterator & operator +(iptr i)
    {
+
       m_p += i;
+
       return *this;
+
    }
+
 
    random_access_iterator & operator --()
    {
+
       m_p--;
+
       return *this;
+
    }
+
 
    random_access_iterator & operator -(iptr c)
    {
@@ -103,68 +140,108 @@ public:
 
    const TYPE *            m_p;
 
-   const_random_access_iterator(const TYPE * point_i32)
+   const_random_access_iterator(const TYPE * p)
    {
-      m_p = point_i32;
+      
+      m_p = p;
+
    }
 
    const_random_access_iterator(const random_access_iterator < TYPE > & it)
    {
+
       operator = (it);
+
    }
+
 
    const_random_access_iterator(const const_random_access_iterator & it)
    {
+
       operator = (it);
+
    }
+
 
    const_random_access_iterator & operator = (const random_access_iterator < TYPE > & it)
    {
+
       m_p = it.m_p;
+
       return *this;
+
    }
+
 
    const_random_access_iterator & operator = (const const_random_access_iterator & it)
    {
+
       m_p = it.m_p;
+
       return *this;
+
    }
+
 
    bool operator == (const const_random_access_iterator & it)
    {
+
       return m_p == it.m_p;
+
    }
+
 
    bool operator != (const const_random_access_iterator & it)
    {
+
       return !operator==(it);
+
    }
+
 
    const_random_access_iterator operator ++(int)
    {
+
       const_random_access_iterator it = *this;
+
       operator ++();
+
       return it;
+
    }
+
 
    const_random_access_iterator operator --(int)
    {
+
       const_random_access_iterator it = *this;
+
       operator --();
+
       return it;
+
    }
+
 
    const_random_access_iterator & operator ++()
    {
+
       m_p++;
+
       return *this;
+
    }
+
 
    const_random_access_iterator & operator +(iptr i)
    {
+
       m_p += i;
+
       return *this;
+
    }
+
 
    const_random_access_iterator & operator --()
    {

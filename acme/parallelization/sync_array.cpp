@@ -287,14 +287,14 @@ sync_result sync_array::wait(bool waitForAll, const duration & duration, bool bW
       //      {
       //         if(m_waitableelementa[position].m_psynccallback)
       //         {
-      //            i32 res = ::WaitForSingleObjectEx(m_synca[position], 0, FALSE);
+      //            i32 res = ::WaitForSingleObjectEx(m_synca[position], 0, false);
 
       //            if ( res != WAIT_TIMEOUT )
       //               m_waitableelementa[position].m_psynccallback->on_sync(m_waitableelementa[position].m_psync);
       //         }
       //         else if(!FoundExternal)
       //         {
-      //            i32 res = ::WaitForSingleObjectEx(m_synca[position], 0, FALSE);
+      //            i32 res = ::WaitForSingleObjectEx(m_synca[position], 0, false);
 
       //            if ( res != WAIT_TIMEOUT )
       //            {
@@ -337,7 +337,7 @@ sync_result sync_array::contains( const sync_result& result ) const
    //{
    //   if(!m_waitableelementa[position].m_psynccallback)
    //   {
-   //      i32 res = ::WaitForSingleObjectEx(m_synca[position], 0, FALSE);
+   //      i32 res = ::WaitForSingleObjectEx(m_synca[position], 0, false);
    //      if ( res == WAIT_TIMEOUT )
    //         continue;
    //      return sync_result( static_cast<i32>(position), m_synca.get_size() );

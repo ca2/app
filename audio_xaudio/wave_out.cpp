@@ -53,7 +53,7 @@ namespace multimedia
       ::e_status     out::out_open_ex(thread * pthreadCallback, u32 uiSamplesPerSec, u32 uiChannelCount, u32 uiBitsPerSample, ::wave::e_purpose epurpose)
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          if(m_pxaudio.is_set() && m_pvoice != nullptr && m_psourcevoice != nullptr && m_estate != e_state_initial)
             return ::success;
@@ -176,7 +176,7 @@ namespace multimedia
       ::e_status     out::out_close()
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          if(m_estate == e_state_playing)
          {
@@ -303,7 +303,7 @@ namespace multimedia
          b.pAudioData = (const byte *)pbuffer->m_pData;
          b.Flags = m_bEOS ? XAUDIO2_END_OF_STREAM : 0;
 
-         //single_lock sLock(mutex(),TRUE);
+         //single_lock sLock(mutex(),true);
 
 #if 0
 
@@ -346,7 +346,7 @@ namespace multimedia
       ::e_status     out::out_stop()
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          if(m_estate != e_state_playing && m_estate != e_state_paused)
             return error_failed;
@@ -377,7 +377,7 @@ namespace multimedia
       ::e_status     out::out_pause()
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          ASSERT(m_estate == e_state_playing);
 
@@ -446,7 +446,7 @@ namespace multimedia
       ::e_status     out::out_restart()
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
          ASSERT(m_estate == e_state_paused);
 
@@ -477,7 +477,7 @@ namespace multimedia
       imedia_time out::out_get_time()
       {
 
-         single_lock sLock(mutex(), TRUE);
+         single_lock sLock(mutex(), true);
 
 //         ::e_status                    estatus;
 
@@ -512,7 +512,7 @@ namespace multimedia
 //      imedia_time out::out_get_time()
 //      {
 //
-//         single_lock sLock(mutex(), TRUE);
+//         single_lock sLock(mutex(), true);
 //
 ////         ::e_status                    estatus;
 //

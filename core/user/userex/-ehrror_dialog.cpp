@@ -39,8 +39,8 @@ namespace userex
       }
       // TODO: add extra initialization here*/
 
-      return TRUE;  // return TRUE unless you set the focus to a control
-      // EXCEPTION: OCX Property Pages should return FALSE
+      return true;  // return true unless you set the focus to a control
+      // EXCEPTION: OCX Property Pages should return false
    }
 
 

@@ -44,7 +44,7 @@ namespace aura
 
          {
             rString.Empty();        // return is_empty string as well
-            return FALSE;
+            return false;
          }
          pszFullString++;       // point past the separator
 
@@ -62,7 +62,7 @@ namespace aura
 
       rString.release_string_buffer();   // Need to call ReleaseBuffer after calling get_string_buffer
 
-      return TRUE;
+      return true;
 
    }
 
@@ -341,7 +341,7 @@ CLASS_DECL_AURA::aura::system * aura_create_aura_system()
 //   if (g_iAuraRefCount >= 1)
 //   {
 //
-//      return TRUE;
+//      return true;
 //
 //   }
 //
@@ -353,7 +353,7 @@ CLASS_DECL_AURA::aura::system * aura_create_aura_system()
 //
 //   aura_term();
 //
-//   return TRUE;
+//   return true;
 //
 //}
 

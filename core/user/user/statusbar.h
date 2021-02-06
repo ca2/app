@@ -64,7 +64,7 @@ namespace user
       // specific to status_bar
       void GetPaneText(i32 nIndex, string & rString);
       string GetPaneText(i32 nIndex);
-      bool SetPaneText(i32 nIndex, const char * pszNewText, bool bUpdate = TRUE);
+      bool SetPaneText(i32 nIndex, const char * pszNewText, bool bUpdate = true);
 
       void GetPaneInfo(i32 nIndex, id & id, ::u32& nStyle, i32& cxWidth);
       void SetPaneInfo(i32 nIndex, id id, ::u32 nStyle, i32 cxWidth);

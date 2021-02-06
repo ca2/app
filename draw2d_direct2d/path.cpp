@@ -56,7 +56,7 @@ namespace draw2d_direct2d
    bool path::internal_add_arc(::draw2d::graphics* pgraphics, const ::arc & arc)
    {
 
-      ::point_f64 point_i32;
+      ::point_f64 point;
 
       D2D1_ARC_SEGMENT arcseg;
 
@@ -450,7 +450,7 @@ namespace draw2d_direct2d
    bool path::_set(::draw2d::graphics * pgraphics, const ::arc & arc)
    {
 
-      //::rectangle_f64 rectangle_i32;
+      //::rectangle_f64 rectangle;
 
       //rectangle.left      = (::i32) (arc.m_pointCenter.x - arc.m_sizeRadius.cx);
       //rectangle.right     = (::i32) (arc.m_pointCenter.x + arc.m_sizeRadius.cx);
@@ -637,7 +637,7 @@ namespace draw2d_direct2d
    //bool path::_set(::draw2d::graphics* pgraphics, ::draw2d::path::close* pclose)
    //{
 
-   //   //::rectangle_f64 rectangle_i32;
+   //   //::rectangle_f64 rectangle;
 
    //   //rectangle.left      = (::i32) (arc.m_pointCenter.x - arc.m_sizeRadius.cx);
    //   //rectangle.right     = (::i32) (arc.m_pointCenter.x + arc.m_sizeRadius.cx);
@@ -856,7 +856,7 @@ _In_opt_ void* clientDrawingContext,
 _Out_ BOOL* isDisabled
 )
 {
-   *isDisabled = FALSE;
+   *isDisabled = false;
    return S_OK;
 }
 

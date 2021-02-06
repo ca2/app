@@ -126,7 +126,7 @@ bool image_list::draw(::draw2d::graphics* pgraphics, i32 iImage, const ::point_f
       UNREFERENCED_PARAMETER(iFlag);
 
       return pgraphics->draw(
-         rectangle_f64( point_i32, m_size ),
+         rectangle_f64(point, m_size ),
          m_pimage, 
          point_f64((double) (iImage * m_size.cx), 0.));
 
@@ -149,10 +149,14 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 
    UNREFERENCED_PARAMETER(iFlag);
 
-   if(alpha == 255)
-      return draw(pgraphics, iImage, point_i32, iFlag);
+   if (alpha == 255)
+   {
 
-   return System.imaging().color_blend(pgraphics, point_i32, m_size, m_pimage->g(), ::point_i32(iImage * m_size.cx, 0), alpha / 255.0);
+      return draw(pgraphics, iImage, point, iFlag);
+
+   }
+
+   return System.imaging().color_blend(pgraphics, point, m_size, m_pimage->g(), ::point_i32(iImage * m_size.cx, 0), alpha / 255.0);
 
 }
 
@@ -193,18 +197,18 @@ bool image_list::draw(::draw2d::graphics * pgraphics, i32 iImage, const ::point_
 }
 
 
-i32 image_list::add_icon_os_data(void * p, int iItem)
-{
-
-   ::draw2d::icon icon;
-
-   icon.initialize(this);
-
-   icon.attach_os_data(p, false);
-
-   return add(&icon, iItem);
-
-}
+//i32 image_list::add_icon_os_data(void * p, int iItem)
+//{
+//
+//   ::draw2d::icon icon;
+//
+//   icon.initialize(this);
+//
+//   icon.attach_os_data(p, false);
+//
+//   return add(&icon, iItem);
+//
+//}
 
 
 i32 image_list::reserve_image(int iItem)
@@ -248,7 +252,7 @@ i32 image_list::add(::draw2d::icon * picon, int iItem)
 
    iItem = reserve_image(iItem);
 
-   auto rectangle_i32 = ::rectd_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
+   auto rectangle = ::rectd_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
    
    m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
 
@@ -276,27 +280,84 @@ i32 image_list::add(::draw2d::icon * picon, int iItem)
 }
 
 
+i32 image_list::add(::windowing::icon * picon, int iItem)
+{
+
+   if (is_null(picon))
+   {
+
+      return -1;
+
+   }
+
+   sync_lock sl(mutex());
+
+   iItem = reserve_image(iItem);
+
+   auto rectangle = ::rectd_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
+
+   m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_set);
+
+   m_pimage->g()->fill_rect(rectangle, 0);
+
+   auto pointDst = ::point_f64((iItem * m_size.cx), 0.);
+
+   auto sizeDst = m_size;
+
+   auto rectDst = ::rectangle_f64(pointDst, sizeDst);
+
+   auto pdraw2dicon = __create < ::draw2d::icon >();
+
+   m_pimage->get_graphics()->draw(rectDst, pdraw2dicon);
+
+   return iItem;
+
+}
+
+
 i32 image_list::add_icon(::payload varFile, int iItem)
 {
 
-   ::draw2d::icon icon;
+   auto picon = __create < ::windowing::icon >();
 
-   icon.initialize(this);
+   if (!picon)
+   {
 
-#ifdef WINDOWS_DESKTOP
+      return -1;
 
-   i32 iSize = min(m_size.cx, m_size.cy);
+   }
 
-   ::file::path path = varFile.get_file_path();
+   if (!picon->load_file(varFile))
+   {
 
-   path = Context.defer_process_matter_path(path);
+      return -1;
 
-   icon.attach_os_data((hicon) ::LoadImageW(nullptr, wstring(path)
-      , IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE));
+   }
 
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//   i32 iSize = min(m_size.cx, m_size.cy);
+//
+//   ::file::path path = varFile.get_file_path();
+//
+//   path = Context.defer_process_matter_path(path);
+//
+//   icon.attach_os_data((hicon) ::LoadImageW(nullptr, wstring(path)
+//      , IMAGE_ICON, iSize, iSize, LR_LOADFROMFILE));
+//
+//#endif
+//
+   
+   auto iIcon = add(picon);
+   
+   if(iIcon < -1)
+   {
 
-   return add(&icon);
+      return -1;
+
+   }
+
+   return iIcon;
 
 }
 
@@ -357,7 +418,7 @@ i32 image_list::add_image(::image * pimage, int x, int y, int iItem)
 
    m_pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-   auto rectangle_i32 = rectd_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
+   auto rectangle = rectd_dim(iItem * m_size.cx, 0, m_size.cx, m_size.cy);
 
    m_pimage->get_graphics()->fill_rect(rectangle, ARGB(0, 0, 0, 0));
 

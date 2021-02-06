@@ -27,9 +27,9 @@
 //   mq();
 //   virtual ~mq();
 //
-//   int_bool peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
-//   int_bool get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
-//   int_bool post_message(oswindow oswindow, ::u32 uMessage, wparam wParam, lparam lParam);
+//   int_bool peek_message(MESSAGE * pMsg, ::windowing::window * pwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
+//   int_bool get_message(MESSAGE * pMsg, ::windowing::window * pwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+//   int_bool post_message(::windowing::window * pwindow, ::u32 uMessage, wparam wParam, lparam lParam);
 //   int_bool post_message(const MESSAGE & message);
 //
 //
@@ -42,9 +42,9 @@
 
 
 //CLASS_DECL_AURA int_bool mq_post_thread_message(ithread_t idthread, const ::id & id, wparam wparam, lparam lparam);
-CLASS_DECL_AURA int_bool mq_post_message(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam);
-//CLASS_DECL_AURA int_bool mq_peek_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
-//CLASS_DECL_AURA int_bool mq_get_message(MESSAGE * pMsg, oswindow oswindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
+CLASS_DECL_AURA int_bool mq_post_message(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam);
+//CLASS_DECL_AURA int_bool mq_peek_message(MESSAGE * pMsg, ::windowing::window * pwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax, ::u32 wRemoveMsg);
+//CLASS_DECL_AURA int_bool mq_get_message(MESSAGE * pMsg, ::windowing::window * pwindow, ::u32 wMsgFilterMin, ::u32 wMsgFilterMax);
 
 
 

@@ -32,7 +32,7 @@ namespace user
       if (m_puiOther != nullptr)
       {
 
-         m_puiOther->enable_window(bOn != FALSE);
+         m_puiOther->enable_window(bOn != false);
 
       }
 

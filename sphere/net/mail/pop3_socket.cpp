@@ -28,7 +28,7 @@ namespace mail
 	   switch (m_estate)
 	   {
 	   case state_disconnected:
-         stra.add_tokens(strLine, " ", TRUE);
+         stra.add_tokens(strLine, " ", true);
          if(stra.get_size() > 0 && stra[0] == "+OK")
          {
             if(m_bTls)
@@ -45,7 +45,7 @@ namespace mail
          }
 		   break;
 	   case state_auth_1:
-         stra.add_tokens(strLine, " ", TRUE);
+         stra.add_tokens(strLine, " ", true);
          if(stra.get_size() > 0 && stra[0] == "+OK")
          {
             m_bTls = true;
@@ -65,7 +65,7 @@ namespace mail
          }
 		   break;
 	   case state_auth_2:
-         stra.add_tokens(strLine, " ", TRUE);
+         stra.add_tokens(strLine, " ", true);
          if(stra.get_size() > 0 && stra[0] == "+OK")
          {
             m_estate = state_transaction;
@@ -77,7 +77,7 @@ namespace mail
          }
 		   break;
 	   case state_transaction:
-         stra.add_tokens(strLine, " ", TRUE);
+         stra.add_tokens(strLine, " ", true);
          if(stra.get_size() > 0 && stra[0] == "+OK")
          {
             m_estate = state_listmessages_start;
@@ -85,7 +85,7 @@ namespace mail
          }
 		   break;
 	   case state_listmessages_start:
-         stra.add_tokens(strLine, " ", TRUE);
+         stra.add_tokens(strLine, " ", true);
          if(stra.get_size() > 0 && stra[0] == "+OK")
          {
             m_estate = state_listmessages;
@@ -103,13 +103,13 @@ namespace mail
          }
          else
          {
-            stra.add_tokens(strLine, " ", TRUE);
+            stra.add_tokens(strLine, " ", true);
             m_ppop3->m_straIndex.add(stra[0]);
             m_ppop3->m_straId.add(stra[1]);
          }
 		   break;
 	   case state_receive_message:
-         stra.add_tokens(strLine, " ", TRUE);
+         stra.add_tokens(strLine, " ", true);
          if(stra.get_size() > 0 && stra[0] == "+OK")
          {
                m_estate = state_receive_headers;

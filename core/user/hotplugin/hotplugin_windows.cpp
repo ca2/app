@@ -149,7 +149,7 @@ namespace hotplugin
 
    //rectBar.left += 4;
 
-   //HFONT hFont = CreateFont(23,0,0,0,FW_DONTCARE,FALSE,FALSE,FALSE,DEFAULT_CHARSET,OUT_OUTLINE_PRECIS,
+   //HFONT hFont = CreateFont(23,0,0,0,FW_DONTCARE,false,false,false,DEFAULT_CHARSET,OUT_OUTLINE_PRECIS,
    //   CLIP_DEFAULT_PRECIS,CLEARTYPE_QUALITY,VARIABLE_PITCH,TEXT("Calibri"));
    //HFONT hfontOld = (HFONT) ::SelectObject(hdc,hFont);
 

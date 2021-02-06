@@ -135,7 +135,7 @@ namespace file
    bool RefreshWatch(watch_struct* pWatch, bool _clear)
    {
    	return ReadDirectoryChangesW(
-   		pWatch->m_hDirectory, pWatch->m_buffer, sizeof(pWatch->m_buffer), FALSE,
+   		pWatch->m_hDirectory, pWatch->m_buffer, sizeof(pWatch->m_buffer), false,
    		pWatch->m_dwNotify, nullptr, &pWatch->m_overlapped, _clear ? 0 : WatchCallback) != 0;
    }*/
 

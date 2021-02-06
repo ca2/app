@@ -58,7 +58,7 @@ namespace draw2d
       virtual bool CreateLinearGradientBrush(const point_i32 & point1, const point_i32 & point2, const color & color1, const color & color2);
       virtual bool CreateRadialGradientBrush(const ::point_i32 & point,size_i32 s,const color & color1,const color & color2);
       virtual bool CreateLinearGradientBrush(point_f64 point1,point_f64 point2,const color & color1,const color & color2);
-      virtual bool CreateRadialGradientBrush(point_f64 point_i32,size_f64 s,const color & color1,const color & color2);
+      virtual bool CreateRadialGradientBrush(point_f64 point,size_f64 s,const color & color1,const color & color2);
 
       //virtual i32 GetLogBrush(LOGBRUSH* pLogBrush);
 

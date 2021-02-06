@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace user
@@ -16,9 +16,9 @@ namespace user
       index                                     m_iSoftwareKeyboardEventId;
 
 
-      ::i32_map < ::user::e_key >              m_mapExt;
-      ::i32_map < ::user::e_key >              m_mapScan;
-      ::i32_map < ::user::e_key >              m_mapKey;
+      ::i32_map < ::user::enum_key >              m_mapExt;
+      ::i32_map < ::user::enum_key >              m_mapScan;
+      ::i32_map < ::user::enum_key >              m_mapKey;
       //__pointer(keyboard_layout)                    m_playout;
 
       keyboard();
@@ -32,7 +32,7 @@ namespace user
 
       //string process_key(key * pkey);
 
-      //string process_key(::user::e_key ekey);
+      //string process_key(::user::enum_key ekey);
 
       //string process_char(const char * pszChar);
 

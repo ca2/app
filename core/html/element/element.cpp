@@ -963,7 +963,7 @@ namespace html
       }
       else
       {
-         ASSERT(FALSE);
+         ASSERT(false);
       }
    }
 
@@ -1314,7 +1314,7 @@ namespace html
 
       double dMin = -1.0;
 
-      return bound_hit_test(pdata, point_i32, dMin);
+      return bound_hit_test(pdata, point, dMin);
 
    }
 
@@ -1335,7 +1335,7 @@ namespace html
             for (i32 i = 0; i < m_elementalptra.get_size(); i++)
             {
 
-               element * pelemental = m_elementalptra[i]->bound_hit_test(pdata, point_i32, dMin);
+               element * pelemental = m_elementalptra[i]->bound_hit_test(pdata, point, dMin);
 
                if (pelemental != nullptr)
                {

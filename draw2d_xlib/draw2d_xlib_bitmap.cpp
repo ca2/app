@@ -213,7 +213,7 @@ namespace draw2d_xlib
 
    bool bitmap::CreateDIBitmap(::draw2d::graphics * pgraphics, const BITMAPINFOHEADER *pbmih, ::u32 flInit, const void *pjBits, const BITMAPINFO *pbmi, ::u32 iUsage)
    {
-      return FALSE;
+      return false;
    }
 
 
@@ -233,7 +233,7 @@ namespace draw2d_xlib
    {
    //   return Attach(::LoadBitmap(::aura::FindResourceHandle(
    //lpszResourceName, RT_BITMAP), lpszResourceName));
-      return FALSE;
+      return false;
 
    }
 
@@ -263,12 +263,12 @@ namespace draw2d_xlib
    bool bitmap::LoadBitmap(::u32 nIDResource)
    {
       //return Attach(::LoadBitmap(::aura::FindResourceHandle(MAKEINTRESOURCE(nIDResource), RT_BITMAP), MAKEINTRESOURCE(nIDResource)));
-      return FALSE;
+      return false;
    }
    bool bitmap::LoadOEMBitmap(::u32 nIDBitmap)
    {
       //return Attach(::LoadBitmap(nullptr, MAKEINTRESOURCE(nIDBitmap)));
-      return FALSE;
+      return false;
    }
    bool bitmap::CreateCompatibleBitmap(::draw2d::graphics * pgraphics, i32 cx, i32 cy)
    {
@@ -305,7 +305,7 @@ namespace draw2d_xlib
       m_pbitmap = new ::Gdiplus::Bitmap(nWidth, nHeight, Gdiplus::PixelOffsetModeHighQuality);
 */
 
-//      return TRUE;
+//      return true;
 
    }
    bool bitmap::CreateDiscardableBitmap(::draw2d::graphics * pgraphics, i32 nWidth, i32 nHeight)

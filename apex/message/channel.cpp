@@ -128,8 +128,8 @@ __pointer(::message::base) channel::get_message_base(MESSAGE * pmessage)
    auto pmessagebase = __new(::message::base);
 
    pmessagebase->set(
-      pmessage->hwnd, 
-      System.get_layered_window(pmessage->hwnd),
+      pmessage->oswindow, 
+      nullptr,
       pmessage->message, 
       pmessage->wParam, 
       pmessage->lParam);
@@ -139,7 +139,7 @@ __pointer(::message::base) channel::get_message_base(MESSAGE * pmessage)
 }
 
 
-//__pointer(::message::base) channel::get_message_base(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam)
+//__pointer(::message::base) channel::get_message_base(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam)
 //{
 //
 //   if (id.m_etype != ::id::e_type_message)

@@ -763,7 +763,7 @@ namespace html
             //   if (m_pelemental->get_color(cr, ::user::color_background, pdata->m_pcoredata->m_pform))
             //   {
 
-            //      App(pdata->get_context_application()).imaging().color_blend(pgraphics, rectangle_i32, cr, max(0, min(255, (byte)(d * 255))));
+            //      App(pdata->get_context_application()).imaging().color_blend(pgraphics, rectangle, cr, max(0, min(255, (byte)(d * 255))));
 
             //   }
 

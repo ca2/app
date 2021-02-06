@@ -104,7 +104,7 @@ namespace user
       virtual double get_output_fps();
 
 
-      __pointer(::message::base) get_message_base(oswindow oswindow, const ::id & id, wparam wparam, lparam lparam);
+      __pointer(::message::base) get_message_base(const ::id & id, wparam wparam, lparam lparam);
 
 
       virtual ::user::interaction* get_host_window() const;
@@ -156,7 +156,7 @@ namespace user
 
       virtual bool set_icon(::draw2d::icon * picon, bool bSmall);
 
-      virtual void default_message_handler(::message::message * pmessage);
+      virtual void default_message_handler(::message::base * pbase);
 
       virtual void message_handler(::message::base * pbase);
 
@@ -168,9 +168,11 @@ namespace user
 
       virtual double _001GetTopLeftWeightedOccludedOpaqueRate();
 
-      virtual e_cursor get_cursor();
+      virtual enum_cursor get_cursor();
 
-      virtual bool set_cursor(e_cursor ecursor);
+      virtual ::e_status set_cursor(enum_cursor ecursor);
+
+      virtual ::e_status set_cursor(::windowing::cursor * pcursor);
 
       virtual ::point_i32 get_cursor_pos() const;
 
@@ -403,22 +405,10 @@ namespace user
 #endif
 
 
-      virtual bool SetCapture(::user::interaction * pinteraction = nullptr);
-      virtual bool ReleaseCapture();
-      virtual ::user::interaction * GetCapture();
 
+      //virtual ::e_status set_foreground_window();
 
       
-
-
-
-      virtual bool has_focus();
-      virtual bool SetFocus();
-      virtual bool SetForegroundWindow();
-      virtual bool is_active();
-      virtual ::user::interaction * GetActiveWindow();
-      virtual ::user::interaction * SetActiveWindow();
-
 
       virtual void edit_on_set_focus(::user::interaction* pinteraction);
       virtual void edit_on_kill_focus(::user::interaction* pinteraction);
@@ -434,8 +424,7 @@ namespace user
 
       //virtual bool _is_window_visible();
       virtual bool is_this_visible(enum_layout elayout);
-      virtual bool is_window_enabled() const;
-      virtual bool is_this_enabled() const;
+      //virtual bool is_window_enabled() const;
 
 
 
@@ -529,11 +518,13 @@ namespace user
       virtual void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      oswindow get_safe_handle() const;
-      virtual oswindow get_handle() const override;
-      virtual bool attach(oswindow oswindow_New);
+      oswindow get_safe_oswindow() const;
+      virtual oswindow get_oswindow() const override;
+      //virtual bool attach(::windowing::window * pwindow_New);
       virtual oswindow detach();
 
+
+      virtual windowing::window * get_window() const;
       
       virtual ::size_f64 _001CalculateFittingSize(::draw2d::graphics_pointer & pgraphics);
       virtual ::size_f64 _001CalculateAdjustedFittingSize(::draw2d::graphics_pointer & pgraphics);
@@ -680,6 +671,9 @@ namespace user
 
 
 
+
+
+
       virtual void set_need_redraw(bool bAscendants = true);
       virtual void set_need_load_form_data();
       virtual void set_need_save_form_data();
@@ -765,7 +759,7 @@ namespace user
       virtual void on_text_composition(string str);
       virtual void on_text_commit(string str);
       virtual void on_text_composition_done();
-      virtual bool is_text_composition_active();
+      //virtual bool is_text_composition_active();
 
       virtual void set_input_content_rect(const rectangle_i32& rectangle);
       virtual void set_input_selection_rect(const rectangle_i32& rectangle);
@@ -812,7 +806,7 @@ namespace user
 
 
 
-   inline oswindow primitive::get_safe_handle() const
+   inline oswindow primitive::get_safe_oswindow() const
    {
 
       if (::is_null(this))
@@ -822,7 +816,7 @@ namespace user
 
       }
 
-      return get_handle();
+      return get_oswindow();
 
    }
 

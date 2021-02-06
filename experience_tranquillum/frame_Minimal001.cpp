@@ -243,11 +243,11 @@ SizingNone:;
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(rectClient, rectangle_i32, eside);
+                  GetBorderRect(rectClient, rectangle, eside);
 
                   class imaging & imaging = System.imaging();
 
-                  imaging.color_blend(pgraphics, rectangle_i32, colorMoveableBorder, 127);
+                  imaging.color_blend(pgraphics, rectangle, colorMoveableBorder, 127);
 
                }
                /*else if(m_estyle == StyleLightBlue)
@@ -255,12 +255,12 @@ SizingNone:;
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(rectClient, rectangle_i32, eside);
+                  GetBorderRect(rectClient, rectangle, eside);
 
 
                   class imaging & imaging = System.imaging();
 
-                  imaging.color_blend(pgraphics, rectangle_i32, crMoveableBorder, 127);
+                  imaging.color_blend(pgraphics, rectangle, crMoveableBorder, 127);
 
 
 
@@ -285,11 +285,11 @@ SizingNone:;
 
                   ::rectangle_i32 rectangle;
 
-                  GetBorderRect(rectClient, rectangle_i32, eside);
+                  GetBorderRect(rectClient, rectangle, eside);
 
                   class imaging & imaging = System.imaging();
 
-                  imaging.color_blend(pgraphics, rectangle_i32, colorMoveableBorder, 127);
+                  imaging.color_blend(pgraphics, rectangle, colorMoveableBorder, 127);
 
                }
 
@@ -426,7 +426,7 @@ SizingNone:;
                   rectangle.top = rectSmall.bottom;
                   rectangle.bottom = rectBig.bottom;
                }
-               *prectangle = rectangle_i32;
+               *prectangle = rectangle;
 
             }
 

@@ -865,7 +865,7 @@ namespace imaging_wic
             if (SUCCEEDED(hr))
             {
 
-               pframe->m_bTransparent = propValue.boolVal != FALSE;
+               pframe->m_bTransparent = propValue.boolVal != false;
 
             }
 

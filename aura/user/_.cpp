@@ -1,4 +1,4 @@
-﻿#include "framework.h"
+#include "framework.h"
 #if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
 #endif
@@ -27,14 +27,14 @@ CLASS_DECL_AURA::e_status message_box(::user::primitive* puiOwner, const char* p
 
 
 
-CLASS_DECL_AURA ::user::primitive * __user_primitive(oswindow oswindow)
-{
-
-   ::user::primitive * pprimitive = System.ui_from_handle(oswindow);
-
-   return pprimitive;
-
-}
+//CLASS_DECL_AURA ::user::primitive * __user_primitive(::windowing::window * pwindow)
+//{
+//
+//   ::user::primitive * pprimitive = System.ui_from_handle(oswindow);
+//
+//   return pprimitive;
+//
+//}
 
 
 

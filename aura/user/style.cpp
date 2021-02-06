@@ -119,24 +119,24 @@ namespace user
          return ARGB(255, 34, 54, 75);
          break;
       case StyleBlackBorder:
-         return RGB(116, 160, 220) | 0xff000000;
+         return ARGB(255, 116, 160, 220) | 0xff000000;
       case StyleLightGreen:
       case StyleTranslucidLightGreen:
-         return RGB(116, 220, 160) | 0xff000000;
+         return ARGB(255, 116, 220, 160) | 0xff000000;
       case StyleRedOrange:
-         return RGB(255, 170, 136) | 0xff000000;
+         return ARGB(255, 255, 170, 136) | 0xff000000;
       case StyleBlueRedPurple:
-         return RGB(200, 100, 220) | 0xff000000;
+         return ARGB(255, 200, 100, 220) | 0xff000000;
       case StyleEveningSun:
-         return RGB(255, 210, 100) | 0xff000000;
+         return ARGB(255, 255, 210, 100) | 0xff000000;
       case StyleTranslucidWarmLiteGray:
-         return RGB(239, 230, 219) | 0xff000000;
+         return ARGB(255, 239, 230, 219) | 0xff000000;
       default:
-         return RGB(200, 100, 220) | 0xff000000;
+         return ARGB(255, 200, 100, 220) | 0xff000000;
       }
 
       // Light Green/Translucid Light Green
-      return RGB(116, 220, 160) | 0xff000000;
+      return ARGB(255, 116, 220, 160) | 0xff000000;
 
    }
 
@@ -298,13 +298,13 @@ namespace user
 
             }
 
-#ifdef WINDOWS_DESKTOP
-
-            oswindow hwndFocus = ::get_focus();
-
-            oswindow hwndThis = pinteraction->get_handle();
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//            oswindow hwndFocus = ::get_focus();
+//
+//            oswindow hwndThis = pinteraction->get_handle();
+//
+//#endif
 
             if (pinteraction->has_focus())
             {
@@ -528,7 +528,7 @@ namespace user
    //void style::_001OnTabPaneDrawTitle(::user::tab_pane & pane, ::user::tab * ptab, ::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle, ::draw2d::brush_pointer & brushText)
    //{
 
-   //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rectangle_i32, brushText);
+   //   psession->_001OnDefaultTabPaneDrawTitle(pane, ptab, pgraphics, rectangle, brushText);
 
    //}
 
@@ -834,7 +834,7 @@ namespace user
    //}
 
 
-   //bool style::create_rect(e_rect erect, ::rectangle_f64 rectangle_i32, ::draw2d::enum_unit eunit)
+   //bool style::create_rect(e_rect erect, ::rectangle_f64 rectangle, ::draw2d::enum_unit eunit)
    //{
 
    //   return create_rect_coord(erect, rectangle.left, rectangle.top, rectangle.right, rectangle.bottom, eunit);

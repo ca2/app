@@ -515,7 +515,7 @@
 //   void control_cmd_ui::enable(bool bOn)
 //   {
 //
-//      m_bEnableChanged = TRUE;
+//      m_bEnableChanged = true;
 //
 //      __pointer(::user::interaction) pwnd = m_puiOther;
 //
@@ -577,7 +577,7 @@
 //               if (pinteraction->is_window_enabled())
 //               {
 //
-//                  pinteraction->enable_window(FALSE);
+//                  pinteraction->enable_window(false);
 //
 //               }
 //
@@ -639,7 +639,7 @@
 ////         if (pTarget == nullptr)
 ////            pTarget = pview->get_parent_frame();
 ////         if (pTarget != nullptr)
-////            BaseControlExOnUpdateCmdUI(pTarget, wParam != FALSE);
+////            BaseControlExOnUpdateCmdUI(pTarget, wParam != false);
 ////      }
 ////
 ////      return 0L;
@@ -685,7 +685,7 @@
 ////            // xxx         state.m_nIndex = uId;
 ////            state.m_iCount = -1;
 ////            state.m_id = m_commandui.GetControlCommand(idControl);
-////            state.m_bContinueRouting = FALSE;
+////            state.m_bContinueRouting = false;
 ////
 ////            // ignore separators
 ////            if ((pwnd->GetStyle() & WS_VISIBLE))
@@ -744,7 +744,7 @@
 ////
 ////      }
 ////
-////      return FALSE;
+////      return false;
 ////
 ////   }
 //

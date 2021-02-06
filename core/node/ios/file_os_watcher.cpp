@@ -173,7 +173,7 @@ namespace file
       bool done = false;
       
       // Start the run loop but return after each source is handled.
-      //SInt32 result = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 2, TRUE);
+      //SInt32 result = CFRunLoopRunInMode(kCFRunLoopDefaultMode, 2, true);
       
       // If a source explicitly stopped the run loop, or if there are no
       // sources or timers, go ahead and exit.

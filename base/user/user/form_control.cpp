@@ -537,7 +537,7 @@ namespace user
             //   }
             //   break;
             //   default:
-            //      ASSERT(FALSE);
+            //      ASSERT(false);
             //      break;
             //   }
             //}

@@ -28,7 +28,7 @@ int my_main(::layered * pobjectContext)
    // Perform application initialization:
    if (!InitInstance(papp, hInstance, e_display_normal))
    {
-      return FALSE;
+      return false;
    }
 
    HACCEL hAccelTable = LoadAccelerators(hInstance, MAKEINTRESOURCE(IDC_WINDOWSPROJECT2));
@@ -95,13 +95,13 @@ BOOL InitInstance(::object * pobject, HINSTANCE hInstance, int nCmdShow)
 
    if (!hWnd)
    {
-      return FALSE;
+      return false;
    }
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
-   return TRUE;
+   return true;
 }
 
 //
@@ -170,15 +170,15 @@ INT_PTR CALLBACK About(HWND hDlg, const ::id & id, WPARAM wParam, LPARAM lParam)
    switch (message)
    {
    case WM_INITDIALOG:
-      return (INT_PTR)TRUE;
+      return (INT_PTR)true;
 
    case e_message_command:
       if (LOWORD(wParam) == e_dialog_result_ok || LOWORD(wParam) == e_dialog_result_cancel)
       {
          EndDialog(hDlg, LOWORD(wParam));
-         return (INT_PTR)TRUE;
+         return (INT_PTR)true;
       }
       break;
    }
-   return (INT_PTR)FALSE;
+   return (INT_PTR)false;
 }

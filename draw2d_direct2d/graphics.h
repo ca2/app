@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace draw2d_direct2d
@@ -68,7 +68,7 @@ namespace draw2d_direct2d
       virtual bool _draw_blend(const ::image_drawing & imagedrawing) override;
 
 
-      bool IsPrinting() override;            // TRUE if being used for printing
+      bool IsPrinting() override;            // true if being used for printing
 
       
       virtual bool on_begin_draw() override;
@@ -119,11 +119,11 @@ namespace draw2d_direct2d
 
       virtual double get_dpix() override;
 
-      // Constructors
-      bool CreateDC(const char * lpszDriverName, const char * lpszDeviceName,
-                    const char * lpszOutput, const void * lpInitData) override;
-      bool CreateIC(const char * lpszDriverName, const char * lpszDeviceName,
-                    const char * lpszOutput, const void * lpInitData) override;
+      //// Constructors
+      //bool CreateDC(const char * lpszDriverName, const char * lpszDeviceName,
+      //              const char * lpszOutput, const void * lpInitData) override;
+      //bool CreateIC(const char * lpszDriverName, const char * lpszDeviceName,
+      //              const char * lpszOutput, const void * lpInitData) override;
       bool CreateCompatibleDC(::draw2d::graphics * pgraphics) override;
 
       bool DeleteDC() override;
@@ -134,7 +134,7 @@ namespace draw2d_direct2d
       //int GetDeviceCaps(int nIndex) override;
       ::u32 SetBoundsRect(const ::rectangle_f64 & rectBounds, ::u32 flags) override;
       ::u32 GetBoundsRect(::rectangle_f64 * rectBounds, ::u32 flags) override;
-      bool ResetDC(const DEVMODE* lpDevMode) override;
+//      bool ResetDC(const DEVMODE* lpDevMode) override;
 
       // Drawing-Tool Functions
       ::point_f64 GetBrushOrg() override;
@@ -199,9 +199,9 @@ namespace draw2d_direct2d
       virtual bool fill_path(::draw2d::path * ppath, ::draw2d::brush * pbrush) override;
 
       // World transform
-      bool SetWorldTransform(const XFORM* pXform) override;
-      bool ModifyWorldTransform(const XFORM* pXform,u32 iMode) override;
-      bool GetWorldTransform(XFORM* pXform) override;
+      //bool SetWorldTransform(const XFORM* pXform) override;
+      //bool ModifyWorldTransform(const XFORM* pXform,u32 iMode) override;
+      //bool GetWorldTransform(XFORM* pXform) override;
 
       // Mapping Functions
       virtual int GetMapMode() override;
@@ -323,9 +323,9 @@ namespace draw2d_direct2d
 //      bool DrawState(const ::point_f64 & point, const ::size_f64 & size, HICON hIcon, ::u32 nFlags,
 //                     ::draw2d::brush* pBrush = nullptr) override;
 //      bool DrawState(const ::point_f64 & point, const ::size_f64 & size, const char * lpszText, ::u32 nFlags,
-//                     bool bPrefixText = TRUE, int nTextLen = 0, HBRUSH hBrush = nullptr) override;
+//                     bool bPrefixText = true, int nTextLen = 0, HBRUSH hBrush = nullptr) override;
 //      bool DrawState(const ::point_f64 & point, const ::size_f64 & size, const char * lpszText, ::u32 nFlags,
-//                     bool bPrefixText = TRUE, int nTextLen = 0, ::draw2d::brush* pBrush = nullptr) override;
+//                     bool bPrefixText = true, int nTextLen = 0, ::draw2d::brush* pBrush = nullptr) override;
 //      bool DrawState(const ::point_f64 & point, const ::size_f64 & size, DRAWSTATEPROC lpDrawProc,
       //       LPARAM lData, ::u32 nFlags, HBRUSH hBrush = nullptr) override;
       //  bool DrawState(const ::point_f64 & point, const ::size_f64 & size, DRAWSTATEPROC lpDrawProc,
@@ -405,10 +405,10 @@ namespace draw2d_direct2d
       //virtual bool text_out(double x, double y, const block & block) override;
       virtual bool TextOutRaw(double x, double y, const block & block) override;
       //virtual bool text_out(double x, double y, const string & str) override;
-      virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const char * lpszString, strsize nCount, LPINT lpDxWidths) override;
-      virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const string & str, LPINT lpDxWidths) override;
-      virtual ::size_f64 TabbedTextOut(double x, double y, const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin) override;
-      virtual ::size_f64 TabbedTextOut(double x, double y, const string & str, count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin) override;
+      //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const char * lpszString, strsize nCount, LPINT lpDxWidths) override;
+      //virtual bool ExtTextOut(double x, double y, ::u32 nOptions, const ::rectangle_f64 & rectangle, const string & str, LPINT lpDxWidths) override;
+      //virtual ::size_f64 TabbedTextOut(double x, double y, const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin) override;
+      //virtual ::size_f64 TabbedTextOut(double x, double y, const string & str, count nTabPositions, LPINT lpnTabStopPositions, i32 nTabOrigin) override;
 
       //virtual bool draw_text(const char * lpszString, strsize nCount, const ::rectangle_f64 & rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
       virtual bool draw_text(const string & str,const ::rectangle_f64 & rectangle, const ::e_align & ealign = e_align_top_left, const ::e_draw_text & edrawtext = e_draw_text_none) override;
@@ -424,15 +424,15 @@ namespace draw2d_direct2d
       virtual bool GetTextExtent(size_f64 & size, const string & str) override;
       virtual ::size_f64 GetOutputTextExtent(const char * lpszString, strsize nCount) override;
       virtual ::size_f64 GetOutputTextExtent(const string & str) override;
-      virtual ::size_f64 GetTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions) override;
-      virtual ::size_f64 GetTabbedTextExtent(const string & str, count nTabPositions, LPINT lpnTabStopPositions) override;
+      //virtual ::size_f64 GetTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions) override;
+      //virtual ::size_f64 GetTabbedTextExtent(const string & str, count nTabPositions, LPINT lpnTabStopPositions) override;
       virtual ::size_f64 GetOutputTabbedTextExtent(const char * lpszString, strsize nCount, count nTabPositions, LPINT lpnTabStopPositions) override;
       virtual ::size_f64 GetOutputTabbedTextExtent(const string & str, count  nTabPositions, LPINT lpnTabStopPositions) override;
       //virtual bool GrayString(::draw2d::brush* pBrush, bool (CALLBACK* lpfnOutput)(HDC, LPARAM, int), LPARAM lpData, int nCount, double x, double y, double nWidth, double nHeight) override;
       virtual ::u32 GetTextAlign() override;
       virtual ::u32 SetTextAlign(::u32 nFlags) override;
-      virtual int GetTextFace(count nCount, char * lpszFacename) override;
-      virtual int GetTextFace(string & rString) override;
+      //virtual int GetTextFace(count nCount, char * lpszFacename) override;
+      //virtual int GetTextFace(string & rString) override;
       virtual bool get_text_metrics(::draw2d::text_metric * lpMetrics) override;
       virtual bool get_output_text_metrics(::draw2d::text_metric * lpMetrics) override;
       //virtual int SetTextJustification(int nBreakExtra, int nBreakCount) override;
@@ -457,7 +457,7 @@ namespace draw2d_direct2d
 
 //      // Scrolling Functions
 //      bool ScrollDC(int dx, int dy, const ::rectangle_f64 & rectScroll, const ::rectangle_f64 & rectClip,
-//                    ::draw2d::region* pRgnUpdate, LPRECT32 lpRectUpdate) override;
+//                    ::draw2d::region* pRgnUpdate, RECTANGLE_I32 * lpRectUpdate) override;
 //
 //      // font Functions
 //      bool GetCharWidth(::u32 nFirstChar, ::u32 nLastChar, LPINT lpBuffer) override;
@@ -492,7 +492,7 @@ namespace draw2d_direct2d
       //virtual int DrawEscape(int nEscape, int nInputSize, const char * lpszInputData) override;
 
       // Escape helpers
-      int StartDoc(const char * lpszDocName) override;  // old Win3.0 version
+      //int StartDoc(const char * lpszDocName) override;  // old Win3.0 version
 //      int StartDoc(LPDOCINFO lpDocInfo) override;
       int StartPage() override;
       int EndPage() override;
@@ -501,8 +501,8 @@ namespace draw2d_direct2d
       int EndDoc() override;
 
       // MetaFile Functions
-      bool PlayMetaFile(HMETAFILE hMF) override;
-      bool PlayMetaFile(HENHMETAFILE hEnhMetaFile, const ::rectangle_f64 & rectBounds) override;
+      //bool PlayMetaFile(HMETAFILE hMF) override;
+      //bool PlayMetaFile(HENHMETAFILE hEnhMetaFile, const ::rectangle_f64 & rectBounds) override;
       bool AddMetaFileComment(::u32 nDataSize, const byte* pCommentData) override;
       // can be used for enhanced metafiles only
 
@@ -549,8 +549,8 @@ namespace draw2d_direct2d
       virtual void * detach() override;
 
 #ifdef WINDOWS_DESKTOP
-      virtual bool attach_hdc(HDC hdc) override;
-      virtual HDC detach_hdc() override;
+      //virtual bool attach_hdc(HDC hdc) override;
+      //virtual HDC detach_hdc() override;
 #endif
 
 //      virtual Gdiplus::FillMode direct2d_get_fill_mode() override;

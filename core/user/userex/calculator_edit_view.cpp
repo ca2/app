@@ -218,14 +218,13 @@ namespace calculator
                //__throw(::exception::exception("now a simple exception here"));
 
             }
-            catch (numeric_parser_exception *p)
+            catch (const numeric_parser_exception & exception)
             {
 
-               e.m_strMessage = p->get_message();
+               e.m_strMessage = exception.get_message();
                e.m_iStart = 0;
                e.m_iEnd = strExp.length();
 
-               ::release(p);
 
             }
 

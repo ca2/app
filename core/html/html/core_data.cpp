@@ -284,18 +284,23 @@ namespace html
 
       m_element.implement(this);
 
-      for (auto & pinteraction : m_pform->m_puiptraChild->interactiona())
+      if (m_pform->m_puiptraChild)
       {
 
-         ::user::control_event event;
+         for (auto & pinteraction : m_pform->m_puiptraChild->interactiona())
+         {
 
-         event.m_eevent = ::user::e_event_initialize_control;
+            ::user::control_event event;
 
-         event.m_puie = pinteraction;
+            event.m_eevent = ::user::e_event_initialize_control;
 
-         event.m_id = pinteraction->m_id;
+            event.m_puie = pinteraction;
 
-         m_pform->route_control_event(&event);
+            event.m_id = pinteraction->m_id;
+
+            m_pform->route_control_event(&event);
+
+         }
 
       }
 

@@ -508,100 +508,110 @@ namespace windows
    }
 
 
-   interprocess_communication::interprocess_communication()
-   {
+   //interprocess_communication::interprocess_communication()
+   //{
 
-      m_millisTimeout = (5000) * 11;
+   //   m_millisTimeout = (5000) * 11;
 
-   }
-
-
-   interprocess_communication::~interprocess_communication()
-   {
+   //}
 
 
-   }
+   //interprocess_communication::~interprocess_communication()
+   //{
 
 
-   bool interprocess_communication::open_ab(const char * pszKey, const char * pszModule, launcher * plauncher)
-   {
-
-      m_strChannel = pszKey;
-
-      m_prx->m_preceiver = this;
-
-      string strChannelRx = m_strChannel + "-a";
-      string strChannelTx = m_strChannel + "-b";
-
-      if (!::IsWindow((HWND) m_prx->get_os_data()))
-      {
-
-         if (!m_prx->create(strChannelRx.c_str()))
-         {
-
-            return false;
-
-         }
-
-      }
-
-      if (!m_ptx->open(strChannelTx.c_str(), plauncher))
-      {
-
-         return false;
-
-      }
-
-      return true;
-
-   }
-
-   bool interprocess_communication::open_ba(const char * pszKey, const char * pszModule, launcher * plauncher)
-   {
-
-      m_strChannel = pszKey;
-
-      m_prx->m_preceiver = this;
-
-      string strChannelRx = m_strChannel + "-b";
-      string strChannelTx = m_strChannel + "-a";
+   //}
 
 
-      if (!::IsWindow((HWND) m_prx->get_os_data()))
-      {
+   //bool interprocess_communication::open_ab(const char * pszKey, const char * pszModule, launcher * plauncher)
+   //{
 
-         if (!m_prx->create(strChannelRx.c_str()))
-         {
+   //   m_strChannel = pszKey;
 
-            return false;
+   //   m_prx->m_preceiver = this;
 
-         }
+   //   string strChannelRx = m_strChannel + "-a";
+   //   string strChannelTx = m_strChannel + "-b";
 
-      }
+   //   if (!::IsWindow((HWND) m_prx->get_os_data()))
+   //   {
 
-      if (!m_ptx->open(strChannelTx.c_str(), plauncher))
-      {
+   //      if (!m_prx->create(strChannelRx.c_str()))
+   //      {
 
-         return false;
+   //         return false;
 
-      }
+   //      }
 
-      return true;
+   //   }
 
-   }
+   //   if (!m_ptx->open(strChannelTx.c_str(), plauncher))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   return true;
+
+   //}
 
 
-   bool interprocess_communication::is_rx_tx_ok()
-   {
+   //bool interprocess_communication::open_ba(const char * pszKey, const char * pszModule, launcher * plauncher)
+   //{
 
-      return m_prx->is_rx_ok() && m_ptx->is_tx_ok();
+   //   m_strChannel = pszKey;
 
-   }
+   //   m_prx->m_preceiver = this;
 
-   void interprocess_communication::restart_apex_ipc()
-   {
-   }
+   //   string strChannelRx = m_strChannel + "-b";
+   //   string strChannelTx = m_strChannel + "-a";
 
+
+   //   if (!::IsWindow((HWND) m_prx->get_os_data()))
+   //   {
+
+   //      if (!m_prx->create(strChannelRx.c_str()))
+   //      {
+
+   //         return false;
+
+   //      }
+
+   //   }
+
+   //   if (!m_ptx->open(strChannelTx.c_str(), plauncher))
+   //   {
+
+   //      return false;
+
+   //   }
+
+   //   return true;
+
+   //}
+
+
+   //bool interprocess_communication::is_rx_tx_ok()
+   //{
+
+   //   return m_prx->is_rx_ok() && m_ptx->is_tx_ok();
+
+   //}
+
+
+   //void interprocess_communication::restart_apex_ipc()
+   //{
+
+   //}
+
+
+   //bool interprocess_communication::close()
+   //{
+
+   //   return false;
+
+   //}
 
 } // namespace windows
 

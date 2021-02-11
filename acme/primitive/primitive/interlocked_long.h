@@ -19,6 +19,9 @@ public:
 
       m_plong = (INTERLOCKED_LONG *) (((iptr)this + 7) & ~7);
 
+      *m_plong = l;
+
+
    }
 
 

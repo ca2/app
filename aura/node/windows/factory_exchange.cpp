@@ -53,10 +53,10 @@ void __node_aura_factory_exchange()
 
    //create_factory < ::windows::copydesk, ::user::copydesk >();
    create_factory < ::windows::shell_open, ::shell_open >();
-   create_factory < ::windows::interprocess_communication_base, ::interprocess_communication::base >();
-   create_factory < ::windows::interprocess_communication_tx, ::interprocess_communication::tx >();
-   create_factory < ::windows::interprocess_communication_rx, ::interprocess_communication::rx >();
-   create_factory < ::windows::interprocess_communication, ::interprocess_communication::interprocess_communication >();
+   //create_factory < ::windows::interprocess_communication_base, ::interprocess_communication::base >();
+   //create_factory < ::windows::interprocess_communication_tx, ::interprocess_communication::tx >();
+   //create_factory < ::windows::interprocess_communication_rx, ::interprocess_communication::rx >();
+   //create_factory < ::windows::interprocess_communication, ::interprocess_communication::interprocess_communication >();
 
 }
 

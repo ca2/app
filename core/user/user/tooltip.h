@@ -12,7 +12,7 @@ namespace user
 
 
       string               m_str;
-      ::draw2d::font_pointer    m_font;
+      ::write_text::font_pointer    m_font;
       ::size_i32               m_size;
       bool                 m_bError;
 

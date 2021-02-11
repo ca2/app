@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -61,7 +59,7 @@ namespace user
 
       __pointer(::user::font_list) plist = m_plist;
 
-      plist->set_font_list_type(::draw2d::font_list::type_single_column);
+      plist->set_font_list_type(::write_text::font_list::type_single_column);
 
       set_need_layout();
 

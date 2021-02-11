@@ -18,7 +18,7 @@ namespace simple_shader
 
       //::draw2d::brush_pointer brush(e_create);
 
-      //::draw2d::font_pointer font(e_create);
+      //::write_text::font_pointer font(e_create);
 
       //if (m_iDrawing == 3)
       //{
@@ -74,7 +74,7 @@ namespace simple_shader
 
       //rectangle.offset_x(iSize / 5 * m_iDrawing);
       //
-      //::size_f64 size_i32(0., 0.);
+      //::size_f64 size(0., 0.);
       //
       //bool bDrawText = true;
       //

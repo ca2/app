@@ -55,14 +55,14 @@ extern "C" {
    }
 
 
-   inline static void * heap_memory_unaligned(void * pbase, memsize size, i32 blockuse)
+   inline static void * heap_memory_unaligned(void * pusermessage, memsize size, i32 blockuse)
    {
 
-      void * pmemory = (void *)((iptr)pbase + sizeof(struct heap_memory));
+      void * pmemory = (void *)((iptr)pusermessage + sizeof(struct heap_memory));
 
       struct heap_memory * pheap = heap_memory_get(pmemory);
 
-      pheap->m_back = (i32)(((iptr)pmemory) - ((iptr)pbase));
+      pheap->m_back = (i32)(((iptr)pmemory) - ((iptr)pusermessage));
 
       pheap->m_blockuse = blockuse;
 
@@ -75,14 +75,14 @@ extern "C" {
    }
 
 
-   inline static void * heap_memory_aligned(void * pbase, memsize size, i32 blockuse, int iAlignByteCount)
+   inline static void * heap_memory_aligned(void * pusermessage, memsize size, i32 blockuse, int iAlignByteCount)
    {
 
-      void * pmemory = (void *)((((iptr)pbase) + sizeof(struct heap_memory) + iAlignByteCount - 1) & ((~((iptr)iAlignByteCount - 1))));
+      void * pmemory = (void *)((((iptr)pusermessage) + sizeof(struct heap_memory) + iAlignByteCount - 1) & ((~((iptr)iAlignByteCount - 1))));
 
       struct heap_memory * pheap = heap_memory_get(pmemory);
 
-      pheap->m_back = (i32)(((iptr)pmemory) - ((iptr)pbase));
+      pheap->m_back = (i32)(((iptr)pmemory) - ((iptr)pusermessage));
 
       pheap->m_blockuse = blockuse;
 

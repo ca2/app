@@ -26,7 +26,7 @@ extern "C" void draw2d_factory_exchange()
    create_factory < ::draw2d_quartz2d::brush        , ::draw2d::brush > ();
    create_factory < ::draw2d_quartz2d::palette      , ::draw2d::palette > ();
    create_factory < ::draw2d_quartz2d::region       , ::draw2d::region > ();
-   create_factory < ::draw2d_quartz2d::font         , ::draw2d::font > ();
+   create_factory < ::draw2d_quartz2d::font         , ::write_text::font > ();
    create_factory < ::draw2d_quartz2d::path         , ::draw2d::path > ();
 
 }

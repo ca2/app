@@ -539,7 +539,7 @@ namespace experience
 
                auto psession = Session;
 
-               pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+               pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
                auto pframewindow = m_pframewindow;
 
@@ -598,13 +598,13 @@ namespace experience
                   if (m_pframewindow->is_active() && m_colorActiveCaptionTextBk.is_set())
                   {
 
-                     pgraphics->fill_rect(m_rectCaption, m_colorActiveCaptionTextBk);
+                     pgraphics->fill_rectangle(m_rectCaption, m_colorActiveCaptionTextBk);
 
                   }
                   else
                   {
 
-                     pgraphics->fill_rect(m_rectCaption, m_colorCaptionTextBk);
+                     pgraphics->fill_rectangle(m_rectCaption, m_colorCaptionTextBk);
 
                   }
 
@@ -668,7 +668,7 @@ namespace experience
 
                   }
 
-                  //class font_department & fonts = System.draw2d().fonts();
+                  //class font_department & fonts = System.draw2d()->fonts();
                   
                   auto pstyle = pframewindow->get_style(pgraphics);
 

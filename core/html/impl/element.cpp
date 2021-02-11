@@ -191,7 +191,7 @@ namespace html
          if (has_link())
          {
 
-            pmouse->m_ecursor = cursor_hand;
+            pmouse->m_ecursor = e_cursor_hand;
 
          }
 
@@ -742,7 +742,7 @@ namespace html
 
                pdata->m_pcoredata->m_bDrawFirstBody = true;
 
-               rectangle_i32 = pdata->m_pcoredata->m_pform->get_client_rect();
+               rectangle = pdata->m_pcoredata->m_pform->get_client_rect();
 
             }
             else
@@ -778,7 +778,7 @@ namespace html
 //               if(m_pelemental->get_color(cr,::user::color_background, &style))
 //               {
 //
-//                  pgraphics->fill_rect(rectangle, cr);
+//                  pgraphics->fill_rectangle(rectangle, cr);
 //
 //               }
 //

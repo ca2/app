@@ -1,8 +1,7 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 #include "aura/message.h"
+#include "acme/const/simple_command.h"
 #include "apex/message/simple_command.h"
 
 
@@ -30,10 +29,10 @@ namespace user
       m_nWindow = -1;                 // unknown interaction_impl ID
       m_bAutoMenuEnable = true;       // auto enable on by default
       //m_lpfnCloseProc = nullptr;
-#ifdef WINDOWS_DESKTOP
-      m_hMenuDefault = nullptr;
-      m_hAccelTable = nullptr;
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      m_hMenuDefault = nullptr;
+//      m_hAccelTable = nullptr;
+//#endif
       //m_nIDHelp = 0;
       m_nIDTracking = 0;
       m_nIDLastMessage = 0;
@@ -42,7 +41,7 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-      m_hMenuAlt = nullptr;
+      //m_hMenuAlt = nullptr;
 
 #endif
 
@@ -98,12 +97,12 @@ namespace user
    }
 
 
-   void frame_window::NotifyFloatingWindows(u32 dwFlags)
-   {
+   //void frame_window::NotifyFloatingWindows(u32 dwFlags)
+   //{
 
-      UNREFERENCED_PARAMETER(dwFlags);
+   //   UNREFERENCED_PARAMETER(dwFlags);
 
-   }
+   //}
 
 
    string frame_window::get_window_default_matter()
@@ -125,9 +124,9 @@ namespace user
    void frame_window::on_simple_command(::message::simple_command * psimplecommand)
    {
 
-      switch (psimplecommand->m_esimplecommand)
+      switch (psimplecommand->command())
       {
-      case simple_command_update_frame_title:
+      case e_simple_command_update_frame_title:
 
          on_update_frame_title(psimplecommand->m_lparam != false);
 
@@ -152,7 +151,7 @@ namespace user
    }
 
 
-   void frame_window::on_command(::user::command * pcommand)
+   void frame_window::on_command(::message::command * pcommand)
    {
 
       ::user::interaction::on_command(pcommand);
@@ -181,8 +180,8 @@ namespace user
       MESSAGE_LINK(e_message_activate, pchannel, this, &frame_window::_001OnActivate);
       MESSAGE_LINK(e_message_ncactivate, pchannel, this, &frame_window::_001OnNcActivate);
 #ifdef WINDOWS_DESKTOP
-      MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &frame_window::_001OnSysCommand);
-      MESSAGE_LINK(WM_QUERYENDSESSION, pchannel, this, &frame_window::_001OnQueryEndSession);
+      //MESSAGE_LINK(WM_SYSCOMMAND, pchannel, this, &frame_window::_001OnSysCommand);
+      //MESSAGE_LINK(WM_QUERYENDSESSION, pchannel, this, &frame_window::_001OnQueryEndSession);
 #endif
 
    }
@@ -256,38 +255,38 @@ namespace user
    }
 
 
-   void frame_window::defer_synch_layered()
-   {
+   //void frame_window::defer_synch_layered()
+   //{
 
-      bool bCalcLayered = calc_layered();
+   //   //bool bCalcLayered = calc_layered();
 
-      if (is_different(GetExStyle() & WS_EX_LAYERED, bCalcLayered))
-      {
+   //   //if (is_different(GetExStyle() & WS_EX_LAYERED, bCalcLayered))
+   //   //{
 
-         if (bCalcLayered)
-         {
+   //   //   if (bCalcLayered)
+   //   //   {
 
-            ModifyStyleEx(0, WS_EX_LAYERED);
+   //   //      ModifyStyleEx(0, WS_EX_LAYERED);
 
-         }
-         else
-         {
+   //   //   }
+   //   //   else
+   //   //   {
 
-            ModifyStyleEx(WS_EX_LAYERED, 0);
+   //   //      ModifyStyleEx(WS_EX_LAYERED, 0);
 
-         }
+   //   //   }
 
-      }
+   //   //}
 
-   }
+   //}
 
 
-   bool frame_window::calc_layered()
-   {
+   //bool frame_window::calc_layered()
+   //{
 
-      return true;
+   //   return true;
 
-   }
+   //}
 
 
    bool frame_window::on_set_parent(::user::primitive * puiParent)
@@ -327,9 +326,9 @@ namespace user
 
       ::user::interaction::dump(dumpcontext);
 
-#ifdef WINDOWS_DESKTOP
-      dumpcontext << "m_hAccelTable = " << (uptr)m_hAccelTable;
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      dumpcontext << "m_hAccelTable = " << (uptr)m_hAccelTable;
+//#endif
       dumpcontext << "\nm_nWindow = " << m_nWindow;
       dumpcontext << "\nm_nIDHelp = " << m_strMatterHelp;
       dumpcontext << "\nm_nIDTracking = " << m_nIDTracking;
@@ -379,19 +378,19 @@ namespace user
    ON_MESSAGE(WM_HELPHITTEST, &frame_window::OnHelpHitTest)
    ON_MESSAGE(WM_ACTIVATETOPLEVEL, &frame_window::OnActivateTopLevel)
    // turning on and off standard frame gadgetry
-   ON_UPDATE_::user::command(ID_VIEW_STATUS_BAR, &frame_window::OnUpdateControlBarMenu)
+   ON_UPDATE_::message::command(ID_VIEW_STATUS_BAR, &frame_window::OnUpdateControlBarMenu)
    ON_COMMAND_EX(ID_VIEW_STATUS_BAR, &frame_window::OnBarCheck)
-   ON_UPDATE_::user::command(ID_VIEW_TOOLBAR, &frame_window::OnUpdateControlBarMenu)
+   ON_UPDATE_::message::command(ID_VIEW_TOOLBAR, &frame_window::OnUpdateControlBarMenu)
    ON_COMMAND_EX(ID_VIEW_TOOLBAR, &frame_window::OnBarCheck)
-   ON_UPDATE_::user::command(ID_VIEW_REBAR, &frame_window::OnUpdateControlBarMenu)
+   ON_UPDATE_::message::command(ID_VIEW_REBAR, &frame_window::OnUpdateControlBarMenu)
    ON_COMMAND_EX(ID_VIEW_REBAR, &frame_window::OnBarCheck)
    // turning on and off standard mode indicators
-   ON_UPDATE_::user::command(ID_INDICATOR_CAPS, &frame_window::OnUpdateKeyIndicator)
-   ON_UPDATE_::user::command(ID_INDICATOR_NUM, &frame_window::OnUpdateKeyIndicator)
-   ON_UPDATE_::user::command(ID_INDICATOR_SCRL, &frame_window::OnUpdateKeyIndicator)
-   ON_UPDATE_::user::command(ID_INDICATOR_KANA, &frame_window::OnUpdateKeyIndicator)
+   ON_UPDATE_::message::command(ID_INDICATOR_CAPS, &frame_window::OnUpdateKeyIndicator)
+   ON_UPDATE_::message::command(ID_INDICATOR_NUM, &frame_window::OnUpdateKeyIndicator)
+   ON_UPDATE_::message::command(ID_INDICATOR_SCRL, &frame_window::OnUpdateKeyIndicator)
+   ON_UPDATE_::message::command(ID_INDICATOR_KANA, &frame_window::OnUpdateKeyIndicator)
    // standard help handling
-   ON_UPDATE_::user::command(ID_CONTEXT_HELP, &frame_window::OnUpdateContextHelp)
+   ON_UPDATE_::message::command(ID_CONTEXT_HELP, &frame_window::OnUpdateContextHelp)
    // toolbar "tooltip" notification
    ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTW, 0, 0xFFFF, &frame_window::OnToolTipText)
    ON_NOTIFY_EX_RANGE(TTN_NEEDTEXTA, 0, 0xFFFF, &frame_window::OnToolTipText)
@@ -434,32 +433,32 @@ namespace user
       /*   HINSTANCE hInst = ::aura::FindResourceHandle(pszResourceName, RT_ACCELERATOR);
 
       m_hAccelTable = ::LoadAccelerators(hInst, pszResourceName);*/
-#ifdef WINDOWS_DESKTOP
-      return (m_hAccelTable != nullptr);
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      return (m_hAccelTable != nullptr);
+//#endif
 
       return false;
 
    }
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-   HACCEL frame_window::GetDefaultAccelerator()
-   {
-      // use ::user::document specific accelerator table over m_hAccelTable
-      HACCEL hAccelTable = m_hAccelTable;
-      HACCEL hAccel;
-      __pointer(::user::document) pDoc = get_active_document();
-      if (pDoc != nullptr && (hAccel = pDoc->GetDefaultAccelerator()) != nullptr)
-         hAccelTable = hAccel;
-
-      return hAccelTable;
-   }
-
-
-   #endif
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//   HACCEL frame_window::GetDefaultAccelerator()
+//   {
+//      // use ::user::document specific accelerator table over m_hAccelTable
+//      HACCEL hAccelTable = m_hAccelTable;
+//      HACCEL hAccel;
+//      __pointer(::user::document) pDoc = get_active_document();
+//      if (pDoc != nullptr && (hAccel = pDoc->GetDefaultAccelerator()) != nullptr)
+//         hAccelTable = hAccel;
+//
+//      return hAccelTable;
+//   }
+//
+//
+//   #endif
 
 
    void frame_window::pre_translate_message(::message::message * pmessage)
@@ -610,7 +609,13 @@ namespace user
 
       // release capture if this interaction_impl has it
       if (psession->GetCapture() == get_handle())
-      psession->ReleaseCapture();
+         auto psession = Session;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pwindowing->release_capture();
 
       __pointer(::user::frame_window) pFrameWnd = top_level_frame();
       ENSURE_VALID(pFrameWnd);
@@ -841,20 +846,20 @@ namespace user
 
       }
 
-      if(pusersystem->m_createstruct.hwndParent != nullptr)
-      {
+      //if(pusersystem->m_createstruct.hwndParent != nullptr)
+      //{
 
-         pusersystem->m_createstruct.style |= WS_CHILD;
+      //   pusersystem->m_createstruct.style |= WS_CHILD;
 
-      }
+      //}
 
       //pusersystem->m_createstruct.style &= ~WS_VISIBLE;
 
-#ifdef WINDOWS_DESKTOP
-
-      pusersystem->m_createstruct.style &= ~WS_CAPTION;
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      pusersystem->m_createstruct.style &= ~WS_CAPTION;
+//
+//#endif
 
       return true;
 
@@ -956,7 +961,7 @@ namespace user
 
       }
 
-      defer_synch_layered();
+//      defer_synch_layered();
 
    }
 
@@ -1011,7 +1016,7 @@ namespace user
       //   if (strFullString.load_string(nIDResource))
       //      __extract_sub_string(m_strTitle, strFullString, 0);    // first sub-string
 
-      dwDefaultStyle &= ~WS_VISIBLE;
+      //dwDefaultStyle &= ~WS_VISIBLE;
 
       ::rectangle_i32 rectFrame;
 
@@ -1080,7 +1085,7 @@ namespace user
       //   LoadAccelTable(MAKEINTRESOURCE(nIDResource));
 
       if (pcreate == nullptr)   // send initial update
-         send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (LPARAM)0, true, true);
+         send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (lparam)0, true, true);
 
       return true;
 
@@ -1124,27 +1129,27 @@ namespace user
    }
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-   void frame_window::OnUpdateFrameMenu(HMENU hMenuAlt)
-   {
-      if (hMenuAlt == nullptr)
-      {
-         // attempt to get default menu from ::user::document
-         __pointer(::user::document) pDoc = get_active_document();
-         if (pDoc != nullptr)
-            hMenuAlt = pDoc->GetDefaultMenu();
-         // use default menu stored in frame if none from ::user::document
-         if (hMenuAlt == nullptr)
-            hMenuAlt = m_hMenuDefault;
-      }
-      // finally, set the menu
-      // trans ::SetMenu(get_handle(), hMenuAlt);
-   }
-
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//   void frame_window::OnUpdateFrameMenu(HMENU hMenuAlt)
+//   {
+//      if (hMenuAlt == nullptr)
+//      {
+//         // attempt to get default menu from ::user::document
+//         __pointer(::user::document) pDoc = get_active_document();
+//         if (pDoc != nullptr)
+//            hMenuAlt = pDoc->GetDefaultMenu();
+//         // use default menu stored in frame if none from ::user::document
+//         if (hMenuAlt == nullptr)
+//            hMenuAlt = m_hMenuDefault;
+//      }
+//      // finally, set the menu
+//      // trans ::SetMenu(get_handle(), hMenuAlt);
+//   }
+//
+//
+//#endif
 
 
    void frame_window::InitialUpdateFrame(::user::document * pDoc, bool bMakeVisible)
@@ -1181,7 +1186,7 @@ namespace user
          m_bLayoutEnable = true;
 
          // send initial update to all views (and other controls) in the frame
-         send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (LPARAM)0, true, true);
+         send_message_to_descendants(e_message_system_update, INITIAL_UPDATE, (lparam)0, true, true);
 
          // give ::user::impact a chance to save the focus (CFormView needs this)
          if (pview != nullptr)
@@ -1325,7 +1330,7 @@ namespace user
    }
 
 
-   void frame_window::on_command_message(::user::command* pcommand)
+   void frame_window::on_command_message(::message::command* pcommand)
    {
 
       ::user::frame::on_command_message(pcommand);
@@ -1333,7 +1338,7 @@ namespace user
    }
 
 
-   void frame_window::route_command_message(::user::command* pcommand)
+   void frame_window::route_command_message(::message::command* pcommand)
    {
 
       // pump through current ::user::impact FIRST
@@ -1747,39 +1752,39 @@ namespace user
    }
    */
 
-   LRESULT frame_window::OnActivateTopLevel(WPARAM wParam, LPARAM lParam)
-   {
-      UNREFERENCED_PARAMETER(wParam);
-      UNREFERENCED_PARAMETER(lParam);
-      // trans   user::frame_window::OnActivateTopLevel(wParam, lParam);
+   //LRESULT frame_window::OnActivateTopLevel(WPARAM wParam, LPARAM lParam)
+   //{
+   //   UNREFERENCED_PARAMETER(wParam);
+   //   UNREFERENCED_PARAMETER(lParam);
+   //   // trans   user::frame_window::OnActivateTopLevel(wParam, lParam);
 
-      // exit Shift+F1 help mode on activation changes
-      ExitHelpMode();
+   //   // exit Shift+F1 help mode on activation changes
+   //   ExitHelpMode();
 
 
-      // deactivate current active ::user::impact
-      //thread *pThread = get_task();
-      //ASSERT(pThread);
-      
-      __pointer(::user::impact) pActiveView = get_active_view();
+   //   // deactivate current active ::user::impact
+   //   //thread *pThread = get_task();
+   //   //ASSERT(pThread);
+   //   
+   //   __pointer(::user::impact) pActiveView = get_active_view();
 
-      if (pActiveView == nullptr)
-      {
+   //   if (pActiveView == nullptr)
+   //   {
 
-         pActiveView = GetActiveFrame()->get_active_view();
+   //      pActiveView = GetActiveFrame()->get_active_view();
 
-      }
+   //   }
 
-      if (pActiveView != nullptr)
-      {
+   //   if (pActiveView != nullptr)
+   //   {
 
-         pActiveView->OnActivateView(false, pActiveView, pActiveView);
+   //      pActiveView->OnActivateView(false, pActiveView, pActiveView);
 
-      }
+   //   }
 
-      return 0;
+   //   return 0;
 
-   }
+   //}
 
    void frame_window::_001OnActivate(::message::message * pmessage)
    {
@@ -1791,14 +1796,14 @@ namespace user
 
       // get top level frame unless this is a child interaction_impl
       // determine if interaction_impl should be active or not
-      __pointer(::user::frame_window) pTopLevel = (GetStyle() & WS_CHILD) ? this : top_level_frame();
+      //__pointer(::user::frame_window) pTopLevel = (GetStyle() & WS_CHILD) ? this : top_level_frame();
 
-      if (pTopLevel == nullptr)
-      {
+      //if (pTopLevel == nullptr)
+      //{
 
-         pTopLevel = this;
+      //   pTopLevel = this;
 
-      }
+      //}
 
       //bool bStayActive =
       //(pTopLevel == pActive ||
@@ -1872,57 +1877,57 @@ namespace user
    }
 
 
-   void frame_window::OnSysCommand(::u32 nID, LPARAM lParam)
-   {
-      
-      UNREFERENCED_PARAMETER(lParam);
+   //void frame_window::OnSysCommand(::u32 nID, LPARAM lParam)
+   //{
+   //   
+   //   UNREFERENCED_PARAMETER(lParam);
 
-      __pointer(::user::frame_window) pFrameWnd = top_level_frame();
+   //   __pointer(::user::frame_window) pFrameWnd = top_level_frame();
 
-      ENSURE_VALID(pFrameWnd);
+   //   ENSURE_VALID(pFrameWnd);
 
-      // set status bar as appropriate
-      //   ::u32 nItemID = (nID & 0xFFF0);
+   //   // set status bar as appropriate
+   //   //   ::u32 nItemID = (nID & 0xFFF0);
 
-      // don't interfere with system commands if not in help mode
-      if (pFrameWnd->m_bHelpMode)
-      {
-         /*switch (nItemID)
-         {
-         case SC_SIZE:
-         case SC_MOVE:
-         case SC_MINIMIZE:
-         case SC_MAXIMIZE:
-         case SC_NEXTWINDOW:
-         case SC_PREVWINDOW:
-         case SC_CLOSE:
-         case SC_RESTORE:
-         case SC_TASKLIST:
-         if (!SendMessage(WM_COMMANDHELP, 0,
-         HID_BASE_COMMAND+ID_COMMAND_FROM_SC(nItemID)))
-         SendMessage(e_message_command, ID_DEFAULT_HELP);
-         return;
-         }*/
-      }
+   //   // don't interfere with system commands if not in help mode
+   //   if (pFrameWnd->m_bHelpMode)
+   //   {
+   //      /*switch (nItemID)
+   //      {
+   //      case SC_SIZE:
+   //      case SC_MOVE:
+   //      case SC_MINIMIZE:
+   //      case SC_MAXIMIZE:
+   //      case SC_NEXTWINDOW:
+   //      case SC_PREVWINDOW:
+   //      case SC_CLOSE:
+   //      case SC_RESTORE:
+   //      case SC_TASKLIST:
+   //      if (!SendMessage(WM_COMMANDHELP, 0,
+   //      HID_BASE_COMMAND+ID_COMMAND_FROM_SC(nItemID)))
+   //      SendMessage(e_message_command, ID_DEFAULT_HELP);
+   //      return;
+   //      }*/
+   //   }
 
-      // call default functionality
-      // trans   user::frame_window::OnSysCommand(nID, lParam);
-   }
+   //   // call default functionality
+   //   // trans   user::frame_window::OnSysCommand(nID, lParam);
+   //}
 
 
 #ifdef WINDOWS_DESKTOP
 
 
-   /////////////////////////////////////////////////////////////////////////////
-   // default frame processing
+   ///////////////////////////////////////////////////////////////////////////////
+   //// default frame processing
 
-   // default drop processing will attempt to open the file
-   void frame_window::OnDropFiles(HDROP hDropInfo)
-   {
+   //// default drop processing will attempt to open the file
+   //void frame_window::OnDropFiles(HDROP hDropInfo)
+   //{
 
-      UNREFERENCED_PARAMETER(hDropInfo);
+   //   UNREFERENCED_PARAMETER(hDropInfo);
 
-   }
+   //}
 
 #endif
 
@@ -1939,34 +1944,34 @@ namespace user
       UNREFERENCED_PARAMETER(bEnding);
    }
 
-   /////////////////////////////////////////////////////////////////////////////
-   // Support for Shell DDE Execute messages
+   ///////////////////////////////////////////////////////////////////////////////
+   //// Support for Shell DDE Execute messages
 
-   LRESULT frame_window::OnDDEInitiate(WPARAM wParam, LPARAM lParam)
-   {
-
-
-      return 0L;
-   }
+   //LRESULT frame_window::OnDDEInitiate(WPARAM wParam, LPARAM lParam)
+   //{
 
 
-   // always ACK the execute command - even if we do nothing
-   LRESULT frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
-   {
+   //   return 0L;
+   //}
+
+
+   //// always ACK the execute command - even if we do nothing
+   //LRESULT frame_window::OnDDEExecute(WPARAM wParam, LPARAM lParam)
+   //{
 
 
 
-      return 0L;
+   //   return 0L;
 
-   }
+   //}
 
-   LRESULT frame_window::OnDDETerminate(WPARAM wParam, LPARAM lParam)
-   {
+   //LRESULT frame_window::OnDDETerminate(WPARAM wParam, LPARAM lParam)
+   //{
 
 
-      return 0L;
+   //   return 0L;
 
-   }
+   //}
 
 
    /////////////////////////////////////////////////////////////////////////////
@@ -2048,7 +2053,7 @@ namespace user
    {
       UNREFERENCED_PARAMETER(pOldWnd);
       if (m_pviewActive != nullptr)
-         m_pviewActive->SetFocus();
+         m_pviewActive->set_keyboard_focus();
       /*trans else
       user::frame_window::OnSetFocus(pOldWnd);
       */
@@ -2106,125 +2111,125 @@ namespace user
    }
 
 
-   LRESULT frame_window::OnPopMessageString(WPARAM wParam, LPARAM lParam)
-   {
+   //LRESULT frame_window::OnPopMessageString(WPARAM wParam, LPARAM lParam)
+   //{
 
-      //if (m_nFlags & WF_NOPOPMSG)
-      //   return 0;
+   //   //if (m_nFlags & WF_NOPOPMSG)
+   //   //   return 0;
 
-      return send_message(WM_SETMESSAGESTRING, wParam, lParam);
+   //   return send_message(WM_SETMESSAGESTRING, wParam, lParam);
 
-   }
-
-
-   LRESULT frame_window::OnSetMessageString(WPARAM wParam, LPARAM lParam)
-   {
-
-      ::u32 nIDLast = m_nIDLastMessage;
-
-      //      m_nFlags &= ~WF_NOPOPMSG;
-
-      __pointer(::user::interaction) pMessageBar = GetMessageBar();
-
-      if (pMessageBar != nullptr)
-      {
-
-         const char * psz = nullptr;
+   //}
 
 
-         string strMessage;
+   //LRESULT frame_window::OnSetMessageString(WPARAM wParam, LPARAM lParam)
+   //{
 
-         // set the message bar text
+   //   ::u32 nIDLast = m_nIDLastMessage;
 
-         if (lParam != 0)
-         {
+   //   //      m_nFlags &= ~WF_NOPOPMSG;
 
-            ASSERT(wParam == 0);    // can't have both an ID and a string
+   //   __pointer(::user::interaction) pMessageBar = GetMessageBar();
 
-            psz = (const char *)lParam; // set an explicit string
+   //   if (pMessageBar != nullptr)
+   //   {
 
-
-         }
-         else if (wParam != 0)
-         {
-
-            // map SC_CLOSE to PREVIEW_CLOSE when in print preview mode
-            /*         if (wParam == __IDS_SCCLOSE && m_lpfnCloseProc != nullptr)
-            wParam = __IDS_PREVIEW_CLOSE;*/
-
-            // get message associated with the ID indicated by wParam
-            //NT64: Assume IDs are still 32-bit
-
-            GetMessageString((::u32)wParam, strMessage);
-
-            psz = strMessage;
+   //      const char * psz = nullptr;
 
 
-         }
+   //      string strMessage;
 
-         pMessageBar->set_window_text(psz);
+   //      // set the message bar text
 
+   //      if (lParam != 0)
+   //      {
 
-         // update owner of the bar in terms of last message selected
-         __pointer(::user::frame_window) pFrameWnd = pMessageBar->get_parent_frame();
+   //         ASSERT(wParam == 0);    // can't have both an ID and a string
 
-         if (pFrameWnd != nullptr)
-         {
-
-            pFrameWnd->m_nIDLastMessage = (::u32)wParam;
-
-            pFrameWnd->m_nIDTracking = (::u32)wParam;
-
-         }
-
-      }
-
-      m_nIDLastMessage = (::u32)wParam;    // new ID (or 0)
-
-      m_nIDTracking = (::u32)wParam;       // so F1 on toolbar buttons work
-
-      return nIDLast;
-
-   }
+   //         psz = (const char *)lParam; // set an explicit string
 
 
-   LRESULT frame_window::OnHelpPromptAddr(WPARAM, LPARAM)
-   {
-      return (LRESULT)&m_dwPromptContext;
-   }
+   //      }
+   //      else if (wParam != 0)
+   //      {
+
+   //         // map SC_CLOSE to PREVIEW_CLOSE when in print preview mode
+   //         /*         if (wParam == __IDS_SCCLOSE && m_lpfnCloseProc != nullptr)
+   //         wParam = __IDS_PREVIEW_CLOSE;*/
+
+   //         // get message associated with the ID indicated by wParam
+   //         //NT64: Assume IDs are still 32-bit
+
+   //         GetMessageString((::u32)wParam, strMessage);
+
+   //         psz = strMessage;
+
+
+   //      }
+
+   //      pMessageBar->set_window_text(psz);
+
+
+   //      // update owner of the bar in terms of last message selected
+   //      __pointer(::user::frame_window) pFrameWnd = pMessageBar->get_parent_frame();
+
+   //      if (pFrameWnd != nullptr)
+   //      {
+
+   //         pFrameWnd->m_nIDLastMessage = (::u32)wParam;
+
+   //         pFrameWnd->m_nIDTracking = (::u32)wParam;
+
+   //      }
+
+   //   }
+
+   //   m_nIDLastMessage = (::u32)wParam;    // new ID (or 0)
+
+   //   m_nIDTracking = (::u32)wParam;       // so F1 on toolbar buttons work
+
+   //   return nIDLast;
+
+   //}
+
+
+   //LRESULT frame_window::OnHelpPromptAddr(WPARAM, LPARAM)
+   //{
+   //   return (LRESULT)&m_dwPromptContext;
+   //}
 
    __pointer(::user::interaction) frame_window::GetMessageBar()
    {
       return get_child_by_id("status_bar");
    }
 
-   void frame_window::OnEnterIdle(::u32 nWhy, __pointer(::user::interaction) pWho)
-   {
-      UNREFERENCED_PARAMETER(pWho);
-      // trans user::frame_window::OnEnterIdle(nWhy, pWho);
-#ifdef WINDOWS
-      if (nWhy != MSGF_MENU || m_nIDTracking == m_nIDLastMessage)
-         return;
-#else
-      if (m_nIDTracking == m_nIDLastMessage)
-         return;
-#endif
+//   void frame_window::OnEnterIdle(::u32 nWhy, __pointer(::user::interaction) pWho)
+//   {
+//      UNREFERENCED_PARAMETER(pWho);
+//      // trans user::frame_window::OnEnterIdle(nWhy, pWho);
+//#ifdef WINDOWS
+//      if (nWhy != MSGF_MENU || m_nIDTracking == m_nIDLastMessage)
+//         return;
+//#else
+//      if (m_nIDTracking == m_nIDLastMessage)
+//         return;
+//#endif
+//
+//      SetMessageText(m_nIDTracking);
+//      ASSERT(m_nIDTracking == m_nIDLastMessage);
+//   }
 
-      SetMessageText(m_nIDTracking);
-      ASSERT(m_nIDTracking == m_nIDLastMessage);
-   }
+   //void frame_window::SetMessageText(const char * pszText)
 
-   void frame_window::SetMessageText(const char * pszText)
+   //{
+   //   send_message(WM_SETMESSAGESTRING, 0, (lparam)pszText);
 
-   {
-      send_message(WM_SETMESSAGESTRING, 0, (LPARAM)pszText);
+   //}
 
-   }
-
-   void frame_window::SetMessageText(::u32 nID)
-   {
-      send_message(WM_SETMESSAGESTRING, (WPARAM)nID);
-   }
+   //void frame_window::SetMessageText(::u32 nID)
+   //{
+   //   send_message(WM_SETMESSAGESTRING, (WPARAM)nID);
+   //}
 
 
 
@@ -2355,20 +2360,20 @@ namespace user
       */
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-   void frame_window::DelayUpdateFrameMenu(HMENU hMenuAlt)
-   {
-
-      m_hMenuAlt = hMenuAlt;
-
-      m_nIdleFlags |= idleMenu;
-
-   }
-
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//   void frame_window::DelayUpdateFrameMenu(HMENU hMenuAlt)
+//   {
+//
+//      m_hMenuAlt = hMenuAlt;
+//
+//      m_nIdleFlags |= idleMenu;
+//
+//   }
+//
+//
+//#endif
 
 
    __pointer(::user::frame_window) frame_window::GetActiveFrame()
@@ -2407,7 +2412,7 @@ namespace user
 
          RepositionBars(0, 0xffff, "pane_first", reposExtra, &m_rectBorder, &rectangle, true);
 
-         CalcWindowRect(&rectangle);
+         //CalcWindowRect(&rectangle);
 
          set_size(rectangle.size());
 
@@ -2504,47 +2509,47 @@ namespace user
 
    }
 
-   LRESULT frame_window::OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam)
-   {
-
-      LRESULT lResult = 0;
-
-      // convert from MSH_MOUSEWHEEL to e_message_mouse_wheel
-
-#ifdef WINDOWS_DESKTOP
-
-      ::u16 keyState = 0;
-
-      auto psession = Session;
-
-      keyState |= psession->is_key_pressed(::user::e_key_control) ? MK_CONTROL : 0;
-      keyState |= psession->is_key_pressed(::user::e_key_shift) ? MK_SHIFT : 0;
-
-      oswindow hwFocus = ::GetFocus();
-      const oswindow hwDesktop = ::get_desktop_window();
-
-      if (hwFocus == nullptr)
-         lResult = send_message(e_message_mouse_wheel, (wParam << 16) | keyState, lParam);
-      else
-      {
-         do
-         {
-            lResult = ::SendMessage(hwFocus, e_message_mouse_wheel,
-                                    (wParam << 16) | keyState, lParam);
-            hwFocus = ::GetParent(hwFocus);
-         }
-         while (lResult == 0 && hwFocus != nullptr && hwFocus != hwDesktop);
-      }
-
-#else
-
-      ::exception::throw_not_implemented();
-
-#endif
-
-      return lResult;
-
-   }
+//   LRESULT frame_window::OnRegisteredMouseWheel(WPARAM wParam, LPARAM lParam)
+//   {
+//
+//      LRESULT lResult = 0;
+//
+//      // convert from MSH_MOUSEWHEEL to e_message_mouse_wheel
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//      ::u16 keyState = 0;
+//
+//      auto psession = Session;
+//
+//      keyState |= psession->is_key_pressed(::user::e_key_control) ? MK_CONTROL : 0;
+//      keyState |= psession->is_key_pressed(::user::e_key_shift) ? MK_SHIFT : 0;
+//
+//      oswindow hwFocus = ::GetFocus();
+//      const oswindow hwDesktop = ::get_desktop_window();
+//
+//      if (hwFocus == nullptr)
+//         lResult = send_message(e_message_mouse_wheel, (wParam << 16) | keyState, lParam);
+//      else
+//      {
+//         do
+//         {
+//            lResult = ::SendMessage(hwFocus, e_message_mouse_wheel,
+//                                    (wParam << 16) | keyState, lParam);
+//            hwFocus = ::GetParent(hwFocus);
+//         }
+//         while (lResult == 0 && hwFocus != nullptr && hwFocus != hwDesktop);
+//      }
+//
+//#else
+//
+//      ::exception::throw_not_implemented();
+//
+//#endif
+//
+//      return lResult;
+//
+//   }
 
 
    void frame_window::ActivateFrame(edisplay edisplay)
@@ -2662,31 +2667,31 @@ namespace user
 
 #ifdef WINDOWS
 
-      __pointer(::message::base) pbase(pmessage);
+      //__pointer(::user::message) pusermessage(pmessage);
 
-      if (get_parent() == nullptr)
-      {
+      //if (get_parent() == nullptr)
+      //{
 
-         if (pbase->m_wparam == SC_RESTORE)
-         {
+      //   if (pusermessage->m_wparam == SC_RESTORE)
+      //   {
 
-            display(e_display_restore);
+      //      display(e_display_restore);
 
-            set_need_layout();
+      //      set_need_layout();
 
-            set_reposition();
+      //      set_reposition();
 
-            set_need_redraw();
+      //      set_need_redraw();
 
-            post_redraw();
+      //      post_redraw();
 
-            pbase->m_bRet = true;
+      //      pusermessage->m_bRet = true;
 
-            pbase->m_lresult = 0;
+      //      pusermessage->m_lresult = 0;
 
-         }
+      //   }
 
-      }
+      //}
 
 #else
 
@@ -2731,18 +2736,18 @@ namespace user
       m_nWindow = -1;                 // unknown interaction_impl ID
       m_bAutoMenuEnable = true;       // auto enable on by default
 //      m_lpfnCloseProc = nullptr;
-#ifdef WINDOWS_DESKTOP
-      m_hMenuDefault = nullptr;
-      m_hAccelTable = nullptr;
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      m_hMenuDefault = nullptr;
+//      m_hAccelTable = nullptr;
+//#endif
       //m_nIDHelp = 0;
       m_nIDTracking = 0;
       m_nIDLastMessage = 0;
 
       m_cModalStack = 0;              // initialize modality support
-#ifdef WINDOWS_DESKTOP
-      m_hMenuAlt = nullptr;
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      m_hMenuAlt = nullptr;
+//#endif
       m_nIdleFlags = 0;               // no idle work at start
       m_rectBorder.Null();
       m_dwPromptContext = 0;
@@ -2802,7 +2807,7 @@ namespace user
 
 
 
-   void frame_window::OnUpdateControlBarMenu(::user::command * pcommand)
+   void frame_window::OnUpdateControlBarMenu(::message::command * pcommand)
    {
 
       /*      ASSERT(ID_VIEW_STATUS_BAR == "status_bar");
@@ -3081,7 +3086,7 @@ namespace user
 
 #if TEST
 
-         pgraphics->fill_rect(60, 10, 50, 50, argb(128, 190, 180, 90));
+         pgraphics->fill_rectangle(60, 10, 50, 50, argb(128, 190, 180, 90));
 
 #endif
 
@@ -3093,7 +3098,7 @@ namespace user
 
 #if TEST
 
-         pgraphics->fill_rect(10, 60, 50, 50, argb(128, 190, 180, 90));
+         pgraphics->fill_rectangle(10, 60, 50, 50, argb(128, 190, 180, 90));
 
 #endif
 
@@ -3111,7 +3116,7 @@ namespace user
    }
 
 
-   bool frame_window::has_command_handler(::user::command * pcommand)
+   bool frame_window::has_command_handler(::message::command * pcommand)
    {
 
       if (channel::has_command_handler(pcommand))

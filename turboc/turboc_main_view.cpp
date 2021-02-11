@@ -56,7 +56,7 @@ namespace turboc
 
       }
 
-      SetSplitOrientation(orientation_horizontal);
+      SetSplitOrientation(e_orientation_horizontal);
 
       set_position(0,24);
 

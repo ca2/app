@@ -385,7 +385,7 @@ namespace uwp
          else
          {
 
-            ___pointer < ::message::base > spbase;
+            ___pointer < ::user::message > spbase;
 
             auto pkey = __new(::message::key);
 

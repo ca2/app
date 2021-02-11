@@ -13,14 +13,14 @@ namespace axis
 
       //__pointer(::apex::library)             m_plibrary;
 
-      //::draw2d::font_pointer                 m_pfont;
-      //::draw2d::font_pointer                 m_pfontMenu;
-      //::draw2d::font_pointer                 m_pfontButton;
-      //::draw2d::font_pointer                 m_pfontList;
-      //::draw2d::font_pointer                 m_pfontTree;
-      //::draw2d::font_pointer                 m_pfontStill;
-      //::draw2d::font_pointer                 m_pfontEdit;
-      //::draw2d::font_pointer                 m_pfontCombo;
+      //::write_text::font_pointer                 m_pfont;
+      //::write_text::font_pointer                 m_pfontMenu;
+      //::write_text::font_pointer                 m_pfontButton;
+      //::write_text::font_pointer                 m_pfontList;
+      //::write_text::font_pointer                 m_pfontTree;
+      //::write_text::font_pointer                 m_pfontStill;
+      //::write_text::font_pointer                 m_pfontEdit;
+      //::write_text::font_pointer                 m_pfontCombo;
       //enum_translucency                         m_etranslucency;
       //enum_translucency                         m_etranslucencyButton;
       //::color::color                                m_colorBackground;
@@ -115,7 +115,7 @@ namespace axis
 
 
       //virtual color32_t           _001GetColor(e_color ecolor, color32_t crDefault = 0);
-      //virtual ::draw2d::font_pointer  _001GetFont(e_font efont, ::draw2d::font * pfont = nullptr);
+      //virtual ::write_text::font_pointer  _001GetFont(e_font efont, ::write_text::font * pfont = nullptr);
       //virtual enum_translucency     _001GetTranslucency(enum_element eelement = e_element_none, enum_translucency etranslucencyDefault = e_translucency_undefined);
       //virtual bool               _001GetFlag(::user::enum_flag eflag, bool bDefault = false);
       //virtual ::rectangle_i32             _001GetRect(::user::e_rect erect, ::rectangle_i32 rectDefault = nullptr);
@@ -130,7 +130,7 @@ namespace axis
 
 
       virtual ::color::color get_color(const ::user::interaction* pinteraction, ::user::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override;
-      //virtual bool get_font(::draw2d::font_pointer & sp, e_font efont, style_context * pcontext) override;
+      //virtual bool get_font(::write_text::font_pointer & sp, e_font efont, style_context * pcontext) override;
       //virtual bool get_translucency(enum_translucency & etranslucency, enum_element matter, style_context * pcontext) override;
       //virtual bool get_flag(bool & bSet, enum_flag eflag, style_context * pcontext) override;
       //virtual bool get_rect(style_rect & rectangle, e_rect erect, style_context * pcontext) override;

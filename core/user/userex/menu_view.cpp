@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 
 
 menu_view::menu_view()
@@ -113,14 +111,14 @@ void menu_view::_001OnTimer(::timer * ptimer)
 
 //void menu_view::_001OnUser123(::message::message * pmessage)
 //{
-//   __pointer(::message::base) pbase(pmessage);
-//   if(pbase->m_wparam == 0x80000001)
+//   __pointer(::user::message) pusermessage(pmessage);
+//   if(pusermessage->m_wparam == 0x80000001)
 //   {
 //      get_top_level()->EndModalLoop(e_dialog_result_ok);
 //      return;
 //   }
 //   if(m_pcallback != nullptr)
 //   {
-//      m_pcallback->OnUser123(pbase->m_wparam, pbase->m_lparam);
+//      m_pcallback->OnUser123(pusermessage->m_wparam, pusermessage->m_lparam);
 //   }
 //}

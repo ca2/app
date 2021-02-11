@@ -765,6 +765,8 @@ inline raw_array < TYPE, ARG_TYPE, ALLOCATOR > & raw_array < TYPE, ARG_TYPE, ALL
       this->m_nMaxSize = a.m_nMaxSize;
 
       a.m_pData = nullptr;
+      a.m_nSize = 0;
+      a.m_nMaxSize = 0;
 
    }
 

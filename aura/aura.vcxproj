@@ -1112,7 +1112,14 @@
     <ClCompile Include="graphics\draw2d\image_drawer.cpp" />
     <ClCompile Include="graphics\draw2d\image_drawing.cpp" />
     <ClCompile Include="graphics\graphics\monitor.cpp" />
+    <ClCompile Include="graphics\write_text\font.cpp" />
+    <ClCompile Include="graphics\write_text\font_department.cpp" />
+    <ClCompile Include="graphics\write_text\font_enumeration.cpp" />
+    <ClCompile Include="graphics\write_text\font_list.cpp" />
+    <ClCompile Include="graphics\write_text\text_box.cpp" />
+    <ClCompile Include="graphics\write_text\write_text.cpp" />
     <ClCompile Include="include\_.cpp" />
+    <ClCompile Include="message\command.cpp" />
     <ClCompile Include="message\timer.cpp" />
     <ClCompile Include="message\user.cpp" />
     <ClCompile Include="node\windows\shell_open.cpp" />
@@ -1120,7 +1127,6 @@
     <ClCompile Include="node\windows\user_frame.cpp" />
     <ClCompile Include="node\windows\windows_desktop.cpp" />
     <ClCompile Include="node\windows\application.cpp" />
-    <ClCompile Include="node\windows\copydesk.cpp" />
     <ClCompile Include="node\windows\factory_exchange.cpp" />
     <ClCompile Include="node\windows\graphics_buffer.cpp" />
     <ClCompile Include="node\windows\interaction_impl.cpp" />
@@ -1148,7 +1154,18 @@
     <ClCompile Include="os\windows\main.cpp" />
     <ClCompile Include="os\windows\monitor.cpp" />
     <ClCompile Include="os\windows\windowing.cpp" />
-    <ClCompile Include="os\windows_common\draw2d_direct2d_global.cpp" />
+    <ClCompile Include="os\windows_common\aaa_draw2d_direct2d_global.cpp">
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|Win32'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cube_stage|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='basis|x64'">true</ExcludedFromBuild>
+      <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='stage|x64'">true</ExcludedFromBuild>
+    </ClCompile>
     <ClCompile Include="platform\application.cpp" />
     <ClCompile Include="platform\aura_mq.cpp" />
     <ClCompile Include="platform\drawable.cpp" />
@@ -1166,6 +1183,10 @@
     <ClCompile Include="user\control_descriptor.cpp" />
     <ClCompile Include="user\control_event.cpp" />
     <ClCompile Include="user\copydesk.cpp" />
+    <ClCompile Include="user\message.cpp" />
+    <ClCompile Include="user\notify_icon.cpp" />
+    <ClCompile Include="user\notify_icon_listener.cpp" />
+    <ClCompile Include="user\shell.cpp" />
     <ClCompile Include="user\system.cpp" />
     <ClCompile Include="user\form.cpp" />
     <ClCompile Include="user\form_callback.cpp" />
@@ -1317,6 +1338,9 @@
     <ClCompile Include="windowing\display.cpp" />
     <ClCompile Include="windowing\icon.cpp" />
     <ClCompile Include="windowing\keyboard.cpp" />
+    <ClCompile Include="windowing\menu.cpp" />
+    <ClCompile Include="windowing\menu_command.cpp" />
+    <ClCompile Include="windowing\menu_item.cpp" />
     <ClCompile Include="windowing\monitor.cpp" />
     <ClCompile Include="windowing\window.cpp" />
     <ClCompile Include="windowing\windowing.cpp" />
@@ -1354,11 +1378,18 @@
     <ClInclude Include="graphics\draw2d\image_drawing.h" />
     <ClInclude Include="graphics\draw2d\image_source.h" />
     <ClInclude Include="graphics\draw2d\_draw2d.h" />
-    <ClInclude Include="graphics\text\bounding_rect.h" />
-    <ClInclude Include="graphics\text\contains.h" />
-    <ClInclude Include="graphics\text\draw_text.h" />
-    <ClInclude Include="graphics\text\text.h" />
-    <ClInclude Include="graphics\text\text_out.h" />
+    <ClInclude Include="graphics\write_text\bounding_rect.h" />
+    <ClInclude Include="graphics\write_text\contains.h" />
+    <ClInclude Include="graphics\write_text\draw_text.h" />
+    <ClInclude Include="graphics\write_text\font.h" />
+    <ClInclude Include="graphics\write_text\font_department.h" />
+    <ClInclude Include="graphics\write_text\font_enumeration.h" />
+    <ClInclude Include="graphics\write_text\font_list.h" />
+    <ClInclude Include="graphics\write_text\text.h" />
+    <ClInclude Include="graphics\write_text\text_box.h" />
+    <ClInclude Include="graphics\write_text\text_out.h" />
+    <ClInclude Include="graphics\write_text\write_text.h" />
+    <ClInclude Include="graphics\write_text\_.h" />
     <ClInclude Include="id.h" />
     <ClInclude Include="include\_c.h" />
     <ClInclude Include="include\_no_templates.h" />
@@ -1377,6 +1408,7 @@
     <ClInclude Include="inline\_new_impl.h" />
     <ClInclude Include="memory\os_alloc.h" />
     <ClInclude Include="message.h" />
+    <ClInclude Include="message\command.h" />
     <ClInclude Include="message\timer.h" />
     <ClInclude Include="message\user.h" />
     <ClInclude Include="message\_.h" />
@@ -1389,7 +1421,6 @@
     <ClInclude Include="node\opengl\program.h" />
     <ClInclude Include="node\opengl\shader.h" />
     <ClInclude Include="node\windows\buffer.h" />
-    <ClInclude Include="node\windows\copydesk.h" />
     <ClInclude Include="node\windows\factory_exchange.h" />
     <ClInclude Include="node\windows\interaction_impl.h" />
     <ClInclude Include="node\windows\interprocess_communication.h" />
@@ -1409,7 +1440,7 @@
     <ClInclude Include="os\windows\windowing.h" />
     <ClInclude Include="os\windows\_.h" />
     <ClInclude Include="os\windows\_windows.h" />
-    <ClInclude Include="os\windows_common\draw2d_direct2d_global.h" />
+    <ClInclude Include="os\windows_common\aaa_draw2d_direct2d_global.h" />
     <ClInclude Include="os\windows_common\graphics.h" />
     <ClInclude Include="os\windows_common\_.h" />
     <ClInclude Include="os\_.h" />
@@ -1459,6 +1490,12 @@
     <ClInclude Include="user\control_event.h" />
     <ClInclude Include="user\copydesk.h" />
     <ClInclude Include="user\aaa_create.h" />
+    <ClInclude Include="user\message.h" />
+    <ClInclude Include="user\notify_icon.h" />
+    <ClInclude Include="user\notify_icon_listener.h" />
+    <ClInclude Include="user\notify_icon_mm.h" />
+    <ClInclude Include="user\notify_icon_mm_bridge.h" />
+    <ClInclude Include="user\shell.h" />
     <ClInclude Include="user\system.h" />
     <ClInclude Include="user\form.h" />
     <ClInclude Include="user\form_callback.h" />
@@ -1545,10 +1582,6 @@
     <ClCompile Include="graphics\draw2d\debug.cpp" />
     <ClCompile Include="graphics\draw2d\draw2d.cpp" />
     <ClCompile Include="graphics\draw2d\fastblur.cpp" />
-    <ClCompile Include="graphics\draw2d\font.cpp" />
-    <ClCompile Include="graphics\draw2d\font_department.cpp" />
-    <ClCompile Include="graphics\draw2d\font_enumeration.cpp" />
-    <ClCompile Include="graphics\draw2d\font_list.cpp" />
     <ClCompile Include="graphics\draw2d\glyph.cpp" />
     <ClCompile Include="graphics\draw2d\glyph_set.cpp" />
     <ClCompile Include="graphics\draw2d\graphics.cpp" />
@@ -1588,7 +1621,6 @@
     <ClCompile Include="graphics\draw2d\pen.cpp" />
     <ClCompile Include="graphics\draw2d\printer.cpp" />
     <ClCompile Include="graphics\draw2d\region.cpp" />
-    <ClCompile Include="graphics\draw2d\text_box.cpp" />
     <ClCompile Include="graphics\draw2d\thread_tool.cpp" />
     <ClCompile Include="graphics\draw2d\winrt\image_gif.cpp">
       <ExcludedFromBuild Condition="'$(Configuration)|$(Platform)'=='cover|Win32'">true</ExcludedFromBuild>
@@ -1630,10 +1662,6 @@
     <ClInclude Include="graphics\draw2d\cursor_set.h" />
     <ClInclude Include="graphics\draw2d\draw2d.h" />
     <ClInclude Include="graphics\draw2d\fastblur.h" />
-    <ClInclude Include="graphics\draw2d\font.h" />
-    <ClInclude Include="graphics\draw2d\font_department.h" />
-    <ClInclude Include="graphics\draw2d\font_enumeration.h" />
-    <ClInclude Include="graphics\draw2d\font_list.h" />
     <ClInclude Include="graphics\draw2d\fwd.h" />
     <ClInclude Include="graphics\draw2d\glyph.h" />
     <ClInclude Include="graphics\draw2d\glyph_set.h" />
@@ -1663,7 +1691,6 @@
     <ClInclude Include="graphics\draw2d\pen.h" />
     <ClInclude Include="graphics\draw2d\pixmap.h" />
     <ClInclude Include="graphics\draw2d\region.h" />
-    <ClInclude Include="graphics\draw2d\text_box.h" />
     <ClInclude Include="graphics\draw2d\thread_tool.h" />
     <ClInclude Include="graphics\draw2d\_.h" />
     <ClInclude Include="graphics\draw2d\_image_impl.h" />
@@ -1697,6 +1724,9 @@
     <ClInclude Include="windowing\hook.h" />
     <ClInclude Include="windowing\icon.h" />
     <ClInclude Include="windowing\keyboard.h" />
+    <ClInclude Include="windowing\menu.h" />
+    <ClInclude Include="windowing\menu_command.h" />
+    <ClInclude Include="windowing\menu_item.h" />
     <ClInclude Include="windowing\message_box.h" />
     <ClInclude Include="windowing\monitor.h" />
     <ClInclude Include="windowing\simple_ui_display.h" />
@@ -1709,6 +1739,8 @@
     <None Include="aura.def" />
     <None Include="graphics\draw2d\_impl.h" />
     <None Include="graphics\_impl.h" />
+    <None Include="user\notify_icon.mm" />
+    <None Include="user\notify_icon_mm_bridge.mm" />
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="..\..\..\archive\platform-windows\version.rc" />
@@ -1723,9 +1755,6 @@
     <ProjectReference Include="..\aqua\aqua.vcxproj">
       <Project>{1b06fe5f-f783-41a1-ac68-0e02880dbbac}</Project>
     </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="graphics\text\_.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

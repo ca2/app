@@ -19,12 +19,15 @@ namespace draw2d
 
 
       __pointer(class ::draw2d::api)                           m_papi;
-      __pointer(class font_department)                         m_pfontdepartment;
 
       //::mutex                                        m_pmutexFont;
-#ifdef WINDOWS
-      __composite(::draw2d_direct2d::plugin)                     m_pplugin;
-#endif
+//#ifdef WINDOWS
+  //    __composite(::draw2d_direct2d::plugin)                     m_pplugin;
+//#endif
+
+      __pointer(::write_text::write_text)                      m_pwritetext;
+
+
 
       draw2d();
       virtual ~draw2d();
@@ -41,24 +44,26 @@ namespace draw2d
 
       virtual void finalize() override;
 
+
       virtual class api & api();
 
+      inline class ::write_text::write_text * write_text() { return m_pwritetext; }
 
-#ifdef WINDOWS
-      ::draw2d_direct2d::plugin * direct2d();
-#endif
+//#ifdef WINDOWS
+  //    ::draw2d_direct2d::plugin * direct2d();
+//#endif
 
-      virtual double font_similarity(const char * pszSystem, const char * pszUser);
+      
 
       e_format file_extension_to_format(const ::payload & varFile);
       e_format text_to_format(string str);
       
-
-      class font_department & fonts();
-
-
+      virtual ::e_status initialize_write_text();
+      virtual ::e_status write_text_factory_exchange();
 
       virtual void term_instance() override;
+
+      virtual string write_text_get_default_library_name();
 
       virtual bool embossed_text_out(
       ::draw2d::graphics_pointer & pgraphics,
@@ -66,7 +71,7 @@ namespace draw2d
       string strText,
       ::draw2d::fastblur & blur,
       ::image_pointer & imageBlur,
-      ::draw2d::font * pfont,
+      ::write_text::font * pfont,
       const ::e_align & ealign,
       const ::e_draw_text & edrawtext,
       color32_t crText,
@@ -96,7 +101,7 @@ namespace draw2d
 
       virtual bool channel_spread__32CC(::image * pimageDst, ::image * pimageSrc, i32 iChannel, i32 iRadius, color32_t crSpreadSetColor);
 
-      //virtual void enum_draw2d_fonts(::draw2d::font_enum_item_array& itema);
+      //virtual void enum_draw2d_fonts(::write_text::font_enum_item_array& itema);
 
 
    };

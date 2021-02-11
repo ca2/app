@@ -294,7 +294,7 @@ namespace draw2d_xlib
 
    //   i32 i;
    //   i32 j;
-   //   i32 rectangle_i32 = scan - cx * sizeof(color32_t);
+   //   i32 rectangle = scan - cx * sizeof(color32_t);
    //   for (i=0; i<cy; i++ )
    //   {
    //      for (j=0; j<cx; j++ )
@@ -2583,18 +2583,18 @@ namespace draw2d_xlib
    bool image::print_window(::user::user::interaction_impl * pwnd, ::message::message * pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
-      if(pbase->m_wparam == nullptr)
+      if(pusermessage->m_wparam == nullptr)
          return false;
 
-      m_spgraphics->attach((HDC) pbase->m_wparam);
+      m_spgraphics->attach((HDC) pusermessage->m_wparam);
 
       ::rectangle_i32 rectx;
 
       ::draw2d::bitmap * pbitmap = m_spgraphics->get_current_bitmap();
 
-      ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
+      ::GetCurrentObject((HDC) pusermessage->m_wparam, OBJ_BITMAP);
 
       //      u32 dw = ::get_last_error();
       ::size_i32 size = pbitmap->get_size();
@@ -2656,7 +2656,7 @@ namespace draw2d_xlib
       }
       m_spgraphics->FillSolidRect(rectx, rgb(255, 255, 255));
       pmessage->m_bRet = true;
-      pbase->set_lresult(0);
+      pusermessage->set_lresult(0);
 
       return true;
    }

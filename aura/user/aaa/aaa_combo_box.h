@@ -59,7 +59,7 @@ namespace user
       virtual void install_message_routing(::channel * pchannel) override;
 
 
-      virtual ::draw2d::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
+      virtual ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, estate estate = e_state_none) const override;
 
 
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -209,7 +209,7 @@ namespace user
 
 #endif
 
-      virtual bool OnChildNotify(::message::base * pbase) override;
+      virtual bool OnChildNotify(::user::message * pusermessage) override;
 
 
       //virtual color32_t get_action_hover_border_color() override;

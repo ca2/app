@@ -1664,10 +1664,10 @@ namespace draw2d_direct2d
    }
 
 
-   bool image::tint(::image * pimage, const ::color32 & color32)
+   bool image::tint(::image * pimage, const ::color::color & color)
    {
 
-      return ::image::tint(pimage, rgba);
+      return ::image::tint(pimage, color);
 
       //if (!::is_ok(pimage)) // || pimage->get_bitmap() || !pimage->get_bitmap()->m_osdata[0])
       //{
@@ -1685,7 +1685,7 @@ namespace draw2d_direct2d
 
       //::rectangle_i32 rectDib1(::point_i32(), pimage->get_size());
 
-      //fill(A_RGB(255, rgb));
+      //fill(a_rgb(255, rgb));
 
       //auto pgraphicsDib1 = __graphics(get_graphics());
 

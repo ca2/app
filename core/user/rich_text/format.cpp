@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/rich_text/_rich_text.h"
-#endif
 
 
 namespace user
@@ -217,7 +215,7 @@ namespace user
       }
 
 
-      ::draw2d::font * format::get_font(::draw2d::graphics_pointer & pgraphics) const
+      ::write_text::font * format::get_font(::draw2d::graphics_pointer & pgraphics) const
       {
 
          if (!m_bUpdated || m_font.is_null())

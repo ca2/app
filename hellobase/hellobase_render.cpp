@@ -483,7 +483,7 @@ namespace hellobase
 //
 //                  m_pimage->g()->set_font(m_font);
 //
-//                  m_pimage->g()->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+//                  m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 //
 //                  m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 //
@@ -577,7 +577,7 @@ namespace hellobase
 //
 //      pgraphics->set_font(m_font);
 //
-//      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+//      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 //
 //      if (psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
 //      {
@@ -751,7 +751,7 @@ namespace hellobase
 //
 //            m_pimage->Fill(0, 0, 0, 0);
 //
-//            m_pimage->g()->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+//            m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 //
 //            m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 //
@@ -800,7 +800,7 @@ namespace hellobase
 //
 //      }
 //
-//      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+//      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 //
 //      if (psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
 //      {
@@ -1126,13 +1126,13 @@ namespace hellobase
 
       //         float fHeight = 100.0;
 
-      //         ::draw2d::font_pointer font(e_create);
+      //         ::write_text::font_pointer font(e_create);
 
       //         font->create_pixel_font(os_font_name(e_font_sans), fHeight, e_font_weight_bold);
 
       //         pgraphics->set_font(font);
 
-      //         pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      //         pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       //         ::size_i32 size = pgraphics->GetTextExtent(strHelloBase);
 
@@ -1162,7 +1162,7 @@ namespace hellobase
 
       //      pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      //      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      //      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       //      ::size_i32 size = pgraphics->GetTextExtent(strHelloBase);
 
@@ -1377,13 +1377,13 @@ namespace hellobase
 
    //   float fHeight = 100.0;
 
-   //   ::draw2d::font_pointer font(e_create);
+   //   ::write_text::font_pointer font(e_create);
 
    //   font->create_pixel_font(m_pview->m_strFont, fHeight, e_font_weight_bold);
 
    //   pgraphics->set_font(font);
 
-   //   pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+   //   pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
    //   ::size_i32 size = pgraphics->GetTextExtent(strHelloBase);
 

@@ -43,7 +43,7 @@ namespace user
       ::draw2d::brush_pointer                   m_brushTextSelectedHighlight;
       ::draw2d::brush_pointer                   m_brushTextHighlight;
       ::draw2d::brush_pointer                   m_brushText;
-      ::draw2d::font_pointer                    m_fontTreeItem;
+      ::write_text::font_pointer                    m_fontTreeItem;
       ::color::color                                   m_colorTreeBackground;
 
 
@@ -88,7 +88,7 @@ namespace user
       void _001SetCollapseImage(const char * pszMatter);
       void _001SetExpandImage(const char * pszMatter);
       void update_tree_hover();
-      void update_tree_hover(point_i32 point_i32);
+      void update_tree_hover(point_i32 point);
       virtual void _001OnOpenItem(::data::tree_item * pitem, const ::action_context & action_context);
       virtual void _001OnItemContextMenu(::data::tree_item * pitem, const ::action_context & action_context, ::user::tree * ptree, const ::point_i32 & point);
       void _001ExpandItem(::data::tree_item * pitem, const ::action_context & action_context, bool bExpand = true, bool bRedraw = true, bool bLayout = true);

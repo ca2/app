@@ -1,8 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/simple_ui/_simple_ui.h"
-#endif
-
 
 namespace simple_ui
 {
@@ -25,7 +22,7 @@ namespace simple_ui
    void password::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
    {
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       color32_t crBk;
       color32_t crBkSel;
@@ -117,9 +114,9 @@ namespace simple_ui
       127);
       }*/
 
-      color ca;
-      ca.set_rgb(rgb(227,227,210));
-      ca.hls_rate(0.0,-0.33,-0.23);
+      ::color::color color;
+      color.set_rgb(rgb(227,227,210));
+      color.hls_rate(0.0,-0.33,-0.23);
 //      color32_t crBorder = ca.get_rgb() | (0xff << 24);
       //pgraphics->draw3d_rect(rectClient,crBorder,crBorder);
 
@@ -149,7 +146,7 @@ namespace simple_ui
 
       bool bFocus;
 
-      if(has_focus())
+      if(has_keyboard_focus())
       {
          bFocus = keyboard_focus_is_focusable();
       }
@@ -173,7 +170,7 @@ namespace simple_ui
       rectClient.left = m_point.x;
       rectClient.bottom = rectClient.top + m_size.cy;
       rectClient.right = rectClient.left + m_size.cx;*/
-      //      pgraphics->fill_rect(rectClient, crBk);
+      //      pgraphics->fill_rectangle(rectClient, crBk);
 
 //
 
@@ -183,7 +180,7 @@ namespace simple_ui
       __sort(iSelStart,iSelEnd);
       pgraphics->set(get_font(pstyle));
       //size_i32 size3;
-      ::draw2d::text_metric metric;
+      ::write_text::text_metric metric;
        pgraphics->get_text_metrics(&metric);
       double dLineHeight = metric.get_line_spacing();
 //      string_array & straLines = m_plines->lines;
@@ -247,7 +244,7 @@ namespace simple_ui
          {
 
             auto rectFill = ::rectd_dim((i32)(left + size1.cx), (i32)y, (i32)size2.cx, (i32)size2.cy);
-            pgraphics->fill_rect(rectFill,argb(255,120,240,180));
+            pgraphics->fill_rectangle(rectFill,argb(255,120,240,180));
             brushText->create_solid(crSel);
             pgraphics->set(brushText);
             pgraphics->text_out(left + size1.cx,y,strExtent2);

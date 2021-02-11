@@ -6,7 +6,7 @@ namespace draw2d_opengl
 
 
    class CLASS_DECL_DRAW2D_OPENGL font : 
-      virtual public ::draw2d::font
+      virtual public ::write_text::font
    {
    public:
 
@@ -25,7 +25,7 @@ namespace draw2d_opengl
       virtual ~font();
 
 
-      virtual void construct(const ::draw2d::font & fontParam);
+      virtual void construct(const ::write_text::font & fontParam);
 
       
       virtual void dump(dump_context & dumpcontext) const;

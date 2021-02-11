@@ -7,7 +7,7 @@ namespace draw2d
 
 
    font::font(::layered * pobjectContext) :
-      ::draw2d::font(pobject),
+      ::write_text::font(pobject),
       m_pfont(e_create)
    {
 
@@ -31,7 +31,7 @@ namespace draw2d
    }
 
 
-   ::draw2d::font * font::GetFont()
+   ::write_text::font * font::GetFont()
    {
 
       return m_pfont;
@@ -43,7 +43,7 @@ namespace draw2d
    {
 
 
-      System.draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str);
+      System.draw2d()->api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str);
 
       return;
 
@@ -98,7 +98,7 @@ namespace draw2d
 
    {
 
-      System.draw2d().api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
+      System.draw2d()->api().embossed_text_out(pgraphics, rect, dRateX, dHeight, str, piCharsPositions, iCharsPositions, iOffset);
 
 
       return;
@@ -440,7 +440,7 @@ namespace draw2d
 
       spgraphics->CreateCompatibleDC(nullptr);
 
-      ::draw2d::font * pFontOld = spgraphics->SelectObject(m_pfont);
+      ::write_text::font * pFontOld = spgraphics->SelectObject(m_pfont);
 
       spgraphics->get_text_metrics(&m_tm);
 

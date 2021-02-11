@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "axis/user/_user.h"
-#endif
 #include "acme/const/timer.h"
 
 
@@ -115,7 +113,7 @@ namespace user
 
       pgraphics->set(brBk);
 
-      pgraphics->fill_rect(rectClient);
+      pgraphics->fill_rectangle(rectClient);
 
       ::rect rectItem;
 
@@ -211,7 +209,7 @@ namespace user
 
          pgraphics->set(brBk);
 
-         pgraphics->fill_rect(rectItem);
+         pgraphics->fill_rectangle(rectItem);
 
          m_pcombo->_001GetListText(iItem, strItem);
 
@@ -243,12 +241,12 @@ namespace user
 
       rectClient.deflate(0, 0, 1, 1);
 
-      pgraphics->draw_rect(rectClient);
+      pgraphics->draw_rectangle(rectClient);
 
    }
 
 
-   ::draw2d::font_pointer combo_list::get_font(style *pstyle, enum_element eelement, estate estate) const
+   ::write_text::font_pointer combo_list::get_font(style *pstyle, enum_element eelement, estate estate) const
    {
 
       if (m_pcombo)
@@ -297,7 +295,7 @@ namespace user
 
       pgraphics->set_font(this, ::user::e_element_none);
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       string strItem;
 

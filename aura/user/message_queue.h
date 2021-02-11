@@ -21,7 +21,7 @@ namespace user
 
       virtual bool create_message_queue(const char * pszName,::user::message_queue_listener * plistener = nullptr);
 
-      virtual void message_handler(::message::base * pbase);
+      virtual void message_handler(::user::message * pusermessage);
 
       virtual void message_queue_message_handler(::message::message * pmessage);
 

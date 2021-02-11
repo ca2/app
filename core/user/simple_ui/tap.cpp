@@ -1,8 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/simple_ui/_simple_ui.h"
-#endif
-
 
 namespace simple_ui
 {
@@ -177,16 +174,22 @@ namespace simple_ui
 
       get_window_rect(&rectWindow);
 
-      ::point_i32 pointCursor;
-
       auto psession = Session;
 
-      psession->get_cursor_pos(&pointCursor);
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
 
       bool bHover = rectWindow.contains(pointCursor);
 
       if (!bHover)
+      {
+
          m_bMouseMove = false;
+
+      }
 
       return bHover;
 
@@ -220,7 +223,7 @@ namespace simple_ui
 
          get_client_rect(rectClient);
 
-         pgraphics->fill_rect(rectClient, br);
+         pgraphics->fill_rectangle(rectClient, br);
 
       }
 
@@ -260,7 +263,7 @@ namespace simple_ui
             if (timeNow.GetHour() >= 6 && timeNow.GetHour() <= 17)
             {
 
-               crOut = argb(1140, 255, 230, 255);
+               crOut = argb(114, 255, 230, 255);
 
                crIn = argb(255, 255, 133, 255);
 
@@ -272,7 +275,7 @@ namespace simple_ui
             else
             {
 
-               crOut = argb(1140, 205, 180, 205);
+               crOut = argb(114, 205, 180, 205);
 
                crIn = argb(255, 205, 83, 205);
 
@@ -322,7 +325,7 @@ namespace simple_ui
 
                crOut = argb(190, 255, 210, 255);
 
-               crIn = argb(255, 255, 1140, 255);
+               crIn = argb(255, 255, 114, 255);
 
                crBorderOut = argb(190, 90, 20, 90);
 
@@ -367,7 +370,7 @@ namespace simple_ui
 
             pgraphics->set(br);
 
-            pgraphics->fill_rect(rectClient,br);
+            pgraphics->fill_rectangle(rectClient,br);
 
             ::draw2d::pen_pointer pen(e_create);
 
@@ -387,11 +390,11 @@ namespace simple_ui
 
          br->CreateLinearGradientBrush(point_i32(rectClient.left, rectClient.top - 1), point_i32(rectClient.left, rectClient.top + iBorderH + 2), crOut, crIn);
 
-         pgraphics->fill_rect(::rectangle_i32(rectClient.left + 1, rectClient.top + 1, (i32)rectClient.width(), iBorderH), br);
+         pgraphics->fill_rectangle(::rectangle_i32(rectClient.left + 1, rectClient.top + 1, (i32)rectClient.width(), iBorderH), br);
 
          br->CreateLinearGradientBrush(point_i32(rectClient.left, rectClient.top + iBorderH - 1), point_i32(rectClient.left, rectClient.top + iBorderH * 2 + 2), crIn, crOut);
 
-         pgraphics->fill_rect(::rectangle_i32(rectClient.left + 1, rectClient.top + iBorderH, rectClient.left + (i32)rectClient.width(), rectClient.top + iBorderH + iBorderH), br);
+         pgraphics->fill_rectangle(::rectangle_i32(rectClient.left + 1, rectClient.top + iBorderH, rectClient.left + (i32)rectClient.width(), rectClient.top + iBorderH + iBorderH), br);
 
          /*Gdiplus::Pen pen1(crBorderOut);
 
@@ -401,7 +404,7 @@ namespace simple_ui
 
          pen->create_solid(1.0, crBorderIn);
 
-         pgraphics->draw_rect(::rectangle_i32(rectClient.left + 1, rectClient.top + 1, rectClient.left + (i32)rectClient.width() - 2, rectClient.top + iBorderH * 2 - 2), pen);
+         pgraphics->draw_rectangle(::rectangle_i32(rectClient.left + 1, rectClient.top + 1, rectClient.left + (i32)rectClient.width() - 2, rectClient.top + iBorderH * 2 - 2), pen);
 
       }
 
@@ -472,7 +475,7 @@ namespace simple_ui
 
       rectClient.deflate((i32) fMargin, (i32) fMargin);
 
-      ::draw2d::font_pointer f(e_create);
+      ::write_text::font_pointer f(e_create);
 
       f->create_pixel_font(os_font_name(e_font_sans_ex), (i32)rectClient.height()* 0.7);
 

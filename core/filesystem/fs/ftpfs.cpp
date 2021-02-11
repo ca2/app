@@ -419,7 +419,7 @@ retry:
 
       }
 
-      ::file::path pathTemp = Context.file().time(Context.dir().time());
+      ::file::path pathTemp = get_context()->file().time(get_context()->dir().time());
 
       string strRemoteFile = System.url().get_object(path);
 
@@ -441,7 +441,7 @@ retry:
 
       }
 
-      return Context.file().get_file(pathTemp, eopen);
+      return get_context()->file().get_file(pathTemp, eopen);
 
    }
    else

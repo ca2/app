@@ -902,7 +902,7 @@ namespace aura
       if(m_bDraw2d)
       {
 
-         if (!init_draw2d())
+         if (!initialize_draw2d())
          {
 
             return false;
@@ -911,6 +911,8 @@ namespace aura
 
       }
 
+   
+      
       on_update_matter_locator();
 
 //
@@ -1003,7 +1005,7 @@ namespace aura
 //   }
 
 
-   ::e_status system::init_draw2d()
+   ::e_status system::initialize_draw2d()
    {
 
       ::e_status estatus = ::success;
@@ -3259,7 +3261,7 @@ namespace aura
 //
 //   {
 //
-//      Windows::Foundation::Rect rectangle_i32 = pwindow->get_window_rect();
+//      Windows::Foundation::Rect rectangle = pwindow->get_window_rect();
 //
 //      prectangle->left = rectangle.X;
 //
@@ -6333,7 +6335,7 @@ namespace aura
          if (psubject->m_id == id_font_enumeration)
          {
 
-            draw2d().fonts().defer_create_font_enumeration(psubject);
+            draw2d()->write_text()->fonts()->defer_create_font_enumeration(psubject);
 
          }
          else if (psubject->m_id == id_os_dark_mode)
@@ -6740,6 +6742,43 @@ namespace aura
       return m_typePaneTabView;
 
    }
+
+
+   //bool system::on_application_menu_action(const char * pszCommand)
+   //{
+
+   //   sync_lock sl(mutex());
+
+   //   auto psession = Session;
+
+   //   auto applicationa = psession->m_applicationa;
+
+   //   sl.unlock();
+
+   //   for (auto & papp : applicationa)
+   //   {
+
+   //      ASSERT(papp != this);
+
+   //      if (papp == this)
+   //      {
+
+   //         continue;
+
+   //      }
+
+   //      if (papp->on_application_menu_action(pszCommand))
+   //      {
+
+   //         return true;
+
+   //      }
+
+   //   }
+
+   //   return false;
+
+   //}
 
 
    void system::finalize()

@@ -109,7 +109,7 @@ namespace windowing
    }
 
 
-   bool windowing::set_cursor_set_from_matter(const ::file::path & pathDir)
+   ::e_status windowing::set_cursor_set_from_matter(const ::file::path & pathDir)
    {
 
       sync_lock sl(mutex());
@@ -117,7 +117,7 @@ namespace windowing
       if (m_bSettingCursorMatter)
       {
 
-         return false;
+         return error_already_working_on_it;
 
       }
 
@@ -125,18 +125,35 @@ namespace windowing
 
       sl.unlock();
 
-      auto pcursorset = __create_new < ::draw2d::cursor_set >();
+      auto estatus = __construct(m_pcursorset);
 
-      if (!pcursorset->set_cursor_set_from_matter(pathDir))
+      if (!estatus)
       {
 
-         return false;
+         return estatus;
 
       }
 
-      m_pcursorset = pcursorset;
+      estatus = m_pcursorset->set_cursor_set_from_matter(pathDir);
 
-      return true;
+      if (!estatus)
+      {
+
+         return estatus;
+
+      }
+
+      return estatus;
+
+   }
+
+
+   ::e_status windowing::set_cursor_position(const ::point_i32 & point)
+   {
+
+      __throw(interface_only_exception());
+
+      return ::error_interface_only;
 
    }
 
@@ -199,7 +216,7 @@ namespace windowing
    }
 
 
-   ::windowing::window * windowing::get_active_window()
+   ::windowing::window * windowing::get_active_window(::thread *)
    {
 
       return nullptr;
@@ -242,12 +259,12 @@ namespace windowing
    }
 
 
-    int windowing::message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox)
-   {
+   // int windowing::message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox)
+   //{
 
-       __throw(interface_only_exception());
-       return 0;
-   }
+   //    __throw(interface_only_exception());
+   //    return 0;
+   //}
 
 
    bool windowing::__hook_process_event(class display * pdisplay, void * pevent, void * cookie)
@@ -265,35 +282,8 @@ namespace windowing
    }
 
 
-   bool windowing::defer_create_system_window()
-   {
 
-#ifdef WINDOWS_DESKTOP
-
-      if (m_puserinteraction)
-      {
-
-         return true;
-
-      }
-
-      m_puserinteraction = create_system_window();
-
-      if (!m_puserinteraction)
-      {
-
-         return false;
-
-      }
-
-#endif
-
-      return true;
-
-   }
-
-
-   __pointer(::user::interaction) windowing::create_system_window()
+   ::windowing::window * windowing::get_keyboard_focus(::thread *)
    {
 
       return nullptr;
@@ -301,15 +291,7 @@ namespace windowing
    }
 
 
-   ::windowing::window * windowing::get_focus()
-   {
-
-      return nullptr;
-
-   }
-
-
-   ::windowing::window * windowing::get_capture()
+   ::windowing::window * windowing::get_mouse_capture(::thread *)
    {
 
       return nullptr;
@@ -380,18 +362,14 @@ namespace windowing
    }
 
 
-   ::user::interaction * windowing::get_system_window()
+
+
+
+
+   result_pointer < ::windowing::icon > windowing::load_icon(const ::payload & payloadFile)
    {
 
-#ifdef WINDOWS_DESKTOP
-
-      return m_puserinteraction;
-
-#else
-
       return nullptr;
-
-#endif
 
    }
 
@@ -399,20 +377,7 @@ namespace windowing
    void windowing::term1()
    {
 
-#ifdef WINDOWS
 
-#ifdef WINDOWS_DESKTOP
-
-      if (m_puserinteraction)
-      {
-
-         m_puserinteraction->DestroyWindow();
-
-      }
-
-#endif
-
-#endif
 
    }
 
@@ -428,11 +393,7 @@ namespace windowing
    void windowing::term2()
    {
 
-#ifdef WINDOWS_DESKTOP
 
-      m_puserinteraction.release();
-
-#endif
 
    }
    //bool windowing::set_window_icon(window *pwindow, const ::file::path &path)
@@ -519,12 +480,12 @@ namespace windowing
 
 
 
-   bool windowing::route_message(::message::base * pmessagebase)
+   bool windowing::route_message(::user::message * pusermessage)
    {
 
-       auto puserinteraction = __user_interaction(pmessagebase->m_playeredUserPrimitive);
+      auto puserinteraction = pusermessage->userinteraction();
 
-      puserinteraction->m_pimpl->message_handler(pmessagebase);
+      puserinteraction->m_pimpl->message_handler(pusermessage);
 
       return true;
 
@@ -538,12 +499,12 @@ namespace windowing
    }
 
 
-   void windowing::enum_draw2d_fonts(::draw2d::font_enum_item_array & itema)
-   {
+   //void windowing::enum_draw2d_fonts(::write_text::font_enum_item_array & itema)
+   //{
 
 
 
-   }
+   //}
 
 
    int_bool windowing::point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, int iMargin)
@@ -588,13 +549,19 @@ namespace windowing
    }
 
 
-   void windowing::initialize_keyboard(::user::keyboard * pkeyboard)
+   void windowing::initialize_keyboard(::windowing::keyboard * pkeyboard)
    {
-
 
 
    }
 
+
+   ::e_status windowing::lock_set_foreground_window(bool bLock)
+   {
+
+      return error_not_implemented;
+    
+   }
 
    //void windowing::top_windows_by_z_order(oswindow_array & a)
    //{
@@ -602,6 +569,44 @@ namespace windowing
 
    //}
 
+
+   ::windowing::keyboard * windowing::keyboard()
+   {
+
+      if (!m_pkeyboard)
+      {
+
+         auto estatus = __compose_new(m_pkeyboard);
+
+         if (!m_pkeyboard)
+         {
+
+            __throw(::exception::exception("Could not create keyboard"));
+
+         }
+
+
+         //
+         //#if !defined(WINDOWS) && !defined(__APPLE__)
+         //
+         //         if (!m_pkeyboard->initialize())
+         //         {
+         //
+         //            __throw(::exception::exception("Could not initialize keyboard"));
+         //
+         //         }
+         //
+         //#endif
+
+                  //Application.on_create_keyboard();
+
+         initialize_keyboard(m_pkeyboard);
+
+      }
+
+      return m_pkeyboard;
+
+   }
 
 
 } // namespace windowing

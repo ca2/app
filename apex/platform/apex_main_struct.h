@@ -28,6 +28,7 @@ struct CLASS_DECL_APEX apex_main_struct
    ::logic::bit                  m_bLocalization;
    ::logic::bit                  m_bConsole;
    ::logic::bit                  m_bDraw2d;
+   ::logic::bit                  m_bWriteText;
    ::logic::bit                  m_bUser;
    ::logic::bit                  m_bUserEx;
    ::logic::bit                  m_bImaging;
@@ -48,17 +49,7 @@ struct CLASS_DECL_APEX apex_main_struct
    apex_main_struct()
    {
       
-      //m_bConsole = false;
-      //m_bDraw2d = true;
-      //m_bUser = true;
-      //m_bUserEx = true;
-      //m_bImaging = true;
-      //#ifdef WINDOWS_DESKTOP
-      //m_bGdiplus = true;
-      //#elif defined(LINUX)
-      //m_bGtkApp = true;
-      //#endif
-      //m_bShowApplicationInformation = true;
+
       m_pintstringLanguageResourceMap = nullptr;
 
       #if defined(ANDROID) || defined(_UWP) || defined(APPLE_IOS)
@@ -91,6 +82,7 @@ struct CLASS_DECL_APEX apex_main_struct
          m_bLocalization = mainstruct.m_bLocalization;
          m_bConsole = mainstruct.m_bConsole;
          m_bDraw2d= mainstruct.m_bDraw2d;
+         m_bWriteText = mainstruct.m_bWriteText;
          m_bUser= mainstruct.m_bUser;
          m_bUserEx= mainstruct.m_bUserEx;
          m_bImaging= mainstruct.m_bImaging;

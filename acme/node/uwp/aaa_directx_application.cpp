@@ -343,7 +343,7 @@ namespace uwp
       if (m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
          return;
 
-      pointer < ::message::base > spbase;
+      pointer < ::user::message > spbase;
 
       auto pkey  = __new(::message::key);
 
@@ -374,7 +374,7 @@ namespace uwp
       if (m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
          return;
 
-      pointer < ::message::base > spbase;
+      pointer < ::user::message > spbase;
 
       auto pkey  = __new(::message::key);
 
@@ -423,7 +423,7 @@ namespace uwp
       if (m_psystem->get_context_session()->m_puiHost->m_pimpl == nullptr)
          return;
 
-      pointer < ::message::base > spbase;
+      pointer < ::user::message > spbase;
 
       ::message::key * pkey = new  ::message::key;
 
@@ -532,7 +532,7 @@ namespace uwp
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      pointer < ::message::base > spbase;
+      pointer < ::user::message > spbase;
 
       ::message::mouse * pmouse = new ::message::mouse;
 
@@ -568,7 +568,7 @@ namespace uwp
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      pointer < ::message::base > spbase;
+      pointer < ::user::message > spbase;
 
       ::message::mouse * pmouse = new  ::message::mouse;
 
@@ -632,7 +632,7 @@ namespace uwp
 
       ::g_iMouse = pointerPoint->PointerId;
 
-      pointer < ::message::base > spbase;
+      pointer < ::user::message > spbase;
 
       ::message::mouse * pmouse = new  ::message::mouse;
 

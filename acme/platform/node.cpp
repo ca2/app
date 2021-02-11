@@ -9,6 +9,7 @@
 namespace acme
 {
 
+
    node::node()
    {
 
@@ -72,7 +73,24 @@ namespace acme
    }
 
 
-   ::e_status node::set_system_dark_mode(bool bDark)
+   ::e_status node::set_system_dark_mode1(bool bSet)
+   {
+
+
+      return ::success;
+
+   }
+
+
+   ::e_status node::set_app_dark_mode1(bool bSet)
+   {
+
+      return ::success;
+
+   }
+
+
+   ::e_status node::set_internal_system_dark_mode(bool bDark)
    {
 
       m_bLastDarkModeApp = bDark;
@@ -82,7 +100,7 @@ namespace acme
    }
 
 
-   ::e_status node::set_app_dark_mode(bool bDark)
+   ::e_status node::set_internal_app_dark_mode(bool bDark)
    {
 
       m_bLastDarkModeApp = bDark;
@@ -90,7 +108,6 @@ namespace acme
       return ::success;
 
    }
-
 
 
    bool node::is_system_dark_mode()
@@ -435,6 +452,47 @@ namespace acme
   }
 
 
+  ::color::color node::get_default_color(::u64 u )
+  {
+
+     return argb(255, 0, 0, 0);
+
+  }
+
+
+  void node::set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha)
+  {
+
+
+  }
+
+
+  double node::get_time_zone()
+  {
+
+     return 0.;
+
+  }
+
+
+  ::e_status node::get_system_time(system_time_t * psystemtime)
+  {
+
+     __throw(interface_only_exception());
+
+     return error_interface_only;
+
+  }
+
+
+  ::e_status node::open_folder(::file::path & pathFolder)
+  {
+
+     __throw(interface_only_exception());
+     
+     return ::error_interface_only;
+
+  }
 
 
 } // namespace acme

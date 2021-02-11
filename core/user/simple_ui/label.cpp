@@ -1,8 +1,5 @@
 #include "framework.h" 
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/simple_ui/_simple_ui.h"
-#endif
-
 
 namespace simple_ui
 {
@@ -32,7 +29,7 @@ namespace simple_ui
       {
 
 #if CA2_PLATFORM_VERSION == CA2_BASIS
-         c = argb(255, 1140, 149 + 49, 177 + 49);
+         c = argb(255, 114, 149 + 49, 177 + 49);
 #else
          c = argb(255, 149 + 49, 1140, 123 + 49);
 #endif
@@ -57,7 +54,7 @@ namespace simple_ui
 
       b->create_solid(c);
 
-      ::draw2d::font_pointer f(e_create);
+      ::write_text::font_pointer f(e_create);
 
       /*f->create_pixel_font(os_font_name(e_font_sans_ex), (i32)rectClient.height() * 0.7);
 

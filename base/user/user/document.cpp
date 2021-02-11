@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 #include "aura/message.h"
 #include "aura/update.h"
 #include "aura/user/wait_cursor.h"
@@ -214,7 +212,7 @@ namespace user
    }
 
 
-   //void document::route_command_message(::user::command * pcommand)
+   //void document::route_command_message(::message::command * pcommand)
    //{
 
    //   channel::route_command_message(pcommand);
@@ -235,7 +233,7 @@ namespace user
    //}
 
 
-   //void document::route_command_message(::user::command* pcommand)
+   //void document::route_command_message(::message::command* pcommand)
    //{
 
    //   on_command_message(pcommand);
@@ -1636,7 +1634,7 @@ namespace user
                if (nFrames == 1)
                   pframe->m_nWindow = 0;      // the only one of its kind
 
-               pframe->post_simple_command(simple_command_update_frame_title, (LPARAM) true);
+               pframe->post_simple_command(e_simple_command_update_frame_title, (lparam) true);
 
                iFrame++;
 
@@ -1649,26 +1647,26 @@ namespace user
    }
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-   HMENU document::GetDefaultMenu()
-   {
-
-      return nullptr;    // just use original default
-
-   }
-
-
-   HACCEL document::GetDefaultAccelerator()
-   {
-
-      return nullptr;    // just use original default
-
-   }
-
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//   HMENU document::GetDefaultMenu()
+//   {
+//
+//      return nullptr;    // just use original default
+//
+//   }
+//
+//
+//   HACCEL document::GetDefaultAccelerator()
+//   {
+//
+//      return nullptr;    // just use original default
+//
+//   }
+//
+//
+//#endif
 
 
    void document::on_idle()

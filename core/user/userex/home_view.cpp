@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 #include "aura/update.h"
 
 
@@ -189,7 +187,7 @@ namespace userex
 
       pmouse->m_bRet = true;
 
-      SetCapture();
+      set_mouse_capture();
 
    }
 
@@ -207,7 +205,13 @@ namespace userex
 
       pmouse->m_bRet = true;
 
-      ReleaseCapture();
+      auto psession = Session;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      pwindowing->release_capture();
 
       ::user::control_event ev;
 

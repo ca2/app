@@ -3011,10 +3011,10 @@ retry_license:
 
 
 
-   //void application::message_handler(::message::base * pbase)
+   //void application::message_handler(::user::message * pusermessage)
    //{
 
-   //   ::thread::message_handler(pbase);
+   //   ::thread::message_handler(pusermessage);
 
    //}
 
@@ -4098,10 +4098,12 @@ retry_license:
    }
 
 
-   __pointer(::message::base) application::get_message_base(MESSAGE * pmsg)
+   __pointer(::user::message) application::get_user_message(MESSAGE * pmsg)
    {
 
       ::user::primitive * pinteraction = nullptr;
+
+      ::windowing::window * pwindow = nullptr;
 
       if (pinteraction == nullptr && pmsg->oswindow != nullptr)
       {
@@ -4119,7 +4121,7 @@ retry_license:
 
         auto pwindowing = puser->m_pwindowing;
 
-        auto pwindow = pwindowing->window(pmsg->oswindow);
+        pwindow = pwindowing->window(pmsg->oswindow);
 
         auto pinteractionimpl = pwindow->m_pimpl;
 
@@ -4153,25 +4155,22 @@ retry_license:
       if (pinteraction != nullptr)
       {
 
-         return pinteraction->get_message_base((enum_message) pmsg->message, pmsg->wParam, pmsg->lParam);
+         return pinteraction->get_message((enum_message) pmsg->message, pmsg->wParam, pmsg->lParam);
 
       }
 
-      auto pbase = __new(::message::base);
+      auto pusermessage = __new(::user::message);
 
-      if (!pbase)
+      if (!pusermessage)
       {
 
          return nullptr;
 
       }
 
-      pbase->set(pmsg->oswindow,pinteraction, (enum_message) pmsg->message, pmsg->wParam, pmsg->lParam);
+      pusermessage->set(pmsg->oswindow, pwindow, (enum_message) pmsg->message, pmsg->wParam, pmsg->lParam);
 
-
-      return pbase;
-
-
+      return pusermessage;
 
    }
 
@@ -4375,10 +4374,10 @@ retry_license:
 
    //}
 
-   //void application::process_message(::message::base * pbase)
+   //void application::process_message(::user::message * pusermessage)
    //{
 
-   //   return ::thread::process_message(pbase);
+   //   return ::thread::process_message(pusermessage);
 
    //}
 
@@ -5340,7 +5339,7 @@ retry_license:
    //void application::process_message_filter(i32 code, ::message::message * pmessage)
    //{
 
-   //   //__pointer(::message::base) pbase(pmessage);
+   //   //__pointer(::user::message) pusermessage(pmessage);
 
    //   UNREFERENCED_PARAMETER(code);
 
@@ -5908,7 +5907,7 @@ namespace aura
             pinteraction->post_routine(__routine([pinteraction, idCommand]()
             {
 
-               ::user::command command;
+               ::message::command command;
 
                command.m_id = idCommand;
 
@@ -5922,7 +5921,7 @@ namespace aura
          else
          {
 
-            ::user::command command;
+            ::message::command command;
 
             command.m_id = idCommand;
 
@@ -6034,7 +6033,7 @@ namespace aura
 
 #endif
 
-   void application::OnUpdateRecentFileMenu(::user::command* pcommand)
+   void application::OnUpdateRecentFileMenu(::message::command* pcommand)
    {
 
       UNREFERENCED_PARAMETER(pcommand);
@@ -6114,11 +6113,11 @@ namespace aura
 
       ENSURE_ARG(pmessage != nullptr);
 
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
       // handle certain messages in thread
 
-      switch (pbase->m_id)
+      switch (pusermessage->m_id)
       {
       case e_message_create:
       case e_message_paint:
@@ -6130,13 +6129,13 @@ namespace aura
       // handle all the rest
       //linux ::u32 nIDP = __IDP_INTERNAL_FAILURE;   // matter message string
       const char* nIDP = "Internal Failure";
-      pbase->m_lresult = 0;        // sensible default
-      if (pbase->m_id == e_message_command)
+      pusermessage->m_lresult = 0;        // sensible default
+      if (pusermessage->m_id == e_message_command)
       {
-         if (pbase->m_lparam == 0)
+         if (pusermessage->m_lparam == 0)
             //linux nIDP = __IDP_COMMAND_FAILURE; // command (not from a control)
             nIDP = "Command Failure";
-         pbase->m_lresult = (lresult)true;        // pretend the command was handled
+         pusermessage->m_lresult = (lresult)true;        // pretend the command was handled
       }
 
       if (pe.is < memory_exception >())
@@ -6157,7 +6156,7 @@ namespace aura
    }
 
 
-   void application::route_command_message(::user::command* pcommand)
+   void application::route_command_message(::message::command* pcommand)
    {
 
       ::thread::route_command_message(pcommand);
@@ -6247,7 +6246,7 @@ namespace aura
    // Global File commands
    //   ON_COMMAND(ID_APP_EXIT, &application::OnAppExit)
    // MRU - most recently used file menu
-   //   ON_UPDATE_::user::command(ID_FILE_MRU_FILE1, &application::OnUpdateRecentFileMenu)
+   //   ON_UPDATE_::message::command(ID_FILE_MRU_FILE1, &application::OnUpdateRecentFileMenu)
    //   ON_COMMAND_EX_RANGE(ID_FILE_MRU_FILE1, ID_FILE_MRU_FILE16, &application::OnOpenRecentFile)
    //}}__MSG_MAP
    // // END_MESSAGE_MAP()
@@ -7946,9 +7945,9 @@ namespace aura
    void application::pre_translate_message(::message::message* pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
-      if (pbase->m_id == WM_USER + 124 && pbase->userinteraction() == nullptr)
+      if (pusermessage->m_id == WM_USER + 124 && pusermessage->userinteraction() == nullptr)
       {
 
          /*
@@ -7958,7 +7957,7 @@ namespace aura
 
          */
 
-         pbase->m_bRet = true;
+         pusermessage->m_bRet = true;
 
          return;
 
@@ -8754,7 +8753,7 @@ namespace aura
       //if (pmessage == nullptr)
       //   return;   // not handled
 
-      //__pointer(::message::base) pbase(pmessage);
+      //__pointer(::user::message) pusermessage(pmessage);
 
       //__pointer(::user::frame_window) pTopFrameWnd;
       ////::user::interaction * pMainWnd;
@@ -8770,7 +8769,7 @@ namespace aura
 
       //case MSGF_MENU:
 
-      //   pMsgWnd = dynamic_cast <::user::interaction*> (pbase->m_puserinteraction);
+      //   pMsgWnd = dynamic_cast <::user::interaction*> (pusermessage->m_puserinteraction);
 
       //   if (pMsgWnd != nullptr)
       //   {
@@ -8779,10 +8778,10 @@ namespace aura
       //         pTopFrameWnd->m_bHelpMode)
       //      {
       //         //pMainWnd = __get_main_window();
-      //         //if((m_puiMain != nullptr) && (IsEnterKey(pbase) || IsButtonUp(pbase)))
+      //         //if((m_puiMain != nullptr) && (IsEnterKey(pusermessage) || IsButtonUp(pusermessage)))
       //         //{
       //         //   //                  pMainWnd->SendMessage(e_message_command, ID_HELP);
-      //         //   pbase->m_bRet = true;
+      //         //   pusermessage->m_bRet = true;
       //         //   return;
       //         //}
       //      }
@@ -8792,7 +8791,7 @@ namespace aura
       //case MSGF_DIALOGBOX:    // handles message boxes as well.
       //   //pMainWnd = __get_main_window();
       //   if (code == MSGF_DIALOGBOX && m_puiActive != nullptr &&
-      //      pbase->m_id >= e_message_key_first && pbase->m_id <= e_message_key_last)
+      //      pusermessage->m_id >= e_message_key_first && pusermessage->m_id <= e_message_key_last)
       //   {
       //   }
       //   break;
@@ -9238,6 +9237,30 @@ namespace aura
 //   }
 
 
+   //bool application::on_application_menu_action(const char * pszCommand)
+   //{
+
+   //   if (m_puiMain1 != nullptr)
+   //   {
+
+   //      ::message::command command;
+
+   //      command.m_id = ::id(pszCommand);
+
+   //      __channel(m_puiMain1)->route_command_message(&command);
+
+   //      if (command.m_bRet)
+   //      {
+
+   //         return true;
+
+   //      }
+
+   //   }
+
+   //   return false;
+
+   //}
 
 } // namespace aura
 

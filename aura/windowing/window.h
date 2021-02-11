@@ -37,9 +37,9 @@ namespace windowing
       virtual ::e_status create_window(::user::interaction_impl * pimpl);
 
 
-      virtual ::e_status set_focus();
+      virtual ::e_status set_keyboard_focus();
 
-      virtual ::e_status set_capture();
+      virtual ::e_status set_mouse_capture();
 
       virtual ::e_status set_active_window();
 
@@ -47,8 +47,8 @@ namespace windowing
 
       //virtual oswindow get_os_data() const;
 
-      virtual bool has_capture() const;
-      virtual bool has_focus() const;
+      virtual bool has_mouse_capture() const;
+      virtual bool has_keyboard_focus() const;
 
 
 
@@ -56,7 +56,7 @@ namespace windowing
       virtual display * display();
 
       oswindow get_oswindow() const { return (::oswindow) get_os_data(); }
-      void set_oswindow(oswindow oswindow) { set_os_data(oswindow); }
+      void set_oswindow(oswindow oswindow);
 
 
       //void send_client_event(Atom atom, unsigned int numArgs, ...);
@@ -153,7 +153,7 @@ namespace windowing
       virtual void install_message_routing(::channel * pchannel);
 
 
-      virtual void message_handler(::message::base * pbase);
+      virtual void message_handler(::message::message * pusermessage);
 
       //bool operator==(const interaction_impl & wnd) const;
       //bool operator!=(const interaction_impl & wnd) const;
@@ -166,7 +166,7 @@ namespace windowing
       //virtual ::user::interaction * get_owner();
       //virtual void set_owner(::user::interaction * pOwnerWnd);
 
-      virtual void route_command_message(::user::command * pcommand);
+      virtual void route_command_message(::message::command * pcommand);
 
       //void _002OnDraw(::image * pimage);
 
@@ -432,10 +432,10 @@ namespace windowing
       virtual bool SetFocus();
 
 
-      virtual bool has_focus();
-      virtual bool is_active();
+      //virtual bool has_keyboard_focus();
+      virtual bool is_active_window() const;
 
-      virtual ::user::interaction * GetFocus();
+      //virtual ::user::interaction * GetFocus();
 
       virtual ::user::interaction * get_desktop_window();
 
@@ -481,7 +481,7 @@ namespace windowing
       //virtual void GetScrollRange(i32 nBar, LPINT pMinPos, LPINT lpMaxPos) const;
 
       //virtual void ScrollWindow(i32 xAmount, i32 yAmount,
-      //   const RECTANGLE_I32 * rectangle_i32 = nullptr,
+      //   const RECTANGLE_I32 * rectangle = nullptr,
 
       //   const RECTANGLE_I32 * pClipRect = nullptr);
 
@@ -572,8 +572,8 @@ namespace windowing
       //virtual void EndAllModalLoops(id nResult);
 
       // Window-Management message handler member functions
-      //virtual bool OnCommand(::message::base * pbase);
-      //virtual bool OnNotify(::message::base * pbase);
+      //virtual bool OnCommand(::message::message * pusermessage);
+      //virtual bool OnNotify(::message::message * pusermessage);
 
       //void OnActivate(::u32 nState, ::user::interaction_impl * pWndOther, bool bMinimized);
       //void OnActivateApp(bool bActive, u32 dwThreadID);
@@ -735,8 +735,8 @@ namespace windowing
       //virtual void pre_translate_message(::message::message * pmessage);
 
 
-      //virtual void default_message_handler(::message::base * pbase);
-      //virtual void message_handler(::message::base * pbase);
+      //virtual void default_message_handler(::message::message * pusermessage);
+      //virtual void message_handler(::message::message * pusermessage);
 
 
       //virtual bool OnWndMsg(const ::id & id, wparam wParam, lparam lParam, lresult* pResult);
@@ -749,10 +749,10 @@ namespace windowing
       //virtual void PostNcDestroy();
 
       // for notifications from parent
-      //virtual bool OnChildNotify(::message::base * pbase);
+      //virtual bool OnChildNotify(::message::message * pusermessage);
       // return true if parent should not process this message
-      //virtual bool ReflectChildNotify(::message::base * pbase);
-      //virtual bool ReflectMessage(::windowing::window * pwindow_Child, ::message::base * pbase);
+      //virtual bool ReflectChildNotify(::message::message * pusermessage);
+      //virtual bool ReflectMessage(::windowing::window * pwindow_Child, ::message::message * pusermessage);
 
       // Implementation
       //virtual bool CheckAutoCenter();
@@ -803,7 +803,7 @@ namespace windowing
       //virtual iptr set_window_long_ptr(i32 nIndex, iptr lValue);
 
 
-      void _001OnTriggerMouseInside();
+      //void _001OnTriggerMouseInside();
 
       void set_viewport_org(::draw2d::graphics_pointer & pgraphics);
 
@@ -819,9 +819,21 @@ namespace windowing
 
       virtual void non_top_most_upper_window_rects(::rect_array & recta);
 
-      virtual void default_message_handler(::message::base * pbase);
+      virtual void default_message_handler(::message::message * pmessage);
+
+      virtual void track_mouse_hover();
 
 
+      virtual float get_dpi_for_window();
+
+
+      virtual float point_dpi(float points);
+
+      virtual float y_dpi(float y);
+      virtual float x_dpi(float x);
+
+      virtual float dpiy(float y);
+      virtual float dpix(float x);
 
 
       //virtual void activate_top_parent();

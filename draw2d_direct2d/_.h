@@ -3,9 +3,10 @@
 
 #include "aura/_.h"
 #include "aura/operating_system.h"
+#include "direct2d/_.h"
 #include "aura/os/windows_common/graphics.h"
-#include "aura/os/windows/d2d1_1.h"
-#include "aura/os/windows_common/draw2d_direct2d_global.h"
+//#include "aura/os/windows/d2d1_1.h"
+//#include "aura/os/windows_common/draw2d_direct2d_global.h"
 
 
 
@@ -21,6 +22,10 @@
 
 namespace draw2d_direct2d
 {
+
+
+   class draw2d;
+
 
    enum enum_data
    {
@@ -121,6 +126,9 @@ namespace draw2d_direct2d
 
 
 #include "graphics.h"
+
+
+#include "draw2d.h"
 
 
 #define new ACME_NEW

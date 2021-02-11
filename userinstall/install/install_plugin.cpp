@@ -871,7 +871,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(message::base) paxis = __new(message::base(get_context_application(),this,e_message_activate,MAKEWPARAM(WA_INACTIVE,0),0,lresult));
+                  __pointer(user::message) paxis = __new(user::message(get_context_application(),this,e_message_activate,MAKEWPARAM(WA_INACTIVE,0),0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -888,7 +888,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(message::base) paxis = __new(message::base(get_context_application(),this,e_message_activate,MAKEWPARAM(WA_ACTIVE,0),0,lresult));
+                  __pointer(user::message) paxis = __new(user::message(get_context_application(),this,e_message_activate,MAKEWPARAM(WA_ACTIVE,0),0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -906,7 +906,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(message::base) paxis = __new(message::base(get_context_application(),this,e_message_kill_focus,0,0,lresult));
+                  __pointer(user::message) paxis = __new(user::message(get_context_application(),this,e_message_kill_focus,0,0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -923,7 +923,7 @@ run_install:
 
                   LRESULT lresult;
 
-                  __pointer(message::base) paxis = __new(message::base(get_context_application(),this,e_message_set_focus,0,0,lresult));
+                  __pointer(user::message) paxis = __new(user::message(get_context_application(),this,e_message_set_focus,0,0,lresult));
 
                   m_phost->::hotplugin::host::message_handler(paxis);
 
@@ -1105,20 +1105,20 @@ run_install:
 
 
 
-   void plugin::message_handler(::message::base * pbase)
+   void plugin::message_handler(::user::message * pusermessage)
    {
 
       if(!m_bLogin && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && pmessage != nullptr && !is_installing() && System.install().is_ca2_installed())
          //if(!m_bLogin && (m_bLogged || m_bHasCred) && !m_bCa2Login && !m_bCa2Logout && !m_bNativeLaunch && pmessage != nullptr && !is_installing() && System.install().is_ca2_installed())
       {
 
-         ::hotplugin::plugin::message_handler(pbase);
+         ::hotplugin::plugin::message_handler(pusermessage);
 
       }
       else
       {
 
-         ::user::interaction::message_handler(pbase);
+         ::user::interaction::message_handler(pusermessage);
 
       }
 
@@ -1626,7 +1626,7 @@ restart:
 
          get_window_rect(rectangle);
 
-         if(!m_phost->m_pbasecomposer->m_bRectSent || m_rectSent != rectangle_i32)
+         if(!m_phost->m_pbasecomposer->m_bRectSent || m_rectSent != rectangle)
          {
 
             m_phost->m_pbasecomposer->m_bRectSent = true;

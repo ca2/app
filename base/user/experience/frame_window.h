@@ -82,8 +82,8 @@ namespace experience
 
       virtual bool initialize_frame_window_experience();
 
-      virtual void on_command_message(::user::command* pcommand) override;
-      virtual void route_command_message(::user::command* pcommand) override;
+      virtual void on_command_message(::message::command* pcommand) override;
+      virtual void route_command_message(::message::command* pcommand) override;
 
 
       //virtual void wfi_dock_on_button_down(::user::control_event * pevent);
@@ -145,7 +145,7 @@ namespace experience
       DECL_GEN_SIGNAL(_001OnNcLButtonUp);
       DECL_GEN_SIGNAL(_001OnNcHitTest);
       DECL_GEN_SIGNAL(_001OnActivate);
-      DECL_GEN_SIGNAL(_001OnCommand);
+      //DECL_GEN_SIGNAL(_001OnCommand);
       DECL_GEN_SIGNAL(_001OnSysCommand);
       DECL_GEN_SIGNAL(_001OnSize);
 
@@ -178,7 +178,7 @@ namespace experience
 
 
       void relay_event(::message::message * pmessage);
-      virtual void message_handler(::message::base * pbase) override;
+      virtual void message_handler(::message::message * pusermessage) override;
       virtual void pre_translate_message(::message::message * pmessage) override;
 
       virtual void on_control_event(::user::control_event * pevent) override;

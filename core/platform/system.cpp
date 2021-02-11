@@ -1,8 +1,6 @@
 #include "framework.h"
 #include "apex/platform/static_setup.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 #include "core/const/idpool.h"
 
 

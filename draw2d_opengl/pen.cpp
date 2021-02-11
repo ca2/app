@@ -109,7 +109,7 @@ namespace draw2d_opengl
 
       // IMPLEMENT_DYNAMIC(pen, ::draw2d::object)
       // IMPLEMENT_DYNAMIC(::draw2d::brush, ::draw2d::object)
-      // IMPLEMENT_DYNAMIC(::draw2d::font, ::draw2d::object)
+      // IMPLEMENT_DYNAMIC(::write_text::font, ::draw2d::object)
       // IMPLEMENT_DYNAMIC(::draw2d::bitmap, ::draw2d::object)
       // IMPLEMENT_DYNAMIC(::draw2d::palette, ::draw2d::object)
       // IMPLEMENT_DYNAMIC(::draw2d::region, ::draw2d::object)

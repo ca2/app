@@ -28,9 +28,10 @@ public:
    id_map < __composite(::user::toolbar) >         m_toolbarmap;
    ::image_pointer                                 m_pimageAlpha;
    ::database::key                                 m_datakeyFrame;
-   __pointer(::draw2d::icon)                       m_piconNotify;
+   __pointer(::windowing::icon)                    m_piconNotify;
    __pointer(::user::notify_icon)                  m_pnotifyicon;
    ::payload                                       m_varFrame;
+   ::thread_pointer                                m_pthreadSaveWindowRect;
 
 
    simple_frame_window();
@@ -43,7 +44,7 @@ public:
    virtual ::user::enum_translucency get_translucency(::user::style* pstyle) const override;
 
 
-   virtual void _task_save_window_rect();
+   virtual void SaveWindowRectThreadProcedure();
 
 
    virtual void defer_save_window_placement() override;
@@ -95,7 +96,7 @@ public:
    virtual void WfiToggleShow();
 
    virtual bool window_is_notify_icon_enabled() override;
-   void OnUpdateControlBarMenu(::user::command * pcommand);
+   void OnUpdateControlBarMenu(::message::command * pcommand);
 
    virtual bool WindowDataSaveWindowRect() override;
    virtual bool WindowDataLoadWindowRect(bool bForceRestore = false, bool bInitialFramePosition = false) override;
@@ -103,16 +104,28 @@ public:
 
    virtual ::experience::frame * experience_get_frame();
 
-   virtual bool LoadFrame(const char * pszMatter, u32 dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::user::system * pusersystem = nullptr) override;
+   //virtual bool LoadFrame(const char * pszMatter, u32 dwDefaultStyle = WS_OVERLAPPEDWINDOW | FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::user::system * pusersystem = nullptr) override;
+
+   virtual bool LoadFrame(const char * pszMatter, u32 dwDefaultStyle = FWS_ADDTOTITLE, ::user::interaction * puiParent = nullptr, ::user::system * pusersystem = nullptr) override;
 
    void _001OnDeferPaintLayeredWindowBackground(::draw2d::graphics_pointer & pgraphics) override;
 
-   virtual bool LoadToolBar(::type sptype,id idToolBar,const char * pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
+   //virtual bool LoadToolBar(::type sptype,id idToolBar,const char * pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
 
+   virtual bool LoadToolBar(::type sptype, id idToolBar, const char * pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = CBRS_ALIGN_TOP);
+
+//   template < class TOOLBAR >
+  // bool LoadToolBar(id idToolBar,const char * pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
    template < class TOOLBAR >
-   bool LoadToolBar(id idToolBar,const char * pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP);
+   bool LoadToolBar(id idToolBar,const char * pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = CBRS_ALIGN_TOP);
 
-   virtual bool LoadToolBar(id idToolBar,const char * pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override
+
+//   virtual bool LoadToolBar(id idToolBar, const char * pszToolBar, u32 dwCtrlStyle = TBSTYLE_FLAT, u32 uStyle = WS_CHILD | WS_VISIBLE | CBRS_ALIGN_TOP) override
+//   {
+//      return LoadToolBar < ::user::toolbar >(idToolBar, pszToolBar, dwCtrlStyle, uStyle);
+//   }
+
+   virtual bool LoadToolBar(id idToolBar,const char * pszToolBar,u32 dwCtrlStyle = TBSTYLE_FLAT,u32 uStyle = CBRS_ALIGN_TOP) override
    {
       return LoadToolBar < ::user::toolbar >(idToolBar,pszToolBar,dwCtrlStyle,uStyle);
    }
@@ -177,14 +190,14 @@ public:
 
 
    virtual class mini_dock_frame_window* CreateFloatingFrame(u32 uStyle);
-   virtual void NotifyFloatingWindows(u32 dwFlags) override;
+   //virtual void NotifyFloatingWindows(u32 dwFlags) override;
 
 
    virtual void design_down() override;
    virtual void design_up() override;
 
 
-   virtual bool calc_layered() override;
+   //virtual bool calc_layered() override;
 
 
    virtual string get_window_default_matter() override;
@@ -198,22 +211,22 @@ public:
    void OnVScroll(::u32 nSBCode, ::u32 nPos, ::user::scroll_bar* pScrollBar);
    virtual void on_simple_command(::message::simple_command * psimplecommand) override;
 
-#ifdef WINDOWS_DESKTOP
-   virtual void OnDropFiles(HDROP hDropInfo);
-   virtual bool OnQueryEndSession();
-   virtual void OnEndSession(bool bEnding);
-#endif
+//#ifdef WINDOWS_DESKTOP
+//   virtual void OnDropFiles(HDROP hDropInfo);
+//   virtual bool OnQueryEndSession();
+//   virtual void OnEndSession(bool bEnding);
+//#endif
 
 
-   LRESULT OnDDEInitiate(WPARAM wParam, LPARAM lParam) override;
-   LRESULT OnDDEExecute(WPARAM wParam, LPARAM lParam) override;
-   LRESULT OnDDETerminate(WPARAM wParam, LPARAM lParam) override;
+   //LRESULT OnDDEInitiate(WPARAM wParam, LPARAM lParam) override;
+   //LRESULT OnDDEExecute(WPARAM wParam, LPARAM lParam) override;
+   //LRESULT OnDDETerminate(WPARAM wParam, LPARAM lParam) override;
 
    void _001OnQueryEndSession(::message::message * pmessage);
 
    virtual void on_control_event(::user::control_event * pevent) override;
 
-   virtual void route_command_message(::user::command * pcommand) override;
+   virtual void route_command_message(::message::command * pcommand) override;
 
    virtual void data_on_after_change(::message::message * pmessage);
 

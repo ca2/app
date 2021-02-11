@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 #include "aura/update.h"
 #include "core/user/userex/_userex.h"
 #include "aura/os/windows_common/graphics.h"
@@ -35,15 +33,15 @@ namespace flag
 
       double dy = h / 70.0;
 
-      pgraphics->fill_rect(::rectd_dim(x + 0, y + 0, 90.0 * dx, 70.0 * dy), argb(255, 255, 255, 255));
+      pgraphics->fill_rectangle(::rectd_dim(x + 0, y + 0, 90.0 * dx, 70.0 * dy), argb(255, 255, 255, 255));
 
-      pgraphics->fill_rect(::rectd_dim(x + 0, y + 0, 30.0 * dx, 30.0 * dy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectd_dim(x + 0, y + 0, 30.0 * dx, 30.0 * dy), crDenmarkRoed);
 
-      pgraphics->fill_rect(::rectd_dim(x + 40.0 * dx, y, 50 * dx, 30 * dy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectd_dim(x + 40.0 * dx, y, 50 * dx, 30 * dy), crDenmarkRoed);
 
-      pgraphics->fill_rect(::rectd_dim(x + 0, y + 40.0 * dy, 30.0 * dx, 30.0 * dy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectd_dim(x + 0, y + 40.0 * dy, 30.0 * dx, 30.0 * dy), crDenmarkRoed);
 
-      pgraphics->fill_rect(::rectd_dim(x + 40.0 * dx, y + 40.0 * dy, 50.0 * dx, 30.0 * dy), crDenmarkRoed);
+      pgraphics->fill_rectangle(::rectd_dim(x + 40.0 * dx, y + 40.0 * dy, 50.0 * dx, 30.0 * dy), crDenmarkRoed);
 
    }
 
@@ -481,7 +479,7 @@ namespace userex
 
       color.set_hls(m_hls);
 
-      color.m_iA = 255;
+      color.alpha = 255;
 
       return color.get_rgba();
 
@@ -504,8 +502,6 @@ namespace userex
 
    void color_view::on_mouse(const ::point_i32 & point)
    {
-
-      //sync_lock sl(mutex());
 
       if (point.y >= m_rectColors.bottom)
       {
@@ -553,7 +549,7 @@ namespace userex
 
          ::color::hls hls;
 
-         c.get_hls(hls);
+         color.get_hls(hls);
 
          m_hls.m_dH = hls.m_dH;
 
@@ -575,11 +571,13 @@ namespace userex
 
          set_need_redraw();
 
+         post_redraw();
+
       }
       else if (point.x < m_rectColors.center().x + m_rectColors.width() / 8)
       {
 
-         auto pointLuminance = point_i32 - ::size_i32(m_rectColors.center().x, m_rectColors.top);
+         auto pointLuminance = point - ::size_i32(m_rectColors.center().x, m_rectColors.top);
 
          m_hls.m_dL = 1.0 - ((double)pointLuminance.y / (double) m_pimage->height());
 
@@ -596,6 +594,8 @@ namespace userex
          route_control_event(&ev);
 
          set_need_redraw();
+
+         post_redraw();
 
       }
 
@@ -797,7 +797,7 @@ namespace userex
 
       r1.set_size(m_rectColors.right - r1.left, m_pimage->height());
 
-      pgraphics->fill_rect(r1, get_color());
+      pgraphics->fill_rectangle(r1, get_color());
 
       int y = (int) (rectLum1.top + (1.0 - m_hls.m_dL)  * rectLum1.height());
 
@@ -819,7 +819,7 @@ namespace userex
 
       pmouse->m_bRet = true;
 
-      SetCapture();
+      set_mouse_capture();
 
       m_bLButtonPressed = true;
 
@@ -839,7 +839,13 @@ namespace userex
 
       pmouse->m_bRet = true;
 
-      ReleaseCapture();
+      auto psession = Session;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      pwindowing->release_capture();
 
       m_bLButtonPressed = false;
 

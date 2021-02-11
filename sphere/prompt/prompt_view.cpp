@@ -231,7 +231,7 @@ namespace prompt
 
    void view::_001OnOp(::message::message * pmessage)
    {
-      //__pointer(::message::base) pbase(pmessage);
+      //__pointer(::user::message) pusermessage(pmessage);
       UNREFERENCED_PARAMETER(pmessage);
    }
 

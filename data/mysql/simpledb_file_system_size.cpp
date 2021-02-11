@@ -434,9 +434,9 @@ void FileSystemSizeWnd::_001OnCopyData(::message::message * pmessage)
 
 #ifdef WINDOWS_DESKTOP
 
-   __pointer(::message::base) pbase(pmessage);
+   __pointer(::user::message) pusermessage(pmessage);
 
-   COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pbase->m_lparam.m_lparam;
+   COPYDATASTRUCT * pstruct = (COPYDATASTRUCT *) pusermessage->m_lparam.m_lparam;
    if(pstruct->dwData == 0)
    {
       //file_size_table::get_fs_size * prec  = (file_size_table::get_fs_size *) pstruct->lpData;
@@ -446,13 +446,13 @@ void FileSystemSizeWnd::_001OnCopyData(::message::message * pmessage)
       size.read(file);
 
       single_lock sl(m_criticalsection, true);
-      size.m_oswindow = (oswindow) pbase->m_wparam;
+      size.m_oswindow = (oswindow) pusermessage->m_wparam;
       size.m_bRet =  pcentral->m_pfilesystemsizeset->get_fs_size(
                      size.m_iSize,
                      size.m_strPath,
                      size.m_bPending);
       m_sizea.add(size);
-      pbase->set_lresult(1);
+      pusermessage->set_lresult(1);
    }
    else if(pstruct->dwData == 1)
    {
@@ -461,7 +461,7 @@ void FileSystemSizeWnd::_001OnCopyData(::message::message * pmessage)
       size.read(file);
       m_bRet = true;
       m_map.set_at(size.m_strPath, size);
-      pbase->set_lresult(1);
+      pusermessage->set_lresult(1);
    }
 
 #else
@@ -481,7 +481,7 @@ void FileSystemSizeWnd::_001OnTimer(::timer * ptimer)
    super::_001OnTimer(ptimer);;
    if(ptimer->m_uEvent == 100)
    {
-      //::PostMessage(pbase->m_wparam, WM_COPYDATA, (WPARAM) get_handle(), (LPARAM) &data);
+      //::PostMessage(pusermessage->m_wparam, WM_COPYDATA, (WPARAM) get_handle(), (LPARAM) &data);
       if(m_sizea.get_size() > 0)
       {
          COPYDATASTRUCT data;

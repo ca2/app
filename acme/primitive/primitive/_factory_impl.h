@@ -159,16 +159,16 @@ inline __pointer(BASE_TYPE) __create()
 
    }
 
-   __pointer(BASE_TYPE) pbase = ptypeNew;
+   __pointer(BASE_TYPE) pusermessage = ptypeNew;
 
-   if (!pbase)
+   if (!pusermessage)
    {
 
       return nullptr;
 
    }
 
-   return pbase;
+   return pusermessage;
 
 }
 
@@ -222,18 +222,18 @@ inline __pointer(BASE_TYPE) __id_create(const ::id & id)
 
    }
 
-   __pointer(BASE_TYPE) pbase = ptypeNew;
+   __pointer(BASE_TYPE) pusermessage = ptypeNew;
 
-   if (!pbase)
+   if (!pusermessage)
    {
 
       return nullptr;
 
    }
 
-   pbase->m_eobject |= e_object_factory;
+   pusermessage->m_eobject |= e_object_factory;
 
-   return pbase;
+   return pusermessage;
 
 }
 
@@ -553,7 +553,7 @@ inline ::e_status __refer(OBJECT && pobject, __reference(BASE_TYPE) & preference
 
 
 template < typename BASE_TYPE >
-inline ::e_status __construct(__pointer(BASE_TYPE) & pbase)
+inline ::e_status __construct(__pointer(BASE_TYPE) & pusermessage)
 {
 
    auto & pfactory = ::factory::get_factory < BASE_TYPE >();
@@ -566,13 +566,13 @@ inline ::e_status __construct(__pointer(BASE_TYPE) & pbase)
       if (!ptypeNew)
       {
 
-         ::release(pbase);
+         ::release(pusermessage);
 
          return ::error_no_memory;
 
       }
 
-      __dynamic_cast(pbase, ptypeNew);
+      __dynamic_cast(pusermessage, ptypeNew);
 
    }
    else
@@ -583,7 +583,7 @@ inline ::e_status __construct(__pointer(BASE_TYPE) & pbase)
    }
 
 
-   if (!pbase)
+   if (!pusermessage)
    {
 
       return ::error_wrong_type;
@@ -596,15 +596,15 @@ inline ::e_status __construct(__pointer(BASE_TYPE) & pbase)
 
 
 template < typename BASE_TYPE >
-inline ::e_status __defer_construct(__pointer(BASE_TYPE) & pbase)
+inline ::e_status __defer_construct(__pointer(BASE_TYPE) & pusermessage)
 {
 
    ::e_status estatus = ::success_none;
 
-   if(!pbase)
+   if(!pusermessage)
    {
 
-      estatus = __construct(pbase);
+      estatus = __construct(pusermessage);
 
    }
 
@@ -614,7 +614,7 @@ inline ::e_status __defer_construct(__pointer(BASE_TYPE) & pbase)
 
 
 template < typename BASE_TYPE >
-inline ::e_status __id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id)
+inline ::e_status __id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id)
 {
 
    auto pfactory = ::factory::get_factory(id);
@@ -622,7 +622,7 @@ inline ::e_status __id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id)
    if (!pfactory)
    {
 
-      ::release(pbase);
+      ::release(pusermessage);
 
       return ::error_no_factory;
 
@@ -633,15 +633,15 @@ inline ::e_status __id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id)
    if (!ptypeNew)
    {
 
-      ::release(pbase);
+      ::release(pusermessage);
 
       return ::error_no_memory;
 
    }
 
-   pbase = ptypeNew;
+   pusermessage = ptypeNew;
 
-   if (!pbase)
+   if (!pusermessage)
    {
 
       return ::error_wrong_type;
@@ -654,7 +654,7 @@ inline ::e_status __id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id)
 
 
 template < typename BASE_TYPE >
-inline ::e_status __defer_id_construct(__pointer(BASE_TYPE) & pbase, const ::id & id) { return !pbase ? __construct(pbase, id) : ::success; }
+inline ::e_status __defer_id_construct(__pointer(BASE_TYPE) & pusermessage, const ::id & id) { return !pusermessage ? __construct(pusermessage, id) : ::success; }
 
 
 template < typename TYPE >

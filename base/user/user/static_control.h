@@ -44,12 +44,12 @@ namespace user
       //virtual bool create_interaction(::user::interaction * puiParent,id id);
 
 
-      virtual ::draw2d::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) const override;
+      virtual ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) const override;
 
-#ifdef WINDOWS_DESKTOP
-      HENHMETAFILE SetEnhMetaFile(HENHMETAFILE hMetaFile);
-      HENHMETAFILE GetEnhMetaFile();
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      HENHMETAFILE SetEnhMetaFile(HENHMETAFILE hMetaFile);
+//      HENHMETAFILE GetEnhMetaFile();
+//#endif
       void static_set_icon(::draw2d::icon * picon);
       ::draw2d::icon * static_get_icon();
       void static_set_bitmap(::draw2d::bitmap * pbitmap);
@@ -64,7 +64,7 @@ namespace user
       virtual void _001OnDraw(::draw2d::graphics_pointer & pgraphics) override;
 
 
-      virtual bool OnChildNotify(::message::base * pbase) override;
+//      virtual bool OnChildNotify(::user::message * pusermessage) override;
 
       DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnLButtonDown);

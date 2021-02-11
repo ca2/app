@@ -301,7 +301,7 @@ IFACEMETHODIMP CustomTextRenderer::DrawUnderline(
 {
    /*HRESULT hr;
 
-   D2D1_RECT_F rectangle_i32 = D2D1::RectF(
+   D2D1_RECT_F rectangle = D2D1::RectF(
       0,
       underline->offset,
       underline->width,
@@ -366,7 +366,7 @@ IFACEMETHODIMP CustomTextRenderer::DrawStrikethrough(
 {
    /*HRESULT hr;
 
-   D2D1_RECT_F rectangle_i32 = D2D1::RectF(
+   D2D1_RECT_F rectangle = D2D1::RectF(
       0,
       strikethrough->offset,
       strikethrough->width,

@@ -538,7 +538,7 @@ namespace apex
 
       //virtual void discard_to_factory(::object * pca);
 
-      bool on_application_menu_action(const char * pszCommand);
+      //bool on_application_menu_action(const char * pszCommand);
 
 
       virtual ::e_status initialize_sockets();

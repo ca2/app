@@ -52,8 +52,6 @@ public:
    ::eobject                           m_eobject;
 
 
-
-
 #if OBJ_REF_DBG
    inline matter() : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_uObject(0) { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference")); }
    inline matter(const eobject& eobject) : m_pmutex(nullptr), m_pobjrefdbg(nullptr), m_countReference(0), m_eobject(eobject), m_uObject(0)  { add_ref(OBJ_REF_DBG_THIS OBJ_REF_DBG_COMMA_NOTE("Initial Reference (2)")); }
@@ -167,7 +165,7 @@ public:
    virtual ::layered * taskpool();
 
 
-   virtual ::task* defer_start_task(const ::id & id, const ::promise::routine & routine);
+   virtual ::task * defer_fork(const ::id & id, const ::promise::routine & routine);
 
 
    virtual void delete_this();

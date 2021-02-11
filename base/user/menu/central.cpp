@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/menu/_menu.h"
-#endif
 #include "aqua/xml.h"
 
 
@@ -86,12 +84,12 @@ namespace user
    }
 
 
-   ::draw2d::font * menu_central::MenuV033GetFont()
+   ::write_text::font * menu_central::MenuV033GetFont()
    {
       return GetMenuFont();
    }
 
-   ::draw2d::font * menu_central::GetMenuFont()
+   ::write_text::font * menu_central::GetMenuFont()
    {
 
       return m_fontMenu;
@@ -152,17 +150,17 @@ namespace user
 
       VERIFY(m_fontMenu->create_point_font(os_font_name(e_font_sans), 11));
 
-#ifdef WINDOWS_DESKTOP
-      if (!MenuV033GetImageList()->create(16, 16, ILC_COLOR24 | ILC_MASK, 0, 10))
-      {
-         __throw(::exception::exception("resource exception menu_central constructor"));
-      }
-#else
+//#ifdef WINDOWS_DESKTOP
+//      if (!MenuV033GetImageList()->create(16, 16, ILC_COLOR24 | ILC_MASK, 0, 10))
+//      {
+//         __throw(::exception::exception("resource exception menu_central constructor"));
+//      }
+//#else
       if (!MenuV033GetImageList()->create(16, 16, 0, 0, 10))
       {
          __throw(::exception::exception("resource exception menu_central constructor"));
       }
-#endif
+//#endif
 
    }
 

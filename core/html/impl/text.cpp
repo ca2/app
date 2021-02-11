@@ -312,7 +312,7 @@ namespace html
 
                m_box.set_width(0);
 
-               ::draw2d::text_metric textmetric;
+               ::write_text::text_metric textmetric;
 
                pgraphics->get_text_metrics(&textmetric);
 
@@ -447,7 +447,7 @@ namespace html
 
                   sizeText = pgraphics->GetTextExtent(strLine.Left(iLastSpace));
 
-                  ::draw2d::text_metric textmetric;
+                  ::write_text::text_metric textmetric;
 
                   pgraphics->get_text_metrics(&textmetric);
 
@@ -482,7 +482,7 @@ namespace html
 
             sizeText = pgraphics->GetTextExtent(strLine);
 
-            ::draw2d::text_metric textmetric;
+            ::write_text::text_metric textmetric;
 
             pgraphics->get_text_metrics(&textmetric);
 
@@ -698,15 +698,15 @@ namespace html
             {
                if(m_bHover && m_pelemental->m_pstyle->get_color("background-color", "hover", pdata, m_pelemental, cr))
                {
-                  pgraphics->fill_rect(rectangle, cr);
+                  pgraphics->fill_rectangle(rectangle, cr);
                }
                else if(has_link() && m_pelemental->m_pstyle->get_color("background-color", "link", pdata, m_pelemental, cr))
                {
-                  pgraphics->fill_rect(rectangle, cr);
+                  pgraphics->fill_rectangle(rectangle, cr);
                }
                else if (m_pelemental->m_pstyle->get_color("background-color", "", pdata, m_pelemental, cr))
                {
-                  pgraphics->fill_rect(rectangle, cr);
+                  pgraphics->fill_rectangle(rectangle, cr);
                }
             }
          }
@@ -892,14 +892,14 @@ namespace html
                else
                {
                   pgraphics->text_out(left,top,strLine);
-                  //pgraphics->fill_rect(left,top,50,50,argb(255,0,255,0));
+                  //pgraphics->fill_rectangle(left,top,50,50,argb(255,0,255,0));
                }
 
                cy += m_sizea[i].cy;
                lim += strLine.get_length();
             }
          }
-         //pgraphics->fill_rect(0, 0, 100, 100, rgb(0, 255, 0));
+         //pgraphics->fill_rectangle(0, 0, 100, 100, rgb(0, 255, 0));
 
          */
 

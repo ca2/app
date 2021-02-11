@@ -30,7 +30,7 @@ void draw2d_direct2d_factory_exchange()
       create_factory < ::draw2d_direct2d::brush, ::draw2d::brush >();
       create_factory < ::draw2d_direct2d::palette, ::draw2d::palette >();
       create_factory < ::draw2d_direct2d::region, ::draw2d::region >();
-      create_factory < ::draw2d_direct2d::font, ::draw2d::font >();
+      create_factory < ::draw2d_direct2d::font, ::write_text::font >();
 
       create_factory < ::draw2d_direct2d::graphics, ::draw2d::graphics > ();
 

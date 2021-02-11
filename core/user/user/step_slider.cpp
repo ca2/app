@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -238,9 +236,13 @@ namespace user
 
       auto psession = Session;
 
-      auto point = psession->get_cursor_pos();
-      
-      m_itemHover = hit_test(point);
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
+
+      m_itemHover = hit_test(pointCursor);
 
       set_need_redraw();
 
@@ -248,7 +250,7 @@ namespace user
 
       get_client_rect(rectClient);
 
-      m_itemHover = rectClient.contains(point) != false;
+      m_itemHover = rectClient.contains(pointCursor) != false;
 
    }
 

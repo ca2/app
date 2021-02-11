@@ -15,7 +15,7 @@ namespace userex
       millis                  m_millisDelayedAfterChange;
       top_view *              m_ptopview;
       bool                    m_bEnterKeyPressed;
-      ::draw2d::font_pointer  m_pfont;
+      ::write_text::font_pointer  m_pfont;
 
 
       top_edit_view();
@@ -26,7 +26,7 @@ namespace userex
       DECL_GEN_SIGNAL(_001OnCreate);
       DECL_GEN_SIGNAL(_001OnKeyDown);
 
-      virtual ::draw2d::font_pointer get_font(::user::style* pstyle, ::user::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override;
+      virtual ::write_text::font_pointer get_font(::user::style* pstyle, ::user::enum_element eelement, ::user::enum_state estate = ::user::e_state_none) const override;
 
       virtual void plain_edit_on_after_change_text(::draw2d::graphics_pointer& pgraphics, const ::action_context& action_context) override;
 

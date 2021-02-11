@@ -1,7 +1,5 @@
 ﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 #include "aura/update.h"
 
 
@@ -68,7 +66,7 @@ namespace filemanager
 
       //   get_client_rect(rectClient);
 
-      //   pgraphics->fill_rect(rectClient, argb(255, 255, 255, 255));
+      //   pgraphics->fill_rectangle(rectClient, argb(255, 255, 255, 255));
 
       //}
 
@@ -87,7 +85,7 @@ namespace filemanager
 
       SetPaneCount(2);
 
-      SetSplitOrientation(orientation_vertical);
+      SetSplitOrientation(e_orientation_vertical);
 
       set_position_rate(0,0.3);
 
@@ -144,7 +142,7 @@ namespace filemanager
    }
 
 
-   void main_view::on_command(::user::command * pcommand)
+   void main_view::on_command(::message::command * pcommand)
    {
 
       if(pcommand->m_id == "change_view")

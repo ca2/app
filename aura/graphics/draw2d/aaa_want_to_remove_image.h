@@ -325,9 +325,9 @@ public:
    virtual bool copy(::image * pimage, i32 x, i32 y) override;
    virtual bool PasteRect(::image * pimage, i32 x, i32 y) override;
 
-   virtual bool fill_rect(const ::rect & rect, color32_t cr) override;
+   virtual bool fill_rectangle(const ::rect & rect, color32_t cr) override;
 
-   virtual bool fill_rect(const ::rect & rect, i32 R, i32 G, i32 B) override;
+   virtual bool fill_rectangle(const ::rect & rect, i32 R, i32 G, i32 B) override;
 
 
    virtual bool fill_glass_rect(const ::rect & rect, i32 R, i32 G, i32 B, i32 A) override;

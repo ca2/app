@@ -49,7 +49,6 @@ namespace aura
       virtual void user_fork(const ::promise::routine & routine) override;
 
 
-
    };
 
 

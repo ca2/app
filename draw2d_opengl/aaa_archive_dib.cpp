@@ -2586,18 +2586,18 @@ namespace draw2d_opengl
 //   bool image::print_window(::aura::draw_interface * pwnd,::message::message * pmessage)
 //   {
 //
-//      __pointer(::message::base) pbase(pmessage);
+//      __pointer(::user::message) pusermessage(pmessage);
 //
-//      if(pbase->m_wparam == nullptr)
+//      if(pusermessage->m_wparam == nullptr)
 //         return false;
 //
-//      m_spgraphics->attach((HDC) pbase->m_wparam);
+//      m_spgraphics->attach((HDC) pusermessage->m_wparam);
 //
 //      ::rect rectx;
 //
 //      ::draw2d::bitmap * pbitmap = m_spgraphics->get_current_bitmap();
 //
-//      ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
+//      ::GetCurrentObject((HDC) pusermessage->m_wparam, OBJ_BITMAP);
 //
 //      //      u32 dw = ::get_last_error();
 //      ::size size = pbitmap->get_size();
@@ -2651,7 +2651,7 @@ namespace draw2d_opengl
 //      }
 //      m_spgraphics->FillSolidRect(rectx, rgb(255, 255, 255));
 //      pmessage->m_bRet = true;
-//      pbase->set_lresult(0);
+//      pusermessage->set_lresult(0);
 //
 //      return true;
 //

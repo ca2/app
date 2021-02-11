@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/experience/_experience.h"
-#endif
 
 
 namespace experience
@@ -20,8 +18,6 @@ namespace experience
       m_ehittestSizing = hittest_none;
 
       m_ehittestCursor = hittest_none;
-
-      SetSWPFlags(0);
 
       m_egripMask = e_grip_all;
 
@@ -66,55 +62,55 @@ namespace experience
 
       //auto pframewindow = m_pframewindow;
 
-      if(ehittest != hittest_none)
-      {
-
-#ifdef WINDOWS_DESKTOP
-
-         ::u32 nHitTest = HTCLIENT;
-
-         switch(ehittest)
-         {
-         case hittest_sizing_left:
-            nHitTest = HTLEFT;
-            break;
-         case hittest_sizing_top_left:
-            nHitTest = HTTOPLEFT;
-            break;
-         case hittest_sizing_top:
-            nHitTest = HTTOP;
-            break;
-         case hittest_sizing_top_right:
-            nHitTest = HTTOPRIGHT;
-            break;
-         case hittest_sizing_right:
-            nHitTest = HTRIGHT;
-            break;
-         case hittest_sizing_bottom_right:
-            nHitTest = HTBOTTOMRIGHT;
-            break;
-         case hittest_sizing_bottom:
-            nHitTest = HTBOTTOM;
-            break;
-         case hittest_sizing_bottom_left:
-            nHitTest = HTBOTTOMLEFT;
-            break;
-         default:
-            break;
-         }
-
-#endif
-
-         //if(pframewindow->WfiOnBeginSizing(nHitTest, pointCursor))
-         //   return true;
-      }
+//      if(ehittest != hittest_none)
+//      {
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//         ::u32 nHitTest = HTCLIENT;
+//
+//         switch(ehittest)
+//         {
+//         case hittest_sizing_left:
+//            nHitTest = HTLEFT;
+//            break;
+//         case hittest_sizing_top_left:
+//            nHitTest = HTTOPLEFT;
+//            break;
+//         case hittest_sizing_top:
+//            nHitTest = HTTOP;
+//            break;
+//         case hittest_sizing_top_right:
+//            nHitTest = HTTOPRIGHT;
+//            break;
+//         case hittest_sizing_right:
+//            nHitTest = HTRIGHT;
+//            break;
+//         case hittest_sizing_bottom_right:
+//            nHitTest = HTBOTTOMRIGHT;
+//            break;
+//         case hittest_sizing_bottom:
+//            nHitTest = HTBOTTOM;
+//            break;
+//         case hittest_sizing_bottom_left:
+//            nHitTest = HTBOTTOMLEFT;
+//            break;
+//         default:
+//            break;
+//         }
+//
+//#endif
+//
+//         //if(pframewindow->WfiOnBeginSizing(nHitTest, pointCursor))
+//         //   return true;
+//      }
 
       auto psession = Session;
 
       if(ehittest != hittest_none)
       {
 
-         m_pframewindow->SetCapture();
+         m_pframewindow->set_mouse_capture();
 
          pmouse->m_bRet = true;
 
@@ -122,7 +118,7 @@ namespace experience
       else
       {
 
-         psession->ReleaseCapture();
+         psession->user()->windowing()->release_capture();
 
       }
 
@@ -243,7 +239,11 @@ namespace experience
 
       auto psession = Session;
 
-      psession->ReleaseCapture();
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      pwindowing->release_capture();
 
       if(pmouse)
       {
@@ -270,32 +270,32 @@ namespace experience
    }
 
 
-   e_cursor size_manager::translate(e_hittest emode)
+   enum_cursor size_manager::translate(e_hittest emode)
    {
 
       switch(emode)
       {
       case hittest_none:
-         return cursor_default;
+         return e_cursor_default;
       case hittest_sizing_top_left:
-         return cursor_size_top_left;
+         return e_cursor_size_top_left;
       case hittest_sizing_top:
-         return cursor_size_top;
+         return e_cursor_size_top;
       case hittest_sizing_top_right:
-         return cursor_size_top_right;
+         return e_cursor_size_top_right;
       case hittest_sizing_right:
-         return cursor_size_right;
+         return e_cursor_size_right;
       case hittest_sizing_bottom_right:
-         return cursor_size_bottom_right;
+         return e_cursor_size_bottom_right;
       case hittest_sizing_bottom:
-         return cursor_size_bottom;
+         return e_cursor_size_bottom;
       case hittest_sizing_bottom_left:
-         return cursor_size_bottom_left;
+         return e_cursor_size_bottom_left;
       case hittest_sizing_left:
-         return cursor_size_left;
+         return e_cursor_size_left;
          break;
       default:
-         return cursor_default;
+         return e_cursor_default;
       }
 
    }
@@ -309,13 +309,13 @@ namespace experience
    }
 
 
-   void size_manager::SetSWPFlags(::u32 uFlags)
-   {
+   //void size_manager::SetSWPFlags(::u32 uFlags)
+   //{
 
-      m_uiSWPFlags = uFlags;
-      m_uiSWPFlags &= ~SWP_NOSIZE & ~SWP_NOMOVE;
+   //   m_uiSWPFlags = uFlags;
+   //   m_uiSWPFlags &= ~SWP_NOSIZE & ~SWP_NOMOVE;
 
-   }
+   //}
 
 
    void size_manager::size_window(e_hittest ehittest, ::user::interaction * pframewindow, const ::point_i32 & point, bool bTracking)

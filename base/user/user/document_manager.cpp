@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 
 
 #define _wcsdec(_cpc1, _cpc2) ((_cpc1)>=(_cpc2) ? nullptr : (_cpc2)-1)
@@ -17,7 +15,7 @@ bool _set_reg_key(const widechar * pszKey, const widechar * pszValue, const wide
 #ifdef WINDOWS_DESKTOP
 
 
-void __get_module_short_file_name(HINSTANCE hInst, string& strShortName);
+void __get_module_short_file_name(hinstance hInst, string& strShortName);
 
 
 #endif

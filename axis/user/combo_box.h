@@ -57,7 +57,7 @@ namespace user
       virtual void install_message_routing(::channel * pchannel) override;
 
 
-      virtual ::draw2d::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) const override;
+      virtual ::write_text::font_pointer get_font(style* pstyle, enum_element eelement = e_element_none, ::user::enum_state estate = e_state_none) const override;
 
 
       virtual void _000OnDraw(::draw2d::graphics_pointer & pgraphics) override;
@@ -105,13 +105,15 @@ namespace user
       DECL_GEN_SIGNAL(_001OnLButtonDblClk);
       DECL_GEN_SIGNAL(_001OnKeyDown);
       DECL_GEN_SIGNAL(_001OnKeyUp);
-      DECL_GEN_SIGNAL(_001OnSetFocus);
-      DECL_GEN_SIGNAL(_001OnKillFocus);
       DECL_GEN_SIGNAL(_001OnShowWindow);
       DECL_GEN_SIGNAL(_001OnMove);
 
       virtual void _001ShowDropDown(bool bShow = true);
       virtual void _001ToggleDropDown();
+
+
+      virtual void on_set_keyboard_focus();
+      virtual void on_kill_keyboard_focus();
 
 
       virtual void defer_create_combo_list();
@@ -209,7 +211,7 @@ namespace user
 //
 //#endif
 
-      virtual bool OnChildNotify(::message::base * pbase) override;
+      //virtual bool OnChildNotify(::user::message * pusermessage) override;
 
 
       //virtual color32_t get_action_hover_border_color() override;

@@ -163,7 +163,7 @@ So we've done a broad replace of all the member-related ASSERT to ASSUME.
 #ifdef __DEBUG
 #define VERIFY(expr) ASSERT(expr)
 #else
-#define VERIFY(expr) (expr ? void() : __throw(::exception::exception));
+#define VERIFY(expr) (expr ? void() : __throw(::exception::exception()));
 #endif // __DEBUG
 #endif // VERIFY
 

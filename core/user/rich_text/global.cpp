@@ -1,7 +1,5 @@
-﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
+#include "framework.h"
 #include "core/user/rich_text/_rich_text.h"
-#endif
 
 
 namespace user
@@ -583,7 +581,7 @@ namespace user
       box * find_box(__pointer_array(line) & linea, index iSel)
       {
 
-         if (iSel < 0 || linea.isEmpty() || linea.first()->isEmpty())
+         if (iSel < 0 || linea.is_empty() || linea.first()->is_empty())
          {
 
             return nullptr;

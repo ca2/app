@@ -556,7 +556,7 @@ auto fork_count(::object * pobjectParent, ::count iCount, PRED pred, index iStar
 
    ::count iScan = max(1, min(iCount - iStart, iAffinityOrder));
 
-   auto pcounter = __new(::counter(long(iScan)));
+   auto pcounter = __new(::counter<i32>(long(iScan)));
 
    auto pthread = ::get_task();
 

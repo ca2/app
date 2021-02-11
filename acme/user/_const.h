@@ -604,4 +604,61 @@ enum enum_toolbar_item_style
 };
 
 
+enum enum_scroll_bar_command
+{
 
+   e_scroll_bar_command_line_up = 0,
+   e_scroll_bar_command_line_left = 0,
+   e_scroll_bar_command_line_down = 1,
+   e_scroll_bar_command_line_right = 1,
+   e_scroll_bar_command_page_up = 2,
+   e_scroll_bar_command_page_left = 2,
+   e_scroll_bar_command_page_down = 3,
+   e_scroll_bar_command_page_right = 3,
+   e_scroll_bar_command_thumb_position = 4,
+   e_scroll_bar_command_thumb_track = 5,
+   e_scroll_bar_command_top = 6,
+   e_scroll_bar_command_left = 6,
+   e_scroll_bar_command_bottom = 7,
+   e_scroll_bar_command_right = 7,
+   e_scroll_bar_command_end_scroll = 8,
+
+};
+
+
+
+
+
+enum enum_hit_test
+{
+   e_hit_test_error =-2,
+   e_hit_test_transparent = -1,
+   e_hit_test_nowhere = 0,
+   e_hit_test_client = 1,
+   e_hit_test_caption = 2,
+   e_hit_test_sysmenu = 3,
+   e_hit_test_grow_box = 4,
+   e_hit_test_size = e_hit_test_grow_box,
+   e_hit_test_menu            =  5,
+   e_hit_test_hscroll         =  6,
+   e_hit_test_vscroll         =  7,
+   e_hit_test_minimize_button       =  8,
+   e_hit_test_maximize_button       =  9,
+   e_hit_test_left            =  10,
+   e_hit_test_right           =  11,
+   e_hit_test_top             =  12,
+   e_hit_test_top_left         =  13,
+   e_hit_test_top_right        =  14,
+   e_hit_test_bottom          =  15,
+   e_hit_test_bottom_left      =  16,
+   e_hit_test_bottom_right     =  17,
+   e_hit_test_border          =  18,
+   e_hit_test_reduce            = e_hit_test_minimize_button,
+   e_hit_test_zoom = e_hit_test_maximize_button,
+   e_hit_test_size_first = e_hit_test_left,
+   e_hit_test_size_last = e_hit_test_bottom_right,
+   e_hit_test_object        =   19,
+   e_hit_test_close         =   20,
+   e_hit_test_help          =   21,
+
+};

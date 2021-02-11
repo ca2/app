@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 
 
 namespace userex
@@ -59,7 +57,7 @@ namespace userex
 
       SetPaneCount(2);
 
-      SetSplitOrientation(orientation_vertical);
+      SetSplitOrientation(e_orientation_vertical);
 
       set_position_rate(0, 0.80);
 

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 
 
 namespace filemanager
@@ -122,7 +120,7 @@ namespace filemanager
    void impact::_001OnUpdateEditPaste(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
       auto psession = Session;
          
@@ -187,12 +185,12 @@ namespace filemanager
    void impact::_001OnOperationDocMessage(::message::message * pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
-      if(pbase->m_wparam == 4096)
+      if(pusermessage->m_wparam == 4096)
       {
 
-         if(pbase->m_lparam == 0)
+         if(pusermessage->m_lparam == 0)
          {
 
             _001Refresh();

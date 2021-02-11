@@ -112,7 +112,7 @@ namespace experience
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      pgraphics->fill_rect(rectClient, pgraphics->m_pbrush->m_color);
+      pgraphics->fill_rectangle(rectClient, pgraphics->m_pbrush->m_color);
 
       //pgraphics->FillEllipse(rectEllipse);
 

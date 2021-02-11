@@ -4,9 +4,11 @@
 namespace message
 {
 
+   
    class message;
    //class sender; -> oet,chnel (targetable!!evenmoreeasilykillble (dissolve "bad" idea/group/team, not person));
    //class receiver; -> oyet
+
 
 } // namespace message
 
@@ -27,14 +29,15 @@ namespace user
 namespace message
 {
 
+   
    class message;
    class id_route;
    template < typename MESSAGE > class typed_route;
    //class id;
    class route;
 
-} // namespace status
 
+} // namespace status
 
 
 #include "const.h"

@@ -310,13 +310,13 @@ namespace core
 
 
 
-class eimpact;
-
-enum e_simple_command : ::i64;
-enum e_message : ::i64;
-enum e_impact : ::i64;
-enum e_id : ::u64;
-enum enum_check: ::i32;
+//class eimpact;
+//
+//enum e_simple_command : ::i64;
+//enum e_message : ::i64;
+//enum e_impact : ::i64;
+//enum e_id : ::u64;
+//enum enum_check: ::i32;
 
 
 template < typename CHAR_TYPE >
@@ -394,24 +394,6 @@ namespace message
 
 } // namespace message
 
-
-namespace draw2d
-{
-
-
-   class graphics;
-
-
-   class icon;
-   class cursor;
-   class region;
-   class brush;
-   class font;
-   using brush_pointer = __pointer(brush);
-   using font_pointer = __pointer(font);
-
-
-} // namespace draw2d
 
 
 class form_property_set;
@@ -1103,7 +1085,7 @@ namespace apex
 
 #include "apex/user/check.h"
 
-#include "apex/user/command.h"
+#include "apex/message/command.h"
 
 #include "apex/message/_.h"
 

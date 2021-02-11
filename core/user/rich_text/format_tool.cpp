@@ -1,14 +1,11 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 #include "core/user/rich_text/_rich_text.h"
-//#include "format_tool.h"
 
 
-#ifdef WINDOWS_DESKTOP
-#include <Commdlg.h>
-#endif
+//#ifdef WINDOWS_DESKTOP
+//#include <Commdlg.h>
+//#endif
 
 
 
@@ -111,13 +108,13 @@ namespace user
 
       m_pcomboFamily->create_control(this, "combo_family");
       //auto pfont = m_pcomboFamily->create_point_font(::user::font_plain_edit, os_font_name(e_font_sans_ui), 9.0);
-      //pfont->m_etextrenderinghint = ::draw2d::text_rendering_hint_clear_type_grid_fit;
+      //pfont->m_ewritetextrendering = ::write_text::e_rendering_clear_type_grid_fit;
       //m_pcomboFamily->create_color(::user::color_text, argb(255, 80, 80, 80));
       //m_pcomboFamily->create_color(::user::color_background, argb(255, 255, 255, 255));
 
       m_pcomboSize->create_control(this, "combo_size");
       //pfont = m_pcomboSize->create_point_font(::user::font_plain_edit, os_font_name(e_font_sans_ui), 9.0);
-      //pfont->m_etextrenderinghint = ::draw2d::text_rendering_hint_clear_type_grid_fit;
+      //pfont->m_ewritetextrendering = ::write_text::e_rendering_clear_type_grid_fit;
       //m_pcomboSize->create_color(::user::color_text, argb(255, 80, 80, 80));
       //m_pcomboSize->create_color(::user::color_background, argb(255, 255, 255, 255));
       //::rectangle_f64 r(2, 2, 2, 2);
@@ -208,7 +205,7 @@ namespace user
       brBk->CreateLinearGradientBrush(rectClient.top_left(), rectClient.bottom_left(),
                                       argb(255, 230, 230, 230), argb(255, 200, 200, 200));
 
-      pgraphics->fill_rect(rectClient, brBk);
+      pgraphics->fill_rectangle(rectClient, brBk);
 
    }
 
@@ -433,35 +430,6 @@ namespace user
                fork([&]()
                {
 
-#ifdef WINDOWS_DESKTOP
-                  CHOOSECOLOR cc;
-                  color32_t crCustColors[16];
-
-                  // init-int this array did not affect the mouse problem
-                  // ::u32 idx ;
-                  // for (idx=0; idx<16; idx++) {
-                  // crCustColors[idx] = rgb(idx, idx, idx) ;
-                  // }
-
-                  ZeroMemory(&cc, sizeof(cc));
-                  cc.lStructSize = sizeof(CHOOSECOLOR);
-                  cc.rgbResult = rgb(0, 0, 0);
-                  cc.lpCustColors = (COLORREF *) crCustColors;
-
-                  cc.Flags = CC_RGBINIT | CC_FULLOPEN;
-                  cc.hwndOwner = get_safe_handle() ; // this hangs parent, as well as me
-
-                  if (::ChooseColor(&cc))
-                  {
-
-                     m_eattribute |= ::user::rich_text::attribute_foreground;
-
-                     m_formata[0]->m_colorForeground = cc.rgbResult | (255 << 24);
-
-                     update_data(true);
-
-                  }
-#endif
                });
 
             }
@@ -592,7 +560,7 @@ namespace user
    bool format_tool::update_data(bool bSaveAndValidate)
    {
 
-      if (m_formata.isEmpty() || !m_formata[0])
+      if (m_formata.is_empty() || !m_formata[0])
       {
 
          return false;

@@ -10,7 +10,7 @@ u32 _stdcall ___Ex1File__WriteProc(void * buffer, u32 size, u32 count, fi_handle
    try
    {
 
-      pfile->write(buffer, count * size_i32);
+      pfile->write(buffer, count * size);
 
    }
    catch (...)

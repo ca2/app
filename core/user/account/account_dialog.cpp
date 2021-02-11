@@ -1,7 +1,5 @@
-﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
+#include "framework.h"
 #include "core/user/account/_account.h"
-#endif
 #include "acme/const/timer.h"
 
 
@@ -18,11 +16,6 @@ namespace account
 
       m_bFontopusSimpleUiLayout = false;
 
-#ifdef WINDOWS_DESKTOP
-
-      LockSetForegroundWindow(LSFW_LOCK);
-
-#endif
 
    }
 
@@ -30,11 +23,6 @@ namespace account
    dialog::~dialog()
    {
 
-#ifdef WINDOWS_DESKTOP
-
-      LockSetForegroundWindow(LSFW_UNLOCK);
-
-#endif
 
    }
 
@@ -84,6 +72,7 @@ namespace account
       MESSAGE_LINK(e_message_left_button_down,pchannel,this,&dialog::_001OnLButtonDown);
       MESSAGE_LINK(e_message_left_button_up,pchannel,this,&dialog::_001OnLButtonUp);
       MESSAGE_LINK(e_message_mouse_move,pchannel,this,&dialog::_001OnMouseMove);
+      MESSAGE_LINK(e_message_show_window, pchannel, this, &dialog::_001OnShowWindow);
 
    }
 
@@ -214,7 +203,7 @@ namespace account
 
             place(m_rectFontopus);
 
-            m_plogin->m_peditUser->SetFocus();
+            m_plogin->m_peditUser->set_keyboard_focus();
 
             display(e_display_restore, e_activation_set_foreground);
 
@@ -253,7 +242,13 @@ namespace account
       else if (rectangle.is_empty())
       {
 
-         psession->get_main_monitor(rectDesktop);
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pdisplay = pwindowing->display();
+
+         pdisplay->get_main_monitor(rectDesktop);
 
       }
       else
@@ -524,7 +519,7 @@ namespace account
 
       _001ScreenToClient(m_pointLButtonDownPos);
 
-      SetCapture();
+      set_mouse_capture();
 
       pmouse->m_bRet = true;
 
@@ -538,7 +533,13 @@ namespace account
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      ReleaseCapture();
+      auto psession = Session;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      pwindowing->release_capture();
 
       m_bDrag = false;
 
@@ -597,6 +598,34 @@ namespace account
          pmessage->m_bRet = true;
 
       }
+
+   }
+
+
+   void dialog::_001OnShowWindow(::message::message * pmessage)
+   {
+
+      __pointer(::message::show_window) pshowwindow(pmessage);
+
+      auto psession = Session;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      if (pshowwindow->m_bShow)
+      {
+
+         pwindowing->lock_set_foreground_window();
+
+      }
+      else
+      {
+
+         pwindowing->lock_set_foreground_window(false);
+
+      }
+
 
    }
 

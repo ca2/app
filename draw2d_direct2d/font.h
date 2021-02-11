@@ -7,7 +7,7 @@ namespace draw2d_direct2d
 
    class CLASS_DECL_DRAW2D_DIRECT2D font :
       virtual public ::draw2d_direct2d::object,
-      virtual public ::draw2d::font
+      virtual public ::write_text::font
    {
    public:
 
@@ -26,7 +26,7 @@ namespace draw2d_direct2d
       virtual bool create(::draw2d::graphics * pgraphics, i8 iCreate) override;
 
 
-      /*      virtual void construct(const ::draw2d::font & fontParam);
+      /*      virtual void construct(const ::write_text::font & fontParam);
 
             virtual bool CreateFontIndirect(const LOGFONTW* lpLogFont);
             virtual bool CreateFont(int nHeight, int nWidth, int nEscapement,

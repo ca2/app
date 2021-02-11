@@ -1,7 +1,6 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
+#include "aura/operating_system.h"
 #include "base/user/user/_user.h"
-#endif
 
 
 #define WM_SETMESSAGESTRING 0x0362  // wParam = nIDS (or 0),
@@ -43,9 +42,9 @@ namespace user
 
       ::user::interaction::install_message_routing(pchannel);
 
-#ifdef WINDOWS
-      MESSAGE_LINK(WM_CTLCOLOR, pchannel, this, &control_bar::_001OnCtlColor);
-#endif
+//#ifdef WINDOWS
+//      MESSAGE_LINK(WM_CTLCOLOR, pchannel, this, &control_bar::_001OnCtlColor);
+//#endif
       MESSAGE_LINK(e_message_size_parent, pchannel, this, &control_bar::_001OnSizeParent);
       MESSAGE_LINK(e_message_window_position_changing, pchannel, this, &control_bar::_001OnWindowPosChanging);
       MESSAGE_LINK(e_message_mouse_move, pchannel, this, &control_bar::_001OnMouseMove);
@@ -84,12 +83,12 @@ namespace user
       }
 
 
-#ifdef WINDOWS_DESKTOP
-
-      // force clipsliblings (otherwise will cause repaint problems)
-      pusersystem->m_createstruct.style |= WS_CLIPSIBLINGS;
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      // force clipsliblings (otherwise will cause repaint problems)
+//      pusersystem->m_createstruct.style |= WS_CLIPSIBLINGS;
+//
+//#endif
 
       // default border style translation for Win4
       //  (you can turn off this translation by setting CBRS_BORDER_3D)
@@ -297,19 +296,19 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-      __pointer(::message::base) pbase(pmessage);
-
-      ::u32 message;
-
-      message = pbase->m_id.umessage();
-
-      // handle CBRS_FLYBY style (status bar flyby help)
-      if (((m_dwStyle & CBRS_FLYBY) ||
-            message == e_message_left_button_down || message == e_message_left_button_up) &&
-            ((message >= WM_MOUSEFIRST && message <= WM_MOUSELAST)))
-//          (message >= WM_NCMOUSEFIRST && message <= WM_NCMOUSELAST)))
-      {
-      }
+//      __pointer(::user::message) pmessage(pmessage);
+//
+//      ::u32 message;
+//
+//      message = pmessage->m_id.umessage();
+//
+//      // handle CBRS_FLYBY style (status bar flyby help)
+//      if (((m_dwStyle & CBRS_FLYBY) ||
+//            message == e_message_left_button_down || message == e_message_left_button_up) &&
+//            ((message >= WM_MOUSEFIRST && message <= WM_MOUSELAST)))
+////          (message >= WM_NCMOUSEFIRST && message <= WM_NCMOUSELAST)))
+//      {
+//      }
 #else
 //      __throw(todo());
 #endif
@@ -333,17 +332,17 @@ namespace user
       }
 
       // filter both messages to dialog and from children
-      // pbase->m_bRet = false;
+      // pmessage->m_bRet = false;
 
    }
 
 
-   void control_bar::message_handler(::message::base * pbase)
+   void control_bar::message_handler(::message::message * pmessage)
    {
 
-      ::user::interaction::message_handler(pbase);
+      ::user::interaction::message_handler(pmessage);
 
-      if (pbase->m_bRet)
+      if (pmessage->m_bRet)
       {
 
          return;
@@ -352,62 +351,62 @@ namespace user
 
 #ifdef WINDOWS_DESKTOP
 
-      ASSERT_VALID(this);
-
-      LRESULT lResult;
-
-      ::u32 message;
-
-      message = pbase->m_id.umessage();
-
-      switch (message)
-      {
-      case WM_NOTIFY:
-      case e_message_command:
-      case WM_DRAWITEM:
-      case e_message_measure_item:
-      case WM_DELETEITEM:
-      case WM_COMPAREITEM:
-      case WM_VKEYTOITEM:
-      case WM_CHARTOITEM:
-         // send these messages to the owner if not handled
-         //      if (OnWndMsg(nMsg, wParam, lParam, &lResult))
-         //         return lResult;
-         //      else
-      {
-         // try owner next
-         lResult = get_owner()->send_message((enum_message) message, pbase->m_wparam, pbase->m_lparam);
-
-         // special case for TTN_NEEDTEXTA and TTN_NEEDTEXTW
-//#ifdef WINDOWS_DESKTOP
-//            if(pbase->m_id == WM_NOTIFY)
-//            {
-//               NMHDR* pNMHDR = (NMHDR*)pbase->m_lparam.m_lparam;
-//               if (pNMHDR->code == TTN_NEEDTEXTA || pNMHDR->code == TTN_NEEDTEXTW)
-//               {
-//                  TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
-//                  TOOLTIPTEXTW* pTTTW = (TOOLTIPTEXTW*)pNMHDR;
-//                  if ((pNMHDR->code == TTN_NEEDTEXTA && (!pTTTA->pszText || !*pTTTA->pszText)) ||
-
-//                     (pNMHDR->code == TTN_NEEDTEXTW && (!pTTTW->pszText || !*pTTTW->pszText)))
-
-//                  {
-//                     // not handled by owner, so let bar itself handle it
-//                     ::user::interaction::message handler(pmessage);
-//                  }
-//               }
-//            }
-//#else
-//            __throw(todo());
-//#endif
-         return;
-      }
-      }
+//      ASSERT_VALID(this);
+//
+//      lresult lResult;
+//
+//      ::u32 message;
+//
+//      message = pmessage->m_id.umessage();
+//
+//      switch (message)
+//      {
+//      case WM_NOTIFY:
+//      case e_message_command:
+//      case WM_DRAWITEM:
+//      case e_message_measure_item:
+//      case WM_DELETEITEM:
+//      case WM_COMPAREITEM:
+//      case WM_VKEYTOITEM:
+//      case WM_CHARTOITEM:
+//         // send these messages to the owner if not handled
+//         //      if (OnWndMsg(nMsg, wParam, lParam, &lResult))
+//         //         return lResult;
+//         //      else
+//      {
+//         // try owner next
+//         lResult = get_owner()->send_message((enum_message) message, pmessage->m_wparam, pmessage->m_lparam);
+//
+//         // special case for TTN_NEEDTEXTA and TTN_NEEDTEXTW
+////#ifdef WINDOWS_DESKTOP
+////            if(pmessage->m_id == WM_NOTIFY)
+////            {
+////               NMHDR* pNMHDR = (NMHDR*)pmessage->m_lparam.m_lparam;
+////               if (pNMHDR->code == TTN_NEEDTEXTA || pNMHDR->code == TTN_NEEDTEXTW)
+////               {
+////                  TOOLTIPTEXTA* pTTTA = (TOOLTIPTEXTA*)pNMHDR;
+////                  TOOLTIPTEXTW* pTTTW = (TOOLTIPTEXTW*)pNMHDR;
+////                  if ((pNMHDR->code == TTN_NEEDTEXTA && (!pTTTA->pszText || !*pTTTA->pszText)) ||
+//
+////                     (pNMHDR->code == TTN_NEEDTEXTW && (!pTTTW->pszText || !*pTTTW->pszText)))
+//
+////                  {
+////                     // not handled by owner, so let bar itself handle it
+////                     ::user::interaction::message handler(pmessage);
+////                  }
+////               }
+////            }
+////#else
+////            __throw(todo());
+////#endif
+//         return;
+//      }
+//      }
 
 #endif
 
       // otherwise, just handle in default way
-      ::user::interaction::message_handler(pbase);
+      ::user::interaction::message_handler(pmessage);
 
    }
 
@@ -415,7 +414,7 @@ namespace user
    void control_bar::_001OnHelpHitTest(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-//      __pointer(::message::base) pbase(pmessage);
+//      __pointer(::user::message) pmessage(pmessage);
       ASSERT_VALID(this);
 
    }
@@ -554,9 +553,9 @@ namespace user
       //SendMessage(e_message_erase_background, (WPARAM)spgraphics->get_handle1());
       pgraphics->reset_clip();
 
-      auto rectangle_i32 = ::rectd_dim(0, 0, rectWindow.width(), rectWindow.height());
+      auto rectangle = ::rectd_dim(0, 0, rectWindow.width(), rectWindow.height());
 
-      pgraphics->fill_rect(rectangle, argb(128, 192, 192, 187));
+      pgraphics->fill_rectangle(rectangle, argb(128, 192, 192, 187));
 
       // draw gripper in non-client area
       DrawGripper(pgraphics, rectWindow);
@@ -638,7 +637,7 @@ namespace user
 
 //    void control_bar::_001OnIdleUpdateCmdUI(::message::message * pmessage)
 //    {
-//       __pointer(::message::base) pbase(pmessage);
+//       __pointer(::user::message) pmessage(pmessage);
 //       // handle delay hide/show
 //       bool bVis = (GetStyle() & WS_VISIBLE) != 0;
 //       ::u32 swpFlags = 0;
@@ -660,9 +659,9 @@ namespace user
 //          if (pTarget == nullptr)
 //             pTarget = (get_parent_frame());
 //          if (pTarget != nullptr)
-//             OnUpdateCmdUI(pTarget, pbase->m_wparam != false);
+//             OnUpdateCmdUI(pTarget, pmessage->m_wparam != false);
 //       }
-//       pbase->set_lresult(0L);
+//       pmessage->set_lresult(0L);
 //    }
 
 
@@ -670,7 +669,7 @@ namespace user
    {
 
       // // update the indicators before becoming visible
-      // ::message::base base(get_object());
+      // ::user::message base(get_object());
       // LRESULT lresult;
       // base.set(this, WM_IDLEUPDATECMDUI, true, (LPARAM) 0, lresult);
       // _001OnIdleUpdateCmdUI(&base);
@@ -678,9 +677,11 @@ namespace user
    }
 
 
-   u32 control_bar::RecalcDelayShow(SIZEPARENTPARAMS * playout)
+   u32 control_bar::RecalcDelayShow(void * pvoidSIZEPARENTPARAMS)
 
    {
+
+      SIZEPARENTPARAMS * playout = (SIZEPARENTPARAMS * ) pvoidSIZEPARENTPARAMS;
 
       u32 uStyleVisible = 0;
 
@@ -763,9 +764,7 @@ namespace user
    void control_bar::_001OnSizeParent(::message::message * pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
-
-      SIZEPARENTPARAMS * playout = (SIZEPARENTPARAMS *) pbase->m_lparam.m_lparam;
+      SIZEPARENTPARAMS * playout = (SIZEPARENTPARAMS *) pmessage->m_lparam.m_lparam;
 
       u32 uStyle = RecalcDelayShow(playout);
 
@@ -843,7 +842,7 @@ namespace user
 
       }
 
-      pbase->m_lresult = 0;
+      pmessage->m_lresult = 0;
 
    }
 
@@ -937,18 +936,18 @@ namespace user
       {
          if(uStyle & CBRS_GRIPPER)
          {
-            pgraphics->fill_rect(::rectd_dim(0, rectangle.top + 7, CX_BORDER, rectangle.height() - 7), clr);
+            pgraphics->fill_rectangle(::rectd_dim(0, rectangle.top + 7, CX_BORDER, rectangle.height() - 7), clr);
          }
          else
          {
-            pgraphics->fill_rect(::rectd_dim(0, rect2.top, CX_BORDER, rect2.height()), clr);
+            pgraphics->fill_rectangle(::rectd_dim(0, rect2.top, CX_BORDER, rect2.height()), clr);
          }
       }
       if (uStyle & CBRS_BORDER_TOP)
       {
          if(uStyle & CBRS_GRIPPER)
          {
-            pgraphics->fill_rect(
+            pgraphics->fill_rectangle(
             ::rectangle_f64(rectangle.left + 7,
             rectangle.top,
             rectangle.right - 7,
@@ -957,14 +956,14 @@ namespace user
          }
          else
          {
-            pgraphics->fill_rect(
+            pgraphics->fill_rectangle(
             ::rectangle_f64(rectangle.left,
             rectangle.top,
             rectangle.right,
             1),
             rgb(128, 128, 123));
          }
-         //      pgraphics->fill_rect(0, 0, rectangle.right, CY_BORDER, clr);
+         //      pgraphics->fill_rectangle(0, 0, rectangle.right, CY_BORDER, clr);
       }
       if (uStyle & (CBRS_BORDER_LEFT | CBRS_BORDER_TOP))
       {
@@ -985,9 +984,9 @@ namespace user
 
       // draw right and bottom
       if (uStyle & CBRS_BORDER_RIGHT)
-         pgraphics->fill_rect(::rectangle_f64(rect1.right, rect2.top, -CX_BORDER, rect2.height()), clr);
+         pgraphics->fill_rectangle(::rectangle_f64(rect1.right, rect2.top, -CX_BORDER, rect2.height()), clr);
       if (uStyle & CBRS_BORDER_BOTTOM)
-         pgraphics->fill_rect(::rectangle_f64(0, rect1.bottom, rectangle.right, -CY_BORDER), clr);
+         pgraphics->fill_rectangle(::rectangle_f64(0, rect1.bottom, rectangle.right, -CY_BORDER), clr);
 
       if (uStyle & CBRS_BORDER_3D)
       {
@@ -997,21 +996,21 @@ namespace user
 
          // draw left and top
          if (uStyle & CBRS_BORDER_LEFT)
-            pgraphics->fill_rect(::rectangle_f64(1, rect2.top, CX_BORDER, rect2.height()), clr);
+            pgraphics->fill_rectangle(::rectangle_f64(1, rect2.top, CX_BORDER, rect2.height()), clr);
          if (uStyle & CBRS_BORDER_TOP)
          {
             if(uStyle & CBRS_GRIPPER)
-               pgraphics->fill_rect(::rectangle_f64(rectangle.left + 7, rectangle.top + 1, rectangle.width() - 7, 1), clr);
+               pgraphics->fill_rectangle(::rectangle_f64(rectangle.left + 7, rectangle.top + 1, rectangle.width() - 7, 1), clr);
             else
-               pgraphics->fill_rect(::rectangle_f64(rectangle.left, rectangle.top + 1, rectangle.width(), 1), clr);
-            //pgraphics->fill_rect(0, 1, rectangle.right, CY_BORDER, clr);
+               pgraphics->fill_rectangle(::rectangle_f64(rectangle.left, rectangle.top + 1, rectangle.width(), 1), clr);
+            //pgraphics->fill_rectangle(0, 1, rectangle.right, CY_BORDER, clr);
          }
 
          // draw right and bottom
          if (uStyle & CBRS_BORDER_RIGHT)
-            pgraphics->fill_rect(::rectangle_f64(rectangle.right, rect2.top, -CX_BORDER, rect2.height()), clr);
+            pgraphics->fill_rectangle(::rectangle_f64(rectangle.right, rect2.top, -CX_BORDER, rect2.height()), clr);
          if (uStyle & CBRS_BORDER_BOTTOM)
-            pgraphics->fill_rect(::rectangle_f64(0, rectangle.bottom, rectangle.right, -CY_BORDER), clr);
+            pgraphics->fill_rectangle(::rectangle_f64(0, rectangle.bottom, rectangle.right, -CY_BORDER), clr);
       }
 
       if (uStyle & CBRS_BORDER_LEFT)

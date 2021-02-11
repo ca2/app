@@ -2,8 +2,7 @@
 
 
 #include "aura/_.h"
-
-
+#include "aura/operating_system.h"
 
 
 #ifdef _IMAGING_FREEIMAGE_STATIC

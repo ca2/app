@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 
 
 #define SBPF_UPDATE 0x0001  // pending update of text
@@ -42,12 +40,12 @@ namespace user
       MESSAGE_LINK(e_message_nccalcsize, pchannel, this, &status_bar::_001OnNcCalcSize);
       MESSAGE_LINK(e_message_size, pchannel, this, &status_bar::_001OnSize);
       MESSAGE_LINK(e_message_window_position_changing, pchannel, this, &status_bar::_001OnWindowPosChanging);
-#ifdef WINDOWS_DESKTOP
-      MESSAGE_LINK(WM_SETTEXT, pchannel, this, &status_bar::_001OnSetText);
-      MESSAGE_LINK(WM_GETTEXT, pchannel, this, &status_bar::_001OnGetText);
-      MESSAGE_LINK(WM_GETTEXTLENGTH, pchannel, this, &status_bar::_001OnGetTextLength);
-      MESSAGE_LINK(SB_SETMINHEIGHT, pchannel, this, &status_bar::_001OnSetMinHeight);
-#endif
+//#ifdef WINDOWS_DESKTOP
+//      MESSAGE_LINK(WM_SETTEXT, pchannel, this, &status_bar::_001OnSetText);
+//      MESSAGE_LINK(WM_GETTEXT, pchannel, this, &status_bar::_001OnGetText);
+//      MESSAGE_LINK(WM_GETTEXTLENGTH, pchannel, this, &status_bar::_001OnGetTextLength);
+//      MESSAGE_LINK(SB_SETMINHEIGHT, pchannel, this, &status_bar::_001OnSetMinHeight);
+//#endif
    }
 
 
@@ -144,13 +142,13 @@ namespace user
          {
             // no indicator (must access via index)
             // default to 1/4 the screen width (first pane is stretchy)
-#ifdef WINDOWS_DESKTOP
-            pSBP->cxText = ::GetSystemMetrics(SM_CXSCREEN)/4;
-            if (i == 0)
-               pSBP->nStyle |= (SBPS_STRETCH | SBPS_NOBORDERS);
-#else
-            __throw(todo());
-#endif
+//#ifdef WINDOWS_DESKTOP
+//            pSBP->cxText = ::GetSystemMetrics(SM_CXSCREEN)/4;
+//            if (i == 0)
+//               pSBP->nStyle |= (SBPS_STRETCH | SBPS_NOBORDERS);
+//#else
+//            __throw(todo());
+//#endif
          }
          ++pSBP;
       }
@@ -594,31 +592,31 @@ namespace user
 
    // Derived class is responsible for implementing all of these handlers
    //  for owner/self draw controls.
-#ifdef WINDOWS_DESKTOP
-   void status_bar::DrawItem(LPDRAWITEMSTRUCT)
+//#ifdef WINDOWS_DESKTOP
+//   void status_bar::DrawItem(LPDRAWITEMSTRUCT)
+//   {
+//      ASSERT(false);
+//   }
+//#endif
+
+
+   bool status_bar::OnChildNotify(::message::message * pmessage)
    {
-      ASSERT(false);
-   }
-#endif
-
-
-   bool status_bar::OnChildNotify(::message::base * pbase)
-   {
 
 
 
-#ifdef WINDOWS_DESKTOP
-
-      if (pbase->m_id != WM_DRAWITEM)
-      {
-
-         return ::user::interaction::OnChildNotify(pbase);
-
-      }
-
-      DrawItem(pbase->m_lparam.cast < DRAWITEMSTRUCT >());
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      if (pmessage->m_id != WM_DRAWITEM)
+//      {
+//
+//         return ::user::interaction::OnChildNotify(pmessage);
+//
+//      }
+//
+//      DrawItem(pmessage->m_lparam.cast < DRAWITEMSTRUCT >());
+//
+//#endif
 
       return true;
 
@@ -671,49 +669,48 @@ namespace user
 #endif
    }
 
+
    void status_bar::_001OnSetText(::message::message * pmessage)
    {
-      __pointer(::message::base) pbase(pmessage);
+
       ASSERT_VALID(this);
       ASSERT(is_window());
 
       i32 nIndex = CommandToIndex(nullptr);
       if (nIndex < 0)
       {
-         pbase->m_lresult = -1;
-         pbase->m_bRet = true;
+         pmessage->m_lresult = -1;
+         pmessage->m_bRet = true;
          return;
       }
-      pbase->m_lresult = SetPaneText(nIndex, (const char *)pbase->m_lparam.m_lparam) ? 0 : -1;
-      pbase->m_bRet = true;
+      pmessage->m_lresult = SetPaneText(nIndex, (const char *)pmessage->m_lparam.m_lparam) ? 0 : -1;
+      pmessage->m_bRet = true;
    }
 
 
    void status_bar::_001OnGetText(::message::message * pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
-
       ASSERT_VALID(this);
 
       ASSERT(is_window());
 
-      index nMaxLen = (index) pbase->m_wparam;
+      index nMaxLen = (index) pmessage->m_wparam;
 
       if (nMaxLen == 0)
       {
 
          // nothing copied
 
-         pbase->m_lresult = 0;
+         pmessage->m_lresult = 0;
 
-         pbase->m_bRet = true;
+         pmessage->m_bRet = true;
 
          return;
 
       }
 
-      char * pszDest = (char *) pbase->m_lparam.m_lparam;
+      char * pszDest = (char *) pmessage->m_lparam.m_lparam;
 
       index nLen = 0;
 
@@ -739,18 +736,18 @@ namespace user
 
       pszDest[nLen] = '\0';
 
-      pbase->m_lresult = (nLen + 1);      // number of bytes copied
+      pmessage->m_lresult = (nLen + 1);      // number of bytes copied
 
-      pbase->m_bRet = true;
+      pmessage->m_bRet = true;
 
    }
 
 
    void status_bar::_001OnGetTextLength(::message::message * pmessage)
    {
-      __pointer(::message::base) pbase(pmessage);
 
       ASSERT_VALID(this);
+
       ASSERT(is_window());
 
       index nLen = 0;
@@ -766,9 +763,9 @@ namespace user
 
       }
 
-      pbase->m_lresult = nLen;
+      pmessage->m_lresult = nLen;
 
-      pbase->m_bRet = true;
+      pmessage->m_bRet = true;
 
    }
 
@@ -776,13 +773,13 @@ namespace user
    void status_bar::_001OnSetMinHeight(::message::message * pmessage)
    {
 
-      //__pointer(::message::base) pbase(pmessage);
+      //__pointer(::message::message) pmessage(pmessage);
 
       //LRESULT lResult = default_window_procedure();
 
-      //m_nMinHeight = (i32)pbase->m_wparam;
+      //m_nMinHeight = (i32)pmessage->m_wparam;
 
-      //pbase->set_lresult(lResult);
+      //pmessage->set_lresult(lResult);
 
    }
 
@@ -791,7 +788,7 @@ namespace user
    // status_bar idle update through status_command class
 
    class status_command :
-      virtual public ::user::command,
+      virtual public ::message::command,
       virtual public ::user::check,
       virtual public ::user::text
    {
@@ -811,7 +808,7 @@ namespace user
 
 
    status_command::status_command(::layered * pobjectContext) :
-      ::user::command(pobjectContext)
+      ::message::command(pobjectContext)
    {
 
    }
@@ -844,12 +841,13 @@ namespace user
 
       ASSERT(m_iIndex < m_iCount);
 
-      ::u32 nNewStyle = pStatusBar->GetPaneStyle((i32) m_iIndex) & ~SBPS_POPOUT;
+      //::u32 nNewStyle = pStatusBar->GetPaneStyle((i32) m_iIndex) & ~SBPS_POPOUT;
+      ::u32 nNewStyle = pStatusBar->GetPaneStyle((i32)m_iIndex);
 
       if (echeck != ::check_unchecked)
       {
 
-         nNewStyle |= SBPS_POPOUT;
+         //nNewStyle |= SBPS_POPOUT;
 
       }
 
@@ -882,7 +880,7 @@ namespace user
    void status_command::delete_this()
    {
 
-      ::user::command::delete_this();
+      ::message::command::delete_this();
 
    }
 

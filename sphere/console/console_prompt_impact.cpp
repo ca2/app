@@ -294,7 +294,7 @@ namespace console
 
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
-      ::draw2d::font_pointer f(e_create);
+      ::write_text::font_pointer f(e_create);
 
       f->create_pixel_font("Consolas",16.0);
 
@@ -327,7 +327,7 @@ namespace console
       
       m_sizeChar = m_sizeChar.max(pgraphics.GetTextExtent("p"));
 
-      pgraphics->fill_rect(rectClient,argb(dwAlpha,0,0,0));
+      pgraphics->fill_rectangle(rectClient,argb(dwAlpha,0,0,0));
 
       pgraphics->set_text_color(crTopic);
 
@@ -354,7 +354,7 @@ namespace console
 
 
 
-         pgraphics->fill_rect(rectCaret,crTopic);
+         pgraphics->fill_rectangle(rectCaret,crTopic);
 
       }
 

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 
 
 namespace user
@@ -63,7 +61,7 @@ namespace user
 
       m_bMouseDown = true;
 
-      SetCapture();
+      set_mouse_capture();
 
       pmouse->m_bRet = true;
 
@@ -75,7 +73,13 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      ReleaseCapture();
+      auto psession = Session;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      pwindowing->release_capture();
 
       if (m_bMouseDown)
       {
@@ -346,18 +350,18 @@ namespace user
 
          ::color::color color(m_hls);
 
-         c.m_iA = 255;
+         color.alpha = 255;
 
-         ::draw2d::brush_pointer b(e_create);
+         ::draw2d::brush_pointer pbrush(e_create);
 
          if (!is_window_enabled())
          {
 
-            c.hls_rate(0.0, 0.4, -0.7);
+            color.hls_rate(0.0, 0.4, -0.7);
 
          }
 
-         b->create_solid(c);
+         pbrush->create_solid(color);
 
          ::rectangle_i32 rEdit;
 
@@ -376,7 +380,7 @@ namespace user
 
             colorBackground.hls_rate(0.0, 0.6, -0.3);
 
-            pgraphics->fill_rect(rEdit, colorBackground);
+            pgraphics->fill_rectangle(rEdit, colorBackground);
 
          }
 
@@ -394,7 +398,7 @@ namespace user
 
             color2.hls_rate(0.0, 0.3, 0.5);
 
-            pgraphics->draw_rect(rEdit, color2);
+            pgraphics->draw_rectangle(rEdit, color2);
 
          }
 
@@ -402,7 +406,7 @@ namespace user
 
          rEdit.deflate(rectPadding);
 
-         pgraphics->fill_rect(rEdit, c.get_rgba());
+         pgraphics->fill_rectangle(rEdit, color.get_rgba());
 
       }
 
@@ -414,20 +418,20 @@ namespace user
 
       ::color::color color(get_color(pstyle, estate));
 
-      if (!c)
+      if (!color)
       {
 
-         c = argb(210, 230, 230, 230);
+         color = argb(210, 230, 230, 230);
 
       }
 
-      c.hls_rate(0.0, 0.5, 0.1);
+      color.hls_rate(0.0, 0.5, 0.1);
 
-      br->create_solid(c);
+      br->create_solid(color);
 
       pgraphics->set(br);
 
-      pgraphics->fill_rect(rectDropIn);
+      pgraphics->fill_rectangle(rectDropIn);
 
       ::draw2d::path_pointer path(e_create);
 

@@ -309,7 +309,7 @@ namespace graphics
       if (pen2.is_null())
       {
 
-         pen2.create(this);
+         pen2.create(m_pobjectContext);
 
          pen2->create_solid(2.0, console_dos_color(edoscolor));
 
@@ -328,7 +328,7 @@ namespace graphics
       if (pen1.is_null())
       {
 
-         pen1.create(this);
+         pen1.create(m_pobjectContext);
 
          pen1->create_solid(1.0, console_dos_color(edoscolor));
 

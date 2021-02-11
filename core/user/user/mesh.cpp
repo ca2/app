@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 #include "acme/os/cross/windows/_windows.h"
 #include "acme/const/timer.h"
 
@@ -156,7 +154,7 @@ namespace user
 
       m_penHighlight->create_solid(2,argb(255,0,255,255));
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
       if(m_bLockViewUpdate)
          return;
@@ -574,7 +572,7 @@ namespace user
 
       if(pdrawitem->m_bListItemHover)
       {
-         pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem,argb(128,255,255,255));
+         pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectItem,argb(128,255,255,255));
          pdrawitem->m_pgraphics->set_font(this, ::user::e_element_none, ::user::e_state_hover);
       }
       else
@@ -596,7 +594,7 @@ namespace user
       {
          if(psession->savings().is_trying_to_save(::e_resource_processing))
          {
-            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem,argb(255,96,96,96));
+            pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectItem,argb(255,96,96,96));
          }
          else
          {
@@ -672,7 +670,7 @@ namespace user
          ::rectangle_i32 rectHighlight(pdrawitem->m_rectItem);
          rectHighlight.inflate(8,0,8,-1);
          pdrawitem->m_pgraphics->set(ppenHighlight);
-         pdrawitem->m_pgraphics->draw_rect(rectHighlight);
+         pdrawitem->m_pgraphics->draw_rectangle(rectHighlight);
       }
 
 
@@ -801,7 +799,7 @@ namespace user
    void mesh::_001OnSize(::message::message * pmessage)
    {
       UNREFERENCED_PARAMETER(pmessage);
-      //__pointer(::message::size_i32) psize(pmessage);
+      //__pointer(::message::size) psize(pmessage);
       //set_need_layout();
       //psize->m_bRet = false;
    }
@@ -2576,7 +2574,15 @@ namespace user
 
       {
 
-         update_hover(psession->get_cursor_pos());
+         auto psession = Session;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pointCursor = pwindowing->get_cursor_pos();
+
+         update_hover(pointCursor);
 
          pmessage->m_bRet = true;
 
@@ -2619,7 +2625,7 @@ namespace user
 
       m_bLButtonDown = true;
 
-      SetCapture();
+      set_mouse_capture();
 
       index iItem;
 
@@ -2669,10 +2675,10 @@ namespace user
 
       }
 
-      if (!has_focus())
+      if (!has_keyboard_focus())
       {
 
-         SetFocus();
+         set_keyboard_focus();
 
       }
 
@@ -2842,7 +2848,13 @@ namespace user
 
       _001ScreenToClient(point);
 
-      ReleaseCapture();
+      auto psession = Session;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      pwindowing->release_capture();
 
       if (m_bDrag)
       {
@@ -2939,10 +2951,10 @@ namespace user
 
       _001ScreenToClient(point);
 
-      if(!has_focus())
+      if(!has_keyboard_focus())
       {
 
-         SetFocus();
+         set_keyboard_focus();
 
       }
 
@@ -2990,10 +3002,10 @@ namespace user
 
       _001ScreenToClient(point);
 
-      if (!has_focus())
+      if (!has_keyboard_focus())
       {
 
-         SetFocus();
+         set_keyboard_focus();
 
       }
 
@@ -3147,7 +3159,7 @@ namespace user
       if(wndidNotify == nullptr)
       wndidNotify = pwnd->get_parent()->GetSafeoswindow_();*/
 
-      LRESULT lresult = 0;
+      lresult lresult = 0;
 
       /* trans if(wndidNotify)
       {
@@ -3248,9 +3260,9 @@ namespace user
       }
 
 
-      //m_font->operator=(*System.draw2d().fonts().GetMeshCtrlFont());
+      //m_font->operator=(*System.draw2d()->fonts().GetMeshCtrlFont());
 
-      //m_fontHover->operator=(*System.draw2d().fonts().GetMeshCtrlFont());
+      //m_fontHover->operator=(*System.draw2d()->fonts().GetMeshCtrlFont());
 
       //m_fontHover->set_underline();
       ////m_fontHover->set_bold();
@@ -3354,14 +3366,18 @@ namespace user
 
       auto psession = Session;
 
-      auto point = psession->get_cursor_pos();
+      auto puser = psession->user();
 
-      _001ScreenToClient(point);
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
+
+      _001ScreenToClient(pointCursor);
 
       try
       {
 
-         if (_001DisplayHitTest(point, iItemSel, iSubItemSel))
+         if (_001DisplayHitTest(pointCursor, iItemSel, iSubItemSel))
          {
 
             if (m_iSubItemEnter == iSubItemSel && m_iItemEnter == iItemSel)
@@ -3541,8 +3557,8 @@ namespace user
          //if(!_001IsEditing())
          {
             uptr nFlags = m_uiRButtonUpFlags;
-            const ::point_i32 & point = m_pointRButtonUp;
-            _001OnRightClick(nFlags,point_i32);
+            auto & point = m_pointRButtonUp;
+            _001OnRightClick(nFlags,point);
             set_need_redraw();
 
 
@@ -3852,7 +3868,7 @@ namespace user
    //}
 
 
-   //i32 mesh::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,::draw2d::font * pfont,index iItem,index iSubItem)
+   //i32 mesh::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics,::write_text::font * pfont,index iItem,index iSubItem)
    //{
    //   pgraphics->set(pfont);
    //   return _001CalcItemWidth(pgraphics,iItem,iSubItem);
@@ -3881,7 +3897,7 @@ namespace user
       //   if(item.m_bOk && item.m_iImage >= 0)
       //   {
       //      pcolumn->m_pil->get_image_info((i32)item.m_iImage,&ii);
-      //      rectangle_i32 = ii.m_rectangle;
+      //      rectangle = ii.m_rectangle;
       //      cx += rectangle.width();
       //      cx += 2;
       //   }
@@ -4747,7 +4763,13 @@ namespace user
 
       auto psession = Session;
 
-      update_hover(psession->get_cursor_pos());
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
+
+      update_hover(pointCursor);
 
    }
 
@@ -4764,12 +4786,12 @@ namespace user
 
    }
 
-   //::draw2d::font * mesh::_001GetFont()
+   //::write_text::font * mesh::_001GetFont()
    //{
    //   return m_font;
    //}
 
-   //::draw2d::font * mesh::_001GetFontHover()
+   //::write_text::font * mesh::_001GetFontHover()
    //{
    //   return m_fontHover;
    //}
@@ -4990,7 +5012,7 @@ namespace user
       if(m_eview == impact_grid)
       {
 
-         if(pscroll->m_nSBCode != SB_THUMBTRACK)
+         if(pscroll->m_ecommand != e_scroll_bar_command_thumb_track)
          {
 
             auto pointScroll = get_viewport_offset();
@@ -5026,7 +5048,7 @@ namespace user
       if(m_eview == impact_grid)
       {
 
-         if(pscroll->m_nSBCode != SB_THUMBTRACK)
+         if(pscroll->m_ecommand != e_scroll_bar_command_thumb_track)
          {
 
             auto pointScroll = get_viewport_offset();
@@ -5232,7 +5254,7 @@ namespace user
 
          ASSERT(false);
 
-         return size();
+         return nullptr;
 
       }
 
@@ -5273,7 +5295,7 @@ namespace user
 
    void mesh::_001OnUpdateMeshViewAutoArrange(::message::message * pmessage)
    {
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
       pcommand->_001SetCheck(get_auto_arrange());
       pcommand->enable();
    }
@@ -5411,7 +5433,7 @@ namespace user
       m_iOrder          = -1;
       m_iSubItem        = -1;
       m_iListItem       = -1;
-      m_colorText              = (color32_t)-1;
+      m_colorText              = __indexed_color(-1);
       m_colorTextBackground    = argb(255, 0, 0, 0);
       m_colorItemBackground = 0;
       m_iState          = -1;
@@ -5463,7 +5485,7 @@ namespace user
    }
 
 
-   bool mesh::_001OnHeaderCtrlEndTrack(WPARAM, LPARAM)
+   bool mesh::_001OnHeaderCtrlEndTrack(wparam, lparam)
    {
 
       return true;
@@ -5471,7 +5493,7 @@ namespace user
    }
 
 
-   bool mesh::_001OnHeaderCtrlTrack(WPARAM, LPARAM)
+   bool mesh::_001OnHeaderCtrlTrack(wparam, lparam)
    {
 
       return true;

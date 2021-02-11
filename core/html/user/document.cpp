@@ -317,7 +317,7 @@ void html_document::soft_reload()
 }
 
 
-void html_document::on_command_probe(::user::command * pcommand)
+void html_document::on_command_probe(::message::command * pcommand)
 {
 
    if(pcommand->m_id == "viewindefaultbrowser")
@@ -334,7 +334,7 @@ void html_document::on_command_probe(::user::command * pcommand)
 }
 
 
-void html_document::on_command(::user::command * pcommand)
+void html_document::on_command(::message::command * pcommand)
 {
 
    if(pcommand->m_id == "viewindefaultbrowser")
@@ -346,9 +346,11 @@ void html_document::on_command(::user::command * pcommand)
 
 #ifndef _UWP
 
-      ::apex::shell_launcher launcher(nullptr, "open", get_file_path(), nullptr, get_file_path().folder(), e_display_normal);
+      auto plauncher = __new(::apex::shell_launcher);
+      
+      plauncher->setup(nullptr, "open", get_file_path(), nullptr, get_file_path().folder(), e_display_normal);
 
-      launcher.execute();
+      plauncher->launch();
 
 #endif
 

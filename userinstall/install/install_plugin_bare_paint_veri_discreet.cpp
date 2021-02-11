@@ -28,7 +28,7 @@ namespace hotplugin
       get_window_rect(&rectWindow);
       //  i32 cx = rectWindow.right - rectWindow.left;
       //i32 cy = rectWindow.bottom - rectWindow.top;
-      RECTANGLE_I32 rectangle_i32 = lprect;
+      RECTANGLE_I32 rectangle = lprect;
 
 
 
@@ -110,7 +110,7 @@ namespace hotplugin
       pgraphics->DrawRect(rectBar, pen);
 
 
-      ::draw2d::font_pointer f(e_create);
+      ::write_text::font_pointer f(e_create);
 
       f->create_pixel_font("Calibri",18);
 
@@ -126,7 +126,7 @@ namespace hotplugin
 
       pgraphics->set_text_color(argb(255, 255, 255, 255));
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_clear_type_grid_fit);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_clear_type_grid_fit);
 
       pgraphics->text_out(rectBar.left, rectBar.top, m_strStatus + " : " + strProgress + " : " + m_strStatus2);
 

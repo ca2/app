@@ -535,7 +535,7 @@
 
                }
 
-               pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+               pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
                appearance * pframewindow = m_pframewindow->get_display();
 
@@ -594,13 +594,13 @@
                   if (m_pframewindow->GetWndDraw()->is_active() && m_colorActiveCaptionTextBk != 0)
                   {
 
-                     pgraphics->fill_rect(m_rectCaptionTextBk, m_colorActiveCaptionTextBk);
+                     pgraphics->fill_rectangle(m_rectCaptionTextBk, m_colorActiveCaptionTextBk);
 
                   }
                   else
                   {
 
-                     pgraphics->fill_rect(m_rectCaptionTextBk, m_colorCaptionTextBk);
+                     pgraphics->fill_rectangle(m_rectCaptionTextBk, m_colorCaptionTextBk);
 
                   }
 
@@ -664,7 +664,7 @@
 
                   }
 
-                  //class font_department & fonts = System.draw2d().fonts();
+                  //class font_department & fonts = System.draw2d()->fonts();
 
                   string wstrWindowText;
 

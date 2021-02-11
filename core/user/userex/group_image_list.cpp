@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 
 
 namespace userex
@@ -416,7 +414,7 @@ namespace userex
    }
 
 
-   void group_image_list_view::on_command(::user::command * pcommand)
+   void group_image_list_view::on_command(::message::command * pcommand)
    {
 
       string str = pcommand->m_id;

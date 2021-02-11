@@ -1,7 +1,5 @@
-﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
+#include "framework.h"
 #include "core/user/rich_text/_rich_text.h"
-#endif
 
 
 namespace user
@@ -1096,7 +1094,7 @@ namespace user
 
          sync_lock sl(mutex());
 
-         pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+         pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
          if (m_spana.is_empty())
          {
@@ -1118,7 +1116,7 @@ namespace user
 
          bool bLineWrap = false;
 
-         auto rectangle_i32 = get_drawing_rect();
+         auto rectangle = get_drawing_rect();
 
          rectangle_f64 rectClient(rectangle);
 
@@ -1492,15 +1490,15 @@ namespace user
          if (m_pedit->is_picture_enabled())
          {
 
-            rectangle_i32 = m_pedit->m_ppictureimpl->m_rectDrawing;
+            rectangle = m_pedit->m_ppictureimpl->m_rectDrawing;
 
-            rectangle_i32 -= rectangle.origin();
+            rectangle -= rectangle.origin();
 
          }
          else
          {
 
-            rectangle_i32 = m_pedit->get_client_rect();
+            rectangle = m_pedit->get_client_rect();
 
          }
 
@@ -1517,25 +1515,25 @@ namespace user
          if (pgraphics->m_bPrinting)
          {
 
-            pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+            pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
          }
          else
          {
 
-            pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+            pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
          }
 
          //rectangle_f64 rectClient(rectangle);
 
-         auto rectangle_i32 = get_drawing_rect();
+         auto rectangle = get_drawing_rect();
 
          //pgraphics->draw3d_rect(rectangle, argb(255, 0, 127, 0));
 
          bool bHasFocus = false;
 
-         if (m_pedit->has_focus())
+         if (m_pedit->has_keyboard_focus())
          {
 
             bHasFocus = true;
@@ -1724,7 +1722,7 @@ namespace user
                                  r = pboxEnd->get_pos_left(iBoxPosEnd);
                               }
 
-                              pgraphics->fill_rect(
+                              pgraphics->fill_rectangle(
                                  ::rectd_dim(l,
                                  pboxBeg->m_rectBox.top,
                                  r,
@@ -1822,7 +1820,7 @@ namespace user
 
                   auto dDescent = pbox->m_pspan->m_pformat->m_font->get_descent(pgraphics);
 
-                  pgraphics->fill_rect(::rectangle_f64(r,
+                  pgraphics->fill_rectangle(::rectangle_f64(r,
                      pbox->m_rectBox.top + 1,
                      r + 0.5,
                      pbox->m_rectBox.bottom - dDescent),
@@ -1951,7 +1949,7 @@ namespace user
 
          sync_lock sl(mutex());
 
-         if (m_spana.isEmpty())
+         if (m_spana.is_empty())
          {
 
             return 0;
@@ -2185,7 +2183,7 @@ namespace user
 
                   ::draw2d::brush_pointer brush(e_create);
 
-                  pen->create_solid(m_pedit->m_ppictureimpl->m_iOutlineWidth, color(m_pedit->m_ppictureimpl->m_hlsOutline));
+                  pen->create_solid(m_pedit->m_ppictureimpl->m_iOutlineWidth, ::color::color(m_pedit->m_ppictureimpl->m_hlsOutline));
 
                   brush->create_solid(pformat->m_colorForeground);
 

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -112,11 +110,11 @@ namespace user
 
       pgraphics->fill_path(path);
 
-      ::draw2d::pen_pointer point_i32(e_create);
+      ::draw2d::pen_pointer ppen(e_create);
 
-      pgraphics->set(point);
+      pgraphics->set(ppen);
 
-      point_i32->create_solid(1.0, argb(190, 120, 120, 255));
+      ppen->create_solid(1.0, argb(190, 120, 120, 255));
 
       pgraphics->draw_path(path);
 

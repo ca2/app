@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "axis/user/_user.h"
-#endif
 #include "acme/const/timer.h"
 
 
@@ -164,20 +162,20 @@ namespace user
          if (echeck == ::check_tristate)
          {
 
-            pgraphics->fill_rect(rectCheckBox, argb(255, 220, 220, 220));
+            pgraphics->fill_rectangle(rectCheckBox, argb(255, 220, 220, 220));
 
          }
 
          if (drawcontext.m_bListItemHover)
          {
 
-            pgraphics->draw_rect(rectCheckBox, argb(255, 60, 120, 200));
+            pgraphics->draw_rectangle(rectCheckBox, argb(255, 60, 120, 200));
 
          }
          else
          {
 
-            pgraphics->draw_rect(rectCheckBox, argb(255, 128, 128, 128));
+            pgraphics->draw_rectangle(rectCheckBox, argb(255, 128, 128, 128));
 
          }
 

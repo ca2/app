@@ -153,3 +153,11 @@ inline TYPE range_rate(TYPE iMin, TYPE iMax, double dRate)
 
 
 
+template < primitive_integral INTEGRAL >
+inline short  __loword(INTEGRAL i) {return i & 0xffff; }
+
+
+template < primitive_integral INTEGRAL >
+inline short  __hiword(INTEGRAL i) {return (i >> 16) & 0xffff; }
+
+

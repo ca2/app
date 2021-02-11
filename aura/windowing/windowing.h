@@ -32,7 +32,6 @@ namespace windowing
       ::point_i32                            m_pointCursor;
 
       display_map                            m_displaymap;
-      //window_map                             m_windowmap;
 
       ::mutex                                m_mutexDisplay;
       ::mutex                                m_mutexWindow;
@@ -40,30 +39,24 @@ namespace windowing
 
 
       bool                                   m_bSettingCursorMatter;
-      __pointer(::draw2d::cursor_set)        m_pcursorset;
+      __pointer(cursor_set)                  m_pcursorset;
+      __composite(keyboard)          m_pkeyboard;
 
 
-#ifdef WINDOWS_DESKTOP
 
-      //#pragma message("at macos??")
-      __pointer(::user::interaction)         m_puserinteraction;
+      __pointer(::windowing::cursor)         m_pcursor;
+      __pointer(::windowing::cursor)         m_pcursorCursor;
+      enum_cursor                            m_ecursorDefault;
+      enum_cursor                            m_ecursor;
 
-#endif
-
-
-      ::draw2d::cursor * m_pcursor;
-      ::draw2d::cursor * m_pcursorCursor;
-      enum_cursor                                              m_ecursorDefault;
-      enum_cursor                                              m_ecursor;
-
-      //::user::interaction *                                 m_puiCapture;
-      bool                                                  m_bDrawCursor;
-      __reference(::user::user)                                m_puser;
+      bool                                   m_bDrawCursor;
+      __reference(::user::user)              m_puser;
 
 
       windowing();
       virtual ~windowing();
 
+      ::windowing::keyboard * keyboard();
 
 
 
@@ -77,29 +70,36 @@ namespace windowing
       virtual void finalize();
 
 
+
       __pointer(cursor) get_cursor(enum_cursor ecursor);
-      virtual bool set_cursor_set_from_matter(const ::file::path & pathDir);
+      virtual ::e_status set_cursor_set_from_matter(const ::file::path & pathDir);
+
+      
+      virtual ::e_status set_cursor_position(const ::point_i32 & point);
 
 
 
       virtual ::windowing::window * window(oswindow oswindow);
 
-      virtual ::user::interaction * get_system_window();
-      virtual bool defer_create_system_window();
-      virtual __pointer(::user::interaction) create_system_window();
 
 
       virtual ::windowing::window * get_desktop_window();
 
       virtual ::windowing::window * get_foreground_window();
 
-      virtual ::windowing::window * get_active_window();
+      virtual ::windowing::window * get_active_window(::thread * pthread);
 
-      virtual ::windowing::window * get_focus();
+      virtual ::windowing::window * get_keyboard_focus(::thread * pthread);
 
-      virtual ::windowing::window * get_capture();
+      virtual ::windowing::window * get_mouse_capture(::thread * pthread);
 
       virtual ::e_status release_capture();
+
+
+      
+
+
+      virtual result_pointer < ::windowing::icon > load_icon(const ::payload & payloadFile);
 
 
       virtual void term1();
@@ -121,7 +121,7 @@ namespace windowing
       virtual ::e_status defer_initialize_x11();
       virtual void handle_just_hooks();
       virtual void defer_handle_just_hooks();
-      virtual int message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox);
+      //virtual int message_box(const string & str, const string & strTitle, const ::e_message_box & emessagebox);
       virtual bool __hook_process_event(class display * pdisplay, void * pevent, void * cookie);
 
 
@@ -155,7 +155,7 @@ namespace windowing
 
       //virtual ::e_status unhook(class hook * phook);
 
-      bool route_message(::message::base * pmessagebase);
+      bool route_message(::user::message * pusermessage);
 
       void on_idle(class display *pdisplay);
 
@@ -163,7 +163,7 @@ namespace windowing
 
       inline ::point_i32 get_cursor_pos() { ::point_i32 point; get_cursor_pos(&point); return point; }
 
-      virtual void enum_draw2d_fonts(::draw2d::font_enum_item_array& itema);
+      //virtual void enum_draw2d_fonts(::write_text::font_enum_item_array& itema);
 
       virtual int_bool point_is_window_origin(POINT_I32 ptHitTest, oswindow oswindowExclude, int iMargin);
 
@@ -173,7 +173,10 @@ namespace windowing
 
       virtual ::e_status load_cursor(::windowing::cursor * pcursor, ::file::path path, bool bSync, bool bCache = true);
 
-      virtual void initialize_keyboard(::user::keyboard * pkeyboard);
+      virtual void initialize_keyboard(::windowing::keyboard * pkeyboard);
+
+      virtual ::e_status lock_set_foreground_window(bool bLock = true);
+
 
 
    };

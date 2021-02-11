@@ -174,7 +174,7 @@ auto m_millisRoll = ::millis::now();
 
       pdcParam->set_text_color(argb(255, 255, 255, 0));
 
-      ::draw2d::font_pointer f(e_create);
+      ::write_text::font_pointer f(e_create);
 
       f->create_point_font("Arial", 20, 800);
 

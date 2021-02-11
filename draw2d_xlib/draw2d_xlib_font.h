@@ -9,7 +9,7 @@ namespace draw2d_xlib
 
 
    class CLASS_DECL_DRAW2D_XLIB font :
-      virtual public ::draw2d::font
+      virtual public ::write_text::font
    {
    public:
 

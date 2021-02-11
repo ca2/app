@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "axis/user/_user.h"
-#endif
 #include "simple_ui_draw.h"
 
 
@@ -40,11 +38,11 @@ namespace simple_ui
 
       pgraphics->set(b);
 
-      ::draw2d::pen_pointer point_i32(e_create);
+      ::draw2d::pen_pointer ppen(e_create);
 
-      point_i32->create_solid(1.0, argb(255, 0, 0, 0));
+      ppen->create_solid(1.0, argb(255, 0, 0, 0));
 
-      pgraphics->set(point);
+      pgraphics->set(ppen);
 
       pgraphics->rectangle(rectDraw);
 
@@ -139,7 +137,7 @@ namespace simple_ui
 
       rectDraw = rectangle;
 
-      pgraphics->fill_rect(rectDraw, argb(90, 127, 127, 127));
+      pgraphics->fill_rectangle(rectDraw, argb(90, 127, 127, 127));
 
    }
 
@@ -155,7 +153,7 @@ namespace simple_ui
       pgraphics->set_alpha_mode(draw2d::alpha_mode_blend);
 
       int iCount = rectDraw.height();
-      ::draw2d::pen_pointer point_i32(e_create);
+      ::draw2d::pen_pointer ppen(e_create);
       for (int i = 0; i < iCount; i += 2)
       {
          double dRate = (double)i / (double)iCount;
@@ -164,8 +162,8 @@ namespace simple_ui
          byte r1 = __byte_rate(dRate, 23, 127);
          byte g1 = __byte_rate(dRate, 23, 127);
          byte b1 = __byte_rate(dRate, 23, 127);
-         point_i32->create_solid(1.0, argb(a1, r1, g1, b1));
-         pgraphics->set(point);
+         ppen->create_solid(1.0, argb(a1, r1, g1, b1));
+         pgraphics->set(ppen);
          pgraphics->draw_line(rectDraw.left, i, rectDraw.right, i);
 
       }
@@ -226,11 +224,11 @@ namespace simple_ui
 
          pgraphics->fill_polygon(pb, 4);
 
-         ::draw2d::pen_pointer point_i32(e_create);
+         ::draw2d::pen_pointer ppen(e_create);
 
-         point_i32->create_solid(1.0, argb(192, 192, 192, 192));
+         ppen->create_solid(1.0, argb(192, 192, 192, 192));
 
-         pgraphics->set(point);
+         pgraphics->set(ppen);
 
          pgraphics->draw_polygon(pb, 4);
 
@@ -266,11 +264,11 @@ namespace simple_ui
 
          pgraphics->fill_polygon(pc, 4);
 
-         ::draw2d::pen_pointer point_i32(e_create);
+         ::draw2d::pen_pointer ppen(e_create);
 
-         point_i32->create_solid(1.0, argb(180, 180, 177, 177));
+         ppen->create_solid(1.0, argb(180, 180, 177, 177));
 
-         pgraphics->set(point);
+         pgraphics->set(ppen);
 
          pgraphics->draw_polygon(pc, 4);
 
@@ -292,11 +290,11 @@ namespace simple_ui
 
          pgraphics->fill_polygon(pc, 4);
 
-         ::draw2d::pen_pointer point_i32(e_create);
+         ::draw2d::pen_pointer ppen(e_create);
 
-         point_i32->create_solid(1.0, argb(123, 90, 90, 90));
+         ppen->create_solid(1.0, argb(123, 90, 90, 90));
 
-         pgraphics->set(point);
+         pgraphics->set(ppen);
 
          pgraphics->draw_polygon(pc, 4);
 
@@ -318,11 +316,11 @@ namespace simple_ui
 
          pgraphics->fill_polygon(pc, 4);
 
-         ::draw2d::pen_pointer point_i32(e_create);
+         ::draw2d::pen_pointer ppen(e_create);
 
-         point_i32->create_solid(1.0, argb(149, 176, 176, 176));
+         ppen->create_solid(1.0, argb(149, 176, 176, 176));
 
-         pgraphics->set(point);
+         pgraphics->set(ppen);
 
          pgraphics->draw_polygon(pc, 4);
 
@@ -344,11 +342,11 @@ namespace simple_ui
 
          pgraphics->fill_polygon(pc, 4);
 
-         ::draw2d::pen_pointer point_i32(e_create);
+         ::draw2d::pen_pointer ppen(e_create);
 
-         point_i32->create_solid(1.0, argb(90, 120, 120, 123));
+         ppen->create_solid(1.0, argb(90, 120, 120, 123));
 
-         pgraphics->set(point);
+         pgraphics->set(ppen);
 
          pgraphics->draw_polygon(pc, 4);
 
@@ -361,11 +359,11 @@ namespace simple_ui
 
       {
 
-         ::draw2d::pen_pointer point_i32(e_create);
+         ::draw2d::pen_pointer ppen(e_create);
 
-         point_i32->create_solid(1.0, argb(190, 90, 90, 90));
+         ppen->create_solid(1.0, argb(190, 90, 90, 90));
 
-         pgraphics->set(point);
+         pgraphics->set(ppen);
 
          pgraphics->draw_polygon(pa, 4);
 
@@ -406,15 +404,15 @@ namespace simple_ui
 
       br->CreateLinearGradientBrush(rectangle.top_left(), point_i32(rectangle.left, rectangle.top + iBorderH), crOut, crIn);
 
-      pgraphics->fill_rect(::rectangle_i32(rectangle.left, rectangle.top, (i32)rectangle.width(), iBorderH), br);
+      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left, rectangle.top, (i32)rectangle.width(), iBorderH), br);
 
       br->create_solid(crIn);
 
-      pgraphics->fill_rect(::rectangle_i32(rectangle.left, rectangle.top + iBorderH, (i32)rectangle.width(), (i32)rectangle.height() - (iBorderH * 2)), br);
+      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left, rectangle.top + iBorderH, (i32)rectangle.width(), (i32)rectangle.height() - (iBorderH * 2)), br);
 
       br->CreateLinearGradientBrush(point_i32(rectangle.left, rectangle.bottom - iBorderH), rectangle.bottom_left(), crIn, crOut);
 
-      pgraphics->fill_rect(::rectangle_i32(rectangle.left, rectangle.bottom - iBorderH, (i32)rectangle.width(), iBorderH), br);
+      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left, rectangle.bottom - iBorderH, (i32)rectangle.width(), iBorderH), br);
 
    }
 
@@ -438,7 +436,7 @@ namespace simple_ui
 
       //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      //pgraphics->fill_rect(rectangle,argb(0,0,0,0));
+      //pgraphics->fill_rectangle(rectangle,argb(0,0,0,0));
 
    }
 

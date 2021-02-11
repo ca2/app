@@ -541,7 +541,7 @@ namespace experience
 
          auto psession = Session;
 
-         pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+         pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
          if (!m_pframewindow->layout().is_full_screen()
             && !m_pframewindow->layout().is_zoomed()
@@ -685,19 +685,19 @@ namespace experience
                   || hwndDraw == hwndActiveWindowParent
                   || puiInactiveTopLevel == puiActiveTopLevel)
                   && m_colorActiveCaptionTextBk != 0)*/
-            if(m_pframewindow->is_active())
+            if(m_pframewindow->is_active_window())
             {
 
                pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
-               pgraphics->fill_rect(m_rectCaptionTextBk, m_colorActiveCaptionTextBk);
+               pgraphics->fill_rectangle(m_rectCaptionTextBk, m_colorActiveCaptionTextBk);
 
             }
             else
             {
 
 
-               pgraphics->fill_rect(m_rectCaptionTextBk, m_colorCaptionTextBk);
+               pgraphics->fill_rectangle(m_rectCaptionTextBk, m_colorCaptionTextBk);
 
             }
 
@@ -721,7 +721,7 @@ namespace experience
 
             pframewindow->get_window_text(str);
 
-            if (pframewindow->is_active())
+            if (pframewindow->is_active_window())
             {
 
                crMoveableBorder = m_colorMoveableBorder;
@@ -755,7 +755,7 @@ namespace experience
 
             m_pframewindow->get_window_rect(rectangle);
 
-            rectangle_i32 -= rectangle.top_left();
+            rectangle -= rectangle.top_left();
 
             if (get_element_rect(rectIcon, ElementTopLeftIcon))
             {
@@ -777,7 +777,7 @@ namespace experience
 
             //printf("F. frame::on_draw_frame %d\n", tick4.elapsed().m_i);
 
-            //class font_department & fonts = System.draw2d().fonts();
+            //class font_department & fonts = System.draw2d()->fonts();
 
             millis tick5;
 

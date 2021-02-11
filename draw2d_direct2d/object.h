@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 
 namespace draw2d_direct2d
@@ -24,6 +24,14 @@ namespace draw2d_direct2d
 
       virtual void dump(dump_context & dumpcontext) const;
       virtual void assert_valid() const;
+
+
+      ::draw2d_direct2d::draw2d * draw2d()
+      {
+
+         return (::draw2d_direct2d::draw2d * ) System.draw2d()->layer(LAYERED_IMPL);
+
+      }
 
 
    };

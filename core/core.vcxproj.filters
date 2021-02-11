@@ -1367,16 +1367,10 @@
     <ClInclude Include="user\userex\user.h">
       <Filter>Header Files\user\userex</Filter>
     </ClInclude>
-    <ClInclude Include="user\user\shell.h">
-      <Filter>Header Files\user\user</Filter>
-    </ClInclude>
     <ClInclude Include="node\windows\_.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="node\windows\_windows.h">
-      <Filter>Header Files\node\windows</Filter>
-    </ClInclude>
-    <ClInclude Include="node\windows\shell.h">
       <Filter>Header Files\node\windows</Filter>
     </ClInclude>
     <ClInclude Include="platform\application.h">
@@ -1456,6 +1450,12 @@
     </ClInclude>
     <ClInclude Include="const\aaa_message.h">
       <Filter>Header Files\const</Filter>
+    </ClInclude>
+    <ClInclude Include="node\windows\aaa_shell.h">
+      <Filter>Header Files\node\windows</Filter>
+    </ClInclude>
+    <ClInclude Include="user\user\aaa_shell.h">
+      <Filter>Header Files\user\user</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -2181,12 +2181,6 @@
     </ClCompile>
     <ClCompile Include="user\userex\user.cpp">
       <Filter>Source Files\user\userex</Filter>
-    </ClCompile>
-    <ClCompile Include="user\user\shell.cpp">
-      <Filter>Source Files\user\user</Filter>
-    </ClCompile>
-    <ClCompile Include="node\windows\shell.cpp">
-      <Filter>Source Files\node\windows</Filter>
     </ClCompile>
     <ClCompile Include="platform\application.cpp">
       <Filter>Source Files\platform</Filter>

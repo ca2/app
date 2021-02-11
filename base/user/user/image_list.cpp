@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 #include "aura/update.h"
 #include "image_list.h"
 
@@ -381,9 +379,9 @@ namespace user
 
       rectClient.offset(m_pointScroll);
 
-      pgraphics->fill_rect(rectClient, get_color(pstyle, e_element_background));
+      pgraphics->fill_rectangle(rectClient, get_color(pstyle, e_element_background));
 
-      pgraphics->draw_rect(rectClient, argb(255, 192, 192, 192));
+      pgraphics->draw_rectangle(rectClient, argb(255, 192, 192, 192));
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -532,7 +530,7 @@ namespace user
                if (bSel || bHover)
                {
 
-                  pgraphics->fill_rect(rectSel, crSel);
+                  pgraphics->fill_rectangle(rectSel, crSel);
 
                }
 
@@ -544,11 +542,11 @@ namespace user
 
                   rectImage.inflate(1, 1);
 
-                  pgraphics->draw_rect(rectSel, crBorder);
+                  pgraphics->draw_rectangle(rectSel, crBorder);
 
                   rectImage.inflate(1, 1);
 
-                  pgraphics->draw_rect(rectSel, crBorder);
+                  pgraphics->draw_rectangle(rectSel, crBorder);
 
                }
 

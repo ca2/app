@@ -65,7 +65,7 @@ namespace user
 
       virtual ::user::interaction * _001GetTabWnd(::index iTab) override;
 
-      virtual void route_command_message(::user::command * pcommand) override;
+      virtual void route_command_message(::message::command * pcommand) override;
 
       virtual bool on_prepare_impact_data(::user::impact_data* pimpactdata) override;
 

@@ -43,7 +43,7 @@ namespace android
       //virtual bool ModifyStyle(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
       //virtual bool ModifyStyleEx(u32 dwRemove,u32 dwAdd,::u32 nFlags = 0) override;
 
-      virtual void route_command_message(::user::command * pcommand) override;
+      virtual void route_command_message(::message::command * pcommand) override;
 
       void _002OnDraw(::image * pimage);
 
@@ -354,8 +354,8 @@ namespace android
       void UpdateDialogControls(channel* pTarget,bool bDisableIfNoHndler) override;
       void CenterWindow(::user::interaction * pAlternateOwner = nullptr) override;
 
-      virtual bool OnCommand(::message::base * pbase) override;
-      virtual bool OnNotify(::message::base * pbase) override;
+      virtual bool OnCommand(::user::message * pusermessage) override;
+      virtual bool OnNotify(::user::message * pusermessage) override;
 
       DECL_GEN_SIGNAL(_001OnCreate);
 
@@ -503,7 +503,7 @@ namespace android
 
 
       // for processing Windows messages
-      virtual void message_handler(::message::base * pbase) override;
+      virtual void message_handler(::user::message * pusermessage) override;
 
 
       // for handling default processing
@@ -513,10 +513,10 @@ namespace android
       virtual void PostNcDestroy() override;
 
       // for notifications from parent
-      //virtual bool OnChildNotify(::message::base * pbase);
+      //virtual bool OnChildNotify(::user::message * pusermessage);
       // return true if parent should not process this message
-      //virtual bool ReflectChildNotify(::message::base * pbase);
-      //static bool ReflectMessage(oswindow oswindow_Child,::message::base * pbase);
+      //virtual bool ReflectChildNotify(::user::message * pusermessage);
+      //static bool ReflectMessage(oswindow oswindow_Child,::user::message * pusermessage);
 
       // Implementation
       virtual bool CheckAutoCenter() override;
@@ -600,9 +600,9 @@ namespace android
       //virtual ::i32 SetWindowLong(i32 nIndex, ::i32 lValue);
 
 
-      virtual void SetFont(::draw2d::font* pfont, bool bRedraw);
+      virtual void SetFont(::write_text::font* pfont, bool bRedraw);
       virtual void set_owner(::user::interaction * pOwnerWnd) override;
-      virtual ::draw2d::font* GetFont();
+      virtual ::write_text::font* GetFont();
 
 
 

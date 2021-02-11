@@ -51,7 +51,7 @@ public:
    virtual bool _001GetScrollInfo(::user::scroll_info * psi) override;
    virtual bool _001SetScrollInfo(::user::scroll_info * psi, bool bRedraw = true) override;
 
-   //virtual bool create_interaction(e_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::id id) override;
+   //virtual bool create_interaction(enum_orientation eorientation, u32 uStyle, ::user::interaction * puiParent, ::id id) override;
 
    i32 SetTrackingPos(const ::point_i32 & point, ::draw2d::graphics_pointer & pgraphics);
    i32 GetTrackSize(::size_i32 & size, ::draw2d::graphics_pointer & pgraphics);
@@ -67,7 +67,7 @@ public:
    DECL_GEN_SIGNAL(_001OnCreate);
    DECL_GEN_SIGNAL(_001OnShowWindow);
    DECL_GEN_SIGNAL(_001OnDestroy);
-   LRESULT OnEconoModeChange(WPARAM wParam, LPARAM lParam);
+   //LRESULT OnEconoModeChange(WPARAM wParam, LPARAM lParam);
 
    void draw_mac_thumb_simple(::draw2d::graphics_pointer & pgraphics,const ::rectangle_i32 & rectDraw,const ::rectangle_i32 & lpcrectClip,byte uchAlpha);
 

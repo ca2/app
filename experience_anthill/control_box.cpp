@@ -71,7 +71,7 @@ namespace experience
          if (m_colorBackground.is_set())
          {
 
-            pgraphics->fill_rect(rectClient, m_colorBackground);
+            pgraphics->fill_rectangle(rectClient, m_colorBackground);
 
          }
 

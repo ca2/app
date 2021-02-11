@@ -13,7 +13,7 @@ public:
    ::message::id_route                             m_idroute;
    ::message::id_route                             m_idrouteNew;
    bool                                            m_bNewChannel;
-   id_map < ::promise::routine_array >                      m_mapRoutine;
+   id_map < ::promise::routine_array >             m_mapRoutine;
 
 
    channel();
@@ -53,14 +53,15 @@ public:
 
    virtual void route_message(::message::message * pmessage);
 
-   virtual __pointer(::message::base) get_message_base(MESSAGE * pmessage);
+   virtual __pointer(::message::message) get_message(MESSAGE * pmessage);
+   virtual __pointer(::message::message) get_message(const ::id & id, wparam wparam, lparam lparam);
 
-   ///virtual __pointer(::message::base) get_message_base(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam);
+   ///virtual __pointer(::user::message) get_message_base(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam);
 
 
 #ifdef LINUX
 
-   virtual __pointer(::message::base) get_message_base(void * pevent, ::user::interaction * pwnd = nullptr);
+   virtual __pointer(::user::message) get_message_base(void * pevent, ::user::interaction * pwnd = nullptr);
 
 #endif
 
@@ -136,20 +137,20 @@ public:
 
    }
 
-
-   virtual void _001SendCommand(::user::command * pcommand);
-   virtual void _001SendCommandProbe(::user::command * pcommand);
-
-
-   virtual void on_command(::user::command * pcommand);
-   virtual bool has_command_handler(::user::command * pcommand);
-   virtual void on_command_probe(::user::command * pcommand);
+   
+   void _001SendCommand(::message::command * pmessage);
+   void _001SendCommandProbe(::message::command * pmessage);
 
 
-   virtual void route_command_message(::user::command * pcommand);
+   virtual void on_command(::message::command * pcommand);
+   virtual bool has_command_handler(::message::command * pcommand);
+   virtual void on_command_probe(::message::command * pcommand);
 
 
-   virtual void on_command_message(::user::command* pcommand);
+   virtual void route_command_message(::message::command * pcommand);
+
+
+   virtual void on_command_message(::message::command* pcommand);
 
 
    void BeginWaitCursor();
@@ -157,7 +158,7 @@ public:
    void RestoreWaitCursor();       // call after messagebox
 
 
-   virtual bool handle(::user::command * pcommand);
+   virtual ::e_status handle(::message::command * pcommand);
 
 
 };

@@ -17,8 +17,8 @@ namespace experience
 
                ::rectangle_i32 m_rectCaptionTextBk;
                ::point_i32 m_pointMoveGripMinimal;
-               //::draw2d::font_pointer                m_fontButton;
-               //::draw2d::font_pointer                m_fontCaption;
+               //::write_text::font_pointer                m_fontButton;
+               //::write_text::font_pointer                m_fontCaption;
                //e_style                          m_estyle;
                //::user::front_end_schema         m_schema;
                color32_t                         m_colorFrameBorder;

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 #include "aura/update.h"
 
 
@@ -322,7 +320,7 @@ namespace filemanager
    }
 
 
-   void file_list::route_command_message(::user::command * pcommand)
+   void file_list::route_command_message(::message::command * pcommand)
    {
 
       auto itema = get_selected_items();
@@ -343,14 +341,14 @@ namespace filemanager
 
    void file_list::_001OnShellCommand(::message::message * pmessage)
    {
-      __pointer(::message::command) pcommand(pmessage);
+      __pointer(::user::message) pcommand(pmessage);
       m_contextmenu.OnCommand(pcommand->GetId());
    }
 
    void file_list::_001OnFileManagerItemCommand(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
       ::file::item_array itema;
 
@@ -384,7 +382,7 @@ namespace filemanager
    void file_list::_001OnFileManagerItemUpdate(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
       sync_lock sl(fs_list()->mutex());
 
@@ -499,11 +497,11 @@ namespace filemanager
 
    void file_list::_001OnUpdateFileRename(::message::message * pmessage)
    {
-      //      __pointer(::user::command) pcommand(pmessage);
+      //      __pointer(::message::command) pcommand(pmessage);
       //    pcommand->enable(_001GetSelectedItemCount() == 1);
       //  pmessage->m_bRet = true;
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
       ::user::range range;
       _001GetSelection(range);
       pcommand->enable(
@@ -517,7 +515,7 @@ namespace filemanager
    void file_list::_001OnUpdateEditCopy(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
       ::user::range range;
 
@@ -549,7 +547,7 @@ namespace filemanager
    void file_list::_001OnUpdateTrashThatIsNotTrash(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
       ::user::range range;
 
@@ -581,7 +579,7 @@ namespace filemanager
    void file_list::_001OnUpdateOpenWith(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
       __pointer(::user::menu_command) pmenucommandui(pcommand);
 
@@ -655,7 +653,7 @@ namespace filemanager
    }
 
 
-   void file_list::on_command_probe(::user::command * pcommand)
+   void file_list::on_command_probe(::message::command * pcommand)
    {
 
       i32 iPos = -1;
@@ -692,7 +690,7 @@ namespace filemanager
    }
 
 
-   void file_list::on_command(::user::command * pcommand)
+   void file_list::on_command(::message::command * pcommand)
    {
 
       if (pcommand->m_id == "1000")
@@ -746,7 +744,7 @@ namespace filemanager
 
    //void file_list::_001OnUpdateSpafy(::message::message * pmessage)
    //{
-   //   __pointer(::user::command) pcommand(pmessage);
+   //   __pointer(::message::command) pcommand(pmessage);
    //   ::user::range range;
    //   _001GetSelection(range);
    //   pcommand->enable(range.get_item_count() > 0);
@@ -819,7 +817,7 @@ namespace filemanager
 
    //void file_list::_001OnUpdateSpafy2(::message::message * pmessage)
    //{
-   //   __pointer(::user::command) pcommand(pmessage);
+   //   __pointer(::message::command) pcommand(pmessage);
    //   pcommand->enable(true);
    //   pmessage->m_bRet = true;
    //}
@@ -1405,9 +1403,9 @@ namespace filemanager
    //void file_list::_001OnMainPostMessage(::message::message * pmessage)
    //{
 
-   //   __pointer(::message::base) pbase(pmessage);
+   //   __pointer(::user::message) pusermessage(pmessage);
 
-   //   switch (pbase->m_wparam)
+   //   switch (pusermessage->m_wparam)
    //   {
    //   case MessageMainPostCreateImageListItemStepSetRedraw:
    //   {
@@ -1426,9 +1424,9 @@ namespace filemanager
    //   break;
    //   }
 
-   //   pbase->set_lresult(0);
+   //   pusermessage->set_lresult(0);
 
-   //   pbase->m_bRet = true;
+   //   pusermessage->m_bRet = true;
 
    //}
 

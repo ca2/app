@@ -36,10 +36,10 @@ namespace experience
             }
 
 #if !defined(CUBE)
-            fork([]()
+            fork([this]()
                {
 
-                  System.draw2d().set_cursor_set_from_matter("cursor/tranquillum");
+                  Session->user()->windowing()->set_cursor_set_from_matter("cursor/tranquillum");
 
                });
 #endif

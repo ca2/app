@@ -33,62 +33,24 @@ inline string _hex_color(const COLOR32 & c)
 
 }
 
+
 inline bool operator == (const COLOR32 & color1, const COLOR32 & color2) { return color1.u32 == color2.u32; }
+
 
 auto inline red(color32_t rgba) { return ((byte)(rgba & 0xff)); }
 auto inline green(color32_t rgba) { return ((byte)((rgba >> 8) & 0xff)); }
 auto inline blue(color32_t rgba) { return ((byte)((rgba >> 16) & 0xff)); }
 auto inline alpha(color32_t rgba) { return ((byte)((rgba >> 24) & 0xff)); }
-auto inline rgb(byte r, byte g, byte b) { return r | (g << 8) | (b << 16); }
-auto inline rgba(byte r, byte g, byte b, byte a) { return r | (g << 8) | (b << 16) | (a << 24); }
-auto inline argb(byte a, byte r, byte g, byte b) { return rgba(r, g, b, a); }
-
-class color32 :
-   public COLOR32
-{
-public:
-
-
-   color32() {}
-   color32(e_zero_init) {red =green=blue=alpha=0;}
-   color32(byte r, byte g, byte b, byte a) {red=r;green=g;blue=b;alpha=a;}
-   color32(color32_t cr) {u32 = cr;}
-   color32(const ::color32 & rgba) { u32 = rgba.u32;}
-
-
-   float fr() const {return red / 255.f;}
-   float fg() const {return green / 255.f;}
-   float fb() const {return blue / 255.f;}
-   float fa() const {return alpha / 255.f;}
-   double dr() const {return red / 255.;}
-   double dg() const {return green / 255.;}
-   double db() const {return blue / 255.;}
-   double da() const {return alpha / 255.;}
-
-
-
-   color32 & operator =(const ::payload & payload);
-
-
-};
-
-
-inline auto red(const color32 & color32) { return color32.red; }
-inline auto green(const color32 & color32) { return color32.green; }
-inline auto blue(const color32 & color32) { return color32.blue; }
-inline auto alpha(const color32 & color32) { return color32.alpha; }
 
 
 inline auto a_rgb(byte a, ::u32 rgb) { return rgb | (a << 24); }
-
 
 
 namespace color
 {
 
 
-
-   class hls
+   class CLASS_DECL_ACME hls
    {
    public:
 
@@ -117,34 +79,56 @@ namespace color
    };
 
 
-
-
    class CLASS_DECL_ACME color :
-      public color32
+      public COLOR32
    {
    public:
 
 
+      color() {}
+      color(e_zero_init) { red = green = blue = alpha = 0; }
+      color(byte r, byte g, byte b, byte a = 255) { red = r; green = g; blue = b; alpha = a; }
+      color(color32_t cr) { u32 = cr; }
+      color(const ::color::color & color) { u32 = color.u32; }
 
-      int  m_flags;
+
+      float fr() const { return red / 255.f; }
+      float fg() const { return green / 255.f; }
+      float fb() const { return blue / 255.f; }
+      float fa() const { return alpha / 255.f; }
+      double dr() const { return red / 255.; }
+      double dg() const { return green / 255.; }
+      double db() const { return blue / 255.; }
+      double da() const { return alpha / 255.; }
 
 
-      color() { m_flags = -1; }
-      color(const ::color::color & color) { this->u32 = color.u32;  m_flags = color.m_flags; }
+
+      color & operator =(const ::payload & payload);
+
+
+   //};
+
+
+
+   //   int  m_flags;
+
+
+      //color() { m_flags = -1; }
+      //color(const ::color::color & color) { this->u32 = color.u32;  m_flags = color.m_flags; }
       color(enum_color ecolor, byte A = 255);
       color(const hls & hls, byte A = 255);
-      color(const COLOR32 & color32, int flags = 0) { this->u32 = color32.u32;  m_flags = flags; }
-      color(color32_t cr, int flags = 0) { this->u32 = cr;  m_flags = flags; }
-      color(byte R, byte G, byte B, byte A = 255);
+      //color(const COLOR32 & color32, int flags = 0) { this->u32 = color32.u32;  m_flags = flags; }
+      //color(color32_t cr, int flags = 0) { this->u32 = cr;  m_flags = flags; }
+      //color(byte R, byte G, byte B, byte A = 255);
 
 
-      bool is_set() const { return m_flags >= 0; }
+      ///bool is_set() const { return m_flags >= 0; }
 
 
-      bool is_opaque() const { return m_flags >= 0 && alpha == 255; }
-      bool is_translucent() const { return m_flags < 0 || alpha < 255; }
-      bool is_transparent() const { return m_flags < 0 || alpha == 0; }
-      bool non_transparent() const { return m_flags >= 0 && alpha > 0; }
+      bool is_opaque() const { return alpha == 255; }
+      bool is_translucent() const { return  alpha < 255; }
+      bool is_transparent() const { return  alpha == 0; }
+      bool non_transparent() const { return  alpha > 0; }
 
 
       void hls_mult(double dRateH, double dRateL, double dRateS);
@@ -177,9 +161,22 @@ namespace color
       //   operator rgba & () {return m_rgba;}
       //   operator const rgba & () const {return m_rgba;}
 
-      void set(byte R, byte G, byte B);
-      void set(byte R, byte G, byte B, byte A);
-      void set(double R, double G, double B, double A);
+      template < primitive_integral R, primitive_integral G, primitive_integral B, primitive_integral A >
+      void set(R r, G g, B b) { set_byte((byte)r, (byte)g, (byte)b); }
+
+      template < primitive_integral R, primitive_integral G, primitive_integral B, primitive_integral A >
+      void set(R r, G g, B b, A a) { set_byte((byte)r, (byte)g, (byte)b, (byte)a); }
+
+      template < primitive_floating R, primitive_floating G, primitive_floating B >
+      void set(R r, G g, B b) { set_double((double)r, (double)g, (double)b); }
+
+      template < primitive_floating R, primitive_floating G, primitive_floating B, primitive_floating A >
+      void set(R r, G g, B b, A a) { set_double((double)r, (double)g, (double)b, (double)a); }
+
+      void set_byte(byte R, byte G, byte B) { red = R; green = G; blue = B; alpha = 255; }
+      void set_byte(byte R, byte G, byte B, byte A) { red = R; green = G; blue = B; alpha = A; }
+      void set_double(double R, double G, double B) { red = (byte) (R * 255.); green = (byte) (G * 255.); blue = (byte) (B * 255.); alpha = 255; }
+      void set_double(double R, double G, double B, double A) { red = (byte)(R * 255.); green = (byte) (G * 255.); blue = (byte) (B * 255.); alpha = (byte) (A * 255.); }
 
       void make_black_and_white();
 
@@ -268,12 +265,13 @@ namespace color
    CLASS_DECL_ACME extern color white;
 
 
+   using array = ::array < color >;
+
+
 } // namespace color
 
 
 #define LOBYTE(w)           ((byte)(((dword_ptr)(w)) & 0xff))
-
-
 
 
 CLASS_DECL_ACME color32_t alpha_color(byte bAlpha, color32_t cr);
@@ -295,17 +293,23 @@ CLASS_DECL_ACME color32_t opaque_color(enum_color ecolor);
 
 
 
-inline void __exchange(::stream & s, ::color32 & color32);
+CLASS_DECL_ACME void __exchange(::stream & s, ::color::color & color);
 
 
 
-inline void __exchange(::stream & s, ::color::hls & hls);
+CLASS_DECL_ACME void __exchange(::stream & s, ::color::hls & hls);
+
+
+CLASS_DECL_ACME ::payload & assign(::payload & payload, const ::color::hls & hls);
+
+
+inline auto red(const ::color::color & color) { return color.red; }
+inline auto green(const ::color::color & color) { return color.green; }
+inline auto blue(const ::color::color & color) { return color.blue; }
+inline auto alpha(const ::color::color & color) { return color.alpha; }
+auto inline rgb(byte r, byte g, byte b) { return ::color::color(r, g, b); }
+auto inline rgba(byte r, byte g, byte b, byte a) { return ::color::color(r, g, b, a); }
+auto inline argb(byte a, byte r, byte g, byte b) { return ::color::color(r, g, b, a); }
 
 
 
-
-
-
-
-
-inline ::payload & assign(::payload & payload, const ::color::hls & hls);

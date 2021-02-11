@@ -20,8 +20,6 @@ namespace aura
 //#endif
 
 
-      __composite(::user::keyboard)                         m_pkeyboard;
-
       bool                                                  m_bAcceptsFirstResponder;
 
       ::user::interaction_impl *                            m_pimplPendingFocus2;
@@ -35,8 +33,6 @@ namespace aura
       ::user::interaction *                                 m_puiLastLButtonDown;
 
 
-      ::draw2d::font_enum_item_array                        m_fontenumitema;
-
       __composite(::apex::savings)                          m_psavings;
 
       //index                                                 m_iMainMonitor;
@@ -44,7 +40,7 @@ namespace aura
 
       id_map < ::user::interaction * >                      m_mapboundui;
 
-      __composite(::draw2d::font_list)                      m_pfontlistSingleColumn;
+      __composite(::write_text::font_list)                      m_pfontlistSingleColumn;
       __composite(::user::user)                             m_puser;
 
 
@@ -195,7 +191,6 @@ namespace aura
 
       virtual void process_term() override;
 
-      ::user::keyboard& keyboard();
 
       virtual bool open_by_file_extension(const char * pszPathName, ::create * pcreate = nullptr) override;
 
@@ -207,7 +202,7 @@ namespace aura
 
       //virtual __pointer(::user::menu_interaction) create_menu_button(::user::style_pointer & pstyle, ::user::menu_item * pitem);
 
-      virtual color32_t get_default_color(u64 u) override;
+      virtual ::color::color get_default_color(u64 u) override;
 
       //virtual ::size_i32 get_window_minimum_size();
 
@@ -325,7 +320,7 @@ namespace aura
 
       void _001OnFileNew();
 
-      //virtual void route_command_message(::user::command * pcommand) override;
+      //virtual void route_command_message(::message::command * pcommand) override;
 
       //virtual ::user::document* userex_on_request(::create* pcreate);
 
@@ -343,7 +338,7 @@ namespace aura
 
       //virtual void on_app_request_bergedge_callback(::layered * pobjectContext);
 
-      virtual ::draw2d::font_list* get_single_column_font_list();
+      virtual ::write_text::font_list* get_single_column_font_list();
 
       //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::patha& patha);
 

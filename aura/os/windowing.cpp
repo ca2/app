@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 //#include "_os.h"
 #include <stdio.h>
 #include "acme/parallelization/mq.h"
@@ -125,9 +123,9 @@ CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
 //
 //   //sync_lock slMap(pmap->mutex());
 //
-//   ::user::primitive * pbase;
+//   ::user::primitive * pusermessage;
 //
-//   if (!pmap->m_map.lookup(oswindow, pbase))
+//   if (!pmap->m_map.lookup(oswindow, pusermessage))
 //   {
 //
 //      auto ptask = ::get_task();
@@ -154,7 +152,7 @@ CLASS_DECL_ACME mq * get_mq(ithread_t idthread, bool bCreate);
 //
 //   }
 //
-//   return dynamic_cast <::user::interaction_impl *>(pbase);
+//   return dynamic_cast <::user::interaction_impl *>(pusermessage);
 //
 //}
 

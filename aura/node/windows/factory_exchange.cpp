@@ -2,7 +2,7 @@
 #include "apex/operating_system.h"
 #include "aura/node/windows/buffer.h"
 #include "shell_open.h"
-#include "copydesk.h"
+//#include "copydesk.h"
 #include "interaction_impl.h"
 
 
@@ -51,7 +51,7 @@ void __node_aura_factory_exchange()
    //create_factory < ::file::os_watcher, ::file::watcher >();
    //create_factory < ::file::os_watch, ::file::watch >();
 
-   create_factory < ::windows::copydesk, ::user::copydesk >();
+   //create_factory < ::windows::copydesk, ::user::copydesk >();
    create_factory < ::windows::shell_open, ::shell_open >();
    create_factory < ::windows::interprocess_communication_base, ::interprocess_communication::base >();
    create_factory < ::windows::interprocess_communication_tx, ::interprocess_communication::tx >();

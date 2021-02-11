@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 #include "aura/update.h"
 #include "aqua/xml.h"
 #include "menu_view.h"
@@ -131,7 +129,7 @@ namespace user
       if (!idCommand.is_empty())
       {
 
-         ::user::command command;
+         ::message::command command;
 
          command.m_id = idCommand;
 
@@ -735,7 +733,7 @@ namespace user
    void menu_view::draw_header_rectangle(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
-      pgraphics->fill_rect(rectangle, argb(255, 240, 240, 240));
+      pgraphics->fill_rectangle(rectangle, argb(255, 240, 240, 240));
 
       pgraphics->move_to(rectangle.left, rectangle.top);
 
@@ -769,7 +767,7 @@ namespace user
    void menu_view::draw_item_rectangle_hover001(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
-      pgraphics->fill_rect(rectangle);
+      pgraphics->fill_rectangle(rectangle);
 
 
       pgraphics->move_to(rectangle.left, rectangle.top);
@@ -789,7 +787,7 @@ namespace user
    void menu_view::draw_item_rectangle_sel001(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
-      pgraphics->fill_rect(rectangle);
+      pgraphics->fill_rectangle(rectangle);
 
       pgraphics->move_to(rectangle.left, rectangle.top);
 
@@ -820,7 +818,7 @@ namespace user
    void menu_view::draw_item_rectangle_hover_sel001(::draw2d::graphics_pointer & pgraphics, const ::rectangle_i32 & rectangle)
    {
 
-      pgraphics->fill_rect(rectangle);
+      pgraphics->fill_rectangle(rectangle);
 
       pgraphics->move_to(rectangle.left, rectangle.top);
 

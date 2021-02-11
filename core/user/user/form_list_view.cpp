@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 #include "aura/update.h"
 #include "acme/const/id.h"
 
@@ -158,7 +156,7 @@ namespace user
    }
 
 
-   void form_list_view::route_command_message(::user::command * pcommand)
+   void form_list_view::route_command_message(::message::command * pcommand)
    {
 
       ::user::impact::route_command_message(pcommand);
@@ -166,7 +164,7 @@ namespace user
    }
 
 
-   void form_list_view::on_command(::user::command* pcommand)
+   void form_list_view::on_command(::message::command* pcommand)
    {
 
       ::user::impact::on_command(pcommand);

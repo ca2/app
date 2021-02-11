@@ -1,8 +1,6 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/rich_text/_rich_text.h"
 #include "core/user/userex/_userex.h"
-#endif
 #include "acme/const/timer.h"
 
 
@@ -86,12 +84,12 @@ namespace user
          MESSAGE_LINK(e_message_mouse_leave, pchannel, this, &edit::_001OnMouseLeave);
          MESSAGE_LINK(e_message_key_down, pchannel, this, &edit::_001OnKeyDown);
          MESSAGE_LINK(e_message_key_up, pchannel, this, &edit::_001OnKeyUp);
-         MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit::_001OnSetFocus);
-         MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit::_001OnKillFocus);
+//         MESSAGE_LINK(e_message_set_focus, pchannel, this, &edit::_001OnSetFocus);
+         //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &edit::_001OnKillFocus);
          
 #ifdef WINDOWS_DESKTOP
 
-         imm_client::install_message_routing(pchannel);
+         text_composition_composite::install_message_routing(pchannel);
          
 #endif
 
@@ -114,11 +112,11 @@ namespace user
 
          auto psession = Session;
 
-#if !defined(APPLE_IOS) && !defined(ANDROID)
+//#if !defined(APPLE_IOS) && !defined(ANDROID)
 
-         psession->keyboard(); // trigger keyboard creationg
+  //       psession->keyboard(); // trigger keyboard creationg
 
-#endif
+//#endif
 
          SetTimer(100, 100, nullptr);
 
@@ -142,10 +140,10 @@ namespace user
       }
 
 
-      void edit::_001OnSetFocus(::message::message * pmessage)
+      void edit::on_set_keyboard_focus()
       {
          
-         UNREFERENCED_PARAMETER(pmessage);
+         //UNREFERENCED_PARAMETER(pmessage);
 
          //__pointer(::message::set_focus) psetfocus(pmessage);
 
@@ -163,29 +161,33 @@ namespace user
       }
 
 
-      void edit::_001OnKillFocus(::message::message * pmessage)
+      void edit::on_kill_keyboard_focus()
       {
 
-         __pointer(::message::kill_focus) pkillfocus(pmessage);
+         //__pointer(::message::kill_focus) pkillfocus(pmessage);
 
          auto pformattool = get_format_tool(false);
 
          if (pformattool != nullptr && pformattool->is_showing_for_ui(this))
          {
 
-            ::user::primitive_impl * pimplNew = oswindow_interaction_impl(pkillfocus->m_oswindowNew);
+            auto psession = Session;
+
+            auto puser = psession->user();
+
+            //auto puserinteractionFocusNew = puser->interaction(pkillfocus->m_oswindowNew);
 
             ::user::interaction * pinteraction = nullptr;
 
-            if (pimplNew != nullptr)
+  /*          if (puserinteractionFocusNew != nullptr)
             {
 
-               pinteraction = pimplNew->m_puserinteraction;
+               pinteraction = puserinteractionFocusNew;
 
-            }
+            }*/
 
-            if (pkillfocus->m_oswindowNew == pformattool->get_safe_handle()
-               || pformattool->is_ascendant_or_owner_of(pinteraction, true))
+            //if (pkillfocus->m_oswindowNew == pformattool->get_oswindow()
+            if(pformattool->is_ascendant_or_owner_of(pinteraction, true))
             {
 
                output_debug_string("Window winning focus is own font format tool");
@@ -260,7 +262,13 @@ namespace user
       void edit::_001OnMouseLeave(::message::message * pmessage)
       {
 
-         ReleaseCapture();
+         auto psession = Session;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pwindowing->release_capture();
 
          set_need_redraw();
 
@@ -421,7 +429,7 @@ namespace user
 
             _rtransform_point(point);
 
-            point_i32 -= rectWindow.top_left();
+            point -= rectWindow.top_left();
 
             auto rectClient = get_client_rect();
 
@@ -716,7 +724,7 @@ namespace user
 
             // Caret
 
-            if (is_text_editable() && is_window_visible() && has_focus())
+            if (is_text_editable() && is_window_visible() && has_keyboard_focus())
             {
 
                set_need_redraw();

@@ -149,7 +149,7 @@ namespace multimedia
          mcdvVolume.m_uiControlID = m_mixercontrol.dwControlID;
          mcdvVolume.nRange  = nRange;
          mcdvVolume.nPageInc = nPageInc;
-         plevelcontrol->SetOrientation(::multimedia::audio_mixer::user::level_control::orientation_vertical);
+         plevelcontrol->SetOrientation(::multimedia::audio_mixer::user::level_control::e_orientation_vertical);
          plevelcontrol->SetRange(0, mcdvVolume.nRange);
          plevelcontrol->SetLineSize(1);
          plevelcontrol->SetPageSize(mcdvVolume.nPageInc);
@@ -187,7 +187,7 @@ namespace multimedia
             mcdvBalance.nRange  = nRange;
             mcdvBalance.nPageInc = nPageInc;
 
-            pinteraction->SetOrientation(::multimedia::audio_mixer::user::level_control::orientation_horizontal);
+            pinteraction->SetOrientation(::multimedia::audio_mixer::user::level_control::e_orientation_horizontal);
             pinteraction->SetRange(0, mcdvBalance.nRange);
             pinteraction->SetLineSize(1);
             pinteraction->SetPageSize(mcdvBalance.nPageInc);

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 
 
 namespace user
@@ -48,15 +46,19 @@ namespace user
    }
 
 
-   void message_queue::message_handler(::message::base * pbase)
+   void message_queue::message_handler(::user::message * pusermessage)
    {
 
-      message_queue_message_handler(pbase);
+      message_queue_message_handler(pusermessage);
 
-      if(pbase->m_bRet)
+      if (pusermessage->m_bRet)
+      {
+
          return;
 
-      ::user::interaction::message_handler(pbase);
+      }
+
+      ::user::interaction::message_handler(pusermessage);
 
    }
 

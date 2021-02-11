@@ -33,16 +33,16 @@ inline point_f64& bottom_right(const RECTANGLE_F64& rectangle) { return bottom_r
 
 
 template < typename X, typename Y >
-inline auto get_dimension(e_orientation eorientation, X x, Y y)
+inline auto get_dimension(enum_orientation eorientation, X x, Y y)
 {
 
-   if (eorientation == orientation_horizontal)
+   if (eorientation == e_orientation_horizontal)
    {
 
       return x;
 
    }
-   else if (eorientation == orientation_vertical)
+   else if (eorientation == e_orientation_vertical)
    {
 
       return y;
@@ -59,16 +59,16 @@ inline auto get_dimension(e_orientation eorientation, X x, Y y)
 
 
 template < typename X, typename Y >
-inline auto get_normal_dimension(e_orientation eorientation, X x, Y y)
+inline auto get_normal_dimension(enum_orientation eorientation, X x, Y y)
 {
 
-   if (eorientation == orientation_vertical)
+   if (eorientation == e_orientation_vertical)
    {
 
       return x;
 
    }
-   else if (eorientation == orientation_horizontal)
+   else if (eorientation == e_orientation_horizontal)
    {
 
       return y;

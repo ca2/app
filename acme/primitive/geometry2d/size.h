@@ -72,17 +72,17 @@ public:
    inline UNIT_TYPE get_minimum_dimension() const noexcept { return ::min(this->cx, this->cy); }
    inline UNIT_TYPE get_maximum_dimension() const noexcept { return ::max(this->cx, this->cy); }
 
-   inline UNIT_TYPE get_dimension(e_orientation eorientation) const noexcept { return ::get_dimension(eorientation, this->cx, this->cy); }
-   inline UNIT_TYPE get_orthogonal_dimension(e_orientation eorientation) const noexcept { return ::get_normal_dimension(eorientation, this->cx, this->cy); }
-   inline UNIT_TYPE get_orthogonal(e_orientation eorientation)const noexcept { return get_orthogonal_dimension(eorientation); }
-   inline UNIT_TYPE get_normal_dimension(e_orientation eorientation) const noexcept { return get_orthogonal_dimension(eorientation); }
-   inline UNIT_TYPE get_normal(e_orientation eorientation) const noexcept { return get_orthogonal_dimension(eorientation); }
+   inline UNIT_TYPE get_dimension(enum_orientation eorientation) const noexcept { return ::get_dimension(eorientation, this->cx, this->cy); }
+   inline UNIT_TYPE get_orthogonal_dimension(enum_orientation eorientation) const noexcept { return ::get_normal_dimension(eorientation, this->cx, this->cy); }
+   inline UNIT_TYPE get_orthogonal(enum_orientation eorientation)const noexcept { return get_orthogonal_dimension(eorientation); }
+   inline UNIT_TYPE get_normal_dimension(enum_orientation eorientation) const noexcept { return get_orthogonal_dimension(eorientation); }
+   inline UNIT_TYPE get_normal(enum_orientation eorientation) const noexcept { return get_orthogonal_dimension(eorientation); }
 
-   inline UNIT_TYPE set_dimension(e_orientation eorientation, UNIT_TYPE l) noexcept { if (eorientation == orientation_horizontal) this->cx = l; else if (eorientation == orientation_vertical) this->cy = l; return l; }
-   inline UNIT_TYPE set_orthogonal_dimension(e_orientation eorientation, UNIT_TYPE l) noexcept { if(eorientation == orientation_horizontal) this->cy = l; else if (eorientation == orientation_vertical) this->cx = l; return l;}
-   inline UNIT_TYPE set_orthogonal(e_orientation eorientation, UNIT_TYPE l)  noexcept { return set_orthogonal_dimension(eorientation, l); }
-   inline UNIT_TYPE set_normal_dimension(e_orientation eorientation, UNIT_TYPE l)  noexcept { return set_orthogonal_dimension(eorientation, l); }
-   inline UNIT_TYPE set_normal(e_orientation eorientation, UNIT_TYPE l) noexcept { return set_orthogonal_dimension(eorientation, l); }
+   inline UNIT_TYPE set_dimension(enum_orientation eorientation, UNIT_TYPE l) noexcept { if (eorientation == e_orientation_horizontal) this->cx = l; else if (eorientation == e_orientation_vertical) this->cy = l; return l; }
+   inline UNIT_TYPE set_orthogonal_dimension(enum_orientation eorientation, UNIT_TYPE l) noexcept { if(eorientation == e_orientation_horizontal) this->cy = l; else if (eorientation == e_orientation_vertical) this->cx = l; return l;}
+   inline UNIT_TYPE set_orthogonal(enum_orientation eorientation, UNIT_TYPE l)  noexcept { return set_orthogonal_dimension(eorientation, l); }
+   inline UNIT_TYPE set_normal_dimension(enum_orientation eorientation, UNIT_TYPE l)  noexcept { return set_orthogonal_dimension(eorientation, l); }
+   inline UNIT_TYPE set_normal(enum_orientation eorientation, UNIT_TYPE l) noexcept { return set_orthogonal_dimension(eorientation, l); }
 
    inline void set(UNIT_TYPE c) noexcept { this->cx = this->cy = c; }
    inline void set(UNIT_TYPE cx, UNIT_TYPE cy) noexcept { this->cx = cx; this->cy = cy; }

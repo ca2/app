@@ -623,7 +623,7 @@ namespace os
 
          ::rectangle_i32 rectangle;
 
-         rectangle_i32 = rectWindow;
+         rectangle = rectWindow;
 
 /*         m_pimage->g()->set_alpha_mode(draw2d::alpha_mode_set);
 

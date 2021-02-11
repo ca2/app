@@ -464,7 +464,7 @@ namespace aura
       //}
 
 
-      inline class ::draw2d::draw2d                & draw2d() { return *m_pdraw2d; }
+      inline class ::draw2d::draw2d                * draw2d() { return m_pdraw2d; }
 
 
       //inline ::url::department                     &  url()
@@ -585,7 +585,8 @@ namespace aura
 
       //virtual ::e_status process_init();
 
-      virtual ::e_status init_draw2d();
+      virtual ::e_status initialize_draw2d();
+      //virtual ::e_status initialize_write_text();
       virtual ::e_status draw2d_factory_exchange();
       virtual string draw2d_get_default_library_name();
 
@@ -980,6 +981,9 @@ namespace aura
       virtual void on_subject(::promise::subject * psubject, ::promise::context * pcontext) override;
 
       virtual ::e_status initialize_estamira();
+
+
+      //virtual bool on_application_menu_action(const char * pszCommand);
 
 
    };

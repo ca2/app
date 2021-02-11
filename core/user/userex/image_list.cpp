@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 #include "aura/update.h"
 #include "image_list.h"
 
@@ -281,7 +279,13 @@ namespace userex
    //void image_list_view::_001OnMouseLeave(::message::message * pmessage)
    //{
 
-   //   ReleaseCapture();
+   //auto psession = Session;
+
+   //auto puser = psession->user();
+
+   //auto pwindowing = puser->windowing();
+
+   //pwindowing->release_capture();
 
    //   m_iMenuHover = -1;
 

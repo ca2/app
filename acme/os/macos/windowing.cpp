@@ -1300,7 +1300,7 @@ void ns_main_async(dispatch_block_t block);
 //
 ////   ::rectangle_i32 rectangle;
 ////
-////   rectangle_i32 = oswindow->m_pimpl->m_puserinteraction->parent_client_rect();
+////   rectangle = oswindow->m_pimpl->m_puserinteraction->parent_client_rect();
 ////
 ////   ::rectangle_i32 rectTest;
 ////
@@ -1350,7 +1350,7 @@ void ns_main_async(dispatch_block_t block);
 //
 //      }
 //
-//      auto rectangle_i32 = recta[i];
+//      auto rectangle = recta[i];
 //
 //      ::rectangle_i32 rectHitTest;
 //

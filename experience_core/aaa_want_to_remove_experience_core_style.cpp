@@ -42,7 +42,7 @@ namespace experience_lite
 
       ptab->get_data()->m_pen->create_solid(1,rgb(32,32,32));
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -339,7 +339,7 @@ namespace experience_lite
 
          ::rect rectText(lpcrect);
 
-         ::draw2d::font_pointer font;
+         ::write_text::font_pointer font;
          font = pgraphics->get_current_font();
          size sSep = ptab->get_data()->m_sizeSep;
          ::rect rectEmp;
@@ -820,7 +820,7 @@ namespace experience_lite
 
       point ptCenter = rectTrack.center();
 
-      if (pbar->m_eorientation == orientation_horizontal)
+      if (pbar->m_eorientation == e_orientation_horizontal)
       {
 
 

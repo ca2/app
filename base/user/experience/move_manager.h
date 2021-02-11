@@ -17,7 +17,7 @@ namespace experience
       point_i32                            m_pointWindowOrigin;
       point_i32                            m_pointMove;
       bool                             m_bMoving;
-      ::u32                             m_uiSWPFlags;
+      //::u32                             m_uiSWPFlags;
       ::user::window_state             m_stateBefore;
       int                              m_iConsiderMove;
 
@@ -36,8 +36,8 @@ namespace experience
       e_border GetBorderMask();
 
       bool window_is_moving();
-      void MoveWindow(void * oswindow, const ::point_i32 & point);
-      void SetSWPFlags(::u32 uFlags);
+      //void MoveWindow(void * oswindow, const ::point_i32 & point);
+      //void SetSWPFlags(::u32 uFlags);
 
 
       bool consider_move();
@@ -45,7 +45,7 @@ namespace experience
 
       bool set_frame_window(frame_window * pframewindow);
 
-      //void message_handler(::user::interaction * pframewindow, ::message::base * pbase);
+      //void message_handler(::user::interaction * pframewindow, ::user::message * pusermessage);
 
 
       virtual bool window_stop_moving(bool bApply = true, ::message::mouse * pmouse = nullptr);

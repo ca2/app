@@ -44,7 +44,9 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-                  if (::user::is_app_dark_mode())
+                  auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                   {
 
                      return __acolor(255, 0, 0, 0);
@@ -66,7 +68,9 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-                  if (::user::is_app_dark_mode())
+                  auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                   {
 
                      //return __acolor(255, 0x20, 0x45, 0x60);
@@ -91,7 +95,9 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-                  if (::user::is_app_dark_mode())
+                  auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                   {
 
                      return __acolor(255, 0, 0, 0);
@@ -149,7 +155,9 @@ namespace experience
             if (estate & ::user::e_state_selected)
             {
 
-               if (::user::is_app_dark_mode())
+               auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 185, 185, 180);
@@ -167,7 +175,9 @@ namespace experience
             else
             {
 
-               if (::user::is_app_dark_mode())
+               auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 125, 125, 120);
@@ -189,7 +199,9 @@ namespace experience
             || eelement == ::user::e_element_tab_layout_background)
          {
 
-            if (::user::is_app_dark_mode())
+            auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
             {
 
                return __acolor(255, 0, 0, 0);
@@ -206,7 +218,9 @@ namespace experience
          else if (eelement == ::user::e_element_text)
          {
             
-            if (::user::is_app_dark_mode())
+            auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
             {
 
 
@@ -255,7 +269,9 @@ namespace experience
             if (estate & ::user::e_state_hover)
             {
 
-               if (::user::is_app_dark_mode())
+               auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                {
 
                   return ::color::color(50, 120, 190, 127);
@@ -272,7 +288,9 @@ namespace experience
             else
             {
 
-               if (::user::is_app_dark_mode())
+               auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                {
 
                   return ::color::color::white;
@@ -297,7 +315,9 @@ namespace experience
                if (estate & ::user::e_state_hover)
                {
 
-                  if (::user::is_app_dark_mode())
+                  auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                   {
 
                      return ::color::color(100, 110, 120, 127);
@@ -314,7 +334,9 @@ namespace experience
                else
                {
 
-                  if (::user::is_app_dark_mode())
+                  auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                   {
 
                      return ::color::color::black;
@@ -336,7 +358,9 @@ namespace experience
                if (estate & ::user::e_state_hover)
                {
 
-                  if (::user::is_app_dark_mode())
+                  auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                   {
 
                      return ::color::color(100, 160, 220, 127);
@@ -353,7 +377,9 @@ namespace experience
                else
                {
 
-                  if (::user::is_app_dark_mode())
+                  auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                   {
 
                      return ::color::color::black;
@@ -399,13 +425,13 @@ namespace experience
 
          ::color::color colorBack = ptab->get_color(pstyle, ::user::e_element_background);
 
-         pgraphics->fill_rect(r1, colorBack);
+         pgraphics->fill_rectangle(r1, colorBack);
 
       }
 
       ptab->get_data()->m_pen->create_solid(1,rgb(32,32,32));
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -432,7 +458,7 @@ namespace experience
       if(colorBack.is_set())
       {
 
-         pgraphics->fill_rect(rcTabs, colorBack);
+         pgraphics->fill_rectangle(rcTabs, colorBack);
          
       }
 
@@ -441,7 +467,7 @@ namespace experience
       if(colorBack.is_set())
       {
 
-         pgraphics->fill_rect(rcClient, colorBack);
+         pgraphics->fill_rectangle(rcClient, colorBack);
          
       }
 
@@ -856,7 +882,7 @@ namespace experience
 
          ::rectangle_i32 rectText(rectangle);
 
-         ::draw2d::font_pointer font;
+         ::write_text::font_pointer font;
          font = pgraphics->get_current_font();
          size_i32 sSep = ptab->get_data()->m_sizeSep;
          ::rectangle_i32 rectEmp;
@@ -877,7 +903,7 @@ namespace experience
                if(ptab->m_itemHover == (::user::enum_element)(::user::e_element_split + i))
                {
 
-                  pgraphics->fill_rect(rectEmp,argb(128, 150, 184, 255));
+                  pgraphics->fill_rectangle(rectEmp,argb(128, 150, 184, 255));
 
                   brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_hover));
 
@@ -1335,7 +1361,7 @@ namespace experience
                   rectItem.height(),
                   rgb(255, 255, 250), 208);
 
-                  pgraphics->draw_rect(rectItem, argb(255, 127, 127, 127));
+                  pgraphics->draw_rectangle(rectItem, argb(255, 127, 127, 127));
                   
                }
 
@@ -1451,7 +1477,7 @@ namespace experience
 
                ptoolbar->_001GetElementRect(iItem, rectItem, ::user::e_element_item, ::user::e_state_none);
 
-               pgraphics->fill_rect(rectItem, argb(190, 255, 255, 255));
+               pgraphics->fill_rectangle(rectItem, argb(190, 255, 255, 255));
 
             }
 
@@ -1707,7 +1733,7 @@ namespace experience
 
             //   ptoolbar->_001GetElementRect(iItem, rectItem, ::user::e_element_item, ::user::e_state_none);
 
-            //   pgraphics->fill_rect(rectItem, ptoolbar->get_color(pstyle, ::user::e_element_background));
+            //   pgraphics->fill_rectangle(rectItem, ptoolbar->get_color(pstyle, ::user::e_element_background));
 
             //}
 
@@ -1812,14 +1838,14 @@ namespace experience
 
       ::rectangle_i32 rectClient = psplitlayout->get_client_rect();
 
-      pgraphics->fill_rect(rectClient, argb(255, 255, 255, 255));
+      pgraphics->fill_rectangle(rectClient, argb(255, 255, 255, 255));
 
       return true;
 
    }
 
 //
-//   bool style::get_font(::draw2d::font_pointer & sp, ::user::e_font efont, ::user::style_context * pcontext)
+//   bool style::get_font(::write_text::font_pointer & sp, ::user::e_font efont, ::user::style_context * pcontext)
 //   {
 //
 //      return ::user::style::get_font(sp, efont, pcontext);

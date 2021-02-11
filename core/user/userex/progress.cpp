@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
-#endif
 #include "acme/const/timer.h"
 #include "core/user/userex/progress.h"
 
@@ -264,7 +262,13 @@ namespace userex
 
          auto psession = Session;
 
-         psession->get_main_monitor(rectangle);
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pdisplay = pwindowing->display();
+
+         pdisplay->get_main_monitor(rectangle);
 
          rectangle.deflate(rectangle.width() / 6, rectangle.height() / 3, rectangle.width() / 6, rectangle.height() / 2);
 

@@ -145,7 +145,7 @@ namespace draw2d_direct2d
       // Fill a rectangle_i32 with the image brush.
       /*if (SUCCEEDED(hr))
       {
-      pDeviceContext->fill_rect(
+      pDeviceContext->fill_rectangle(
       D2D1::RectF(0, 0, 100, 100), pImageBrush);
       }*/
 

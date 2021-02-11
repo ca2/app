@@ -81,7 +81,7 @@ namespace app_app
 
       pgraphics->set_smooth_mode(::draw2d::smooth_mode_none);
 
-      pgraphics->fill_rect(rectClient, argb(127, 255, 255, 255));
+      pgraphics->fill_rectangle(rectClient, argb(127, 255, 255, 255));
 
       //return;
 
@@ -91,18 +91,18 @@ namespace app_app
 
       double y = dBase * 3;
 
-      pgraphics->fill_rect(::rectd_dim(x, y, dBase * 5.0, dBase * 5.0), __acolor(127, 40, 150, 235));
+      pgraphics->fill_rectangle(::rectd_dim(x, y, dBase * 5.0, dBase * 5.0), __acolor(127, 40, 150, 235));
 
-      pgraphics->fill_rect(::rectd_dim(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), __acolor(127, 40, 150, 235));
+      pgraphics->fill_rectangle(::rectd_dim(x + dBase * 6.0, y, dBase * 5.0, dBase * 5.0), __acolor(127, 40, 150, 235));
 
-      pgraphics->fill_rect(::rectd_dim(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), __acolor(127, 255, 110, 150));
+      pgraphics->fill_rectangle(::rectd_dim(x, y + dBase * 6.0, dBase * 11.0, dBase * 5.0), __acolor(127, 255, 110, 150));
 
       rectClient.deflate((::i32) dBase);
 
       for (int i = 0; i < dBase; i++)
       {
 
-         pgraphics->draw_rect(rectClient, __acolor(255, 127, 127, 127));
+         pgraphics->draw_rectangle(rectClient, __acolor(255, 127, 127, 127));
 
          rectClient.deflate(1, 1);
 

@@ -76,7 +76,7 @@
 
                   if(egrip & e_grip_top_left)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 16;
                      rectangle.bottom = rectangle.top + 5;
                      if(rectangle.contains(pointHitTest))
@@ -84,7 +84,7 @@
                         etest = hittest_sizing_top_left;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 5;
                      rectangle.bottom = rectangle.top + 16;
                      if(rectangle.contains(pointHitTest))
@@ -95,7 +95,7 @@
                   }
                   if(egrip & e_grip_top_right)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 16;
                      rectangle.bottom = rectangle.top + 5;
                      if(rectangle.contains(pointHitTest))
@@ -103,7 +103,7 @@
                         etest = hittest_sizing_top_right;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 5;
                      rectangle.bottom = rectangle.top + 16;
                      if(rectangle.contains(pointHitTest))
@@ -114,7 +114,7 @@
                   }
                   if(egrip & e_grip_bottom_right)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 16;
                      rectangle.top = rectangle.bottom - 5;
                      if(rectangle.contains(pointHitTest))
@@ -122,7 +122,7 @@
                         etest = hittest_sizing_bottom_right;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.left = rectangle.right - 5;
                      rectangle.top = rectangle.bottom - 16;
                      if(rectangle.contains(pointHitTest))
@@ -133,7 +133,7 @@
                   }
                   if(egrip & e_grip_bottom_left)
                   {
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 16;
                      rectangle.top = rectangle.bottom - 5;
                      if(rectangle.contains(pointHitTest))
@@ -141,7 +141,7 @@
                         etest = hittest_sizing_bottom_left;
                         goto SizingSuccess;
                      }
-                     rectangle_i32 = rectEvent;
+                     rectangle = rectEvent;
                      rectangle.right = rectangle.left + 5;
                      rectangle.top = rectangle.bottom - 16;
                      if(rectangle.contains(pointHitTest))
@@ -231,7 +231,7 @@ SizingNone:
                color32_t    crMoveableBorderHilight;
                color32_t    crMoveableBorderShadow;
 
-               if(pframewindow->is_active())
+               if(pframewindow->is_active_window())
                {
                   crMoveableBorder = m_colorMoveableBorder;
                   crMoveableBorderHilight = m_colorMoveableBorderHilight;
@@ -416,7 +416,7 @@ SizingNone:
                      for (index i = 0; i < iMaxBorder; i++)
                      {
 
-                        pgraphics->draw_rect(rectA, argb(0, 0, 0, 0), eborder);
+                        pgraphics->draw_rectangle(rectA, argb(0, 0, 0, 0), eborder);
 
                         rectA.deflate(rectDeflate);
 
@@ -426,7 +426,7 @@ SizingNone:
 
                      pgraphics->set_smooth_mode(::draw2d::smooth_mode_high);
 
-                     if (m_pframewindow->is_active())
+                     if (m_pframewindow->is_active_window())
                      {
 
                         ::rectangle_i32 rectA(rectClient);
@@ -455,19 +455,19 @@ SizingNone:
                         if (estyle == ::user::StyleRedOrange)
                         {
 
-                           pgraphics->draw_rect(rectA, argb(255, 255, 170, 136), eborder);
+                           pgraphics->draw_rectangle(rectA, argb(255, 255, 170, 136), eborder);
 
                         }
                         else if (estyle == ::user::StyleLightGreen)
                         {
 
-                           pgraphics->draw_rect(rectA, argb(255, 128, 230, 150), eborder);
+                           pgraphics->draw_rectangle(rectA, argb(255, 128, 230, 150), eborder);
 
                         }
                         else
                         {
 
-                           pgraphics->draw_rect(rectA, argb(255, 0x07, 0x6D, 0x91), eborder);
+                           pgraphics->draw_rectangle(rectA, argb(255, 0x07, 0x6D, 0x91), eborder);
 
                         }
 
@@ -476,7 +476,7 @@ SizingNone:
                      {
 
                         //rectA.deflate(9, 9, 9, 9);
-                        pgraphics->draw_rect(rectA, argb(255, 128, 128, 128));
+                        pgraphics->draw_rectangle(rectA, argb(255, 128, 128, 128));
 
                      }
 

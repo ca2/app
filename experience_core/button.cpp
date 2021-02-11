@@ -41,7 +41,7 @@ namespace experience
 
          millis t1 = millis::now();
 
-         if ((get_top_level()->frame_is_transparent() && !get_top_level()->is_active()) || !top_level_frame()->m_bShowControlBox)
+         if ((get_top_level()->frame_is_transparent() && !get_top_level()->is_active_window()) || !top_level_frame()->m_bShowControlBox)
          {
 
             return;
@@ -93,7 +93,7 @@ namespace experience
                crText = m_pcontrolbox->m_colorButtonForeSel;
 
             }
-            else if (has_focus())
+            else if (has_keyboard_focus())
             {
 
                pgraphics->set(m_pcontrolbox->m_brushButtonBackFocus);

@@ -165,13 +165,13 @@ public:
 
    virtual bool set_rgb(color32_t cr);
    virtual bool set_rgb(i32 R, i32 G, i32 B);
-   virtual bool tint(::image * pimage, const ::color32 & color32);
+   virtual bool tint(::image * pimage, const ::color::color & color);
    virtual bool set_rgb_pre_alpha(i32 R, i32 G, i32 B, i32 A);
    virtual bool rgb_from(::image * pimage);
    virtual bool paint_rgb(::color::color color);
 
-   virtual ::i64 get_rgba_area(const ::color32 & color32) const;
-   virtual ::i64 get_rgba_area(const ::color32 & color32, const RECTANGLE_I32 * lpcrect) const;
+   virtual ::i64 get_rgba_area(const ::color::color & color32) const;
+   virtual ::i64 get_rgba_area(const ::color::color & color32, const RECTANGLE_I32 * lpcrect) const;
    virtual ::i64 _001GetTopLeftWeightedOpaqueArea(int iAlphaMin) const;
    virtual ::i64 _001GetTopLeftWeightedOpaqueArea(int iAlphaMin, const RECTANGLE_I32 * lpcrect) const;
 
@@ -311,9 +311,9 @@ public:
    virtual bool copy_from(::image * pimage, i32 x = 0, i32 y = 0);
    virtual bool copy_to(::image * pimage, i32 x = 0, i32 y = 0);
 
-   virtual bool fill_rect(const ::rectangle_i32 & rectangle, color32_t cr);
+   virtual bool fill_rectangle(const ::rectangle_i32 & rectangle, color32_t cr);
 
-   virtual bool fill_rect(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B);
+   virtual bool fill_rectangle(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B);
 
 
    virtual bool fill_glass_rect(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B, i32 A);

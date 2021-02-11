@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -88,7 +86,7 @@ namespace user
 
 
          pointa.add(point_i32(rectPopupArrow.left, rectPopupArrow.bottom));
-         pgraphics->polygon_i32(pointa);
+         pgraphics->polygon(pointa);
 
       }
 

@@ -1140,8 +1140,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClCompile Include="user\user\multiple_document_template.cpp" />
     <ClCompile Include="user\user\network_configuration.cpp" />
     <ClCompile Include="user\user\notification_area.cpp" />
-    <ClCompile Include="user\user\notify_icon.cpp" />
-    <ClCompile Include="user\user\notify_icon_listener.cpp" />
     <ClCompile Include="user\user\picture.cpp" />
     <ClCompile Include="user\user\picture_interaction.cpp" />
     <ClCompile Include="user\user\server.cpp" />
@@ -1293,10 +1291,6 @@ copy $(__archive)storage-windows\third\binary\$(PlatformName)\$(Configuration)\*
     <ClInclude Include="user\user\multiple_document_template.h" />
     <ClInclude Include="user\user\network_configuration.h" />
     <ClInclude Include="user\user\notification_area.h" />
-    <ClInclude Include="user\user\notify_icon.h" />
-    <ClInclude Include="user\user\notify_icon_listener.h" />
-    <ClInclude Include="user\user\notify_icon_mm.h" />
-    <ClInclude Include="user\user\notify_icon_mm_bridge.h" />
     <ClInclude Include="user\user\picture.h" />
     <ClInclude Include="user\user\picture_interaction.h" />
     <ClInclude Include="user\user\form_data.h" />

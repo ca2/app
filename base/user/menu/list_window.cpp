@@ -1,7 +1,5 @@
-﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
+#include "framework.h"
 #include "base/user/menu/_menu.h"
-#endif
 
 
 namespace user

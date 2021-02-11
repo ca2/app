@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "axis/user/_user.h"
-#endif
 
 
 namespace user
@@ -71,8 +69,8 @@ namespace user
       MESSAGE_LINK(e_message_left_button_double_click, pchannel, this, &combo_box::_001OnLButtonDblClk);
       MESSAGE_LINK(e_message_key_down,pchannel,this,&combo_box::_001OnKeyDown);
       MESSAGE_LINK(e_message_key_up,pchannel,this,&combo_box::_001OnKeyUp);
-      MESSAGE_LINK(e_message_set_focus,pchannel,this,&combo_box::_001OnSetFocus);
-      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &combo_box::_001OnKillFocus);
+      //MESSAGE_LINK(e_message_set_focus,pchannel,this,&combo_box::_001OnSetFocus);
+      //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &combo_box::_001OnKillFocus);
       MESSAGE_LINK(e_message_show_window, pchannel, this, &combo_box::_001OnShowWindow);
       MESSAGE_LINK(e_message_move, pchannel, this, &combo_box::_001OnMove);
 
@@ -323,13 +321,13 @@ namespace user
 
       ::color::color color(colorDropDown);
 
-      c.hls_rate(0.0, 0.5, 0.1);
+      color.hls_rate(0.0, 0.5, 0.1);
 
-      br->create_solid(c);
+      br->create_solid(color);
 
       pgraphics->set(br);
 
-      pgraphics->fill_rect(rectDropIn);
+      pgraphics->fill_rectangle(rectDropIn);
 
       ::draw2d::path_pointer path(e_create);
 
@@ -346,7 +344,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer combo_box::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer combo_box::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       //if (pstyle)
@@ -693,26 +691,21 @@ namespace user
    }
 
 
-   void combo_box::_001OnSetFocus(::message::message * pmessage)
+   void combo_box::on_set_keyboard_focus()
    {
 
    }
 
 
-   void combo_box::_001OnKillFocus(::message::message * pmessage)
+   void combo_box::on_kill_keyboard_focus()
    {
 
-      __pointer(::message::kill_focus) pkillfocus(pmessage);
+      //__pointer(::message::kill_keyboard_focus) pkillkeyboardfocus(pmessage);
 
       if (m_plist != nullptr)
       {
 
-         if (m_plist->get_oswindow() != pkillfocus->m_oswindowNew)
-         {
-
-            m_plist->post_message(e_message_close);
-
-         }
+         m_plist->post_message(e_message_close);
 
       }
 
@@ -803,7 +796,7 @@ namespace user
 
          set_keyboard_focus();
 
-         get_wnd()->SetActiveWindow();
+         set_active_window();
 
       }
 
@@ -912,7 +905,7 @@ namespace user
       }
 
 
-      /*      ::draw2d::font_pointer fontxyz(e_create);
+      /*      ::write_text::font_pointer fontxyz(e_create);
 
             ::rectangle_i32 rectClient;
 
@@ -987,61 +980,61 @@ namespace user
    //}
 
 
-#ifdef WINDOWS_DESKTOP
-   //Derived class is responsible for implementing these handlers
-   //for owner/self draw controls (except for the optional DeleteItem)
-   void combo_box::DrawItem(LPDRAWITEMSTRUCT)
-   { ASSERT(false); }
-   void combo_box::MeasureItem(LPMEASUREITEMSTRUCT)
-   { ASSERT(false); }
-   i32 combo_box::CompareItem(LPCOMPAREITEMSTRUCT)
-   { ASSERT(false); return 0; }
-   void combo_box::DeleteItem(LPDELETEITEMSTRUCT)
-   { /* default to nothing */ }
-#endif
+//#ifdef WINDOWS_DESKTOP
+//   //Derived class is responsible for implementing these handlers
+//   //for owner/self draw controls (except for the optional DeleteItem)
+//   void combo_box::DrawItem(LPDRAWITEMSTRUCT)
+//   { ASSERT(false); }
+//   void combo_box::MeasureItem(LPMEASUREITEMSTRUCT)
+//   { ASSERT(false); }
+//   i32 combo_box::CompareItem(LPCOMPAREITEMSTRUCT)
+//   { ASSERT(false); return 0; }
+//   void combo_box::DeleteItem(LPDELETEITEMSTRUCT)
+//   { /* default to nothing */ }
+//#endif
 
-   bool combo_box::OnChildNotify(::message::base * pbase)
-   {
-
-#ifdef WINDOWS_DESKTOP
-      switch (pbase->m_id)
-      {
-      case WM_DRAWITEM:
-#ifdef WINDOWSEX
-         DrawItem((LPDRAWITEMSTRUCT)pbase->m_lparam);
-#else
-         __throw(todo());
-#endif
-         break;
-      case e_message_measure_item:
-#ifdef WINDOWSEX
-         MeasureItem((LPMEASUREITEMSTRUCT)pbase->m_lparam);
-#else
-         __throw(todo());
-#endif
-         break;
-      case WM_COMPAREITEM:
-#ifdef WINODWSEX
-         *pResult = CompareItem((LPCOMPAREITEMSTRUCT)pbase->m_lparam);
-#else
-         __throw(todo());
-#endif
-         break;
-      case WM_DELETEITEM:
-#ifdef WINODWSEX
-         DeleteItem((LPDELETEITEMSTRUCT)pbase->m_lparam);
-#else
-         __throw(todo());
-#endif
-         break;
-      default:
-         return ::user::interaction::OnChildNotify(pbase);
-      }
-#endif
-
-      return true;
-   }
-
+//   bool combo_box::OnChildNotify(::user::message * pusermessage)
+//   {
+//
+//#ifdef WINDOWS_DESKTOP
+//      switch (pusermessage->m_id)
+//      {
+//      case WM_DRAWITEM:
+//#ifdef WINDOWSEX
+//         DrawItem((LPDRAWITEMSTRUCT)pusermessage->m_lparam);
+//#else
+//         __throw(todo());
+//#endif
+//         break;
+//      case e_message_measure_item:
+//#ifdef WINDOWSEX
+//         MeasureItem((LPMEASUREITEMSTRUCT)pusermessage->m_lparam);
+//#else
+//         __throw(todo());
+//#endif
+//         break;
+//      case WM_COMPAREITEM:
+//#ifdef WINODWSEX
+//         *pResult = CompareItem((LPCOMPAREITEMSTRUCT)pusermessage->m_lparam);
+//#else
+//         __throw(todo());
+//#endif
+//         break;
+//      case WM_DELETEITEM:
+//#ifdef WINODWSEX
+//         DeleteItem((LPDELETEITEMSTRUCT)pusermessage->m_lparam);
+//#else
+//         __throw(todo());
+//#endif
+//         break;
+//      default:
+//         return ::user::interaction::OnChildNotify(pusermessage);
+//      }
+//#endif
+//
+//      return true;
+//   }
+//
 
    void combo_box::GetLBText(index nIndex, string & rString)
    {

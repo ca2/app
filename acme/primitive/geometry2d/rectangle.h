@@ -60,7 +60,7 @@ public:
 
 
    POINT_TYPE random_point() {  return POINT_TYPE(__random(this->left, this->right), __random(this->top, this->bottom)); }
-   POINT_TYPE random_point(double dRate) { ::rectangle_i32 rectangle(this); rectangle.rate(dRate); return rectangle.random_point(); }
+   POINT_TYPE random_point(double dRate) { auto rectangle= *this; rectangle.rate(dRate); return rectangle.random_point(); }
 
 
    template < typename RECT_TYPE >
@@ -97,8 +97,8 @@ public:
  inline POINT_TYPE top_right() const { return POINT_TYPE(this->right, this->top); }
  inline POINT_TYPE bottom_left() const { return POINT_TYPE(this->left, this->bottom); }
 
-// void assign(const rect_type& rect_type, e_orientation eorientation) noexcept;
- //void assign_normal(const rect_type& rect_type, e_orientation eorientation) noexcept;
+// void assign(const rect_type& rect_type, enum_orientation eorientation) noexcept;
+ //void assign_normal(const rect_type& rect_type, enum_orientation eorientation) noexcept;
 
  UNIT_TYPE minimum_dimension() const noexcept { return ::min(width(), height()); }
  UNIT_TYPE maximum_dimension() const noexcept { return ::max(width(), height()); }
@@ -1052,17 +1052,17 @@ public:
  }
 
 
- inline void assign(const rect_type & rectangle, e_orientation eorientation) noexcept
+ inline void assign(const rect_type & rectangle, enum_orientation eorientation) noexcept
  {
 
-    if (eorientation == orientation_horizontal)
+    if (eorientation == e_orientation_horizontal)
     {
 
        this->left = rectangle.left;
        this->right = rectangle.right;
 
     }
-    else if (eorientation == orientation_vertical)
+    else if (eorientation == e_orientation_vertical)
     {
 
        this->top = rectangle.top;
@@ -1073,17 +1073,17 @@ public:
  }
 
 
- inline void assign_normal(const rect_type & rectangle, e_orientation eorientation) noexcept
+ inline void assign_normal(const rect_type & rectangle, enum_orientation eorientation) noexcept
  {
 
-    if (eorientation == orientation_horizontal)
+    if (eorientation == e_orientation_horizontal)
     {
 
        this->top = rectangle.top;
        this->bottom = rectangle.bottom;
 
     }
-    else if (eorientation == orientation_vertical)
+    else if (eorientation == e_orientation_vertical)
     {
 
        this->left = rectangle.left;

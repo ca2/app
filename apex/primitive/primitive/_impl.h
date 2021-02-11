@@ -79,10 +79,10 @@ inline __result(TYPE) object::__create_new()
 
 
 template < typename BASE_TYPE >
-inline ::e_status object::__compose(__composite(BASE_TYPE) & pbase)
+inline ::e_status object::__compose(__composite(BASE_TYPE) & pusermessage)
 {
 
-  if (!pbase)
+  if (!pusermessage)
   {
 
      auto & pfactory = ::factory::get_factory < BASE_TYPE >();
@@ -103,16 +103,16 @@ inline ::e_status object::__compose(__composite(BASE_TYPE) & pbase)
 
      }
 
-     pbase = ptypeNew;
+     pusermessage = ptypeNew;
 
-     if (!pbase)
+     if (!pusermessage)
      {
 
         return error_wrong_type;
 
      }
 
-     auto estatus = pbase->initialize(this);
+     auto estatus = pusermessage->initialize(this);
 
      if (!estatus)
      {
@@ -121,7 +121,7 @@ inline ::e_status object::__compose(__composite(BASE_TYPE) & pbase)
 
      }
 
-     estatus = add_composite(pbase);
+     estatus = add_composite(pusermessage);
 
      if (!estatus)
      {
@@ -138,10 +138,10 @@ inline ::e_status object::__compose(__composite(BASE_TYPE) & pbase)
 
 
 template < typename BASE_TYPE >
-inline ::e_status object::__raw_compose(__composite(BASE_TYPE) & pbase)
+inline ::e_status object::__raw_compose(__composite(BASE_TYPE) & pusermessage)
 {
 
-  if (!pbase)
+  if (!pusermessage)
   {
 
      auto & pfactory = ::factory::get_factory < BASE_TYPE >();
@@ -162,16 +162,16 @@ inline ::e_status object::__raw_compose(__composite(BASE_TYPE) & pbase)
 
      }
 
-     pbase = ptypeNew;
+     pusermessage = ptypeNew;
 
-     if (!pbase)
+     if (!pusermessage)
      {
 
         return error_wrong_type;
 
      }
 
-     auto estatus = add_composite(pbase);
+     auto estatus = add_composite(pusermessage);
 
      if (!estatus)
      {
@@ -188,19 +188,19 @@ inline ::e_status object::__raw_compose(__composite(BASE_TYPE) & pbase)
 
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::e_status object::__compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
+inline ::e_status object::__compose(__composite(BASE_TYPE) & pusermessage, const SOURCE * psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-  pbase = psource;
+  pusermessage = psource;
 
-  if (!pbase)
+  if (!pusermessage)
   {
 
      return error_wrong_type;
 
   }
 
-  auto estatus = pbase->initialize(this);
+  auto estatus = pusermessage->initialize(this);
 
   if (!estatus)
   {
@@ -209,26 +209,26 @@ inline ::e_status object::__compose(__composite(BASE_TYPE) & pbase, const SOURCE
 
   }
 
-  m_estatus = add_composite(pbase OBJ_REF_DBG_COMMA_ARGS);
+  m_estatus = add_composite(pusermessage OBJ_REF_DBG_COMMA_ARGS);
 
   return m_estatus;
 
 }
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::e_status object::__raw_compose(__composite(BASE_TYPE) & pbase, const SOURCE * psource)
+inline ::e_status object::__raw_compose(__composite(BASE_TYPE) & pusermessage, const SOURCE * psource)
 {
 
-  pbase = psource;
+  pusermessage = psource;
 
-  if (!pbase)
+  if (!pusermessage)
   {
 
      return error_wrong_type;
 
   }
 
-  m_estatus = add_composite(pbase);
+  m_estatus = add_composite(pusermessage);
 
   return m_estatus;
 
@@ -236,25 +236,25 @@ inline ::e_status object::__raw_compose(__composite(BASE_TYPE) & pbase, const SO
 
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::e_status object::__compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
+inline ::e_status object::__compose(__composite(BASE_TYPE) & pusermessage, const __pointer(SOURCE) & psource OBJ_REF_DBG_COMMA_PARAMS_DEF)
 {
 
-  return __compose(pbase, psource.get() OBJ_REF_DBG_COMMA_ARGS);
+  return __compose(pusermessage, psource.get() OBJ_REF_DBG_COMMA_ARGS);
 
 }
 
 
 template < typename BASE_TYPE, typename SOURCE >
-inline ::e_status object::__raw_compose(__composite(BASE_TYPE) & pbase, const __pointer(SOURCE) & psource)
+inline ::e_status object::__raw_compose(__composite(BASE_TYPE) & pusermessage, const __pointer(SOURCE) & psource)
 {
 
-  return __raw_compose(pbase, psource.get());
+  return __raw_compose(pusermessage, psource.get());
 
 }
 
 
 template < typename BASE_TYPE >
-inline ::e_status object::__id_compose(__composite(BASE_TYPE) & pbase, const ::id & id)
+inline ::e_status object::__id_compose(__composite(BASE_TYPE) & pusermessage, const ::id & id)
 {
 
   auto & pfactory = ::factory::get_factory(id);
@@ -275,16 +275,16 @@ inline ::e_status object::__id_compose(__composite(BASE_TYPE) & pbase, const ::i
 
   }
 
-  pbase = ptypeNew;
+  pusermessage = ptypeNew;
 
-  if (!pbase)
+  if (!pusermessage)
   {
 
      return ::error_wrong_type;
 
   }
 
-  auto estatus = pbase->initialize(this);
+  auto estatus = pusermessage->initialize(this);
 
   if (!estatus)
   {
@@ -293,7 +293,7 @@ inline ::e_status object::__id_compose(__composite(BASE_TYPE) & pbase, const ::i
 
   }
 
-  estatus = add_composite(pbase);
+  estatus = add_composite(pusermessage);
 
   if (!estatus)
   {
@@ -505,7 +505,7 @@ inline ::e_status object::release_reference(__pointer(SOURCE) & psource OBJ_REF_
 }
 
 
-CLASS_DECL_APEX void object_on_add_composite(const matter * pbase);
+CLASS_DECL_APEX void object_on_add_composite(const matter * pusermessage);
 
 
 template < typename BASE_TYPE >
@@ -1321,9 +1321,9 @@ inline ::count fork_count_end(::object* pobject, ::count iCount, PRED pred, inde
   for (index iOrder = 0; iOrder < iScan; iOrder++)
   {
 
-     __pointer(pred_holder_base) pbase = __new(forking_count_pred < PRED > (pobject, iOrder, iOrder + iStart, iScan, iCount, pred));
+     __pointer(pred_holder_base) pusermessage = __new(forking_count_pred < PRED > (pobject, iOrder, iOrder + iStart, iScan, iCount, pred));
 
-     if (!pgroup->add_pred(pbase))
+     if (!pgroup->add_pred(pusermessage))
      {
 
         return -1;
@@ -1360,10 +1360,10 @@ inline ::count fork_count_end(::object* pobject, ::count iCount, PRED pred, inde
 
 
 template < typename TYPE >
-inline ::e_status context_object::__construct_new(__pointer(TYPE)& pbase)
+inline ::e_status context_object::__construct_new(__pointer(TYPE)& pusermessage)
 {
 
-  ::e_status estatus = ::__construct_new(pbase);
+  ::e_status estatus = ::__construct_new(pusermessage);
 
   if (!estatus)
   {
@@ -1372,7 +1372,7 @@ inline ::e_status context_object::__construct_new(__pointer(TYPE)& pbase)
 
   }
 
-  estatus = pbase->initialize(get_context_object());
+  estatus = pusermessage->initialize(get_context_object());
 
   if (!estatus)
   {
@@ -1442,7 +1442,7 @@ inline ::e_status context_object::__construct_new(__pointer(TYPE)& pbase)
 
 
 
-inline ::e_status object::defer_start(::thread_pointer& pthread, const ::promise::routine & routine)
+inline ::e_status object::defer_fork(::thread_pointer& pthread, const ::promise::routine & routine)
 {
 
    auto estatus = __defer_construct(pthread);

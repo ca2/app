@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "axis/user/_user.h"
-#endif
 
 
 namespace user
@@ -223,7 +221,7 @@ namespace user
       rect.deflate(1,1);
       pgraphics->draw_3drect(rect,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
       rect.deflate(1,1);
-      pgraphics->fill_rect(rect,argb(bAlpha1,140,108,120));
+      pgraphics->fill_rectangle(rect,argb(bAlpha1,140,108,120));
       //if(m_bSlide)
       //{
       //   pgraphics->move_to(rect.center());

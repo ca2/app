@@ -2041,7 +2041,7 @@ bool imaging::clip_color_blend(::draw2d::graphics * pgraphics, const rectangle_i
 bool imaging::clip_color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & point,const ::size_i32 & size,color32_t cr,byte bA)
 {
 
-   pgraphics->fill_rect(rectangle_i32(size), argb(bA,colorref_get_r_value(cr),colorref_get_g_value(cr),colorref_get_b_value(cr)));
+   pgraphics->fill_rectangle(rectangle_i32(size), argb(bA,colorref_get_r_value(cr),colorref_get_g_value(cr),colorref_get_b_value(cr)));
 
    return true;
 
@@ -2084,7 +2084,7 @@ bool imaging::color_blend(::draw2d::graphics * pgraphics,const ::point_i32 & poi
 
    pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-   pgraphics->fill_rect(rectangle_i32(point, size), (cr & 0x00ffffff) | (bA << 24));
+   pgraphics->fill_rectangle(rectangle_i32(point, size), (cr & 0x00ffffff) | (bA << 24));
 
    return true;
 
@@ -2150,7 +2150,7 @@ bool imaging::CreateBitmap(::draw2d::graphics * pgraphics, ::draw2d::graphics * 
    if(bCreate)
    {
 
-      pgraphics->fill_rect(rectangle_i32(0,0,cxout,cyout), 0);
+      pgraphics->fill_rectangle(rectangle_i32(0,0,cxout,cyout), 0);
 
    }
 
@@ -2220,7 +2220,7 @@ bool imaging::CreateBitmap(::draw2d::graphics *pgraphics,::draw2d::bitmap * pitm
 
       ::color::color color(255, 196, 255);
 
-      pgraphics->fill_rect(rectangle_i32(0,0,cxout,cyout), color);
+      pgraphics->fill_rectangle(rectangle_i32(0,0,cxout,cyout), color);
 
    }
 
@@ -4880,7 +4880,7 @@ color32_t cr)
 
    }
 
-   if (!System.draw2d().channel_spread__32CC(
+   if (!System.draw2d()->channel_spread__32CC(
          pimageDst,
          pimageSrc,
          iChannel,
@@ -5057,9 +5057,9 @@ bool imaging::spread__32CC(::image * pimageDst, ::image * pimageSrc,i32 iRadius,
 
 
 
-   sync_lock sl(System.draw2d().mutex());
+   sync_lock sl(System.draw2d()->mutex());
 
-   auto & pmemory = System.draw2d().m_alpha_spread__32CC_filterMap[iRadius];
+   auto & pmemory = System.draw2d()->m_alpha_spread__32CC_filterMap[iRadius];
 
    pmemory.defer_create_new();
 
@@ -5517,7 +5517,7 @@ breakFilter2:
 //   y2 = yDest + iSize;
 //   for(i32 y = 0; y < cyDest; y++)
 //   {
-//   pdcDst->fill_rect(x1, y1, x2, y2, imageB.get_graphics()->GetPixel(x, y));
+//   pdcDst->fill_rectangle(x1, y1, x2, y2, imageB.get_graphics()->GetPixel(x, y));
 //   y1 += iSize;
 //   y2 += iSize;
 //   }

@@ -84,7 +84,7 @@ namespace apex
 
 
       // apex commented
-      //::draw2d::font_enum_item_array                        m_fontenumitema;
+      //::write_text::font_enum_item_array                        m_fontenumitema;
 
       //index                                               m_iEdge;
 
@@ -271,7 +271,7 @@ namespace apex
 
       virtual bool open_by_file_extension(::create * pcc);
 
-      virtual color32_t get_default_color(u64 u);
+      virtual ::color::color get_default_color(u64 u);
 
       virtual void frame_pre_translate_message(::message::message * pmessage);
 
@@ -402,7 +402,7 @@ namespace apex
 
       void _001OnFileNew();
 
-      //virtual void route_command_message(::user::command * pcommand) override;
+      //virtual void route_command_message(::message::command * pcommand) override;
 
       //virtual ::user::document* userex_on_request(::create* pcreate);
 
@@ -421,7 +421,7 @@ namespace apex
       //virtual void on_app_request_bergedge_callback(::layered * pobjectContext);
 
       // apex commented
-      //virtual ::draw2d::font_list* get_single_column_font_list();
+      //virtual ::write_text::font_list* get_single_column_font_list();
 
       //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::patha& patha);
 

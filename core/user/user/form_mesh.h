@@ -52,7 +52,7 @@ namespace user
 
       virtual void _001DrawSubItem(draw_mesh_item * pdrawitem) override;
 
-      void _000OnMouse(::message::mouse * pmouse) override;
+      //void _000OnMouse(::message::mouse * pmouse) override;
 
 
       virtual bool _001HitTest_(const ::point_i32 & point, index&iItem, index&iSubItem) override;
@@ -89,7 +89,7 @@ namespace user
       DECL_GEN_SIGNAL(_001OnHScroll);
       DECL_GEN_SIGNAL(_001OnKeyDown);
 
-      virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id,LRESULT & iResult);
+      virtual bool _001OnMouseActivate(::user::interaction_impl * pDesktopWnd,::u32 nHitTest,const ::id & id,lresult & iResult);
 
 
       virtual void install_message_routing(::channel * pchannel) override;

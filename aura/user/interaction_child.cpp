@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 #include "apex/platform/app_core.h"
 
 
@@ -296,24 +294,24 @@ namespace user
    }
 
 
-   void interaction_child::CalcWindowRect(RECTANGLE_I32 * pClientRect, ::u32 nAdjustType)
+   //void interaction_child::CalcWindowRect(RECTANGLE_I32 * pClientRect, ::u32 nAdjustType)
 
-   {
-      UNREFERENCED_PARAMETER(pClientRect);
+   //{
+   //   UNREFERENCED_PARAMETER(pClientRect);
 
-      UNREFERENCED_PARAMETER(nAdjustType);
-      //u32 dwExStyle = GetExStyle();
-      //if (nAdjustType == 0)
-      //   dwExStyle &= ~WS_EX_CLIENTEDGE;
-      //::AdjustWindowRectEx(pClientRect, GetStyle(), false, dwExStyle);
+   //   UNREFERENCED_PARAMETER(nAdjustType);
+   //   //u32 dwExStyle = GetExStyle();
+   //   //if (nAdjustType == 0)
+   //   //   dwExStyle &= ~WS_EX_CLIENTEDGE;
+   //   //::AdjustWindowRectEx(pClientRect, GetStyle(), false, dwExStyle);
 
-   }
-
-
+   //}
 
 
 
-   //bool interaction_child::has_focus() const
+
+
+   //bool interaction_child::has_keyboard_focus() const
    //{
 
    //   if (::is_set(pinteraction) || pinteraction != m_puserinteraction)
@@ -353,10 +351,10 @@ namespace user
    //}
 
 
-   //bool interaction_child::has_focus()
+   //bool interaction_child::has_keyboard_focus()
    //{
 
-   //   return ::user::primitive_impl::has_focus();
+   //   return ::user::primitive_impl::has_keyboard_focus();
 
    //}
 
@@ -410,19 +408,19 @@ namespace user
    }
 
 
-   void interaction_child::message_handler(::message::base * pbase)
+   void interaction_child::message_handler(::message::message * pmessage)
    {
 
       ::u32 message;
 
-      message = pbase->m_id.umessage();
+      message = pmessage->m_id.umessage();
 
       if (m_puserinteraction != nullptr)
       {
 
-         m_puserinteraction->GuieProc(pbase);
+         m_puserinteraction->GuieProc(pmessage);
 
-         if (pbase->m_bRet)
+         if (pmessage->m_bRet)
          {
 
             return;
@@ -434,7 +432,7 @@ namespace user
       if (message == e_message_event)
       {
 
-         ::user::control_event * pevent = pbase->m_lparam.cast < ::user::control_event >();
+         ::user::control_event * pevent = pmessage->m_lparam.cast < ::user::control_event >();
 
          m_puserinteraction->on_control_event(pevent);
 
@@ -445,13 +443,13 @@ namespace user
       if (::is_set(m_puserinteraction))
       {
 
-         m_puserinteraction->route_message(pbase);
+         m_puserinteraction->route_message(pmessage);
 
       }
       else
       {
 
-         route_message(pbase);
+         route_message(pmessage);
 
       }
 

@@ -218,19 +218,6 @@ namespace draw2d
    };
 
 
-   enum e_text_rendering_hint
-   {
-
-      text_rendering_hint_undefined,
-      text_rendering_hint_none,
-      text_rendering_hint_anti_alias,
-      text_rendering_hint_anti_alias_grid_fit,
-      text_rendering_hint_single_bit_per_pixel,
-      text_rendering_hint_single_bit_per_pixel_grid_fit,
-      text_rendering_hint_clear_type_grid_fit
-
-   };
-
    enum enum_pen
    {
 
@@ -276,7 +263,25 @@ namespace draw2d
 } // namespace draw2d
 
 
+namespace write_text
+{
 
+
+   enum enum_rendering
+   {
+
+      e_rendering_undefined,
+      e_rendering_none,
+      e_rendering_anti_alias,
+      e_rendering_anti_alias_grid_fit,
+      e_rendering_single_bit_per_pixel,
+      e_rendering_single_bit_per_pixel_grid_fit,
+      e_rendering_clear_type_grid_fit
+
+   };
+
+
+} // namespace write_text
 
 
 

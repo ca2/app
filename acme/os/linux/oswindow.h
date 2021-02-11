@@ -286,7 +286,7 @@ public:
    void remove_all()
    {
 
-      for(auto point_i32 : *this)
+      for(auto point : *this)
       {
 
          delete point_i32;

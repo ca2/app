@@ -452,7 +452,7 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char
 //
 //   }
 //
-//   CGRect rectangle_i32 = {{0,0},{(CGFloat)cx,(CGFloat)cy}};
+//   CGRect rectangle = {{0,0},{(CGFloat)cx,(CGFloat)cy}};
 //
 //   CGContextDrawImage(cgctx, rectangle, inImage);
 //
@@ -1351,7 +1351,7 @@ namespace draw2d
 {
 
 
-   void draw2d::enum_draw2d_fonts(::draw2d::font_enum_item_array& itema)
+   void draw2d::enum_draw2d_fonts(::write_text::font_enum_item_array& itema)
    {
 
 

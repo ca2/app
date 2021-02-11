@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "axis/user/_user.h"
-#endif
 
 
 namespace user
@@ -85,7 +83,7 @@ namespace user
          //   if(m_iHover == 0 || psession->m_puiLastLButtonDown == this)
          //   {
 
-         //      pgraphics->fill_rect(rectClient,argb(255,127,127,127));
+         //      pgraphics->fill_rectangle(rectClient,argb(255,127,127,127));
 
          //      pgraphics->set_text_color(argb(255,0,100,255));
 
@@ -93,7 +91,7 @@ namespace user
          //   else
          //   {
 
-         //      pgraphics->fill_rect(rectClient,argb(255,127,127,127));
+         //      pgraphics->fill_rectangle(rectClient,argb(255,127,127,127));
 
          //      pgraphics->set_text_color(argb(255,0,0,0));
 
@@ -105,7 +103,7 @@ namespace user
             if (!is_window_enabled())
             {
 
-               pgraphics->fill_rect(rectClient, argb(255, 192, 192, 192));
+               pgraphics->fill_rectangle(rectClient, argb(255, 192, 192, 192));
 
                pgraphics->set_text_color(argb(255, 160, 160, 160));
 
@@ -113,7 +111,7 @@ namespace user
             else if (should_hover() && (m_itemHover.is_set() || psession->m_puiLastLButtonDown == this))
             {
 
-               pgraphics->fill_rect(rectClient, argb(255, 200, 200, 230));
+               pgraphics->fill_rectangle(rectClient, argb(255, 200, 200, 230));
 
                pgraphics->set_text_color(argb(255, 80, 80, 180));
 
@@ -125,7 +123,7 @@ namespace user
 
                //rectClient.deflate(1,1);
 
-               pgraphics->fill_rect(rectClient, argb(255, 255, 255, 255));
+               pgraphics->fill_rectangle(rectClient, argb(255, 255, 255, 255));
 
                pgraphics->set_text_color(argb(255, 0, 0, 0));
 
@@ -320,7 +318,7 @@ namespace user
    //   //      if (!pmessage->m_bRet)
    //   //      {
 
-   //   //         ::user::command command;
+   //   //         ::message::command command;
 
    //   //         command.m_id = m_id;
 
@@ -395,7 +393,7 @@ namespace user
    //void still::_001OnMouseLeave(::message::message * pmessage)
    //{
 
-   //   //__pointer(::message::base) pbase(pmessage);
+   //   //__pointer(::user::message) pusermessage(pmessage);
    //   //index iOldHover = m_iHover;
    //   //m_iHover = -1;
    //   //if (iOldHover >= 0)
@@ -410,7 +408,7 @@ namespace user
    //   //   }
    //   //}
 
-   //   //pbase->m_bRet = false;
+   //   //pusermessage->m_bRet = false;
 
    //}
 
@@ -452,7 +450,7 @@ namespace user
 
       const ::size & size = pgraphics->GetTextExtent(strText);
 
-      ::draw2d::text_metric tm;
+      ::write_text::text_metric tm;
 
       pgraphics->get_text_metrics(&tm);
 
@@ -604,7 +602,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer still::get_font(style * pstyle, enum_element eelement, estate estate) const
+   ::write_text::font_pointer still::get_font(style * pstyle, enum_element eelement, estate estate) const
    {
 
       //if (pstyle)
@@ -680,7 +678,7 @@ namespace user
       else
       {
 
-         pgraphics->fill_rect(rectClient, crBk);
+         pgraphics->fill_rectangle(rectClient, crBk);
 
       }
 
@@ -708,7 +706,7 @@ namespace user
       if (rect.is_set())
       {
 
-         pgraphics->draw_rect(rectClient, crBorder);
+         pgraphics->draw_rectangle(rectClient, crBorder);
 
       }
 
@@ -821,13 +819,13 @@ namespace user
       //   if (m_iHover == 0 || psession->m_puiLastLButtonDown == this)
       //   {
 
-      //      pgraphics->fill_rect(rectClient, argb(255, 127, 127, 127));
+      //      pgraphics->fill_rectangle(rectClient, argb(255, 127, 127, 127));
 
       //   }
       //   else
       //   {
 
-      //      pgraphics->fill_rect(rectClient, argb(255, 127, 127, 127));
+      //      pgraphics->fill_rectangle(rectClient, argb(255, 127, 127, 127));
 
       //   }
 
@@ -840,7 +838,7 @@ namespace user
          if (!is_window_enabled())
          {
 
-            pgraphics->fill_rect(rectClient, get_color(pstyle, e_element_background, e_state_disabled));
+            pgraphics->fill_rectangle(rectClient, get_color(pstyle, e_element_background, e_state_disabled));
 
          }
          else if (m_itemHover.is_set() || is_left_button_pressed())
@@ -850,13 +848,13 @@ namespace user
 
             //rectClient.deflate(1,1);
 
-            pgraphics->fill_rect(rectClient, get_color(pstyle, e_element_background, e_state_pressed));
+            pgraphics->fill_rectangle(rectClient, get_color(pstyle, e_element_background, e_state_pressed));
 
          }
          else
          {
 
-            pgraphics->fill_rect(rectClient, get_color(pstyle, e_element_background));
+            pgraphics->fill_rectangle(rectClient, get_color(pstyle, e_element_background));
 
          }
 

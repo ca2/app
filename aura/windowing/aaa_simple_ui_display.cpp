@@ -160,7 +160,9 @@ namespace windowing
 //                           &m_colorBorderPress);
 //
 //      }
-//      else if (::user::is_app_dark_mode())
+//      else auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
 //      {
 //
 //         XftColorAllocName(pdisplay, m_pvisual, m_colormap, "#555555", &m_colorBack);

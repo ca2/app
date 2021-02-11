@@ -29,6 +29,16 @@ namespace apex
    }
 
 
+   ::e_status node::register_dll(const ::file::path & pathDll)
+   {
+
+      __throw(interface_only_exception());
+
+      return error_interface_only;
+
+   }
+
+
 } // namespace apex
 
 

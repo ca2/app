@@ -452,7 +452,7 @@ bool mm_get_file_image(unsigned int * pcr, int cx, int cy, int iScan, const char
 //
 //   }
 //
-//   CGRect rectangle_i32 = {{0,0},{(CGFloat)cx,(CGFloat)cy}};
+//   CGRect rectangle = {{0,0},{(CGFloat)cx,(CGFloat)cy}};
 //
 //   CGContextDrawImage(cgctx, rectangle, inImage);
 //

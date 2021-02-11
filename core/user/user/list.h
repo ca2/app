@@ -53,7 +53,7 @@ namespace user
 
 
       virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, index iItem, index iSubItem) override;
-      virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::draw2d::font * pfont, index iItem, index iSubItem);
+      virtual i32 _001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, index iItem, index iSubItem);
       virtual i32 _001CalcItemHeight(::user::style * pstyle, int iBaseHeight);
       virtual ::e_align get_draw_text_align(EView eview);
       virtual ::e_draw_text get_draw_text_flags(EView eview);
@@ -77,8 +77,8 @@ namespace user
       //mesh_data * GetDataInterface();
       using mesh::update_hover;
       virtual bool update_hover(const ::point_i32& point, bool bAvoidRedraw = true) override;
-      //::draw2d::font * _001GetFont();
-      //::draw2d::font * _001GetFontHover();
+      //::write_text::font * _001GetFont();
+      //::write_text::font * _001GetFontHover();
       //::draw2d::pen * _001GetPenFocused();
       //::draw2d::pen * _001GetPenHighlight();
       virtual void PreSubClassWindow() override;

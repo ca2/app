@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/experience/_experience.h"
-#endif
 #include "acme/const/timer.h"
 
 
@@ -63,7 +61,7 @@ namespace experience
 
          _001ScreenToClient(&m_pointDrag);
 
-         SetCapture();
+         set_mouse_capture();
 
          pmouse->m_bRet = true;
 
@@ -90,7 +88,13 @@ namespace experience
 
          m_bDrag = false;
 
-         ReleaseCapture();
+         auto psession = Session;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pwindowing->release_capture();
 
          pmouse->m_bRet = true;
 
@@ -230,7 +234,11 @@ namespace experience
 
          auto psession = Session;
 
-         psession->get_cursor_pos(pointCursor);
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pointCursor = pwindowing->get_cursor_pos();
 
          if (is_window_visible())
          {
@@ -1103,7 +1111,7 @@ namespace experience
    }
 
 
-   bool control_box::get_font(::draw2d::font_pointer & font)
+   bool control_box::get_font(::write_text::font_pointer & font)
    {
 
       font = m_fontMarlett;

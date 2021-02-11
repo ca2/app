@@ -26,7 +26,7 @@ namespace draw2d
 {
 
 
-   void draw2d::enum_draw2d_fonts(::draw2d::font_enum_item_array& itema)
+   void draw2d::enum_draw2d_fonts(::write_text::font_enum_item_array& itema)
    {
 
 

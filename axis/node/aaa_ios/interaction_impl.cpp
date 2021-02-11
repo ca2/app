@@ -1062,7 +1062,7 @@ namespace ios
    //}
 
 
-   void interaction_impl::route_command_message(::user::command * pcommand)
+   void interaction_impl::route_command_message(::message::command * pcommand)
    {
 
       channel::route_command_message(pcommand);
@@ -1087,25 +1087,25 @@ namespace ios
    }
 
 
-   void interaction_impl::message_handler(::message::base * pbase)
+   void interaction_impl::message_handler(::user::message * pusermessage)
    {
 
 
-      if(pbase->m_id == e_message_size || pbase->m_id == e_message_move)
+      if(pusermessage->m_id == e_message_size || pusermessage->m_id == e_message_move)
       {
 
          //         win_update_graphics();
 
       }
 
-      if(pbase->m_id == e_message_key_down || pbase->m_id == e_message_key_up || pbase->m_id == e_message_char)
+      if(pusermessage->m_id == e_message_key_down || pusermessage->m_id == e_message_key_up || pusermessage->m_id == e_message_char)
       {
 
-         __pointer(::message::key) pkey(pbase);
+         __pointer(::message::key) pkey(pusermessage);
 
          psession->translate_os_key_message(pkey);
 
-         if(pbase->m_id == e_message_key_down)
+         if(pusermessage->m_id == e_message_key_down)
          {
 
             try
@@ -1120,7 +1120,7 @@ namespace ios
             }
 
          }
-         else if(pbase->m_id == e_message_key_up)
+         else if(pusermessage->m_id == e_message_key_up)
          {
 
             try
@@ -1141,58 +1141,58 @@ namespace ios
       if(m_puserinteraction != nullptr)
       {
 
-         m_puserinteraction->pre_translate_message(pbase);
+         m_puserinteraction->pre_translate_message(pusermessage);
 
-         if(pbase->m_bRet)
+         if(pusermessage->m_bRet)
             return;
 
       }
 
-      if(pbase->m_id == e_message_timer)
+      if(pusermessage->m_id == e_message_timer)
       {
          //         get_context_application()->get_context_application()->step_timer();
       }
-      else if(pbase->m_id == e_message_left_button_down)
+      else if(pusermessage->m_id == e_message_left_button_down)
       {
          //  g_pwndLastLButtonDown = this;
       }
-      else if(pbase->m_id == e_message_size)
+      else if(pusermessage->m_id == e_message_size)
       {
          m_bUpdateGraphics = true;
       }
-      /*      else if(pbase->m_id == CA2M_BERGEDGE)
+      /*      else if(pusermessage->m_id == CA2M_BERGEDGE)
        {
-       if(pbase->m_wparam == BERGEDGE_GETAPP)
+       if(pusermessage->m_wparam == BERGEDGE_GETAPP)
        {
-       ::application ** ppapp= (::application **) pbase->m_lparam;
+       ::application ** ppapp= (::application **) pusermessage->m_lparam;
        *ppapp = get_context_application();
-       pbase->m_bRet = true;
+       pusermessage->m_bRet = true;
        return;
        }
        }*/
-      pbase->set_lresult(0);
+      pusermessage->set_lresult(0);
 
-      if(pbase->m_id == e_message_mouse_leave)
+      if(pusermessage->m_id == e_message_mouse_leave)
       {
 
-         _000OnMouseLeave(pbase);
+         _000OnMouseLeave(pusermessage);
 
          return;
 
       }
 
-      if(pbase->m_id == e_message_left_button_down ||
-            pbase->m_id == e_message_left_button_up ||
-            pbase->m_id == e_message_middle_button_down ||
-            pbase->m_id == e_message_middle_button_up ||
-            pbase->m_id == e_message_right_button_down ||
-            pbase->m_id == e_message_right_button_up ||
-            pbase->m_id == e_message_mouse_move ||
-            pbase->m_id == e_message_mouse_move)
-         //         pbase->m_id == e_message_mouse_wheel)
+      if(pusermessage->m_id == e_message_left_button_down ||
+            pusermessage->m_id == e_message_left_button_up ||
+            pusermessage->m_id == e_message_middle_button_down ||
+            pusermessage->m_id == e_message_middle_button_up ||
+            pusermessage->m_id == e_message_right_button_down ||
+            pusermessage->m_id == e_message_right_button_up ||
+            pusermessage->m_id == e_message_mouse_move ||
+            pusermessage->m_id == e_message_mouse_move)
+         //         pusermessage->m_id == e_message_mouse_wheel)
       {
 
-         ::message::mouse * pmouse = (::message::mouse *) pbase;
+         ::message::mouse * pmouse = (::message::mouse *) pusermessage;
 
 
          // user presence status activity reporting
@@ -1242,7 +1242,7 @@ namespace ios
             }
          }
 
-         if(pbase->m_id == e_message_mouse_move)
+         if(pusermessage->m_id == e_message_mouse_move)
          {
             // We are at the message handler procedure.
             // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
@@ -1258,16 +1258,16 @@ namespace ios
          return;
 
       }
-      else if(pbase->m_id == e_message_key_down ||
-              pbase->m_id == e_message_key_up ||
-              pbase->m_id == e_message_char)
+      else if(pusermessage->m_id == e_message_key_down ||
+              pusermessage->m_id == e_message_key_up ||
+              pusermessage->m_id == e_message_char)
       {
 
-         ::message::key * pkey = (::message::key *) pbase;
+         ::message::key * pkey = (::message::key *) pusermessage;
 
          //         Application.keyboard().translate_os_key_message(pkey);
          /*
-          if(pbase->m_id == e_message_key_down)
+          if(pusermessage->m_id == e_message_key_down)
           {
           try
           {
@@ -1277,7 +1277,7 @@ namespace ios
           {
           }
           }
-          else if(pbase->m_id == e_message_key_up)
+          else if(pusermessage->m_id == e_message_key_up)
           {
           try
           {
@@ -1295,7 +1295,7 @@ namespace ios
                && puiFocus->get_top_level() != nullptr)
          {
             puiFocus->send(pkey);
-            if(pbase->m_bRet)
+            if(pusermessage->m_bRet)
                return;
          }
          else if(!pkey->m_bRet)
@@ -1303,41 +1303,41 @@ namespace ios
             if(m_puserinteraction != nullptr)
             {
                m_puserinteraction->_000OnKey(pkey);
-               if(pbase->m_bRet)
+               if(pusermessage->m_bRet)
                   return;
             }
          }
          
-         default_window_procedure(pbase);
+         default_window_procedure(pusermessage);
 
          return;
 
       }
 
-      if(pbase->m_id == e_message_event)
+      if(pusermessage->m_id == e_message_event)
       {
 
          if(m_puserinteraction != nullptr)
          {
 
-            m_puserinteraction->on_control_event(pbase->m_lparam.cast < ::user::control_event >());
+            m_puserinteraction->on_control_event(pusermessage->m_lparam.cast < ::user::control_event >());
 
          }
          else
          {
 
-            on_control_event(pbase->m_lparam.cast < ::user::control_event > ());
+            on_control_event(pusermessage->m_lparam.cast < ::user::control_event > ());
 
          }
 
       }
 
-      m_puserinteraction->route_message(pbase);
+      m_puserinteraction->route_message(pusermessage);
 
-      if(pbase->m_bRet)
+      if(pusermessage->m_bRet)
          return;
 
-      default_window_procedure(pbase);
+      default_window_procedure(pusermessage);
 
    }
 
@@ -1717,11 +1717,11 @@ namespace ios
       ASSERT(puiStop == nullptr || puiStop->is_window());
       ASSERT(pmessage != nullptr);
 
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
       // walk from the target user::interaction up to the hWndStop user::interaction checking
       //  if any user::interaction wants to translate this message
 
-      for (__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
+      for (__pointer(::user::interaction) pinteraction = pusermessage->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
       {
 
          pinteraction->pre_translate_message(pmessage);
@@ -2355,16 +2355,16 @@ namespace ios
    void interaction_impl::_001OnPrint(::message::message * pmessage)
    {
       __throw(not_implemented());
-      //      __pointer(::message::base) pbase(pmessage);
+      //      __pointer(::user::message) pusermessage(pmessage);
       //
-      //      if(pbase->m_wparam == nullptr)
+      //      if(pusermessage->m_wparam == nullptr)
       //         return;
       //
       //      ::draw2d::graphics_pointer graphics(get_object());
-      //      WIN_DC(graphics.m_p)->Attach((HDC) pbase->m_wparam);
+      //      WIN_DC(graphics.m_p)->Attach((HDC) pusermessage->m_wparam);
       //      ::rect rectx;
       //      ::draw2d::bitmap * pbitmap = &pgraphics->GetCurrentBitmap();
-      //      ::GetCurrentObject((HDC) pbase->m_wparam, OBJ_BITMAP);
+      //      ::GetCurrentObject((HDC) pusermessage->m_wparam, OBJ_BITMAP);
       //      //      ::u32 dw = ::get_last_error();
       //      ::size size = pbitmap->get_size();
       //      rectx.left = 0;
@@ -2421,7 +2421,7 @@ namespace ios
       //      pgraphics->FillSolidRect(rectx, rgb(255, 255, 255));
       //      WIN_DC(graphics.m_p)->Detach();
       //      pmessage->m_bRet = true;
-      //      pbase->set_lresult(0);
+      //      pusermessage->set_lresult(0);
    }
 
 
@@ -2558,7 +2558,7 @@ namespace ios
    {
       UNREFERENCED_PARAMETER(pTarget);
       UNREFERENCED_PARAMETER(bDisableIfNoHndler);
-      //::user::command state(get_object());
+      //::message::command state(get_object());
       //user::interaction wndTemp;       // very temporary user::interaction just for CmdUI update
 
    }
@@ -3019,7 +3019,7 @@ namespace ios
 //
 //      return ::user::interaction_impl::send_message(message, wparam, lparam);
 //
-//      //      ::pointer < ::message::base > spbase;
+//      //      ::pointer < ::user::message > spbase;
 //
 //      //    spbase = get_base(message, wparam, lparam);
 //
@@ -3113,13 +3113,13 @@ namespace ios
 
    /*
 
-    void interaction_impl::SetFont(::draw2d::font* pfont, bool bRedraw)
+    void interaction_impl::SetFont(::write_text::font* pfont, bool bRedraw)
     {
     UNREFERENCED_PARAMETER(bRedraw);
-    ASSERT(::is_window(get_handle())); m_pfont = new ::draw2d::font(*pfont);
+    ASSERT(::is_window(get_handle())); m_pfont = new ::write_text::font(*pfont);
     }
 
-    ::draw2d::font* interaction_impl::GetFont()
+    ::write_text::font* interaction_impl::GetFont()
     {
     ASSERT(::is_window(get_handle()));
     return m_pfont;
@@ -4271,7 +4271,7 @@ namespace ios
 
    void interaction_impl::_001OnSetCursor(::message::message * pmessage)
    {
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
       if(psession->get_cursor() != nullptr
             && psession->get_cursor()->m_ecursor != cursor_system)
       {
@@ -4279,8 +4279,8 @@ namespace ios
          __throw(not_implemented());
          //         ::SetCursor(nullptr);
       }
-      pbase->set_lresult(1);
-      pbase->m_bRet = true;
+      pusermessage->set_lresult(1);
+      pusermessage->m_bRet = true;
       //(bool)Default();
    }
    void interaction_impl::OnShowWindow(bool, ::u32)
@@ -5136,7 +5136,7 @@ namespace ios
    bool interaction_impl::round_window_key_down(::user::enum_key ekey)
    {
 
-      __pointer(::message::base) spbase;
+      __pointer(::user::message) spbase;
 
       auto pkey  = __new(::message::key());
 
@@ -5156,7 +5156,7 @@ namespace ios
    bool interaction_impl::round_window_key_up(::user::enum_key ekey)
    {
 
-      __pointer(::message::base) spbase;
+      __pointer(::user::message) spbase;
 
       auto pkey  = __new(::message::key());
 
@@ -5271,7 +5271,7 @@ namespace ios
       else
       {
 
-         __pointer(::message::base) spbase;
+         __pointer(::user::message) spbase;
 
          auto pkey  = __new(::message::key());
 
@@ -5473,22 +5473,22 @@ namespace ios
    }
 
 
-   void interaction_impl::queue_message_handler(::message::base * pbaseParam)
+   void interaction_impl::queue_message_handler(::user::message * pbaseParam)
    {
 
       defer_create_thread(this);
       
-      __pointer(::message::base) pbase = pbaseParam;
+      __pointer(::user::message) pusermessage = pbaseParam;
 
-      post(pbase);
+      post(pusermessage);
 
    }
 
 
-   void interaction_impl::on_host_message_handler(::message::base * pbase)
+   void interaction_impl::on_host_message_handler(::user::message * pusermessage)
    {
 
-      m_puserinteraction->message_handler(pbase);
+      m_puserinteraction->message_handler(pusermessage);
 
    }
 
@@ -5496,7 +5496,7 @@ namespace ios
    void interaction_impl::round_window_mouse_down(double x, double y)
    {
 
-      __pointer(::message::base) spbase;
+      __pointer(::user::message) spbase;
 
       if(!is_active())
       {
@@ -5557,7 +5557,7 @@ namespace ios
    void interaction_impl::round_window_mouse_up(double x, double y)
    {
 
-      __pointer(::message::base) spbase;
+      __pointer(::user::message) spbase;
 
       auto pmouse = __new(::message::mouse());
 
@@ -5577,7 +5577,7 @@ namespace ios
    void interaction_impl::round_window_mouse_moved(double x, double y)
    {
 
-      __pointer(::message::base) spbase;
+      __pointer(::user::message) spbase;
 
       auto pmouse = __new(::message::mouse());
 
@@ -5597,7 +5597,7 @@ namespace ios
    void interaction_impl::round_window_mouse_dragged(double x, double y)
    {
 
-      __pointer(::message::base) spbase;
+      __pointer(::user::message) spbase;
 
       auto pmouse = __new(::message::mouse());
 

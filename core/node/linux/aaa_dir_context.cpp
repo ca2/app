@@ -1,9 +1,7 @@
 #include "framework.h"
 #include "aqua/xml.h"
 #include "acme/const/id.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
-#endif
+#include "base/user/user/_user.h"
 #include "_linux.h"
 #undef USE_MISC
 

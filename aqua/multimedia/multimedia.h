@@ -52,7 +52,7 @@ namespace aqua
 
       virtual void _001OnFranceExit();
 
-      virtual void on_command(::user::command* pcommand);
+      virtual void on_command(::message::command* pcommand);
 
       string_array detect_language(const string& str);
 

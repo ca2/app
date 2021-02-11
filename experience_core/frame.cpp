@@ -101,7 +101,7 @@ namespace experience
 
                auto point = rectClient.top_left();
 
-               point_i32 -= pointInflate;
+               point -= pointInflate;
 
                bool b = pimage2->g()->stretch(::rectangle_i32(pimage1->get_size()), pgraphics, ::rectangle_i32(point, pimage1->get_size()));
 
@@ -560,6 +560,9 @@ namespace experience
             void frame::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
             {
 
+               //return; // abcxxx
+
+
                if (!m_pframewindow->is_frame_experience_enabled())
                {
 
@@ -569,7 +572,7 @@ namespace experience
 
                auto psession = Session;
 
-               pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+               pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
                auto pframewindow = m_pframewindow;
 
@@ -623,8 +626,8 @@ namespace experience
                else if(!pframewindow->layout().is_full_screen() && !m_pframewindow->frame_is_transparent())
                {
 
-                  //pgraphics->fill_rect(m_rectCaptionTextBk, m_colorCaptionTextBk);
-                  pgraphics->fill_rect(m_rectCaption, m_colorCaptionTextBk);
+                  //pgraphics->fill_rectangle(m_rectCaptionTextBk, m_colorCaptionTextBk);
+                  pgraphics->fill_rectangle(m_rectCaption, m_colorCaptionTextBk);
 
                   ::rectangle_i32 rectIcon;
 
@@ -640,7 +643,7 @@ namespace experience
 
                   pframewindow->get_window_text(str);
 
-                  if(pframewindow->is_active())
+                  if(pframewindow->is_active_window())
                   {
 
                      crMoveableBorder = m_colorMoveableBorder;
@@ -667,7 +670,7 @@ namespace experience
 
                   pframewindow->get_window_rect(rectangle);
 
-                  rectangle_i32 -= rectangle.top_left();
+                  rectangle -= rectangle.top_left();
 
                   if(get_element_rect(rectIcon, ElementTopLeftIcon))
                   {

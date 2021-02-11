@@ -1,8 +1,6 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
-#include "core/user/user/shell.h"
+#include "aura/user/shell.h"
 #include "_data.h"
 #include "aura/template/list.h"
 #include "core/user/user/_tree.h"
@@ -474,16 +472,16 @@ namespace filemanager
    void tree::_001OnMainPostMessage(::message::message * pmessage)
    {
       
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
       
-      switch(pbase->m_wparam)
+      switch(pusermessage->m_wparam)
       {
       case MessageMainPostCreateImageListItemRedraw:
       {
 
-         pbase->userinteraction()->set_need_redraw();
+         pusermessage->userinteraction()->set_need_redraw();
 
-         pbase->userinteraction()->KillTimer(123);
+         pusermessage->userinteraction()->KillTimer(123);
 
          /*
          ::rectangle_i32 rectangle;
@@ -500,9 +498,9 @@ namespace filemanager
       break;
       }
 
-      pbase->m_lresult = 0;
+      pusermessage->m_lresult = 0;
 
-      pbase->m_bRet = true;
+      pusermessage->m_bRet = true;
 
    }
 
@@ -533,71 +531,71 @@ namespace filemanager
    }
 
 
-#ifdef WINDOWS_DESKTOP
+//#ifdef WINDOWS_DESKTOP
+//
+//   IShellFolder * tree::_001GetFolder(EFolder efolder)
+//   {
+//      IShellFolder * psf;
+//
+//      if(m_mapFolder.lookup(efolder, psf))
+//      {
+//         return psf;
+//      }
+//      else
+//      {
+//         i32 iCSIDL = MapToCSIDL(efolder);
+//
+//         ASSERT(iCSIDL >= 0);
+//
+//         if(iCSIDL < 0)
+//            return nullptr;
+//
+//         IShellFolder * psfDesktop = nullptr;
+//         HRESULT hr = SHGetDesktopFolder(&psfDesktop);
+//         LPITEMIDLIST pidl;
+//
+//
+//         hr = SHGetSpecialFolderLocation(
+//              nullptr,
+//              iCSIDL,
+//              &pidl);
+//
+//
+//         if(FAILED(hr))
+//            return nullptr;
+//
+//         hr = psfDesktop->BindToObject(
+//              pidl,
+//
+//              nullptr,
+//              IID_IShellFolder,
+//              (void **) &psf);
+//
+//         if(FAILED(hr))
+//            return nullptr;
+//
+//         m_mapFolder.set_at(efolder, psf);
+//
+//         psf->AddRef();
+//         psfDesktop->Release();
+//         return psf;
+//      }
+//
+//   }
 
-   IShellFolder * tree::_001GetFolder(EFolder efolder)
-   {
-      IShellFolder * psf;
-
-      if(m_mapFolder.lookup(efolder, psf))
-      {
-         return psf;
-      }
-      else
-      {
-         i32 iCSIDL = MapToCSIDL(efolder);
-
-         ASSERT(iCSIDL >= 0);
-
-         if(iCSIDL < 0)
-            return nullptr;
-
-         IShellFolder * psfDesktop = nullptr;
-         HRESULT hr = SHGetDesktopFolder(&psfDesktop);
-         LPITEMIDLIST pidl;
+   //i32 tree::MapToCSIDL(EFolder efolder)
+   //{
+   //   switch(efolder)
+   //   {
+   //   case FolderMyComputer:
+   //      return CSIDL_DRIVES;
+   //   default:
+   //      return -1;
+   //   }
+   //}
 
 
-         hr = SHGetSpecialFolderLocation(
-              nullptr,
-              iCSIDL,
-              &pidl);
-
-
-         if(FAILED(hr))
-            return nullptr;
-
-         hr = psfDesktop->BindToObject(
-              pidl,
-
-              nullptr,
-              IID_IShellFolder,
-              (void **) &psf);
-
-         if(FAILED(hr))
-            return nullptr;
-
-         m_mapFolder.set_at(efolder, psf);
-
-         psf->AddRef();
-         psfDesktop->Release();
-         return psf;
-      }
-
-   }
-
-   i32 tree::MapToCSIDL(EFolder efolder)
-   {
-      switch(efolder)
-      {
-      case FolderMyComputer:
-         return CSIDL_DRIVES;
-      default:
-         return -1;
-      }
-   }
-
-
-#endif
+//#endif
 
 
    void tree::_001OnItemExpand(::data::tree_item * pitem, const ::action_context & context)
@@ -719,9 +717,7 @@ namespace filemanager
    void tree::_001OnShellCommand(::message::message * pmessage)
    {
 
-      __pointer(::message::command) pcommand(pmessage);
-
-      m_contextmenu.OnCommand(pcommand->GetId());
+      m_contextmenu.OnCommand(pmessage->GetId());
 
    }
 

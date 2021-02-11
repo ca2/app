@@ -524,7 +524,7 @@
 //}
 //
 //
-//bool contains(const RECTANGLE_I64 * prectangle, point_i64 point_i32)
+//bool contains(const RECTANGLE_I64 * prectangle, point_i64 point)
 //{
 //
 //   return

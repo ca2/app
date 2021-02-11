@@ -1,8 +1,5 @@
 #include "framework.h" 
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/simple_ui/_simple_ui.h"
-#endif
-
 
 namespace simple_ui
 {
@@ -70,7 +67,7 @@ namespace simple_ui
 //   bool interaction::simple_process_system_message(::message::message * pmessage, ::user::enum_event eevent)
 //   {
 //
-//      __pointer(::message::base) pbase(pmessage);
+//      __pointer(::user::message) pusermessage(pmessage);
 //
 //      if (eevent == ::user::e_event_button_down)
 //      {
@@ -94,10 +91,10 @@ namespace simple_ui
 //      if (pmessage->m_bRet)
 //      {
 //
-//         if (pbase != nullptr)
+//         if (pusermessage != nullptr)
 //         {
 //
-//            pbase->set_lresult(1);
+//            pusermessage->set_lresult(1);
 //
 //         }
 //
@@ -259,7 +256,7 @@ namespace simple_ui
 //            if (!pmessage->m_bRet)
 //            {
 //
-//               ::user::command command;
+//               ::message::command command;
 //
 //               command.m_id = m_id;
 //
@@ -352,7 +349,7 @@ namespace simple_ui
 //   void interaction::_001OnMouseLeave(::message::message * pmessage)
 //   {
 //
-//      __pointer(::message::base) pbase(pmessage);
+//      __pointer(::user::message) pusermessage(pmessage);
 //
 //      auto itemOldHover = m_itemHover;
 //
@@ -373,7 +370,7 @@ namespace simple_ui
 //
 //      }
 //
-//      pbase->m_bRet = false;
+//      pusermessage->m_bRet = false;
 //
 //   }
 //
@@ -393,7 +390,7 @@ namespace simple_ui
 //   void interaction::on_hit_test(::user::item & item)
 //   {
 //
-//      auto rectangle_i32 = this->rectangle(::user::e_element_client);
+//      auto rectangle = this->rectangle(::user::e_element_client);
 //
 //      if (!rectangle.contains(point))
 //      {
@@ -417,7 +414,7 @@ namespace simple_ui
 //
 //      }
 //
-//      rectangle_i32 = get_client_rect();
+//      rectangle = get_client_rect();
 //
 //      return true;
 //
@@ -497,15 +494,15 @@ namespace simple_ui
 //
 //      br->CreateLinearGradientBrush(rectangle.top_left(), point_i32(rectangle.left, rectangle.top + iBorderH), crOut, crIn);
 //
-//      pgraphics->fill_rect(::rectangle_i32(rectangle.left, rectangle.top, (i32)rectangle.width(), iBorderH), br);
+//      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left, rectangle.top, (i32)rectangle.width(), iBorderH), br);
 //
 //      br->create_solid(crIn);
 //
-//      pgraphics->fill_rect(::rectangle_i32(rectangle.left, rectangle.top + iBorderH, (i32)rectangle.width(), (i32)rectangle.height() - (iBorderH * 2)), br);
+//      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left, rectangle.top + iBorderH, (i32)rectangle.width(), (i32)rectangle.height() - (iBorderH * 2)), br);
 //
 //      br->CreateLinearGradientBrush(point_i32(rectangle.left, rectangle.bottom - iBorderH), rectangle.bottom_left(), crIn, crOut);
 //
-//      pgraphics->fill_rect(::rectangle_i32(rectangle.left, rectangle.bottom - iBorderH, (i32)rectangle.width(), iBorderH), br);
+//      pgraphics->fill_rectangle(::rectangle_i32(rectangle.left, rectangle.bottom - iBorderH, (i32)rectangle.width(), iBorderH), br);
 //
 //   }
 //
@@ -529,7 +526,7 @@ namespace simple_ui
 //
 //      //pgraphics->set_alpha_mode(::draw2d::alpha_mode_set);
 //
-//      //pgraphics->fill_rect(rectangle,argb(0,0,0,0));
+//      //pgraphics->fill_rectangle(rectangle,argb(0,0,0,0));
 //
 //   }
 //
@@ -695,7 +692,7 @@ namespace simple_ui
 //
 //      get_client_rect(rectWindow);
 //
-//      pgraphics->fill_rect(rectWindow, argb(90, 127, 127, 127));
+//      pgraphics->fill_rectangle(rectWindow, argb(90, 127, 127, 127));
 //
 //   }
 //

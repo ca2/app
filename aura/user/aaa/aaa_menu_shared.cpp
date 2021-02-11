@@ -5,9 +5,7 @@
 //  Created by Camilo Sasuke Tsumanuma on 10/08/20.
 //
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
-#include "aura/user/_user.h"
-#endif
+#include "base/user/user/_user.h"
 #include "menu_shared.h"
 
 
@@ -159,7 +157,7 @@ void menu_shared::on_idle_update()
 
 
 class menu_shared_command :
-   public ::user::command        // class private to this file !
+   public ::message::command        // class private to this file !
 {
 public: // re-implementations only
 

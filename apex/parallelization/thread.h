@@ -50,9 +50,6 @@ public:
    single_lock *                                      m_pslUser;
    static bool                                        s_bAllocReady;
 
-#ifdef __DEBUG
-   char *                                             m_pszDebug;
-#endif
 
    __pointer(manual_reset_event)                      m_pevent;
    __pointer(manual_reset_event)                      m_pevStarted;
@@ -71,7 +68,7 @@ public:
    bool                                               m_bZipIsDir2;
 
    __pointer(file_info)                               m_pfileinfo;
-   __pointer(counter)                                 m_pcounter;
+   __pointer(counter<::i32>)                          m_pcounter;
 
    bool                                               m_bDupHandle;
 
@@ -309,14 +306,15 @@ public:
    virtual bool thread_step();     // low level step
    virtual bool pump_message();     // low level message pump
    virtual bool pump_runnable();
+   using channel::get_message;
    virtual bool get_message();     // low level message pump
    virtual bool raw_pump_message();     // low level message pump
    virtual bool defer_pump_message();     // deferred message pump
-   virtual void process_message(::message::base * pbase);
-   virtual ::e_status process_base_message(::message::base * pbase);
-   virtual void process_thread_message(::message::base * pbase);
+   virtual ::e_status process_message(::message::message * pmessage);
+   ///virtual ::e_status process_base_message(::message::message * pmessage);
+   virtual ::e_status process_thread_message(::message::message * pmessage);
    // apex commented
-   //virtual void process_window_message(::message::base * pbase);
+   //virtual void process_window_message(::user::message * pusermessage);
    virtual ::e_status process_message();     // route message
    virtual ::e_status raw_process_message();     // route message
    // virtual bool on_idle(::i32 lCount); // return true if more idle processing
@@ -404,7 +402,7 @@ public:
 
    //virtual void defer_add_thread_run_wait(sync_array & soa);
 
-   virtual void message_queue_message_handler(::message::base * pmessage);
+   virtual void message_queue_message_handler(::message::message * pmessage);
 
    //DECL_GEN_SIGNAL(_001OnSendThreadMessage);
    //DECL_GEN_SIGNAL(_001OnThreadMessage);
@@ -468,7 +466,7 @@ public:
 
    virtual bool initialize_message_queue();
 
-   virtual void message_handler(::message::base * pbase);
+   virtual void message_handler(::message::message * pmessage);
 
    virtual ::e_status     do_request(::create * pcreate) override;
 

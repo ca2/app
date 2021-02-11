@@ -66,7 +66,7 @@ namespace macos
 
       virtual ::user::interaction * get_wnd() const override;
 
-      virtual void route_command_message(::user::command * pcommand) override;
+      virtual void route_command_message(::message::command * pcommand) override;
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
@@ -166,8 +166,8 @@ namespace macos
       //strsize GetWindowText(char * lpszStringBuf, strsize nMaxCount);
       void get_window_text(string & str) override;
       //strsize GetWindowTextLength();
-//      void SetFont(::draw2d::font* pFont, bool bRedraw = true);
-      //    ::draw2d::font* GetFont();
+//      void SetFont(::write_text::font* pFont, bool bRedraw = true);
+      //    ::write_text::font* GetFont();
 
 
       // oswindow size_i32 and position Functions
@@ -602,7 +602,7 @@ namespace macos
       virtual void default_message_handler(::message::message * pmessage) override;
 
       // for processing oswindows messages
-      virtual void message_handler(::message::base * pbase) override;
+      virtual void message_handler(::user::message * pusermessage) override;
       //virtual bool OnWndMsg(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
       // for handling default processing
@@ -644,7 +644,7 @@ namespace macos
 //      static const ::u32 m_nMsgDragList;
 //      i32 m_nModalResult; // for return values from ::interaction_impl::RunModalLoop
 
-//      ::draw2d::font * m_pfont;
+//      ::write_text::font * m_pfont;
 
       friend class frame_window;
 

@@ -54,12 +54,12 @@ namespace color
    }
 
 
-   color::color::color(byte r, byte g, byte b, byte a)
-   {
+   //color::color::color(byte r, byte g, byte b, byte a)
+   //{
 
-      set(r, g, b, a);
+   //   set(r, g, b, a);
 
-   }
+   //}
 
 
    color::color::color(const hls & hls, byte a)
@@ -527,7 +527,7 @@ namespace color
    u32 color::get_rgba() const
    {
 
-      return m_flags >= 0 ? u32 : 0;
+      return u32;
 
    }
 
@@ -1077,15 +1077,15 @@ namespace color
    }
 
 
-   void color::set(byte r, byte g, byte b, byte a)
-   {
+   //void color::set(byte r, byte g, byte b, byte a)
+   //{
 
-      red      = r;
-      green    = g;
-      blue     = b;
-      alpha    = a;
+   //   red      = r;
+   //   green    = g;
+   //   blue     = b;
+   //   alpha    = a;
 
-   }
+   //}
 
 
    void color::make_black_and_white()
@@ -1099,15 +1099,15 @@ namespace color
    }
 
 
-   void color::set(double r, double g, double b, double a)
-   {
+   //void color::set(double r, double g, double b, double a)
+   //{
 
-      red      = (int)(r * 255.);
-      green    = (int)(g * 255.);
-      blue     = (int)(b * 255.);
-      alpha    = (int)(a * 255.);
+   //   red      = (int)(r * 255.);
+   //   green    = (int)(g * 255.);
+   //   blue     = (int)(b * 255.);
+   //   alpha    = (int)(a * 255.);
 
-   }
+   //}
 
 
 } // namespace color
@@ -1190,4 +1190,82 @@ CLASS_DECL_ACME color32_t opaque_color(enum_color ecolor)
 
 }
 
+
+::payload & assign(::payload & payload, const ::color::color & color32)
+{
+
+   payload["rec"] = color32.red;
+   payload["green"] = color32.green;
+   payload["blue"] = color32.blue;
+   payload["alpha"] = color32.alpha;
+
+   return payload;
+
+}
+
+
+
+void __exchange(::stream & s, ::color::color & color32)
+{
+
+   s.exchange("red", color32.red);
+   s.exchange("green", color32.green);
+   s.exchange("blue", color32.blue);
+   s.exchange("alpha", color32.alpha);
+
+}
+
+
+namespace color
+{
+
+
+   ::color::color & color::operator =(const ::payload & payload)
+   {
+
+      red = payload["red"];
+      green = payload["green"];
+      blue = payload["blue"];
+      alpha = payload["alpha"];
+
+      return *this;
+
+   }
+
+
+   ::color::hls & hls::operator =(const ::payload & payload)
+   {
+
+      m_dH = payload["hue"];
+      m_dL = payload["lightness"];
+      m_dS = payload["saturation"];
+
+      return *this;
+
+   }
+
+
+} // namespace color
+
+
+::payload & assign(::payload & payload, const ::color::hls & hls)
+{
+
+   payload["hue"] = hls.m_dH;
+   payload["lightness"] = hls.m_dL;
+   payload["saturation"] = hls.m_dS;
+
+   return payload;
+
+}
+
+
+void __exchange(::stream & s, ::color::hls & hls)
+{
+
+   s.exchange("hue", hls.m_dH);
+   s.exchange("lightness", hls.m_dL);
+   s.exchange("saturation", hls.m_dS);
+
+}
 

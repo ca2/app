@@ -1,7 +1,5 @@
-﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
+#include "framework.h"
 #include "base/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -74,7 +72,9 @@ namespace user
 
       if(get_view_uie() != nullptr)
       {
-         get_view_uie()->SetFocus();
+
+         get_view_uie()->set_keyboard_focus();
+
       }
 
    }
@@ -164,8 +164,8 @@ namespace user
 
    void tab_view::_001OnMenuMessage(::message::message * pmessage)
    {
-      __pointer(::message::base) pbase(pmessage);
-      if(pbase->m_wparam == 0 && pbase->m_lparam == 0)
+      __pointer(::user::message) pusermessage(pmessage);
+      if(pusermessage->m_wparam == 0 && pusermessage->m_lparam == 0)
       {
          set_cur_tab_by_id(m_pimpactdataOld->m_id);
       }
@@ -277,13 +277,13 @@ namespace user
          if (eposition == e_position_top || eposition == e_position_bottom)
          {
 
-            psplitview->SetSplitOrientation(orientation_horizontal);
+            psplitview->SetSplitOrientation(e_orientation_horizontal);
 
          }
          else
          {
 
-            psplitview->SetSplitOrientation(orientation_vertical);
+            psplitview->SetSplitOrientation(e_orientation_vertical);
 
          }
 
@@ -372,15 +372,17 @@ namespace user
 
       ::rectangle_i32 rectangle;
 
-      rectangle_i32 = pchannel->get_data()->m_rectTabClient;
+      rectangle = pchannel->get_data()->m_rectTabClient;
 
       pchannel->_001ClientToScreen(&rectangle);
 
-      auto pusersystem = __new(::user::system (WS_EX_LAYERED, nullptr, nullptr, 0, rectangle));
+      //auto pusersystem = __new(::user::system (WS_EX_LAYERED, nullptr, nullptr, 0, rectangle));
 
       //m_pdroptargetwindow->create_window_ex(pusersystem);
 
       //m_pdroptargetwindow->create_window_ex(pusersystem);
+
+      m_pdroptargetwindow->m_bTransparent = true;
 
       m_pdroptargetwindow->create_host();
 
@@ -390,7 +392,7 @@ namespace user
 
       m_pdroptargetwindow->display(e_display_normal);
 
-      m_pdroptargetwindow->SetCapture();
+      m_pdroptargetwindow->set_mouse_capture();
 
    }
 
@@ -1001,7 +1003,7 @@ namespace user
    }
 
 
-   void tab_view::route_command_message(::user::command * pcommand)
+   void tab_view::route_command_message(::message::command * pcommand)
    {
 
       if (!handle(pcommand))
@@ -1068,7 +1070,11 @@ namespace user
 
       auto psession = Session;
 
-      auto pointCursor=      psession->get_cursor_pos();
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
 
       _001ScreenToClient(&pointCursor);
 
@@ -1098,9 +1104,9 @@ namespace user
 
          }
 
-         pgraphics->fill_rect(rectangle, crBk);
+         pgraphics->fill_rectangle(rectangle, crBk);
 
-         pgraphics->draw_rect(rectangle, crBorder);
+         pgraphics->draw_rectangle(rectangle, crBorder);
 
       }
 
@@ -1121,9 +1127,15 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      ReleaseCapture();
+      auto psession = Session;
 
-      auto point_i32(pmouse->m_point);
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      pwindowing->release_capture();
+
+      auto point(pmouse->m_point);
 
       _001ScreenToClient(point);
 

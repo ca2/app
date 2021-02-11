@@ -66,16 +66,16 @@ namespace simpledb
 
    void manager::message_queue_message_handler(::message::message * pmessage)
    {
-      __pointer(::message::base) pbase(pmessage);
-      if(pbase->m_id == WM_APP + 13)
+      __pointer(::user::message) pusermessage(pmessage);
+      if(pusermessage->m_id == WM_APP + 13)
       {
          //if(wparam == 0)
            // ((script *) lparam)->Load(false);
          //else if(wparam == 13)
            // ((script *) lparam)->Unload(false);
-         pbase->m_bRet = true;
+         pusermessage->m_bRet = true;
       }
-      else if(pbase->m_id == WM_APP + 14)
+      else if(pusermessage->m_id == WM_APP + 14)
       {
       }
    }

@@ -36,7 +36,7 @@ namespace filemanager
       void FileManagerBrowse(const char * pcwstr, const ::action_context & action_context);
 
 
-      virtual void on_command(::user::command * pcommand) override;
+      virtual void on_command(::message::command * pcommand) override;
 
       virtual void OpenSelectionProperties();
 

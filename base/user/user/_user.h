@@ -413,9 +413,9 @@ typedef struct _AppIndicator AppIndicator;
 #endif
 
 
-#include "notification_area.h"
-#include "notify_icon.h"
-#include "notify_icon_listener.h"
+//#include "notification_area.h"
+//#include "notify_icon.h"
+//#include "notify_icon_listener.h"
 
 
 

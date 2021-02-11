@@ -16,7 +16,7 @@ namespace html
       string               m_strWeight;
       string               m_strSize;
       string               m_strTextDecoration;
-      ::draw2d::font_pointer    m_font;
+      ::write_text::font_pointer    m_font;
 
 
       font();

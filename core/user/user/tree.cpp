@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 #include "_data.h"
 #include "_tree.h"
 #include "acme/const/timer.h"
@@ -209,12 +207,16 @@ namespace user
 
          //pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         //pgraphics->fill_rect(rectClient, m_colorTreeBackground);
+         //pgraphics->fill_rectangle(rectClient, m_colorTreeBackground);
 
 
          auto psession = Session;
 
-         auto pointCursor=      psession->get_cursor_pos();
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         auto pointCursor = pwindowing->get_cursor_pos();
 
          ::u32 dwHoverIn = 384;
          ::u32 dwHoverOut = 1284;
@@ -427,7 +429,7 @@ namespace user
 
          auto rectFill = ::rectangle_f64(data.m_rectClient.left, data.m_rectangle.top, data.m_rectClient.right, data.m_rectangle.bottom);
 
-         data.m_pdc->fill_rect(rectFill, argb(127, 125, 166, 228));
+         data.m_pdc->fill_rectangle(rectFill, argb(127, 125, 166, 228));
 
       }
 
@@ -437,7 +439,7 @@ namespace user
          //if(psession->savings().is_trying_to_save(::e_resource_processing))
          //{
 
-            data.m_pdc->fill_rect(data.m_rectangle, argb(127, 96,96,96));
+            data.m_pdc->fill_rectangle(data.m_rectangle, argb(127, 96,96,96));
 
          //}
          //else
@@ -698,7 +700,7 @@ namespace user
 
       //_001OnRightClick(nFlags, pointCursor);
 
-      auto point_i32(pointCursor);
+      auto point(pointCursor);
 
       __pointer(::data::tree_item) pitem;
 
@@ -1165,7 +1167,13 @@ namespace user
 
       auto psession = Session;
 
-      update_hover(psession->get_cursor_pos());
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
+
+      update_hover(pointCursor);
 
       set_need_redraw();
 
@@ -1264,14 +1272,18 @@ namespace user
 
       auto psession = Session;
 
-      auto point = psession->get_cursor_pos();
+      auto puser = psession->user();
 
-      update_tree_hover(point);
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
+
+      update_tree_hover(pointCursor);
 
    }
 
 
-   void tree::update_tree_hover(point_i32 point_i32)
+   void tree::update_tree_hover(point_i32 point)
    {
 
       _001ScreenToClient(point);
@@ -1488,10 +1500,10 @@ namespace user
 
       g->CreateCompatibleDC(nullptr);
 
-      //::draw2d::font_pointer font(e_create);
+      //::write_text::font_pointer font(e_create);
 
 
-      //font->operator=(*System.draw2d().fonts().GetListCtrlFont());
+      //font->operator=(*System.draw2d()->fonts().GetListCtrlFont());
       //font->set_bold();
       //g->set_font(font);
 

@@ -23,10 +23,10 @@ class draw2d_opengl_enum_fonts
 public:
 
 
-   ::draw2d::font_enum_item_array& m_itema;
+   ::write_text::font_enum_item_array& m_itema;
 
 
-   draw2d_opengl_enum_fonts(::draw2d::font_enum_item_array& itema):
+   draw2d_opengl_enum_fonts(::write_text::font_enum_item_array& itema):
       m_itema(itema)
    {
 
@@ -67,7 +67,7 @@ namespace draw2d_opengl
       m_size.set(0, 0);
       m_hdc = nullptr;
       m_hdcGraphics = nullptr;
-      m_etextrenderinghint = ::draw2d::text_rendering_hint_anti_alias_grid_fit;
+      m_ewritetextrendering = ::write_text::e_rendering_anti_alias_grid_fit;
       m_dFontFactor = 1.0;
 
    }
@@ -395,7 +395,7 @@ namespace draw2d_opengl
 
          //m_pgraphics->SetPageUnit(plusplus::UnitPixel);
 
-         //set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
+         //set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
          return hbitmap;
 
@@ -726,7 +726,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::fill_rect(const ::rectangle_i32 & rectangle, ::draw2d::brush* pbrush)
+   bool graphics::fill_rectangle(const ::rectangle_i32 & rectangle, ::draw2d::brush* pbrush)
    {
 
       glBegin(GL_QUADS);
@@ -1501,9 +1501,9 @@ namespace draw2d_opengl
    bool graphics::rectangle_i32(const ::rectangle_f64 &  rectParam)
    {
 
-      bool bOk1 = fill_rect(rectParam);
+      bool bOk1 = fill_rectangle(rectParam);
 
-      bool bOk2 = draw_rect(rectParam);
+      bool bOk2 = draw_rectangle(rectParam);
 
       //return rectangle_i32(rectParam.left, rectParam.top, rectParam.right, rectParam.bottom);
 
@@ -1512,7 +1512,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::draw_rect(const ::rectangle_f64& rectangle, ::draw2d::pen* ppen)
+   bool graphics::draw_rectangle(const ::rectangle_f64& rectangle, ::draw2d::pen* ppen)
    {
 
       glLineWidth(ppen->m_dWidth);
@@ -1530,20 +1530,20 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::draw_rect(const ::rectangle_f64 & rectangle)
+   bool graphics::draw_rectangle(const ::rectangle_f64 & rectangle)
    {
 
-      draw_rect(rectangle, m_ppen);
+      draw_rectangle(rectangle, m_ppen);
 
       return true;
 
    }
 
 
-   bool graphics::fill_rect(const ::rectangle_f64 & rectangle)
+   bool graphics::fill_rectangle(const ::rectangle_f64 & rectangle)
    {
 
-      return fill_rect(rectangle, m_pbrush);
+      return fill_rectangle(rectangle, m_pbrush);
 
    }
 
@@ -1834,7 +1834,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::get_text_metrics(::draw2d::text_metric * lpMetrics)
+   bool graphics::get_text_metrics(::write_text::text_metric * lpMetrics)
    {
 
       if (!set(m_pfont))
@@ -1908,7 +1908,7 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::get_output_text_metrics(::draw2d::text_metric * lpMetrics)
+   bool graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
    {
 
       // ASSERT(m_hdc != nullptr);
@@ -2304,7 +2304,7 @@ namespace draw2d_opengl
 
    }
 
-   ::draw2d::font_pointer graphics::get_current_font() const
+   ::write_text::font_pointer graphics::get_current_font() const
    {
 
       return m_pfont;
@@ -3098,7 +3098,7 @@ namespace draw2d_opengl
                // find difference between new region and old region
                rgnLast.create_rect(0, 0, 0, 0);
                rgnOutside.SetRectRgn(lpRectLast);
-               rectangle_i32 = *lpRectLast;
+               rectangle = *lpRectLast;
                rectangle.inflate(-sizeLast.cx, -sizeLast.cy);
                rectangle.intersect(rectangle, lpRectLast);
                rgnInside.SetRectRgn(rectangle);
@@ -3142,7 +3142,7 @@ namespace draw2d_opengl
       ::ExtTextOut(m_hdc, 0, 0, ETO_OPAQUE, rectangle, nullptr, 0, nullptr);
    }*/
 
-   /*void graphics::fill_rect(const rectangle_f64 & rectangle, color32_t clr)
+   /*void graphics::fill_rectangle(const rectangle_f64 & rectangle, color32_t clr)
    {
       ::rectangle_i32 rect32;
       __copy(rect32, rectangle);
@@ -3212,7 +3212,7 @@ namespace draw2d_opengl
 
       //   m_pgraphics->SetPageUnit(plusplus::UnitPixel);
 
-      //   set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
+      //   set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
       //   m_hdc = (HDC) hdc;
 
@@ -3527,7 +3527,7 @@ namespace draw2d_opengl
    }
 
 
-   ::draw2d::font* graphics::SelectObject(::draw2d::font* pfont)
+   ::write_text::font* graphics::SelectObject(::write_text::font* pfont)
    {
       /*      HGDIOBJ hOldObj = nullptr;
             if(pFont == nullptr)
@@ -3536,7 +3536,7 @@ namespace draw2d_opengl
                hOldObj = ::SelectObject(m_hdc, pFont->get_os_data());
             if(m_hdc != nullptr)
                hOldObj = ::SelectObject(m_hdc, pFont->get_os_data());
-            return dynamic_cast < ::draw2d::font * > (::draw2d_opengl::object::from_handle(get_context_application(), hOldObj));*/
+            return dynamic_cast < ::write_text::font * > (::draw2d_opengl::object::from_handle(get_context_application(), hOldObj));*/
 
       /*ASSERT(pFont != nullptr);
 
@@ -4397,7 +4397,7 @@ namespace draw2d_opengl
 //         }
 //         else if (nObjType == OBJ_FONT)
 //         {
-//            // play back as graphics::SelectObject(::draw2d::font*)
+//            // play back as graphics::SelectObject(::write_text::font*)
 ////               (dynamic_cast<::draw2d_opengl::graphics * >(pgraphics))->SelectObject(::draw2d_opengl::font::from_handle(pgraphics->get_context_application(), (HFONT)hObject));
 //            __throw(not_implemented());
 //            break;  // don't play the default record
@@ -4482,21 +4482,21 @@ namespace draw2d_opengl
 
       //   /*
 
-      //   switch(m_etextrenderinghint)
+      //   switch(m_ewritetextrendering)
       //   {
-      //   case ::draw2d::text_rendering_hint_anti_alias:
+      //   case ::write_text::e_rendering_anti_alias:
       //      m_pgraphics->SetCompositingMode(plusplus::CompositingModeSourceOver);
       //      m_pgraphics->SetTextRenderingHint(plusplus::TextRenderingHintAntiAlias);
       //      break;
-      //   case ::draw2d::text_rendering_hint_anti_alias_grid_fit:
+      //   case ::write_text::e_rendering_anti_alias_grid_fit:
       //      m_pgraphics->SetCompositingMode(plusplus::CompositingModeSourceOver);
       //      m_pgraphics->SetTextRenderingHint(plusplus::TextRenderingHintAntiAliasGridFit);
       //      break;
-      //   case ::draw2d::text_rendering_hint_single_bit_per_pixel:
+      //   case ::write_text::e_rendering_single_bit_per_pixel:
       //      m_pgraphics->SetCompositingMode(plusplus::CompositingModeSourceOver);
       //      m_pgraphics->SetTextRenderingHint(plusplus::TextRenderingHintSingleBitPerPixel);
       //      break;
-      //   case ::draw2d::text_rendering_hint_clear_type_grid_fit:
+      //   case ::write_text::e_rendering_clear_type_grid_fit:
       //      m_pgraphics->SetCompositingMode(plusplus::CompositingModeSourceOver);
       //      m_pgraphics->SetTextRenderingHint(plusplus::TextRenderingHintClearTypeGridFit);
       //      break;
@@ -4853,7 +4853,7 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::fill_rect(const rectangle_f64& rectangle, color32_t cr)
+   void graphics::fill_rectangle(const rectangle_f64& rectangle, color32_t cr)
    {
 
       try
@@ -5017,7 +5017,7 @@ namespace draw2d_opengl
 
 
 
-   ::e_status graphics::set(::draw2d::font * pfont)
+   ::e_status graphics::set(::write_text::font * pfont)
    {
 
       if (::is_null(pfont))
@@ -5125,10 +5125,10 @@ namespace draw2d_opengl
    }
 
 
-   bool graphics::set_text_rendering_hint(::draw2d::e_text_rendering_hint etextrendering)
+   bool graphics::set_text_rendering_hint(::write_text::enum_rendering etextrendering)
    {
       
-      m_etextrenderinghint = etextrendering;
+      m_ewritetextrendering = etextrendering;
 
       return true;
 
@@ -5150,7 +5150,7 @@ namespace draw2d_opengl
 //   }
 
 
-   //void graphics::fill_rect(const rectangle_f64& rectangle, color32_t cr)
+   //void graphics::fill_rectangle(const rectangle_f64& rectangle, color32_t cr)
    //{
 
 
@@ -5440,7 +5440,7 @@ namespace draw2d_opengl
    }
 
 
-   void graphics::enum_fonts(::draw2d::font_enum_item_array& itema)
+   void graphics::enum_fonts(::write_text::font_enum_item_array& itema)
    {
 
       return;
@@ -5618,7 +5618,7 @@ BOOL CALLBACK draw2d_opengl_EnumFamCallBack(LPLOGFONT lplf,LPNEWTEXTMETRIC lpntm
    else if(FontType & TRUETYPE_FONTTYPE)
    {
 
-      pfonts->m_itema.add(__new(::draw2d::font_enum_item(lplf->lfFaceName)));
+      pfonts->m_itema.add(__new(::write_text::font_enum_item(lplf->lfFaceName)));
 
    }
    else

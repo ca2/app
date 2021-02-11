@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/databaseuser/_databaseuser.h"
-#endif
 
 
 namespace databaseuser

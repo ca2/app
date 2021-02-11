@@ -29,7 +29,7 @@ namespace user
       };
 
 
-      ::draw2d::font_pointer        m_pfont;
+      ::write_text::font_pointer        m_pfont;
 
 
       copydesk();

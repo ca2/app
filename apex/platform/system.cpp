@@ -1235,6 +1235,13 @@ namespace apex
 
       }
 
+      if (m_bWriteText.undefined())
+      {
+
+         m_bWriteText = m_bDraw2d;
+
+      }
+
       if (m_bUser.undefined())
       {
 
@@ -3463,41 +3470,6 @@ namespace apex
    }
 
 
-   bool system::on_application_menu_action(const char * pszCommand)
-   {
-
-      sync_lock sl(mutex());
-
-      auto psession = Session;
-
-      auto applicationa = psession->m_applicationa;
-
-      sl.unlock();
-
-      for(auto & papp : applicationa)
-      {
-
-         ASSERT(papp != this);
-
-         if(papp == this)
-         {
-
-            continue;
-
-         }
-
-         if(papp->on_application_menu_action(pszCommand))
-         {
-
-            return true;
-
-         }
-
-      }
-
-      return false;
-
-   }
 
 
    bool system::merge_accumulated_on_open_file(::create * pcreate)
@@ -3662,7 +3634,7 @@ namespace apex
 //
 //   {
 //
-//      Windows::Foundation::Rect rectangle_i32 = pwindow->get_window_rect();
+//      Windows::Foundation::Rect rectangle = pwindow->get_window_rect();
 //
 //      prectangle->left = rectangle.X;
 //

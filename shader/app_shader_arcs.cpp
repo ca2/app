@@ -12,7 +12,7 @@ namespace simple_shader
    void render::draw_arc(::draw2d::graphics_pointer & pgraphics, rectangle_i32& r, double dStart, double dAngle, bool bPath)
    {
 
-      ::draw2d::font_pointer font(e_create);
+      ::write_text::font_pointer font(e_create);
 
       string strFontFamily = get_font();
 
@@ -56,7 +56,7 @@ namespace simple_shader
 
       rectBack.bottom = rectBack.top + size.cy * 2 + 4 * 3;
 
-      pgraphics->fill_rect(rectBack, argb(127, 80, 80, 80));
+      pgraphics->fill_rectangle(rectBack, argb(127, 80, 80, 80));
 
       pgraphics->text_out(rectBack.left + 4, rectBack.top + 4, str1);
 
@@ -198,13 +198,13 @@ namespace simple_shader
       if (__bool(Application.m_echeckSimple))
       {
 
-         pgraphics->fill_rect(rClient, argb(127, 192, 192, 192));
+         pgraphics->fill_rectangle(rClient, argb(127, 192, 192, 192));
 
       }
       else
       {
 
-         pgraphics->fill_rect(rClient, argb(127, 120, 120, 120));
+         pgraphics->fill_rectangle(rClient, argb(127, 120, 120, 120));
 
       }
 

@@ -11,10 +11,11 @@ namespace user
 
       class CLASS_DECL_CORE edit :
          virtual public ::user::interaction,
-         virtual public ::user::picture_interaction
-#ifdef WINDOWS_DESKTOP
-         , virtual public ::imm_client
-#endif
+         virtual public ::user::picture_interaction,
+         virtual public text_composition_composite
+//#ifdef WINDOWS_DESKTOP
+  //       , virtual public ::imm_client
+//#endif
       {
       public:
 
@@ -94,8 +95,8 @@ namespace user
          DECL_GEN_SIGNAL(_001OnChar);
          DECL_GEN_SIGNAL(_001OnKeyDown);
          DECL_GEN_SIGNAL(_001OnKeyUp);
-         DECL_GEN_SIGNAL(_001OnSetFocus);
-         DECL_GEN_SIGNAL(_001OnKillFocus);
+         //DECL_GEN_SIGNAL(_001OnSetFocus);
+         //DECL_GEN_SIGNAL(_001OnKillFocus);
 
 
          virtual void _001OnTimer(::timer * ptimer) override;
@@ -103,7 +104,9 @@ namespace user
 
          virtual void key_to_char(::message::key * pkey);
 
+         virtual void on_set_keyboard_focus() override;
 
+         virtual void on_kill_keyboard_focus() override;
 
          virtual bool keyboard_focus_is_focusable() const override;
 

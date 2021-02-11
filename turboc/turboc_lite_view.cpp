@@ -185,7 +185,7 @@ namespace turboc
 
 /*            m_pimage->g()->set_font(m_font);
 
-/*            m_pimage->g()->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+/*            m_pimage->g()->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
 /*            m_pimage->g()->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -261,13 +261,13 @@ namespace turboc
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      System.draw2d().imaging().bitmap_blend(pgraphics,::point_i32(),rectClient.size(),m_pimageTemplate->get_graphics(),::point_i32(),140 + 220 * r);
+      System.draw2d()->imaging().bitmap_blend(pgraphics,::point_i32(),rectClient.size(),m_pimageTemplate->get_graphics(),::point_i32(),140 + 220 * r);
 
       //pgraphics->BitBlt(rectClient,m_pimageTemplate->get_graphics());
 
       pgraphics->set_font(m_font);
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       if(psession->savings().is_trying_to_save(::e_resource_display_bandwidth))
       {

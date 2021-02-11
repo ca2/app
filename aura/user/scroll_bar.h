@@ -5,16 +5,18 @@ namespace user
 {
 
 
+
+
    class CLASS_DECL_AURA scroll_bar :
       virtual public ::user::interaction
    {
    public:
 
 
-      e_orientation                    m_eorientation;
+      enum_orientation                 m_eorientation;
       scroll_info                      m_scrollinfo;
       bool                             m_bTracking;
-      ::size_i32                           m_sizeTrackOffset;
+      ::size_i32                       m_sizeTrackOffset;
 
 
       scroll_bar();
@@ -27,10 +29,10 @@ namespace user
 
       
       //using ::user::interaction::create_interaction;
-      //virtual bool create_interaction(e_orientation eorientation, ::user::interaction * puiParent);
+      //virtual bool create_interaction(enum_orientation eorientation, ::user::interaction * puiParent);
 
 
-      virtual void post_scroll_message(::u32 nSBCode);
+      virtual void post_scroll_message(enum_scroll_bar_command ecommand);
 
       virtual ::point_i32 get_parent_viewport_offset() const override;
       virtual ::point_i32 get_ascendant_viewport_offset() const override;

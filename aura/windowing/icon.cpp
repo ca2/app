@@ -21,6 +21,22 @@ namespace windowing
    }
 
 
+   string icon::get_tray_icon_name() const
+   {
+
+      return m_strTrayIconName;
+
+   }
+
+
+   void icon::set_tray_icon_name(const ::string & strTrayIconName)
+   {
+
+      m_strTrayIconName = strTrayIconName;
+
+   }
+
+
    void * icon::get_os_data(const ::size_i32 & size) const
    {
 
@@ -29,7 +45,7 @@ namespace windowing
    }
 
 
-   bool icon::load_file(string strPath)
+   ::e_status icon::load_file(string strPath)
    {
 
       __throw(interface_only_exception());
@@ -39,7 +55,7 @@ namespace windowing
    }
 
 
-   bool icon::load_matter(string strMatter)
+   ::e_status icon::load_matter(string strMatter)
    {
 
       string strPath = Context.dir().matter(strMatter);
@@ -58,7 +74,7 @@ namespace windowing
    }
 
 
-   bool icon::load_app_tray_icon(string strApp)
+   ::e_status icon::load_app_tray_icon(string strApp)
    {
 
 #ifdef WINDOWS_DESKTOP

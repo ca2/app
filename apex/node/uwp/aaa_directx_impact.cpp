@@ -323,7 +323,7 @@ namespace uwp
 
 
 
-            pointer < ::message::base > spbase;
+            pointer < ::user::message > spbase;
 
             auto pkey = __new(::message::key);
 

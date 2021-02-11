@@ -1,6 +1,4 @@
 #include "framework.h"
-#define NO_IMAGING
-#include "aura/application.h"
 #include "aura/update.h"
 
 
@@ -18,6 +16,10 @@ namespace app_app
       m_strBaseSupportId = "app_app";
 
       m_bLicense = false;
+
+      m_bImaging = false;
+
+      m_bWriteText = false;
 
    }
 
@@ -112,10 +114,7 @@ namespace app_app
 
 #endif
 
-
-   __namespace_application_factory("app/app");
-
-
+  
 } // namespace app_app
 
 

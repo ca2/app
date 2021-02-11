@@ -13,7 +13,7 @@ namespace draw2d_cairo
 
 
    class CLASS_DECL_DRAW2D_CAIRO font :
-      virtual public ::draw2d::font
+      virtual public ::write_text::font
    {
    public:
 

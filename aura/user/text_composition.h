@@ -21,6 +21,9 @@ namespace user
 	public:
 
 
+		__pointer(text_composition_client)		 m_ptextcompositionclient;
+
+
 		text_composition_client();
 		virtual ~text_composition_client();
 
@@ -44,6 +47,10 @@ namespace user
 
 		virtual bool is_text_composition_active() const;
 
+		virtual string get_ime_composition() const;
+			
+		virtual void clear_ime_composition();
+
 
 	};
 
@@ -54,17 +61,11 @@ namespace user
 	public:
 
 
-		string                                  m_strImeComposition;
-		bool                                    m_bImeCandidateOpened;
-		bool                                    m_bImeCancelling;
-		__pointer(text_composition_client)		m_ptextcompositionclient;
-
-
 		text_composition_composite();
 		virtual ~text_composition_composite();
 
 
-		//virtual void install_message_routing(::channel * pchannel) override;
+		virtual ::e_status initialize_text_composition_client();
 
 
 		//DECL_GEN_SIGNAL(_001OnKeyDown);

@@ -56,7 +56,7 @@ namespace draw2d_direct2d
       virtual bool blend(const ::point_i32 & pointDst, ::image * pimageSrc, const ::point_i32 & pointSrc, const ::size_i32 & size, byte bA) override;
 
       using ::image::tint;
-      virtual bool tint(::image * pimage, const ::color32 & color32) override;
+      virtual bool tint(::image * pimage, const ::color::color & color32) override;
 
       
 

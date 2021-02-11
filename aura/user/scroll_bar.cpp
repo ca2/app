@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 
 
 namespace user
@@ -27,12 +25,12 @@ namespace user
    }
 
 
-   void scroll_bar::post_scroll_message(::u32 nSBCode)
+   void scroll_bar::post_scroll_message(enum_scroll_bar_command ecommand)
    {
 
       auto pscroll = __new(::message::scroll);
 
-      pscroll->m_nSBCode = nSBCode;
+      pscroll->m_ecommand = ecommand;
 
       if(m_bTracking)
       {
@@ -47,7 +45,7 @@ namespace user
 
       }
 
-      if(m_eorientation == orientation_horizontal)
+      if(m_eorientation == e_orientation_horizontal)
       {
 
          pscroll->m_id = (enum_message) e_message_hscroll;
@@ -67,7 +65,7 @@ namespace user
    }
 
 
-   //bool scroll_bar::create_interaction(e_orientation eorientation, ::user::interaction * puiParent)
+   //bool scroll_bar::create_interaction(enum_orientation eorientation, ::user::interaction * puiParent)
    //{
 
    //   m_eorientation = eorientation;

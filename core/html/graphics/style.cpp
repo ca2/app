@@ -42,9 +42,9 @@ namespace html
 
       ::color::color color;
 
-      c.parse_color(psz);
+      color.parse_color(psz);
 
-      return c;
+      return color;
 
    }
 

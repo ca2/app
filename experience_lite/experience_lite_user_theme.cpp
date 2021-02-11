@@ -25,7 +25,7 @@ namespace lite
 
       create_point_font(::user::font_default,os_font_name(e_font_sans_ui), 12.0);
 
-      userstyle()->m_mapFont->operator[](::user::font_default)->m_etextrenderinghint = ::draw2d::text_rendering_hint_clear_type_grid_fit;
+      userstyle()->m_mapFont->operator[](::user::font_default)->m_ewritetextrendering = ::write_text::e_rendering_clear_type_grid_fit;
 
       create_color(::user::color_text, argb(255, 0, 0, 0));
       create_color(::user::color_edit_text, argb(255, 0, 0, 0));
@@ -91,11 +91,11 @@ namespace lite
       ::rectangle_i32 r1;
       ptab->get_client_rect(r1);
 
-      pgraphics->fill_rect(r1, argb(255, 255, 255, 255));
+      pgraphics->fill_rectangle(r1, argb(255, 255, 255, 255));
 
       ptab->get_data()->m_pen->create_solid(1,rgb(32,32,32));
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -119,11 +119,11 @@ namespace lite
 
       color32_t crbk = ptab->_001GetColor(::user::color_tab_layout_background);
 
-      pgraphics->fill_rect(rcTabs, crbk);
+      pgraphics->fill_rectangle(rcTabs, crbk);
 
       crbk= ptab->_001GetColor(::user::color_tab_client_background);
 
-      pgraphics->fill_rect(rcClient, crbk);
+      pgraphics->fill_rectangle(rcClient, crbk);
 
       i32 iTab = -1;
 
@@ -484,7 +484,7 @@ namespace lite
 
          ::rectangle_i32 rectText(lpcrect);
 
-         ::draw2d::font_pointer font;
+         ::write_text::font_pointer font;
          font = pgraphics->get_current_font();
          size_i32 sSep = ptab->get_data()->m_sizeSep;
          ::rectangle_i32 rectEmp;
@@ -504,7 +504,7 @@ namespace lite
                pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
                if(ptab->m_eelementHover == (int)::user::e_element_split + i)
                {
-                  pgraphics->fill_rect(rectEmp,argb(128,149,184,255));
+                  pgraphics->fill_rectangle(rectEmp,argb(128,149,184,255));
                   pgraphics->SelectObject(ptab->get_data()->m_brushTextHover);
                }
                else
@@ -1070,7 +1070,7 @@ namespace lite
 
                ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
-               pgraphics->fill_rect(rectItem, argb(184, 255, 255, 255));
+               pgraphics->fill_rectangle(rectItem, argb(184, 255, 255, 255));
 
             }
 
@@ -1377,7 +1377,7 @@ namespace lite
 
                ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
-               pgraphics->fill_rect(rectItem, _001GetColor(::user::color_button_background));
+               pgraphics->fill_rectangle(rectItem, _001GetColor(::user::color_button_background));
 
             }
 
@@ -1494,14 +1494,14 @@ namespace lite
 
       psplitlayout->get_client_rect(rectClient);
 
-      pgraphics->fill_rect(rectClient, argb(255, 255, 255, 255));
+      pgraphics->fill_rectangle(rectClient, argb(255, 255, 255, 255));
 
       return true;
 
    }
 
 
-   bool theme::get_font(::draw2d::font_pointer & sp, ::user::e_font efont, ::user::style_context * pcontext)
+   bool theme::get_font(::write_text::font_pointer & sp, ::user::e_font efont, ::user::style_context * pcontext)
    {
 
       return ::user::theme::get_font(sp, efont, pcontext);

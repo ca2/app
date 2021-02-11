@@ -9,7 +9,7 @@
 #ifdef DEBUG
 
 
-CLASS_DECL_APEX void object_on_add_composite(const matter* pbase);
+CLASS_DECL_APEX void object_on_add_composite(const matter* pusermessage);
 
 
 #endif
@@ -2110,10 +2110,10 @@ void debug_context_object(::layered * pobjectContext)
 }
 
 
-CLASS_DECL_APEX void object_on_add_composite(const matter * pbase)
+CLASS_DECL_APEX void object_on_add_composite(const matter * pusermessage)
 {
 
-   string strType = ::str::demangle(pbase->type_name());
+   string strType = ::str::demangle(pusermessage->type_name());
 
    if (strType.contains_ci("user::thread"))
    {
@@ -2227,7 +2227,7 @@ string object::get_text(const ::payload & payload, const ::id& id)
 ::e_status object::message_box(const char* pszMessage, const char* pszTitle, const ::e_message_box & emessagebox, const ::promise::process & process)
 {
 
-   ::e_status estatus = Application.message_box(pszMessage, pszTitle, emessagebox, process);
+   ::e_status estatus = System.message_box(pszMessage, pszTitle, emessagebox, process);
 
    //auto psession = get_context_session();
 

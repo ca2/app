@@ -131,7 +131,7 @@ namespace draw2d
 
       //      i32 iOldMapMode = ::GetMapMode(pgraphics->m_hDC);
       //      point_i32 viewportOrg;
-      //      ::draw2d::font * pfont = pgraphics->get_current_font();
+      //      ::write_text::font * pfont = pgraphics->get_current_font();
       //      ASSERT(pfont != nullptr);
       //      VERIFY(::GetViewportOrgEx(pgraphics->m_hDC, &viewportOrg));
 
@@ -177,7 +177,7 @@ namespace draw2d
 
       //      i32 iOldMapMode = ::GetMapMode(pgraphics->m_hDC);
       //      point_i32 viewportOrg;
-      //      ::draw2d::font * pfont = pgraphics->get_current_font();
+      //      ::write_text::font * pfont = pgraphics->get_current_font();
       //      ASSERT(pfont != nullptr);
       //      VERIFY(::GetViewportOrgEx(pgraphics->m_hDC, &viewportOrg));
 

@@ -52,7 +52,7 @@ namespace hotplugin
          br->create_solid(argb(255, uchR, uchG, uchB));
          rectDraw = rect_dim(rectangle.left, rectangle.top, cx, cy);
 
-         pgraphics->fill_rect(rectDraw, br);
+         pgraphics->fill_rectangle(rectDraw, br);
 
       }
 
@@ -60,7 +60,7 @@ namespace hotplugin
 
       pgraphics->SelectObject(br);
 
-      ::draw2d::font_pointer f(e_create);
+      ::write_text::font_pointer f(e_create);
 
       f->create_pixel_font(os_font_name(e_font_sans_fx), 50);
 

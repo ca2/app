@@ -411,7 +411,7 @@ namespace browser
 
                m_pbrowser->GetHost()->WasResized();
                //auto hwnd = m_pbrowser->GetHost()->GetWindowHandle();
-               //auto rectangle_i32 = RECTANGLE_I32{ 0 };
+               //auto rectangle = RECTANGLE_I32{ 0 };
                //get_client_rect(&rectangle);
 
                //auto hwnd2 = get_handle();
@@ -836,7 +836,7 @@ namespace browser
    //      if (m_pbrowser != nullptr)
    //      {
    //         auto hwnd = m_pbrowser->GetHost()->GetWindowHandle();
-   //         auto rectangle_i32 = RECTANGLE_I32{ 0 };
+   //         auto rectangle = RECTANGLE_I32{ 0 };
    //         get_client_rect(&rectangle);
 
    //         ::set_window_pos(hwnd, HWND_TOP, rectangle.left, rectangle.top, rectangle.right - rectangle.left, rectangle.bottom - rectangle.top, SWP_NOZORDER);

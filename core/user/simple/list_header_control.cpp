@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/simple/_simple.h"
-#endif
 
 
 const i32 simple_list_header_control::s_iDividerWidth = 4;
@@ -22,11 +20,11 @@ simple_list_header_control::~simple_list_header_control()
 void simple_list_header_control::install_message_routing(::channel * pchannel)
 {
    ::user::list_header::install_message_routing(pchannel);
-#ifdef WINDOWS_DESKTOP
-   MESSAGE_LINK(HDN_ENDTRACK, pchannel, this, &simple_list_header_control::_001OnEndTrack);
-   MESSAGE_LINK(HDN_TRACK, pchannel, this, &simple_list_header_control::_001OnTrack);
-   MESSAGE_LINK(HDN_ENDDRAG, pchannel, this, &simple_list_header_control::_001OnEndDrag);
-#endif
+//#ifdef WINDOWS_DESKTOP
+//   MESSAGE_LINK(HDN_ENDTRACK, pchannel, this, &simple_list_header_control::_001OnEndTrack);
+//   MESSAGE_LINK(HDN_TRACK, pchannel, this, &simple_list_header_control::_001OnTrack);
+//   MESSAGE_LINK(HDN_ENDDRAG, pchannel, this, &simple_list_header_control::_001OnEndDrag);
+//#endif
    MESSAGE_LINK(e_message_create, pchannel, this, &simple_list_header_control::_001OnCreate);
    //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &simple_list_header_control::_001OnLButtonDown);
    //MESSAGE_LINK(e_message_left_button_up, pchannel, this, &simple_list_header_control::_001OnLButtonUp);

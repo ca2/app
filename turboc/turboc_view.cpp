@@ -205,7 +205,7 @@ namespace turboc
 
             pgraphics->set_font(m_font);
 
-            pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+            pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
             ::size_i32 size = pgraphics->GetTextExtent(strHelloMultiverse);
 
@@ -258,7 +258,7 @@ namespace turboc
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-         pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+         pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
          ::size_i32 size = pgraphics->GetTextExtent(strHelloMultiverse);
 
@@ -351,9 +351,9 @@ namespace turboc
 
          //pgraphics->FillSolidRect(rectClient,0);
 
-/*         System.draw2d().imaging().bitmap_blend(pgraphics,::point_i32(),pimage->get_size(),pimage->g(),::point_i32(),uchAlpha);
+/*         System.draw2d()->imaging().bitmap_blend(pgraphics,::point_i32(),pimage->get_size(),pimage->g(),::point_i32(),uchAlpha);
 
-         System.draw2d().imaging().bitmap_blend(pgraphics,::point_i32(),imageFast.m_size,imageFast.get_graphics(),::point_i32(),255 - uchAlpha);
+         System.draw2d()->imaging().bitmap_blend(pgraphics,::point_i32(),imageFast.m_size,imageFast.get_graphics(),::point_i32(),255 - uchAlpha);
 
       }
       else
@@ -363,7 +363,7 @@ namespace turboc
 
       }
 
-      //System.draw2d().imaging().bitmap_blend(pgraphics,::point_i32(),imageFast.m_size,imageFast.get_graphics(),::point_i32(),255);
+      //System.draw2d()->imaging().bitmap_blend(pgraphics,::point_i32(),imageFast.m_size,imageFast.get_graphics(),::point_i32(),255);
 
 
       //pgraphics->FillSolidRect(100,100,100,100,argb(128,0,128,0));
@@ -429,7 +429,7 @@ namespace turboc
 
       pgraphics->set_font(m_font);
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       ::size_i32 size = pgraphics->GetTextExtent(strHelloMultiverse);
 

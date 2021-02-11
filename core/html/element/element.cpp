@@ -853,7 +853,7 @@ namespace html
    }
 
 
-   void element::load(html_data * pdata, base * pbase)
+   void element::load(html_data * pdata, base * pusermessage)
    {
 
       if (pdata == nullptr)
@@ -870,7 +870,7 @@ namespace html
 
       }
 
-      if (pbase == nullptr)
+      if (pusermessage == nullptr)
       {
 
          return;
@@ -879,7 +879,7 @@ namespace html
 
       sync_lock lock(pdata->m_pcoredata->mutex());
 
-      m_pbase = pbase;
+      m_pbase = pusermessage;
 
       m_elementalptra.remove_all();
 
@@ -1251,7 +1251,7 @@ namespace html
       if (m_pimpl != nullptr)
       {
 
-         if (m_pimpl->hit_test(pdata, point_i32))
+         if (m_pimpl->hit_test(pdata, point))
          {
 
             element * pelemental;
@@ -1723,7 +1723,7 @@ namespace html
    }
 
 
-   ::draw2d::font_pointer element::get_font()
+   ::write_text::font_pointer element::get_font()
    {
 
       //font = m_pdata->get_font(this)->m_font;

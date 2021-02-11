@@ -162,3 +162,12 @@ PFUNCTION_FACTORY_EXCHANGE g_pfnfactoryexchangeImaging = nullptr;
 
 
 
+
+
+namespace draw2d
+{
+
+
+   ::mutex * lock::g_pmutex = nullptr;
+
+} // namespace draw2d

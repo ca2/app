@@ -687,9 +687,9 @@
 //      virtual ::e_status     call_request(::create * pcreate) override;
 //
 //
-//      virtual void process_message(::message::base * base) override;
+//      virtual void process_message(::user::message * base) override;
 //
-//      virtual void message_handler(::message::base * pbase) override;
+//      virtual void message_handler(::user::message * pusermessage) override;
 //
 //
 //
@@ -793,7 +793,7 @@
 //
 //      virtual ::user::interaction * main_window();
 //
-////         virtual __pointer(::message::base) get_message_base(MESSAGE * pmsg) override;
+////         virtual __pointer(::user::message) get_message_base(MESSAGE * pmsg) override;
 //
 //
 //      virtual bool get_frame(__pointer(::user::interaction) & pinteraction);
@@ -952,10 +952,10 @@
 //      virtual LRESULT GetPaintMsgProc(i32 nCode, WPARAM wParam, LPARAM lParam);
 //
 //
-//      void OnUpdateRecentFileMenu(::user::command* pcommand);
+//      void OnUpdateRecentFileMenu(::message::command* pcommand);
 //
 //      //virtual void send_app_language_changed();
-//      virtual void route_command_message(::user::command* pcommand) override;
+//      virtual void route_command_message(::message::command* pcommand) override;
 //
 //
 //

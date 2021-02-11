@@ -8,15 +8,14 @@ namespace windowing
 {
 
 
-
-
-
    display::display()
    {
 
       m_bSystemSynchronizedScreen = true;
       m_iMainMonitor = 0;
       m_iMainWkspace = 0;
+
+      defer_create_mutex();
 
    }
 
@@ -66,6 +65,14 @@ namespace windowing
    {
 
       return nullptr;
+
+   }
+
+
+   float display::get_dpi()
+   {
+
+      return 96.0;
 
    }
 
@@ -160,6 +167,18 @@ namespace windowing
 //      }
 //
 //      return iMainMonitor;
+
+   }
+
+
+   ::size_i32 display::get_main_monitor_size()
+   {
+
+      ::rectangle_i32 rectangle;
+
+      get_main_monitor(rectangle);
+
+      return rectangle.size();
 
    }
 
@@ -562,6 +581,23 @@ namespace windowing
       *prectangle = rectangle;
 
       return true;
+
+   }
+
+
+   monitor * display::get_monitor(index iMonitor)
+   {
+
+      sync_lock sl(mutex());
+
+      if (iMonitor < 0 || iMonitor >= m_monitora.get_count())
+      {
+
+         return nullptr;
+
+      }
+
+      return m_monitora[iMonitor];
 
    }
 
@@ -1496,6 +1532,157 @@ namespace windowing
          return get_best_wkspace(nullptr, rectangle);
 
       }
+
+   }
+
+   string_array display::get_wallpaper()
+   {
+
+      auto psession = Session;
+
+      ::count iMonitorCount = get_monitor_count();
+
+      string_array stra;
+
+      for (index iScreen = 0; iScreen < iMonitorCount; iScreen++)
+      {
+
+         stra.add(get_wallpaper(iScreen));
+
+      }
+
+      bool bAllEqual = true;
+
+      for (index iScreen = 1; iScreen < iMonitorCount; iScreen++)
+      {
+
+         if (stra[iScreen] != stra[iScreen - 1])
+         {
+
+            bAllEqual = false;
+
+         }
+
+      }
+
+      if (bAllEqual && stra.get_count() >= 2)
+      {
+
+         stra.set_size(1);
+
+      }
+
+      return stra;
+
+   }
+
+
+   void display::set_wallpaper(const string_array & straWallpaper)
+   {
+
+      if (straWallpaper.is_empty())
+      {
+
+         return;
+
+      }
+
+      auto psession = Session;
+
+      ::count iMonitorCount = get_monitor_count();
+
+#ifdef LINUX
+
+      if (iMonitorCount > 0)
+      {
+
+         set_wallpaper(0, straWallpaper[0]);
+
+      }
+
+#else
+
+      for (index iScreen = 0; iScreen < iMonitorCount; iScreen++)
+      {
+
+         string strWallpaper = iScreen % straWallpaper;
+
+         set_wallpaper(iScreen, strWallpaper);
+
+      }
+
+#endif
+
+   }
+
+   
+   string display::get_wallpaper(::index iScreen)
+   {
+
+      return impl_get_wallpaper(iScreen);
+
+   }
+
+
+   string display::impl_get_wallpaper(::index)
+   {
+
+      return "";
+
+   }
+
+   string display::os_get_user_theme()
+   {
+
+      return impl_get_os_desktop_theme();
+
+   }
+
+   string display::impl_get_os_desktop_theme()
+   {
+
+      return "";
+
+   }
+
+
+   bool display::set_os_desktop_theme(string strTheme)
+   {
+
+      return impl_set_os_desktop_theme(strTheme);
+
+   }
+
+
+   bool display::impl_set_os_desktop_theme(string strTheme)
+   {
+
+      return false;
+
+   }
+
+
+   // todo color:// gradient:// if the operating system doesn't have this, create the file, please.
+   bool display::impl_set_wallpaper(::index, string strWallpaper)
+   {
+
+      //return "";
+      return false;
+
+   }
+
+   bool display::set_wallpaper(::index iScreen, string strWallpaper)
+   {
+
+      //return "";
+      return impl_set_wallpaper(iScreen, strWallpaper);
+
+   }
+
+
+   void display::enable_wallpaper_change_notification()
+   {
+
 
    }
 

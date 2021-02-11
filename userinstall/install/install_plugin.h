@@ -99,7 +99,7 @@ namespace install
 
       DECL_GEN_SIGNAL(_001OnLButtonUp);
       
-      virtual void message_handler(::message::base * pbase) override;
+      virtual void message_handler(::user::message * pusermessage) override;
 
       virtual void on_paint_progress(::draw2d::graphics_pointer & pgraphics, const RECTANGLE_I32 & lprect);
 

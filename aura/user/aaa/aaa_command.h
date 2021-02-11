@@ -6,7 +6,7 @@ namespace user
 
 
    class CLASS_DECL_AURA command :
-      virtual public ::message::base
+      virtual public ::user::message
    {
    public:
 

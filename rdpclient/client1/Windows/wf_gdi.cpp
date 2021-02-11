@@ -565,7 +565,7 @@ void wf_gdi_palette_update(wfContext* wfc, PALETTE_UPDATE* palette)
 //
 //	for (i = 1; i < (int) multi_opaque_rect->numRectangles + 1; i++)
 //	{
-//		rectangle_i32 = &multi_opaque_rect->rectangles[i];
+//		rectangle = &multi_opaque_rect->rectangles[i];
 //
 //		rectangle.left = rectangle_i32->left;
 //		rectangle.top = rectangle_i32->top;

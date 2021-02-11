@@ -37,8 +37,8 @@ namespace userex
       void set_menu_info(id id, const char * pszMatter, ::id idCommand);
    
 
-      virtual void on_command_probe(::user::command * pcommand) override;
-      virtual void on_command(::user::command * pcommand) override;
+      virtual void on_command_probe(::message::command * pcommand) override;
+      virtual void on_command(::message::command * pcommand) override;
 
       
    };

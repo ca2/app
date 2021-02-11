@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/account/_account.h"
-#endif
 #include "axis/user/simple_ui_draw.h"
 
 
@@ -22,24 +20,24 @@ namespace account
 
       m_picon95 = nullptr;
 
-#if defined(WINDOWS_DESKTOP)
-
-      {
-
-         HICON hicon95 = (HICON) ::LoadImage(::GetModuleHandle(nullptr),MAKEINTRESOURCE(95),IMAGE_ICON,95,95,LR_VGACOLOR);
-
-         if(hicon95 != nullptr)
-         {
-
-            m_picon95 = new ::draw2d::icon;
-
-            m_picon95->attach_os_data(hicon95);
-
-         }
-
-      }
-
-#endif
+//#if defined(WINDOWS_DESKTOP)
+//
+//      {
+//
+//         HICON hicon95 = (HICON) ::LoadImage(::GetModuleHandle(nullptr),MAKEINTRESOURCE(95),IMAGE_ICON,95,95,LR_VGACOLOR);
+//
+//         if(hicon95 != nullptr)
+//         {
+//
+//            m_picon95 = new ::draw2d::icon;
+//
+//            m_picon95->attach_os_data(hicon95);
+//
+//         }
+//
+//      }
+//
+//#endif
       m_bCred = false;
 
    }
@@ -239,7 +237,7 @@ namespace account
 
          crOut = argb(255, 255, 210, 255);
 
-         crIn = argb(255, 255, 1140, 255);
+         crIn = argb(255, 255, 114, 255);
 
          crBorderOut = argb(255, 90, 20, 90);
 
@@ -298,7 +296,7 @@ namespace account
       {
          float fHeight = 18.0;
 
-         ::draw2d::font_pointer f(e_create);
+         ::write_text::font_pointer f(e_create);
 
          /*f->create_pixel_font(os_font_name(e_font_sans_ex), (i32)height(rectClient) * 0.7);
 

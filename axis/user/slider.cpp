@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "axis/user/_user.h"
-#endif
 
 
 namespace user
@@ -59,14 +57,14 @@ namespace user
 
       //get_slider_rect(rectangle);
 
-      //auto point_i32(pmouse->m_point);
+      //auto point(pmouse->m_point);
 
       //_001ScreenToClient(point);
 
       //if(rectangle.contains(point))
       //{
 
-      SetCapture();
+      set_mouse_capture();
 
       m_bSlide = true;
 
@@ -94,7 +92,13 @@ namespace user
       if(m_bSlide)
       {
 
-         ReleaseCapture();
+         auto psession = Session;
+
+         auto puser = psession->user();
+
+         auto pwindowing = puser->windowing();
+
+         pwindowing->release_capture();
 
          m_bSlide = false;
 
@@ -140,7 +144,11 @@ namespace user
 
       auto psession = Session;
 
-      auto point = psession->get_cursor_pos();
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto point = pwindowing->get_cursor_pos();
 
       _001ScreenToClient(point, e_layout_design);
 
@@ -225,7 +233,7 @@ namespace user
       rectangle.deflate(1,1);
       pgraphics->draw_3drect(rectangle,argb(bAlpha / 255,108,100,210),argb(bAlpha,90,70,180));
       rectangle.deflate(1,1);
-      pgraphics->fill_rect(rectangle,argb(bAlpha1,140,108,120));
+      pgraphics->fill_rectangle(rectangle,argb(bAlpha1,140,108,120));
       //if(m_bSlide)
       //{
       //   pgraphics->move_to(rectangle.center());

@@ -45,8 +45,8 @@ namespace console
 
       void ToFront();
 
-      virtual void on_command(::user::command * pcommand) override;
-      virtual void on_command_probe(::user::command * pcommand) override;
+      virtual void on_command(::message::command * pcommand) override;
+      virtual void on_command_probe(::message::command * pcommand) override;
 
 
       virtual ::user::enum_translucency get_translucency(::user::style * pstyle) const override;

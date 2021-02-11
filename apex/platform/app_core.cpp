@@ -925,34 +925,6 @@ typedef int_bool DEFER_INIT();
 typedef DEFER_INIT * PFN_DEFER_INIT;
 
 
-//CLASS_DECL_APEX int apex_entry_point(int argc, char * argv[], const char * pszMainAppId)
-//{
-//
-//   int iResult = 0;
-//
-//   {
-//
-//      apex_main_struct apex_main_struct = {};
-//
-//      apex_main_struct.m_bConsole = false;
-//      apex_main_struct.m_bDraw2d = true;
-//      apex_main_struct.m_bUser = true;
-//      apex_main_struct.m_bUserEx = true;
-//
-//      auto psystem = __new(::apex::system());
-//
-//      psystem->system_construct(argc, argv);
-//
-//      psystem->m_strAppId = pszMainAppId;
-//
-//      iResult = (int) ::apex_apex(psystem);
-//
-//   }
-//
-//   return iResult;
-//
-//}
-
 
 //CLASS_DECL_APEX long apex_prefix(::apex::system * psystem)
 //{

@@ -34,7 +34,7 @@ namespace draw2d
 
 #ifdef WINDOWS_DESKTOP
 
-            //for (auto point_i32 : m_iconmap)
+            //for (auto point : m_iconmap)
             //{
 
             //   ::DestroyIcon((hicon)point.element2());

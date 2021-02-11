@@ -223,7 +223,7 @@ namespace music
 
          void player::pre_translate_message(::message::message * pmessage)
          {
-            //__pointer(::message::base) pbase(pmessage);
+            //__pointer(::user::message) pusermessage(pmessage);
             //ASSERT(GetMainWnd() == nullptr);
             //   if(pMsg->message == MM_MOM_DONE ||
             //      pMsg->message == MM_MOM_POSITIONCB ||
@@ -233,26 +233,26 @@ namespace music
             //      OnMidiOutMessage(pMsg->message, pMsg->wParam, pMsg->lParam);
             //      return true;
             //   }
-//            if(pbase->m_puserinteraction == nullptr)
+//            if(pusermessage->m_puserinteraction == nullptr)
 //            {
-//               switch(pbase->m_id)
+//               switch(pusermessage->m_id)
 //               {
 //               case WM_USER + 100:
 //               {
-//                  LPDOUBLESTRUCT lpds = (LPDOUBLESTRUCT) pbase->m_wparam;
+//                  LPDOUBLESTRUCT lpds = (LPDOUBLESTRUCT) pusermessage->m_wparam;
 //                  SetPosition(lpds->d);
 //                  delete lpds;
 //               }
 //               return;
 //               }
 //            }
-//            if(pbase->m_id == MMSG_DONE)
+//            if(pusermessage->m_id == MMSG_DONE)
 //            {
-//               OnMmsgDone((::music::midi::sequence *) pbase->m_wparam);
-//               pbase->m_bRet = true;
+//               OnMmsgDone((::music::midi::sequence *) pusermessage->m_wparam);
+//               pusermessage->m_bRet = true;
 //               return;
 //            }
-//            else if(pbase->m_id == WM_USER)
+//            else if(pusermessage->m_id == WM_USER)
 //            {
 //               //      OnUserMessage(pMsg->wParam, pMsg->lParam);
 //            }
@@ -272,10 +272,10 @@ namespace music
 
          void player::OnUserMessage(::message::message * pmessage)
          {
-            __pointer(::message::base) pbase(pmessage);
-            if(pbase->m_wparam == 3377)
+            __pointer(::user::message) pusermessage(pmessage);
+            if(pusermessage->m_wparam == 3377)
             {
-               m_puie->send_message(WM_USER, pbase->m_wparam, pbase->m_lparam);
+               m_puie->send_message(WM_USER, pusermessage->m_wparam, pusermessage->m_lparam);
             }
 
          }
@@ -469,11 +469,11 @@ namespace music
          {
 
             UNREFERENCED_PARAMETER(pmessage);
-//            __pointer(::message::base) pbase(pmessage);
+//            __pointer(::user::message) pusermessage(pmessage);
 
-            /*seq_context_t * pseq = (seq_context_t *) pbase->m_wparam;
+            /*seq_context_t * pseq = (seq_context_t *) pusermessage->m_wparam;
 
-             LPMIDIHDR lpmidihdr = (LPMIDIHDR) pbase->m_lparam.m_lparam;
+             LPMIDIHDR lpmidihdr = (LPMIDIHDR) pusermessage->m_lparam.m_lparam;
 
              __pointer(sequence) sequence = get_sequence();
 
@@ -486,8 +486,8 @@ namespace music
 //         void player::OnMultimediaMidiOutputMessagePositionCB(::message::message * pmessage)
 //         {
 //            UNREFERENCED_PARAMETER(pmessage);
-////            __pointer(::message::base) pbase(pmessage);
-//            /*            LPMIDIHDR lpmidihdr = (LPMIDIHDR) pbase->m_wparam;
+////            __pointer(::user::message) pusermessage(pmessage);
+//            /*            LPMIDIHDR lpmidihdr = (LPMIDIHDR) pusermessage->m_wparam;
 //             //          get_sequence()->OnPositionCB(lpmidihdr);
 //
 //             __pointer(sequence) sequence = get_sequence();
@@ -502,8 +502,8 @@ namespace music
 
 //         void player::OnNotifyEvent(::message::message * pmessage)
 //         {
-//            __pointer(::message::base) pbase(pmessage);
-//            __pointer(::music::midi::player::notify_event) pdata(pbase->m_lparam);
+//            __pointer(::user::message) pusermessage(pmessage);
+//            __pointer(::music::midi::player::notify_event) pdata(pusermessage->m_lparam);
 //            pdata->m_pplayer = this;
 //            if(m_puie != nullptr)
 //            {

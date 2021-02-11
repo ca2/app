@@ -99,3 +99,21 @@ namespace str
 
 
 
+
+
+CLASS_DECL_ACME BSTR AllocSysString(const string & str)
+{
+
+   return ::str::AllocSysString(str.c_str(), str.get_length());
+
+}
+
+
+CLASS_DECL_ACME BSTR SetSysString(BSTR * pbstr, const string & str)
+{
+
+   ::str::ReAllocSysString(pbstr, str.c_str(), str.get_length());
+   
+   return *pbstr;
+
+}

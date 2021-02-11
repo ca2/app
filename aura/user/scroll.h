@@ -43,7 +43,7 @@ namespace user
 
       virtual void install_message_routing(::channel * pchannel) override;
 
-      virtual void send_xscroll_message(int nSBCode);
+      virtual void send_xscroll_message(enum_scroll_bar_command ecommand);
 
       //virtual void GetScrollRect(RECTANGLE_I32 * prectangle);
 
@@ -89,7 +89,7 @@ namespace user
       virtual scroll_data* get_vertical_scroll_data() override;
 
 
-      virtual void send_yscroll_message(int nSBCode);
+      virtual void send_yscroll_message(enum_scroll_bar_command ecommand);
 
       virtual void install_message_routing(::channel * pchannel) override;
 

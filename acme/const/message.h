@@ -13,9 +13,13 @@ enum enum_message : ::i64
    e_message_activate = 6,
    e_message_set_focus = 7,
    e_message_kill_focus = 8,
+   e_message_set_text = 12,
    e_message_paint = 15,
    e_message_close = 16,
    e_message_quit = 18,
+   e_message_setting_change = 26,
+   e_message_activate_app = 28,
+   e_message_get_min_max_info = 36,
 
    e_message_mouse_activate = 0x0021,
 

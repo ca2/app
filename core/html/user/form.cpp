@@ -557,7 +557,7 @@ void html_form::_001SetText(const string & str, const ::action_context & context
 
    auto puserinteraction = get_keyboard_focus()->cast < ::user::interaction >();
 
-   bool bFocus = has_focus() || is_descendant(puserinteraction, true);
+   bool bFocus = has_keyboard_focus() || is_descendant(puserinteraction, true);
 
    __pointer(::html_data) sphtmldata;
 
@@ -794,7 +794,7 @@ void html_form_view::on_subject(::promise::subject * psubject, ::promise::contex
 
          get_parent_frame()->set_active_view(this);
 
-         SetFocus();
+         set_keyboard_focus();
 
       }
 

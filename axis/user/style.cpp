@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "axis/user/_user.h"
-#endif
 
 
 namespace axis
@@ -24,7 +22,7 @@ namespace axis
    void style::default_style_construct()
    {
 
-      //m_pfont = ::draw2d::point_font(os_font_name(e_font_sans_ex), 14.0);
+      //m_pfont = ::write_text::point_font(os_font_name(e_font_sans_ex), 14.0);
       //m_pfontMenu;
       //m_pfontButton;
       //m_pfontList;
@@ -224,7 +222,7 @@ namespace axis
 
       rectClient.top--;
 
-      if (get_context_application() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_focus()))
+      if (get_context_application() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
       {
 
          ::draw2d::brush_pointer brush(e_create);
@@ -236,7 +234,7 @@ namespace axis
 
             pgraphics->set(brush);
 
-            pgraphics->fill_rect(rectClient);
+            pgraphics->fill_rectangle(rectClient);
 
          }
 
@@ -259,7 +257,7 @@ namespace axis
 
                }
 
-               pgraphics->draw_rect(rectClient, pen);
+               pgraphics->draw_rectangle(rectClient, pen);
 
             }
             else
@@ -276,19 +274,21 @@ namespace axis
 
                }
 
-               pgraphics->draw_rect(rectClient, pen);
+               pgraphics->draw_rectangle(rectClient, pen);
 
             }
 
-#ifdef WINDOWS_DESKTOP
+            auto psession = Session;
 
-            oswindow hwndFocus = ::get_focus();
+            auto puser = psession->user();
 
-            oswindow hwndThis = pinteraction->get_handle();
+            auto pwindowing = puser->windowing();
 
-#endif
+            auto pwindowFocus = pwindowing->get_keyboard_focus(pinteraction->m_pthreadUserInteraction);
 
-            if (pinteraction->has_focus())
+            auto pwindowThis = pinteraction->get_window();
+
+            if (pinteraction->has_keyboard_focus())
             {
 
                rectClient.left--;
@@ -309,7 +309,7 @@ namespace axis
 
                   }
 
-                  pgraphics->draw_rect(rectClient, pen);
+                  pgraphics->draw_rectangle(rectClient, pen);
 
                }
 
@@ -333,7 +333,7 @@ namespace axis
 
                   pgraphics->set(pen);
 
-                  pgraphics->draw_rect(rectClient, pen);
+                  pgraphics->draw_rectangle(rectClient, pen);
 
                }
 
@@ -372,7 +372,7 @@ namespace axis
 
                   pgraphics->set(pen);
 
-                  pgraphics->draw_rect(rectClient, pen);
+                  pgraphics->draw_rectangle(rectClient, pen);
 
                }
 
@@ -398,7 +398,7 @@ namespace axis
 
                   pgraphics->set(pen);
 
-                  pgraphics->draw_rect(rectClient, pen);
+                  pgraphics->draw_rectangle(rectClient, pen);
 
                }
 
@@ -425,7 +425,7 @@ namespace axis
 
                   pgraphics->set(pen);
 
-                  pgraphics->draw_rect(rectClient, pen);
+                  pgraphics->draw_rectangle(rectClient, pen);
 
                }
 
@@ -453,7 +453,7 @@ namespace axis
 
                   pgraphics->set(pen);
 
-                  pgraphics->draw_rect(rectClient, pen);
+                  pgraphics->draw_rectangle(rectClient, pen);
 
                }
 
@@ -470,7 +470,7 @@ namespace axis
 
             pen->create_solid(3.0, argb(255, 90, 80, 255));
 
-            pgraphics->draw_rect(rectClient, pen);
+            pgraphics->draw_rectangle(rectClient, pen);
 
          }
 
@@ -482,7 +482,7 @@ namespace axis
 
          pen->create_solid(1.0, pinteraction->get_color(this, ::user::e_element_border));
 
-         pgraphics->draw_rect(rectClient, pen);
+         pgraphics->draw_rectangle(rectClient, pen);
 
       }
 
@@ -623,7 +623,7 @@ namespace axis
    //}
 
 
-  // ::draw2d::font_pointer style::create_point_font(e_font efont, const char * pszFamilyName, double dFontSize, int iFontWeight)
+  // ::write_text::font_pointer style::create_point_font(e_font efont, const char * pszFamilyName, double dFontSize, int iFontWeight)
   // {
 
   //    if (userstyle()->m_mapFont.is_null())
@@ -1227,7 +1227,7 @@ namespace axis
       //}
 
 
-     // ::draw2d::font_pointer style::create_point_font(e_font efont, const char * pszFamilyName, double dFontSize, int iFontWeight)
+     // ::write_text::font_pointer style::create_point_font(e_font efont, const char * pszFamilyName, double dFontSize, int iFontWeight)
      // {
 
      //    if (userstyle()->m_mapFont.is_null())

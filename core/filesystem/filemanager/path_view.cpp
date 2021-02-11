@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 
 
 namespace filemanager
@@ -165,7 +163,7 @@ namespace filemanager
 
       //   get_client_rect(rectClient);
 
-      //   pgraphics->fill_rect(rectClient, argb(255, 255, 255, 255));
+      //   pgraphics->fill_rectangle(rectClient, argb(255, 255, 255, 255));
 
       ::user::plain_edit::_001OnDraw(pgraphics);
 

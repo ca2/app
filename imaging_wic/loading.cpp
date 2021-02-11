@@ -83,7 +83,7 @@ namespace imaging_wic
 
             }
 
-            Context.file().as_memory(payload, *pmemory);
+            get_context()->file().as_memory(payload, *pmemory);
 
             const char* psz = (const char*)pmemory->get_data();
 

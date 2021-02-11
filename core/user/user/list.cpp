@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 #include "acme/const/timer.h"
 
 
@@ -106,7 +104,7 @@ namespace user
       {
          if (!m_plistheader->is_window())
          {
-            bool bOk = m_plistheader->create_child(this) != 0;
+            bool bOk = m_plistheader->create_child(this);
             //bool bOk = m_plistheader->create_window(
             //           nullptr,
             //           "",
@@ -160,7 +158,7 @@ namespace user
 
       }
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
       if (m_bLockViewUpdate)
       {
@@ -343,9 +341,9 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
             
-            pgraphics->fill_rect(::rectangle_f64(x1, y1, x2, y2), argb(90, 250, 250, 255));
+            pgraphics->fill_rectangle(::rectangle_f64(x1, y1, x2, y2), argb(90, 250, 250, 255));
 
-            pgraphics->draw_rect(::rectangle_f64(x1, y1, x2, y2), argb(192, 192, 192, 208));
+            pgraphics->draw_rectangle(::rectangle_f64(x1, y1, x2, y2), argb(192, 192, 192, 208));
 
          }
 
@@ -641,9 +639,9 @@ namespace user
 
             pdrawitem->m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pdrawitem->m_pgraphics->draw_rect(pdrawitem->m_rectItem, argb(80, 235, 235, 255));
+            pdrawitem->m_pgraphics->draw_rectangle(pdrawitem->m_rectItem, argb(80, 235, 235, 255));
 
-            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, argb(40, 255, 255, 255));
+            pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectItem, argb(40, 255, 255, 255));
 
          }
 
@@ -687,21 +685,21 @@ namespace user
          else if (psession->savings().is_trying_to_save(::e_resource_processing))
          {
 
-            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, argb(255, 96, 96, 96));
+            pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectItem, argb(255, 96, 96, 96));
 
          }
          else
          {
 
-            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, pdrawitem->m_colorItemBackground);
+            pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectItem, pdrawitem->m_colorItemBackground);
 
          }
 
       }
-      else if (pdrawitem->m_colorItemBackground.is_set())
+      else if (pdrawitem->m_colorItemBackground.is_ok())
       {
 
-         pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, pdrawitem->m_colorItemBackground);
+         pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectItem, pdrawitem->m_colorItemBackground);
 
       }
 
@@ -777,7 +775,7 @@ namespace user
 
          pdrawitem->m_pgraphics->set(ppenHighlight);
 
-         pdrawitem->m_pgraphics->draw_rect(rectHighlight);
+         pdrawitem->m_pgraphics->draw_rectangle(rectHighlight);
 
       }
 
@@ -798,9 +796,9 @@ namespace user
 
             pdrawitem->m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            color.m_iA = 90;
+            color.alpha = 90;
 
-            pdrawitem->m_pgraphics->fill_rect(pdrawitem->m_rectItem, color);
+            pdrawitem->m_pgraphics->fill_rectangle(pdrawitem->m_rectItem, color);
 
          }
 
@@ -1145,7 +1143,7 @@ namespace user
          if (m_nItemCount == 0)
          {
 
-            rectangle_i32 = ::rectangle_i32(0, 0, 0, 0);
+            rectangle = ::rectangle_i32(0, 0, 0, 0);
 
          }
          else
@@ -1195,7 +1193,7 @@ namespace user
          if (m_nItemCount == 0)
          {
 
-            rectangle_i32 = ::rectangle_i32(0, 0, 0, 0);
+            rectangle = ::rectangle_i32(0, 0, 0, 0);
 
          }
          else
@@ -1211,7 +1209,7 @@ namespace user
 
             _001GetItemRect(&itemFirst);
 
-            rectangle_i32 = itemFirst.m_rectItem;
+            rectangle = itemFirst.m_rectItem;
 
             rectangle.top = 0;
 
@@ -1223,7 +1221,7 @@ namespace user
       else if (m_eview == impact_icon)
       {
 
-         rectangle_i32 = ::rectangle_i32(0, 0, 0, 0);
+         rectangle = ::rectangle_i32(0, 0, 0, 0);
 
          draw_list_item itemFirst(this);
 
@@ -1426,7 +1424,7 @@ namespace user
 
             pcolumn->m_pil->get_image_info(0, &ii);
 
-            rectangle_i32 = ii.m_rectangle;
+            rectangle = ii.m_rectangle;
 
             if (rectangle.height() + 2 > iItemHeight)
             {
@@ -1508,7 +1506,7 @@ namespace user
 
             hditem.cxy = pcolumn->m_iWidth;;
 
-            hditem.lParam = (LPARAM) iColumn;
+            hditem.lParam = (lparam) iColumn;
 
             hditem.iOrder = (i32)iOrder;
 
@@ -1633,16 +1631,16 @@ namespace user
 
       }
 
-      auto point = m_columna.get_visible(iColumn);
+      auto pcolumn = m_columna.get_visible(iColumn);
 
-      if (point == nullptr)
+      if (!pcolumn)
       {
 
          return -1;
 
       }
 
-      return (::index) point_i32->m_iOrder;
+      return (::index)pcolumn->m_iOrder;
 
    }
 
@@ -2745,7 +2743,7 @@ namespace user
 
                ::point_i32 point2 = m_pointLButtonDown1;
 
-               point_i32 -= point2;
+               point -= point2;
 
                pdrawitem->m_rectItem.offset(point);
 
@@ -3341,8 +3339,7 @@ namespace user
             m_bDrag = false;
 
          }
-#ifdef WINDOWS_DESKTOP
-         else if (::GetAsyncKeyState(VK_LBUTTON) >= 0)
+         else if (pmouse->is_left_button_pressed())
          {
 
             m_bLButtonDown = false;
@@ -3350,8 +3347,6 @@ namespace user
             m_bDrag = false;
 
          }
-
-#endif
 
       }
 
@@ -3518,7 +3513,7 @@ namespace user
 
       __pointer(::message::mouse) pmouse(pmessage);
 
-      SetCapture();
+      set_mouse_capture();
 
       index iDisplayItem;
 
@@ -3575,14 +3570,14 @@ namespace user
 
       }
 
-      if (!has_focus())
+      if (!has_keyboard_focus())
       {
 
-         SetFocus();
+         set_keyboard_focus();
 
       }
 
-      SetCapture();
+      set_mouse_capture();
 
       index iItem;
 
@@ -3628,10 +3623,10 @@ namespace user
 
       }
 
-      if (!has_focus())
+      if (!has_keyboard_focus())
       {
 
-         SetFocus();
+         set_keyboard_focus();
 
       }
 
@@ -3880,7 +3875,13 @@ namespace user
 
       _001ScreenToClient(point);
 
-      ReleaseCapture();
+      auto psession = Session;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      pwindowing->release_capture();
 
       KillTimer(e_timer_drag_start);
 
@@ -4083,9 +4084,11 @@ namespace user
 
       sync_lock sl(mutex());
 
-      if (!has_focus())
+      if (!has_keyboard_focus())
       {
-         SetFocus();
+         
+         set_keyboard_focus();
+
       }
       if (psession->is_key_pressed(::user::e_key_shift))
       {
@@ -4376,7 +4379,7 @@ namespace user
       if(wndidNotify == nullptr)
       wndidNotify = pwnd->get_parent()->GetSafeoswindow_();*/
 
-      LRESULT lresult = 0;
+      lresult lresult = 0;
 
       /* trans if(wndidNotify)
       {
@@ -5624,7 +5627,7 @@ namespace user
    //}
 
 
-   i32 list::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::draw2d::font * pfont, index iItem, index iSubItem)
+   i32 list::_001CalcItemWidth(::draw2d::graphics_pointer & pgraphics, ::write_text::font * pfont, index iItem, index iSubItem)
    {
 
       pgraphics->set(pfont);
@@ -5665,7 +5668,7 @@ namespace user
 
             pcolumn->m_pil->get_image_info((i32)item.m_iImage, &ii);
 
-            rectangle_i32 = ii.m_rectangle;
+            rectangle = ii.m_rectangle;
 
             cx += rectangle.width();
 
@@ -6579,7 +6582,13 @@ namespace user
 
       auto psession = Session;
 
-      update_hover(psession->get_cursor_pos());
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
+
+      update_hover(pointCursor);
 
       ::user::scroll_base::on_change_viewport_offset(pgraphics);
 
@@ -6600,12 +6609,12 @@ namespace user
 
    //}
 
-   //::draw2d::font * list::_001GetFont()
+   //::write_text::font * list::_001GetFont()
    //{
    //   return m_font;
    //}
 
-   //::draw2d::font * list::_001GetFontHover()
+   //::write_text::font * list::_001GetFontHover()
    //{
    //   return m_fontHover;
    //}
@@ -7035,7 +7044,7 @@ namespace user
 
          ASSERT(false);
 
-         return size();
+         return nullptr;
 
       }
 
@@ -7080,7 +7089,7 @@ namespace user
 
    void list::_001OnUpdateListViewAutoArrange(::message::message * pmessage)
    {
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
       pcommand->_001SetCheck(get_auto_arrange());
       pcommand->enable();
    }
@@ -7228,7 +7237,7 @@ namespace user
       m_iOrder = -1;
       m_iSubItem = -1;
       m_iListItem = -1;
-      m_colorText = (color32_t)-1;
+      m_colorText = __indexed_color(-1);
       m_colorTextBackground = argb(255, 0, 0, 0);
       m_colorItemBackground = 0;
       m_iState = -1;
@@ -7342,7 +7351,7 @@ namespace user
 
                pimage->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-               pimage->get_graphics()->fill_rect(pimage->size(), 0);
+               pimage->get_graphics()->fill_rectangle(pimage->size(), 0);
 
                get_image_list()->draw(pimage->g(), (i32)m_iImage,
                                       point_i32(m_plist->m_iIconBlurRadius*iRate, m_plist->m_iIconBlurRadius *iRate), m_rectImage.size(), ::point_i32(), 0);
@@ -7370,7 +7379,7 @@ namespace user
                }
 
 
-               //pimage->g()->fill_rect(::rectangle_i32(pimage->size()), argb(255, 200, 220, 255));
+               //pimage->g()->fill_rectangle(::rectangle_i32(pimage->size()), argb(255, 200, 220, 255));
                if (m_plist->m_iIconBlur > 0 && m_plist->m_iIconBlurRadius > 0)
                {
 
@@ -7389,7 +7398,7 @@ namespace user
             m_pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
             ::rectangle_i32 rectDib(m_rectImage.top_left() - size_i32(m_plist->m_iIconBlurRadius *iRate, m_plist->m_iIconBlurRadius * iRate),
-                      m_rectImage.size() + size(m_plist->m_iIconBlurRadius *iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2));
+                      m_rectImage.size() + size_i32(m_plist->m_iIconBlurRadius *iRate * 2, m_plist->m_iIconBlurRadius * iRate * 2));
 
             m_pgraphics->draw(rectDib, pimage->get_graphics());
 
@@ -7408,7 +7417,7 @@ namespace user
 
                //m_plist->m_pimageTime->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-               //m_plist->m_pimageTime->get_graphics()->fill_rect(r, 0);
+               //m_plist->m_pimageTime->get_graphics()->fill_rectangle(r, 0);
 
                ::rectangle_i32 rect2 = rectI;
 
@@ -7486,11 +7495,11 @@ namespace user
 
          ::color::color color;
 
-         c.set_COLORREF(m_colorText);
+         color.set_COLORREF(m_colorText);
 
-         c.m_iA = c.m_iA / 3;
+         color.alpha = color.alpha / 3;
 
-         brushText->create_solid(c);
+         brushText->create_solid(color);
 
       }
       else
@@ -7521,7 +7530,7 @@ namespace user
 
                __defer_construct(pimage2);
 
-               if (System.draw2d().embossed_text_out(
+               if (System.draw2d()->embossed_text_out(
                      m_pgraphics,
                      m_rectText,
                      m_strText,
@@ -7556,7 +7565,7 @@ namespace user
 
             //m_pgraphics->set(brushText);
 
-            m_pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+            m_pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
             auto pstyle = m_plist->get_style(m_pgraphics);
 
@@ -7568,7 +7577,7 @@ namespace user
 
             m_pgraphics->draw_text(m_strText, m_rectText, ealign, edrawtext);
 
-            //m_pgraphics->fill_rect(m_rectText.left, m_rectText.top, 100, 100, argb(128, 100, 125, 255));
+            //m_pgraphics->fill_rectangle(m_rectText.left, m_rectText.top, 100, 100, argb(128, 100, 125, 255));
 
             if (m_strText == "LOVE OR NOTHING")
             {

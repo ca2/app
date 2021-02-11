@@ -55,17 +55,17 @@ namespace multimedia
 
       void in::pre_translate_message(::message::message * pmessage)
       {
-         __pointer(::message::base) pbase(pmessage);
+         __pointer(::user::message) pusermessage(pmessage);
          //ASSERT(GetMainWnd() == nullptr);
-         //if(pbase->m_id == MM_WIM_OPEN ||
-         //   pbase->m_id == MM_WIM_CLOSE ||
-         //   pbase->m_id == MM_WIM_DATA)
+         //if(pusermessage->m_id == MM_WIM_OPEN ||
+         //   pusermessage->m_id == MM_WIM_CLOSE ||
+         //   pusermessage->m_id == MM_WIM_DATA)
          //{
-         //   translate_in_message(pbase);
-         //   if(pbase->m_bRet)
+         //   translate_in_message(pusermessage);
+         //   if(pusermessage->m_bRet)
          //      return;
          //}
-         return thread::pre_translate_message(pbase);
+         return thread::pre_translate_message(pusermessage);
       }
 
       ::e_status     in::in_open(i32 iBufferCount, i32 iBufferSampleCount)
@@ -422,18 +422,18 @@ namespace multimedia
       void in::translate_in_message(::message::message * pmessage)
       {
 
-         __pointer(::message::base) pbase(pmessage);
+         __pointer(::user::message) pusermessage(pmessage);
 
-         //ASSERT(pbase->m_id == MM_WIM_OPEN || pbase->m_id == MM_WIM_CLOSE || pbase->m_id == MM_WIM_DATA);
+         //ASSERT(pusermessage->m_id == MM_WIM_OPEN || pusermessage->m_id == MM_WIM_CLOSE || pusermessage->m_id == MM_WIM_DATA);
 
-         //if(pbase->m_id == MM_WIM_DATA)
+         //if(pusermessage->m_id == MM_WIM_DATA)
          //{
          //
          //   m_iBuffer--;
          //
          //   u32 msSampleTime = timeGetTime();
          //
-         //   LPWAVEHDR lpwavehdr = (LPWAVEHDR) pbase->m_lparam.m_lparam;
+         //   LPWAVEHDR lpwavehdr = (LPWAVEHDR) pusermessage->m_lparam.m_lparam;
 
          //   in_get_buffer()->get_buffer((i32) lpwavehdr->dwUser)->OnMultimediaDone();
 
@@ -451,7 +451,7 @@ namespace multimedia
 
          //}
 
-         pbase->m_bRet = true;
+         pusermessage->m_bRet = true;
 
       }
 

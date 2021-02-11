@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 
 
 CLASS_DECL_AURA int_bool mq_post_message(::windowing::window * pwindow, const ::id & id, wparam wparam, lparam lparam)

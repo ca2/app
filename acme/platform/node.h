@@ -39,9 +39,13 @@ namespace acme
 
       virtual void os_application_system_run();
 
-      virtual ::e_status set_system_dark_mode(bool bSet = true);
+      virtual ::e_status set_system_dark_mode1(bool bSet = true);
 
-      virtual ::e_status set_app_dark_mode(bool bSet = true);
+      virtual ::e_status set_app_dark_mode1(bool bSet = true);
+
+      virtual ::e_status set_internal_system_dark_mode(bool bSet = true);
+
+      virtual ::e_status set_internal_app_dark_mode(bool bSet = true);
 
       virtual bool is_system_dark_mode();
 
@@ -143,7 +147,18 @@ namespace acme
 
       virtual string get_user_name();
 
-      virtual ::color::color get_simple_ui_color(::user::enum_element eelement, ::user::enum_state estate);
+      virtual ::color::color get_simple_ui_color(::user::enum_element eelement, ::user::enum_state estate = ::user::e_state_none);
+
+      virtual ::color::color get_default_color(::u64 u);
+
+      virtual void set_console_colors(::u32 dwScreenColors, ::u32 dwPopupColors, ::u32 dwWindowAlpha);
+
+      virtual double get_time_zone();
+
+      virtual ::e_status get_system_time(system_time_t * psystemtime);
+
+
+      virtual ::e_status open_folder(::file::path & pathFolder);
 
 
    };

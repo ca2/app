@@ -110,8 +110,8 @@ namespace str
 
 #ifdef WINDOWS
    // wd16
-   inline  BSTR               AllocSysString(const ansichar * pchData, strsize nDataLength) noexcept;
-   inline  bool               ReAllocSysString(BSTR * pbstr, const ansichar * pchData, strsize nDataLength) noexcept;
+   CLASS_DECL_ACME  BSTR               AllocSysString(const ansichar * pchData, strsize nDataLength) noexcept;
+   CLASS_DECL_ACME  bool               ReAllocSysString(BSTR * pbstr, const ansichar * pchData, strsize nDataLength) noexcept;
 
 #endif
 
@@ -221,12 +221,11 @@ inline filetime __filetime(const FILETIME & filetime) { return make64_from32(fil
 
 CLASS_DECL_ACME bool is_valid_FILETIME(const FILETIME & ft) noexcept;
 
-template < typename CHAR >
-CLASS_DECL_ACME BSTR AllocSysString(const ::string_base < CHAR > & str);
+
+CLASS_DECL_ACME BSTR AllocSysString(const string & str);
 
 
-template < typename CHAR >
-CLASS_DECL_ACME BSTR SetSysString(BSTR * pbstr, const ::string_base < CHAR > & str);
+CLASS_DECL_ACME BSTR SetSysString(BSTR * pbstr, const string & str);
 
 
 CLASS_DECL_ACME int_bool read_resource_as_file(const char * pszFile, HINSTANCE hinst, ::u32 nID, LPCTSTR pcszType);

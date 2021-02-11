@@ -1,7 +1,5 @@
-﻿#include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
+#include "framework.h"
 #include "core/user/user/_user.h"
-#endif
 
 
 const i32 xfplayer_view_line::AlignLeft = 1;
@@ -140,7 +138,7 @@ void xfplayer_view_line::add_char(widechar wch, strsize & index)
 }
 
 
-void xfplayer_view_line::add_char(widechar wch, strsize & index, draw2d::font * pFont)
+void xfplayer_view_line::add_char(widechar wch, strsize & index, ::write_text::font * pFont)
 {
 
    single_lock sl(m_pContainer->mutex());
@@ -199,7 +197,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
 
    }
 
-   if (bRecalcLayout || m_rectClient != rectangle_i32)
+   if (bRecalcLayout || m_rectClient != rectangle)
    {
 
       m_bCacheEmboss = false;
@@ -295,7 +293,7 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
                   //const ::point_i32 & point = pgraphics->GetViewportOrg();
                   //pimage->from(nullptr, pgraphics, point_i32 + rectangle.top_left(), rectangle.size());
                   pimage->g()->draw(rectangle.size(), pgraphics, rectangle.top_left());
-                  //pimage->get_graphics()->fill_rect(0, 0, 16, 16, argb(255, 255, 0, 255));
+                  //pimage->get_graphics()->fill_rectangle(0, 0, 16, 16, argb(255, 255, 0, 255));
                   pimage->invert();
                   //pimage->fill_channel(0, ::color::e_channel_blue);
                   pimage->fill_channel(255, ::color::e_channel_alpha);
@@ -557,11 +555,11 @@ bool xfplayer_view_line::_001OnDraw(::draw2d::graphics_pointer & pgraphics, bool
 
 /*void xfplayer_view_line::CalcCharsPositions(
 ::draw2d::graphics * pdcForeground,
-   ref_array <  draw2d::font > * pFonts,
+   ref_array <  ::write_text::font > * pFonts,
    const ::rectangle_i32 & rectangle)
 {
    m_bCacheEmboss = false;
-   //draw2d::font * pFont;
+   //::write_text::font * pFont;
 //    ::draw2d::graphics * pdcForeground = m_ptwi->TwiGetDC();
    if(m_str.get_length() <= 0)
       return;
@@ -733,7 +731,7 @@ void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphi
 
    }
 
-   ::draw2d::text_metric tm;
+   ::write_text::text_metric tm;
 
    pgraphics->get_text_metrics(&tm);
 
@@ -780,7 +778,7 @@ void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphi
          pgraphics,
          m_strPrefix,
          i,
-         size_i32);
+         size);
          m_iaPosition.add(size.cx);
       }
       int iSize = size.cx;
@@ -788,18 +786,25 @@ void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphi
       pgraphics,
       " ",
       1,
-      size_i32);
+      size);
+
       m_iaPosition.add(iSize + size.cx);
+      
       pgraphics->set(m_font);
+
       for (i = 1; i <= m_strRoot.get_length(); i++)
       {
+
          m_dcextension.GetTextExtent(
          pgraphics,
          m_strRoot,
          i,
-         size_i32);
+         size);
+
          m_iaPosition.add(iSize + size.cx);
+
       }
+
    }
    else
    {
@@ -807,14 +812,18 @@ void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphi
       pgraphics->set(m_font);
 
       m_iaPosition[0] = 0;
+
       for (i = 1; i <= m_str.get_length(); i++)
       {
+
          m_dcextension.GetTextExtent(
          pgraphics,
          m_str,
          i,
-         size_i32);
+         size);
+
          m_iaPosition[i] = size.cx;
+
       }
 
    }
@@ -874,21 +883,21 @@ void xfplayer_view_line::CalcCharsPositions(::draw2d::graphics_pointer & pgraphi
 
 /*void xfplayer_view_line::CalcCharsPositions(
    ::draw2d::graphics *             pdcForeground,
-   draw2d::font *     pFont,
+   ::write_text::font *     pFont,
    const rectangle_i32 &           rectangle_i32)
 
 {
    m_bCacheEmboss = false;
    if(m_str.get_length() <= 0)
       return;
-    ::draw2d::font * pfontOriginal = pdcForeground->get_current_font();
+    ::write_text::font * pfontOriginal = pdcForeground->get_current_font();
    pdcForeground->set(pFont->GetFont());
    i32 i, iLeft, iRight, iMaxExtent;
    ::size_i32 size;
    ::rectangle_i32 rectClient(rectangle);
 
    m_rectClient = rectClient;
-   draw2d::font * pfont = pFont;
+   ::write_text::font * pfont = pFont;
    ::draw2d::graphics_pointer & pgraphics = pdcForeground;
    ASSERT(pfont != nullptr);
    ::rectangle_i32 rectPlacement;
@@ -1124,7 +1133,7 @@ void xfplayer_view_line::SetForegroundColor(color32_t cr)
    m_colorForeground = cr;
 }
 
-/*ref_array <  draw2d::font > * xfplayer_view_line::GetFonts()
+/*ref_array <  ::write_text::font > * xfplayer_view_line::GetFonts()
 {
     return &m_fonts;
 }
@@ -1208,7 +1217,7 @@ void xfplayer_view_line::SetPlacement(const ::rectangle_i32 & rectangle)
    return m_fonts.get_size();
 }
 
-void xfplayer_view_line::AddVmsFont(draw2d::font * pfont)
+void xfplayer_view_line::AddVmsFont(::write_text::font * pfont)
 {
    m_fonts.add(pfont);
 }*/
@@ -1431,19 +1440,19 @@ void xfplayer_view_line::SetColors(color32_t cr, color32_t crOutline)
 }
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-void xfplayer_view_line::GetLogFont(LOGFONTW &lf)
-{
-
-   single_lock sl(m_pContainer->mutex());
-
-   //lf = m_logfont;
-}
-
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//void xfplayer_view_line::GetLogFont(LOGFONTW &lf)
+//{
+//
+//   single_lock sl(m_pContainer->mutex());
+//
+//   //lf = m_logfont;
+//}
+//
+//
+//#endif
 
 
 void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, const char * pcsz, strsize iLen, ::image_pointer & pimageCache)
@@ -1536,7 +1545,7 @@ void xfplayer_view_line::CacheEmboss(::draw2d::graphics_pointer & pgraphics, con
 }
 
 
-void xfplayer_view_line::SetFont(::draw2d::font * pfont)
+void xfplayer_view_line::SetFont(::write_text::font * pfont)
 {
 
    single_lock sl(m_pContainer->mutex());
@@ -1704,7 +1713,7 @@ void xfplayer_view_line::OnMouseMove(::message::message * pmessage)
    {
       if (CharHasLink(iChar))
       {
-         pmouse->m_ecursor = cursor_hand;
+         pmouse->m_ecursor = e_cursor_hand;
       }
    }
    /*
@@ -1888,7 +1897,7 @@ void xfplayer_view_line::_001OnTimer(::timer * ptimer)
 }
 
 
-::draw2d::font * xfplayer_view_line::GetFont()
+::write_text::font * xfplayer_view_line::GetFont()
 {
 
    single_lock sl(m_pContainer->mutex());

@@ -52,6 +52,10 @@ namespace uwp
 
 #endif
 
+#include "aura/graphics/draw2d/_.h"
+
+
+#include "message/_.h"
 
 
 //#include "aura/primitive/primitive/estatus.h"
@@ -929,7 +933,7 @@ using icon_result = __result(::draw2d::icon);
 using image_pointer_array = __pointer_array(::image);
 
 
-#include "aura/graphics/draw2d/_.h"
+#include "aura/graphics/draw2d/_draw2d.h"
 
 
 //
@@ -1304,13 +1308,21 @@ namespace draw2d
    class cursor;
    class region;
    class brush;
-   class font;
    using brush_pointer = __pointer(brush);
-   using font_pointer = __pointer(font);
 
 
 } // namespace draw2d
 
+
+namespace write_text
+{
+
+
+   class font;
+   using font_pointer = __pointer(font);
+
+
+} // namespace write_text
 
 
 //
@@ -1369,7 +1381,7 @@ namespace draw2d
 ////
 ////
 ////   //using color_map = map < e_color, e_color, color32_t, color32_t >;
-////   //using font_map = map < e_font, e_font, ::draw2d::font_pointer >;
+////   //using font_map = map < e_font, e_font, ::write_text::font_pointer >;
 ////   using eflag = flags < enum_flag >;
 ////   //using flag_map = map < enum_flag, enum_flag, bool, bool >;
 ////   //using rect_map = ::map < e_rect, e_rect, style_rect >;

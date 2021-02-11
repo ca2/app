@@ -47,6 +47,7 @@ namespace windows
       virtual void GetModuleShortFileName(HINSTANCE hInst, string & strShortName);
       
       virtual ::payload length(const ::file::path & path) override;
+      virtual ::payload length(const ::file::path & path, ::payload * pvarQuery) override;
 
       virtual ::status::result move(const ::file::path & pszNew, const ::file::path & psz) override;
 

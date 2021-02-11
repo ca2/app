@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "axis/user/_user.h"
-#endif
 
 
 namespace user
@@ -55,7 +53,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer button::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   ::write_text::font_pointer button::get_font(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
       if (pstyle)
@@ -169,7 +167,7 @@ namespace user
 
       const ::size_i32 & size = pgraphics->GetTextExtent(strText);
 
-      ::draw2d::text_metric tm;
+      ::write_text::text_metric tm;
 
       pgraphics->get_text_metrics(&tm);
 
@@ -342,7 +340,7 @@ namespace user
       else
       {
 
-         pgraphics->fill_rect(rectClient, crBk);
+         pgraphics->fill_rectangle(rectClient, crBk);
 
       }
 
@@ -376,7 +374,7 @@ namespace user
       //if (_001GetFlag(flag_border))
       {
 
-         pgraphics->draw_rect(rectClient, crBorder);
+         pgraphics->draw_rectangle(rectClient, crBorder);
 
       }
 
@@ -547,7 +545,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pgraphics->fill_rect(rectClient, colorBack);
+            pgraphics->fill_rectangle(rectClient, colorBack);
 
          }
 
@@ -576,7 +574,7 @@ namespace user
 
             pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-            pgraphics->fill_rect(rectClient, crBackground);
+            pgraphics->fill_rectangle(rectClient, crBackground);
 
          }
 

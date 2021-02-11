@@ -42,7 +42,7 @@ namespace imaging_wic
 
          }
 
-         auto pinputstream = pmemory->create_istream();
+         auto pinputstream = ::create_istream(*pmemory);
 
          hr = pwicstream->InitializeFromIStream(pinputstream);
 
@@ -929,7 +929,7 @@ namespace imaging_wic
 
       colorref_array colorrefa;
 
-      cra_from_quada(colorrefa, (RGBQUAD *)rgColors, iUsed);
+      cra_from_quada(colorrefa, (WINRGBQUAD *)rgColors, iUsed);
 
       if (uFrameIndex == 0)
       {

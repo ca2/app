@@ -43,7 +43,7 @@ namespace experience
 
          ptab->get_data()->m_pen->create_solid(1,rgb(32,32,32));
 
-         pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
+         pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
          pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -396,14 +396,14 @@ namespace experience
             if(ptab->get_element_rect(-1,rectScroll, ::user::e_element_tab_near_scroll))
             {
 
-               pgraphics->fill_rect(rectScroll, argb(255, 255, 255, 255));
+               pgraphics->fill_rectangle(rectScroll, argb(255, 255, 255, 255));
 
             }
 
             if(ptab->get_element_rect(-1,rectScroll, ::user::e_element_tab_far_scroll))
             {
 
-               pgraphics->fill_rect(rectScroll, argb(255, 255, 255, 255));
+               pgraphics->fill_rectangle(rectScroll, argb(255, 255, 255, 255));
 
             }
 
@@ -434,7 +434,7 @@ namespace experience
 
             ::rectangle_i32 rectText(rectangle);
 
-            ::draw2d::font_pointer font;
+            ::write_text::font_pointer font;
 
             font = pgraphics->get_current_font();
 
@@ -473,7 +473,7 @@ namespace experience
                   if(ptab->m_itemHover == (::index) ::user::e_element_split + i)
                   {
 
-                     pgraphics->fill_rect(rectEmp,argb(128, 150, 190, 255));
+                     pgraphics->fill_rectangle(rectEmp,argb(128, 150, 190, 255));
 
                      colorText = ptab->get_color(this, ::user::e_element_item_text, ::user::e_state_hover);
 
@@ -838,7 +838,9 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-                  if (::user::is_app_dark_mode())
+                  auto pnode = System.node();
+
+                  if (pnode->is_app_dark_mode())
                   {
 
                      return ::color::color(80, 80, 80, 127);
@@ -863,7 +865,9 @@ namespace experience
                   if (eelement == ::user::e_element_background)
                   {
 
-                     if (::user::is_app_dark_mode())
+                     auto pnode = System.node();
+
+                     if (pnode->is_app_dark_mode())
                      {
 
                         return ::color::color(255, 255, 255, 127);
@@ -880,7 +884,9 @@ namespace experience
                   else if (eelement == ::user::e_element_text)
                   {
 
-                     if (::user::is_app_dark_mode())
+                     auto pnode = System.node();
+
+                     if (pnode->is_app_dark_mode())
                      {
 
                         return ::color::color(80, 80, 80, 255);
@@ -902,7 +908,9 @@ namespace experience
                   if (eelement == ::user::e_element_background)
                   {
 
-                     if (::user::is_app_dark_mode())
+                     auto pnode = System.node();
+
+                     if (pnode->is_app_dark_mode())
                      {
 
                         return ::color::color(80, 80, 80, 127);
@@ -919,7 +927,9 @@ namespace experience
                   else if (eelement == ::user::e_element_text)
                   {
 
-                     if (::user::is_app_dark_mode())
+                     auto pnode = System.node();
+
+                     if (pnode->is_app_dark_mode())
                      {
 
                         return ::color::color(255, 255, 255, 255);
@@ -944,7 +954,9 @@ namespace experience
                if (eelement == ::user::e_element_background)
                {
 
-                  if (::user::is_app_dark_mode())
+                  auto pnode = System.node();
+
+                  if (pnode->is_app_dark_mode())
                   {
 
                      return ::color::color(80, 80, 80, 127);
@@ -977,7 +989,9 @@ namespace experience
                else if (eelement == ::user::e_element_item_text)
                {
 
-                  if (::user::is_app_dark_mode())
+                  auto pnode = System.node();
+
+                  if (pnode->is_app_dark_mode())
                   {
 
                      return __acolor(255, 230, 230, 230);
@@ -1008,7 +1022,9 @@ namespace experience
                   else
                   {
 
-                     if (::user::is_app_dark_mode())
+                     auto pnode = System.node();
+
+                     if (pnode->is_app_dark_mode())
                      {
 
                         return __acolor(255, 230, 230, 230);
@@ -1041,7 +1057,9 @@ namespace experience
             //if (estate & ::user::e_state_hover)
             {
 
-               if (::user::is_app_dark_mode())
+               auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 255, 255, 255);
@@ -1063,7 +1081,9 @@ namespace experience
             if (estate & ::user::e_state_hover)
             {
 
-               if (::user::is_app_dark_mode())
+               auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 255, 255, 255);
@@ -1080,7 +1100,9 @@ namespace experience
             else if (estate & ::user::e_state_selected)
             {
 
-               if (::user::is_app_dark_mode())
+               auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 255, 255, 255);
@@ -1097,7 +1119,9 @@ namespace experience
             else
             {
 
-               if (::user::is_app_dark_mode())
+               auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 210, 210, 200);
@@ -1131,7 +1155,9 @@ namespace experience
             if (estate & ::user::e_state_new_input)
             {
 
-               if (::user::is_app_dark_mode())
+               auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 130, 130, 130);
@@ -1148,7 +1174,9 @@ namespace experience
             else
             {
 
-               if (::user::is_app_dark_mode())
+               auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 230, 230, 230);
@@ -1170,7 +1198,9 @@ namespace experience
             if (estate & ::user::e_state_new_input)
             {
 
-               if (::user::is_app_dark_mode())
+               auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 130, 130, 130);
@@ -1187,7 +1217,9 @@ namespace experience
             else
             {
 
-               if (::user::is_app_dark_mode())
+               auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 230, 230, 230);
@@ -1206,7 +1238,9 @@ namespace experience
         else if (eelement == ::user::e_element_background)
         {
 
-               if (::user::is_app_dark_mode())
+               auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                {
 
                   return __acolor(127, 80, 80, 80);
@@ -1223,7 +1257,9 @@ namespace experience
             else
             {
 
-               if (::user::is_app_dark_mode())
+               auto pnode = System.node();
+
+               if (pnode->is_app_dark_mode())
                {
 
                   return __acolor(255, 230, 230, 230);
@@ -1264,7 +1300,7 @@ namespace experience
 
             }
 
-            pgraphics->fill_rect(rectClient, colorBackground);
+            pgraphics->fill_rectangle(rectClient, colorBackground);
 
          }
 
@@ -1338,17 +1374,19 @@ namespace experience
 
             pbar->_001ClientToScreen(point1);
 
-            ::point_i32 point2;
-
             auto psession = Session;
 
-            psession->get_cursor_pos(&point2);
+            auto puser = psession->user();
+
+            auto pwindowing = puser->windowing();
+
+            auto pointCursor = pwindowing->get_cursor_pos();
 
             pbar->_001ClientToScreen(point1);
 
             //      prop("tracking_window").cast < trw >()->point1 = point1;
 
-            //    prop("tracking_window").cast < trw >()->point2 = point2;
+            //    prop("tracking_window").cast < trw >()->point2 = pointCursor;
 
             if (pbar->is_true("tracking_fade_in"))
             {
@@ -1408,9 +1446,9 @@ namespace experience
 
                int iSize = rectTrack.size().get_normal(pbar->m_eorientation) * 6 / 8;
 
-               rectMachineThumb.top_left() = rectTrack.top_left() + pbar->m_sizeTrackOffset - size_i32(iSize / 2, iSize / 2);
+               rectMachineThumb.top_left() = rectTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
 
-               rectMachineThumb.bottom_right() = rectMachineThumb.top_left() + size(iSize, iSize);
+               rectMachineThumb.bottom_right() = rectMachineThumb.top_left() + ::size_i32(iSize, iSize);
 
                ::rectangle_i32 rectIntersect;
 
@@ -1428,9 +1466,9 @@ namespace experience
 
                int iSize = rectTrack.size().get_normal(pbar->m_eorientation);
 
-               rectMachineThumb.top_left() = rectTrack.top_left() + pbar->m_sizeTrackOffset - size_i32(iSize / 2, iSize / 2);
+               rectMachineThumb.top_left() = rectTrack.top_left() + pbar->m_sizeTrackOffset - ::size_i32(iSize / 2, iSize / 2);
 
-               rectMachineThumb.bottom_right() = rectMachineThumb.top_left() + size(iSize, iSize);
+               rectMachineThumb.bottom_right() = rectMachineThumb.top_left() + ::size_i32(iSize, iSize);
 
                rectMachineThumb.assign_normal(rectTrack, pbar->m_eorientation);
 
@@ -1454,7 +1492,7 @@ namespace experience
 
          ::point_i32 pointCenter = rectTrack.center();
 
-         if (pbar->m_eorientation == orientation_horizontal)
+         if (pbar->m_eorientation == e_orientation_horizontal)
          {
 
             pgraphics->move_to(pointCenter.x - 5, pointCenter.y - 5);
@@ -1510,7 +1548,7 @@ namespace experience
 
             pgraphics->set(pbar->m_brushDraw);
 
-            pgraphics->fill_rect(rectangle);
+            pgraphics->fill_rectangle(rectangle);
 
          }
          else if (pbar->m_itemCurrent == ::user::e_element_scrollbar_pageB || pbar->m_itemHover == ::user::e_element_scrollbar_pageB)
@@ -1522,7 +1560,7 @@ namespace experience
 
             pgraphics->set(pbar->m_brushDraw);
 
-            pgraphics->fill_rect(rectangle);
+            pgraphics->fill_rectangle(rectangle);
 
          }
 

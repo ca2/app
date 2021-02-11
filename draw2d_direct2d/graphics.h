@@ -50,7 +50,7 @@ namespace draw2d_direct2d
       D2D1_BITMAP_INTERPOLATION_MODE                     m_bitmapinterpolationmode;
       D2D1_INTERPOLATION_MODE                            m_interpolationmode;
 
-      ::draw2d::e_text_rendering_hint                    m_etextrenderinghintDevice;
+      ::write_text::enum_rendering                    m_etextrenderinghintDevice;
 
 
       // advanced use and implementation
@@ -98,7 +98,7 @@ namespace draw2d_direct2d
       inline void defer_text_rendering_hint()
       {
 
-         if (m_etextrenderinghint != m_etextrenderinghintDevice)
+         if (m_ewritetextrendering != m_etextrenderinghintDevice)
          {
 
             apply_primitive_blend();
@@ -144,10 +144,10 @@ namespace draw2d_direct2d
   //                    int (CALLBACK* lpfn)(LPVOID, LPARAM), LPARAM lpData) override;
 
       //virtual ::draw2d::object* set_stock_object(int nIndex) override;
-      //virtual ::e_status set(::draw2d::font * pfont) override;
+      //virtual ::e_status set(::write_text::font * pfont) override;
       //virtual ::e_status set(::draw2d::pen* pPen) override;
       //virtual ::e_status set(::draw2d::brush* pBrush) override;
-      //virtual ::e_status set(::draw2d::font* pFont) override;
+      //virtual ::e_status set(::write_text::font* pFont) override;
       //virtual ::e_status set(::draw2d::bitmap* pBitmap) override;
       //virtual i32 SelectObject(::draw2d::region* pRgn) override;       // special return for regions
       //::draw2d::object* SelectObject(::draw2d::object* pObject) override;
@@ -304,10 +304,10 @@ namespace draw2d_direct2d
       bool poly_bezier_to(const ::point_f64* ppoints,count nCount) override;
 
 
-      virtual bool frame_rect(const ::rectangle_f64 & rectangle, ::draw2d::brush* pBrush) override;
+      virtual bool frame_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush* pBrush) override;
 
 
-      virtual bool invert_rect(const ::rectangle_f64 & rectangle) override;
+      virtual bool invert_rectangle(const ::rectangle_f64 & rectangle) override;
 
       //virtual bool draw(const ::rectangle_f64 & rectDst, ::draw2d::icon * picon) override;
 
@@ -354,14 +354,14 @@ namespace draw2d_direct2d
 
       //virtual bool fill_polygon(const POINT_F64 * ppoints,count nCount) override;
 
-      using ::draw2d::graphics::rectangle_i32;
-      using ::draw2d::graphics::draw_rect;
-      using ::draw2d::graphics::fill_rect;
-      using ::draw2d::graphics::round_rect;
-      virtual bool rectangle_i32(const ::rectangle_f64 & rectangle) override;
-      virtual bool draw_rect(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen) override;
-      virtual bool fill_rect(const ::rectangle_f64 & rectangle, ::draw2d::brush * ppen) override;
-      virtual bool round_rect(const ::rectangle_f64 & rectangle, double dRadius) override;
+      using ::draw2d::graphics::rectangle;
+      using ::draw2d::graphics::draw_rectangle;
+      using ::draw2d::graphics::fill_rectangle;
+      using ::draw2d::graphics::round_rectangle;
+      virtual bool rectangle(const ::rectangle_f64 & rectangle) override;
+      virtual bool draw_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::pen * ppen) override;
+      virtual bool fill_rectangle(const ::rectangle_f64 & rectangle, ::draw2d::brush * ppen) override;
+      virtual bool round_rectangle(const ::rectangle_f64 & rectangle, double dRadius) override;
 
 
       //virtual bool _draw_raw(const ::rectangle_f64 & rectDst, ::image * pimage, const ::image_drawing_options & imagedrawingoptions, const ::point_f64 & rectSrc = ::point_f64()) override;
@@ -433,8 +433,8 @@ namespace draw2d_direct2d
       virtual ::u32 SetTextAlign(::u32 nFlags) override;
       //virtual int GetTextFace(count nCount, char * lpszFacename) override;
       //virtual int GetTextFace(string & rString) override;
-      virtual bool get_text_metrics(::draw2d::text_metric * lpMetrics) override;
-      virtual bool get_output_text_metrics(::draw2d::text_metric * lpMetrics) override;
+      virtual bool get_text_metrics(::write_text::text_metric * lpMetrics) override;
+      virtual bool get_output_text_metrics(::write_text::text_metric * lpMetrics) override;
       //virtual int SetTextJustification(int nBreakExtra, int nBreakCount) override;
       //virtual int GetTextCharacterExtra() override;
       //virtual int SetTextCharacterExtra(int nCharExtra) override;
@@ -527,8 +527,8 @@ namespace draw2d_direct2d
       //                  const ::rectangle_f64 & rectLast, const ::size_f64 & sizeLast,
       //                  ::draw2d::brush* pBrush = nullptr, ::draw2d::brush* pBrushLast = nullptr) override;
 
-      bool fill_rect(const ::rectangle_f64 & rectangle, const ::color::color & color) override;
-      //void fill_rect(const ::rectangle_f64 & rectangle, const ::color::color & color) override;
+      bool fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color) override;
+      //void fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color) override;
 
       //bool draw_3drect(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
       //void draw_3drect(const ::rectangle_f64 & rectangle, const ::color::color & colorTopLeft, const ::color::color & colorBottomRight, const ::e_border & eborder = e_border_all) override;
@@ -560,7 +560,7 @@ namespace draw2d_direct2d
 
       virtual bool destroy();
 
-      //IDWriteTextFormat * get_os_font(::draw2d::font * pfont);
+      //IDWriteTextFormat * get_os_font(::write_text::font * pfont);
       //ID2D1Brush * get_os_brush(::draw2d::brush * pbrush);
       //ID2D1Brush * get_os_pen_brush(::draw2d::pen * ppen);
 
@@ -582,7 +582,7 @@ namespace draw2d_direct2d
       // used for implementation of non-virtual SelectObject calls
       //static ::draw2d::object* SelectGdiObject(application * papp, HDC hDC, HGDIOBJ h) override;
 
-      virtual void enum_fonts(::draw2d::font_enum_item_array & itema) override;
+      //virtual void enum_fonts(::write_text::font_enum_item_array & itema) override;
 
 //#ifdef _UWP
 //      virtual void set_direct2d_plugin(::draw2d_direct2d::plugin * pplugin);

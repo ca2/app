@@ -210,6 +210,16 @@ enum enum_normalize
 };
 
 
+namespace message
+{
+
+ 
+   class command;
+
+
+} // namespace message
+
+
 enum enum_null
 {
 
@@ -246,6 +256,8 @@ concept a_pointer = std::is_pointer < T >::value;
 template < typename T >
 concept non_pointer = !std::is_pointer < T >::value;
 
+template < typename T >
+concept a_enum = std::is_enum < T >::value;
 
 template < typename T >
 concept primitive_integral = std::is_integral < T >::value || std::is_enum < T >::value;
@@ -978,10 +990,10 @@ namespace core
 class eimpact;
 
 
-enum e_simple_command : ::i64;
-enum e_message : ::i64;
-enum e_impact : ::i64;
-enum e_id : ::u64;
+enum enum_simple_command : ::i64;
+enum enum_message : ::i64;
+enum enum_impact : ::i64;
+enum enum_id : ::u64;
 enum enum_check : ::i32;
 
 template<typename TYPE>
@@ -1459,15 +1471,17 @@ class task_pool;
 
 
 
-namespace draw2d
+namespace write_text
 {
 
+   
    class font_enum_item;
 
 
    using font_enum_item_array = __pointer_array(font_enum_item);
 
-} // namespace draw2d
+
+} // namespace write_text
 
 template<typename T>
 class result_pointer;
@@ -1764,33 +1778,6 @@ namespace message
 } // namespace message
 
 
-namespace draw2d
-{
-
-
-   class graphics;
-
-
-   class icon;
-
-
-   class cursor;
-
-
-   class region;
-
-
-   class brush;
-
-
-   class font;
-
-
-   using brush_pointer = __pointer(brush);
-   using font_pointer = __pointer(font);
-
-
-} // namespace draw2d
 
 
 template < typename ARGUMENT >
@@ -2536,6 +2523,12 @@ namespace primitive
 template < typename T >
 concept not_pointer = !std::is_pointer < T >::value;
 
+template < typename T >
+concept an_object = !std::is_pointer < T >::value 
+&& !std::is_integral < T >::value
+&& !std::is_enum < T >::value
+&& !std::is_floating_point < T >::value;
+
 
 template<typename TYPE>
 inline bool is_null(const __pointer(TYPE) & p)
@@ -2690,9 +2683,12 @@ namespace status
 namespace message
 {
 
+   
    class message;
 
+
 } // namespace status
+
 
 class parents;
 
@@ -2807,7 +2803,8 @@ namespace factory
 
 
 #include "acme/primitive/primitive/matter.h"
-#include "acme/primitive/primitive/layered.h"
+#include "acme/primitive/primitive/id_matter.h"
+
 
 
 #include "acme/primitive/geometry2d/_.h"
@@ -2900,9 +2897,6 @@ inline bool failed(const ::property &set) { return !::succeeded(set); }
 
 
 
-
-
-
 //#include "acme/primitive/collection/_papaya_array_decl.h"
 #include "acme/primitive/collection/_papaya_heap.h"
 
@@ -2915,23 +2909,12 @@ using element_address_array = ::address_array<matter *>;
 
 #include "acme/primitive/collection/_papaya.h"
 
-
-//#include "acme/primitive/collection/pointer2_array.h"
-
 class sticker;
-
 
 inline ::matter *trace_object(::matter *pobjectContext) { return pobjectContext; }
 
-
 template<typename POINTER_TYPE>
 class ptr_array;
-
-//using composite_ptra = __pointer_array(::matter); // Please use just for composition (ownership).
-
-//using reference_ptra = __pointer_array(::matter); // Please use just for reference (member-based).
-
-//using object_ptra = __pointer_array(::matter); // Please use just for keeping non-member-based references.
 
 using object_ptra = __pointer_array(::matter); // Please use just for keeping non-member-based references.
 
@@ -2956,23 +2939,6 @@ namespace http
 } // namespace http
 
 
-
-
-//class context;
-
-//namespace draw2d
-//{
-//
-//   class graphics;
-//   class pen;
-//
-//   using graphics_pointer = __pointer(graphics);
-//   using pen_pointer = __pointer(pen);
-//
-//
-//
-//
-//} // namespace draw2d
 
 #ifdef WINDOWS_DESKTOP
 
@@ -3003,18 +2969,8 @@ struct MESSAGE
 };
 
 
-//class create_thread;
-
 using generic_pointer = __pointer(::matter);
 
-
-//#ifdef WINDOWS_DESKTOP
-//
-//
-//#include "acme/os/windows/itemidlist.h"
-//
-//
-//#endif
 
 
 namespace core
@@ -3050,6 +3006,8 @@ namespace promise
 
 
 #include "acme/primitive/primitive/context_object.h"
+#include "acme/primitive/primitive/layered.h"
+
 
 #include "acme/primitive/comparison/var_strict.h"
 
@@ -3267,6 +3225,8 @@ inline void dump_elements(dump_context &dumpcontext, const TYPE *pElements, ::co
 
 
 #include "acme/primitive/primitive/factory.h"
+
+
 
 
 #include "acme/parallelization/_.h"
@@ -4033,7 +3993,6 @@ namespace draw2d
 
 
 } // namespace draw2d
-
 
 
 #include "acme/graphics/draw2d/_.h"

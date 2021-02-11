@@ -183,7 +183,7 @@ namespace hotplugin
       ::point_i32 pa[4];
 
       //Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(49, 177 + iBarHeight, 177 + iBarHeight, 177 + 19));
-      //graphics2.fill_rect(pbr, rectParam.left , rectParam.top, rectParam.left + cx, rectParam.top + cy);
+      //graphics2.fill_rectangle(pbr, rectParam.left , rectParam.top, rectParam.left + cx, rectParam.top + cy);
 
       //delete pbr;
 
@@ -263,28 +263,28 @@ namespace hotplugin
       rect1.right = rect1.left + iRowCount + 4;
       rect1.bottom = rect1.top + iBarHeight + 2;
 
-      pgraphics->fill_rect(rect1, br);
+      pgraphics->fill_rectangle(rect1, br);
 
       /*for(iRow = 0; iRow < iProgressCount; iRow++)
       {
       {
       get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 0);
       Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-      graphics2.fill_rect(pbr, rectParam.left + iRow + cx / iRate , rectParam.top + (cy - iBarHeight) / 2, 1, 5);
+      graphics2.fill_rectangle(pbr, rectParam.left + iRow + cx / iRate , rectParam.top + (cy - iBarHeight) / 2, 1, 5);
 
       delete pbr;
       }
       {
       get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 1);
       Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-      graphics2.fill_rect(pbr, rectParam.left + iRow + cx / iRate , rectParam.top + (cy - iBarHeight) / 2 + 5, 1, 5);
+      graphics2.fill_rectangle(pbr, rectParam.left + iRow + cx / iRate , rectParam.top + (cy - iBarHeight) / 2 + 5, 1, 5);
 
       delete pbr;
       }
       {
       get_progress_color(uchR, uchG, uchB, (double) iRow / (double) iRowCount, 2);
       Gdiplus::SolidBrush * pbr = new Gdiplus::SolidBrush(Gdiplus::Color(bA, uchR, uchG, uchB));
-      graphics2.fill_rect(pbr, rectParam.left + iRow + cx / iRate , rectParam.top + (cy - iBarHeight) / 2 + 10, 1, 13);
+      graphics2.fill_rectangle(pbr, rectParam.left + iRow + cx / iRate , rectParam.top + (cy - iBarHeight) / 2 + 10, 1, 13);
 
       delete pbr;
       }
@@ -295,21 +295,21 @@ namespace hotplugin
          br->create_solid(argb(bA, uchR, uchG, uchB));
          rect2 = rect_dim(rectParam.left + cx / iRate, rectParam.top + (cy - iBarHeight) / 2, iProgressCount, 5);
 
-         pgraphics->fill_rect(rect2, br);
+         pgraphics->fill_rectangle(rect2, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 1);
          br->create_solid(argb(bA, uchR, uchG, uchB));
          rect2 = rect_dim(rectParam.left + cx / iRate, rectParam.top + (cy - iBarHeight) / 2 + 5, iProgressCount, 5);
 
-         pgraphics->fill_rect(rect2, br);
+         pgraphics->fill_rectangle(rect2, br);
       }
       {
          get_progress_color(uchR, uchG, uchB, dRate, 2);
          br->create_solid(argb(bA, uchR, uchG, uchB));
          rect2 = rect_dim(rectParam.left + cx / iRate, rectParam.top + (cy - iBarHeight) / 2 + 10, iProgressCount, 13);
 
-         pgraphics->fill_rect(rect2, br);
+         pgraphics->fill_rectangle(rect2, br);
       }
 
       i32 iOffset = 3;
@@ -344,7 +344,7 @@ namespace hotplugin
 
       pgraphics->SelectObject(br);
 
-      ::draw2d::font_pointer f(e_create);
+      ::write_text::font_pointer f(e_create);
 
       f->create_pixel_font("Calibri", iBarHeight * 0.7);
 

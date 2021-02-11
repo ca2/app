@@ -7,9 +7,6 @@
 void dpi_initialize(ID2D1Factory* pFactory);
 
 
-CLASS_DECL_AURA float os_get_dpi();
-
-
 #define d2d1_fax_options D2D1_FACTORY_OPTIONS // fax of merde
 #define multi_threaded D2D1_FACTORY_TYPE_MULTI_THREADED // ???? muliple performance multi thread hidden option there exists cost uses?
 
@@ -130,15 +127,15 @@ namespace draw2d_direct2d
 
       }
 
-      /*System.draw2d().direct2d() = __new(::draw2d_direct2d::plugin);
+      /*::direct2d::direct2d() = __new(::draw2d_direct2d::plugin);
 
-      System.draw2d().direct2d()->initialize();*/
+      ::direct2d::direct2d()->initialize();*/
 
       HRESULT hr;
 
       Microsoft::WRL::ComPtr<ID2D1DeviceContext> pdevicecontextTemplate;
 
-      if (FAILED(hr = System.draw2d().direct2d()->m_pd2device->CreateDeviceContext(
+      if (FAILED(hr = ::direct2d::direct2d()->m_pd2device->CreateDeviceContext(
                       D2D1_DEVICE_CONTEXT_OPTIONS_NONE,
                       //D2D1_DEVICE_CONTEXT_OPTIONS_ENABLE_MULTITHREADED_OPTIMIZATIONS,
                       &pdevicecontextTemplate)))
@@ -152,7 +149,15 @@ namespace draw2d_direct2d
 
       Microsoft::WRL::ComPtr<ID2D1RenderTarget> prendertargetTemplate;
 
-      auto dpi = os_get_dpi();
+      auto psession = Session;
+
+      auto puser = psession->user();
+
+      auto pwindowing = puser->windowing();
+
+      auto pdisplay = pwindowing->display();
+
+      auto dpi = pdisplay->get_dpi();
 
       if (dpi <= 0.0)
       {
@@ -344,7 +349,7 @@ namespace draw2d_direct2d
 
       //   point_i32 ::point_f64(x, y);
 
-      //   ::size_f64 size_i32(nWidth, nHeight);
+      //   ::size_f64 size(nWidth, nHeight);
 
       //   ::rectangle_i32 rectBlend(point, ::size_f64);
 
@@ -361,7 +366,7 @@ namespace draw2d_direct2d
 
       //      pimage1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      //      pimage1->get_graphics()->fill_rect(rectDib1, argb(0, 0, 0, 0));
+      //      pimage1->get_graphics()->fill_rectangle(rectDib1, argb(0, 0, 0, 0));
 
       //      if (!pimage1->from(::point_f64(), pgraphicsSrc, ::point_f64(xSrc, ySrc), ::size_f64))
       //      {
@@ -376,7 +381,7 @@ namespace draw2d_direct2d
 
       //      pimage2->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      //      pimage2->get_graphics()->fill_rect(rectDib1, argb(255, 0, 0, 0));
+      //      pimage2->get_graphics()->fill_rectangle(rectDib1, argb(255, 0, 0, 0));
 
       //      if (!pimage2->from(::point_f64(), m_pimageAlphaBlend, point_i32 - m_pointAlphaBlend, rectIntersect.size()))
       //      {
@@ -559,7 +564,7 @@ namespace draw2d_direct2d
 
          pimage1->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-         pimage1->get_graphics()->fill_rect(rectDib1, argb(0, 0, 0, 0));
+         pimage1->get_graphics()->fill_rectangle(rectDib1, argb(0, 0, 0, 0));
 
          pimage1->get_graphics()->text_out(0, 0, block);
 
@@ -569,7 +574,7 @@ namespace draw2d_direct2d
 
          pimage2->get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-         pimage2->get_graphics()->fill_rect(rectDib1, argb(255, 0, 0, 0));
+         pimage2->get_graphics()->fill_rectangle(rectDib1, argb(255, 0, 0, 0));
 
          if (!pimage2->draw(rectIntersect.size(), m_pimageAlphaBlend, __pointd(point - m_pointAlphaBlend)))
          {
@@ -1032,7 +1037,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::frame_rect(const ::rectangle_f64 & rectParam, ::draw2d::brush* pbrush)
+   bool graphics::frame_rectangle(const ::rectangle_f64 & rectParam, ::draw2d::brush* pbrush)
    {
 
       if (m_prendertarget == nullptr)
@@ -1053,7 +1058,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::invert_rect(const ::rectangle_f64 & rectangle)
+   bool graphics::invert_rectangle(const ::rectangle_f64 & rectangle)
    {
 
       __throw(todo());
@@ -1417,7 +1422,7 @@ namespace draw2d_direct2d
 
       Microsoft::WRL::ComPtr<ID2D1PathGeometry> pgeometry;
 
-      HRESULT hr = ::draw2d_direct2d::plugin::d2d1_factory1()->CreatePathGeometry(&pgeometry);
+      HRESULT hr = ::direct2d::direct2d()->d2d1_factory1()->CreatePathGeometry(&pgeometry);
 
       {
 
@@ -1463,7 +1468,7 @@ namespace draw2d_direct2d
 
       Microsoft::WRL::ComPtr<ID2D1PathGeometry> pgeometry;
 
-      HRESULT hr = ::draw2d_direct2d::plugin::d2d1_factory1()->CreatePathGeometry(&pgeometry);
+      HRESULT hr = ::direct2d::direct2d()->d2d1_factory1()->CreatePathGeometry(&pgeometry);
 
       {
 
@@ -1508,7 +1513,7 @@ namespace draw2d_direct2d
 
       Microsoft::WRL::ComPtr<ID2D1PathGeometry> pgeometry;
 
-      HRESULT hr = ::draw2d_direct2d::plugin::d2d1_factory1()->CreatePathGeometry(&pgeometry);
+      HRESULT hr = ::direct2d::direct2d()->d2d1_factory1()->CreatePathGeometry(&pgeometry);
 
       {
 
@@ -1540,23 +1545,23 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::rectangle_i32(const ::rectangle_f64 & rectangle)
+   bool graphics::rectangle(const ::rectangle_f64 & rectangle)
    {
 
       bool bOk1;
 
-      bOk1 = fill_rect(rectangle);
+      bOk1 = fill_rectangle(rectangle);
 
       bool bOk2;
 
-      bOk2 = draw_rect(rectangle);
+      bOk2 = draw_rectangle(rectangle);
 
       return bOk1 && bOk2;
 
    }
 
 
-   bool graphics::draw_rect(const ::rectangle_f64 & rectParam, ::draw2d::pen * ppen)
+   bool graphics::draw_rectangle(const ::rectangle_f64 & rectParam, ::draw2d::pen * ppen)
    {
 
       if (ppen == nullptr)
@@ -1588,7 +1593,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::fill_rect(const ::rectangle_f64 & rectParam, ::draw2d::brush * pbrush)
+   bool graphics::fill_rectangle(const ::rectangle_f64 & rectParam, ::draw2d::brush * pbrush)
    {
 
       if (pbrush == nullptr)
@@ -1620,7 +1625,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::round_rect(const ::rectangle_f64 & rectParam, double dRadius)
+   bool graphics::round_rectangle(const ::rectangle_f64 & rectParam, double dRadius)
    {
 
       D2D1_ROUNDED_RECT rectangle;
@@ -2050,7 +2055,7 @@ namespace draw2d_direct2d
    //}
 
 
-   bool graphics::get_text_metrics(::draw2d::text_metric * lpMetrics)
+   bool graphics::get_text_metrics(::write_text::text_metric * lpMetrics)
    {
 
       if (m_pfont.is_null())
@@ -2179,7 +2184,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::get_output_text_metrics(::draw2d::text_metric * lpMetrics)
+   bool graphics::get_output_text_metrics(::write_text::text_metric * lpMetrics)
    {
 
       __throw(todo());
@@ -2809,7 +2814,7 @@ namespace draw2d_direct2d
    {
    // Fill a rectangle_i32 and an ellipse in pMeta.
    Graphics metaGraphics(pMeta);
-   metaGraphics.fill_rect(&SolidBrush(Color(255, 0, 0, 0)), 0, 0, 100, 100);
+   metaGraphics.fill_rectangle(&SolidBrush(Color(255, 0, 0, 0)), 0, 0, 100, 100);
    metaGraphics.FillEllipse(&SolidBrush(Color(255, 255, 0, 0)), 100, 0, 200, 100);
    }
    // Enumerate pMeta to the destination rectangle, passing pMeta as the callback data.
@@ -3354,7 +3359,7 @@ namespace draw2d_direct2d
    //   // find difference between new region and old region
    //   rgnLast.CreateRectRgn(0, 0, 0, 0);
    //   rgnOutside.SetRectRgn(lpRectLast);
-   //   rectangle_i32 = *lpRectLast;
+   //   rectangle = *lpRectLast;
    //   rectangle.inflate(-sizeLast.cx, -sizeLast.cy);
    //   rectangle.intersect(rectangle, lpRectLast);
    //   rgnInside.SetRectRgn(rectangle);
@@ -3394,10 +3399,10 @@ namespace draw2d_direct2d
    //}
 
 
-   //bool graphics::fill_rect(const ::rectangle_f64 & rectangle, const ::color::color & color)
+   //bool graphics::fill_rectangle(const ::rectangle_f64 & rectangle, const ::color::color & color)
    //{
 
-   //   return fill_rect(rectangle_f64(rectangle), color);
+   //   return fill_rectangle(rectangle_f64(rectangle), color);
 
    //}
 
@@ -4205,29 +4210,29 @@ namespace draw2d_direct2d
 
          }
 
-         m_etextrenderinghintDevice = m_etextrenderinghint;
+         m_etextrenderinghintDevice = m_ewritetextrendering;
 
          switch (m_etextrenderinghintDevice)
          {
-         case ::draw2d::text_rendering_hint_anti_alias:
+         case ::write_text::e_rendering_anti_alias:
 
             m_prendertarget->SetTextAntialiasMode(D2D1_TEXT_ANTIALIAS_MODE_GRAYSCALE);
 
             break;
 
-         case ::draw2d::text_rendering_hint_anti_alias_grid_fit:
+         case ::write_text::e_rendering_anti_alias_grid_fit:
             
             m_prendertarget->SetTextAntialiasMode(D2D1_TEXT_ANTIALIAS_MODE_GRAYSCALE);
 
             break;
 
-         case ::draw2d::text_rendering_hint_single_bit_per_pixel:
+         case ::write_text::e_rendering_single_bit_per_pixel:
             
             m_prendertarget->SetTextAntialiasMode(D2D1_TEXT_ANTIALIAS_MODE_GRAYSCALE);
 
             break;
 
-         case ::draw2d::text_rendering_hint_clear_type_grid_fit:
+         case ::write_text::e_rendering_clear_type_grid_fit:
 
             m_prendertarget->SetTextAntialiasMode(D2D1_TEXT_ANTIALIAS_MODE_CLEARTYPE);
 
@@ -4269,7 +4274,7 @@ namespace draw2d_direct2d
 
       }
 
-      return m_puserinteraction->get_handle();
+      return m_puserinteraction->get_oswindow();
 
    }
 
@@ -4447,7 +4452,7 @@ namespace draw2d_direct2d
          }
          else if (nObjType == OBJ_FONT)
          {
-            // play back as graphics::SelectObject(::draw2d::font*)
+            // play back as graphics::SelectObject(::write_text::font*)
             //               (dynamic_cast<::draw2d_direct2d::graphics * >(pgraphics))->SelectObject(::draw2d_direct2d::font::from_handle_dup(pgraphics->get_context_application(), (HFONT)hObject));
             __throw(not_implemented());
             break;  // don't play the default record
@@ -4792,7 +4797,7 @@ namespace draw2d_direct2d
 
       ::u32 uLength = (::u32)text.m_wstr.get_length();
 
-      hr = System.draw2d().direct2d()->dwrite_factory()->CreateTextLayout(
+      hr = ::direct2d::direct2d()->dwrite_factory()->CreateTextLayout(
            text.m_wstr,                // The string to be laid out and formatted.
            uLength,   // The length of the string.
            pfont,    // The text format to apply to the string (contains font information, etc).
@@ -4852,7 +4857,7 @@ namespace draw2d_direct2d
    }
 
 
-   bool graphics::fill_rect(const ::rectangle_f64 & rectParam, const ::color::color & color)
+   bool graphics::fill_rectangle(const ::rectangle_f64 & rectParam, const ::color::color & color)
    {
 
       if (!m_pdevicecontext)
@@ -5283,7 +5288,7 @@ namespace draw2d_direct2d
 //                                            D2D1_FEATURE_LEVEL_DEFAULT
 //                                            );
 //
-//      HRESULT hr = ::draw2d_direct2d::plugin::d2d1_factory1()->CreateDCRenderTarget(&props,&m_pdcrendertarget);
+//      HRESULT hr = ::direct2d::direct2d()->d2d1_factory1()->CreateDCRenderTarget(&props,&m_pdcrendertarget);
 //
 //      if (FAILED(hr))
 //      {
@@ -5594,7 +5599,7 @@ namespace draw2d_direct2d
 
       IDWriteTextFormat * pformat = textout.m_pfont->get_os_data < IDWriteTextFormat * > (this);
 
-      IDWriteFactory * pfactory = System.draw2d().direct2d()->dwrite_factory();
+      IDWriteFactory * pfactory = ::direct2d::direct2d()->dwrite_factory();
 
       IDWriteTextLayout * playout = nullptr;
 
@@ -5614,7 +5619,7 @@ namespace draw2d_direct2d
 
       }
 
-      CustomTextRenderer renderer(::draw2d_direct2d::plugin::d2d1_factory1(),m_prendertarget.Get(),ppen->get_os_data < ID2D1Brush * >(this));
+      CustomTextRenderer renderer(::direct2d::direct2d()->d2d1_factory1(),m_prendertarget.Get(),ppen->get_os_data < ID2D1Brush * >(this));
 
       defer_text_primitive_blend();
 
@@ -5634,7 +5639,7 @@ namespace draw2d_direct2d
 
       IDWriteTextFormat * pformat = textout.m_pfont->get_os_data < IDWriteTextFormat * >(this);
 
-      IDWriteFactory * pfactory = System.draw2d().direct2d()->dwrite_factory();
+      IDWriteFactory * pfactory = ::direct2d::direct2d()->dwrite_factory();
 
       IDWriteTextLayout * playout = nullptr;
 
@@ -5659,7 +5664,7 @@ namespace draw2d_direct2d
       if (posbrush)
       {
 
-         CustomTextRenderer renderer(::draw2d_direct2d::plugin::d2d1_factory1(), m_prendertarget.Get(), nullptr, posbrush);
+         CustomTextRenderer renderer(::direct2d::direct2d()->d2d1_factory1(), m_prendertarget.Get(), nullptr, posbrush);
 
          defer_text_primitive_blend();
 
@@ -5681,7 +5686,7 @@ namespace draw2d_direct2d
 
       IDWriteTextFormat* pformat = drawtext.m_pfont->get_os_data < IDWriteTextFormat* >(this);
 
-      IDWriteFactory* pfactory = System.draw2d().direct2d()->dwrite_factory();
+      IDWriteFactory* pfactory = ::direct2d::direct2d()->dwrite_factory();
 
       IDWriteTextLayout* playout = nullptr;
 
@@ -5701,7 +5706,7 @@ namespace draw2d_direct2d
 
       }
 
-      CustomTextRenderer renderer(::draw2d_direct2d::plugin::d2d1_factory1(), m_prendertarget.Get(), ppen->get_os_data < ID2D1Brush* >(this));
+      CustomTextRenderer renderer(::direct2d::direct2d()->d2d1_factory1(), m_prendertarget.Get(), ppen->get_os_data < ID2D1Brush* >(this));
 
       defer_text_primitive_blend();
 
@@ -5721,7 +5726,7 @@ namespace draw2d_direct2d
 
       IDWriteTextFormat* pformat = drawtext.m_pfont->get_os_data < IDWriteTextFormat* >(this);
 
-      IDWriteFactory* pfactory = System.draw2d().direct2d()->dwrite_factory();
+      IDWriteFactory* pfactory = ::direct2d::direct2d()->dwrite_factory();
 
       IDWriteTextLayout* playout = nullptr;
 
@@ -5746,7 +5751,7 @@ namespace draw2d_direct2d
       if (posbrush)
       {
 
-         CustomTextRenderer renderer(::draw2d_direct2d::plugin::d2d1_factory1(), m_prendertarget.Get(), nullptr, posbrush);
+         CustomTextRenderer renderer(::direct2d::direct2d()->d2d1_factory1(), m_prendertarget.Get(), nullptr, posbrush);
 
          defer_text_primitive_blend();
 
@@ -5781,134 +5786,17 @@ namespace draw2d_direct2d
    }
 
 
-   void graphics::enum_fonts(::draw2d::font_enum_item_array & itema)
-   {
+   //void graphics::enum_fonts(::write_text::font_enum_item_array & itema)
+   //{
 
-      ::comptr<IDWriteFontCollection> pFontCollection;
 
-      HRESULT hr = System.draw2d().direct2d()->dwrite_factory()->GetSystemFontCollection(&pFontCollection);
-
-      ::u32 familyCount = 0;
-
-      if(SUCCEEDED(hr))
-      {
-
-         familyCount = pFontCollection->GetFontFamilyCount();
-
-      }
-
-      u32 index = 0;
-
-      BOOL exists = false;
-
-      wchar_t localeName[LOCALE_NAME_MAX_LENGTH];
-
-      int defaultLocaleSuccess = GetUserDefaultLocaleName(localeName,LOCALE_NAME_MAX_LENGTH);
-
-      for(::u32 i = 0; i < familyCount; ++i)
-      {
-
-         ::comptr<IDWriteFontFamily> pFontFamily;
-
-         if(SUCCEEDED(hr))
-         {
-
-            hr = pFontCollection->GetFontFamily(i,&pFontFamily);
-
-         }
-
-         ::comptr<IDWriteLocalizedStrings> pFamilyNames;
-
-         if(SUCCEEDED(hr))
-         {
-
-            hr = pFontFamily->GetFamilyNames(&pFamilyNames);
-
-         }
-
-         if(SUCCEEDED(hr))
-         {
-
-            if(defaultLocaleSuccess)
-            {
-
-               hr = pFamilyNames->FindLocaleName(localeName,&index,&exists);
-
-            }
-
-            if(SUCCEEDED(hr) && !exists) // if the above find did not find a match, retry with US English
-            {
-
-               hr = pFamilyNames->FindLocaleName(L"en-us",&index,&exists);
-
-            }
-
-         }
-
-         // If the specified locale doesn't exist, select the first on the list.
-         if(!exists)
-         {
-            index = 0;
-         }
-
-         ::u32 length = 0;
-
-         // Get the string length.
-         if(SUCCEEDED(hr))
-         {
-
-            hr = pFamilyNames->GetStringLength(index,&length);
-
-         }
-
-         // Allocate a string big enough to hold the name.
-         wstring wstr;
-
-         auto name = wstr.get_string_buffer(length + 1);
-
-         if(name == nullptr)
-         {
-
-            hr = E_OUTOFMEMORY;
-
-         }
-
-         // Get the family name.
-         if(SUCCEEDED(hr))
-         {
-
-            hr = pFamilyNames->GetString(index,name,length + 1);
-
-         }
-
-         wstr.release_string_buffer();
-
-         // Add the family name to the String Array.
-         if(SUCCEEDED(hr))
-         {
-
-            string strName = string((const widechar *)(name));
-
-            itema.add(__new(::draw2d::font_enum_item(strName, strName)));
-
-         }
-
-      }
-
-      itema.pred_sort([](auto & item1, auto & item2)
-      {
-
-         return item1->m_strName < item2->m_strName;
-
-      });
-
-   }
+   //}
 
 
    //void graphics::set_direct2d_plugin(::draw2d_direct2d::plugin * pplugin)
    //{
 
-   //   System.draw2d().direct2d() = pplugin;
+   //   ::direct2d::direct2d() = pplugin;
 
    //}
 

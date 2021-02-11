@@ -58,8 +58,8 @@ namespace draw2d_opengl
       virtual HDC Detach();
       virtual bool AttachPrinter(HDC hdc);
       virtual HDC DetachPrinter();
-      using draw2d::graphics::fill_rect;
-      void fill_rect(const rectangle_f64& rectangle, color32_t cr);
+      using draw2d::graphics::fill_rectangle;
+      void fill_rectangle(const rectangle_f64& rectangle, color32_t cr);
 
 
       virtual void SetAttribDC(HDC hDC);  // set the Attribute DC
@@ -72,7 +72,7 @@ namespace draw2d_opengl
       ::draw2d::pen_pointer     get_current_pen() const;
       ::draw2d::brush_pointer   get_current_brush() const;
       ::draw2d::palette_pointer get_current_palette() const;
-      ::draw2d::font_pointer    get_current_font() const;
+      ::write_text::font_pointer    get_current_font() const;
       ::draw2d::bitmap_pointer  get_current_bitmap() const;
 
 
@@ -126,7 +126,7 @@ namespace draw2d_opengl
       virtual ::draw2d::object* SelectStockObject(i32 nIndex);
       ::draw2d::pen* SelectObject(::draw2d::pen* pPen);
       ::draw2d::brush* SelectObject(::draw2d::brush* pBrush);
-      virtual ::draw2d::font* SelectObject(::draw2d::font* pFont);
+      virtual ::write_text::font* SelectObject(::write_text::font* pFont);
       ::draw2d::bitmap* SelectObject(::draw2d::bitmap* pBitmap);
       i32 SelectObject(::draw2d::region* pRgn);       // special return for regions
       ::draw2d::object* SelectObject(::draw2d::object* pObject);
@@ -262,7 +262,7 @@ namespace draw2d_opengl
       bool poly_bezier_to(const POINT_I32* lpPoints,count nCount);
 
       // Simple Drawing Functions
-      virtual bool fill_rect(const ::rectangle_i32 &  rectangle, ::draw2d::brush* pBrush) override;
+      virtual bool fill_rectangle(const ::rectangle_i32 &  rectangle, ::draw2d::brush* pBrush) override;
       void FrameRect(const RECTANGLE_I32 &  rectangle, ::draw2d::brush* pBrush);
       //bool DrawRect(const ::rectangle_i32 & rectangle, ::draw2d::pen * ppen);
       void InvertRect(const RECTANGLE_I32 &  rectangle_i32);
@@ -314,10 +314,10 @@ namespace draw2d_opengl
       //virtual bool rectangle_i32(i32 x1, i32 y1, i32 x2, i32 y2) override;
       virtual bool rectangle_i32(const ::rectangle_f64 & rectangle) override;
       //virtual bool drw(i32 x1, i32 y1, i32 x2, i32 y2);
-      virtual bool draw_rect(const ::rectangle_f64 & rectangle);
-      virtual bool draw_rect(const ::rectangle_f64& rectangle, ::draw2d::pen * ppen);
+      virtual bool draw_rectangle(const ::rectangle_f64 & rectangle);
+      virtual bool draw_rectangle(const ::rectangle_f64& rectangle, ::draw2d::pen * ppen);
       //virtual bool FillRectangle(i32 x1, i32 y1, i32 x2, i32 y2);
-      virtual bool fill_rect(const ::rectangle_f64 & rectangle);
+      virtual bool fill_rectangle(const ::rectangle_f64 & rectangle);
       bool RoundRect(i32 x1, i32 y1, i32 x2, i32 y2, i32 x3, i32 y3);
       bool RoundRect(const RECTANGLE_I32 &  rectangle, const ::point_i32 & point);
 
@@ -391,8 +391,8 @@ namespace draw2d_opengl
       virtual ::u32 SetTextAlign(::u32 nFlags);
       virtual i32 GetTextFace(count nCount, char * lpszFacename);
       virtual i32 GetTextFace(string & rString);
-      virtual bool get_text_metrics(::draw2d::text_metric * lpMetrics);
-      virtual bool get_output_text_metrics(::draw2d::text_metric * lpMetrics);
+      virtual bool get_text_metrics(::write_text::text_metric * lpMetrics);
+      virtual bool get_output_text_metrics(::write_text::text_metric * lpMetrics);
       virtual i32 SetTextJustification(i32 nBreakExtra, i32 nBreakCount);
       virtual i32 GetTextCharacterExtra();
       virtual i32 SetTextCharacterExtra(i32 nCharExtra);
@@ -512,7 +512,7 @@ namespace draw2d_opengl
 
       virtual bool set_smooth_mode(::draw2d::e_smooth_mode esmoothmode);
 
-      virtual bool set_text_rendering_hint(::draw2d::e_text_rendering_hint etextrendering);
+      virtual bool set_text_rendering_hint(::write_text::enum_rendering etextrendering);
 
       //virtual void * get_os_data() const;
       //virtual void * get_os_data_ex(int i) const;
@@ -539,13 +539,13 @@ namespace draw2d_opengl
       virtual bool draw_line(const point_i32& point1, const point_i32& point2, ::draw2d::pen* ppen);
 
 
-      virtual void enum_fonts(::draw2d::font_enum_item_array& itema) override;
+      virtual void enum_fonts(::write_text::font_enum_item_array& itema) override;
 
       virtual bool prefer_mapped_image_on_mix();
 
       virtual ::e_status set(::draw2d::region* pregion) override;
       virtual ::e_status set(::draw2d::pen* ppen) override;
-      virtual ::e_status set(::draw2d::font* pfont) override;
+      virtual ::e_status set(::write_text::font* pfont) override;
       virtual ::e_status set(::draw2d::brush* pbrush) override;
       virtual ::e_status set(::draw2d::bitmap* pbitmap) override;
       virtual ::draw2d::object* set_stock_object(i32 nIndex) override;

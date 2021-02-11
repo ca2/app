@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/user/_user.h"
-#endif
 
 
 namespace hotplugin
@@ -81,7 +79,7 @@ namespace hotplugin
 
       brush->create_solid(argb(190, 49, 50, 49));
 
-      pgraphics->fill_rect(rectBar, brush);
+      pgraphics->fill_rectangle(rectBar, brush);
 
       if (!bStatic)
       {
@@ -93,7 +91,7 @@ namespace hotplugin
          if (rectDraw.intersect(rectBar, rectBrick))
          {
 
-            pgraphics->fill_rect(rectDraw, brushGreen);
+            pgraphics->fill_rectangle(rectDraw, brushGreen);
 
          }
 
@@ -102,7 +100,7 @@ namespace hotplugin
          if (rectDraw.intersect(rectBar, rectBrick))
          {
 
-            pgraphics->fill_rect(rectDraw, brushGreen);
+            pgraphics->fill_rectangle(rectDraw, brushGreen);
 
          }
 
@@ -111,7 +109,7 @@ namespace hotplugin
          if (rectDraw.intersect(rectBar, rectBrick))
          {
 
-            pgraphics->fill_rect(rectDraw, brushGreen);
+            pgraphics->fill_rectangle(rectDraw, brushGreen);
 
          }
 
@@ -121,9 +119,9 @@ namespace hotplugin
 
       pen->create_solid(1.0f, argb(149, 150, 149, 142));
 
-      pgraphics->draw_rect(rectBar, pen);
+      pgraphics->draw_rectangle(rectBar, pen);
 
-      ::draw2d::font_pointer f(e_create);
+      ::write_text::font_pointer f(e_create);
 
       f->create_pixel_font("Calibri", 18.0);
 

@@ -458,19 +458,19 @@ void matter::on_future(const ::payload & payload)
 }
 
 
-::task* matter::defer_start_task(const ::id& id, const ::promise::routine & routine)
+::task* matter::defer_fork(const ::id& id, const ::promise::routine & routine)
 {
 
    auto ptasktool = __task_pool(taskpool());
 
-   if (ptasktool)
+   if (!ptasktool)
    {
 
-      return ptasktool->defer_start(id, routine);
+      return nullptr;
 
    }
 
-   return nullptr;
+   return ptasktool->defer_fork(id, routine);
 
 }
 

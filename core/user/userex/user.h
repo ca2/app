@@ -84,7 +84,7 @@ namespace core
       //::user::interaction *                                 m_puiLastLButtonDown;
 
 
-      //::draw2d::font_enum_item_array                        m_fontenumitema;
+      //::write_text::font_enum_item_array                        m_fontenumitema;
 
       ////index                                               m_iEdge;
 
@@ -129,7 +129,7 @@ namespace core
 
       //__composite(::userex::userex)                         m_puserex;
       //bool                                                  m_bFontSelInitialized;
-      //__composite(::draw2d::font_list)                      m_pfontlistSingleColumn;
+      //__composite(::write_text::font_list)                      m_pfontlistSingleColumn;
       //__composite(::user::user)                             m_puser;
       
 
@@ -179,7 +179,7 @@ namespace core
       virtual ::e_status initialize_html();
 
 
-      virtual void route_command_message(::user::command * pcommand);
+      virtual void route_command_message(::message::command * pcommand);
 
 
       virtual void _001OnFileNew();
@@ -226,28 +226,6 @@ namespace core
 
       virtual ::e_status create_user_shell();
 
-
-      virtual string get_wallpaper(index iScreen);
-      virtual bool set_wallpaper(index iScreen, string strWallpaper);
-
-
-      virtual string_array get_wallpaper();
-      virtual void set_wallpaper(const string_array & strWallpaper);
-
-
-      virtual string impl_get_wallpaper(index iScreen);
-      virtual bool impl_set_wallpaper(index iScreen, string strWallpaper);
-
-
-      virtual string os_get_user_theme();
-      virtual bool set_os_desktop_theme(string strTheme);
-
-
-      virtual string impl_get_os_desktop_theme();
-      virtual bool impl_set_os_desktop_theme(string strTheme);
-
-
-      virtual void enable_wallpaper_change_notification();
 
 
 
@@ -560,7 +538,7 @@ namespace core
 
       //void _001OnFileNew();
 
-      ////virtual void route_command_message(::user::command * pcommand) override;
+      ////virtual void route_command_message(::message::command * pcommand) override;
 
       //virtual ::user::document* userex_on_request(::create* pcreate);
 
@@ -578,7 +556,7 @@ namespace core
 
       ////virtual void on_app_request_bergedge_callback(::layered * pobjectContext);
 
-      //virtual ::draw2d::font_list* get_single_column_font_list();
+      //virtual ::write_text::font_list* get_single_column_font_list();
 
       //virtual void on_frame_window_drop_files(::user::interaction* pinteraction, ::file::patha& patha);
 

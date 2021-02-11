@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/experience/_experience.h"
-#endif
 
 
 namespace experience
@@ -67,17 +65,17 @@ namespace experience
    void frame::frame_on_attach()
    {
 
-      if (m_pframewindow)
-      {
+      //if (m_pframewindow)
+      //{
 
-         if (m_pframewindow->size_manager() != nullptr)
-         {
+      //   if (m_pframewindow->size_manager() != nullptr)
+      //   {
 
-            m_pframewindow->size_manager()->SetSWPFlags(0);
+      //      m_pframewindow->size_manager()->SetSWPFlags(0);
 
-         }
+      //   }
 
-      }
+      //}
 
    }
 
@@ -120,21 +118,21 @@ namespace experience
 
    void frame::OnActivate()
    {
-   }
-
-
-   bool frame::_001OnCommand(wparam wparam, lparam lparam, LRESULT & lresult)
-
-   {
-
-      UNREFERENCED_PARAMETER(wparam);
-      UNREFERENCED_PARAMETER(lparam);
-
-      UNREFERENCED_PARAMETER(lresult);
-
-      return false;
 
    }
+
+
+   //bool frame::_001OnCommand(WPARAM wparam, LPARAM lparam, LRESULT & lresult)
+   //{
+
+   //   UNREFERENCED_PARAMETER(wparam);
+   //   UNREFERENCED_PARAMETER(lparam);
+
+   //   UNREFERENCED_PARAMETER(lresult);
+
+   //   return false;
+
+   //}
 
 
    void frame::on_layout(::draw2d::graphics_pointer & pgraphics)
@@ -190,7 +188,7 @@ namespace experience
             pframewindow->RepositionBars(0, 0xffff, "pane_first", pframewindow->reposExtra,
                                  &rectBorder, &rectangle, true);
             pframewindow->SetBorderRect(rectBorder);
-            pframewindow->CalcWindowRect(&rectangle);
+            //pframewindow->CalcWindowRect(&rectangle);
             OnNcCalcSize(&rectangle);
             //::rectangle_i32 rectSnap(0, 0, 0, 0);
             //CalcWndClient(rectSnap, rectSnap);
@@ -470,13 +468,14 @@ namespace experience
    }
 
 
-   bool frame::_001OnNcHitTest(const ::point_i32 & point,LRESULT & nHitTest)
+   bool frame::_001OnNcHitTest(const ::point_i32 & point, enum_hit_test & ehittest)
    {
 
       UNREFERENCED_PARAMETER(point);
-      UNREFERENCED_PARAMETER(nHitTest);
 
-      return false;
+      ehittest = e_hit_test_client;
+
+      return true;
 
    }
 
@@ -524,7 +523,7 @@ namespace experience
    i32 frame::calc_caption_height(::draw2d::graphics_pointer & pgraphics)
    {
 
-      auto rectangle_i32 = get_control_box()->get_button_margin(e_button_close);
+      auto rectangle = get_control_box()->get_button_margin(e_button_close);
 
       auto iButtonSize = get_control_box()->calc_button_size(pgraphics);
 

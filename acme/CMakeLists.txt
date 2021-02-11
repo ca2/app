@@ -35,11 +35,9 @@ list(APPEND acme_source
    const/_.h
    const/code_page.h
    const/idpool.cpp
-   exception/-ehrror.cpp
-   exception/-last_ehrror.cpp
-   exception/-overflow_ehrror.cpp
-   exception/-range_ehrror.cpp
-   exception/-runtime_ehrror.cpp
+   exception/overflow.cpp
+   exception/range.cpp
+   exception/runtime.cpp
    exception/archive.cpp
    exception/archive_exception.cpp
    exception/base.cpp

@@ -413,6 +413,60 @@ void task::term_task()
 
    }
 
+#ifdef __DEBUG
+
+   string strId = m_id;
+
+   if (strId.contains_ci("forking_thread"))
+   {
+
+#if 0
+
+#ifdef WINDOWS_DESKTOP
+
+      ::exception::engine().reset();
+
+      OS_DWORD                dwDisplacement;
+
+      OS_DWORD                uia[4096];
+
+      dwDisplacement = 0;
+
+      ::u32 maxframes = sizeof(uia) / sizeof(uia[0]);
+
+      ULONG BackTraceHash;
+
+      int iAddressWrite = RtlCaptureStackBackTrace(0, maxframes, reinterpret_cast<PVOID *>(&uia), &BackTraceHash);
+
+      char sz[1024];
+
+      __zero(sz);
+
+      engine_symbol(sz, sizeof(sz), &dwDisplacement, uia[5]);
+
+      u32 uiLine = 0;
+
+      {
+         critical_section_lock csl(&::exception::engine().m_criticalsection);
+
+         engine_fileline(uia[5], 0, 0, &uiLine, nullptr);
+
+      }
+
+      strId = string(sz) + "(" + __str(uiLine) + ") :: forking_thread";
+
+#endif
+
+#endif
+
+   }
+
+   m_pszDebug = strdup(strId);
+
+#endif
+
+
+
    auto estatus = task_caller_on_init();
 
    if (!estatus)
@@ -441,6 +495,8 @@ void task::term_task()
 
    // __task_procedure() should release this (pmatter)
    add_ref(OBJ_REF_DBG_THIS_FUNCTION_LINE);
+
+   m_bitIsRunning = true;
 
 #ifdef WINDOWS
 
@@ -475,6 +531,8 @@ void task::term_task()
 
    if (!m_hthread)
    {
+
+      m_bitIsRunning = false;
 
       return ::error_failed;
 

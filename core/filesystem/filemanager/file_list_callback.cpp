@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 
 
 namespace filemanager
@@ -101,7 +99,7 @@ namespace filemanager
    }
 
 
-   void file_list_callback::GetMenuItemUpdate(id iId, const ::file::item_array & itema, ::user::command * pcommand)
+   void file_list_callback::GetMenuItemUpdate(id iId, const ::file::item_array & itema, ::message::command * pcommand)
    {
 
       UNREFERENCED_PARAMETER(iId);

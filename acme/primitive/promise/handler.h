@@ -6,7 +6,7 @@ namespace promise
 
 
    class CLASS_DECL_ACME handler :
-      virtual public ::context_object
+      virtual public ::layered
    {
    public:
 

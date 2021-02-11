@@ -34,7 +34,7 @@ void control_box::_001OnNcDraw(::draw2d::graphics_pointer & pgraphics)
 void control_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 {
 
-   if((get_top_level()->frame_is_transparent() && get_top_level() != GetActiveWindow()) || !top_level_frame()->m_bShowControlBox)
+   if((get_top_level()->frame_is_transparent() && !get_top_level()->is_active_window()) || !top_level_frame()->m_bShowControlBox)
    {
 
       return;
@@ -65,10 +65,10 @@ void control_box::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   if (m_colorBackground.m_iA > 0)
+   if (m_colorBackground.non_transparent())
    {
 
-      pgraphics->fill_rect(rectClient, m_colorBackground);
+      pgraphics->fill_rectangle(rectClient, m_colorBackground);
 
    }
 

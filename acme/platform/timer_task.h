@@ -45,16 +45,19 @@ public:
    virtual ~timer_task();
 
 
+#ifdef DEBUG
+
    virtual i64 add_ref(OBJ_REF_DBG_PARAMS) override;
    virtual i64 dec_ref(OBJ_REF_DBG_PARAMS) override;
    virtual i64 release(OBJ_REF_DBG_PARAMS) override;
 
+#endif
 
    void impl_init();
    void impl_term();
 
 
-   virtual ::e_status initialize_timer(::apex::timer_array* ptimera, uptr uiTimer = 0, PFN_TIMER pfnTimer = nullptr, void* pvoidData = nullptr, class sync* pmutex = nullptr);
+   virtual ::e_status initialize_timer(::layered * pobjectContext, ::apex::timer_array * ptimera, uptr uiTimer = 0, PFN_TIMER pfnTimer = nullptr, void* pvoidData = nullptr, class sync* pmutex = nullptr);
 
    virtual ::e_status on_task() override;
 

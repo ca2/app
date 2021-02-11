@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 #include "acme/id.h"
 
 
@@ -43,7 +41,7 @@ namespace user
 
       m_iUpdate = 0;
 
-      m_pfont = ::draw2d::point_font(os_font_name(e_font_sans_ui), 12.0);
+      m_pfont = ::write_text::point_font(os_font_name(e_font_sans_ui), 12.0);
 
    }
 
@@ -242,7 +240,7 @@ namespace user
 
       rectClient.top--;
 
-      if (get_context_application() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_focus()))
+      if (get_context_application() != nullptr && (pinteraction->hover_item().is_set() || pinteraction->has_keyboard_focus()))
       {
 
          ::draw2d::brush_pointer brush(e_create);
@@ -254,7 +252,7 @@ namespace user
 
             pgraphics->set(brush);
 
-            pgraphics->fill_rect(rectClient);
+            pgraphics->fill_rectangle(rectClient);
 
          }
 
@@ -277,7 +275,7 @@ namespace user
 
                }
 
-               pgraphics->draw_rect(rectClient, pen);
+               pgraphics->draw_rectangle(rectClient, pen);
 
             }
             else
@@ -294,19 +292,19 @@ namespace user
 
                }
 
-               pgraphics->draw_rect(rectClient, pen);
+               pgraphics->draw_rectangle(rectClient, pen);
 
             }
 
 //#ifdef WINDOWS_DESKTOP
 //
-//            oswindow hwndFocus = ::get_focus();
+//            oswindow hwndFocus = ::get_keyboard_focus();
 //
 //            oswindow hwndThis = pinteraction->get_handle();
 //
 //#endif
 
-            if (pinteraction->has_focus())
+            if (pinteraction->has_keyboard_focus())
             {
 
                rectClient.left--;
@@ -327,7 +325,7 @@ namespace user
 
                   }
 
-                  pgraphics->draw_rect(rectClient, pen);
+                  pgraphics->draw_rectangle(rectClient, pen);
 
                }
 
@@ -351,7 +349,7 @@ namespace user
 
                   pgraphics->set(pen);
 
-                  pgraphics->draw_rect(rectClient, pen);
+                  pgraphics->draw_rectangle(rectClient, pen);
 
                }
 
@@ -390,7 +388,7 @@ namespace user
 
                   pgraphics->set(pen);
 
-                  pgraphics->draw_rect(rectClient, pen);
+                  pgraphics->draw_rectangle(rectClient, pen);
 
                }
 
@@ -416,7 +414,7 @@ namespace user
 
                   pgraphics->set(pen);
 
-                  pgraphics->draw_rect(rectClient, pen);
+                  pgraphics->draw_rectangle(rectClient, pen);
 
                }
 
@@ -443,7 +441,7 @@ namespace user
 
                   pgraphics->set(pen);
 
-                  pgraphics->draw_rect(rectClient, pen);
+                  pgraphics->draw_rectangle(rectClient, pen);
 
                }
 
@@ -471,7 +469,7 @@ namespace user
 
                   pgraphics->set(pen);
 
-                  pgraphics->draw_rect(rectClient, pen);
+                  pgraphics->draw_rectangle(rectClient, pen);
 
                }
 
@@ -488,7 +486,7 @@ namespace user
 
             pen->create_solid(3.0, argb(255, 90, 80, 255));
 
-            pgraphics->draw_rect(rectClient, pen);
+            pgraphics->draw_rectangle(rectClient, pen);
 
          }
 
@@ -500,7 +498,7 @@ namespace user
 
          pen->create_solid(1.0, pinteraction->get_color(this, e_element_border));
 
-         pgraphics->draw_rect(rectClient, pen);
+         pgraphics->draw_rectangle(rectClient, pen);
 
       }
 
@@ -641,7 +639,7 @@ namespace user
    //}
 
 
-  // ::draw2d::font_pointer style::create_point_font(e_font efont, const char * pszFamilyName, double dFontSize, int iFontWeight)
+  // ::write_text::font_pointer style::create_point_font(e_font efont, const char * pszFamilyName, double dFontSize, int iFontWeight)
   // {
 
   //    if (userstyle()->m_mapFont.is_null())

@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/simple/_simple.h"
-#endif
 
 
 simple_child_frame::simple_child_frame()
@@ -24,15 +22,15 @@ simple_child_frame::~simple_child_frame()
 bool simple_child_frame::pre_create_window(::user::system * pusersystem)
 {
 
-   pusersystem->m_createstruct.style |= WS_CHILD;
-
-#ifdef WINDOWS_DESKTOP
-
-
-   pusersystem->m_createstruct.style &= ~WS_BORDER;
-   pusersystem->m_createstruct.style &= ~WS_THICKFRAME;
-
-#endif
+//   pusersystem->m_createstruct.style |= WS_CHILD;
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//   pusersystem->m_createstruct.style &= ~WS_BORDER;
+//   pusersystem->m_createstruct.style &= ~WS_THICKFRAME;
+//
+//#endif
 
    if (!simple_frame_window::pre_create_window(pusersystem))
    {
@@ -40,35 +38,35 @@ bool simple_child_frame::pre_create_window(::user::system * pusersystem)
       return false;
 
    }
+//
+//#ifdef WINDOWS_DESKTOP
+//
+//   if(pusersystem->m_createstruct.hwndParent == nullptr)
+//   {
+//
+//      auto puiMain1 = Application.m_puiMain1;
+//
+//      if(puiMain1 != nullptr)
+//      {
+//
+//         auto pui = __user_interaction(Application.m_puiMain1);
+//
+//         pusersystem->m_createstruct.hwndParent = __hwnd(pui->get_oswindow());
+//
+//      }
+//
+//   }
+//
+//#endif
 
-#ifdef WINDOWS_DESKTOP
-
-   if(pusersystem->m_createstruct.hwndParent == nullptr)
-   {
-
-      auto puiMain1 = Application.m_puiMain1;
-
-      if(puiMain1 != nullptr)
-      {
-
-         auto pui = __user_interaction(Application.m_puiMain1);
-
-         pusersystem->m_createstruct.hwndParent = pui->get_handle();
-
-      }
-
-   }
-
-#endif
-
-   pusersystem->m_createstruct.style &= ~WS_OVERLAPPEDWINDOW;
+   ///pusersystem->m_createstruct.style &= ~WS_OVERLAPPEDWINDOW;
 
    return true;
 
 }
 
 
-void simple_child_frame::route_command_message(::user::command * pcommand)
+void simple_child_frame::route_command_message(::message::command * pcommand)
 {
 
    simple_frame_window::route_command_message(pcommand);

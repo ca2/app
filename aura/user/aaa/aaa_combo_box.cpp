@@ -303,7 +303,7 @@ namespace user
 
       pgraphics->set(br);
 
-      pgraphics->fill_rect(rectDropIn);
+      pgraphics->fill_rectangle(rectDropIn);
 
       ::draw2d::path_pointer path(e_create);
 
@@ -320,7 +320,7 @@ namespace user
    }
 
 
-   ::draw2d::font_pointer combo_box::get_font(style * pstyle, enum_element eelement, estate estate) const
+   ::write_text::font_pointer combo_box::get_font(style * pstyle, enum_element eelement, estate estate) const
    {
 
       if (pstyle)
@@ -875,7 +875,7 @@ namespace user
       }
 
 
-      /*      ::draw2d::font_pointer fontxyz(e_create);
+      /*      ::write_text::font_pointer fontxyz(e_create);
 
             ::rect rectClient;
 
@@ -970,41 +970,41 @@ namespace user
    { /* default to nothing */ }
 #endif
 
-   bool combo_box::OnChildNotify(::message::base * pbase)
+   bool combo_box::OnChildNotify(::user::message * pusermessage)
    {
 
-      switch (pbase->m_id)
+      switch (pusermessage->m_id)
       {
       case WM_DRAWITEM:
 #ifdef WINODWSEX
-         DrawItem((LPDRAWITEMSTRUCT)pbase->m_lparam);
+         DrawItem((LPDRAWITEMSTRUCT)pusermessage->m_lparam);
 #else
          __throw(todo());
 #endif
          break;
       case e_message_measure_item:
 #ifdef WINODWSEX
-         MeasureItem((LPMEASUREITEMSTRUCT)pbase->m_lparam);
+         MeasureItem((LPMEASUREITEMSTRUCT)pusermessage->m_lparam);
 #else
          __throw(todo());
 #endif
          break;
       case WM_COMPAREITEM:
 #ifdef WINODWSEX
-         *pResult = CompareItem((LPCOMPAREITEMSTRUCT)pbase->m_lparam);
+         *pResult = CompareItem((LPCOMPAREITEMSTRUCT)pusermessage->m_lparam);
 #else
          __throw(todo());
 #endif
          break;
       case WM_DELETEITEM:
 #ifdef WINODWSEX
-         DeleteItem((LPDELETEITEMSTRUCT)pbase->m_lparam);
+         DeleteItem((LPDELETEITEMSTRUCT)pusermessage->m_lparam);
 #else
          __throw(todo());
 #endif
          break;
       default:
-         return ::user::interaction::OnChildNotify(pbase);
+         return ::user::interaction::OnChildNotify(pusermessage);
       }
       return true;
    }

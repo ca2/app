@@ -1,8 +1,6 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "base/user/simple/_simple.h"
 #include "base/user/menu/_menu.h"
-#endif
 #include "aura/update.h"
 #include "simple_view.h"
 #include "apex/platform/static_setup.h"
@@ -50,6 +48,8 @@ namespace base
          return estatus;
 
       }
+
+
 
       return estatus;
 
@@ -431,10 +431,10 @@ namespace base
 #ifdef WINDOWS_DESKTOP
 
 
-   CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, id id, HINSTANCE hInstance, LPVOID pParam);
+   CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * lpWindowName, u32 uStyle, const ::rectangle_i32 & rectangle, ::user::interaction * puiParent, id id, hinstance hInstance, void * pParam);
 
 
-   CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * pWindowName, u32 uStyle, ::user::interaction * puiParent, HINSTANCE hInstance, LPVOID pParam)
+   CLASS_DECL_BASE __pointer(::user::interaction) create_virtual_window(::object * pobject, u32 dwExStyle, const char * pClassName, const char * pWindowName, u32 uStyle, ::user::interaction * puiParent, hinstance hInstance, void * pParam)
    {
 
       UNREFERENCED_PARAMETER(dwExStyle);
@@ -630,15 +630,15 @@ namespace base
    //}
 
 
-   //::draw2d::font_list * session::get_single_column_font_list()
+   //::write_text::font_list * session::get_single_column_font_list()
    //{
 
    //   if (m_pfontlistSingleColumn.is_null())
    //   {
 
-   //      __compose(m_pfontlistSingleColumn, __create_new < ::draw2d::font_list > ());
+   //      __compose(m_pfontlistSingleColumn, __create_new < ::write_text::font_list > ());
 
-   //      m_pfontlistSingleColumn->m_etype = ::draw2d::font_list::type_single_column;
+   //      m_pfontlistSingleColumn->m_etype = ::write_text::font_list::type_single_column;
 
    //      m_pfontlistSingleColumn->set_need_layout();
 
@@ -949,9 +949,13 @@ namespace base
 
       auto psession = Session;
 
-      psession->get_cursor_pos(point);
+      auto puser = psession->user();
 
-      return track_popup_menu(pinteraction, pitem, iFlags, point);
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
+
+      return track_popup_menu(pinteraction, pitem, iFlags, pointCursor);
 
    }
 
@@ -961,9 +965,13 @@ namespace base
 
       auto psession = Session;
 
-      auto point = psession->get_cursor_pos();
+      auto puser = psession->user();
 
-      return track_popup_xml_menu(pinteraction, strXml, iFlags, point);
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
+
+      return track_popup_xml_menu(pinteraction, strXml, iFlags, pointCursor);
 
    }
 
@@ -973,9 +981,13 @@ namespace base
 
       auto psession = Session;
 
-      auto point = psession->get_cursor_pos();
+      auto puser = psession->user();
 
-      return track_popup_xml_matter_menu(pinteraction, pszMatter, iFlags, point);
+      auto pwindowing = puser->windowing();
+
+      auto pointCursor = pwindowing->get_cursor_pos();
+
+      return track_popup_xml_matter_menu(pinteraction, pszMatter, iFlags, pointCursor);
 
    }
 
@@ -1305,13 +1317,13 @@ namespace base
 
       }
 
-      straLibrary.add("experience_lite");
+      straLibrary.add_unique("experience_core");
 
-      straLibrary.add("experience_metro");
+      straLibrary.add_unique("experience_metro");
 
-      straLibrary.add("experience_rootkiller");
+      straLibrary.add_unique("experience_rootkiller");
 
-      straLibrary.add("experience_hyper");
+      straLibrary.add_unique("experience_hyper");
 
       ::user::style_pointer pstyle;
 

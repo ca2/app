@@ -1,7 +1,8 @@
 #pragma once
 
 
-#include "apex/user/menu_shared.h"
+#include "aura/windowing/menu_item.h"
+#include "aura/windowing/menu.h"
 
 
 #ifndef TBSTYLE_FLAT
@@ -89,13 +90,13 @@ namespace user
       enum_display                                 m_edisplayRestore;
       bool                                         m_bDefaultNotifyIcon;
       string                                       m_strFrameTitle;
-      ::size_i32                                       m_sizeMinimum;
+      ::size_i32                                   m_sizeMinimum;
       bool                                         m_bCloseApplicationIfLastVisibleFrame;
       __reference(::user::style)                   m_puserstyle;
       bool                                         m_bShowControlBox;
       
       
-      __pointer(menu_shared)                       m_pmenushared;
+      __pointer(::windowing::menu)                 m_pmenushared;
       string_array                                 m_straMenuParent;
       string_array                                 m_straMenuName;
       string_array                                 m_straMenuId;

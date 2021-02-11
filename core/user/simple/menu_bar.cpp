@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/simple/_simple.h"
-#endif
 
 
 #define TIMER_HOVER 321654
@@ -43,11 +41,11 @@ void simple_menu_bar::install_message_routing(::channel * pchannel)
    MESSAGE_LINK(e_message_key_down, pchannel, this, &simple_menu_bar::_001OnKeyDown);
    MESSAGE_LINK(e_message_destroy, pchannel, this, &simple_menu_bar::_001OnDestroy);
 
-#ifdef WINDOWS_DESKTOP
-
-   MESSAGE_LINK(WM_MENUCHAR, pchannel, this, &simple_menu_bar::_001OnMenuChar);
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//   MESSAGE_LINK(WM_MENUCHAR, pchannel, this, &simple_menu_bar::_001OnMenuChar);
+//
+//#endif
 
    //MESSAGE_LINK(e_message_left_button_down, pchannel, this, &simple_menu_bar::_001OnLButtonDown);
    //MESSAGE_LINK(e_message_language, pchannel, this, &simple_menu_bar::_001OnAppLanguage);
@@ -74,28 +72,28 @@ bool simple_menu_bar::LoadMenuBar(::u32 nIDResource)
       m_menu.LoadMenu(m_uResourceId);*/
 
 
-#ifdef WINDOWS_DESKTOP
-   send_message(TB_SETUNICODEFORMAT, 1);
-   string str;
-
-   TBBUTTON tbb;
-   __memset(&tbb, 0, sizeof(tbb));
-   tbb.iBitmap = 0;
-   tbb.fsState = TBSTATE_ENABLED;
-   tbb.fsStyle = TBSTYLE_BUTTON;
-   tbb.dwData = 0;
-   tbb.iString = 0;
-
-   TBBUTTONINFOW tbbi;
-   tbbi.cbSize = sizeof(tbbi);
-   tbbi.dwMask = TBIF_STYLE | TBIF_TEXT;
-
-   /*   m_buttona.set_size(mda.get_size());
-      for(i = 0; i < mda.get_size(); i++)
-      {
-         m_buttona[i].m_wstr = mda.element_at(i).m_wstr;
-      }*/
-#endif
+//#ifdef WINDOWS_DESKTOP
+//   send_message(TB_SETUNICODEFORMAT, 1);
+//   string str;
+//
+//   TBBUTTON tbb;
+//   __memset(&tbb, 0, sizeof(tbb));
+//   tbb.iBitmap = 0;
+//   tbb.fsState = TBSTATE_ENABLED;
+//   tbb.fsStyle = TBSTYLE_BUTTON;
+//   tbb.dwData = 0;
+//   tbb.iString = 0;
+//
+//   TBBUTTONINFOW tbbi;
+//   tbbi.cbSize = sizeof(tbbi);
+//   tbbi.dwMask = TBIF_STYLE | TBIF_TEXT;
+//
+//   /*   m_buttona.set_size(mda.get_size());
+//      for(i = 0; i < mda.get_size(); i++)
+//      {
+//         m_buttona[i].m_wstr = mda.element_at(i).m_wstr;
+//      }*/
+//#endif
 
    m_bDelayedButtonLayout = true;
    //_001Layout();
@@ -143,7 +141,7 @@ bool simple_menu_bar::pre_create_window(::user::system * pusersystem)
 }*/
 
 
-void simple_menu_bar::route_command_message(::user::command * pcommand)
+void simple_menu_bar::route_command_message(::message::command * pcommand)
 {
 
    simple_toolbar::route_command_message(pcommand);
@@ -199,21 +197,21 @@ bool simple_menu_bar::_track_popup_menu(index iItem)
 void simple_menu_bar::pre_translate_message(::message::message * pmessage)
 {
 
-   __pointer(::message::base) pbase(pmessage);
+   __pointer(::user::message) pusermessage(pmessage);
 
-   if (pbase->m_id == WM_USER && pbase->userinteraction() == this)
+   if (pusermessage->m_id == WM_USER && pusermessage->userinteraction() == this)
    {
 
-      if (pbase->m_wparam == 33)
+      if (pusermessage->m_wparam == 33)
       {
 
-         _track_popup_menu((index)pbase->m_lparam);
+         _track_popup_menu((index)pusermessage->m_lparam);
 
       }
 
    }
 
-   TRACE("simple_menu_bar::pre_translate_message messageID=%d wParam=%d lParam=%d\n", pbase->m_id.i64(), pbase->m_wparam, pbase->m_lparam.m_lparam);
+   TRACE("simple_menu_bar::pre_translate_message messageID=%d wParam=%d lParam=%d\n", pusermessage->m_id.i64(), pusermessage->m_wparam, pusermessage->m_lparam.m_lparam);
 
    return simple_toolbar::pre_translate_message(pmessage);
 
@@ -249,52 +247,52 @@ void simple_menu_bar::_001OnCreate(::message::message * pmessage)
 
    //m_menuhook.Install((__pointer(::user::frame_window)) (__pointer(::user::interaction))this);
 
-   //   SetFont(System.draw2d().fonts().GetMenuFont());
+   //   SetFont(System.draw2d()->fonts().GetMenuFont());
 
    UpdateWindow();
 
 }
 
 
-#ifdef WINDOWS_DESKTOP
-
-
-LRESULT CALLBACK simple_menu_bar::MessageProc(index code, WPARAM wParam, LPARAM lParam)
-{
-
-   UNREFERENCED_PARAMETER(wParam);
-
-   MESSAGE * pmsg = (MESSAGE *)lParam;
-
-   if (code == MSGF_MENU)
-   {
-      if (pmsg->message == e_message_mouse_move)
-      {
-
-         u32 fwKeys = (u32)pmsg->wParam; // key flags
-
-         auto point = __point((::lparam) pmsg->lParam); // horizontal position of cursor
-
-         //index yPos = HIWORD(pmsg->lParam);
-
-         TRACE("simple_menu_bar::MessageProc %d %d %d \n", fwKeys, point.x, point.y);
-
-         //::point_i32 point(xPos, yPos);
-
-         _001ScreenToClient(point);
-
-         _track_popup_menu(point);
-
-      }
-
-   }
-
-   return 0;
-
-}
-
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//
+//LRESULT CALLBACK simple_menu_bar::MessageProc(index code, WPARAM wParam, LPARAM lParam)
+//{
+//
+//   UNREFERENCED_PARAMETER(wParam);
+//
+//   MESSAGE * pmsg = (MESSAGE *)lParam;
+//
+//   if (code == MSGF_MENU)
+//   {
+//      if (pmsg->message == e_message_mouse_move)
+//      {
+//
+//         u32 fwKeys = (u32)pmsg->wParam; // key flags
+//
+//         auto point = __point((::lparam) pmsg->lParam); // horizontal position of cursor
+//
+//         //index yPos = HIWORD(pmsg->lParam);
+//
+//         TRACE("simple_menu_bar::MessageProc %d %d %d \n", fwKeys, point.x, point.y);
+//
+//         //::point_i32 point(xPos, yPos);
+//
+//         _001ScreenToClient(point);
+//
+//         _track_popup_menu(point);
+//
+//      }
+//
+//   }
+//
+//   return 0;
+//
+//}
+//
+//
+//#endif
 
 
 bool simple_menu_bar::_track_popup_menu(const ::point_i32 & point)
@@ -380,7 +378,7 @@ bool simple_menu_bar::Initialize(
 __pointer(::image_list)   imagelist,
 __pointer(::image_list)   imagelistDisabled,
 i32_spreadset * prel,
-::draw2d::font *        pfont)
+::write_text::font *        pfont)
 {
 
    //   m_menuhook.Initialize(
@@ -431,12 +429,12 @@ void simple_menu_bar::OnUpdateCmdUI(__pointer(::user::frame_window)pTarget, bool
          {
             // allow reflections
             if (::user::interaction::on_command(0,
-               MAKELONG((index)CN_UPDATE_::user::command, e_message_command+WM_REFLECT_BASE),
+               MAKELONG((index)CN_UPDATE_::message::command, e_message_command+WM_REFLECT_BASE),
                &state, nullptr))
                continue;
 
             // allow the toolbar itself to have update handlers
-            if (::user::interaction::on_command(state.m_nID, CN_UPDATE_::user::command, &state, nullptr))
+            if (::user::interaction::on_command(state.m_nID, CN_UPDATE_::message::command, &state, nullptr))
                continue;
 
             // allow the owner to process the update
@@ -473,11 +471,11 @@ void simple_menu_bar::OnUpdateCmdUI(__pointer(::user::frame_window)pTarget, bool
 bool simple_menu_bar::ReloadMenuBar()
 {
 
-#ifdef WINDOWS_DESKTOP
-
-   send_message(WM_CANCELMODE);
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//   send_message(WM_CANCELMODE);
+//
+//#endif
 
    if (!LoadMenuBar(m_uResourceId))
       return false;
@@ -517,7 +515,7 @@ bool simple_menu_bar::ReloadMenuBar()
          56);
    }
 
-   pgraphics->set(System.draw2d().fonts().GetMenuFont());
+   pgraphics->set(System.draw2d()->fonts().GetMenuFont());
    pgraphics->SetBkMode(TRANSPARENT);
    for(index iItem = 0; iItem < m_buttona.get_size(); iItem++)
    {
@@ -611,7 +609,7 @@ index simple_menu_bar::_001HitTest(const POINT_I32 *ppoint)
 /*void simple_menu_bar::_001Layout()
 {
    ::draw2d::memory_graphics pgraphics(this);;
-   pgraphics->set(System.draw2d().fonts().GetMenuFont());
+   pgraphics->set(System.draw2d()->fonts().GetMenuFont());
 
    ::size_i32 size;
    index ix = ITEMCHECKEDPADLEFT;
@@ -920,9 +918,9 @@ bool simple_menu_bar::on_click(const ::user::item & item)
 
 //void simple_menu_bar::_001OnAppLanguage(::message::message * pmessage)
 //{
-//   __pointer(::message::base) pbase(pmessage);
+//   __pointer(::user::message) pusermessage(pmessage);
 //   send_message(WM_CANCELMODE);
 //   LoadMenuBar(m_uResourceId);
 //   set_need_redraw();
-//   pbase->m_bRet = false;
+//   pusermessage->m_bRet = false;
 //}

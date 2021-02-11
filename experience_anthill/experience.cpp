@@ -39,7 +39,7 @@ namespace experience
             fork([this]()
                {
 
-                  //System.draw2d().set_cursor_set_from_matter("cursor/polar");
+                  //System.draw2d()->set_cursor_set_from_matter("cursor/polar");
 
                });
 

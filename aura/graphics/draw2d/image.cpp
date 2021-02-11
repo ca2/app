@@ -878,17 +878,17 @@ bool image::blend2(const ::point_i32 & pointDstParam, ::image * pimageSrc, const
             else
             {
 
-               int rectangle_i32 = pdst2[0];
+               int r = pdst2[0];
                int g = pdst2[1];
                int b = pdst2[2];
 
-               rectangle_i32 = (rectangle_i32 << 8) / aDst;
+               r = (r << 8) / aDst;
                g = (g << 8) / aDst;
                b = (b << 8) / aDst;
 
                int a = aSrc * aDst;
 
-               pdst2[0] = (rectangle_i32 * a) >> 16;
+               pdst2[0] = (r * a) >> 16;
                pdst2[1] = (g * a) >> 16;
                pdst2[2] = (b * a) >> 16;
                pdst2[3] = a >> 8;
@@ -3901,7 +3901,7 @@ bool image::copy_to(::image * pimage, i32 x, i32 y)
 }
 
 
-bool image::fill_rect(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B)
+bool image::fill_rectangle(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B)
 {
 
    i32 x = rectangle.left;
@@ -3953,7 +3953,7 @@ bool image::fill_rect(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B)
 }
 
 
-bool image::fill_rect(const ::rectangle_i32 & rectangle, color32_t cr)
+bool image::fill_rectangle(const ::rectangle_i32 & rectangle, color32_t cr)
 
 {
 
@@ -4025,7 +4025,7 @@ bool image::fill_rect(const ::rectangle_i32 & rectangle, color32_t cr)
 
       }
 
-      get_graphics()->fill_rect(rectangle, cr);
+      get_graphics()->fill_rectangle(rectangle, cr);
 
 
       if (get_graphics()->m_ealphamode != emodeOld)
@@ -5729,7 +5729,7 @@ bool image::fill_byte(uchar uch)
          
       }
       
-      g()->fill_rect(::rectangle_f64(m_size), color);
+      g()->fill_rectangle(::rectangle_f64(m_size), color);
       
       if(ealphamode != ::draw2d::alpha_mode_set)
       {
@@ -5790,7 +5790,7 @@ bool image::fill(color32_t cr)
 
       get_graphics()->set_alpha_mode(::draw2d::alpha_mode_set);
 
-      get_graphics()->fill_rect(rectangle_i32(), cr);
+      get_graphics()->fill_rectangle(rectangle_i32(), cr);
 
    }
 
@@ -7028,7 +7028,7 @@ bool image::channel_copy(::color::enum_channel echannelDst, ::color::enum_channe
 }
 
 
-bool image::tint(::image * pimage, const ::color32 & color32)
+bool image::tint(::image * pimage, const ::color::color & color32)
 {
 
    if (!create(pimage->size()))
@@ -7407,7 +7407,7 @@ bool image::set_rgb(color32_t cr)
 //}
 
 
-::i64 image::get_rgba_area(const ::color32 & color32) const
+::i64 image::get_rgba_area(const ::color::color & color32) const
 {
 
    ::i64 areaRgba = 0;
@@ -7441,7 +7441,7 @@ bool image::set_rgb(color32_t cr)
 }
 
 
-::i64 image::get_rgba_area(const ::color32 & color32, const RECTANGLE_I32 * lpcrect) const
+::i64 image::get_rgba_area(const ::color::color & color32, const RECTANGLE_I32 * lpcrect) const
 {
 
    ::rectangle_i32 r(lpcrect);
@@ -7666,7 +7666,7 @@ bool image::pixelate(i32 iSize)
    i32 iDiv2;
 
    i32 a;
-   i32 rectangle_i32;
+   i32 r;
    i32 g;
    i32 b;
    i32 a2;
@@ -7684,7 +7684,7 @@ bool image::pixelate(i32 iSize)
       {
          y1 = y * iSize;
          a = 0;
-         rectangle_i32 = 0;
+         r = 0;
          g = 0;
          b = 0;
          a2 = 0;
@@ -7700,18 +7700,18 @@ bool image::pixelate(i32 iSize)
             {
                color32_t cr = pdata[x1 + i + (y1 + j) * s];
                a += colorref_get_a_value(cr);
-               rectangle_i32 += colorref_get_r_value(cr);
+               r += colorref_get_r_value(cr);
                g += colorref_get_g_value(cr);
                b += colorref_get_b_value(cr);
                iDiv++;
                if (iDiv >= 64)
                {
                   a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
-                  r2 = (r2 * iDiv2 + rectangle_i32 / iDiv) / (iDiv2 + 1);
+                  r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
                   g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
                   b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
                   a = 0;
-                  rectangle_i32 = 0;
+                  r = 0;
                   g = 0;
                   b = 0;
                   iDiv = 0;
@@ -7722,7 +7722,7 @@ bool image::pixelate(i32 iSize)
          if (iDiv > 0)
          {
             a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
-            r2 = (r2 * iDiv2 + rectangle_i32 / iDiv) / (iDiv2 + 1);
+            r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
             g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
             b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
          }
@@ -7751,7 +7751,7 @@ bool image::pixelate(i32 iSize)
       {
          y1 = y * iSize;
          a = 0;
-         rectangle_i32 = 0;
+         r = 0;
          g = 0;
          b = 0;
          a2 = 0;
@@ -7767,18 +7767,18 @@ bool image::pixelate(i32 iSize)
             {
                color32_t cr = pdata[x1 + i + (y1 + j) * w];
                a += colorref_get_a_value(cr);
-               rectangle_i32 += colorref_get_r_value(cr);
+               r += colorref_get_r_value(cr);
                g += colorref_get_g_value(cr);
                b += colorref_get_b_value(cr);
                iDiv++;
                if (iDiv >= 64)
                {
                   a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
-                  r2 = (r2 * iDiv2 + rectangle_i32 / iDiv) / (iDiv2 + 1);
+                  r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
                   g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
                   b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
                   a = 0;
-                  rectangle_i32 = 0;
+                  r = 0;
                   g = 0;
                   b = 0;
                   iDiv = 0;
@@ -7789,7 +7789,7 @@ bool image::pixelate(i32 iSize)
          if (iDiv > 0)
          {
             a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
-            r2 = (r2 * iDiv2 + rectangle_i32 / iDiv) / (iDiv2 + 1);
+            r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
             g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
             b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
          }
@@ -7814,7 +7814,7 @@ bool image::pixelate(i32 iSize)
       {
          x1 = x * iSize;
          a = 0;
-         rectangle_i32 = 0;
+         r = 0;
          g = 0;
          b = 0;
          a2 = 0;
@@ -7830,18 +7830,18 @@ bool image::pixelate(i32 iSize)
             {
                color32_t cr = pdata[x1 + i + (y1 + j) * w];
                a += colorref_get_a_value(cr);
-               rectangle_i32 += colorref_get_r_value(cr);
+               r += colorref_get_r_value(cr);
                g += colorref_get_g_value(cr);
                b += colorref_get_b_value(cr);
                iDiv++;
                if (iDiv >= 64)
                {
                   a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
-                  r2 = (r2 * iDiv2 + rectangle_i32 / iDiv) / (iDiv2 + 1);
+                  r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
                   g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
                   b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
                   a = 0;
-                  rectangle_i32 = 0;
+                  r = 0;
                   g = 0;
                   b = 0;
                   iDiv = 0;
@@ -7852,7 +7852,7 @@ bool image::pixelate(i32 iSize)
          if (iDiv > 0)
          {
             a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
-            r2 = (r2 * iDiv2 + rectangle_i32 / iDiv) / (iDiv2 + 1);
+            r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
             g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
             b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
          }
@@ -7878,7 +7878,7 @@ bool image::pixelate(i32 iSize)
       i32 jMax = h - yCount * iSize;
       x1 = x * iSize;
       a = 0;
-      rectangle_i32 = 0;
+      r = 0;
       g = 0;
       b = 0;
       a2 = 0;
@@ -7894,18 +7894,18 @@ bool image::pixelate(i32 iSize)
          {
             color32_t cr = pdata[x1 + i + (y1 + j) * w];
             a += colorref_get_a_value(cr);
-            rectangle_i32 += colorref_get_r_value(cr);
+            r += colorref_get_r_value(cr);
             g += colorref_get_g_value(cr);
             b += colorref_get_b_value(cr);
             iDiv++;
             if (iDiv >= 64)
             {
                a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
-               r2 = (r2 * iDiv2 + rectangle_i32 / iDiv) / (iDiv2 + 1);
+               r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
                g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
                b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
                a = 0;
-               rectangle_i32 = 0;
+               r = 0;
                g = 0;
                b = 0;
                iDiv = 0;
@@ -7917,7 +7917,7 @@ bool image::pixelate(i32 iSize)
       {
 
          a2 = (a2 * iDiv2 + a / iDiv) / (iDiv2 + 1);
-         r2 = (r2 * iDiv2 + rectangle_i32 / iDiv) / (iDiv2 + 1);
+         r2 = (r2 * iDiv2 + r / iDiv) / (iDiv2 + 1);
          g2 = (g2 * iDiv2 + g / iDiv) / (iDiv2 + 1);
          b2 = (b2 * iDiv2 + b / iDiv) / (iDiv2 + 1);
 
@@ -8698,12 +8698,12 @@ save_image::save_image()
 save_image::save_image(const ::payload & varFile, const ::payload & varOptions)
 {
 
-   auto eformat = System.draw2d().text_to_format(varOptions["format"]);
+   auto eformat = System.draw2d()->text_to_format(varOptions["format"]);
 
    if (eformat != ::draw2d::format_none)
    {
 
-      eformat = System.draw2d().file_extension_to_format(varFile.get_file_path());
+      eformat = System.draw2d()->file_extension_to_format(varFile.get_file_path());
 
    }
 

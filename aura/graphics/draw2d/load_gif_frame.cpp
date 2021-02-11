@@ -85,7 +85,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //   //      rectangle.offset(5, 5);
 //
-//   //      pimageCanvas.get_graphics()->fill_rect(rectangle, crBack);
+//   //      pimageCanvas.get_graphics()->fill_rectangle(rectangle, crBack);
 //
 //   //   }
 //
@@ -249,7 +249,7 @@ bool draw2d_gif_draw_frame(::image * pimageCanvas, image_frame_array * pframea, 
 //
 //         ::rectangle_i32 rectangle = pframea->element_at(uFrameIndex - 1)->m_rectangle;
 //
-//         pimageCanvas->g()->fill_rect(rectangle, crBack);
+//         pimageCanvas->g()->fill_rectangle(rectangle, crBack);
 //
 //      }
 //

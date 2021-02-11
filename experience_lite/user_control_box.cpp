@@ -59,7 +59,7 @@ void MetaControlBox::_001OnDraw(::draw2d::graphics_pointer & pgraphics)
 
    }
 
-   pgraphics->fill_rect(rectClient, m_colorBackground);
+   pgraphics->fill_rectangle(rectClient, m_colorBackground);
 
 }
 

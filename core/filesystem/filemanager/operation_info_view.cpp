@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/filesystem/filemanager/_filemanager.h"
-#endif
 
 
 namespace filemanager
@@ -28,17 +26,17 @@ namespace filemanager
       {
          cr = rgb(
               255 - iDeltaVermelho - iDeltaDark,
-              (255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
+              (byte)(255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
               255 - iDeltaAzul - 23 - iDeltaDark);
-         pgraphics->fill_rect(::rectd_dim(x,iTop,iW,cy), cr);
+         pgraphics->fill_rectangle(::rectd_dim(x,iTop,iW,cy), cr);
       }
       if(x < iRight)
       {
          cr = rgb(
               255 - iDeltaVermelho - iDeltaDark,
-              (255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
+              (byte)(255 - (iDeltaV2 / 2.0) + (i32)(sin((double)x / dSoft + dAnimation)  *(iDeltaV2 / 2.0))) - iDeltaV1 - iDeltaDark,
               255 - iDeltaAzul - 23 - iDeltaDark);
-         pgraphics->fill_rect(::rectd_dim(x,iTop,iRight - x,cy), cr);
+         pgraphics->fill_rectangle(::rectd_dim(x,iTop,iRight - x,cy), cr);
       }
    }
 
@@ -56,7 +54,7 @@ namespace filemanager
 
 
 
-      /*::fill_rect(hdc, &rectProgress, g_hbrushProgress3);
+      /*::fill_rectangle(hdc, &rectProgress, g_hbrushProgress3);
       rectProgress.left++;
       rectProgress.right--;
       rectProgress.top++;
@@ -85,7 +83,7 @@ namespace filemanager
          dProgressU = dProgressL + dProgressD;
          if(dProgress < dProgressU)
          {
-            pgraphics->fill_rect(rectProgress,rgb(255,240,200));
+            pgraphics->fill_rectangle(rectProgress,rgb(255,240,200));
          }
          if(dProgress > dProgressL)
          {
@@ -101,7 +99,7 @@ namespace filemanager
          rectProgress.bottom = (::i32)(dTop + dBarHeight);
          dProgressL = dProgressU;
       }
-      //::fill_rect(hdc, &rectProgress, g_hbrushProgress1);
+      //::fill_rectangle(hdc, &rectProgress, g_hbrushProgress1);
 
    }
 

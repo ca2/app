@@ -136,7 +136,18 @@ namespace tranquillum
             if (eelement == ::user::e_element_background)
             {
 
-               return ::color::color(0, 0, 0, 0);
+               if (estate & ::user::e_state_selected)
+               {
+
+                  return argb(255, 80, 80, 80);
+
+               }
+               else
+               {
+
+                  return ::color::color(0, 0, 0, 0);
+
+               }
 
             }
 
@@ -147,22 +158,42 @@ namespace tranquillum
       if (eelement == ::user::e_element_background)
       {
 
-         return ::color::color(255, 255, 255, 255);
-
-      }
-      else if (eelement == ::user::e_element_text)
-      {
-
-         if (estate & ::user::e_state_new_input)
+         if (estate & ::user::e_state_selected)
          {
 
-            return __acolor(255, 192, 192, 192);
+            return argb(255, 80, 80, 80);
 
          }
          else
          {
 
-            return __acolor(255, 80, 80, 80);
+            return ::color::color(255, 255, 255, 255);
+
+         }
+
+
+         
+      }
+      else if (eelement == ::user::e_element_text)
+      {
+
+
+
+         if (estate & ::user::e_state_new_input)
+         {
+            return argb(255, 192, 192, 192);
+
+         }
+         else if (estate & ::user::e_state_selected)
+         {
+
+            return argb(255, 255, 255, 255);
+
+         }
+         else
+         {
+
+            return argb(255, 80, 80, 80);
 
          }
 
@@ -173,13 +204,58 @@ namespace tranquillum
          if (estate & ::user::e_state_new_input)
          {
 
-            return __acolor(255, 192, 192, 192);
+            return argb(255, 192, 192, 192);
+
+         }
+         else if (estate & ::user::e_state_selected)
+         {
+
+            return argb(255, 255, 255, 255);
 
          }
          else
          {
 
-            return __acolor(255, 80, 80, 80);
+            return argb(255, 80, 80, 80);
+
+         }
+
+      }
+      else if (eelement == ::user::e_element_item_background)
+      {
+
+         if (estate & ::user::e_state_new_input)
+         {
+
+            return argb(255, 192, 192, 192);
+
+         }
+         else if (estate & ::user::e_state_hover)
+         {
+
+            if (estate & ::user::e_state_selected)
+            {
+
+               return argb(255, 40, 40, 80);
+
+            }
+            else
+            {
+               return argb(255, 120, 120, 180);
+
+            }
+
+         }
+         else if (estate & ::user::e_state_selected)
+         {
+
+            return argb(255, 40, 40, 40);
+
+         }
+         else
+         {
+
+            return argb(255, 255, 255, 255);
 
          }
 
@@ -214,7 +290,7 @@ namespace tranquillum
 
       //crBackground = argb(255, 200, 180, 180);
 
-      pgraphics->fill_rect(rectClient, crBackground);
+      pgraphics->fill_rectangle(rectClient, crBackground);
 
       return true;
 
@@ -350,7 +426,7 @@ namespace tranquillum
 
             ptab->m_dcextension.GetTextExtent(pgraphics, str, size);
 
-            ::draw2d::text_metric metric;
+            ::write_text::text_metric metric;
 
             pgraphics->get_text_metrics(&metric);
 
@@ -487,13 +563,13 @@ namespace tranquillum
       if (!ptab->get_data()->m_bNoClient)
       {
 
-         pgraphics->fill_rect(r1, argb(255, 255, 255, 255));
+         pgraphics->fill_rectangle(r1, argb(255, 255, 255, 255));
 
       }
 
       ptab->get_data()->m_pen->create_solid(1, rgb(32, 32, 32));
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias_grid_fit);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias_grid_fit);
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
@@ -504,14 +580,14 @@ namespace tranquillum
       if (ptab->get_data()->m_bNoClient)
       {
 
-         pgraphics->fill_rect(rcTab, argb(255, 255, 255, 255));
+         pgraphics->fill_rectangle(rcTab, argb(255, 255, 255, 255));
 
       }
       ::rectangle_i32 rcTape(rcTab);
 
       rcTape.top = rcTape.bottom - 8;
 
-      pgraphics->fill_rect(rcTape, argb(255, 192, 192, 192));
+      pgraphics->fill_rectangle(rcTape, argb(255, 192, 192, 192));
 
 
       ::rectangle_i32 rcTabs(rcTab);
@@ -532,11 +608,11 @@ namespace tranquillum
 
       color32_t crbk = ptab->get_color(pstyle, ::user::e_element_tab_layout_background);
 
-      pgraphics->fill_rect(rcTabs, crbk);
+      pgraphics->fill_rectangle(rcTabs, crbk);
 
       crbk = ptab->get_color(pstyle, ::user::e_element_tab_client_background);
 
-      pgraphics->fill_rect(rcClient, crbk);
+      pgraphics->fill_rectangle(rcClient, crbk);
 
       ::index iTab = -1;
 
@@ -588,7 +664,7 @@ namespace tranquillum
 
                   rSel.bottom = rectClient.top + 3;
 
-                  pgraphics->fill_rect(rSel, argb(255, 120, 155, 240));
+                  pgraphics->fill_rectangle(rSel, argb(255, 120, 155, 240));
 
                   pane.m_brushFillSel->CreateLinearGradientBrush(rectBorder.top_left(), rectBorder.bottom_left(), argb(230, 235, 235, 230), argb(250, 255, 255, 250));
 
@@ -724,7 +800,7 @@ namespace tranquillum
 
                   rSel.bottom = rectClient.top + 3;
 
-                  pgraphics->fill_rect(rSel, argb(255, 120, 155, 240));
+                  pgraphics->fill_rectangle(rSel, argb(255, 120, 155, 240));
 
                   pane.m_brushFillSel->create_solid(argb(255, 255, 255, 255));
 
@@ -810,7 +886,7 @@ namespace tranquillum
             rVertLine = rectangle;
 
             rVertLine.left = rVertLine.right - 1;
-            pgraphics->fill_rect(rVertLine, argb(127, 80, 80, 80));
+            pgraphics->fill_rectangle(rVertLine, argb(127, 80, 80, 80));
 
             //if (iPane == ptab->get_data()->m_panea.get_upper_bound())
             //{
@@ -897,7 +973,7 @@ namespace tranquillum
 
          ::rectangle_i32 rectText(rectParam);
 
-         ::draw2d::font_pointer font;
+         ::write_text::font_pointer font;
 
          font = pgraphics->get_current_font();
 
@@ -924,7 +1000,7 @@ namespace tranquillum
                if(ptab->m_itemHover.m_iItem == ((int) ::user::e_element_split) + i)
                {
                   
-                  pgraphics->fill_rect(rectEmp,argb(128,149,184,255));
+                  pgraphics->fill_rectangle(rectEmp,argb(128,149,184,255));
                   
                   brushText->create_solid(ptab->get_color(pstyle, ::user::e_element_item_text, ::user::e_state_hover));
                   
@@ -1222,7 +1298,7 @@ namespace tranquillum
 
    //            ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
-   //            pgraphics->fill_rect(rectItem, argb(184, 255, 255, 255));
+   //            pgraphics->fill_rectangle(rectItem, argb(184, 255, 255, 255));
 
    //         }
 
@@ -1526,7 +1602,7 @@ namespace tranquillum
 
    //            ptoolbar->_001GetElementRect(iItem, rectItem, ::user::toolbar::e_element_item);
 
-   //            pgraphics->fill_rect(rectItem, argb(184, 255, 255, 255));
+   //            pgraphics->fill_rectangle(rectItem, argb(184, 255, 255, 255));
 
    //         }
 
@@ -1639,7 +1715,7 @@ namespace tranquillum
 
       psplitlayout->get_client_rect(rectClient);
 
-      pgraphics->fill_rect(rectClient, argb(255, 255, 255, 255));
+      pgraphics->fill_rectangle(rectClient, argb(255, 255, 255, 255));
 
       return true;
 

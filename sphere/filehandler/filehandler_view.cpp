@@ -133,10 +133,10 @@ namespace filehandler
       }
       else
       {
-         pgraphics->fill_rect(m_rectItem, cr);
+         pgraphics->fill_rectangle(m_rectItem, cr);
       }
       cr = bHover ? argb(255, 150, 255, 150) : argb(255, 50, 255, 50);
-      pgraphics->fill_rect(m_rectStatusImage, cr);
+      pgraphics->fill_rectangle(m_rectStatusImage, cr);
       color32_t cr1;
       color32_t cr2;
       if(bHover)
@@ -318,7 +318,7 @@ namespace filehandler
    }
 
 
-   bool view::get_font(::draw2d::font_pointer & font)
+   bool view::get_font(::write_text::font_pointer & font)
    {
 
       font = m_pfont;

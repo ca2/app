@@ -7,12 +7,12 @@
 #include "angle.h"
 
 
-enum e_orientation
+enum enum_orientation
 {
 
-   orientation_horizontal = -1,
-   orientation_none = 0,
-   orientation_vertical = 1,
+   e_orientation_horizontal = -1,
+   e_orientation_none = 0,
+   e_orientation_vertical = 1,
 
 };
 
@@ -603,11 +603,11 @@ SIZE_TYPE1 * copy_size(SIZE_TYPE1 * psize1, const SIZE_TYPE2 * psize2)
 
 
 template < typename X, typename Y >
-auto get_dimension(e_orientation eorientation, X x, Y y);
+auto get_dimension(enum_orientation eorientation, X x, Y y);
 
 
 template < typename X, typename Y >
-auto get_normal_dimension(e_orientation eorientation, X x, Y y);
+auto get_normal_dimension(enum_orientation eorientation, X x, Y y);
 
 
 

@@ -51,7 +51,7 @@ namespace ios
 
       virtual ::user::interaction * get_wnd() const override;
 
-      virtual void route_command_message(::user::command * pcommand) override;
+      virtual void route_command_message(::message::command * pcommand) override;
 
       virtual void on_control_event(::user::control_event * pevent) override;
 
@@ -114,9 +114,9 @@ namespace ios
 
       virtual bool _is_window() const override;
       
-      virtual void queue_message_handler(::message::base * pbase) override;
+      virtual void queue_message_handler(::user::message * pusermessage) override;
       
-      virtual void on_host_message_handler(::message::base * pbase);
+      virtual void on_host_message_handler(::user::message * pusermessage);
 
 
 #if(WINVER >= 0x0500)
@@ -140,8 +140,8 @@ namespace ios
       //strsize GetWindowText(char * lpszStringBuf, strsize nMaxCount);
       void get_window_text(string & str) override;
       //strsize GetWindowTextLength() override;
-      //      void SetFont(::draw2d::font* pFont, bool bRedraw = true);
-      //    ::draw2d::font* GetFont();
+      //      void SetFont(::write_text::font* pFont, bool bRedraw = true);
+      //    ::write_text::font* GetFont();
 
       virtual void defer_update_text_view();
 
@@ -576,7 +576,7 @@ namespace ios
 
 
       // for processing oswindows messages
-      virtual void message_handler(::message::base * pbase) override;
+      virtual void message_handler(::user::message * pusermessage) override;
       //virtual bool OnWndMsg(const ::id & id, WPARAM wParam, LPARAM lParam, LRESULT* pResult);
 
       // for handling default processing

@@ -110,7 +110,7 @@ namespace user
       virtual void drag_transform_point_drawing(point_f64 & point) const;
       virtual point_f64 drag_transform(const point_f64 & point) const;
       virtual point_f64 drag_transform_drawing(const point_f64 & point) const;
-      inline void drag_rtransform_size(size_f64& size) const { drag_rtransform_point((::point_f64 &) size_i32); }
+      inline void drag_rtransform_size(size_f64& size) const { drag_rtransform_point((::point_f64 &) size); }
       virtual void drag_rtransform_point(point_f64 & point) const;
       virtual void drag_rtransform_point_drawing(point_f64 & point) const;
       virtual point_f64 drag_rtransform(const point_f64 & point) const;

@@ -1,9 +1,7 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/userex/_userex.h"
 #include "core/filesystem/filemanager/_filemanager.h"
 #include "core/user/account/_account.h"
-#endif
 #include "aura/update.h"
 
 
@@ -224,7 +222,7 @@ namespace userex
    void pane_tab_view::_001OnUpdateFileSaveAs(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
       auto pdocument = m_pimpactdata->m_pdocument;
 

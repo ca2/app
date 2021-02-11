@@ -500,7 +500,7 @@ namespace linux
    void interaction_impl::_001OnMove(::message::message * pmessage)
    {
 
-      __pointer(::message::size_i32) psize(pmessage);
+      __pointer(::message::size) psize(pmessage);
 
       if (m_bDestroyImplOnly)
       {
@@ -555,7 +555,7 @@ namespace linux
 
       }
 
-      __pointer(::message::size_i32) psize(pmessage);
+      __pointer(::message::size) psize(pmessage);
 
 //      m_puserinteraction->window_state3().m_size = psize->m_size;
 //
@@ -851,7 +851,7 @@ namespace linux
    // Default interaction_impl implementation
 
 
-   void interaction_impl::default_window_procedure(::message::base * pbase)
+   void interaction_impl::default_window_procedure(::user::message * pusermessage)
 
    {
       /*  if (m_pfnSuper != nullptr)
@@ -997,7 +997,7 @@ namespace linux
 
 
 
-   void interaction_impl::route_command_message(::user::command * pcommand)
+   void interaction_impl::route_command_message(::message::command * pcommand)
    {
 
       channel::route_command_message(pcommand);
@@ -1025,28 +1025,28 @@ namespace linux
    millis     tickLastPaint;
 
 
-   void interaction_impl::message_handler(::message::base * pbase)
+   void interaction_impl::message_handler(::user::message * pusermessage)
    {
 
-      if(pbase->m_id == e_message_timer)
+      if(pusermessage->m_id == e_message_timer)
       {
 
          //m_pthread->step_timer();
 
       }
-      else if(pbase->m_id == e_message_left_button_down)
+      else if(pusermessage->m_id == e_message_left_button_down)
       {
 
          output_debug_string("linux::interaction_impl::e_message_left_button_down\n");
 
       }
-      else if(pbase->m_id == e_message_left_button_up)
+      else if(pusermessage->m_id == e_message_left_button_up)
       {
 
          output_debug_string("linux::interaction_impl::e_message_left_button_up\n");
 
       }
-      else if(pbase->m_id == e_message_mouse_move)
+      else if(pusermessage->m_id == e_message_mouse_move)
       {
 
          g_iMouseMove++;
@@ -1055,11 +1055,11 @@ namespace linux
          //printf("g_iMouseMove = %d\n", g_iMouseMove);
 
       }
-      else if(pbase->m_id == e_message_paint)
+      else if(pusermessage->m_id == e_message_paint)
       {
 
       }
-      else if(pbase->m_id == e_message_left_button_up)
+      else if(pusermessage->m_id == e_message_left_button_up)
       {
 
          TRACE("e_message_left_button_up (0)");
@@ -1069,7 +1069,7 @@ namespace linux
       if(::is_set(m_puserinteraction))
       {
 
-         m_puserinteraction->pre_translate_message(pbase);
+         m_puserinteraction->pre_translate_message(pusermessage);
 
       }
 
@@ -1111,16 +1111,16 @@ namespace linux
          else
          {
 
-            //m_puserinteraction->pre_translate_message(pbase);
+            //m_puserinteraction->pre_translate_message(pusermessage);
 
-            //if (pbase->m_bRet)
+            //if (pusermessage->m_bRet)
             //{
 
               // return;
 
             //}
 
-            //pbase->m_uiMessageFlags |= 1;
+            //pusermessage->m_uiMessageFlags |= 1;
 
          }
 
@@ -1128,16 +1128,16 @@ namespace linux
 
 
 
-      if(pbase->m_id == e_message_key_down || pbase->m_id == e_message_key_up || pbase->m_id == e_message_char)
+      if(pusermessage->m_id == e_message_key_down || pusermessage->m_id == e_message_key_up || pusermessage->m_id == e_message_char)
       {
 
          auto psession = Session;
 
-         ::message::key * pkey = (::message::key *) pbase;
+         ::message::key * pkey = (::message::key *) pusermessage;
 
          psession->translate_os_key_message(pkey);
 
-         if(pbase->m_id == e_message_key_down)
+         if(pusermessage->m_id == e_message_key_down)
          {
 
             try
@@ -1152,7 +1152,7 @@ namespace linux
             }
 
          }
-         else if(pbase->m_id == e_message_key_up)
+         else if(pusermessage->m_id == e_message_key_up)
          {
 
             try
@@ -1170,26 +1170,26 @@ namespace linux
 
       }
 
-      pbase->m_lresult = 0;
+      pusermessage->m_lresult = 0;
 
-      if(pbase->m_id == e_message_mouse_leave)
+      if(pusermessage->m_id == e_message_mouse_leave)
       {
 
-         _000OnMouseLeave(pbase);
+         _000OnMouseLeave(pusermessage);
 
          return;
 
       }
 
-      if(pbase->m_id == e_message_left_button_down ||
-            pbase->m_id == e_message_left_button_up ||
-            pbase->m_id == e_message_middle_button_down ||
-            pbase->m_id == e_message_middle_button_up ||
-            pbase->m_id == e_message_right_button_down ||
-            pbase->m_id == e_message_right_button_up ||
-            pbase->m_id == e_message_mouse_move ||
-            pbase->m_id == e_message_mouse_move)
-//         pbase->m_id == e_message_mouse_wheel)
+      if(pusermessage->m_id == e_message_left_button_down ||
+            pusermessage->m_id == e_message_left_button_up ||
+            pusermessage->m_id == e_message_middle_button_down ||
+            pusermessage->m_id == e_message_middle_button_up ||
+            pusermessage->m_id == e_message_right_button_down ||
+            pusermessage->m_id == e_message_right_button_up ||
+            pusermessage->m_id == e_message_mouse_move ||
+            pusermessage->m_id == e_message_mouse_move)
+//         pusermessage->m_id == e_message_mouse_wheel)
       {
 
          if(::is_set(m_puserinteraction) && !m_puserinteraction->m_bUserPrimitiveOk)
@@ -1199,7 +1199,7 @@ namespace linux
 
          }
 
-         ::message::mouse * pmouse = (::message::mouse *) pbase;
+         ::message::mouse * pmouse = (::message::mouse *) pusermessage;
 
          auto psession = Session;
 
@@ -1259,7 +1259,7 @@ namespace linux
             }
          }
 
-         if(pbase->m_id == e_message_mouse_move)
+         if(pusermessage->m_id == e_message_mouse_move)
          {
             // We are at the message handler routine.
             // mouse messages originated from message handler and that are mouse move events should end up with the correct cursor.
@@ -1274,12 +1274,12 @@ namespace linux
          return;
 
       }
-      else if(pbase->m_id == e_message_key_down ||
-              pbase->m_id == e_message_key_up ||
-              pbase->m_id == e_message_char)
+      else if(pusermessage->m_id == e_message_key_down ||
+              pusermessage->m_id == e_message_key_up ||
+              pusermessage->m_id == e_message_char)
       {
 
-         ::message::key * pkey = (::message::key *) pbase;
+         ::message::key * pkey = (::message::key *) pusermessage;
 
          __pointer(::user::interaction) puiFocus =  get_keyboard_focus();
 
@@ -1291,7 +1291,7 @@ namespace linux
 
             puiFocus->send(pkey);
 
-            if(pbase->m_bRet)
+            if(pusermessage->m_bRet)
             {
 
                return;
@@ -1307,7 +1307,7 @@ namespace linux
 
                m_puserinteraction->_000OnKey(pkey);
 
-               if(pbase->m_bRet)
+               if(pusermessage->m_bRet)
                {
 
                   return;
@@ -1318,25 +1318,25 @@ namespace linux
 
          }
 
-         default_window_procedure(pbase);
+         default_window_procedure(pusermessage);
 
          return;
 
       }
 
-      if(pbase->m_id == e_message_event)
+      if(pusermessage->m_id == e_message_event)
       {
 
          if(m_puserinteraction != nullptr)
          {
 
-            m_puserinteraction->on_control_event((::user::control_event *) pbase->m_lparam.m_lparam);
+            m_puserinteraction->on_control_event((::user::control_event *) pusermessage->m_lparam.m_lparam);
 
          }
          else
          {
 
-            on_control_event((::user::control_event *) pbase->m_lparam.m_lparam);
+            on_control_event((::user::control_event *) pusermessage->m_lparam.m_lparam);
 
          }
 
@@ -1347,24 +1347,24 @@ namespace linux
       if(::is_set(m_puserinteraction))
       {
 
-         m_puserinteraction->route_message(pbase);
+         m_puserinteraction->route_message(pusermessage);
 
       }
       else
       {
 
-         route_message(pbase);
+         route_message(pusermessage);
 
       }
 
-      if(pbase->m_bRet)
+      if(pusermessage->m_bRet)
       {
 
          return;
 
       }
 
-      default_window_procedure(pbase);
+      default_window_procedure(pusermessage);
 
    }
 
@@ -1731,11 +1731,11 @@ namespace linux
 //      ASSERT(puiStop == nullptr || puiStop->is_window());
 //      ASSERT(pmessage != nullptr);
 //
-//      __pointer(::message::base) pbase(pmessage);
+//      __pointer(::user::message) pusermessage(pmessage);
 //      // walk from the target interaction_impl up to the hWndStop interaction_impl checking
 //      //  if any interaction_impl wants to translate this message
 //
-//      for (__pointer(::user::interaction) pinteraction = pbase->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
+//      for (__pointer(::user::interaction) pinteraction = pusermessage->m_puserinteraction; pinteraction != nullptr; pinteraction->get_parent())
 //      {
 //
 //         pinteraction->pre_translate_message(pmessage);
@@ -2973,17 +2973,17 @@ namespace linux
 //   }
 
 
-   void interaction_impl::SetFont(::draw2d::font* pfont, bool bRedraw)
+   void interaction_impl::SetFont(::write_text::font* pfont, bool bRedraw)
    {
 
       UNREFERENCED_PARAMETER(bRedraw);
 
-      //ASSERT(::is_window((oswindow) get_handle())); m_pfont = new ::draw2d::font(*pfont);
+      //ASSERT(::is_window((oswindow) get_handle())); m_pfont = new ::write_text::font(*pfont);
 
    }
 
 
-   ::draw2d::font* interaction_impl::GetFont()
+   ::write_text::font* interaction_impl::GetFont()
    {
 
       //ASSERT(::is_window((oswindow) get_handle()));
@@ -4101,7 +4101,7 @@ namespace linux
    void interaction_impl::_001OnSetCursor(::message::message * pmessage)
    {
 
-      __pointer(::message::base) pbase(pmessage);
+      __pointer(::user::message) pusermessage(pmessage);
 
       auto psession = Session;
 
@@ -4112,8 +4112,8 @@ namespace linux
          __throw(not_implemented());
 //         ::SetCursor(nullptr);
       }
-      pbase->m_lresult  = 1;
-      pbase->m_bRet = true;
+      pusermessage->m_lresult  = 1;
+      pusermessage->m_bRet = true;
       //(bool)Default();
    }
 

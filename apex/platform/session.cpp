@@ -303,34 +303,19 @@ namespace apex
    //}
 
 
-   color32_t session::get_default_color(u64 u)
+   ::color::color session::get_default_color(u64 u)
    {
 
+      auto pnode = System.node();
 
-#ifdef WINDOWS
-
-
-      switch (u)
+      if (!pnode)
       {
-      case COLOR_3DFACE:
-         return argb(127, 192, 192, 184);
-      case COLOR_WINDOW:
-         return argb(127, 255, 255, 255);
-      case COLOR_3DLIGHT:
-         return argb(127, 218, 218, 210);
-      case COLOR_3DHIGHLIGHT:
-         return argb(127, 238, 238, 230);
-      case COLOR_3DSHADOW:
-         return argb(127, 138, 138, 130);
-      case COLOR_3DDKSHADOW:
-         return argb(127, 90, 90, 80);
-      default:
-         break;
+
+         return argb(127, 0, 0, 0);
+
       }
 
-#endif
-
-      return argb(127, 0, 0, 0);
+      return pnode->get_default_color(u);
 
    }
 
@@ -1590,7 +1575,7 @@ namespace apex
 
    //         }
 
-   //         rectangle_i32 = *prectangle;
+   //         rectangle = *prectangle;
 
    //         if (rectangle_i32 > pinteraction->m_sizeRestoreCompact)
    //         {
@@ -1643,7 +1628,7 @@ namespace apex
 
    //   }
 
-   //   rectangle_i32 = rectStart;
+   //   rectangle = rectStart;
 
    //   rectangle.set_size(pinteraction->m_sizeRestoreCompact);
 
@@ -1660,7 +1645,7 @@ namespace apex
 
    //         }
 
-   //         rectangle_i32 = *prectangle;
+   //         rectangle = *prectangle;
 
    //         rectangle.offset(49, 49);
 
@@ -1689,7 +1674,7 @@ namespace apex
 
    //         }
 
-   //         rectangle_i32 = *prectangle;
+   //         rectangle = *prectangle;
 
    //         rectangle.offset(49, 0);
 
@@ -2032,12 +2017,6 @@ ret:
 
          //}
 
-         //if(System.m_bDraw2d)
-         //{
-
-         //   m_pfontCopyDesk = ::draw2d::point_font(os_font_name(e_font_sans), 14.0);
-
-         //}
 
       }
 
@@ -2539,7 +2518,7 @@ namespace apex
    //::draw2d::cursor* session::get_default_cursor()
    //{
 
-   //   return System.draw2d().get_cursor(m_ecursorDefault);
+   //   return System.draw2d()->get_cursor(m_ecursorDefault);
 
    //}
 
@@ -2683,7 +2662,7 @@ namespace apex
    //      ::rectangle_i32 rectText(rectangle);
 
 
-   //      ::draw2d::font_pointer font;
+   //      ::write_text::font_pointer font;
    //      font = pgraphics->get_current_font();
    //      size_i32 sSep = ptab->get_data()->m_sizeSep;
    //      ::rectangle_i32 rectEmp;
@@ -2703,12 +2682,12 @@ namespace apex
    //            pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
    //            if (ptab->m_itemHover == (::user::enum_element)(::user::e_element_split + i))
    //            {
-   //               pgraphics->fill_rect(rectEmp, argb(128, 150, 184, 255));
+   //               pgraphics->fill_rectangle(rectEmp, argb(128, 150, 184, 255));
    //               pgraphics->set(ptab->get_data()->m_brushTextHover);
    //            }
    //            else
    //            {
-   //               //pgraphics->fill_rect(rectEmp,argb(128,208,223,233));
+   //               //pgraphics->fill_rectangle(rectEmp,argb(128,208,223,233));
    //               pgraphics->set(ptab->get_data()->m_brushText);
    //            }
    //            pgraphics->set(ptab->m_pfontTab);

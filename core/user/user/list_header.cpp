@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "core/user/user/_user.h"
-#endif
 
 
 namespace user
@@ -519,8 +517,17 @@ namespace user
       {
          if(m_bTrack)
          {
+
             m_bTrack = false;
-            psession->ReleaseCapture();
+
+            auto psession = Session;
+
+            auto puser = psession->user();
+
+            auto pwindowing = puser->windowing();
+
+            pwindowing->release_capture();
+
          }
          if(m_bHover)
          {
@@ -545,11 +552,11 @@ namespace user
 
       if(m_bHover && m_eelementHover == ElementDivider)
       {
-         pmouse->m_ecursor = cursor_size_horizontal;
+         pmouse->m_ecursor = e_cursor_size_horizontal;
       }
       else
       {
-         pmouse->m_ecursor = cursor_arrow;
+         pmouse->m_ecursor = e_cursor_arrow;
       }
 
       pmouse->m_bRet = false;
@@ -703,17 +710,17 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      pgraphics->fill_rect(rectUpdate, get_color(pstyle, ::user::e_element_background));
+      pgraphics->fill_rectangle(rectUpdate, get_color(pstyle, ::user::e_element_background));
 
       ::draw2d::item drawitem;
       drawitem.m_pgraphics = pgraphics;
       list * plist = m_plistctrlinterface;
       ::rectangle_i32 rectDivider;
-      ::draw2d::pen_pointer point_i32(e_create);
+      ::draw2d::pen_pointer ppen(e_create);
 
       auto color = get_color(pstyle, ::user::e_element_separator);
 
-      point_i32->create_solid(1.0, color);
+      ppen->create_solid(1.0, color);
 
       for(i32 iItem = 0; iItem < plist->_001GetColumnCount(); iItem++)
       {
@@ -726,7 +733,7 @@ namespace user
 
          GetItemRect(rectDivider, ElementDivider, iItem);
 
-         pgraphics->set(point);
+         pgraphics->set(ppen);
 
          pgraphics->move_to(rectDivider.left, rectDivider.top);
 
@@ -750,16 +757,25 @@ namespace user
 
       __pointer(::user::interaction) puser = get_parent();
 
-      if(puser.is_null())
-         return point(0,0);
+      if (puser.is_null())
+      {
+
+         return point_i32(0, 0);
+
+      }
 
       puser = puser->get_parent();
 
-      if(puser.is_null())
-         return point(0,0);
+      if (puser.is_null())
+      {
+
+         return point_i32(0, 0);
+
+      }
 
       return puser->get_viewport_offset();
 
    }
+
 
 } // namespace user

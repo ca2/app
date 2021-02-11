@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 #include "_data.h"
 #include "aura/update.h"
 #include "aura/message.h"
@@ -253,8 +251,8 @@ namespace user
 
       MESSAGE_LINK(e_message_size, pchannel, this, &::user::plain_edit::_001OnSize);
 
-      MESSAGE_LINK(e_message_set_focus, pchannel, this, &::user::plain_edit::_001OnSetFocus);
-      MESSAGE_LINK(e_message_kill_focus, pchannel, this, &::user::plain_edit::_001OnKillFocus);
+      //MESSAGE_LINK(e_message_set_focus, pchannel, this, &::user::plain_edit::_001OnSetFocus);
+      //MESSAGE_LINK(e_message_kill_focus, pchannel, this, &::user::plain_edit::_001OnKillFocus);
 
 
       MESSAGE_LINK(e_message_vscroll, pchannel, this, &::user::plain_edit::_001OnVScroll);
@@ -278,7 +276,7 @@ namespace user
 
 #elif defined(WINDOWS_DESKTOP)
 
-      //xxx imm_client::install_message_routing(pchannel);
+      // install_text_composition_composite_message_routing(pchannel);
 
 #endif
 
@@ -365,7 +363,7 @@ namespace user
 
       auto pstyle = get_style(pgraphics);
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       color32_t crBk;
       color32_t crBkSel;
@@ -376,7 +374,7 @@ namespace user
 
       color32_t crEditBackground = get_color(pstyle, e_element_background);
 
-      pgraphics->fill_rect(rectClient, crEditBackground);
+      pgraphics->fill_rectangle(rectClient, crEditBackground);
 
       bool bComposing = ::is_set(m_pitemComposing);
 
@@ -408,7 +406,7 @@ namespace user
 
       bool bCaretOn = is_caret_on();
 
-      bool bFocus = has_focus();
+      bool bFocus = has_keyboard_focus();
 
       if (m_ptree == nullptr)
       {
@@ -416,6 +414,9 @@ namespace user
          return;
 
       }
+
+
+      
 
       auto rectPadding = get_padding(pstyle);
 
@@ -467,9 +468,17 @@ namespace user
 
       __sort(iSelBeg, iSelEnd);
 
+      {
+
+         i32 iEnd = iSelEnd;
+
+         m_iLastSelEndLine = plain_edit_sel_to_line_x(pgraphics, iEnd, m_iLastSelEndX);
+
+      }
+
       pgraphics->set_font(this, ::user::e_element_none);
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       double dLineHeight = m_dLineHeight;
 
@@ -486,7 +495,7 @@ namespace user
 
       pgraphics->set_alpha_mode(::draw2d::alpha_mode_blend);
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       string strLineGraphics;
 
@@ -677,7 +686,7 @@ namespace user
             if (iCurLineSelEnd > iCurLineSelBeg)
             {
 
-               pgraphics->fill_rect(
+               pgraphics->fill_rectangle(
                ::rectd_dim((double)((double)left + x1),
                (double)y,
                (double)min(x2-x1, (double)rectClient.right - ((double)left + x1)),
@@ -691,7 +700,7 @@ namespace user
             if (bComposing && iCurLineComposeEnd > iCurLineComposeBeg)
             {
 
-               pgraphics->fill_rect(
+               pgraphics->fill_rectangle(
                   ::rectd_dim((double)((double)left + compose1),
                   (double)y,
                   (double)min(compose2 - compose1, (double)rectClient.right - ((double)left + compose1)),
@@ -839,6 +848,17 @@ namespace user
    {
 
       __pointer(::message::create) pcreate(pmessage);
+
+      auto estatus = initialize_text_composition_client();
+
+      if (!estatus)
+      {
+
+         pcreate->failed("plain_edit::initialize_text_composition_client failed.");
+
+         return;
+
+      }
 
       set_cursor(e_cursor_text_select);
 
@@ -1055,7 +1075,7 @@ namespace user
       else if (ptimer->m_uEvent >= 100
                && ptimer->m_uEvent <= 200)
       {
-         if (has_focus())
+         if (has_keyboard_focus())
          {
 
             _001OnKeyboardFocusTimer(ptimer->m_uEvent - 100);
@@ -1081,7 +1101,7 @@ namespace user
    }
 
 
-   ::rectangle_f64 plain_edit::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
+   __status < ::rectangle_f64 > plain_edit::get_margin(style * pstyle, enum_element eelement, ::user::enum_state estate) const
    {
 
        return ::user::interaction::get_margin(pstyle, eelement, estate);
@@ -1915,7 +1935,7 @@ namespace user
 
             SetTimer(e_timer_overflow_scrolling, 50, nullptr);
 
-            set_capture();
+            set_mouse_capture();
 
             queue_graphics_call([this, point](::draw2d::graphics_pointer & pgraphics)
                {
@@ -2047,9 +2067,9 @@ namespace user
 
       size_f64 sizeUniText;
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      ::draw2d::text_metric metric;
+      ::write_text::text_metric metric;
 
       pgraphics->get_text_metrics(&metric);
 
@@ -2497,9 +2517,9 @@ namespace user
 
       }
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
-      ::draw2d::text_metric metric;
+      ::write_text::text_metric metric;
 
       pgraphics->get_text_metrics(&metric);
 
@@ -3010,7 +3030,7 @@ namespace user
 
       pgraphics->set_font(this, ::user::e_element_none);
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       string strLine = plain_edit_get_expanded_line(pgraphics, iLine, { &iChar });
 
@@ -3042,7 +3062,7 @@ namespace user
 
          i2 = i1 + m_iaLineLen[iLine];
 
-         if (iSel < i2)
+         if (iSel <= i2)
          {
 
             strsize iRel = iSel - i1;
@@ -3157,7 +3177,7 @@ namespace user
 
       GetFocusRect(rectClient);
 
-      pgraphics->set_text_rendering_hint(::draw2d::text_rendering_hint_anti_alias);
+      pgraphics->set_text_rendering_hint(::write_text::e_rendering_anti_alias);
 
       strsize iChar = plain_edit_line_char_hit_test(pgraphics, x, iLine);
 
@@ -3882,9 +3902,9 @@ finished_update:
    void plain_edit::_001OnUniChar(::message::message * pmessage)
    {
 
-      //      __pointer(::message::base) pbase(pmessage);
+      //      __pointer(::user::message) pusermessage(pmessage);
       //
-      //      if (::str::ch::is_legal_uni_index(pbase->m_wparam))
+      //      if (::str::ch::is_legal_uni_index(pusermessage->m_wparam))
       //      {
       //
       //#ifdef WINDOWS_DESKTOP
@@ -3898,7 +3918,7 @@ finished_update:
       //
       //            wd32char u32[2];
       //
-      //            u32[0] = pbase->m_wparam;
+      //            u32[0] = pusermessage->m_wparam;
       //
       //            u32[1] = 0;
       //
@@ -4444,12 +4464,12 @@ finished_update:
 
 #ifdef WINDOWS_DESKTOP
 
-                  if (m_strImeComposition.has_char())
+                  if (get_ime_composition().has_char())
                   {
 
                      edit_undo();
 
-                     m_strImeComposition.Empty();
+                     clear_ime_composition();
 
                   }
 
@@ -4559,6 +4579,7 @@ finished_update:
             }
             else if (pkey->m_ekey == ::user::e_key_delete)
             {
+
                if (is_text_composition_active())
                {
 
@@ -4982,10 +5003,7 @@ finished_update:
 
    }
 
-   //if()
 
-
-// HWND hwndIme = ImmGetDefaultIMEWnd(get_handle());
    void plain_edit::get_text_composition_area(::rectangle_i32 & rectangle)
    {
 
@@ -4995,22 +5013,30 @@ finished_update:
 
       _001GetSel(iBeg, iEnd);
 
-      i32 x;
+      // i32 x;
 
-      auto pgraphics = ::draw2d::create_memory_graphics();
+      //auto pgraphics = ::draw2d::create_memory_graphics();
 
-      auto iLine = plain_edit_sel_to_line_x(pgraphics, iEnd, x);
+      //auto iLine = plain_edit_sel_to_line_x(pgraphics, iEnd, x);
 
-      double y = iLine * m_dLineHeight - get_viewport_offset().y;
+      i32 x = m_iLastSelEndX;
+
+      double y = m_iLastSelEndLine * m_dLineHeight - get_viewport_offset().y;
       
       double y2 = y + m_dLineHeight;
 
       ::point_i32 point((::i32)x,(::i32) y);
+
       get_client_rect(rectangle);
-      rectangle.left =(::i32) x;
+
+      rectangle.left =(::i32)x;
+
       rectangle.top = (::i32)y;
+
       rectangle.bottom = (::i32)y2;
+
       _001ClientToScreen(rectangle);
+
       get_wnd()->_001ScreenToClient(rectangle);
 
    }
@@ -5096,7 +5122,6 @@ finished_update:
 
          insert_text(strText, true, e_source_user);
 
-         __refer(m_pitemComposing, m_pinsert);
 
 #endif
 
@@ -5167,11 +5192,11 @@ finished_update:
    void plain_edit::on_text_composition_done()
    {
 
-#ifdef WINDOWS_DESKTOP
-
-      text_composition_composite::on_text_composition_done();
-
-#endif
+//#ifdef WINDOWS_DESKTOP
+//
+//      text_composition_composite::on_text_composition_done();
+//
+//#endif
 
       __release(m_pitemComposing);
 
@@ -5231,7 +5256,7 @@ finished_update:
 
          insert_text(strText, true, e_source_user);
 
-         __refer(m_pitemComposing, m_pinsert);
+         //__refer(m_pitemComposing, m_pinsert);
 
       }
 
@@ -5469,7 +5494,7 @@ finished_update:
       if (iTimer == 0)
       {
 
-         if (has_focus() && is_window_visible())// && m_millisLastDraw.elapsed() > m_millisCaretPeriod / 8)
+         if (has_keyboard_focus() && is_window_visible())// && m_millisLastDraw.elapsed() > m_millisCaretPeriod / 8)
          {
 
             if (is_different(m_bLastCaret, is_caret_on()))
@@ -6193,7 +6218,7 @@ finished_update:
    }
 
 
-   void plain_edit::_001OnSetFocus(::message::message * pmessage)
+   void plain_edit::on_set_keyboard_focus()
    {
 
       m_bFocus = true;
@@ -6234,7 +6259,7 @@ finished_update:
    }
 
 
-   void plain_edit::_001OnKillFocus(::message::message * pmessage)
+   void plain_edit::on_kill_keyboard_focus()
    {
 
       auto psession = Session;
@@ -6262,7 +6287,6 @@ finished_update:
 #endif
 
       }
-
 
       //DestroyImeWindow();
 
@@ -6310,7 +6334,7 @@ finished_update:
    void plain_edit::_001OnUpdateEditCut(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
       string str;
 
@@ -6345,7 +6369,7 @@ finished_update:
    void plain_edit::_001OnUpdateEditCopy(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
       string str;
 
@@ -6370,7 +6394,7 @@ finished_update:
    void plain_edit::_001OnUpdateEditPaste(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
       auto psession = Session;
 
@@ -6399,7 +6423,7 @@ finished_update:
    void plain_edit::_001OnUpdateEditDelete(::message::message * pmessage)
    {
 
-      __pointer(::user::command) pcommand(pmessage);
+      __pointer(::message::command) pcommand(pmessage);
 
       string str;
 
@@ -6554,14 +6578,14 @@ finished_update:
    void plain_edit::on_before_change_text()
    {
 
-      //if (m_strImeComposition.has_char())
-      //{
+      if (get_ime_composition().has_char())
+      {
 
-      //   m_strImeComposition.Empty();
+         clear_ime_composition();
 
-      //   edit_undo();
+         edit_undo();
 
-      //}
+      }
 
    }
 
@@ -6573,6 +6597,14 @@ finished_update:
          {
 
             plain_edit_insert_text(pgraphics, strText, bForceNewStep);
+
+            if (is_text_composition_active() && !m_pitemComposing)
+            {
+
+               __refer(m_pitemComposing, m_pinsert);
+
+            }
+
 
          });
 

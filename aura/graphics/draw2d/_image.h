@@ -306,9 +306,9 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //   virtual bool copy(::image * pimage, i32 x, i32 y)= 0;
 //   virtual bool PasteRect(::image * pimage, i32 x, i32 y)= 0;
 //
-//   virtual bool fill_rect(const ::rectangle_i32 & rectangle, color32_t cr)= 0;
+//   virtual bool fill_rectangle(const ::rectangle_i32 & rectangle, color32_t cr)= 0;
 //
-//   virtual bool fill_rect(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B)= 0;
+//   virtual bool fill_rectangle(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B)= 0;
 //
 //
 //   virtual bool fill_glass_rect(const ::rectangle_i32 & rectangle, i32 R, i32 G, i32 B, i32 A)= 0;
@@ -350,10 +350,10 @@ CLASS_DECL_AURA e_rotate_flip exif_orientation_rotate_flip(int orientation);
 //
 //
 //
-//   inline bool fill_rect_dim(i32 x, i32 y, i32 w, i32 h, color32_t cr) { return fill_rect(::rect_dim(x, y, w, h), cr); }
-//   inline bool fill_rect_dim(i32 x, i32 y, i32 w, i32 h, i32 R, i32 G, i32 B) { return fill_rect(::rect_dim(x, y, w, h), R, G, B); }
-//   inline bool fill_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2, color32_t cr) { return fill_rect(::rectangle_i32(x1, y1, x2, y2), cr); }
-//   inline bool fill_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B) { return fill_rect(::rectangle_i32(x1, y1, x2, y2), R, G, B); }
+//   inline bool fill_rect_dim(i32 x, i32 y, i32 w, i32 h, color32_t cr) { return fill_rectangle(::rect_dim(x, y, w, h), cr); }
+//   inline bool fill_rect_dim(i32 x, i32 y, i32 w, i32 h, i32 R, i32 G, i32 B) { return fill_rectangle(::rect_dim(x, y, w, h), R, G, B); }
+//   inline bool fill_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2, color32_t cr) { return fill_rectangle(::rectangle_i32(x1, y1, x2, y2), cr); }
+//   inline bool fill_rect_coord(i32 x1, i32 y1, i32 x2, i32 y2, i32 R, i32 G, i32 B) { return fill_rectangle(::rectangle_i32(x1, y1, x2, y2), R, G, B); }
 //
 //
 //   //virtual void defer_save_to_cache()= 0;

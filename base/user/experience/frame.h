@@ -160,11 +160,11 @@ namespace experience
       virtual bool _001OnNcLButtonDown(::message::mouse * pmouse);
       virtual bool _001OnNcLButtonUp(::message::mouse * pmouse);
       virtual bool _001OnNcMouseMove(::message::mouse * pmouse);
-      virtual bool _001OnNcHitTest(const ::point_i32 & point, LRESULT & nHitTest);
+      virtual bool _001OnNcHitTest(const ::point_i32 & point, enum_hit_test & ehittest);
       virtual bool _001OnTimer(::u32 uEvent);
       //virtual bool _001OnSize(::u32 nType, i32 cx, i32 cy);
       //virtual bool _001OnMove(i32 x, i32 y);
-      virtual bool _001OnCommand(wparam wparam, lparam lparam, LRESULT & lresult);
+      //virtual bool _001OnCommand(wparam wparam, lparam lparam, lresult & lresult);
 
 
 

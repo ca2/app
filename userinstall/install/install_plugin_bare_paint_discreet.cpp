@@ -310,7 +310,7 @@ auto m_millisSync = ::millis::now();
 
       pgraphics->SelectObject(br);
 
-      ::draw2d::font_pointer f(e_create);
+      ::write_text::font_pointer f(e_create);
 
       f->create_pixel_font("Calibri", iBarHeight * 0.7);
 

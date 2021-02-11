@@ -76,7 +76,7 @@ namespace prompt
    }
 
 
-   //void department::route_command_message(::user::command * pcommand)
+   //void department::route_command_message(::message::command * pcommand)
    //{
 
    //   ::apex::department::route_command_message(pcommand);

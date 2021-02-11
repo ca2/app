@@ -218,7 +218,7 @@ void wf_sizing(wfContext* wfc, WPARAM wParam, LPARAM lParam)
 
 	if (wfc->instance->settings->SmartSizing && (GetAsyncKeyState(VK_CONTROL) & 0x8000))
 	{
-		rectangle_i32 = (RECTANGLE_I32 *) wParam;
+		rectangle = (RECTANGLE_I32 *) wParam;
 
 		switch(lParam)
 		{

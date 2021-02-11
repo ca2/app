@@ -22,9 +22,9 @@ namespace user
       index           m_iSubItem;
       index           m_iListItem;
       string          m_strText;
-      ::color::color         m_colorText;
-      ::color::color         m_colorTextBackground;
-      ::color::color         m_colorItemBackground;
+      __status < ::color::color >       m_colorText;
+      __status < ::color::color >       m_colorTextBackground;
+      __status < ::color::color >       m_colorItemBackground;
       i32             m_iState;
       index           m_iImage;
       bool            m_bOk;
@@ -73,7 +73,7 @@ namespace user
       index                      m_iListItemRectSubItem;
       index                      m_iListItemRectListItem;
 
-      ::draw2d::font *           m_pfont;
+      ::write_text::font *           m_pfont;
       ::e_align                  m_ealign;
       ::e_draw_text              m_edrawtext;
 

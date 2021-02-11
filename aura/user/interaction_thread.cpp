@@ -1,7 +1,5 @@
 #include "framework.h"
-#if !BROAD_PRECOMPILED_HEADER
 #include "aura/user/_user.h"
-#endif
 #include "aura/message.h"
 #include "interaction_thread.h"
 #include "interaction_prodevian.h"
@@ -314,13 +312,13 @@ namespace user
          if (m_messagebasea.has_elements())
          {
 
-            auto pbase = m_messagebasea.first_pointer();
+            auto pusermessage = m_messagebasea.first_pointer();
 
             m_messagebasea.remove_at(0);
 
             sl.unlock();
 
-            m_pimpl->m_puserinteraction->message_handler(pbase);
+            m_pimpl->m_puserinteraction->message_handler(pusermessage);
 
             return true;
 
@@ -479,7 +477,7 @@ namespace user
       if (msg.message == ::e_message_redraw)
       {
 
-         auto pimpl = m_pimpl;
+         auto pimpl = m_pimpl->m_pwindow->m_pwindowing->window(msg.oswindow)->m_pimpl;
 
          if (pimpl)
          {
@@ -547,13 +545,13 @@ catch(...)
    }
 
 
-   ::e_status thread::process_base_message(::message::base * pbase)
+   ::e_status thread::process_user_message(::user::message * pusermessage)
    {
 
-      if(::is_set(pbase->userinteraction()))
+      if(::is_set(pusermessage->userinteraction()))
       {
 
-         ::i64 iMessage = pbase->m_id;
+         ::i64 iMessage = pusermessage->m_id;
             //__throw(todo("interaction"));
             //__throw(todo("thread"));
 
@@ -564,12 +562,12 @@ catch(...)
                //__throw(todo("interaction"));
                //__throw(todo("thread"));
 
-            auto pinteraction = pbase->userinteraction();
+            auto pinteraction = pusermessage->userinteraction();
 
             if(pinteraction)
             {
 
-               pinteraction->m_pimpl2->_001OnApplyVisual(pbase);
+               pinteraction->m_pimpl2->_001OnApplyVisual(pusermessage);
 
                return true;
 
@@ -579,7 +577,7 @@ catch(...)
          else if (iMessage == e_message_update_notify_icon)
          {
 
-            pbase->userinteraction()->route_message(pbase);
+            pusermessage->userinteraction()->route_message(pusermessage);
 
             return true;
 
@@ -587,9 +585,9 @@ catch(...)
          else if (iMessage == e_message_simple_command)
          {
 
-            auto pinteraction = pbase->userinteraction();
+            auto pinteraction = pusermessage->userinteraction();
 
-            pinteraction->m_pimpl2->_001OnApplyVisual(pbase);
+            pinteraction->m_pimpl2->_001OnApplyVisual(pusermessage);
 
             return true;
 
@@ -602,7 +600,7 @@ catch(...)
 
          //   ::i64 iApp = iMessage - WM_APP;
 
-         //   pbase->m_puserinteraction->message_handler(pbase);
+         //   pusermessage->m_puserinteraction->message_handler(pusermessage);
 
          //}
          //else
@@ -612,7 +610,7 @@ catch(...)
          //   //__throw(todo("interaction"));
          //   //__throw(todo("thread"));
 
-            pbase->userinteraction()->message_handler(pbase);
+         pusermessage->userinteraction()->message_handler(pusermessage);
 
          //}
 
@@ -620,7 +618,9 @@ catch(...)
 
       }
 
-      return ::thread::process_base_message(pbase);
+      return ::thread::process_message(pusermessage);
+
+      
 
    }
 

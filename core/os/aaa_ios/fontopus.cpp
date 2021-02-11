@@ -643,7 +643,7 @@ namespace account
       get_window_rect(rectWindow);
 
 
-      g.fill_rect(rectWindow, argb(84, 127, 127, 127));
+      g.fill_rectangle(rectWindow, argb(84, 127, 127, 127));
 
    }
 

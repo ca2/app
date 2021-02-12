@@ -1,0 +1,5 @@
+LIBRARY "tts_sapi"
+
+EXPORTS
+tts_sapi_factory_exchange
+
